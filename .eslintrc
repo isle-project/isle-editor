@@ -7,16 +7,20 @@
     "node": true
   },
   "rules": {
+    "array-bracket-spacing": ["error", "always"],
     "consistent-return": 0,
     "comma-dangle": 0,
+    "computed-property-spacing": ["error", "always"],
+    "no-underscore-dangle": 0,
     "no-use-before-define": 0,
     "import/no-unresolved": [2, { ignore: ['electron'] }],
     "react/jsx-no-bind": 0,
     "react/prefer-stateless-function": 0,
     "indent": [2, "tab"],
-    "space-in-parens": ["error", "always",{ "exceptions": ["{}"]}],
-    "jsx-indent-props": [2, 'tab'],
-    "jsx-indent": [2, 'tab']
+    "prefer-template": 0,
+    "space-in-parens": ["error", "always",{ "exceptions": ["{}","[]"]}],
+    "react/jsx-indent-props": [2, 'tab'],
+    "react/jsx-indent": [2, 'tab']
   },
   "plugins": [
     "import",

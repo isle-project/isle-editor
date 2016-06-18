@@ -1,0 +1,6 @@
+snippet TeX
+	<TeX raw="${1:}" displayMode={${2:false}}></TeX>
+snippet Switch
+	<Switch></Switch>
+snippet RShell
+	<RShell code="${1:}" lines={${2:5}}></RShell>
