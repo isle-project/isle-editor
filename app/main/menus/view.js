@@ -1,3 +1,5 @@
+// VIEW MENU //
+
 const viewMenu = {
 	label: 'View',
 	submenu: [
@@ -49,5 +51,8 @@ if ( process.platform === 'darwin' ) {
 		role: 'front'
 	});
 }
+
+
+// EXPORTS //
 
 export default viewMenu;

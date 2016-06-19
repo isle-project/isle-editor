@@ -12,9 +12,9 @@ import { transform } from 'react-tools';
 
 // E-LEARNING MODULE COMPONENTS //
 
-const TeX = require( './learning/tex' );
-const Switch = require( './learning/switch' );
-const RShell = require( './learning/rshell' );
+const TeX = require( './node_modules/learning/tex' );
+const Switch = require( './node_modules/learning/switch' );
+const RShell = require( './node_modules/learning/rshell' );
 
 
 const md = require( 'markdown-it' )({

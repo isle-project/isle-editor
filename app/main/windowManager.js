@@ -1,5 +1,5 @@
 // from https://github.com/jprichardson/electron-window/
-import { BrowserWindow } from 'electron'
+import { BrowserWindow } from 'electron';
 
 // retain global references, if not, window will be closed automatically when
 // garbage collected
@@ -42,14 +42,14 @@ function createWindow( options ) {
 	window.once( 'close', window.unref );
 	window._loadUrl = _loadUrl.bind( window );
 
-	window.showUrl = function( httpOrFileUrl, callback ) {
+	window.showUrl = ( httpOrFileUrl, callback ) => {
 		window._loadUrl( httpOrFileUrl, ( ...args ) => {
 			window.show();
 			if ( callback ) {
 				callback( ...args );
 			}
 		});
-	}
+	};
 
 	return window;
 }

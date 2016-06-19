@@ -4,10 +4,10 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 import SplitPane from 'react-split-pane';
-import Panel from './../components/node_modules/Panel';
-import Header from './../components/node_modules/Header';
-import Editor from './../components/node_modules/Editor';
-import Preview from './../components/node_modules/Preview';
+import Panel from './../components/Panel';
+import Header from './../components/Header';
+import Editor from './../components/Editor';
+import Preview from './../components/Preview';
 import { convertMarkdown, toggleScrolling } from './../actions';
 import moment from 'moment';
 

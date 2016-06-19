@@ -58,7 +58,7 @@ if ( version ) {
 		if ( err ) {
 			DEFAULT_OPTS.version = '1.0.2';
 		} else {
-			DEFAULT_OPTS.version = stdout.split( 'electron-prebuilt@' )[1].replace( /\s/g, '' );
+			DEFAULT_OPTS.version = stdout.split( 'electron-prebuilt@' )[ 1 ].replace( /\s/g, '' );
 		}
 		startPack();
 	});
@@ -82,8 +82,8 @@ function startPack() {
 	.then( paths => {
 		if ( shouldBuildAll ) {
 			// build for all platforms
-			const archs = ['ia32', 'x64'];
-			const platforms = ['linux', 'win32', 'darwin'];
+			const archs = [ 'ia32', 'x64' ];
+			const platforms = [ 'linux', 'win32', 'darwin' ];
 
 			platforms.forEach( plat => {
 				archs.forEach( arch => {

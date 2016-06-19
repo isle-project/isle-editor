@@ -32,7 +32,7 @@ export default function configureIpcRenderer( store ) {
 	window.document.addEventListener( 'drop', ( e ) => {
 		e.preventDefault();
 		ipcRenderer.send( 'ISLE::dropped-file', {
-			filePath: e.dataTransfer.files[0].path
+			filePath: e.dataTransfer.files[ 0 ].path
 		});
 	});
 

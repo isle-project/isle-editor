@@ -10,14 +10,15 @@ export default {
 		loaders: [ {
 			test: /\.js?$/,
 			loader: 'babel-loader',
-			exclude: /node_modules/,
+			exclude: path.join( __dirname, 'node_modules' ),
 			query: {
 				plugins: []
 			}
 		}, {
 			test: /\.json$/,
 			loader: 'json-loader'
-		} ]
+		} ],
+		noParse: /node_modules\/json-schema\/lib\/validate\.js/
 	},
 	output: {
 		path: path.join( __dirname, 'dist' ),

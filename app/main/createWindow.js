@@ -30,7 +30,7 @@ export default function createWindow( filePath, callback ) {
 	} else if ( process.env.NODE_ENV === 'production' ) {
 		indexPath = path.resolve( __dirname, 'app', 'app.html' );
 	}
-	console.log( indexPath )
+
 	mainWindow.showUrl( indexPath, () => {
 		if ( filePath ) {
 			fs.readFile( filePath, 'utf-8', ( err, file ) => {

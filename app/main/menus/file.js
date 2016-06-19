@@ -2,7 +2,7 @@ import * as actions from './../actions';
 
 export default {
 	label: 'File',
-	submenu: [{
+	submenu: [ {
 		label: 'New File',
 		accelerator: 'CmdOrCtrl+N',
 		click: ( menuItem, browserWindow ) => {
@@ -39,5 +39,5 @@ export default {
 	{
 		label: 'Generate App',
 		click: () => {}
-	}]
+	} ]
 };
