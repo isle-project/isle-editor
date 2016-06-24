@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="r-shell.html" />
+    <link rel="next" href="markdown.html" />
     
     
     <link rel="prev" href="feedback.html" />
@@ -174,20 +174,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="checkbox.html">
-            
-                <a href="checkbox.html">
-            
-                    
-                    Checkbox
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.2" data-path="feedback.html">
+        <li class="chapter " data-level="1.4.1" data-path="feedback.html">
             
                 <a href="feedback.html">
             
@@ -200,12 +187,25 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.3" data-path="function-plot.html">
+        <li class="chapter active" data-level="1.4.2" data-path="function-plot.html">
             
                 <a href="function-plot.html">
             
                     
                     Function Plot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="markdown.html">
+            
+                <a href="markdown.html">
+            
+                    
+                    Markdown
             
                 </a>
             
@@ -315,7 +315,26 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="function-plot">Function Plot</h1>
+<p>ISLE component to generate line-plots of functions and/or scatter-plots of individual observations.</p>
+<p>Example:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">FunctionPlot</span>
+    <span class="hljs-attr">data</span>=<span class="hljs-string">{[</span>
+        { <span class="hljs-attr">fun:</span> <span class="hljs-attr">Math.sin</span> }
+    ]}
+    <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;myplot&quot;</span>
+/&gt;</span>
+</code></pre>
+<h2 id="options">Options</h2>
+<ul>
+<li><code>data</code>: An array of <code>objects</code> with either a <code>fun</code> or <code>points</code> key. <code>fun</code> expects a <code>function</code> to be plotted, whereas <code>points</code> should be an array of arrays of length two holding the (x,y) pairs to be plotted. Required.</li>
+<li><code>id</code>: Unique <code>string</code> identifier for the plot to be created. Required.</li>
+<li><code>width</code>: <code>number</code> giving the width of the created plot (in px). Default: <code>250</code>.</li>
+<li><code>height</code>: <code>number</code> giving the height of the created plot (in px). Default: <code>250</code>.</li>
+<li><code>title</code>: <code>string</code> specifying the title of the plot. Default: <code>null</code>.</li>
+<li><code>disableZoom</code>: <code>boolean</code> indicating whether zooming should be disabled. Default: <code>true</code>.</li>
+</ul>
+
                                 
                                 </section>
                             
@@ -347,7 +366,7 @@
                 </a>
                 
                 
-                <a href="r-shell.html" class="navigation navigation-next " aria-label="Next page: R Shell">
+                <a href="markdown.html" class="navigation navigation-next " aria-label="Next page: Markdown">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -358,7 +377,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Function Plot","level":"1.4.3","depth":2,"next":{"title":"R Shell","level":"1.4.4","depth":2,"path":"components/r-shell.md","ref":"components/r-shell.md","articles":[]},"previous":{"title":"Feedback Buttons","level":"1.4.2","depth":2,"path":"components/feedback.md","ref":"components/feedback.md","articles":[]},"dir":"neutral"},"config":{"plugins":["edit-link"],"root":"./docs","styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"family":"sans","size":3,"theme":"night"},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"all":["facebook","google","instapaper","twitter","weibo"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/function-plot.md","mtime":"2016-06-24T13:22:33.544Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-24T13:26:59.136Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Function Plot","level":"1.4.2","depth":2,"next":{"title":"Markdown","level":"1.4.3","depth":2,"path":"components/markdown.md","ref":"components/markdown.md","articles":[]},"previous":{"title":"Feedback Buttons","level":"1.4.1","depth":2,"path":"components/feedback.md","ref":"components/feedback.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link"],"root":"./docs","styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"family":"sans","size":3,"theme":"sepia"},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"all":["facebook","google","instapaper","twitter","weibo"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/function-plot.md","mtime":"2016-06-24T21:54:28.010Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-24T21:57:32.279Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

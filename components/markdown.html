@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Checkbox · ISLE Editor Documentation</title>
+        <title>Markdown · ISLE Editor Documentation</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="feedback.html" />
+    <link rel="next" href="r-shell.html" />
     
     
-    <link rel="prev" href="../components.html" />
+    <link rel="prev" href="function-plot.html" />
     
 
     </head>
@@ -174,20 +174,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.4.1" data-path="checkbox.html">
-            
-                <a href="checkbox.html">
-            
-                    
-                    Checkbox
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.2" data-path="feedback.html">
+        <li class="chapter " data-level="1.4.1" data-path="feedback.html">
             
                 <a href="feedback.html">
             
@@ -200,12 +187,25 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="function-plot.html">
+        <li class="chapter " data-level="1.4.2" data-path="function-plot.html">
             
                 <a href="function-plot.html">
             
                     
                     Function Plot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.3" data-path="markdown.html">
+            
+                <a href="markdown.html">
+            
+                    
+                    Markdown
             
                 </a>
             
@@ -300,7 +300,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Checkbox</a>
+        <a href=".." >Markdown</a>
     </h1>
 </div>
 
@@ -315,7 +315,20 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="markdown-element">Markdown Element</h1>
+<p>To use <a href="https://daringfireball.net/projects/markdown/" target="_blank">Markdown</a> for writing sections of text, ISLE comes with the <code>&lt;md&gt;</code> tag. All text inside this tag will be parsed as Markdown and rendered as HTML. It is possible to use HTML tags inside <code>&lt;md&gt;&lt;/md&gt;</code>, but support of ISLE component tags is not supported inside of <code>&lt;md&gt;</code>.</p>
+<p>Example:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">md</span>&gt;</span>
+
+# I am an h1 element
+
+*Am I italic?*
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">md</span>&gt;</span>
+</code></pre>
+<h2 id="markdown-syntax">Markdown Syntax</h2>
+<p>See this overview for an introduction to the Markdown syntax: <a href="https://daringfireball.net/projects/markdown/syntax" target="_blank">Link</a>.</p>
+
                                 
                                 </section>
                             
@@ -342,12 +355,12 @@
 
             
                 
-                <a href="../components.html" class="navigation navigation-prev " aria-label="Previous page: ISLE Components">
+                <a href="function-plot.html" class="navigation navigation-prev " aria-label="Previous page: Function Plot">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="feedback.html" class="navigation navigation-next " aria-label="Next page: Feedback Buttons">
+                <a href="r-shell.html" class="navigation navigation-next " aria-label="Next page: R Shell">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -358,7 +371,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Checkbox","level":"1.4.1","depth":2,"next":{"title":"Feedback Buttons","level":"1.4.2","depth":2,"path":"components/feedback.md","ref":"components/feedback.md","articles":[]},"previous":{"title":"ISLE Components","level":"1.4","depth":1,"path":"components.md","ref":"components.md","articles":[{"title":"Checkbox","level":"1.4.1","depth":2,"path":"components/checkbox.md","ref":"components/checkbox.md","articles":[]},{"title":"Feedback Buttons","level":"1.4.2","depth":2,"path":"components/feedback.md","ref":"components/feedback.md","articles":[]},{"title":"Function Plot","level":"1.4.3","depth":2,"path":"components/function-plot.md","ref":"components/function-plot.md","articles":[]},{"title":"R Shell","level":"1.4.4","depth":2,"path":"components/r-shell.md","ref":"components/r-shell.md","articles":[]},{"title":"Switch","level":"1.4.5","depth":2,"path":"components/switch.md","ref":"components/switch.md","articles":[]},{"title":"LaTeX Equations","level":"1.4.6","depth":2,"path":"components/latex.md","ref":"components/latex.md","articles":[]}]},"dir":"neutral"},"config":{"plugins":["edit-link"],"root":"./docs","styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"family":"sans","size":3,"theme":"night"},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"all":["facebook","google","instapaper","twitter","weibo"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/checkbox.md","mtime":"2016-06-24T13:21:54.208Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-24T13:26:59.136Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Markdown","level":"1.4.3","depth":2,"next":{"title":"R Shell","level":"1.4.4","depth":2,"path":"components/r-shell.md","ref":"components/r-shell.md","articles":[]},"previous":{"title":"Function Plot","level":"1.4.2","depth":2,"path":"components/function-plot.md","ref":"components/function-plot.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link"],"root":"./docs","styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"family":"sans","size":3,"theme":"sepia"},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"all":["facebook","google","instapaper","twitter","weibo"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/markdown.md","mtime":"2016-06-24T20:50:11.671Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-24T21:57:32.279Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
