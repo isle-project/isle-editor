@@ -1,5 +1,6 @@
 // MODULES //
 
+import webpack from 'webpack';
 import path from 'path';
 
 
@@ -17,6 +18,13 @@ export default {
 		}, {
 			test: /\.json$/,
 			loader: 'json-loader'
+		},
+		{
+			test: /img\/[A-Z]*\.svg$/i,
+			loader: 'file-loader?name=./img/[name].[ext]',
+			include: [
+				path.join( __dirname, 'img' )
+			]
 		} ],
 		noParse: /node_modules\/json-schema\/lib\/validate\.js/
 	},
@@ -30,6 +38,9 @@ export default {
 		packageMains: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
 	},
 	plugins: [
+		new webpack.ProvidePlugin({
+			'window.d3': 'd3'
+		})
 	],
 	externals: [
 		// Node 3rd party libraries which can't be built with webpack go here...

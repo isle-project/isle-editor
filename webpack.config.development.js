@@ -54,6 +54,9 @@ const config = {
 			'process.env': {
 				NODE_ENV: JSON.stringify( 'development' )
 			}
+		}),
+		new webpack.ProvidePlugin({
+			'window.d3': 'd3'
 		})
 	],
 
