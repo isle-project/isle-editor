@@ -1,6 +1,21 @@
+snippet FeedbackButtons
+	<FeedbackButtons
+		for="${1:divID}"
+	/>
 snippet TeX
-	<TeX raw="${1:}" displayMode={${2:false}}></TeX>
+	<TeX raw="${1:}" displayMode={${2:false}} />
 snippet Switch
 	<Switch></Switch>
 snippet RShell
-	<RShell code="${1:}" lines={${2:5}}></RShell>
+	<RShell code="${1:}" lines={${2:5}} />
+snippet FunctionPlot
+	<FunctionPlot
+		data={[
+			{ ${1:} }
+		]}
+		id="${2:name}"
+	/>
+snippet MD
+	<md>
+	${1:}
+	</md>

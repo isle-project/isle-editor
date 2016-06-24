@@ -5,13 +5,13 @@ import fs from 'fs';
 
 // VARIABLES //
 
-var snippetText = fs.readFileSync( './app/snippets/snippets.txt' ).toString();
+const snippetText = fs.readFileSync( './app/snippets/snippets.txt' ).toString();
 
 
 // FUNCTIONS //
 
 function aceSnippets( editor, session ) {
-	const snippet = setup( editor, session, 'markdown', snippetText );
+	const snippet = setup( editor, session, 'isle', snippetText );
 	snippet.manager.register( snippet.m.snippet, snippet.m.scope );
 }
 
@@ -20,7 +20,7 @@ function getNames( editor, session, mode, snippetText ) {
 	const names = [];
 
 	for ( let i = 0; i < snippet.m.snippet.length; i++ ) {
-		names.push( snippet.m.snippet[i].name );
+		names.push( snippet.m.snippet[ i ].name );
 	}
 
 	return names;
@@ -31,7 +31,7 @@ function getContent( editor, session, mode, snippetText ) {
 	const content = [];
 
 	for ( let i = 0; i < snippet.m.snippet.length; i++ ) {
-		content.push( snippet.m.snippet[i].content );
+		content.push( snippet.m.snippet[ i ].content );
 	}
 
 	return content;
@@ -45,7 +45,7 @@ function setup( editor, session, mode, snippetText ) {
 	const snippetManager = ace.acequire( 'ace/snippets' ).snippetManager;
 
 	const id = session.env.document.$mode.$id || '';
-	const m = snippetManager.files[id];
+	const m = snippetManager.files[ id ];
 
 	m.scope = mode;
 	m.snippetText = snippetText;
