@@ -1,10 +1,20 @@
 // MODULES //
 
+/*
+	Disable no-unused-vars warning as modules might be consumed in evaluated user code:
+*/
+/* eslint no-unused-vars: 0 */
+
+/*
+	Disable no-eval warning as evaluating code in an editor
+	is one of the few valid use-cases of this otherwise dangerous function:
+*/
+/* eslint no-eval: 0 */
+
 const React = require( 'react' );
 const render = require( 'react-dom' ).render;
 const yaml = require( 'js-yaml' );
 const watch = require( 'watchjs' ).watch;
-
 
 import { Component, PropTypes } from 'react';
 import { transform } from 'react-tools';
@@ -12,11 +22,14 @@ import { transform } from 'react-tools';
 
 // E-LEARNING MODULE COMPONENTS //
 
+const FeedbackButtons = require( './node_modules/learning/feedback' );
+const FunctionPlot = require( './node_modules/learning/function-plot' );
 const TeX = require( './node_modules/learning/tex' );
 const Switch = require( './node_modules/learning/switch' );
 const RShell = require( './node_modules/learning/rshell' );
 
 
+// Markdown parser rendering markdown inside <md></md> tags...
 const md = require( 'markdown-it' )({
 	html: true,
 	xhtmlOut: true,
@@ -26,25 +39,26 @@ const md = require( 'markdown-it' )({
 
 
 export default class Preview extends Component {
-
-	constructor( props ) {
-		super( props );
+	componentDidMount() {
+		this.renderPreview();
 	}
-
+	componentDidUpdate() {
+		this.renderPreview();
+	}
 	renderPreview() {
 		let es5code;
 		let { code } = this.props;
-		let preamble = code.match( /---([\S\s]*)---/ )[ 1 ];
+		const preamble = code.match( /---([\S\s]*)---/ )[ 1 ];
 
 		try {
-			let { store={} } = yaml.load( preamble );
+			const { store = {} } = yaml.load( preamble );
 			global.store = store;
 
 			code = code.replace( /---([\S\s]*)---/, '' );
 
-			code = code.replace( /<md>([\S\s]*)<\/md>/g, ( match, p1 ) => {
-				return md.render( p1 );
-			});
+			code = code.replace( /<md>([\S\s]*?)<\/md>/g,
+				( match, p1 ) => md.render( p1 )
+			);
 			es5code = `
 				var Lesson = React.createClass({
 					componentDidMount: function() {
@@ -57,7 +71,7 @@ export default class Preview extends Component {
 						return React.createElement(
 							"div",
 							{ className: "Lesson", markdown: 1 },
-							${ transform( '<div>' + code + '</div>' ) }
+							${transform( '<div>' + code + '</div>' )}
 						);
 					}
 				});
@@ -68,7 +82,7 @@ export default class Preview extends Component {
 			`;
 			eval( es5code );
 		} catch ( err ) {
-			code = `<div>{ err.toString() }</div>`;
+			code = `<div>${err.toString()}</div>`;
 			es5code = `
 				render(
 					${transform( code )},
@@ -78,21 +92,19 @@ export default class Preview extends Component {
 			eval( es5code );
 		}
 	}
-
-	componentDidMount() {
-		this.renderPreview();
-	}
-
-	componentDidUpdate() {
-		this.renderPreview();
-	}
-
 	render() {
 		return (
 			<div className="Preview" id="Preview"></div>
 		);
 	}
 }
+
+
+// PROPERTY TYPES //
+
+Preview.propTypes = {
+	code: PropTypes.string
+};
 
 
 // EXPORTS //

@@ -3,12 +3,18 @@
 import React, { PropTypes } from 'react';
 import ReactDom from 'react-dom';
 import ace from 'brace';
-import 'brace/mode/markdown';
+import 'brace/mode/isle';
 import 'brace/theme/github';
 import 'brace/ext/searchbox';
 import 'brace/ext/language_tools';
 import aceSnippets from './../snippets';
 import { noop } from 'lodash';
+
+
+// CONSTANTS //
+
+const NO_ATTRIBUTE_WARNING_REGEXP = /Unexpected character in unquoted attribute/;
+const NO_DOCTYPE_REGEXP = /doctype first\. Expected/;
 
 
 // VARIABLES //
@@ -23,7 +29,7 @@ const customCompleter = {
 		}
 
 		callback( null, [
-			{ name: 'Tex', value: '<TeX></TeX>', score: 1, meta: 'LaTeX Equation' }
+			// { name: 'Markdown', value: '<md></md>', score: 1, meta: 'Markdown' }
 		]);
 	}
 };
@@ -49,8 +55,10 @@ const Editor = React.createClass({
 
 		this.editor = ace.edit( ReactDom.findDOMNode( this ) );
 		this.editor.$blockScrolling = Infinity;
-		this.editor.getSession().setMode( 'ace/mode/markdown' );
-		this.editor.getSession().setUseWrapMode( true );
+
+		const session = this.editor.getSession();
+		session.setMode( 'ace/mode/isle' );
+		session.setUseWrapMode( true );
 		this.editor.setTheme( 'ace/theme/github' );
 		this.editor.setFontSize( 14 );
 		this.editor.on( 'change', this.onChange );
@@ -61,7 +69,7 @@ const Editor = React.createClass({
 			minLines: 50,
 			enableBasicAutocompletion: true,
 			enableSnippets: true,
-			enableLiveAutocompletion: false,
+			enableLiveAutocompletion: true,
 			highlightActiveLine: true
 		});
 
@@ -70,6 +78,23 @@ const Editor = React.createClass({
 
 		aceSnippets( ace, this.editor );
 		this.interval = setInterval( () => this.editor.resize(), 100 );
+
+		// Handle unwanted annotations and remove them:
+		session.on( 'changeAnnotation', () => {
+			const annotations = session.getAnnotations() || [];
+			const len = annotations.length;
+			let i = len;
+			while ( i-- ) {
+				if ( NO_DOCTYPE_REGEXP.test( annotations[ i ].text ) ||
+					NO_ATTRIBUTE_WARNING_REGEXP.test( annotations[ i ].text )
+				) {
+					annotations.splice( i, 1 );
+				}
+			}
+			if ( len > annotations.length ) {
+				session.setAnnotations( annotations );
+			}
+		});
 	},
 
 	componentWillReceiveProps( nextProps ) {
