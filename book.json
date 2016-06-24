@@ -1,11 +1,20 @@
 {
     "root": "./docs",
-    "plugins": [],
+    "title": "ISLE Editor Documentation",
+    "description": "Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)",
+    "author": "Philipp Burckhardt",
+    "plugins": [
+        "edit-link"
+    ],
     "pluginsConfig": {
         "fontsettings": {
-                "theme": "night",
-                "family": "sans",
-                "size": 3
-            }
+            "theme": "sepia",
+            "family": "sans",
+            "size": 3
+        },
+        "edit-link": {
+            "base": "https://github.com/Planeshifter/isle-editor/edit/master/docs",
+            "label": "Edit This Page"
+        }
     }
 }
