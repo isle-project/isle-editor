@@ -2,11 +2,13 @@
 
 ## Binaries
 
+Current version: `0.10.0`.
+
 | OS      | x64 | ia32 |
 | ------- | --- | --- |
-| Linux   | [Download][] | [Download][] |
-| OS X    | [Download][] | [Download][]  |
-| Windows | [Download][] | [Download][] |
+| Linux   | [Download][linux-x64] | [Download][linux-ia32] |
+| OS X    | [Download][darwin-x64] |  |
+| Windows | [Download][win32-x64] | [Download][win32-ia32] |
 
 ## Build from Source
 
@@ -56,3 +58,8 @@ $ npm run build
 [electron]: http://electron.atom.io/
 [git]: http://git-scm.com/
 [node-js]: https://nodejs.org/en/
+[darwin-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.10.0/darwin-x64.zip
+[linux-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.10.0/linux-x64.zip
+[linux-ia32]: https://github.com/Planeshifter/isle-editor/releases/download/v0.10.0/linux-ia32.zip
+[win32-ia32]: https://github.com/Planeshifter/isle-editor/releases/download/v0.10.0/win32-ia32.zip
+[win32-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.10.0/win32-x64.zip
