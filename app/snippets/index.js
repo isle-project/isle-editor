@@ -1,12 +1,8 @@
-// MODULES //
-
-import fs from 'fs';
-
-
 // VARIABLES //
 
-const snippetText = fs.readFileSync( './app/snippets/snippets.txt' ).toString();
+const snippetText = require( './snippets.txt' );
 
+console.log( snippetText.toString() )
 
 // FUNCTIONS //
 

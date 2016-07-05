@@ -20,6 +20,10 @@ export default {
 			loader: 'json-loader'
 		},
 		{
+			test: /\.txt$/,
+			loader: 'raw-loader'
+		},
+		{
 			test: /img\/[A-Z]*\.svg$/i,
 			loader: 'file-loader?name=./img/[name].[ext]',
 			include: [
