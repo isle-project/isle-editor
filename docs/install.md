@@ -1,8 +1,10 @@
 # Installation
 
+{% set softwareVersion = "v0.10.1" %}
+
 ## Binaries
 
-Current version: `0.10.0`.
+Current version: _{{softwareVersion}}_.
 
 | OS      | x64 | ia32 |
 | ------- | --- | --- |
@@ -58,8 +60,8 @@ $ npm run build
 [electron]: http://electron.atom.io/
 [git]: http://git-scm.com/
 [node-js]: https://nodejs.org/en/
-[darwin-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.10.0/darwin-x64.zip
-[linux-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.10.0/linux-x64.zip
-[linux-ia32]: https://github.com/Planeshifter/isle-editor/releases/download/v0.10.0/linux-ia32.zip
-[win32-ia32]: https://github.com/Planeshifter/isle-editor/releases/download/v0.10.0/win32-ia32.zip
-[win32-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.10.0/win32-x64.zip
+[darwin-x64]: https://github.com/Planeshifter/isle-editor/releases/download/{{softwareVersion}}/ISLE.Editor-darwin-x64.zip
+[linux-x64]: https://github.com/Planeshifter/isle-editor/releases/download/{{softwareVersion}}/ISLE.Editor-linux-x64.zip
+[linux-ia32]: https://github.com/Planeshifter/isle-editor/releases/download/{{softwareVersion}}/ISLE.Editor-linux-ia32.zip
+[win32-ia32]: https://github.com/Planeshifter/isle-editor/releases/download/{{softwareVersion}}/ISLE.Editor-win32-ia32.zip
+[win32-x64]: https://github.com/Planeshifter/isle-editor/releases/download/{{softwareVersion}}/ISLE.Editor-win32-x64.zip
