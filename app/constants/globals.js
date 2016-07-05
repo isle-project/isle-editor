@@ -5,5 +5,6 @@ export const EXTENSIONS = [
 	'md',
 	'mkd',
 	'mdwn',
-	'html'
+	'html',
+	'isle'
 ];
