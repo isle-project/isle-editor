@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import { Link } from 'react-router';
 import { Toolbar, Space, Heading, NavItem } from 'rebass';
 import Icon from 'react-geomicons';
 import * as colors from '../constants/colors';
@@ -17,13 +18,13 @@ const Header = ({ fileName }) => (
 		>
 			<Heading level={3}>ISLE Editor</Heading>
 			<Space auto />
-			<NavItem onClick={() => window.alert('More options will be available soon!')}>
-				<Icon
-					height="1.5em"
-					name="cog"
-					width="1.5em"
-				/>
-			</NavItem>
+			<Link
+				to="/docs"
+				style={{
+					color: 'silver',
+					fontSize: '18px'
+				}}
+			>Open Documentation</Link>
 			<Space />
 		</Toolbar>
 		<Toolbar
