@@ -19,6 +19,14 @@ const Header = ({ fileName }) => (
 			<Heading level={3}>ISLE Editor</Heading>
 			<Space auto />
 			<Link
+				to="/settings"
+				style={{
+					color: 'silver',
+					fontSize: '18px',
+					marginRight: '10px'
+				}}
+			>Open Settings</Link>
+			<Link
 				to="/docs"
 				style={{
 					color: 'silver',
