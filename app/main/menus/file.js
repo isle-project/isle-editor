@@ -39,5 +39,12 @@ export default {
 	{
 		label: 'Generate App',
 		click: () => {}
+	},
+	{
+		label: 'Quit',
+		accelerator: 'CmdOrCtrl+Q',
+		click: ( menuItem, browserWindow ) => {
+			actions.closeApp({ browserWindow });
+		}
 	} ]
 };
