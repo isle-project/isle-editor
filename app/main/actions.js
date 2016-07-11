@@ -1,10 +1,11 @@
 // MODULES //
 
-import { dialog, ipcMain, BrowserWindow } from 'electron';
+import { dialog, ipcMain, BrowserWindow, remote } from 'electron';
 import fs from 'fs-plus';
 import { extname, basename } from 'path';
 import { EXTENSIONS } from './../constants/globals';
 import createWindow from './createWindow';
+import { exec } from 'child_process';
 
 
 // MAIN PROCESS //
@@ -73,6 +74,10 @@ ipcMain.on( 'save-file-as', ( e, { data }) => {
 
 // EXPORTS //
 
+export function openBrowser( url ) {
+	exec( 'xdg-open ' + url );
+}
+
 export function open({ browserWindow }) {
 	dialog.showOpenDialog( browserWindow, {
 		properties: [ 'openFile' ]
@@ -94,4 +99,8 @@ export function saveAs({ browserWindow }) {
 
 export function newFile() {
 	createWindow();
+}
+
+export function closeApp({ browserWindow }) {
+	browserWindow.close();
 }
