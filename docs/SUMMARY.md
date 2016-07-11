@@ -12,4 +12,5 @@
     * [R Shell](components/r-shell.md)
     * [Switch](components/switch.md)
     * [LaTeX Equations](components/latex.md)
+    * [Video Player](components/video-player.md)
 * [Publishing Lessons](packaging.md)
