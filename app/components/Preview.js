@@ -27,6 +27,7 @@ const FunctionPlot = require( './node_modules/learning/function-plot' );
 const TeX = require( './node_modules/learning/tex' );
 const Switch = require( './node_modules/learning/switch' );
 const RShell = require( './node_modules/learning/rshell' );
+const VideoPlayer = require( './node_modules/learning/video-player' );
 
 
 // Markdown parser rendering markdown inside <md></md> tags...
@@ -70,7 +71,15 @@ export default class Preview extends Component {
 					render: function() {
 						return React.createElement(
 							"div",
-							{ className: "Lesson", markdown: 1 },
+							{
+								className: "Lesson",
+								markdown: 1,
+								id: "LessonWindow",
+								style: {
+									marginLeft: '20px',
+									marginRight: '20px'
+								}
+							},
 							${transform( '<div>' + code + '</div>' )}
 						);
 					}

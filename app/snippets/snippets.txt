@@ -19,3 +19,5 @@ snippet MD
 	<md>
 	${1:}
 	</md>
+snippet VideoPlayer
+	<VideoPlayer url="${1:url}"/>
