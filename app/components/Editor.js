@@ -60,12 +60,14 @@ const Editor = React.createClass({
 		session.setMode( 'ace/mode/isle' );
 		session.setUseWrapMode( true );
 		this.editor.setTheme( 'ace/theme/github' );
-		this.editor.setFontSize( 14 );
+
+		const currentFontSize = parseFloat( localStorage.getItem( 'fontSize' ) ) || 14;
+		this.editor.setFontSize( currentFontSize );
 		this.editor.on( 'change', this.onChange );
 		this.editor.setValue( this.props.value, -1 );
 
 		this.editor.setOptions({
-			maxLines: 99999,
+			maxLines: 5000,
 			minLines: 50,
 			enableBasicAutocompletion: true,
 			enableSnippets: true,
@@ -114,7 +116,7 @@ const Editor = React.createClass({
 
 	render() {
 		return (
-			<div onChange={this.onChange} />
+			<div ref="editorWindow" onChange={this.onChange} />
 		);
 	}
 });

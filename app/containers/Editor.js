@@ -35,7 +35,7 @@ You can include LaTeX equations:
 </md>
 <TeX raw="\\int f(x) dx" displayMode={true} id={1}/>
 <md>
-### Other
+### Plotting Widgets
 You can include a variety of *ISLE components*, for example plotting widgets and feedback buttons:
 </md>
 <FeedbackButtons
@@ -48,6 +48,11 @@ You can include a variety of *ISLE components*, for example plotting widgets and
     width={700}
     id="plot1"
 />
+<md>
+### Videos
+You can easily embed media content:
+</md>
+<VideoPlayer url="https://www.youtube.com/watch?v=wPqtzj5VZus" />
 `;
 
 
