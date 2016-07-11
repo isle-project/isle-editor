@@ -1,4 +1,4 @@
-// VARIABLES //
+// MODULES //
 
 import * as types from '../constants/actionTypes';
 
