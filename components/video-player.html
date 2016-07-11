@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Markdown · ISLE Editor Documentation</title>
+        <title>Video Player · ISLE Editor Documentation</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="r-shell.html" />
+    <link rel="next" href="../packaging.html" />
     
     
-    <link rel="prev" href="function-plot.html" />
+    <link rel="prev" href="latex.html" />
     
 
     </head>
@@ -200,7 +200,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.3" data-path="markdown.html">
+        <li class="chapter " data-level="1.4.3" data-path="markdown.html">
             
                 <a href="markdown.html">
             
@@ -252,7 +252,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7" data-path="video-player.html">
+        <li class="chapter active" data-level="1.4.7" data-path="video-player.html">
             
                 <a href="video-player.html">
             
@@ -313,7 +313,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Markdown</a>
+        <a href=".." >Video Player</a>
     </h1>
 </div>
 
@@ -328,19 +328,23 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="markdown-element">Markdown Element</h1>
-<p>To use <a href="https://daringfireball.net/projects/markdown/" target="_blank">Markdown</a> for writing sections of text, ISLE comes with the <code>&lt;md&gt;</code> tag. All text inside this tag will be parsed as Markdown and rendered as HTML. It is possible to use HTML tags inside <code>&lt;md&gt;&lt;/md&gt;</code>, but support of ISLE component tags is not supported inside of <code>&lt;md&gt;</code>.</p>
+                                <h1 id="video-player">Video Player</h1>
+<p>A component for playing media files and content from YouTube, SoundCloud and Vimeo.</p>
 <p>Example:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">md</span>&gt;</span>
-
-# I am an h1 element
-
-*Am I italic?*
-
-<span class="hljs-tag">&lt;/<span class="hljs-name">md</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">VideoPlayer</span>
+    <span class="hljs-attr">url</span>=<span class="hljs-string">&quot;https://www.youtube.com/watch?v=UzxYlbK2c7E&quot;</span>
+    <span class="hljs-attr">playing</span>
+/&gt;</span>
 </code></pre>
-<h2 id="markdown-syntax">Markdown Syntax</h2>
-<p>See this overview for an introduction to the Markdown syntax: <a href="https://daringfireball.net/projects/markdown/syntax" target="_blank">Link</a>.</p>
+<h2 id="options">Options</h2>
+<ul>
+<li><code>url</code>: URL of the video. Default: <code>&apos;&apos;</code>.</li>
+<li><code>controls</code>: <code>boolean</code> indicating whether to display control elements of the video player. Default: <code>false</code></li>
+<li><code>playing</code>: <code>boolean</code> indicating whether to automatically start playing the video. Default: <code>false</code></li>
+<li><code>volume</code>: <code>number</code> setting the volume of the player. Default: <code>0.8</code></li>
+<li><code>height</code>: height of the player. Default: <code>360</code></li>
+<li><code>width</code>: width of the player. Default: <code>640</code></li>
+</ul>
 
                                 
                                 </section>
@@ -368,12 +372,12 @@
 
             
                 
-                <a href="function-plot.html" class="navigation navigation-prev " aria-label="Previous page: Function Plot">
+                <a href="latex.html" class="navigation navigation-prev " aria-label="Previous page: LaTeX Equations">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="r-shell.html" class="navigation navigation-next " aria-label="Next page: R Shell">
+                <a href="../packaging.html" class="navigation navigation-next " aria-label="Next page: Publishing Lessons">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -384,7 +388,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Markdown","level":"1.4.3","depth":2,"next":{"title":"R Shell","level":"1.4.4","depth":2,"path":"components/r-shell.md","ref":"components/r-shell.md","articles":[]},"previous":{"title":"Function Plot","level":"1.4.2","depth":2,"path":"components/function-plot.md","ref":"components/function-plot.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link"],"root":"./docs","styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"family":"sans","size":3,"theme":"white"},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"all":["facebook","google","instapaper","twitter","weibo"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/markdown.md","mtime":"2016-06-24T20:50:11.671Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-11T23:40:02.621Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Video Player","level":"1.4.7","depth":2,"next":{"title":"Publishing Lessons","level":"1.5","depth":1,"path":"packaging.md","ref":"packaging.md","articles":[]},"previous":{"title":"LaTeX Equations","level":"1.4.6","depth":2,"path":"components/latex.md","ref":"components/latex.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link"],"root":"./docs","styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"family":"sans","size":3,"theme":"white"},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"all":["facebook","google","instapaper","twitter","weibo"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/video-player.md","mtime":"2016-07-11T23:39:37.286Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-11T23:40:02.621Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
