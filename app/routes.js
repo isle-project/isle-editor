@@ -6,6 +6,8 @@ import App from './containers/App';
 import Editor from './containers/Editor';
 import Documentation from './containers/Documentation';
 import Settings from './containers/Settings';
+import Export from './containers/Export';
+
 
 // EXPORTS //
 
@@ -14,5 +16,6 @@ export default (
 		<IndexRoute component={Editor} />
 		<Route path="/docs" component={Documentation} />
 		<Route path="/settings" component={Settings} />
+		<Route path="/export" component={Export} />
 	</Route>
 );
