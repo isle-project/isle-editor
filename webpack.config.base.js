@@ -48,6 +48,6 @@ export default {
 	],
 	externals: [
 		// Node 3rd party libraries which can't be built with webpack go here...
-		// (mysql, mongodb, and so on..)
+		'child_process'
 	]
 };
