@@ -19,20 +19,28 @@ const Header = ({ fileName }) => (
 			<Heading level={3}>ISLE Editor</Heading>
 			<Space auto />
 			<Link
+				to="/export"
+				style={{
+					color: 'silver',
+					fontSize: '18px',
+					marginRight: '10px'
+				}}
+			>Export</Link>
+			<Link
 				to="/settings"
 				style={{
 					color: 'silver',
 					fontSize: '18px',
 					marginRight: '10px'
 				}}
-			>Open Settings</Link>
+			>Settings</Link>
 			<Link
 				to="/docs"
 				style={{
 					color: 'silver',
 					fontSize: '18px'
 				}}
-			>Open Documentation</Link>
+			>Documentation</Link>
 			<Space />
 		</Toolbar>
 		<Toolbar

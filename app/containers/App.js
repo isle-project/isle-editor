@@ -3,13 +3,9 @@
 import React, { Component, PropTypes } from 'react';
 
 
-// EXPORTS //
+// APP //
 
-export default class App extends Component {
-	static propTypes = {
-		children: PropTypes.element.isRequired
-	};
-
+class App extends Component {
 	render() {
 		return (
 			<div>
@@ -18,3 +14,15 @@ export default class App extends Component {
 		);
 	}
 }
+
+
+// PROPERTY TYPES //
+
+App.propTypes = {
+	children: PropTypes.element.isRequired
+};
+
+
+// EXPORTS //
+
+export default App;
