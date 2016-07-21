@@ -42,6 +42,7 @@ export default {
 		packageMains: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
 	},
 	plugins: [
+		new webpack.IgnorePlugin( /vertx/ ),
 		new webpack.ProvidePlugin({
 			'window.d3': 'd3'
 		})
