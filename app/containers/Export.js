@@ -1,7 +1,9 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ExportPage from './../components/ExportPage';
+import { convertMarkdown, toggleScrolling } from './../actions';
 
 
 // EXPORT LESSON //
@@ -9,7 +11,7 @@ import ExportPage from './../components/ExportPage';
 class Export extends Component {
 	render() {
 		return (
-			<ExportPage />
+			<ExportPage content={this.props.markdown} />
 		);
 	}
 }
@@ -17,4 +19,11 @@ class Export extends Component {
 
 // EXPORTS //
 
-export default Export;
+export default connect( mapStateToProps, {
+	convertMarkdown,
+	toggleScrolling
+})( Export );
+
+function mapStateToProps({ markdown }) {
+	return markdown;
+}
