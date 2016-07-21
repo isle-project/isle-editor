@@ -37,10 +37,6 @@ export default {
 		type: 'separator'
 	},
 	{
-		label: 'Generate App',
-		click: () => {}
-	},
-	{
 		label: 'Quit',
 		accelerator: 'CmdOrCtrl+Q',
 		click: ( menuItem, browserWindow ) => {
