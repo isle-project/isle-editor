@@ -25,18 +25,20 @@ const exampleDoc = `
 <md>
 # This is an ISLE lesson.
 
-### RShell
+## RShell
 Here is an interactive R Shell to play with
 </md>
 <RShell code="mean( c(10, 5, 8, 2, 13) )" lines={5} />
 <md>
-### LaTeX
+## LaTeX
 You can include LaTeX equations:
 </md>
 <TeX raw="\\int f(x) dx" displayMode={true} id={1}/>
 <md>
-### Plotting Widgets
+## Widgets
 You can include a variety of *ISLE components*, for example plotting widgets and feedback buttons:
+
+### Plotting & Feedback
 </md>
 <FeedbackButtons
     for="plot1"
