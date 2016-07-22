@@ -8,7 +8,7 @@
 
 A desktop-application that can be used to author and preview *interactive statistics learning environment* (ISLE) lessons before they are deployed online.
 
-## [Open Documentation][docs]
+#### [Open Documentation][docs]
 
 
 
