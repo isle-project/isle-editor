@@ -35,11 +35,14 @@ const DEFAULT_OPTS = {
 		'^/release($|/)',
 		'^/main.development.js'
 	].concat( devDeps.map( name => `/node_modules/${name}($|/)` ) )
-	.concat(
-	deps.filter( name => !electronCfg.externals.includes( name ) )
-		.map( name => `/node_modules/${name}($|/)` )
-	)
 };
+
+/*
+.concat(
+deps.filter( name => !electronCfg.externals.includes( name ) )
+	.map( name => `/node_modules/${name}($|/)` )
+)
+*/
 
 const icon = argv.icon || argv.i || 'app/app';
 
@@ -83,7 +86,8 @@ function startPack() {
 		if ( shouldBuildAll ) {
 			// build for all platforms
 			const archs = [ 'ia32', 'x64' ];
-			const platforms = [ 'linux', 'win32', 'darwin' ];
+			// const platforms = [ 'linux', 'win32', 'darwin' ];
+			const platforms = [ 'linux' ];
 
 			platforms.forEach( plat => {
 				archs.forEach( arch => {
@@ -121,6 +125,14 @@ function pack( plat, arch, cb ) {
 		arch,
 		prune: true,
 		'app-version': pkg.version || DEFAULT_OPTS.version,
+		'app-copyright': 'Copyright © 2016 Philipp Burckhardt. All rights reserved.',
+		'version-string': {
+			CompanyName: 'Carnegie Mellon University',
+			FileDescription: 'Editor for Interactive Statistics Learning Environment (ISLE) lesson',
+			OriginalFilename: 'ISLE Editor.exe',
+			ProductName: 'ISLE Editor',
+			InternalName: 'ISLE Editor'
+		},
 		out: `release/${plat}-${arch}`
 	});
 
