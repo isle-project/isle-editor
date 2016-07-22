@@ -49,6 +49,8 @@ export default {
 	],
 	externals: [
 		// Node 3rd party libraries which can't be built with webpack go here...
-		'child_process'
+		'child_process',
+		'webpack',
+		'uglify-js'
 	]
 };

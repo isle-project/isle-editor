@@ -144,6 +144,7 @@
     "request": "2.57.0",
     "semver": "^5.1.0",
     "source-map-support": "^0.4.0",
+    "uglify-js": "^2.7.0",
     "validate.io-function": "^1.0.2",
     "validate.io-string": "^1.0.2",
     "watchjs": "0.0.0",
