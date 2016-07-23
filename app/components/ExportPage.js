@@ -172,12 +172,9 @@ class ExportPage extends Component {
 				<br />
 				<div
 					style={{
-						position: 'absolute',
-						left: 0,
-						right: 0,
-						top: 0,
-						bottom: 0,
-						margin: 'auto',
+						position: 'relative',
+						marginLeft: '38%',
+						marginRight: '38%',
 						height: 500,
 						width: '22%'
 					}}
