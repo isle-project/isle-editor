@@ -30,19 +30,29 @@ const DEFAULT_OPTS = {
 	name: appName,
 	asar: shouldUseAsar,
 	ignore: [
+		'^/docs($|/)',
 		'^/test($|/)',
 		'^/tools($|/)',
 		'^/release($|/)',
 		'^/main.development.js'
 	].concat( devDeps.map( name => `/node_modules/${name}($|/)` ) )
+	.concat([
+		'/node_modules/css-loader($|/)',
+		'/node_modules/electron-debug($|/)',
+		'/node_modules/electron-window-state($|/)',
+		'/node_modules/file-loader($|/)',
+		'/node_modules/fs-plus($|/)',
+		'/node_modules/js-yaml($|/)',
+		'/node_modules/markdown-it($|/)',
+		'/node_modules/raw-loader($|/)',
+		'/node_modules/react-redux($|/)',
+		'/node_modules/react-redux-thunk($|/)',
+		'/node_modules/react-router($|/)',
+		'/node_modules/react-router-redux($|/)',
+		'/node_modules/react-split-pane($|/)',
+		'/node_modules/react-tools($|/)',
+	])
 };
-
-/*
-.concat(
-deps.filter( name => !electronCfg.externals.includes( name ) )
-	.map( name => `/node_modules/${name}($|/)` )
-)
-*/
 
 const icon = argv.icon || argv.i || 'app/app';
 
@@ -84,7 +94,7 @@ function startPack() {
 	.then( () => del( 'release' ) )
 	.then( paths => {
 		if ( shouldBuildAll ) {
-			// build for all platforms
+			// Build for all platforms...
 			const archs = [ 'ia32', 'x64' ];
 			const platforms = [ 'linux', 'win32', 'darwin' ];
 
@@ -94,7 +104,7 @@ function startPack() {
 				});
 			});
 		} else {
-			// build for current platform only
+			// Build for current platform only...
 			pack( os.platform(), os.arch(), log( os.platform(), os.arch() ) );
 		}
 	})
@@ -127,7 +137,7 @@ function pack( plat, arch, cb ) {
 		'app-copyright': 'Copyright © 2016 Philipp Burckhardt. All rights reserved.',
 		'version-string': {
 			CompanyName: 'Carnegie Mellon University',
-			FileDescription: 'Editor for Interactive Statistics Learning Environment (ISLE) lesson',
+			FileDescription: 'Interactive Statistics Learning Environment (ISLE) Editor',
 			OriginalFilename: 'ISLE Editor.exe',
 			ProductName: 'ISLE Editor',
 			InternalName: 'ISLE Editor'
