@@ -4,14 +4,17 @@
 // MODULES //
 
 require( 'babel-polyfill' );
-const os = require( 'os' );
-const webpack = require( 'webpack' );
-const electronCfg = require( './webpack.config.electron.js' );
-const cfg = require( './webpack.config.production.js' );
+const modclean = require( 'modclean' );
 const packager = require( 'electron-packager' );
-const del = require( 'del' );
+const webpack = require( 'webpack' );
+const path = require( 'path' );
+const spawn = require( 'child_process' ).spawn;
 const exec = require( 'child_process' ).exec;
 const argv = require( 'minimist' )( process.argv.slice( 2 ) );
+const del = require( 'del' );
+const os = require( 'os' );
+const electronCfg = require( './webpack.config.electron.js' );
+const cfg = require( './webpack.config.production.js' );
 
 
 // VARIABLES //
@@ -100,12 +103,12 @@ function startPack() {
 
 			platforms.forEach( plat => {
 				archs.forEach( arch => {
-					pack( plat, arch, log( plat, arch ) );
+					pack( plat, arch, afterPack( plat, arch ) );
 				});
 			});
 		} else {
 			// Build for current platform only...
-			pack( os.platform(), os.arch(), log( os.platform(), os.arch() ) );
+			pack( os.platform(), os.arch(), afterPack( os.platform(), os.arch() ) );
 		}
 	})
 	.catch( err => {
@@ -148,9 +151,56 @@ function pack( plat, arch, cb ) {
 	packager( opts, cb );
 }
 
-function log( plat, arch ) {
-	return ( err, filepath ) => {
-		if ( err ) return console.error( err );
+function afterPack( plat, arch ) {
+
+	return function log( err, filepath ) {
+		if ( err ) {
+			return console.error( err )
+		};
 		console.log( `${plat}-${arch} finished!` );
-	};
-}
+		cleanModules();
+	} // end FUNCTION log()
+
+	function cleanModules() {
+		const nodeModulesPath = plat !== 'darwin' ?
+			`release/${plat}-${arch}/ISLE Editor-${plat}-${arch}/resources/app/node_modules` :
+			`release/${plat}-${arch}/ISLE Editor-${plat}-${arch}/ISLE Editor.app/Contents/Resources/app/node_modules`;
+
+		const mc = new modclean.ModClean({
+			cwd: path.join(
+				process.cwd(),
+				nodeModulesPath
+			),
+			patterns: [
+				modclean.patterns.safe,
+				modclean.patterns.caution
+			]
+		})
+		mc.clean( function callback( err, results ) {
+			if ( err ) {
+				return console.error( err );
+			}
+			console.log( `ModCleaner Deleted Files Total (${plat}-${arch}):`, results.length );
+			zip();
+		});
+	} // end FUNCTION cleanModules()
+
+	function zip() {
+		const zipper = spawn( 'zip', [ '-r', `ISLE Editor-${plat}-${arch}.zip`, `ISLE Editor-${plat}-${arch}` ], {
+			cwd: path.join(
+				process.cwd(),
+				`release/${plat}-${arch}/`
+			),
+		});
+		zipper.stdout.on( 'data', ( data ) => {
+			console.log( `stdout: ${data}` );
+		});
+		zipper.stderr.on( 'data', ( data ) => {
+			console.log( `stderr: ${data}` );
+		});
+		zipper.on( 'close', ( code ) => {
+			console.log( `zip exited with code ${code} (${plat}-${arch})` );
+		});
+	} // end FUNCTION zip()
+
+} // end FUNCTION afterPack()
