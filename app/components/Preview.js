@@ -13,14 +13,19 @@
 
 const React = require( 'react' );
 const render = require( 'react-dom' ).render;
+const namespace = require( '@stdlib/namespace' );
 const yaml = require( 'js-yaml' );
 const watch = require( 'watchjs' ).watch;
 
 import { Component, PropTypes } from 'react';
 import { transform } from 'react-tools';
+import jsx from 'markdown-it-jsx';
 
 
 // E-LEARNING MODULE COMPONENTS //
+const Pane = require( './node_modules/general/pane' );
+const Dashboard = require( './node_modules/general/dashboard' );
+const NumberInput = require( './node_modules/general/number-input' );
 
 const FeedbackButtons = require( './node_modules/learning/feedback' );
 const FunctionPlot = require( './node_modules/learning/function-plot' );
@@ -37,6 +42,11 @@ const md = require( 'markdown-it' )({
 	breaks: true,
 	typographer: false
 });
+md.use( jsx );
+
+// Assign all stdlib modules to the GLOBAL.std namespace:
+global.std = {};
+namespace( global.std );
 
 
 export default class Preview extends Component {
@@ -57,9 +67,9 @@ export default class Preview extends Component {
 
 			code = code.replace( /---([\S\s]*)---/, '' );
 
-			code = code.replace( /<md>([\S\s]*?)<\/md>/g,
-				( match, p1 ) => md.render( p1 )
-			);
+			// Replace Markdown by HTML...
+			code = md.render( code );
+
 			es5code = `
 				var Lesson = React.createClass({
 					componentDidMount: function() {
