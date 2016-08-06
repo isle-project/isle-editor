@@ -8,7 +8,6 @@
 * [ISLE Components](components.md)
     * [Feedback Buttons](components/feedback.md)
     * [Function Plot](components/function-plot.md)
-    * [Markdown](components/markdown.md)
     * [R Shell](components/r-shell.md)
     * [Switch](components/switch.md)
     * [LaTeX Equations](components/latex.md)

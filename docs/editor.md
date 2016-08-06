@@ -4,6 +4,10 @@ The editor is split into two panes: The left-hand side allows one to create ISLE
 
 ### Editor Features
 
+#### Markdown
+
+[Markdown](https://daringfireball.net/projects/markdown/) can be used for writing sections of text. All text outside HTML and ISLE tags will be parsed as Markdown and rendered as HTML. See [this overview](https://daringfireball.net/projects/markdown/syntax) for an introduction to the Markdown syntax.
+
 #### Auto-completion
 
 While typing, live auto-completion offers suggestions of possible insertions. Hitting RETURN or TAB will insert the current selection. One can use the arrow keys to cycle through all available suggestions.
