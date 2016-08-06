@@ -7,6 +7,8 @@ import { remote, shell } from 'electron';
 import path from 'path';
 import yaml from 'js-yaml';
 import bundler from 'bundler';
+import jsx from 'markdown-it-jsx';
+
 
 // Markdown parser rendering markdown inside <md></md> tags...
 const md = require( 'markdown-it' )({
@@ -15,6 +17,7 @@ const md = require( 'markdown-it' )({
 	breaks: true,
 	typographer: false
 });
+md.use( jsx );
 
 
 // VARIABLES //
@@ -95,9 +98,7 @@ class ExportPage extends Component {
 			code = code.replace( /---([\S\s]*)---/, '' );
 
 			// Replace Markdown by HTML...
-			code = code.replace( /<md>([\S\s]*?)<\/md>/g,
-				( match, p1 ) => md.render( p1 )
-			);
+			code = md.render( code );
 
 			this.setState({
 				finished: false
