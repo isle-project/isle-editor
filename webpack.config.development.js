@@ -23,7 +23,6 @@ const config = {
 		publicPath: 'http://localhost:3000/dist/'
 	},
 
-
 	module: {
 		...baseConfig.module,
 		loaders: [

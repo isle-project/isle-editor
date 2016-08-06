@@ -30,7 +30,9 @@ export default {
 				path.join( __dirname, 'img' )
 			]
 		} ],
-		noParse: /node_modules\/json-schema\/lib\/validate\.js/
+		noParse: [
+			/node_modules\/json-schema\/lib\/validate\.js/
+		]
 	},
 	output: {
 		path: path.join( __dirname, 'dist' ),
@@ -38,6 +40,15 @@ export default {
 		libraryTarget: 'commonjs2'
 	},
 	resolve: {
+		alias: {
+			'object-keys': path.resolve( './objectKeys.js' ),
+			'electron-prebuilt': path.resolve( './dummy.js' )
+		},
+		root: [
+			path.resolve( './node_modules' ),
+			path.resolve( './node_modules/@stdlib/stdlib/lib/node_modules' ),
+			path.resolve( './node_modules/@stdlib/stdlib/node_modules' )
+		],
 		extensions: [ '', '.js', '.jsx', '.json' ],
 		packageMains: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
 	},

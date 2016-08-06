@@ -92,6 +92,7 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
+    "@stdlib/stdlib": "github:stdlib-js/stdlib#develop",
     "aphrodite": "^0.5.0",
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
@@ -118,6 +119,7 @@
     "json-loader": "^0.5.4",
     "katex": "^0.6.0",
     "markdown-it": "^7.0.0",
+    "markdown-it-jsx": "^1.0.0",
     "minimist": "^1.2.0",
     "node-libs-browser": "^1.0.0",
     "normalize.css": "^4.1.1",
