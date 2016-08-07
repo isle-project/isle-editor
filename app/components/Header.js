@@ -3,7 +3,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Toolbar, Space, Heading, NavItem } from 'rebass';
-import Icon from 'react-geomicons';
 import * as colors from '../constants/colors';
 
 
