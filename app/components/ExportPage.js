@@ -8,6 +8,7 @@ import path from 'path';
 import yaml from 'js-yaml';
 import bundler from 'bundler';
 import jsx from 'markdown-it-jsx';
+import CheckboxInput from 'general/checkbox-input';
 
 
 // Markdown parser rendering markdown inside <md></md> tags...
@@ -35,7 +36,8 @@ class ExportPage extends Component {
 		this.state = {
 			dirPath: '',
 			preamble: {},
-			finished: false
+			finished: false,
+			minify: false
 		};
 
 		this.startSpinner = () => {
@@ -103,8 +105,9 @@ class ExportPage extends Component {
 			this.setState({
 				finished: false
 			});
+
 			this.startSpinner();
-			bundler( this.state.dirPath, code, preambleObj, () => {
+			bundler( this.state.dirPath, code, preambleObj, this.state.minify, () => {
 				clearInterval( this.activeSpinner );
 				this.context.clearRect( 0, 0, this.context.canvas.width, this.context.canvas.height );
 				this.setState({
@@ -140,6 +143,15 @@ class ExportPage extends Component {
 				<Panel header={<h1>Export Lesson</h1>} bsStyle="primary">
 					<p>Package and export the currently opened lesson into a
 					single-page application viewable in any web-browser.</p>
+					<CheckboxInput
+						legend="Minify code"
+						onChange={ ( value ) => {
+							this.setState({
+								minify: value
+							});
+						}}
+					/>
+					<br />
 					<Button
 						bsStyle="primary"
 						style={{
