@@ -2,7 +2,6 @@
 
 const snippetText = require( './snippets.txt' );
 
-console.log( snippetText.toString() )
 
 // FUNCTIONS //
 
