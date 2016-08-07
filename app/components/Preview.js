@@ -15,7 +15,6 @@ const React = require( 'react' );
 const render = require( 'react-dom' ).render;
 const namespace = require( '@stdlib/namespace' );
 const yaml = require( 'js-yaml' );
-const watch = require( 'watchjs' ).watch;
 
 import { Component, PropTypes } from 'react';
 import { transform } from 'react-tools';
@@ -23,9 +22,12 @@ import jsx from 'markdown-it-jsx';
 
 
 // E-LEARNING MODULE COMPONENTS //
-const Pane = require( './node_modules/general/pane' );
-const Dashboard = require( './node_modules/general/dashboard' );
-const NumberInput = require( './node_modules/general/number-input' );
+const Pane = require( 'general/pane' );
+const Dashboard = require( 'general/dashboard' );
+const CheckboxInput = require( 'general/checkbox-input' );
+const NumberInput = require( 'general/number-input' );
+const SliderInput = require( 'general/slider-input' );
+
 
 const FeedbackButtons = require( './node_modules/learning/feedback' );
 const FunctionPlot = require( './node_modules/learning/function-plot' );
@@ -73,17 +75,17 @@ export default class Preview extends Component {
 			es5code = `
 				var Lesson = React.createClass({
 					componentDidMount: function() {
-						var self = this;
-						watch( global.store, function onChange() {
-							self.forceUpdate();
-						});
+						global.lesson = this;
+						this.forceUpdate();
+					},
+					componentWillUnmount: function() {
+						this.unmounted = true;
 					},
 					render: function() {
 						return React.createElement(
 							"div",
 							{
 								className: "Lesson",
-								markdown: 1,
 								id: "LessonWindow",
 								style: {
 									marginLeft: '20px',
