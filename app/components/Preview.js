@@ -33,6 +33,7 @@ const FeedbackButtons = require( './node_modules/learning/feedback' );
 const FunctionPlot = require( './node_modules/learning/function-plot' );
 const TeX = require( './node_modules/learning/tex' );
 const Switch = require( './node_modules/learning/switch' );
+const RHelp = require( './node_modules/learning/rhelp' );
 const RShell = require( './node_modules/learning/rshell' );
 const VideoPlayer = require( './node_modules/learning/video-player' );
 
