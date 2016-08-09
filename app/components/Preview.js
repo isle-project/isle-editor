@@ -12,6 +12,7 @@
 /* eslint no-eval: 0 */
 
 const React = require( 'react' );
+const ReactBootstrap = require( 'react-bootstrap' );
 const render = require( 'react-dom' ).render;
 const namespace = require( '@stdlib/namespace' );
 const yaml = require( 'js-yaml' );
@@ -22,27 +23,33 @@ import jsx from 'markdown-it-jsx';
 
 
 // E-LEARNING MODULE COMPONENTS //
+
+const Grid = ReactBootstrap.Grid;
+const Row = ReactBootstrap.Row;
+const Col = ReactBootstrap.Col;
 const Pane = require( 'general/pane' );
+const Spinner = require( 'general/spinner' );
 const Dashboard = require( 'general/dashboard' );
 const CheckboxInput = require( 'general/checkbox-input' );
 const NumberInput = require( 'general/number-input' );
 const SliderInput = require( 'general/slider-input' );
 
-
-const FeedbackButtons = require( './node_modules/learning/feedback' );
-const FunctionPlot = require( './node_modules/learning/function-plot' );
-const TeX = require( './node_modules/learning/tex' );
-const Switch = require( './node_modules/learning/switch' );
-const RHelp = require( './node_modules/learning/rhelp' );
-const RShell = require( './node_modules/learning/rshell' );
-const VideoPlayer = require( './node_modules/learning/video-player' );
+const DensityPlot = require( 'learning/d3/density-plot' );
+const FeedbackButtons = require( 'learning/feedback' );
+const FunctionPlot = require( 'learning/function-plot' );
+const RPlot = require( 'learning/r/plot' );
+const RHelp = require( 'learning/rhelp' );
+const RShell = require( 'learning/rshell' );
+const Switch = require( 'learning/switch' );
+const TeX = require( 'learning/tex' );
+const VideoPlayer = require( 'learning/video-player' );
 
 
 // Markdown parser rendering markdown inside <md></md> tags...
 const md = require( 'markdown-it' )({
 	html: true,
 	xhtmlOut: true,
-	breaks: true,
+	breaks: false,
 	typographer: false
 });
 md.use( jsx );
