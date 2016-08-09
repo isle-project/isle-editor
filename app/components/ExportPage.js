@@ -6,16 +6,19 @@ import { Link } from 'react-router';
 import { remote, shell } from 'electron';
 import path from 'path';
 import yaml from 'js-yaml';
-import bundler from 'bundler';
 import jsx from 'markdown-it-jsx';
+import fs from 'fs';
+
+import bundler from 'bundler';
 import CheckboxInput from 'general/checkbox-input';
+import Spinner from 'general/spinner';
 
 
 // Markdown parser rendering markdown inside <md></md> tags...
 const md = require( 'markdown-it' )({
 	html: true,
 	xhtmlOut: true,
-	breaks: true,
+	breaks: false,
 	typographer: false
 });
 md.use( jsx );
@@ -24,6 +27,18 @@ md.use( jsx );
 // VARIABLES //
 
 const { dialog } = remote;
+
+
+// FUNCTIONS //
+
+const makeOutputDir = ( outputDir ) => {
+	fs.mkdirSync( outputDir );
+};
+
+const generateISLE = ( outputDir, code ) => {
+	const islePath = path.join( outputDir, 'index.isle' );
+	fs.writeFileSync( islePath, code );
+};
 
 
 // EXPORT LESSON //
@@ -37,37 +52,8 @@ class ExportPage extends Component {
 			dirPath: '',
 			preamble: {},
 			finished: false,
+			spinning: false,
 			minify: false
-		};
-
-		this.startSpinner = () => {
-			const canvas = document.getElementById( 'spinner' );
-			const context = canvas.getContext( '2d' );
-			this.context = context;
-			const start = new Date();
-			const lines = 16;
-			const cW = context.canvas.width;
-			const cH = context.canvas.height;
-
-			const draw = () => {
-				const rotation = parseInt(
-					( ( new Date() - start ) / 1000 ) * lines ) / lines;
-				context.save();
-				context.clearRect( 0, 0, cW, cH );
-				context.translate( cW / 2.0, cH / 2.0 );
-				context.rotate( Math.PI * 2 * rotation );
-				for ( let i = 0; i < lines; i++ ) {
-					context.beginPath();
-					context.rotate( Math.PI * 2.0 / lines );
-					context.moveTo( cW / 10, 0 );
-					context.lineTo( cW / 4, 0 );
-					context.lineWidth = cW / 30;
-					context.strokeStyle = 'rgba(0, 0, 0,' + i / lines + ')';
-					context.stroke();
-				}
-				context.restore();
-			};
-			this.activeSpinner = window.setInterval( draw, 1000 / 30 );
 		};
 
 		this.openFolder = () => {
@@ -89,12 +75,18 @@ class ExportPage extends Component {
 
 		this.generateApp = () => {
 			let code = this.props.content;
-			const preamble = code.match( /---([\S\s]*)---/ )[ 1 ];
-			const preambleObj = yaml.load( preamble );
+			let preamble = code.match( /---([\S\s]*)---/ )[ 1 ];
+			preamble = yaml.load( preamble );
 
 			this.setState({
-				preamble: preambleObj
+				preamble: preamble,
+				finished: false,
+				spinning: true
 			});
+
+			let outputDir = path.join(  this.state.dirPath, preamble.title );
+			makeOutputDir( outputDir );
+			generateISLE( outputDir, code )
 
 			// Remove YAML preamble...
 			code = code.replace( /---([\S\s]*)---/, '' );
@@ -102,16 +94,11 @@ class ExportPage extends Component {
 			// Replace Markdown by HTML...
 			code = md.render( code );
 
-			this.setState({
-				finished: false
-			});
-
-			this.startSpinner();
-			bundler( this.state.dirPath, code, preambleObj, this.state.minify, () => {
-				clearInterval( this.activeSpinner );
-				this.context.clearRect( 0, 0, this.context.canvas.width, this.context.canvas.height );
+			bundler( this.state.dirPath, code, preamble, this.state.minify, ( err ) => {
+				console.log( err )
 				this.setState({
-					finished: true
+					finished: true,
+					spinning: false
 				});
 			});
 		};
@@ -191,22 +178,18 @@ class ExportPage extends Component {
 						height: 500,
 						width: '22%'
 					}}
-				> <canvas
-					id="spinner"
-					style={{
-						padding: '30px'
-					}}
-				></canvas>
-				{this.state.finished ?
-					<Panel
-						header={<h3>App successfully exported!</h3>}
-						bsStyle="success"
-					>
-						<ButtonToolbar>
-							<Button bsStyle="info" onClick={this.openFolder}>Open containing folder</Button>
-							<Button bsStyle="success" onClick={this.openLesson}>Open lesson in Browser</Button>
-						</ButtonToolbar>
-					</Panel> : <span />}
+				>
+					{this.state.finished ?
+						<Panel
+							header={<h3>App successfully exported!</h3>}
+							bsStyle="success"
+						>
+							<ButtonToolbar>
+								<Button bsStyle="info" onClick={this.openFolder}>Open containing folder</Button>
+								<Button bsStyle="success" onClick={this.openLesson}>Open lesson in Browser</Button>
+							</ButtonToolbar>
+						</Panel> : <Spinner width={256} height={128} running={this.state.spinning}/>
+					}
 				</div>
 			</div>
 		);
