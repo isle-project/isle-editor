@@ -86,7 +86,7 @@ class ExportPage extends Component {
 
 			let outputDir = path.join(  this.state.dirPath, preamble.title );
 			makeOutputDir( outputDir );
-			generateISLE( outputDir, code )
+			generateISLE( outputDir, code );
 
 			// Remove YAML preamble...
 			code = code.replace( /---([\S\s]*)---/, '' );
@@ -95,7 +95,6 @@ class ExportPage extends Component {
 			code = md.render( code );
 
 			bundler( this.state.dirPath, code, preamble, this.state.minify, ( err ) => {
-				console.log( err )
 				this.setState({
 					finished: true,
 					spinning: false
