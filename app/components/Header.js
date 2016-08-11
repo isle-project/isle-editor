@@ -8,6 +8,12 @@ import * as colors from '../constants/colors';
 
 // HEADER //
 
+/**
+* Returns stateless header component.
+*
+* @param {string} fileName - name of the file
+* @returns {ReactElement}
+*/
 const Header = ({ fileName }) => (
 	<div>
 		<Toolbar
@@ -56,7 +62,7 @@ const Header = ({ fileName }) => (
 			<Space />
 		</Toolbar>
 	</div>
-);
+); // end FUNCTION header()
 
 
 // EXPORTS //
