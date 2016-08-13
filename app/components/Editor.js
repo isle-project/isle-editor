@@ -76,6 +76,7 @@ const Editor = React.createClass({
 		});
 
 		this.editor.setShowPrintMargin( false );
+		this.editor.setAutoScrollEditorIntoView( true );
 		this.editor.focus();
 
 		aceSnippets( ace, this.editor );
