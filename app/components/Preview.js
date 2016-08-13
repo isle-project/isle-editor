@@ -14,7 +14,7 @@
 const React = require( 'react' );
 const ReactBootstrap = require( 'react-bootstrap' );
 const render = require( 'react-dom' ).render;
-const namespace = require( '@stdlib/namespace' );
+const assignMath = require( '@stdlib/namespace/lib/math' );
 const yaml = require( 'js-yaml' );
 
 import { Component, PropTypes } from 'react';
@@ -55,7 +55,7 @@ md.use( jsx );
 
 // Assign all stdlib modules to the GLOBAL.std namespace:
 global.std = {};
-namespace( global.std );
+assignMath( global.std );
 
 
 export default class Preview extends Component {
