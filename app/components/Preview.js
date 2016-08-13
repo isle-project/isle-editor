@@ -26,7 +26,7 @@ import jsx from 'markdown-it-jsx';
 
 const Grid = ReactBootstrap.Grid;
 const Row = ReactBootstrap.Row;
-const Col = ReactBootstrap.Col;
+const Column = ReactBootstrap.Col;
 const Spinner = require( 'general/spinner' );
 const Dashboard = require( 'general/dashboard' );
 const CheckboxInput = require( 'general/checkbox-input' );
