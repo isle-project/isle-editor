@@ -2,10 +2,20 @@ snippet FeedbackButtons
 	<FeedbackButtons
 		for="${1:divID}"
 	/>
+snippet Grid
+	<Grid>
+		<Row>
+			<Column md={12}></Column>
+		</Row>
+	</Grid>
 snippet TeX
 	<TeX raw="${1:}" displayMode={${2:false}} />
 snippet Switch
 	<Switch></Switch>
+snippet RHelp
+	<RHelp library="${1:}">${2:}</RHelp>
+snippet RPlot
+	<RPlot code="${1:}" />
 snippet RShell
 	<RShell code="${1:}" lines={${2:5}} />
 snippet FunctionPlot
@@ -15,9 +25,30 @@ snippet FunctionPlot
 		]}
 		id="${2:name}"
 	/>
-snippet MD
-	<md>
-	${1:}
-	</md>
+snippet Dashboard
+	<Dashboard onGenerate={(${1:})=>{
+		${2:}
+	}}>
+		${3:}
+	</Dashboard>
+snippet SliderInput
+	<SliderInput
+		legend="${1:}"
+		defaultValue={${2:10}}
+		min={${3:0}}
+		max={${4:100}}
+		step={${5:1}}
+	/>
+snippet CheckboxInput
+	<CheckboxInput
+		legend="${1:}"
+		defaultValue={${2:false}}
+	/>
+snippet NumberInput
+	<NumberInput
+		legend="${1:}"
+		defaultValue={${2:0}}
+		step={${3:1}}
+	/>
 snippet VideoPlayer
 	<VideoPlayer url="${1:url}"/>
