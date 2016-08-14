@@ -93,11 +93,7 @@ export default class Preview extends Component {
 							"div",
 							{
 								className: "Lesson",
-								id: "LessonWindow",
-								style: {
-									marginLeft: '20px',
-									marginRight: '20px'
-								}
+								id: "Lesson"
 							},
 							${transform( '<div>' + code + '</div>' )}
 						);
