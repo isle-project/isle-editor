@@ -13,9 +13,9 @@ Example:
 
 ## Options
 
-* `url`: URL of the video. Default: `''`.
-* `controls`: `boolean` indicating whether to display control elements of the video player. Default: `false`
-* `playing`: `boolean` indicating whether to automatically start playing the video. Default: `false`
-* `volume`: `number` setting the volume of the player. Default: `0.8`
-* `height`: height of the player. Default: `360`
-* `width`: width of the player. Default: `640`
+* __url__: URL of the video. Default: `''`.
+* __controls__: `boolean` indicating whether to display control elements of the video player. Default: `false`
+* __playing__: `boolean` indicating whether to automatically start playing the video. Default: `false`
+* __volume__: `number` setting the volume of the player. Default: `0.8`
+* __height__: height of the player. Default: `360`
+* __width__: width of the player. Default: `640`

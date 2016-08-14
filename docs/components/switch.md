@@ -13,4 +13,4 @@ Example:
 
 ## Options
 
-* `onChange`: Callback invoked when elements are switched. Receives as its first argument `pos` the index of the currently displayed child. Default: `null`
+* __onChange__: Callback `function` invoked when elements are switched. Receives as its first argument `pos` the index of the currently displayed child. Default: `null`

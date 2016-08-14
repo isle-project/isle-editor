@@ -14,8 +14,8 @@ Example:
 
 ## Options:
 
-* `raw`: The literal LaTeX `string` to render. Also accepts `numbers`. Default: `''`.
-* `displayMode`: `boolean` indicating whether to display the equation inline or in display mode. Default: `false`.
-* `id`: `number` of the equation in the lesson. Default: `NaN`.
-* `onClick`: Callback `function` invoked whenever a user clicks on the equation. Default: `null`.
-* `style`: `object` with CSS key-value pairs to be applied to the equation container. Default: `{}`.
+* __raw__: The literal LaTeX `string` to render. Also accepts `numbers`. Default: `''`.
+* __displayMode__: `boolean` indicating whether to display the equation inline or in display mode. Default: `false`.
+* __id__: `number` of the equation in the lesson. Default: `NaN`.
+* __onClick__: Callback `function` invoked whenever a user clicks on the equation. Default: `null`.
+* __style__: `object` with CSS key-value pairs to be applied to the equation container. Default: `{}`.

@@ -13,5 +13,5 @@ Example:
 
 Options:
 
-* `for`: `string` giving the `id` of the HTML element to collect feedback for. Required option.
-* `url`: `string` giving the URL to which a POST request is made with the collected user data. Default: `''`.
+* __for__: `string` giving the `id` of the HTML element to collect feedback for. Required option.
+* __url__: `string` giving the URL to which a POST request is made with the collected user data. Default: `''`.
