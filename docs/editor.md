@@ -4,9 +4,15 @@ The editor is split into two panes: The left-hand side allows one to create ISLE
 
 ### Editor Features
 
+### Live Preview
+
+The right-hand pane offers an interactive live-preview of the opened lesson. Whenever the content of the lesson is changed, this view will be re-rendered and all state variable are reset.
+
 #### Markdown
 
 [Markdown](https://daringfireball.net/projects/markdown/) can be used for writing sections of text. All text outside HTML and ISLE tags will be parsed as Markdown and rendered as HTML. See [this overview](https://daringfireball.net/projects/markdown/syntax) for an introduction to the Markdown syntax.
+
+![Markdown GIF](./gifs/markdown.gif)
 
 #### Auto-completion
 
@@ -16,14 +22,18 @@ While typing, live auto-completion offers suggestions of possible insertions. Hi
 
 For the custom ISLE elements, the editor comes with snippets that allow you to quickly insert the respective elements with default settings, all the while offering a convenient way to change the default options. Using TAB, it is possible to cycle through and change the different options after the tag is inserted. CTRL-L will open up a list of all possible auto-completions, including the snippets that come with the ISLE editor.
 
+![Snippets GIF](./gifs/snippets.gif)
+
 #### Collapsing
 
 The contents in-between a tag can be collapsed when they span multiple lines. This can help one to maintain oversight of a larger lesson. To expand or collapse the contents of a tag, simply click on the arrows next to the line numbers on the left of the editor window.
+
+![Collapsing GIF](./gifs/collapsing.gif)
 
 #### Error Messages
 
 The editor also displays error messages on the left next to the lines for which a problem is detected. Hovering over the red box will display the description of the identified problem.
 
-### Live Preview
+![Errors GIF](./gifs/errors.gif)
 
-The right-hand pane offers an interactive live-preview of the opened lesson. Whenever the content of the lesson is changed, this view will be re-rendered and all state variable are reset.
+#### Search & Replace
