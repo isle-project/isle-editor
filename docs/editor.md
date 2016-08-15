@@ -37,3 +37,7 @@ The editor also displays error messages on the left next to the lines for which 
 ![Errors GIF](./gifs/errors.gif)
 
 #### Search & Replace
+
+Hitting CTRL-F will open a search window. The little icons in the lower right corner can be used to perform a case-sensitive search, a search using regular expressions or a whole word search. While the search window is open, another CTRL-F will open a tool bar allowing one to specify how found matches should be replaced.
+
+![Search GIF](./gifs/search.gif)
