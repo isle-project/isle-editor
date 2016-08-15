@@ -6,7 +6,7 @@ const snippetText = require( './snippets.txt' );
 // FUNCTIONS //
 
 function aceSnippets( editor, session ) {
-	const snippet = setup( editor, session, 'isle', snippetText );
+	const snippet = setup( editor, session, 'html', snippetText );
 	snippet.manager.register( snippet.m.snippet, snippet.m.scope );
 }
 

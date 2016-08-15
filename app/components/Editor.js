@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 import ReactDom from 'react-dom';
 import ace from 'brace';
-import 'brace/mode/isle';
+import 'brace/mode/html';
 import 'brace/theme/github';
 import 'brace/ext/searchbox';
 import 'brace/ext/language_tools';
@@ -57,7 +57,7 @@ const Editor = React.createClass({
 		this.editor.$blockScrolling = Infinity;
 
 		const session = this.editor.getSession();
-		session.setMode( 'ace/mode/isle' );
+		session.setMode( 'ace/mode/html' );
 		session.setUseWrapMode( true );
 		this.editor.setTheme( 'ace/theme/github' );
 
