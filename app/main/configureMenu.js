@@ -1,5 +1,6 @@
 // MENUS //
 
+import edit from './menus/edit';
 import file from './menus/file';
 import isle from './menus/isle';
 import view from './menus/view';
@@ -15,6 +16,7 @@ export default function configureMenu({ app }) {
 	return [
 		...template,
 		file,
+		edit,
 		view,
 		help
 	];
