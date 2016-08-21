@@ -121,6 +121,7 @@
     "markdown-it-jsx": "^1.0.0",
     "minimist": "^1.2.0",
     "node-libs-browser": "^1.0.0",
+    "nodemailer": "^2.5.0",
     "normalize.css": "^4.1.1",
     "postcss": "^5.0.19",
     "radium": "^0.18.1",

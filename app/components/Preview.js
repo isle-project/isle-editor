@@ -15,6 +15,7 @@ const React = require( 'react' );
 const ReactBootstrap = require( 'react-bootstrap' );
 const render = require( 'react-dom' ).render;
 const assignMath = require( '@stdlib/namespace/lib/math' );
+const nodemailer = require( 'nodemailer' );
 const yaml = require( 'js-yaml' );
 
 import { Component, PropTypes } from 'react';
@@ -73,6 +74,17 @@ export default class Preview extends Component {
 		try {
 			const { store = {} } = yaml.load( preamble );
 			global.store = store;
+
+			const transporter = nodemailer.createTransport({
+				'service': 'Mailgun',
+				'auth': {
+					'user': '',
+					'pass': ''
+				}
+			});
+			global.sendMail = ( opts, clbk ) => {
+				transporter.sendMail( opts, clbk );
+			};
 
 			code = code.replace( /---([\S\s]*)---/, '' );
 
