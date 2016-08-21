@@ -22,6 +22,7 @@ import { Component, PropTypes } from 'react';
 import { transform } from 'react-tools';
 import jsx from 'markdown-it-jsx';
 
+const mailgunUser = require( './../constants/mailgun.json' );
 
 // E-LEARNING MODULE COMPONENTS //
 
@@ -77,10 +78,7 @@ export default class Preview extends Component {
 
 			const transporter = nodemailer.createTransport({
 				'service': 'Mailgun',
-				'auth': {
-					'user': '',
-					'pass': ''
-				}
+				'auth': mailgunUser
 			});
 			global.sendMail = ( opts, clbk ) => {
 				transporter.sendMail( opts, clbk );
