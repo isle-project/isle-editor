@@ -1,5 +1,8 @@
-#Lesson {
+body {
 	background-color: #fffff8;
+}
+
+#Lesson {
 	font-family: Inconsolata;
 	font-size: 18px;
 	margin-left: auto;
