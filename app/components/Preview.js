@@ -13,16 +13,19 @@
 
 const React = require( 'react' );
 const ReactBootstrap = require( 'react-bootstrap' );
+const mustache = require( 'mustache' );
 const render = require( 'react-dom' ).render;
+const NotificationSystem = require( 'react-notification-system' );
 const assignMath = require( '@stdlib/namespace/lib/math' );
-const nodemailer = require( 'nodemailer' );
 const yaml = require( 'js-yaml' );
 
 import { Component, PropTypes } from 'react';
 import { transform } from 'react-tools';
+import request from 'request';
 import jsx from 'markdown-it-jsx';
 
-const mailgunUser = require( './../constants/mailgun.json' );
+import Session from './../api/session';
+
 
 // E-LEARNING MODULE COMPONENTS //
 
@@ -34,6 +37,7 @@ const Dashboard = require( 'general/dashboard' );
 const CheckboxInput = require( 'general/checkbox-input' );
 const NumberInput = require( 'general/number-input' );
 const SliderInput = require( 'general/slider-input' );
+const LessonSubmit = require( 'general/lesson-submit' );
 
 const DensityPlot = require( 'learning/d3/density-plot' );
 const FeedbackButtons = require( 'learning/feedback' );
@@ -73,16 +77,29 @@ export default class Preview extends Component {
 		const preamble = code.match( /---([\S\s]*)---/ )[ 1 ];
 
 		try {
-			const { store = {} } = yaml.load( preamble );
-			global.store = store;
+			global.ISLE = yaml.load( preamble );
+			global.store = global.ISLE.store;
 
-			const transporter = nodemailer.createTransport({
-				'service': 'Mailgun',
-				'auth': mailgunUser
-			});
-			global.sendMail = ( opts, clbk ) => {
-				transporter.sendMail( opts, clbk );
-			};
+			if ( global.ISLE.server ) {
+				global.session = new Session( global.ISLE );
+			}
+			if ( global.ISLE.mails ) {
+				global.sendMail = function sendMail( name, to ) {
+					var mailOptions = global.ISLE.mails[ name ];
+					if ( !mailOptions.hasOwnProperty( 'from' ) ) {
+						mailOptions.from = ISLE.email || 'robinson@isle.cmu.edu';
+					}
+					if ( mailOptions.hasOwnProperty( 'text' ) ) {
+						mailOptions.text = mustache.render( mailOptions.text, global.store );
+					}
+					mailOptions.to = to;
+					request.post( ISLE.server + '/mail', {
+						form: mailOptions
+					}, ( error, response, body ) => {
+						console.log( error );
+					});
+				};
+			}
 
 			code = code.replace( /---([\S\s]*)---/, '' );
 
@@ -93,7 +110,11 @@ export default class Preview extends Component {
 				var Lesson = React.createClass({
 					componentDidMount: function() {
 						global.lesson = this;
+						this._notificationSystem = this.refs.notificationSystem;
 						this.forceUpdate();
+					},
+					addNotification: function( config ) {
+						this._notificationSystem.addNotification( config );
 					},
 					componentWillUnmount: function() {
 						this.unmounted = true;
@@ -105,7 +126,11 @@ export default class Preview extends Component {
 								className: "Lesson",
 								id: "Lesson"
 							},
-							${transform( '<div>' + code + '</div>' )}
+							${transform( '<div>' + code + '</div>' )},
+							React.createElement(
+								NotificationSystem,
+								{ ref: "notificationSystem", allowHTML: true }
+							)
 						);
 					}
 				});
