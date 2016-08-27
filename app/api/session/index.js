@@ -9,8 +9,8 @@ import request from 'request';
 class Session {
 
 	constructor( config ) {
-		const str = 'ISLE_USER_' + config.server;
-		let item = localStorage.getItem( str );
+		this.userVal = 'ISLE_USER_' + config.server;
+		let item = localStorage.getItem( this.userVal );
 		this.user = item ? JSON.parse( item ) : null;
 		this.anonymous = item ? false : true;
 		this.finished = false;
@@ -22,7 +22,13 @@ class Session {
 		this.server = config.server;
 	}
 
+	updateUser() {
+		let item = localStorage.getItem( this.userVal );
+		this.user = item ? JSON.parse( item ) : null;
+	}
+
 	finalize() {
+		this.updateUser();
 		this.endTime = new Date().getTime();
 		this.duration = this.endTime - this.startTime;
 		this.finished = true;
