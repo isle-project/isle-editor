@@ -65,91 +65,96 @@ assignMath( global.std );
 
 
 export default class Preview extends Component {
+	constructor() {
+		super();
+
+		this.shouldRenderPreview = true;
+		this.renderPreview = () => {
+			let es5code;
+			let { code } = this.props;
+			const preamble = code.match( /---([\S\s]*)---/ )[ 1 ];
+
+			try {
+				global.ISLE = yaml.load( preamble );
+				global.store = global.ISLE.store;
+
+				if ( global.ISLE.server ) {
+					global.ISLE.session = new Session( global.ISLE );
+				}
+				if ( global.ISLE.mails ) {
+					global.ISLE.sendMail = function sendMail( name, to ) {
+						var mailOptions = global.ISLE.mails[ name ];
+						if ( !mailOptions.hasOwnProperty( 'from' ) ) {
+							mailOptions.from = ISLE.email || 'robinson@isle.cmu.edu';
+						}
+						if ( mailOptions.hasOwnProperty( 'text' ) ) {
+							mailOptions.text = mustache.render( mailOptions.text, global );
+						}
+						mailOptions.to = to;
+						request.post( ISLE.server + '/mail', {
+							form: mailOptions
+						}, ( error, response, body ) => {
+							console.log( error );
+						});
+					};
+				}
+
+				code = code.replace( /---([\S\s]*)---/, '' );
+
+				// Replace Markdown by HTML...
+				code = md.render( code );
+
+				es5code = `
+					var Lesson = React.createClass({
+						componentDidMount: function() {
+							global.lesson = this;
+							this._notificationSystem = this.refs.notificationSystem;
+							this.forceUpdate();
+						},
+						addNotification: function( config ) {
+							this._notificationSystem.addNotification( config );
+						},
+						componentWillUnmount: function() {
+							this.unmounted = true;
+						},
+						render: function() {
+							return React.createElement(
+								"div",
+								{
+									className: "Lesson",
+									id: "Lesson"
+								},
+								${transform( '<div>' + code + '</div>' )},
+								React.createElement(
+									NotificationSystem,
+									{ ref: "notificationSystem", allowHTML: true }
+								)
+							);
+						}
+					});
+					render(
+						${transform( '<Lesson />' )},
+						document.getElementById( 'Preview' )
+					)
+				`;
+				eval( es5code );
+			} catch ( err ) {
+				code = `<div>${err.toString()}</div>`;
+				es5code = `
+					render(
+						${transform( code )},
+						document.getElementById( 'Preview' )
+					)
+				`;
+				eval( es5code );
+			}
+		};
+	}
 	componentDidMount() {
 		this.renderPreview();
 	}
 	componentDidUpdate() {
 		this.renderPreview();
-	}
-	renderPreview() {
-		let es5code;
-		let { code } = this.props;
-		const preamble = code.match( /---([\S\s]*)---/ )[ 1 ];
-
-		try {
-			global.ISLE = yaml.load( preamble );
-			global.store = global.ISLE.store;
-
-			if ( global.ISLE.server ) {
-				global.session = new Session( global.ISLE );
-			}
-			if ( global.ISLE.mails ) {
-				global.sendMail = function sendMail( name, to ) {
-					var mailOptions = global.ISLE.mails[ name ];
-					if ( !mailOptions.hasOwnProperty( 'from' ) ) {
-						mailOptions.from = ISLE.email || 'robinson@isle.cmu.edu';
-					}
-					if ( mailOptions.hasOwnProperty( 'text' ) ) {
-						mailOptions.text = mustache.render( mailOptions.text, global.store );
-					}
-					mailOptions.to = to;
-					request.post( ISLE.server + '/mail', {
-						form: mailOptions
-					}, ( error, response, body ) => {
-						console.log( error );
-					});
-				};
-			}
-
-			code = code.replace( /---([\S\s]*)---/, '' );
-
-			// Replace Markdown by HTML...
-			code = md.render( code );
-
-			es5code = `
-				var Lesson = React.createClass({
-					componentDidMount: function() {
-						global.lesson = this;
-						this._notificationSystem = this.refs.notificationSystem;
-						this.forceUpdate();
-					},
-					addNotification: function( config ) {
-						this._notificationSystem.addNotification( config );
-					},
-					componentWillUnmount: function() {
-						this.unmounted = true;
-					},
-					render: function() {
-						return React.createElement(
-							"div",
-							{
-								className: "Lesson",
-								id: "Lesson"
-							},
-							${transform( '<div>' + code + '</div>' )},
-							React.createElement(
-								NotificationSystem,
-								{ ref: "notificationSystem", allowHTML: true }
-							)
-						);
-					}
-				});
-				render(
-					${transform( '<Lesson />' )},
-					document.getElementById( 'Preview' )
-				)
-			`;
-			eval( es5code );
-		} catch ( err ) {
-			code = `<div>${err.toString()}</div>`;
-			es5code = `
-				render(
-					${transform( code )},
-					document.getElementById( 'Preview' )
-				)
-			`;
-			eval( es5code );
-		}
 	}
 	render() {
 		return (
