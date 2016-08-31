@@ -155,11 +155,11 @@ function afterPack( plat, arch ) {
 
 	return function log( err, filepath ) {
 		if ( err ) {
-			return console.error( err )
+			return console.error( err );
 		};
 		console.log( `${plat}-${arch} finished!` );
 		cleanModules();
-	} // end FUNCTION log()
+	}; // end FUNCTION log()
 
 	function cleanModules() {
 		const nodeModulesPath = plat !== 'darwin' ?
@@ -175,7 +175,7 @@ function afterPack( plat, arch ) {
 				modclean.patterns.safe,
 				modclean.patterns.caution
 			]
-		})
+		});
 		mc.clean( function callback( err, results ) {
 			if ( err ) {
 				return console.error( err );
