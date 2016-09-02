@@ -25,6 +25,7 @@ class Session {
 	updateUser() {
 		let item = localStorage.getItem( this.userVal );
 		this.user = item ? JSON.parse( item ) : null;
+		this.anonymous = item ? false : true;
 	}
 
 	finalize() {
