@@ -45,6 +45,7 @@ const FunctionPlot = require( 'learning/function-plot' );
 const RPlot = require( 'learning/r/plot' );
 const RHelp = require( 'learning/rhelp' );
 const RShell = require( 'learning/rshell' );
+const RTable = require( 'learning/r/table' );
 const Switch = require( 'learning/switch' );
 const TeX = require( 'learning/tex' );
 const VideoPlayer = require( 'learning/video-player' );
