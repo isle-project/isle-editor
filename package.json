@@ -104,6 +104,7 @@
     "bootstrap": "^3.3.6",
     "brace": "https://github.com/Planeshifter/brace.git",
     "classnames": "^2.2.5",
+    "configstore": "^2.1.0",
     "css-loader": "^0.24.0",
     "css-modules-require-hook": "^4.0.0",
     "d3": "^3.5.17",
