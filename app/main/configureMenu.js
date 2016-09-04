@@ -5,6 +5,7 @@ import file from './menus/file';
 import isle from './menus/isle';
 import view from './menus/view';
 import help from './menus/help';
+import windowMenu from './menus/window';
 
 
 // CONFIGURE MENU //
@@ -18,6 +19,7 @@ export default function configureMenu({ app }) {
 		file,
 		edit,
 		view,
+		windowMenu,
 		help
 	];
 }
