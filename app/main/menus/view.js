@@ -13,20 +13,6 @@ const viewMenu = {
 			}
 		},
 		{
-			label: 'Toggle Full Screen',
-			accelerator: ( function getAccelerator() {
-				if ( process.platform === 'darwin' ) {
-					return 'Ctrl+Command+F';
-				}
-				return 'F11';
-			}() ),
-			click( item, focusedWindow ) {
-				if ( focusedWindow ) {
-					focusedWindow.setFullScreen( !focusedWindow.isFullScreen() );
-				}
-			}
-		},
-		{
 			label: 'Toggle Developer Tools',
 			accelerator: ( function getAccelerator() {
 				if ( process.platform === 'darwin' ) {
@@ -37,6 +23,20 @@ const viewMenu = {
 			click( item, focusedWindow ) {
 				if ( focusedWindow ) {
 					focusedWindow.webContents.toggleDevTools();
+				}
+			}
+		},
+		{
+			label: 'Toggle Full Screen',
+			accelerator: ( function getAccelerator() {
+				if ( process.platform === 'darwin' ) {
+					return 'Ctrl+Command+F';
+				}
+				return 'F11';
+			}() ),
+			click( item, focusedWindow ) {
+				if ( focusedWindow ) {
+					focusedWindow.setFullScreen( !focusedWindow.isFullScreen() );
 				}
 			}
 		}
