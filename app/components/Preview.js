@@ -29,9 +29,11 @@ import Session from './../api/session';
 
 // E-LEARNING MODULE COMPONENTS //
 
-const Grid = ReactBootstrap.Grid;
+const Grid = require( 'general/grid' );
+const Panel = ReactBootstrap.Panel;
 const Row = ReactBootstrap.Row;
 const Column = ReactBootstrap.Col;
+const Slider = require( 'general/slider' );
 const Spinner = require( 'general/spinner' );
 const Dashboard = require( 'general/dashboard' );
 const CheckboxInput = require( 'general/checkbox-input' );
