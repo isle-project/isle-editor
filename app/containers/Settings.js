@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import NumberField from 'react-number-field';
+import NumberInput from './../components/node_modules/general/number-input';
 import { Panel } from 'react-bootstrap';
 import { Link } from 'react-router';
 
@@ -42,9 +42,9 @@ class Settings extends Component {
 				<br />
 				<br />
 				<Panel header={<h1>Settings</h1>}>
-					<h4>Font Size:</h4>
-					<p>Editor text height in pixels</p>
-					<NumberField
+					<NumberInput
+						description="Editor text height in pixels"
+						legend="Font Size"
 						onChange={handleFontSizeChange}
 						min={8}
 						max={56}
