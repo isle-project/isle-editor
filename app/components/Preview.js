@@ -39,10 +39,12 @@ const Dashboard = require( 'general/dashboard' );
 const CheckboxInput = require( 'general/checkbox-input' );
 const NumberInput = require( 'general/number-input' );
 const SliderInput = require( 'general/slider-input' );
+const TextInput = require( 'general/text-input' );
 const LessonSubmit = require( 'general/lesson-submit' );
 
 const DensityPlot = require( 'learning/d3/density-plot' );
 const FeedbackButtons = require( 'learning/feedback' );
+const FreeTextQuestion = require( 'learning/free-text-question' );
 const FunctionPlot = require( 'learning/function-plot' );
 const RPlot = require( 'learning/r/plot' );
 const RHelp = require( 'learning/rhelp' );
