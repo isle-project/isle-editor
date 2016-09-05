@@ -10,7 +10,7 @@ import windowMenu from './menus/window';
 
 // CONFIGURE MENU //
 
-export default function configureMenu({ app }) {
+function configureMenu({ app }) {
 	const template = process.platform === 'darwin'
 		? [ isle({ app }) ]
 		: [];
@@ -22,4 +22,9 @@ export default function configureMenu({ app }) {
 		windowMenu,
 		help
 	];
-}
+} // end FUNCTION configureMenu()
+
+
+// EXPORTS //
+
+export default configureMenu;

@@ -1,3 +1,8 @@
+// MODULES //
+
+import * as actions from './../actions';
+
+
 // VIEW MENU //
 
 const viewMenu = {
@@ -7,9 +12,7 @@ const viewMenu = {
 			label: 'Reload',
 			accelerator: 'CmdOrCtrl+R',
 			click( item, focusedWindow ) {
-				if ( focusedWindow ) {
-					focusedWindow.reload();
-				}
+				actions.reload( focusedWindow );
 			}
 		},
 		{

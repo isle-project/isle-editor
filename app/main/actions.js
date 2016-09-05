@@ -6,6 +6,13 @@ import { extname, basename } from 'path';
 import { EXTENSIONS } from './../constants/globals';
 import createWindow from './createWindow';
 import { exec } from 'child_process';
+import Configstore from 'configstore';
+const debug = require( 'debug' )( 'development' );
+
+
+// VARIABLES //
+
+const config = new Configstore( 'ISLE' );
 
 
 // MAIN PROCESS //
@@ -38,6 +45,7 @@ function openFile( filePath, browserWindow ) {
 			});
 			if ( confirm === 1 ) return;
 		}
+
 		fs.readFile( filePath, 'utf-8', ( err ) => {
 			if ( err ) return;
 			createWindow( filePath );
@@ -75,6 +83,7 @@ ipcMain.on( 'save-file-as', ( e, { data }) => {
 // EXPORTS //
 
 export function openBrowser( url ) {
+	console.log( `Should open ${url} in the default browser...` );
 	exec( 'xdg-open ' + url );
 }
 
@@ -89,6 +98,13 @@ export function open({ browserWindow }) {
 	});
 }
 
+export function reload( browserWindow ) {
+	if ( browserWindow ) {
+		browserWindow.webContents.send( 'prepare-reload' );
+		browserWindow.reload();
+	}
+}
+
 export function save({ browserWindow }) {
 	browserWindow.webContents.send( 'save-file' );
 }
@@ -97,10 +113,12 @@ export function saveAs({ browserWindow }) {
 	browserWindow.webContents.send( 'save-file-as' );
 }
 
-export function newFile() {
+export function newFile({ browserWindow }) {
+	browserWindow.webContents.send( 'clear-cache' );
 	createWindow();
 }
 
 export function closeApp({ browserWindow }) {
+	console.log( 'Should close browser window...' );
 	browserWindow.close();
 }

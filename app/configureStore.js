@@ -6,7 +6,7 @@ import reducer from './reducers';
 
 // CONFIGURE STORE //
 
-export default function configureStore( initialState ) {
+function configureStore( initialState ) {
 	const logger = require( 'redux-logger' )({ // eslint-disable-line global-require
 		level: 'info',
 		collapsed: false
@@ -31,4 +31,9 @@ export default function configureStore( initialState ) {
 	}
 
 	return store;
-}
+} // end FUNCTION configureStore()
+
+
+// EXPORTS //
+
+export default configureStore;

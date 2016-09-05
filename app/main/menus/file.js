@@ -6,7 +6,7 @@ export default {
 		label: 'New File',
 		accelerator: 'CmdOrCtrl+N',
 		click: ( menuItem, browserWindow ) => {
-			actions.newFile();
+			actions.newFile({ browserWindow });
 		}
 	},
 	{

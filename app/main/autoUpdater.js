@@ -7,7 +7,7 @@ import { version as currentVersion } from './../../package.json';
 
 // AUTO UPDATER //
 
-export default function autoUpdater( callback ) {
+function autoUpdater( callback ) {
 	const link = 'https://raw.githubusercontent.com/planeshifter/isle-editor/master/package.json';
 	request.get( link, ( err, res, body ) => {
 		if ( err ) {
@@ -24,3 +24,8 @@ export default function autoUpdater( callback ) {
 		}
 	});
 } // end FUNCTION autoUpdater()
+
+
+// EXPORTS //
+
+export default autoUpdater;

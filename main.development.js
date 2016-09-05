@@ -1,6 +1,7 @@
 // MODULES //
 
 import { app, dialog, Menu, shell } from 'electron';
+import Configstore from 'configstore';
 import configureMenu from './app/main/configureMenu';
 import createWindow from './app/main/createWindow';
 import window from './app/main/windowManager';
@@ -9,8 +10,13 @@ import autoUpdater from './app/main/autoUpdater';
 
 // VARIABLES //
 
+const config = new Configstore( 'ISLE' );
+
 let isReady = false;
 let pathToOpen;
+if ( config.has( 'mostRecentPath' ) ) {
+	pathToOpen = config.get( 'mostRecentPath' );
+}
 
 
 // ONREADY //
@@ -19,6 +25,7 @@ let pathToOpen;
 * Check for application updates and set application menu.
 */
 function onReady() {
+	console.log( 'Application is ready...' );
 	createWindow( pathToOpen, () => {
 		isReady = true;
 		autoUpdater( ( err, newVersion ) => {
@@ -36,10 +43,11 @@ function onReady() {
 		});
 	});
 	Menu.setApplicationMenu( Menu.buildFromTemplate( configureMenu({ app }) ) );
-}
+} // end FUNCTION onReady()
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
+/**
+* This method will be called when Electron has finished initialization and is ready to create browser windows.
+*/
 app.on( 'ready', onReady );
 
 app.on( 'open-file', ( e, path ) => {
@@ -66,4 +74,8 @@ app.on( 'activate', () => {
 	if ( Object.keys( window.windows ).length === 0 ) {
 		createWindow();
 	}
+});
+
+app.on( 'browser-window-created', ( e, browserWindow ) => {
+	console.log( 'Browser window created...' );
 });

@@ -1,3 +1,10 @@
+// MODULES //
+
+import * as actions from './../actions';
+
+
+// EXPORTS //
+
 export default function isleMenu({ app }) {
 	return {
 		label: 'ISLE',

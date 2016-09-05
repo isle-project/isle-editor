@@ -1,9 +1,19 @@
-// from https://github.com/jprichardson/electron-window/
+/*
+	Adapted from: https://github.com/jprichardson/electron-window/
+*/
+
+// MODULES //
+
 import { BrowserWindow } from 'electron';
 
-// retain global references, if not, window will be closed automatically when
-// garbage collected
+
+// VARIABLES //
+
+// Retain global references, if not, window will be closed automatically when garbage collected...
 const _windows = {};
+
+
+// FUNCTIONS //
 
 function _createWindow( options ) {
 	const opts = {
@@ -12,20 +22,18 @@ function _createWindow( options ) {
 		},
 		...options
 	};
-
 	const window = new BrowserWindow( opts );
 	_windows[ window.id ] = window;
 
 	return window;
-}
+} // end FUNCTION _createWindow()
 
 
 // should not need to be called directly, but just in case
 // window.destroy() is ever called
 function _unref() {
 	delete _windows[ this.id ];
-}
-
+} // end FUNCTION _unref
 
 function _loadUrl( httpOrFileUrl, callback ) {
 	const win = this;
@@ -33,8 +41,7 @@ function _loadUrl( httpOrFileUrl, callback ) {
 		callback( ...args );
 	});
 	win.loadURL( 'file://' + httpOrFileUrl );
-}
-
+} // end FUNCTION _loadUrl()
 
 function createWindow( options ) {
 	const window = _createWindow( options );
@@ -50,9 +57,8 @@ function createWindow( options ) {
 			}
 		});
 	};
-
 	return window;
-}
+} // end FUNCTION createWindow()
 
 
 // EXPORTS //

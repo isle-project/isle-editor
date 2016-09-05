@@ -62,6 +62,5 @@ export default function createWindow( filePath, callback ) {
 	}
 	mainWindow.webContents.on( 'new-window', openExternal );
 	mainWindow.webContents.on( 'will-navigate', openExternal );
-
 	return mainWindow;
 }
