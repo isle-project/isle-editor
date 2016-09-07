@@ -29,12 +29,16 @@ import Session from './../api/session';
 
 // E-LEARNING MODULE COMPONENTS //
 
+const DraggableList = require( 'general/draggable-list' );
 const Grid = require( 'general/grid' );
 const Panel = ReactBootstrap.Panel;
 const Row = ReactBootstrap.Row;
 const Column = ReactBootstrap.Col;
 const Slider = require( 'general/slider' );
 const Spinner = require( 'general/spinner' );
+const Nav = ReactBootstrap.Nav;
+const NavItem = ReactBootstrap.NavItem;
+const Tab = ReactBootstrap.Tab;
 const Dashboard = require( 'general/dashboard' );
 const CheckboxInput = require( 'general/checkbox-input' );
 const NumberInput = require( 'general/number-input' );
@@ -46,6 +50,7 @@ const DensityPlot = require( 'learning/d3/density-plot' );
 const FeedbackButtons = require( 'learning/feedback' );
 const FreeTextQuestion = require( 'learning/free-text-question' );
 const FunctionPlot = require( 'learning/function-plot' );
+const MultipleChoiceQuestion = require( 'learning/multiple-choice-question' );
 const RPlot = require( 'learning/r/plot' );
 const RHelp = require( 'learning/rhelp' );
 const RShell = require( 'learning/rshell' );
