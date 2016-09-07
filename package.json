@@ -132,7 +132,6 @@
     "radium": "^0.18.1",
     "raw-loader": "^0.5.1",
     "react": "^15.0.1",
-    "react-ace": "^3.4.1",
     "react-bootstrap": "^0.30.2",
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
