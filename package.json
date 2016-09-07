@@ -35,6 +35,13 @@
     "email": "pburckhardt@outlook.com",
     "url": "https://github.com/planeshifter"
   },
+  "contributors": [
+      {
+        "name": "Philipp Burckhardt",
+        "email": "pburckhardt@outlook.com",
+        "url": "https://github.com/planeshifter"
+      }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Planeshifter/isle-editor/issues"
