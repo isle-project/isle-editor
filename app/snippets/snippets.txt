@@ -52,3 +52,10 @@ snippet NumberInput
 	/>
 snippet VideoPlayer
 	<VideoPlayer url="${1:url}"/>
+snippet MultipleChoiceQuestion
+	<MultipleChoiceQuestion
+		solution={${1:}}
+		answers={[
+			{content:"${2:}", explanation:"${3:}"}
+		]}
+		question="${4:}" />
