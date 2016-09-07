@@ -57,13 +57,6 @@ function configureIpcRenderer( store ) {
 		config.set( 'mostRecentFileData', '' );
 	});
 
-	window.document.addEventListener( 'drop', ( e ) => {
-		e.preventDefault();
-		ipcRenderer.send( 'ISLE::dropped-file', {
-			filePath: e.dataTransfer.files[ 0 ].path
-		});
-	});
-
 	window.document.addEventListener( 'dragover', ( e ) => {
 		e.preventDefault();
 	});

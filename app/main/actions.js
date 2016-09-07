@@ -25,10 +25,6 @@ ipcMain.on( 'save-file', ( e, { data, filePath }) => {
 	});
 });
 
-ipcMain.on( 'ISLE::dropped-file', ( e, { filePath }) => {
-	openFile( filePath, BrowserWindow.fromWebContents( e.sender ) );
-});
-
 function openFile( filePath, browserWindow ) {
 	if (
 		EXTENSIONS.indexOf( extname( filePath ).slice( 1 ).toLowerCase() ) !== -1 ||
