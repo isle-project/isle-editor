@@ -29,6 +29,7 @@ import Session from './../api/session';
 
 // E-LEARNING MODULE COMPONENTS //
 
+// Babel does not support `eval`, so we have to require modules using CommonJS...
 const DraggableList = require( 'general/draggable-list' );
 const Grid = require( 'general/grid' );
 const Panel = ReactBootstrap.Panel;
