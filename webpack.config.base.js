@@ -11,7 +11,11 @@ export default {
 		loaders: [ {
 			test: /\.js?$/,
 			loader: 'babel-loader',
-			exclude: path.join( __dirname, 'node_modules' ),
+			include: [
+				path.join( __dirname, 'main.development.js' ),
+				path.join( __dirname, 'app' ),
+				path.join( __dirname, 'node_modules', '@stdlib' )
+			],
 			query: {
 				plugins: []
 			}

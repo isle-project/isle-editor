@@ -50,7 +50,6 @@ export default {
 		'source-map-support',
 		'webpack',
 		'react',
-		'react-dom',
-		'watchjs'
+		'react-dom'
 	]
 };
