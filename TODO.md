@@ -10,3 +10,7 @@ TODO
 5. Given student feedback, the free-text-question component should allow for re-submissions of answers by students. 
 6. Figure out a good test setup and add unit tests to the project
     - Investigate [enzyme](https://github.com/airbnb/enzyme)
+7. Many of the react components need properties for event handlers (onClick, onChange)...
+8. Open questions:
+    - Ways to decrease the use of global variables? 
+    - Event system for communication between sibling components?
