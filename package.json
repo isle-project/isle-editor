@@ -36,11 +36,11 @@
     "url": "https://github.com/planeshifter"
   },
   "contributors": [
-      {
-        "name": "Philipp Burckhardt",
-        "email": "pburckhardt@outlook.com",
-        "url": "https://github.com/planeshifter"
-      }
+    {
+      "name": "Philipp Burckhardt",
+      "email": "pburckhardt@outlook.com",
+      "url": "https://github.com/planeshifter"
+    }
   ],
   "license": "MIT",
   "bugs": {
@@ -118,6 +118,7 @@
     "debug": "^2.2.0",
     "electron-debug": "^1.0.1",
     "electron-window-state": "^3.0.3",
+    "element-resize-event": "^2.0.5",
     "file-loader": "^0.9.0",
     "fixed-data-table": "^0.6.3",
     "fs-plus": "^2.8.2",
