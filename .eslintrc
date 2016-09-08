@@ -43,6 +43,18 @@
     "react"
   ],
   "settings": {
-    "import/external-module-folders": [ "node_modules", "node_modules/@stdlib/stdlib/lib/node_modules" ]
+    "import/external-module-folders": [ "node_modules" ],
+    "import/core-modules": [ "electron", "@stdlib" ],
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.base.js"
+      },
+      "node": {
+        "moduleDirectory": [
+          "node_modules",
+          "node_modules/@stdlib/stdlib/lib/node_modules"
+        ]
+      }
+    }
   }
 }
