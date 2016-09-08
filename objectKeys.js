@@ -6,7 +6,7 @@ const getKeys = Object.keys;
 
 getKeys.shim = function() {
 	return Object.keys;
-}
+};
 
 
 // EXPORTS //
