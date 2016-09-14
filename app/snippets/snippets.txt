@@ -9,7 +9,7 @@ snippet Grid
 		</Row>
 	</Grid>
 snippet TeX
-	<TeX raw="${1:}" displayMode={${2:false}} />
+	<TeX raw="${1:}"/>
 snippet Switch
 	<Switch></Switch>
 snippet RHelp
