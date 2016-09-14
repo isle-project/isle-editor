@@ -8,3 +8,9 @@ TODO
 3. Make data persistent so that students don't lose their progress once they refresh the page. Options: Storing in local storage, in the Mongo database on our server. Others?
 4. Landing page before start of lesson showing the title, brief overview of content, learning objectives. Should include a way for users to clear the ISLE variables in localStorage.
 5. Given student feedback, the free-text-question component should allow for re-submissions of answers by students. 
+6. Figure out a good test setup and add unit tests to the project
+    - Investigate [enzyme](https://github.com/airbnb/enzyme)
+7. Many of the react components need properties for event handlers (onClick, onChange)...
+8. Open questions:
+    - Ways to decrease the use of global variables? 
+    - Event system for communication between sibling components?
