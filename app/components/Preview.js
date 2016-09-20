@@ -44,6 +44,7 @@ const Tab = ReactBootstrap.Tab;
 const Dashboard = require( 'general/dashboard' );
 const CheckboxInput = require( 'general/checkbox-input' );
 const NumberInput = require( 'general/number-input' );
+const SelectInput = require( 'general/select-input' );
 const SliderInput = require( 'general/slider-input' );
 const TextInput = require( 'general/text-input' );
 const LessonSubmit = require( 'general/lesson-submit' );
