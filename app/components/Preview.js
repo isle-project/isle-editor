@@ -48,6 +48,7 @@ const SelectInput = require( 'general/select-input' );
 const SliderInput = require( 'general/slider-input' );
 const TextInput = require( 'general/text-input' );
 const LessonSubmit = require( 'general/lesson-submit' );
+const Timer = require( 'general/timer' );
 
 const DensityPlot = require( 'learning/d3/density-plot' );
 const FeedbackButtons = require( 'learning/feedback' );
