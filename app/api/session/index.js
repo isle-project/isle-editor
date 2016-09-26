@@ -15,6 +15,7 @@ class Session {
 		this.anonymous = item ? false : true;
 		this.finished = false;
 		this.actions = [];
+		this.vars = {};
 		this.startTime = new Date().getTime();
 		this.endTime = null;
 		this.duration = 0;
@@ -26,6 +27,14 @@ class Session {
 		let item = localStorage.getItem( this.userVal );
 		this.user = item ? JSON.parse( item ) : null;
 		this.anonymous = item ? false : true;
+	}
+
+	set( name, val ) {
+		this.vars[ name ] = val;
+	}
+
+	get( name ) {
+		return this.vars[ name ];
 	}
 
 	finalize() {
@@ -46,6 +55,7 @@ class Session {
 			duration: this.duration,
 			actions: this.actions,
 			finished: this.finished,
+			vars: this.vars,
 			lessonID: this.lesson.title + '_' + this.lesson.author,
 			userID: this.user._id
 		};
