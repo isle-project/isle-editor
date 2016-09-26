@@ -14,13 +14,5 @@ TODO
 8. Open questions:
     - Ways to decrease the use of global variables? 
     - Event system for communication between sibling components?
-9. Timer component:
-  - Display time left 
-  - Absolute position it so that it is always visible
-  - Store start time in localstorage such that refresh doesn't restart timer
-  - Props:
-    - active 
-    - duration (in seconds)
-    - callback when time is up
     
 
