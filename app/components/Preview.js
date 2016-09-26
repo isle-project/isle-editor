@@ -30,6 +30,7 @@ import Session from './../api/session';
 // E-LEARNING MODULE COMPONENTS //
 
 // Babel does not support `eval`, so we have to require modules using CommonJS...
+const Button = ReactBootstrap.Button;
 const ColorPicker = require( 'general/color-picker' );
 const DraggableList = require( 'general/draggable-list' );
 const Grid = require( 'general/grid' );
@@ -41,6 +42,7 @@ const Spinner = require( 'general/spinner' );
 const Nav = ReactBootstrap.Nav;
 const NavItem = ReactBootstrap.NavItem;
 const Tab = ReactBootstrap.Tab;
+const Tabs = ReactBootstrap.Tabs;
 const Dashboard = require( 'general/dashboard' );
 const CheckboxInput = require( 'general/checkbox-input' );
 const NumberInput = require( 'general/number-input' );
@@ -49,6 +51,8 @@ const SliderInput = require( 'general/slider-input' );
 const TextInput = require( 'general/text-input' );
 const LessonSubmit = require( 'general/lesson-submit' );
 const Timer = require( 'general/timer' );
+const Well = ReactBootstrap.Well;
+
 
 const DensityPlot = require( 'learning/d3/density-plot' );
 const FeedbackButtons = require( 'learning/feedback' );
