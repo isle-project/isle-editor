@@ -117,6 +117,7 @@
     "css-modules-require-hook": "^4.0.0",
     "d3": "3.5.17",
     "debug": "^2.2.0",
+    "dompurify": "^0.8.3",
     "electron-debug": "^1.0.1",
     "electron-window-state": "^3.0.3",
     "element-resize-event": "^2.0.5",
