@@ -67,6 +67,15 @@ const Switch = require( 'learning/switch' );
 const TeX = require( 'learning/tex' );
 const VideoPlayer = require( 'learning/video-player' );
 
+const VictoryAnimation = require( 'victory' ).VictoryAnimation;
+const VictoryBar = require( 'victory' ).VictoryBar;
+const VictoryChart = require( 'victory' ).VictoryChart;
+const VictoryGroup = require( 'victory' ).VictoryGroup;
+const VictoryAxis = require( 'victory' ).VictoryAxis;
+const VictoryErrorBar = require( 'victory' ).VictoryErrorBar;
+const VictoryLine = require( 'victory' ).VictoryLine;
+const VictoryTheme = require( 'victory' ).VictoryTheme;
+const VictoryTooltip = require( 'victory' ).VictoryTooltip;
 
 // Markdown parser rendering markdown inside <md></md> tags...
 const md = require( 'markdown-it' )({
