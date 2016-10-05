@@ -161,6 +161,7 @@
     "semver": "^5.1.0",
     "source-map-support": "^0.4.0",
     "uglify-js": "^2.7.0",
+    "victory": "^0.12.1",
     "webpack": "^1.13.1"
   },
   "devEngines": {
