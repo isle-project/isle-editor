@@ -46,7 +46,8 @@ export default {
 	resolve: {
 		alias: {
 			'object-keys': path.resolve( './objectKeys.js' ),
-			'electron-prebuilt': path.resolve( './dummy.js' )
+			'electron-prebuilt': path.resolve( './dummy.js' ),
+			'victory': require.resolve( 'victory/dist/victory' )
 		},
 		root: [
 			path.resolve( './node_modules' ),
