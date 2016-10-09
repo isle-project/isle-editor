@@ -30,7 +30,6 @@ import Session from './../api/session';
 // E-LEARNING MODULE COMPONENTS //
 
 // Babel does not support `eval`, so we have to require modules using CommonJS...
-const Button = ReactBootstrap.Button;
 const ColorPicker = require( 'general/color-picker' );
 const DraggableList = require( 'general/draggable-list' );
 const Grid = require( 'general/grid' );
@@ -42,7 +41,6 @@ const Spinner = require( 'general/spinner' );
 const Nav = ReactBootstrap.Nav;
 const NavItem = ReactBootstrap.NavItem;
 const Tab = ReactBootstrap.Tab;
-const Tabs = ReactBootstrap.Tabs;
 const Dashboard = require( 'general/dashboard' );
 const CheckboxInput = require( 'general/checkbox-input' );
 const NumberInput = require( 'general/number-input' );
@@ -51,15 +49,12 @@ const SliderInput = require( 'general/slider-input' );
 const TextInput = require( 'general/text-input' );
 const LessonSubmit = require( 'general/lesson-submit' );
 const Timer = require( 'general/timer' );
-const Well = ReactBootstrap.Well;
-
 
 const DensityPlot = require( 'learning/d3/density-plot' );
 const FeedbackButtons = require( 'learning/feedback' );
 const FreeTextQuestion = require( 'learning/free-text-question' );
 const FunctionPlot = require( 'learning/function-plot' );
 const MultipleChoiceQuestion = require( 'learning/multiple-choice-question' );
-const MatchListQuestion = require( 'learning/match-list-question' );
 const RPlot = require( 'learning/r/plot' );
 const RHelp = require( 'learning/rhelp' );
 const RShell = require( 'learning/rshell' );
@@ -68,15 +63,6 @@ const Switch = require( 'learning/switch' );
 const TeX = require( 'learning/tex' );
 const VideoPlayer = require( 'learning/video-player' );
 
-const VictoryAnimation = require( 'victory' ).VictoryAnimation;
-const VictoryBar = require( 'victory' ).VictoryBar;
-const VictoryChart = require( 'victory' ).VictoryChart;
-const VictoryGroup = require( 'victory' ).VictoryGroup;
-const VictoryAxis = require( 'victory' ).VictoryAxis;
-const VictoryErrorBar = require( 'victory' ).VictoryErrorBar;
-const VictoryLine = require( 'victory' ).VictoryLine;
-const VictoryTheme = require( 'victory' ).VictoryTheme;
-const VictoryTooltip = require( 'victory' ).VictoryTooltip;
 
 // Markdown parser rendering markdown inside <md></md> tags...
 const md = require( 'markdown-it' )({
