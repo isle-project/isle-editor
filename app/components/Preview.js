@@ -68,14 +68,17 @@ const TeX = require( 'learning/tex' );
 const VideoPlayer = require( 'learning/video-player' );
 
 const VictoryAnimation = require( 'victory' ).VictoryAnimation;
+const VictoryArea = require( 'victory' ).VictoryArea;
 const VictoryBar = require( 'victory' ).VictoryBar;
 const VictoryChart = require( 'victory' ).VictoryChart;
+const VictoryContainer = require( 'victory' ).VictoryContainer;
 const VictoryGroup = require( 'victory' ).VictoryGroup;
 const VictoryAxis = require( 'victory' ).VictoryAxis;
 const VictoryErrorBar = require( 'victory' ).VictoryErrorBar;
 const VictoryLine = require( 'victory' ).VictoryLine;
 const VictoryTheme = require( 'victory' ).VictoryTheme;
 const VictoryTooltip = require( 'victory' ).VictoryTooltip;
+const VictoryVoronoiTooltip = require( 'victory' ).VictoryVoronoiTooltip;
 
 // Markdown parser rendering markdown inside <md></md> tags...
 const md = require( 'markdown-it' )({
@@ -137,6 +140,9 @@ export default class Preview extends Component {
 							global.lesson = this;
 							this._notificationSystem = this.refs.notificationSystem;
 							this.forceUpdate();
+						},
+						getInitialState: function(){
+							return {};
 						},
 						addNotification: function( config ) {
 							this._notificationSystem.addNotification( config );
