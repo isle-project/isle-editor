@@ -101,7 +101,7 @@
   },
   "dependencies": {
     "@stdlib/stdlib": "github:stdlib-js/stdlib#develop",
-    "aphrodite": "^0.5.0",
+    "aphrodite": "^0.6.0",
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -147,7 +147,7 @@
     "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "^15.0.1",
     "react-notification-system": "^0.2.7",
-    "react-player": "^0.11.0",
+    "react-player": "^0.12.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.2.4",
     "react-router-redux": "^4.0.2",
