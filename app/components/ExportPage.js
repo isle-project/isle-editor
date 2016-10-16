@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component, PropTypes } from 'react';
-import { Button, ButtonToolbar, Panel, Well } from 'react-bootstrap';
+import { Button, ButtonToolbar, ControlLabel, FormControl, FormGroup, HelpBlock, Panel, Well } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { remote, shell } from 'electron';
 import path from 'path';
@@ -11,6 +11,7 @@ import fs from 'fs';
 
 import bundler from 'bundler';
 import CheckboxInput from 'general/checkbox-input';
+import TextInput from 'general/text-input';
 import Spinner from 'general/spinner';
 
 
@@ -73,6 +74,10 @@ class ExportPage extends Component {
 			this.setState({ dirPath });
 		};
 
+		this.handleServerChange = () => {
+
+		};
+
 		this.generateApp = () => {
 			let code = this.props.content;
 			let preamble = code.match( /---([\S\s]*)---/ )[ 1 ];
@@ -126,6 +131,29 @@ class ExportPage extends Component {
 				>Back to Editor</Link>
 				<br />
 				<br />
+				<Panel header={<h1>Upload Lesson</h1>} bsStyle="primary">
+					<p>Upload and deploy ISLE lessons directly to an ISLE server.</p>
+					<FormGroup
+						controlId="formBasicText"
+					>
+						<ControlLabel>Server Address</ControlLabel>
+						<FormControl
+							type="text"
+							placeholder="Enter text"
+							onChange={this.handleServerChange}
+							defaultValue={localStorage.getItem( 'server' ) || ''}
+						/>
+					</FormGroup>
+					<Button
+						bsStyle="info"
+						bsSize="sm"
+						block
+						style={{
+							marginTop: '15px'
+						}}
+						> Upload </Button>
+				</Panel>
+				<p style={{	 textAlign: 'center' }}> OR </p>
 				<Panel header={<h1>Export Lesson</h1>} bsStyle="primary">
 					<p>Package and export the currently opened lesson into a
 					single-page application viewable in any web-browser.</p>
@@ -158,7 +186,7 @@ class ExportPage extends Component {
 					{this.state.dirPath ?
 						<Button
 							bsStyle="info"
-							bsSize="large"
+							bsSize="sm"
 							onClick={this.generateApp}
 							block
 							style={{
