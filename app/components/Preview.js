@@ -23,7 +23,6 @@ import { Component, PropTypes } from 'react';
 import { transform } from 'react-tools';
 import request from 'request';
 import jsx from 'markdown-it-jsx';
-
 import Session from './../api/session';
 
 
@@ -77,6 +76,8 @@ const VictoryGroup = require( 'victory' ).VictoryGroup;
 const VictoryAxis = require( 'victory' ).VictoryAxis;
 const VictoryErrorBar = require( 'victory' ).VictoryErrorBar;
 const VictoryLine = require( 'victory' ).VictoryLine;
+const VictoryPie = require( 'victory' ).VictoryPie;
+const VictoryStack = require( 'victory' ).VictoryStack;
 const VictoryTheme = require( 'victory' ).VictoryTheme;
 const VictoryTooltip = require( 'victory' ).VictoryTooltip;
 const VictoryVoronoiTooltip = require( 'victory' ).VictoryVoronoiTooltip;
@@ -107,7 +108,6 @@ export default class Preview extends Component {
 
 			try {
 				global.ISLE = yaml.load( preamble );
-				global.store = global.ISLE.store;
 
 				if ( global.ISLE.server ) {
 					global.ISLE.session = new Session( global.ISLE );
@@ -135,15 +135,17 @@ export default class Preview extends Component {
 				// Replace Markdown by HTML...
 				code = md.render( code );
 
+				console.log( code )
+
 				es5code = `
 					var Lesson = React.createClass({
 						componentDidMount: function() {
 							global.lesson = this;
+							this.getData = global.ISLE.getData
 							this._notificationSystem = this.refs.notificationSystem;
-							this.forceUpdate();
 						},
 						getInitialState: function(){
-							return {};
+							return global.ISLE.state;
 						},
 						addNotification: function( config ) {
 							this._notificationSystem.addNotification( config );
