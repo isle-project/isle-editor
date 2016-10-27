@@ -144,6 +144,28 @@ class ExportPage extends Component {
 							defaultValue={localStorage.getItem( 'server' ) || ''}
 						/>
 					</FormGroup>
+					<FormGroup
+						controlId="formBasicText"
+					>
+						<ControlLabel>User</ControlLabel>
+						<FormControl
+							type="text"
+							placeholder="Enter user name"
+							onChange={this.handleServerChange}
+							defaultValue={localStorage.getItem( 'server' ) || ''}
+						/>
+					</FormGroup>
+					<FormGroup
+						controlId="formBasicText"
+					>
+						<ControlLabel>Password</ControlLabel>
+						<FormControl
+							type="text"
+							placeholder="Enter password"
+							onChange={this.handleServerChange}
+							defaultValue={localStorage.getItem( 'server' ) || ''}
+						/>
+					</FormGroup>
 					<Button
 						bsStyle="info"
 						bsSize="sm"
