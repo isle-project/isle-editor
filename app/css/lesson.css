@@ -3,8 +3,8 @@ body {
 }
 
 #Lesson {
-	font-family: Inconsolata;
-	font-size: 18px;
+	font-family: 'Cardo', 'Georgia', 'Cambria', serif;
+	font-size: 20px;
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 1024px;
@@ -16,26 +16,26 @@ body {
 
 #Lesson h1 {
 	color: lightblue;
-	font-size: 40px;
+	font-size: 48px;
 	font-weight: bold;
 	letter-spacing: 1px;
-	font-family: Open Sans;
+	font-family: 'Cardo', 'Georgia', 'Cambria', serif;
 }
 
 #Lesson h2 {
-	font-size: 28px;
+	font-size: 38px;
 	color: darkorange;
-	font-family: Open Sans;
+	font-family: 'Cardo', 'Georgia', 'Cambria', serif;
 }
 
 #Lesson h3 {
-	font-size: 24px;
-	color: darkred;
-	font-family: Open Sans;
+	font-size: 28px;
+	color: #bd1e13;
+	font-family: 'Cardo', 'Georgia', 'Cambria', serif;
 }
 
 #Lesson h4 {
-	font-size: 18px;
-	color: darkred;
+	font-size: 24px;
+	color: #bd1e13;
 	font-family: Open Sans;
 }
