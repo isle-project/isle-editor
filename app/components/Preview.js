@@ -130,7 +130,9 @@ export default class Preview extends Component {
 					};
 				}
 
+				// Remove preamble and comments:
 				code = code.replace( /---([\S\s]*)---/, '' );
+				code = code.replace( /<!--([\S\s]*)-->/, '' );
 
 				// Replace Markdown by HTML...
 				code = md.render( code );
