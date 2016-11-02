@@ -11,7 +11,7 @@ const exampleDoc = `---
 title: "Lesson"
 author: John Doe
 date: ${moment().format( 'MMM Do, YYYY' )}
-store:
+state:
 ---
 
 # This is an ISLE lesson.
