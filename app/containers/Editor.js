@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { debounce } from 'lodash';
+import debounce from 'lodash.debounce';
 import SplitPane from 'react-split-pane';
 import Panel from './../components/Panel';
 import Header from './../components/Header';
@@ -22,14 +22,24 @@ class App extends React.Component {
 			if ( this.debouncedChange ) {
 				this.debouncedChange( value );
 			} else {
-				this.debouncedChange = debounce( this.props.convertMarkdown, 10 );
+				this.debouncedChange = debounce( this.props.convertMarkdown, 1000 );
 				this.debouncedChange( value );
 			}
 		};
 	}
 
 	componentDidMount() {
+		const editor = this.refs.editor;
+		const preview = this.refs.preview;
+		this.onEditorScroll = this.sync( preview );
+		this.onPreviewScroll = this.sync( editor );
+	}
 
+	sync( other ) {
+		return ( scrollTop, scrollHeight, offsetHeight ) => {
+			const percentage = ( scrollTop * 100 ) / ( scrollHeight - offsetHeight );
+			other.setScrollTop( percentage );
+		};
 	}
 
 	render() {
@@ -38,7 +48,7 @@ class App extends React.Component {
 			<section>
 				<Header fileName={fileName} />
 				<SplitPane split="vertical" defaultSize="50%" primary="second">
-					<Panel ref="editor">
+					<Panel ref="editor" onScroll={this.onEditorScroll}>
 						<Editor
 							ref="code"
 							value={markdown}
@@ -52,7 +62,7 @@ class App extends React.Component {
 							}}
 						/>
 					</Panel>
-					<Panel ref="preview">
+					<Panel ref="preview" onScroll={this.onPreviewScroll}>
 						<Preview code={markdown} />
 					</Panel>
 				</SplitPane>

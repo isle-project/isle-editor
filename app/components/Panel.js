@@ -1,18 +1,55 @@
 // MODULES //
 
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import { StyleSheet, css } from 'aphrodite';
 
 
 // PANEL //
 
-const Panel = React.createClass({
-	propTypes: {
-		onChange: PropTypes.func,
-		value: PropTypes.string,
-		overflowY: PropTypes.bool
-	},
+class Panel extends Component {
+
+	constructor( props ) {
+		super( props );
+
+		this.ignoreScrollEvents = false;
+
+		this.onScroll = () => {
+
+			if ( !this.ignoreScrollEvents ) {
+				this.props.onScroll(
+					this.refs.panel.scrollTop,
+					this.refs.panel.scrollHeight,
+					this.refs.panel.offsetHeight
+				);
+				this.ignoreScrollEvents = true;
+			} else {
+				this.ignoreScrollEvents = false;
+			}
+		};
+
+		this.setScrollTop = ( percentage ) => {
+
+			console.log( percentage )
+			const scrollHeight = this.refs.panel.scrollHeight;
+			const offsetHeight = this.refs.panel.offsetHeight;
+
+			this.ignoreScrollEvents = true;
+
+			this.refs.panel.scrollTop = percentage * (
+				scrollHeight - offsetHeight ) / 100;
+
+			setTimeout( () => {
+				this.ignoreScrollEvents = false;
+			}, 50 );
+		};
+
+	}
+
+	componentDidMount() {
+	}
+
+	componentWillReceiveProps( props ) {}
 
 	render() {
 		const cssClasses = classnames({
@@ -22,12 +59,30 @@ const Panel = React.createClass({
 		});
 
 		return (
-			<div className={cssClasses}>
+			<div ref="panel" onScroll={this.onScroll} className={cssClasses}>
 				{this.props.children}
 			</div>
 		);
 	}
-});
+};
+
+
+// DEFAULT PROPERTIES //
+
+Panel.defaultProps = {
+	onChange() {},
+	onScroll() {}
+};
+
+
+// PROPERTY TYPES //
+
+Panel.propTypes = {
+	onChange: PropTypes.func,
+	onScroll: PropTypes.func,
+	value: PropTypes.string,
+	overflowY: PropTypes.bool
+};
 
 
 // STYLE SHEET //

@@ -130,6 +130,7 @@
     "js-yaml": "^3.6.1",
     "json-loader": "^0.5.4",
     "katex": "^0.6.0",
+    "lodash.debounce": "^4.0.8",
     "lodash.flow": "^3.5.0",
     "markdown-it": "^8.0.0",
     "markdown-it-jsx": "^1.0.0",
