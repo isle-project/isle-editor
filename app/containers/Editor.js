@@ -47,7 +47,12 @@ class App extends React.Component {
 		return (
 			<section>
 				<Header fileName={fileName} />
-				<SplitPane split="vertical" defaultSize="50%" primary="second">
+				<SplitPane
+					split="vertical"
+					primary="second"
+					defaultSize={ parseInt(localStorage.getItem( 'splitPos' ), 10 ) }
+					onChange={ size => localStorage.setItem( 'splitPos', size ) }
+				>
 					<Panel ref="editor" onScroll={this.onEditorScroll}>
 						<Editor
 							ref="code"
