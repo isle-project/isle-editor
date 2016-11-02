@@ -8,7 +8,7 @@ import 'brace/theme/github';
 import 'brace/ext/searchbox';
 import 'brace/ext/language_tools';
 import aceSnippets from './../snippets';
-import { noop } from 'lodash';
+import { noop } from '@stdlib/utils/noop';
 
 
 // CONSTANTS //
@@ -63,7 +63,10 @@ const Editor = React.createClass({
 
 		const currentFontSize = parseFloat( localStorage.getItem( 'fontSize' ) ) || 14;
 		this.editor.setFontSize( currentFontSize );
+
+		// Add event listener:
 		this.editor.on( 'change', this.onChange );
+
 		this.editor.setValue( this.props.value, -1 );
 
 		this.editor.setOptions({
