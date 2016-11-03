@@ -12,15 +12,23 @@ class Panel extends Component {
 	constructor( props ) {
 		super( props );
 
+		this.scrollPercentage = 0;
+		this.scrollTop = null;
+		this.scrollHeight = null;
+		this.offsetHeight = null;
+
 		this.ignoreScrollEvents = false;
 
 		this.onScroll = () => {
+			this.scrollTop = this.refs.panel.scrollTop;
+			this.scrollHeight = this.refs.panel.scrollHeight;
+			this.offsetHeight = this.refs.panel.offsetHeight;
 
 			if ( !this.ignoreScrollEvents ) {
 				this.props.onScroll(
-					this.refs.panel.scrollTop,
-					this.refs.panel.scrollHeight,
-					this.refs.panel.offsetHeight
+					this.scrollTop,
+					this.scrollHeight,
+					this.offsetHeight
 				);
 				this.ignoreScrollEvents = true;
 			} else {
@@ -29,24 +37,33 @@ class Panel extends Component {
 		};
 
 		this.setScrollTop = ( percentage ) => {
-
-			console.log( percentage )
-			const scrollHeight = this.refs.panel.scrollHeight;
-			const offsetHeight = this.refs.panel.offsetHeight;
-
+			const scrollHeight = this.scrollHeight;
+			const offsetHeight = this.offsetHeight;
 			this.ignoreScrollEvents = true;
 
 			this.refs.panel.scrollTop = percentage * (
 				scrollHeight - offsetHeight ) / 100;
 
+			this.scrollPercentage = percentage;
+
 			setTimeout( () => {
 				this.ignoreScrollEvents = false;
-			}, 50 );
+			}, 20 );
 		};
 
 	}
 
 	componentDidMount() {
+		this.scrollTop = this.refs.panel.scrollTop;
+		this.scrollHeight = this.refs.panel.scrollHeight;
+		this.offsetHeight = this.refs.panel.offsetHeight;
+	}
+
+	componentDidUpdate() {
+		this.scrollTop = this.refs.panel.scrollTop;
+		this.scrollHeight = this.refs.panel.scrollHeight;
+		this.offsetHeight = this.refs.panel.offsetHeight;
+		this.setScrollTop( this.scrollPercentage );
 	}
 
 	componentWillReceiveProps( props ) {}

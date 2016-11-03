@@ -31,11 +31,11 @@ class App extends React.Component {
 	componentDidMount() {
 		const editor = this.refs.editor;
 		const preview = this.refs.preview;
-		this.onEditorScroll = this.sync( preview );
-		this.onPreviewScroll = this.sync( editor );
+		this.onEditorScroll = this.sync( editor, preview );
+		this.onPreviewScroll = this.sync( preview, editor );
 	}
 
-	sync( other ) {
+	sync( main, other ) {
 		return ( scrollTop, scrollHeight, offsetHeight ) => {
 			const percentage = ( scrollTop * 100 ) / ( scrollHeight - offsetHeight );
 			other.setScrollTop( percentage );
@@ -45,9 +45,10 @@ class App extends React.Component {
 	render() {
 		let { fileName, markdown } = this.props;
 		return (
-			<section>
+			<div>
 				<Header fileName={fileName} />
 				<SplitPane
+					className="splitpane"
 					split="vertical"
 					primary="second"
 					defaultSize={ parseInt(localStorage.getItem( 'splitPos' ), 10 ) }
@@ -79,7 +80,7 @@ class App extends React.Component {
 						}
 					})()
 				}
-			</section>
+			</div>
 		);
 	}
 }
