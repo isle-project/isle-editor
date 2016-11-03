@@ -59,3 +59,10 @@ snippet MultipleChoiceQuestion
 			{content:"${2:}", explanation:"${3:}"}
 		]}
 		question="${4:}" />
+snippet AddNotification
+	this.addNotification({
+		title: '${1:title}',
+		message: '${2:msg',
+		position: 'tr',
+		level: 'success'
+	});
