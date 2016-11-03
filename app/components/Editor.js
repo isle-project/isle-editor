@@ -120,7 +120,10 @@ const Editor = React.createClass({
 
 	render() {
 		return (
-			<div ref="editorWindow" onChange={this.onChange} />
+			<div
+				ref="editorWindow"
+				onChange={this.onChange}
+			/>
 		);
 	}
 });
