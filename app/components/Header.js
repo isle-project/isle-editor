@@ -18,7 +18,9 @@ const Header = ({ fileName }) => (
 	<div>
 		<Toolbar
 			style={{
-				backgroundColor: colors.GRAY
+				backgroundColor: colors.GRAY,
+				height: '48px',
+				minHeight: '48px',
 			}}
 		>
 			<Heading level={3}>ISLE Editor</Heading>
