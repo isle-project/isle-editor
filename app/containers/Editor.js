@@ -38,6 +38,7 @@ class App extends React.Component {
 	sync( main, other ) {
 		return ( scrollTop, scrollHeight, offsetHeight ) => {
 			const percentage = ( scrollTop * 100 ) / ( scrollHeight - offsetHeight );
+			main.setScrollTop( percentage );
 			other.setScrollTop( percentage );
 		};
 	}
