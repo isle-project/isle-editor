@@ -15,7 +15,7 @@ body {
 }
 
 #Lesson h1 {
-	color: lightblue;
+	color: #2e4468;
 	font-size: 48px;
 	font-weight: bold;
 	letter-spacing: 1px;
@@ -24,7 +24,7 @@ body {
 
 #Lesson h2 {
 	font-size: 38px;
-	color: darkorange;
+	color: #c95d0a;
 	font-family: 'Cardo', 'Georgia', 'Cambria', serif;
 }
 
