@@ -37,3 +37,8 @@ dist
 release
 main.js
 main.js.map
+
+# Visual Studio #
+#################
+.vscode/
+jsconfig.json
