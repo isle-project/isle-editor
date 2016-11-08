@@ -1,7 +1,8 @@
 // MODULES //
 
 import React, { Component, PropTypes } from 'react';
-import { Button, ButtonToolbar, ControlLabel, FormControl, FormGroup, HelpBlock, Panel, Well } from 'react-bootstrap';
+import { Button, ButtonToolbar, Col, ControlLabel, FormControl,
+	FormGroup, Grid, HelpBlock, Panel, Row, Well } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { remote, shell } from 'electron';
 import path from 'path';
@@ -80,8 +81,8 @@ class ExportPage extends Component {
 
 		this.generateApp = () => {
 			let code = this.props.content;
-			let preamble = code.match( /---([\S\s]*)---/ )[ 1 ];
-			preamble = yaml.load( preamble );
+			let preambleStr = code.match( /---([\S\s]*)---/ )[ 1 ];
+			let preamble = yaml.load( preambleStr );
 
 			this.setState({
 				preamble: preamble,
@@ -99,7 +100,7 @@ class ExportPage extends Component {
 			// Replace Markdown by HTML...
 			code = md.render( code );
 
-			bundler( this.state.dirPath, code, preamble, this.state.minify, ( err ) => {
+			bundler( this.state.dirPath, code, preambleStr, this.state.minify, ( err ) => {
 				this.setState({
 					finished: true,
 					spinning: false
@@ -131,115 +132,120 @@ class ExportPage extends Component {
 				>Back to Editor</Link>
 				<br />
 				<br />
-				<Panel header={<h1>Upload Lesson</h1>} bsStyle="primary">
-					<p>Upload and deploy ISLE lessons directly to an ISLE server.</p>
-					<FormGroup
-						controlId="formBasicText"
-					>
-						<ControlLabel>Server Address</ControlLabel>
-						<FormControl
-							type="text"
-							placeholder="Enter text"
-							onChange={this.handleServerChange}
-							defaultValue={localStorage.getItem( 'server' ) || ''}
-						/>
-					</FormGroup>
-					<FormGroup
-						controlId="formBasicText"
-					>
-						<ControlLabel>User</ControlLabel>
-						<FormControl
-							type="text"
-							placeholder="Enter user name"
-							onChange={this.handleServerChange}
-							defaultValue={localStorage.getItem( 'server' ) || ''}
-						/>
-					</FormGroup>
-					<FormGroup
-						controlId="formBasicText"
-					>
-						<ControlLabel>Password</ControlLabel>
-						<FormControl
-							type="text"
-							placeholder="Enter password"
-							onChange={this.handleServerChange}
-							defaultValue={localStorage.getItem( 'server' ) || ''}
-						/>
-					</FormGroup>
-					<Button
-						bsStyle="info"
-						bsSize="sm"
-						block
-						style={{
-							marginTop: '15px'
-						}}
-						> Upload </Button>
-				</Panel>
-				<p style={{	 textAlign: 'center' }}> OR </p>
-				<Panel header={<h1>Export Lesson</h1>} bsStyle="primary">
-					<p>Package and export the currently opened lesson into a
-					single-page application viewable in any web-browser.</p>
-					<CheckboxInput
-						legend="Minify code"
-						onChange={ ( value ) => {
-							this.setState({
-								minify: value
-							});
-						}}
-					/>
-					<br />
-					<Button
-						bsStyle="primary"
-						style={{
-							float: 'left'
-						}}
-						onClick={this.handleFileInputClick}
-					>Select output directory</Button>
-					<Well
-						style={{
-							float: 'left',
-							marginLeft: '8px',
-							height: '34px',
-							paddingTop: '6px',
-							color: 'darkred'
-						}}
-					> Path: {this.state.dirPath} </Well>
-					<br />
-					{this.state.dirPath ?
-						<Button
-							bsStyle="info"
-							bsSize="sm"
-							onClick={this.generateApp}
-							block
+				<Grid>
+					<Row>
+						<Col md={4} >
+							<Panel header={<h1>Upload Lesson</h1>} bsStyle="primary">
+								<p>Upload and deploy ISLE lessons directly to an ISLE server.</p>
+								<FormGroup
+									controlId="formBasicText"
+								>
+									<ControlLabel>Server Address</ControlLabel>
+									<FormControl
+										type="text"
+										placeholder="Enter text"
+										onChange={this.handleServerChange}
+										defaultValue={localStorage.getItem( 'server' ) || ''}
+									/>
+								</FormGroup>
+								<FormGroup
+									controlId="formBasicText"
+								>
+									<ControlLabel>User</ControlLabel>
+									<FormControl
+										type="text"
+										placeholder="Enter user name"
+										onChange={this.handleServerChange}
+										defaultValue={localStorage.getItem( 'server' ) || ''}
+									/>
+								</FormGroup>
+								<FormGroup
+									controlId="formBasicText"
+								>
+									<ControlLabel>Password</ControlLabel>
+									<FormControl
+										type="text"
+										placeholder="Enter password"
+										onChange={this.handleServerChange}
+										defaultValue={localStorage.getItem( 'server' ) || ''}
+									/>
+								</FormGroup>
+								<Button
+									bsStyle="info"
+									bsSize="sm"
+									block
+									style={{
+										marginTop: '15px'
+									}}
+									> Upload </Button>
+							</Panel>
+						</Col>
+						<Col md={2} >
+							<h1 style={{ textAlign: 'center' }}> OR </h1>
+						</Col>
+						<Col md={6} >
+							<Panel header={<h1>Export Lesson</h1>} bsStyle="primary">
+								<p>Package and export the currently opened lesson into a
+								single-page application viewable in any web-browser.</p>
+								<CheckboxInput
+									legend="Minify code"
+									onChange={ ( value ) => {
+										this.setState({
+											minify: value
+										});
+									}}
+								/>
+								<br />
+								<Button
+									bsStyle="primary"
+									onClick={this.handleFileInputClick}
+								>Select output directory</Button>
+								<Well
+									style={{
+										marginLeft: '8px',
+										height: '34px',
+										paddingTop: '6px',
+										color: 'darkred'
+									}}
+								> Path: {this.state.dirPath} </Well>
+								{this.state.dirPath ?
+									<Button
+										bsStyle="info"
+										bsSize="sm"
+										onClick={this.generateApp}
+										block
+										style={{
+											marginTop: '15px'
+										}}
+									> Generate lesson </Button> :
+									<span />
+								}
+							</Panel>
+						</Col>
+					</Row>
+					<Row>
+						<div
 							style={{
-								marginTop: '15px'
+								position: 'relative',
+								margin: 'auto',
+								height: 500,
+								width: '40%'
 							}}
-						> Generate lesson </Button> :
-						<span />
-					}
-				</Panel>
-				<br />
-				<div
-					style={{
-						position: 'relative',
-						marginLeft: '38%',
-						marginRight: '38%',
-						height: 500,
-						width: '22%'
-					}}
-				>
-					{this.state.finished ?
-						<Panel
-							header={<h3>App successfully exported!</h3>}
-							bsStyle="success"
 						>
-							<ButtonToolbar>
-								<Button bsStyle="info" onClick={this.openFolder}>Open containing folder</Button>
-								<Button bsStyle="success" onClick={this.openLesson}>Open lesson in Browser</Button>
-							</ButtonToolbar>
-						</Panel> : <Spinner width={256} height={128} running={this.state.spinning}/>
-					}
-				</div>
+							{this.state.finished ?
+								<Panel
+									header={<h3>App successfully exported!</h3>}
+									bsStyle="success"
+								>
+									<ButtonToolbar style={{ position: 'relative', margin: 'auto' }} >
+										<Button style={{ float: 'left' }} bsStyle="info" onClick={this.openFolder}>Open containing folder</Button>
+										<Button style={{ float: 'right' }} bsStyle="success" onClick={this.openLesson}>Open lesson in Browser</Button>
+									</ButtonToolbar>
+								</Panel> : <Spinner width={256} height={128} running={this.state.spinning}/>
+							}
+						</div>
+					</Row>
+				</Grid>
 			</div>
 		);
 	}
