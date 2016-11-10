@@ -6,7 +6,9 @@
   "main": "main.js",
   "scripts": {
     "clean": "rm -rf node_modules",
+    "coverage": "istanbul cover --dir ./reports/codecov/coverage --report lcovonly tape -- -r babel-register test/setup.js test/**/*.spec.js && cat ./reports/codecov/coverage/lcov.info | codecov && rm -rf ./reports/codecov",
     "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 tape -r babel-register test/setup.js test/**/*.spec.js | tap-spec",
+    "test-cov": "istanbul cover --dir ./reports/coverage --report lcov tape -- -r babel-register test/setup.js test/**/*.spec.js",
     "test-watch": "npm test -- --watch",
     "lint": "eslint app test *.js",
     "hot-server": "node -r babel-register server.js",
@@ -83,6 +85,7 @@
     "fbjs-scripts": "^0.7.1",
     "gh-pages": "^0.11.0",
     "gitbook-cli": "^2.3.0",
+    "istanbul": "^1.1.0-alpha.1",
     "jsdom": "^9.4.1",
     "modclean": "^1.2.7",
     "moment": "^2.13.0",
