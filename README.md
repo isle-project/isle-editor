@@ -4,6 +4,10 @@
 
 [![Dependencies][dependencies-image]][dependencies-url] [![DevDependencies][dev-dependencies-image]][dev-dependencies-url]
 
+#### Tests
+
+[![Build Status](https://travis-ci.org/Planeshifter/isle-editor.svg?branch=master)](https://travis-ci.org/Planeshifter/isle-editor)
+
 ## Introduction
 
 A desktop-application that can be used to author and preview *interactive statistics learning environment* (ISLE) lessons before they are deployed online.
