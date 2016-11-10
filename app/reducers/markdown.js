@@ -36,7 +36,7 @@ You can include a variety of *ISLE components*, for example plotting widgets and
 />
 <FunctionPlot
     data={[
-        { fun: Math.sin }
+        { fun: std.sin }
     ]}
     width={700}
     id="plot1"
