@@ -52,7 +52,7 @@ class App extends React.Component {
 					className="splitpane"
 					split="vertical"
 					primary="second"
-					defaultSize={ parseInt(localStorage.getItem( 'splitPos' ), 10 ) }
+					defaultSize={ parseInt( localStorage.getItem( 'splitPos' ), 10 ) }
 					onChange={ size => localStorage.setItem( 'splitPos', size ) }
 				>
 					<Panel ref="editor" onScroll={this.onEditorScroll}>
