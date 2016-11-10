@@ -84,7 +84,6 @@
     "gh-pages": "^0.11.0",
     "gitbook-cli": "^2.3.0",
     "jsdom": "^9.4.1",
-    "mocha": "3.x.x",
     "modclean": "^1.2.7",
     "moment": "^2.13.0",
     "react-addons-test-utils": "^15.0.1",
