@@ -137,13 +137,10 @@ export default class Preview extends Component {
 				// Replace Markdown by HTML...
 				code = md.render( code );
 
-				console.log( code )
-
 				es5code = `
-					var Lesson = React.createClass({
+					var lessonConfig = {
 						componentDidMount: function() {
 							global.lesson = this;
-							this.getData = global.ISLE.getData
 							this._notificationSystem = this.refs.notificationSystem;
 						},
 						getInitialState: function(){
@@ -169,7 +166,8 @@ export default class Preview extends Component {
 								)
 							);
 						}
-					});
+					};
+					var Lesson = React.createClass( lessonConfig );
 					render(
 						${transform( '<Lesson />' )},
 						document.getElementById( 'Preview' )
@@ -196,7 +194,7 @@ export default class Preview extends Component {
 	}
 	render() {
 		return (
-			<div className="Preview" id="Preview"></div>
+			<div ref="preview" className="Preview" id="Preview"></div>
 		);
 	}
 }
