@@ -2,6 +2,11 @@ snippet FeedbackButtons
 	<FeedbackButtons
 		for="${1:divID}"
 	/>
+snippet FreeTextQuestion
+	<FreeTextQuestion
+		legend="Enter question"
+		solution="Enter solution"
+	/>
 snippet Grid
 	<Grid>
 		<Row>
@@ -9,15 +14,26 @@ snippet Grid
 		</Row>
 	</Grid>
 snippet TeX
-	<TeX raw="${1:}"/>
+	<TeX raw="${1:}" />
+snippet Timer
+	<Timer
+		id="${1:id}"
+		duration={${2:100}}
+		active={${3:true}}
+		onTimeUp={${4:() => {} }}
+	/>
 snippet Switch
 	<Switch></Switch>
 snippet RHelp
-	<RHelp library="${1:}">${2:}</RHelp>
+	<RHelp library="${1:}" >${2:}</RHelp>
 snippet RPlot
 	<RPlot code="${1:}" />
 snippet RShell
 	<RShell code="${1:}" lines={${2:5}} />
+snippet Slider
+	<Slider>
+		${1:}
+	</Slider>
 snippet FunctionPlot
 	<FunctionPlot
 		data={[
@@ -58,7 +74,8 @@ snippet MultipleChoiceQuestion
 		answers={[
 			{content:"${2:}", explanation:"${3:}"}
 		]}
-		question="${4:}" />
+		question="${4:}"
+	/>
 snippet AddNotification
 	this.addNotification({
 		title: '${1:title}',
