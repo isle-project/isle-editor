@@ -15,6 +15,11 @@ snippet Grid
 	</Grid>
 snippet TeX
 	<TeX raw="${1:}" />
+snippet TextInput
+	<TextInput
+		legend="${1:Enter description}"
+		defaultValue="${2:value}"
+	/>
 snippet Timer
 	<Timer
 		id="${1:id}"
