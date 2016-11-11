@@ -155,6 +155,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.3.3" data-path="../first-lesson.html">
+            
+                <a href="../first-lesson.html">
+            
+                    
+                    A first ISLE Lesson
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -174,9 +187,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="color-picker.md">
+        <li class="chapter " data-level="1.4.1" data-path="color-picker.html">
             
-                <span>
+                <a href="color-picker.html">
             
                     
                     Color Picker
@@ -227,9 +240,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2.3" data-path="select-input.md">
+        <li class="chapter " data-level="1.4.2.3" data-path="select-input.html">
             
-                <span>
+                <a href="select-input.html">
             
                     
                     Select Input
@@ -284,9 +297,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4" data-path="expire.md">
+        <li class="chapter " data-level="1.4.4" data-path="expire.html">
             
-                <span>
+                <a href="expire.html">
             
                     
                     Expire
@@ -629,15 +642,16 @@
                                 <h1 id="timer-component">Timer Component</h1>
 <p>The Timer component provides a timer that will trigger a predefined callback when the time is up. An example use case is for the timing of quizzes.</p>
 <p>Example:</p>
-<pre><code>&lt;Timer 
-  id=&apos;test-quiz&apos;
-  active={true} 
-  duration={50} 
-  onTimeUp={function(){
-    console.log(&apos;done&apos;);
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">Timer</span> 
+  <span class="hljs-attr">id</span>=<span class="hljs-string">&apos;test-quiz&apos;</span>
+  <span class="hljs-attr">active</span>=<span class="hljs-string">{true}</span> 
+  <span class="hljs-attr">duration</span>=<span class="hljs-string">{50}</span> 
+  <span class="hljs-attr">onTimeUp</span>=<span class="hljs-string">{function(){</span>
+    <span class="hljs-attr">console.log</span>(&apos;<span class="hljs-attr">done</span>&apos;);
   }}
-/&gt;
-</code></pre><h2 id="options">Options</h2>
+/&gt;</span>
+</code></pre>
+<h2 id="options">Options</h2>
 <ul>
 <li><strong>id</strong>:  the unique <code>string</code> ID for the timer. The timer component is persistent over page refreshes. Required.</li>
 <li><strong>active</strong>: <code>boolean</code> flag that can be toggled to start or pause the timer. Default: <code>false</code>.</li>
@@ -687,7 +701,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Timer","level":"1.4.19","depth":2,"next":{"title":"LaTeX Equations","level":"1.4.20","depth":2,"path":"components/latex.md","ref":"components/latex.md","articles":[]},"previous":{"title":"Text Area","level":"1.4.18","depth":2,"path":"components/text-area.md","ref":"components/text-area.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":3},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/timer.md","mtime":"2016-09-27T14:11:18.883Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-11T08:15:33.766Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Timer","level":"1.4.19","depth":2,"next":{"title":"LaTeX Equations","level":"1.4.20","depth":2,"path":"components/latex.md","ref":"components/latex.md","articles":[]},"previous":{"title":"Text Area","level":"1.4.18","depth":2,"path":"components/text-area.md","ref":"components/text-area.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":3},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/timer.md","mtime":"2016-11-11T08:21:57.666Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-11T08:22:08.581Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
