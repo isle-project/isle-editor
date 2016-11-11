@@ -19,11 +19,11 @@ const NotificationSystem = require( 'react-notification-system' );
 const assignMath = require( '@stdlib/namespace/lib/math' );
 const request = require( 'request' );
 const yaml = require( 'js-yaml' );
+const Session = require ( './../api/session' );
 
 import { Component, PropTypes } from 'react';
 import { transform } from 'react-tools';
 import jsx from 'markdown-it-jsx';
-import Session from './../api/session';
 
 
 // E-LEARNING MODULE COMPONENTS //
@@ -110,10 +110,6 @@ export default class Preview extends Component {
 			try {
 				global.ISLE = yaml.load( preamble );
 
-				if ( global.ISLE.server ) {
-					global.ISLE.session = new Session( global.ISLE );
-				}
-
 				// Remove preamble and comments:
 				code = code.replace( /---([\S\s]*)---/, '' );
 				code = code.replace( /<!--([\S\s]*)-->/, '' );
@@ -130,13 +126,14 @@ export default class Preview extends Component {
 						getInitialState: function() {
 							return global.ISLE.state;
 						},
+						session: new Session( global.ISLE ),
 						sendMail: function( name, to ) {
 							var mailOptions = global.ISLE.mails[ name ];
 							if ( !mailOptions.hasOwnProperty( 'from' ) ) {
 								mailOptions.from = ISLE.email || 'robinson@isle.cmu.edu';
 							}
 							if ( mailOptions.hasOwnProperty( 'text' ) ) {
-								mailOptions.text = mustache.render( mailOptions.text, global.lesson.state );
+								mailOptions.text = mustache.render( mailOptions.text, global.lesson );
 							}
 							console.log( mailOptions )
 							mailOptions.to = to;
