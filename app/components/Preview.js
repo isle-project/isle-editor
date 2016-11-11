@@ -17,11 +17,11 @@ const mustache = require( 'mustache' );
 const render = require( 'react-dom' ).render;
 const NotificationSystem = require( 'react-notification-system' );
 const assignMath = require( '@stdlib/namespace/lib/math' );
+const request = require( 'request' );
 const yaml = require( 'js-yaml' );
 
 import { Component, PropTypes } from 'react';
 import { transform } from 'react-tools';
-import request from 'request';
 import jsx from 'markdown-it-jsx';
 import Session from './../api/session';
 
@@ -113,23 +113,6 @@ export default class Preview extends Component {
 				if ( global.ISLE.server ) {
 					global.ISLE.session = new Session( global.ISLE );
 				}
-				if ( global.ISLE.mails ) {
-					global.ISLE.sendMail = function sendMail( name, to ) {
-						var mailOptions = global.ISLE.mails[ name ];
-						if ( !mailOptions.hasOwnProperty( 'from' ) ) {
-							mailOptions.from = ISLE.email || 'robinson@isle.cmu.edu';
-						}
-						if ( mailOptions.hasOwnProperty( 'text' ) ) {
-							mailOptions.text = mustache.render( mailOptions.text, global );
-						}
-						mailOptions.to = to;
-						request.post( ISLE.server + '/mail', {
-							form: mailOptions
-						}, ( error, response, body ) => {
-							console.log( error );
-						});
-					};
-				}
 
 				// Remove preamble and comments:
 				code = code.replace( /---([\S\s]*)---/, '' );
@@ -144,8 +127,24 @@ export default class Preview extends Component {
 							global.lesson = this;
 							this._notificationSystem = this.refs.notificationSystem;
 						},
-						getInitialState: function(){
+						getInitialState: function() {
 							return global.ISLE.state;
+						},
+						sendMail: function( name, to ) {
+							var mailOptions = global.ISLE.mails[ name ];
+							if ( !mailOptions.hasOwnProperty( 'from' ) ) {
+								mailOptions.from = ISLE.email || 'robinson@isle.cmu.edu';
+							}
+							if ( mailOptions.hasOwnProperty( 'text' ) ) {
+								mailOptions.text = mustache.render( mailOptions.text, global.lesson.state );
+							}
+							console.log( mailOptions )
+							mailOptions.to = to;
+							request.post( ISLE.server + '/mail', {
+								form: mailOptions
+							}, ( error, response, body ) => {
+								console.log( error );
+							});
 						},
 						addNotification: function( config ) {
 							this._notificationSystem.addNotification( config );
