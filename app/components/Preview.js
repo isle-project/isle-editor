@@ -63,6 +63,7 @@ const RPlot = require( 'learning/r/plot' );
 const RHelp = require( 'learning/rhelp' );
 const RShell = require( 'learning/rshell' );
 const RTable = require( 'learning/r/table' );
+const ROutput = require( 'learning/r/output' );
 const Switch = require( 'learning/switch' );
 const TeX = require( 'learning/tex' );
 const VideoPlayer = require( 'learning/video-player' );
