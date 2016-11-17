@@ -1,10 +1,10 @@
-# Timer Component
+# Timer
 
 The Timer component provides a timer that will trigger a predefined callback when the time is up. An example use case is for the timing of quizzes.
 
 Example:
 
-```
+``` html
 <Timer 
   id='test-quiz'
   active={true} 
