@@ -4,14 +4,14 @@ The Timer component provides a timer that will trigger a predefined callback whe
 
 #### Example:
 
-``` html
+``` js
 <Timer 
-  id='test-quiz'
-  active={true} 
-  duration={50} 
-  onTimeUp={function(){
-    console.log('done');
-  }}
+    id='test-quiz'
+    active={true} 
+    duration={50} 
+    onTimeUp={() => {
+      alert( 'done' );
+    }}
 />
 ```
 

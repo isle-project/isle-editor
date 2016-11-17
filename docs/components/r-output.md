@@ -4,7 +4,7 @@ Component for rendering R output inside an ISLE lesson.
 
 #### Example:
 
-``` html
+``` js
 <ROutput code={this.state.code} />
 ```
 

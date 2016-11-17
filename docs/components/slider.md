@@ -1,10 +1,10 @@
 # Slider
 
-A component, which displays its children in a slideshow or carousel. 
+A component which displays its children in a slideshow or carousel. 
 
 #### Example:
 
-``` html
+``` js
 <Slider title="Questions to explore:" >
     <p>Try generating new samples of the Normal data. You'll notice that the points don't always lie exactly on the line. This is typical variation. As you generate more random realizations of this plot you'll get better calibrated to the kind of deviation you can expect to see from this large a sample of Normal data.</p>
     <p>How do the normal qq plots change as you vary the df parameter for the t-distributed data?</p>

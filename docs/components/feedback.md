@@ -4,7 +4,7 @@ Attach buttons to collect user feedback for an HTML element identified by its `i
 
 #### Example:
 
-``` html
+``` js
 <span id="myDiv">For me, feedback is collected!</span>
 <FeedbackButtons
     for="myDiv"

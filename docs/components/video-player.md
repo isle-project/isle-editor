@@ -4,7 +4,7 @@ A component for playing media files and content from YouTube, SoundCloud and Vim
 
 #### Example:
 
-``` html
+``` js
 <VideoPlayer
     url="https://www.youtube.com/watch?v=UzxYlbK2c7E"
     playing

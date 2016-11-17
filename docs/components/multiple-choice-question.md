@@ -4,7 +4,7 @@ An ISLE component that renders a multiple choice question. It supports the case 
 
 #### Example:
 
-``` html
+``` js
 <MultipleChoiceQuestion
     solution={1}
     answers={[

@@ -4,7 +4,7 @@ ISLE component to generate line-plots of functions and/or scatter-plots of indiv
 
 #### Example:
 
-``` html
+``` js
 <FunctionPlot
     data={[
         { fun: Math.sin }

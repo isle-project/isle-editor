@@ -4,7 +4,7 @@ Component for rendering an R plot inside an ISLE lesson.
 
 #### Example:
 
-``` html
+``` js
 <RPlot code="hist( c(20,50,40,70,40,30) )" />
 ```
 

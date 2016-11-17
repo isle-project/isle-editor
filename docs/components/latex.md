@@ -4,7 +4,7 @@
 
 #### Example:
 
-``` html
+``` js
 <TeX
     raw="\int f(x) \; dx"
     displayMode={true}

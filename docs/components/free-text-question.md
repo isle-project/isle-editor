@@ -4,7 +4,7 @@ An ISLE component for questions where the answers by the students should be supp
 
 #### Example:
 
-``` html
+``` js
 <FreeTextQuestion 
     question="What is the p-value your obtained for this test?" 
     rows={1} 

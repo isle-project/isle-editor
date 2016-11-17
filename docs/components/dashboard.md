@@ -5,7 +5,7 @@
 
 #### Example:
 
-``` html
+``` js
 <Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>
     <SliderInput
         legend="Input value"

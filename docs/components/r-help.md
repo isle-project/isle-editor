@@ -4,7 +4,7 @@ Make words pull up R documentation in a modal window when clicked.
 
 #### Example:
 
-``` html
+``` js
 <RHelp library="graphics">hist</RHelp> is used to create a histogram.
 ```
 

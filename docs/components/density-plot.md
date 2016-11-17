@@ -4,7 +4,7 @@ ISLE component to generate a density plot for one or multiple data sets.
 
 #### Example:
 
-``` html
+``` js
 <DensityPlot
     data={[ 40, 80, 20, 30, 50, 30, 40, 10, 20, 10, 20, 20 ]}
     xmin={0}

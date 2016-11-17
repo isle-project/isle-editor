@@ -4,7 +4,7 @@ The Expire component will causes all of its children to become invisible after a
 
 #### Example:
 
-``` html
+``` js
 <Expire>
     <span> I will disappear </span>
 </Expire>

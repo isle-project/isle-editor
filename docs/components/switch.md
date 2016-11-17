@@ -4,7 +4,7 @@ The Switch component allows the display of one element out of a list of several 
 
 #### Example:
 
-``` html
+``` js
 <Switch>
     <span>Option 1</span>
     <span>Option 2</span>

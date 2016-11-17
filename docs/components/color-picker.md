@@ -4,20 +4,20 @@ A wrapper for the [react-color](https://casesandberg.github.io/react-color/) col
 
 #### Example:
 
-``` html
-	<ColorPicker onChangeComplete={ color => {
-		var out = color;
-		/* e.g., returns 
-			{
-				"hsl": {"h":~250,"s":~0.4967,"l":~0.2063,"a":1},
-				"hex":"#231a4f",
-				"rgb":{"r":35,"g":26,"b":79,"a":1},
-				"hsv":{"h":~250,"s":~0.664,"v":~0.3088,"a":1},
-				"oldHue":~250,
-				"source":"rgb"
-			}
-		*/
-	}} />
+``` js
+<ColorPicker onChangeComplete={ color => {
+    const out = color;
+    /* e.g., returns 
+        {
+            "hsl": {"h":~250,"s":~0.4967,"l":~0.2063,"a":1},
+            "hex":"#231a4f",
+            "rgb":{"r":35,"g":26,"b":79,"a":1},
+            "hsv":{"h":~250,"s":~0.664,"v":~0.3088,"a":1},
+            "oldHue":~250,
+            "source":"rgb"
+        }
+    */
+}} />
 ```
 
 #### Options:
