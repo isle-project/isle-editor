@@ -17,7 +17,7 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
                 
             
                 
@@ -642,14 +642,14 @@
                                 <h1 id="draggable-list">Draggable List</h1>
 <p>A list of draggable elements that can be re-ordered by the students.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">DraggableList</span> &quot;
-    <span class="hljs-attr">data</span>=<span class="hljs-string">{[</span>
-        { <span class="hljs-attr">id:</span> <span class="hljs-attr">0</span>, <span class="hljs-attr">text:</span> &quot;<span class="hljs-attr">Compact</span>&quot; },
-        { <span class="hljs-attr">id:</span> <span class="hljs-attr">1</span>, <span class="hljs-attr">text:</span> &quot;<span class="hljs-attr">Large</span>&quot; },
-        { <span class="hljs-attr">id:</span> <span class="hljs-attr">2</span>, <span class="hljs-attr">text:</span> &quot;<span class="hljs-attr">Midsize</span>&quot; },
-        { <span class="hljs-attr">id:</span> <span class="hljs-attr">3</span>, <span class="hljs-attr">text:</span> &quot;<span class="hljs-attr">Small</span>&quot; }
+<pre><code class="lang-html">&lt;DraggableList &quot;
+    data={[
+        { id: 0, text: &quot;Compact&quot; },
+        { id: 1, text: &quot;Large&quot; },
+        { id: 2, text: &quot;Midsize&quot; },
+        { id: 3, text: &quot;Small&quot; }
     ]}
-    <span class="hljs-attr">onChange</span>=<span class="hljs-string">{</span> ( <span class="hljs-attr">data</span> ) =&gt;</span> {
+    onChange={ ( data ) =&gt; {
         let str = data
             .map( x =&gt; &apos;&quot;&apos;+x.text+&apos;&quot;&apos; )
             .join( &apos;, &apos;);
@@ -706,7 +706,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Draggable List","level":"1.4.3","depth":2,"next":{"title":"Expire","level":"1.4.4","depth":2,"path":"components/expire.md","ref":"components/expire.md","articles":[]},"previous":{"title":"Text Input","level":"1.4.2.6","depth":3,"path":"components/text-input.md","ref":"components/text-input.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":3},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/draggable-list.md","mtime":"2016-11-17T20:17:05.727Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-17T20:28:08.449Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Draggable List","level":"1.4.3","depth":2,"next":{"title":"Expire","level":"1.4.4","depth":2,"path":"components/expire.md","ref":"components/expire.md","articles":[]},"previous":{"title":"Text Input","level":"1.4.2.6","depth":3,"path":"components/text-input.md","ref":"components/text-input.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":3},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/draggable-list.md","mtime":"2016-11-17T20:17:05.727Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-17T20:36:08.453Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
