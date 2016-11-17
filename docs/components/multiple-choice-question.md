@@ -2,7 +2,7 @@
 
 An ISLE component that renders a multiple choice question. It supports the case where the learner has to select a single answer and when there might be multiple correct answers and all correct ones must be picked.
 
-Example:
+#### Example:
 
 ``` html
 <MultipleChoiceQuestion
@@ -17,9 +17,9 @@ Example:
 />
 ```
 
-Options:
+#### Options:
 
-* __question__: the question display at the top of the multiple choice component.
+* __question__: the question displayed at the top of the multiple choice component.
 * __solution__: a `number` denoting which answer is correct or an `Array` of the correct answer numbers in case the learner should be able to select multiple answers
 * __answers__: an `Array` of answer objects. Each answer should be an object with `content` and `explanation` fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect. 
 * __disabled__: `boolean` controlling whether the question is disabled. Default: `false`.

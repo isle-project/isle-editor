@@ -2,7 +2,7 @@
 
 `TeX` is an ISLE element that can be used to display LaTeX equations. Under the hood, the component uses [KaTeX](https://github.com/Khan/KaTeX) for blazingly fast rendering.
 
-Example:
+#### Example:
 
 ``` html
 <TeX
@@ -11,7 +11,7 @@ Example:
 />
 ```
 
-## Options:
+#### Options:
 
 * __raw__: The literal LaTeX `string` to render. Also accepts `numbers`. Default: `''`.
 * __displayMode__: `boolean` indicating whether to display the equation inline or in display mode. Default: `false`.

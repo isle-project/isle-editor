@@ -2,7 +2,7 @@
 
 A component, which displays its children in a slideshow or carousel. 
 
-Example:
+#### Example:
 
 ``` html
 <Slider title="Questions to explore:" >
@@ -13,7 +13,7 @@ Example:
 </Slider>
 ```
 
-Options:
+#### Options:
 
 * __fade__: `boolean` indicating whether fading is used for transitioning between the slides. Default: `false`.
 * __infinite__: `boolean` indicating whether the slideshow wraps around it's contents. Default: `false`.

@@ -3,7 +3,7 @@
 
 
 
-Example:
+#### Example:
 
 ``` html
 <Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>
@@ -13,7 +13,7 @@ Example:
 </Dashboard>
 ```
 
-## Options:
+#### Options:
 
 * __onGenerate__:
 * __title__: `string` with a title for the dashboard to be displayed at its top. Default: `''`.

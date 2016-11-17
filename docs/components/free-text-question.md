@@ -2,7 +2,7 @@
 
 An ISLE component for questions where the answers by the students should be supplied in the form of free text.
 
-Example:
+#### Example:
 
 ``` html
 <FreeTextQuestion 
@@ -12,7 +12,7 @@ Example:
 />
 ``` 
 
-Options:
+#### Options:
 
 * __question__: the question displayed at the top of the free text question component.
 * __hints__: an `Array` of `strings` providing guidance on how to answer the question. Default: `[]`.

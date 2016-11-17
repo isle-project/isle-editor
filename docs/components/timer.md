@@ -2,7 +2,7 @@
 
 The Timer component provides a timer that will trigger a predefined callback when the time is up. An example use case is for the timing of quizzes.
 
-Example:
+#### Example:
 
 ``` html
 <Timer 
@@ -15,7 +15,7 @@ Example:
 />
 ```
 
-## Options
+#### Options
 
 * __id__:  the unique `string` ID for the timer. The timer component is persistent over page refreshes. Required.
 * __active__: `boolean` flag that can be toggled to start or pause the timer. Default: `false`.

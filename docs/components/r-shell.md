@@ -2,7 +2,7 @@
 
 An interactive R Shell that can be used to execute R commands in the cloud using [OpenCPU](https://www.opencpu.org/).
 
-Example:
+#### Example:
 
 ``` html
 <RShell
@@ -10,7 +10,7 @@ Example:
 />
 ```
 
-## Options
+#### Options
 
 * __code__: R code `string` to be evaluated. Default: `''`.
 * __disabled__: `boolean` indicating whether to disable all user inputs and make the code block static. Default: `false`.

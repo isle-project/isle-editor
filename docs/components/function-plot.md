@@ -2,7 +2,7 @@
 
 ISLE component to generate line-plots of functions and/or scatter-plots of individual observations.
 
-Example:
+#### Example:
 
 ``` html
 <FunctionPlot
@@ -13,7 +13,7 @@ Example:
 />
 ```
 
-## Options
+#### Options
 
 * __data__: An array of `objects` with either a `fun` or `points` key. `fun` expects a `function` to be plotted, whereas `points` should be an array of arrays of length two holding the (x,y) pairs to be plotted. Required.
 * __id__: Unique `string` identifier for the plot to be created. Required.
