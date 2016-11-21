@@ -13,7 +13,7 @@ ISLE component to generate a density plot for one or multiple data sets.
 />
 ```
 
-#### Options
+#### Options:
 
 * __data__: an `array` or `array of arrays` holding the data for which the density plot should be created.
 * __xmin__: minimum value displayed on the x-axis. Default: `0`.

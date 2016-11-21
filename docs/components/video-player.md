@@ -11,7 +11,7 @@ A component for playing media files and content from YouTube, SoundCloud and Vim
 />
 ```
 
-#### Options
+#### Options:
 
 * __url__: URL of the video. Default: `''`.
 * __controls__: `boolean` indicating whether to display control elements of the video player. Default: `false`

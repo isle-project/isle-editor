@@ -18,6 +18,7 @@ A slider input component. Usually, this will be used as part of an [ISLE dashboa
 
 * __defaultValue__: The value the slider is initialized with. Default: `10`.
 * __fractionDigits__: The number of digits after the decimal points displayed for the current value. Default: `null`.
+* __legend__: `string` to be displayed as the title of te component. Default: `''`.
 * __max__: The maximum value of the slider. Default: `100`.
 * __min__: The minimum value of the slider. Default: `0`.
 * __step__: The step size of the slider. Default: `1`.
