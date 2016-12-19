@@ -23,7 +23,7 @@ const Session = require ( './../api/session' );
 
 import { Component, PropTypes } from 'react';
 import { transform } from 'react-tools';
-import jsx from 'markdown-it-jsx';
+import markdownToHTML from 'utils/markdown-to-html';
 
 
 // E-LEARNING MODULE COMPONENTS //
@@ -83,14 +83,6 @@ const VictoryTheme = require( 'victory' ).VictoryTheme;
 const VictoryTooltip = require( 'victory' ).VictoryTooltip;
 const VictoryVoronoiTooltip = require( 'victory' ).VictoryVoronoiTooltip;
 
-// Markdown parser rendering markdown inside <md></md> tags...
-const md = require( 'markdown-it' )({
-	html: true,
-	xhtmlOut: true,
-	breaks: false,
-	typographer: false
-});
-md.use( jsx );
 
 // Assign all stdlib modules to the GLOBAL.std namespace:
 global.std = {};
@@ -115,13 +107,12 @@ export default class Preview extends Component {
 				code = code.replace( /<!--([\S\s]*)-->/, '' );
 
 				// Replace Markdown by HTML...
-				code = md.render( code );
+				code = markdownToHTML( code );
 
 				es5code = `
 					var lessonConfig = {
 						componentDidMount: function() {
 							global.lesson = this;
-							this._notificationSystem = this.refs.notificationSystem;
 						},
 						getInitialState: function() {
 							return global.ISLE.state;
@@ -144,7 +135,7 @@ export default class Preview extends Component {
 							});
 						},
 						addNotification: function( config ) {
-							this._notificationSystem.addNotification( config );
+							this.refs.notificationSystem.addNotification( config );
 						},
 						componentWillUnmount: function() {
 							this.unmounted = true;
