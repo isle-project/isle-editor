@@ -7,23 +7,13 @@ import { Link } from 'react-router';
 import { remote, shell } from 'electron';
 import path from 'path';
 import yaml from 'js-yaml';
-import jsx from 'markdown-it-jsx';
+import markdownToHTML from 'utils/markdown-to-html';
 import fs from 'fs';
 
 import bundler from 'bundler';
 import CheckboxInput from 'general/checkbox-input';
 import TextInput from 'general/text-input';
 import Spinner from 'general/spinner';
-
-
-// Markdown parser rendering markdown inside <md></md> tags...
-const md = require( 'markdown-it' )({
-	html: true,
-	xhtmlOut: true,
-	breaks: false,
-	typographer: false
-});
-md.use( jsx );
 
 
 // VARIABLES //
@@ -98,7 +88,7 @@ class ExportPage extends Component {
 			code = code.replace( /---([\S\s]*)---/, '' );
 
 			// Replace Markdown by HTML...
-			code = md.render( code );
+			code = markdownToHTML( code );
 
 			bundler( this.state.dirPath, code, preambleStr, this.state.minify, ( err ) => {
 				this.setState({
