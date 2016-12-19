@@ -45,6 +45,7 @@ export default {
 	},
 	resolve: {
 		alias: {
+			'debug': path.resolve( './node_modules/debug/node.js' ),
 			'object-keys': path.resolve( './objectKeys.js' ),
 			'electron-prebuilt': path.resolve( './dummy.js' ),
 			'victory': require.resolve( 'victory/dist/victory' )
