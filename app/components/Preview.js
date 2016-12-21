@@ -38,6 +38,7 @@ const Row = ReactBootstrap.Row;
 const Column = ReactBootstrap.Col;
 const Slider = require( 'general/slider' );
 const Spinner = require( 'general/spinner' );
+const Text = require( 'general/text' );
 const Nav = ReactBootstrap.Nav;
 const NavItem = ReactBootstrap.NavItem;
 const Tab = ReactBootstrap.Tab;
