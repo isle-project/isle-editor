@@ -124,7 +124,6 @@
     "file-loader": "^0.9.0",
     "fixed-data-table": "^0.6.3",
     "fs-plus": "^2.8.2",
-    "function-plot": "^1.16.5",
     "highlight.js": "^9.4.0",
     "jquery": "^3.0.0",
     "js-yaml": "^3.6.1",

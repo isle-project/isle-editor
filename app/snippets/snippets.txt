@@ -39,13 +39,6 @@ snippet Slider
 	<Slider>
 		${1:}
 	</Slider>
-snippet FunctionPlot
-	<FunctionPlot
-		data={[
-			{ ${1:} }
-		]}
-		id="${2:name}"
-	/>
 snippet Dashboard
 	<Dashboard onGenerate={(${1:})=>{
 		${2:}
