@@ -2,11 +2,11 @@
 
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import App from './containers/App';
-import Editor from './containers/Editor';
-import Documentation from './containers/Documentation';
-import Settings from './containers/Settings';
-import Export from './containers/Export';
+import App from 'containers/App';
+import Editor from 'containers/Editor';
+import Documentation from 'containers/Documentation';
+import Settings from 'containers/Settings';
+import Export from 'containers/Export';
 
 
 // EXPORTS //

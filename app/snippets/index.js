@@ -33,7 +33,7 @@ function getContent( editor, session, mode, snippetText ) {
 }
 
 /*
-*  Helper function that sets up the snippet code
+* Helper function that sets up the snippet code
 */
 function setup( editor, session, mode, snippetText ) {
 

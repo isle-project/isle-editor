@@ -3,7 +3,7 @@
 import { dialog, ipcMain, BrowserWindow, remote } from 'electron';
 import fs from 'fs-plus';
 import { extname, basename } from 'path';
-import { EXTENSIONS } from './../constants/globals';
+import { EXTENSIONS } from './globals.js';
 import createWindow from './createWindow';
 import { exec } from 'child_process';
 import Configstore from 'configstore';

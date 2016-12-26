@@ -1,6 +1,6 @@
 // MODULES //
 
-import * as actions from './actions';
+import * as actions from 'actions';
 import { ipcRenderer } from 'electron';
 import Configstore from 'configstore';
 

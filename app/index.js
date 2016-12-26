@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { Router, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import routes from './routes';
-import configureStore from './store/configureStore';
+import configureStore from 'store/configureStore';
 import 'highlight.js/styles/github.css';
 import 'normalize.css/normalize.css';
 import './app.global.css';
