@@ -7,7 +7,7 @@ import { shell } from 'electron';
 import window from './windowManager';
 
 
-// CREATE WINDOW //
+// MAIN //
 
 export default function createWindow( filePath, callback ) {
 	// Create the browser window.
@@ -63,4 +63,4 @@ export default function createWindow( filePath, callback ) {
 	mainWindow.webContents.on( 'new-window', openExternal );
 	mainWindow.webContents.on( 'will-navigate', openExternal );
 	return mainWindow;
-}
+} // end FUNCTION createWindow()

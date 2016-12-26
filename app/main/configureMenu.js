@@ -8,7 +8,7 @@ import help from './menus/help';
 import windowMenu from './menus/window';
 
 
-// CONFIGURE MENU //
+// MAIN //
 
 function configureMenu({ app }) {
 	const template = process.platform === 'darwin'

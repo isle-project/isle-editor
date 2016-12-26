@@ -15,7 +15,7 @@ const debug = require( 'debug' )( 'development' );
 const config = new Configstore( 'ISLE' );
 
 
-// MAIN PROCESS //
+// MAIN //
 
 ipcMain.on( 'save-file', ( e, { data, filePath }) => {
 	fs.writeFile( filePath, data, 'utf-8', ( err ) => {

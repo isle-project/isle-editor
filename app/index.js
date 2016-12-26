@@ -11,10 +11,10 @@ import 'highlight.js/styles/github.css';
 import 'normalize.css/normalize.css';
 import './app.global.css';
 
-import configureIpcRenderer from './configureIpcRenderer';
+import configureIpcRenderer from './configure_ipc_renderer.js';
 
 
-// STORE //
+// MAIN //
 
 const store = configureStore();
 const history = syncHistoryWithStore( hashHistory, store );

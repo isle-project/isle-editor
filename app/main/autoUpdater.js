@@ -5,7 +5,7 @@ import request from 'request';
 import { version as currentVersion } from './../../package.json';
 
 
-// AUTO UPDATER //
+// MAIN //
 
 function autoUpdater( callback ) {
 	const link = 'https://raw.githubusercontent.com/planeshifter/isle-editor/master/package.json';
