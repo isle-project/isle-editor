@@ -51,6 +51,7 @@ export default {
 			'victory': require.resolve( 'victory/dist/victory' )
 		},
 		root: [
+			path.resolve( './app/node_modules' ),
 			path.resolve( './node_modules' ),
 			path.resolve( './node_modules/@stdlib/stdlib/lib/node_modules' ),
 			path.resolve( './node_modules/@stdlib/stdlib/node_modules' )

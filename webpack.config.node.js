@@ -1,7 +1,9 @@
 // MODULES //
 
 // For babel-plugin-webpack-loaders...
-require( 'babel-register' );
+require( 'babel-register' )({
+	only: /(?:app|test|webpack)/,
+});
 const devConfigs = require( './webpack.config.development' );
 
 
@@ -12,6 +14,13 @@ module.exports = {
 		libraryTarget: 'commonjs2'
 	},
 	module: {
-		loaders: devConfigs.module.loaders.slice( 1 )  // remove babel-loader
+		loaders: devConfigs.module.loaders.slice( 1 ) // remove babel-loader
+	},
+	resolve: {
+		modulesDirectories: [
+			'app/node_modules',
+			'node_modules',
+			'node_modules/@stdlib/stdlib/lib/node_modules'
+		]
 	}
 };
