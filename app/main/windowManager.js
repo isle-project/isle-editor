@@ -29,11 +29,10 @@ function _createWindow( options ) {
 } // end FUNCTION _createWindow()
 
 
-// should not need to be called directly, but just in case
-// window.destroy() is ever called
+// should not need to be called directly (just in case window.destroy() is ever called)
 function _unref() {
 	delete _windows[ this.id ];
-} // end FUNCTION _unref
+} // end FUNCTION _unref()
 
 function _loadUrl( httpOrFileUrl, callback ) {
 	const win = this;
