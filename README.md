@@ -24,4 +24,4 @@ A desktop-application that can be used to author and preview *interactive statis
 [dev-dependencies-image]: https://img.shields.io/david/dev/planeshifter/isle-editor/master.svg
 [dev-dependencies-url]: https://david-dm.org/planeshifter/isle-editor/master#info=devDependencies
 
-[docs]: http://isledocs.philipp-burckhardt.com/
+[docs]: http://isledocs.com/

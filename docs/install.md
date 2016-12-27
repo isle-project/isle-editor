@@ -1,6 +1,6 @@
 # Installation
 
-{% set softwareVersion = "v0.16.0" %}
+{% set softwareVersion = "v0.17.0" %}
 
 ## Binaries
 
