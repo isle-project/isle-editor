@@ -24,7 +24,6 @@
     * [Match List Question](components/match-list-question.md)
     * [Multiple Choice Question](components/multiple-choice-question.md)
     * [Plots](components/plots.md)
-        * [Function Plot](components/function-plot.md)
         * [Density Plot](components/density-plot.md)
         * [R Plot](components/r-plot.md)
     * [R Help](components/r-help.md)
