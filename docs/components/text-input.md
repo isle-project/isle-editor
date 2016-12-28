@@ -13,7 +13,7 @@ A text input component. Usually, this will be used as part of an [ISLE dashboard
 
 #### Options:
 
-* __defaultValue__: The option the text input is initialized with. Default: `''`.
+* __defaultValue__: The text input is initialized with. Default: `''`.
 * __inline__: `boolean` indicating whether the element should be displayed inline. Default: `false`.
 * __legend__: `string` to be displayed as the title of te component. Default: `''`.
 * __onChange__: Callback `function` invoked after each change of the text value. Default: `null`.

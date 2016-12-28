@@ -32,6 +32,7 @@
     * [R Table](components/r-table.md)
     * [Slider](components/slider.md)
     * [Switch](components/switch.md)
+    * [Text](components/text.md)
     * [Timer](components/timer.md)
     * [LaTeX Equations](components/latex.md)
     * [Video Player](components/video-player.md)
