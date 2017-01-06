@@ -73,8 +73,13 @@ To build and package the [Electron][electron] application,
 $ npm run build
 ```
 
+## License
+
+See [LICENSE][license].
+
 [electron]: http://electron.atom.io/
 [git]: http://git-scm.com/
+[license]: https://raw.githubusercontent.com/Planeshifter/isle-editor/master/LICENSE.md
 [node-js]: https://nodejs.org/en/
 [darwin-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.17.2/ISLE.Editor-darwin-x64.zip
 [linux-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.17.2/ISLE.Editor-linux-x64.zip
