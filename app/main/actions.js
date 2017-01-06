@@ -43,7 +43,9 @@ function openFile( filePath, browserWindow ) {
 		}
 
 		fs.readFile( filePath, 'utf-8', ( err ) => {
-			if ( err ) return;
+			if ( err ) {
+				return err;
+			}
 			createWindow( filePath );
 		});
 		return;
