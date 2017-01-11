@@ -1,5 +1,9 @@
 {
-  "presets": ["es2015", "react", "stage-0"],
+  "presets": [
+     "es2015",
+     "react",
+     "stage-0"
+  ],
   "plugins": [
     "add-module-exports"
   ],
@@ -9,7 +13,8 @@
     },
     "test": {
       "plugins": [
-        ["webpack-loaders", { "config": "webpack.config.node.js", "verbose": false }]
+        ["webpack-loaders", { "config": "webpack.config.test.js", "verbose": false }],
+        ["resolver", {"resolveDirs": ["app", "node_modules/@stdlib/stdlib/lib/node_modules"]}]
       ]
     }
   }
