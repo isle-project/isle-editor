@@ -12,6 +12,7 @@ function calculateMargin( containerWidth, targetWidth ) {
 	return `${x | 0}px`;
 }
 
+
 // VIDEO //
 
 class Video extends Component {

@@ -7,7 +7,7 @@ import 'brace/mode/html';
 import 'brace/theme/github';
 import 'brace/ext/searchbox';
 import 'brace/ext/language_tools';
-import aceSnippets from './../../snippets';
+import aceSnippets from './../snippets';
 import { noop } from '@stdlib/utils/noop';
 
 
