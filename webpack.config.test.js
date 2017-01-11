@@ -1,9 +1,7 @@
 // MODULES //
 
 // For babel-plugin-webpack-loaders...
-require( 'babel-register' )({
-	only: /(?:app|test|webpack)/,
-});
+require( 'babel-register' );
 const devConfigs = require( './webpack.config.development' );
 
 
@@ -18,7 +16,7 @@ module.exports = {
 	},
 	resolve: {
 		modulesDirectories: [
-			'app/node_modules',
+			'app',
 			'node_modules',
 			'node_modules/@stdlib/stdlib/lib/node_modules'
 		]
