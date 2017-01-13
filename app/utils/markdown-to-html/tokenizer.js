@@ -163,4 +163,4 @@ class Tokenizer{
 
 // EXPORTS //
 
-export default Tokenizer;
+module.exports = Tokenizer;

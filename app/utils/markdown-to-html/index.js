@@ -1,6 +1,6 @@
 // MODULES //
 
-import Tokenizer from './tokenizer.js';
+const Tokenizer = require( './tokenizer.js' );
 const md = require( 'markdown-it' )({
 	html: true,
 	xhtmlOut: true,
@@ -27,4 +27,4 @@ function toMarkdown( str ) {
 
 // EXPORTS //
 
-export default toMarkdown;
+module.exports = toMarkdown;
