@@ -1,7 +1,6 @@
 // MODULES //
 
 import React, { Component, PropTypes } from 'react';
-import moment from 'moment';
 import floor from '@stdlib/math/base/special/floor';
 
 
