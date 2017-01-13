@@ -67,15 +67,15 @@ if ( icon ) {
 const version = argv.version || argv.v;
 
 if ( version ) {
-	DEFAULT_OPTS.version = version;
+	DEFAULT_OPTS.electronVersion = version;
 	startPack();
 } else {
-	// use the same version as the currently-installed electron
+	// Use the same version as the currently-installed electron...
 	exec( 'npm list electron --dev', ( err, stdout ) => {
 		if ( err ) {
-			DEFAULT_OPTS.version = '1.0.2';
+			DEFAULT_OPTS.electronVersion = '1.0.2';
 		} else {
-			DEFAULT_OPTS.version = stdout.split( 'electron@' )[ 1 ].replace( /\s/g, '' );
+			DEFAULT_OPTS.electronVersion = stdout.split( 'electron@' )[ 1 ].replace( /\s/g, '' );
 		}
 		startPack();
 	});
@@ -137,7 +137,7 @@ function pack( plat, arch, cb ) {
 		platform: plat,
 		arch,
 		prune: true,
-		'app-version': pkg.version || DEFAULT_OPTS.version,
+		'app-version': pkg.version || DEFAULT_OPTS.electronVersion,
 		'app-copyright': 'Copyright © 2016 Philipp Burckhardt. All rights reserved.',
 		'version-string': {
 			CompanyName: 'Carnegie Mellon University',
@@ -171,11 +171,7 @@ function afterPack( plat, arch ) {
 			cwd: path.join(
 				process.cwd(),
 				nodeModulesPath
-			),
-			patterns: [
-				modclean.patterns.safe,
-				modclean.patterns.caution
-			]
+			)
 		});
 		mc.clean( function callback( err, results ) {
 			if ( err ) {
