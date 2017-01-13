@@ -10,27 +10,6 @@ function aceSnippets( editor, session ) {
 	snippet.manager.register( snippet.m.snippet, snippet.m.scope );
 }
 
-function getNames( editor, session, mode, snippetText ) {
-	const snippet = setup( editor, session, mode, snippetText );
-	const names = [];
-
-	for ( let i = 0; i < snippet.m.snippet.length; i++ ) {
-		names.push( snippet.m.snippet[ i ].name );
-	}
-
-	return names;
-}
-
-function getContent( editor, session, mode, snippetText ) {
-	const snippet = setup( editor, session, mode, snippetText );
-	const content = [];
-
-	for ( let i = 0; i < snippet.m.snippet.length; i++ ) {
-		content.push( snippet.m.snippet[ i ].content );
-	}
-
-	return content;
-}
 
 /*
 * Helper function that sets up the snippet code
