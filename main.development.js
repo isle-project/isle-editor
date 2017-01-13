@@ -14,7 +14,11 @@ const config = new Configstore( 'ISLE' );
 
 let isReady = false;
 let pathToOpen;
-if ( config.has( 'mostRecentPath' ) ) {
+
+if ( process.argv[ 2 ]) {
+	pathToOpen = process.argv[ 2 ];
+}
+else if ( config.has( 'mostRecentPath' ) ) {
 	pathToOpen = config.get( 'mostRecentPath' );
 }
 
