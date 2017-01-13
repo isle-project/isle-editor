@@ -84,7 +84,7 @@
     "gitbook-cli": "^2.3.0",
     "istanbul": "^1.1.0-alpha.1",
     "jsdom": "^9.4.1",
-    "modclean": "^1.2.7",
+    "modclean": "^2.0.0",
     "react-addons-test-utils": "^15.0.1",
     "redux-devtools": "^3.2.0",
     "redux-devtools-dock-monitor": "^1.1.1",
