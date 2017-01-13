@@ -3,7 +3,7 @@
 import Radium from 'radium';
 import React, { Component, PropTypes } from 'react';
 import katex from 'katex';
-import isString from '@stdlib/utils/is-string';
+import isNumber from '@stdlib/utils/is-number';
 
 
 // VARIABLES //
@@ -35,7 +35,7 @@ class TeX extends Component {
 	* React component render method.
 	*/
 	render() {
-		const input = isString( this.props.raw ) ? this.props.raw : this.props.raw.toString();
+		const input = isNumber( this.props.raw ) ? this.props.raw.toString() : this.props.raw;
 		let str;
 
 		try {
@@ -56,6 +56,7 @@ class TeX extends Component {
 					onClick={this.props.onClick}
 				>
 					<div
+						className="tag"
 						style={{
 							float: 'right',
 							marginTop: 5,
