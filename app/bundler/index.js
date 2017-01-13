@@ -1,12 +1,12 @@
 // MODULES //
 
-import fs from 'fs-plus';
-import path from 'path';
-import yaml from 'js-yaml';
-import webpack from 'webpack';
-import UglifyJS from 'uglify-js';
-import markdownToHTML from 'utils/markdown-to-html';
-import REQUIRES from 'constants/requires';
+const fs = require( 'fs-plus' );
+const path = require( 'path' );
+const yaml = require( 'js-yaml' );
+const webpack = require( 'webpack' );
+const UglifyJS = require( 'uglify-js' );
+const markdownToHTML = require( './../utils/markdown-to-html' );
+const REQUIRES = require( './requires.json' );
 
 
 // VARIABLES //
