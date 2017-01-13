@@ -9,85 +9,6 @@ const markdownToHTML = require( './../utils/markdown-to-html' );
 const REQUIRES = require( './requires.json' );
 
 
-// VARIABLES //
-
-const isPackaged = !( /node_modules\/electron\/dist/.test( process.resourcesPath ) );
-const rootPaths = [];
-if ( isPackaged ) {
-	rootPaths.push( `${process.resourcesPath}/app` );
-	rootPaths.push( `${process.resourcesPath}/app/node_modules/@stdlib/stdlib/lib/node_modules` );
-	rootPaths.push( `${process.resourcesPath}/app/node_modules/@stdlib/stdlib/node_modules` );
-} else {
-	rootPaths.push( path.resolve( './node_modules' ) );
-	rootPaths.push( path.resolve( './node_modules/@stdlib/stdlib/lib/node_modules' ) );
-	rootPaths.push( path.resolve( './node_modules/@stdlib/stdlib/node_modules' ) );
-	rootPaths.push( path.resolve( './app/' ) );
-}
-
-
-// CONFIG //
-
-const config = {
-	resolve: {
-		root: rootPaths,
-		alias: {
-			'object-keys': isPackaged ? `${process.resourcesPath}/app/objectKeys.js` : path.resolve( './objectKeys.js' ),
-			'victory': isPackaged ?
-				`${process.resourcesPath}/app/node_modules/victory/dist/victory/`:
-				path.resolve( './node_modules/victory/dist/victory/' )
-		}
-	},
-	resolveLoader: {
-		root: rootPaths
-	},
-	module: {
-		loaders: [
-			{
-				test: /\.js?$/,
-				loader: 'babel-loader',
-				exclude: path.join( __dirname, 'node_modules' ),
-				query: {
-					plugins: [
-						'add-module-exports'
-					],
-					presets: [
-						'es2015',
-						'react',
-						'stage-0'
-					],
-					babelrc: false,
-					cacheDirectory: true
-				}
-			},
-			{
-				test: /\.json$/,
-				loader: 'json-loader'
-			},
-		],
-		noParse: /node_modules\/json-schema\/lib\/validate\.js/
-	},
-	node: {
-		dns: 'mock',
-		fs: 'empty',
-		net: 'mock',
-		tls: 'mock'
-	},
-	plugins: [
-		new webpack.DefinePlugin({
-			'process.env': {
-				NODE_ENV: '"production"'
-			}
-		}),
-		new webpack.IgnorePlugin( /vertx/ ),
-		new webpack.ProvidePlugin({
-			'window.d3': 'd3'
-		})
-	],
-	externals: [
-		'crypto-browserify'
-	]
-};
-
 // FUNCTIONS //
 
 const makeOutputDir = ( outputDir ) => {
@@ -221,11 +142,9 @@ const getISLEcode = ( yamlStr ) => {
 	return 'global.ISLE = yaml.load(`' + yamlStr + '`);';
 };
 
-const getSessionCode = () => {
+const getSessionCode = ( basePath ) => {
 	let str = 'const Session = ';
-	str += isPackaged ?
-		`require( '${process.resourcesPath}/app/app/api/session' );` :
-		`require( '${path.resolve( './app/api/session' )}' );`;
+	str += `require( '${path.resolve( basePath, './app/api/session' )}' );`;
 	return str;
 };
 
@@ -242,14 +161,15 @@ import mustache from 'mustache';`;
 * @param {string} lessonContent - ISLE lesson file
 * @param {Array} components - array of component names
 * @param {string} yamlStr - lesson meta data in YAML format
+* @param {string} basePath - file path of ISLE editor
 * @returns {string} index.js content
 */
-function generateIndexJS( lessonContent, components, yamlStr ) {
+function generateIndexJS( lessonContent, components, yamlStr, basePath ) {
 	let res = getMainImports();
 	res += '\n';
 	res += getISLEcode( yamlStr );
 
-	res += getSessionCode();
+	res += getSessionCode( basePath );
 	res += getMailCode();
 
 	res += getComponents( components );
@@ -261,25 +181,92 @@ function generateIndexJS( lessonContent, components, yamlStr ) {
 * Write index.js file to disk
 *
 * @param {string} outputPath - file path of output directory
+* @param {string} basePath - file path of ISLE editor
 * @param {string} lessonContent - ISLE lesson file
 * @param {string} yamlStr - lesson meta data in YAML format
 * @param {boolean} minify - boolean indicating whether code should be minified
 * @param {Function} clbk - callback function
 */
-function writeIndexFile( outputPath, lessonContent, minify, clbk ) {
+function writeIndexFile( outputPath, basePath, lessonContent, minify, clbk ) {
+
+	const rootPaths = [
+		path.resolve( basePath, './node_modules' ),
+		path.resolve( basePath, './node_modules/@stdlib/stdlib/lib/node_modules' ),
+		path.resolve( basePath, './node_modules/@stdlib/stdlib/node_modules' ),
+		path.resolve( basePath, './app/' )
+	];
+	const config = {
+		resolve: {
+			root: rootPaths,
+			alias: {
+				'object-keys': path.resolve( basePath, './objectKeys.js' ),
+				'victory': path.resolve( basePath, './node_modules/victory/dist/victory/' )
+			}
+		},
+		resolveLoader: {
+			root: rootPaths
+		},
+		module: {
+			loaders: [
+				{
+					test: /\.js?$/,
+					loader: 'babel-loader',
+					exclude: path.resolve( basePath, 'node_modules' ),
+					query: {
+						plugins: [
+							'add-module-exports'
+						],
+						presets: [
+							'es2015',
+							'react',
+							'stage-0'
+						],
+						babelrc: false,
+						cacheDirectory: true
+					}
+				},
+				{
+					test: /\.json$/,
+					loader: 'json-loader'
+				},
+			],
+			noParse: /node_modules\/json-schema\/lib\/validate\.js/
+		},
+		node: {
+			dns: 'mock',
+			fs: 'empty',
+			net: 'mock',
+			tls: 'mock'
+		},
+		plugins: [
+			new webpack.DefinePlugin({
+				'process.env': {
+					NODE_ENV: '"production"'
+				}
+			}),
+			new webpack.IgnorePlugin( /vertx/ ),
+			new webpack.ProvidePlugin({
+				'window.d3': 'd3'
+			})
+		],
+		externals: [
+			'crypto-browserify'
+		]
+	};
+
 	const yamlStr = lessonContent.match( /---([\S\s]*)---/ )[ 1 ];
 	const meta = yaml.load( yamlStr );
 	const appDir = path.join( outputPath, meta.title );
-	const indexPath = isPackaged ?
-		`${process.resourcesPath}/app/public/index.js` :
-		path.resolve( './public/index.js' );
+	const indexPath = path.resolve( './public/index.js' );
 	const htmlPath = path.join( appDir, 'index.html' );
 	const bundlePath = path.join( appDir, 'bundle.js' );
 	const getCSSPath = () => {
-		return isPackaged ?
-		`${process.resourcesPath}/app/app/css/` :
-		path.resolve( `./app/css/` );
+		return path.join( basePath, `./app/css/` );
 	};
+
+	const outputDir = path.join( outputPath, meta.title );
+	makeOutputDir( outputDir );
+	generateISLE( outputDir, lessonContent );
 
 	// Remove YAML preamble...
 	lessonContent = lessonContent.replace( /---([\S\s]*)---/, '' );
@@ -287,13 +274,9 @@ function writeIndexFile( outputPath, lessonContent, minify, clbk ) {
 	// Replace Markdown by HTML...
 	lessonContent = markdownToHTML( lessonContent );
 
-	const outputDir = path.join( outputPath, meta.title );
-	makeOutputDir( outputDir );
-	generateISLE( outputDir, lessonContent );
-
 	const usedComponents = getComponentList( lessonContent );
 
-	const str = generateIndexJS( lessonContent, usedComponents, yamlStr );
+	const str = generateIndexJS( lessonContent, usedComponents, yamlStr, basePath );
 
 	fs.writeFileSync( indexPath, str );
 	console.log( str );
@@ -303,9 +286,7 @@ function writeIndexFile( outputPath, lessonContent, minify, clbk ) {
 
 	if ( contains( usedComponents, 'FeedbackButtons' ) ) {
 		fs.mkdirSync( path.join( appDir, 'img' ) );
-		let imgPath = isPackaged ?
-			`${process.resourcesPath}/app/app/img` :
-			path.resolve( './app/img' );
+		let imgPath = path.join( basePath, './app/img' );
 		fs.copySync( path.join( imgPath ), path.join( appDir, 'img' ) );
 	}
 

@@ -59,7 +59,10 @@ class ExportPage extends Component {
 				spinning: true
 			});
 
-			bundler( this.state.dirPath, this.props.content, this.state.minify, ( err, preamble ) => {
+			const isPackaged = !( /node_modules\/electron\/dist/.test( process.resourcesPath ) );
+			const basePath = isPackaged ? `${process.resourcesPath}/app/` : './';
+
+			bundler( this.state.dirPath, basePath, this.props.content, this.state.minify, ( err, preamble ) => {
 				this.setState({
 					preamble: preamble,
 					finished: true,

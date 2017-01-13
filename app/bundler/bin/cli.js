@@ -76,8 +76,9 @@ function onFinish( error ) {
 
 // VARIABLES //
 
-let minify = false;
 let lessonContent;
+let basePath = path.join( __dirname, './../../../' );
+let minify = false;
 let outDir;
 let fpath;
 let args;
@@ -106,4 +107,4 @@ outDir = path.resolve( cwd(), args._[ 1 ]);
 
 
 // Create ISLE bundle:
-main( outDir, lessonContent, minify, onFinish );
+main( outDir, basePath, lessonContent, minify, onFinish );
