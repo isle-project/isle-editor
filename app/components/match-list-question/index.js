@@ -138,7 +138,7 @@ class MatchListQuestion extends Component {
 	}
 
 	componentDidUpdate() {
-		const { selectedA, selectedB, answers, colorScale, currentColor } = this.state;
+		const { selectedA, selectedB, answers, colorScale } = this.state;
 
 		if ( selectedA && selectedB ) {
 			answers.push({
@@ -164,8 +164,6 @@ class MatchListQuestion extends Component {
 				return answer.a !== option && answer.b !== option;
 			}
 		);
-
-		const { elements } = this.props;
 		this.setState({ [ list ]: option, answers, colorScale });
 	}
 

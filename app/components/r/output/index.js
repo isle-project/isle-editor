@@ -1,13 +1,9 @@
 // MODULES //
 
 import React, { Component, PropTypes } from 'react';
-import Dimensions from 'components/dimensions';
-import { Table, Column, Cell } from 'fixed-data-table';
-import { Button, Modal } from 'react-bootstrap';
 import DOMPurify from 'dompurify';
 import request from 'request';
 import Spinner from 'components/spinner';
-import floor from '@stdlib/math/base/special/floor';
 import isArray from '@stdlib/utils/is-array';
 
 

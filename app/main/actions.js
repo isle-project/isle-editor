@@ -1,18 +1,11 @@
 // MODULES //
 
-import { dialog, ipcMain, BrowserWindow, remote } from 'electron';
+import { dialog, ipcMain, BrowserWindow } from 'electron';
 import fs from 'fs-plus';
 import { extname, basename } from 'path';
 import { EXTENSIONS } from './globals.js';
 import createWindow from './createWindow';
 import { exec } from 'child_process';
-import Configstore from 'configstore';
-const debug = require( 'debug' )( 'development' );
-
-
-// VARIABLES //
-
-const config = new Configstore( 'ISLE' );
 
 
 // MAIN //

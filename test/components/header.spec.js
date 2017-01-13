@@ -2,8 +2,8 @@
 
 import test from 'tape';
 import React from 'react';
-import { Toolbar, Space, Heading, NavItem } from 'rebass';
-import { shallow, mount } from 'enzyme';
+import { Toolbar } from 'rebass';
+import { shallow } from 'enzyme';
 import Header from 'components/Header.js';
 
 
