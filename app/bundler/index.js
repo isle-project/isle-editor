@@ -14,14 +14,14 @@ import REQUIRES from 'constants/requires';
 const isPackaged = !( /node_modules\/electron\/dist/.test( process.resourcesPath ) );
 const rootPaths = [];
 if ( isPackaged ) {
-	rootPaths.push( `${process.resourcesPath}/app/node_modules` );
+	rootPaths.push( `${process.resourcesPath}/app` );
 	rootPaths.push( `${process.resourcesPath}/app/node_modules/@stdlib/stdlib/lib/node_modules` );
 	rootPaths.push( `${process.resourcesPath}/app/node_modules/@stdlib/stdlib/node_modules` );
 } else {
 	rootPaths.push( path.resolve( './node_modules' ) );
 	rootPaths.push( path.resolve( './node_modules/@stdlib/stdlib/lib/node_modules' ) );
 	rootPaths.push( path.resolve( './node_modules/@stdlib/stdlib/node_modules' ) );
-	rootPaths.push( path.resolve( './app/node_modules/' ) );
+	rootPaths.push( path.resolve( './app/' ) );
 }
 
 
