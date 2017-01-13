@@ -5,7 +5,8 @@
   "description": "Editor for Interactive Statistics Learning Environment (ISLE) lessons.",
   "main": "main.js",
   "bin": {
-    "isle-editor": "./bin/cli.js"
+    "isle-editor": "./bin/cli.js",
+    "isle-bundler": "./app/bundler/bin/cli.js"
   },
   "scripts": {
     "clean": "rm -rf node_modules",
