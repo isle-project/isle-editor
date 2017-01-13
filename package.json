@@ -26,6 +26,7 @@
     "postinstall": "node node_modules/fbjs-scripts/node/check-dev-engines.js package.json && npm run build",
     "init-docs": "gitbook install",
     "publish-docs": "gitbook build && echo \"isledocs.com\" > _book/CNAME && gh-pages --dist _book",
+    "view-cov": "xdg-open ./reports/coverage/lcov-report/index.html",
     "view-docs": "concurrently --kill-others \"gitbook serve\" \"sensible-browser http://localhost:4000\"",
     "dev": "concurrently --kill-others \"npm run hot-server\" \"npm run start-hot\""
   },
