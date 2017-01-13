@@ -168,7 +168,7 @@
     "webpack": "^1.13.1"
   },
   "devEngines": {
-    "node": "4.x || 5.x || 6.x || 7.x",
+    "node": "5.x || 6.x || 7.x",
     "npm": "2.x || 3.x"
   }
 }
