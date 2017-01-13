@@ -2,35 +2,18 @@
 
 import React, { Component, PropTypes } from 'react';
 import { Button, ButtonToolbar, Col, ControlLabel, FormControl,
-	FormGroup, Grid, HelpBlock, Panel, Row, Well } from 'react-bootstrap';
+	FormGroup, Grid, Panel, Row, Well } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { remote, shell } from 'electron';
 import path from 'path';
-import yaml from 'js-yaml';
-import markdownToHTML from 'utils/markdown-to-html';
-import fs from 'fs';
-
 import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
-import TextInput from 'components/input/text';
 import Spinner from 'components/spinner';
 
 
 // VARIABLES //
 
 const { dialog } = remote;
-
-
-// FUNCTIONS //
-
-const makeOutputDir = ( outputDir ) => {
-	fs.mkdirSync( outputDir );
-};
-
-const generateISLE = ( outputDir, code ) => {
-	const islePath = path.join( outputDir, 'index.isle' );
-	fs.writeFileSync( islePath, code );
-};
 
 
 // EXPORT LESSON //
@@ -70,28 +53,15 @@ class ExportPage extends Component {
 		};
 
 		this.generateApp = () => {
-			let code = this.props.content;
-			let preambleStr = code.match( /---([\S\s]*)---/ )[ 1 ];
-			let preamble = yaml.load( preambleStr );
 
 			this.setState({
-				preamble: preamble,
 				finished: false,
 				spinning: true
 			});
 
-			let outputDir = path.join(  this.state.dirPath, preamble.title );
-			makeOutputDir( outputDir );
-			generateISLE( outputDir, code );
-
-			// Remove YAML preamble...
-			code = code.replace( /---([\S\s]*)---/, '' );
-
-			// Replace Markdown by HTML...
-			code = markdownToHTML( code );
-
-			bundler( this.state.dirPath, code, preambleStr, this.state.minify, ( err ) => {
+			bundler( this.state.dirPath, this.props.content, this.state.minify, ( err, preamble ) => {
 				this.setState({
+					preamble: preamble,
 					finished: true,
 					spinning: false
 				});

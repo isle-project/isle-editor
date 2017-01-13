@@ -5,6 +5,7 @@ import path from 'path';
 import yaml from 'js-yaml';
 import webpack from 'webpack';
 import UglifyJS from 'uglify-js';
+import markdownToHTML from 'utils/markdown-to-html';
 import REQUIRES from 'constants/requires';
 
 
@@ -88,6 +89,15 @@ const config = {
 };
 
 // FUNCTIONS //
+
+const makeOutputDir = ( outputDir ) => {
+	fs.mkdirSync( outputDir );
+};
+
+const generateISLE = ( outputDir, code ) => {
+	const islePath = path.join( outputDir, 'index.isle' );
+	fs.writeFileSync( islePath, code );
+};
 
 const contains = ( arr, value ) => {
 	for ( let i = 0; i < arr.length; i++ ) {
@@ -214,8 +224,8 @@ const getISLEcode = ( yamlStr ) => {
 const getSessionCode = () => {
 	let str = 'const Session = ';
 	str += isPackaged ?
-		`require( '${process.resourcesPath}/app/app/node_modules/api/session' );` :
-		`require( '${path.resolve( './app/node_modules/api/session' )}' );`;
+		`require( '${process.resourcesPath}/app/app/api/session' );` :
+		`require( '${path.resolve( './app/api/session' )}' );`;
 	return str;
 };
 
@@ -235,7 +245,6 @@ import mustache from 'mustache';`;
 * @returns {string} index.js content
 */
 function generateIndexJS( lessonContent, components, yamlStr ) {
-	const meta = yaml.load( yamlStr );
 	let res = getMainImports();
 	res += '\n';
 	res += getISLEcode( yamlStr );
@@ -257,7 +266,8 @@ function generateIndexJS( lessonContent, components, yamlStr ) {
 * @param {boolean} minify - boolean indicating whether code should be minified
 * @param {Function} clbk - callback function
 */
-function writeIndexFile( outputPath, lessonContent, yamlStr, minify, clbk ) {
+function writeIndexFile( outputPath, lessonContent, minify, clbk ) {
+	const yamlStr = lessonContent.match( /---([\S\s]*)---/ )[ 1 ];
 	const meta = yaml.load( yamlStr );
 	const appDir = path.join( outputPath, meta.title );
 	const indexPath = isPackaged ?
@@ -270,6 +280,16 @@ function writeIndexFile( outputPath, lessonContent, yamlStr, minify, clbk ) {
 		`${process.resourcesPath}/app/app/css/` :
 		path.resolve( `./app/css/` );
 	};
+
+	// Remove YAML preamble...
+	lessonContent = lessonContent.replace( /---([\S\s]*)---/, '' );
+
+	// Replace Markdown by HTML...
+	lessonContent = markdownToHTML( lessonContent );
+
+	const outputDir = path.join( outputPath, meta.title );
+	makeOutputDir( outputDir );
+	generateISLE( outputDir, lessonContent );
 
 	const usedComponents = getComponentList( lessonContent );
 
@@ -312,7 +332,7 @@ function writeIndexFile( outputPath, lessonContent, yamlStr, minify, clbk ) {
 			});
 			fs.writeFileSync( path.join( appDir, 'bundle.min.js' ), minified.code );
 		}
-		clbk( err );
+		clbk( err, meta );
 	});
 } // end FUNCTION writeIndexFile()
 
