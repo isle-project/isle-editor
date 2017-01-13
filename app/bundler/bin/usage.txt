@@ -1,0 +1,8 @@
+
+Usage: isle-bundler [options] file outputDir
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --minify              Minify source code.

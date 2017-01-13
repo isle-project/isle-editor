@@ -1,0 +1,15 @@
+{
+	"boolean": [
+		"help",
+		"version",
+		"minify"
+	],
+	"alias": {
+		"help": [
+			"h"
+		],
+		"version": [
+			"V"
+		]
+	}
+}
