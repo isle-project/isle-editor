@@ -1,8 +1,3 @@
-// MODULES //
-
-import * as actions from './../actions';
-
-
 // EXPORTS //
 
 export default {

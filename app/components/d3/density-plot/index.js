@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import D3Plot from 'components/d3';
 const d3 = require( 'd3' );
 const abs = require( '@stdlib/math/base/special/abs' );

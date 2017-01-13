@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import Input from 'components/input';
 
 

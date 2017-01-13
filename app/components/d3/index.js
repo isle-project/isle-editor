@@ -5,14 +5,6 @@ import { findDOMNode } from 'react-dom';
 const d3 = require( 'd3' );
 
 
-// FUNCTIONS //
-
-const calculateMargin = ( containerWidth, targetWidth ) => {
-	const x = ( containerWidth - targetWidth ) / 2.0;
-	return `${x | 0}px`;
-};
-
-
 // D3 PLOT //
 
 class D3Plot extends Component {

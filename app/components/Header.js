@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router';
-import { Toolbar, Space, Heading, NavItem } from 'rebass';
+import { Toolbar, Space, Heading } from 'rebass';
 import * as colors from 'constants/colors';
 
 

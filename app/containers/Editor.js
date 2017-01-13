@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
 import SplitPane from 'react-split-pane';
@@ -13,7 +13,7 @@ import { convertMarkdown, toggleScrolling } from 'actions';
 
 // APP //
 
-class App extends React.Component {
+class App extends Component {
 
 	constructor( props ) {
 		super( props );

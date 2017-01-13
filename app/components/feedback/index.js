@@ -1,8 +1,8 @@
 // MODULES //
 
 import radium from 'radium';
-import React, { Component, findDOMNode } from 'react';
-import { Button, ButtonGroup, ButtonToolbar, FormGroup, Modal, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Button, ButtonGroup, FormGroup, Modal, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import styles from 'components/styles';
 import TextArea from 'components/text-area';
 import CheckboxInput from 'components/input/checkbox';
@@ -89,7 +89,6 @@ class FeedbackButtons extends Component {
 	render() {
 		const closeModal = () => this.setState({ showModal: false });
 		const openModal = () => this.setState({ showModal: true });
-		const props = this.props;
 
 		return (
 			<div className="feedbackButtons" style={{ float: 'right' }}>

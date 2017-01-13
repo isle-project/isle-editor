@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 const md = require( 'markdown-it' )({
 	html: true,
 	xhtmlOut: true

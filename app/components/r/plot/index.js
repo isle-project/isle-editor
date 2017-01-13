@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import Dimensions from 'components/dimensions';
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import request from 'request';
 import isArray from '@stdlib/utils/is-array';
 import Spinner from 'components/spinner';
@@ -49,22 +49,6 @@ const calculateMargin = ( containerWidth ) => {
 			margin: ( containerWidth - ( containerWidth * 0.9 ) ) / 2.0
 		};
 	}
-};
-
-const insertImage = ( img, containerWidth ) => {
-	const { width, margin } = calculateMargin( containerWidth );
-	const ret = (
-		<img
-			style={{
-				marginLeft: margin,
-				marginRight: margin,
-				width,
-				height: 'auto'
-			}}
-			role="presentation" src={ img }
-		></img>
-	);
-	return ret;
 };
 
 const requireLibs = ( libs ) => {
