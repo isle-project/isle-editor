@@ -9,6 +9,11 @@ class Input extends Component {
 
 	constructor( props ) {
 		super( props );
+
+		if ( new.target.name === 'Input' ) {
+			throw new Error( 'It is not allowed to create instances of Input.' );
+		}
+
 		this.state = {
 			value: props.defaultValue
 		};
