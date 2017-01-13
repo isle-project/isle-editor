@@ -61,17 +61,6 @@ function version() {
 	process.exit( 0 );
 } // end FUNCTION version()
 
-/**
-* Callback invoked upon encountering an error while running a command.
-*
-* @private
-* @param {Error} error - error object
-* @throws {Error} unexpected error
-*/
-function onError( error ) {
-	throw error;
-} // end FUNCTION onError()
-
 
 // VARIABLES //
 
