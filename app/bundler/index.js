@@ -5,6 +5,7 @@ const path = require( 'path' );
 const yaml = require( 'js-yaml' );
 const webpack = require( 'webpack' );
 const UglifyJS = require( 'uglify-js' );
+const debug = require( 'debug' )( 'bundler' );
 const markdownToHTML = require( './../utils/markdown-to-html' );
 const REQUIRES = require( './requires.json' );
 
@@ -50,7 +51,7 @@ const generateIndexHTML = ( title, minify ) => `
 		// Handle bug occuring when crypto-browserify is used with Webpack...
 		window._crypto = {};
 	</script>
-	<script src=${ minify ? "bundle.min.js" : "bundle.js" }></script>
+	<script src="${ minify ? 'bundle.min.js' : 'bundle.js' }"></script>
 	</body>
 </html>
 `;
@@ -211,7 +212,6 @@ function writeIndexFile( outputPath, basePath, lessonContent, minify, clbk ) {
 				{
 					test: /\.js?$/,
 					loader: 'babel-loader',
-					exclude: path.resolve( basePath, 'node_modules' ),
 					query: {
 						plugins: [
 							'add-module-exports'
@@ -277,9 +277,9 @@ function writeIndexFile( outputPath, basePath, lessonContent, minify, clbk ) {
 	const usedComponents = getComponentList( lessonContent );
 
 	const str = generateIndexJS( lessonContent, usedComponents, yamlStr, basePath );
+	debug( `Create JS file: ${str}` );
 
 	fs.writeFileSync( indexPath, str );
-	console.log( str );
 
 	// Copy CSS files:
 	fs.copySync( getCSSPath(), path.join( appDir, 'css' ) );
@@ -301,7 +301,7 @@ function writeIndexFile( outputPath, basePath, lessonContent, minify, clbk ) {
 		if ( err ) {
 			throw err;
 		}
-		console.log( stats );
+		debug( stats );
 		fs.unlinkSync( indexPath );
 		fs.writeFileSync( htmlPath, generateIndexHTML( meta.title, minify ) );
 
