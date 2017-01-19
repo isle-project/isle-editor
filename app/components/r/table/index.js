@@ -4,9 +4,10 @@ import React, { Component, PropTypes } from 'react';
 import Dimensions from 'components/dimensions';
 import { Table, Column, Cell } from 'fixed-data-table';
 import request from 'request';
-import Spinner from 'components/spinner';
-import floor from '@stdlib/math/base/special/floor';
 import isArray from '@stdlib/utils/is-array';
+import floor from '@stdlib/math/base/special/floor';
+import Spinner from 'components/spinner';
+import createPrependCode from 'components/r/utils/create-prepend-code';
 
 
 // CONSTANTS //
@@ -76,11 +77,7 @@ class RTable extends Component {
 					last: this.props.code,
 				});
 				let jsonCode = 'library( jsonlite );\n';
-
-				let prependCode = isArray( this.props.prependCode ) ?
-					this.props.prependCode.join( '\n' ) :
-					this.props.prependCode;
-				prependCode += '\n';
+				let prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
 
 				jsonCode = jsonCode +
 					prependCode +
@@ -89,6 +86,8 @@ class RTable extends Component {
 				const OPEN_CPU = global.ISLE.rshell && global.ISLE.rshell.server ?
 					global.ISLE.rshell.server :
 					OPEN_CPU_DEFAULT_SERVER;
+
+				console.log( jsonCode )
 
 				request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
 					form: {
@@ -159,6 +158,7 @@ RTable.propTypes = {
 		PropTypes.number,
 		PropTypes.arrayOf( PropTypes.number )
 	]),
+	libraries: PropTypes.array,
 	prependCode: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.array
@@ -175,7 +175,8 @@ RTable.defaultProps = {
 	width: 0.5,
 	columnNames: null,
 	columnWidth: null,
-	prependCode: '',
+	libraries: [],
+	prependCode: ''
 };
 
 

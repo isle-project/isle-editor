@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import DOMPurify from 'dompurify';
 import request from 'request';
 import Spinner from 'components/spinner';
-import isArray from '@stdlib/utils/is-array';
+import createPrependCode from 'components/r/utils/create-prepend-code';
 
 
 // CONSTANTS //
@@ -27,13 +27,8 @@ const showResult = ( res ) => {
 	}
 };
 
-const requireLibs = ( libs ) => {
-	return libs.map( x => 'library(' + x + ');' )
-		.join( ' ' );
-};
 
-
-// R OUTPUT //
+// MAIN //
 
 class ROutput extends Component {
 
@@ -63,23 +58,8 @@ class ROutput extends Component {
 					global.ISLE.rshell.server :
 					OPEN_CPU_DEFAULT_SERVER;
 
-				let fullCode = '';
-				let libs = this.props.libraries;
-				let globalCode = '';
-				if ( ISLE.rshell ) {
-					if ( ISLE.rshell.libraries ) {
-						libs = libs.concat( ISLE.rshell.libraries );
-					}
-					if ( ISLE.rshell.global ) {
-						globalCode = ISLE.rshell.global + '\n';
-					}
-				}
-				let prependCode = isArray( this.props.prependCode ) ?
-					this.props.prependCode.join( '\n' ) :
-					this.props.prependCode;
-				prependCode += '\n';
-
-				fullCode = requireLibs( libs ) + globalCode + prependCode + code;
+				let prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
+				let fullCode = prependCode + code;
 
 				request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
 					form: {

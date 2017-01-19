@@ -6,7 +6,7 @@ import Dimensions from 'components/dimensions';
 import { Button, ButtonToolbar, Modal, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
 import request from 'request';
 import DOMPurify from 'dompurify';
-import isArray from '@stdlib/utils/is-array';
+import createPrependCode from 'components/r/utils/create-prepend-code';
 import beforeUnload from 'utils/before-unload';
 import isElectron from 'utils/is-electron';
 
@@ -88,11 +88,6 @@ const insertImages = ( imgs, containerWidth ) => {
 		></img> );
 	}
 	return ret;
-};
-
-const requireLibs = ( libs ) => {
-	return libs.map( x => 'library(' + x + ');' )
-		.join( ' ' );
 };
 
 const showResult = ( res ) => {
@@ -341,29 +336,14 @@ class RShell extends React.Component {
 					});
 				}
 
-				let libs = this.props.libraries;
-				let globalCode = '';
-				if ( ISLE.rshell ) {
-					if ( ISLE.rshell.libraries ) {
-						libs = libs.concat( ISLE.rshell.libraries );
-					}
-					if ( ISLE.rshell.global ) {
-						globalCode = ISLE.rshell.global + '\n';
-					}
-				}
-				let prependCode = isArray( this.props.prependCode ) ?
-					this.props.prependCode.join( '\n' ) :
-					this.props.prependCode;
-				prependCode += '\n';
-
+				let prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
 				if ( this.props.addPreceding ) {
 					for ( let i = 0; i < this.state.id; i++ ) {
 						prependCode += rCode[ i ];
 						prependCode += '\n';
 					}
 				}
-
-				currentCode = requireLibs( libs ) + globalCode + prependCode + currentCode + '\n';
+				currentCode = prependCode + currentCode + '\n';
 				this.props.onEvaluate( currentCode );
 
 				const OPEN_CPU = global.ISLE.rshell && global.ISLE.rshell.server ?

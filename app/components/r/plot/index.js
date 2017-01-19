@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import Dimensions from 'components/dimensions';
 import { Modal } from 'react-bootstrap';
 import request from 'request';
-import isArray from '@stdlib/utils/is-array';
+import createPrependCode from 'components/r/utils/create-prepend-code';
 import Spinner from 'components/spinner';
 
 
@@ -51,13 +51,8 @@ const calculateMargin = ( containerWidth ) => {
 	}
 };
 
-const requireLibs = ( libs ) => {
-	return libs.map( x => 'library(' + x + ');' )
-		.join( ' ' );
-};
 
-
-// R PLOT //
+// MAIN //
 
 class RPlot extends Component {
 
@@ -78,20 +73,9 @@ class RPlot extends Component {
 				last: this.props.code,
 				showModal: false
 			});
-			let libs = this.props.libraries;
-			let globalCode = '';
-			if ( ISLE.rshell ) {
-				if ( ISLE.rshell.libraries ) {
-					libs = libs.concat( ISLE.rshell.libraries );
-				}
-				if ( ISLE.rshell.global ) {
-					globalCode = ISLE.rshell.global + '\n';
-				}
-			}
-			let prependCode = isArray( this.props.prependCode ) ?
-				this.props.prependCode.join( '\n' ) :
-				this.props.prependCode;
-			const fullCode = requireLibs( libs ) + globalCode + prependCode + this.props.code;
+
+			let prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
+			const fullCode = prependCode + this.props.code;
 
 			const OPEN_CPU = global.ISLE.rshell && global.ISLE.rshell.server ?
 				global.ISLE.rshell.server :
