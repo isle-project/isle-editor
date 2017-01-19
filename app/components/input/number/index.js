@@ -31,12 +31,20 @@ class NumberInput extends Input {
 		};
 	}
 
+	componentWillReceiveProps( nextProps ) {
+		if ( nextProps.defaultValue !== this.props.defaultValue ) {
+			this.setState({
+				value: nextProps.defaultValue
+			});
+		}
+	}
+
 	render() {
 
 		if ( this.props.inline === true ) {
 			return (
 				<span style={{ padding: '5px' }}>
-					<label> {this.props.legend} = </label>
+					{ this.props.legend ? <label> {this.props.legend} = </label> : null }
 					<input
 						type="number"
 						name="input"
@@ -78,7 +86,6 @@ class NumberInput extends Input {
 				<input
 					type="number"
 					name="input"
-					defaultValue={this.props.defaultValue}
 					value={this.state.value}
 					step={this.props.step}
 					min={this.props.min}
