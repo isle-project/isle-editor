@@ -16,7 +16,7 @@ const ReactBootstrap = require( 'react-bootstrap' );
 const mustache = require( 'mustache' );
 const render = require( 'react-dom' ).render;
 const NotificationSystem = require( 'react-notification-system' );
-const assignMath = require( '@stdlib/namespace/lib/math' );
+const assignStdlib = require( '@stdlib/namespace' );
 const request = require( 'request' );
 const yaml = require( 'js-yaml' );
 const Session = require ( 'api/session' );
@@ -72,6 +72,7 @@ const VictoryContainer = require( 'victory' ).VictoryContainer;
 const VictoryGroup = require( 'victory' ).VictoryGroup;
 const VictoryAxis = require( 'victory' ).VictoryAxis;
 const VictoryErrorBar = require( 'victory' ).VictoryErrorBar;
+const VictoryLabel = require( 'victory' ).VictoryLabel;
 const VictoryLine = require( 'victory' ).VictoryLine;
 const VictoryPie = require( 'victory' ).VictoryPie;
 const VictoryStack = require( 'victory' ).VictoryStack;
@@ -84,8 +85,7 @@ const Well = ReactBootstrap.Well;
 
 // Assign all stdlib modules to the GLOBAL.std namespace:
 global.std = {};
-assignMath( global.std );
-
+assignStdlib( global.std );
 
 export default class Preview extends Component {
 	constructor() {
