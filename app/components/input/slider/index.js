@@ -31,6 +31,14 @@ class SliderInput extends Input {
 		};
 	}
 
+	componentWillReceiveProps( nextProps ) {
+		if ( nextProps.defaultValue !== this.props.defaultValue ) {
+			this.setState({
+				value: nextProps.defaultValue
+			});
+		}
+	}
+
 	render() {
 		return (
 			<div style={{
@@ -74,7 +82,6 @@ class SliderInput extends Input {
 					min={this.props.min}
 					max={this.props.max}
 					step={this.props.step}
-					defaultValue={this.props.defaultValue}
 					value={this.props.fractionDigits ?
 						parseFloat( this.state.value ).toFixed( this.props.fractionDigits ) :
 						this.state.value
