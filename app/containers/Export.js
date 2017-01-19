@@ -11,7 +11,7 @@ import { convertMarkdown, toggleScrolling } from 'actions';
 class Export extends Component {
 	render() {
 		return (
-			<ExportPage content={this.props.markdown} />
+			<ExportPage content={this.props.markdown} fileName={this.props.fileName} />
 		);
 	}
 }
