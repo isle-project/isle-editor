@@ -25,6 +25,7 @@ class ExportPage extends Component {
 		// Initialize state variables...
 		this.state = {
 			dirPath: '',
+			outputDir: props.fileName.replace( /.[^.]*$/, '' ),
 			preamble: {},
 			finished: false,
 			spinning: false,
@@ -32,12 +33,12 @@ class ExportPage extends Component {
 		};
 
 		this.openFolder = () => {
-			const fullPath = path.join( this.state.dirPath, this.state.preamble.title, 'index.html' );
+			const fullPath = path.join( this.state.dirPath, this.state.outputDir, 'index.html' );
 			shell.showItemInFolder( fullPath );
 		};
 
 		this.openLesson = () => {
-			const fullPath = path.join( this.state.dirPath, this.state.preamble.title, 'index.html' );
+			const fullPath = path.join( this.state.dirPath, this.state.outputDir, 'index.html' );
 			shell.openItem( fullPath );
 		};
 
@@ -61,8 +62,9 @@ class ExportPage extends Component {
 
 			const isPackaged = !( /node_modules\/electron\/dist/.test( process.resourcesPath ) );
 			const basePath = isPackaged ? `${process.resourcesPath}/app/` : './';
+			const { dirPath, outputDir, minify } = this.state;
 
-			bundler( this.state.dirPath, basePath, this.props.content, this.state.minify, ( err, preamble ) => {
+			bundler( dirPath, basePath, this.props.content, outputDir, minify, ( err, preamble ) => {
 				this.setState({
 					preamble: preamble,
 					finished: true,
@@ -150,19 +152,39 @@ class ExportPage extends Component {
 							<Panel header={<h1>Export Lesson</h1>} bsStyle="primary">
 								<p>Package and export the currently opened lesson into a
 								single-page application viewable in any web-browser.</p>
-								<CheckboxInput
-									legend="Minify code"
-									onChange={ ( value ) => {
-										this.setState({
-											minify: value
-										});
-									}}
-								/>
+								<FormGroup
+									controlId="formBasicText"
+								>
+									<ControlLabel>Settings</ControlLabel>
+									<CheckboxInput
+										legend="Minify code"
+										onChange={ ( value ) => {
+											this.setState({
+												minify: value
+											});
+										}}
+									/>
+								</FormGroup>
+								<FormGroup
+									controlId="formBasicText"
+								>
+									<ControlLabel>Directory name</ControlLabel>
+									<FormControl
+										type="text"
+										placeholder="Enter text"
+										defaultValue={this.state.outputDir}
+										onChange={ ( event ) => {
+											this.setState({
+												outputDir: event.target.value
+											});
+										}}
+									/>
+								</FormGroup>
 								<br />
 								<Button
 									bsStyle="primary"
 									onClick={this.handleFileInputClick}
-								>Select output directory</Button>
+								>Select output path</Button>
 								<Well
 									style={{
 										marginLeft: '8px',
@@ -218,7 +240,8 @@ class ExportPage extends Component {
 // PROPERTY TYPES //
 
 ExportPage.propTypes = {
-	content: PropTypes.string
+	content: PropTypes.string,
+	fileName: PropTypes.string
 };
 
 

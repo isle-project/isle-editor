@@ -5,7 +5,7 @@ const path = require( 'path' );
 const yaml = require( 'js-yaml' );
 const webpack = require( 'webpack' );
 const UglifyJS = require( 'uglify-js' );
-const debug = require( 'debug' )( 'bundler' );
+const debug = require( 'debug-electron' )( 'bundler' );
 const markdownToHTML = require( './../utils/markdown-to-html' );
 const REQUIRES = require( './requires.json' );
 
@@ -60,11 +60,19 @@ const getMainImports = () => `
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import yaml from 'js-yaml';
+import assignDatasets from '@stdlib/namespace/lib/datasets';
 import assignMath from '@stdlib/namespace/lib/math';
+import assignNLP from '@stdlib/namespace/lib/nlp';
+import assignString from '@stdlib/namespace/lib/string';
+import assignUtils from '@stdlib/namespace/lib/utils';
 import NotificationSystem from 'react-notification-system';
 
 global.std = {};
+assignDatasets( global.std );
 assignMath( global.std );
+assignNLP( global.std );
+assignString( global.std );
+assignUtils( global.std );
 `;
 
 const getComponents = ( arr ) => {
@@ -183,12 +191,13 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath ) {
 *
 * @param {string} outputPath - file path of output directory
 * @param {string} basePath - file path of ISLE editor
-* @param {string} lessonContent - ISLE lesson file
+* @param {string} lessonContent - ISLE lesson file content
+* @param {string} outputDir - name of output directory
 * @param {string} yamlStr - lesson meta data in YAML format
 * @param {boolean} minify - boolean indicating whether code should be minified
 * @param {Function} clbk - callback function
 */
-function writeIndexFile( outputPath, basePath, lessonContent, minify, clbk ) {
+function writeIndexFile( outputPath, basePath, lessonContent, outputDir, minify, clbk ) {
 
 	const rootPaths = [
 		path.resolve( basePath, './node_modules' ),
@@ -233,6 +242,7 @@ function writeIndexFile( outputPath, basePath, lessonContent, minify, clbk ) {
 			noParse: /node_modules\/json-schema\/lib\/validate\.js/
 		},
 		node: {
+			child_process: 'empty',
 			dns: 'mock',
 			fs: 'empty',
 			net: 'mock',
@@ -256,17 +266,16 @@ function writeIndexFile( outputPath, basePath, lessonContent, minify, clbk ) {
 
 	const yamlStr = lessonContent.match( /---([\S\s]*)---/ )[ 1 ];
 	const meta = yaml.load( yamlStr );
-	const appDir = path.join( outputPath, meta.title );
+
+	const appDir = path.join( outputPath, outputDir );
 	const indexPath = path.resolve( './public/index.js' );
 	const htmlPath = path.join( appDir, 'index.html' );
 	const bundlePath = path.join( appDir, 'bundle.js' );
 	const getCSSPath = () => {
 		return path.join( basePath, `./app/css/` );
 	};
-
-	const outputDir = path.join( outputPath, meta.title );
-	makeOutputDir( outputDir );
-	generateISLE( outputDir, lessonContent );
+	makeOutputDir( appDir );
+	generateISLE( appDir, lessonContent );
 
 	// Remove YAML preamble...
 	lessonContent = lessonContent.replace( /---([\S\s]*)---/, '' );
