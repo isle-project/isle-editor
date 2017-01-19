@@ -41,6 +41,7 @@
 	"VictoryGroup": "const VictoryGroup = require( \"victory\" ).VictoryGroup",
 	"VictoryAxis": "const VictoryAxis = require( \"victory\" ).VictoryAxis",
 	"VictoryErrorBar": "const VictoryErrorBar = require( \"victory\" ).VictoryErrorBar",
+	"VictoryLabel": "const VictoryLabel = require( \"victory\" ).VictoryLabel",
 	"VictoryLine": "const VictoryLine = require( \"victory\" ).VictoryLine",
 	"VictoryTooltip": "const VictoryTooltip = require( \"victory\" ).VictoryTooltip",
 	"VictoryVoronoiTooltip": "const VictoryVoronoiTooltip = require( \"victory\" ).VictoryVoronoiTooltip",
