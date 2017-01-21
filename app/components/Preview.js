@@ -80,6 +80,36 @@ const VictoryTheme = require( 'victory' ).VictoryTheme;
 const VictoryTooltip = require( 'victory' ).VictoryTooltip;
 const VictoryVoronoiTooltip = require( 'victory' ).VictoryVoronoiTooltip;
 const VideoPlayer = require( 'components/video-player' );
+
+const Appear = require( 'spectacle' ).Appear;
+const BlockQuote = require( 'spectacle' ).BlockQuote;
+const Cite = require( 'spectacle' ).Cite;
+const Deck = require( 'spectacle' ).Deck;
+const Fill = require( 'spectacle' ).Fill;
+const Fit = require( 'spectacle' ).Fit;
+const Heading = require( 'spectacle' ).Heading;
+const Image = require( 'spectacle' ).Image;
+const Layout = require( 'spectacle' ).Layout;
+const ListItem = require( 'spectacle' ).ListItem;
+const List = require( 'spectacle' ).List;
+const Quote = require( 'spectacle' ).Quote;
+const Spectacle = require( 'spectacle' ).Spectacle;
+const Slide = require( 'spectacle' ).Slide;
+const SText = require( 'spectacle' ).Text;
+const createTheme = require( 'spectacle/lib/themes/default' ).default;
+
+const theme = createTheme({
+	primary: "#fffff8",
+	secondary: "#2e4468",
+	tertiary: "#c95d0a",
+	quartenary: "black"
+}, {
+	primary: "Cardo",
+	secondary: "Cardo",
+	tertiary: "Cardo",
+	font: "Cardo"
+});
+
 const Well = ReactBootstrap.Well;
 
 
@@ -159,7 +189,7 @@ export default class Preview extends Component {
 						document.getElementById( 'Preview' )
 					)
 				`;
-				eval( es5code );
+				// eval( es5code );
 			} catch ( err ) {
 				code = `<div>${err.toString()}</div>`;
 				es5code = `
@@ -168,7 +198,7 @@ export default class Preview extends Component {
 						document.getElementById( 'Preview' )
 					)
 				`;
-				eval( es5code );
+				// eval( es5code );
 			}
 		};
 	}
@@ -180,7 +210,19 @@ export default class Preview extends Component {
 	}
 	render() {
 		return (
-			<div ref="preview" className="Preview" id="Preview"></div>
+			<div ref="preview" className="Preview" id="Preview">
+				<Spectacle theme={theme} history={this.props.history} >
+					<Deck globalStyles={false}>
+						<Slide>
+							<Text>Hello</Text>
+						</Slide>
+						<Slide>
+							<Heading>Hello</Heading>
+							<RShell code="" lines={5} />
+						</Slide>
+					</Deck>
+				</Spectacle>
+			</div>
 		);
 	}
 }
