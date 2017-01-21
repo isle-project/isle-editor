@@ -8,7 +8,7 @@ import Panel from 'components/Panel';
 import Header from 'components/Header';
 import Editor from 'components/Editor';
 import Preview from 'components/Preview';
-import { convertMarkdown, toggleScrolling } from 'actions';
+import { convertMarkdown, toggleScrolling, toggleToolbar } from 'actions';
 
 
 // APP //
@@ -44,10 +44,10 @@ class App extends Component {
 	}
 
 	render() {
-		let { fileName, markdown } = this.props;
+		let { fileName, markdown, hideToolbar } = this.props;
 		return (
 			<div>
-				<Header fileName={fileName} />
+				{ !hideToolbar ? <Header fileName={fileName} /> : null }
 				<SplitPane
 					className="splitpane"
 					split="vertical"
@@ -91,7 +91,8 @@ class App extends Component {
 
 export default connect( mapStateToProps, {
 	convertMarkdown,
-	toggleScrolling
+	toggleScrolling,
+	toggleToolbar
 })( App );
 
 function mapStateToProps({ markdown }) {

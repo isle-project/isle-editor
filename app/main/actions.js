@@ -73,6 +73,12 @@ ipcMain.on( 'save-file-as', ( e, { data }) => {
 
 // EXPORTS //
 
+export function hideToolbar( browserWindow ) {
+	if ( browserWindow ) {
+		browserWindow.webContents.send( 'hide-toolbar' );
+	}
+}
+
 export function openBrowser( url ) {
 	console.log( `Should open ${url} in the default browser...` );
 	exec( 'xdg-open ' + url );

@@ -21,6 +21,10 @@ function configureIpcRenderer( store ) {
 		config.set( 'mostRecentFileData', file );
 	});
 
+	ipcRenderer.on( 'hide-toolbar', () => {
+		store.dispatch( actions.toggleToolbar() );
+	});
+
 	ipcRenderer.on( 'prepare-reload', () => {
 		const state = store.getState().markdown;
 		const { markdown, filePath, fileName } = state;

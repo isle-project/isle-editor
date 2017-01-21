@@ -16,6 +16,13 @@ const viewMenu = {
 			}
 		},
 		{
+			label: 'Toggle Toolbar',
+			accelerator: 'CmdOrCtrl+T',
+			click( item, focusedWindow ) {
+				actions.hideToolbar( focusedWindow );
+			}
+		},
+		{
 			label: 'Toggle Developer Tools',
 			accelerator: ( function getAccelerator() {
 				if ( process.platform === 'darwin' ) {

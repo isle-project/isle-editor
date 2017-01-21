@@ -11,6 +11,7 @@ const config = new Configstore( 'ISLE' );
 const initialState = {
 	markdown: config.get( 'mostRecentFileData' ) || template,
 	isScrolling: true,
+	hideToolbar: false,
 	filePath: config.get( 'mostRecentFilePath' ),
 	fileName: config.get( 'mostRecentFileName' )
 };
@@ -34,6 +35,10 @@ export default function markdown( state = initialState, action ) {
 	case types.TOGGLE_SCROLLING:
 		return Object.assign({}, state, {
 			isScrolling: !state.isScrolling
+		});
+	case types.TOGGLE_TOOLBAR:
+		return Object.assign({}, state, {
+			hideToolbar: !state.hideToolbar
 		});
 	default:
 		return state;

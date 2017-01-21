@@ -37,3 +37,9 @@ export function toggleScrolling() {
 		type: types.TOGGLE_SCROLLING
 	};
 }
+
+export function toggleToolbar() {
+	return {
+		type: types.TOGGLE_TOOLBAR
+	};
+}
