@@ -17,6 +17,7 @@ const mustache = require( 'mustache' );
 const render = require( 'react-dom' ).render;
 const NotificationSystem = require( 'react-notification-system' );
 const assignStdlib = require( '@stdlib/namespace' );
+const contains = require( '@stdlib/utils/contains' );
 const request = require( 'request' );
 const yaml = require( 'js-yaml' );
 const Session = require ( 'api/session' );
@@ -137,6 +138,25 @@ export default class Preview extends Component {
 				// Replace Markdown by HTML...
 				code = markdownToHTML( code );
 
+				if ( global.ISLE.type === 'presentation' ) {
+
+					// Automatically insert <Slide> tags if not manually set...
+					if ( !contains( code, '<Slide' ) || !contains( code, '</Slide>' ) ) {
+						let pres = '<Slide>';
+						let arr = code.split( '<h1>' );
+						pres += arr.shift() + '<h1>';
+						pres += arr.join( '</Slide><Slide><h1>' );
+						pres += '</Slide>';
+						code = pres;
+					}
+
+					code = `<Spectacle theme={theme} history={this.props.history} >
+						<Deck globalStyles={false}>
+							${code}
+						</Deck>
+					</Spectacle>`;
+				}
+
 				es5code = `
 					var lessonConfig = {
 						componentDidMount: function() {
@@ -189,7 +209,7 @@ export default class Preview extends Component {
 						document.getElementById( 'Preview' )
 					)
 				`;
-				// eval( es5code );
+				eval( es5code );
 			} catch ( err ) {
 				code = `<div>${err.toString()}</div>`;
 				es5code = `
@@ -198,7 +218,7 @@ export default class Preview extends Component {
 						document.getElementById( 'Preview' )
 					)
 				`;
-				// eval( es5code );
+				eval( es5code );
 			}
 		};
 	}
@@ -210,19 +230,7 @@ export default class Preview extends Component {
 	}
 	render() {
 		return (
-			<div ref="preview" className="Preview" id="Preview">
-				<Spectacle theme={theme} history={this.props.history} >
-					<Deck globalStyles={false}>
-						<Slide>
-							<Text>Hello</Text>
-						</Slide>
-						<Slide>
-							<Heading>Hello</Heading>
-							<RShell code="" lines={5} />
-						</Slide>
-					</Deck>
-				</Spectacle>
-			</div>
+			<div ref="preview" className="Preview" id="Preview"></div>
 		);
 	}
 }

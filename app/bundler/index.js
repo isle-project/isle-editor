@@ -6,6 +6,7 @@ const yaml = require( 'js-yaml' );
 const webpack = require( 'webpack' );
 const UglifyJS = require( 'uglify-js' );
 const debug = require( 'debug-electron' )( 'bundler' );
+const contains = require( '@stdlib/utils/contains' );
 const markdownToHTML = require( './../utils/markdown-to-html' );
 const REQUIRES = require( './requires.json' );
 
@@ -19,15 +20,6 @@ const makeOutputDir = ( outputDir ) => {
 const generateISLE = ( outputDir, code ) => {
 	const islePath = path.join( outputDir, 'index.isle' );
 	fs.writeFileSync( islePath, code );
-};
-
-const contains = ( arr, value ) => {
-	for ( let i = 0; i < arr.length; i++ ) {
-		if ( arr[ i ] === value ) {
-			return true;
-		}
-	}
-	return false;
 };
 
 const generateIndexHTML = ( title, minify ) => `
@@ -175,6 +167,22 @@ import mustache from 'mustache';`;
 */
 function generateIndexJS( lessonContent, components, yamlStr, basePath ) {
 	let res = getMainImports();
+
+	if ( contains( components, 'Spectacle' ) ) {
+		res += '\n';
+		res += `const createTheme = require( 'spectacle/lib/themes/default' ).default;
+				const theme = createTheme({
+					primary: "#fffff8",
+					secondary: "#2e4468",
+					tertiary: "#c95d0a",
+					quartenary: "black"
+				}, {
+					primary: "Cardo",
+					secondary: "Cardo",
+					tertiary: "Cardo",
+					font: "Cardo"
+				});`;
+	}
 	res += '\n';
 	res += getISLEcode( yamlStr );
 
@@ -282,6 +290,23 @@ function writeIndexFile( outputPath, basePath, lessonContent, outputDir, minify,
 
 	// Replace Markdown by HTML...
 	lessonContent = markdownToHTML( lessonContent );
+
+	if ( meta.type === 'presentation' ) {
+		// Automatically insert <Slide> tags if not manually set...
+		if ( !contains( lessonContent, '<Slide' ) || !contains( lessonContent, '</Slide>' ) ) {
+			let pres = '<Slide>';
+			let arr = lessonContent.split( '<h1>' );
+			pres += arr.shift() + '<h1>';
+			pres += arr.join( '</Slide><Slide><h1>' );
+			pres += '</Slide>';
+			lessonContent = pres;
+		}
+		lessonContent = `<Spectacle theme={theme} >
+			<Deck globalStyles={false}>
+				${lessonContent}
+			</Deck>
+		</Spectacle>`;
+	}
 
 	const usedComponents = getComponentList( lessonContent );
 
