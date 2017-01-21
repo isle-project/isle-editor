@@ -123,6 +123,10 @@ const Editor = React.createClass({
 			<div
 				ref="editorWindow"
 				onChange={this.onChange}
+				style={{
+					'height': '100%',
+					'width': '100%',
+				}}
 			/>
 		);
 	}

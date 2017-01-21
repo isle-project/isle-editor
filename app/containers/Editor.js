@@ -54,6 +54,11 @@ class App extends Component {
 					primary="second"
 					defaultSize={ parseInt( localStorage.getItem( 'splitPos' ), 10 ) }
 					onChange={ size => localStorage.setItem( 'splitPos', size ) }
+					style={{
+						'position': 'absolute',
+						'top': !hideToolbar ? 88 : 0,
+						'bottom': '0'
+					}}
 				>
 					<Panel ref="editor" onScroll={this.onEditorScroll}>
 						<Editor

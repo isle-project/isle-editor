@@ -1,3 +1,7 @@
 .splitpane {
-	position: static !important;
+	height: auto !important;
+}
+
+.common_x97hsk.overflowScroll_eywtei {
+	height: 100% !important;
 }
