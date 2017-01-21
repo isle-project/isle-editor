@@ -22,10 +22,12 @@ class ExportPage extends Component {
 	constructor( props ) {
 		super( props );
 
+		let outputDir = props.fileName ? props.fileName.replace( /.[^.]*$/, '' ) : '';
+
 		// Initialize state variables...
 		this.state = {
 			dirPath: '',
-			outputDir: props.fileName.replace( /.[^.]*$/, '' ),
+			outputDir,
 			preamble: {},
 			finished: false,
 			spinning: false,
