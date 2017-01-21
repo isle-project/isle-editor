@@ -495,7 +495,8 @@ class RShell extends React.Component {
 					margin: '5px',
 					padding: '5px',
 					border: '2px solid lightblue',
-					borderRadius: '4px'
+					borderRadius: '4px',
+					textAlign: 'left'
 				}}
 			>
 				<div id="ace" style={{
