@@ -47,7 +47,7 @@ class Spinner extends Component {
 	}
 
 	componentDidUpdate() {
-		if ( this.activeSpinner ) {
+		if ( this.activeSpinner && this.context.canvas ) {
 			clearInterval( this.activeSpinner );
 			this.context.clearRect( 0, 0, this.context.canvas.width, this.context.canvas.height );
 		}
