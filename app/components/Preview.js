@@ -96,6 +96,10 @@ const List = require( 'spectacle' ).List;
 const Quote = require( 'spectacle' ).Quote;
 const Spectacle = require( 'spectacle' ).Spectacle;
 const Slide = require( 'spectacle' ).Slide;
+const Table = require( 'spectacle' ).Table;
+const TableRow = require( 'spectacle' ).TableRow;
+const TableHeaderItem = require( 'spectacle' ).TableHeaderItem;
+const TableItem = require( 'spectacle' ).TableItem;
 const SText = require( 'spectacle' ).Text;
 const createTheme = require( 'spectacle/lib/themes/default' ).default;
 
@@ -150,8 +154,8 @@ export default class Preview extends Component {
 						code = pres;
 					}
 
-					code = `<Spectacle theme={theme} history={this.props.history} >
-						<Deck globalStyles={false}>
+					code = `<Spectacle theme={theme} >
+						<Deck globalStyles={false} controls={true}>
 							${code}
 						</Deck>
 					</Spectacle>`;
