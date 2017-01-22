@@ -19,10 +19,10 @@ class Video extends Component {
 
 	render() {
 		const style = {
-			position: 'relative',
 			width: this.props.width,
 			height: this.props.height,
-			marginTop: '30px'
+			marginTop: '30px',
+			...this.props.style
 		};
 		if ( this.props.center ) {
 			style.marginLeft = calculateMargin( this.props.containerWidth, this.props.width );
@@ -47,10 +47,18 @@ Video.propTypes = {
 	url: PropTypes.string,
 	center: PropTypes.bool,
 	controls: PropTypes.bool,
+	loop: PropTypes.bool,
 	playing: PropTypes.bool,
 	volume: PropTypes.number,
-	height: PropTypes.number,
-	width: PropTypes.number
+	height: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]),
+	width: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]),
+	style: PropTypes.object
 };
 
 
@@ -60,10 +68,12 @@ Video.defaultProps = {
 	url: '',
 	center: true,
 	controls: false,
+	loop: false,
 	playing: false,
 	volume: 0.8,
 	height: 360,
-	width: 640
+	width: 640,
+	style: {}
 };
 
 
