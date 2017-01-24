@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import ReactDom from 'react-dom';
-import Dimensions from 'components/dimensions';
+import Image from 'components/image';
 import { Button, ButtonToolbar, Modal, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
 import request from 'request';
 import DOMPurify from 'dompurify';
@@ -16,6 +16,7 @@ import 'brace/theme/katzenmilch';
 import 'brace/theme/solarized_light';
 
 import Spinner from 'components/spinner';
+
 
 // CONSTANTS //
 
@@ -37,55 +38,10 @@ let rCode = [];
 
 const max = Math.max;
 
-const calculateMargin = ( containerWidth ) => {
-	let sizeType = 0;
-	if ( containerWidth <= 1400 && containerWidth >= 1024 ) {
-		sizeType = 1;
-	}
-	else if ( containerWidth < 1024 && containerWidth >= 800 ) {
-		sizeType = 2;
-	}
-	else if ( containerWidth < 800 ) {
-		sizeType = 3;
-	}
-	switch ( sizeType ) {
-	case 0:
-		return {
-			width: containerWidth * 0.6,
-			margin: ( containerWidth - ( containerWidth * 0.6 ) ) / 2.0
-		};
-	case 1:
-		return {
-			width: containerWidth * 0.7,
-			margin: ( containerWidth - ( containerWidth * 0.7 ) ) / 2.0
-		};
-	case 2:
-		return {
-			width: containerWidth * 0.8,
-			margin: ( containerWidth - ( containerWidth * 0.8 ) ) / 2.0
-		};
-	case 3:
-		return {
-			width: containerWidth * 0.9,
-			margin: ( containerWidth - ( containerWidth * 0.9 ) ) / 2.0
-		};
-	}
-};
-
 const insertImages = ( imgs, containerWidth ) => {
 	const ret = [];
-	const { width, margin } = calculateMargin( containerWidth );
 	for ( let i = 0; i < imgs.length; i++ ) {
-		ret[ i ] = ( <img
-			key={i}
-			style={{
-				marginLeft: margin,
-				marginRight: margin,
-				width,
-				height: 'auto'
-			}}
-			role="presentation" src={imgs[ i ]}
-		></img> );
+		ret[ i ] = ( <Image key={i} src={imgs[ i ]} title="R Plot" /> );
 	}
 	return ret;
 };
@@ -138,15 +94,15 @@ const getHintLabel = ( id, noHints, hintOpen ) => {
 	}
 };
 
-const showSolutionButton = ( currentHint, nHints, clickHandler, displayed ) => {
+const showSolutionButton = ( currentHint, nHints, clickHandler, displayed, nEvaluations ) => {
 	const tooltip = (
 		<Tooltip
 			id="tooltip"
 		>
-			Solution becomes available once all hints have been used.
+			Solution becomes available once you have tried the exercise and used all hints.
 		</Tooltip>
 	);
-	if ( currentHint < nHints ) {
+	if ( currentHint < nHints || nEvaluations < 1 ) {
 		return (
 			<OverlayTrigger
 				placement="top"
@@ -218,6 +174,7 @@ class RShell extends React.Component {
 			running: false,
 			currentHint: 0,
 			hintOpen: false,
+			nEvaluations: 0,
 			solutionOpen: false,
 			windowWidth: window.innerWidth,
 			help: ''
@@ -227,17 +184,7 @@ class RShell extends React.Component {
 		rCode.push( props.code );
 
 		this.insertPlot = ( url, id ) => {
-			const { width, margin } = calculateMargin( this.props.containerWidth );
-			return ( <img
-				key={id}
-				style={{
-					marginLeft: margin,
-					marginRight: margin,
-					width,
-					height: 'auto'
-				}}
-				role="presentation" src={url}
-			></img> );
+			return ( <Image key={id} src={url} title="R Plot" /> );
 		};
 
 		this.handleSolutionClick = () => {
@@ -311,7 +258,7 @@ class RShell extends React.Component {
 			this.setState({
 				result: '',
 				plots: [],
-				running: true
+				running: true,
 			});
 			let currentCode = this.editor.getValue();
 			rCode[ this.state.id ] = currentCode;
@@ -366,7 +313,8 @@ class RShell extends React.Component {
 							if ( STDOUT_REGEX.test( elem ) === true ) {
 								request.get( OPEN_CPU + elem, ( err, getResponse, getBody ) => {
 									this.setState({
-										result: getBody
+										result: getBody,
+										nEvaluations: this.state.nEvaluations + 1
 									});
 									this.props.onResult( this.state.result );
 								});
@@ -374,12 +322,14 @@ class RShell extends React.Component {
 						});
 						this.setState({
 							plots,
-							running: false
+							running: false,
+							nEvaluations: this.state.nEvaluations + 1
 						});
 					} else {
 						this.setState({
 							result: body.replace( ERR_REGEX, '' ),
-							running: false
+							running: false,
+							nEvaluations: this.state.nEvaluations + 1
 						});
 					}
 				});
@@ -497,7 +447,8 @@ class RShell extends React.Component {
 					border: '2px solid lightblue',
 					borderRadius: '4px',
 					textAlign: 'left',
-					margin: '0 auto'
+					margin: '0 auto',
+					...this.props.style
 				}}
 			>
 				<div id="ace" style={{
@@ -547,7 +498,8 @@ class RShell extends React.Component {
 							this.state.currentHint,
 							nHints,
 							this.handleSolutionClick,
-							this.state.solutionOpen
+							this.state.solutionOpen,
+							this.state.nEvaluations
 						) :
 						null
 					}
@@ -642,4 +594,4 @@ RShell.defaultProps = {
 
 // EXPORTS //
 
-export default Dimensions( RShell );
+export default RShell;

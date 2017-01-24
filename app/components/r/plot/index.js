@@ -1,55 +1,16 @@
 // MODULES //
 
 import React, { Component, PropTypes } from 'react';
-import Dimensions from 'components/dimensions';
-import { Modal } from 'react-bootstrap';
 import request from 'request';
 import createPrependCode from 'components/r/utils/create-prepend-code';
 import Spinner from 'components/spinner';
+import Image from 'components/image';
 
 
 // CONSTANTS //
 
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu.js';
 const GRAPHICS_REGEX = /graphics/;
-
-
-// FUNCTIONS //
-
-const calculateMargin = ( containerWidth ) => {
-	let sizeType = 0;
-	if ( containerWidth <= 1400 && containerWidth >= 1024 ) {
-		sizeType = 1;
-	}
-	else if ( containerWidth < 1024 && containerWidth >= 800 ) {
-		sizeType = 2;
-	}
-	else if ( containerWidth < 800 ) {
-		sizeType = 3;
-	}
-	switch ( sizeType ) {
-	case 0:
-		return {
-			width: containerWidth * 0.6,
-			margin: ( containerWidth - ( containerWidth * 0.6 ) ) / 2.0
-		};
-	case 1:
-		return {
-			width: containerWidth * 0.7,
-			margin: ( containerWidth - ( containerWidth * 0.7 ) ) / 2.0
-		};
-	case 2:
-		return {
-			width: containerWidth * 0.8,
-			margin: ( containerWidth - ( containerWidth * 0.8 ) ) / 2.0
-		};
-	case 3:
-		return {
-			width: containerWidth * 0.9,
-			margin: ( containerWidth - ( containerWidth * 0.9 ) ) / 2.0
-		};
-	}
-};
 
 
 // MAIN //
@@ -111,53 +72,13 @@ class RPlot extends Component {
 	}
 
 	render() {
-		const { width, margin } = calculateMargin( this.props.containerWidth );
-		const closeModal = () => this.setState({ showModal: false });
 		return (
 			<div className="rplot" style={{
 			}}>
 				<Spinner running={this.state.waiting} width={256} height={128}/>
 				{ this.state.waiting ?
 					<span /> :
-					<span>
-						<img
-							style={{
-								marginLeft: margin,
-								marginRight: margin,
-								width,
-								height: 'auto',
-								cursor: 'zoom-in'
-							}}
-							role="presentation"
-							src={ this.state.plot }
-							onClick={ () => {
-								this.setState({
-									showModal: true
-								});
-							}}
-						/>
-						<Modal
-							show={this.state.showModal}
-							onHide={closeModal}
-							bsSize="lg"
-							title="R Plot"
-							backdrop={true}
-							rootClose={true}
-						>
-							<Modal.Header closeButton>
-								<Modal.Title id="contained-modal-title-lg">R Plot</Modal.Title>
-							</Modal.Header>
-							<Modal.Body>
-								<img
-									src={ this.state.plot }
-									style={{
-										margin: 'auto',
-										display: 'block'
-									}}
-								/>
-							</Modal.Body>
-						</Modal>
-					</span>
+					<Image src={this.state.plot} title="R Plot" />
 				}
 			</div>
 		);
@@ -193,4 +114,4 @@ RPlot.defaultProps = {
 
 // EXPORTS //
 
-export default Dimensions( RPlot );
+export default RPlot;
