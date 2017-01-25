@@ -44,7 +44,7 @@ class App extends Component {
 	}
 
 	render() {
-		let { fileName, markdown, hideToolbar } = this.props;
+		let { fileName, filePath, markdown, hideToolbar } = this.props;
 		return (
 			<div>
 				{ !hideToolbar ? <Header fileName={fileName} /> : null }
@@ -75,7 +75,7 @@ class App extends Component {
 						/>
 					</Panel>
 					<Panel ref="preview" onScroll={this.onPreviewScroll}>
-						<Preview code={markdown} />
+						<Preview code={markdown} filePath={filePath} />
 					</Panel>
 				</SplitPane>
 				{
