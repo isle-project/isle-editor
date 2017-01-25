@@ -16,7 +16,7 @@ function configureIpcRenderer( store ) {
 	ipcRenderer.on( 'ISLE::file-loaded', ( e, { file, fileName, filePath }) => {
 		store.dispatch( actions.convertMarkdown( file ) );
 		store.dispatch( actions.fileLoaded({ fileName, filePath }) );
-		config.set( 'mostRecentPath', filePath );
+		config.set( 'mostRecentFilePath', filePath );
 		config.set( 'mostRecentFileName', fileName );
 		config.set( 'mostRecentFileData', file );
 	});
@@ -28,7 +28,7 @@ function configureIpcRenderer( store ) {
 	ipcRenderer.on( 'prepare-reload', () => {
 		const state = store.getState().markdown;
 		const { markdown, filePath, fileName } = state;
-		config.set( 'mostRecentPath', filePath );
+		config.set( 'mostRecentFilePath', filePath );
 		config.set( 'mostRecentFileName', fileName );
 		config.set( 'mostRecentFileData', markdown );
 	});
@@ -56,7 +56,7 @@ function configureIpcRenderer( store ) {
 	});
 
 	ipcRenderer.on( 'clear-cache', () => {
-		config.set( 'mostRecentPath', null );
+		config.set( 'mostRecentFilePath', null );
 		config.set( 'mostRecentFileName', null );
 		config.set( 'mostRecentFileData', '' );
 	});

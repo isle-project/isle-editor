@@ -62,7 +62,7 @@ ipcMain.on( 'save-file-as', ( e, { data }) => {
 				BrowserWindow.fromWebContents( e.sender ).setTitle( `ISLE -- ${filePath}` );
 				e.sender.send( 'ISLE::file-loaded', {
 					fileName: basename( filePath ),
-					filePath,
+					filePath: filePath,
 					file: data
 				});
 			});
