@@ -7,6 +7,8 @@ const webpack = require( 'webpack' );
 const UglifyJS = require( 'uglify-js' );
 const debug = require( 'debug-electron' )( 'bundler' );
 const contains = require( '@stdlib/utils/contains' );
+const isObject = require( '@stdlib/utils/is-object' );
+const isAbsolutePath = require( '@stdlib/utils/is-absolute-path' );
 const markdownToHTML = require( './../utils/markdown-to-html' );
 const REQUIRES = require( './requires.json' );
 
@@ -48,23 +50,30 @@ const generateIndexHTML = ( title, minify ) => `
 </html>
 `;
 
+const loadRequires = ( libs, filePath ) => {
+	let str = '';
+	let dirname = path.dirname( filePath );
+	if ( isObject( libs ) ) {
+		for ( let key in libs ) {
+			if ( libs.hasOwnProperty( key ) ) {
+				let lib = libs[ key ];
+				if ( isAbsolutePath( lib ) || /\./.test( lib ) ) {
+					lib = path.join( dirname, libs[ key ]);
+				} else if ( /@stdlib/.test( lib ) ) {
+					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
+				}
+				str += `global[ '${key}' ] = require( '${lib}' );\n`;
+			}
+		}
+	}
+	return str;
+};
+
 const getMainImports = () => `
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import yaml from 'js-yaml';
-import assignDatasets from '@stdlib/namespace/lib/datasets';
-import assignMath from '@stdlib/namespace/lib/math';
-import assignNLP from '@stdlib/namespace/lib/nlp';
-import assignString from '@stdlib/namespace/lib/string';
-import assignUtils from '@stdlib/namespace/lib/utils';
 import NotificationSystem from 'react-notification-system';
-
-global.std = {};
-assignDatasets( global.std );
-assignMath( global.std );
-assignNLP( global.std );
-assignString( global.std );
-assignUtils( global.std );
 `;
 
 const getComponents = ( arr ) => {
@@ -163,10 +172,17 @@ import mustache from 'mustache';`;
 * @param {Array} components - array of component names
 * @param {string} yamlStr - lesson meta data in YAML format
 * @param {string} basePath - file path of ISLE editor
+* @param {string} filePath - file path of source file
 * @returns {string} index.js content
 */
-function generateIndexJS( lessonContent, components, yamlStr, basePath ) {
+function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath ) {
 	let res = getMainImports();
+
+	const meta = yaml.load( yamlStr );
+	if ( meta.require ) {
+		res += loadRequires( meta.require, filePath );
+	}
+	console.log( res )
 
 	if ( contains( components, 'Spectacle' ) ) {
 		res += '\n';
@@ -197,15 +213,24 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath ) {
 /**
 * Write index.js file to disk
 *
-* @param {string} outputPath - file path of output directory
-* @param {string} basePath - file path of ISLE editor
-* @param {string} lessonContent - ISLE lesson file content
-* @param {string} outputDir - name of output directory
-* @param {string} yamlStr - lesson meta data in YAML format
-* @param {boolean} minify - boolean indicating whether code should be minified
+* @param {Object} options - options object
+* @param {string} options.filePath - file path of source file
+* @param {string} options.outputPath - file path of output directory
+* @param {string} options.basePath - file path of ISLE editor
+* @param {string} options.content - ISLE lesson file content
+* @param {string} options.outputDir - name of output directory
+* @param {string} options.yamlStr - lesson meta data in YAML format
+* @param {boolean} options.minify - boolean indicating whether code should be minified
 * @param {Function} clbk - callback function
 */
-function writeIndexFile( outputPath, basePath, lessonContent, outputDir, minify, clbk ) {
+function writeIndexFile({
+	filePath,
+	outputPath,
+	basePath,
+	content,
+	outputDir,
+	minify
+}, clbk ) {
 
 	const rootPaths = [
 		path.resolve( basePath, './node_modules' ),
@@ -272,7 +297,7 @@ function writeIndexFile( outputPath, basePath, lessonContent, outputDir, minify,
 		]
 	};
 
-	const yamlStr = lessonContent.match( /---([\S\s]*)---/ )[ 1 ];
+	const yamlStr = content.match( /---([\S\s]*)---/ )[ 1 ];
 	const meta = yaml.load( yamlStr );
 
 	const appDir = path.join( outputPath, outputDir );
@@ -283,34 +308,34 @@ function writeIndexFile( outputPath, basePath, lessonContent, outputDir, minify,
 		return path.join( basePath, `./app/css/` );
 	};
 	makeOutputDir( appDir );
-	generateISLE( appDir, lessonContent );
+	generateISLE( appDir, content );
 
 	// Remove YAML preamble...
-	lessonContent = lessonContent.replace( /---([\S\s]*)---/, '' );
+	content = content.replace( /---([\S\s]*)---/, '' );
 
 	// Replace Markdown by HTML...
-	lessonContent = markdownToHTML( lessonContent );
+	content = markdownToHTML( content );
 
 	if ( meta.type === 'presentation' ) {
 		// Automatically insert <Slide> tags if not manually set...
-		if ( !contains( lessonContent, '<Slide' ) || !contains( lessonContent, '</Slide>' ) ) {
+		if ( !contains( content, '<Slide' ) || !contains( content, '</Slide>' ) ) {
 			let pres = '<Slide>';
-			let arr = lessonContent.split( '<h1>' );
+			let arr = content.split( '<h1>' );
 			pres += arr.shift() + '<h1>';
 			pres += arr.join( '</Slide><Slide><h1>' );
 			pres += '</Slide>';
-			lessonContent = pres;
+			content = pres;
 		}
-		lessonContent = `<Spectacle theme={theme} >
+		content = `<Spectacle theme={theme} >
 			<Deck globalStyles={false}>
-				${lessonContent}
+				${content}
 			</Deck>
 		</Spectacle>`;
 	}
 
-	const usedComponents = getComponentList( lessonContent );
+	const usedComponents = getComponentList( content );
 
-	const str = generateIndexJS( lessonContent, usedComponents, yamlStr, basePath );
+	const str = generateIndexJS( content, usedComponents, yamlStr, basePath, filePath );
 	debug( `Create JS file: ${str}` );
 
 	fs.writeFileSync( indexPath, str );

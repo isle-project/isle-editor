@@ -21,7 +21,6 @@ const { dialog } = remote;
 class ExportPage extends Component {
 	constructor( props ) {
 		super( props );
-
 		let outputDir = props.fileName ? props.fileName.replace( /.[^.]*$/, '' ) : '';
 
 		// Initialize state variables...
@@ -66,7 +65,14 @@ class ExportPage extends Component {
 			const basePath = isPackaged ? `${process.resourcesPath}/app/` : './';
 			const { dirPath, outputDir, minify } = this.state;
 
-			bundler( dirPath, basePath, this.props.content, outputDir, minify, ( err, preamble ) => {
+			bundler({
+				outputPath: dirPath,
+				filePath: this.props.filePath,
+				basePath,
+				content: this.props.content,
+				outputDir,
+				minify
+			}, ( err, preamble ) => {
 				this.setState({
 					preamble: preamble,
 					finished: true,

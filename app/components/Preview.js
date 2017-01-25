@@ -11,6 +11,7 @@
 */
 /* eslint no-eval: 0 */
 
+const path = require( 'path' );
 const React = require( 'react' );
 const ReactBootstrap = require( 'react-bootstrap' );
 const mustache = require( 'mustache' );
@@ -18,6 +19,8 @@ const render = require( 'react-dom' ).render;
 const NotificationSystem = require( 'react-notification-system' );
 const assignStdlib = require( '@stdlib/namespace' );
 const contains = require( '@stdlib/utils/contains' );
+const isAbsolutePath = require( '@stdlib/utils/is-absolute-path' );
+const isObject = require( '@stdlib/utils/is-object' );
 const request = require( 'request' );
 const yaml = require( 'js-yaml' );
 const Session = require ( 'api/session' );
@@ -118,13 +121,39 @@ const theme = createTheme({
 const Well = ReactBootstrap.Well;
 
 
-// Assign all stdlib modules to the GLOBAL.std namespace:
-global.std = {};
-assignStdlib( global.std );
+// FUNCTIONS //
+
+const loadRequires = ( libs, filePath ) => {
+	let dirname = path.dirname( filePath );
+	if ( isObject( libs ) ) {
+		for ( let key in libs ) {
+			if ( libs.hasOwnProperty( key ) ) {
+				let lib = libs[ key ];
+				if ( isAbsolutePath( lib ) || /\./.test( lib ) ) {
+					lib = path.join( dirname, libs[ key ]);
+				} else if ( /@stdlib/.test( lib ) ) {
+					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
+				}
+				eval( `global[ '${key}' ] = require( '${lib}' )` );
+			}
+		}
+	}
+};
+
+
+// MAIN //
 
 export default class Preview extends Component {
-	constructor() {
-		super();
+	constructor( props ) {
+		super( props );
+
+		let { code } = props;
+		const preamble = code.match( /---([\S\s]*)---/ )[ 1 ];
+
+		this.state = {
+			preamble,
+			requires: preamble.require || []
+		};
 
 		this.shouldRenderPreview = true;
 		this.renderPreview = () => {
@@ -134,6 +163,11 @@ export default class Preview extends Component {
 
 			try {
 				global.ISLE = yaml.load( preamble );
+
+				if ( this.state.requires !== global.ISLE.require ) {
+					this.state.requires.forEach( lib => delete global[ lib ]);
+					loadRequires( global.ISLE.require, this.props.filePath );
+				}
 
 				// Remove preamble and comments:
 				code = code.replace( /---([\S\s]*)---/, '' );
