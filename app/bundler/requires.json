@@ -62,8 +62,10 @@
 	"VictoryErrorBar": "const VictoryErrorBar = require( \"victory\" ).VictoryErrorBar",
 	"VictoryLabel": "const VictoryLabel = require( \"victory\" ).VictoryLabel",
 	"VictoryLine": "const VictoryLine = require( \"victory\" ).VictoryLine",
+	"VictoryPie": "const VictoryPie = require( \"victory\" ).VictoryPie",
 	"VictoryTooltip": "const VictoryTooltip = require( \"victory\" ).VictoryTooltip",
 	"VictoryVoronoiTooltip": "const VictoryVoronoiTooltip = require( \"victory\" ).VictoryVoronoiTooltip",
+	"VictoryZoom": "const VictoryZoom = require( \"victory\" ).VictoryZoom",
 	"VideoPlayer": "const VideoPlayer = require( \"components/video-player\" )",
 	"Well": "const Well = require( \"react-bootstrap\" ).Well"
 }
