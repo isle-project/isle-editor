@@ -17,7 +17,7 @@ class TextArea extends Component {
 
 		// Initialize state variables...
 		this.state = {
-			text: null
+			text: props.defaultValue
 		};
 
 		/*
@@ -43,9 +43,11 @@ class TextArea extends Component {
 					placeholder={this.props.placeholder}
 					onChange={this.handleChange}
 					style={{
-						resize: this.props.resizable ? 'both' : 'none'
+						resize: this.props.resizable ? 'both' : 'none',
+						...this.props.style
 					}}
 					rows={this.props.rows}
+					value={this.state.text}
 				/>
 			</FormGroup>
 		);
@@ -59,6 +61,7 @@ TextArea.defaultProps = {
 	onChange() {},
 	legend: '',
 	placeholder: 'Enter text',
+	defaultValue: null,
 	resizable: false,
 	rows: 5
 };
@@ -67,6 +70,7 @@ TextArea.defaultProps = {
 // PROPERTY TYPES //
 
 TextArea.propTypes = {
+	defaultValue: PropTypes.string,
 	onChange: PropTypes.func,
 	legend: PropTypes.string,
 	placeholder: PropTypes.string,
