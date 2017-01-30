@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import Dimensions from 'components/dimensions';
 
 
@@ -78,7 +78,7 @@ class Image extends Component {
 				<Modal
 					show={this.state.showModal}
 					onHide={closeModal}
-					bsSize="lg"
+					dialogClassName="isleImageModal"
 					title={this.props.title}
 					backdrop={true}
 					rootClose={true}
@@ -91,10 +91,14 @@ class Image extends Component {
 							src={ this.props.src }
 							style={{
 								margin: 'auto',
-								display: 'block'
+								display: 'block',
 							}}
+							width="100%"
 						/>
 					</Modal.Body>
+					<Modal.Footer>
+						<Button href={this.props.src} download="plot.png" >Save Plot</Button>
+					</Modal.Footer>
 				</Modal>
 			</span>
 		);
