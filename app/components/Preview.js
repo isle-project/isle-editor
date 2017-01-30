@@ -101,12 +101,13 @@ const Layout = require( 'spectacle' ).Layout;
 const ListItem = require( 'spectacle' ).ListItem;
 const List = require( 'spectacle' ).List;
 const Quote = require( 'spectacle' ).Quote;
-const Spectacle = require( 'spectacle' ).Spectacle;
 const Slide = require( 'spectacle' ).Slide;
 const Table = require( 'spectacle' ).Table;
 const TableRow = require( 'spectacle' ).TableRow;
 const TableHeaderItem = require( 'spectacle' ).TableHeaderItem;
 const TableItem = require( 'spectacle' ).TableItem;
+const TableBody = require( 'spectacle' ).TableBody;
+const TableHeader = require( 'spectacle' ).TableHeader;
 const SText = require( 'spectacle' ).Text;
 const createTheme = require( 'spectacle/lib/themes/default' ).default;
 
@@ -204,11 +205,14 @@ export default class Preview extends Component {
 						code = pres;
 					}
 
-					code = `<Spectacle theme={theme} >
-						<Deck globalStyles={false} controls={true} progress="${progress}" >
-							${code}
-						</Deck>
-					</Spectacle>`;
+					code = `
+						<Deck
+							globalStyles={false}
+							controls={true}
+							progress="${progress}"
+							transition={[]}
+							theme={theme}
+						>${code}</Deck>`;
 				}
 
 				es5code = `
@@ -284,7 +288,8 @@ export default class Preview extends Component {
 	}
 	render() {
 		return (
-			<div ref="preview" className="Preview" id="Preview"></div>
+			<div ref="preview" className="Preview" id="Preview">
+			</div>
 		);
 	}
 }

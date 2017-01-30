@@ -183,7 +183,7 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath
 		res += loadRequires( meta.require, filePath );
 	}
 
-	if ( contains( components, 'Spectacle' ) ) {
+	if ( contains( components, 'Deck' ) ) {
 		res += '\n';
 		res += `const createTheme = require( 'spectacle/lib/themes/default' ).default;
 				const theme = createTheme({
@@ -325,11 +325,9 @@ function writeIndexFile({
 			pres += '</Slide>';
 			content = pres;
 		}
-		content = `<Spectacle theme={theme} >
-			<Deck globalStyles={false}>
+		content = `<Deck theme={theme} globalStyles={false}>
 				${content}
-			</Deck>
-		</Spectacle>`;
+			</Deck>`;
 	}
 
 	const usedComponents = getComponentList( content );
