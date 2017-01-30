@@ -61,14 +61,12 @@ class DefaultSlider extends Component {
 
 		const settings = {
 			className: 'center',
-			dots: true,
-			fade: this.props.fade,
-			infinite: this.props.infinite,
 			speed: 1000,
 			slidesToShow: 1,
 			slidesToScroll: 1,
 			prevArrow: <PrevArrow />,
 			nextArrow: <NextArrow />,
+			...this.props
 		};
 		return (
 			<Panel
@@ -95,8 +93,11 @@ class DefaultSlider extends Component {
 // DEFAULT PROPERTIES //
 
 DefaultSlider.defaultProps = {
+	dots: true,
+	draggable: true,
 	fade: false,
 	infinite: false,
+	swipeToSlide: true,
 	title: ''
 };
 
@@ -104,8 +105,11 @@ DefaultSlider.defaultProps = {
 // PROPERTY TYPES //
 
 DefaultSlider.propTypes = {
+	dots: PropTypes.bool,
+	draggable: PropTypes.bool,
 	fade: PropTypes.bool,
 	infinite: PropTypes.bool,
+	swipeToSlide: PropTypes.bool,
 	title: PropTypes.string
 };
 
