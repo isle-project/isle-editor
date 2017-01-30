@@ -87,8 +87,6 @@ class RTable extends Component {
 					global.ISLE.rshell.server :
 					OPEN_CPU_DEFAULT_SERVER;
 
-				console.log( jsonCode )
-
 				request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
 					form: {
 						x: jsonCode

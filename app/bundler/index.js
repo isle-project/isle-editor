@@ -182,7 +182,6 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath
 	if ( meta.require ) {
 		res += loadRequires( meta.require, filePath );
 	}
-	console.log( res )
 
 	if ( contains( components, 'Spectacle' ) ) {
 		res += '\n';

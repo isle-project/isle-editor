@@ -9,6 +9,7 @@ body {
 	margin-right: auto;
 	padding: 10px;
 	width: 100%;
+	max-width: 1200px;
 	height: 100%;
 	display: block;
 }
