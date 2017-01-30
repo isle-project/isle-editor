@@ -141,23 +141,25 @@ class DensityPlot extends D3Plot {
 						.style( 'stroke-width', '1.5px' );
 				});
 			} else {
-				let histogram = d3.histogram()
-					.domain([ this.props.xmin, this.props.xmax ])
-					.thresholds( this.props.nBins );
-				let histData = histogram( data );
-				const { x, y } = this.state;
+				if ( this.props.histogram ) {
+					let histogram = d3.histogram()
+						.domain([ this.props.xmin, this.props.xmax ])
+						.thresholds( this.props.nBins );
+					let histData = histogram( data );
+					const { x, y } = this.state;
 
-				chart.selectAll( '.bar' )
-					.data( histData )
-					.enter()
-					.insert( 'rect', '.axis' )
-						.attr( 'class', 'bar' )
-						.attr( 'x', 1 )
-						.attr( 'transform', d => 'translate(' + x( d.x0 ) + ',' + y( d.length / data.length ) + ')' )
-						.attr( 'width', d => x( d.x1 ) - x( d.x0 ) - 1 )
-						.attr( 'height', d => height - y( d.length / data.length ) )
-						.style( 'fill', '#bbb' )
-						.style( 'shape-rendering', 'crispEdges' );
+					chart.selectAll( '.bar' )
+						.data( histData )
+						.enter()
+						.insert( 'rect', '.axis' )
+							.attr( 'class', 'bar' )
+							.attr( 'x', 1 )
+							.attr( 'transform', d => 'translate(' + x( d.x0 ) + ',' + y( d.length / data.length ) + ')' )
+							.attr( 'width', d => x( d.x1 ) - x( d.x0 ) - 1 )
+							.attr( 'height', d => ( height - y( d.length ) ) )
+							.style( 'fill', '#bbb' )
+							.style( 'shape-rendering', 'crispEdges' );
+				}
 
 				chart.append( 'path' )
 					.datum( kde( data ) )
@@ -176,6 +178,7 @@ class DensityPlot extends D3Plot {
 
 DensityPlot.propTypes = {
 	bandwidth: PropTypes.number,
+	histogram: PropTypes.bool,
 	xlab: PropTypes.string,
 	ymax: PropTypes.number,
 	xmin: PropTypes.number,
@@ -189,6 +192,7 @@ DensityPlot.propTypes = {
 
 DensityPlot.defaultProps = {
 	bandwidth: 4,
+	histogram: true,
 	xlab: 'value',
 	ymax: 0.15,
 	xmin: 0.0,
