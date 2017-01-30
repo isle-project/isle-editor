@@ -415,8 +415,8 @@ class DataExplorer extends React.Component {
 			<Grid>
 				<Row>
 					{ this.props.questions ? <Col md={colWidth}><Panel
-							header={<h3>Questions</h3>}
-							style={{ height: 600 }}
+						header={<h3>Questions</h3>}
+						style={{ height: 600 }}
 					>{this.props.questions}</Panel></Col> : null }
 					<Col md={colWidth}>
 						<Panel
