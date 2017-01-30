@@ -3,6 +3,7 @@
 	"CheckboxInput": "const CheckboxInput = require( \"components/input/checkbox\" )",
 	"ColorPicker": "const ColorPicker = require( \"components/color-picker\" )",
 	"Column": "const Column = require( \"react-bootstrap\" ).Col",
+	"DataExplorer": "const DataExplorer = require( \"components/data-explorer\" )",
 	"Dashboard": "const Dashboard = require( \"components/dashboard\" )",
 	"DensityPlot": "const DensityPlot = require( \"components/d3/density-plot\" )",
 	"DraggableList": "const DraggableList = require( \"components/draggable-list\" )",

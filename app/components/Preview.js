@@ -83,11 +83,15 @@ const VictoryStack = require( 'victory' ).VictoryStack;
 const VictoryTheme = require( 'victory' ).VictoryTheme;
 const VictoryTooltip = require( 'victory' ).VictoryTooltip;
 const VictoryVoronoiTooltip = require( 'victory' ).VictoryVoronoiTooltip;
+const VictoryZoom = require( 'victory' ).VictoryZoom;
 const VideoPlayer = require( 'components/video-player' );
 
 const Appear = require( 'spectacle' ).Appear;
 const BlockQuote = require( 'spectacle' ).BlockQuote;
 const Cite = require( 'spectacle' ).Cite;
+const Code = require( 'spectacle' ).Code;
+const CodePane = require( 'spectacle' ).CodePane;
+const ComponentPlayground = require( 'spectacle' ).ComponentPlayground;
 const Deck = require( 'spectacle' ).Deck;
 const Fill = require( 'spectacle' ).Fill;
 const Fit = require( 'spectacle' ).Fit;
@@ -121,6 +125,11 @@ const theme = createTheme({
 const Well = ReactBootstrap.Well;
 
 
+// LEARNING MODULES //
+
+const DataExplorer = require( 'components/data-explorer' );
+
+
 // FUNCTIONS //
 
 const loadRequires = ( libs, filePath ) => {
@@ -129,7 +138,7 @@ const loadRequires = ( libs, filePath ) => {
 		for ( let key in libs ) {
 			if ( libs.hasOwnProperty( key ) ) {
 				let lib = libs[ key ];
-				if ( isAbsolutePath( lib ) || /\./.test( lib ) ) {
+				if ( isAbsolutePath( lib ) || /\.\//.test( lib ) ) {
 					lib = path.join( dirname, libs[ key ]);
 				} else if ( /@stdlib/.test( lib ) ) {
 					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
@@ -166,7 +175,7 @@ export default class Preview extends Component {
 
 				if ( this.state.requires !== global.ISLE.require ) {
 					this.state.requires.forEach( lib => delete global[ lib ]);
-					loadRequires( global.ISLE.require, this.props.filePath );
+					loadRequires( global.ISLE.require, this.props.filePath || '' );
 				}
 
 				// Remove preamble and comments:
@@ -177,6 +186,13 @@ export default class Preview extends Component {
 				code = markdownToHTML( code );
 
 				if ( global.ISLE.type === 'presentation' ) {
+					let progress = 'number';
+
+					if ( global.ISLE.presentation ) {
+						if ( global.ISLE.presentation.progress ) {
+							progress = global.ISLE.presentation.progress;
+						}
+					}
 
 					// Automatically insert <Slide> tags if not manually set...
 					if ( !contains( code, '<Slide' ) || !contains( code, '</Slide>' ) ) {
@@ -189,7 +205,7 @@ export default class Preview extends Component {
 					}
 
 					code = `<Spectacle theme={theme} >
-						<Deck globalStyles={false} controls={true}>
+						<Deck globalStyles={false} controls={true} progress="${progress}" >
 							${code}
 						</Deck>
 					</Spectacle>`;
@@ -277,7 +293,8 @@ export default class Preview extends Component {
 // PROPERTY TYPES //
 
 Preview.propTypes = {
-	code: PropTypes.string
+	code: PropTypes.string,
+	filePath: PropTypes.string
 };
 
 

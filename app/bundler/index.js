@@ -57,7 +57,7 @@ const loadRequires = ( libs, filePath ) => {
 		for ( let key in libs ) {
 			if ( libs.hasOwnProperty( key ) ) {
 				let lib = libs[ key ];
-				if ( isAbsolutePath( lib ) || /\./.test( lib ) ) {
+				if ( isAbsolutePath( lib ) || /\.\//.test( lib ) ) {
 					lib = path.join( dirname, libs[ key ]);
 				} else if ( /@stdlib/.test( lib ) ) {
 					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
