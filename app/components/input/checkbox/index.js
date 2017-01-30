@@ -28,29 +28,43 @@ class CheckboxInput extends Input {
 	}
 
 	render() {
-		return (
-			<div style={{
-				marginTop: '8px',
-				marginLeft: '8px'
-			}}>
-				<input
-					type="checkbox"
-					checked={this.state.value}
-					value="checkbox"
-					onChange={this.handleChange}
-					style={{
-						verticalAlign: 'bottom',
-						width: '24px',
-						height: '24px'
-					}}
-				></input>
-				<span
-					style={{
-						marginLeft: '12px'
-					}}
-				>{this.props.legend}</span>
-			</div>
-		);
+		const input = <input
+			type="checkbox"
+			checked={this.state.value}
+			value="checkbox"
+			onChange={this.handleChange}
+			style={{
+				verticalAlign: 'bottom',
+				width: '24px',
+				height: '24px'
+			}}
+		></input>;
+		if ( this.props.inline === true ) {
+			return (
+				<span style={{ padding: '5px' }}>
+					{input}
+					<span
+						style={{
+							marginLeft: '12px'
+						}}
+					>{this.props.legend}</span>
+				</span>
+			);
+		} else {
+			return (
+				<div style={{
+					marginTop: '8px',
+					marginLeft: '8px'
+				}}>
+					{input}
+					<span
+						style={{
+							marginLeft: '12px'
+						}}
+					>{this.props.legend}</span>
+				</div>
+			);
+		}
 	}
 }
 
@@ -59,7 +73,8 @@ class CheckboxInput extends Input {
 
 CheckboxInput.defaultProps = {
 	onChange() {},
-	defaultValue: false
+	defaultValue: false,
+	inline: false
 };
 
 
@@ -67,7 +82,8 @@ CheckboxInput.defaultProps = {
 
 CheckboxInput.propTypes = {
 	onChange: PropTypes.func,
-	defaultValue: PropTypes.bool
+	defaultValue: PropTypes.bool,
+	inline: PropTypes.bool
 };
 
 
