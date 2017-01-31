@@ -118,6 +118,8 @@
     "compute-median": "^2.0.0",
     "compute-min": "^1.0.1",
     "compute-range": "^1.1.0",
+    "compute-stdev": "^1.0.0",
+    "compute-variance": "^3.0.0",
     "configstore": "^2.1.0",
     "cross-env": "3.1.x",
     "css-loader": "^0.26.0",
@@ -172,7 +174,7 @@
     "style-loader": "^0.13.1",
     "uglify-js": "^2.7.0",
     "victory": "^0.15.0",
-    "webpack": "^1.13.1"
+    "webpack": "^2.2.1"
   },
   "devEngines": {
     "node": "5.x || 6.x || 7.x",
