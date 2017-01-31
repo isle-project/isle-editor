@@ -24,7 +24,7 @@ const config = {
 	module: {
 		...baseConfig.module,
 
-		loaders: [
+		rules: [
 			{
 				test: /\.js?$/,
 				loader: 'babel-loader',
@@ -56,24 +56,24 @@ const config = {
 			},
 			{
 				test: /\.global\.css$/,
-				loader: ExtractTextPlugin.extract(
-					'style-loader',
-					'css-loader'
-				)
+				loader: ExtractTextPlugin.extract({
+					fallbackLoader: 'style-loader',
+					loader: 'css-loader'
+				})
 			},
 			{
 				test: /^((?!\.global).)*\.css$/,
-				loader: ExtractTextPlugin.extract(
-					'style-loader',
-					'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
-				)
+				loader: ExtractTextPlugin.extract({
+					fallbackLoader: 'style-loader',
+					loader: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+				})
 			}
 		]
 	},
 
 	plugins: [
 		...baseConfig.plugins,
-		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.DefinePlugin({
 			__DEV__: false,
 			'process.env': {
@@ -86,7 +86,10 @@ const config = {
 				warnings: false
 			}
 		}),
-		new ExtractTextPlugin( 'style.css', { allChunks: true })
+		new ExtractTextPlugin({
+			filename: 'style.css',
+			allChunks: true
+		})
 	],
 
 	target: 'electron-renderer'

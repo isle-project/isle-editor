@@ -10,7 +10,6 @@ import baseConfig from './webpack.config.base';
 
 const config = {
 	...baseConfig,
-	debug: true,
 	devtool: 'cheap-module-eval-source-map',
 
 	entry: [
@@ -25,18 +24,18 @@ const config = {
 
 	module: {
 		...baseConfig.module,
-		loaders: [
-			...baseConfig.module.loaders,
+		rules: [
+			...baseConfig.module.rules,
 			{
 				test: /\.global\.css$/,
-				loaders: [
+				use: [
 					'style-loader',
 					'css-loader?sourceMap'
 				]
 			},
 			{
 				test: /^((?!\.global).)*\.css$/,
-				loaders: [
+				use: [
 					'style-loader',
 					'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
 				]
@@ -47,7 +46,7 @@ const config = {
 	plugins: [
 		...baseConfig.plugins,
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin(),
+		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.DefinePlugin({
 			__DEV__: true,
 			'process.env': {

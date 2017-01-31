@@ -19,6 +19,7 @@ module.exports = {
 			'app',
 			'node_modules',
 			'node_modules/@stdlib/stdlib/lib/node_modules'
-		]
+		],
+		extensions: [ '.js', '.json' ]
 	}
 };

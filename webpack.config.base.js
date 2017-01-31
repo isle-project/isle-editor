@@ -8,7 +8,7 @@ import path from 'path';
 
 export default {
 	module: {
-		loaders: [ {
+		rules: [ {
 			test: /\.js?$/,
 			loader: 'babel-loader',
 			include: [
@@ -46,18 +46,20 @@ export default {
 	resolve: {
 		alias: {
 			'debug': path.resolve( './node_modules/debug/node.js' ),
+			'esprima': path.resolve( './node_modules/esprima-fb' ),
 			'object-keys': path.resolve( './objectKeys.js' ),
 			'electron-prebuilt': path.resolve( './dummy.js' ),
-			'victory': require.resolve( 'victory/dist/victory' )
+			'victory': require.resolve( 'victory/dist/victory' ),
+			'history/createHashHistory': require.resolve( './node_modules/history/lib/createHashHistory.js' )
 		},
-		root: [
+		modules: [
 			path.resolve( './app' ),
 			path.resolve( './node_modules' ),
 			path.resolve( './node_modules/@stdlib/stdlib/lib/node_modules' ),
 			path.resolve( './node_modules/@stdlib/stdlib/node_modules' )
 		],
-		extensions: [ '', '.js', '.jsx', '.json' ],
-		packageMains: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
+		extensions: [ '.js', '.jsx', '.json' ],
+		mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
 	},
 	plugins: [
 		new webpack.IgnorePlugin( /vertx/ )
