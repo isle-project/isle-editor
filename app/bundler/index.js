@@ -337,7 +337,12 @@ function writeIndexFile({
 			pres += '</Slide>';
 			content = pres;
 		}
-		content = `<Deck theme={theme} globalStyles={false}>
+		content = `<Deck
+				theme={theme}
+				globalStyles={false}
+				transition={[]}
+				progress="number"
+			>
 				${content}
 			</Deck>`;
 	}
