@@ -1,7 +1,7 @@
 // MODULES //
 
 import radium from 'radium';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Button, ButtonGroup, FormGroup, Modal, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import styles from 'components/styles';
 import TextArea from 'components/text-area';
@@ -92,7 +92,7 @@ class FeedbackButtons extends Component {
 
 		return (
 			<div className="feedbackButtons" style={{ float: 'right' }}>
-				<ButtonGroup style={{ float: 'right' }} vertical>
+				<ButtonGroup style={{ float: 'right' }} vertical={this.props.vertical} >
 					<OverlayTrigger placement="left" overlay={ <Tooltip id="tooltip_confused"><strong> I am confused. </strong></Tooltip>}>
 						<Button bsSize="small" onClick={this.submitConfused}>
 							<div key="confused" style={[ styles.icon, styles[ 'confused' ] ]} />
@@ -161,15 +161,17 @@ class FeedbackButtons extends Component {
 // PROPERTY TYPES //
 
 FeedbackButtons.propTypes = {
-	for: React.PropTypes.string.isRequired,
-	url: React.PropTypes.string
+	for: PropTypes.string.isRequired,
+	url: PropTypes.string,
+	vertical: PropTypes.bool
 };
 
 
 // DEFAULT PROPERTIES //
 
 FeedbackButtons.defaultProps = {
-	url: ''
+	url: '',
+	vertical: false
 };
 
 
