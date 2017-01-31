@@ -50,7 +50,7 @@ export default {
 			'object-keys': path.resolve( './objectKeys.js' ),
 			'electron-prebuilt': path.resolve( './dummy.js' ),
 			'victory': require.resolve( 'victory/dist/victory' ),
-			'history/createHashHistory': require.resolve( './node_modules/history/lib/createHashHistory.js' )
+			'history/createHashHistory': require.resolve( './node_modules/react-history/node_modules/history/createHashHistory.js' )
 		},
 		modules: [
 			path.resolve( './app' ),
