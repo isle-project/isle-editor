@@ -231,7 +231,7 @@ function writeIndexFile({
 	minify
 }, clbk ) {
 
-	const rootPaths = [
+	const modulePaths = [
 		path.resolve( basePath, './node_modules' ),
 		path.resolve( basePath, './node_modules/@stdlib/stdlib/lib/node_modules' ),
 		path.resolve( basePath, './node_modules/@stdlib/stdlib/node_modules' ),
@@ -239,19 +239,18 @@ function writeIndexFile({
 	];
 	const config = {
 		resolve: {
-			root: rootPaths,
+			modules: modulePaths,
 			alias: {
 				'object-keys': path.resolve( basePath, './objectKeys.js' ),
-				'victory': path.resolve( basePath, './node_modules/victory/dist/victory/' )
+				'victory': path.resolve( basePath, './node_modules/victory/dist/victory/' ),
+				'history/createHashHistory': path.resolve( basePath, './node_modules/history/lib/createHashHistory.js' )
 			}
 		},
-		resolveLoader: {
-			root: rootPaths
-		},
 		module: {
-			loaders: [
+			rules: [
 				{
 					test: /\.js?$/,
+					exclude: /node_modules/,
 					loader: 'babel-loader',
 					query: {
 						plugins: [
@@ -270,6 +269,13 @@ function writeIndexFile({
 					test: /\.json$/,
 					loader: 'json-loader'
 				},
+				{
+					test: /^((?!\.global).)*\.css$/,
+					use: [
+						'style-loader',
+						'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+					]
+				}
 			],
 			noParse: /node_modules\/json-schema\/lib\/validate\.js/
 		},
