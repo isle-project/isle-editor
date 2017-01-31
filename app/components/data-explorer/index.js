@@ -7,17 +7,13 @@ import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import Dashboard from 'components/dashboard';
 import RPlot from 'components/r/plot';
-import min from 'compute-min';
-import max from 'compute-max';
-import mean from 'compute-mean';
-import range from 'compute-range';
-import median from 'compute-median';
 import isArray from '@stdlib/utils/is-array';
 import isNumber from '@stdlib/utils/is-number';
 import isObject from '@stdlib/utils/is-object';
 import sample from '@stdlib/math/generics/random/sample';
 import entries from '@stdlib/utils/object-entries';
 import countBy from 'lodash.countby';
+import statistic from './statistic.js';
 
 
 // FUNCTIONS //
@@ -25,7 +21,7 @@ import countBy from 'lodash.countby';
 function by( arr, factor, fun ) {
 	let ret = {};
 	for ( let i = 0; i < arr.length; i++ ) {
-		if ( !Array.isArray( ret[ factor[ i ] ]) ) {
+		if ( !isArray( ret[ factor[ i ] ]) ) {
 			ret[ factor[ i ] ] = [];
 		}
 		ret[ factor[ i ] ].push( arr[ i ]);
@@ -365,29 +361,11 @@ class DataExplorer extends React.Component {
 			});
 		};
 
-		this.generateStatistics = ( variable, statistic, group ) => {
+		this.generateStatistics = ( variable, statName, group ) => {
 			let fun;
 			let res;
-			switch ( statistic ) {
-			case 'Mean':
-				fun = mean;
-				break;
-			case 'Median':
-				fun = median;
-				break;
-			case 'Min':
-				fun = min;
-				break;
-			case 'Max':
-				fun = max;
-				break;
-			case 'Range':
-				fun = range;
-				break;
-			default:
-				fun = function() {};
-				break;
-			}
+
+			fun = statistic( statName );
 			if ( group === 'None' ) {
 				res = fun( this.props.data[ variable ]);
 			} else {
@@ -396,7 +374,7 @@ class DataExplorer extends React.Component {
 			let newOutput = this.state.output.slice();
 			newOutput.push({
 				variable: variable,
-				type: statistic,
+				type: statName,
 				value: res,
 				group
 			});
@@ -438,13 +416,7 @@ class DataExplorer extends React.Component {
 										<SelectInput
 											legend="Statistic:"
 											defaultValue="Mean"
-											options={[
-												'Mean',
-												'Median',
-												'Min',
-												'Max',
-												'Range'
-											]}
+											options={this.props.statistics}
 										/>
 										<SelectInput
 											legend="Group By"
@@ -590,14 +562,24 @@ class DataExplorer extends React.Component {
 
 DataExplorer.defaultProps = {
 	codebook: null,
-	questions: null
+	questions: null,
+	statistics: [
+		'Mean',
+		'Median',
+		'Min',
+		'Max',
+		'Range',
+		'Standard Deviation',
+		'Variance'
+	]
 };
 
 
 // PROPERTY TYPES //
 
 DataExplorer.propTypes = {
-	data: PropTypes.object.isRequired
+	data: PropTypes.object.isRequired,
+	statistics: PropTypes.array
 };
 
 
