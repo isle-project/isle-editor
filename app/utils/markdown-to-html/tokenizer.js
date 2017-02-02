@@ -1,11 +1,12 @@
 // CONSTANTS //
 
-const BASE = 0;
+const IN_BASE = 0;
 const IN_OPENING_TAG = 1;
 const IN_CLOSING_TAG = 2;
 const IN_STRING_ATTRIBUTE = 3;
 const IN_JSX_ATTRIBUTE = 4;
 const IN_BETWEEN_TAGS = 5;
+const IN_JSX_EXPRESSION = 6;
 
 
 // FUNCTIONS //
@@ -38,7 +39,7 @@ class Tokenizer{
 		this.tokens = [];
 		this._buffer = str;
 		this._current = '';
-		this._state = BASE;
+		this._state = IN_BASE;
 		this._braceLevel = 0;
 		this._level = 0;
 	}
@@ -48,6 +49,11 @@ class Tokenizer{
 			this._state = IN_OPENING_TAG;
 			this.tokens.push( this._current );
 			this._level += 1;
+			this._current = char;
+		} else if ( char === '{' ) {
+			this._state = IN_JSX_EXPRESSION;
+			this.tokens.push( this._current );
+			this._braceLevel += 1;
 			this._current = char;
 		} else {
 			this._current += char;
@@ -74,7 +80,7 @@ class Tokenizer{
 				this.divHash[ '<div id="placeholder_'+i+'"/>' ] = this._current;
 				this.tokens.push( '<div id="placeholder_'+i+'"/>' );
 				this._current = '';
-				this._state = BASE;
+				this._state = IN_BASE;
 			} else {
 				this._state = IN_BETWEEN_TAGS;
 			}
@@ -94,7 +100,7 @@ class Tokenizer{
 					this.divHash[ '<div id="placeholder_'+i+'"/>' ] = this._current;
 					this.tokens.push( '<div id="placeholder_'+i+'"/>' );
 					this._current = '';
-					this._state = BASE;
+					this._state = IN_BASE;
 				} else {
 					this._state = IN_BETWEEN_TAGS;
 				}
@@ -104,6 +110,22 @@ class Tokenizer{
 		} else if ( isQuotationMark( char ) ) {
 			this._stringOpener = char;
 			this._state = IN_STRING_ATTRIBUTE;
+		}
+	}
+
+	_inJSXExpression( char, i ) {
+		this._current += char;
+		if ( char === '{' ) {
+			this._braceLevel += 1;
+		}
+		else if ( char === '}' ) {
+			this._braceLevel -= 1;
+		}
+		if ( this._braceLevel === 0 ) {
+			this.divHash[ '<div id="placeholder_'+i+'"/>' ] = this._current;
+			this.tokens.push( '<div id="placeholder_'+i+'"/>' );
+			this._current = '';
+			this._state = IN_BASE;
 		}
 	}
 
@@ -133,7 +155,7 @@ class Tokenizer{
 		for ( let i = 0; i < str.length; i++ ) {
 			let char = str.charAt( i );
 			switch ( this._state ) {
-			case BASE:
+			case IN_BASE:
 				this._inBase( char, i );
 				break;
 			case IN_OPENING_TAG:
@@ -147,6 +169,9 @@ class Tokenizer{
 				break;
 			case IN_JSX_ATTRIBUTE:
 				this._inJSXAttribute( char, i );
+				break;
+			case IN_JSX_EXPRESSION:
+				this._inJSXExpression( char, i );
 				break;
 			case IN_BETWEEN_TAGS:
 				this._inBetweenTags( char, i );
