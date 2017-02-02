@@ -1,5 +1,6 @@
 // MODULES //
 
+import iqr from 'compute-iqr';
 import min from 'compute-min';
 import max from 'compute-max';
 import mean from 'compute-mean';
@@ -20,6 +21,9 @@ import variance from 'compute-variance';
 function statistic( statName ) {
 	let fun;
 	switch ( statName ) {
+	case 'Interquartile Range':
+		fun = iqr;
+		break;
 	case 'Mean':
 		fun = mean;
 		break;

@@ -13,6 +13,7 @@ import isObject from '@stdlib/utils/is-object';
 import sample from '@stdlib/math/generics/random/sample';
 import entries from '@stdlib/utils/object-entries';
 import countBy from 'lodash.countby';
+import range from 'compute-range';
 import statistic from './statistic.js';
 
 
@@ -163,10 +164,11 @@ class DataExplorer extends React.Component {
 				if ( chooseBins ) {
 					code = `${variable} = c(${sub})
 						truehist( ${variable}, nbins = ${nBins},
+							prob=${overlayDensity ? 'TRUE' : 'FALSE'},
 							cex.lab=2.0, cex.main=2.0, cex.axis=2.0 )\n`;
 				} else {
 					code = `${variable} = c(${sub})
-						truehist( ${variable},
+						truehist( ${variable}, prob=${overlayDensity ? 'TRUE' : 'FALSE'},
 							cex.lab=2.0, cex.main=2.0, cex.axis=2.0 )\n`;
 				}
 				if ( overlayDensity ) {
@@ -175,10 +177,13 @@ class DataExplorer extends React.Component {
 				newOutput.push({
 					variable: variable,
 					type: 'Chart',
-					value: <RPlot
-						code={code}
-						libraries={[ 'MASS' ]}
-					/>
+					value: <div>
+						<label>{variable}: </label>
+						<RPlot
+							code={code}
+							libraries={[ 'MASS' ]}
+						/>
+					</div>
 				});
 			} else {
 				let freqs = by( this.props.data[ variable ], this.props.data[ group ], arr => {
@@ -193,10 +198,13 @@ class DataExplorer extends React.Component {
 					if ( chooseBins ) {
 						code += `${variable} = c(${val})
 							truehist( ${variable}, nbins = ${nBins},
+								main="${group}: ${key}",
+								prob=${overlayDensity ? 'TRUE' : 'FALSE'},
 								cex.lab=2.0, cex.main=2.0, cex.axis=1.5 )\n`;
 					} else {
 						code += `${variable} = c(${val})
-							truehist( ${variable},
+							truehist( ${variable}, main="${group}: ${key}",
+								prob=${overlayDensity ? 'TRUE' : 'FALSE'},
 								cex.lab=2.0, cex.main=2.0, cex.axis=1.5 )\n`;
 					}
 					if ( overlayDensity ) {
@@ -564,6 +572,7 @@ DataExplorer.defaultProps = {
 	codebook: null,
 	questions: null,
 	statistics: [
+		'Interquartile Range',
 		'Mean',
 		'Median',
 		'Min',
