@@ -1,7 +1,7 @@
 // MODULES //
 
 import path from 'path';
-import fs from 'fs-plus';
+import fs from 'fs-extra';
 import windowStateKeeper from 'electron-window-state';
 import { shell } from 'electron';
 import window from './windowManager';

@@ -1,7 +1,7 @@
 // MODULES //
 
 import { dialog, ipcMain, BrowserWindow } from 'electron';
-import fs from 'fs-plus';
+import fs from 'fs-extra';
 import { extname, basename } from 'path';
 import { EXTENSIONS } from './globals.js';
 import createWindow from './createWindow';
@@ -23,7 +23,7 @@ function openFile( filePath, browserWindow ) {
 		EXTENSIONS.indexOf( extname( filePath ).slice( 1 ).toLowerCase() ) !== -1 ||
 		!extname( filePath )
 	) {
-		const fileSize = fs.getSizeSync( filePath );
+		const fileSize = fs.statSync( filePath )[ 'size' ];
 		if ( fileSize >= 1048576 ) { // 1MB
 			const confirm = dialog.showMessageBox( browserWindow, {
 				type: 'error',

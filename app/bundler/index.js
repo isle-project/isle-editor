@@ -1,6 +1,6 @@
 // MODULES //
 
-const fs = require( 'fs-plus' );
+const fs = require( 'fs-extra' );
 const path = require( 'path' );
 const yaml = require( 'js-yaml' );
 const webpack = require( 'webpack' );
@@ -339,7 +339,7 @@ function writeIndexFile({
 		}
 		content = `<Deck
 				theme={theme}
-				globalStyles={false}
+				globalStyles={true}
 				transition={[]}
 				progress="number"
 			>
@@ -356,6 +356,14 @@ function writeIndexFile({
 
 	// Copy CSS files:
 	fs.copySync( getCSSPath(), path.join( appDir, 'css' ) );
+	// Override `lesson.css` file if custom CSS file is specified:
+	if ( meta.css ) {
+		let fpath = meta.css;
+		if ( !isAbsolutePath( meta.css ) ) {
+			fpath = path.join( path.dirname( filePath ), meta.css );
+		}
+		fs.copySync( fpath, path.join( appDir, 'css/lesson.css' ) );
+	}
 
 	if ( contains( usedComponents, 'FeedbackButtons' ) ) {
 		fs.mkdirSync( path.join( appDir, 'img' ) );
