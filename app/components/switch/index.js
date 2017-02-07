@@ -60,7 +60,7 @@ Switch.propTypes = {
 // DEFAULT PROPERTIES //
 
 Switch.defaultProps = {
-	onChange: null
+	onChange(){}
 };
 
 
