@@ -57,6 +57,7 @@ const RTable = require( 'components/r/table' );
 const ROutput = require( 'components/r/output' );
 const Row = ReactBootstrap.Row;
 const SelectInput = require( 'components/input/select' );
+const SelectQuestion = require( 'components/select-question' );
 const SliderInput = require( 'components/input/slider' );
 const Slider = require( 'components/slider' );
 const Spinner = require( 'components/spinner' );
@@ -117,10 +118,10 @@ const theme = createTheme({
 	tertiary: "#c95d0a",
 	quartenary: "black"
 }, {
-	primary: "Cardo",
-	secondary: "Cardo",
-	tertiary: "Cardo",
-	font: "Cardo"
+	primary: "Open Sans, sans-serif",
+	secondary: "Open Sans, sans-serif",
+	tertiary: "Open Sans, sans-serif",
+	font: "Open Sans, sans-serif"
 });
 
 const Well = ReactBootstrap.Well;
@@ -214,7 +215,6 @@ export default class Preview extends Component {
 							theme={theme}
 						>${code}</Deck>`;
 				}
-
 				es5code = `
 					var lessonConfig = {
 						componentDidMount: function() {

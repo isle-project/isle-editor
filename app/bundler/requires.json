@@ -24,6 +24,7 @@
 	"RTable": "const RTable = require( \"components/r/table\" )",
 	"Row": "const Row = require( \"react-bootstrap\" ).Row",
 	"SelectInput": "const SelectInput = require( \"components/input/select\" )",
+	"SelectQuestion": "const SelectQuestion = require( \"components/select-question\" )",
 	"Slider": "const Slider = require( \"components/slider\" )",
 	"SliderInput": "const SliderInput = require( \"components/input/slider\" )",
 	"Appear": "const Appear = require( 'spectacle' ).Appear",
