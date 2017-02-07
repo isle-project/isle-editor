@@ -364,6 +364,9 @@ function writeIndexFile({
 		}
 		fs.copySync( fpath, path.join( appDir, 'css/lesson.css' ) );
 	}
+	if ( meta.style ) {
+		fs.appendFileSync( path.join( appDir, 'css/lesson.css' ), meta.style );
+	}
 
 	if ( contains( usedComponents, 'FeedbackButtons' ) ) {
 		fs.mkdirSync( path.join( appDir, 'img' ) );
