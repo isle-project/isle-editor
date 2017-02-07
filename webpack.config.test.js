@@ -2,6 +2,7 @@
 
 // For babel-plugin-webpack-loaders...
 require( 'babel-register' );
+const path = require( 'path' );
 const devConfigs = require( './webpack.config.development' );
 
 
@@ -15,11 +16,10 @@ module.exports = {
 		loaders: devConfigs.module.rules.slice( 1 ) // remove babel-loader
 	},
 	resolve: {
-		modulesDirectories: [
-			'app',
-			'node_modules',
-			'node_modules/@stdlib/stdlib/lib/node_modules'
-		],
-		extensions: [ '.js', '.json' ]
+		modules: [
+			path.resolve( './app' ),
+			path.resolve( './node_modules' ),
+			path.resolve( './node_modules/@stdlib/stdlib/lib/node_modules' )
+		]
 	}
 };
