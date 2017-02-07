@@ -192,10 +192,10 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath
 					tertiary: "#c95d0a",
 					quartenary: "black"
 				}, {
-					primary: "Cardo",
-					secondary: "Cardo",
-					tertiary: "Cardo",
-					font: "Cardo"
+					primary: "Open Sans, sans-serif",
+					secondary: "Open Sans, sans-serif",
+					tertiary: "Open Sans, sans-serif",
+					font: "Open Sans, sans-serif"
 				});`;
 	}
 	res += '\n';
