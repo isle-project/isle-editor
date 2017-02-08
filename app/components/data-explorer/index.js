@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Button, Grid, Row, Col, Panel, Tabs, Tab } from 'react-bootstrap';
 import CheckboxInput from 'components/input/checkbox';
+import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import Dashboard from 'components/dashboard';
@@ -215,7 +216,10 @@ class DataExplorer extends Component {
 			groupVars
 		};
 
-		this.generateHistogram = ( variable, group, overlayDensity, chooseBins, nBins )=>{
+		this.generateHistogram = (
+			variable, group, overlayDensity, chooseBins, nBins,
+			xRange, xMin, xMax
+		)=>{
 			let newOutput;
 			if ( group === 'None' ) {
 				newOutput = this.state.output.slice();
@@ -225,11 +229,15 @@ class DataExplorer extends Component {
 					code = `${variable} = c(${data})
 						truehist( ${variable}, nbins = ${nBins},
 							prob=${overlayDensity ? 'TRUE' : 'FALSE'},
-							cex.lab=2.0, cex.main=2.0, cex.axis=2.0 )\n`;
+							cex.lab=2.0, cex.main=2.0, cex.axis=2.0
+							${ xRange ? ', xlim = c('+xMin+','+xMax+')' : '' }
+						)\n`;
 				} else {
 					code = `${variable} = c(${data})
 						truehist( ${variable}, prob=${overlayDensity ? 'TRUE' : 'FALSE'},
-							cex.lab=2.0, cex.main=2.0, cex.axis=2.0 )\n`;
+							cex.lab=2.0, cex.main=2.0, cex.axis=2.0,
+							${ xRange ? ', xlim = c('+xMin+','+xMax+')' : '' }
+						)\n`;
 				}
 				if ( overlayDensity ) {
 					code += `lines( density( ${variable} ) )`;
@@ -260,12 +268,16 @@ class DataExplorer extends Component {
 							truehist( ${variable}, nbins = ${nBins},
 								main="${group}: ${key}",
 								prob=${overlayDensity ? 'TRUE' : 'FALSE'},
-								cex.lab=2.0, cex.main=2.0, cex.axis=1.5 )\n`;
+								cex.lab=2.0, cex.main=2.0, cex.axis=1.5,
+								${ xRange ? ', xlim = c('+xMin+','+xMax+')' : '' }
+							 )\n`;
 					} else {
 						code += `${variable} = c(${val})
 							truehist( ${variable}, main="${group}: ${key}",
 								prob=${overlayDensity ? 'TRUE' : 'FALSE'},
-								cex.lab=2.0, cex.main=2.0, cex.axis=1.5 )\n`;
+								cex.lab=2.0, cex.main=2.0, cex.axis=1.5
+								${ xRange ? ', xlim = c('+xMin+','+xMax+')' : '' }
+							)\n`;
 					}
 					if ( overlayDensity ) {
 						code += `lines( density( ${variable} ) )`;
@@ -289,7 +301,35 @@ class DataExplorer extends Component {
 			});
 		};
 
-		this.generateBoxplot = ( variable, group, commonAxis )=>{
+		this.generateHeatmap = ( xval, yval, overlayPoints ) => {
+			let newOutput = this.state.output.slice();
+
+			let code = `x = c(${this.props.data[ xval ]})
+				y = c(${this.props.data[ yval ]})
+				f1 <- kde2d( x, y )
+				image( f1, xlab="${xval}", ylab="${yval}")`;
+
+			if ( overlayPoints ) {
+				code += '\n points( x, y, col="grey" )';
+			}
+
+			newOutput.push({
+				variable: `${xval} against ${yval}`,
+				type: 'Chart',
+				value: <div>
+					<label>{`${xval} against ${yval}`}: </label>
+					<RPlot
+						code={code}
+						libraries={[ 'MASS' ]}
+					/>
+				</div>
+			});
+			this.setState({
+				output: newOutput
+			});
+		};
+
+		this.generateBoxplot = ( variable, group, commonAxis ) => {
 			let newOutput;
 			let yranges;
 			if ( group === 'None' ) {
@@ -602,14 +642,8 @@ class DataExplorer extends Component {
 										}}
 									>
 										<SelectInput
-											defaultValue="Pie Chart"
-											options={[
-												'Histogram',
-												'Bar Chart',
-												'Pie Chart',
-												'Scatterplot',
-												'Box Plot'
-											]}
+											defaultValue={this.props.plots[ 0 ]}
+											options={this.props.plots}
 										/>
 									</Dashboard>
 									{ this.state.plotType === 'Histogram' ?
@@ -643,6 +677,45 @@ class DataExplorer extends Component {
 												min={1}
 												max={30}
 												step={1}
+											/>
+											<CheckboxInput
+												inline
+												legend="Set x-axis range"
+												defaultValue={false}
+											/>
+											<NumberInput
+												legend="Lower Bound"
+												defaultValue={0}
+												step={1}
+												style={{
+													width: 120
+												}}
+											/>
+											<NumberInput
+												legend="Upper Bound"
+												defaultValue={0}
+												step={1}
+												style={{
+													width: 120
+												}}
+											/>
+										</Dashboard>: null
+									}
+									{ this.state.plotType === '2d Density Plot' ?
+										<Dashboard autoStart={false} title="Options" onGenerate={this.generateHeatmap}>
+											<SelectInput
+												legend="Variable on x-axis:"
+												defaultValue={this.props.continuous[ 0 ]}
+												options={this.props.continuous}
+											/>
+											<SelectInput
+												legend="Variable on y-axis:"
+												defaultValue={this.props.continuous[ 1 ]}
+												options={this.props.continuous}
+											/>
+											<CheckboxInput
+												legend="Overlay observations"
+												defaultValue={false}
 											/>
 										</Dashboard>: null
 									}
@@ -691,7 +764,8 @@ class DataExplorer extends Component {
 									{ (
 										this.state.plotType !== 'Histogram' &&
 										this.state.plotType !== 'Box Plot' &&
-										this.state.plotType !== 'Scatterplot'
+										this.state.plotType !== 'Scatterplot' &&
+										this.state.plotType !== '2d Density Plot'
 									) ?
 										<Dashboard autoStart={false} onGenerate={this.generatePlot}>
 											<SelectInput
@@ -751,6 +825,14 @@ DataExplorer.defaultProps = {
 		'Standard Deviation',
 		'Variance',
 		'Correlation'
+	],
+	plots: [
+		'Bar Chart',
+		'Box Plot',
+		'Histogram',
+		'Pie Chart',
+		'Scatterplot',
+		'2d Density Plot'
 	]
 };
 
@@ -759,7 +841,8 @@ DataExplorer.defaultProps = {
 
 DataExplorer.propTypes = {
 	data: PropTypes.object.isRequired,
-	statistics: PropTypes.array
+	statistics: PropTypes.array,
+	plots: PropTypes.array
 };
 
 
