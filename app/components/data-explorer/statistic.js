@@ -4,6 +4,7 @@ import iqr from 'compute-iqr';
 import min from 'compute-min';
 import max from 'compute-max';
 import mean from 'compute-mean';
+import pcorr from 'compute-pcorr';
 import range from 'compute-range';
 import stdev from 'compute-stdev';
 import median from 'compute-median';
@@ -21,6 +22,9 @@ import variance from 'compute-variance';
 function statistic( statName ) {
 	let fun;
 	switch ( statName ) {
+	case 'Correlation':
+		fun = pcorr;
+		break;
 	case 'Interquartile Range':
 		fun = iqr;
 		break;

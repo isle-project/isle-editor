@@ -118,6 +118,7 @@
     "compute-mean": "^3.0.0",
     "compute-median": "^2.0.0",
     "compute-min": "^1.0.1",
+    "compute-pcorr": "^1.0.0",
     "compute-range": "^1.1.0",
     "compute-stdev": "^1.0.0",
     "compute-variance": "^3.0.0",

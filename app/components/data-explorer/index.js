@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Button, Grid, Row, Col, Panel, Tabs, Tab } from 'react-bootstrap';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
@@ -10,7 +10,6 @@ import RPlot from 'components/r/plot';
 import isArray from '@stdlib/utils/is-array';
 import isNumber from '@stdlib/utils/is-number';
 import isObject from '@stdlib/utils/is-object';
-import sample from '@stdlib/math/generics/random/sample';
 import entries from '@stdlib/utils/object-entries';
 import countBy from 'lodash.countby';
 import range from 'compute-range';
@@ -31,6 +30,40 @@ function by( arr, factor, fun ) {
 		ret[ key ] = fun( ret[ key ]);
 	}
 	return ret;
+}
+
+function by2( arr1, arr2, factor, fun ) {
+	let out = {};
+	let ret1 = {};
+	let ret2 = {};
+	for ( let i = 0; i < factor.length; i++ ) {
+		if ( !isArray( ret1[ factor[ i ] ]) ) {
+			ret1[ factor[ i ] ] = [];
+			ret2[ factor[ i ] ] = [];
+		}
+		ret1[ factor[ i ] ].push( arr1[ i ]);
+		ret2[ factor[ i ] ].push( arr2[ i ]);
+	}
+	for ( let key in ret1 ) {
+		out[ key ] = fun( ret1[ key ], ret2[ key ]);
+	}
+	return out;
+}
+
+function getFrequencies( x, relativeFreqs ) {
+	let freqs = entries( countBy( x ) ).map( e => {
+		return { category: e[ 0 ], count: e[ 1 ] };
+	});
+	if ( relativeFreqs ) {
+		let totalCount = freqs
+			.map( x => x.count )
+			.reduce( ( a, b ) => a + b );
+		freqs = freqs.map( x => {
+			x.count = x.count / totalCount;
+			return x;
+		});
+	}
+	return freqs;
 }
 
 const frequencyTable = ( e, idx ) => {
@@ -59,6 +92,33 @@ const frequencyTable = ( e, idx ) => {
 	);
 };
 
+const groupedFrequencyTable = ( e, idx ) => {
+	return (
+		<div key={idx}>
+			<label>{e.variable}: </label>
+			{entries( e.value ).map( ( arr, i ) => {
+				let categories = arr[ 1 ].map( x => <td>{x.category}</td> );
+				let counts = arr[ 1 ].map( x => <td>{ e.relative ? x.count.toFixed( 3 ) : x.count }</td> );
+				return ( <pre key={i} >
+					<label>{arr[ 0 ]}: </label>
+					<table>
+						<thead>
+							<tr>
+								<th>Category</th>
+								{categories}
+							</tr>
+						</thead>
+						<tbody>
+							<th>{ e.relative ? 'Relative' : 'Count' }</th>
+							{counts}
+						</tbody>
+					</table>
+				</pre> );
+			})}
+		</div>
+	);
+};
+
 const OutputPanel = ( output ) => {
 	return (
 		<div id="outputPanel" style={{ height: 450, overflowY: 'scroll' }} >
@@ -68,6 +128,9 @@ const OutputPanel = ( output ) => {
 				}
 				else if ( e.type === 'Frequency Table' ) {
 					return frequencyTable( e, idx );
+				}
+				else if ( e.type === 'Grouped Frequency Table' ) {
+					return groupedFrequencyTable( e, idx );
 				}
 				else if ( isNumber( e.value ) ) {
 					return (
@@ -137,7 +200,7 @@ const OutputPanel = ( output ) => {
 
 // MAIN //
 
-class DataExplorer extends React.Component {
+class DataExplorer extends Component {
 	/**
 	* Constructor function
 	*/
@@ -154,20 +217,17 @@ class DataExplorer extends React.Component {
 
 		this.generateHistogram = ( variable, group, overlayDensity, chooseBins, nBins )=>{
 			let newOutput;
-			let mysample = sample.factory({ seed: 201 });
 			if ( group === 'None' ) {
 				newOutput = this.state.output.slice();
-				let sub = mysample( this.props.data[ variable ], {
-					size: 1000
-				});
+				let data = this.props.data[ variable ];
 				let code;
 				if ( chooseBins ) {
-					code = `${variable} = c(${sub})
+					code = `${variable} = c(${data})
 						truehist( ${variable}, nbins = ${nBins},
 							prob=${overlayDensity ? 'TRUE' : 'FALSE'},
 							cex.lab=2.0, cex.main=2.0, cex.axis=2.0 )\n`;
 				} else {
-					code = `${variable} = c(${sub})
+					code = `${variable} = c(${data})
 						truehist( ${variable}, prob=${overlayDensity ? 'TRUE' : 'FALSE'},
 							cex.lab=2.0, cex.main=2.0, cex.axis=2.0 )\n`;
 				}
@@ -187,7 +247,7 @@ class DataExplorer extends React.Component {
 				});
 			} else {
 				let freqs = by( this.props.data[ variable ], this.props.data[ group ], arr => {
-					return mysample( arr, { size: 1000 });
+					return arr;
 				});
 				newOutput = this.state.output.slice();
 
@@ -232,19 +292,16 @@ class DataExplorer extends React.Component {
 		this.generateBoxplot = ( variable, group, commonAxis )=>{
 			let newOutput;
 			let yranges;
-			let mysample = sample.factory({ seed: 201 });
 			if ( group === 'None' ) {
 				newOutput = this.state.output.slice();
-				let sub = mysample( this.props.data[ variable ], {
-					size: 1000
-				});
+				let data = this.props.data[ variable ];
 				newOutput.push({
 					variable: variable,
 					type: 'Chart',
 					value: <div>
 						<label>{variable}: </label>
 						<RPlot
-							code={`boxplot( c( ${sub} ),
+							code={`boxplot( c( ${data} ),
 								cex.lab=2.0, cex.axis=1.5 )`}
 						/>
 					</div>
@@ -252,7 +309,7 @@ class DataExplorer extends React.Component {
 			} else {
 				yranges = range( this.props.data[ variable ]);
 				let freqs = by( this.props.data[ variable ], this.props.data[ group ], arr => {
-					return mysample( arr, { size: 1000 });
+					return arr;
 				});
 				newOutput = this.state.output.slice();
 
@@ -277,6 +334,57 @@ class DataExplorer extends React.Component {
 					</div>
 				});
 			}
+			this.setState({
+				output: newOutput
+			});
+		};
+
+		this.generateScatterplot = ( xval, yval, color, type ) => {
+			let newOutput = this.state.output.slice();
+
+			let aes = 'aes( x = xval, y = yval';
+			if ( color !== 'None' ) {
+				aes += ', color = color';
+			}
+			if ( type !== 'None' ) {
+				aes += ', shape = type';
+			}
+			aes += ' )';
+
+			let labs = `labs( x = "${xval}", y="${yval}"`;
+			if ( color !== 'None' ) {
+				labs += `, color = "${color}"`;
+			}
+			if ( type !== 'None' ) {
+				labs += `, shape = "${type}"`;
+			}
+			labs += ' )';
+
+			let code = `dat = data.frame(
+				xval = c(${this.props.data[ xval ]}),
+				yval = c(${this.props.data[ yval ]})
+				${ color !== 'None' ? `, color = c(${this.props.data[ color ].map(
+					e => `"${e}"`
+				)})` : '' }
+				${ type !== 'None' ? `, type = c(${this.props.data[ type ].map(
+					e => `"${e}"`
+				)})` : '' }
+			)
+			ggplot( data = dat, ${aes}) +
+			geom_point( size = 1.5 ) + ${labs}`;
+
+			newOutput.push({
+				variable: `${xval} against ${yval}`,
+				type: 'Chart',
+				value: <div>
+					<label>{`${xval} against ${yval}`}: </label>
+					<RPlot
+						code={code}
+						prependCode={[ 'theme_set(theme_gray(base_size = 18))' ]}
+						libraries={[ 'ggplot2' ]}
+					/>
+				</div>
+			});
 			this.setState({
 				output: newOutput
 			});
@@ -344,23 +452,19 @@ class DataExplorer extends React.Component {
 			});
 		};
 
-		this.generateFrequencyTable = ( variable, relativeFreqs ) => {
-			let freqs = entries( countBy( this.props.data[ variable ]) ).map( e => {
-				return { category: e[ 0 ], count: e[ 1 ] };
-			});
-			if ( relativeFreqs ) {
-				let totalCount = freqs
-					.map( x => x.count )
-					.reduce( ( a, b ) => a + b );
-				freqs = freqs.map( x => {
-					x.count = x.count / totalCount;
-					return x;
+		this.generateFrequencyTable = ( variable, group, relativeFreqs ) => {
+			let newOutput = this.state.output.slice();
+			let freqs;
+			if ( group === 'None' ) {
+				freqs = getFrequencies( this.props.data[ variable ], relativeFreqs );
+			} else {
+				freqs = by( this.props.data[ variable ], this.props.data[ group ], ( arr ) => {
+					return getFrequencies( arr, relativeFreqs );
 				});
 			}
-			let newOutput = this.state.output.slice();
 			newOutput.push({
 				variable: variable,
-				type: 'Frequency Table',
+				type: group === 'None' ? 'Frequency Table' : 'Grouped Frequency Table',
 				value: freqs,
 				relative: relativeFreqs
 			});
@@ -369,15 +473,33 @@ class DataExplorer extends React.Component {
 			});
 		};
 
-		this.generateStatistics = ( variable, statName, group ) => {
+		this.generateStatistics = ( statName, variable, secondVariable, group ) => {
+			let { data } = this.props;
 			let fun;
 			let res;
 
 			fun = statistic( statName );
-			if ( group === 'None' ) {
-				res = fun( this.props.data[ variable ]);
-			} else {
-				res = by( this.props.data[ variable ], this.props.data[ group ], fun );
+
+			if ( statName === 'Correlation' ) {
+				if ( group === 'None' ) {
+					res = fun( data[ variable ], data[ secondVariable ]);
+					// Extract correlation coefficient from correlation matrix:
+					res = res[ 0 ][ 1 ];
+				} else {
+					res = by2( data[ variable ], data[ secondVariable ], data[ group ], fun );
+					for ( let key in res ) {
+						// Extract correlation coefficient from correlation matrix:
+						res[ key ] = res[ key ][ 0 ][ 1 ];
+					}
+				}
+				variable = `${variable} vs. ${secondVariable}`;
+			}
+			else {
+				if ( group === 'None' ) {
+					res = fun( data[ variable ]);
+				} else {
+					res = by( data[ variable ], data[ group ], fun );
+				}
 			}
 			let newOutput = this.state.output.slice();
 			newOutput.push({
@@ -417,17 +539,31 @@ class DataExplorer extends React.Component {
 										label="Calculate"
 										onGenerate={this.generateStatistics}>
 										<SelectInput
-											legend="Variable:"
-											defaultValue='Income'
-											options={this.props.continuous}
-										/>
-										<SelectInput
 											legend="Statistic:"
 											defaultValue="Mean"
 											options={this.props.statistics}
+											onChange={ ( value ) => {
+												this.setState({
+													currentStatistic: value
+												});
+											}}
 										/>
 										<SelectInput
-											legend="Group By"
+											legend="Variable:"
+											defaultValue={this.props.continuous[ 0 ]}
+											options={this.props.continuous}
+										/>
+										<SelectInput
+											legend="Second Variable:"
+											defaultValue={this.props.continuous[ 1 ]}
+											options={this.props.continuous}
+											style={{
+												display: this.state.currentStatistic === 'Correlation' ?
+													'inline' : 'none'
+											}}
+										/>
+										<SelectInput
+											legend="Group By:"
 											defaultValue="None"
 											options={this.state.groupVars}
 										/>
@@ -443,6 +579,11 @@ class DataExplorer extends React.Component {
 											legend="Variable:"
 											defaultValue='Health'
 											options={this.props.categorical}
+										/>
+										<SelectInput
+											legend="Group By:"
+											defaultValue="None"
+											options={this.state.groupVars}
 										/>
 										<CheckboxInput
 											legend="Relative Frequency"
@@ -466,6 +607,7 @@ class DataExplorer extends React.Component {
 												'Histogram',
 												'Bar Chart',
 												'Pie Chart',
+												'Scatterplot',
 												'Box Plot'
 											]}
 										/>
@@ -477,11 +619,11 @@ class DataExplorer extends React.Component {
 										>
 											<SelectInput
 												legend="Variable:"
-												defaultValue='Income'
+												defaultValue={this.props.continuous[ 0 ]}
 												options={this.props.continuous}
 											/>
 											<SelectInput
-												legend="Group By"
+												legend="Group By:"
 												defaultValue="None"
 												options={this.state.groupVars}
 											/>
@@ -504,6 +646,30 @@ class DataExplorer extends React.Component {
 											/>
 										</Dashboard>: null
 									}
+									{ this.state.plotType === 'Scatterplot' ?
+										<Dashboard autoStart={false} title="Options" onGenerate={this.generateScatterplot}>
+											<SelectInput
+												legend="Variable on x-axis:"
+												defaultValue={this.props.continuous[ 0 ]}
+												options={this.props.continuous}
+											/>
+											<SelectInput
+												legend="Variable on y-axis:"
+												defaultValue={this.props.continuous[ 1 ]}
+												options={this.props.continuous}
+											/>
+											<SelectInput
+												legend="Map to color:"
+												defaultValue="None"
+												options={this.state.groupVars}
+											/>
+											<SelectInput
+												legend="Map to point type:"
+												defaultValue="None"
+												options={this.state.groupVars}
+											/>
+										</Dashboard>: null
+									}
 									{ this.state.plotType === 'Box Plot' ?
 										<Dashboard autoStart={false} title="Options" onGenerate={this.generateBoxplot}>
 											<SelectInput
@@ -512,7 +678,7 @@ class DataExplorer extends React.Component {
 												options={this.props.continuous}
 											/>
 											<SelectInput
-												legend="Group By"
+												legend="Group By:"
 												defaultValue="None"
 												options={this.state.groupVars}
 											/>
@@ -522,7 +688,11 @@ class DataExplorer extends React.Component {
 											/>
 										</Dashboard>: null
 									}
-									{ this.state.plotType !== 'Histogram' && this.state.plotType !== 'Box Plot' ?
+									{ (
+										this.state.plotType !== 'Histogram' &&
+										this.state.plotType !== 'Box Plot' &&
+										this.state.plotType !== 'Scatterplot'
+									) ?
 										<Dashboard autoStart={false} onGenerate={this.generatePlot}>
 											<SelectInput
 												legend="Variable:"
@@ -530,7 +700,7 @@ class DataExplorer extends React.Component {
 												options={this.props.categorical}
 											/>
 											<SelectInput
-												legend="Group By"
+												legend="Group By:"
 												defaultValue="None"
 												options={this.state.groupVars}
 											/>
@@ -554,7 +724,7 @@ class DataExplorer extends React.Component {
 					<Col md={colWidth}>
 						<Panel header={<h3>Output</h3>} style={{ height: 600 }}>
 							{OutputPanel( this.state.output )}
-							<Button bsSize="small" onClick={()=>{
+							<Button bsSize="small" onClick={ () => {
 								this.setState({ output: []});
 							}}>Clear</Button>
 						</Panel>
@@ -579,7 +749,8 @@ DataExplorer.defaultProps = {
 		'Max',
 		'Range',
 		'Standard Deviation',
-		'Variance'
+		'Variance',
+		'Correlation'
 	]
 };
 
