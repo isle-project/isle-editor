@@ -2,6 +2,8 @@
 
 import React, { PropTypes } from 'react';
 import Input from 'components/input';
+import PINF from '@stdlib/math/constants/float64-pinf';
+import NINF from '@stdlib/math/constants/float64-ninf';
 
 
 // MAIN //
@@ -99,7 +101,8 @@ class NumberInput extends Input {
 						background: 'gold',
 						width: '80px',
 						textAlign: 'center',
-						float: 'right'
+						float: 'right',
+						...this.props.style
 					}}
 					onChange={this.handleChange}
 				/>
@@ -112,8 +115,8 @@ class NumberInput extends Input {
 // DEFAULT PROPERTIES //
 
 NumberInput.defaultProps = {
-	min: 0,
-	max: 100,
+	min: NINF,
+	max: PINF,
 	step: 1,
 	defaultValue: 0,
 	onChange(){},
