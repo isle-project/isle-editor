@@ -58,7 +58,7 @@ class SelectInput extends Input {
 			);
 		} else {
 			return (
-				<Form>
+				<Form style={{ ...this.props.style }} >
 					<FormGroup controlId="formControlsSelect">
 						{ this.props.legend ?
 							<ControlLabel>{this.props.legend}</ControlLabel> :
