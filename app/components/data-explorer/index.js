@@ -617,7 +617,7 @@ class DataExplorer extends Component {
 									>
 										<SelectInput
 											legend="Variable:"
-											defaultValue='Health'
+											defaultValue={this.props.categorical[ 0 ]}
 											options={this.props.categorical}
 										/>
 										<SelectInput
@@ -701,7 +701,7 @@ class DataExplorer extends Component {
 											/>
 										</Dashboard>: null
 									}
-									{ this.state.plotType === '2d Density Plot' ?
+									{ this.state.plotType === 'Heat Map' ?
 										<Dashboard autoStart={false} title="Options" onGenerate={this.generateHeatmap}>
 											<SelectInput
 												legend="Variable on x-axis:"
@@ -732,12 +732,12 @@ class DataExplorer extends Component {
 												options={this.props.continuous}
 											/>
 											<SelectInput
-												legend="Map to color:"
+												legend="Color By:"
 												defaultValue="None"
 												options={this.state.groupVars}
 											/>
 											<SelectInput
-												legend="Map to point type:"
+												legend="Point Type By:"
 												defaultValue="None"
 												options={this.state.groupVars}
 											/>
@@ -765,12 +765,12 @@ class DataExplorer extends Component {
 										this.state.plotType !== 'Histogram' &&
 										this.state.plotType !== 'Box Plot' &&
 										this.state.plotType !== 'Scatterplot' &&
-										this.state.plotType !== '2d Density Plot'
+										this.state.plotType !== 'Heat Map'
 									) ?
 										<Dashboard autoStart={false} onGenerate={this.generatePlot}>
 											<SelectInput
 												legend="Variable:"
-												defaultValue='Gender'
+												defaultValue={this.props.categorical[ 0 ]}
 												options={this.props.categorical}
 											/>
 											<SelectInput
@@ -832,7 +832,7 @@ DataExplorer.defaultProps = {
 		'Histogram',
 		'Pie Chart',
 		'Scatterplot',
-		'2d Density Plot'
+		'Heat Map'
 	]
 };
 
