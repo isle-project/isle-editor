@@ -80,6 +80,7 @@ const VictoryErrorBar = require( 'victory' ).VictoryErrorBar;
 const VictoryLabel = require( 'victory' ).VictoryLabel;
 const VictoryLine = require( 'victory' ).VictoryLine;
 const VictoryPie = require( 'victory' ).VictoryPie;
+const VictoryScatter = require( 'victory' ).VictoryScatter;
 const VictoryStack = require( 'victory' ).VictoryStack;
 const VictoryTheme = require( 'victory' ).VictoryTheme;
 const VictoryTooltip = require( 'victory' ).VictoryTooltip;
@@ -130,6 +131,7 @@ const Well = ReactBootstrap.Well;
 // LEARNING MODULES //
 
 const DataExplorer = require( 'components/data-explorer' );
+const CrossValidation = require( 'components/learn/cross-validation' );
 
 
 // FUNCTIONS //
