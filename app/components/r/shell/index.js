@@ -229,7 +229,7 @@ class RShell extends React.Component {
 		};
 
 		this.handleResetClick = () => {
-			this.editor.setValue( this.props.code );
+			this.editor.setValue( this.props.code, 1 );
 		};
 
 		this.handleHintClick = () => {
@@ -376,7 +376,8 @@ class RShell extends React.Component {
 	}
 
 	componentDidMount() {
-		this.editor = ace.edit( ReactDom.findDOMNode( this ).firstChild );
+		const node = ReactDom.findDOMNode( this );
+		this.editor = ace.edit( node.firstChild );
 		this.session = this.editor.getSession();
 		this.session.setMode( 'ace/mode/r' );
 		this.session.getDocument().setNewLineMode( 'unix' );
@@ -416,6 +417,15 @@ class RShell extends React.Component {
 
 	componentDidUpdate() {
 		this.editor.resize();
+		const node = ReactDom.findDOMNode( this );
+		// Undo Spectacle scaling as it messes up the rendering of the ACE editor:
+		let slide = node.closest( '.spectacle-content' );
+		if ( slide ) {
+			let computedStyle = window.getComputedStyle( slide );
+			let transform = computedStyle.getPropertyValue( 'transform' );
+			let scaleFactor = /matrix\(([0-9.]*)/.exec( transform )[ 1 ];
+			node.style.transform = `scale(${1/scaleFactor})`;
+		}
 	}
 
 	componentWillReceiveProps( nextProps ) {
