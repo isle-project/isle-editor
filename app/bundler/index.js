@@ -339,7 +339,7 @@ function writeIndexFile({
 		}
 		content = `<Deck
 				theme={theme}
-				globalStyles={true}
+				globalStyles={false}
 				transition={[]}
 				progress="number"
 			>
