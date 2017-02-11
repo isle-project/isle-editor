@@ -95,7 +95,7 @@ const frequencyTable = ( e, idx ) => {
 
 const groupedFrequencyTable = ( e, idx ) => {
 	return (
-		<div key={idx}>
+		<div key={idx} style={{ overflowX: 'auto' }}>
 			<label>{e.variable}: </label>
 			{entries( e.value ).map( ( arr, i ) => {
 				let categories = arr[ 1 ].map( x => <td>{x.category}</td> );
@@ -503,7 +503,7 @@ class DataExplorer extends Component {
 				});
 			}
 			newOutput.push({
-				variable: variable,
+				variable: group === 'None' ? variable : `${variable} by ${group}`,
 				type: group === 'None' ? 'Frequency Table' : 'Grouped Frequency Table',
 				value: freqs,
 				relative: relativeFreqs
