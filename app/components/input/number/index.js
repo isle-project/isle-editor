@@ -14,13 +14,16 @@ class NumberInput extends Input {
 		super( props );
 
 		this.handleChange = ( event ) => {
-			const value = event.target.value;
+			let value = event.target.value;
+			value = value.replace( /^0+/, '' );
 			const { max, min } = this.props;
-
 			if (
 				( min === null || value >= min || min > 0 ) &&
 				( max === null || value <= max )
 			) {
+				if ( value === '' ) {
+					value = 0;
+				}
 				this.setState({
 					value
 				}, () => {
