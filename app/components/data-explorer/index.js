@@ -559,6 +559,11 @@ class DataExplorer extends Component {
 	*/
 	render() {
 		let colWidth = this.props.questions ? 4 : 6;
+		let nStatistics = this.props.statistics.length;
+		let defaultActiveKey = 1;
+		if ( nStatistics === 0 ) {
+			defaultActiveKey = 2;
+		}
 		return (
 			<Grid>
 				<Row>
@@ -571,44 +576,46 @@ class DataExplorer extends Component {
 							header={<h3>Toolbox</h3>}
 							style={{ height: 600 }}
 						>
-							<Tabs defaultActiveKey={1} id="toolbox-tabs" >
-								<Tab eventKey={1} title="Continuous">
-									<Dashboard
-										autoStart={false}
-										title="Summary Statistics"
-										label="Calculate"
-										onGenerate={this.generateStatistics}>
-										<SelectInput
-											legend="Statistic:"
-											defaultValue="Mean"
-											options={this.props.statistics}
-											onChange={ ( value ) => {
-												this.setState({
-													currentStatistic: value
-												});
-											}}
-										/>
-										<SelectInput
-											legend="Variable:"
-											defaultValue={this.props.continuous[ 0 ]}
-											options={this.props.continuous}
-										/>
-										<SelectInput
-											legend="Second Variable:"
-											defaultValue={this.props.continuous[ 1 ]}
-											options={this.props.continuous}
-											style={{
-												display: this.state.currentStatistic === 'Correlation' ?
-													'inline' : 'none'
-											}}
-										/>
-										<SelectInput
-											legend="Group By:"
-											defaultValue="None"
-											options={this.state.groupVars}
-										/>
-									</Dashboard>
-								</Tab>
+							<Tabs defaultActiveKey={defaultActiveKey} id="toolbox-tabs" >
+								{ nStatistics > 0 ?
+									<Tab eventKey={1} title="Continuous">
+										<Dashboard
+											autoStart={false}
+											title="Summary Statistics"
+											label="Calculate"
+											onGenerate={this.generateStatistics}>
+											<SelectInput
+												legend="Statistic:"
+												defaultValue="Mean"
+												options={this.props.statistics}
+												onChange={ ( value ) => {
+													this.setState({
+														currentStatistic: value
+													});
+												}}
+											/>
+											<SelectInput
+												legend="Variable:"
+												defaultValue={this.props.continuous[ 0 ]}
+												options={this.props.continuous}
+											/>
+											<SelectInput
+												legend="Second Variable:"
+												defaultValue={this.props.continuous[ 1 ]}
+												options={this.props.continuous}
+												style={{
+													display: this.state.currentStatistic === 'Correlation' ?
+														'inline' : 'none'
+												}}
+											/>
+											<SelectInput
+												legend="Group By:"
+												defaultValue="None"
+												options={this.state.groupVars}
+											/>
+										</Dashboard>
+									</Tab> : null
+								}
 								<Tab eventKey={2} title="Categorical">
 									<Dashboard
 										autoStart={false}
@@ -631,156 +638,158 @@ class DataExplorer extends Component {
 										/>
 									</Dashboard>
 								</Tab>
-								<Tab eventKey={3} title="Plots">
-									<Dashboard
-										autoUpdate
-										title="Create Plot"
-										onGenerate={( type )=>{
-											this.setState({
-												plotType: type
-											});
-										}}
-									>
-										<SelectInput
-											defaultValue={this.props.plots[ 0 ]}
-											options={this.props.plots}
-										/>
-									</Dashboard>
-									{ this.state.plotType === 'Histogram' ?
+								{ this.props.plots.length > 0 ?
+									<Tab eventKey={3} title="Plots">
 										<Dashboard
-											autoStart={false}
-											onGenerate={this.generateHistogram}
+											autoUpdate
+											title="Create Plot"
+											onGenerate={( type )=>{
+												this.setState({
+													plotType: type
+												});
+											}}
 										>
 											<SelectInput
-												legend="Variable:"
-												defaultValue={this.props.continuous[ 0 ]}
-												options={this.props.continuous}
+												defaultValue={this.props.plots[ 0 ]}
+												options={this.props.plots}
 											/>
-											<SelectInput
-												legend="Group By:"
-												defaultValue="None"
-												options={this.state.groupVars}
-											/>
-											<CheckboxInput
-												inline
-												legend="Overlay density"
-												defaultValue={false}
-											/>
-											<CheckboxInput
-												inline
-												legend="Choose bins"
-												defaultValue={false}
-											/>
-											<SliderInput
-												legend="Number of Bins"
-												defaultValue={10}
-												min={1}
-												max={30}
-												step={1}
-											/>
-											<CheckboxInput
-												inline
-												legend="Set x-axis range"
-												defaultValue={false}
-											/>
-											<NumberInput
-												legend="Lower Bound"
-												defaultValue={0}
-												step={1}
-												style={{
-													width: 120
-												}}
-											/>
-											<NumberInput
-												legend="Upper Bound"
-												defaultValue={0}
-												step={1}
-												style={{
-													width: 120
-												}}
-											/>
-										</Dashboard>: null
-									}
-									{ this.state.plotType === 'Heat Map' ?
-										<Dashboard autoStart={false} title="Options" onGenerate={this.generateHeatmap}>
-											<SelectInput
-												legend="Variable on x-axis:"
-												defaultValue={this.props.continuous[ 0 ]}
-												options={this.props.continuous}
-											/>
-											<SelectInput
-												legend="Variable on y-axis:"
-												defaultValue={this.props.continuous[ 1 ]}
-												options={this.props.continuous}
-											/>
-											<CheckboxInput
-												legend="Overlay observations"
-												defaultValue={false}
-											/>
-										</Dashboard>: null
-									}
-									{ this.state.plotType === 'Scatterplot' ?
-										<Dashboard autoStart={false} title="Options" onGenerate={this.generateScatterplot}>
-											<SelectInput
-												legend="Variable on x-axis:"
-												defaultValue={this.props.continuous[ 0 ]}
-												options={this.props.continuous}
-											/>
-											<SelectInput
-												legend="Variable on y-axis:"
-												defaultValue={this.props.continuous[ 1 ]}
-												options={this.props.continuous}
-											/>
-											<SelectInput
-												legend="Color By:"
-												defaultValue="None"
-												options={this.state.groupVars}
-											/>
-											<SelectInput
-												legend="Point Type By:"
-												defaultValue="None"
-												options={this.state.groupVars}
-											/>
-										</Dashboard>: null
-									}
-									{ this.state.plotType === 'Box Plot' ?
-										<Dashboard autoStart={false} title="Options" onGenerate={this.generateBoxplot}>
-											<SelectInput
-												legend="Variable:"
-												defaultValue='Income'
-												options={this.props.continuous}
-											/>
-											<SelectInput
-												legend="Group By:"
-												defaultValue="None"
-												options={this.state.groupVars}
-											/>
-											<CheckboxInput
-												legend="Use common y-axis (when grouped)"
-												defaultValue={false}
-											/>
-										</Dashboard>: null
-									}
-									{ (
-										this.state.plotType !== 'Histogram' &&
-										this.state.plotType !== 'Box Plot' &&
-										this.state.plotType !== 'Scatterplot' &&
-										this.state.plotType !== 'Heat Map'
-									) ?
-										<Dashboard autoStart={false} onGenerate={this.generatePlot}>
-											<SelectInput
-												legend="Variable:"
-												defaultValue={this.props.categorical[ 0 ]}
-												options={this.props.categorical}
-											/>
-											<SelectInput
-												legend="Group By:"
-												defaultValue="None"
-												options={this.state.groupVars}
-											/>
-										</Dashboard> : null
-									}
-								</Tab>
+										</Dashboard>
+										{ this.state.plotType === 'Histogram' ?
+											<Dashboard
+												autoStart={false}
+												onGenerate={this.generateHistogram}
+											>
+												<SelectInput
+													legend="Variable:"
+													defaultValue={this.props.continuous[ 0 ]}
+													options={this.props.continuous}
+												/>
+												<SelectInput
+													legend="Group By:"
+													defaultValue="None"
+													options={this.state.groupVars}
+												/>
+												<CheckboxInput
+													inline
+													legend="Overlay density"
+													defaultValue={false}
+												/>
+												<CheckboxInput
+													inline
+													legend="Choose bins"
+													defaultValue={false}
+												/>
+												<SliderInput
+													legend="Number of Bins"
+													defaultValue={10}
+													min={1}
+													max={30}
+													step={1}
+												/>
+												<CheckboxInput
+													inline
+													legend="Set x-axis range"
+													defaultValue={false}
+												/>
+												<NumberInput
+													legend="Lower Bound"
+													defaultValue={0}
+													step={1}
+													style={{
+														width: 120
+													}}
+												/>
+												<NumberInput
+													legend="Upper Bound"
+													defaultValue={0}
+													step={1}
+													style={{
+														width: 120
+													}}
+												/>
+											</Dashboard>: null
+										}
+										{ this.state.plotType === 'Heat Map' ?
+											<Dashboard autoStart={false} title="Options" onGenerate={this.generateHeatmap}>
+												<SelectInput
+													legend="Variable on x-axis:"
+													defaultValue={this.props.continuous[ 0 ]}
+													options={this.props.continuous}
+												/>
+												<SelectInput
+													legend="Variable on y-axis:"
+													defaultValue={this.props.continuous[ 1 ]}
+													options={this.props.continuous}
+												/>
+												<CheckboxInput
+													legend="Overlay observations"
+													defaultValue={false}
+												/>
+											</Dashboard>: null
+										}
+										{ this.state.plotType === 'Scatterplot' ?
+											<Dashboard autoStart={false} title="Options" onGenerate={this.generateScatterplot}>
+												<SelectInput
+													legend="Variable on x-axis:"
+													defaultValue={this.props.continuous[ 0 ]}
+													options={this.props.continuous}
+												/>
+												<SelectInput
+													legend="Variable on y-axis:"
+													defaultValue={this.props.continuous[ 1 ]}
+													options={this.props.continuous}
+												/>
+												<SelectInput
+													legend="Color By:"
+													defaultValue="None"
+													options={this.state.groupVars}
+												/>
+												<SelectInput
+													legend="Point Type By:"
+													defaultValue="None"
+													options={this.state.groupVars}
+												/>
+											</Dashboard>: null
+										}
+										{ this.state.plotType === 'Box Plot' ?
+											<Dashboard autoStart={false} title="Options" onGenerate={this.generateBoxplot}>
+												<SelectInput
+													legend="Variable:"
+													defaultValue='Income'
+													options={this.props.continuous}
+												/>
+												<SelectInput
+													legend="Group By:"
+													defaultValue="None"
+													options={this.state.groupVars}
+												/>
+												<CheckboxInput
+													legend="Use common y-axis (when grouped)"
+													defaultValue={false}
+												/>
+											</Dashboard>: null
+										}
+										{ (
+											this.state.plotType !== 'Histogram' &&
+											this.state.plotType !== 'Box Plot' &&
+											this.state.plotType !== 'Scatterplot' &&
+											this.state.plotType !== 'Heat Map'
+										) ?
+											<Dashboard autoStart={false} onGenerate={this.generatePlot}>
+												<SelectInput
+													legend="Variable:"
+													defaultValue={this.props.categorical[ 0 ]}
+													options={this.props.categorical}
+												/>
+												<SelectInput
+													legend="Group By:"
+													defaultValue="None"
+													options={this.state.groupVars}
+												/>
+											</Dashboard> : null
+										}
+									</Tab> : null
+								}
 								<Tab
 									eventKey={4}
 									title="Variables"
@@ -816,21 +825,21 @@ DataExplorer.defaultProps = {
 	codebook: null,
 	questions: null,
 	statistics: [
-		'Interquartile Range',
 		'Mean',
 		'Median',
 		'Min',
 		'Max',
 		'Range',
+		'Interquartile Range',
 		'Standard Deviation',
 		'Variance',
 		'Correlation'
 	],
 	plots: [
 		'Bar Chart',
-		'Box Plot',
-		'Histogram',
 		'Pie Chart',
+		'Histogram',
+		'Box Plot',
 		'Scatterplot',
 		'Heat Map'
 	]
