@@ -1,10 +1,10 @@
 // MODULES //
 
 import request from 'request';
+import inEditor from 'utils/is-electron';
 
 
 // SESSION //
-
 
 class Session {
 
@@ -31,6 +31,7 @@ class Session {
 
 	set( name, val ) {
 		this.vars[ name ] = val;
+		this.logToDatabase( 'vars', this.vars );
 	}
 
 	get( name ) {
@@ -59,18 +60,39 @@ class Session {
 			lessonID: this.lesson.title + '_' + this.lesson.author,
 			userID: this.user._id
 		};
-		request.post( this.server + '/updateSession', {
-			form: {
-				stringified: JSON.stringify( currentSession )
-			}
-		}, ( error, response, body ) => {
-			console.log( error );
-		});
+		if ( !inEditor ) {
+			request.post( this.server + '/updateSession', {
+				form: {
+					stringified: JSON.stringify( currentSession )
+				}
+			}, ( error, response, body ) => {
+				console.log( error );
+			});
+		}
+	}
+
+	logToDatabase( type, data ) {
+		const obj = {
+			startTime: this.startTime,
+			userID: this.user._id,
+			type,
+			data
+		};
+		if ( !inEditor ) {
+			request.post( this.server + '/storeSessionElement', {
+				form: {
+					stringified: JSON.stringify( obj )
+				}
+			}, ( error, response, body ) => {
+				console.log( error );
+			});
+		}
 	}
 
 	log( action ) {
 		action.time = new Date().getTime() - this.startTime;
 		this.actions.push( action );
+		this.logToDatabase( 'action', action );
 	}
 
 }

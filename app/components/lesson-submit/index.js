@@ -28,9 +28,13 @@ class LessonSubmit extends Component {
 
 		this.pingServer = () => {
 			if ( global.lesson && global.lesson.session && global.lesson.session.server ) {
-				request.get( global.lesson.session.server + '/ping', ( err, res, body ) => {
+				const { session } = global.lesson;
+				request.get( session.server + '/ping', ( err, res, body ) => {
 					if ( !err && body === 'live' ) {
 						this.setState({ disabled: false });
+						if ( !session.anonymous ) {
+							session.updateDatabase();
+						}
 					}
 				});
 			}
