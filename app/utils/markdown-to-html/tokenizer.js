@@ -11,6 +11,12 @@ const IN_JSX_EXPRESSION = 6;
 
 // FUNCTIONS //
 
+/**
+* Tests whether character is a quotation mark.
+*
+* @param {string} c - input character
+* @returns {boolean} boolean indicating whether character is a quotation mark
+*/
 function isQuotationMark( c ) {
 	return (
 		c === '\'' ||
@@ -19,6 +25,12 @@ function isQuotationMark( c ) {
 	);
 } // end FUNCTION isQuotationMark()
 
+/**
+* Tests whether character is whitespace.
+*
+* @param {string} c - input character
+* @returns {boolean} boolean indicating whether character is whitespace
+*/
 function isWhitespace( c ) {
 	return (
 		c === ' ' ||
