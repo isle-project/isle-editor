@@ -21,6 +21,7 @@ class Session {
 		this.duration = 0;
 		this.lesson = config;
 		this.server = config.server;
+		this.lessonID = this.lesson.title + '_' + this.lesson.author;
 	}
 
 	updateUser() {
@@ -57,8 +58,8 @@ class Session {
 			actions: this.actions,
 			finished: this.finished,
 			vars: this.vars,
-			lessonID: this.lesson.title + '_' + this.lesson.author,
-			userID: this.user._id
+			lessonID: this.lessonID,
+			userID: this.user ? this.user._id : null
 		};
 		if ( !inEditor ) {
 			request.post( this.server + '/updateSession', {
@@ -74,7 +75,8 @@ class Session {
 	logToDatabase( type, data ) {
 		const obj = {
 			startTime: this.startTime,
-			userID: this.user._id,
+			userID: this.user ? this.user._id : null,
+			lessonID: this.lessonID,
 			type,
 			data
 		};
@@ -93,6 +95,11 @@ class Session {
 		action.time = new Date().getTime() - this.startTime;
 		this.actions.push( action );
 		this.logToDatabase( 'action', action );
+
+		// If first action, create session on server:
+		if ( this.actions.length === 1 ) {
+			this.updateDatabase();
+		}
 	}
 
 }
