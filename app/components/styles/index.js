@@ -36,13 +36,17 @@ const styles = {
 		height: '0px'
 	},
 	tooltip: {
-		position: 'absolute',
+		display: 'inline-block',
+		border: '1px solid #aeaeae',
+		borderRadius: '4px',
+		marginLeft: '9px',
 		height: 'auto',
 		width: '140px',
 		background: 'lightblue',
 		textAlign: 'center',
 		fontFamily: 'Open Sans, sans-serif',
-		padding: '8px'
+		fontSize: '12px',
+		padding: '4px'
 	},
 	response: {
 		right: '2%',
