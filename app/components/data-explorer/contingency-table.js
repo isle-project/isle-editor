@@ -90,7 +90,10 @@ class ContingencyTable extends Component {
 		let output = {
 			variable: `${rowVar} by ${colVar}`,
 			type: 'Contingency Table',
-			value: table
+			value: <div>
+				<label>{`${rowVar} by ${colVar}`}: </label>
+				<pre>{table}</pre>
+			</div>
 		};
 		this.props.onCreated( output );
 	}
