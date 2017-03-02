@@ -15,6 +15,11 @@ ipcMain.on( 'save-file', ( e, { data, filePath }) => {
 		if ( err ) {
 			return;
 		}
+		e.sender.send( 'ISLE::file-loaded', {
+			fileName: basename( filePath ),
+			filePath: filePath,
+			file: data
+		});
 	});
 });
 
