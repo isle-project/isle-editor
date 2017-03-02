@@ -269,9 +269,9 @@ class DataExplorer extends Component {
 												</Tab.Pane>;
 											})}
 											{this.props.tabs.map( ( e, i ) => {
-												<Tab.Pane eventKey={`${4+i}`}>
+												return ( <Tab.Pane eventKey={`${4+i}`}>
 													{e.content}
-												</Tab.Pane>;
+												</Tab.Pane> );
 											})}
 										</Tab.Content>
 									</Col>
