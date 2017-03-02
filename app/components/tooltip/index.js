@@ -14,10 +14,6 @@ class Tooltip extends React.Component {
 	*/
 	constructor( props ) {
 		super( props );
-		// Set initial state variables...
-		this.state = {
-			visible: false
-		};
 	}
 
 	/*
@@ -40,7 +36,7 @@ class Tooltip extends React.Component {
 		return (
 			<div
 				className="tooltip"
-				style={{ display: this.state.visible ? 'inline' : 'none' }}
+				style={{ display: this.props.visible ? 'inline' : 'none' }}
 			>
 				<div
 					key="tooltip"
@@ -67,7 +63,8 @@ Tooltip.defaultProps = {
 Tooltip.propTypes = {
 	left: PropTypes.number,
 	text: PropTypes.string,
-	top: PropTypes.number
+	top: PropTypes.number,
+	visible: PropTypes.bool
 };
 
 
