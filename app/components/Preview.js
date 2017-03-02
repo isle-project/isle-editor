@@ -11,6 +11,7 @@
 */
 /* eslint no-eval: 0 */
 
+const fs = require( 'fs' );
 const path = require( 'path' );
 const React = require( 'react' );
 const ReactBootstrap = require( 'react-bootstrap' );
@@ -38,15 +39,20 @@ const CheckboxInput = require( 'components/input/checkbox' );
 const ColorPicker = require( 'components/color-picker' );
 const Column = ReactBootstrap.Col;
 const Dashboard = require( 'components/dashboard' );
+const DataTable = require( 'components/data-table' );
 const DensityPlot = require( 'components/d3/density-plot' );
 const DraggableList = require( 'components/draggable-list' );
 const FeedbackButtons = require( 'components/feedback' );
 const FreeTextQuestion = require( 'components/free-text-question' );
 const Grid = require( 'components/grid' );
 const LessonSubmit = require( 'components/lesson-submit' );
+const Metrics = require( 'components/metrics' );
+const Modal = ReactBootstrap.Modal;
 const MultipleChoiceQuestion = require( 'components/multiple-choice-question' );
+const MultipleChoiceSurvey = require( 'components/multiple-choice-survey' );
 const MatchListQuestion = require( 'components/match-list-question' );
 const Nav = ReactBootstrap.Nav;
+const Navbar = ReactBootstrap.Navbar;
 const NavItem = ReactBootstrap.NavItem;
 const NumberInput = require( 'components/input/number' );
 const Panel = ReactBootstrap.Panel;
@@ -147,7 +153,12 @@ const loadRequires = ( libs, filePath ) => {
 				} else if ( /@stdlib/.test( lib ) ) {
 					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
 				}
-				eval( `global[ '${key}' ] = require( '${lib}' )` );
+				if ( /\.svg$/.test( lib ) ) {
+					let content = fs.readFileSync( lib ).toString();
+					eval( `global[ '${key}' ] = \`${content};\`` );
+				} else {
+					eval( `global[ '${key}' ] = require( '${lib}' );` );
+				}
 			}
 		}
 	}
