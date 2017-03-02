@@ -55,6 +55,8 @@ class RPlot extends Component {
 							this.setState({
 								plot: imgURL,
 								waiting: false
+							}, () => {
+								this.props.onDone( error );
 							});
 						}
 					});
@@ -73,8 +75,7 @@ class RPlot extends Component {
 
 	render() {
 		return (
-			<div className="rplot" style={{
-			}}>
+			<div className="rplot" style={{ minHeight: 128 }}>
 				<Spinner running={this.state.waiting} width={256} height={128}/>
 				{ this.state.waiting ?
 					<span /> :
@@ -97,7 +98,8 @@ RPlot.propTypes = {
 	prependCode: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.array
-	])
+	]),
+	onDone: PropTypes.func
 };
 
 
@@ -108,7 +110,8 @@ RPlot.defaultProps = {
 	width: 600,
 	height: 400,
 	libraries: [],
-	prependCode: ''
+	prependCode: '',
+	onDone(){}
 };
 
 
