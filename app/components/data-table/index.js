@@ -90,21 +90,14 @@ class DataTable extends Component {
 	constructor( props ) {
 		super( props );
 
-		const margin = ( props.containerWidth * ( 1.0 - props.width ) ) / 2.0;
-		const tableWidth = props.containerWidth - margin * 2.0;
-
 		this.state = {
-			table: createTableFromObject( props.data, props, tableWidth )
+			table: createTableFromObject( props.data, props, props.width )
 		};
-
-		console.log( this.state.table )
 	}
 
 	componentWillReceiveProps( nextProps ) {
 		if ( this.props.data !== nextProps.data ) {
-			const margin = ( this.props.containerWidth * ( 1.0 - this.props.width ) ) / 2.0;
-			const tableWidth = this.props.containerWidth - margin * 2.0;
-			const table = createTableFromObject( nextProps.data, nextProps, tableWidth );
+			const table = createTableFromObject( nextProps.data, nextProps, nextProps.width );
 			this.setState({
 				table
 			});
@@ -124,7 +117,7 @@ class DataTable extends Component {
 
 DataTable.defaultProps = {
 	maxHeight: 400,
-	width: 0.5,
+	width: 600,
 	columnNames: null,
 	columnWidth: null,
 	style: {}
@@ -139,7 +132,7 @@ DataTable.propTypes = {
 		PropTypes.number,
 		PropTypes.arrayOf( PropTypes.number )
 	]),
-	data: PropTypes.oneOf(
+	data: PropTypes.oneOfType(
 		PropTypes.array,
 		PropTypes.object
 	).isRequired,
@@ -150,5 +143,5 @@ DataTable.propTypes = {
 
 // EXPORTS //
 
-export default Dimensions( DataTable );
+export default DataTable;
 
