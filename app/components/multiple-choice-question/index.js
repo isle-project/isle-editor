@@ -97,16 +97,24 @@ class MultipleChoiceQuestion extends Component {
 	constructor( props ) {
 		super( props );
 
-		let active = isArray( this.props.solution ) ?
-			new Array( props.answers.length ) :
-			null;
-
-		this.state = {
-			submitted: false,
-			active,
-			correct: new Array( props.answers.length ),
-			answerSelected: false
-		};
+		if ( props.displaySolution ) {
+			this.state = {
+				submitted: true,
+				active: this.props.solution,
+				correct: new Array( props.answers.length ),
+				answerSelected: false
+			};
+		} else {
+			let active = isArray( this.props.solution ) ?
+				new Array( props.answers.length ) :
+				null;
+			this.state = {
+				submitted: false,
+				active,
+				correct: new Array( props.answers.length ),
+				answerSelected: false
+			};
+		}
 
 		this.submitQuestion = () => {
 			let sol = this.props.solution;
@@ -156,6 +164,12 @@ class MultipleChoiceQuestion extends Component {
 			}
 			this.props.onSubmit( this.state.active );
 		};
+	}
+
+	componentDidMount() {
+		if ( this.props.displaySolution ) {
+			this.submitQuestion();
+		}
 	}
 
 	render() {
@@ -257,6 +271,7 @@ class MultipleChoiceQuestion extends Component {
 MultipleChoiceQuestion.defaultProps = {
 	answers: [],
 	disabled: false,
+	displaySolution: false,
 	provideFeedback: true,
 	onSubmit(){}
 };
@@ -271,6 +286,7 @@ MultipleChoiceQuestion.propTypes = {
 	]).isRequired,
 	answers: PropTypes.array.isRequired,
 	disabled: PropTypes.bool,
+	displaySolution: PropTypes.bool,
 	provideFeedback: PropTypes.bool,
 	onSubmit: PropTypes.func
 };
