@@ -43,6 +43,7 @@ const AnswerOption = ( props ) => {
 		return (
 			<ListGroupItem
 				bsStyle={bsStyle}
+				disabled
 			>
 				{props.answerContent}
 			</ListGroupItem>
@@ -58,6 +59,7 @@ const AnswerOption = ( props ) => {
 				<ListGroupItem
 					onClick={props.onAnswerSelected}
 					bsStyle={bsStyle}
+					disabled={!props.provideFeedback}
 				>
 					{props.answerContent}
 				</ListGroupItem>
