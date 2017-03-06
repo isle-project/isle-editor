@@ -9,6 +9,7 @@ import DOMPurify from 'dompurify';
 import createPrependCode from 'components/r/utils/create-prepend-code';
 import beforeUnload from 'utils/before-unload';
 import isElectron from 'utils/is-electron';
+import isArray from '@stdlib/utils/is-array';
 
 import ace from 'brace';
 import 'brace/mode/r';
@@ -307,7 +308,7 @@ class RShell extends React.Component {
 					if ( !error && response.statusCode !== 400 ) {
 						arr.forEach( elem => {
 							if ( GRAPHICS_REGEX.test( elem ) === true ) {
-								const imgURL = OPEN_CPU + elem;
+								const imgURL = OPEN_CPU + elem + '/svg';
 								plots.push( imgURL );
 							}
 							if ( STDOUT_REGEX.test( elem ) === true ) {
@@ -423,8 +424,11 @@ class RShell extends React.Component {
 		if ( slide ) {
 			let computedStyle = window.getComputedStyle( slide );
 			let transform = computedStyle.getPropertyValue( 'transform' );
-			let scaleFactor = /matrix\(([0-9.]*)/.exec( transform )[ 1 ];
-			node.style.transform = `scale(${1/scaleFactor})`;
+			let match = /matrix\(([0-9.]*)/.exec( transform );
+			if ( isArray( match ) && match.length > 1 ) {
+				let scaleFactor = [ 1 ];
+				node.style.transform = `scale(${1/scaleFactor})`;
+			}
 		}
 	}
 
