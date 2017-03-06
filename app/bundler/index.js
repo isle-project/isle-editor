@@ -37,6 +37,7 @@ const generateIndexHTML = ( title, minify ) => `
 		<link href="css/fixed-data-table.min.css" rel="stylesheet" />
 		<link href="css/slick.min.css" rel="stylesheet" type="text/css" />
 		<link href="css/slick-theme.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 		<link rel="stylesheet" href="css/lesson.css" />
 	</head>
 	<body>
@@ -99,7 +100,7 @@ class Lesson extends Component {
 	}
 
 	sendMail( name, to ) {
-		let mailOptions = global.ISLE.mails[ name ];
+		let mailOptions = global.ISLE.mails[ name ] || {};
 		if ( !mailOptions.hasOwnProperty( 'from' ) ) {
 			mailOptions.from = ISLE.email || 'robinson@isle.cmu.edu';
 		}
@@ -185,18 +186,7 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath
 
 	if ( contains( components, 'Deck' ) ) {
 		res += '\n';
-		res += `const createTheme = require( 'spectacle/lib/themes/default' ).default;
-				const theme = createTheme({
-					primary: "#fffff8",
-					secondary: "#2e4468",
-					tertiary: "#c95d0a",
-					quartenary: "black"
-				}, {
-					primary: "Open Sans, sans-serif",
-					secondary: "Open Sans, sans-serif",
-					tertiary: "Open Sans, sans-serif",
-					font: "Open Sans, sans-serif"
-				});`;
+		res += `const theme = require( 'components/styles/theme.json' )`;
 	}
 	res += '\n';
 	res += getISLEcode( yamlStr );
@@ -331,10 +321,13 @@ function writeIndexFile({
 		// Automatically insert <Slide> tags if not manually set...
 		if ( !contains( content, '<Slide' ) || !contains( content, '</Slide>' ) ) {
 			let pres = '<Slide>';
-			let arr = content.split( '<h1>' );
-			pres += arr.shift() + '<h1>';
-			pres += arr.join( '</Slide><Slide><h1>' );
+			let arr = content.split( '<p>===</p>' );
+			pres += arr.join( '</Slide><Slide>' );
 			pres += '</Slide>';
+			pres = pres.replace( /<h([0-5])>(.*?)<\/h[0-5]>/g,'<Heading size={$1}>$2</Heading>' );
+			pres = pres.replace( /<p[^>]*>([\s\S]+?)<\/p>/g, '<SText>$1</SText>' );
+			pres = pres.replace( /<ul[^>]*>([\s\S]+?)<\/ul>/g, '<List>$1</List>' );
+			pres = pres.replace( /<li[^>]*>([\s\S]+?)<\/li>/g, '<ListItem>$1</ListItem>' );
 			content = pres;
 		}
 		content = `<Deck
