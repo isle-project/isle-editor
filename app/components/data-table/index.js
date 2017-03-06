@@ -132,10 +132,10 @@ DataTable.propTypes = {
 		PropTypes.number,
 		PropTypes.arrayOf( PropTypes.number )
 	]),
-	data: PropTypes.oneOfType(
+	data: PropTypes.oneOfType([
 		PropTypes.array,
 		PropTypes.object
-	).isRequired,
+	]).isRequired,
 	maxHeight: PropTypes.number,
 	width: PropTypes.number
 };
