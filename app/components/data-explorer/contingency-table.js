@@ -7,6 +7,95 @@ import Dashboard from 'components/dashboard';
 import countBy from 'lodash.countby';
 
 
+// FUNCTIONS //
+
+const createContingencyTable = ( data, rowVar, colVar, relativeFreqs ) => {
+	const freqs = {};
+	const rowValues = data[ rowVar ];
+	const colValues = data[ colVar ];
+	const nobs = rowValues.length;
+	const rowFreqs = countBy( rowValues );
+	const colFreqs = countBy( colValues );
+
+	const rowKeys = Object.keys( rowFreqs );
+	const colKeys = Object.keys( colFreqs );
+	for ( let i = 0; i < rowKeys.length; i++ ) {
+		for ( let l = 0; l < colKeys.length; l++ ) {
+			let key1 = rowKeys[ i ];
+			let key2 = colKeys[ l ];
+			let size = 0;
+			for ( let n = 0; n < nobs; n++ ) {
+				if ( rowValues[ n ] == key1 &&
+					colValues[ n ] == key2
+				) {
+					size += 1;
+				}
+			}
+			freqs[ key1 + '-' + key2 ] = !relativeFreqs ? size : size / nobs;
+		}
+	}
+
+	let columnTotals = [];
+	for ( let key in colFreqs ) {
+		let colfreq = colFreqs[ key ];
+		if ( relativeFreqs ) {
+			colfreq /= nobs;
+			colfreq = colfreq.toFixed( 3 );
+		}
+		columnTotals.push( <td>{colfreq}</td> );
+	}
+	let table = <table>
+		<tbody>
+			<tr>
+				<th></th>
+				<th colSpan={`${colKeys.length}`}>{colVar}</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr>
+				<th>{rowVar}</th>
+				{colKeys.map( e => <th>{e}</th> )}
+				<th>Row Totals</th>
+			</tr>
+			{rowKeys.map( r => <tr>
+				<th>{r}</th>
+				{colKeys.map( c => {
+					let freq = freqs[ r + '-' + c ];
+					if ( relativeFreqs ) {
+						freq = freq.toFixed( 3 );
+					}
+					return <td>{freq}</td>;
+				})}
+				<td>{ !relativeFreqs ?
+					rowFreqs[ r ] :
+					( rowFreqs[ r ]/nobs ).toFixed( 3 )
+				}</td>
+			</tr> )}
+			<tr>
+				<th>Column Totals</th>
+				{columnTotals}
+				<th>{ !relativeFreqs ? nobs : ( 1.0 ).toFixed( 3 ) }</th>
+			</tr>
+		</tbody>
+	</table>;
+
+	let output = {
+		variable: `${rowVar} by ${colVar}`,
+		type: 'Contingency Table',
+		value: <div>
+			<label>{`${rowVar} by ${colVar}`}: </label>
+			<pre>{table}</pre>
+		</div>
+	};
+
+	return output;
+};
+
+const createGroupedContingencyTable = () => {
+
+};
+
+
 // MAIN //
 
 class ContingencyTable extends Component {
@@ -17,89 +106,18 @@ class ContingencyTable extends Component {
 
 	}
 
-	generateContingencyTable( rowVar, colVar, relativeFreqs ) {
-		const freqs = {};
-		const rowValues = this.props.data[ rowVar ];
-		const colValues = this.props.data[ colVar ];
-		const nobs = rowValues.length;
-		const rowFreqs = countBy( rowValues );
-		const colFreqs = countBy( colValues );
-
-		const rowKeys = Object.keys( rowFreqs );
-		const colKeys = Object.keys( colFreqs );
-		for ( let i = 0; i < rowKeys.length; i++ ) {
-			for ( let l = 0; l < colKeys.length; l++ ) {
-				let key1 = rowKeys[ i ];
-				let key2 = colKeys[ l ];
-				let size = 0;
-				for ( let n = 0; n < nobs; n++ ) {
-					if ( rowValues[ n ] == key1 &&
-						colValues[ n ] == key2
-					) {
-						size += 1;
-					}
-				}
-				freqs[ key1 + '-' + key2 ] = !relativeFreqs ? size : size / nobs;
-			}
+	generateContingencyTable( rowVar, colVar, group, relativeFreqs ) {
+		let output;
+		if ( group === 'None' ) {
+			output = createContingencyTable( this.props.data, rowVar, colVar, relativeFreqs );
+		} else {
+			output = createGroupedContingencyTable();
 		}
-
-		let columnTotals = [];
-		for ( let key in colFreqs ) {
-			let colfreq = colFreqs[ key ];
-			if ( relativeFreqs ) {
-				colfreq /= nobs;
-				colfreq = colfreq.toFixed( 3 );
-			}
-			columnTotals.push( <td>{colfreq}</td> );
-		}
-		let table = <table>
-			<tbody>
-				<tr>
-					<th></th>
-					<th colSpan={`${colKeys.length}`}>{colVar}</th>
-					<th></th>
-					<th></th>
-				</tr>
-				<tr>
-					<th>{rowVar}</th>
-					{colKeys.map( e => <th>{e}</th> )}
-					<th>Row Totals</th>
-				</tr>
-				{rowKeys.map( r => <tr>
-					<th>{r}</th>
-					{colKeys.map( c => {
-						let freq = freqs[ r + '-' + c ];
-						if ( relativeFreqs ) {
-							freq = freq.toFixed( 3 );
-						}
-						return <td>{freq}</td>;
-					})}
-					<td>{ !relativeFreqs ?
-						rowFreqs[ r ] :
-						( rowFreqs[ r ]/nobs ).toFixed( 3 )
-					}</td>
-				</tr> )}
-				<tr>
-					<th>Column Totals</th>
-					{columnTotals}
-					<th>{ !relativeFreqs ? nobs : ( 1.0 ).toFixed( 3 ) }</th>
-				</tr>
-			</tbody>
-		</table>;
-
-		let output = {
-			variable: `${rowVar} by ${colVar}`,
-			type: 'Contingency Table',
-			value: <div>
-				<label>{`${rowVar} by ${colVar}`}: </label>
-				<pre>{table}</pre>
-			</div>
-		};
 		this.props.onCreated( output );
 	}
 
 	render() {
-		const { variables, defaultRowVar, defaultColVar } = this.props;
+		const { variables, defaultRowVar, defaultColVar, groupingVariables } = this.props;
 		return (
 			<Dashboard
 				autoStart={false}
@@ -115,6 +133,11 @@ class ContingencyTable extends Component {
 					legend="Column Variable:"
 					defaultValue={defaultColVar || variables[ 1 ]}
 					options={variables}
+				/>
+				<SelectInput
+					legend="Group By:"
+					defaultValue="None"
+					options={groupingVariables}
 				/>
 				<CheckboxInput
 					legend="Relative Frequency"
