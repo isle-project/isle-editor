@@ -42,6 +42,7 @@ const Dashboard = require( 'components/dashboard' );
 const DataTable = require( 'components/data-table' );
 const DensityPlot = require( 'components/d3/density-plot' );
 const DraggableList = require( 'components/draggable-list' );
+const Editor = require( 'components/editor' );
 const FeedbackButtons = require( 'components/feedback' );
 const FreeTextQuestion = require( 'components/free-text-question' );
 const Grid = require( 'components/grid' );
@@ -118,19 +119,7 @@ const TableBody = require( 'spectacle' ).TableBody;
 const TableHeader = require( 'spectacle' ).TableHeader;
 const SText = require( 'spectacle' ).Text;
 const createTheme = require( 'spectacle/lib/themes/default' ).default;
-
-const theme = createTheme({
-	primary: "#fffff8",
-	secondary: "#2e4468",
-	tertiary: "#c95d0a",
-	quartenary: "black"
-}, {
-	primary: "Open Sans, sans-serif",
-	secondary: "Open Sans, sans-serif",
-	tertiary: "Open Sans, sans-serif",
-	font: "Open Sans, sans-serif"
-});
-
+const theme = require( 'components/styles/theme.json' );
 const Well = ReactBootstrap.Well;
 
 
@@ -212,10 +201,13 @@ export default class Preview extends Component {
 					// Automatically insert <Slide> tags if not manually set...
 					if ( !contains( code, '<Slide' ) || !contains( code, '</Slide>' ) ) {
 						let pres = '<Slide>';
-						let arr = code.split( '<h1>' );
-						pres += arr.shift() + '<h1>';
-						pres += arr.join( '</Slide><Slide><h1>' );
+						let arr = code.split( '<p>===</p>' );
+						pres += arr.join( '</Slide><Slide>' );
 						pres += '</Slide>';
+						pres = pres.replace( /<h([0-5])>(.*?)<\/h[0-5]>/g,'<Heading size={$1}>$2</Heading>' );
+						pres = pres.replace( /<p[^>]*>([\s\S]+?)<\/p>/g, '<SText>$1</SText>' );
+						pres = pres.replace( /<ul[^>]*>([\s\S]+?)<\/ul>/g, '<List>$1</List>' );
+						pres = pres.replace( /<li[^>]*>([\s\S]+?)<\/li>/g, '<ListItem>$1</ListItem>' );
 						code = pres;
 					}
 
@@ -238,7 +230,7 @@ export default class Preview extends Component {
 						},
 						session: new Session( global.ISLE ),
 						sendMail: function( name, to ) {
-							var mailOptions = global.ISLE.mails[ name ];
+							var mailOptions = global.ISLE.mails[ name ] || {};
 							if ( !mailOptions.hasOwnProperty( 'from' ) ) {
 								mailOptions.from = ISLE.email || 'robinson@isle.cmu.edu';
 							}

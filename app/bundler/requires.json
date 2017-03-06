@@ -9,6 +9,7 @@
 	"Dashboard": "const Dashboard = require( \"components/dashboard\" )",
 	"DensityPlot": "const DensityPlot = require( \"components/d3/density-plot\" )",
 	"DraggableList": "const DraggableList = require( \"components/draggable-list\" )",
+	"Editor": "const Editor = require( \"components/editor\" )",
 	"FeedbackButtons": "const FeedbackButtons = require( \"components/feedback\" )",
 	"FreeTextQuestion": "const FreeTextQuestion = require( \"components/free-text-question\" )",
 	"Grid": "const Grid = require( \"components/grid\" )",
