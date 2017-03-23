@@ -5,6 +5,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import countBy from 'lodash.countby';
+import isObject from '@stdlib/utils/is-object';
 
 
 // FUNCTIONS //
@@ -79,20 +80,44 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs ) => {
 		</tbody>
 	</table>;
 
+	return table;
+};
+
+const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFreqs ) => {
+	const groupedData = {};
+	for ( let i = 0; i < data[ group ].length; i++ ) {
+		let v = data[ group ][ i ];
+		if ( !isObject( groupedData[ v ]) ) {
+			groupedData[ v ] = {
+				[ rowVar ]: [],
+				[ colVar ]: []
+			};
+		}
+		groupedData[ v ][ rowVar ].push( data[ rowVar ][ i ]);
+		groupedData[ v ][ colVar ].push( data[ colVar ][ i ]);
+	}
+
+	let table = [];
+	let keys = Object.keys( groupedData );
+	for ( let i = 0; i < keys.length; i++ ) {
+		let key = keys[ i ];
+		table.push( createContingencyTable( groupedData[ key ], rowVar, colVar, relativeFreqs ) );
+	}
+
 	let output = {
 		variable: `${rowVar} by ${colVar}`,
 		type: 'Contingency Table',
 		value: <div>
-			<label>{`${rowVar} by ${colVar}`}: </label>
-			<pre>{table}</pre>
+			<label>{`Grouped by ${group}:`}</label>
+			{table.map( ( x, i ) => {
+				return ( <div>
+					<label>{`${keys[ i ]}`}: </label>
+					<pre>{x}</pre>
+				</div> );
+			})}
 		</div>
 	};
-
 	return output;
-};
-
-const createGroupedContingencyTable = () => {
-
 };
 
 
@@ -109,9 +134,17 @@ class ContingencyTable extends Component {
 	generateContingencyTable( rowVar, colVar, group, relativeFreqs ) {
 		let output;
 		if ( group === 'None' ) {
-			output = createContingencyTable( this.props.data, rowVar, colVar, relativeFreqs );
+			let table = createContingencyTable( this.props.data, rowVar, colVar, relativeFreqs );
+			output = {
+				variable: `${rowVar} by ${colVar}`,
+				type: 'Contingency Table',
+				value: <div>
+					<label>{`${rowVar} by ${colVar}`}: </label>
+					<pre>{table}</pre>
+				</div>
+			};
 		} else {
-			output = createGroupedContingencyTable();
+			output = createGroupedContingencyTable( this.props.data, rowVar, colVar, group, relativeFreqs );
 		}
 		this.props.onCreated( output );
 	}
