@@ -1,8 +1,6 @@
 // MODULES //
 
 import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
-import { StyleSheet, css } from 'aphrodite';
 
 
 // PANEL //
@@ -69,14 +67,12 @@ class Panel extends Component {
 	componentWillReceiveProps( props ) {}
 
 	render() {
-		const cssClasses = classnames({
-			[ css( style.common ) ]: true,
-			[ css( style.overflowScroll ) ]: !this.props.overflowY,
-			[ css( style.overflowYScroll ) ]: this.props.overflowY
-		});
-
 		return (
-			<div ref="panel" onScroll={this.onScroll} className={cssClasses}>
+			<div ref="panel" onScroll={this.onScroll} style={{
+				height: 'calc(100vh - 90px)',
+				overflow: 'scroll',
+				paddingLeft: '10px'
+			}}>
 				{this.props.children}
 			</div>
 		);
@@ -100,22 +96,6 @@ Panel.propTypes = {
 	value: PropTypes.string,
 	overflowY: PropTypes.bool
 };
-
-
-// STYLE SHEET //
-
-const style = StyleSheet.create({
-	common: {
-		height: 'calc(100vh - 90px)'
-	},
-	overflowYScroll: {
-		overflow: 'scroll',
-		paddingLeft: '10px'
-	},
-	overflowScroll: {
-		overflow: 'scroll'
-	}
-});
 
 
 // EXPORTS //
