@@ -1,8 +1,9 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import Dimensions from 'components/dimensions';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 
 // FUNCTIONS //
@@ -74,6 +75,9 @@ class Image extends Component {
 							showModal: true
 						});
 					}}
+					onDragStart={ ( ev ) => {
+						ev.dataTransfer.setData( 'text', `<img src=${this.props.src} width="400" height="300" />` );
+					}}
 				/>
 				<Modal
 					show={this.state.showModal}
@@ -97,6 +101,10 @@ class Image extends Component {
 						/>
 					</Modal.Body>
 					<Modal.Footer>
+						{ this.props.body ?
+							<CopyToClipboard text={this.props.body} onCopy={closeModal}><Button>Copy SVG</Button></CopyToClipboard> : null
+						}
+						<CopyToClipboard text={`<img src=${this.props.src} width="400" height="300" />`} onCopy={closeModal}><Button>Copy Link</Button></CopyToClipboard>
 						<Button href={this.props.src} download="plot.png" >Save Plot</Button>
 					</Modal.Footer>
 				</Modal>
@@ -109,8 +117,8 @@ class Image extends Component {
 // PROPERTY TYPES //
 
 Image.propTypes = {
-	src: React.PropTypes.string.isRequired,
-	title: React.PropTypes.string
+	src: PropTypes.string.isRequired,
+	title: PropTypes.string
 };
 
 
