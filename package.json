@@ -99,7 +99,6 @@
   },
   "dependencies": {
     "@stdlib/stdlib": "github:stdlib-js/stdlib#develop",
-    "aphrodite": "^1.0.0",
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -112,7 +111,6 @@
     "babel-runtime": "^6.9.2",
     "bootstrap": "^3.3.6",
     "brace": "https://github.com/Planeshifter/brace.git",
-    "classnames": "^2.2.5",
     "compute-iqr": "^1.1.0",
     "compute-max": "^1.0.1",
     "compute-mean": "^3.0.0",
