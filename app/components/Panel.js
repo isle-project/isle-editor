@@ -70,8 +70,7 @@ class Panel extends Component {
 		return (
 			<div ref="panel" onScroll={this.onScroll} style={{
 				height: 'calc(100vh - 90px)',
-				overflow: 'scroll',
-				paddingLeft: '10px'
+				overflow: 'scroll'
 			}}>
 				{this.props.children}
 			</div>
