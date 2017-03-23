@@ -16,81 +16,97 @@ import isArray from '@stdlib/utils/is-array';
 import isNumber from '@stdlib/utils/is-number';
 import isObject from '@stdlib/utils/is-object';
 import entries from '@stdlib/utils/object-entries';
+import ReactDOMServer from 'react-dom/server';
+import ReactDOM from 'react-dom';
+import { generate } from 'randomstring';
 
 
 // FUNCTIONS //
 
+const makeDraggable = ( div ) => {
+	let markup = ReactDOMServer.renderToStaticMarkup( div );
+	let plain = `<!-- OUTPUT_${generate( 3 )}  -->`;
+	return <div
+		draggable="true"
+		onDragStart={ ( ev ) => {
+			ev.dataTransfer.setData( 'text/html', markup );
+			ev.dataTransfer.setData( 'text/plain', plain );
+		}}
+	>
+		{div}
+	</div>;
+};
+
 const OutputPanel = ( output ) => {
 	return (
-		<div id="outputPanel" style={{ height: 450, overflowY: 'scroll' }} >
+		<div id="outputPanel" style={{ height: 500, overflowY: 'scroll' }} >
 			{output.map( ( e, idx ) => {
-				if (
-					 e.type === 'Chart' ||
+				if ( e.type === 'Chart' ) {
+					return e.value;
+				}
+				else if (
 					e.type === 'Contingency Table' ||
 					e.type === 'Frequency Table' ||
 					e.type === 'Grouped Frequency Table'
 				) {
-					return e.value;
+					return makeDraggable( e.value );
 				}
 				else if ( isNumber( e.value ) ) {
-					return (
-						<div key={idx} >
-							<label>{e.variable}: </label>
-							<pre>{e.type}: {e.value.toFixed( 3 )}</pre>
-						</div>
-					);
+					let elem = <div key={idx} >
+						<label>{e.variable}: </label>
+						<pre>{e.type}: {e.value.toFixed( 3 )}</pre>
+					</div>;
+					return makeDraggable( elem );
 				}
 				else if ( isObject( e.value ) ) {
-					return (
-						<div key={idx} >
-							<label>{e.variable}: </label>
-							<pre>
-								<table>
-									<tbody>
-										<tr>
-											<th>{e.group}</th>
-											<th>{e.type}</th>
-										</tr>
-										{entries( e.value ).map( ( arr, i ) => {
-											if ( isArray( arr[ 1 ]) ) {
-												return (
-													<tr key={i} >
-														<td>{arr[ 0 ]}</td>
-														<td>{arr[ 1 ][ 0 ].toFixed( 3 )},{arr[ 1 ][ 1 ].toFixed( 3 )}</td>
-													</tr>
-												);
-											}
+					let elem = <div key={idx} >
+						<label>{e.variable}: </label>
+						<pre>
+							<table>
+								<tbody>
+									<tr>
+										<th>{e.group}</th>
+										<th>{e.type}</th>
+									</tr>
+									{entries( e.value ).map( ( arr, i ) => {
+										if ( isArray( arr[ 1 ]) ) {
 											return (
 												<tr key={i} >
-													<td>{arr[ 0 ]} </td>
-													<td>{arr[ 1 ].toFixed( 3 )} </td>
+													<td>{arr[ 0 ]}</td>
+													<td>{arr[ 1 ][ 0 ].toFixed( 3 )},{arr[ 1 ][ 1 ].toFixed( 3 )}</td>
 												</tr>
 											);
-										})}
-									</tbody>
-								</table>
-							</pre>
-						</div>
-					);
+										}
+										return (
+											<tr key={i} >
+												<td>{arr[ 0 ]} </td>
+												<td>{arr[ 1 ].toFixed( 3 )} </td>
+											</tr>
+										);
+									})}
+								</tbody>
+							</table>
+						</pre>
+					</div>;
+					return makeDraggable( elem );
 				} else if ( isArray( e.value ) ) {
-					return (
-						<div key={idx}>
-							<label>{e.variable}: </label>
-							<pre>
-								<table>
-									<tbody>
-										<tr>
-											<th>Min</th>
-											<th>Max</th>
-										</tr>
-										<tr>
-											{e.value.map( e => <td>{e}</td> )}
-										</tr>
-									</tbody>
-								</table>
-							</pre>
-						</div>
-					);
+					let elem = <div key={idx}>
+						<label>{e.variable}: </label>
+						<pre>
+							<table>
+								<tbody>
+									<tr>
+										<th>Min</th>
+										<th>Max</th>
+									</tr>
+									<tr>
+										{e.value.map( e => <td>{e}</td> )}
+									</tr>
+								</tbody>
+							</table>
+						</pre>
+					</div>;
+					return makeDraggable( elem );
 				}
 			})}
 		</div>
@@ -282,7 +298,7 @@ class DataExplorer extends Component {
 					<Col md={colWidth}>
 						<Panel header={<h3>Output</h3>} style={{ minHeight: 600 }}>
 							{OutputPanel( this.state.output )}
-							<Button bsSize="small" justified onClick={ () => {
+							<Button bsSize="small" block onClick={ () => {
 								this.setState({ output: []});
 							}}>Clear</Button>
 						</Panel>
