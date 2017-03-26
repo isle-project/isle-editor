@@ -27,45 +27,51 @@ const config = {
 		rules: [
 			{
 				test: /\.js?$/,
-				loader: 'babel-loader',
+				use: {
+					loader: 'babel-loader',
+					options: {
+						plugins: [
+							'transform-react-constant-elements',
+							'transform-react-remove-prop-types'
+						]
+					}
+				},
 				include: [
 					path.join( __dirname, 'main.development.js' ),
 					path.join( __dirname, 'app' ),
-					path.join( __dirname, 'node_modules', '@stdlib' )
-				],
-				query: {
-					plugins: [
-						'transform-react-constant-elements',
-						'transform-react-remove-prop-types'
-					]
-				}
+					path.join( __dirname, 'node_modules', '@stdlib' ),
+					path.join( __dirname, 'node_modules', 'configstore' ),
+					path.join( __dirname, 'node_modules', 'crypto-random-string' ),
+					path.join( __dirname, 'node_modules', 'fs-extra' ),
+					path.join( __dirname, 'node_modules', 'unique-string' )
+				]
 			}, {
 				test: /\.json$/,
-				loader: 'json-loader'
+				use: 'json-loader'
 			},
 			{
 				test: /\.txt$/,
-				loader: 'raw-loader'
+				use: 'raw-loader'
 			},
 			{
 				test: /img\/[A-Z]*\.svg$/i,
-				loader: 'file-loader?name=./img/[name].[ext]',
+				use: 'file-loader?name=./img/[name].[ext]',
 				include: [
 					path.join( __dirname, 'img' )
 				]
 			},
 			{
 				test: /\.global\.css$/,
-				loader: ExtractTextPlugin.extract({
-					fallbackLoader: 'style-loader',
-					loader: 'css-loader'
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: 'css-loader'
 				})
 			},
 			{
 				test: /^((?!\.global).)*\.css$/,
-				loader: ExtractTextPlugin.extract({
-					fallbackLoader: 'style-loader',
-					loader: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
 				})
 			}
 		]

@@ -14,7 +14,11 @@ export default {
 			include: [
 				path.join( __dirname, 'main.development.js' ),
 				path.join( __dirname, 'app' ),
-				path.join( __dirname, 'node_modules', '@stdlib' )
+				path.join( __dirname, 'node_modules', '@stdlib' ),
+				path.join( __dirname, 'node_modules', 'configstore' ),
+				path.join( __dirname, 'node_modules', 'crypto-random-string' ),
+				path.join( __dirname, 'node_modules', 'fs-extra' ),
+				path.join( __dirname, 'node_modules', 'unique-string' )
 			],
 			query: {
 				plugins: []
