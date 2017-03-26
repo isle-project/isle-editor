@@ -3,6 +3,7 @@
 import React, { PropTypes } from 'react';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Input from 'components/input';
+import isEmptyObject from '@stdlib/utils/is-empty-object';
 import PINF from '@stdlib/math/constants/float64-pinf';
 import NINF from '@stdlib/math/constants/float64-ninf';
 
@@ -11,36 +12,41 @@ import NINF from '@stdlib/math/constants/float64-ninf';
 
 class NumberInput extends Input {
 
-	constructor( props ) {
-		super( props );
-
+	createTooltip( props ) {
 		let tooltip = `Enter a${ props.step === 1 ? 'n integer' : ' number'} `;
 		if ( props.max !== PINF && props.min !== NINF ) {
 			tooltip += `between ${props.min} and ${props.max}:`;
 		} else if ( props.min !== NINF ) {
-			tooltip += `larger than ${props.min}:`;
+			tooltip += `larger or equal to ${props.min}:`;
 		} else if ( props.max !== PINF ) {
-			tooltip += `smaller than ${props.max}:`;
+			tooltip += `smaller or equal to ${props.max}:`;
 		} else {
 			tooltip += ':';
 		}
+		return tooltip;
+	}
+
+	constructor( props ) {
+		super( props );
 
 		this.state = {
 			showTooltip: false,
 			value: props.defaultValue,
-			tooltip: tooltip
+			tooltip: this.createTooltip( props )
 		};
 
 		this.handleChange = ( event ) => {
 			let value = event.target.value;
-			value = value.replace( /^0+/, '' );
-
+			if ( value != 0 ) {
+				value = value.replace( /^0+/, '' );
+			}
+			value = parseFloat( value );
 			const { max, min, step } = this.props;
 			if (
 				value !== '' &&
 				( min === NINF || value >= min ) &&
 				( max === PINF || value <= max ) &&
-				( value % step === 0 )
+				( step < 1 || value % step === 0 )
 			) {
 				this.setState({
 					value
@@ -84,10 +90,15 @@ class NumberInput extends Input {
 	}
 
 	componentWillReceiveProps( nextProps ) {
+		let newState = {};
 		if ( nextProps.defaultValue !== this.props.defaultValue ) {
-			this.setState({
-				value: nextProps.defaultValue
-			});
+			newState.value = nextProps.defaultValue;
+		}
+		if ( nextProps.min !== this.props.min || nextProps.max !== this.props.max ) {
+			newState.tooltip = this.createTooltip( nextProps );
+		}
+		if ( !isEmptyObject( newState ) ) {
+			this.setState( newState );
 		}
 	}
 
@@ -96,7 +107,7 @@ class NumberInput extends Input {
 		if ( this.props.inline === true ) {
 			return (
 				<span style={{ padding: '5px' }}>
-					{ this.props.legend ? <label> {this.props.legend} = </label> : null }
+					{ this.props.legend ? <label> {this.props.legend} =  </label> : null }
 					<OverlayTrigger placement="top" overlay={<Tooltip>{this.state.tooltip}
 					</Tooltip>}>
 						<input
