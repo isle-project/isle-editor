@@ -36,45 +36,36 @@ class NumberInput extends Input {
 		};
 
 		this.handleChange = ( event ) => {
+			const valid = event.target.validity.valid;
 			let value = event.target.value;
-			if ( value != 0 ) {
-				value = value.replace( /^0+/, '' );
-			}
-			value = parseFloat( value );
-			const { max, min, step } = this.props;
-			if (
-				value !== '' &&
-				( min === NINF || value >= min ) &&
-				( max === PINF || value <= max ) &&
-				( step < 1 || value % step === 0 )
-			) {
-				this.setState({
-					value
-				}, () => {
+			this.setState({
+				value
+			}, () => {
+				if ( valid && value !== '' ) {
+					value = parseFloat( value );
 					this.props.onChange( value );
 					if ( this.context.autoUpdate ) {
 						this.context.triggerDashboardClick();
 					}
-				});
-			} else {
-				this.setState({
-					value
-				});
-			}
+				}
+			});
 		};
 
 		this.finishChange = ( event ) => {
+			const { defaultValue, max, min, step } = this.props;
 			let value = event.target.value;
-			const { defaultValue, max, min } = this.props;
-
 			if ( value === '' ) {
 				value = defaultValue;
 			}
-			else if ( value > max ) {
+			value = parseFloat( value );
+			if ( value > max ) {
 				value = max;
 			}
 			else if ( value < min ) {
 				value = min;
+			}
+			else if ( step == 1.0 ) {
+				value = value - value % this.props.step;
 			}
 			if ( value !== this.state.value ) {
 				this.setState({
@@ -113,7 +104,6 @@ class NumberInput extends Input {
 						<input
 							type="number"
 							name="input"
-							defaultValue={this.props.defaultValue}
 							value={this.state.value}
 							step={this.props.step}
 							min={this.props.min}
@@ -123,6 +113,7 @@ class NumberInput extends Input {
 								width: '75px'
 							}}
 							onChange={this.handleChange}
+							onBlur={this.finishChange}
 						/>
 					</OverlayTrigger>
 					{ this.props.description ?
