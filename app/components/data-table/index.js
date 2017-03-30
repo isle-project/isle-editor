@@ -1,7 +1,6 @@
 // MODULES //
 
 import React, { Component, PropTypes } from 'react';
-import Dimensions from 'components/dimensions';
 import { Table, Column, Cell } from 'fixed-data-table';
 import floor from '@stdlib/math/base/special/floor';
 import isArray from '@stdlib/utils/is-array';
@@ -9,6 +8,7 @@ import isArray from '@stdlib/utils/is-array';
 
 // FUNCTIONS //
 
+// eslint-disable-next-line no-unused-vars
 const createTableFromArray = (
 	data,
 	{ containerWidth, columnNames, columnWidth, maxHeight },
