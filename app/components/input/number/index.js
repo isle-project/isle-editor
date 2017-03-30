@@ -99,7 +99,7 @@ class NumberInput extends Input {
 			return (
 				<span style={{ padding: '5px' }}>
 					{ this.props.legend ? <label> {this.props.legend} =  </label> : null }
-					<OverlayTrigger placement="top" overlay={<Tooltip>{this.state.tooltip}
+					<OverlayTrigger placement="top" overlay={<Tooltip id='inlineTooltip'>{this.state.tooltip}
 					</Tooltip>}>
 						<input
 							type="number"
@@ -139,7 +139,7 @@ class NumberInput extends Input {
 						<span />
 					}
 				</span>
-				<OverlayTrigger placement="left" overlay={<Tooltip>{this.state.tooltip}</Tooltip>}>
+				<OverlayTrigger placement="left" overlay={<Tooltip id='standardTooltip'>{this.state.tooltip}</Tooltip>}>
 					<input
 						type="number"
 						name="input"
