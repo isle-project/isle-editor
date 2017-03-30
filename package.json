@@ -148,7 +148,7 @@
     "moment": "^2.17.1",
     "mustache": "^2.2.1",
     "node-libs-browser": "^2.0.0",
-    "normalize.css": "^5.0.0",
+    "normalize.css": "^6.0.0",
     "radium": "^0.18.1",
     "randomstring": "^1.1.5",
     "raw-loader": "^0.5.1",
@@ -175,7 +175,7 @@
     "simplemde": "^1.11.2",
     "source-map-support": "^0.4.0",
     "spectacle": "^2.0.0",
-    "style-loader": "^0.13.1",
+    "style-loader": "^0.16.1",
     "uglify-js": "^2.7.0",
     "victory": "^0.18.0",
     "webpack": "^2.2.1"
