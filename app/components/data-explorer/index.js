@@ -148,7 +148,6 @@ class DataExplorer extends Component {
 	addToOutputs = ( element ) => {
 		let newOutput = this.state.output.slice();
 		newOutput.push( element );
-		console.log( element )
 		this.setState({
 			output: newOutput
 		});

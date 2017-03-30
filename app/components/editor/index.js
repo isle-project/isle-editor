@@ -27,10 +27,8 @@ class MarkdownEditor extends Component {
 		this.previewRender = ( plainText ) => {
 			const { hash } = this.state;
 			for ( let key in hash ) {
-				console.log( key )
 				plainText = replace( plainText, key, hash[ key ]);
 			}
-			console.log( plainText )
 			return md.render( plainText );
 		};
 	}
