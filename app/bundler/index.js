@@ -389,6 +389,7 @@ function writeIndexFile({
 				mangle: true
 			});
 			fs.writeFileSync( path.join( appDir, 'bundle.min.js' ), minified.code );
+			fs.unlinkSync( path.join( appDir, 'bundle.js' ) );
 		}
 		clbk( err, meta );
 	});
