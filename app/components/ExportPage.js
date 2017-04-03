@@ -2,12 +2,14 @@
 
 import React, { Component, PropTypes } from 'react';
 import { Button, ButtonToolbar, Col, ControlLabel, Form, FormControl,
-	FormGroup, Grid, Panel, Row, Well } from 'react-bootstrap';
+	FormGroup, Grid, Modal, Panel, Row, Well } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { remote, shell } from 'electron';
 import path from 'path';
 import request from 'request';
 import tmpdir from '@stdlib/utils/tmpdir';
+import archiver from 'archiver';
+import fs from 'fs';
 import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
 import Spinner from 'components/spinner';
@@ -28,10 +30,13 @@ class UploadLesson extends Component {
 			finished: false,
 			spinning: false,
 			namespaces: [],
+			namespaceName: null,
 			lessonName: '',
 			dirname: new Date().toISOString(),
 			server: localStorage.getItem( 'server' ),
-			token: localStorage.getItem( 'token' )
+			token: localStorage.getItem( 'token' ),
+			showResponseModal: false,
+			showConfirmModal: false
 		};
 
 		this.handleInputChange = ( event ) => {
@@ -43,6 +48,98 @@ class UploadLesson extends Component {
 			});
 		};
 
+		this.handleSelectChange = ( event ) => {
+			const target = event.target;
+			const value = target.value;
+			this.setState({
+				namespaceName: this.state.namespaces[ value ]
+			});
+		};
+
+		this.closeResponseModal = () => {
+			this.setState({
+				showResponseModal: false
+			});
+		};
+
+		this.closeConfirmModal = () => {
+			this.setState({
+				showConfirmModal: false
+			});
+		};
+
+		this.zipLesson = ( outputPath, outputDir, clbk ) => {
+			let output = fs.createWriteStream( path.join( outputPath, outputDir+'.zip' ) );
+			let archive = archiver( 'zip', {
+				store: true
+			});
+			output.on( 'close', function() {
+				console.log( archive.pointer() + ' total bytes' );
+				console.log( 'archiver has been finalized and the output file descriptor has closed.' );
+				clbk();
+			});
+			archive.on( 'error', function( err ) {
+				throw err;
+			});
+			archive.pipe( output );
+			archive.directory( path.join( outputPath, outputDir ), '/' );
+			archive.finalize();
+		};
+
+		this.upstreamData = ({ outputPath, outputDir }) => {
+			let namespaceName = this.state.namespaceName;
+			let lessonName = this.state.lessonName;
+			const formData = {
+				namespaceName: namespaceName,
+				lessonName: lessonName,
+				zipped: fs.createReadStream( path.join( outputPath, outputDir+'.zip' ) )
+			};
+			console.log( 'Sending POST request to create lesson...' );
+			request.post( this.state.server+ '/create_lesson', {
+				formData: formData,
+				headers: {
+					'Authorization': 'JWT ' + this.state.token
+				}
+			}, ( err, res ) => {
+				if ( err ) {
+					console.log( 'Encountered error: ' + err.message );
+					return err;
+				}
+				let lessonLink = this.state.server + '/' + namespaceName + '/' + lessonName;
+				let msg = <span>
+					The lesson has been uploaded successfully and can be accessed at the following address: <a href={lessonLink}>{lessonLink}</a>
+				</span>;
+				this.setState({
+					spinning: false,
+					showResponseModal: true,
+					modalMessage: msg
+				});
+			});
+		};
+
+		this.checkLesson = () => {
+			const qs = {
+				namespace: this.state.namespaceName,
+				lessonName: this.state.lessonName
+			};
+			console.log( qs );
+			request.get( this.state.server + '/get_lesson', {
+				qs: qs
+			}, ( err, res, body ) => {
+				if ( err ) {
+					return err;
+				}
+				body = JSON.parse( body );
+				if ( body.lesson ) {
+					this.setState({
+						showConfirmModal: true
+					});
+				} else {
+					this.publishLesson();
+				}
+			});
+		};
+
 		this.publishLesson = () => {
 			const isPackaged = !( /node_modules\/electron\/dist/.test( process.resourcesPath ) );
 			const basePath = isPackaged ? `${process.resourcesPath}/app/` : './';
@@ -50,17 +147,17 @@ class UploadLesson extends Component {
 			this.setState({
 				spinning: true
 			});
-			bundler({
+			const settings = {
 				outputPath: tmpdir(),
 				filePath: this.props.filePath,
 				basePath,
 				content: this.props.content,
 				outputDir: this.state.dirname,
 				minify: true
-			}, ( err, preamble ) => {
-				this.setState({
-					preamble: preamble,
-					spinning: false
+			};
+			bundler( settings, ( err, preamble ) => {
+				this.zipLesson( settings.outputPath, settings.outputDir, () => {
+					this.upstreamData( settings );
 				});
 			});
 		};
@@ -78,7 +175,8 @@ class UploadLesson extends Component {
 				}
 				body = JSON.parse( body );
 				this.setState({
-					namespaces: body.namespaces
+					namespaces: body.namespaces,
+					namespaceName: body.namespaces[ 0 ].title
 				});
 			});
 		}
@@ -86,45 +184,80 @@ class UploadLesson extends Component {
 
 	render() {
 		return (
-			<Panel header={<h1>Upload Lesson</h1>} bsStyle="primary">
-				<p>Upload and deploy ISLE lessons directly to an ISLE server.</p>
-				{ this.state.token ?
-					<div>
-						<Form>
-							<FormGroup>
-								<ControlLabel>Select Course</ControlLabel>
-								<FormControl componentClass="select" placeholder="select">
-									{this.state.namespaces.map( ( ns, id ) =>
-										<option key={id} value={ns.title}>{ns.title}</option>
-									)}
-								</FormControl>
-							</FormGroup>
-							<FormGroup>
-								<ControlLabel>Lesson name</ControlLabel>
-								<FormControl
-									name="lessonName"
-									type="text"
-									placeholder="Enter lesson name"
-									onChange={this.handleInputChange}
-									value={this.state.lessonName}
-								/>
-							</FormGroup>
-							<Button
-								bsStyle="info"
-								bsSize="sm"
-								block
-								onClick={this.publishLesson}
-								disabled={this.state.spinning || !this.state.token}
-							>Upload</Button>
-						</Form>
-						<br />
-						<Spinner width={128} height={64} running={this.state.spinning}/>
-					</div>:
-					<Panel bsStyle="warning">
-						You need to connect the ISLE editor to an ISLE server under settings before you can upload lessons.
-					</Panel>
-				}
-			</Panel>
+			<div>
+				<Panel header={<h1>Upload Lesson</h1>} bsStyle="primary">
+					<p>Upload and deploy lessons directly to ISLE server.</p>
+					{ this.state.token ?
+						<div>
+							<Form>
+								<FormGroup>
+									<ControlLabel>Select Course</ControlLabel>
+									<FormControl
+										name="namespaceName"
+										onChange={this.handleSelectChange}
+										componentClass="select"
+										placeholder="No courses found"
+									>
+										{this.state.namespaces.map( ( ns, id ) =>
+											<option key={id} value={ns.title}>{ns.title}</option>
+										)}
+									</FormControl>
+								</FormGroup>
+								<FormGroup>
+									<ControlLabel>Lesson name</ControlLabel>
+									<FormControl
+										name="lessonName"
+										type="text"
+										placeholder="Enter lesson name"
+										onChange={this.handleInputChange}
+										value={this.state.lessonName}
+									/>
+								</FormGroup>
+								<Button
+									bsStyle="info"
+									bsSize="sm"
+									block
+									onClick={this.checkLesson}
+									disabled={this.state.spinning || !this.state.token || !this.state.lessonName}
+								>Upload</Button>
+							</Form>
+							<br />
+							<Spinner width={128} height={64} running={this.state.spinning}/>
+						</div>:
+						<Panel bsStyle="warning">
+							You need to connect the ISLE editor to an ISLE server under settings before you can upload lessons.
+						</Panel>
+					}
+				</Panel>
+				<Modal show={this.state.showResponseModal} onHide={this.closeResponseModal}>
+					<Modal.Header closeButton>
+						<Modal.Title>Server Response</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						{this.state.modalMessage}
+					</Modal.Body>
+					<Modal.Footer>
+						<Button onClick={this.closeResponseModal}>Close</Button>
+					</Modal.Footer>
+				</Modal>
+				<Modal show={this.state.showConfirmModal}>
+					<Modal.Header>
+						<Modal.Title>Overwrite Lesson?</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						A lesson with the name {this.state.lessonName} is already present in the namespace. Please confirm that you wish to overwrite the lesson or cancel the upload procedure and choose a different name.
+					</Modal.Body>
+					<Modal.Footer>
+						<Button onClick={this.closeConfirmModal}>Cancel</Button>
+						<Button bsStyle="warning" onClick={() => {
+							this.publishLesson();
+							this.setState({
+								showConfirmModal: false
+							});
+						}}>Overwrite</Button>
+					</Modal.Footer>
+				</Modal>
+			</div>
 		);
 	}
 }
@@ -204,9 +337,7 @@ class ExportLesson extends Component {
 			<Panel header={<h1>Export Lesson</h1>} bsStyle="primary">
 				<p>Package and export the currently opened lesson into a
 				single-page application viewable in any web-browser.</p>
-				<FormGroup
-					controlId="formBasicText"
-				>
+				<FormGroup>
 					<ControlLabel>Settings</ControlLabel>
 					<CheckboxInput
 						legend="Minify code"
