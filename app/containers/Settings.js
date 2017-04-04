@@ -26,6 +26,7 @@ class Login extends Component {
 			server: localStorage.getItem( 'server' ) || '',
 			email: localStorage.getItem( 'email' ) || '',
 			password: localStorage.getItem( 'password' ) || '',
+			encounteredError: null
 		};
 
 		this.handleInputChange = ( event ) => {
@@ -53,11 +54,14 @@ class Login extends Component {
 				form
 			}, ( err, res ) => {
 				if ( err ) {
-					return err;
+					this.setState({
+						encounteredError: err
+					});
+				} else {
+					const body = JSON.parse( res.body );
+					localStorage.setItem( 'token', body.token );
+					this.forceUpdate();
 				}
-				const body = JSON.parse( res.body );
-				localStorage.setItem( 'token', body.token );
-				this.forceUpdate();
 			});
 		};
 	}
@@ -103,6 +107,11 @@ class Login extends Component {
 							block
 							onClick={this.connectToServer}
 						>Connect</Button>
+						{ this.state.encounteredError ?
+							<Panel header={<h3>Error encountered</h3>} bsStyle="danger">
+								The following error was encountered while connecting to {this.state.server}: <br />{this.state.encounteredError.message}.
+							</Panel> : null
+						}
 					</Form> :
 					<Panel bsStyle="success">
 						You are linked to the ISLE server at {this.state.server}.
