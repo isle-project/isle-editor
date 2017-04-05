@@ -108,7 +108,7 @@ class Login extends Component {
 							onClick={this.connectToServer}
 						>Connect</Button>
 						{ this.state.encounteredError ?
-							<Panel header={<h3>Error encountered</h3>} bsStyle="danger">
+							<Panel style={{ marginTop: 20 }} header={<h3>Error encountered</h3>} bsStyle="danger">
 								The following error was encountered while connecting to {this.state.server}: <br />{this.state.encounteredError.message}.
 							</Panel> : null
 						}
@@ -127,6 +127,7 @@ class Login extends Component {
 		);
 	}
 }
+
 
 // SETTINGS //
 
