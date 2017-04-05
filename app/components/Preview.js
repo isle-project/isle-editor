@@ -18,7 +18,6 @@ const ReactBootstrap = require( 'react-bootstrap' );
 const mustache = require( 'mustache' );
 const render = require( 'react-dom' ).render;
 const NotificationSystem = require( 'react-notification-system' );
-const assignStdlib = require( '@stdlib/namespace' );
 const contains = require( '@stdlib/utils/contains' );
 const isAbsolutePath = require( '@stdlib/utils/is-absolute-path' );
 const isObject = require( '@stdlib/utils/is-object' );
