@@ -28,6 +28,7 @@ const Session = require ( 'api/session' );
 
 import { Component } from 'react';
 import { transform } from 'react-tools';
+import createReactClass from 'create-react-class';
 import markdownToHTML from 'utils/markdown-to-html';
 
 
@@ -267,7 +268,7 @@ export default class Preview extends Component {
 							);
 						}
 					};
-					var Lesson = React.createClass( lessonConfig );
+					var Lesson = createReactClass( lessonConfig );
 					render(
 						${transform( '<Lesson />' )},
 						document.getElementById( 'Preview' )
