@@ -23,6 +23,7 @@
 	"Navbar": "const Navbar = require( \"react-bootstrap\" ).Navbar",
 	"NavItem": "const NavItem = require( \"react-bootstrap\" ).NavItem",
 	"NumberInput": "const NumberInput = require( \"components/input/number\" )",
+	"NumberSurvey": "const NumberSurvey = require( \"components/number-survey\" )",
 	"Panel": "const Panel = require( \"react-bootstrap\" ).Panel",
 	"RHelp": "const RHelp = require( \"components/r/help\" )",
 	"ROutput": "const ROutput = require( \"components/r/output\" )",
@@ -78,7 +79,7 @@
 	"VictoryTooltip": "const VictoryTooltip = require( \"victory\" ).VictoryTooltip",
 	"VictoryVoronoiTooltip": "const VictoryVoronoiTooltip = require( \"victory\" ).VictoryVoronoiTooltip",
 	"VictoryVoronoi": "const VictoryVoronoi = require( \"victory\" ).VictoryVoronoi",
-	"VictoryZoom": "const VictoryZoom = require( \"victory\" ).VictoryZoom",
+	"VictoryZoomContainer": "const VictoryZoomContainer = require( \"victory\" ).VictoryZoomContainer",
 	"VideoPlayer": "const VideoPlayer = require( \"components/video-player\" )",
 	"Well": "const Well = require( \"react-bootstrap\" ).Well"
 }
