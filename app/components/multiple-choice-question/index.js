@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button, ListGroup, ListGroupItem, OverlayTrigger, Panel, Popover } from 'react-bootstrap';
 import isArray from '@stdlib/utils/is-array';
 import contains from '@stdlib/utils/contains';

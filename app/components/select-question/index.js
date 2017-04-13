@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { ControlLabel, Form, FormControl, FormGroup } from 'react-bootstrap';
 
 
@@ -100,7 +101,7 @@ class SelectQuestion extends Component {
 			);
 		}
 	}
-};
+}
 
 
 // DEFAULT PROPERTIES //

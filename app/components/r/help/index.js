@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
 import request from 'request';
 
@@ -10,7 +11,7 @@ import request from 'request';
 import { OPEN_CPU_DEFAULT_SERVER } from 'constants/opencpu.js';
 
 
-// R HELP //
+// MAIN //
 
 class RHelp extends Component {
 	constructor( props ) {

@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 // SWITCH //
@@ -53,7 +54,7 @@ class Switch extends React.Component {
 // PROPERTY TYPES //
 
 Switch.propTypes = {
-	onChange: React.PropTypes.func
+	onChange: PropTypes.func
 };
 
 

@@ -1,8 +1,9 @@
 // MODULES //
 
 import radium from 'radium';
-import React, { PropTypes } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import styles from 'components/styles';
 
 

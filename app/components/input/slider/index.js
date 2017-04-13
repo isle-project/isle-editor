@@ -1,10 +1,11 @@
 // MODULES //
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Input from 'components/input';
 
 
-// SLIDER INPUT //
+// MAIN //
 
 class SliderInput extends Input {
 

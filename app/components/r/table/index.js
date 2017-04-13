@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Dimensions from 'components/dimensions';
 import { Table, Column, Cell } from 'fixed-data-table';
 import request from 'request';
@@ -51,7 +52,7 @@ const createTable = ( data, { containerWidth, columnNames, columnWidth, maxHeigh
 };
 
 
-// R TABLE //
+// MAIN //
 
 class RTable extends Component {
 

@@ -1,11 +1,12 @@
 // MODULES //
 
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 
-// EXPIRE //
+// MAIN //
 
-class Expire extends React.Component {
+class Expire extends Component {
 	/**
 	* Constructor function
 	*/
@@ -73,7 +74,7 @@ Expire.defaultProps = {
 // PROPERTY TYPES //
 
 Expire.propTypes = {
-	delay: React.PropTypes.number
+	delay: PropTypes.number
 };
 
 

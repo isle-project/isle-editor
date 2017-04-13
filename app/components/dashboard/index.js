@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button, Panel } from 'react-bootstrap';
 import Input from 'components/input';
 import NumberInput from 'components/input/number';

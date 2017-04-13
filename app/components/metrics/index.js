@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button, Panel } from 'react-bootstrap';
 import request from 'request';
 
@@ -18,8 +19,9 @@ class Metrics extends Component {
 
 		this.getData = () => {
 			if ( global.lesson && global.lesson.session && global.lesson.session.server ) {
+				console.log( 'Get data...' );
 				const { session } = global.lesson;
-				request.post( session.server + '/retrieveData', {
+				request.post( session.server + '/retrieve_data', {
 					form: {
 						query: JSON.stringify( this.props.query ),
 						user: JSON.stringify( session.user )
@@ -60,7 +62,6 @@ class Metrics extends Component {
 			<Panel>
 				<Button
 					bsStyle="primary"
-					bsSize="large"
 					onClick={ () => {
 						this.setState({
 							active: !this.state.active
@@ -73,6 +74,23 @@ class Metrics extends Component {
 						});
 					}}
 				>{ ( this.state.active && this.props.interval ) ? 'Stop' : 'Fetch Data' }</Button>
+				{ this.props.showClear ?
+					<Button
+						style={{ float: 'right' }}
+						bsStyle="primary"
+						onClick={ () => {
+							const { session } = global.lesson;
+							request.post( session.server + '/delete_session_data', {
+								form: {
+									query: JSON.stringify( this.props.query ),
+									user: JSON.stringify( session.user )
+								}
+							}, ( err ) => {
+								this.props.onData( null, []);
+							});
+						}}
+					>Clear Data</Button> : null
+				}
 				{this.props.children}
 			</Panel>
 		);
@@ -85,7 +103,8 @@ class Metrics extends Component {
 
 Metrics.defaultProps = {
 	interval: null,
-	onData() {}
+	onData() {},
+	showClear: false
 };
 
 
@@ -97,7 +116,8 @@ Metrics.propTypes = {
 	query: PropTypes.oneOfType([
 		PropTypes.object,
 		PropTypes.array
-	]).isRequired
+	]).isRequired,
+	showClear: PropTypes.bool
 };
 
 

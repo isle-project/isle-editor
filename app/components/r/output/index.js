@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import DOMPurify from 'dompurify';
 import request from 'request';
 import Spinner from 'components/spinner';

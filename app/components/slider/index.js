@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button, Panel } from 'react-bootstrap';
 import Slider from 'react-slick';
 
@@ -57,8 +58,38 @@ class PrevArrow extends Component {
 // DEFAULT SLIDER //
 
 class DefaultSlider extends Component {
-	render() {
 
+	constructor( props ) {
+		super( props );
+
+		let childDivs = props.children && props.children.length > 0 ?
+			React.Children.map( props.children, child => <div> {child} </div> ) :
+			<div></div>;
+
+		this.state = {
+			childDivs
+		};
+	}
+
+	componentDidMount() {
+		this.refs.slider.slickGoTo( this.props.goto );
+	}
+
+	componentWillReceiveProps( nextProps ) {
+		if ( nextProps.children !== this.props.children ) {
+			let childDivs = nextProps.children && nextProps.children.length > 0 ?
+				React.Children.map( nextProps.children, child => <div> {child} </div> ) :
+				<div></div>;
+			this.setState({
+				childDivs
+			});
+		}
+		if ( nextProps.goto !== this.props.goto ) {
+			this.refs.slider.slickGoTo( nextProps.goto );
+		}
+	}
+
+	render() {
 		const settings = {
 			className: 'center',
 			speed: 1000,
@@ -81,8 +112,8 @@ class DefaultSlider extends Component {
 				}}
 				header={<h4>{this.props.title}</h4>}
 			>
-				<Slider {...settings}>
-					{ React.Children.map( this.props.children, child => <div> {child} </div> ) }
+				<Slider ref='slider' {...settings}>
+					{ this.state.childDivs }
 				</Slider>
 			</Panel>
 		);
@@ -96,6 +127,7 @@ DefaultSlider.defaultProps = {
 	dots: true,
 	draggable: true,
 	fade: false,
+	goto: 0,
 	infinite: false,
 	swipeToSlide: true,
 	title: ''
@@ -108,6 +140,7 @@ DefaultSlider.propTypes = {
 	dots: PropTypes.bool,
 	draggable: PropTypes.bool,
 	fade: PropTypes.bool,
+	goto: PropTypes.number,
 	infinite: PropTypes.bool,
 	swipeToSlide: PropTypes.bool,
 	title: PropTypes.string

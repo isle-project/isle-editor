@@ -1,7 +1,8 @@
 // MODULES //
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import ReactDom from 'react-dom';
+import PropTypes from 'prop-types';
 import Image from 'components/image';
 import { Button, ButtonToolbar, Modal, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
 import request from 'request';

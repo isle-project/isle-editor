@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import update from 'react/lib/update';
 import Card from './card';
 import { DragDropContext } from 'react-dnd';

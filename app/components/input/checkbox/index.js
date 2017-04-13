@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Input from 'components/input';
 
 
-// CHECKBOX INPUT //
+// MAIN //
 
 class CheckboxInput extends Input {
 

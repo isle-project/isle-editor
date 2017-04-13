@@ -1,7 +1,8 @@
 // MODULES //
 
 import radium from 'radium';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button, ButtonGroup, FormGroup, Modal, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import styles from 'components/styles';
 import TextArea from 'components/text-area';

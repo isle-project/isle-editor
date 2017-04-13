@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import request from 'request';
 import createPrependCode from 'components/r/utils/create-prepend-code';
 import Spinner from 'components/spinner';
@@ -21,10 +22,25 @@ class RPlot extends Component {
 		super( props );
 
 		this.state = {
+			plotURL: null,
 			plot: null,
 			last: '',
 			waiting: false
 		};
+	}
+
+	savePlot( error, img, body ) {
+		if ( error ) {
+			this.props.onDone( error );
+		} else {
+			this.setState({
+				plotURL: img,
+				plot: body,
+				waiting: false
+			}, () => {
+				this.props.onDone( null, img, body );
+			});
+		}
 	}
 
 	getPlot() {
@@ -51,15 +67,18 @@ class RPlot extends Component {
 					const arr = body.split( '\n' );
 					arr.forEach( elem => {
 						if ( GRAPHICS_REGEX.test( elem ) === true ) {
-							const imgURL = OPEN_CPU + elem;
-							this.setState({
-								plot: imgURL,
-								waiting: false
-							}, () => {
-								this.props.onDone( error );
-							});
+							const imgURL = OPEN_CPU + elem + '/' + 		this.props.fileType;
+							if ( this.props.fileType === 'svg' ) {
+								request.get( imgURL, ( error, response, body ) => {
+									this.savePlot( error, imgURL, body );
+								});
+							} else {
+								this.savePlot( null, imgURL );
+							}
 						}
 					});
+				} else {
+					this.savePlot( error );
 				}
 			});
 		}
@@ -79,7 +98,11 @@ class RPlot extends Component {
 				<Spinner running={this.state.waiting} width={256} height={128}/>
 				{ this.state.waiting ?
 					<span /> :
-					<Image src={this.state.plot} title="R Plot" />
+					<Image
+						src={this.state.plotURL}
+						body={this.state.plot}
+						title="R Plot"
+					/>
 				}
 			</div>
 		);
@@ -92,6 +115,7 @@ class RPlot extends Component {
 
 RPlot.propTypes = {
 	code: PropTypes.string,
+	fileType: PropTypes.string,
 	width: PropTypes.number,
 	height: PropTypes.number,
 	libraries: PropTypes.array,
@@ -107,6 +131,7 @@ RPlot.propTypes = {
 
 RPlot.defaultProps = {
 	code: '',
+	fileType: 'svg',
 	width: 600,
 	height: 400,
 	libraries: [],
