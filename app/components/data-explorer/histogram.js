@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CheckboxInput from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
@@ -176,7 +177,7 @@ class Histogram extends Component {
 			</Dashboard>
 		);
 	}
-};
+}
 
 
 // DEFAULT PROPERTIES //

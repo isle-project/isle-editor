@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import RPlot from 'components/r/plot';
@@ -93,7 +94,7 @@ class Scatterplot extends Component {
 			</Dashboard>
 		);
 	}
-};
+}
 
 
 // DEFAULT PROPERTIES //

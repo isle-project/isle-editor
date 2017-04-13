@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
@@ -62,7 +63,7 @@ class HeatMap extends Component {
 			</Dashboard>
 		);
 	}
-};
+}
 
 
 // DEFAULT PROPERTIES //

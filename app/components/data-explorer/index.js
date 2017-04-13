@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Button, Grid, Row, Col, MenuItem, Nav, NavDropdown, NavItem, Panel , Tab } from 'react-bootstrap';
 import $ from 'jquery';
 import ContingencyTable from 'components/data-explorer/contingency-table';
@@ -18,6 +18,7 @@ import isObject from '@stdlib/utils/is-object';
 import entries from '@stdlib/utils/object-entries';
 import ReactDOMServer from 'react-dom/server';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import { generate } from 'randomstring';
 
 
