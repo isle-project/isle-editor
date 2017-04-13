@@ -18,6 +18,7 @@ const React = require( 'react' );
 const ReactBootstrap = require( 'react-bootstrap' );
 const mustache = require( 'mustache' );
 const render = require( 'react-dom' ).render;
+const createReactClass = require( 'create-react-class' );
 const NotificationSystem = require( 'react-notification-system' );
 const contains = require( '@stdlib/utils/contains' );
 const isAbsolutePath = require( '@stdlib/utils/is-absolute-path' );
@@ -28,7 +29,6 @@ const Session = require ( 'api/session' );
 
 import { Component } from 'react';
 import { transform } from 'react-tools';
-import createReactClass from 'create-react-class';
 import markdownToHTML from 'utils/markdown-to-html';
 
 
