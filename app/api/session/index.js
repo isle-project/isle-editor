@@ -81,7 +81,7 @@ class Session {
 			data
 		};
 		if ( !inEditor ) {
-			request.post( this.server + '/storeSessionElement', {
+			request.post( this.server + '/store_session_element', {
 				form: {
 					stringified: JSON.stringify( obj )
 				}
