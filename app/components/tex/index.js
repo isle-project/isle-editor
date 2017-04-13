@@ -1,7 +1,8 @@
 // MODULES //
 
 import Radium from 'radium';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import katex from 'katex';
 import isNumber from '@stdlib/utils/is-number';
 

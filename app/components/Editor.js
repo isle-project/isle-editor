@@ -1,7 +1,8 @@
 // MODULES //
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import ReactDom from 'react-dom';
+import PropTypes from 'prop-types';
 import ace from 'brace';
 import 'brace/mode/html';
 import 'brace/theme/github';

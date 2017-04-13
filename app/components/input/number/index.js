@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Input from 'components/input';
 import isEmptyObject from '@stdlib/utils/is-empty-object';
@@ -124,6 +125,29 @@ class NumberInput extends Input {
 			);
 		}
 
+		let input = <input
+			type="number"
+			name="input"
+			disabled={this.props.disabled}
+			value={this.state.value}
+			step={this.props.step}
+			min={this.props.min}
+			max={this.props.max}
+			style={{
+				marginRight: '8px',
+				paddingLeft: '16px',
+				paddingRight: '4px',
+				border: 'solid 1px darkgrey',
+				borderRadius: '2px',
+				background: 'gold',
+				width: '80px',
+				textAlign: 'center',
+				float: 'right',
+				...this.props.style
+			}}
+			onChange={this.handleChange}
+			onBlur={this.finishChange}
+		/>;
 		return (
 			<div style={{
 				marginBottom: '4px',
@@ -139,30 +163,12 @@ class NumberInput extends Input {
 						<span />
 					}
 				</span>
-				<OverlayTrigger placement="left" overlay={<Tooltip id='standardTooltip'>{this.state.tooltip}</Tooltip>}>
-					<input
-						type="number"
-						name="input"
-						value={this.state.value}
-						step={this.props.step}
-						min={this.props.min}
-						max={this.props.max}
-						style={{
-							marginRight: '8px',
-							paddingLeft: '16px',
-							paddingRight: '4px',
-							border: 'solid 1px darkgrey',
-							borderRadius: '2px',
-							background: 'gold',
-							width: '80px',
-							textAlign: 'center',
-							float: 'right',
-							...this.props.style
-						}}
-						onChange={this.handleChange}
-						onBlur={this.finishChange}
-					/>
-				</OverlayTrigger>
+				{this.props.disabled ?
+					input:
+					<OverlayTrigger placement="left" overlay={<Tooltip id='standardTooltip'>{this.state.tooltip}</Tooltip>}>
+						{input}
+					</OverlayTrigger>
+				}
 			</div>
 		);
 	}
@@ -172,6 +178,7 @@ class NumberInput extends Input {
 // DEFAULT PROPERTIES //
 
 NumberInput.defaultProps = {
+	disabled: false,
 	min: NINF,
 	max: PINF,
 	step: 1,
@@ -184,6 +191,7 @@ NumberInput.defaultProps = {
 // PROPERTY TYPES //
 
 NumberInput.propTypes = {
+	disabled: PropTypes.bool,
 	min: PropTypes.number,
 	max: PropTypes.number,
 	step: PropTypes.number,

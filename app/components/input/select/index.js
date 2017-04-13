@@ -1,11 +1,12 @@
 // MODULES //
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { ControlLabel, Form, FormControl, FormGroup } from 'react-bootstrap';
 import Input from 'components/input';
 
 
-// SELECT INPUT //
+// MAIN //
 
 class SelectInput extends Input {
 	/**
@@ -80,7 +81,7 @@ class SelectInput extends Input {
 			);
 		}
 	}
-};
+}
 
 
 // DEFAULT PROPERTIES //

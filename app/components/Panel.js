@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 
 // PANEL //
@@ -76,7 +77,7 @@ class Panel extends Component {
 			</div>
 		);
 	}
-};
+}
 
 
 // DEFAULT PROPERTIES //

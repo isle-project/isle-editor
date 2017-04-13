@@ -13,6 +13,7 @@
 
 const fs = require( 'fs' );
 const path = require( 'path' );
+const PropTypes = require( 'prop-types' );
 const React = require( 'react' );
 const ReactBootstrap = require( 'react-bootstrap' );
 const mustache = require( 'mustache' );
@@ -25,7 +26,7 @@ const request = require( 'request' );
 const yaml = require( 'js-yaml' );
 const Session = require ( 'api/session' );
 
-import { Component, PropTypes } from 'react';
+import { Component } from 'react';
 import { transform } from 'react-tools';
 import markdownToHTML from 'utils/markdown-to-html';
 
@@ -55,6 +56,7 @@ const Nav = ReactBootstrap.Nav;
 const Navbar = ReactBootstrap.Navbar;
 const NavItem = ReactBootstrap.NavItem;
 const NumberInput = require( 'components/input/number' );
+const NumberSurvey = require( 'components/number-survey' );
 const Panel = ReactBootstrap.Panel;
 const RPlot = require( 'components/r/plot' );
 const RHelp = require( 'components/r/help' );
@@ -91,7 +93,7 @@ const VictoryStack = require( 'victory' ).VictoryStack;
 const VictoryTheme = require( 'victory' ).VictoryTheme;
 const VictoryTooltip = require( 'victory' ).VictoryTooltip;
 const VictoryVoronoiTooltip = require( 'victory' ).VictoryVoronoiTooltip;
-const VictoryZoom = require( 'victory' ).VictoryZoom;
+const VictoryZoomContainer = require( 'victory' ).VictoryZoomContainer;
 const VideoPlayer = require( 'components/video-player' );
 
 const Appear = require( 'spectacle' ).Appear;
