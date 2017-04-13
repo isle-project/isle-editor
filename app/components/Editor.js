@@ -42,6 +42,10 @@ class Editor extends Component {
 
 	constructor( props ) {
 		super( props );
+
+		this.onChange = () => {
+			this.props.onChange( this.editor.getValue() );
+		};
 	}
 
 	componentDidMount() {
@@ -106,10 +110,6 @@ class Editor extends Component {
 	componentWillUnmount() {
 		this.editor.destroy();
 		clearInterval( this.interval );
-	}
-
-	onChange() {
-		this.props.onChange( this.editor.getValue() );
 	}
 
 	render() {
