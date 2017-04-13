@@ -1,11 +1,12 @@
 // MODULES //
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-const d3 = require( 'd3' );
+import d3 from 'd3';
 
 
-// D3 PLOT //
+// MAIN //
 
 class D3Plot extends Component {
 

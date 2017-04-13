@@ -2,9 +2,9 @@
 
 import React, { PropTypes } from 'react';
 import D3Plot from 'components/d3';
-const d3 = require( 'd3' );
-const abs = require( '@stdlib/math/base/special/abs' );
-const isArray = require( '@stdlib/utils/is-array' );
+import d3 from 'd3';
+import abs from '@stdlib/math/base/special/abs';
+import isArray from '@stdlib/utils/is-array';
 
 
 // VARIABLES //
