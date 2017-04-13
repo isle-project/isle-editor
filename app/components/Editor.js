@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 import ace from 'brace';
@@ -36,20 +36,13 @@ const customCompleter = {
 };
 
 
-// EDITOR //
+// MAIN //
 
-const Editor = React.createClass({
-	propTypes: {
-		onChange: PropTypes.func,
-		value: PropTypes.string
-	},
+class Editor extends Component {
 
-	getDefaultProps() {
-		return {
-			onChange: noop,
-			value: ''
-		};
-	},
+	constructor( props ) {
+		super( props );
+	}
 
 	componentDidMount() {
 		langTools.addCompleter( customCompleter );
@@ -102,22 +95,22 @@ const Editor = React.createClass({
 				session.setAnnotations( annotations );
 			}
 		});
-	},
+	}
 
 	componentWillReceiveProps( nextProps ) {
 		if ( this.editor.getValue() !== nextProps.value ) {
 			this.editor.setValue( nextProps.value, -1 );
 		}
-	},
+	}
 
 	componentWillUnmount() {
 		this.editor.destroy();
 		clearInterval( this.interval );
-	},
+	}
 
 	onChange() {
 		this.props.onChange( this.editor.getValue() );
-	},
+	}
 
 	render() {
 		return (
@@ -131,7 +124,23 @@ const Editor = React.createClass({
 			/>
 		);
 	}
-});
+}
+
+
+// DEFAULT PROPERTIES //
+
+Editor.defaultProps = {
+	onChange: noop,
+	value: ''
+};
+
+
+// PROPERTY TYPES //
+
+Editor.propTypes = {
+	onChange: PropTypes.func,
+	value: PropTypes.string
+};
 
 
 // EXPORTS //
