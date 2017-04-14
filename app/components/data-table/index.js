@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Table, Column, Cell } from 'fixed-data-table';
 import floor from '@stdlib/math/base/special/floor';
-import isArray from '@stdlib/utils/is-array';
+import isArray from '@stdlib/assert/is-array';
 
 
 // FUNCTIONS //

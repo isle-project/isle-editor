@@ -1,6 +1,6 @@
 // MODULES //
 
-import isArray from '@stdlib/utils/is-array';
+import isArray from '@stdlib/assert/is-array';
 
 
 // FUNCTIONS //

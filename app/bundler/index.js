@@ -6,9 +6,9 @@ const yaml = require( 'js-yaml' );
 const webpack = require( 'webpack' );
 const UglifyJS = require( 'uglify-js' );
 const debug = require( 'debug-electron' )( 'bundler' );
-const contains = require( '@stdlib/utils/contains' );
-const isObject = require( '@stdlib/utils/is-object' );
-const isAbsolutePath = require( '@stdlib/utils/is-absolute-path' );
+const contains = require( '@stdlib/assert/contains' );
+const isObject = require( '@stdlib/assert/is-object' );
+const isAbsolutePath = require( '@stdlib/assert/is-absolute-path' );
 const markdownToHTML = require( './../utils/markdown-to-html' );
 const REQUIRES = require( './requires.json' );
 

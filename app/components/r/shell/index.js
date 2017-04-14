@@ -10,7 +10,7 @@ import DOMPurify from 'dompurify';
 import createPrependCode from 'components/r/utils/create-prepend-code';
 import beforeUnload from 'utils/before-unload';
 import isElectron from 'utils/is-electron';
-import isArray from '@stdlib/utils/is-array';
+import isArray from '@stdlib/assert/is-array';
 
 import ace from 'brace';
 import 'brace/mode/r';

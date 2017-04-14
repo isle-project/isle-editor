@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import statistic from 'components/data-explorer/statistic.js';
-import isArray from '@stdlib/utils/is-array';
+import isArray from '@stdlib/assert/is-array';
 
 
 // FUNCTIONS //

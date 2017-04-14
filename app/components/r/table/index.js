@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Dimensions from 'components/dimensions';
 import { Table, Column, Cell } from 'fixed-data-table';
 import request from 'request';
-import isArray from '@stdlib/utils/is-array';
+import isArray from '@stdlib/assert/is-array';
 import floor from '@stdlib/math/base/special/floor';
 import Spinner from 'components/spinner';
 import createPrependCode from 'components/r/utils/create-prepend-code';

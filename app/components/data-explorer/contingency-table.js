@@ -6,7 +6,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import countBy from 'lodash.countby';
-import isObject from '@stdlib/utils/is-object';
+import isObject from '@stdlib/assert/is-object';
 
 
 // FUNCTIONS //

@@ -7,7 +7,7 @@ import Dashboard from 'components/dashboard';
 import RPlot from 'components/r/plot';
 import entries from '@stdlib/utils/object-entries';
 import countBy from 'lodash.countby';
-import isArray from '@stdlib/utils/is-array';
+import isArray from '@stdlib/assert/is-array';
 
 
 // FUNCTIONS //

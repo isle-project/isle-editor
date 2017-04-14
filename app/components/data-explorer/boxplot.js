@@ -7,7 +7,7 @@ import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import RPlot from 'components/r/plot';
 import range from 'compute-range';
-import isArray from '@stdlib/utils/is-array';
+import isArray from '@stdlib/assert/is-array';
 
 
 // FUNCTIONS //
