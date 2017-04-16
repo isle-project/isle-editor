@@ -1,7 +1,7 @@
 // MODULES //
 
-const isObject = require( '@stdlib/utils/is-object' );
-const isString = require( '@stdlib/utils/is-string' ).isPrimitive;
+const isObject = require( '@stdlib/assert/is-object' );
+const isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 
 
 // MAIN //
