@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Col, Form, HelpBlock, Modal, ControlLabel, FormControl, FormGroup } from 'react-bootstrap';
 import request from 'request';
-import isString from '@stdlib/utils/is-string';
+import isString from '@stdlib/assert/is-string';
 import beforeUnload from 'utils/before-unload';
 
 

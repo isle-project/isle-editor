@@ -6,15 +6,16 @@ import $ from 'jquery';
 import ContingencyTable from 'components/data-explorer/contingency-table';
 import FrequencyTable from 'components/data-explorer/frequency-table';
 import SummaryStatistics from 'components/data-explorer/summary-statistics';
+import HypothesisTests from 'components/data-explorer/hypothesis-tests';
 import Barchart from 'components/data-explorer/barchart';
 import Boxplot from 'components/data-explorer/boxplot';
 import Heatmap from 'components/data-explorer/heatmap';
 import Histogram from 'components/data-explorer/histogram';
 import Piechart from 'components/data-explorer/piechart';
 import Scatterplot from 'components/data-explorer/scatterplot';
-import isArray from '@stdlib/utils/is-array';
-import isNumber from '@stdlib/utils/is-number';
-import isObject from '@stdlib/utils/is-object';
+import isArray from '@stdlib/assert/is-array';
+import isNumber from '@stdlib/assert/is-number';
+import isObject from '@stdlib/assert/is-object';
 import entries from '@stdlib/utils/object-entries';
 import ReactDOMServer from 'react-dom/server';
 import ReactDOM from 'react-dom';
@@ -48,7 +49,8 @@ const OutputPanel = ( output ) => {
 				else if (
 					e.type === 'Contingency Table' ||
 					e.type === 'Frequency Table' ||
-					e.type === 'Grouped Frequency Table'
+					e.type === 'Grouped Frequency Table' ||
+					e.type === 'Test'
 				) {
 					return makeDraggable( e.value );
 				}
@@ -216,8 +218,16 @@ class DataExplorer extends Component {
 													<MenuItem eventKey={`3.${i+1}`}>{e}</MenuItem> )}
 											</NavDropdown> : null
 											}
+											{ this.props.tests.length > 0 ? <NavItem
+												eventKey="4"
+												title="Tests"
+												id="nav-tests"
+											>
+												Tests
+											</NavItem> : null
+											}
 											{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
-												return ( <NavItem eventKey={`${4+i}`}>
+												return ( <NavItem eventKey={`${5+i}`}>
 													{e.title}
 												</NavItem> );
 											}) : null }
@@ -284,8 +294,19 @@ class DataExplorer extends Component {
 													{content}
 												</Tab.Pane>;
 											})}
+											{this.props.tests ?
+												<Tab.Pane eventKey="4">
+													<HypothesisTests
+														categorical={this.props.categorical}
+														continuous={this.props.continuous}
+														tests={this.props.tests}
+														onCreated={this.addToOutputs}
+														data={this.props.data}
+													/>
+												</Tab.Pane> : null
+											}
 											{this.props.tabs.map( ( e, i ) => {
-												return ( <Tab.Pane eventKey={`${4+i}`}>
+												return ( <Tab.Pane eventKey={`${5+i}`}>
 													{e.content}
 												</Tab.Pane> );
 											})}
@@ -325,7 +346,7 @@ DataExplorer.defaultProps = {
 		'Interquartile Range',
 		'Standard Deviation',
 		'Variance',
-		'Correlation'
+		'Correlation',
 	],
 	plots: [
 		'Bar Chart',
@@ -338,6 +359,10 @@ DataExplorer.defaultProps = {
 	tables: [
 		'Frequency Table',
 		'Contingency Table'
+	],
+	tests: [
+		'One-Sample Z-Test',
+		'One-Sample Proportion Test'
 	]
 };
 
@@ -349,6 +374,7 @@ DataExplorer.propTypes = {
 	statistics: PropTypes.array,
 	plots: PropTypes.array,
 	tables: PropTypes.array,
+	tests: PropTypes.array,
 	onSelect: PropTypes.func
 };
 
