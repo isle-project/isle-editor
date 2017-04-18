@@ -25,6 +25,7 @@ const isAbsolutePath = require( '@stdlib/assert/is-absolute-path' );
 const isObject = require( '@stdlib/assert/is-object' );
 const request = require( 'request' );
 const yaml = require( 'js-yaml' );
+const css = require( 'css' );
 const Session = require ( 'api/session' );
 
 import { Component } from 'react';
@@ -131,7 +132,34 @@ const DataExplorer = require( 'components/data-explorer' );
 const CrossValidation = require( 'components/learn/cross-validation' );
 
 
+// VARIABLES //
+
+var cssHash = {};
+var lastCSS = null;
+
+
 // FUNCTIONS //
+
+const injectStyle = ( style ) => {
+
+	let previous = document.getElementById( 'mystyles' );
+	if ( previous ) {
+		previous.parentNode.removeChild( previous );
+	}
+
+	let node = document.createElement( 'style' );
+	node.setAttribute( 'id', 'mystyles' );
+
+	let cssObj = css.parse( style );
+	let rules = cssObj.stylesheet.rules;
+	rules = rules.map( rule => {
+		rule.selectors = rule.selectors.map( s => '#Lesson ' + s );
+		return rule;
+	});
+
+	node.innerHTML = css.stringify( cssObj );
+	document.head.appendChild( node );
+};
 
 const loadRequires = ( libs, filePath ) => {
 	let dirname = path.dirname( filePath );
@@ -187,6 +215,31 @@ export default class Preview extends Component {
 				// Remove preamble and comments:
 				code = code.replace( /---([\S\s]*)---/, '' );
 				code = code.replace( /<!--([\S\s]*)-->/, '' );
+
+				// Apply styles:
+				let css = '';
+				if ( global.ISLE.css ) {
+					if ( cssHash[ global.ISLE.css ]) {
+						css += cssHash[ global.ISLE.css ];
+					} else {
+						let fpath = global.ISLE.css;
+						if ( !isAbsolutePath( fpath ) ) {
+							fpath = path.join( path.dirname( this.props.filePath ), fpath );
+						}
+						css += fs.readFileSync( fpath ).toString();
+					}
+				}
+				if ( global.ISLE.style ) {
+					let { style } = global.ISLE;
+					css += '\n';
+					css += style;
+				}
+				if ( global.ISLE.style || global.ISLE.css ) {
+					if ( css !== lastCSS ) {
+						injectStyle( css );
+					}
+					lastCSS = css;
+				}
 
 				// Replace Markdown by HTML...
 				code = markdownToHTML( code );
