@@ -125,6 +125,7 @@
     "configstore": "^3.0.0",
     "create-react-class": "^15.5.2",
     "cross-env": "4.x.x",
+    "css": "^2.2.1",
     "css-loader": "^0.28.0",
     "css-modules-require-hook": "^4.0.0",
     "d3": "^4.7.3",
