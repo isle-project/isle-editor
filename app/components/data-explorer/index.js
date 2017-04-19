@@ -362,7 +362,10 @@ DataExplorer.defaultProps = {
 	],
 	tests: [
 		'One-Sample Z-Test',
-		'One-Sample Proportion Test'
+		'One-Sample Proportion Test',
+		'Two-Sample Z-Test',
+		'Two-Sample Proportion Test',
+		'Correlation Test'
 	]
 };
 
