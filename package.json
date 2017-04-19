@@ -181,7 +181,7 @@
     "source-map-support": "^0.4.0",
     "spectacle": "^2.0.0",
     "style-loader": "^0.16.1",
-    "uglify-js": "^2.7.0",
+    "uglify-js": "github:mishoo/UglifyJS2#harmony",
     "uniq": "^1.0.1",
     "victory": "^0.18.0",
     "webpack": "^2.2.1"
