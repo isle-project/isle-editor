@@ -1,7 +1,12 @@
 // MODULES //
 
 import React from 'react';
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+
+const makeTooltip = ( text ) => (
+	<Tooltip id="tooltip">{text}</Tooltip>
+);
 
 
 // SWITCH //
@@ -39,13 +44,18 @@ class Switch extends React.Component {
 	render() {
 		let children = React.Children.map( this.props.children, this.makeVisible.bind( this ) );
 		return (
-			<div
-				className="switch"
-				onClick={this.handleClick}
-				style={{ cursor: 'pointer', display: 'inline' }}
+			<OverlayTrigger
+				placement="top"
+				overlay={makeTooltip( this.props.tooltip )}
 			>
-				{children}
-			</div>
+				<div
+					className="switch"
+					onClick={this.handleClick}
+					style={{ cursor: 'pointer', display: 'inline' }}
+				>
+					{children}
+				</div>
+			</OverlayTrigger>
 		);
 	}
 }
@@ -54,14 +64,16 @@ class Switch extends React.Component {
 // PROPERTY TYPES //
 
 Switch.propTypes = {
-	onChange: PropTypes.func
+	onChange: PropTypes.func,
+	tooltip: PropTypes.string
 };
 
 
 // DEFAULT PROPERTIES //
 
 Switch.defaultProps = {
-	onChange(){}
+	onChange(){},
+	tooltip: 'Click to cycle through available options.'
 };
 
 
