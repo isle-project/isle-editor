@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import { Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
@@ -98,47 +99,106 @@ class HypothesisTests extends Component {
 			this.props.onCreated( output );
 		};
 
-		this.calculateTwoSampleZTest = ( var1, var2, diff, direction, alpha ) => {
+		this.calculateTwoSampleZTest = ( var1, grouping, var2, diff, direction, alpha ) => {
 			let { data } = this.props;
-			let categories = data[ var2 ];
-			let firstCategory = categories[ 0 ];
 			let secondCategory;
-			for ( let i = 1; i < categories.length; i++ ) {
-				if ( categories[ i ] !== firstCategory ) {
-					secondCategory = categories[ i ];
+			let firstCategory;
+			let value;
+			let x;
+			let y;
+
+			if ( grouping !== 'None' ) {
+				let categories = data[ grouping ];
+				firstCategory = categories[ 0 ];
+				secondCategory;
+				for ( let i = 1; i < categories.length; i++ ) {
+					if ( categories[ i ] !== firstCategory ) {
+						secondCategory = categories[ i ];
+					}
 				}
-			}
-			let splitted = bifurcateBy( data[ var1 ], function( x, idx ) {
-				return categories[ idx ] === firstCategory;
-			});
-			let x = splitted[ 0 ];
-			let y = splitted[ 1 ];
+				let splitted = bifurcateBy( data[ var1 ], function( x, idx ) {
+					return categories[ idx ] === firstCategory;
+				});
+				x = splitted[ 0 ];
+				y = splitted[ 1 ];
 
-			const result = ztest2( x, y, stdev( x ), stdev( y ), {
-				'alpha': alpha,
-				'alternative': direction,
-				'difference': diff
-			});
+				const result = ztest2( x, y, stdev( x ), stdev( y ), {
+					'alpha': alpha,
+					'alternative': direction,
+					'difference': diff
+				});
 
-			let arrow = '\\ne';
-			if ( direction === 'less' ) {
-				arrow = '<';
-			} else if ( direction === 'greater' ){
-				arrow = '>';
-			}
-
-			let output = {
-				variable: `Test for equality of mean ${var1} between ${var2}`,
-				type: 'Test',
-				value: <div>
-					<label>Hypothesis test for {var1} between {var2}:</label>
-					<TeX displayMode raw={`H_0: \\mu_{${firstCategory}} - \\mu_{${secondCategory}} = ${diff} \\; vs. \\; H_1: \\mu_{${firstCategory}} - \\mu_{${secondCategory}} ${arrow} ${diff}`} tag="" />
+				let arrow = '\\ne';
+				if ( direction === 'less' ) {
+					arrow = '<';
+				} else if ( direction === 'greater' ){
+					arrow = '>';
+				}
+				value = <div>
+					<label>Hypothesis test for {var1} between {grouping}:</label>
+					<TeX
+						displayMode
+						raw={`H_0: \\mu_{\\text{${grouping}:${firstCategory}}} - \\mu_{\\text{${grouping}:${secondCategory}}} = ${diff}`}
+						tag=""
+					/>
+					<span> vs. </span>
+					<TeX
+						displayMode
+						raw={`H_1: \\mu_{\\text{${grouping}:${firstCategory}}} - \\mu_{\\text{${grouping}:${secondCategory}}} ${arrow} ${diff}`}
+						tag="" />
 					<pre>
 						{result.print()}
 					</pre>
-				</div>
-			};
-			this.props.onCreated( output );
+				</div>;
+			} else if ( var2 !== 'None' ) {
+				x = data[ var1 ];
+				y = data[ var2 ];
+				const result = ztest2( x, y, stdev( x ), stdev( y ), {
+					'alpha': alpha,
+					'alternative': direction,
+					'difference': diff
+				});
+
+				let arrow = '\\ne';
+				if ( direction === 'less' ) {
+					arrow = '<';
+				} else if ( direction === 'greater' ){
+					arrow = '>';
+				}
+				value = <div>
+					<label>Hypothesis test for {var1} against {var2}:</label>
+					<TeX
+						displayMode
+						raw={`H_0: \\mu_{${var1}} - \\mu_{${var2}} = ${diff}`}
+						tag=""
+					/>
+					<span>vs.</span>
+					<TeX
+						displayMode
+						raw={`\\; H_1: \\mu_{${var1}} - \\mu_{${var2}} ${arrow} ${diff}`}
+						tag=""
+					/>
+					<pre>
+						{result.print()}
+					</pre>
+				</div>;
+			} else {
+				global.lesson.addNotification({
+					title: 'Action required',
+					message: `Please select either a grouping variable or a second variable to compare ${var1} against.`,
+					level: 'warning',
+					position: 'tr'
+				});
+			}
+
+			if ( value ) {
+				let output = {
+					variable: `Test-Sample Z-Test`,
+					type: 'Test',
+					value: value
+				};
+				this.props.onCreated( output );
+			}
 		};
 
 		this.calculatePropTest = ( variable, success, p0, direction, alpha ) => {
@@ -176,55 +236,115 @@ class HypothesisTests extends Component {
 			this.props.onCreated( output );
 		};
 
-		this.calculateTwoSamplePropTest = ( var1, success, var2, diff, direction, alpha ) => {
+		this.calculateTwoSamplePropTest = ( var1, grouping, var2, success, diff, direction, alpha ) => {
 			let { data } = this.props;
-			let x = data[ var1 ];
-			let binary = x.map( x => x == success ? 1 : 0 );
-
-			let categories = data[ var2 ];
-			let firstCategory = categories[ 0 ];
+			let firstCategory;
 			let secondCategory;
-			for ( let i = 1; i < categories.length; i++ ) {
-				if ( categories[ i ] !== firstCategory ) {
-					secondCategory = categories[ i ];
+			let value;
+			let x;
+			let y;
+
+			if ( grouping !== 'None' ) {
+				x = data[ var1 ];
+				let binary = x.map( x => x == success ? 1 : 0 );
+				let categories = data[ grouping ];
+				firstCategory = categories[ 0 ];
+				for ( let i = 1; i < categories.length; i++ ) {
+					if ( categories[ i ] !== firstCategory ) {
+						secondCategory = categories[ i ];
+					}
 				}
-			}
-			let splitted = bifurcateBy( binary, function( x, idx ) {
-				return categories[ idx ] === firstCategory;
-			});
-			x = splitted[ 0 ];
-			let y = splitted[ 1 ];
+				let splitted = bifurcateBy( binary, function( x, idx ) {
+					return categories[ idx ] === firstCategory;
+				});
+				x = splitted[ 0 ];
+				y = splitted[ 1 ];
 
-			const result = ztest2( x, y, stdev( x ), stdev( y ), {
-				'alpha': alpha,
-				'alternative': direction,
-				'difference': diff
-			});
+				const result = ztest2( x, y, stdev( x ), stdev( y ), {
+					'alpha': alpha,
+					'alternative': direction,
+					'difference': diff
+				});
 
-			let arrow = '\\ne';
-			if ( direction === 'less' ) {
-				arrow = '<';
-			} else if ( direction === 'greater' ){
-				arrow = '>';
-			}
-			let output = {
-				variable: `Two-Sample Proportion Test for ${var1} by ${var2}`,
-				type: 'Test',
-				value: <div>
-					<label>Hypothesis test for equality of mean {var1} by {var2}:</label><br />
+				let arrow = '\\ne';
+				if ( direction === 'less' ) {
+					arrow = '<';
+				} else if ( direction === 'greater' ){
+					arrow = '>';
+				}
+
+				let title = `Hypothesis test for equality of mean ${var1} by ${grouping}`;
+				value = <div>
+					<label>{title}</label><br />
 					<span>
 						Let <TeX raw={`p_{${firstCategory}}`} /> be the population probability of <code>{var1}</code> being <code>{success}</code> in the first group, and <TeX raw={`p_{${secondCategory}}`} /> the probability in the second group, respectively. We test
 					</span>
-					<TeX displayMode raw={`H_0: p_{${firstCategory}} - p_{${secondCategory}} = ${diff} \\; vs. \\; H_1: p_{${firstCategory}} - p_{${secondCategory}} ${arrow} ${diff}`} tag="" />
+					<TeX
+						displayMode
+						raw={`H_0: p_{\\text{${grouping}:${firstCategory}}} - p_{\\text{${grouping}:${secondCategory}}} = ${diff}`}
+						tag="" />
+					<span> vs. </span>
+					<TeX
+						displayMode
+						raw={`H_1: p_{\\text{${grouping}:${firstCategory}}} - p_{\\text{${grouping}:${secondCategory}}} ${arrow} ${diff}`}
+						tag=""
+					/>
 					<label>Sample proportion in group {firstCategory}: {roundn( mean( x ), -3 )}</label>
 					<label>Sample proportion in group {secondCategory}: {roundn( mean( y ), -3 )}</label>
 					<pre>
 						{result.print()}
 					</pre>
-				</div>
-			};
+				</div>;
+			} else if ( var2 !== 'None' ) {
+				x = data[ var1 ];
+				x = x.map( x => x == success ? 1 : 0 );
+				y = data[ var2 ];
+				y = y.map( y => y == success ? 1 : 0 );
 
-			this.props.onCreated( output );
+				const result = ztest2( x, y, stdev( x ), stdev( y ), {
+					'alpha': alpha,
+					'alternative': direction,
+					'difference': diff
+				});
+
+				let arrow = '\\ne';
+				if ( direction === 'less' ) {
+					arrow = '<';
+				} else if ( direction === 'greater' ){
+					arrow = '>';
+				}
+				let title = `Hypothesis test for equality of mean ${var1} against mean ${var2}`;
+				value = <div>
+					<label>{title}</label><br />
+					<span>
+						Let <TeX raw={`p_{${var1}}`} /> be the population probability of <code>{var1}</code> being <code>{success}</code>, and <TeX raw={`p_{${var2}}`} /> the probability <code>{var2}</code> being <code>{success}</code>, respectively. We test
+					</span>
+					<TeX displayMode raw={`H_0: p_{${var1}} - p_{${var2}} = ${diff}`} tag="" />
+					<span> vs. </span>
+					<TeX displayMode raw={`H_1: p_{${var1}} - p_{${var2}} ${arrow} ${diff}`} tag="" />
+					<label>Sample proportion in group {var1}: {roundn( mean( x ), -3 )}</label>
+					<label>Sample proportion in group {var2}: {roundn( mean( y ), -3 )}</label>
+					<pre>
+						{result.print()}
+					</pre>
+				</div>;
+			} else {
+				global.lesson.addNotification({
+					title: 'Action required',
+					message: `Please select either a grouping variable or a second variable to compare ${var1} against.`,
+					level: 'warning',
+					position: 'tr'
+				});
+			}
+
+			if ( value ) {
+				let output = {
+					variable: `Two-Sample Proportion Test`,
+					type: 'Test',
+					value: value
+				};
+				this.props.onCreated( output );
+			}
 		};
 
 	}
@@ -336,11 +456,21 @@ class HypothesisTests extends Component {
 					defaultValue={continuous[ 0 ]}
 					options={continuous}
 				/>
-				<SelectInput
-					legend="Grouping Variable:"
-					defaultValue={binary[ 0 ]}
-					options={binary}
-				/>
+				<Form>
+					<label>Groups: </label>
+					<SelectInput
+						inline
+						defaultValue="None"
+						options={[ 'None',...binary ]}
+					/>
+					{` OR `}
+					<label>Second Variable: </label>
+					<SelectInput
+						inline
+						defaultValue="None"
+						options={[ 'None', ...continuous ]}
+					/>
+				</Form>
 				<NumberInput
 					legend="Difference under H0"
 					defaultValue={0.0}
@@ -378,15 +508,25 @@ class HypothesisTests extends Component {
 						});
 					}}
 				/>
+				<Form>
+					<label>Groups: </label>
+					<SelectInput
+						inline
+						defaultValue="None"
+						options={[ 'None',...binary ]}
+					/>
+					{` OR `}
+					<label>Second Variable: </label>
+					<SelectInput
+						inline
+						defaultValue="None"
+						options={[ 'None', ...categorical ]}
+					/>
+				</Form>
 				<SelectInput
 					legend="Success:"
 					defaultValue={this.state.categories[ 0 ]}
 					options={this.state.categories}
-				/>
-				<SelectInput
-					legend="Grouping Variable:"
-					defaultValue={binary[ 0 ]}
-					options={binary}
 				/>
 				<NumberInput
 					legend="Difference under H0"
