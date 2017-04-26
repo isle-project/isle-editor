@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
-import entries from '@stdlib/utils/object-entries';
+import entries from '@stdlib/utils/entries';
 import countBy from 'lodash.countby';
 import isArray from '@stdlib/assert/is-array';
 
