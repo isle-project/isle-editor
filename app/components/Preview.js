@@ -174,10 +174,16 @@ const loadRequires = ( libs, filePath ) => {
 				}
 				if ( /\.svg$/.test( lib ) ) {
 					let content = fs.readFileSync( lib ).toString();
-					eval( `global[ '${key}' ] = \`${content};\`` );
-				} else {
+					eval( `global[ '${key}' ] = \`${content}\`;` );
+				}
+				else if ( /\.(?:jpg|png)$/.test( lib ) ) {
+					let buffer = fs.readFileSync( lib );
+					eval( `global[ '${key}' ] = 'data:image/jpeg;base64,${buffer.toString( 'base64' )}'` );
+				}
+				else {
 					eval( `global[ '${key}' ] = require( '${lib}' );` );
 				}
+
 			}
 		}
 	}

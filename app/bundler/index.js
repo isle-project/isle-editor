@@ -63,7 +63,17 @@ const loadRequires = ( libs, filePath ) => {
 				} else if ( /@stdlib/.test( lib ) ) {
 					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
 				}
-				str += `global[ '${key}' ] = require( '${lib}' );\n`;
+				if ( /\.svg$/.test( lib ) ) {
+					let content = fs.readFileSync( lib ).toString();
+					str += `global[ '${key}' ] = \`${content}\`;\n`;
+				}
+				else if ( /\.(?:jpg|png)$/.test( lib ) ) {
+					let buffer = fs.readFileSync( lib );
+					str += `global[ '${key}' ] = 'data:image/jpeg;base64,${buffer.toString( 'base64' )}'`;
+				}
+				else {
+					str += `global[ '${key}' ] = require( '${lib}' );\n`;
+				}
 			}
 		}
 	}
