@@ -7,6 +7,7 @@ import ContingencyTable from 'components/data-explorer/contingency-table';
 import FrequencyTable from 'components/data-explorer/frequency-table';
 import SummaryStatistics from 'components/data-explorer/summary-statistics';
 import HypothesisTests from 'components/data-explorer/hypothesis-tests';
+import VariableTransformer from 'components/data-explorer/variable-transformer';
 import Barchart from 'components/data-explorer/barchart';
 import Boxplot from 'components/data-explorer/boxplot';
 import Heatmap from 'components/data-explorer/heatmap';
@@ -15,8 +16,11 @@ import Piechart from 'components/data-explorer/piechart';
 import Scatterplot from 'components/data-explorer/scatterplot';
 import isArray from '@stdlib/assert/is-array';
 import isNumber from '@stdlib/assert/is-number';
+import isNumberArray from '@stdlib/assert/is-number-array';
 import isObject from '@stdlib/assert/is-object';
 import entries from '@stdlib/utils/entries';
+import hasProp from '@stdlib/assert/has-property';
+import copy from '@stdlib/utils/copy';
 import ReactDOMServer from 'react-dom/server';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -24,6 +28,12 @@ import { generate } from 'randomstring';
 
 
 // FUNCTIONS //
+
+const generateTransformationCode = ( variable ) => `if ( datum.${variable} > 0 ) {
+	return 'Yes'
+} else {
+	return 'No'
+}`;
 
 const makeDraggable = ( div ) => {
 	let markup = ReactDOMServer.renderToStaticMarkup( div );
@@ -130,6 +140,9 @@ class DataExplorer extends Component {
 		groupVars.unshift( 'None' );
 
 		this.state = {
+			data: props.data,
+			continuous: props.continuous,
+			categorical: props.categorical,
 			output: [],
 			groupVars
 		};
@@ -166,15 +179,15 @@ class DataExplorer extends Component {
 			defaultActiveKey = 'second';
 		}
 		const categoricalProps = {
-			data: this.props.data,
-			variables: this.props.categorical,
+			data: this.state.data,
+			variables: this.state.categorical,
 			groupingVariables: this.state.groupVars,
 			onCreated: this.addToOutputs,
 			onPlotDone: this.scrollToBottom
 		};
 		const continuousProps = {
-			data: this.props.data,
-			variables: this.props.continuous,
+			data: this.state.data,
+			variables: this.state.continuous,
 			groupingVariables: this.state.groupVars,
 			onCreated: this.addToOutputs,
 			onPlotDone: this.scrollToBottom
@@ -226,8 +239,15 @@ class DataExplorer extends Component {
 												Tests
 											</NavItem> : null
 											}
+											<NavItem
+												eventKey="5"
+												title="Transform"
+												id="nav-transform"
+											>
+												Transform
+											</NavItem>
 											{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
-												return ( <NavItem eventKey={`${5+i}`}>
+												return ( <NavItem eventKey={`${6+i}`}>
 													{e.title}
 												</NavItem> );
 											}) : null }
@@ -297,16 +317,61 @@ class DataExplorer extends Component {
 											{this.props.tests ?
 												<Tab.Pane eventKey="4">
 													<HypothesisTests
-														categorical={this.props.categorical}
-														continuous={this.props.continuous}
+														categorical={this.state.categorical}
+														continuous={this.state.continuous}
 														tests={this.props.tests}
 														onCreated={this.addToOutputs}
-														data={this.props.data}
+														data={this.state.data}
 													/>
 												</Tab.Pane> : null
 											}
+											<Tab.Pane eventKey="5">
+												<VariableTransformer
+													data={this.state.data}
+													defaultCode={generateTransformationCode( this.state.continuous[ 0 ])}
+													onGenerate={( name, values ) => {
+														let newData = copy( this.state.data );
+														if ( !hasProp( newData, name ) ) {
+															newData[ name ] = values;
+															if ( isNumberArray( values ) ) {
+																let newContinuous = copy( this.state.continuous );
+																newContinuous.push( name );
+																this.setState({
+																	data: newData,
+																	continuous: newContinuous
+																});
+															} else {
+																let newCategorical = copy( this.state.categorical );
+																newCategorical.push( name );
+
+																let groupVars = newCategorical.slice();
+																groupVars.unshift( 'None' );
+
+																this.setState({
+																	data: newData,
+																	categorical: newCategorical,
+																	groupVars
+																});
+															}
+															global.lesson.addNotification({
+																title: 'Variable created',
+																message: `The variable with the name ${name} has been successfully created`,
+																level: 'success',
+																position: 'tr'
+															});
+														} else {
+															global.lesson.addNotification({
+																title: 'Variable exists',
+																message: `A variable with the selected name already exists.`,
+																level: 'error',
+																position: 'tr'
+															});
+														}
+													}}
+												/>
+											</Tab.Pane>
 											{this.props.tabs.map( ( e, i ) => {
-												return ( <Tab.Pane eventKey={`${5+i}`}>
+												return ( <Tab.Pane eventKey={`${6+i}`}>
 													{e.content}
 												</Tab.Pane> );
 											})}
