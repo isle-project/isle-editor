@@ -66,6 +66,7 @@ const RShell = require( 'components/r/shell' );
 const RTable = require( 'components/r/table' );
 const ROutput = require( 'components/r/output' );
 const Row = ReactBootstrap.Row;
+const Runner = require( 'components/runner' );
 const SelectInput = require( 'components/input/select' );
 const SelectQuestion = require( 'components/select-question' );
 const SliderInput = require( 'components/input/slider' );
@@ -173,8 +174,8 @@ const loadRequires = ( libs, filePath ) => {
 					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
 				}
 				if ( /\.svg$/.test( lib ) ) {
-					let content = fs.readFileSync( lib ).toString();
-					eval( `global[ '${key}' ] = \`${content}\`;` );
+					let content = fs.readFileSync( lib ).toString( 'base64' );
+					eval( `global[ '${key}' ] = 'data:image/svg+xml;base64,${content}';` );
 				}
 				else if ( /\.(?:jpg|png)$/.test( lib ) ) {
 					let buffer = fs.readFileSync( lib );

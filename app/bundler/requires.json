@@ -31,6 +31,7 @@
 	"RShell": "const RShell = require( \"components/r/shell\" )",
 	"RTable": "const RTable = require( \"components/r/table\" )",
 	"Row": "const Row = require( \"react-bootstrap\" ).Row",
+	"Runner": "const Runner = require( \"components/runner\" )",
 	"SelectInput": "const SelectInput = require( \"components/input/select\" )",
 	"SelectQuestion": "const SelectQuestion = require( \"components/select-question\" )",
 	"Slider": "const Slider = require( \"components/slider\" )",

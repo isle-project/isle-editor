@@ -64,12 +64,12 @@ const loadRequires = ( libs, filePath ) => {
 					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
 				}
 				if ( /\.svg$/.test( lib ) ) {
-					let content = fs.readFileSync( lib ).toString();
-					str += `global[ '${key}' ] = \`${content}\`;\n`;
+					let content = fs.readFileSync( lib ).toString( 'base64' );
+					str += `global[ '${key}' ] = 'data:image/svg+xml;base64,${content}';\n`;
 				}
 				else if ( /\.(?:jpg|png)$/.test( lib ) ) {
 					let buffer = fs.readFileSync( lib );
-					str += `global[ '${key}' ] = 'data:image/jpeg;base64,${buffer.toString( 'base64' )}'`;
+					str += `global[ '${key}' ] = 'data:image/jpeg;base64,${buffer.toString( 'base64' )}';\n`;
 				}
 				else {
 					str += `global[ '${key}' ] = require( '${lib}' );\n`;
