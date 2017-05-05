@@ -26,7 +26,7 @@ class Transformer extends Component {
 		}
 
 		this.state = {
-			code: '',
+			code: props.defaultCode,
 			data: data,
 			name: ''
 		};

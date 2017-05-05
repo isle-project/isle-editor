@@ -18,6 +18,7 @@ import isArray from '@stdlib/assert/is-array';
 import isNumber from '@stdlib/assert/is-number';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import isObject from '@stdlib/assert/is-object';
+import contains from '@stdlib/assert/contains';
 import entries from '@stdlib/utils/entries';
 import hasProp from '@stdlib/assert/has-property';
 import copy from '@stdlib/utils/copy';
@@ -331,38 +332,51 @@ class DataExplorer extends Component {
 													defaultCode={generateTransformationCode( this.state.continuous[ 0 ])}
 													onGenerate={( name, values ) => {
 														let newData = copy( this.state.data );
-														if ( !hasProp( newData, name ) ) {
+														if ( !hasProp( this.props.data, name ) ) {
 															newData[ name ] = values;
+															let groupVars;
+															let previous;
+															let newContinuous = copy( this.state.continuous );
+															let newCategorical = copy( this.state.categorical );
 															if ( isNumberArray( values ) ) {
-																let newContinuous = copy( this.state.continuous );
-																newContinuous.push( name );
-																this.setState({
-																	data: newData,
-																	continuous: newContinuous
-																});
+																if ( !( name in newContinuous ) ) {
+																	newContinuous.push( name );
+																	previous = newCategorical.indexOf( name );
+																	if ( previous > 0 ) {
+																		newCategorical.splice( previous, 1 );
+																		groupVars = newCategorical.slice();
+																		groupVars.unshift( 'None' );
+																	}
+																}
 															} else {
-																let newCategorical = copy( this.state.categorical );
-																newCategorical.push( name );
-
-																let groupVars = newCategorical.slice();
+																if ( !( name in newCategorical ) ) {
+																	newCategorical.push( name );																								previous = newContinuous.indexOf( name );
+																	if ( previous > 0 ) {
+																		newContinuous.splice( previous, 1 );
+																	}
+																}
+																groupVars = newCategorical.slice();
 																groupVars.unshift( 'None' );
-
-																this.setState({
-																	data: newData,
-																	categorical: newCategorical,
-																	groupVars
-																});
 															}
+															let newState = {
+																data: newData,
+																categorical: newCategorical,
+																continuous: newContinuous,
+															};
+															if ( groupVars ) {
+																newState[ 'groupVars' ] = groupVars;
+															}
+															this.setState( newState );
 															global.lesson.addNotification({
 																title: 'Variable created',
-																message: `The variable with the name ${name} has been successfully created`,
+																message: `The variable with the name ${name} has been successfully ${ previous > 0 ? 'overwritten' : 'created' }`,
 																level: 'success',
 																position: 'tr'
 															});
 														} else {
 															global.lesson.addNotification({
 																title: 'Variable exists',
-																message: `A variable with the selected name already exists.`,
+																message: `The original variables of the data set cannot be overwritten.`,
 																level: 'error',
 																position: 'tr'
 															});
