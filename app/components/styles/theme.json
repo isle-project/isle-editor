@@ -144,11 +144,11 @@
 				"margin":20
 			},
 			"quote":{
-				"borderLeft":"1px solid #fffff8",
+				"borderLeft":"1px solid #939393",
 				"paddingLeft":40,
 				"display":"block",
-				"color":"#fffff8",
-				"fontSize":"4.9rem",
+				"color":"#939393",
+				"fontSize":"4rem",
 				"lineHeight":1,
 				"fontWeight":"bold"
 			},
@@ -206,7 +206,7 @@
 				},
 				"h3":{
 					"color":"black",
-					"fontSize":"3rem",
+					"fontSize":"3.5rem",
 					"fontFamily":"Open Sans, sans-serif",
 					"lineHeight":1,
 					"fontWeight":"bold",
@@ -214,7 +214,7 @@
 				},
 				"h4":{
 					"color":"black",
-					"fontSize":"2.5rem",
+					"fontSize":"3rem",
 					"fontFamily":"Open Sans, sans-serif",
 					"lineHeight":1,
 					"fontWeight":"bold",
@@ -222,7 +222,7 @@
 				},
 				"h5":{
 					"color":"black",
-					"fontSize":"2rem",
+					"fontSize":"2.5rem",
 					"fontFamily":"Open Sans, sans-serif",
 					"lineHeight":1,
 					"fontWeight":"bold",
@@ -230,7 +230,7 @@
 				},
 				"h6":{
 					"color":"black",
-					"fontSize":"1.5rem",
+					"fontSize":"2rem",
 					"fontFamily":"Open Sans, sans-serif",
 					"lineHeight":1,
 					"fontWeight":"bold",
@@ -245,7 +245,7 @@
 				"textDecoration":"none"
 			},
 			"listItem":{
-				"fontSize":"1.5rem"
+				"fontSize":"2rem"
 			},
 			"list":{
 				"textAlign":"left",
@@ -269,7 +269,7 @@
 			},
 			"text":{
 				"color":"black",
-				"fontSize":"1.5rem",
+				"fontSize":"2rem",
 				"fontFamily":"Open Sans, sans-serif",
 				"margin":"0.25rem auto",
 				"textAlign": "left"
@@ -462,7 +462,7 @@
 			"heading":{
 				"h1":{
 					"color":"black",
-					"fontSize":"5rem",
+					"fontSize":"5.0rem",
 					"fontFamily":"Open Sans Condensed",
 					"lineHeight":1,
 					"fontWeight":"bold",
@@ -470,7 +470,7 @@
 				},
 				"h2":{
 					"color":"black",
-					"fontSize":"4rem",
+					"fontSize":"4.0rem",
 					"fontFamily":"Open Sans Condensed",
 					"lineHeight":1,
 					"fontWeight":"bold",
@@ -478,7 +478,7 @@
 				},
 				"h3":{
 					"color":"black",
-					"fontSize":"3rem",
+					"fontSize":"3.5rem",
 					"fontFamily":"Lobster Two",
 					"lineHeight":1,
 					"fontWeight":"bold",
@@ -486,7 +486,7 @@
 				},
 				"h4":{
 					"color":"black",
-					"fontSize":"2.5rem",
+					"fontSize":"3.0rem",
 					"fontFamily":"Open Sans Condensed",
 					"lineHeight":1,
 					"fontWeight":"bold",
@@ -494,7 +494,7 @@
 				},
 				"h5":{
 					"color":"black",
-					"fontSize":"2rem",
+					"fontSize":"2.5rem",
 					"fontFamily":"Open Sans Condensed",
 					"lineHeight":1,
 					"fontWeight":"bold",
@@ -502,7 +502,7 @@
 				},
 				"h6":{
 					"color":"black",
-					"fontSize":"1.5rem",
+					"fontSize":"2.0rem",
 					"fontFamily":"Open Sans Condensed",
 					"lineHeight":1,
 					"fontWeight":"bold",
@@ -517,7 +517,7 @@
 				"textDecoration":"none"
 			},
 			"listItem":{
-				"fontSize":"1.5rem"
+				"fontSize":"2.0rem"
 			},
 			"list":{
 				"textAlign":"left",
@@ -541,7 +541,7 @@
 			},
 			"text":{
 				"color":"black",
-				"fontSize":"1.5rem",
+				"fontSize":"2.0rem",
 				"fontFamily":"Open Sans Condensed",
 				"margin":"0.25rem auto",
 				"textAlign": "left"
