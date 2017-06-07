@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import NumberInput from 'components/input/number';
 import request from 'request';
 import { Button, ControlLabel, Form, FormControl, FormGroup, Panel } from 'react-bootstrap';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 
 // FUNCTIONS //
