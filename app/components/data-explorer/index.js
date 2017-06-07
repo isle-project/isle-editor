@@ -16,7 +16,7 @@ import Scatterplot from 'components/data-explorer/scatterplot';
 import isArray from '@stdlib/assert/is-array';
 import isNumber from '@stdlib/assert/is-number';
 import isObject from '@stdlib/assert/is-object';
-import entries from '@stdlib/utils/object-entries';
+import entries from '@stdlib/utils/entries';
 import ReactDOMServer from 'react-dom/server';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';

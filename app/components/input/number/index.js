@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Input from 'components/input';
-import isEmptyObject from '@stdlib/utils/is-empty-object';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/math/constants/float64-pinf';
 import NINF from '@stdlib/math/constants/float64-ninf';
 
