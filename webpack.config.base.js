@@ -10,7 +10,10 @@ export default {
 	module: {
 		rules: [ {
 			test: /\.js?$/,
-			loader: 'babel-loader',
+			use: {
+				loader: 'babel-loader',
+				options: {}
+			},
 			include: [
 				path.join( __dirname, 'main.development.js' ),
 				path.join( __dirname, 'app' ),
@@ -18,21 +21,18 @@ export default {
 				path.join( __dirname, 'node_modules', 'crypto-random-string' ),
 				path.join( __dirname, 'node_modules', 'fs-extra' ),
 				path.join( __dirname, 'node_modules', 'unique-string' )
-			],
-			query: {
-				plugins: []
-			}
+			]
 		}, {
 			test: /\.json$/,
-			loader: 'json-loader'
+			use: 'json-loader'
 		},
 		{
 			test: /\.txt$/,
-			loader: 'raw-loader'
+			use: 'raw-loader'
 		},
 		{
 			test: /img\/[A-Z]*\.svg$/i,
-			loader: 'file-loader?name=./img/[name].[ext]',
+			use: 'file-loader?name=./img/[name].[ext]',
 			include: [
 				path.join( __dirname, 'img' )
 			]
