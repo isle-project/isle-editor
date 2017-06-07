@@ -12,7 +12,9 @@ export default {
 			test: /\.js?$/,
 			use: {
 				loader: 'babel-loader',
-				options: {}
+				options: {
+					plugins: []
+				}
 			},
 			include: [
 				path.join( __dirname, 'main.development.js' ),
@@ -52,8 +54,7 @@ export default {
 			'esprima': path.resolve( './node_modules/esprima-fb' ),
 			'object-keys': path.resolve( './objectKeys.js' ),
 			'electron-prebuilt': path.resolve( './dummy.js' ),
-			'victory': require.resolve( 'victory/dist/victory' ),
-			'history/createHashHistory': require.resolve( './node_modules/react-history/node_modules/history/createHashHistory.js' )
+			'victory': require.resolve( 'victory/dist/victory' )
 		},
 		modules: [
 			path.resolve( './app' ),
@@ -71,6 +72,6 @@ export default {
 		// Node 3rd party libraries which can't be built with webpack go here...
 		'child_process',
 		'webpack',
-		'uglify-js'
+		'uglify-es'
 	]
 };
