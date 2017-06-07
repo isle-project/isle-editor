@@ -19,11 +19,6 @@ export default {
 	},
 
 	plugins: [
-		new webpack.optimize.UglifyJsPlugin({
-			compressor: {
-				warnings: false
-			}
-		}),
 		new webpack.BannerPlugin({
 			banner: 'require("source-map-support").install();',
 			raw: true,
