@@ -235,10 +235,6 @@ function writeIndexFile({
 				'victory': path.resolve(
 					basePath,
 					'./node_modules/victory/dist/victory/'
-				),
-				'history/createHashHistory': path.resolve(
-					basePath,
-					'./node_modules/react-history/node_modules/history/createHashHistory.js'
 				)
 			}
 		},
