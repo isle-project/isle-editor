@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import { Button } from 'react-bootstrap';
 import $ from 'jquery';
+import Signup from 'components/signup';
+import Login from 'components/login';
 
 
 // VARIABLES //
@@ -19,41 +21,74 @@ class StatusBar extends Component {
 	constructor( props ) {
 		super( props );
 
+		this.state = {
+			visibleSignup: false,
+			visibleLogin: false
+		};
+
 		this.hidden = true;
+
+		
 	}
 
 	componentDidMount() {
+		this.closeLogin = this.closeLogin.bind( this );
+		this.closeSignup = this.closeSignup.bind( this );
+	}
+
+	closeSignup = () => {
+		this.setState({
+			visibleSignup: false
+		});
+	};
+
+	closeLogin() {
+		this.setState({
+			visibleLogin: false
+		});
 	}
 
 	toggleBar() {
-		const div = findDOMNode( this );
 		if ( this.hidden ) {
-			$( div ).animate({ top: 0, opacity: 1.0 }, 300 );
+			$( this.statusbar ).animate({ top: 0, opacity: 1.0 }, 300 );
 			this.hidden = false;
 		} else {
-			$( div ).animate({ top: -32, opacity: 0.7 }, 300 );
+			$( this.statusbar ).animate({ top: -32, opacity: 0.7 }, 300 );
 			this.hidden = true;
 		}
 	}
 
 	onMouseOver() {
 		if ( this.hidden ) {
-			const div = findDOMNode( this );
-			$( div ).css( 'opacity', 1.0 );
+			$( this.statusbar ).css( 'opacity', 1.0 );
 		}
 	}
 
 	onMouseOut() {
 		if ( this.hidden ) {
-			const div = findDOMNode( this );
-			$( div ).css( 'opacity', 0.7 );
+			$( this.statusbar ).css( 'opacity', 0.7 );
 		}
+	}
+
+	login( e ) {
+		e.stopPropagation();
+		this.setState({
+			visibleLogin: true
+		});
+	}
+
+	signup( e ) {
+		e.stopPropagation();
+		this.setState({
+			visibleSignup: true
+		});
 	}
 
 	render() {
 		return (
 			<div
 				className="statusbar"
+				ref={( statusbar ) => { this.statusbar = statusbar; }}
 				onClick={this.toggleBar.bind( this )}
 				onMouseOver={this.onMouseOver.bind( this )}
 				onMouseOut={this.onMouseOut.bind( this )}
@@ -75,7 +110,8 @@ class StatusBar extends Component {
 					width: '80%',
 					height: '100%',
 					backgroundColor: 'rgb(232, 232, 232)',
-					borderBottom: 'solid 1px darkgrey'
+					borderBottom: 'solid 1px darkgrey',
+					zIndex: 5
 				}}>
 					<div className="presence" style={{
 						width: '10px',
@@ -97,15 +133,18 @@ class StatusBar extends Component {
 					}}>
 						{ this.props.session.anonymous ? 'Anonymous' : this.props.session.user.name }
 					</div>
+					<Button bsSize="xsmall" style={{ float: 'right', marginRight: '-20px' }} onClick={this.signup.bind( this )}>Sign up</Button>
+					<Button bsSize="xsmall" bsStyle="primary" style={{ float: 'right', marginRight: '10px' }} onClick={this.login.bind( this )}>Login</Button>
 					<div style={{
 						bottom: '-1px',
 						height: 'auto',
 						position: 'absolute',
 						right: '20px',
 						fontSize: '12px',
-						fontFamily: 'monospace'
+						fontFamily: 'monospace',
+						zIndex: 2
 					}}>
-						Login
+						ISLE
 					</div>
 				</div>
 				<div className="statusRight" style={{
@@ -119,6 +158,8 @@ class StatusBar extends Component {
 					borderRight: 'solid 1px darkgrey'
 				 }}>
 				</div>
+				<Login show={this.state.visibleLogin} onClose={this.closeLogin} />
+				<Signup show={this.state.visibleSignup} onClose={this.closeSignup} />
 			</div>
 		);
 	}
