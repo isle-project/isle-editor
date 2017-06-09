@@ -41,7 +41,7 @@ const generateIndexHTML = ( title, minify ) => `
 		<link rel="stylesheet" href="css/lesson.css" />
 	</head>
 	<body>
-	<div id="Lesson"></div>
+	<div id="App"></div>
 	<script>
 		// Handle bug occuring when crypto-browserify is used with Webpack...
 		window._crypto = {};
@@ -75,6 +75,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import yaml from 'js-yaml';
 import NotificationSystem from 'react-notification-system';
+import StatusBar from 'components/statusbar';
 `;
 
 const getComponents = ( arr ) => {
@@ -121,7 +122,8 @@ class Lesson extends Component {
 
 	render() {
 		return (
-			<div>
+			<div id="Lesson" className="Lesson" >
+				<StatusBar className="fixedPos" session={this.session} />
 				<div>${lessonContent}</div>
 				<NotificationSystem ref="notificationSystem" allowHTML={true} />
 			</div>
@@ -131,7 +133,7 @@ class Lesson extends Component {
 
 render(
 	<Lesson />,
-	document.getElementById( 'Lesson' )
+	document.getElementById( 'App' )
 );`;
 
 const getComponentList = ( code ) => {

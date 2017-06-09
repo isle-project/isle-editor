@@ -71,6 +71,7 @@ const SelectQuestion = require( 'components/select-question' );
 const SliderInput = require( 'components/input/slider' );
 const Slider = require( 'components/slider' );
 const Spinner = require( 'components/spinner' );
+const StatusBar = require( 'components/statusbar' );
 const Switch = require( 'components/switch' );
 const Tab = ReactBootstrap.Tab;
 const Tabs = ReactBootstrap.Tabs;
@@ -313,6 +314,7 @@ export default class Preview extends Component {
 									className: "Lesson",
 									id: "Lesson"
 								},
+								React.createElement( StatusBar, { session: this.session }),
 								${transform( '<div>' + code + '</div>' )},
 								React.createElement(
 									NotificationSystem,
