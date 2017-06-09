@@ -377,7 +377,7 @@ class ExportLesson extends Component {
 				> Path: {this.state.dirPath} </Well>
 				{this.state.dirPath ?
 					<Button
-						bsStyle="info"
+						bsStyle="success"
 						bsSize="sm"
 						onClick={this.generateApp}
 						block
