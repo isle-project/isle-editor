@@ -76,6 +76,7 @@ import { render } from 'react-dom';
 import yaml from 'js-yaml';
 import NotificationSystem from 'react-notification-system';
 import StatusBar from 'components/statusbar';
+import Provider from 'components/provider';
 `;
 
 const getComponents = ( arr ) => {
@@ -84,12 +85,12 @@ const getComponents = ( arr ) => {
 };
 
 const getLessonComponent = ( lessonContent ) => `
+var session = new Session( global.ISLE );
+
 class Lesson extends Component {
 	constructor() {
 		super();
 		this.state = global.ISLE.state;
-
-		this.session = new Session( global.ISLE );
 
 		this.addNotification = ( config ) => {
 			if ( this.refs.notificationSystem ) {
@@ -123,7 +124,7 @@ class Lesson extends Component {
 	render() {
 		return (
 			<div id="Lesson" className="Lesson" >
-				<StatusBar className="fixedPos" session={this.session} />
+				<StatusBar className="fixedPos" />
 				<div>${lessonContent}</div>
 				<NotificationSystem ref="notificationSystem" allowHTML={true} />
 			</div>
@@ -132,7 +133,9 @@ class Lesson extends Component {
 }
 
 render(
-	<Lesson />,
+	<Provider session={session} >
+		<Lesson />
+	</Provider>,
 	document.getElementById( 'App' )
 );`;
 

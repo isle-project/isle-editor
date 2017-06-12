@@ -12,6 +12,7 @@
 	"Editor": "const Editor = require( \"components/editor\" )",
 	"FeedbackButtons": "const FeedbackButtons = require( \"components/feedback\" )",
 	"FreeTextQuestion": "const FreeTextQuestion = require( \"components/free-text-question\" )",
+	"Gate": "const Gate = require( \"components/gate\" )",
 	"Grid": "const Grid = require( \"components/grid\" )",
 	"Input": "const Input = require( \"components/input\" )",
 	"LessonSubmit": "const LessonSubmit = require( \"components/lesson-submit\" )",

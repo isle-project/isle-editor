@@ -47,6 +47,7 @@ const DraggableList = require( 'components/draggable-list' );
 const Editor = require( 'components/editor' );
 const FeedbackButtons = require( 'components/feedback' );
 const FreeTextQuestion = require( 'components/free-text-question' );
+const Gate = require( 'components/gate' );
 const Grid = require( 'components/grid' );
 const LessonSubmit = require( 'components/lesson-submit' );
 const Metrics = require( 'components/metrics' );
@@ -60,6 +61,7 @@ const NavItem = ReactBootstrap.NavItem;
 const NumberInput = require( 'components/input/number' );
 const NumberSurvey = require( 'components/number-survey' );
 const Panel = ReactBootstrap.Panel;
+const Provider = require( 'components/provider' );
 const RPlot = require( 'components/r/plot' );
 const RHelp = require( 'components/r/help' );
 const RShell = require( 'components/r/shell' );
@@ -277,6 +279,7 @@ export default class Preview extends Component {
 						>${code}</Deck>`;
 				}
 				es5code = `
+					var session = new Session( global.ISLE );
 					var lessonConfig = {
 						componentDidMount: function() {
 							global.lesson = this;
@@ -284,7 +287,6 @@ export default class Preview extends Component {
 						getInitialState: function() {
 							return global.ISLE.state;
 						},
-						session: new Session( global.ISLE ),
 						sendMail: function( name, to ) {
 							var mailOptions = global.ISLE.mails[ name ] || {};
 							if ( !mailOptions.hasOwnProperty( 'from' ) ) {
@@ -314,7 +316,7 @@ export default class Preview extends Component {
 									className: "Lesson",
 									id: "Lesson"
 								},
-								React.createElement( StatusBar, { session: this.session }),
+								React.createElement( StatusBar ),
 								${transform( '<div>' + code + '</div>' )},
 								React.createElement(
 									NotificationSystem,
@@ -325,7 +327,9 @@ export default class Preview extends Component {
 					};
 					var Lesson = createReactClass( lessonConfig );
 					render(
-						${transform( '<Lesson />' )},
+						React.createElement( Provider, { session: session },
+							${transform( '<Lesson />' )}
+						),
 						document.getElementById( 'Preview' )
 					)
 				`;

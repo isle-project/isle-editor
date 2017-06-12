@@ -20,9 +20,9 @@ class NumberSurvey extends Component {
 		};
 
 		this.submitQuestion = () => {
-
+			const { session } = this.context;
 			if ( this.props.id ) {
-				global.lesson.session.log({
+				session.log({
 					id: this.props.id,
 					type: 'NUMBER_SURVEY_SUBMISSION',
 					value: this.state.value
@@ -89,6 +89,10 @@ NumberSurvey.defaultProps = {
 NumberSurvey.propTypes = {
 	onSubmit: PropTypes.func,
 	allowMultipleAnswers: PropTypes.bool
+};
+
+NumberSurvey.contextTypes = {
+	session: PropTypes.object
 };
 
 
