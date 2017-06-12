@@ -2,15 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Col, Form, HelpBlock, Modal, ControlLabel, FormControl, FormGroup } from 'react-bootstrap';
-import request from 'request';
-import isString from '@stdlib/assert/is-string';
+import { Button, Modal } from 'react-bootstrap';
 import beforeUnload from 'utils/before-unload';
-
-
-// VARIABLES //
-
-const EMAIL_REGEX = /@/;
+import Signup from 'components/signup';
+import Login from 'components/login';
 
 
 // MAIN //
@@ -24,31 +19,51 @@ class LessonSubmit extends Component {
 			showUserModal: false,
 			user: '',
 			email: '',
-			disabled: true
-		};
-
-		this.pingServer = () => {
-			if ( global.lesson && global.lesson.session && global.lesson.session.server ) {
-				const { session } = global.lesson;
-				request.get( session.server + '/ping', ( err, res, body ) => {
-					if ( !err && body === 'live' ) {
-						this.setState({ disabled: false });
-						if ( !session.anonymous ) {
-							session.updateDatabase();
-						}
-					}
-				});
-			}
+			visibleLogin: false,
+			visibleSignup: false
 		};
 
 		this.closeUserModal = () => {
 			this.setState({
-				showUserModal: false
+				showUserModal: false,
+				visibleLogin: false,
+				visibleSignup: false
+			});
+		};
+
+		this.login = ( e ) => {
+			e.stopPropagation();
+			this.setState({
+				visibleLogin: true,
+				visibleSignup: false
+			});
+		};
+
+		this.signup = ( e ) => {
+			e.stopPropagation();
+			this.setState({
+				visibleSignup: true,
+				visibleLogin: false
+			});
+		};
+
+		this.closeSignup = () => {
+			this.setState({
+				visibleSignup: false,
+				showUserModal: false,
+			});
+		};
+
+		this.closeLogin = () => {
+			this.setState({
+				visibleLogin: false,
+				showUserModal: false,
 			});
 		};
 
 		this.finalizeSession = ( item ) => {
-			global.lesson.session.finalize();
+			const { session } = this.context;
+			session.finalize();
 			global.lesson.addNotification({
 				title: 'Completed',
 				message: 'Lesson successfully completed. You will receive a confirmation email shortly.',
@@ -86,54 +101,21 @@ class LessonSubmit extends Component {
 			this.setState({ user: e.target.value });
 		};
 
-		this.submitRegistration = () => {
-			request.get({
-				url: global.ISLE.server + '/user',
-				qs: {
-					email: this.state.email,
-					name: this.state.user
-				}
-			}, ( error, response, body ) => {
-				if ( error ) {
-					console.log( error );
-				} else {
-					const str = 'ISLE_USER_' + ISLE.server;
-					localStorage.setItem( str, body );
-					this.closeUserModal();
-					this.finalizeSession( body );
-				}
-			});
-		};
-
-		this.getEmailValidationState = () => {
-			const val = this.state.email;
-			if ( !val ) {
-				return 'warning';
-			}
-			if ( isString( val ) && EMAIL_REGEX.test( val ) ) {
-				return 'success';
-			}
-			return 'error';
-		};
-
-		this.getNameValidationState = () => {
-			const val = this.state.user;
-			if ( !val ) {
-				return 'warning';
-			}
-			if ( isString( val ) && val.length > 2 ) {
-				return 'success';
-			}
-			return 'error';
-		};
-
 	}
 
-	componentWillMount() {
-		this.pingServer();
+	componentDidMount() {
+		const { session } = this.context;
+		this.unsubsribe = session.subscribe( () => {
+			this.forceUpdate();
+		});
+	}
+
+	componentWillUnmount() {
+		this.unsubsribe();
 	}
 
 	render() {
+		const { session } = this.context;
 		return (
 			<div className="well" style={{
 				maxWidth: 400,
@@ -142,54 +124,24 @@ class LessonSubmit extends Component {
 				fontFamily: 'Arial',
 				...this.props.style
 			}}>
-				<Button disabled={this.state.disabled} bsStyle="primary" bsSize="large" onClick={this.handleClick} block>{this.props.label}</Button>
+				<Button disabled={!session.live} bsStyle="primary" bsSize="large" onClick={this.handleClick} block>{this.props.label}</Button>
 				<Modal show={this.state.showUserModal} onHide={this.closeUserModal}>
 					<Modal.Header closeButton>
-						<Modal.Title>User Registration</Modal.Title>
+						<Modal.Title>Authentication</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
-						<p>Please fill in the required information to set up an ISLE user account.
-						When solving ISLE lessons in the future from the current browser, you will not have to fill out this form again.
-						If you are already registered before, supplying your email address suffices.</p>
-						<Form horizontal>
-							<FormGroup
-								validationState={this.getEmailValidationState()}
-							>
-								<Col componentClass={ControlLabel} sm={3}> Email Address </Col>
-								<Col sm={9}>
-									<FormControl
-										type="text"
-										value={this.state.email}
-										placeholder="Enter text"
-										onChange={this.handleEmailInput}
-									/>
-									<HelpBlock>Please enter your unversity email address.</HelpBlock>
-								</Col>
-							</FormGroup>
-							<FormGroup
-								validationState={this.getNameValidationState()}
-							>
-								<Col componentClass={ControlLabel} sm={3}> Full Name </Col>
-								<Col sm={9}>
-									<FormControl
-										type="text"
-										value={this.state.user}
-										placeholder="Enter text"
-										onChange={this.handleUserInput}
-									/>
-									<HelpBlock>Please enter your name.</HelpBlock>
-								</Col>
-							</FormGroup>
-						</Form>
+						<p>
+							To finalize this lesson, please login in to your ISLE account. If you have not created one, 
+							please sign up and get access to the full functionality of ISLE.
+						</p>
 					</Modal.Body>
-					<Modal.Footer>
-						<Button onClick={this.closeUserModal}>Close</Button>
-						<Button
-							bsStyle="primary"
-							disabled={ this.getEmailValidationState() !== 'success' || this.getNameValidationState() !== 'success' }
-							onClick={this.submitRegistration}>Submit</Button>
+					<Modal.Footer style={{ textAlign: 'center' }}>
+						<Button bsStyle="primary" onClick={this.login.bind( this )} style={{ marginRight: '10px' }}>Login</Button>
+						<Button onClick={this.signup.bind( this )}>Sign up</Button>
 					</Modal.Footer>
 				</Modal>
+				<Login show={this.state.visibleLogin} onClose={this.closeLogin} />
+				<Signup show={this.state.visibleSignup} onClose={this.closeSignup} />
 			</div>
 		);
 	}
@@ -211,6 +163,10 @@ LessonSubmit.propTypes = {
 	label: PropTypes.string,
 	mail: PropTypes.string,
 	onClick: PropTypes.func
+};
+
+LessonSubmit.contextTypes = {
+	session: PropTypes.object
 };
 
 

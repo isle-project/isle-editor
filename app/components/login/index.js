@@ -5,7 +5,7 @@ import {
 	Button, Col, ControlLabel, FormControl, FormGroup,
 	Form, Overlay, Modal, Popover
 } from 'react-bootstrap';
-import request from 'request';
+import PropTypes from 'prop-types';
 
 
 // MAIN //
@@ -30,6 +30,20 @@ class Login extends Component {
 			});
 		};
 
+		this.handleForgotPassword = ( event ) => {
+			event.preventDefault();
+			if ( this.state.email === '' ) {
+				this.setState({
+					showInputOverlay: true,
+					overlayTarget: this.emailInput,
+					invalidInputMessage: 'Enter your email address.	'
+				});
+			} else {
+				const { session } = this.context;
+				session.forgotPassword( this.state.email );
+			}
+		};
+
 		this.handleSubmit = ( event ) => {
 			event.preventDefault();
 			let form = {
@@ -51,13 +65,13 @@ class Login extends Component {
 				});
 			}
 			else {
-				request.post( server+'/login', {
-					form
-				}, ( err, res ) => {
+				const { session } = this.context;
+				session.login( form, ( err, res ) => {
 					if ( !err ) {
-						const { message, type, token, id } = JSON.parse( res.body );
+						const { message, type } = JSON.parse( res.body );
+						console.log( message );
 						if ( message === 'ok' ) {
-							this.props.handleLogin({ token, id });
+							this.props.onClose();
 						} else {
 							this.setState({
 								showInputOverlay: true,
@@ -78,12 +92,11 @@ class Login extends Component {
 	}
 
 	render() {
-        console.log( 'Close: ' + this.props.close )
 		return (
 			<Modal show={this.props.show} style={{ 
 				position: 'fixed',
-				width: '50%',
-				height: '50%',
+				top: '20%',
+				height: 'auto',
 				left: 0,
 				right: 0,
 				margin: 'auto'
@@ -135,6 +148,7 @@ class Login extends Component {
 					</Overlay>
 				</Modal.Body>
 				<Modal.Footer>
+					<a href="" style={{ float: 'left', marginTop: '8px' }} onClick={this.handleForgotPassword}>Forgot password?</a>
 					<Button
 						bsStyle="primary"
 						className="centered"
@@ -147,6 +161,13 @@ class Login extends Component {
 		);
 	}
 }
+
+// TYPES //
+
+Login.contextTypes = {
+	session: PropTypes.object
+};
+
 
 
 // EXPORTS //

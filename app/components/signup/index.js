@@ -1,8 +1,8 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Button, Col, ControlLabel, FormControl, FormGroup, Form, Modal, OverlayTrigger, Overlay, PageHeader, Panel, Popover, Tooltip } from 'react-bootstrap';
-import request from 'request';
+import { Button, Col, ControlLabel, FormControl, FormGroup, Form, HelpBlock, Modal, OverlayTrigger, Overlay, Popover, Tooltip } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 
 // FUNCTIONS //
@@ -10,23 +10,6 @@ import request from 'request';
 const createTooltip = ( str ) => {
 	return <Tooltip id="tooltip">{str}</Tooltip>;
 };
-
-
-// VARIABLES //
-
-const MsgModal = ( props ) => (
-	<Modal show={props.show}>
-		<Modal.Header>
-			<Modal.Title>Create User</Modal.Title>
-		</Modal.Header>
-		<Modal.Body>
-			{props.message}
-		</Modal.Body>
-		<Modal.Footer>
-            <Button onClick={props.close}>Close</Button>
-		</Modal.Footer>
-	</Modal>
-);
 
 
 // MAIN //
@@ -40,30 +23,19 @@ class Signup extends Component {
 			name: '',
 			email: '',
 			password: '',
-			passwordRepeat: '',
-			showModal: false
+			passwordRepeat: ''
 		};
 
 		this.handleSubmit = ( event ) => {
 			event.preventDefault();
-			const { session } = global.lesson;
+			const { session } = this.context;
 			if (
 				this.getEmailValidationState() === 'success' &&
 				this.getNameValidationState() === 'success' &&
 				this.getPasswordValidationState() === 'success'
 			) {
-				request.post( session.server+'/create_user', {
-					form: this.state
-				}, ( err, res ) => {
-					const body = JSON.parse( res.body );
-					console.log( body );
-					if ( !err ) {
-						this.setState({
-							message: body.message,
-							successful: body.successful,
-							showModal: true
-						});
-					}
+				session.registerUser( this.state, () => {
+					this.props.onClose();
 				});
 			} else {
 				this.setState({
@@ -117,19 +89,14 @@ class Signup extends Component {
 			return 'success';
 		};
 
-		this.close = () => {
-			this.setState({
-				showModal: false
-			});
-		};
 	}
 
 	render() {
 		return (
 			<Modal show={this.props.show} style={{ 
 				position: 'fixed',
-				width: '50%',
-				height: '50%',
+				top: '20%',
+				height: 'auto',
 				left: 0,
 				right: 0,
 				margin: 'auto'
@@ -138,6 +105,9 @@ class Signup extends Component {
 					<Modal.Title>Create User</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
+					<p>Please fill in the required information to set up an ISLE user account.
+						When solving ISLE lessons in the future from the current browser, you will not have to fill out this form again.
+						If you are already registered before, supplying your email address suffices.</p>
 					<Form horizontal>
 						<OverlayTrigger placement="right" overlay={createTooltip( 'Please enter a valid email address.' )}>
 							<FormGroup
@@ -155,6 +125,7 @@ class Signup extends Component {
 										onChange={this.handleInputChange}
 									/>
 									<FormControl.Feedback />
+									<HelpBlock>Please enter your unversity email address.</HelpBlock>
 								</Col>
 							</FormGroup>
 						</OverlayTrigger>
@@ -174,6 +145,7 @@ class Signup extends Component {
 										onChange={this.handleInputChange}
 									/>
 									<FormControl.Feedback />
+									<HelpBlock>Please enter your name.</HelpBlock>
 								</Col>
 							</FormGroup>
 						</OverlayTrigger>
@@ -217,12 +189,6 @@ class Signup extends Component {
 							</Col>
 						</FormGroup>
 					</Form>
-					<MsgModal
-						show={this.state.showModal}
-						close={this.close}
-						message={this.state.message}
-						successful={this.state.successful}
-					/>
 					<Overlay
 						show={this.state.showSubmitOverlay}
 						target={this.state.overlayTarget}
@@ -248,6 +214,12 @@ class Signup extends Component {
 		);
 	}
 }
+
+// TYPES //
+
+Signup.contextTypes = {
+	session: PropTypes.object
+};
 
 
 // EXPORTS //
