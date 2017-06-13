@@ -26,6 +26,7 @@
 	"NumberInput": "const NumberInput = require( \"components/input/number\" )",
 	"NumberSurvey": "const NumberSurvey = require( \"components/number-survey\" )",
 	"Panel": "const Panel = require( \"react-bootstrap\" ).Panel",
+	"Recorder": "const Recorder = require( \"components/recorder\" )",
 	"RHelp": "const RHelp = require( \"components/r/help\" )",
 	"ROutput": "const ROutput = require( \"components/r/output\" )",
 	"RPlot": "const RPlot = require( \"components/r/plot\" )",
