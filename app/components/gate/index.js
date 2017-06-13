@@ -20,7 +20,6 @@ class Gate extends Component {
 	render() {
 		const { session } = this.context;
 		const { user, enrolled, owner } = this.props;
-		console.log( this.state )
 		let authenticated = false;
 		if ( user && !session.anonymous ) {
 			authenticated = true;
