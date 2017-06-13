@@ -62,6 +62,7 @@ const NumberInput = require( 'components/input/number' );
 const NumberSurvey = require( 'components/number-survey' );
 const Panel = ReactBootstrap.Panel;
 const Provider = require( 'components/provider' );
+const Recorder = require( 'components/recorder' );
 const RPlot = require( 'components/r/plot' );
 const RHelp = require( 'components/r/help' );
 const RShell = require( 'components/r/shell' );
