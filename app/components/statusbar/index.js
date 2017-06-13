@@ -138,7 +138,7 @@ class StatusBar extends Component {
 		const { session } = this.context;
 		return (
 			<div
-				className="statusbar"
+				className="statusbar unselectable"
 				ref={( statusbar ) => { this.statusbar = statusbar; }}
 				onClick={this.toggleBar.bind( this )}
 				onMouseOver={this.onMouseOver.bind( this )}
