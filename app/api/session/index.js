@@ -3,6 +3,8 @@
 import request from 'request';
 import isString from '@stdlib/assert/is-string';
 import inEditor from 'utils/is-electron';
+var io = require( 'socket.io-client' );
+
 
 
 // VARIABLES //
@@ -35,6 +37,53 @@ class Session {
 		this.handleLogin = this.handleLogin.bind( this );
 		this.login = this.login.bind( this );
 
+		var url = window.location.pathname;
+		this.namespaceName = null;
+		this.lessonName = null;		
+		if ( isString( url ) ) {
+			var matches = url.match( PATH_REGEXP );
+			if ( matches && matches.length >= 2 && url.endsWith( '/' ) ) {
+				this.namespaceName = decodeURIComponent( matches[ 1 ]);
+				this.lessonName = decodeURIComponent( matches[ 2 ]);
+			}
+		}
+
+		this.socketConnect = () => {
+			const socket = io.connect( this.server );
+
+			socket.on( 'connect', function() {
+				console.log( 'I am connected...' );
+				console.log( socket );
+			});
+
+			socket.emit( 'join', {
+				namespaceName: this.namespaceName, 
+				lessonName: this.lessonName,
+				userID: this.user._id,
+				userName: this.user.name,
+				userEmail: this.user.email
+			});
+			socket.on( 'console', function( msg ) {
+				console.log( msg );
+			});
+
+			socket.on( 'welcome', function( data ) {
+				console.log( data );
+			});
+
+			socket.on( 'error', console.error.bind( console ) );
+
+			socket.on( 'disconnect', function() {
+				console.log( 'I am disconnected from the server...' );
+			});
+
+			this.socket = socket;
+		};
+
+		this.sendSocketMessage = ( title, msg ) => {
+			this.socket.emit( title, msg );
+		};
+
 		this.pingServer = () => {
 			request.get( this.server + '/ping', ( err, res, body ) => {
 				if ( !err && body === 'live' && !this.live ) {
@@ -50,6 +99,9 @@ class Session {
 			}
 		};
 
+		if ( this.user ) {
+			this.socketConnect();
+		}
 		this.pingServer();
 		setInterval( this.pingServer, 30000 );
 		setInterval( logSession, 5*60000 );
@@ -64,29 +116,18 @@ class Session {
 		let userRights = null;
 		this.getUserRights = () => {
 			if ( !this.anonymous ) {
-				var url = window.location.pathname;
-				var namespaceName = null;
-				var lessonName = null;		
-				if ( isString( url ) ) {
-					var matches = url.match( PATH_REGEXP );
-					if ( matches && matches.length >= 2 && url.endsWith( '/' ) ) {
-						var namespaceName = decodeURIComponent( matches[ 1 ]);
-						var lessonName = decodeURIComponent( matches[ 2 ]);
-					}
-				}
 				request.post( this.server+'/get_user_rights', {
 					headers: {
 						'Authorization': 'JWT ' + this.user.token
 					},
 					form: {
-						namespaceName, 
-						lessonName
+						namespaceName: this.namespaceName, 
+						lessonName: this.lessonName
 					}
 				}, ( err, res, body ) => {			
 					if ( !err ) {
 						let obj = JSON.parse( body );
 						userRights = obj;
-						console.log( userRights )
 						this.update();
 					}
 				});
@@ -138,6 +179,7 @@ class Session {
 
 	logout() {
 		localStorage.removeItem( this.userVal );
+		this.socket.emit( 'leave' );
 		this.user = null;
 		this.anonymous = true;
 		this.removeUserRights();
@@ -212,6 +254,7 @@ class Session {
 			this.user = user;
 			this.anonymous = false;
 			this.storeUser( user );
+			this.socketConnect();
 			this.update();
 		});
 	}
@@ -302,6 +345,43 @@ class Session {
 		if ( this.actions.length === 1 ) {
 			this.updateDatabase();
 		}
+	}
+
+	uploadFile( formData ) {
+
+		if ( this.lessonName ) {
+			formData.append( 'lessonName', this.lessonName );
+		}
+		if ( this.namespaceName ) {
+			formData.append( 'namespaceName', this.namespaceName );
+		}
+
+		let xhr = new XMLHttpRequest();
+		xhr.open( 'POST', this.server+'/upload_file', true );
+		xhr.setRequestHeader( 'Authorization', 'JWT ' + this.user.token );
+		xhr.onreadystatechange = function() {	
+			if ( xhr.readyState === XMLHttpRequest.DONE ) {
+				let message;
+				let level;
+				if ( xhr.status === 200 ) {
+					let body = JSON.parse( xhr.responseText );
+					message = body.message;
+					level = 'success';
+				} else {
+					message = xhr.responseText;
+					level = 'error';
+				}
+				
+				global.lesson.addNotification({
+					title: 'File Upload',
+					message,
+					level,
+					position: 'tl'
+				});
+			}
+		};
+		xhr.send( formData );
+
 	}
 
 }
