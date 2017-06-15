@@ -289,7 +289,7 @@ Recorder.propTypes = {
 // DEFAULT PROPERTIES //
 
 Recorder.defaultProps = {
-	downloadable: true,
+	downloadable: false,
 	uploadable: false
 };
 
