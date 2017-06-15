@@ -42,7 +42,7 @@ const isMimeTypeSupported = ( _mimeType ) => {
 	return MediaRecorder.isTypeSupported( _mimeType );
 };
 
-function getAudioConfig() {
+function getAudioConfig( type ) {	
 	var mimeType = 'audio/mpeg';
 	var recorderType = MediaStreamRecorder;
 
@@ -80,6 +80,16 @@ class Recorder extends Component {
 			finished: false
 		};
 
+		if ( props.audio ) {
+			this.recorderConfig = getAudioConfig();
+		} 
+		else {
+			this.recorderConfig = {
+				type: 'video',
+				mimeType: 'video/webm'
+			};
+		}
+
 		window.getChromeExtensionStatus( ( status ) => {
 			if ( status !== 'installed-enabled' ) {
 				this.setState({
@@ -88,13 +98,23 @@ class Recorder extends Component {
 			}
 		});
 
-
-		this.installExtension = () => {
-			 
-		};
-
 		this.storeFile = () => {
 			this.recorder.save( 'filename.webm' );
+		};
+
+		this.uploadFile = () => {
+			const { session } = this.context;
+			const id = this.props.id;
+			const fileName = id || 'recorderFile';
+
+			const blob = this.recorder.getBlob();
+			const file = new File([ blob ], fileName, {
+				type: this.recorderConfig.mimeType
+			});	
+
+			const formData = new FormData();
+			formData.append( 'file', file );
+			session.uploadFile( formData );
 		};
 
 		this.handleClick = () => {
@@ -111,6 +131,18 @@ class Recorder extends Component {
 				});
 			}
 		};
+
+	}
+
+	componentDidMount() {
+		const { session } = this.context;
+		this.unsubscribe = session.subscribe( () => {
+			this.forceUpdate();
+		});
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
 	}
 
 	startRecording() {
@@ -126,24 +158,13 @@ class Recorder extends Component {
 			var blob = this.recorder.getBlob();
 			this.player.src = URL.createObjectURL( blob );
 			this.player.muted = false;
-			/*
-			[ this.screen, this.camera ].forEach( function( stream ) {
-				stream.getVideoTracks().forEach( function( track ) {
-					track.stop();
-				});
-				stream.getAudioTracks().forEach( function( track ) {
-					track.stop();
-				});
-			});
-			*/
 		});
 	}
 
 	setupRecorder() {
 		if ( this.props.audio && !this.props.screen ) {
 			captureAudio( ( audio ) => {
-				let audioConfig = getAudioConfig();
-				let recorder = RecordRTC( audio, audioConfig );
+				let recorder = RecordRTC( audio, this.recorderConfig );
 				recorder.startRecording();
 				this.recorder = recorder;
 			});
@@ -154,10 +175,7 @@ class Recorder extends Component {
 				screen.height = window.screen.height;
 				screen.fullcanvas = true;
 				this.screen = screen;
-				let recorder = RecordRTC( screen, {
-					type: 'video',
-					mimeType: 'video/webm'
-				});
+				let recorder = RecordRTC( screen, this.recorderConfig );
 				recorder.startRecording();
 				this.recorder = recorder;
 			});
@@ -170,10 +188,7 @@ class Recorder extends Component {
 					screen.fullcanvas = true;
 					this.audio = audio;
 					this.screen = screen;
-					let recorder = RecordRTC([ audio, screen ], {
-						type: 'video',
-						mimeType: 'video/webm'
-					});
+					let recorder = RecordRTC([ audio, screen ], this.recorderConfig );
 					recorder.startRecording();
 					this.recorder = recorder;
 				});
@@ -194,6 +209,10 @@ class Recorder extends Component {
 
 	render() {
 		let recordingColor = this.state.recording ? 'red' : 'rgb(250,160,160)';
+		const { audio, screen } = this.props;
+		if ( !audio && !screen ) {
+			return null;
+		}
 		return (
 			<div className="unselectable" style={{ 
 				position: 'absolute', 
@@ -233,7 +252,7 @@ class Recorder extends Component {
 					fontSize: '40px', 
 					fontWeight: 800
 				}}>REC</div>
-				{ this.props.audio && !this.props.screen ? 
+				{ audio && !screen ? 
 					<audio style={{ display: this.state.recording ? 'none' : 'block' }} ref={ ( player ) => { this.player = player; }} controls autoPlay></audio> :
 					<video width="320px" height="auto" style={{ display: this.state.recording ? 'none' : 'block' }} ref={ ( player ) => { this.player = player; }} controls autoPlay></video>
 				}
@@ -248,7 +267,8 @@ class Recorder extends Component {
 				}}>
 					<img width="100px" height="32px" src="https://www.webrtc-experiment.com/images/btn-install-chrome-extension.png" alt="Add to Chrome" />
 				</button> :  null }
-				{ this.state.finished ? <Button onClick={this.storeFile} bsStyle="primary">Download File</Button> : null }
+				{ this.state.finished && this.props.downloadable ? <Button onClick={this.storeFile} bsStyle="primary">Download File</Button> : null }
+				{ this.state.finished && this.props.uploadable ? <Button onClick={this.uploadFile} bsStyle="primary">Upload File</Button> : null }
 			</div>
 		);
 	}
@@ -260,7 +280,24 @@ class Recorder extends Component {
 
 Recorder.propTypes = {
 	audio: PropTypes.bool,
-	screen: PropTypes.bool
+	screen: PropTypes.bool,
+	uploadable: PropTypes.bool,
+	downloadable: PropTypes.bool
+};
+
+
+// DEFAULT PROPERTIES //
+
+Recorder.defaultProps = {
+	downloadable: true,
+	uploadable: false
+};
+
+
+// CONTEXT TYPES //
+
+Recorder.contextTypes = {
+	session: PropTypes.object
 };
 
 
