@@ -58,9 +58,15 @@ class Login extends Component {
 						encounteredError: err
 					});
 				} else {
-					const body = JSON.parse( res.body );
-					localStorage.setItem( 'token', body.token );
-					this.forceUpdate();
+					try {
+						const body = JSON.parse( res.body );
+						localStorage.setItem( 'token', body.token );
+						this.forceUpdate();
+					} catch ( error ) {
+						this.setState({
+							encounteredError: 'Couldn\'t login to server. Please check the address and port.'
+						});						
+					}
 				}
 			});
 		};
