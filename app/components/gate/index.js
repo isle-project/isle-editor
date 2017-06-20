@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import inElectron from 'utils/is-electron';
 
 
 // MAIN //
@@ -28,6 +29,9 @@ class Gate extends Component {
 			authenticated = true;
 		}
 		if ( owner && this.state.isOwner ) {
+			authenticated = true;
+		}
+		if ( inElectron ) {
 			authenticated = true;
 		}
 		if ( authenticated ) {
