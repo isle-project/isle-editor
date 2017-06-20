@@ -139,7 +139,7 @@ const CrossValidation = require( 'components/learn/cross-validation' );
 // VARIABLES //
 
 var cssHash = {};
-var lastCSS = null;
+var lastCSS = null;					
 
 
 // FUNCTIONS //
@@ -194,8 +194,9 @@ export default class Preview extends Component {
 	constructor( props ) {
 		super( props );
 
-		let { code } = props;
-		const preamble = code.match( /---([\S\s]*)---/ )[ 1 ];
+		let { code, preamble } = props;
+		global.ISLE = preamble;
+		global.session = new Session( global.ISLE );
 
 		this.state = {
 			preamble,
@@ -206,11 +207,8 @@ export default class Preview extends Component {
 		this.renderPreview = () => {
 			let es5code;
 			let { code } = this.props;
-			const preamble = code.match( /---([\S\s]*)---/ )[ 1 ];
-
+			let session = global.session;
 			try {
-				global.ISLE = yaml.load( preamble );
-
 				if ( this.state.requires !== global.ISLE.require ) {
 					this.state.requires.forEach( lib => delete global[ lib ]);
 					loadRequires( global.ISLE.require, this.props.filePath || '' );
@@ -280,7 +278,6 @@ export default class Preview extends Component {
 						>${code}</Deck>`;
 				}
 				es5code = `
-					var session = new Session( global.ISLE );
 					var lessonConfig = {
 						componentDidMount: function() {
 							global.lesson = this;
@@ -347,12 +344,22 @@ export default class Preview extends Component {
 			}
 		};
 	}
+
+	componentWillUpdate( nextProps ) {
+		if ( nextProps.preamble.server !== this.props.preamble.server ) {
+			global.ISLE = nextProps.preamble;
+			global.session = new Session( global.ISLE );
+		}
+	}
+
 	componentDidMount() {
 		this.renderPreview();
 	}
+
 	componentDidUpdate() {
 		this.renderPreview();
 	}
+
 	render() {
 		return (
 			<div ref="preview" className="Preview" id="Preview">
