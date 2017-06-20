@@ -6,7 +6,9 @@ import PropTypes from 'prop-types';
 import $ from 'jquery';
 import Signup from 'components/signup';
 import Login from 'components/login';
+import Gate from 'components/gate';
 import ConfirmModal from './confirm_modal.js';
+import InstructorView from './instructor_view.js';
 
 
 // VARIABLES //
@@ -137,103 +139,108 @@ class StatusBar extends Component {
 	render() {
 		const { session } = this.context;
 		return (
-			<div
-				className="statusbar unselectable"
-				ref={( statusbar ) => { this.statusbar = statusbar; }}
-				onClick={this.toggleBar.bind( this )}
-				onMouseOver={this.onMouseOver.bind( this )}
-				onMouseOut={this.onMouseOut.bind( this )}
-			>
-				<div className="statusLeft" style={{
-					position: 'absolute',
-					left: 0,
-					width: '20%',
-					height: '100%',
-					backgroundColor: 'rgb(232, 232, 232)',
-					transform: 'skewX(45deg)',
-					borderLeft: 'solid 1px darkgrey',
-					borderBottom: 'solid 1px darkgrey'
-				}}>
-				</div>
-				<div className="statusMiddle" style={{
-					position: 'absolute',
-					left: '10%',
-					width: '80%',
-					height: '100%',
-					backgroundColor: 'rgb(232, 232, 232)',
-					borderBottom: 'solid 1px darkgrey',
-					zIndex: 5
-				}}>
-					<div className="presence" style={{
-						width: '10px',
-						left: '-10px',
-						height: '10px',
-						bottom: '4px',
-						backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR,
+			<div>
+				<div
+					className="statusbar unselectable"
+					ref={( statusbar ) => { this.statusbar = statusbar; }}
+					onClick={this.toggleBar.bind( this )}
+					onMouseOver={this.onMouseOver.bind( this )}
+					onMouseOut={this.onMouseOut.bind( this )}
+				>
+					<div className="statusLeft" style={{
 						position: 'absolute',
-						borderRadius: '50%',
-						boxShadow: '1px 1px 2px grey'
+						left: 0,
+						width: '20%',
+						height: '100%',
+						backgroundColor: 'rgb(232, 232, 232)',
+						transform: 'skewX(45deg)',
+						borderLeft: 'solid 1px darkgrey',
+						borderBottom: 'solid 1px darkgrey'
 					}}>
 					</div>
-					<div className="username" style={{
-						bottom: '-1px',
-						height: 'auto',
-						marginLeft: '10px',
+					<div className="statusMiddle" style={{
 						position: 'absolute',
-						fontSize: '12px',
-						fontFamily: 'monospace'
+						left: '10%',
+						width: '80%',
+						height: '100%',
+						backgroundColor: 'rgb(232, 232, 232)',
+						borderBottom: 'solid 1px darkgrey',
+						zIndex: 5
 					}}>
-						{ session.anonymous ? 'Anonymous' : session.user.name }
-					</div>
-					{ session.anonymous ?
-						<div>
-							<Button 
-								bsSize="xsmall" 
-								style={{ float: 'right', marginRight: '-20px' }} 
-								onClick={this.signup.bind( this )}
-								disabled={!session.live}
-							>Sign up</Button>
-							<Button 
-								bsSize="xsmall" 
-								bsStyle="primary" 
-								style={{ float: 'right', marginRight: '10px' }} 
-								onClick={this.login.bind( this )}
-								disabled={!session.live}
-							>Login</Button>
+						<div className="presence" style={{
+							width: '10px',
+							left: '-10px',
+							height: '10px',
+							bottom: '4px',
+							backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR,
+							position: 'absolute',
+							borderRadius: '50%',
+							boxShadow: '1px 1px 2px grey'
+						}}>
 						</div>
-					: <Button bsSize="xsmall" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout.bind( this )}>Log Out</Button> }
-					<div style={{
-						bottom: '-1px',
-						height: 'auto',
-						position: 'absolute',
-						right: '20px',
-						fontSize: '12px',
-						fontFamily: 'monospace',
-						zIndex: 2
-					}}>
-						ISLE
+						<div className="username" style={{
+							bottom: '-1px',
+							height: 'auto',
+							marginLeft: '10px',
+							position: 'absolute',
+							fontSize: '12px',
+							fontFamily: 'monospace'
+						}}>
+							{ session.anonymous ? 'Anonymous' : session.user.name }
+						</div>
+						{ session.anonymous ?
+							<div>
+								<Button 
+									bsSize="xsmall" 
+									style={{ float: 'right', marginRight: '-20px' }} 
+									onClick={this.signup.bind( this )}
+									disabled={!session.live}
+								>Sign up</Button>
+								<Button 
+									bsSize="xsmall" 
+									bsStyle="primary" 
+									style={{ float: 'right', marginRight: '10px' }} 
+									onClick={this.login.bind( this )}
+									disabled={!session.live}
+								>Login</Button>
+							</div>
+						: <Button bsSize="xsmall" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout.bind( this )}>Log Out</Button> }
+						<div style={{
+							bottom: '-1px',
+							height: 'auto',
+							position: 'absolute',
+							right: '20px',
+							fontSize: '12px',
+							fontFamily: 'monospace',
+							zIndex: 2
+						}}>
+							ISLE
+						</div>
 					</div>
+					<div className="statusRight" style={{
+						position: 'absolute',
+						left: '80%',
+						width: '20%',
+						height: '100%',
+						backgroundColor: 'rgb(232, 232, 232)',
+						transform: 'skewX(-45deg)',
+						borderBottom: 'solid 1px darkgrey',
+						borderRight: 'solid 1px darkgrey'
+					}}>
+					</div>
+					<Login show={this.state.visibleLogin} onClose={this.closeLogin} />
+					<Signup show={this.state.visibleSignup} onClose={this.closeSignup} />
+					<ConfirmModal 
+						show={this.state.visibleLogout} 
+						close={this.closeLogout} 
+						title="Logout" 
+						message="Do you really want to log out? To log in again, you will need your password."  
+						onConfirm={this.handleLogout}
+					/>
 				</div>
-				<div className="statusRight" style={{
-					position: 'absolute',
-					left: '80%',
-					width: '20%',
-					height: '100%',
-					backgroundColor: 'rgb(232, 232, 232)',
-					transform: 'skewX(-45deg)',
-					borderBottom: 'solid 1px darkgrey',
-					borderRight: 'solid 1px darkgrey'
-				 }}>
-				</div>
-				<Login show={this.state.visibleLogin} onClose={this.closeLogin} />
-				<Signup show={this.state.visibleSignup} onClose={this.closeSignup} />
-				<ConfirmModal 
-					show={this.state.visibleLogout} 
-					close={this.closeLogout} 
-					title="Logout" 
-					message="Do you really want to log out? To log in again, you will need your password."  
-					onConfirm={this.handleLogout}
-				/>
+				<Gate owner>
+					<InstructorView session={session} />
+				</Gate>
 			</div>
 		);
 	}
