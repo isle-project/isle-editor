@@ -3,13 +3,15 @@
 import request from 'request';
 import isString from '@stdlib/assert/is-string';
 import inEditor from 'utils/is-electron';
-var io = require( 'socket.io-client' );
-
+const debug = require( 'debug' )( 'isle-editor' );
+const io = require( 'socket.io-client' );
 
 
 // VARIABLES //
 
 var PATH_REGEXP = /^\/([^\/]*)\/([^\/]*)\//i;
+var nSessions = 0;
+global.sessions = [];
 
 
 // SESSION //
@@ -17,6 +19,8 @@ var PATH_REGEXP = /^\/([^\/]*)\/([^\/]*)\//i;
 class Session {
 
 	constructor( config ) {
+		nSessions += 1;
+		debug( 'Should create session: ' + nSessions );
 
 		this.listeners = [];
 
@@ -26,7 +30,9 @@ class Session {
 		this.finished = false;
 		this.live = false;
 		this.actions = [];
+		this.socketActions = [];
 		this.vars = {};
+		this.state = config.state;
 		this.startTime = new Date().getTime();
 		this.endTime = null;
 		this.duration = 0;
@@ -46,51 +52,33 @@ class Session {
 				this.namespaceName = decodeURIComponent( matches[ 1 ]);
 				this.lessonName = decodeURIComponent( matches[ 2 ]);
 			}
-		}
+		}	
 
-		this.socketConnect = () => {
-			const socket = io.connect( this.server );
-
-			socket.on( 'connect', function() {
-				console.log( 'I am connected...' );
-				console.log( socket );
-			});
-
-			socket.emit( 'join', {
-				namespaceName: this.namespaceName, 
-				lessonName: this.lessonName,
-				userID: this.user._id,
-				userName: this.user.name,
-				userEmail: this.user.email
-			});
-			socket.on( 'console', function( msg ) {
-				console.log( msg );
-			});
-
-			socket.on( 'welcome', function( data ) {
-				console.log( data );
-			});
-
-			socket.on( 'error', console.error.bind( console ) );
-
-			socket.on( 'disconnect', function() {
-				console.log( 'I am disconnected from the server...' );
-			});
-
-			this.socket = socket;
-		};
-
-		this.sendSocketMessage = ( title, msg ) => {
-			this.socket.emit( title, msg );
+		this.sendSocketMessage = ( data ) => {
+			if ( this.socket ) {
+				this.socket.emit( 'event', data );
+			}
 		};
 
 		this.pingServer = () => {
 			request.get( this.server + '/ping', ( err, res, body ) => {
-				if ( !err && body === 'live' && !this.live ) {
+				if ( !err && body === 'live' ) {
 					this.live = true;
-					this.update();
+				} else {
+					this.live = false;
 				}
+				this.update();
 			});
+		};
+
+		this.startPingServer = () => {
+			this.pingServer();
+			this.pingInterval = setInterval( this.pingServer, 10000 );
+		};
+
+		this.stopPingServer = () => {
+			debug( 'Should clear the interval pinging the server' );
+			clearInterval( this.pingInterval );
 		};
 
 		const logSession = () => {
@@ -99,11 +87,10 @@ class Session {
 			}
 		};
 
-		if ( this.user ) {
+		if ( this.user && this.server ) {
 			this.socketConnect();
 		}
-		this.pingServer();
-		setInterval( this.pingServer, 30000 );
+		this.startPingServer();
 		setInterval( logSession, 5*60000 );
 
 		this.subscribe = ( listener ) => {
@@ -153,6 +140,54 @@ class Session {
 			return userRights.owner;
 		};
 
+		global.sessions.push( this );
+	}
+
+	socketConnect() {
+		const socket = io.connect( this.server );
+
+		socket.on( 'connect', () => {
+			debug( 'I am connected...' );
+			this.stopPingServer();
+		});
+
+		socket.emit( 'join', {
+			namespaceName: this.namespaceName, 
+			lessonName: this.lessonName,
+			userID: this.user.id,
+			userName: this.user.name,
+			userEmail: this.user.email
+		});
+		socket.on( 'console', function( msg ) {
+			console.log( msg );
+		});
+
+		socket.on( 'memberAction', this.saveAction.bind( this ) );
+
+		socket.on( 'error', console.error.bind( console ) );
+
+		socket.on( 'disconnect', () => {
+			debug( 'I am disconnected from the server...' );
+			this.live = false;
+			this.startPingServer();
+			this.update();
+		});
+
+		this.socket = socket;
+	}
+
+	getSocketActions(){
+		return this.socketActions;
+	}
+
+	saveAction( action ) {
+		debug( 'Received a member action...' );
+		let newArray = this.socketActions;
+		newArray.unshift( action );
+		this.socketActions = newArray;
+		debug( 'Number of actions: ' + this.socketActions.length );
+		//global.session.socketActions = this.socketActions;
+		this.update();
 	}
 
 	update() {
@@ -337,9 +372,11 @@ class Session {
 	}
 
 	log( action ) {
-		action.time = new Date().getTime() - this.startTime;
+		action.absoluteTime = new Date().getTime();
+		action.time = action.absoluteTime - this.startTime;
 		this.actions.push( action );
 		this.logToDatabase( 'action', action );
+		this.sendSocketMessage( action );
 
 		// If first action, create session on server:
 		if ( this.actions.length === 1 ) {
