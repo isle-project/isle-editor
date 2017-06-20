@@ -57,7 +57,6 @@ export default {
 	},
 	resolve: {
 		alias: {
-			'debug': path.resolve( './node_modules/debug/node.js' ),
 			'esprima': path.resolve( './node_modules/esprima-fb' ),
 			'object-keys': path.resolve( './objectKeys.js' ),
 			'electron-prebuilt': path.resolve( './dummy.js' ),
