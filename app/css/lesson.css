@@ -23,9 +23,22 @@ body {
 	right: 0;
 	top: -32px;
 	margin: auto;
-	z-index: 10;
+	z-index: 1000;
 	opacity: 0.7;
 	cursor: pointer;
+}
+
+#Lesson .actionNote {
+	white-space: pre-wrap;
+}
+
+#Lesson .clickable {
+	background: transparent;
+	cursor: pointer;
+}
+
+#Lesson .clickable:hover {
+	background: lightcoral;
 }
 
 #App #Lesson .statusbar {
