@@ -211,7 +211,8 @@ class RShell extends React.Component {
 
 			if ( val !== solutionUnescaped ) {
 				if ( this.props.id ) {
-					global.lesson.session.log({
+					const { session } = this.context;
+					session.log({
 						id: this.props.id,
 						type: 'RSHELL_DISPLAY_SOLUTION',
 						value: val
@@ -237,9 +238,10 @@ class RShell extends React.Component {
 		this.handleHintClick = () => {
 			const { currentHint, hintOpen } = this.state;
 			const { hints } = this.props;
+			const { session } = this.context;
 			if ( currentHint < hints.length && hintOpen === false ) {
 				if ( this.props.id ) {
-					global.lesson.session.log({
+					session.log({
 						id: this.props.id,
 						type: 'RSHELL_OPEN_HINT',
 						value: currentHint
@@ -278,7 +280,8 @@ class RShell extends React.Component {
 				}
 
 				if ( this.props.id ) {
-					global.lesson.session.log({
+					const { session } = this.context;
+					session.log({
 						id: this.props.id,
 						type: 'RSHELL_EVALUATION',
 						value: currentCode
@@ -380,9 +383,9 @@ class RShell extends React.Component {
 	componentDidMount() {
 		const node = ReactDom.findDOMNode( this );
 		this.editor = ace.edit( node.firstChild );
-		this.session = this.editor.getSession();
-		this.session.setMode( 'ace/mode/r' );
-		this.session.getDocument().setNewLineMode( 'unix' );
+		this.aceSession = this.editor.getSession();
+		this.aceSession.setMode( 'ace/mode/r' );
+		this.aceSession.getDocument().setNewLineMode( 'unix' );
 		this.editor.setTheme( 'ace/theme/katzenmilch' );
 		this.editor.$blockScrolling = Infinity;
 		this.editor.setOptions({
@@ -391,7 +394,7 @@ class RShell extends React.Component {
 			fontFamily: this.props.fontFamily,
 			fontSize: this.props.fontSize
 		});
-		this.session.setUseWrapMode( true );
+		this.aceSession.setUseWrapMode( true );
 		this.editor.setValue( this.props.code, -1 );
 		this.editor.resize();
 		if ( this.state.disabled ) {
@@ -407,14 +410,19 @@ class RShell extends React.Component {
 		if ( !isElectron ) {
 			const onChange = () => {
 				window.addEventListener( 'beforeunload', beforeUnload );
-				this.session.off( 'change', onChange );
+				this.aceSession.off( 'change', onChange );
 			};
-			this.session.on( 'change', onChange );
+			this.aceSession.on( 'change', onChange );
 		}
 
 		if ( this.props.precompute ) {
 			this.handleEvaluationClick();
 		}
+
+		const { session } = this.context;
+		this.unsubscribe = session.subscribe( () => {
+			this.forceUpdate();
+		});
 	}
 
 	componentDidUpdate() {
@@ -446,6 +454,7 @@ class RShell extends React.Component {
 	componentWillUnmount() {
 		counter = 0;
 		rCode = [];
+		this.unsubscribe();
 		this.editor.destroy();
 		this.editor = null;
 	}
@@ -586,6 +595,9 @@ RShell.propTypes = {
 	addPreceding: PropTypes.bool
 };
 
+RShell.contextTypes = {
+	session: PropTypes.object
+};
 
 // DEFAULT PROPERTIES //
 
