@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 import Image from 'components/image';
+import InstructorBar from 'components/instructor-bar';
 import { Button, ButtonToolbar, Modal, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
 import request from 'request';
 import DOMPurify from 'dompurify';
@@ -538,6 +539,7 @@ class RShell extends React.Component {
 					{ showResult( this.state.result ) }
 					{ insertImages( this.state.plots, this.props.containerWidth ) }
 				</div>
+				<InstructorBar id={this.props.id} />
 				<Modal
 					backdrop={false}
 					show={Boolean( this.state.help )}
