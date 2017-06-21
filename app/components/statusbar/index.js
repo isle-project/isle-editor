@@ -4,12 +4,15 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
+import { ceil, max, min } from '@stdlib/math/base/special';
+const debug = require( 'debug' )( 'isle-editor' );
 import Signup from 'components/signup';
 import Login from 'components/login';
 import Clock from 'components/clock';
 import Gate from 'components/gate';
 import ConfirmModal from './confirm_modal.js';
 import InstructorView from './instructor_view.js';
+import Chat from './chat.js';
 
 
 // VARIABLES //
@@ -25,14 +28,18 @@ class StatusBar extends Component {
 	constructor( props ) {
 		super( props );
 
+		const statusbarWidth = max( 0.34 * window.innerWidth, 300 );
+		const side = ( window.innerWidth - statusbarWidth ) / 2.0;
+
 		this.state = {
 			visibleSignup: false,
 			visibleLogin: false,
-			visibleLogout: false
+			visibleLogout: false,
+			statusbarWidth,
+			side
 		};
 
 		this.hidden = true;
-
 	}
 
 	componentDidMount() {
@@ -64,10 +71,14 @@ class StatusBar extends Component {
 			}
 			this.forceUpdate();
 		});
+
+ 		this.getStatusbarInfo = this.getStatusbarInfo.bind( this );
+		window.addEventListener( 'resize', this.getStatusbarInfo );
 	}
 
 	componentWillUnmount() {
 		this.unsubscribe();
+		window.removeEventListener( 'resize', this.getStatusbarInfo );
 	}
 
 	closeSignup() {
@@ -137,10 +148,41 @@ class StatusBar extends Component {
 		this.closeLogout();
 	}
 
+	getStatusbarInfo() {
+		const statusbarWidth = max( 0.34 * window.innerWidth, 300 );
+		const side = ( window.innerWidth - statusbarWidth ) / 2.0;
+		this.setState({
+			statusbarWidth,
+			side
+		});
+	}
+
+	getChatPosition( idx ) {
+		const { session } = this.context;																																																								
+		const margin = 10;
+		const nChatsPerSide = ceil( session.chats.length / 2 )		
+		const maxWidth = this.state.side * 0.6;																																							;
+		const width = min( ( this.state.side - margin - margin*nChatsPerSide ) / nChatsPerSide, maxWidth );
+		let left = margin + ( idx * ( width + margin ) );
+		if ( idx > ( nChatsPerSide-1 ) ) {
+			left += this.state.statusbarWidth;
+		}
+		const pos = {
+			left,
+			width
+		};
+		debug( 'New chat position: ' + JSON.stringify( pos ) );
+		return pos;
+	}
+
 	render() {
 		const { session } = this.context;
 		return (
 			<div>
+				{session.chats.map( ( chat, idx ) => {
+					const pos = this.getChatPosition( idx );
+					return <Chat chat={chat} idx={idx} key={idx} left={pos.left} width={pos.width} />;
+				})}
 				<div
 					className="statusbar unselectable"
 					ref={( statusbar ) => { this.statusbar = statusbar; }}
