@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import { Accordion, Panel } from 'react-bootstrap';
 import $ from 'jquery';
 import ActionLog from './action_log.js';
+import UserList from './user_list.js';
+import max from '@stdlib/math/base/special/max';
 
 
 // MAIN //
@@ -28,7 +30,7 @@ class InstructorView extends Component {
 				hidden: false
 			});
 		} else {
-			$( this.instructorView ).animate({ right: '-25%' }, 300 );
+			$( this.instructorView ).animate({ right: -max( window.innerWidth * 0.25, 400 ) }, 300 );
 			$( this.handler ).css( 'opacity', 0.7 );
 			this.setState({
 				hidden: true
@@ -57,7 +59,7 @@ class InstructorView extends Component {
 				style={{
 					width: '25%',
 					minWidth: '400px',
-					position: 'absolute',
+					position: 'fixed',
 					top: 0,
 					right: 0,
 					height: '100%',
@@ -76,7 +78,7 @@ class InstructorView extends Component {
 					marginRight: '30px'
 				}}>
 					<p style={{ marginTop: '20px', fontFamily: 'monospace', fontSize: 12 }}>Instructor Panel</p>
-					<hr style={{ background: '#333',  backgroundImage: 'linear-gradient(to right, #ccc, #333, #ccc);', height: '1px', border: 0 }} />
+					<hr style={{ background: '#333',  backgroundImage: 'linear-gradient(to right, #ccc, #333, #ccc)', height: '1px', border: 0 }} />
 				</div>
 				<div className="instructorMiddle" style={{
 					position: 'absolute',
@@ -88,7 +90,7 @@ class InstructorView extends Component {
 				}}>
 					<Accordion>
 						<Panel header="Active Users" eventKey="1">
-						Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							<UserList session={session} />
 						</Panel>
 						<Panel header={this.state.actionLogHeader} eventKey="2">
 							<ActionLog session={session} onFilter={ ( newHeader ) => {

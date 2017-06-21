@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import $ from 'jquery';
 import Signup from 'components/signup';
 import Login from 'components/login';
+import Clock from 'components/clock';
 import Gate from 'components/gate';
 import ConfirmModal from './confirm_modal.js';
 import InstructorView from './instructor_view.js';
@@ -188,6 +189,7 @@ class StatusBar extends Component {
 						}}>
 							{ session.anonymous ? 'Anonymous' : session.user.name }
 						</div>
+						<Clock style={{ left: '0', right: '0', margin: 'auto', bottom: 0, background: 'transparent', position: 'absolute', width: '60px' }} />
 						{ session.anonymous ?
 							<div>
 								<Button 
