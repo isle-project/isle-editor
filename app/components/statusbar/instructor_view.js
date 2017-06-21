@@ -61,7 +61,7 @@ class InstructorView extends Component {
 					minWidth: '400px',
 					position: 'fixed',
 					top: 0,
-					right: 0,
+					right: -max( window.innerWidth * 0.25, 400 ),
 					height: '100%',
 					zIndex: 100
 				}}
