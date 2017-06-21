@@ -31,6 +31,7 @@ class Session {
 		this.live = false;
 		this.actions = [];
 		this.socketActions = [];
+		this.userList = [];
 		this.vars = {};
 		this.state = config.state;
 		this.startTime = new Date().getTime();
@@ -102,7 +103,8 @@ class Session {
 
 		let userRights = null;
 		this.getUserRights = () => {
-			if ( !this.anonymous ) {
+			if ( !this.anonymous && !this.userRightsQuestionPosed ) {
+				this.userRightsQuestionPosed = true;
 				request.post( this.server+'/get_user_rights', {
 					headers: {
 						'Authorization': 'JWT ' + this.user.token
@@ -111,7 +113,8 @@ class Session {
 						namespaceName: this.namespaceName, 
 						lessonName: this.lessonName
 					}
-				}, ( err, res, body ) => {			
+				}, ( err, res, body ) => {	
+					this.userRightsQuestionPosed = false;		
 					if ( !err ) {
 						let obj = JSON.parse( body );
 						userRights = obj;
@@ -160,6 +163,32 @@ class Session {
 		});
 		socket.on( 'console', function( msg ) {
 			console.log( msg );
+		});
+
+		socket.on( 'userlist', ( data ) => {
+			debug( 'Received list of users currently in the lesson: ' + data );
+			this.userList = JSON.parse( data );
+			this.update();
+		});
+
+		socket.on( 'user_joins', ( data ) => {
+			debug( 'A user has joined and should be added to the user list: ' + data );
+			data = JSON.parse( data );
+			this.userList.push( data );
+			this.update();
+		});
+
+		socket.on( 'user_leaves', ( data ) => {
+			debug( 'A user has disconnected and should be removed: ' + data );
+			data = JSON.parse( data );
+			this.userList = this.userList.map( user => {
+				if ( user.email === data.email ) {
+					user.inactive = true;
+					user.exitTime = data.exitTime;
+				};
+				return user;
+			});
+			this.update();
 		});
 
 		socket.on( 'memberAction', this.saveAction.bind( this ) );
