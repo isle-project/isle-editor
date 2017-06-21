@@ -9,6 +9,7 @@ import { Button, ButtonToolbar, Modal, OverlayTrigger, Popover, Tooltip } from '
 import request from 'request';
 import DOMPurify from 'dompurify';
 import createPrependCode from 'components/r/utils/create-prepend-code';
+import ChatButton from 'components/chat-button';
 import beforeUnload from 'utils/before-unload';
 import isElectron from 'utils/is-electron';
 import isArray from '@stdlib/assert/is-array';
@@ -534,6 +535,11 @@ class RShell extends React.Component {
 						) :
 						null
 					}
+					{
+						( this.props.chat && this.props.id ) ? 
+							<ChatButton for={this.props.id} /> :
+						null
+					}
 				</ButtonToolbar>
 				<div id="output">
 					{ showResult( this.state.result ) }
@@ -578,6 +584,7 @@ class RShell extends React.Component {
 // PROPERTY TYPES //
 
 RShell.propTypes = {
+	chat: PropTypes.bool,
 	onResult: PropTypes.func,
 	onEvaluate:  PropTypes.func,
 	code: PropTypes.string,
@@ -606,6 +613,7 @@ RShell.contextTypes = {
 RShell.defaultProps = {
 	onResult() {},
 	onEvaluate(){},
+	chat: false,
 	code: '',
 	lines: 5,
 	solution: '',
