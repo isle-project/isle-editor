@@ -32,6 +32,7 @@ class Session {
 		this.actions = [];
 		this.socketActions = [];
 		this.userList = [];
+		this.chats = [];
 		this.vars = {};
 		this.state = config.state;
 		this.startTime = new Date().getTime();
@@ -146,6 +147,61 @@ class Session {
 		global.sessions.push( this );
 	}
 
+	joinChat( name ) {
+		if ( this.socket ) {
+			let chat = { name: name, messages: [] };
+			let found = false;
+			for ( let i = 0; i < this.chats.length; i++ ) {
+				if ( this.chats[ i ].name === chat.name ) {
+					found = true;
+				}
+			}
+			if ( !found ) {
+				this.chats.push( chat );
+				this.update();
+				this.socket.emit( 'join_chat', name );
+			}
+		}
+	}
+
+	sendChatMessage( name, msg ) {
+		if ( this.socket ) {
+			const msgObj = {
+				time: new Date().toLocaleTimeString(),
+				user: this.user.name,
+				content: msg
+			};
+			const chat = this.getChat( name );
+			chat.messages.push( msgObj );
+			debug( 'Should emit message to room '+name+': ' + JSON.stringify( msgObj ) );
+			this.socket.emit( 'chat_message', { 
+				msg: msgObj, 
+				namespaceName: this.namespaceName, 
+				lessonName: this.lessonName, 
+				chatroom: name 
+			});
+		}
+	}
+
+	getChat( name ) {
+		for ( let i = 0; i < this.chats.length; i++ ) {
+			let chat = this.chats[ i ];
+			if ( chat.name === name ) {
+				return chat;
+			}
+		}
+		return null;
+	}
+
+	leaveChat( name ) {
+		for ( let i = this.chats.length - 1; i >= 0; i-- ) {
+			if ( this.chats[ i ].name === name ) {
+				this.chats.splice( i, 1 );
+			}
+		}
+		this.update();
+	}
+
 	socketConnect() {
 		const socket = io.connect( this.server );
 
@@ -189,6 +245,13 @@ class Session {
 				return user;
 			});
 			this.update();
+		});
+
+		socket.on( 'chat_message', ( data ) => {
+			const chat = this.getChat( data.chatroom );
+			if ( chat ) {
+				chat.messages.push( data.msg );
+			}
 		});
 
 		socket.on( 'memberAction', this.saveAction.bind( this ) );
@@ -246,6 +309,7 @@ class Session {
 		this.socket.emit( 'leave' );
 		this.user = null;
 		this.anonymous = true;
+		this.chats = [];
 		this.removeUserRights();
 		global.lesson.addNotification({
 			title: 'Logged out',
