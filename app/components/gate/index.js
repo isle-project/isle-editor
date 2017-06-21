@@ -35,7 +35,7 @@ class Gate extends Component {
 			authenticated = true;
 		}
 		if ( authenticated ) {
-			return this.props.children;
+			return <div>{this.props.children}</div>;
 		}
 		else {
 			return null;
