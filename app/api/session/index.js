@@ -56,9 +56,9 @@ class Session {
 			}
 		}	
 
-		this.sendSocketMessage = ( data ) => {
+		this.sendSocketMessage = ( data, to ) => {
 			if ( this.socket ) {
-				this.socket.emit( 'event', data );
+				this.socket.emit( 'event', data, to );
 			}
 		};
 
@@ -252,6 +252,7 @@ class Session {
 			if ( chat ) {
 				chat.messages.push( data.msg );
 			}
+			this.update();
 		});
 
 		socket.on( 'memberAction', this.saveAction.bind( this ) );
@@ -278,12 +279,11 @@ class Session {
 		newArray.unshift( action );
 		this.socketActions = newArray;
 		debug( 'Number of actions: ' + this.socketActions.length );
-		//global.session.socketActions = this.socketActions;
-		this.update();
+		this.update( 'member_action', action );
 	}
 
-	update() {
-		this.listeners.forEach( listener => listener() );
+	update( type, data ) {
+		this.listeners.forEach( listener => listener( type, data ) );
 	}
 
 	registerUser( data, clbk ) {
@@ -464,12 +464,12 @@ class Session {
 		}
 	}
 
-	log( action ) {
+	log( action, to ) {
 		action.absoluteTime = new Date().getTime();
 		action.time = action.absoluteTime - this.startTime;
 		this.actions.push( action );
 		this.logToDatabase( 'action', action );
-		this.sendSocketMessage( action );
+		this.sendSocketMessage( action, to );
 
 		// If first action, create session on server:
 		if ( this.actions.length === 1 ) {
