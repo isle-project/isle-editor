@@ -56,16 +56,24 @@ class MultipleChoiceSurvey extends Component {
 		};
 
 		this.submitQuestion = () => {
-
+			const { session } = this.context;
 			if ( this.props.id ) {
-				global.lesson.session.log({
+				session.log({
 					id: this.props.id,
 					type: 'MULTIPLE_CHOICE_SURVEY_SUBMISSION',
 					value: this.state.active
 				});
 			}
-			this.setState({
-				submitted: true
+			if ( !this.props.allowMultipleAnswers ) {
+				this.setState({
+					submitted: true
+				});
+			}
+			global.lesson.addNotification({
+				title: 'Submitted',
+				message: 'Your answer has been submitted.',
+				level: 'success',
+				position: 'tr'
 			});
 			this.props.onSubmit( this.state.active );
 		};
@@ -123,7 +131,7 @@ class MultipleChoiceSurvey extends Component {
 		if ( multipleAnswers ) {
 			disabled = this.state.submitted;
 		} else {
-			disabled = this.state.submitted || !this.state.answerSelected;
+			disabled =  this.state.submitted || !this.state.answerSelected;
 		}
 
 		return (
@@ -156,14 +164,22 @@ class MultipleChoiceSurvey extends Component {
 // DEFAULT PROPERTIES //
 
 MultipleChoiceSurvey.defaultProps = {
-	onSubmit() {}
+	onSubmit() {},
+	answers: [],
+	allowMultipleAnswers: false
 };
 
 
 // PROPERTY TYPES //
 
 MultipleChoiceSurvey.propTypes = {
-	onSubmit: PropTypes.func
+	onSubmit: PropTypes.func,
+	answers: PropTypes.array,
+	allowMultipleAnswers: PropTypes.bool
+};
+
+MultipleChoiceSurvey.contextTypes = {
+	session: PropTypes.object
 };
 
 
