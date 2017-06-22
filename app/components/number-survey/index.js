@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Panel } from 'react-bootstrap';
 import NumberInput from 'components/input/number';
+import Gate from 'components/gate';
 
 
 // MAIN //
@@ -48,30 +49,32 @@ class NumberSurvey extends Component {
 		const props = this.props;
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
-			<Panel className="NumberSurvey" style={{
-				margin: '0 auto 10px',
-				maxWidth: 600,
-				marginTop: '8px'
-			}}>
-				<h3>{props.question}</h3>
-				<NumberInput
-					{...props}
-					inline
-					disabled={disabled}
-					onChange={( value ) => {
-						this.setState({
-							value
-						});
-					}}
-				/>
-				<Button
-					bsSize="small"
-					bsStyle="success"
-					block fill
-					onClick={this.submitQuestion}
-					disabled={disabled}
-				>{ disabled ? "Submitted" : "Submit"}</Button>
-			</Panel>
+			<Gate user>
+				<Panel className="NumberSurvey" style={{
+					margin: '0 auto 10px',
+					maxWidth: 600,
+					marginTop: '8px'
+				}}>
+					<h3>{props.question}</h3>
+					<NumberInput
+						{...props}
+						inline
+						disabled={disabled}
+						onChange={( value ) => {
+							this.setState({
+								value
+							});
+						}}
+					/>
+					<Button
+						bsSize="small"
+						bsStyle="success"
+						block fill
+						onClick={this.submitQuestion}
+						disabled={disabled}
+					>{ disabled ? "Submitted" : "Submit"}</Button>
+				</Panel>
+			</Gate>
 		);
 	}
 }

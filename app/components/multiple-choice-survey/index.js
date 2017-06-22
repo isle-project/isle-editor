@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ListGroup, ListGroupItem, Panel } from 'react-bootstrap';
+import Gate from 'components/gate';
 
 
 // FUNCTIONS //
@@ -135,27 +136,29 @@ class MultipleChoiceSurvey extends Component {
 		}
 
 		return (
-			<Panel className="multipleChoiceSurvey" style={{
-				margin: '0 auto 10px',
-				maxWidth: 600,
-				marginTop: '8px'
-			}}>
-				<h3>{props.question}</h3>
-				{ multipleAnswers ? <span>You may select multiple answers</span> : null }
-				<ListGroup fill >
-					{ multipleAnswers ?
-						props.answers.map( renderAnswerOptionsMultiple ) :
-						props.answers.map( renderAnswerOptionsSingle )
-					}
-				</ListGroup>
-				<Button
-					bsSize="small"
-					bsStyle="success"
-					block fill
-					onClick={this.submitQuestion}
-					disabled={disabled}
-				>{ this.state.submitted ? "Submitted" : "Submit"}</Button>
-			</Panel>
+			<Gate user>
+				<Panel className="multipleChoiceSurvey" style={{
+					margin: '0 auto 10px',
+					maxWidth: 600,
+					marginTop: '8px'
+				}}>
+					<h3>{props.question}</h3>
+					{ multipleAnswers ? <span>You may select multiple answers</span> : null }
+					<ListGroup fill >
+						{ multipleAnswers ?
+							props.answers.map( renderAnswerOptionsMultiple ) :
+							props.answers.map( renderAnswerOptionsSingle )
+						}
+					</ListGroup>
+					<Button
+						bsSize="small"
+						bsStyle="success"
+						block fill
+						onClick={this.submitQuestion}
+						disabled={disabled}
+					>{ this.state.submitted ? "Submitted" : "Submit"}</Button>
+				</Panel>
+			</Gate>
 		);
 	}
 }
