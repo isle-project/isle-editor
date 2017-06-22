@@ -20,13 +20,13 @@ class NumberSurvey extends Component {
 		};
 
 		this.submitQuestion = () => {
-			const { session } = this.context;
+			const { session } = this.context; 
 			if ( this.props.id ) {
 				session.log({
 					id: this.props.id,
 					type: 'NUMBER_SURVEY_SUBMISSION',
 					value: this.state.value
-				});
+				}, 'members' );
 			}
 			this.setState({
 				submitted: true
@@ -56,6 +56,7 @@ class NumberSurvey extends Component {
 				<h3>{props.question}</h3>
 				<NumberInput
 					{...props}
+					inline
 					disabled={disabled}
 					onChange={( value ) => {
 						this.setState({
@@ -80,7 +81,8 @@ class NumberSurvey extends Component {
 
 NumberSurvey.defaultProps = {
 	onSubmit() {},
-	allowMultipleAnswers: false
+	allowMultipleAnswers: false,
+	question: ''
 };
 
 
@@ -88,7 +90,8 @@ NumberSurvey.defaultProps = {
 
 NumberSurvey.propTypes = {
 	onSubmit: PropTypes.func,
-	allowMultipleAnswers: PropTypes.bool
+	allowMultipleAnswers: PropTypes.bool,
+	question: PropTypes.string
 };
 
 NumberSurvey.contextTypes = {
