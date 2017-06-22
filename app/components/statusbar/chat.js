@@ -5,6 +5,7 @@ import { FormGroup, InputGroup } from 'react-bootstrap';
 import $ from 'jquery';
 import TextArea from 'components/text-area';
 import PropTypes from 'prop-types';
+import isElectron from 'utils/is-electron';
 const debug = require( 'debug' )( 'isle-editor' );	
 
 
@@ -80,7 +81,7 @@ class Chat extends Component {
 		const { chat, left, width } = this.props;
 		return (
 			<div style={{ 
-				position: 'fixed',
+				position: isElectron ? 'absolute' : 'fixed',
 				top: 0,
 				zIndex: 5,
 				fontSize: '12px',

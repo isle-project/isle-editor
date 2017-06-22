@@ -160,12 +160,15 @@ class StatusBar extends Component {
 	getChatPosition( idx ) {
 		const { session } = this.context;																																																								
 		const margin = 10;
-		const nChatsPerSide = ceil( session.chats.length / 2 )		
+		const nChatsPerSide = ceil( session.chats.length / 2 );	
 		const maxWidth = this.state.side * 0.6;																																							;
 		const width = min( ( this.state.side - margin - margin*nChatsPerSide ) / nChatsPerSide, maxWidth );
 		let left = margin + ( idx * ( width + margin ) );
 		if ( idx > ( nChatsPerSide-1 ) ) {
 			left += this.state.statusbarWidth;
+			if ( nChatsPerSide === 1 && idx === 1 ) {
+				left += width + margin;
+			}
 		}
 		const pos = {
 			left,
