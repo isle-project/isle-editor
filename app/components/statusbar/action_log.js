@@ -62,8 +62,12 @@ class ActionLog extends Component {
 			let newHeader = <div>
 				<h4 style={{ display: 'inline' }} >Action Log</h4> 
 				<div style={{ position: 'relative', width: 'auto', fontSize: '10px', fontFamily: 'Arial' }}>
-					{entries.map( arr => {
-						return <span style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }} onClick={this.removeFactory( arr[ 0 ])}>{arr[ 0 ]}: {arr[ 1 ]}</span>;
+					{entries.map( ( arr, idx ) => {
+						return <span 
+							style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }} 
+							onClick={this.removeFactory( arr[ 0 ])}
+							key={idx}
+						>{arr[ 0 ]}: {arr[ 1 ]}</span>;
 					})}
 				</div>
 			</div>;

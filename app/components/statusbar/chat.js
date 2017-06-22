@@ -134,7 +134,7 @@ class Chat extends Component {
 					<FormGroup>
 						<InputGroup>
 							<TextArea rows={2} onChange={this.changedText} defaultValue={this.state.value} />
-							<InputGroup.Addon className="clickable" onClick={this.sendMessage}>Send</InputGroup.Addon>
+							<InputGroup.Addon className="sendbutton" onClick={this.sendMessage}>Send</InputGroup.Addon>
 						</InputGroup>
 					</FormGroup>
 				</div>

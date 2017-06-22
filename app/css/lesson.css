@@ -64,6 +64,14 @@ body {
 	background: lightcoral;
 }
 
+#Lesson .sendbutton {
+	background: gainsboro;
+}
+
+#Lesson .sendbutton:hover {
+	background: rgb(130, 224, 160);
+}
+
 #App #Lesson .statusbar {
 	position: fixed;
 }
