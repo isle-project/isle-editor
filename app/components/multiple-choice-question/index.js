@@ -294,6 +294,10 @@ MultipleChoiceQuestion.propTypes = {
 	onSubmit: PropTypes.func
 };
 
+MultipleChoiceQuestion.contextTypes = {
+	session: PropTypes.object
+};
+
 
 // EXPORTS //
 
