@@ -57,6 +57,9 @@ class Session {
 		}	
 
 		this.sendSocketMessage = ( data, to ) => {
+			if ( !to ) {
+				to = 'owners';
+			}
 			if ( this.socket ) {
 				this.socket.emit( 'event', data, to );
 			}
@@ -309,15 +312,22 @@ class Session {
 		this.socket.emit( 'leave' );
 		this.user = null;
 		this.anonymous = true;
-		this.chats = [];
-		this.removeUserRights();
+		this.reset();
 		global.lesson.addNotification({
 			title: 'Logged out',
 			message: 'You have successfully logged out.',
 			level: 'success',
 			position: 'tl'
 		});
-		this.update();
+		this.update( 'logout' );
+	}
+
+	reset() {
+		this.chats = [];
+		this.actions = [];
+		this.socketActions = [];
+		this.userList = [];
+		this.removeUserRights();
 	}
 
 	login( form, clbk ) {
