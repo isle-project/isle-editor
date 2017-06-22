@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonToolbar, FormControl, OverlayTrigger, Panel, Tooltip } from 'react-bootstrap';
 import ChatButton from 'components/chat-button';
+import InstructorBar from 'components/instructor-bar';
 
 
 // MAIN //
@@ -197,6 +198,7 @@ class FreeTextQuestion extends Component {
 							</div> : null
 					}
 				</ButtonToolbar>
+				<InstructorBar id={this.props.id} />
 			</Panel>
 		);
 	}

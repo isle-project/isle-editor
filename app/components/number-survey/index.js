@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { Button, Panel } from 'react-bootstrap';
 import NumberInput from 'components/input/number';
 import Gate from 'components/gate';
+import InstructorBar from 'components/instructor-bar';
 
 
 // MAIN //
@@ -74,6 +75,7 @@ class NumberSurvey extends Component {
 						disabled={disabled}
 					>{ disabled ? "Submitted" : "Submit"}</Button>
 				</Panel>
+				<InstructorBar id={props.id} />
 			</Gate>
 		);
 	}

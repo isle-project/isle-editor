@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Button, ListGroup, ListGroupItem, OverlayTrigger, Panel, Popover } from 'react-bootstrap';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
+import InstructorBar from 'components/instructor-bar';
 
 
 // FUNCTIONS //
@@ -263,6 +264,7 @@ class MultipleChoiceQuestion extends Component {
 					onClick={this.submitQuestion}
 					disabled={disabled}
 				>{ this.state.submitted ? "Submitted" : "Submit"}</Button>
+				<InstructorBar id={props.id} />
 			</Panel>
 		);
 	}

@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ListGroup, ListGroupItem, Panel } from 'react-bootstrap';
 import Gate from 'components/gate';
+import InstructorBar from 'components/instructor-bar';
 
 
 // FUNCTIONS //
@@ -158,6 +159,7 @@ class MultipleChoiceSurvey extends Component {
 						disabled={disabled}
 					>{ this.state.submitted ? "Submitted" : "Submit"}</Button>
 				</Panel>
+				<InstructorBar id={props.id} />
 			</Gate>
 		);
 	}
