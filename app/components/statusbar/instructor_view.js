@@ -6,6 +6,14 @@ import $ from 'jquery';
 import ActionLog from './action_log.js';
 import UserList from './user_list.js';
 import max from '@stdlib/math/base/special/max';
+import isElectron from 'utils/is-electron';
+import PropTypes from 'prop-types';
+const debug = require( 'debug' )( 'isle-editor' );
+
+
+// VARIABLES //
+
+const EDITOR_OFFSET = isElectron ? '15px' : '0px';
 
 
 // MAIN //
@@ -22,9 +30,26 @@ class InstructorView extends Component {
 
 	}
 
+	componendDidMount() {
+		const { session } = this.context;
+		this.unsubscribe = session.subscribe( ( type ) => {
+			debug( 'TYPE: ' + type );
+			if ( type === 'logout' ) {
+				debug( 'Should reset the filters after user logout:' );
+				this.setState({
+					actionLogHeader: <h4>Action Log</h4>
+				});
+			}
+		});
+	}
+
+	componendWillUnmount() {
+		this.unsubscribe();
+	}
+
 	toggleBar() {
 		if ( this.state.hidden ) {
-			$( this.instructorView ).animate({ right: '15px' }, 300 );
+			$( this.instructorView ).animate({ right: EDITOR_OFFSET }, 300 );
 			$( this.handler ).css( 'opacity', 0.7 );
 			this.setState({
 				hidden: false
@@ -51,7 +76,7 @@ class InstructorView extends Component {
 	}
 
 	render() {
-		const { session } = this.props;
+		const { session } = this.context;
 		return (
 			<div
 				className="instructorView unselectable"
@@ -63,7 +88,7 @@ class InstructorView extends Component {
 					top: 0,
 					right: -max( window.innerWidth * 0.25, 400 ),
 					height: '100%',
-					zIndex: 100
+					zIndex: 1001
 				}}
 			>
 				<div className="instructorTop" style={{
@@ -133,6 +158,13 @@ class InstructorView extends Component {
 		);
 	}
 }
+
+
+// TYPES //
+
+InstructorView.contextTypes = {
+	session: PropTypes.object
+};
 
 
 // EXPORTS //

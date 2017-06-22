@@ -234,7 +234,7 @@ class StatusBar extends Component {
 						}}>
 							{ session.anonymous ? 'Anonymous' : session.user.name }
 						</div>
-						<Clock style={{ left: '0', right: '0', margin: 'auto', bottom: 0, background: 'transparent', position: 'absolute', width: '60px' }} />
+						<Clock style={{ left: '0', right: '0', margin: 'auto', bottom: 0, background: 'transparent', position: 'absolute', width: '90px' }} />
 						{ session.anonymous ?
 							<div>
 								<Button 
@@ -286,7 +286,7 @@ class StatusBar extends Component {
 					/>
 				</div>
 				<Gate owner>
-					<InstructorView session={session} />
+					<InstructorView />
 				</Gate>
 			</div>
 		);

@@ -90,6 +90,17 @@ class ActionLog extends Component {
 
 	}
 
+	componentWillReceiveProps( nextProps ) {
+		if ( nextProps.session.socketActions.length === 0 && this.state.filter !== null ) {
+			this.setState({
+				filter: null
+			}, () => {
+				const newHeader = this.createHeader( null );
+				this.props.onFilter( newHeader );
+			});
+		}
+	}
+
 	render() {
 		const { session } = this.props;
 		let displayedActions = copy( session.socketActions );
