@@ -50,7 +50,7 @@ const FreeTextQuestion = require( 'components/free-text-question' );
 const Gate = require( 'components/gate' );
 const Grid = require( 'components/grid' );
 const LessonSubmit = require( 'components/lesson-submit' );
-const Metrics = require( 'components/metrics' );
+const Metrics = require( 'components/metrics/db' );
 const Modal = ReactBootstrap.Modal;
 const MultipleChoiceQuestion = require( 'components/multiple-choice-question' );
 const MultipleChoiceSurvey = require( 'components/multiple-choice-survey' );
@@ -62,6 +62,7 @@ const NumberInput = require( 'components/input/number' );
 const NumberSurvey = require( 'components/number-survey' );
 const Panel = ReactBootstrap.Panel;
 const Provider = require( 'components/provider' );
+const RealtimeMetrics = require( 'components/metrics/realtime' );
 const Recorder = require( 'components/recorder' );
 const RPlot = require( 'components/r/plot' );
 const RHelp = require( 'components/r/help' );
@@ -349,6 +350,9 @@ export default class Preview extends Component {
 		if ( nextProps.preamble.server !== this.props.preamble.server ) {
 			global.ISLE = nextProps.preamble;
 			global.session = new Session( global.ISLE );
+		}
+		if ( nextProps.preamble.state !== this.props.preamble.state ) {
+			global.ISLE = nextProps.preamble;
 		}
 	}
 
