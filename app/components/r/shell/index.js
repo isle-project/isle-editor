@@ -114,7 +114,7 @@ const showSolutionButton = ( currentHint, nHints, clickHandler, displayed, nEval
 				overlay={tooltip}
 				rootClose={true}
 			>
-				<span style={{display: 'inline-block', padding: 1, marginTop: -1}}>
+				<span style={{ display: 'inline-block',  marginLeft: '4px' }}>
 					<Button
 						bsStyle="warning"
 						bsSize="sm"
@@ -152,7 +152,7 @@ const showResetButton = ( clickHandler ) => {
 			overlay={tooltip}
 			rootClose={true}
 		>
-			<span style={{display: 'inline-block', padding: 1, marginTop: -1}}>
+			<span style={{ display: 'inline-block', marginLeft: '4px' }}>
 				<Button
 					bsStyle="warning"
 					bsSize="sm"
@@ -537,7 +537,9 @@ class RShell extends React.Component {
 					}
 					{
 						( this.props.chat && this.props.id ) ? 
-							<ChatButton for={this.props.id} /> :
+							<span style={{display: 'inline-block', marginLeft: '4px' }}>
+								<ChatButton for={this.props.id} />
+							</span> :
 						null
 					}
 				</ButtonToolbar>
