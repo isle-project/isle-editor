@@ -80,7 +80,7 @@ class Chat extends Component {
 		const { chat, left, width } = this.props;
 		return (
 			<div style={{ 
-				position: 'absolute',
+				position: 'fixed',
 				top: 0,
 				zIndex: 5,
 				fontSize: '12px',
