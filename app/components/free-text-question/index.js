@@ -3,9 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonToolbar, FormControl, OverlayTrigger, Panel, Tooltip } from 'react-bootstrap';
+import ChatButton from 'components/chat-button';
 
 
-// FREE-FORM QUESTION //
+// MAIN //
 
 class FreeTextQuestion extends Component {
 	/**
@@ -53,8 +54,9 @@ class FreeTextQuestion extends Component {
 			this.setState({
 				submitted: true
 			});
+			const { session } = this.context;
 			if ( this.props.id ) {
-				global.ISLE.session.log({
+				session.log({
 					id: this.props.id,
 					type: 'FREE_TEXT_QUESTION_SUBMIT_ANSWER',
 					value: this.state.value
@@ -63,12 +65,18 @@ class FreeTextQuestion extends Component {
 		};
 
 		this.handleSolutionClick = () => {
+			const { session } = this.context;
 			if ( this.state.solutionDisplayed ) {
 				this.setState({
 					solutionDisplayed: false,
 					value: this.state.studentAnswer
 				});
 			} else {
+				session.log({
+					id: this.props.id,
+					type: 'FREE_TEXT_QUESTION_DISPLAY_SOLUTION',
+					value: null
+				});
 				this.setState({
 					solutionDisplayed: true,
 					studentAnswer: this.state.value,
@@ -169,7 +177,7 @@ class FreeTextQuestion extends Component {
 								overlay={tooltip}
 								rootClose={true}
 							>
-								<div style={{ display: 'inline-block' }}>
+								<div style={{ display: 'inline-block', marginLeft: '4px' }}>
 									<Button
 										bsStyle="warning"
 										bsSize="sm"
@@ -182,6 +190,12 @@ class FreeTextQuestion extends Component {
 							</OverlayTrigger> ) :
 							<span />
 					}
+					{
+						this.props.chat && this.props.id ? 
+							<div style={{ display: 'inline-block', marginLeft: '4px' }}>
+								<ChatButton for={this.props.id} />
+							</div> : null
+					}
 				</ButtonToolbar>
 			</Panel>
 		);
@@ -192,6 +206,7 @@ class FreeTextQuestion extends Component {
 // DEFAULT PROPERTIES //
 
 FreeTextQuestion.defaultProps = {
+	chat: false,
 	hints: [],
 	onChange() {},
 	question: '',
@@ -206,6 +221,7 @@ FreeTextQuestion.defaultProps = {
 // PROPERTY TYPES //
 
 FreeTextQuestion.propTypes = {
+	chat: PropTypes.bool,
 	hints: PropTypes.array,
 	onChange: PropTypes.func,
 	question: PropTypes.string,
@@ -214,6 +230,10 @@ FreeTextQuestion.propTypes = {
 	resubmissionMsg: PropTypes.string,
 	rows: PropTypes.number,
 	submissionMsg: PropTypes.string
+};
+
+FreeTextQuestion.contextTypes = {
+	session: PropTypes.object
 };
 
 
