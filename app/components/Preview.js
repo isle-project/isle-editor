@@ -23,6 +23,7 @@ const NotificationSystem = require( 'react-notification-system' );
 const contains = require( '@stdlib/assert/contains' );
 const isAbsolutePath = require( '@stdlib/assert/is-absolute-path' );
 const isObject = require( '@stdlib/assert/is-object' );
+const isArray = require( '@stdlib/assert/is-array' );
 const request = require( 'request' );
 const yaml = require( 'js-yaml' );
 const css = require( 'css' );
@@ -210,7 +211,7 @@ export default class Preview extends Component {
 			let { code } = this.props;
 			let session = global.session;
 			try {
-				if ( this.state.requires !== global.ISLE.require ) {
+				if ( this.state.requires !== global.ISLE.require && isArray( this.state.requires ) ) {
 					this.state.requires.forEach( lib => delete global[ lib ]);
 					loadRequires( global.ISLE.require, this.props.filePath || '' );
 				}
