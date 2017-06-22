@@ -63,7 +63,7 @@ class MultipleChoiceSurvey extends Component {
 					id: this.props.id,
 					type: 'MULTIPLE_CHOICE_SURVEY_SUBMISSION',
 					value: this.state.active
-				});
+				}, 'members' );
 			}
 			if ( !this.props.allowMultipleAnswers ) {
 				this.setState({
