@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ControlLabel, Form, FormControl, FormGroup } from 'react-bootstrap';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Input from 'components/input';
 
 
@@ -33,6 +34,16 @@ class SelectInput extends Input {
 				}
 			});
 		};
+	}
+
+	componentWillReceiveProps( nextProps ) {
+		let newState = {};
+		if ( nextProps.defaultValue !== this.props.defaultValue ) {
+			newState.value = nextProps.defaultValue;
+		}
+		if ( !isEmptyObject( newState ) ) {
+			this.setState( newState );
+		}
 	}
 
 	/*
@@ -87,6 +98,7 @@ class SelectInput extends Input {
 // DEFAULT PROPERTIES //
 
 SelectInput.defaultProps = {
+	bind: '',
 	onChange() {},
 	defaultValue: '',
 	inline: false,
@@ -98,6 +110,7 @@ SelectInput.defaultProps = {
 // PROPERTY TYPES //
 
 SelectInput.propTypes = {
+	bind: PropTypes.string,
 	onChange: PropTypes.func,
 	defaultValue: PropTypes.string,
 	inline: PropTypes.bool,

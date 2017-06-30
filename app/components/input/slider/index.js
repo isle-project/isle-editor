@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from 'components/input';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 
 
 // MAIN //
@@ -11,6 +12,12 @@ class SliderInput extends Input {
 
 	constructor( props ) {
 		super( props );
+
+		this.state = {
+			value: props.defaultValue !== void 0 ?
+				props.defaultValue :
+				global.lesson.state[ props.bind ]
+		};
 
 		this.handleInputChange = ( event ) => {
 			const value = event.target.value;
@@ -27,16 +34,25 @@ class SliderInput extends Input {
 					if ( this.context.autoUpdate ) {
 						this.context.triggerDashboardClick();
 					}
+					else if ( this.props.bind ) {
+						global.lesson.setState({
+							[ this.props.bind ]: value
+						});
+					}
 				});
 			}
 		};
 	}
 
 	componentWillReceiveProps( nextProps ) {
+		let newState = {};
 		if ( nextProps.defaultValue !== this.props.defaultValue ) {
-			this.setState({
-				value: nextProps.defaultValue
-			});
+			newState.value = nextProps.defaultValue;
+		} else if ( nextProps.bind !== this.props.bind ) {
+			newState.value = global.lesson.state[ nextProps.bind ];
+		}
+		if ( !isEmptyObject( newState ) ) {
+			this.setState( newState );
 		}
 	}
 
@@ -129,7 +145,10 @@ SliderInput.propTypes = {
 	inline: PropTypes.bool,
 	min: PropTypes.number,
 	max: PropTypes.number,
-	step: PropTypes.number,
+	step: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string
+	]),
 	defaultValue: PropTypes.number,
 	onChange: PropTypes.func,
 	fractionDigits: PropTypes.number

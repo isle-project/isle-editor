@@ -4,7 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Input from 'components/input';
-import isEmptyObject from '@stdlib/utils/is-empty-object';
+import isString from '@stdlib/assert/is-string';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/math/constants/float64-pinf';
 import NINF from '@stdlib/math/constants/float64-ninf';
 
@@ -32,7 +33,9 @@ class NumberInput extends Input {
 
 		this.state = {
 			showTooltip: false,
-			value: props.defaultValue,
+			value: props.defaultValue !== void 0 ?
+				props.defaultValue :
+				global.lesson.state[ props.bind ],
 			tooltip: this.createTooltip( props )
 		};
 
@@ -45,8 +48,24 @@ class NumberInput extends Input {
 				if ( valid && value !== '' ) {
 					value = parseFloat( value );
 					this.props.onChange( value );
-					if ( this.context.autoUpdate ) {
-						this.context.triggerDashboardClick();
+					if ( this.props.bind ) {
+						global.lesson.setState({
+							[ this.props.bind ]: value
+						}, () => {
+							if ( this.context.autoUpdate ) {
+								this.context.triggerDashboardClick();
+							}
+						});
+					} else {
+						if ( this.context.autoUpdate ) {
+							this.context.triggerDashboardClick();
+						}
+					}
+				} else {
+					if ( this.props.bind ) {
+						global.lesson.setState({
+							[ this.props.bind ]: value
+						});
 					}
 				}
 			});
@@ -73,18 +92,42 @@ class NumberInput extends Input {
 					value
 				}, () => {
 					this.props.onChange( value );
-					if ( this.context.autoUpdate ) {
-						this.context.triggerDashboardClick();
+					if ( this.props.bind ) {
+						global.lesson.setState({
+							[ this.props.bind ]: value
+						}, () => {
+							if ( this.context.autoUpdate ) {
+								this.context.triggerDashboardClick();
+							}
+						});
+					} else {
+						if ( this.context.autoUpdate ) {
+							this.context.triggerDashboardClick();
+						}
 					}
 				});
 			}
 		};
 	}
 
+	componentDidUpdate() {
+		if ( this.props.bind ) {
+			let globalVal = global.lesson.state[ this.props.bind ];
+			if ( globalVal !== this.state.value ) {
+				this.setState({
+					value: globalVal
+				});
+			}
+		}
+	}
+
 	componentWillReceiveProps( nextProps ) {
 		let newState = {};
 		if ( nextProps.defaultValue !== this.props.defaultValue ) {
 			newState.value = nextProps.defaultValue;
+		}
+		else if ( nextProps.bind !== this.props.bind ) {
+			newState.value = global.lesson.state[ nextProps.bind ];
 		}
 		if ( nextProps.min !== this.props.min || nextProps.max !== this.props.max ) {
 			newState.tooltip = this.createTooltip( nextProps );
@@ -140,7 +183,7 @@ class NumberInput extends Input {
 				border: 'solid 1px darkgrey',
 				borderRadius: '2px',
 				background: 'gold',
-				width: '80px',
+				width: this.props.width,
 				textAlign: 'center',
 				float: 'right',
 				...this.props.style
@@ -157,7 +200,12 @@ class NumberInput extends Input {
 				<span style={{
 					marginLeft: '8px'
 				}}>
-					<label>{this.props.legend}:</label>
+					<label>
+						{isString( this.props.legend ) ?
+							this.props.legend+':' :
+							this.props.legend
+						}
+					</label>
 					{ this.props.description ?
 						<span> {this.props.description}</span> :
 						<span />
@@ -165,7 +213,7 @@ class NumberInput extends Input {
 				</span>
 				{this.props.disabled ?
 					input:
-					<OverlayTrigger placement="left" overlay={<Tooltip id='standardTooltip'>{this.state.tooltip}</Tooltip>}>
+					<OverlayTrigger placement="top" overlay={<Tooltip id='standardTooltip'>{this.state.tooltip}</Tooltip>}>
 						{input}
 					</OverlayTrigger>
 				}
@@ -178,10 +226,12 @@ class NumberInput extends Input {
 // DEFAULT PROPERTIES //
 
 NumberInput.defaultProps = {
+	bind: '',
 	disabled: false,
 	min: NINF,
 	max: PINF,
 	step: 1,
+	width: 80,
 	defaultValue: 0,
 	onChange(){},
 	inline: false
@@ -191,10 +241,15 @@ NumberInput.defaultProps = {
 // PROPERTY TYPES //
 
 NumberInput.propTypes = {
+	bind: PropTypes.string,
 	disabled: PropTypes.bool,
 	min: PropTypes.number,
 	max: PropTypes.number,
-	step: PropTypes.number,
+	step: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string
+	]),
+	width: PropTypes.number,
 	defaultValue: PropTypes.number,
 	onChange: PropTypes.func,
 	inline: PropTypes.bool
