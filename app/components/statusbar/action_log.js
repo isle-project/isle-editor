@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import isObject from '@stdlib/assert/is-object';
 import objectEntries from '@stdlib/utils/entries';
 import copy from '@stdlib/utils/copy';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
@@ -10,20 +11,20 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 // VARIABLES //
 
 const Action = ( props ) => {
-	return ( 
-		<ListGroupItem style={{ background: props.backgroundColor, fontSize: 12, fontFamily: 'monospace', padding: '2px 1px 2px 1px', lineHeight: 1 }}> 
+	return (
+		<ListGroupItem style={{ background: props.backgroundColor, fontSize: 12, fontFamily: 'monospace', padding: '2px 1px 2px 1px', lineHeight: 1 }}>
 			<div className="actionNote">
-				<label>Time:&nbsp;</label>{ new Date( props.absoluteTime ).toLocaleTimeString() } | 
+				<label>Time:&nbsp;</label>{ new Date( props.absoluteTime ).toLocaleTimeString() } |
 				<label>User:&nbsp;</label><span className="clickable" onClick={props.clickFactory( 'email', props.email )} >{ props.email }</span>
 			</div>
 			<div className="actionNote">
-				<label>ID:&nbsp;</label><span className="clickable" onClick={props.clickFactory( 'id', props.id )} >{ props.id }</span> | 
+				<label>ID:&nbsp;</label><span className="clickable" onClick={props.clickFactory( 'id', props.id )} >{ props.id }</span> |
 				<label>Type:&nbsp;</label><span className="clickable" onClick={props.clickFactory( 'type', props.type )} >{ props.type }</span>
 			</div>
 			<div className="actionNote">
-				<label>Value:&nbsp;</label>{ props.value }
+				<label>Value:&nbsp;</label>{ isObject( props.value ) ? JSON.stringify( props.value,undefined, 2 ) : props.value }
 			</div>
-		</ListGroupItem> 
+		</ListGroupItem>
 	);
 };
 
@@ -60,11 +61,11 @@ class ActionLog extends Component {
 		this.createHeader = ( filter ) => {
 			let entries = filter ? objectEntries( filter ) : [];
 			let newHeader = <div>
-				<h4 style={{ display: 'inline' }} >Action Log</h4> 
+				<h4 style={{ display: 'inline' }} >Action Log</h4>
 				<div style={{ position: 'relative', width: 'auto', fontSize: '10px', fontFamily: 'Arial' }}>
 					{entries.map( ( arr, idx ) => {
-						return <span 
-							style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }} 
+						return <span
+							style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }}
 							onClick={this.removeFactory( arr[ 0 ])}
 							key={idx}
 						>{arr[ 0 ]}: {arr[ 1 ]}</span>;
