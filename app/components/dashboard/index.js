@@ -36,7 +36,8 @@ class Dashboard extends Component {
 			}
 
 			if ( this.props.id ) {
-				global.ISLE.session.log({
+				const { session } = this.context;
+				session.log({
 					id: this.props.id,
 					type: 'DASHBOARD_CLICK_GENERATE',
 					value: args
@@ -106,7 +107,7 @@ Dashboard.defaultProps = {
 };
 
 
-// PROPERTY TYPES //
+// TYPES //
 
 Dashboard.propTypes = {
 	onGenerate: PropTypes.func,
@@ -118,12 +119,13 @@ Dashboard.propTypes = {
 	maxWidth: PropTypes.number
 };
 
-
-// CHILD CONTEXT TYPES //
-
 Dashboard.childContextTypes = {
 	triggerDashboardClick: PropTypes.func,
 	autoUpdate: PropTypes.bool
+};
+
+Dashboard.contextTypes = {
+	session: PropTypes.object
 };
 
 
