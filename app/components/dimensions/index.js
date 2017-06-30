@@ -11,7 +11,7 @@ function getDimensions( element ) {
 } // end FUNCTION getDimensions()
 
 
-// DIMENSIONS //
+// MAIN //
 
 function Dimensions( ComposedComponent ) {
 

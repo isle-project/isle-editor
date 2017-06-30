@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Grid } from 'react-bootstrap';
 
 
-// ISLE GRID //
+// MAIN //
 
 class myGrid extends Component {
 	render() {

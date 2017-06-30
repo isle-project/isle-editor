@@ -5,7 +5,7 @@ import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 
 
-// SPINNER //
+// MAIN //
 
 class Spinner extends Component {
 

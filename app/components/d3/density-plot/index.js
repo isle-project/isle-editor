@@ -39,7 +39,7 @@ function epanechnikovKernel( bandwidth ) {
 	};
 }
 
-// DENSITY PLOT //
+// MAIN //
 
 class DensityPlot extends D3Plot {
 

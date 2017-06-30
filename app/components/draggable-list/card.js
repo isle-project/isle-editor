@@ -74,7 +74,7 @@ const cardTarget = {
 };
 
 
-// CARD //
+// MAIN //
 
 class Card extends Component {
 

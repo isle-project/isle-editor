@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { SketchPicker } from 'react-color';
 
 
-// COLOR PICKER //
+// MAIN //
 
 class ColorPicker extends Component {
 	render() {

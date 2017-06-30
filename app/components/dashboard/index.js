@@ -9,7 +9,7 @@ import SliderInput from 'components/input/slider';
 import { findAllChildren } from 'utils/find-nodes';
 
 
-// DASHBOARD //
+// MAIN //
 
 class Dashboard extends Component {
 
