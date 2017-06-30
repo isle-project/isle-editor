@@ -148,6 +148,7 @@ class NumberInput extends Input {
 						<input
 							type="number"
 							name="input"
+							disabled={this.props.disabled}
 							value={this.state.value}
 							step={this.props.step}
 							min={this.props.min}

@@ -43,3 +43,12 @@ export function toggleToolbar() {
 		type: types.TOGGLE_TOOLBAR
 	};
 }
+
+export function updatePreamble( preamble ) {
+	return {
+		type: types.PREAMBLE_CHANGED,
+		payload: {
+			preamble
+		}
+	};
+}

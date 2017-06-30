@@ -10,7 +10,12 @@ export default {
 	module: {
 		rules: [ {
 			test: /\.js?$/,
-			loader: 'babel-loader',
+			use: {
+				loader: 'babel-loader',
+				options: {
+					plugins: []
+				}
+			},
 			include: [
 				path.join( __dirname, 'main.development.js' ),
 				path.join( __dirname, 'app' ),
@@ -18,21 +23,25 @@ export default {
 				path.join( __dirname, 'node_modules', 'crypto-random-string' ),
 				path.join( __dirname, 'node_modules', 'fs-extra' ),
 				path.join( __dirname, 'node_modules', 'unique-string' )
-			],
-			query: {
-				plugins: []
-			}
+			]
 		}, {
 			test: /\.json$/,
-			loader: 'json-loader'
+			use: 'json-loader'
 		},
 		{
 			test: /\.txt$/,
-			loader: 'raw-loader'
+			use: 'raw-loader'
+		},
+		{
+			test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
+			loader: 'file-loader',
+			query: {
+				name: 'static/media/[name].[hash:8].[ext]'
+			}
 		},
 		{
 			test: /img\/[A-Z]*\.svg$/i,
-			loader: 'file-loader?name=./img/[name].[ext]',
+			use: 'file-loader?name=./img/[name].[ext]',
 			include: [
 				path.join( __dirname, 'img' )
 			]
@@ -48,12 +57,10 @@ export default {
 	},
 	resolve: {
 		alias: {
-			'debug': path.resolve( './node_modules/debug/node.js' ),
 			'esprima': path.resolve( './node_modules/esprima-fb' ),
 			'object-keys': path.resolve( './objectKeys.js' ),
 			'electron-prebuilt': path.resolve( './dummy.js' ),
-			'victory': require.resolve( 'victory/dist/victory' ),
-			'history/createHashHistory': require.resolve( './node_modules/react-history/node_modules/history/createHashHistory.js' )
+			'victory': require.resolve( 'victory/dist/victory' )
 		},
 		modules: [
 			path.resolve( './app' ),
@@ -71,6 +78,6 @@ export default {
 		// Node 3rd party libraries which can't be built with webpack go here...
 		'child_process',
 		'webpack',
-		'uglify-js'
+		'uglify-es'
 	]
 };

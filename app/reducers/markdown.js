@@ -3,13 +3,19 @@
 import * as types from 'constants/actionTypes';
 import Configstore from 'configstore';
 import template from 'constants/template.js';
+import yaml from 'js-yaml';
 
 
 // VARIABLES //
 
 const config = new Configstore( 'ISLE' );
+
+const preamble = template.match( /---([\S\s]*)---/ )[ 1 ];
+const preambleObject = yaml.load( preamble );
+
 const initialState = {
 	markdown: config.get( 'mostRecentFileData' ) || template,
+	preamble: preambleObject,
 	isScrolling: true,
 	hideToolbar: false,
 	filePath: config.get( 'mostRecentFilePath' ),
@@ -31,6 +37,10 @@ export default function markdown( state = initialState, action ) {
 		return Object.assign({}, state, {
 			markdown: action.payload.markdown,
 			html: action.payload.html
+		});
+	case types.PREAMBLE_CHANGED:
+		return Object.assign({}, state, {
+			preamble: action.payload.preamble
 		});
 	case types.TOGGLE_SCROLLING:
 		return Object.assign({}, state, {

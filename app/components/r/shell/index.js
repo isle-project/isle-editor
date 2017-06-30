@@ -4,10 +4,12 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 import Image from 'components/image';
+import InstructorBar from 'components/instructor-bar';
 import { Button, ButtonToolbar, Modal, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
 import request from 'request';
 import DOMPurify from 'dompurify';
 import createPrependCode from 'components/r/utils/create-prepend-code';
+import ChatButton from 'components/chat-button';
 import beforeUnload from 'utils/before-unload';
 import isElectron from 'utils/is-electron';
 import isArray from '@stdlib/assert/is-array';
@@ -112,7 +114,7 @@ const showSolutionButton = ( currentHint, nHints, clickHandler, displayed, nEval
 				overlay={tooltip}
 				rootClose={true}
 			>
-				<span style={{display: 'inline-block', padding: 1, marginTop: -1}}>
+				<span style={{ display: 'inline-block',  marginLeft: '4px' }}>
 					<Button
 						bsStyle="warning"
 						bsSize="sm"
@@ -150,7 +152,7 @@ const showResetButton = ( clickHandler ) => {
 			overlay={tooltip}
 			rootClose={true}
 		>
-			<span style={{display: 'inline-block', padding: 1, marginTop: -1}}>
+			<span style={{ display: 'inline-block', marginLeft: '4px' }}>
 				<Button
 					bsStyle="warning"
 					bsSize="sm"
@@ -211,7 +213,8 @@ class RShell extends React.Component {
 
 			if ( val !== solutionUnescaped ) {
 				if ( this.props.id ) {
-					global.lesson.session.log({
+					const { session } = this.context;
+					session.log({
 						id: this.props.id,
 						type: 'RSHELL_DISPLAY_SOLUTION',
 						value: val
@@ -237,9 +240,10 @@ class RShell extends React.Component {
 		this.handleHintClick = () => {
 			const { currentHint, hintOpen } = this.state;
 			const { hints } = this.props;
+			const { session } = this.context;
 			if ( currentHint < hints.length && hintOpen === false ) {
 				if ( this.props.id ) {
-					global.lesson.session.log({
+					session.log({
 						id: this.props.id,
 						type: 'RSHELL_OPEN_HINT',
 						value: currentHint
@@ -278,7 +282,8 @@ class RShell extends React.Component {
 				}
 
 				if ( this.props.id ) {
-					global.lesson.session.log({
+					const { session } = this.context;
+					session.log({
 						id: this.props.id,
 						type: 'RSHELL_EVALUATION',
 						value: currentCode
@@ -380,9 +385,9 @@ class RShell extends React.Component {
 	componentDidMount() {
 		const node = ReactDom.findDOMNode( this );
 		this.editor = ace.edit( node.firstChild );
-		this.session = this.editor.getSession();
-		this.session.setMode( 'ace/mode/r' );
-		this.session.getDocument().setNewLineMode( 'unix' );
+		this.aceSession = this.editor.getSession();
+		this.aceSession.setMode( 'ace/mode/r' );
+		this.aceSession.getDocument().setNewLineMode( 'unix' );
 		this.editor.setTheme( 'ace/theme/katzenmilch' );
 		this.editor.$blockScrolling = Infinity;
 		this.editor.setOptions({
@@ -391,7 +396,7 @@ class RShell extends React.Component {
 			fontFamily: this.props.fontFamily,
 			fontSize: this.props.fontSize
 		});
-		this.session.setUseWrapMode( true );
+		this.aceSession.setUseWrapMode( true );
 		this.editor.setValue( this.props.code, -1 );
 		this.editor.resize();
 		if ( this.state.disabled ) {
@@ -407,14 +412,19 @@ class RShell extends React.Component {
 		if ( !isElectron ) {
 			const onChange = () => {
 				window.addEventListener( 'beforeunload', beforeUnload );
-				this.session.off( 'change', onChange );
+				this.aceSession.off( 'change', onChange );
 			};
-			this.session.on( 'change', onChange );
+			this.aceSession.on( 'change', onChange );
 		}
 
 		if ( this.props.precompute ) {
 			this.handleEvaluationClick();
 		}
+
+		const { session } = this.context;
+		this.unsubscribe = session.subscribe( () => {
+			this.forceUpdate();
+		});
 	}
 
 	componentDidUpdate() {
@@ -446,6 +456,7 @@ class RShell extends React.Component {
 	componentWillUnmount() {
 		counter = 0;
 		rCode = [];
+		this.unsubscribe();
 		this.editor.destroy();
 		this.editor = null;
 	}
@@ -524,11 +535,19 @@ class RShell extends React.Component {
 						) :
 						null
 					}
+					{
+						( this.props.chat && this.props.id ) ? 
+							<span style={{display: 'inline-block', marginLeft: '4px' }}>
+								<ChatButton for={this.props.id} />
+							</span> :
+						null
+					}
 				</ButtonToolbar>
 				<div id="output">
 					{ showResult( this.state.result ) }
 					{ insertImages( this.state.plots, this.props.containerWidth ) }
 				</div>
+				<InstructorBar id={this.props.id} />
 				<Modal
 					backdrop={false}
 					show={Boolean( this.state.help )}
@@ -567,6 +586,7 @@ class RShell extends React.Component {
 // PROPERTY TYPES //
 
 RShell.propTypes = {
+	chat: PropTypes.bool,
 	onResult: PropTypes.func,
 	onEvaluate:  PropTypes.func,
 	code: PropTypes.string,
@@ -586,12 +606,16 @@ RShell.propTypes = {
 	addPreceding: PropTypes.bool
 };
 
+RShell.contextTypes = {
+	session: PropTypes.object
+};
 
 // DEFAULT PROPERTIES //
 
 RShell.defaultProps = {
 	onResult() {},
 	onEvaluate(){},
+	chat: false,
 	code: '',
 	lines: 5,
 	solution: '',

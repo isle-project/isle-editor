@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import NumberInput from 'components/input/number';
 import request from 'request';
 import { Button, ControlLabel, Form, FormControl, FormGroup, Panel } from 'react-bootstrap';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 
 // FUNCTIONS //
@@ -58,9 +58,15 @@ class Login extends Component {
 						encounteredError: err
 					});
 				} else {
-					const body = JSON.parse( res.body );
-					localStorage.setItem( 'token', body.token );
-					this.forceUpdate();
+					try {
+						const body = JSON.parse( res.body );
+						localStorage.setItem( 'token', body.token );
+						this.forceUpdate();
+					} catch ( error ) {
+						this.setState({
+							encounteredError: 'Couldn\'t login to server. Please check the address and port.'
+						});						
+					}
 				}
 			});
 		};

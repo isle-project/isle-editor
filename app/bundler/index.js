@@ -4,7 +4,7 @@ const fs = require( 'fs-extra' );
 const path = require( 'path' );
 const yaml = require( 'js-yaml' );
 const webpack = require( 'webpack' );
-const UglifyJS = require( 'uglify-js' );
+const UglifyJS = require( 'uglify-es' );
 const debug = require( 'debug-electron' )( 'bundler' );
 const contains = require( '@stdlib/assert/contains' );
 const isObject = require( '@stdlib/assert/is-object' );
@@ -41,7 +41,7 @@ const generateIndexHTML = ( title, minify ) => `
 		<link rel="stylesheet" href="css/lesson.css" />
 	</head>
 	<body>
-	<div id="Lesson"></div>
+	<div id="App"></div>
 	<script>
 		// Handle bug occuring when crypto-browserify is used with Webpack...
 		window._crypto = {};
@@ -85,6 +85,8 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import yaml from 'js-yaml';
 import NotificationSystem from 'react-notification-system';
+import StatusBar from 'components/statusbar';
+import Provider from 'components/provider';
 `;
 
 const getComponents = ( arr ) => {
@@ -93,12 +95,12 @@ const getComponents = ( arr ) => {
 };
 
 const getLessonComponent = ( lessonContent ) => `
+var session = new Session( global.ISLE );
+
 class Lesson extends Component {
 	constructor() {
 		super();
 		this.state = global.ISLE.state;
-
-		this.session = new Session( global.ISLE );
 
 		this.addNotification = ( config ) => {
 			if ( this.refs.notificationSystem ) {
@@ -131,7 +133,8 @@ class Lesson extends Component {
 
 	render() {
 		return (
-			<div>
+			<div id="Lesson" className="Lesson" >
+				<StatusBar className="fixedPos" />
 				<div>${lessonContent}</div>
 				<NotificationSystem ref="notificationSystem" allowHTML={true} />
 			</div>
@@ -140,8 +143,10 @@ class Lesson extends Component {
 }
 
 render(
-	<Lesson />,
-	document.getElementById( 'Lesson' )
+	<Provider session={session} >
+		<Lesson />
+	</Provider>,
+	document.getElementById( 'App' )
 );`;
 
 const getComponentList = ( code ) => {
@@ -245,10 +250,6 @@ function writeIndexFile({
 				'victory': path.resolve(
 					basePath,
 					'./node_modules/victory/dist/victory/'
-				),
-				'history/createHashHistory': path.resolve(
-					basePath,
-					'./node_modules/react-history/node_modules/history/createHashHistory.js'
 				)
 			}
 		},
@@ -393,9 +394,10 @@ function writeIndexFile({
 		fs.writeFileSync( htmlPath, generateIndexHTML( meta.title, minify ) );
 
 		if ( minify ) {
-			const minified = UglifyJS.minify( bundlePath, {
+			let code = fs.readFileSync( bundlePath ).toString();
+			const minified = UglifyJS.minify( code, {
 				warnings: false,
-				compress: true,
+				compress: {},
 				mangle: true
 			});
 			fs.writeFileSync( path.join( appDir, 'bundle.min.js' ), minified.code );

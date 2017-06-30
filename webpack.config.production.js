@@ -86,12 +86,6 @@ const config = {
 				NODE_ENV: JSON.stringify( 'production' )
 			}
 		}),
-		new webpack.optimize.UglifyJsPlugin({
-			compressor: {
-				screw_ie8: true,
-				warnings: false
-			}
-		}),
 		new ExtractTextPlugin({
 			filename: 'style.css',
 			allChunks: true

@@ -18,22 +18,19 @@ class Metrics extends Component {
 		};
 
 		this.getData = () => {
-			if ( global.lesson && global.lesson.session && global.lesson.session.server ) {
-				console.log( 'Get data...' );
-				const { session } = global.lesson;
-				request.post( session.server + '/retrieve_data', {
-					form: {
-						query: JSON.stringify( this.props.query ),
-						user: JSON.stringify( session.user )
-					}
-				}, ( error, response, body ) => {
-					if ( error ) {
-						this.props.onData( error );
-					} else {
-						this.props.onData( null, JSON.parse( body ) );
-					}
-				});
-			}
+			const { session } = this.context;
+			request.post( session.server + '/retrieve_data', {
+				form: {
+					query: JSON.stringify( this.props.query ),
+					user: JSON.stringify( session.user )
+				}
+			}, ( error, response, body ) => {
+				if ( error ) {
+					this.props.onData( error );
+				} else {
+					this.props.onData( null, JSON.parse( body ) );
+				}
+			});
 		};
 
 		this.start = () => {
@@ -79,7 +76,7 @@ class Metrics extends Component {
 						style={{ float: 'right' }}
 						bsStyle="primary"
 						onClick={ () => {
-							const { session } = global.lesson;
+							const { session } = this.context;
 							request.post( session.server + '/delete_session_data', {
 								form: {
 									query: JSON.stringify( this.props.query ),
@@ -118,6 +115,10 @@ Metrics.propTypes = {
 		PropTypes.array
 	]).isRequired,
 	showClear: PropTypes.bool
+};
+
+Metrics.contextTypes = {
+	session: PropTypes.object
 };
 
 

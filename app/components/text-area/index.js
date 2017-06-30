@@ -3,9 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ControlLabel, FormControl, FormGroup } from 'react-bootstrap';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 
 
-// TEXT AREA //
+// MAIN //
 
 class TextArea extends Component {
 	/**
@@ -18,7 +19,7 @@ class TextArea extends Component {
 
 		// Initialize state variables...
 		this.state = {
-			text: props.defaultValue
+			value: props.defaultValue
 		};
 
 		/*
@@ -26,10 +27,20 @@ class TextArea extends Component {
 		* `onChange` callback with the new text as its first argument
 		*/
 		this.handleChange = ( event ) => {
-			const text = event.target.value;
-			this.setState({ text });
-			this.props.onChange( text );
+			const value = event.target.value;
+			this.setState({ value });
+			this.props.onChange( value );
 		};
+	}
+
+	componentWillReceiveProps( nextProps ) {
+		let newState = {};
+		if ( nextProps.defaultValue !== this.props.defaultValue ) {
+			newState.value = nextProps.defaultValue;
+		}
+		if ( !isEmptyObject( newState ) ) {
+			this.setState( newState );
+		}
 	}
 
 	/*
@@ -48,7 +59,7 @@ class TextArea extends Component {
 						...this.props.style
 					}}
 					rows={this.props.rows}
-					value={this.state.text}
+					value={this.state.value}
 				/>
 			</FormGroup>
 		);

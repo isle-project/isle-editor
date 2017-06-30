@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Panel } from 'react-bootstrap';
 import NumberInput from 'components/input/number';
+import Gate from 'components/gate';
+import InstructorBar from 'components/instructor-bar';
 
 
 // MAIN //
@@ -20,13 +22,13 @@ class NumberSurvey extends Component {
 		};
 
 		this.submitQuestion = () => {
-
+			const { session } = this.context; 
 			if ( this.props.id ) {
-				global.lesson.session.log({
+				session.log({
 					id: this.props.id,
 					type: 'NUMBER_SURVEY_SUBMISSION',
 					value: this.state.value
-				});
+				}, 'members' );
 			}
 			this.setState({
 				submitted: true
@@ -48,29 +50,33 @@ class NumberSurvey extends Component {
 		const props = this.props;
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
-			<Panel className="NumberSurvey" style={{
-				margin: '0 auto 10px',
-				maxWidth: 600,
-				marginTop: '8px'
-			}}>
-				<h3>{props.question}</h3>
-				<NumberInput
-					{...props}
-					disabled={disabled}
-					onChange={( value ) => {
-						this.setState({
-							value
-						});
-					}}
-				/>
-				<Button
-					bsSize="small"
-					bsStyle="success"
-					block fill
-					onClick={this.submitQuestion}
-					disabled={disabled}
-				>{ disabled ? "Submitted" : "Submit"}</Button>
-			</Panel>
+			<Gate user>
+				<Panel className="NumberSurvey" style={{
+					margin: '0 auto 10px',
+					maxWidth: 600,
+					marginTop: '8px'
+				}}>
+					<h3>{props.question}</h3>
+					<NumberInput
+						{...props}
+						inline
+						disabled={disabled}
+						onChange={( value ) => {
+							this.setState({
+								value
+							});
+						}}
+					/>
+					<Button
+						bsSize="small"
+						bsStyle="success"
+						block fill
+						onClick={this.submitQuestion}
+						disabled={disabled}
+					>{ disabled ? "Submitted" : "Submit"}</Button>
+				</Panel>
+				<InstructorBar id={props.id} />
+			</Gate>
 		);
 	}
 }
@@ -80,7 +86,8 @@ class NumberSurvey extends Component {
 
 NumberSurvey.defaultProps = {
 	onSubmit() {},
-	allowMultipleAnswers: false
+	allowMultipleAnswers: false,
+	question: ''
 };
 
 
@@ -88,7 +95,12 @@ NumberSurvey.defaultProps = {
 
 NumberSurvey.propTypes = {
 	onSubmit: PropTypes.func,
-	allowMultipleAnswers: PropTypes.bool
+	allowMultipleAnswers: PropTypes.bool,
+	question: PropTypes.string
+};
+
+NumberSurvey.contextTypes = {
+	session: PropTypes.object
 };
 
 

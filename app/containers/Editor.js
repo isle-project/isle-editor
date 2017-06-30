@@ -4,11 +4,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
 import SplitPane from 'react-split-pane';
+import yaml from 'js-yaml';	
 import Panel from 'components/Panel';
 import Header from 'components/Header';
 import Editor from 'components/Editor';
 import Preview from 'components/Preview';
-import { convertMarkdown, toggleScrolling, toggleToolbar } from 'actions';
+import { convertMarkdown, toggleScrolling, toggleToolbar, updatePreamble } from 'actions';
+const debug = require( 'debug' )( 'isle-editor' );
 
 
 // APP //
@@ -18,14 +20,38 @@ class App extends Component {
 	constructor( props ) {
 		super( props );
 
+		this.lastPreamble = null;
+
 		this.onChange = ( value ) => {
+			debug( 'Editor text changed...' );
+			const handleChange = ( value ) => {
+				debug( 'Should handle change...' );
+				const preamble = value.match( /---([\S\s]*)---/ )[ 1 ];
+				let preambleHasChanged = this.checkPreambleChange( preamble );
+				if ( preambleHasChanged ) {
+					this.props.updatePreamble( yaml.load( preamble ) );
+				}
+				this.props.convertMarkdown( value );
+			};
+
 			if ( this.debouncedChange ) {
 				this.debouncedChange( value );
 			} else {
-				this.debouncedChange = debounce( this.props.convertMarkdown, 1000 );
+				this.debouncedChange = debounce( handleChange, 1000 );
 				this.debouncedChange( value );
 			}
+
 		};
+	}
+
+	checkPreambleChange( preamble ) {
+		if ( preamble !== this.lastPreamble ) {
+			this.lastPreamble = preamble;
+			return true;
+		} else {
+			debug( 'No changes in preamble...' );
+			return false;
+		}
 	}
 
 	componentDidMount() {
@@ -44,7 +70,7 @@ class App extends Component {
 	}
 
 	render() {
-		let { fileName, filePath, markdown, hideToolbar } = this.props;
+		let { fileName, filePath, markdown, hideToolbar, preamble } = this.props;
 		return (
 			<div>
 				{ !hideToolbar ? <Header fileName={fileName} /> : null }
@@ -75,7 +101,7 @@ class App extends Component {
 						/>
 					</Panel>
 					<Panel ref="preview" onScroll={this.onPreviewScroll}>
-						<Preview code={markdown} filePath={filePath} />
+						<Preview code={markdown} filePath={filePath} preamble={preamble} />
 					</Panel>
 				</SplitPane>
 				{
@@ -97,7 +123,8 @@ class App extends Component {
 export default connect( mapStateToProps, {
 	convertMarkdown,
 	toggleScrolling,
-	toggleToolbar
+	toggleToolbar,
+	updatePreamble
 })( App );
 
 function mapStateToProps({ markdown }) {

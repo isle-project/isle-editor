@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonToolbar, Col, ControlLabel, Form, FormControl,
 	FormGroup, Grid, Modal, Panel, Row, Well } from 'react-bootstrap';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { remote, shell } from 'electron';
 import path from 'path';
 import request from 'request';
@@ -377,7 +377,7 @@ class ExportLesson extends Component {
 				> Path: {this.state.dirPath} </Well>
 				{this.state.dirPath ?
 					<Button
-						bsStyle="info"
+						bsStyle="success"
 						bsSize="sm"
 						onClick={this.generateApp}
 						block

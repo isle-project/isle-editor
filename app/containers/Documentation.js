@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { exec } from 'child_process';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { ISLE_DOCS_LINK } from 'constants/links';
 
 // FUNCTIONS //

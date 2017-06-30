@@ -18,7 +18,6 @@ import isArray from '@stdlib/assert/is-array';
 import isNumber from '@stdlib/assert/is-number';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import isObject from '@stdlib/assert/is-object';
-import contains from '@stdlib/assert/contains';
 import entries from '@stdlib/utils/entries';
 import hasProp from '@stdlib/assert/has-property';
 import copy from '@stdlib/utils/copy';

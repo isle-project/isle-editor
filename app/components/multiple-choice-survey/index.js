@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ListGroup, ListGroupItem, Panel } from 'react-bootstrap';
+import Gate from 'components/gate';
+import InstructorBar from 'components/instructor-bar';
 
 
 // FUNCTIONS //
@@ -56,16 +58,24 @@ class MultipleChoiceSurvey extends Component {
 		};
 
 		this.submitQuestion = () => {
-
+			const { session } = this.context;
 			if ( this.props.id ) {
-				global.lesson.session.log({
+				session.log({
 					id: this.props.id,
 					type: 'MULTIPLE_CHOICE_SURVEY_SUBMISSION',
 					value: this.state.active
+				}, 'members' );
+			}
+			if ( !this.props.allowMultipleAnswers ) {
+				this.setState({
+					submitted: true
 				});
 			}
-			this.setState({
-				submitted: true
+			global.lesson.addNotification({
+				title: 'Submitted',
+				message: 'Your answer has been submitted.',
+				level: 'success',
+				position: 'tr'
 			});
 			this.props.onSubmit( this.state.active );
 		};
@@ -123,31 +133,34 @@ class MultipleChoiceSurvey extends Component {
 		if ( multipleAnswers ) {
 			disabled = this.state.submitted;
 		} else {
-			disabled = this.state.submitted || !this.state.answerSelected;
+			disabled =  this.state.submitted || !this.state.answerSelected;
 		}
 
 		return (
-			<Panel className="multipleChoiceSurvey" style={{
-				margin: '0 auto 10px',
-				maxWidth: 600,
-				marginTop: '8px'
-			}}>
-				<h3>{props.question}</h3>
-				{ multipleAnswers ? <span>You may select multiple answers</span> : null }
-				<ListGroup fill >
-					{ multipleAnswers ?
-						props.answers.map( renderAnswerOptionsMultiple ) :
-						props.answers.map( renderAnswerOptionsSingle )
-					}
-				</ListGroup>
-				<Button
-					bsSize="small"
-					bsStyle="success"
-					block fill
-					onClick={this.submitQuestion}
-					disabled={disabled}
-				>{ this.state.submitted ? "Submitted" : "Submit"}</Button>
-			</Panel>
+			<Gate user>
+				<Panel className="multipleChoiceSurvey" style={{
+					margin: '0 auto 10px',
+					maxWidth: 600,
+					marginTop: '8px'
+				}}>
+					<h3>{props.question}</h3>
+					{ multipleAnswers ? <span>You may select multiple answers</span> : null }
+					<ListGroup fill >
+						{ multipleAnswers ?
+							props.answers.map( renderAnswerOptionsMultiple ) :
+							props.answers.map( renderAnswerOptionsSingle )
+						}
+					</ListGroup>
+					<Button
+						bsSize="small"
+						bsStyle="success"
+						block fill
+						onClick={this.submitQuestion}
+						disabled={disabled}
+					>{ this.state.submitted ? "Submitted" : "Submit"}</Button>
+				</Panel>
+				<InstructorBar id={props.id} />
+			</Gate>
 		);
 	}
 }
@@ -156,14 +169,22 @@ class MultipleChoiceSurvey extends Component {
 // DEFAULT PROPERTIES //
 
 MultipleChoiceSurvey.defaultProps = {
-	onSubmit() {}
+	onSubmit() {},
+	answers: [],
+	allowMultipleAnswers: false
 };
 
 
 // PROPERTY TYPES //
 
 MultipleChoiceSurvey.propTypes = {
-	onSubmit: PropTypes.func
+	onSubmit: PropTypes.func,
+	answers: PropTypes.array,
+	allowMultipleAnswers: PropTypes.bool
+};
+
+MultipleChoiceSurvey.contextTypes = {
+	session: PropTypes.object
 };
 
 

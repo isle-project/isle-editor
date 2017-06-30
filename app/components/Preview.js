@@ -23,6 +23,7 @@ const NotificationSystem = require( 'react-notification-system' );
 const contains = require( '@stdlib/assert/contains' );
 const isAbsolutePath = require( '@stdlib/assert/is-absolute-path' );
 const isObject = require( '@stdlib/assert/is-object' );
+const isArray = require( '@stdlib/assert/is-array' );
 const request = require( 'request' );
 const yaml = require( 'js-yaml' );
 const css = require( 'css' );
@@ -47,9 +48,10 @@ const DraggableList = require( 'components/draggable-list' );
 const Editor = require( 'components/editor' );
 const FeedbackButtons = require( 'components/feedback' );
 const FreeTextQuestion = require( 'components/free-text-question' );
+const Gate = require( 'components/gate' );
 const Grid = require( 'components/grid' );
 const LessonSubmit = require( 'components/lesson-submit' );
-const Metrics = require( 'components/metrics' );
+const Metrics = require( 'components/metrics/db' );
 const Modal = ReactBootstrap.Modal;
 const MultipleChoiceQuestion = require( 'components/multiple-choice-question' );
 const MultipleChoiceSurvey = require( 'components/multiple-choice-survey' );
@@ -60,6 +62,9 @@ const NavItem = ReactBootstrap.NavItem;
 const NumberInput = require( 'components/input/number' );
 const NumberSurvey = require( 'components/number-survey' );
 const Panel = ReactBootstrap.Panel;
+const Provider = require( 'components/provider' );
+const RealtimeMetrics = require( 'components/metrics/realtime' );
+const Recorder = require( 'components/recorder' );
 const RPlot = require( 'components/r/plot' );
 const RHelp = require( 'components/r/help' );
 const RShell = require( 'components/r/shell' );
@@ -72,6 +77,7 @@ const SelectQuestion = require( 'components/select-question' );
 const SliderInput = require( 'components/input/slider' );
 const Slider = require( 'components/slider' );
 const Spinner = require( 'components/spinner' );
+const StatusBar = require( 'components/statusbar' );
 const Switch = require( 'components/switch' );
 const Tab = ReactBootstrap.Tab;
 const Tabs = ReactBootstrap.Tabs;
@@ -136,7 +142,7 @@ const CrossValidation = require( 'components/learn/cross-validation' );
 // VARIABLES //
 
 var cssHash = {};
-var lastCSS = null;
+var lastCSS = null;					
 
 
 // FUNCTIONS //
@@ -197,8 +203,9 @@ export default class Preview extends Component {
 	constructor( props ) {
 		super( props );
 
-		let { code } = props;
-		const preamble = code.match( /---([\S\s]*)---/ )[ 1 ];
+		let { code, preamble } = props;
+		global.ISLE = preamble;
+		global.session = new Session( global.ISLE );
 
 		this.state = {
 			preamble,
@@ -209,12 +216,9 @@ export default class Preview extends Component {
 		this.renderPreview = () => {
 			let es5code;
 			let { code } = this.props;
-			const preamble = code.match( /---([\S\s]*)---/ )[ 1 ];
-
+			let session = global.session;
 			try {
-				global.ISLE = yaml.load( preamble );
-
-				if ( this.state.requires !== global.ISLE.require ) {
+				if ( this.state.requires !== global.ISLE.require && isArray( this.state.requires ) ) {
 					this.state.requires.forEach( lib => delete global[ lib ]);
 					loadRequires( global.ISLE.require, this.props.filePath || '' );
 				}
@@ -290,7 +294,6 @@ export default class Preview extends Component {
 						getInitialState: function() {
 							return global.ISLE.state;
 						},
-						session: new Session( global.ISLE ),
 						sendMail: function( name, to ) {
 							var mailOptions = global.ISLE.mails[ name ] || {};
 							if ( !mailOptions.hasOwnProperty( 'from' ) ) {
@@ -320,6 +323,7 @@ export default class Preview extends Component {
 									className: "Lesson",
 									id: "Lesson"
 								},
+								React.createElement( StatusBar ),
 								${transform( '<div>' + code + '</div>' )},
 								React.createElement(
 									NotificationSystem,
@@ -330,7 +334,9 @@ export default class Preview extends Component {
 					};
 					var Lesson = createReactClass( lessonConfig );
 					render(
-						${transform( '<Lesson />' )},
+						React.createElement( Provider, { session: session },
+							${transform( '<Lesson />' )}
+						),
 						document.getElementById( 'Preview' )
 					)
 				`;
@@ -347,12 +353,25 @@ export default class Preview extends Component {
 			}
 		};
 	}
+
+	componentWillUpdate( nextProps ) {
+		if ( nextProps.preamble.server !== this.props.preamble.server ) {
+			global.ISLE = nextProps.preamble;
+			global.session = new Session( global.ISLE );
+		}
+		if ( nextProps.preamble.state !== this.props.preamble.state ) {
+			global.ISLE = nextProps.preamble;
+		}
+	}
+
 	componentDidMount() {
 		this.renderPreview();
 	}
+
 	componentDidUpdate() {
 		this.renderPreview();
 	}
+
 	render() {
 		return (
 			<div ref="preview" className="Preview" id="Preview">
