@@ -9,7 +9,7 @@ import TextArea from 'components/text-area';
 import CheckboxInput from 'components/input/checkbox';
 
 
-// FEEDBACK BUTTONS //
+// MAIN //
 
 class FeedbackButtons extends Component {
 
@@ -25,7 +25,8 @@ class FeedbackButtons extends Component {
 		* data to server and display notification.
 		*/
 		this.submitConfused = () => {
-			global.lesson.session.log({
+			const { session } = this.context;
+			session.log({
 				id: this.props.for,
 				type: 'USER_FEEDBACK_CONFUSED',
 				value: 'confused'
@@ -43,7 +44,8 @@ class FeedbackButtons extends Component {
 		* data to server and display notification.
 		*/
 		this.submitUnderstood = () => {
-			global.lesson.session.log({
+			const { session } = this.context;
+			session.log({
 				id: this.props.for,
 				type: 'USER_FEEDBACK_UNDERSTOOD',
 				value: 'understood'
@@ -57,6 +59,7 @@ class FeedbackButtons extends Component {
 		};
 
 		this.submitFeedback = () => {
+			const { session } = this.context;
 
 			// Fetch form values.
 			const formData = {
@@ -65,8 +68,7 @@ class FeedbackButtons extends Component {
 				noLogic: this.refs.checkbox03.state.value,
 				comments: this.refs.textarea.state.text
 			};
-
-			global.lesson.session.log({
+			session.log({
 				id: this.props.for,
 				type: 'USER_FEEDBACK_FORM',
 				value: formData
@@ -159,7 +161,7 @@ class FeedbackButtons extends Component {
 }
 
 
-// PROPERTY TYPES //
+// TYPES //
 
 FeedbackButtons.propTypes = {
 	for: PropTypes.string.isRequired,
@@ -167,6 +169,9 @@ FeedbackButtons.propTypes = {
 	vertical: PropTypes.bool
 };
 
+FeedbackButtons.contextTypes = {
+	session: PropTypes.object
+};
 
 // DEFAULT PROPERTIES //
 
