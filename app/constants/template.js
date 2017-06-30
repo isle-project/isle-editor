@@ -10,6 +10,7 @@ title: "Lesson"
 author: John Doe
 date: ${moment().format( 'MMM Do, YYYY' )}
 state:
+server: ${localStorage.getItem( 'server' ) || 'http://isle.heinz.cmu.edu'}
 ---
 
 # This is an ISLE lesson.
