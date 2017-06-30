@@ -10,8 +10,6 @@ const io = require( 'socket.io-client' );
 // VARIABLES //
 
 var PATH_REGEXP = /^\/([^\/]*)\/([^\/]*)\//i;
-var nSessions = 0;
-global.sessions = [];
 
 
 // SESSION //
@@ -19,8 +17,7 @@ global.sessions = [];
 class Session {
 
 	constructor( config ) {
-		nSessions += 1;
-		debug( 'Should create session: ' + nSessions );
+		debug( 'Should create session...' );
 
 		this.listeners = [];
 
@@ -47,14 +44,14 @@ class Session {
 
 		var url = window.location.pathname;
 		this.namespaceName = null;
-		this.lessonName = null;		
+		this.lessonName = null;
 		if ( isString( url ) ) {
 			var matches = url.match( PATH_REGEXP );
 			if ( matches && matches.length >= 2 && url.endsWith( '/' ) ) {
 				this.namespaceName = decodeURIComponent( matches[ 1 ]);
 				this.lessonName = decodeURIComponent( matches[ 2 ]);
 			}
-		}	
+		}
 
 		this.sendSocketMessage = ( data, to ) => {
 			if ( !to ) {
@@ -114,11 +111,11 @@ class Session {
 						'Authorization': 'JWT ' + this.user.token
 					},
 					form: {
-						namespaceName: this.namespaceName, 
+						namespaceName: this.namespaceName,
 						lessonName: this.lessonName
 					}
-				}, ( err, res, body ) => {	
-					this.userRightsQuestionPosed = false;		
+				}, ( err, res, body ) => {
+					this.userRightsQuestionPosed = false;
 					if ( !err ) {
 						let obj = JSON.parse( body );
 						userRights = obj;
@@ -146,8 +143,6 @@ class Session {
 			}
 			return userRights.owner;
 		};
-
-		global.sessions.push( this );
 	}
 
 	joinChat( name ) {
@@ -177,11 +172,11 @@ class Session {
 			const chat = this.getChat( name );
 			chat.messages.push( msgObj );
 			debug( 'Should emit message to room '+name+': ' + JSON.stringify( msgObj ) );
-			this.socket.emit( 'chat_message', { 
-				msg: msgObj, 
-				namespaceName: this.namespaceName, 
-				lessonName: this.lessonName, 
-				chatroom: name 
+			this.socket.emit( 'chat_message', {
+				msg: msgObj,
+				namespaceName: this.namespaceName,
+				lessonName: this.lessonName,
+				chatroom: name
 			});
 		}
 	}
@@ -214,7 +209,7 @@ class Session {
 		});
 
 		socket.emit( 'join', {
-			namespaceName: this.namespaceName, 
+			namespaceName: this.namespaceName,
 			lessonName: this.lessonName,
 			userID: this.user.id,
 			userName: this.user.name,
@@ -367,7 +362,7 @@ class Session {
 	}
 
 	handleLogin( obj ) {
-		
+
 		request.post( this.server+'/credentials', {
 			headers: {
 				'Authorization': 'JWT ' + obj.token
@@ -499,7 +494,7 @@ class Session {
 		let xhr = new XMLHttpRequest();
 		xhr.open( 'POST', this.server+'/upload_file', true );
 		xhr.setRequestHeader( 'Authorization', 'JWT ' + this.user.token );
-		xhr.onreadystatechange = function() {	
+		xhr.onreadystatechange = function() {
 			if ( xhr.readyState === XMLHttpRequest.DONE ) {
 				let message;
 				let level;
@@ -511,7 +506,7 @@ class Session {
 					message = xhr.responseText;
 					level = 'error';
 				}
-				
+
 				global.lesson.addNotification({
 					title: 'File Upload',
 					message,
