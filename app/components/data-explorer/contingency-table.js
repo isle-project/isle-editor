@@ -147,6 +147,9 @@ class ContingencyTable extends Component {
 		} else {
 			output = createGroupedContingencyTable( this.props.data, rowVar, colVar, group, relativeFreqs );
 		}
+		this.props.logAction( 'DATA_EXPLORER:CONTINGENCY_TABLE', {
+			rowVar, colVar, group, relativeFreqs
+		});
 		this.props.onCreated( output );
 	}
 

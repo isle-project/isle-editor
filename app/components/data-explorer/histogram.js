@@ -114,7 +114,9 @@ class Histogram extends Component {
 				</div>
 			};
 		}
-
+		this.props.logAction( 'DATA_EXPLORER:HISTOGRAM', {
+			variable, group, overlayDensity, chooseBins, nBins, xRange, xMin, xMax
+		});
 		this.props.onCreated( output );
 	}
 

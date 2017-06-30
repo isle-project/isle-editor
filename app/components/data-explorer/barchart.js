@@ -50,7 +50,8 @@ class Barchart extends Component {
 				type: 'Chart',
 				value: <div>
 					<label>{variable}: </label>
-					<RPlot code={`${plotCommand}(c(${freqs}),
+					<RPlot
+						code={`${plotCommand}(c(${freqs}),
 						${label}=c(${categories}),
 						cex.lab=2.0, cex.main=2.0, cex.axis=2.0, cex=1.5 )`}
 						onDone={this.props.onPlotDone}
@@ -86,6 +87,10 @@ class Barchart extends Component {
 				</div>
 			};
 		}
+		this.props.logAction( 'DATA_EXPLORER:BARCHART', {
+			variable,
+			group
+		});
 		this.props.onCreated( output );
 	}
 

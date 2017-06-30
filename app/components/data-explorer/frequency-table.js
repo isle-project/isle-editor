@@ -128,7 +128,9 @@ class FrequencyTable extends Component {
 		} else {
 			output.value = groupedFrequencyTable( output.variable, freqs, relativeFreqs );
 		}
-
+		this.props.logAction( 'DATA_EXPLORER:FREQUENCY_TABLE', {
+			variable, group, relativeFreqs
+		});
 		this.props.onCreated( output );
 	}
 

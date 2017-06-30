@@ -84,6 +84,10 @@ class PieChart extends Component {
 				</div>
 			};
 		}
+		this.props.logAction( 'DATA_EXPLORER:PIECHART', {
+			variable,
+			group
+		});
 		this.props.onCreated( output );
 	}
 

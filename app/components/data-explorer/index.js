@@ -146,6 +146,18 @@ class DataExplorer extends Component {
 			output: [],
 			groupVars
 		};
+
+		this.logAction = ( type, value ) => {
+			const { session } = this.context;
+			if ( this.props.id ) {
+				session.log({
+					id: this.props.id,
+					type,
+					value
+				});
+			}
+		};
+
 	}
 	scrollToBottom() {
 		const $outputPanel = $( '#outputPanel' );
@@ -256,7 +268,10 @@ class DataExplorer extends Component {
 									<Col sm={12}>
 										<Tab.Content animation>
 											<Tab.Pane eventKey="1">
-												<SummaryStatistics {...continuousProps} />
+												<SummaryStatistics
+													{...continuousProps}
+													logAction={this.logAction}
+												/>
 											</Tab.Pane>
 											{this.props.tables.map( ( e, i ) => {
 												let content = null;
@@ -264,11 +279,13 @@ class DataExplorer extends Component {
 												case 'Frequency Table':
 													content = <FrequencyTable
 														{...categoricalProps}
+														logAction={this.logAction}
 													/>;
 													break;
 												case 'Contingency Table':
 													content = <ContingencyTable
 														{...categoricalProps}
+														logAction={this.logAction}
 													/>;
 													break;
 												}
@@ -282,31 +299,37 @@ class DataExplorer extends Component {
 												case 'Bar Chart':
 													content = <Barchart
 														{...categoricalProps}
+														logAction={this.logAction}
 													/>;
 													break;
 												case 'Pie Chart':
 													content = <Piechart
 														{...categoricalProps}
+														logAction={this.logAction}
 													/>;
 													break;
 												case 'Histogram':
 													content = <Histogram
 														{...continuousProps}
+														logAction={this.logAction}
 													/>;
 													break;
 												case 'Box Plot':
 													content = <Boxplot
 														{...continuousProps}
+														logAction={this.logAction}
 													/>;
 													break;
 												case 'Scatterplot':
 													content = <Scatterplot
 														{...continuousProps}
+														logAction={this.logAction}
 													/>;
 													break;
 												case 'Heat Map':
 													content = <Heatmap
 														{...continuousProps}
+														logAction={this.logAction}
 													/>;
 													break;
 												}
@@ -322,12 +345,14 @@ class DataExplorer extends Component {
 														tests={this.props.tests}
 														onCreated={this.addToOutputs}
 														data={this.state.data}
+														logAction={this.logAction}
 													/>
 												</Tab.Pane> : null
 											}
 											<Tab.Pane eventKey="5">
 												<VariableTransformer
 													data={this.state.data}
+													logAction={this.logAction}
 													defaultCode={generateTransformationCode( this.state.continuous[ 0 ])}
 													onGenerate={( name, values ) => {
 														let newData = copy( this.state.data );
@@ -448,7 +473,7 @@ DataExplorer.defaultProps = {
 };
 
 
-// PROPERTY TYPES //
+// TYPES //
 
 DataExplorer.propTypes = {
 	data: PropTypes.object.isRequired,
@@ -458,6 +483,11 @@ DataExplorer.propTypes = {
 	tests: PropTypes.array,
 	onSelect: PropTypes.func
 };
+
+DataExplorer.contextTypes = {
+	session: PropTypes.object
+};
+
 
 
 // EXPORTS //

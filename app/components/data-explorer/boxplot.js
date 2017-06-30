@@ -78,6 +78,11 @@ class Boxplot extends Component {
 				</div>
 			};
 		}
+		this.props.logAction( 'DATA_EXPLORER:BOXPLOT', {
+			variable,
+			group,
+			commonAxis
+		});
 		this.props.onCreated( output );
 	}
 

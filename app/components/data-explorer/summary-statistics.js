@@ -91,6 +91,13 @@ class SummaryStatistics extends Component {
 			value: res,
 			group
 		};
+
+		this.props.logAction( 'DATA_EXPLORER:SUMMARY_STATISTICS', {
+			statistic: statName,
+			variable,
+			secondVariable: statName === 'Correlation' ? secondVariable : null,
+			group
+		});
 		this.props.onCreated( output );
 	}
 

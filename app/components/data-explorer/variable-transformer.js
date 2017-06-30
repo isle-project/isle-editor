@@ -58,6 +58,9 @@ class Transformer extends Component {
 			for ( let i = 0; i < data.length; i++ ) {
 				values[ i ] = fun( data[ i ]);
 			}
+			this.props.logAction( 'DATA_EXPLORER:VARIABLE_TRANSFORMER', {
+				code, name
+			});
 			this.props.onGenerate( name, values );
 		};
 

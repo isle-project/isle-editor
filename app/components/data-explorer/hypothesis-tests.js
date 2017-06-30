@@ -63,6 +63,9 @@ class HypothesisTests extends Component {
 					</pre>
 				</div>
 			};
+			this.props.logAction( 'DATA_EXPLORER:TESTS:ZTEST', {
+				variable, mu0, direction, alpha
+			});
 			this.props.onCreated( output );
 		};
 
@@ -96,6 +99,9 @@ class HypothesisTests extends Component {
 					</pre>
 				</div>
 			};
+			this.props.logAction( 'DATA_EXPLORER:TESTS:CORRTEST', {
+				var1, var2, rho0, direction, alpha
+			});
 			this.props.onCreated( output );
 		};
 
@@ -193,10 +199,13 @@ class HypothesisTests extends Component {
 
 			if ( value ) {
 				let output = {
-					variable: `Test-Sample Z-Test`,
+					variable: `Two-Sample Z-Test`,
 					type: 'Test',
 					value: value
 				};
+				this.props.logAction( 'DATA_EXPLORER:TESTS:TWO_SAMPLE_ZTEST', {
+					var1, grouping, var2, diff, direction, alpha
+				});
 				this.props.onCreated( output );
 			}
 		};
@@ -232,7 +241,9 @@ class HypothesisTests extends Component {
 					</pre>
 				</div>
 			};
-
+			this.props.logAction( 'DATA_EXPLORER:TESTS:PROPTEST', {
+				variable, success, p0, direction, alpha
+			});
 			this.props.onCreated( output );
 		};
 
@@ -343,6 +354,9 @@ class HypothesisTests extends Component {
 					type: 'Test',
 					value: value
 				};
+				this.props.logAction( 'DATA_EXPLORER:TESTS:TWO_SAMPLE_PROPTEST', {
+					var1, grouping, var2, success, diff, direction, alpha
+				});
 				this.props.onCreated( output );
 			}
 		};

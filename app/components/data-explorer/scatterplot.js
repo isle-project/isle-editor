@@ -37,12 +37,8 @@ class Scatterplot extends Component {
 		let code = `dat = data.frame(
 			xval = c(${this.props.data[ xval ]}),
 			yval = c(${this.props.data[ yval ]})
-			${ color !== 'None' ? `, color = c(${this.props.data[ color ].map(
-				e => `"${e}"`
-			)})` : '' }
-			${ type !== 'None' ? `, type = c(${this.props.data[ type ].map(
-				e => `"${e}"`
-			)})` : '' }
+			${ color !== 'None' ? `, color = c(${this.props.data[ color ].map( e => `"${e}"` )})` : '' }
+			${ type !== 'None' ? `, type = c(${this.props.data[ type ].map( e => `"${e}"` )})` : '' }
 		)
 		ggplot( data = dat, ${aes}) +
 		geom_point( size = 1.5 ) + ${labs}`;
@@ -60,6 +56,9 @@ class Scatterplot extends Component {
 				/>
 			</div>
 		};
+		this.props.logAction( 'DATA_EXPLORER:SCATTERPLOT', {
+			xval, yval, color, type
+		});
 		this.props.onCreated( output );
 	}
 

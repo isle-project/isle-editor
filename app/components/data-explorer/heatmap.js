@@ -39,6 +39,9 @@ class HeatMap extends Component {
 				/>
 			</div>
 		};
+		this.props.logAction( 'DATA_EXPLORER:HEATMAP', {
+			xval, yval, overlayPoints
+		});
 		this.props.onCreated( output );
 	}
 
