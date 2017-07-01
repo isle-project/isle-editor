@@ -10,7 +10,8 @@ import yaml from 'js-yaml';
 
 const config = new Configstore( 'ISLE' );
 
-const preamble = template.match( /---([\S\s]*)---/ )[ 1 ];
+const data = config.get( 'mostRecentFileData' ) || template;
+const preamble = data.match( /---([\S\s]*)---/ )[ 1 ];
 const preambleObject = yaml.load( preamble );
 
 const initialState = {
