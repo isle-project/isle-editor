@@ -139,7 +139,7 @@ class StatusBar extends Component {
 		e.stopPropagation();
 		this.setState({
 			visibleLogout: true
-		});	
+		});
 	}
 
 	handleLogout() {
@@ -158,10 +158,10 @@ class StatusBar extends Component {
 	}
 
 	getChatPosition( idx ) {
-		const { session } = this.context;																																																								
+		const { session } = this.context;
 		const margin = 10;
-		const nChatsPerSide = ceil( session.chats.length / 2 );	
-		const maxWidth = this.state.side * 0.6;																																							;
+		const nChatsPerSide = ceil( session.chats.length / 2 );
+		const maxWidth = this.state.side * 0.6;
 		const width = min( ( this.state.side - margin - margin*nChatsPerSide ) / nChatsPerSide, maxWidth );
 		let left = margin + ( idx * ( width + margin ) );
 		if ( idx > ( nChatsPerSide-1 ) ) {
@@ -237,21 +237,21 @@ class StatusBar extends Component {
 						<Clock style={{ left: '0', right: '0', margin: 'auto', bottom: 0, background: 'transparent', position: 'absolute', width: '90px' }} />
 						{ session.anonymous ?
 							<div>
-								<Button 
-									bsSize="xsmall" 
-									style={{ float: 'right', marginRight: '-20px' }} 
+								<Button
+									bsSize="xsmall"
+									style={{ float: 'right', marginRight: '-20px' }}
 									onClick={this.signup.bind( this )}
 									disabled={!session.live}
 								>Sign up</Button>
-								<Button 
-									bsSize="xsmall" 
-									bsStyle="primary" 
-									style={{ float: 'right', marginRight: '10px' }} 
+								<Button
+									bsSize="xsmall"
+									bsStyle="primary"
+									style={{ float: 'right', marginRight: '10px' }}
 									onClick={this.login.bind( this )}
 									disabled={!session.live}
 								>Login</Button>
 							</div>
-						: <Button bsSize="xsmall" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout.bind( this )}>Log Out</Button> }
+							: <Button bsSize="xsmall" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout.bind( this )}>Log Out</Button> }
 						<div style={{
 							bottom: '-1px',
 							height: 'auto',
@@ -277,11 +277,11 @@ class StatusBar extends Component {
 					</div>
 					<Login show={this.state.visibleLogin} onClose={this.closeLogin} />
 					<Signup show={this.state.visibleSignup} onClose={this.closeSignup} />
-					<ConfirmModal 
-						show={this.state.visibleLogout} 
-						close={this.closeLogout} 
-						title="Logout" 
-						message="Do you really want to log out? To log in again, you will need your password."  
+					<ConfirmModal
+						show={this.state.visibleLogout}
+						close={this.closeLogout}
+						title="Logout"
+						message="Do you really want to log out? To log in again, you will need your password."
 						onConfirm={this.handleLogout}
 					/>
 				</div>
