@@ -37,7 +37,6 @@ class Session {
 		this.duration = 0;
 		this.lesson = config;
 		this.server = config.server;
-		this.lessonID = this.lesson.title + '_' + this.lesson.author;
 
 		this.handleLogin = this.handleLogin.bind( this );
 		this.login = this.login.bind( this );
@@ -45,6 +44,8 @@ class Session {
 		var url = window.location.pathname;
 		this.namespaceName = null;
 		this.lessonName = null;
+		this.lessonID = null;
+		this.namespaceID = null;
 		if ( isString( url ) ) {
 			var matches = url.match( PATH_REGEXP );
 			if ( matches && matches.length >= 2 && url.endsWith( '/' ) ) {
@@ -63,9 +64,13 @@ class Session {
 		};
 
 		this.pingServer = () => {
+			console.log( `Should ping the server at ${this.server}...` );
 			request.get( this.server + '/ping', ( err, res, body ) => {
 				if ( !err && body === 'live' ) {
 					this.live = true;
+					if ( !this.lessonID && !this.namespaceID ) {
+						this.getLessonInfo();
+					}
 				} else {
 					this.live = false;
 				}
@@ -119,6 +124,9 @@ class Session {
 					if ( !err ) {
 						let obj = JSON.parse( body );
 						userRights = obj;
+						if ( userRights.owner ) {
+							this.getUserActions();
+						}
 						this.update();
 					}
 				});
@@ -182,6 +190,11 @@ class Session {
 	}
 
 	getChat( name ) {
+		let idx = name.indexOf( ':' );
+		if ( idx !== -1 ) {
+			name = name.substr( idx+1 );
+			console.log( name );
+		}
 		for ( let i = 0; i < this.chats.length; i++ ) {
 			let chat = this.chats[ i ];
 			if ( chat.name === name ) {
@@ -245,6 +258,13 @@ class Session {
 			this.update();
 		});
 
+		socket.on( 'chat_history', ({ name, messages }) => {
+			( 'Received chat history: ' + JSON.stringify( messages ) );
+			const chat = this.getChat( name );
+			chat.messages = messages;
+			this.update();
+		});
+
 		socket.on( 'chat_message', ( data ) => {
 			const chat = this.getChat( data.chatroom );
 			if ( chat ) {
@@ -267,8 +287,20 @@ class Session {
 		this.socket = socket;
 	}
 
-	getSocketActions(){
-		return this.socketActions;
+	getUserActions() {
+		request.post( this.server+'/get_user_actions', {
+			headers: {
+				'Authorization': 'JWT ' + this.user.token
+			},
+			form: {
+				lessonID: this.lessonID
+			}
+		}, ( error, response, body ) => {
+			if ( !error ) {
+				body = JSON.parse( body );
+				this.socketActions = body.actions;
+			}
+		});
 	}
 
 	saveAction( action ) {
@@ -361,8 +393,26 @@ class Session {
 		});
 	}
 
-	handleLogin( obj ) {
+	getLessonInfo() {
+		const { lessonName, namespaceName, server } = this;
+		debug( `Retrieve lesson info for ${namespaceName}/${lessonName} from ${server}` );
+		if ( lessonName && namespaceName ) {
+			request.get( this.server+'/get_lesson_info', {
+				qs: {
+					lessonName,
+					namespaceName
+				}
+			}, ( err, res ) => {
+				if ( !err ) {
+					const body = JSON.parse( res.body );
+					this.lessonID = body.lessonID;
+					this.namespaceID = body.namespaceID;
+				}
+			});
+		}
+	}
 
+	handleLogin( obj ) {
 		request.post( this.server+'/credentials', {
 			headers: {
 				'Authorization': 'JWT ' + obj.token
@@ -437,7 +487,7 @@ class Session {
 			finished: this.finished,
 			vars: this.vars,
 			lessonID: this.lessonID,
-			userID: this.user ? this.user._id : null
+			userID: this.user ? this.user.id : null
 		};
 		if ( !inEditor ) {
 			request.post( this.server + '/updateSession', {
@@ -451,14 +501,21 @@ class Session {
 	}
 
 	logToDatabase( type, data ) {
+		if ( this.anonymous ) {
+			data.email = 'anonymous';
+			data.name = 'anonymous';
+		} else {
+			data.email = this.user.email;
+			data.name = this.user.name;
+		}
 		const obj = {
 			startTime: this.startTime,
-			userID: this.user ? this.user._id : null,
+			userID: this.user ? this.user.id : null,
 			lessonID: this.lessonID,
 			type,
 			data
 		};
-		if ( !inEditor ) {
+		if ( !inEditor || true ) {
 			request.post( this.server + '/store_session_element', {
 				form: {
 					stringified: JSON.stringify( obj )
