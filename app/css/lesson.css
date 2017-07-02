@@ -37,6 +37,10 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+#Lesson .unread {
+	background: linen;
+}
+
 #Lesson .chatuser {
 	color: steelblue;
 	font-weight: 600;
@@ -45,8 +49,8 @@ body {
 #Lesson .chatexit {
 	float: right;
 	width: 16px;
-	height: 16px; 
-	background: darkgrey; 
+	height: 16px;
+	background: darkgrey;
 	text-align: center;
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -66,6 +70,7 @@ body {
 
 #Lesson .sendbutton {
 	background: gainsboro;
+	cursor: pointer;
 }
 
 #Lesson .sendbutton:hover {

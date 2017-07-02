@@ -1,12 +1,12 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { FormGroup, InputGroup } from 'react-bootstrap';
+import { FormGroup, InputGroup, ListGroup, ListGroupItem, OverlayTrigger, Popover } from 'react-bootstrap';
 import $ from 'jquery';
 import TextArea from 'components/text-area';
 import PropTypes from 'prop-types';
 import isElectron from 'utils/is-electron';
-const debug = require( 'debug' )( 'isle-editor' );	
+const debug = require( 'debug' )( 'isle-editor' );
 
 
 // MAIN //
@@ -18,15 +18,37 @@ class Chat extends Component {
 
 		this.state = {
 			opened: true,
-			value: ''
+			value: '',
+			hasNews: false
+		};
+
+		this.onScroll = () => {
+			const $chatbody = $( this.chatbody );
+			if ( $chatbody.scrollTop() + $chatbody.innerHeight() >= $chatbody[ 0 ].scrollHeight ) {
+				const { session } = this.context;
+				session.markChatMessagesAsRead( this.props.chat.name );
+			}
 		};
 
 	}
 
 	componentDidMount() {
 		const { session } = this.context;
-		this.unsubscribe = session.subscribe( () => {
-			this.forceUpdate();
+		this.unsubscribe = session.subscribe( ( type ) => {
+			if (
+				type === 'chat_message' ||
+				type === 'member_has_joined_chat' ||
+				type === 'member_has_left_chat'
+			) {
+				this.setState({
+					hasNews: true
+				});
+			}
+			if ( type === 'mark_messages' ) {
+				this.setState({
+					hasNews: false
+				});
+			}
 		});
 	}
 
@@ -37,7 +59,7 @@ class Chat extends Component {
 	sendMessage = () => {
 		const { session } = this.context;
 		session.sendChatMessage( this.props.chat.name, this.state.value );
-	
+
 		const $chatbody = $( this.chatbody );
 		$chatbody.animate({
 			scrollTop: $chatbody.prop( 'scrollHeight' )
@@ -50,7 +72,8 @@ class Chat extends Component {
 
 	changedText = ( value ) => {
 		this.setState({
-			value
+			value,
+			hasNews: false
 		});
 	}
 
@@ -73,14 +96,24 @@ class Chat extends Component {
 
 	toggleChat() {
 		this.setState({
-			opened: !this.state.opened
+			opened: !this.state.opened,
+			hasNews: false
 		});
 	}
 
 	render() {
 		const { chat, left, width } = this.props;
+
+		const userlistPopover = <Popover id="userlistPopover" title={`Members of ${chat.name} chat:`}>
+			<ListGroup>
+				{chat.members.map( ( member, idx  ) => {
+					return <ListGroupItem style={{ padding: '3px 3px' }} key={idx}>{member.name}</ListGroupItem>;
+				})}
+			</ListGroup>
+		</Popover>;
+
 		return (
-			<div style={{ 
+			<div style={{
 				position: isElectron ? 'absolute' : 'fixed',
 				top: 0,
 				zIndex: 5,
@@ -90,7 +123,7 @@ class Chat extends Component {
 				width: width,
 				boxShadow: '1px 1px darkgrey'
 			}}>
-				<div 
+				<div
 					style={{
 						position: 'absolute',
 						height: '16px',
@@ -109,12 +142,44 @@ class Chat extends Component {
 					onMouseOut={this.onMouseOut.bind( this )}
 					onClick={this.toggleChat.bind( this )}
 				>{chat.name}
+					<span className="presence" style={{
+						width: '10px',
+						marginLeft: '6px',
+						height: '10px',
+						bottom: '4px',
+						backgroundColor: 'darkorange',
+						position: 'absolute',
+						borderRadius: '50%',
+						boxShadow: '0px 0px 3px darkgrey',
+						display: this.state.hasNews ? 'inline' : 'none'
+					}} />
 					<span className="chatexit" onClick={this.closeChat}>X</span>
 				</div>
-				<div 
+				<OverlayTrigger trigger={["hover","focus"]} placement="right" overlay={userlistPopover}>
+					<div
+						style={{
+							position: 'relative',
+							height: '16px',
+							marginTop: '16px',
+							width: '100%',
+							backgroundColor: 'whitesmoke',
+							borderLeft: 'solid 1px darkgrey',
+							borderBottom: 'solid 1px darkgrey',
+							borderRight: 'solid 1px darkgrey',
+							paddingLeft: '5px',
+							overflow: 'hidden',
+							display: this.state.opened ? 'block' : 'none'
+						}}
+					>
+						{chat.members.map( ( member, idx  ) => {
+							return <span key={idx}>{member.name}{ idx !== chat.members.length-1 ? ', ' : null }</span>;
+						})}
+					</div>
+				</OverlayTrigger>
+				<div
 					style={{
 						backgroundColor: 'white',
-						top: '16px',
+						top: '32px',
 						borderLeft: 'solid 1px darkgrey',
 						borderBottom: 'solid 1px darkgrey',
 						borderRight: 'solid 1px darkgrey',
@@ -122,11 +187,18 @@ class Chat extends Component {
 						display: this.state.opened ? 'block' : 'none'
 					}}
 				>
-					<div 					
+					<div
 						ref={ ( chatbody ) => { this.chatbody = chatbody; }}
-						style={{ marginTop: '16px', height: 196, overflowY: 'scroll', paddingLeft: '3px', paddingRight: '3px', paddingTop: '3px' }}
+						style={{
+							height: 196,
+							overflowY: 'scroll',
+							paddingLeft: '3px',
+							paddingRight: '3px',
+							paddingTop: '3px'
+						}}
+						onScroll={this.onScroll}
 					>
-						{chat.messages.map( ( msg, idx ) => <div className="chatmessage" key={idx}>
+						{chat.messages.map( ( msg, idx ) => <div className={ msg.unread ? 'chatmessage unread' : 'chatmessage'} key={idx}>
 							<span className="chattime">{msg.time}</span> - <span className="chatuser">{msg.user}:&nbsp;</span>
 							<span>{msg.content}</span>
 							<hr style={{ marginTop: 3, marginBottom: 3 }}/>
@@ -135,7 +207,15 @@ class Chat extends Component {
 					<FormGroup>
 						<InputGroup>
 							<TextArea rows={2} onChange={this.changedText} defaultValue={this.state.value} />
-							<InputGroup.Addon className="sendbutton" onClick={this.sendMessage}>Send</InputGroup.Addon>
+							{ this.state.value === '' ?
+								<InputGroup.Addon
+									className="sendbutton"
+								>Send</InputGroup.Addon> :
+								<InputGroup.Addon
+									className="sendbutton"
+									onClick={this.sendMessage}
+								>Send</InputGroup.Addon>
+							}
 						</InputGroup>
 					</FormGroup>
 				</div>

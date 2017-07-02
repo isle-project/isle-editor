@@ -155,7 +155,7 @@ class Session {
 
 	joinChat( name ) {
 		if ( this.socket ) {
-			let chat = { name: name, messages: [] };
+			let chat = { name: name, messages: [], members: [] };
 			let found = false;
 			for ( let i = 0; i < this.chats.length; i++ ) {
 				if ( this.chats[ i ].name === chat.name ) {
@@ -170,6 +170,15 @@ class Session {
 		}
 	}
 
+	markChatMessagesAsRead( name ) {
+		const chat = this.getChat( name );
+		chat.messages = chat.messages.map( m => {
+			m.unread = false;
+			return m;
+		});
+		this.update( 'mark_messages' );
+	}
+
 	sendChatMessage( name, msg ) {
 		if ( this.socket ) {
 			const msgObj = {
@@ -179,6 +188,7 @@ class Session {
 			};
 			const chat = this.getChat( name );
 			chat.messages.push( msgObj );
+			this.markChatMessagesAsRead( name );
 			debug( 'Should emit message to room '+name+': ' + JSON.stringify( msgObj ) );
 			this.socket.emit( 'chat_message', {
 				msg: msgObj,
@@ -211,6 +221,7 @@ class Session {
 			}
 		}
 		this.update();
+		this.socket.emit( 'leave_chat', name );
 	}
 
 	socketConnect() {
@@ -258,19 +269,33 @@ class Session {
 			this.update();
 		});
 
-		socket.on( 'chat_history', ({ name, messages }) => {
+		socket.on( 'chat_history', ({ name, messages, members }) => {
 			( 'Received chat history: ' + JSON.stringify( messages ) );
 			const chat = this.getChat( name );
 			chat.messages = messages;
+			chat.members = members;
 			this.update();
+		});
+
+		socket.on( 'member_has_joined_chat', ({ name, member }) => {
+			const chat = this.getChat( name );
+			chat.members.push( member );
+			this.update( 'member_has_joined_chat' );
+		});
+
+		socket.on( 'member_has_left_chat', ({ name, member }) => {
+			const chat = this.getChat( name );
+			chat.members = chat.members.filter( m => m.email !== member.email );
+			this.update( 'member_has_left_chat' );
 		});
 
 		socket.on( 'chat_message', ( data ) => {
 			const chat = this.getChat( data.chatroom );
 			if ( chat ) {
+				data.msg.unread = true;
 				chat.messages.push( data.msg );
 			}
-			this.update();
+			this.update( 'chat_message' );
 		});
 
 		socket.on( 'memberAction', this.saveAction.bind( this ) );

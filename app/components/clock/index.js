@@ -13,14 +13,16 @@ class Clock extends Component {
 		super( props );
 
 		this.state = {
-			time: new Date().toLocaleTimeString()
+			time: new Date().toLocaleTimeString([], { hour: '2-digit', minute:'2-digit' })
 		};
 
 		this.updateTime = () => {
-			const currentTime = new Date().toLocaleTimeString();
-			this.setState({
-				time: currentTime
-			});
+			const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute:'2-digit' });
+			if ( this.state.time !== currentTime ) {
+				this.setState({
+					time: currentTime
+				});
+			}
 		};
 	}
 
@@ -34,7 +36,7 @@ class Clock extends Component {
 
 	render() {
 		let styles = {
-			fontSize: 12, 
+			fontSize: 12,
 			fontFamily: 'monospace',
 			...this.props.style
 		};
