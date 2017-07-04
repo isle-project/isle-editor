@@ -8,7 +8,6 @@ import { ceil, max, min } from '@stdlib/math/base/special';
 const debug = require( 'debug' )( 'isle-editor' );
 import Signup from 'components/signup';
 import Login from 'components/login';
-import Clock from 'components/clock';
 import Gate from 'components/gate';
 import ConfirmModal from './confirm_modal.js';
 import InstructorView from './instructor_view.js';
@@ -230,11 +229,10 @@ class StatusBar extends Component {
 							marginLeft: '10px',
 							position: 'absolute',
 							fontSize: '12px',
-							fontFamily: 'monospace'
+							fontFamily: 'Open Sans'
 						}}>
 							{ session.anonymous ? 'Anonymous' : session.user.name }
 						</div>
-						<Clock style={{ left: '0', right: '0', margin: 'auto', bottom: 0, background: 'transparent', position: 'absolute', width: '90px' }} />
 						{ session.anonymous ?
 							<div>
 								<Button
@@ -258,7 +256,7 @@ class StatusBar extends Component {
 							position: 'absolute',
 							right: '20px',
 							fontSize: '12px',
-							fontFamily: 'monospace',
+							fontFamily: 'Open Sans',
 							zIndex: 2
 						}}>
 							ISLE

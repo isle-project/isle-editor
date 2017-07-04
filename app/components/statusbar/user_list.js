@@ -15,7 +15,7 @@ class UserList extends Component {
 	render() {
 		const { session } = this.props;
 		return (
-			<ListGroup style={{ overflowY: 'scroll', height: window.innerHeight / 2, marginLeft: 0, fontSize: 12, fontFamily: 'monospace' }}>
+			<ListGroup style={{ overflowY: 'scroll', height: window.innerHeight / 2, marginLeft: 0, fontSize: 15, fontFamily: 'Open Sans' }}>
 				{session.userList.map( ( user, idx ) => {
 					return ( <ListGroupItem key={idx} style={{ background: user.inactive ? 'lightgrey' : 'transparent' }}>
 						{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}
