@@ -1,13 +1,16 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Accordion, Panel } from 'react-bootstrap';
+import { Accordion, ButtonToolbar, ButtonGroup, Button, OverlayTrigger, Panel, Popover } from 'react-bootstrap';
 import $ from 'jquery';
+import moment from 'moment';
 import ActionLog from './action_log.js';
 import UserList from './user_list.js';
 import max from '@stdlib/math/base/special/max';
 import isElectron from 'utils/is-electron';
 import PropTypes from 'prop-types';
+import { DateRangePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
 const debug = require( 'debug' )( 'isle-editor' );
 
 
@@ -25,15 +28,79 @@ class InstructorView extends Component {
 
 		this.state = {
 			hidden: true,
-			actionLogHeader: <h4>Action Log</h4>
+			actionLogHeader: <h4>Action Log</h4>,
+			period: {
+				from: moment( 0 ),
+				to: moment()
+			}
+		};
+
+		this.timeClickFactory = ( type ) => {
+			let ret;
+			switch ( type ) {
+			case 'last_day':
+				ret = () => {
+					$( '.date-selection' ).removeClass( 'active-button' );
+					$( '#last_day' ).addClass( 'active-button' );
+					const from = moment().subtract( 1, 'minutes' );
+					const to = moment();
+					this.setState({
+						period: { from, to }
+					});
+				};
+				return ret;
+			case 'last_week':
+				ret = () => {
+					$( '.date-selection' ).removeClass( 'active-button' );
+					$( '#last_week' ).addClass( 'active-button' );
+					const from = moment().subtract( 7, 'days' );
+					const to = moment();
+					this.setState({
+						period: { from, to }
+					});
+				};
+				return ret;
+			case 'last_month':
+				ret = () => {
+					$( '.date-selection' ).removeClass( 'active-button' );
+					$( '#last_month' ).addClass( 'active-button' );
+					const from = moment().subtract( 30, 'days' );
+					const to = moment();
+					this.setState({
+						period: { from, to }
+					});
+				};
+				return ret;
+			case 'last_year':
+				ret = () => {
+					$( '.date-selection' ).removeClass( 'active-button' );
+					$( '#last_year' ).addClass( 'active-button' );
+					const from = moment().subtract( 365, 'days' );
+					const to = moment();
+					this.setState({
+						period: { from, to }
+					});
+				};
+				return ret;
+			case 'all_time':
+				ret = () => {
+					$( '.date-selection' ).removeClass( 'active-button' );
+					$( '#all_time' ).addClass( 'active-button' );
+					const from = moment( 0 );
+					const to = moment();
+					this.setState({
+						period: { from, to }
+					});
+				};
+				return ret;
+			}
 		};
 
 	}
 
-	componendDidMount() {
+	componentDidMount() {
 		const { session } = this.context;
 		this.unsubscribe = session.subscribe( ( type ) => {
-			debug( 'TYPE: ' + type );
 			if ( type === 'logout' ) {
 				debug( 'Should reset the filters after user logout:' );
 				this.setState({
@@ -43,7 +110,7 @@ class InstructorView extends Component {
 		});
 	}
 
-	componendWillUnmount() {
+	componentWillUnmount() {
 		this.unsubscribe();
 	}
 
@@ -77,16 +144,17 @@ class InstructorView extends Component {
 
 	render() {
 		const { session } = this.context;
+
 		return (
 			<div
 				className="instructorView unselectable"
 				ref={( instructorView ) => { this.instructorView = instructorView; }}
 				style={{
-					width: '25%',
+					width: '45%',
 					minWidth: '400px',
 					position: 'fixed',
 					top: 0,
-					right: -max( window.innerWidth * 0.25, 400 ),
+					right: -max( window.innerWidth * 0.45, 400 ),
 					height: '100%',
 					zIndex: 1001
 				}}
@@ -102,7 +170,7 @@ class InstructorView extends Component {
 					textAlign: 'center',
 					marginRight: '30px'
 				}}>
-					<p style={{ marginTop: '20px', fontFamily: 'monospace', fontSize: 12 }}>Instructor Panel</p>
+					<p style={{ marginTop: '20px', fontFamily: 'Open Sans', fontSize: 20 }}>Instructor Panel</p>
 					<hr style={{ background: '#333',  backgroundImage: 'linear-gradient(to right, #ccc, #333, #ccc)', height: '1px', border: 0 }} />
 				</div>
 				<div className="instructorMiddle" style={{
@@ -118,7 +186,55 @@ class InstructorView extends Component {
 							<UserList session={session} />
 						</Panel>
 						<Panel header={this.state.actionLogHeader} eventKey="2">
-							<ActionLog session={session} onFilter={ ( newHeader ) => {
+							<ButtonToolbar style={{ marginBottom: '10px' }} >
+								<ButtonGroup bsSize="xsmall">
+									<Button
+										className="date-selection"
+										id="last_day"
+										onClick={this.timeClickFactory( 'last_day' )}
+									>Last Day</Button>
+									<Button
+										className="date-selection"
+										id="last_week"
+										onClick={this.timeClickFactory( 'last_week' )}
+									>Last Week</Button>
+									<Button
+										className="date-selection"
+										id="last_month"
+										onClick={this.timeClickFactory( 'last_month' )}
+									>Last Month</Button>
+									<Button
+										className="date-selection"
+										id="last_year"
+										onClick={this.timeClickFactory( 'last_year' )}
+									>Last Year</Button>
+								</ButtonGroup>
+								<ButtonGroup bsSize="xsmall">
+									<Button
+										className="date-selection active-button"
+										id="all_time"
+										onClick={this.timeClickFactory( 'all_time' )}
+									>All Data</Button>
+									<DateRangePicker
+										startDate={this.state.period.from}
+										endDate={this.state.period.to}
+										onDatesChange={({ startDate, endDate }) => {
+											const newPeriod = {
+												from: startDate,
+												to: endDate
+											};
+											console.log( newPeriod );
+											this.setState({
+												period: newPeriod
+											});
+										}}
+										focusedInput={this.state.focusedInput}
+										onFocusChange={focusedInput => this.setState({ focusedInput })}
+										isOutsideRange={() => false}
+									/>
+								</ButtonGroup>
+							</ButtonToolbar>
+							<ActionLog period={this.state.period} onFilter={ ( newHeader ) => {
 								this.setState({
 									actionLogHeader: newHeader
 								});
@@ -136,16 +252,16 @@ class InstructorView extends Component {
 					borderBottomLeftRadius: '50%'
 				 }}>
 				</div>
-				<div className="viewhandler" 
-					onClick={this.toggleBar.bind( this )} 
+				<div className="viewhandler"
+					onClick={this.toggleBar.bind( this )}
 					onMouseOver={this.onMouseOver.bind( this )}
 					onMouseOut={this.onMouseOut.bind( this )}
 					ref={( handler ) => { this.handler = handler; }}
-					style={{ 
-						position: 'absolute', 
+					style={{
+						position: 'absolute',
 						opacity: 0.7,
 						cursor: 'pointer',
-						top: '43%', 
+						top: '43%',
 						right: this.state.hidden ? '110%' : '105%',
 						width: 0,
 						height: 0,
