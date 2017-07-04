@@ -35,7 +35,7 @@ class Session {
 		this.startTime = new Date().getTime();
 		this.endTime = null;
 		this.duration = 0;
-		this.lesson = config;
+		this.config = config;
 		this.server = config.server;
 
 		this.handleLogin = this.handleLogin.bind( this );
@@ -253,6 +253,12 @@ class Session {
 			debug( 'A user has joined and should be added to the user list: ' + data );
 			data = JSON.parse( data );
 			this.userList.push( data );
+			global.lesson.addNotification({
+				title: 'User has joined',
+				message: `User ${data.name} (${data.email}) has joined us.`,
+				level: 'success',
+				position: 'tl'
+			});
 			this.update();
 		});
 
@@ -265,6 +271,12 @@ class Session {
 					user.exitTime = data.exitTime;
 				};
 				return user;
+			});
+			global.lesson.addNotification({
+				title: 'User has joined',
+				message: `User ${data.name} (${data.email}) has left us.`,
+				level: 'success',
+				position: 'tl'
 			});
 			this.update();
 		});
