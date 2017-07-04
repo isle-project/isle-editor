@@ -11,8 +11,9 @@ const OPEN_CPU_DEFAULT = 'http://phd-serv5.heinz.cmu.edu';
 * @returns {string} OpenCPU address
 */
 function getOpenCPU() {
-	return global.ISLE.rshell && global.ISLE.rshell.server ?
-		global.ISLE.rshell.server :
+	const config = global.session.config;
+	return config.rshell && config.rshell.server ?
+		config.rshell.server :
 		OPEN_CPU_DEFAULT;
 } // end FUNCTION getOpenCPU()
 
