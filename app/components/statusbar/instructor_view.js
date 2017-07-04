@@ -30,8 +30,8 @@ class InstructorView extends Component {
 			hidden: true,
 			actionLogHeader: <h4>Action Log</h4>,
 			period: {
-				from: moment( 0 ),
-				to: moment()
+				from: moment( 0 ).startOf( 'day' ),
+				to: moment().endOf( 'day' )
 			}
 		};
 
@@ -42,8 +42,8 @@ class InstructorView extends Component {
 				ret = () => {
 					$( '.date-selection' ).removeClass( 'active-button' );
 					$( '#last_day' ).addClass( 'active-button' );
-					const from = moment().subtract( 1, 'minutes' );
-					const to = moment();
+					const from = moment().subtract( 1, 'minutes' ).startOf( 'day' );
+					const to = moment().endOf( 'day' );
 					this.setState({
 						period: { from, to }
 					});
@@ -53,8 +53,8 @@ class InstructorView extends Component {
 				ret = () => {
 					$( '.date-selection' ).removeClass( 'active-button' );
 					$( '#last_week' ).addClass( 'active-button' );
-					const from = moment().subtract( 7, 'days' );
-					const to = moment();
+					const from = moment().subtract( 7, 'days' ).startOf( 'day' );
+					const to = moment().endOf( 'day' );
 					this.setState({
 						period: { from, to }
 					});
@@ -64,8 +64,8 @@ class InstructorView extends Component {
 				ret = () => {
 					$( '.date-selection' ).removeClass( 'active-button' );
 					$( '#last_month' ).addClass( 'active-button' );
-					const from = moment().subtract( 30, 'days' );
-					const to = moment();
+					const from = moment().subtract( 30, 'days' ).startOf( 'day' );
+					const to = moment().endOf( 'day' );
 					this.setState({
 						period: { from, to }
 					});
@@ -75,8 +75,8 @@ class InstructorView extends Component {
 				ret = () => {
 					$( '.date-selection' ).removeClass( 'active-button' );
 					$( '#last_year' ).addClass( 'active-button' );
-					const from = moment().subtract( 365, 'days' );
-					const to = moment();
+					const from = moment().subtract( 365, 'days' ).startOf( 'day' );
+					const to = moment().endOf( 'day' );
 					this.setState({
 						period: { from, to }
 					});
@@ -86,8 +86,8 @@ class InstructorView extends Component {
 				ret = () => {
 					$( '.date-selection' ).removeClass( 'active-button' );
 					$( '#all_time' ).addClass( 'active-button' );
-					const from = moment( 0 );
-					const to = moment();
+					const from = moment( 0 ).startOf( 'day' );
+					const to = moment().endOf( 'day' );
 					this.setState({
 						period: { from, to }
 					});
@@ -144,7 +144,6 @@ class InstructorView extends Component {
 
 	render() {
 		const { session } = this.context;
-
 		return (
 			<div
 				className="instructorView unselectable"

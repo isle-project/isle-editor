@@ -5,6 +5,7 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import isObject from '@stdlib/assert/is-object';
 import objectEntries from '@stdlib/utils/entries';
 import copy from '@stdlib/utils/copy';
+import PropTypes from 'prop-types';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 
 
@@ -12,9 +13,10 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 
 const Action = ( props ) => {
 	return (
-		<ListGroupItem style={{ background: props.backgroundColor, fontSize: 12, fontFamily: 'monospace', padding: '2px 1px 2px 1px', lineHeight: 1 }}>
+		<ListGroupItem style={{ background: props.backgroundColor, fontSize: 15, fontFamily: 'Open Sans', padding: '2px 1px 2px 1px', lineHeight: 1 }}>
 			<div className="actionNote">
-				<label>Time:&nbsp;</label>{ new Date( props.absoluteTime ).toLocaleTimeString() } |
+				<label>Time:&nbsp;</label>
+				{ new Date( props.absoluteTime ).toLocaleTimeString() }|
 				<label>User:&nbsp;</label><span className="clickable" onClick={props.clickFactory( 'email', props.email )} >{ props.email }</span>
 			</div>
 			<div className="actionNote">
@@ -37,6 +39,7 @@ class ActionLog extends Component {
 		super( props );
 
 		this.state = {
+			displayedActions: [],
 			filter: null
 		};
 
@@ -62,7 +65,7 @@ class ActionLog extends Component {
 			let entries = filter ? objectEntries( filter ) : [];
 			let newHeader = <div>
 				<h4 style={{ display: 'inline' }} >Action Log</h4>
-				<div style={{ position: 'relative', width: 'auto', fontSize: '10px', fontFamily: 'Arial' }}>
+				<div style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
 					{entries.map( ( arr, idx ) => {
 						return <span
 							style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }}
@@ -91,23 +94,26 @@ class ActionLog extends Component {
 
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		if ( nextProps.session.socketActions.length === 0 && this.state.filter !== null ) {
-			this.setState({
-				filter: null
-			}, () => {
-				const newHeader = this.createHeader( null );
-				this.props.onFilter( newHeader );
-			});
-		}
-	}
+	buildActionsArray( props ) {
+		let { from, to } = props.period;
+		from = from.toDate();
+		to = to.toDate();
+		const { session } = this.context;
+		let displayedActions = [];
 
-	render() {
-		const { session } = this.props;
-		let displayedActions = copy( session.socketActions );
+		console.log( from )
+		console.log( to )
+		console.log( session.socketActions.length );
+
+		for ( let i = 0; i < session.socketActions.length; i++ ) {
+			let action = session.socketActions[ i ];
+			if ( action.absoluteTime > from && action.absoluteTime < to ) {
+				displayedActions.push( action );
+			}
+		}
 		if ( this.state.filter ) {
-			for ( let i = session.socketActions.length - 1; i > 0; i-- ) {
-				let action = session.socketActions[ i ];
+			for ( let i = displayedActions.length - 1; i > 0; i-- ) {
+				let action = displayedActions[ i ];
 				let markedForRemoval = false;
 				for ( let key in this.state.filter ) {
 					let val = this.state.filter[ key ];
@@ -120,11 +126,56 @@ class ActionLog extends Component {
 				}
 			}
 		}
+		this.setState({
+			displayedActions
+		});
+	}
+
+	componentDidMount() {
+		this.buildActionsArray( this.props );
+		this.unsubscribe = session.subscribe( ( type ) => {
+			const { session } = this.context;
+			console.log( "GOT INSTRUCTOR ACTION: " + type );
+			if ( session.socketActions.length === 0 && this.state.filter !== null ) {
+				this.setState({
+					filter: null
+				}, () => {
+					const newHeader = this.createHeader( null );
+					this.props.onFilter( newHeader );
+				});
+			}
+			else if ( type === 'member_action' ) {
+				this.buildActionsArray( this.props );
+			}
+		});
+	}
+
+	componentWillReceiveProps( nextProps ) {
+		if (
+			nextProps.period.from !== this.props.period.from ||
+			nextProps.period.to !== this.props.period.to
+		) {
+			this.buildActionsArray( nextProps );
+		}
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
+	}
+
+	render() {
 		return ( <ListGroup style={{ overflowY: 'scroll', height: window.innerHeight / 2 }}>
-			{displayedActions.map( ( action, idx ) => <Action key={idx} {...action} backgroundColor={ idx % 2 ? 'white' : 'lightgrey' } clickFactory={this.clickFactory} /> )}
+			{this.state.displayedActions.map( ( action, idx ) => <Action key={idx} {...action} backgroundColor={ idx % 2 ? 'white' : 'lightgrey' } clickFactory={this.clickFactory} /> )}
 		</ListGroup> );
 	}
 }
+
+
+// TYPES //
+
+ActionLog.contextTypes = {
+	session: PropTypes.object
+};
 
 
 // EXPORTS //
