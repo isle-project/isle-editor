@@ -14,6 +14,16 @@ body {
 	display: block;
 }
 
+#Lesson .popover .btn {
+	font-family: 'Open Sans', sans-serif;
+}
+
+#Lesson .active-button {
+	background: slategray;
+	color: white;
+	text-shadow: none;
+}
+
 #Lesson .statusbar {
 	position: absolute;
 	width: 34%;
