@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { isAbsolutePath, isObject } from '@stdlib/assert';
 import path from 'path';
+import css from 'css';
 import fs from 'fs';
 import debounce from 'lodash.debounce';
 import SplitPane from 'react-split-pane';
@@ -89,9 +90,11 @@ class App extends Component {
 			const handleChange = ( value ) => {
 				debug( 'Should handle change...' );
 				const preamble = value.match( /---([\S\s]*)---/ )[ 1 ];
+				console.log( preamble );
 				let preambleHasChanged = this.checkPreambleChange( preamble );
 				if ( preambleHasChanged ) {
 					const newPreamble = yaml.load( preamble );
+					console.log( newPreamble );
 					this.props.updatePreamble( newPreamble );
 					loadRequires( newPreamble.require, this.props.filePath || '' );
 
@@ -134,10 +137,11 @@ class App extends Component {
 
 	checkPreambleChange( preamble ) {
 		if ( preamble !== this.lastPreamble ) {
+			debug( 'Preamble has changed.' );
 			this.lastPreamble = preamble;
 			return true;
 		} else {
-			debug( 'No changes in preamble...' );
+			debug( 'Preamble has not changed.' );
 			return false;
 		}
 	}
