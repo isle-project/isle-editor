@@ -381,10 +381,13 @@ function writeIndexFile({
 		if ( minify ) {
 			let code = fs.readFileSync( bundlePath ).toString();
 			const minified = UglifyJS.minify( code, {
-				warnings: false,
+				warnings: true,
 				compress: {},
 				mangle: true
 			});
+			if ( minified.error ) {
+				throw minified.error;
+			}
 			fs.writeFileSync( path.join( appDir, 'bundle.min.js' ), minified.code );
 			fs.unlinkSync( path.join( appDir, 'bundle.js' ) );
 		}
