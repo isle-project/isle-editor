@@ -116,13 +116,13 @@ class InstructorView extends Component {
 
 	toggleBar() {
 		if ( this.state.hidden ) {
-			$( this.instructorView ).animate({ right: EDITOR_OFFSET }, 300 );
+			$( this.instructorView ).animate({ right: EDITOR_OFFSET }, 400 );
 			$( this.handler ).css( 'opacity', 0.7 );
 			this.setState({
 				hidden: false
 			});
 		} else {
-			$( this.instructorView ).animate({ right: -max( window.innerWidth * 0.25, 400 ) }, 300 );
+			$( this.instructorView ).animate({ right: -max( window.innerWidth * 0.45, 400 ) }, 400 );
 			$( this.handler ).css( 'opacity', 0.7 );
 			this.setState({
 				hidden: true
