@@ -241,7 +241,8 @@ export default class Preview extends Component {
 
 	componentWillUpdate( nextProps ) {
 		if (
-			nextProps.preamble.server !== this.props.preamble.server
+			nextProps.preamble.server !== this.props.preamble.server ||
+			nextProps.preamble.state !== this.props.preamble.state
 		) {
 			global.session = new Session( nextProps.preamble );
 		}
