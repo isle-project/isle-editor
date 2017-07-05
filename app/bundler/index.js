@@ -96,7 +96,7 @@ const getComponents = ( arr ) => {
 };
 
 const getLessonComponent = ( lessonContent ) => `
-var session = new Session( preamble );
+global.session = new Session( preamble );
 
 class Lesson extends Component {
 	constructor() {

@@ -6,8 +6,6 @@ import DOMPurify from 'dompurify';
 import request from 'request';
 import Spinner from 'components/spinner';
 import createPrependCode from 'components/r/utils/create-prepend-code';
-import getOpenCPUServer from 'utils/get-opencpu-server';
-
 
 
 // CONSTANTS //
@@ -57,7 +55,8 @@ class ROutput extends Component {
 					running: true
 				});
 
-				const OPEN_CPU = getOpenCPUServer();
+				const { session } = this.context;
+				const OPEN_CPU = session.getOpenCPUServer();
 				let prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
 				let fullCode = prependCode + code;
 
@@ -144,6 +143,9 @@ ROutput.propTypes = {
 	])
 };
 
+ROutput.contextTypes = {
+	session: PropTypes.object
+};
 
 // DEFAULT PROPERTIES //
 

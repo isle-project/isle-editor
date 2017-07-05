@@ -6,11 +6,6 @@ import { Button, Modal } from 'react-bootstrap';
 import request from 'request';
 
 
-// CONSTANTS //
-
-import { OPEN_CPU_DEFAULT_SERVER } from 'constants/opencpu.js';
-
-
 // MAIN //
 
 class RHelp extends Component {
@@ -31,7 +26,9 @@ class RHelp extends Component {
 		this.showModal = () => {
 			const functionName = this.props.func || this.props.children;
 			if ( this.state.body === '' ) {
-				request.get( OPEN_CPU_DEFAULT_SERVER + `/ocpu/library/${this.props.library}/man/${functionName}/html`, ( error, response, body ) => {
+				const { session } = this.context;
+				const OPEN_CPU = session.getOpenCPUServer();
+				request.get( OPEN_CPU + `/ocpu/library/${this.props.library}/man/${functionName}/html`, ( error, response, body ) => {
 					if ( !error ) {
 						this.setState({
 							body,
@@ -48,11 +45,6 @@ class RHelp extends Component {
 
 		};
 	}
-
-	componentDidMount() {
-	}
-
-	handleResize() {}
 
 	render() {
 		return (
@@ -104,6 +96,9 @@ RHelp.propTypes = {
 	visible: PropTypes.bool
 };
 
+RHelp.contextTypes = {
+	session: PropTypes.object
+};
 
 // DEFAULT PROPERTIES //
 

@@ -9,7 +9,6 @@ import isArray from '@stdlib/assert/is-array';
 import floor from '@stdlib/math/base/special/floor';
 import Spinner from 'components/spinner';
 import createPrependCode from 'components/r/utils/create-prepend-code';
-import getOpenCPUServer from 'utils/get-opencpu-server';
 
 
 // CONSTANTS //
@@ -85,7 +84,8 @@ class RTable extends Component {
 					prependCode +
 					code.replace( /\n\s*([ A-Z0-9._\(\)]+)\n*$/i, '\n toJSON($1)' );
 
-				const OPEN_CPU = getOpenCPUServer();
+				const { session } = this.context;
+				const OPEN_CPU = session.getOpenCPUServer();
 				request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
 					form: {
 						x: jsonCode
@@ -161,6 +161,10 @@ RTable.propTypes = {
 		PropTypes.array
 	]),
 	width: PropTypes.number
+};
+
+RTable.contextTypes = {
+	session: PropTypes.object
 };
 
 

@@ -13,7 +13,6 @@ import ChatButton from 'components/chat-button';
 import beforeUnload from 'utils/before-unload';
 import isElectron from 'utils/is-electron';
 import isArray from '@stdlib/assert/is-array';
-import getOpenCPUServer from 'utils/get-opencpu-server';
 
 import ace from 'brace';
 import 'brace/mode/r';
@@ -301,8 +300,7 @@ class RShell extends React.Component {
 				currentCode = prependCode + currentCode + '\n';
 				this.props.onEvaluate( currentCode );
 
-				const OPEN_CPU = getOpenCPUServer();
-
+				const OPEN_CPU = session.getOpenCPUServer();
 				request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
 					form: {
 						x: currentCode
@@ -350,7 +348,8 @@ class RShell extends React.Component {
 
 		this.getHelpPage = ( helpCommand ) => {
 
-			const OPEN_CPU = getOpenCPUServer();
+			const { session } = this.context;
+			const OPEN_CPU = session.getOpenCPUServer();
 
 			request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
 				form: {

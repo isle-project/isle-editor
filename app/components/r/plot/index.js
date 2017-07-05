@@ -6,7 +6,6 @@ import request from 'request';
 import createPrependCode from 'components/r/utils/create-prepend-code';
 import Spinner from 'components/spinner';
 import Image from 'components/image';
-import getOpenCPUServer from 'utils/get-opencpu-server';
 
 
 // CONSTANTS //
@@ -55,7 +54,8 @@ class RPlot extends Component {
 			let prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
 			const fullCode = prependCode + this.props.code;
 
-			const OPEN_CPU = getOpenCPUServer();
+			const { session } = this.context;
+			const OPEN_CPU = session.getOpenCPUServer();
 			request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
 				form: {
 					x: fullCode
@@ -124,6 +124,9 @@ RPlot.propTypes = {
 	onDone: PropTypes.func
 };
 
+RPlot.contextTypes = {
+	session: PropTypes.object
+};
 
 // DEFAULT PROPERTIES //
 

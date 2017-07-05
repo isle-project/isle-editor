@@ -10,7 +10,8 @@ const io = require( 'socket.io-client' );
 
 // VARIABLES //
 
-var PATH_REGEXP = /^\/([^\/]*)\/([^\/]*)\//i;
+const OPEN_CPU_DEFAULT = 'http://phd-serv5.heinz.cmu.edu';
+const PATH_REGEXP = /^\/([^\/]*)\/([^\/]*)\//i;
 
 
 // SESSION //
@@ -274,7 +275,7 @@ class Session {
 				return user;
 			});
 			global.lesson.addNotification({
-				title: 'User has joined',
+				title: 'User has left',
 				message: `User ${data.name} (${data.email}) has left us.`,
 				level: 'success',
 				position: 'tl'
@@ -627,6 +628,17 @@ class Session {
 		}, ( error, response, body ) => {
 			console.log( error );
 		});
+	}
+
+	/**
+	* Get the OpenCPU server address.
+	*
+	* @returns {string} OpenCPU address
+	*/
+	getOpenCPUServer() {
+		return this.config.rshell && this.config.rshell.server ?
+			this.config.rshell.server :
+			OPEN_CPU_DEFAULT;
 	}
 
 }
