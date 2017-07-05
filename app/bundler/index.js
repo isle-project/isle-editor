@@ -31,8 +31,8 @@ const generateIndexHTML = ( title, minify ) => `
 		<meta charset="utf-8">
 		<title>${title}</title>
 		<link href="css/katex.min.css" rel="stylesheet" />
-		<link href="css/bootstrap.min.css" rel="stylesheet" />
-		<link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
 		<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css' />
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
 		<link href="css/fixed-data-table.min.css" rel="stylesheet" />
@@ -44,7 +44,7 @@ const generateIndexHTML = ( title, minify ) => `
 	<body>
 	<div id="App"></div>
 	<script>
-		// Handle bug occuring when crypto-browserify is used with Webpack...
+		// Handle bug occurring when crypto-browserify is used with Webpack...
 		window._crypto = {};
 	</script>
 	<script src="${ minify ? 'bundle.min.js' : 'bundle.js' }"></script>
@@ -96,12 +96,12 @@ const getComponents = ( arr ) => {
 };
 
 const getLessonComponent = ( lessonContent ) => `
-var session = new Session( global.ISLE );
+var session = new Session( preamble );
 
 class Lesson extends Component {
 	constructor() {
 		super();
-		this.state = global.ISLE.state;
+		this.state = preamble.state;
 
 		this.addNotification = ( config ) => {
 			if ( this.refs.notificationSystem ) {
@@ -110,22 +110,6 @@ class Lesson extends Component {
 		}
 
 		global.lesson = this;
-	}
-
-	sendMail( name, to ) {
-		let mailOptions = global.ISLE.mails[ name ] || {};
-		if ( !mailOptions.hasOwnProperty( 'from' ) ) {
-			mailOptions.from = ISLE.email || 'robinson@isle.cmu.edu';
-		}
-		if ( mailOptions.hasOwnProperty( 'text' ) ) {
-			mailOptions.text = mustache.render( mailOptions.text, global.lesson );
-		}
-		mailOptions.to = to;
-		request.post( ISLE.server + '/mail', {
-			form: mailOptions
-		}, ( error, response, body ) => {
-			console.log( error );
-		});
 	}
 
 	componentWillUnmount() {
@@ -166,7 +150,7 @@ const getComponentList = ( code ) => {
 };
 
 const getISLEcode = ( yamlStr ) => {
-	return 'global.ISLE = yaml.load(`' + yamlStr + '`);';
+	return 'const preamble = yaml.load(`' + yamlStr + '`);';
 };
 
 const getSessionCode = ( basePath ) => {

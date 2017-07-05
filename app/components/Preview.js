@@ -16,17 +16,11 @@ const path = require( 'path' );
 const PropTypes = require( 'prop-types' );
 const React = require( 'react' );
 const ReactBootstrap = require( 'react-bootstrap' );
-const mustache = require( 'mustache' );
 const render = require( 'react-dom' ).render;
 const createReactClass = require( 'create-react-class' );
 const NotificationSystem = require( 'react-notification-system' );
 const contains = require( '@stdlib/assert/contains' );
-const isAbsolutePath = require( '@stdlib/assert/is-absolute-path' );
-const isObject = require( '@stdlib/assert/is-object' );
-const isArray = require( '@stdlib/assert/is-array' );
 const request = require( 'request' );
-const yaml = require( 'js-yaml' );
-const css = require( 'css' );
 const Session = require ( 'api/session' );
 
 import { Component } from 'react';
@@ -139,64 +133,6 @@ const DataExplorer = require( 'components/data-explorer' );
 const CrossValidation = require( 'components/learn/cross-validation' );
 
 
-// VARIABLES //
-
-var cssHash = {};
-var lastCSS = null;					
-
-
-// FUNCTIONS //
-
-const injectStyle = ( style ) => {
-
-	let previous = document.getElementById( 'mystyles' );
-	if ( previous ) {
-		previous.parentNode.removeChild( previous );
-	}
-
-	let node = document.createElement( 'style' );
-	node.setAttribute( 'id', 'mystyles' );
-
-	let cssObj = css.parse( style );
-	let rules = cssObj.stylesheet.rules;
-	rules = rules.map( rule => {
-		rule.selectors = rule.selectors.map( s => '#Lesson ' + s );
-		return rule;
-	});
-
-	node.innerHTML = css.stringify( cssObj );
-	document.head.appendChild( node );
-};
-
-const loadRequires = ( libs, filePath ) => {
-	let dirname = path.dirname( filePath );
-	if ( isObject( libs ) ) {
-		for ( let key in libs ) {
-			if ( libs.hasOwnProperty( key ) ) {
-				let lib = libs[ key ];
-				if ( isAbsolutePath( lib ) || /\.\//.test( lib ) ) {
-					lib = path.join( dirname, libs[ key ]);
-				} else if ( /@stdlib/.test( lib ) ) {
-					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
-				}
-				if ( /\.svg$/.test( lib ) ) {
-					let content = fs.readFileSync( lib ).toString( 'base64' );
-					eval( `global[ '${key}' ] = 'data:image/svg+xml;base64,${content}';` );
-				}
-				else if ( /\.(?:jpg|png)$/.test( lib ) ) {
-					let buffer = fs.readFileSync( lib );
-					eval( `global[ '${key}' ] = 'data:image/jpeg;base64,${buffer.toString( 'base64' )}'` );
-				}
-				else {
-					eval( `global[ '${key}' ] = require( '${lib}' );` );
-				}
-
-			}
-		}
-	}
-};
-
-
 // MAIN //
 
 export default class Preview extends Component {
@@ -204,13 +140,7 @@ export default class Preview extends Component {
 		super( props );
 
 		let { code, preamble } = props;
-		global.ISLE = preamble;
-		global.session = new Session( global.ISLE );
-
-		this.state = {
-			preamble,
-			requires: preamble.require || []
-		};
+		global.session = new Session( preamble );
 
 		this.shouldRenderPreview = true;
 		this.renderPreview = () => {
@@ -218,49 +148,19 @@ export default class Preview extends Component {
 			let { code } = this.props;
 			let session = global.session;
 			try {
-				if ( this.state.requires !== global.ISLE.require && isArray( this.state.requires ) ) {
-					this.state.requires.forEach( lib => delete global[ lib ]);
-					loadRequires( global.ISLE.require, this.props.filePath || '' );
-				}
 
 				// Remove preamble and comments:
 				code = code.replace( /---([\S\s]*)---/, '' );
 				code = code.replace( /<!--([\S\s]*)-->/, '' );
 
-				// Apply styles:
-				let css = '';
-				if ( global.ISLE.css ) {
-					if ( cssHash[ global.ISLE.css ]) {
-						css += cssHash[ global.ISLE.css ];
-					} else {
-						let fpath = global.ISLE.css;
-						if ( !isAbsolutePath( fpath ) ) {
-							fpath = path.join( path.dirname( this.props.filePath ), fpath );
-						}
-						css += fs.readFileSync( fpath ).toString();
-					}
-				}
-				if ( global.ISLE.style ) {
-					let { style } = global.ISLE;
-					css += '\n';
-					css += style;
-				}
-				if ( global.ISLE.style || global.ISLE.css ) {
-					if ( css !== lastCSS ) {
-						injectStyle( css );
-					}
-					lastCSS = css;
-				}
-
 				// Replace Markdown by HTML...
 				code = markdownToHTML( code );
 
-				if ( global.ISLE.type === 'presentation' ) {
+				if ( preamble.type === 'presentation' ) {
 					let progress = 'number';
-
-					if ( global.ISLE.presentation ) {
-						if ( global.ISLE.presentation.progress ) {
-							progress = global.ISLE.presentation.progress;
+					if ( preamble.presentation ) {
+						if ( preamble.presentation.progress ) {
+							progress = preamble.presentation.progress;
 						}
 					}
 
@@ -292,23 +192,7 @@ export default class Preview extends Component {
 							global.lesson = this;
 						},
 						getInitialState: function() {
-							return global.ISLE.state;
-						},
-						sendMail: function( name, to ) {
-							var mailOptions = global.ISLE.mails[ name ] || {};
-							if ( !mailOptions.hasOwnProperty( 'from' ) ) {
-								mailOptions.from = ISLE.email || 'robinson@isle.cmu.edu';
-							}
-							if ( mailOptions.hasOwnProperty( 'text' ) ) {
-								mailOptions.text = mustache.render( mailOptions.text, global.lesson );
-							}
-							console.log( mailOptions )
-							mailOptions.to = to;
-							request.post( ISLE.server + '/mail', {
-								form: mailOptions
-							}, ( error, response, body ) => {
-								console.log( error );
-							});
+							return preamble.state;
 						},
 						addNotification: function( config ) {
 							this.refs.notificationSystem.addNotification( config );
@@ -355,12 +239,10 @@ export default class Preview extends Component {
 	}
 
 	componentWillUpdate( nextProps ) {
-		if ( nextProps.preamble.server !== this.props.preamble.server ) {
-			global.ISLE = nextProps.preamble;
-			global.session = new Session( global.ISLE );
-		}
-		if ( nextProps.preamble.state !== this.props.preamble.state ) {
-			global.ISLE = nextProps.preamble;
+		if (
+			nextProps.preamble.server !== this.props.preamble.server
+		) {
+			global.session = new Session( nextProps.preamble );
 		}
 	}
 

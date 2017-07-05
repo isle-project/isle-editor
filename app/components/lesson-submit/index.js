@@ -71,7 +71,7 @@ class LessonSubmit extends Component {
 				position: 'tr'
 			});
 			if ( this.props.mail ) {
-				global.lesson.sendMail( this.props.mail, global.lesson.session.user.email );
+				session.sendMail( this.props.mail, session.user.email );
 			}
 			this.setState({
 				disabled: true
@@ -81,7 +81,8 @@ class LessonSubmit extends Component {
 
 		this.handleClick = () => {
 			this.props.onClick();
-			const str = 'ISLE_USER_' + ISLE.server;
+			const { session } = this.context;
+			const str = 'ISLE_USER_' + session.server;
 			let item = localStorage.getItem( str );
 			if ( !item ) {
 				this.setState({
@@ -131,7 +132,7 @@ class LessonSubmit extends Component {
 					</Modal.Header>
 					<Modal.Body>
 						<p>
-							To finalize this lesson, please login in to your ISLE account. If you have not created one, 
+							To finalize this lesson, please login in to your ISLE account. If you have not created one,
 							please sign up and get access to the full functionality of ISLE.
 						</p>
 					</Modal.Body>

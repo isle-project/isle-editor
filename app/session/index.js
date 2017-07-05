@@ -1,5 +1,6 @@
 // MODULES //
 
+import mustache from 'mustache';
 import request from 'request';
 import isString from '@stdlib/assert/is-string';
 import inEditor from 'utils/is-electron';
@@ -610,7 +611,22 @@ class Session {
 			}
 		};
 		xhr.send( formData );
+	}
 
+	sendMail( name, to ) {
+		var mailOptions = this.config.mails[ name ] || {};
+		if ( !mailOptions.hasOwnProperty( 'from' ) ) {
+			mailOptions.from = this.config.email || 'robinson@isle.cmu.edu';
+		}
+		if ( mailOptions.hasOwnProperty( 'text' ) ) {
+			mailOptions.text = mustache.render( mailOptions.text, global.lesson );
+		}
+		mailOptions.to = to;
+		request.post( this.config.server + '/mail', {
+			form: mailOptions
+		}, ( error, response, body ) => {
+			console.log( error );
+		});
 	}
 
 }
