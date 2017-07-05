@@ -255,32 +255,41 @@ class Session {
 			debug( 'A user has joined and should be added to the user list: ' + data );
 			data = JSON.parse( data );
 			this.userList.push( data );
-			global.lesson.addNotification({
-				title: 'User has joined',
-				message: `User ${data.name} (${data.email}) has joined us.`,
-				level: 'success',
-				position: 'tl'
-			});
+			if ( data.email !== this.user.email ) {
+				global.lesson.addNotification({
+					title: 'User has joined',
+					message: `User ${data.name} (${data.email}) has joined us.`,
+					level: 'success',
+					position: 'tl'
+				});
+			}
 			this.update();
 		});
 
 		socket.on( 'user_leaves', ( data ) => {
-			debug( 'A user has disconnected and should be removed: ' + data );
-			data = JSON.parse( data );
-			this.userList = this.userList.map( user => {
-				if ( user.email === data.email ) {
-					user.inactive = true;
-					user.exitTime = data.exitTime;
-				};
-				return user;
-			});
-			global.lesson.addNotification({
-				title: 'User has left',
-				message: `User ${data.name} (${data.email}) has left us.`,
-				level: 'success',
-				position: 'tl'
-			});
-			this.update();
+			if ( this.user ) {
+				debug( 'A user has disconnected and should be removed: ' + data );
+				data = JSON.parse( data );
+				this.userList = this.userList.map( user => {
+					if ( user.email === data.email ) {
+						user.inactive = true;
+						user.exitTime = data.exitTime;
+					};
+					return user;
+				});
+				if ( data.email !== this.user.email ) {
+					global.lesson.addNotification({
+						title: 'User has left',
+						message: `User ${data.name} (${data.email}) has left us.`,
+						level: 'success',
+						position: 'tl'
+					});
+					this.update();
+				} else {
+					// Case: Oneself has logged on another browser tab
+					this.forcedLogout();
+				}
+			}
 		});
 
 		socket.on( 'chat_history', ({ name, messages, members }) => {
@@ -374,6 +383,7 @@ class Session {
 	}
 
 	logout() {
+		debug( `Logout initiated by user ${this.user.name}` );
 		localStorage.removeItem( this.userVal );
 		this.socket.emit( 'leave' );
 		this.user = null;
@@ -382,6 +392,21 @@ class Session {
 		global.lesson.addNotification({
 			title: 'Logged out',
 			message: 'You have successfully logged out.',
+			level: 'success',
+			position: 'tl'
+		});
+		this.update( 'logout' );
+	}
+
+	forcedLogout() {
+		debug( `Forced logout of user ${this.user.name} by server` );
+		localStorage.removeItem( this.userVal );
+		this.user = null;
+		this.anonymous = true;
+		this.reset();
+		global.lesson.addNotification({
+			title: 'Logged out',
+			message: 'You have been logged out by a server command.',
 			level: 'success',
 			position: 'tl'
 		});
