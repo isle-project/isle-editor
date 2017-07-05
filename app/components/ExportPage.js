@@ -16,6 +16,7 @@ import fs from 'fs';
 import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
 import Spinner from 'components/spinner';
+const debug = require( 'debug' )( 'isle-editor' );
 
 
 // VARIABLES //
@@ -52,10 +53,12 @@ class UploadLesson extends Component {
 		};
 
 		this.handleSelectChange = ( event ) => {
+			debug( 'Change the selected namespace...' );
 			const target = event.target;
 			const value = target.value;
+			debug( 'The selected namespace is: ' + value );
 			this.setState({
-				namespaceName: this.state.namespaces[ value ]
+				namespaceName: value
 			});
 		};
 
