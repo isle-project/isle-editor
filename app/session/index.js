@@ -335,7 +335,7 @@ class Session {
 				lessonID: this.lessonID
 			}
 		}, ( error, response, body ) => {
-			if ( !error ) {
+			if ( !error && response.statusCode === 200 ) {
 				body = JSON.parse( body );
 				this.socketActions = body.actions;
 			}
