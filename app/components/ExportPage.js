@@ -7,6 +7,8 @@ import { Button, ButtonToolbar, Col, ControlLabel, Form, FormControl,
 import { Link } from 'react-router-dom';
 import { remote, shell } from 'electron';
 import path from 'path';
+import FormData from 'form-data';
+import http from 'http';
 import request from 'request';
 import tmpdir from '@stdlib/utils/tmpdir';
 import archiver from 'archiver';
@@ -88,34 +90,44 @@ class UploadLesson extends Component {
 		};
 
 		this.upstreamData = ({ outputPath, outputDir }) => {
-			let namespaceName = this.state.namespaceName;
-			let lessonName = this.state.lessonName;
-			const formData = {
-				namespaceName: namespaceName,
-				lessonName: lessonName,
-				zipped: fs.createReadStream( path.join( outputPath, outputDir+'.zip' ) )
-			};
+			let { lessonName, namespaceName } = this.state;
+
 			console.log( 'Sending POST request to create lesson...' );
-			request.post( this.state.server+ '/create_lesson', {
-				formData: formData,
-				headers: {
-					'Authorization': 'JWT ' + this.state.token
-				}
-			}, ( err, res ) => {
-				if ( err ) {
-					console.log( 'Encountered error: ' + err.message );
-					return err;
-				}
-				let lessonLink = this.state.server + '/' + namespaceName + '/' + lessonName;
-				let msg = <span>
-					The lesson has been uploaded successfully and can be accessed at the following address: <a href={lessonLink}>{lessonLink}</a>
-				</span>;
-				this.setState({
-					spinning: false,
-					showResponseModal: true,
-					modalMessage: msg
-				});
+			const form = new FormData();
+			form.append( 'namespaceName', namespaceName );
+			form.append( 'lessonName', lessonName );
+			form.append( 'zipped', fs.createReadStream( path.join( outputPath, outputDir+'.zip' ) ) );
+
+			const headers = form.getHeaders();
+			headers[ 'Authorization' ] = 'JWT ' + this.state.token;
+
+			const host = this.state.server.replace( /^https?\:\/\//i, '' );
+			var request = http.request({
+				method: 'post',
+				host: host,
+				path: '/create_lesson',
+				headers: headers
 			});
+			form.pipe( request );
+
+			request.on( 'response', ( res ) => {
+				if ( res.statusCode === 200 ) {
+					let lessonLink = this.state.server + '/' + namespaceName + '/' + lessonName;
+					let msg = <span>
+						The lesson has been uploaded successfully and can be accessed at the following address: <a href={lessonLink}>{lessonLink}</a>
+					</span>;
+					this.setState({
+						spinning: false,
+						showResponseModal: true,
+						modalMessage: msg
+					});
+				}
+			});
+
+			request.on( 'error', ( err ) => {
+				console.log( 'Encountered error: ' + err.message );
+			});
+
 		};
 
 		this.checkLesson = () => {

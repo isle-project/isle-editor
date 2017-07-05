@@ -24,7 +24,8 @@ export default {
 				path.join( __dirname, 'node_modules', 'fs-extra' ),
 				path.join( __dirname, 'node_modules', 'unique-string' )
 			]
-		}, {
+		},
+		{
 			test: /\.json$/,
 			use: 'json-loader'
 		},
@@ -60,7 +61,8 @@ export default {
 			'esprima': path.resolve( './node_modules/esprima-fb' ),
 			'object-keys': path.resolve( './objectKeys.js' ),
 			'electron-prebuilt': path.resolve( './dummy.js' ),
-			'victory': require.resolve( 'victory/dist/victory' )
+			'victory': require.resolve( 'victory/dist/victory' ),
+			'form-data': path.resolve( './node_modules/form-data/lib/form_data.js' )
 		},
 		modules: [
 			path.resolve( './app' ),
