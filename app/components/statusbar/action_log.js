@@ -101,10 +101,6 @@ class ActionLog extends Component {
 		const { session } = this.context;
 		let displayedActions = [];
 
-		console.log( from )
-		console.log( to )
-		console.log( session.socketActions.length );
-
 		for ( let i = 0; i < session.socketActions.length; i++ ) {
 			let action = session.socketActions[ i ];
 			if ( action.absoluteTime > from && action.absoluteTime < to ) {
@@ -135,7 +131,6 @@ class ActionLog extends Component {
 		this.buildActionsArray( this.props );
 		this.unsubscribe = session.subscribe( ( type ) => {
 			const { session } = this.context;
-			console.log( "GOT INSTRUCTOR ACTION: " + type );
 			if ( session.socketActions.length === 0 && this.state.filter !== null ) {
 				this.setState({
 					filter: null
