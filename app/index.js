@@ -19,6 +19,7 @@ import configureIpcRenderer from './configure_ipc_renderer.js';
 // VARIABLES //
 
 const history = createHashHistory();
+const PATH_REGEX = /\/[0-9]*$/;
 
 
 // MAIN //
@@ -31,7 +32,14 @@ render(
 	<Provider store={store}>
 		<Router history={history}>
 			<div className="App">
-				<Route exact path="/" component={Editor} />
+				<Route exact path="/" children={ ( match ) => {
+					// Account for routes of spectacle slides...
+					if ( PATH_REGEX.test( match.location.pathname ) ) {
+						return <Editor />;
+					} else {
+						return null;
+					}
+				}} />
 				<Route path="/docs" component={Documentation} />
 				<Route path="/settings" component={Settings} />
 				<Route path="/export" component={Export} />
