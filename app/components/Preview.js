@@ -192,7 +192,8 @@ export default class Preview extends Component {
 							global.lesson = this;
 						},
 						getInitialState: function() {
-							return preamble.state;
+							var config = global.session.config;
+							return config.state;
 						},
 						addNotification: function( config ) {
 							this.refs.notificationSystem.addNotification( config );
