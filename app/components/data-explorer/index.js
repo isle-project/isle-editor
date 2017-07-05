@@ -251,13 +251,14 @@ class DataExplorer extends Component {
 												Tests
 											</NavItem> : null
 											}
-											<NavItem
+											{ this.props.transformer ? <NavItem
 												eventKey="5"
 												title="Transform"
 												id="nav-transform"
 											>
 												Transform
-											</NavItem>
+											</NavItem> : null
+											}
 											{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
 												return ( <NavItem eventKey={`${6+i}`}>
 													{e.title}
@@ -270,6 +271,7 @@ class DataExplorer extends Component {
 											<Tab.Pane eventKey="1">
 												<SummaryStatistics
 													{...continuousProps}
+													statistics={this.props.statistics}
 													logAction={this.logAction}
 												/>
 											</Tab.Pane>
@@ -349,7 +351,7 @@ class DataExplorer extends Component {
 													/>
 												</Tab.Pane> : null
 											}
-											<Tab.Pane eventKey="5">
+											{ this.props.transformer ? <Tab.Pane eventKey="5">
 												<VariableTransformer
 													data={this.state.data}
 													logAction={this.logAction}
@@ -407,7 +409,7 @@ class DataExplorer extends Component {
 														}
 													}}
 												/>
-											</Tab.Pane>
+											</Tab.Pane> : null }
 											{this.props.tabs.map( ( e, i ) => {
 												return ( <Tab.Pane eventKey={`${6+i}`}>
 													{e.content}
@@ -440,6 +442,7 @@ DataExplorer.defaultProps = {
 	onSelect(){},
 	tabs: [],
 	questions: null,
+	transformer: false,
 	statistics: [
 		'Mean',
 		'Median',
@@ -481,7 +484,8 @@ DataExplorer.propTypes = {
 	plots: PropTypes.array,
 	tables: PropTypes.array,
 	tests: PropTypes.array,
-	onSelect: PropTypes.func
+	onSelect: PropTypes.func,
+	transformer: PropTypes.bool
 };
 
 DataExplorer.contextTypes = {
