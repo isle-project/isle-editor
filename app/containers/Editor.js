@@ -90,11 +90,9 @@ class App extends Component {
 			const handleChange = ( value ) => {
 				debug( 'Should handle change...' );
 				const preamble = value.match( /---([\S\s]*)---/ )[ 1 ];
-				console.log( preamble );
 				let preambleHasChanged = this.checkPreambleChange( preamble );
 				if ( preambleHasChanged ) {
 					const newPreamble = yaml.load( preamble );
-					console.log( newPreamble );
 					this.props.updatePreamble( newPreamble );
 					loadRequires( newPreamble.require, this.props.filePath || '' );
 
