@@ -9,11 +9,12 @@ import isArray from '@stdlib/assert/is-array';
 import floor from '@stdlib/math/base/special/floor';
 import Spinner from 'components/spinner';
 import createPrependCode from 'components/r/utils/create-prepend-code';
+import getOpenCPUServer from 'utils/get-opencpu-server';
 
 
 // CONSTANTS //
 
-import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu.js';
+import { OPEN_CPU_IDENTITY } from 'constants/opencpu.js';
 const STDOUT_REGEX = /stdout/;
 
 
@@ -84,10 +85,7 @@ class RTable extends Component {
 					prependCode +
 					code.replace( /\n\s*([ A-Z0-9._\(\)]+)\n*$/i, '\n toJSON($1)' );
 
-				const OPEN_CPU = global.ISLE.rshell && global.ISLE.rshell.server ?
-					global.ISLE.rshell.server :
-					OPEN_CPU_DEFAULT_SERVER;
-
+				const OPEN_CPU = getOpenCPUServer();
 				request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
 					form: {
 						x: jsonCode

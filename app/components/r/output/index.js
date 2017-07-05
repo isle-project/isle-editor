@@ -6,11 +6,13 @@ import DOMPurify from 'dompurify';
 import request from 'request';
 import Spinner from 'components/spinner';
 import createPrependCode from 'components/r/utils/create-prepend-code';
+import getOpenCPUServer from 'utils/get-opencpu-server';
+
 
 
 // CONSTANTS //
 
-import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu.js';
+import { OPEN_CPU_IDENTITY } from 'constants/opencpu.js';
 const ERR_REGEX = /\nIn call:[\s\S]*$/gm;
 const STDOUT_REGEX = /stdout/;
 
@@ -55,10 +57,7 @@ class ROutput extends Component {
 					running: true
 				});
 
-				const OPEN_CPU = global.ISLE.rshell && global.ISLE.rshell.server ?
-					global.ISLE.rshell.server :
-					OPEN_CPU_DEFAULT_SERVER;
-
+				const OPEN_CPU = getOpenCPUServer();
 				let prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
 				let fullCode = prependCode + code;
 

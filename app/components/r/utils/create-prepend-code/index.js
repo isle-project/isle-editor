@@ -21,12 +21,13 @@ const requireLibs = ( libs ) => {
 * @param {string} generated code
 */
 function createPrependCode ( libs, prependCode ) {
-	if ( ISLE.rshell && ISLE.rshell.libraries ) {
-		libs = libs.concat( ISLE.rshell.libraries );
+	const { rshell } = global.session.config;
+	if ( rshell && rshell.libraries ) {
+		libs = libs.concat( rshell.libraries );
 	}
 	let ret = requireLibs( libs );
-	if ( ISLE.rshell && ISLE.rshell.global ) {
-		ret += ISLE.rshell.global + '\n';
+	if ( rshell && rshell.global ) {
+		ret += rshell.global + '\n';
 	}
 	prependCode = isArray( prependCode ) ?
 		prependCode.join( '\n' ) :

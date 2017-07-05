@@ -13,6 +13,7 @@ import ChatButton from 'components/chat-button';
 import beforeUnload from 'utils/before-unload';
 import isElectron from 'utils/is-electron';
 import isArray from '@stdlib/assert/is-array';
+import getOpenCPUServer from 'utils/get-opencpu-server';
 
 import ace from 'brace';
 import 'brace/mode/r';
@@ -24,7 +25,7 @@ import Spinner from 'components/spinner';
 
 // CONSTANTS //
 
-import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu.js';
+import { OPEN_CPU_IDENTITY } from 'constants/opencpu.js';
 const GRAPHICS_REGEX = /graphics/;
 const STDOUT_REGEX = /stdout/;
 const ERR_REGEX = /\nIn call:[\s\S]*$/gm;
@@ -281,8 +282,8 @@ class RShell extends React.Component {
 					this.getHelpPage( helpCommand[ 0 ]);
 				}
 
+				const { session } = this.context;
 				if ( this.props.id ) {
-					const { session } = this.context;
 					session.log({
 						id: this.props.id,
 						type: 'RSHELL_EVALUATION',
@@ -300,9 +301,7 @@ class RShell extends React.Component {
 				currentCode = prependCode + currentCode + '\n';
 				this.props.onEvaluate( currentCode );
 
-				const OPEN_CPU = global.ISLE.rshell && global.ISLE.rshell.server ?
-					global.ISLE.rshell.server :
-					OPEN_CPU_DEFAULT_SERVER;
+				const OPEN_CPU = getOpenCPUServer();
 
 				request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
 					form: {
@@ -351,9 +350,7 @@ class RShell extends React.Component {
 
 		this.getHelpPage = ( helpCommand ) => {
 
-			const OPEN_CPU = global.ISLE.rshell && global.ISLE.rshell.server ?
-				global.ISLE.rshell.server :
-				OPEN_CPU_DEFAULT_SERVER;
+			const OPEN_CPU = getOpenCPUServer();
 
 			request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
 				form: {
@@ -536,7 +533,7 @@ class RShell extends React.Component {
 						null
 					}
 					{
-						( this.props.chat && this.props.id ) ? 
+						( this.props.chat && this.props.id ) ?
 							<span style={{display: 'inline-block', marginLeft: '4px' }}>
 								<ChatButton for={this.props.id} />
 							</span> :

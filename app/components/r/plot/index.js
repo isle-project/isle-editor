@@ -6,11 +6,12 @@ import request from 'request';
 import createPrependCode from 'components/r/utils/create-prepend-code';
 import Spinner from 'components/spinner';
 import Image from 'components/image';
+import getOpenCPUServer from 'utils/get-opencpu-server';
 
 
 // CONSTANTS //
 
-import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu.js';
+import { OPEN_CPU_IDENTITY } from 'constants/opencpu.js';
 const GRAPHICS_REGEX = /graphics/;
 
 
@@ -54,10 +55,7 @@ class RPlot extends Component {
 			let prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
 			const fullCode = prependCode + this.props.code;
 
-			const OPEN_CPU = global.ISLE.rshell && global.ISLE.rshell.server ?
-				global.ISLE.rshell.server :
-				OPEN_CPU_DEFAULT_SERVER;
-
+			const OPEN_CPU = getOpenCPUServer();
 			request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
 				form: {
 					x: fullCode
