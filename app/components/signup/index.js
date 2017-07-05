@@ -93,9 +93,9 @@ class Signup extends Component {
 
 	render() {
 		return (
-			<Modal show={this.props.show} style={{ 
+			<Modal show={this.props.show} style={{
 				position: 'fixed',
-				top: '20%',
+				top: '5%',
 				height: 'auto',
 				left: 0,
 				right: 0,
