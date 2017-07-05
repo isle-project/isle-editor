@@ -155,7 +155,7 @@ const getISLEcode = ( yamlStr ) => {
 
 const getSessionCode = ( basePath ) => {
 	let str = 'const Session = ';
-	str += `require( '${path.resolve( basePath, './app/api/session' )}' );`;
+	str += `require( '${path.resolve( basePath, './app/session' )}' );`;
 	return str;
 };
 

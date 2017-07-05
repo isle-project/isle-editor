@@ -21,7 +21,7 @@ const createReactClass = require( 'create-react-class' );
 const NotificationSystem = require( 'react-notification-system' );
 const contains = require( '@stdlib/assert/contains' );
 const request = require( 'request' );
-const Session = require ( 'api/session' );
+const Session = require ( 'session' );
 
 import { Component } from 'react';
 import { transform } from 'react-tools';
