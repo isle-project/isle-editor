@@ -85,6 +85,7 @@ const VictoryArea = require( 'victory' ).VictoryArea;
 const VictoryBar = require( 'victory' ).VictoryBar;
 const VictoryChart = require( 'victory' ).VictoryChart;
 const VictoryContainer = require( 'victory' ).VictoryContainer;
+const VictoryCursorContainer = require( 'victory' ).VictoryCursorContainer;
 const VictoryGroup = require( 'victory' ).VictoryGroup;
 const VictoryAxis = require( 'victory' ).VictoryAxis;
 const VictoryErrorBar = require( 'victory' ).VictoryErrorBar;

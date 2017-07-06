@@ -71,6 +71,7 @@
 	"VictoryAnimation": "const VictoryAnimation = require( \"victory\" ).VictoryAnimation",
 	"VictoryArea": "const VictoryArea = require( \"victory\" ).VictoryArea",
 	"VictoryBar": "const VictoryBar = require( \"victory\" ).VictoryBar",
+	"VictoryCursorContainer": "const VictoryCursorContainer = require( \"victory\" ).VictoryCursorContainer",
 	"VictoryTheme": "const VictoryTheme = require( \"victory\" ).VictoryTheme",
 	"VictoryChart": "const VictoryChart = require( \"victory\" ).VictoryChart",
 	"VictoryGroup": "const VictoryGroup = require( \"victory\" ).VictoryGroup",
