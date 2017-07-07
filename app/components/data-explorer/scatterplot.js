@@ -17,19 +17,19 @@ class Scatterplot extends Component {
 
 	generateScatterplot( xval, yval, color, type ) {
 		let aes = 'aes( x = xval, y = yval';
-		if ( color !== 'None' ) {
+		if ( color ) {
 			aes += ', color = color';
 		}
-		if ( type !== 'None' ) {
+		if ( type ) {
 			aes += ', shape = type';
 		}
 		aes += ' )';
 
 		let labs = `labs( x = "${xval}", y="${yval}"`;
-		if ( color !== 'None' ) {
+		if ( color ) {
 			labs += `, color = "${color}"`;
 		}
-		if ( type !== 'None' ) {
+		if ( type ) {
 			labs += `, shape = "${type}"`;
 		}
 		labs += ' )';
@@ -37,8 +37,8 @@ class Scatterplot extends Component {
 		let code = `dat = data.frame(
 			xval = c(${this.props.data[ xval ]}),
 			yval = c(${this.props.data[ yval ]})
-			${ color !== 'None' ? `, color = c(${this.props.data[ color ].map( e => `"${e}"` )})` : '' }
-			${ type !== 'None' ? `, type = c(${this.props.data[ type ].map( e => `"${e}"` )})` : '' }
+			${ color ? `, color = c(${this.props.data[ color ].map( e => `"${e}"` )})` : '' }
+			${ type ? `, type = c(${this.props.data[ type ].map( e => `"${e}"` )})` : '' }
 		)
 		ggplot( data = dat, ${aes}) +
 		geom_point( size = 1.5 ) + ${labs}`;
