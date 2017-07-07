@@ -3,8 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Panel } from 'react-bootstrap';
+import { isArray } from '@stdlib/assert';
 import Input from 'components/input';
 import NumberInput from 'components/input/number';
+import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import { findAllChildren } from 'utils/find-nodes';
 
@@ -26,6 +28,17 @@ class Dashboard extends Component {
 						v instanceof SliderInput
 					) {
 						return parseFloat( v.state.value );
+					}
+					else if ( v instanceof SelectInput ) {
+						const val = v.state.value;
+						if ( isArray( val ) ) {
+							return val.map( x => x.value );
+						}
+						if ( val ) {
+							return val.value;
+						}
+						// Case: val is null
+						return val;
 					}
 					else {
 						return v.state.value;
@@ -89,7 +102,6 @@ class Dashboard extends Component {
 					>{this.props.label}</Button> :
 					<span />
 				}
-
 			</Panel>
 		);
 	}

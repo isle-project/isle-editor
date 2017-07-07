@@ -2,9 +2,13 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ControlLabel, Form, FormControl, FormGroup } from 'react-bootstrap';
-import isEmptyObject from '@stdlib/assert/is-empty-object';
+import { ControlLabel, Form, FormGroup } from 'react-bootstrap';
 import Input from 'components/input';
+const debug = require( 'debug' )( 'isle-editor' );
+import Select from 'react-select';
+
+// Be sure to include styles at some point, probably during your bootstrapping
+import 'react-select/dist/react-select.css';
 
 
 // MAIN //
@@ -18,17 +22,24 @@ class SelectInput extends Input {
 	constructor( props ) {
 		super( props );
 
-		// Initialize state variables...
+		this.options = this.props.options.map( e => {
+			return { 'label': e, 'value': e };
+		});
+
+		const { defaultValue } = props;
 		this.state = {
-			value: props.defaultValue
+			value: props.multi ? [] : { 'label': defaultValue, 'value': defaultValue }
 		};
 
-		this.handleChange = ( event ) => {
-			const value = event.target.value;
+		this.handleChange = ( newValue ) => {
+			debug( 'Received a new value: ' + JSON.stringify( newValue ) );
 			this.setState({
-				value
+				value: newValue
 			}, () => {
-				this.props.onChange( value );
+				const val = this.props.multi ?
+					newValue.map( x => x.value ) :
+					newValue.value;
+				this.props.onChange( val );
 				if ( this.context.autoUpdate ) {
 					this.context.triggerDashboardClick();
 				}
@@ -36,61 +47,41 @@ class SelectInput extends Input {
 		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		let newState = {};
-		if ( nextProps.defaultValue !== this.props.defaultValue ) {
-			newState.value = nextProps.defaultValue;
-		}
-		if ( !isEmptyObject( newState ) ) {
-			this.setState( newState );
-		}
-	}
-
 	/*
 	* React component render method.
 	*/
 	render() {
+		let style = {};
 		if ( this.props.inline ) {
-			return (
-				<FormControl
-					value={this.state.value}
-					defaultValue={this.props.defaultValue}
-					componentClass="select"
-					placeholder="select"
-					onChange={this.handleChange}
-					style={{
-						width: 'auto',
-						display: 'inline'
-					}}
-				>
-					{this.props.options.map( e => {
-						return <option value={e}>{e}</option>;
-					})}
-				</FormControl>
-			);
-		} else {
-			return (
-				<Form style={{ ...this.props.style }} >
-					<FormGroup controlId="formControlsSelect">
-						{ this.props.legend ?
-							<ControlLabel>{this.props.legend}</ControlLabel> :
-							null
-						}
-						<FormControl
-							value={this.state.value}
-							defaultValue={this.props.defaultValue}
-							componentClass="select"
-							placeholder="select"
-							onChange={this.handleChange}
-						>
-							{this.props.options.map( e => {
-								return <option value={e}>{e}</option>;
-							})}
-						</FormControl>
-					</FormGroup>
-				</Form>
-			);
+			style = {
+				width: 'auto',
+				display: 'inline'
+			};
 		}
+		let clearable = this.props.multi ? true : false;
+		if ( this.props.clearable ) {
+			clearable = this.props.clearable;
+		}
+		return (
+			<Form style={{ ...this.props.style }} >
+				<FormGroup controlId="formControlsSelect">
+					{ this.props.legend ?
+						<ControlLabel>{this.props.legend}</ControlLabel> :
+						null
+					}
+					<Select
+						name="form-field-name"
+						value={this.state.value}
+						options={this.options}
+						onChange={this.handleChange}
+						placeholder={this.props.placeholder}
+						multi={this.props.multi}
+						style={style}
+						clearable={clearable}
+					/>
+				</FormGroup>
+			</Form>
+		);
 	}
 }
 
@@ -103,7 +94,9 @@ SelectInput.defaultProps = {
 	defaultValue: '',
 	inline: false,
 	legend: '',
-	options: []
+	options: [],
+	multi: false,
+	placeholder: 'Select...'
 };
 
 
@@ -115,7 +108,10 @@ SelectInput.propTypes = {
 	defaultValue: PropTypes.string,
 	inline: PropTypes.bool,
 	legend: PropTypes.string,
-	options: PropTypes.array
+	options: PropTypes.array,
+	multi: PropTypes.bool,
+	placeholder: PropTypes.string,
+	clearable: PropTypes.bool
 };
 
 
@@ -125,7 +121,6 @@ SelectInput.contextTypes = {
 	triggerDashboardClick: PropTypes.func,
 	autoUpdate: PropTypes.bool
 };
-
 
 
 // EXPORTS //
