@@ -56,6 +56,7 @@ const NavItem = ReactBootstrap.NavItem;
 const NumberInput = require( 'components/input/number' );
 const NumberSurvey = require( 'components/number-survey' );
 const Panel = ReactBootstrap.Panel;
+const Plotly = require( 'components/plotly' );
 const Provider = require( 'components/provider' );
 const RealtimeMetrics = require( 'components/metrics/realtime' );
 const Recorder = require( 'components/recorder' );
@@ -191,13 +192,11 @@ export default class Preview extends Component {
 					var lessonConfig = {
 						componentDidMount: function() {
 							global.lesson = this;
+							global.notificationSystem = this.refs.notificationSystem;
 						},
 						getInitialState: function() {
 							var config = global.session.config;
 							return config.state;
-						},
-						addNotification: function( config ) {
-							this.refs.notificationSystem.addNotification( config );
 						},
 						componentWillUnmount: function() {
 							this.unmounted = true;

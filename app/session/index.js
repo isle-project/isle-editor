@@ -82,12 +82,16 @@ class Session {
 
 		this.startPingServer = () => {
 			this.pingServer();
-			this.pingInterval = setInterval( this.pingServer, 10000 );
+			if ( !inEditor ) {
+				this.pingInterval = setInterval( this.pingServer, 10000 );
+			}
 		};
 
 		this.stopPingServer = () => {
 			debug( 'Should clear the interval pinging the server' );
-			clearInterval( this.pingInterval );
+			if ( !inEditor ) {
+				clearInterval( this.pingInterval );
+			}
 		};
 
 		const logSession = () => {
@@ -664,6 +668,12 @@ class Session {
 		return this.config.rshell && this.config.rshell.server ?
 			this.config.rshell.server :
 			OPEN_CPU_DEFAULT;
+	}
+
+	addNotification( config ) {
+		if ( global.notificationSystem ) {
+			global.notificationSystem.addNotification( config );
+		}
 	}
 
 }
