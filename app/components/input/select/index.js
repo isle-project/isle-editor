@@ -27,8 +27,10 @@ class SelectInput extends Input {
 		});
 
 		const { defaultValue } = props;
+		const value = defaultValue ? { 'label': defaultValue, 'value': defaultValue } : null;
+
 		this.state = {
-			value: props.multi ? [] : { 'label': defaultValue, 'value': defaultValue }
+			value
 		};
 
 		this.handleChange = ( newValue ) => {
@@ -91,7 +93,7 @@ class SelectInput extends Input {
 SelectInput.defaultProps = {
 	bind: '',
 	onChange() {},
-	defaultValue: '',
+	defaultValue: null,
 	inline: false,
 	legend: '',
 	options: [],
