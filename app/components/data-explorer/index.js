@@ -12,6 +12,7 @@ import Barchart from 'components/data-explorer/barchart';
 import Boxplot from 'components/data-explorer/boxplot';
 import Heatmap from 'components/data-explorer/heatmap';
 import Histogram from 'components/data-explorer/histogram';
+import MosaicPlot from 'components/data-explorer/mosaicplot';
 import Piechart from 'components/data-explorer/piechart';
 import Scatterplot from 'components/data-explorer/scatterplot';
 import isArray from '@stdlib/assert/is-array';
@@ -137,7 +138,6 @@ class DataExplorer extends Component {
 		super( props );
 
 		let groupVars = props.categorical.slice();
-		groupVars.unshift( 'None' );
 
 		this.state = {
 			data: props.data,
@@ -334,6 +334,12 @@ class DataExplorer extends Component {
 														logAction={this.logAction}
 													/>;
 													break;
+												case 'Mosaic Plot':
+													content = <MosaicPlot
+														{...continuousProps}
+														logAction={this.logAction}
+													/>;
+													break;
 												}
 												return <Tab.Pane eventKey={`3.${i+1}`}>
 													{content}
@@ -371,7 +377,6 @@ class DataExplorer extends Component {
 																	if ( previous > 0 ) {
 																		newCategorical.splice( previous, 1 );
 																		groupVars = newCategorical.slice();
-																		groupVars.unshift( 'None' );
 																	}
 																}
 															} else {
@@ -382,7 +387,6 @@ class DataExplorer extends Component {
 																	}
 																}
 																groupVars = newCategorical.slice();
-																groupVars.unshift( 'None' );
 															}
 															let newState = {
 																data: newData,
@@ -460,7 +464,8 @@ DataExplorer.defaultProps = {
 		'Histogram',
 		'Box Plot',
 		'Scatterplot',
-		'Heat Map'
+		'Heat Map',
+		'Mosaic Plot'
 	],
 	tables: [
 		'Frequency Table',

@@ -65,7 +65,7 @@ class SummaryStatistics extends Component {
 		fun = statistic( statName );
 
 		if ( statName === 'Correlation' ) {
-			if ( group === 'None' ) {
+			if ( !group ) {
 				res = fun( data[ variable ], data[ secondVariable ]);
 				// Extract correlation coefficient from correlation matrix:
 				res = res[ 0 ][ 1 ];
@@ -79,7 +79,7 @@ class SummaryStatistics extends Component {
 			variable = `${variable} vs. ${secondVariable}`;
 		}
 		else {
-			if ( group === 'None' ) {
+			if ( !group ) {
 				res = fun( data[ variable ]);
 			} else {
 				res = by( data[ variable ], data[ group ], fun );
@@ -144,8 +144,8 @@ class SummaryStatistics extends Component {
 				/>
 				<SelectInput
 					legend="Group By:"
-					defaultValue="None"
 					options={groupingVariables}
+					clearable={true}
 				/>
 			</Dashboard>
 		);

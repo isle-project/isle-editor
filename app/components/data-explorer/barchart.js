@@ -40,7 +40,7 @@ class Barchart extends Component {
 		let label = 'names.arg';
 		let output = null;
 
-		if ( group === 'None' ) {
+		if ( !group ) {
 			let freqs = entries( countBy( this.props.data[ variable ]) );
 			let categories = freqs.map( e => '"'+e[ 0 ]+'"' );
 			freqs = freqs.map( e => e[ 1 ]);
@@ -109,8 +109,8 @@ class Barchart extends Component {
 				/>
 				<SelectInput
 					legend="Group By:"
-					defaultValue={groupingVariables[ 0 ]}
 					options={groupingVariables}
+					clearable={true}
 				/>
 			</Dashboard>
 		);

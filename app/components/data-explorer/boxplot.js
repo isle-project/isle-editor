@@ -38,7 +38,7 @@ class Boxplot extends Component {
 	generateBoxplot( variable, group, commonAxis ) {
 		let yranges;
 		let output = null;
-		if ( group === 'None' ) {
+		if ( !group ) {
 			let data = this.props.data[ variable ];
 			output = {
 				variable: variable,
@@ -101,8 +101,8 @@ class Boxplot extends Component {
 				/>
 				<SelectInput
 					legend="Group By:"
-					defaultValue={groupingVariables[ 0 ]}
 					options={groupingVariables}
+					clearable={true}
 				/>
 				<CheckboxInput
 					legend="Use common y-axis (when grouped)"

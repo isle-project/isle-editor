@@ -134,7 +134,7 @@ class ContingencyTable extends Component {
 
 	generateContingencyTable( rowVar, colVar, group, relativeFreqs ) {
 		let output;
-		if ( group === 'None' ) {
+		if ( !group ) {
 			let table = createContingencyTable( this.props.data, rowVar, colVar, relativeFreqs );
 			output = {
 				variable: `${rowVar} by ${colVar}`,
@@ -173,8 +173,8 @@ class ContingencyTable extends Component {
 				/>
 				<SelectInput
 					legend="Group By:"
-					defaultValue="None"
 					options={groupingVariables}
+					clearable={true}
 				/>
 				<CheckboxInput
 					legend="Relative Frequency"

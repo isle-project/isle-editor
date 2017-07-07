@@ -40,7 +40,7 @@ class Histogram extends Component {
 		variable, group, overlayDensity, chooseBins, nBins, xRange, xMin, xMax
 	) {
 		var output;
-		if ( group === 'None' ) {
+		if ( !group ) {
 			let data = this.props.data[ variable ];
 			let code;
 			if ( chooseBins ) {
@@ -135,8 +135,8 @@ class Histogram extends Component {
 				/>
 				<SelectInput
 					legend="Group By:"
-					defaultValue="None"
 					options={groupingVariables}
+					clearable={true}
 				/>
 				<CheckboxInput
 					inline

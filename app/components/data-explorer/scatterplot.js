@@ -82,12 +82,10 @@ class Scatterplot extends Component {
 				/>
 				<SelectInput
 					legend="Color By:"
-					defaultValue={groupingVariables[ 0 ]}
 					options={groupingVariables}
 				/>
 				<SelectInput
 					legend="Point Type By:"
-					defaultValue={groupingVariables[ 0 ]}
 					options={groupingVariables}
 				/>
 			</Dashboard>

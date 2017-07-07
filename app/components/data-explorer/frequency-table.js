@@ -110,7 +110,7 @@ class FrequencyTable extends Component {
 
 	generateFrequencyTable( variable, group, relativeFreqs ) {
 		let freqs;
-		if ( group === 'None' ) {
+		if ( !group ) {
 			freqs = getFrequencies( this.props.data[ variable ], relativeFreqs );
 		} else {
 			freqs = by( this.props.data[ variable ], this.props.data[ group ], ( arr ) => {
@@ -118,12 +118,12 @@ class FrequencyTable extends Component {
 			});
 		}
 		let output = {
-			variable: group === 'None' ? variable : `${variable} by ${group}`,
-			type: group === 'None' ? 'Frequency Table' : 'Grouped Frequency Table',
+			variable: !group ? variable : `${variable} by ${group}`,
+			type: !group ? 'Frequency Table' : 'Grouped Frequency Table',
 			relative: relativeFreqs
 		};
 
-		if ( group === 'None' ) {
+		if ( !group ) {
 			output.value = frequencyTable( output.variable, freqs, relativeFreqs );
 		} else {
 			output.value = groupedFrequencyTable( output.variable, freqs, relativeFreqs );
@@ -149,8 +149,8 @@ class FrequencyTable extends Component {
 				/>
 				<SelectInput
 					legend="Group By:"
-					defaultValue="None"
 					options={groupingVariables}
+					clearable={true}
 				/>
 				<CheckboxInput
 					legend="Relative Frequency"
