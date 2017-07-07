@@ -180,6 +180,58 @@ class DataExplorer extends Component {
 			output: newOutput
 		});
 	}
+	onGenerateTransformedVariable = ( name, values ) => {
+		let newData = copy( this.state.data );
+		if ( !hasProp( this.props.data, name ) ) {
+			newData[ name ] = values;
+			let groupVars;
+			let previous;
+			let newContinuous = copy( this.state.continuous );
+			let newCategorical = copy( this.state.categorical );
+			if ( isNumberArray( values ) ) {
+				if ( !( name in newContinuous ) ) {
+					newContinuous.push( name );
+					previous = newCategorical.indexOf( name );
+					if ( previous > 0 ) {
+						newCategorical.splice( previous, 1 );
+						groupVars = newCategorical.slice();
+					}
+				}
+			} else {
+				if ( !( name in newCategorical ) ) {
+					newCategorical.push( name );																								previous = newContinuous.indexOf( name );
+					if ( previous > 0 ) {
+						newContinuous.splice( previous, 1 );
+					}
+				}
+				groupVars = newCategorical.slice();
+			}
+			let newState = {
+				data: newData,
+				categorical: newCategorical,
+				continuous: newContinuous,
+			};
+			if ( groupVars ) {
+				newState[ 'groupVars' ] = groupVars;
+			}
+			this.setState( newState );
+			const { session } = this.context;
+			session.addNotification({
+				title: 'Variable created',
+				message: `The variable with the name ${name} has been successfully ${ previous > 0 ? 'overwritten' : 'created' }`,
+				level: 'success',
+				position: 'tr'
+			});
+		} else {
+			const { session } = this.context;
+			session.addNotification({
+				title: 'Variable exists',
+				message: `The original variables of the data set cannot be overwritten.`,
+				level: 'error',
+				position: 'tr'
+			});
+		}
+	}
 	/**
 	* React component render method
 	*/
@@ -228,16 +280,14 @@ class DataExplorer extends Component {
 											{ this.props.tables.length > 0 ? <NavDropdown
 												eventKey="2"
 												title="Tables"
-												id="nav-dropdown-tables"
 											>
 												{this.props.tables.map( ( e, i ) =>
-													<MenuItem eventKey={`2.${i+1}`}>{e}</MenuItem> )}
+													<MenuItem key={i} eventKey={`2.${i+1}`}>{e}</MenuItem> )}
 											</NavDropdown> : null
 											}
 											{ this.props.plots.length > 0 ? <NavDropdown
 												eventKey="3"
 												title="Plots"
-												id="nav-dropdown-plots"
 											>
 												{this.props.plots.map( ( e, i ) =>
 													<MenuItem eventKey={`3.${i+1}`}>{e}</MenuItem> )}
@@ -246,7 +296,6 @@ class DataExplorer extends Component {
 											{ this.props.tests.length > 0 ? <NavItem
 												eventKey="4"
 												title="Tests"
-												id="nav-tests"
 											>
 												Tests
 											</NavItem> : null
@@ -254,7 +303,6 @@ class DataExplorer extends Component {
 											{ this.props.transformer ? <NavItem
 												eventKey="5"
 												title="Transform"
-												id="nav-transform"
 											>
 												Transform
 											</NavItem> : null
@@ -354,6 +402,7 @@ class DataExplorer extends Component {
 														onCreated={this.addToOutputs}
 														data={this.state.data}
 														logAction={this.logAction}
+														session={this.context.session}
 													/>
 												</Tab.Pane> : null
 											}
@@ -361,57 +410,9 @@ class DataExplorer extends Component {
 												<VariableTransformer
 													data={this.state.data}
 													logAction={this.logAction}
+													session={this.context.session}
 													defaultCode={generateTransformationCode( this.state.continuous[ 0 ])}
-													onGenerate={( name, values ) => {
-														let newData = copy( this.state.data );
-														if ( !hasProp( this.props.data, name ) ) {
-															newData[ name ] = values;
-															let groupVars;
-															let previous;
-															let newContinuous = copy( this.state.continuous );
-															let newCategorical = copy( this.state.categorical );
-															if ( isNumberArray( values ) ) {
-																if ( !( name in newContinuous ) ) {
-																	newContinuous.push( name );
-																	previous = newCategorical.indexOf( name );
-																	if ( previous > 0 ) {
-																		newCategorical.splice( previous, 1 );
-																		groupVars = newCategorical.slice();
-																	}
-																}
-															} else {
-																if ( !( name in newCategorical ) ) {
-																	newCategorical.push( name );																								previous = newContinuous.indexOf( name );
-																	if ( previous > 0 ) {
-																		newContinuous.splice( previous, 1 );
-																	}
-																}
-																groupVars = newCategorical.slice();
-															}
-															let newState = {
-																data: newData,
-																categorical: newCategorical,
-																continuous: newContinuous,
-															};
-															if ( groupVars ) {
-																newState[ 'groupVars' ] = groupVars;
-															}
-															this.setState( newState );
-															global.lesson.addNotification({
-																title: 'Variable created',
-																message: `The variable with the name ${name} has been successfully ${ previous > 0 ? 'overwritten' : 'created' }`,
-																level: 'success',
-																position: 'tr'
-															});
-														} else {
-															global.lesson.addNotification({
-																title: 'Variable exists',
-																message: `The original variables of the data set cannot be overwritten.`,
-																level: 'error',
-																position: 'tr'
-															});
-														}
-													}}
+													onGenerate={this.onGenerateTransformedVariable}
 												/>
 											</Tab.Pane> : null }
 											{this.props.tabs.map( ( e, i ) => {
