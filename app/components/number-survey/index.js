@@ -22,7 +22,7 @@ class NumberSurvey extends Component {
 		};
 
 		this.submitQuestion = () => {
-			const { session } = this.context; 
+			const { session } = this.context;
 			if ( this.props.id ) {
 				session.log({
 					id: this.props.id,
@@ -33,7 +33,7 @@ class NumberSurvey extends Component {
 			this.setState({
 				submitted: true
 			});
-			global.lesson.addNotification({
+			session.addNotification({
 				title: 'Submitted',
 				message: 'Your answer has been submitted.',
 				level: 'success',

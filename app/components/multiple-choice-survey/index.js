@@ -71,7 +71,7 @@ class MultipleChoiceSurvey extends Component {
 					submitted: true
 				});
 			}
-			global.lesson.addNotification({
+			session.addNotification({
 				title: 'Submitted',
 				message: 'Your answer has been submitted.',
 				level: 'success',

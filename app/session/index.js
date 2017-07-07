@@ -260,7 +260,7 @@ class Session {
 			data = JSON.parse( data );
 			this.userList.push( data );
 			if ( data.email !== this.user.email ) {
-				global.lesson.addNotification({
+				this.addNotification({
 					title: 'User has joined',
 					message: `User ${data.name} (${data.email}) has joined us.`,
 					level: 'success',
@@ -282,7 +282,7 @@ class Session {
 					return user;
 				});
 				if ( data.email !== this.user.email ) {
-					global.lesson.addNotification({
+					this.addNotification({
 						title: 'User has left',
 						message: `User ${data.name} (${data.email}) has left us.`,
 						level: 'success',
@@ -373,7 +373,7 @@ class Session {
 			form: data
 		}, ( err, res ) => {
 			if ( !err ) {
-				global.lesson.addNotification({
+				this.addNotification({
 					title: 'User created',
 					message: 'You have successfully signed up.',
 					level: 'success',
@@ -393,7 +393,7 @@ class Session {
 		this.user = null;
 		this.anonymous = true;
 		this.reset();
-		global.lesson.addNotification({
+		this.addNotification({
 			title: 'Logged out',
 			message: 'You have successfully logged out.',
 			level: 'success',
@@ -408,7 +408,7 @@ class Session {
 		this.user = null;
 		this.anonymous = true;
 		this.reset();
-		global.lesson.addNotification({
+		this.addNotification({
 			title: 'Logged out',
 			message: 'You have been logged out by a server command.',
 			level: 'success',
@@ -444,14 +444,14 @@ class Session {
 			}
 		}, ( error ) => {
 			if ( error ) {
-				global.lesson.addNotification({
+				this.addNotification({
 					title: 'New Password',
 					message: error.message,
 					level: 'error',
 					position: 'tl'
 				});
 			} else {
-				global.lesson.addNotification({
+				this.addNotification({
 					title: 'New Password',
 					message: 'Check your email inbox for a link to choose a new password.',
 					level: 'success',
@@ -492,7 +492,7 @@ class Session {
 			if ( error ) {
 				return error;
 			}
-			global.lesson.addNotification({
+			this.addNotification({
 				title: 'Logged in',
 				message: 'You have successfully logged in.',
 				level: 'success',
@@ -619,7 +619,7 @@ class Session {
 		let xhr = new XMLHttpRequest();
 		xhr.open( 'POST', this.server+'/upload_file', true );
 		xhr.setRequestHeader( 'Authorization', 'JWT ' + this.user.token );
-		xhr.onreadystatechange = function() {
+		xhr.onreadystatechange = () => {
 			if ( xhr.readyState === XMLHttpRequest.DONE ) {
 				let message;
 				let level;
@@ -632,7 +632,7 @@ class Session {
 					level = 'error';
 				}
 
-				global.lesson.addNotification({
+				this.addNotification({
 					title: 'File Upload',
 					message,
 					level,

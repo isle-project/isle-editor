@@ -36,15 +36,16 @@ class FreeTextQuestion extends Component {
 		};
 
 		this.submitHandler = ( event ) => {
+			const { session } = this.context;
 			if ( this.state.submitted ) {
-				global.lesson.addNotification({
+				session.addNotification({
 					title: 'Answer re-submitted.',
 					message: this.props.resubmissionMsg,
 					level: 'success',
 					position: 'tr'
 				});
 			} else {
-				global.lesson.addNotification({
+				session.addNotification({
 					title: 'Answer submitted.',
 					message: this.props.submissionMsg,
 					level: 'success',
@@ -55,7 +56,6 @@ class FreeTextQuestion extends Component {
 			this.setState({
 				submitted: true
 			});
-			const { session } = this.context;
 			if ( this.props.id ) {
 				session.log({
 					id: this.props.id,
@@ -192,7 +192,7 @@ class FreeTextQuestion extends Component {
 							<span />
 					}
 					{
-						this.props.chat && this.props.id ? 
+						this.props.chat && this.props.id ?
 							<div style={{ display: 'inline-block', marginLeft: '4px' }}>
 								<ChatButton for={this.props.id} />
 							</div> : null

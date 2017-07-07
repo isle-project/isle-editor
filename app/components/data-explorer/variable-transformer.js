@@ -46,7 +46,7 @@ class Transformer extends Component {
 		this.handleGenerate = () => {
 			let { data, code, name } = this.state;
 			if ( name.length < 2 ) {
-				return 	global.lesson.addNotification({
+				return this.props.session.addNotification({
 					title: 'Too short',
 					message: `Please select a variable name with at least two characters`,
 					level: 'error',

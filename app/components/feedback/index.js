@@ -31,7 +31,7 @@ class FeedbackButtons extends Component {
 				type: 'USER_FEEDBACK_CONFUSED',
 				value: 'confused'
 			});
-			global.lesson.addNotification({
+			session.addNotification({
 				title: 'Thank you!',
 				message: 'We are sorry to hear that. Your feedback helps us to improve the material.',
 				level: 'info',
@@ -50,7 +50,7 @@ class FeedbackButtons extends Component {
 				type: 'USER_FEEDBACK_UNDERSTOOD',
 				value: 'understood'
 			});
-			global.lesson.addNotification({
+			session.addNotification({
 				title: 'Thank you!',
 				message: 'Glad to hear that! Thank you for your feedback.',
 				level: 'info',
@@ -76,7 +76,7 @@ class FeedbackButtons extends Component {
 
 			this.setState({ showModal: false });
 
-			global.lesson.addNotification({
+			session.addNotification({
 				title: 'Thank you!',
 				message: 'Thank you for for taking the time to send us feedback.',
 				level: 'info',

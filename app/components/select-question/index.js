@@ -23,6 +23,7 @@ class SelectQuestion extends Component {
 		};
 
 		this.handleChange = ( event ) => {
+			const { session } = this.context;
 			const value = event.target.value;
 			this.setState({
 				value,
@@ -31,14 +32,14 @@ class SelectQuestion extends Component {
 				this.props.onChange( value );
 
 				if ( this.props.solution === value ) {
-					global.lesson.addNotification({
+					session.addNotification({
 						title: 'Correct',
 						message: this.props.successMsg,
 						level: 'success',
 						position: 'tr'
 					});
 				} else {
-					global.lesson.addNotification({
+					session.addNotification({
 						title: 'Incorrect',
 						message: this.props.failureMsg,
 						level: 'error',
@@ -127,6 +128,10 @@ SelectQuestion.propTypes = {
 	solution: PropTypes.string.isRequired,
 	successMsg: PropTypes.string,
 	failureMsg: PropTypes.string
+};
+
+SelectQuestion.contextTypes = {
+	session: PropTypes.object
 };
 
 

@@ -189,7 +189,7 @@ class HypothesisTests extends Component {
 					</pre>
 				</div>;
 			} else {
-				global.lesson.addNotification({
+				this.props.session.addNotification({
 					title: 'Action required',
 					message: `Please select either a grouping variable or a second variable to compare ${var1} against.`,
 					level: 'warning',
@@ -340,7 +340,7 @@ class HypothesisTests extends Component {
 					</pre>
 				</div>;
 			} else {
-				global.lesson.addNotification({
+				this.props.session.addNotification({
 					title: 'Action required',
 					message: `Please select either a grouping variable or a second variable to compare ${var1} against.`,
 					level: 'warning',

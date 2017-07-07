@@ -49,7 +49,8 @@ class StatusBar extends Component {
 
 		let sentNotification = false;
 		const promptLogin = () => {
-			global.lesson.addNotification({
+			const { session } = this.context;
+			session.addNotification({
 				title: 'Login',
 				message: 'Please connect with your ISLE account or create a new one.',
 				level: 'success',

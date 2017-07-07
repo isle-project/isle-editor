@@ -64,7 +64,7 @@ class LessonSubmit extends Component {
 		this.finalizeSession = ( item ) => {
 			const { session } = this.context;
 			session.finalize();
-			global.lesson.addNotification({
+			session.addNotification({
 				title: 'Completed',
 				message: 'Lesson successfully completed. You will receive a confirmation email shortly.',
 				level: 'success',
