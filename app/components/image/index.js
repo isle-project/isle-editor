@@ -77,7 +77,7 @@ class Image extends Component {
 						});
 					}}
 					onDragStart={ ( ev ) => {
-						ev.dataTransfer.setData( 'text', `<img src=${this.props.src} width="400" height="300" />` );
+						ev.dataTransfer.setData( 'text', `<img src="${this.props.src}" width="400" height="300" />` );
 					}}
 				/>
 				<Modal
@@ -105,7 +105,7 @@ class Image extends Component {
 						{ this.props.body ?
 							<CopyToClipboard text={this.props.body} onCopy={closeModal}><Button>Copy SVG</Button></CopyToClipboard> : null
 						}
-						<CopyToClipboard text={`<img src=${this.props.src} width="400" height="300" />`} onCopy={closeModal}><Button>Copy Link</Button></CopyToClipboard>
+						<CopyToClipboard text={`<img src="${this.props.src}" width="400" height="300" />`} onCopy={closeModal}><Button>Copy Link</Button></CopyToClipboard>
 						<Button href={this.props.src} download="plot.png" >Save Plot</Button>
 					</Modal.Footer>
 				</Modal>

@@ -132,7 +132,7 @@ RPlot.contextTypes = {
 
 RPlot.defaultProps = {
 	code: '',
-	fileType: 'svg',
+	fileType: 'png',
 	width: 600,
 	height: 400,
 	libraries: [],
