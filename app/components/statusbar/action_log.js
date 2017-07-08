@@ -7,6 +7,7 @@ import objectEntries from '@stdlib/utils/entries';
 import copy from '@stdlib/utils/copy';
 import PropTypes from 'prop-types';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+const debug = require( 'debug' )( 'isle-editor' );
 
 
 // VARIABLES //
@@ -55,7 +56,8 @@ class ActionLog extends Component {
 					filter: newFilter
 				}, () => {
 					const newHeader = this.createHeader( newFilter );
-					this.props.onFilter( newHeader );
+					const nActions = this.state.displayedActions.length;
+					this.props.onFilter( newHeader, nActions );
 				});
 			};
 			return onRemoveClick;
@@ -85,8 +87,10 @@ class ActionLog extends Component {
 				this.setState({
 					filter: newFilter
 				}, () => {
+					debug( 'The filter was successfully changed: ' + JSON.stringify( this.state.filter ) );
 					const newHeader = this.createHeader( newFilter );
-					this.props.onFilter( newHeader );
+					const nActions = this.state.displayedActions.length;
+					this.props.onFilter( newHeader, nActions );
 				});
 			};
 			return onClick;
@@ -108,7 +112,8 @@ class ActionLog extends Component {
 			}
 		}
 		if ( this.state.filter ) {
-			for ( let i = displayedActions.length - 1; i > 0; i-- ) {
+			debug( 'Should filter actions: ' + displayedActions.length );
+			for ( let i = displayedActions.length - 1; i >= 0; i-- ) {
 				let action = displayedActions[ i ];
 				let markedForRemoval = false;
 				for ( let key in this.state.filter ) {
@@ -136,7 +141,8 @@ class ActionLog extends Component {
 					filter: null
 				}, () => {
 					const newHeader = this.createHeader( null );
-					this.props.onFilter( newHeader );
+					const nActions = this.state.displayedActions.length;
+					this.props.onFilter( newHeader, nActions );
 				});
 			}
 			else if ( type === 'member_action' ) {
@@ -151,6 +157,13 @@ class ActionLog extends Component {
 			nextProps.period.to !== this.props.period.to
 		) {
 			this.buildActionsArray( nextProps );
+		}
+	}
+
+	componentDidUpdate( prevProps, prevState ) {
+		if ( this.state.filter !== prevState.filter ) {
+			debug( 'Should filter out actions...' );
+			this.buildActionsArray( this.props );
 		}
 	}
 

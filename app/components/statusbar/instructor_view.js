@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Accordion, ButtonToolbar, ButtonGroup, Button, OverlayTrigger, Panel, Popover } from 'react-bootstrap';
+import { Accordion, ButtonToolbar, ButtonGroup, Button, Panel } from 'react-bootstrap';
 import $ from 'jquery';
 import moment from 'moment';
 import ActionLog from './action_log.js';
@@ -32,7 +32,8 @@ class InstructorView extends Component {
 			period: {
 				from: moment( 0 ).startOf( 'day' ),
 				to: moment().endOf( 'day' )
-			}
+			},
+			nActions: null
 		};
 
 		this.timeClickFactory = ( type ) => {
@@ -100,11 +101,22 @@ class InstructorView extends Component {
 
 	componentDidMount() {
 		const { session } = this.context;
+
+		this.setState({
+			nActions: session.socketActions.length
+		});
+
 		this.unsubscribe = session.subscribe( ( type ) => {
 			if ( type === 'logout' ) {
 				debug( 'Should reset the filters after user logout:' );
 				this.setState({
 					actionLogHeader: <h4>Action Log</h4>
+				});
+			}
+			else if ( type === 'member_action' ) {
+				const { session } = this.context;
+				this.setState({
+					nActions: session.socketActions.length
 				});
 			}
 		});
@@ -231,11 +243,15 @@ class InstructorView extends Component {
 										onFocusChange={focusedInput => this.setState({ focusedInput })}
 										isOutsideRange={() => false}
 									/>
+									<span style={{ fontSize: '12px', fontWeight: 600 }}>
+										{'# '+this.state.nActions}
+									</span>
 								</ButtonGroup>
 							</ButtonToolbar>
-							<ActionLog period={this.state.period} onFilter={ ( newHeader ) => {
+							<ActionLog period={this.state.period} onFilter={ ( newHeader, nActions ) => {
 								this.setState({
-									actionLogHeader: newHeader
+									actionLogHeader: newHeader,
+									nActions: nActions
 								});
 							}} />
 						</Panel>
@@ -261,7 +277,7 @@ class InstructorView extends Component {
 						opacity: 0.7,
 						cursor: 'pointer',
 						top: '43%',
-						right: this.state.hidden ? '110%' : '105%',
+						right: this.state.hidden ? '105%' : '102%',
 						width: 0,
 						height: 0,
 						borderStyle: 'solid',
