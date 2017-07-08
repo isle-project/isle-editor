@@ -99,7 +99,7 @@
   },
   "dependencies": {
     "@stdlib/stdlib": "github:stdlib-js/stdlib#develop",
-    "archiver": "^1.3.0",
+    "archiver": "^2.0.0",
     "babel-core": "6.25.0",
     "babel-loader": "7.1.1",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -193,7 +193,7 @@
     "uniq": "^1.0.1",
     "utf-8-validate": "^3.0.2",
     "victory": "^0.21.0",
-    "webpack": "3.0.0"
+    "webpack": "3.1.0"
   },
   "devEngines": {
     "node": "5.x || 6.x || 7.x || 8.x"
