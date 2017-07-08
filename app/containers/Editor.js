@@ -25,6 +25,31 @@ var lastCSS = null;
 
 // FUNCTIONS //
 
+const applyStyles = ( preamble, filePath ) => {
+	let css = '';
+	if ( preamble.css ) {
+		if ( cssHash[ preamble.css ]) {
+			css += cssHash[ preamble.css ];
+		} else {
+			let fpath = preamble.css;
+			if ( !isAbsolutePath( fpath ) ) {
+				fpath = path.join( path.dirname( filePath ), fpath );
+			}
+			css += fs.readFileSync( fpath ).toString();
+		}
+	}
+	if ( preamble.style ) {
+		css += '\n';
+		css += preamble.style;
+	}
+	if ( preamble.style || preamble.css ) {
+		if ( css !== lastCSS ) {
+			injectStyle( css );
+		}
+		lastCSS = css;
+	}
+};
+
 const injectStyle = ( style ) => {
 
 	let previous = document.getElementById( 'mystyles' );
@@ -95,30 +120,7 @@ class App extends Component {
 					const newPreamble = yaml.load( preamble );
 					this.props.updatePreamble( newPreamble );
 					loadRequires( newPreamble.require, this.props.filePath || '' );
-
-					// Apply styles:
-					let css = '';
-					if ( newPreamble.css ) {
-						if ( cssHash[ newPreamble.css ]) {
-							css += cssHash[ newPreamble.css ];
-						} else {
-							let fpath = newPreamble.css;
-							if ( !isAbsolutePath( fpath ) ) {
-								fpath = path.join( path.dirname( this.props.filePath ), fpath );
-							}
-							css += fs.readFileSync( fpath ).toString();
-						}
-					}
-					if ( newPreamble.style ) {
-						css += '\n';
-						css += newPreamble.style;
-					}
-					if ( newPreamble.style || newPreamble.css ) {
-						if ( css !== lastCSS ) {
-							injectStyle( css );
-						}
-						lastCSS = css;
-					}
+					applyStyles( newPreamble, this.props.filePath || '' );
 				}
 				this.props.convertMarkdown( value );
 			};
@@ -129,8 +131,10 @@ class App extends Component {
 				this.debouncedChange = debounce( handleChange, 1000 );
 				this.debouncedChange( value );
 			}
-
 		};
+
+		loadRequires( props.preamble.require, props.filePath || '' );
+		applyStyles( props.preamble, props.filePath || '' );
 	}
 
 	checkPreambleChange( preamble ) {
