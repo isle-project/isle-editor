@@ -384,8 +384,9 @@ class DataExplorer extends Component {
 													break;
 												case 'Mosaic Plot':
 													content = <MosaicPlot
-														{...continuousProps}
+														{...categoricalProps}
 														logAction={this.logAction}
+														session={this.context.session}
 													/>;
 													break;
 												}
