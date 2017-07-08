@@ -60,7 +60,6 @@ export default {
 		alias: {
 			'esprima': path.resolve( './node_modules/esprima-fb' ),
 			'object-keys': path.resolve( './objectKeys.js' ),
-			'electron-prebuilt': path.resolve( './dummy.js' ),
 			'victory': require.resolve( 'victory/dist/victory' ),
 			'form-data': path.resolve( './node_modules/form-data/lib/form_data.js' )
 		},

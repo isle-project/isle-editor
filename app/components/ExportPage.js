@@ -230,7 +230,7 @@ class UploadLesson extends Component {
 									/>
 								</FormGroup>
 								<Button
-									bsStyle="info"
+									bsStyle="success"
 									bsSize="sm"
 									block
 									onClick={this.checkLesson}
@@ -410,7 +410,7 @@ class ExportLesson extends Component {
 						bsStyle="success"
 					>
 						<ButtonToolbar style={{ position: 'relative', margin: 'auto' }} >
-							<Button style={{ float: 'left' }} bsStyle="info" onClick={this.openFolder}>Open containing folder</Button>
+							<Button style={{ float: 'left' }} bsStyle="primary" onClick={this.openFolder}>Open containing folder</Button>
 							<Button style={{ float: 'right' }} bsStyle="success" onClick={this.openLesson}>Open lesson in Browser</Button>
 						</ButtonToolbar>
 					</Panel> : <Spinner width={128} height={64} running={this.state.spinning}/>
