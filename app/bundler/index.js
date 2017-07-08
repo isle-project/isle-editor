@@ -102,13 +102,10 @@ class Lesson extends Component {
 	constructor() {
 		super();
 		this.state = preamble.state;
+	}
 
-		this.addNotification = ( config ) => {
-			if ( this.refs.notificationSystem ) {
-				this.refs.notificationSystem.addNotification( config );
-			}
-		}
-
+	componentDidMount() {
+		global.notificationSystem = this.refs.notificationSystem;
 		global.lesson = this;
 	}
 
