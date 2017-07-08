@@ -21,6 +21,7 @@ const createReactClass = require( 'create-react-class' );
 const NotificationSystem = require( 'react-notification-system' );
 const contains = require( '@stdlib/assert/contains' );
 const request = require( 'request' );
+const debug = require( 'debug' )( 'isle-editor' );
 const Session = require ( 'session' );
 
 import { Component } from 'react';
@@ -141,13 +142,13 @@ export default class Preview extends Component {
 	constructor( props ) {
 		super( props );
 
-		let { code, preamble } = props;
-		global.session = new Session( preamble );
+		global.session = new Session( this.props.preamble );
 
 		this.shouldRenderPreview = true;
 		this.renderPreview = () => {
+			debug( 'Should render the lesson...' );
 			let es5code;
-			let { code } = this.props;
+			let { code, preamble } = this.props;
 			let session = global.session;
 			try {
 
@@ -159,13 +160,13 @@ export default class Preview extends Component {
 				code = markdownToHTML( code );
 
 				if ( preamble.type === 'presentation' ) {
+					debug( 'Should render a presentation...' );
 					let progress = 'number';
 					if ( preamble.presentation ) {
 						if ( preamble.presentation.progress ) {
 							progress = preamble.presentation.progress;
 						}
 					}
-
 					// Automatically insert <Slide> tags if not manually set...
 					if ( !contains( code, '<Slide' ) || !contains( code, '</Slide>' ) ) {
 						let pres = '<Slide>';
@@ -178,7 +179,6 @@ export default class Preview extends Component {
 						pres = pres.replace( /<li[^>]*>([\s\S]+?)<\/li>/g, '<ListItem>$1</ListItem>' );
 						code = pres;
 					}
-
 					code = `
 						<Deck
 							globalStyles={false}
@@ -246,6 +246,9 @@ export default class Preview extends Component {
 		) {
 			global.session = new Session( nextProps.preamble );
 		}
+		if ( nextProps.preamble.type !== this.props.preamble.type ) {
+			this.renderPreview();
+		}
 	}
 
 	componentDidMount() {
@@ -258,8 +261,7 @@ export default class Preview extends Component {
 
 	render() {
 		return (
-			<div ref="preview" className="Preview" id="Preview">
-			</div>
+			<div ref="preview" className="Preview" id="Preview"></div>
 		);
 	}
 }

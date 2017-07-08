@@ -33,6 +33,7 @@ export default function createWindow( filePath, callback ) {
 	}
 
 	mainWindow.showUrl( indexPath, () => {
+		console.log( "FILE PATH: " + filePath );
 		if ( filePath ) {
 			fs.readFile( filePath, 'utf-8', ( err, file ) => {
 				if ( err ) return;

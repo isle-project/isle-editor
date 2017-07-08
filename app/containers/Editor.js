@@ -114,14 +114,6 @@ class App extends Component {
 			debug( 'Editor text changed...' );
 			const handleChange = ( value ) => {
 				debug( 'Should handle change...' );
-				const preamble = value.match( /---([\S\s]*)---/ )[ 1 ];
-				let preambleHasChanged = this.checkPreambleChange( preamble );
-				if ( preambleHasChanged ) {
-					const newPreamble = yaml.load( preamble );
-					this.props.updatePreamble( newPreamble );
-					loadRequires( newPreamble.require, this.props.filePath || '' );
-					applyStyles( newPreamble, this.props.filePath || '' );
-				}
 				this.props.convertMarkdown( value );
 			};
 
@@ -153,6 +145,20 @@ class App extends Component {
 		const preview = this.refs.preview;
 		this.onEditorScroll = this.sync( editor, preview );
 		this.onPreviewScroll = this.sync( preview, editor );
+	}
+
+	componentWillReceiveProps( nextProps ) {
+		if ( nextProps.markdown !== this.props.markdown ) {
+			const value = nextProps.markdown;
+			const preamble = value.match( /---([\S\s]*)---/ )[ 1 ];
+			let preambleHasChanged = this.checkPreambleChange( preamble );
+			if ( preambleHasChanged ) {
+				const newPreamble = yaml.load( preamble );
+				this.props.updatePreamble( newPreamble );
+				loadRequires( newPreamble.require, nextProps.filePath || '' );
+				applyStyles( newPreamble, nextProps.filePath || '' );
+			}
+		}
 	}
 
 	sync( main, other ) {

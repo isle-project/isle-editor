@@ -3,6 +3,7 @@
 import * as actions from 'actions';
 import { ipcRenderer } from 'electron';
 import Configstore from 'configstore';
+const debug = require( 'debug' )( 'isle-editor' );
 
 
 // VARIABLES //
@@ -14,8 +15,9 @@ const config = new Configstore( 'ISLE' );
 
 function configureIpcRenderer( store ) {
 	ipcRenderer.on( 'ISLE::file-loaded', ( e, { file, fileName, filePath }) => {
-		store.dispatch( actions.convertMarkdown( file ) );
+		debug( 'Loaded file: '+ filePath );
 		store.dispatch( actions.fileLoaded({ fileName, filePath }) );
+		store.dispatch( actions.convertMarkdown( file ) );
 		config.set( 'mostRecentFilePath', filePath );
 		config.set( 'mostRecentFileName', fileName );
 		config.set( 'mostRecentFileData', file );
