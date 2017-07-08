@@ -5,12 +5,13 @@ import fs from 'fs-extra';
 import windowStateKeeper from 'electron-window-state';
 import { shell } from 'electron';
 import window from './windowManager';
+const debug = require( 'debug' )( 'isle-editor' );
 
 
 // MAIN //
 
 export default function createWindow( filePath, callback ) {
-	// Create the browser window.
+	debug( `Should create the browser window for file ${filePath}.` );
 
 	const mainWindowState = windowStateKeeper({
 		defaultWidth: 1000,
