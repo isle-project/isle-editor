@@ -59,10 +59,8 @@ class MosaicPlot extends Component {
 
 		let code = `dat = data.frame( counts = c(${objectValues( counts )}), ${varArr.map( ( arr, idx ) => `${vars[ idx ]} = c( ${arr} )` ) })
 			xytable = xtabs( counts ~ ., data = dat )
-			mosaicplot( xytable, main = "${`Mosaic Plot of ${vars}`}",
-			cex=2, color=${ showColors ? 'TRUE' : 'FALSE' } )`;
-
-		console.log( code );
+			mosaicplot( xytable, main = "${`Mosaic Plot of ${vars.join( ', ' )}`}",
+			cex=1, shade=${ showColors ? 'TRUE' : 'FALSE' } )`;
 
 		let output ={
 			variable: `Mosaic Plot`,
