@@ -6,6 +6,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import RPlot from 'components/r/plot';
+import objectValues from '@stdlib/utils/values';
 
 
 // MAIN //
@@ -16,22 +17,58 @@ class MosaicPlot extends Component {
 		super( props );
 	}
 
-	generateMosaicPlot( xval, yval, overlayPoints ) {
+	generateMosaicPlot( vars, showColors ) {
+		if ( !vars || vars.length < 2 ) {
+			return this.props.session.addNotification({
+				title: 'Select Variables',
+				message: 'You need to select at least two variables for the mosaic plot',
+				level: 'warning',
+				position: 'tr'
+			});
+		}
+		const counts = {};
 
-		let code = `x = c(${this.props.data[ xval ]})
-			y = c(${this.props.data[ yval ]})
-			xytable = table( x, y )
-			mosaicplot( xytable )`;
+		const nObs = this.props.data[ vars[ 0 ] ].length;
 
-		if ( overlayPoints ) {
-			code += '\n points( x, y, col="grey" )';
+		for ( let i = 0; i < nObs; i++ ) {
+			let key = '';
+			for ( let j = 0; j < vars.length; j++ ) {
+				let x = vars[ j ];
+				let datum = this.props.data[ x ][ i ];
+				key += datum;
+				if ( j < vars.length-1 ) {
+					key += ':';
+				}
+			}
+			if ( counts.hasOwnProperty( key ) ) {
+				counts[ key ] += 1;
+			} else {
+				counts[ key ] = 1;
+			}
 		}
 
+		const varArr = [];
+		vars.forEach( () => { varArr.push([]); });
+		const keys = Object.keys( counts );
+		for ( let k = 0; k < keys.length; k++ ) {
+			let names = keys[ k ].split( ':' );
+			for ( let i = 0; i < names.length; i++ ) {
+				varArr[ i ].push( `'${names[ i ]}'` );
+			}
+		}
+
+		let code = `dat = data.frame( counts = c(${objectValues( counts )}), ${varArr.map( ( arr, idx ) => `${vars[ idx ]} = c( ${arr} )` ) })
+			xytable = xtabs( counts ~ ., data = dat )
+			mosaicplot( xytable, main = "${`Mosaic Plot of ${vars}`}",
+			cex=2, color=${ showColors ? 'TRUE' : 'FALSE' } )`;
+
+		console.log( code );
+
 		let output ={
-			variable: `${xval} against ${yval}`,
+			variable: `Mosaic Plot`,
 			type: 'Chart',
 			value: <div>
-				<label>{`${xval} against ${yval}`}: </label>
+				<label>{`Mosaic Plot of ${vars}`}: </label>
 				<RPlot
 					code={code}
 					libraries={[ 'MASS' ]}
@@ -40,13 +77,13 @@ class MosaicPlot extends Component {
 			</div>
 		};
 		this.props.logAction( 'DATA_EXPLORER:MOSAIC', {
-			xval, yval, overlayPoints
+			vars, showColors
 		});
 		this.props.onCreated( output );
 	}
 
 	render() {
-		const { variables, defaultX, defaultY } = this.props;
+		const { variables } = this.props;
 		return (
 			<Dashboard
 				autoStart={false}
@@ -54,14 +91,9 @@ class MosaicPlot extends Component {
 				onGenerate={this.generateMosaicPlot.bind( this )}
 			>
 				<SelectInput
-					legend="First Variable"
-					defaultValue={defaultX || variables[ 0 ]}
+					legend="Variables"
 					options={variables}
-				/>
-				<SelectInput
-					legend="Second Variable"
-					defaultValue={defaultY || variables[ 1 ]}
-					options={variables}
+					multi
 				/>
 				<CheckboxInput
 					legend="Show Colors"
@@ -76,8 +108,6 @@ class MosaicPlot extends Component {
 // DEFAULT PROPERTIES //
 
 MosaicPlot.defaultProps = {
-	defaultX: null,
-	defaultY: null,
 	onPlotDone() {}
 };
 
