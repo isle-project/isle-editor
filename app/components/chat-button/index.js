@@ -24,13 +24,13 @@ class ChatButton extends Component {
 			this.setState({
 				opened: !opened
 			}, () => {
-				if ( !opened ) { 
+				if ( !opened ) {
 					debug( 'Should join chat...' );
 					session.joinChat( this.props.for );
 				} else {
 					debug( 'Should leave chat...' );
 					session.leaveChat( this.props.for );
-				}		
+				}
 			});
 		};
 	}
@@ -56,7 +56,7 @@ class ChatButton extends Component {
 		return (
 			<Gate user>
 				<Button
-					bsStyle="info"
+					bsStyle="primary"
 					bsSize="sm"
 					onClick={this.onClick}
 				>{this.state.opened ? 'Leave Chat' : 'Join Chat' }</Button>

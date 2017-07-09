@@ -80,7 +80,7 @@ class SliderInput extends Input {
 				marginBottom: '4px',
 				paddingLeft: '16px',
 				paddingRight: '4px',
-				background: 'gold',
+				background: 'rgb(186, 204, 234)',
 				border: 'solid 1px darkgrey',
 				borderRadius: '2px',
 				textAlign: 'center',

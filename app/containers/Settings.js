@@ -65,7 +65,7 @@ class Login extends Component {
 					} catch ( error ) {
 						this.setState({
 							encounteredError: 'Couldn\'t login to server. Please check the address and port.'
-						});						
+						});
 					}
 				}
 			});
@@ -108,7 +108,7 @@ class Login extends Component {
 							/>
 						</FormGroup>
 						<Button
-							bsStyle="info"
+							bsStyle="primary"
 							bsSize="sm"
 							block
 							onClick={this.connectToServer}

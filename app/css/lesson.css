@@ -14,8 +14,51 @@ body {
 	display: block;
 }
 
-#Lesson .popover .btn {
+#Lesson .panel-heading {
+	background-image: none;
+	box-shadow: 1px 1px 1px darkgrey;
+}
+
+#Lesson .popover {
 	font-family: 'Open Sans', sans-serif;
+}
+
+#Lesson .btn {
+	font-family: 'Open Sans', sans-serif;
+	box-shadow: 1px 0px 2px rgba(60, 60, 60, 1), inset 1px 0px 2px rgba(160, 160, 160, 1);
+}
+
+#Lesson .btn-primary {
+	background: #2e4468;
+	border-color: black;
+}
+
+#Lesson .btn-primary:hover {
+	box-shadow: inset 1px 1px 5px white;
+	transition: 0.3s;
+}
+
+#Lesson .btn-success {
+	background: #3c763d;
+	border-color: black;
+}
+
+#Lesson .btn-success:hover {
+	box-shadow: inset 1px 1px 5px white;
+	transition: 0.3s;
+}
+
+#Lesson .btn-xs {
+	box-shadow: none;
+}
+
+#Lesson .btn-group-xs {
+	box-shadow: none;
+}
+
+#Lesson .date-selection {
+	box-shadow: none;
+	border: 1px solid rbg(64,64,64);
 }
 
 #Lesson .active-button {
@@ -118,17 +161,20 @@ body {
 
 #Lesson h2 {
 	font-size: 32px;
-	color: #c95d0a;
+	color: #3c763d;
+	font-weight: 600;
 }
 
 #Lesson h3 {
 	font-size: 24px;
-	color: #bd1e13;
+	color: #2e4468;
+	font-weight: 600;
 }
 
 #Lesson h4 {
-	font-size: 22px;
-	color: #bd1e13;
+	font-size: 20px;
+	color: #ca5800;
+	font-weight: 600;
 }
 
 #Lesson th, td {

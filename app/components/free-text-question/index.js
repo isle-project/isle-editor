@@ -157,7 +157,7 @@ class FreeTextQuestion extends Component {
 							overlay={ displayHint( this.state.currentHint - 1, this.props.hints ) }
 						>
 							<Button
-								bsStyle="info"
+								bsStyle="primary"
 								bsSize="sm"
 								onClick={this.handleHintClick}
 								disabled={this.state.disabled}

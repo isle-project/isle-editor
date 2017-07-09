@@ -507,7 +507,7 @@ class RShell extends React.Component {
 							overlay={ displayHint( this.state.currentHint - 1, this.props.hints ) }
 						>
 							<Button
-								bsStyle="info"
+								bsStyle="success"
 								bsSize="sm"
 								onClick={this.handleHintClick}
 								disabled={this.state.disabled}

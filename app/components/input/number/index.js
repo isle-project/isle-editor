@@ -183,7 +183,7 @@ class NumberInput extends Input {
 				paddingRight: '4px',
 				border: 'solid 1px darkgrey',
 				borderRadius: '2px',
-				background: 'gold',
+				background: 'rgb(186, 204, 234)',
 				width: this.props.width,
 				textAlign: 'center',
 				float: 'right',

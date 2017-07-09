@@ -77,7 +77,6 @@ class Dashboard extends Component {
 		return (
 			<Panel
 				className="dashboard"
-				bsStyle="info"
 				header={<h4>{this.props.title}</h4>}
 				style={{
 					marginTop: '5px',
@@ -91,12 +90,14 @@ class Dashboard extends Component {
 				{ this.props.children }
 				{ !this.props.autoUpdate ?
 					<Button
-						bsStyle="info"
+						bsStyle="primary"
 						onClick={this.handleClick}
 						style={{
-							marginTop: '5px',
+							marginTop: '14px',
 							marginBottom: '5px',
-							top: '-10px'
+							top: '-10px',
+							maxWidth: '200px',
+							margin: 'auto'
 						}}
 						block
 					>{this.props.label}</Button> :

@@ -290,7 +290,7 @@ class DataExplorer extends Component {
 												title="Plots"
 											>
 												{this.props.plots.map( ( e, i ) =>
-													<MenuItem eventKey={`3.${i+1}`}>{e}</MenuItem> )}
+													<MenuItem key={i} eventKey={`3.${i+1}`}>{e}</MenuItem> )}
 											</NavDropdown> : null
 											}
 											{ this.props.tests.length > 0 ? <NavItem
