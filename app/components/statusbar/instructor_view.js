@@ -181,7 +181,7 @@ class InstructorView extends Component {
 					textAlign: 'center',
 					marginRight: '30px'
 				}}>
-					<p style={{ marginTop: '20px', fontFamily: 'Open Sans', fontSize: 20 }}>Instructor Panel</p>
+					<h3 style={{ marginTop: '20px' }}>Instructor Panel</h3>
 					<hr style={{ background: '#333',  backgroundImage: 'linear-gradient(to right, #ccc, #333, #ccc)', height: '1px', border: 0 }} />
 				</div>
 				<div className="instructorMiddle" style={{

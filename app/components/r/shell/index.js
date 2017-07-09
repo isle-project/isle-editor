@@ -463,15 +463,7 @@ class RShell extends React.Component {
 		const nHints = this.props.hints.length;
 		return (
 			<div className="RShell"
-				style={{
-					maxWidth: '600px',
-					padding: '5px',
-					border: '2px solid lightblue',
-					borderRadius: '4px',
-					textAlign: 'left',
-					margin: '0 auto',
-					...this.props.style
-				}}
+				style={this.props.style}
 			>
 				<div id="ace" style={{
 					width: '100%'
@@ -536,7 +528,7 @@ class RShell extends React.Component {
 							<span style={{display: 'inline-block', marginLeft: '4px' }}>
 								<ChatButton for={this.props.id} />
 							</span> :
-						null
+							null
 					}
 				</ButtonToolbar>
 				<div id="output">

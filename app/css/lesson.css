@@ -33,9 +33,27 @@ body {
 	border-color: black;
 }
 
+#Lesson .btn-primary:focus, .btn-primary.focus  {
+	box-shadow: 1px 1px 5px white;
+}
+
 #Lesson .btn-primary:hover {
 	box-shadow: inset 1px 1px 5px white;
 	transition: 0.3s;
+}
+
+#Lesson .btn-primary.disabled, .btn-primary:disabled {
+	box-shadow: none !important;
+	background-color: #0275d8;
+	border-color: #0275d8;
+}
+
+#Lesson .btn-primary:active, .btn-primary.active,
+.show > .btn-primary.dropdown-toggle {
+	color: #fff;
+	background-color: #025aa5;
+	background-image: none;
+	border-color: #01549b;
 }
 
 #Lesson .btn-success {
@@ -46,6 +64,24 @@ body {
 #Lesson .btn-success:hover {
 	box-shadow: inset 1px 1px 5px white;
 	transition: 0.3s;
+}
+
+#Lesson .btn-success:focus, .btn-success.focus {
+	box-shadow: 1px 1px 5px white;
+}
+
+#Lesson .btn-success.disabled, .btn-success:disabled {
+	box-shadow: none !important;
+	background-color: #5cb85c;
+	border-color: #5cb85c;
+}
+
+#Lesson .btn-success:active, .btn-success.active,
+.show > .btn-success.dropdown-toggle {
+	color: #fff;
+	background-color: #449d44;
+	background-image: none;
+	border-color: #419641;
 }
 
 #Lesson .btn-xs {
@@ -181,9 +217,22 @@ body {
 	padding: 5px;
 }
 
+#Lesson a {
+	color: #2e4468;
+}
+
 #Lesson ul {
 	list-style-position: outside !important;
 	margin-left: 30px;
+}
+
+#Lesson .RShell {
+	max-width: 600px;
+	padding: 5px;
+	border: 2px solid #2e4468;
+	border-radius: 4px;
+	text-align: left;
+	margin: 0 auto;
 }
 
 .isleImageModal {
