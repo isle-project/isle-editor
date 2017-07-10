@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Panel } from 'react-bootstrap';
+import { Button, ButtonToolbar, Panel } from 'react-bootstrap';
 import { isArray } from '@stdlib/assert';
 import Input from 'components/input';
 import NumberInput from 'components/input/number';
@@ -97,7 +97,8 @@ class Dashboard extends Component {
 							marginBottom: '5px',
 							top: '-10px',
 							maxWidth: '200px',
-							margin: 'auto'
+							marginLeft: 'auto',
+							marginRight: 'auto'
 						}}
 						block
 					>{this.props.label}</Button> :
