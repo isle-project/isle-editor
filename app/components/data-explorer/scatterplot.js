@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import RPlot from 'components/r/plot';
@@ -15,7 +16,7 @@ class Scatterplot extends Component {
 		super( props );
 	}
 
-	generateScatterplot( xval, yval, color, type, size ) {
+	generateScatterplot( xval, yval, color, type, size, regressionLine ) {
 		let aes = 'aes( x = xval, y = yval';
 		if ( color ) {
 			aes += ', color = color';
@@ -63,8 +64,11 @@ class Scatterplot extends Component {
 			${ size ? `, size = c( ${sizeData} )` : '' }
 		)
 		ggplot( data = dat, ${aes}) +
-		geom_point( ${ !size ? 'size = 1.5' : '' } ) + ${labs}`;
-		console.log( code );
+		geom_point( ${ !size ? 'size = 2' : '' } ) + ${labs}`;
+
+		if ( regressionLine ) {
+			code += '+ geom_smooth( method="lm", se=FALSE )';
+		}
 
 		const output = {
 			variable: `${xval} against ${yval}`,
@@ -103,20 +107,31 @@ class Scatterplot extends Component {
 					defaultValue={defaultY || variables[ 1 ]}
 					options={variables}
 				/>
-				<SelectInput
-					legend="Color By:"
-					options={groupingVariables}
-					clearable={true}
-				/>
-				<SelectInput
-					legend="Point Type By:"
-					options={groupingVariables}
-					clearable={true}
-				/>
-				<SelectInput
-					legend="Point Size By:"
-					options={variables}
-					clearable={true}
+				<div style={{ width: '100%' }}>
+					<SelectInput
+						legend="Color:"
+						options={groupingVariables}
+						clearable={true}
+						style={{ float: 'left', paddingRight: 10, width: "33.3%" }}
+					/>
+					<SelectInput
+						legend="Point Type:"
+						options={groupingVariables}
+						clearable={true}
+						style={{ float: 'left', paddingLeft: 10, paddingRight: 10, width: "33.3%" }}
+					/>
+					<SelectInput
+						legend="Point Size:"
+						options={variables}
+						clearable={true}
+						style={{ float: 'left', paddingLeft: 10, width: "33.3%" }}
+					/>
+				</div>
+				<div style={{ clear: 'both' }}></div>
+				<CheckboxInput
+					inline
+					legend="Overlay Regression Line"
+					defaultValue={false}
 				/>
 			</Dashboard>
 		);
