@@ -63,11 +63,11 @@ class Scatterplot extends Component {
 			${ type ? `, type = c(${this.props.data[ type ].map( e => `"${e}"` )})` : '' }
 			${ size ? `, size = c( ${sizeData} )` : '' }
 		)
-		ggplot( data = dat, ${aes}) +
-		geom_point( ${ !size ? 'size = 2' : '' } ) + ${labs}`;
+		ggplot( data = dat ) +
+		geom_point( ${ !size ? 'size = 2,' : '' } ${aes} ) + ${labs}`;
 
 		if ( regressionLine ) {
-			code += '+ geom_smooth( method="lm", se=FALSE )';
+			code += '+ geom_smooth( method="lm", se=FALSE, aes( x = xval, y = yval ) )';
 		}
 
 		const output = {
