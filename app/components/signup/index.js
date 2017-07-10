@@ -125,7 +125,7 @@ class Signup extends Component {
 										onChange={this.handleInputChange}
 									/>
 									<FormControl.Feedback />
-									<HelpBlock>Please enter your unversity email address.</HelpBlock>
+									<HelpBlock>Please enter your university email address.</HelpBlock>
 								</Col>
 							</FormGroup>
 						</OverlayTrigger>
