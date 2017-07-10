@@ -221,6 +221,15 @@ body {
 	color: #2e4468;
 }
 
+#Lesson .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+	color: #ca5800;
+	cursor: default;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-bottom-color: transparent;
+	font-weight: 600px;
+}
+
 #Lesson ul {
 	list-style-position: outside !important;
 	margin-left: 30px;
