@@ -16,7 +16,7 @@ class Scatterplot extends Component {
 		super( props );
 	}
 
-	generateScatterplot( xval, yval, color, type, size, regressionLine ) {
+	generateScatterplot( xval, yval, color, type, size, regressionLine, lineBy ) {
 		let aes = 'aes( x = xval, y = yval';
 		if ( color ) {
 			aes += ', color = color';
@@ -38,6 +38,9 @@ class Scatterplot extends Component {
 		}
 		if ( size ) {
 			labs += `, size = "${size}"`;
+		}
+		if ( lineBy ) {
+			labs += `, linetype = "${lineBy}"`;
 		}
 		labs += ' )';
 
@@ -62,12 +65,13 @@ class Scatterplot extends Component {
 			${ color ? `, color = c(${this.props.data[ color ].map( e => `"${e}"` )})` : '' }
 			${ type ? `, type = c(${this.props.data[ type ].map( e => `"${e}"` )})` : '' }
 			${ size ? `, size = c( ${sizeData} )` : '' }
+			${ lineBy ? `, lineBy = c(${this.props.data[ lineBy ].map( e => `"${e}"` )})` : '' }
 		)
 		ggplot( data = dat ) +
 		geom_point( ${ !size ? 'size = 2,' : '' } ${aes} ) + ${labs}`;
 
 		if ( regressionLine ) {
-			code += '+ geom_smooth( method="lm", se=FALSE, aes( x = xval, y = yval ) )';
+			code += `+ geom_smooth( method="lm", se=FALSE, aes( x = xval, y = yval ${lineBy ? ', linetype = lineBy' : '' } ) )`;
 		}
 
 		const output = {
@@ -128,11 +132,21 @@ class Scatterplot extends Component {
 					/>
 				</div>
 				<div style={{ clear: 'both' }}></div>
-				<CheckboxInput
-					inline
-					legend="Overlay Regression Line"
-					defaultValue={false}
-				/>
+				<div style={{ width: '100%' }}>
+					<CheckboxInput
+						inline
+						legend="Overlay Regression Line"
+						defaultValue={false}
+						style={{ float: 'right', paddingLeft: 10, width: "50%" }}
+					/>
+					<SelectInput
+						legend="Split By:"
+						options={groupingVariables}
+						clearable={true}
+						style={{ float: 'right', paddingLeft: 10, width: "50%" }}
+					/>
+				</div>
+				<div style={{ clear: 'both' }}></div>
 			</Dashboard>
 		);
 	}
