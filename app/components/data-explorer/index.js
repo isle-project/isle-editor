@@ -7,6 +7,7 @@ import ContingencyTable from 'components/data-explorer/contingency-table';
 import FrequencyTable from 'components/data-explorer/frequency-table';
 import SummaryStatistics from 'components/data-explorer/summary-statistics';
 import HypothesisTests from 'components/data-explorer/hypothesis-tests';
+import SimpleLinearRegression from 'components/data-explorer/linear-regression';
 import VariableTransformer from 'components/data-explorer/variable-transformer';
 import Barchart from 'components/data-explorer/barchart';
 import Boxplot from 'components/data-explorer/boxplot';
@@ -61,7 +62,8 @@ const OutputPanel = ( output ) => {
 					e.type === 'Contingency Table' ||
 					e.type === 'Frequency Table' ||
 					e.type === 'Grouped Frequency Table' ||
-					e.type === 'Test'
+					e.type === 'Test' ||
+					e.type === 'Simple Linear Regression'
 				) {
 					return makeDraggable( e.value );
 				}
@@ -300,8 +302,16 @@ class DataExplorer extends Component {
 												Tests
 											</NavItem> : null
 											}
-											{ this.props.transformer ? <NavItem
+											{ this.props.plots.length > 0 ? <NavDropdown
 												eventKey="5"
+												title="Models"
+											>
+												{this.props.models.map( ( e, i ) =>
+													<MenuItem key={i} eventKey={`5.${i+1}`}>{e}</MenuItem> )}
+											</NavDropdown> : null
+											}
+											{ this.props.transformer ? <NavItem
+												eventKey="6"
 												title="Transform"
 											>
 												Transform
@@ -407,7 +417,25 @@ class DataExplorer extends Component {
 													/>
 												</Tab.Pane> : null
 											}
-											{ this.props.transformer ? <Tab.Pane eventKey="5">
+											{this.props.models.map( ( e, i ) => {
+												let content = null;
+												switch ( e ) {
+												case 'Simple Linear Regression':
+													content = <SimpleLinearRegression
+														categorical={this.state.categorical}
+														continuous={this.state.continuous}
+														onCreated={this.addToOutputs}
+														data={this.state.data}
+														logAction={this.logAction}
+														session={this.context.session}
+													/>;
+													break;
+												}
+												return <Tab.Pane eventKey={`5.${i+1}`}>
+													{content}
+												</Tab.Pane>;
+											})}
+											{ this.props.transformer ? <Tab.Pane eventKey="6">
 												<VariableTransformer
 													data={this.state.data}
 													logAction={this.logAction}
@@ -479,6 +507,9 @@ DataExplorer.defaultProps = {
 		'Two-Sample Z-Test',
 		'Two-Sample Proportion Test',
 		'Correlation Test'
+	],
+	models: [
+		'Simple Linear Regression'
 	]
 };
 
@@ -491,6 +522,7 @@ DataExplorer.propTypes = {
 	plots: PropTypes.array,
 	tables: PropTypes.array,
 	tests: PropTypes.array,
+	models: PropTypes.array,
 	onSelect: PropTypes.func,
 	transformer: PropTypes.bool
 };
