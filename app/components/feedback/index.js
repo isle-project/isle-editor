@@ -30,7 +30,7 @@ class FeedbackButtons extends Component {
 				id: this.props.for,
 				type: 'USER_FEEDBACK_CONFUSED',
 				value: 'confused'
-			});
+			}, 'members' );
 			session.addNotification({
 				title: 'Thank you!',
 				message: 'We are sorry to hear that. Your feedback helps us to improve the material.',
@@ -49,7 +49,7 @@ class FeedbackButtons extends Component {
 				id: this.props.for,
 				type: 'USER_FEEDBACK_UNDERSTOOD',
 				value: 'understood'
-			});
+			}, 'members' );
 			session.addNotification({
 				title: 'Thank you!',
 				message: 'Glad to hear that! Thank you for your feedback.',
@@ -66,13 +66,13 @@ class FeedbackButtons extends Component {
 				noUnderstanding: this.refs.checkbox01.state.value,
 				needsExplanation: this.refs.checkbox02.state.value,
 				noLogic: this.refs.checkbox03.state.value,
-				comments: this.refs.textarea.state.text
+				comments: this.textarea.state.value
 			};
 			session.log({
 				id: this.props.for,
 				type: 'USER_FEEDBACK_FORM',
 				value: formData
-			});
+			}, 'members' );
 
 			this.setState({ showModal: false });
 
@@ -83,7 +83,6 @@ class FeedbackButtons extends Component {
 				position: 'tr'
 			});
 		};
-
 	}
 
 	/*
@@ -138,7 +137,7 @@ class FeedbackButtons extends Component {
 							/>
 						</FormGroup>
 						<TextArea
-							ref="textarea"
+							ref={ ( div ) => { this.textarea = div; }}
 							legend="I have the following comments (optional):"
 							text="Enter text"
 							resizable={false}
