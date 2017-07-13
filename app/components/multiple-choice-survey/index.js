@@ -137,7 +137,7 @@ class MultipleChoiceSurvey extends Component {
 		}
 
 		return (
-			<Gate user>
+			<Gate {...props} >
 				<Panel className="multipleChoiceSurvey" style={{
 					margin: '0 auto 10px',
 					maxWidth: 600,

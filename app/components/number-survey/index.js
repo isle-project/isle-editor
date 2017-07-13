@@ -50,7 +50,7 @@ class NumberSurvey extends Component {
 		const props = this.props;
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
-			<Gate user>
+			<Gate {...props} >
 				<Panel className="NumberSurvey" style={{
 					margin: '0 auto 10px',
 					maxWidth: 600,
