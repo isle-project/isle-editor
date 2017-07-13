@@ -12,7 +12,12 @@ const config = new Configstore( 'ISLE' );
 
 const data = config.get( 'mostRecentFileData' ) || template;
 const preamble = data.match( /---([\S\s]*)---/ )[ 1 ];
-const preambleObject = yaml.load( preamble );
+let preambleObject = {};
+try {
+	preambleObject = yaml.load( preamble );
+} catch ( err ) {
+	console.log( err );
+}
 
 const initialState = {
 	markdown: config.get( 'mostRecentFileData' ) || template,
