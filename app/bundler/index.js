@@ -40,6 +40,7 @@ const generateIndexHTML = ( title, minify ) => `
 		<link href="css/slick-theme.min.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 		<link rel="stylesheet" href="css/lesson.css" />
+		<script src="https://use.fontawesome.com/1ef7eff9d5.js"></script>
 	</head>
 	<body>
 	<div id="App"></div>
