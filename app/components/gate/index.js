@@ -20,8 +20,11 @@ class Gate extends Component {
 
 	render() {
 		const { session } = this.context;
-		const { user, enrolled, owner } = this.props;
+		const { anonymous, user, enrolled, owner } = this.props;
 		let authenticated = false;
+		if ( anonymous ) {
+			authenticated = true;
+		}
 		if ( user && !session.anonymous ) {
 			authenticated = true;
 		}
@@ -42,21 +45,26 @@ class Gate extends Component {
 		}
 	}
 
+	checkAuthorization() {
+		let newState = {
+			isEnrolled: session.isEnrolled(),
+			isOwner: session.isOwner()
+		};
+		if (
+			newState.isEnrolled !== this.state.isEnrolled ||
+			newState.isOwner !== this.state.isOwner
+		) {
+			this.setState( newState );
+		}
+	}
+
 	componentDidMount() {
 		const { session } = this.context;
 		this.unsubscribe = session.subscribe( () => {
-			let newState = {
-				isEnrolled: session.isEnrolled(),
-				isOwner: session.isOwner()
-			};
-			if ( 
-				newState.isEnrolled !== this.state.isEnrolled || 
-				newState.isOwner !== this.state.isOwner 
-			) {
-				this.setState( newState );
-			}
+			this.checkAuthorization();
 			this.forceUpdate();
 		});
+		this.checkAuthorization();
 	}
 
 	componentWillUnmount() {
@@ -69,6 +77,7 @@ class Gate extends Component {
 // DEFAULT PROPERTIES //
 
 Gate.defaultProps = {
+	anonymous: false,
 	user: false,
 	enrolled: false,
 	owner: false
@@ -77,10 +86,16 @@ Gate.defaultProps = {
 
 // TYPES //
 
+Gate.propTypes = {
+	anonymous: PropTypes.bool,
+	user: PropTypes.bool,
+	enrolled: PropTypes.bool,
+	owner: PropTypes.bool
+};
+
 Gate.contextTypes = {
 	session: PropTypes.object
 };
-
 
 
 // EXPORTS //
