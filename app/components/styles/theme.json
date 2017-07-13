@@ -46,7 +46,7 @@
 				"outline":0
 			},
 			"prevIcon":{
-				"fill":"black"
+				"fill":"orange"
 			},
 			"next":{
 				"position":"absolute",
@@ -59,7 +59,7 @@
 				"outline":0
 			},
 			"nextIcon":{
-				"fill":"black"
+				"fill":"orange"
 			}
 		},
 		"progress":{
@@ -320,7 +320,7 @@
 				"outline":0
 			},
 			"prevIcon":{
-				"fill":"black"
+				"fill":"orange"
 			},
 			"next":{
 				"position":"absolute",
@@ -333,7 +333,7 @@
 				"outline":0
 			},
 			"nextIcon":{
-				"fill":"black"
+				"fill":"orange"
 			}
 		},
 		"progress":{
