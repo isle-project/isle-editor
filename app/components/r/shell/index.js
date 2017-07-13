@@ -229,7 +229,7 @@ class RShell extends React.Component {
 				this.setState({
 					solutionOpen: !this.state.solutionOpen
 				});
-				this.editor.setValue( this.state.lastSolution, 1 );
+				this.editor.setValue( this.state.lastSolution || solutionUnescaped, 1 );
 			}
 		};
 
