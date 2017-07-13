@@ -155,7 +155,7 @@ class Chat extends Component {
 					}} />
 					<span className="chatexit" onClick={this.closeChat}>X</span>
 				</div>
-				<OverlayTrigger trigger={["hover","focus"]} placement="right" overlay={userlistPopover}>
+				<OverlayTrigger trigger={[ "hover","focus" ]} placement="bottom" overlay={userlistPopover}>
 					<div
 						style={{
 							position: 'relative',
