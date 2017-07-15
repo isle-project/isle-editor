@@ -40,22 +40,22 @@ const DEFAULT_OPTS = {
 		'^/release($|/)',
 		'^/main.development.js'
 	].concat( devDeps.map( name => `/node_modules/${name}($|/)` ) )
-	.concat([
-		'/node_modules/css-loader($|/)',
-		'/node_modules/electron-debug($|/)',
-		'/node_modules/electron-window-state($|/)',
-		'/node_modules/file-loader($|/)',
-		'/node_modules/fs-plus($|/)',
-		'/node_modules/js-yaml($|/)',
-		'/node_modules/markdown-it($|/)',
-		'/node_modules/raw-loader($|/)',
-		'/node_modules/react-redux($|/)',
-		'/node_modules/react-redux-thunk($|/)',
-		'/node_modules/react-router($|/)',
-		'/node_modules/react-router-redux($|/)',
-		'/node_modules/react-split-pane($|/)',
-		'/node_modules/react-tools($|/)',
-	])
+		.concat([
+			'/node_modules/css-loader($|/)',
+			'/node_modules/electron-debug($|/)',
+			'/node_modules/electron-window-state($|/)',
+			'/node_modules/file-loader($|/)',
+			'/node_modules/fs-plus($|/)',
+			'/node_modules/js-yaml($|/)',
+			'/node_modules/markdown-it($|/)',
+			'/node_modules/raw-loader($|/)',
+			'/node_modules/react-redux($|/)',
+			'/node_modules/react-redux-thunk($|/)',
+			'/node_modules/react-router($|/)',
+			'/node_modules/react-router-redux($|/)',
+			'/node_modules/react-split-pane($|/)',
+			'/node_modules/react-tools($|/)'
+		])
 };
 
 const icon = argv.icon || argv.i || 'app/app';
