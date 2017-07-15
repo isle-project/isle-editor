@@ -153,13 +153,13 @@ class DensityPlot extends D3Plot {
 						.data( histData )
 						.enter()
 						.insert( 'rect', '.axis' )
-							.attr( 'class', 'bar' )
-							.attr( 'x', 1 )
-							.attr( 'transform', d => 'translate(' + x( d.x0 ) + ',' + y( d.length / data.length ) + ')' )
-							.attr( 'width', d => x( d.x1 ) - x( d.x0 ) - 1 )
-							.attr( 'height', d => ( height - y( d.length / data.length ) ) )
-							.style( 'fill', '#bbb' )
-							.style( 'shape-rendering', 'crispEdges' );
+						.attr( 'class', 'bar' )
+						.attr( 'x', 1 )
+						.attr( 'transform', d => 'translate(' + x( d.x0 ) + ',' + y( d.length / data.length ) + ')' )
+						.attr( 'width', d => x( d.x1 ) - x( d.x0 ) - 1 )
+						.attr( 'height', d => ( height - y( d.length / data.length ) ) )
+						.style( 'fill', '#bbb' )
+						.style( 'shape-rendering', 'crispEdges' );
 				}
 
 				chart.append( 'path' )
