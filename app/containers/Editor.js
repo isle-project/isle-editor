@@ -62,7 +62,7 @@ const injectStyle = ( style ) => {
 
 	let cssObj = css.parse( style );
 	let rules = cssObj.stylesheet.rules;
-	rules = rules.map( rule => {
+	rules.forEach( rule => {
 		rule.selectors = rule.selectors.map( s => '#Lesson ' + s );
 		return rule;
 	});

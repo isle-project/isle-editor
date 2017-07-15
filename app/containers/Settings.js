@@ -128,7 +128,7 @@ class Login extends Component {
 							style={{ float: 'right' }}
 						>Unlink</Button>
 					</Panel>
-					}
+				}
 			</Panel>
 		);
 	}

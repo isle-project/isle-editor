@@ -366,7 +366,7 @@ class HypothesisTests extends Component {
 	getBinaryVars( vars ) {
 		const out = [];
 		for ( let i = 0; i < vars.length; i++ ) {
-			let data = copy( this.props.data[ vars[ i ] ] );
+			let data = copy( this.props.data[ vars[ i ] ]);
 			unique( data );
 			if ( data.length === 2 ) {
 				out.push( vars[ i ]);
