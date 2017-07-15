@@ -33,6 +33,7 @@ class Chat extends Component {
 	}
 
 	componentDidMount() {
+		debug( 'Component has mounted. Subscribe to session: ' );
 		const { session } = this.context;
 		this.unsubscribe = session.subscribe( ( type ) => {
 			if (
@@ -155,7 +156,7 @@ class Chat extends Component {
 					}} />
 					<span className="chatexit" onClick={this.closeChat}>X</span>
 				</div>
-				<OverlayTrigger trigger={[ "hover","focus" ]} placement="bottom" overlay={userlistPopover}>
+				<OverlayTrigger trigger={[ 'hover', 'focus' ]} placement="bottom" overlay={userlistPopover}>
 					<div
 						style={{
 							position: 'relative',
