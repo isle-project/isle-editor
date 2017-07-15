@@ -141,7 +141,7 @@
     "fixed-data-table": "^0.6.3",
     "font-awesome": "^4.7.0",
     "form-data": "^2.2.0",
-    "fs-extra": "^3.0.1",
+    "fs-extra": "^4.0.0",
     "highlight.js": "^9.4.0",
     "jquery": "^3.0.0",
     "js-yaml": "^3.6.1",
@@ -171,7 +171,7 @@
     "react-dom": "^15.6.1",
     "react-history": "^0.18.2",
     "react-notification-system": "^0.2.7",
-    "react-player": "^0.18.0",
+    "react-player": "^0.19.0",
     "react-redux": "^5.0.1",
     "react-router": "4.1.1",
     "react-router-dom": "^4.1.1",
@@ -179,7 +179,7 @@
     "react-slick": "^0.14.6",
     "react-split-pane": "0.1.62",
     "react-tools": "^0.13.3",
-    "rebass": "^0.3.1",
+    "rebass": "^1.0.0",
     "recordrtc": "^5.4.1",
     "redux": "^3.4.0",
     "redux-thunk": "^2.0.1",
@@ -194,7 +194,7 @@
     "uniq": "^1.0.1",
     "utf-8-validate": "^3.0.2",
     "victory": "^0.21.0",
-    "webpack": "3.1.0"
+    "webpack": "3.3.0"
   },
   "devEngines": {
     "node": "5.x || 6.x || 7.x || 8.x"
