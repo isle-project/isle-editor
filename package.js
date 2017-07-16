@@ -94,27 +94,27 @@ function build( cfg ) {
 function startPack() {
 	console.log( 'start pack...' );
 	build( electronCfg )
-	.then( () => build( cfg ) )
-	.then( () => del( 'release' ) )
-	.then( paths => {
-		if ( shouldBuildAll ) {
-			// Build for all platforms...
-			const archs = [ 'ia32', 'x64' ];
-			const platforms = [ 'linux', 'win32', 'darwin' ];
+		.then( () => build( cfg ) )
+		.then( () => del( 'release' ) )
+		.then( paths => {
+			if ( shouldBuildAll ) {
+				// Build for all platforms...
+				const archs = [ 'ia32', 'x64' ];
+				const platforms = [ 'linux', 'win32', 'darwin' ];
 
-			platforms.forEach( plat => {
-				archs.forEach( arch => {
-					pack( plat, arch, afterPack( plat, arch ) );
+				platforms.forEach( plat => {
+					archs.forEach( arch => {
+						pack( plat, arch, afterPack( plat, arch ) );
+					});
 				});
-			});
-		} else {
-			// Build for current platform only...
-			pack( os.platform(), os.arch(), afterPack( os.platform(), os.arch() ) );
-		}
-	})
-	.catch( err => {
-		console.error( err );
-	});
+			} else {
+				// Build for current platform only...
+				pack( os.platform(), os.arch(), afterPack( os.platform(), os.arch() ) );
+			}
+		})
+		.catch( err => {
+			console.error( err );
+		});
 }
 
 function pack( plat, arch, cb ) {
