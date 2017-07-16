@@ -23,11 +23,13 @@ function captureScreen( clbk ) {
 	});
 }
 
+/*
 function captureCamera( cb ) {
 	navigator.getUserMedia({ audio: false, video: true }, cb, function ( error ) {
 		console.error( 'captureCamera error', error );
 	});
 }
+*/
 
 function captureAudio( cb ) {
 	navigator.getUserMedia({ audio: true, video: false }, cb, function ( error ) {
@@ -42,7 +44,7 @@ const isMimeTypeSupported = ( _mimeType ) => {
 	return MediaRecorder.isTypeSupported( _mimeType );
 };
 
-function getAudioConfig( type ) {	
+function getAudioConfig( type ) {
 	var mimeType = 'audio/mpeg';
 	var recorderType = MediaStreamRecorder;
 
@@ -82,7 +84,7 @@ class Recorder extends Component {
 
 		if ( props.audio ) {
 			this.recorderConfig = getAudioConfig();
-		} 
+		}
 		else {
 			this.recorderConfig = {
 				type: 'video',
@@ -110,7 +112,7 @@ class Recorder extends Component {
 			const blob = this.recorder.getBlob();
 			const file = new File([ blob ], fileName, {
 				type: this.recorderConfig.mimeType
-			});	
+			});
 
 			const formData = new FormData();
 			formData.append( 'file', file );
@@ -127,7 +129,7 @@ class Recorder extends Component {
 			} else {
 				this.startRecording();
 				this.setState({
-					recording: true 
+					recording: true
 				});
 			}
 		};
@@ -214,34 +216,34 @@ class Recorder extends Component {
 			return null;
 		}
 		return (
-			<div className="unselectable" style={{ 
-				position: 'absolute', 
-				right: '2%', 
-				top: '0.5%', 
-				width: '300px', 
-				height: 'auto', 
+			<div className="unselectable" style={{
+				position: 'absolute',
+				right: '2%',
+				top: '0.5%',
+				width: '300px',
+				height: 'auto',
 				textAlign: 'right'
 			}}>
-				<div style={{ 
-					position: 'absolute', 
-					borderRadius: '50%', 
-					color: 'rgba(0,0,0,1)', 
-					border: 'solid 4px black', 
+				<div style={{
+					position: 'absolute',
+					borderRadius: '50%',
+					color: 'rgba(0,0,0,1)',
+					border: 'solid 4px black',
 					top: '8px',
-					width: '40px', 
+					width: '40px',
 					height: '40px',
-					right: '30%' 
+					right: '30%'
 				}}>
-					<div 
-						style={{ 
-							position: 'absolute', 
-							borderRadius: '50%', 
-							background: recordingColor, 
-							width: '22px', 
-							height: '22px', 
-							top: '5px', 
-							left: '5px', 
-							cursor: 'pointer' 
+					<div
+						style={{
+							position: 'absolute',
+							borderRadius: '50%',
+							background: recordingColor,
+							width: '22px',
+							height: '22px',
+							top: '5px',
+							left: '5px',
+							cursor: 'pointer'
 						}}
 						onClick={this.handleClick}
 					></div>
@@ -249,10 +251,10 @@ class Recorder extends Component {
 				<div style={{
 					color: recordingColor,
 					fontFamily: 'Arial',
-					fontSize: '40px', 
+					fontSize: '40px',
 					fontWeight: 800
 				}}>REC</div>
-				{ audio && !screen ? 
+				{ audio && !screen ?
 					<audio style={{ display: this.state.recording ? 'none' : 'block' }} ref={ ( player ) => { this.player = player; }} controls autoPlay></audio> :
 					<video width="320px" height="auto" style={{ display: this.state.recording ? 'none' : 'block' }} ref={ ( player ) => { this.player = player; }} controls autoPlay></video>
 				}
