@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Toolbar, Space, Heading } from 'rebass';
 import * as colors from 'constants/colors';
 
 
@@ -12,53 +11,60 @@ class Header extends Component {
 	render() {
 		return (
 			<div>
-				<Toolbar
+				<div
 					style={{
+						color: 'white',
 						backgroundColor: colors.GRAY,
 						height: '48px',
 						minHeight: '48px',
+						display: 'flex',
+						alignItems: 'center',
+						padding: '5px',
+						justifyContent: 'space-between'
 					}}
 				>
-					<Heading level={3}>ISLE Editor</Heading>
-					<Space auto />
-					<Link
-						to="/export"
-						style={{
-							color: 'silver',
-							fontSize: '18px',
-							marginRight: '10px'
-						}}
-					>Export</Link>
-					<Link
-						to="/settings"
-						style={{
-							color: 'silver',
-							fontSize: '18px',
-							marginRight: '10px'
-						}}
-					>Settings</Link>
-					<Link
-						to="/docs"
-						style={{
-							color: 'silver',
-							fontSize: '18px'
-						}}
-					>Documentation</Link>
-					<Space />
-				</Toolbar>
-				<Toolbar
+					<h3>ISLE Editor</h3>
+					<div>
+						<Link
+							to="/export"
+							style={{
+								color: 'silver',
+								fontSize: '18px',
+								marginRight: '10px'
+							}}
+						>Export</Link>
+						<Link
+							to="/settings"
+							style={{
+								color: 'silver',
+								fontSize: '18px',
+								marginRight: '10px'
+							}}
+						>Settings</Link>
+						<Link
+							to="/docs"
+							style={{
+								color: 'silver',
+								fontSize: '18px'
+							}}
+						>Documentation</Link>
+					</div>
+				</div>
+				<div
 					style={{
 						backgroundColor: colors.LIGHT_GRAY,
 						height: '40px',
 						minHeight: '40px',
-						color: colors.GRAY
+						color: colors.GRAY,
+						display: 'flex',
+						alignItems: 'center',
+						padding: '5px',
+						justifyContent: 'space-between'
 					}}
 				>
 					<span>{this.props.fileName || 'Untitled Document'}</span>
-					<Space auto /><Space />
 					<span>Preview</span>
-					<Space />
-				</Toolbar>
+				</div>
 			</div>
 		);
 	}
