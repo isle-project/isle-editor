@@ -9,9 +9,8 @@ import PropTypes from 'prop-types';
 class Runner extends Component {
 
 	constructor( props ) {
-
 		super( props );
-
+		this.state = {};
 	}
 
 	componentDidMount() {
@@ -23,7 +22,9 @@ class Runner extends Component {
 	}
 
 	componentWillUnmount() {
-		window.clearInterval( this.state.intervalID );
+		if ( this.state.intervalID ) {
+			window.clearInterval( this.state.intervalID );
+		}
 	}
 
 	render() {
