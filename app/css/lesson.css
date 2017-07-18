@@ -256,9 +256,23 @@ body {
 }
 
 .unselectable {
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+ .venntooltip {
+	position: absolute;
+	text-align: center;
+	width: 128px;
+	height: 30px;
+	background: #333;
+	color: #ddd;
+	padding: 2px;
+	border: 0px;
+	border-radius: 8px;
+	opacity: 0;
+	font-size: 12px;
 }
