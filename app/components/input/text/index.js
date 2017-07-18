@@ -41,7 +41,7 @@ class TextInput extends Input {
 						value={this.state.value}
 						style={{
 							border: 'solid 1px darkgrey',
-							background: 'gold',
+							background: 'rgb(186, 204, 234)',
 							textAlign: 'left',
 							display: 'inline',
 							width: this.props.width
@@ -79,7 +79,7 @@ class TextInput extends Input {
 							paddingLeft: '16px',
 							paddingRight: '4px',
 							border: 'solid 1px darkgrey',
-							background: 'gold',
+							background: 'rgb(186, 204, 234)',
 							textAlign: 'left',
 							float: 'right',
 							width: this.props.width
