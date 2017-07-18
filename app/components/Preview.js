@@ -82,6 +82,7 @@ const TextArea = require( 'components/text-area' );
 const TextInput = require( 'components/input/text' );
 const Text = require( 'components/text' );
 const Timer = require( 'components/timer' );
+const VennDiagramBuilder = require( 'components/venn-diagram-builder' );
 const VictoryAnimation = require( 'victory' ).VictoryAnimation;
 const VictoryArea = require( 'victory' ).VictoryArea;
 const VictoryBar = require( 'victory' ).VictoryBar;

@@ -68,6 +68,7 @@
 	"TextArea": "const TextArea = require( \"components/text-area\" )",
 	"TextInput": "const TextInput = require( \"components/input/text\" )",
 	"Timer": "const Timer = require( \"components/timer\" )",
+	"VennDiagramBuilder": "const VennDiagramBuilder = require( \"components/venn-diagram-builder\" )",
 	"VictoryAnimation": "const VictoryAnimation = require( \"victory\" ).VictoryAnimation",
 	"VictoryArea": "const VictoryArea = require( \"victory\" ).VictoryArea",
 	"VictoryBar": "const VictoryBar = require( \"victory\" ).VictoryBar",
