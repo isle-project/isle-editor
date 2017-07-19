@@ -1,4 +1,6 @@
 {
+	"Accordion": "const Accordion = require( \"react-bootstrap\" ).Accordion",
+	"Bar": "const Bar = require( \"victory\" ).Bar",
 	"Button": "const Button = require( \"react-bootstrap\" ).Button",
 	"CheckboxInput": "const CheckboxInput = require( \"components/input/checkbox\" )",
 	"ColorPicker": "const ColorPicker = require( \"components/color-picker\" )",
@@ -71,6 +73,7 @@
 	"VictoryAnimation": "const VictoryAnimation = require( \"victory\" ).VictoryAnimation",
 	"VictoryArea": "const VictoryArea = require( \"victory\" ).VictoryArea",
 	"VictoryBar": "const VictoryBar = require( \"victory\" ).VictoryBar",
+	"VictoryBrushContainer": "const VictoryBrushContainer = require( \"victory\" ).VictoryBrushContainer",
 	"VictoryCursorContainer": "const VictoryCursorContainer = require( \"victory\" ).VictoryCursorContainer",
 	"VictoryTheme": "const VictoryTheme = require( \"victory\" ).VictoryTheme",
 	"VictoryChart": "const VictoryChart = require( \"victory\" ).VictoryChart",

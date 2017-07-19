@@ -32,6 +32,7 @@ import markdownToHTML from 'utils/markdown-to-html';
 // E-LEARNING MODULE COMPONENTS //
 
 // Babel does not support `eval`, so we have to require modules using CommonJS...
+const Accordion = ReactBootstrap.Accordion;
 const Button = ReactBootstrap.Button;
 const CheckboxInput = require( 'components/input/checkbox' );
 const ColorPicker = require( 'components/color-picker' );
@@ -82,9 +83,11 @@ const TextArea = require( 'components/text-area' );
 const TextInput = require( 'components/input/text' );
 const Text = require( 'components/text' );
 const Timer = require( 'components/timer' );
+const Bar = require( 'victory' ).Bar;
 const VictoryAnimation = require( 'victory' ).VictoryAnimation;
 const VictoryArea = require( 'victory' ).VictoryArea;
 const VictoryBar = require( 'victory' ).VictoryBar;
+const VictoryBrushContainer = require( 'victory' ).VictoryBrushContainer;
 const VictoryChart = require( 'victory' ).VictoryChart;
 const VictoryContainer = require( 'victory' ).VictoryContainer;
 const VictoryCursorContainer = require( 'victory' ).VictoryCursorContainer;
