@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from 'components/input';
+import roundn from '@stdlib/math/base/special/roundn';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import './slider.css';
 
@@ -109,7 +110,7 @@ class SliderInput extends Input {
 			step={this.props.step}
 			value={this.props.fractionDigits ?
 				parseFloat( this.state.value ).toFixed( this.props.fractionDigits ) :
-				this.state.value
+				roundn( this.state.value, -10 )
 			}
 			onChange={this.handleInputChange}
 		/>;
