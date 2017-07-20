@@ -111,11 +111,7 @@ class SliderInput extends Input {
 			);
 		}
 		return (
-			<div style={{
-				marginBottom: '4px',
-				marginTop: '4px',
-				clear: 'both'
-			}}>
+			<div className="slider-outer-div">
 				<label style={{
 					marginLeft: '8px',
 				}}>{this.props.legend}:</label>

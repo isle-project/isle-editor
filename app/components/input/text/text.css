@@ -1,0 +1,22 @@
+.text-container-div {
+	margin-bottom: 4px;
+	margin-top: 4px;
+	clear: both;
+}
+
+.text-inline-input {
+	border: solid 1px darkgrey;
+	background: white;
+	text-align: left;
+	display: inline;
+}
+
+.text-input {
+	margin-right: 8px;
+	padding-left: 16px;
+	padding-right: 4px;
+	border: solid 1px darkgrey;
+	background: white;
+	text-align: left;
+	float: right;
+}
