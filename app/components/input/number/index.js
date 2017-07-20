@@ -28,14 +28,15 @@ class NumberInput extends Input {
 		return tooltip;
 	}
 
-	constructor( props ) {
+	constructor( props, context ) {
 		super( props );
 
+		const { session } = context;
 		this.state = {
 			showTooltip: false,
-			value: props.defaultValue !== void 0 ?
+			value: !props.bind ?
 				props.defaultValue :
-				global.lesson.state[ props.bind ],
+				session.config.state[ props.bind ],
 			tooltip: this.createTooltip( props )
 		};
 
@@ -260,7 +261,8 @@ NumberInput.propTypes = {
 
 NumberInput.contextTypes = {
 	triggerDashboardClick: PropTypes.func,
-	autoUpdate: PropTypes.bool
+	autoUpdate: PropTypes.bool,
+	session: PropTypes.object
 };
 
 

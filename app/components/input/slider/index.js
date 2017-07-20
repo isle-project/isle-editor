@@ -4,19 +4,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Input from 'components/input';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import './slider.css';
 
 
 // MAIN //
 
 class SliderInput extends Input {
 
-	constructor( props ) {
+	constructor( props, context ) {
 		super( props );
 
+		const { session } = context;
 		this.state = {
-			value: props.defaultValue !== void 0 ?
+			value: !props.bind ?
 				props.defaultValue :
-				global.lesson.state[ props.bind ]
+				session.config.state[ props.bind ]
 		};
 
 		this.handleInputChange = ( event ) => {
@@ -31,12 +33,13 @@ class SliderInput extends Input {
 					value
 				}, () => {
 					this.props.onChange( value );
-					if ( this.context.autoUpdate ) {
-						this.context.triggerDashboardClick();
-					}
-					else if ( this.props.bind ) {
+					if ( this.props.bind ) {
 						global.lesson.setState({
 							[ this.props.bind ]: value
+						}, () => {
+							if ( this.context.autoUpdate ) {
+								this.context.triggerDashboardClick();
+							}
 						});
 					}
 				});
@@ -159,7 +162,8 @@ SliderInput.propTypes = {
 
 SliderInput.contextTypes = {
 	triggerDashboardClick: PropTypes.func,
-	autoUpdate: PropTypes.bool
+	autoUpdate: PropTypes.bool,
+	session: PropTypes.object
 };
 
 
