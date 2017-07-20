@@ -77,7 +77,7 @@ class Dashboard extends Component {
 		return (
 			<Panel
 				className="dashboard"
-				header={<h4>{this.props.title}</h4>}
+				header={ this.props.title ? <h4>{this.props.title}</h4> : null }
 				style={{
 					marginTop: '5px',
 					marginBottom: '5px',
