@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Input from 'components/input';
+import roundn from '@stdlib/math/base/special/roundn';
 import isString from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/math/constants/float64-pinf';
@@ -150,7 +151,7 @@ class NumberInput extends Input {
 							type="number"
 							name="input"
 							disabled={this.props.disabled}
-							value={this.state.value}
+							value={roundn( this.state.value, -10 )}
 							step={this.props.step}
 							min={this.props.min}
 							max={this.props.max}
@@ -174,7 +175,7 @@ class NumberInput extends Input {
 			type="number"
 			name="input"
 			disabled={this.props.disabled}
-			value={this.state.value}
+			value={roundn( this.state.value, -10 )}
 			step={this.props.step}
 			min={this.props.min}
 			max={this.props.max}
