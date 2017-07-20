@@ -55,6 +55,17 @@ class TextInput extends Input {
 		}
 	}
 
+	componentDidUpdate() {
+		if ( this.props.bind ) {
+			let globalVal = global.lesson.state[ this.props.bind ];
+			if ( globalVal !== this.state.value ) {
+				this.setState({
+					value: globalVal
+				});
+			}
+		}
+	}
+
 	render() {
 		if ( this.props.inline ) {
 			return (

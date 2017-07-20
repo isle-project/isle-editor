@@ -41,10 +41,25 @@ class SliderInput extends Input {
 								this.context.triggerDashboardClick();
 							}
 						});
+					} else {
+						if ( this.context.autoUpdate ) {
+							this.context.triggerDashboardClick();
+						}
 					}
 				});
 			}
 		};
+	}
+
+	componentDidUpdate() {
+		if ( this.props.bind ) {
+			let globalVal = global.lesson.state[ this.props.bind ];
+			if ( globalVal !== this.state.value ) {
+				this.setState({
+					value: globalVal
+				});
+			}
+		}
 	}
 
 	componentWillReceiveProps( nextProps ) {
