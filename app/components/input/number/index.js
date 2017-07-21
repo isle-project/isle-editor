@@ -9,6 +9,7 @@ import isString from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/math/constants/float64-pinf';
 import NINF from '@stdlib/math/constants/float64-ninf';
+const debug = require( 'debug' )( 'isle-editor' );
 
 
 // MAIN //
@@ -74,19 +75,18 @@ class NumberInput extends Input {
 		};
 
 		this.finishChange = ( event ) => {
-			const { defaultValue, max, min, step } = this.props;
+			const { max, min, step } = this.props;
 			let value = event.target.value;
-			if ( value === '' ) {
-				value = defaultValue;
+			if ( value !== '' ) {
+				value = parseFloat( value );
 			}
-			value = parseFloat( value );
 			if ( value > max ) {
 				value = max;
 			}
 			else if ( value < min ) {
 				value = min;
 			}
-			else if ( step == 1.0 ) {
+			else if ( step == 1.0 && value !== '' ) {
 				value = value - value % this.props.step;
 			}
 			if ( value !== this.state.value ) {
@@ -140,7 +140,10 @@ class NumberInput extends Input {
 	}
 
 	render() {
-
+		let { value } = this.state;
+		if ( value !== '' ) {
+			roundn( value, ( -1.0 )*this.props.precision );
+		}
 		if ( this.props.inline === true ) {
 			return (
 				<span style={{ padding: '5px' }}>
@@ -151,12 +154,13 @@ class NumberInput extends Input {
 							type="number"
 							name="input"
 							disabled={this.props.disabled}
-							value={roundn( this.state.value, -10 )}
+							value={value}
 							step={this.props.step}
 							min={this.props.min}
 							max={this.props.max}
 							style={{
 								paddingLeft: '2px',
+								marginLeft: '3px',
 								width: '75px'
 							}}
 							onChange={this.handleChange}
@@ -175,7 +179,7 @@ class NumberInput extends Input {
 			type="number"
 			name="input"
 			disabled={this.props.disabled}
-			value={roundn( this.state.value, -10 )}
+			value={value}
 			step={this.props.step}
 			min={this.props.min}
 			max={this.props.max}
@@ -237,6 +241,7 @@ NumberInput.defaultProps = {
 	width: 80,
 	defaultValue: 0,
 	onChange(){},
+	precision: 10,
 	inline: false
 };
 
@@ -248,6 +253,7 @@ NumberInput.propTypes = {
 	disabled: PropTypes.bool,
 	min: PropTypes.number,
 	max: PropTypes.number,
+	precision: PropTypes.number,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
@@ -257,6 +263,7 @@ NumberInput.propTypes = {
 	onChange: PropTypes.func,
 	inline: PropTypes.bool
 };
+
 
 // CONTEXT TYPES //
 
