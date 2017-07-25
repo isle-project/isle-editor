@@ -170,6 +170,7 @@
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "15.6.1",
+    "react-grid-layout": "^0.14.7",
     "react-history": "^0.18.2",
     "react-notification-system": "^0.2.7",
     "react-player": "^0.19.0",
