@@ -1,53 +1,12 @@
 // MODULES //
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
-
-// MAIN //
-
-class Input extends Component {
-
-	constructor( props ) {
-		super( props );
-
-		this.state = {
-			value: props.defaultValue
-		};
-
-		this.handleChange = ( event ) => {
-			this.setState({
-				value: event.target.value
-			});
-		};
-	}
-
-	render() {
-		return (
-			<div></div>
-		);
-	}
-}
-
-
-// DEFAULT PROPERTIES //
-
-Input.defaultProps = {
-	defaultValue: 0,
-	legend: '',
-	onChange: function(){}
-};
-
-
-// PROPERTY TYPES //
-
-Input.propTypes = {
-	defaultValue: PropTypes.number,
-	legend: PropTypes.string,
-	onChange: PropTypes.func
-};
+import CheckboxInput from 'components/input/checkbox';
+import NumberInput from 'components/input/number';
+import SelectInput from 'components/input/select';
+import SliderInput from 'components/input/slider';
+import TextInput from 'components/input/text';
 
 
 // EXPORTS //
 
-export default Input;
+export { CheckboxInput, NumberInput, SelectInput, SliderInput, TextInput };
