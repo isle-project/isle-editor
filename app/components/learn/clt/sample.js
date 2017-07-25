@@ -3,7 +3,8 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Grid, Col, Panel, Row } from 'react-bootstrap';
 import { sample } from '@stdlib/math/random';
-import { copy } from '@stdlib/utils';
+import { copy, inmap } from '@stdlib/utils';
+import { abs, round, roundn } from '@stdlib/math/base/special';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
@@ -60,6 +61,7 @@ function getBins( data ) {
 	for ( let i = 0; i < nBins; i++ ) {
 		let bc = bmin +  ( h*i );
 		out[ i ][ 'x' ] = roundn( bc, -1 );
+		out[ i ][ 'width' ] = h;
 	}
 	return out;
 }
@@ -78,7 +80,10 @@ class SampleCLT extends Component {
 			enlarged: [],
 			variable: null,
 			type: 'none',
-			categories: []
+			categories: [],
+			leftProb: 0,
+			rightProb: 1,
+			cutoff: 0
 		};
 
 		this.handleSelect = ( key ) => {
@@ -362,6 +367,26 @@ class SampleCLT extends Component {
 												&nbsp;{this.state.stdev_xbars.toFixed( 3 )}
 											</p> : null
 										}
+									</Panel>
+									<Panel>
+										<NumberInput legend={<TeX raw="x" />}  onChange={ ( value ) => {
+											let leftProb = 0;
+											let len = this.state.xbars.length;
+											for ( let i = 0; i < len; i++ ) {
+												if ( this.state.xbars[ i ] < value ) {
+													leftProb += 1;
+												}
+											}
+											leftProb /= len;
+											let rightProb = 1.0 - leftProb;
+											this.setState({
+												leftProb,
+												rightProb,
+												cutoff: value
+											});
+										}}/>
+										<TeX raw={`\\hat P(\\bar X < ${this.state.cutoff} ) = ${this.state.leftProb.toFixed( 3 )}`} displayMode />
+										<TeX raw={`\\hat P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightProb.toFixed( 3 )}`} displayMode />
 									</Panel>
 								</div>
 							</Col>
