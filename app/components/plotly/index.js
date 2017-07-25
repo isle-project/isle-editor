@@ -6,8 +6,16 @@ import React, { Component } from 'react';
 // MAIN //
 
 class Plot extends Component {
+
+	constructor( props ) {
+		super( props );
+		this.state = {
+
+		};
+	}
+
 	drawPlot = () => {
-		Plotly.newPlot( 'plot', this.props.data, this.props.layout );
+		Plotly.newPlot( this.props.id, this.props.data, this.props.layout, { displayModeBar: false });
 	}
 
 	componentDidMount() {
@@ -20,7 +28,7 @@ class Plot extends Component {
 
 	render() {
 		return (
-			<div id="plot"></div>
+			<div id={this.props.id} ></div>
 		);
 	}
 }
