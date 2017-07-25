@@ -100,6 +100,7 @@ class RPlot extends Component {
 						src={this.state.plotURL}
 						body={this.state.plot}
 						title="R Plot"
+						{...this.props}
 					/>
 				}
 			</div>
