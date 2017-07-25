@@ -73,7 +73,7 @@ TextArea.defaultProps = {
 	onChange() {},
 	legend: '',
 	placeholder: 'Enter text',
-	defaultValue: null,
+	defaultValue: '',
 	resizable: false,
 	rows: 5
 };
