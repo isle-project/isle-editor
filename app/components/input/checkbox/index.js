@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Input from 'components/input';
+import Input from 'components/input/base';
 
 
 // MAIN //

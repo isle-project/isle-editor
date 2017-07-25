@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
-import Input from 'components/input';
+import Input from 'components/input/base';
 import './text.css';
 
 

@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import Input from 'components/input';
+import Input from 'components/input/base';
 import roundn from '@stdlib/math/base/special/roundn';
 import isString from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
