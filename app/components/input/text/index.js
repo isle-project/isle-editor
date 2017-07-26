@@ -21,6 +21,8 @@ class TextInput extends Input {
 				session.config.state[ props.bind ]
 		};
 
+		this.focus = this.focus.bind( this );
+
 		this.handleChange = ( event ) => {
 			const value = event.target.value;
 			this.setState({
@@ -66,6 +68,10 @@ class TextInput extends Input {
 		}
 	}
 
+	focus() {
+		this.textInput.focus();
+	}
+
 	render() {
 		if ( this.props.inline ) {
 			return (
@@ -75,7 +81,11 @@ class TextInput extends Input {
 						className="text-inline-input"
 						type="text"
 						name="input"
+						placeholder={this.props.placeholder}
 						value={this.state.value}
+						ref={ ( input ) => {
+							this.textInput = input;
+						}}
 						style={{
 							width: this.props.width
 						}}
@@ -101,7 +111,11 @@ class TextInput extends Input {
 						className="text-input"
 						type="text"
 						name="input"
+						placeholder={this.props.placeholder}
 						value={this.state.value}
+						ref={ ( input ) => {
+							this.textInput = input;
+						}}
 						style={{
 							width: this.props.width
 						}}
@@ -120,7 +134,8 @@ TextInput.defaultProps = {
 	defaultValue: '',
 	width: 80,
 	onChange(){},
-	inline: false
+	inline: false,
+	placeholder: 'Enter text'
 };
 
 
@@ -130,7 +145,8 @@ TextInput.propTypes = {
 	defaultValue: PropTypes.string,
 	inline: PropTypes.bool,
 	width: PropTypes.number,
-	onChange: PropTypes.func
+	onChange: PropTypes.func,
+	placeholder: PropTypes.string
 };
 
 
