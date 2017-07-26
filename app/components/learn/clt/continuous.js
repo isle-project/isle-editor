@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Button, ButtonGroup, Grid, Col, Panel, Row, Tabs, Tab } from 'react-bootstrap';
 import { exponential as rExponential, uniform as rUniform, normal as rNormal } from '@stdlib/math/base/random';
 import { copy, inmap } from '@stdlib/utils';
-import { abs, round, roundn } from '@stdlib/math/base/special';
+import { abs, round, roundn, sqrt } from '@stdlib/math/base/special';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import stdev from 'compute-stdev';
 import mean from 'compute-mean';
