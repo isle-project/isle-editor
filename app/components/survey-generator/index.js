@@ -4,7 +4,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { VictoryBar, VictoryChart } from 'victory';
 import { tabulate } from '@stdlib/utils';
-import { Button, Grid, Col, Panel } from 'react-bootstrap';
+import isNumber from '@stdlib/assert/is-number';
+import { Button, ControlLabel, FormGroup, Grid, Col, Panel, Well } from 'react-bootstrap';
+import mean from 'compute-mean';
+import stdev from 'compute-stdev';
 import Gate from 'components/gate';
 import { CheckboxInput, SelectInput, TextInput } from 'components/input';
 import TextArea from 'components/text-area';
@@ -27,18 +30,34 @@ class MCSgenerator extends Component {
 			question: '',
 			type: null,
 			showSurvey: false,
-			anonymous: true
+			anonymous: true,
+			disabled: true,
+			avg: null,
+			sd: null,
+			freqTable: null
 		};
 
 	}
 
 	setQuestion = ( text ) => {
+		let disabled = true;
+		if (
+			text.length > 3 &&
+			(
+				this.state.answers.length > 1 ||
+				this.state.type !== 'multiple-choice'
+			)
+		) {
+			disabled = false;
+		}
 		this.setState({
-			question: text
+			question: text,
+			disabled
 		});
 	}
 
 	setType = ( type ) => {
+		this.questionDIV.focus();
 		this.setState({
 			type
 		});
@@ -46,16 +65,44 @@ class MCSgenerator extends Component {
 
 	onData = ( data ) => {
 		debug( 'SurveyGenerator is receiving data: ' + JSON.stringify( data ) );
-		let counts = tabulate( data[ this.props.id+':question' ]);
-		counts = counts.map( d => {
+		data = data[ this.props.id+':question' ];
+		let tabulated = tabulate( data );
+		let freqTable;
+		let avg;
+		let sd;
+		let counts = tabulated.map( d => {
 			return {
 				x: d[ 0 ],
 				y: d[ 1 ]
 			};
 		});
-		console.log( counts );
+		if ( this.state.type === 'number' ) {
+			avg = mean( data );
+			sd = stdev( data );
+		} else if ( this.state.type === 'multiple-choice' ) {
+			freqTable = <table className="table table-bordered">
+				<tr>
+					<th>Category</th>
+					<th>Count</th>
+					<th>Relative Frequency</th>
+				</tr>
+				{tabulated.map( ( elem ) => {
+					return ( <tr>
+						{elem.map( ( x, idx ) => {
+							if ( idx === 2 ) {
+								x = x.toFixed( 3 );
+							}
+							return <td>{x}</td>;
+						})}
+					</tr> );
+				})}
+			</table>;
+		}
 		this.setState({
-			data: counts
+			data: counts,
+			freqTable,
+			avg,
+			sd
 		});
 	}
 
@@ -82,8 +129,15 @@ class MCSgenerator extends Component {
 
 	getAnswers = ( text ) => {
 		let answers = text.split( '\n' );
+		let disabled = true;
+		if (
+			this.state.question.length > 3 && answers.length > 1
+		) {
+			disabled = false;
+		}
 		this.setState({
-			answers
+			answers,
+			disabled
 		});
 	}
 
@@ -100,7 +154,6 @@ class MCSgenerator extends Component {
 				if ( action.type === 'START_SURVEY' ) {
 					if ( this.props.id === action.id  ) {
 						this.setState({
-							data: [],
 							question: action.value.question,
 							type: action.value.type,
 							answers: action.value.answers,
@@ -112,7 +165,11 @@ class MCSgenerator extends Component {
 					debug( 'Should stop the survey...' );
 					if ( this.props.id === action.id  ) {
 						this.setState({
-							showSurvey: false
+							showSurvey: false,
+							data: [],
+							avg: null,
+							sd: null,
+							freqTable: null
 						});
 					}
 				}
@@ -126,27 +183,45 @@ class MCSgenerator extends Component {
 	}
 
 	render() {
-		return ( <div>
+		return ( <Panel>
 			<Gate owner>
-				<Panel header="Survey Generator" >
-					<SelectInput options={[ 'multiple-choice', 'number' ]} onChange={this.setType} />
+				<Well style={{
+					maxWidth: '800px',
+					border: 'solid 2px rgb(186, 204, 234)'
+				}}>
+					<h3>Survey Generator</h3>
+					<FormGroup>
+						<Col componentClass={ControlLabel} md={3}>Question Type:</Col>
+						<Col md={9}>
+							<SelectInput options={[ 'multiple-choice', 'number' ]} onChange={this.setType} />
+						</Col>
+					</FormGroup>
+					<TextInput
+						legend="Question"
+						ref={ ( questionDIV ) => { this.questionDIV = questionDIV; }}onChange={this.setQuestion}
+						width={400}
+					/>
+					{ this.state.type === 'multiple-choice' ?
+						<FormGroup>
+							<TextArea legend="Answer Options (new-line delimited)" onChange={this.getAnswers} />
+						</FormGroup> : null
+					}
 					<CheckboxInput
-						legend="Anonymous"
+						legend="Make the survey anonymous"
 						defaultValue={true}
 						onChange={this.toggleAnonymous}
 					/>
-					<TextInput legend="Question" onChange={this.setQuestion} width={320} />
-					{ this.state.type === 'multiple-choice' ?
-						<TextArea legend="Answer Options (new-line delimited)" onChange={this.getAnswers} /> : null
-					}
-					<Button onClick={this.startSurvey}>{ !this.state.showSurvey ?
-						'Start Survey' : 'Stop Survey' }</Button>
-				</Panel>
+					<Button
+						disabled={this.state.disabled && !this.state.showSurvey}
+						onClick={this.startSurvey}
+					>
+						{ !this.state.showSurvey ? 'Start Survey' : 'Stop Survey' }
+					</Button>
+				</Well>
 			</Gate>
 			{ this.state.showSurvey ?
 				<Grid>
 					<Col md={6}>
-						<label>Data is { !this.state.anonymous ? 'not' : '' }collected anonymously.</label>
 						{ this.state.type === 'multiple-choice' ?
 							<MultipleChoiceSurvey
 								user
@@ -164,6 +239,7 @@ class MCSgenerator extends Component {
 								anonymous={this.state.anonymous}
 							/> : null
 						}
+						<label>Data is { !this.state.anonymous ? 'not' : '' }collected anonymously.</label>
 					</Col>
 					<Col md={6}>
 						<RealtimeMetrics for={[ this.props.id+':question' ]} onData={this.onData} />
@@ -174,12 +250,16 @@ class MCSgenerator extends Component {
 								y="y"
 							/>
 						</VictoryChart>
+						{ this.state.type === 'number' && isNumber( this.state.avg ) && isNumber( this.state.sd ) ?
+							<p>The average is {this.state.avg.toFixed( 3 )} (SD: {this.state.sd.toFixed( 3 )}).
+							</p> : <p>
+								{this.state.freqTable}
+							</p>
+						}
 					</Col>
-				</Grid> : <Panel>
-					<h3>The survey has not been started yet.</h3>
-				</Panel>
+				</Grid> : <h3>The survey has not been started yet.</h3>
 			}
-		</div> );
+		</Panel> );
 	}
 }
 
