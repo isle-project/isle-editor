@@ -8,7 +8,8 @@ import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import stdev from 'compute-stdev';
 import mean from 'compute-mean';
-import { NumberInput } from 'components/input';
+import { sqrt } from '@stdlib/math/base/special';
+import { NumberInput, CheckboxInput } from 'components/input';
 import RPlot from 'components/r/plot';
 import TeX from 'components/tex';
 import 'react-grid-layout/css/styles.css';
@@ -32,7 +33,8 @@ class DiscreteCLT extends Component {
 			p: 0.5,
 			phats: [],
 			layout: [],
-			enlarged: []
+			enlarged: [],
+			overlayNormal: false
 		};
 	}
 
@@ -150,6 +152,19 @@ class DiscreteCLT extends Component {
 	}
 
 	render() {
+
+		let rcode = `
+			phat = c(${this.state.phats.join( ',' )})
+			truehist( phat, cex.lab=2.0, cex.main=2.0, cex.axis=2.0, xlim=c(0,1))
+			abline( v=${this.state.avg_phats}, col="blue", lwd=3 )
+		`;
+		if ( this.state.overlayNormal ) {
+			rcode += `r <- range(phat)
+				x <- seq( from = r[1], to = r[2], by = 0.01 )
+				d <- dnorm( x, mean = mean(phat), sd = sd(phat) )
+				lines( x, d, col="red")`;
+		}
+
 		return (
 			<div>
 				<Grid>
@@ -168,6 +183,8 @@ class DiscreteCLT extends Component {
 								/>
 							</Col>
 							<Col md={6}>
+								<p><label>Population proportion</label> <TeX raw={`${this.state.p.toFixed( 3 )}`} /></p>
+								<p><label>Population standard deviation:</label> <TeX raw={`\\sqrt{ p \\cdot (1-p) } = ${sqrt( this.state.p*( 1-this.state.p ) ).toFixed( 3 )}`} /> </p>
 								<ButtonGroup>
 									<Button bsSize="small" onClick={() => {
 										this.generateSamples( 1 );
@@ -213,14 +230,15 @@ class DiscreteCLT extends Component {
 								<label>Histogram of <TeX raw="\hat p" />'s</label>
 								{ this.state.phats.length > 1 ?
 									<RPlot
-										code={`
-											phat = c(${this.state.phats.join( ',' )})
-											truehist( phat, cex.lab=2.0, cex.main=2.0, cex.axis=2.0, xlim=c(0,1))
-											abline( v=${this.state.avg_phats}, col="blue", lwd=3 )
-										`}
+										code={rcode}
 										libraries={[ 'MASS' ]} /> :
 									null
 								}
+								<CheckboxInput legend="Overlay normal density" onChange={ ( value ) => {
+									this.setState({
+										overlayNormal: value
+									});
+								}} />
 								{ this.state.avg_phats ?
 									<p>
 										<label> Mean of <TeX raw="\hat p" />'s: </label>

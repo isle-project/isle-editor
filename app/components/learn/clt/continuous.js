@@ -11,7 +11,7 @@ import mean from 'compute-mean';
 import iqr from 'compute-iqr';
 import min from 'compute-min';
 import max from 'compute-max';
-import { NumberInput } from 'components/input';
+import { NumberInput, CheckboxInput } from 'components/input';
 import RPlot from 'components/r/plot';
 import { VictoryAxis, VictoryBar, VictoryChart } from 'victory';
 import TeX from 'components/tex';
@@ -92,6 +92,7 @@ class ContinuousCLT extends Component {
 			enlarged: [],
 			activeDistribution: 1,
 			distFormula: <TeX raw="\text{Uniform}(0,1)" />,
+			overlayNormal: false
 		};
 
 		this.handleSelect = ( key ) => {
@@ -195,7 +196,7 @@ class ContinuousCLT extends Component {
 			}
 			const xbar = mean( vals );
 			const plot = <div style={{ cursor: 'zoom-in' }}>
-				<TeX raw={`\\hat x = ${xbar.toFixed( 2 )}`} />
+				<TeX raw={`\\bar x = ${xbar.toFixed( 2 )}`} />
 				<VictoryChart domainPadding={20} padding={60} >
 					<VictoryAxis style={{
 						axisLabel: {
@@ -285,6 +286,42 @@ class ContinuousCLT extends Component {
 			/>
 		</div>;
 
+		let populationParams;
+		switch ( this.state.activeDistribution ) {
+		case 1:
+			populationParams = <div>
+				<p><label>Population mean: </label> <TeX raw={`\\tfrac{1}{2} (b - a) = ${( 0.5*( this.state.b - this.state.a ) ).toFixed( 3 )}`} /></p>
+				<p><label>Population standard deviation: </label> <TeX raw={`\\tfrac{1}{\\sqrt{12}}| b - a | = ${( ( 1/Math.sqrt( 12 ) )*abs( this.state.b-this.state.a ) ).toFixed( 3 )}`} /> </p>
+			</div>;
+			break;
+		case 2:
+			populationParams = <div>
+				<p><label>Population mean: </label> <TeX raw={`\\tfrac{1}{\\lambda} = ${( 1/this.state.lambda ).toFixed( 3 )}`} /></p>
+				<p><label>Population standard deviation: </label> <TeX raw={`\\tfrac{1}{\\lambda} = ${( 1/this.state.lambda ).toFixed( 3 )}`} /> </p>
+			</div>;
+			break;
+		case 3:
+			populationParams = <div>
+				<p><label>Population mean: </label> <TeX raw={`\\mu = ${this.state.mu.toFixed( 3 )}`} /></p>
+				<p><label>Population standard deviation: </label><TeX raw={`\\sigma = ${this.state.sigma.toFixed( 3 )}`} /> </p>
+			</div>;
+			break;
+		}
+
+		let rcode = `
+			xbar = c(${this.state.xbars.join( ',' )})
+			truehist( xbar, cex.lab=2.0, cex.main=2.0, cex.axis=2.0 )
+			abline( v=${this.state.avg_xbars}, col="blue", lwd=3 )
+		`;
+		if ( this.state.overlayNormal ) {
+			rcode += `
+				r <- range(xbar)
+				x <- seq( from = r[1], to = r[2], by = 0.01 )
+				d <- dnorm( x, mean = mean(xbar), sd = sd(xbar) )
+				lines( x, d, col="red")`;
+		}
+		console.log( rcode )
+
 		return (
 			<div>
 				<Grid>
@@ -299,6 +336,7 @@ class ContinuousCLT extends Component {
 							</Col>
 							<Col md={6}>
 								<label>Distribution: {this.state.distFormula}</label>
+								{populationParams}
 								<NumberInput
 									legend="Sample Size"
 									step={1} min={1} defaultValue={10} max={500}
@@ -346,14 +384,15 @@ class ContinuousCLT extends Component {
 								<label>Histogram of <TeX raw="\bar x" />'s</label>
 								{ this.state.xbars.length > 1 ?
 									<RPlot
-										code={`
-											xbar = c(${this.state.xbars.join( ',' )})
-											truehist( xbar, cex.lab=2.0, cex.main=2.0, cex.axis=2.0 )
-											abline( v=${this.state.avg_xbars}, col="blue", lwd=3 )
-										`}
+										code={rcode}
 										libraries={[ 'MASS' ]} /> :
 									null
 								}
+								<CheckboxInput legend="Overlay normal density" onChange={ ( value ) => {
+									this.setState({
+										overlayNormal: value
+									});
+								}} />
 								{ this.state.avg_xbars ?
 									<p>
 										<label> Mean of <TeX raw="\bar x" />'s: </label>
