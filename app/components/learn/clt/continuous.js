@@ -291,7 +291,7 @@ class ContinuousCLT extends Component {
 		case 1:
 			populationParams = <div>
 				<p><label>Population mean: </label> <TeX raw={`\\tfrac{1}{2} (b - a) = ${( 0.5*( this.state.b - this.state.a ) ).toFixed( 3 )}`} /></p>
-				<p><label>Population standard deviation: </label> <TeX raw={`\\tfrac{1}{\\sqrt{12}}| b - a | = ${( ( 1/Math.sqrt( 12 ) )*abs( this.state.b-this.state.a ) ).toFixed( 3 )}`} /> </p>
+				<p><label>Population standard deviation: </label> <TeX raw={`\\tfrac{1}{\\sqrt{12}}| b - a | = ${( ( 1.0/sqrt( 12.0 ) )*abs( this.state.b-this.state.a ) ).toFixed( 3 )}`} /> </p>
 			</div>;
 			break;
 		case 2:
