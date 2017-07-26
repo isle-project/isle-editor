@@ -92,6 +92,11 @@ body {
 	box-shadow: none;
 }
 
+#Lesson .well {
+	background-image: none;
+	background-color: gainsboro;
+}
+
 #Lesson .date-selection {
 	box-shadow: none;
 	border: 1px solid rbg(64,64,64);
