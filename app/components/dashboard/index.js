@@ -4,11 +4,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Panel } from 'react-bootstrap';
 import { isArray } from '@stdlib/assert';
-import Input from 'components/input';
+import Input from 'components/input/base';
+import CheckboxInput from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
+import TextInput from 'components/input/text';
 import { findAllChildren } from 'utils/find-nodes';
+import './dashboard.css';
 
 
 // MAIN //
@@ -40,7 +43,11 @@ class Dashboard extends Component {
 						// Case: val is null
 						return val;
 					}
-					else {
+					else if (
+						v instanceof CheckboxInput ||
+						v instanceof TextInput
+					) {
+						console.log( v );
 						return v.state.value;
 					}
 				});
@@ -79,11 +86,7 @@ class Dashboard extends Component {
 				className="dashboard"
 				header={ this.props.title ? <h4>{this.props.title}</h4> : null }
 				style={{
-					marginTop: '5px',
-					marginBottom: '5px',
-					background: 'white',
-					maxWidth: this.props.maxWidth,
-					margin: '0 auto 10px',
+					maxWidth: this.props.maxWidth
 				}}
 			>
 				<p>{this.props.description}</p>
@@ -91,15 +94,8 @@ class Dashboard extends Component {
 				{ !this.props.autoUpdate ?
 					<Button
 						bsStyle="primary"
+						className="dashboard-button"
 						onClick={this.handleClick}
-						style={{
-							marginTop: '14px',
-							marginBottom: '5px',
-							top: '-10px',
-							maxWidth: '200px',
-							marginLeft: 'auto',
-							marginRight: 'auto'
-						}}
 						block
 					>{this.props.label}</Button> :
 					<span />

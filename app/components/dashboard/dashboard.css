@@ -1,0 +1,15 @@
+.dashboard {
+	margin: 0 auto 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background: white;
+}
+
+.dashboard-button {
+	margin-top: 14px;
+	margin-bottom: 5px;
+	top: -10px;
+	max-width: 200px;
+	margin-left: auto;
+	margin-right: auto;
+}
