@@ -48,7 +48,7 @@ const generateIndexHTML = ( title, minify ) => `
 		// Handle bug occurring when crypto-browserify is used with Webpack...
 		window._crypto = {};
 	</script>
-	<script src="${ minify ? 'bundle.min.js' : 'bundle.js' }" />
+	<script src="${ minify ? 'bundle.min.js' : 'bundle.js' }"></script>
 	</body>
 </html>
 `;
