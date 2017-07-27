@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import randomstring from 'randomstring';
+import Plotly from 'plotly.js';
 
 
 // MAIN //
