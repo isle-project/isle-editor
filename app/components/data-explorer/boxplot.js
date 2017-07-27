@@ -6,6 +6,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import RPlot from 'components/r/plot';
+import Plotly from 'components/plotly';
 import range from 'compute-range';
 import isArray from '@stdlib/assert/is-array';
 
@@ -35,53 +36,48 @@ class Boxplot extends Component {
 		super( props );
 	}
 
-	generateBoxplot( variable, group, commonAxis ) {
-		let yranges;
+	generateBoxplot( variable, group ) {
 		let output = null;
 		if ( !group ) {
 			let data = this.props.data[ variable ];
+			data = [ {
+				y: data,
+				type: 'box',
+				name: variable
+			} ];
 			output = {
 				variable: variable,
 				type: 'Chart',
 				value: <div>
 					<label>{variable}: </label>
-					<RPlot
-						code={`boxplot( c( ${data} ),
-							cex.lab=2.0, cex.axis=1.5 )`}
-						onDone={this.props.onPlotDone}
-					/>
+					<Plotly data={data} />
 				</div>
 			};
 		} else {
-			yranges = range( this.props.data[ variable ]);
 			let freqs = by( this.props.data[ variable ], this.props.data[ group ], arr => {
 				return arr;
 			});
-			let nPlots = Object.keys( freqs ).length;
-			let code = `par(mfrow=c(ceiling(${nPlots}/2),2))`;
-
+			let data = [];
 			for ( let key in freqs ) {
 				let val = freqs[ key ];
-				code += '\n';
-				code += commonAxis ?
-					`boxplot(c(${val}),main="${group}: ${key}",
-					cex.lab=2.0, cex.main=2.0, cex.axis=1.5,ylim=c(${yranges}))` :
-					`boxplot(c(${val}),main="${group}: ${key}",
-					cex.lab=2.0, cex.main=2.0, cex.axis=1.5)`;
+				data.push({
+					y: val,
+					name: key,
+					type: 'box'
+				});
 			}
 			output = {
 				variable: variable,
 				type: 'Chart',
 				value: <div>
 					<label>{variable}: </label>
-					<RPlot code={code} onDone={this.props.onPlotDone} />
+					<Plotly data={data} />
 				</div>
 			};
 		}
 		this.props.logAction( 'DATA_EXPLORER:BOXPLOT', {
 			variable,
-			group,
-			commonAxis
+			group
 		});
 		this.props.onCreated( output );
 	}
@@ -103,10 +99,6 @@ class Boxplot extends Component {
 					legend="Group By:"
 					options={groupingVariables}
 					clearable={true}
-				/>
-				<CheckboxInput
-					legend="Use common y-axis (when grouped)"
-					defaultValue={false}
 				/>
 			</Dashboard>
 		);

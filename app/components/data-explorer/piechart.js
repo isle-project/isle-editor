@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import RPlot from 'components/r/plot';
+import Plotly from 'components/plotly';
 import entries from '@stdlib/utils/entries';
 import countBy from 'lodash.countby';
 import isArray from '@stdlib/assert/is-array';
@@ -42,20 +43,20 @@ class PieChart extends Component {
 
 		if ( !group ) {
 			let freqs = entries( countBy( this.props.data[ variable ]) );
-			let categories = freqs.map( e => '"'+e[ 0 ]+'"' );
+			let categories = freqs.map( e => e[ 0 ]);
 			freqs = freqs.map( e => e[ 1 ]);
 
+			var data = [ {
+				values: freqs,
+				labels: categories,
+				type: 'pie'
+			} ];
 			output = {
 				variable: variable,
 				type: 'Chart',
 				value: <div>
 					<label>{variable}: </label>
-					<RPlot
-						code={`${plotCommand}(c(${freqs}),
-						${label}=c(${categories}),
-						cex.lab=2.0, cex.main=2.0, cex.axis=2.0, cex=1.5 )`}
-						onDone={this.props.onPlotDone}
-					/>
+					<Plotly data={data} />
 				</div>
 			};
 		} else {
