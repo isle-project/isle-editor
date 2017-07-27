@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import randomstring from 'randomstring';
 
 
 // MAIN //
@@ -9,13 +10,23 @@ class Plot extends Component {
 
 	constructor( props ) {
 		super( props );
-		this.state = {
 
+		this.state = {
+			plotID: randomstring.generate()
 		};
 	}
 
 	drawPlot = () => {
-		Plotly.newPlot( this.props.id, this.props.data, this.props.layout, { displayModeBar: false });
+		Plotly.newPlot(
+			this.state.plotID,
+			this.props.data,
+			this.props.layout,
+			{
+				displayModeBar: true,
+				displaylogo: false,
+				modeBarButtonsToRemove: [ 'sendDataToCloud' ]
+			}
+		);
 	}
 
 	componentDidMount() {
@@ -28,7 +39,7 @@ class Plot extends Component {
 
 	render() {
 		return (
-			<div id={this.props.id} ></div>
+			<div id={this.state.plotID} ></div>
 		);
 	}
 }
