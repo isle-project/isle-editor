@@ -4,7 +4,7 @@
 	"Button": "const Button = require( \"react-bootstrap\" ).Button",
 	"CheckboxInput": "const CheckboxInput = require( \"components/input/checkbox\" )",
 	"ColorPicker": "const ColorPicker = require( \"components/color-picker\" )",
-	"Column": "const Column = require( \"react-bootstrap\" ).Col",
+	"Col": "const Col = require( \"react-bootstrap\" ).Col",
 	"Learn": "const Learn = require( \"components/learn\" )",
 	"DataExplorer": "const DataExplorer = require( \"components/data-explorer\" )",
 	"DataTable": "const DataTable = require( \"components/data-table\" )",
