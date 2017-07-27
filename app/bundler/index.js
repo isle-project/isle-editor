@@ -41,6 +41,7 @@ const generateIndexHTML = ( title, minify ) => `
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 		<link rel="stylesheet" href="css/lesson.css" />
 		<script src="https://use.fontawesome.com/1ef7eff9d5.js"></script>
+		<script src="https://cdn.plot.ly/plotly-latest.min.js" />
 	</head>
 	<body>
 	<div id="App"></div>
