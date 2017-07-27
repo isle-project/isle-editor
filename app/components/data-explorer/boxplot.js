@@ -2,12 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
-import RPlot from 'components/r/plot';
 import Plotly from 'components/plotly';
-import range from 'compute-range';
 import isArray from '@stdlib/assert/is-array';
 
 
