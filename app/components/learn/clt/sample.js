@@ -163,7 +163,7 @@ class SampleCLT extends Component {
 				});
 				const xbar = mean( vals );
 				const plot = <div style={{ cursor: 'zoom-in' }}>
-					<TeX raw={`\\hat x = ${xbar.toFixed( 2 )}`} />
+					<TeX raw={`\\bar x = ${xbar.toFixed( 2 )}`} />
 					<VictoryChart domainPadding={20} padding={60} >
 						<VictoryAxis style={{
 							axisLabel: {
