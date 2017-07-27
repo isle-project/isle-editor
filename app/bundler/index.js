@@ -234,7 +234,8 @@ function writeIndexFile({
 					basePath,
 					'./node_modules/victory/dist/victory/'
 				)
-			}
+			},
+			mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
 		},
 		module: {
 			rules: [
@@ -282,10 +283,7 @@ function writeIndexFile({
 					NODE_ENV: '"production"'
 				}
 			}),
-			new webpack.IgnorePlugin( /vertx/ ),
-			new webpack.ProvidePlugin({
-				'window.d3': 'd3'
-			})
+			new webpack.IgnorePlugin( /vertx/ )
 		],
 		externals: [
 			'crypto-browserify'

@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import D3Plot from 'components/d3';
-import d3 from 'd3';
+import * as d3 from 'd3';
 import abs from '@stdlib/math/base/special/abs';
 import isArray from '@stdlib/assert/is-array';
 

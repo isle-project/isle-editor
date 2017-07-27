@@ -2,21 +2,24 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Input from 'components/input';
+import Input from 'components/input/base';
+import roundn from '@stdlib/math/base/special/roundn';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import './slider.css';
 
 
 // MAIN //
 
 class SliderInput extends Input {
 
-	constructor( props ) {
+	constructor( props, context ) {
 		super( props );
 
+		const { session } = context;
 		this.state = {
-			value: props.defaultValue !== void 0 ?
+			value: !props.bind ?
 				props.defaultValue :
-				global.lesson.state[ props.bind ]
+				session.config.state[ props.bind ]
 		};
 
 		this.handleInputChange = ( event ) => {
@@ -31,17 +34,33 @@ class SliderInput extends Input {
 					value
 				}, () => {
 					this.props.onChange( value );
-					if ( this.context.autoUpdate ) {
-						this.context.triggerDashboardClick();
-					}
-					else if ( this.props.bind ) {
+					if ( this.props.bind ) {
 						global.lesson.setState({
 							[ this.props.bind ]: value
+						}, () => {
+							if ( this.context.autoUpdate ) {
+								this.context.triggerDashboardClick();
+							}
 						});
+					} else {
+						if ( this.context.autoUpdate ) {
+							this.context.triggerDashboardClick();
+						}
 					}
 				});
 			}
 		};
+	}
+
+	componentDidUpdate() {
+		if ( this.props.bind ) {
+			let globalVal = global.lesson.state[ this.props.bind ];
+			if ( globalVal !== this.state.value ) {
+				this.setState({
+					value: globalVal
+				});
+			}
+		}
 	}
 
 	componentWillReceiveProps( nextProps ) {
@@ -91,7 +110,7 @@ class SliderInput extends Input {
 			step={this.props.step}
 			value={this.props.fractionDigits ?
 				parseFloat( this.state.value ).toFixed( this.props.fractionDigits ) :
-				this.state.value
+				roundn( this.state.value, -10 )
 			}
 			onChange={this.handleInputChange}
 		/>;
@@ -108,11 +127,7 @@ class SliderInput extends Input {
 			);
 		}
 		return (
-			<div style={{
-				marginBottom: '4px',
-				marginTop: '4px',
-				clear: 'both'
-			}}>
+			<div className="slider-outer-div">
 				<label style={{
 					marginLeft: '8px',
 				}}>{this.props.legend}:</label>
@@ -159,7 +174,8 @@ SliderInput.propTypes = {
 
 SliderInput.contextTypes = {
 	triggerDashboardClick: PropTypes.func,
-	autoUpdate: PropTypes.bool
+	autoUpdate: PropTypes.bool,
+	session: PropTypes.object
 };
 
 

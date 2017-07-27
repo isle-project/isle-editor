@@ -40,7 +40,7 @@ AnswerOption.propTypes = {
 };
 
 
-// MULTIPLE CHOICE QUESTION //
+// MAIN //
 
 class MultipleChoiceSurvey extends Component {
 
@@ -63,7 +63,10 @@ class MultipleChoiceSurvey extends Component {
 				session.log({
 					id: this.props.id,
 					type: 'MULTIPLE_CHOICE_SURVEY_SUBMISSION',
-					value: this.state.active
+					value: this.props.multipleAnswers ?
+						this.state.active.map( idx => this.props.answers[ idx ]) :
+						this.props.answers[ this.state.active ],
+					anonymous: this.props.anonymous
 				}, 'members' );
 			}
 			if ( !this.props.allowMultipleAnswers ) {
@@ -171,7 +174,8 @@ class MultipleChoiceSurvey extends Component {
 MultipleChoiceSurvey.defaultProps = {
 	onSubmit() {},
 	answers: [],
-	allowMultipleAnswers: false
+	allowMultipleAnswers: false,
+	anonymous: false
 };
 
 
@@ -180,7 +184,8 @@ MultipleChoiceSurvey.defaultProps = {
 MultipleChoiceSurvey.propTypes = {
 	onSubmit: PropTypes.func,
 	answers: PropTypes.array,
-	allowMultipleAnswers: PropTypes.bool
+	allowMultipleAnswers: PropTypes.bool,
+	anonymous: PropTypes.bool
 };
 
 MultipleChoiceSurvey.contextTypes = {

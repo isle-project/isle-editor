@@ -72,9 +72,11 @@ class Image extends Component {
 					role="presentation"
 					src={ this.props.src }
 					onClick={ () => {
-						this.setState({
-							showModal: true
-						});
+						if ( this.props.showModal ) {
+							this.setState({
+								showModal: true
+							});
+						}
 					}}
 					onDragStart={ ( ev ) => {
 						ev.dataTransfer.setData( 'text', `<img src="${this.props.src}" width="400" height="300" />` );
@@ -119,14 +121,16 @@ class Image extends Component {
 
 Image.propTypes = {
 	src: PropTypes.string.isRequired,
-	title: PropTypes.string
+	title: PropTypes.string,
+	showModal: PropTypes.bool
 };
 
 
 // DEFAULT PROPERTIES //
 
 Image.defaultProps = {
-	title: 'Image'
+	title: 'Image',
+	showModal: true
 };
 
 

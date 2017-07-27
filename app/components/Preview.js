@@ -32,10 +32,11 @@ import markdownToHTML from 'utils/markdown-to-html';
 // E-LEARNING MODULE COMPONENTS //
 
 // Babel does not support `eval`, so we have to require modules using CommonJS...
+const Accordion = ReactBootstrap.Accordion;
 const Button = ReactBootstrap.Button;
 const CheckboxInput = require( 'components/input/checkbox' );
 const ColorPicker = require( 'components/color-picker' );
-const Column = ReactBootstrap.Col;
+const Col = ReactBootstrap.Col;
 const Dashboard = require( 'components/dashboard' );
 const DataTable = require( 'components/data-table' );
 const DensityPlot = require( 'components/d3/density-plot' );
@@ -50,6 +51,7 @@ const Metrics = require( 'components/metrics/db' );
 const Modal = ReactBootstrap.Modal;
 const MultipleChoiceQuestion = require( 'components/multiple-choice-question' );
 const MultipleChoiceSurvey = require( 'components/multiple-choice-survey' );
+const SurveyGenerator = require( 'components/survey-generator' );
 const MatchListQuestion = require( 'components/match-list-question' );
 const Nav = ReactBootstrap.Nav;
 const Navbar = ReactBootstrap.Navbar;
@@ -83,9 +85,11 @@ const TextInput = require( 'components/input/text' );
 const Text = require( 'components/text' );
 const Timer = require( 'components/timer' );
 const VennDiagramBuilder = require( 'components/venn-diagram-builder' );
+const Bar = require( 'victory' ).Bar;
 const VictoryAnimation = require( 'victory' ).VictoryAnimation;
 const VictoryArea = require( 'victory' ).VictoryArea;
 const VictoryBar = require( 'victory' ).VictoryBar;
+const VictoryBrushContainer = require( 'victory' ).VictoryBrushContainer;
 const VictoryChart = require( 'victory' ).VictoryChart;
 const VictoryContainer = require( 'victory' ).VictoryContainer;
 const VictoryCursorContainer = require( 'victory' ).VictoryCursorContainer;
@@ -134,7 +138,7 @@ const Well = ReactBootstrap.Well;
 // LEARNING MODULES //
 
 const DataExplorer = require( 'components/data-explorer' );
-const CrossValidation = require( 'components/learn/cross-validation' );
+const Learn = require( 'components/learn' );
 
 
 // MAIN //

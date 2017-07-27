@@ -1,0 +1,8 @@
+.login-modal {
+	position: fixed;
+	top: 20%;
+	height: auto;
+	left: 0;
+	right: 0;
+	margin: auto;
+}

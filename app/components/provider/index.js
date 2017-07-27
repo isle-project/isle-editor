@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 
-// PROVIDER //
+// MAIN //
 
 class Provider extends Component {
 

@@ -22,6 +22,7 @@ class RealTimeMetrics extends Component {
 
 	componentDidMount() {
 		const { session } = this.context;
+		this._isMounted = true;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if ( type === 'member_action' ) {
 				if ( contains( this.props.for, action.id ) ) {
@@ -39,11 +40,14 @@ class RealTimeMetrics extends Component {
 					});
 				}
 			}
-			this.forceUpdate();
+			if ( this._isMounted ) {
+				this.forceUpdate();
+			}
 		});
 	}
 
 	componentWillUnmount() {
+		this._isMounted = false;
 		this.unsubscribe();
 	}
 

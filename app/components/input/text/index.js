@@ -2,19 +2,26 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Input from 'components/input';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
+import Input from 'components/input/base';
+import './text.css';
 
 
-// TEXT INPUT //
+// MAIN //
 
 class TextInput extends Input {
 
-	constructor( props ) {
+	constructor( props, context ) {
 		super( props );
 
+		const { session } = context;
 		this.state = {
-			value: props.defaultValue
+			value: !props.bind ?
+				props.defaultValue :
+				session.config.state[ props.bind ]
 		};
+
+		this.focus = this.focus.bind( this );
 
 		this.handleChange = ( event ) => {
 			const value = event.target.value;
@@ -22,12 +29,47 @@ class TextInput extends Input {
 				value
 			}, () => {
 				this.props.onChange( value );
-				if ( this.context.autoUpdate ) {
+				if ( this.props.bind ) {
+					global.lesson.setState({
+						[ this.props.bind ]: value
+					}, () => {
+						if ( this.context.autoUpdate ) {
+							this.context.triggerDashboardClick();
+						}
+					});
+				} else if ( this.context.autoUpdate ) {
 					this.context.triggerDashboardClick();
 				}
 			});
 
 		};
+	}
+
+	componentWillReceiveProps( nextProps ) {
+		let newState = {};
+		if ( nextProps.defaultValue !== this.props.defaultValue ) {
+			newState.value = nextProps.defaultValue;
+		} else if ( nextProps.bind !== this.props.bind ) {
+			newState.value = global.lesson.state[ nextProps.bind ];
+		}
+		if ( !isEmptyObject( newState ) ) {
+			this.setState( newState );
+		}
+	}
+
+	componentDidUpdate() {
+		if ( this.props.bind ) {
+			let globalVal = global.lesson.state[ this.props.bind ];
+			if ( globalVal !== this.state.value ) {
+				this.setState({
+					value: globalVal
+				});
+			}
+		}
+	}
+
+	focus() {
+		this.textInput.focus();
 	}
 
 	render() {
@@ -36,14 +78,15 @@ class TextInput extends Input {
 				<span>
 					{ this.props.legend ? <label>{this.props.legend}:</label> : <span /> }
 					<input
+						className="text-inline-input"
 						type="text"
 						name="input"
+						placeholder={this.props.placeholder}
 						value={this.state.value}
+						ref={ ( input ) => {
+							this.textInput = input;
+						}}
 						style={{
-							border: 'solid 1px darkgrey',
-							background: 'rgb(186, 204, 234)',
-							textAlign: 'left',
-							display: 'inline',
 							width: this.props.width
 						}}
 						onChange={this.handleChange}
@@ -56,14 +99,8 @@ class TextInput extends Input {
 			);
 		} else {
 			return (
-				<div style={{
-					marginBottom: '4px',
-					marginTop: '4px',
-					clear: 'both'
-				}}>
-					<span style={{
-						marginLeft: '8px'
-					}}>
+				<div className="text-container-div" >
+					<span style={{ marginLeft: '8px' }}>
 						<label>{this.props.legend}:</label>
 						{ this.props.description ?
 							<span> {this.props.description}</span> :
@@ -71,17 +108,15 @@ class TextInput extends Input {
 						}
 					</span>
 					<input
+						className="text-input"
 						type="text"
 						name="input"
+						placeholder={this.props.placeholder}
 						value={this.state.value}
+						ref={ ( input ) => {
+							this.textInput = input;
+						}}
 						style={{
-							marginRight: '8px',
-							paddingLeft: '16px',
-							paddingRight: '4px',
-							border: 'solid 1px darkgrey',
-							background: 'rgb(186, 204, 234)',
-							textAlign: 'left',
-							float: 'right',
 							width: this.props.width
 						}}
 						onChange={this.handleChange}
@@ -99,7 +134,8 @@ TextInput.defaultProps = {
 	defaultValue: '',
 	width: 80,
 	onChange(){},
-	inline: false
+	inline: false,
+	placeholder: 'Enter text'
 };
 
 
@@ -109,7 +145,8 @@ TextInput.propTypes = {
 	defaultValue: PropTypes.string,
 	inline: PropTypes.bool,
 	width: PropTypes.number,
-	onChange: PropTypes.func
+	onChange: PropTypes.func,
+	placeholder: PropTypes.string
 };
 
 
@@ -117,7 +154,8 @@ TextInput.propTypes = {
 
 TextInput.contextTypes = {
 	triggerDashboardClick: PropTypes.func,
-	autoUpdate: PropTypes.bool
+	autoUpdate: PropTypes.bool,
+	session: PropTypes.object
 };
 
 

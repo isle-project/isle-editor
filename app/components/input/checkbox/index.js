@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Input from 'components/input';
+import Input from 'components/input/base';
 
 
 // MAIN //
@@ -55,7 +55,8 @@ class CheckboxInput extends Input {
 			return (
 				<div style={{
 					marginTop: '8px',
-					marginLeft: '8px'
+					marginLeft: '8px',
+					marginBottom: '8px'
 				}}>
 					{input}
 					<span

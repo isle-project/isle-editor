@@ -4,7 +4,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder } from 'recordrtc';
+import inEditor from 'utils/is-electron';
 import getScreenId from './get_screen_id.js';
+import './recorder.css';
 
 
 // VARIABLES //
@@ -23,13 +25,11 @@ function captureScreen( clbk ) {
 	});
 }
 
-/*
 function captureCamera( cb ) {
-	navigator.getUserMedia({ audio: false, video: true }, cb, function ( error ) {
+	navigator.getUserMedia({ audio: true, video: true }, cb, function ( error ) {
 		console.error( 'captureCamera error', error );
 	});
 }
-*/
 
 function captureAudio( cb ) {
 	navigator.getUserMedia({ audio: true, video: false }, cb, function ( error ) {
@@ -164,14 +164,15 @@ class Recorder extends Component {
 	}
 
 	setupRecorder() {
-		if ( this.props.audio && !this.props.screen ) {
+		const { audio, camera, screen } = this.props;
+		if ( audio && !screen && !camera ) {
 			captureAudio( ( audio ) => {
 				let recorder = RecordRTC( audio, this.recorderConfig );
 				recorder.startRecording();
 				this.recorder = recorder;
 			});
 		}
-		if ( !this.props.audio && this.props.screen ) {
+		if ( !audio && screen && !camera ) {
 			captureScreen( ( screen ) => {
 				screen.width = window.screen.width;
 				screen.height = window.screen.height;
@@ -182,7 +183,7 @@ class Recorder extends Component {
 				this.recorder = recorder;
 			});
 		}
-		if ( this.props.audio && this.props.screen ) {
+		if ( audio && screen && !camera ) {
 			captureAudio( ( audio ) => {
 				captureScreen( ( screen ) => {
 					screen.width = window.screen.width;
@@ -196,6 +197,31 @@ class Recorder extends Component {
 				});
 			});
 		}
+		if ( screen && camera ) {
+			captureCamera( ( camera ) => {
+				captureScreen( ( screen ) => {
+					screen.width = window.screen.width;
+					screen.height = window.screen.height;
+					screen.fullcanvas = true;
+					this.camera = camera;
+					this.screen = screen;
+					let recorder = RecordRTC([ camera, screen ], this.recorderConfig );
+					recorder.startRecording();
+					this.recorder = recorder;
+				});
+			});
+		}
+		else if ( screen && !camera ) {
+			captureScreen( ( screen ) => {
+				screen.width = window.screen.width;
+				screen.height = window.screen.height;
+				screen.fullcanvas = true;
+				this.screen = screen;
+				let recorder = RecordRTC([ screen ], this.recorderConfig );
+				recorder.startRecording();
+				this.recorder = recorder;
+			});
+		}
 	}
 
 	componentWillUnmount() {
@@ -207,6 +233,12 @@ class Recorder extends Component {
 	}
 
 	componentDidMount() {
+		if ( this.props.autostart ) {
+			this.startRecording();
+			this.setState({
+				recording: true
+			});
+		}
 	}
 
 	render() {
@@ -235,17 +267,11 @@ class Recorder extends Component {
 					right: '30%'
 				}}>
 					<div
-						style={{
-							position: 'absolute',
-							borderRadius: '50%',
-							background: recordingColor,
-							width: '22px',
-							height: '22px',
-							top: '5px',
-							left: '5px',
-							cursor: 'pointer'
-						}}
+						className="recorder-button"
 						onClick={this.handleClick}
+						style={{
+							background: recordingColor
+						}}
 					></div>
 				</div>
 				<div style={{
@@ -258,19 +284,19 @@ class Recorder extends Component {
 					<audio style={{ display: this.state.recording ? 'none' : 'block' }} ref={ ( player ) => { this.player = player; }} controls autoPlay></audio> :
 					<video width="320px" height="auto" style={{ display: this.state.recording ? 'none' : 'block' }} ref={ ( player ) => { this.player = player; }} controls autoPlay></video>
 				}
-				{ !this.state.available ?  <button onClick={ () => {
+				{ !this.state.available && !inEditor ?  <button onClick={ () => {
 					window.open( 'https://chrome.google.com/webstore/detail/screen-capturing/ajhifddimkapgcifgcodmmfdlknahffk', '_blank' );
-				}} id="install-button" style={{
-					padding: 0,
-					background: 'none',
-					height: '36px',
-					verticalAlign: 'middle',
-					cursor: 'pointer'
-				}}>
+				}} id="install-button">
 					<img width="100px" height="32px" src="https://www.webrtc-experiment.com/images/btn-install-chrome-extension.png" alt="Add to Chrome" />
 				</button> :  null }
-				{ this.state.finished && this.props.downloadable ? <Button onClick={this.storeFile} bsStyle="primary">Download File</Button> : null }
-				{ this.state.finished && this.props.uploadable ? <Button onClick={this.uploadFile} bsStyle="primary">Upload File</Button> : null }
+				{ this.state.finished && this.props.downloadable ?
+					<Button onClick={this.storeFile} bsStyle="primary">Download File</Button> :
+					null
+				}
+				{ this.state.finished && this.props.uploadable ?
+					<Button onClick={this.uploadFile} bsStyle="primary">Upload File</Button> :
+					null
+				}
 			</div>
 		);
 	}
@@ -282,9 +308,11 @@ class Recorder extends Component {
 
 Recorder.propTypes = {
 	audio: PropTypes.bool,
+	video: PropTypes.bool,
 	screen: PropTypes.bool,
 	uploadable: PropTypes.bool,
-	downloadable: PropTypes.bool
+	downloadable: PropTypes.bool,
+	autostart: PropTypes.bool
 };
 
 
@@ -292,7 +320,7 @@ Recorder.propTypes = {
 
 Recorder.defaultProps = {
 	downloadable: false,
-	uploadable: false
+	uploadable: false,
 };
 
 

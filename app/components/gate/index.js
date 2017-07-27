@@ -60,15 +60,19 @@ class Gate extends Component {
 
 	componentDidMount() {
 		const { session } = this.context;
+		this._isMounted = true;
 		this.unsubscribe = session.subscribe( () => {
 			this.checkAuthorization();
-			this.forceUpdate();
+			if ( this._isMounted ) {
+				this.forceUpdate();
+			}
 		});
 		this.checkAuthorization();
 	}
 
 	componentWillUnmount() {
 		this.unsubscribe();
+		this._isMounted = false;
 	}
 
 }

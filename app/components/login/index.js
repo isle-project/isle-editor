@@ -6,6 +6,7 @@ import {
 	Form, Overlay, Modal, Popover
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import './login.css';
 
 
 // MAIN //
@@ -93,14 +94,7 @@ class Login extends Component {
 
 	render() {
 		return (
-			<Modal show={this.props.show} style={{ 
-				position: 'fixed',
-				top: '20%',
-				height: 'auto',
-				left: 0,
-				right: 0,
-				margin: 'auto'
-			}}>
+			<Modal show={this.props.show} className="login-modal" >
 				<Modal.Header>
 					<Modal.Title>Login</Modal.Title>
 				</Modal.Header>

@@ -27,7 +27,8 @@ class NumberSurvey extends Component {
 				session.log({
 					id: this.props.id,
 					type: 'NUMBER_SURVEY_SUBMISSION',
-					value: this.state.value
+					value: this.state.value,
+					anonymous: this.props.anonymous
 				}, 'members' );
 			}
 			this.setState({
@@ -87,7 +88,8 @@ class NumberSurvey extends Component {
 NumberSurvey.defaultProps = {
 	onSubmit() {},
 	allowMultipleAnswers: false,
-	question: ''
+	question: '',
+	anonymous: false
 };
 
 
@@ -96,7 +98,8 @@ NumberSurvey.defaultProps = {
 NumberSurvey.propTypes = {
 	onSubmit: PropTypes.func,
 	allowMultipleAnswers: PropTypes.bool,
-	question: PropTypes.string
+	question: PropTypes.string,
+	anonymous: PropTypes.bool
 };
 
 NumberSurvey.contextTypes = {
