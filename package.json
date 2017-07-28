@@ -197,7 +197,7 @@
     "utf-8-validate": "^3.0.2",
     "venn.js": "^0.2.14",
     "victory": "^0.21.0",
-    "webpack": "3.3.0"
+    "webpack": "3.4.1"
   },
   "devEngines": {
     "node": "5.x || 6.x || 7.x || 8.x"
