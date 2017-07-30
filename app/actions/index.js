@@ -32,6 +32,21 @@ export function fileLoaded({ fileName, filePath }) {
 	};
 }
 
+export function encounteredError( error ) {
+	return {
+		type: types.ENCOUNTERED_ERROR,
+		payload: {
+			error
+		}
+	};
+}
+
+export function resetError() {
+	return {
+		type: types.RESET_ERROR
+	};
+}
+
 export function toggleScrolling() {
 	return {
 		type: types.TOGGLE_SCROLLING
