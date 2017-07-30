@@ -12,11 +12,13 @@ const config = new Configstore( 'ISLE' );
 
 const data = config.get( 'mostRecentFileData' ) || template;
 const preamble = data.match( /---([\S\s]*)---/ )[ 1 ];
+let error = null;
 let preambleObject = {};
+
 try {
 	preambleObject = yaml.load( preamble );
 } catch ( err ) {
-	console.log( err );
+	error = err;
 }
 
 const initialState = {
@@ -25,7 +27,8 @@ const initialState = {
 	isScrolling: true,
 	hideToolbar: false,
 	filePath: config.get( 'mostRecentFilePath' ),
-	fileName: config.get( 'mostRecentFileName' )
+	fileName: config.get( 'mostRecentFileName' ),
+	error
 };
 
 
@@ -39,6 +42,14 @@ export default function markdown( state = initialState, action ) {
 			fileName: action.payload.fileName,
 			filePath: action.payload.filePath
 		};
+	case types.ENCOUNTERED_ERROR:
+		return Object.assign({}, state, {
+			error: action.payload.error
+		});
+	case types.RESET_ERROR:
+		return Object.assign({}, state, {
+			error: null
+		});
 	case types.MARKDOWN_CHANGED:
 		return Object.assign({}, state, {
 			markdown: action.payload.markdown,
