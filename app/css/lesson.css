@@ -2,6 +2,20 @@ body {
 	background-color: #fffff8;
 }
 
+.errorMessage {
+	position: absolute;
+	width: 80%;
+	height: 20%;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	color: red;
+	font-size: 14px;
+	font-weight: 600;
+}
+
 #Lesson {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px !important;
