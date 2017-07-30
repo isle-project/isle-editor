@@ -13,7 +13,7 @@ import Panel from 'components/Panel';
 import Header from 'components/Header';
 import Editor from 'components/Editor';
 import Preview from 'components/Preview';
-import { convertMarkdown, toggleScrolling, toggleToolbar, updatePreamble } from 'actions';
+import { convertMarkdown, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError } from 'actions';
 const debug = require( 'debug' )( 'isle-editor' );
 
 
@@ -114,6 +114,7 @@ class App extends Component {
 			debug( 'Editor text changed...' );
 			const handleChange = ( value ) => {
 				debug( 'Should handle change...' );
+				this.handlePreambleChange( value );
 				this.props.convertMarkdown( value );
 			};
 
@@ -125,8 +126,48 @@ class App extends Component {
 			}
 		};
 
-		loadRequires( props.preamble.require, props.filePath || '' );
-		applyStyles( props.preamble, props.filePath || '' );
+		if ( isObject( props.preamble ) ) {
+			try {
+				loadRequires( props.preamble.require, props.filePath || '' );
+			} catch ( err ) {
+				this.props.encounteredError( err );
+			}
+			try {
+				applyStyles( props.preamble, props.filePath || '' );
+			} catch ( err ) {
+				this.props.encounteredError( err );
+			}
+		}
+	}
+
+	handlePreambleChange( text ) {
+		let preamble = text.match( /---([\S\s]*)---/ );
+		if ( !preamble ) {
+			return this.props.encounteredError( new Error( 'Make sure the file contains a YAML preamble enclosed in <b>---</b> tags.' ) );
+		}
+		// Extract the capture group:
+		preamble = preamble[ 1 ];
+		let preambleHasChanged = this.checkPreambleChange( preamble );
+		if ( preambleHasChanged ) {
+			const newPreamble = yaml.load( preamble );
+			if ( !isObject( newPreamble ) ) {
+				return this.props.encounteredError( new Error( 'Make sure the preamble is valid YAML code.' ) );
+			}
+			this.props.updatePreamble( newPreamble );
+			try {
+				loadRequires( newPreamble.require, this.props.filePath || '' );
+			} catch ( err ) {
+				return this.props.encounteredError( err );
+			}
+			try {
+				applyStyles( newPreamble, this.props.filePath || '' );
+			} catch ( err ) {
+				return this.props.encounteredError( err );
+			}
+			if ( this.props.error ) {
+				this.props.resetError();
+			}
+		}
 	}
 
 	checkPreambleChange( preamble ) {
@@ -150,14 +191,6 @@ class App extends Component {
 	componentWillReceiveProps( nextProps ) {
 		if ( nextProps.markdown !== this.props.markdown ) {
 			const value = nextProps.markdown;
-			const preamble = value.match( /---([\S\s]*)---/ )[ 1 ];
-			let preambleHasChanged = this.checkPreambleChange( preamble );
-			if ( preambleHasChanged ) {
-				const newPreamble = yaml.load( preamble );
-				this.props.updatePreamble( newPreamble );
-				loadRequires( newPreamble.require, nextProps.filePath || '' );
-				applyStyles( newPreamble, nextProps.filePath || '' );
-			}
 		}
 	}
 
@@ -170,7 +203,14 @@ class App extends Component {
 	}
 
 	render() {
-		let { fileName, filePath, markdown, hideToolbar, preamble } = this.props;
+		let {
+			error,
+			fileName,
+			filePath,
+			markdown,
+			hideToolbar,
+			preamble
+		} = this.props;
 		return (
 			<div>
 				{ !hideToolbar ? <Header fileName={fileName} /> : null }
@@ -201,7 +241,12 @@ class App extends Component {
 						/>
 					</Panel>
 					<Panel ref="preview" onScroll={this.onPreviewScroll}>
-						<Preview code={markdown} filePath={filePath} preamble={preamble} />
+						<Preview
+							errorMsg={ error ? error.message : null }
+							code={markdown}
+							filePath={filePath}
+							preamble={preamble}
+						/>
 					</Panel>
 				</SplitPane>
 				{
@@ -222,6 +267,8 @@ class App extends Component {
 
 export default connect( mapStateToProps, {
 	convertMarkdown,
+	encounteredError,
+	resetError,
 	toggleScrolling,
 	toggleToolbar,
 	updatePreamble
