@@ -144,10 +144,30 @@ const Learn = require( 'components/learn' );
 // MAIN //
 
 export default class Preview extends Component {
+
+	renderErrorMessage( err ) {
+		let code = `<div className="errorMessage">
+			${err}
+		</div>`;
+		let es5code = `
+			render(
+				${transform( code )},
+				document.getElementById( 'Preview' )
+			)
+		`;
+		eval( es5code );
+	}
+
 	constructor( props ) {
 		super( props );
 
-		global.session = new Session( this.props.preamble );
+		this.state = {
+			preambleIsValid: !props.errorMsg
+		};
+
+		if ( this.state.preambleIsValid ) {
+			global.session = new Session( props.preamble );
+		}
 
 		this.shouldRenderPreview = true;
 		this.renderPreview = () => {
@@ -232,19 +252,28 @@ export default class Preview extends Component {
 				`;
 				eval( es5code );
 			} catch ( err ) {
-				code = `<div>${err.toString()}</div>`;
-				es5code = `
-					render(
-						${transform( code )},
-						document.getElementById( 'Preview' )
-					)
-				`;
-				eval( es5code );
+				this.renderErrorMessage( err.message );
 			}
 		};
 	}
 
+	componentWillReceiveProps( nextProps ) {
+		debug( 'Preview will receive props: ' + JSON.stringify( nextProps ) );
+		if ( nextProps.errorMsg ) {
+			this.setState({
+				preambleIsValid: false
+			});
+		} else {
+			if ( !this.state.preambleIsValid ) {
+				this.setState({
+					preambleIsValid: true
+				});
+			}
+		}
+	}
+
 	componentWillUpdate( nextProps ) {
+		debug( 'Preview will update: ' + JSON.stringify( nextProps ) );
 		if (
 			nextProps.preamble.server !== this.props.preamble.server ||
 			nextProps.preamble.state !== this.props.preamble.state
@@ -252,16 +281,28 @@ export default class Preview extends Component {
 			global.session = new Session( nextProps.preamble );
 		}
 		if ( nextProps.preamble.type !== this.props.preamble.type ) {
-			this.renderPreview();
+			if ( this.state.preambleIsValid ) {
+				this.renderPreview();
+			}
 		}
 	}
 
 	componentDidMount() {
-		this.renderPreview();
+		debug( 'Preview did mount.' );
+		if ( this.state.preambleIsValid ) {
+			this.renderPreview();
+		} else {
+			this.renderErrorMessage( this.props.errorMsg );
+		}
 	}
 
 	componentDidUpdate() {
-		this.renderPreview();
+		debug( 'Preview did update.' );
+		if ( this.state.preambleIsValid ) {
+			this.renderPreview();
+		} else {
+			this.renderErrorMessage( this.props.errorMsg );
+		}
 	}
 
 	render() {
@@ -276,7 +317,8 @@ export default class Preview extends Component {
 
 Preview.propTypes = {
 	code: PropTypes.string,
-	filePath: PropTypes.string
+	filePath: PropTypes.string,
+	errorMsg: PropTypes.string
 };
 
 
