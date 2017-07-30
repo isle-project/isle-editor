@@ -349,7 +349,7 @@ class DataExplorer extends Component {
 													/>;
 													break;
 												}
-												return <Tab.Pane eventKey={`2.${i+1}`}>
+												return <Tab.Pane key={i} eventKey={`2.${i+1}`}>
 													{content}
 												</Tab.Pane>;
 											})}
@@ -400,7 +400,7 @@ class DataExplorer extends Component {
 													/>;
 													break;
 												}
-												return <Tab.Pane eventKey={`3.${i+1}`}>
+												return <Tab.Pane key={i} eventKey={`3.${i+1}`}>
 													{content}
 												</Tab.Pane>;
 											})}
@@ -431,7 +431,7 @@ class DataExplorer extends Component {
 													/>;
 													break;
 												}
-												return <Tab.Pane eventKey={`5.${i+1}`}>
+												return <Tab.Pane key={i} eventKey={`5.${i+1}`}>
 													{content}
 												</Tab.Pane>;
 											})}
@@ -445,7 +445,7 @@ class DataExplorer extends Component {
 												/>
 											</Tab.Pane> : null }
 											{this.props.tabs.map( ( e, i ) => {
-												return ( <Tab.Pane eventKey={`${6+i}`}>
+												return ( <Tab.Pane key={i} eventKey={`${6+i}`}>
 													{e.content}
 												</Tab.Pane> );
 											})}
