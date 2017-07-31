@@ -23,13 +23,54 @@ class SliderInput extends Input {
 		};
 
 		this.handleInputChange = ( event ) => {
-			const value = event.target.value;
-			const { min, max } = this.props;
+			const valid = event.target.validity.valid;
+			let value = event.target.value;
+			this.setState({
+				value
+			}, () => {
+				console.log( value );
+				if ( valid && value !== '' ) {
+					value = parseFloat( value );
+					this.props.onChange( value );
+					if ( this.props.bind ) {
+						global.lesson.setState({
+							[ this.props.bind ]: value
+						}, () => {
+							if ( this.context.autoUpdate ) {
+								this.context.triggerDashboardClick();
+							}
+						});
+					} else {
+						if ( this.context.autoUpdate ) {
+							this.context.triggerDashboardClick();
+						}
+					}
+				} else {
+					if ( this.props.bind ) {
+						global.lesson.setState({
+							[ this.props.bind ]: value
+						});
+					}
+				}
+			});
+		};
 
-			if (
-				( min === null || value >= min || min > 0 ) &&
-				( max === null || value <= max )
-			) {
+		this.finishChange = ( event ) => {
+			const { max, min, step } = this.props;
+			let value = event.target.value;
+			if ( value !== '' ) {
+				value = parseFloat( value );
+			}
+			if ( value > max ) {
+				value = max;
+			}
+			else if ( value < min ) {
+				value = min;
+			}
+			else if ( step == 1.0 && value !== '' ) {
+				value = value - value % this.props.step;
+			}
+			if ( value !== this.state.value ) {
 				this.setState({
 					value
 				}, () => {
@@ -76,6 +117,10 @@ class SliderInput extends Input {
 	}
 
 	render() {
+		let { value } = this.state;
+		if ( value !== '' ) {
+			roundn( value, ( -1.0 )*this.props.precision );
+		}
 		const rangeInput = <input
 			type="range"
 			min={this.props.min}
@@ -87,7 +132,7 @@ class SliderInput extends Input {
 				marginLeft: '8px',
 				float: 'left'
 			}}
-			value={this.state.value}
+			value={value}
 			onChange={this.handleInputChange}
 		/>;
 		const numberInput = <input
@@ -108,11 +153,9 @@ class SliderInput extends Input {
 			min={this.props.min}
 			max={this.props.max}
 			step={this.props.step}
-			value={this.props.fractionDigits ?
-				parseFloat( this.state.value ).toFixed( this.props.fractionDigits ) :
-				roundn( this.state.value, -10 )
-			}
+			value={value}
 			onChange={this.handleInputChange}
+			onBlur={this.finishChange}
 		/>;
 
 		if ( this.props.inline ) {
@@ -150,7 +193,7 @@ SliderInput.defaultProps = {
 	step: 1,
 	defaultValue: 10,
 	onChange() {},
-	fractionDigits: null
+	precision: 10
 };
 
 
@@ -160,13 +203,13 @@ SliderInput.propTypes = {
 	inline: PropTypes.bool,
 	min: PropTypes.number,
 	max: PropTypes.number,
+	precision: PropTypes.number,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
 	]),
 	defaultValue: PropTypes.number,
-	onChange: PropTypes.func,
-	fractionDigits: PropTypes.number
+	onChange: PropTypes.func
 };
 
 
