@@ -3,13 +3,17 @@
 import React from 'react';
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import './switch.css';
+
+
+// FUNCTIONS //
 
 const makeTooltip = ( text ) => (
 	<Tooltip id="tooltip">{text}</Tooltip>
 );
 
 
-// SWITCH //
+// MAIN //
 
 class Switch extends React.Component {
 	constructor() {
@@ -51,7 +55,6 @@ class Switch extends React.Component {
 				<div
 					className="switch"
 					onClick={this.handleClick}
-					style={{ cursor: 'pointer', display: 'inline' }}
 				>
 					{children}
 				</div>
