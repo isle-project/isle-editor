@@ -42,7 +42,7 @@ class NormalProbs extends Component {
 								data[ i ] = {
 									x: x[ i ],
 									y: dnorm( x[ i ], mean, sd ),
-								}
+								};
 							}
 							this.setState({
 								data7: data,
@@ -79,6 +79,7 @@ class NormalProbs extends Component {
 						<VictoryChart
 							domain={{ x: [ -30, 30 ], y: [ 0, dnorm( this.state.mean1, this.state.mean1, this.state.sd1 ) ] }}>
 							<VictoryArea
+								animate={{ duration: 500 }}
 								data={this.state.data7}
 								style={{
 									data: {
@@ -88,6 +89,7 @@ class NormalProbs extends Component {
 								}}
 							/>
 							<VictoryLine
+								animate={{ duration: 500, easing: "linear" }}
 								samples={200}
 								y={ ( data ) =>
 									dnorm( data.x, this.state.mean1, this.state.sd1 )
@@ -106,7 +108,7 @@ class NormalProbs extends Component {
 								data[ i ] = {
 									x: x[ i ],
 									y: dnorm( x[ i ], mean, sd ),
-								}
+								};
 							}
 							this.setState({
 								data8: data,
@@ -143,6 +145,7 @@ class NormalProbs extends Component {
 						<VictoryChart
 							domain={{ x: [ -30, 30 ], y: [ 0, dnorm( this.state.mean2, this.state.mean2, this.state.sd2 ) ] }}>
 							<VictoryArea
+								animate={{ duration: 500 }}
 								data={this.state.data8}
 								style={{
 									data: {
@@ -152,6 +155,7 @@ class NormalProbs extends Component {
 								}}
 							/>
 							<VictoryLine
+								animate={{ duration: 500, easing: "linear" }}
 								samples={200}
 								y={ ( data ) =>
 									dnorm( data.x, this.state.mean2, this.state.sd2 )
@@ -214,6 +218,7 @@ class NormalProbs extends Component {
 						<VictoryChart
 							domain={{ x: [ -30, 30 ], y: [ 0, dnorm( this.state.mean3, this.state.mean3, this.state.sd3 ) ] }}>
 							<VictoryArea
+								animate={{ duration: 500 }}
 								data={this.state.data9}
 								style={{
 									data: {
@@ -223,6 +228,7 @@ class NormalProbs extends Component {
 							/>
 							<VictoryLine
 								samples={200}
+								animate={{ duration: 500, easing: "linear" }}
 								y={ ( data ) =>
 									dnorm( data.x, this.state.mean3, this.state.sd3 )
 								}
