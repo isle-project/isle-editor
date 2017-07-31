@@ -2,9 +2,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Input from 'components/input/base';
 import roundn from '@stdlib/math/base/special/roundn';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import PINF from '@stdlib/math/constants/float64-pinf';
+import NINF from '@stdlib/math/constants/float64-ninf';
 import './slider.css';
 
 
@@ -12,11 +15,26 @@ import './slider.css';
 
 class SliderInput extends Input {
 
+	createTooltip( props ) {
+		let tooltip = `Enter a${ props.step === 1 ? 'n integer' : ' number'} `;
+		if ( props.max !== PINF && props.min !== NINF ) {
+			tooltip += `between ${props.min} and ${props.max}:`;
+		} else if ( props.min !== NINF ) {
+			tooltip += `larger or equal to ${props.min}:`;
+		} else if ( props.max !== PINF ) {
+			tooltip += `smaller or equal to ${props.max}:`;
+		} else {
+			tooltip += ':';
+		}
+		return tooltip;
+	}
+
 	constructor( props, context ) {
 		super( props );
 
 		const { session } = context;
 		this.state = {
+			tooltip: this.createTooltip( props ),
 			value: !props.bind ?
 				props.defaultValue :
 				session.config.state[ props.bind ]
@@ -111,6 +129,9 @@ class SliderInput extends Input {
 		} else if ( nextProps.bind !== this.props.bind ) {
 			newState.value = global.lesson.state[ nextProps.bind ];
 		}
+		if ( nextProps.min !== this.props.min || nextProps.max !== this.props.max ) {
+			newState.tooltip = this.createTooltip( nextProps );
+		}
 		if ( !isEmptyObject( newState ) ) {
 			this.setState( newState );
 		}
@@ -135,28 +156,37 @@ class SliderInput extends Input {
 			value={value}
 			onChange={this.handleInputChange}
 		/>;
-		const numberInput = <input
-			type="number"
-			name="input"
-			style={{
-				width: '80px',
-				marginRight: '8px',
-				marginBottom: '4px',
-				paddingLeft: '16px',
-				paddingRight: '4px',
-				background: 'rgb(186, 204, 234)',
-				border: 'solid 1px darkgrey',
-				borderRadius: '2px',
-				textAlign: 'center',
-				float: 'right',
-			}}
-			min={this.props.min}
-			max={this.props.max}
-			step={this.props.step}
-			value={value}
-			onChange={this.handleInputChange}
-			onBlur={this.finishChange}
-		/>;
+		const numberInput = <OverlayTrigger
+			placement="top"
+			overlay={
+				<Tooltip id='inlineTooltip'>
+					{this.state.tooltip}
+				</Tooltip>
+			}
+		>
+			<input
+				type="number"
+				name="input"
+				style={{
+					width: '80px',
+					marginRight: '8px',
+					marginBottom: '4px',
+					paddingLeft: '16px',
+					paddingRight: '4px',
+					background: 'rgb(186, 204, 234)',
+					border: 'solid 1px darkgrey',
+					borderRadius: '2px',
+					textAlign: 'center',
+					float: 'right',
+				}}
+				min={this.props.min}
+				max={this.props.max}
+				step={this.props.step}
+				value={value}
+				onChange={this.handleInputChange}
+				onBlur={this.finishChange}
+			/>
+		</OverlayTrigger>;
 
 		if ( this.props.inline ) {
 			return (
