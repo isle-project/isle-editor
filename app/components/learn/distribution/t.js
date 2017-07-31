@@ -157,6 +157,11 @@ class TProbs extends Component {
 							if ( df === 0 ) {
 								df = 1e-6;
 							}
+							if ( x0 > x1 ) {
+								let tmp = x0;
+								x0 = x1;
+								x1 = tmp;
+							}
 							let len = 200;
 							let x = linspace( x0, x1, len );
 							let data = new Array( len );

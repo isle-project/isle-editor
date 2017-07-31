@@ -167,6 +167,11 @@ class NormalProbs extends Component {
 				<Row>
 					<Col md={6}>
 						<Dashboard autoUpdate title={<TeX raw="P( x_0 \le X \le x_1)"/>} onGenerate={( mean, sd, x0, x1 ) => {
+							if ( x0 > x1 ) {
+								let tmp = x0;
+								x0 = x1;
+								x1 = tmp;
+							}
 							let len = 200;
 							let x = linspace( x0, x1, len );
 							let data = new Array( len );
