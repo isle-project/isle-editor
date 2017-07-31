@@ -147,7 +147,8 @@ export default class Preview extends Component {
 
 	renderErrorMessage( err ) {
 		let code = `<div className="errorMessage">
-			${err}
+			<h3>Encountered an error:</h3>
+			<span>${err}</span>
 		</div>`;
 		let es5code = `
 			render(
@@ -258,7 +259,7 @@ export default class Preview extends Component {
 	}
 
 	componentWillReceiveProps( nextProps ) {
-		debug( 'Preview will receive props: ' + JSON.stringify( nextProps ) );
+		debug( 'Preview will receive props.' );
 		if ( nextProps.errorMsg ) {
 			this.setState({
 				preambleIsValid: false
@@ -273,7 +274,7 @@ export default class Preview extends Component {
 	}
 
 	componentWillUpdate( nextProps ) {
-		debug( 'Preview will update: ' + JSON.stringify( nextProps ) );
+		debug( 'Preview will update.' );
 		if (
 			nextProps.preamble.server !== this.props.preamble.server ||
 			nextProps.preamble.state !== this.props.preamble.state
