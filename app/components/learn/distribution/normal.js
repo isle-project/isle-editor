@@ -45,8 +45,8 @@ class NormalProbs extends Component {
 								};
 							}
 							this.setState({
-								data7: data,
-								eqn7: "P(X \\le" + x0 + ") = " + roundn( pnorm( x0, mean, sd ), -4 ),
+								data1: data,
+								eqn1: "P(X \\le" + x0 + ") = " + roundn( pnorm( x0, mean, sd ), -4 ),
 								sd1: sd,
 								mean1: mean
 							});
@@ -72,7 +72,7 @@ class NormalProbs extends Component {
 								max={30}
 								step={0.01}
 							/>
-							<TeX raw={this.state.eqn7} />
+							<TeX raw={this.state.eqn1} displayMode tag="" />
 						</Dashboard>
 					</Col>
 					<Col md={6}>
@@ -80,7 +80,7 @@ class NormalProbs extends Component {
 							domain={{ x: [ -30, 30 ], y: [ 0, dnorm( this.state.mean1, this.state.mean1, this.state.sd1 ) ] }}>
 							<VictoryArea
 								animate={{ duration: 500 }}
-								data={this.state.data7}
+								data={this.state.data1}
 								style={{
 									data: {
 										opacity: 0.3,
@@ -111,8 +111,8 @@ class NormalProbs extends Component {
 								};
 							}
 							this.setState({
-								data8: data,
-								eqn8: "P(X >" + x0 + ") = " + roundn( 1.0 - pnorm( x0, mean, sd ), -4 ),
+								data2: data,
+								eqn2: "P(X >" + x0 + ") = " + roundn( 1.0 - pnorm( x0, mean, sd ), -4 ),
 								sd2: sd,
 								mean2: mean
 							});
@@ -138,7 +138,7 @@ class NormalProbs extends Component {
 								max={30}
 								step={0.01}
 							/>
-							<TeX raw={this.state.eqn8} />
+							<TeX raw={this.state.eqn2} displayMode tag="" />
 						</Dashboard>
 					</Col>
 					<Col md={6}>
@@ -146,7 +146,7 @@ class NormalProbs extends Component {
 							domain={{ x: [ -30, 30 ], y: [ 0, dnorm( this.state.mean2, this.state.mean2, this.state.sd2 ) ] }}>
 							<VictoryArea
 								animate={{ duration: 500 }}
-								data={this.state.data8}
+								data={this.state.data2}
 								style={{
 									data: {
 										opacity: 0.3,
@@ -177,8 +177,8 @@ class NormalProbs extends Component {
 								};
 							}
 							this.setState({
-								data9: data,
-								eqn9: "P(" + x0 + "\\le X \\le" + x1 + ") = " + roundn( pnorm( x1, mean, sd ) - pnorm( x0, mean, sd ), -4 ),
+								data3: data,
+								eqn3: "P(" + x0 + "\\le X \\le" + x1 + ") = " + roundn( pnorm( x1, mean, sd ) - pnorm( x0, mean, sd ), -4 ),
 								sd3: sd,
 								mean3: mean
 							});
@@ -211,7 +211,7 @@ class NormalProbs extends Component {
 								max={this.state.mean3+this.state.sd3*4}
 								step={0.01}
 							/>
-							<TeX raw={this.state.eqn9} />
+							<TeX raw={this.state.eqn3} displayMode tag="" />
 						</Dashboard>
 					</Col>
 					<Col md={6}>
@@ -219,7 +219,7 @@ class NormalProbs extends Component {
 							domain={{ x: [ -30, 30 ], y: [ 0, dnorm( this.state.mean3, this.state.mean3, this.state.sd3 ) ] }}>
 							<VictoryArea
 								animate={{ duration: 500 }}
-								data={this.state.data9}
+								data={this.state.data3}
 								style={{
 									data: {
 										opacity: 0.3, fill: 'tomato'
