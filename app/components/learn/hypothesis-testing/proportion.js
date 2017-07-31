@@ -90,7 +90,7 @@ class ProportionTest extends Component {
 		let areaData;
 		let areaData2;
 		let probFormula;
-		let {  pStat } = this.state;
+		let { pStat } = this.state;
 		switch ( pos ) {
 		case 1:
 			areaData = linspace( -3, pStat, 200 ).map( d => {
@@ -125,15 +125,15 @@ class ProportionTest extends Component {
 		return (
 			<Grid>
 				<Row>
-					<Col md={5}>
+					<Col md={6}>
 						<Dashboard title="Parameters" maxWidth={1600} autoUpdate onGenerate={this.onGenerate} >
 							<Well>
 								<NumberInput
 									legend="Hypothesized proportion (null hypothesis)"
 									defaultValue={this.state.p0}
 									step={0.001}
-									min={0}
-									max={1}
+									min={0.001}
+									max={0.999}
 								/>
 							</Well>
 							Let's assume that we have observed data with the following characteristics:
@@ -177,7 +177,7 @@ class ProportionTest extends Component {
 							/>
 						</Dashboard>
 					</Col>
-					<Col md={7}>
+					<Col md={6}>
 						<Panel title="Test Result">
 							<p>Plugging in our values, we have:</p>
 							<TeX

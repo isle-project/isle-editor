@@ -133,7 +133,7 @@ class MeanTest extends Component {
 	render() {
 		return ( <Grid>
 			<Row>
-				<Col md={5}>
+				<Col md={6}>
 					<Dashboard title="Parameters" maxWidth={1600} autoUpdate onGenerate={this.onGenerate}>
 						<Well>
 							<NumberInput
@@ -193,7 +193,7 @@ class MeanTest extends Component {
 						/>
 					</Dashboard>
 				</Col>
-				<Col md={7}>
+				<Col md={6}>
 					<Panel title="Test Result">
 						<p>Plugging in our values, we have:</p>
 						<TeX
