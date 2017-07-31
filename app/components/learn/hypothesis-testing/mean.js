@@ -203,7 +203,10 @@ class MeanTest extends Component {
 						/>
 						<p>Under the null hypothesis, we calculate the p-value:</p>
 						<TeX raw={this.state.probFormula} />
-						<VictoryChart domain={{ x: [ -3, 3 ]}}>
+						<VictoryChart
+							domain={{ x: [ -3, 3 ]}}
+							animate={{ duration: 500 }}
+						>
 							<VictoryLine data={this.state.pdfData} />
 							<VictoryArea
 								data={this.state.areaData}
