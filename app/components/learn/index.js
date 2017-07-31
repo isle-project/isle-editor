@@ -8,6 +8,7 @@ import MeanTest from 'components/learn/hypothesis-testing/mean.js';
 import ProportionTest from 'components/learn/hypothesis-testing/proportion.js';
 import ExponentialDistribution from 'components/learn/distribution/exponential';
 import NormalDistribution from 'components/learn/distribution/normal';
+import TDistribution from 'components/learn/distribution/t';
 import UniformDistribution from 'components/learn/distribution/uniform';
 
 
@@ -22,5 +23,6 @@ export {
 	MeanTest,
 	ExponentialDistribution,
 	NormalDistribution,
+	TDistribution,
 	UniformDistribution
 };
