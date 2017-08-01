@@ -55,7 +55,7 @@ class TProbs extends Component {
 								defaultValue={1}
 								step="any"
 								min={0}
-								max={30}
+								max={10}
 							/>
 							<SliderInput
 								legend="x0"
@@ -116,7 +116,7 @@ class TProbs extends Component {
 								defaultValue={1}
 								step="any"
 								min={0}
-								max={30}
+								max={10}
 							/>
 							<SliderInput
 								legend="x0"
@@ -182,7 +182,7 @@ class TProbs extends Component {
 								defaultValue={1}
 								step="any"
 								min={0}
-								max={30}
+								max={10}
 							/>
 							<SliderInput
 								legend="x0"
