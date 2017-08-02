@@ -120,7 +120,7 @@ class SummaryStatistics extends Component {
 			>
 				<SelectInput
 					legend="Statistic:"
-					defaultValue={defaultStatistic || statistics[ 0 ]}
+					defaultValue={defaultStatistic}
 					options={statistics}
 					onChange={ ( value ) => {
 						this.setState({
@@ -142,11 +142,13 @@ class SummaryStatistics extends Component {
 							'inline' : 'none'
 					}}
 				/>
-				<SelectInput
-					legend="Group By:"
-					options={groupingVariables}
-					clearable={true}
-				/>
+				{ groupingVariables.length > 0 ?
+					<SelectInput
+						legend="Group By:"
+						options={groupingVariables}
+						clearable={true}
+					/> : null
+				}
 			</Dashboard>
 		);
 	}
@@ -156,8 +158,10 @@ class SummaryStatistics extends Component {
 // DEFAULT PROPERTIES //
 
 SummaryStatistics.defaultProps = {
+	groupingVariables: [],
 	defaultX: null,
 	defaultY: null,
+	defaultStatistic: 'Mean',
 	statistics: [
 		'Mean',
 		'Median',
@@ -176,6 +180,10 @@ SummaryStatistics.defaultProps = {
 
 SummaryStatistics.propTypes = {
 	data: PropTypes.object.isRequired,
+	variables: PropTypes.array.isRequired,
+	groupingVariables: PropTypes.array,
+	defaultX: PropTypes.string,
+	defaultY: PropTypes.string,
 	onCreated: PropTypes.func.isRequired,
 	statistics: PropTypes.array
 };

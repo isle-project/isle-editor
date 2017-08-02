@@ -258,6 +258,191 @@ class DataExplorer extends Component {
 			onCreated: this.addToOutputs,
 			onPlotDone: this.scrollToBottom
 		};
+
+		const navbar = <Nav bsStyle="tabs">
+			{ nStatistics > 0 ?
+				<NavItem eventKey="1">
+				Statistics
+				</NavItem> : null
+			}
+			{ this.props.tables.length > 0 && this.state.categorical.length > 0 ?
+				<NavDropdown
+					eventKey="2"
+					title="Tables"
+				>
+					{ this.props.tables.map(
+						( e, i ) => <MenuItem key={i} eventKey={`2.${i+1}`}>{e}</MenuItem>
+					) }
+				</NavDropdown> : null
+			}
+			{ this.props.plots.length > 0 ?
+				<NavDropdown
+					eventKey="3"
+					title="Plots"
+				>
+					{ this.props.plots.map(
+						( e, i ) => <MenuItem key={i} eventKey={`3.${i+1}`}>{e}</MenuItem>
+					) }
+				</NavDropdown> : null
+			}
+			{ this.props.tests.length > 0 ?
+				<NavItem
+					eventKey="4"
+					title="Tests"
+				>
+					Tests
+				</NavItem> : null
+			}
+			{ this.props.plots.length > 0 ?
+				<NavDropdown
+					eventKey="5"
+					title="Models"
+				>
+					{this.props.models.map( ( e, i ) =>
+						<MenuItem key={i} eventKey={`5.${i+1}`}>{e}</MenuItem> )}
+				</NavDropdown> : null
+			}
+			{ this.props.transformer ?
+				<NavItem
+					eventKey="6"
+					title="Transform"
+				>
+					Transform
+				</NavItem> : null
+			}
+			{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
+				return ( <NavItem eventKey={`${6+i}`}>
+					{e.title}
+				</NavItem> );
+			}) : null }
+		</Nav>;
+
+		const tabs = <Tab.Content animation>
+			<Tab.Pane eventKey="1">
+				<SummaryStatistics
+					{...continuousProps}
+					statistics={this.props.statistics}
+					logAction={this.logAction}
+				/>
+			</Tab.Pane>
+			{this.props.tables.map( ( e, i ) => {
+				let content = null;
+				switch ( e ) {
+				case 'Frequency Table':
+					content = <FrequencyTable
+						{...categoricalProps}
+						logAction={this.logAction}
+					/>;
+					break;
+				case 'Contingency Table':
+					content = <ContingencyTable
+						{...categoricalProps}
+						logAction={this.logAction}
+					/>;
+					break;
+				}
+				return <Tab.Pane key={i} eventKey={`2.${i+1}`}>
+					{content}
+				</Tab.Pane>;
+			})}
+			{this.props.plots.map( ( e, i ) => {
+				let content = null;
+				switch ( e ) {
+				case 'Bar Chart':
+					content = <Barchart
+						{...categoricalProps}
+						logAction={this.logAction}
+					/>;
+					break;
+				case 'Pie Chart':
+					content = <Piechart
+						{...categoricalProps}
+						logAction={this.logAction}
+					/>;
+					break;
+				case 'Histogram':
+					content = <Histogram
+						{...continuousProps}
+						logAction={this.logAction}
+					/>;
+					break;
+				case 'Box Plot':
+					content = <Boxplot
+						{...continuousProps}
+						logAction={this.logAction}
+					/>;
+					break;
+				case 'Scatterplot':
+					content = <Scatterplot
+						{...continuousProps}
+						logAction={this.logAction}
+					/>;
+					break;
+				case 'Heat Map':
+					content = <Heatmap
+						{...continuousProps}
+						logAction={this.logAction}
+					/>;
+					break;
+				case 'Mosaic Plot':
+					content = <MosaicPlot
+						{...categoricalProps}
+						logAction={this.logAction}
+						session={this.context.session}
+					/>;
+					break;
+				}
+				return <Tab.Pane key={i} eventKey={`3.${i+1}`}>
+					{content}
+				</Tab.Pane>;
+			})}
+			{this.props.tests ?
+				<Tab.Pane eventKey="4">
+					<HypothesisTests
+						categorical={this.state.categorical}
+						continuous={this.state.continuous}
+						tests={this.props.tests}
+						onCreated={this.addToOutputs}
+						data={this.state.data}
+						logAction={this.logAction}
+						session={this.context.session}
+					/>
+				</Tab.Pane> : null
+			}
+			{this.props.models.map( ( e, i ) => {
+				let content = null;
+				switch ( e ) {
+				case 'Simple Linear Regression':
+					content = <SimpleLinearRegression
+						categorical={this.state.categorical}
+						continuous={this.state.continuous}
+						onCreated={this.addToOutputs}
+						data={this.state.data}
+						logAction={this.logAction}
+						session={this.context.session}
+					/>;
+					break;
+				}
+				return <Tab.Pane key={i} eventKey={`5.${i+1}`}>
+					{content}
+				</Tab.Pane>;
+			})}
+			{ this.props.transformer ? <Tab.Pane eventKey="6">
+				<VariableTransformer
+					data={this.state.data}
+					logAction={this.logAction}
+					session={this.context.session}
+					defaultCode={generateTransformationCode( this.state.continuous[ 0 ])}
+					onGenerate={this.onGenerateTransformedVariable}
+				/>
+			</Tab.Pane> : null }
+			{this.props.tabs.map( ( e, i ) => {
+				return ( <Tab.Pane key={i} eventKey={`${6+i}`}>
+					{e.content}
+				</Tab.Pane> );
+			})}
+		</Tab.Content>;
+
 		return (
 			<Grid>
 				<Row>
@@ -273,183 +458,10 @@ class DataExplorer extends Component {
 							<Tab.Container id="options-menu" defaultActiveKey={defaultActiveKey}>
 								<Row className="clearfix">
 									<Col sm={12}>
-										<Nav bsStyle="tabs">
-											{ nStatistics > 0 ?
-												<NavItem eventKey="1">
-												Statistics
-												</NavItem> : null
-											}
-											{ this.props.tables.length > 0 ? <NavDropdown
-												eventKey="2"
-												title="Tables"
-											>
-												{this.props.tables.map( ( e, i ) =>
-													<MenuItem key={i} eventKey={`2.${i+1}`}>{e}</MenuItem> )}
-											</NavDropdown> : null
-											}
-											{ this.props.plots.length > 0 ? <NavDropdown
-												eventKey="3"
-												title="Plots"
-											>
-												{this.props.plots.map( ( e, i ) =>
-													<MenuItem key={i} eventKey={`3.${i+1}`}>{e}</MenuItem> )}
-											</NavDropdown> : null
-											}
-											{ this.props.tests.length > 0 ? <NavItem
-												eventKey="4"
-												title="Tests"
-											>
-												Tests
-											</NavItem> : null
-											}
-											{ this.props.plots.length > 0 ? <NavDropdown
-												eventKey="5"
-												title="Models"
-											>
-												{this.props.models.map( ( e, i ) =>
-													<MenuItem key={i} eventKey={`5.${i+1}`}>{e}</MenuItem> )}
-											</NavDropdown> : null
-											}
-											{ this.props.transformer ? <NavItem
-												eventKey="6"
-												title="Transform"
-											>
-												Transform
-											</NavItem> : null
-											}
-											{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
-												return ( <NavItem eventKey={`${6+i}`}>
-													{e.title}
-												</NavItem> );
-											}) : null }
-										</Nav>
+										{navbar}
 									</Col>
 									<Col sm={12}>
-										<Tab.Content animation>
-											<Tab.Pane eventKey="1">
-												<SummaryStatistics
-													{...continuousProps}
-													statistics={this.props.statistics}
-													logAction={this.logAction}
-												/>
-											</Tab.Pane>
-											{this.props.tables.map( ( e, i ) => {
-												let content = null;
-												switch ( e ) {
-												case 'Frequency Table':
-													content = <FrequencyTable
-														{...categoricalProps}
-														logAction={this.logAction}
-													/>;
-													break;
-												case 'Contingency Table':
-													content = <ContingencyTable
-														{...categoricalProps}
-														logAction={this.logAction}
-													/>;
-													break;
-												}
-												return <Tab.Pane key={i} eventKey={`2.${i+1}`}>
-													{content}
-												</Tab.Pane>;
-											})}
-											{this.props.plots.map( ( e, i ) => {
-												let content = null;
-												switch ( e ) {
-												case 'Bar Chart':
-													content = <Barchart
-														{...categoricalProps}
-														logAction={this.logAction}
-													/>;
-													break;
-												case 'Pie Chart':
-													content = <Piechart
-														{...categoricalProps}
-														logAction={this.logAction}
-													/>;
-													break;
-												case 'Histogram':
-													content = <Histogram
-														{...continuousProps}
-														logAction={this.logAction}
-													/>;
-													break;
-												case 'Box Plot':
-													content = <Boxplot
-														{...continuousProps}
-														logAction={this.logAction}
-													/>;
-													break;
-												case 'Scatterplot':
-													content = <Scatterplot
-														{...continuousProps}
-														logAction={this.logAction}
-													/>;
-													break;
-												case 'Heat Map':
-													content = <Heatmap
-														{...continuousProps}
-														logAction={this.logAction}
-													/>;
-													break;
-												case 'Mosaic Plot':
-													content = <MosaicPlot
-														{...categoricalProps}
-														logAction={this.logAction}
-														session={this.context.session}
-													/>;
-													break;
-												}
-												return <Tab.Pane key={i} eventKey={`3.${i+1}`}>
-													{content}
-												</Tab.Pane>;
-											})}
-											{this.props.tests ?
-												<Tab.Pane eventKey="4">
-													<HypothesisTests
-														categorical={this.state.categorical}
-														continuous={this.state.continuous}
-														tests={this.props.tests}
-														onCreated={this.addToOutputs}
-														data={this.state.data}
-														logAction={this.logAction}
-														session={this.context.session}
-													/>
-												</Tab.Pane> : null
-											}
-											{this.props.models.map( ( e, i ) => {
-												let content = null;
-												switch ( e ) {
-												case 'Simple Linear Regression':
-													content = <SimpleLinearRegression
-														categorical={this.state.categorical}
-														continuous={this.state.continuous}
-														onCreated={this.addToOutputs}
-														data={this.state.data}
-														logAction={this.logAction}
-														session={this.context.session}
-													/>;
-													break;
-												}
-												return <Tab.Pane key={i} eventKey={`5.${i+1}`}>
-													{content}
-												</Tab.Pane>;
-											})}
-											{ this.props.transformer ? <Tab.Pane eventKey="6">
-												<VariableTransformer
-													data={this.state.data}
-													logAction={this.logAction}
-													session={this.context.session}
-													defaultCode={generateTransformationCode( this.state.continuous[ 0 ])}
-													onGenerate={this.onGenerateTransformedVariable}
-												/>
-											</Tab.Pane> : null }
-											{this.props.tabs.map( ( e, i ) => {
-												return ( <Tab.Pane key={i} eventKey={`${6+i}`}>
-													{e.content}
-												</Tab.Pane> );
-											})}
-										</Tab.Content>
+										{tabs}
 									</Col>
 								</Row>
 							</Tab.Container>
@@ -510,7 +522,9 @@ DataExplorer.defaultProps = {
 	],
 	models: [
 		'Simple Linear Regression'
-	]
+	],
+	categorical: [],
+	continuous: []
 };
 
 

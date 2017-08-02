@@ -7,6 +7,7 @@ import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
+import isArray from '@stdlib/assert/is-array';
 import ztest from '@stdlib/math/statistics/ztest';
 import ztest2 from '@stdlib/math/statistics/ztest2';
 import pcorrtest from '@stdlib/math/statistics/pcorrtest';
@@ -27,8 +28,13 @@ class HypothesisTests extends Component {
 
 		super( props );
 
-		let categories = copy( props.data[ props.categorical[ 0 ] ]);
-		unique( categories );
+		let categories;
+		if ( isArray( props.categorical ) && props.categorical.length > 0 ) {
+			categories = copy( props.data[ props.categorical[ 0 ] ]);
+			unique( categories );
+		} else {
+			categories = [];
+		}
 
 		this.state = {
 			categories: categories,
@@ -51,8 +57,7 @@ class HypothesisTests extends Component {
 			} else if ( direction === 'greater' ){
 				arrow = '>';
 			}
-
-			let output = {
+			const output = {
 				variable: `Test for ${variable}`,
 				type: 'Test',
 				value: <div>
@@ -87,8 +92,7 @@ class HypothesisTests extends Component {
 			} else if ( direction === 'greater' ){
 				arrow = '>';
 			}
-
-			let output = {
+			const output = {
 				variable: `Test for correlation between ${var1} and ${var2}`,
 				type: 'Test',
 				value: <div>
