@@ -3,3 +3,23 @@
 	margin-top: 4px;
 	clear: both;
 }
+
+.slider-number-input {
+	width: 80px;
+	margin-right: 8px;
+	margin-bottom: 4px;
+	padding-left: 16px;
+	padding-right: 4px;
+	background: rgb(186, 204, 234);
+	border: solid 1px darkgrey;
+	border-radius: 2px;
+	text-align: center;
+	float: right;
+}
+
+.slider-range-input {
+	width: 50%;
+	margin-bottom: 4px;
+	margin-left: 8px;
+	float: left;
+}

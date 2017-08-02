@@ -144,15 +144,10 @@ class SliderInput extends Input {
 		}
 		const rangeInput = <input
 			type="range"
+			className="slider-range-input"
 			min={this.props.min}
 			max={this.props.max}
 			step={this.props.step}
-			style={{
-				width: '50%',
-				marginBottom: '4px',
-				marginLeft: '8px',
-				float: 'left'
-			}}
 			value={value}
 			onChange={this.handleInputChange}
 		/>;
@@ -167,18 +162,7 @@ class SliderInput extends Input {
 			<input
 				type="number"
 				name="input"
-				style={{
-					width: '80px',
-					marginRight: '8px',
-					marginBottom: '4px',
-					paddingLeft: '16px',
-					paddingRight: '4px',
-					background: 'rgb(186, 204, 234)',
-					border: 'solid 1px darkgrey',
-					borderRadius: '2px',
-					textAlign: 'center',
-					float: 'right',
-				}}
+				className="slider-number-input"
 				min={this.props.min}
 				max={this.props.max}
 				step={this.props.step}
