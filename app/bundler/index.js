@@ -1,10 +1,10 @@
 // MODULES //
 
+const cp = require( 'child_process' );
 const fs = require( 'fs-extra' );
 const path = require( 'path' );
 const yaml = require( 'js-yaml' );
 const webpack = require( 'webpack' );
-const UglifyJS = require( 'uglify-es' );
 const debug = require( 'debug-electron' )( 'bundler' );
 const contains = require( '@stdlib/assert/contains' );
 const isObject = require( '@stdlib/assert/is-object' );
@@ -375,19 +375,20 @@ function writeIndexFile({
 		fs.writeFileSync( htmlPath, generateIndexHTML( meta.title, minify ) );
 
 		if ( minify ) {
-			let code = fs.readFileSync( bundlePath ).toString();
-			const minified = UglifyJS.minify( code, {
-				warnings: true,
-				compress: {},
-				mangle: true
+			const child = cp.fork( path.resolve( basePath, './app/bundler/minify.js' ) );
+			const code = fs.readFileSync( bundlePath ).toString();
+			child.on( 'message', function( minified ) {
+				if ( minified.error ) {
+					throw minified.error;
+				}
+				fs.writeFileSync( path.join( appDir, 'bundle.min.js' ), minified.code );
+				fs.unlinkSync( path.join( appDir, 'bundle.js' ) );
+				clbk( err, meta );
 			});
-			if ( minified.error ) {
-				throw minified.error;
-			}
-			fs.writeFileSync( path.join( appDir, 'bundle.min.js' ), minified.code );
-			fs.unlinkSync( path.join( appDir, 'bundle.js' ) );
+			child.send( code );
+		} else {
+			clbk( err, meta );
 		}
-		clbk( err, meta );
 	});
 } // end FUNCTION writeIndexFile()
 

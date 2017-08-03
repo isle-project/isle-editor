@@ -168,8 +168,7 @@ class UploadLesson extends Component {
 				filePath: this.props.filePath,
 				basePath,
 				content: this.props.content,
-				outputDir: this.state.dirname,
-				minify: true
+				outputDir: this.state.dirname
 			};
 			bundler( settings, ( err, preamble ) => {
 				this.zipLesson( settings.outputPath, settings.outputDir, () => {
