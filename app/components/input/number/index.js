@@ -9,7 +9,6 @@ import isString from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/math/constants/float64-pinf';
 import NINF from '@stdlib/math/constants/float64-ninf';
-const debug = require( 'debug' )( 'isle-editor' );
 
 
 // MAIN //
