@@ -1,8 +1,21 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import ReactDOMServer from 'react-dom/server';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import { Button, Grid, Row, Col, MenuItem, Nav, NavDropdown, NavItem, Panel , Tab } from 'react-bootstrap';
 import $ from 'jquery';
+import parse from 'csv-parse';
+import detect from 'detect-csv';
+import isArray from '@stdlib/assert/is-array';
+import isNumber from '@stdlib/assert/is-number';
+import isNumberArray from '@stdlib/assert/is-number-array';
+import isObject from '@stdlib/assert/is-object';
+import entries from '@stdlib/utils/entries';
+import hasProp from '@stdlib/assert/has-property';
+import copy from '@stdlib/utils/copy';
+import { generate } from 'randomstring';
 import ContingencyTable from 'components/data-explorer/contingency-table';
 import FrequencyTable from 'components/data-explorer/frequency-table';
 import SummaryStatistics from 'components/data-explorer/summary-statistics';
@@ -16,17 +29,7 @@ import Histogram from 'components/data-explorer/histogram';
 import MosaicPlot from 'components/data-explorer/mosaicplot';
 import Piechart from 'components/data-explorer/piechart';
 import Scatterplot from 'components/data-explorer/scatterplot';
-import isArray from '@stdlib/assert/is-array';
-import isNumber from '@stdlib/assert/is-number';
-import isNumberArray from '@stdlib/assert/is-number-array';
-import isObject from '@stdlib/assert/is-object';
-import entries from '@stdlib/utils/entries';
-import hasProp from '@stdlib/assert/has-property';
-import copy from '@stdlib/utils/copy';
-import ReactDOMServer from 'react-dom/server';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import { generate } from 'randomstring';
+import SelectInput from 'components/input/select';
 
 
 // FUNCTIONS //
@@ -140,13 +143,21 @@ class DataExplorer extends Component {
 		super( props );
 
 		let groupVars = props.categorical.slice();
-
+		let ready = false;
+		if (
+			isObject( props.data ) &&
+			props.continuous.length > 0 &&
+			props.categorical.length > 0
+		) {
+			ready = true;
+		}
 		this.state = {
 			data: props.data,
 			continuous: props.continuous,
 			categorical: props.categorical,
 			output: [],
-			groupVars
+			groupVars,
+			ready
 		};
 
 		this.logAction = ( type, value ) => {
@@ -234,10 +245,150 @@ class DataExplorer extends Component {
 			});
 		}
 	}
+	onFileRead = ( event ) => {
+		const text = event.target.result;
+		const csv = detect( text );
+		parse( text, { delimiter: csv.delimiter, columns: true, auto_parse: true }, ( err, output ) => {
+			if ( err ) {
+				const { session } = this.context;
+				return session.addNotification({
+					title: 'Could not read file.',
+					message: `The following error was encountered while trying to read the file:${err.message}`,
+					level: 'error',
+					position: 'tr'
+				});
+			}
+			const data = {};
+			const columnNames = Object.keys( output[ 0 ]);
+			for ( let j = 0; j < columnNames.length; j++ ) {
+				let col = columnNames[ j ];
+				data[ col ] = new Array( output.length );
+			}
+			for ( let i = 0; i < output.length; i++ ) {
+				for ( let j = 0; j < columnNames.length; j++ ) {
+					let col = columnNames[ j ];
+					data[ col ][ i ] = output[ i ][ col ];
+				}
+			}
+			this.setState({
+				data
+			});
+		});
+	}
+	handleFileUpload = () => {
+		const reader = new FileReader();
+		const selectedFile = this.fileUpload.files[ 0 ];
+		reader.addEventListener( 'load', this.onFileRead, false );
+		reader.readAsText( selectedFile, 'utf-8' );
+	}
+	ignoreDrag = ( evt ) => {
+		evt.stopPropagation();
+		evt.preventDefault();
+	}
+	onFileDrop = ( evt ) => {
+		evt.stopPropagation();
+		evt.preventDefault();
+		const dt = evt.dataTransfer;
+		const reader = new FileReader();
+		let file = null;
+		if ( dt.items ) {
+			if ( dt.items[ 0 ].kind == 'file' ) {
+				file = dt.items[ 0 ].getAsFile();
+			}
+		} else {
+			file = dt.files[ 0 ];
+		}
+		if ( file ) {
+			const mimeType = file.type;
+			if ( mimeType !== 'text/csv' ) {
+				const { session } = this.context;
+				return session.addNotification({
+					title: 'No CSV file.',
+					message: 'The supplied file is not a CSV file.',
+					level: 'error',
+					position: 'tr'
+				});
+			}
+			reader.addEventListener( 'load', this.onFileRead, false );
+			reader.readAsText( file, 'utf-8' );
+		}
+	}
 	/**
 	* React component render method
 	*/
 	render() {
+
+		if ( !this.state.data ) {
+			return ( <Panel style={{ textAlign: 'center' }} >
+				<h1>Data Explorer</h1>
+				<label>Please upload a data set (CSV format):</label>
+				<input
+					type="file"
+					accept=".csv"
+					onChange={this.handleFileUpload}
+					ref={ fileUpload => this.fileUpload = fileUpload }
+					style={{ margin: 'auto' }}
+				/>
+				<p>or</p>
+				<div
+					onDrop={this.onFileDrop}
+					onDragOver={this.ignoreDrag}
+					onDragEnd={this.ignoreDrag}
+					style={{
+						minHeight: '150px',
+						width: '250px',
+						border: '1px solid blue',
+						margin: 'auto',
+						padding: '10px'
+					}}
+				>
+					<span>Drop file here</span>
+				</div>
+			</Panel> );
+		}
+		if ( !this.state.ready ) {
+			const variableNames = Object.keys( this.state.data );
+			const categoricalGuesses = [];
+			const continuousGuesses = [];
+			variableNames.forEach( variable => {
+				if ( isNumberArray( this.state.data[ variable ]) ) {
+					continuousGuesses.push( variable );
+				} else {
+					categoricalGuesses.push( variable );
+				}
+			});
+			this.setState({
+				continuous: continuousGuesses,
+				categorical: categoricalGuesses
+			});
+			return ( <Panel>
+				<h1>Data Explorer</h1>
+				<h3>Please select which variables should be treated as numeric and which ones as categorical:</h3>
+				<SelectInput
+					legend="Continuous:"
+					options={variableNames}
+					defaultValue={continuousGuesses}
+					multi
+					onChange={ ( continuous ) => this.setState({ continuous }) }
+				/>
+				<SelectInput
+					legend="Categorical:"
+					options={variableNames}
+					defaultValue={categoricalGuesses}
+					multi
+					onChange={ ( categorical ) => this.setState({ categorical }) }
+				/>
+				<Button onClick={ () => {
+					const groupVars = this.state.categorical.slice();
+					const ready = true;
+					this.setState({
+						groupVars,
+						ready
+					});
+				}}>Submit</Button>
+			</Panel> );
+		}
+
 		let colWidth = this.props.questions ? 4 : 6;
 		let nStatistics = this.props.statistics.length;
 		let defaultActiveKey = 'first';
@@ -531,7 +682,7 @@ DataExplorer.defaultProps = {
 // TYPES //
 
 DataExplorer.propTypes = {
-	data: PropTypes.object.isRequired,
+	data: PropTypes.object,
 	statistics: PropTypes.array,
 	plots: PropTypes.array,
 	tables: PropTypes.array,
