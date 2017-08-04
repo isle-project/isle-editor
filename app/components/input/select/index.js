@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ControlLabel, Form, FormGroup } from 'react-bootstrap';
+import isArray from '@stdlib/assert/is-array';
 import Input from 'components/input/base';
 const debug = require( 'debug' )( 'isle-editor' );
 import Select from 'react-select';
@@ -25,10 +26,17 @@ class SelectInput extends Input {
 		this.options = this.props.options.map( e => {
 			return { 'label': e, 'value': e };
 		});
-
 		const { defaultValue } = props;
-		const value = defaultValue ? { 'label': defaultValue, 'value': defaultValue } : null;
-
+		let value = null;
+		if ( defaultValue ) {
+			if ( isArray( defaultValue ) ) {
+				value = defaultValue.map( val => {
+					return { 'label': val, 'value': val };
+				});
+			} else {
+				value = { 'label': defaultValue, 'value': defaultValue };
+			}
+		}
 		this.state = {
 			value
 		};
@@ -107,7 +115,10 @@ SelectInput.defaultProps = {
 SelectInput.propTypes = {
 	bind: PropTypes.string,
 	onChange: PropTypes.func,
-	defaultValue: PropTypes.string,
+	defaultValue: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.array
+	]),
 	inline: PropTypes.bool,
 	legend: PropTypes.string,
 	options: PropTypes.array,
