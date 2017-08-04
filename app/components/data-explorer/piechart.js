@@ -7,7 +7,8 @@ import Dashboard from 'components/dashboard';
 import RPlot from 'components/r/plot';
 import Plotly from 'components/plotly';
 import entries from '@stdlib/utils/entries';
-import countBy from 'lodash.countby';
+import countBy from '@stdlib/utils/count-by';
+import identity from '@stdlib/utils/identity-function';
 import isArray from '@stdlib/assert/is-array';
 
 
@@ -42,7 +43,7 @@ class PieChart extends Component {
 		let output = null;
 
 		if ( !group ) {
-			let freqs = entries( countBy( this.props.data[ variable ]) );
+			let freqs = entries( countBy( this.props.data[ variable ], identity ) );
 			let categories = freqs.map( e => e[ 0 ]);
 			freqs = freqs.map( e => e[ 1 ]);
 
@@ -61,7 +62,7 @@ class PieChart extends Component {
 			};
 		} else {
 			let freqs = by( this.props.data[ variable ], this.props.data[ group ], arr => {
-				return entries( countBy( arr ) );
+				return entries( countBy( arr, identity ) );
 			});
 
 			let nPlots = Object.keys( freqs ).length;

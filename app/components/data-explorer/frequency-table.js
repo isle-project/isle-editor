@@ -6,7 +6,8 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import entries from '@stdlib/utils/entries';
-import countBy from 'lodash.countby';
+import countBy from '@stdlib/utils/count-by';
+import identity from '@stdlib/utils/identity-function';
 import isArray from '@stdlib/assert/is-array';
 
 
@@ -27,7 +28,7 @@ function by( arr, factor, fun ) {
 }
 
 function getFrequencies( x, relativeFreqs ) {
-	let freqs = entries( countBy( x ) ).map( e => {
+	let freqs = entries( countBy( x, identity ) ).map( e => {
 		return { category: e[ 0 ], count: e[ 1 ] };
 	});
 	if ( relativeFreqs ) {

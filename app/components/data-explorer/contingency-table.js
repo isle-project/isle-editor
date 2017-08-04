@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
-import countBy from 'lodash.countby';
+import countBy from '@stdlib/utils/count-by';
+import identity from '@stdlib/utils/identity-function';
 import isObject from '@stdlib/assert/is-object';
 
 
@@ -16,8 +17,8 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs ) => {
 	const rowValues = data[ rowVar ];
 	const colValues = data[ colVar ];
 	const nobs = rowValues.length;
-	const rowFreqs = countBy( rowValues );
-	const colFreqs = countBy( colValues );
+	const rowFreqs = countBy( rowValues, identity );
+	const colFreqs = countBy( colValues, identity );
 
 	const rowKeys = Object.keys( rowFreqs );
 	const colKeys = Object.keys( colFreqs );

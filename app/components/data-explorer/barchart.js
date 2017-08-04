@@ -6,7 +6,8 @@ import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import entries from '@stdlib/utils/entries';
-import countBy from 'lodash.countby';
+import countBy from '@stdlib/utils/count-by';
+import identity from '@stdlib/utils/identity-function';
 import isArray from '@stdlib/assert/is-array';
 
 
@@ -38,7 +39,7 @@ class Barchart extends Component {
 	generateBarchart( variable, group ) {
 		let output = null;
 		if ( !group ) {
-			let freqs = entries( countBy( this.props.data[ variable ]) );
+			let freqs = entries( countBy( this.props.data[ variable ], identity ) );
 			let categories = freqs.map( e => e[ 0 ]);
 			freqs = freqs.map( e => e[ 1 ]);
 
