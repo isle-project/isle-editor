@@ -270,7 +270,18 @@ class DataExplorer extends Component {
 					data[ col ][ i ] = output[ i ][ col ];
 				}
 			}
+			const categoricalGuesses = [];
+			const continuousGuesses = [];
+			columnNames.forEach( variable => {
+				if ( isNumberArray( data[ variable ]) ) {
+					continuousGuesses.push( variable );
+				} else {
+					categoricalGuesses.push( variable );
+				}
+			});
 			this.setState({
+				continuous: continuousGuesses,
+				categorical: categoricalGuesses,
 				data
 			});
 		});
@@ -348,33 +359,20 @@ class DataExplorer extends Component {
 		}
 		if ( !this.state.ready ) {
 			const variableNames = Object.keys( this.state.data );
-			const categoricalGuesses = [];
-			const continuousGuesses = [];
-			variableNames.forEach( variable => {
-				if ( isNumberArray( this.state.data[ variable ]) ) {
-					continuousGuesses.push( variable );
-				} else {
-					categoricalGuesses.push( variable );
-				}
-			});
-			this.setState({
-				continuous: continuousGuesses,
-				categorical: categoricalGuesses
-			});
 			return ( <Panel>
 				<h1>Data Explorer</h1>
 				<h3>Please select which variables should be treated as numeric and which ones as categorical:</h3>
 				<SelectInput
 					legend="Continuous:"
 					options={variableNames}
-					defaultValue={continuousGuesses}
+					defaultValue={this.state.continuous}
 					multi
 					onChange={ ( continuous ) => this.setState({ continuous }) }
 				/>
 				<SelectInput
 					legend="Categorical:"
 					options={variableNames}
-					defaultValue={categoricalGuesses}
+					defaultValue={this.state.categorical}
 					multi
 					onChange={ ( categorical ) => this.setState({ categorical }) }
 				/>
