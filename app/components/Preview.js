@@ -103,7 +103,7 @@ const VictoryScatter = require( 'victory' ).VictoryScatter;
 const VictoryStack = require( 'victory' ).VictoryStack;
 const VictoryTheme = require( 'victory' ).VictoryTheme;
 const VictoryTooltip = require( 'victory' ).VictoryTooltip;
-const VictoryVoronoiTooltip = require( 'victory' ).VictoryVoronoiTooltip;
+const VictoryVoronoiContainer = require( 'victory' ).VictoryVoronoiContainer;
 const VictoryZoomContainer = require( 'victory' ).VictoryZoomContainer;
 const VideoPlayer = require( 'components/video-player' );
 

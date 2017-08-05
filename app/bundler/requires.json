@@ -87,7 +87,7 @@
 	"VictoryPie": "const VictoryPie = require( \"victory\" ).VictoryPie",
 	"VictoryScatter": "const VictoryScatter = require( \"victory\" ).VictoryScatter",
 	"VictoryTooltip": "const VictoryTooltip = require( \"victory\" ).VictoryTooltip",
-	"VictoryVoronoiTooltip": "const VictoryVoronoiTooltip = require( \"victory\" ).VictoryVoronoiTooltip",
+	"VictoryVoronoiContainer": "const VictoryVoronoiContainer = require( \"victory\" ).VictoryVoronoiContainer",
 	"VictoryVoronoi": "const VictoryVoronoi = require( \"victory\" ).VictoryVoronoi",
 	"VictoryZoomContainer": "const VictoryZoomContainer = require( \"victory\" ).VictoryZoomContainer",
 	"VideoPlayer": "const VideoPlayer = require( \"components/video-player\" )",
