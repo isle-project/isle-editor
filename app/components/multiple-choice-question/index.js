@@ -125,7 +125,8 @@ class MultipleChoiceQuestion extends Component {
 			let newCorrect = new Array( this.props.answers.length );
 
 			if ( this.props.id ) {
-				global.lesson.session.log({
+				const { session } = this.context;
+				session.log({
 					id: this.props.id,
 					type: 'MULTIPLE_CHOICE_SUBMISSION',
 					value: this.state.active
