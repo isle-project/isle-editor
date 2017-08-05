@@ -43,7 +43,9 @@ const generateIndexHTML = ( title, minify ) => `
 		<script src="https://use.fontawesome.com/1ef7eff9d5.js"></script>
 	</head>
 	<body>
-	<div id="App"></div>
+	<div id="App">
+		<div id="loading"></div>
+	</div>
 	<script>
 		// Handle bug occurring when crypto-browserify is used with Webpack...
 		window._crypto = {};
