@@ -30,6 +30,7 @@ const generateIndexHTML = ( title, minify ) => `
 	<head>
 		<meta charset="utf-8">
 		<title>${title}</title>
+		<link rel="shortcut icon" href="/favicon.ico" />
 		<link href="css/katex.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
@@ -43,9 +44,8 @@ const generateIndexHTML = ( title, minify ) => `
 		<script src="https://use.fontawesome.com/1ef7eff9d5.js"></script>
 	</head>
 	<body>
-	<div id="App">
-		<div id="loading"></div>
-	</div>
+	<div id="loading"></div>
+	<div id="App"></div>
 	<script>
 		// Handle bug occurring when crypto-browserify is used with Webpack...
 		window._crypto = {};
@@ -110,6 +110,11 @@ class Lesson extends Component {
 	componentDidMount() {
 		global.notificationSystem = this.refs.notificationSystem;
 		global.lesson = this;
+
+		const loader = document.getElementById( 'loading' );
+		if ( loader ) {
+			loader.remove();
+		}
 	}
 
 	componentWillUnmount() {
@@ -355,11 +360,12 @@ function writeIndexFile({
 		fs.appendFileSync( path.join( appDir, 'css/lesson.css' ), meta.style );
 	}
 
+	let imgPath = path.join( basePath, './app/img' );
 	if ( contains( usedComponents, 'FeedbackButtons' ) ) {
 		fs.mkdirSync( path.join( appDir, 'img' ) );
-		let imgPath = path.join( basePath, './app/img' );
 		fs.copySync( path.join( imgPath ), path.join( appDir, 'img' ) );
 	}
+	fs.copySync( path.join( imgPath, 'favicon.ico' ), path.join( appDir, 'favicon.ico' ) );
 
 	config.entry = indexPath;
 	config.output = {
