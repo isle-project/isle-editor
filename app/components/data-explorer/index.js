@@ -16,12 +16,16 @@ import entries from '@stdlib/utils/entries';
 import hasProp from '@stdlib/assert/has-property';
 import copy from '@stdlib/utils/copy';
 import { generate } from 'randomstring';
+import SelectInput from 'components/input/select';
 import ContingencyTable from 'components/data-explorer/contingency-table';
 import FrequencyTable from 'components/data-explorer/frequency-table';
 import SummaryStatistics from 'components/data-explorer/summary-statistics';
-import HypothesisTests from 'components/data-explorer/hypothesis-tests';
 import SimpleLinearRegression from 'components/data-explorer/linear-regression';
 import VariableTransformer from 'components/data-explorer/variable-transformer';
+
+
+// PLOT COMPONENTS //
+
 import Barchart from 'components/data-explorer/barchart';
 import Boxplot from 'components/data-explorer/boxplot';
 import Heatmap from 'components/data-explorer/heatmap';
@@ -29,7 +33,17 @@ import Histogram from 'components/data-explorer/histogram';
 import MosaicPlot from 'components/data-explorer/mosaicplot';
 import Piechart from 'components/data-explorer/piechart';
 import Scatterplot from 'components/data-explorer/scatterplot';
-import SelectInput from 'components/input/select';
+
+
+// TEST COMPONENTS //
+
+import ZTest from 'components/data-explorer/ztest';
+import ZTest2 from 'components/data-explorer/ztest2';
+import CorrTest from 'components/data-explorer/corrtest';
+import Chi2Test from 'components/data-explorer/chi2';
+import PropTest from 'components/data-explorer/proptest';
+import PropTest2 from 'components/data-explorer/proptest2';
+import ANOVA from 'components/data-explorer/anova';
 
 
 // FUNCTIONS //
@@ -435,12 +449,14 @@ class DataExplorer extends Component {
 				</NavDropdown> : null
 			}
 			{ this.props.tests.length > 0 ?
-				<NavItem
+				<NavDropdown
 					eventKey="4"
 					title="Tests"
 				>
-					Tests
-				</NavItem> : null
+					{ this.props.tests.map(
+						( e, i ) => <MenuItem key={i} eventKey={`4.${i+1}`}>{e}</MenuItem>
+					) }
+				</NavDropdown> : null
 			}
 			{ this.props.plots.length > 0 ?
 				<NavDropdown
@@ -545,19 +561,74 @@ class DataExplorer extends Component {
 					{content}
 				</Tab.Pane>;
 			})}
-			{this.props.tests ?
-				<Tab.Pane eventKey="4">
-					<HypothesisTests
-						categorical={this.state.categorical}
-						continuous={this.state.continuous}
-						tests={this.props.tests}
+			{this.props.tests.map( ( e, i ) => {
+				let content = null;
+				switch ( e ) {
+				case 'One-Sample Z-Test':
+					content = <ZTest
 						onCreated={this.addToOutputs}
 						data={this.state.data}
+						continuous={this.state.continuous}
+						logAction={this.logAction}
+					/>;
+					break;
+				case 'Two-Sample Z-Test':
+					content = <ZTest2
+						onCreated={this.addToOutputs}
+						data={this.state.data}
+						continuous={this.state.continuous}
+						categorical={this.state.categorical}
 						logAction={this.logAction}
 						session={this.context.session}
-					/>
-				</Tab.Pane> : null
-			}
+					/>;
+					break;
+				case 'One-Sample Proportion Test':
+					content = <PropTest
+						onCreated={this.addToOutputs}
+						data={this.state.data}
+						categorical={this.state.categorical}
+						logAction={this.logAction}
+					/>;
+					break;
+				case 'Two-Sample Proportion Test':
+					content = <PropTest2
+						onCreated={this.addToOutputs}
+						data={this.state.data}
+						categorical={this.state.categorical}
+						logAction={this.logAction}
+						session={this.context.session}
+					/>;
+					break;
+				case 'One-Way ANOVA':
+					content = <ANOVA
+						onCreated={this.addToOutputs}
+						data={this.state.data}
+						continuous={this.state.continuous}
+						categorical={this.state.categorical}
+						logAction={this.logAction}
+					/>;
+					break;
+				case 'Correlation Test':
+					content = <CorrTest
+						onCreated={this.addToOutputs}
+						data={this.state.data}
+						continuous={this.state.continuous}
+						logAction={this.logAction}
+					/>;
+					break;
+				case 'Chi-squared Independence Test':
+					content = <Chi2Test
+						onCreated={this.addToOutputs}
+						data={this.state.data}
+						categorical={this.state.categorical}
+						logAction={this.logAction}
+					/>;
+					break;
+				}
+				return <Tab.Pane key={i} eventKey={`4.${i+1}`}>
+					{content}
+				</Tab.Pane>;
+			})}
 			{this.props.models.map( ( e, i ) => {
 				let content = null;
 				switch ( e ) {
