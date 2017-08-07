@@ -6,7 +6,9 @@ import PropTypes from 'prop-types';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
+import ROutput from 'components/r/output';
 import TeX from 'components/tex';
+import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
 import ztest from '@stdlib/math/statistics/ztest';
 import ztest2 from '@stdlib/math/statistics/ztest2';
@@ -35,7 +37,6 @@ class HypothesisTests extends Component {
 		} else {
 			categories = [];
 		}
-
 		this.state = {
 			categories: categories,
 			currentTest: props.tests[ 0 ]
@@ -74,18 +75,64 @@ class HypothesisTests extends Component {
 			this.props.onCreated( output );
 		};
 
-		this.calculateCorrTest = ( var1, var2, rho0, direction, alpha ) => {
-			let { data } = this.props;
-			let x = data[ var1 ];
-			let y = data[ var2 ];
+		this.calculateANOVA = ( variable, grouping ) => {
+			const { data } = this.props;
+			const vals = data[ variable ];
+			const groups = data[ grouping ].map( x => `"${x}"` );
+			const value = <div>
+				<label>ANOVA for {variable} between {grouping}</label><br />
+				<ROutput code={`
+					df = data.frame(
+						${variable} = c(${vals}),
+						${grouping} = c(${groups})
+					)
+					fit = lm( ${variable} ~ ${grouping}, data = df )
+					anova( fit )`}
+				/>
+			</div>;
+			const output = {
+				variable: `One-way ANOVA`,
+				type: 'Test',
+				value: value
+			};
+			this.props.logAction( 'DATA_EXPLORER:TESTS:ANOVA', {
+				variable, grouping
+			});
+			this.props.onCreated( output );
+		};
 
+		this.calculateChisquareTest = ( var1, var2 ) => {
+			const { data } = this.props;
+			const x = data[ var1 ].map( x => `"${x}"` );
+			const y = data[ var2 ].map( x => `"${x}"` );
+			const value = <div>
+				<label>Hypothesis test for independence between {var1} and {var2}:</label><br />
+				<ROutput code={`
+					${var1} = c(${x})
+					${var2} = c(${y})
+					chisq.test( ${var1}, ${var2} )`}
+				/>
+			</div>;
+			const output = {
+				variable: `Chisquare Test for Independence`,
+				type: 'Test',
+				value: value
+			};
+			this.props.logAction( 'DATA_EXPLORER:TESTS:CHISQUARE', {
+				var1, var2
+			});
+			this.props.onCreated( output );
+		};
+
+		this.calculateCorrTest = ( var1, var2, rho0, direction, alpha ) => {
+			const { data } = this.props;
+			const x = data[ var1 ];
+			const y = data[ var2 ];
 			const result = pcorrtest( x, y, {
 				'alpha': alpha,
 				'alternative': direction,
 				'rho': rho0
 			});
-
-
 			let arrow = '\\ne';
 			if ( direction === 'less' ) {
 				arrow = '<';
@@ -110,34 +157,32 @@ class HypothesisTests extends Component {
 		};
 
 		this.calculateTwoSampleZTest = ( var1, grouping, var2, diff, direction, alpha ) => {
-			let { data } = this.props;
+			const { data } = this.props;
 			let secondCategory;
 			let firstCategory;
 			let value;
 			let x;
 			let y;
 
-			if ( grouping !== 'None' ) {
+			if ( grouping ) {
 				let categories = data[ grouping ];
 				firstCategory = categories[ 0 ];
-				secondCategory;
 				for ( let i = 1; i < categories.length; i++ ) {
 					if ( categories[ i ] !== firstCategory ) {
 						secondCategory = categories[ i ];
+						break;
 					}
 				}
-				let splitted = bifurcateBy( data[ var1 ], function( x, idx ) {
+				const splitted = bifurcateBy( data[ var1 ], function( x, idx ) {
 					return categories[ idx ] === firstCategory;
 				});
 				x = splitted[ 0 ];
 				y = splitted[ 1 ];
-
 				const result = ztest2( x, y, stdev( x ), stdev( y ), {
 					'alpha': alpha,
 					'alternative': direction,
 					'difference': diff
 				});
-
 				let arrow = '\\ne';
 				if ( direction === 'less' ) {
 					arrow = '<';
@@ -160,7 +205,7 @@ class HypothesisTests extends Component {
 						{result.print()}
 					</pre>
 				</div>;
-			} else if ( var2 !== 'None' ) {
+			} else if ( var2 ) {
 				x = data[ var1 ];
 				y = data[ var2 ];
 				const result = ztest2( x, y, stdev( x ), stdev( y ), {
@@ -168,7 +213,6 @@ class HypothesisTests extends Component {
 					'alternative': direction,
 					'difference': diff
 				});
-
 				let arrow = '\\ne';
 				if ( direction === 'less' ) {
 					arrow = '<';
@@ -200,9 +244,8 @@ class HypothesisTests extends Component {
 					position: 'tr'
 				});
 			}
-
 			if ( value ) {
-				let output = {
+				const output = {
 					variable: `Two-Sample Z-Test`,
 					type: 'Test',
 					value: value
@@ -215,22 +258,21 @@ class HypothesisTests extends Component {
 		};
 
 		this.calculatePropTest = ( variable, success, p0, direction, alpha ) => {
-			let { data } = this.props;
-			let x = data[ variable ];
-			let binary = x.map( x => x == success ? 1 : 0 );
+			const { data } = this.props;
+			const x = data[ variable ];
+			const binary = x.map( x => x == success ? 1 : 0 );
 			const result = ztest( binary, sqrt( p0 * ( 1.0 - p0 ) ), {
 				'alpha': alpha,
 				'alternative': direction,
 				'mu': p0
 			});
-
 			let arrow = '\\ne';
 			if ( direction === 'less' ) {
 				arrow = '<';
 			} else if ( direction === 'greater' ){
 				arrow = '>';
 			}
-			let output = {
+			const output = {
 				variable: `One-Sample Proportion Test for ${variable}`,
 				type: 'Test',
 				value: <div>
@@ -251,15 +293,15 @@ class HypothesisTests extends Component {
 			this.props.onCreated( output );
 		};
 
-		this.calculateTwoSamplePropTest = ( var1, grouping, var2, success, diff, direction, alpha ) => {
-			let { data } = this.props;
+		this.calculateTwoSamplePropTest = ( var1, success, grouping, var2, diff, direction, alpha ) => {
+			const { data } = this.props;
 			let firstCategory;
 			let secondCategory;
 			let value;
 			let x;
 			let y;
 
-			if ( grouping !== 'None' ) {
+			if ( grouping ) {
 				x = data[ var1 ];
 				let binary = x.map( x => x == success ? 1 : 0 );
 				let categories = data[ grouping ];
@@ -269,26 +311,23 @@ class HypothesisTests extends Component {
 						secondCategory = categories[ i ];
 					}
 				}
-				let splitted = bifurcateBy( binary, function( x, idx ) {
+				const splitted = bifurcateBy( binary, function( x, idx ) {
 					return categories[ idx ] === firstCategory;
 				});
 				x = splitted[ 0 ];
 				y = splitted[ 1 ];
-
 				const result = ztest2( x, y, stdev( x ), stdev( y ), {
 					'alpha': alpha,
 					'alternative': direction,
 					'difference': diff
 				});
-
 				let arrow = '\\ne';
 				if ( direction === 'less' ) {
 					arrow = '<';
 				} else if ( direction === 'greater' ){
 					arrow = '>';
 				}
-
-				let title = `Hypothesis test for equality of mean ${var1} by ${grouping}`;
+				const title = `Hypothesis test for equality of mean ${var1} by ${grouping}`;
 				value = <div>
 					<label>{title}</label><br />
 					<span>
@@ -310,25 +349,23 @@ class HypothesisTests extends Component {
 						{result.print()}
 					</pre>
 				</div>;
-			} else if ( var2 !== 'None' ) {
+			} else if ( var2 ) {
 				x = data[ var1 ];
 				x = x.map( x => x == success ? 1 : 0 );
 				y = data[ var2 ];
 				y = y.map( y => y == success ? 1 : 0 );
-
 				const result = ztest2( x, y, stdev( x ), stdev( y ), {
 					'alpha': alpha,
 					'alternative': direction,
 					'difference': diff
 				});
-
 				let arrow = '\\ne';
 				if ( direction === 'less' ) {
 					arrow = '<';
 				} else if ( direction === 'greater' ){
 					arrow = '>';
 				}
-				let title = `Hypothesis test for equality of mean ${var1} against mean ${var2}`;
+				const title = `Hypothesis test for equality of mean ${var1} against mean ${var2}`;
 				value = <div>
 					<label>{title}</label><br />
 					<span>
@@ -477,16 +514,26 @@ class HypothesisTests extends Component {
 				<Form>
 					<label>Groups: </label>
 					<SelectInput
-						inline
-						defaultValue="None"
-						options={[ 'None',...binary ]}
+						options={binary}
+						ref={ input => this.ztest2groupSelect = input }
+						clearable
+						onChange={ () => {
+							this.ztest2varSelect.setState({
+								value: null
+							});
+						}}
 					/>
 					{` OR `}
 					<label>Second Variable: </label>
 					<SelectInput
-						inline
-						defaultValue="None"
-						options={[ 'None', ...continuous ]}
+						options={continuous}
+						ref={ input => this.ztest2varSelect = input }
+						clearable
+						onChange={ () => {
+							this.ztest2groupSelect.setState({
+								value: null
+							});
+						}}
 					/>
 				</Form>
 				<NumberInput
@@ -526,26 +573,38 @@ class HypothesisTests extends Component {
 						});
 					}}
 				/>
-				<Form>
-					<label>Groups: </label>
-					<SelectInput
-						inline
-						defaultValue="None"
-						options={[ 'None',...binary ]}
-					/>
-					{` OR `}
-					<label>Second Variable: </label>
-					<SelectInput
-						inline
-						defaultValue="None"
-						options={[ 'None', ...categorical ]}
-					/>
-				</Form>
 				<SelectInput
 					legend="Success:"
 					defaultValue={this.state.categories[ 0 ]}
 					options={this.state.categories}
 				/>
+				<Form>
+					<label>Groups: </label>
+					<SelectInput
+						options={binary}
+						clearable
+						ref={ input => this.propTestgroupSelect = input }
+						onChange={ () => {
+							this.propTestvarSelect.setState({
+								value: null
+							});
+						}}
+					/>
+					{` OR `}
+					<label>Second Variable: </label>
+					<SelectInput
+						options={categorical.filter( elem =>
+							contains( this.state.categories, elem )
+						)}
+						clearable
+						ref={ input => this.propTestvarSelect = input }
+						onChange={ () => {
+							this.propTestgroupSelect.setState({
+								value: null
+							});
+						}}
+					/>
+				</Form>
 				<NumberInput
 					legend="Difference under H0"
 					defaultValue={0.0}
@@ -604,6 +663,42 @@ class HypothesisTests extends Component {
 				/>
 			</Dashboard>;
 			break;
+		case 'Chi-squared Independence Test':
+			testPage = <Dashboard
+				label="Calculate"
+				autoStart={false}
+				onGenerate={this.calculateChisquareTest}
+			>
+				<SelectInput
+					legend="Variable:"
+					defaultValue={categorical[ 0 ]}
+					options={categorical}
+				/>
+				<SelectInput
+					legend="Second Variable:"
+					defaultValue={categorical[ 1 ]}
+					options={categorical}
+				/>
+			</Dashboard>;
+			break;
+		case 'One-Way ANOVA':
+			testPage = <Dashboard
+				autoStart={false}
+				title="ANOVA"
+				onGenerate={this.calculateANOVA}
+			>
+				<SelectInput
+					legend="Variable:"
+					defaultValue={continuous[ 0 ]}
+					options={continuous}
+				/>
+				<SelectInput
+					legend="Grouping Variable:"
+					defaultValue={categorical[ 0 ]}
+					options={categorical}
+				/>
+			</Dashboard>;
+			break;
 		}
 
 		return (
@@ -633,7 +728,9 @@ HypothesisTests.defaultProps = {
 		'One-Sample Proportion Test',
 		'Two-Sample Z-Test',
 		'Two-Sample Proportion Test',
-		'Correlation Test'
+		'Correlation Test',
+		'Chi-squared Independence Test',
+		'One-Way ANOVA'
 	]
 };
 

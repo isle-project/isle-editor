@@ -667,7 +667,9 @@ DataExplorer.defaultProps = {
 		'One-Sample Proportion Test',
 		'Two-Sample Z-Test',
 		'Two-Sample Proportion Test',
-		'Correlation Test'
+		'Correlation Test',
+		'Chi-squared Independence Test',
+		'One-Way ANOVA'
 	],
 	models: [
 		'Simple Linear Regression'
