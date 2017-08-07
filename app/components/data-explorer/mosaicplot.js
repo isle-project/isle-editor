@@ -27,9 +27,7 @@ class MosaicPlot extends Component {
 			});
 		}
 		const counts = {};
-
 		const nObs = this.props.data[ vars[ 0 ] ].length;
-
 		for ( let i = 0; i < nObs; i++ ) {
 			let key = '';
 			for ( let j = 0; j < vars.length; j++ ) {
@@ -46,7 +44,6 @@ class MosaicPlot extends Component {
 				counts[ key ] = 1;
 			}
 		}
-
 		const varArr = [];
 		vars.forEach( () => { varArr.push([]); });
 		const keys = Object.keys( counts );
