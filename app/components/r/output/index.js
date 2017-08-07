@@ -57,9 +57,8 @@ class ROutput extends Component {
 
 				const { session } = this.context;
 				const OPEN_CPU = session.getOpenCPUServer();
-				let prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
-				let fullCode = prependCode + code;
-
+				const prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
+				const fullCode = prependCode + code;
 				request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
 					form: {
 						x: fullCode
@@ -146,6 +145,7 @@ ROutput.propTypes = {
 ROutput.contextTypes = {
 	session: PropTypes.object
 };
+
 
 // DEFAULT PROPERTIES //
 
