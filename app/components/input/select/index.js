@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ControlLabel, Form, FormGroup } from 'react-bootstrap';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isArray from '@stdlib/assert/is-array';
 import Input from 'components/input/base';
 const debug = require( 'debug' )( 'isle-editor' );
@@ -29,13 +30,7 @@ class SelectInput extends Input {
 		const { defaultValue } = props;
 		let value = null;
 		if ( defaultValue ) {
-			if ( isArray( defaultValue ) ) {
-				value = defaultValue.map( val => {
-					return { 'label': val, 'value': val };
-				});
-			} else {
-				value = { 'label': defaultValue, 'value': defaultValue };
-			}
+			value = this.transformValue( defaultValue );
 		}
 		this.state = {
 			value
@@ -55,6 +50,36 @@ class SelectInput extends Input {
 				}
 			});
 		};
+	}
+
+	transformValue = ( value ) => {
+		let out;
+		if ( isArray( value ) ) {
+			out = value.map( val => {
+				return { 'label': val, 'value': val };
+			});
+		} else {
+			out = { 'label': value, 'value': value };
+		}
+		return out;
+	}
+
+	componentWillReceiveProps( nextProps ) {
+		let newState = {};
+		if ( nextProps.defaultValue !== this.props.defaultValue ) {
+			newState.value = this.transformValue( nextProps.defaultValue );
+		}
+		else if ( nextProps.bind !== this.props.bind ) {
+			newState.value = global.lesson.state[ nextProps.bind ];
+		}
+		if ( nextProps.options !== this.props.options ) {
+			this.options = nextProps.options.map( e => {
+				return { 'label': e, 'value': e };
+			});
+		}
+		if ( !isEmptyObject( newState ) ) {
+			this.setState( newState );
+		}
 	}
 
 	/*
@@ -116,6 +141,7 @@ SelectInput.propTypes = {
 	bind: PropTypes.string,
 	onChange: PropTypes.func,
 	defaultValue: PropTypes.oneOfType([
+		PropTypes.number,
 		PropTypes.string,
 		PropTypes.array
 	]),
