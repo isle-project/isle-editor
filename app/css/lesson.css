@@ -12,6 +12,16 @@ body {
 	background: url(gifs/loading.gif) center no-repeat #fff;
 }
 
+#loading-title {
+	font-family: 'Open Sans', sans-serif;
+	color: #2e4468;
+	font-size: 40px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	padding-top: 40px;
+	padding-left: 40px;
+}
+
 .errorMessage {
 	position: absolute;
 	width: 80%;
