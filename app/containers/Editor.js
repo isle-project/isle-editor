@@ -188,12 +188,6 @@ class App extends Component {
 		this.onPreviewScroll = this.sync( preview, editor );
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		if ( nextProps.markdown !== this.props.markdown ) {
-			const value = nextProps.markdown;
-		}
-	}
-
 	sync( main, other ) {
 		return ( scrollTop, scrollHeight, offsetHeight ) => {
 			const percentage = ( scrollTop * 100 ) / ( scrollHeight - offsetHeight );
