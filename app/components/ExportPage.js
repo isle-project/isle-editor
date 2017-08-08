@@ -28,6 +28,8 @@ class UploadLesson extends Component {
 	constructor( props ) {
 		super( props );
 
+		const lessonName = props.fileName ? props.fileName.replace( /.[^.]*$/, '' ) : '';
+
 		// Initialize state variables...
 		this.state = {
 			preamble: {},
@@ -35,7 +37,7 @@ class UploadLesson extends Component {
 			spinning: false,
 			namespaces: [],
 			namespaceName: null,
-			lessonName: '',
+			lessonName,
 			dirname: new Date().toISOString(),
 			server: localStorage.getItem( 'server' ),
 			token: localStorage.getItem( 'token' ),
