@@ -3,12 +3,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CheckboxInput from 'components/input/checkbox';
-import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
-import SliderInput from 'components/input/slider';
 import Dashboard from 'components/dashboard';
-import RPlot from 'components/r/plot';
+import Plotly from 'components/plotly';
 import isArray from '@stdlib/assert/is-array';
+import kernelSmooth from 'kernel-smooth';
+import linspace from '@stdlib/math/utils/linspace';
+import min from 'compute-min';
+import max from 'compute-max';
+import pow from '@stdlib/math/base/special/pow';
+import gaussian from '@stdlib/math/base/dist/normal/pdf';
+import iqr from 'compute-iqr';
 
 
 // FUNCTIONS //
@@ -37,85 +42,97 @@ class Histogram extends Component {
 	}
 
 	generateHistogram(
-		variable, group, overlayDensity, chooseBins, nBins, xRange, xMin, xMax
+		variable, group, overlayDensity, overlapping
 	) {
 		var output;
 		if ( !group ) {
-			let data = this.props.data[ variable ];
-			let code;
-			if ( chooseBins ) {
-				code = `${variable} = c(${data})
-					truehist( ${variable}, nbins = ${nBins},
-						prob=${overlayDensity ? 'TRUE' : 'FALSE'},
-						cex.lab=2.0, cex.main=2.0, cex.axis=2.0
-						${ xRange ? ', xlim = c('+xMin+','+xMax+')' : '' }
-					)\n`;
-			} else {
-				code = `${variable} = c(${data})
-					truehist( ${variable}, prob=${overlayDensity ? 'TRUE' : 'FALSE'},
-						cex.lab=2.0, cex.main=2.0, cex.axis=2.0,
-						${ xRange ? ', xlim = c('+xMin+','+xMax+')' : '' }
-					)\n`;
-			}
+			const vals = this.props.data[ variable ];
+			const data = [ {
+				x: vals,
+				type: 'histogram',
+				name: 'histogram'
+			} ];
 			if ( overlayDensity ) {
-				code += `lines( density( ${variable} ) )`;
+				// Chose appropriate bandwidth via rule-of-thumb:
+				const h = 2.0 * iqr( vals ) * pow( vals.length, -1/3 );
+				const phi = gaussian.factory( 0.0, 1.0 );
+				const kde = kernelSmooth.density( vals, phi, h );
+				const x = linspace( min( vals ), max( vals ), 512 );
+				let y = x.map( x => kde( x ) );
+				data.push({
+					x: x,
+					y: y,
+					type: 'lines',
+					name: 'density'
+				});
+				data[ 0 ][ 'histnorm' ] = 'probability density';
 			}
+			const layout = {
+				xaxis: {title: 'Value' },
+				yaxis: {title: overlayDensity ? 'Density' : 'Count' }
+			};
 			output = {
 				variable: variable,
 				type: 'Chart',
 				value: <div>
 					<label>{variable}: </label>
-					<RPlot
-						code={code}
-						libraries={[ 'MASS' ]}
-						onDone={this.props.onPlotDone}
-					/>
+					<Plotly data={data} layout={layout} />
 				</div>
 			};
 		} else {
 			let freqs = by( this.props.data[ variable ], this.props.data[ group ], arr => {
 				return arr;
 			});
-			let nPlots = Object.keys( freqs ).length;
-			let code = `par(mfrow=c(ceiling(${nPlots}/2),2))\n`;
+			let data = [];
 			for ( let key in freqs ) {
-				let val = freqs[ key ];
-				if ( chooseBins ) {
-					code += `${variable} = c(${val})
-						truehist( ${variable}, nbins = ${nBins},
-							main="${group}: ${key}",
-							prob=${overlayDensity ? 'TRUE' : 'FALSE'},
-							cex.lab=2.0, cex.main=2.0, cex.axis=1.5,
-							${ xRange ? ', xlim = c('+xMin+','+xMax+')' : '' }
-							)\n`;
-				} else {
-					code += `${variable} = c(${val})
-						truehist( ${variable}, main="${group}: ${key}",
-							prob=${overlayDensity ? 'TRUE' : 'FALSE'},
-							cex.lab=2.0, cex.main=2.0, cex.axis=1.5
-							${ xRange ? ', xlim = c('+xMin+','+xMax+')' : '' }
-						)\n`;
-				}
+				let vals = freqs[ key ];
 				if ( overlayDensity ) {
-					code += `lines( density( ${variable} ) )`;
+					// Chose appropriate bandwidth via rule-of-thumb:
+					const h = 2.0 * iqr( vals ) * pow( vals.length, -1/3 );
+					const phi = gaussian.factory( 0.0, 1.0 );
+					const kde = kernelSmooth.density( vals, phi, h );
+					const x = linspace( min( vals ), max( vals ), 512 );
+					let y = x.map( x => kde( x ) );
+					data.push({
+						x: vals,
+						type: 'histogram',
+						histnorm: 'probability density',
+						name: key+':histogram',
+						opacity: 0.5
+					});
+					data.push({
+						x: x,
+						y: y,
+						type: 'lines',
+						name: key+':density',
+					});
+				} else {
+					data.push({
+						x: vals,
+						type: 'histogram',
+						name: key,
+						opacity: overlapping ? 0.5 : 1.0
+					});
 				}
-				code += '\n';
+			}
+			const layout = {
+				xaxis: {title: 'Value' },
+				yaxis: {title: overlayDensity ? 'Density' : 'Count' }
+			};
+			if ( overlapping ) {
+				layout.barmode = 'overlay';
 			}
 			output = {
 				variable: variable,
 				type: 'Chart',
 				value: <div>
 					<label>{variable}: </label>
-					<RPlot
-						code={code}
-						libraries={[ 'MASS' ]}
-						onDone={this.props.onPlotDone}
-					/>
+					<Plotly data={data} layout={layout} />
 				</div>
 			};
 		}
 		this.props.logAction( 'DATA_EXPLORER:HISTOGRAM', {
-			variable, group, overlayDensity, chooseBins, nBins, xRange, xMin, xMax
+			variable, group, overlayDensity
 		});
 		this.props.onCreated( output );
 	}
@@ -139,42 +156,12 @@ class Histogram extends Component {
 					clearable={true}
 				/>
 				<CheckboxInput
-					inline
 					legend="Overlay density"
 					defaultValue={false}
 				/>
 				<CheckboxInput
-					inline
-					legend="Choose bins"
-					defaultValue={false}
-				/>
-				<SliderInput
-					legend="Number of Bins"
-					defaultValue={10}
-					min={1}
-					max={30}
-					step={1}
-				/>
-				<CheckboxInput
-					inline
-					legend="Set x-axis range"
-					defaultValue={false}
-				/>
-				<NumberInput
-					legend="Lower Bound"
-					defaultValue={0}
-					step={1}
-					style={{
-						width: 120
-					}}
-				/>
-				<NumberInput
-					legend="Upper Bound"
-					defaultValue={0}
-					step={1}
-					style={{
-						width: 120
-					}}
+					legend="Overlapping"
+					defaultValue={true}
 				/>
 			</Dashboard>
 		);
