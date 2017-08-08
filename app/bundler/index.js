@@ -30,7 +30,7 @@ const generateIndexHTML = ( title, minify ) => `
 	<head>
 		<meta charset="utf-8">
 		<title>${title}</title>
-		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="shortcut icon" href="favicon.ico" />
 		<link href="css/katex.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
