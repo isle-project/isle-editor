@@ -39,10 +39,9 @@ class Barchart extends Component {
 	generateBarchart( variable, group ) {
 		let output = null;
 		if ( !group ) {
-			let freqs = entries( countBy( this.props.data[ variable ], identity ) );
+			let freqs = entries( countBy( this.props.data[ variable ],  identity ) );
 			let categories = freqs.map( e => e[ 0 ]);
 			freqs = freqs.map( e => e[ 1 ]);
-
 			const data = [ {
 				y: freqs,
 				x: categories,
@@ -58,7 +57,7 @@ class Barchart extends Component {
 			};
 		} else {
 			let freqs = by( this.props.data[ variable ], this.props.data[ group ], arr => {
-				return entries( countBy( arr ) );
+				return entries( countBy( arr, identity ) );
 			});
 			const data = [];
 			for ( let key in freqs ) {
