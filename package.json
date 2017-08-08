@@ -191,7 +191,7 @@
     "simplemde": "^1.11.2",
     "socket.io-client": "^2.0.3",
     "source-map-support": "^0.4.0",
-    "spectacle": "2.1.1",
+    "spectacle": "2.1.2",
     "style-loader": "^0.18.2",
     "uglify-es": "^3.0.15",
     "uniq": "^1.0.1",
