@@ -1,8 +1,10 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import { Button, Modal } from 'react-bootstrap';
 import randomstring from 'randomstring';
 import Plotly from 'plotly.js';
+import './plotly.css';
 
 
 // MAIN //
@@ -13,35 +15,59 @@ class Plot extends Component {
 		super( props );
 
 		this.state = {
-			plotID: randomstring.generate()
+			plotID: randomstring.generate(),
+			fullscreen: false
 		};
 	}
 
-	drawPlot = () => {
+	toggleFullscreen = () => {
+		this.setState({
+			fullscreen: !this.state.fullscreen
+		});
+	}
+
+	drawPlot = ( plotID ) => {
 		Plotly.newPlot(
-			this.state.plotID,
+			plotID,
 			this.props.data,
 			this.props.layout,
 			{
 				displayModeBar: true,
 				displaylogo: false,
-				modeBarButtonsToRemove: [ 'sendDataToCloud' ]
+				modeBarButtonsToRemove: [ 'sendDataToCloud' ],
+				modeBarButtonsToAdd: [ {
+					name: 'Toggle FullScreen',
+					icon: Plotly.Icons[ 'zoombox' ],
+					click: this.toggleFullscreen
+				} ]
 			}
 		);
 	}
 
 	componentDidMount() {
-		this.drawPlot();
+		this.drawPlot( this.state.plotID );
 	}
 
 	componentDidUpdate() {
-		this.drawPlot();
+		this.drawPlot( this.state.plotID );
 	}
 
 	render() {
-		return (
-			<div id={this.state.plotID} ></div>
-		);
+		if ( this.state.fullscreen ) {
+			return (
+				<Modal
+					show={this.state.fullscreen}
+					onHide={this.toggleFullscreen}
+					dialogClassName="fullscreen-modal"
+				>
+					<div id={this.state.plotID} ></div>
+					<Modal.Footer>
+						<Button onClick={this.toggleFullscreen}>Close</Button>
+					</Modal.Footer>
+				</Modal>
+			);
+		}
+		return <div id={this.state.plotID} ></div>;
 	}
 }
 
