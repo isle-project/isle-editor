@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
+import SliderInput from 'components/input/slider';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import isArray from '@stdlib/assert/is-array';
@@ -42,7 +43,7 @@ class Histogram extends Component {
 	}
 
 	generateHistogram(
-		variable, group, overlayDensity, overlapping
+		variable, group, overlayDensity, overlapping, chooseBins, nBins
 	) {
 		var output;
 		if ( !group ) {
@@ -52,6 +53,9 @@ class Histogram extends Component {
 				type: 'histogram',
 				name: 'histogram'
 			} ];
+			if ( chooseBins ) {
+				data[ 0 ].nbinsx = nBins;
+			}
 			if ( overlayDensity ) {
 				// Chose appropriate bandwidth via rule-of-thumb:
 				const h = 2.0 * iqr( vals ) * pow( vals.length, -1/3 );
@@ -92,14 +96,18 @@ class Histogram extends Component {
 					const phi = gaussian.factory( 0.0, 1.0 );
 					const kde = kernelSmooth.density( vals, phi, h );
 					const x = linspace( min( vals ), max( vals ), 512 );
-					let y = x.map( x => kde( x ) );
-					data.push({
+					const y = x.map( x => kde( x ) );
+					const config = {
 						x: vals,
 						type: 'histogram',
 						histnorm: 'probability density',
 						name: key+':histogram',
 						opacity: 0.5
-					});
+					};
+					if ( chooseBins ) {
+						config.nbinsx = nBins;
+					}
+					data.push( config );
 					data.push({
 						x: x,
 						y: y,
@@ -132,7 +140,7 @@ class Histogram extends Component {
 			};
 		}
 		this.props.logAction( 'DATA_EXPLORER:HISTOGRAM', {
-			variable, group, overlayDensity
+			variable, group, overlayDensity, overlapping, nBins
 		});
 		this.props.onCreated( output );
 	}
@@ -156,13 +164,26 @@ class Histogram extends Component {
 					clearable={true}
 				/>
 				<CheckboxInput
-					legend="Overlay density"
+					legend="Overlay Density"
 					defaultValue={false}
 				/>
 				<CheckboxInput
-					legend="Overlapping"
+					legend="Overlapping Bars (when grouped)"
 					defaultValue={true}
 				/>
+				<div>
+					<CheckboxInput
+						legend="Choose # of bins"
+						defaultValue={false}
+						inline
+					/>
+					<SliderInput
+						defaultValue={10}
+						min={0}
+						step={1}
+						inline
+					/>
+				</div>
 			</Dashboard>
 		);
 	}
