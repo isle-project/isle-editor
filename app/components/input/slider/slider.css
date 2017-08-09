@@ -14,12 +14,10 @@
 	border: solid 1px darkgrey;
 	border-radius: 2px;
 	text-align: center;
-	float: right;
 }
 
 .slider-range-input {
-	width: 50%;
 	margin-bottom: 4px;
 	margin-left: 8px;
-	float: left;
+	margin-right: 8px;
 }

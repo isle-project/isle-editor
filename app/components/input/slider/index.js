@@ -150,6 +150,11 @@ class SliderInput extends Input {
 			step={this.props.step}
 			value={value}
 			onChange={this.handleInputChange}
+			style={{
+				width: this.props.width || '160px',
+				float: this.props.inline ? 'none' : 'left',
+				display: this.props.inline ? 'inline' : 'block'
+			}}
 		/>;
 		const numberInput = <OverlayTrigger
 			placement="top"
@@ -169,15 +174,21 @@ class SliderInput extends Input {
 				value={value}
 				onChange={this.handleInputChange}
 				onBlur={this.finishChange}
+				style={{
+					float: this.props.inline ? 'none' : 'right'
+				}}
 			/>
 		</OverlayTrigger>;
 
 		if ( this.props.inline ) {
 			return (
 				<span style={{
-					padding: '5px'
+					padding: '5px',
 				}}>
-					<label>{this.props.legend}:</label>
+					{ this.props.legend ?
+						<label>{this.props.legend}:</label> :
+						null
+					}
 					{rangeInput}
 					{numberInput}
 				</span>
@@ -185,9 +196,12 @@ class SliderInput extends Input {
 		}
 		return (
 			<div className="slider-outer-div">
-				<label style={{
-					marginLeft: '8px',
-				}}>{this.props.legend}:</label>
+				{ this.props.legend ?
+					<label style={{
+						marginLeft: '8px',
+					}}>{this.props.legend}:</label> :
+					null
+				}
 				<br />
 				{rangeInput}
 				{numberInput}
