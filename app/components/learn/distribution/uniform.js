@@ -7,6 +7,7 @@ import { roundn } from '@stdlib/math/base/special';
 import linspace from '@stdlib/math/utils/linspace';
 import dunif from '@stdlib/math/base/dist/uniform/pdf';
 import punif from '@stdlib/math/base/dist/uniform/cdf';
+import NumberInput from 'components/input/number';
 import SliderInput from 'components/input/slider';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
