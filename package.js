@@ -75,7 +75,7 @@ if ( version ) {
 		if ( err ) {
 			DEFAULT_OPTS.electronVersion = '1.0.2';
 		} else {
-			DEFAULT_OPTS.electronVersion = stdout.split( 'electron@' )[ 1 ].replace( /\s/g, '' );
+			DEFAULT_OPTS.electronVersion = stdout.split( 'electron@' )[ 1 ].substr( 0, 5 );
 		}
 		startPack();
 	});
@@ -137,9 +137,9 @@ function pack( plat, arch, cb ) {
 		platform: plat,
 		arch,
 		prune: true,
-		'app-version': pkg.version || DEFAULT_OPTS.electronVersion,
-		'app-copyright': 'Copyright © 2016 Philipp Burckhardt. All rights reserved.',
-		'version-string': {
+		appVersion: pkg.version || DEFAULT_OPTS.electronVersion,
+		appCopyright: 'Copyright © 2016 Philipp Burckhardt. All rights reserved.',
+		versionString: {
 			CompanyName: 'Carnegie Mellon University',
 			FileDescription: 'Interactive Statistics Learning Environment (ISLE) Editor',
 			OriginalFilename: 'ISLE Editor.exe',
