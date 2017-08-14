@@ -22,7 +22,8 @@ export default {
 				path.join( __dirname, 'node_modules', 'configstore' ),
 				path.join( __dirname, 'node_modules', 'crypto-random-string' ),
 				path.join( __dirname, 'node_modules', 'fs-extra' ),
-				path.join( __dirname, 'node_modules', 'unique-string' )
+				path.join( __dirname, 'node_modules', 'unique-string' ),
+				path.join( __dirname, 'node_modules', 'katex' )
 			]
 		},
 		{
