@@ -5,6 +5,7 @@ import { exec } from 'child_process';
 import { Link } from 'react-router-dom';
 import { ISLE_DOCS_LINK } from 'constants/links';
 
+
 // FUNCTIONS //
 
 const openBrowser = ( url ) => {
@@ -12,7 +13,7 @@ const openBrowser = ( url ) => {
 };
 
 
-// DOCUMENTATION //
+// MAIN //
 
 class Documentation extends Component {
 

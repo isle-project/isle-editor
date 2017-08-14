@@ -135,7 +135,7 @@ class Login extends Component {
 }
 
 
-// SETTINGS //
+// MAIN //
 
 class Settings extends Component {
 

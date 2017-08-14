@@ -6,7 +6,7 @@ import ExportPage from 'components/ExportPage';
 import { convertMarkdown, toggleScrolling } from 'actions';
 
 
-// EXPORT LESSON //
+// MAIN //
 
 class Export extends Component {
 	render() {
