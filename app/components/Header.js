@@ -2,12 +2,38 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 import * as colors from 'constants/colors';
 
 
-// HEADER //
+// MAIN //
 
 class Header extends Component {
+
+	constructor( props ) {
+		super( props );
+	}
+
+	handleRoleSelection = ( eventKey ) => {
+		let newRole;
+		switch ( eventKey ) {
+		case '1':
+			newRole = 'anonymous';
+			break;
+		case '2':
+			newRole = 'user';
+			break;
+		case '3':
+			newRole = 'enrolled';
+			break;
+		case '4':
+		default:
+			newRole = 'owner';
+			break;
+		}
+		this.props.onSelectRole( newRole );
+	}
+
 	render() {
 		return (
 			<div>
@@ -62,8 +88,28 @@ class Header extends Component {
 						justifyContent: 'space-between'
 					}}
 				>
-					<span>{this.props.fileName || 'Untitled Document'}</span>
-					<span>Preview</span>
+					<span style={{ paddingLeft: 5 }} >{this.props.fileName || 'Untitled Document'}</span>
+					<span>
+						<DropdownButton
+							title={this.props.role}
+							id="bg-user-dropdown"
+							bsSize="xsmall"
+							bsStyle="warning"
+							onSelect={this.handleRoleSelection}
+							style={{
+								width: 100
+							}}
+						>
+							<MenuItem eventKey="1">anonymous</MenuItem>
+							<MenuItem eventKey="2">user</MenuItem>
+							<MenuItem eventKey="3">enrolled</MenuItem>
+							<MenuItem eventKey="4">owner</MenuItem>
+						</DropdownButton>
+						<span style={{
+							paddingLeft: 5,
+							paddingRight: 5
+						}}>Preview</span>
+					</span>
 				</div>
 			</div>
 		);

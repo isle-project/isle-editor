@@ -28,6 +28,7 @@ const initialState = {
 	hideToolbar: false,
 	filePath: config.get( 'mostRecentFilePath' ),
 	fileName: config.get( 'mostRecentFileName' ),
+	currentRole: 'anonymous',
 	error
 };
 
@@ -58,6 +59,10 @@ export default function markdown( state = initialState, action ) {
 	case types.PREAMBLE_CHANGED:
 		return Object.assign({}, state, {
 			preamble: action.payload.preamble
+		});
+	case types.ROLE_CHANGED:
+		return Object.assign({}, state, {
+			currentRole: action.payload.role
 		});
 	case types.TOGGLE_SCROLLING:
 		return Object.assign({}, state, {

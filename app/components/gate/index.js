@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import inElectron from 'utils/is-electron';
 
 
 // MAIN //
@@ -19,22 +18,19 @@ class Gate extends Component {
 	}
 
 	render() {
-		const { session } = this.context;
+		const { currentRole, session } = this.context;
 		const { anonymous, user, enrolled, owner } = this.props;
 		let authenticated = false;
 		if ( anonymous ) {
 			authenticated = true;
 		}
-		if ( user && !session.anonymous ) {
+		if ( user && ( !session.anonymous || currentRole !== 'anonymous' ) ) {
 			authenticated = true;
 		}
-		if ( enrolled && this.state.isEnrolled ) {
+		if ( enrolled && ( this.state.isEnrolled || currentRole === 'enrolled' ) ) {
 			authenticated = true;
 		}
-		if ( owner && this.state.isOwner ) {
-			authenticated = true;
-		}
-		if ( inElectron ) {
+		if ( owner && ( this.state.isOwner || currentRole === 'owner' ) ) {
 			authenticated = true;
 		}
 		if ( authenticated ) {
@@ -98,7 +94,8 @@ Gate.propTypes = {
 };
 
 Gate.contextTypes = {
-	session: PropTypes.object
+	session: PropTypes.object,
+	currentRole: PropTypes.string
 };
 
 

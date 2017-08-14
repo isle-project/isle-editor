@@ -174,7 +174,7 @@ export default class Preview extends Component {
 		this.renderPreview = () => {
 			debug( 'Should render the lesson...' );
 			let es5code;
-			let { code, preamble } = this.props;
+			let { code, preamble, currentRole } = this.props;
 			let session = global.session;
 			try {
 
@@ -245,7 +245,7 @@ export default class Preview extends Component {
 					};
 					var Lesson = createReactClass( lessonConfig );
 					render(
-						React.createElement( Provider, { session: session },
+						React.createElement( Provider, { session: session, currentRole: "${currentRole}" },
 							${transform( '<Lesson />' )}
 						),
 						document.getElementById( 'Preview' )

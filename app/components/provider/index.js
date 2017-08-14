@@ -10,7 +10,8 @@ class Provider extends Component {
 
 	getChildContext() {
 		return {
-			session: this.props.session
+			session: this.props.session,
+			currentRole: this.props.currentRole
 		};
 	}
 
@@ -24,7 +25,8 @@ class Provider extends Component {
 // TYPES //
 
 Provider.childContextTypes = {
-	session: PropTypes.object
+	session: PropTypes.object,
+	currentRole: PropTypes.string
 };
 
 

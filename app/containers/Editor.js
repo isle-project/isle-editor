@@ -13,7 +13,7 @@ import Panel from 'components/Panel';
 import Header from 'components/Header';
 import Editor from 'components/Editor';
 import Preview from 'components/Preview';
-import { convertMarkdown, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError } from 'actions';
+import { convertMarkdown, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError } from 'actions';
 const debug = require( 'debug' )( 'isle-editor' );
 
 
@@ -206,11 +206,20 @@ class App extends Component {
 			filePath,
 			markdown,
 			hideToolbar,
-			preamble
+			preamble,
+			changeView,
+			currentRole
 		} = this.props;
 		return (
 			<div>
-				{ !hideToolbar ? <Header fileName={fileName} /> : null }
+				{ !hideToolbar ?
+					<Header
+						fileName={fileName}
+						onSelectRole={changeView}
+						role={currentRole}
+					/> :
+					null
+				}
 				<SplitPane
 					className="splitpane"
 					split="vertical"
@@ -243,6 +252,7 @@ class App extends Component {
 							code={markdown}
 							filePath={filePath}
 							preamble={preamble}
+							currentRole={currentRole}
 						/>
 					</Panel>
 				</SplitPane>
@@ -266,6 +276,7 @@ export default connect( mapStateToProps, {
 	convertMarkdown,
 	encounteredError,
 	resetError,
+	changeView,
 	toggleScrolling,
 	toggleToolbar,
 	updatePreamble

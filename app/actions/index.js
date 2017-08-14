@@ -67,3 +67,12 @@ export function updatePreamble( preamble ) {
 		}
 	};
 }
+
+export function changeView( role ) {
+	return {
+		type: types.ROLE_CHANGED,
+		payload: {
+			role
+		}
+	};
+}
