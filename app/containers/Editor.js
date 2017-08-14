@@ -72,7 +72,7 @@ const injectStyle = ( style ) => {
 };
 
 const loadRequires = ( libs, filePath ) => {
-	console.log( 'Should require files or modules...' );
+	debug( 'Should require files or modules...' );
 	let dirname = path.dirname( filePath );
 	if ( isObject( libs ) ) {
 		for ( let key in libs ) {
@@ -94,14 +94,13 @@ const loadRequires = ( libs, filePath ) => {
 				else {
 					eval( `global[ '${key}' ] = require( '${lib}' );` );
 				}
-
 			}
 		}
 	}
 };
 
 
-// APP //
+// MAIN //
 
 class App extends Component {
 
@@ -149,23 +148,27 @@ class App extends Component {
 		preamble = preamble[ 1 ];
 		let preambleHasChanged = this.checkPreambleChange( preamble );
 		if ( preambleHasChanged ) {
-			const newPreamble = yaml.load( preamble );
-			if ( !isObject( newPreamble ) ) {
-				return this.props.encounteredError( new Error( 'Make sure the preamble is valid YAML code.' ) );
-			}
-			this.props.updatePreamble( newPreamble );
 			try {
-				loadRequires( newPreamble.require, this.props.filePath || '' );
+				const newPreamble = yaml.load( preamble );
+				if ( !isObject( newPreamble ) ) {
+					return this.props.encounteredError( new Error( 'Make sure the preamble is valid YAML code.' ) );
+				}
+				try {
+					loadRequires( newPreamble.require, this.props.filePath || '' );
+				} catch ( err ) {
+					return this.props.encounteredError( err );
+				}
+				try {
+					applyStyles( newPreamble, this.props.filePath || '' );
+				} catch ( err ) {
+					return this.props.encounteredError( err );
+				}
+				this.props.updatePreamble( newPreamble );
+				if ( this.props.error ) {
+					this.props.resetError();
+				}
 			} catch ( err ) {
-				return this.props.encounteredError( err );
-			}
-			try {
-				applyStyles( newPreamble, this.props.filePath || '' );
-			} catch ( err ) {
-				return this.props.encounteredError( err );
-			}
-			if ( this.props.error ) {
-				this.props.resetError();
+				return this.props.encounteredError( new Error( 'Couldn\'t parse the preamble. Make sure it is valid YAML.' ) );
 			}
 		}
 	}
