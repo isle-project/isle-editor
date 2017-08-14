@@ -65,7 +65,7 @@ class Editor extends Component {
 		// Add event listener:
 		this.editor.on( 'change', this.onChange );
 
-		this.editor.setValue( this.props.value, -1 );
+		this.editor.setValue( this.props.value, this.props.cursorStart );
 
 		this.editor.setOptions({
 			maxLines: 5000,
@@ -102,13 +102,16 @@ class Editor extends Component {
 	}
 
 	componentWillReceiveProps( nextProps ) {
-		if ( this.editor.getValue() !== nextProps.value ) {
-			this.editor.setValue( nextProps.value, -1 );
+		if ( this.editor && this.editor.getValue() !== nextProps.value ) {
+			const pos = this.editor.getCursorPosition();
+			this.editor.setValue( nextProps.value, nextProps.cursorStart );
+			this.editor.moveCursorToPosition( pos );
 		}
 	}
 
 	componentWillUnmount() {
 		this.editor.destroy();
+		this.editor = null;
 		clearInterval( this.interval );
 	}
 
@@ -131,7 +134,8 @@ class Editor extends Component {
 
 Editor.defaultProps = {
 	onChange: noop,
-	value: ''
+	value: '',
+	cursorStart: 1
 };
 
 
@@ -139,7 +143,8 @@ Editor.defaultProps = {
 
 Editor.propTypes = {
 	onChange: PropTypes.func,
-	value: PropTypes.string
+	value: PropTypes.string,
+	cursorStart: PropTypes.number
 };
 
 
