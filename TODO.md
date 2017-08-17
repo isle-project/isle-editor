@@ -9,4 +9,11 @@ TODO
 5. Data Explorer 
    - how to handle missing data?
    - remove any R dependencies
+   - Boxplots categorized by more than one group (+ ability to reorder)
+   - need a simple way to subset data, e.g. running an ANOVA only on a subset (say a few groups instead of all of them)
+   - For barcharts, instead of counts, add an option to display percentages (also conditional %)
+   - Display additional information when hovering over bars of barcharts (percentage, description, other variables?)
+   - We have been deliberately loose with respect to terminology: z-test vs. t-test
+   - Should be able to change labels on graphs
+
 
