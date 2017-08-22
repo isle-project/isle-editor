@@ -101,8 +101,8 @@
   "dependencies": {
     "@stdlib/stdlib": "github:stdlib-js/stdlib#develop",
     "archiver": "^2.0.0",
-    "babel-core": "6.25.0",
-    "babel-loader": "7.1.1",
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-resolver": "^1.1.0",
     "babel-plugin-transform-react-constant-elements": "^6.9.1",
@@ -134,7 +134,7 @@
     "d3": "^4.7.3",
     "debug-electron": "0.0.4",
     "detect-csv": "^1.1.0",
-    "dompurify": "^0.9.0",
+    "dompurify": "^1.0.1",
     "electron-window-state": "^4.0.1",
     "element-resize-event": "^2.0.5",
     "esprima-fb": "^15001.1001.0-dev-harmony-fb",
@@ -174,7 +174,7 @@
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "15.6.1",
-    "react-grid-layout": "^0.14.7",
+    "react-grid-layout": "^0.15.0",
     "react-history": "^0.18.2",
     "react-notification-system": "^0.2.7",
     "react-player": "^0.20.0",
@@ -183,7 +183,7 @@
     "react-router-dom": "^4.1.1",
     "react-select": "^1.0.0-rc.5",
     "react-slick": "^0.14.6",
-    "react-split-pane": "0.1.65",
+    "react-split-pane": "0.1.66",
     "react-tools": "^0.13.3",
     "recordrtc": "^5.4.1",
     "redux": "^3.4.0",
@@ -200,7 +200,7 @@
     "utf-8-validate": "^3.0.2",
     "venn.js": "^0.2.14",
     "victory": "^0.21.0",
-    "webpack": "3.5.4"
+    "webpack": "3.5.5"
   },
   "devEngines": {
     "node": "5.x || 6.x || 7.x || 8.x"
