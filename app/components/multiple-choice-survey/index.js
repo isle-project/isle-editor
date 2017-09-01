@@ -2,9 +2,13 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ListGroup, ListGroupItem, Panel } from 'react-bootstrap';
+import { Button, Col, Grid, ListGroup, ListGroupItem, Panel } from 'react-bootstrap';
+import { VictoryBar, VictoryChart } from 'victory';
+import { tabulate } from '@stdlib/utils';
 import Gate from 'components/gate';
 import InstructorBar from 'components/instructor-bar';
+import RealtimeMetrics from 'components/metrics/realtime';
+const debug = require( 'debug' )( 'isle-editor' );
 
 
 // FUNCTIONS //
@@ -52,6 +56,7 @@ class MultipleChoiceSurvey extends Component {
 			null;
 
 		this.state = {
+			data: [],
 			submitted: false,
 			active,
 			answerSelected: false
@@ -82,6 +87,40 @@ class MultipleChoiceSurvey extends Component {
 			});
 			this.props.onSubmit( this.state.active );
 		};
+	}
+
+	onData = ( data ) => {
+		debug( 'MultipleChoiceSurvey is receiving data: ' + JSON.stringify( data ) );
+		data = data[ this.props.id ];
+		let tabulated = tabulate( data );
+		let freqTable;
+		let counts = tabulated.map( d => {
+			return {
+				x: d[ 0 ],
+				y: d[ 1 ]
+			};
+		});
+		freqTable = <table className="table table-bordered">
+			<tr>
+				<th>Category</th>
+				<th>Count</th>
+				<th>Relative Frequency</th>
+			</tr>
+			{tabulated.map( ( elem ) => {
+				return ( <tr>
+					{elem.map( ( x, idx ) => {
+						if ( idx === 2 ) {
+							x = x.toFixed( 3 );
+						}
+						return <td>{x}</td>;
+					})}
+				</tr> );
+			})}
+		</table>;
+		this.setState({
+			data: counts,
+			freqTable
+		});
 	}
 
 	componentDidMount() {
@@ -141,27 +180,44 @@ class MultipleChoiceSurvey extends Component {
 
 		return (
 			<Gate {...props} >
-				<Panel className="multipleChoiceSurvey" style={{
-					margin: '0 auto 10px',
-					maxWidth: 600,
-					marginTop: '8px'
-				}}>
-					<h3>{props.question}</h3>
-					{ multipleAnswers ? <span>You may select multiple answers</span> : null }
-					<ListGroup fill >
-						{ multipleAnswers ?
-							props.answers.map( renderAnswerOptionsMultiple ) :
-							props.answers.map( renderAnswerOptionsSingle )
-						}
-					</ListGroup>
-					<Button
-						bsSize="small"
-						bsStyle="success"
-						block fill
-						onClick={this.submitQuestion}
-						disabled={disabled}
-					>{ this.state.submitted ? "Submitted" : "Submit"}</Button>
-				</Panel>
+				<Grid>
+					<Col md={6}>
+						<Panel className="multipleChoiceSurvey" style={{
+							margin: '0 auto 10px',
+							maxWidth: 600,
+							marginTop: '8px'
+						}}>
+							<h3>{props.question}</h3>
+							{ multipleAnswers ? <span>You may select multiple answers</span> : null }
+							<ListGroup fill >
+								{ multipleAnswers ?
+									props.answers.map( renderAnswerOptionsMultiple ) :
+									props.answers.map( renderAnswerOptionsSingle )
+								}
+							</ListGroup>
+							<Button
+								bsSize="small"
+								bsStyle="success"
+								block fill
+								onClick={this.submitQuestion}
+								disabled={disabled}
+							>{ this.state.submitted ? "Submitted" : "Submit"}</Button>
+						</Panel>
+					</Col>
+					<Col md={6}>
+						<RealtimeMetrics for={[ this.props.id ]} onData={this.onData} />
+						<VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
+							<VictoryBar
+								data={this.state.data}
+								x="x"
+								y="y"
+							/>
+						</VictoryChart>
+						<p>
+							{this.state.freqTable}
+						</p>
+					</Col>
+				</Grid>
 				<InstructorBar id={props.id} />
 			</Gate>
 		);
