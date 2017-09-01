@@ -18,11 +18,14 @@ class Gate extends Component {
 	}
 
 	render() {
-		const { currentRole, session } = this.context;
+		let { currentRole, session } = this.context;
 		const { anonymous, user, enrolled, owner } = this.props;
 		let authenticated = false;
 		if ( anonymous ) {
 			authenticated = true;
+		}
+		if ( !currentRole ) {
+			currentRole = 'anonymous';
 		}
 		if ( user && ( !session.anonymous || currentRole !== 'anonymous' ) ) {
 			authenticated = true;
