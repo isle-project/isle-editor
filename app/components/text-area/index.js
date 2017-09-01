@@ -60,6 +60,7 @@ class TextArea extends Component {
 					}}
 					rows={this.props.rows}
 					value={this.state.value}
+					disabled={this.props.disabled}
 				/>
 			</FormGroup>
 		);
@@ -70,6 +71,7 @@ class TextArea extends Component {
 // DEFAULT PROPERTIES //
 
 TextArea.defaultProps = {
+	disabled: false,
 	onChange() {},
 	legend: '',
 	placeholder: 'Enter text',
@@ -83,6 +85,7 @@ TextArea.defaultProps = {
 
 TextArea.propTypes = {
 	defaultValue: PropTypes.string,
+	disabled: PropTypes.bool,
 	onChange: PropTypes.func,
 	legend: PropTypes.string,
 	placeholder: PropTypes.string,
