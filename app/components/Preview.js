@@ -44,6 +44,7 @@ const DraggableList = require( 'components/draggable-list' );
 const Editor = require( 'components/editor' );
 const Experiment = require( 'components/experiment' );
 const FeedbackButtons = require( 'components/feedback' );
+const FreeTextSurvey = require( 'components/free-text-survey' );
 const FreeTextQuestion = require( 'components/free-text-question' );
 const Gate = require( 'components/gate' );
 const Grid = require( 'components/grid' );
