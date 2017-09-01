@@ -25,7 +25,10 @@ const Action = ( props ) => {
 				<label>Type:&nbsp;</label><span className="clickable" onClick={props.clickFactory( 'type', props.type )} >{ props.type }</span>
 			</div>
 			<div className="actionNote">
-				<label>Value:&nbsp;</label>{ isObject( props.value ) ? JSON.stringify( props.value,undefined, 2 ) : props.value }
+				<label>Value:&nbsp;</label>
+				<span style={{ 'userSelect': 'text' }} >
+					{ isObject( props.value ) ? JSON.stringify( props.value,undefined, 2 ) : props.value }
+				</span>
 			</div>
 		</ListGroupItem>
 	);
