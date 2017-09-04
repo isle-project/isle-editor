@@ -2,86 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Column, Cell } from 'fixed-data-table';
-import floor from '@stdlib/math/base/special/floor';
-import isArray from '@stdlib/assert/is-array';
-
-
-// FUNCTIONS //
-
-// eslint-disable-next-line no-unused-vars
-const createTableFromArray = (
-	data,
-	{ containerWidth, columnNames, columnWidth, maxHeight },
-	tableWidth
-) => {
-	const keys = Object.keys( data[ 0 ]);
-	if ( !columnWidth ) {
-		columnWidth = floor( ( tableWidth - 15 ) / keys.length );
-	}
-	return (
-		<Table
-			rowHeight={30}
-			rowsCount={data.length}
-			width={tableWidth}
-			maxHeight={maxHeight}
-			headerHeight={30}
-		>
-			{keys.map( ( key, idx ) => {
-				return (
-					<Column
-						key={idx}
-						header={<Cell>{columnNames ? columnNames[ idx ] : key}</Cell>}
-						cell={ ({rowIndex, ...props }) => (
-							<Cell {...props}>
-								{ data[ rowIndex ][ key ] }
-							</Cell>
-						)}
-						width={ isArray( columnWidth ) ? columnWidth[ idx ] : columnWidth }
-					>
-					</Column>
-				);
-			})}
-		</Table>
-	);
-};
-
-const createTableFromObject = (
-	data,
-	{ containerWidth, columnNames, columnWidth, maxHeight },
-	tableWidth
-) => {
-	const keys = Object.keys( data );
-	const nRows = data[ keys[ 0 ] ].length;
-	if ( !columnWidth ) {
-		columnWidth = floor( ( tableWidth - 15 ) / keys.length );
-	}
-	return (
-		<Table
-			rowHeight={30}
-			rowsCount={nRows}
-			width={tableWidth}
-			maxHeight={maxHeight}
-			headerHeight={30}
-		>
-			{keys.map( ( key, idx ) => {
-				return (
-					<Column
-						key={idx}
-						header={<Cell>{columnNames ? columnNames[ idx ] : key}</Cell>}
-						cell={ ({rowIndex, ...props }) => (
-							<Cell {...props}>
-								{ data[ key ][ rowIndex ] }
-							</Cell>
-						)}
-						width={ isArray( columnWidth ) ? columnWidth[ idx ] : columnWidth }
-					>
-					</Column>
-				);
-			})}
-		</Table>
-	);
-};
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
 
 
 // MAIN //
@@ -91,26 +13,81 @@ class DataTable extends Component {
 	constructor( props ) {
 		super( props );
 
+		const keys = Object.keys( props.data );
+		const nRows = props.data[ keys[ 0 ] ].length;
+		const rows = new Array( nRows );
+		for ( let i = 0; i < nRows; i++ ) {
+			rows[ i ] = {};
+			rows[ i ][ 'id' ] = i;
+			for ( let j = 0; j < keys.length; j++ ) {
+				let key = keys[ j ];
+				rows[ i ][ key ] = props.data[ key ][ i ];
+			}
+		}
+		if ( props.showRemove ) {
+			for ( let i = 0; i < nRows; i++ ) {
+				if ( !rows[ i ][ 'remove' ]) {
+					rows[ i ][ 'remove' ] = false;
+				}
+			}
+		}
+
+		const columns = keys.map( key => {
+			return {
+				Header: key,
+				accessor: key
+			};
+		});
+		columns.unshift({
+			Header: 'id',
+			accessor: 'id'
+		});
+		if ( props.showRemove ) {
+			columns.push({
+				Header: "Remove",
+				accessor: "remove",
+				Cell: this.renderCheckboxRemovable,
+				filterable: false
+			});
+		}
+
 		this.state = {
-			table: createTableFromObject( props.data, props, props.width )
+			rows,
+			columns
 		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		if ( this.props.data !== nextProps.data ) {
-			const table = createTableFromObject( nextProps.data, nextProps, nextProps.width );
-			this.setState({
-				table
-			});
-		}
-	}
+	renderCheckboxRemovable = ( cellInfo ) => {
+		return (
+			<input
+				id="checkBox" type="checkbox"
+				onClick={ e => {
+					const rows = [ ...this.state.rows ];
+					rows[ cellInfo.index ][ cellInfo.column.id ] = e.target.checked;
+					this.setState({ rows });
+					this.props.onClickRemove( rows );
+				}}
+			/>
+		);
+	  }
 
 	render() {
-		return <div style={this.props.style}>
-			{this.state.table}
-		</div>;
+		return <ReactTable
+			data={this.state.rows}
+			columns={this.state.columns}
+			showPagination={true}
+			sortable={true}
+			resizable={true}
+			filterable={true}
+			showPageSizeOptions={false}
+			defaultPageSize={50}
+			style={{
+				maxHeight: 500,
+				fontSize: '12px',
+				...this.props.style
+			}}
+		/>;
 	}
-
 }
 
 
@@ -119,26 +96,23 @@ class DataTable extends Component {
 DataTable.defaultProps = {
 	maxHeight: 400,
 	width: 600,
-	columnNames: null,
-	columnWidth: null,
-	style: {}
+	style: {},
+	onClickRemove(){},
+	showRemove: false
 };
 
 
 // PROPERTY TYPES //
 
 DataTable.propTypes = {
-	columnNames: PropTypes.array,
-	columnWidth: PropTypes.oneOfType([
-		PropTypes.number,
-		PropTypes.arrayOf( PropTypes.number )
-	]),
 	data: PropTypes.oneOfType([
 		PropTypes.array,
 		PropTypes.object
 	]).isRequired,
 	maxHeight: PropTypes.number,
-	width: PropTypes.number
+	width: PropTypes.number,
+	onClickRemove: PropTypes.func,
+	showRemove: PropTypes.bool
 };
 
 
