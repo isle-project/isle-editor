@@ -177,6 +177,7 @@
     "react-dom": "15.6.1",
     "react-grid-layout": "^0.15.0",
     "react-history": "^0.18.2",
+    "react-input-range": "^1.2.1",
     "react-notification-system": "^0.2.7",
     "react-player": "^0.20.0",
     "react-redux": "^5.0.1",

@@ -3,7 +3,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
+import InputRange from 'react-input-range';
+import min from 'compute-min';
+import max from 'compute-max';
+import isNumberArray from '@stdlib/assert/is-number-array';
+import copy from '@stdlib/utils/copy';
 import 'react-table/react-table.css';
+import 'react-input-range/lib/css/index.css';
 
 
 // MAIN //
@@ -32,11 +38,44 @@ class DataTable extends Component {
 			}
 		}
 
+		const newtState = {
+			values: {}
+		};
 		const columns = keys.map( key => {
-			return {
+			const out = {
 				Header: key,
 				accessor: key
 			};
+			newtState.values[ key ] = {
+				max: max( props.data[ key ]),
+				min: min( props.data[ key ])
+			};
+			if ( isNumberArray( props.data[ key ]) ) {
+				out[ 'filterMethod' ] = this.filterMethod;
+				out[ 'Filter' ] = ({ filter, onChange }) => {
+					return (
+						<div style={{
+							paddingLeft: '4px',
+							paddingRight: '4px',
+							paddingTop: '8px',
+							paddingBottom: '4px'
+						}}>
+							<InputRange
+								maxValue={max( props.data[ key ])}
+								minValue={min( props.data[ key ])}
+								value={this.state.values[ key ]}
+								onChange={ ( newValue ) => {
+									const newState = copy( this.state );
+									newState.values[ key ] = newValue;
+									this.setState( newState );
+									onChange( newValue );
+								}}
+							/>
+						</div>
+					);
+				};
+			}
+			return out;
 		});
 		columns.unshift({
 			Header: 'id',
@@ -44,17 +83,21 @@ class DataTable extends Component {
 		});
 		if ( props.showRemove ) {
 			columns.push({
-				Header: "Remove",
+				Header: 'Remove',
 				accessor: "remove",
 				Cell: this.renderCheckboxRemovable,
 				filterable: false
 			});
 		}
 
-		this.state = {
-			rows,
-			columns
-		};
+		newtState.rows = rows;
+		newtState.columns = columns;
+		this.state = newtState;
+	}
+
+	filterMethod = ( filter, row ) => {
+		const val = row[ filter.id ];
+		return val >= filter.value.min && val <= filter.value.max;
 	}
 
 	renderCheckboxRemovable = ( cellInfo ) => {
@@ -72,21 +115,26 @@ class DataTable extends Component {
 	  }
 
 	render() {
-		return <ReactTable
-			data={this.state.rows}
-			columns={this.state.columns}
-			showPagination={true}
-			sortable={true}
-			resizable={true}
-			filterable={true}
-			showPageSizeOptions={false}
-			defaultPageSize={50}
-			style={{
-				maxHeight: 500,
-				fontSize: '12px',
-				...this.props.style
-			}}
-		/>;
+		return (
+			<div>
+				<ReactTable
+					data={this.state.rows}
+					columns={this.state.columns}
+					showPagination={true}
+					sortable={true}
+					resizable={true}
+					filterable={true}
+					showPageSizeOptions={false}
+					defaultPageSize={50}
+					style={{
+						maxHeight: 500,
+						fontSize: '12px',
+						...this.props.style
+					}}
+				/>
+				<label><i>Total number of rows: {this.state.rows.length}</i></label>
+			</div>
+		);
 	}
 }
 
