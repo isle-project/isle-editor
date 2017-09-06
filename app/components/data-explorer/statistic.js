@@ -1,6 +1,6 @@
 // MODULES //
 
-import iqr from 'compute-iqr';
+import quantile from 'compute-quantile';
 import min from 'compute-min';
 import max from 'compute-max';
 import mean from 'compute-mean';
@@ -26,7 +26,12 @@ function statistic( statName ) {
 		fun = pcorr;
 		break;
 	case 'Interquartile Range':
-		fun = iqr;
+		fun = ( arr ) => {
+			const upper = quantile( arr, 0.75 );
+			const lower = quantile( arr, 0.25 );
+			const iqr = upper - lower;
+			return [ iqr, lower, upper ];
+		};
 		break;
 	case 'Mean':
 		fun = mean;
