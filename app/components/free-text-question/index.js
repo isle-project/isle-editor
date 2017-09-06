@@ -45,9 +45,15 @@ class FreeTextQuestion extends Component {
 					position: 'tr'
 				});
 			} else {
+				let submissionMsg = this.props.submissionMsg;
+				if ( submissionMsg === '' ) {
+					submissionMsg = this.props.solution ?
+						'Compare your answer with solution using the "Show Solution" button. You can then change your answer and re-submit if necessary.' :
+						'You can change your answer and re-submit if you want to.';
+				}
 				session.addNotification({
 					title: 'Answer submitted.',
-					message: this.props.submissionMsg,
+					message: submissionMsg,
 					level: 'success',
 					position: 'tr'
 				});
@@ -216,7 +222,7 @@ FreeTextQuestion.defaultProps = {
 	resizable: false,
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
 	rows: 5,
-	submissionMsg: 'Compare your answer with solution using the "Show Solution" button. You can then change your answer and re-submit if necessary.'
+	submissionMsg: ''
 };
 
 
