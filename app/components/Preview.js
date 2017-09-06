@@ -59,6 +59,7 @@ const Nav = ReactBootstrap.Nav;
 const Navbar = ReactBootstrap.Navbar;
 const NavItem = ReactBootstrap.NavItem;
 const NumberInput = require( 'components/input/number' );
+const NumberQuestion = require( 'components/number-question' );
 const NumberSurvey = require( 'components/number-survey' );
 const Panel = ReactBootstrap.Panel;
 const Plotly = require( 'components/plotly' );
