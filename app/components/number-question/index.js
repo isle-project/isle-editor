@@ -27,18 +27,17 @@ class NumberQuestion extends Component {
 		};
 
 		/*
-		* Event handler invoked when text area value changes. Updates `value` and invokes
-		* `onChange` callback with the new text as its first argument
+		* Event handler invoked when text area value changes. Updates `value` and invokes `onChange` callback with the new value as its first argument
 		*/
-		this.handleChange = ( event ) => {
-			const newValue = event.target.value;
+		this.handleChange = ( newValue ) => {
 			this.setState({ value: newValue });
 			this.props.onChange( newValue );
 		};
 
 		this.submitHandler = ( event ) => {
 			const { session } = this.context;
-			const correct = this.state.value === this.props.solution;
+			console.log( this.props.solution );
+			const correct = parseFloat( this.state.value ) === this.props.solution;
 			session.addNotification({
 				title: 'Answer submitted.',
 				message: correct ? 'Congratulations, that is correct!' : 'Not quite. Compare your answer with the solution.',
@@ -57,27 +56,6 @@ class NumberQuestion extends Component {
 				});
 			}
 		};
-
-		this.handleSolutionClick = () => {
-			const { session } = this.context;
-			if ( this.state.solutionDisplayed ) {
-				this.setState({
-					solutionDisplayed: false,
-					value: this.state.studentAnswer
-				});
-			} else {
-				session.log({
-					id: this.props.id,
-					type: 'FREE_TEXT_QUESTION_DISPLAY_SOLUTION',
-					value: null
-				});
-				this.setState({
-					solutionDisplayed: true,
-					studentAnswer: this.state.value,
-					value: this.props.solution
-				});
-			}
-		};
 	}
 
 	/*
@@ -91,6 +69,7 @@ class NumberQuestion extends Component {
 				{ this.props.question ? <h4>{this.props.question}</h4> : null }
 				<label>Your answer:</label>
 				<NumberInput
+					step="any"
 					onChange={this.handleChange}
 					value={this.state.value}
 					disabled={this.state.submitted}
@@ -102,7 +81,7 @@ class NumberQuestion extends Component {
 						<label>Solution:</label>
 						<NumberInput
 							disabled
-							value={this.props.solution}
+							defaultValue={this.props.solution}
 							inline
 						/>
 					</span>:
