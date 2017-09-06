@@ -116,7 +116,7 @@ class FreeTextQuestion extends Component {
 					disabled={this.state.solutionDisplayed}
 				/>
 				{
-					this.state.value.length >= 2 ?
+					this.state.value.length >= 1 ?
 						<Button
 							bsStyle="primary"
 							bsSize="sm"
