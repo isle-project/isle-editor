@@ -22,6 +22,7 @@ import FrequencyTable from 'components/data-explorer/frequency-table';
 import SummaryStatistics from 'components/data-explorer/summary-statistics';
 import SimpleLinearRegression from 'components/data-explorer/linear-regression';
 import VariableTransformer from 'components/data-explorer/variable-transformer';
+import Slider from 'components/slider';
 
 
 // PLOT COMPONENTS //
@@ -106,7 +107,7 @@ const OutputPanel = ( output ) => {
 											return (
 												<tr key={i} >
 													<td>{arr[ 0 ]}</td>
-													<td>{arr[ 1 ][ 0 ].toFixed( 3 )},{arr[ 1 ][ 1 ].toFixed( 3 )}</td>
+													{arr[ 1 ].map( x => <td>{x}</td> ).join( ', ' )}
 												</tr>
 											);
 										}
@@ -122,7 +123,7 @@ const OutputPanel = ( output ) => {
 						</pre>
 					</div>;
 					return makeDraggable( elem );
-				} else if ( isArray( e.value ) ) {
+				} else if ( isArray( e.value ) && e.type === 'Range' ) {
 					let elem = <div key={idx}>
 						<label>{e.variable}: </label>
 						<pre>
@@ -131,6 +132,25 @@ const OutputPanel = ( output ) => {
 									<tr>
 										<th>Min</th>
 										<th>Max</th>
+									</tr>
+									<tr>
+										{e.value.map( e => <td>{e}</td> )}
+									</tr>
+								</tbody>
+							</table>
+						</pre>
+					</div>;
+					return makeDraggable( elem );
+				 } else if ( isArray( e.value ) && e.type === 'Interquartile Range' ) {
+					let elem = <div key={idx}>
+						<label>{e.variable}: </label>
+						<pre>
+							<table>
+								<tbody>
+									<tr>
+										<th>IQR</th>
+										<th>Lower</th>
+										<th>Upper</th>
 									</tr>
 									<tr>
 										{e.value.map( e => <td>{e}</td> )}
@@ -203,6 +223,7 @@ class DataExplorer extends Component {
 	addToOutputs = ( element ) => {
 		let newOutput = this.state.output.slice();
 		newOutput.push( element );
+		console.log( newOutput );
 		this.setState({
 			output: newOutput
 		});
@@ -458,7 +479,7 @@ class DataExplorer extends Component {
 					) }
 				</NavDropdown> : null
 			}
-			{ this.props.plots.length > 0 ?
+			{ this.props.models.length > 0 ?
 				<NavDropdown
 					eventKey="5"
 					title="Models"
@@ -666,10 +687,11 @@ class DataExplorer extends Component {
 		return (
 			<Grid>
 				<Row>
-					{ this.props.questions ? <Col md={colWidth}><Panel
-						header={<h3>Questions</h3>}
+					{ this.props.questions ? <Col md={colWidth}><Slider
+						title="Questions"
+						dots={false}
 						style={{ height: 600 }}
-					>{this.props.questions}</Panel></Col> : null }
+					>{this.props.questions}</Slider></Col> : null }
 					<Col md={colWidth}>
 						<Panel
 							header={<h3>Toolbox</h3>}
