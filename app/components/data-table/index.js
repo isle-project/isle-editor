@@ -4,10 +4,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
 import InputRange from 'react-input-range';
+import unique from 'uniq';
+import floor from '@stdlib/math/base/special/floor';
+import ceil from '@stdlib/math/base/special/ceil';
 import min from 'compute-min';
 import max from 'compute-max';
 import isNumberArray from '@stdlib/assert/is-number-array';
-import copy from '@stdlib/utils/copy';
 import 'react-table/react-table.css';
 import 'react-input-range/lib/css/index.css';
 
@@ -38,21 +40,24 @@ class DataTable extends Component {
 			}
 		}
 
-		const newtState = {
-			values: {}
+		const newState = {
+			values: {},
+			selectedRows: nRows
 		};
 		const columns = keys.map( key => {
 			const out = {
 				Header: key,
 				accessor: key
 			};
-			newtState.values[ key ] = {
-				max: max( props.data[ key ]),
-				min: min( props.data[ key ])
-			};
+			const vals = props.data[ key ].slice();
+			const uniqueValues = unique( vals );
 			if ( isNumberArray( props.data[ key ]) ) {
-				out[ 'filterMethod' ] = this.filterMethod;
+				out[ 'filterMethod' ] = this.filterMethodNumbers;
 				out[ 'Filter' ] = ({ filter, onChange }) => {
+					const defaultVal = {
+						max: ceil( max( uniqueValues ) ),
+						min: floor( min( uniqueValues ) )
+					};
 					return (
 						<div style={{
 							paddingLeft: '4px',
@@ -61,17 +66,31 @@ class DataTable extends Component {
 							paddingBottom: '4px'
 						}}>
 							<InputRange
-								maxValue={max( props.data[ key ])}
-								minValue={min( props.data[ key ])}
-								value={this.state.values[ key ]}
+								maxValue={ceil( max( uniqueValues ) )}
+								minValue={floor( min( uniqueValues ) )}
+								value={  filter ? filter.value : defaultVal }
 								onChange={ ( newValue ) => {
-									const newState = copy( this.state );
-									newState.values[ key ] = newValue;
-									this.setState( newState );
 									onChange( newValue );
 								}}
 							/>
 						</div>
+					);
+				};
+			} else if ( uniqueValues.length <= 8 ) {
+				out[ 'filterMethod' ] = this.filterMethodCategories;
+				out[ 'Filter' ] = ({ filter, onChange }) => {
+					return (
+						<select
+							onChange={ ( event ) => {
+								const newValue = event.target.value;
+								onChange( newValue );
+							}}
+							style={{ width: '100%' }}
+							value={ filter ? filter.value : 'all' }
+						>
+							<option value="all">Show All</option>
+							{uniqueValues.map( v => <option value={`${v}`}>{v}</option> )}
+						</select>
 					);
 				};
 			}
@@ -79,7 +98,8 @@ class DataTable extends Component {
 		});
 		columns.unshift({
 			Header: 'id',
-			accessor: 'id'
+			accessor: 'id',
+			filterable: false
 		});
 		if ( props.showRemove ) {
 			columns.push({
@@ -90,12 +110,27 @@ class DataTable extends Component {
 			});
 		}
 
-		newtState.rows = rows;
-		newtState.columns = columns;
-		this.state = newtState;
+		newState.rows = rows;
+		newState.columns = columns;
+		this.state = newState;
 	}
 
-	filterMethod = ( filter, row ) => {
+	filterMethodCategories = ( filter, row, column ) => {
+		if ( filter.value === 'all' ) {
+			return true;
+		}
+		const id = filter.pivotId || filter.id;
+		return row[ id ] !== undefined ?
+			String( row[ id ]) === filter.value :
+			true;
+	}
+
+	filterMethodStrings = ( filter, row, column ) => {
+		const id = filter.pivotId || filter.id;
+		return row[ id ] !== undefined ? String( row[ id ]).startsWith( filter.value ) : true;
+	}
+
+	filterMethodNumbers = ( filter, row ) => {
 		const val = row[ filter.id ];
 		return val >= filter.value.min && val <= filter.value.max;
 	}
@@ -112,12 +147,24 @@ class DataTable extends Component {
 				}}
 			/>
 		);
-	  }
+	}
+
+	handleFilterChange = () => {
+		const selectedRows = this.table.getResolvedState().sortedData.length;
+		this.setState({
+			selectedRows
+		});
+	}
 
 	render() {
+		const { selectedRows } = this.state;
 		return (
-			<div>
+			<div style={{
+				fontSize: '12px',
+				...this.props.style
+			}}>
 				<ReactTable
+					ref={ ( table ) => { this.table = table; } }
 					data={this.state.rows}
 					columns={this.state.columns}
 					showPagination={true}
@@ -127,12 +174,11 @@ class DataTable extends Component {
 					showPageSizeOptions={false}
 					defaultPageSize={50}
 					style={{
-						maxHeight: 500,
-						fontSize: '12px',
-						...this.props.style
+						maxHeight: 500
 					}}
+					onFilteredChange={this.handleFilterChange}
 				/>
-				<label><i>Total number of rows: {this.state.rows.length}</i></label>
+				<label><i>Number of rows: {selectedRows} (total: {this.state.rows.length})</i></label>
 			</div>
 		);
 	}
