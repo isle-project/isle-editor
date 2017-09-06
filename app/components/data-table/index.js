@@ -26,7 +26,7 @@ class DataTable extends Component {
 		const rows = new Array( nRows );
 		for ( let i = 0; i < nRows; i++ ) {
 			rows[ i ] = {};
-			rows[ i ][ 'id' ] = i;
+			rows[ i ][ 'id' ] = i + 1;
 			for ( let j = 0; j < keys.length; j++ ) {
 				let key = keys[ j ];
 				rows[ i ][ key ] = props.data[ key ][ i ];
