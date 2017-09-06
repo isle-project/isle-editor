@@ -143,34 +143,35 @@ class NumberInput extends Input {
 			roundn( value, ( -1.0 )*this.props.precision );
 		}
 		if ( this.props.inline === true ) {
-			return (
+			let input =
 				<span style={{ padding: '5px' }}>
 					{ this.props.legend ? <label> {this.props.legend} =  </label> : null }
-					<OverlayTrigger placement="top" overlay={<Tooltip id='inlineTooltip'>{this.state.tooltip}
-					</Tooltip>}>
-						<input
-							type="number"
-							name="input"
-							disabled={this.props.disabled}
-							value={value}
-							step={this.props.step}
-							min={this.props.min}
-							max={this.props.max}
-							style={{
-								paddingLeft: '2px',
-								marginLeft: '3px',
-								width: '75px'
-							}}
-							onChange={this.handleChange}
-							onBlur={this.finishChange}
-						/>
-					</OverlayTrigger>
+					<input
+						type="number"
+						name="input"
+						disabled={this.props.disabled}
+						value={value}
+						step={this.props.step}
+						min={this.props.min}
+						max={this.props.max}
+						style={{
+							paddingLeft: '2px',
+							marginLeft: '3px',
+							width: '75px'
+						}}
+						onChange={this.handleChange}
+						onBlur={this.finishChange}
+					/>
 					{ this.props.description ?
 						<span>({this.props.description})</span> :
 						<span />
 					}
-				</span>
-			);
+				</span>;
+			return this.props.disabled ?
+				input:
+				<OverlayTrigger placement="top" overlay={<Tooltip id='numberInputTooltip'>{this.state.tooltip}</Tooltip>}>
+					{input}
+				</OverlayTrigger>;
 		}
 
 		let input = <input
@@ -218,7 +219,7 @@ class NumberInput extends Input {
 				</span>
 				{this.props.disabled ?
 					input:
-					<OverlayTrigger placement="top" overlay={<Tooltip id='standardTooltip'>{this.state.tooltip}</Tooltip>}>
+					<OverlayTrigger placement="top" overlay={<Tooltip id='numberInputTooltip'>{this.state.tooltip}</Tooltip>}>
 						{input}
 					</OverlayTrigger>
 				}
