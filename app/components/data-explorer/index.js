@@ -689,6 +689,7 @@ class DataExplorer extends Component {
 				<Row>
 					{ this.props.questions ? <Col md={colWidth}><Slider
 						title="Questions"
+						draggable={false}
 						dots={false}
 						style={{ height: 600 }}
 					>{this.props.questions}</Slider></Col> : null }
