@@ -49,6 +49,45 @@ import ANOVA from 'components/data-explorer/anova';
 
 // FUNCTIONS //
 
+const renderIQRTable = ( e, idx ) => {
+	return <div key={idx}>
+		<label>{e.variable}: </label>
+		<pre>
+			<table>
+				<tbody>
+					<tr>
+						<th>IQR</th>
+						<th>Lower</th>
+						<th>Upper</th>
+					</tr>
+					<tr>
+						{e.value.map( e => <td>{e}</td> )}
+					</tr>
+				</tbody>
+			</table>
+		</pre>
+	</div>;
+};
+
+const renderRangeTable = ( e, idx ) => {
+	return <div key={idx}>
+		<label>{e.variable}: </label>
+		<pre>
+			<table>
+				<tbody>
+					<tr>
+						<th>Min</th>
+						<th>Max</th>
+					</tr>
+					<tr>
+						{e.value.map( e => <td>{e}</td> )}
+					</tr>
+				</tbody>
+			</table>
+		</pre>
+	</div>;
+};
+
 const generateTransformationCode = ( variable ) => `if ( datum.${variable} > 0 ) {
 	return 'Yes'
 } else {
@@ -98,16 +137,35 @@ const OutputPanel = ( output ) => {
 						<pre>
 							<table>
 								<tbody>
-									<tr>
-										<th>{e.group}</th>
-										<th>{e.type}</th>
-									</tr>
+									{ e.type === 'Range' ?
+										<tr>
+											<th>{e.group}</th>
+											<th>Range</th>
+											<th></th>
+										</tr>: null
+									}
+									{ e.type === 'Interquartile Range' ?
+										<tr>
+											<th>{e.group}</th>
+											<th>IQR</th>
+											<th>Lower</th>
+											<th>Upper</th>
+										</tr>: null
+									}
+									{ e.type !== 'Range' && e.type !== 'Interquartile Range' ?
+										<tr>
+											<th>{e.group}</th>
+											<th>{e.type}</th>
+										</tr>: null
+									}
 									{entries( e.value ).map( ( arr, i ) => {
 										if ( isArray( arr[ 1 ]) ) {
 											return (
 												<tr key={i} >
 													<td>{arr[ 0 ]}</td>
-													{arr[ 1 ].map( x => <td>{x}</td> ).join( ', ' )}
+													{arr[ 1 ].map( x => {
+														return <td>{x}</td>;
+													})}
 												</tr>
 											);
 										}
@@ -124,41 +182,10 @@ const OutputPanel = ( output ) => {
 					</div>;
 					return makeDraggable( elem );
 				} else if ( isArray( e.value ) && e.type === 'Range' ) {
-					let elem = <div key={idx}>
-						<label>{e.variable}: </label>
-						<pre>
-							<table>
-								<tbody>
-									<tr>
-										<th>Min</th>
-										<th>Max</th>
-									</tr>
-									<tr>
-										{e.value.map( e => <td>{e}</td> )}
-									</tr>
-								</tbody>
-							</table>
-						</pre>
-					</div>;
+					let elem = renderRangeTable( e, idx );
 					return makeDraggable( elem );
 				 } else if ( isArray( e.value ) && e.type === 'Interquartile Range' ) {
-					let elem = <div key={idx}>
-						<label>{e.variable}: </label>
-						<pre>
-							<table>
-								<tbody>
-									<tr>
-										<th>IQR</th>
-										<th>Lower</th>
-										<th>Upper</th>
-									</tr>
-									<tr>
-										{e.value.map( e => <td>{e}</td> )}
-									</tr>
-								</tbody>
-							</table>
-						</pre>
-					</div>;
+					let elem = renderIQRTable( e, idx );
 					return makeDraggable( elem );
 				}
 			})}
