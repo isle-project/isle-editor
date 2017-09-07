@@ -10,7 +10,7 @@ import ceil from '@stdlib/math/base/special/ceil';
 import min from 'compute-min';
 import max from 'compute-max';
 import isNumberArray from '@stdlib/assert/is-number-array';
-import 'react-table/react-table.css';
+import './react_table.css';
 import './input_range.css';
 
 
@@ -173,9 +173,6 @@ class DataTable extends Component {
 					filterable={true}
 					showPageSizeOptions={false}
 					defaultPageSize={50}
-					style={{
-						maxHeight: 500
-					}}
 					onFilteredChange={this.handleFilterChange}
 				/>
 				<label><i>Number of rows: {selectedRows} (total: {this.state.rows.length})</i></label>
