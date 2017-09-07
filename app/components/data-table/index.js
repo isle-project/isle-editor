@@ -11,7 +11,7 @@ import min from 'compute-min';
 import max from 'compute-max';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import 'react-table/react-table.css';
-import 'react-input-range/lib/css/index.css';
+import './input_range.css';
 
 
 // MAIN //
