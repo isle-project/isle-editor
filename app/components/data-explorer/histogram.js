@@ -115,12 +115,16 @@ class Histogram extends Component {
 						name: key+':density',
 					});
 				} else {
-					data.push({
+					const config = {
 						x: vals,
 						type: 'histogram',
 						name: key,
 						opacity: overlapping ? 0.5 : 1.0
-					});
+					};
+					if ( chooseBins ) {
+						config.nbinsx = nBins;
+					}
+					data.push( config );
 				}
 			}
 			const layout = {
