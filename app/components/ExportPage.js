@@ -8,11 +8,13 @@ import { Link } from 'react-router-dom';
 import { remote, shell } from 'electron';
 import path from 'path';
 import FormData from 'form-data';
+import https from 'https';
 import http from 'http';
 import request from 'request';
 import tmpdir from '@stdlib/utils/tmpdir';
 import archiver from 'archiver';
 import fs from 'fs';
+import contains from '@stdlib/assert/contains';
 import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
 import Spinner from 'components/spinner';
@@ -106,13 +108,19 @@ class UploadLesson extends Component {
 			const headers = form.getHeaders();
 			headers[ 'Authorization' ] = 'JWT ' + this.state.token;
 
-			const host = this.state.server.replace( /^https?\:\/\//i, '' );
-			var request = http.request({
+			const options = {
 				method: 'post',
-				host: host,
 				path: '/create_lesson',
 				headers: headers
-			});
+			};
+			let request;
+			if  ( contains( this.state.server, 'https' ) ) {
+				options.host = this.state.server.replace( /^https?\:\/\//i, '' );
+				request = https.request( options );
+			} else {
+				options.host = this.state.server.replace( /^http?\:\/\//i, '' );
+				request = http.request( options );
+			}
 			form.pipe( request );
 
 			request.on( 'response', ( res ) => {
