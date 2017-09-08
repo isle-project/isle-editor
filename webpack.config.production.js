@@ -77,7 +77,8 @@ const config = {
 		new webpack.DefinePlugin({
 			__DEV__: false,
 			'process.env': {
-				NODE_ENV: JSON.stringify( 'production' )
+				NODE_ENV: JSON.stringify( 'production' ),
+				NODE_TLS_REJECT_UNAUTHORIZED: JSON.stringify( '0' )
 			}
 		}),
 		new ExtractTextPlugin({
