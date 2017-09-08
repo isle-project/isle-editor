@@ -66,9 +66,12 @@ class Session {
 		};
 
 		this.pingServer = () => {
-			console.log( `Should ping the server at ${this.server}...` );
+			debug( `Should ping the server at ${this.server}...` );
 			request.get( this.server + '/ping', ( err, res, body ) => {
-				if ( !err && body === 'live' ) {
+				if ( err ) {
+					debug( 'Encountered an error: '+err.message );
+				}
+				else if ( body === 'live' ) {
 					this.live = true;
 					if ( !this.lessonID && !this.namespaceID ) {
 						this.getLessonInfo();
