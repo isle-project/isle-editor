@@ -4,6 +4,7 @@ import mustache from 'mustache';
 import request from 'request';
 import isString from '@stdlib/assert/is-string';
 import inEditor from 'utils/is-electron';
+const isElectron = require( 'utils/is-electron' );
 const debug = require( 'debug' )( 'isle-editor' );
 const io = require( 'socket.io-client' );
 
@@ -12,6 +13,11 @@ const io = require( 'socket.io-client' );
 
 const OPEN_CPU_DEFAULT = 'http://phd-serv5.heinz.cmu.edu';
 const PATH_REGEXP = /^\/([^\/]*)\/([^\/]*)\//i;
+
+/*
+* We don't reject unsecured server addresses inside of the editor. Lesson creators manually input the server they wish to use, they "opt-in". In contrast, end users do not have that luxury, so for deployed lessons the handshake has to be successful.
+*/
+const rejectUnauthorized = isElectron ? false : true;
 
 
 // SESSION //
@@ -67,7 +73,9 @@ class Session {
 
 		this.pingServer = () => {
 			debug( `Should ping the server at ${this.server}...` );
-			request.get( this.server + '/ping', ( err, res, body ) => {
+			request.get( this.server + '/ping', {
+				rejectUnauthorized
+			}, ( err, res, body ) => {
 				if ( err ) {
 					debug( 'Encountered an error: '+err.message );
 				}
@@ -127,7 +135,8 @@ class Session {
 					form: {
 						namespaceName: this.namespaceName,
 						lessonName: this.lessonName
-					}
+					},
+					rejectUnauthorized
 				}, ( err, res, body ) => {
 					this.userRightsQuestionPosed = false;
 					if ( !err ) {
@@ -349,7 +358,8 @@ class Session {
 			},
 			form: {
 				lessonID: this.lessonID
-			}
+			},
+			rejectUnauthorized
 		}, ( error, response, body ) => {
 			if ( !error && response.statusCode === 200 ) {
 				body = JSON.parse( body );
@@ -373,7 +383,8 @@ class Session {
 
 	registerUser( data, clbk ) {
 		request.post( this.server+'/create_user', {
-			form: data
+			form: data,
+			rejectUnauthorized
 		}, ( err, res ) => {
 			if ( !err ) {
 				this.addNotification({
@@ -430,7 +441,8 @@ class Session {
 
 	login( form, clbk ) {
 		request.post( this.server+'/login', {
-			form
+			form,
+			rejectUnauthorized
 		}, ( err, res ) => {
 			const { token, id, message } = JSON.parse( res.body );
 			if ( !err && message === 'ok' ) {
@@ -444,7 +456,8 @@ class Session {
 		request.get( this.server+'/forgot_password', {
 			qs: {
 				email
-			}
+			},
+			rejectUnauthorized
 		}, ( error ) => {
 			if ( error ) {
 				this.addNotification({
@@ -472,7 +485,8 @@ class Session {
 				qs: {
 					lessonName,
 					namespaceName
-				}
+				},
+				rejectUnauthorized
 			}, ( err, res ) => {
 				if ( !err ) {
 					const body = JSON.parse( res.body );
@@ -490,7 +504,8 @@ class Session {
 			},
 			form: {
 				id: obj.id
-			}
+			},
+			rejectUnauthorized
 		}, ( error, response, body ) => {
 			if ( error ) {
 				return error;
@@ -564,7 +579,8 @@ class Session {
 			request.post( this.server + '/updateSession', {
 				form: {
 					stringified: JSON.stringify( currentSession )
-				}
+				},
+				rejectUnauthorized
 			}, ( error, response, body ) => {
 				console.log( error );
 			});
@@ -590,7 +606,8 @@ class Session {
 			request.post( this.server + '/store_session_element', {
 				form: {
 					stringified: JSON.stringify( obj )
-				}
+				},
+				rejectUnauthorized
 			}, ( error, response, body ) => {
 				console.log( error );
 			});
@@ -656,7 +673,8 @@ class Session {
 		}
 		mailOptions.to = to;
 		request.post( this.config.server + '/mail', {
-			form: mailOptions
+			form: mailOptions,
+			rejectUnauthorized
 		}, ( error, response, body ) => {
 			console.log( error );
 		});

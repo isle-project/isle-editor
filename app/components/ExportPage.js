@@ -116,6 +116,7 @@ class UploadLesson extends Component {
 			let request;
 			if  ( contains( this.state.server, 'https' ) ) {
 				options.host = this.state.server.replace( /^https?\:\/\//i, '' );
+				options.rejectUnauthorized = false;
 				request = https.request( options );
 			} else {
 				options.host = this.state.server.replace( /^http?\:\/\//i, '' );
@@ -150,7 +151,8 @@ class UploadLesson extends Component {
 			};
 			console.log( qs );
 			request.get( this.state.server + '/get_lesson', {
-				qs: qs
+				qs: qs,
+				rejectUnauthorized: false
 			}, ( err, res, body ) => {
 				if ( err ) {
 					return err;
@@ -194,7 +196,8 @@ class UploadLesson extends Component {
 			request.get( this.state.server+'/get_namespaces', {
 				headers: {
 					'Authorization': 'JWT ' + this.state.token
-				}
+				},
+				rejectUnauthorized: false
 			}, ( error, response, body ) => {
 				if ( error ) {
 					return error;

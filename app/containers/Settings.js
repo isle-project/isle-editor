@@ -51,7 +51,8 @@ class Login extends Component {
 				email: this.state.email
 			};
 			request.post( this.state.server+'/login', {
-				form
+				form,
+				rejectUnauthorized: false
 			}, ( err, res ) => {
 				if ( err ) {
 					this.setState({
