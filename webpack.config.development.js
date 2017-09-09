@@ -39,13 +39,7 @@ const config = {
 	plugins: [
 		...baseConfig.plugins,
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoEmitOnErrorsPlugin(),
-		new webpack.DefinePlugin({
-			__DEV__: true,
-			'process.env': {
-				NODE_ENV: JSON.stringify( 'development' )
-			}
-		})
+		new webpack.NoEmitOnErrorsPlugin()
 	],
 
 	target: 'electron-renderer'
