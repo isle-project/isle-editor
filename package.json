@@ -99,7 +99,7 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
-    "@stdlib/stdlib": "github:stdlib-js/stdlib#develop",
+    "@stdlib/stdlib": "0.0.18",
     "archiver": "^2.0.0",
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",
@@ -179,7 +179,7 @@
     "react-history": "^0.18.2",
     "react-input-range": "^1.2.1",
     "react-notification-system": "^0.2.7",
-    "react-player": "^0.22.0",
+    "react-player": "^0.23.0",
     "react-redux": "^5.0.1",
     "react-router": "4.2.0",
     "react-router-dom": "^4.1.1",
