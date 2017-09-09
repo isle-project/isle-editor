@@ -23,7 +23,7 @@ else if ( config.has( 'mostRecentPath' ) ) {
 }
 
 
-// ONREADY //
+// FUNCTIONS //
 
 /**
 * Check for application updates and set application menu.
@@ -48,6 +48,9 @@ function onReady() {
 	});
 	Menu.setApplicationMenu( Menu.buildFromTemplate( configureMenu({ app }) ) );
 } // end FUNCTION onReady()
+
+
+// MAIN //
 
 /**
 * This method will be called when Electron has finished initialization and is ready to create browser windows.
