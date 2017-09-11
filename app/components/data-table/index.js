@@ -23,13 +23,16 @@ class DataTable extends Component {
 		super( props );
 
 		let rows;
+		let keys;
 		let isArr = isArray( props.data );
 		if ( isArr ) {
 			// Case: `data` is already an array of observations
 			rows = props.data;
+			keys = Object.keys( rows[ 0 ]);
 		} else {
 			// Case: `data` is an object with keys for the various variables
 			rows = this.createRows( props.data );
+			keys = Object.keys( props.data );
 		}
 		for ( let i = 0; i < rows.length; i++ ) {
 			if ( props.showRemove && !rows[ i ][ 'remove' ]) {
@@ -37,7 +40,6 @@ class DataTable extends Component {
 			}
 			rows[ i ][ 'id' ] = i + 1;
 		}
-		const keys = Object.keys( rows[ 0 ]);
 		const newState = {
 			values: {},
 			selectedRows: rows.length
@@ -49,7 +51,7 @@ class DataTable extends Component {
 			};
 			let vals;
 			if ( !isArr ) {
-				props.data[ key ].slice();
+				vals = props.data[ key ].slice();
 			} else {
 				vals = new Array( rows.length );
 				for ( let i = 0; i < rows.length; i++ ) {
