@@ -4,6 +4,7 @@ import mustache from 'mustache';
 import request from 'request';
 import isString from '@stdlib/assert/is-string';
 import inEditor from 'utils/is-electron';
+import { OPEN_CPU_DEFAULT_SERVER } from 'constants/opencpu';
 const isElectron = require( 'utils/is-electron' );
 const debug = require( 'debug' )( 'isle-editor' );
 const io = require( 'socket.io-client' );
@@ -11,7 +12,6 @@ const io = require( 'socket.io-client' );
 
 // VARIABLES //
 
-const OPEN_CPU_DEFAULT = 'http://phd-serv5.heinz.cmu.edu';
 const PATH_REGEXP = /^\/([^\/]*)\/([^\/]*)\//i;
 
 /*
@@ -688,7 +688,7 @@ class Session {
 	getOpenCPUServer() {
 		return this.config.rshell && this.config.rshell.server ?
 			this.config.rshell.server :
-			OPEN_CPU_DEFAULT;
+			OPEN_CPU_DEFAULT_SERVER;
 	}
 
 	addNotification( config ) {
