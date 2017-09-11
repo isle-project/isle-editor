@@ -10,6 +10,7 @@ import ceil from '@stdlib/math/base/special/ceil';
 import min from 'compute-min';
 import max from 'compute-max';
 import isNumberArray from '@stdlib/assert/is-number-array';
+import isArray from '@stdlib/assert/is-array';
 import './react_table.css';
 import './input_range.css';
 
@@ -21,37 +22,42 @@ class DataTable extends Component {
 	constructor( props ) {
 		super( props );
 
-		const keys = Object.keys( props.data );
-		const nRows = props.data[ keys[ 0 ] ].length;
-		const rows = new Array( nRows );
-		for ( let i = 0; i < nRows; i++ ) {
-			rows[ i ] = {};
+		let rows;
+		let isArr = isArray( props.data );
+		if ( isArr ) {
+			// Case: `data` is already an array of observations
+			rows = props.data;
+		} else {
+			// Case: `data` is an object with keys for the various variables
+			rows = this.createRows( props.data );
+		}
+		for ( let i = 0; i < rows.length; i++ ) {
+			if ( props.showRemove && !rows[ i ][ 'remove' ]) {
+				rows[ i ][ 'remove' ] = false;
+			}
 			rows[ i ][ 'id' ] = i + 1;
-			for ( let j = 0; j < keys.length; j++ ) {
-				let key = keys[ j ];
-				rows[ i ][ key ] = props.data[ key ][ i ];
-			}
 		}
-		if ( props.showRemove ) {
-			for ( let i = 0; i < nRows; i++ ) {
-				if ( !rows[ i ][ 'remove' ]) {
-					rows[ i ][ 'remove' ] = false;
-				}
-			}
-		}
-
+		const keys = Object.keys( rows[ 0 ]);
 		const newState = {
 			values: {},
-			selectedRows: nRows
+			selectedRows: rows.length
 		};
 		const columns = keys.map( key => {
 			const out = {
 				Header: key,
 				accessor: key
 			};
-			const vals = props.data[ key ].slice();
+			let vals;
+			if ( !isArr ) {
+				props.data[ key ].slice();
+			} else {
+				vals = new Array( rows.length );
+				for ( let i = 0; i < rows.length; i++ ) {
+					vals[ i ] = props.data[ i ][ key ];
+				}
+			}
 			const uniqueValues = unique( vals );
-			if ( isNumberArray( props.data[ key ]) ) {
+			if ( isNumberArray( vals ) ) {
 				out[ 'filterMethod' ] = this.filterMethodNumbers;
 				out[ 'Filter' ] = ({ filter, onChange }) => {
 					const defaultVal = {
@@ -113,6 +119,20 @@ class DataTable extends Component {
 		newState.rows = rows;
 		newState.columns = columns;
 		this.state = newState;
+	}
+
+	createRows( data ) {
+		const keys = Object.keys( data );
+		const nRows = data[ keys[ 0 ] ].length;
+		const rows = new Array( nRows );
+		for ( let i = 0; i < nRows; i++ ) {
+			rows[ i ] = {};
+			for ( let j = 0; j < keys.length; j++ ) {
+				let key = keys[ j ];
+				rows[ i ][ key ] = data[ key ][ i ];
+			}
+		}
+		return rows;
 	}
 
 	filterMethodCategories = ( filter, row, column ) => {
