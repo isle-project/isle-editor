@@ -3,10 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dimensions from 'components/dimensions';
-import { Table, Column, Cell } from 'fixed-data-table';
+import DataTable from 'components/data-table';
 import request from 'request';
-import isArray from '@stdlib/assert/is-array';
-import floor from '@stdlib/math/base/special/floor';
 import Spinner from 'components/spinner';
 import createPrependCode from 'components/r/utils/create-prepend-code';
 
@@ -15,41 +13,6 @@ import createPrependCode from 'components/r/utils/create-prepend-code';
 
 import { OPEN_CPU_IDENTITY } from 'constants/opencpu.js';
 const STDOUT_REGEX = /stdout/;
-
-
-// FUNCTIONS //
-
-const createTable = ( data, { containerWidth, columnNames, columnWidth, maxHeight }, tableWidth ) => {
-	const keys = Object.keys( data[ 0 ]);
-	if ( !columnWidth ) {
-		columnWidth = floor( ( tableWidth - 15 ) / keys.length );
-	}
-	return (
-		<Table
-			rowHeight={30}
-			rowsCount={data.length}
-			width={tableWidth}
-			maxHeight={maxHeight}
-			headerHeight={30}
-		>
-			{keys.map( ( key, idx ) => {
-				return (
-					<Column
-						key={idx}
-						header={<Cell>{columnNames ? columnNames[ idx ] : key}</Cell>}
-						cell={ ({rowIndex, ...props }) => (
-							<Cell {...props}>
-								{ data[ rowIndex ][ key ] }
-							</Cell>
-						)}
-						width={ isArray( columnWidth ) ? columnWidth[ idx ] : columnWidth }
-					>
-					</Column>
-				);
-			})}
-		</Table>
-	);
-};
 
 
 // MAIN //
@@ -97,6 +60,7 @@ class RTable extends Component {
 							let elem = arr[ i ];
 							if ( STDOUT_REGEX.test( elem ) === true ) {
 								request.get( OPEN_CPU + elem, ( err, getResponse, getBody ) => {
+									console.log( JSON.parse( getBody ) );
 									this.setState({
 										data: JSON.parse( getBody ),
 										waiting: false
@@ -135,7 +99,7 @@ class RTable extends Component {
 							marginBottom: '10px'
 						}}
 					>
-						{createTable( this.state.data, this.props, tableWidth )}
+						<DataTable data={this.state.data} width={tableWidth} />
 					</div> :
 					<span />
 				}
@@ -150,11 +114,6 @@ class RTable extends Component {
 RTable.propTypes = {
 	code: PropTypes.string,
 	maxHeight: PropTypes.number,
-	columnNames: PropTypes.array,
-	columnWidth: PropTypes.oneOfType([
-		PropTypes.number,
-		PropTypes.arrayOf( PropTypes.number )
-	]),
 	libraries: PropTypes.array,
 	prependCode: PropTypes.oneOfType([
 		PropTypes.string,
@@ -174,8 +133,6 @@ RTable.defaultProps = {
 	code: '',
 	maxHeight: 400,
 	width: 0.5,
-	columnNames: null,
-	columnWidth: null,
 	libraries: [],
 	prependCode: ''
 };
