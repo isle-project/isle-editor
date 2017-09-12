@@ -92,7 +92,7 @@ class RPlot extends Component {
 
 	render() {
 		return (
-			<div className="rplot" style={{ minHeight: 128 }}>
+			<div className="rplot" style={{ minHeight: 128, cursor: 'pointer' }}>
 				<Spinner running={this.state.waiting} width={256} height={128}/>
 				{ this.state.waiting ?
 					<span /> :
