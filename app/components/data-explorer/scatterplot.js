@@ -119,13 +119,13 @@ class Scatterplot extends Component {
 						style={{ float: 'left', paddingRight: 10, width: "33.3%" }}
 					/>
 					<SelectInput
-						legend="Point Type:"
+						legend="Type:"
 						options={groupingVariables}
 						clearable={true}
 						style={{ float: 'left', paddingLeft: 10, paddingRight: 10, width: "33.3%" }}
 					/>
 					<SelectInput
-						legend="Point Size:"
+						legend="Size:"
 						options={variables}
 						clearable={true}
 						style={{ float: 'left', paddingLeft: 10, width: "33.3%" }}
