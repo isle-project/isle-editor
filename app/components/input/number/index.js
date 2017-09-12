@@ -140,9 +140,6 @@ class NumberInput extends Input {
 
 	render() {
 		let { value } = this.state;
-		if ( value !== '' ) {
-			roundn( value, ( -1.0 )*this.props.precision );
-		}
 		if ( this.props.inline === true ) {
 			let input =
 				<span style={{ padding: '5px' }}>
@@ -241,7 +238,6 @@ NumberInput.defaultProps = {
 	width: 80,
 	defaultValue: 0,
 	onChange(){},
-	precision: 10,
 	inline: false
 };
 
@@ -253,7 +249,6 @@ NumberInput.propTypes = {
 	disabled: PropTypes.bool,
 	min: PropTypes.number,
 	max: PropTypes.number,
-	precision: PropTypes.number,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string

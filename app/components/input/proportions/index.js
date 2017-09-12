@@ -2,22 +2,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Input from 'components/input/base';
-
 import NumberInput from 'components/input/number';
-
 import { VictoryPie } from 'victory';
-
-
 import isArray from '@stdlib/assert/is-array';
-
-//  absdiff( 0.3, 0.69 ) <= 1.5e-8
-// var a= 0.25 + 02. + 0.2 + 0.34999;	
-//absdiff(a, 1)  <= 1.5e-8
-
-
-import absdiff from '@stdlib/math/base/utils/absolute-difference';
+const debug = require( 'debug' )( 'isle-editor' );
 
 
 // MAIN //
@@ -30,16 +19,16 @@ class ProportionInput extends Input {
 
 		this.legends 		= this.checkLegends();
 		this.values  		= this.setValues();
-		
-	
+
+
 
 		const { session } = context;
 		this.state = {
-			values: this.setValues(), 
+			values: this.setValues(),
 			visualData: this.pieData( this.values ),
 			colors: this.setColors()
 		};
-	
+
 
 		this.checkPercentage.bind( this );
 	}
@@ -70,7 +59,7 @@ class ProportionInput extends Input {
 
 
 
-	// <ProportionInput id = "Firmen" legends = {["Anton", "Bert", "Conny", "Dorian"]} nElements = { 4 } />  
+	// <ProportionInput id = "Firmen" legends = {["Anton", "Bert", "Conny", "Dorian"]} nElements = { 4 } />
 
 	checkLegends() {
 		var list = [];
@@ -80,14 +69,14 @@ class ProportionInput extends Input {
 		else {
 
 			for ( var i = 0; i < no; i++ ) {
-				
+
 				list.push( "EL " + i );
 			}
 
 		}
 		return list;
 	}
-																				
+
 
 	componentDidUpdate() {
 	}
@@ -95,7 +84,6 @@ class ProportionInput extends Input {
 
 
 	total ( arr ) {
-
 		var sum = 0;
 		for ( var n = 0; n < arr.length; n++ ) {
 			sum += arr[ n ];
@@ -109,35 +97,19 @@ class ProportionInput extends Input {
 
 		for ( var i = 0; i< arr.length; i++ ) {
 			if ( i !== ndx ) sum += arr[ i ];
-		}	
+		}
 
 		return sum;
 	}
 
-
-
 	checkPercentage ( ndx, value ) {
 		var copy = this.state.values.slice();
 		copy [ ndx ] = value;
-		var restsum = this.rest( copy, ndx );
-
-
-		if ( value + restsum > 100 ) {
-			var v = 100 - restsum;
-			copy[ ndx ] = v;	
-			var t = this.total( copy );
-			console.log( "Sollte 100 sein " + t );
-		}
-
-
 		this.setState({
 			values: copy,
 			visualData: this.pieData( copy )
 		});
-	
-		
 	}
-
 
 	getNumber ( ndx ) {
 		var style = {
@@ -146,36 +118,22 @@ class ProportionInput extends Input {
 			textAlign: 'center'
 		};
 
-
-
+		const free = 100.0 - this.total( this.state.values );
+		let maxValue = this.state.values[ ndx ] + free;
+		maxValue = maxValue.toFixed( this.props.precision );
 		return (
 			<div style = { style } >
-				<input type = "number" 
-					onChange={( event ) => this.checkPercentage( ndx, event.target.value )}
-					min={0}
-					max={100}
-					step={ this.props.step }
-					value ={ this.state.values[ ndx ].toFixed ( this.props.precision )  }					
-				/>
-			</div>
-		);
-
-		/*
-		return (
-			<div style = { style } >
-				<NumberInput 
-					key = { ndx } 
+				<NumberInput
+					key = { ndx }
 					legend = { this.legends[ ndx ] }
 					onChange={( event ) => this.checkPercentage( ndx, event )}
 					min={0}
-					max={100}
+					max={maxValue}
 					step={ this.props.step }
-					defaultValue={ this.state.values[ ndx ].toFixed ( this.props.precision )  }
+					defaultValue={ this.state.values[ ndx ]}
 				/>
-
 			</div>
-
-		);*/
+		);
 	}
 
 
@@ -194,7 +152,7 @@ class ProportionInput extends Input {
 
 
 
-	renderPie() {		
+	renderPie() {
 		return (
 			<VictoryPie
 				// colorScale={[ "tomato", "orange", "gold", "darkcyan", "transparent" ]}
@@ -202,20 +160,20 @@ class ProportionInput extends Input {
 				data={ this.state.visualData }
 				height={ this.props.height }
 				innerRadius= { this.props.innerRadius }
-			/> 
+			/>
 		);
-		
+
 	}
 
 
-	
+
 
 	pieData( arr ) {
 		var list = [];
 		var total = this.total( arr );
-		var no = this.props.nElements + 1;	
+		var no = this.props.nElements + 1;
 
-		
+
 		for ( var i = 0; i < no; i++ ) {
 
 			if ( i < no -1 ) {
@@ -238,10 +196,10 @@ class ProportionInput extends Input {
 
 		}
 		return list;
-	}				
+	}
 
-  
-	// 
+
+	//
 
 	render() {
 		return (
