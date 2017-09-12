@@ -28,4 +28,4 @@
     nElements = { 3 }
     personalHeight = { 300 }
     colors = {["red", "blue", "gold"]}
-    legends = {["Robotik", "Bitcoin", "Gold", "Diamanten"]}  /> 
+    legends = {["Robotik", "Bitcoin", "Gold"]}  /> 

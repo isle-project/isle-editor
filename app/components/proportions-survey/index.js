@@ -18,7 +18,6 @@ import InstructorBar from 'components/instructor-bar';
 import RealtimeMetrics from 'components/metrics/realtime';
 const debug = require( 'debug' )( 'isle-editor' );
 
-
 var colorList = ["tomato", "orange", "gold", "darkcyan", "salmon", "lightgreen", "gainsboro", "lightpurple", "darkkhaki", "darkseagreen" ];
 
 
@@ -41,7 +40,7 @@ class ProportionsSurvey extends Component {
 			if ( this.props.id ) {
 				session.log({
 					id: this.props.id,
-					type: 'NUMBER_SURVEY_SUBMISSION',
+					type: 'PROPORTIONS_SURVEY_SUBMISSION',
 					value: this.state.value,
 					anonymous: this.props.anonymous
 				}, 'members' );
@@ -60,25 +59,9 @@ class ProportionsSurvey extends Component {
 	}
 
 	onData = ( data ) => {
-		debug( 'NumberSurvey is receiving data: ' + JSON.stringify( data ) );
+		debug( 'ProportionsSurvey is receiving data: ' + JSON.stringify( data ) );
 		data = data[ this.props.id ];
-		let tabulated = tabulate( data );
-		let avg;
-		let sd;
-		let counts = tabulated.map( d => {
-			return {
-				x: d[ 0 ],
-				y: d[ 1 ]
-			};
-		});
-		avg = mean( data );
-		sd = stdev( data );
-
-		this.setState({
-			data: counts,
-			avg,
-			sd
-		});
+		console.log( data );
 	}
 
 	componentDidMount() {
@@ -91,7 +74,7 @@ class ProportionsSurvey extends Component {
 			<Gate {...props} >
 				<Grid>
 					<Col md={6}>
-						<Panel className="NumberSurvey" style={{
+						<Panel className="ProprtionsSurvey" style={{
 							margin: '0 auto 10px',
 							maxWidth: 600,
 							marginTop: '8px'
@@ -117,14 +100,14 @@ class ProportionsSurvey extends Component {
 					</Col>
 
 					<Col md={6}>
-						<Panel className="NumberSurvey" style={{
+						<Panel className="ProprtionsSurvey" style={{
 							margin: '0 auto 10px',
 							maxWidth: 600,
 							marginTop: '8px'
 						}}>
 							
 							<h3>{ this.props.group }</h3>
-
+							<RealtimeMetrics for={[ this.props.id ]} onData={this.onData} />
 							<ProportionsInput 
 								legends = { this.props.legends }
 								precision = { 2 }

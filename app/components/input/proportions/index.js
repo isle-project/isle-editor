@@ -147,6 +147,20 @@ class ProportionInput extends Input {
 		};
 
 
+
+		return (
+			<div style = { style } >
+				<input type = "number" 
+					onChange={( event ) => this.checkPercentage( ndx, event.target.value )}
+					min={0}
+					max={100}
+					step={ this.props.step }
+					value ={ this.state.values[ ndx ].toFixed ( this.props.precision )  }					
+				/>
+			</div>
+		);
+
+		/*
 		return (
 			<div style = { style } >
 				<NumberInput 
@@ -161,7 +175,7 @@ class ProportionInput extends Input {
 
 			</div>
 
-		);
+		);*/
 	}
 
 

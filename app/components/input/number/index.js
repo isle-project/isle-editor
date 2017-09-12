@@ -123,10 +123,9 @@ class NumberInput extends Input {
 
 	componentWillReceiveProps( nextProps ) {
 		let newState = {};
-		if ( nextProps.defaultValue !== this.props.defaultValue || 
-			nextProps.defaultValue !== this.state.value ) {
+		if ( nextProps.defaultValue !== this.props.defaultValue ) {
 			newState.value = nextProps.defaultValue;
-			console.log( "Change Nummbers" );
+
 		}
 		else if ( nextProps.bind !== this.props.bind ) {
 			newState.value = global.lesson.state[ nextProps.bind ];
