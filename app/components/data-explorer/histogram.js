@@ -43,7 +43,7 @@ class Histogram extends Component {
 	}
 
 	generateHistogram(
-		variable, group, overlayDensity, overlapping, chooseBins, nBins
+		variable, group, overlayDensity, chooseBins, nBins
 	) {
 		var output;
 		if ( !group ) {
@@ -119,7 +119,7 @@ class Histogram extends Component {
 						x: vals,
 						type: 'histogram',
 						name: key,
-						opacity: overlapping ? 0.5 : 1.0
+						opacity: 0.5
 					};
 					if ( chooseBins ) {
 						config.nbinsx = nBins;
@@ -131,9 +131,7 @@ class Histogram extends Component {
 				xaxis: {title: 'Value' },
 				yaxis: {title: overlayDensity ? 'Density' : 'Count' }
 			};
-			if ( overlapping ) {
-				layout.barmode = 'overlay';
-			}
+			layout.barmode = 'overlay';
 			output = {
 				variable: variable,
 				type: 'Chart',
@@ -144,7 +142,7 @@ class Histogram extends Component {
 			};
 		}
 		this.props.logAction( 'DATA_EXPLORER:HISTOGRAM', {
-			variable, group, overlayDensity, overlapping, nBins
+			variable, group, overlayDensity, nBins
 		});
 		this.props.onCreated( output );
 	}
@@ -170,10 +168,6 @@ class Histogram extends Component {
 				<CheckboxInput
 					legend="Overlay Density"
 					defaultValue={false}
-				/>
-				<CheckboxInput
-					legend="Overlapping Bars (when grouped)"
-					defaultValue={true}
 				/>
 				<div>
 					<CheckboxInput
