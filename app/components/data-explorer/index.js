@@ -110,7 +110,7 @@ const makeDraggable = ( div ) => {
 
 const OutputPanel = ( output ) => {
 	return (
-		<div id="outputPanel" style={{ height: 500, overflowY: 'scroll' }} >
+		<div id="outputPanel" style={{ height: 480, overflowY: 'scroll' }} >
 			{output.map( ( e, idx ) => {
 				if ( e.type === 'Chart' ) {
 					return e.value;
@@ -718,7 +718,7 @@ class DataExplorer extends Component {
 						title="Questions"
 						draggable={false}
 						dots={false}
-						style={{ height: 600 }}
+						style={{ height: 600, marginTop: 0 }}
 					>{this.props.questions}</Slider></Col> : null }
 					<Col md={colWidth}>
 						<Panel

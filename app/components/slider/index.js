@@ -108,9 +108,10 @@ class DefaultSlider extends Component {
 					marginBottom: '5px',
 					paddingBottom: '20px',
 					width: '100%',
-					height: '100%'
+					height: '100%',
+					...this.props.style
 				}}
-				header={<h4>{this.props.title}</h4>}
+				header={<h3>{this.props.title}</h3>}
 			>
 				<Slider ref='slider' {...settings}>
 					{ this.state.childDivs }
@@ -130,6 +131,7 @@ DefaultSlider.defaultProps = {
 	goto: 0,
 	infinite: false,
 	swipeToSlide: true,
+	style: {},
 	title: ''
 };
 
@@ -143,6 +145,7 @@ DefaultSlider.propTypes = {
 	goto: PropTypes.number,
 	infinite: PropTypes.bool,
 	swipeToSlide: PropTypes.bool,
+	style: PropTypes.object,
 	title: PropTypes.string
 };
 
