@@ -196,6 +196,7 @@ class DataTable extends Component {
 					showPageSizeOptions={false}
 					defaultPageSize={50}
 					onFilteredChange={this.handleFilterChange}
+					style={this.props.style}
 				/>
 				<label><i>Number of rows: {selectedRows} (total: {this.state.rows.length})</i></label>
 			</div>
@@ -207,8 +208,6 @@ class DataTable extends Component {
 // DEFAULT PROPERTIES //
 
 DataTable.defaultProps = {
-	maxHeight: 400,
-	width: 600,
 	style: {},
 	onClickRemove(){},
 	showRemove: false
@@ -222,8 +221,6 @@ DataTable.propTypes = {
 		PropTypes.array,
 		PropTypes.object
 	]).isRequired,
-	maxHeight: PropTypes.number,
-	width: PropTypes.number,
 	onClickRemove: PropTypes.func,
 	showRemove: PropTypes.bool
 };
