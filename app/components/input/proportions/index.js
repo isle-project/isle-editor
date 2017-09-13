@@ -18,19 +18,34 @@ class ProportionInput extends Input {
 
 
 		this.legends 		= this.checkLegends();
-		this.values  		= this.setValues();
+		let values 			= null;
 
+		if ( this.props.values ) values = this.props.values;
+		else					 values = this.setValues();
 
 
 		const { session } = context;
 		this.state = {
-			values: this.setValues(),
-			visualData: this.pieData( this.values ),
+			values: values,
+			visualData: this.pieData( values ),
 			colors: this.setColors()
 		};
 
 
 		this.checkPercentage.bind( this );
+	}
+
+
+
+	componentWillReceiveProps( nextProps ) {
+		if ( nextProps.values !== this.props.values ) {
+		
+			this.setState({
+				values: nextProps.values,
+				visualData: this.pieData( nextProps.values )
+			});
+
+		}
 	}
 
 
@@ -105,6 +120,10 @@ class ProportionInput extends Input {
 	checkPercentage ( ndx, value ) {
 		var copy = this.state.values.slice();
 		copy [ ndx ] = value;
+
+		this.props.onChange( copy );
+
+
 		this.setState({
 			values: copy,
 			visualData: this.pieData( copy )
@@ -114,7 +133,7 @@ class ProportionInput extends Input {
 	getNumber ( ndx ) {
 		var style = {
 			float: "left",
-			width: '100px',
+			width: '120px',
 			textAlign: 'center'
 		};
 
@@ -130,6 +149,7 @@ class ProportionInput extends Input {
 					min={0}
 					max={maxValue}
 					step={ this.props.step }
+					disabled= { this.props.disabled }
 					defaultValue={ this.state.values[ ndx ]}
 				/>
 			</div>
@@ -202,10 +222,17 @@ class ProportionInput extends Input {
 	//
 
 	render() {
+
+		var pos = {
+			marginLeft: this.props.margin
+		};
+
 		return (
 			<div>
 				{ this.renderPie() }
-				{ this.renderInputs() }
+				<div style = { pos }>
+					{ this.renderInputs() }
+				</div>
 			</div>
 		);
 	}
@@ -222,7 +249,9 @@ ProportionInput.defaultProps = {
 	disabled: false,
 	colors: [ "tomato", "orange", "gold", "darkcyan", "salmon", "lightgreen", "gainsboro", "lightpurple", "darkkhaki", "darkseagreen" ],
 	height: 200,
-	innerRadius: 75
+	innerRadius: 75,
+
+	onChange(){}
 
 };
 
@@ -234,6 +263,7 @@ ProportionInput.propTypes = {
 	precision: PropTypes.number,
 	step: PropTypes.number,
 	disabled: PropTypes.bool,
+	margin: PropTypes.string,
 
 	legends: PropTypes.oneOfType([
 		PropTypes.string,

@@ -20,6 +20,10 @@ const debug = require( 'debug' )( 'isle-editor' );
 
 var colorList = ["tomato", "orange", "gold", "darkcyan", "salmon", "lightgreen", "gainsboro", "lightpurple", "darkkhaki", "darkseagreen" ];
 
+import isString from '@stdlib/assert/is-string';
+import isArrayArray from '@stdlib/assert/is-array-array';
+import isArray from '@stdlib/assert/is-array';
+import isJSON from '@stdlib/assert/is-json';
 
 
 // MAIN //
@@ -29,19 +33,27 @@ class ProportionsSurvey extends Component {
 	constructor( props ) {
 		super( props );
 
+		this.results = [];
+
 		this.state = {
 			data: [],
 			submitted: false,
-			value: null
+			value: null,
+			resultValues: null,
+			nResults: 0
 		};
 
 		this.submitQuestion = () => {
+			console.log( "schicke die Daten ab" + this.state.value );
+
+
+
 			const { session } = this.context;
 			if ( this.props.id ) {
 				session.log({
 					id: this.props.id,
 					type: 'PROPORTIONS_SURVEY_SUBMISSION',
-					value: this.state.value,
+					value: JSON.stringify( this.state.value ),
 					anonymous: this.props.anonymous
 				}, 'members' );
 			}
@@ -59,10 +71,100 @@ class ProportionsSurvey extends Component {
 	}
 
 	onData = ( data ) => {
+		console.log ( "OnData" );
+
 		debug( 'ProportionsSurvey is receiving data: ' + JSON.stringify( data ) );
 		data = data[ this.props.id ];
-		console.log( data );
+		console.log( "Hier kommen die Daten: " + data );
+		this.getAverage( data );
 	}
+
+
+	/*
+	schicke die Daten ab 33.333333333333336,55,11.5
+	bundle.min.js:1 OnData
+	bundle.min.js:1 Hier kommen die Daten: [33.333333333333336,55,11.5]
+	bundle.min.js:1 Array der Arrays?
+	bundle.min.js:1 [Array(1)]
+	bundle.min.js:1 SUM 0,0,0
+	bundle.min.js:1 MEAN 0,0,0
+
+	*/
+
+	/*
+	schicke die Daten ab21,6.5,72.5
+	bundle.min.js:1 OnData
+	bundle.min.js:1 Hier kommen die Daten: [21,6.5,72.5]
+	bundle.min.js:1 data ist kein String
+	bundle.min.js:1 Daten sind in die Resultate gepusht
+	bundle.min.js:1 [Array(1)]
+	bundle.min.js:1 SUM 0,0,0
+	bundle.min.js:1 MEAN 0,0,0
+	*/
+
+	/*
+	schicke die Daten ab17.75,68,14.25
+	bundle.min.js:1 OnData
+	bundle.min.js:1 Hier kommen die Daten: [17.75,68,14.25]
+	bundle.min.js:1 data ist kein String
+	bundle.min.js:1 data ist ein Array
+	bundle.min.js:1 data ist kein Array von Arrays
+	bundle.min.js:1 data ist kein JSON String
+	bundle.min.js:1 Daten sind in die Resultate gepusht
+	bundle.min.js:1 [Array(3)]
+	bundle.min.js:1 SUM 0,0,0
+	bundle.min.js:1 MEAN 0,0,0
+	*/
+
+
+
+	getAverage( data ) {
+		var list = new Array( data.length );
+
+		for ( var i = 0; i < data.length; i++ ) {
+			var temp = JSON.parse( data[ i ]);
+			list[ i ] = temp;
+		}
+
+
+		console.log( "Länge des Arrays " + list.length );
+
+		var sum = new Array( this.props.nElements ).fill( 0 );
+		var mean = new Array( this.props.nElements ).fill( 0 );
+
+		// console.log ( "SUM " + sum );
+		// console.log ( "MEAN " + mean );
+
+
+		for ( var i = 0; i < list.length; i++ ) {                // reflects arrays of arrays = results
+			console.log( "i" + i );
+			
+			for ( var j = 0; j < list[ i ].length; j++ ) {       // relects
+				sum[ j ] += list[ i ][ j ];
+				// mean[ j ] = sum[ j ] / ( j+1 );
+
+				console.log( "j" + j );
+			}
+
+		}
+
+		console.log ( sum );
+
+		var no = this.props.nElements;
+		for ( var j = 0; j < no; j++ ) {
+			mean[ j ] = sum[ j ] / list.length;
+		}
+
+		console.log ( "Mean steht bei " + mean );
+
+		this.setState({
+			resultValues: mean,
+			nResults: list.length
+		});
+
+	}
+
+
 
 	componentDidMount() {
 	}
@@ -74,7 +176,7 @@ class ProportionsSurvey extends Component {
 			<Gate {...props} >
 				<Grid>
 					<Col md={6}>
-						<Panel className="ProprtionsSurvey" style={{
+						<Panel className="ProportionsSurvey" style={{
 							margin: '0 auto 10px',
 							maxWidth: 600,
 							marginTop: '8px'
@@ -88,7 +190,14 @@ class ProportionsSurvey extends Component {
 								height = { this.props.personalHeight }
 								innerRadius = { this.props.personalInnerRadius }
 								colors = { this.props.colors }
-								nElements = { this.props.nElements } />
+								margin = { this.props.margin }
+								nElements = { this.props.nElements } 
+								onChange={( value ) => {
+									this.setState({
+										value
+									});
+								}}
+							/>
 							<Button
 								bsSize="small"
 								bsStyle="success"
@@ -100,14 +209,16 @@ class ProportionsSurvey extends Component {
 					</Col>
 
 					<Col md={6}>
-						<Panel className="ProprtionsSurvey" style={{
+						<Panel className="ProportionsSurvey" style={{
 							margin: '0 auto 10px',
 							maxWidth: 600,
-							marginTop: '8px'
+							marginTop: '8px',
 						}}>
 							
 							<h3>{ this.props.group }</h3>
 							<RealtimeMetrics for={[ this.props.id ]} onData={this.onData} />
+							<h4>Number of votes: { this.state.nResults } </h4>								
+
 							<ProportionsInput 
 								legends = { this.props.legends }
 								precision = { 2 }
@@ -115,8 +226,12 @@ class ProportionsSurvey extends Component {
 								height = { this.props.groupsHeight }
 								innerRadius = { this.props.groupInnerRadius }
 								colors = { this.props.colors }
+								disabled = { true }
+								margin = { this.props.margin }
+								values = { this.state.resultValues }
 								nElements = { this.props.nElements } />
-							
+								
+								
 						</Panel>
 					</Col>
 				</Grid>
@@ -146,8 +261,8 @@ ProportionsSurvey.defaultProps = {
 	personalHeight: 200,
 	personalInnerRadius: 60,
 	groupHeight: 100,
-	groupInnerRadius: 40
-
+	groupInnerRadius: 40,
+	margin: "40px"
 };
 
 
@@ -159,6 +274,9 @@ ProportionsSurvey.propTypes = {
 	question: PropTypes.string,
 	anonymous: PropTypes.bool,
 	disabled: PropTypes.bool,
+
+	margin: PropTypes.string,
+
 
 	// for the proprtion
 	nElements: PropTypes.number,
