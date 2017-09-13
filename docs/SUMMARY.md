@@ -25,6 +25,7 @@
     * [Plots](components/plots.md)
         * [Density Plot](components/density-plot.md)
         * [R Plot](components/r-plot.md)
+    * [Proportions Survey](components/proportions-survey.md)
     * [R Help](components/r-help.md)
     * [R Output](components/r-output.md)
     * [R Shell](components/r-shell.md)
