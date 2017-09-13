@@ -114,12 +114,21 @@ class UploadLesson extends Component {
 				headers: headers
 			};
 			let request;
+			const re = /^https?\:\/\/([^:]+):?([0-9]{0,5})/i;
+			const matches = this.state.server.match( re );
+			console.log( matches );
 			if  ( contains( this.state.server, 'https' ) ) {
-				options.host = this.state.server.replace( /^https?\:\/\//i, '' );
+				options.host = matches[ 1 ];
+				if ( matches[ 2 ]) {
+					options.port = matches[ 2 ];
+				}
 				options.rejectUnauthorized = false;
 				request = https.request( options );
 			} else {
-				options.host = this.state.server.replace( /^http?\:\/\//i, '' );
+				options.host = matches[ 1 ];
+				if ( matches[ 2 ]) {
+					options.port = matches[ 2 ];
+				}
 				request = http.request( options );
 			}
 			form.pipe( request );
