@@ -68,7 +68,7 @@ class Scatterplot extends Component {
 			${ lineBy ? `, lineBy = c(${this.props.data[ lineBy ].map( e => `"${e}"` )})` : '' }
 		)
 		ggplot( data = dat ) +
-		geom_point( ${ !size ? 'size = 2,' : '' } ${aes} ) + ${labs}`;
+		geom_point( ${ !size ? 'size = 4,' : '' } ${aes} ) + ${labs}`;
 
 		if ( regressionLine ) {
 			code += `+ geom_smooth( method="lm", se=FALSE, aes( x = xval, y = yval ${lineBy ? ', linetype = lineBy' : '' } ) )`;
@@ -132,18 +132,21 @@ class Scatterplot extends Component {
 					/>
 				</div>
 				<div style={{ clear: 'both' }}></div>
-				<div style={{ width: '100%' }}>
+				<div style={{
+					width: '100%',
+					opacity: this.props.showRegressionOption ? 1.0 : 0.0
+				}}>
 					<CheckboxInput
 						inline
-						legend="Overlay Regression Line"
+						legend="Show Regression Line"
 						defaultValue={false}
-						style={{ float: 'right', paddingLeft: 10, width: "50%" }}
+						style={{ float: 'left', paddingLeft: 10 }}
 					/>
 					<SelectInput
 						legend="Split By:"
 						options={groupingVariables}
 						clearable={true}
-						style={{ float: 'right', paddingLeft: 10, width: "50%" }}
+						style={{ float: 'right', paddingLeft: 10, width: "40%" }}
 					/>
 				</div>
 				<div style={{ clear: 'both' }}></div>
@@ -158,7 +161,8 @@ class Scatterplot extends Component {
 Scatterplot.defaultProps = {
 	defaultX: null,
 	defaultY: null,
-	onPlotDone() {}
+	onPlotDone() {},
+	showRegressionOption: false
 };
 
 
@@ -166,7 +170,8 @@ Scatterplot.defaultProps = {
 
 Scatterplot.propTypes = {
 	data: PropTypes.object.isRequired,
-	onCreated: PropTypes.func.isRequired
+	onCreated: PropTypes.func.isRequired,
+	showRegressionOption: PropTypes.bool
 };
 
 
