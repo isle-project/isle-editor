@@ -42,7 +42,7 @@ class CheckboxInput extends Input {
 		></input>;
 		if ( this.props.inline === true ) {
 			return (
-				<span style={{ marginLeft: '8px' }}>
+				<span style={{ marginLeft: '8px', ...this.props.style }}>
 					{input}
 					<span
 						style={{
@@ -56,7 +56,8 @@ class CheckboxInput extends Input {
 				<div style={{
 					marginTop: '8px',
 					marginLeft: '8px',
-					marginBottom: '8px'
+					marginBottom: '8px',
+					...this.props.style
 				}}>
 					{input}
 					<span
