@@ -22,7 +22,7 @@ import FrequencyTable from 'components/data-explorer/frequency-table';
 import SummaryStatistics from 'components/data-explorer/summary-statistics';
 import SimpleLinearRegression from 'components/data-explorer/linear-regression';
 import VariableTransformer from 'components/data-explorer/variable-transformer';
-import Slider from 'components/slider';
+import Pages from 'components/pages';
 
 
 // PLOT COMPONENTS //
@@ -110,7 +110,11 @@ const makeDraggable = ( div ) => {
 
 const OutputPanel = ( output ) => {
 	return (
-		<div id="outputPanel" style={{ height: 480, overflowY: 'scroll' }} >
+		<div id="outputPanel" style={{
+			height: 520,
+			overflowY: 'scroll',
+			padding: '5px'
+		}}>
 			{output.map( ( e, idx ) => {
 				if ( e.type === 'Chart' ) {
 					return e.value;
@@ -714,12 +718,15 @@ class DataExplorer extends Component {
 		return (
 			<Grid>
 				<Row>
-					{ this.props.questions ? <Col md={colWidth}><Slider
+					{ this.props.questions ? <Col md={colWidth}><Pages
 						title="Questions"
 						draggable={false}
 						dots={false}
-						style={{ height: 600, marginTop: 0 }}
-					>{this.props.questions}</Slider></Col> : null }
+						height={470}
+						style={{
+							marginTop: 0
+						}}
+					>{this.props.questions}</Pages></Col> : null }
 					<Col md={colWidth}>
 						<Panel
 							header={<h3>Toolbox</h3>}
@@ -738,12 +745,15 @@ class DataExplorer extends Component {
 						</Panel>
 					</Col>
 					<Col md={colWidth}>
-						<Panel header={<h3>Output</h3>} style={{ minHeight: 600 }}>
+						<div className="panel panel-default" style={{ minHeight: 600, padding: 0 }}>
+							<div className="panel-heading">
+								<h3 className="panel-title">Output</h3>
+							</div>
 							{OutputPanel( this.state.output )}
 							<Button bsSize="small" block onClick={ () => {
 								this.setState({ output: []});
 							}}>Clear</Button>
-						</Panel>
+						</div>
 					</Col>
 				</Row>
 			</Grid>
