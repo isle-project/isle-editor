@@ -73,7 +73,8 @@ class Histogram extends Component {
 			}
 			const layout = {
 				xaxis: {title: 'Value' },
-				yaxis: {title: overlayDensity ? 'Density' : 'Count' }
+				yaxis: {title: overlayDensity ? 'Density' : 'Count' },
+				reversescale: true
 			};
 			output = {
 				variable: variable,
@@ -168,6 +169,9 @@ class Histogram extends Component {
 				<CheckboxInput
 					legend="Overlay Density"
 					defaultValue={false}
+					style={{
+						opacity: this.props.showDensityOption ? 1.0 : 0.0
+					}}
 				/>
 				<div>
 					<CheckboxInput
@@ -192,7 +196,8 @@ class Histogram extends Component {
 
 Histogram.defaultProps = {
 	defaultValue: null,
-	onPlotDone() {}
+	onPlotDone() {},
+	showDensityOption: false
 };
 
 
@@ -200,7 +205,8 @@ Histogram.defaultProps = {
 
 Histogram.propTypes = {
 	data: PropTypes.object.isRequired,
-	onCreated: PropTypes.func.isRequired
+	onCreated: PropTypes.func.isRequired,
+	showDensityOption: PropTypes.bool
 };
 
 
