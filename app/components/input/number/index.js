@@ -155,7 +155,7 @@ class NumberInput extends Input {
 						style={{
 							paddingLeft: '2px',
 							marginLeft: '3px',
-							width: '75px'
+							width: this.props.width
 						}}
 						onChange={this.handleChange}
 						onBlur={this.finishChange}
