@@ -74,6 +74,7 @@ class NumberQuestion extends Component {
 					value={this.state.value}
 					disabled={this.state.submitted}
 					inline
+					width={60}
 				/>
 				{ this.state.submitted ?
 					<span>
@@ -83,6 +84,7 @@ class NumberQuestion extends Component {
 							disabled
 							defaultValue={this.props.solution}
 							inline
+							width={60}
 						/>
 					</span>:
 					null
