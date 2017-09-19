@@ -2,8 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Panel } from 'react-bootstrap';
-import request from 'request';
+import { Button } from 'react-bootstrap';
 
 
 // MAIN //
@@ -19,18 +18,9 @@ class Metrics extends Component {
 
 		this.getData = () => {
 			const { session } = this.context;
-			request.post( session.server + '/retrieve_data', {
-				form: {
-					query: JSON.stringify( this.props.query ),
-					user: JSON.stringify( session.user )
-				}
-			}, ( error, response, body ) => {
-				if ( error ) {
-					this.props.onData( error );
-				} else {
-					this.props.onData( null, JSON.parse( body ) );
-				}
-			});
+			session.retrieveData({
+				componentID: this.props.for
+			}, this.props.onData );
 		};
 
 		this.start = () => {
@@ -56,40 +46,20 @@ class Metrics extends Component {
 
 	render() {
 		return (
-			<Panel>
-				<Button
-					bsStyle="primary"
-					onClick={ () => {
-						this.setState({
-							active: !this.state.active
-						}, () => {
-							if ( this.state.active || !this.props.interval ) {
-								this.start();
-							} else {
-								this.stop();
-							}
-						});
-					}}
-				>{ ( this.state.active && this.props.interval ) ? 'Stop' : 'Fetch Data' }</Button>
-				{ this.props.showClear ?
-					<Button
-						style={{ float: 'right' }}
-						bsStyle="primary"
-						onClick={ () => {
-							const { session } = this.context;
-							request.post( session.server + '/delete_session_data', {
-								form: {
-									query: JSON.stringify( this.props.query ),
-									user: JSON.stringify( session.user )
-								}
-							}, ( err ) => {
-								this.props.onData( null, []);
-							});
-						}}
-					>Clear Data</Button> : null
-				}
-				{this.props.children}
-			</Panel>
+			<Button
+				bsStyle="primary"
+				onClick={ () => {
+					this.setState({
+						active: !this.state.active
+					}, () => {
+						if ( this.state.active || !this.props.interval ) {
+							this.start();
+						} else {
+							this.stop();
+						}
+					});
+				}}
+			>{ ( this.state.active && this.props.interval ) ? 'Stop' : 'Fetch Data' }</Button>
 		);
 	}
 
@@ -100,8 +70,7 @@ class Metrics extends Component {
 
 Metrics.defaultProps = {
 	interval: null,
-	onData() {},
-	showClear: false
+	onData() {}
 };
 
 
@@ -110,11 +79,7 @@ Metrics.defaultProps = {
 Metrics.propTypes = {
 	interval: PropTypes.number,
 	onData: PropTypes.func,
-	query: PropTypes.oneOfType([
-		PropTypes.object,
-		PropTypes.array
-	]).isRequired,
-	showClear: PropTypes.bool
+	for: PropTypes.string.isRequired
 };
 
 Metrics.contextTypes = {
