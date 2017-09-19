@@ -497,6 +497,23 @@ class Session {
 		}
 	}
 
+	retrieveData( query, onData ) {
+		request.post( this.server + '/retrieve_data', {
+			form: {
+				query: JSON.stringify( query ),
+				user: JSON.stringify( this.user )
+			},
+			rejectUnauthorized
+		}, ( error, response, body ) => {
+			if ( error ) {
+				onData( error );
+			} else {
+				console.log( body );
+				onData( null, JSON.parse( body ) );
+			}
+		});
+	}
+
 	handleLogin( obj ) {
 		request.post( this.server+'/credentials', {
 			headers: {
