@@ -33,9 +33,9 @@ class Pages extends Component {
 					<h3 className="panel-title">{this.props.title}</h3>
 				</div>
 				<Pagination
-					prev next
+					prev next first last
 					bsSize="medium"
-					maxButtons={5}
+					maxButtons={4}
 					items={this.props.children.length}
 					activePage={this.state.activePage}
 					onSelect={this.handleSelect}
