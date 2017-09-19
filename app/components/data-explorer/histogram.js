@@ -40,6 +40,10 @@ class Histogram extends Component {
 
 	constructor( props ) {
 		super( props );
+
+		this.state = {
+			chooseBins: false
+		};
 	}
 
 	generateHistogram(
@@ -178,11 +182,17 @@ class Histogram extends Component {
 						legend="Choose # of bins"
 						defaultValue={false}
 						inline
+						onChange={()=>{
+							this.setState({
+								chooseBins: !this.state.chooseBins
+							});
+						}}
 					/>
 					<SliderInput
 						defaultValue={10}
-						min={0}
+						min={1}
 						step={1}
+						disabled={!this.state.chooseBins}
 						inline
 					/>
 				</div>
