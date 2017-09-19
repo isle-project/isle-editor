@@ -5,7 +5,27 @@ import PropTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
 import randomstring from 'randomstring';
 import Plotly from 'plotly.js';
-import './plotly.css';
+
+
+// VARIABLES //
+
+const BUTTONS = [
+	'toImage',
+	'sendDataToCloud',
+	'zoom2d',
+	'pan2d',
+	'select2d',
+	'lasso2d',
+	'zoomIn2d',
+	'zoomOut2d',
+	'autoScale2d',
+	'resetScale2d',
+	'hoverClosestCartesian',
+	'hoverCompareCartesian',
+	'toggleHover',
+	'resetViews',
+	'toggleSpikelines'
+];
 
 
 // MAIN //
@@ -35,7 +55,7 @@ class Plot extends Component {
 			{
 				displayModeBar: true,
 				displaylogo: false,
-				modeBarButtonsToRemove: [ 'sendDataToCloud' ],
+				modeBarButtonsToRemove: this.props.removeButtons ? BUTTONS : [ 'sendDataToCloud' ],
 				modeBarButtonsToAdd: [ {
 					name: 'Toggle FullScreen',
 					icon: Plotly.Icons[ 'zoombox' ],
@@ -61,7 +81,9 @@ class Plot extends Component {
 					onHide={this.toggleFullscreen}
 					dialogClassName="fullscreen-modal"
 				>
-					<div id={this.state.plotID} ></div>
+					<Modal.Body className="fullscreen-modal-content">
+						<div id={this.state.plotID} ></div>
+					</Modal.Body>
 					<Modal.Footer>
 						<Button onClick={this.toggleFullscreen}>Close</Button>
 					</Modal.Footer>
@@ -76,7 +98,8 @@ class Plot extends Component {
 // DEFAULT PROPERTIES //
 
 Plotly.defaultProps = {
-	layout: {}
+	layout: {},
+	removeButtons: false
 };
 
 
@@ -84,7 +107,8 @@ Plotly.defaultProps = {
 
 Plotly.propTypes = {
 	data: PropTypes.array.isRequired,
-	layout: PropTypes.object
+	layout: PropTypes.object,
+	removeButtons: PropTypes.bool
 };
 
 

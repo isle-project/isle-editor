@@ -25,7 +25,41 @@ function by( arr, factor, fun ) {
 		ret[ key ] = fun( ret[ key ]);
 	}
 	return ret;
-}
+} // end FUNCTION by()
+
+export function generateBarchartConfig({ data, variable, group }) {
+	let traces;
+	if ( !group ) {
+		let freqs = entries( countBy( data[ variable ],  identity ) );
+		let categories = freqs.map( e => e[ 0 ]);
+		freqs = freqs.map( e => e[ 1 ]);
+		traces = [ {
+			y: freqs,
+			x: categories,
+			type: 'bar'
+		} ];
+	} else {
+		let freqs = by( data[ variable ], data[ group ], arr => {
+			return entries( countBy( arr, identity ) );
+		});
+		traces = [];
+		for ( let key in freqs ) {
+			let val = freqs[ key ];
+			let categories = val.map( e => e[ 0 ]);
+			let counts = val.map( e => e[ 1 ]);
+			traces.push({
+				y: counts,
+				x: categories,
+				type: 'bar',
+				name: key
+			});
+		}
+	}
+	return {
+		data: traces,
+		layout: {}
+	};
+} // end FUNCTION generateBarchartConfig()
 
 
 // MAIN //
@@ -37,49 +71,15 @@ class Barchart extends Component {
 	}
 
 	generateBarchart( variable, group ) {
-		let output = null;
-		if ( !group ) {
-			let freqs = entries( countBy( this.props.data[ variable ],  identity ) );
-			let categories = freqs.map( e => e[ 0 ]);
-			freqs = freqs.map( e => e[ 1 ]);
-			const data = [ {
-				y: freqs,
-				x: categories,
-				type: 'bar'
-			} ];
-			output = {
-				variable: variable,
-				type: 'Chart',
-				value: <div>
-					<label>{variable}: </label>
-					<Plotly data={data} />
-				</div>
-			};
-		} else {
-			let freqs = by( this.props.data[ variable ], this.props.data[ group ], arr => {
-				return entries( countBy( arr, identity ) );
-			});
-			const data = [];
-			for ( let key in freqs ) {
-				let val = freqs[ key ];
-				let categories = val.map( e => e[ 0 ]);
-				let counts = val.map( e => e[ 1 ]);
-				data.push({
-					y: counts,
-					x: categories,
-					type: 'bar',
-					name: key
-				});
-			}
-			output = {
-				variable: variable,
-				type: 'Chart',
-				value: <div>
-					<label>{variable}: </label>
-					<Plotly data={data} />
-				</div>
-			};
-		}
+		const config = generateBarchartConfig({ data: this.props.data, variable, group });
+		const output = {
+			variable: variable,
+			type: 'Chart',
+			value: <div>
+				<label>{variable}: </label>
+				<Plotly data={config.data} layout={config.layout} />
+			</div>
+		};
 		this.props.logAction( 'DATA_EXPLORER:BARCHART', {
 			variable,
 			group

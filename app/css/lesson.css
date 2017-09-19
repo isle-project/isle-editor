@@ -22,6 +22,19 @@ body {
 	padding-left: 80px;
 }
 
+.fullscreen-modal {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.fullscreen-modal-content {
+	height: auto;
+	min-height: 100%;
+	border-radius: 0;
+}
+
 .errorMessage {
 	position: absolute;
 	width: 80%;

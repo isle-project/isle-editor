@@ -9,6 +9,45 @@ import RPlot from 'components/r/plot';
 import objectValues from '@stdlib/utils/values';
 
 
+// FUNCTIONS //
+
+export function generateMosaicPlotCode({ data, vars, showColors }) {
+	const counts = {};
+	const nObs = data[ vars[ 0 ] ].length;
+	for ( let i = 0; i < nObs; i++ ) {
+		let key = '';
+		for ( let j = 0; j < vars.length; j++ ) {
+			let x = vars[ j ];
+			let datum = data[ x ][ i ];
+			key += datum;
+			if ( j < vars.length-1 ) {
+				key += ':';
+			}
+		}
+		if ( counts.hasOwnProperty( key ) ) {
+			counts[ key ] += 1;
+		} else {
+			counts[ key ] = 1;
+		}
+	}
+	const varArr = [];
+	vars.forEach( () => { varArr.push([]); });
+	const keys = Object.keys( counts );
+	for ( let k = 0; k < keys.length; k++ ) {
+		let names = keys[ k ].split( ':' );
+		for ( let i = 0; i < names.length; i++ ) {
+			varArr[ i ].push( `'${names[ i ]}'` );
+		}
+	}
+
+	let code = `dat = data.frame( counts = c(${objectValues( counts )}), ${varArr.map( ( arr, idx ) => `${vars[ idx ]} = c( ${arr} )` ) })
+		xytable = xtabs( counts ~ ., data = dat )
+		mosaicplot( xytable, main = "${`Mosaic Plot of ${vars.join( ', ' )}`}",
+		cex=1, shade=${ showColors ? 'TRUE' : 'FALSE' } )`;
+	return code;
+} // end FUNCTION generateMosaicPlotCode()
+
+
 // MAIN //
 
 class MosaicPlot extends Component {
@@ -26,40 +65,8 @@ class MosaicPlot extends Component {
 				position: 'tr'
 			});
 		}
-		const counts = {};
-		const nObs = this.props.data[ vars[ 0 ] ].length;
-		for ( let i = 0; i < nObs; i++ ) {
-			let key = '';
-			for ( let j = 0; j < vars.length; j++ ) {
-				let x = vars[ j ];
-				let datum = this.props.data[ x ][ i ];
-				key += datum;
-				if ( j < vars.length-1 ) {
-					key += ':';
-				}
-			}
-			if ( counts.hasOwnProperty( key ) ) {
-				counts[ key ] += 1;
-			} else {
-				counts[ key ] = 1;
-			}
-		}
-		const varArr = [];
-		vars.forEach( () => { varArr.push([]); });
-		const keys = Object.keys( counts );
-		for ( let k = 0; k < keys.length; k++ ) {
-			let names = keys[ k ].split( ':' );
-			for ( let i = 0; i < names.length; i++ ) {
-				varArr[ i ].push( `'${names[ i ]}'` );
-			}
-		}
-
-		let code = `dat = data.frame( counts = c(${objectValues( counts )}), ${varArr.map( ( arr, idx ) => `${vars[ idx ]} = c( ${arr} )` ) })
-			xytable = xtabs( counts ~ ., data = dat )
-			mosaicplot( xytable, main = "${`Mosaic Plot of ${vars.join( ', ' )}`}",
-			cex=1, shade=${ showColors ? 'TRUE' : 'FALSE' } )`;
-
-		let output ={
+		const code = generateMosaicPlotCode({ data: this.props.data, vars, showColors });
+		const output ={
 			variable: `Mosaic Plot`,
 			type: 'Chart',
 			value: <div>

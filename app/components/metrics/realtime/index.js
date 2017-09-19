@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { isArray, contains } from '@stdlib/assert';
+import contains from '@stdlib/assert/contains';
 import { copy } from '@stdlib/utils';
 const debug = require( 'debug' )( 'isle-editor' );
 
@@ -15,7 +15,7 @@ class RealTimeMetrics extends Component {
 		super();
 
 		this.state = {
-			components: {}
+			actions: []
 		};
 
 	}
@@ -26,17 +26,14 @@ class RealTimeMetrics extends Component {
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if ( type === 'member_action' ) {
 				if ( contains( this.props.for, action.id ) ) {
-					let components = copy( this.state.components );
-					let actions = components[ action.id ];
-					if ( !isArray( actions ) ) {
-						components[ action.id ] = [];
-					}
-					components[ action.id ].push( action.value );
+					let actions = copy( this.state.actions );
+					actions.push( this.props.returnFullObject ? action : action.value );
 					this.setState({
-						components
+						actions
 					}, () => {
-						debug( 'A new value for the given IDs was submitted: ' + JSON.stringify( this.state.components 	) );
-						this.props.onData( this.state.components );
+						debug( 'A new value for the given IDs was submitted: ' + JSON.stringify( this.state.actions 	) );
+						this.props.onData( this.state.actions );
+						this.props.onDatum( this.state.actions[ this.state.actions.length-1 ]);
 					});
 				}
 			}
@@ -63,7 +60,9 @@ class RealTimeMetrics extends Component {
 // DEFAULT PROPERTIES //
 
 RealTimeMetrics.defaultProps = {
-	onData() {}
+	onData() {},
+	onDatum() {},
+	returnFullObject: false
 };
 
 
@@ -71,10 +70,9 @@ RealTimeMetrics.defaultProps = {
 
 RealTimeMetrics.propTypes = {
 	onData: PropTypes.func,
-	for: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.array
-	]).isRequired
+	onDatum: PropTypes.func,
+	for: PropTypes.string.isRequired,
+	returnFullObject: PropTypes.bool
 };
 
 RealTimeMetrics.contextTypes = {

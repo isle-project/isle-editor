@@ -4,10 +4,11 @@ import React, { Component } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { Button, Grid, Row, Col, MenuItem, Nav, NavDropdown, NavItem, Panel , Tab } from 'react-bootstrap';
+import { Button, ButtonGroup, Grid, Row, Col, MenuItem, Modal, Nav, NavDropdown, NavItem, Panel, Tab, Well } from 'react-bootstrap';
 import $ from 'jquery';
 import parse from 'csv-parse';
 import detect from 'detect-csv';
+import isString from '@stdlib/assert/is-string';
 import isArray from '@stdlib/assert/is-array';
 import isNumber from '@stdlib/assert/is-number';
 import isNumberArray from '@stdlib/assert/is-number-array';
@@ -22,18 +23,23 @@ import FrequencyTable from 'components/data-explorer/frequency-table';
 import SummaryStatistics from 'components/data-explorer/summary-statistics';
 import SimpleLinearRegression from 'components/data-explorer/linear-regression';
 import VariableTransformer from 'components/data-explorer/variable-transformer';
+import DraggableGrid from 'components/draggable-grid';
 import Pages from 'components/pages';
+import Gate from 'components/gate';
+import RealtimeMetrics from 'components/metrics/realtime';
+import Plotly from 'components/plotly';
+import RPlot from 'components/r/plot';
 
 
 // PLOT COMPONENTS //
 
-import Barchart from 'components/data-explorer/barchart';
-import Boxplot from 'components/data-explorer/boxplot';
-import Heatmap from 'components/data-explorer/heatmap';
-import Histogram from 'components/data-explorer/histogram';
-import MosaicPlot from 'components/data-explorer/mosaicplot';
+import Barchart, { generateBarchartConfig } from 'components/data-explorer/barchart';
+import Boxplot, { generateBoxplotConfig } from 'components/data-explorer/boxplot';
+import Heatmap, { generateHeatmapCode } from 'components/data-explorer/heatmap';
+import Histogram, { generateHistogramConfig } from 'components/data-explorer/histogram';
+import MosaicPlot, { generateMosaicPlotCode } from 'components/data-explorer/mosaicplot';
 import Piechart from 'components/data-explorer/piechart';
-import Scatterplot from 'components/data-explorer/scatterplot';
+import Scatterplot, { generateScatterplotConfig } from 'components/data-explorer/scatterplot';
 
 
 // TEST COMPONENTS //
@@ -94,6 +100,9 @@ const generateTransformationCode = ( variable ) => `if ( datum.${variable} > 0 )
 	return 'No'
 }`;
 
+/**
+* Wraps the supplied div element such that it can be dragged.
+*/
 const makeDraggable = ( div ) => {
 	let markup = ReactDOMServer.renderToStaticMarkup( div );
 	let plain = `<!-- OUTPUT_${generate( 3 )}  -->`;
@@ -108,6 +117,9 @@ const makeDraggable = ( div ) => {
 	</div>;
 };
 
+/**
+* Maps over the output array and returns the filled output panel.
+*/
 const OutputPanel = ( output ) => {
 	return (
 		<div id="outputPanel" style={{
@@ -222,7 +234,9 @@ class DataExplorer extends Component {
 			categorical: props.categorical,
 			output: [],
 			groupVars,
-			ready
+			ready,
+			showStudentPlots: false,
+			studentPlots: []
 		};
 
 		this.logAction = ( type, value ) => {
@@ -235,14 +249,73 @@ class DataExplorer extends Component {
 				});
 			}
 		};
-
 	}
+
+	/**
+	* Display gallery of recently created plots by the students.
+	*/
+	toggleStudentPlots = () => {
+		this.setState({
+			showStudentPlots: !this.state.showStudentPlots
+		});
+	}
+
+	/**
+	* Remove all currently saved student plots.
+	*/
+	clearPlots = () => {
+		this.setState({
+			studentPlots: []
+		});
+	}
+
+	/**
+	* Stores all plot actions in the internal state.
+	*/
+	onUserAction = ( action ) => {
+		let config;
+		if ( action.type === 'DATA_EXPLORER:HISTOGRAM' ) {
+			config = generateHistogramConfig({ data: this.state.data, ...action.value });
+		}
+		else if ( action.type === 'DATA_EXPLORER:BARCHART' ) {
+			config = generateBarchartConfig({ data: this.state.data, ...action.value });
+		}
+		else if ( action.type === 'DATA_EXPLORER:BOXPLOT' ) {
+			config = generateBoxplotConfig({ data: this.state.data, ...action.value });
+		}
+		else if ( action.type === 'DATA_EXPLORER:SCATTERPLOT' ) {
+			config = generateScatterplotConfig({ data: this.state.data, ...action.value });
+		}
+		else if ( action.type === 'DATA_EXPLORER:MOSAIC' ) {
+			config = generateMosaicPlotCode({ data: this.state.data, ...action.value });
+		}
+		else if ( action.type === 'DATA_EXPLORER:HEATMAP' ) {
+			config = generateHeatmapCode({ data: this.state.data, ...action.value });
+		}
+		if ( config ) {
+			const newStudentPlots = copy( this.state.studentPlots );
+			const newPlot = isString( config ) ?
+				<RPlot code={config} libraries={[ 'MASS' ]} /> :
+				<Plotly data={config.data} layout={config.layout} removeButtons />;
+			newStudentPlots.push(
+				newPlot
+			);
+			this.setState({
+				studentPlots: newStudentPlots
+			});
+		}
+	}
+
+	/**
+	* Scrolls to the bottom of the output panel after result has been inserted.
+	*/
 	scrollToBottom() {
 		const $outputPanel = $( '#outputPanel' );
 		$outputPanel.animate({
 			scrollTop: $outputPanel.prop( 'scrollHeight' )
 		}, 1000 );
 	}
+
 	componentWillUpdate( nextProps, nextState ){
 		if ( nextState.output !== this.state.output ) {
 			const $outputPanel = $( '#outputPanel' );
@@ -251,14 +324,18 @@ class DataExplorer extends Component {
 			}, 1000 );
 		}
 	}
+
+	/**
+	* Adds the supplied element to the array of outputs.
+	*/
 	addToOutputs = ( element ) => {
 		let newOutput = this.state.output.slice();
 		newOutput.push( element );
-		console.log( newOutput );
 		this.setState({
 			output: newOutput
 		});
 	}
+
 	onGenerateTransformedVariable = ( name, values ) => {
 		let newData = copy( this.state.data );
 		if ( !hasProp( this.props.data, name ) ) {
@@ -311,6 +388,10 @@ class DataExplorer extends Component {
 			});
 		}
 	}
+
+	/**
+	* Event handler invoked once student-supplied CSV file has been uploaded. Parses the file and extracts its categorical and continuous variables.
+	*/
 	onFileRead = ( event ) => {
 		const text = event.target.result;
 		const csv = detect( text );
@@ -352,16 +433,28 @@ class DataExplorer extends Component {
 			});
 		});
 	}
+
+	/**
+	* Creates FileReader and attaches event listener for when the file is ready.
+	*/
 	handleFileUpload = () => {
 		const reader = new FileReader();
 		const selectedFile = this.fileUpload.files[ 0 ];
 		reader.addEventListener( 'load', this.onFileRead, false );
 		reader.readAsText( selectedFile, 'utf-8' );
 	}
+
+	/**
+	* Event handler ignoring default dragging behavior and preventing bubbling-up.
+	*/
 	ignoreDrag = ( evt ) => {
 		evt.stopPropagation();
 		evt.preventDefault();
 	}
+
+	/**
+	* Event handler invoked when user drags CSV file onto the upload area.
+	*/
 	onFileDrop = ( evt ) => {
 		evt.stopPropagation();
 		evt.preventDefault();
@@ -390,8 +483,9 @@ class DataExplorer extends Component {
 			reader.readAsText( file, 'utf-8' );
 		}
 	}
+
 	/**
-	* React component render method
+	* React component render method.
 	*/
 	render() {
 
@@ -743,6 +837,35 @@ class DataExplorer extends Component {
 								</Row>
 							</Tab.Container>
 						</Panel>
+						<Gate owner>
+							<Modal
+								show={this.state.showStudentPlots}
+								onHide={this.toggleStudentPlots}
+								dialogClassName="fullscreen-modal"
+							>
+								<Modal.Header closeButton>
+									<Modal.Title>Plots</Modal.Title>
+								</Modal.Header>
+								<Modal.Body style={{ height: 0.80 * window.innerHeight, overflowY: 'scroll' }}>
+									{ this.state.studentPlots.length > 0 ?
+										<DraggableGrid>
+											{this.state.studentPlots}
+										</DraggableGrid> :
+										<Well>
+											No plots have been created yet...
+										</Well>
+									}
+								</Modal.Body>
+								<Modal.Footer>
+									<Button onClick={this.clearPlots}>Clear Plots</Button>
+									<Button onClick={this.toggleStudentPlots}>Close</Button>
+								</Modal.Footer>
+							</Modal>
+							<ButtonGroup bsSize="small" >
+								<Button onClick={this.toggleStudentPlots} >Open Plots</Button>
+							</ButtonGroup>
+							<RealtimeMetrics returnFullObject for={this.props.id} onDatum={this.onUserAction} />
+						</Gate>
 					</Col>
 					<Col md={colWidth}>
 						<div className="panel panel-default" style={{ minHeight: 600, padding: 0 }}>

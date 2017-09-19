@@ -93,7 +93,7 @@ function scale( arr, a, b ) {
 	return out;
 } // end FUNCTION scale()
 
-function generateScatterplotConfig({ data, xval, yval, color, type, size, regressionLine, lineBy }) {
+export function generateScatterplotConfig({ data, xval, yval, color, type, size, regressionLine, lineBy }) {
 	let nColors;
 	let traces;
 
@@ -295,7 +295,7 @@ class Scatterplot extends Component {
 			</div>
 		};
 		this.props.logAction( 'DATA_EXPLORER:SCATTERPLOT', {
-			xval, yval, color, type, size
+			xval, yval, color, type, size, regressionLine, lineBy
 		});
 		this.props.onCreated( output );
 	}

@@ -31,7 +31,97 @@ function by( arr, factor, fun ) {
 		ret[ key ] = fun( ret[ key ]);
 	}
 	return ret;
-}
+} // end FUNCTION by()
+
+export function generateHistogramConfig({ data, variable, group, overlayDensity, chooseBins, nBins }) {
+	let traces;
+	let layout;
+
+	if ( !group ) {
+		const vals = data[ variable ];
+		traces = [ {
+			x: vals,
+			type: 'histogram',
+			name: 'histogram'
+		} ];
+		if ( chooseBins ) {
+			traces[ 0 ].nbinsx = nBins;
+		}
+		if ( overlayDensity ) {
+			// Chose appropriate bandwidth via rule-of-thumb:
+			const h = 2.0 * iqr( vals ) * pow( vals.length, -1/3 );
+			const phi = gaussian.factory( 0.0, 1.0 );
+			const kde = kernelSmooth.density( vals, phi, h );
+			const x = linspace( min( vals ), max( vals ), 512 );
+			let y = x.map( x => kde( x ) );
+			traces.push({
+				x: x,
+				y: y,
+				type: 'lines',
+				name: 'density'
+			});
+			traces[ 0 ][ 'histnorm' ] = 'probability density';
+		}
+		layout = {
+			xaxis: {title: 'Value' },
+			yaxis: {title: overlayDensity ? 'Density' : 'Count' },
+			reversescale: true
+		};
+	} else {
+		let freqs = by( data[ variable ], data[ group ], arr => {
+			return arr;
+		});
+		traces = [];
+		for ( let key in freqs ) {
+			let vals = freqs[ key ];
+			if ( overlayDensity ) {
+				// Chose appropriate bandwidth via rule-of-thumb:
+				const h = 2.0 * iqr( vals ) * pow( vals.length, -1/3 );
+				const phi = gaussian.factory( 0.0, 1.0 );
+				const kde = kernelSmooth.density( vals, phi, h );
+				const x = linspace( min( vals ), max( vals ), 512 );
+				const y = x.map( x => kde( x ) );
+				const config = {
+					x: vals,
+					type: 'histogram',
+					histnorm: 'probability density',
+					name: key+':histogram',
+					opacity: 0.5
+				};
+				if ( chooseBins ) {
+					config.nbinsx = nBins;
+				}
+				traces.push( config );
+				traces.push({
+					x: x,
+					y: y,
+					type: 'lines',
+					name: key+':density',
+				});
+			} else {
+				const config = {
+					x: vals,
+					type: 'histogram',
+					name: key,
+					opacity: 0.5
+				};
+				if ( chooseBins ) {
+					config.nbinsx = nBins;
+				}
+				traces.push( config );
+			}
+		}
+		layout = {
+			xaxis: {title: 'Value' },
+			yaxis: {title: overlayDensity ? 'Density' : 'Count' }
+		};
+		layout.barmode = 'overlay';
+	}
+	return {
+		data: traces,
+		layout: layout
+	};
+} // end FUNCTION generateHistogramConfig()
 
 
 // MAIN //
@@ -49,105 +139,19 @@ class Histogram extends Component {
 	generateHistogram(
 		variable, group, overlayDensity, chooseBins, nBins
 	) {
-		var output;
-		if ( !group ) {
-			const vals = this.props.data[ variable ];
-			const data = [ {
-				x: vals,
-				type: 'histogram',
-				name: 'histogram'
-			} ];
-			if ( chooseBins ) {
-				data[ 0 ].nbinsx = nBins;
-			}
-			if ( overlayDensity ) {
-				// Chose appropriate bandwidth via rule-of-thumb:
-				const h = 2.0 * iqr( vals ) * pow( vals.length, -1/3 );
-				const phi = gaussian.factory( 0.0, 1.0 );
-				const kde = kernelSmooth.density( vals, phi, h );
-				const x = linspace( min( vals ), max( vals ), 512 );
-				let y = x.map( x => kde( x ) );
-				data.push({
-					x: x,
-					y: y,
-					type: 'lines',
-					name: 'density'
-				});
-				data[ 0 ][ 'histnorm' ] = 'probability density';
-			}
-			const layout = {
-				xaxis: {title: 'Value' },
-				yaxis: {title: overlayDensity ? 'Density' : 'Count' },
-				reversescale: true
-			};
-			output = {
-				variable: variable,
-				type: 'Chart',
-				value: <div>
-					<label>{variable}: </label>
-					<Plotly data={data} layout={layout} />
-				</div>
-			};
-		} else {
-			let freqs = by( this.props.data[ variable ], this.props.data[ group ], arr => {
-				return arr;
-			});
-			let data = [];
-			for ( let key in freqs ) {
-				let vals = freqs[ key ];
-				if ( overlayDensity ) {
-					// Chose appropriate bandwidth via rule-of-thumb:
-					const h = 2.0 * iqr( vals ) * pow( vals.length, -1/3 );
-					const phi = gaussian.factory( 0.0, 1.0 );
-					const kde = kernelSmooth.density( vals, phi, h );
-					const x = linspace( min( vals ), max( vals ), 512 );
-					const y = x.map( x => kde( x ) );
-					const config = {
-						x: vals,
-						type: 'histogram',
-						histnorm: 'probability density',
-						name: key+':histogram',
-						opacity: 0.5
-					};
-					if ( chooseBins ) {
-						config.nbinsx = nBins;
-					}
-					data.push( config );
-					data.push({
-						x: x,
-						y: y,
-						type: 'lines',
-						name: key+':density',
-					});
-				} else {
-					const config = {
-						x: vals,
-						type: 'histogram',
-						name: key,
-						opacity: 0.5
-					};
-					if ( chooseBins ) {
-						config.nbinsx = nBins;
-					}
-					data.push( config );
-				}
-			}
-			const layout = {
-				xaxis: {title: 'Value' },
-				yaxis: {title: overlayDensity ? 'Density' : 'Count' }
-			};
-			layout.barmode = 'overlay';
-			output = {
-				variable: variable,
-				type: 'Chart',
-				value: <div>
-					<label>{variable}: </label>
-					<Plotly data={data} layout={layout} />
-				</div>
-			};
-		}
+		const config = generateHistogramConfig({
+			data: this.props.data, variable, group, overlayDensity, chooseBins, nBins
+		});
+		const output = {
+			variable: variable,
+			type: 'Chart',
+			value: <div>
+				<label>{variable}: </label>
+				<Plotly data={config.data} layout={config.layout} />
+			</div>
+		};
 		this.props.logAction( 'DATA_EXPLORER:HISTOGRAM', {
-			variable, group, overlayDensity, nBins
+			variable, group, overlayDensity, chooseBins, nBins
 		});
 		this.props.onCreated( output );
 	}

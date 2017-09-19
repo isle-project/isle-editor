@@ -8,6 +8,20 @@ import Dashboard from 'components/dashboard';
 import RPlot from 'components/r/plot';
 
 
+// FUNCTIONS //
+
+export function generateHeatmapCode({ data, xval, yval, overlayPoints }) {
+	let code = `x = c(${data[ xval ]})
+		y = c(${data[ yval ]})
+		f1 <- kde2d( x, y )
+		image( f1, xlab="${xval}", ylab="${yval}")`;
+	if ( overlayPoints ) {
+		code += '\n points( x, y, col="grey" )';
+	}
+	return code;
+}
+
+
 // MAIN //
 
 class HeatMap extends Component {
@@ -17,17 +31,8 @@ class HeatMap extends Component {
 	}
 
 	generateHeatmap( xval, yval, overlayPoints ) {
-
-		let code = `x = c(${this.props.data[ xval ]})
-			y = c(${this.props.data[ yval ]})
-			f1 <- kde2d( x, y )
-			image( f1, xlab="${xval}", ylab="${yval}")`;
-
-		if ( overlayPoints ) {
-			code += '\n points( x, y, col="grey" )';
-		}
-
-		let output ={
+		const code = generateHeatmapCode({ data: this.props.data, xval, yval, overlayPoints });
+		const output ={
 			variable: `${xval} against ${yval}`,
 			type: 'Chart',
 			value: <div>

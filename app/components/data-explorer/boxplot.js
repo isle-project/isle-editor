@@ -22,7 +22,36 @@ function by( arr, factor, fun ) {
 		ret[ key ] = fun( ret[ key ]);
 	}
 	return ret;
-}
+} // end FUNCTION by()
+
+export function generateBoxplotConfig({ data, variable, group }) {
+	let traces;
+	if ( !group ) {
+		let values = data[ variable ];
+		traces = [ {
+			y: values,
+			type: 'box',
+			name: variable
+		} ];
+	} else {
+		let freqs = by( data[ variable ], data[ group ], arr => {
+			return arr;
+		});
+		traces = [];
+		for ( let key in freqs ) {
+			let val = freqs[ key ];
+			traces.push({
+				y: val,
+				name: key,
+				type: 'box'
+			});
+		}
+	}
+	return {
+		data: traces,
+		layout: {}
+	};
+} // end FUNCTION generateBoxplotConfig()
 
 
 // MAIN //
@@ -34,44 +63,15 @@ class Boxplot extends Component {
 	}
 
 	generateBoxplot( variable, group ) {
-		let output = null;
-		if ( !group ) {
-			let data = this.props.data[ variable ];
-			data = [ {
-				y: data,
-				type: 'box',
-				name: variable
-			} ];
-			output = {
-				variable: variable,
-				type: 'Chart',
-				value: <div>
-					<label>{variable}: </label>
-					<Plotly data={data} />
-				</div>
-			};
-		} else {
-			let freqs = by( this.props.data[ variable ], this.props.data[ group ], arr => {
-				return arr;
-			});
-			let data = [];
-			for ( let key in freqs ) {
-				let val = freqs[ key ];
-				data.push({
-					y: val,
-					name: key,
-					type: 'box'
-				});
-			}
-			output = {
-				variable: variable,
-				type: 'Chart',
-				value: <div>
-					<label>{variable}: </label>
-					<Plotly data={data} />
-				</div>
-			};
-		}
+		const config = generateBoxplotConfig({ data: this.props.data, variable, group});
+		const output = {
+			variable: variable,
+			type: 'Chart',
+			value: <div>
+				<label>{variable}: </label>
+				<Plotly data={config.data} layout={config.layout} />
+			</div>
+		};
 		this.props.logAction( 'DATA_EXPLORER:BOXPLOT', {
 			variable,
 			group
