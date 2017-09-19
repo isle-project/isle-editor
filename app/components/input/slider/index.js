@@ -149,6 +149,7 @@ class SliderInput extends Input {
 			max={this.props.max}
 			step={this.props.step}
 			value={value}
+			disabled={this.props.disabled}
 			onChange={this.handleInputChange}
 			style={{
 				width: this.props.width || '160px',
@@ -160,7 +161,7 @@ class SliderInput extends Input {
 			placement="top"
 			overlay={
 				<Tooltip id='inlineTooltip'>
-					{this.state.tooltip}
+					{ this.props.disabled ? 'The slider input is disabled right now.' : this.state.tooltip}
 				</Tooltip>
 			}
 		>
@@ -168,6 +169,7 @@ class SliderInput extends Input {
 				type="number"
 				name="input"
 				className="slider-number-input"
+				disabled={this.props.disabled}
 				min={this.props.min}
 				max={this.props.max}
 				step={this.props.step}
@@ -184,6 +186,8 @@ class SliderInput extends Input {
 			return (
 				<span style={{
 					padding: '5px',
+					opacity: this.props.disabled ? 0.2 : 1.0,
+					...this.props.style
 				}}>
 					{ this.props.legend ?
 						<label>{this.props.legend}:</label> :
@@ -195,7 +199,13 @@ class SliderInput extends Input {
 			);
 		}
 		return (
-			<div className="slider-outer-div">
+			<div
+				className="slider-outer-div"
+				style={{
+					opacity: this.props.disabled ? 0.2 : 1.0,
+					...this.props.style
+				}}
+			>
 				{ this.props.legend ?
 					<label style={{
 						marginLeft: '8px',
@@ -221,7 +231,9 @@ SliderInput.defaultProps = {
 	step: 1,
 	defaultValue: 10,
 	onChange() {},
-	precision: 10
+	precision: 10,
+	disabled: false,
+	style: {}
 };
 
 
@@ -237,7 +249,9 @@ SliderInput.propTypes = {
 		PropTypes.string
 	]),
 	defaultValue: PropTypes.number,
-	onChange: PropTypes.func
+	onChange: PropTypes.func,
+	disabled: PropTypes.bool,
+	style: PropTypes.object
 };
 
 
