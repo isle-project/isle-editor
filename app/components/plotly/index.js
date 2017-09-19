@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
 import randomstring from 'randomstring';
 import Plotly from 'plotly.js';
@@ -70,6 +71,21 @@ class Plot extends Component {
 		return <div id={this.state.plotID} ></div>;
 	}
 }
+
+
+// DEFAULT PROPERTIES //
+
+Plotly.defaultProps = {
+	layout: {}
+};
+
+
+// PROPERTY TYPES //
+
+Plotly.propTypes = {
+	data: PropTypes.array.isRequired,
+	layout: PropTypes.object
+};
 
 
 // EXPORTS //
