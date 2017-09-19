@@ -113,6 +113,7 @@ class SelectInput extends Input {
 						multi={this.props.multi}
 						style={style}
 						clearable={clearable}
+						disabled={this.props.disabled}
 					/>
 				</FormGroup>
 			</Form>
@@ -127,6 +128,7 @@ SelectInput.defaultProps = {
 	bind: '',
 	onChange() {},
 	defaultValue: null,
+	disabled: false,
 	inline: false,
 	legend: '',
 	options: [],
@@ -145,6 +147,7 @@ SelectInput.propTypes = {
 		PropTypes.string,
 		PropTypes.array
 	]),
+	disabled: PropTypes.bool,
 	inline: PropTypes.bool,
 	legend: PropTypes.string,
 	options: PropTypes.array,
