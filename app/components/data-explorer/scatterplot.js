@@ -297,7 +297,7 @@ class Scatterplot extends Component {
 						position: 'tr'
 					});
 					this.props.logAction( 'DATA_EXPLORER_SHARE:SCATTERPLOT', {
-						variable, group, overlayDensity, chooseBins, nBins
+						xval, yval, color, type, size, regressionLine, lineBy
 					});
 				}}
 			/>
