@@ -184,7 +184,6 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 					color: COLORS[ i ]
 				},
 			};
-			console.log( `COLORS ${i}: `+  COLORS[ i ] )
 		}
 	} else {
 		traces = [ {
@@ -254,13 +253,14 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 			legend: {
 				traceorder: 'normal',
 				font: {
-				  family: 'sans-serif',
-				  size: 10,
-				  color: '#000'
+					family: 'sans-serif',
+					size: 10,
+					color: '#000'
 				},
 				bordercolor: '#E2E2E2',
 				borderwidth: 2
-			}
+			},
+			title: `${xval} against ${yval}`
 		}
 	};
 } // end FUNCTION generateScatterplot()
@@ -285,25 +285,22 @@ class Scatterplot extends Component {
 		const output = {
 			variable: `${xval} against ${yval}`,
 			type: 'Chart',
-			value: <div>
-				<label>{`${xval} against ${yval}`}: </label>
-				<Plotly
-					data={config.data}
-					layout={config.layout}
-					onDone={this.props.onPlotDone}
-					onShare={() => {
-						this.props.session.addNotification({
-							title: 'Plot shared.',
-							message: 'You have successfully shared your plot.',
-							level: 'success',
-							position: 'tr'
-						});
-						this.props.logAction( 'DATA_EXPLORER_SHARE:SCATTERPLOT', {
-							variable, group, overlayDensity, chooseBins, nBins
-						});
-					}}
-				/>
-			</div>
+			value: <Plotly
+				data={config.data}
+				layout={config.layout}
+				onDone={this.props.onPlotDone}
+				onShare={() => {
+					this.props.session.addNotification({
+						title: 'Plot shared.',
+						message: 'You have successfully shared your plot.',
+						level: 'success',
+						position: 'tr'
+					});
+					this.props.logAction( 'DATA_EXPLORER_SHARE:SCATTERPLOT', {
+						variable, group, overlayDensity, chooseBins, nBins
+					});
+				}}
+			/>
 		};
 		this.props.logAction( 'DATA_EXPLORER:SCATTERPLOT', {
 			xval, yval, color, type, size, regressionLine, lineBy
