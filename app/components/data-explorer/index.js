@@ -8,6 +8,7 @@ import { Button, ButtonGroup, Grid, Row, Col, MenuItem, Modal, Nav, NavDropdown,
 import $ from 'jquery';
 import parse from 'csv-parse';
 import detect from 'detect-csv';
+import contains from '@stdlib/assert/contains';
 import isString from '@stdlib/assert/is-string';
 import isArray from '@stdlib/assert/is-array';
 import isNumber from '@stdlib/assert/is-number';
@@ -297,15 +298,15 @@ class DataExplorer extends Component {
 		}
 		if ( config ) {
 			const newStudentPlots = copy( this.state.studentPlots );
-			const newPlot = isString( config ) ?
-				<RPlot code={config} libraries={[ 'MASS' ]} /> :
-				<Plotly data={config.data} layout={config.layout} removeButtons />;
-			newStudentPlots.push(
-				newPlot
-			);
-			this.setState({
-				studentPlots: newStudentPlots
-			});
+			const configString = JSON.stringify( config );
+			if ( !contains( newStudentPlots, configString ) ) {
+				newStudentPlots.push(
+					configString
+				);
+				this.setState({
+					studentPlots: newStudentPlots
+				});
+			}
 		}
 	}
 
@@ -858,7 +859,19 @@ class DataExplorer extends Component {
 								<Modal.Body style={{ height: 0.80 * window.innerHeight, overflowY: 'scroll' }}>
 									{ this.state.studentPlots.length > 0 ?
 										<GridLayout>
-											{this.state.studentPlots}
+											{this.state.studentPlots.map( ( configString ) => {
+												const config = JSON.parse( configString );
+												return isString( config ) ?
+													<RPlot
+														code={config}
+														libraries={[ 'MASS' ]}
+													/> :
+													<Plotly
+														data={config.data}
+														layout={config.layout}
+														removeButtons
+													/>;
+											})}
 										</GridLayout> :
 										<Well>
 											No plots have been created yet...
