@@ -107,6 +107,13 @@ class Image extends Component {
 						{ this.props.body ?
 							<CopyToClipboard text={this.props.body} onCopy={closeModal}><Button>Copy SVG</Button></CopyToClipboard> : null
 						}
+						{ this.props.onShare ?
+							<Button onClick={() => {
+								this.props.onShare( this.props.src );
+							}}>
+								Share
+							</Button> : null
+						}
 						<CopyToClipboard text={`<img src="${this.props.src}" width="400" height="300" />`} onCopy={closeModal}><Button>Copy Link</Button></CopyToClipboard>
 						<Button href={this.props.src} download="plot.png" >Save Plot</Button>
 					</Modal.Footer>
@@ -122,7 +129,8 @@ class Image extends Component {
 Image.propTypes = {
 	src: PropTypes.string.isRequired,
 	title: PropTypes.string,
-	showModal: PropTypes.bool
+	showModal: PropTypes.bool,
+	onShare: PropTypes.func
 };
 
 
@@ -130,7 +138,8 @@ Image.propTypes = {
 
 Image.defaultProps = {
 	title: 'Image',
-	showModal: true
+	showModal: true,
+	onShare: null
 };
 
 

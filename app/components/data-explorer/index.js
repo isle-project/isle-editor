@@ -23,7 +23,7 @@ import FrequencyTable from 'components/data-explorer/frequency-table';
 import SummaryStatistics from 'components/data-explorer/summary-statistics';
 import SimpleLinearRegression from 'components/data-explorer/linear-regression';
 import VariableTransformer from 'components/data-explorer/variable-transformer';
-import DraggableGrid from 'components/draggable-grid';
+import GridLayout from 'components/grid-layout';
 import Pages from 'components/pages';
 import Gate from 'components/gate';
 import RealtimeMetrics from 'components/metrics/realtime';
@@ -274,22 +274,22 @@ class DataExplorer extends Component {
 	*/
 	onUserAction = ( action ) => {
 		let config;
-		if ( action.type === 'DATA_EXPLORER:HISTOGRAM' ) {
+		if ( action.type === 'DATA_EXPLORER_SHARE:HISTOGRAM' ) {
 			config = generateHistogramConfig({ data: this.state.data, ...action.value });
 		}
-		else if ( action.type === 'DATA_EXPLORER:BARCHART' ) {
+		else if ( action.type === 'DATA_EXPLORER_SHARE:BARCHART' ) {
 			config = generateBarchartConfig({ data: this.state.data, ...action.value });
 		}
-		else if ( action.type === 'DATA_EXPLORER:BOXPLOT' ) {
+		else if ( action.type === 'DATA_EXPLORER_SHARE:BOXPLOT' ) {
 			config = generateBoxplotConfig({ data: this.state.data, ...action.value });
 		}
-		else if ( action.type === 'DATA_EXPLORER:SCATTERPLOT' ) {
+		else if ( action.type === 'DATA_EXPLORER_SHARE:SCATTERPLOT' ) {
 			config = generateScatterplotConfig({ data: this.state.data, ...action.value });
 		}
-		else if ( action.type === 'DATA_EXPLORER:MOSAIC' ) {
+		else if ( action.type === 'DATA_EXPLORER_SHARE:MOSAIC' ) {
 			config = generateMosaicPlotCode({ data: this.state.data, ...action.value });
 		}
-		else if ( action.type === 'DATA_EXPLORER:HEATMAP' ) {
+		else if ( action.type === 'DATA_EXPLORER_SHARE:HEATMAP' ) {
 			config = generateHeatmapCode({ data: this.state.data, ...action.value });
 		}
 		if ( config ) {
@@ -663,36 +663,42 @@ class DataExplorer extends Component {
 					content = <Barchart
 						{...categoricalProps}
 						logAction={this.logAction}
+						session={this.context.session}
 					/>;
 					break;
 				case 'Pie Chart':
 					content = <Piechart
 						{...categoricalProps}
 						logAction={this.logAction}
+						session={this.context.session}
 					/>;
 					break;
 				case 'Histogram':
 					content = <Histogram
 						{...continuousProps}
 						logAction={this.logAction}
+						session={this.context.session}
 					/>;
 					break;
 				case 'Box Plot':
 					content = <Boxplot
 						{...continuousProps}
 						logAction={this.logAction}
+						session={this.context.session}
 					/>;
 					break;
 				case 'Scatterplot':
 					content = <Scatterplot
 						{...continuousProps}
 						logAction={this.logAction}
+						session={this.context.session}
 					/>;
 					break;
 				case 'Heat Map':
 					content = <Heatmap
 						{...continuousProps}
 						logAction={this.logAction}
+						session={this.context.session}
 					/>;
 					break;
 				case 'Mosaic Plot':
@@ -848,9 +854,9 @@ class DataExplorer extends Component {
 								</Modal.Header>
 								<Modal.Body style={{ height: 0.80 * window.innerHeight, overflowY: 'scroll' }}>
 									{ this.state.studentPlots.length > 0 ?
-										<DraggableGrid>
+										<GridLayout>
 											{this.state.studentPlots}
-										</DraggableGrid> :
+										</GridLayout> :
 										<Well>
 											No plots have been created yet...
 										</Well>

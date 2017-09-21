@@ -75,6 +75,17 @@ class MosaicPlot extends Component {
 					code={code}
 					libraries={[ 'MASS' ]}
 					onDone={this.props.onPlotDone}
+					onShare={() => {
+						this.props.session.addNotification({
+							title: 'Plot shared.',
+							message: 'You have successfully shared your plot.',
+							level: 'success',
+							position: 'tr'
+						});
+						this.props.logAction( 'DATA_EXPLORER_SHARE:MOSAIC', {
+							vars, showColors
+						});
+					}}
 				/>
 			</div>
 		};

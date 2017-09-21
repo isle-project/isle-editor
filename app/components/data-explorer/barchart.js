@@ -77,7 +77,17 @@ class Barchart extends Component {
 			type: 'Chart',
 			value: <div>
 				<label>{variable}: </label>
-				<Plotly data={config.data} layout={config.layout} />
+				<Plotly data={config.data} layout={config.layout} onShare={() => {
+					this.props.session.addNotification({
+						title: 'Plot shared.',
+						message: 'You have successfully shared your plot.',
+						level: 'success',
+						position: 'tr'
+					});
+					this.props.logAction( 'DATA_EXPLORER_SHARE:BARCHART', {
+						variable, group
+					});
+				}}/>
 			</div>
 		};
 		this.props.logAction( 'DATA_EXPLORER:BARCHART', {

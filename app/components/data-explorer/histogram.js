@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import plotlyjs from 'plotly.js';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
@@ -147,7 +148,17 @@ class Histogram extends Component {
 			type: 'Chart',
 			value: <div>
 				<label>{variable}: </label>
-				<Plotly data={config.data} layout={config.layout} />
+				<Plotly data={config.data} layout={config.layout} onShare={() => {
+					this.props.session.addNotification({
+						title: 'Plot shared.',
+						message: 'You have successfully shared your plot.',
+						level: 'success',
+						position: 'tr'
+					});
+					this.props.logAction( 'DATA_EXPLORER_SHARE:HISTOGRAM', {
+						variable, group, overlayDensity, chooseBins, nBins
+					});
+				}} />
 			</div>
 		};
 		this.props.logAction( 'DATA_EXPLORER:HISTOGRAM', {

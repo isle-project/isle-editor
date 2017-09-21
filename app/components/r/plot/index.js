@@ -122,7 +122,8 @@ RPlot.propTypes = {
 		PropTypes.string,
 		PropTypes.array
 	]),
-	onDone: PropTypes.func
+	onDone: PropTypes.func,
+	onShare: PropTypes.func
 };
 
 RPlot.contextTypes = {
@@ -138,7 +139,8 @@ RPlot.defaultProps = {
 	height: 400,
 	libraries: [],
 	prependCode: '',
-	onDone(){}
+	onDone(){},
+	onShare: null
 };
 
 

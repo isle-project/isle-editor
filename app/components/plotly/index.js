@@ -48,6 +48,21 @@ class Plot extends Component {
 	}
 
 	drawPlot = ( plotID ) => {
+
+		const buttonsToAdd = [];
+		if ( this.props.onShare ) {
+			buttonsToAdd.push({
+				name: 'Share',
+				icon: Plotly.Icons[ 'plotlylogo' ],
+				click: this.props.onShare
+			});
+		}
+		buttonsToAdd.push({
+			name: 'Toggle FullScreen',
+			icon: Plotly.Icons[ 'zoombox' ],
+			click: this.toggleFullscreen
+		});
+
 		Plotly.newPlot(
 			plotID,
 			this.props.data,
@@ -56,11 +71,7 @@ class Plot extends Component {
 				displayModeBar: true,
 				displaylogo: false,
 				modeBarButtonsToRemove: this.props.removeButtons ? BUTTONS : [ 'sendDataToCloud' ],
-				modeBarButtonsToAdd: [ {
-					name: 'Toggle FullScreen',
-					icon: Plotly.Icons[ 'zoombox' ],
-					click: this.toggleFullscreen
-				} ]
+				modeBarButtonsToAdd: buttonsToAdd
 			}
 		);
 	}
@@ -99,7 +110,8 @@ class Plot extends Component {
 
 Plotly.defaultProps = {
 	layout: {},
-	removeButtons: false
+	removeButtons: false,
+	onShare: null
 };
 
 
@@ -108,7 +120,8 @@ Plotly.defaultProps = {
 Plotly.propTypes = {
 	data: PropTypes.array.isRequired,
 	layout: PropTypes.object,
-	removeButtons: PropTypes.bool
+	removeButtons: PropTypes.bool,
+	onShare: PropTypes.func
 };
 
 
