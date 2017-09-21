@@ -70,7 +70,7 @@ class Plot extends Component {
 			{
 				displayModeBar: true,
 				displaylogo: false,
-				modeBarButtonsToRemove: this.props.removeButtons ? BUTTONS : [ 'sendDataToCloud' ],
+				modeBarButtonsToRemove: this.props.removeButtons ? BUTTONS : [ 'sendDataToCloud', 'hoverClosestCartesian', 'hoverCompareCartesian' ],
 				modeBarButtonsToAdd: buttonsToAdd
 			}
 		);
