@@ -4,12 +4,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
-import RPlot from 'components/r/plot';
 import Plotly from 'components/plotly';
 import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import isArray from '@stdlib/assert/is-array';
+import floor from '@stdlib/math/base/special/floor';
+import ceil from '@stdlib/math/base/special/ceil';
 
 
 // FUNCTIONS //
@@ -26,7 +27,69 @@ function by( arr, factor, fun ) {
 		ret[ key ] = fun( ret[ key ]);
 	}
 	return ret;
-}
+} // end FUNCTION by()
+
+export function generatePiechartConfig({ data, variable, group }) {
+	let annotations;
+	let traces;
+	if ( !group ) {
+		let freqs = entries( countBy( data[ variable ], identity ) );
+		let categories = freqs.map( e => e[ 0 ]);
+		freqs = freqs.map( e => e[ 1 ]);
+
+		traces = [ {
+			values: freqs,
+			labels: categories,
+			type: 'pie'
+		} ];
+	} else {
+		const freqs = by( data[ variable ], data[ group ], arr => {
+			return entries( countBy( arr, identity ) );
+		});
+		const nPlots = Object.keys( freqs ).length;
+		const nRows = ceil( nPlots / 2 );
+		const nCols = 2;
+		traces = [];
+		annotations = [];
+
+		let i = 0;
+		for ( let key in freqs ) {
+			const row = floor( i / nCols );
+			const col = i - ( row*nCols );
+			const val = freqs[ key ];
+			const categories = val.map( e => e[ 0 ]);
+			const counts = val.map( e => e[ 1 ]);
+			traces.push({
+				values: counts,
+				labels: categories,
+				type: 'pie',
+				name: key,
+				domain: {
+					x: [ ( col ) / nCols, ( col+1 ) / nCols ],
+					y: [ ( row ) / nRows, ( row+0.8 ) / nRows ]
+				}
+			});
+			annotations.push({
+				text: key,
+				x: ( col % 2 ? col+0.8 : col+0.2 ) / nCols ,
+				y: ( row+0.9 ) / nRows,
+				font: {
+					size: 18
+				},
+				showarrow: false
+			});
+			i += 1;
+		}
+	}
+	const layout = {
+		annotations,
+		title: group ? `${variable} by ${group}` : variable
+	};
+	return {
+		layout,
+		data: traces
+	};
+} // end FUNCTION generatePiechartConfig()
 
 
 // MAIN //
@@ -38,54 +101,26 @@ class PieChart extends Component {
 	}
 
 	generatePiechart( variable, group ) {
-		let plotCommand = 'pie';
-		let label = 'labels';
-		let output = null;
-
-		if ( !group ) {
-			let freqs = entries( countBy( this.props.data[ variable ], identity ) );
-			let categories = freqs.map( e => e[ 0 ]);
-			freqs = freqs.map( e => e[ 1 ]);
-
-			var data = [ {
-				values: freqs,
-				labels: categories,
-				type: 'pie'
-			} ];
-			output = {
-				variable: variable,
-				type: 'Chart',
-				value: <div>
-					<label>{variable}: </label>
-					<Plotly data={data} />
-				</div>
-			};
-		} else {
-			let freqs = by( this.props.data[ variable ], this.props.data[ group ], arr => {
-				return entries( countBy( arr, identity ) );
-			});
-
-			let nPlots = Object.keys( freqs ).length;
-			let code = `par(mfrow=c(ceiling(${nPlots}/2),2))`;
-			for ( let key in freqs ) {
-				let val = freqs[ key ];
-				let categories = val.map( e => '"'+e[ 0 ]+'"' );
-				let counts = val.map( e => e[ 1 ]);
-				code += '\n';
-				code += `${plotCommand}(c(${counts}),
-					${label}=c(${categories}),
-					main="${group}: ${key}",
-					cex.lab=2.0, cex.main=2.0, cex.axis=2.0, cex=1.5 )`;
-			}
-			output = {
-				variable: variable,
-				type: 'Chart',
-				value: <div>
-					<label>{variable}: </label>
-					<RPlot code={code} onDone={this.props.onPlotDone} />
-				</div>
-			};
-		}
+		const config = generatePiechartConfig({ data: this.props.data, variable, group });
+		const output = {
+			variable: variable,
+			type: 'Chart',
+			value: <Plotly
+				data={config.data}
+				layout={config.layout}
+				onShare={() => {
+					this.props.session.addNotification({
+						title: 'Plot shared.',
+						message: 'You have successfully shared your plot.',
+						level: 'success',
+						position: 'tr'
+					});
+					this.props.logAction( 'DATA_EXPLORER_SHARE:PIECHART', {
+						variable, group
+					});
+				}}
+			/>
+		};
 		this.props.logAction( 'DATA_EXPLORER:PIECHART', {
 			variable,
 			group
