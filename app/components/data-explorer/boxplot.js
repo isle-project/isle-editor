@@ -49,7 +49,9 @@ export function generateBoxplotConfig({ data, variable, group }) {
 	}
 	return {
 		data: traces,
-		layout: {}
+		layout: {
+			title: group ? `${variable} by ${group}` : variable
+		}
 	};
 } // end FUNCTION generateBoxplotConfig()
 
@@ -67,20 +69,17 @@ class Boxplot extends Component {
 		const output = {
 			variable: variable,
 			type: 'Chart',
-			value: <div>
-				<label>{variable}: </label>
-				<Plotly data={config.data} layout={config.layout} onShare={() => {
-					this.props.session.addNotification({
-						title: 'Plot shared.',
-						message: 'You have successfully shared your plot.',
-						level: 'success',
-						position: 'tr'
-					});
-					this.props.logAction( 'DATA_EXPLORER_SHARE:BOXPLOT', {
-						variable, group
-					});
-				}}/>
-			</div>
+			value:  <Plotly data={config.data} layout={config.layout} onShare={() => {
+				this.props.session.addNotification({
+					title: 'Plot shared.',
+					message: 'You have successfully shared your plot.',
+					level: 'success',
+					position: 'tr'
+				});
+				this.props.logAction( 'DATA_EXPLORER_SHARE:BOXPLOT', {
+					variable, group
+				});
+			}}/>
 		};
 		this.props.logAction( 'DATA_EXPLORER:BOXPLOT', {
 			variable,

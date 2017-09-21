@@ -38,7 +38,7 @@ import Boxplot, { generateBoxplotConfig } from 'components/data-explorer/boxplot
 import Heatmap, { generateHeatmapCode } from 'components/data-explorer/heatmap';
 import Histogram, { generateHistogramConfig } from 'components/data-explorer/histogram';
 import MosaicPlot, { generateMosaicPlotCode } from 'components/data-explorer/mosaicplot';
-import Piechart from 'components/data-explorer/piechart';
+import Piechart, { generatePiechartConfig } from 'components/data-explorer/piechart';
 import Scatterplot, { generateScatterplotConfig } from 'components/data-explorer/scatterplot';
 
 
@@ -282,6 +282,9 @@ class DataExplorer extends Component {
 		}
 		else if ( action.type === 'DATA_EXPLORER_SHARE:BOXPLOT' ) {
 			config = generateBoxplotConfig({ data: this.state.data, ...action.value });
+		}
+		else if ( action.type === 'DATA_EXPLORER_SHARE:PIECHART' ) {
+			config = generatePiechartConfig({ data: this.state.data, ...action.value });
 		}
 		else if ( action.type === 'DATA_EXPLORER_SHARE:SCATTERPLOT' ) {
 			config = generateScatterplotConfig({ data: this.state.data, ...action.value });

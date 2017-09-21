@@ -57,7 +57,15 @@ export function generateBarchartConfig({ data, variable, group }) {
 	}
 	return {
 		data: traces,
-		layout: {}
+		layout: {
+			xaxis: {
+				title: variable
+			},
+			yaxis: {
+				title: 'Count'
+			},
+			title: group ? `${variable} by ${group}` : variable
+		}
 	};
 } // end FUNCTION generateBarchartConfig()
 
@@ -75,20 +83,17 @@ class Barchart extends Component {
 		const output = {
 			variable: variable,
 			type: 'Chart',
-			value: <div>
-				<label>{variable}: </label>
-				<Plotly data={config.data} layout={config.layout} onShare={() => {
-					this.props.session.addNotification({
-						title: 'Plot shared.',
-						message: 'You have successfully shared your plot.',
-						level: 'success',
-						position: 'tr'
-					});
-					this.props.logAction( 'DATA_EXPLORER_SHARE:BARCHART', {
-						variable, group
-					});
-				}}/>
-			</div>
+			value: <Plotly data={config.data} layout={config.layout} onShare={() => {
+				this.props.session.addNotification({
+					title: 'Plot shared.',
+					message: 'You have successfully shared your plot.',
+					level: 'success',
+					position: 'tr'
+				});
+				this.props.logAction( 'DATA_EXPLORER_SHARE:BARCHART', {
+					variable, group
+				});
+			}}/>
 		};
 		this.props.logAction( 'DATA_EXPLORER:BARCHART', {
 			variable,

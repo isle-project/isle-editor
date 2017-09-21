@@ -66,7 +66,8 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 		layout = {
 			xaxis: {title: 'Value' },
 			yaxis: {title: overlayDensity ? 'Density' : 'Count' },
-			reversescale: true
+			reversescale: true,
+			title: variable
 		};
 	} else {
 		let freqs = by( data[ variable ], data[ group ], arr => {
@@ -114,7 +115,8 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 		}
 		layout = {
 			xaxis: {title: 'Value' },
-			yaxis: {title: overlayDensity ? 'Density' : 'Count' }
+			yaxis: {title: overlayDensity ? 'Density' : 'Count' },
+			title:  `${variable} by ${group}`
 		};
 		layout.barmode = 'overlay';
 	}
@@ -146,20 +148,17 @@ class Histogram extends Component {
 		const output = {
 			variable: variable,
 			type: 'Chart',
-			value: <div>
-				<label>{variable}: </label>
-				<Plotly data={config.data} layout={config.layout} onShare={() => {
-					this.props.session.addNotification({
-						title: 'Plot shared.',
-						message: 'You have successfully shared your plot.',
-						level: 'success',
-						position: 'tr'
-					});
-					this.props.logAction( 'DATA_EXPLORER_SHARE:HISTOGRAM', {
-						variable, group, overlayDensity, chooseBins, nBins
-					});
-				}} />
-			</div>
+			value: <Plotly data={config.data} layout={config.layout} onShare={() => {
+				this.props.session.addNotification({
+					title: 'Plot shared.',
+					message: 'You have successfully shared your plot.',
+					level: 'success',
+					position: 'tr'
+				});
+				this.props.logAction( 'DATA_EXPLORER_SHARE:HISTOGRAM', {
+					variable, group, overlayDensity, chooseBins, nBins
+				});
+			}} />
 		};
 		this.props.logAction( 'DATA_EXPLORER:HISTOGRAM', {
 			variable, group, overlayDensity, chooseBins, nBins
