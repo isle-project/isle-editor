@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Button, ButtonToolbar, FormControl, OverlayTrigger, Panel, Tooltip } from 'react-bootstrap';
 import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
+const debug = require( 'debug' )( 'isle:free-text-question' );
 
 
 // MAIN //
@@ -17,6 +18,7 @@ class FreeTextQuestion extends Component {
 	*/
 	constructor( props ) {
 		super( props );
+		debug( 'Invoking constructor of FreeTextQuestion...' );
 
 		// Initialize state variables...
 		this.state = {
@@ -93,6 +95,17 @@ class FreeTextQuestion extends Component {
 		};
 	}
 
+	componentWillReceiveProps( nextProps ) {
+		if ( nextProps !== this.props ) {
+			this.setState({
+				value: '',
+				solutionDisplayed: false,
+				submitted: false
+			});
+			debug( 'Component will receive props.' );
+		}
+	}
+
 	/*
 	* React component render method.
 	*/
@@ -111,8 +124,9 @@ class FreeTextQuestion extends Component {
 				{ this.props.question ? <h4>{this.props.question}</h4> : null }
 				<label>{ this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' } </label>
 				<FormControl
+					id={`${this.props.id}_textarea`}
 					componentClass="textarea"
-					placeholder="Enter your answer here..."
+					placeholder={this.props.placeholder}
 					onChange={this.handleChange}
 					style={{
 						resize: this.props.resizable ? 'both' : 'none'
@@ -217,6 +231,7 @@ FreeTextQuestion.defaultProps = {
 	chat: false,
 	hints: [],
 	onChange() {},
+	placeholder: 'Enter your answer here...',
 	question: '',
 	solution: null,
 	resizable: false,
@@ -232,6 +247,7 @@ FreeTextQuestion.propTypes = {
 	chat: PropTypes.bool,
 	hints: PropTypes.array,
 	onChange: PropTypes.func,
+	placeholder: PropTypes.string,
 	question: PropTypes.string,
 	solution: PropTypes.string,
 	resizable: PropTypes.bool,
