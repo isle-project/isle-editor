@@ -3,11 +3,8 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Collapse, ListGroup, ListGroupItem, Modal, Panel, Well } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import isArray from '@stdlib/assert/is-array';
 import Gate from 'components/gate';
-import DataTable from 'components/data-table';
 import TextArea from 'components/text-area';
-import DatabaseMetrics from 'components/metrics/db';
 
 
 // MAIN //
@@ -48,25 +45,31 @@ class InstructorBar extends Component {
 	}
 
 	toggleActions = () => {
+		if ( !this.state.showActions ) {
+			this.addSessionActions();
+		}
 		this.setState({
 			showActions: !this.state.showActions,
 		});
 	}
 
-	onData = ( data ) => {
-		if ( data ) {
-			data = JSON.parse( data );
-			if ( isArray( data ) ) {
-				data = data.map( x => x.data );
-				this.setState({
-					actions: data
-				});
+	addSessionActions = () => {
+		const { session } = this.context;
+		const actions = session.socketActions;
+		const filtered = [];
+		for ( let i = 0; i < actions.length; i++ ) {
+			if ( actions[ i ].id === this.props.id ) {
+				filtered.push( actions[ i ]);
 			}
 		}
+		this.setState({
+			actions: filtered
+		});
 	}
 
 	componentDidMount() {
 		const { session } = this.context;
+
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if ( type === 'member_action' ) {
 				if ( action.type === 'COMPONENT_FEEDBACK' ) {
@@ -80,6 +83,9 @@ class InstructorBar extends Component {
 					}
 				}
 				this.forceUpdate();
+			}
+			else if ( type === 'retrieved_user_actions' ) {
+				this.addSessionActions();
 			}
 		});
 	}
@@ -95,7 +101,7 @@ class InstructorBar extends Component {
 					{ this.state.receivedFeedbacks.length > 0 ? <Panel header="Feedback">
 						<ListGroup fill style={{ marginLeft: 0 }}>
 							{this.state.receivedFeedbacks.map( elem =>
-								<ListGroupItem>
+								<ListGroupItem style={{ padding: '2px 5px' }}>
 									<p>{elem}</p>
 								</ListGroupItem>
 							)}
@@ -111,18 +117,27 @@ class InstructorBar extends Component {
 							onHide={this.toggleActions}
 							dialogClassName="fullscreen-modal"
 						>
-
-							<Modal.Footer>
-								<DatabaseMetrics
-									id={this.props.id}
-									onData={this.onData}
-								/>
+							<Modal.Header closeButton>
+								<Modal.Title>Actions</Modal.Title>
+							</Modal.Header>
+							<Modal.Body style={{ height: 0.80 * window.innerHeight, overflowY: 'scroll' }}>
 								{ this.state.actions.length > 0 ?
-									<DataTable data={this.state.actions} /> :
+									<ListGroup fill style={{ marginLeft: 0 }}>
+										{this.state.actions.map( elem =>
+											<ListGroupItem>
+												<span style={{ textAlign: 'left' }}>
+													<b>{elem.name}:</b> {elem.value}
+												</span>
+											</ListGroupItem>
+										)}
+									</ListGroup>
+									:
 									<Well>
 										<h2>The data set is empty.</h2>
 									</Well>
 								}
+							</Modal.Body>
+							<Modal.Footer>
 								<Button onClick={this.toggleActions}>Close</Button>
 							</Modal.Footer>
 						</Modal>
