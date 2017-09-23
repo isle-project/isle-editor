@@ -364,6 +364,7 @@ class Session {
 			if ( !error && response.statusCode === 200 ) {
 				body = JSON.parse( body );
 				this.socketActions = body.actions;
+				this.update( 'retrieved_user_actions', body.actions );
 			}
 		});
 	}
@@ -508,7 +509,6 @@ class Session {
 			if ( error ) {
 				onData( error );
 			} else {
-				console.log( body );
 				onData( null, JSON.parse( body ) );
 			}
 		});
