@@ -135,7 +135,7 @@
     "css-modules-require-hook": "^4.0.0",
     "csv-parse": "^1.2.1",
     "d3": "^4.7.3",
-    "debug-electron": "0.0.4",
+    "debug": "^2.6.9",
     "detect-csv": "^1.1.0",
     "dompurify": "^1.0.1",
     "electron-window-state": "^4.0.1",
