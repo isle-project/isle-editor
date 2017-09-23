@@ -101,7 +101,7 @@ class ActionLog extends Component {
 
 	}
 
-	buildActionsArray( props ) {
+	buildActionsArray( props, clbk ) {
 		let { from, to } = props.period;
 		from = from.toDate();
 		to = to.toDate();
@@ -132,11 +132,14 @@ class ActionLog extends Component {
 		}
 		this.setState({
 			displayedActions
+		}, () => {
+			if ( clbk ) {
+				clbk( from, to, displayedActions.length );
+			}
 		});
 	}
 
 	componentDidMount() {
-		this.buildActionsArray( this.props );
 		this.unsubscribe = session.subscribe( ( type ) => {
 			const { session } = this.context;
 			if ( session.socketActions.length === 0 && this.state.filter !== null ) {
@@ -150,6 +153,8 @@ class ActionLog extends Component {
 			}
 			else if ( type === 'member_action' ) {
 				this.buildActionsArray( this.props );
+			} else if ( type === 'retrieved_user_actions' ) {
+				this.buildActionsArray( this.props );
 			}
 		});
 	}
@@ -159,14 +164,14 @@ class ActionLog extends Component {
 			nextProps.period.from !== this.props.period.from ||
 			nextProps.period.to !== this.props.period.to
 		) {
-			this.buildActionsArray( nextProps );
+			this.buildActionsArray( nextProps, this.props.onTimeRangeChange );
 		}
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
 		if ( this.state.filter !== prevState.filter ) {
 			debug( 'Should filter out actions...' );
-			this.buildActionsArray( this.props );
+			this.props.buildActionsArray( this.props );
 		}
 	}
 
@@ -180,6 +185,12 @@ class ActionLog extends Component {
 		</ListGroup> );
 	}
 }
+
+// DEFAULT PROPERTIES //
+
+ActionLog.defaultProps = {
+	onTimeRangeChange() {}
+};
 
 
 // TYPES //

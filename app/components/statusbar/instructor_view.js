@@ -106,7 +106,7 @@ class InstructorView extends Component {
 			nActions: session.socketActions.length
 		});
 
-		this.unsubscribe = session.subscribe( ( type ) => {
+		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if ( type === 'logout' ) {
 				debug( 'Should reset the filters after user logout:' );
 				this.setState({
@@ -117,6 +117,11 @@ class InstructorView extends Component {
 				const { session } = this.context;
 				this.setState({
 					nActions: session.socketActions.length
+				});
+			}
+			else if ( type === 'retrieved_user_actions' ) {
+				this.setState({
+					nActions: value.length
 				});
 			}
 		});
@@ -248,12 +253,20 @@ class InstructorView extends Component {
 									</span>
 								</ButtonGroup>
 							</ButtonToolbar>
-							<ActionLog period={this.state.period} onFilter={ ( newHeader, nActions ) => {
-								this.setState({
-									actionLogHeader: newHeader,
-									nActions: nActions
-								});
-							}} />
+							<ActionLog
+								period={this.state.period}
+								onFilter={ ( newHeader, nActions ) => {
+									this.setState({
+										actionLogHeader: newHeader,
+										nActions: nActions
+									});
+								}}
+								onTimeRangeChange={ ( from, to, nActions ) => {
+									this.setState({
+										nActions
+									});
+								}}
+							/>
 						</Panel>
 					</Accordion>
 				</div>
