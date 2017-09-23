@@ -59,6 +59,7 @@ export default {
 	},
 	resolve: {
 		alias: {
+			'debug': require.resolve( 'debug/src/browser.js' ),
 			'esprima': path.resolve( './node_modules/esprima-fb' ),
 			'object-keys': path.resolve( './objectKeys.js' ),
 			'victory': require.resolve( 'victory/dist/victory' ),
