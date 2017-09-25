@@ -3,8 +3,9 @@
 import mustache from 'mustache';
 import request from 'request';
 import isString from '@stdlib/assert/is-string';
+import isFunction from '@stdlib/assert/is-function';
 import inEditor from 'utils/is-electron';
-import { OPEN_CPU_DEFAULT_SERVER } from 'constants/opencpu';
+import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 const isElectron = require( 'utils/is-electron' );
 const debug = require( 'debug' )( 'isle-editor' );
 const io = require( 'socket.io-client' );
@@ -13,11 +14,16 @@ const io = require( 'socket.io-client' );
 // VARIABLES //
 
 const PATH_REGEXP = /^\/([^\/]*)\/([^\/]*)\//i;
+const STDOUT_REGEX = /stdout/;
+const GRAPHICS_REGEX = /graphics/;
+const ERR_REGEX = /\nIn call:[\s\S]*$/gm;
+const HELP_PATH_REGEX = /\/(?:site-)?library\/([^\/]*)\/help\/([^\/"]*)/;
 
 /*
 * We don't reject unsecured server addresses inside of the editor. Lesson creators manually input the server they wish to use, they "opt-in". In contrast, end users do not have that luxury, so for deployed lessons the handshake has to be successful.
 */
 const rejectUnauthorized = isElectron ? false : true;
+let userRights = null;
 
 
 // SESSION //
@@ -27,33 +33,61 @@ class Session {
 	constructor( config ) {
 		debug( 'Should create session...' );
 
+		// Array of subscribed components listening for session updates:
 		this.listeners = [];
 
+		// Address in local storage for user information:
 		this.userVal = 'ISLE_USER_' + config.server;
+
+		// Retrieve user object from localStorage:
 		this.user = this.loadUser();
+
+		// Boolean indicating whether user is logged in or not:
 		this.anonymous = this.user ? false : true;
+
+		// Boolean whether lesson is finished:
 		this.finished = false;
+
+		// Boolean indicating whether the server is responding:
 		this.live = false;
+
+		// Actions for the current user:
 		this.actions = [];
+
+		// Actions received from other users via socket communication:
 		this.socketActions = [];
+
+		// List of currently logged-in users:
 		this.userList = [];
+
+		// Array of open chats:
 		this.chats = [];
+
+		// Hash table for session variables:
 		this.vars = {};
+
+		// State variables of the given lesson:
 		this.state = config.state;
+
+		// Time variables:
 		this.startTime = new Date().getTime();
 		this.endTime = null;
 		this.duration = 0;
+
+		// YAML configuration object:
 		this.config = config;
+
+		// Address where ISLE server is running:
 		this.server = config.server;
 
-		this.handleLogin = this.handleLogin.bind( this );
-		this.login = this.login.bind( this );
-
-		var url = window.location.pathname;
-		this.namespaceName = null;
-		this.lessonName = null;
+		// IDs in the database:
 		this.lessonID = null;
 		this.namespaceID = null;
+
+		// Extract namespace and lesson name from URL:
+		this.namespaceName = null;
+		this.lessonName = null;
+		const url = window.location.pathname;
 		if ( isString( url ) ) {
 			var matches = url.match( PATH_REGEXP );
 			if ( matches && matches.length >= 2 && url.endsWith( '/' ) ) {
@@ -62,115 +96,300 @@ class Session {
 			}
 		}
 
-		this.sendSocketMessage = ( data, to ) => {
-			if ( !to ) {
-				to = 'owners';
-			}
-			if ( this.socket ) {
-				this.socket.emit( 'event', data, to );
-			}
-		};
-
-		this.pingServer = () => {
-			debug( `Should ping the server at ${this.server}...` );
-			request.get( this.server + '/ping', {
-				rejectUnauthorized
-			}, ( err, res, body ) => {
-				if ( err ) {
-					debug( 'Encountered an error: '+err.message );
-				}
-				else if ( body === 'live' ) {
-					this.live = true;
-					if ( !this.lessonID && !this.namespaceID ) {
-						this.getLessonInfo();
-					}
-				} else {
-					this.live = false;
-				}
-				this.update();
-			});
-		};
-
-		this.startPingServer = () => {
-			this.pingServer();
-			if ( !inEditor ) {
-				this.pingInterval = setInterval( this.pingServer, 10000 );
-			}
-		};
-
-		this.stopPingServer = () => {
-			debug( 'Should clear the interval pinging the server' );
-			if ( !inEditor ) {
-				clearInterval( this.pingInterval );
-			}
-		};
-
-		const logSession = () => {
-			if ( !this.anonymous && this.live ) {
-				this.updateDatabase();
-			}
-		};
-
+		// Connect via WebSockets to other users...
 		if ( this.user && this.server ) {
 			this.socketConnect();
 		}
+
+		// Ping server to check status:
 		this.startPingServer();
-		setInterval( logSession, 5*60000 );
 
-		this.subscribe = ( listener ) => {
-			this.listeners.push( listener );
-			return () => {
-				this.listeners = this.listeners.filter( l => l !== listener );
-			};
+		// Log session data to database in regular interval:
+		setInterval( this.logSession, 5*60000 );
+	}
+
+	/**
+	* Logs session object to database if logged-in.
+	*
+	* @returns {void}
+	*/
+	logSession = () => {
+		if ( !this.anonymous && this.live ) {
+			this.updateDatabase();
+		}
+	}
+
+	/**
+	* Registers a listener by pushing it to the array of listeners and returns a function to unsubscribe the listener.
+	*/
+	subscribe = ( listener ) => {
+		this.listeners.push( listener );
+		return () => {
+			this.listeners = this.listeners.filter( l => l !== listener );
 		};
+	} // end FUNCTION subscribe()
 
-		let userRights = null;
-		this.getUserRights = () => {
-			if ( !this.anonymous && !this.userRightsQuestionPosed ) {
-				this.userRightsQuestionPosed = true;
-				request.post( this.server+'/get_user_rights', {
-					headers: {
-						'Authorization': 'JWT ' + this.user.token
-					},
-					form: {
-						namespaceName: this.namespaceName,
-						lessonName: this.lessonName
-					},
-					rejectUnauthorized
-				}, ( err, res, body ) => {
-					this.userRightsQuestionPosed = false;
-					if ( !err ) {
-						let obj = JSON.parse( body );
-						userRights = obj;
-						if ( userRights.owner ) {
-							this.getUserActions();
-						}
-						this.update();
+	/**
+	* Pings the server and starts retrieving lesson info if server is live.
+	*
+	* @returns {void}
+	*/
+	pingServer = () => {
+		debug( `Should ping the server at ${this.server}...` );
+		request.get( this.server + '/ping', {
+			rejectUnauthorized
+		}, ( err, res, body ) => {
+			if ( err ) {
+				debug( 'Encountered an error: '+err.message );
+			}
+			else if ( body === 'live' ) {
+				this.live = true;
+				if ( !this.lessonID && !this.namespaceID ) {
+					this.getLessonInfo( this.getUserRights );
+				}
+			} else {
+				this.live = false;
+			}
+			this.update();
+		});
+	}
+
+	/**
+	* Pings the server in a regular interval when lesson is deployed.
+	*
+	* @returns {void}
+	*/
+	startPingServer = () => {
+		this.pingServer();
+		if ( !inEditor ) {
+			this.pingInterval = setInterval( this.pingServer, 10000 );
+		}
+	}
+
+	/**
+	* Stops pinging the server once socket connection is established.
+	*
+	* @returns {void}
+	*/
+	stopPingServer = () => {
+		debug( 'Should clear the interval pinging the server' );
+		if ( !inEditor ) {
+			clearInterval( this.pingInterval );
+		}
+	}
+
+	/**
+	*  Executes R code via OpenCPU.
+	*
+	* @param {Object} opt - options
+	* @param {string} opt.code - R code
+	* @param {Function} opt.onPlots - callback invoked with array of generated plots
+	* @param {Function} opt.onResult - callback invoked with output of code evaluation
+	* @param {Function} opt.onError - callback invoked when error is encountered
+	* @returns {void}
+	*/
+	executeRCode = ({ code, onPlots, onResult, onError }) => {
+		const OPEN_CPU = this.getOpenCPUServer();
+		request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
+			form: {
+				x: code
+			},
+			rejectUnauthorized
+		}, ( error, response, body ) => {
+			if ( error ) {
+				return debug( 'Encountered an error: '+error.message );
+			}
+			const arr = body.split( '\n' );
+			const plots = [];
+			if ( response.statusCode !== 400 ) {
+				arr.forEach( elem => {
+					if ( GRAPHICS_REGEX.test( elem ) === true ) {
+						const imgURL = OPEN_CPU + elem + '/svg';
+						plots.push( imgURL );
+					}
+					if ( STDOUT_REGEX.test( elem ) === true ) {
+						request.get( OPEN_CPU + elem, {
+							rejectUnauthorized
+						}, onResult );
+					}
+				});
+				onPlots( plots );
+			} else {
+				onError( body.replace( ERR_REGEX, '' ) );
+			}
+		});
+	}
+
+	/**
+	* Retrieves help page for R help command, e.g. `help(mean)`.
+	*
+	* @param {string} helpCommand - R help command
+	* @param {Function} clbk - callback function invoked with retrieved help page
+	* @returns {void}
+	*/
+	getRHelpPage = ( helpCommand, clbk ) => {
+		const OPEN_CPU = this.getOpenCPUServer();
+		request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
+			form: {
+				x: 'x = ' + helpCommand + '; x[1]'
+			},
+			rejectUnauthorized
+		}, ( error, response, body ) => {
+			if ( error ) {
+				return debug( 'Encountered an error: '+error.message );
+			}
+			const arr = body.split( '\n' );
+			if ( response.statusCode !== 400 ) {
+				arr.forEach( elem => {
+					if ( STDOUT_REGEX.test( elem ) === true ) {
+						request.get( OPEN_CPU + elem, {
+							rejectUnauthorized
+						}, ( err, res, helpPath ) => {
+							const [ , lib, topic ] = helpPath.match( HELP_PATH_REGEX );
+							request.get( `https://public.opencpu.org/ocpu/library/${lib}/man/${topic}/html`, clbk );
+						});
 					}
 				});
 			}
-		};
-
-		this.removeUserRights = () => {
-			userRights = null;
-		};
-
-		this.isEnrolled = () => {
-			if ( !userRights ) {
-				this.getUserRights();
-				return false;
-			}
-			return userRights.enrolled;
-		};
-		this.isOwner = () => {
-			if ( !userRights ) {
-				this.getUserRights();
-				return false;
-			}
-			return userRights.owner;
-		};
+		});
 	}
 
+	/**
+	* Retrieves help page for the specified function.
+	*
+	* @param {string} library - R library the function resides in
+	* @param {string} functionName - name of function to get help page for
+	* @param {Function} clbk - callback function invoked with retrieved page
+	* @returns {void}
+	*/
+	getRHelp = ( library, functionName, clbk ) => {
+		const OPEN_CPU = this.getOpenCPUServer();
+		request.get( OPEN_CPU + `/ocpu/library/${library}/man/${functionName}/html`, {
+			rejectUnauthorized
+		}, clbk );
+	}
+
+	/**
+	* Generates R plot via OpenCPU.
+	*
+	* @param {string} code - R code to generate plot
+	* @param {string} filetype - file extension of generated plot
+	* @param {Function} clbk - callback function invoked with `error`, the URL of the image, and the response body (in that order)
+	* @returns {void}
+	*/
+	getRPlot = ( code, filetype, clbk ) => {
+		const OPEN_CPU = this.getOpenCPUServer();
+		request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
+			form: {
+				x: code
+			},
+			rejectUnauthorized
+		}, ( error, response, body ) => {
+			if ( !error ) {
+				const arr = body.split( '\n' );
+				arr.forEach( elem => {
+					if ( GRAPHICS_REGEX.test( elem ) === true ) {
+						const imgURL = OPEN_CPU + elem + '/' + filetype;
+						if ( filetype === 'svg' ) {
+							request.get( imgURL, {
+								rejectUnauthorized
+							}, ( error, response, body ) => {
+								clbk( error, imgURL, body );
+							});
+						} else {
+							clbk( null, imgURL );
+						}
+					}
+				});
+			} else {
+				clbk( error );
+			}
+		});
+	}
+
+	/**
+	* Send data packet to specified group of users.
+	*
+	* @param {Object} data - message data
+	* @param {string} [to='owners] - group of people to send message to. Can be either of `owners` or `members`
+	* @returns {void}
+	*/
+	sendSocketMessage = ( data, to ) => {
+		if ( !to ) {
+			to = 'owners';
+		}
+		if ( this.socket ) {
+			this.socket.emit( 'event', data, to );
+		}
+	}
+
+	/**
+	* Retrieves information from server on whether user is enrolled or owner of the course of the lesson. Pulls down logged actions in case user is an owner.
+	*
+	* @returns {void}
+	*/
+	getUserRights = () => {
+		if ( !this.anonymous && !this.userRightsQuestionPosed ) {
+			this.userRightsQuestionPosed = true;
+			request.post( this.server+'/get_user_rights', {
+				headers: {
+					'Authorization': 'JWT ' + this.user.token
+				},
+				form: {
+					namespaceName: this.namespaceName,
+					lessonName: this.lessonName
+				},
+				rejectUnauthorized
+			}, ( err, res, body ) => {
+				this.userRightsQuestionPosed = false;
+				if ( !err ) {
+					const obj = JSON.parse( body );
+					userRights = obj;
+					if ( userRights.owner ) {
+						this.getUserActions();
+					}
+					this.update();
+				}
+			});
+		}
+	}
+
+	/**
+	* Sets the userRights variable to null.
+	*/
+	removeUserRights = () => {
+		userRights = null;
+	}
+
+	/**
+	* Checks whether user is enrolled in the course.
+	*
+	* @returns {boolean} boolean indicating whether user is enrolled
+	*/
+	isEnrolled = () => {
+		if ( !userRights ) {
+			return false;
+		}
+		return userRights.enrolled;
+	}
+
+	/**
+	* Checks whether user is an owner of the course.
+	*
+	* @returns {boolean} boolean indicating whether user is course owner
+	*/
+	isOwner = () => {
+		if ( !userRights ) {
+			return false;
+		}
+		return userRights.owner;
+	}
+
+	/**
+	* Joins the specified chat in case of an existing socket connection.
+	*
+	* @param {string} name - chat room name
+	*/
 	joinChat( name ) {
 		if ( this.socket ) {
 			let chat = { name: name, messages: [], members: [] };
@@ -188,6 +407,12 @@ class Session {
 		}
 	}
 
+	/**
+	* Marks all chat messages in the specified room as read.
+	*
+	* @param {string} name - name of chat room
+	* @returns {void}
+	*/
 	markChatMessagesAsRead( name ) {
 		const chat = this.getChat( name );
 		chat.messages = chat.messages.map( m => {
@@ -197,6 +422,12 @@ class Session {
 		this.update( 'mark_messages' );
 	}
 
+	/**
+	* Sends the supplied message to all members in the given chat room.
+	*
+	* @param {string} name - chat room name
+	* @param {string} msg - chat message
+	*/
 	sendChatMessage( name, msg ) {
 		if ( this.socket ) {
 			const msgObj = {
@@ -217,11 +448,16 @@ class Session {
 		}
 	}
 
+	/**
+	* Retrieves chat room object.
+	*
+	* @param {string} name - chat room name
+	* @returns {(Object|null)} chat room if found, null otherwise
+	*/
 	getChat( name ) {
 		let idx = name.indexOf( ':' );
 		if ( idx !== -1 ) {
 			name = name.substr( idx+1 );
-			console.log( name );
 		}
 		for ( let i = 0; i < this.chats.length; i++ ) {
 			let chat = this.chats[ i ];
@@ -232,6 +468,12 @@ class Session {
 		return null;
 	}
 
+	/**
+	* Leaves chat with the given name and removes it from the current list of chats.
+	*
+	* @param {string} name - chat room name
+	* @returns {void}
+	*/
 	leaveChat( name ) {
 		for ( let i = this.chats.length - 1; i >= 0; i-- ) {
 			if ( this.chats[ i ].name === name ) {
@@ -242,6 +484,11 @@ class Session {
 		this.socket.emit( 'leave_chat', name );
 	}
 
+	/**
+	* Establishes socket connection with other users.
+	*
+	* @returns {void}
+	*/
 	socketConnect() {
 		const socket = io.connect( this.server );
 
@@ -351,6 +598,11 @@ class Session {
 		this.socket = socket;
 	}
 
+	/**
+	* Retrieves all actions by users for the current lesson for course owners.
+	*
+	* @returns {void}
+	*/
 	getUserActions() {
 		request.post( this.server+'/get_user_actions', {
 			headers: {
@@ -361,7 +613,10 @@ class Session {
 			},
 			rejectUnauthorized
 		}, ( error, response, body ) => {
-			if ( !error && response.statusCode === 200 ) {
+			if ( error ) {
+				return debug( 'Encountered an error: '+error.message );
+			}
+			if ( response.statusCode === 200 ) {
 				body = JSON.parse( body );
 				this.socketActions = body.actions;
 				this.update( 'retrieved_user_actions', body.actions );
@@ -369,6 +624,12 @@ class Session {
 		});
 	}
 
+	/**
+	* Saves action to array of socket actions and sends it to listening components.
+	*
+	* @param {Object} action - user action object
+	* @returns {void}
+	*/
 	saveAction( action ) {
 		debug( 'Received a member action...' );
 		let newArray = this.socketActions;
@@ -378,6 +639,12 @@ class Session {
 		this.update( 'member_action', action );
 	}
 
+	/**
+	* Update all lesson components that have subscribed to session updates.
+	*
+	* @param {string} type - event type
+	* @param {*} data - event data
+	*/
 	update( type, data ) {
 		this.listeners.forEach( listener => listener( type, data ) );
 	}
@@ -394,13 +661,16 @@ class Session {
 					level: 'success',
 					position: 'tl'
 				});
-				console.log( data );
-				console.log( res );
 				this.login({ email: data.email, password: data.password }, clbk );
 			}
 		});
 	}
 
+	/**
+	* Logs out the currently logged-in user and remove his meta-data from localStorage.
+	*
+	* @returns {void}
+	*/
 	logout() {
 		debug( `Logout initiated by user ${this.user.name}` );
 		localStorage.removeItem( this.userVal );
@@ -417,6 +687,11 @@ class Session {
 		this.update( 'logout' );
 	}
 
+	/**
+	* Logs out user in current session if user has logged out in another tab.
+	*
+	* @returns {void}
+	*/
 	forcedLogout() {
 		debug( `Forced logout of user ${this.user.name} by server` );
 		localStorage.removeItem( this.userVal );
@@ -432,6 +707,11 @@ class Session {
 		this.update( 'logout' );
 	}
 
+	/**
+	* Resets session instance variables.
+	*
+	* @returns {void}
+	*/
 	reset() {
 		this.chats = [];
 		this.actions = [];
@@ -440,7 +720,16 @@ class Session {
 		this.removeUserRights();
 	}
 
-	login( form, clbk ) {
+	/**
+	* Logs user in.
+	*
+	* @param {Object} form - form data
+	* @param {string} form.email - email address
+	* @param {string} form.password - user password
+	* @param {Function} clbk - callback function
+	* @returns {void}
+	*/
+	login = ( form, clbk ) => {
 		request.post( this.server+'/login', {
 			form,
 			rejectUnauthorized
@@ -453,6 +742,12 @@ class Session {
 		});
 	}
 
+	/**
+	* Sends a "Reset Password" link to the supplied email address.
+	*
+	* @param {string} email - email address
+	* @returns {void}
+	*/
 	forgotPassword( email ) {
 		request.get( this.server+'/forgot_password', {
 			qs: {
@@ -478,7 +773,12 @@ class Session {
 		});
 	}
 
-	getLessonInfo() {
+	/**
+	* Retrieves the ID for the lesson and namespace from the database.
+	*
+	* @param {Function} clbk - callback to be invoked after retrieving lesson info
+	*/
+	getLessonInfo( clbk ) {
 		const { lessonName, namespaceName, server } = this;
 		debug( `Retrieve lesson info for ${namespaceName}/${lessonName} from ${server}` );
 		if ( lessonName && namespaceName ) {
@@ -493,11 +793,21 @@ class Session {
 					const body = JSON.parse( res.body );
 					this.lessonID = body.lessonID;
 					this.namespaceID = body.namespaceID;
+					if ( isFunction( clbk ) ) {
+						clbk();
+					}
 				}
 			});
 		}
 	}
 
+	/**
+	* Retrieves data from database.
+	*
+	* @param {Object} query - query for actions to obtain from database
+	* @param {Function} onData - callback invoked with error or retrieved data
+	* @returns {void}
+	*/
 	retrieveData( query, onData ) {
 		request.post( this.server + '/retrieve_data', {
 			form: {
@@ -514,7 +824,13 @@ class Session {
 		});
 	}
 
-	handleLogin( obj ) {
+	/**
+	* Verifies user credentials via JSON Web Token to finish login process.
+	*
+	* @param {Object} obj - user object with `token` and `id` fields
+	* @returns {void}
+	*/
+	handleLogin = ( obj ) => {
 		request.post( this.server+'/credentials', {
 			headers: {
 				'Authorization': 'JWT ' + obj.token
@@ -525,7 +841,7 @@ class Session {
 			rejectUnauthorized
 		}, ( error, response, body ) => {
 			if ( error ) {
-				return error;
+				return debug( 'Encountered an error: '+error.message );
 			}
 			this.addNotification({
 				title: 'Logged in',
@@ -533,7 +849,7 @@ class Session {
 				level: 'success',
 				position: 'tl'
 			});
-			let user = {
+			const user = {
 				...obj,
 				...JSON.parse( body )
 			};
@@ -545,31 +861,64 @@ class Session {
 		});
 	}
 
+	/**
+	* Stores a user object in localStorage.
+	*
+	* @returns {void}
+	*/
 	storeUser( user ) {
 		localStorage.setItem( this.userVal, JSON.stringify( user ) );
 	}
 
+	/**
+	* Loads a user object from localStorage.
+	*
+	* @returns {Object} user object
+	*/
 	loadUser() {
 		const item = localStorage.getItem( this.userVal );
 		const user = item ? JSON.parse( item ) : null;
 		return user;
 	}
 
+	/**
+	* Updates session user object from localStorage.
+	*
+	* @returns {void}
+	*/
 	updateUser() {
-		let item = localStorage.getItem( this.userVal );
+		const item = localStorage.getItem( this.userVal );
 		this.user = item ? JSON.parse( item ) : null;
 		this.anonymous = item ? false : true;
 	}
 
+	/**
+	* Sets a session variable to a given value.
+	*
+	* @param {string} name - variable name
+	* @param {*} val - value to set
+	* @returns {void}
+	*/
 	set( name, val ) {
 		this.vars[ name ] = val;
 		this.logToDatabase( 'vars', this.vars );
 	}
 
+	/**
+	* Retrieves the value of a session variable.
+	*
+	* @param {string} name - variable name
+	* @returns {*} variable value
+	*/
 	get( name ) {
 		return this.vars[ name ];
 	}
 
+	/**
+	* Finalizes session once user clicks on "Submit Lesson" button.
+	*
+	* @returns {void}
+	*/
 	finalize() {
 		this.updateUser();
 		this.endTime = new Date().getTime();
@@ -581,6 +930,11 @@ class Session {
 		}
 	}
 
+	/**
+	* Updates session instance in the remote database.
+	*
+	* @returns {void}
+	*/
 	updateDatabase() {
 		const currentSession = {
 			startTime: this.startTime,
@@ -599,11 +953,20 @@ class Session {
 				},
 				rejectUnauthorized
 			}, ( error, response, body ) => {
-				console.log( error );
+				if ( error ) {
+					debug( 'Encountered an error: '+error.message );
+				}
 			});
 		}
 	}
 
+	/**
+	* Logs data to database.
+	*
+	* @param {string} type - type of data to log (`vars` or `action`)
+	* @param {Object} data - data to log
+	* @returns {void}
+	*/
 	logToDatabase( type, data ) {
 		if ( this.anonymous ) {
 			data.email = 'anonymous';
@@ -626,11 +989,20 @@ class Session {
 				},
 				rejectUnauthorized
 			}, ( error, response, body ) => {
-				console.log( error );
+				if ( error ) {
+					debug( 'Encountered an error: '+error.message );
+				}
 			});
 		}
 	}
 
+	/**
+	* Logs session action to database and sends it via socket connection to specified group.
+	*
+	* @param {Object} action - action object
+	* @param {string} to - group to send log message to (either `owners` or `members`)
+	* @returns {void}
+	*/
 	log( action, to ) {
 		action.absoluteTime = new Date().getTime();
 		action.time = action.absoluteTime - this.startTime;
@@ -644,16 +1016,20 @@ class Session {
 		}
 	}
 
+	/**
+	* Uploads a file.
+	*
+	* @param {Object} formData - form data object
+	* @returns {void}
+	*/
 	uploadFile( formData ) {
-
 		if ( this.lessonName ) {
 			formData.append( 'lessonName', this.lessonName );
 		}
 		if ( this.namespaceName ) {
 			formData.append( 'namespaceName', this.namespaceName );
 		}
-
-		let xhr = new XMLHttpRequest();
+		const xhr = new XMLHttpRequest();
 		xhr.open( 'POST', this.server+'/upload_file', true );
 		xhr.setRequestHeader( 'Authorization', 'JWT ' + this.user.token );
 		xhr.onreadystatechange = () => {
@@ -661,14 +1037,13 @@ class Session {
 				let message;
 				let level;
 				if ( xhr.status === 200 ) {
-					let body = JSON.parse( xhr.responseText );
+					const body = JSON.parse( xhr.responseText );
 					message = body.message;
 					level = 'success';
 				} else {
 					message = xhr.responseText;
 					level = 'error';
 				}
-
 				this.addNotification({
 					title: 'File Upload',
 					message,
@@ -680,8 +1055,15 @@ class Session {
 		xhr.send( formData );
 	}
 
+	/**
+	* Sends an email.
+	*
+	* @param {string} name - email identifier in config
+	* @param {string} to - email address of receiver
+	* @returns {void}
+	*/
 	sendMail( name, to ) {
-		var mailOptions = this.config.mails[ name ] || {};
+		const mailOptions = this.config.mails[ name ] || {};
 		if ( !mailOptions.hasOwnProperty( 'from' ) ) {
 			mailOptions.from = this.config.email || 'robinson@isle.cmu.edu';
 		}
@@ -693,7 +1075,9 @@ class Session {
 			form: mailOptions,
 			rejectUnauthorized
 		}, ( error, response, body ) => {
-			console.log( error );
+			if ( error ) {
+				debug( 'Encountered an error: '+error.message );
+			}
 		});
 	}
 
@@ -708,12 +1092,17 @@ class Session {
 			OPEN_CPU_DEFAULT_SERVER;
 	}
 
+	/**
+	* Displays a notification.
+	*
+	* @param {Object} notification configuration
+	* @returns {void}
+	*/
 	addNotification( config ) {
 		if ( global.notificationSystem ) {
 			global.notificationSystem.addNotification( config );
 		}
 	}
-
 }
 
 
