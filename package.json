@@ -99,7 +99,7 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
-    "@stdlib/stdlib": "0.0.19",
+    "@stdlib/stdlib": "0.0.23",
     "archiver": "^2.0.0",
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",
@@ -135,7 +135,7 @@
     "css-modules-require-hook": "^4.0.0",
     "csv-parse": "^1.2.1",
     "d3": "^4.7.3",
-    "debug": "^2.6.9",
+    "debug": "^3.0.1",
     "detect-csv": "^1.1.0",
     "dompurify": "^1.0.1",
     "electron-window-state": "^4.0.1",
@@ -194,7 +194,7 @@
     "recordrtc": "^5.4.1",
     "redux": "^3.4.0",
     "redux-thunk": "^2.0.1",
-    "request": "2.81.0",
+    "request": "2.82.0",
     "semver": "^5.1.0",
     "simplemde": "^1.11.2",
     "socket.io-client": "^2.0.3",
@@ -206,7 +206,7 @@
     "utf-8-validate": "^3.0.2",
     "venn.js": "^0.2.14",
     "victory": "^0.22.2",
-    "webpack": "3.5.6"
+    "webpack": "3.6.0"
   },
   "devEngines": {
     "node": "5.x || 6.x || 7.x || 8.x"
