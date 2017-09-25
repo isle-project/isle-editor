@@ -19,7 +19,8 @@ class InstructorBar extends Component {
 			receivedFeedbacks: [],
 			actionsAreOpen: false,
 			feedbackIsOpen: false,
-			feedback: ''
+			feedback: '',
+			showExtended: false
 		};
 	}
 
@@ -50,6 +51,12 @@ class InstructorBar extends Component {
 		}
 		this.setState({
 			showActions: !this.state.showActions,
+		});
+	}
+
+	toggleExtended = () => {
+		this.setState({
+			showExtended: !this.state.showExtended
 		});
 	}
 
@@ -125,9 +132,14 @@ class InstructorBar extends Component {
 									<ListGroup fill style={{ marginLeft: 0 }}>
 										{this.state.actions.map( elem =>
 											<ListGroupItem>
-												<span style={{ textAlign: 'left' }}>
-													<b>{elem.name}:</b> {elem.value}
-												</span>
+												{ this.state.showExtended ?
+													<span style={{ textAlign: 'left' }}>
+														<b>{elem.name}:</b> {elem.value}
+													</span> :
+													<span style={{ textAlign: 'left' }}>
+														{elem.value}
+													</span>
+												}
 											</ListGroupItem>
 										)}
 									</ListGroup>
@@ -138,6 +150,7 @@ class InstructorBar extends Component {
 								}
 							</Modal.Body>
 							<Modal.Footer>
+								<Button onClick={this.toggleExtended}>{ this.state.showExtended ? 'Hide Extended' : 'Show Extended' }</Button>
 								<Button onClick={this.toggleActions}>Close</Button>
 							</Modal.Footer>
 						</Modal>
