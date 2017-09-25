@@ -4,15 +4,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dimensions from 'components/dimensions';
 import DataTable from 'components/data-table';
-import request from 'request';
 import Spinner from 'components/spinner';
 import createPrependCode from 'components/r/utils/create-prepend-code';
-
-
-// CONSTANTS //
-
-import { OPEN_CPU_IDENTITY } from 'constants/opencpu.js';
-const STDOUT_REGEX = /stdout/;
 
 
 // MAIN //
@@ -48,27 +41,13 @@ class RTable extends Component {
 					code.replace( /\n\s*([ A-Z0-9._\(\)]+)\n*$/i, '\n toJSON($1)' );
 
 				const { session } = this.context;
-				const OPEN_CPU = session.getOpenCPUServer();
-				request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
-					form: {
-						x: jsonCode
-					}
-				}, ( error, response, body ) => {
-					if ( !error ) {
-						const arr = body.split( '\n' );
-						for ( let i = 0; i < arr.length; i++ ) {
-							let elem = arr[ i ];
-							if ( STDOUT_REGEX.test( elem ) === true ) {
-								request.get( OPEN_CPU + elem, ( err, getResponse, getBody ) => {
-									console.log( JSON.parse( getBody ) );
-									this.setState({
-										data: JSON.parse( getBody ),
-										waiting: false
-									});
-								});
-								break;
-							}
-						}
+				session.executeRCode({
+					code: jsonCode,
+					onResult: ( err, res, body ) => {
+						this.setState({
+							data: JSON.parse( body ),
+							waiting: false
+						});
 					}
 				});
 			}

@@ -3,16 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DOMPurify from 'dompurify';
-import request from 'request';
 import Spinner from 'components/spinner';
 import createPrependCode from 'components/r/utils/create-prepend-code';
-
-
-// CONSTANTS //
-
-import { OPEN_CPU_IDENTITY } from 'constants/opencpu.js';
-const ERR_REGEX = /\nIn call:[\s\S]*$/gm;
-const STDOUT_REGEX = /stdout/;
 
 
 // FUNCTIONS //
@@ -56,31 +48,19 @@ class ROutput extends Component {
 				});
 
 				const { session } = this.context;
-				const OPEN_CPU = session.getOpenCPUServer();
 				const prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
 				const fullCode = prependCode + code;
-				request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
-					form: {
-						x: fullCode
-					}
-				}, ( error, response, body ) => {
-					if ( !error ) {
-						const arr = body.split( '\n' );
-						for ( let i = 0; i < arr.length; i++ ) {
-							let elem = arr[ i ];
-							if ( STDOUT_REGEX.test( elem ) === true ) {
-								request.get( OPEN_CPU + elem, ( err, getResponse, getBody ) => {
-									this.setState({
-										result: getBody,
-										running: false
-									});
-								});
-								break;
-							}
-						}
-					} else {
+				session.executeRCode({
+					code: fullCode,
+					onError: ( error ) => {
 						this.setState({
-							result: body.replace( ERR_REGEX, '' ),
+							result: error,
+							running: false
+						});
+					},
+					onResult: ( err, res, body ) => {
+						this.setState({
+							result: body,
 							running: false
 						});
 					}

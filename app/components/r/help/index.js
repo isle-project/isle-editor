@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
-import request from 'request';
 
 
 // MAIN //
@@ -27,8 +26,7 @@ class RHelp extends Component {
 			const functionName = this.props.func || this.props.children;
 			if ( this.state.body === '' ) {
 				const { session } = this.context;
-				const OPEN_CPU = session.getOpenCPUServer();
-				request.get( OPEN_CPU + `/ocpu/library/${this.props.library}/man/${functionName}/html`, ( error, response, body ) => {
+				session.getRHelp( this.props.library, functionName, ( error, response, body ) => {
 					if ( !error ) {
 						this.setState({
 							body,

@@ -2,16 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import request from 'request';
 import createPrependCode from 'components/r/utils/create-prepend-code';
 import Spinner from 'components/spinner';
 import Image from 'components/image';
-
-
-// CONSTANTS //
-
-import { OPEN_CPU_IDENTITY } from 'constants/opencpu.js';
-const GRAPHICS_REGEX = /graphics/;
 
 
 // MAIN //
@@ -29,7 +22,7 @@ class RPlot extends Component {
 		};
 	}
 
-	savePlot( error, img, body ) {
+	savePlot = ( error, img, body ) => {
 		if ( error ) {
 			this.props.onDone( error );
 		} else {
@@ -50,35 +43,10 @@ class RPlot extends Component {
 				last: this.props.code,
 				showModal: false
 			});
-
-			let prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
+			const prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
 			const fullCode = prependCode + this.props.code;
-
 			const { session } = this.context;
-			const OPEN_CPU = session.getOpenCPUServer();
-			request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
-				form: {
-					x: fullCode
-				}
-			}, ( error, response, body ) => {
-				if ( !error ) {
-					const arr = body.split( '\n' );
-					arr.forEach( elem => {
-						if ( GRAPHICS_REGEX.test( elem ) === true ) {
-							const imgURL = OPEN_CPU + elem + '/' + 		this.props.fileType;
-							if ( this.props.fileType === 'svg' ) {
-								request.get( imgURL, ( error, response, body ) => {
-									this.savePlot( error, imgURL, body );
-								});
-							} else {
-								this.savePlot( null, imgURL );
-							}
-						}
-					});
-				} else {
-					this.savePlot( error );
-				}
-			});
+			session.getRPlot( fullCode, this.props.fileType, this.savePlot );
 		}
 	}
 
@@ -129,6 +97,7 @@ RPlot.propTypes = {
 RPlot.contextTypes = {
 	session: PropTypes.object
 };
+
 
 // DEFAULT PROPERTIES //
 

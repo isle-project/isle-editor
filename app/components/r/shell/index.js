@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import Image from 'components/image';
 import InstructorBar from 'components/instructor-bar';
 import { Button, ButtonToolbar, Modal, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
-import request from 'request';
 import DOMPurify from 'dompurify';
 import createPrependCode from 'components/r/utils/create-prepend-code';
 import ChatButton from 'components/chat-button';
@@ -24,12 +23,7 @@ import Spinner from 'components/spinner';
 
 // CONSTANTS //
 
-import { OPEN_CPU_IDENTITY } from 'constants/opencpu.js';
-const GRAPHICS_REGEX = /graphics/;
-const STDOUT_REGEX = /stdout/;
-const ERR_REGEX = /\nIn call:[\s\S]*$/gm;
 const HELP_REGEX = /(help\([^\)]*\)|\?[^\n]*)/;
-const HELP_PATH_REGEX = /\/(?:site-)?library\/([^\/]*)\/help\/([^\/"]*)/;
 
 
 // VARIABLES //
@@ -276,12 +270,17 @@ class RShell extends React.Component {
 				});
 			}
 			else {
+				const { session } = this.context;
 				let helpCommand = currentCode.match( HELP_REGEX );
 				if ( helpCommand ) {
-					this.getHelpPage( helpCommand[ 0 ]);
+					session.getRHelpPage( helpCommand[ 0 ], ( err, res, html ) => {
+						if ( !err ) {
+							this.setState({
+								help: html
+							});
+						}
+					});
 				}
-
-				const { session } = this.context;
 				if ( this.props.id ) {
 					session.log({
 						id: this.props.id,
@@ -299,39 +298,26 @@ class RShell extends React.Component {
 				}
 				currentCode = prependCode + currentCode + '\n';
 				this.props.onEvaluate( currentCode );
-
-				const OPEN_CPU = session.getOpenCPUServer();
-				request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
-					form: {
-						x: currentCode
-					}
-				}, ( error, response, body ) => {
-					const arr = body.split( '\n' );
-					const plots = [];
-					if ( !error && response.statusCode !== 400 ) {
-						arr.forEach( elem => {
-							if ( GRAPHICS_REGEX.test( elem ) === true ) {
-								const imgURL = OPEN_CPU + elem + '/svg';
-								plots.push( imgURL );
-							}
-							if ( STDOUT_REGEX.test( elem ) === true ) {
-								request.get( OPEN_CPU + elem, ( err, getResponse, getBody ) => {
-									this.setState({
-										result: getBody,
-										nEvaluations: this.state.nEvaluations + 1
-									});
-									this.props.onResult( this.state.result );
-								});
-							}
+				session.executeRCode({
+					code: currentCode,
+					onResult: ( err, res, body ) => {
+						console.log( body );
+						this.setState({
+							result: body,
+							nEvaluations: this.state.nEvaluations + 1
 						});
+						this.props.onResult( this.state.result );
+					},
+					onPlots: ( plots ) => {
 						this.setState({
 							plots,
 							running: false,
 							nEvaluations: this.state.nEvaluations + 1
 						});
-					} else {
+					},
+					onError: ( error ) => {
 						this.setState({
-							result: body.replace( ERR_REGEX, '' ),
+							result: error,
 							running: false,
 							nEvaluations: this.state.nEvaluations + 1
 						});
@@ -345,37 +331,6 @@ class RShell extends React.Component {
 				help: ''
 			});
 		};
-
-		this.getHelpPage = ( helpCommand ) => {
-
-			const { session } = this.context;
-			const OPEN_CPU = session.getOpenCPUServer();
-
-			request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
-				form: {
-					x: 'x = ' + helpCommand + '; x[1]'
-				}
-			}, ( error, response, body ) => {
-				const arr = body.split( '\n' );
-				if ( !error && response.statusCode !== 400 ) {
-					arr.forEach( elem => {
-						if ( STDOUT_REGEX.test( elem ) === true ) {
-							request.get( OPEN_CPU + elem, ( err, res, helpPath ) => {
-								const [ , lib, topic ] = helpPath.match( HELP_PATH_REGEX );
-								request.get( `https://public.opencpu.org/ocpu/library/${lib}/man/${topic}/html`, ( err2, res2, html ) => {
-									if ( !err2 ) {
-										this.setState({
-											help: html
-										});
-									}
-								});
-							});
-						}
-					});
-				}
-			});
-		};
-
 	}
 
 	componentDidMount() {
