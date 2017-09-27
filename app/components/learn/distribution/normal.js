@@ -30,7 +30,7 @@ class NormalProbs extends Component {
 	}
 
 	render() {
-		return ( <Panel header={<h3>Evaluating Probabilities</h3>}>
+		return ( <Panel header={<h3>Normal Distribution</h3>}>
 			<Grid>
 				<Row>
 					<Col md={6}>

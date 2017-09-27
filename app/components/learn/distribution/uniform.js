@@ -26,11 +26,11 @@ class UniformProbs extends Component {
 	}
 
 	render() {
-		return ( <Panel header={<h3>Evaluating Probabilities</h3>}>
+		return ( <Panel header={<h3>Uniform Distribution</h3>}>
 			<Grid>
 				<Row>
 					<Col md={5}>
-						<Dashboard title={<TeX raw="P(X \le x_0)"/>} onGenerate={( min, max, x0 ) => {
+						<Dashboard autoUpdate title={<TeX raw="P(X \le x_0)"/>} onGenerate={( min, max, x0 ) => {
 							let len = 200;
 							let x = linspace( min-1.0, x0, len );
 							let data = new Array( len );
@@ -95,7 +95,7 @@ class UniformProbs extends Component {
 				</Row>
 				<Row>
 					<Col md={5}>
-						<Dashboard title={<TeX raw="P(X > x_0)"/>} onGenerate={( min, max, x0 ) => {
+						<Dashboard autoUpdate title={<TeX raw="P(X > x_0)"/>} onGenerate={( min, max, x0 ) => {
 							let len = 200;
 							let x = linspace( x0, max+1.0, len );
 							let data = new Array( len );
@@ -160,7 +160,7 @@ class UniformProbs extends Component {
 				</Row>
 				<Row>
 					<Col md={5}>
-						<Dashboard title={<TeX raw="P( x_0 \le X \le x_1 )"/>} onGenerate={( umin, max, x0, x1 ) => {
+						<Dashboard autoUpdate title={<TeX raw="P( x_0 \le X \le x_1 )"/>} onGenerate={( umin, max, x0, x1 ) => {
 							let len = 200;
 							let x = linspace( x0, x1, len );
 							let data = new Array( len );

@@ -25,11 +25,11 @@ class ExponentialProbs extends Component {
 	}
 
 	render() {
-		return ( <Panel header={<h3>Evaluating Probabilities</h3>}>
+		return ( <Panel header={<h3>Exponential Distribution</h3>}>
 			<Grid>
 				<Row>
 					<Col md={5}>
-						<Dashboard title={<TeX raw="P(X \le x_0)"/>} onGenerate={( rate, x0 ) => {
+						<Dashboard autoUpdate title={<TeX raw="P(X \le x_0)"/>} onGenerate={( rate, x0 ) => {
 							let len = 200;
 							let x = linspace( 0, x0, len );
 							let data = new Array( len );
@@ -38,7 +38,7 @@ class ExponentialProbs extends Component {
 								data[ i ] = {
 									x: x[ i ],
 									y: dexp( x[ i ], rate ),
-								}
+								};
 								if ( data[ i ].y < 1e-6 ) {
 									if ( data[ i ].x < xmax ) {
 										xmax = data[ i ].x;
@@ -91,7 +91,7 @@ class ExponentialProbs extends Component {
 				</Row>
 				<Row>
 					<Col md={5}>
-						<Dashboard title={<TeX raw="P(X > x_0)"/>} onGenerate={( rate, x0 ) => {
+						<Dashboard autoUpdate title={<TeX raw="P(X > x_0)"/>} onGenerate={( rate, x0 ) => {
 							let len = 200;
 							let x = linspace( x0, 10, len );
 							let data = new Array( len );
@@ -146,7 +146,7 @@ class ExponentialProbs extends Component {
 				</Row>
 				<Row>
 					<Col md={5}>
-						<Dashboard title={<TeX raw="P( x_0 \le X \le x_1)"/>} onGenerate={( rate, x0, x1 ) => {
+						<Dashboard autoUpdate title={<TeX raw="P( x_0 \le X \le x_1)"/>} onGenerate={( rate, x0, x1 ) => {
 							let len = 500;
 							let x = linspace( x0, x1, len );
 							let data = new Array( len );
