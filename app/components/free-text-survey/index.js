@@ -65,7 +65,6 @@ class FreeTextSurvey extends Component {
 
 	onData = ( data ) => {
 		debug( 'FreeTextQuestion is receiving data: ' + JSON.stringify( data ) );
-		data = data[ this.props.id ];
 		let tabulated = tabulate( data );
 		let freqTable;
 		let counts = tabulated.map( d => {
@@ -147,7 +146,7 @@ class FreeTextSurvey extends Component {
 						</Panel>
 					</Col>
 					<Col md={6}>
-						<RealtimeMetrics for={[ this.props.id ]} onData={this.onData} />
+						<RealtimeMetrics for={this.props.id} onData={this.onData} />
 						<VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
 							<VictoryBar
 								data={this.state.data}

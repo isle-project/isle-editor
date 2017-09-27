@@ -91,7 +91,6 @@ class MultipleChoiceSurvey extends Component {
 
 	onData = ( data ) => {
 		debug( 'MultipleChoiceSurvey is receiving data: ' + JSON.stringify( data ) );
-		data = data[ this.props.id ];
 		let tabulated = tabulate( data );
 		let freqTable;
 		let counts = tabulated.map( d => {
@@ -205,7 +204,7 @@ class MultipleChoiceSurvey extends Component {
 						</Panel>
 					</Col>
 					<Col md={6}>
-						<RealtimeMetrics for={[ this.props.id ]} onData={this.onData} />
+						<RealtimeMetrics for={this.props.id} onData={this.onData} />
 						<VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
 							<VictoryBar
 								data={this.state.data}
