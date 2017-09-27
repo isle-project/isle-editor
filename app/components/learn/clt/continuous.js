@@ -215,7 +215,7 @@ class ContinuousCLT extends Component {
 							fontSize: 15, padding: 5
 						}
 					}}/>
-					<VictoryBar data={getBins( vals )} style={{ 'bar': { 'data': { 'padding': -10 } } }}/>
+					<VictoryBar data={getBins( vals )} style={{ 'bar': { 'data': { 'padding': -10, width: 35 } } }}/>
 				</VictoryChart>
 			</div>;
 			histogram.push( plot );
