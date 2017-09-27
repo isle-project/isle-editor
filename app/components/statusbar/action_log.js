@@ -171,7 +171,7 @@ class ActionLog extends Component {
 	componentDidUpdate( prevProps, prevState ) {
 		if ( this.state.filter !== prevState.filter ) {
 			debug( 'Should filter out actions...' );
-			this.props.buildActionsArray( this.props );
+			this.buildActionsArray( this.props );
 		}
 	}
 
