@@ -7,7 +7,6 @@ import roundn from '@stdlib/math/base/special/roundn';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
 import FeedbackButtons from 'components/feedback';
-import SliderInput from  'components/input/slider';
 import NumberInput from 'components/input/number';
 import TextInput from 'components/input/text';
 import TeX from 'components/tex';
@@ -193,7 +192,7 @@ class ConditionalProbability extends Component {
 				<Panel>
 					<Grid>
 						<Row>
-							<Col md={6}>
+							<Col md={4}>
 								<p>What are the inner cells equal to? If the events are random, we have <TeX raw={`P(\\text{${this.state.A}} \\cap \\text{${this.state.B}} ) = P(\\text{${this.state.A}}) \\cdot P(\\text{${this.state.B}}) = ${roundn( this.state.pA*this.state.pB, -4 )}`} />. </p>
 								<table className="table-bordered">
 									<tbody>
@@ -265,22 +264,24 @@ class ConditionalProbability extends Component {
 									for="independence_applet"
 								/>
 							</Col>
-							<Col md={6}>
+							<Col md={8}>
 								<p>What about the conditional probabilities?</p>
-								<Panel>
-									{ this.state.pB == 0 || this.state.pA == 0 ?
-										<Panel>
-											{ this.state.pB == 0 ? <span>The conditional probability is undefined when <TeX raw={`P( \\text{${this.state.B}}) = 0`} /></span> : <span>
-													When <TeX raw={`P( ${this.state.A}) = 0`} />, we must have <TeX raw={`P( \\text{${this.state.A}} \\mid \\text{${this.state.B}} ) = P( \\text{${this.state.A}} \\mid \\text{${this.state.B}}^C ) = 0`} /> in case B has non-zero probability.
-											</span>}
-										</Panel> :
-										<Grid>
-											<Row>
+								{ this.state.pB == 0 || this.state.pA == 0 ?
+									<Panel>
+										{ this.state.pB == 0 ? <span>The conditional probability is undefined when <TeX raw={`P( \\text{${this.state.B}}) = 0`} /></span> : <span>
+												When <TeX raw={`P( ${this.state.A}) = 0`} />, we must have <TeX raw={`P( \\text{${this.state.A}} \\mid \\text{${this.state.B}} ) = P( \\text{${this.state.A}} \\mid \\text{${this.state.B}}^C ) = 0`} /> in case B has non-zero probability.
+										</span>}
+									</Panel> :
+									<Grid>
+										<Row>
+											<Col md={4}>
 												<VictoryChart
 													theme={VictoryTheme.material}
 													domainPadding={{x: 50, y: [ 10, 20 ]}}
-													width={400}
-													height={350}
+													style={{
+														height: 100,
+														width: 200
+													}}
 												>
 													<VictoryAxis dependentAxis tickFormat={ ( x ) => x/100 } />
 													<VictoryAxis />
@@ -293,37 +294,35 @@ class ConditionalProbability extends Component {
 													/>
 													{ this.state.independent ? <VictoryLine data={[ {x: `P( ${this.state.A}| ${this.state.B})`, y: 100*this.state.pAgivenB },{x: `P( ${this.state.A}|not  ${this.state.B})`, y: this.state.pAgivenNotB*100 } ]}/> : null }
 												</VictoryChart>
-											</Row>
-											<Row>
-												<Col md={6}>
-													<SliderInput
-														legend={<span>Choose <TeX raw={`P(\\text{${this.state.A}} \\mid \\text{${this.state.B})}`} /></span>}
-														min={max( ( this.state.pA-1+this.state.pB )/this.state.pB, 0 )}
-														max={min( this.state.pA/this.state.pB, 1 )}
-														step={0.001}
-														onChange={this.changeProbAgivenB}
-														defaultValue={this.state.pAgivenB}
-														inline
-													/>
-												</Col>
-												<Col md={6}>
-													<SliderInput
-														legend={<span>Choose <TeX raw={`P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} }^C)`} /></span>}
-														min={max( ( this.state.pA-this.state.pB ) / ( 1-this.state.pB ), 0 )}
-														max={min( this.state.pA/( 1-this.state.pB ), 1 )}
-														step={0.001}
-														onChange={this.changeProbAgivenNotB}
-														defaultValue={this.state.pAgivenNotB}
-														inline
-													/>
-												</Col>
-												{ this.state.independent ?
-													<span>The events are independent because <TeX raw={`P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} } ) = P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} }^C )`} /></span> : <span>The events are <b>not</b> independent because <TeX raw={ this.state.pAgivenB == 0 && this.state.pAgivenNotB == 0 ? `P( \\text{ ${this.state.A} } \\mid \\text{ ${this.state.B} } ) = P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} }^C \\neq P( \\text{${this.state.A}})` : `P( \\text{ ${this.state.A} } \\mid \\text{ ${this.state.B} } ) \\neq P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} }^C )`} /></span>
-												}
-											</Row>
-										</Grid>
-									}
-								</Panel>
+											</Col>
+										</Row>
+										<Row>
+											<NumberInput
+												legend={<span>Choose <TeX raw={`P(\\text{${this.state.A}} \\mid \\text{${this.state.B})}`} /></span>}
+												min={max( ( this.state.pA-1+this.state.pB )/this.state.pB, 0 )}
+												max={min( this.state.pA/this.state.pB, 1 )}
+												step={0.001}
+												onChange={this.changeProbAgivenB}
+												defaultValue={this.state.pAgivenB}
+												inline
+											/>
+											<NumberInput
+												legend={<span>Choose <TeX raw={`P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} }^C)`} /></span>}
+												min={max( ( this.state.pA-this.state.pB ) / ( 1-this.state.pB ), 0 )}
+												max={min( this.state.pA/( 1-this.state.pB ), 1 )}
+												step={0.001}
+												onChange={this.changeProbAgivenNotB}
+												defaultValue={this.state.pAgivenNotB}
+												inline
+											/>
+										</Row>
+										<Row>
+											{ this.state.independent ?
+												<span>The events are independent because <TeX raw={`P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} } ) = P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} }^C )`} /></span> : <span>The events are <b>not</b> independent because <TeX raw={ this.state.pAgivenB == 0 && this.state.pAgivenNotB == 0 ? `P( \\text{ ${this.state.A} } \\mid \\text{ ${this.state.B} } ) = P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} }^C \\neq P( \\text{${this.state.A}})` : `P( \\text{ ${this.state.A} } \\mid \\text{ ${this.state.B} } ) \\neq P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} }^C )`} /></span>
+											}
+										</Row>
+									</Grid>
+								}
 							</Col>
 						</Row>
 					</Grid>
