@@ -146,6 +146,8 @@ class Session {
 				this.live = true;
 				if ( !this.lessonID && !this.namespaceID ) {
 					this.getLessonInfo( this.getUserRights );
+				} else {
+					this.getUserRights();
 				}
 			} else {
 				this.live = false;
@@ -368,6 +370,7 @@ class Session {
 	*/
 	isEnrolled = () => {
 		if ( !userRights ) {
+			this.getUserRights();
 			return false;
 		}
 		return userRights.enrolled;
@@ -380,6 +383,7 @@ class Session {
 	*/
 	isOwner = () => {
 		if ( !userRights ) {
+			this.getUserRights();
 			return false;
 		}
 		return userRights.owner;
