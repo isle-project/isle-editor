@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import plotlyjs from 'plotly.js';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
@@ -64,7 +63,7 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 			traces[ 0 ][ 'histnorm' ] = 'probability density';
 		}
 		layout = {
-			xaxis: {title: 'Value' },
+			xaxis: {title: variable },
 			yaxis: {title: overlayDensity ? 'Density' : 'Count' },
 			reversescale: true,
 			title: variable
@@ -114,9 +113,9 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 			}
 		}
 		layout = {
-			xaxis: {title: 'Value' },
-			yaxis: {title: overlayDensity ? 'Density' : 'Count' },
-			title:  `${variable} by ${group}`
+			xaxis: { title: variable },
+			yaxis: { title: overlayDensity ? 'Density' : 'Count' },
+			title: `${variable} by ${group}`
 		};
 		layout.barmode = 'overlay';
 	}
