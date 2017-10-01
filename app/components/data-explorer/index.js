@@ -120,7 +120,7 @@ const makeDraggable = ( div ) => {
 /**
 * Maps over the output array and returns the filled output panel.
 */
-const OutputPanel = ( output ) => {
+const OutputPanel = ( output, clearOutput ) => {
 	return (
 		<div id="outputPanel" style={{
 			height: 520,
@@ -129,7 +129,19 @@ const OutputPanel = ( output ) => {
 		}}>
 			{output.map( ( e, idx ) => {
 				if ( e.type === 'Chart' ) {
-					return e.value;
+					return <div key={idx} >
+						<label>Chart: </label>
+						<Button
+							bsSize="xs"
+							style={{ float: 'right' }}
+							onClick={() => {
+								clearOutput( idx );
+							}}
+						>
+							<span>&times;</span>
+						</Button>
+						{e.value}
+					</div>;
 				}
 				else if (
 					e.type === 'Contingency Table' ||
@@ -138,10 +150,31 @@ const OutputPanel = ( output ) => {
 					e.type === 'Test' ||
 					e.type === 'Simple Linear Regression'
 				) {
-					return makeDraggable( e.value );
+					let elem = <div key={idx} >
+						<Button
+							bsSize="xs"
+							style={{ float: 'right' }}
+							onClick={() => {
+								clearOutput( idx );
+							}}
+						>
+							<span>&times;</span>
+						</Button>
+						{e.value}
+					</div>;
+					return makeDraggable( elem );
 				}
 				else if ( isNumber( e.value ) ) {
 					let elem = <div key={idx} >
+						<Button
+							bsSize="xs"
+							style={{ float: 'right' }}
+							onClick={() => {
+								clearOutput( idx );
+							}}
+						>
+							<span>&times;</span>
+						</Button>
 						<label>{e.variable}: </label>
 						<pre>{e.type}: {e.value.toFixed( 3 )}</pre>
 					</div>;
@@ -150,6 +183,15 @@ const OutputPanel = ( output ) => {
 				else if ( isObject( e.value ) ) {
 					let elem = <div key={idx} >
 						<label>{e.variable}: </label>
+						<Button
+							bsSize="xs"
+							style={{ float: 'right' }}
+							onClick={() => {
+								clearOutput( idx );
+							}}
+						>
+							<span>&times;</span>
+						</Button>
 						<pre>
 							<table>
 								<tbody>
@@ -257,6 +299,17 @@ class DataExplorer extends Component {
 	toggleStudentPlots = () => {
 		this.setState({
 			showStudentPlots: !this.state.showStudentPlots
+		});
+	}
+
+	/**
+	* Remove output element at the specified index.
+	*/
+	clearOutput = ( idx ) => {
+		let newOutputs = copy( this.state.output );
+		newOutputs.splice( idx, 1 );
+		this.setState({
+			output: newOutputs
 		});
 	}
 
@@ -911,10 +964,10 @@ class DataExplorer extends Component {
 							<div className="panel-heading">
 								<h3 className="panel-title">Output</h3>
 							</div>
-							{OutputPanel( this.state.output )}
+							{OutputPanel( this.state.output, this.clearOutput )}
 							<Button bsSize="small" block onClick={ () => {
 								this.setState({ output: []});
-							}}>Clear</Button>
+							}}>Clear All</Button>
 						</div>
 					</Col>
 				</Row>
@@ -940,7 +993,7 @@ DataExplorer.defaultProps = {
 		'Interquartile Range',
 		'Standard Deviation',
 		'Variance',
-		'Correlation',
+		'Correlation'
 	],
 	plots: [
 		'Bar Chart',
