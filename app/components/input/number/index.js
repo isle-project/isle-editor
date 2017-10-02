@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Input from 'components/input/base';
-import roundn from '@stdlib/math/base/special/roundn';
+import contains from '@stdlib/assert/contains';
 import isString from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/math/constants/float64-pinf';
@@ -41,11 +41,20 @@ class NumberInput extends Input {
 		};
 
 		this.handleChange = ( event ) => {
-			const valid = event.target.validity.valid;
+			let valid = event.target.validity.valid;
 			let value = event.target.value;
 			this.setState({
 				value
 			}, () => {
+				if ( contains( value, '/' ) ) {
+					let vals = value.split( '/' );
+					if ( vals[ 0 ] !== '' && vals[ 1 ] !== '' ) {
+						value = parseFloat( vals[ 0 ]) / parseFloat( vals[ 1 ]);
+					}
+					if ( vals.length === 2 ) {
+						valid = true;
+					}
+				}
 				if ( valid && value !== '' ) {
 					value = parseFloat( value );
 					this.props.onChange( value );
@@ -75,6 +84,12 @@ class NumberInput extends Input {
 		this.finishChange = ( event ) => {
 			const { max, min, step } = this.props;
 			let value = event.target.value;
+			if ( contains( value, '/' ) ) {
+				let vals = value.split( '/' );
+				if ( vals[ 0 ] !== '' && vals[ 1 ] !== '' ) {
+					value = parseFloat( vals[ 0 ]) / parseFloat( vals[ 1 ]);
+				}
+			}
 			if ( value !== '' ) {
 				value = parseFloat( value );
 			}
@@ -145,7 +160,7 @@ class NumberInput extends Input {
 				<span style={{ padding: '5px' }}>
 					{ this.props.legend ? <label> {this.props.legend} =  </label> : null }
 					<input
-						type="number"
+						type={ this.props.numbersOnly ? 'number' : 'text' }
 						name="input"
 						disabled={this.props.disabled}
 						value={value}
@@ -173,7 +188,7 @@ class NumberInput extends Input {
 		}
 
 		let input = <input
-			type="number"
+			type={ this.props.numbersOnly ? 'number' : 'text' }
 			name="input"
 			disabled={this.props.disabled}
 			value={value}
@@ -188,7 +203,7 @@ class NumberInput extends Input {
 				borderRadius: '2px',
 				background: 'rgb(186, 204, 234)',
 				width: this.props.width,
-				textAlign: 'center',
+				textAlign: 'left',
 				float: 'right',
 				...this.props.style
 			}}
@@ -238,7 +253,8 @@ NumberInput.defaultProps = {
 	width: 80,
 	defaultValue: 0,
 	onChange(){},
-	inline: false
+	inline: false,
+	numbersOnly: true
 };
 
 
@@ -256,7 +272,8 @@ NumberInput.propTypes = {
 	width: PropTypes.number,
 	defaultValue: PropTypes.number,
 	onChange: PropTypes.func,
-	inline: PropTypes.bool
+	inline: PropTypes.bool,
+	numbersOnly: PropTypes.bool
 };
 
 
