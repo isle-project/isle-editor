@@ -4,6 +4,7 @@ import ContinuousCLT from 'components/learn/clt/continuous.js';
 import DiscreteCLT from 'components/learn/clt/discrete.js';
 import SampleCLT from 'components/learn/clt/sample.js';
 import CrossValidation from 'components/learn/cross-validation';
+import DiceThrowing from 'components/learn/dice-throwing';
 import MeanTest from 'components/learn/hypothesis-testing/mean.js';
 import ProportionTest from 'components/learn/hypothesis-testing/proportion.js';
 import ExponentialDistribution from 'components/learn/distribution/exponential';
@@ -18,6 +19,7 @@ import ConditionalProbability from 'components/learn/conditional-probability';
 export {
 	ConditionalProbability,
 	ContinuousCLT,
+	DiceThrowing,
 	DiscreteCLT,
 	SampleCLT,
 	CrossValidation,
