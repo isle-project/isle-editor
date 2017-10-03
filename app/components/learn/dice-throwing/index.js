@@ -71,7 +71,7 @@ class DiceThrowing extends Component {
 			/>
 			<p>Choose custom probabilities for the sides and then throw some dice!</p>
 			<Grid>
-				<Col md={6}>
+				<Col md={5}>
 					<h3>Probabilities:</h3>
 					{inmap( this.state.sides, ( x, i ) => <NumberInput
 						legend={`Side ${i+1}`}
@@ -79,7 +79,7 @@ class DiceThrowing extends Component {
 						step="any"
 						max={1}
 						min={0}
-						width={120}
+						width={100}
 						numbersOnly={false}
 						onChange={( val )=>{
 							const sideProbs = this.state.sideProbs.slice();
@@ -93,12 +93,18 @@ class DiceThrowing extends Component {
 							this.setState({
 								sideProbs,
 								valid: absdiff( sum, 1.0 ) <= 1.5e-8,
-								tally
+								tally,
+								draw: null
 							});
 						}}
 					/> )}
+					<Button onClick={ () => {
+						this.setState({
+							tally: this.state.tally.map( x => 0 )
+						});
+					}}>Reset</Button>
 				</Col>
-				<Col md={5}>
+				<Col md={6}>
 					{ this.state.valid ?
 						<Panel header="Dice" >
 							<Panel>{ this.state.draw ? this.state.draw.join( ' - ' ) : 'X' }</Panel>
