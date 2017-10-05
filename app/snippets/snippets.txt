@@ -15,10 +15,10 @@ snippet CheckboxInput
 snippet ColorPicker
 	<ColorPicker />
 
-snippet Column
-	<Column md={12}>
+snippet Col
+	<Col md={12}>
 
-	</Column>
+	</Col>
 
 snippet Dashboard
 	<Dashboard onGenerate={(${1:})=>{
@@ -62,7 +62,7 @@ snippet FreeTextQuestion
 snippet Grid
 	<Grid>
 		<Row>
-			<Column md={12}></Column>
+			<Col md={12}></Col>
 		</Row>
 	</Grid>
 
