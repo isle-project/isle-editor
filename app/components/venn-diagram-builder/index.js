@@ -51,7 +51,7 @@ class VennDiagramBuilder extends Component {
 			.on( 'mouseover' , function( d, i ) {
 				venn.sortAreas( chart, d );
 				tooltip.transition().duration( 400 ).style( 'opacity', 0.9 );
-				tooltip.text( d.sets.join( ' and ' ) + ( this.props.nobs ? `(${roundn( d.size/this.props.nobs, -4 )})` : '') );
+				tooltip.text( d.sets.join( ' and ' ) + ' (' + d.size + ')' );
 				var selection = d3.select( this ).transition( 'tooltip' ).duration( 400 );
 				selection.select( 'path' )
 					.style( 'stroke-width', 3 )
@@ -106,7 +106,7 @@ class VennDiagramBuilder extends Component {
 			.on( 'mouseover' , function( d, i ) {
 				venn.sortAreas( chart, d );
 				tooltip.transition().duration( 400 ).style( 'opacity', 0.9 );
-				tooltip.text( d.sets.join( ' and ' ) );
+				tooltip.text( d.sets.join( ' and ' ) + ' (' + d.size + ')' );
 				var selection = d3.select( this ).transition( 'tooltip' ).duration( 400 );
 				selection.select( 'path' )
 					.style( 'stroke-width', 3 )
