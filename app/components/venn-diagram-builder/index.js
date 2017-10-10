@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { Grid, Row, Col, Panel } from 'react-bootstrap';
 import * as venn from 'venn.js';
 import * as d3 from 'd3';
-import roundn from '@stdlib/math/base/special/roundn';
 import randu from '@stdlib/math/base/random/randu';
 import round from '@stdlib/math/base/special/round';
 import NumberInput from 'components/input/number';
