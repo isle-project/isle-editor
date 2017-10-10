@@ -6,7 +6,7 @@ import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
-import ztest from '@stdlib/math/statistics/ztest';
+import ztest from '@stdlib/math/stats/ztest';
 import stdev from 'compute-stdev';
 
 

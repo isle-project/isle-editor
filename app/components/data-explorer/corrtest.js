@@ -6,7 +6,7 @@ import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
-import pcorrtest from '@stdlib/math/statistics/pcorrtest';
+import pcorrtest from '@stdlib/math/stats/pcorrtest';
 
 
 // MAIN //

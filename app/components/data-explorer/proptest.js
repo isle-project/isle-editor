@@ -7,7 +7,7 @@ import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
 import isArray from '@stdlib/assert/is-array';
-import ztest from '@stdlib/math/statistics/ztest';
+import ztest from '@stdlib/math/stats/ztest';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import copy from '@stdlib/utils/copy';
 import roundn from '@stdlib/math/base/special/roundn';
