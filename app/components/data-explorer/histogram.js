@@ -13,7 +13,7 @@ import linspace from '@stdlib/math/utils/linspace';
 import min from 'compute-min';
 import max from 'compute-max';
 import pow from '@stdlib/math/base/special/pow';
-import gaussian from '@stdlib/math/base/dist/normal/pdf';
+import gaussian from '@stdlib/math/base/dists/normal/pdf';
 import iqr from 'compute-iqr';
 
 
