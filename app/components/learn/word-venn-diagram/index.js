@@ -126,7 +126,7 @@ class WordVennDiagram extends Component {
 		const docIndices = [];
 		let freq = 0;
 		if ( tdm[ idx ]) {
-			const counts = tdm[ idx ].map( x => x > minCount[ i ] ? 1 : 0 );
+			const counts = tdm[ idx ].map( x => x >= minCount[ i ] ? 1 : 0 );
 			for ( let i = 0; i < counts.length; i++ ) {
 				freq += counts[ i ];
 				if ( counts[ i ] === 1 ) {
@@ -143,8 +143,8 @@ class WordVennDiagram extends Component {
 		const idxB = indices[ j ];
 		let freq = 0;
 		if ( tdm[ idxA ] && tdm[ idxB ]) {
-			const countA = tdm[ idxA ].map( x => x > minCount[ i ] ? 1 : 0 );
-			const countB = tdm[ idxB ].map( x => x > minCount[ j ] ? 1 : 0 );
+			const countA = tdm[ idxA ].map( x => x >= minCount[ i ] ? 1 : 0 );
+			const countB = tdm[ idxB ].map( x => x >= minCount[ j ] ? 1 : 0 );
 			for ( let i = 0; i < countA.length; i++ ) {
 				if ( countA[ i ] && countB[ i ]) {
 					freq += 1;
@@ -161,9 +161,9 @@ class WordVennDiagram extends Component {
 		const idxC = indices[ k ];
 		let freq = 0;
 		if ( tdm[ idxA ] && tdm[ idxB ] && tdm[ idxC ]) {
-			const countA = tdm[ idxA ].map( x => x > minCount[ i ] ? 1 : 0 );
-			const countB = tdm[ idxB ].map( x => x > minCount[ j ] ? 1 : 0 );
-			const countC = tdm[ idxC ].map( x => x > minCount[ k ] ? 1 : 0 );
+			const countA = tdm[ idxA ].map( x => x >= minCount[ i ] ? 1 : 0 );
+			const countB = tdm[ idxB ].map( x => x >= minCount[ j ] ? 1 : 0 );
+			const countC = tdm[ idxC ].map( x => x >= minCount[ k ] ? 1 : 0 );
 			for ( let i = 0; i < countA.length; i++ ) {
 				if ( countA[ i ] && countB[ i ] && countC[ i ]) {
 					freq += 1;
