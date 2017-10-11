@@ -95,6 +95,7 @@
 	"VictoryLine": "const VictoryLine = require( \"victory\" ).VictoryLine",
 	"VictoryPie": "const VictoryPie = require( \"victory\" ).VictoryPie",
 	"VictoryScatter": "const VictoryScatter = require( \"victory\" ).VictoryScatter",
+	"VictoryStack":  "const VictoryStack = require( \"victory\" ).VictoryStack",
 	"VictoryTooltip": "const VictoryTooltip = require( \"victory\" ).VictoryTooltip",
 	"VictoryVoronoiContainer": "const VictoryVoronoiContainer = require( \"victory\" ).VictoryVoronoiContainer",
 	"VictoryVoronoi": "const VictoryVoronoi = require( \"victory\" ).VictoryVoronoi",
