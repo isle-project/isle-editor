@@ -12,6 +12,7 @@ import NormalDistribution from 'components/learn/distribution/normal';
 import TDistribution from 'components/learn/distribution/t';
 import UniformDistribution from 'components/learn/distribution/uniform';
 import ConditionalProbability from 'components/learn/conditional-probability';
+import WordVennDiagram from 'components/learn/word-venn-diagram';
 
 
 // EXPORTS //
@@ -28,5 +29,6 @@ export {
 	ExponentialDistribution,
 	NormalDistribution,
 	TDistribution,
-	UniformDistribution
+	UniformDistribution,
+	WordVennDiagram
 };
