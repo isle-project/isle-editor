@@ -121,7 +121,7 @@ class FreeTextQuestion extends Component {
 
 		return (
 			<Panel className="FreeFormQuestion">
-				{ this.props.question ? <h4>{this.props.question}</h4> : null }
+				{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
 				<label>{ this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' } </label>
 				<FormControl
 					id={`${this.props.id}_textarea`}
