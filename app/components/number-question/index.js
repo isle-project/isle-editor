@@ -82,7 +82,9 @@ class NumberQuestion extends Component {
 					disabled={this.state.submitted}
 					inline
 					width={60}
-					{...this.props}
+					min={this.props.min}
+					max={this.props.max}
+					step={this.props.step}
 				/>
 				{ this.state.submitted && this.props.solution ?
 					<span>
