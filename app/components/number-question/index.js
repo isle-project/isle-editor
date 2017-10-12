@@ -90,7 +90,7 @@ class NumberQuestion extends Component {
 				<NumberInput
 					step="any"
 					onChange={this.handleChange}
-					value={this.state.value}
+					defaultValue={this.state.value}
 					disabled={this.state.submitted}
 					inline
 					width={90}
