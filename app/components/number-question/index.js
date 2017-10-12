@@ -47,8 +47,10 @@ class NumberQuestion extends Component {
 				});
 			} else {
 				session.addNotification({
-					title: 'Answer submitted.',
-					message: 'Your answer has been submitted.',
+					title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
+					message: this.state.submitted ?
+						'You have successfully re-submitted your answer.' :
+						'Your answer has been submitted.',
 					level: 'info',
 					position: 'tr'
 				});
@@ -91,7 +93,7 @@ class NumberQuestion extends Component {
 					step="any"
 					onChange={this.handleChange}
 					defaultValue={this.state.value}
-					disabled={this.state.submitted}
+					disabled={this.state.submitted && this.props.solution}
 					inline
 					width={90}
 					min={this.props.min}
@@ -118,9 +120,11 @@ class NumberQuestion extends Component {
 							marginTop: '8px',
 							marginBottom: '8px'
 						}}
-						disabled={this.state.submitted}
+						disabled={this.state.submitted && this.props.solution}
 						onClick={this.submitHandler}
-					>Submit</Button>
+					>
+						{ ( this.state.submitted && !this.props.solution ) ? 'Resubmit' : 'Submit' }
+					</Button>
 					{ nHints > 0 ?
 						<OverlayTrigger
 							trigger="click"
