@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ButtonGroup, Col, Grid, Row, Panel } from 'react-bootstrap';
+import { Button, ButtonGroup, Panel } from 'react-bootstrap';
 import * as venn from 'venn.js';
 import * as d3 from 'd3';
 import isStringArray from '@stdlib/assert/is-string-array';
@@ -224,39 +224,32 @@ class WordVennDiagram extends Component {
 			/></div>;
 		}
 		return (
-			<Grid>
-				<Row>
-					<Col md={4}>
-						<Panel>
-							<p>
-								<label>Number of Words: </label>
-							</p>
-							<ButtonGroup>
-								{[ 'One','Two','Three' ].map( ( w, i ) => <Button bsStyle={ ( i === this.state.nWords-1 ) ? 'success' : 'default' } onClick={()=> {
-									this.setState({
-										nWords: i+1,
-										disabled: true,
-										words: new Array( i+1 ),
-										minCount: new Array( i+1 ).fill( 1 )
-									});
-								}}>{w}</Button> )}
-							</ButtonGroup>
-							{inputs}
-							<Button onClick={this.updatePlot} disabled={this.state.disabled}>Draw Venn Diagram</Button>
-						</Panel>
-					</Col>
-					<Col md={8}>
-						<Panel>
-							<span style={{
-								position: 'absolute',
-								top: 5,
-								right: 40
-							}}>Total # of Texts: {this.props.nTexts}</span>
-							<div id={this.state.id}></div>
-						</Panel>
-					</Col>
-				</Row>
-			</Grid>
+			<div>
+				<Panel header="Settings">
+					<p>
+						<label>Number of Words: </label>
+					</p>
+					<ButtonGroup>
+						{[ 'One','Two','Three' ].map( ( w, i ) => <Button bsStyle={ ( i === this.state.nWords-1 ) ? 'success' : 'default' } onClick={()=> {
+							this.setState({
+								nWords: i+1,
+								disabled: true,
+								words: new Array( i+1 ),
+								minCount: new Array( i+1 ).fill( 1 )
+							});
+						}}>{w}</Button> )}
+					</ButtonGroup>
+					{inputs}
+					<Button onClick={this.updatePlot} disabled={this.state.disabled}>Draw Venn Diagram</Button>
+				</Panel>
+				<Panel header="Venn Diagram" >
+					<span style={{
+						position: 'absolute',
+						right: 40
+					}}>Total # of Texts: {this.props.nTexts}</span>
+					<div id={this.state.id}></div>
+				</Panel>
+			</div>
 		);
 	}
 }
