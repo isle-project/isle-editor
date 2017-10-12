@@ -65,6 +65,17 @@ class NumberQuestion extends Component {
 		};
 	}
 
+	componentWillReceiveProps( nextProps ) {
+		if ( nextProps !== this.props ) {
+			this.setState({
+				value: null,
+				solutionDisplayed: false,
+				submitted: false
+			});
+			debug( 'Component will receive props.' );
+		}
+	}
+
 	/*
 	* React component render method.
 	*/
@@ -81,10 +92,9 @@ class NumberQuestion extends Component {
 					value={this.state.value}
 					disabled={this.state.submitted}
 					inline
-					width={60}
+					width={90}
 					min={this.props.min}
 					max={this.props.max}
-					step={this.props.step}
 				/>
 				{ this.state.submitted && this.props.solution ?
 					<span>
@@ -94,7 +104,7 @@ class NumberQuestion extends Component {
 							disabled
 							defaultValue={this.props.solution}
 							inline
-							width={60}
+							width={90}
 						/>
 					</span>:
 					null
