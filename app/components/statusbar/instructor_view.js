@@ -1,6 +1,5 @@
 // MODULES //
 
-import 'react-dates/initialize';
 import React, { Component } from 'react';
 import { Accordion, ButtonToolbar, ButtonGroup, Button, Panel } from 'react-bootstrap';
 import $ from 'jquery';
