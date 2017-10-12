@@ -36,15 +36,22 @@ class NumberQuestion extends Component {
 
 		this.submitHandler = ( event ) => {
 			const { session } = this.context;
-			console.log( this.props.solution );
-			const correct = parseFloat( this.state.value ) === this.props.solution;
-			session.addNotification({
-				title: 'Answer submitted.',
-				message: correct ? 'Congratulations, that is correct!' : 'Not quite. Compare your answer with the solution.',
-				level: correct ? 'success' : 'error',
-				position: 'tr'
-			});
-
+			if ( this.props.solution ) {
+				const correct = parseFloat( this.state.value ) === this.props.solution;
+				session.addNotification({
+					title: 'Answer submitted.',
+					message: correct ? 'Congratulations, that is correct!' : 'Not quite. Compare your answer with the solution.',
+					level: correct ? 'success' : 'error',
+					position: 'tr'
+				});
+			} else {
+				session.addNotification({
+					title: 'Answer submitted.',
+					message: 'Your answer has been submitted.',
+					level: 'info',
+					position: 'tr'
+				});
+			}
 			this.setState({
 				submitted: true
 			});
@@ -66,7 +73,7 @@ class NumberQuestion extends Component {
 
 		return (
 			<Panel className="NumberQuestion">
-				{ this.props.question ? <h4>{this.props.question}</h4> : null }
+				{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
 				<label>Your answer:</label>
 				<NumberInput
 					step="any"
@@ -75,8 +82,9 @@ class NumberQuestion extends Component {
 					disabled={this.state.submitted}
 					inline
 					width={60}
+					{...this.props}
 				/>
-				{ this.state.submitted ?
+				{ this.state.submitted && this.props.solution ?
 					<span>
 						<span> | </span>
 						<label>Solution:</label>
