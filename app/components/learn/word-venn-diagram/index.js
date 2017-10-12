@@ -81,6 +81,7 @@ class WordVennDiagram extends Component {
 	drawPlot = () => {
 		var sets = this.state.freqs;
 		var chart = d3.select( '#'+this.state.id );
+		chart.select( 'svg' ).remove();
 
 		var tooltip;
 		if ( !this.state.tooltip ) {
