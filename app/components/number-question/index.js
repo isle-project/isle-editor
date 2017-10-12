@@ -6,6 +6,7 @@ import { Button, ButtonToolbar, OverlayTrigger, Panel } from 'react-bootstrap';
 import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
 import NumberInput from 'components/input/number';
+const debug = require( 'debug' )( 'isle:number-question' );
 
 
 // MAIN //
