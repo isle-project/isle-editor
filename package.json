@@ -204,7 +204,7 @@
     "uglify-es": "^3.0.15",
     "uniq": "^1.0.1",
     "utf-8-validate": "^3.0.2",
-    "venn.js": "^0.2.14",
+    "venn.js": "0.2.13",
     "victory": "^0.23.1",
     "webpack": "3.6.0"
   },
