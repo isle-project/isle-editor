@@ -46,15 +46,6 @@ class NumberInput extends Input {
 			this.setState({
 				value
 			}, () => {
-				if ( contains( value, '/' ) ) {
-					let vals = value.split( '/' );
-					if ( vals[ 0 ] !== '' && vals[ 1 ] !== '' ) {
-						value = parseFloat( vals[ 0 ]) / parseFloat( vals[ 1 ]);
-					}
-					if ( vals.length === 2 ) {
-						valid = true;
-					}
-				}
 				if ( valid && value !== '' ) {
 					value = parseFloat( value );
 					this.props.onChange( value );
