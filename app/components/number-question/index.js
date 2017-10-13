@@ -98,6 +98,7 @@ class NumberQuestion extends Component {
 					width={90}
 					min={this.props.min}
 					max={this.props.max}
+					numbersOnly={false}
 				/>
 				{ this.state.submitted && this.props.solution ?
 					<span>
