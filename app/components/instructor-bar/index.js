@@ -140,6 +140,15 @@ class InstructorBar extends Component {
 														{elem.value}
 													</span>
 												}
+												{ this.state.showExtended ?
+													<Button
+														bsSize="xs"
+														style={{ float: 'right' }}
+													>
+														<span>&times;</span>
+													</Button> :
+													null
+												}
 											</ListGroupItem>
 										)}
 									</ListGroup>
