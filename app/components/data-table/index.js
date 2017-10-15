@@ -59,7 +59,7 @@ class DataTable extends Component {
 				}
 			}
 			const uniqueValues = unique( vals );
-			if ( isNumberArray( vals ) ) {
+			if ( isNumberArray( vals ) && uniqueValues.length > 2 ) {
 				out[ 'filterMethod' ] = this.filterMethodNumbers;
 				out[ 'Filter' ] = ({ filter, onChange }) => {
 					const defaultVal = {
@@ -112,7 +112,7 @@ class DataTable extends Component {
 		if ( props.showRemove ) {
 			columns.push({
 				Header: 'Remove',
-				accessor: "remove",
+				accessor: 'remove',
 				Cell: this.renderCheckboxRemovable,
 				filterable: false
 			});
