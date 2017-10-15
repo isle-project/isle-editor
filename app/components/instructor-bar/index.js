@@ -23,7 +23,9 @@ class InstructorBar extends Component {
 			actionsAreOpen: false,
 			feedbackIsOpen: false,
 			feedback: '',
-			showExtended: false
+			showExtended: false,
+			showDeleteModal: false,
+			selectedAction: null
 		};
 	}
 
@@ -114,18 +116,52 @@ class InstructorBar extends Component {
 		this.unsubscribe();
 	}
 
+	closeDeleteModal = () => {
+		this.setState({
+			showDeleteModal: false,
+			selectedAction: null
+		});
+	}
+
 	deleteFactory = ( idx ) => {
 		return () => {
-			const { session } = this.context;
-			session.removeSessionElementFromDatabase( this.state.actions[ idx ].sessiondataID, ( err ) => {
-				if ( !err ) {
-					this.addSessionActions();
-				}
+			this.setState({
+				selectedAction: this.state.actions[ idx ],
+				showDeleteModal: true
 			});
 		};
 	}
 
+	deleteSelectedAction = () => {
+		const { session } = this.context;
+		session.removeSessionElementFromDatabase( this.state.selectedAction.sessiondataID, ( err ) => {
+			if ( !err ) {
+				this.addSessionActions();
+			}
+			this.closeDeleteModal();
+		});
+	}
+
 	render() {
+
+		const deleteModal = <Modal show={this.state.showDeleteModal}>
+			<Modal.Header>
+				<Modal.Title>Delete user action?</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>
+				Are you sure that you want to delete the selected user action?
+			</Modal.Body>
+			<Modal.Footer>
+				<Button onClick={this.closeDeleteModal}>Cancel</Button>
+				<Button
+					bsStyle="warning"
+					onClick={this.deleteSelectedAction}
+				>
+					Delete
+				</Button>
+			</Modal.Footer>
+		</Modal>;
+
 		return (
 			<div>
 				<Gate user>
@@ -225,6 +261,7 @@ class InstructorBar extends Component {
 							<Button bsSize="small" onClick={this.sendFeedback} >Send Feedback to all</Button>
 						</div>
 					</Collapse>
+					{deleteModal}
 				</Gate>
 			</div>
 		);
