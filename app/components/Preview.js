@@ -42,6 +42,7 @@ const DataTable = require( 'components/data-table' );
 const DensityPlot = require( 'components/d3/density-plot' );
 const DraggableList = require( 'components/draggable-list' );
 const Editor = require( 'components/editor' );
+const EnlargableGrid = require( 'components/enlargable-grid' );
 const Experiment = require( 'components/experiment' );
 const FeedbackButtons = require( 'components/feedback' );
 const FreeTextSurvey = require( 'components/free-text-survey' );
@@ -141,6 +142,7 @@ const SText = require( 'spectacle' ).Text;
 const createTheme = require( 'spectacle/lib/themes/default' ).default;
 const theme = require( 'components/styles/theme.json' );
 const Well = ReactBootstrap.Well;
+const WordCloud = require( 'components/word-cloud' );
 
 
 // LEARNING MODULES //
