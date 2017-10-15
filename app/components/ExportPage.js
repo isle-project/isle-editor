@@ -39,6 +39,7 @@ class UploadLesson extends Component {
 			spinning: false,
 			namespaces: [],
 			namespaceName: null,
+			minify: true,
 			lessonName,
 			dirname: new Date().toISOString(),
 			server: localStorage.getItem( 'server' ),
@@ -190,7 +191,7 @@ class UploadLesson extends Component {
 				basePath,
 				content: this.props.content,
 				outputDir: this.state.dirname,
-				minify: true
+				minify: this.state.minify
 			};
 			bundler( settings, ( err, preamble ) => {
 				this.zipLesson( settings.outputPath, settings.outputDir, () => {
@@ -249,6 +250,18 @@ class UploadLesson extends Component {
 										placeholder="Enter lesson name"
 										onChange={this.handleInputChange}
 										value={this.state.lessonName}
+									/>
+								</FormGroup>
+								<FormGroup>
+									<ControlLabel>Settings</ControlLabel>
+									<CheckboxInput
+										legend="Minify code"
+										onChange={ ( value ) => {
+											this.setState({
+												minify: value
+											});
+										}}
+										defaultValue={true}
 									/>
 								</FormGroup>
 								<Button
