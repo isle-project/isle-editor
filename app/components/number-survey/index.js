@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Panel, Grid, Col } from 'react-bootstrap';
-import { VictoryBar, VictoryChart } from 'victory';
+import { VictoryAxis, VictoryBar, VictoryChart } from 'victory';
 import { tabulate } from '@stdlib/utils';
 import isNumber from '@stdlib/assert/is-number';
 import mean from 'compute-mean';
@@ -115,6 +115,13 @@ class NumberSurvey extends Component {
 								data={this.state.data}
 								x="x"
 								y="y"
+							/>
+							<VictoryAxis
+								label="Answer"
+							/>
+							<VictoryAxis
+								dependentAxis
+								label="Count"
 							/>
 						</VictoryChart>
 						{ isNumber( this.state.avg ) && isNumber( this.state.sd ) ?
