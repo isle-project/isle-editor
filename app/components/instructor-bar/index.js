@@ -1,8 +1,10 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Button, ButtonGroup, Collapse, ListGroup, ListGroupItem, Modal, Panel, Well } from 'react-bootstrap';
+import { Button, ButtonGroup, Collapse, Col, Grid, ListGroup, ListGroupItem, Modal, Panel, Row, Well } from 'react-bootstrap';
+import { VictoryAxis, VictoryBar, VictoryChart } from 'victory';
 import PropTypes from 'prop-types';
+import tabulate from '@stdlib/utils/tabulate';
 import Gate from 'components/gate';
 import TextArea from 'components/text-area';
 
@@ -16,6 +18,7 @@ class InstructorBar extends Component {
 
 		this.state = {
 			actions: [],
+			counts: [],
 			receivedFeedbacks: [],
 			actionsAreOpen: false,
 			feedbackIsOpen: false,
@@ -69,8 +72,18 @@ class InstructorBar extends Component {
 				filtered.push( actions[ i ]);
 			}
 		}
+		const values = filtered.map( x => x.value );
+		const tabulated = tabulate( values );
+		const counts = tabulated.map( d => {
+			return {
+				x: d[ 1 ],
+				y: d[ 0 ]
+			};
+		});
+		console.log( counts );
 		this.setState({
-			actions: filtered
+			actions: filtered,
+			counts: counts
 		});
 	}
 
@@ -127,36 +140,62 @@ class InstructorBar extends Component {
 							<Modal.Header closeButton>
 								<Modal.Title>Actions</Modal.Title>
 							</Modal.Header>
-							<Modal.Body style={{ height: 0.80 * window.innerHeight, overflowY: 'scroll' }}>
-								{ this.state.actions.length > 0 ?
-									<ListGroup fill style={{ marginLeft: 0 }}>
-										{this.state.actions.map( elem =>
-											<ListGroupItem>
-												{ this.state.showExtended ?
-													<span style={{ textAlign: 'left' }}>
-														<b>{elem.name}:</b> {elem.value}
-													</span> :
-													<span style={{ textAlign: 'left' }}>
-														{elem.value}
-													</span>
-												}
-												{ this.state.showExtended ?
-													<Button
-														bsSize="xs"
-														style={{ float: 'right' }}
-													>
-														<span>&times;</span>
-													</Button> :
-													null
-												}
-											</ListGroupItem>
-										)}
-									</ListGroup>
-									:
-									<Well>
-										<h2>The data set is empty.</h2>
-									</Well>
-								}
+							<Modal.Body style={{ height: 0.80 * window.innerHeight }} >
+								<Grid>
+									<Row>
+										<Col md={6}>
+											{ this.state.actions.length > 0 ?
+												<ListGroup fill style={{ marginLeft: 0, overflowY: 'scroll', height: 0.78 * window.innerHeight }}>
+													{this.state.actions.map( elem =>
+														<ListGroupItem>
+															{ this.state.showExtended ?
+																<span style={{ textAlign: 'left' }}>
+																	<b>{elem.name}:</b> {elem.value}
+																</span> :
+																<span style={{ textAlign: 'left' }}>
+																	{elem.value}
+																</span>
+															}
+															{ this.state.showExtended ?
+																<Button
+																	bsSize="xs"
+																	style={{ float: 'right' }}
+																>
+																	<span>&times;</span>
+																</Button> :
+																null
+															}
+														</ListGroupItem>
+													)}
+												</ListGroup>
+												:
+												<Well>
+													<h2>The data set is empty.</h2>
+												</Well>
+											}
+										</Col>
+										<Col md={6}>
+											<VictoryChart
+												width={550} height={450}
+												domainPadding={20}
+											>
+												<VictoryBar
+													horizontal
+													data={this.state.counts}
+													x="x"
+													y="y"
+												/>
+												<VictoryAxis
+													label="Count"
+												/>
+												<VictoryAxis
+													dependentAxis
+													label="Answer"
+												/>
+											</VictoryChart>
+										</Col>
+									</Row>
+								</Grid>
 							</Modal.Body>
 							<Modal.Footer>
 								<Button onClick={this.toggleExtended}>{ this.state.showExtended ? 'Hide Extended' : 'Show Extended' }</Button>
