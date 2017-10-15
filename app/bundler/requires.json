@@ -12,6 +12,7 @@
 	"DensityPlot": "const DensityPlot = require( \"components/d3/density-plot\" )",
 	"DraggableList": "const DraggableList = require( \"components/draggable-list\" )",
 	"Editor": "const Editor = require( \"components/editor\" )",
+	"EnlargableGrid": "const EnlargableGrid = require( \"components/enlargable-grid\" )",
 	"Experiment": "const ABTest = require( \"components/experiment\" )",
 	"FeedbackButtons": "const FeedbackButtons = require( \"components/feedback\" )",
 	"FreeTextQuestion": "const FreeTextQuestion = require( \"components/free-text-question\" )",
@@ -101,5 +102,6 @@
 	"VictoryVoronoi": "const VictoryVoronoi = require( \"victory\" ).VictoryVoronoi",
 	"VictoryZoomContainer": "const VictoryZoomContainer = require( \"victory\" ).VictoryZoomContainer",
 	"VideoPlayer": "const VideoPlayer = require( \"components/video-player\" )",
-	"Well": "const Well = require( \"react-bootstrap\" ).Well"
+	"Well": "const Well = require( \"react-bootstrap\" ).Well",
+	"WordCloud": "const WordCloud = require( \"components/word-cloud\" )"
 }
