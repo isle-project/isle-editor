@@ -76,8 +76,8 @@ class InstructorBar extends Component {
 		const tabulated = tabulate( values );
 		const counts = tabulated.map( d => {
 			return {
-				x: d[ 1 ],
-				y: d[ 0 ]
+				x: d[ 0 ],
+				y: d[ 1 ]
 			};
 		});
 		console.log( counts );
@@ -114,6 +114,17 @@ class InstructorBar extends Component {
 		this.unsubscribe();
 	}
 
+	deleteFactory = ( idx ) => {
+		return () => {
+			const { session } = this.context;
+			session.removeSessionElementFromDatabase( this.state.actions[ idx ].sessiondataID, ( err ) => {
+				if ( !err ) {
+					this.addSessionActions();
+				}
+			});
+		};
+	}
+
 	render() {
 		return (
 			<div>
@@ -146,7 +157,7 @@ class InstructorBar extends Component {
 										<Col md={6}>
 											{ this.state.actions.length > 0 ?
 												<ListGroup fill style={{ marginLeft: 0, overflowY: 'scroll', height: 0.78 * window.innerHeight }}>
-													{this.state.actions.map( elem =>
+													{this.state.actions.map( ( elem, idx ) =>
 														<ListGroupItem>
 															{ this.state.showExtended ?
 																<span style={{ textAlign: 'left' }}>
@@ -160,6 +171,7 @@ class InstructorBar extends Component {
 																<Button
 																	bsSize="xs"
 																	style={{ float: 'right' }}
+																	onClick={this.deleteFactory( idx )}
 																>
 																	<span>&times;</span>
 																</Button> :

@@ -1000,6 +1000,41 @@ class Session {
 		}
 	}
 
+	removeSessionElementFromDatabase( sessionElementID, clbk ) {
+		request.get( this.server+'/delete_session_element', {
+			qs: {
+				_id: sessionElementID
+			},
+			headers: {
+				'Authorization': 'JWT ' + this.user.token
+			},
+			rejectUnauthorized
+		}, ( error ) => {
+			if ( error ) {
+				this.addNotification({
+					title: 'Error encountered',
+					message: error.message,
+					level: 'error',
+					position: 'tl'
+				});
+				return clbk( error );
+			}
+			for ( let i = 0; i < this.socketActions.length; i++ ) {
+				if ( this.socketActions[ i ].sessiondataID === sessionElementID ) {
+					this.socketActions.splice( i, 1 );
+					break;
+				}
+			}
+			this.addNotification({
+				title: 'Deleted',
+				message: 'You have successfully deleted the action.',
+				level: 'success',
+				position: 'tl'
+			});
+			clbk( null );
+		});
+	}
+
 	/**
 	* Logs session action to database and sends it via socket connection to specified group.
 	*
