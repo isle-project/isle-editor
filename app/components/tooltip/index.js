@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import styles from 'components/styles';
 
 
-// TOOLTIP //
+// MAIN //
 
 class Tooltip extends React.Component {
 	/*
