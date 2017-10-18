@@ -26,13 +26,12 @@ class Dashboard extends Component {
 
 	handleClick = () => {
 		let args = [];
-		for ( let i = 0; i < this.props.children.length; i++ ) {
-			if ( hasOwnProperty( this.state, i ) ) {
-				const value = this.state[ i ];
+		React.Children.forEach( this.props.children, ( elem, idx ) => {
+			if ( hasOwnProperty( this.state, idx ) ) {
+				const value = this.state[ idx ];
 				args.push( value );
 			}
-		}
-
+		});
 		if ( this.props.id ) {
 			const { session } = this.context;
 			session.log({
@@ -47,21 +46,17 @@ class Dashboard extends Component {
 	handleFieldChange = ( fieldId, value ) => {
 		var newState = {};
 		newState[ fieldId ] = value;
-
-		this.setState( newState );
+		this.setState( newState, () => {
+			if ( this.props.autoUpdate ) {
+				this.handleClick();
+			}
+		});
 	}
 
 	componentDidMount() {
 		if ( this.props.autoStart ) {
 			this.handleClick();
 		}
-	}
-
-	getChildContext() {
-		return {
-			triggerDashboardClick : this.handleClick,
-			autoUpdate: this.props.autoUpdate
-		};
 	}
 
 	render() {
@@ -120,11 +115,6 @@ Dashboard.propTypes = {
 	autoUpdate: PropTypes.bool,
 	autoStart: PropTypes.bool,
 	maxWidth: PropTypes.number
-};
-
-Dashboard.childContextTypes = {
-	triggerDashboardClick: PropTypes.func,
-	autoUpdate: PropTypes.bool
 };
 
 Dashboard.contextTypes = {
