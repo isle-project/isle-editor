@@ -3,14 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Panel } from 'react-bootstrap';
-import { isArray } from '@stdlib/assert';
-import Input from 'components/input/base';
-import CheckboxInput from 'components/input/checkbox';
-import NumberInput from 'components/input/number';
-import SelectInput from 'components/input/select';
-import SliderInput from 'components/input/slider';
-import TextInput from 'components/input/text';
-import { findAllChildren } from 'utils/find-nodes';
+import hasOwnProperty from '@stdlib/assert/has-own-property';
 import './dashboard.css';
 
 
@@ -18,53 +11,44 @@ import './dashboard.css';
 
 class Dashboard extends Component {
 
-	constructor() {
-		super();
+	constructor( props ) {
+		super( props );
 
-		this.handleClick = () => {
-			let inputs = findAllChildren( this, Input );
-			let args;
-			if ( inputs ) {
-				args = inputs.map( v => {
-					if (
-						v instanceof NumberInput ||
-						v instanceof SliderInput
-					) {
-						return parseFloat( v.state.value );
-					}
-					else if ( v instanceof SelectInput ) {
-						const val = v.state.value;
-						if ( isArray( val ) ) {
-							return val.map( x => x.value );
-						}
-						if ( val ) {
-							return val.value;
-						}
-						// Case: val is null
-						return val;
-					}
-					else if (
-						v instanceof CheckboxInput ||
-						v instanceof TextInput
-					) {
-						console.log( v );
-						return v.state.value;
-					}
-				});
-			} else {
-				args = [];
-			}
+		const initialState = {};
 
-			if ( this.props.id ) {
-				const { session } = this.context;
-				session.log({
-					id: this.props.id,
-					type: 'DASHBOARD_CLICK_GENERATE',
-					value: args
-				});
+		React.Children.forEach( props.children, ( elem, idx ) => {
+			if ( hasOwnProperty( elem.props, 'defaultValue' ) ) {
+				initialState[ idx ] = elem.props.defaultValue;
 			}
-			this.props.onGenerate( ...args );
-		};
+		});
+		this.state = initialState;
+	}
+
+	handleClick = () => {
+		let args = [];
+		for ( let i = 0; i < this.props.children.length; i++ ) {
+			if ( hasOwnProperty( this.state, i ) ) {
+				const value = this.state[ i ];
+				args.push( value );
+			}
+		}
+
+		if ( this.props.id ) {
+			const { session } = this.context;
+			session.log({
+				id: this.props.id,
+				type: 'DASHBOARD_CLICK_GENERATE',
+				value: args
+			});
+		}
+		this.props.onGenerate( ...args );
+	};
+
+	handleFieldChange = ( fieldId, value ) => {
+		var newState = {};
+		newState[ fieldId ] = value;
+
+		this.setState( newState );
 	}
 
 	componentDidMount() {
@@ -81,6 +65,15 @@ class Dashboard extends Component {
 	}
 
 	render() {
+
+		const children = React.Children.map( this.props.children,
+			( child, idx ) => React.cloneElement( child, {
+				onChange: ( value ) => {
+					this.handleFieldChange( idx, value );
+				}
+			})
+		);
+
 		return (
 			<Panel
 				className="dashboard"
@@ -90,7 +83,7 @@ class Dashboard extends Component {
 				}}
 			>
 				<p>{this.props.description}</p>
-				{ this.props.children }
+				{children}
 				{ !this.props.autoUpdate ?
 					<Button
 						bsStyle="primary"
