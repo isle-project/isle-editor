@@ -87,6 +87,7 @@ const loadRequires = ( libs, filePath ) => {
 };
 
 const getMainImports = () => `
+import 'react-dates/initialize';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import yaml from 'js-yaml';
