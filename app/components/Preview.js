@@ -25,8 +25,9 @@ const debug = require( 'debug' )( 'isle-editor' );
 const Session = require ( 'session' );
 
 import { Component } from 'react';
-import { transform } from 'react-tools';
+import { transform } from 'babel-core';
 import markdownToHTML from 'utils/markdown-to-html';
+import 'react-tree-graph/dist/style.css';
 
 
 // E-LEARNING MODULE COMPONENTS //
@@ -92,6 +93,7 @@ const TextArea = require( 'components/text-area' );
 const TextInput = require( 'components/input/text' );
 const Text = require( 'components/text' );
 const Timer = require( 'components/timer' );
+const Tree = require( 'components/d3/tree' );
 const VennDiagramBuilder = require( 'components/venn-diagram-builder' );
 const Bar = require( 'victory' ).Bar;
 // const Variant = require( 'react-ab-test' ).Variant;
@@ -150,6 +152,14 @@ const WordCloud = require( 'components/word-cloud' );
 const DataExplorer = require( 'components/data-explorer' );
 const Learn = require( 'components/learn' );
 
+const pluginTransformJSX = require( 'babel-plugin-transform-react-jsx' );
+
+// VARIABLES //
+
+const OPTS = {
+	plugins: [ pluginTransformJSX ]
+};
+
 
 // MAIN //
 
@@ -160,13 +170,14 @@ export default class Preview extends Component {
 			<h3>Encountered an error:</h3>
 			<span>${err}</span>
 		</div>`;
-		let es5code = `
+		code = `
 			render(
-				${transform( code )},
+				${code},
 				document.getElementById( 'Preview' )
 			)
 		`;
-		eval( es5code );
+		code = transform( code, OPTS ).code;
+		eval( code );
 	}
 
 	constructor( props ) {
@@ -186,83 +197,86 @@ export default class Preview extends Component {
 			let es5code;
 			let { code, preamble, currentRole } = this.props;
 			let session = global.session;
-			try {
 
-				// Remove preamble and comments:
-				code = code.replace( /---([\S\s]*)---/, '' );
-				code = code.replace( /<!--([\S\s]*)-->/, '' );
+			// Remove preamble and comments:
+			code = code.replace( /---([\S\s]*)---/, '' );
+			code = code.replace( /<!--([\S\s]*)-->/, '' );
 
-				// Replace Markdown by HTML...
-				code = markdownToHTML( code );
+			// Replace Markdown by HTML...
+			code = markdownToHTML( code );
 
-				if ( preamble.type === 'presentation' ) {
-					debug( 'Should render a presentation...' );
-					let progress = 'number';
-					if ( preamble.presentation ) {
-						if ( preamble.presentation.progress ) {
-							progress = preamble.presentation.progress;
-						}
+			if ( preamble.type === 'presentation' ) {
+				debug( 'Should render a presentation...' );
+				let progress = 'number';
+				if ( preamble.presentation ) {
+					if ( preamble.presentation.progress ) {
+						progress = preamble.presentation.progress;
 					}
-					// Automatically insert <Slide> tags if not manually set...
-					if ( !contains( code, '<Slide' ) || !contains( code, '</Slide>' ) ) {
-						let pres = '<Slide>';
-						let arr = code.split( '<p>===</p>' );
-						pres += arr.join( '</Slide><Slide>' );
-						pres += '</Slide>';
-						pres = pres.replace( /<h([0-5])>(.*?)<\/h[0-5]>/g,'<Heading size={$1}>$2</Heading>' );
-						pres = pres.replace( /<p[^>]*>([\s\S]+?)<\/p>/g, '<SText>$1</SText>' );
-						pres = pres.replace( /<ul[^>]*>([\s\S]+?)<\/ul>/g, '<List>$1</List>' );
-						pres = pres.replace( /<li[^>]*>([\s\S]+?)<\/li>/g, '<ListItem>$1</ListItem>' );
-						code = pres;
-					}
-					code = `
-						<Deck
-							globalStyles={false}
-							controls={true}
-							progress="${progress}"
-							transition={[]}
-							theme={theme}
-						>${code}</Deck>`;
 				}
-				es5code = `
-					var lessonConfig = {
-						componentDidMount: function() {
-							global.lesson = this;
-							global.notificationSystem = this.refs.notificationSystem;
-						},
-						getInitialState: function() {
-							var config = global.session.config;
-							var state = config.state || {};
-							return state;
-						},
-						componentWillUnmount: function() {
-							this.unmounted = true;
-						},
-						render: function() {
-							return React.createElement(
-								"div",
-								{
-									className: "Lesson",
-									id: "Lesson"
-								},
-								React.createElement( StatusBar ),
-								${transform( '<div>' + code + '</div>' )},
-								React.createElement(
-									NotificationSystem,
-									{ ref: "notificationSystem", allowHTML: true }
-								)
-							);
-						}
-					};
-					var Lesson = createReactClass( lessonConfig );
-					render(
-						React.createElement( Provider, { session: session, currentRole: "${currentRole}" },
-							${transform( '<Lesson />' )}
-						),
-						document.getElementById( 'Preview' )
-					)
-				`;
-				eval( es5code );
+				// Automatically insert <Slide> tags if not manually set...
+				if ( !contains( code, '<Slide' ) || !contains( code, '</Slide>' ) ) {
+					let pres = '<Slide>';
+					let arr = code.split( '<p>===</p>' );
+					pres += arr.join( '</Slide><Slide>' );
+					pres += '</Slide>';
+					pres = pres.replace( /<h([0-5])>(.*?)<\/h[0-5]>/g,'<Heading size={$1}>$2</Heading>' );
+					pres = pres.replace( /<p[^>]*>([\s\S]+?)<\/p>/g, '<SText>$1</SText>' );
+					pres = pres.replace( /<ul[^>]*>([\s\S]+?)<\/ul>/g, '<List>$1</List>' );
+					pres = pres.replace( /<li[^>]*>([\s\S]+?)<\/li>/g, '<ListItem>$1</ListItem>' );
+					code = pres;
+				}
+				code = `
+					<Deck
+						globalStyles={false}
+						controls={true}
+						progress="${progress}"
+						transition={[]}
+						theme={theme}
+					>${code}</Deck>`;
+			}
+
+			const es6code = `global.session = new Session( preamble );
+			class Lesson extends React.Component {
+				constructor() {
+					super();
+					this.state = preamble.state || {};
+				}
+				componentDidMount() {
+					global.notificationSystem = this.refs.notificationSystem;
+					global.lesson = this;
+				}
+				componentWillUnmount() {
+					this.unmounted = true;
+				}
+				componentDidCatch( error, info ) {
+					this.setState({ hasError: true, errorMsg: error.message });
+						// You can also log the error to an error reporting service
+						logErrorToMyService(error, info);
+				  }
+				render() {
+					return (
+						<div id="Lesson" className="Lesson" >
+							<StatusBar className="fixedPos" />
+							<div>${code}</div>
+							<NotificationSystem ref="notificationSystem" allowHTML={true} />
+						</div>
+					);
+				}
+			}
+			render(
+				<Provider session={session} >
+						<Lesson />
+				</Provider>,
+				document.getElementById( 'Preview' )
+			);`;
+
+			debug( 'Transpile code to ES5...' );
+			try {
+				es5code = transform( es6code, OPTS );
+				console.log( es5code );
+				if ( es5code && es5code.code ) {
+					eval( es5code.code );
+				}
 			} catch ( err ) {
 				this.renderErrorMessage( err.message );
 			}

@@ -9,6 +9,7 @@ import fs from 'fs';
 import debounce from 'lodash.debounce';
 import SplitPane from 'react-split-pane';
 import yaml from 'js-yaml';
+import ErrorBoundary from 'components/error-boundary';
 import Panel from 'components/Panel';
 import Header from 'components/Header';
 import Editor from 'components/Editor';
@@ -247,13 +248,15 @@ class App extends Component {
 						/>
 					</Panel>
 					<Panel ref="preview" onScroll={this.onPreviewScroll}>
-						<Preview
-							errorMsg={ error ? error.message : null }
-							code={markdown}
-							filePath={filePath}
-							preamble={preamble}
-							currentRole={currentRole}
-						/>
+						<ErrorBoundary code={markdown}>
+							<Preview
+								errorMsg={ error ? error.message : null }
+								code={markdown}
+								filePath={filePath}
+								preamble={preamble}
+								currentRole={currentRole}
+							/>
+						</ErrorBoundary>
 					</Panel>
 				</SplitPane>
 				{
