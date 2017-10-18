@@ -45,8 +45,10 @@ class SelectInput extends Input {
 					newValue.map( x => x.value ) :
 					newValue.value;
 				this.props.onChange( val );
-				if ( this.context.autoUpdate ) {
-					this.context.triggerDashboardClick();
+				if ( this.props.bind ) {
+					global.lesson.setState({
+						[ this.props.bind ]: val
+					});
 				}
 			});
 		};
@@ -62,6 +64,17 @@ class SelectInput extends Input {
 			out = { 'label': value, 'value': value };
 		}
 		return out;
+	}
+
+	componentDidUpdate() {
+		if ( this.props.bind ) {
+			let globalVal = global.lesson.state[ this.props.bind ];
+			if ( globalVal !== this.state.value ) {
+				this.setState({
+					value: globalVal
+				});
+			}
+		}
 	}
 
 	componentWillReceiveProps( nextProps ) {
@@ -154,14 +167,6 @@ SelectInput.propTypes = {
 	multi: PropTypes.bool,
 	placeholder: PropTypes.string,
 	clearable: PropTypes.bool
-};
-
-
-// CONTEXT TYPES //
-
-SelectInput.contextTypes = {
-	triggerDashboardClick: PropTypes.func,
-	autoUpdate: PropTypes.bool
 };
 
 

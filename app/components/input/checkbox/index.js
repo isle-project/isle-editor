@@ -9,8 +9,15 @@ import Input from 'components/input/base';
 
 class CheckboxInput extends Input {
 
-	constructor( props ) {
+	constructor( props, context ) {
 		super( props );
+
+		const { session } = context;
+		this.state = {
+			value: !props.bind ?
+				props.defaultValue :
+				session.config.state[ props.bind ]
+		};
 
 		/**
 		* Event handler invoked once the checkbox is clicked by the user. Changes the
@@ -21,11 +28,24 @@ class CheckboxInput extends Input {
 				value: event.target.checked
 			}, () => {
 				this.props.onChange( this.state.value );
-				if ( this.context.autoUpdate ) {
-					this.context.triggerDashboardClick();
+				if ( this.props.bind ) {
+					global.lesson.setState({
+						[ this.props.bind ]: value
+					});
 				}
 			});
 		};
+	}
+
+	componentDidUpdate() {
+		if ( this.props.bind ) {
+			let globalVal = global.lesson.state[ this.props.bind ];
+			if ( globalVal !== this.state.value ) {
+				this.setState({
+					value: globalVal
+				});
+			}
+		}
 	}
 
 	render() {
@@ -75,6 +95,7 @@ class CheckboxInput extends Input {
 // DEFAULT PROPERTIES //
 
 CheckboxInput.defaultProps = {
+	bind: '',
 	onChange() {},
 	defaultValue: false,
 	inline: false
@@ -84,6 +105,7 @@ CheckboxInput.defaultProps = {
 // PROPERTY TYPES //
 
 CheckboxInput.propTypes = {
+	bind: PropTypes.string,
 	onChange: PropTypes.func,
 	defaultValue: PropTypes.bool,
 	inline: PropTypes.bool
@@ -93,8 +115,7 @@ CheckboxInput.propTypes = {
 // CONTEXT TYPES //
 
 CheckboxInput.contextTypes = {
-	triggerDashboardClick: PropTypes.func,
-	autoUpdate: PropTypes.bool
+	session: PropTypes.object
 };
 
 

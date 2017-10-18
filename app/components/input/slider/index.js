@@ -53,15 +53,7 @@ class SliderInput extends Input {
 					if ( this.props.bind ) {
 						global.lesson.setState({
 							[ this.props.bind ]: value
-						}, () => {
-							if ( this.context.autoUpdate ) {
-								this.context.triggerDashboardClick();
-							}
 						});
-					} else {
-						if ( this.context.autoUpdate ) {
-							this.context.triggerDashboardClick();
-						}
 					}
 				} else {
 					if ( this.props.bind ) {
@@ -96,15 +88,7 @@ class SliderInput extends Input {
 					if ( this.props.bind ) {
 						global.lesson.setState({
 							[ this.props.bind ]: value
-						}, () => {
-							if ( this.context.autoUpdate ) {
-								this.context.triggerDashboardClick();
-							}
 						});
-					} else {
-						if ( this.context.autoUpdate ) {
-							this.context.triggerDashboardClick();
-						}
 					}
 				});
 			}
@@ -258,8 +242,6 @@ SliderInput.propTypes = {
 // CONTEXT TYPES //
 
 SliderInput.contextTypes = {
-	triggerDashboardClick: PropTypes.func,
-	autoUpdate: PropTypes.bool,
 	session: PropTypes.object
 };
 

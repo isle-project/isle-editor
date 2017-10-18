@@ -52,15 +52,7 @@ class NumberInput extends Input {
 					if ( this.props.bind ) {
 						global.lesson.setState({
 							[ this.props.bind ]: value
-						}, () => {
-							if ( this.context.autoUpdate ) {
-								this.context.triggerDashboardClick();
-							}
 						});
-					} else {
-						if ( this.context.autoUpdate ) {
-							this.context.triggerDashboardClick();
-						}
 					}
 				} else {
 					if ( this.props.bind ) {
@@ -271,8 +263,6 @@ NumberInput.propTypes = {
 // CONTEXT TYPES //
 
 NumberInput.contextTypes = {
-	triggerDashboardClick: PropTypes.func,
-	autoUpdate: PropTypes.bool,
 	session: PropTypes.object
 };
 
