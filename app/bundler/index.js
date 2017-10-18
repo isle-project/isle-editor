@@ -106,7 +106,7 @@ global.session = new Session( preamble );
 class Lesson extends Component {
 	constructor() {
 		super();
-		this.state = preamble.state;
+		this.state = preamble.state || {};
 	}
 
 	componentDidMount() {

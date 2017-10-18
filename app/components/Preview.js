@@ -232,7 +232,8 @@ export default class Preview extends Component {
 						},
 						getInitialState: function() {
 							var config = global.session.config;
-							return config.state;
+							var state = config.state || {};
+							return state;
 						},
 						componentWillUnmount: function() {
 							this.unmounted = true;
