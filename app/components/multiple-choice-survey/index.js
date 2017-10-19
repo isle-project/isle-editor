@@ -240,7 +240,8 @@ MultipleChoiceSurvey.propTypes = {
 	onSubmit: PropTypes.func,
 	answers: PropTypes.array,
 	allowMultipleAnswers: PropTypes.bool,
-	anonymous: PropTypes.bool
+	anonymous: PropTypes.bool,
+	question: PropTypes.string
 };
 
 MultipleChoiceSurvey.contextTypes = {
