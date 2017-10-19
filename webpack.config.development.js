@@ -27,7 +27,7 @@ const config = {
 		rules: [
 			...baseConfig.module.rules,
 			{
-				test: /\.css$$/,
+				test: /\.css$/,
 				use: [
 					'style-loader',
 					'css-loader?sourceMap'

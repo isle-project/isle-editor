@@ -63,7 +63,7 @@ const config = {
 				]
 			},
 			{
-				test: /\.css$$/,
+				test: /\.css$/,
 				use: [
 					'style-loader',
 					'css-loader?sourceMap'
