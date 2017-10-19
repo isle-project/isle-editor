@@ -4,7 +4,6 @@ import mustache from 'mustache';
 import request from 'request';
 import isString from '@stdlib/assert/is-string';
 import isFunction from '@stdlib/assert/is-function';
-import inEditor from 'utils/is-electron';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 const isElectron = require( 'utils/is-electron' );
 const debug = require( 'debug' )( 'isle-editor' );
@@ -30,8 +29,14 @@ let userRights = null;
 
 class Session {
 
-	constructor( config ) {
+	constructor( config, offline ) {
 		debug( 'Should create session...' );
+
+		// Address where ISLE server is running:
+		this.server = config.server;
+
+		// Set whether the session tries to communicate with the server
+		this._offline = offline || false;
 
 		// Array of subscribed components listening for session updates:
 		this.listeners = [];
@@ -77,9 +82,6 @@ class Session {
 		// YAML configuration object:
 		this.config = config;
 
-		// Address where ISLE server is running:
-		this.server = config.server;
-
 		// IDs in the database:
 		this.lessonID = null;
 		this.namespaceID = null;
@@ -87,17 +89,22 @@ class Session {
 		// Extract namespace and lesson name from URL:
 		this.namespaceName = null;
 		this.lessonName = null;
-		const url = window.location.pathname;
-		if ( isString( url ) ) {
-			var matches = url.match( PATH_REGEXP );
-			if ( matches && matches.length >= 2 && url.endsWith( '/' ) ) {
-				this.namespaceName = decodeURIComponent( matches[ 1 ]);
-				this.lessonName = decodeURIComponent( matches[ 2 ]);
+		if ( !isElectron ) {
+			const url = window.location.pathname;
+			if ( isString( url ) ) {
+				var matches = url.match( PATH_REGEXP );
+				if ( matches && matches.length >= 2 && url.endsWith( '/' ) ) {
+					this.namespaceName = decodeURIComponent( matches[ 1 ]);
+					this.lessonName = decodeURIComponent( matches[ 2 ]);
+				}
 			}
+		} else {
+			this.lessonName = config.lesson;
+			this.namespaceName = config.namespace;
 		}
 
 		// Connect via WebSockets to other users...
-		if ( this.user && this.server ) {
+		if ( this.user && this.server && !this._offline ) {
 			this.socketConnect();
 		}
 
@@ -163,7 +170,7 @@ class Session {
 	*/
 	startPingServer = () => {
 		this.pingServer();
-		if ( !inEditor ) {
+		if ( !this._offline ) {
 			this.pingInterval = setInterval( this.pingServer, 10000 );
 		}
 	}
@@ -175,7 +182,7 @@ class Session {
 	*/
 	stopPingServer = () => {
 		debug( 'Should clear the interval pinging the server' );
-		if ( !inEditor ) {
+		if ( !this._offline ) {
 			clearInterval( this.pingInterval );
 		}
 	}
@@ -331,7 +338,11 @@ class Session {
 	* @returns {void}
 	*/
 	getUserRights = () => {
-		if ( !this.anonymous && !this.userRightsQuestionPosed ) {
+		if (
+			!this.anonymous &&
+			!this.userRightsQuestionPosed &&
+			!this._offline
+		) {
 			this.userRightsQuestionPosed = true;
 			request.post( this.server+'/get_user_rights', {
 				headers: {
@@ -496,10 +507,13 @@ class Session {
 	* @returns {void}
 	*/
 	socketConnect() {
-		const socket = io.connect( this.server );
+		console.log( 'Connecting via socket to server... ' );
+		const socket = io.connect( this.server, {
+			transports: [ 'websocket', 'xhr-polling' ]
+		});
 
 		socket.on( 'connect', () => {
-			debug( 'I am connected...' );
+			console.log( 'I am connected...' );
 			this.stopPingServer();
 		});
 
@@ -952,7 +966,7 @@ class Session {
 			lessonID: this.lessonID,
 			userID: this.user ? this.user.id : null
 		};
-		if ( !inEditor ) {
+		if ( !this._offline ) {
 			request.post( this.server + '/updateSession', {
 				form: {
 					stringified: JSON.stringify( currentSession )
@@ -988,7 +1002,7 @@ class Session {
 			type,
 			data
 		};
-		if ( !inEditor || true ) {
+		if ( !this._offline ) {
 			request.post( this.server + '/store_session_element', {
 				form: {
 					stringified: JSON.stringify( obj )

@@ -29,6 +29,7 @@ const initialState = {
 	filePath: config.get( 'mostRecentFilePath' ),
 	fileName: config.get( 'mostRecentFileName' ),
 	currentRole: 'anonymous',
+	currentMode: 'offline',
 	error
 };
 
@@ -63,6 +64,10 @@ export default function markdown( state = initialState, action ) {
 	case types.ROLE_CHANGED:
 		return Object.assign({}, state, {
 			currentRole: action.payload.role
+		});
+	case types.MODE_CHANGED:
+		return Object.assign({}, state, {
+			currentMode: action.payload.mode
 		});
 	case types.TOGGLE_SCROLLING:
 		return Object.assign({}, state, {

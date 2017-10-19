@@ -14,7 +14,7 @@ import Panel from 'components/Panel';
 import Header from 'components/Header';
 import Editor from 'components/Editor';
 import Preview from 'components/Preview';
-import { convertMarkdown, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError } from 'actions';
+import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError } from 'actions';
 const debug = require( 'debug' )( 'isle-editor' );
 
 
@@ -209,7 +209,9 @@ class App extends Component {
 			hideToolbar,
 			preamble,
 			changeView,
-			currentRole
+			changeMode,
+			currentRole,
+			currentMode
 		} = this.props;
 		return (
 			<div>
@@ -218,6 +220,8 @@ class App extends Component {
 						fileName={fileName}
 						onSelectRole={changeView}
 						role={currentRole}
+						onSelectMode={changeMode}
+						mode={currentMode}
 					/> :
 					null
 				}
@@ -255,6 +259,7 @@ class App extends Component {
 								filePath={filePath}
 								preamble={preamble}
 								currentRole={currentRole}
+								currentMode={currentMode}
 							/>
 						</ErrorBoundary>
 					</Panel>
@@ -280,6 +285,7 @@ export default connect( mapStateToProps, {
 	encounteredError,
 	resetError,
 	changeView,
+	changeMode,
 	toggleScrolling,
 	toggleToolbar,
 	updatePreamble

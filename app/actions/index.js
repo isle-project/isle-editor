@@ -76,3 +76,12 @@ export function changeView( role ) {
 		}
 	};
 }
+
+export function changeMode( mode ) {
+	return {
+		type: types.MODE_CHANGED,
+		payload: {
+			mode
+		}
+	};
+}

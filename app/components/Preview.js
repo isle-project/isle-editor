@@ -187,7 +187,8 @@ export default class Preview extends Component {
 		};
 
 		if ( this.state.preambleIsValid ) {
-			global.session = new Session( props.preamble );
+			const offline = props.currentMode === 'offline';
+			global.session = new Session( props.preamble, offline );
 		}
 
 		this.shouldRenderPreview = true;
@@ -297,9 +298,11 @@ export default class Preview extends Component {
 		debug( 'Preview will update.' );
 		if (
 			nextProps.preamble.server !== this.props.preamble.server ||
-			nextProps.preamble.state !== this.props.preamble.state
+			nextProps.preamble.state !== this.props.preamble.state ||
+			nextProps.currentMode !== this.props.currentMode
 		) {
-			global.session = new Session( nextProps.preamble );
+			const offline = nextProps.currentMode === 'offline';
+			global.session = new Session( nextProps.preamble, offline );
 		}
 		if ( nextProps.preamble.type !== this.props.preamble.type ) {
 			if ( this.state.preambleIsValid ) {

@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { DropdownButton, MenuItem } from 'react-bootstrap';
+import { ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 import * as colors from 'constants/colors';
 
 
@@ -12,6 +12,20 @@ class Header extends Component {
 
 	constructor( props ) {
 		super( props );
+	}
+
+	handleModeSelection = ( eventKey ) => {
+		let newMode;
+		switch ( eventKey ) {
+		case '1':
+		default:
+			newMode = 'offline';
+			break;
+		case '2':
+			newMode = 'online';
+			break;
+		}
+		this.props.onSelectMode( newMode );
 	}
 
 	handleRoleSelection = ( eventKey ) => {
@@ -89,12 +103,26 @@ class Header extends Component {
 					}}
 				>
 					<span style={{ paddingLeft: 5 }} >{this.props.fileName || 'Untitled Document'}</span>
-					<span>
+					<ButtonGroup>
+						<DropdownButton
+							title={this.props.mode}
+							id="bg-mode-dropdown"
+							bsSize="xsmall"
+							bsStyle="warning"
+							onSelect={this.handleModeSelection}
+							style={{
+								width: 100,
+								paddingRight: 5
+							}}
+						>
+							<MenuItem eventKey="1">offline</MenuItem>
+							<MenuItem eventKey="2">online</MenuItem>
+						</DropdownButton>
 						<DropdownButton
 							title={this.props.role}
 							id="bg-user-dropdown"
 							bsSize="xsmall"
-							bsStyle="warning"
+							bsStyle="success"
 							onSelect={this.handleRoleSelection}
 							style={{
 								width: 100
@@ -109,7 +137,7 @@ class Header extends Component {
 							paddingLeft: 5,
 							paddingRight: 5
 						}}>Preview</span>
-					</span>
+					</ButtonGroup>
 				</div>
 			</div>
 		);
