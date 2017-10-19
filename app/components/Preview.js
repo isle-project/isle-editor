@@ -27,7 +27,6 @@ const Session = require ( 'session' );
 import { Component } from 'react';
 import { transform } from 'babel-core';
 import markdownToHTML from 'utils/markdown-to-html';
-import 'react-tree-graph/dist/style.css';
 
 
 // E-LEARNING MODULE COMPONENTS //

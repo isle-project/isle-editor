@@ -5,7 +5,7 @@ const fs = require( 'fs-extra' );
 const path = require( 'path' );
 const yaml = require( 'js-yaml' );
 const webpack = require( 'webpack' );
-const debug = require( 'debug-electron' )( 'bundler' );
+const debug = require( 'debug' )( 'bundler' );
 const contains = require( '@stdlib/assert/contains' );
 const isObject = require( '@stdlib/assert/is-object' );
 const isAbsolutePath = require( '@stdlib/assert/is-absolute-path' );
@@ -88,6 +88,7 @@ const loadRequires = ( libs, filePath ) => {
 
 const getMainImports = () => `
 import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import yaml from 'js-yaml';
