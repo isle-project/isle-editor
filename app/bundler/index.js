@@ -112,7 +112,6 @@ class Lesson extends Component {
 	}
 
 	componentDidMount() {
-		global.notificationSystem = this.refs.notificationSystem;
 		global.lesson = this;
 
 		const loader = document.getElementById( 'loading' );
@@ -130,7 +129,7 @@ class Lesson extends Component {
 			<div id="Lesson" className="Lesson" >
 				<StatusBar className="fixedPos" />
 				<div>${lessonContent}</div>
-				<NotificationSystem ref="notificationSystem" allowHTML={true} />
+				<NotificationSystem ref={ ( div ) => this.notificationSystem = div } allowHTML={true} />
 			</div>
 		);
 	}

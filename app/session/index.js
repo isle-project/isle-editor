@@ -1138,8 +1138,8 @@ class Session {
 	* @returns {void}
 	*/
 	addNotification( config ) {
-		if ( global.notificationSystem ) {
-			global.notificationSystem.addNotification( config );
+		if ( global.lesson.notificationSystem ) {
+			global.lesson.notificationSystem.addNotification( config );
 		}
 	}
 }

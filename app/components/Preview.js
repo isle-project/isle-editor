@@ -234,37 +234,33 @@ export default class Preview extends Component {
 					>${code}</Deck>`;
 			}
 
-			const es6code = `global.session = new Session( preamble );
-			class Lesson extends React.Component {
+			const es6code = `class Lesson extends React.Component {
 				constructor() {
 					super();
-					this.state = preamble.state || {};
+					this.state = global.session.config.state || {};
 				}
 				componentDidMount() {
-					global.notificationSystem = this.refs.notificationSystem;
 					global.lesson = this;
 				}
 				componentWillUnmount() {
 					this.unmounted = true;
 				}
-				componentDidCatch( error, info ) {
-					this.setState({ hasError: true, errorMsg: error.message });
-						// You can also log the error to an error reporting service
-						logErrorToMyService(error, info);
-				  }
 				render() {
 					return (
 						<div id="Lesson" className="Lesson" >
 							<StatusBar className="fixedPos" />
 							<div>${code}</div>
-							<NotificationSystem ref="notificationSystem" allowHTML={true} />
+							<NotificationSystem
+								ref={ ( div ) => this.notificationSystem = div }
+								allowHTML={true}
+							/>
 						</div>
 					);
 				}
 			}
 			render(
-				<Provider session={session} >
-						<Lesson />
+				<Provider session={session} currentRole="${currentRole}" >
+					<Lesson />
 				</Provider>,
 				document.getElementById( 'Preview' )
 			);`;
