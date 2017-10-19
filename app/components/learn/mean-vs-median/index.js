@@ -1,0 +1,181 @@
+// MODULES //
+
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Button, Grid, Row, Col, Panel } from 'react-bootstrap';
+import { VictoryChart, VictoryCursorContainer, VictoryLine } from 'victory';
+import { abs, roundn } from '@stdlib/math/base/special';
+import lognormal from '@stdlib/math/base/dists/lognormal';
+
+
+// MAIN //
+
+class MeanVSMedian extends Component {
+
+
+	constructor( props ) {
+		super( props );
+
+		this.state = {
+			mu: 0,
+			sigma: 1,
+			lognormalData: [],
+			lognormalDomain: {
+				x: [ 0, 4 ],
+				y: [ 0, 3 ]
+			},
+			meanLognormalGuess: 1,
+			medianLognormalGuess: 1,
+			showLognormalMean: false,
+			showLognormalMedian: false
+		};
+	}
+
+	medianEvaluation = ( evt ) => {
+		evt.stopPropagation();
+		if ( !this.state.showLognormalMedian ) {
+			this.setState({ showLognormalMedian: true }, () => {
+				let distance = abs( lognormal.median( this.state.mu, this.state.sigma ) - this.state.medianLognormalGuess );
+				let msg = 'A bit off... Try again!';
+				let xmax = this.state.lognormalDomain.x[ 1 ];
+				if ( distance < xmax/10 ) { msg = 'Good!' }
+				if ( distance < xmax/20 ) { msg = 'Very Good!' }
+				global.session.addNotification({
+					title: 'Score',
+					message: msg,
+					position: 'tr',
+					level: 'success'
+				});
+			});
+		}
+	}
+
+	meanEvaluation = ( evt ) => {
+		evt.stopPropagation();
+		if ( !this.state.showLognormalMean ) {
+			this.setState({ showLognormalMean: true }, () => {
+				let distance = abs( lognormal.mean( this.state.mu, this.state.sigma ) - this.state.meanLognormalGuess );
+				let msg = 'A bit off... Try again!';
+				let xmax = this.state.lognormalDomain.x[ 1 ];
+				if ( distance < xmax/10 ) { msg = 'Good!'; }
+				if ( distance < xmax/20 ) { msg = 'Very Good!'; }
+				const { session } = this.context;
+				session.addNotification({
+					title: 'Score',
+					message: msg,
+					position: 'tc',
+					level: 'success'
+				});
+			});
+		}
+	}
+
+	generateData = () => {
+		let mu = randu() * 1.0 - 0.5;
+		let sigma = randu() * 2.0 + 0.01;
+		let xmax = 4 + lognormal.stdev( mu, sigma );
+		let x = linspace( 0, xmax, 80 );
+		let lognormalData = x.map( d => {
+			return {
+				x: d,
+				y: lognormal.pdf( d, mu, sigma )
+			};
+		});
+		this.setState({
+			lognormalData, mu, sigma,
+			lognormalDomain: {
+				x: [ 0.0, xmax ],
+				y: [ 0.0, lognormal.pdf( lognormal.mode( mu, sigma ), mu, sigma ) ]
+			},
+			showLognormalMean: false,
+			showLognormalMedian: false
+		});
+	}
+
+	render() {
+		return (
+			<Panel header={this.props.header}>
+				<Grid>
+					{this.props.intro}
+					<Row>
+						<Col md={6}>
+							<Panel header={<h3>Mean</h3>}>
+								<VictoryChart domain={this.state.lognormalDomain} containerComponent={
+									<VictoryCursorContainer
+										events={{ onClick: this.meanEvaluation }}
+										dimension={"x"}
+										cursorLabel={( d ) => `${roundn( d.x, -1 )}`}
+										onChange={( value ) => {
+											if ( !this.state.showLognormalMean ) {
+												this.setState({ meanLognormalGuess: value });
+											}
+										}}
+									/>
+								}>
+									<VictoryLine data={this.state.lognormalData} x="x" y="y" />
+									{ this.state.showLognormalMean ? <VictoryLine data={[ { x: this.state.meanLognormalGuess, y: 0 }, { x: this.state.meanLognormalGuess, y: this.state.lognormalDomain.y[ 1 ] } ]} labels={ [ "Your Guess","" ]} /> : null }
+									{ this.state.showLognormalMean ? <VictoryLine data={[ { x: lognormal.mean( this.state.mu, this.state.sigma ), y: 0 }, { x: lognormal.mean( this.state.mu, this.state.sigma ), y: this.state.lognormalDomain.y[ 1 ] } ]}
+										labels={[ "","True Mean" ]}
+									/> : null }
+								</VictoryChart>
+							</Panel>
+						</Col>
+						<Col md={6}>
+							<Panel header={<h3>Median</h3>}>
+								<VictoryChart domain={this.state.lognormalDomain} containerComponent={
+									<VictoryCursorContainer
+										events={{ onClick: this.medianEvaluation }}
+										dimension={"x"}
+										cursorLabel={( d ) => `${roundn( d.x, -1 )}`}
+										onChange={( value ) => {
+											if ( !this.state.showLognormalMedian ) {
+												this.setState({ medianLognormalGuess: value})
+											}
+										}}
+									/>
+								}>
+									<VictoryLine data={this.state.lognormalData} x="x" y="y" />
+									{ this.state.showLognormalMedian ? <VictoryLine data={[ { x: this.state.medianLognormalGuess, y: 0 }, { x: this.state.medianLognormalGuess, y: this.state.lognormalDomain.y[ 1 ] } ]} labels={[ "Your Guess","" ]} /> : null }
+									{ this.state.showLognormalMedian ? <VictoryLine data={[ { x: lognormal.median( this.state.mu, this.state.sigma ), y: 0 }, { x: lognormal.median( this.state.mu, this.state.sigma ), y: this.state.lognormalDomain.y[ 1 ] } ]}
+										labels={[ "","True Median" ]}
+									/> : null }
+								</VictoryChart>
+							</Panel>
+						</Col>
+					</Row>
+					<Row>
+						<div className="well" style={{ maxWidth: 400, margin: '0 auto 10px' }}>
+							<Button bsStyle="primary" bsSize="large" onClick={this.generateData} >Generate</Button>
+						</div>
+					</Row>
+				</Grid>
+			</Panel>
+		);
+	}
+}
+
+
+// DEFAULT PROPERTIES //
+
+MeanVSMedian.defaultProps = {
+	intro: <div></div>,
+	header: <h3>Measures of Location: Mean vs. Median</h3>
+};
+
+
+// PROPERTY TYPES //
+
+MeanVSMedian.propTypes = {
+	intro: PropTypes.node,
+	header: PropTypes.node
+};
+
+MeanVSMedian.contextTypes = {
+	session: PropTypes.object
+};
+
+
+
+// EXPORTS //
+
+export default MeanVSMedian;
