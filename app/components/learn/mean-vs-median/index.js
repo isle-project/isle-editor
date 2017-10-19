@@ -5,13 +5,14 @@ import PropTypes from 'prop-types';
 import { Button, Grid, Row, Col, Panel } from 'react-bootstrap';
 import { VictoryChart, VictoryCursorContainer, VictoryLine } from 'victory';
 import { abs, roundn } from '@stdlib/math/base/special';
+import randu from '@stdlib/math/base/random/randu';
+import linspace from '@stdlib/math/utils/linspace';
 import lognormal from '@stdlib/math/base/dists/lognormal';
 
 
 // MAIN //
 
 class MeanVSMedian extends Component {
-
 
 	constructor( props ) {
 		super( props );
@@ -43,11 +44,15 @@ class MeanVSMedian extends Component {
 				global.session.addNotification({
 					title: 'Score',
 					message: msg,
-					position: 'tr',
+					position: 'tc',
 					level: 'success'
 				});
 			});
 		}
+	}
+
+	componentDidMount() {
+		this.generateData();
 	}
 
 	meanEvaluation = ( evt ) => {
@@ -103,20 +108,28 @@ class MeanVSMedian extends Component {
 								<VictoryChart domain={this.state.lognormalDomain} containerComponent={
 									<VictoryCursorContainer
 										events={{ onClick: this.meanEvaluation }}
-										dimension={"x"}
+										cursorDimension="x"
 										cursorLabel={( d ) => `${roundn( d.x, -1 )}`}
-										onChange={( value ) => {
+										onCursorChange={( value ) => {
 											if ( !this.state.showLognormalMean ) {
-												this.setState({ meanLognormalGuess: value });
+												this.setState({
+													meanLognormalGuess: value
+												});
 											}
 										}}
 									/>
 								}>
 									<VictoryLine data={this.state.lognormalData} x="x" y="y" />
-									{ this.state.showLognormalMean ? <VictoryLine data={[ { x: this.state.meanLognormalGuess, y: 0 }, { x: this.state.meanLognormalGuess, y: this.state.lognormalDomain.y[ 1 ] } ]} labels={ [ "Your Guess","" ]} /> : null }
-									{ this.state.showLognormalMean ? <VictoryLine data={[ { x: lognormal.mean( this.state.mu, this.state.sigma ), y: 0 }, { x: lognormal.mean( this.state.mu, this.state.sigma ), y: this.state.lognormalDomain.y[ 1 ] } ]}
-										labels={[ "","True Mean" ]}
-									/> : null }
+									{ this.state.showLognormalMean ?
+										<VictoryLine data={[ { x: this.state.meanLognormalGuess, y: 0 }, { x: this.state.meanLognormalGuess, y: this.state.lognormalDomain.y[ 1 ] } ]} labels={ [ "Your Guess","" ]} /> :
+										null
+									}
+									{ this.state.showLognormalMean ?
+										<VictoryLine data={[ { x: lognormal.mean( this.state.mu, this.state.sigma ), y: 0 }, { x: lognormal.mean( this.state.mu, this.state.sigma ), y: this.state.lognormalDomain.y[ 1 ] } ]}
+											labels={[ "","True Mean" ]}
+										/> :
+										null
+									}
 								</VictoryChart>
 							</Panel>
 						</Col>
@@ -125,27 +138,35 @@ class MeanVSMedian extends Component {
 								<VictoryChart domain={this.state.lognormalDomain} containerComponent={
 									<VictoryCursorContainer
 										events={{ onClick: this.medianEvaluation }}
-										dimension={"x"}
+										cursorDimension="x"
 										cursorLabel={( d ) => `${roundn( d.x, -1 )}`}
-										onChange={( value ) => {
+										onCursorChange={( value ) => {
 											if ( !this.state.showLognormalMedian ) {
-												this.setState({ medianLognormalGuess: value})
+												this.setState({
+													medianLognormalGuess: value
+												});
 											}
 										}}
 									/>
 								}>
 									<VictoryLine data={this.state.lognormalData} x="x" y="y" />
-									{ this.state.showLognormalMedian ? <VictoryLine data={[ { x: this.state.medianLognormalGuess, y: 0 }, { x: this.state.medianLognormalGuess, y: this.state.lognormalDomain.y[ 1 ] } ]} labels={[ "Your Guess","" ]} /> : null }
-									{ this.state.showLognormalMedian ? <VictoryLine data={[ { x: lognormal.median( this.state.mu, this.state.sigma ), y: 0 }, { x: lognormal.median( this.state.mu, this.state.sigma ), y: this.state.lognormalDomain.y[ 1 ] } ]}
-										labels={[ "","True Median" ]}
-									/> : null }
+									{ this.state.showLognormalMedian ?
+										<VictoryLine data={[ { x: this.state.medianLognormalGuess, y: 0 }, { x: this.state.medianLognormalGuess, y: this.state.lognormalDomain.y[ 1 ] } ]} labels={[ "Your Guess","" ]} /> :
+										null
+									}
+									{ this.state.showLognormalMedian ?
+										<VictoryLine data={[ { x: lognormal.median( this.state.mu, this.state.sigma ), y: 0 }, { x: lognormal.median( this.state.mu, this.state.sigma ), y: this.state.lognormalDomain.y[ 1 ] } ]}
+											labels={[ "","True Median" ]}
+										/> :
+										null
+									}
 								</VictoryChart>
 							</Panel>
 						</Col>
 					</Row>
 					<Row>
 						<div className="well" style={{ maxWidth: 400, margin: '0 auto 10px' }}>
-							<Button bsStyle="primary" bsSize="large" onClick={this.generateData} >Generate</Button>
+							<Button bsStyle="primary" bsSize="large" block onClick={this.generateData} >Generate</Button>
 						</div>
 					</Row>
 				</Grid>

@@ -485,7 +485,9 @@ class Session {
 			}
 		}
 		this.update();
-		this.socket.emit( 'leave_chat', name );
+		if ( this.socket ) {
+			this.socket.emit( 'leave_chat', name );
+		}
 	}
 
 	/**
