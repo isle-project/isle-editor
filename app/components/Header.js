@@ -103,7 +103,7 @@ class Header extends Component {
 					}}
 				>
 					<span style={{ paddingLeft: 5 }} >{this.props.fileName || 'Untitled Document'}</span>
-					<ButtonGroup>
+					<ButtonGroup style={{ zIndex: 1001 }} >
 						<DropdownButton
 							title={this.props.mode}
 							id="bg-mode-dropdown"
