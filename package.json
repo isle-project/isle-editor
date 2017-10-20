@@ -187,6 +187,7 @@
     "react-input-range": "^1.2.1",
     "react-notification-system": "^0.2.7",
     "react-player": "^0.25.0",
+    "react-plotly.js": "^1.0.2",
     "react-redux": "^5.0.1",
     "react-router": "4.2.0",
     "react-router-dom": "^4.1.1",
