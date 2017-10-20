@@ -106,6 +106,7 @@ class PieChart extends Component {
 			variable: variable,
 			type: 'Chart',
 			value: <Plotly
+				fit
 				data={config.data}
 				layout={config.layout}
 				onShare={() => {

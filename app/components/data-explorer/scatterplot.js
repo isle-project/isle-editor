@@ -286,6 +286,7 @@ class Scatterplot extends Component {
 			variable: `${xval} against ${yval}`,
 			type: 'Chart',
 			value: <Plotly
+				fit
 				data={config.data}
 				layout={config.layout}
 				onDone={this.props.onPlotDone}

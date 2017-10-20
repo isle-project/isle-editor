@@ -129,7 +129,7 @@ const OutputPanel = ( output, clearOutput ) => {
 		}}>
 			{output.map( ( e, idx ) => {
 				if ( e.type === 'Chart' ) {
-					return <div key={idx} >
+					return <div key={idx} style={{ height: 250, marginBottom: 40 }} >
 						<label>Chart: </label>
 						<Button
 							bsSize="xs"
@@ -934,6 +934,7 @@ class DataExplorer extends Component {
 																	data={config.data}
 																	layout={config.layout}
 																	removeButtons
+																	fit
 																/>
 														}
 														<span>
