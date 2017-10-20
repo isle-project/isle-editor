@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
-import randomstring from 'randomstring';
+import Plot from 'react-plotly.js';
 import Plotly from 'plotly.js';
 
 
@@ -30,14 +30,34 @@ const BUTTONS = [
 
 // MAIN //
 
-class Plot extends Component {
+class Wrapper extends Component {
 
 	constructor( props ) {
 		super( props );
 
 		this.state = {
-			plotID: randomstring.generate(),
 			fullscreen: false
+		};
+
+		const buttonsToAdd = [];
+		if ( props.onShare ) {
+			buttonsToAdd.push({
+				name: 'Share',
+				icon: Plotly.Icons[ 'plotlylogo' ],
+				click: props.onShare
+			});
+		}
+		buttonsToAdd.push({
+			name: 'Toggle FullScreen',
+			icon: Plotly.Icons[ 'zoombox' ],
+			click: this.toggleFullscreen
+		});
+
+		this.config = {
+			displayModeBar: true,
+			displaylogo: false,
+			modeBarButtonsToRemove: this.props.removeButtons ? BUTTONS : [ 'sendDataToCloud', 'hoverClosestCartesian', 'hoverCompareCartesian' ],
+			modeBarButtonsToAdd: buttonsToAdd
 		};
 	}
 
@@ -47,44 +67,13 @@ class Plot extends Component {
 		});
 	}
 
-	drawPlot = ( plotID ) => {
-
-		const buttonsToAdd = [];
-		if ( this.props.onShare ) {
-			buttonsToAdd.push({
-				name: 'Share',
-				icon: Plotly.Icons[ 'plotlylogo' ],
-				click: this.props.onShare
-			});
-		}
-		buttonsToAdd.push({
-			name: 'Toggle FullScreen',
-			icon: Plotly.Icons[ 'zoombox' ],
-			click: this.toggleFullscreen
-		});
-
-		Plotly.newPlot(
-			plotID,
-			this.props.data,
-			this.props.layout,
-			{
-				displayModeBar: true,
-				displaylogo: false,
-				modeBarButtonsToRemove: this.props.removeButtons ? BUTTONS : [ 'sendDataToCloud', 'hoverClosestCartesian', 'hoverCompareCartesian' ],
-				modeBarButtonsToAdd: buttonsToAdd
-			}
-		);
-	}
-
-	componentDidMount() {
-		this.drawPlot( this.state.plotID );
-	}
-
-	componentDidUpdate() {
-		this.drawPlot( this.state.plotID );
-	}
-
 	render() {
+		const plot = <Plot
+			data={this.props.data}
+			layout={this.props.layout}
+			config={this.config}
+			fit={this.props.fit}
+		/>;
 		if ( this.state.fullscreen ) {
 			return (
 				<Modal
@@ -92,8 +81,15 @@ class Plot extends Component {
 					onHide={this.toggleFullscreen}
 					dialogClassName="fullscreen-modal"
 				>
-					<Modal.Body className="fullscreen-modal-content">
-						<div id={this.state.plotID} ></div>
+					<Modal.Body
+						style={{
+							height: 0.80 * window.innerHeight,
+							width: 0.90 * window.innerWidth,
+							marginBottom: 50
+						}}
+						className="fullscreen-modal-content"
+					>
+						{plot}
 					</Modal.Body>
 					<Modal.Footer>
 						<Button onClick={this.toggleFullscreen}>Close</Button>
@@ -101,30 +97,32 @@ class Plot extends Component {
 				</Modal>
 			);
 		}
-		return <div id={this.state.plotID} ></div>;
+		return plot;
 	}
 }
 
 
 // DEFAULT PROPERTIES //
 
-Plotly.defaultProps = {
+Wrapper.defaultProps = {
 	layout: {},
 	removeButtons: false,
-	onShare: null
+	onShare: null,
+	fit: false
 };
 
 
 // PROPERTY TYPES //
 
-Plotly.propTypes = {
+Wrapper.propTypes = {
 	data: PropTypes.array.isRequired,
 	layout: PropTypes.object,
 	removeButtons: PropTypes.bool,
-	onShare: PropTypes.func
+	onShare: PropTypes.func,
+	fit: PropTypes.bool
 };
 
 
 // EXPORTS //
 
-export default Plot;
+export default Wrapper;
