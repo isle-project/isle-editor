@@ -4,6 +4,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Panel } from 'react-bootstrap';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
+import CheckboxInput from 'components/input/checkbox';
+import NumberInput from 'components/input/number';
+import SelectInput from 'components/input/select';
+import SliderInput from 'components/input/slider';
+import TextInput from 'components/input/text';
 import './dashboard.css';
 
 
@@ -62,11 +67,24 @@ class Dashboard extends Component {
 	render() {
 
 		const children = React.Children.map( this.props.children,
-			( child, idx ) => React.cloneElement( child, {
-				onChange: ( value ) => {
-					this.handleFieldChange( idx, value );
+			( child, idx ) => {
+				if ( React.isValidElement( child ) ) {
+					if (
+						child.type === CheckboxInput ||
+						child.type === NumberInput ||
+						child.type === SelectInput ||
+						child.type === SliderInput ||
+						child.type === TextInput
+					) {
+						return React.cloneElement( child, {
+							onChange: ( value ) => {
+								this.handleFieldChange( idx, value );
+							}
+						});
+					}
 				}
-			})
+				return child;
+			}
 		);
 
 		return (
