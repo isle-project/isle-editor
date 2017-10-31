@@ -35,6 +35,11 @@ body {
 	border-radius: 0;
 }
 
+.isle-modal-body {
+	height: 400px;
+	overflow: auto;
+}
+
 .errorMessage {
 	position: absolute;
 	width: 80%;
