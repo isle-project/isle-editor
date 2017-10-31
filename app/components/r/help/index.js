@@ -59,7 +59,7 @@ class RHelp extends Component {
 						left: 'auto',
 						padding: '10px',
 						position: 'fixed',
-						top: '10px',
+						top: '0px',
 						right: '30px',
 						zIndex: 99999,
 						overflow: 'hidden'
@@ -69,10 +69,7 @@ class RHelp extends Component {
 					<Modal.Header closeButton>
 						<Modal.Title id="contained-modal-title-lg">R Help</Modal.Title>
 					</Modal.Header>
-					<Modal.Body style={{
-						height: '400',
-						overflow: 'auto'
-					}}>
+					<Modal.Body className="isle-modal-body" >
 						<span dangerouslySetInnerHTML={{ __html: this.state.body }}></span>
 					</Modal.Body>
 					<Modal.Footer>
