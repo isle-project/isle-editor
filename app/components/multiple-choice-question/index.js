@@ -175,6 +175,27 @@ class MultipleChoiceQuestion extends Component {
 		if ( this.props.displaySolution ) {
 			this.submitQuestion();
 		}
+		const { session } = this.context;
+		this.unsubscribe = session.subscribe( ( type, val ) => {
+			if ( type === 'retrieved_current_user_actions' ) {
+				let actions = val[ this.props.id ];
+				if ( isArray( actions ) ) {
+					actions = actions.filter( action => {
+						return action.type === 'MULTIPLE_CHOICE_SUBMISSION';
+					});
+					if ( actions.length > 0 ) {
+						const lastAction = actions[ 0 ].value;
+						this.setState({
+							active: lastAction
+						});
+					}
+				}
+			}
+		});
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
 	}
 
 	render() {
@@ -200,8 +221,7 @@ class MultipleChoiceQuestion extends Component {
 							let newActive = this.state.active.slice();
 							newActive[ id ] = !newActive[ id ];
 							this.setState({
-								active: newActive,
-
+								active: newActive
 							});
 						}
 					}}
