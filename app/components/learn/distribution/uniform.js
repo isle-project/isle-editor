@@ -25,29 +25,70 @@ class UniformProbs extends Component {
 		};
 	}
 
+	generate1 = ( min, max, x0 ) => {
+		let len = 200;
+		let x = linspace( min-1.0, x0, len );
+		let data = new Array( len );
+		for ( let i = 0; i < x.length; i++ ) {
+			data[ i ] = {
+				x: x[ i ],
+				y: dunif( x[ i ], min, max ),
+			};
+		}
+		this.setState({
+			data: data,
+			eqn: "P(X \\le" + x0 + ") = " + roundn( punif( x0, min, max ), -4 ),
+			min: min,
+			max: max,
+			yheight: dunif( min, min, max )
+		});
+	}
+
+	generate2 = ( min, max, x0 ) => {
+		let len = 200;
+		let x = linspace( x0, max+1.0, len );
+		let data = new Array( len );
+		for ( let i = 0; i < x.length; i++ ) {
+			data[ i ] = {
+				x: x[ i ],
+				y: dunif( x[ i ], min, max ),
+			};
+		}
+		this.setState({
+			data2: data,
+			eqn2: "P(X >" + x0 + ") = " + roundn( 1-punif( x0, min, max ), -4 ),
+			min2: min,
+			max2: max,
+			yheight2: dunif( min, min, max )
+		});
+	}
+
+	generate3 = ( min, max, x0, x1 ) => {
+		let len = 200;
+		let x = linspace( x0, x1, len );
+		let data = new Array( len );
+		for ( let i = 0; i < x.length; i++ ) {
+			data[ i ] = {
+				x: x[ i ],
+				y: dunif( x[ i ], min, max ),
+			};
+		}
+		this.setState({
+			data3: data,
+			eqn3: "P(" + x0 + "\\le X \\le" + x1 + ") = " + roundn( punif( x1, min, max )-punif( x0, min, max ), -4 ),
+			min3: min,
+			max3: max,
+			yheight3: dunif( min, min, max ),
+			x1: x1
+		});
+	}
+
 	render() {
 		return ( <Panel header={<h3>Uniform Distribution</h3>}>
 			<Grid>
 				<Row>
 					<Col md={5}>
-						<Dashboard autoUpdate title={<TeX raw="P(X \le x_0)"/>} onGenerate={( min, max, x0 ) => {
-							let len = 200;
-							let x = linspace( min-1.0, x0, len );
-							let data = new Array( len );
-							for ( let i = 0; i < x.length; i++ ) {
-								data[ i ] = {
-									x: x[ i ],
-									y: dunif( x[ i ], min, max ),
-								};
-							}
-							this.setState({
-								data: data,
-								eqn: "P(X \\le" + x0 + ") = " + roundn( punif( x0, min, max ), -4 ),
-								umin: min,
-								max: max,
-								yheight: dunif( min, min, max )
-							});
-						}}>
+						<Dashboard autoUpdate title={<TeX raw="P(X \le x_0)"/>} onGenerate={this.generate1}>
 							<NumberInput
 								legend="Minimum"
 								defaultValue={0}
@@ -62,7 +103,7 @@ class UniformProbs extends Component {
 							<SliderInput
 								legend="x0"
 								defaultValue={0}
-								umin={this.state.umin*2.0 - 1.0}
+								min={this.state.min*2.0 - 1.0}
 								max={this.state.max*2.0}
 								step={0.01}
 							/>
@@ -82,8 +123,8 @@ class UniformProbs extends Component {
 							/>
 							<VictoryLine
 								data={[
-									[ this.state.umin, 0 ],
-									[ this.state.umin, this.state.yheight ],
+									[ this.state.min, 0 ],
+									[ this.state.min, this.state.yheight ],
 									[ this.state.max, this.state.yheight ],
 									[ this.state.max, 0 ]
 								]}
@@ -95,24 +136,7 @@ class UniformProbs extends Component {
 				</Row>
 				<Row>
 					<Col md={5}>
-						<Dashboard autoUpdate title={<TeX raw="P(X > x_0)"/>} onGenerate={( min, max, x0 ) => {
-							let len = 200;
-							let x = linspace( x0, max+1.0, len );
-							let data = new Array( len );
-							for ( let i = 0; i < x.length; i++ ) {
-								data[ i ] = {
-									x: x[ i ],
-									y: dunif( x[ i ], min, max ),
-								};
-							}
-							this.setState({
-								data2: data,
-								eqn2: "P(X >" + x0 + ") = " + roundn( 1-punif( x0, min, max ), -4 ),
-								min2: min,
-								max2: max,
-								yheight2: dunif( min, min, max )
-							});
-						}}>
+						<Dashboard autoUpdate title={<TeX raw="P(X > x_0)"/>} onGenerate={this.generate2}>
 							<NumberInput
 								legend="Minimum"
 								defaultValue={0}
@@ -127,7 +151,7 @@ class UniformProbs extends Component {
 							<SliderInput
 								legend="x0"
 								defaultValue={0}
-								umin={this.state.umin*2.0 - 1.0}
+								min={this.state.min*2.0 - 1.0}
 								max={this.state.max*2.0}
 								step={0.01}
 							/>
@@ -160,25 +184,7 @@ class UniformProbs extends Component {
 				</Row>
 				<Row>
 					<Col md={5}>
-						<Dashboard autoUpdate title={<TeX raw="P( x_0 \le X \le x_1 )"/>} onGenerate={( umin, max, x0, x1 ) => {
-							let len = 200;
-							let x = linspace( x0, x1, len );
-							let data = new Array( len );
-							for ( let i = 0; i < x.length; i++ ) {
-								data[ i ] = {
-									x: x[ i ],
-									y: dunif( x[ i ], umin, max ),
-								};
-							}
-							this.setState({
-								data3: data,
-								eqn3: "P(" + x0 + "\\le X \\le" + x1 + ") = " + roundn( punif( x1, umin, max )-punif( x0, umin, max ), -4 ),
-								umin3: umin,
-								max3: max,
-								yheight3: dunif( umin, umin, max ),
-								x1: x1
-							});
-						}}>
+						<Dashboard autoUpdate title={<TeX raw="P( x_0 \le X \le x_1 )"/>} onGenerate={this.generate3}>
 							<NumberInput
 								legend="Minimum"
 								defaultValue={0}
@@ -187,21 +193,21 @@ class UniformProbs extends Component {
 							/>
 							<NumberInput
 								legend="Maximum"
-								umin={this.state.umin3+0.01}
+								min={this.state.min3+0.01}
 								defaultValue={1}
 								step={0.01}
 							/>
 							<SliderInput
 								legend="x0"
 								defaultValue={0}
-								umin={this.state.umin3*2.0 - 1.0}
+								min={this.state.min3*2.0 - 1.0}
 								max={this.state.x1}
 								step={0.01}
 							/>
 							<SliderInput
 								legend="x1"
 								defaultValue={0}
-								umin={this.state.umin3*2.0 - 1.0}
+								min={this.state.min3*2.0 - 1.0}
 								max={this.state.max3*2.0}
 								step={0.01}
 							/>
@@ -210,7 +216,7 @@ class UniformProbs extends Component {
 					</Col>
 					<Col md={7}>
 						<VictoryChart
-							domain={{ x: [ this.state.umin3 - 1.0, this.state.max3 + 1.0 ], y: [ 0, this.state.yheight3 + 0.1 ] }}>
+							domain={{ x: [ this.state.min3 - 1.0, this.state.max3 + 1.0 ], y: [ 0, this.state.yheight3 + 0.1 ] }}>
 							<VictoryArea
 								data={this.state.data3}
 								style={{
@@ -221,8 +227,8 @@ class UniformProbs extends Component {
 							/>
 							<VictoryLine
 								data={[
-									[ this.state.umin3, 0 ],
-									[ this.state.umin3,this.state.yheight3 ],
+									[ this.state.min3, 0 ],
+									[ this.state.min3,this.state.yheight3 ],
 									[ this.state.max3,this.state.yheight3 ],
 									[ this.state.max3, 0 ]
 								]}
