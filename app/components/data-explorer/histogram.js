@@ -220,7 +220,7 @@ class Histogram extends Component {
 Histogram.defaultProps = {
 	defaultValue: null,
 	onPlotDone() {},
-	showDensityOption: false
+	showDensityOption: true
 };
 
 
