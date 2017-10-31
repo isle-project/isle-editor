@@ -250,7 +250,7 @@ export default class Preview extends Component {
 				render() {
 					return (
 						<div id="Lesson" className="Lesson" >
-							<StatusBar className="fixedPos" />
+							<StatusBar className="fixedPos" hidden={global.session.config.hideToolbar} />
 							<div>${code}</div>
 							<NotificationSystem
 								ref={ ( div ) => this.notificationSystem = div }
