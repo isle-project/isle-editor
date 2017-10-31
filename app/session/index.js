@@ -362,6 +362,8 @@ class Session {
 					userRights = obj;
 					if ( userRights.owner ) {
 						this.getUserActions();
+					} else {
+						this.getCurrentUserActions();
 					}
 					this.update();
 				}
@@ -642,6 +644,31 @@ class Session {
 				body = JSON.parse( body );
 				this.socketActions = body.actions;
 				this.update( 'retrieved_user_actions', body.actions );
+			}
+		});
+	}
+
+	/**
+	* Retrieves all actions by the current user for the active lesson.
+	*
+	* @returns {void}
+	*/
+	getCurrentUserActions() {
+		request.post( this.server+'/get_current_user_actions', {
+			headers: {
+				'Authorization': 'JWT ' + this.user.token
+			},
+			form: {
+				lessonID: this.lessonID
+			},
+			rejectUnauthorized
+		}, ( error, response, body ) => {
+			if ( error ) {
+				return debug( 'Encountered an error: '+error.message );
+			}
+			if ( response.statusCode === 200 ) {
+				body = JSON.parse( body );
+				this.update( 'retrieved_current_user_actions', body.actions );
 			}
 		});
 	}
