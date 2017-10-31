@@ -14,6 +14,7 @@ import UniformDistribution from 'components/learn/distribution/uniform';
 import ConditionalProbability from 'components/learn/conditional-probability';
 import WordVennDiagram from 'components/learn/word-venn-diagram';
 import MeanVSMedian from 'components/learn/mean-vs-median';
+import Standardize from 'components/learn/standardize';
 
 
 // EXPORTS //
@@ -32,5 +33,6 @@ export {
 	TDistribution,
 	UniformDistribution,
 	WordVennDiagram,
-	MeanVSMedian
+	MeanVSMedian,
+	Standardize
 };
