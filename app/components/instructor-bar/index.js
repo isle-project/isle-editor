@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Collapse, Col, Grid, ListGroup, ListGroupItem, Modal, Panel, Row, Well } from 'react-bootstrap';
-import { VictoryAxis, VictoryBar, VictoryChart } from 'victory';
 import PropTypes from 'prop-types';
 import tabulate from '@stdlib/utils/tabulate';
+import NINF from '@stdlib/math/constants/float64-ninf';
+import Plotly from 'components/plotly';
 import Gate from 'components/gate';
 import TextArea from 'components/text-area';
 
@@ -19,6 +20,7 @@ class InstructorBar extends Component {
 		this.state = {
 			actions: [],
 			counts: [],
+			categories: [],
 			receivedFeedbacks: [],
 			actionsAreOpen: false,
 			feedbackIsOpen: false,
@@ -76,16 +78,20 @@ class InstructorBar extends Component {
 		}
 		const values = filtered.map( x => x.value );
 		const tabulated = tabulate( values );
+		let maxVal = NINF;
 		const counts = tabulated.map( d => {
-			return {
-				x: d[ 0 ],
-				y: d[ 1 ]
-			};
+			if ( d[ 1 ] > maxVal ) {
+				maxVal = d[ 1 ];
+			}
+			return d[ 1 ];
 		});
-		console.log( counts );
+		const categories = tabulated.map( d => {
+			return d[ 0 ];
+		});
 		this.setState({
 			actions: filtered,
-			counts: counts
+			counts: counts,
+			categories: categories
 		});
 	}
 
@@ -142,6 +148,32 @@ class InstructorBar extends Component {
 		});
 	}
 
+	renderBarchart() {
+		return (
+			<div style={{ height: 0.80 * window.innerHeight }}>
+				<Plotly
+					data={[
+						{
+							y: this.state.categories,
+							x: this.state.counts,
+							type: 'bar',
+							orientation: 'h'
+						}
+					]}
+					fit
+					layout={{
+						xaxis: {
+							title: 'Count'
+						},
+						yaxis: {
+							title: 'Value'
+						}
+					}}
+				/>
+			</div>
+		);
+	}
+
 	render() {
 
 		const deleteModal = <Modal show={this.state.showDeleteModal}>
@@ -162,6 +194,9 @@ class InstructorBar extends Component {
 			</Modal.Footer>
 		</Modal>;
 
+		if ( !this.props.id ) {
+			return null;
+		}
 		return (
 			<div>
 				<Gate user>
@@ -223,24 +258,10 @@ class InstructorBar extends Component {
 											}
 										</Col>
 										<Col md={6}>
-											<VictoryChart
-												width={550} height={450}
-												domainPadding={20}
-											>
-												<VictoryBar
-													horizontal
-													data={this.state.counts}
-													x="x"
-													y="y"
-												/>
-												<VictoryAxis
-													label="Count"
-												/>
-												<VictoryAxis
-													dependentAxis
-													label="Answer"
-												/>
-											</VictoryChart>
+											{ this.state.actions.length > 0 ?
+												this.renderBarchart() :
+												null
+											}
 										</Col>
 									</Row>
 								</Grid>
