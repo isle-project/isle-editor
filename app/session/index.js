@@ -3,6 +3,7 @@
 import request from 'request';
 import isString from '@stdlib/assert/is-string';
 import isFunction from '@stdlib/assert/is-function';
+import isEmptyArray from '@stdlib/assert/is-empty-array';
 import copy from '@stdlib/utils/copy';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 const isElectron = require( 'utils/is-electron' );
@@ -153,7 +154,8 @@ class Session {
 				this.live = true;
 				if ( !this.lessonID && !this.namespaceID ) {
 					this.getLessonInfo( this.getUserRights );
-				} else {
+				}
+				else if ( !userRights ) {
 					this.getUserRights();
 				}
 			} else {
@@ -340,10 +342,12 @@ class Session {
 	* @returns {void}
 	*/
 	getUserRights = () => {
+		console.log( userRights );
 		if (
 			!this.anonymous &&
 			!this.userRightsQuestionPosed &&
-			!this._offline
+			!this._offline &&
+			!userRights
 		) {
 			this.userRightsQuestionPosed = true;
 			request.post( this.server+'/get_user_rights', {
@@ -360,12 +364,11 @@ class Session {
 				if ( !err ) {
 					const obj = JSON.parse( body );
 					userRights = obj;
-					if ( userRights.owner ) {
+					if ( userRights.owner && isEmptyArray( this.socketActions ) ) {
 						this.getUserActions();
 					} else {
-						this.getCurrentUserActions();
+						this.update();
 					}
-					this.update();
 				}
 			});
 		}
@@ -668,7 +671,8 @@ class Session {
 			}
 			if ( response.statusCode === 200 ) {
 				body = JSON.parse( body );
-				this.update( 'retrieved_current_user_actions', body.actions );
+				this.currentUserActions = body.actions;
+				this.update( 'retrieved_current_user_actions', this.currentUserActions );
 			}
 		});
 	}
@@ -842,6 +846,9 @@ class Session {
 					const body = JSON.parse( res.body );
 					this.lessonID = body.lessonID;
 					this.namespaceID = body.namespaceID;
+					if ( !this.currentUserActions ) {
+						this.getCurrentUserActions();
+					}
 					if ( isFunction( clbk ) ) {
 						clbk();
 					}
