@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Button, ButtonGroup, Grid, Col, Panel, Row, Tabs, Tab } from 'react-bootstrap';
 import { exponential as rExponential, uniform as rUniform, normal as rNormal } from '@stdlib/math/base/random';
 import { copy, inmap } from '@stdlib/utils';
-import { abs, round, roundn, sqrt } from '@stdlib/math/base/special';
+import { abs, pow, round, sqrt } from '@stdlib/math/base/special';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import stdev from 'compute-stdev';
 import mean from 'compute-mean';
@@ -14,7 +14,7 @@ import max from 'compute-max';
 import NumberInput from 'components/input/number';
 import CheckboxInput from 'components/input/checkbox';
 import RPlot from 'components/r/plot';
-import { VictoryAxis, VictoryBar, VictoryChart } from 'victory';
+import { VictoryArea, VictoryAxis, VictoryChart } from 'victory';
 import TeX from 'components/tex';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
@@ -54,19 +54,19 @@ function drawUniform( n, a, b ) {
 function bidx( bmin, h, v ) { return round( abs( bmin - v ) / h ); };
 
 function getBins( data ) {
-	var h = 2 * iqr( data ) * Math.pow( data.length, -1/3 );
+	var h = 2 * iqr( data ) * pow( data.length, -1/3 );
 	var bmax = max( data );
 	var bmin = min( data );
 	var nBins = round( ( bmax - bmin ) / h ) + 1;
 	var out = new Array( nBins );
-	inmap( out, x => { return { 'y': 0 }; });
+	inmap( out, x => { return { 'y': 0, 'y0': 0 }; });
 	for ( let i = 0; i < data.length; i++ ) {
 		let idx = bidx( bmin, h, data[ i ]);
 		out[ idx ][ 'y' ] += 1;
 	}
 	for ( let i = 0; i < nBins; i++ ) {
 		let bc = bmin +  ( h*i );
-		out[ i ][ 'x' ] = roundn( bc, -1 );
+		out[ i ][ 'x' ] = bc;
 	}
 	return out;
 }
@@ -215,7 +215,10 @@ class ContinuousCLT extends Component {
 							fontSize: 15, padding: 5
 						}
 					}}/>
-					<VictoryBar data={getBins( vals )} style={{ 'bar': { 'data': { 'padding': -10, width: 35 } } }}/>
+					<VictoryArea
+						data={getBins( vals )}
+						interpolation="step"
+					/>
 				</VictoryChart>
 			</div>;
 			histogram.push( plot );

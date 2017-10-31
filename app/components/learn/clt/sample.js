@@ -7,7 +7,7 @@ import { copy, inmap } from '@stdlib/utils';
 import { abs, round, roundn } from '@stdlib/math/base/special';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
-import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
+import { VictoryArea, VictoryChart, VictoryAxis } from 'victory';
 import { NumberInput, SelectInput } from 'components/input';
 import RPlot from 'components/r/plot';
 import TeX from 'components/tex';
@@ -181,7 +181,10 @@ class SampleCLT extends Component {
 								fontSize: 15, padding: 5
 							}
 						}}/>
-						<VictoryBar data={getBins( vals )} style={{ 'bar': { 'data': { 'padding': -10 } } }}/>
+						<VictoryArea
+							data={getBins( vals )}
+							interpolation="step"
+						/>
 					</VictoryChart>
 				</div>;
 				plots.push( plot );
@@ -358,7 +361,7 @@ class SampleCLT extends Component {
 										{ this.state.avg_xbars ?
 											<p>
 												<label> Mean of { this.state.type === 'numeric' ? <TeX raw="\bar x" /> : <TeX raw="\hat p" />}'s: </label>
-												&nbsp;{this.state.avg_xbars.toFixed( 3 )} (shown as the blue line)
+												<span>&nbsp;{this.state.avg_xbars.toFixed( 3 )} (shown as the blue line)</span>
 											</p> : null
 										}
 										{ this.state.stdev_xbars ?
