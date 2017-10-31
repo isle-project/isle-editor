@@ -1,9 +1,9 @@
 // MODULES //
 
-import mustache from 'mustache';
 import request from 'request';
 import isString from '@stdlib/assert/is-string';
 import isFunction from '@stdlib/assert/is-function';
+import copy from '@stdlib/utils/copy';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 const isElectron = require( 'utils/is-electron' );
 const debug = require( 'debug' )( 'isle-editor' );
@@ -222,7 +222,9 @@ class Session {
 						}, onResult );
 					}
 				});
-				onPlots( plots );
+				if ( isFunction( onPlots ) ) {
+					onPlots( plots );
+				}
 			} else {
 				onError( body.replace( ERR_REGEX, '' ) );
 			}
@@ -1113,25 +1115,24 @@ class Session {
 	/**
 	* Sends an email.
 	*
-	* @param {string} name - email identifier in config
+	* @param {Object} mail - email object
 	* @param {string} to - email address of receiver
 	* @returns {void}
 	*/
-	sendMail( name, to ) {
-		const mailOptions = this.config.mails[ name ] || {};
+	sendMail( mail, to ) {
+		const mailOptions = copy( mail );
 		if ( !mailOptions.hasOwnProperty( 'from' ) ) {
 			mailOptions.from = this.config.email || 'robinson@isle.cmu.edu';
 		}
-		if ( mailOptions.hasOwnProperty( 'text' ) ) {
-			mailOptions.text = mustache.render( mailOptions.text, global.lesson );
+		if ( !mailOptions.hasOwnProperty( 'to' ) ) {
+			mailOptions.to = to;
 		}
-		mailOptions.to = to;
-		request.post( this.config.server + '/mail', {
+		request.post( this.config.server + '/send_mail', {
 			form: mailOptions,
 			rejectUnauthorized
 		}, ( error, response, body ) => {
 			if ( error ) {
-				debug( 'Encountered an error: '+error.message );
+				return debug( 'Encountered an error: '+error.message );
 			}
 		});
 	}

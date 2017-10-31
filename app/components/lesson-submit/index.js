@@ -8,6 +8,16 @@ import Signup from 'components/signup';
 import Login from 'components/login';
 
 
+// VARIABLES //
+
+function createMessage( session, message ) {
+	return {
+		text: `Dear ${session.user.name}, this is an automatic confirmation email to inform you that you have successfully completed ${session.lessonName} of course ${session.namespaceName}. ${message}`,
+		subject: `${session.lessonName} successfully completed!`
+	};
+};
+
+
 // MAIN //
 
 class LessonSubmit extends Component {
@@ -70,9 +80,8 @@ class LessonSubmit extends Component {
 				level: 'success',
 				position: 'tr'
 			});
-			if ( this.props.mail ) {
-				session.sendMail( this.props.mail, session.user.email );
-			}
+			const msg = createMessage( session, this.props.message );
+			session.sendMail( msg, session.user.email );
 			this.setState({
 				disabled: true
 			});
@@ -117,6 +126,7 @@ class LessonSubmit extends Component {
 
 	render() {
 		const { session } = this.context;
+		const disabled = !session.live || this.state.disabled;
 		return (
 			<div className="well" style={{
 				maxWidth: 400,
@@ -125,7 +135,7 @@ class LessonSubmit extends Component {
 				fontFamily: 'Arial',
 				...this.props.style
 			}}>
-				<Button disabled={!session.live} bsStyle="primary" bsSize="large" onClick={this.handleClick} block>{this.props.label}</Button>
+				<Button disabled={disabled} bsStyle="primary" bsSize="large" onClick={this.handleClick} block>{this.props.label}</Button>
 				<Modal show={this.state.showUserModal} onHide={this.closeUserModal}>
 					<Modal.Header closeButton>
 						<Modal.Title>Authentication</Modal.Title>
@@ -153,7 +163,7 @@ class LessonSubmit extends Component {
 
 LessonSubmit.defaultProps = {
 	label: 'Finish lesson',
-	mail: null,
+	message: '',
 	onClick() {}
 };
 
@@ -162,7 +172,7 @@ LessonSubmit.defaultProps = {
 
 LessonSubmit.propTypes = {
 	label: PropTypes.string,
-	mail: PropTypes.string,
+	message: PropTypes.string,
 	onClick: PropTypes.func
 };
 

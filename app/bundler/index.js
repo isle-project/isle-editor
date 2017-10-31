@@ -92,6 +92,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import yaml from 'js-yaml';
+import request from 'request';
 import NotificationSystem from 'react-notification-system';
 import StatusBar from 'components/statusbar';
 import Provider from 'components/provider';
@@ -167,10 +168,6 @@ const getSessionCode = ( basePath ) => {
 	return str;
 };
 
-const getMailCode = () => `
-import request from 'request';
-import mustache from 'mustache';`;
-
 
 // MAIN //
 
@@ -200,7 +197,6 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath
 	res += getISLEcode( yamlStr );
 
 	res += getSessionCode( basePath );
-	res += getMailCode();
 
 	res += getComponents( components );
 	res += getLessonComponent( lessonContent );

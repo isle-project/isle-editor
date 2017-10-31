@@ -161,7 +161,6 @@
     "markdown-it": "^8.0.0",
     "minimist": "^1.2.0",
     "moment": "^2.18.1",
-    "mustache": "^2.2.1",
     "node-libs-browser": "^2.0.0",
     "normalize.css": "^7.0.0",
     "plotly.js": "^1.29.2",
