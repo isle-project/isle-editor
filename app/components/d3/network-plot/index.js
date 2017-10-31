@@ -37,12 +37,20 @@ class NetworkPlot extends D3Plot {
 				.on( 'end', this.dragended )
 			);
 
+		this.simulation
+			.nodes( data.nodes )
+			.on( 'tick', ticked );
+
+		this.simulation.force( 'link' )
+			.links( data.links );
+
+
 		data.nodes = data.nodes.map( node => {
 			let nEdges = 0;
 			for ( let i = 0; i < data.links.length; i++ ) {
 				if (
-					data.links[ i ].source === node.id ||
-					data.links[ i ].target === node.id
+					data.links[ i ].source.id === node.id ||
+					data.links[ i ].target.id === node.id
 				) {
 					nEdges += 1;
 				}
@@ -50,13 +58,6 @@ class NetworkPlot extends D3Plot {
 			node.nEdges = nEdges;
 			return node;
 		});
-
-		this.simulation
-			.nodes( data.nodes )
-			.on( 'tick', ticked );
-
-		this.simulation.force( 'link' )
-			.links( data.links );
 
 		function ticked() {
 			link
