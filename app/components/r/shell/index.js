@@ -373,8 +373,25 @@ class RShell extends React.Component {
 		}
 
 		const { session } = this.context;
-		this.unsubscribe = session.subscribe( () => {
-			this.forceUpdate();
+		this.unsubscribe = session.subscribe( ( type, val ) => {
+			if ( type === 'retrieved_current_user_actions' ) {
+				let actions = val[ this.props.id ];
+				if ( isArray( actions ) ) {
+					actions = actions.filter( action => {
+						return action.type === 'RSHELL_EVALUATION';
+					});
+					if ( actions.length > 0 ) {
+						const lastAction = actions[ 0 ].value;
+						this.setState({
+							lastSolution: lastAction,
+							solutionOpen: false
+						});
+						this.editor.setValue( lastAction, 1 );
+					}
+				}
+			} else {
+				this.forceUpdate();
+			}
 		});
 	}
 
