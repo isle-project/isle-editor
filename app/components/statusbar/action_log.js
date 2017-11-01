@@ -103,40 +103,42 @@ class ActionLog extends Component {
 
 	buildActionsArray( props, clbk ) {
 		let { from, to } = props.period;
-		from = from.toDate();
-		to = to.toDate();
-		const { session } = this.context;
-		let displayedActions = [];
+		if ( from && to ) {
+			from = from.toDate();
+			to = to.toDate();
+			const { session } = this.context;
+			let displayedActions = [];
 
-		for ( let i = 0; i < session.socketActions.length; i++ ) {
-			let action = session.socketActions[ i ];
-			if ( action.absoluteTime > from && action.absoluteTime < to ) {
-				displayedActions.push( action );
+			for ( let i = 0; i < session.socketActions.length; i++ ) {
+				let action = session.socketActions[ i ];
+				if ( action.absoluteTime > from && action.absoluteTime < to ) {
+					displayedActions.push( action );
+				}
 			}
-		}
-		if ( this.state.filter ) {
-			debug( 'Should filter actions: ' + displayedActions.length );
-			for ( let i = displayedActions.length - 1; i >= 0; i-- ) {
-				let action = displayedActions[ i ];
-				let markedForRemoval = false;
-				for ( let key in this.state.filter ) {
-					let val = this.state.filter[ key ];
-					if ( action[ key ] !== val ) {
-						markedForRemoval = true;
+			if ( this.state.filter ) {
+				debug( 'Should filter actions: ' + displayedActions.length );
+				for ( let i = displayedActions.length - 1; i >= 0; i-- ) {
+					let action = displayedActions[ i ];
+					let markedForRemoval = false;
+					for ( let key in this.state.filter ) {
+						let val = this.state.filter[ key ];
+						if ( action[ key ] !== val ) {
+							markedForRemoval = true;
+						}
+					}
+					if ( markedForRemoval ) {
+						displayedActions.splice( i, 1 );
 					}
 				}
-				if ( markedForRemoval ) {
-					displayedActions.splice( i, 1 );
+			}
+			this.setState({
+				displayedActions
+			}, () => {
+				if ( clbk ) {
+					clbk( from, to, displayedActions.length );
 				}
-			}
+			});
 		}
-		this.setState({
-			displayedActions
-		}, () => {
-			if ( clbk ) {
-				clbk( from, to, displayedActions.length );
-			}
-		});
 	}
 
 	componentDidMount() {
