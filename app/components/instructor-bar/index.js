@@ -167,6 +167,9 @@ class InstructorBar extends Component {
 						},
 						yaxis: {
 							title: 'Value'
+						},
+						margin: {
+							l: 400
 						}
 					}}
 				/>
