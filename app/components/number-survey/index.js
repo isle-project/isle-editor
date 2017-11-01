@@ -4,16 +4,43 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Panel, Grid, Col } from 'react-bootstrap';
-import { VictoryAxis, VictoryBar, VictoryChart } from 'victory';
-import { tabulate } from '@stdlib/utils';
+import { VictoryAxis, VictoryArea, VictoryChart } from 'victory';
 import isNumber from '@stdlib/assert/is-number';
+import inmap from '@stdlib/utils/inmap';
+import { abs, pow, round } from '@stdlib/math/base/special';
 import mean from 'compute-mean';
 import stdev from 'compute-stdev';
+import iqr from 'compute-iqr';
+import min from 'compute-min';
+import max from 'compute-max';
 import NumberInput from 'components/input/number';
 import Gate from 'components/gate';
 import InstructorBar from 'components/instructor-bar';
 import RealtimeMetrics from 'components/metrics/realtime';
 const debug = require( 'debug' )( 'isle-editor' );
+
+
+// FUNCTIONS //
+
+function bidx( bmin, h, v ) { return round( abs( bmin - v ) / h ); };
+
+function getBins( data ) {
+	var h = 2 * iqr( data ) * pow( data.length, -1/3 );
+	var bmax = max( data );
+	var bmin = min( data );
+	var nBins = round( ( bmax - bmin ) / h ) + 1;
+	var out = new Array( nBins );
+	inmap( out, x => { return { 'y': 0, 'y0': 0 }; });
+	for ( let i = 0; i < data.length; i++ ) {
+		let idx = bidx( bmin, h, data[ i ]);
+		out[ idx ][ 'y' ] += 1;
+	}
+	for ( let i = 0; i < nBins; i++ ) {
+		let bc = bmin +  ( h*i );
+		out[ i ][ 'x' ] = bc;
+	}
+	return out;
+}
 
 
 // MAIN //
@@ -54,20 +81,10 @@ class NumberSurvey extends Component {
 
 	onData = ( data ) => {
 		debug( 'NumberSurvey is receiving data: ' + JSON.stringify( data ) );
-		let tabulated = tabulate( data );
-		let avg;
-		let sd;
-		let counts = tabulated.map( d => {
-			return {
-				x: d[ 0 ],
-				y: d[ 1 ]
-			};
-		});
-		avg = mean( data );
-		sd = stdev( data );
-
+		const avg = mean( data );
+		const sd = stdev( data );
 		this.setState({
-			data: counts,
+			data: data,
 			avg,
 			sd
 		});
@@ -111,10 +128,9 @@ class NumberSurvey extends Component {
 					<Col md={6}>
 						<RealtimeMetrics for={this.props.id} onData={this.onData} />
 						<VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
-							<VictoryBar
-								data={this.state.data}
-								x="x"
-								y="y"
+							<VictoryArea
+								data={getBins( this.state.data )}
+								interpolation="step"
 							/>
 							<VictoryAxis
 								label="Answer"
