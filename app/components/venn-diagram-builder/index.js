@@ -7,6 +7,7 @@ import * as venn from 'venn.js';
 import * as d3 from 'd3';
 import randu from '@stdlib/math/base/random/randu';
 import round from '@stdlib/math/base/special/round';
+import min from '@stdlib/math/base/special/min';
 import NumberInput from 'components/input/number';
 import TextInput from 'components/input/text';
 import Dashboard from 'components/dashboard';
@@ -131,9 +132,13 @@ class VennDiagramBuilder extends Component {
 	}
 
 	render() {
-		let inputs;
+		let dashboard;
 		if ( !this.props.three ) {
-			inputs = <div>
+			dashboard = <Dashboard
+				title="Venn Diagram Builder"
+				autoUpdate
+				onGenerate={this.generateTwoCategories.bind( this )}
+			>
 				<TextInput
 					legend="Label of first set"
 					defaultValue="A"
@@ -164,10 +169,14 @@ class VennDiagramBuilder extends Component {
 					step={1}
 					min={0}
 				/>
-			</div>;
+			</Dashboard>;
 		}
 		else {
-			inputs = <div>
+			dashboard = <Dashboard
+				title="Venn Diagram Builder"
+				autoUpdate
+				onGenerate={this.generateThreeCategories.bind( this )}
+			>
 				<TextInput
 					legend="Label of first set"
 					defaultValue="A"
@@ -205,13 +214,13 @@ class VennDiagramBuilder extends Component {
 				<NumberInput
 					legend={<TeX raw={`| \\text{${this.state.first}} \\cap \\text{${this.state.second}} | `} />}
 					defaultValue={2}
-					max={Math.min( this.state.sizeA, this.state.sizeB )}
+					max={min( this.state.sizeA, this.state.sizeB )}
 					step={1}
 					min={0}
 				/>
 				<NumberInput
 					legend={<TeX raw={`| \\text{${this.state.second}} \\cap \\text{${this.state.third}} | `} />}
-					max={Math.min( this.state.sizeB, this.state.sizeC )}
+					max={min( this.state.sizeB, this.state.sizeC )}
 					defaultValue={2}
 					step={1}
 					min={0}
@@ -219,18 +228,18 @@ class VennDiagramBuilder extends Component {
 				<NumberInput
 					legend={<TeX raw={`| \\text{${this.state.first}} \\cap \\text{${this.state.third}} | `} />}
 					defaultValue={2}
-					max={Math.min( this.state.sizeA, this.state.sizeC )}
+					max={min( this.state.sizeA, this.state.sizeC )}
 					step={1}
 					min={0}
 				/>
 				<NumberInput
 					legend={<TeX raw={`| \\text{${this.state.first}}\\cap \\text{${this.state.second}} \\cap \\text{${this.state.third}} | `} />}
 					defaultValue={1}
-					max={Math.min( this.state.sizeAC, this.state.sizeAB, this.state.sizeBC )}
+					max={min( this.state.sizeAC, this.state.sizeAB, this.state.sizeBC )}
 					step={1}
 					min={0}
 				/>
-			</div>;
+			</Dashboard>;
 		}
 
 		return (
@@ -238,16 +247,7 @@ class VennDiagramBuilder extends Component {
 				<Grid>
 					<Row>
 						<Col md={4}>
-							<Dashboard
-								title="Venn Diagram Builder"
-								autoUpdate
-								onGenerate={this.props.three ?
-									this.generateThreeCategories.bind( this ) :
-									this.generateTwoCategories.bind( this )
-								}
-							>
-								{ inputs }
-							</Dashboard>
+							{dashboard}
 						</Col>
 						<Col md={8}>
 							<Panel>
