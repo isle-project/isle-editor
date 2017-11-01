@@ -167,6 +167,12 @@ body {
 	width: inherit;
 }
 
+#Lesson .DateInput_input {
+	padding: 0px 6px 0px 6px;
+	font-size: 12px;
+	width: 60px;
+}
+
 #Lesson .DateRangePickerInput {
 	height: 22px;
 	border: none;
