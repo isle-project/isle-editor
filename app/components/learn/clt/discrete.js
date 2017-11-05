@@ -12,6 +12,7 @@ import { sqrt } from '@stdlib/math/base/special';
 import NumberInput from 'components/input/number';
 import CheckboxInput from 'components/input/checkbox';
 import RPlot from 'components/r/plot';
+import Plotly from 'components/plotly';
 import TeX from 'components/tex';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';

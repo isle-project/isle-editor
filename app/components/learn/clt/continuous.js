@@ -3,17 +3,19 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Grid, Col, Panel, Row, Tabs, Tab } from 'react-bootstrap';
 import { exponential as rExponential, uniform as rUniform, normal as rNormal } from '@stdlib/math/base/random';
+import dnorm from '@stdlib/math/base/dists/normal/pdf';
 import { copy, inmap } from '@stdlib/utils';
-import { abs, pow, round, sqrt } from '@stdlib/math/base/special';
+import { abs, floor, pow, round, sqrt } from '@stdlib/math/base/special';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import stdev from 'compute-stdev';
 import mean from 'compute-mean';
 import iqr from 'compute-iqr';
 import min from 'compute-min';
 import max from 'compute-max';
+import linspace from '@stdlib/math/utils/linspace';
+import Plotly from 'components/plotly';
 import NumberInput from 'components/input/number';
 import CheckboxInput from 'components/input/checkbox';
-import RPlot from 'components/r/plot';
 import { VictoryArea, VictoryAxis, VictoryChart } from 'victory';
 import TeX from 'components/tex';
 import 'react-grid-layout/css/styles.css';
@@ -93,7 +95,10 @@ class ContinuousCLT extends Component {
 			enlarged: [],
 			activeDistribution: 1,
 			distFormula: <TeX raw="\text{Uniform}(0,1)" />,
-			overlayNormal: false
+			overlayNormal: false,
+			leftProb: 0,
+			rightProb: 1,
+			cutoff: 0
 		};
 
 		this.handleSelect = ( key ) => {
@@ -136,7 +141,7 @@ class ContinuousCLT extends Component {
 						newLayout[ j ] = {
 							i: String( j ),
 							x: j*4 % 12,
-							y: Math.floor( j / 3 ) * 3,
+							y: floor( j / 3 ) * 3,
 							w: 4, h: 3, static: true
 						};
 						newEnlarged[ j ] = false;
@@ -145,7 +150,7 @@ class ContinuousCLT extends Component {
 						newLayout[ j ] = {
 							i: String( j ),
 							x: 0,
-							y: Math.floor( j / 3 ) * 3,
+							y: floor( j / 3 ) * 3,
 							w: 12, h: 9, static: true
 						};
 						newEnlarged[ i ] = true;
@@ -153,7 +158,7 @@ class ContinuousCLT extends Component {
 						newLayout[ j ] = {
 							i: String( j ),
 							x: ( ( j-i )*4 ) % 12,
-							y: Math.floor( j / 3 ) * 3 + 9,
+							y: floor( j / 3 ) * 3 + 9,
 							w: 4, h: 3, static: true
 						};
 						newEnlarged[ j ] = false;
@@ -164,7 +169,7 @@ class ContinuousCLT extends Component {
 					newLayout[ j ] = {
 						i: String( j ),
 						x: j*4 % 12,
-						y: Math.floor( j / 3 ) * 3,
+						y: floor( j / 3 ) * 3,
 						w: 4, h: 3, static: true
 					};
 					newEnlarged[ j ] = false;
@@ -227,16 +232,24 @@ class ContinuousCLT extends Component {
 		}
 		const layout = histogram.map( ( x, i ) => {
 			return {
-				i: String( i ), x: i*4 % 12, y: Math.floor( i / 3 ) * 3, w: 4, h: 3, static: true
+				i: String( i ), x: i*4 % 12, y: floor( i / 3 ) * 3, w: 4, h: 3, static: true
 			};
 		});
+
+		const avg_xbars = mean( xbars );
+		const stdev_xbars = stdev( xbars );
+		const densityX = linspace( min( xbars ), max( xbars ), 512 );
+		const densityY = densityX.map( x => dnorm( x, avg_xbars, stdev_xbars ) );
+
 		this.setState({
 			histogram,
 			layout,
 			xbars,
 			enlarged,
-			avg_xbars: mean( xbars ),
-			stdev_xbars: stdev( xbars )
+			avg_xbars,
+			stdev_xbars,
+			densityX,
+			densityY
 		});
 	}
 
@@ -312,19 +325,21 @@ class ContinuousCLT extends Component {
 			break;
 		}
 
-		let rcode = `
-			xbar = c(${this.state.xbars.join( ',' )})
-			truehist( xbar, cex.lab=2.0, cex.main=2.0, cex.axis=2.0 )
-			abline( v=${this.state.avg_xbars}, col="blue", lwd=3 )
-		`;
+		const plotlyData = [
+			{
+				x: this.state.xbars,
+				type: 'histogram',
+				histnorm: 'probability density'
+			}
+		];
 		if ( this.state.overlayNormal ) {
-			rcode += `
-				r <- range(xbar)
-				x <- seq( from = r[1], to = r[2], by = 0.01 )
-				d <- dnorm( x, mean = mean(xbar), sd = sd(xbar) )
-				lines( x, d, col="red")`;
+			plotlyData.push({
+				x: this.state.densityX,
+				y: this.state.densityY,
+				type: 'lines',
+				name: 'density'
+			});
 		}
-		console.log( rcode )
 
 		return (
 			<div>
@@ -366,7 +381,7 @@ class ContinuousCLT extends Component {
 					</Row>
 					<Row>
 						<Col md={6}>
-							<Panel><label>Drawn Samples</label></Panel>
+							<Panel><label>Number of Samples: {this.state.xbars.length} </label></Panel>
 							<Panel style={{ height: '400px', overflowY: 'scroll' }}>
 								<GridLayout
 									className="layout"
@@ -383,14 +398,28 @@ class ContinuousCLT extends Component {
 							</Panel>
 						</Col>
 						<Col md={6}>
-							<Panel><label>Number of Samples: {this.state.xbars.length} </label></Panel>
 							<Panel>
-								<label>Histogram of <TeX raw="\bar x" />'s</label>
+								<p><label>Histogram of <TeX raw="\bar x" />'s</label></p>
 								{ this.state.xbars.length > 1 ?
-									<RPlot
-										code={rcode}
-										libraries={[ 'MASS' ]} /> :
-									null
+									<Plotly data={plotlyData} layout={{
+										width: 400,
+										height: 250,
+										showlegend: false,
+										shapes: [
+											{
+												type: 'line',
+												x0: this.state.avg_xbars,
+												y0: 0,
+												x1: this.state.avg_xbars,
+												y1: dnorm( this.state.avg_xbars, this.state.avg_xbars, this.state.stdev_xbars ),
+												line: {
+													color: 'red',
+													width: 3
+												}
+											}
+										]
+									}} removeButtons toggleFullscreen={false} /> :
+									<span>Please draw at least two samples.</span>
 								}
 								<CheckboxInput legend="Overlay normal density" onChange={ ( value ) => {
 									this.setState({
@@ -400,7 +429,7 @@ class ContinuousCLT extends Component {
 								{ this.state.avg_xbars ?
 									<p>
 										<label> Mean of <TeX raw="\bar x" />'s: </label>
-										&nbsp;{this.state.avg_xbars.toFixed( 3 )} (shown as the blue line)
+										&nbsp;{this.state.avg_xbars.toFixed( 3 )} (shown as the red line)
 									</p> : null
 								}
 								{ this.state.stdev_xbars ?
@@ -409,6 +438,27 @@ class ContinuousCLT extends Component {
 										&nbsp;{this.state.stdev_xbars.toFixed( 3 )}
 									</p> : null
 								}
+							</Panel>
+							<Panel>
+								<NumberInput step="any" legend={<TeX raw="x" />}  onChange={ ( value ) => {
+									let leftProb = 0;
+									let len = this.state.xbars.length;
+									for ( let i = 0; i < len; i++ ) {
+										if ( this.state.xbars[ i ] < value ) {
+											leftProb += 1;
+										}
+									}
+									leftProb /= len;
+									let rightProb = 1.0 - leftProb;
+									this.setState({
+										leftProb,
+										rightProb,
+										cutoff: value
+									});
+								}}/>
+								<TeX raw={`\\hat P(\\bar X < ${this.state.cutoff} ) = ${this.state.leftProb.toFixed( 3 )}`} displayMode />
+								<TeX raw={`\\hat P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightProb.toFixed( 3 )}`} displayMode
+								/>
 							</Panel>
 						</Col>
 					</Row>

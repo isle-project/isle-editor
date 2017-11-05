@@ -2,14 +2,16 @@
 
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Grid, Col, Panel, Row } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import { sample } from '@stdlib/math/random';
+import dnorm from '@stdlib/math/base/dists/normal/pdf';
 import { copy, inmap } from '@stdlib/utils';
-import { abs, round, roundn } from '@stdlib/math/base/special';
+import { abs, pow, round, roundn } from '@stdlib/math/base/special';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import { VictoryArea, VictoryChart, VictoryAxis } from 'victory';
 import { NumberInput, SelectInput } from 'components/input';
-import RPlot from 'components/r/plot';
+import Plotly from 'components/plotly';
 import TeX from 'components/tex';
 import mean from 'compute-mean';
 import stdev from 'compute-stdev';
@@ -48,7 +50,7 @@ var isBinaryArray = ( arr, guess = true ) => {
 function bidx( bmin, h, v ) { return round( abs( bmin - v ) / h ); };
 
 function getBins( data ) {
-	var h = 2 * iqr( data ) * Math.pow( data.length, -1/3 );
+	var h = 2 * iqr( data ) * pow( data.length, -1/3 );
 	var bmax = max( data );
 	var bmin = min( data );
 	var nBins = round( ( bmax - bmin ) / h ) + 1;
@@ -59,7 +61,7 @@ function getBins( data ) {
 		out[ idx ][ 'y' ] += 1;
 	}
 	for ( let i = 0; i < nBins; i++ ) {
-		let bc = bmin +  ( h*i );
+		let bc = bmin + ( h*i );
 		out[ i ][ 'x' ] = roundn( bc, -1 );
 		out[ i ][ 'width' ] = h;
 	}
@@ -81,8 +83,11 @@ class SampleCLT extends Component {
 			variable: null,
 			type: 'none',
 			categories: [],
+			leftXbarProb: 0,
+			rightXbarProb: 1,
 			leftProb: 0,
 			rightProb: 1,
+			cutoffPop: 0,
 			cutoff: 0
 		};
 
@@ -164,28 +169,7 @@ class SampleCLT extends Component {
 				const xbar = mean( vals );
 				const plot = <div style={{ cursor: 'zoom-in' }}>
 					<TeX raw={`\\bar x = ${xbar.toFixed( 2 )}`} />
-					<VictoryChart domainPadding={20} padding={60} >
-						<VictoryAxis style={{
-							axisLabel: {
-								fontSize: 22
-							},
-							tickLabels: {
-								fontSize: 15, padding: 5
-							}
-						}} />
-						<VictoryAxis dependentAxis style={{
-							axisLabel: {
-								fontSize: 22
-							},
-							tickLabels: {
-								fontSize: 15, padding: 5
-							}
-						}}/>
-						<VictoryArea
-							data={getBins( vals )}
-							interpolation="step"
-						/>
-					</VictoryChart>
+					{this.renderHistogram( vals )}
 				</div>;
 				plots.push( plot );
 				enlarged.push( false );
@@ -249,6 +233,31 @@ class SampleCLT extends Component {
 		});
 	}
 
+	renderHistogram( values ) {
+		return <VictoryChart domainPadding={20} padding={60} >
+			<VictoryAxis style={{
+				axisLabel: {
+					fontSize: 22
+				},
+				tickLabels: {
+					fontSize: 15, padding: 5
+				}
+			}} />
+			<VictoryAxis dependentAxis style={{
+				axisLabel: {
+					fontSize: 22
+				},
+				tickLabels: {
+					fontSize: 15, padding: 5
+				}
+			}}/>
+			<VictoryArea
+				data={getBins( values )}
+				interpolation="step"
+			/>
+		</VictoryChart>;
+	}
+
 	render() {
 		let label;
 		if ( this.state.type === 'numeric' ) {
@@ -266,10 +275,12 @@ class SampleCLT extends Component {
 									const values = this.props.data[ variable ].filter( x => x !== null && x !== '' );
 									let type = 'none';
 									let trueMean;
+									let trueStdev;
 									let categories;
 									if ( isNumberArray( values ) ) {
 										type = 'numeric';
 										trueMean = mean( values );
+										trueStdev = stdev( values );
 									}
 									if ( isBinaryArray( values ) ) {
 										type = 'binary';
@@ -281,6 +292,7 @@ class SampleCLT extends Component {
 											}
 										}
 										trueMean = nSuccesses / values.length;
+										trueStdev = trueMean * ( 1.0-trueMean );
 									}
 									this.setState({
 										variable,
@@ -291,11 +303,14 @@ class SampleCLT extends Component {
 										enlarged: [],
 										plots: [],
 										trueMean,
+										trueStdev,
 										categories
 									});
 								}} />
+							</Col>
+							<Col md={6}>
 								{ this.state.type === 'numeric' || this.state.type === 'binary' ?
-									<div>
+									<span style={{ float: 'right' }}>
 										<NumberInput
 											legend="Sample Size"
 											step={1} min={1} defaultValue={10} max={500}
@@ -316,7 +331,7 @@ class SampleCLT extends Component {
 												Clear
 											</Button>
 										</ButtonGroup>
-									</div> : null
+									</span> : null
 								}
 							</Col>
 						</Panel>
@@ -324,44 +339,93 @@ class SampleCLT extends Component {
 					{ this.state.type === 'numeric' || this.state.type === 'binary' ?
 						<Row>
 							<Col md={6}>
-								<Panel><label>Drawn Samples</label></Panel>
-								<Panel style={{ height: '400px', overflowY: 'scroll' }}>
-									<GridLayout
-										className="layout"
-										layout={this.state.layout}
-										cols={12}
-										rowHeight={30}
-									>
-										{this.state.plots.map( ( x, i ) => {
-											return ( <div key={i} onClick={this.enlargePlotFactory( i )}>
-												{x}
-											</div> );
-										})}
-									</GridLayout>
+								{ this.props.populationProbabilities ?
+									<Panel header={`Population Distribution of ${this.state.variable}`}>
+										<Plotly
+											data={[
+												{ x: this.state.values, type: 'histogram' }
+											]}
+											layout={{ width: 400, height: 300 }}
+											toggleFullscreen={false}
+											removeButtons
+										/>
+										<p><label>Population { this.state.type === 'numeric' ? 'mean' : 'proportion' }: </label>  {this.state.trueMean.toFixed( 3 )}</p>								<p><label>Population standard deviation: </label>  {this.state.trueStdev.toFixed( 3 )}</p>
+									</Panel> :
+									<div>
+										<Panel><label>Drawn Samples</label></Panel>
+										<Panel style={{ height: '400px', overflowY: 'scroll' }}>
+											<GridLayout
+												className="layout"
+												layout={this.state.layout}
+												cols={12}
+												rowHeight={30}
+											>
+												{this.state.plots.map( ( x, i ) => {
+													return ( <div key={i} onClick={this.enlargePlotFactory( i )}>
+														{x}
+													</div> );
+												})}
+											</GridLayout>
+										</Panel>
+									</div>
+								}
+								<Panel>
+									<NumberInput step="any" legend={<span>Evaluate probabilities for <TeX raw="X" /></span>} onChange={ ( value ) => {
+										let leftProb = 0;
+										const values = this.props.data[ this.state.variable ].filter( x => x !== null && x !== '' );
+										for ( let i = 0; i < values.length; i++ ) {
+											if ( values[ i ] < value ) {
+												leftProb += 1;
+											}
+										}
+										leftProb /= values.length;
+										let rightProb = 1.0 - leftProb;
+										this.setState({
+											leftProb,
+											rightProb,
+											cutoffPop: value
+										});
+									}}/>
+									<TeX raw={`P( X < ${this.state.cutoffPop} ) = ${this.state.leftProb.toFixed( 3 )}`} displayMode />
+									<TeX raw={`P( X \\ge ${this.state.cutoffPop} ) = ${this.state.rightProb.toFixed( 3 )}`} displayMode />
 								</Panel>
 							</Col>
 							<Col md={6}>
 								<div>
 									<Panel>
-										<p><label>Number of Samples: {this.state.xbars.length} </label></p>
-										<p><label>Population { this.state.type === 'numeric' ? 'mean' : 'proportion' }: </label>  {this.state.trueMean.toFixed( 3 )}</p>
-									</Panel>
-									<Panel>
 										<label>{label}</label>
 										{ this.state.xbars.length > 1 ?
-											<RPlot
-												code={`
-													xbar = c(${this.state.xbars.join( ',' )})
-													truehist( xbar, cex.lab=2.0, cex.main=2.0, cex.axis=2.0 )
-													abline( v=${this.state.avg_xbars}, col="blue", lwd=3 )
-												`}
-												libraries={[ 'MASS' ]} /> :
-											null
+											<Plotly
+												data={[
+													{
+														x: this.state.xbars,
+														type: 'histogram',
+														histnorm: 'probability density'
+													}
+												]}
+												layout={{ width: 400, height: 250, shapes: [
+													{
+														type: 'line',
+														x0: this.state.avg_xbars,
+														y0: 0.0,
+														x1: this.state.avg_xbars,
+														y1: dnorm( this.state.avg_xbars, this.state.avg_xbars, this.state.stdev_xbars ),
+														line: {
+															color: 'red',
+															width: 3
+														}
+													}
+												]}}
+												removeButtons
+												toggleFullscreen={false}
+											/> :
+											<p>Please draw at least two samples.</p>
 										}
+										<p><label>Number of Samples: {this.state.xbars.length} </label></p>
 										{ this.state.avg_xbars ?
 											<p>
 												<label> Mean of { this.state.type === 'numeric' ? <TeX raw="\bar x" /> : <TeX raw="\hat p" />}'s: </label>
-												<span>&nbsp;{this.state.avg_xbars.toFixed( 3 )} (shown as the blue line)</span>
+												<span>&nbsp;{this.state.avg_xbars.toFixed( 3 )} (shown as the red line)</span>
 											</p> : null
 										}
 										{ this.state.stdev_xbars ?
@@ -372,24 +436,24 @@ class SampleCLT extends Component {
 										}
 									</Panel>
 									<Panel>
-										<NumberInput legend={<TeX raw="x" />}  onChange={ ( value ) => {
-											let leftProb = 0;
+										<NumberInput step="any" legend={<span>Evaluate probabilities for <TeX raw="\bar X" /></span>} onChange={ ( value ) => {
+											let leftXbarProb = 0;
 											let len = this.state.xbars.length;
 											for ( let i = 0; i < len; i++ ) {
 												if ( this.state.xbars[ i ] < value ) {
-													leftProb += 1;
+													leftXbarProb += 1;
 												}
 											}
-											leftProb /= len;
-											let rightProb = 1.0 - leftProb;
+											leftXbarProb /= len;
+											let rightXbarProb = 1.0 - leftXbarProb;
 											this.setState({
-												leftProb,
-												rightProb,
+												leftXbarProb,
+												rightXbarProb,
 												cutoff: value
 											});
 										}}/>
-										<TeX raw={`\\hat P(\\bar X < ${this.state.cutoff} ) = ${this.state.leftProb.toFixed( 3 )}`} displayMode />
-										<TeX raw={`\\hat P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightProb.toFixed( 3 )}`} displayMode />
+										<TeX raw={`\\hat P(\\bar X < ${this.state.cutoff} ) = ${this.state.leftXbarProb.toFixed( 3 )}`} displayMode />
+										<TeX raw={`\\hat P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightXbarProb.toFixed( 3 )}`} displayMode />
 									</Panel>
 								</div>
 							</Col>
@@ -403,6 +467,13 @@ class SampleCLT extends Component {
 		);
 	}
 }
+
+
+// PROPERTY TYPES //
+
+SampleCLT.propTypes = {
+	populationProbabilities: PropTypes.bool
+};
 
 
 // EXPORTS //
