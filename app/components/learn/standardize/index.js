@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Panel } from 'react-bootstrap';
 import { VictoryChart, VictoryLine } from 'victory';
+import PropTypes from 'prop-types';
 import roundn from '@stdlib/math/base/special/roundn';
 import dnorm from '@stdlib/math/base/dists/normal/pdf';
 import linspace from '@stdlib/math/utils/linspace';
@@ -71,7 +72,7 @@ class Standardize extends Component {
 	}
 
 	generateState( mean, sd ) {
-		const eqn = `Z = \\frac{X-${roundn( mean,-2 )}}{${roundn( this.state.sd,-2 )}}`;
+		const eqn = `Z = \\frac{X-${roundn( mean, -2 )}}{${roundn( sd, -2 )}}`;
 		const data = X.map( x => {
 			return {
 				x: x,
@@ -112,7 +113,7 @@ class Standardize extends Component {
 							<NumberInput
 								legend="Mean"
 								defaultValue={4}
-								step={1}
+								step={this.props.step}
 								min={-25}
 								max={25}
 								onChange={ mean => {
@@ -122,7 +123,7 @@ class Standardize extends Component {
 							<NumberInput
 								legend="Standard Deviation"
 								defaultValue={3}
-								step={1}
+								step={this.props.step}
 								min={1}
 								max={10}
 								onChange={ sd => {
@@ -147,12 +148,12 @@ class Standardize extends Component {
 						</Panel>
 					</Col>
 					<Col md={4}>
-						<TeX raw={this.state.eqn} displayMode tag=""/>
+						<TeX raw={this.state.eqn} displayMode tag="" />
 						<Dashboard autoStart={false} title="Standardize values" label="Compute" onGenerate={this.onStandardize}>
 							<NumberInput
 								legend="X value"
 								defaultValue={0}
-								step={1}
+								step={this.props.step}
 								min={-30}
 								max={30}
 							/>
@@ -167,6 +168,22 @@ class Standardize extends Component {
 		);
 	}
 }
+
+// PROPERTY TYPES //
+
+Standardize.propTypes = {
+	step: PropTypes.oneOf([
+		PropTypes.number,
+		PropTypes.string
+	])
+};
+
+
+// DEFAULT PROPERTIES //
+
+Standardize.defaultProps = {
+	step: 'any'
+};
 
 
 // EXPORTS //
