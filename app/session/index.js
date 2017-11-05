@@ -112,6 +112,11 @@ class Session {
 		// Ping server to check status:
 		this.startPingServer();
 
+		if ( !this.lessonID && !this.namespaceID ) {
+			// [1] Retrieve lesson information:
+			this.getLessonInfo();
+		}
+
 		// Log session data to database in regular interval:
 		setInterval( this.logSession, 5*60000 );
 	}
@@ -153,10 +158,8 @@ class Session {
 			else if ( body === 'live' ) {
 				this.live = true;
 				if ( !this.lessonID && !this.namespaceID ) {
-					this.getLessonInfo( this.getUserRights );
-				}
-				else if ( !userRights ) {
-					this.getUserRights();
+					// [1] Retrieve lesson information:
+					this.getLessonInfo();
 				}
 			} else {
 				this.live = false;
@@ -342,7 +345,6 @@ class Session {
 	* @returns {void}
 	*/
 	getUserRights = () => {
-		console.log( userRights );
 		if (
 			!this.anonymous &&
 			!this.userRightsQuestionPosed &&
@@ -365,9 +367,11 @@ class Session {
 					const obj = JSON.parse( body );
 					userRights = obj;
 					if ( userRights.owner && isEmptyArray( this.socketActions ) ) {
+						// [3a] Retrieve all user actions for owners:
 						this.getUserActions();
-					} else {
-						this.update();
+					} else if ( !this.currentUserActions ) {
+						// [3b] Retrieve only own actions otherwise:
+						this.getCurrentUserActions();
 					}
 				}
 			});
@@ -515,9 +519,7 @@ class Session {
 	*/
 	socketConnect() {
 		console.log( 'Connecting via socket to server... ' );
-		const socket = io.connect( this.server, {
-			transports: [ 'websocket', 'xhr-polling' ]
-		});
+		const socket = io.connect( this.server );
 
 		socket.on( 'connect', () => {
 			console.log( 'I am connected...' );
@@ -630,7 +632,9 @@ class Session {
 	*
 	* @returns {void}
 	*/
-	getUserActions() {
+	getUserActions = () => {
+		debug( 'Retrieve user actions...' );
+		console.log( 'Retrieve user actions...' );
 		request.post( this.server+'/get_user_actions', {
 			headers: {
 				'Authorization': 'JWT ' + this.user.token
@@ -656,7 +660,7 @@ class Session {
 	*
 	* @returns {void}
 	*/
-	getCurrentUserActions() {
+	getCurrentUserActions = () => {
 		request.post( this.server+'/get_current_user_actions', {
 			headers: {
 				'Authorization': 'JWT ' + this.user.token
@@ -828,10 +832,8 @@ class Session {
 
 	/**
 	* Retrieves the ID for the lesson and namespace from the database.
-	*
-	* @param {Function} clbk - callback to be invoked after retrieving lesson info
 	*/
-	getLessonInfo( clbk ) {
+	getLessonInfo = () => {
 		const { lessonName, namespaceName, server } = this;
 		debug( `Retrieve lesson info for ${namespaceName}/${lessonName} from ${server}` );
 		if ( lessonName && namespaceName ) {
@@ -846,12 +848,8 @@ class Session {
 					const body = JSON.parse( res.body );
 					this.lessonID = body.lessonID;
 					this.namespaceID = body.namespaceID;
-					if ( !this.currentUserActions ) {
-						this.getCurrentUserActions();
-					}
-					if ( isFunction( clbk ) ) {
-						clbk();
-					}
+					// [2] Retrieve user rights for said lesson and its namespace
+					this.getUserRights();
 				}
 			});
 		}
