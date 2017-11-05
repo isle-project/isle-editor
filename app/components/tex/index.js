@@ -142,16 +142,18 @@ class TeX extends Component {
 					style={this.props.style}
 					onClick={this.props.onClick}
 				>
-					<div
-						className="tag"
-						style={{
-							float: 'right',
-							marginTop: 5,
-							marginRight: 5
-						}}
-					>
-						{ this.props.tag !== null ? this.props.tag : '[' + this.state.id + ']' }
-					</div>
+					{ this.props.numbered ?
+						<div
+							className="tag"
+							style={{
+								float: 'right',
+								marginTop: 5,
+								marginRight: 5
+							}}
+						>
+							{ this.props.tag !== null ? this.props.tag : '[' + this.state.id + ']' }
+						</div> : null
+					}
 					<span
 						ref={ ( span ) => { this.katex = span; }}
 						dangerouslySetInnerHTML={math}
@@ -192,6 +194,7 @@ TeX.propTypes = {
 	displayMode: PropTypes.bool,
 	onClick: PropTypes.func,
 	tag: PropTypes.string,
+	numbered: PropTypes.bool,
 	elems: PropTypes.object
 };
 
@@ -202,6 +205,7 @@ TeX.defaultProps = {
 	onClick: null,
 	displayMode: false,
 	tag: null,
+	numbered: false,
 	style: {},
 	elems: {}
 };
