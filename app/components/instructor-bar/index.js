@@ -3,7 +3,9 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Collapse, Col, Grid, ListGroup, ListGroupItem, Modal, Panel, Row, Well } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import isString from '@stdlib/assert/is-string';
 import tabulate from '@stdlib/utils/tabulate';
+import trim from '@stdlib/string/trim';
 import NINF from '@stdlib/math/constants/float64-ninf';
 import Plotly from 'components/plotly';
 import Gate from 'components/gate';
@@ -86,7 +88,21 @@ class InstructorBar extends Component {
 			return d[ 1 ];
 		});
 		const categories = tabulated.map( d => {
-			return d[ 0 ];
+			if ( !isString( d[ 0 ]) ) {
+				return d[ 0 ];
+			}
+			// Trim whitespace from beginning and end:
+			let out = trim( d[ 0 ]);
+
+			// Remove extra whitespace:
+			out = out.replace( /\s+/g, ' ' );
+
+			// Cut off end if string is too long:
+			out = out.substring( 0, 50 );
+			if ( d[ 0 ].length > 50 ) {
+				out += '...';
+			}
+			return out;
 		});
 		this.setState({
 			actions: filtered,
