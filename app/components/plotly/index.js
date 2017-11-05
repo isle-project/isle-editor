@@ -47,12 +47,13 @@ class Wrapper extends Component {
 				click: props.onShare
 			});
 		}
-		buttonsToAdd.push({
-			name: 'Toggle FullScreen',
-			icon: Plotly.Icons[ 'zoombox' ],
-			click: this.toggleFullscreen
-		});
-
+		if ( props.toggleFullscreen ) {
+			buttonsToAdd.push({
+				name: 'Toggle FullScreen',
+				icon: Plotly.Icons[ 'zoombox' ],
+				click: this.toggleFullscreen
+			});
+		}
 		this.config = {
 			displayModeBar: true,
 			displaylogo: false,
@@ -107,6 +108,7 @@ class Wrapper extends Component {
 Wrapper.defaultProps = {
 	layout: {},
 	removeButtons: false,
+	toggleFullscreen: true,
 	onShare: null,
 	fit: false
 };
@@ -118,6 +120,7 @@ Wrapper.propTypes = {
 	data: PropTypes.array.isRequired,
 	layout: PropTypes.object,
 	removeButtons: PropTypes.bool,
+	toggleFullscreen: PropTypes.bool,
 	onShare: PropTypes.func,
 	fit: PropTypes.bool
 };
