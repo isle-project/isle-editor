@@ -59,6 +59,8 @@ export default {
 	},
 	resolve: {
 		alias: {
+			'debug/node': require.resolve( 'debug/node' ),
+			'debug': require.resolve( 'debug/src/browser.js' ),
 			'esprima': path.resolve( './node_modules/esprima-fb' ),
 			'object-keys': path.resolve( './objectKeys.js' ),
 			'victory': require.resolve( 'victory/dist/victory' ),
@@ -74,7 +76,8 @@ export default {
 		mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
 	},
 	plugins: [
-		new webpack.IgnorePlugin( /vertx/ )
+		new webpack.IgnorePlugin( /vertx/ ),
+		new webpack.IgnorePlugin( /^(xor|props)$/ )
 	],
 	externals: [
 		// Node 3rd party libraries which can't be built with webpack go here...
