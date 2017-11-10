@@ -95,6 +95,7 @@ class NumberSurvey extends Component {
 
 	render() {
 		const props = this.props;
+		const { data } = this.state;
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
 			<Gate {...props} >
@@ -129,7 +130,7 @@ class NumberSurvey extends Component {
 						<RealtimeMetrics for={this.props.id} onData={this.onData} />
 						<VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
 							<VictoryArea
-								data={getBins( this.state.data )}
+								data={data.length > 2 ? getBins( data ) : []}
 								interpolation="step"
 							/>
 							<VictoryAxis
@@ -159,7 +160,8 @@ NumberSurvey.defaultProps = {
 	onSubmit() {},
 	allowMultipleAnswers: false,
 	question: '',
-	anonymous: false
+	anonymous: false,
+	step: 'any'
 };
 
 
@@ -169,7 +171,11 @@ NumberSurvey.propTypes = {
 	onSubmit: PropTypes.func,
 	allowMultipleAnswers: PropTypes.bool,
 	question: PropTypes.string,
-	anonymous: PropTypes.bool
+	anonymous: PropTypes.bool,
+	step: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string
+	]),
 };
 
 NumberSurvey.contextTypes = {
