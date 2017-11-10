@@ -360,10 +360,8 @@ function writeIndexFile({
 	}
 
 	let imgPath = path.join( basePath, './app/img' );
-	if ( contains( usedComponents, 'FeedbackButtons' ) ) {
-		fs.mkdirSync( path.join( appDir, 'img' ) );
-		fs.copySync( path.join( imgPath ), path.join( appDir, 'img' ) );
-	}
+	fs.mkdirSync( path.join( appDir, 'img' ) );
+	fs.copySync( path.join( imgPath ), path.join( appDir, 'img' ) );
 	fs.copySync( path.join( imgPath, 'favicon.ico' ), path.join( appDir, 'favicon.ico' ) );
 
 	config.entry = indexPath;
