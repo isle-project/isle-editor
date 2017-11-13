@@ -19,7 +19,7 @@ import Standardize from 'components/learn/standardize';
 
 // EXPORTS //
 
-export {
+export default {
 	ConditionalProbability,
 	ContinuousCLT,
 	DiceThrowing,
