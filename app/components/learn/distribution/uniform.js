@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Grid, Row, Col, Panel } from 'react-bootstrap';
+import { Panel, Tabs, Tab } from 'react-bootstrap';
 import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
 import { roundn } from '@stdlib/math/base/special';
 import linspace from '@stdlib/math/utils/linspace';
@@ -85,160 +85,148 @@ class UniformProbs extends Component {
 
 	render() {
 		return ( <Panel header={<h3>Uniform Distribution</h3>}>
-			<Grid>
-				<Row>
-					<Col md={5}>
-						<Dashboard autoUpdate title={<TeX raw="P(X \le x_0)"/>} onGenerate={this.generate1}>
-							<NumberInput
-								legend="Minimum"
-								defaultValue={0}
-								max={this.state.max-0.01}
-								step={0.1}
-							/>
-							<NumberInput
-								legend="Maximum"
-								defaultValue={1}
-								step={0.1}
-							/>
-							<SliderInput
-								legend="x0"
-								defaultValue={0}
-								min={this.state.min*2.0 - 1.0}
-								max={this.state.max*2.0}
-								step={0.01}
-							/>
-							<TeX raw={this.state.eqn} />
-						</Dashboard>
-					</Col>
-					<Col md={7}>
-						<VictoryChart
-							domain={{ x: [ this.state.min - 1.0, this.state.max + 1.0 ], y: [ 0, this.state.yheight + 0.1 ] }}>
-							<VictoryArea
-								data={this.state.data}
-								style={{
-									data: {
-										opacity: 0.3, fill: 'tomato'
-									}
-								}}
-							/>
-							<VictoryLine
-								data={[
-									[ this.state.min, 0 ],
-									[ this.state.min, this.state.yheight ],
-									[ this.state.max, this.state.yheight ],
-									[ this.state.max, 0 ]
-								]}
-								x={ d => d[ 0 ]}
-								y={ d => d[ 1 ]}
-							/>
-						</VictoryChart>
-					</Col>
-				</Row>
-				<Row>
-					<Col md={5}>
-						<Dashboard autoUpdate title={<TeX raw="P(X > x_0)"/>} onGenerate={this.generate2}>
-							<NumberInput
-								legend="Minimum"
-								defaultValue={0}
-								max={this.state.max-0.01}
-								step={0.1}
-							/>
-							<NumberInput
-								legend="Maximum"
-								defaultValue={1}
-								step={0.1}
-							/>
-							<SliderInput
-								legend="x0"
-								defaultValue={0}
-								min={this.state.min*2.0 - 1.0}
-								max={this.state.max*2.0}
-								step={0.01}
-							/>
-							<TeX raw={this.state.eqn2} />
-						</Dashboard>
-					</Col>
-					<Col md={7}>
-						<VictoryChart
-							domain={{ x: [ this.state.min2 - 1.0, this.state.max2 + 1.0 ], y: [ 0, this.state.yheight2 + 0.1 ] }}>
-							<VictoryArea
-								data={this.state.data2}
-								style={{
-									data: {
-										opacity: 0.3, fill: 'tomato'
-									}
-								}}
-							/>
-							<VictoryLine
-								data={[
-									[ this.state.min2, 0 ],
-									[ this.state.min2,this.state.yheight2 ],
-									[ this.state.max2,this.state.yheight2 ],
-									[ this.state.max2, 0 ]
-								]}
-								x={ d => d[ 0 ]}
-								y={ d => d[ 1 ]}
-							/>
-						</VictoryChart>
-					</Col>
-				</Row>
-				<Row>
-					<Col md={5}>
-						<Dashboard autoUpdate title={<TeX raw="P( x_0 \le X \le x_1 )"/>} onGenerate={this.generate3}>
-							<NumberInput
-								legend="Minimum"
-								defaultValue={0}
-								max={this.state.max3-0.01}
-								step={0.01}
-							/>
-							<NumberInput
-								legend="Maximum"
-								min={this.state.min3+0.01}
-								defaultValue={1}
-								step={0.01}
-							/>
-							<SliderInput
-								legend="x0"
-								defaultValue={0}
-								min={this.state.min3*2.0 - 1.0}
-								max={this.state.x1}
-								step={0.01}
-							/>
-							<SliderInput
-								legend="x1"
-								defaultValue={0}
-								min={this.state.min3*2.0 - 1.0}
-								max={this.state.max3*2.0}
-								step={0.01}
-							/>
-							<TeX raw={this.state.eqn3} />
-						</Dashboard>
-					</Col>
-					<Col md={7}>
-						<VictoryChart
-							domain={{ x: [ this.state.min3 - 1.0, this.state.max3 + 1.0 ], y: [ 0, this.state.yheight3 + 0.1 ] }}>
-							<VictoryArea
-								data={this.state.data3}
-								style={{
-									data: {
-										opacity: 0.3, fill: 'tomato'
-									}
-								}}
-							/>
-							<VictoryLine
-								data={[
-									[ this.state.min3, 0 ],
-									[ this.state.min3,this.state.yheight3 ],
-									[ this.state.max3,this.state.yheight3 ],
-									[ this.state.max3, 0 ]
-								]}
-								x={ d => d[ 0 ]}
-								y={ d => d[ 1 ]}
-							/>
-						</VictoryChart>
-					</Col>
-				</Row>
-			</Grid>
+			<Tabs defaultActiveKey={1} id="uniform-tabs">
+				<Tab eventKey={1} title={<TeX raw="P(X \le x_0)"/>}>
+					<Dashboard autoUpdate onGenerate={this.generate1}>
+						<NumberInput
+							legend="Minimum"
+							defaultValue={0}
+							max={this.state.max-0.01}
+							step={0.1}
+						/>
+						<NumberInput
+							legend="Maximum"
+							defaultValue={1}
+							step={0.1}
+						/>
+						<SliderInput
+							legend="x0"
+							defaultValue={0}
+							min={this.state.min*2.0 - 1.0}
+							max={this.state.max*2.0}
+							step={0.01}
+						/>
+						<TeX raw={this.state.eqn} />
+					</Dashboard>
+					<VictoryChart
+						domain={{ x: [ this.state.min - 1.0, this.state.max + 1.0 ], y: [ 0, this.state.yheight + 0.1 ] }}>
+						<VictoryArea
+							data={this.state.data}
+							style={{
+								data: {
+									opacity: 0.3, fill: 'tomato'
+								}
+							}}
+						/>
+						<VictoryLine
+							data={[
+								[ this.state.min, 0 ],
+								[ this.state.min, this.state.yheight ],
+								[ this.state.max, this.state.yheight ],
+								[ this.state.max, 0 ]
+							]}
+							x={ d => d[ 0 ]}
+							y={ d => d[ 1 ]}
+						/>
+					</VictoryChart>
+				</Tab>
+				<Tab eventKey={2} title={<TeX raw="P(X > x_0)"/>}>
+					<Dashboard autoUpdate onGenerate={this.generate2}>
+						<NumberInput
+							legend="Minimum"
+							defaultValue={0}
+							max={this.state.max-0.01}
+							step={0.1}
+						/>
+						<NumberInput
+							legend="Maximum"
+							defaultValue={1}
+							step={0.1}
+						/>
+						<SliderInput
+							legend="x0"
+							defaultValue={0}
+							min={this.state.min*2.0 - 1.0}
+							max={this.state.max*2.0}
+							step={0.01}
+						/>
+						<TeX raw={this.state.eqn2} />
+					</Dashboard>
+					<VictoryChart
+						domain={{ x: [ this.state.min2 - 1.0, this.state.max2 + 1.0 ], y: [ 0, this.state.yheight2 + 0.1 ] }}>
+						<VictoryArea
+							data={this.state.data2}
+							style={{
+								data: {
+									opacity: 0.3, fill: 'tomato'
+								}
+							}}
+						/>
+						<VictoryLine
+							data={[
+								[ this.state.min2, 0 ],
+								[ this.state.min2,this.state.yheight2 ],
+								[ this.state.max2,this.state.yheight2 ],
+								[ this.state.max2, 0 ]
+							]}
+							x={ d => d[ 0 ]}
+							y={ d => d[ 1 ]}
+						/>
+					</VictoryChart>
+				</Tab>
+				<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1 )"/>} >
+					<Dashboard autoUpdate onGenerate={this.generate3}>
+						<NumberInput
+							legend="Minimum"
+							defaultValue={0}
+							max={this.state.max3-0.01}
+							step={0.01}
+						/>
+						<NumberInput
+							legend="Maximum"
+							min={this.state.min3+0.01}
+							defaultValue={1}
+							step={0.01}
+						/>
+						<SliderInput
+							legend="x0"
+							defaultValue={0}
+							min={this.state.min3*2.0 - 1.0}
+							max={this.state.x1}
+							step={0.01}
+						/>
+						<SliderInput
+							legend="x1"
+							defaultValue={0}
+							min={this.state.min3*2.0 - 1.0}
+							max={this.state.max3*2.0}
+							step={0.01}
+						/>
+						<TeX raw={this.state.eqn3} />
+					</Dashboard>
+					<VictoryChart
+						domain={{ x: [ this.state.min3 - 1.0, this.state.max3 + 1.0 ], y: [ 0, this.state.yheight3 + 0.1 ] }}>
+						<VictoryArea
+							data={this.state.data3}
+							style={{
+								data: {
+									opacity: 0.3, fill: 'tomato'
+								}
+							}}
+						/>
+						<VictoryLine
+							data={[
+								[ this.state.min3, 0 ],
+								[ this.state.min3,this.state.yheight3 ],
+								[ this.state.max3,this.state.yheight3 ],
+								[ this.state.max3, 0 ]
+							]}
+							x={ d => d[ 0 ]}
+							y={ d => d[ 1 ]}
+						/>
+					</VictoryChart>
+				</Tab>
+			</Tabs>
 		</Panel> );
 	}
 }
