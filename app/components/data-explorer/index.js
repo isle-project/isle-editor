@@ -29,6 +29,7 @@ import Gate from 'components/gate';
 import RealtimeMetrics from 'components/metrics/realtime';
 import Plotly from 'components/plotly';
 import RPlot from 'components/r/plot';
+import Learn from 'components/learn';
 
 
 // PLOT COMPONENTS //
@@ -686,8 +687,17 @@ class DataExplorer extends Component {
 					Transform
 				</NavItem> : null
 			}
+			{ this.props.distributions.length > 0 ?
+				<NavDropdown
+					eventKey="7"
+					title="Distributions"
+				>
+					{this.props.distributions.map( ( e, i ) =>
+						<MenuItem key={i} eventKey={`7.${i+1}`}>{e}</MenuItem> )}
+				</NavDropdown> : null
+			}
 			{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
-				return ( <NavItem eventKey={`${6+i}`}>
+				return ( <NavItem eventKey={`${8+i}`}>
 					{e.title}
 				</NavItem> );
 			}) : null }
@@ -873,8 +883,25 @@ class DataExplorer extends Component {
 					onGenerate={this.onGenerateTransformedVariable}
 				/>
 			</Tab.Pane> : null }
+			{this.props.distributions.map( ( e, i ) => {
+				let content = null;
+				switch ( e ) {
+				case 'Normal':
+					content = <Learn.NormalDistribution />;
+					break;
+				case 'Uniform':
+					content = <Learn.UniformDistribution />;
+					break;
+				case 'Exponential':
+					content = <Learn.ExponentialDistribution />;
+					break;
+				}
+				return <Tab.Pane key={i} eventKey={`7.${i+1}`}>
+					{content}
+				</Tab.Pane>;
+			})}
 			{this.props.tabs.map( ( e, i ) => {
-				return ( <Tab.Pane key={i} eventKey={`${6+i}`}>
+				return ( <Tab.Pane key={i} eventKey={`${8+i}`}>
 					{e.content}
 				</Tab.Pane> );
 			})}
@@ -923,7 +950,7 @@ class DataExplorer extends Component {
 											{this.state.studentPlots.map( ( elem ) => {
 												const config = JSON.parse( elem.config );
 												return (
-													<div>
+													<div style={{ height: '400px' }}>
 														{
 															isString( config ) ?
 																<RPlot
@@ -1022,7 +1049,8 @@ DataExplorer.defaultProps = {
 		'Simple Linear Regression'
 	],
 	categorical: [],
-	continuous: []
+	continuous: [],
+	distributions: [ 'Normal', 'Uniform', 'Exponential' ]
 };
 
 
