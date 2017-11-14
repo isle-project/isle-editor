@@ -15,6 +15,7 @@ import ConditionalProbability from 'components/learn/conditional-probability';
 import WordVennDiagram from 'components/learn/word-venn-diagram';
 import MeanVSMedian from 'components/learn/mean-vs-median';
 import Standardize from 'components/learn/standardize';
+import ConfidenceCoverageNormal from 'components/learn/confidence-coverage-normal';
 
 
 // EXPORTS //
@@ -34,5 +35,6 @@ export default {
 	UniformDistribution,
 	WordVennDiagram,
 	MeanVSMedian,
-	Standardize
+	Standardize,
+	ConfidenceCoverageNormal
 };
