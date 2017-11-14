@@ -2,9 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Button, Panel } from 'react-bootstrap';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
-import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import linspace from '@stdlib/math/utils/linspace';
 import mapValues from '@stdlib/utils/map-values';
@@ -263,7 +263,7 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 			title: `${xval} against ${yval}`
 		}
 	};
-} // end FUNCTION generateScatterplot()
+} // end FUNCTION generateScatterplotConfig()
 
 
 // MAIN //
@@ -273,17 +273,23 @@ class Scatterplot extends Component {
 	constructor( props ) {
 		super( props );
 
+		const { variables, defaultX, defaultY } = props;
+
 		this.state = {
-			showRegressionLine: false
+			xval: defaultX || variables[ 0 ],
+			yval: defaultY || variables[ 1 ],
+			color: null,
+			type: null,
+			regressionLine: false,
+			lineBy: null
 		};
 	}
 
-	generateScatterplot( xval, yval, color, type, size, regressionLine, lineBy ) {
-
-		const config = generateScatterplotConfig({ data: this.props.data, xval, yval, color, type, size, regressionLine, lineBy });
+	generateScatterplot = () => {
+		const config = generateScatterplotConfig({ data: this.props.data, ...this.state });
 
 		const output = {
-			variable: `${xval} against ${yval}`,
+			variable: `${this.state.xval} against ${this.state.yval}`,
 			type: 'Chart',
 			value: <Plotly
 				fit
@@ -297,34 +303,28 @@ class Scatterplot extends Component {
 						level: 'success',
 						position: 'tr'
 					});
-					this.props.logAction( 'DATA_EXPLORER_SHARE:SCATTERPLOT', {
-						xval, yval, color, type, size, regressionLine, lineBy
-					});
+					this.props.logAction( 'DATA_EXPLORER_SHARE:SCATTERPLOT', this.state );
 				}}
 			/>
 		};
-		this.props.logAction( 'DATA_EXPLORER:SCATTERPLOT', {
-			xval, yval, color, type, size, regressionLine, lineBy
-		});
+		this.props.logAction( 'DATA_EXPLORER:SCATTERPLOT', this.state );
 		this.props.onCreated( output );
 	}
 
 	render() {
-		const { variables, defaultX, defaultY, groupingVariables } = this.props;
+		const { variables, groupingVariables } = this.props;
 		return (
-			<Dashboard
-				autoStart={false}
-				title="Scatterplot"
-				onGenerate={this.generateScatterplot.bind( this )}
+			<Panel
+				header="Scatterplot"
 			>
 				<SelectInput
 					legend="Variable on x-axis:"
-					defaultValue={defaultX || variables[ 0 ]}
+					defaultValue={this.state.xval}
 					options={variables}
 				/>
 				<SelectInput
 					legend="Variable on y-axis:"
-					defaultValue={defaultY || variables[ 1 ]}
+					defaultValue={this.state.yval}
 					options={variables}
 				/>
 				<div style={{ width: '100%' }}>
@@ -333,18 +333,33 @@ class Scatterplot extends Component {
 						options={groupingVariables}
 						clearable={true}
 						style={{ float: 'left', paddingRight: 10, width: "33.3%" }}
+						onChange={( value ) => {
+							this.setState({
+								color: value
+							});
+						}}
 					/>
 					<SelectInput
 						legend="Type:"
 						options={groupingVariables}
 						clearable={true}
 						style={{ float: 'left', paddingLeft: 10, paddingRight: 10, width: "33.3%" }}
+						onChange={( value ) => {
+							this.setState({
+								type: value
+							});
+						}}
 					/>
 					<SelectInput
 						legend="Size:"
 						options={variables}
 						clearable={true}
 						style={{ float: 'left', paddingLeft: 10, width: "33.3%" }}
+						onChange={( value ) => {
+							this.setState({
+								size: value
+							});
+						}}
 					/>
 				</div>
 				<div style={{ clear: 'both' }}></div>
@@ -359,7 +374,7 @@ class Scatterplot extends Component {
 						style={{ float: 'left', paddingLeft: 10 }}
 						onChange={() => {
 							this.setState({
-								showRegressionLine: !this.state.showRegressionLine
+								regressionLine: !this.state.regressionLine
 							});
 						}}
 					/>
@@ -368,11 +383,17 @@ class Scatterplot extends Component {
 						options={groupingVariables}
 						clearable={true}
 						style={{ float: 'right', paddingLeft: 10, width: "40%" }}
-						disabled={!this.state.showRegressionLine}
+						disabled={!this.state.regressionLine}
+						onChange={( value ) => {
+							this.setState({
+								lineBy: value
+							});
+						}}
 					/>
 				</div>
 				<div style={{ clear: 'both' }}></div>
-			</Dashboard>
+				<Button bsStyle="primary" block onClick={this.generateScatterplot}>Generate</Button>
+			</Panel>
 		);
 	}
 }

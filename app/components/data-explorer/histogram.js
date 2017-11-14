@@ -262,7 +262,7 @@ class Histogram extends Component {
 						}}
 					/>
 				</div>
-				<Button onClick={this.generateHistogram.bind( this )}>Generate</Button>
+				<Button bsStyle="primary" block onClick={this.generateHistogram.bind( this )}>Generate</Button>
 			</Panel>
 		);
 	}
