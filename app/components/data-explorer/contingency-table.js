@@ -135,6 +135,14 @@ class ContingencyTable extends Component {
 
 	generateContingencyTable( rowVar, colVar, group, relativeFreqs ) {
 		let output;
+		if ( !rowVar || !colVar ) {
+			return this.props.session.addNotification({
+				title: 'Select Variables',
+				message: 'You need to select a row and column variable for the contingency table',
+				level: 'warning',
+				position: 'tr'
+			});
+		}
 		if ( !group ) {
 			let table = createContingencyTable( this.props.data, rowVar, colVar, relativeFreqs );
 			output = {

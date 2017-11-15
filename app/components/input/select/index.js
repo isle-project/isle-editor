@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { ControlLabel, Form, FormGroup } from 'react-bootstrap';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isArray from '@stdlib/assert/is-array';
+import isObject from '@stdlib/assert/is-object';
 import Input from 'components/input/base';
 const debug = require( 'debug' )( 'isle-editor' );
 import Select from 'react-select';
@@ -41,14 +42,16 @@ class SelectInput extends Input {
 			this.setState({
 				value: newValue
 			}, () => {
-				const val = this.props.multi ?
-					newValue.map( x => x.value ) :
-					newValue.value;
-				this.props.onChange( val );
-				if ( this.props.bind ) {
-					global.lesson.setState({
-						[ this.props.bind ]: val
-					});
+				if ( isObject( newValue ) ) {
+					const val = this.props.multi ?
+						newValue.map( x => x.value ) :
+						newValue.value;
+					this.props.onChange( val );
+					if ( this.props.bind ) {
+						global.lesson.setState({
+							[ this.props.bind ]: val
+						});
+					}
 				}
 			});
 		};

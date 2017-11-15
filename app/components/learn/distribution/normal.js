@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Panel, Tabs, Tab } from 'react-bootstrap';
 import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
 import { roundn } from '@stdlib/math/base/special';
@@ -54,20 +55,20 @@ class NormalProbs extends Component {
 						<NumberInput
 							legend="Mean"
 							defaultValue={0}
-							step={0.01}
+							step={this.props.step}
 							inline
 						/>
 						<NumberInput
 							legend="Standard Deviation"
 							defaultValue={1}
-							step={0.01}
+							step={this.props.step}
 							min={1}
 							inline
 						/>
 						<SliderInput
 							legend="x0"
 							defaultValue={0}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<TeX raw={this.state.eqn1} displayMode tag="" />
 					</Dashboard>
@@ -111,20 +112,20 @@ class NormalProbs extends Component {
 						<NumberInput
 							legend="Mean"
 							defaultValue={0}
-							step={0.01}
+							step={this.props.step}
 							inline
 						/>
 						<NumberInput
 							legend="Standard Deviation"
 							defaultValue={1}
-							step={0.01}
+							step={this.props.step}
 							min={1}
 							inline
 						/>
 						<SliderInput
 							legend="x0"
 							defaultValue={0}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<TeX raw={this.state.eqn2} displayMode tag="" />
 					</Dashboard>
@@ -173,13 +174,13 @@ class NormalProbs extends Component {
 						<NumberInput
 							legend="Mean"
 							defaultValue={0}
-							step={0.01}
+							step={this.props.step}
 							inline
 						/>
 						<NumberInput
 							legend="Standard Deviation"
 							defaultValue={1}
-							step={0.01}
+							step={this.props.step}
 							min={1}
 							inline
 						/>
@@ -188,14 +189,14 @@ class NormalProbs extends Component {
 							defaultValue={0}
 							min={this.state.mean3-this.state.sd3*4}
 							max={this.state.mean3+this.state.sd3*4}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<SliderInput
 							legend="x1"
 							defaultValue={1}
 							min={this.state.mean3-this.state.sd3*4}
 							max={this.state.mean3+this.state.sd3*4}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<TeX raw={this.state.eqn3} displayMode tag="" />
 					</Dashboard>
@@ -221,6 +222,23 @@ class NormalProbs extends Component {
 		</Panel> );
 	}
 }
+
+
+// PROPERTY TYPES //
+
+NormalProbs.propTypes = {
+	step: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string
+	]),
+};
+
+
+// DEFAULT PROPERTIES //
+
+NormalProbs.defaultProps = {
+	step: 0.01
+};
 
 
 // EXPORTS //

@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Panel, Tabs, Tab } from 'react-bootstrap';
 import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
 import { roundn } from '@stdlib/math/base/special';
@@ -104,7 +105,7 @@ class UniformProbs extends Component {
 							defaultValue={0}
 							min={this.state.min*2.0 - 1.0}
 							max={this.state.max*2.0}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<TeX raw={this.state.eqn} />
 					</Dashboard>
@@ -148,7 +149,7 @@ class UniformProbs extends Component {
 							defaultValue={0}
 							min={this.state.min*2.0 - 1.0}
 							max={this.state.max*2.0}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<TeX raw={this.state.eqn2} />
 					</Dashboard>
@@ -180,27 +181,27 @@ class UniformProbs extends Component {
 							legend="Minimum"
 							defaultValue={0}
 							max={this.state.max3-0.01}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<NumberInput
 							legend="Maximum"
 							min={this.state.min3+0.01}
 							defaultValue={1}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<SliderInput
 							legend="x0"
 							defaultValue={0}
 							min={this.state.min3*2.0 - 1.0}
 							max={this.state.x1}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<SliderInput
 							legend="x1"
 							defaultValue={0}
 							min={this.state.min3*2.0 - 1.0}
 							max={this.state.max3*2.0}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<TeX raw={this.state.eqn3} />
 					</Dashboard>
@@ -230,6 +231,23 @@ class UniformProbs extends Component {
 		</Panel> );
 	}
 }
+
+
+// PROPERTY TYPES //
+
+UniformProbs.propTypes = {
+	step: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string
+	]),
+};
+
+
+// DEFAULT PROPERTIES //
+
+UniformProbs.defaultProps = {
+	step: 0.01
+};
 
 
 // EXPORTS //

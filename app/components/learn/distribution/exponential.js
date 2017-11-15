@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Panel, Tabs, Tab } from 'react-bootstrap';
 import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
 import { roundn } from '@stdlib/math/base/special';
@@ -60,8 +61,8 @@ class ExponentialProbs extends Component {
 						<SliderInput
 							legend="Rate"
 							defaultValue={1}
-							min={0.01}
-							step={0.01}
+							min={1e-12}
+							step={this.props.step}
 							max={20}
 						/>
 						<SliderInput
@@ -69,7 +70,7 @@ class ExponentialProbs extends Component {
 							defaultValue={0}
 							min={0}
 							max={qexp( NEAR_ONE, this.state.rate1 )}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<TeX raw={this.state.eqn1} />
 					</Dashboard>
@@ -113,16 +114,16 @@ class ExponentialProbs extends Component {
 						<SliderInput
 							legend="Rate"
 							defaultValue={1}
-							min={0.01}
+							min={1e-12}
 							max={20}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<SliderInput
 							legend="x0"
 							defaultValue={0}
 							min={0}
 							max={qexp( NEAR_ONE, this.state.rate2 )}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<TeX raw={this.state.eqn2} />
 					</Dashboard>
@@ -164,23 +165,23 @@ class ExponentialProbs extends Component {
 						<SliderInput
 							legend="Rate"
 							defaultValue={1}
-							min={0.01}
+							min={1e-12}
 							max={20}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<SliderInput
 							legend="x0"
 							defaultValue={0}
 							min={0}
 							max={qexp( 1, this.state.rate3 )}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<SliderInput
 							legend="x1"
 							defaultValue={0}
 							min={0}
 							max={qexp( NEAR_ONE, this.state.rate3 )}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<TeX raw={this.state.eqn3} />
 					</Dashboard>
@@ -205,6 +206,23 @@ class ExponentialProbs extends Component {
 		</Panel> );
 	}
 }
+
+
+// PROPERTY TYPES //
+
+ExponentialProbs.propTypes = {
+	step: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string
+	])
+};
+
+
+// DEFAULT PROPERTIES //
+
+ExponentialProbs.defaultProps = {
+	step: 0.01
+};
 
 
 // EXPORTS //

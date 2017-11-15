@@ -130,7 +130,7 @@ const OutputPanel = ( output, clearOutput ) => {
 		}}>
 			{output.map( ( e, idx ) => {
 				if ( e.type === 'Chart' ) {
-					return <div key={idx} style={{ height: 250, marginBottom: 40 }} >
+					return <div key={idx} style={{ height: 300, marginBottom: 40 }} >
 						<label>Chart: </label>
 						<Button
 							bsSize="xs"
@@ -724,6 +724,7 @@ class DataExplorer extends Component {
 					content = <ContingencyTable
 						{...categoricalProps}
 						logAction={this.logAction}
+						session={this.context.session}
 					/>;
 					break;
 				}
@@ -887,13 +888,13 @@ class DataExplorer extends Component {
 				let content = null;
 				switch ( e ) {
 				case 'Normal':
-					content = <Learn.NormalDistribution />;
+					content = <Learn.NormalDistribution step="any" />;
 					break;
 				case 'Uniform':
-					content = <Learn.UniformDistribution />;
+					content = <Learn.UniformDistribution step="any" />;
 					break;
 				case 'Exponential':
-					content = <Learn.ExponentialDistribution />;
+					content = <Learn.ExponentialDistribution step="any" />;
 					break;
 				}
 				return <Tab.Pane key={i} eventKey={`7.${i+1}`}>
