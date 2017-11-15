@@ -3,9 +3,15 @@
 import React, { Component } from 'react';
 import { Panel, Grid, Row, Col } from 'react-bootstrap';
 import { VictoryAxis, VictoryChart, VictoryErrorBar, VictoryLine, VictoryTheme, VictoryTooltip } from 'victory';
+import abs from '@stdlib/math/base/special/abs';
+import qt from '@stdlib/math/base/dists/t/quantile';
+import normal from '@stdlib/math/base/random/normal';
+import ttest from '@stdlib/math/stats/ttest';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
 import FeedbackButtons from 'components/feedback';
+import SliderInput from 'components/input/slider';
+import NumberInput from 'components/input/number';
 
 
 // MAIN //
@@ -99,20 +105,14 @@ class ConfidenceCoverageNormal extends Component {
 			<Panel header="Coverage of Confidence Intervals" id="coverageModule">
 				<Grid>
 					<Row>
-						<Col md={8}>
-							{intro}
-						</Col>
-						<Col>
-							<FeedbackButtons
-								for="coverageModule"
-							/>
-						</Col>
+						{intro}
 					</Row>
 					<Row>
 						<Col md={4}>
 							<Dashboard
 								title="Change parameters"
 								onGenerate={this.onGenerate}
+								autoStart={true}
 							>
 								<NumberInput
 									legend="Sample size (n)"
@@ -140,8 +140,11 @@ class ConfidenceCoverageNormal extends Component {
 						<Col md={8}>
 							<Panel header="Confidence Intervals">
 								{plot}
-								<p>Of the 20 confidence intervals, {this.state.nTrapped} capture the true mean (coverage:  {this.state.nTrapped/20}).</p>
+								<p>Of the 20 confidence intervals, {this.state.nTrapped} capture the true mean <b>(coverage:  {this.state.nTrapped/20}).</b></p>
 							</Panel>
+							<FeedbackButtons
+								for="coverageModule"
+							/>
 						</Col>
 					</Row>
 				</Grid>
