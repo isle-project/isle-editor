@@ -51,6 +51,7 @@ const FreeTextQuestion = require( 'components/free-text-question' );
 const Gate = require( 'components/gate' );
 const Grid = require( 'components/grid' );
 const IFrame = require( 'components/iframe' );
+const JSShell = require( 'components/js-shell' );
 const LessonSubmit = require( 'components/lesson-submit' );
 const Metrics = require( 'components/metrics/db' );
 const Modal = ReactBootstrap.Modal;
