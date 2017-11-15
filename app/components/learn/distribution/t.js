@@ -61,7 +61,7 @@ class TProbs extends Component {
 							defaultValue={0}
 							min={-4}
 							max={4}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<TeX raw={this.state.eqn1} displayMode tag="" />
 					</Dashboard>
@@ -118,7 +118,7 @@ class TProbs extends Component {
 							defaultValue={0}
 							min={-4}
 							max={4}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<TeX raw={this.state.eqn2} displayMode tag="" />
 					</Dashboard>
@@ -180,14 +180,14 @@ class TProbs extends Component {
 							defaultValue={0}
 							min={-4}
 							max={4}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<SliderInput
 							legend="x1"
 							defaultValue={1}
 							min={-4}
 							max={4}
-							step={0.01}
+							step={this.props.step}
 						/>
 						<TeX raw={this.state.eqn3} displayMode tag="" />
 					</Dashboard>
@@ -215,6 +215,23 @@ class TProbs extends Component {
 		</Panel> );
 	}
 }
+
+
+// PROPERTY TYPES //
+
+TProbs.propTypes = {
+	step: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string
+	]),
+};
+
+
+// DEFAULT PROPERTIES //
+
+TProbs.defaultProps = {
+	step: 0.01
+};
 
 
 // EXPORTS //

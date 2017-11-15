@@ -888,13 +888,13 @@ class DataExplorer extends Component {
 				let content = null;
 				switch ( e ) {
 				case 'Normal':
-					content = <Learn.NormalDistribution />;
+					content = <Learn.NormalDistribution step="any" />;
 					break;
 				case 'Uniform':
-					content = <Learn.UniformDistribution />;
+					content = <Learn.UniformDistribution step="any" />;
 					break;
 				case 'Exponential':
-					content = <Learn.ExponentialDistribution />;
+					content = <Learn.ExponentialDistribution step="any" />;
 					break;
 				}
 				return <Tab.Pane key={i} eventKey={`7.${i+1}`}>
