@@ -550,6 +550,20 @@ class DataExplorer extends Component {
 		}
 	}
 
+	componentWillReceiveProps( nextProps ) {
+		const newState = {};
+		if ( nextProps.data !== this.props.data ) {
+			newState.data = nextProps.data;
+		}
+		if ( nextProps.continuous !== this.props.continuous ) {
+			newState.continuous = nextProps.continuous;
+		}
+		if ( nextProps.continuous !== this.props.continuous ) {
+			newState.categorical = nextProps.categorical;
+		}
+		this.setState( newState );
+	}
+
 	/**
 	* React component render method.
 	*/
