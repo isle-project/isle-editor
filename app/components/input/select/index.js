@@ -42,7 +42,7 @@ class SelectInput extends Input {
 			this.setState({
 				value: newValue
 			}, () => {
-				if ( isObject( newValue ) ) {
+				if ( isObject( newValue ) || isArray( newValue ) ) {
 					const val = this.props.multi ?
 						newValue.map( x => x.value ) :
 						newValue.value;
