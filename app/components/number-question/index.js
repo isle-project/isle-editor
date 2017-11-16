@@ -148,7 +148,7 @@ class NumberQuestion extends Component {
 							</div> : null
 					}
 				</ButtonToolbar>
-				<InstructorBar id={this.props.id} />
+				<InstructorBar id={this.props.id} dataType="number" />
 			</Panel>
 		);
 	}
