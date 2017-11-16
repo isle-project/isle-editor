@@ -160,30 +160,6 @@ body {
 	text-shadow: none;
 }
 
-#Lesson .DateInput {
-	padding: 0px;
-	font-size: 12px;
-	line-height: 12px;
-	width: inherit;
-}
-
-#Lesson .DateInput_input {
-	padding: 0px 6px 0px 6px;
-	font-size: 12px;
-	width: 80px;
-}
-
-#Lesson .DateRangePickerInput {
-	height: 22px;
-	border: none;
-}
-
-#Lesson .DateRangePickerInput__arrow svg {
-	width: 16px;
-	height: 16px;
-	vertical-align: initial;
-}
-
 #Lesson .statusbar {
 	position: absolute;
 	width: 34%;

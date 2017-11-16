@@ -1,16 +1,15 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Accordion, ButtonToolbar, ButtonGroup, Button, Panel } from 'react-bootstrap';
-import $ from 'jquery';
+import { Accordion, Panel } from 'react-bootstrap';
 import moment from 'moment';
+import $ from 'jquery';
 import ActionLog from './action_log.js';
 import UserList from './user_list.js';
 import max from '@stdlib/math/base/special/max';
 import isElectron from 'utils/is-electron';
 import PropTypes from 'prop-types';
-import { DateRangePicker } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
+import RangePicker from 'components/range-picker';
 const debug = require( 'debug' )( 'isle-editor' );
 
 
@@ -35,68 +34,6 @@ class InstructorView extends Component {
 			},
 			nActions: null
 		};
-
-		this.timeClickFactory = ( type ) => {
-			let ret;
-			switch ( type ) {
-			case 'last_day':
-				ret = () => {
-					$( '.date-selection' ).removeClass( 'active-button' );
-					$( '#last_day' ).addClass( 'active-button' );
-					const from = moment().subtract( 1, 'minutes' ).startOf( 'day' );
-					const to = moment().endOf( 'day' );
-					this.setState({
-						period: { from, to }
-					});
-				};
-				return ret;
-			case 'last_week':
-				ret = () => {
-					$( '.date-selection' ).removeClass( 'active-button' );
-					$( '#last_week' ).addClass( 'active-button' );
-					const from = moment().subtract( 7, 'days' ).startOf( 'day' );
-					const to = moment().endOf( 'day' );
-					this.setState({
-						period: { from, to }
-					});
-				};
-				return ret;
-			case 'last_month':
-				ret = () => {
-					$( '.date-selection' ).removeClass( 'active-button' );
-					$( '#last_month' ).addClass( 'active-button' );
-					const from = moment().subtract( 30, 'days' ).startOf( 'day' );
-					const to = moment().endOf( 'day' );
-					this.setState({
-						period: { from, to }
-					});
-				};
-				return ret;
-			case 'last_year':
-				ret = () => {
-					$( '.date-selection' ).removeClass( 'active-button' );
-					$( '#last_year' ).addClass( 'active-button' );
-					const from = moment().subtract( 365, 'days' ).startOf( 'day' );
-					const to = moment().endOf( 'day' );
-					this.setState({
-						period: { from, to }
-					});
-				};
-				return ret;
-			case 'all_time':
-				ret = () => {
-					$( '.date-selection' ).removeClass( 'active-button' );
-					$( '#all_time' ).addClass( 'active-button' );
-					const from = moment( 0 ).startOf( 'day' );
-					const to = moment().endOf( 'day' );
-					this.setState({
-						period: { from, to }
-					});
-				};
-				return ret;
-			}
-		};
-
 	}
 
 	componentDidMount() {
@@ -202,57 +139,14 @@ class InstructorView extends Component {
 							<UserList session={session} />
 						</Panel>
 						<Panel header={this.state.actionLogHeader} eventKey="2">
-							<ButtonToolbar style={{ marginBottom: '10px' }} >
-								<ButtonGroup bsSize="xsmall">
-									<Button
-										className="date-selection"
-										id="last_day"
-										onClick={this.timeClickFactory( 'last_day' )}
-									>Last Day</Button>
-									<Button
-										className="date-selection"
-										id="last_week"
-										onClick={this.timeClickFactory( 'last_week' )}
-									>Last Week</Button>
-									<Button
-										className="date-selection"
-										id="last_month"
-										onClick={this.timeClickFactory( 'last_month' )}
-									>Last Month</Button>
-									<Button
-										className="date-selection"
-										id="last_year"
-										onClick={this.timeClickFactory( 'last_year' )}
-									>Last Year</Button>
-								</ButtonGroup>
-								<ButtonGroup bsSize="xsmall">
-									<Button
-										className="date-selection active-button"
-										id="all_time"
-										onClick={this.timeClickFactory( 'all_time' )}
-									>All Data</Button>
-									<DateRangePicker
-										startDate={this.state.period.from}
-										endDate={this.state.period.to}
-										onDatesChange={({ startDate, endDate }) => {
-											const newPeriod = {
-												from: startDate,
-												to: endDate
-											};
-											console.log( newPeriod );
-											this.setState({
-												period: newPeriod
-											});
-										}}
-										focusedInput={this.state.focusedInput}
-										onFocusChange={focusedInput => this.setState({ focusedInput })}
-										isOutsideRange={() => false}
-									/>
-									<span style={{ fontSize: '12px', fontWeight: 600 }}>
-										{'# '+this.state.nActions}
-									</span>
-								</ButtonGroup>
-							</ButtonToolbar>
+							<RangePicker onChange={( newPeriod ) => {
+								this.setState({
+									period: newPeriod
+								});
+							}} />
+							<span style={{ fontSize: '12px', fontWeight: 600 }}>
+								{'# '+this.state.nActions}
+							</span>
 							<ActionLog
 								period={this.state.period}
 								onFilter={ ( newHeader, nActions ) => {
