@@ -14,6 +14,17 @@ import SliderInput from 'components/input/slider';
 import NumberInput from 'components/input/number';
 
 
+// VARIABLES //
+
+const ELEM_TOOLTIPS = {
+	'μ': { tooltip: 'Mean' },
+	'σ': { tooltip: 'Standard Deviation' },
+	'n': { tooltip: 'Sample Size' },
+	'α': { tooltip: 'Significance level' },
+	'Z': { tooltip: 'Standard normal quantile' }
+};
+
+
 // MAIN //
 
 class ConfidenceCoverageNormal extends Component {
@@ -28,14 +39,14 @@ class ConfidenceCoverageNormal extends Component {
 		};
 	}
 
-	onGenerate =  ( n, mu, level ) => {
+	onGenerate =  ( n, mu, sigma, level ) => {
 		let nTrapped = 0;
 		let alpha = 1.0 - level;
 		let errorBars = new Array( 20 );
 		for ( let i = 0; i < 20; i++ ) {
 			let data = new Array( n );
 			for ( let j = 0; j < data.length; j++ ) {
-				data[ j ] = normal( mu, 1 );
+				data[ j ] = normal( mu, sigma );
 			}
 			let res = ttest( data, {
 				'alpha': alpha
@@ -62,7 +73,7 @@ class ConfidenceCoverageNormal extends Component {
 
 	render() {
 
-		const intro = <p>For different configurations, we simulate 20 random samples from a <TeX raw="\text{Normal}(  \mu, 1 )" elems={{ "μ": { tooltip: "Mean" }, "1": { tooltip: "Standard Deviation" } }}/> distribution. Does the length of the confidence intervals change as you vary the parameters? What about the coverage? </p>;
+		const intro = <p><TeX raw="X \sim \text{Normal}(  \mu, \sigma^2 )" elems={ELEM_TOOLTIPS}/>. Then <TeX raw="\bar X \sim \text{Normal}( \mu, \sigma/\sqrt{n} )" elems={ELEM_TOOLTIPS}/>.  Our confidence interval is then <TeX raw="\bar X \pm Z_{\alpha/2} \cdot \sigma/\sqrt{n}" elems={ELEM_TOOLTIPS}/>. For our choice of sample size (n), mu, sigma, and confidence level, we'll simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.</p>;
 
 		const plot= <VictoryChart padding={30} height={180} theme={VictoryTheme.material}
 		>
@@ -102,7 +113,7 @@ class ConfidenceCoverageNormal extends Component {
 		</VictoryChart>;
 
 		return (
-			<Panel header="Coverage of Confidence Intervals" id="coverageModule">
+			<Panel header="Confidence Interval Coverage for Sample Mean" id="coverageModule">
 				<Grid>
 					<Row>
 						{intro}
@@ -121,10 +132,17 @@ class ConfidenceCoverageNormal extends Component {
 									step={1}
 								/>
 								<NumberInput
-									legend="True parameter mu"
+									legend="Mean (mu)"
 									defaultValue={1}
 									max={5}
 									min={-5}
+									step={1}
+								/>
+								<NumberInput
+									legend="Standard deviation (sigma)"
+									defaultValue={1}
+									max={20}
+									min={1}
 									step={1}
 								/>
 								<SliderInput
@@ -143,7 +161,7 @@ class ConfidenceCoverageNormal extends Component {
 								<p>Of the 20 confidence intervals, {this.state.nTrapped} capture the true mean <b>(coverage:  {this.state.nTrapped/20}).</b></p>
 							</Panel>
 							<FeedbackButtons
-								for="coverageModule"
+								for="coverageModuleNormal"
 							/>
 						</Col>
 					</Row>
