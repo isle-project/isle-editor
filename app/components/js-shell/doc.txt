@@ -1,0 +1,52 @@
+<JSShell id = "jseditor" code = "var a = 17;"></JSShell>
+
+
+<JSShell id = "jseditor3" code = "var b = 22;"></JSShell>
+
+<JSShell id = "jseditor33" code = "var b = 22;\nvar c = 77;"></JSShell>
+
+
+// check
+
+<JSShell id = "jseditor3" 
+    check = "function() {
+        alert('Hallo');
+    }"
+    code = "var b = 22;"></JSShell>
+
+
+
+
+<JSShell 
+    id = "jseditor" 
+    code = "var a = 17;"
+    check = "if (res.length === 4) console.log('großsartig');
+        else console.error('nicht richtig');"
+></JSShell>
+
+
+// with a self-invoking function
+
+<JSShell id = "jseditor34" 
+        code = "var b = 22;"
+        check = "( function() { if (b === 22) alert('BRAVO'); console.log('Aufgabe gelöst'); })();" >
+</JSShell>
+
+
+<JSShell id = "jseditor34" 
+        code = "var b = 22;"
+        help = { ['Denken Sie daran: Gesagt getan!', 'also: var a = 17;'] }
+        check = "( function() { if (b === 22) alert('BRAVO'); console.log('Aufgabe gelöst'); })();" >
+</JSShell>
+
+
+<JSShell id = "jseditor34" 
+        code = "var b = 22;"
+        hints = { ['Denken Sie daran: Gesagt getan!', 'also: var a = 17;'] }
+        
+        solution = { 'var res = [1,2,3,4]'}
+
+        chat
+        
+        check = "( function() { if (b === 22) alert('BRAVO'); console.log('Aufgabe gelöst'); })();" >
+</JSShell>
