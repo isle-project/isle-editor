@@ -321,11 +321,21 @@ class Scatterplot extends Component {
 					legend="Variable on x-axis:"
 					defaultValue={this.state.xval}
 					options={variables}
+					onChange={( value ) => {
+						this.setState({
+							xval: value
+						});
+					}}
 				/>
 				<SelectInput
 					legend="Variable on y-axis:"
 					defaultValue={this.state.yval}
 					options={variables}
+					onChange={( value ) => {
+						this.setState({
+							yval: value
+						});
+					}}
 				/>
 				<div style={{ width: '100%' }}>
 					<SelectInput
