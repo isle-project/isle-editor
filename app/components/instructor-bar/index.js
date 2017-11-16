@@ -10,6 +10,7 @@ import NINF from '@stdlib/math/constants/float64-ninf';
 import Plotly from 'components/plotly';
 import Gate from 'components/gate';
 import TextArea from 'components/text-area';
+import RangePicker from 'components/range-picker';
 
 
 // MAIN //
@@ -29,7 +30,8 @@ class InstructorBar extends Component {
 			feedback: '',
 			showExtended: false,
 			showDeleteModal: false,
-			selectedAction: null
+			selectedAction: null,
+			period: null
 		};
 	}
 
@@ -69,16 +71,46 @@ class InstructorBar extends Component {
 		});
 	}
 
+	onPeriodChange = ( newPeriod ) => {
+		this.setState({
+			period: newPeriod
+		}, this.addSessionActions );
+	}
+
 	addSessionActions = () => {
 		const { session } = this.context;
 		const actions = session.socketActions;
 		const filtered = [];
 		for ( let i = 0; i < actions.length; i++ ) {
-			if ( actions[ i ].id === this.props.id ) {
-				filtered.push( actions[ i ]);
+			let action = actions[ i ];
+			if ( action.id === this.props.id ) {
+				if ( this.state.period ) {
+					const { from, to } = this.state.period;
+					if ( action.absoluteTime > from && action.absoluteTime < to ) {
+						filtered.push( action );
+					}
+				} else {
+					filtered.push( action );
+				}
 			}
 		}
-		const values = filtered.map( x => x.value );
+		if ( this.props.dataType === 'text' ) {
+			const { categories, counts } = this.tabulateValues( filtered );
+			this.setState({
+				actions: filtered,
+				counts: counts,
+				categories: categories
+			});
+		} else {
+			// Case: props.dataType === 'number':
+			this.setState({
+				actions: filtered
+			});
+		}
+	}
+
+	tabulateValues = ( actions ) => {
+		const values = actions.map( x => x.value );
 		const tabulated = tabulate( values );
 		let maxVal = NINF;
 		const counts = tabulated.map( d => {
@@ -104,11 +136,10 @@ class InstructorBar extends Component {
 			}
 			return out;
 		});
-		this.setState({
-			actions: filtered,
+		return {
 			counts: counts,
 			categories: categories
-		});
+		};
 	}
 
 	componentDidMount() {
@@ -166,7 +197,7 @@ class InstructorBar extends Component {
 
 	renderBarchart() {
 		return (
-			<div style={{ height: 0.80 * window.innerHeight }}>
+			<div style={{ height: 0.75 * window.innerHeight }}>
 				<Plotly
 					data={[
 						{
@@ -186,6 +217,31 @@ class InstructorBar extends Component {
 						},
 						margin: {
 							l: 400
+						}
+					}}
+				/>
+			</div>
+		);
+	}
+
+	renderHistogram() {
+		return (
+			<div style={{ height: 0.75 * window.innerHeight }}>
+				<Plotly
+					data={[
+						{
+							x: this.state.actions.map( x => x.value ),
+							type: 'histogram',
+							name: 'histogram'
+						}
+					]}
+					fit
+					layout={{
+						xaxis: {
+							title: 'Count'
+						},
+						yaxis: {
+							title: 'Value'
 						}
 					}}
 				/>
@@ -240,13 +296,14 @@ class InstructorBar extends Component {
 						>
 							<Modal.Header closeButton>
 								<Modal.Title>Actions</Modal.Title>
+								<RangePicker onChange={this.onPeriodChange} />
 							</Modal.Header>
-							<Modal.Body style={{ height: 0.80 * window.innerHeight }} >
+							<Modal.Body style={{ height: 0.75 * window.innerHeight }} >
 								<Grid>
 									<Row>
 										<Col md={6}>
 											{ this.state.actions.length > 0 ?
-												<ListGroup fill style={{ marginLeft: 0, overflowY: 'scroll', height: 0.78 * window.innerHeight }}>
+												<ListGroup fill style={{ marginLeft: 0, overflowY: 'scroll', height: 0.73 * window.innerHeight }}>
 													{this.state.actions.map( ( elem, idx ) =>
 														<ListGroupItem>
 															{ this.state.showExtended ?
@@ -272,13 +329,16 @@ class InstructorBar extends Component {
 												</ListGroup>
 												:
 												<Well>
-													<h2>The data set is empty.</h2>
+													<h2>There is no data for the selected time period</h2>
 												</Well>
 											}
 										</Col>
 										<Col md={6}>
 											{ this.state.actions.length > 0 ?
-												this.renderBarchart() :
+												( this.props.dataType === 'text' ?
+													this.renderBarchart() :
+													this.renderHistogram()
+												) :
 												null
 											}
 										</Col>
@@ -310,6 +370,16 @@ class InstructorBar extends Component {
 
 
 // PROPERTY TYPES //
+
+InstructorBar.propTypes = {
+	dataType: PropTypes.oneOf([
+		'text', 'number'
+	])
+};
+
+InstructorBar.defaultProps = {
+	dataType: 'text'
+};
 
 InstructorBar.contextTypes = {
 	session: PropTypes.object
