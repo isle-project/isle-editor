@@ -66,7 +66,7 @@ class Image extends Component {
 						marginLeft: margin,
 						marginRight: margin,
 						width,
-						height: 'auto',
+						height: this.props.height ? this.props.height : 'auto',
 						cursor: 'zoom-in'
 					}}
 					role="presentation"
