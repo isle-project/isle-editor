@@ -19,9 +19,7 @@ import './input_range.css';
 
 class DataTable extends Component {
 
-	constructor( props ) {
-		super( props );
-
+	generateInitialState( props ) {
 		let rows;
 		let keys;
 		let isArr = isArray( props.data );
@@ -117,10 +115,22 @@ class DataTable extends Component {
 				filterable: false
 			});
 		}
-
 		newState.rows = rows;
 		newState.columns = columns;
-		this.state = newState;
+		return newState;
+	}
+
+	constructor( props ) {
+		super( props );
+
+		this.state = this.generateInitialState( props );
+	}
+
+	componentWillReceiveProps( nextProps ) {
+		if ( nextProps.data !== this.props.data ) {
+			const newState = this.generateInitialState( nextProps );
+			this.setState( newState );
+		}
 	}
 
 	createRows( data ) {
