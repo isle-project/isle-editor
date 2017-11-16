@@ -69,25 +69,23 @@ class MosaicPlot extends Component {
 		const output ={
 			variable: `Mosaic Plot`,
 			type: 'Chart',
-			value: <div>
-				<label>{`Mosaic Plot of ${vars}`}: </label>
-				<RPlot
-					code={code}
-					libraries={[ 'MASS' ]}
-					onDone={this.props.onPlotDone}
-					onShare={() => {
-						this.props.session.addNotification({
-							title: 'Plot shared.',
-							message: 'You have successfully shared your plot.',
-							level: 'success',
-							position: 'tr'
-						});
-						this.props.logAction( 'DATA_EXPLORER_SHARE:MOSAIC', {
-							vars, showColors
-						});
-					}}
-				/>
-			</div>
+			value: <RPlot
+				code={code}
+				libraries={[ 'MASS' ]}
+				onDone={this.props.onPlotDone}
+				height={300}
+				onShare={() => {
+					this.props.session.addNotification({
+						title: 'Plot shared.',
+						message: 'You have successfully shared your plot.',
+						level: 'success',
+						position: 'tr'
+					});
+					this.props.logAction( 'DATA_EXPLORER_SHARE:MOSAIC', {
+						vars, showColors
+					});
+				}}
+			/>
 		};
 		this.props.logAction( 'DATA_EXPLORER:MOSAIC', {
 			vars, showColors
