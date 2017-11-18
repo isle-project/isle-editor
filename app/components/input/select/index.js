@@ -36,25 +36,28 @@ class SelectInput extends Input {
 		this.state = {
 			value
 		};
+	}
 
-		this.handleChange = ( newValue ) => {
-			debug( 'Received a new value: ' + JSON.stringify( newValue ) );
-			this.setState({
-				value: newValue
-			}, () => {
-				if ( isObject( newValue ) || isArray( newValue ) ) {
-					const val = this.props.multi ?
-						newValue.map( x => x.value ) :
-						newValue.value;
-					this.props.onChange( val );
-					if ( this.props.bind ) {
-						global.lesson.setState({
-							[ this.props.bind ]: val
-						});
-					}
+	handleChange = ( newValue ) => {
+		debug( 'Received a new value: ' + JSON.stringify( newValue ) );
+		this.setState({
+			value: newValue
+		}, () => {
+			console.log( newValue );
+			if ( isObject( newValue ) || isArray( newValue ) ) {
+				console.log( "IS TRUE" );
+				const val = this.props.multi ?
+					newValue.map( x => x.value ) :
+					newValue.value;
+				console.log( this.props.onChange );
+				this.props.onChange( val );
+				if ( this.props.bind ) {
+					global.lesson.setState({
+						[ this.props.bind ]: val
+					});
 				}
-			});
-		};
+			}
+		});
 	}
 
 	transformValue = ( value ) => {

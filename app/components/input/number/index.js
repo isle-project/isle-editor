@@ -46,7 +46,7 @@ class NumberInput extends Input {
 			this.setState({
 				value
 			}, () => {
-				if ( valid && value !== '' ) {
+				if ( valid && value !== '' && value !== '-' ) {
 					value = parseFloat( value );
 					this.props.onChange( value );
 					if ( this.props.bind ) {
@@ -73,7 +73,7 @@ class NumberInput extends Input {
 					value = parseFloat( vals[ 0 ]) / parseFloat( vals[ 1 ]);
 				}
 			}
-			if ( value !== '' ) {
+			if ( value !== '' && value !== '-' ) {
 				value = parseFloat( value );
 			}
 			if ( value > max ) {
@@ -82,7 +82,7 @@ class NumberInput extends Input {
 			else if ( value < min ) {
 				value = min;
 			}
-			else if ( step == 1.0 && value !== '' ) {
+			else if ( step == 1.0 && value !== '' && value !== '-' ) {
 				value = value - value % this.props.step;
 			}
 			if ( value !== this.state.value ) {

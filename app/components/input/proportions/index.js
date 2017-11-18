@@ -20,9 +20,12 @@ class ProportionInput extends Input {
 		this.legends 		= this.checkLegends();
 		let values 			= null;
 
-		if ( this.props.values ) values = this.props.values;
-		else					 values = this.setValues();
-
+		if ( this.props.values ) {
+			values = this.props.values;
+		}
+		else {
+			values = this.setValues();
+		}
 
 		const { session } = context;
 		this.state = {
@@ -30,24 +33,18 @@ class ProportionInput extends Input {
 			visualData: this.pieData( values ),
 			colors: this.setColors()
 		};
-
-
 		this.checkPercentage.bind( this );
 	}
 
-
-
 	componentWillReceiveProps( nextProps ) {
 		if ( nextProps.values !== this.props.values ) {
-		
+
 			this.setState({
 				values: nextProps.values,
 				visualData: this.pieData( nextProps.values )
 			});
-
 		}
 	}
-
 
 	setValues() {
 		var no = this.props.nElements;
@@ -59,11 +56,8 @@ class ProportionInput extends Input {
 			//
 
 		}
-
 		return values;
-
 	}
-
 
 	setColors() {
 		var no = this.props.nElements;
@@ -71,8 +65,6 @@ class ProportionInput extends Input {
 		c.push( 'transparent' );
 		return c;
 	}
-
-
 
 	// <ProportionInput id = "Firmen" legends = {["Anton", "Bert", "Conny", "Dorian"]} nElements = { 4 } />
 
@@ -92,12 +84,6 @@ class ProportionInput extends Input {
 		return list;
 	}
 
-
-	componentDidUpdate() {
-	}
-
-
-
 	total ( arr ) {
 		var sum = 0;
 		for ( var n = 0; n < arr.length; n++ ) {
@@ -105,7 +91,6 @@ class ProportionInput extends Input {
 		}
 		return sum;
 	}
-
 
 	rest ( arr, ndx ) {
 		var sum = 0;
@@ -156,9 +141,6 @@ class ProportionInput extends Input {
 		);
 	}
 
-
-
-
 	renderInputs() {
 		var list = [];
 
@@ -169,8 +151,6 @@ class ProportionInput extends Input {
 
 		return list;
 	}
-
-
 
 	renderPie() {
 		return (
@@ -184,9 +164,6 @@ class ProportionInput extends Input {
 		);
 
 	}
-
-
-
 
 	pieData( arr ) {
 		var list = [];
@@ -250,9 +227,7 @@ ProportionInput.defaultProps = {
 	colors: [ "tomato", "orange", "gold", "darkcyan", "salmon", "lightgreen", "gainsboro", "lightpurple", "darkkhaki", "darkseagreen" ],
 	height: 200,
 	innerRadius: 75,
-
 	onChange(){}
-
 };
 
 
@@ -264,13 +239,11 @@ ProportionInput.propTypes = {
 	step: PropTypes.number,
 	disabled: PropTypes.bool,
 	margin: PropTypes.string,
-
+	onChange: PropTypes.func,
 	legends: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.array
 	]),
-
-
 };
 
 
