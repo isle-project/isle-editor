@@ -773,6 +773,7 @@ class Session {
 		this.chats = [];
 		this.actions = [];
 		this.socketActions = [];
+		this.currentUserActions = null;
 		this.userList = [];
 		this.removeUserRights();
 	}
@@ -1098,6 +1099,16 @@ class Session {
 		this.actions.push( action );
 		this.logToDatabase( 'action', action );
 		this.sendSocketMessage( action, to );
+
+		// Push to respective array of currentUserActions hash table:
+		const actions = this.currentUserActions;
+		if ( actions ) {
+			if ( !actions[ action.id ]) {
+				actions[ action.id ] = [ action ];
+			} else {
+				actions[ action.id ].push( action );
+			}
+		}
 
 		// If first action, create session on server:
 		if ( this.actions.length === 1 ) {
