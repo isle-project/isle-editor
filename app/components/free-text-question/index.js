@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonToolbar, FormControl, OverlayTrigger, Panel, Tooltip } from 'react-bootstrap';
 import isArray from '@stdlib/assert/is-array';
+import isObject from '@stdlib/assert/is-object';
+import isString from '@stdlib/assert/is-string';
 import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
 const debug = require( 'debug' )( 'isle:free-text-question' );
@@ -17,15 +19,18 @@ class FreeTextQuestion extends Component {
 	*
 	* @param {Object} props
 	*/
-	constructor( props ) {
+	constructor( props, context ) {
 		super( props );
-		debug( 'Invoking constructor of FreeTextQuestion...' );
+		console.log( 'Invoking constructor of FreeTextQuestion...' );
+
+		const actions = context.session.currentUserActions;
+		const value = this.getLastAction( actions, props.id );
 
 		// Initialize state variables...
 		this.state = {
-			value: '',
+			value: isString( value ) ? value : '',
 			solutionDisplayed: false,
-			submitted: false
+			submitted: isString( value )
 		};
 	}
 
@@ -107,23 +112,38 @@ class FreeTextQuestion extends Component {
 		}
 	}
 
+	getLastAction = ( val, id ) => {
+		if ( isObject( val ) ) {
+			let actions = val[ id ];
+			if ( isArray( actions ) ) {
+				actions = actions.filter( action => {
+					return action.type === 'FREE_TEXT_QUESTION_SUBMIT_ANSWER';
+				});
+				if ( actions.length > 0 ) {
+					return actions[ 0 ].value;
+				}
+			}
+		}
+		return null;
+	}
+
+	setToLastAction() {
+		const { session } = this.context;
+		const actions = session.currentUserActions;
+		const value = this.getLastAction( actions, this.props.id );
+		if ( isString( value ) && value !== this.state.value ) {
+			this.setState({
+				value: value,
+				submitted: true
+			});
+		}
+	}
+
 	componentDidMount() {
 		const { session } = this.context;
-		this.unsubscribe = session.subscribe( ( type, val ) => {
+		this.unsubscribe = session.subscribe( ( type ) => {
 			if ( type === 'retrieved_current_user_actions' ) {
-				let actions = val[ this.props.id ];
-				if ( isArray( actions ) ) {
-					actions = actions.filter( action => {
-						return action.type === 'FREE_TEXT_QUESTION_SUBMIT_ANSWER';
-					});
-					if ( actions.length > 0 ) {
-						const lastAction = actions[ 0 ].value;
-						this.setState({
-							value: lastAction,
-							submitted: true
-						});
-					}
-				}
+				this.setToLastAction();
 			}
 		});
 	}
