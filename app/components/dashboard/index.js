@@ -79,6 +79,7 @@ class Dashboard extends Component {
 						return React.cloneElement( child, {
 							onChange: ( value ) => {
 								this.handleFieldChange( idx, value );
+								child.props.onChange( value );
 							}
 						});
 					}
