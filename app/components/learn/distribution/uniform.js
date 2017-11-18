@@ -38,7 +38,7 @@ class UniformProbs extends Component {
 		}
 		this.setState({
 			data: data,
-			eqn: "P(X \\le" + x0 + ") = " + roundn( punif( x0, min, max ), -4 ),
+			eqn: "P(X \\le" + roundn( x0, -4 ) + ") = " + roundn( punif( x0, min, max ), -4 ),
 			min: min,
 			max: max,
 			yheight: dunif( min, min, max )
@@ -57,7 +57,7 @@ class UniformProbs extends Component {
 		}
 		this.setState({
 			data2: data,
-			eqn2: "P(X >" + x0 + ") = " + roundn( 1-punif( x0, min, max ), -4 ),
+			eqn2: "P(X >" + roundn( x0, -4 ) + ") = " + roundn( 1-punif( x0, min, max ), -4 ),
 			min2: min,
 			max2: max,
 			yheight2: dunif( min, min, max )
@@ -76,7 +76,7 @@ class UniformProbs extends Component {
 		}
 		this.setState({
 			data3: data,
-			eqn3: "P(" + x0 + "\\le X \\le" + x1 + ") = " + roundn( punif( x1, min, max )-punif( x0, min, max ), -4 ),
+			eqn3: "P(" + roundn( x0, -4 ) + "\\le X \\le" + roundn( x1, -4 ) + ") = " + roundn( punif( x1, min, max )-punif( x0, min, max ), -4 ),
 			min3: min,
 			max3: max,
 			yheight3: dunif( min, min, max ),

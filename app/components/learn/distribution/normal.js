@@ -47,7 +47,7 @@ class NormalProbs extends Component {
 						}
 						this.setState({
 							data1: data,
-							eqn1: "P(X \\le" + x0 + ") = " + roundn( pnorm( x0, mean, sd ), -4 ),
+							eqn1: "P(X \\le" + roundn( x0, -4 ) + ") = " + roundn( pnorm( x0, mean, sd ), -4 ),
 							sd1: sd,
 							mean1: mean
 						});
@@ -104,7 +104,7 @@ class NormalProbs extends Component {
 						}
 						this.setState({
 							data2: data,
-							eqn2: "P(X >" + x0 + ") = " + roundn( 1.0 - pnorm( x0, mean, sd ), -4 ),
+							eqn2: "P(X >" + roundn( x0, -4 ) + ") = " + roundn( 1.0 - pnorm( x0, mean, sd ), -4 ),
 							sd2: sd,
 							mean2: mean
 						});
@@ -166,7 +166,7 @@ class NormalProbs extends Component {
 						}
 						this.setState({
 							data3: data,
-							eqn3: "P(" + x0 + "\\le X \\le" + x1 + ") = " + roundn( pnorm( x1, mean, sd ) - pnorm( x0, mean, sd ), -4 ),
+							eqn3: "P(" + roundn( x0, -4 ) + "\\le X \\le" + roundn( x1, -4 ) + ") = " + roundn( pnorm( x1, mean, sd ) - pnorm( x0, mean, sd ), -4 ),
 							sd3: sd,
 							mean3: mean
 						});

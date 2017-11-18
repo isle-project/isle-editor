@@ -53,7 +53,7 @@ class ExponentialProbs extends Component {
 						}
 						this.setState({
 							data1: data,
-							eqn1: "P(X \\le" + x0 + ") = " + roundn( pexp( x0, rate ), -4 ),
+							eqn1: "P(X \\le" + roundn( x0, -4 ) + ") = " + roundn( pexp( x0, rate ), -4 ),
 							rate1: rate,
 							xmax
 						});
@@ -106,7 +106,7 @@ class ExponentialProbs extends Component {
 						}
 						this.setState({
 							data2: data,
-							eqn2: "P(X >" + x0 + ") = " + roundn( 1-pexp( x0, rate ), -4 ),
+							eqn2: "P(X >" + roundn( x0, -4 ) + ") = " + roundn( 1-pexp( x0, rate ), -4 ),
 							rate2: rate,
 							yheight2: dexp( x0, rate )
 						});
@@ -158,7 +158,7 @@ class ExponentialProbs extends Component {
 						}
 						this.setState({
 							data3: data,
-							eqn3: "P(" + x0 + "\\le X \\le " + x1 + ") = " + roundn( pexp( x1, rate ) - pexp( x0, rate ), -4 ),
+							eqn3: "P(" + roundn( x0, -4 ) + "\\le X \\le " + roundn( x1, -4 ) + ") = " + roundn( pexp( x1, rate ) - pexp( x0, rate ), -4 ),
 							rate3: rate
 						});
 					}}>
