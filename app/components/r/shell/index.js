@@ -12,6 +12,8 @@ import ChatButton from 'components/chat-button';
 import beforeUnload from 'utils/before-unload';
 import isElectron from 'utils/is-electron';
 import isArray from '@stdlib/assert/is-array';
+import isObject from '@stdlib/assert/is-object';
+import isString from '@stdlib/assert/is-string';
 
 import ace from 'brace';
 import 'brace/mode/r';
@@ -375,24 +377,43 @@ class RShell extends React.Component {
 		const { session } = this.context;
 		this.unsubscribe = session.subscribe( ( type, val ) => {
 			if ( type === 'retrieved_current_user_actions' ) {
-				let actions = val[ this.props.id ];
-				if ( isArray( actions ) ) {
-					actions = actions.filter( action => {
-						return action.type === 'RSHELL_EVALUATION';
+				let lastAction = this.getLastAction( val, this.props.id );
+				if ( isString( lastAction ) ) {
+					this.setState({
+						lastSolution: lastAction,
+						solutionOpen: false
 					});
-					if ( actions.length > 0 ) {
-						const lastAction = actions[ 0 ].value;
-						this.setState({
-							lastSolution: lastAction,
-							solutionOpen: false
-						});
-						this.editor.setValue( lastAction, 1 );
-					}
+					this.editor.setValue( lastAction, 1 );
 				}
 			} else {
 				this.forceUpdate();
 			}
 		});
+
+		const actions = session.currentUserActions;
+		const value = this.getLastAction( actions, this.props.id );
+		if ( isString( value ) ) {
+			this.setState({
+				lastSolution: value,
+				solutionOpen: false
+			});
+			this.editor.setValue( value, 1 );
+		}
+	}
+
+	getLastAction = ( val, id ) => {
+		if ( isObject( val ) ) {
+			let actions = val[ id ];
+			if ( isArray( actions ) ) {
+				actions = actions.filter( action => {
+					return action.type === 'RSHELL_EVALUATION';
+				});
+				if ( actions.length > 0 ) {
+					return actions[ 0 ].value;
+				}
+			}
+		}
+		return null;
 	}
 
 	componentDidUpdate() {
