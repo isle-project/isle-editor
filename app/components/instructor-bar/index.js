@@ -298,7 +298,7 @@ class InstructorBar extends Component {
 								<Modal.Title>Actions</Modal.Title>
 								<RangePicker onChange={this.onPeriodChange} />
 							</Modal.Header>
-							<Modal.Body style={{ height: 0.75 * window.innerHeight }} >
+							<Modal.Body style={{ height: 0.75 * window.innerHeight, width: 0.90 * window.innerWidth }} >
 								<Grid>
 									<Row>
 										<Col md={6}>
