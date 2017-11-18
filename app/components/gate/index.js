@@ -40,7 +40,7 @@ class Gate extends Component {
 			return <div>{this.props.children}</div>;
 		}
 		else {
-			return null;
+			return this.props.banner;
 		}
 	}
 
@@ -83,7 +83,8 @@ Gate.defaultProps = {
 	anonymous: false,
 	user: false,
 	enrolled: false,
-	owner: false
+	owner: false,
+	banner: null
 };
 
 
@@ -93,7 +94,8 @@ Gate.propTypes = {
 	anonymous: PropTypes.bool,
 	user: PropTypes.bool,
 	enrolled: PropTypes.bool,
-	owner: PropTypes.bool
+	owner: PropTypes.bool,
+	banner: PropTypes.node
 };
 
 Gate.contextTypes = {
