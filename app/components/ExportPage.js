@@ -363,7 +363,7 @@ class ExportLesson extends Component {
 				spinning: true
 			});
 
-			const isPackaged = !( /node_modules\/electron\/dist/.test( process.resourcesPath ) );
+			const isPackaged = !( /node_modules[\\/]electron[\\/]dist/.test( process.resourcesPath ) );
 			const basePath = isPackaged ? `${process.resourcesPath}/app/` : './';
 			const { dirPath, outputDir, minify } = this.state;
 			bundler({
