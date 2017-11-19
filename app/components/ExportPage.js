@@ -23,6 +23,9 @@ const debug = require( 'debug' )( 'isle-editor' );
 
 // VARIABLES //
 
+const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
+const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
+
 const { dialog } = remote;
 
 class UploadLesson extends Component {
@@ -179,9 +182,7 @@ class UploadLesson extends Component {
 		};
 
 		this.publishLesson = () => {
-			const isPackaged = !( /node_modules\/electron\/dist/.test( process.resourcesPath ) );
-			const basePath = isPackaged ? `${process.resourcesPath}/app/` : './';
-
+			const basePath = IS_PACKAGED ? `${process.resourcesPath}/app/` : './';
 			this.setState({
 				spinning: true
 			});
@@ -357,14 +358,11 @@ class ExportLesson extends Component {
 		};
 
 		this.generateApp = () => {
-
 			this.setState({
 				finished: false,
 				spinning: true
 			});
-
-			const isPackaged = !( /node_modules[\\/]electron[\\/]dist/.test( process.resourcesPath ) );
-			const basePath = isPackaged ? `${process.resourcesPath}/app/` : './';
+			const basePath = IS_PACKAGED ? `${process.resourcesPath}/app/` : './';
 			const { dirPath, outputDir, minify } = this.state;
 			bundler({
 				outputPath: dirPath,
