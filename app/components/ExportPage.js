@@ -12,6 +12,7 @@ import https from 'https';
 import http from 'http';
 import request from 'request';
 import archiver from 'archiver';
+import randomstring from 'randomstring';
 import fs from 'fs';
 import os from 'os';
 import contains from '@stdlib/assert/contains';
@@ -44,7 +45,7 @@ class UploadLesson extends Component {
 			namespaceName: null,
 			minify: true,
 			lessonName,
-			dirname: new Date().toISOString(),
+			dirname: randomstring.generate(),
 			server: localStorage.getItem( 'server' ),
 			token: localStorage.getItem( 'token' ),
 			showResponseModal: false,
