@@ -92,7 +92,6 @@ import 'react-dates/lib/css/_datepicker.css';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import yaml from 'js-yaml';
-import request from 'request';
 import NotificationSystem from 'react-notification-system';
 import StatusBar from 'components/statusbar';
 import Provider from 'components/provider';
