@@ -16,7 +16,7 @@ import 'brace/theme/solarized_light';
 
 const max = Math.max;
 global.console_id = null;
-if ( ! global.jslog ) global.jslog = [];
+if ( !global.jslog ) global.jslog = [];
 
 
 var tstring = `var a = 17;
@@ -61,7 +61,7 @@ const getHintLabel = ( id, noHints, hintOpen ) => {
 	else {
 		return 'Next Hint';
 	}
-	
+
 };
 
 
@@ -138,11 +138,11 @@ function InitConsole ()
 {
 	var log = document.getElementById( console_id );
 	var lg = [ 'log','debug','info','warn','error' ];
-	 
+
 	lg.forEach( function ( verb ) {
 		console[ verb ] = ( function ( method, verb, log ) {
 			return function () {
-				
+
 
 				method.apply( console, arguments );
 				var x = {
@@ -151,13 +151,12 @@ function InitConsole ()
 					msg:  Array.prototype.slice.call( arguments ).join( ' ' )
 				};
 
-				if ( global.console_id ) global.jslog.push( x ); 
-				
+				if ( global.console_id ) global.jslog.push( x );
+
 			};
 		})( console[ verb ], verb, log );
 	});
 }
-
 
 
 // MAIN //
@@ -167,7 +166,6 @@ class JSShell extends Component {
 	constructor( props, context ) {
 		super( props );
 
-
 		this.state = {
 			corrected: false,
 			disabled: this.props.disabled,
@@ -175,13 +173,10 @@ class JSShell extends Component {
 			log: [],
 			currentHint: 0,
 			hintOpen: false,
-
 			currentHelp: 0,
 			helpOpen: false,
-
 			solutionOpen: false
 		};
-
 
 		this.get_logs = function() {
 			var list = global.jslog;
@@ -192,14 +187,10 @@ class JSShell extends Component {
 					msgs.push( list[ i ]);
 				}
 			}
-
 			this.setState({
 				log: msgs
 			});
-			
-
 		};
-
 
 		this.reset_console = () => {
 			var list = global.jslog;
@@ -214,13 +205,10 @@ class JSShell extends Component {
 
 			global.jslog = temp;
 		};
- 
-
 
 		this.handleSolutionClick = () => {
 			const val = this.editor.getValue();
 			const solutionUnescaped = this.props.solution.replace( /\\n/g, '\n' );
-
 			if ( this.state.solutionOpen === false ) {
 				this.editor.setTheme( 'ace/theme/solarized_light' );
 				this.editor.setOptions({
@@ -283,7 +271,6 @@ class JSShell extends Component {
 			}
 		};
 
-
 		this.handleHelpClick = () => {
 			const { currentHelp, helpOpen } = this.state;
 			const { help } = this.props;
@@ -304,68 +291,45 @@ class JSShell extends Component {
 					currentHelp: currentHelp + 1,
 					helpOpen: true
 				});
-
-				
-
 			} else {
-
 				this.setState({
 					helpOpen: !this.state.hintOpen
 				});
-
 			}
-		
-
 		};
 
-
-		this.handleEvaluationClick = () => {  
-
-			if ( ! global.jsconsole_initialized ) {
+		this.handleEvaluationClick = () => {
+			if ( !global.jsconsole_initialized ) {
 				global.jsconsole_initialized = true;
 				InitConsole();
 			}
 			global.console_id = this.state.console_id;
 
 			let currentCode = this.editor.getValue();
-
 			try {
-				
-
 				if ( this.props.check ) {
 					currentCode += ";" + this.props.check;
 					eval( currentCode );
 				}
 				else  eval( currentCode );
-
-
 			}
 			catch ( err ) {
-				    alert( err.message );
+				alert( err.message );
 				var x = {
 					console_id: global.console_id,
 					type: 'error',
-					msg:  err.message
+					msg: err.message
 				};
-
-				if ( global.console_id ) global.jslog.push( x ); 
+				if ( global.console_id ) global.jslog.push( x );
 			}
-
-
-
 			global.console_id = null;
 			this.get_logs();
-			
 		};
-			
-
 	}
 
-	// now the ordinary Funktions
+	// Now the ordinary functions:
 	getLog( e, i ) {
-
 		var style = null;
-
 		switch ( e.type ) {
 		case 'log':
 			style = {
@@ -373,9 +337,7 @@ class JSShell extends Component {
 				fontFamily: 'monospace',
 				color: 'lightgreen',
 			};
-
 			break;
-
 		case 'error':
 			style = {
 				marginLeft: '8px',
@@ -383,29 +345,21 @@ class JSShell extends Component {
 				color: 'red',
 				fontWeight: 800
 			};
-
 			break;
-
 		case 'info':
 			style = {
 				marginLeft: '8px',
 				fontFamily: 'monospace',
 				color: 'darkcyan',
 			};
-
 			break;
-
-
 		case 'warn':
-
 			style = {
 				marginLeft: '8px',
 				fontFamily: 'monospace',
 				color: 'darkorange',
 			};
-
 			break;
-
 		default:
 			style = {
 				marginLeft: '8px',
@@ -415,36 +369,26 @@ class JSShell extends Component {
 			break;
 		}
 
-
-
 		return (
-			<div key = { i }  style = { style} >
+			<div key={i} style={style} >
 				{ e.msg }
 			</div>
 		);
-		
-	  }
-
+	}
 
 	showHelp () {
-		var s = "HELP";
-
 		return (
-			
 			<Button
 				bsStyle="success"
 				bsSize="sm"
 				onClick={this.handleHelpClick}
 				disabled={this.state.disabled}
-			>{ s }</Button>
-
+			>{`HELP`}</Button>
 		);
 	}
 
 	showHints () {
-
-		var s =  getHintLabel( this.state.currentHint, this.props.hints.length, this.state.hintOpen );
-
+		const label =  getHintLabel( this.state.currentHint, this.props.hints.length, this.state.hintOpen );
 		return (
 			<OverlayTrigger
 				trigger="click"
@@ -456,30 +400,23 @@ class JSShell extends Component {
 					bsSize="sm"
 					onClick={this.handleHintClick}
 					disabled={this.state.disabled}
-				>{ s }</Button>
+				>{label}</Button>
 			</OverlayTrigger>
 		);
 	}
 
-
 	renderLogs () {
 		let list = this.state.log;
 		let res = [];
-	
 		for ( var i = 0; i < list.length; i++ ) {
 			let e = list[ i ];
 			console.log( e );
-			
 			res.push(
 				this.getLog( e, i )
 			);
-			
 		}
-
 		return res;
 	}
-
-
 
 	componentDidMount() {
 		this.editor = ace.edit( this.props.id );
@@ -488,8 +425,6 @@ class JSShell extends Component {
 		this.setState({
 			console_id: global.console_id
 		});
-
-
 		this.editor.getSession().setMode( 'ace/mode/javascript' );
 		this.editor.setTheme( 'ace/theme/monokai' );
 		// this.aceSession.getDocument().setNewLineMode( 'auto' );
@@ -499,14 +434,9 @@ class JSShell extends Component {
 		// hier müsste subscribe und unsubscribe folgen
 	}
 
-
-	
 	componentWillMount() {
 
 	}
-
-
-
 
 	render() {
 
@@ -560,7 +490,7 @@ class JSShell extends Component {
 		const myToolbar = {
 			marginLeft: '1%',
 			width: '96%'
-			
+
 		};
 
 		const nHints = this.props.hints.length;
@@ -568,11 +498,8 @@ class JSShell extends Component {
 
 		return (
 			<div>
-				<div className="JSShell"
-					style={ frame }
-				>
+				<div className="JSShell" style={frame}>
 					<div style = { jsedit } id = { this.props.id }></div>
-		
 					<div style = { myToolbar } >
 						{ !this.state.disabled ?
 							<Button
@@ -586,19 +513,9 @@ class JSShell extends Component {
 							>Test Code</Button> :
 							<span />
 						}
-
 						<ButtonToolbar style={{ float: 'right', marginTop: '8px' }}>
-							{ nHints > 0 ?
-								this.showHints()
-								:
-								null
-							}
-							{ nHelp > 0 ?
-								this.showHelp()
-								:
-								null
-							}
-
+							{ nHints > 0 ? this.showHints() : null }
+							{ nHelp > 0 ? this.showHelp() : null }
 							{ ( this.props.solution && !this.state.disabled ) ?
 								showSolutionButton(
 									this.state.currentHint,
@@ -609,8 +526,6 @@ class JSShell extends Component {
 								) :
 								null
 							}
-
-
 							{
 								( this.props.chat && this.props.id ) ?
 									<span style={{display: 'inline-block', marginLeft: '4px' }}>
@@ -619,22 +534,14 @@ class JSShell extends Component {
 									null
 							}
 						</ButtonToolbar>
-
-
-
 						<br/>
-
-						
 					</div>
-
-
-					<div id = { this.state.console_id } style = { console } >
-						<div style = { reset } onClick =  { this.reset_console } >☒</div>
-						{  this.renderLogs () }
-					</div>	
-				</div>	
+					<div id={this.state.console_id} style={console} >
+						<div style={reset} onClick={this.reset_console} >☒</div>
+						{this.renderLogs()}
+					</div>
+				</div>
 			</div>
-
 		);
 	}
 }
