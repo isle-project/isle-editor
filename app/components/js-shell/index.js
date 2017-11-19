@@ -7,7 +7,7 @@ import ChatButton from 'components/chat-button';
 import { Button, ButtonToolbar, Modal, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
 
 import ace from 'brace';
-import 'brace/mode/r';
+import 'brace/mode/javascript';
 import 'brace/theme/katzenmilch';
 import 'brace/theme/monokai';
 import 'brace/theme/solarized_light';
