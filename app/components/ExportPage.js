@@ -11,9 +11,9 @@ import FormData from 'form-data';
 import https from 'https';
 import http from 'http';
 import request from 'request';
-import tmpdir from '@stdlib/utils/tmpdir';
 import archiver from 'archiver';
 import fs from 'fs';
+import os from 'os';
 import contains from '@stdlib/assert/contains';
 import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
@@ -187,7 +187,7 @@ class UploadLesson extends Component {
 				spinning: true
 			});
 			const settings = {
-				outputPath: tmpdir(),
+				outputPath: os.tmpdir(),
 				filePath: this.props.filePath,
 				basePath,
 				content: this.props.content,
