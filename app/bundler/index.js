@@ -164,7 +164,7 @@ const getISLEcode = ( yamlStr ) => {
 
 const getSessionCode = ( basePath ) => {
 	let str = 'const Session = ';
-	str += `require( '${path.resolve( basePath, './app/session' )}' );`;
+	str += `require( '${path.resolve( path.join( basePath, 'app', 'session' ) ) }' );`;
 	return str;
 };
 
@@ -304,7 +304,7 @@ function writeIndexFile({
 	const htmlPath = path.join( appDir, 'index.html' );
 	const bundlePath = path.join( appDir, 'bundle.js' );
 	const getCSSPath = () => {
-		return path.join( basePath, `./app/css/` );
+		return path.join( basePath, 'app', 'css' );
 	};
 	makeOutputDir( appDir );
 	generateISLE( appDir, content );
@@ -353,13 +353,13 @@ function writeIndexFile({
 		if ( !isAbsolutePath( meta.css ) ) {
 			fpath = path.join( path.dirname( filePath ), meta.css );
 		}
-		fs.copySync( fpath, path.join( appDir, 'css/lesson.css' ) );
+		fs.copySync( fpath, path.join( appDir, 'css', 'lesson.css' ) );
 	}
 	if ( meta.style ) {
-		fs.appendFileSync( path.join( appDir, 'css/lesson.css' ), meta.style );
+		fs.appendFileSync( path.join( appDir, 'css', 'lesson.css' ), meta.style );
 	}
 
-	let imgPath = path.join( basePath, './app/img' );
+	let imgPath = path.join( basePath, 'app', 'img' );
 	fs.mkdirSync( path.join( appDir, 'img' ) );
 	fs.copySync( path.join( imgPath ), path.join( appDir, 'img' ) );
 	fs.copySync( path.join( imgPath, 'favicon.ico' ), path.join( appDir, 'favicon.ico' ) );
