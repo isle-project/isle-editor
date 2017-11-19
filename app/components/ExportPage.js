@@ -6,13 +6,13 @@ import { Button, ButtonToolbar, Col, ControlLabel, Form, FormControl,
 	FormGroup, Grid, Modal, Panel, Row, Well } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { remote, shell } from 'electron';
-import path from 'path';
 import FormData from 'form-data';
 import https from 'https';
 import http from 'http';
 import request from 'request';
 import archiver from 'archiver';
 import randomstring from 'randomstring';
+import path from 'path';
 import fs from 'fs';
 import os from 'os';
 import contains from '@stdlib/assert/contains';
@@ -183,7 +183,7 @@ class UploadLesson extends Component {
 		};
 
 		this.publishLesson = () => {
-			const basePath = IS_PACKAGED ? `${process.resourcesPath}/app/` : './';
+			const basePath = IS_PACKAGED ? path.join( process.resourcesPath, 'app' ) : '.';
 			this.setState({
 				spinning: true
 			});
@@ -363,7 +363,7 @@ class ExportLesson extends Component {
 				finished: false,
 				spinning: true
 			});
-			const basePath = IS_PACKAGED ? `${process.resourcesPath}/app/` : './';
+			const basePath = IS_PACKAGED ? path.join( process.resourcesPath, 'app' ) : '.';
 			const { dirPath, outputDir, minify } = this.state;
 			bundler({
 				outputPath: dirPath,
