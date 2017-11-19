@@ -548,13 +548,12 @@ class JSShell extends Component {
 		const reset = {
 			marginRight: '4px',
 			float: 'right',
-			width: '16px',
-			height: '16px',
+			width: '22px',
+			height: '22px',
 			cursor: 'pointer',
-			fontSize: '20px',
+			fontSize: '22px',
 			textAlign: 'center',
 			color: 'white',
-			fontWeight: 600,
 			zIndex: 2
 		};
 
