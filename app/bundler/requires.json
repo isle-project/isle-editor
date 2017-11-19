@@ -21,6 +21,7 @@
 	"Grid": "const Grid = require( \"components/grid\" )",
 	"Input": "const Input = require( \"components/input\" )",
 	"IFrame": "const IFrame = require( \"components/iframe\" )",
+	"JSShell": "const JSShell = require( \"components/js-shell\" )",
 	"LessonSubmit": "const LessonSubmit = require( \"components/lesson-submit\" )",
 	"Metrics": "const Metrics = require( \"components/metrics/db\" )",
 	"Modal": "const Modal = require( \"react-bootstrap\" ).Modal",
