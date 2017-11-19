@@ -546,14 +546,16 @@ class JSShell extends Component {
 		};
 
 		const reset = {
-			marginRight: '30px',
+			marginRight: '4px',
 			float: 'right',
 			width: '16px',
 			height: '16px',
 			cursor: 'pointer',
-			marginBottom: '14px',
 			fontSize: '20px',
-			textAlign: 'center'
+			textAlign: 'center',
+			color: 'white',
+			fontWeight: 600,
+			zIndex: 2
 		};
 
 		const myToolbar = {
@@ -570,8 +572,7 @@ class JSShell extends Component {
 				<div className="JSShell"
 					style={ frame }
 				>
-					<div style = { jsedit } id = { this.props.id }>
-					</div>
+					<div style = { jsedit } id = { this.props.id }></div>
 		
 					<div style = { myToolbar } >
 						{ !this.state.disabled ?
@@ -624,12 +625,12 @@ class JSShell extends Component {
 
 						<br/>
 
+						
+					</div>
+
+
+					<div id = { this.state.console_id } style = { console } >
 						<div style = { reset } onClick =  { this.reset_console } >☒</div>
-						</div>
-
-
-						<div id = { this.state.console_id } style = { console } >
-
 						{  this.renderLogs () }
 					</div>	
 				</div>	

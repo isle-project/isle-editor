@@ -8,9 +8,11 @@ const webpack = require( 'webpack' );
 const debug = require( 'debug' )( 'bundler' );
 const contains = require( '@stdlib/assert/contains' );
 const isObject = require( '@stdlib/assert/is-object' );
+const replace = require( '@stdlib/string/replace' );
 const isAbsolutePath = require( '@stdlib/assert/is-absolute-path' );
 const markdownToHTML = require( './../utils/markdown-to-html' );
 const REQUIRES = require( './requires.json' );
+
 
 
 // FUNCTIONS //
@@ -163,8 +165,12 @@ const getISLEcode = ( yamlStr ) => {
 };
 
 const getSessionCode = ( basePath ) => {
+	let requirePath = path.resolve( path.join( basePath, 'app', 'session' ) );
+	if ( process.platform === 'win32' ) {
+		requirePath = replace( requirePath, '\\', '\\\\' );
+	}
 	let str = 'const Session = ';
-	str += `require( '${path.resolve( path.join( basePath, 'app', 'session' ) ) }' );`;
+	str += `require( '${requirePath}' );`;
 	return str;
 };
 
