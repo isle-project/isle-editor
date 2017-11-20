@@ -11,8 +11,9 @@ import min from 'compute-min';
 import max from 'compute-max';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import isArray from '@stdlib/assert/is-array';
-import './react_table.css';
+import 'react-table/react-table.css';
 import './input_range.css';
+import './react_table_height.css';
 
 
 // MAIN //
@@ -74,7 +75,7 @@ class DataTable extends Component {
 							<InputRange
 								maxValue={ceil( max( uniqueValues ) )}
 								minValue={floor( min( uniqueValues ) )}
-								value={  filter ? filter.value : defaultVal }
+								value={ filter ? filter.value : defaultVal }
 								onChange={ ( newValue ) => {
 									onChange( newValue );
 								}}
