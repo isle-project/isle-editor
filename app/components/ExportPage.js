@@ -15,6 +15,7 @@ import randomstring from 'randomstring';
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
+import exists from '@stdlib/fs/exists';
 import contains from '@stdlib/assert/contains';
 import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
@@ -39,7 +40,6 @@ class UploadLesson extends Component {
 		// Initialize state variables...
 		this.state = {
 			preamble: {},
-			finished: false,
 			spinning: false,
 			namespaces: [],
 			namespaceName: null,
@@ -147,15 +147,14 @@ class UploadLesson extends Component {
 					this.setState({
 						spinning: false,
 						showResponseModal: true,
-						modalMessage: msg
+						modalMessage: msg,
+						dirname: randomstring.generate()
 					});
 				}
 			});
-
 			request.on( 'error', ( err ) => {
 				console.log( 'Encountered error: ' + err.message );
 			});
-
 		};
 
 		this.checkLesson = () => {
@@ -183,14 +182,13 @@ class UploadLesson extends Component {
 		};
 
 		this.publishLesson = () => {
-			const basePath = IS_PACKAGED ? path.join( process.resourcesPath, 'app' ) : '.';
 			this.setState({
 				spinning: true
 			});
 			const settings = {
 				outputPath: os.tmpdir(),
 				filePath: this.props.filePath,
-				basePath,
+				basePath: IS_PACKAGED ? path.join( process.resourcesPath, 'app' ) : '.',
 				content: this.props.content,
 				outputDir: this.state.dirname,
 				minify: this.state.minify
@@ -322,29 +320,30 @@ class ExportLesson extends Component {
 
 		// Initialize state variables...
 		this.state = {
-			dirPath: '',
+			outputPath: '',
 			outputDir,
 			preamble: {},
 			finished: false,
 			spinning: false,
-			minify: false
+			minify: false,
+			alreadyExists: false
 		};
 
 		this.openFolder = () => {
-			const fullPath = path.join( this.state.dirPath, this.state.outputDir, 'index.html' );
+			const fullPath = path.join( this.state.outputPath, this.state.outputDir, 'index.html' );
 			shell.showItemInFolder( fullPath );
 		};
 
 		this.openLesson = () => {
-			const fullPath = path.join( this.state.dirPath, this.state.outputDir, 'index.html' );
+			const fullPath = path.join( this.state.outputPath, this.state.outputDir, 'index.html' );
 			shell.openItem( fullPath );
 		};
 
 		this.handleFileInputClick = () => {
-			const dirPath = dialog.showOpenDialog({
+			const outputPath = dialog.showOpenDialog({
 				properties: [ 'openDirectory' ]
 			})[ 0 ];
-			this.setState({ dirPath });
+			this.setState({ outputPath, finished: false, alreadyExists: false });
 		};
 
 		this.handleInputChange = ( event ) => {
@@ -359,26 +358,31 @@ class ExportLesson extends Component {
 		};
 
 		this.generateApp = () => {
-			this.setState({
-				finished: false,
-				spinning: true
-			});
-			const basePath = IS_PACKAGED ? path.join( process.resourcesPath, 'app' ) : '.';
-			const { dirPath, outputDir, minify } = this.state;
-			bundler({
-				outputPath: dirPath,
-				filePath: this.props.filePath,
-				basePath,
-				content: this.props.content,
-				outputDir,
-				minify
-			}, ( err, preamble ) => {
+			const { outputPath, outputDir, minify } = this.state;
+			if ( exists.sync( path.join( outputPath, outputDir ) ) ) {
 				this.setState({
-					preamble: preamble,
-					finished: true,
-					spinning: false
+					alreadyExists: true
 				});
-			});
+			} else {
+				this.setState({
+					finished: false,
+					spinning: true
+				});
+				bundler({
+					outputPath: outputPath,
+					filePath: this.props.filePath,
+					basePath: IS_PACKAGED ? path.join( process.resourcesPath, 'app' ) : '.',
+					content: this.props.content,
+					outputDir,
+					minify
+				}, ( err, preamble ) => {
+					this.setState({
+						preamble: preamble,
+						finished: true,
+						spinning: false
+					});
+				});
+			}
 		};
 	}
 
@@ -406,7 +410,9 @@ class ExportLesson extends Component {
 						defaultValue={this.state.outputDir}
 						onChange={ ( event ) => {
 							this.setState({
-								outputDir: event.target.value
+								outputDir: event.target.value,
+								finished: false,
+								alreadyExists: false
 							});
 						}}
 					/>
@@ -423,22 +429,19 @@ class ExportLesson extends Component {
 						paddingTop: '6px',
 						color: 'darkred'
 					}}
-				> Path: {this.state.dirPath} </Well>
-				{this.state.dirPath ?
-					<Button
-						bsStyle="success"
-						bsSize="sm"
-						onClick={this.generateApp}
-						block
-						style={{
-							marginTop: '15px'
-						}}
-						disabled={this.state.spinning}
-					> Generate lesson </Button> :
-					<span />
-				}
+				> Path: {this.state.outputPath} </Well>
+				<Button
+					bsStyle="success"
+					bsSize="sm"
+					onClick={this.generateApp}
+					block
+					style={{
+						marginTop: '15px'
+					}}
+					disabled={this.state.spinning || !this.state.outputPath || !this.state.outputDir || this.state.finished}
+				> Generate lesson </Button>
 				<br />
-				{this.state.finished ?
+				{ this.state.finished ?
 					<Panel
 						header={<h3>App successfully exported!</h3>}
 						bsStyle="success"
@@ -448,6 +451,14 @@ class ExportLesson extends Component {
 							<Button style={{ float: 'right' }} bsStyle="success" onClick={this.openLesson}>Open lesson in Browser</Button>
 						</ButtonToolbar>
 					</Panel> : <Spinner width={128} height={64} running={this.state.spinning}/>
+				}
+				{ this.state.alreadyExists ?
+					<Panel
+						header={<h3>Directory already exists.</h3>}
+						bsStyle="danger"
+					>
+						A directory with the chosen name already exists. Please pick a different name.
+					</Panel> : null
 				}
 			</Panel>
 		);
@@ -461,7 +472,6 @@ class ExportPage extends Component {
 	constructor( props ) {
 		super( props );
 	}
-
 	render() {
 		return (
 			<div
