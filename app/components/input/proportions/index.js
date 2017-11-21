@@ -13,12 +13,11 @@ const debug = require( 'debug' )( 'isle-editor' );
 
 class ProportionInput extends Input {
 
-	constructor( props, context ) {
+	constructor( props ) {
 		super( props );
 
-
-		this.legends 		= this.checkLegends();
-		let values 			= null;
+		this.legends = this.checkLegends();
+		let values = null;
 
 		if ( this.props.values ) {
 			values = this.props.values;
@@ -26,8 +25,6 @@ class ProportionInput extends Input {
 		else {
 			values = this.setValues();
 		}
-
-		const { session } = context;
 		this.state = {
 			values: values,
 			visualData: this.pieData( values ),
@@ -38,7 +35,6 @@ class ProportionInput extends Input {
 
 	componentWillReceiveProps( nextProps ) {
 		if ( nextProps.values !== this.props.values ) {
-
 			this.setState({
 				values: nextProps.values,
 				visualData: this.pieData( nextProps.values )
@@ -54,7 +50,6 @@ class ProportionInput extends Input {
 		for ( var i = 0; i < no; i++ ) {
 			values[ i ] = initial;
 			//
-
 		}
 		return values;
 	}
@@ -66,49 +61,39 @@ class ProportionInput extends Input {
 		return c;
 	}
 
-	// <ProportionInput id = "Firmen" legends = {["Anton", "Bert", "Conny", "Dorian"]} nElements = { 4 } />
-
 	checkLegends() {
-		var list = [];
-		var no = this.props.nElements;
-
-		if (  isArray( this.props.legends ) === true  ) return this.props.legends;
-		else {
-
-			for ( var i = 0; i < no; i++ ) {
-
-				list.push( "EL " + i );
-			}
-
+		const list = [];
+		const no = this.props.nElements;
+		if ( isArray( this.props.legends ) ) {
+			return this.props.legends;
+		}
+		for ( let i = 0; i < no; i++ ) {
+			list.push( 'EL ' + i );
 		}
 		return list;
 	}
 
-	total ( arr ) {
-		var sum = 0;
-		for ( var n = 0; n < arr.length; n++ ) {
+	total( arr ) {
+		let sum = 0;
+		for ( let n = 0; n < arr.length; n++ ) {
 			sum += arr[ n ];
 		}
 		return sum;
 	}
 
-	rest ( arr, ndx ) {
-		var sum = 0;
-
-		for ( var i = 0; i< arr.length; i++ ) {
+	rest( arr, ndx ) {
+		let sum = 0;
+		for ( let i = 0; i < arr.length; i++ ) {
 			if ( i !== ndx ) sum += arr[ i ];
 		}
-
 		return sum;
 	}
 
 	checkPercentage ( ndx, value ) {
-		var copy = this.state.values.slice();
-		copy [ ndx ] = value;
+		const copy = this.state.values.slice();
+		copy[ ndx ] = value;
 
 		this.props.onChange( copy );
-
-
 		this.setState({
 			values: copy,
 			visualData: this.pieData( copy )
@@ -116,12 +101,11 @@ class ProportionInput extends Input {
 	}
 
 	getNumber ( ndx ) {
-		var style = {
-			float: "left",
+		const style = {
+			float: 'left',
 			width: '120px',
 			textAlign: 'center'
 		};
-
 		const free = 100.0 - this.total( this.state.values );
 		let maxValue = this.state.values[ ndx ] + free;
 		maxValue = maxValue.toFixed( this.props.precision );
@@ -143,71 +127,57 @@ class ProportionInput extends Input {
 
 	renderInputs() {
 		var list = [];
-
-   		let n = this.props.nElements;
+		let n = this.props.nElements;
 		for ( var i = 0; i < n; i++ ) {
 			list.push ( this.getNumber ( i ) );
 		}
-
 		return list;
 	}
 
 	renderPie() {
 		return (
 			<VictoryPie
-				// colorScale={[ "tomato", "orange", "gold", "darkcyan", "transparent" ]}
 				colorScale={ this.state.colors }
 				data={ this.state.visualData }
 				height={ this.props.height }
 				innerRadius= { this.props.innerRadius }
 			/>
 		);
-
 	}
 
 	pieData( arr ) {
 		var list = [];
 		var total = this.total( arr );
 		var no = this.props.nElements + 1;
-
-
-		for ( var i = 0; i < no; i++ ) {
-
+		for ( let i = 0; i < no; i++ ) {
 			if ( i < no -1 ) {
 				var o = {
 					x: this.props.legends[ i ],
 					y: arr[ i ]
 				};
-
 				list.push( o );
-
 			}
 			else {
 				var o = {
-					x: " ",
+					x: ' ',
 					y: 100 - this.total( arr )
 				};
-
-				if ( total !== 100 ) list.push( o );
+				if ( total !== 100 ) {
+					list.push( o );
+				}
 			}
-
 		}
 		return list;
 	}
 
-
-	//
-
 	render() {
-
 		var pos = {
 			marginLeft: this.props.margin
 		};
-
 		return (
 			<div>
 				{ this.renderPie() }
-				<div style = { pos }>
+				<div style={pos}>
 					{ this.renderInputs() }
 				</div>
 			</div>
@@ -220,11 +190,11 @@ class ProportionInput extends Input {
 
 ProportionInput.defaultProps = {
 	nElements: 6,
-	legends: "Legend",
+	legends: 'Legend',
 	precision: 1,
 	step: 0.1,
 	disabled: false,
-	colors: [ "tomato", "orange", "gold", "darkcyan", "salmon", "lightgreen", "gainsboro", "lightpurple", "darkkhaki", "darkseagreen" ],
+	colors: [ 'tomato', 'orange', 'gold', 'darkcyan', 'salmon', 'lightgreen', 'gainsboro', 'lightpurple', 'darkkhaki', 'darkseagreen' ],
 	height: 200,
 	innerRadius: 75,
 	onChange(){}
