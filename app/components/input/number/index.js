@@ -34,9 +34,9 @@ class NumberInput extends Input {
 
 		const { session } = context;
 		this.state = {
-			value: !props.bind ?
-				props.defaultValue :
-				session.config.state[ props.bind ],
+			value: props.bind && session.state ?
+				session.state[ props.bind ]:
+				props.defaultValue,
 			tooltip: this.createTooltip( props )
 		};
 

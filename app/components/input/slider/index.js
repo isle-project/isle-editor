@@ -35,9 +35,9 @@ class SliderInput extends Input {
 		const { session } = context;
 		this.state = {
 			tooltip: this.createTooltip( props ),
-			value: !props.bind ?
-				props.defaultValue :
-				session.config.state[ props.bind ]
+			value: props.bind && session.state ?
+				session.state[ props.bind ]:
+				props.defaultValue,
 		};
 
 		this.handleInputChange = ( event ) => {
