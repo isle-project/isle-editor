@@ -1,12 +1,7 @@
 // MODULES //
 
-
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import isArray from '@stdlib/assert/is-array';
-
-
 
 
 // MAIN //
@@ -15,13 +10,9 @@ class IFrame extends Component {
 
 	constructor( props, context ) {
 		super( props );
-
-
 		this.state = {
 			corrected: false
 		};
-
-
 	}
 
 
@@ -36,79 +27,52 @@ class IFrame extends Component {
 
 		if ( el ) {
 			console.log( "I FRAME CONTAINER " );
-		
+
 			this.corrected_pos = this.getPos( el );
 			console.log( this.corrected_pos );
 
 			console.log( "KORREKTUR" );
 
-			
+
 			this.setState ({
 				corrected: true
 			});
-			
+
 
 		}
 		else console.log( "konnte das Element nicht einlesen" );
 
 	}
 
-
-	
 	componentWillMount() {
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
 	}
 
-
 	renderFrame() {
 		if ( this.state.corrected === false ) {
-
-			return (
-				<div id = { this.props.identifier }  >
-				</div>
-			);
-
+			return <div id={this.props.identifier}></div>;
 		}
-		else {
-
-			console.log ("LINKS " + this.corrected_pos.x );
-
-
-			var style = {
-				position: "absolute",
-				left: "-" + this.corrected_pos.x + "px",
-				top: "-" + this.corrected_pos.y + "px",
-				width:  this.width + "px",
-				height: this.height + "px",
-				display: "inlineBlock"
-			};
-
-
-
-			return (
-				<div id = { this.props.identifier } style = { style } >
-					<iframe src= { this.props.address } 
-						width= { this.width } height = { this.height }   
-					></iframe>
-				</div>
-			);
-
-		}
-
-
-
-
-
-
-
-
+		var style = {
+			position: "absolute",
+			left: "-" + this.corrected_pos.x + "px",
+			top: "-" + this.corrected_pos.y + "px",
+			width:  this.width + "px",
+			height: this.height + "px",
+			display: "inlineBlock"
+		};
+		return (
+			<div id={this.props.identifier} style={style} >
+				<iframe
+					src={this.props.address}
+					width={this.width}
+					height={this.height}
+				></iframe>
+			</div>
+		);
 	}
 
-
-
 	render() {
-
 		return (
 			<div id = { this.props.identifier }>
 				{ this.renderFrame() }
@@ -125,8 +89,6 @@ IFrame.defaultProps = {
 	identifier: "ExtendedIFrame",
 	address: "http://burckhardt.ludicmedia.de/#/blog",
 	fullscreen: true
-
-
 };
 
 
