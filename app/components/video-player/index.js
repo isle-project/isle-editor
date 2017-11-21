@@ -18,6 +18,49 @@ function calculateMargin( containerWidth, targetWidth ) {
 
 class Video extends Component {
 
+	constructor( props ) {
+		super( props );
+		this.state = {
+			progress: {}
+		};
+	}
+
+	handlePlay = () => {
+		const { session } = this.context;
+		session.log({
+			id: this.props.id,
+			type: 'VIDEO_PLAY',
+			value: this.state.progress.playedSeconds
+		});
+		this.props.onPlay();
+	}
+
+	handlePause = () => {
+		const { session } = this.context;
+		session.log({
+			id: this.props.id,
+			type: 'VIDEO_PAUSE',
+			value: this.state.progress.playedSeconds
+		});
+		this.props.onPause();
+	}
+
+	handleEnded = () => {
+		const { session } = this.context;
+		session.log({
+			id: this.props.id,
+			type: 'VIDEO_END',
+			value: this.state.progress.playedSeconds
+		});
+		this.props.onEnded();
+	}
+
+	handleProgress = ( progress ) => {
+		this.setState({
+			progress: progress
+		});
+	}
+
 	render() {
 		const style = {
 			width: this.props.width,
@@ -34,11 +77,16 @@ class Video extends Component {
 				style={style}
 				className="video"
 			>
-				<ReactPlayer {...this.props} />
+				<ReactPlayer {...this.props}
+					onPlay={this.handlePlay}
+					onPause={this.handlePause}
+					onEnded={this.handleEnded}
+					onProgress={this.handleProgress}
+					progressFrequency={1000}
+				/>
 			</div>
 		);
 	}
-
 }
 
 
@@ -59,7 +107,10 @@ Video.propTypes = {
 		PropTypes.string,
 		PropTypes.number
 	]),
-	style: PropTypes.object
+	style: PropTypes.object,
+	onPlay: PropTypes.func,
+	onPause: PropTypes.func,
+	onEnded: PropTypes.func
 };
 
 
@@ -74,7 +125,17 @@ Video.defaultProps = {
 	volume: 0.8,
 	height: 360,
 	width: 640,
-	style: {}
+	style: {},
+	onPlay() {},
+	onPause() {},
+	onEnded() {}
+};
+
+
+// CONTEXT TYPES //
+
+Video.contextTypes = {
+	session: PropTypes.object
 };
 
 
