@@ -122,7 +122,7 @@ class RangePicker extends Component {
 				</ButtonGroup>
 				<ButtonGroup bsSize="xsmall">
 					<Button
-						className="date-selection active-button"
+						className="date-selection"
 						id="all_time"
 						onClick={this.timeClickFactory( 'all_time' )}
 						style={this.state.active === 5 ? activeStyle : {}}
