@@ -38,7 +38,7 @@ class CorrTest extends Component {
 				value: <div>
 					<label>Hypothesis test for correlation between {var1} and {var2}:</label>
 					<TeX displayMode raw={`H_0: \\rho = ${rho0} \\; vs. \\; H_1: \\rho ${arrow} ${rho0}`} tag="" />
-					<pre>
+					<pre style={{ fontSize: '11px' }}>
 						{result.print()}
 					</pre>
 				</div>

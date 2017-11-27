@@ -38,7 +38,7 @@ class ZTest extends Component {
 				value: <div>
 					<label>Hypothesis test for {variable}:</label>
 					<TeX displayMode raw={`H_0: \\mu = ${mu0} \\; vs. \\; H_1: \\mu ${arrow} ${mu0}`} tag="" />
-					<pre>
+					<pre style={{ fontSize: '11px' }}>
 						{result.print()}
 					</pre>
 				</div>

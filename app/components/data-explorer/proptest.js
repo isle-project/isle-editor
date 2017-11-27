@@ -59,7 +59,7 @@ class PropTest extends Component {
 					</span>
 					<TeX displayMode raw={`H_0: p = ${p0} \\; vs. \\; H_1: p ${arrow} ${p0}`} tag="" />
 					<label>Sample proportion: {roundn( mean( binary ), -3 )}</label>
-					<pre>
+					<pre style={{ fontSize: '11px' }}>
 						{result.print()}
 					</pre>
 				</div>
