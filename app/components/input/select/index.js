@@ -43,19 +43,17 @@ class SelectInput extends Input {
 		this.setState({
 			value: newValue
 		}, () => {
-			console.log( newValue );
+			let val = null;
 			if ( isObject( newValue ) || isArray( newValue ) ) {
-				console.log( "IS TRUE" );
-				const val = this.props.multi ?
+				val = this.props.multi ?
 					newValue.map( x => x.value ) :
 					newValue.value;
-				console.log( this.props.onChange );
-				this.props.onChange( val );
-				if ( this.props.bind ) {
-					global.lesson.setState({
-						[ this.props.bind ]: val
-					});
-				}
+			}
+			this.props.onChange( val );
+			if ( this.props.bind ) {
+				global.lesson.setState({
+					[ this.props.bind ]: val
+				});
 			}
 		});
 	}
