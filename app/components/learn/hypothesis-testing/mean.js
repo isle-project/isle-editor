@@ -70,19 +70,19 @@ class MeanTest extends Component {
 		let areaData2;
 		let probFormula;
 		switch ( this.state.type ) {
-		case 1:
+		case 2:
 			areaData = linspace( -3, zStat, 200 ).map( d => {
 				return { x: d, y: dnorm( d, 0, 1 ) };
 			});
 			probFormula = `P( Z < ${zStat}) = ${roundn( pnorm( zStat, 0, 1 ), -3 )}`;
 			break;
-		case 0:
+		case 1:
 			areaData = linspace( zStat, 3, 200 ).map( d => {
 				return { x: d, y: dnorm( d, 0, 1 ) };
 			});
 			probFormula = `P( Z > ${zStat}) = ${roundn( 1-pnorm( zStat, 0, 1 ), - 3 )}`;
 			break;
-		case 2:
+		case 0:
 			areaData = linspace( abs( zStat ), 3, 200 ).map( d => {
 				return { x: d, y: dnorm( d, 0, 1 ) };
 			});
@@ -227,7 +227,7 @@ class MeanTest extends Component {
 								onChange={( value ) => {
 									this.setState({
 										samples: value
-									});
+									}, this.onGenerate );
 								}}
 							/>
 							<NumberInput
@@ -323,7 +323,6 @@ class MeanTest extends Component {
 						<TeX raw={this.state.probFormula} />
 						<VictoryChart
 							domain={{ x: [ -3, 3 ]}}
-							animate={{ duration: 500 }}
 						>
 							<VictoryLine data={this.state.pdfData} />
 							<VictoryArea
