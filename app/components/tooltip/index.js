@@ -1,6 +1,5 @@
 // MODULES //
 
-import radium from 'radium';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -71,4 +70,4 @@ Tooltip.propTypes = {
 
 // EXPORTS //
 
-export default radium( Tooltip );
+export default Tooltip;

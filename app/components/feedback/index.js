@@ -1,6 +1,5 @@
 // MODULES //
 
-import radium from 'radium';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonGroup, FormGroup, Modal, OverlayTrigger, Tooltip } from 'react-bootstrap';
@@ -97,17 +96,17 @@ class FeedbackButtons extends Component {
 				<ButtonGroup style={{ float: 'right' }} vertical={this.props.vertical} >
 					<OverlayTrigger placement="left" overlay={ <Tooltip id="tooltip_confused"><strong> I am confused. </strong></Tooltip>}>
 						<Button bsSize="small" onClick={this.submitConfused}>
-							<div key="confused" style={[ styles.icon, styles[ 'confused' ] ]} />
+							<div key="confused" style={{ ...styles.icon, ...styles[ 'confused' ] }} />
 						</Button>
 					</OverlayTrigger>
 					<OverlayTrigger placement="left" overlay={ <Tooltip id="tooltip_understood"><strong> Makes sense. </strong></Tooltip>}>
 						<Button bsSize="small" onClick={this.submitUnderstood}>
-							<div key="understood" style={[ styles.icon, styles[ 'understood' ] ]} />
+							<div key="understood" style={{ ...styles.icon, ...styles[ 'understood' ] }} />
 						</Button>
 					</OverlayTrigger>
 					<OverlayTrigger placement="left" overlay={ <Tooltip id="tooltip_feedback"><strong> I have feedback. </strong></Tooltip>}>
 						<Button bsSize="small" onClick={openModal}>
-							<div key="feedback" style={[ styles.icon, styles[ 'feedback' ] ]} />
+							<div key="feedback" style={{ ...styles.icon, ...styles[ 'feedback' ] }} />
 						</Button>
 					</OverlayTrigger>
 				</ButtonGroup>
@@ -182,4 +181,4 @@ FeedbackButtons.defaultProps = {
 
 // EXPORTS //
 
-export default radium( FeedbackButtons );
+export default FeedbackButtons;

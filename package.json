@@ -168,7 +168,6 @@
     "plotly.js": "^1.29.2",
     "profanities": "^2.5.0",
     "prop-types": "^15.5.10",
-    "radium": "^0.19.1",
     "randomstring": "^1.1.5",
     "raw-loader": "^0.5.1",
     "react": "16.1.1",
@@ -207,11 +206,11 @@
     "source-map-support": "^0.5.0",
     "spectacle": "4.0.4",
     "style-loader": "^0.19.0",
-    "uglify-es": "^3.0.15",
+    "uglify-es": "3.1.10",
     "uniq": "^1.0.1",
     "utf-8-validate": "^3.0.2",
     "venn.js": "0.2.17",
-    "victory": "^0.24.0",
+    "victory": "0.24.2",
     "webpack": "3.8.1"
   },
   "devEngines": {
