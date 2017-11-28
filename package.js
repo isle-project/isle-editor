@@ -139,7 +139,7 @@ function pack( plat, arch, cb ) {
 		prune: true,
 		appVersion: pkg.version || DEFAULT_OPTS.electronVersion,
 		appCopyright: 'Copyright © 2016 Philipp Burckhardt. All rights reserved.',
-		versionString: {
+		win32metadata: {
 			CompanyName: 'Carnegie Mellon University',
 			FileDescription: 'Interactive Statistics Learning Environment (ISLE) Editor',
 			OriginalFilename: 'ISLE Editor.exe',
