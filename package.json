@@ -100,7 +100,7 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
-    "@stdlib/stdlib": "0.0.29",
+    "@stdlib/stdlib": "0.0.30",
     "archiver": "^2.0.0",
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",
@@ -136,6 +136,7 @@
     "css-loader": "^0.28.0",
     "css-modules-require-hook": "^4.0.0",
     "csv-parse": "^2.0.0",
+    "csv-stringify": "^2.0.0",
     "d3": "^4.7.3",
     "debug": "^3.1.0",
     "detect-csv": "^1.1.0",
@@ -161,7 +162,7 @@
     "lodash.flow": "^3.5.0",
     "markdown-it": "^8.0.0",
     "minimist": "^1.2.0",
-    "moment": "^2.18.1",
+    "moment": "^2.19.2",
     "node-libs-browser": "^2.0.0",
     "normalize.css": "^7.0.0",
     "plotly.js": "^1.29.2",
