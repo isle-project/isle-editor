@@ -27,7 +27,6 @@ const areaStyle = {
 class MeanTest extends Component {
 
 	constructor( props ) {
-
 		super( props );
 
 		this.state = {
@@ -42,7 +41,10 @@ class MeanTest extends Component {
 			probFormula: '',
 			type: 0
 		};
+	}
 
+	componentDidMount() {
+		this.onGenerate();
 	}
 
 	onGenerate = () => {

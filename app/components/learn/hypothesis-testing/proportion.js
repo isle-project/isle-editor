@@ -27,7 +27,6 @@ const areaStyle = {
 class ProportionTest extends Component {
 
 	constructor( props ) {
-
 		super( props );
 
 		this.state = {
@@ -40,7 +39,10 @@ class ProportionTest extends Component {
 			areaData2: null,
 			type: 0
 		};
+	}
 
+	componentDidMount() {
+		this.onGenerate();
 	}
 
 	onGenerate = () => {
