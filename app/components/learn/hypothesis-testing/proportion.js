@@ -7,7 +7,6 @@ import { abs, sqrt, roundn } from '@stdlib/math/base/special';
 import linspace from '@stdlib/math/utils/linspace';
 import dnorm from '@stdlib/math/base/dists/normal/pdf';
 import pnorm from '@stdlib/math/base/dists/normal/cdf';
-import Dashboard from 'components/dashboard';
 import NumberInput from 'components/input/number';
 import Switch from 'components/switch';
 import TeX from 'components/tex';
@@ -44,8 +43,9 @@ class ProportionTest extends Component {
 
 	}
 
-	onGenerate = ( p0, phat, n ) => {
+	onGenerate = () => {
 		debug( 'Should generate new values...' );
+		const { p0, phat, n } = this.state;
 		let pdfData = linspace( -3.50, 3.5, 300 );
 		pdfData = pdfData.map( x => {
 			return { x: x, y: dnorm( x, 0, 1 ) };
@@ -92,19 +92,7 @@ class ProportionTest extends Component {
 		let probFormula;
 		let { pStat } = this.state;
 		switch ( pos ) {
-		case 1:
-			areaData = linspace( -3, pStat, 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 ) };
-			});
-			probFormula = `P( Z < ${pStat}) = ${roundn( pnorm( pStat, 0, 1 ), -3 )}`;
-			break;
 		case 0:
-			areaData = linspace( pStat, 3, 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 ) };
-			});
-			probFormula = `P( Z > ${pStat}) = ${roundn( 1-pnorm( pStat, 0, 1 ), -3 )}`;
-			break;
-		case 2:
 			areaData = linspace( abs( pStat ), 3, 200 ).map( d => {
 				return { x: d, y: dnorm( d, 0, 1 ) };
 			});
@@ -112,6 +100,18 @@ class ProportionTest extends Component {
 				return { x: d, y: dnorm( d, 0, 1 ) };
 			});
 			probFormula = `P( |Z| > ${pStat}) = ${roundn( 1-pnorm( abs( pStat ), 0, 1 ) + pnorm( -abs( pStat ), 0, 1 ), -3 )}`;
+			break;
+		case 2:
+			areaData = linspace( -3, pStat, 200 ).map( d => {
+				return { x: d, y: dnorm( d, 0, 1 ) };
+			});
+			probFormula = `P( Z < ${pStat}) = ${roundn( pnorm( pStat, 0, 1 ), -3 )}`;
+			break;
+		case 1:
+			areaData = linspace( pStat, 3, 200 ).map( d => {
+				return { x: d, y: dnorm( d, 0, 1 ) };
+			});
+			probFormula = `P( Z > ${pStat}) = ${roundn( 1-pnorm( pStat, 0, 1 ), -3 )}`;
 			break;
 		}
 		this.setState({
@@ -126,7 +126,7 @@ class ProportionTest extends Component {
 			<Grid>
 				<Row>
 					<Col md={6}>
-						<Dashboard title="Parameters" maxWidth={1600} autoUpdate onGenerate={this.onGenerate} >
+						<Panel header={<h4>Parameters</h4>} maxWidth={1600}>
 							<Well>
 								<NumberInput
 									legend="Hypothesized proportion (null hypothesis)"
@@ -134,6 +134,11 @@ class ProportionTest extends Component {
 									step={0.001}
 									min={0.001}
 									max={0.999}
+									onChange={( value ) => {
+										this.setState({
+											p0: value
+										}, this.onGenerate );
+									}}
 								/>
 							</Well>
 							Let's assume that we have observed data with the following characteristics:
@@ -144,19 +149,29 @@ class ProportionTest extends Component {
 									step={0.001}
 									min={0}
 									max={1}
+									onChange={( value ) => {
+										this.setState({
+											phat: value
+										},  this.onGenerate );
+									}}
 								/>
 								<NumberInput
 									legend="Sample size"
 									defaultValue={this.state.n}
 									step={1}
 									min={1}
+									onChange={( value ) => {
+										this.setState({
+											n: value
+										},  this.onGenerate );
+									}}
 								/>
 							</Well>
 							<p>We conduct the following test (click on the formula to switch between the one-sided variants and the two-sided test):</p>
 							<Switch onChange={this.onDirectionChange}>
+								<TeX displayMode tag="" raw={`H_0: p = ${this.state.p0} \\; vs. \\; H_1: p \\ne ${this.state.p0}`} />
 								<TeX displayMode tag="" raw={`H_0: p \\le ${this.state.p0} \\; vs. \\; H_1: p > ${this.state.p0}`} />
 								<TeX displayMode tag="" raw={`H_0: p \\ge ${this.state.p0} \\; vs. \\; H_1: p < ${this.state.p0}`} />
-								<TeX displayMode tag="" raw={`H_0: p = ${this.state.p0} \\; vs. \\; H_1: p \\ne ${this.state.p0}`} />
 							</Switch>
 							<p>We calculate the following test statistic:</p>
 							<TeX
@@ -175,7 +190,7 @@ class ProportionTest extends Component {
 									}
 								}}
 							/>
-						</Dashboard>
+						</Panel>
 					</Col>
 					<Col md={6}>
 						<Panel title="Test Result">

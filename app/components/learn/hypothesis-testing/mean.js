@@ -7,7 +7,6 @@ import { abs, sqrt, roundn } from '@stdlib/math/base/special';
 import linspace from '@stdlib/math/utils/linspace';
 import dnorm from '@stdlib/math/base/dists/normal/pdf';
 import pnorm from '@stdlib/math/base/dists/normal/cdf';
-import Dashboard from 'components/dashboard';
 import NumberInput from 'components/input/number';
 import Switch from 'components/switch';
 import TeX from 'components/tex';
@@ -46,8 +45,9 @@ class MeanTest extends Component {
 
 	}
 
-	onGenerate = (  mu0, xbar, sigma, n ) => {
+	onGenerate = () => {
 		debug( 'Should generate new values...' );
+		const { mu0, xbar, sigma, n } = this.state;
 		let pdfData = linspace( -3.50, 3.5, 300 );
 		pdfData = pdfData.map( x => {
 			return { x: x, y: dnorm( x, 0, 1 ) };
@@ -95,19 +95,7 @@ class MeanTest extends Component {
 		let probFormula;
 		let { zStat } = this.state;
 		switch ( pos ) {
-		case 1:
-			areaData = linspace( -3, zStat, 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 ) };
-			});
-			probFormula = `P( Z < ${zStat}) = ${roundn( pnorm( zStat, 0, 1 ), -3 )}`;
-			break;
 		case 0:
-			areaData = linspace( zStat, 3, 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 ) };
-			});
-			probFormula = `P( Z > ${zStat}) = ${roundn( 1-pnorm( zStat, 0, 1 ), -3 )}`;
-			break;
-		case 2:
 			areaData = linspace( abs( zStat ), 3, 200 ).map( d => {
 				return {
 					x: d,
@@ -122,6 +110,18 @@ class MeanTest extends Component {
 			});
 			probFormula = `P( |Z| > ${zStat}) = ${roundn( 1-pnorm( abs( zStat ), 0, 1 ) + pnorm( -abs( zStat ), 0, 1 ), - 3 )}`;
 			break;
+		case 1:
+			areaData = linspace( -3, zStat, 200 ).map( d => {
+				return { x: d, y: dnorm( d, 0, 1 ) };
+			});
+			probFormula = `P( Z < ${zStat}) = ${roundn( pnorm( zStat, 0, 1 ), -3 )}`;
+			break;
+		case 2:
+			areaData = linspace( zStat, 3, 200 ).map( d => {
+				return { x: d, y: dnorm( d, 0, 1 ) };
+			});
+			probFormula = `P( Z > ${zStat}) = ${roundn( 1-pnorm( zStat, 0, 1 ), -3 )}`;
+			break;
 		}
 		this.setState({
 			type: pos,
@@ -134,12 +134,17 @@ class MeanTest extends Component {
 		return ( <Grid>
 			<Row>
 				<Col md={6}>
-					<Dashboard title="Parameters" maxWidth={1600} autoUpdate onGenerate={this.onGenerate}>
+					<Panel header={<h4>Parameters</h4>} maxWidth={1600}>
 						<Well>
 							<NumberInput
 								legend="Hypothesized mean (null hypothesis)"
-								defaultValue={this.state.m0}
+								defaultValue={this.state.mu0}
 								step="any"
+								onChange={( value ) => {
+									this.setState({
+										mu0: value
+									}, this.onGenerate );
+								}}
 							/>
 						</Well>
 						<p>Let's assume that we have observed data with the following characteristics</p>
@@ -148,25 +153,40 @@ class MeanTest extends Component {
 								legend="Sample mean"
 								defaultValue={this.state.xbar}
 								step="any"
+								onChange={( value ) => {
+									this.setState({
+										xbar: value
+									},  this.onGenerate );
+								}}
 							/>
 							<NumberInput
 								legend="Sample standard deviation"
 								defaultValue={this.state.sigma}
 								min={0.1}
 								step="any"
+								onChange={( value ) => {
+									this.setState({
+										sigma: value
+									},  this.onGenerate );
+								}}
 							/>
 							<NumberInput
 								legend="Sample size"
 								defaultValue={this.state.n}
 								step={1}
 								min={1}
+								onChange={( value ) => {
+									this.setState({
+										n: value
+									},  this.onGenerate );
+								}}
 							/>
 						</Well>
 						<p>We conduct the following test (click on the formula to switch between the one-sided variants and the two-sided test):</p>
 						<Switch onChange={this.onDirectionChange}>
+							<TeX displayMode tag="" raw={`H_0: \\mu = ${this.state.mu0} \\; vs. \\; H_1: \\mu \\ne ${this.state.mu0}`} />
 							<TeX displayMode tag="" raw={`H_0: \\mu \\le ${this.state.mu0} \\; vs. \\; H_1: \\mu > ${this.state.mu0}`} />
 							<TeX displayMode tag="" raw={`H_0: \\mu \\ge ${this.state.mu0} \\; vs. \\; H_1: \\mu < ${this.state.mu0}`} />
-							<TeX displayMode tag="" raw={`H_0: \\mu = ${this.state.mu0} \\; vs. \\; H_1: \\mu \\ne ${this.state.mu0}`} />
 						</Switch>
 						<p>We calculate the following test statistic:</p>
 						<TeX
@@ -191,7 +211,7 @@ class MeanTest extends Component {
 								}
 							}}
 						/>
-					</Dashboard>
+					</Panel>
 				</Col>
 				<Col md={6}>
 					<Panel title="Test Result">
