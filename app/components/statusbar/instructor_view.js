@@ -1,9 +1,11 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Accordion, Panel } from 'react-bootstrap';
+import { Accordion, Panel, Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
 import moment from 'moment';
 import $ from 'jquery';
+import FileSaver from 'file-saver';
+import stringify from 'csv-stringify';
 import ActionLog from './action_log.js';
 import UserList from './user_list.js';
 import max from '@stdlib/math/base/special/max';
@@ -96,6 +98,28 @@ class InstructorView extends Component {
 		}
 	}
 
+	saveJSON = () => {
+		const { session } = this.context;
+		const blob = new Blob([ JSON.stringify( session.socketActions ) ], {
+			type: 'application/json'
+		});
+		const name = `actions_${session.namespaceName}_${session.lessonName}.json`;
+		FileSaver.saveAs( blob, name );
+	}
+
+	saveCSV = () => {
+		const { session } = this.context;
+		stringify( session.socketActions, {
+			header: true
+		}, ( err, output ) => {
+			const blob = new Blob([ output ], {
+				type: 'text/plain'
+			});
+			const name = `actions_${session.namespaceName}_${session.lessonName}.csv`;
+			FileSaver.saveAs( blob, name );
+		});
+	}
+
 	render() {
 		const { session } = this.context;
 		return (
@@ -144,9 +168,6 @@ class InstructorView extends Component {
 									period: newPeriod
 								});
 							}} />
-							<span style={{ fontSize: '12px', fontWeight: 600 }}>
-								{'# '+this.state.nActions}
-							</span>
 							<ActionLog
 								period={this.state.period}
 								onFilter={ ( newHeader, nActions ) => {
@@ -161,6 +182,17 @@ class InstructorView extends Component {
 									});
 								}}
 							/>
+							<ButtonToolbar>
+								<ButtonGroup bsSize="xsmall">
+									<Button onClick={this.saveJSON} >Save JSON</Button>
+									<Button onClick={this.saveCSV} >Save CSV</Button>
+								</ButtonGroup>
+								<ButtonGroup>
+									<span style={{ fontSize: '12px', fontWeight: 600 }}>
+										{'# of Actions: '+this.state.nActions}
+									</span>
+								</ButtonGroup>
+							</ButtonToolbar>
 						</Panel>
 					</Accordion>
 				</div>
