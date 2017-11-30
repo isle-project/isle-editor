@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
 import InputRange from 'react-input-range';
 import unique from 'uniq';
+import contains from '@stdlib/assert/contains';
+import lowercase from '@stdlib/string/lowercase';
 import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
 import min from 'compute-min';
@@ -99,6 +101,10 @@ class DataTable extends Component {
 							{uniqueValues.map( v => <option value={`${v}`}>{v}</option> )}
 						</select>
 					);
+				};
+			} else {
+				out[ 'filterMethod' ] = ( filter, row ) => {
+					return contains( lowercase( row[ filter.id ] ), lowercase( filter.value ) );
 				};
 			}
 			return out;
