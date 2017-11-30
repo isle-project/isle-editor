@@ -123,16 +123,16 @@ class MeanTest extends Component {
 			probFormula = `P( |Z| > ${zStat}) = ${roundn( 1-pnorm( abs( zStat ), 0, 1 ) + pnorm( -abs( zStat ), 0, 1 ), - 3 )}`;
 			break;
 		case 1:
-			areaData = linspace( -3, zStat, 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 ) };
-			});
-			probFormula = `P( Z < ${zStat}) = ${roundn( pnorm( zStat, 0, 1 ), -3 )}`;
-			break;
-		case 2:
 			areaData = linspace( zStat, 3, 200 ).map( d => {
 				return { x: d, y: dnorm( d, 0, 1 ) };
 			});
 			probFormula = `P( Z > ${zStat}) = ${roundn( 1-pnorm( zStat, 0, 1 ), -3 )}`;
+			break;
+		case 2:
+			areaData = linspace( -3, zStat, 200 ).map( d => {
+				return { x: d, y: dnorm( d, 0, 1 ) };
+			});
+			probFormula = `P( Z < ${zStat}) = ${roundn( pnorm( zStat, 0, 1 ), -3 )}`;
 			break;
 		}
 		this.setState({
@@ -258,21 +258,18 @@ class MeanTest extends Component {
 								displayMode
 								tag=""
 								style={{ fontSize: "1.5em" }}
-								raw={`z  = \\frac{\\bar x - \\bar y - (\\mu_1 - \\mu_2)}{\\sqrt{\\tfrac{s_1^2}{n_1}+\\tfrac{s_2^2}{n_2}}}`} elems={{
+								raw={`z  = \\frac{\\bar x_1 - \\bar x_2 - (\\mu_1 - \\mu_2)}{\\sqrt{\\tfrac{s_1^2}{n_1}+\\tfrac{s_2^2}{n_2}}}`} elems={{
 									"n": {
 										tooltip: "Sample Size"
 									},
 									"s": {
 										tooltip: "Standard Deviation"
 									},
-									"mu": {
+									"μ": {
 										tooltip: "True mean"
 									},
 									"x": {
-										tooltip: "First sample Mean"
-									},
-									"y": {
-										tooltip: "Second sample Mean"
+										tooltip: "Sample Mean"
 									},
 									"z": {
 										tooltip: "Test Statistic"

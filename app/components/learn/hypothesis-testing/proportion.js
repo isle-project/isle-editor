@@ -5,6 +5,8 @@ import { Grid, Row, Col, Label, Panel, Well } from 'react-bootstrap';
 import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
 import { abs, sqrt, roundn } from '@stdlib/math/base/special';
 import linspace from '@stdlib/math/utils/linspace';
+import isInfinite from '@stdlib/assert/is-infinite';
+import isnan from '@stdlib/assert/is-nan';
 import dnorm from '@stdlib/math/base/dists/normal/pdf';
 import pnorm from '@stdlib/math/base/dists/normal/cdf';
 import NumberInput from 'components/input/number';
@@ -50,6 +52,10 @@ class ProportionTest extends Component {
 		this.onGenerate();
 	}
 
+	normalPDF( d ) {
+		return { x: d, y: dnorm( d, 0, 1 ) };
+	}
+
 	onGenerate = () => {
 		debug( 'Should generate new values...' );
 		const { p0, phat, phat2, n, n2, samples, type } = this.state;
@@ -74,25 +80,30 @@ class ProportionTest extends Component {
 		}
 		switch ( type ) {
 		case 2:
-			areaData = linspace( -3, pStat, 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 ) };
-			});
+			if ( !isInfinite( pStat ) && !isnan( pStat ) ) {
+				areaData = linspace( -3, pStat, 200 ).map( this.normalPDF );
+			} else {
+				areaData = linspace( -3, 3, 200 ).map( this.normalPDF );
+			}
 			probFormula = `P( Z < ${pStat}) = ${roundn( pnorm( pStat, 0, 1 ), -3 )}`;
 			break;
 		case 1:
-			areaData = linspace( pStat, 3, 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 )
-				};
-			});
+			if ( !isInfinite( pStat ) && !isnan( pStat ) ) {
+				areaData = linspace( pStat, 3, 200 ).map( this.normalPDF );
+			} else {
+				areaData = linspace( -3, 3, 200 ).map( this.normalPDF );
+			}
 			probFormula = `P( Z > ${pStat}) = ${roundn( 1-pnorm( pStat, 0, 1 ), -3 )}`;
 			break;
 		case 0:
-			areaData = linspace( abs( pStat ), 3, 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 ) };
-			});
-			areaData2 = linspace( -3, -abs( pStat ), 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 ) };
-			});
+			console.log( pStat );
+			if ( !isInfinite( pStat ) && !isnan( pStat ) ) {
+				areaData = linspace( abs( pStat ), 3, 200 ).map( this.normalPDF );
+				areaData2 = linspace( -3, -abs( pStat ), 200 ).map( this.normalPDF );
+			} else {
+				areaData = linspace( 0, 3, 200 ).map( this.normalPDF );
+				areaData2 = linspace( -3, 0, 200 ).map( this.normalPDF );
+			}
 			probFormula = `P( |Z| > ${abs( pStat )}) = ${roundn( ( 1-pnorm( abs( pStat ), 0, 1 ) )+pnorm( -abs( pStat ), 0, 1 ), - 3 )}`;
 			break;
 		}
@@ -120,17 +131,17 @@ class ProportionTest extends Component {
 			});
 			probFormula = `P( |Z| > ${pStat}) = ${roundn( 1-pnorm( abs( pStat ), 0, 1 ) + pnorm( -abs( pStat ), 0, 1 ), -3 )}`;
 			break;
+		case 1:
+			areaData = linspace( pStat || 0.0, 3, 200 ).map( d => {
+				return { x: d, y: dnorm( d, 0, 1 ) };
+			});
+			probFormula = `P( Z > ${pStat}) = ${roundn( 1-pnorm( pStat, 0, 1 ), -3 )}`;
+			break;
 		case 2:
 			areaData = linspace( -3, pStat, 200 ).map( d => {
 				return { x: d, y: dnorm( d, 0, 1 ) };
 			});
 			probFormula = `P( Z < ${pStat}) = ${roundn( pnorm( pStat, 0, 1 ), -3 )}`;
-			break;
-		case 1:
-			areaData = linspace( pStat, 3, 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 ) };
-			});
-			probFormula = `P( Z > ${pStat}) = ${roundn( 1-pnorm( pStat, 0, 1 ), -3 )}`;
 			break;
 		}
 		this.setState({
@@ -217,8 +228,8 @@ class ProportionTest extends Component {
 									legend={`${ samples === 'Two-Sample' ? 'Difference in proportions' : 'Hypothesized proportion' } (null hypothesis)`}
 									defaultValue={p0}
 									step={0.001}
-									min={0.001}
-									max={0.999}
+									min={0}
+									max={1}
 									onChange={( value ) => {
 										this.setState({
 											p0: value
@@ -281,7 +292,7 @@ class ProportionTest extends Component {
 								<TeX
 									tag=""
 									displayMode
-									raw={`z  = \\frac{${roundn( phat - phat2, -3 )} - ${p0}}{\\sqrt{${roundn( stderr*stderr, -3 )}}} = ${pStat}`}
+									raw={`z  = \\frac{${roundn( phat - phat2, -3 )} - ${p0}}{\\sqrt{${roundn( stderr*stderr, -5 )}}} = ${pStat}`}
 								/> :
 								<TeX
 									tag=""
