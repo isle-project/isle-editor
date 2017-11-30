@@ -54,7 +54,7 @@ class ZTest extends Component {
 		const { continuous} = this.props;
 		return (
 			<Dashboard
-				title="One-Sample Z-Test"
+				title="One-Sample Mean Test"
 				label="Calculate"
 				autoStart={false}
 				onGenerate={this.calculateZTest}

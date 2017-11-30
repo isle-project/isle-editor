@@ -159,7 +159,7 @@ class ZTest2 extends Component {
 		const binary = this.getBinaryVars( categorical );
 		return (
 			<Panel
-				header={<h4>Two-Sample Z-Test</h4>}
+				header={<h4>Two-Sample Mean Test</h4>}
 				style={{ fontSize: '14px' }}
 			>
 				<SelectInput

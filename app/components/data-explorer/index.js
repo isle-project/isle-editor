@@ -806,7 +806,7 @@ class DataExplorer extends Component {
 			{this.props.tests.map( ( e, i ) => {
 				let content = null;
 				switch ( e ) {
-				case 'One-Sample Z-Test':
+				case 'One-Sample Mean Test':
 					content = <ZTest
 						onCreated={this.addToOutputs}
 						data={this.state.data}
@@ -814,7 +814,7 @@ class DataExplorer extends Component {
 						logAction={this.logAction}
 					/>;
 					break;
-				case 'Two-Sample Z-Test':
+				case 'Two-Sample Mean Test':
 					content = <ZTest2
 						onCreated={this.addToOutputs}
 						data={this.state.data}
@@ -1052,9 +1052,9 @@ DataExplorer.defaultProps = {
 		'Contingency Table'
 	],
 	tests: [
-		'One-Sample Z-Test',
+		'One-Sample Mean Test',
 		'One-Sample Proportion Test',
-		'Two-Sample Z-Test',
+		'Two-Sample Mean Test',
 		'Two-Sample Proportion Test',
 		'Correlation Test',
 		'Chi-squared Independence Test',
