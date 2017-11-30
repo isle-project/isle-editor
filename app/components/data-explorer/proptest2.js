@@ -184,7 +184,8 @@ class PropTest2 extends Component {
 								let categories = copy( this.props.data[ val ]);
 								unique( categories );
 								this.setState({
-									categories
+									categories,
+									var1: val
 								});
 							}}
 						/>
