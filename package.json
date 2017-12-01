@@ -178,7 +178,7 @@
     "react-contextmenu": "^2.6.5",
     "react-copy-to-clipboard": "^5.0.0",
     "react-d3-cloud": "^0.5.0",
-    "react-dates": "15.2.1",
+    "react-dates": "15.3.0",
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "16.2.0",
@@ -209,9 +209,9 @@
     "uglify-es": "3.1.10",
     "uniq": "^1.0.1",
     "utf-8-validate": "^3.0.2",
-    "venn.js": "0.2.17",
+    "venn.js": "0.2.18",
     "victory": "0.24.2",
-    "webpack": "3.9.0"
+    "webpack": "3.9.1"
   },
   "devEngines": {
     "node": "5.x || 6.x || 7.x || 8.x"
