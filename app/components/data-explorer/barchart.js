@@ -64,7 +64,7 @@ export function generateBarchartConfig({ data, variable, group }) {
 			yaxis: {
 				title: 'Count'
 			},
-			title: group ? `${variable} by ${group}` : variable
+			title: group ? `${variable} given ${group}` : variable
 		}
 	};
 } // end FUNCTION generateBarchartConfig()

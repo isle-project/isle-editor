@@ -83,7 +83,7 @@ export function generatePiechartConfig({ data, variable, group }) {
 	}
 	const layout = {
 		annotations,
-		title: group ? `${variable} by ${group}` : variable
+		title: group ? `${variable} given ${group}` : variable
 	};
 	return {
 		layout,

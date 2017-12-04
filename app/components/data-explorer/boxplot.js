@@ -50,7 +50,7 @@ export function generateBoxplotConfig({ data, variable, group }) {
 	return {
 		data: traces,
 		layout: {
-			title: group ? `${variable} by ${group}` : variable
+			title: group ? `${variable} given ${group}` : variable
 		}
 	};
 } // end FUNCTION generateBoxplotConfig()

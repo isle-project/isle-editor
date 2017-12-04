@@ -141,7 +141,7 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 		layout = {
 			xaxis: { title: variable },
 			yaxis: { title: overlayDensity ? 'Density' : 'Count' },
-			title: `${variable} by ${group}`
+			title: `${variable} given ${group}`
 		};
 		layout.barmode = 'overlay';
 	}
