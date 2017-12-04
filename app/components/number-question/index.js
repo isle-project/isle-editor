@@ -69,13 +69,15 @@ class NumberQuestion extends Component {
 	}
 
 	componentWillReceiveProps( nextProps ) {
-		if ( nextProps !== this.props ) {
+		if (
+			nextProps.question !== this.props.question &&
+			nextProps.solution !== this.props.solution
+		) {
 			this.setState({
 				value: null,
 				solutionDisplayed: false,
 				submitted: false
 			});
-			debug( 'Component will receive props.' );
 		}
 	}
 

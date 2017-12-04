@@ -40,7 +40,9 @@ class FreeTextQuestion extends Component {
 	*/
 	handleChange = ( event ) => {
 		const newValue = event.target.value;
-		this.setState({ value: newValue });
+		this.setState({
+			value: newValue
+		});
 		this.props.onChange( newValue );
 	};
 
@@ -102,13 +104,16 @@ class FreeTextQuestion extends Component {
 	}
 
 	componentWillReceiveProps( nextProps ) {
-		if ( nextProps !== this.props ) {
+		if (
+			nextProps.placeholder !== this.props.placeholder &&
+			nextProps.solution !== this.props.solution &&
+			nextProps.question !== this.props.question
+		) {
 			this.setState({
 				value: '',
 				solutionDisplayed: false,
 				submitted: false
 			});
-			debug( 'Component will receive props.' );
 		}
 	}
 
