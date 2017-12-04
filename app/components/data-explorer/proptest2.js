@@ -53,6 +53,14 @@ class PropTest2 extends Component {
 		let x;
 		let y;
 
+		if ( var1 === grouping || var1 === var2 ) {
+			return this.props.session.addNotification({
+				title: 'Action required',
+				message: `Please make sure that the group variable or second variable is not equal to your variable of interest.`,
+				level: 'warning',
+				position: 'tr'
+			});
+		}
 		if ( grouping ) {
 			x = data[ var1 ];
 			let binary = x.map( x => x == success ? 1 : 0 );
