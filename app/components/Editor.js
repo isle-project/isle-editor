@@ -1,9 +1,9 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
-import ace from 'brace';
+import ace, { TokenIterator } from 'brace';
+import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import 'brace/mode/html';
 import 'brace/theme/github';
 import 'brace/ext/searchbox';
@@ -51,7 +51,7 @@ class Editor extends Component {
 	componentDidMount() {
 		langTools.addCompleter( customCompleter );
 
-		this.editor = ace.edit( ReactDom.findDOMNode( this ) );
+		this.editor = ace.edit( this.editorWindow );
 		this.editor.$blockScrolling = Infinity;
 
 		const session = this.editor.getSession();
@@ -99,6 +99,7 @@ class Editor extends Component {
 				session.setAnnotations( annotations );
 			}
 		});
+
 	}
 
 	componentWillReceiveProps( nextProps ) {
@@ -115,16 +116,40 @@ class Editor extends Component {
 		clearInterval( this.interval );
 	}
 
+	handleClick = () => {
+		var pos = this.editor.getCursorPosition();
+		var stream = new TokenIterator( this.session, pos.row, pos.column );
+		next = stream.stepForward();
+		console.log( next );
+	}
+
 	render() {
 		return (
-			<div
-				ref="editorWindow"
-				onChange={this.onChange}
-				style={{
-					'height': '100%',
-					'width': '100%',
-				}}
-			/>
+			<div>
+				<ContextMenuTrigger id="editorWindow">
+					<div
+						ref={ ( div ) => this.editorWindow = div }
+						onChange={this.onChange}
+						style={{
+							'height': '100%',
+							'width': '100%',
+							'zIndex': 100
+						}}
+					/>
+				</ContextMenuTrigger>
+				<ContextMenu id="editorWindow">
+					<MenuItem data={{}} onClick={this.handleClick}>
+					ContextMenu Item 1
+					</MenuItem>
+					<MenuItem data={{}} onClick={this.handleClick}>
+					ContextMenu Item 2
+					</MenuItem>
+					<MenuItem divider />
+					<MenuItem data={{}} onClick={this.handleClick}>
+					ContextMenu Item 3
+					</MenuItem>
+				</ContextMenu>
+			</div>
 		);
 	}
 }
