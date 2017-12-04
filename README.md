@@ -6,6 +6,7 @@
 
 [![Dependencies][dependencies-image]][dependencies-url] 
 [![DevDependencies][dev-dependencies-image]][dev-dependencies-url]
+[![DOI](https://zenodo.org/badge/61614893.svg)](https://zenodo.org/badge/latestdoi/61614893)
 
 #### Tests
 
