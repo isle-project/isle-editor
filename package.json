@@ -206,12 +206,12 @@
     "source-map-support": "^0.5.0",
     "spectacle": "4.0.4",
     "style-loader": "^0.19.0",
-    "uglify-es": "3.1.10",
+    "uglify-es": "3.2.1",
     "uniq": "^1.0.1",
-    "utf-8-validate": "^3.0.2",
+    "utf-8-validate": "^4.0.0",
     "venn.js": "0.2.18",
     "victory": "0.24.2",
-    "webpack": "3.9.1"
+    "webpack": "3.10.0"
   },
   "devEngines": {
     "node": "5.x || 6.x || 7.x || 8.x"
