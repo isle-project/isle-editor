@@ -84,6 +84,7 @@ const SelectInput = require( 'components/input/select' );
 const SelectQuestion = require( 'components/select-question' );
 const SliderInput = require( 'components/input/slider' );
 const Slider = require( 'components/slider' );
+const SpeechRecognition = require( 'components/speech-recognition' );
 const Spinner = require( 'components/spinner' );
 const StatusBar = require( 'components/statusbar' );
 const Switch = require( 'components/switch' );
