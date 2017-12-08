@@ -178,6 +178,12 @@ class JSShell extends Component {
 			solutionOpen: false
 		};
 
+		if ( this.props.vars ) {
+			for ( var key in this.props.vars ) {
+				global[ key ] = this.props.vars [ key ];
+			}
+		}
+
 		this.get_logs = function() {
 			var list = global.jslog;
 			var msgs = [];
@@ -495,11 +501,35 @@ class JSShell extends Component {
 
 		const nHints = this.props.hints.length;
 		const nHelp	= this.props.help.length;
+		const toolbar = <ButtonToolbar style={{ float: 'right', marginTop: '8px' }}>
+			{ nHints > 0 ? this.showHints() : null }
+			{ nHelp > 0 ? this.showHelp() : null }
+			{ ( this.props.solution && !this.state.disabled ) ?
+				showSolutionButton(
+					this.state.currentHint,
+					nHints,
+					this.handleSolutionClick,
+					this.state.solutionOpen,
+					this.state.nEvaluations
+				) :
+				null
+			}
+			{
+				( this.props.chat && this.props.id ) ?
+					<span style={{display: 'inline-block', marginLeft: '4px' }}>
+						<ChatButton for={this.props.id} />
+					</span> :
+					null
+			}
+		</ButtonToolbar>;
+
+		const editor = <div style = { jsedit } id = { this.props.id }></div>;
+
 
 		return (
-			<div>
+			<div> 
 				<div className="JSShell" style={frame}>
-					<div style = { jsedit } id = { this.props.id }></div>
+					{editor}
 					<div style = { myToolbar } >
 						{ !this.state.disabled ?
 							<Button
@@ -513,27 +543,7 @@ class JSShell extends Component {
 							>Test Code</Button> :
 							<span />
 						}
-						<ButtonToolbar style={{ float: 'right', marginTop: '8px' }}>
-							{ nHints > 0 ? this.showHints() : null }
-							{ nHelp > 0 ? this.showHelp() : null }
-							{ ( this.props.solution && !this.state.disabled ) ?
-								showSolutionButton(
-									this.state.currentHint,
-									nHints,
-									this.handleSolutionClick,
-									this.state.solutionOpen,
-									this.state.nEvaluations
-								) :
-								null
-							}
-							{
-								( this.props.chat && this.props.id ) ?
-									<span style={{display: 'inline-block', marginLeft: '4px' }}>
-										<ChatButton for={this.props.id} />
-									</span> :
-									null
-							}
-						</ButtonToolbar>
+						{ toolbar }
 						<br/>
 					</div>
 					<div id={this.state.console_id} style={console} >
