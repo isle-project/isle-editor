@@ -27,11 +27,12 @@ class SpeechRecognition extends Component {
 
 	checkName ( text ) {
 		var x = text.search( this.props.name );
-		if ( x === 0 )  {
+		if ( x !== -1 )  {
+			console.log( "ONNAME TRIGGERED" );
 			this.props.onName( text );
 		}
 	}
-
+	
 	segment( text ) {
 		this.setState({
 			recognized: text
@@ -41,6 +42,7 @@ class SpeechRecognition extends Component {
 	}
 
 	finalText( text ) {
+		console.log( "FinalText" );
 		this.checkName( text );
 		this.setState({
 			recognized: text,
@@ -58,8 +60,12 @@ class SpeechRecognition extends Component {
 		}
 
 		for ( var i = event.resultIndex; i < event.results.length; ++i ) {      
-			if ( event.results[ i ].isFinal )  this.segment ( event.results[ i ][ 0 ].transcript );   
-			else this.finalText ( event.results[ i ][ 0 ].transcript ); 	
+			if ( event.results[ i ].isFinal )  {
+				this.finalText ( event.results[ i ][ 0 ].transcript );
+			}   
+			else {
+				this.segment ( event.results[ i ][ 0 ].transcript ); 
+			}	
 		} 
 	}
 
