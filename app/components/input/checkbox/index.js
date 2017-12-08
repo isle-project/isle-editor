@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Input from 'components/input/base';
 
 
@@ -37,6 +38,19 @@ class CheckboxInput extends Input {
 		};
 	}
 
+	componentWillReceiveProps( nextProps ) {
+		let newState = {};
+		if ( nextProps.defaultValue !== this.props.defaultValue ) {
+			newState.value = nextProps.defaultValue;
+		}
+		else if ( nextProps.bind !== this.props.bind ) {
+			newState.value = global.lesson.state[ nextProps.bind ];
+		}
+		if ( !isEmptyObject( newState ) ) {
+			this.setState( newState );
+		}
+	}
+
 	componentDidUpdate() {
 		if ( this.props.bind ) {
 			let globalVal = global.lesson.state[ this.props.bind ];
@@ -54,6 +68,7 @@ class CheckboxInput extends Input {
 			checked={this.state.value}
 			value="checkbox"
 			onChange={this.handleChange}
+			disabled={this.props.disabled}
 			style={{
 				verticalAlign: 'bottom',
 				width: '24px',
@@ -98,6 +113,7 @@ CheckboxInput.defaultProps = {
 	bind: '',
 	onChange() {},
 	defaultValue: false,
+	disabled: false,
 	inline: false
 };
 
@@ -108,6 +124,7 @@ CheckboxInput.propTypes = {
 	bind: PropTypes.string,
 	onChange: PropTypes.func,
 	defaultValue: PropTypes.bool,
+	disabled: PropTypes.bool,
 	inline: PropTypes.bool
 };
 

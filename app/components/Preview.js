@@ -110,6 +110,7 @@ const VictoryGroup = require( 'victory' ).VictoryGroup;
 const VictoryAxis = require( 'victory' ).VictoryAxis;
 const VictoryErrorBar = require( 'victory' ).VictoryErrorBar;
 const VictoryLabel = require( 'victory' ).VictoryLabel;
+const VictoryLegend = require( 'victory' ).VictoryLegend;
 const VictoryLine = require( 'victory' ).VictoryLine;
 const VictoryPie = require( 'victory' ).VictoryPie;
 const VictoryScatter = require( 'victory' ).VictoryScatter;
