@@ -41,9 +41,25 @@ class SpeechRecognition extends Component {
 		this.props.onSegment( text );
 	}
 
+	checkNonames( text ) {
+		var s = text;
+
+		for ( var i = 0; i < this.props.nonames.length; i++ ) {
+			var n = this.props.nonames[ i ];
+			if ( text.search( n ) !== 1 ) {
+				console.log ( "SUBSTITUTION" );
+				s = text.replace( n, this.props.name );
+			}
+		}
+		
+		return s;
+	}
+
 	finalText( text ) {
 		console.log( "FinalText" );
+		text = this.checkNonames( text );
 		this.checkName( text );
+
 		this.setState({
 			recognized: text,
 			finalText: text
@@ -139,6 +155,7 @@ SpeechRecognition.defaultProps = {
 	id: "SpeechRecognition",
 	className: "speech_recognition",
 	name: "Olivia",
+	nonames: [ "Bolivia", "Lydia", "Bolivian" ],
 	showText: false,
 	language: "en-US",
 	onSegment: function() {},
@@ -155,6 +172,7 @@ SpeechRecognition.propTypes = {
 	showText: PropTypes.bool,
 	className: PropTypes.string,
 	name: PropTypes.string,
+	nonames: PropTypes.array,
 	language: PropTypes.string,
 	aiml: PropTypes.string || PropTypes.array,
 	callbacks: PropTypes.string,
