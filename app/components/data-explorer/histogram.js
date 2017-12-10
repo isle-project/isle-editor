@@ -48,7 +48,7 @@ function calculateDensityValues( vals, densityType ) {
 	switch ( densityType ) {
 	case 'Data-driven':
 		// Chose appropriate bandwidth via rule-of-thumb:
-		const h = 2.0 * iqr( vals ) * pow( vals.length, -1/3 );
+		const h = 2.0 * iqr( vals ) * pow( vals.length, -1/3 ) || 0.1;
 		const phi = gaussian.factory( 0.0, 1.0 );
 		const kde = kernelSmooth.density( vals, phi, h );
 		y = x.map( x => kde( x ) );
