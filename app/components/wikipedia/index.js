@@ -2,10 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import $ from 'jquery';
 import './wikipedia.css';
 import SpeechRecognition from 'components/speech-recognition';
-const debug = require( 'debug' )( 'isle-editor' );
 
 
 // MAIN //
@@ -25,7 +23,7 @@ class Wikipedia extends Component {
 	}
 
 	componentDidMount() {
-		if ( this.props.autoplay ) this.record();
+		if ( this.props.autoplay ) this.click();
 	}
 
 
@@ -205,8 +203,6 @@ Wikipedia.defaultProps = {
 	showSearch: false,
 	speech: false,
 	language: 'en-US',
-	onFinalText: function() {},
-	onName: function() {},
 	autoplay: false,
 	read: false
 };
@@ -219,12 +215,7 @@ Wikipedia.propTypes = {
 	showSearch: PropTypes.bool,
 	speech: PropTypes.bool,
 	className: PropTypes.string,
-	name: PropTypes.string,
-	nonames: PropTypes.array,
 	language: PropTypes.string,
-	onSegment: PropTypes.func,
-	onFinalText: PropTypes.func,
-	onName: PropTypes.func,
 	autoplay: PropTypes.bool
 };
 
