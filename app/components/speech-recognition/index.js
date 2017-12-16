@@ -86,7 +86,7 @@ class SpeechRecognition extends Component {
 	record() {
 		debug( 'Recording speech...' );
 		this.recognizer = null;
-
+		//var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 		const recognizer = new webkitSpeechRecognition();
 		recognizer.lang = this.props.language;
 		recognizer.continuous = true;
@@ -117,6 +117,15 @@ class SpeechRecognition extends Component {
 				</div>
 			);
 		}
+	}
+
+	trigger() {
+		if ( this.state.isRecording ){
+			this.stop();
+		}
+		else {
+			this.record();
+		} 
 	}
 
 	renderMicrophone() {
