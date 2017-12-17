@@ -45,6 +45,11 @@ class Wikipedia extends Component {
 		}
 	}
 
+	// this is externally triggered
+	trigger ( value ) {
+		this.get_result( value );
+	}
+
 	get_result ( value ) {
 		console.log( value );
 		var marker = "about";
@@ -68,8 +73,8 @@ class Wikipedia extends Component {
 			var text = value.substring( x, value.length );
 			this.wikipedia_iframe( text );
 		}
+		else console.log( "marker not found" );
 	}
-
 
 
 	wikipedia_iframe ( text ) {
@@ -95,9 +100,7 @@ class Wikipedia extends Component {
 			break;
 		}
 
-
 		var s = 'https://' + lang + '.wikipedia.org/wiki/' + text;
-		// var t = '<iframe style = "iframe_style" src = "' + s + '" width = "100%" height=600 />';
 		return s;
 	}
 
