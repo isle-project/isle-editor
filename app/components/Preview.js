@@ -33,6 +33,8 @@ import markdownToHTML from 'utils/markdown-to-html';
 
 // Babel does not support `eval`, so we have to require modules using CommonJS...
 const Accordion = ReactBootstrap.Accordion;
+const AcousticCSS = require( 'components/acoustic-css' );
+const AcousticAssistant = require( 'components/acoustic-assistant' );
 const Button = ReactBootstrap.Button;
 const CheckboxInput = require( 'components/input/checkbox' );
 const ColorPicker = require( 'components/color-picker' );
