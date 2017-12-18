@@ -53,8 +53,60 @@ class News extends Component {
 		});
 	}
 
+	exceptions ( name ) {
+		if ( name === "techcrunch" ) 		return "TechChrunch";
+		if ( name === "next web" )   		return "Next Web";
+		if ( name === "LAD Bible" )   		return "Lad Bible";
+		if ( name === "talkSPORT" )   		return "TalkSport";
+		if ( name === "Redditch" )   		return "Reddit/r/all";
+
+		if ( name === "polygon" )   		return "Polygon";		
+		if ( name === "New York magine" )   return "New York Magazine";
+		if ( name === "new Scientist" )   	return "New Scientist";
+		if ( name === "mirror" )   			return "Mirror";
+
+		if ( name === "mashable" )   		return "Mashable";		
+		if ( name === "hacker news" )   	return "Hacker News";
+		if ( name === "Google News" )   	return "GoogleNews";
+		if ( name === "four four two" )   	return "FourFourTwo";
+
+		if ( name === "football Italia" )   return "Football Italia";		
+		if ( name === "BuzzFeed" )   		return "Buzzfeed";
+		if ( name === "Turkish speaker" )   return "Tagesspiegel";
+		if ( name === "associated Press" )   return "Associated Press";		
+
+		if ( name === "wired" )   			return "Wired";
+		if ( name === "time" )   			return "The Time";
+		if ( name === "times of India" )   	return "Times of India";
+		if ( name === "sport Bible" )  		return "Sport Bible";	
+
+		if ( name === "t3n" )   			return "T3n";
+		if ( name === "Rogers" )   			return "Reuters";
+		if ( name === "recalled" )   		return "Recode";
+		if ( name === "Leek Road" )  		return "Recode";
+
+		if ( name === "newsweek" )   		return "Newsweek";
+		if ( name === "Rogers" )   			return "Reuters";
+		if ( name === "recalled" )   		return "Recode";
+		if ( name === "Leek Road" )  		return "Recode";
+
+
+		if ( name === "Frosham" )   		return "Fortune";
+		if ( name === "entertainment weekly" ) return "Entertainment Weekly";
+		if ( name === "Deeside" )   		return "Die Zeit";
+		if ( name === "bild" )  			return "Bild";
+
+		if ( name === "newsweek" )   		return "Newsweek";
+		if ( name === "ask Technica" )   	return "Ars Technica";
+
+		return name;
+	}
+ 
+
 	find ( name ) {
 		name = name.replace( "the ", "" );
+		name = this.exceptions( name );
+		
 		var result = null;
 		for ( var i = 0; i < newslist.length; i++ ) {
 			var item = newslist[ i ].title;
