@@ -64,6 +64,7 @@ const MatchListQuestion = require( 'components/match-list-question' );
 const Nav = ReactBootstrap.Nav;
 const Navbar = ReactBootstrap.Navbar;
 const NavItem = ReactBootstrap.NavItem;
+const News = require( 'components/news' );
 const NumberInput = require( 'components/input/number' );
 const NumberQuestion = require( 'components/number-question' );
 const NumberSurvey = require( 'components/number-survey' );

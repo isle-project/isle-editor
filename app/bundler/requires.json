@@ -33,6 +33,7 @@
 	"Navbar": "const Navbar = require( \"react-bootstrap\" ).Navbar",
 	"NavItem": "const NavItem = require( \"react-bootstrap\" ).NavItem",
 	"NetworkPlot": "const NetworkPlot = require( \"components/d3/network-plot\" )",
+	"News": "const News = require( \"components/news\" )",
 	"NumberInput": "const NumberInput = require( \"components/input/number\" )",
 	"NumberQuestion": "const NumberQuestion = require( \"components/number-question\" )",
 	"NumberSurvey": "const NumberSurvey = require( \"components/number-survey\" )",
