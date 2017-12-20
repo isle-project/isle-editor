@@ -47,17 +47,22 @@ class Switch extends React.Component {
 
 	render() {
 		let children = React.Children.map( this.props.children, this.makeVisible.bind( this ) );
+		const content = <span
+			className="switch"
+			onClick={this.handleClick}
+		>
+			{children}
+		</span>;
+
+		if ( this.props.tooltip === '' ) {
+			return content;
+		}
 		return (
 			<OverlayTrigger
-				placement="top"
+				placement={this.props.tooltipPos}
 				overlay={makeTooltip( this.props.tooltip )}
 			>
-				<div
-					className="switch"
-					onClick={this.handleClick}
-				>
-					{children}
-				</div>
+				{content}
 			</OverlayTrigger>
 		);
 	}
@@ -68,15 +73,17 @@ class Switch extends React.Component {
 
 Switch.propTypes = {
 	onChange: PropTypes.func,
-	tooltip: PropTypes.string
+	tooltip: PropTypes.string,
+	tooltipPos: PropTypes.string
 };
 
 
 // DEFAULT PROPERTIES //
 
 Switch.defaultProps = {
-	onChange(){},
-	tooltip: 'Click to cycle through available options.'
+	onChange() {},
+	tooltip: 'Click to cycle through available options.',
+	tooltipPos: 'top'
 };
 
 
