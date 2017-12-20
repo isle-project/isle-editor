@@ -37,7 +37,8 @@
       "exceptions": [ "{}", "[]", "empty" ]
     }],
     "react/jsx-indent-props": [ 2, "tab" ],
-    "react/jsx-indent": [ 2, "tab" ],
+    "react/jsx-indent": [ 0, "tab" ],
+    "react/prop-types": 2,
     "wrap-regex": 0
   },
   "plugins": [
