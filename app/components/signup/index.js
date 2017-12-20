@@ -221,6 +221,14 @@ Signup.contextTypes = {
 	session: PropTypes.object
 };
 
+Signup.defaultProps = {
+	onClose() {}
+};
+
+Signup.propTypes = {
+	onClose: PropTypes.func,
+	show: PropTypes.bool
+};
 
 // EXPORTS //
 
