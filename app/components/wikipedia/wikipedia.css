@@ -1,0 +1,54 @@
+.wikipedia {
+    width: 100%;
+    height: auto;
+}
+
+.wikipedia_search {
+    width: calc(100% - 130px);
+    height: 40px;
+    margin-top: 16px;
+    background: white;
+    float: left;
+    border:solid 1px gray;
+    padding-left: 8px;
+    padding-top: 6px;
+}
+
+.wikipedia_result {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    width: 95.3%;
+    height: auto;
+    box-shadow: 2px 2px 5px darkgray;
+}
+
+.iframe_style {
+    border: none;
+}
+
+
+.seperator {
+    height: 100px;
+}
+
+.wikipedia_logo {
+    width: 80px;
+    height: 80px;
+    float: right;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 20px;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Wikipedia_Logo_1.0.png/220px-Wikipedia_Logo_1.0.png');
+    background-size: 80px 100%;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.wikipedia_logo:hover {
+    opacity: 1;
+}
+
+
+.mike {
+    display: none;
+}

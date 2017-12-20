@@ -33,6 +33,8 @@ import markdownToHTML from 'utils/markdown-to-html';
 
 // Babel does not support `eval`, so we have to require modules using CommonJS...
 const Accordion = ReactBootstrap.Accordion;
+const AcousticCSS = require( 'components/acoustic-css' );
+const AcousticAssistant = require( 'components/acoustic-assistant' );
 const Button = ReactBootstrap.Button;
 const CheckboxInput = require( 'components/input/checkbox' );
 const ColorPicker = require( 'components/color-picker' );
@@ -62,6 +64,7 @@ const MatchListQuestion = require( 'components/match-list-question' );
 const Nav = ReactBootstrap.Nav;
 const Navbar = ReactBootstrap.Navbar;
 const NavItem = ReactBootstrap.NavItem;
+const News = require( 'components/news' );
 const NumberInput = require( 'components/input/number' );
 const NumberQuestion = require( 'components/number-question' );
 const NumberSurvey = require( 'components/number-survey' );
@@ -120,6 +123,7 @@ const VictoryTooltip = require( 'victory' ).VictoryTooltip;
 const VictoryVoronoiContainer = require( 'victory' ).VictoryVoronoiContainer;
 const VictoryZoomContainer = require( 'victory' ).VictoryZoomContainer;
 const VideoPlayer = require( 'components/video-player' );
+const Wikipedia = require( 'components/wikipedia' );
 
 const Appear = require( 'spectacle' ).Appear;
 const BlockQuote = require( 'spectacle' ).BlockQuote;
