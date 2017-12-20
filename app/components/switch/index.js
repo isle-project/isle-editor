@@ -3,6 +3,8 @@
 import React from 'react';
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import copy from '@stdlib/utils/copy';
+import isArray from '@stdlib/assert/is-array';
 import './switch.css';
 
 
@@ -23,18 +25,17 @@ class Switch extends React.Component {
 		};
 
 		this.handleClick = () => {
-			const newState = this.state;
+			const newState = copy( this.state ); 
+			if ( !isArray( this.props.children ) ) {
+				return null;
+			}
 			if ( newState.pos + 1 >= this.props.children.length ) {
 				newState.pos = 0;
 			} else {
 				newState.pos += 1;
 			}
-
-			this.setState({
-				pos: newState.pos
-			});
-
-			this.props.onChange( this.state.pos );
+			this.setState( newState );
+			this.props.onChange( newState.pos );
 		};
 	}
 
@@ -47,9 +48,14 @@ class Switch extends React.Component {
 
 	render() {
 		let children = React.Children.map( this.props.children, this.makeVisible.bind( this ) );
+		let className = 'switch';
+		if ( this.props.className ) {
+			className += ' '+this.props.className;
+		}
 		const content = <span
-			className="switch"
+			className={className}
 			onClick={this.handleClick}
+			style={this.props.style}
 		>
 			{children}
 		</span>;
@@ -72,7 +78,9 @@ class Switch extends React.Component {
 // PROPERTY TYPES //
 
 Switch.propTypes = {
+	className: PropTypes.string,
 	onChange: PropTypes.func,
+	style: PropTypes.object,
 	tooltip: PropTypes.string,
 	tooltipPos: PropTypes.string
 };
@@ -81,7 +89,9 @@ Switch.propTypes = {
 // DEFAULT PROPERTIES //
 
 Switch.defaultProps = {
+	className: '',
 	onChange() {},
+	style: {},
 	tooltip: 'Click to cycle through available options.',
 	tooltipPos: 'top'
 };
