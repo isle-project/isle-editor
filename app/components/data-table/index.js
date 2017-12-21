@@ -21,6 +21,17 @@ import './react_table_height.css';
 // MAIN //
 
 class DataTable extends Component {
+	constructor( props ) {
+		super( props );
+		this.state = this.generateInitialState( props );
+	}
+
+	componentWillReceiveProps( nextProps ) {
+		if ( nextProps.data !== this.props.data ) {
+			const newState = this.generateInitialState( nextProps );
+			this.setState( newState );
+		}
+	}
 
 	generateInitialState( props ) {
 		let rows;
@@ -95,10 +106,13 @@ class DataTable extends Component {
 								onChange( newValue );
 							}}
 							style={{ width: '100%' }}
-							value={ filter ? filter.value : 'all' }
+							value={filter ? filter.value : 'all'}
 						>
 							<option value="all">Show All</option>
-							{uniqueValues.map( v => <option value={`${v}`}>{v}</option> )}
+							{uniqueValues.map( ( v, key ) => ( <option
+								key={key}
+								value={`${v}`}
+							>{v}</option> ) )}
 						</select>
 					);
 				};
@@ -127,19 +141,6 @@ class DataTable extends Component {
 		return newState;
 	}
 
-	constructor( props ) {
-		super( props );
-
-		this.state = this.generateInitialState( props );
-	}
-
-	componentWillReceiveProps( nextProps ) {
-		if ( nextProps.data !== this.props.data ) {
-			const newState = this.generateInitialState( nextProps );
-			this.setState( newState );
-		}
-	}
-
 	createRows( data ) {
 		const keys = Object.keys( data );
 		const nRows = data[ keys[ 0 ] ].length;
@@ -159,14 +160,14 @@ class DataTable extends Component {
 			return true;
 		}
 		const id = filter.pivotId || filter.id;
-		return row[ id ] !== undefined ?
+		return row[ id ] ?
 			String( row[ id ]) === filter.value :
 			true;
 	}
 
 	filterMethodStrings = ( filter, row, column ) => {
 		const id = filter.pivotId || filter.id;
-		return row[ id ] !== undefined ? String( row[ id ]).startsWith( filter.value ) : true;
+		return row[ id ] ? String( row[ id ]).startsWith( filter.value ) : true;
 	}
 
 	filterMethodNumbers = ( filter, row ) => {
@@ -178,7 +179,7 @@ class DataTable extends Component {
 		return (
 			<input
 				id="checkBox" type="checkbox"
-				onClick={ e => {
+				onClick={e => {
 					const rows = [ ...this.state.rows ];
 					rows[ cellInfo.index ][ cellInfo.column.id ] = e.target.checked;
 					this.setState({ rows });
@@ -225,9 +226,9 @@ class DataTable extends Component {
 // DEFAULT PROPERTIES //
 
 DataTable.defaultProps = {
-	style: {},
-	onClickRemove(){},
-	showRemove: false
+	onClickRemove() {},
+	showRemove: false,
+	style: {}
 };
 
 
@@ -239,7 +240,8 @@ DataTable.propTypes = {
 		PropTypes.object
 	]).isRequired,
 	onClickRemove: PropTypes.func,
-	showRemove: PropTypes.bool
+	showRemove: PropTypes.bool,
+	style: PropTypes.object
 };
 
 

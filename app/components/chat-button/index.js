@@ -10,7 +10,6 @@ const debug = require( 'debug' )( 'isle-editor' );
 // MAIN //
 
 class ChatButton extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -68,6 +67,10 @@ class ChatButton extends Component {
 
 
 // TYPES //
+
+ChatButton.propTypes = {
+	for: PropTypes.string.isRequired
+};
 
 ChatButton.contextTypes = {
 	session: PropTypes.object

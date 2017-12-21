@@ -54,7 +54,8 @@ class Tooltip extends React.Component {
 
 Tooltip.defaultProps = {
 	top: -40,
-	left: -50
+	left: -50,
+	visible: false
 };
 
 
@@ -62,7 +63,7 @@ Tooltip.defaultProps = {
 
 Tooltip.propTypes = {
 	left: PropTypes.number,
-	text: PropTypes.string,
+	text: PropTypes.string.isRequired,
 	top: PropTypes.number,
 	visible: PropTypes.bool
 };

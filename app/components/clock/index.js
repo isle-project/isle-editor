@@ -1,23 +1,27 @@
 // MODULES //
 
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 
 
 // MAIN //
 
 class Clock extends Component {
-
 	constructor( props ) {
-
 		super( props );
 
 		this.state = {
-			time: new Date().toLocaleTimeString([], { hour: '2-digit', minute:'2-digit' })
+			time: new Date().toLocaleTimeString([], {
+				hour: '2-digit',
+				minute: '2-digit'
+			})
 		};
 
 		this.updateTime = () => {
-			const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute:'2-digit' });
+			const currentTime = new Date().toLocaleTimeString([], {
+				hour: '2-digit',
+				minute: '2-digit'
+			});
 			if ( this.state.time !== currentTime ) {
 				this.setState({
 					time: currentTime
@@ -47,6 +51,16 @@ class Clock extends Component {
 		);
 	}
 }
+
+// PROPERTY TYPES //
+
+Clock.propTypes = {
+	'style': PropTypes.object
+};
+
+Clock.defaultProps = {
+	'style': {}
+};
 
 
 // EXPORTS //

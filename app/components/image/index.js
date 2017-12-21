@@ -21,6 +21,7 @@ const calculateMargin = ( containerWidth ) => {
 		sizeType = 3;
 	}
 	switch ( sizeType ) {
+	default:
 	case 0:
 		return {
 			width: containerWidth * 0.6,
@@ -70,15 +71,15 @@ class Image extends Component {
 						cursor: 'zoom-in'
 					}}
 					role="presentation"
-					src={ this.props.src }
-					onClick={ () => {
+					src={this.props.src}
+					onClick={() => {
 						if ( this.props.showModal ) {
 							this.setState({
 								showModal: true
 							});
 						}
 					}}
-					onDragStart={ ( ev ) => {
+					onDragStart={( ev ) => {
 						ev.dataTransfer.setData( 'text', `<img src="${this.props.src}" width="400" height="300" />` );
 					}}
 				/>
@@ -95,10 +96,10 @@ class Image extends Component {
 					</Modal.Header>
 					<Modal.Body>
 						<img
-							src={ this.props.src }
+							src={this.props.src}
 							style={{
 								margin: 'auto',
-								display: 'block',
+								display: 'block'
 							}}
 							width="100%"
 						/>
@@ -129,19 +130,19 @@ class Image extends Component {
 // PROPERTY TYPES //
 
 Image.propTypes = {
-	src: PropTypes.string.isRequired,
-	title: PropTypes.string,
+	onShare: PropTypes.func,
 	showModal: PropTypes.bool,
-	onShare: PropTypes.func
+	src: PropTypes.string.isRequired,
+	title: PropTypes.string
 };
 
 
 // DEFAULT PROPERTIES //
 
 Image.defaultProps = {
-	title: 'Image',
+	onShare: null,
 	showModal: true,
-	onShare: null
+	title: 'Image'
 };
 
 
