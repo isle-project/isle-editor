@@ -8,16 +8,16 @@
   "rules": {
     "accessor-pairs": [ 2, { "setWithoutGet": true, "getWithoutSet": false } ],
     "array-backet-newline": [ "off", { "multiline": true, "minItems": null } ],
-    "array-bracket-spacing": [ "off", { 
-      "singleValue": true, 
-      "objectsInArrays": false, 
-      "arraysInArrays": false 
+    "array-bracket-spacing": [ "off", {
+      "singleValue": true,
+      "objectsInArrays": false,
+      "arraysInArrays": false
     } ],
     "array-callback-return": 2,
     "array-element-newline": [ 0, { "multiline": true, "minItems": null } ],
     "block-spacing": [ 2, "always" ],
-    "brace-style": [ 2, "1tbs", {
-      "allowSingleLine": true
+    "brace-style": [ 0, "1tbs", {
+      "allowSingleLine": false
     }],
     "callback-return": [ 1, [
       "callback",
@@ -29,7 +29,7 @@
     "camelcase": [ 2, {
       "properties": "never"
     }],
-    "capitalized-comments": [ 1, "always", { 
+    "capitalized-comments": [ 1, "always", {
       "ignoreInlineComments": true
     }],
     "comma-dangle": [ 2, "never" ],
@@ -240,7 +240,7 @@
     "semi":  [ 2, "always" ],
     "semi-spacing": [ 2, {
       "before": false,
-      "after": true 
+      "after": true
     }],
     "semi-style": [ 2, "last" ],
     "space-before-function-paren": [ 2, { "anonymous": "always", "named" : "never", "asyncArrow": "always" }],

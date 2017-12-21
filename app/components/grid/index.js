@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { Grid } from 'react-bootstrap';
-
+import PropTypes from 'prop-types';
 
 // MAIN //
 
@@ -15,6 +15,16 @@ class myGrid extends Component {
 		);
 	}
 }
+
+// TYPES //
+
+myGrid.defaultProps = {
+	fluid: false
+};
+
+myGrid.propTypes = {
+	fluid: PropTypes.bool
+};
 
 
 // EXPORTS //

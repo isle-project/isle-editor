@@ -12,8 +12,23 @@ class Timer extends Component {
 		super( props );
 		const storedTimeLeft = localStorage.getItem( this.getTimerId() );
 		this.state = {
-			timeLeft:  storedTimeLeft || props.duration
+			timeLeft: storedTimeLeft || props.duration
 		};
+	}
+
+	componentDidUpdate( prevProps, prevState ) {
+		// Check if the clock should be active:
+		if ( this.props.active && !this.state.countdown ) {
+			this.startCountdown();
+		}
+	}
+
+	componentWillUnmount() {
+		const { countdown } = this.state;
+		// Cancel the countdown on unmount of component:
+		if ( countdown ) {
+			clearInterval( countdown );
+		}
 	}
 
 	getTimerId() {
@@ -26,9 +41,8 @@ class Timer extends Component {
 		let seconds = time - minutes * 60;
 
 		// Pad minutes and seconds with zeroes:
-		minutes =  minutes < 10 ? `0${minutes}` : minutes;
-		seconds =  seconds < 10 ? `0${seconds}` : seconds;
-
+		minutes = minutes < 10 ? `0${minutes}` : minutes;
+		seconds = seconds < 10 ? `0${seconds}` : seconds;
 		return `${minutes}:${seconds}`;
 	}
 
@@ -50,21 +64,6 @@ class Timer extends Component {
 
 		// Store the countdown reference:
 		this.setState({ countdown });
-	}
-
-	componentDidUpdate( prevProps, prevState ) {
-		// Check if the clock should be active:
-		if ( this.props.active && !this.state.countdown ) {
-			this.startCountdown();
-		}
-	}
-
-	componentWillUnmount() {
-		const { countdown } = this.state;
-		// Cancel the countdown on unmount of component:
-		if ( countdown ) {
-			clearInterval( countdown );
-		}
 	}
 
 	render() {
@@ -95,9 +94,9 @@ class Timer extends Component {
 // PROPERTY TYPES //
 
 Timer.propTypes = {
-	id: PropTypes.string.isRequired,
 	active: PropTypes.bool.isRequired,
 	duration: PropTypes.number.isRequired,
+	id: PropTypes.string.isRequired,
 	onTimeUp: PropTypes.func.isRequired
 };
 

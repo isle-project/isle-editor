@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 // MAIN //
 
 class Gate extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -15,6 +14,37 @@ class Gate extends Component {
 			isEnrolled: false,
 			isOwner: false
 		};
+	}
+
+	componentDidMount() {
+		const { session } = this.context;
+		this._isMounted = true;
+		this.unsubscribe = session.subscribe( () => {
+			this.checkAuthorization();
+			if ( this._isMounted ) {
+				this.forceUpdate();
+			}
+		});
+		this.checkAuthorization();
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
+		this._isMounted = false;
+	}
+
+	checkAuthorization() {
+		const { session } = this.context;
+		let newState = {
+			isEnrolled: session.isEnrolled(),
+			isOwner: session.isOwner()
+		};
+		if (
+			newState.isEnrolled !== this.state.isEnrolled ||
+			newState.isOwner !== this.state.isOwner
+		) {
+			this.setState( newState );
+		}
 	}
 
 	render() {
@@ -39,41 +69,8 @@ class Gate extends Component {
 		if ( authenticated ) {
 			return <div>{this.props.children}</div>;
 		}
-		else {
-			return this.props.banner;
-		}
+		return this.props.banner;
 	}
-
-	checkAuthorization() {
-		let newState = {
-			isEnrolled: session.isEnrolled(),
-			isOwner: session.isOwner()
-		};
-		if (
-			newState.isEnrolled !== this.state.isEnrolled ||
-			newState.isOwner !== this.state.isOwner
-		) {
-			this.setState( newState );
-		}
-	}
-
-	componentDidMount() {
-		const { session } = this.context;
-		this._isMounted = true;
-		this.unsubscribe = session.subscribe( () => {
-			this.checkAuthorization();
-			if ( this._isMounted ) {
-				this.forceUpdate();
-			}
-		});
-		this.checkAuthorization();
-	}
-
-	componentWillUnmount() {
-		this.unsubscribe();
-		this._isMounted = false;
-	}
-
 }
 
 
@@ -81,10 +78,10 @@ class Gate extends Component {
 
 Gate.defaultProps = {
 	anonymous: false,
-	user: false,
+	banner: null,
 	enrolled: false,
 	owner: false,
-	banner: null
+	user: false
 };
 
 
@@ -92,10 +89,10 @@ Gate.defaultProps = {
 
 Gate.propTypes = {
 	anonymous: PropTypes.bool,
-	user: PropTypes.bool,
+	banner: PropTypes.node,
 	enrolled: PropTypes.bool,
 	owner: PropTypes.bool,
-	banner: PropTypes.node
+	user: PropTypes.bool
 };
 
 Gate.contextTypes = {

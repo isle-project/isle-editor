@@ -12,7 +12,6 @@ import './login.css';
 // MAIN //
 
 class Login extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -70,7 +69,6 @@ class Login extends Component {
 				session.login( form, ( err, res ) => {
 					if ( !err ) {
 						const { message, type } = JSON.parse( res.body );
-						console.log( message );
 						if ( message === 'ok' ) {
 							this.props.onClose();
 						} else {
@@ -124,8 +122,8 @@ class Login extends Component {
 									type="password"
 									placeholder="Password"
 									onChange={this.handleInputChange}
-									ref={ ( input ) => { this.passwordInput = input; }}
-								 />
+									ref={( input ) => { this.passwordInput = input; }}
+								/>
 							</Col>
 						</FormGroup>
 					</Form>
@@ -162,6 +160,15 @@ Login.contextTypes = {
 	session: PropTypes.object
 };
 
+Login.defaultProps = {
+	onClose() {},
+	show: false
+};
+
+Login.propTypes = {
+	onClose: PropTypes.func,
+	show: PropTypes.bool
+};
 
 
 // EXPORTS //

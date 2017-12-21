@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import ExportPage from 'components/ExportPage';
 import { convertMarkdown, toggleScrolling } from 'actions';
 
@@ -19,6 +20,14 @@ class Export extends Component {
 		);
 	}
 }
+
+// TYPES //
+
+Export.propTypes = {
+	fileName: PropTypes.string.isRequired,
+	filePath: PropTypes.string.isRequired,
+	markdown: PropTypes.string.isRequired
+};
 
 
 // EXPORTS //

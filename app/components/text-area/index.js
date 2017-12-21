@@ -71,13 +71,14 @@ class TextArea extends Component {
 // DEFAULT PROPERTIES //
 
 TextArea.defaultProps = {
-	disabled: false,
-	onChange() {},
-	legend: '',
-	placeholder: 'Enter text',
 	defaultValue: '',
+	disabled: false,
+	legend: '',
+	onChange() {},
+	placeholder: 'Enter text',
 	resizable: false,
-	rows: 5
+	rows: 5,
+	style: {}
 };
 
 
@@ -86,11 +87,12 @@ TextArea.defaultProps = {
 TextArea.propTypes = {
 	defaultValue: PropTypes.string,
 	disabled: PropTypes.bool,
-	onChange: PropTypes.func,
 	legend: PropTypes.string,
+	onChange: PropTypes.func,
 	placeholder: PropTypes.string,
 	resizable: PropTypes.bool,
-	rows: PropTypes.number
+	rows: PropTypes.number,
+	style: PropTypes.object
 };
 
 

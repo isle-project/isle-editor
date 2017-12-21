@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { isAbsolutePath, isObject } from '@stdlib/assert';
+import { hasOwnProp, isAbsolutePath, isObject } from '@stdlib/assert';
 import path from 'path';
 import css from 'css';
 import fs from 'fs';
@@ -52,7 +52,6 @@ const applyStyles = ( preamble, filePath ) => {
 };
 
 const injectStyle = ( style ) => {
-
 	let previous = document.getElementById( 'mystyles' );
 	if ( previous ) {
 		previous.parentNode.removeChild( previous );
@@ -73,11 +72,12 @@ const injectStyle = ( style ) => {
 };
 
 const loadRequires = ( libs, filePath ) => {
+	/* eslint-disable no-eval */
 	debug( 'Should require files or modules...' );
 	let dirname = path.dirname( filePath );
 	if ( isObject( libs ) ) {
 		for ( let key in libs ) {
-			if ( libs.hasOwnProperty( key ) ) {
+			if ( hasOwnProp( libs, key ) ) {
 				let lib = libs[ key ];
 				if ( isAbsolutePath( lib ) || /\.(\/|\\)/.test( lib ) ) {
 					lib = path.join( dirname, libs[ key ]);
@@ -98,6 +98,7 @@ const loadRequires = ( libs, filePath ) => {
 			}
 		}
 	}
+	/* eslint-enable no-eval */
 };
 
 
@@ -140,6 +141,13 @@ class App extends Component {
 		}
 	}
 
+	componentDidMount() {
+		const editor = this.editor;
+		const preview = this.preview;
+		this.onEditorScroll = this.sync( editor, preview );
+		this.onPreviewScroll = this.sync( preview, editor );
+	}
+
 	handlePreambleChange( text ) {
 		let preamble = text.match( /---([\S\s]*)---/ );
 		if ( !preamble ) {
@@ -179,17 +187,9 @@ class App extends Component {
 			debug( 'Preamble has changed.' );
 			this.lastPreamble = preamble;
 			return true;
-		} else {
-			debug( 'Preamble has not changed.' );
-			return false;
 		}
-	}
-
-	componentDidMount() {
-		const editor = this.refs.editor;
-		const preview = this.refs.preview;
-		this.onEditorScroll = this.sync( editor, preview );
-		this.onPreviewScroll = this.sync( preview, editor );
+		debug( 'Preamble has not changed.' );
+		return false;
 	}
 
 	sync( main, other ) {
@@ -237,9 +237,9 @@ class App extends Component {
 						'bottom': '0'
 					}}
 				>
-					<Panel ref="editor" onScroll={this.onEditorScroll}>
+					<Panel ref={( elem ) => { this.editor = elem; }} onScroll={this.onEditorScroll}>
 						<Editor
-							ref="code"
+							ref={( elem ) => { this.code = elem; }}
 							value={markdown}
 							onChange={this.onChange}
 							name="ace_editor"
@@ -247,11 +247,11 @@ class App extends Component {
 							setOptions={{
 								highlightActiveLine: true,
 								showGutter: true,
-								showPrintMargin: false,
+								showPrintMargin: false
 							}}
 						/>
 					</Panel>
-					<Panel ref="preview" onScroll={this.onPreviewScroll}>
+					<Panel ref={( elem ) => { this.preview = elem; }} onScroll={this.onPreviewScroll}>
 						<ErrorBoundary code={markdown}>
 							<Preview
 								errorMsg={ error ? error.message : null }
