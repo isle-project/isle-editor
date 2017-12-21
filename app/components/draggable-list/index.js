@@ -74,6 +74,7 @@ Container.defaultProps = {
 // PROPERTY TYPES //
 
 Container.propTypes = {
+	data: PropTypes.array.isRequired,
 	onChange: PropTypes.func,
 	onInit: PropTypes.func
 };

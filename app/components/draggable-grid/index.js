@@ -15,14 +15,15 @@ const ResponsiveReactGridLayout = WidthProvider( Responsive );
 // MAIN //
 
 class DraggableGrid extends Component {
-
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			layouts: this.createLayout( props )
 		};
+	}
 
+	componentWillReceiveProps( nextProps ) {
+		this.createLayout( nextProps );
 	}
 
 	createLayout( props ) {
@@ -47,12 +48,8 @@ class DraggableGrid extends Component {
 		});
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		this.createLayout( nextProps );
-	}
-
 	render() {
-		return <ResponsiveReactGridLayout
+		return ( <ResponsiveReactGridLayout
 			layouts={this.state.layouts}
 			breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
 			cols={{lg: 18, md: 12, sm: 12, xs: 12, xxs: 6 }}
@@ -61,27 +58,27 @@ class DraggableGrid extends Component {
 			rowHeight={60}
 		>
 			{this.props.children.map( ( element, idx ) => {
-				return <div key={`cell-${idx}`}>
+				return ( <div key={`cell-${idx}`}>
 					{element}
-				</div>;
+				</div> );
 			})}
-		</ResponsiveReactGridLayout>;
+		</ResponsiveReactGridLayout> );
 	}
 }
 
 // DEFAULT PROPERTIES //
 
 DraggableGrid.defaultProps = {
-	isResizable: false,
-	isDraggable: false
+	isDraggable: false,
+	isResizable: false
 };
 
 
-// PROPERT TYPES //
+// PROPERTY TYPES //
 
 DraggableGrid.propTypes = {
-	isResizable: PropTypes.bool,
-	isDraggable: PropTypes.bool
+	isDraggable: PropTypes.bool,
+	isResizable: PropTypes.bool
 };
 
 

@@ -21,7 +21,7 @@ class FreeTextQuestion extends Component {
 	*/
 	constructor( props, context ) {
 		super( props );
-		console.log( 'Invoking constructor of FreeTextQuestion...' );
+		debug( 'Invoking constructor of FreeTextQuestion...' );
 
 		const actions = context.session.currentUserActions;
 		const value = this.getLastAction( actions, props.id );
@@ -32,6 +32,33 @@ class FreeTextQuestion extends Component {
 			solutionDisplayed: false,
 			submitted: isString( value )
 		};
+	}
+
+	componentDidMount() {
+		const { session } = this.context;
+		this.unsubscribe = session.subscribe( ( type ) => {
+			if ( type === 'retrieved_current_user_actions' ) {
+				this.setToLastAction();
+			}
+		});
+	}
+
+	componentWillReceiveProps( nextProps ) {
+		if (
+			nextProps.placeholder !== this.props.placeholder &&
+			nextProps.solution !== this.props.solution &&
+			nextProps.question !== this.props.question
+		) {
+			this.setState({
+				value: '',
+				solutionDisplayed: false,
+				submitted: false
+			});
+		}
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
 	}
 
 	/*
@@ -103,20 +130,6 @@ class FreeTextQuestion extends Component {
 		}
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		if (
-			nextProps.placeholder !== this.props.placeholder &&
-			nextProps.solution !== this.props.solution &&
-			nextProps.question !== this.props.question
-		) {
-			this.setState({
-				value: '',
-				solutionDisplayed: false,
-				submitted: false
-			});
-		}
-	}
-
 	getLastAction = ( val, id ) => {
 		if ( isObject( val ) ) {
 			let actions = val[ id ];
@@ -142,19 +155,6 @@ class FreeTextQuestion extends Component {
 				submitted: true
 			});
 		}
-	}
-
-	componentDidMount() {
-		const { session } = this.context;
-		this.unsubscribe = session.subscribe( ( type ) => {
-			if ( type === 'retrieved_current_user_actions' ) {
-				this.setToLastAction();
-			}
-		});
-	}
-
-	componentWillUnmount() {
-		this.unsubscribe();
 	}
 
 	/*
@@ -225,7 +225,7 @@ class FreeTextQuestion extends Component {
 						<OverlayTrigger
 							trigger="click"
 							placement="left"
-							overlay={ displayHint( this.state.currentHint - 1, this.props.hints ) }
+							overlay={displayHint( this.state.currentHint - 1, this.props.hints )}
 						>
 							<Button
 								bsStyle="primary"
@@ -284,10 +284,10 @@ FreeTextQuestion.defaultProps = {
 	onChange() {},
 	placeholder: 'Enter your answer here...',
 	question: '',
-	solution: null,
 	resizable: false,
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
 	rows: 5,
+	solution: null,
 	submissionMsg: ''
 };
 
@@ -300,10 +300,10 @@ FreeTextQuestion.propTypes = {
 	onChange: PropTypes.func,
 	placeholder: PropTypes.string,
 	question: PropTypes.string,
-	solution: PropTypes.string,
 	resizable: PropTypes.bool,
 	resubmissionMsg: PropTypes.string,
 	rows: PropTypes.number,
+	solution: PropTypes.string,
 	submissionMsg: PropTypes.string
 };
 

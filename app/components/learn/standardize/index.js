@@ -15,7 +15,12 @@ import Dashboard from 'components/dashboard';
 // VARIABLES //
 
 const colors = [
-	'#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33'
+	'#e41a1c',
+	'#377eb8',
+	'#4daf4a',
+	'#984ea3',
+	'#ff7f00',
+	'#ffff33'
 ];
 const X = linspace( -30, 30, 200 );
 
@@ -23,10 +28,8 @@ const X = linspace( -30, 30, 200 );
 // MAIN
 
 class Standardize extends Component {
-
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			mean: 4,
 			sd: 3
@@ -47,20 +50,22 @@ class Standardize extends Component {
 		eqn2 = `z = \\frac{${current}-${roundn( this.state.mean, -2 )}}{${roundn( this.state.sd, -2 )}} = ${res}`;
 
 		let unstandardizedLines = newMarked.map( ( x, id ) => {
-			return <VictoryLine
+			return ( <VictoryLine
+				key={id}
 				data={[ {x: x, y: 0 }, { x: x, y : 0.5 } ]}
 				x={d => d.x}
 				y={d => d.y}
 				style={{ data: { stroke: colors[ id%colors.length ]}}}
-			/>;
+			/> );
 		});
 		let standardizedLines = newMarked.map( ( x, id ) => {
-			return <VictoryLine
-				data={ [ {x: ( x-this.state.mean )/this.state.sd, y: 0 }, { x:  ( x-this.state.mean )/this.state.sd, y : 0.5 } ] }
-				x={ d => d.x }
-				y={ d => d.y }
+			return ( <VictoryLine
+				key={id}
+				data={[ {x: ( x-this.state.mean )/this.state.sd, y: 0 }, { x: ( x-this.state.mean )/this.state.sd, y: 0.5 } ]}
+				x={d => d.x}
+				y={d => d.y}
 				style={{ data: { stroke: colors[ id%colors.length ]}}}
-			/>;
+			/> );
 		});
 
 		this.setState({
@@ -116,7 +121,7 @@ class Standardize extends Component {
 								step={this.props.step}
 								min={-25}
 								max={25}
-								onChange={ mean => {
+								onChange={mean => {
 									this.generateState( mean, this.state.sd );
 								}}
 							/>
@@ -126,7 +131,7 @@ class Standardize extends Component {
 								step={this.props.step}
 								min={1}
 								max={10}
-								onChange={ sd => {
+								onChange={sd => {
 									this.generateState( this.state.mean, sd );
 								}}
 							/>
@@ -158,7 +163,11 @@ class Standardize extends Component {
 								max={30}
 							/>
 						</Dashboard>
-						<TeX raw={this.state.eqn2} displayMode tag=""/>
+						<TeX
+							raw={this.state.eqn2}
+							displayMode
+							tag=""
+						/>
 					</Col>
 					<Col md={4}>
 						{standardized}

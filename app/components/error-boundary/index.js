@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 
 // MAIN //
@@ -14,19 +15,19 @@ class ErrorBoundary extends Component {
 		};
 	}
 
-	componentDidCatch( error ) {
-		this.setState({
-			hasError: true,
-			msg: error.message
-		});
-	}
-
 	componentWillReceiveProps( nextProps ) {
 		if ( nextProps.code !== this.props.code ) {
 			this.setState({
 				hasError: false
 			});
 		}
+	}
+
+	componentDidCatch( error ) {
+		this.setState({
+			hasError: true,
+			msg: error.message
+		});
 	}
 
 	render() {
@@ -41,6 +42,13 @@ class ErrorBoundary extends Component {
 		return this.props.children;
 	}
 }
+
+
+// TYPES //
+
+ErrorBoundary.propTypes = {
+	code: PropTypes.string.isRequired
+};
 
 
 // EXPORTS //

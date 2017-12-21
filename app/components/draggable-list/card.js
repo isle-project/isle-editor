@@ -77,7 +77,6 @@ const cardTarget = {
 // MAIN //
 
 class Card extends Component {
-
 	render() {
 		const { text, isDragging, connectDragSource, connectDropTarget } = this.props;
 		const opacity = isDragging ? 0 : 1;
@@ -87,19 +86,19 @@ class Card extends Component {
 			</div>
 		) );
 	}
-
 }
+
 
 // PROPERTY TYPES //
 
 Card.propTypes = {
 	connectDragSource: PropTypes.func.isRequired,
 	connectDropTarget: PropTypes.func.isRequired,
+	id: PropTypes.any.isRequired,
 	index: PropTypes.number.isRequired,
 	isDragging: PropTypes.bool.isRequired,
-	id: PropTypes.any.isRequired,
-	text: PropTypes.string.isRequired,
-	moveCard: PropTypes.func.isRequired
+	moveCard: PropTypes.func.isRequired,
+	text: PropTypes.string.isRequired
 };
 
 

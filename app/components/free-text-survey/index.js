@@ -19,7 +19,6 @@ const debug = require( 'debug' )( 'isle-editor' );
 // MAIN //
 
 class FreeTextSurvey extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -33,7 +32,7 @@ class FreeTextSurvey extends Component {
 			const { session } = this.context;
 
 			const val = this.containsProfanity( this.state.value );
-			if ( val  ) {
+			if ( val ) {
 				session.addNotification({
 					title: 'Action required',
 					message: `Your answer contains an offensive word: ${val}. Please remove.`,
@@ -79,13 +78,13 @@ class FreeTextSurvey extends Component {
 				<th>Count</th>
 				<th>Relative Frequency</th>
 			</tr>
-			{tabulated.map( ( elem ) => {
-				return ( <tr>
+			{tabulated.map( ( elem, id ) => {
+				return ( <tr key={id}>
 					{elem.map( ( x, idx ) => {
 						if ( idx === 2 ) {
 							x = x.toFixed( 3 );
 						}
-						return <td>{x}</td>;
+						return <td key={idx}>{x}</td>;
 					})}
 				</tr> );
 			})}
@@ -107,9 +106,6 @@ class FreeTextSurvey extends Component {
 			}
 		}
 		return null;
-	}
-
-	componentDidMount() {
 	}
 
 	render() {
@@ -142,7 +138,7 @@ class FreeTextSurvey extends Component {
 								block fill
 								onClick={this.submitQuestion}
 								disabled={disabled}
-							>{ disabled ? "Submitted" : "Submit"}</Button>
+							>{ disabled ? 'Submitted' : 'Submit'}</Button>
 						</Panel>
 					</Col>
 					<Col md={6}>
@@ -178,10 +174,10 @@ FreeTextSurvey.defaultProps = {
 // PROPERTY TYPES //
 
 FreeTextSurvey.propTypes = {
-	onSubmit: PropTypes.func,
 	allowMultipleAnswers: PropTypes.bool,
-	question: PropTypes.string,
 	anonymous: PropTypes.bool,
+	onSubmit: PropTypes.func,
+	question: PropTypes.string,
 	rows: PropTypes.number
 };
 
