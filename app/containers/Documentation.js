@@ -16,7 +16,6 @@ const openBrowser = ( url ) => {
 // MAIN //
 
 class Documentation extends Component {
-
 	constructor( props ) {
 		super( props );
 		this.state = {};
@@ -27,7 +26,10 @@ class Documentation extends Component {
 				height: window.innerHeight
 			});
 		};
+	}
 
+	componentWillMount() {
+		this.resize();
 	}
 
 	componentDidMount() {
@@ -36,14 +38,10 @@ class Documentation extends Component {
 			try {
 				openBrowser( e.url );
 			} catch ( error ) {
-				alert( `Ignoring ${e.url} due to ${error.message}` );
+				alert( `Ignoring ${e.url} due to ${error.message}` ); // eslint-disable-line no-alert
 			}
 		});
 		window.addEventListener( 'resize', this.resize );
-	}
-
-	componentWillMount() {
-		this.resize();
 	}
 
 	componentWillUnmount() {

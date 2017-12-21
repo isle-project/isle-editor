@@ -18,7 +18,6 @@ const handleFontSizeChange = ( number ) => {
 // COMPONENTS //
 
 class Login extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -41,8 +40,8 @@ class Login extends Component {
 		};
 
 		this.unlink = () => {
-			 localStorage.removeItem( 'token' );
-			 this.forceUpdate();
+			localStorage.removeItem( 'token' );
+			this.forceUpdate();
 		};
 
 		this.connectToServer = () => {
@@ -172,7 +171,7 @@ class Settings extends Component {
 						min={8}
 						max={56}
 						step={1}
-						defaultValue={parseInt( localStorage.getItem( 'fontSize' ) ) || 14}
+						defaultValue={parseInt( localStorage.getItem( 'fontSize' ), 10 ) || 14}
 					/>
 				</Panel>
 			</div>
