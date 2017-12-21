@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 // PANEL //
 
 class Panel extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -19,9 +18,9 @@ class Panel extends Component {
 		this.ignoreScrollEvents = false;
 
 		this.onScroll = () => {
-			this.scrollTop = this.refs.panel.scrollTop;
-			this.scrollHeight = this.refs.panel.scrollHeight;
-			this.offsetHeight = this.refs.panel.offsetHeight;
+			this.scrollTop = this.panel.scrollTop;
+			this.scrollHeight = this.panel.scrollHeight;
+			this.offsetHeight = this.panel.offsetHeight;
 
 			if ( !this.ignoreScrollEvents ) {
 				this.props.onScroll(
@@ -39,37 +38,31 @@ class Panel extends Component {
 			const scrollHeight = this.scrollHeight;
 			const offsetHeight = this.offsetHeight;
 			this.ignoreScrollEvents = true;
-
-			this.refs.panel.scrollTop = percentage * (
+			this.panel.scrollTop = percentage * (
 				scrollHeight - offsetHeight ) / 100;
-
 			this.scrollPercentage = percentage;
-
 			setTimeout( () => {
 				this.ignoreScrollEvents = false;
 			}, 20 );
 		};
-
 	}
 
 	componentDidMount() {
-		this.scrollTop = this.refs.panel.scrollTop;
-		this.scrollHeight = this.refs.panel.scrollHeight;
-		this.offsetHeight = this.refs.panel.offsetHeight;
+		this.scrollTop = this.panel.scrollTop;
+		this.scrollHeight = this.panel.scrollHeight;
+		this.offsetHeight = this.panel.offsetHeight;
 	}
 
 	componentDidUpdate() {
-		this.scrollTop = this.refs.panel.scrollTop;
-		this.scrollHeight = this.refs.panel.scrollHeight;
-		this.offsetHeight = this.refs.panel.offsetHeight;
+		this.scrollTop = this.panel.scrollTop;
+		this.scrollHeight = this.panel.scrollHeight;
+		this.offsetHeight = this.panel.offsetHeight;
 		this.setScrollTop( this.scrollPercentage );
 	}
 
-	componentWillReceiveProps( props ) {}
-
 	render() {
 		return (
-			<div ref="panel" onScroll={this.onScroll} style={{
+			<div ref={( div ) => { this.panel = div; }} onScroll={this.onScroll} style={{
 				height: 'calc(100vh - 90px)',
 				overflow: 'scroll'
 			}}>
@@ -83,7 +76,6 @@ class Panel extends Component {
 // DEFAULT PROPERTIES //
 
 Panel.defaultProps = {
-	onChange() {},
 	onScroll() {}
 };
 
@@ -91,10 +83,7 @@ Panel.defaultProps = {
 // PROPERTY TYPES //
 
 Panel.propTypes = {
-	onChange: PropTypes.func,
-	onScroll: PropTypes.func,
-	value: PropTypes.string,
-	overflowY: PropTypes.bool
+	onScroll: PropTypes.func
 };
 
 

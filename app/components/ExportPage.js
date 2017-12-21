@@ -17,6 +17,7 @@ import fs from 'fs';
 import os from 'os';
 import exists from '@stdlib/fs/exists';
 import contains from '@stdlib/assert/contains';
+import replace from '@stdlib/string/replace';
 import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
 import Spinner from 'components/spinner';
@@ -31,11 +32,10 @@ const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 const { dialog } = remote;
 
 class UploadLesson extends Component {
-
 	constructor( props ) {
 		super( props );
 
-		const lessonName = props.fileName ? props.fileName.replace( /.[^.]*$/, '' ) : '';
+		const lessonName = props.fileName ? replace( props.fileName, /.[^.]*$/, '' ) : '';
 
 		// Initialize state variables...
 		this.state = {
@@ -88,12 +88,12 @@ class UploadLesson extends Component {
 			let archive = archiver( 'zip', {
 				store: true
 			});
-			output.on( 'close', function() {
+			output.on( 'close', function onClose() {
 				console.log( archive.pointer() + ' total bytes' );
 				console.log( 'archiver has been finalized and the output file descriptor has closed.' );
 				clbk();
 			});
-			archive.on( 'error', function( err ) {
+			archive.on( 'error', function onError( err ) {
 				throw err;
 			});
 			archive.pipe( output );
@@ -450,7 +450,7 @@ class ExportLesson extends Component {
 							<Button style={{ float: 'left' }} bsStyle="primary" onClick={this.openFolder}>Open containing folder</Button>
 							<Button style={{ float: 'right' }} bsStyle="success" onClick={this.openLesson}>Open lesson in Browser</Button>
 						</ButtonToolbar>
-					</Panel> : <Spinner width={128} height={64} running={this.state.spinning}/>
+					</Panel> : <Spinner width={128} height={64} running={this.state.spinning} />
 				}
 				{ this.state.alreadyExists ?
 					<Panel
@@ -517,8 +517,8 @@ class ExportPage extends Component {
 // PROPERTY TYPES //
 
 ExportPage.propTypes = {
-	content: PropTypes.string,
-	fileName: PropTypes.string
+	content: PropTypes.string.isRequired,
+	fileName: PropTypes.string.isRequired
 };
 
 

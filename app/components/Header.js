@@ -9,7 +9,6 @@ import * as colors from 'constants/colors';
 // MAIN //
 
 class Header extends Component {
-
 	constructor( props ) {
 		super( props );
 	}
