@@ -3,7 +3,7 @@
 import test from 'tape';
 import React from 'react';
 import { shallow } from 'enzyme';
-import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { OverlayTrigger } from 'react-bootstrap';
 import Switch from 'components/switch';
 
 
