@@ -55,6 +55,7 @@ class News extends Component {
 
 	exceptions ( name ) {
 		if ( name === "techcrunch" ) 		return "TechChrunch";
+		if ( name === "tech crunch" ) 		return "TechChrunch";
 		if ( name === "next web" )   		return "Next Web";
 		if ( name === "LAD Bible" )   		return "Lad Bible";
 		if ( name === "talkSPORT" )   		return "TalkSport";
@@ -76,12 +77,13 @@ class News extends Component {
 		if ( name === "associated Press" )   return "Associated Press";		
 
 		if ( name === "wired" )   			return "Wired";
+		if ( name === "Wyatt" )   			return "Wired";
 		if ( name === "time" )   			return "The Time";
 		if ( name === "times of India" )   	return "Times of India";
 		if ( name === "sport Bible" )  		return "Sport Bible";	
 
 		if ( name === "t3n" )   			return "T3n";
-		if ( name === "Rogers" )   			return "Reuters";
+		if ( name === "Rogers" || name === "writers" ) return "Reuters";
 		if ( name === "recalled" )   		return "Recode";
 		if ( name === "Leek Road" )  		return "Recode";
 
@@ -91,13 +93,13 @@ class News extends Component {
 		if ( name === "Leek Road" )  		return "Recode";
 
 
-		if ( name === "Frosham" )   		return "Fortune";
+		if ( name === "Frodsham" )   		return "Fortune";
 		if ( name === "entertainment weekly" ) return "Entertainment Weekly";
 		if ( name === "Deeside" )   		return "Die Zeit";
 		if ( name === "bild" )  			return "Bild";
 
 		if ( name === "newsweek" )   		return "Newsweek";
-		if ( name === "ask Technica" )   	return "Ars Technica";
+		if ( name === "ask Technica" || name === "ars Technica" ) return "Ars Technica";
 
 		return name;
 	}

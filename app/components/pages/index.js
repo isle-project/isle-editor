@@ -25,6 +25,7 @@ class Pages extends Component {
 	}
 
 	render() {
+		if ( !this.props.children ) return null;
 		return (
 			<div
 				className="panel panel-default"
@@ -36,7 +37,7 @@ class Pages extends Component {
 					prev next first last
 					bsSize="medium"
 					maxButtons={4}
-					items={this.props.children.length}
+					items={this.props.children.length || 1}
 					activePage={this.state.activePage}
 					onSelect={this.handleSelect}
 				/>
@@ -48,7 +49,7 @@ class Pages extends Component {
 					borderColor: '#dddddd',
 					borderStyle: 'solid'
 				}}>
-					{this.props.children[ this.state.activePage-1 ]}
+					{this.props.children[ this.state.activePage-1 ] || this.props.children}
 				</div>
 			</div>
 		);

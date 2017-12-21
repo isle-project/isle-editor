@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import SpeechRecognition from 'components/speech-recognition';
 import Wikipedia from 'components/wikipedia';
 import AcousticCSS from 'components/acoustic-css';
+import News from 'components/news';
 import './styles.css';
 
 
@@ -45,6 +46,24 @@ class AcousticAssistant extends Component {
 				this.refs.css.trigger( text );
 			}
 		}
+
+		if ( this.props.news !== '' ) {
+			var x = text.search( this.props.news );
+			if ( x !== -1 )  {
+				console.log( "news triggered" );
+				this.refs.news.trigger( text );
+			}
+		}
+	}
+
+	render_news () {
+		if ( this.props.news === '' ) return null;
+		return (
+			<News
+				ref = "news"
+				language = { this.props.language }
+			></News>
+		);	
 	}
 
 	render_wikipedia () {
@@ -90,6 +109,7 @@ class AcousticAssistant extends Component {
 				{ this.render_speech() }
 				{ this.render_wikipedia() }
 				{ this.render_css() }
+				{ this.render_news() }
 			</div>
 		);
 	}
@@ -105,6 +125,7 @@ AcousticAssistant.defaultProps = {
 	autoplay: false,
 	wikipedia: '',
 	css: '',
+	news: ''
 };
 
 
@@ -117,6 +138,7 @@ AcousticAssistant.propTypes = {
 	autoplay: PropTypes.bool,
 	wikipedia: PropTypes.string,
 	css: PropTypes.string,
+	news: PropTypes.string,
 	name: PropTypes.string
 };
 
