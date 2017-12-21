@@ -17,7 +17,6 @@ import TeX from 'components/tex';
 // MAIN //
 
 class VennDiagramBuilder extends Component {
-
 	constructor( props ) {
 		super( props );
 		this.state = {
@@ -48,7 +47,7 @@ class VennDiagramBuilder extends Component {
 		}
 		chart.datum( sets ).call( vennDiagram );
 		chart.selectAll( 'g' )
-			.on( 'mouseover' , function( d, i ) {
+			.on( 'mouseover', function onMouseOver( d, i ) {
 				venn.sortAreas( chart, d );
 				tooltip.transition().duration( 400 ).style( 'opacity', 0.9 );
 				tooltip.text( d.sets.join( ' and ' ) + ' (' + d.size + ')' );
@@ -59,11 +58,11 @@ class VennDiagramBuilder extends Component {
 					.style( 'ill-opacity', d.sets.length == 1 ? 0.4 : 0.1 )
 					.style( 'stroke-opacity'	, 1 );
 			})
-			.on( 'mousemove', function() {
+			.on( 'mousemove', function onMouseMove() {
 				tooltip.style( 'left', ( d3.event.pageX ) + 'px' )
 					.style( 'top', ( d3.event.pageY - 28 ) + 'px' );
 			})
-			.on( 'mouseout', function( d, i ) {
+			.on( 'mouseout', function onMouseOut( d, i ) {
 				tooltip.transition().duration( 400 ).style( 'opacity', 0 );
 				var selection = d3.select( this ).transition( 'tooltip' ).duration( 400 );
 				selection.select( 'path' )
@@ -103,7 +102,7 @@ class VennDiagramBuilder extends Component {
 		}
 		chart.datum( sets ).call( vennDiagram );
 		chart.selectAll( 'g' )
-			.on( 'mouseover' , function( d, i ) {
+			.on( 'mouseover', function onMouseOver( d, i ) {
 				venn.sortAreas( chart, d );
 				tooltip.transition().duration( 400 ).style( 'opacity', 0.9 );
 				tooltip.text( d.sets.join( ' and ' ) + ' (' + d.size + ')' );
@@ -114,18 +113,17 @@ class VennDiagramBuilder extends Component {
 					.style( 'fill-opacity', d.sets.length == 1 ? 0.4 : 0.1 )
 					.style( 'stroke-opacity', 1 );
 			})
-			.on( 'mousemove', function() {
+			.on( 'mousemove', function onMouseMove() {
 				tooltip.style( 'left', ( d3.event.pageX ) + 'px' )
 					.style( 'top', ( d3.event.pageY - 28 ) + 'px' );
 			})
-			.on( 'mouseout', function( d, i ) {
+			.on( 'mouseout', function onMouseOut( d, i ) {
 				tooltip.transition().duration( 400 ).style( 'opacity', 0 );
 				var selection = d3.select( this ).transition( 'tooltip' ).duration( 400 );
 				selection.select( 'path' )
-					.style( 'fill-opacity', d.sets.length == 1 ? 0.25 : 0.0 )
+					.style( 'fill-opacity', d.sets.length === 1 ? 0.25 : 0.0 )
 					.style( 'stroke-opacity', 0 );
 			});
-
 		this.setState({
 			first, second, third, vennDiagram, sizeA, sizeB, sizeC, sizeBC, sizeAB, sizeAC, tooltip
 		});
@@ -241,7 +239,6 @@ class VennDiagramBuilder extends Component {
 				/>
 			</Dashboard>;
 		}
-
 		return (
 			<div>
 				<Grid>
@@ -259,15 +256,17 @@ class VennDiagramBuilder extends Component {
 			</div>
 		);
 	}
-
 }
 
 
 // PROPERTY TYPES //
 
 VennDiagramBuilder.propTypes = {
-	three: PropTypes.bool,
-	nobs: PropTypes.number
+	three: PropTypes.bool
+};
+
+VennDiagramBuilder.defaultProps = {
+	three: false
 };
 
 

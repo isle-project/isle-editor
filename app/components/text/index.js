@@ -10,7 +10,6 @@ const md = require( 'markdown-it' )({
 // MAIN //
 
 class Text extends Component {
-
 	render() {
 		const { children } = this.props;
 		const html = {
@@ -18,12 +17,11 @@ class Text extends Component {
 		};
 		return (
 			<span
-				dangerouslySetInnerHTML={html}
+				dangerouslySetInnerHTML={html} // eslint-disable-line react/no-danger
 			>
 			</span>
 		);
 	}
-
 }
 
 

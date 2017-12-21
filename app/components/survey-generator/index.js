@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ControlLabel, FormGroup, Grid, Col, Panel, Well } from 'react-bootstrap';
+import { Button, ControlLabel, FormGroup, Col, Panel, Well } from 'react-bootstrap';
 import Gate from 'components/gate';
 import { CheckboxInput, SelectInput, TextInput } from 'components/input';
 import TextArea from 'components/text-area';
@@ -15,7 +15,6 @@ const debug = require( 'debug' )( 'isle-editor' );
 // MAIN //
 
 class MCSgenerator extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -27,7 +26,37 @@ class MCSgenerator extends Component {
 			anonymous: true,
 			disabled: true
 		};
+	}
 
+	componentDidMount() {
+		const { session } = this.context;
+		this.unsubscribe = session.subscribe( ( type, action ) => {
+			if ( type === 'member_action' ) {
+				if ( action.type === 'START_SURVEY' ) {
+					if ( this.props.id === action.id ) {
+						this.setState({
+							question: action.value.question,
+							type: action.value.type,
+							answers: action.value.answers,
+							showSurvey: true
+						});
+					}
+				}
+				else if ( action.type === 'STOP_SURVEY' ) {
+					debug( 'Should stop the survey...' );
+					if ( this.props.id === action.id  ) {
+						this.setState({
+							showSurvey: false
+						});
+					}
+				}
+				this.forceUpdate();
+			}
+		});
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
 	}
 
 	setQuestion = ( text ) => {
@@ -93,37 +122,6 @@ class MCSgenerator extends Component {
 		this.setState({
 			anonymous: value
 		});
-	}
-
-	componentDidMount() {
-		const { session } = this.context;
-		this.unsubscribe = session.subscribe( ( type, action ) => {
-			if ( type === 'member_action' ) {
-				if ( action.type === 'START_SURVEY' ) {
-					if ( this.props.id === action.id  ) {
-						this.setState({
-							question: action.value.question,
-							type: action.value.type,
-							answers: action.value.answers,
-							showSurvey: true
-						});
-					}
-				}
-				else if ( action.type === 'STOP_SURVEY' ) {
-					debug( 'Should stop the survey...' );
-					if ( this.props.id === action.id  ) {
-						this.setState({
-							showSurvey: false
-						});
-					}
-				}
-				this.forceUpdate();
-			}
-		});
-	}
-
-	componentWillUnmount() {
-		this.unsubscribe();
 	}
 
 	render() {
@@ -209,7 +207,7 @@ MCSgenerator.defaultProps = {
 // PROPERTY TYPES //
 
 MCSgenerator.propTypes = {
-	id: PropTypes.string.isRequired,
+	id: PropTypes.string.isRequired
 };
 
 MCSgenerator.contextTypes = {

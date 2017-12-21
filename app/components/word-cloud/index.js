@@ -9,14 +9,12 @@ import WordCloud from 'react-d3-cloud';
 // MAIN //
 
 class Wrapper extends Component {
-
 	constructor( props ) {
 		super( props );
 
 		this.state = {
 		};
 	}
-
 	render() {
 		return (
 			<WordCloud
@@ -35,13 +33,20 @@ class Wrapper extends Component {
 
 Wrapper.defaultProps = {
 	fontSizeMapper: word => Math.log2( word.value ) * 5,
-	rotate: word => word.value % 360
+	rotate: word => word.value % 360,
+	width: 700,
+	height: 600
 };
 
 
 // PROPERTY TYPES //
 
 Wrapper.propTypes = {
+	data: PropTypes.array.isRequired,
+	fontSizeMapper: PropTypes.func,
+	height: PropTypes.number,
+	rotate: PropTypes.func,
+	width: PropTypes.number
 };
 
 

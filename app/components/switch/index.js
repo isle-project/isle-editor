@@ -25,7 +25,7 @@ class Switch extends React.Component {
 		};
 
 		this.handleClick = () => {
-			const newState = copy( this.state ); 
+			const newState = copy( this.state );
 			if ( !isArray( this.props.children ) ) {
 				return null;
 			}
@@ -52,7 +52,7 @@ class Switch extends React.Component {
 		if ( this.props.className ) {
 			className += ' '+this.props.className;
 		}
-		const content = 
+		const content =
 			<span
 				className={className}
 				onClick={this.handleClick}

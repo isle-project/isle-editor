@@ -8,9 +8,7 @@ import PropTypes from 'prop-types';
 // MAIN //
 
 class Spinner extends Component {
-
 	constructor( props ) {
-
 		super( props );
 
 		this.startSpinner = () => {
@@ -23,8 +21,8 @@ class Spinner extends Component {
 			const cH = context.canvas.height;
 
 			const draw = () => {
-				const rotation = parseInt(
-					( ( new Date() - start ) / 1000 ) * lines ) / lines;
+				const num = ( ( new Date() - start ) / 1000 ) * lines;
+				const rotation = parseInt( num, 10 ) / lines;
 				context.save();
 				context.clearRect( 0, 0, cW, cH );
 				context.translate( cW / 2.0, cH / 2.0 );
@@ -42,9 +40,6 @@ class Spinner extends Component {
 			};
 			this.activeSpinner = window.setInterval( draw, 50 );
 		};
-	}
-
-	componentDidMount() {
 	}
 
 	componentDidUpdate() {
@@ -67,7 +62,7 @@ class Spinner extends Component {
 					margin: 'auto',
 					...this.props.style
 				}}
-			></canvas>
+			/>
 		);
 	}
 }
@@ -76,10 +71,11 @@ class Spinner extends Component {
 // DEFAULT PROPERTIES //
 
 Spinner.defaultProps = {
-	width: 128,
-	height: 64,
 	display: 'block',
-	lines: 16
+	height: 64,
+	lines: 16,
+	style: {},
+	width: 128
 };
 
 
@@ -87,10 +83,11 @@ Spinner.defaultProps = {
 
 Spinner.propTypes = {
 	display: PropTypes.string,
-	width: PropTypes.number,
 	height: PropTypes.number,
 	lines: PropTypes.number,
-	running: PropTypes.bool.isRequired
+	running: PropTypes.bool.isRequired,
+	style: PropTypes.object,
+	width: PropTypes.number
 };
 
 

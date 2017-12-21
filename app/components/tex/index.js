@@ -18,7 +18,6 @@ let counter = 1;
 // LATEX //
 
 class TeX extends Component {
-
 	constructor( props ) {
 		super( props );
 		let initialState = {
@@ -40,7 +39,7 @@ class TeX extends Component {
 	componentDidMount() {
 		const dom = findDOMNode( this );
 		const self = this;
-		select( dom ).selectAll( '.mord' ).each( function( d ) {
+		select( dom ).selectAll( '.mord' ).each( function onMord( d ) {
 			const $this = select( this );
 			Object.keys( self.props.elems ).forEach( ( prop ) => {
 				let elem = self.props.elems[ prop ];
@@ -72,7 +71,7 @@ class TeX extends Component {
 								legend: elem.legend || elem.variable,
 								min: elem.min || 0,
 								max: elem.max || 100,
-								step: elem.step || "any"
+								step: elem.step || 'any'
 							};
 							self.setState({
 								showTooltip: false,
@@ -156,46 +155,44 @@ class TeX extends Component {
 					}
 					<span
 						ref={ ( span ) => { this.katex = span; }}
-						dangerouslySetInnerHTML={math}
+						dangerouslySetInnerHTML={math} // eslint-disable-line react/no-danger
 						aria-hidden={!!math}
 					/>
 					{overlays}
 				</div>
 			);
 		}
-		else {
-			return (
+		return (
+			<span
+				ref={( span ) => { this.katex = span; }}
+				className="tex"
+				style={this.props.style}
+				onClick={this.props.onClick}
+			>
 				<span
-					ref={ ( span ) => { this.katex = span; }}
-					className="tex"
-					style={this.props.style}
-					onClick={this.props.onClick}
-				>
-					<span
-						dangerouslySetInnerHTML={math}
-						aria-hidden={!!math}
-						style={{ whiteSpace: 'nowrap' }}
-					/>
-					{overlays}
-				</span>
-			);
-		}
+					dangerouslySetInnerHTML={math} // eslint-disable-line react/no-danger
+					aria-hidden={!!math}
+					style={{ whiteSpace: 'nowrap' }}
+				/>
+				{overlays}
+			</span>
+		);
 	}
 }
 
 // PROPERTY TYPES //
 
 TeX.propTypes = {
+	displayMode: PropTypes.bool,
+	elems: PropTypes.object,
+	numbered: PropTypes.bool,
+	onClick: PropTypes.func,
 	raw: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.number
 	]).isRequired,
 	style: PropTypes.object,
-	displayMode: PropTypes.bool,
-	onClick: PropTypes.func,
-	tag: PropTypes.string,
-	numbered: PropTypes.bool,
-	elems: PropTypes.object
+	tag: PropTypes.string
 };
 
 
