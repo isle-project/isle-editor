@@ -8,9 +8,7 @@ import PropTypes from 'prop-types';
 // MAIN //
 
 class Pages extends Component {
-
 	constructor( props ) {
-
 		super( props );
 
 		this.state = {
@@ -54,7 +52,6 @@ class Pages extends Component {
 			</div>
 		);
 	}
-
 }
 
 
