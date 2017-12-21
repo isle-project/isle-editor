@@ -4,26 +4,17 @@ import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 import ChatButton from 'components/chat-button';
-import { Button, ButtonToolbar, Modal, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
-
+import { Button, ButtonToolbar, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 import ace from 'brace';
 import 'brace/mode/javascript';
 import 'brace/theme/katzenmilch';
 import 'brace/theme/monokai';
 import 'brace/theme/solarized_light';
+import './js-shell.css';
+
 
 // FUNCTIONS //
-
-const max = Math.max;
-global.console_id = null;
-if ( !global.jslog ) global.jslog = [];
-
-
-var tstring = `var a = 17;
-	a = [];
-	a.push( 712 );
-	`;
-
 
 const displayHint = ( id, hints ) => {
 	return (
@@ -36,12 +27,12 @@ const displayHint = ( id, hints ) => {
 		>
 			{ hints
 				.filter( ( e, i ) => i <= id )
-				.map( ( hintText, i ) => <span key={i}>
+				.map( ( hintText, i ) => ( <span key={i}>
 					<label>Hint {i+1}:</label>
 					<br />
 					<span>{hintText}</span>
 					<br />
-				</span> )
+				</span> ) )
 			}
 		</Popover>
 	);
@@ -55,15 +46,12 @@ const getHintLabel = ( id, noHints, hintOpen ) => {
 	if ( id === 0 ) {
 		return 'Get Hint';
 	}
-	else if ( id === noHints ) {
+	if ( id === noHints ) {
 		return 'Show Hints';
 	}
-	else {
-		return 'Next Hint';
-	}
 
+	return 'Next Hint';
 };
-
 
 
 const showSolutionButton = ( currentHint, nHints, clickHandler, displayed, nEvaluations ) => {
@@ -82,7 +70,7 @@ const showSolutionButton = ( currentHint, nHints, clickHandler, displayed, nEval
 				overlay={tooltip}
 				rootClose={true}
 			>
-				<span style={{ display: 'inline-block',  marginLeft: '4px' }}>
+				<span style={{ display: 'inline-block', marginLeft: '4px' }}>
 					<Button
 						bsStyle="warning"
 						bsSize="sm"
@@ -94,82 +82,25 @@ const showSolutionButton = ( currentHint, nHints, clickHandler, displayed, nEval
 				</span>
 			</OverlayTrigger>
 		);
-	} else {
-		return (
-			<Button
-				bsStyle="warning"
-				bsSize="sm"
-				onClick={clickHandler}
-			>{ !displayed ? 'Show Solution' : 'Hide Solution' }</Button>
-		);
 	}
-};
-
-const showResetButton = ( clickHandler ) => {
-	const tooltip = (
-		<Tooltip
-			id="tooltip"
-		>
-			Reset the shell input to its default value.
-		</Tooltip>
-	);
 	return (
-		<OverlayTrigger
-			placement="top"
-			positionLeft={100}
-			overlay={tooltip}
-			rootClose={true}
-		>
-			<span style={{ display: 'inline-block', marginLeft: '4px' }}>
-				<Button
-					bsStyle="warning"
-					bsSize="sm"
-					onClick={clickHandler}
-				>Reset</Button>
-			</span>
-		</OverlayTrigger>
+		<Button
+			bsStyle="warning"
+			bsSize="sm"
+			onClick={clickHandler}
+		>{ !displayed ? 'Show Solution' : 'Hide Solution' }</Button>
 	);
 };
-
-
-
-
-function InitConsole ()
-{
-	var log = document.getElementById( console_id );
-	var lg = [ 'log','debug','info','warn','error' ];
-
-	lg.forEach( function ( verb ) {
-		console[ verb ] = ( function ( method, verb, log ) {
-			return function () {
-
-
-				method.apply( console, arguments );
-				var x = {
-					console_id: global.console_id,
-					type: verb,
-					msg:  Array.prototype.slice.call( arguments ).join( ' ' )
-				};
-
-				if ( global.console_id ) global.jslog.push( x );
-
-			};
-		})( console[ verb ], verb, log );
-	});
-}
 
 
 // MAIN //
 
 class JSShell extends Component {
-
 	constructor( props, context ) {
 		super( props );
 
 		this.state = {
-			corrected: false,
 			disabled: this.props.disabled,
-			console_id: "consoleID",
 			log: [],
 			currentHint: 0,
 			hintOpen: false,
@@ -178,38 +109,28 @@ class JSShell extends Component {
 			solutionOpen: false
 		};
 
+		this.isActive = false;
+		this.jslog = [];
+
 		if ( this.props.vars ) {
 			for ( var key in this.props.vars ) {
-				global[ key ] = this.props.vars [ key ];
+				if ( hasOwnProp( this.props.vars, key ) ) {
+					global[ key ] = this.props.vars[ key ];
+				}
 			}
 		}
 
-		this.get_logs = function() {
-			var list = global.jslog;
-			var msgs = [];
-
-			for ( var i = 0; i < list.length; i++ ) {
-				if ( list[ i ].console_id === this.state.console_id ) {
-					msgs.push( list[ i ]);
-				}
-			}
+		this.get_logs = () => {
 			this.setState({
-				log: msgs
+				log: this.jslog
 			});
 		};
 
 		this.reset_console = () => {
-			var list = global.jslog;
-			var temp = [];
-			for ( var i = 0; i < list.length; i++ ) {
-				if ( list[ i ].console_id !== this.state.console_id ) temp.push( list[ i ]);
-			}
-
+			this.jslog = [];
 			this.setState({
 				log: []
 			});
-
-			global.jslog = temp;
 		};
 
 		this.handleSolutionClick = () => {
@@ -284,15 +205,13 @@ class JSShell extends Component {
 
 			if ( currentHelp < help.length && helpOpen === false ) {
 				if ( this.props.id ) {
-					alert ( "Speichern des Logs" );
-
+					console.log( 'Speichern des Logs' );
 					session.log({
 						id: this.props.id,
 						type: 'JSSHELL_OPEN_HELP',
 						value: currentHelp
 					});
 				}
-
 				this.setState({
 					currentHelp: currentHelp + 1,
 					helpOpen: true
@@ -305,32 +224,58 @@ class JSShell extends Component {
 		};
 
 		this.handleEvaluationClick = () => {
-			if ( !global.jsconsole_initialized ) {
-				global.jsconsole_initialized = true;
-				InitConsole();
-			}
-			global.console_id = this.state.console_id;
-
+			this.isActive = true;
 			let currentCode = this.editor.getValue();
 			try {
 				if ( this.props.check ) {
-					currentCode += ";" + this.props.check;
-					eval( currentCode );
+					currentCode += ';' + this.props.check;
+					eval( currentCode );  // eslint-disable-line no-eval
+				} else {
+					eval( currentCode ); // eslint-disable-line no-eval
 				}
-				else  eval( currentCode );
 			}
 			catch ( err ) {
-				alert( err.message );
 				var x = {
-					console_id: global.console_id,
 					type: 'error',
 					msg: err.message
 				};
-				if ( global.console_id ) global.jslog.push( x );
+				this.jslog.push( x );
 			}
-			global.console_id = null;
+			this.isActive = false;
 			this.get_logs();
 		};
+	}
+
+	componentDidMount() {
+		this.editor = ace.edit( this.props.id );
+		this.editor.getSession().setMode( 'ace/mode/javascript' );
+		this.editor.setTheme( 'ace/theme/monokai' );
+		// this.aceSession.getDocument().setNewLineMode( 'auto' );
+		this.editor.setValue( this.props.code, -1 );
+
+		const { session } = this.context;  // eslint-disable-line
+		// hier müsste subscribe und unsubscribe folgen
+		this.innerConsole();
+	}
+
+	innerConsole() {
+		var self = this;
+		var lg = [ 'log', 'debug', 'info', 'warn', 'error' ];
+		for ( let i = 0; i < lg.length; i++ ) {
+			let verb = lg[ i ];
+			console[ verb ] = ( ( method, verb ) => {
+				return function logger() {
+					method.apply( console, arguments );
+					var x = {
+						type: verb,
+						msg: Array.prototype.slice.call( arguments ).join( ' ' )
+					};
+					if ( self.isActive ) {
+						self.jslog.push( x );
+					}
+				};
+			})( console[ verb ], verb );
+		}
 	}
 
 	// Now the ordinary functions:
@@ -341,7 +286,7 @@ class JSShell extends Component {
 			style = {
 				marginLeft: '8px',
 				fontFamily: 'monospace',
-				color: 'lightgreen',
+				color: 'lightgreen'
 			};
 			break;
 		case 'error':
@@ -356,21 +301,21 @@ class JSShell extends Component {
 			style = {
 				marginLeft: '8px',
 				fontFamily: 'monospace',
-				color: 'darkcyan',
+				color: 'darkcyan'
 			};
 			break;
 		case 'warn':
 			style = {
 				marginLeft: '8px',
 				fontFamily: 'monospace',
-				color: 'darkorange',
+				color: 'darkorange'
 			};
 			break;
 		default:
 			style = {
 				marginLeft: '8px',
 				fontFamily: 'monospace',
-				color: 'darkslategrey',
+				color: 'darkslategrey'
 			};
 			break;
 		}
@@ -382,24 +327,24 @@ class JSShell extends Component {
 		);
 	}
 
-	showHelp () {
+	showHelp() {
 		return (
 			<Button
 				bsStyle="success"
 				bsSize="sm"
 				onClick={this.handleHelpClick}
 				disabled={this.state.disabled}
-			>{`HELP`}</Button>
+			>{'HELP'}</Button>
 		);
 	}
 
-	showHints () {
-		const label =  getHintLabel( this.state.currentHint, this.props.hints.length, this.state.hintOpen );
+	showHints() {
+		const label = getHintLabel( this.state.currentHint, this.props.hints.length, this.state.hintOpen );
 		return (
 			<OverlayTrigger
 				trigger="click"
 				placement="left"
-				overlay={ displayHint( this.state.currentHint - 1, this.props.hints ) }
+				overlay={displayHint( this.state.currentHint - 1, this.props.hints )}
 			>
 				<Button
 					bsStyle="success"
@@ -411,12 +356,12 @@ class JSShell extends Component {
 		);
 	}
 
-	renderLogs () {
+	renderLogs() {
 		let list = this.state.log;
 		let res = [];
 		for ( var i = 0; i < list.length; i++ ) {
 			let e = list[ i ];
-			console.log( e );
+			// console.log( e );
 			res.push(
 				this.getLog( e, i )
 			);
@@ -424,81 +369,7 @@ class JSShell extends Component {
 		return res;
 	}
 
-	componentDidMount() {
-		this.editor = ace.edit( this.props.id );
-		global.console_id = "console_" + this.props.id;
-
-		this.setState({
-			console_id: global.console_id
-		});
-		this.editor.getSession().setMode( 'ace/mode/javascript' );
-		this.editor.setTheme( 'ace/theme/monokai' );
-		// this.aceSession.getDocument().setNewLineMode( 'auto' );
-		this.editor.setValue( this.props.code, -1 );
-
-		const { session } = this.context;
-		// hier müsste subscribe und unsubscribe folgen
-	}
-
-	componentWillMount() {
-
-	}
-
 	render() {
-
-		const jsedit = {
-			width: '98%',
-			marginTop: '1%',
-			marginLeft: '1%',
-			height: '400px',
-			fontFamily: 'monospace',
-			fontSize: '20px',
-			lineHeight: '28px',
-			marginBottom: '20px'
-		};
-
-		const console  = {
-			width: '98%',
-			height: '160px',
-			background: "rgb(60,60,60)",
-			marginLeft: '1%',
-			marginBottom: '20px',
-			border: "solid 1px black",
-			overflow: "auto",
-			display: 'block'
-
-		};
-
-		const frame = {
-			width: '99.9%',
-			height: 'auto',
-			marginLeft: '0%',
-			fontFamily: 'monospace',
-			fontSize: '18px',
-			background: 'ivory',
-			marginBottom: '20px',
-			border: 'solid 1px black',
-			boxShadow: '2px 2px 10px'
-		};
-
-		const reset = {
-			marginRight: '4px',
-			float: 'right',
-			width: '22px',
-			height: '22px',
-			cursor: 'pointer',
-			fontSize: '22px',
-			textAlign: 'center',
-			color: 'white',
-			zIndex: 2
-		};
-
-		const myToolbar = {
-			marginLeft: '1%',
-			width: '96%'
-
-		};
-
 		const nHints = this.props.hints.length;
 		const nHelp	= this.props.help.length;
 		const toolbar = <ButtonToolbar style={{ float: 'right', marginTop: '8px' }}>
@@ -523,14 +394,12 @@ class JSShell extends Component {
 			}
 		</ButtonToolbar>;
 
-		const editor = <div style = { jsedit } id = { this.props.id }></div>;
-
-
+		const editor = <div className="jsedit" id={this.props.id}></div>;
 		return (
-			<div> 
-				<div className="JSShell" style={frame}>
+			<div>
+				<div className="JSShell">
 					{editor}
-					<div style = { myToolbar } >
+					<div className="toolbar">
 						{ !this.state.disabled ?
 							<Button
 								bsStyle="primary"
@@ -544,10 +413,10 @@ class JSShell extends Component {
 							<span />
 						}
 						{ toolbar }
-						<br/>
+						<br />
 					</div>
-					<div id={this.state.console_id} style={console} >
-						<div style={reset} onClick={this.reset_console} >☒</div>
+					<div id={this.props.id} className="console" >
+						<div className="reset" onClick={this.reset_console} >☒</div>
 						{this.renderLogs()}
 					</div>
 				</div>
@@ -562,8 +431,9 @@ class JSShell extends Component {
 JSShell.defaultProps = {
 	onResult() {},
 	onEvaluate(){},
-	id: "editor",
+	id: 'editor',
 	chat: false,
+	check: null,
 	code: '',
 	lines: 5,
 	solution: '',
@@ -572,27 +442,32 @@ JSShell.defaultProps = {
 	help: [],
 	fontSize: 16,
 	fontFamily: 'monospace',
-	disabled: false,
+	disabled: false
 };
 
 
 // PROPERTY TYPES //
 
+/* eslint-disable react/no-unused-prop-types */
+
 JSShell.propTypes = {
 	chat: PropTypes.bool,
-	onResult: PropTypes.func,
-	onEvaluate:  PropTypes.func,
-	id: PropTypes.string,
+	check: PropTypes.string,
 	code: PropTypes.string,
-	lines: PropTypes.number,
-	libraries: PropTypes.array,
-	hints: PropTypes.array,
-	help: PropTypes.array,
+	disabled: PropTypes.bool,
 	fontFamily: PropTypes.string,
 	fontSize: PropTypes.number,
-	disabled: PropTypes.bool,
-	solution: PropTypes.string,
+	help: PropTypes.array,
+	hints: PropTypes.array,
+	id: PropTypes.string,
+	libraries: PropTypes.array,
+	lines: PropTypes.number,
+	onEvaluate: PropTypes.func,
+	onResult: PropTypes.func,
+	solution: PropTypes.string
 };
+
+/* eslint-enable */
 
 
 // CONTEXT TYPES //
