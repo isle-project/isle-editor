@@ -15,5 +15,6 @@ TODO
    - Display additional information when hovering over bars of barcharts (percentage, description, other variables?)
    - We have been deliberately loose with respect to terminology: z-test vs. t-test
    - Should be able to change labels on graphs
-
+6. Gate
+    This shall contain a **timed** parameter allowing scheduled gating
 
