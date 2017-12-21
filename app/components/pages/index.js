@@ -60,7 +60,13 @@ class Pages extends Component {
 // TYPES //
 
 Pages.propTypes = {
-	height: PropTypes.number
+	height: PropTypes.number,
+	title: PropTypes.string
+};
+
+Pages.defaultProps = {
+	height: null,
+	title: ''
 };
 
 
