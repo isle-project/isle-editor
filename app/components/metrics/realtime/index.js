@@ -10,14 +10,11 @@ const debug = require( 'debug' )( 'isle-editor' );
 // MAIN //
 
 class RealTimeMetrics extends Component {
-
 	constructor() {
 		super();
-
 		this.state = {
 			actions: []
 		};
-
 	}
 
 	componentDidMount() {
@@ -53,11 +50,10 @@ class RealTimeMetrics extends Component {
 			<div></div>
 		);
 	}
-
 }
 
 
-// DEFAULT PROPERTIES //
+// TYPES //
 
 RealTimeMetrics.defaultProps = {
 	onData() {},
@@ -65,13 +61,10 @@ RealTimeMetrics.defaultProps = {
 	returnFullObject: false
 };
 
-
-// PROPERTY TYPES //
-
 RealTimeMetrics.propTypes = {
+	for: PropTypes.string.isRequired,
 	onData: PropTypes.func,
 	onDatum: PropTypes.func,
-	for: PropTypes.string.isRequired,
 	returnFullObject: PropTypes.bool
 };
 

@@ -8,7 +8,6 @@ import { Button } from 'react-bootstrap';
 // MAIN //
 
 class Metrics extends Component {
-
 	constructor() {
 		super();
 
@@ -48,7 +47,7 @@ class Metrics extends Component {
 		return (
 			<Button
 				bsStyle="primary"
-				onClick={ () => {
+				onClick={() => {
 					this.setState({
 						active: !this.state.active
 					}, () => {
@@ -62,24 +61,20 @@ class Metrics extends Component {
 			>{ ( this.state.active && this.props.interval ) ? 'Stop' : 'Fetch Data' }</Button>
 		);
 	}
-
 }
 
 
-// DEFAULT PROPERTIES //
+// TYPES //
 
 Metrics.defaultProps = {
 	interval: null,
 	onData() {}
 };
 
-
-// PROPERTY TYPES //
-
 Metrics.propTypes = {
+	for: PropTypes.string.isRequired,
 	interval: PropTypes.number,
-	onData: PropTypes.func,
-	for: PropTypes.string.isRequired
+	onData: PropTypes.func
 };
 
 Metrics.contextTypes = {
