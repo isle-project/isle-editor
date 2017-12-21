@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { Component } from 'react';
 import { VictoryArea, VictoryChart, VictoryScatter } from 'victory';
 import runif from '@stdlib/math/base/random/uniform';
 import floor from '@stdlib/math/base/special/floor';
@@ -8,8 +8,7 @@ import floor from '@stdlib/math/base/special/floor';
 
 // MAIN //
 
-class CrossValidation extends React.Component {
-
+class CrossValidation extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
@@ -49,7 +48,6 @@ class CrossValidation extends React.Component {
 		const testSet = floor( runif( 0, 10 ) );
 		const lower = 10 * ( testSet - 1 );
 		const upper = 10 * ( testSet );
-
 		return this.state.points.map( ( val, i ) => {
 			const band = floor( i / 10 );
 			let inTest = lower <= i && i <= upper;
@@ -67,24 +65,24 @@ class CrossValidation extends React.Component {
 	render() {
 		return (
 			<div>
-				<VictoryChart animate={{ duration: 2000, easing: "bounce" }}>
+				<VictoryChart animate={{ duration: 2000, easing: 'bounce' }}>
 					<VictoryScatter
 						data={this.state.data}
 					/>
 					<VictoryArea
 						data={this.state.data}
 						x="x"
-						y={ ( d ) => d.inTest ? 1.0 : 0.0 }
+						y={( d ) => d.inTest ? 1.0 : 0.0}
 						style={{
-							 data: { fill: 'tomato', opacity: 0.4 },
+							data: { fill: 'tomato', opacity: 0.4 }
 						}}
 					/>
 					<VictoryArea
 						data={this.state.data}
 						x="x"
-						y={ ( d ) => d.inTest ? 0.0 : 1.0 }
+						y={( d ) => d.inTest ? 0.0 : 1.0}
 						style={{
-							 data: { fill: 'lightblue', opacity: 0.4 },
+							data: { fill: 'lightblue', opacity: 0.4 }
 						}}
 					/>
 				</VictoryChart>

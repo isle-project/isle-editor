@@ -14,7 +14,6 @@ import FeedbackButtons from 'components/feedback';
 // MAIN //
 
 class DiceThrowing extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -59,21 +58,12 @@ class DiceThrowing extends Component {
 		});
 	}
 
-	render() {
-		return <Panel>
-			<NumberInput
-				legend="Number of Sides"
-				defaultValue={6}
-				step={1}
-				max={20}
-				min={2}
-				onChange={this.chooseNSides}
-			/>
-			<p>Choose custom probabilities for the sides and then throw some dice!</p>
+	renderGrid() {
+		return (
 			<Grid>
 				<Col md={5}>
 					<h3>Probabilities:</h3>
-					{inmap( this.state.sides, ( x, i ) => <NumberInput
+					{inmap( this.state.sides, ( x, i ) => ( <NumberInput
 						legend={`Side ${i+1}`}
 						defaultValue={1/this.state.sides.length}
 						step="any"
@@ -97,7 +87,7 @@ class DiceThrowing extends Component {
 								draw: null
 							});
 						}}
-					/> )}
+					/> ) )}
 					<Button onClick={ () => {
 						this.setState({
 							tally: this.state.tally.map( x => 0 )
@@ -131,15 +121,45 @@ class DiceThrowing extends Component {
 					/>
 				</Col>
 			</Grid>
+		);
+	}
+
+	renderTable() {
+		return (
 			<table className="table table-bordered">
 				<tbody>
-					<tr><th>Side:</th>{ this.state.tally.map( ( elem, idx ) => { return <td>{idx+1}</td>; })}</tr>
-					<tr><th>Count:</th>{ this.state.tally.map( ( elem, idx ) => { return <td>{elem}</td>; })}</tr>
-					<tr><th>Relative Frequency:</th>{ this.state.tally.map( ( elem, idx ) => { return <td>{roundn( elem/this.state.tally.reduce( ( a, b ) => a+b ), -3 ) || '0.000' }</td>; })}</tr>
+					<tr>
+						<th>Side:</th>
+						{ this.state.tally.map( ( elem, idx ) => { return <td key={idx}>{idx+1}</td>; })}
+					</tr>
+					<tr>
+						<th>Count:</th>
+						{ this.state.tally.map( ( elem, idx ) => { return <td key={idx}>{elem}</td>; })}
+					</tr>
+					<tr>
+						<th>Relative Frequency:</th>
+						{ this.state.tally.map( ( elem, idx ) => { return <td key={idx}>{roundn( elem/this.state.tally.reduce( ( a, b ) => a+b ), -3 ) || '0.000' }</td>; })}
+					</tr>
 				</tbody>
 			</table>
+		);
+	}
+
+	render() {
+		return ( <Panel>
+			<NumberInput
+				legend="Number of Sides"
+				defaultValue={6}
+				step={1}
+				max={20}
+				min={2}
+				onChange={this.chooseNSides}
+			/>
+			<p>Choose custom probabilities for the sides and then throw some dice!</p>
+			{this.renderGrid()}
+			{this.renderTable()}
 			<p>Total number of throws: {this.state.nThrows}</p>
-		</Panel>;
+		</Panel> );
 	}
 }
 

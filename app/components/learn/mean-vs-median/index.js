@@ -13,7 +13,6 @@ import lognormal from '@stdlib/math/base/dists/lognormal';
 // MAIN //
 
 class MeanVSMedian extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -32,6 +31,10 @@ class MeanVSMedian extends Component {
 		};
 	}
 
+	componentDidMount() {
+		this.generateData();
+	}
+
 	medianEvaluation = ( evt ) => {
 		evt.stopPropagation();
 		if ( !this.state.showLognormalMedian ) {
@@ -39,8 +42,12 @@ class MeanVSMedian extends Component {
 				let distance = abs( lognormal.median( this.state.mu, this.state.sigma ) - this.state.medianLognormalGuess );
 				let msg = 'A bit off... Try again!';
 				let xmax = this.state.lognormalDomain.x[ 1 ];
-				if ( distance < xmax/10 ) { msg = 'Good!' }
-				if ( distance < xmax/20 ) { msg = 'Very Good!' }
+				if ( distance < xmax/10 ) {
+					msg = 'Good!';
+				}
+				if ( distance < xmax/20 ) {
+					msg = 'Very Good!';
+				}
 				global.session.addNotification({
 					title: 'Score',
 					message: msg,
@@ -51,10 +58,6 @@ class MeanVSMedian extends Component {
 		}
 	}
 
-	componentDidMount() {
-		this.generateData();
-	}
-
 	meanEvaluation = ( evt ) => {
 		evt.stopPropagation();
 		if ( !this.state.showLognormalMean ) {
@@ -62,8 +65,12 @@ class MeanVSMedian extends Component {
 				let distance = abs( lognormal.mean( this.state.mu, this.state.sigma ) - this.state.meanLognormalGuess );
 				let msg = 'A bit off... Try again!';
 				let xmax = this.state.lognormalDomain.x[ 1 ];
-				if ( distance < xmax/10 ) { msg = 'Good!'; }
-				if ( distance < xmax/20 ) { msg = 'Very Good!'; }
+				if ( distance < xmax/10 ) {
+					msg = 'Good!';
+				}
+				if ( distance < xmax/20 ) {
+					msg = 'Very Good!';
+				}
 				const { session } = this.context;
 				session.addNotification({
 					title: 'Score',
@@ -87,7 +94,9 @@ class MeanVSMedian extends Component {
 			};
 		});
 		this.setState({
-			lognormalData, mu, sigma,
+			lognormalData,
+			mu,
+			sigma,
 			lognormalDomain: {
 				x: [ 0.0, xmax ],
 				y: [ 0.0, lognormal.pdf( lognormal.mode( mu, sigma ), mu, sigma ) ]
@@ -187,14 +196,13 @@ MeanVSMedian.defaultProps = {
 // PROPERTY TYPES //
 
 MeanVSMedian.propTypes = {
-	intro: PropTypes.node,
-	header: PropTypes.node
+	header: PropTypes.node,
+	intro: PropTypes.node
 };
 
 MeanVSMedian.contextTypes = {
 	session: PropTypes.object
 };
-
 
 
 // EXPORTS //

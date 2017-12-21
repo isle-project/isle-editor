@@ -5,6 +5,7 @@ import { Col } from 'react-bootstrap';
 import landscape from '@stdlib/datasets/img-french-alpine-landscape';
 import boats from '@stdlib/datasets/img-nagasaki-boats';
 import airplane from '@stdlib/datasets/img-airplane-from-above';
+import abs from '@stdlib/math/base/special/abs';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 
@@ -12,7 +13,6 @@ import SelectInput from 'components/input/select';
 // MAIN //
 
 class ImagePixelPicker extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -59,6 +59,7 @@ class ImagePixelPicker extends Component {
 		let buf;
 		switch ( name ) {
 		case 'Landscape':
+		default:
 			buf = landscape();
 			break;
 		case 'Boats':
@@ -85,13 +86,12 @@ class ImagePixelPicker extends Component {
 	handleMouseMove = ( event ) => {
 		const x = event.layerX;
 		const y = event.layerY;
-		console.log( event );
 		const pixel = this.ctx.getImageData( x, y, 1, 1 );
 		const data = pixel.data;
 		const rgba = 'rgba(' + data[ 0 ] + ', ' + data[ 1 ] +
 					', ' + data[ 2 ] + ', ' + ( data[ 3 ] / 255 ) + ')';
 		const color = document.getElementById( 'color' );
-		color.style.background =  rgba;
+		color.style.background = rgba;
 		color.textContent = rgba;
 		this.zoomctx.drawImage( this.canvas,
 			abs( x - 5 ),
@@ -131,8 +131,8 @@ class ImagePixelPicker extends Component {
 					<div
 						id="color"
 						style={{
-							width:'250px',
-							height:'50px',
+							width: '250px',
+							height: '50px',
 							color: 'red'
 						}}
 					/>
