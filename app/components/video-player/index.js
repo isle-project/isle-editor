@@ -93,24 +93,24 @@ class Video extends Component {
 // PROPERTY TYPES //
 
 Video.propTypes = {
-	url: PropTypes.string,
 	center: PropTypes.bool,
 	controls: PropTypes.bool,
-	loop: PropTypes.bool,
-	playing: PropTypes.bool,
-	volume: PropTypes.number,
 	height: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.number
 	]),
+	loop: PropTypes.bool,
+	onEnded: PropTypes.func,
+	onPause: PropTypes.func,
+	onPlay: PropTypes.func,
+	playing: PropTypes.bool,
+	style: PropTypes.object,
+	url: PropTypes.string,
+	volume: PropTypes.number,
 	width: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.number
-	]),
-	style: PropTypes.object,
-	onPlay: PropTypes.func,
-	onPause: PropTypes.func,
-	onEnded: PropTypes.func
+	])
 };
 
 

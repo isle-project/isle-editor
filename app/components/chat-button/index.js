@@ -59,7 +59,8 @@ class ChatButton extends Component {
 					bsStyle="primary"
 					bsSize="sm"
 					onClick={this.onClick}
-				>{this.state.opened ? 'Leave Chat' : 'Join Chat' }</Button>
+				>{this.state.opened ? 'Leave Chat' : 'Join Chat' }
+				</Button>
 			</Gate>
 		);
 	}

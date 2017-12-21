@@ -84,7 +84,7 @@ class Signup extends Component {
 				return 'warning';
 			}
 			if ( password !== passwordRepeat ) {
-				 return 'error';
+				return 'error';
 			}
 			return 'success';
 		};
@@ -222,7 +222,8 @@ Signup.contextTypes = {
 };
 
 Signup.defaultProps = {
-	onClose() {}
+	onClose() {},
+	show: false
 };
 
 Signup.propTypes = {

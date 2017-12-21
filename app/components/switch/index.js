@@ -52,13 +52,14 @@ class Switch extends React.Component {
 		if ( this.props.className ) {
 			className += ' '+this.props.className;
 		}
-		const content = <span
-			className={className}
-			onClick={this.handleClick}
-			style={this.props.style}
-		>
-			{children}
-		</span>;
+		const content = 
+			<span
+				className={className}
+				onClick={this.handleClick}
+				style={this.props.style}
+			>
+				{children}
+			</span>;
 
 		if ( this.props.tooltip === '' ) {
 			return content;
