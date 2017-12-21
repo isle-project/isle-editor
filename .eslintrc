@@ -100,8 +100,8 @@
     }],
     "multiline-ternary": 0,
     "new-cap": [ 2, {
-      "newIsCap": false,
-      "capIsNew": true,
+      "newIsCap": true,
+      "capIsNew": false,
       "properties": true
     }],
     "new-parens": 2,
