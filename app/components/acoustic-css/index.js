@@ -13,11 +13,9 @@ class AcousticCSS extends Component {
 		super( props );
 
 		this.state = {
-			recognized: 'recognized text',
-			text:  '',
+			text: '',
 			class_name: 'css_logo'
 		};
-	
 		this.click.bind( this );
 	}
 
@@ -25,25 +23,21 @@ class AcousticCSS extends Component {
 		if ( this.props.autoplay ) this.record();
 	}
 
-
-
 	onResult = ( event ) => {
-		
 	}
 
 
-	onInput ( value ) {
-		
+	onInput( value ) {
 	}
-	
-	get_result ( value ) {
+
+	getResult( value ) {
 		alert( value );
 	}
 
 	click() {
 		this.refs.recognition.trigger();
-		if ( this.refs.recognition.state.isRecording === false ) {
-
+		if ( this.refs.recognition.state.isRecording === false ){
+			// something should happen here
 		}
 	}
 
@@ -52,139 +46,130 @@ class AcousticCSS extends Component {
 		this.setState({
 			text: event.target.value
 		});
-
 	}
 
-	setID ( value ) {
-		// this should be used to check that there is just one word 
-		var list = value.split( " " );
+	setID( value ) {
+		// This should be used to check that there is just one word
+		var list = value.split( ' ' );
 		// functionality still missing
 
 		this.props.targetID = value;
 	}
 
 
-	trigger( text ) {
-
-		var rgb = function( value ) {
-			console.log( "rgb wird aufgerufen" );
-			value = value.replace( "rgba", "rgba(" );
-			value = value.replace( "RGB", "rgb(" );
-			value += ")";
+	trigger( text ){
+		function rgb( value ) {
+			console.log( 'rgb wird aufgerufen');
+			value = value.replace( 'rgba', 'rgba(' );
+			value = value.replace( 'RGB', 'rgb(' );
+			value += ')';
 			console.log( value );
 			return value;
-		};
-	
-		var shadow = function( value ) {
-			console.log( "shadow wird aufgerufen" );
+		}
+
+		function shadow( value ) {
+			console.log( 'shadow wird aufgerufen' );
 			var number = /number */g;
-			value = value.replace( number, "" );	
-			value = value.split( " " );
-			var s = "";
+			value = value.replace( number, '' );
+			value = value.split( ' ' );
+			var s = '';
 			for ( var i = 0; i < value.length; i++ ) {
 				var item = value[ i ];
-				if ( item === "four" || item === "for") item = 4;	
-				if ( item === "one" ) item = 1;	
+				if ( item === 'four' || item === 'for') item = 4;
+				if ( item === 'one' ) item = 1;
 				if ( i < 3 ) {
-					item += "px ";
+					item += 'px ';
 				}
 				s += item;
 			}
 			return s;
-		};
-	
-	
+		}
+
 		var RE = /(?:set|change|modify|alter) ([\s\S]*) to ([\s\S]*)/i;
 		var matches = text.match( RE );
 		if ( matches && matches[ 1 ] && matches[ 2 ]) {
-			var property = matches[ 1 ]
+			var property = matches[ 1 ];
 			var value = matches[ 2 ];
-			
-			console.log( matches );
-			console.log( camelcase( property ) );
-			
-			if ( property === "in a text" ) 			property = "inner text";
-			if ( property === "inner Html" ) 			property = "inner HTML";
-	
-			if ( property === "ID" ) {
+
+			if ( property === 'in a text' ) 			property = 'inner text';
+			if ( property === 'inner Html' ) 			property = 'inner HTML';
+
+			if ( property === 'ID' ){
 				this.setID( value );
 			}
-	
+
 			property = camelcase( property );
-	
-			
-			if ( property === "colour" ) {
-				property = "color";
+
+
+			if ( property === 'colour' ) {
+				property = 'color';
 			}
-	
-			if ( property === "color" || property === "background") { 
+
+			if ( property === 'color' || property === 'background') {
 				var dark = /dark /;
-				value = value.replace( dark, "dark" );
-	
-				var dark = /light /;
-				value = value.replace( dark, "light" );
-	
-				if ( value.search( "RGB" ) !== -1 )  value = rgb( value );
-				if ( value.search( "rgba" ) !== -1 ) value = rgb( value );
+				value = value.replace( dark, 'dark' );
+
+				dark = /light /;
+				value = value.replace( dark, 'light' );
+
+				if ( value.search( 'RGB' ) !== -1 )		value = rgb( value );
+				if ( value.search( 'rgba' ) !== -1 )	value = rgb( value );
 			}
-			
-			if ( property === "with" ) property = "width";
-	
-			if ( property === "textDecoration" ) {
-				if ( value === "line through" ) value = "line-through";
+
+			if ( property === 'with' ) property = 'width';
+
+			if ( property === 'textDecoration' ) {
+				if ( value === 'line through' ) value = 'line-through';
 			}
-	
-			if ( property === "textShadow" || property === "boxShadow" ) {
+
+			if ( property === 'textShadow' || property === 'boxShadow' ) {
 				value = shadow( value );
 			}
-	
-			if ( property === "textAlign" ) {
-				if ( value === "Centre" ) value = "center";
+
+			if ( property === 'textAlign' ) {
+				if ( value === 'Centre' ) value = 'center';
 			}
-	
+
 			var repix = / pixels*/;
-			value = value.replace( repix, "px" );
+			value = value.replace( repix, 'px' );
 			console.log( value );
-	
+
 			var vw = / viewport*/;
-			value = value.replace( vw, "vw" );
-	
+			value = value.replace( vw, 'vw' );
 
 			var div = document.getElementById( this.props.targetID );
 			if ( div ) div.style[ property ] = value;
-	
-			if ( value === "small caps" ) value = "small-caps";
-	
+
+			if ( value === 'small caps' ) value = 'small-caps';
 		}
 		else {
-			var resp = "Sorry, I didn't get that.";
+			var resp = 'Sorry, I didn\'t get that.';
 			var ssu = new SpeechSynthesisUtterance( resp );
-			ssu.lang = "en-US";
+			ssu.lang = 'en-US';
 			window.speechSynthesis.speak( ssu );
 		}
 	}
 
 
-	render_speech () {
+	renderSpeech() {
 		if ( this.props.speech === false ) return null;
 		return (
 			<div>
 				<SpeechRecognition
-					ref = "recognition"
-					name = { this.props.name }
+					ref='recognition'
+					name={this.props.name}
 					showText
-					language = { this.props.language }
-					onName = { this.get_result.bind( this ) }
-				
+					language={this.props.language}
+					onName={this.getResult.bind(this)}
 				/>
 			</div>
 		);
 	}
 
-	render_logo() {
-		if ( ! this.props.logo ) return null;
+	renderLogo() {
+		if ( !this.props.logo ) return null;
 		return (
-			<div onClick = {  this.click.bind( this ) } class = { this.state.class_name }>
+			<div onClick={this.click.bind(this)} className={this.state.class_name}>
 				CSS
 			</div>
 		);
@@ -193,9 +178,9 @@ class AcousticCSS extends Component {
 
 	render() {
 		return (
-			<div class = { this.props.className } id = { this.props.id }>
-				{ this.render_speech() }
-				{ this.render_logo() }
+			<div className={this.props.className} id={this.props.id}>
+				{ this.renderSpeech() }
+				{ this.renderLogo() }
 			</div>
 		);
 	}
@@ -212,8 +197,8 @@ AcousticCSS.defaultProps = {
 	targetID: '',
 	speech: false,
 	name: 'CSS',
-	onFinalText: function() {},
-	onName: function() {},
+	onFinalText() {},
+	onName() {},
 	autoplay: false,
 	read: false
 };
@@ -222,13 +207,17 @@ AcousticCSS.defaultProps = {
 // PROPERTY TYPES //
 
 AcousticCSS.propTypes = {
-	id: PropTypes.string,
-	speech: PropTypes.bool,
-	targetID: PropTypes.string,
+	autoplay: PropTypes.bool,
 	className: PropTypes.string,
-	name: PropTypes.string,
+	id: PropTypes.string,
 	language: PropTypes.string,
-	autoplay: PropTypes.bool
+	logo: PropTypes.bool,
+	name: PropTypes.string,
+	onFinalText: PropTypes.func,
+	onName: PropTypes.func,
+	read: PropTypes.bool,
+	speech: PropTypes.bool,
+	targetID: PropTypes.string
 };
 
 
