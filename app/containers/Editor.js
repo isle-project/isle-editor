@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { hasOwnProp, isAbsolutePath, isObject } from '@stdlib/assert';
 import path from 'path';
@@ -10,6 +11,7 @@ import debounce from 'lodash.debounce';
 import SplitPane from 'react-split-pane';
 import yaml from 'js-yaml';
 import ErrorBoundary from 'components/error-boundary';
+import ENV from '@stdlib/utils/env';
 import Panel from 'components/Panel';
 import Header from 'components/Header';
 import Editor from 'components/Editor';
@@ -25,6 +27,26 @@ var lastCSS = null;
 
 
 // FUNCTIONS //
+
+const injectStyle = ( style ) => {
+	let previous = document.getElementById( 'mystyles' );
+	if ( previous ) {
+		previous.parentNode.removeChild( previous );
+	}
+
+	let node = document.createElement( 'style' );
+	node.setAttribute( 'id', 'mystyles' );
+
+	let cssObj = css.parse( style );
+	let rules = cssObj.stylesheet.rules;
+	rules.forEach( rule => {
+		rule.selectors = rule.selectors.map( s => '#Lesson ' + s );
+		return rule;
+	});
+
+	node.innerHTML = css.stringify( cssObj );
+	document.head.appendChild( node );
+};
 
 const applyStyles = ( preamble, filePath ) => {
 	let css = '';
@@ -49,26 +71,6 @@ const applyStyles = ( preamble, filePath ) => {
 		}
 		lastCSS = css;
 	}
-};
-
-const injectStyle = ( style ) => {
-	let previous = document.getElementById( 'mystyles' );
-	if ( previous ) {
-		previous.parentNode.removeChild( previous );
-	}
-
-	let node = document.createElement( 'style' );
-	node.setAttribute( 'id', 'mystyles' );
-
-	let cssObj = css.parse( style );
-	let rules = cssObj.stylesheet.rules;
-	rules.forEach( rule => {
-		rule.selectors = rule.selectors.map( s => '#Lesson ' + s );
-		return rule;
-	});
-
-	node.innerHTML = css.stringify( cssObj );
-	document.head.appendChild( node );
 };
 
 const loadRequires = ( libs, filePath ) => {
@@ -105,7 +107,6 @@ const loadRequires = ( libs, filePath ) => {
 // MAIN //
 
 class App extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -229,8 +230,8 @@ class App extends Component {
 					className="splitpane"
 					split="vertical"
 					primary="second"
-					defaultSize={ parseInt( localStorage.getItem( 'splitPos' ), 10 ) }
-					onChange={ size => localStorage.setItem( 'splitPos', size ) }
+					defaultSize={parseInt( localStorage.getItem( 'splitPos' ), 10 )}
+					onChange={size => localStorage.setItem( 'splitPos', size )}
 					style={{
 						'position': 'absolute',
 						'top': !hideToolbar ? 88 : 0,
@@ -254,7 +255,7 @@ class App extends Component {
 					<Panel ref={( elem ) => { this.preview = elem; }} onScroll={this.onPreviewScroll}>
 						<ErrorBoundary code={markdown}>
 							<Preview
-								errorMsg={ error ? error.message : null }
+								errorMsg={error ? error.message : null}
 								code={markdown}
 								filePath={filePath}
 								preamble={preamble}
@@ -266,7 +267,7 @@ class App extends Component {
 				</SplitPane>
 				{
 					( () => {
-						if ( process.env.NODE_ENV !== 'production' ) {
+						if ( ENV.NODE_ENV !== 'production' ) {
 							const DevTools = require( './DevTools' ); // eslint-disable-line global-require
 							return <DevTools />;
 						}
@@ -277,6 +278,27 @@ class App extends Component {
 	}
 }
 
+App.defaultProps = {
+	error: null
+};
+
+App.propTypes = {
+	changeMode: PropTypes.func.isRequired,
+	changeView: PropTypes.func.isRequired,
+	convertMarkdown: PropTypes.func.isRequired,
+	currentMode: PropTypes.string.isRequired,
+	currentRole: PropTypes.string.isRequired,
+	encounteredError: PropTypes.func.isRequired,
+	error: PropTypes.object,
+	fileName: PropTypes.string.isRequired,
+	filePath: PropTypes.string.isRequired,
+	hideToolbar: PropTypes.bool.isRequired,
+	markdown: PropTypes.string.isRequired,
+	preamble: PropTypes.object.isRequired,
+	resetError: PropTypes.func.isRequired,
+	updatePreamble: PropTypes.func.isRequired
+
+};
 
 // EXPORTS //
 
