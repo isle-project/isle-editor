@@ -2,52 +2,19 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Col, Grid, ListGroup, ListGroupItem, Panel } from 'react-bootstrap';
+import { Button, Col, Grid, ListGroup, Panel } from 'react-bootstrap';
 import { VictoryBar, VictoryChart } from 'victory';
 import { tabulate } from '@stdlib/utils';
 import Gate from 'components/gate';
 import InstructorBar from 'components/instructor-bar';
 import RealtimeMetrics from 'components/metrics/realtime';
 const debug = require( 'debug' )( 'isle-editor' );
-
-
-// FUNCTIONS //
-
-const AnswerOption = ( props ) => {
-
-	if ( props.disabled ) {
-		return (
-			<ListGroupItem>
-				{props.answerContent}
-			</ListGroupItem>
-		);
-	}
-	else {
-		return (
-			<ListGroupItem
-				onClick={props.onAnswerSelected}
-				active={props.active}
-			>
-				{props.answerContent}
-			</ListGroupItem>
-		);
-	}
-};
-
-AnswerOption.propTypes = {
-	answerContent: PropTypes.oneOfType([
-		PropTypes.element,
-		PropTypes.string
-	]).isRequired,
-	active: PropTypes.bool.isRequired,
-	onAnswerSelected: PropTypes.func.isRequired
-};
+import AnswerOption from './answer_option';
 
 
 // MAIN //
 
 class MultipleChoiceSurvey extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -105,13 +72,13 @@ class MultipleChoiceSurvey extends Component {
 				<th>Count</th>
 				<th>Relative Frequency</th>
 			</tr>
-			{tabulated.map( ( elem ) => {
-				return ( <tr>
-					{elem.map( ( x, idx ) => {
-						if ( idx === 2 ) {
+			{tabulated.map( ( elem, row ) => {
+				return ( <tr key={row}>
+					{elem.map( ( x, col ) => {
+						if ( col === 2 ) {
 							x = x.toFixed( 3 );
 						}
-						return <td>{x}</td>;
+						return <td key={`${row}:${col}`}>{x}</td>;
 					})}
 				</tr> );
 			})}
@@ -120,9 +87,6 @@ class MultipleChoiceSurvey extends Component {
 			data: counts,
 			freqTable
 		});
-	}
-
-	componentDidMount() {
 	}
 
 	render() {
@@ -137,12 +101,12 @@ class MultipleChoiceSurvey extends Component {
 					answerContent={key}
 					active={this.state.active[ id ]}
 					submitted={this.state.submitted}
-					onAnswerSelected={ () => {
+					onAnswerSelected={() => {
 						if ( !this.state.submitted ) {
 							let newActive = this.state.active.slice();
 							newActive[ id ] = !newActive[ id ];
 							this.setState({
-								active: newActive,
+								active: newActive
 							});
 						}
 					}}
@@ -158,7 +122,7 @@ class MultipleChoiceSurvey extends Component {
 					answerContent={key}
 					active={this.state.active === id}
 					submitted={this.state.submitted}
-					onAnswerSelected={ () => {
+					onAnswerSelected={() => {
 						if ( !this.state.submitted ) {
 							this.setState({
 								active: id,
@@ -174,7 +138,7 @@ class MultipleChoiceSurvey extends Component {
 		if ( multipleAnswers ) {
 			disabled = this.state.submitted;
 		} else {
-			disabled =  this.state.submitted || !this.state.answerSelected;
+			disabled = this.state.submitted || !this.state.answerSelected;
 		}
 
 		return (
@@ -200,7 +164,7 @@ class MultipleChoiceSurvey extends Component {
 								block fill
 								onClick={this.submitQuestion}
 								disabled={disabled}
-							>{ this.state.submitted ? "Submitted" : "Submit"}</Button>
+							>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
 						</Panel>
 					</Col>
 					<Col md={6}>
@@ -227,20 +191,23 @@ class MultipleChoiceSurvey extends Component {
 // DEFAULT PROPERTIES //
 
 MultipleChoiceSurvey.defaultProps = {
-	onSubmit() {},
-	answers: [],
 	allowMultipleAnswers: false,
-	anonymous: false
+	anonymous: false,
+	answers: [],
+	multipleAnswers: false,
+	onSubmit() {},
+	question: ''
 };
 
 
 // PROPERTY TYPES //
 
 MultipleChoiceSurvey.propTypes = {
-	onSubmit: PropTypes.func,
-	answers: PropTypes.array,
 	allowMultipleAnswers: PropTypes.bool,
 	anonymous: PropTypes.bool,
+	answers: PropTypes.array,
+	multipleAnswers: PropTypes.bool,
+	onSubmit: PropTypes.func,
 	question: PropTypes.string
 };
 
