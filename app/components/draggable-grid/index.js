@@ -51,8 +51,8 @@ class DraggableGrid extends Component {
 	render() {
 		return ( <ResponsiveReactGridLayout
 			layouts={this.state.layouts}
-			breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-			cols={{lg: 18, md: 12, sm: 12, xs: 12, xxs: 6 }}
+			breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+			cols={{ lg: 18, md: 12, sm: 12, xs: 12, xxs: 6 }}
 			isResizable={this.props.isResizable}
 			isDraggable={this.props.isDraggable}
 			rowHeight={60}

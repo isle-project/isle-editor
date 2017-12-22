@@ -101,7 +101,7 @@ class DataTable extends Component {
 				out[ 'Filter' ] = ({ filter, onChange }) => {
 					return (
 						<select
-							onChange={ ( event ) => {
+							onChange={( event ) => {
 								const newValue = event.target.value;
 								onChange( newValue );
 							}}

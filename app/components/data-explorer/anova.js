@@ -5,17 +5,12 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import ROutput from 'components/r/output';
-import isArray from '@stdlib/assert/is-array';
-import copy from '@stdlib/utils/copy';
-import unique from 'uniq';
 
 
 // MAIN //
 
 class ANOVA extends Component {
-
 	constructor( props ) {
-
 		super( props );
 
 		this.calculateANOVA = ( variable, grouping ) => {
@@ -34,7 +29,7 @@ class ANOVA extends Component {
 				/>
 			</div>;
 			const output = {
-				variable: `One-way ANOVA`,
+				variable: 'One-way ANOVA',
 				type: 'Test',
 				value: value
 			};
@@ -73,6 +68,8 @@ class ANOVA extends Component {
 // PROPERTY TYPES //
 
 ANOVA.propTypes = {
+	categorical: PropTypes.array.isRequired,
+	continuous: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	onCreated: PropTypes.func.isRequired
 };

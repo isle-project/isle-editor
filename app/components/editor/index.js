@@ -4,8 +4,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SimpleMDE from 'simplemde';
 import replace from '@stdlib/string/replace';
+import hasOwnProp from '@stdlib/assert/has-own-property';
+import markdownIt from 'markdown-it';
 
-const md = require( 'markdown-it' )({
+
+// VARIABLES //
+
+const md = markdownIt({
 	html: true,
 	xhtmlOut: true,
 	breaks: true,
@@ -16,7 +21,6 @@ const md = require( 'markdown-it' )({
 // MAIN //
 
 class MarkdownEditor extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -28,15 +32,17 @@ class MarkdownEditor extends Component {
 		this.previewRender = ( plainText ) => {
 			const { hash } = this.state;
 			for ( let key in hash ) {
-				plainText = replace( plainText, key, hash[ key ]);
+				if ( hasOwnProp( hash, key ) ) {
+					plainText = replace( plainText, key, hash[ key ]);
+				}
 			}
 			return md.render( plainText );
 		};
 	}
 
-	componentDidMount () {
+	componentDidMount() {
 		this.simplemde = new SimpleMDE({
-			element: this.refs.simplemde,
+			element: this.simplemdeRef,
 			initialValue: this.props.defaultValue,
 			previewRender: this.previewRender,
 			toolbar: [
@@ -46,8 +52,8 @@ class MarkdownEditor extends Component {
 					action: function customFunction( editor ){
 						// Add your own code
 					},
-					className: "fa fa-save",
-					title: "Save HTML File"
+					className: 'fa fa-save',
+					title: 'Save HTML File'
 				}
 			]
 		});
@@ -56,6 +62,8 @@ class MarkdownEditor extends Component {
 		this.simplemde.codemirror.on( 'change', () => {
 			this.setState({
 				value: this.simplemde.value()
+			}, () => {
+				this.props.onChange( this.state.value );
 			});
 		});
 		this.simplemde.codemirror.on( 'drop', ( instance, event ) => {
@@ -71,16 +79,13 @@ class MarkdownEditor extends Component {
 		});
 	}
 
-	componentWillUnmount () {
-	}
-
 	allowDrop( event ) {
 		event.preventDefault();
 	}
 
 	render() {
 		return (
-			<textarea ref="simplemde" autoComplete="off" />
+			<textarea ref={( area ) => { this.simplemdeRef = area; }} autoComplete="off" {...this.props.options} />
 		);
 	}
 }
@@ -90,6 +95,7 @@ class MarkdownEditor extends Component {
 
 MarkdownEditor.defaultProps = {
 	defaultValue: '',
+	onChange() {},
 	options: {}
 };
 
@@ -98,6 +104,7 @@ MarkdownEditor.defaultProps = {
 
 MarkdownEditor.propTypes = {
 	defaultValue: PropTypes.string,
+	onChange: PropTypes.func,
 	options: PropTypes.object
 };
 
