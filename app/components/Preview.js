@@ -22,7 +22,7 @@ const NotificationSystem = require( 'react-notification-system' );
 const contains = require( '@stdlib/assert/contains' );
 const request = require( 'request' );
 const debug = require( 'debug' )( 'isle-editor' );
-const Session = require ( 'session' );
+const Session = require( 'session' );
 
 import { Component } from 'react';
 import { transform } from 'babel-core';
@@ -171,7 +171,6 @@ const OPTS = {
 // MAIN //
 
 export default class Preview extends Component {
-
 	renderErrorMessage( err ) {
 		let code = `<div className="errorMessage">
 			<h3>Encountered an error:</h3>
@@ -227,7 +226,7 @@ export default class Preview extends Component {
 					let arr = code.split( '<p>===</p>' );
 					pres += arr.join( '</Slide><Slide>' );
 					pres += '</Slide>';
-					pres = pres.replace( /<h([0-5])>(.*?)<\/h[0-5]>/g,'<Heading size={$1}>$2</Heading>' );
+					pres = pres.replace( /<h([0-5])>(.*?)<\/h[0-5]>/g, '<Heading size={$1}>$2</Heading>' );
 					pres = pres.replace( /<p[^>]*>([\s\S]+?)<\/p>/g, '<SText>$1</SText>' );
 					pres = pres.replace( /<ul[^>]*>([\s\S]+?)<\/ul>/g, '<List>$1</List>' );
 					pres = pres.replace( /<li[^>]*>([\s\S]+?)<\/li>/g, '<ListItem>$1</ListItem>' );
@@ -293,12 +292,10 @@ export default class Preview extends Component {
 			this.setState({
 				preambleIsValid: false
 			});
-		} else {
-			if ( !this.state.preambleIsValid ) {
-				this.setState({
-					preambleIsValid: true
-				});
-			}
+		} else if ( !this.state.preambleIsValid ) {
+			this.setState({
+				preambleIsValid: true
+			});
 		}
 	}
 
@@ -339,17 +336,23 @@ export default class Preview extends Component {
 
 	render() {
 		return (
-			<div ref="preview" className="Preview" id="Preview"></div>
+			<div
+				ref={( div ) => { this.preview = div; }}
+				className="Preview" id="Preview"></div>
 		);
 	}
 }
 
+// DEFAULT PROPS //
+Preview.defaultProps = {
+	code: '',
+	errorMsg: ''
+};
 
 // PROPERTY TYPES //
 
 Preview.propTypes = {
 	code: PropTypes.string,
-	filePath: PropTypes.string,
 	errorMsg: PropTypes.string
 };
 
