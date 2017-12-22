@@ -39,7 +39,7 @@ Action.propTypes = {
 	clickFactory: PropTypes.func.isRequired,
 	email: PropTypes.string.isRequired,
 	type: PropTypes.string.isRequired,
-	value: PropTypes.oneOf([
+	value: PropTypes.oneOfType([
 		PropTypes.object,
 		PropTypes.string
 	]).isRequired
