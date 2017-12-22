@@ -17,8 +17,8 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.mediaDevices.getUse
 // FUNCTIONS //
 
 function captureScreen( clbk ) {
-	getScreenId( function( error, sourceId, screen_constraints ) {
-		navigator.getUserMedia( screen_constraints, clbk, function ( error ) {
+	getScreenId( function getUserMedia( error, sourceId, screenConstraints ) {
+		navigator.getUserMedia( screenConstraints, clbk, function onMedia( error ) {
 			console.error( 'getScreenId error', error );
 			alert( 'Failed to capture your screen. Please check Chrome console logs for further information.' );
 		});
@@ -26,13 +26,13 @@ function captureScreen( clbk ) {
 }
 
 function captureCamera( cb ) {
-	navigator.getUserMedia({ audio: true, video: true }, cb, function ( error ) {
+	navigator.getUserMedia({ audio: true, video: true }, cb, function onMedia( error ) {
 		console.error( 'captureCamera error', error );
 	});
 }
 
 function captureAudio( cb ) {
-	navigator.getUserMedia({ audio: true, video: false }, cb, function ( error ) {
+	navigator.getUserMedia({ audio: true, video: false }, cb, function onMedia( error ) {
 		console.error( 'captureAudio error', error );
 	});
 }
@@ -72,7 +72,6 @@ function getAudioConfig( type ) {
 // RECORDER //
 
 class Recorder extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -133,7 +132,6 @@ class Recorder extends Component {
 				});
 			}
 		};
-
 	}
 
 	componentDidMount() {
@@ -141,11 +139,24 @@ class Recorder extends Component {
 		this.unsubscribe = session.subscribe( () => {
 			this.forceUpdate();
 		});
+		if ( this.props.autostart ) {
+			this.startRecording();
+			this.setState({
+				recording: true
+			});
+		}
 	}
+
 
 	componentWillUnmount() {
 		this.unsubscribe();
+		if ( this.props.screen && this.screen ) {
+			this.screen.getVideoTracks().forEach( function onTrack( track ) {
+				track.stop();
+			});
+		}
 	}
+
 
 	startRecording() {
 		if ( !this.recorder ) {
@@ -224,23 +235,6 @@ class Recorder extends Component {
 		}
 	}
 
-	componentWillUnmount() {
-		if ( this.props.screen && this.screen ) {
-			this.screen.getVideoTracks().forEach( function( track ) {
-				track.stop();
-			});
-		}
-	}
-
-	componentDidMount() {
-		if ( this.props.autostart ) {
-			this.startRecording();
-			this.setState({
-				recording: true
-			});
-		}
-	}
-
 	render() {
 		let recordingColor = this.state.recording ? 'red' : 'rgb(250,160,160)';
 		const { audio, screen } = this.props;
@@ -281,14 +275,14 @@ class Recorder extends Component {
 					fontWeight: 800
 				}}>REC</div>
 				{ audio && !screen ?
-					<audio style={{ display: this.state.recording ? 'none' : 'block' }} ref={ ( player ) => { this.player = player; }} controls autoPlay></audio> :
-					<video width="320px" height="auto" style={{ display: this.state.recording ? 'none' : 'block' }} ref={ ( player ) => { this.player = player; }} controls autoPlay></video>
+					<audio style={{ display: this.state.recording ? 'none' : 'block' }} ref={( player ) => { this.player = player; }} controls autoPlay></audio> :
+					<video width="320px" height="auto" style={{ display: this.state.recording ? 'none' : 'block' }} ref={( player ) => { this.player = player; }} controls autoPlay></video>
 				}
-				{ !this.state.available && !inEditor ?  <button onClick={ () => {
+				{ !this.state.available && !inEditor ? <button onClick={() => {
 					window.open( 'https://chrome.google.com/webstore/detail/screen-capturing/ajhifddimkapgcifgcodmmfdlknahffk', '_blank' );
 				}} id="install-button">
 					<img width="100px" height="32px" src="https://www.webrtc-experiment.com/images/btn-install-chrome-extension.png" alt="Add to Chrome" />
-				</button> :  null }
+				</button> : null }
 				{ this.state.finished && this.props.downloadable ?
 					<Button onClick={this.storeFile} bsStyle="primary">Download File</Button> :
 					null
@@ -300,7 +294,6 @@ class Recorder extends Component {
 			</div>
 		);
 	}
-
 }
 
 
@@ -308,19 +301,23 @@ class Recorder extends Component {
 
 Recorder.propTypes = {
 	audio: PropTypes.bool,
-	video: PropTypes.bool,
+	autostart: PropTypes.bool,
+	downloadable: PropTypes.bool,
 	screen: PropTypes.bool,
 	uploadable: PropTypes.bool,
-	downloadable: PropTypes.bool,
-	autostart: PropTypes.bool
+	video: PropTypes.bool
 };
 
 
 // DEFAULT PROPERTIES //
 
 Recorder.defaultProps = {
+	audio: false,
+	autostart: false,
 	downloadable: false,
+	screen: false,
 	uploadable: false,
+	video: false
 };
 
 
