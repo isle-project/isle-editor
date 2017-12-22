@@ -18,7 +18,6 @@ import TextInput from 'components/input/text';
 // MAIN //
 
 class WordVennDiagram extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -29,7 +28,7 @@ class WordVennDiagram extends Component {
 			}
 			return out;
 		});
-		const nTexts = tdm[ 0 ].length;
+
 
 		this.state = {
 			disabled: true,
@@ -39,7 +38,6 @@ class WordVennDiagram extends Component {
 			minCount: [ 1 ],
 			nWords: 1,
 			tdm,
-			nTexts,
 			id: 'venn'+round( randu()*1000 )
 		};
 	}
@@ -93,7 +91,7 @@ class WordVennDiagram extends Component {
 		let vennDiagram = venn.VennDiagram();
 		chart.datum( sets ).call( vennDiagram );
 		chart.selectAll( 'g' )
-			.on( 'mouseover' , function( d, i ) {
+			.on( 'mouseover', function onMouseOver( d, i ) {
 				venn.sortAreas( chart, d );
 				tooltip.transition().duration( 400 ).style( 'opacity', 0.9 );
 				tooltip.text( d.sets.join( ' and ' ) + ' (' + d.size + ')' );
@@ -101,18 +99,18 @@ class WordVennDiagram extends Component {
 				selection.select( 'path' )
 					.style( 'stroke-width', 3 )
 					.style( 'stroke', 'black' )
-					.style( 'fill-opacity', d.sets.length == 1 ? 0.4 : 0.1 )
+					.style( 'fill-opacity', d.sets.length === 1 ? 0.4 : 0.1 )
 					.style( 'stroke-opacity', 1 );
 			})
-			.on( 'mousemove', function() {
+			.on( 'mousemove', function onMouseMove() {
 				tooltip.style( 'left', ( d3.event.pageX ) + 'px' )
 					.style( 'top', ( d3.event.pageY - 28 ) + 'px' );
 			})
-			.on( 'mouseout', function( d, i ) {
+			.on( 'mouseout', function onMouseOut( d, i ) {
 				tooltip.transition().duration( 400 ).style( 'opacity', 0 );
 				var selection = d3.select( this ).transition( 'tooltip' ).duration( 400 );
 				selection.select( 'path' )
-					.style( 'fill-opacity', d.sets.length == 1 ? 0.25 : 0.0 )
+					.style( 'fill-opacity', d.sets.length === 1 ? 0.25 : 0.0 )
 					.style( 'stroke-opacity', 0 );
 			});
 		this.setState({
@@ -231,14 +229,14 @@ class WordVennDiagram extends Component {
 						<label>Number of Words: </label>
 					</p>
 					<ButtonGroup>
-						{[ 'One','Two','Three' ].map( ( w, i ) => <Button bsStyle={ ( i === this.state.nWords-1 ) ? 'success' : 'default' } onClick={()=> {
+						{[ 'One', 'Two', 'Three' ].map( ( w, i ) => (<Button key={i} bsStyle={( i === this.state.nWords-1 ) ? 'success' : 'default'} onClick={()=> {
 							this.setState({
 								nWords: i+1,
 								disabled: true,
 								words: new Array( i+1 ),
 								minCount: new Array( i+1 ).fill( 1 )
 							});
-						}}>{w}</Button> )}
+						}}>{w}</Button>))}
 					</ButtonGroup>
 					{inputs}
 					<Button onClick={this.updatePlot} disabled={this.state.disabled}>Draw Venn Diagram</Button>
@@ -259,10 +257,10 @@ class WordVennDiagram extends Component {
 // PROPERTY TYPES //
 
 WordVennDiagram.propTypes = {
-	tdm: PropTypes.array.isRequired,
-	vocabulary: PropTypes.array.isRequired,
 	nTexts: PropTypes.number.isRequired,
-	onClick: PropTypes.func
+	onClick: PropTypes.func,
+	tdm: PropTypes.array.isRequired,
+	vocabulary: PropTypes.array.isRequired
 };
 
 
