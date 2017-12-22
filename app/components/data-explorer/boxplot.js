@@ -5,27 +5,11 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
-import isArray from '@stdlib/assert/is-array';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import by from './by.js';
 
 
 // FUNCTIONS //
-
-function by( arr, factor, fun ) {
-	let ret = {};
-	for ( let i = 0; i < arr.length; i++ ) {
-		if ( !isArray( ret[ factor[ i ] ]) ) {
-			ret[ factor[ i ] ] = [];
-		}
-		ret[ factor[ i ] ].push( arr[ i ]);
-	}
-	for ( let key in ret ) {
-		if ( hasOwnProp( ret, key ) ) {
-			ret[ key ] = fun( ret[ key ]);
-		}
-	}
-	return ret;
-} // end FUNCTION by()
 
 export function generateBoxplotConfig({ data, variable, group }) {
 	let traces;

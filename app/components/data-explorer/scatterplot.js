@@ -182,7 +182,7 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 					size: size ? scale( group( data[ size ], data[ color ])[ groups[ i ] ], 5.0, 10.0 ) : 5.0,
 					autocolorscale: false,
 					color: COLORS[ i ]
-				},
+				}
 			};
 		}
 	} else {
@@ -195,7 +195,7 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 			marker: {
 				symbol: 'circle',
 				size: size ? scale( data[ size ], 5.0, 10.0 ) : 5.0
-			},
+			}
 		} ];
 	}
 
@@ -269,7 +269,6 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 // MAIN //
 
 class Scatterplot extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -295,7 +294,6 @@ class Scatterplot extends Component {
 				fit
 				data={config.data}
 				layout={config.layout}
-				onDone={this.props.onPlotDone}
 				onShare={() => {
 					this.props.session.addNotification({
 						title: 'Plot shared.',
@@ -342,7 +340,7 @@ class Scatterplot extends Component {
 						legend="Color:"
 						options={groupingVariables}
 						clearable={true}
-						style={{ float: 'left', paddingRight: 10, width: "33.3%" }}
+						style={{ float: 'left', paddingRight: 10, width: '33.3%' }}
 						onChange={( value ) => {
 							this.setState({
 								color: value
@@ -353,7 +351,7 @@ class Scatterplot extends Component {
 						legend="Type:"
 						options={groupingVariables}
 						clearable={true}
-						style={{ float: 'left', paddingLeft: 10, paddingRight: 10, width: "33.3%" }}
+						style={{ float: 'left', paddingLeft: 10, paddingRight: 10, width: '33.3%' }}
 						onChange={( value ) => {
 							this.setState({
 								type: value
@@ -364,7 +362,7 @@ class Scatterplot extends Component {
 						legend="Size:"
 						options={variables}
 						clearable={true}
-						style={{ float: 'left', paddingLeft: 10, width: "33.3%" }}
+						style={{ float: 'left', paddingLeft: 10, width: '33.3%' }}
 						onChange={( value ) => {
 							this.setState({
 								size: value
@@ -392,7 +390,7 @@ class Scatterplot extends Component {
 						legend="Split By:"
 						options={groupingVariables}
 						clearable={true}
-						style={{ float: 'right', paddingLeft: 10, width: "40%" }}
+						style={{ float: 'right', paddingLeft: 10, width: '40%' }}
 						disabled={!this.state.regressionLine}
 						onChange={( value ) => {
 							this.setState({
@@ -414,7 +412,9 @@ class Scatterplot extends Component {
 Scatterplot.defaultProps = {
 	defaultX: null,
 	defaultY: null,
-	onPlotDone() {},
+	groupingVariables: null,
+	logAction() {},
+	session: {},
 	showRegressionOption: true
 };
 
@@ -423,8 +423,14 @@ Scatterplot.defaultProps = {
 
 Scatterplot.propTypes = {
 	data: PropTypes.object.isRequired,
+	defaultX: PropTypes.string,
+	defaultY: PropTypes.string,
+	groupingVariables: PropTypes.array,
+	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
-	showRegressionOption: PropTypes.bool
+	session: PropTypes.object,
+	showRegressionOption: PropTypes.bool,
+	variables: PropTypes.array.isRequired
 };
 
 

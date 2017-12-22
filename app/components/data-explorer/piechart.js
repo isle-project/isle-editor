@@ -8,27 +8,13 @@ import Plotly from 'components/plotly';
 import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
-import isArray from '@stdlib/assert/is-array';
 import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import by from './by.js';
 
 
 // FUNCTIONS //
-
-function by( arr, factor, fun ) {
-	let ret = {};
-	for ( let i = 0; i < arr.length; i++ ) {
-		if ( !isArray( ret[ factor[ i ] ]) ) {
-			ret[ factor[ i ] ] = [];
-		}
-		ret[ factor[ i ] ].push( arr[ i ]);
-	}
-	for ( let key in ret ) {
-		ret[ key ] = fun( ret[ key ]);
-	}
-	return ret;
-} // end FUNCTION by()
 
 export function generatePiechartConfig({ data, variable, group }) {
 	let annotations;

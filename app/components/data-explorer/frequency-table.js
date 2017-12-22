@@ -8,27 +8,9 @@ import Dashboard from 'components/dashboard';
 import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
-import isArray from '@stdlib/assert/is-array';
-import hasOwnProp from '@stdlib/assert/has-own-property';
-
+import by from './by.js';
 
 // FUNCTIONS //
-
-function by( arr, factor, fun ) {
-	let ret = {};
-	for ( let i = 0; i < arr.length; i++ ) {
-		if ( !isArray( ret[ factor[ i ] ]) ) {
-			ret[ factor[ i ] ] = [];
-		}
-		ret[ factor[ i ] ].push( arr[ i ]);
-	}
-	for ( let key in ret ) {
-		if ( hasOwnProp( ret, key ) ) {
-			ret[ key ] = fun( ret[ key ]);
-		}
-	}
-	return ret;
-}
 
 function getFrequencies( x, relativeFreqs ) {
 	let freqs = entries( countBy( x, identity ) ).map( e => {
