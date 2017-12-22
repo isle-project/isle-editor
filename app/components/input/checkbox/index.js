@@ -9,7 +9,6 @@ import Input from 'components/input/base';
 // MAIN //
 
 class CheckboxInput extends Input {
-
 	constructor( props, context ) {
 		super( props );
 
@@ -17,7 +16,7 @@ class CheckboxInput extends Input {
 		this.state = {
 			value: props.bind && session.state ?
 				session.state[ props.bind ]:
-				props.defaultValue,
+				props.defaultValue
 		};
 
 		/**
@@ -31,7 +30,7 @@ class CheckboxInput extends Input {
 				this.props.onChange( this.state.value );
 				if ( this.props.bind ) {
 					global.lesson.setState({
-						[ this.props.bind ]: value
+						[ this.props.bind ]: this.state.value
 					});
 				}
 			});
@@ -86,23 +85,22 @@ class CheckboxInput extends Input {
 					>{this.props.legend}</span>
 				</span>
 			);
-		} else {
-			return (
-				<div style={{
-					marginTop: '8px',
-					marginLeft: '8px',
-					marginBottom: '8px',
-					...this.props.style
-				}}>
-					{input}
-					<span
-						style={{
-							marginLeft: '12px'
-						}}
-					>{this.props.legend}</span>
-				</div>
-			);
 		}
+		return (
+			<div style={{
+				marginTop: '8px',
+				marginLeft: '8px',
+				marginBottom: '8px',
+				...this.props.style
+			}}>
+				{input}
+				<span
+					style={{
+						marginLeft: '12px'
+					}}
+				>{this.props.legend}</span>
+			</div>
+		);
 	}
 }
 
@@ -122,10 +120,10 @@ CheckboxInput.defaultProps = {
 
 CheckboxInput.propTypes = {
 	bind: PropTypes.string,
-	onChange: PropTypes.func,
 	defaultValue: PropTypes.bool,
 	disabled: PropTypes.bool,
-	inline: PropTypes.bool
+	inline: PropTypes.bool,
+	onChange: PropTypes.func
 };
 
 

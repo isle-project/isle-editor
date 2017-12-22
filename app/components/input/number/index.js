@@ -14,7 +14,6 @@ import NINF from '@stdlib/math/constants/float64-ninf';
 // MAIN //
 
 class NumberInput extends Input {
-
 	createTooltip( props ) {
 		let tooltip = `Enter a${ props.step === 1 ? 'n integer' : ' number'} `;
 		if ( props.max !== PINF && props.min !== NINF ) {
@@ -54,12 +53,10 @@ class NumberInput extends Input {
 							[ this.props.bind ]: value
 						});
 					}
-				} else {
-					if ( this.props.bind ) {
-						global.lesson.setState({
-							[ this.props.bind ]: value
-						});
-					}
+				} else if ( this.props.bind ) {
+					global.lesson.setState({
+						[ this.props.bind ]: value
+					});
 				}
 			});
 		};
@@ -82,7 +79,7 @@ class NumberInput extends Input {
 			else if ( value < min ) {
 				value = min;
 			}
-			else if ( step == 1.0 && value !== '' && value !== '-' ) {
+			else if ( step === 1.0 && value !== '' && value !== '-' ) {
 				value = value - value % this.props.step;
 			}
 			if ( value !== this.state.value ) {
@@ -93,15 +90,7 @@ class NumberInput extends Input {
 					if ( this.props.bind ) {
 						global.lesson.setState({
 							[ this.props.bind ]: value
-						}, () => {
-							if ( this.context.autoUpdate ) {
-								this.context.triggerDashboardClick();
-							}
 						});
-					} else {
-						if ( this.context.autoUpdate ) {
-							this.context.triggerDashboardClick();
-						}
 					}
 				});
 			}
@@ -123,7 +112,6 @@ class NumberInput extends Input {
 		let newState = {};
 		if ( nextProps.defaultValue !== this.props.defaultValue ) {
 			newState.value = nextProps.defaultValue;
-
 		}
 		else if ( nextProps.bind !== this.props.bind ) {
 			newState.value = global.lesson.state[ nextProps.bind ];
@@ -143,7 +131,7 @@ class NumberInput extends Input {
 				<span style={{ padding: '5px' }}>
 					{ this.props.legend ? <label> {this.props.legend} =  </label> : null }
 					<input
-						type={ this.props.numbersOnly ? 'number' : 'text' }
+						type={this.props.numbersOnly ? 'number' : 'text'}
 						name="input"
 						disabled={this.props.disabled}
 						value={value}
@@ -171,7 +159,7 @@ class NumberInput extends Input {
 		}
 
 		let input = <input
-			type={ this.props.numbersOnly ? 'number' : 'text' }
+			type={this.props.numbersOnly ? 'number' : 'text'}
 			name="input"
 			disabled={this.props.disabled}
 			value={value}
@@ -245,18 +233,18 @@ NumberInput.defaultProps = {
 
 NumberInput.propTypes = {
 	bind: PropTypes.string,
+	defaultValue: PropTypes.number,
 	disabled: PropTypes.bool,
-	min: PropTypes.number,
+	inline: PropTypes.bool,
 	max: PropTypes.number,
+	min: PropTypes.number,
+	numbersOnly: PropTypes.bool,
+	onChange: PropTypes.func,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
 	]),
-	width: PropTypes.number,
-	defaultValue: PropTypes.number,
-	onChange: PropTypes.func,
-	inline: PropTypes.bool,
-	numbersOnly: PropTypes.bool
+	width: PropTypes.number
 };
 
 

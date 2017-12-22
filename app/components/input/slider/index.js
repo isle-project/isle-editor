@@ -14,7 +14,6 @@ import './slider.css';
 // MAIN //
 
 class SliderInput extends Input {
-
 	createTooltip( props ) {
 		let tooltip = `Enter a${ props.step === 1 ? 'n integer' : ' number'} `;
 		if ( props.max !== PINF && props.min !== NINF ) {
@@ -37,7 +36,7 @@ class SliderInput extends Input {
 			tooltip: this.createTooltip( props ),
 			value: props.bind && session.state ?
 				session.state[ props.bind ]:
-				props.defaultValue,
+				props.defaultValue
 		};
 
 		this.handleInputChange = ( event ) => {
@@ -55,12 +54,10 @@ class SliderInput extends Input {
 							[ this.props.bind ]: value
 						});
 					}
-				} else {
-					if ( this.props.bind ) {
-						global.lesson.setState({
-							[ this.props.bind ]: value
-						});
-					}
+				} else if ( this.props.bind ) {
+					global.lesson.setState({
+						[ this.props.bind ]: value
+					});
 				}
 			});
 		};
@@ -77,7 +74,7 @@ class SliderInput extends Input {
 			else if ( value < min ) {
 				value = min;
 			}
-			else if ( step == 1.0 && value !== '' ) {
+			else if ( step === 1.0 && value !== '' ) {
 				value = value - value % this.props.step;
 			}
 			if ( value !== this.state.value ) {
@@ -192,7 +189,7 @@ class SliderInput extends Input {
 			>
 				{ this.props.legend ?
 					<label style={{
-						marginLeft: '8px',
+						marginLeft: '8px'
 					}}>{this.props.legend}:</label> :
 					null
 				}
@@ -224,17 +221,17 @@ SliderInput.defaultProps = {
 // PROPERTY TYPES //
 
 SliderInput.propTypes = {
+	defaultValue: PropTypes.number,
+	disabled: PropTypes.bool,
 	inline: PropTypes.bool,
-	min: PropTypes.number,
 	max: PropTypes.number,
+	min: PropTypes.number,
+	onChange: PropTypes.func,
 	precision: PropTypes.number,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
 	]),
-	defaultValue: PropTypes.number,
-	onChange: PropTypes.func,
-	disabled: PropTypes.bool,
 	style: PropTypes.object
 };
 

@@ -10,7 +10,6 @@ import './text.css';
 // MAIN //
 
 class TextInput extends Input {
-
 	constructor( props, context ) {
 		super( props );
 
@@ -18,7 +17,7 @@ class TextInput extends Input {
 		this.state = {
 			value: props.bind && session.state ?
 				session.state[ props.bind ]:
-				props.defaultValue,
+				props.defaultValue
 		};
 
 		this.focus = this.focus.bind( this );
@@ -35,7 +34,6 @@ class TextInput extends Input {
 					});
 				}
 			});
-
 		};
 	}
 
@@ -77,7 +75,7 @@ class TextInput extends Input {
 						name="input"
 						placeholder={this.props.placeholder}
 						value={this.state.value}
-						ref={ ( input ) => {
+						ref={( input ) => {
 							this.textInput = input;
 						}}
 						style={{
@@ -91,33 +89,32 @@ class TextInput extends Input {
 					}
 				</span>
 			);
-		} else {
-			return (
-				<div className="text-container-div" >
-					<span style={{ marginLeft: '8px' }}>
-						<label>{this.props.legend}:</label>
-						{ this.props.description ?
-							<span> {this.props.description}</span> :
-							<span />
-						}
-					</span>
-					<input
-						className="text-input"
-						type="text"
-						name="input"
-						placeholder={this.props.placeholder}
-						value={this.state.value}
-						ref={ ( input ) => {
-							this.textInput = input;
-						}}
-						style={{
-							width: this.props.width
-						}}
-						onChange={this.handleChange}
-					/>
-				</div>
-			);
 		}
+		return (
+			<div className="text-container-div" >
+				<span style={{ marginLeft: '8px' }}>
+					<label>{this.props.legend}:</label>
+					{ this.props.description ?
+						<span> {this.props.description}</span> :
+						<span />
+					}
+				</span>
+				<input
+					className="text-input"
+					type="text"
+					name="input"
+					placeholder={this.props.placeholder}
+					value={this.state.value}
+					ref={( input ) => {
+						this.textInput = input;
+					}}
+					style={{
+						width: this.props.width
+					}}
+					onChange={this.handleChange}
+				/>
+			</div>
+		);
 	}
 }
 
@@ -138,9 +135,9 @@ TextInput.defaultProps = {
 TextInput.propTypes = {
 	defaultValue: PropTypes.string,
 	inline: PropTypes.bool,
-	width: PropTypes.number,
 	onChange: PropTypes.func,
-	placeholder: PropTypes.string
+	placeholder: PropTypes.string,
+	width: PropTypes.number
 };
 
 

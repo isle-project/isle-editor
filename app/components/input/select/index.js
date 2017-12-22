@@ -158,7 +158,7 @@ SelectInput.defaultProps = {
 
 SelectInput.propTypes = {
 	bind: PropTypes.string,
-	onChange: PropTypes.func,
+	clearable: PropTypes.bool,
 	defaultValue: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string,
@@ -167,10 +167,10 @@ SelectInput.propTypes = {
 	disabled: PropTypes.bool,
 	inline: PropTypes.bool,
 	legend: PropTypes.string,
-	options: PropTypes.array,
 	multi: PropTypes.bool,
-	placeholder: PropTypes.string,
-	clearable: PropTypes.bool
+	onChange: PropTypes.func,
+	options: PropTypes.array,
+	placeholder: PropTypes.string
 };
 
 

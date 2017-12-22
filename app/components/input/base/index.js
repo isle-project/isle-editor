@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 // MAIN //
 
 class Input extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -35,7 +34,7 @@ class Input extends Component {
 Input.defaultProps = {
 	defaultValue: 0,
 	legend: '',
-	onChange: function(){}
+	onChange() {}
 };
 
 
