@@ -20,9 +20,7 @@ import stdev from 'compute-stdev';
 // MAIN //
 
 class PropTest2 extends Component {
-
 	constructor( props ) {
-
 		super( props );
 
 		let categories;
@@ -56,14 +54,14 @@ class PropTest2 extends Component {
 		if ( var1 === grouping || var1 === var2 ) {
 			return this.props.session.addNotification({
 				title: 'Action required',
-				message: `Please make sure that the group variable or second variable is not equal to your variable of interest.`,
+				message: 'Please make sure that the group variable or second variable is not equal to your variable of interest.',
 				level: 'warning',
 				position: 'tr'
 			});
 		}
 		if ( grouping ) {
 			x = data[ var1 ];
-			let binary = x.map( x => x == success ? 1 : 0 );
+			let binary = x.map( x => x === success ? 1 : 0 );
 			let categories = data[ grouping ];
 			firstCategory = categories[ 0 ];
 			for ( let i = 1; i < categories.length; i++ ) {
@@ -71,7 +69,7 @@ class PropTest2 extends Component {
 					secondCategory = categories[ i ];
 				}
 			}
-			const splitted = bifurcateBy( binary, function( x, idx ) {
+			const splitted = bifurcateBy( binary, function splitter( x, idx ) {
 				return categories[ idx ] === firstCategory;
 			});
 			x = splitted[ 0 ];
@@ -111,9 +109,9 @@ class PropTest2 extends Component {
 			</div>;
 		} else if ( var2 ) {
 			x = data[ var1 ];
-			x = x.map( x => x == success ? 1 : 0 );
+			x = x.map( x => x === success ? 1 : 0 );
 			y = data[ var2 ];
-			y = y.map( y => y == success ? 1 : 0 );
+			y = y.map( y => y === success ? 1 : 0 );
 			const result = ztest2( x, y, stdev( x ), stdev( y ), {
 				'alpha': alpha,
 				'alternative': direction,
@@ -150,7 +148,7 @@ class PropTest2 extends Component {
 		}
 		if ( value ) {
 			let output = {
-				variable: `Two-Sample Proportion Test`,
+				variable: 'Two-Sample Proportion Test',
 				type: 'Test',
 				value: value
 			};
@@ -188,7 +186,7 @@ class PropTest2 extends Component {
 							legend="Variable:"
 							defaultValue={categorical[ 0 ]}
 							options={categorical}
-							onChange={ ( val ) => {
+							onChange={( val ) => {
 								let categories = copy( this.props.data[ val ]);
 								unique( categories );
 								this.setState({
@@ -245,7 +243,7 @@ class PropTest2 extends Component {
 				<NumberInput
 					legend="Difference under H0"
 					defaultValue={this.state.diff}
-					min={0	}
+					min={0}
 					max={1}
 					step="any"
 				/>
@@ -271,8 +269,17 @@ class PropTest2 extends Component {
 // PROPERTY TYPES //
 
 PropTest2.propTypes = {
+	categorical: PropTypes.array,
 	data: PropTypes.object.isRequired,
-	onCreated: PropTypes.func.isRequired
+	logAction: PropTypes.func,
+	onCreated: PropTypes.func.isRequired,
+	session: PropTypes.object
+};
+
+PropTest2.defaultProps = {
+	categorical: null,
+	logAction() {},
+	session: {}
 };
 
 
