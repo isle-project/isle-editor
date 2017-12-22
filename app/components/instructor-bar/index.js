@@ -16,7 +16,6 @@ import RangePicker from 'components/range-picker';
 // MAIN //
 
 class InstructorBar extends Component {
-
 	constructor() {
 		super();
 
@@ -25,7 +24,6 @@ class InstructorBar extends Component {
 			counts: [],
 			categories: [],
 			receivedFeedbacks: [],
-			actionsAreOpen: false,
 			feedbackIsOpen: false,
 			feedback: '',
 			showExtended: false,
@@ -33,6 +31,32 @@ class InstructorBar extends Component {
 			selectedAction: null,
 			period: null
 		};
+	}
+
+	componentDidMount() {
+		const { session } = this.context;
+
+		this.unsubscribe = session.subscribe( ( type, action ) => {
+			if ( type === 'member_action' ) {
+				if ( action.type === 'COMPONENT_FEEDBACK' ) {
+					if ( this.props.id === action.id ) {
+						const receivedFeedbacks = this.state.receivedFeedbacks.slice();
+						receivedFeedbacks.push( action.value );
+						this.setState({
+							receivedFeedbacks
+						});
+					}
+				}
+				this.forceUpdate();
+			}
+			else if ( type === 'retrieved_user_actions' ) {
+				this.addSessionActions();
+			}
+		});
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
 	}
 
 	onFeedback = ( text ) => {
@@ -61,7 +85,7 @@ class InstructorBar extends Component {
 			this.addSessionActions();
 		}
 		this.setState({
-			showActions: !this.state.showActions,
+			showActions: !this.state.showActions
 		});
 	}
 
@@ -140,33 +164,6 @@ class InstructorBar extends Component {
 			counts: counts,
 			categories: categories
 		};
-	}
-
-	componentDidMount() {
-		const { session } = this.context;
-
-		this.unsubscribe = session.subscribe( ( type, action ) => {
-			if ( type === 'member_action' ) {
-				if ( action.type === 'COMPONENT_FEEDBACK' ) {
-					if ( this.props.id === action.id  ) {
-						const receivedFeedbacks = this.state.receivedFeedbacks.slice();
-						console.log( action );
-						receivedFeedbacks.push( action.value );
-						this.setState({
-							receivedFeedbacks
-						});
-					}
-				}
-				this.forceUpdate();
-			}
-			else if ( type === 'retrieved_user_actions' ) {
-				this.addSessionActions();
-			}
-		});
-	}
-
-	componentWillUnmount() {
-		this.unsubscribe();
 	}
 
 	closeDeleteModal = () => {
@@ -250,7 +247,6 @@ class InstructorBar extends Component {
 	}
 
 	render() {
-
 		const deleteModal = <Modal show={this.state.showDeleteModal}>
 			<Modal.Header>
 				<Modal.Title>Delete user action?</Modal.Title>
@@ -277,10 +273,10 @@ class InstructorBar extends Component {
 				<Gate user>
 					{ this.state.receivedFeedbacks.length > 0 ? <Panel header="Feedback">
 						<ListGroup fill style={{ marginLeft: 0 }}>
-							{this.state.receivedFeedbacks.map( elem =>
-								<ListGroupItem style={{ padding: '2px 5px' }}>
+							{this.state.receivedFeedbacks.map( ( elem, idx ) =>
+								( <ListGroupItem key={idx} style={{ padding: '2px 5px' }}>
 									<p>{elem}</p>
-								</ListGroupItem>
+								</ListGroupItem> )
 							)}
 						</ListGroup>
 					</Panel> : null }
@@ -305,7 +301,7 @@ class InstructorBar extends Component {
 											{ this.state.actions.length > 0 ?
 												<ListGroup fill style={{ marginLeft: 0, overflowY: 'scroll', height: 0.73 * window.innerHeight }}>
 													{this.state.actions.map( ( elem, idx ) =>
-														<ListGroupItem>
+														<ListGroupItem key={idx}>
 															{ this.state.showExtended ?
 																<span style={{ textAlign: 'left' }}>
 																	<b>{elem.name}:</b> {elem.value}
