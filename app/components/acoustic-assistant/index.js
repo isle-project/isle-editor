@@ -16,88 +16,86 @@ class AcousticAssistant extends Component {
 		super( props );
 
 		this.state = {
-			text:  ''
 		};
 	}
 
 	componentDidMount() {
-		if ( this.props.autoplay ) this.refs.recognition.trigger();
+		if ( this.props.autoplay ) this.recognition.trigger();
 	}
 
 
-	onResult = ( event ) => {	
+	onResult = ( event ) =>{
 	}
 
-	
-	// this function gets the result of the speech recognition
-	get_result ( text ) {
+	// This function gets the result of the speech recognition
+	getResult( text ) {
 		if ( this.props.wikipedia !== '' ) {
-			var x = text.search( this.props.wikipedia );
-			if ( x !== -1 )  {
-				console.log( "Wikipedia triggered" );
-				this.refs.wikipedia.trigger( text );
+			let x = text.search( this.props.wikipedia );
+			if ( x !== -1 ) {
+				console.log( 'Wikipedia triggered' );
+				this.wikipediaref.trigger( text );
 			}
 		}
 
 		if ( this.props.css !== '' ) {
-			var x = text.search( this.props.css );
-			if ( x !== -1 )  {
-				console.log( "css triggered" );
-				this.refs.css.trigger( text );
+			let x = text.search( this.props.css );
+			if ( x !== -1 ) {
+				console.log( 'css triggered' );
+				this.cssref.trigger( text );
 			}
 		}
 
 		if ( this.props.news !== '' ) {
 			var x = text.search( this.props.news );
-			if ( x !== -1 )  {
-				console.log( "news triggered" );
-				this.refs.news.trigger( text );
+			if ( x !== -1 ) {
+				console.log( 'news triggered' );
+				this.newsref.trigger( text );
 			}
 		}
 	}
 
-	render_news () {
+	renderNews() {
 		if ( this.props.news === '' ) return null;
 		return (
 			<News
-				ref = "news"
-				language = { this.props.language }
+				ref={( div ) => { this.newsref = div; }}
+				language={this.props.language}
 			></News>
-		);	
+		);
 	}
 
-	render_wikipedia () {
+	renderWikipedia() {
 		if ( this.props.wikipedia === '' ) return null;
 
 		return (
 			<Wikipedia
-				ref = "wikipedia"
-				language = { this.props.language }
+				ref={( div ) => { this.wikipediaref = div; }}
+				language={this.props.language}
 			></Wikipedia>
 		);
 	}
 
-	render_css () {
+	renderCSS() {
 		if ( this.props.css === '' ) return null;
 		return (
 			<AcousticCSS
-				ref = "css"
+				ref={( div ) => { this.cssref = div; }}
 				showSearch
-				logo = { false }
-				language = { this.props.language }
+				logo={false}
+				language={this.props.language}
 			></AcousticCSS>
 		);
 	}
 
-	render_speech () {
+	renderSpeech() {
 		return (
 			<div>
 				<SpeechRecognition
-					ref = "recognition"
-					name = { name }
+					ref={( div ) => { this.recognition = div; }}
+					name={name}
 					showText
-					language = { this.props.language }
-					onFinalText = { this.get_result.bind( this ) }
+					language={this.props.language}
+					onFinalText={this.getResult.bind( this )}
 				/>
 			</div>
 		);
@@ -105,11 +103,11 @@ class AcousticAssistant extends Component {
 
 	render() {
 		return (
-			<div class = { this.props.className } id = { this.props.id }>
-				{ this.render_speech() }
-				{ this.render_wikipedia() }
-				{ this.render_css() }
-				{ this.render_news() }
+			<div className={this.props.className} id={this.props.id}>
+				{ this.renderSpeech() }
+				{ this.renderWikipedia() }
+				{ this.renderCSS() }
+				{ this.renderNews() }
 			</div>
 		);
 	}
@@ -125,21 +123,22 @@ AcousticAssistant.defaultProps = {
 	autoplay: false,
 	wikipedia: '',
 	css: '',
-	news: ''
+	news: '',
+	name: 'Olivia'
 };
 
 
 // PROPERTY TYPES //
 
 AcousticAssistant.propTypes = {
-	id: PropTypes.string,
-	className: PropTypes.string,
-	language: PropTypes.string,
 	autoplay: PropTypes.bool,
-	wikipedia: PropTypes.string,
+	className: PropTypes.string,
 	css: PropTypes.string,
+	id: PropTypes.string,
+	language: PropTypes.string,
+	name: PropTypes.string,   // eslint-disable-line
 	news: PropTypes.string,
-	name: PropTypes.string
+	wikipedia: PropTypes.string
 };
 
 
