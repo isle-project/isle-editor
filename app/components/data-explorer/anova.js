@@ -71,7 +71,12 @@ ANOVA.propTypes = {
 	categorical: PropTypes.array.isRequired,
 	continuous: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
+	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired
+};
+
+ANOVA.defaultProps = {
+	logAction() {}
 };
 
 

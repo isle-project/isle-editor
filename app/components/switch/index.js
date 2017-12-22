@@ -41,8 +41,12 @@ class Switch extends React.Component {
 
 	makeVisible( element, index ) {
 		const o = ( index !== this.state.pos ) ?
-			{ style: { display: 'none' } } :
-			{ style: { display: 'inline' } };
+			{
+				style: { display: 'none' }
+			} :
+			{
+				style: { display: 'inline' }
+			};
 		return React.cloneElement( element, o );
 	}
 

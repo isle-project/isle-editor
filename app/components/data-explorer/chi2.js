@@ -10,9 +10,7 @@ import ROutput from 'components/r/output';
 // MAIN //
 
 class Chi2Test extends Component {
-
 	constructor( props ) {
-
 		super( props );
 
 		this.calculateChisquareTest = ( var1, var2 ) => {
@@ -28,7 +26,7 @@ class Chi2Test extends Component {
 				/>
 			</div>;
 			const output = {
-				variable: `Chisquare Test for Independence`,
+				variable: 'Chisquare Test for Independence',
 				type: 'Test',
 				value: value
 			};
@@ -40,7 +38,7 @@ class Chi2Test extends Component {
 	}
 
 	render() {
-		let { categorical } = this.props;
+		const { categorical } = this.props;
 		return (
 			<Dashboard
 				title="Chi-squared Independence Test"
@@ -67,8 +65,14 @@ class Chi2Test extends Component {
 // PROPERTY TYPES //
 
 Chi2Test.propTypes = {
+	categorical: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
+	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired
+};
+
+Chi2Test.defaultProps = {
+	logAction() {}
 };
 
 

@@ -11,9 +11,7 @@ import windowMenu from './menus/window';
 // MAIN //
 
 function configureMenu({ app }) {
-	const template = process.platform === 'darwin'
-		? [ isle({ app }) ]
-		: [];
+	const template = process.platform === 'darwin' ? [ isle({ app }) ] : [];
 	return [
 		...template,
 		file,

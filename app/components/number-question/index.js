@@ -132,7 +132,7 @@ class NumberQuestion extends Component {
 						<OverlayTrigger
 							trigger="click"
 							placement="left"
-							overlay={ displayHint( this.state.currentHint - 1, this.props.hints ) }
+							overlay={displayHint( this.state.currentHint - 1, this.props.hints )}
 						>
 							<Button
 								bsStyle="primary"
@@ -175,7 +175,7 @@ NumberQuestion.propTypes = {
 	hints: PropTypes.array,
 	onChange: PropTypes.func,
 	question: PropTypes.string,
-	solution: PropTypes.number,
+	solution: PropTypes.number
 };
 
 NumberQuestion.contextTypes = {

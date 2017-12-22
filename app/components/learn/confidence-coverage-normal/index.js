@@ -28,7 +28,6 @@ const ELEM_TOOLTIPS = {
 // MAIN //
 
 class ConfidenceCoverageNormal extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -39,7 +38,7 @@ class ConfidenceCoverageNormal extends Component {
 		};
 	}
 
-	onGenerate =  ( n, mu, sigma, level ) => {
+	onGenerate = ( n, mu, sigma, level ) => {
 		let nTrapped = 0;
 		let alpha = 1.0 - level;
 		let errorBars = new Array( 20 );
@@ -72,8 +71,7 @@ class ConfidenceCoverageNormal extends Component {
 	}
 
 	render() {
-
-		const intro = <p><TeX raw="X \sim \text{Normal}(  \mu, \sigma^2 )" elems={ELEM_TOOLTIPS}/>. Then <TeX raw="\bar X \sim \text{Normal}( \mu, \sigma/\sqrt{n} )" elems={ELEM_TOOLTIPS}/>.  Our confidence interval is then <TeX raw="\bar X \pm Z_{\alpha/2} \cdot \sigma/\sqrt{n}" elems={ELEM_TOOLTIPS}/>. For our choice of sample size (n), mu, sigma, and confidence level, we'll simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.</p>;
+		const intro = <p><TeX raw="X \sim \text{Normal}(  \mu, \sigma^2 )" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\bar X \sim \text{Normal}( \mu, \sigma/\sqrt{n} )" elems={ELEM_TOOLTIPS} />.  Our confidence interval is then <TeX raw="\bar X \pm Z_{\alpha/2} \cdot \sigma/\sqrt{n}" elems={ELEM_TOOLTIPS} />. For our choice of sample size (n), mu, sigma, and confidence level, we'll simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.</p>;
 
 		const plot= <VictoryChart padding={30} height={180} theme={VictoryTheme.material}
 		>
@@ -89,19 +87,19 @@ class ConfidenceCoverageNormal extends Component {
 			/>
 			<VictoryErrorBar
 				animate={{ duration: 500 }}
-				labelComponent={<VictoryTooltip/>}
+				labelComponent={<VictoryTooltip />}
 				style={{
 					data: {
 						stroke: ( data ) => (
 							( data.y - data.err > this.state.mu ) ||
 							( data.y + data.err < this.state.mu )
-						) ?  'darkred' : 'steelblue'
+						) ? 'darkred' : 'steelblue'
 					}
 				}}
 				data={this.state.errorBars}
 				x="num"
 				y="yval"
-				errorY={( d ) => d.err }
+				errorY={( d ) => d.err}
 				labels={( d ) => d.label}
 			/>
 			<VictoryLine
@@ -175,9 +173,3 @@ class ConfidenceCoverageNormal extends Component {
 // EXPORTS //
 
 export default ConfidenceCoverageNormal;
-
-
-
-
-
-

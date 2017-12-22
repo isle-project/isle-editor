@@ -24,7 +24,7 @@ class ImagePixelPicker extends Component {
 
 	invert = () => {
 		for ( let i = 0; i < this.data.length; i += 4 ) {
-			this.data[ i ]     = 255 - this.data[ i ];     // red
+			this.data[ i ] = 255 - this.data[ i ];     // red
 			this.data[ i + 1 ] = 255 - this.data[ i + 1 ]; // green
 			this.data[ i + 2 ] = 255 - this.data[ i + 2 ]; // blue
 		}
@@ -34,7 +34,7 @@ class ImagePixelPicker extends Component {
 	grayscale = () => {
 		for ( let i = 0; i < this.data.length; i += 4 ) {
 			const avg = ( this.data[ i ] + this.data[ i + 1 ] + this.data[ i + 2 ]) / 3;
-			this.data[ i ]     = avg; // red
+			this.data[ i ] = avg; // red
 			this.data[ i + 1 ] = avg; // green
 			this.data[ i + 2 ] = avg; // blue
 		}
@@ -107,7 +107,7 @@ class ImagePixelPicker extends Component {
 			<div>
 				<div>
 					<SelectInput
-						options={[ 'Landscape','Boats','Airplane' ]}
+						options={[ 'Landscape', 'Boats', 'Airplane' ]}
 						onChange={this.drawImage}
 					/>
 					{ this.state.selectedData ?

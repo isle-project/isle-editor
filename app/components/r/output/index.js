@@ -14,17 +14,16 @@ const showResult = ( res ) => {
 		let sanitized = {
 			__html: DOMPurify.sanitize( res )
 		};
+		// eslint-disable-next-line react/no-danger
 		return <pre id="output"><span dangerouslySetInnerHTML={sanitized} /></pre>;
-	} else {
-		return <span />;
 	}
+	return <span />;
 };
 
 
 // MAIN //
 
 class ROutput extends Component {
-
 	constructor( props ) {
 		super( props );
 

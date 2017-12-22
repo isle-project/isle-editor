@@ -8,6 +8,7 @@ import Dashboard from 'components/dashboard';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import isObject from '@stdlib/assert/is-object';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 
 
 // FUNCTIONS //
@@ -28,8 +29,8 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs ) => {
 			let key2 = colKeys[ l ];
 			let size = 0;
 			for ( let n = 0; n < nobs; n++ ) {
-				if ( rowValues[ n ] == key1 &&
-					colValues[ n ] == key2
+				if ( rowValues[ n ] === key1 &&
+					colValues[ n ] === key2
 				) {
 					size += 1;
 				}
@@ -40,12 +41,14 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs ) => {
 
 	let columnTotals = [];
 	for ( let key in colFreqs ) {
-		let colfreq = colFreqs[ key ];
-		if ( relativeFreqs ) {
-			colfreq /= nobs;
-			colfreq = colfreq.toFixed( 3 );
+		if ( hasOwnProp( colFreqs, key ) ) {
+			let colfreq = colFreqs[ key ];
+			if ( relativeFreqs ) {
+				colfreq /= nobs;
+				colfreq = colfreq.toFixed( 3 );
+			}
+			columnTotals.push( <td>{colfreq}</td> );
 		}
-		columnTotals.push( <td>{colfreq}</td> );
 	}
 	let table = <table>
 		<tbody>
@@ -57,23 +60,23 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs ) => {
 			</tr>
 			<tr>
 				<th>{rowVar}</th>
-				{colKeys.map( e => <th>{e}</th> )}
+				{colKeys.map( (e, i) => <th key={i}>{e}</th> )}
 				<th>Row Totals</th>
 			</tr>
-			{rowKeys.map( r => <tr>
+			{rowKeys.map( ( r, i ) => ( <tr key={i} >
 				<th>{r}</th>
-				{colKeys.map( c => {
+				{colKeys.map( ( c, j ) => {
 					let freq = freqs[ r + '-' + c ];
 					if ( relativeFreqs ) {
 						freq = freq.toFixed( 3 );
 					}
-					return <td>{freq}</td>;
+					return <td key={`${i}:${j}`}>{freq}</td>;
 				})}
 				<td>{ !relativeFreqs ?
 					rowFreqs[ r ] :
 					( rowFreqs[ r ]/nobs ).toFixed( 3 )
 				}</td>
-			</tr> )}
+			</tr> ) )}
 			<tr>
 				<th>Column Totals</th>
 				{columnTotals}
@@ -112,7 +115,7 @@ const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFre
 		value: <div>
 			<label>{`Grouped by ${group}:`}</label>
 			{table.map( ( x, i ) => {
-				return ( <div>
+				return ( <div key={i}>
 					<label>{`${keys[ i ]}`}: </label>
 					<pre>{x}</pre>
 				</div> );
@@ -126,11 +129,8 @@ const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFre
 // MAIN //
 
 class ContingencyTable extends Component {
-
 	constructor( props ) {
-
 		super( props );
-
 	}
 
 	generateContingencyTable( rowVar, colVar, group, relativeFreqs ) {
@@ -199,7 +199,10 @@ class ContingencyTable extends Component {
 
 ContingencyTable.defaultProps = {
 	defaultRowVar: null,
-	defaultColVar: null
+	defaultColVar: null,
+	groupingVariables: null,
+	logAction() {},
+	session: {}
 };
 
 
@@ -207,7 +210,13 @@ ContingencyTable.defaultProps = {
 
 ContingencyTable.propTypes = {
 	data: PropTypes.object.isRequired,
-	onCreated: PropTypes.func.isRequired
+	defaultColVar: PropTypes.string,
+	defaultRowVar: PropTypes.string,
+	groupingVariables: PropTypes.array,
+	logAction: PropTypes.func,
+	onCreated: PropTypes.func.isRequired,
+	session: PropTypes.object,
+	variables: PropTypes.array.isRequired
 };
 
 

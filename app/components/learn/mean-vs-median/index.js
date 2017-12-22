@@ -130,12 +130,12 @@ class MeanVSMedian extends Component {
 								}>
 									<VictoryLine data={this.state.lognormalData} x="x" y="y" />
 									{ this.state.showLognormalMean ?
-										<VictoryLine data={[ { x: this.state.meanLognormalGuess, y: 0 }, { x: this.state.meanLognormalGuess, y: this.state.lognormalDomain.y[ 1 ] } ]} labels={ [ "Your Guess","" ]} /> :
+										<VictoryLine data={[ { x: this.state.meanLognormalGuess, y: 0 }, { x: this.state.meanLognormalGuess, y: this.state.lognormalDomain.y[ 1 ] } ]} labels={[ 'Your Guess', '' ]} /> :
 										null
 									}
 									{ this.state.showLognormalMean ?
 										<VictoryLine data={[ { x: lognormal.mean( this.state.mu, this.state.sigma ), y: 0 }, { x: lognormal.mean( this.state.mu, this.state.sigma ), y: this.state.lognormalDomain.y[ 1 ] } ]}
-											labels={[ "","True Mean" ]}
+											labels={[ '', 'True Mean' ]}
 										/> :
 										null
 									}
@@ -160,12 +160,12 @@ class MeanVSMedian extends Component {
 								}>
 									<VictoryLine data={this.state.lognormalData} x="x" y="y" />
 									{ this.state.showLognormalMedian ?
-										<VictoryLine data={[ { x: this.state.medianLognormalGuess, y: 0 }, { x: this.state.medianLognormalGuess, y: this.state.lognormalDomain.y[ 1 ] } ]} labels={[ "Your Guess","" ]} /> :
+										<VictoryLine data={[ { x: this.state.medianLognormalGuess, y: 0 }, { x: this.state.medianLognormalGuess, y: this.state.lognormalDomain.y[ 1 ] } ]} labels={[ 'Your Guess', '' ]} /> :
 										null
 									}
 									{ this.state.showLognormalMedian ?
 										<VictoryLine data={[ { x: lognormal.median( this.state.mu, this.state.sigma ), y: 0 }, { x: lognormal.median( this.state.mu, this.state.sigma ), y: this.state.lognormalDomain.y[ 1 ] } ]}
-											labels={[ "","True Median" ]}
+											labels={[ '', 'True Median' ]}
 										/> :
 										null
 									}

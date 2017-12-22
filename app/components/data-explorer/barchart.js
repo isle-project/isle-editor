@@ -9,6 +9,7 @@ import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import isArray from '@stdlib/assert/is-array';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 
 
 // FUNCTIONS //
@@ -22,7 +23,9 @@ function by( arr, factor, fun ) {
 		ret[ factor[ i ] ].push( arr[ i ]);
 	}
 	for ( let key in ret ) {
-		ret[ key ] = fun( ret[ key ]);
+		if ( hasOwnProp( ret, key ) ) {
+			ret[ key ] = fun( ret[ key ]);
+		}
 	}
 	return ret;
 } // end FUNCTION by()
@@ -30,7 +33,7 @@ function by( arr, factor, fun ) {
 export function generateBarchartConfig({ data, variable, group }) {
 	let traces;
 	if ( !group ) {
-		let freqs = entries( countBy( data[ variable ],  identity ) );
+		let freqs = entries( countBy( data[ variable ], identity ) );
 		let categories = freqs.map( e => e[ 0 ]);
 		freqs = freqs.map( e => e[ 1 ]);
 		traces = [ {
@@ -44,15 +47,17 @@ export function generateBarchartConfig({ data, variable, group }) {
 		});
 		traces = [];
 		for ( let key in freqs ) {
-			let val = freqs[ key ];
-			let categories = val.map( e => e[ 0 ]);
-			let counts = val.map( e => e[ 1 ]);
-			traces.push({
-				y: counts,
-				x: categories,
-				type: 'bar',
-				name: key
-			});
+			if ( hasOwnProp( freqs, key ) ) {
+				let val = freqs[ key ];
+				let categories = val.map( e => e[ 0 ]);
+				let counts = val.map( e => e[ 1 ]);
+				traces.push({
+					y: counts,
+					x: categories,
+					type: 'bar',
+					name: key
+				});
+			}
 		}
 	}
 	return {
@@ -73,7 +78,6 @@ export function generateBarchartConfig({ data, variable, group }) {
 // MAIN //
 
 class Barchart extends Component {
-
 	constructor( props ) {
 		super( props );
 	}
@@ -93,7 +97,7 @@ class Barchart extends Component {
 				this.props.logAction( 'DATA_EXPLORER_SHARE:BARCHART', {
 					variable, group
 				});
-			}}/>
+			}} />
 		};
 		this.props.logAction( 'DATA_EXPLORER:BARCHART', {
 			variable,
@@ -130,7 +134,10 @@ class Barchart extends Component {
 
 Barchart.defaultProps = {
 	defaultValue: null,
-	onPlotDone() {}
+	groupingVariables: null,
+	logAction() {},
+	onCreated() {},
+	session: {}
 };
 
 
@@ -138,7 +145,12 @@ Barchart.defaultProps = {
 
 Barchart.propTypes = {
 	data: PropTypes.object.isRequired,
-	onCreated: PropTypes.func.isRequired
+	defaultValue: PropTypes.string,
+	groupingVariables: PropTypes.array,
+	logAction: PropTypes.func,
+	onCreated: PropTypes.func,
+	session: PropTypes.object,
+	variables: PropTypes.array.isRequired
 };
 
 

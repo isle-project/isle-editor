@@ -84,7 +84,7 @@ test( 'the component renders a tag when `numbered` property is set', t => {
 });
 
 test( 'the component supports using a custom tag', t => {
-	const wrapper = mount( <TeX raw="2+2" tag="[A]" displayMode numbered/> );
+	const wrapper = mount( <TeX raw="2+2" tag="[A]" displayMode numbered /> );
 	const tag = wrapper.find( '.tag' );
 	t.equal( tag.text(), '[A]', 'uses custom tag' );
 	t.end();
