@@ -487,7 +487,9 @@ class SampleCLT extends Component {
 // PROPERTY TYPES //
 
 SampleCLT.propTypes = {
-	populationProbabilities: PropTypes.bool
+	data: PropTypes.array.isRequired,
+	populationProbabilities: PropTypes.bool,
+	variables: PropTypes.array.isRequired
 };
 
 SampleCLT.defaultProps = {

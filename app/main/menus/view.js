@@ -29,7 +29,7 @@ const viewMenu = {
 					return 'Alt+Command+I';
 				}
 				return 'Ctrl+Shift+I';
-			}() ),
+			} )(),
 			click( item, focusedWindow ) {
 				if ( focusedWindow ) {
 					focusedWindow.webContents.toggleDevTools();
@@ -43,7 +43,7 @@ const viewMenu = {
 					return 'Ctrl+Command+F';
 				}
 				return 'F11';
-			}() ),
+			} )(),
 			click( item, focusedWindow ) {
 				if ( focusedWindow ) {
 					focusedWindow.setFullScreen( !focusedWindow.isFullScreen() );

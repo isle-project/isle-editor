@@ -138,7 +138,6 @@ class Login extends Component {
 // MAIN //
 
 class Settings extends Component {
-
 	render() {
 		return (
 			<div
