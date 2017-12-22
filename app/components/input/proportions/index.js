@@ -6,13 +6,10 @@ import Input from 'components/input/base';
 import NumberInput from 'components/input/number';
 import { VictoryPie } from 'victory';
 import isArray from '@stdlib/assert/is-array';
-const debug = require( 'debug' )( 'isle-editor' );
-
 
 // MAIN //
 
 class ProportionInput extends Input {
-
 	constructor( props ) {
 		super( props );
 
@@ -89,7 +86,7 @@ class ProportionInput extends Input {
 		return sum;
 	}
 
-	checkPercentage ( ndx, value ) {
+	checkPercentage( ndx, value ) {
 		const copy = this.state.values.slice();
 		copy[ ndx ] = value;
 
@@ -100,7 +97,7 @@ class ProportionInput extends Input {
 		});
 	}
 
-	getNumber ( ndx ) {
+	getNumber( ndx ) {
 		const style = {
 			float: 'left',
 			width: '120px',
@@ -110,16 +107,16 @@ class ProportionInput extends Input {
 		let maxValue = this.state.values[ ndx ] + free;
 		maxValue = maxValue.toFixed( this.props.precision );
 		return (
-			<div style = { style } >
+			<div style={style} >
 				<NumberInput
-					key = { ndx }
-					legend = { this.legends[ ndx ] }
+					key={ndx}
+					legend={this.legends[ ndx ]}
 					onChange={( event ) => this.checkPercentage( ndx, event )}
 					min={0}
 					max={maxValue}
-					step={ this.props.step }
-					disabled= { this.props.disabled }
-					defaultValue={ this.state.values[ ndx ]}
+					step={this.props.step}
+					disabled={this.props.disabled}
+					defaultValue={this.state.values[ ndx ]}
 				/>
 			</div>
 		);
@@ -129,7 +126,7 @@ class ProportionInput extends Input {
 		var list = [];
 		let n = this.props.nElements;
 		for ( var i = 0; i < n; i++ ) {
-			list.push ( this.getNumber ( i ) );
+			list.push( this.getNumber( i ) );
 		}
 		return list;
 	}
@@ -137,10 +134,10 @@ class ProportionInput extends Input {
 	renderPie() {
 		return (
 			<VictoryPie
-				colorScale={ this.state.colors }
-				data={ this.state.visualData }
-				height={ this.props.height }
-				innerRadius= { this.props.innerRadius }
+				colorScale={this.state.colors}
+				data={this.state.visualData}
+				height={this.props.height}
+				innerRadius={this.props.innerRadius}
 			/>
 		);
 	}
@@ -151,14 +148,14 @@ class ProportionInput extends Input {
 		var no = this.props.nElements + 1;
 		for ( let i = 0; i < no; i++ ) {
 			if ( i < no -1 ) {
-				var o = {
+				let o = {
 					x: this.props.legends[ i ],
 					y: arr[ i ]
 				};
 				list.push( o );
 			}
 			else {
-				var o = {
+				let o = {
 					x: ' ',
 					y: 100 - this.total( arr )
 				};
@@ -204,16 +201,16 @@ ProportionInput.defaultProps = {
 // PROPERTY TYPES //
 
 ProportionInput.propTypes = {
-	nElements: PropTypes.number,
-	precision: PropTypes.number,
-	step: PropTypes.number,
 	disabled: PropTypes.bool,
-	margin: PropTypes.string,
-	onChange: PropTypes.func,
 	legends: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.array
 	]),
+	margin: PropTypes.string,
+	nElements: PropTypes.number,
+	onChange: PropTypes.func,
+	precision: PropTypes.number,
+	step: PropTypes.number
 };
 
 
