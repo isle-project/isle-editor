@@ -17,7 +17,6 @@ import TeX from 'components/tex';
 // MAIN //
 
 class UniformProbs extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -33,12 +32,12 @@ class UniformProbs extends Component {
 		for ( let i = 0; i < x.length; i++ ) {
 			data[ i ] = {
 				x: x[ i ],
-				y: dunif( x[ i ], min, max ),
+				y: dunif( x[ i ], min, max )
 			};
 		}
 		this.setState({
 			data: data,
-			eqn: "P(X \\le" + roundn( x0, -4 ) + ") = " + roundn( punif( x0, min, max ), -4 ),
+			eqn: 'P(X \\le' + roundn( x0, -4 ) + ') = ' + roundn( punif( x0, min, max ), -4 ),
 			min: min,
 			max: max,
 			yheight: dunif( min, min, max )
@@ -52,12 +51,12 @@ class UniformProbs extends Component {
 		for ( let i = 0; i < x.length; i++ ) {
 			data[ i ] = {
 				x: x[ i ],
-				y: dunif( x[ i ], min, max ),
+				y: dunif( x[ i ], min, max )
 			};
 		}
 		this.setState({
 			data2: data,
-			eqn2: "P(X >" + roundn( x0, -4 ) + ") = " + roundn( 1-punif( x0, min, max ), -4 ),
+			eqn2: 'P(X >' + roundn( x0, -4 ) + ') = ' + roundn( 1-punif( x0, min, max ), -4 ),
 			min2: min,
 			max2: max,
 			yheight2: dunif( min, min, max )
@@ -71,12 +70,12 @@ class UniformProbs extends Component {
 		for ( let i = 0; i < x.length; i++ ) {
 			data[ i ] = {
 				x: x[ i ],
-				y: dunif( x[ i ], min, max ),
+				y: dunif( x[ i ], min, max )
 			};
 		}
 		this.setState({
 			data3: data,
-			eqn3: "P(" + roundn( x0, -4 ) + "\\le X \\le" + roundn( x1, -4 ) + ") = " + roundn( punif( x1, min, max )-punif( x0, min, max ), -4 ),
+			eqn3: 'P(' + roundn( x0, -4 ) + '\\le X \\le' + roundn( x1, -4 ) + ') = ' + roundn( punif( x1, min, max )-punif( x0, min, max ), -4 ),
 			min3: min,
 			max3: max,
 			yheight3: dunif( min, min, max ),
@@ -87,7 +86,7 @@ class UniformProbs extends Component {
 	render() {
 		return ( <Panel header={<h3>Uniform Distribution</h3>}>
 			<Tabs defaultActiveKey={1} id="uniform-tabs">
-				<Tab eventKey={1} title={<TeX raw="P(X \le x_0)"/>}>
+				<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
 					<Dashboard autoUpdate onGenerate={this.generate1}>
 						<NumberInput
 							legend="Minimum"
@@ -126,12 +125,12 @@ class UniformProbs extends Component {
 								[ this.state.max, this.state.yheight ],
 								[ this.state.max, 0 ]
 							]}
-							x={ d => d[ 0 ]}
-							y={ d => d[ 1 ]}
+							x={d => d[ 0 ]}
+							y={d => d[ 1 ]}
 						/>
 					</VictoryChart>
 				</Tab>
-				<Tab eventKey={2} title={<TeX raw="P(X > x_0)"/>}>
+				<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />}>
 					<Dashboard autoUpdate onGenerate={this.generate2}>
 						<NumberInput
 							legend="Minimum"
@@ -166,16 +165,16 @@ class UniformProbs extends Component {
 						<VictoryLine
 							data={[
 								[ this.state.min2, 0 ],
-								[ this.state.min2,this.state.yheight2 ],
-								[ this.state.max2,this.state.yheight2 ],
+								[ this.state.min2, this.state.yheight2 ],
+								[ this.state.max2, this.state.yheight2 ],
 								[ this.state.max2, 0 ]
 							]}
-							x={ d => d[ 0 ]}
-							y={ d => d[ 1 ]}
+							x={d => d[ 0 ]}
+							y={d => d[ 1 ]}
 						/>
 					</VictoryChart>
 				</Tab>
-				<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1 )"/>} >
+				<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1 )" />} >
 					<Dashboard autoUpdate onGenerate={this.generate3}>
 						<NumberInput
 							legend="Minimum"
@@ -218,12 +217,12 @@ class UniformProbs extends Component {
 						<VictoryLine
 							data={[
 								[ this.state.min3, 0 ],
-								[ this.state.min3,this.state.yheight3 ],
-								[ this.state.max3,this.state.yheight3 ],
+								[ this.state.min3, this.state.yheight3 ],
+								[ this.state.max3, this.state.yheight3 ],
 								[ this.state.max3, 0 ]
 							]}
-							x={ d => d[ 0 ]}
-							y={ d => d[ 1 ]}
+							x={d => d[ 0 ]}
+							y={d => d[ 1 ]}
 						/>
 					</VictoryChart>
 				</Tab>
@@ -239,7 +238,7 @@ UniformProbs.propTypes = {
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
-	]),
+	])
 };
 
 

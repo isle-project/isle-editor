@@ -17,7 +17,6 @@ import TeX from 'components/tex';
 // MAIN //
 
 class NormalProbs extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -34,7 +33,7 @@ class NormalProbs extends Component {
 	render() {
 		return ( <Panel header={<h3>Normal Distribution</h3>}>
 			<Tabs defaultActiveKey={1} id="normal-tabs">
-				<Tab eventKey={1} title={<TeX raw="P(X \le x_0)"/>}>
+				<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
 					<Dashboard autoUpdate onGenerate={( mean, sd, x0 ) => {
 						let len = 200;
 						let x = linspace( mean-3*sd, x0, len );
@@ -42,12 +41,12 @@ class NormalProbs extends Component {
 						for ( let i = 0; i < x.length; i++ ) {
 							data[ i ] = {
 								x: x[ i ],
-								y: dnorm( x[ i ], mean, sd ),
+								y: dnorm( x[ i ], mean, sd )
 							};
 						}
 						this.setState({
 							data1: data,
-							eqn1: "P(X \\le" + roundn( x0, -4 ) + ") = " + roundn( pnorm( x0, mean, sd ), -4 ),
+							eqn1: 'P(X \\le' + roundn( x0, -4 ) + ') = ' + roundn( pnorm( x0, mean, sd ), -4 ),
 							sd1: sd,
 							mean1: mean
 						});
@@ -85,13 +84,13 @@ class NormalProbs extends Component {
 						/>
 						<VictoryLine
 							samples={200}
-							y={ ( data ) =>
+							y={( data ) =>
 								dnorm( data.x, this.state.mean1, this.state.sd1 )
 							}
 						/>
 					</VictoryChart>
 				</Tab>
-				<Tab eventKey={2} title={<TeX raw="P(X > x_0)"/>}>
+				<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />}>
 					<Dashboard autoUpdate onGenerate={( mean, sd, x0 ) => {
 						let len = 200;
 						let x = linspace( x0, mean+4*sd, len );
@@ -99,12 +98,12 @@ class NormalProbs extends Component {
 						for ( let i = 0; i < x.length; i++ ) {
 							data[ i ] = {
 								x: x[ i ],
-								y: dnorm( x[ i ], mean, sd ),
+								y: dnorm( x[ i ], mean, sd )
 							};
 						}
 						this.setState({
 							data2: data,
-							eqn2: "P(X >" + roundn( x0, -4 ) + ") = " + roundn( 1.0 - pnorm( x0, mean, sd ), -4 ),
+							eqn2: 'P(X >' + roundn( x0, -4 ) + ') = ' + roundn( 1.0 - pnorm( x0, mean, sd ), -4 ),
 							sd2: sd,
 							mean2: mean
 						});
@@ -142,13 +141,13 @@ class NormalProbs extends Component {
 						/>
 						<VictoryLine
 							samples={200}
-							y={ ( data ) =>
+							y={( data ) =>
 								dnorm( data.x, this.state.mean2, this.state.sd2 )
 							}
 						/>
 					</VictoryChart>
 				</Tab>
-				<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1)"/>}>
+				<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1)" />}>
 					<Dashboard autoUpdate onGenerate={( mean, sd, x0, x1 ) => {
 						if ( x0 > x1 ) {
 							let tmp = x0;
@@ -161,12 +160,12 @@ class NormalProbs extends Component {
 						for ( let i = 0; i < x.length; i++ ) {
 							data[ i ] = {
 								x: x[ i ],
-								y: dnorm( x[ i ], mean, sd ),
+								y: dnorm( x[ i ], mean, sd )
 							};
 						}
 						this.setState({
 							data3: data,
-							eqn3: "P(" + roundn( x0, -4 ) + "\\le X \\le" + roundn( x1, -4 ) + ") = " + roundn( pnorm( x1, mean, sd ) - pnorm( x0, mean, sd ), -4 ),
+							eqn3: 'P(' + roundn( x0, -4 ) + '\\le X \\le' + roundn( x1, -4 ) + ') = ' + roundn( pnorm( x1, mean, sd ) - pnorm( x0, mean, sd ), -4 ),
 							sd3: sd,
 							mean3: mean
 						});
@@ -201,7 +200,10 @@ class NormalProbs extends Component {
 						<TeX raw={this.state.eqn3} displayMode tag="" />
 					</Dashboard>
 					<VictoryChart
-						domain={{ x: [ this.state.mean3-this.state.sd3*4, this.state.mean3+this.state.sd3*4 ], y: [ 0, dnorm( this.state.mean3, this.state.mean3, this.state.sd3 ) ] }}>
+						domain={{
+							x: [ this.state.mean3-this.state.sd3*4, this.state.mean3+this.state.sd3*4 ],
+							y: [ 0, dnorm( this.state.mean3, this.state.mean3, this.state.sd3 ) ]
+						}}>
 						<VictoryArea
 							data={this.state.data3}
 							style={{
@@ -212,7 +214,7 @@ class NormalProbs extends Component {
 						/>
 						<VictoryLine
 							samples={200}
-							y={ ( data ) =>
+							y={( data ) =>
 								dnorm( data.x, this.state.mean3, this.state.sd3 )
 							}
 						/>
@@ -230,7 +232,7 @@ NormalProbs.propTypes = {
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
-	]),
+	])
 };
 
 
