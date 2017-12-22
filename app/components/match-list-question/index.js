@@ -149,15 +149,15 @@ class MatchListQuestion extends Component {
 					<Button
 						bsStyle="primary"
 						bsSize="sm"
-						onClick={ () => {
+						onClick={() => {
 							this.setState({
 								submitted: true
 							});
 							onSubmit(
 								answers.map( ans => ({ a: ans.a, b: ans.b }) )
 							);
-						} }
-						disabled={ answers.length !== elements.length }>
+						}}
+						disabled={answers.length !== elements.length}>
 						{ !this.state.submitted ? 'Submit' : 'Resubmit' }
 					</Button>
 					{ this.state.submitted ?

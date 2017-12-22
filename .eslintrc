@@ -58,7 +58,7 @@
     "id-blacklist": 0,
     "id-length": [ 1, {
       "min": 1,
-      "max": 25,
+      "max": 30,
       "properties": "never"
     }],
     "id-match": 0,

@@ -15,20 +15,17 @@ function createMessage( session, message ) {
 		text: `Dear ${session.user.name}, this is an automatic confirmation email to inform you that you have successfully completed ${session.lessonName} of course ${session.namespaceName}. ${message}`,
 		subject: `${session.lessonName} successfully completed!`
 	};
-};
+}
 
 
 // MAIN //
 
 class LessonSubmit extends Component {
-
 	constructor( props ) {
 		super( props );
 
 		this.state = {
 			showUserModal: false,
-			user: '',
-			email: '',
 			visibleLogin: false,
 			visibleSignup: false
 		};
@@ -60,14 +57,14 @@ class LessonSubmit extends Component {
 		this.closeSignup = () => {
 			this.setState({
 				visibleSignup: false,
-				showUserModal: false,
+				showUserModal: false
 			});
 		};
 
 		this.closeLogin = () => {
 			this.setState({
 				visibleLogin: false,
-				showUserModal: false,
+				showUserModal: false
 			});
 		};
 
@@ -102,15 +99,6 @@ class LessonSubmit extends Component {
 				this.finalizeSession( item );
 			}
 		};
-
-		this.handleEmailInput = ( e ) => {
-			this.setState({ email: e.target.value });
-		};
-
-		this.handleUserInput = ( e ) => {
-			this.setState({ user: e.target.value });
-		};
-
 	}
 
 	componentDidMount() {
@@ -164,7 +152,8 @@ class LessonSubmit extends Component {
 LessonSubmit.defaultProps = {
 	label: 'Finish lesson',
 	message: '',
-	onClick() {}
+	onClick() {},
+	style: {}
 };
 
 
@@ -173,7 +162,8 @@ LessonSubmit.defaultProps = {
 LessonSubmit.propTypes = {
 	label: PropTypes.string,
 	message: PropTypes.string,
-	onClick: PropTypes.func
+	onClick: PropTypes.func,
+	style: PropTypes.object
 };
 
 LessonSubmit.contextTypes = {

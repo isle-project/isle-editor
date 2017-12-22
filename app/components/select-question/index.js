@@ -71,36 +71,35 @@ class SelectQuestion extends Component {
 						placeholder="select"
 						onChange={this.handleChange}
 					>
-						{this.props.options.map( e => {
-							return <option value={e}>{e}</option>;
+						{this.props.options.map( ( e, idx ) => {
+							return <option key={idx} value={e}>{e}</option>;
 						})}
 					</FormControl>
 				</FormGroup>
 			);
-		} else {
-			return (
-				<Form>
-					<FormGroup controlId="formControlsSelect" validationState={this.state.answerState}>
-						{ this.props.legend ?
-							<ControlLabel>{this.props.legend}</ControlLabel> :
-							null
-						}
-						<FormControl
-							value={this.state.value}
-							defaultValue={this.props.defaultValue}
-							componentClass="select"
-							placeholder="select"
-							onChange={this.handleChange}
-
-						>
-							{this.props.options.map( e => {
-								return <option value={e}>{e}</option>;
-							})}
-						</FormControl>
-					</FormGroup>
-				</Form>
-			);
 		}
+		return (
+			<Form>
+				<FormGroup controlId="formControlsSelect" validationState={this.state.answerState}>
+					{ this.props.legend ?
+						<ControlLabel>{this.props.legend}</ControlLabel> :
+						null
+					}
+					<FormControl
+						value={this.state.value}
+						defaultValue={this.props.defaultValue}
+						componentClass="select"
+						placeholder="select"
+						onChange={this.handleChange}
+
+					>
+						{this.props.options.map( ( e, idx ) => {
+							return <option key={idx} value={e}>{e}</option>;
+						})}
+					</FormControl>
+				</FormGroup>
+			</Form>
+		);
 	}
 }
 
@@ -120,14 +119,14 @@ SelectQuestion.defaultProps = {
 // PROPERTY TYPES //
 
 SelectQuestion.propTypes = {
-	onChange: PropTypes.func,
 	defaultValue: PropTypes.string,
+	failureMsg: PropTypes.string,
 	inline: PropTypes.bool,
 	legend: PropTypes.string,
+	onChange: PropTypes.func,
 	options: PropTypes.array.isRequired,
 	solution: PropTypes.string.isRequired,
-	successMsg: PropTypes.string,
-	failureMsg: PropTypes.string
+	successMsg: PropTypes.string
 };
 
 SelectQuestion.contextTypes = {
