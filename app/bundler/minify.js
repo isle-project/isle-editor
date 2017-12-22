@@ -5,7 +5,7 @@ const UglifyJS = require( 'uglify-es' );
 
 // MAIN //
 
-process.on( 'message', function( code ) {
+process.on( 'message', function onMessage( code ) {
 	const minified = UglifyJS.minify( code, {
 		warnings: true,
 		compress: {},

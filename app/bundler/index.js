@@ -8,11 +8,11 @@ const webpack = require( 'webpack' );
 const debug = require( 'debug' )( 'bundler' );
 const contains = require( '@stdlib/assert/contains' );
 const isObject = require( '@stdlib/assert/is-object' );
+const hasOwnProp = require( '@stdlib/assert/has-own-property' );
 const replace = require( '@stdlib/string/replace' );
 const isAbsolutePath = require( '@stdlib/assert/is-absolute-path' );
 const markdownToHTML = require( './../utils/markdown-to-html' );
 const REQUIRES = require( './requires.json' );
-
 
 
 // FUNCTIONS //
@@ -64,7 +64,7 @@ const loadRequires = ( libs, filePath ) => {
 	let dirname = path.dirname( filePath );
 	if ( isObject( libs ) ) {
 		for ( let key in libs ) {
-			if ( libs.hasOwnProperty( key ) ) {
+			if ( hasOwnProp( libs, key ) ) {
 				let lib = libs[ key ];
 				if ( isAbsolutePath( lib ) || /\.\//.test( lib ) ) {
 					lib = path.join( dirname, libs[ key ]);
@@ -196,7 +196,7 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath
 
 	if ( contains( components, 'Deck' ) ) {
 		res += '\n';
-		res += `const theme = require( 'components/styles/theme.json' )`;
+		res += 'const theme = require( \'components/styles/theme.json\' )';
 	}
 	res += '\n';
 	res += getISLEcode( yamlStr );
@@ -229,7 +229,6 @@ function writeIndexFile({
 	outputDir,
 	minify
 }, clbk ) {
-
 	const modulePaths = [
 		path.resolve( basePath, './node_modules' ),
 		path.resolve( basePath, './node_modules/@stdlib/stdlib/lib/node_modules' ),
@@ -327,7 +326,7 @@ function writeIndexFile({
 			let arr = content.split( '<p>===</p>' );
 			pres += arr.join( '</Slide><Slide>' );
 			pres += '</Slide>';
-			pres = pres.replace( /<h([0-5])>(.*?)<\/h[0-5]>/g,'<Heading size={$1}>$2</Heading>' );
+			pres = pres.replace( /<h([0-5])>(.*?)<\/h[0-5]>/g, '<Heading size={$1}>$2</Heading>' );
 			pres = pres.replace( /<p[^>]*>([\s\S]+?)<\/p>/g, '<SText>$1</SText>' );
 			pres = pres.replace( /<ul[^>]*>([\s\S]+?)<\/ul>/g, '<List>$1</List>' );
 			pres = pres.replace( /<li[^>]*>([\s\S]+?)<\/li>/g, '<ListItem>$1</ListItem>' );
@@ -387,7 +386,7 @@ function writeIndexFile({
 		if ( minify ) {
 			const child = cp.fork( path.resolve( basePath, './app/bundler/minify.js' ) );
 			const code = fs.readFileSync( bundlePath ).toString();
-			child.on( 'message', function( minified ) {
+			child.on( 'message', function onMessage( minified ) {
 				if ( minified.error ) {
 					throw minified.error;
 				}
