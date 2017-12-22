@@ -108,7 +108,7 @@ class Login extends Component {
 									type="email"
 									placeholder="Email"
 									onChange={this.handleInputChange}
-									ref={ ( input ) => { this.emailInput = input; }}
+									ref={( input ) => { this.emailInput = input; }}
 								/>
 							</Col>
 						</FormGroup>
