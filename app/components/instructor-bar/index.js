@@ -246,7 +246,38 @@ class InstructorBar extends Component {
 		);
 	}
 
+	renderListGroupItem = ( elem, idx ) => {
+		return (<ListGroupItem key={idx}>
+			{ this.state.showExtended ?
+				<span style={{ textAlign: 'left' }}>
+					<b>{elem.name}:</b> {elem.value}
+				</span> :
+				<span style={{ textAlign: 'left' }}>
+					{elem.value}
+				</span>
+			}
+			{ this.state.showExtended ?
+				<Button
+					bsSize="xs"
+					style={{ float: 'right' }}
+					onClick={this.deleteFactory( idx )}
+				>
+					<span>&times;</span>
+				</Button> :
+				null
+			}
+		</ListGroupItem>);
+	}
+
+
 	render() {
+		let colplot = null;
+		if ( this.state.actions.length > 0 ) {
+			colplot = this.props.dataType === 'text' ?
+				this.renderBarchart() :
+				this.renderHistogram();
+		}
+
 		const deleteModal = <Modal show={this.state.showDeleteModal}>
 			<Modal.Header>
 				<Modal.Title>Delete user action?</Modal.Title>
@@ -300,43 +331,17 @@ class InstructorBar extends Component {
 										<Col md={6}>
 											{ this.state.actions.length > 0 ?
 												<ListGroup fill style={{ marginLeft: 0, overflowY: 'scroll', height: 0.73 * window.innerHeight }}>
-													{this.state.actions.map( ( elem, idx ) =>
-														<ListGroupItem key={idx}>
-															{ this.state.showExtended ?
-																<span style={{ textAlign: 'left' }}>
-																	<b>{elem.name}:</b> {elem.value}
-																</span> :
-																<span style={{ textAlign: 'left' }}>
-																	{elem.value}
-																</span>
-															}
-															{ this.state.showExtended ?
-																<Button
-																	bsSize="xs"
-																	style={{ float: 'right' }}
-																	onClick={this.deleteFactory( idx )}
-																>
-																	<span>&times;</span>
-																</Button> :
-																null
-															}
-														</ListGroupItem>
+													{this.state.actions.map(
+														this.renderListGroupItem
 													)}
-												</ListGroup>
-												:
+												</ListGroup> :
 												<Well>
 													<h2>There is no data for the selected time period</h2>
 												</Well>
 											}
 										</Col>
 										<Col md={6}>
-											{ this.state.actions.length > 0 ?
-												( this.props.dataType === 'text' ?
-													this.renderBarchart() :
-													this.renderHistogram()
-												) :
-												null
-											}
+											{colplot}
 										</Col>
 									</Row>
 								</Grid>
