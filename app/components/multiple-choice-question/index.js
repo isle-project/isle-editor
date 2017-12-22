@@ -2,10 +2,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ListGroup, ListGroupItem, OverlayTrigger, Panel, Popover } from 'react-bootstrap';
+import { Button, ListGroup, Panel } from 'react-bootstrap';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import InstructorBar from 'components/instructor-bar';
+import AnswerOption from './answer_option.js';
+import Question from ':/question.js';
 
 // MULTIPLE CHOICE QUESTION //
 
@@ -207,7 +209,6 @@ class MultipleChoiceQuestion extends Component {
 // DEFAULT PROPERTIES //
 
 MultipleChoiceQuestion.defaultProps = {
-	answers: [],
 	disabled: false,
 	displaySolution: false,
 	provideFeedback: true,
