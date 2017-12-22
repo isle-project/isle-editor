@@ -14,18 +14,16 @@ import isElectron from 'utils/is-electron';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import isString from '@stdlib/assert/is-string';
-
 import ace from 'brace';
 import 'brace/mode/r';
 import 'brace/theme/katzenmilch';
 import 'brace/theme/solarized_light';
-
 import Spinner from 'components/spinner';
 
 
 // CONSTANTS //
 
-const HELP_REGEX = /(help\([^\)]*\)|\?[^\n]*)/;
+const HELP_REGEX = /(help\([^)]*\)|\?[^\n]*)/;
 
 
 // VARIABLES //
@@ -51,10 +49,11 @@ const showResult = ( res ) => {
 		let sanitized = {
 			__html: DOMPurify.sanitize( res )
 		};
-		return <pre id="output"><span dangerouslySetInnerHTML={sanitized} /></pre>;
-	} else {
-		return <span />;
+		return ( <pre id="output"><span
+			dangerouslySetInnerHTML={sanitized} // eslint-disable-line react/no-danger
+		/></pre>);
 	}
+	return <span />;
 };
 
 const displayHint = ( id, hints ) => {
@@ -68,12 +67,12 @@ const displayHint = ( id, hints ) => {
 		>
 			{ hints
 				.filter( ( e, i ) => i <= id )
-				.map( ( hintText, i ) => <span key={i}>
+				.map( ( hintText, i ) => ( <span key={i}>
 					<label>Hint {i+1}:</label>
 					<br />
 					<span>{hintText}</span>
 					<br />
-				</span> )
+				</span> ) )
 			}
 		</Popover>
 	);
@@ -89,9 +88,7 @@ const getHintLabel = ( id, noHints, hintOpen ) => {
 	else if ( id === noHints ) {
 		return 'Show Hints';
 	}
-	else {
-		return 'Next Hint';
-	}
+	return 'Next Hint';
 };
 
 const showSolutionButton = ( currentHint, nHints, clickHandler, displayed, nEvaluations ) => {
@@ -110,7 +107,7 @@ const showSolutionButton = ( currentHint, nHints, clickHandler, displayed, nEval
 				overlay={tooltip}
 				rootClose={true}
 			>
-				<span style={{ display: 'inline-block',  marginLeft: '4px' }}>
+				<span style={{ display: 'inline-block', marginLeft: '4px' }}>
 					<Button
 						bsStyle="warning"
 						bsSize="sm"
@@ -122,15 +119,14 @@ const showSolutionButton = ( currentHint, nHints, clickHandler, displayed, nEval
 				</span>
 			</OverlayTrigger>
 		);
-	} else {
-		return (
-			<Button
-				bsStyle="warning"
-				bsSize="sm"
-				onClick={clickHandler}
-			>{ !displayed ? 'Show Solution' : 'Hide Solution' }</Button>
-		);
 	}
+	return (
+		<Button
+			bsStyle="warning"
+			bsSize="sm"
+			onClick={clickHandler}
+		>{ !displayed ? 'Show Solution' : 'Hide Solution' }</Button>
+	);
 };
 
 const showResetButton = ( clickHandler ) => {
@@ -176,7 +172,6 @@ class RShell extends React.Component {
 			hintOpen: false,
 			nEvaluations: 0,
 			solutionOpen: false,
-			windowWidth: window.innerWidth,
 			help: ''
 		};
 
@@ -260,7 +255,7 @@ class RShell extends React.Component {
 			this.setState({
 				result: '',
 				plots: [],
-				running: true,
+				running: true
 			});
 			let currentCode = this.editor.getValue();
 			rCode[ this.state.id ] = currentCode;
@@ -489,7 +484,7 @@ class RShell extends React.Component {
 						<OverlayTrigger
 							trigger="click"
 							placement="left"
-							overlay={ displayHint( this.state.currentHint - 1, this.props.hints ) }
+							overlay={displayHint( this.state.currentHint - 1, this.props.hints )}
 						>
 							<Button
 								bsStyle="success"
@@ -552,7 +547,11 @@ class RShell extends React.Component {
 						height: '400',
 						overflow: 'auto'
 					}}>
-						<span dangerouslySetInnerHTML={{ __html: this.state.help }}></span>
+						<span
+							dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
+								__html: this.state.help
+							}}
+						></span>
 					</Modal.Body>
 					<Modal.Footer>
 						<Button onClick={this.hideHelp}>Close</Button>
@@ -567,48 +566,51 @@ class RShell extends React.Component {
 // PROPERTY TYPES //
 
 RShell.propTypes = {
+	addPreceding: PropTypes.bool,
 	chat: PropTypes.bool,
-	onResult: PropTypes.func,
-	onEvaluate:  PropTypes.func,
 	code: PropTypes.string,
-	lines: PropTypes.number,
+	disabled: PropTypes.bool,
+	fontFamily: PropTypes.string,
+	fontSize: PropTypes.number,
+	hints: PropTypes.array,
 	libraries: PropTypes.array,
+	lines: PropTypes.number,
+	onEvaluate: PropTypes.func,
+	onResult: PropTypes.func,
+	precompute: PropTypes.bool,
 	prependCode: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.array
 	]),
-	hints: PropTypes.array,
-	fontFamily: PropTypes.string,
-	fontSize: PropTypes.number,
-	disabled: PropTypes.bool,
-	solution: PropTypes.string,
-	precompute: PropTypes.bool,
 	resettable: PropTypes.bool,
-	addPreceding: PropTypes.bool
+	solution: PropTypes.string,
+	style: PropTypes.object
 };
 
 RShell.contextTypes = {
 	session: PropTypes.object
 };
 
+
 // DEFAULT PROPERTIES //
 
 RShell.defaultProps = {
-	onResult() {},
-	onEvaluate(){},
+	addPreceding: false,
 	chat: false,
 	code: '',
-	lines: 5,
-	solution: '',
-	libraries: [],
-	prependCode: '',
-	hints: [],
-	fontSize: 16,
-	fontFamily: 'Courier New',
 	disabled: false,
+	fontFamily: 'Courier New',
+	fontSize: 16,
+	hints: [],
+	libraries: [],
+	lines: 5,
+	onEvaluate(){},
+	onResult() {},
 	precompute: false,
+	prependCode: '',
 	resettable: false,
-	addPreceding: false
+	solution: '',
+	style: {}
 };
 
 

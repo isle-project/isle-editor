@@ -10,7 +10,6 @@ import Image from 'components/image';
 // MAIN //
 
 class RPlot extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -20,6 +19,14 @@ class RPlot extends Component {
 			last: '',
 			waiting: false
 		};
+	}
+
+	componentDidMount() {
+		this.getPlot();
+	}
+
+	componentDidUpdate() {
+		this.getPlot();
 	}
 
 	savePlot = ( error, img, body ) => {
@@ -40,8 +47,7 @@ class RPlot extends Component {
 		if ( this.props.code !== this.state.last ) {
 			this.setState({
 				waiting: true,
-				last: this.props.code,
-				showModal: false
+				last: this.props.code
 			});
 			const prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
 			const fullCode = prependCode + this.props.code;
@@ -50,18 +56,10 @@ class RPlot extends Component {
 		}
 	}
 
-	componentDidMount() {
-		this.getPlot();
-	}
-
-	componentDidUpdate() {
-		this.getPlot();
-	}
-
 	render() {
 		return (
 			<div className="rplot" style={{ minHeight: 128, cursor: 'pointer' }}>
-				<Spinner running={this.state.waiting} width={256} height={128}/>
+				<Spinner running={this.state.waiting} width={256} height={128} />
 				{ this.state.waiting ?
 					<span /> :
 					<Image
@@ -74,7 +72,6 @@ class RPlot extends Component {
 			</div>
 		);
 	}
-
 }
 
 
@@ -83,15 +80,15 @@ class RPlot extends Component {
 RPlot.propTypes = {
 	code: PropTypes.string,
 	fileType: PropTypes.string,
-	width: PropTypes.number,
 	height: PropTypes.number,
 	libraries: PropTypes.array,
+	onDone: PropTypes.func,
+	onShare: PropTypes.func,
 	prependCode: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.array
 	]),
-	onDone: PropTypes.func,
-	onShare: PropTypes.func
+	width: PropTypes.number
 };
 
 RPlot.contextTypes = {
@@ -104,12 +101,12 @@ RPlot.contextTypes = {
 RPlot.defaultProps = {
 	code: '',
 	fileType: 'png',
-	width: 600,
 	height: 400,
 	libraries: [],
+	onDone() {},
+	onShare: null,
 	prependCode: '',
-	onDone(){},
-	onShare: null
+	width: 600
 };
 
 

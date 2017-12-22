@@ -20,7 +20,7 @@ class RHelp extends Component {
 			this.setState({
 				visible: false
 			});
-		},
+		};
 
 		this.showModal = () => {
 			const functionName = this.props.func || this.props.children;
@@ -40,7 +40,6 @@ class RHelp extends Component {
 					visible: !this.state.visible
 				});
 			}
-
 		};
 	}
 
@@ -70,7 +69,9 @@ class RHelp extends Component {
 						<Modal.Title id="contained-modal-title-lg">R Help</Modal.Title>
 					</Modal.Header>
 					<Modal.Body className="isle-modal-body" >
-						<span dangerouslySetInnerHTML={{ __html: this.state.body }}></span>
+						<span dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
+							__html: this.state.body
+						}}></span>
 					</Modal.Body>
 					<Modal.Footer>
 						<Button onClick={this.hideModal}>Close</Button>

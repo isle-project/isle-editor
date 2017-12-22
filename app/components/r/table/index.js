@@ -11,7 +11,6 @@ import createPrependCode from 'components/r/utils/create-prepend-code';
 // MAIN //
 
 class RTable extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -31,14 +30,14 @@ class RTable extends Component {
 			if ( code !== this.state.last ) {
 				this.setState({
 					waiting: true,
-					last: this.props.code,
+					last: this.props.code
 				});
 				let jsonCode = 'library( jsonlite );\n';
 				let prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
 
 				jsonCode = jsonCode +
 					prependCode +
-					code.replace( /\n\s*([ A-Z0-9._\(\)]+)\n*$/i, '\n toJSON($1)' );
+					code.replace( /\n\s*([ A-Z0-9._()]+)\n*$/i, '\n toJSON($1)' );
 
 				const { session } = this.context;
 				session.executeRCode({
@@ -68,7 +67,7 @@ class RTable extends Component {
 		return (
 			<div className="rtable" style={{
 			}}>
-				<Spinner running={this.state.waiting} width={256} height={128}/>
+				<Spinner running={this.state.waiting} width={256} height={128} />
 				{ this.state.data && !this.state.waiting ?
 					<div
 						style={{
@@ -92,7 +91,6 @@ class RTable extends Component {
 
 RTable.propTypes = {
 	code: PropTypes.string,
-	maxHeight: PropTypes.number,
 	libraries: PropTypes.array,
 	prependCode: PropTypes.oneOfType([
 		PropTypes.string,
@@ -110,7 +108,6 @@ RTable.contextTypes = {
 
 RTable.defaultProps = {
 	code: '',
-	maxHeight: 400,
 	width: 0.5,
 	libraries: [],
 	prependCode: ''
