@@ -119,14 +119,14 @@ class ConditionalProbability extends Component {
 			pnotAB: 1 - pAB - pnotAnotB - value,
 			pAgivenB,
 			pAgivenNotB,
-			independent: pAgivenB == pAgivenNotB && pAgivenB == this.state.pA
+			independent: pAgivenB === pAgivenNotB && pAgivenB === this.state.pA
 		});
 	}
 
 	changeProbNotAB = ( value ) => {
 		let pnotAnotB = ( 1-this.state.pA ) - value;
 		let pAB = this.state.pB - value;
-		let pAgivenB =  pAB / this.state.pB;
+		let pAgivenB = pAB / this.state.pB;
 		let pAgivenNotB = ( 1 - pAB - pnotAnotB - value ) / ( 1-this.state.pB );
 		this.setState({
 			pnotAB: value,
@@ -135,7 +135,7 @@ class ConditionalProbability extends Component {
 			pAnotB: 1 - pAB - pnotAnotB - value,
 			pAgivenB,
 			pAgivenNotB,
-			independent: pAgivenB == pAgivenNotB && pAgivenB == this.state.pA
+			independent: pAgivenB === pAgivenNotB && pAgivenB === this.state.pA
 		});
 	}
 
@@ -151,42 +151,43 @@ class ConditionalProbability extends Component {
 			pAB: 1 - pnotAB - pAnotB - value,
 			pAgivenB,
 			pAgivenNotB,
-			independent: pAgivenB == pAgivenNotB && pAgivenB == this.state.pA
+			independent: pAgivenB === pAgivenNotB && pAgivenB === this.state.pA
 		});
 	}
 
 	changeProbAgivenB = ( value ) => {
-		const pAB = value * this.state.pB;
+		const pAgivenB = value;
+		const pAB = pAgivenB * this.state.pB;
 		const pAnotB = this.state.pA - pAB;
 		const pnotAB = this.state.pB - pAB;
 		const pnotAnotB = 1 - pAB - pAnotB - pnotAB;
-		const pAgivenNotB = ( this.state.pA - value * this.state.pB ) / ( 1-this.state.pB );
+		const pAgivenNotB = ( this.state.pA - pAgivenB * this.state.pB ) / ( 1-this.state.pB );
+		const independent = ( pAgivenB === this.state.pAgivenNotB ) &&
+			( this.state.pAgivenNotB === this.state.pA );
 		this.setState({
-			pAgivenB: value,
-			pAB, pAnotB, pnotAB, pnotAnotB, pAgivenNotB,
-			independent: value == this.state.pAgivenNotB && this.state.pAgivenNotB == this.state.pA
+			pAgivenB, pAB, pAnotB, pnotAB, pnotAnotB, pAgivenNotB, independent
 		});
 	}
 
-	changeProbAgivenNotB =  ( value ) => {
+	changeProbAgivenNotB = ( value ) => {
+		const pAgivenNotB = value;
 		const pnotB = 1 - this.state.pB;
-		const pAnotB = value * pnotB;
+		const pAnotB = pAgivenNotB * pnotB;
 		const pnotAnotB = pnotB - pAnotB;
 		const pAB = this.state.pA - pAnotB;
-		const pnotAB =  this.state.pB - pAB;
-		const pAgivenB = ( this.state.pA - value * pnotB ) / this.state.pB;
+		const pnotAB = this.state.pB - pAB;
+		const pAgivenB = ( this.state.pA - pAgivenNotB * pnotB ) / this.state.pB;
+		const independent = ( pAgivenNotB === this.state.pAgivenB ) &&
+			( this.state.pAgivenB === this.state.pA );
 		this.setState({
-			pAgivenNotB: value,
-			pAB, pAnotB, pnotAB, pnotAnotB, pAgivenB,
-			independent: value == this.state.pAgivenB && this.state.pAgivenB == this.state.pA
+			pAgivenNotB, pAB, pAnotB, pnotAB, pnotAnotB, pAgivenB, independent
 		});
 	}
 
 	render() {
-
 		return (
 			<div>
-				<p>Consider events <TextInput inline defaultValue={this.state.A} onChange={( A ) => this.setState({ A }) } /> and <TextInput inline defaultValue={this.state.B} onChange={( B ) => this.setState({ B }) } />. Let <TeX raw={`P(\\text{${this.state.A}}) = `} /><NumberInput min={0} max={1} step={0.01} defaultValue={0.5} inline onChange={this.changeProbA} /> and  <TeX raw={`P(\\text{${this.state.B}}) = `} /><NumberInput min={0} max={1} step={0.01} defaultValue={0.5} inline onChange={this.changeProbB} />. Then we have <TeX raw={`P(\\text{${this.state.A}}^C) = ${roundn( 1-this.state.pA, -4 )}`} /> and <TeX raw={`P(\\text{${this.state.B}}^C) = ${roundn( 1-this.state.pB, -4 )}`} />. These form the marginals in the following probability table:</p>
+				<p>Consider events <TextInput inline defaultValue={this.state.A} onChange={( A ) => this.setState({ A })} /> and <TextInput inline defaultValue={this.state.B} onChange={( B ) => this.setState({ B })} />. Let <TeX raw={`P(\\text{${this.state.A}}) = `} /><NumberInput min={0} max={1} step={0.01} defaultValue={0.5} inline onChange={this.changeProbA} /> and  <TeX raw={`P(\\text{${this.state.B}}) = `} /><NumberInput min={0} max={1} step={0.01} defaultValue={0.5} inline onChange={this.changeProbB} />. Then we have <TeX raw={`P(\\text{${this.state.A}}^C) = ${roundn( 1-this.state.pA, -4 )}`} /> and <TeX raw={`P(\\text{${this.state.B}}^C) = ${roundn( 1-this.state.pB, -4 )}`} />. These form the marginals in the following probability table:</p>
 				<Panel>
 					<Grid>
 						<Row>
@@ -204,7 +205,7 @@ class ConditionalProbability extends Component {
 											<td>
 												<NumberInput
 													inline
-													min={roundn( max( this.state.pA - ( 1-this.state.pB ), 0 ),-10 )}
+													min={roundn( max( this.state.pA - ( 1-this.state.pB ), 0 ), -10 )}
 													max={roundn( min( this.state.pA, this.state.pB ), -10 )}
 													step={0.01}
 													onChange={this.changeProbAB}
@@ -228,7 +229,7 @@ class ConditionalProbability extends Component {
 											<td>
 												<NumberInput
 													inline
-													min={roundn( max( this.state.pB - min( this.state.pA,this.state.pB ), 0 ), -10 )}
+													min={roundn( max( this.state.pB - min( this.state.pA, this.state.pB ), 0 ), -10 )}
 													max={roundn( min( 1-this.state.pA, this.state.pB ), -10 )}
 													step={0.01}
 													onChange={this.changeProbNotAB}
@@ -264,9 +265,9 @@ class ConditionalProbability extends Component {
 							</Col>
 							<Col md={8}>
 								<p>What about the conditional probabilities?</p>
-								{ this.state.pB == 0 || this.state.pA == 0 ?
+								{ this.state.pB === 0 || this.state.pA === 0 ?
 									<Panel>
-										{ this.state.pB == 0 ? <span>The conditional probability is undefined when <TeX raw={`P( \\text{${this.state.B}}) = 0`} /></span> : <span>
+										{ this.state.pB === 0 ? <span>The conditional probability is undefined when <TeX raw={`P( \\text{${this.state.B}}) = 0`} /></span> : <span>
 												When <TeX raw={`P( ${this.state.A}) = 0`} />, we must have <TeX raw={`P( \\text{${this.state.A}} \\mid \\text{${this.state.B}} ) = P( \\text{${this.state.A}} \\mid \\text{${this.state.B}}^C ) = 0`} /> in case B has non-zero probability.
 										</span>}
 									</Panel> :
@@ -281,16 +282,16 @@ class ConditionalProbability extends Component {
 														width: 200
 													}}
 												>
-													<VictoryAxis dependentAxis tickFormat={ ( x ) => x/100 } />
+													<VictoryAxis dependentAxis tickFormat={( x ) => x/100} />
 													<VictoryAxis />
 													<VictoryBar
-														data={[ {x: `P( ${this.state.A}|${this.state.B})`, y: 100*this.state.pAgivenB },{x: `P( ${this.state.A}|not ${this.state.B} )`, y: this.state.pAgivenNotB*100 } ]}
+														data={[ {x: `P( ${this.state.A}|${this.state.B})`, y: 100*this.state.pAgivenB }, {x: `P( ${this.state.A}|not ${this.state.B} )`, y: this.state.pAgivenNotB*100 } ]}
 														domain={{ y: [ 0, 100 ] }}
 														x="x"
 														y="y"
-														labels={ ( d ) => roundn( d.y/100, -3 ) }
+														labels={( d ) => roundn( d.y/100, -3 )}
 													/>
-													{ this.state.independent ? <VictoryLine data={[ {x: `P( ${this.state.A}| ${this.state.B})`, y: 100*this.state.pAgivenB },{x: `P( ${this.state.A}|not  ${this.state.B})`, y: this.state.pAgivenNotB*100 } ]}/> : null }
+													{ this.state.independent ? <VictoryLine data={[ {x: `P( ${this.state.A}| ${this.state.B})`, y: 100*this.state.pAgivenB }, {x: `P( ${this.state.A}|not  ${this.state.B})`, y: this.state.pAgivenNotB*100 } ]} /> : null }
 												</VictoryChart>
 											</Col>
 										</Row>
@@ -316,7 +317,7 @@ class ConditionalProbability extends Component {
 										</Row>
 										<Row>
 											{ this.state.independent ?
-												<span>The events are independent because <TeX raw={`P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} } ) = P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} }^C )`} /></span> : <span>The events are <b>not</b> independent because <TeX raw={ this.state.pAgivenB == 0 && this.state.pAgivenNotB == 0 ? `P( \\text{ ${this.state.A} } \\mid \\text{ ${this.state.B} } ) = P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} }^C \\neq P( \\text{${this.state.A}})` : `P( \\text{ ${this.state.A} } \\mid \\text{ ${this.state.B} } ) \\neq P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} }^C )`} /></span>
+												<span>The events are independent because <TeX raw={`P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} } ) = P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} }^C )`} /></span> : <span>The events are <b>not</b> independent because <TeX raw={this.state.pAgivenB === 0 && this.state.pAgivenNotB === 0 ? `P( \\text{ ${this.state.A} } \\mid \\text{ ${this.state.B} } ) = P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} }^C \\neq P( \\text{${this.state.A}})` : `P( \\text{ ${this.state.A} } \\mid \\text{ ${this.state.B} } ) \\neq P( \\text{${this.state.A}} \\mid \\text{ ${this.state.B} }^C )`} /></span>
 											}
 										</Row>
 									</Grid>
