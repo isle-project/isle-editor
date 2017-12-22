@@ -7,9 +7,10 @@ import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import InstructorBar from 'components/instructor-bar';
 import AnswerOption from './answer_option.js';
-import Question from ':/question.js';
+import Question from './question.js';
 
-// MULTIPLE CHOICE QUESTION //
+
+// MAIN //
 
 class MultipleChoiceQuestion extends Component {
 	constructor( props ) {
