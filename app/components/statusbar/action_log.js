@@ -1,8 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
-import isObject from '@stdlib/assert/is-object';
+import { ListGroup } from 'react-bootstrap';
 import objectEntries from '@stdlib/utils/entries';
 import copy from '@stdlib/utils/copy';
 import PropTypes from 'prop-types';
@@ -169,13 +168,19 @@ class ActionLog extends Component {
 	}
 }
 
+
 // DEFAULT PROPERTIES //
 
 ActionLog.defaultProps = {
+	onFilter() {},
 	onTimeRangeChange() {}
 };
 
+
+// TYPES //
+
 ActionLog.propTypes = {
+	onFilter: PropTypes.func,
 	onTimeRangeChange: PropTypes.func,
 	period: PropTypes.shape(
 		{
@@ -185,11 +190,8 @@ ActionLog.propTypes = {
 	).isRequired
 };
 
-// TYPES //
-
 ActionLog.contextTypes = {
 	session: PropTypes.object
-
 };
 
 

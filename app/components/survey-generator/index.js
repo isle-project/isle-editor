@@ -44,7 +44,7 @@ class MCSgenerator extends Component {
 				}
 				else if ( action.type === 'STOP_SURVEY' ) {
 					debug( 'Should stop the survey...' );
-					if ( this.props.id === action.id  ) {
+					if ( this.props.id === action.id ) {
 						this.setState({
 							showSurvey: false
 						});
@@ -140,7 +140,7 @@ class MCSgenerator extends Component {
 					</FormGroup>
 					<TextInput
 						legend="Question"
-						ref={ ( questionDIV ) => { this.questionDIV = questionDIV; }}onChange={this.setQuestion}
+						ref={( questionDIV ) => { this.questionDIV = questionDIV; }}onChange={this.setQuestion}
 						width={400}
 					/>
 					{ this.state.type === 'multiple-choice' ?

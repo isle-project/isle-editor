@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ace, { TokenIterator } from 'brace';
-import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
+import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
 import 'brace/mode/html';
 import 'brace/theme/github';
 import 'brace/ext/searchbox';
@@ -39,7 +39,6 @@ const customCompleter = {
 // MAIN //
 
 class Editor extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -99,7 +98,6 @@ class Editor extends Component {
 				session.setAnnotations( annotations );
 			}
 		});
-
 	}
 
 	componentWillReceiveProps( nextProps ) {
@@ -119,7 +117,7 @@ class Editor extends Component {
 	handleClick = () => {
 		var pos = this.editor.getCursorPosition();
 		var stream = new TokenIterator( this.session, pos.row, pos.column );
-		next = stream.stepForward();
+		const next = stream.stepForward();
 		console.log( next );
 	}
 
@@ -128,7 +126,9 @@ class Editor extends Component {
 			<div>
 				<ContextMenuTrigger id="editorWindow">
 					<div
-						ref={ ( div ) => this.editorWindow = div }
+						ref={( div ) => {
+							this.editorWindow = div;
+						}}
 						onChange={this.onChange}
 						style={{
 							'height': '100%',
@@ -167,9 +167,9 @@ Editor.defaultProps = {
 // PROPERTY TYPES //
 
 Editor.propTypes = {
+	cursorStart: PropTypes.number,
 	onChange: PropTypes.func,
-	value: PropTypes.string,
-	cursorStart: PropTypes.number
+	value: PropTypes.string
 };
 
 

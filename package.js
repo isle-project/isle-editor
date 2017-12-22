@@ -118,8 +118,10 @@ function startPack() {
 }
 
 function pack( plat, arch, cb ) {
-	// there is no darwin ia32 electron
-	if ( plat === 'darwin' && arch === 'ia32' ) return;
+	// There is no darwin ia32 electron
+	if ( plat === 'darwin' && arch === 'ia32' ) {
+		return;
+	}
 
 	const iconObj = {
 		icon: DEFAULT_OPTS.icon + ( () => {
@@ -153,11 +155,10 @@ function pack( plat, arch, cb ) {
 }
 
 function afterPack( plat, arch ) {
-
 	return function log( err, filepath ) {
 		if ( err ) {
 			return console.error( err );
-		};
+		}
 		console.log( `${plat}-${arch} finished!` );
 		cleanModules();
 	}; // end FUNCTION log()
@@ -187,7 +188,7 @@ function afterPack( plat, arch ) {
 			cwd: path.join(
 				process.cwd(),
 				`release/${plat}-${arch}/`
-			),
+			)
 		});
 		zipper.stdout.on( 'data', ( data ) => {
 			console.log( `stdout: ${data}` );
@@ -199,5 +200,4 @@ function afterPack( plat, arch ) {
 			console.log( `zip exited with code ${code} (${plat}-${arch})` );
 		});
 	} // end FUNCTION zip()
-
 } // end FUNCTION afterPack()

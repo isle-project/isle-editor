@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 import * as colors from 'constants/colors';
 
@@ -142,6 +143,21 @@ class Header extends Component {
 		);
 	}
 }
+
+// TYPES //
+
+Header.defaultProps = {
+	fileName: ''
+};
+
+Header.propTypes = {
+	fileName: PropTypes.string,
+	mode: PropTypes.string.isRequired,
+	onSelectMode: PropTypes.func.isRequired,
+	onSelectRole: PropTypes.func.isRequired,
+	role: PropTypes.string.isRequired
+};
+
 
 // EXPORTS //
 
