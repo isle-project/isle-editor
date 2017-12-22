@@ -47,7 +47,7 @@ class AcousticAssistant extends Component {
 
 		if ( this.props.news !== '' ) {
 			var x = text.search( this.props.news );
-			gif ( x !== -1 ) {
+			if ( x !== -1 ) {
 				console.log( 'news triggered' );
 				this.newsref.trigger( text );
 			}
