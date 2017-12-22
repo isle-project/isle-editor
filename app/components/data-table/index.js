@@ -88,8 +88,8 @@ class DataTable extends Component {
 							<InputRange
 								maxValue={ceil( max( uniqueValues ) )}
 								minValue={floor( min( uniqueValues ) )}
-								value={ filter ? filter.value : defaultVal }
-								onChange={ ( newValue ) => {
+								value={filter ? filter.value : defaultVal}
+								onChange={( newValue ) => {
 									onChange( newValue );
 								}}
 							/>
@@ -204,7 +204,7 @@ class DataTable extends Component {
 				...this.props.style
 			}}>
 				<ReactTable
-					ref={ ( table ) => { this.table = table; } }
+					ref={( table ) => { this.table = table; }}
 					data={this.state.rows}
 					columns={this.state.columns}
 					showPagination={true}
@@ -240,7 +240,7 @@ DataTable.propTypes = {
 		PropTypes.object
 	]).isRequired,
 	onClickRemove: PropTypes.func,
-	showRemove: PropTypes.bool,
+	showRemove: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
 	style: PropTypes.object
 };
 

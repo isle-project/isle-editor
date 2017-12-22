@@ -14,7 +14,6 @@ experimentDebugger.enable();
 // MAIN //
 
 class Wrapper extends Component {
-
 	render() {
 		return (
 			<Gate {...this.props} >
@@ -22,7 +21,6 @@ class Wrapper extends Component {
 			</Gate>
 		);
 	}
-
 }
 
 

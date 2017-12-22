@@ -45,8 +45,9 @@ class Expire extends Component {
 	}
 
 	setTimer() {
-		this._timer != null ? clearTimeout( this._timer ) : null;
-
+		if ( this._timer !== null ) {
+			clearTimeout( this._timer );
+		}
 		this._timer = setTimeout( () => {
 			this.setState({ visible: false });
 			this._timer = null;
@@ -57,9 +58,9 @@ class Expire extends Component {
 	* React component render method
 	*/
 	render() {
-		return this.state.visible
-			? <div>{this.props.children}</div>
-			: <span />;
+		return this.state.visible ?
+			<div>{this.props.children}</div> :
+			<span />;
 	}
 }
 

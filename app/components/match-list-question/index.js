@@ -3,7 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
-const d3 = require( 'd3' );
+import d3 from 'd3';
+import OptionsList from './options_list.js';
 
 
 // FUNCTIONS //
@@ -11,9 +12,9 @@ const d3 = require( 'd3' );
 function createColorScale( length ) {
 	const color = d3.scaleLinear().domain([ 1, length ])
 		.interpolate( d3.interpolateHcl )
-		.range([ d3.rgb( "#007AFF" ), d3.rgb( '#FFF500' ) ]);
+		.range([ d3.rgb( '#007AFF' ), d3.rgb( '#FFF500' ) ]);
 
-	const colorScale = new Array ( length );
+	const colorScale = new Array( length );
 	for ( let i = 0; i < length; i++ ) {
 		colorScale[ i ] = color( i );
 	}
@@ -21,84 +22,9 @@ function createColorScale( length ) {
 } // end FUNCTION createColorScale()
 
 
-// COMPONENTS //
-
-class OptionsList extends Component {
-
-	static styles = {
-		container: {
-			flex: 1,
-			listStyleType: 'none',
-			padding: 0
-		},
-		option: {
-			display: 'flex',
-			justifyContent: 'center',
-			alignItems: 'center',
-			padding: '10px 0px',
-			margin: '10px',
-			border: 'solid 1px gainsboro',
-			cursor: 'pointer'
-		}
-	}
-
-	constructor( props ) {
-		super( props );
-	}
-
-	shuffle( array ) {
-		let currentIndex = array.length;
-		let temporaryValue;
-		let randomIndex;
-		while ( 0 !== currentIndex ) {
-			// Pick a remaining element...
-			randomIndex = Math.floor( Math.random() * currentIndex );
-			currentIndex -= 1;
-			// And swap it with the current element...
-			temporaryValue = array[ currentIndex ];
-			array[ currentIndex ] = array[ randomIndex ];
-			array[ randomIndex ] = temporaryValue;
-		}
-		return array;
-	}
-
-	render() {
-		const styles = OptionsList.styles;
-		const selected  = Object.assign({}, styles.option, { backgroundColor: 'gainsboro' });
-		this.options = this.options || this.shuffle( this.props.options );
-		const { active, onSelect, answers } = this.props;
-
-		return (
-			<ul style={styles.container}>
-				{
-					this.options.map( ( q, i ) => {
-						let style = q == active ? selected : styles.option;
-						const match = answers.filter( answer => answer.a == q || answer.b == q );
-						style = match[ 0 ] ?
-							Object.assign({}, style, { backgroundColor: match[ 0 ].color }) :
-							style;
-
-						return (
-							<li
-								key={i}
-								onClick={ () => onSelect( q ) }
-								style={style}
-							>
-								{q}
-							</li>
-						);
-					})
-				}
-			</ul>
-		);
-	}
-}
-
-
 // MATCH LIST QUESTION //
 
 class MatchListQuestion extends Component {
-
 	static styles = {
 		container: {
 			display: 'flex',
@@ -268,7 +194,8 @@ class MatchListQuestion extends Component {
 // DEFAULT PROPERTIES //
 
 MatchListQuestion.defaultProps = {
-	onSubmit(){},
+	elements: [],
+	onSubmit() {},
 	question: null
 };
 
@@ -276,12 +203,12 @@ MatchListQuestion.defaultProps = {
 // PROPERTY TYPES //
 
 MatchListQuestion.propTypes = {
-	question: PropTypes.string,
 	elements: PropTypes.arrayOf( PropTypes.shape({
 		a: PropTypes.string.isRequired,
 		b: PropTypes.string.isRequired
 	}) ),
-	onSubmit: PropTypes.func
+	onSubmit: PropTypes.func,
+	question: PropTypes.string
 };
 
 

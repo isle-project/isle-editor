@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 // MAIN //
 
 class Provider extends Component {
-
 	getChildContext() {
 		return {
 			session: this.props.session,
@@ -18,7 +17,6 @@ class Provider extends Component {
 	render() {
 		return this.props.children;
 	}
-
 }
 
 
@@ -27,6 +25,11 @@ class Provider extends Component {
 Provider.childContextTypes = {
 	session: PropTypes.object,
 	currentRole: PropTypes.string
+};
+
+Provider.propTypes = {
+	currentRole: PropTypes.string.isRequired,
+	session: PropTypes.object.isRequired
 };
 
 

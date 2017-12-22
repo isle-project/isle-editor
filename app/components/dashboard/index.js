@@ -15,7 +15,6 @@ import './dashboard.css';
 // MAIN //
 
 class Dashboard extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -27,6 +26,12 @@ class Dashboard extends Component {
 			}
 		});
 		this.state = initialState;
+	}
+
+	componentDidMount() {
+		if ( this.props.autoStart ) {
+			this.handleClick();
+		}
 	}
 
 	handleClick = () => {
@@ -58,14 +63,7 @@ class Dashboard extends Component {
 		});
 	}
 
-	componentDidMount() {
-		if ( this.props.autoStart ) {
-			this.handleClick();
-		}
-	}
-
 	render() {
-
 		const children = React.Children.map( this.props.children,
 			( child, idx ) => {
 				if ( React.isValidElement( child ) ) {
@@ -116,24 +114,26 @@ class Dashboard extends Component {
 // DEFAULT PROPERTIES //
 
 Dashboard.defaultProps = {
-	onGenerate: function(){},
-	label: 'Generate',
-	autoUpdate: false,
 	autoStart: true,
-	maxWidth: 600
+	autoUpdate: false,
+	description: '',
+	label: 'Generate',
+	maxWidth: 600,
+	onGenerate() {},
+	title: ''
 };
 
 
 // TYPES //
 
 Dashboard.propTypes = {
-	onGenerate: PropTypes.func,
-	description: PropTypes.string,
-	title: PropTypes.string,
-	label: PropTypes.string,
-	autoUpdate: PropTypes.bool,
 	autoStart: PropTypes.bool,
-	maxWidth: PropTypes.number
+	autoUpdate: PropTypes.bool,
+	description: PropTypes.string,
+	label: PropTypes.string,
+	maxWidth: PropTypes.number,
+	onGenerate: PropTypes.func,
+	title: PropTypes.string
 };
 
 Dashboard.contextTypes = {

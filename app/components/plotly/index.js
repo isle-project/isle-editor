@@ -31,7 +31,6 @@ const BUTTONS = [
 // MAIN //
 
 class Wrapper extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -106,11 +105,11 @@ class Wrapper extends Component {
 // DEFAULT PROPERTIES //
 
 Wrapper.defaultProps = {
+	fit: false,
 	layout: {},
-	removeButtons: false,
-	toggleFullscreen: true,
 	onShare: null,
-	fit: false
+	removeButtons: false,
+	toggleFullscreen: true
 };
 
 
@@ -118,11 +117,11 @@ Wrapper.defaultProps = {
 
 Wrapper.propTypes = {
 	data: PropTypes.array.isRequired,
+	fit: PropTypes.bool,
 	layout: PropTypes.object,
-	removeButtons: PropTypes.bool,
-	toggleFullscreen: PropTypes.bool,
 	onShare: PropTypes.func,
-	fit: PropTypes.bool
+	removeButtons: PropTypes.bool,
+	toggleFullscreen: PropTypes.bool
 };
 
 

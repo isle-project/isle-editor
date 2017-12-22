@@ -11,7 +11,6 @@ import './_datepicker.css';
 // MAIN //
 
 class RangePicker extends Component {
-
 	constructor( props ) {
 		super( props );
 		this.state = {
@@ -33,30 +32,39 @@ class RangePicker extends Component {
 				this.updatePeriod( from, to, 0 );
 			};
 			return ret;
+		default:
 		case 'last_day':
 			ret = () => {
-				const from = moment().subtract( 1, 'minutes' ).startOf( 'day' );
+				const from = moment().
+					subtract( 1, 'minutes' ).
+					startOf( 'day' );
 				const to = moment().endOf( 'day' );
 				this.updatePeriod( from, to, 1 );
 			};
 			return ret;
 		case 'last_week':
 			ret = () => {
-				const from = moment().subtract( 7, 'days' ).startOf( 'day' );
+				const from = moment().
+					subtract( 7, 'days' ).
+					startOf( 'day' );
 				const to = moment().endOf( 'day' );
 				this.updatePeriod( from, to, 2 );
 			};
 			return ret;
 		case 'last_month':
 			ret = () => {
-				const from = moment().subtract( 30, 'days' ).startOf( 'day' );
+				const from = moment().
+					subtract( 30, 'days' ).
+					startOf( 'day' );
 				const to = moment().endOf( 'day' );
 				this.updatePeriod( from, to, 3 );
 			};
 			return ret;
 		case 'last_year':
 			ret = () => {
-				const from = moment().subtract( 365, 'days' ).startOf( 'day' );
+				const from = moment().
+					subtract( 365, 'days' ).
+					startOf( 'day' );
 				const to = moment().endOf( 'day' );
 				this.updatePeriod( from, to, 4 );
 			};
