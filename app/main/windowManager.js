@@ -29,17 +29,17 @@ function _createWindow( options ) {
 } // end FUNCTION _createWindow()
 
 
-// should not need to be called directly (just in case window.destroy() is ever called)
+// Should not need to be called directly (just in case window.destroy() is ever called)
 function _unref() {
 	delete _windows[ this.id ];
 } // end FUNCTION _unref()
 
 function _loadUrl( httpOrFileUrl, callback ) {
-	const win = this;
-	win.webContents.once( 'did-finish-load', ( ...args ) => {
+	const self = this;
+	self.webContents.once( 'did-finish-load', ( ...args ) => {
 		callback( ...args );
 	});
-	win.loadURL( 'file://' + httpOrFileUrl );
+	self.loadURL( 'file://' + httpOrFileUrl );
 } // end FUNCTION _loadUrl()
 
 function createWindow( options ) {
@@ -52,7 +52,7 @@ function createWindow( options ) {
 		window._loadUrl( httpOrFileUrl, ( ...args ) => {
 			window.show();
 			if ( callback ) {
-				callback( ...args );
+				return callback( ...args );
 			}
 		});
 	};

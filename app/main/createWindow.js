@@ -4,6 +4,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import windowStateKeeper from 'electron-window-state';
 import { shell } from 'electron';
+import ENV from '@stdlib/utils/env';
 import window from './windowManager';
 const debug = require( 'debug' )( 'isle-editor' );
 
@@ -26,14 +27,14 @@ export default function createWindow( filePath, callback ) {
 	});
 
 	let indexPath;
-	if ( process.env.NODE_ENV === 'development' ) {
+	if ( ENV.NODE_ENV === 'development' ) {
 		indexPath = path.resolve( __dirname, '..', 'app.html' );
-	} else if ( process.env.NODE_ENV === 'production' ) {
+	} else if ( ENV.NODE_ENV === 'production' ) {
 		indexPath = path.resolve( __dirname, 'app', 'app.html' );
 	}
 
 	mainWindow.showUrl( indexPath, () => {
-		console.log( "FILE PATH: " + filePath );
+		console.log( 'FILE PATH: ' + filePath );
 		if ( filePath ) {
 			fs.readFile( filePath, 'utf-8', ( err, file ) => {
 				if ( err ) return;
@@ -48,11 +49,11 @@ export default function createWindow( filePath, callback ) {
 			mainWindow.setTitle( 'ISLE Editor -- Untitled Document' );
 		}
 		if ( callback ) {
-			callback();
+			return callback();
 		}
 	});
 
-	if ( process.env.NODE_ENV === 'development' ) {
+	if ( ENV.NODE_ENV === 'development' ) {
 		mainWindow.webContents.openDevTools();
 	}
 

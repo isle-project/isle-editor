@@ -93,7 +93,7 @@ export function open({ browserWindow }) {
 	dialog.showOpenDialog( browserWindow, {
 		properties: [ 'openFile' ]
 	}, ( fileNames ) => {
-		if ( fileNames === undefined ) {
+		if ( fileNames === void 0 ) {
 			return;
 		}
 		openFile( fileNames[ 0 ], browserWindow );
