@@ -7,6 +7,7 @@ import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import RPlot from 'components/r/plot';
 import objectValues from '@stdlib/utils/values';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 
 
 // FUNCTIONS //
@@ -24,14 +25,16 @@ export function generateMosaicPlotCode({ data, vars, showColors }) {
 				key += ':';
 			}
 		}
-		if ( counts.hasOwnProperty( key ) ) {
+		if ( hasOwnProp( counts, key ) ) {
 			counts[ key ] += 1;
 		} else {
 			counts[ key ] = 1;
 		}
 	}
 	const varArr = [];
-	vars.forEach( () => { varArr.push([]); });
+	vars.forEach( () => {
+		varArr.push([]);
+	});
 	const keys = Object.keys( counts );
 	for ( let k = 0; k < keys.length; k++ ) {
 		let names = keys[ k ].split( ':' );
@@ -67,7 +70,7 @@ class MosaicPlot extends Component {
 		}
 		const code = generateMosaicPlotCode({ data: this.props.data, vars, showColors });
 		const output ={
-			variable: `Mosaic Plot`,
+			variable: 'Mosaic Plot',
 			type: 'Chart',
 			value: <RPlot
 				code={code}
@@ -119,7 +122,9 @@ class MosaicPlot extends Component {
 // DEFAULT PROPERTIES //
 
 MosaicPlot.defaultProps = {
-	onPlotDone() {}
+	logAction() {},
+	onPlotDone() {},
+	session: {}
 };
 
 
@@ -127,7 +132,11 @@ MosaicPlot.defaultProps = {
 
 MosaicPlot.propTypes = {
 	data: PropTypes.object.isRequired,
-	onCreated: PropTypes.func.isRequired
+	logAction: PropTypes.func,
+	onCreated: PropTypes.func.isRequired,
+	onPlotDone: PropTypes.func,
+	session: PropTypes.object,
+	variables: PropTypes.array.isRequired
 };
 
 

@@ -11,6 +11,7 @@ import identity from '@stdlib/utils/identity-function';
 import isArray from '@stdlib/assert/is-array';
 import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 
 
 // FUNCTIONS //
@@ -54,31 +55,33 @@ export function generatePiechartConfig({ data, variable, group }) {
 
 		let i = 0;
 		for ( let key in freqs ) {
-			const row = floor( i / nCols );
-			const col = i - ( row*nCols );
-			const val = freqs[ key ];
-			const categories = val.map( e => e[ 0 ]);
-			const counts = val.map( e => e[ 1 ]);
-			traces.push({
-				values: counts,
-				labels: categories,
-				type: 'pie',
-				name: key,
-				domain: {
-					x: [ ( col ) / nCols, ( col+1 ) / nCols ],
-					y: [ ( row ) / nRows, ( row+0.8 ) / nRows ]
-				}
-			});
-			annotations.push({
-				text: key,
-				x: ( col % 2 ? col+0.8 : col+0.2 ) / nCols ,
-				y: ( row+0.9 ) / nRows,
-				font: {
-					size: 18
-				},
-				showarrow: false
-			});
-			i += 1;
+			if ( hasOwnProp( freqs, key ) ) {
+				const row = floor( i / nCols );
+				const col = i - ( row*nCols );
+				const val = freqs[ key ];
+				const categories = val.map( e => e[ 0 ]);
+				const counts = val.map( e => e[ 1 ]);
+				traces.push({
+					values: counts,
+					labels: categories,
+					type: 'pie',
+					name: key,
+					domain: {
+						x: [ ( col ) / nCols, ( col+1 ) / nCols ],
+						y: [ ( row ) / nRows, ( row+0.8 ) / nRows ]
+					}
+				});
+				annotations.push({
+					text: key,
+					x: ( col % 2 ? col+0.8 : col+0.2 ) / nCols,
+					y: ( row+0.9 ) / nRows,
+					font: {
+						size: 18
+					},
+					showarrow: false
+				});
+				i += 1;
+			}
 		}
 	}
 	const layout = {
@@ -95,7 +98,6 @@ export function generatePiechartConfig({ data, variable, group }) {
 // MAIN //
 
 class PieChart extends Component {
-
 	constructor( props ) {
 		super( props );
 	}
@@ -157,7 +159,9 @@ class PieChart extends Component {
 
 PieChart.defaultProps = {
 	defaultValue: null,
-	onPlotDone() {}
+	groupingVariables: null,
+	logAction() {},
+	session: {}
 };
 
 
@@ -165,7 +169,12 @@ PieChart.defaultProps = {
 
 PieChart.propTypes = {
 	data: PropTypes.object.isRequired,
-	onCreated: PropTypes.func.isRequired
+	defaultValue: PropTypes.string,
+	groupingVariables: PropTypes.array,
+	logAction: PropTypes.func,
+	onCreated: PropTypes.func.isRequired,
+	session: PropTypes.object,
+	variables: PropTypes.array.isRequired
 };
 
 

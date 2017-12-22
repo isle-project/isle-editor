@@ -9,6 +9,7 @@ import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import isArray from '@stdlib/assert/is-array';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 
 
 // FUNCTIONS //
@@ -22,7 +23,9 @@ function by( arr, factor, fun ) {
 		ret[ factor[ i ] ].push( arr[ i ]);
 	}
 	for ( let key in ret ) {
-		ret[ key ] = fun( ret[ key ]);
+		if ( hasOwnProp( ret, key ) ) {
+			ret[ key ] = fun( ret[ key ]);
+		}
 	}
 	return ret;
 }
@@ -42,8 +45,6 @@ function getFrequencies( x, relativeFreqs ) {
 	}
 	return freqs;
 }
-
-// FUNCTIONS //
 
 const frequencyTable = ( variable, freqs, relative ) => {
 	return (
@@ -76,8 +77,14 @@ const groupedFrequencyTable = ( variable, freqs, relative ) => {
 		<div style={{ overflowX: 'auto' }}>
 			<label>{variable}: </label>
 			{entries( freqs ).map( ( arr, i ) => {
-				let categories = arr[ 1 ].map( x => <td>{x.category}</td> );
-				let counts = arr[ 1 ].map( x => <td>{ relative ? x.count.toFixed( 3 ) : x.count }</td> );
+				const categories = arr[ 1 ].map(
+					( x, j ) => <td key={j}>{x.category}</td>
+				);
+				const counts = arr[ 1 ].map(
+					( x, j ) => ( <td key={j}>
+						{ relative ? x.count.toFixed( 3 ) : x.count }
+					</td> )
+				);
 				return ( <pre key={i} >
 					<label>{arr[ 0 ]}: </label>
 					<table>
@@ -102,11 +109,8 @@ const groupedFrequencyTable = ( variable, freqs, relative ) => {
 // MAIN //
 
 class FrequencyTable extends Component {
-
 	constructor( props ) {
-
 		super( props );
-
 	}
 
 	generateFrequencyTable( variable, group, relativeFreqs ) {
@@ -166,7 +170,9 @@ class FrequencyTable extends Component {
 // DEFAULT PROPERTIES //
 
 FrequencyTable.defaultProps = {
-	defaultValue: null
+	defaultValue: null,
+	groupingVariables: null,
+	logAction() {}
 };
 
 
@@ -174,7 +180,11 @@ FrequencyTable.defaultProps = {
 
 FrequencyTable.propTypes = {
 	data: PropTypes.object.isRequired,
-	onCreated: PropTypes.func.isRequired
+	defaultValue: PropTypes.string,
+	groupingVariables: PropTypes.array,
+	logAction: PropTypes.func,
+	onCreated: PropTypes.func.isRequired,
+	variables: PropTypes.array.isRequired
 };
 
 

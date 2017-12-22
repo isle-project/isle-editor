@@ -12,9 +12,7 @@ import pcorrtest from '@stdlib/math/stats/pcorrtest';
 // MAIN //
 
 class CorrTest extends Component {
-
 	constructor( props ) {
-
 		super( props );
 
 		this.calculateCorrTest = ( var1, var2, rho0, direction, alpha ) => {
@@ -97,8 +95,14 @@ class CorrTest extends Component {
 // PROPERTY TYPES //
 
 CorrTest.propTypes = {
+	continuous: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
+	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired
+};
+
+CorrTest.defaultProps = {
+	logAction() {}
 };
 
 

@@ -25,7 +25,6 @@ export function generateHeatmapCode({ data, xval, yval, overlayPoints }) {
 // MAIN //
 
 class HeatMap extends Component {
-
 	constructor( props ) {
 		super( props );
 	}
@@ -90,7 +89,9 @@ class HeatMap extends Component {
 HeatMap.defaultProps = {
 	defaultX: null,
 	defaultY: null,
-	onPlotDone() {}
+	logAction() {},
+	onPlotDone() {},
+	session: {}
 };
 
 
@@ -98,7 +99,13 @@ HeatMap.defaultProps = {
 
 HeatMap.propTypes = {
 	data: PropTypes.object.isRequired,
-	onCreated: PropTypes.func.isRequired
+	defaultX: PropTypes.string,
+	defaultY: PropTypes.string,
+	logAction: PropTypes.func,
+	onCreated: PropTypes.func.isRequired,
+	onPlotDone: PropTypes.func,
+	session: PropTypes.object,
+	variables: PropTypes.array.isRequired
 };
 
 
