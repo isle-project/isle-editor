@@ -4,6 +4,7 @@ import request from 'request';
 import isString from '@stdlib/assert/is-string';
 import isFunction from '@stdlib/assert/is-function';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 import copy from '@stdlib/utils/copy';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 const isElectron = require( 'utils/is-electron' );
@@ -13,11 +14,11 @@ const io = require( 'socket.io-client' );
 
 // VARIABLES //
 
-const PATH_REGEXP = /^\/([^\/]*)\/([^\/]*)\//i;
+const PATH_REGEXP = /^\/([^/]*)\/([^/]*)\//i;
 const STDOUT_REGEX = /stdout/;
 const GRAPHICS_REGEX = /graphics/;
 const ERR_REGEX = /\nIn call:[\s\S]*$/gm;
-const HELP_PATH_REGEX = /\/(?:site-)?library\/([^\/]*)\/help\/([^\/"]*)/;
+const HELP_PATH_REGEX = /\/(?:site-)?library\/([^/]*)\/help\/([^/"]*)/;
 
 /*
 * We don't reject unsecured server addresses inside of the editor. Lesson creators manually input the server they wish to use, they "opt-in". In contrast, end users do not have that luxury, so for deployed lessons the handshake has to be successful.
@@ -29,7 +30,6 @@ let userRights = null;
 // SESSION //
 
 class Session {
-
 	constructor( config, offline ) {
 		debug( 'Should create session...' );
 
@@ -533,7 +533,7 @@ class Session {
 			userName: this.user.name,
 			userEmail: this.user.email
 		});
-		socket.on( 'console', function( msg ) {
+		socket.on( 'console', function onConsole( msg ) {
 			console.log( msg );
 		});
 
@@ -566,7 +566,7 @@ class Session {
 					if ( user.email === data.email ) {
 						user.inactive = true;
 						user.exitTime = data.exitTime;
-					};
+					}
 					return user;
 				});
 				if ( data.email !== this.user.email ) {
@@ -585,7 +585,7 @@ class Session {
 		});
 
 		socket.on( 'chat_history', ({ name, messages, members }) => {
-			( 'Received chat history: ' + JSON.stringify( messages ) );
+			console.log( 'Received chat history: ' + JSON.stringify( messages ) );
 			const chat = this.getChat( name );
 			chat.messages = messages;
 			chat.members = members;
@@ -1164,10 +1164,10 @@ class Session {
 	*/
 	sendMail( mail, to ) {
 		const mailOptions = copy( mail );
-		if ( !mailOptions.hasOwnProperty( 'from' ) ) {
+		if ( !hasOwnProp( mailOptions, 'from' ) ) {
 			mailOptions.from = this.config.email || 'robinson@isle.cmu.edu';
 		}
-		if ( !mailOptions.hasOwnProperty( 'to' ) ) {
+		if ( !hasOwnProp( mailOptions, 'to' ) ) {
 			mailOptions.to = to;
 		}
 		request.post( this.config.server + '/send_mail', {
