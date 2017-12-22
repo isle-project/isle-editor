@@ -61,7 +61,7 @@ test( 'the component cycles through child elements when clicked', t => {
 	checkVisibility( 0 );
 
 	t.end();
-	
+
 	function checkVisibility( visiblePos ) {
 		const children = div.find( 'span' ).children();
 		children.forEach( ( child, idx ) => {
