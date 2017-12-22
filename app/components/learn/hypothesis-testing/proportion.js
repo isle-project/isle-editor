@@ -20,7 +20,7 @@ const debug = require( 'debug' )( 'isle-editor' );
 
 const areaStyle = {
 	data: {
-		fill: "tomato", stroke: "tomato", opacity: 0.3
+		fill: 'tomato', stroke: 'tomato', opacity: 0.3
 	}
 };
 
@@ -28,7 +28,6 @@ const areaStyle = {
 // MAIN //
 
 class ProportionTest extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -104,13 +103,11 @@ class ProportionTest extends Component {
 				areaData = linspace( 0, 3, 200 ).map( this.normalPDF );
 				areaData2 = linspace( -3, 0, 200 ).map( this.normalPDF );
 			}
-			probFormula = `P( |Z| > ${abs( pStat )}) = ${roundn( ( 1-pnorm( abs( pStat ), 0, 1 ) )+pnorm( -abs( pStat ), 0, 1 ), - 3 )}`;
+			probFormula = `P( |Z| > ${abs( pStat )}) = ${roundn( ( 1-pnorm( abs( pStat ), 0, 1 ) )+pnorm( -abs( pStat ), 0, 1 ), -3 )}`;
 			break;
 		}
 		const newState = {
-			n, n2, p0, phat, phat2, pStat,
-			areaData, areaData2,
-			pdfData, probFormula, stderr
+			n, n2, p0, phat, phat2, pStat, areaData, areaData2, pdfData, probFormula, stderr
 		};
 		console.log( newState );
 		this.setState( newState );
@@ -147,12 +144,12 @@ class ProportionTest extends Component {
 		this.setState({
 			type: pos,
 			probFormula,
-			areaData, areaData2
+			areaData,
+			areaData2
 		});
 	}
 
 	render() {
-
 		const firstSampleParams = <div>
 			<Label>First Sample</Label>
 			<NumberInput
@@ -164,7 +161,7 @@ class ProportionTest extends Component {
 				onChange={( value ) => {
 					this.setState({
 						phat: value
-					},  this.onGenerate );
+					}, this.onGenerate );
 				}}
 			/>
 			<NumberInput
@@ -175,7 +172,7 @@ class ProportionTest extends Component {
 				onChange={( value ) => {
 					this.setState({
 						n: value
-					},  this.onGenerate );
+					}, this.onGenerate );
 				}}
 			/>
 		</div>;
@@ -190,7 +187,7 @@ class ProportionTest extends Component {
 				onChange={( value ) => {
 					this.setState({
 						phat2: value
-					},  this.onGenerate );
+					}, this.onGenerate );
 				}}
 			/>
 			<NumberInput
@@ -201,7 +198,7 @@ class ProportionTest extends Component {
 				onChange={( value ) => {
 					this.setState({
 						n2: value
-					},  this.onGenerate );
+					}, this.onGenerate );
 				}}
 			/>
 		</div>;
@@ -215,7 +212,7 @@ class ProportionTest extends Component {
 						<Panel header={<h4>Parameters</h4>} maxWidth={1600}>
 							<Well>
 								<SelectInput
-									options={[ 'One-Sample','Two-Sample' ]}
+									options={[ 'One-Sample', 'Two-Sample' ]}
 									defaultValue={samples}
 									onChange={( value ) => {
 										this.setState({
@@ -253,32 +250,32 @@ class ProportionTest extends Component {
 								<TeX
 									displayMode
 									tag=""
-									style={{ fontSize: "1.5em" }}
+									style={{ fontSize: '1.5em' }}
 									raw={`z  = \\frac{\\hat p_1 - \\hat p_2 - (p_1 - p_2)}{\\sqrt{\\tfrac{\\hat p_1 (1- \\hat p_1)}{n_1} + \\tfrac{\\hat p_2 (1- \\hat p_2)}{n_2} }}`} elems={{
-										"n": {
-											tooltip: "Sample Size"
+										'n': {
+											tooltip: 'Sample Size'
 										},
-										"p": {
-											tooltip: "Proportion"
+										'p': {
+											tooltip: 'Proportion'
 										},
-										"z": {
-											tooltip: "Test Statistic"
+										'z': {
+											tooltip: 'Test Statistic'
 										}
 									}}
 								/> :
 								<TeX
 									displayMode
 									tag=""
-									style={{ fontSize: "1.5em" }}
+									style={{ fontSize: '1.5em' }}
 									raw={`z  = \\frac{\\hat p - p_0}{\\sqrt{p_0 (1-p_0) / n}}`} elems={{
-										"n": {
-											tooltip: "Sample Size"
+										'n': {
+											tooltip: 'Sample Size'
 										},
-										"p": {
-											tooltip: "Proportion"
+										'p': {
+											tooltip: 'Proportion'
 										},
-										"z": {
-											tooltip: "Test Statistic"
+										'z': {
+											tooltip: 'Test Statistic'
 										}
 									}}
 								/>
