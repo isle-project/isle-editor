@@ -11,7 +11,6 @@ import debounce from 'lodash.debounce';
 import SplitPane from 'react-split-pane';
 import yaml from 'js-yaml';
 import ErrorBoundary from 'components/error-boundary';
-import ENV from '@stdlib/utils/env';
 import Panel from 'components/Panel';
 import Header from 'components/Header';
 import Editor from 'components/Editor';
@@ -267,7 +266,8 @@ class App extends Component {
 				</SplitPane>
 				{
 					( () => {
-						if ( ENV.NODE_ENV !== 'production' ) {
+						// eslint-disable-next-line no-process-env
+						if ( process.env.NODE_ENV !== 'production' ) {
 							const DevTools = require( './DevTools' ); // eslint-disable-line global-require
 							return <DevTools />;
 						}

@@ -4,7 +4,6 @@ import path from 'path';
 import fs from 'fs-extra';
 import windowStateKeeper from 'electron-window-state';
 import { shell } from 'electron';
-import ENV from '@stdlib/utils/env';
 import window from './windowManager';
 const debug = require( 'debug' )( 'isle-editor' );
 
@@ -12,6 +11,7 @@ const debug = require( 'debug' )( 'isle-editor' );
 // MAIN //
 
 export default function createWindow( filePath, callback ) {
+	/* eslint-disable no-process-env */
 	debug( `Should create the browser window for file ${filePath}.` );
 
 	const mainWindowState = windowStateKeeper({
@@ -27,9 +27,9 @@ export default function createWindow( filePath, callback ) {
 	});
 
 	let indexPath;
-	if ( ENV.NODE_ENV === 'development' ) {
+	if ( process.env.NODE_ENV === 'development' ) {
 		indexPath = path.resolve( __dirname, '..', 'app.html' );
-	} else if ( ENV.NODE_ENV === 'production' ) {
+	} else if ( process.env.NODE_ENV === 'production' ) {
 		indexPath = path.resolve( __dirname, 'app', 'app.html' );
 	}
 
@@ -53,7 +53,7 @@ export default function createWindow( filePath, callback ) {
 		}
 	});
 
-	if ( ENV.NODE_ENV === 'development' ) {
+	if ( process.env.NODE_ENV === 'development' ) {
 		mainWindow.webContents.openDevTools();
 	}
 
