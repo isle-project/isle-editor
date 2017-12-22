@@ -24,9 +24,15 @@ class Export extends Component {
 // TYPES //
 
 Export.propTypes = {
-	fileName: PropTypes.string.isRequired,
-	filePath: PropTypes.string.isRequired,
-	markdown: PropTypes.string.isRequired
+	fileName: PropTypes.string,
+	filePath: PropTypes.string,
+	markdown: PropTypes.string
+};
+
+Export.defaultProps = {
+	fileName: null,
+	filePath: null,
+	markdown: ''
 };
 
 
