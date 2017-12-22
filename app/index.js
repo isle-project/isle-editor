@@ -33,13 +33,12 @@ render(
 	<Provider store={store}>
 		<Router history={history}>
 			<div className="App">
-				<Route exact path="/" children={ ( match ) => {
+				<Route exact path="/" children={( match ) => {
 					// Account for routes of spectacle slides...
 					if ( PATH_REGEX.test( match.location.pathname ) ) {
 						return <Editor />;
-					} else {
-						return null;
 					}
+					return null;
 				}} />
 				<Route path="/docs" component={Documentation} />
 				<Route path="/settings" component={Settings} />

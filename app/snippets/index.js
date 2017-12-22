@@ -15,7 +15,7 @@ function aceSnippets( editor, session ) {
 * Helper function that sets up the snippet code
 */
 function setup( editor, session, mode, snippetText ) {
-
+	// eslint-disable-next-line no-undef
 	const snippetManager = ace.acequire( 'ace/snippets' ).snippetManager;
 
 	const id = session.env.document.$mode.$id || '';
