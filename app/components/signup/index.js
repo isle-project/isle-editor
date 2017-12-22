@@ -15,7 +15,6 @@ const createTooltip = ( str ) => {
 // MAIN //
 
 class Signup extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -88,7 +87,6 @@ class Signup extends Component {
 			}
 			return 'success';
 		};
-
 	}
 
 	render() {
@@ -215,6 +213,7 @@ class Signup extends Component {
 	}
 }
 
+
 // TYPES //
 
 Signup.contextTypes = {
@@ -230,6 +229,7 @@ Signup.propTypes = {
 	onClose: PropTypes.func,
 	show: PropTypes.bool
 };
+
 
 // EXPORTS //
 

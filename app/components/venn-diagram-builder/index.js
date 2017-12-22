@@ -26,9 +26,9 @@ class VennDiagramBuilder extends Component {
 
 	generateTwoCategories( first, second, sizeA, sizeB, sizeAB ) {
 		var sets = [
-			{sets: [ first ], size: sizeA },
-			{sets: [ second ], size: sizeB },
-			{sets: [ first, second ], size: sizeAB }
+			{ sets: [ first ], size: sizeA },
+			{ sets: [ second ], size: sizeB },
+			{ sets: [ first, second ], size: sizeAB }
 		];
 		var chart = d3.select( '#'+this.state.id );
 		var tooltip;
@@ -49,24 +49,32 @@ class VennDiagramBuilder extends Component {
 		chart.selectAll( 'g' )
 			.on( 'mouseover', function onMouseOver( d, i ) {
 				venn.sortAreas( chart, d );
-				tooltip.transition().duration( 400 ).style( 'opacity', 0.9 );
+				tooltip.transition().
+					duration( 400 ).
+					style( 'opacity', 0.9 );
 				tooltip.text( d.sets.join( ' and ' ) + ' (' + d.size + ')' );
-				var selection = d3.select( this ).transition( 'tooltip' ).duration( 400 );
+				var selection = d3.select( this ).
+					transition( 'tooltip' ).
+					duration( 400 );
 				selection.select( 'path' )
 					.style( 'stroke-width', 3 )
 					.style( 'stroke', 'black' )
-					.style( 'ill-opacity', d.sets.length == 1 ? 0.4 : 0.1 )
-					.style( 'stroke-opacity'	, 1 );
+					.style( 'ill-opacity', d.sets.length === 1 ? 0.4 : 0.1 )
+					.style( 'stroke-opacity', 1 );
 			})
 			.on( 'mousemove', function onMouseMove() {
 				tooltip.style( 'left', ( d3.event.pageX ) + 'px' )
 					.style( 'top', ( d3.event.pageY - 28 ) + 'px' );
 			})
 			.on( 'mouseout', function onMouseOut( d, i ) {
-				tooltip.transition().duration( 400 ).style( 'opacity', 0 );
-				var selection = d3.select( this ).transition( 'tooltip' ).duration( 400 );
+				tooltip.transition().
+					duration( 400 ).
+					style( 'opacity', 0 );
+				var selection = d3.select( this ).
+					transition( 'tooltip' ).
+					duration( 400 );
 				selection.select( 'path' )
-					.style( 'fill-opacity', d.sets.length == 1 ? 0.25 : 0.0 )
+					.style( 'fill-opacity', d.sets.length === 1 ? 0.25 : 0.0 )
 					.style( 'stroke-opacity', 0 );
 			});
 		this.setState({
@@ -76,13 +84,13 @@ class VennDiagramBuilder extends Component {
 
 	generateThreeCategories( first, second, third, sizeA, sizeB, sizeC, sizeAB, sizeBC, sizeAC, sizeABC ) {
 		var sets = [
-			{sets: [ first ], size: sizeA},
-			{sets: [ second ], size: sizeB},
-			{sets: [ third ], size: sizeC},
-			{sets: [ first, second ], size: sizeAB},
-			{sets: [ first, third ], size: sizeAC},
-			{sets: [ second, third ], size: sizeBC},
-			{sets: [ first,second,third ],size: sizeABC}
+			{ sets: [ first ], size: sizeA },
+			{ sets: [ second ], size: sizeB },
+			{ sets: [ third ], size: sizeC },
+			{ sets: [ first, second ], size: sizeAB },
+			{ sets: [ first, third ], size: sizeAC },
+			{ sets: [ second, third ], size: sizeBC },
+			{ sets: [ first, second, third ], size: sizeABC }
 		];
 		var chart = d3.select( '#'+this.state.id );
 
@@ -104,13 +112,18 @@ class VennDiagramBuilder extends Component {
 		chart.selectAll( 'g' )
 			.on( 'mouseover', function onMouseOver( d, i ) {
 				venn.sortAreas( chart, d );
-				tooltip.transition().duration( 400 ).style( 'opacity', 0.9 );
+				tooltip.
+					transition().
+					duration( 400 ).
+					style( 'opacity', 0.9 );
 				tooltip.text( d.sets.join( ' and ' ) + ' (' + d.size + ')' );
-				var selection = d3.select( this ).transition( 'tooltip' ).duration( 400 );
+				var selection = d3.select( this ).
+					transition( 'tooltip' ).
+					duration( 400 );
 				selection.select( 'path' )
 					.style( 'stroke-width', 3 )
 					.style( 'stroke', 'black' )
-					.style( 'fill-opacity', d.sets.length == 1 ? 0.4 : 0.1 )
+					.style( 'fill-opacity', d.sets.length === 1 ? 0.4 : 0.1 )
 					.style( 'stroke-opacity', 1 );
 			})
 			.on( 'mousemove', function onMouseMove() {
@@ -118,8 +131,13 @@ class VennDiagramBuilder extends Component {
 					.style( 'top', ( d3.event.pageY - 28 ) + 'px' );
 			})
 			.on( 'mouseout', function onMouseOut( d, i ) {
-				tooltip.transition().duration( 400 ).style( 'opacity', 0 );
-				var selection = d3.select( this ).transition( 'tooltip' ).duration( 400 );
+				tooltip.transition().
+					duration( 400 ).
+					style( 'opacity', 0 );
+				var selection = d3.
+					select( this ).
+					transition( 'tooltip' ).
+					duration( 400 );
 				selection.select( 'path' )
 					.style( 'fill-opacity', d.sets.length === 1 ? 0.25 : 0.0 )
 					.style( 'stroke-opacity', 0 );
@@ -148,13 +166,13 @@ class VennDiagramBuilder extends Component {
 					width={120}
 				/>
 				<NumberInput
-					legend={<TeX raw={`|\\text{${this.state.first}}|`} /> }
+					legend={<TeX raw={`|\\text{${this.state.first}}|`} />}
 					defaultValue={12}
 					step={1}
 					min={0}
 				/>
 				<NumberInput
-					legend={<TeX raw={`|\\text{${this.state.second}}|`} /> }
+					legend={<TeX raw={`|\\text{${this.state.second}}|`} />}
 					defaultValue={10}
 					step={1}
 					min={0}
@@ -163,7 +181,7 @@ class VennDiagramBuilder extends Component {
 				<NumberInput
 					legend={<TeX raw={`| \\text{${this.state.first}} \\cap \\text{${this.state.second}} | `} />}
 					defaultValue={2}
-					max={Math.min( this.state.sizeA, this.state.sizeB )}
+					max={min( this.state.sizeA, this.state.sizeB )}
 					step={1}
 					min={0}
 				/>
@@ -191,19 +209,19 @@ class VennDiagramBuilder extends Component {
 					width={120}
 				/>
 				<NumberInput
-					legend={<TeX raw={`|\\text{${this.state.first}}|`} /> }
+					legend={<TeX raw={`|\\text{${this.state.first}}|`} />}
 					defaultValue={12}
 					step={1}
 					min={0}
 				/>
 				<NumberInput
-					legend={<TeX raw={`|\\text{${this.state.second}}|`} /> }
+					legend={<TeX raw={`|\\text{${this.state.second}}|`} />}
 					defaultValue={10}
 					step={1}
 					min={0}
 				/>
 				<NumberInput
-					legend={<TeX raw={`|\\text{${this.state.third}}|`} /> }
+					legend={<TeX raw={`|\\text{${this.state.third}}|`} />}
 					defaultValue={8}
 					step={1}
 					min={0}

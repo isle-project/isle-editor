@@ -2,77 +2,27 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Panel } from 'react-bootstrap';
+import { Panel } from 'react-bootstrap';
 import Slider from 'react-slick';
+import NextArrow from './next_arrow';
+import PrevArrow from './previous_arrow';
 
 
-// VARIABLES //
-
-const RE = /disabled/;
-
-
-// COMPONENTS //
-
-class NextArrow extends Component {
-	render() {
-		const disabled = RE.test( this.props.className );
-		return (
-			<Button
-				bsSize="small"
-				onClick={this.props.onClick}
-				style={{
-					position: 'absolute',
-					display: 'block',
-					right: '-10px',
-					bottom: '-25px',
-					zIndex: 100
-				}}
-				disabled={disabled}
-			>Next</Button>
-		);
-	}
-}
-
-class PrevArrow extends Component {
-	render() {
-		const disabled = RE.test( this.props.className );
-		return (
-			<Button
-				bsSize="small"
-				onClick={this.props.onClick}
-				style={{
-					position: 'absolute',
-					display: 'block',
-					left: '-10px',
-					bottom: '-25px',
-					zIndex: 100
-				}}
-				disabled={disabled}
-			>Previous</Button>
-		);
-	}
-}
-
-
-
-// DEFAULT SLIDER //
+// MAIN //
 
 class DefaultSlider extends Component {
-
 	constructor( props ) {
 		super( props );
-
-		let childDivs = props.children && props.children.length > 0 ?
+		const childDivs = props.children && props.children.length > 0 ?
 			React.Children.map( props.children, child => <div> {child} </div> ) :
 			<div></div>;
-
 		this.state = {
 			childDivs
 		};
 	}
 
 	componentDidMount() {
-		this.refs.slider.slickGoTo( this.props.goto );
+		this.slider.slickGoTo( this.props.goto );
 	}
 
 	componentWillReceiveProps( nextProps ) {
@@ -85,7 +35,7 @@ class DefaultSlider extends Component {
 			});
 		}
 		if ( nextProps.goto !== this.props.goto ) {
-			this.refs.slider.slickGoTo( nextProps.goto );
+			this.slider.slickGoTo( nextProps.goto );
 		}
 	}
 
@@ -95,8 +45,8 @@ class DefaultSlider extends Component {
 			speed: 1000,
 			slidesToShow: 1,
 			slidesToScroll: 1,
-			prevArrow: <PrevArrow />,
-			nextArrow: <NextArrow />,
+			prevArrow: <PrevArrow onClick={this.props.onClick} />,
+			nextArrow: <NextArrow onClick={this.props.onClick} />,
 			...this.props
 		};
 		return (
@@ -113,7 +63,7 @@ class DefaultSlider extends Component {
 				}}
 				header={<h3>{this.props.title}</h3>}
 			>
-				<Slider ref='slider' {...settings}>
+				<Slider ref={( slider ) => { this.slider = slider; }} {...settings}>
 					{ this.state.childDivs }
 				</Slider>
 			</Panel>
@@ -130,8 +80,9 @@ DefaultSlider.defaultProps = {
 	fade: false,
 	goto: 0,
 	infinite: false,
-	swipeToSlide: true,
+	onClick() {},
 	style: {},
+	swipeToSlide: true,
 	title: ''
 };
 
@@ -144,8 +95,9 @@ DefaultSlider.propTypes = {
 	fade: PropTypes.bool,
 	goto: PropTypes.number,
 	infinite: PropTypes.bool,
-	swipeToSlide: PropTypes.bool,
+	onClick: PropTypes.func,
 	style: PropTypes.object,
+	swipeToSlide: PropTypes.bool,
 	title: PropTypes.string
 };
 
