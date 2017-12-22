@@ -38,7 +38,7 @@ class Tree extends Component {
 		// Clone new data & assign internal properties
 		if (!deepEqual(this.props.data, nextProps.data)) {
 			this.setState({
-				data: this.assignInternalProperties(clone(nextProps.data)),
+				data: this.assignInternalProperties(clone(nextProps.data))
 			});
 		}
 
@@ -73,7 +73,7 @@ class Tree extends Component {
 	* @return {void}
 	*/
 	bindZoomListener(props) {
-		const { zoomable, scaleExtent, translate } = props;
+		const { zoomable, scaleExtent } = props;
 		const svg = select( '.rd3t-svg' );
 		const g = select( '.rd3t-g' );
 		if ( zoomable ) {
@@ -188,9 +188,12 @@ class Tree extends Component {
 		const targetNode = matches[ 0 ];
 
 		if ( this.props.collapsible ) {
-			targetNode._collapsed ?
-				this.expandNode( targetNode ) :
+			if (targetNode._collapsed ) {
+				this.expandNode( targetNode );
+			}
+			else {
 				this.collapseNode( targetNode );
+			}
 			this.setState({ data }, () => this.handleOnClickCb( targetNode ) );
 		} else {
 			this.handleOnClickCb( targetNode );
@@ -225,7 +228,7 @@ class Tree extends Component {
 			depthFactor,
 			separation,
 			nodeSize,
-			orientation,
+			orientation
 		} = this.props;
 
 		var data = d3.hierarchy( clone( this.state.data )[ 0 ], d => ( d._collapsed ? null : d._children ) );
