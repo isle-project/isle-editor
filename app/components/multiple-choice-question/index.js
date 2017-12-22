@@ -7,97 +7,9 @@ import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import InstructorBar from 'components/instructor-bar';
 
-
-// FUNCTIONS //
-
-const Question = ( props ) =>
-	<span className="question">
-		<h3>{props.content}</h3>
-		<span style={{ fontSize: '18px' }}>{props.task}:</span>
-	</span>;
-
-Question.PropTypes = {
-	content: PropTypes.string.isRequired,
-	task: PropTypes.string.isRequired
-};
-
-const AnswerOption = ( props ) => {
-	let bsStyle;
-	if ( props.provideFeedback ) {
-		if ( props.correct === true ) {
-			bsStyle = 'success';
-		}
-		else if ( props.correct === false ) {
-			bsStyle = 'danger';
-		}
-		else if ( props.solution === true ) {
-			// Case: User did not pick correct answer...
-			bsStyle = 'warning';
-		}
-	}
-	const popover =
-		<Popover id={props.no}>
-			<strong>{ props.solution ? 'Correct answer: ' : 'Incorrect answer: ' }</strong>
-			{props.answerExplanation}
-		</Popover>;
-
-	if ( props.disabled ) {
-		return (
-			<ListGroupItem
-				bsStyle={bsStyle}
-				disabled
-			>
-				{props.answerContent}
-			</ListGroupItem>
-		);
-	}
-	else if ( props.submitted ) {
-		return (
-			<OverlayTrigger
-				trigger={[ 'click', 'hover' ]}
-				placement="right"
-				overlay={ props.answerExplanation ? popover : <span /> }
-			>
-				<ListGroupItem
-					onClick={props.onAnswerSelected}
-					bsStyle={bsStyle}
-					disabled={!props.provideFeedback}
-				>
-					{props.answerContent}
-				</ListGroupItem>
-			</OverlayTrigger>
-		);
-	}
-	else {
-		return (
-			<ListGroupItem
-				onClick={props.onAnswerSelected}
-				active={props.active}
-			>
-				{props.answerContent}
-			</ListGroupItem>
-		);
-	}
-};
-
-AnswerOption.propTypes = {
-	answerContent: PropTypes.oneOfType([
-		PropTypes.element,
-		PropTypes.string
-	]).isRequired,
-	active: PropTypes.bool.isRequired,
-	answerExplanation: PropTypes.oneOfType([
-		PropTypes.element,
-		PropTypes.string
-	]),
-	onAnswerSelected: PropTypes.func.isRequired
-};
-
-
 // MULTIPLE CHOICE QUESTION //
 
 class MultipleChoiceQuestion extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -216,7 +128,7 @@ class MultipleChoiceQuestion extends Component {
 					provideFeedback={this.props.provideFeedback}
 					submitted={this.state.submitted}
 					solution={isSolution}
-					onAnswerSelected={ () => {
+					onAnswerSelected={() => {
 						if ( !this.state.submitted ) {
 							let newActive = this.state.active.slice();
 							newActive[ id ] = !newActive[ id ];
@@ -243,7 +155,7 @@ class MultipleChoiceQuestion extends Component {
 					provideFeedback={this.props.provideFeedback}
 					submitted={this.state.submitted}
 					solution={isSolution}
-					onAnswerSelected={ () => {
+					onAnswerSelected={() => {
 						if ( !this.state.submitted ) {
 							this.setState({
 								active: id,
@@ -270,7 +182,7 @@ class MultipleChoiceQuestion extends Component {
 			}}>
 				<Question
 					content={props.question}
-					task={ allowMultipleAnswers ? 'Choose all that apply' : 'Pick the correct answer' }
+					task={allowMultipleAnswers ? 'Choose all that apply' : 'Pick the correct answer'}
 				/>
 				<ListGroup fill >
 					{ allowMultipleAnswers ?
@@ -284,7 +196,7 @@ class MultipleChoiceQuestion extends Component {
 					block fill
 					onClick={this.submitQuestion}
 					disabled={disabled}
-				>{ this.state.submitted ? "Submitted" : "Submit"}</Button>
+				>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
 				<InstructorBar id={props.id} />
 			</Panel>
 		);
@@ -306,15 +218,15 @@ MultipleChoiceQuestion.defaultProps = {
 // PROPERTY TYPES //
 
 MultipleChoiceQuestion.propTypes = {
-	solution: PropTypes.oneOfType([
-		PropTypes.number,
-		PropTypes.array
-	]).isRequired,
 	answers: PropTypes.array.isRequired,
 	disabled: PropTypes.bool,
 	displaySolution: PropTypes.bool,
+	onSubmit: PropTypes.func,
 	provideFeedback: PropTypes.bool,
-	onSubmit: PropTypes.func
+	solution: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.array
+	]).isRequired
 };
 
 MultipleChoiceQuestion.contextTypes = {
