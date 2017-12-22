@@ -12,7 +12,6 @@ const debug = require( 'debug' )( 'isle-editor' );
 // MAIN //
 
 class Chat extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -29,7 +28,6 @@ class Chat extends Component {
 				session.markChatMessagesAsRead( this.props.chat.name );
 			}
 		};
-
 	}
 
 	componentDidMount() {
@@ -107,7 +105,7 @@ class Chat extends Component {
 
 		const userlistPopover = <Popover id="userlistPopover" title={`Members of ${chat.name} chat:`}>
 			<ListGroup>
-				{chat.members.map( ( member, idx  ) => {
+				{chat.members.map( ( member, idx ) => {
 					return <ListGroupItem style={{ padding: '3px 3px' }} key={idx}>{member.name}</ListGroupItem>;
 				})}
 			</ListGroup>
@@ -136,9 +134,9 @@ class Chat extends Component {
 						borderRight: 'solid 1px darkgrey',
 						paddingLeft: '5px',
 						cursor: 'pointer',
-						opacity: this.state.opened ? 1.0 : 0.7,
+						opacity: this.state.opened ? 1.0 : 0.7
 					}}
-					ref={ ( chat ) => { this.chat = chat; }}
+					ref={( chat ) => { this.chat = chat; }}
 					onMouseOver={this.onMouseOver.bind( this )}
 					onMouseOut={this.onMouseOut.bind( this )}
 					onClick={this.toggleChat.bind( this )}
@@ -172,7 +170,7 @@ class Chat extends Component {
 							display: this.state.opened ? 'block' : 'none'
 						}}
 					>
-						{chat.members.map( ( member, idx  ) => {
+						{chat.members.map( ( member, idx ) => {
 							return <span key={idx}>{member.name}{ idx !== chat.members.length-1 ? ', ' : null }</span>;
 						})}
 					</div>
@@ -189,7 +187,7 @@ class Chat extends Component {
 					}}
 				>
 					<div
-						ref={ ( chatbody ) => { this.chatbody = chatbody; }}
+						ref={( chatbody ) => { this.chatbody = chatbody; }}
 						style={{
 							height: 196,
 							overflowY: 'scroll',
@@ -199,11 +197,11 @@ class Chat extends Component {
 						}}
 						onScroll={this.onScroll}
 					>
-						{chat.messages.map( ( msg, idx ) => <div className={ msg.unread ? 'chatmessage unread' : 'chatmessage'} key={idx}>
+						{chat.messages.map( ( msg, idx ) => (<div className={msg.unread ? 'chatmessage unread' : 'chatmessage'} key={idx}>
 							<span className="chattime">{msg.time}</span> - <span className="chatuser">{msg.user}:&nbsp;</span>
 							<span>{msg.content}</span>
-							<hr style={{ marginTop: 3, marginBottom: 3 }}/>
-						</div> )}
+							<hr style={{ marginTop: 3, marginBottom: 3 }} />
+						</div>) )}
 					</div>
 					<FormGroup>
 						<InputGroup>
@@ -232,6 +230,16 @@ Chat.contextTypes = {
 	session: PropTypes.object
 };
 
+Chat.defaultProps = {
+	left: 400,
+	width: 600
+};
+
+Chat.propTypes = {
+	chat: PropTypes.object.isRequired,
+	left: PropTypes.number,
+	width: PropTypes.number
+};
 
 // EXPORTS //
 

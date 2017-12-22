@@ -7,6 +7,7 @@ import objectEntries from '@stdlib/utils/entries';
 import copy from '@stdlib/utils/copy';
 import PropTypes from 'prop-types';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 const debug = require( 'debug' )( 'isle-editor' );
 
 
@@ -27,7 +28,7 @@ const Action = ( props ) => {
 			<div className="actionNote">
 				<label>Value:&nbsp;</label>
 				<span style={{ 'userSelect': 'text' }} >
-					{ isObject( props.value ) ? JSON.stringify( props.value,undefined, 2 ) : props.value }
+					{ isObject( props.value ) ? JSON.stringify( props.value, null, 2 ) : props.value }
 				</span>
 			</div>
 		</ListGroupItem>
@@ -38,7 +39,6 @@ const Action = ( props ) => {
 // MAIN //
 
 class ActionLog extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -72,11 +72,11 @@ class ActionLog extends Component {
 				<h4 style={{ display: 'inline' }} >Action Log</h4>
 				<div style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
 					{entries.map( ( arr, idx ) => {
-						return <span
+						return ( <span
 							style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }}
 							onClick={this.removeFactory( arr[ 0 ])}
 							key={idx}
-						>{arr[ 0 ]}: {arr[ 1 ]}</span>;
+						>{arr[ 0 ]}: {arr[ 1 ]}</span> );
 					})}
 				</div>
 			</div>;
@@ -98,52 +98,11 @@ class ActionLog extends Component {
 			};
 			return onClick;
 		};
-
-	}
-
-	buildActionsArray( props, clbk ) {
-		let { from, to } = props.period;
-		if ( from && to ) {
-			from = from.toDate();
-			to = to.toDate();
-			const { session } = this.context;
-			let displayedActions = [];
-
-			for ( let i = 0; i < session.socketActions.length; i++ ) {
-				let action = session.socketActions[ i ];
-				if ( action.absoluteTime > from && action.absoluteTime < to ) {
-					displayedActions.push( action );
-				}
-			}
-			if ( this.state.filter ) {
-				debug( 'Should filter actions: ' + displayedActions.length );
-				for ( let i = displayedActions.length - 1; i >= 0; i-- ) {
-					let action = displayedActions[ i ];
-					let markedForRemoval = false;
-					for ( let key in this.state.filter ) {
-						let val = this.state.filter[ key ];
-						if ( action[ key ] !== val ) {
-							markedForRemoval = true;
-						}
-					}
-					if ( markedForRemoval ) {
-						displayedActions.splice( i, 1 );
-					}
-				}
-			}
-			this.setState({
-				displayedActions
-			}, () => {
-				if ( clbk ) {
-					clbk( from, to, displayedActions.length );
-				}
-			});
-		}
 	}
 
 	componentDidMount() {
+		const { session } = this.context;
 		this.unsubscribe = session.subscribe( ( type ) => {
-			const { session } = this.context;
 			if ( session.socketActions.length === 0 && this.state.filter !== null ) {
 				this.setState({
 					filter: null
@@ -181,9 +140,55 @@ class ActionLog extends Component {
 		this.unsubscribe();
 	}
 
+	removeMarkedActions( displayedActions ) {
+		for ( let i = displayedActions.length - 1; i >= 0; i-- ) {
+			let action = displayedActions[ i ];
+			let markedForRemoval = false;
+			for ( let key in this.state.filter ) {
+				if ( hasOwnProp( this.state.filter, key ) ) {
+					let val = this.state.filter[ key ];
+					if ( action[ key ] !== val ) {
+						markedForRemoval = true;
+					}
+				}
+			}
+			if ( markedForRemoval ) {
+				displayedActions.splice( i, 1 );
+			}
+		}
+	}
+
+	buildActionsArray( props, clbk ) {
+		let { from, to } = props.period;
+		if ( from && to ) {
+			from = from.toDate();
+			to = to.toDate();
+			const { session } = this.context;
+			let displayedActions = [];
+
+			for ( let i = 0; i < session.socketActions.length; i++ ) {
+				let action = session.socketActions[ i ];
+				if ( action.absoluteTime > from && action.absoluteTime < to ) {
+					displayedActions.push( action );
+				}
+			}
+			if ( this.state.filter ) {
+				debug( 'Should filter actions: ' + displayedActions.length );
+				this.removeMarkedActions( displayedActions );
+			}
+			this.setState({
+				displayedActions
+			}, () => {
+				if ( clbk ) {
+					clbk( from, to, displayedActions.length );
+				}
+			});
+		}
+	}
+
 	render() {
 		return ( <ListGroup style={{ overflowY: 'scroll', height: window.innerHeight / 2 }}>
-			{this.state.displayedActions.map( ( action, idx ) => <Action key={idx} {...action} backgroundColor={ idx % 2 ? 'white' : 'lightgrey' } clickFactory={this.clickFactory} /> )}
+			{this.state.displayedActions.map( ( action, idx ) => <Action key={idx} {...action} backgroundColor={idx % 2 ? 'white' : 'lightgrey'} clickFactory={this.clickFactory} /> )}
 		</ListGroup> );
 	}
 }
@@ -194,11 +199,21 @@ ActionLog.defaultProps = {
 	onTimeRangeChange() {}
 };
 
+ActionLog.propTypes = {
+	onTimeRangeChange: PropTypes.func,
+	period: PropTypes.shape(
+		{
+			from: PropTypes.object,
+			to: PropTypes.object
+		}
+	).isRequired
+};
 
 // TYPES //
 
 ActionLog.contextTypes = {
 	session: PropTypes.object
+
 };
 
 
