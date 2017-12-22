@@ -1008,7 +1008,7 @@ class DataExplorer extends Component {
 								<h3 className="panel-title">Output</h3>
 							</div>
 							{OutputPanel( this.state.output, this.clearOutput )}
-							<Button bsSize="small" block onClick={ () => {
+							<Button bsSize="small" block onClick={() => {
 								this.setState({ output: []});
 							}}>Clear All</Button>
 						</div>
@@ -1073,12 +1073,12 @@ DataExplorer.defaultProps = {
 
 DataExplorer.propTypes = {
 	data: PropTypes.object,
-	statistics: PropTypes.array,
-	plots: PropTypes.array,
-	tables: PropTypes.array,
-	tests: PropTypes.array,
 	models: PropTypes.array,
 	onSelect: PropTypes.func,
+	plots: PropTypes.array,
+	statistics: PropTypes.array,
+	tables: PropTypes.array,
+	tests: PropTypes.array,
 	transformer: PropTypes.bool
 };
 
