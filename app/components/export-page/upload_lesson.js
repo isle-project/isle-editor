@@ -2,10 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ButtonToolbar, Col, ControlLabel, Form, FormControl,
-	FormGroup, Grid, Modal, Panel, Row, Well } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { remote, shell } from 'electron';
+import { Button, ControlLabel, Form, FormControl,
+	FormGroup, Modal, Panel } from 'react-bootstrap';
 import FormData from 'form-data';
 import https from 'https';
 import http from 'http';
@@ -15,7 +13,6 @@ import randomstring from 'randomstring';
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
-import exists from '@stdlib/fs/exists';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import bundler from 'bundler';
@@ -29,7 +26,8 @@ const debug = require( 'debug' )( 'isle-editor' );
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 
-const { dialog } = remote;
+
+// MAIN //
 
 class UploadLesson extends Component {
 	constructor( props ) {
@@ -39,7 +37,6 @@ class UploadLesson extends Component {
 
 		// Initialize state variables...
 		this.state = {
-			preamble: {},
 			spinning: false,
 			namespaces: [],
 			namespaceName: null,
@@ -193,7 +190,7 @@ class UploadLesson extends Component {
 				outputDir: this.state.dirname,
 				minify: this.state.minify
 			};
-			bundler( settings, ( err, preamble ) => {
+			bundler( settings, ( err ) => {
 				this.zipLesson( settings.outputPath, settings.outputDir, () => {
 					this.upstreamData( settings );
 				});
@@ -313,215 +310,22 @@ class UploadLesson extends Component {
 	}
 }
 
-class ExportLesson extends Component {
-	constructor( props ) {
-		super( props );
-		let outputDir = props.fileName ? props.fileName.replace( /.[^.]*$/, '' ) : '';
 
-		// Initialize state variables...
-		this.state = {
-			outputPath: '',
-			outputDir,
-			preamble: {},
-			finished: false,
-			spinning: false,
-			minify: false,
-			alreadyExists: false
-		};
+// TYPES //
 
-		this.openFolder = () => {
-			const fullPath = path.join( this.state.outputPath, this.state.outputDir, 'index.html' );
-			shell.showItemInFolder( fullPath );
-		};
+UploadLesson.defaultProps = {
+	content: '',
+	fileName: '',
+	filePath: ''
+};
 
-		this.openLesson = () => {
-			const fullPath = path.join( this.state.outputPath, this.state.outputDir, 'index.html' );
-			shell.openItem( fullPath );
-		};
-
-		this.handleFileInputClick = () => {
-			const outputPath = dialog.showOpenDialog({
-				properties: [ 'openDirectory' ]
-			})[ 0 ];
-			this.setState({ outputPath, finished: false, alreadyExists: false });
-		};
-
-		this.handleInputChange = ( event ) => {
-			const target = event.target;
-			const value = target.value;
-			const name = target.name;
-
-			localStorage.setItem( name, value );
-			this.setState({
-				[ name ]: value
-			});
-		};
-
-		this.generateApp = () => {
-			const { outputPath, outputDir, minify } = this.state;
-			if ( exists.sync( path.join( outputPath, outputDir ) ) ) {
-				this.setState({
-					alreadyExists: true
-				});
-			} else {
-				this.setState({
-					finished: false,
-					spinning: true
-				});
-				bundler({
-					outputPath: outputPath,
-					filePath: this.props.filePath,
-					basePath: IS_PACKAGED ? path.join( process.resourcesPath, 'app' ) : '.',
-					content: this.props.content,
-					outputDir,
-					minify
-				}, ( err, preamble ) => {
-					this.setState({
-						preamble: preamble,
-						finished: true,
-						spinning: false
-					});
-				});
-			}
-		};
-	}
-
-	render() {
-		return (
-			<Panel header={<h1>Export Lesson</h1>} bsStyle="primary">
-				<p>Package and export the currently opened lesson into a
-				single-page application viewable in any web-browser.</p>
-				<FormGroup>
-					<ControlLabel>Settings</ControlLabel>
-					<CheckboxInput
-						legend="Minify code"
-						onChange={( value ) => {
-							this.setState({
-								minify: value
-							});
-						}}
-					/>
-				</FormGroup>
-				<FormGroup>
-					<ControlLabel>Directory name</ControlLabel>
-					<FormControl
-						type="text"
-						placeholder="Enter text"
-						defaultValue={this.state.outputDir}
-						onChange={( event ) => {
-							this.setState({
-								outputDir: event.target.value,
-								finished: false,
-								alreadyExists: false
-							});
-						}}
-					/>
-				</FormGroup>
-				<br />
-				<Button
-					bsStyle="primary"
-					onClick={this.handleFileInputClick}
-				>Select output path</Button>
-				<Well
-					style={{
-						marginLeft: '8px',
-						height: '34px',
-						paddingTop: '6px',
-						color: 'darkred'
-					}}
-				> Path: {this.state.outputPath} </Well>
-				<Button
-					bsStyle="success"
-					bsSize="sm"
-					onClick={this.generateApp}
-					block
-					style={{
-						marginTop: '15px'
-					}}
-					disabled={this.state.spinning || !this.state.outputPath || !this.state.outputDir || this.state.finished}
-				> Generate lesson </Button>
-				<br />
-				{ this.state.finished ?
-					<Panel
-						header={<h3>App successfully exported!</h3>}
-						bsStyle="success"
-					>
-						<ButtonToolbar style={{ position: 'relative', margin: 'auto' }} >
-							<Button style={{ float: 'left' }} bsStyle="primary" onClick={this.openFolder}>Open containing folder</Button>
-							<Button style={{ float: 'right' }} bsStyle="success" onClick={this.openLesson}>Open lesson in Browser</Button>
-						</ButtonToolbar>
-					</Panel> : <Spinner width={128} height={64} running={this.state.spinning} />
-				}
-				{ this.state.alreadyExists ?
-					<Panel
-						header={<h3>Directory already exists.</h3>}
-						bsStyle="danger"
-					>
-						A directory with the chosen name already exists. Please pick a different name.
-					</Panel> : null
-				}
-			</Panel>
-		);
-	}
-}
-
-
-// MAIN //
-
-class ExportPage extends Component {
-	constructor( props ) {
-		super( props );
-	}
-	render() {
-		return (
-			<div
-				style={{
-					marginLeft: '20px',
-					marginRight: '20px',
-					marginTop: '20px'
-				}}
-			>
-				<Link
-					to="/"
-					style={{
-						float: 'right',
-						color: 'silver',
-						position: 'absolute',
-						top: '12px',
-						right: '12px',
-						fontSize: '26px',
-						zIndex: 2
-					}}
-				>Back to Editor</Link>
-				<br />
-				<br />
-				<Grid>
-					<Row>
-						<Col md={4} >
-							<UploadLesson {...this.props} />
-						</Col>
-						<Col md={2} >
-							<h1 style={{ textAlign: 'center' }}> OR </h1>
-						</Col>
-						<Col md={6} >
-							<ExportLesson {...this.props} />
-						</Col>
-					</Row>
-				</Grid>
-			</div>
-		);
-	}
-}
-
-
-// PROPERTY TYPES //
-
-ExportPage.propTypes = {
-	content: PropTypes.string.isRequired,
-	fileName: PropTypes.string.isRequired
+UploadLesson.propTypes = {
+	content: PropTypes.string,
+	fileName: PropTypes.string,
+	filePath: PropTypes.string
 };
 
 
 // EXPORTS //
 
-export default ExportPage;
+export default UploadLesson;
