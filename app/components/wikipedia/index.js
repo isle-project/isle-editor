@@ -13,11 +13,10 @@ class Wikipedia extends Component {
 		super( props );
 
 		this.state = {
-			recognized: 'recognized text',
-			text:  '',
+			text: '',
 			response: ''
 		};
-	
+
 		this.keyDown.bind( this );
 		this.click.bind( this );
 	}
@@ -27,18 +26,14 @@ class Wikipedia extends Component {
 	}
 
 
-
 	onResult = ( event ) => {
-		
+
 	}
 
-	
-
-
-	renderText () {
+	renderText() {
 		if ( this.props.showSearch ) {
 			return (
-				<div class = "wikipedia_search">
+				<div className="wikipedia_search">
 					Hier kommt der Suchbegriff
 				</div>
 			);
@@ -46,57 +41,62 @@ class Wikipedia extends Component {
 	}
 
 	// this is externally triggered
-	trigger ( value ) {
-		this.get_result( value );
+	trigger( value ) {
+		this.getResult( value );
 	}
 
-	get_result ( value ) {
+	getResult( value ) {
 		console.log( value );
-		var marker = "about";
+		var marker = 'about';
 
 		switch ( this.props.language ) {
-		case "en-US": 
-			marker = "about";	
+		case 'en-US':
+			marker = 'about';
 			break;
-		case "de-DE": 
-			marker = "über";	
+		case 'de-DE':
+			marker = 'über';
 			break;
-		case "fr-FR": 
-			marker = "sur";	
+		case 'fr-FR':
+			marker = 'sur';
+			break;
+		default:
+			marker= 'about';
 			break;
 		}
 
 		var x = value.search( marker );
 		if ( x !== -1 ){
-			console.log( "gefunden" );
+			console.log( 'gefunden' );
 			x += ( marker.length +1 );
 			var text = value.substring( x, value.length );
-			this.wikipedia_iframe( text );
+			this.wikipediaIFrame( text );
 		}
-		else console.log( "marker not found" );
+		else console.log( 'marker not found' );
 	}
 
 
-	wikipedia_iframe ( text ) {
+	wikipediaIFrame( text ) {
 		this.setState({
-			response: this.set_iframe( text )
+			response: this.setIFrame( text )
 		});
 	}
 
-	set_iframe( text ) {
-		var text = text.replace( " ", "_" );
-		
-		var lang = "en";
-		
+	setIFrame( text ) {
+		text = text.replace( ' ', '_' );
+		var lang = 'en';
+
 		switch ( this.props.language ) {
 		case 'en-US':
-			lang = "en";
+			lang = 'en';
 			break;
 		case 'de-DE':
-			lang = "de";
+			lang = 'de';
 			break;
 		case 'fr-FR':
-			lang = "fr";
+			lang = 'fr';
+			break;
+		default:
+			lang = 'en';
 			break;
 		}
 
@@ -106,79 +106,78 @@ class Wikipedia extends Component {
 
 
 	click() {
-		this.refs.recognition.trigger();
+		this.recognition.trigger();
 	}
 
 	keyDown( event ) {
 		switch ( event.keyCode ) {
 		case 13:
-			this.wikipedia_iframe( this.state.text );
+			this.wikipediaIFrame( this.state.text );
+			break;
+		default:
 			break;
 		}
-	} 
+	}
 
 	change( event ) {
 		this.setState({
 			text: event.target.value
 		});
-
 	}
 
-	render_speech () {
-		var name = "Wikipedia";
-		if ( this.props.language === "fr-FR")  {
-			name = "Wikipédia";
+	renderSpeech() {
+		var name = 'Wikipedia';
+		if ( this.props.language === 'fr-FR') {
+			name = 'Wikipédia';
 		}
 
 		if ( this.props.speech ) {
 			return (
-				<div class = "mike">
+				<div className="mike">
 					<SpeechRecognition
-						ref = "recognition"
-						name = { name }
+						ref={( div ) => { this.recognition = div; }}
+						name={name}
 						showText
-						language = { this.props.language }
-						onName = { this.get_result.bind( this ) }
-					
+						language={this.props.language}
+						onName={this.getResult.bind(this)}
 					/>
 				</div>
 			);
 		}
 	}
 
-	render_search() {
+	renderSearch() {
 		if ( this.props.showSearch ) {
 			return (
-				<input 
-					onKeyDown = { this.keyDown.bind( this )}
-					onChange = { this.change.bind( this ) }
-					type = "text" class = "wikipedia_search">
-				</input>
+				<input
+					onKeyDown={this.keyDown.bind( this )}
+					onChange={this.change.bind( this )}
+					type="text" className="wikipedia_search" />
 			);
 		}
 	}
 
-	render_logo () {
+	renderLogo() {
 		if ( this.props.speech ) {
 			return (
 				<div
-					onClick = { this.click.bind( this ) } 
-					class = "wikipedia_logo">
+					onClick={this.click.bind( this )}
+					className="wikipedia_logo">
 				</div>
 			);
 		}
 	}
 
 
-	render_result () {
+	renderResult() {
 		if ( this.state.response === '' ) return null;
 
 		return (
-			<div class = "wikipedia_result">
-				<iframe 
-					src = { this.state.response } 
-					width = { "100%" } 
-					height = { 600 }  />
+			<div className="wikipedia_result">
+				<iframe
+					src={this.state.response}
+					width="100%"
+					height={600} />
 			</div>
 		);
 	}
@@ -186,12 +185,12 @@ class Wikipedia extends Component {
 
 	render() {
 		return (
-			<div class = { this.props.className } id = { this.props.id }>
-				{ this.render_search() }
-				{ this.render_logo() }
-				{ this.render_speech() }
-				<div class = "seperator"></div>
-				{ this.render_result() }
+			<div className={this.props.className} id={this.props.id}>
+				{ this.renderSearch() }
+				{ this.renderLogo() }
+				{ this.renderSpeech() }
+				<div className="seperator"></div>
+				{ this.renderResult() }
 			</div>
 		);
 	}
@@ -206,20 +205,19 @@ Wikipedia.defaultProps = {
 	showSearch: false,
 	speech: false,
 	language: 'en-US',
-	autoplay: false,
-	read: false
+	autoplay: false
 };
 
 
 // PROPERTY TYPES //
 
 Wikipedia.propTypes = {
-	id: PropTypes.string,
-	showSearch: PropTypes.bool,
-	speech: PropTypes.bool,
+	autoplay: PropTypes.bool,
 	className: PropTypes.string,
+	id: PropTypes.string,
 	language: PropTypes.string,
-	autoplay: PropTypes.bool
+	showSearch: PropTypes.bool,
+	speech: PropTypes.bool
 };
 
 
