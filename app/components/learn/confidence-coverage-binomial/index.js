@@ -28,7 +28,6 @@ const ELEM_TOOLTIPS = {
 // MAIN //
 
 class ConfidenceCoverageBinomial extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -39,7 +38,7 @@ class ConfidenceCoverageBinomial extends Component {
 		};
 	}
 
-	onGenerate =  ( n, p, level ) => {
+	onGenerate = ( n, p, level ) => {
 		let nTrapped = 0;
 		let alpha = 1.0 - level;
 		let errorBars = new Array( 20 );
@@ -74,7 +73,6 @@ class ConfidenceCoverageBinomial extends Component {
 	}
 
 	render() {
-
 		const intro = <div>
 			<p>Now we'll switch to asking a Yes/No question about a population.  We're interested in estimating the true population proportion p of "Yes" answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size n, find how many observations in our sample are a "Yes", and then estimate the true proportion p with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ p(1-p)/n } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <TeX raw="\hat p \pm Z_{\alpha/2} \cdot \sqrt{p(1-p)/n}" elems={ELEM_TOOLTIPS} />.</p>
 			<p>For our choice of sample size (n), true proportion p, and confidence level, we'll simulate 20 different samples from our normal distribution and calculate the corresponding sample proportions and confidence intervals.</p>
@@ -98,19 +96,19 @@ class ConfidenceCoverageBinomial extends Component {
 			/>
 			<VictoryErrorBar
 				animate={{ duration: 500 }}
-				labelComponent={<VictoryTooltip/>}
+				labelComponent={<VictoryTooltip />}
 				style={{
 					data: {
 						stroke: ( data ) => (
 							( data.y - data.err > this.state.p ) ||
 							( data.y + data.err < this.state.p )
-						) ?  'darkred' : 'steelblue'
+						) ? 'darkred' : 'steelblue'
 					}
 				}}
 				data={this.state.errorBars}
 				x="num"
 				y="yval"
-				errorY={( d ) => d.err }
+				errorY={( d ) => d.err}
 				labels={( d ) => d.label}
 			/>
 			<VictoryLine
@@ -177,9 +175,3 @@ class ConfidenceCoverageBinomial extends Component {
 // EXPORTS //
 
 export default ConfidenceCoverageBinomial;
-
-
-
-
-
-
