@@ -23,7 +23,6 @@ const EDITOR_OFFSET = isElectron ? '15px' : '0px';
 // MAIN //
 
 class InstructorView extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -148,7 +147,7 @@ class InstructorView extends Component {
 					marginRight: '30px'
 				}}>
 					<h3 style={{ marginTop: '20px' }}>Instructor Panel</h3>
-					<hr style={{ background: '#333',  backgroundImage: 'linear-gradient(to right, #ccc, #333, #ccc)', height: '1px', border: 0 }} />
+					<hr style={{ background: '#333', backgroundImage: 'linear-gradient(to right, #ccc, #333, #ccc)', height: '1px', border: 0 }} />
 				</div>
 				<div className="instructorMiddle" style={{
 					position: 'absolute',
@@ -170,13 +169,13 @@ class InstructorView extends Component {
 							}} />
 							<ActionLog
 								period={this.state.period}
-								onFilter={ ( newHeader, nActions ) => {
+								onFilter={( newHeader, nActions ) => {
 									this.setState({
 										actionLogHeader: newHeader,
 										nActions: nActions
 									});
 								}}
-								onTimeRangeChange={ ( from, to, nActions ) => {
+								onTimeRangeChange={( from, to, nActions ) => {
 									this.setState({
 										nActions
 									});
@@ -204,7 +203,7 @@ class InstructorView extends Component {
 					backgroundColor: 'rgb(232, 232, 232)',
 					borderLeft: 'solid 2px darkgrey',
 					borderBottomLeftRadius: '50%'
-				 }}>
+				}}>
 				</div>
 				<div className="viewhandler"
 					onClick={this.toggleBar.bind( this )}

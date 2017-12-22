@@ -1,13 +1,13 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 
 // MAIN //
 
 class UserList extends Component {
-
 	constructor( props ) {
 		super( props );
 	}
@@ -25,6 +25,13 @@ class UserList extends Component {
 		);
 	}
 }
+
+
+// TYPES //
+
+UserList.propTypes = {
+	session: PropTypes.object.isRequired
+};
 
 
 // EXPORTS //

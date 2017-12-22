@@ -9,31 +9,7 @@ import PropTypes from 'prop-types';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 const debug = require( 'debug' )( 'isle-editor' );
-
-
-// VARIABLES //
-
-const Action = ( props ) => {
-	return (
-		<ListGroupItem style={{ background: props.backgroundColor, fontSize: 15, fontFamily: 'Open Sans', padding: '2px 1px 2px 1px', lineHeight: 1 }}>
-			<div className="actionNote">
-				<label>Time:&nbsp;</label>
-				{ new Date( props.absoluteTime ).toLocaleTimeString() }|
-				<label>User:&nbsp;</label><span className="clickable" onClick={props.clickFactory( 'email', props.email )} >{ props.email }</span>
-			</div>
-			<div className="actionNote">
-				<label>ID:&nbsp;</label><span className="clickable" onClick={props.clickFactory( 'id', props.id )} >{ props.id }</span> |
-				<label>Type:&nbsp;</label><span className="clickable" onClick={props.clickFactory( 'type', props.type )} >{ props.type }</span>
-			</div>
-			<div className="actionNote">
-				<label>Value:&nbsp;</label>
-				<span style={{ 'userSelect': 'text' }} >
-					{ isObject( props.value ) ? JSON.stringify( props.value, null, 2 ) : props.value }
-				</span>
-			</div>
-		</ListGroupItem>
-	);
-};
+import Action from './action.js';
 
 
 // MAIN //

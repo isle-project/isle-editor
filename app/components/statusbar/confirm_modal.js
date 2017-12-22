@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
 
 
@@ -20,6 +21,17 @@ const ConfirmModal = ( props ) => (
 		</Modal.Footer>
 	</Modal>
 );
+
+
+// TYPES //
+
+ConfirmModal.propTypes = {
+	close: PropTypes.func.isRequired,
+	message: PropTypes.string.isRequired,
+	onConfirm: PropTypes.func.isRequired,
+	show: PropTypes.bool.isRequired,
+	title: PropTypes.string.isRequired
+};
 
 
 // EXPORTS //

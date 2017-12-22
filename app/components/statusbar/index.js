@@ -23,7 +23,6 @@ const LOGGED_OUT_COLOR = 'rgb(209, 107, 71)';
 // MAIN //
 
 class StatusBar extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -71,8 +70,7 @@ class StatusBar extends Component {
 			}
 			this.forceUpdate();
 		});
-
- 		this.getStatusbarInfo = this.getStatusbarInfo.bind( this );
+		this.getStatusbarInfo = this.getStatusbarInfo.bind( this );
 		window.addEventListener( 'resize', this.getStatusbarInfo );
 	}
 
@@ -85,7 +83,7 @@ class StatusBar extends Component {
 		this.setState({
 			visibleSignup: false
 		});
-	};
+	}
 
 	closeLogin() {
 		this.setState({
@@ -249,8 +247,8 @@ class StatusBar extends Component {
 									onClick={this.login.bind( this )}
 									disabled={!session.live}
 								>Login</Button>
-							</div>
-							: <Button bsSize="xsmall" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout.bind( this )}>Log Out</Button> }
+							</div> :
+							<Button bsSize="xsmall" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout.bind( this )}>Log Out</Button> }
 						<div style={{
 							bottom: '-1px',
 							height: 'auto',
