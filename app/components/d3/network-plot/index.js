@@ -10,11 +10,8 @@ import './style.css';
 // MAIN //
 
 class NetworkPlot extends D3Plot {
-
 	constructor( props ) {
-
 		super( props );
-
 	}
 
 	drawPlot( chart, data ) {
@@ -61,43 +58,42 @@ class NetworkPlot extends D3Plot {
 
 		function ticked() {
 			link
-				.attr( 'x1', function( d ) { return d.source.x; })
-				.attr( 'y1', function( d ) { return d.source.y; })
-				.attr( 'x2', function( d ) { return d.target.x; })
-				.attr( 'y2', function( d ) { return d.target.y; });
+				.attr( 'x1', function x1( d ) { return d.source.x; })
+				.attr( 'y1', function y1( d ) { return d.source.y; })
+				.attr( 'x2', function x2( d ) { return d.target.x; })
+				.attr( 'y2', function y2( d ) { return d.target.y; });
 
 			node
-				.attr( 'cx', function( d ) { return d.x; })
-				.attr( 'cy', function( d ) { return d.y; });
+				.attr( 'cx', function cx( d ) { return d.x; })
+				.attr( 'cy', function cy( d ) { return d.y; });
 		}
 
 		node.append( 'title' )
-			.text( function( d ) {
+			.text( function txt( d ) {
 				return `Number of edges: ${d.nEdges}`;
 			});
 
-		node.on( 'mouseover', function( d ) {
-			link.style( 'stroke-width', function( l ) {
+		node.on( 'mouseover', function onMouseOver( d ) {
+			link.style( 'stroke-width', function strokeWidth( l ) {
 				if ( d === l.source || d === l.target ) {
 					return 4;
 				}
 				return 2;
 			});
-			link.style( 'stroke', function( l ) {
+			link.style( 'stroke', function stroke( l ) {
 				if ( d === l.source || d === l.target ) {
 					return 'red';
 				}
 				return '#999';
 			});
 		});
-		node.on( 'mouseout', function() {
+		node.on( 'mouseout', function onMouseOut() {
 			link.style( 'stroke-width', 2 );
 			link.style( 'stroke', '#999' );
 		});
 	}
 
 	initialize( chart, data, opts ) {
-
 		this.simulation = d3.forceSimulation()
 			.force( 'link', d3.forceLink()
 				.id( ( d ) => { return d.id; })
@@ -141,7 +137,6 @@ class NetworkPlot extends D3Plot {
 
 		this.simulation.alphaTarget( 0.3 ).restart();
 	}
-
 }
 
 
@@ -149,7 +144,12 @@ class NetworkPlot extends D3Plot {
 
 NetworkPlot.defaultProps = {
 	width: 900,
-	height: 600,
+	height: 600
+};
+
+NetworkPlot.propTupes = {
+	width: PropTypes.number,
+	height: PropTypes.number
 };
 
 

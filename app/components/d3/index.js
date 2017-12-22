@@ -9,7 +9,6 @@ import * as d3 from 'd3';
 // MAIN //
 
 class D3Plot extends Component {
-
 	constructor( props ) {
 		super( props );
 		this.opts = this._getOptions( props.options );
@@ -35,13 +34,13 @@ class D3Plot extends Component {
 		);
 	}
 
+	componentWillUnmount() {
+		this.destroy();
+	}
+
 	initialize( chart, data, options ) {}
 	update( chart, data, options ) {}
 	destroy() {}
-
-	componentWillUnmount() {
-		this.destroy.call( this );
-	}
 
 	_getOptions( propOps ) {
 		const options = ( typeof propOps === 'undefined' ) ? {} : propOps;
@@ -68,9 +67,9 @@ class D3Plot extends Component {
 
 		return (
 			<svg
-				className={ classes }
-				width={ width + opts.margin.left + opts.margin.right }
-				height={ height + opts.margin.top + opts.margin.bottom }
+				className={classes}
+				width={width + opts.margin.left + opts.margin.right}
+				height={height + opts.margin.top + opts.margin.bottom}
 				style={{
 					display: 'block',
 					margin: 'auto'
@@ -84,13 +83,19 @@ class D3Plot extends Component {
 // PROPERTY TYPES //
 
 D3Plot.propTypes = {
+	className: PropTypes.string,
 	data: PropTypes.oneOfType([
 		PropTypes.array,
 		PropTypes.object
 	]).isRequired,
-	width: PropTypes.number.isRequired,
 	height: PropTypes.number.isRequired,
-	options: PropTypes.object
+	options: PropTypes.object,
+	width: PropTypes.number.isRequired
+};
+
+D3Plot.defaultProps = {
+	className: '',
+	options: {}
 };
 
 

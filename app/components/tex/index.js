@@ -39,7 +39,11 @@ class TeX extends Component {
 	componentDidMount() {
 		const dom = findDOMNode( this );
 		const self = this;
-		select( dom ).selectAll( '.mord' ).each( function onMord( d ) {
+		select( dom ).
+			selectAll( '.mord' ).
+			each( onMord );
+
+		function onMord( d ) {
 			const $this = select( this );
 			Object.keys( self.props.elems ).forEach( ( prop ) => {
 				let elem = self.props.elems[ prop ];
@@ -85,8 +89,7 @@ class TeX extends Component {
 					});
 				}
 			});
-		});
-
+		}
 	}
 
 	componentWillUnmount() {
@@ -154,7 +157,7 @@ class TeX extends Component {
 						</div> : null
 					}
 					<span
-						ref={ ( span ) => { this.katex = span; }}
+						ref={( span ) => { this.katex = span; }}
 						dangerouslySetInnerHTML={math} // eslint-disable-line react/no-danger
 						aria-hidden={!!math}
 					/>

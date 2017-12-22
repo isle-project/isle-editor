@@ -93,17 +93,17 @@ class FeedbackButtons extends Component {
 		return (
 			<div className="feedbackButtons" style={{ float: 'right' }}>
 				<ButtonGroup style={{ float: 'right' }} vertical={this.props.vertical} >
-					<OverlayTrigger placement="left" overlay={ <Tooltip id="tooltip_confused"><strong> I am confused. </strong></Tooltip>}>
+					<OverlayTrigger placement="left" overlay={<Tooltip id="tooltip_confused"><strong> I am confused. </strong></Tooltip>}>
 						<Button bsSize="small" onClick={this.submitConfused}>
 							<div key="confused" style={{ ...styles.icon, ...styles[ 'confused' ] }} />
 						</Button>
 					</OverlayTrigger>
-					<OverlayTrigger placement="left" overlay={ <Tooltip id="tooltip_understood"><strong> Makes sense. </strong></Tooltip>}>
+					<OverlayTrigger placement="left" overlay={<Tooltip id="tooltip_understood"><strong> Makes sense. </strong></Tooltip>}>
 						<Button bsSize="small" onClick={this.submitUnderstood}>
 							<div key="understood" style={{ ...styles.icon, ...styles[ 'understood' ] }} />
 						</Button>
 					</OverlayTrigger>
-					<OverlayTrigger placement="left" overlay={ <Tooltip id="tooltip_feedback"><strong> I have feedback. </strong></Tooltip>}>
+					<OverlayTrigger placement="left" overlay={<Tooltip id="tooltip_feedback"><strong> I have feedback. </strong></Tooltip>}>
 						<Button bsSize="small" onClick={openModal}>
 							<div key="feedback" style={{ ...styles.icon, ...styles[ 'feedback' ] }} />
 						</Button>

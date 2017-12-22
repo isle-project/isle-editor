@@ -16,7 +16,6 @@ import TeX from 'components/tex';
 // MAIN //
 
 class TProbs extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -30,7 +29,7 @@ class TProbs extends Component {
 	render() {
 		return ( <Panel header={<h3>T Distribution</h3>}>
 			<Tabs defaultActiveKey={1} id="student-tabs">
-				<Tab eventKey={1} title={<TeX raw="P(X \le x_0)"/>}>
+				<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
 					<Dashboard autoUpdate onGenerate={( df, x0 ) => {
 						if ( df === 0 ) {
 							df = 1e-6;
@@ -41,12 +40,12 @@ class TProbs extends Component {
 						for ( let i = 0; i < x.length; i++ ) {
 							data[ i ] = {
 								x: x[ i ],
-								y: dt( x[ i ], df ),
+								y: dt( x[ i ], df )
 							};
 						}
 						this.setState({
 							data1: data,
-							eqn1: "P(X \\le" + roundn( x0, -4 ) + ") = " + roundn( pt( x0, df ), -4 ),
+							eqn1: 'P(X \\le' + roundn( x0, -4 ) + ') = ' + roundn( pt( x0, df ), -4 ),
 							df1: df
 						});
 					}}>
@@ -79,15 +78,15 @@ class TProbs extends Component {
 							}}
 						/>
 						<VictoryLine
-							animate={{ duration: 500, easing: "linear" }}
+							animate={{ duration: 500, easing: 'linear' }}
 							samples={200}
-							y={ ( data ) =>
+							y={( data ) =>
 								dt( data.x, this.state.df1 )
 							}
 						/>
 					</VictoryChart>
 				</Tab>
-				<Tab eventKey={2} title={<TeX raw="P(X > x_0)"/>}>
+				<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />}>
 					<Dashboard autoUpdate onGenerate={( df, x0 ) => {
 						if ( df === 0 ) {
 							df = 1e-6;
@@ -98,12 +97,12 @@ class TProbs extends Component {
 						for ( let i = 0; i < x.length; i++ ) {
 							data[ i ] = {
 								x: x[ i ],
-								y: dt( x[ i ], df ),
+								y: dt( x[ i ], df )
 							};
 						}
 						this.setState({
 							data2: data,
-							eqn2: "P(X >" + roundn( x0, -4 ) + ") = " + roundn( 1.0 - pt( x0, df ), -4 ),
+							eqn2: 'P(X >' + roundn( x0, -4 ) + ') = ' + roundn( 1.0 - pt( x0, df ), -4 ),
 							df2: df
 						});
 					}}>
@@ -136,15 +135,15 @@ class TProbs extends Component {
 							}}
 						/>
 						<VictoryLine
-							animate={{ duration: 500, easing: "linear" }}
+							animate={{ duration: 500, easing: 'linear' }}
 							samples={200}
-							y={ ( data ) =>
+							y={( data ) =>
 								dt( data.x, this.state.df2 )
 							}
 						/>
 					</VictoryChart>
 				</Tab>
-				<Tab eventKey={2} title={<TeX raw="P( x_0 \le X \le x_1)"/>}>
+				<Tab eventKey={2} title={<TeX raw="P( x_0 \le X \le x_1)" />}>
 					<Dashboard autoUpdate onGenerate={( df, x0, x1 ) => {
 						if ( df === 0 ) {
 							df = 1e-6;
@@ -160,12 +159,12 @@ class TProbs extends Component {
 						for ( let i = 0; i < x.length; i++ ) {
 							data[ i ] = {
 								x: x[ i ],
-								y: dt( x[ i ], df ),
+								y: dt( x[ i ], df )
 							};
 						}
 						this.setState({
 							data3: data,
-							eqn3: "P(" + round( x0, -4 ) + "\\le X \\le" + roundn( x1, -4 ) + ") = " + roundn( pt( x1, df ) - pt( x0, df ), -4 ),
+							eqn3: 'P(' + roundn( x0, -4 ) + '\\le X \\le' + roundn( x1, -4 ) + ') = ' + roundn( pt( x1, df ) - pt( x0, df ), -4 ),
 							df3: df
 						});
 					}}>
@@ -205,8 +204,8 @@ class TProbs extends Component {
 						/>
 						<VictoryLine
 							samples={200}
-							animate={{ duration: 500, easing: "linear" }}
-							y={ ( data ) =>
+							animate={{ duration: 500, easing: 'linear' }}
+							y={( data ) =>
 								dt( data.x, this.state.df3 )
 							}
 						/>
@@ -224,7 +223,7 @@ TProbs.propTypes = {
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
-	]),
+	])
 };
 
 

@@ -11,11 +11,11 @@ import isArray from '@stdlib/assert/is-array';
 // VARIABLES //
 
 const COLORS = [
-	"#3366cc", "#dc3912", "#ff9900", "#109618",
-	"#990099",  "#0099c6", "#dd4477", "#66aa00",
-	"#b82e2e", "#316395", "#994499", "#22aa99",
-	"#aaaa11", "#6633cc", "#e67300", "#8b0707",
-	"#651067", "#329262", "#5574a6", "#3b3eac"
+	'#3366cc', '#dc3912', '#ff9900', '#109618',
+	'#990099', '#0099c6', '#dd4477', '#66aa00',
+	'#b82e2e', '#316395', '#994499', '#22aa99',
+	'#aaaa11', '#6633cc', '#e67300', '#8b0707',
+	'#651067', '#329262', '#5574a6', '#3b3eac'
 ];
 
 
@@ -31,20 +31,19 @@ function kernelDensityEstimator( kernel, x ) {
 
 function epanechnikovKernel( bandwidth ) {
 	return ( u ) => {
-		if ( abs( u = u/bandwidth ) <= 1.0 ) {
+		u = u / bandwidth;
+		if ( abs( u ) <= 1.0 ) {
 			return 0.75 * ( 1.0 - u * u ) / bandwidth;
-		} else {
-			return 0.0;
-		};
+		}
+		return 0.0;
 	};
 }
+
 
 // MAIN //
 
 class DensityPlot extends D3Plot {
-
 	constructor( props ) {
-
 		super( props );
 
 		let width = props.width - this.opts.margin.left - this.opts.margin.right;
@@ -68,7 +67,6 @@ class DensityPlot extends D3Plot {
 	}
 
 	initialize( chart, data, opts ) {
-
 		let width = this.props.width - opts.margin.left - opts.margin.right;
 		let height = this.props.height - opts.margin.top - opts.margin.bottom;
 		let xAxis = d3.axisBottom( this.state.x );
@@ -88,9 +86,9 @@ class DensityPlot extends D3Plot {
 
 		// Add vertical line:
 		let vline = this.props.vline;
-		if ( vline !== undefined ) {
+		if ( vline !== void 0 ) {
 			chart.append( 'line' )
-				.attr( 'y1' , this.state.y( 0.0 ) )
+				.attr( 'y1', this.state.y( 0.0 ) )
 				.attr( 'y2', this.state.y( this.props.ymax ) )
 				.attr( 'x1', this.state.x( vline.value ) )
 				.attr( 'x2', this.state.x( vline.value ) )
@@ -98,7 +96,7 @@ class DensityPlot extends D3Plot {
 				.attr( 'stroke-width', '2' );
 
 			chart.append( 'text' )
-				.attr( 'x' , this.state.x( vline.value ) * 1.1 )
+				.attr( 'x', this.state.x( vline.value ) * 1.1 )
 				.attr( 'y', this.state.y( this.props.ymax / 1.2 ) )
 				.attr( 'y', '.2em' )
 				.text( vline.label );
@@ -180,12 +178,12 @@ class DensityPlot extends D3Plot {
 DensityPlot.propTypes = {
 	bandwidth: PropTypes.number,
 	histogram: PropTypes.bool,
-	xlab: PropTypes.string,
-	ymax: PropTypes.number,
-	xmin: PropTypes.number,
-	xmax: PropTypes.number,
 	nBins: PropTypes.number,
-	vline: PropTypes.object
+	vline: PropTypes.object,
+	xlab: PropTypes.string,
+	xmax: PropTypes.number,
+	xmin: PropTypes.number,
+	ymax: PropTypes.number
 };
 
 
@@ -193,16 +191,17 @@ DensityPlot.propTypes = {
 
 DensityPlot.defaultProps = {
 	bandwidth: 4,
-	histogram: true,
-	xlab: 'value',
-	ymax: 0.15,
-	xmin: 0.0,
-	xmax: 1.0,
-	nBins: 8,
-	width: 600,
 	height: 300,
-	vline: undefined
+	histogram: true,
+	nBins: 8,
+	vline: void 0,
+	width: 600,
+	xlab: 'value',
+	xmax: 1.0,
+	xmin: 0.0,
+	ymax: 0.15
 };
+
 
 // EXPORTS //
 
