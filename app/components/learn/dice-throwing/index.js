@@ -88,7 +88,7 @@ class DiceThrowing extends Component {
 							});
 						}}
 					/> ) )}
-					<Button onClick={ () => {
+					<Button onClick={() => {
 						this.setState({
 							tally: this.state.tally.map( x => 0 )
 						});
