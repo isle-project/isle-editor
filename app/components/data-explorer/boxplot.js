@@ -6,6 +6,7 @@ import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import isArray from '@stdlib/assert/is-array';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 
 
 // FUNCTIONS //
@@ -19,7 +20,9 @@ function by( arr, factor, fun ) {
 		ret[ factor[ i ] ].push( arr[ i ]);
 	}
 	for ( let key in ret ) {
-		ret[ key ] = fun( ret[ key ]);
+		if ( hasOwnProp( ret, key ) ) {
+			ret[ key ] = fun( ret[ key ]);
+		}
 	}
 	return ret;
 } // end FUNCTION by()
@@ -39,12 +42,14 @@ export function generateBoxplotConfig({ data, variable, group }) {
 		});
 		traces = [];
 		for ( let key in freqs ) {
-			let val = freqs[ key ];
-			traces.push({
-				y: val,
-				name: key,
-				type: 'box'
-			});
+			if ( hasOwnProp( freqs, key ) ) {
+				let val = freqs[ key ];
+				traces.push({
+					y: val,
+					name: key,
+					type: 'box'
+				});
+			}
 		}
 	}
 	return {
@@ -59,7 +64,6 @@ export function generateBoxplotConfig({ data, variable, group }) {
 // MAIN //
 
 class Boxplot extends Component {
-
 	constructor( props ) {
 		super( props );
 	}
@@ -69,7 +73,7 @@ class Boxplot extends Component {
 		const output = {
 			variable: variable,
 			type: 'Chart',
-			value:  <Plotly fit data={config.data} layout={config.layout} onShare={() => {
+			value: <Plotly fit data={config.data} layout={config.layout} onShare={() => {
 				this.props.session.addNotification({
 					title: 'Plot shared.',
 					message: 'You have successfully shared your plot.',
@@ -79,7 +83,7 @@ class Boxplot extends Component {
 				this.props.logAction( 'DATA_EXPLORER_SHARE:BOXPLOT', {
 					variable, group
 				});
-			}}/>
+			}} />
 		};
 		this.props.logAction( 'DATA_EXPLORER:BOXPLOT', {
 			variable,
@@ -116,7 +120,10 @@ class Boxplot extends Component {
 
 Boxplot.defaultProps = {
 	defaultValue: null,
-	onPlotDone() {}
+	groupingVariables: null,
+	logAction() {},
+	onCreated() {},
+	session: {}
 };
 
 
@@ -124,7 +131,12 @@ Boxplot.defaultProps = {
 
 Boxplot.propTypes = {
 	data: PropTypes.object.isRequired,
-	onCreated: PropTypes.func.isRequired
+	defaultValue: PropTypes.string,
+	groupingVariables: PropTypes.array,
+	logAction: PropTypes.func,
+	onCreated: PropTypes.func,
+	session: PropTypes.object,
+	variables: PropTypes.array.isRequired
 };
 
 
