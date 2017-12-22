@@ -13,7 +13,6 @@ class AcousticCSS extends Component {
 		super( props );
 
 		this.state = {
-			text: '',
 			class_name: 'css_logo'
 		};
 		this.click.bind( this );
@@ -35,22 +34,15 @@ class AcousticCSS extends Component {
 	}
 
 	click() {
-		this.refs.recognition.trigger();
-		if ( this.refs.recognition.state.isRecording === false ){
+		this.recognition.trigger();
+		if ( this.recognition.state.isRecording === false ){
 			// something should happen here
 		}
 	}
 
-
-	change( event ) {
-		this.setState({
-			text: event.target.value
-		});
-	}
-
 	setID( value ) {
 		// This should be used to check that there is just one word
-		var list = value.split( ' ' );
+		// var list = value.split( ' ' );
 		// functionality still missing
 
 		this.props.targetID = value;
@@ -156,7 +148,7 @@ class AcousticCSS extends Component {
 		return (
 			<div>
 				<SpeechRecognition
-					ref='recognition'
+					ref={( div ) => { this.recognition = div; }}
 					name={this.props.name}
 					showText
 					language={this.props.language}
@@ -197,10 +189,7 @@ AcousticCSS.defaultProps = {
 	targetID: '',
 	speech: false,
 	name: 'CSS',
-	onFinalText() {},
-	onName() {},
-	autoplay: false,
-	read: false
+	autoplay: false
 };
 
 
@@ -213,9 +202,6 @@ AcousticCSS.propTypes = {
 	language: PropTypes.string,
 	logo: PropTypes.bool,
 	name: PropTypes.string,
-	onFinalText: PropTypes.func,
-	onName: PropTypes.func,
-	read: PropTypes.bool,
 	speech: PropTypes.bool,
 	targetID: PropTypes.string
 };
