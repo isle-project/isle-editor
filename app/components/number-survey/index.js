@@ -22,7 +22,9 @@ const debug = require( 'debug' )( 'isle-editor' );
 
 // FUNCTIONS //
 
-function bidx( bmin, h, v ) { return round( abs( bmin - v ) / h ); };
+function bidx( bmin, h, v ) {
+	return round( abs( bmin - v ) / h );
+}
 
 function getBins( data ) {
 	var h = 2 * iqr( data ) * pow( data.length, -1/3 );
@@ -30,13 +32,15 @@ function getBins( data ) {
 	var bmin = min( data );
 	var nBins = round( ( bmax - bmin ) / h ) + 1;
 	var out = new Array( nBins );
-	inmap( out, x => { return { 'y': 0, 'y0': 0 }; });
+	inmap( out, x => {
+		return { 'y': 0, 'y0': 0 };
+	});
 	for ( let i = 0; i < data.length; i++ ) {
 		let idx = bidx( bmin, h, data[ i ]);
 		out[ idx ][ 'y' ] += 1;
 	}
 	for ( let i = 0; i < nBins; i++ ) {
-		let bc = bmin +  ( h*i );
+		let bc = bmin + ( h*i );
 		out[ i ][ 'x' ] = bc;
 	}
 	return out;
@@ -46,7 +50,6 @@ function getBins( data ) {
 // MAIN //
 
 class NumberSurvey extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -123,7 +126,7 @@ class NumberSurvey extends Component {
 								block fill
 								onClick={this.submitQuestion}
 								disabled={disabled}
-							>{ disabled ? "Submitted" : "Submit"}</Button>
+							>{ disabled ? 'Submitted' : 'Submit'}</Button>
 						</Panel>
 					</Col>
 					<Col md={6}>
@@ -168,14 +171,14 @@ NumberSurvey.defaultProps = {
 // PROPERTY TYPES //
 
 NumberSurvey.propTypes = {
-	onSubmit: PropTypes.func,
 	allowMultipleAnswers: PropTypes.bool,
-	question: PropTypes.string,
 	anonymous: PropTypes.bool,
+	onSubmit: PropTypes.func,
+	question: PropTypes.string,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
-	]),
+	])
 };
 
 NumberSurvey.contextTypes = {
