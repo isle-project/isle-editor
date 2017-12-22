@@ -6,10 +6,11 @@ import PropTypes from 'prop-types';
 import { sample } from '@stdlib/math/random';
 import dnorm from '@stdlib/math/base/dists/normal/pdf';
 import { copy, inmap } from '@stdlib/utils';
-import { abs, pow, round, roundn } from '@stdlib/math/base/special';
+import { abs, floor, pow, round, roundn } from '@stdlib/math/base/special';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
-import { VictoryArea, VictoryChart, VictoryAxis } from 'victory';
+import { VictoryArea, VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 import { NumberInput, SelectInput } from 'components/input';
 import Plotly from 'components/plotly';
 import TeX from 'components/tex';
@@ -33,8 +34,8 @@ var isBinaryArray = ( arr, guess = true ) => {
 	const cache = {};
 	let counter = 0;
 	for ( let j = 0; j < arr.length; j++ ) {
-		if ( !cache.hasOwnProperty( arr[ j ]) ) {
-			cache[ arr[ j ]  ] = true;
+		if ( !hasOwnProp( cache, arr[ j ]) ) {
+			cache[ arr[ j ] ] = true;
 			counter += 1;
 		}
 		if ( counter > 2 ) {
@@ -47,7 +48,9 @@ var isBinaryArray = ( arr, guess = true ) => {
 	return counter === 2 ? true : false;
 };
 
-function bidx( bmin, h, v ) { return round( abs( bmin - v ) / h ); };
+function bidx( bmin, h, v ) {
+	return round( abs( bmin - v ) / h );
+}
 
 function getBins( data ) {
 	var h = 2 * iqr( data ) * pow( data.length, -1/3 );
@@ -55,7 +58,9 @@ function getBins( data ) {
 	var bmin = min( data );
 	var nBins = round( ( bmax - bmin ) / h ) + 1;
 	var out = new Array( nBins );
-	inmap( out, x => { return { 'y': 0 }; });
+	inmap( out, x => {
+		return { 'y': 0 };
+	});
 	for ( let i = 0; i < data.length; i++ ) {
 		let idx = bidx( bmin, h, data[ i ]);
 		out[ idx ][ 'y' ] += 1;
@@ -68,10 +73,10 @@ function getBins( data ) {
 	return out;
 }
 
+
 // MAIN //
 
 class SampleCLT extends Component {
-
 	constructor( props ) {
 		super( props );
 		this.state = {
@@ -89,12 +94,6 @@ class SampleCLT extends Component {
 			rightProb: 1,
 			cutoffPop: 0,
 			cutoff: 0
-		};
-
-		this.handleSelect = ( key ) => {
-			 this.setState({
-				 activeDistribution: key
-			 });
 		};
 	}
 
@@ -115,8 +114,10 @@ class SampleCLT extends Component {
 						newLayout[ j ] = {
 							i: String( j ),
 							x: j*4 % 12,
-							y: Math.floor( j / 3 ) * 3,
-							w: 4, h: 3, static: true
+							y: floor( j / 3 ) * 3,
+							w: 4,
+							h: 3,
+							static: true
 						};
 						newEnlarged[ j ] = false;
 					}
@@ -124,16 +125,20 @@ class SampleCLT extends Component {
 						newLayout[ j ] = {
 							i: String( j ),
 							x: 0,
-							y: Math.floor( j / 3 ) * 3,
-							w: 12, h: 9, static: true
+							y: floor( j / 3 ) * 3,
+							w: 12,
+							h: 9,
+							static: true
 						};
 						newEnlarged[ i ] = true;
 					} else {
 						newLayout[ j ] = {
 							i: String( j ),
 							x: ( ( j-i )*4 ) % 12,
-							y: Math.floor( j / 3 ) * 3 + 9,
-							w: 4, h: 3, static: true
+							y: floor( j / 3 ) * 3 + 9,
+							w: 4,
+							h: 3,
+							static: true
 						};
 						newEnlarged[ j ] = false;
 					}
@@ -143,8 +148,10 @@ class SampleCLT extends Component {
 					newLayout[ j ] = {
 						i: String( j ),
 						x: j*4 % 12,
-						y: Math.floor( j / 3 ) * 3,
-						w: 4, h: 3, static: true
+						y: floor( j / 3 ) * 3,
+						w: 4,
+						h: 3,
+						static: true
 					};
 					newEnlarged[ j ] = false;
 				}
@@ -209,8 +216,8 @@ class SampleCLT extends Component {
 							tickLabels: {
 								fontSize: 15, padding: 5
 							}
-						}}/>
-						<VictoryBar data={data} style={{ 'bar': { 'data': { 'padding': -10 } } }}/>
+						}} />
+						<VictoryBar data={data} style={{ 'bar': { 'data': { 'padding': -10 } } }} />
 					</VictoryChart>
 				</div>;
 				plots.push( plot );
@@ -220,7 +227,7 @@ class SampleCLT extends Component {
 		}
 		const layout = plots.map( ( x, i ) => {
 			return {
-				i: String( i ), x: i*4 % 12, y: Math.floor( i / 3 ) * 3, w: 4, h: 3, static: true
+				i: String( i ), x: i*4 % 12, y: floor( i / 3 ) * 3, w: 4, h: 3, static: true
 			};
 		});
 		this.setState({
@@ -234,7 +241,7 @@ class SampleCLT extends Component {
 	}
 
 	renderHistogram( values ) {
-		return <VictoryChart domainPadding={20} padding={60} >
+		return ( <VictoryChart domainPadding={20} padding={60} >
 			<VictoryAxis style={{
 				axisLabel: {
 					fontSize: 22
@@ -242,7 +249,8 @@ class SampleCLT extends Component {
 				tickLabels: {
 					fontSize: 15, padding: 5
 				}
-			}} />
+			}}
+			/>
 			<VictoryAxis dependentAxis style={{
 				axisLabel: {
 					fontSize: 22
@@ -250,12 +258,13 @@ class SampleCLT extends Component {
 				tickLabels: {
 					fontSize: 15, padding: 5
 				}
-			}}/>
+			}}
+			/>
 			<VictoryArea
 				data={getBins( values )}
 				interpolation="step"
 			/>
-		</VictoryChart>;
+		</VictoryChart> );
 	}
 
 	render() {
@@ -271,8 +280,11 @@ class SampleCLT extends Component {
 					<Row>
 						<Panel>
 							<Col md={6}>
-								<SelectInput legend="Select a variable" options={this.props.variables} onChange={ ( variable ) => {
-									const values = this.props.data[ variable ].filter( x => x !== null && x !== '' );
+								<SelectInput legend="Select a variable" options={this.props.variables} onChange={( variable ) => {
+									let values = this.props.data[ variable ];
+									values = values.filter(
+										x => x !== null && x !== ''
+									);
 									let type = 'none';
 									let trueMean;
 									let trueStdev;
@@ -314,7 +326,7 @@ class SampleCLT extends Component {
 										<NumberInput
 											legend="Sample Size"
 											step={1} min={1} defaultValue={10} max={500}
-											onChange={ ( n ) => this.setState({ 'n': n }) }
+											onChange={( n ) => this.setState({ 'n': n })}
 										/>
 										<ButtonGroup>
 											<Button onClick={() => {
@@ -370,7 +382,7 @@ class SampleCLT extends Component {
 									</div>
 								}
 								<Panel>
-									<NumberInput step="any" legend={<span>Evaluate probabilities for <TeX raw="X" /></span>} onChange={ ( value ) => {
+									<NumberInput step="any" legend={<span>Evaluate probabilities for <TeX raw="X" /></span>} onChange={( value ) => {
 										let leftProb = 0;
 										const values = this.props.data[ this.state.variable ].filter( x => x !== null && x !== '' );
 										for ( let i = 0; i < values.length; i++ ) {
@@ -385,7 +397,7 @@ class SampleCLT extends Component {
 											rightProb,
 											cutoffPop: value
 										});
-									}}/>
+									}} />
 									<TeX raw={`P( X < ${this.state.cutoffPop} ) = ${this.state.leftProb.toFixed( 3 )}`} displayMode />
 									<TeX raw={`P( X \\ge ${this.state.cutoffPop} ) = ${this.state.rightProb.toFixed( 3 )}`} displayMode />
 								</Panel>
@@ -403,8 +415,10 @@ class SampleCLT extends Component {
 														histnorm: 'probability density'
 													}
 												]}
-												layout={{ width: 400, height: 250, shapes: [
-													{
+												layout={{
+													width: 400,
+													height: 250,
+													shapes: [{
 														type: 'line',
 														x0: this.state.avg_xbars,
 														y0: 0.0,
@@ -415,7 +429,8 @@ class SampleCLT extends Component {
 															width: 3
 														}
 													}
-												]}}
+													]}
+												}
 												removeButtons
 												toggleFullscreen={false}
 											/> :
@@ -436,7 +451,7 @@ class SampleCLT extends Component {
 										}
 									</Panel>
 									<Panel>
-										<NumberInput step="any" legend={<span>Evaluate probabilities for <TeX raw="\bar X" /></span>} onChange={ ( value ) => {
+										<NumberInput step="any" legend={<span>Evaluate probabilities for <TeX raw="\bar X" /></span>} onChange={( value ) => {
 											let leftXbarProb = 0;
 											let len = this.state.xbars.length;
 											for ( let i = 0; i < len; i++ ) {
@@ -451,7 +466,7 @@ class SampleCLT extends Component {
 												rightXbarProb,
 												cutoff: value
 											});
-										}}/>
+										}} />
 										<TeX raw={`\\hat P(\\bar X < ${this.state.cutoff} ) = ${this.state.leftXbarProb.toFixed( 3 )}`} displayMode />
 										<TeX raw={`\\hat P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightXbarProb.toFixed( 3 )}`} displayMode />
 									</Panel>
@@ -473,6 +488,10 @@ class SampleCLT extends Component {
 
 SampleCLT.propTypes = {
 	populationProbabilities: PropTypes.bool
+};
+
+SampleCLT.defaultProps = {
+	populationProbabilities: null
 };
 
 

@@ -53,7 +53,9 @@ function drawUniform( n, a, b ) {
 	return vals;
 }
 
-function bidx( bmin, h, v ) { return round( abs( bmin - v ) / h ); };
+function bidx( bmin, h, v ) {
+	return round( abs( bmin - v ) / h );
+}
 
 function getBins( data ) {
 	var h = 2 * iqr( data ) * pow( data.length, -1/3 );
@@ -61,13 +63,15 @@ function getBins( data ) {
 	var bmin = min( data );
 	var nBins = round( ( bmax - bmin ) / h ) + 1;
 	var out = new Array( nBins );
-	inmap( out, x => { return { 'y': 0, 'y0': 0 }; });
+	inmap( out, x => {
+		return { 'y': 0, 'y0': 0 };
+	});
 	for ( let i = 0; i < data.length; i++ ) {
 		let idx = bidx( bmin, h, data[ i ]);
 		out[ idx ][ 'y' ] += 1;
 	}
 	for ( let i = 0; i < nBins; i++ ) {
-		let bc = bmin +  ( h*i );
+		let bc = bmin + ( h*i );
 		out[ i ][ 'x' ] = bc;
 	}
 	return out;
@@ -77,7 +81,6 @@ function getBins( data ) {
 // MAIN //
 
 class ContinuousCLT extends Component {
-
 	constructor( props ) {
 		super( props );
 		this.state = {
@@ -89,8 +92,8 @@ class ContinuousCLT extends Component {
 			a: 0,
 			b: 1,
 			xbars: [],
-			avg_xbars: null,
-			stdev_xbars: null,
+			avgXBars: null,
+			stdevXBars: null,
 			layout: [],
 			enlarged: [],
 			activeDistribution: 1,
@@ -104,6 +107,7 @@ class ContinuousCLT extends Component {
 		this.handleSelect = ( key ) => {
 			let formula;
 			switch ( key ) {
+			default:
 			case 1:
 				formula = <TeX raw={`\\text{Uniform}(${this.state.a},${this.state.b})`} />;
 				break;
@@ -114,7 +118,6 @@ class ContinuousCLT extends Component {
 				formula = <TeX raw={`\\text{Normal}(${this.state.mu},${this.state.sigma})`} />;
 				break;
 			}
-
 			this.setState({
 				activeDistribution: key,
 				distFormula: formula
@@ -126,8 +129,8 @@ class ContinuousCLT extends Component {
 		this.setState({
 			histogram: [],
 			xbars: [],
-			avg_xbars: null,
-			stdev_xbars: null
+			avgXBars: null,
+			stdevXBars: null
 		});
 	}
 
@@ -142,7 +145,9 @@ class ContinuousCLT extends Component {
 							i: String( j ),
 							x: j*4 % 12,
 							y: floor( j / 3 ) * 3,
-							w: 4, h: 3, static: true
+							w: 4,
+							h: 3,
+							static: true
 						};
 						newEnlarged[ j ] = false;
 					}
@@ -151,7 +156,9 @@ class ContinuousCLT extends Component {
 							i: String( j ),
 							x: 0,
 							y: floor( j / 3 ) * 3,
-							w: 12, h: 9, static: true
+							w: 12,
+							h: 9,
+							static: true
 						};
 						newEnlarged[ i ] = true;
 					} else {
@@ -159,7 +166,9 @@ class ContinuousCLT extends Component {
 							i: String( j ),
 							x: ( ( j-i )*4 ) % 12,
 							y: floor( j / 3 ) * 3 + 9,
-							w: 4, h: 3, static: true
+							w: 4,
+							h: 3,
+							static: true
 						};
 						newEnlarged[ j ] = false;
 					}
@@ -170,7 +179,9 @@ class ContinuousCLT extends Component {
 						i: String( j ),
 						x: j*4 % 12,
 						y: floor( j / 3 ) * 3,
-						w: 4, h: 3, static: true
+						w: 4,
+						h: 3,
+						static: true
 					};
 					newEnlarged[ j ] = false;
 				}
@@ -190,6 +201,7 @@ class ContinuousCLT extends Component {
 		for ( let j = 0; j < times; j++ ) {
 			let vals;
 			switch ( this.state.activeDistribution ) {
+			default:
 			case 1:
 				vals = drawUniform( this.state.n, this.state.a, this.state.b );
 				break;
@@ -219,7 +231,7 @@ class ContinuousCLT extends Component {
 						tickLabels: {
 							fontSize: 15, padding: 5
 						}
-					}}/>
+					}} />
 					<VictoryArea
 						data={getBins( vals )}
 						interpolation="step"
@@ -232,33 +244,37 @@ class ContinuousCLT extends Component {
 		}
 		const layout = histogram.map( ( x, i ) => {
 			return {
-				i: String( i ), x: i*4 % 12, y: floor( i / 3 ) * 3, w: 4, h: 3, static: true
+				i: String( i ),
+				x: i*4 % 12,
+				y: floor( i / 3 ) * 3,
+				w: 4,
+				h: 3,
+				static: true
 			};
 		});
 
-		const avg_xbars = mean( xbars );
-		const stdev_xbars = stdev( xbars );
+		const avgXBars = mean( xbars );
+		const stdevXBars = stdev( xbars );
 		const densityX = linspace( min( xbars ), max( xbars ), 512 );
-		const densityY = densityX.map( x => dnorm( x, avg_xbars, stdev_xbars ) );
+		const densityY = densityX.map( x => dnorm( x, avgXBars, stdevXBars ) );
 
 		this.setState({
 			histogram,
 			layout,
 			xbars,
 			enlarged,
-			avg_xbars,
-			stdev_xbars,
+			avgXBars,
+			stdevXBars,
 			densityX,
 			densityY
 		});
 	}
 
 	render() {
-
 		const exponential = <div>
 			<NumberInput legend="Rate parameter"
 				max={100} min={0.01} step={1} defaultValue={this.state.lambda}
-				onChange={ ( lambda ) => {
+				onChange={( lambda ) => {
 					let formula = <TeX raw={`\\text{Exponential}(${lambda})`} />;
 					this.setState({ 'lambda': lambda, 'distFormula': formula });
 				}}
@@ -268,16 +284,22 @@ class ContinuousCLT extends Component {
 		const uniform = <div>
 			<NumberInput
 				legend="Minimum"
-				step={0.01} min={-500} defaultValue={this.state.a} max={this.state.b}
-				onChange={ ( a ) => {
+				step={0.01}
+				min={-500}
+				defaultValue={this.state.a}
+				max={this.state.b}
+				onChange={( a ) => {
 					let formula = <TeX raw={`\\text{Uniform}(${a},${this.state.b})`} />;
 					this.setState({ 'a': a, 'distFormula': formula });
 				}}
 			/>
 			<NumberInput
 				legend="Maximum"
-				step={0.01} min={this.state.a} defaultValue={1} max={500} defaultValue={this.state.b}
-				onChange={ ( b ) => {
+				step={0.01}
+				min={this.state.a}
+				max={500}
+				defaultValue={this.state.b}
+				onChange={( b ) => {
 					let formula = <TeX raw={`\\text{Uniform}(${this.state.a},${b})`} />;
 					this.setState({ 'b': b, 'distFormula': formula });
 				}}
@@ -288,7 +310,7 @@ class ContinuousCLT extends Component {
 			<NumberInput
 				legend={<span>Mean <TeX raw="\mu" /></span>}
 				step={0.01} min={-100} defaultValue={this.state.mu} max={100}
-				onChange={ ( mu ) => {
+				onChange={( mu ) => {
 					let formula = <TeX raw={`\\text{Normal}(${mu},${this.state.sigma})`} />;
 					this.setState({ 'mu': mu, 'distFormula': formula });
 				}}
@@ -296,7 +318,7 @@ class ContinuousCLT extends Component {
 			<NumberInput
 				legend={<span> Standard deviation <TeX raw="\sigma" /></span>}
 				step={0.01} min={0.01} defaultValue={this.state.sigma} max={500}
-				onChange={ ( sigma ) => {
+				onChange={( sigma ) => {
 					let formula = <TeX raw={`\\text{Normal}(${this.state.mu},${sigma})`} />;
 					this.setState({ 'sigma': sigma, 'distFormula': formula });
 				}}
@@ -305,6 +327,7 @@ class ContinuousCLT extends Component {
 
 		let populationParams;
 		switch ( this.state.activeDistribution ) {
+		default:
 		case 1:
 			populationParams = <div>
 				<p><label>Population mean: </label> <TeX raw={`\\tfrac{1}{2} (a + b) = ${( 0.5*( this.state.b + this.state.a ) ).toFixed( 3 )}`} /></p>
@@ -324,7 +347,6 @@ class ContinuousCLT extends Component {
 			</div>;
 			break;
 		}
-
 		const plotlyData = [
 			{
 				x: this.state.xbars,
@@ -359,7 +381,9 @@ class ContinuousCLT extends Component {
 								<NumberInput
 									legend="Sample Size"
 									step={1} min={1} defaultValue={10} max={500}
-									onChange={ ( n ) => this.setState({ 'n': n }) }
+									onChange={( n ) => {
+										this.setState({ 'n': n });
+									}}
 								/>
 								<ButtonGroup>
 									<Button onClick={() => {
@@ -408,10 +432,10 @@ class ContinuousCLT extends Component {
 										shapes: [
 											{
 												type: 'line',
-												x0: this.state.avg_xbars,
+												x0: this.state.avgXBars,
 												y0: 0,
-												x1: this.state.avg_xbars,
-												y1: dnorm( this.state.avg_xbars, this.state.avg_xbars, this.state.stdev_xbars ),
+												x1: this.state.avgXBars,
+												y1: dnorm( this.state.avgXBars, this.state.avgXBars, this.state.stdevXBars ),
 												line: {
 													color: 'red',
 													width: 3
@@ -421,41 +445,45 @@ class ContinuousCLT extends Component {
 									}} removeButtons toggleFullscreen={false} /> :
 									<span>Please draw at least two samples.</span>
 								}
-								<CheckboxInput legend="Overlay normal density" onChange={ ( value ) => {
+								<CheckboxInput legend="Overlay normal density" onChange={( value ) => {
 									this.setState({
 										overlayNormal: value
 									});
 								}} />
-								{ this.state.avg_xbars ?
+								{ this.state.avgXBars ?
 									<p>
 										<label> Mean of <TeX raw="\bar x" />'s: </label>
-										&nbsp;{this.state.avg_xbars.toFixed( 3 )} (shown as the red line)
+										&nbsp;{this.state.avgXBars.toFixed( 3 )} (shown as the red line)
 									</p> : null
 								}
-								{ this.state.stdev_xbars ?
+								{ this.state.stdevXBars ?
 									<p>
 										<label>Standard deviation of <TeX raw="\bar x" />'s: </label>
-										&nbsp;{this.state.stdev_xbars.toFixed( 3 )}
+										&nbsp;{this.state.stdevXBars.toFixed( 3 )}
 									</p> : null
 								}
 							</Panel>
 							<Panel>
-								<NumberInput step="any" legend={<TeX raw="x" />}  onChange={ ( value ) => {
-									let leftProb = 0;
-									let len = this.state.xbars.length;
-									for ( let i = 0; i < len; i++ ) {
-										if ( this.state.xbars[ i ] < value ) {
-											leftProb += 1;
+								<NumberInput
+									step="any"
+									legend={<TeX raw="x" />}
+									onChange={( value ) => {
+										let leftProb = 0;
+										let len = this.state.xbars.length;
+										for ( let i = 0; i < len; i++ ) {
+											if ( this.state.xbars[ i ] < value ) {
+												leftProb += 1;
+											}
 										}
-									}
-									leftProb /= len;
-									let rightProb = 1.0 - leftProb;
-									this.setState({
-										leftProb,
-										rightProb,
-										cutoff: value
-									});
-								}}/>
+										leftProb /= len;
+										let rightProb = 1.0 - leftProb;
+										this.setState({
+											leftProb,
+											rightProb,
+											cutoff: value
+										});
+									}}
+								/>
 								<TeX raw={`\\hat P(\\bar X < ${this.state.cutoff} ) = ${this.state.leftProb.toFixed( 3 )}`} displayMode />
 								<TeX raw={`\\hat P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightProb.toFixed( 3 )}`} displayMode
 								/>

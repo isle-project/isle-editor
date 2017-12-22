@@ -4,14 +4,17 @@ import React, { Component } from 'react';
 import { Button, ButtonGroup, Grid, Col, Panel, Row } from 'react-bootstrap';
 import { binomial as rBinomial } from '@stdlib/math/base/random';
 import { copy } from '@stdlib/utils';
+import dnorm from '@stdlib/math/base/dists/normal/pdf';
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import stdev from 'compute-stdev';
 import mean from 'compute-mean';
-import { sqrt } from '@stdlib/math/base/special';
+import min from 'compute-min';
+import max from 'compute-max';
+import linspace from '@stdlib/math/utils/linspace';
+import { floor, sqrt } from '@stdlib/math/base/special';
 import NumberInput from 'components/input/number';
 import CheckboxInput from 'components/input/checkbox';
-import RPlot from 'components/r/plot';
 import Plotly from 'components/plotly';
 import TeX from 'components/tex';
 import 'react-grid-layout/css/styles.css';
@@ -26,7 +29,6 @@ const GridLayout = WidthProvider( ReactGridLayout );
 // MAIN //
 
 class DiscreteCLT extends Component {
-
 	constructor( props ) {
 		super( props );
 		this.state = {
@@ -57,8 +59,10 @@ class DiscreteCLT extends Component {
 						newLayout[ j ] = {
 							i: String( j ),
 							x: j*4 % 12,
-							y: Math.floor( j / 3 ) * 3,
-							w: 4, h: 3, static: true
+							y: floor( j / 3 ) * 3,
+							w: 4,
+							h: 3,
+							static: true
 						};
 						newEnlarged[ j ] = false;
 					}
@@ -66,16 +70,20 @@ class DiscreteCLT extends Component {
 						newLayout[ j ] = {
 							i: String( j ),
 							x: 0,
-							y: Math.floor( j / 3 ) * 3,
-							w: 12, h: 9, static: true
+							y: floor( j / 3 ) * 3,
+							w: 12,
+							h: 9,
+							static: true
 						};
 						newEnlarged[ i ] = true;
 					} else {
 						newLayout[ j ] = {
 							i: String( j ),
 							x: ( ( j-i )*4 ) % 12,
-							y: Math.floor( j / 3 ) * 3 + 9,
-							w: 4, h: 3, static: true
+							y: floor( j / 3 ) * 3 + 9,
+							w: 4,
+							h: 3,
+							static: true
 						};
 						newEnlarged[ j ] = false;
 					}
@@ -85,8 +93,10 @@ class DiscreteCLT extends Component {
 					newLayout[ j ] = {
 						i: String( j ),
 						x: j*4 % 12,
-						y: Math.floor( j / 3 ) * 3,
-						w: 4, h: 3, static: true
+						y: floor( j / 3 ) * 3,
+						w: 4,
+						h: 3,
+						static: true
 					};
 					newEnlarged[ j ] = false;
 				}
@@ -107,7 +117,7 @@ class DiscreteCLT extends Component {
 			const { n, p } = this.state;
 			const data = [];
 			const successes = rBinomial( n, p );
-			const failures =  n - successes;
+			const failures = n - successes;
 			data.push({ x: 'failures', y: failures });
 			data.push({ x: 'successes', y: successes });
 
@@ -130,8 +140,8 @@ class DiscreteCLT extends Component {
 						tickLabels: {
 							fontSize: 15, padding: 5
 						}
-					}}/>
-					<VictoryBar data={data} style={{ 'bar': { 'data': { 'padding': -10 } } }}/>
+					}} />
+					<VictoryBar data={data} style={{ 'bar': { 'data': { 'padding': -10 } } }} />
 				</VictoryChart>
 			</div>;
 			barplots.push( plot );
@@ -140,31 +150,45 @@ class DiscreteCLT extends Component {
 		}
 		const layout = barplots.map( ( x, i ) => {
 			return {
-				i: String( i ), x: i*4 % 12, y: Math.floor( i / 3 ) * 3, w: 4, h: 3, static: true
+				i: String( i ),
+				x: i*4 % 12,
+				y: floor( i / 3 ) * 3,
+				w: 4,
+				h: 3,
+				static: true
 			};
 		});
+		const avgPHats = mean( phats );
+		const stdevPHats = stdev( phats );
+		const densityX = linspace( min( phats ), max( phats ), 512 );
+		const densityY = densityX.map( x => dnorm( x, avgPHats, stdevPHats ) );
 		this.setState({
 			barplots,
 			layout,
 			phats,
 			enlarged,
-			avg_phats: mean( phats ),
-			stdev_phats: stdev( phats )
+			avgPHats,
+			stdevPHats,
+			densityX,
+			densityY
 		});
 	}
 
 	render() {
-
-		let rcode = `
-			phat = c(${this.state.phats.join( ',' )})
-			truehist( phat, cex.lab=2.0, cex.main=2.0, cex.axis=2.0, xlim=c(0,1))
-			abline( v=${this.state.avg_phats}, col="blue", lwd=3 )
-		`;
+		const plotlyData = [
+			{
+				x: this.state.phats,
+				type: 'histogram',
+				histnorm: 'probability density'
+			}
+		];
 		if ( this.state.overlayNormal ) {
-			rcode += `r <- range(phat)
-				x <- seq( from = r[1], to = r[2], by = 0.01 )
-				d <- dnorm( x, mean = mean(phat), sd = sd(phat) )
-				lines( x, d, col="red")`;
+			plotlyData.push({
+				x: this.state.densityX,
+				y: this.state.densityY,
+				type: 'lines',
+				name: 'density'
+			});
 		}
 
 		return (
@@ -177,11 +201,15 @@ class DiscreteCLT extends Component {
 								<NumberInput
 									legend="n"
 									step={1} min={1} defaultValue={10} max={500}
-									onChange={ ( n ) => this.setState({ 'n': n }) }
+									onChange={( n ) => {
+										this.setState({ 'n': n });
+									}}
 								/>
 								<NumberInput legend="p"
 									max={1} min={0} step={0.01} defaultValue={0.5}
-									onChange={ ( p ) => this.setState({ 'p': p }) }
+									onChange={( p ) => {
+										this.setState({ 'p': p });
+									}}
 								/>
 							</Col>
 							<Col md={6}>
@@ -231,26 +259,41 @@ class DiscreteCLT extends Component {
 							<Panel>
 								<label>Histogram of <TeX raw="\hat p" />'s</label>
 								{ this.state.phats.length > 1 ?
-									<RPlot
-										code={rcode}
-										libraries={[ 'MASS' ]} /> :
+									<Plotly data={plotlyData} layout={{
+										width: 400,
+										height: 250,
+										showlegend: false,
+										shapes: [
+											{
+												type: 'line',
+												x0: this.state.avgPHats,
+												y0: 0,
+												x1: this.state.avgPHats,
+												y1: dnorm( this.state.avgPHats, this.state.avgPHats, this.state.stdevPHats ),
+												line: {
+													color: 'red',
+													width: 3
+												}
+											}
+										]
+									}} removeButtons toggleFullscreen={false} /> :
 									null
 								}
-								<CheckboxInput legend="Overlay normal density" onChange={ ( value ) => {
+								<CheckboxInput legend="Overlay normal density" onChange={( value ) => {
 									this.setState({
 										overlayNormal: value
 									});
 								}} />
-								{ this.state.avg_phats ?
+								{ this.state.avgPHats ?
 									<p>
 										<label> Mean of <TeX raw="\hat p" />'s: </label>
-										&nbsp;{this.state.avg_phats.toFixed( 3 )} (shown as the blue line)
+										&nbsp;{this.state.avgPHats.toFixed( 3 )} (shown as the blue line)
 									</p> : null
 								}
-								{ this.state.stdev_phats ?
+								{ this.state.stdevPHats ?
 									<p>
 										<label>Standard deviation of <TeX raw="\hat p" />'s: </label>
-										&nbsp;{this.state.stdev_phats.toFixed( 3 )}
+										&nbsp;{this.state.stdevPHats.toFixed( 3 )}
 									</p> : null
 								}
 							</Panel>
