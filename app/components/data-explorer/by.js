@@ -1,5 +1,10 @@
+// MODULES //
+
 import isArray from '@stdlib/assert/is-array';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+
+
+// MAIN //
 
 function by( arr, factor, fun ) {
 	let ret = {};
@@ -16,5 +21,8 @@ function by( arr, factor, fun ) {
 	}
 	return ret;
 } // end FUNCTION by()
+
+
+// EXPORTS //
 
 export default by;

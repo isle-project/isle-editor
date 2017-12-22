@@ -7,7 +7,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import Plotly from 'components/plotly';
-import isArray from '@stdlib/assert/is-array';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 import kernelSmooth from 'kernel-smooth';
 import linspace from '@stdlib/math/utils/linspace';
 import min from 'compute-min';
@@ -19,28 +19,16 @@ import gaussian from '@stdlib/math/base/dists/normal/pdf';
 import dexp from '@stdlib/math/base/dists/exponential/pdf';
 import dunif from '@stdlib/math/base/dists/uniform/pdf';
 import iqr from 'compute-iqr';
+import by from './by.js';
 
 
 // FUNCTIONS //
-
-function by( arr, factor, fun ) {
-	let ret = {};
-	for ( let i = 0; i < arr.length; i++ ) {
-		if ( !isArray( ret[ factor[ i ] ]) ) {
-			ret[ factor[ i ] ] = [];
-		}
-		ret[ factor[ i ] ].push( arr[ i ]);
-	}
-	for ( let key in ret ) {
-		ret[ key ] = fun( ret[ key ]);
-	}
-	return ret;
-} // end FUNCTION by()
 
 /**
 * Calculates either a kernel density estimator or the MLE of a chosen parametric distribution.
 */
 function calculateDensityValues( vals, densityType ) {
+	/* eslint-disable no-case-declarations */
 	const minVal = min( vals );
 	const maxVal = max( vals );
 	const x = linspace( minVal, maxVal, 512 );
@@ -105,37 +93,39 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 		});
 		traces = [];
 		for ( let key in freqs ) {
-			let vals = freqs[ key ];
-			if ( overlayDensity ) {
-				const config = {
-					x: vals,
-					type: 'histogram',
-					histnorm: 'probability density',
-					name: key+':histogram',
-					opacity: 0.5
-				};
-				if ( chooseBins ) {
-					config.nbinsx = nBins;
+			if ( hasOwnProp( freqs, key ) ) {
+				let vals = freqs[ key ];
+				if ( overlayDensity ) {
+					const config = {
+						x: vals,
+						type: 'histogram',
+						histnorm: 'probability density',
+						name: key+':histogram',
+						opacity: 0.5
+					};
+					if ( chooseBins ) {
+						config.nbinsx = nBins;
+					}
+					traces.push( config );
+					const [ x, y ] = calculateDensityValues( vals, densityType );
+					traces.push({
+						x: x,
+						y: y,
+						type: 'lines',
+						name: key+':density'
+					});
+				} else {
+					const config = {
+						x: vals,
+						type: 'histogram',
+						name: key,
+						opacity: 0.5
+					};
+					if ( chooseBins ) {
+						config.nbinsx = nBins;
+					}
+					traces.push( config );
 				}
-				traces.push( config );
-				const [ x, y ] = calculateDensityValues( vals, densityType );
-				traces.push({
-					x: x,
-					y: y,
-					type: 'lines',
-					name: key+':density',
-				});
-			} else {
-				const config = {
-					x: vals,
-					type: 'histogram',
-					name: key,
-					opacity: 0.5
-				};
-				if ( chooseBins ) {
-					config.nbinsx = nBins;
-				}
-				traces.push( config );
 			}
 		}
 		layout = {
@@ -155,7 +145,6 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 // MAIN //
 
 class Histogram extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -174,7 +163,7 @@ class Histogram extends Component {
 			data: this.props.data, ...this.state
 		});
 		const output = {
-			variable: this.props.variable,
+			variable: this.state.variable,
 			type: 'Chart',
 			value: <Plotly fit data={config.data} layout={config.layout} onShare={() => {
 				this.props.session.addNotification({
@@ -221,7 +210,7 @@ class Histogram extends Component {
 						inline
 						onChange={()=>{
 							this.setState({
-								chooseBins: !this.state.chooseBins,
+								chooseBins: !this.state.chooseBins
 							});
 						}}
 					/>
@@ -246,7 +235,7 @@ class Histogram extends Component {
 						defaultValue={this.state.overlayDensity}
 						onChange={( value )=>{
 							this.setState({
-								overlayDensity: !this.state.overlayDensity,
+								overlayDensity: !this.state.overlayDensity
 							});
 						}}
 					/>
@@ -273,7 +262,9 @@ class Histogram extends Component {
 
 Histogram.defaultProps = {
 	defaultValue: null,
-	onPlotDone() {},
+	groupingVariables: null,
+	logAction() {},
+	session: {},
 	showDensityOption: true
 };
 
@@ -282,8 +273,13 @@ Histogram.defaultProps = {
 
 Histogram.propTypes = {
 	data: PropTypes.object.isRequired,
+	defaultValue: PropTypes.string,
+	groupingVariables: PropTypes.array,
+	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
-	showDensityOption: PropTypes.bool
+	session: PropTypes.object,
+	showDensityOption: PropTypes.bool,
+	variables: PropTypes.array.isRequired
 };
 
 

@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import mean from 'compute-mean';
-import isArray from '@stdlib/assert/is-array';
 import objectValues from '@stdlib/utils/values';
 import mapValues from '@stdlib/utils/map-values';
+import by2 from './by2.js';
 
 
 // FUNCTIONS //
@@ -29,28 +29,10 @@ function calculateCoefficients( x, y ) {
 	return [ yint, slope ];
 } // end FUNCTION calculateCoefficients()
 
-function by2( arr1, arr2, factor, fun ) {
-	let out = {};
-	let ret1 = {};
-	let ret2 = {};
-	for ( let i = 0; i < factor.length; i++ ) {
-		if ( !isArray( ret1[ factor[ i ] ]) ) {
-			ret1[ factor[ i ] ] = [];
-			ret2[ factor[ i ] ] = [];
-		}
-		ret1[ factor[ i ] ].push( arr1[ i ]);
-		ret2[ factor[ i ] ].push( arr2[ i ]);
-	}
-	for ( let key in ret1 ) {
-		out[ key ] = fun( ret1[ key ], ret2[ key ]);
-	}
-	return out;
-}
 
 // MAIN //
 
 class SimpleLinearRegression extends Component {
-
 	constructor( props ) {
 		super( props );
 	}
@@ -61,7 +43,6 @@ class SimpleLinearRegression extends Component {
 
 		if ( group ) {
 			const res = by2( x, y, this.props.data[ group ], calculateCoefficients );
-			console.log( res );
 			let output = {
 				variable: `Regression of ${yval} on ${xval} by ${group}`,
 				type: 'Simple Linear Regression',
@@ -156,14 +137,15 @@ class SimpleLinearRegression extends Component {
 // DEFAULT PROPERTIES //
 
 SimpleLinearRegression.defaultProps = {
-	defaultValue: null,
-	onPlotDone() {}
+	categorical: []
 };
 
 
 // PROPERTY TYPES //
 
 SimpleLinearRegression.propTypes = {
+	categorical: PropTypes.array,
+	continuous: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	onCreated: PropTypes.func.isRequired
 };
