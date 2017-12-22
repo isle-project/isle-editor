@@ -45,7 +45,6 @@ function isWhitespace( c ) {
 // MAIN //
 
 class Tokenizer{
-
 	setup( str ) {
 		this.divHash = {};
 		this.tokens = [];

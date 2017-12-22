@@ -138,7 +138,6 @@ class Tree extends Component {
 			}
 			return hits;
 		});
-
 		return hits;
 	}
 

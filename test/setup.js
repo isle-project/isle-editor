@@ -22,8 +22,8 @@ window.localStorage = window.sessionStorage = {
 		this[ key ] = value;
 	},
 	removeItem( key ) {
-		this[ key ] = undefined;
-	},
+		this[ key ] = void 0;
+	}
 };
 
 

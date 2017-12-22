@@ -4,7 +4,7 @@
 
 const getKeys = Object.keys;
 
-getKeys.shim = function() {
+getKeys.shim = function getKeys() {
 	return Object.keys;
 };
 

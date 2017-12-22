@@ -138,8 +138,8 @@ Node.defaultProps = {
 			circle: {},
 			name: {},
 			attributes: {}
-		},
-	},
+		}
+	}
 };
 
 Node.propTypes = {

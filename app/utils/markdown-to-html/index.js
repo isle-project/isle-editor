@@ -1,24 +1,26 @@
 // MODULES //
 
+const markdownIT = require( 'markdown-it' );
+const hasOwnProp = require( '@stdlib/assert/has-own-property' );
 const Tokenizer = require( './tokenizer.js' );
-const md = require( 'markdown-it' )({
+
+
+// VARIABLES //
+
+const md = markdownIT({
 	html: true,
 	xhtmlOut: true,
 	breaks: true,
 	typographer: false
 });
-const mdInline = require( 'markdown-it' )({
+const mdInline = markdownIT({
 	html: true,
 	xhtmlOut: true,
 	breaks: false,
 	typographer: false
 });
-
-
-// VARIABLES //
-
 const DEFAULT_INLINE_MATH_DELIMITERS = [
-	/\\\((.*?)\\\)/g,
+	/\\\((.*?)\\\)/g
 ];
 const DEFAULT_DISPLAY_MATH_DELIMITERS = [
 	/\$\$([\s\S]*?)\$\$/g,
@@ -47,7 +49,9 @@ function toMarkdown( str ) {
 	str = md.render( str );
 
 	for ( let key in tokenizer.divHash ) {
-		str = str.replace( key, tokenizer.divHash[ key ]);
+		if ( hasOwnProp( tokenizer.divHash, key ) ) {
+			str = str.replace( key, tokenizer.divHash[ key ]);
+		}
 	}
 
 	return str;
