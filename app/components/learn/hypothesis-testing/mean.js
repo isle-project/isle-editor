@@ -18,7 +18,7 @@ const debug = require( 'debug' )( 'isle-editor' );
 
 const areaStyle = {
 	data: {
-		fill: "tomato", stroke: "tomato", opacity: 0.3
+		fill: 'tomato', stroke: 'tomato', opacity: 0.3
 	}
 };
 
@@ -26,7 +26,6 @@ const areaStyle = {
 // MAIN //
 
 class MeanTest extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -80,7 +79,7 @@ class MeanTest extends Component {
 			areaData = linspace( zStat, 3, 200 ).map( d => {
 				return { x: d, y: dnorm( d, 0, 1 ) };
 			});
-			probFormula = `P( Z > ${zStat}) = ${roundn( 1-pnorm( zStat, 0, 1 ), - 3 )}`;
+			probFormula = `P( Z > ${zStat}) = ${roundn( 1-pnorm( zStat, 0, 1 ), -3 )}`;
 			break;
 		case 0:
 			areaData = linspace( abs( zStat ), 3, 200 ).map( d => {
@@ -89,14 +88,20 @@ class MeanTest extends Component {
 			areaData2 = linspace( -3, -abs( zStat ), 200 ).map( d => {
 				return { x: d, y: dnorm( d, 0, 1 ) };
 			});
-			probFormula = `P( |Z| > ${abs( zStat )}) = ${roundn( ( 1-pnorm( abs( zStat ), 0, 1 ) )+pnorm( -abs( zStat ), 0, 1 ), - 3 )}`;
+			probFormula = `P( |Z| > ${abs( zStat )}) = ${roundn( ( 1-pnorm( abs( zStat ), 0, 1 ) )+pnorm( -abs( zStat ), 0, 1 ), -3 )}`;
 			break;
 		}
 		this.setState({
-			n, mu0, sigma, sigma2, pdfData,
-			xbar, xbar2,
+			n,
+			mu0,
+			sigma,
+			sigma2,
+			pdfData,
+			xbar,
+			xbar2,
 			zStat,
-			areaData, areaData2,
+			areaData,
+			areaData2,
 			probFormula
 		});
 	}
@@ -120,7 +125,7 @@ class MeanTest extends Component {
 					y: dnorm( d, 0, 1 )
 				};
 			});
-			probFormula = `P( |Z| > ${zStat}) = ${roundn( 1-pnorm( abs( zStat ), 0, 1 ) + pnorm( -abs( zStat ), 0, 1 ), - 3 )}`;
+			probFormula = `P( |Z| > ${zStat}) = ${roundn( 1-pnorm( abs( zStat ), 0, 1 ) + pnorm( -abs( zStat ), 0, 1 ), -3 )}`;
 			break;
 		case 1:
 			areaData = linspace( zStat, 3, 200 ).map( d => {
@@ -138,7 +143,8 @@ class MeanTest extends Component {
 		this.setState({
 			type: pos,
 			probFormula,
-			areaData, areaData2
+			areaData,
+			areaData2
 		});
 	}
 
@@ -153,7 +159,7 @@ class MeanTest extends Component {
 				onChange={( value ) => {
 					this.setState({
 						xbar: value
-					},  this.onGenerate );
+					}, this.onGenerate );
 				}}
 			/>
 			<NumberInput
@@ -164,7 +170,7 @@ class MeanTest extends Component {
 				onChange={( value ) => {
 					this.setState({
 						sigma: value
-					},  this.onGenerate );
+					}, this.onGenerate );
 				}}
 			/>
 			<NumberInput
@@ -175,7 +181,7 @@ class MeanTest extends Component {
 				onChange={( value ) => {
 					this.setState({
 						n: value
-					},  this.onGenerate );
+					}, this.onGenerate );
 				}}
 			/>
 		</div>;
@@ -188,7 +194,7 @@ class MeanTest extends Component {
 				onChange={( value ) => {
 					this.setState({
 						xbar2: value
-					},  this.onGenerate );
+					}, this.onGenerate );
 				}}
 			/>
 			<NumberInput
@@ -199,7 +205,7 @@ class MeanTest extends Component {
 				onChange={( value ) => {
 					this.setState({
 						sigma2: value
-					},  this.onGenerate );
+					}, this.onGenerate );
 				}}
 			/>
 			<NumberInput
@@ -210,7 +216,7 @@ class MeanTest extends Component {
 				onChange={( value ) => {
 					this.setState({
 						n2: value
-					},  this.onGenerate );
+					}, this.onGenerate );
 				}}
 			/>
 		</div>;
@@ -222,7 +228,7 @@ class MeanTest extends Component {
 					<Panel header={<h4>Parameters</h4>} maxWidth={1600}>
 						<Well>
 							<SelectInput
-								options={[ 'One-Sample','Two-Sample' ]}
+								options={[ 'One-Sample', 'Two-Sample' ]}
 								defaultValue={samples}
 								onChange={( value ) => {
 									this.setState({
@@ -257,44 +263,50 @@ class MeanTest extends Component {
 							<TeX
 								displayMode
 								tag=""
-								style={{ fontSize: "1.5em" }}
-								raw={`z  = \\frac{\\bar x_1 - \\bar x_2 - (\\mu_1 - \\mu_2)}{\\sqrt{\\tfrac{s_1^2}{n_1}+\\tfrac{s_2^2}{n_2}}}`} elems={{
-									"n": {
-										tooltip: "Sample Size"
+								style={{
+									fontSize: '1.5em'
+								}}
+								raw="z  = \frac{\bar x_1 - \bar x_2 - (\mu_1 - \mu_2)}{\sqrt{\tfrac{s_1^2}{n_1}+\tfrac{s_2^2}{n_2}}}"
+								elems={{
+									'n': {
+										tooltip: 'Sample Size'
 									},
-									"s": {
-										tooltip: "Standard Deviation"
+									's': {
+										tooltip: 'Standard Deviation'
 									},
-									"μ": {
-										tooltip: "True mean"
+									'μ': {
+										tooltip: 'True mean'
 									},
-									"x": {
-										tooltip: "Sample Mean"
+									'x': {
+										tooltip: 'Sample Mean'
 									},
-									"z": {
-										tooltip: "Test Statistic"
+									'z': {
+										tooltip: 'Test Statistic'
 									}
 								}}
 							/> :
 							<TeX
 								displayMode
 								tag=""
-								style={{ fontSize: "1.5em" }}
-								raw={`z  = \\frac{\\bar x - \\mu}{s/\\sqrt{n}}`} elems={{
-									"n": {
-										tooltip: "Sample Size"
+								style={{
+									fontSize: '1.5em'
+								}}
+								raw="z = \frac{\bar x - \mu}{s/\sqrt{n}}"
+								elems={{
+									'n': {
+										tooltip: 'Sample Size'
 									},
-									"s": {
-										tooltip: "Standard Deviation"
+									's': {
+										tooltip: 'Standard Deviation'
 									},
-									"μ": {
-										tooltip: "Mean under the Null Hypothesis"
+									'μ': {
+										tooltip: 'Mean under the Null Hypothesis'
 									},
-									"x": {
-										tooltip: "Sample Mean"
+									'x': {
+										tooltip: 'Sample Mean'
 									},
-									"z": {
-										tooltip: "Test Statistic"
+									'z': {
+										tooltip: 'Test Statistic'
 									}
 								}}
 							/>
@@ -308,7 +320,7 @@ class MeanTest extends Component {
 							<TeX
 								tag=""
 								displayMode
-								raw={`z  = \\frac{${roundn( xbar - xbar2, -3 )} - ${mu0}}{\\sqrt{${roundn( ( ( sigma*sigma ) / n ) + ( ( sigma2*sigma2 )/ n2 ), - 3 )}}} = ${zStat}`}
+								raw={`z  = \\frac{${roundn( xbar - xbar2, -3 )} - ${mu0}}{\\sqrt{${roundn( ( ( sigma*sigma ) / n ) + ( ( sigma2*sigma2 )/ n2 ), -3 )}}} = ${zStat}`}
 							/> :
 							<TeX
 								tag=""

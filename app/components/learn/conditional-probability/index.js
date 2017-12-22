@@ -14,7 +14,7 @@ import TeX from 'components/tex';
 
 // VARIABLES //
 
-const probabilityTableLabels = ( props ) => <table className="table-bordered">
+const probabilityTableLabels = ( props ) => ( <table className="table-bordered">
 	<tbody>
 		<tr>
 			<th></th>
@@ -39,13 +39,12 @@ const probabilityTableLabels = ( props ) => <table className="table-bordered">
 			<td><TeX raw={`P(\\text{${props.B}}^c)`} /></td><td><TeX raw="P(\Omega)" /></td>
 		</tr>
 	</tbody>
-</table>;
+</table> );
 
 
 // MAIN //
 
 class ConditionalProbability extends Component {
-
 	constructor( props ) {
 		super( props );
 
@@ -54,7 +53,6 @@ class ConditionalProbability extends Component {
 			B: 'B',
 			pA: 0.5,
 			pB: 0.5,
-			fill: false,
 			pAB: 0.25,
 			pAnotB: 0.25,
 			pnotAB: 0.25,
@@ -73,7 +71,7 @@ class ConditionalProbability extends Component {
 			pAnotB: pA * ( 1-pB ),
 			pnotAB: ( 1-pA )*pB,
 			pnotAnotB: ( 1-pA ) * ( 1-pB ),
-			pAgivenB:  pA,
+			pAgivenB: pA,
 			pAgivenNotB: pA,
 			independent: true
 		});
@@ -105,7 +103,7 @@ class ConditionalProbability extends Component {
 			pnotAnotB: 1 - pAnotB - pnotAB - value,
 			pAgivenB,
 			pAgivenNotB,
-			independent: pAgivenB == pAgivenNotB && pAgivenB == this.state.pA
+			independent: pAgivenB === pAgivenNotB && pAgivenB === this.state.pA
 		});
 	}
 
