@@ -17,9 +17,7 @@ import stdev from 'compute-stdev';
 // MAIN //
 
 class ZTest2 extends Component {
-
 	constructor( props ) {
-
 		super( props );
 
 		let categories;
@@ -30,7 +28,7 @@ class ZTest2 extends Component {
 			categories = [];
 		}
 		this.state = {
-			categories: categories,
+			categories,
 			var1: props.continuous[ 0 ],
 			grouping: null,
 			var2: null,
@@ -58,7 +56,7 @@ class ZTest2 extends Component {
 					break;
 				}
 			}
-			const splitted = bifurcateBy( data[ var1 ], function( x, idx ) {
+			const splitted = bifurcateBy( data[ var1 ], function splitter( x, idx ) {
 				return categories[ idx ] === firstCategory;
 			});
 			x = splitted[ 0 ];
@@ -131,7 +129,7 @@ class ZTest2 extends Component {
 		}
 		if ( value ) {
 			const output = {
-				variable: `Two-Sample Z-Test`,
+				variable: 'Two-Sample Z-Test',
 				type: 'Test',
 				value: value
 			};
@@ -196,7 +194,7 @@ class ZTest2 extends Component {
 							options={continuous}
 							defaultValue={this.state.var2}
 							clearable
-							onChange={ ( value ) => {
+							onChange={( value ) => {
 								this.setState({
 									var2: value,
 									grouping: null
@@ -209,7 +207,7 @@ class ZTest2 extends Component {
 					legend="Difference under H0"
 					defaultValue={this.state.diff}
 					step="any"
-					onChange={ ( value ) => {
+					onChange={( value ) => {
 						this.setState({
 							diff: value
 						});
@@ -219,7 +217,7 @@ class ZTest2 extends Component {
 					legend="Direction:"
 					defaultValue={this.state.direction}
 					options={[ 'less', 'greater', 'two-sided' ]}
-					onChange={ ( value ) => {
+					onChange={( value ) => {
 						this.setState({
 							direction: value
 						});
@@ -231,7 +229,7 @@ class ZTest2 extends Component {
 					min={0.0}
 					max={1.0}
 					step="any"
-					onChange={ ( value ) => {
+					onChange={( value ) => {
 						this.setState({
 							alpha: value
 						});
@@ -243,12 +241,24 @@ class ZTest2 extends Component {
 	}
 }
 
+// DEFAULT PROPERTIES //
+
+ZTest2.defaultProps = {
+	categorical: null,
+	logAction() {},
+	session: {}
+};
+
 
 // PROPERTY TYPES //
 
 ZTest2.propTypes = {
+	categorical: PropTypes.array,
+	continuous: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
-	onCreated: PropTypes.func.isRequired
+	logAction: PropTypes.func,
+	onCreated: PropTypes.func.isRequired,
+	session: PropTypes.object
 };
 
 

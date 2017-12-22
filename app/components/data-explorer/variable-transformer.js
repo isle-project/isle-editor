@@ -6,22 +6,24 @@ import { Button } from 'react-bootstrap';
 import TextArea from 'components/text-area';
 import TextInput from 'components/input/text';
 import isObject from '@stdlib/assert/is-object';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 
 
 // MAIN //
 
 class Transformer extends Component {
-
 	constructor( props ) {
 		super( props );
 
 		let data = [];
 		for ( let key in props.data ) {
-			for ( let i = 0; i < props.data[ key ].length; i++ ) {
-				if ( !isObject( data[ i ]) ) {
-					data[ i ] = {};
+			if ( hasOwnProp( props.data, key ) ) {
+				for ( let i = 0; i < props.data[ key ].length; i++ ) {
+					if ( !isObject( data[ i ]) ) {
+						data[ i ] = {};
+					}
+					data[ i ][ key ] = props.data[ key ][ i ];
 				}
-				data[ i ][ key ] = props.data[ key ][ i ];
 			}
 		}
 
@@ -44,17 +46,17 @@ class Transformer extends Component {
 		};
 
 		this.handleGenerate = () => {
-			let { data, code, name } = this.state;
+			const { data, code, name } = this.state;
 			if ( name.length < 2 ) {
 				return this.props.session.addNotification({
 					title: 'Too short',
-					message: `Please select a variable name with at least two characters`,
+					message: 'Please select a variable name with at least two characters',
 					level: 'error',
 					position: 'tr'
 				});
 			}
-			let fun = new Function( 'datum', code );
-			let values = new Array( data.length );
+			const fun = new Function( 'datum', code ); // eslint-disable-line no-new-func
+			const values = new Array( data.length );
 			for ( let i = 0; i < data.length; i++ ) {
 				values[ i ] = fun( data[ i ]);
 			}
@@ -63,7 +65,6 @@ class Transformer extends Component {
 			});
 			this.props.onGenerate( name, values );
 		};
-
 	}
 
 	render() {
@@ -79,8 +80,10 @@ class Transformer extends Component {
 // DEFAULT PROPERTIES //
 
 Transformer.defaultProps = {
+	logAction() {},
 	onGenerate() {},
-	defaultCode: ''
+	defaultCode: '',
+	session: {}
 };
 
 
@@ -88,8 +91,10 @@ Transformer.defaultProps = {
 
 Transformer.propTypes = {
 	data: PropTypes.array.isRequired,
+	defaultCode: PropTypes.string,
+	logAction: PropTypes.func,
 	onGenerate: PropTypes.func,
-	defaultCode: PropTypes.string
+	session: PropTypes.object
 };
 
 

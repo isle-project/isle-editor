@@ -13,9 +13,7 @@ import stdev from 'compute-stdev';
 // MAIN //
 
 class ZTest extends Component {
-
 	constructor( props ) {
-
 		super( props );
 
 		this.calculateZTest = ( variable, mu0, direction, alpha ) => {
@@ -86,11 +84,19 @@ class ZTest extends Component {
 	}
 }
 
+// DEFAULT PROPERTIES //
+
+ZTest.defaultProps = {
+	logAction() {}
+};
+
 
 // PROPERTY TYPES //
 
 ZTest.propTypes = {
+	continuous: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
+	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired
 };
 

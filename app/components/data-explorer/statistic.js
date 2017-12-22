@@ -55,7 +55,7 @@ function statistic( statName ) {
 		fun = variance;
 		break;
 	default:
-		fun = function() {};
+		fun = function noop() {};
 		break;
 	}
 	return fun;
