@@ -57,7 +57,7 @@ import ANOVA from 'components/data-explorer/anova';
 // FUNCTIONS //
 
 const renderIQRTable = ( e, idx ) => {
-	return <div key={idx}>
+	return ( <div key={idx}>
 		<label>{e.variable}: </label>
 		<pre>
 			<table>
@@ -68,16 +68,16 @@ const renderIQRTable = ( e, idx ) => {
 						<th>Upper</th>
 					</tr>
 					<tr>
-						{e.value.map( e => <td>{e}</td> )}
+						{e.value.map( ( e, i ) => <td key={i}>{e}</td> )}
 					</tr>
 				</tbody>
 			</table>
 		</pre>
-	</div>;
+	</div> );
 };
 
 const renderRangeTable = ( e, idx ) => {
-	return <div key={idx}>
+	return ( <div key={idx}>
 		<label>{e.variable}: </label>
 		<pre>
 			<table>
@@ -87,12 +87,12 @@ const renderRangeTable = ( e, idx ) => {
 						<th>Max</th>
 					</tr>
 					<tr>
-						{e.value.map( e => <td>{e}</td> )}
+						{e.value.map( ( e, i ) => <td key={i}>{e}</td> )}
 					</tr>
 				</tbody>
 			</table>
 		</pre>
-	</div>;
+	</div> );
 };
 
 const generateTransformationCode = ( variable ) => `if ( datum.${variable} > 0 ) {
@@ -107,15 +107,15 @@ const generateTransformationCode = ( variable ) => `if ( datum.${variable} > 0 )
 const makeDraggable = ( div ) => {
 	let markup = ReactDOMServer.renderToStaticMarkup( div );
 	let plain = `<!-- OUTPUT_${generate( 3 )}  -->`;
-	return <div
+	return ( <div
 		draggable="true"
-		onDragStart={ ( ev ) => {
+		onDragStart={( ev ) => {
 			ev.dataTransfer.setData( 'text/html', markup );
 			ev.dataTransfer.setData( 'text/plain', plain );
 		}}
 	>
 		{div}
-	</div>;
+	</div> );
 };
 
 /**
@@ -130,7 +130,7 @@ const OutputPanel = ( output, clearOutput ) => {
 		}}>
 			{output.map( ( e, idx ) => {
 				if ( e.type === 'Chart' ) {
-					return <div key={idx} style={{ height: 300, marginBottom: 40 }} >
+					return ( <div key={idx} style={{ height: 300, marginBottom: 40 }} >
 						<label>Chart: </label>
 						<Button
 							bsSize="xs"
@@ -142,7 +142,7 @@ const OutputPanel = ( output, clearOutput ) => {
 							<span>&times;</span>
 						</Button>
 						{e.value}
-					</div>;
+					</div> );
 				}
 				else if (
 					e.type === 'Contingency Table' ||
@@ -243,7 +243,7 @@ const OutputPanel = ( output, clearOutput ) => {
 				} else if ( isArray( e.value ) && e.type === 'Range' ) {
 					let elem = renderRangeTable( e, idx );
 					return makeDraggable( elem );
-				 } else if ( isArray( e.value ) && e.type === 'Interquartile Range' ) {
+				} else if ( isArray( e.value ) && e.type === 'Interquartile Range' ) {
 					let elem = renderIQRTable( e, idx );
 					return makeDraggable( elem );
 				}
@@ -431,7 +431,7 @@ class DataExplorer extends Component {
 			let newState = {
 				data: newData,
 				categorical: newCategorical,
-				continuous: newContinuous,
+				continuous: newContinuous
 			};
 			if ( groupVars ) {
 				newState[ 'groupVars' ] = groupVars;
@@ -448,7 +448,7 @@ class DataExplorer extends Component {
 			const { session } = this.context;
 			session.addNotification({
 				title: 'Variable exists',
-				message: `The original variables of the data set cannot be overwritten.`,
+				message: 'The original variables of the data set cannot be overwritten.',
 				level: 'error',
 				position: 'tr'
 			});
@@ -528,7 +528,7 @@ class DataExplorer extends Component {
 		const reader = new FileReader();
 		let file = null;
 		if ( dt.items ) {
-			if ( dt.items[ 0 ].kind == 'file' ) {
+			if ( dt.items[ 0 ].kind === 'file' ) {
 				file = dt.items[ 0 ].getAsFile();
 			}
 		} else {
@@ -568,7 +568,6 @@ class DataExplorer extends Component {
 	* React component render method.
 	*/
 	render() {
-
 		if ( !this.state.data ) {
 			return ( <Panel style={{ textAlign: 'center' }} >
 				<h1>Data Explorer</h1>
@@ -577,7 +576,9 @@ class DataExplorer extends Component {
 					type="file"
 					accept=".csv"
 					onChange={this.handleFileUpload}
-					ref={ fileUpload => this.fileUpload = fileUpload }
+					ref={fileUpload => {
+						this.fileUpload = fileUpload;
+					}}
 					style={{ margin: 'auto' }}
 				/>
 				<p>or</p>
@@ -607,16 +608,16 @@ class DataExplorer extends Component {
 					options={variableNames}
 					defaultValue={this.state.continuous}
 					multi
-					onChange={ ( continuous ) => this.setState({ continuous }) }
+					onChange={( continuous ) => this.setState({ continuous })}
 				/>
 				<SelectInput
 					legend="Categorical:"
 					options={variableNames}
 					defaultValue={this.state.categorical}
 					multi
-					onChange={ ( categorical ) => this.setState({ categorical }) }
+					onChange={( categorical ) => this.setState({ categorical })}
 				/>
-				<Button onClick={ () => {
+				<Button onClick={() => {
 					const groupVars = this.state.categorical.slice();
 					const ready = true;
 					this.setState({
@@ -626,7 +627,6 @@ class DataExplorer extends Component {
 				}}>Submit</Button>
 			</Panel> );
 		}
-
 		let colWidth = this.props.questions ? 4 : 6;
 		let nStatistics = this.props.statistics.length;
 		let defaultActiveKey = 'first';
@@ -711,7 +711,7 @@ class DataExplorer extends Component {
 				</NavDropdown> : null
 			}
 			{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
-				return ( <NavItem eventKey={`${8+i}`}>
+				return ( <NavItem key={i} eventKey={`${8+i}`}>
 					{e.title}
 				</NavItem> );
 			}) : null }
@@ -742,9 +742,9 @@ class DataExplorer extends Component {
 					/>;
 					break;
 				}
-				return <Tab.Pane key={i} eventKey={`2.${i+1}`}>
+				return ( <Tab.Pane key={i} eventKey={`2.${i+1}`}>
 					{content}
-				</Tab.Pane>;
+				</Tab.Pane> );
 			})}
 			{this.props.plots.map( ( e, i ) => {
 				let content = null;
@@ -799,9 +799,9 @@ class DataExplorer extends Component {
 					/>;
 					break;
 				}
-				return <Tab.Pane key={i} eventKey={`3.${i+1}`}>
+				return ( <Tab.Pane key={i} eventKey={`3.${i+1}`}>
 					{content}
-				</Tab.Pane>;
+				</Tab.Pane> );
 			})}
 			{this.props.tests.map( ( e, i ) => {
 				let content = null;
@@ -867,9 +867,9 @@ class DataExplorer extends Component {
 					/>;
 					break;
 				}
-				return <Tab.Pane key={i} eventKey={`4.${i+1}`}>
+				return ( <Tab.Pane key={i} eventKey={`4.${i+1}`}>
 					{content}
-				</Tab.Pane>;
+				</Tab.Pane> );
 			})}
 			{this.props.models.map( ( e, i ) => {
 				let content = null;
@@ -885,9 +885,9 @@ class DataExplorer extends Component {
 					/>;
 					break;
 				}
-				return <Tab.Pane key={i} eventKey={`5.${i+1}`}>
+				return ( <Tab.Pane key={i} eventKey={`5.${i+1}`}>
 					{content}
-				</Tab.Pane>;
+				</Tab.Pane> );
 			})}
 			{ this.props.transformer ? <Tab.Pane eventKey="6">
 				<VariableTransformer
@@ -911,9 +911,9 @@ class DataExplorer extends Component {
 					content = <Learn.ExponentialDistribution step="any" />;
 					break;
 				}
-				return <Tab.Pane key={i} eventKey={`7.${i+1}`}>
+				return ( <Tab.Pane key={i} eventKey={`7.${i+1}`}>
 					{content}
-				</Tab.Pane>;
+				</Tab.Pane> );
 			})}
 			{this.props.tabs.map( ( e, i ) => {
 				return ( <Tab.Pane key={i} eventKey={`${8+i}`}>
@@ -962,10 +962,10 @@ class DataExplorer extends Component {
 								<Modal.Body style={{ height: 0.80 * window.innerHeight, overflowY: 'scroll' }}>
 									{ this.state.studentPlots.length > 0 ?
 										<GridLayout>
-											{this.state.studentPlots.map( ( elem ) => {
+											{this.state.studentPlots.map( ( elem, idx ) => {
 												const config = JSON.parse( elem.config );
 												return (
-													<div style={{ height: '400px' }}>
+													<div key={idx} style={{ height: '400px' }}>
 														{
 															isString( config ) ?
 																<RPlot
@@ -1008,7 +1008,7 @@ class DataExplorer extends Component {
 								<h3 className="panel-title">Output</h3>
 							</div>
 							{OutputPanel( this.state.output, this.clearOutput )}
-							<Button bsSize="small" block onClick={ () => {
+							<Button bsSize="small" block onClick={() => {
 								this.setState({ output: []});
 							}}>Clear All</Button>
 						</div>
@@ -1073,12 +1073,12 @@ DataExplorer.defaultProps = {
 
 DataExplorer.propTypes = {
 	data: PropTypes.object,
-	statistics: PropTypes.array,
-	plots: PropTypes.array,
-	tables: PropTypes.array,
-	tests: PropTypes.array,
 	models: PropTypes.array,
 	onSelect: PropTypes.func,
+	plots: PropTypes.array,
+	statistics: PropTypes.array,
+	tables: PropTypes.array,
+	tests: PropTypes.array,
 	transformer: PropTypes.bool
 };
 
