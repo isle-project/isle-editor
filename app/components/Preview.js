@@ -44,9 +44,9 @@ const DataTable = require( 'components/data-table' );
 const DensityPlot = require( 'components/d3/density-plot' );
 const NetworkPlot = require( 'components/d3/network-plot' );
 const DraggableList = require( 'components/draggable-list' );
-const Editor = require( 'components/editor' );
+const Editor = require( 'components/markdown-editor' );
 const EnlargableGrid = require( 'components/enlargable-grid' );
-// const Experiment = require( 'components/experiment' );
+const Experiment = require( 'components/experiment' );
 const FeedbackButtons = require( 'components/feedback' );
 const FreeTextSurvey = require( 'components/free-text-survey' );
 const FreeTextQuestion = require( 'components/free-text-question' );
@@ -101,7 +101,7 @@ const Timer = require( 'components/timer' );
 const Tree = require( 'components/d3/tree' );
 const VennDiagramBuilder = require( 'components/venn-diagram-builder' );
 const Bar = require( 'victory' ).Bar;
-// const Variant = require( 'react-ab-test' ).Variant;
+const Variant = require( 'react-ab-test' ).Variant;
 const VictoryAnimation = require( 'victory' ).VictoryAnimation;
 const VictoryArea = require( 'victory' ).VictoryArea;
 const VictoryBar = require( 'victory' ).VictoryBar;
@@ -171,21 +171,6 @@ const OPTS = {
 // MAIN //
 
 export default class Preview extends Component {
-	renderErrorMessage( err ) {
-		let code = `<div className="errorMessage">
-			<h3>Encountered an error:</h3>
-			<span>${err}</span>
-		</div>`;
-		code = `
-			render(
-				${code},
-				document.getElementById( 'Preview' )
-			)
-		`;
-		code = transform( code, OPTS ).code;
-		eval( code );
-	}
-
 	constructor( props ) {
 		super( props );
 
@@ -286,6 +271,15 @@ export default class Preview extends Component {
 		};
 	}
 
+	componentDidMount() {
+		debug( 'Preview did mount.' );
+		if ( this.state.preambleIsValid ) {
+			this.renderPreview();
+		} else {
+			this.renderErrorMessage( this.props.errorMsg );
+		}
+	}
+
 	componentWillReceiveProps( nextProps ) {
 		debug( 'Preview will receive props.' );
 		if ( nextProps.errorMsg ) {
@@ -316,15 +310,6 @@ export default class Preview extends Component {
 		}
 	}
 
-	componentDidMount() {
-		debug( 'Preview did mount.' );
-		if ( this.state.preambleIsValid ) {
-			this.renderPreview();
-		} else {
-			this.renderErrorMessage( this.props.errorMsg );
-		}
-	}
-
 	componentDidUpdate() {
 		debug( 'Preview did update.' );
 		if ( this.state.preambleIsValid ) {
@@ -332,6 +317,21 @@ export default class Preview extends Component {
 		} else {
 			this.renderErrorMessage( this.props.errorMsg );
 		}
+	}
+
+	renderErrorMessage( err ) {
+		let code = `<div className="errorMessage">
+			<h3>Encountered an error:</h3>
+			<span>${err}</span>
+		</div>`;
+		code = `
+			render(
+				${code},
+				document.getElementById( 'Preview' )
+			)
+		`;
+		code = transform( code, OPTS ).code;
+		eval( code );
 	}
 
 	render() {
@@ -343,7 +343,9 @@ export default class Preview extends Component {
 	}
 }
 
+
 // DEFAULT PROPS //
+
 Preview.defaultProps = {
 	code: '',
 	errorMsg: ''
@@ -353,7 +355,10 @@ Preview.defaultProps = {
 
 Preview.propTypes = {
 	code: PropTypes.string,
-	errorMsg: PropTypes.string
+	currentMode: PropTypes.string.isRequired,
+	currentRole: PropTypes.string.isRequired,
+	errorMsg: PropTypes.string,
+	preamble: PropTypes.object.isRequired
 };
 
 

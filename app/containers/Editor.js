@@ -297,7 +297,6 @@ App.propTypes = {
 	preamble: PropTypes.object.isRequired,
 	resetError: PropTypes.func.isRequired,
 	updatePreamble: PropTypes.func.isRequired
-
 };
 
 // EXPORTS //
