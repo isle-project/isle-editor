@@ -54,7 +54,6 @@ export function generateMosaicPlotCode({ data, vars, showColors }) {
 // MAIN //
 
 class MosaicPlot extends Component {
-
 	constructor( props ) {
 		super( props );
 	}

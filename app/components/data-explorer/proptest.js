@@ -18,9 +18,7 @@ import mean from 'compute-mean';
 // MAIN //
 
 class PropTest extends Component {
-
 	constructor( props ) {
-
 		super( props );
 
 		let categories;
@@ -37,7 +35,7 @@ class PropTest extends Component {
 		this.calculatePropTest = ( variable, success, p0, direction, alpha ) => {
 			const { data } = this.props;
 			const x = data[ variable ];
-			const binary = x.map( x => x == success ? 1 : 0 );
+			const binary = x.map( x => x === success ? 1 : 0 );
 			const result = ztest( binary, sqrt( p0 * ( 1.0 - p0 ) ), {
 				'alpha': alpha,
 				'alternative': direction,
@@ -84,7 +82,7 @@ class PropTest extends Component {
 					legend="Variable:"
 					defaultValue={categorical[ 0 ]}
 					options={categorical}
-					onChange={ ( val ) => {
+					onChange={( val ) => {
 						let categories = copy( this.props.data[ val ]);
 						unique( categories );
 						this.setState({
@@ -125,8 +123,15 @@ class PropTest extends Component {
 // PROPERTY TYPES //
 
 PropTest.propTypes = {
+	categorical: PropTypes.array,
 	data: PropTypes.object.isRequired,
+	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired
+};
+
+PropTest.defaultProps = {
+	categorical: null,
+	logAction() {}
 };
 
 
