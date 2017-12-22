@@ -10,14 +10,14 @@
 // getScreenId.js
 
 /*
-getScreenId(function (error, sourceId, screen_constraints) {
+getScreenId(function (error, sourceId, screenConstraints) {
 	// error    == null || 'permission-denied' || 'not-installed' || 'installed-disabled' || 'not-chrome'
 	// sourceId == null || 'string' || 'firefox'
 
 	if(sourceId == 'firefox') {
-		navigator.mozGetUserMedia(screen_constraints, onSuccess, onFailure);
+		navigator.mozGetUserMedia(screenConstraints, onSuccess, onFailure);
 	}
-	else navigator.webkitGetUserMedia(screen_constraints, onSuccess, onFailure);
+	else navigator.webkitGetUserMedia(screenConstraints, onSuccess, onFailure);
 });
 */
 
@@ -25,8 +25,8 @@ getScreenId(function (error, sourceId, screen_constraints) {
 export default function getScreenId( callback ) {
 	// for Firefox:
 	// sourceId == 'firefox'
-	// screen_constraints = {...}
-	if ( !!navigator.mozGetUserMedia ) {
+	// screenConstraints = {...}
+	if ( navigator.mozGetUserMedia ) {
 		callback( null, 'firefox', {
 			video: {
 				mozMediaSource: 'window',
@@ -51,15 +51,15 @@ export default function getScreenId( callback ) {
 			callback( event.data.chromeExtensionStatus, null, getScreenConstraints( event.data.chromeExtensionStatus ) );
 		}
 
-		// this event listener is no more needed
+		// This event listener is no more needed
 		window.removeEventListener( 'message', onIFrameCallback );
 	}
 
 	setTimeout( postGetSourceIdMessage, 100 );
-};
+}
 
 function getScreenConstraints( error, sourceId ) {
-	var screen_constraints = {
+	var screenConstraints = {
 		audio: false,
 		video: {
 			mandatory: {
@@ -72,11 +72,13 @@ function getScreenConstraints( error, sourceId ) {
 	};
 
 	if ( sourceId ) {
-		screen_constraints.video.mandatory.chromeMediaSourceId = sourceId;
+		screenConstraints.video.mandatory.chromeMediaSourceId = sourceId;
 	}
 
-	return screen_constraints;
+	return screenConstraints;
 }
+
+var iframe;
 
 function postGetSourceIdMessage() {
 	if ( !iframe ) {
@@ -94,13 +96,11 @@ function postGetSourceIdMessage() {
 	}, '*' );
 }
 
-var iframe;
-
 // this function is used in RTCMultiConnection v3
-window.getScreenConstraints = function( callback ) {
-	loadIFrame( function() {
-		getScreenId( function( error, sourceId, screen_constraints ) {
-			callback( error, screen_constraints.video );
+window.getScreenConstraints = function getScreenConstraints( callback ) {
+	loadIFrame( function onFrame() {
+		getScreenId( function onId( error, sourceId, screenConstraints ) {
+			callback( error, screenConstraints.video );
 		});
 	});
 };
@@ -112,7 +112,7 @@ function loadIFrame( loadCallback ) {
 	}
 
 	iframe = document.createElement( 'iframe' );
-	iframe.onload = function() {
+	iframe.onload = function onload() {
 		iframe.isLoaded = true;
 
 		loadCallback();
@@ -122,9 +122,9 @@ function loadIFrame( loadCallback ) {
 	( document.body || document.documentElement ).appendChild( iframe );
 }
 
-window.getChromeExtensionStatus = function( callback ) {
+window.getChromeExtensionStatus = function getChromeExtensionStatus( callback ) {
 	// for Firefox:
-	if ( !!navigator.mozGetUserMedia ) {
+	if ( navigator.mozGetUserMedia ) {
 		callback( 'installed-enabled' );
 		return;
 	}
@@ -138,7 +138,7 @@ window.getChromeExtensionStatus = function( callback ) {
 			callback( event.data.chromeExtensionStatus );
 		}
 
-		// this event listener is no more needed
+		// This event listener is no more needed
 		window.removeEventListener( 'message', onIFrameCallback );
 	}
 
