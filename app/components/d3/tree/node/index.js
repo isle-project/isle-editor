@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'uuid';
 import { select } from 'd3';
-
 import './style.css';
 
-export default class Node extends React.Component {
+
+// MAIN //
+
+class Node extends Component {
 	constructor(props) {
 		super(props);
 		const { parent } = props.nodeData;
@@ -15,8 +17,8 @@ export default class Node extends React.Component {
 		this.state = {
 			transform: this.setTransformOrientation(originX, originY),
 			initialStyle: {
-				opacity: 0,
-			},
+				opacity: 0
+			}
 		};
 
 		this.handleClick = this.handleClick.bind(this);
@@ -38,9 +40,9 @@ export default class Node extends React.Component {
 	}
 
 	setTransformOrientation(x, y) {
-		return this.props.orientation === 'horizontal'
-			? `translate(${y},${x})`
-			: `translate(${x},${y})`;
+		return this.props.orientation === 'horizontal' ?
+			`translate(${y},${x})` :
+			`translate(${x},${y})`;
 	}
 
 	applyTransform(transform, opacity = 1, done = () => {}) {
@@ -55,7 +57,6 @@ export default class Node extends React.Component {
 	}
 
 	handleClick() {
-		console.log( this.props );
 		this.props.onClick( this.props.nodeData.data.id );
 	}
 
@@ -64,15 +65,14 @@ export default class Node extends React.Component {
 		const originX = parent ? parent.x : 0;
 		const originY = parent ? parent.y : 0;
 		const transform = this.setTransformOrientation(originX, originY);
-
 		this.applyTransform(transform, 0, done);
 	}
 
 	render() {
 		const { nodeData, nodeSvgShape, textLayout, styles } = this.props;
-		const nodeStyle = nodeData._children
-			? { ...styles.node }
-			: { ...styles.leafNode };
+		const nodeStyle = nodeData._children ?
+			{ ...styles.node } :
+			{ ...styles.leafNode };
 		return (
 			<g
 				id={nodeData.id}
@@ -90,7 +90,7 @@ export default class Node extends React.Component {
 				) : (
 					React.createElement(nodeSvgShape.shape, {
 						...nodeSvgShape.shapeProps,
-						...nodeStyle.circle,
+						...nodeStyle.circle
 					})
 				)}
 
@@ -122,33 +122,40 @@ export default class Node extends React.Component {
 	}
 }
 
+
+// TYPES //
+
 Node.defaultProps = {
-	textAnchor: 'start',
-	attributes: undefined,
-	circleRadius: undefined,
+	attributes: void 0,
+	circleRadius: void 0,
 	styles: {
 		node: {
 			circle: {},
 			name: {},
-			attributes: {},
+			attributes: {}
 		},
 		leafNode: {
 			circle: {},
 			name: {},
-			attributes: {},
+			attributes: {}
 		},
 	},
 };
 
 Node.propTypes = {
+	attributes: PropTypes.object,
+	circleRadius: PropTypes.number,
+	name: PropTypes.string.isRequired,
 	nodeData: PropTypes.object.isRequired,
 	nodeSvgShape: PropTypes.object.isRequired,
-	orientation: PropTypes.oneOf(['horizontal', 'vertical']).isRequired,
-	transitionDuration: PropTypes.number.isRequired,
 	onClick: PropTypes.func.isRequired,
-	name: PropTypes.string.isRequired,
-	attributes: PropTypes.object,
-	textLayout: PropTypes.object.isRequired,
-	circleRadius: PropTypes.number,
+	orientation: PropTypes.oneOf([ 'horizontal', 'vertical' ]).isRequired,
 	styles: PropTypes.object,
+	textLayout: PropTypes.object.isRequired,
+	transitionDuration: PropTypes.number.isRequired
 };
+
+
+// EXPORTS //
+
+export default Node;

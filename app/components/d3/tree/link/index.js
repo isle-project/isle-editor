@@ -1,34 +1,37 @@
-import React from 'react';
+// MODULES //
+
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { svg, select } from 'd3';
-
 import './style.css';
+
 
 // FUNCTIONS //
 
 function linkVertical(d) {
-	return "M" + d.source.x + "," + d.source.y
-		+ "C" + (d.source.x + d.target.x) / 2 + "," + d.source.y
-		+ " " + (d.source.x + d.target.x) / 2 + "," + d.target.y
-		+ " " + d.target.x + "," + d.target.y;
+	return 'M' + d.source.x + ',' + d.source.y +
+		'C' + (d.source.x + d.target.x) / 2 + ',' + d.source.y +
+		' ' + (d.source.x + d.target.x) / 2 + ',' + d.target.y +
+		' ' + d.target.x + ',' + d.target.y;
 }
 
 function linkHorizontal(d) {
-	return "M" + d.source.y + "," + d.source.x
-		+ "C" + (d.source.y + d.target.y) / 2 + "," + d.source.x
-		+ " " + (d.source.y + d.target.y) / 2 + "," + d.target.x
-		+ " " + d.target.y + "," + d.target.x;
+	return 'M' + d.source.y + ',' + d.source.x +
+		'C' + (d.source.y + d.target.y) / 2 + ',' + d.source.x +
+		' ' + (d.source.y + d.target.y) / 2 + ',' + d.target.x +
+		' ' + d.target.y + ',' + d.target.x;
 }
+
 
 // MAIN //
 
-export default class Link extends React.PureComponent {
-	constructor(props) {
-		super(props);
+class Link extends PureComponent {
+	constructor( props ) {
+		super( props );
 		this.state = {
 			initialStyle: {
-				opacity: 0,
-			},
+				opacity: 0
+			}
 		};
 	}
 
@@ -36,7 +39,7 @@ export default class Link extends React.PureComponent {
 		this.applyOpacity(1);
 	}
 
-	componentWillLeave(done) {
+	componentWillLeave( done ) {
 		this.applyOpacity(0, done);
 	}
 
@@ -66,41 +69,37 @@ export default class Link extends React.PureComponent {
 
 		let data = [
 			{ x: linkData.source.x, y: linkData.source.y },
-			{ x: linkData.target.x, y: linkData.target.y },
+			{ x: linkData.target.x, y: linkData.target.y }
 		];
 
 		if (orientation === 'horizontal') {
 			data = [
 				{ x: linkData.source.y, y: linkData.source.x },
-				{ x: linkData.target.y, y: linkData.target.x },
+				{ x: linkData.target.y, y: linkData.target.x }
 			];
 		}
 
-		return straight(data);
+		return straight( data );
 	}
 
-	elbowPath(d, orientation) {
-		return orientation === 'horizontal'
-			? `M${d.source.y},${d.source.x}V${d.target.x}H${d.target.y}`
-			: `M${d.source.x},${d.source.y}V${d.target.y}H${d.target.x}`;
+	elbowPath( d, orientation ) {
+		return orientation === 'horizontal' ?
+			`M${d.source.y},${d.source.x}V${d.target.x}H${d.target.y}` :
+			`M${d.source.x},${d.source.y}V${d.target.y}H${d.target.x}`;
 	}
 
 	drawPath() {
 		const { linkData, orientation, pathFunc } = this.props;
-
-		if (typeof pathFunc === 'function') {
+		if ( typeof pathFunc === 'function' ) {
 			return pathFunc(linkData, orientation);
 		}
-
-		if (pathFunc === 'elbow') {
-			return this.elbowPath(linkData, orientation);
+		if ( pathFunc === 'elbow' ) {
+			return this.elbowPath( linkData, orientation );
 		}
-
-		if (pathFunc === 'straight') {
-			return this.straightPath(linkData, orientation);
+		if ( pathFunc === 'straight' ) {
+			return this.straightPath( linkData, orientation );
 		}
-
-		return this.diagonalPath(linkData, orientation);
+		return this.diagonalPath( linkData, orientation );
 	}
 
 	render() {
@@ -118,8 +117,11 @@ export default class Link extends React.PureComponent {
 	}
 }
 
+
+// TYPES //
+
 Link.defaultProps = {
-	styles: {},
+	styles: {}
 };
 
 Link.propTypes = {
@@ -127,8 +129,13 @@ Link.propTypes = {
 	orientation: PropTypes.oneOf(['horizontal', 'vertical']).isRequired,
 	pathFunc: PropTypes.oneOfType([
 		PropTypes.oneOf(['diagonal', 'elbow', 'straight']),
-		PropTypes.func,
+		PropTypes.func
 	]).isRequired,
-	transitionDuration: PropTypes.number.isRequired,
 	styles: PropTypes.object,
+	transitionDuration: PropTypes.number.isRequired
 };
+
+
+// EXPORTS //
+
+export default Link;
