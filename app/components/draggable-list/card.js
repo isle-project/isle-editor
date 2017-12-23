@@ -94,10 +94,10 @@ class Card extends Component {
 Card.propTypes = {
 	connectDragSource: PropTypes.func.isRequired,
 	connectDropTarget: PropTypes.func.isRequired,
-	id: PropTypes.any.isRequired,
-	index: PropTypes.number.isRequired,
+	id: PropTypes.any.isRequired,   // eslint-disable-line
+	index: PropTypes.number.isRequired, // eslint-disable-line
 	isDragging: PropTypes.bool.isRequired,
-	moveCard: PropTypes.func.isRequired,
+	moveCard: PropTypes.func.isRequired, // eslint-disable-line
 	text: PropTypes.string.isRequired
 };
 
