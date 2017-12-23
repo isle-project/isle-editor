@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Pagination } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import './pages.css';
 
 
 // MAIN //
@@ -32,10 +33,10 @@ class Pages extends Component {
 		</div>;
 		return (
 			<div
-				className="panel panel-default"
+				className="panel panel-default page"
 			>
 				{ this.props.title ? header : null }
-				<Pagination
+				<Pagination className="my-pagination"
 					prev next first last
 					bsSize="medium"
 					maxButtons={4}
@@ -48,8 +49,9 @@ class Pages extends Component {
 					overflowY: 'scroll',
 					padding: '5px',
 					borderWidth: '1px 0px 0px 0px',
-					borderColor: '#dddddd',
-					borderStyle: 'solid'
+					borderColor: 'transparent',
+					borderStyle: 'solid',
+					background: 'transparent'
 				}}>
 					{this.props.children[ this.state.activePage-1 ] || this.props.children}
 				</div>
