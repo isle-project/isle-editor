@@ -5,7 +5,7 @@ import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 import Image from 'components/image';
 import InstructorBar from 'components/instructor-bar';
-import { Button, ButtonToolbar, Modal, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
+import { Button, ButtonToolbar, Modal, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import DOMPurify from 'dompurify';
 import createPrependCode from 'components/r/utils/create-prepend-code';
 import ChatButton from 'components/chat-button';
@@ -19,6 +19,7 @@ import 'brace/mode/r';
 import 'brace/theme/katzenmilch';
 import 'brace/theme/solarized_light';
 import Spinner from 'components/spinner';
+import HintButton from 'components/hint-button';
 
 
 // CONSTANTS //
@@ -36,7 +37,7 @@ let rCode = [];
 
 const max = Math.max;
 
-const insertImages = ( imgs, containerWidth ) => {
+const insertImages = ( imgs ) => {
 	const ret = [];
 	for ( let i = 0; i < imgs.length; i++ ) {
 		ret[ i ] = ( <Image key={i} src={imgs[ i ]} title="R Plot" /> );
@@ -56,42 +57,7 @@ const showResult = ( res ) => {
 	return <span />;
 };
 
-const displayHint = ( id, hints ) => {
-	return (
-		<Popover
-			id="popover-positioned-top"
-			title="Hints"
-			style={{
-				minWidth: '400px'
-			}}
-		>
-			{ hints
-				.filter( ( e, i ) => i <= id )
-				.map( ( hintText, i ) => ( <span key={i}>
-					<label>Hint {i+1}:</label>
-					<br />
-					<span>{hintText}</span>
-					<br />
-				</span> ) )
-			}
-		</Popover>
-	);
-};
-
-const getHintLabel = ( id, noHints, hintOpen ) => {
-	if ( hintOpen ) {
-		return id <= 1 ? 'Close Hint' : 'Close Hints';
-	}
-	if ( id === 0 ) {
-		return 'Get Hint';
-	}
-	else if ( id === noHints ) {
-		return 'Show Hints';
-	}
-	return 'Next Hint';
-};
-
-const showSolutionButton = ( currentHint, nHints, clickHandler, displayed, nEvaluations ) => {
+const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluations ) => {
 	const tooltip = (
 		<Tooltip
 			id="tooltip"
@@ -99,7 +65,7 @@ const showSolutionButton = ( currentHint, nHints, clickHandler, displayed, nEval
 			Solution becomes available once you have tried the exercise and used all hints.
 		</Tooltip>
 	);
-	if ( currentHint < nHints || nEvaluations < 1 ) {
+	if ( !exhaustedHints || nEvaluations < 1 ) {
 		return (
 			<OverlayTrigger
 				placement="top"
@@ -164,12 +130,11 @@ class RShell extends React.Component {
 
 		this.state = {
 			id: counter,
-			disabled: this.props.disabled,
+			disabled: props.disabled,
+			exhaustedHints: props.hints.length === 0,
 			result: '',
 			plots: [],
 			running: false,
-			currentHint: 0,
-			hintOpen: false,
 			nEvaluations: 0,
 			solutionOpen: false,
 			help: ''
@@ -228,25 +193,13 @@ class RShell extends React.Component {
 			this.editor.setValue( this.props.code, 1 );
 		};
 
-		this.handleHintClick = () => {
-			const { currentHint, hintOpen } = this.state;
-			const { hints } = this.props;
+		this.logHint = ( idx ) => {
 			const { session } = this.context;
-			if ( currentHint < hints.length && hintOpen === false ) {
-				if ( this.props.id ) {
-					session.log({
-						id: this.props.id,
-						type: 'RSHELL_OPEN_HINT',
-						value: currentHint
-					});
-				}
-				this.setState({
-					currentHint: currentHint + 1,
-					hintOpen: true
-				});
-			} else {
-				this.setState({
-					hintOpen: !this.state.hintOpen
+			if ( this.props.id ) {
+				session.log({
+					id: this.props.id,
+					type: 'RSHELL_OPEN_HINT',
+					value: idx
 				});
 			}
 		};
@@ -396,19 +349,14 @@ class RShell extends React.Component {
 		}
 	}
 
-	getLastAction = ( val, id ) => {
-		if ( isObject( val ) ) {
-			let actions = val[ id ];
-			if ( isArray( actions ) ) {
-				actions = actions.filter( action => {
-					return action.type === 'RSHELL_EVALUATION';
-				});
-				if ( actions.length > 0 ) {
-					return actions[ 0 ].value;
-				}
+	componentWillReceiveProps( nextProps ) {
+		if ( this.props.code !== nextProps.code ) {
+			rCode[ this.state.id ] = nextProps.code;
+			this.editor.setValue( nextProps.code, 1 );
+			if ( nextProps.precompute ) {
+				this.handleEvaluationClick();
 			}
 		}
-		return null;
 	}
 
 	componentDidUpdate() {
@@ -427,16 +375,6 @@ class RShell extends React.Component {
 		}
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		if ( this.props.code !== nextProps.code ) {
-			rCode[ this.state.id ] = nextProps.code;
-			this.editor.setValue( nextProps.code, 1 );
-			if ( nextProps.precompute ) {
-				this.handleEvaluationClick();
-			}
-		}
-	}
-
 	componentWillUnmount() {
 		counter = 0;
 		rCode = [];
@@ -445,7 +383,20 @@ class RShell extends React.Component {
 		this.editor = null;
 	}
 
-	handleResize() {}
+	getLastAction = ( val, id ) => {
+		if ( isObject( val ) ) {
+			let actions = val[ id ];
+			if ( isArray( actions ) ) {
+				actions = actions.filter( action => {
+					return action.type === 'RSHELL_EVALUATION';
+				});
+				if ( actions.length > 0 ) {
+					return actions[ 0 ].value;
+				}
+			}
+		}
+		return null;
+	}
 
 	render() {
 		const nHints = this.props.hints.length;
@@ -481,24 +432,19 @@ class RShell extends React.Component {
 				/>
 				<ButtonToolbar style={{ float: 'right', marginTop: '8px' }}>
 					{ nHints > 0 ?
-						<OverlayTrigger
-							trigger="click"
-							placement="left"
-							overlay={displayHint( this.state.currentHint - 1, this.props.hints )}
-						>
-							<Button
-								bsStyle="success"
-								bsSize="sm"
-								onClick={this.handleHintClick}
-								disabled={this.state.disabled}
-							>{getHintLabel( this.state.currentHint, this.props.hints.length, this.state.hintOpen )}</Button>
-						</OverlayTrigger> :
+						<HintButton
+							disabled={this.state.disabled}
+							hints={this.props.hints}
+							onClick={this.logHint}
+							onFinished={() => {
+								this.setState({ exhaustedHints: true });
+							}}
+						/> :
 						null
 					}
 					{ ( this.props.solution && !this.state.disabled ) ?
 						showSolutionButton(
-							this.state.currentHint,
-							nHints,
+							this.state.exhaustedHints,
 							this.handleSolutionClick,
 							this.state.solutionOpen,
 							this.state.nEvaluations
@@ -521,7 +467,7 @@ class RShell extends React.Component {
 				</ButtonToolbar>
 				<div id="output">
 					{ showResult( this.state.result ) }
-					{ insertImages( this.state.plots, this.props.containerWidth ) }
+					{ insertImages( this.state.plots ) }
 				</div>
 				<InstructorBar id={this.props.id} />
 				<Modal
