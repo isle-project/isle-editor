@@ -91,6 +91,7 @@ class RTable extends Component {
 
 RTable.propTypes = {
 	code: PropTypes.string,
+	containerWidth: PropTypes.number,
 	libraries: PropTypes.array,
 	prependCode: PropTypes.oneOfType([
 		PropTypes.string,
@@ -108,6 +109,7 @@ RTable.contextTypes = {
 
 RTable.defaultProps = {
 	code: '',
+	containerWidth: null,
 	width: 0.5,
 	libraries: [],
 	prependCode: ''

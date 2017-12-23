@@ -93,6 +93,7 @@ class Video extends Component {
 
 Video.propTypes = {
 	center: PropTypes.bool,
+	containerWidth: PropTypes.number,
 	controls: PropTypes.bool,
 	height: PropTypes.oneOfType([
 		PropTypes.string,
@@ -116,18 +117,19 @@ Video.propTypes = {
 // DEFAULT PROPERTIES //
 
 Video.defaultProps = {
-	url: '',
 	center: true,
+	containerWidth: null,
 	controls: false,
-	loop: false,
-	playing: false,
-	volume: 0.8,
 	height: 360,
-	width: 640,
-	style: {},
-	onPlay() {},
+	loop: false,
+	onEnded() {},
 	onPause() {},
-	onEnded() {}
+	onPlay() {},
+	playing: false,
+	style: {},
+	url: '',
+	volume: 0.8,
+	width: 640
 };
 
 
