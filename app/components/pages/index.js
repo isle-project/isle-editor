@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Pagination } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import './pages.css';
 
 
 // MAIN //
@@ -10,16 +11,46 @@ import PropTypes from 'prop-types';
 class Pages extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			activePage: 1
 		};
+		this.nPages = this.props.children.length || 1;
 	}
 
 	handleSelect = ( eventKey ) => {
 		this.props.onSelect( eventKey );
 		this.setState({
 			activePage: eventKey
+		});
+	}
+
+	nextPage() {
+		if ( this.state.activePage === this.nPages ) {
+			return this.props.onSelect( this.state.activePage );
+		}
+		this.props.onSelect( this.state.activePage + 1 );
+		this.setState({
+			activePage: this.state.activePage + 1
+		});
+	}
+
+	prevPage() {
+		if ( this.state.activePage === 1 ) {
+			return this.props.onSelect( this.state.activePage );
+		}
+		this.props.onSelect( this.state.activePage - 1 );
+		this.setState({
+			activePage: this.state.activePage - 1
+		});
+	}
+
+	jumpTo( page ) {
+		if ( page < 1 || page > this.nPages ) {
+			return this.props.onSelect( this.state.activePage );
+		}
+		this.props.onSelect( page );
+		this.setState({
+			activePage: page
 		});
 	}
 
@@ -32,10 +63,10 @@ class Pages extends Component {
 		</div>;
 		return (
 			<div
-				className="panel panel-default"
+				className="panel panel-default page"
 			>
 				{ this.props.title ? header : null }
-				<Pagination
+				<Pagination className="my-pagination"
 					prev next first last
 					bsSize="medium"
 					maxButtons={4}
@@ -48,8 +79,9 @@ class Pages extends Component {
 					overflowY: 'scroll',
 					padding: '5px',
 					borderWidth: '1px 0px 0px 0px',
-					borderColor: '#dddddd',
-					borderStyle: 'solid'
+					borderColor: 'transparent',
+					borderStyle: 'solid',
+					background: 'transparent'
 				}}>
 					{this.props.children[ this.state.activePage-1 ] || this.props.children}
 				</div>

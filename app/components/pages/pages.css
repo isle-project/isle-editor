@@ -1,0 +1,13 @@
+.page {
+	background: transparent;
+	margin-bottom: 30px;
+	border-top:solid 2px darkgrey;
+	border-bottom:solid 2px darkrey;
+	padding-bottom: 30px;
+}
+
+.my-pagination {
+	margin: 15px 0;
+	padding-left: 15px;
+	font-weight: 600;
+}
