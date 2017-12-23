@@ -1,0 +1,21 @@
+.container {
+	display: flex;
+	width: 100%;
+	padding: 15px;
+	border: 2px solid lightblue;
+	background-color: white;
+	flex-direction: column;
+	max-width: 650px;
+	box-shadow: 2px 2px 8px rgb(60,60,60);
+}
+.lists {
+	display: flex;
+	flex-direction: row;
+}
+.controls {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding-left: 10px;
+	padding-right: 10px;
+}

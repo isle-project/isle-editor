@@ -3,50 +3,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import shuffle from '@stdlib/math/random/shuffle';
 import * as d3 from 'd3';
 import OptionsList from './options_list.js';
+import './match_list_question.css';
 
 
 // FUNCTIONS //
 
 function createColorScale( length ) {
 	const color = d3.scaleLinear().domain([ 1, length ])
-		.interpolate( d3.interpolateHcl )
-		.range([ d3.rgb( '#007AFF' ), d3.rgb( '#FFF500' ) ]);
+		.interpolate( d3.interpolateHclLong )
+		.range([ d3.rgb( 'violet' ), d3.rgb( 'yellow' ) ]);
 
 	const colorScale = new Array( length );
 	for ( let i = 0; i < length; i++ ) {
 		colorScale[ i ] = color( i );
 	}
-	return colorScale;
+	return shuffle( colorScale );
 } // end FUNCTION createColorScale()
 
 
 // MAIN //
 
 class MatchListQuestion extends Component {
-	static styles = {
-		container: {
-			display: 'flex',
-			width: '100%',
-			padding: '15px',
-			border: '2px solid lightblue',
-			backgroundColor: 'white',
-			flexDirection: 'column'
-		},
-		lists: {
-			display: 'flex',
-			flexDirection: 'row'
-		},
-		controls: {
-			display: 'flex',
-			flexDirection: 'row',
-			justifyContent: 'space-between',
-			paddingLeft: '10px',
-			paddingRight: '10px'
-		}
-	}
-
 	constructor( props ) {
 		super( props );
 		let { elements, colorScale } = this.props;
@@ -59,7 +39,6 @@ class MatchListQuestion extends Component {
 			selectedB: null,
 			colorScale,
 			answers: [],
-			solutionDisplayed: false,
 			submitted: false
 		};
 	}
@@ -94,7 +73,7 @@ class MatchListQuestion extends Component {
 		this.setState({ [ list ]: option, answers, colorScale });
 	}
 
-	toggleSolution() {
+	toggleSolution = () => {
 		let { elements, colorScale } = this.props;
 		if ( !colorScale ) {
 			colorScale = createColorScale( 2 * elements.length );
@@ -116,12 +95,8 @@ class MatchListQuestion extends Component {
 	render() {
 		const { question, elements, onSubmit } = this.props;
 		const { answers } = this.state;
-
-		const styles = MatchListQuestion.styles;
 		const onSelectA = this.onSelect.bind( this, 'selectedA' );
 		const onSelectB = this.onSelect.bind( this, 'selectedB' );
-		const toggleSolution = this.toggleSolution.bind( this );
-
 		const tooltip = (
 			<Tooltip
 				id="tooltip"
@@ -129,23 +104,25 @@ class MatchListQuestion extends Component {
 				Solution becomes available after answer is submitted.
 			</Tooltip>
 		);
-
 		return (
-			<div style={styles.container}>
+			<div className="container">
 				<span>{question}</span>
-				<div style={styles.lists}>
+				<div className="lists">
 					<OptionsList
 						options={elements.map( q => q.a )}
 						onSelect={onSelectA}
 						answers={answers}
-						active={this.state.selectedA} />
+						active={this.state.selectedA}
+					/>
 					<OptionsList
 						options={elements.map( q => q.b )}
 						onSelect={onSelectB}
 						answers={answers}
-						active={this.state.selectedB} />
+						active={this.state.selectedB}
+						baseColor="rgb(250,250,255)"
+					/>
 				</div>
-				<div style={styles.controls}>
+				<div className="controls">
 					<Button
 						bsStyle="primary"
 						bsSize="sm"
@@ -164,7 +141,7 @@ class MatchListQuestion extends Component {
 						<Button
 							bsStyle="warning"
 							bsSize="sm"
-							onClick={toggleSolution}
+							onClick={this.toggleSolution}
 						>{ !this.state.userAnswers ? 'Show Solution' : 'Hide Solution' }</Button> :
 						<OverlayTrigger
 							placement="top"
@@ -194,6 +171,7 @@ class MatchListQuestion extends Component {
 // DEFAULT PROPERTIES //
 
 MatchListQuestion.defaultProps = {
+	colorScale: null,
 	elements: [],
 	onSubmit() {},
 	question: null
@@ -203,6 +181,7 @@ MatchListQuestion.defaultProps = {
 // PROPERTY TYPES //
 
 MatchListQuestion.propTypes = {
+	colorScale: PropTypes.array,
 	elements: PropTypes.arrayOf( PropTypes.shape({
 		a: PropTypes.string.isRequired,
 		b: PropTypes.string.isRequired

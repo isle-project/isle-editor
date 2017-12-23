@@ -6,26 +6,14 @@ import floor from '@stdlib/math/base/special/floor';
 import randu from '@stdlib/math/base/random/randu';
 
 
+// VARIABLES //
+
+
+
+
 // MAIN //
 
 class OptionsList extends Component {
-	static styles = {
-		container: {
-			flex: 1,
-			listStyleType: 'none',
-			padding: 0
-		},
-		option: {
-			display: 'flex',
-			justifyContent: 'center',
-			alignItems: 'center',
-			padding: '10px 0px',
-			margin: '10px',
-			border: 'solid 1px gainsboro',
-			cursor: 'pointer'
-		}
-	}
-
 	constructor( props ) {
 		super( props );
 	}
@@ -47,17 +35,27 @@ class OptionsList extends Component {
 	}
 
 	render() {
-		const styles = OptionsList.styles;
-		const selected = Object.assign({}, styles.option, {
+		const optionStyle = {
+			display: 'flex',
+			justifyContent: 'center',
+			alignItems: 'center',
+			padding: '10px 0px',
+			margin: '10px',
+			border: 'solid 1px gainsboro',
+			cursor: 'pointer',
+			backgroundColor: this.props.baseColor
+		};
+
+		const selected = Object.assign({}, optionStyle, {
 			backgroundColor: 'gainsboro'
 		});
 		this.options = this.options || this.shuffle( this.props.options );
 		const { active, onSelect, answers } = this.props;
 		return (
-			<ul style={styles.container}>
+			<ul style={{ flex: 1, listStyleType: 'none', padding: 0 }}>
 				{
 					this.options.map( ( q, i ) => {
-						let style = ( q === active ) ? selected : styles.option;
+						let style = ( q === active ) ? selected : optionStyle;
 						const match = answers.filter( answer => {
 							return answer.a === q || answer.b === q;
 						});
@@ -86,10 +84,16 @@ class OptionsList extends Component {
 // PROPERTY TYPES //
 
 OptionsList.propTypes = {
-	active: PropTypes.bool.isRequired,
+	active: PropTypes.string,
 	answers: PropTypes.array.isRequired,
+	baseColor: PropTypes.string,
 	onSelect: PropTypes.func.isRequired,
 	options: PropTypes.array.isRequired
+};
+
+OptionsList.defaultProps = {
+	active: null,
+	baseColor: 'transparent'
 };
 
 
