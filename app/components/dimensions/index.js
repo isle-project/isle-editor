@@ -42,10 +42,6 @@ function Dimensions( ComposedComponent ) {
 			onElementResize( this._parent, this.updateDimensions );
 		}
 
-		getWindow() {
-			return this.refs.container ? ( this.refs.container.ownerDocument.defaultView || window ) : window;
-		}
-
 		getWrappedInstance() {
 			return this.wrappedInstance;
 		}

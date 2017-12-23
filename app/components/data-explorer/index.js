@@ -51,7 +51,7 @@ import CorrTest from 'components/data-explorer/corrtest';
 import Chi2Test from 'components/data-explorer/chi2';
 import PropTest from 'components/data-explorer/proptest';
 import PropTest2 from 'components/data-explorer/proptest2';
-import ANOVA from 'components/data-explorer/anova';
+import Anova from 'components/data-explorer/anova';
 
 
 // FUNCTIONS //
@@ -222,8 +222,8 @@ const OutputPanel = ( output, clearOutput ) => {
 											return (
 												<tr key={i} >
 													<td>{arr[ 0 ]}</td>
-													{arr[ 1 ].map( x => {
-														return <td>{x}</td>;
+													{arr[ 1 ].map( ( x, j ) => {
+														return <td key={j}>{x}</td>;
 													})}
 												</tr>
 											);
@@ -247,6 +247,7 @@ const OutputPanel = ( output, clearOutput ) => {
 					let elem = renderIQRTable( e, idx );
 					return makeDraggable( elem );
 				}
+				return null;
 			})}
 		</div>
 	);
@@ -421,7 +422,8 @@ class DataExplorer extends Component {
 				}
 			} else {
 				if ( !( name in newCategorical ) ) {
-					newCategorical.push( name );																								previous = newContinuous.indexOf( name );
+					newCategorical.push( name );
+					previous = newContinuous.indexOf( name );
 					if ( previous > 0 ) {
 						newContinuous.splice( previous, 1 );
 					}
@@ -842,7 +844,7 @@ class DataExplorer extends Component {
 					/>;
 					break;
 				case 'One-Way ANOVA':
-					content = <ANOVA
+					content = <Anova
 						onCreated={this.addToOutputs}
 						data={this.state.data}
 						continuous={this.state.continuous}
@@ -1023,6 +1025,7 @@ class DataExplorer extends Component {
 // DEFAULT PROPERTIES //
 
 DataExplorer.defaultProps = {
+	data: {},
 	onSelect(){},
 	tabs: [],
 	questions: null,
@@ -1072,12 +1075,17 @@ DataExplorer.defaultProps = {
 // TYPES //
 
 DataExplorer.propTypes = {
+	categorical: PropTypes.array,
+	continuous: PropTypes.array,
 	data: PropTypes.object,
+	distributions: PropTypes.array,
 	models: PropTypes.array,
 	onSelect: PropTypes.func,
 	plots: PropTypes.array,
+	questions: PropTypes.node,
 	statistics: PropTypes.array,
 	tables: PropTypes.array,
+	tabs: PropTypes.array,
 	tests: PropTypes.array,
 	transformer: PropTypes.bool
 };
