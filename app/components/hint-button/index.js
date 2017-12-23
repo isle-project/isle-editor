@@ -60,7 +60,7 @@ class HintButton extends Component {
 		const { currentHint, hintOpen } = this.state;
 		const { hints } = this.props;
 		if ( currentHint < hints.length && hintOpen === false ) {
-			this.props.onOpen( currentHint );
+			this.props.onClick( currentHint );
 			this.setState({
 				currentHint: currentHint + 1,
 				hintOpen: true
@@ -81,7 +81,7 @@ class HintButton extends Component {
 		return (
 			<OverlayTrigger
 				trigger="click"
-				placement="left"
+				placement={this.props.placement}
 				overlay={displayHint( this.state.currentHint - 1, this.props.hints )}
 			>
 				<Button
@@ -100,14 +100,16 @@ class HintButton extends Component {
 HintButton.propTypes = {
 	disabled: PropTypes.bool,
 	hints: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	onClick: PropTypes.func,
 	onFinished: PropTypes.func,
-	onOpen: PropTypes.func
+	placement: PropTypes.string
 };
 
 HintButton.defaultProps = {
 	disabled: false,
+	onClick() {},
 	onFinished() {},
-	onOpen() {}
+	placement: 'left'
 };
 
 

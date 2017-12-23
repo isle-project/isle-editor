@@ -137,7 +137,7 @@ class NumberQuestion extends Component {
 						{ ( this.state.submitted && !this.props.solution ) ? 'Resubmit' : 'Submit' }
 					</Button>
 					{ nHints > 0 ?
-						<HintButton onOpen={this.logHint} hints={this.props.hints} /> :
+						<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
 						null
 					}
 					{
@@ -159,6 +159,7 @@ class NumberQuestion extends Component {
 NumberQuestion.defaultProps = {
 	chat: false,
 	hints: [],
+	hintPlacement: 'bottom',
 	max: PINF,
 	min: NINF,
 	onChange() {},
@@ -171,6 +172,7 @@ NumberQuestion.defaultProps = {
 
 NumberQuestion.propTypes = {
 	chat: PropTypes.bool,
+	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
 	max: PropTypes.number,
 	min: PropTypes.number,
