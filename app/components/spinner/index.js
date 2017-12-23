@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
+import PI from '@stdlib/math/constants/float64-pi';
 
 
 // MAIN //
@@ -26,10 +27,10 @@ class Spinner extends Component {
 				context.save();
 				context.clearRect( 0, 0, cW, cH );
 				context.translate( cW / 2.0, cH / 2.0 );
-				context.rotate( Math.PI * 2 * rotation );
+				context.rotate( PI * 2 * rotation );
 				for ( let i = 0; i < lines; i++ ) {
 					context.beginPath();
-					context.rotate( Math.PI * 2.0 / lines );
+					context.rotate( PI * 2.0 / lines );
 					context.moveTo( cW / 10, 0 );
 					context.lineTo( cW / 4, 0 );
 					context.lineWidth = cW / 30;

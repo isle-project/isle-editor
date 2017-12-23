@@ -14,6 +14,7 @@ import isElectron from 'utils/is-electron';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import isString from '@stdlib/assert/is-string';
+import max from '@stdlib/math/base/special/max';
 import ace from 'brace';
 import 'brace/mode/r';
 import 'brace/theme/katzenmilch';
@@ -34,8 +35,6 @@ let rCode = [];
 
 
 // FUNCTIONS //
-
-const max = Math.max;
 
 const insertImages = ( imgs ) => {
 	const ret = [];

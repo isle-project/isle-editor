@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import floor from '@stdlib/math/base/special/floor';
+import max from '@stdlib/math/base/special/max';
 
 
 // TIMER //
@@ -50,7 +51,7 @@ class Timer extends Component {
 		const countdown = setInterval( () => {
 			// Decrement the time by 1:
 			this.setState({
-				timeLeft: Math.max( 0, this.state.timeLeft - 1 )
+				timeLeft: max( 0, this.state.timeLeft - 1 )
 			});
 			localStorage.setItem( this.getTimerId(), this.state.timeLeft );
 

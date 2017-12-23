@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import WordCloud from 'react-d3-cloud';
+import log2 from '@stdlib/math/base/special/log2';
 
 
 // MAIN //
@@ -11,7 +12,6 @@ import WordCloud from 'react-d3-cloud';
 class Wrapper extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 		};
 	}
@@ -32,7 +32,7 @@ class Wrapper extends Component {
 // DEFAULT PROPERTIES //
 
 Wrapper.defaultProps = {
-	fontSizeMapper: word => Math.log2( word.value ) * 5,
+	fontSizeMapper: word => log2( word.value ) * 5,
 	rotate: word => word.value % 360,
 	width: 700,
 	height: 600
