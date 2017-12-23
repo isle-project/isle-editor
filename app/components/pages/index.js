@@ -11,16 +11,46 @@ import './pages.css';
 class Pages extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			activePage: 1
 		};
+		this.nPages = this.props.children.length || 1;
 	}
 
 	handleSelect = ( eventKey ) => {
 		this.props.onSelect( eventKey );
 		this.setState({
 			activePage: eventKey
+		});
+	}
+
+	nextPage() {
+		if ( this.state.activePage === this.nPages ) {
+			return this.props.onSelect( this.state.activePage );
+		}
+		this.props.onSelect( this.state.activePage + 1 );
+		this.setState({
+			activePage: this.state.activePage + 1
+		});
+	}
+
+	prevPage() {
+		if ( this.state.activePage === 1 ) {
+			return this.props.onSelect( this.state.activePage );
+		}
+		this.props.onSelect( this.state.activePage - 1 );
+		this.setState({
+			activePage: this.state.activePage - 1
+		});
+	}
+
+	jumpTo( page ) {
+		if ( page < 1 || page > this.nPages ) {
+			return this.props.onSelect( this.state.activePage );
+		}
+		this.props.onSelect( page );
+		this.setState({
+			activePage: page
 		});
 	}
 
