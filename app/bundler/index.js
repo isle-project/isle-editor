@@ -206,7 +206,7 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath
 	res += getComponents( components );
 	res += getLessonComponent( lessonContent );
 	return res;
-} // end FUNCTION generateIndexJS()
+}
 
 /**
 * Write index.js file to disk
@@ -399,7 +399,7 @@ function writeIndexFile({
 			clbk( err, meta );
 		}
 	});
-} // end FUNCTION writeIndexFile()
+}
 
 
 // EXPORTS //

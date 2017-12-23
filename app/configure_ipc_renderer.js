@@ -66,7 +66,7 @@ function configureIpcRenderer( store ) {
 	window.document.addEventListener( 'dragover', ( e ) => {
 		e.preventDefault();
 	});
-} // end FUNCTION configureIpcRenderer()
+}
 
 
 // EXPORTS //

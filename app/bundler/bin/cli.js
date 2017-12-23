@@ -25,7 +25,7 @@ function init() {
 	// Set the process title to allow the process to be more easily identified:
 	process.title = pkg.name;
 	process.stdout.on( 'error', process.exit );
-} // end FUNCTION init()
+}
 
 /**
 * Prints usage information.
@@ -42,9 +42,9 @@ function help() {
 		.on( 'close', onClose );
 
 	function onClose() {
-		process.exit( 0 );
+		process.exit( 0 ); // eslint-disable-line no-process-exit
 	}
-} // end FUNCTION help()
+}
 
 /**
 * Prints the package version.
@@ -57,8 +57,8 @@ function help() {
 function version() {
 	var msg = pkg.version.toString()+'\n';
 	process.stdout.write( msg, 'utf8' );
-	process.exit( 0 );
-} // end FUNCTION version()
+	process.exit( 0 ); // eslint-disable-line no-process-exit
+}
 
 /**
 * Callback invoked upon completion.
@@ -70,8 +70,8 @@ function onFinish( error ) {
 	if ( error ) {
 		throw error;
 	}
-	console.log( 'Bundling is complete.' );
-} // end FUNCTION onFinish()
+	console.log( 'Bundling is complete.' );  // eslint-disable-line no-console
+}
 
 
 // VARIABLES //

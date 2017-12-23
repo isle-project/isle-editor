@@ -93,9 +93,6 @@ class NumberSurvey extends Component {
 		});
 	}
 
-	componentDidMount() {
-	}
-
 	render() {
 		const props = this.props;
 		const { data } = this.state;
