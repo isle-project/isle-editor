@@ -49,7 +49,6 @@ const calculateMargin = ( containerWidth ) => {
 // MAIN //
 
 class Image extends Component {
-
 	constructor( props ) {
 		super( props );
 		this.state = {
@@ -130,6 +129,9 @@ class Image extends Component {
 // PROPERTY TYPES //
 
 Image.propTypes = {
+	body: PropTypes.string,
+	containerWidth: PropTypes.number.isRequired,
+	height: PropTypes.number.isRequired,
 	onShare: PropTypes.func,
 	showModal: PropTypes.bool,
 	src: PropTypes.string.isRequired,
@@ -140,6 +142,7 @@ Image.propTypes = {
 // DEFAULT PROPERTIES //
 
 Image.defaultProps = {
+	body: null,
 	onShare: null,
 	showModal: true,
 	title: 'Image'
