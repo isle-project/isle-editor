@@ -71,7 +71,8 @@ snippet LessonSubmit
 
 snippet MatchListQuestion
 	<MatchListQuestion
-		questions={[
+		question="Enter question"
+		elements={[
 			{ a: '${1:Element A}', b: '${2:Element B}' },
 			{ a: '${3:Element C}', b: '${4:Element D}' }
 		]}
