@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Col, Grid, Panel, Row } from 'react-bootstrap';
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryLine, VictoryTheme } from 'victory';
 import roundn from '@stdlib/math/base/special/roundn';
@@ -14,32 +15,37 @@ import TeX from 'components/tex';
 
 // VARIABLES //
 
-const probabilityTableLabels = ( props ) => ( <table className="table-bordered">
+const probabilityTableLabels = ({ A, B }) => ( <table className="table-bordered">
 	<tbody>
 		<tr>
 			<th></th>
-			<th> {props.B} </th>
-			<th>not {props.B} </th>
+			<th> {B} </th>
+			<th>not {B} </th>
 		</tr>
 		<tr>
-			<th> {props.A} </th>
-			<td><TeX raw={`P(\\text{${props.A}} \\cap \\text{${props.B}} )`} /></td>
-			<td><TeX raw={`P(\\text{${props.A}} \\cap \\text{${props.B}}^C )`} /></td>
-			<td><TeX raw={`P(\\text{${props.A}})`} /></td>
+			<th> {A} </th>
+			<td><TeX raw={`P(\\text{${A}} \\cap \\text{${B}} )`} /></td>
+			<td><TeX raw={`P(\\text{${A}} \\cap \\text{${B}}^C )`} /></td>
+			<td><TeX raw={`P(\\text{${A}})`} /></td>
 		</tr>
 		<tr>
-			<th>not {props.A}</th>
-			<td><TeX raw={`P(\\text{${props.A}}^C \\cap \\text{${props.B}} )`} /></td>
-			<td><TeX raw={`P(\\text{${props.A}} \\cap \\text{${props.B}} )`} /></td>
-			<td><TeX raw={`P(\\text{${props.A}}^c)`} /></td>
+			<th>not {A}</th>
+			<td><TeX raw={`P(\\text{${A}}^C \\cap \\text{${B}} )`} /></td>
+			<td><TeX raw={`P(\\text{${A}} \\cap \\text{${B}} )`} /></td>
+			<td><TeX raw={`P(\\text{${A}}^c)`} /></td>
 		</tr>
 		<tr>
 			<th></th>
-			<td><TeX raw={`P( \\text{${props.B}} )`} /></td>
-			<td><TeX raw={`P(\\text{${props.B}}^c)`} /></td><td><TeX raw="P(\Omega)" /></td>
+			<td><TeX raw={`P( \\text{${B}} )`} /></td>
+			<td><TeX raw={`P(\\text{${B}}^c)`} /></td><td><TeX raw="P(\Omega)" /></td>
 		</tr>
 	</tbody>
 </table> );
+
+probabilityTableLabels.propTypes = {
+	A: PropTypes.string.isRequired,
+	B: PropTypes.string.isRequired
+};
 
 
 // MAIN //
