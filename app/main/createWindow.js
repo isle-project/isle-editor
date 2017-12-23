@@ -34,10 +34,12 @@ export default function createWindow( filePath, callback ) {
 	}
 
 	mainWindow.showUrl( indexPath, () => {
-		console.log( 'FILE PATH: ' + filePath );
+		console.log( 'FILE PATH: ' + filePath ); // eslint-disable-line no-console
 		if ( filePath ) {
 			fs.readFile( filePath, 'utf-8', ( err, file ) => {
-				if ( err ) return;
+				if ( err ) {
+					return debug( `Encountered an error: ${err.message}` );
+				}
 				mainWindow.webContents.send( 'ISLE::file-loaded', {
 					file,
 					fileName: path.basename( filePath ),
@@ -66,4 +68,4 @@ export default function createWindow( filePath, callback ) {
 	mainWindow.webContents.on( 'new-window', openExternal );
 	mainWindow.webContents.on( 'will-navigate', openExternal );
 	return mainWindow;
-} // end FUNCTION createWindow()
+}

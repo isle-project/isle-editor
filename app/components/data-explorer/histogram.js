@@ -55,7 +55,7 @@ function calculateDensityValues( vals, densityType ) {
 		break;
 	}
 	return [ x, y ];
-} // end FUNCTION calculateDensityValues()
+}
 
 export function generateHistogramConfig({ data, variable, group, overlayDensity, densityType, chooseBins, nBins }) {
 	let traces;
@@ -139,7 +139,7 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 		data: traces,
 		layout: layout
 	};
-} // end FUNCTION generateHistogramConfig()
+}
 
 
 // MAIN //

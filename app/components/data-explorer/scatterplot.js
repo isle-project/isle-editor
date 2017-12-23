@@ -80,7 +80,7 @@ function calculateCoefficients( x, y ) {
 	const slope = C2 / C1;
 	const yint = ymu - slope*xmu;
 	return [ yint, slope ];
-} // end FUNCTION calculateCoefficients()
+}
 
 function scale( arr, a, b ) {
 	const minimum = min( arr );
@@ -91,7 +91,7 @@ function scale( arr, a, b ) {
 		out[ i ] = ( ( b - a ) * ( arr[ i ] - minimum ) / range ) + a;
 	}
 	return out;
-} // end FUNCTION scale()
+}
 
 export function generateScatterplotConfig({ data, xval, yval, color, type, size, regressionLine, lineBy }) {
 	let nColors;
@@ -263,7 +263,7 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 			title: `${xval} against ${yval}`
 		}
 	};
-} // end FUNCTION generateScatterplotConfig()
+}
 
 
 // MAIN //

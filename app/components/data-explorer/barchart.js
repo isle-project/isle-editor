@@ -56,7 +56,7 @@ export function generateBarchartConfig({ data, variable, group }) {
 			title: group ? `${variable} given ${group}` : variable
 		}
 	};
-} // end FUNCTION generateBarchartConfig()
+}
 
 
 // MAIN //

@@ -20,7 +20,7 @@ function configureMenu({ app }) {
 		windowMenu,
 		help
 	];
-} // end FUNCTION configureMenu()
+}
 
 
 // EXPORTS //

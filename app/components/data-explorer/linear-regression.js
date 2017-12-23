@@ -27,7 +27,7 @@ function calculateCoefficients( x, y ) {
 	const slope = C2 / C1;
 	const yint = ymu - slope*xmu;
 	return [ yint, slope ];
-} // end FUNCTION calculateCoefficients()
+}
 
 
 // MAIN //

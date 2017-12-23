@@ -22,7 +22,7 @@ function autoUpdater( callback ) {
 			return callback( error );
 		}
 	});
-} // end FUNCTION autoUpdater()
+}
 
 
 // EXPORTS //

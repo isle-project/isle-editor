@@ -48,7 +48,7 @@ export function generateMosaicPlotCode({ data, vars, showColors }) {
 		mosaicplot( xytable, main = "${`Mosaic Plot of ${vars.join( ', ' )}`}",
 		cex=1, shade=${ showColors ? 'TRUE' : 'FALSE' } )`;
 	return code;
-} // end FUNCTION generateMosaicPlotCode()
+}
 
 
 // MAIN //

@@ -42,7 +42,7 @@ export function generateBoxplotConfig({ data, variable, group }) {
 			title: group ? `${variable} given ${group}` : variable
 		}
 	};
-} // end FUNCTION generateBoxplotConfig()
+}
 
 
 // MAIN //

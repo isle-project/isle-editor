@@ -140,7 +140,7 @@ class Session {
 		return () => {
 			this.listeners = this.listeners.filter( l => l !== listener );
 		};
-	} // end FUNCTION subscribe()
+	}
 
 	/**
 	* Pings the server and starts retrieving lesson info if server is live.
