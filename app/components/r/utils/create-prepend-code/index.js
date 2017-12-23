@@ -35,7 +35,7 @@ function createPrependCode( libs, prependCode ) {
 	prependCode += '\n';
 	ret += prependCode;
 	return ret;
-} // end FUNCTION createPrependCode()
+}
 
 
 // EXPORTS //

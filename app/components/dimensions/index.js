@@ -8,7 +8,7 @@ import onElementResize from 'element-resize-event';
 
 function getDimensions( element ) {
 	return [ element.clientWidth, element.clientHeight ];
-} // end FUNCTION getDimensions()
+}
 
 
 // MAIN //

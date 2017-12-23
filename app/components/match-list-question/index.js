@@ -21,7 +21,7 @@ function createColorScale( length ) {
 		colorScale[ i ] = color( i );
 	}
 	return shuffle( colorScale );
-} // end FUNCTION createColorScale()
+}
 
 
 // MAIN //
