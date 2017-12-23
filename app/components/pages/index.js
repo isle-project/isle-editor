@@ -17,20 +17,24 @@ class Pages extends Component {
 	}
 
 	handleSelect = ( eventKey ) => {
+		this.props.onSelect( eventKey );
 		this.setState({
 			activePage: eventKey
 		});
 	}
 
 	render() {
-		if ( !this.props.children ) return null;
+		if ( !this.props.children ) {
+			return null;
+		}
+		const header = <div className="panel-heading">
+			<h3 className="panel-title">{this.props.title}</h3>
+		</div>;
 		return (
 			<div
 				className="panel panel-default"
 			>
-				<div className="panel-heading">
-					<h3 className="panel-title">{this.props.title}</h3>
-				</div>
+				{ this.props.title ? header : null }
 				<Pagination
 					prev next first last
 					bsSize="medium"
@@ -59,11 +63,13 @@ class Pages extends Component {
 
 Pages.propTypes = {
 	height: PropTypes.number,
+	onSelect: PropTypes.func,
 	title: PropTypes.string
 };
 
 Pages.defaultProps = {
 	height: null,
+	onSelect() {},
 	title: ''
 };
 
