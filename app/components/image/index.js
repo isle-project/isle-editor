@@ -151,4 +151,4 @@ Image.defaultProps = {
 
 // EXPORTS //
 
-export default Image;
+export default Dimensions( Image );

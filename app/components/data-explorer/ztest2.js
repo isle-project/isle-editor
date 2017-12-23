@@ -6,7 +6,6 @@ import { Button, Panel, Row, Col } from 'react-bootstrap';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import TeX from 'components/tex';
-import isArray from '@stdlib/assert/is-array';
 import ztest2 from '@stdlib/math/stats/ztest2';
 import copy from '@stdlib/utils/copy';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
@@ -20,15 +19,7 @@ class ZTest2 extends Component {
 	constructor( props ) {
 		super( props );
 
-		let categories;
-		if ( isArray( props.categorical ) && props.categorical.length > 0 ) {
-			categories = copy( props.data[ props.categorical[ 0 ] ]);
-			unique( categories );
-		} else {
-			categories = [];
-		}
 		this.state = {
-			categories,
 			var1: props.continuous[ 0 ],
 			grouping: null,
 			var2: null,

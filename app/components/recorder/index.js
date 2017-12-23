@@ -69,7 +69,7 @@ function getAudioConfig( type ) {
 }
 
 
-// RECORDER //
+// MAIN //
 
 class Recorder extends Component {
 	constructor( props ) {
@@ -84,7 +84,7 @@ class Recorder extends Component {
 		if ( props.audio ) {
 			this.recorderConfig = getAudioConfig();
 		}
-		else {
+		else if ( props.screen || props.video ) {
 			this.recorderConfig = {
 				type: 'video',
 				mimeType: 'video/webm'
@@ -302,6 +302,7 @@ class Recorder extends Component {
 Recorder.propTypes = {
 	audio: PropTypes.bool,
 	autostart: PropTypes.bool,
+	camera: PropTypes.bool,
 	downloadable: PropTypes.bool,
 	screen: PropTypes.bool,
 	uploadable: PropTypes.bool,
@@ -314,6 +315,7 @@ Recorder.propTypes = {
 Recorder.defaultProps = {
 	audio: false,
 	autostart: false,
+	camera: false,
 	downloadable: false,
 	screen: false,
 	uploadable: false,

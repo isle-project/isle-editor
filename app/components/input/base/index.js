@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unused-state, react/no-unused-prop-types */
+
 // MODULES //
 
 import React, { Component } from 'react';

@@ -8,6 +8,7 @@ import isObject from '@stdlib/assert/is-object';
 import isString from '@stdlib/assert/is-string';
 import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
+import HintButton from 'components/hint-button';
 const debug = require( 'debug' )( 'isle:free-text-question' );
 
 
@@ -28,6 +29,7 @@ class FreeTextQuestion extends Component {
 
 		// Initialize state variables...
 		this.state = {
+			exhaustedHints: props.hints.length === 0,
 			value: isString( value ) ? value : '',
 			solutionDisplayed: false,
 			submitted: isString( value )
@@ -157,19 +159,48 @@ class FreeTextQuestion extends Component {
 		}
 	}
 
+	renderSolutionButton() {
+		if ( !this.props.solution ) {
+			return null;
+		}
+		const tooltip = (
+			<Tooltip
+				id="tooltip"
+			>
+				Solution becomes available after answer is submitted and all hints have been required.
+			</Tooltip>
+		);
+		if ( this.state.submitted && this.state.exhaustedHints ) {
+			return ( <Button
+				bsStyle="warning"
+				bsSize="sm"
+				onClick={this.handleSolutionClick}
+			>{ !this.state.solutionDisplayed ? 'Show Solution' : 'Hide Solution' }</Button> );
+		}
+		return ( <OverlayTrigger
+			placement="top"
+			positionLeft={100}
+			overlay={tooltip}
+			rootClose={true}
+		>
+			<div style={{ display: 'inline-block', marginLeft: '4px' }}>
+				<Button
+					bsStyle="warning"
+					bsSize="sm"
+					disabled
+					style={{
+						pointerEvents: 'none'
+					}}
+				>{ !this.state.solutionDisplayed ? 'Show Solution' : 'Hide Solution' }</Button>
+			</div>
+		</OverlayTrigger> );
+	}
+
 	/*
 	* React component render method.
 	*/
 	render() {
 		const nHints = this.props.hints.length;
-		const tooltip = (
-			<Tooltip
-				id="tooltip"
-			>
-				Solution becomes available after answer is submitted.
-			</Tooltip>
-		);
-
 		return (
 			<Panel className="FreeFormQuestion">
 				{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
@@ -222,45 +253,17 @@ class FreeTextQuestion extends Component {
 
 				<ButtonToolbar style={{ marginTop: '8px', marginBottom: '4px', float: 'right' }}>
 					{ nHints > 0 ?
-						<OverlayTrigger
-							trigger="click"
-							placement="left"
-							overlay={displayHint( this.state.currentHint - 1, this.props.hints )}
-						>
-							<Button
-								bsStyle="primary"
-								bsSize="sm"
-								onClick={this.handleHintClick}
-								disabled={this.state.disabled}
-							>{getHintLabel( this.state.currentHint, this.props.hints.length, this.state.hintOpen )}</Button>
-						</OverlayTrigger> :
+						<HintButton
+							onClick={this.logHint}
+							hints={this.props.hints}
+							onFinished={() => {
+								this.setState({ exhaustedHints: true });
+							}}
+							placement={this.props.hintPlacement} /> :
 						null
 					}
 					{
-						this.props.solution ? ( this.state.submitted ?
-							<Button
-								bsStyle="warning"
-								bsSize="sm"
-								onClick={this.handleSolutionClick}
-							>{ !this.state.solutionDisplayed ? 'Show Solution' : 'Hide Solution' }</Button> :
-							<OverlayTrigger
-								placement="top"
-								positionLeft={100}
-								overlay={tooltip}
-								rootClose={true}
-							>
-								<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-									<Button
-										bsStyle="warning"
-										bsSize="sm"
-										disabled
-										style={{
-											pointerEvents: 'none'
-										}}
-									>{ !this.state.solutionDisplayed ? 'Show Solution' : 'Hide Solution' }</Button>
-								</div>
-							</OverlayTrigger> ) :
-							<span />
+						this.renderSolutionButton()
 					}
 					{
 						this.props.chat && this.props.id ?
@@ -280,6 +283,7 @@ class FreeTextQuestion extends Component {
 
 FreeTextQuestion.defaultProps = {
 	chat: false,
+	hintPlacement: 'bottom',
 	hints: [],
 	onChange() {},
 	placeholder: 'Enter your answer here...',
@@ -296,7 +300,8 @@ FreeTextQuestion.defaultProps = {
 
 FreeTextQuestion.propTypes = {
 	chat: PropTypes.bool,
-	hints: PropTypes.array,
+	hintPlacement: PropTypes.string,
+	hints: PropTypes.arrayOf( PropTypes.string ),
 	onChange: PropTypes.func,
 	placeholder: PropTypes.string,
 	question: PropTypes.string,

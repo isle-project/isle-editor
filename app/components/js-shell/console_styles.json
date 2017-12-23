@@ -1,0 +1,28 @@
+{
+	"log": {
+		"marginLeft": "8px",
+		"fontFamily": "monospace",
+		"color": "lightgreen"
+	},
+	"error": {
+		"marginLeft": "8px",
+		"fontFamily": "monospace",
+		"color": "red",
+		"fontWeight": 800
+	},
+	"info": {
+		"marginLeft": "8px",
+		"fontFamily": "monospace",
+		"color": "darkcyan"
+	},
+	"warn": {
+		"marginLeft": "8px",
+		"fontFamily": "monospace",
+		"color": "darkorange"
+	},
+	"default": {
+		"marginLeft": "8px",
+		"fontFamily": "monospace",
+		"color": "darkslategrey"
+	}
+}
