@@ -8,9 +8,6 @@ import randu from '@stdlib/math/base/random/randu';
 
 // VARIABLES //
 
-
-
-
 // MAIN //
 
 class OptionsList extends Component {
