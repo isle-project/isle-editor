@@ -22,7 +22,7 @@ function createColorScale( length ) {
 } // end FUNCTION createColorScale()
 
 
-// MATCH LIST QUESTION //
+// MAIN //
 
 class MatchListQuestion extends Component {
 	static styles = {

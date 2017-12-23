@@ -2,10 +2,13 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ButtonToolbar, OverlayTrigger, Panel } from 'react-bootstrap';
+import { Button, ButtonToolbar, Panel } from 'react-bootstrap';
+import PINF from '@stdlib/math/constants/float64-pinf';
+import NINF from '@stdlib/math/constants/float64-ninf';
 import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
 import NumberInput from 'components/input/number';
+import HintButton from 'components/hint-button';
 const debug = require( 'debug' )( 'isle:number-question' );
 
 
@@ -23,7 +26,6 @@ class NumberQuestion extends Component {
 		// Initialize state variables...
 		this.state = {
 			value: null,
-			solutionDisplayed: false,
 			submitted: false
 		};
 
@@ -75,8 +77,19 @@ class NumberQuestion extends Component {
 		) {
 			this.setState({
 				value: null,
-				solutionDisplayed: false,
 				submitted: false
+			});
+		}
+	}
+
+	logHint = ( idx ) => {
+		debug( 'Logging hint...' );
+		const { session } = this.context;
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'NUMBER_QUESTION_OPEN_HINT',
+				value: idx
 			});
 		}
 	}
@@ -86,7 +99,6 @@ class NumberQuestion extends Component {
 	*/
 	render() {
 		const nHints = this.props.hints.length;
-
 		return (
 			<Panel className="NumberQuestion">
 				{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
@@ -119,28 +131,13 @@ class NumberQuestion extends Component {
 					<Button
 						bsStyle="primary"
 						bsSize="sm"
-						style={{
-							marginTop: '8px',
-							marginBottom: '8px'
-						}}
 						disabled={this.state.submitted && this.props.solution}
 						onClick={this.submitHandler}
 					>
 						{ ( this.state.submitted && !this.props.solution ) ? 'Resubmit' : 'Submit' }
 					</Button>
 					{ nHints > 0 ?
-						<OverlayTrigger
-							trigger="click"
-							placement="left"
-							overlay={displayHint( this.state.currentHint - 1, this.props.hints )}
-						>
-							<Button
-								bsStyle="primary"
-								bsSize="sm"
-								onClick={this.handleHintClick}
-								disabled={this.state.disabled}
-							>{getHintLabel( this.state.currentHint, this.props.hints.length, this.state.hintOpen )}</Button>
-						</OverlayTrigger> :
+						<HintButton onOpen={this.logHint} hints={this.props.hints} /> :
 						null
 					}
 					{
@@ -162,6 +159,8 @@ class NumberQuestion extends Component {
 NumberQuestion.defaultProps = {
 	chat: false,
 	hints: [],
+	max: PINF,
+	min: NINF,
 	onChange() {},
 	question: '',
 	solution: null
@@ -172,7 +171,9 @@ NumberQuestion.defaultProps = {
 
 NumberQuestion.propTypes = {
 	chat: PropTypes.bool,
-	hints: PropTypes.array,
+	hints: PropTypes.arrayOf( PropTypes.string ),
+	max: PropTypes.number,
+	min: PropTypes.number,
 	onChange: PropTypes.func,
 	question: PropTypes.string,
 	solution: PropTypes.number
