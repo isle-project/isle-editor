@@ -20,7 +20,7 @@ function by( arr, factor, fun ) {
 		}
 	}
 	return ret;
-} // end FUNCTION by()
+}
 
 
 // EXPORTS //

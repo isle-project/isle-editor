@@ -55,7 +55,7 @@ function toMarkdown( str ) {
 	}
 
 	return str;
-} // end FUNCTION toMarkdown()
+}
 
 
 // EXPORTS //

@@ -23,7 +23,7 @@ function isQuotationMark( c ) {
 		c === '"' ||
 		c === '`'
 	);
-} // end FUNCTION isQuotationMark()
+}
 
 /**
 * Tests whether character is whitespace.
@@ -39,7 +39,7 @@ function isWhitespace( c ) {
 		c === '\f' ||
 		c === '\r'
 	);
-} // end FUNCTION isWhitespace()
+}
 
 
 // MAIN //

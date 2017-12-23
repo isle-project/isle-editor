@@ -9,7 +9,7 @@ import ROutput from 'components/r/output';
 
 // MAIN //
 
-class ANOVA extends Component {
+class Anova extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -67,7 +67,7 @@ class ANOVA extends Component {
 
 // PROPERTY TYPES //
 
-ANOVA.propTypes = {
+Anova.propTypes = {
 	categorical: PropTypes.array.isRequired,
 	continuous: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
@@ -75,11 +75,11 @@ ANOVA.propTypes = {
 	onCreated: PropTypes.func.isRequired
 };
 
-ANOVA.defaultProps = {
+Anova.defaultProps = {
 	logAction() {}
 };
 
 
 // EXPORTS //
 
-export default ANOVA;
+export default Anova;

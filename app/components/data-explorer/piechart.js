@@ -78,7 +78,7 @@ export function generatePiechartConfig({ data, variable, group }) {
 		layout,
 		data: traces
 	};
-} // end FUNCTION generatePiechartConfig()
+}
 
 
 // MAIN //

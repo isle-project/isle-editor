@@ -26,13 +26,13 @@ function _createWindow( options ) {
 	_windows[ window.id ] = window;
 
 	return window;
-} // end FUNCTION _createWindow()
+}
 
 
 // Should not need to be called directly (just in case window.destroy() is ever called)
 function _unref() {
 	delete _windows[ this.id ];
-} // end FUNCTION _unref()
+}
 
 function _loadUrl( httpOrFileUrl, callback ) {
 	const self = this;
@@ -40,7 +40,7 @@ function _loadUrl( httpOrFileUrl, callback ) {
 		callback( ...args );
 	});
 	self.loadURL( 'file://' + httpOrFileUrl );
-} // end FUNCTION _loadUrl()
+}
 
 function createWindow( options ) {
 	const window = _createWindow( options );
@@ -57,7 +57,7 @@ function createWindow( options ) {
 		});
 	};
 	return window;
-} // end FUNCTION createWindow()
+}
 
 
 // EXPORTS //
