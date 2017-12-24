@@ -58,8 +58,6 @@ export default {
 	},
 	resolve: {
 		alias: {
-			'debug/node': require.resolve( 'debug/node' ),
-			'debug': require.resolve( 'debug/src/browser.js' ),
 			'esprima': path.resolve( './node_modules/esprima-fb' ),
 			'victory': require.resolve( 'victory/dist/victory' ),
 			'form-data': path.resolve( './node_modules/form-data/lib/form_data.js' )
