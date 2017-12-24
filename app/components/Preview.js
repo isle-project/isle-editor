@@ -259,7 +259,6 @@ export default class Preview extends Component {
 			debug( 'Transpile code to ES5...' );
 			try {
 				es5code = transform( es6code, OPTS );
-				console.log( es5code );
 				if ( es5code && es5code.code ) {
 					eval( es5code.code );
 				}
