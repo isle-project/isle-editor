@@ -78,6 +78,15 @@ $ npm run build
 
 See [LICENSE][license].
 
+## Icon Credits
+
+The following icons are used under a Creative Commons CCBY license.
+
+- "Confused" by Greg Pabst
+- "Lightbulb" by Jeremy J Bristol
+- "Microphone" by Aleksandr Vector
+- "Positive Feedback Loop" by Richard Slater
+
 [electron]: http://electron.atom.io/
 [git]: http://git-scm.com/
 [license]: https://raw.githubusercontent.com/Planeshifter/isle-editor/master/LICENSE.md
