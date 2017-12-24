@@ -17,17 +17,16 @@ const PropTypes = require( 'prop-types' );
 const React = require( 'react' );
 const ReactBootstrap = require( 'react-bootstrap' );
 const render = require( 'react-dom' ).render;
-const createReactClass = require( 'create-react-class' );
 const NotificationSystem = require( 'react-notification-system' );
 const contains = require( '@stdlib/assert/contains' );
 const request = require( 'request' );
 const debug = require( 'debug' )( 'isle-editor' );
 const Session = require( 'session' );
-
 import { Component } from 'react';
 import { transform } from 'babel-core';
 import markdownToHTML from 'utils/markdown-to-html';
 
+const Deck = require( 'spectacle' ).Deck;
 
 // E-LEARNING MODULE COMPONENTS //
 
@@ -87,6 +86,7 @@ const SelectInput = require( 'components/input/select' );
 const SelectQuestion = require( 'components/select-question' );
 const SliderInput = require( 'components/input/slider' );
 const Slider = require( 'components/slider' );
+const theme = require( 'components/spectacle/theme.json' );
 const SpeechRecognition = require( 'components/speech-recognition' );
 const Spinner = require( 'components/spinner' );
 const StatusBar = require( 'components/statusbar' );
@@ -132,7 +132,6 @@ const Cite = require( 'spectacle' ).Cite;
 const Code = require( 'spectacle' ).Code;
 const CodePane = require( 'spectacle' ).CodePane;
 const ComponentPlayground = require( 'spectacle' ).ComponentPlayground;
-const Deck = require( 'spectacle' ).Deck;
 const Fill = require( 'spectacle' ).Fill;
 const Fit = require( 'spectacle' ).Fit;
 const Heading = require( 'spectacle' ).Heading;
@@ -149,8 +148,6 @@ const TableItem = require( 'spectacle' ).TableItem;
 const TableBody = require( 'spectacle' ).TableBody;
 const TableHeader = require( 'spectacle' ).TableHeader;
 const SText = require( 'spectacle' ).Text;
-const createTheme = require( 'spectacle/lib/themes/default' ).default;
-const theme = require( 'components/styles/theme.json' );
 const Well = ReactBootstrap.Well;
 const WordCloud = require( 'components/word-cloud' );
 
@@ -219,13 +216,13 @@ export default class Preview extends Component {
 					code = pres;
 				}
 				code = `
-					<Deck
-						globalStyles={false}
-						controls={true}
-						progress="${progress}"
-						transition={[]}
-						theme={theme}
-					>${code}</Deck>`;
+				<Deck
+					globalStyles={false}
+					controls={true}
+					progress="${progress}"
+					transition={[]}
+					theme={theme}
+				>${code}</Deck>`;
 			}
 
 			const es6code = `class Lesson extends React.Component {
