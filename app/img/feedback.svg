@@ -1,1 +1,58 @@
-<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" viewBox="0 0 100 125" x="0px" y="0px"><path style="baseline-shift:baseline;block-progression:tb;color:#000000;direction:ltr;text-indent:0;enable-background:accumulate;text-transform:none;" fill="#000" d="M49.406,5.125c-14.442,0.198-28.538,7.289-37.031,20.219-13.59,20.688-7.813,48.66,12.875,62.25,20.623,13.546,48.488,7.841,62.125-12.688l6.156,4.032,0.719-14,0.75-14.063-12.5,6.375-12.531,6.375,6.625,4.313c-9.844,14.651-29.492,18.652-44.282,8.937-14.886-9.778-18.997-29.583-9.218-44.469,9.778-14.886,29.582-18.997,44.468-9.218,3.669,2.409,6.81,5.549,9.219,9.218l10.719-7.062c-3.372-5.137-7.739-9.502-12.875-12.875-7.758-5.0963-16.554-7.4628-25.219-7.344zm-4.468,19.906v20h-20v10h20v20h10v-20h20v-10h-20v-20h-10z"/><text x="0" y="115" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by Richard Slater</text><text x="0" y="120" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   viewBox="0 0 100 100"
+   x="0px"
+   y="0px"
+   id="svg4936"
+   sodipodi:docname="feedback.svg"
+   width="100"
+   height="100"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
+  <metadata
+     id="metadata4942">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4940" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview4938"
+     showgrid="false"
+     inkscape:zoom="1.888"
+     inkscape:cx="50"
+     inkscape:cy="62.5"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4936" />
+  <path
+     style="color:#000000;text-indent:0;text-transform:none;direction:ltr;baseline-shift:baseline;fill:#000000;enable-background:accumulate"
+     d="M 49.406,4.125 C 34.964,4.323 20.868,11.414 12.375,24.344 -1.215,45.032 4.562,73.004 25.25,86.594 45.873,100.14 73.738,94.435 87.375,73.906 l 6.156,4.032 0.719,-14 L 95,49.875 82.5,56.25 69.969,62.625 76.594,66.938 C 66.75,81.589 47.102,85.59 32.312,75.875 17.426,66.097 13.315,46.292 23.094,31.406 32.872,16.52 52.676,12.409 67.562,22.188 c 3.669,2.409 6.81,5.549 9.219,9.218 L 87.5,24.344 C 84.128,19.207 79.761,14.842 74.625,11.469 66.867,6.3727 58.071,4.0062 49.406,4.125 Z m -4.468,19.906 v 20 h -20 v 10 h 20 v 20 h 10 v -20 h 20 v -10 h -20 v -20 z"
+     id="path4930"
+     inkscape:connector-curvature="0" />
+</svg>
