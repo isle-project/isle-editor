@@ -56,6 +56,12 @@ const config = {
 				use: 'raw-loader'
 			},
 			{
+				test: /\.svg$/i,
+				use: {
+					loader: 'svg-react-loader'
+				}
+			},
+			{
 				test: /\.css$/,
 				use: [
 					'style-loader',
