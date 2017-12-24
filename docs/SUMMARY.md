@@ -38,4 +38,5 @@
     * [Timer](components/timer.md)
     * [LaTeX Equations](components/latex.md)
     * [Video Player](components/video-player.md)
+    * [Wikipedia](components/wikipedia.md)
 * [Publishing Lessons](packaging.md)

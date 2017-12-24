@@ -1,18 +1,19 @@
-The **Wikipedia**-component scans the **Wikipedia** and returns an article - if anything valid is found under the given address.
+# Wikipedia
 
-If the **showSearch** parameter is included, an input text field is visible.
+The **Wikipedia** component scans the **Wikipedia** and returns an article - if anything valid is found under the given address.
 
-The **language** parameter allows the specification of the fiven language.
-Up to now **us-EN**, **de-DE** and **fr-FR** are supported (English, German, French).
-
-When the **speech** parameter is set, the component includes speech-recognition.
-The recognition identifier is the name **Wikipedia**. For example: if you ask "Wikipedia, what do you know about Hillary Clinton", you will see the wikipedia entry of Hillary Clinton.
-
+#### Example:
 
 ```js
 <Wikipedia
     showSearch
     speech
     language = "de-DE"
-    ></Wikipedia>
+/>
 ```
+
+#### Options:
+
+* __showSearch__: `boolean` indicating whether to render a search input.
+* __language__: specifies the given language. **us-EN**, **de-DE**, and **fr-FR** are supported (English, German, French).
+* __speech__: `boolean` indicating whether to allow inputs via speech recognition. The recognition identifier is the name **Wikipedia**. For example: if you ask "Wikipedia, what do you know about Hillary Clinton", you will see the wikipedia entry for Hillary Clinton.

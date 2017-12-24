@@ -186,3 +186,10 @@ snippet Well
 	<Well>
 		${1:}
 	</Well>
+
+snippet Wikipedia
+	<Wikipedia
+		showSearch
+		speech
+		language = "en-US"
+	/>
