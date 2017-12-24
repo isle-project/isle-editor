@@ -3,8 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from 'components/input/base';
-import Microphone from 'svg-react-loader!./../../../img/microphone.svg';
-
+import Microphone from '-!svg-react-loader!./../../../img/microphone.svg';
+import './voice.css';
 
 // MAIN //
 
@@ -46,7 +46,7 @@ class VoiceInput extends Input {
 
 	render() {
 		return (
-			<div>
+			<div className="voice-input">
 				<input
 					className="voice-input-text"
 					type="text"
@@ -61,7 +61,7 @@ class VoiceInput extends Input {
 						width: this.props.width
 					}}
 				/>
-				<Microphone width={50} height={50} />
+				<Microphone className="Mikrophone" />
 			</div>
 		);
 	}
