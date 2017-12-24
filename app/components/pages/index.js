@@ -14,7 +14,6 @@ class Pages extends Component {
 		this.state = {
 			activePage: 1
 		};
-		this.nPages = this.props.children.length || 1;
 	}
 
 	handleSelect = ( eventKey ) => {
@@ -25,7 +24,8 @@ class Pages extends Component {
 	}
 
 	nextPage() {
-		if ( this.state.activePage === this.nPages ) {
+		const nPages = this.props.children.length || 1;
+		if ( this.state.activePage === nPages ) {
 			return this.props.onSelect( this.state.activePage );
 		}
 		this.props.onSelect( this.state.activePage + 1 );
@@ -45,7 +45,8 @@ class Pages extends Component {
 	}
 
 	jumpTo( page ) {
-		if ( page < 1 || page > this.nPages ) {
+		const nPages = this.props.children.length || 1;
+		if ( page < 1 || page > nPages ) {
 			return this.props.onSelect( this.state.activePage );
 		}
 		this.props.onSelect( page );
@@ -74,7 +75,7 @@ class Pages extends Component {
 					activePage={this.state.activePage}
 					onSelect={this.handleSelect}
 				/>
-				<div style={{
+				<div className="page-children-wrapper" style={{
 					height: this.props.height,
 					overflowY: 'scroll',
 					padding: '5px',
