@@ -95,7 +95,10 @@ class Pages extends Component {
 // TYPES //
 
 Pages.propTypes = {
-	height: PropTypes.number,
+	height: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string
+	]),
 	onSelect: PropTypes.func,
 	title: PropTypes.string
 };
