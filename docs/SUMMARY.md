@@ -22,6 +22,7 @@
     * [Lesson Submit](components/lesson-submit.md)
     * [Match List Question](components/match-list-question.md)
     * [Multiple Choice Question](components/multiple-choice-question.md)
+    * [Pages](components/pages.md)
     * [Plots](components/plots.md)
         * [Density Plot](components/density-plot.md)
         * [R Plot](components/r-plot.md)
