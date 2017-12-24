@@ -279,7 +279,9 @@ class App extends Component {
 }
 
 App.defaultProps = {
-	error: null
+	error: null,
+	fileName: null,
+	filePath: null
 };
 
 App.propTypes = {
@@ -290,8 +292,8 @@ App.propTypes = {
 	currentRole: PropTypes.string.isRequired,
 	encounteredError: PropTypes.func.isRequired,
 	error: PropTypes.object,
-	fileName: PropTypes.string.isRequired,
-	filePath: PropTypes.string.isRequired,
+	fileName: PropTypes.string,
+	filePath: PropTypes.string,
 	hideToolbar: PropTypes.bool.isRequired,
 	markdown: PropTypes.string.isRequired,
 	preamble: PropTypes.object.isRequired,
