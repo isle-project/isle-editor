@@ -15,21 +15,20 @@ import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import isString from '@stdlib/assert/is-string';
 import max from '@stdlib/math/base/special/max';
+import logger from 'debug';
 import ace from 'brace';
 import 'brace/mode/r';
 import 'brace/theme/katzenmilch';
 import 'brace/theme/solarized_light';
 import Spinner from 'components/spinner';
 import HintButton from 'components/hint-button';
-
-
-// CONSTANTS //
-
-const HELP_REGEX = /(help\([^)]*\)|\?[^\n]*)/;
+import './rshell.css';
 
 
 // VARIABLES //
 
+const debug = logger( 'isle-editor' );
+const HELP_REGEX = /(help\([^)]*\)|\?[^\n]*)/;
 let counter = 0;
 let rCode = [];
 
@@ -204,6 +203,7 @@ class RShell extends React.Component {
 		};
 
 		this.handleEvaluationClick = () => {
+			debug( 'Evaluate R code...' );
 			this.setState({
 				result: '',
 				plots: [],
@@ -400,7 +400,7 @@ class RShell extends React.Component {
 	render() {
 		const nHints = this.props.hints.length;
 		return (
-			<div className="RShell"
+			<div className="rshell"
 				style={this.props.style}
 			>
 				<div id="ace" style={{
