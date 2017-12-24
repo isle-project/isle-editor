@@ -6,9 +6,9 @@ import { Button, ButtonGroup, FormGroup, Modal, OverlayTrigger, Tooltip } from '
 import TextArea from 'components/text-area';
 import CheckboxInput from 'components/input/checkbox';
 import './feedback.css';
-import Confused from 'svg-react-loader!./../../img/confused.svg';
-import Understood from 'svg-react-loader!./../../img/lightbulb.svg';
-import Feedback from 'svg-react-loader!./../../img/feedback.svg';
+import Confused from '-!svg-react-loader!./../../img/confused.svg';
+import Understood from '-!svg-react-loader!./../../img/lightbulb.svg';
+import Feedback from '-!svg-react-loader!./../../img/feedback.svg';
 
 
 // MAIN //
