@@ -85,7 +85,9 @@ if ( version ) {
 function build( cfg ) {
 	return new Promise( ( resolve, reject ) => {
 		webpack( cfg, ( err, stats ) => {
-			if ( err ) return reject( err );
+			if ( err ) {
+				return reject( err );
+			}
 			resolve( stats );
 		});
 	});
@@ -161,7 +163,7 @@ function afterPack( plat, arch ) {
 		}
 		console.log( `${plat}-${arch} finished!` );
 		cleanModules();
-	}; // end FUNCTION log()
+	};
 
 	function cleanModules() {
 		const nodeModulesPath = plat !== 'darwin' ?
@@ -181,7 +183,7 @@ function afterPack( plat, arch ) {
 			console.log( `ModCleaner Deleted Files Total (${plat}-${arch}):`, results.length );
 			zip();
 		});
-	} // end FUNCTION cleanModules()
+	}
 
 	function zip() {
 		const zipper = spawn( 'zip', [ '-r', `ISLE Editor-${plat}-${arch}.zip`, `ISLE Editor-${plat}-${arch}` ], {
@@ -199,5 +201,5 @@ function afterPack( plat, arch ) {
 		zipper.on( 'close', ( code ) => {
 			console.log( `zip exited with code ${code} (${plat}-${arch})` );
 		});
-	} // end FUNCTION zip()
-} // end FUNCTION afterPack()
+	}
+}

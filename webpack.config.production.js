@@ -6,7 +6,7 @@ import path from 'path';
 import baseConfig from './webpack.config.base';
 
 
-// CONFIG //
+// MAIN //
 
 const config = {
 	...baseConfig,
@@ -54,13 +54,6 @@ const config = {
 			{
 				test: /\.txt$/,
 				use: 'raw-loader'
-			},
-			{
-				test: /img\/[A-Z]*\.svg$/i,
-				use: 'file-loader?name=./img/[name].[ext]',
-				include: [
-					path.join( __dirname, 'img' )
-				]
 			},
 			{
 				test: /\.css$/,

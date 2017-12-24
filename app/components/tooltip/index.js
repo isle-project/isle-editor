@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import styles from 'components/styles';
+import './tooltip.css';
 
 
 // MAIN //
@@ -40,7 +40,8 @@ class Tooltip extends React.Component {
 			>
 				<div
 					key="tooltip"
-					style={[ styles.tooltip, { left: this.props.left, top: this.props.top } ]}
+					className="tooltip-inner"
+					style={{ left: this.props.left, top: this.props.top }}
 				>
 					{this.props.text}
 				</div>

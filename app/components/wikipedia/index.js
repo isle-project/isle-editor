@@ -18,7 +18,6 @@ class Wikipedia extends Component {
 		};
 
 		this.keyDown.bind( this );
-		this.click.bind( this );
 	}
 
 	componentDidMount() {
@@ -105,7 +104,7 @@ class Wikipedia extends Component {
 	}
 
 
-	click() {
+	click = () => {
 		this.recognition.trigger();
 	}
 
@@ -161,7 +160,7 @@ class Wikipedia extends Component {
 		if ( this.props.speech ) {
 			return (
 				<div
-					onClick={this.click.bind( this )}
+					onClick={this.click}
 					className="wikipedia_logo">
 				</div>
 			);

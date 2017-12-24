@@ -6,7 +6,7 @@ import webpack from 'webpack';
 import baseConfig from './webpack.config.base';
 
 
-// CONFIG //
+// MAIN //
 
 const config = {
 	...baseConfig,

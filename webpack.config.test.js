@@ -13,7 +13,7 @@ module.exports = {
 		libraryTarget: 'commonjs2'
 	},
 	module: {
-		loaders: devConfigs.module.rules.slice( 1 ) // remove babel-loader
+		loaders: devConfigs.module.rules.slice( 1 ) // Remove babel-loader
 	},
 	resolve: {
 		modules: [

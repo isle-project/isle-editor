@@ -1,0 +1,13 @@
+.tooltip-inner {
+	display: inline-block;
+	border: 1px solid #aeaeae;
+	border-radius: 4px;
+	margin-left: 9px;
+	height: auto;
+	width: 140px;
+	background: lightblue;
+	text-align: center;
+	font-family: Open Sans, sans-serif;
+	font-size: 12px;
+	padding: 4px;
+}

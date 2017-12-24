@@ -4,7 +4,7 @@ import webpack from 'webpack';
 import path from 'path';
 
 
-// CONFIG //
+// MAIN //
 
 export default {
 	module: {
@@ -35,19 +35,18 @@ export default {
 			use: 'raw-loader'
 		},
 		{
+			test: /\.svg$/i,
+			use: {
+				loader: 'svg-react-loader'
+			}
+		},
+		{
 			test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
 			loader: 'file-loader',
 			query: {
 				name: 'static/media/[name].[hash:8].[ext]'
 			}
-		},
-		{
-			test: /img\/[A-Z]*\.svg$/i,
-			use: 'file-loader?name=./img/[name].[ext]',
-			include: [
-				path.join( __dirname, 'img' )
-			]
-		} ],
+		}],
 		noParse: [
 			/node_modules\/json-schema\/lib\/validate\.js/
 		]

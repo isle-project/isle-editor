@@ -3,9 +3,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonGroup, FormGroup, Modal, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import styles from 'components/styles';
 import TextArea from 'components/text-area';
 import CheckboxInput from 'components/input/checkbox';
+import './feedback.css';
+import Confused from 'svg-react-loader!./../../img/confused.svg';
+import Understood from 'svg-react-loader!./../../img/lightbulb.svg';
+import Feedback from 'svg-react-loader!./../../img/feedback.svg';
 
 
 // MAIN //
@@ -95,17 +98,17 @@ class FeedbackButtons extends Component {
 				<ButtonGroup style={{ float: 'right' }} vertical={this.props.vertical} >
 					<OverlayTrigger placement="left" overlay={<Tooltip id="tooltip_confused"><strong> I am confused. </strong></Tooltip>}>
 						<Button bsSize="small" onClick={this.submitConfused}>
-							<div key="confused" style={{ ...styles.icon, ...styles[ 'confused' ] }} />
+							<Confused className="icon" />
 						</Button>
 					</OverlayTrigger>
 					<OverlayTrigger placement="left" overlay={<Tooltip id="tooltip_understood"><strong> Makes sense. </strong></Tooltip>}>
 						<Button bsSize="small" onClick={this.submitUnderstood}>
-							<div key="understood" style={{ ...styles.icon, ...styles[ 'understood' ] }} />
+							<Understood className="icon" />
 						</Button>
 					</OverlayTrigger>
 					<OverlayTrigger placement="left" overlay={<Tooltip id="tooltip_feedback"><strong> I have feedback. </strong></Tooltip>}>
 						<Button bsSize="small" onClick={openModal}>
-							<div key="feedback" style={{ ...styles.icon, ...styles[ 'feedback' ] }} />
+							<Feedback className="icon" />
 						</Button>
 					</OverlayTrigger>
 				</ButtonGroup>

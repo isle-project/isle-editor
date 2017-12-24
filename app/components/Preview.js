@@ -123,6 +123,7 @@ const VictoryTooltip = require( 'victory' ).VictoryTooltip;
 const VictoryVoronoiContainer = require( 'victory' ).VictoryVoronoiContainer;
 const VictoryZoomContainer = require( 'victory' ).VictoryZoomContainer;
 const VideoPlayer = require( 'components/video-player' );
+const VoiceInput = require( 'components/input/voice' );
 const Wikipedia = require( 'components/wikipedia' );
 
 const Appear = require( 'spectacle' ).Appear;
