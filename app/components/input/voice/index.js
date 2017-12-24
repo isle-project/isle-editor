@@ -46,7 +46,7 @@ class VoiceInput extends Input {
 
 	render() {
 		return (
-			<div className="voice-input">
+			<div className="voice-input" style={{ width: this.props.width }} >
 				<input
 					className="voice-input-text"
 					type="text"
@@ -57,11 +57,8 @@ class VoiceInput extends Input {
 					ref={( input ) => {
 						this.textInput = input;
 					}}
-					style={{
-						width: this.props.width
-					}}
 				/>
-				<Microphone className="Mikrophone" />
+				<Microphone className="voice-microphone" />
 			</div>
 		);
 	}
@@ -72,7 +69,7 @@ class VoiceInput extends Input {
 
 VoiceInput.defaultProps = {
 	defaultValue: '',
-	width: 80,
+	width: 500,
 	onChange() {},
 	onSubmit() {},
 	inline: false,
