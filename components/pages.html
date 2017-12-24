@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Number Input · ISLE Editor Documentation</title>
+        <title>Pages · ISLE Editor Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="select-input.html" />
+    <link rel="next" href="plots.html" />
     
     
-    <link rel="prev" href="checkbox-input.html" />
+    <link rel="prev" href="multiple-choice-question.html" />
     
 
     </head>
@@ -227,7 +227,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.2.2" data-path="number-input.html">
+        <li class="chapter " data-level="1.4.2.2" data-path="number-input.html">
             
                 <a href="number-input.html">
             
@@ -388,7 +388,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.11" data-path="pages.html">
+        <li class="chapter active" data-level="1.4.11" data-path="pages.html">
             
                 <a href="pages.html">
             
@@ -650,7 +650,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Number Input</a>
+        <a href=".." >Pages</a>
     </h1>
 </div>
 
@@ -665,24 +665,24 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="number-input">Number Input</h1>
-<p>A number input component. Usually, this will be used as part of an <a href="dashboard.html">ISLE dashboard</a>, but it can also be used standalone. In this case, you want to handle changes via the <code>onChange</code> attribute. </p>
+                                <h1 id="pages">Pages</h1>
+<p>An ISLE pagination component that allows the user to step through a sequence of pages.</p>
 <h4 id="example">Example:</h4>
-<pre class="language-"><code class="lang-js"><span class="token operator">&lt;</span>NumberInput
-    legend<span class="token operator">=</span><span class="token string">&quot;Number of observations&quot;</span>
-    defaultValue<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">20</span><span class="token punctuation">}</span>
-    step<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">5</span><span class="token punctuation">}</span>
-<span class="token operator">/</span><span class="token operator">&gt;</span>
+<pre class="language-"><code class="lang-js"><span class="token operator">&lt;</span>Pages title<span class="token operator">=</span><span class="token string">&quot;Pages&quot;</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span>First Page<span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span>Second Page<span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>RShell <span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>Pages<span class="token operator">&gt;</span>
 </code></pre>
 <h4 id="options">Options:</h4>
 <ul>
-<li><strong>defaultValue</strong>: The value the slider is initialized with. Default: <code>0</code>.</li>
-<li><strong>inline</strong>: <code>boolean</code> indicating whether the element should be displayed inline. Default: <code>false</code>.</li>
-<li><strong>legend</strong>: <code>string</code> to be displayed as the title of te component. Default: <code>&apos;&apos;</code>.</li>
-<li><strong>max</strong>: The maximum value of the slider. Default: <code>100</code>.</li>
-<li><strong>min</strong>: The minimum value of the slider. Default: <code>0</code>.</li>
-<li><strong>step</strong>: The step size of the slider. Default: <code>1</code>.</li>
-<li><strong>onChange</strong>: Callback <code>function</code> invoked after each change of the slider value. Default: <code>null</code>.</li>
+<li><strong>height</strong>: the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added</li>
+<li><strong>onSelect</strong>: Function invoked when active change is changed. Receives the new active page index as a parameter.</li>
+<li><strong>title</strong>: displayed title of the pages container</li>
 </ul>
 
                                 
@@ -711,12 +711,12 @@
 
             
                 
-                <a href="checkbox-input.html" class="navigation navigation-prev " aria-label="Previous page: Checkbox Input">
+                <a href="multiple-choice-question.html" class="navigation navigation-prev " aria-label="Previous page: Multiple Choice Question">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="select-input.html" class="navigation navigation-next " aria-label="Next page: Select Input">
+                <a href="plots.html" class="navigation navigation-next " aria-label="Next page: Plots">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -727,7 +727,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Number Input","level":"1.4.2.2","depth":3,"next":{"title":"Select Input","level":"1.4.2.3","depth":3,"path":"components/select-input.md","ref":"components/select-input.md","articles":[]},"previous":{"title":"Checkbox Input","level":"1.4.2.1","depth":3,"path":"components/checkbox-input.md","ref":"components/checkbox-input.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":3},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/number-input.md","mtime":"2016-11-21T04:42:04.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-24T16:33:19.592Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Pages","level":"1.4.11","depth":2,"next":{"title":"Plots","level":"1.4.12","depth":2,"path":"components/plots.md","ref":"components/plots.md","articles":[{"title":"Density Plot","level":"1.4.12.1","depth":3,"path":"components/density-plot.md","ref":"components/density-plot.md","articles":[]},{"title":"R Plot","level":"1.4.12.2","depth":3,"path":"components/r-plot.md","ref":"components/r-plot.md","articles":[]}]},"previous":{"title":"Multiple Choice Question","level":"1.4.10","depth":2,"path":"components/multiple-choice-question.md","ref":"components/multiple-choice-question.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":3},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/pages.md","mtime":"2017-12-23T18:21:12.889Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-24T16:33:19.592Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
