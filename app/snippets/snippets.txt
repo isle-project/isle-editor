@@ -182,6 +182,9 @@ snippet Timer
 snippet VideoPlayer
 	<VideoPlayer url="${1:url}"/>
 
+snippet VoiceInput
+	<VoiceInput />
+
 snippet Well
 	<Well>
 		${1:}

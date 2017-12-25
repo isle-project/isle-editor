@@ -42,3 +42,7 @@ voice-input svg {
 .voice-microphone svg {
 	fill: green;
 }
+
+.voice-recording {
+	fill: red;
+}

@@ -239,7 +239,6 @@ function writeIndexFile({
 		resolve: {
 			modules: modulePaths,
 			alias: {
-				'object-keys': path.resolve( basePath, './objectKeys.js' ),
 				'victory': path.resolve(
 					basePath,
 					'./node_modules/victory/dist/victory/'
