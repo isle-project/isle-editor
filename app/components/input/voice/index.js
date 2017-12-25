@@ -79,43 +79,19 @@ class VoiceInput extends Input {
 		this.recognizer.grammars = this.createGrammarList();
 
 		this.recognizer.onerror = () => {
-			console.log('ON ERROR ' + this.props.id);
+			this.setState({
+				isRecording: false
+			});
 		};
 
 		this.recognizer.onend = () => {
 			console.log('ON END ' + this.props.id);
+			this.props.onRecordingStop();
 		};
 
 		this.recognizer.onstart = () => {
 			console.log('ON START' + this.props.id);
-		};
-
-		this.recognizer.onaudioend = () => {
-			console.log('ON AUDIO END ' + this.props.id);
-		};
-
-		this.recognizer.onaudiostart = () =>{
-			console.log('ON AUDIO START	 ' + this.props.id);
-		};
-
-		this.recognizer.onsoundend = () => {
-			console.log('ON SOUND END ' + this.props.id);
-		};
-
-		this.recognizer.onsoundstart = () =>{
-			console.log('ON SOUND START' + this.props.id);
-		};
-
-		this.recognizer.onspeechend = () => {
-			console.log('ON SPEECH END ' + this.props.id);
-		};
-
-		this.recognizer.onspeechstart = () => {
-			console.log('ON SPEECH START	 ' + this.props.id);
-		};
-
-		this.recognizer.nomatch = () => {
-			console.log('ON NO MATCH' + this.props.id);
+			this.props.onRecordingStart();
 		};
 
 		recognizer.onresult = this.onResult;
@@ -238,6 +214,8 @@ VoiceInput.defaultProps = {
 	onChange() {},
 	onFinalText() {},
 	onSegment() {},
+	onRecordingStart() {},
+	onRecordingStop() {},
 	onSubmit() {},
 	placeholder: 'Enter text',
 	width: 500
@@ -254,6 +232,8 @@ VoiceInput.propTypes = {
 	legend: PropTypes.string,
 	onChange: PropTypes.func,
 	onFinalText: PropTypes.func,
+	onRecordingStart: PropTypes.func,
+	onRecordingStop: PropTypes.func,
 	onSegment: PropTypes.func,
 	onSubmit: PropTypes.func,
 	placeholder: PropTypes.string,
