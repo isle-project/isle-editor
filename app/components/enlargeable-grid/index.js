@@ -14,7 +14,7 @@ const GridLayout = WidthProvider( ReactGridLayout );
 
 // MAIN //
 
-class EnlargableGrid extends Component {
+class EnlargeableGrid extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -130,7 +130,7 @@ class EnlargableGrid extends Component {
 				cols={12}
 				rowHeight={30}
 			>
-				{ this.props.enlargable ?
+				{ this.props.enlargeable ?
 					this.props.children.map( ( x, i ) => {
 						return <div key={i} onClick={this.enlargeDivFactory( i )} style={{ border: '2px solid darkgray', cursor: 'zoom-in' }}>{x}</div>;
 					}) :
@@ -145,16 +145,16 @@ class EnlargableGrid extends Component {
 
 // DEFAULT PROPERTIES //
 
-EnlargableGrid.defaultProps = {
-	enlargable: true,
+EnlargeableGrid.defaultProps = {
+	enlargeable: true,
 	enlargedHeight: 18,
 	isDraggable: false,
 	isResizable: false,
 	itemHeight: 9
 };
 
-EnlargableGrid.propTypes = {
-	enlargable: PropTypes.bool,
+EnlargeableGrid.propTypes = {
+	enlargeable: PropTypes.bool,
 	enlargedHeight: PropTypes.number,
 	isDraggable: PropTypes.bool,
 	isResizable: PropTypes.bool,

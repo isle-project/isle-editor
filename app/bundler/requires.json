@@ -14,7 +14,7 @@
 	"DensityPlot": "const DensityPlot = require( \"components/d3/density-plot\" )",
 	"DraggableList": "const DraggableList = require( \"components/draggable-list\" )",
 	"Editor": "const Editor = require( \"components/markdown-editor\" )",
-	"EnlargableGrid": "const EnlargableGrid = require( \"components/enlargable-grid\" )",
+	"EnlargeableGrid": "const EnlargeableGrid = require( \"components/enlargeable-grid\" )",
 	"Experiment": "const ABTest = require( \"components/experiment\" )",
 	"FeedbackButtons": "const FeedbackButtons = require( \"components/feedback\" )",
 	"FreeTextQuestion": "const FreeTextQuestion = require( \"components/free-text-question\" )",

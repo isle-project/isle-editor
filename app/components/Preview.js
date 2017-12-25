@@ -44,7 +44,7 @@ const DensityPlot = require( 'components/d3/density-plot' );
 const NetworkPlot = require( 'components/d3/network-plot' );
 const DraggableList = require( 'components/draggable-list' );
 const Editor = require( 'components/markdown-editor' );
-const EnlargableGrid = require( 'components/enlargable-grid' );
+const EnlargeableGrid = require( 'components/enlargeable-grid' );
 // const Experiment = require( 'components/experiment' );
 const FeedbackButtons = require( 'components/feedback' );
 const FreeTextSurvey = require( 'components/free-text-survey' );
@@ -317,7 +317,7 @@ export default class Preview extends Component {
 	}
 
 	renderErrorMessage( err ) {
-		let code = `<div className="errorMessage">
+		let code = `<div className="error-message">
 			<h3>Encountered an error:</h3>
 			<span>${err}</span>
 		</div>`;
