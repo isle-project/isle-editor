@@ -21,33 +21,32 @@ class SelectQuestion extends Component {
 			value: props.defaultValue,
 			answerState: null
 		};
+	}
 
-		this.handleChange = ( event ) => {
-			const { session } = this.context;
-			const value = event.target.value;
-			this.setState({
-				value,
-				answerState: value === this.props.solution ? 'success' : 'error'
-			}, () => {
-				this.props.onChange( value );
-
-				if ( this.props.solution === value ) {
-					session.addNotification({
-						title: 'Correct',
-						message: this.props.successMsg,
-						level: 'success',
-						position: 'tr'
-					});
-				} else {
-					session.addNotification({
-						title: 'Incorrect',
-						message: this.props.failureMsg,
-						level: 'error',
-						position: 'tr'
-					});
-				}
-			});
-		};
+	handleChange = ( event ) => {
+		const { session } = this.context;
+		const value = event.target.value;
+		this.setState({
+			value,
+			answerState: value === this.props.solution ? 'success' : 'error'
+		}, () => {
+			this.props.onChange( value );
+			if ( this.props.solution === value ) {
+				session.addNotification({
+					title: 'Correct',
+					message: this.props.successMsg,
+					level: 'success',
+					position: 'tr'
+				});
+			} else {
+				session.addNotification({
+					title: 'Incorrect',
+					message: this.props.failureMsg,
+					level: 'error',
+					position: 'tr'
+				});
+			}
+		});
 	}
 
 	/*

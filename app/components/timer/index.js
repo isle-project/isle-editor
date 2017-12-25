@@ -6,7 +6,7 @@ import floor from '@stdlib/math/base/special/floor';
 import max from '@stdlib/math/base/special/max';
 
 
-// TIMER //
+// MAIN //
 
 class Timer extends Component {
 	constructor( props ) {

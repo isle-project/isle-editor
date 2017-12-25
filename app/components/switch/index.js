@@ -23,20 +23,20 @@ class Switch extends React.Component {
 		this.state = {
 			pos: 0
 		};
+	}
 
-		this.handleClick = () => {
-			const newState = copy( this.state );
-			if ( !isArray( this.props.children ) ) {
-				return null;
-			}
-			if ( newState.pos + 1 >= this.props.children.length ) {
-				newState.pos = 0;
-			} else {
-				newState.pos += 1;
-			}
-			this.setState( newState );
-			this.props.onChange( newState.pos );
-		};
+	handleClick = () => {
+		const newState = copy( this.state );
+		if ( !isArray( this.props.children ) ) {
+			return null;
+		}
+		if ( newState.pos + 1 >= this.props.children.length ) {
+			newState.pos = 0;
+		} else {
+			newState.pos += 1;
+		}
+		this.setState( newState );
+		this.props.onChange( newState.pos );
 	}
 
 	makeVisible( element, index ) {

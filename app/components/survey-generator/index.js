@@ -3,13 +3,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ControlLabel, FormGroup, Col, Panel, Well } from 'react-bootstrap';
+import logger from 'debug';
 import Gate from 'components/gate';
 import { CheckboxInput, SelectInput, TextInput } from 'components/input';
 import TextArea from 'components/text-area';
 import MultipleChoiceSurvey from 'components/multiple-choice-survey';
 import NumberSurvey from 'components/number-survey';
 import FreeTextSurvey from 'components/free-text-survey';
-const debug = require( 'debug' )( 'isle-editor' );
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor' );
 
 
 // MAIN //
@@ -17,7 +22,6 @@ const debug = require( 'debug' )( 'isle-editor' );
 class MCSgenerator extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			answers: [],
 			question: '',

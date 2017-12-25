@@ -14,37 +14,7 @@ class Panel extends Component {
 		this.scrollTop = null;
 		this.scrollHeight = null;
 		this.offsetHeight = null;
-
 		this.ignoreScrollEvents = false;
-
-		this.onScroll = () => {
-			this.scrollTop = this.panel.scrollTop;
-			this.scrollHeight = this.panel.scrollHeight;
-			this.offsetHeight = this.panel.offsetHeight;
-
-			if ( !this.ignoreScrollEvents ) {
-				this.props.onScroll(
-					this.scrollTop,
-					this.scrollHeight,
-					this.offsetHeight
-				);
-				this.ignoreScrollEvents = true;
-			} else {
-				this.ignoreScrollEvents = false;
-			}
-		};
-
-		this.setScrollTop = ( percentage ) => {
-			const scrollHeight = this.scrollHeight;
-			const offsetHeight = this.offsetHeight;
-			this.ignoreScrollEvents = true;
-			this.panel.scrollTop = percentage * (
-				scrollHeight - offsetHeight ) / 100;
-			this.scrollPercentage = percentage;
-			setTimeout( () => {
-				this.ignoreScrollEvents = false;
-			}, 20 );
-		};
 	}
 
 	componentDidMount() {
@@ -60,9 +30,38 @@ class Panel extends Component {
 		this.setScrollTop( this.scrollPercentage );
 	}
 
+	handleScroll = () => {
+		this.scrollTop = this.panel.scrollTop;
+		this.scrollHeight = this.panel.scrollHeight;
+		this.offsetHeight = this.panel.offsetHeight;
+
+		if ( !this.ignoreScrollEvents ) {
+			this.props.onScroll(
+				this.scrollTop,
+				this.scrollHeight,
+				this.offsetHeight
+			);
+			this.ignoreScrollEvents = true;
+		} else {
+			this.ignoreScrollEvents = false;
+		}
+	}
+
+	setScrollTop = ( percentage ) => {
+		const scrollHeight = this.scrollHeight;
+		const offsetHeight = this.offsetHeight;
+		this.ignoreScrollEvents = true;
+		this.panel.scrollTop = percentage * (
+			scrollHeight - offsetHeight ) / 100;
+		this.scrollPercentage = percentage;
+		setTimeout( () => {
+			this.ignoreScrollEvents = false;
+		}, 20 );
+	}
+
 	render() {
 		return (
-			<div ref={( div ) => { this.panel = div; }} onScroll={this.onScroll} style={{
+			<div ref={( div ) => { this.panel = div; }} onScroll={this.handleScroll} style={{
 				height: 'calc(100vh - 90px)',
 				overflow: 'scroll'
 			}}>

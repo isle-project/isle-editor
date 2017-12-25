@@ -21,16 +21,6 @@ class TextArea extends Component {
 		this.state = {
 			value: props.defaultValue
 		};
-
-		/*
-		* Event handler invoked when text area value changes. Updates `text` and invokes
-		* `onChange` callback with the new text as its first argument
-		*/
-		this.handleChange = ( event ) => {
-			const value = event.target.value;
-			this.setState({ value });
-			this.props.onChange( value );
-		};
 	}
 
 	componentWillReceiveProps( nextProps ) {
@@ -41,6 +31,16 @@ class TextArea extends Component {
 		if ( !isEmptyObject( newState ) ) {
 			this.setState( newState );
 		}
+	}
+
+	/*
+	* Event handler invoked when text area value changes. Updates `text` and invokes
+	* `onChange` callback with the new text as its first argument
+	*/
+	handleChange = ( event ) => {
+		const value = event.target.value;
+		this.setState({ value });
+		this.props.onChange( value );
 	}
 
 	/*
