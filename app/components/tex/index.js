@@ -32,7 +32,6 @@ class TeX extends Component {
 			initialState.id = counter;
 			counter += 1;
 		}
-
 		this.state = initialState;
 	}
 

@@ -9,6 +9,7 @@ import css from 'css';
 import fs from 'fs';
 import debounce from 'lodash.debounce';
 import SplitPane from 'react-split-pane';
+import logger from 'debug';
 import yaml from 'js-yaml';
 import ErrorBoundary from 'components/error-boundary';
 import Panel from 'components/Panel';
@@ -16,13 +17,13 @@ import Header from 'components/Header';
 import Editor from 'components/Editor';
 import Preview from 'components/Preview';
 import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError } from 'actions';
-const debug = require( 'debug' )( 'isle-editor' );
 
 
 // VARIABLES //
 
-var cssHash = {};
-var lastCSS = null;
+const debug = logger( 'isle-editor' );
+let cssHash = {};
+let lastCSS = null;
 
 
 // FUNCTIONS //

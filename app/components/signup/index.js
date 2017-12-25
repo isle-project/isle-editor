@@ -17,76 +17,74 @@ const createTooltip = ( str ) => {
 class Signup extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			name: '',
 			email: '',
 			password: '',
 			passwordRepeat: ''
 		};
+	}
 
-		this.handleSubmit = ( event ) => {
-			event.preventDefault();
-			const { session } = this.context;
-			if (
-				this.getEmailValidationState() === 'success' &&
-				this.getNameValidationState() === 'success' &&
-				this.getPasswordValidationState() === 'success'
-			) {
-				session.registerUser( this.state, () => {
-					this.props.onClose();
-				});
-			} else {
-				this.setState({
-					showSubmitOverlay: true,
-					overlayTarget: event.target
-				}, () => {
-					setTimeout( () => {
-						this.setState({
-							showSubmitOverlay: false
-						});
-					}, 2000 );
-				});
-			}
-			return false;
-		};
-
-		this.handleInputChange = ( event ) => {
-			const target = event.target;
-			const value = target.value;
-			const name = target.name;
-
-			this.setState({
-				[ name ]: value
+	handleSubmit = ( event ) => {
+		event.preventDefault();
+		const { session } = this.context;
+		if (
+			this.getEmailValidationState() === 'success' &&
+			this.getNameValidationState() === 'success' &&
+			this.getPasswordValidationState() === 'success'
+		) {
+			session.registerUser( this.state, () => {
+				this.props.onClose();
 			});
-		};
+		} else {
+			this.setState({
+				showSubmitOverlay: true,
+				overlayTarget: event.target
+			}, () => {
+				setTimeout( () => {
+					this.setState({
+						showSubmitOverlay: false
+					});
+				}, 2000 );
+			});
+		}
+		return false;
+	};
 
-		this.getEmailValidationState = () => {
-			const { email } = this.state;
-			if ( email.includes( '@' ) ) {
-				return 'success';
-			}
-			return 'warning';
-		};
+	handleInputChange = ( event ) => {
+		const target = event.target;
+		const value = target.value;
+		const name = target.name;
+		this.setState({
+			[ name ]: value
+		});
+	}
 
-		this.getNameValidationState = () => {
-			const { name } = this.state;
-			if ( name.length > 3 ) {
-				return 'success';
-			}
-			return 'warning';
-		};
-
-		this.getPasswordValidationState = () => {
-			const { password, passwordRepeat } = this.state;
-			if ( password.length < 6 || passwordRepeat.length === 0 ) {
-				return 'warning';
-			}
-			if ( password !== passwordRepeat ) {
-				return 'error';
-			}
+	getEmailValidationState = () => {
+		const { email } = this.state;
+		if ( email.includes( '@' ) ) {
 			return 'success';
-		};
+		}
+		return 'warning';
+	}
+
+	getNameValidationState = () => {
+		const { name } = this.state;
+		if ( name.length > 3 ) {
+			return 'success';
+		}
+		return 'warning';
+	}
+
+	getPasswordValidationState = () => {
+		const { password, passwordRepeat } = this.state;
+		if ( password.length < 6 || passwordRepeat.length === 0 ) {
+			return 'warning';
+		}
+		if ( password !== passwordRepeat ) {
+			return 'error';
+		}
+		return 'success';
 	}
 
 	render() {

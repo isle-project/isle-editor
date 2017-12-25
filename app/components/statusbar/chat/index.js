@@ -14,24 +14,16 @@ import './chat.css';
 
 const debug = logger( 'isle-editor' );
 
+
 // MAIN //
 
 class Chat extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			opened: true,
 			value: '',
 			hasNews: false
-		};
-
-		this.onScroll = () => {
-			const $chatbody = $( this.chatbody );
-			if ( $chatbody.scrollTop() + $chatbody.innerHeight() >= $chatbody[ 0 ].scrollHeight ) {
-				const { session } = this.context;
-				session.markChatMessagesAsRead( this.props.chat.name );
-			}
 		};
 	}
 
@@ -58,6 +50,14 @@ class Chat extends Component {
 
 	componentWillUnmount() {
 		this.unsubscribe();
+	}
+
+	onScroll = () => {
+		const $chatbody = $( this.chatbody );
+		if ( $chatbody.scrollTop() + $chatbody.innerHeight() >= $chatbody[ 0 ].scrollHeight ) {
+			const { session } = this.context;
+			session.markChatMessagesAsRead( this.props.chat.name );
+		}
 	}
 
 	sendMessage = () => {

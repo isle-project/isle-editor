@@ -3,13 +3,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonToolbar, Panel } from 'react-bootstrap';
+import logger from 'debug';
 import PINF from '@stdlib/math/constants/float64-pinf';
 import NINF from '@stdlib/math/constants/float64-ninf';
 import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
 import NumberInput from 'components/input/number';
 import HintButton from 'components/hint-button';
-const debug = require( 'debug' )( 'isle:number-question' );
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:number-question' );
 
 
 // MAIN //

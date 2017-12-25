@@ -1,19 +1,20 @@
 // MODULES //
 
 import request from 'request';
+import logger from 'debug';
 import isString from '@stdlib/assert/is-string';
 import isFunction from '@stdlib/assert/is-function';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import copy from '@stdlib/utils/copy';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
-const isElectron = require( 'utils/is-electron' );
-const debug = require( 'debug' )( 'isle-editor' );
-const io = require( 'socket.io-client' );
+import isElectron from 'utils/is-electron';
+import io from 'socket.io-client';
 
 
 // VARIABLES //
 
+const debug = logger( 'isle-editor' );
 const PATH_REGEXP = /^\/([^/]*)\/([^/]*)\//i;
 const STDOUT_REGEX = /stdout/;
 const GRAPHICS_REGEX = /graphics/;

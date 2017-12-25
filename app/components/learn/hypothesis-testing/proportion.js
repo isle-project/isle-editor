@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Label, Panel, Well } from 'react-bootstrap';
 import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
+import logger from 'debug';
 import { abs, sqrt, roundn } from '@stdlib/math/base/special';
 import linspace from '@stdlib/math/utils/linspace';
 import isInfinite from '@stdlib/assert/is-infinite';
@@ -13,7 +14,6 @@ import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import Switch from 'components/switch';
 import TeX from 'components/tex';
-const debug = require( 'debug' )( 'isle-editor' );
 
 
 // VARIABLES //
@@ -23,6 +23,7 @@ const areaStyle = {
 		fill: 'tomato', stroke: 'tomato', opacity: 0.3
 	}
 };
+const debug = logger( 'isle-editor' );
 
 
 // MAIN //

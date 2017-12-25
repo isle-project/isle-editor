@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { Button, Panel, Grid, Col } from 'react-bootstrap';
 import profanities from 'profanities';
 import { VictoryBar, VictoryChart } from 'victory';
+import logger from 'debug';
 import { tabulate } from '@stdlib/utils';
 import lowercase from '@stdlib/string/lowercase';
 import tokenize from '@stdlib/nlp/tokenize';
@@ -13,7 +14,11 @@ import TextArea from 'components/text-area';
 import Gate from 'components/gate';
 import InstructorBar from 'components/instructor-bar';
 import RealtimeMetrics from 'components/metrics/realtime';
-const debug = require( 'debug' )( 'isle-editor' );
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor' );
 
 
 // MAIN //

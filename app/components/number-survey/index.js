@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Panel, Grid, Col } from 'react-bootstrap';
 import { VictoryAxis, VictoryArea, VictoryChart } from 'victory';
+import logger from 'debug';
 import isNumber from '@stdlib/assert/is-number';
 import inmap from '@stdlib/utils/inmap';
 import { abs, pow, round } from '@stdlib/math/base/special';
@@ -17,7 +18,11 @@ import NumberInput from 'components/input/number';
 import Gate from 'components/gate';
 import InstructorBar from 'components/instructor-bar';
 import RealtimeMetrics from 'components/metrics/realtime';
-const debug = require( 'debug' )( 'isle-editor' );
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor' );
 
 
 // FUNCTIONS //

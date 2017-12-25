@@ -4,12 +4,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Col, Grid, ListGroup, Panel } from 'react-bootstrap';
 import { VictoryBar, VictoryChart } from 'victory';
+import logger from 'debug';
 import { tabulate } from '@stdlib/utils';
 import Gate from 'components/gate';
 import InstructorBar from 'components/instructor-bar';
 import RealtimeMetrics from 'components/metrics/realtime';
-const debug = require( 'debug' )( 'isle-editor' );
 import AnswerOption from './answer_option';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor' );
 
 
 // MAIN //

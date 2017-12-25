@@ -2,22 +2,24 @@
 
 import React, { Component } from 'react';
 import { Accordion, Panel, Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import $ from 'jquery';
+import logger from 'debug';
 import FileSaver from 'file-saver';
 import stringify from 'csv-stringify';
-import ActionLog from './action_log.js';
-import UserList from './user_list.js';
 import max from '@stdlib/math/base/special/max';
 import isElectron from 'utils/is-electron';
-import PropTypes from 'prop-types';
+import ActionLog from 'components/statusbar/action-log';
 import RangePicker from 'components/range-picker';
-const debug = require( 'debug' )( 'isle-editor' );
+import UserList from './user_list.js';
+import './instructor_view.css';
 
 
 // VARIABLES //
 
 const EDITOR_OFFSET = isElectron ? '15px' : '0px';
+const debug = logger( 'isle-editor' );
 
 
 // MAIN //
@@ -39,11 +41,9 @@ class InstructorView extends Component {
 
 	componentDidMount() {
 		const { session } = this.context;
-
 		this.setState({
 			nActions: session.socketActions.length
 		});
-
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if ( type === 'logout' ) {
 				debug( 'Should reset the filters after user logout:' );
@@ -123,40 +123,17 @@ class InstructorView extends Component {
 		const { session } = this.context;
 		return (
 			<div
-				className="instructorView unselectable"
+				className="instructor-view unselectable"
 				ref={( instructorView ) => { this.instructorView = instructorView; }}
 				style={{
-					width: '45%',
-					minWidth: '400px',
-					position: 'fixed',
-					top: 0,
-					right: -max( window.innerWidth * 0.45, 400 ),
-					height: '100%',
-					zIndex: 1001
+					right: -max( window.innerWidth * 0.45, 400 )
 				}}
 			>
-				<div className="instructorTop" style={{
-					top: 0,
-					position: 'absolute',
-					height: '10%',
-					width: '100%',
-					backgroundColor: 'rgb(232, 232, 232)',
-					borderLeft: 'solid 2px darkgrey',
-					borderTopLeftRadius: '50%',
-					textAlign: 'center',
-					marginRight: '30px'
-				}}>
+				<div className="instructor-view-top">
 					<h3 style={{ marginTop: '20px' }}>Instructor Panel</h3>
 					<hr style={{ background: '#333', backgroundImage: 'linear-gradient(to right, #ccc, #333, #ccc)', height: '1px', border: 0 }} />
 				</div>
-				<div className="instructorMiddle" style={{
-					position: 'absolute',
-					top: '10%',
-					height: '80%',
-					width: '100%',
-					backgroundColor: 'rgb(232, 232, 232)',
-					borderLeft: 'solid 2px darkgrey'
-				}}>
+				<div className="instructor-view-middle">
 					<Accordion>
 						<Panel header="Active Users" eventKey="1">
 							<UserList session={session} />
@@ -195,30 +172,14 @@ class InstructorView extends Component {
 						</Panel>
 					</Accordion>
 				</div>
-				<div className="instructorBottom" style={{
-					position: 'absolute',
-					top: '90%',
-					height: '10%',
-					width: '100%',
-					backgroundColor: 'rgb(232, 232, 232)',
-					borderLeft: 'solid 2px darkgrey',
-					borderBottomLeftRadius: '50%'
-				}}>
-				</div>
-				<div className="viewhandler"
+				<div className="instructor-view-bottom"></div>
+				<div className="instructor-view-handler"
 					onClick={this.toggleBar.bind( this )}
 					onMouseOver={this.onMouseOver.bind( this )}
 					onMouseOut={this.onMouseOut.bind( this )}
 					ref={( handler ) => { this.handler = handler; }}
 					style={{
-						position: 'absolute',
-						opacity: 0.7,
-						cursor: 'pointer',
-						top: '43%',
 						right: this.state.hidden ? '105%' : '102%',
-						width: 0,
-						height: 0,
-						borderStyle: 'solid',
 						borderWidth: this.state.hidden ? '20px 34.6px 20px 0' : '20px 0 20px 34.6px',
 						borderColor: this.state.hidden ? 'transparent #fa9417 transparent transparent' : 'transparent transparent transparent silver'
 					}}>

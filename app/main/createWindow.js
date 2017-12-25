@@ -4,8 +4,13 @@ import path from 'path';
 import fs from 'fs-extra';
 import windowStateKeeper from 'electron-window-state';
 import { shell } from 'electron';
+import logger from 'debug';
 import window from './windowManager';
-const debug = require( 'debug' )( 'isle-editor' );
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor' );
 
 
 // MAIN //

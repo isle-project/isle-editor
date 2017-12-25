@@ -12,8 +12,7 @@ import log2 from '@stdlib/math/base/special/log2';
 class Wrapper extends Component {
 	constructor( props ) {
 		super( props );
-		this.state = {
-		};
+		this.state = {};
 	}
 	render() {
 		return (
