@@ -10,37 +10,36 @@ import { Button, Modal } from 'react-bootstrap';
 class RHelp extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			visible: this.props.visible,
 			body: ''
 		};
+	}
 
-		this.hideModal = () => {
-			this.setState({
-				visible: false
+	hideModal = () => {
+		this.setState({
+			visible: false
+		});
+	}
+
+	showModal = () => {
+		const functionName = this.props.func || this.props.children;
+		if ( this.state.body === '' ) {
+			const { session } = this.context;
+			session.getRHelp( this.props.library, functionName, ( error, response, body ) => {
+				if ( !error ) {
+					this.setState({
+						body,
+						visible: true
+					});
+				}
 			});
-		};
-
-		this.showModal = () => {
-			const functionName = this.props.func || this.props.children;
-			if ( this.state.body === '' ) {
-				const { session } = this.context;
-				session.getRHelp( this.props.library, functionName, ( error, response, body ) => {
-					if ( !error ) {
-						this.setState({
-							body,
-							visible: true
-						});
-					}
-				});
-			}
-			else {
-				this.setState({
-					visible: !this.state.visible
-				});
-			}
-		};
+		}
+		else {
+			this.setState({
+				visible: !this.state.visible
+			});
+		}
 	}
 
 	render() {
@@ -68,7 +67,7 @@ class RHelp extends Component {
 					<Modal.Header closeButton>
 						<Modal.Title id="contained-modal-title-lg">R Help</Modal.Title>
 					</Modal.Header>
-					<Modal.Body className="isle-modal-body" >
+					<Modal.Body className="r-help-modal-body" >
 						<span dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
 							__html: this.state.body
 						}}></span>

@@ -35,12 +35,7 @@ body {
 	border-radius: 0;
 }
 
-.isle-modal-body {
-	height: 400px;
-	overflow: auto;
-}
-
-.errorMessage {
+.error-message {
 	position: absolute;
 	width: 80%;
 	height: 20%;
@@ -160,49 +155,8 @@ body {
 	text-shadow: none;
 }
 
-#Lesson .statusbar {
-	position: absolute;
-	width: 34%;
-	min-width: 300px;
-	height: 48px;
-	left: 0;
-	right: 0;
-	top: -32px;
-	margin: auto;
-	z-index: 1000;
-	opacity: 0.7;
-	cursor: pointer;
-}
-
 #Lesson .actionNote {
 	white-space: pre-wrap;
-}
-
-#Lesson .chatmessage {
-	white-space: pre-wrap;
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-#Lesson .unread {
-	background: linen;
-}
-
-#Lesson .chatuser {
-	color: steelblue;
-	font-weight: 600;
-}
-
-#Lesson .chatexit {
-	float: right;
-	width: 16px;
-	height: 16px;
-	background: darkgrey;
-	text-align: center;
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-#Lesson .chatexit:hover {
-	background: lightcoral;
 }
 
 #Lesson .clickable {
@@ -212,19 +166,6 @@ body {
 
 #Lesson .clickable:hover {
 	background: lightcoral;
-}
-
-#Lesson .sendbutton {
-	background: gainsboro;
-	cursor: pointer;
-}
-
-#Lesson .sendbutton:hover {
-	background: rgb(130, 224, 160);
-}
-
-#App #Lesson .statusbar {
-	position: fixed;
 }
 
 #Lesson h1 {
@@ -273,190 +214,12 @@ body {
 	list-style-position: outside !important;
 }
 
-.isleImageModal {
-	background: 'cyan';
-	height: 70%;
-	width: 'auto';
-	bottom: 0;
-	left: 0;
-	top: 0;
-	right: 0;
-	margin: 'auto';
-}
-
 .unselectable {
 	-moz-user-select: -moz-none;
 	-khtml-user-select: none;
 	-webkit-user-select: none;
 	-o-user-select: none;
 	user-select: none;
-}
-
- .venntooltip {
-	position: absolute;
-	text-align: center;
-	width: 128px;
-	height: 30px;
-	background: #333;
-	color: #ddd;
-	padding: 2px;
-	border: 0px;
-	border-radius: 8px;
-	opacity: 0;
-	font-size: 12px;
-}
-
-.react-contextmenu {
-	min-width: 160px;
-	padding: 5px 0;
-	margin: 2px 0 0;
-	font-size: 16px;
-	color: #373a3c;
-	text-align: left;
-	background-color: #fff;
-	background-clip: padding-box;
-	border: 1px solid rgba(0,0,0,.15);
-	border-radius: .25rem;
-	outline: none;
-	opacity: 0;
-	pointer-events: none;
-	transition: opacity 250ms ease !important;
-	z-index: 50;
-}
-
-.react-contextmenu.react-contextmenu--visible {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.react-contextmenu-item {
-	padding: 3px 20px;
-	font-weight: 400;
-	line-height: 1.5;
-	color: #373a3c;
-	text-align: inherit;
-	white-space: nowrap;
-	background: 0 0;
-	border: 0;
-	cursor: pointer;
-}
-
-.react-contextmenu-item.react-contextmenu-item--active,
-.react-contextmenu-item.react-contextmenu-item--selected {
-	color: #fff;
-	background-color: #20a0ff;
-	border-color: #20a0ff;
-	text-decoration: none;
-}
-
-.react-contextmenu-item.react-contextmenu-item--disabled,
-.react-contextmenu-item.react-contextmenu-item--disabled:hover {
-	color: #878a8c;
-	background-color: transparent;
-	border-color: rgba(0,0,0,.15);
-}
-
-.react-contextmenu-item--divider {
-	margin-bottom: 3px;
-	padding: 2px 0;
-	border-bottom: 1px solid rgba(0,0,0,.15);
-	cursor: inherit;
-}
-.react-contextmenu-item--divider:hover {
-	background-color: transparent;
-	border-color: rgba(0,0,0,.15);
-}
-
-.react-contextmenu-item.react-contextmenu-submenu {
-	padding: 0;
-}
-
-.react-contextmenu-item.react-contextmenu-submenu > .react-contextmenu-item {
-}
-
-.react-contextmenu-item.react-contextmenu-submenu > .react-contextmenu-item:after {
-	content: "▶";
-	display: inline-block;
-	position: absolute;
-	right: 7px;
-}
-
-.example-multiple-targets::after {
-	content: attr(data-count);
-	display: block;
-}
-.react-contextmenu {
-	min-width: 160px;
-	padding: 5px 0;
-	margin: 2px 0 0;
-	font-size: 16px;
-	color: #373a3c;
-	text-align: left;
-	background-color: #fff;
-	background-clip: padding-box;
-	border: 1px solid rgba(0,0,0,.15);
-	border-radius: .25rem;
-	outline: none;
-	opacity: 0;
-	pointer-events: none;
-	transition: opacity 250ms ease !important;
-}
-
-.react-contextmenu.react-contextmenu--visible {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.react-contextmenu-item {
-	padding: 3px 20px;
-	font-weight: 400;
-	line-height: 1.5;
-	color: #373a3c;
-	text-align: inherit;
-	white-space: nowrap;
-	background: 0 0;
-	border: 0;
-	cursor: pointer;
-}
-
-.react-contextmenu-item.react-contextmenu-item--active,
-.react-contextmenu-item.react-contextmenu-item--selected {
-	color: #fff;
-	background-color: #20a0ff;
-	border-color: #20a0ff;
-	text-decoration: none;
-}
-
-.react-contextmenu-item.react-contextmenu-item--disabled,
-.react-contextmenu-item.react-contextmenu-item--disabled:hover {
-	color: #878a8c;
-	background-color: transparent;
-	border-color: rgba(0,0,0,.15);
-}
-
-.react-contextmenu-item--divider {
-	margin-bottom: 3px;
-	padding: 2px 0;
-	border-bottom: 1px solid rgba(0,0,0,.15);
-	cursor: inherit;
-}
-.react-contextmenu-item--divider:hover {
-	background-color: transparent;
-	border-color: rgba(0,0,0,.15);
-}
-
-.react-contextmenu-item.react-contextmenu-submenu {
-	padding: 0;
-}
-
-.react-contextmenu-item.react-contextmenu-submenu > .react-contextmenu-item {
-}
-
-.react-contextmenu-item.react-contextmenu-submenu > .react-contextmenu-item:after {
-	content: "▶";
-	display: inline-block;
-	position: absolute;
-	right: 7px;
 }
 
 .example-multiple-targets::after {

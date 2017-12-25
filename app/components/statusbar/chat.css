@@ -1,0 +1,35 @@
+#Lesson .chatmessage {
+	white-space: pre-wrap;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#Lesson .unread {
+	background: linen;
+}
+
+#Lesson .chatuser {
+	color: steelblue;
+	font-weight: 600;
+}
+
+#Lesson .chatexit {
+	float: right;
+	width: 16px;
+	height: 16px;
+	background: darkgrey;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#Lesson .chatexit:hover {
+	background: lightcoral;
+}
+
+#Lesson .sendbutton {
+	background: gainsboro;
+	cursor: pointer;
+}
+
+#Lesson .sendbutton:hover {
+	background: rgb(130, 224, 160);
+}

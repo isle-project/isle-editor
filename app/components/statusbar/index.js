@@ -12,6 +12,7 @@ import Gate from 'components/gate';
 import ConfirmModal from './confirm_modal.js';
 import InstructorView from './instructor_view.js';
 import Chat from './chat.js';
+import './statusbar.css';
 
 
 // VARIABLES //

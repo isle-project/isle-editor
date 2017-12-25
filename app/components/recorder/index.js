@@ -19,7 +19,7 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.mediaDevices.getUse
 function captureScreen( clbk ) {
 	getScreenId( function getUserMedia( error, sourceId, screenConstraints ) {
 		navigator.getUserMedia( screenConstraints, clbk, function onMedia( error ) {
-			console.error( 'getScreenId error', error );
+			console.error( 'getScreenId error', error ); // eslint-disable-line no-console
 			alert( 'Failed to capture your screen. Please check Chrome console logs for further information.' );
 		});
 	});
@@ -27,13 +27,13 @@ function captureScreen( clbk ) {
 
 function captureCamera( cb ) {
 	navigator.getUserMedia({ audio: true, video: true }, cb, function onMedia( error ) {
-		console.error( 'captureCamera error', error );
+		console.error( 'captureCamera error', error ); // eslint-disable-line no-console
 	});
 }
 
 function captureAudio( cb ) {
 	navigator.getUserMedia({ audio: true, video: false }, cb, function onMedia( error ) {
-		console.error( 'captureAudio error', error );
+		console.error( 'captureAudio error', error ); // eslint-disable-line no-console
 	});
 }
 
@@ -49,17 +49,17 @@ function getAudioConfig( type ) {
 	var recorderType = MediaStreamRecorder;
 
 	if ( isMimeTypeSupported( mimeType ) === false ) {
-		console.log( mimeType, 'is not supported.' );
+		console.log( mimeType, 'is not supported.' ); // eslint-disable-line no-console
 		mimeType = 'audio/ogg';
 
 		if ( isMimeTypeSupported( mimeType ) === false ) {
-			console.log( mimeType, 'is not supported.' );
+			console.log( mimeType, 'is not supported.' ); // eslint-disable-line no-console
 			mimeType = 'audio/webm';
 
 			if ( isMimeTypeSupported( mimeType ) === false ) {
-				console.log( mimeType, 'is not supported.' );
+				console.log( mimeType, 'is not supported.' ); // eslint-disable-line no-console
 
-				// fallback to WebAudio solution
+				// Fallback to WebAudio solution:
 				mimeType = 'audio/wav';
 				recorderType = StereoAudioRecorder;
 			}
@@ -98,40 +98,6 @@ class Recorder extends Component {
 				});
 			}
 		});
-
-		this.storeFile = () => {
-			this.recorder.save( 'filename.webm' );
-		};
-
-		this.uploadFile = () => {
-			const { session } = this.context;
-			const id = this.props.id;
-			const fileName = id || 'recorderFile';
-
-			const blob = this.recorder.getBlob();
-			const file = new File([ blob ], fileName, {
-				type: this.recorderConfig.mimeType
-			});
-
-			const formData = new FormData();
-			formData.append( 'file', file );
-			session.uploadFile( formData );
-		};
-
-		this.handleClick = () => {
-			if ( this.state.recording ) {
-				this.stopRecording();
-				this.setState({
-					recording: false,
-					finished: true
-				});
-			} else {
-				this.startRecording();
-				this.setState({
-					recording: true
-				});
-			}
-		};
 	}
 
 	componentDidMount() {
@@ -147,7 +113,6 @@ class Recorder extends Component {
 		}
 	}
 
-
 	componentWillUnmount() {
 		this.unsubscribe();
 		if ( this.props.screen && this.screen ) {
@@ -157,6 +122,39 @@ class Recorder extends Component {
 		}
 	}
 
+	storeFile = () => {
+		this.recorder.save( 'filename.webm' );
+	}
+
+	uploadFile = () => {
+		const { session } = this.context;
+		const id = this.props.id;
+		const fileName = id || 'recorderFile';
+
+		const blob = this.recorder.getBlob();
+		const file = new File([ blob ], fileName, {
+			type: this.recorderConfig.mimeType
+		});
+
+		const formData = new FormData();
+		formData.append( 'file', file );
+		session.uploadFile( formData );
+	}
+
+	handleClick = () => {
+		if ( this.state.recording ) {
+			this.stopRecording();
+			this.setState({
+				recording: false,
+				finished: true
+			});
+		} else {
+			this.startRecording();
+			this.setState({
+				recording: true
+			});
+		}
+	}
 
 	startRecording() {
 		if ( !this.recorder ) {
@@ -242,24 +240,8 @@ class Recorder extends Component {
 			return null;
 		}
 		return (
-			<div className="unselectable" style={{
-				position: 'absolute',
-				right: '2%',
-				top: '0.5%',
-				width: '300px',
-				height: 'auto',
-				textAlign: 'right'
-			}}>
-				<div style={{
-					position: 'absolute',
-					borderRadius: '50%',
-					color: 'rgba(0,0,0,1)',
-					border: 'solid 4px black',
-					top: '8px',
-					width: '40px',
-					height: '40px',
-					right: '30%'
-				}}>
+			<div className="recorder-container unselectable">
+				<div className="recorder-button-container">
 					<div
 						className="recorder-button"
 						onClick={this.handleClick}
@@ -268,12 +250,10 @@ class Recorder extends Component {
 						}}
 					></div>
 				</div>
-				<div style={{
-					color: recordingColor,
-					fontFamily: 'Arial',
-					fontSize: '40px',
-					fontWeight: 800
-				}}>REC</div>
+				<div
+					className="recorder-rec"
+					style={{ color: recordingColor }}
+				>REC</div>
 				{ audio && !screen ?
 					<audio style={{ display: this.state.recording ? 'none' : 'block' }} ref={( player ) => { this.player = player; }} controls autoPlay></audio> :
 					<video width="320px" height="auto" style={{ display: this.state.recording ? 'none' : 'block' }} ref={( player ) => { this.player = player; }} controls autoPlay></video>

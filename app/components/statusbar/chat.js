@@ -2,12 +2,17 @@
 
 import React, { Component } from 'react';
 import { FormGroup, InputGroup, ListGroup, ListGroupItem, OverlayTrigger, Popover } from 'react-bootstrap';
+import logger from 'debug';
 import $ from 'jquery';
 import TextArea from 'components/text-area';
 import PropTypes from 'prop-types';
 import isElectron from 'utils/is-electron';
-const debug = require( 'debug' )( 'isle-editor' );
+import './chat.css';
 
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor' );
 
 // MAIN //
 

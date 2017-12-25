@@ -33,7 +33,6 @@ class MatchListQuestion extends Component {
 		if ( !colorScale ) {
 			colorScale = createColorScale( 2 * elements.length );
 		}
-
 		this.state = {
 			selectedA: null,
 			selectedB: null,
@@ -105,9 +104,9 @@ class MatchListQuestion extends Component {
 			</Tooltip>
 		);
 		return (
-			<div className="container">
+			<div className="match-list-question-container">
 				<span>{question}</span>
-				<div className="lists">
+				<div className="match-list-question-lists">
 					<OptionsList
 						options={elements.map( q => q.a )}
 						onSelect={onSelectA}
@@ -122,7 +121,7 @@ class MatchListQuestion extends Component {
 						baseColor="rgb(250,250,255)"
 					/>
 				</div>
-				<div className="controls">
+				<div className="match-list-question-controls">
 					<Button
 						bsStyle="primary"
 						bsSize="sm"

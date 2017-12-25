@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
 import Dimensions from 'components/dimensions';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import './image.css';
 
 
 // FUNCTIONS //
@@ -85,7 +86,7 @@ class Image extends Component {
 				<Modal
 					show={this.state.showModal}
 					onHide={closeModal}
-					dialogClassName="isleImageModal"
+					dialogClassName="image-modal"
 					title={this.props.title}
 					backdrop={true}
 					rootClose={true}

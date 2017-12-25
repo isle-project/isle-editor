@@ -13,6 +13,7 @@ import round from '@stdlib/math/base/special/round';
 import copy from '@stdlib/utils/copy';
 import NumberInput from 'components/input/number';
 import TextInput from 'components/input/text';
+import './venn_diagram.css';
 
 
 // MAIN //
@@ -28,7 +29,6 @@ class WordVennDiagram extends Component {
 			}
 			return out;
 		});
-
 
 		this.state = {
 			disabled: true,

@@ -1,3 +1,28 @@
+.recorder-container {
+	position: absolute;
+	right: 2%;
+	top: 0.5%;
+	width: 300px;
+	height: auto;
+	text-align: right;
+}
+
+.recorder-button-container {
+	position: absolute;
+	border-radius: 50%;
+	color: rgba(0,0,0,1);
+	border: solid 4px black;
+	top: 8px;
+	width: 40px;
+	height: 40px;
+	right: 30%;
+}
+
+.recorder-rec {
+	font-family: Arial;
+	font-size: 40px;
+	font-weight: 800;
+}
 
 .recorder-button {
 	position: absolute;

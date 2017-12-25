@@ -1,4 +1,4 @@
-.container {
+.match-list-question-container {
 	display: flex;
 	width: 100%;
 	padding: 15px;
@@ -8,11 +8,13 @@
 	max-width: 650px;
 	box-shadow: 2px 2px 8px rgb(60,60,60);
 }
-.lists {
+
+.match-list-question-lists {
 	display: flex;
 	flex-direction: row;
 }
-.controls {
+
+.match-list-question-controls {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
