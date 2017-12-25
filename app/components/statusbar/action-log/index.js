@@ -16,62 +16,9 @@ import Action from './action.js';
 class ActionLog extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			displayedActions: [],
 			filter: null
-		};
-
-		this.removeFactory = ( type ) => {
-			const onRemoveClick = ( event ) => {
-				event.stopPropagation();
-				let newFilter = copy( this.state.filter );
-				delete newFilter[ type ];
-				if ( isEmptyObject( newFilter ) ) {
-					newFilter = null;
-				}
-				this.setState({
-					filter: newFilter
-				}, () => {
-					const newHeader = this.createHeader( newFilter );
-					const nActions = this.state.displayedActions.length;
-					this.props.onFilter( newHeader, nActions );
-				});
-			};
-			return onRemoveClick;
-		};
-
-		this.createHeader = ( filter ) => {
-			let entries = filter ? objectEntries( filter ) : [];
-			let newHeader = <div>
-				<h4 style={{ display: 'inline' }} >Action Log</h4>
-				<div style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
-					{entries.map( ( arr, idx ) => {
-						return ( <span
-							style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }}
-							onClick={this.removeFactory( arr[ 0 ])}
-							key={idx}
-						>{arr[ 0 ]}: {arr[ 1 ]}</span> );
-					})}
-				</div>
-			</div>;
-			return newHeader;
-		};
-
-		this.clickFactory = ( type, value ) => {
-			const onClick = () => {
-				const newFilter = this.state.filter ? copy( this.state.filter ) : {};
-				newFilter[ type ] = value;
-				this.setState({
-					filter: newFilter
-				}, () => {
-					debug( 'The filter was successfully changed: ' + JSON.stringify( this.state.filter ) );
-					const newHeader = this.createHeader( newFilter );
-					const nActions = this.state.displayedActions.length;
-					this.props.onFilter( newHeader, nActions );
-				});
-			};
-			return onClick;
 		};
 	}
 
@@ -115,6 +62,58 @@ class ActionLog extends Component {
 		this.unsubscribe();
 	}
 
+	removeFactory = ( type ) => {
+		const onRemoveClick = ( event ) => {
+			event.stopPropagation();
+			let newFilter = copy( this.state.filter );
+			delete newFilter[ type ];
+			if ( isEmptyObject( newFilter ) ) {
+				newFilter = null;
+			}
+			this.setState({
+				filter: newFilter
+			}, () => {
+				const newHeader = this.createHeader( newFilter );
+				const nActions = this.state.displayedActions.length;
+				this.props.onFilter( newHeader, nActions );
+			});
+		};
+		return onRemoveClick;
+	}
+
+	createHeader = ( filter ) => {
+		let entries = filter ? objectEntries( filter ) : [];
+		let newHeader = <div>
+			<h4 style={{ display: 'inline' }} >Action Log</h4>
+			<div style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
+				{entries.map( ( arr, idx ) => {
+					return ( <span
+						style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }}
+						onClick={this.removeFactory( arr[ 0 ])}
+						key={idx}
+					>{arr[ 0 ]}: {arr[ 1 ]}</span> );
+				})}
+			</div>
+		</div>;
+		return newHeader;
+	}
+
+	clickFactory = ( type, value ) => {
+		const onClick = () => {
+			const newFilter = this.state.filter ? copy( this.state.filter ) : {};
+			newFilter[ type ] = value;
+			this.setState({
+				filter: newFilter
+			}, () => {
+				debug( 'The filter was successfully changed: ' + JSON.stringify( this.state.filter ) );
+				const newHeader = this.createHeader( newFilter );
+				const nActions = this.state.displayedActions.length;
+				this.props.onFilter( newHeader, nActions );
+			});
+		};
+		return onClick;
+	}
+
 	removeMarkedActions( displayedActions ) {
 		for ( let i = displayedActions.length - 1; i >= 0; i-- ) {
 			let action = displayedActions[ i ];
@@ -140,7 +139,6 @@ class ActionLog extends Component {
 			to = to.toDate();
 			const { session } = this.context;
 			let displayedActions = [];
-
 			for ( let i = 0; i < session.socketActions.length; i++ ) {
 				let action = session.socketActions[ i ];
 				if ( action.absoluteTime > from && action.absoluteTime < to ) {

@@ -5,18 +5,19 @@ import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
 import { ceil, max, min } from '@stdlib/math/base/special';
-const debug = require( 'debug' )( 'isle-editor' );
+import logger from 'debug';
 import Signup from 'components/signup';
 import Login from 'components/login';
 import Gate from 'components/gate';
+import InstructorView from 'components/statusbar/instructor-view';
+import Chat from 'components/statusbar/chat';
 import ConfirmModal from './confirm_modal.js';
-import InstructorView from './instructor_view.js';
-import Chat from './chat.js';
 import './statusbar.css';
 
 
 // VARIABLES //
 
+const debug = logger( 'isle-editor' );
 const LOGGED_IN_COLOR = 'rgb(130, 224, 160)';
 const LOGGED_OUT_COLOR = 'rgb(209, 107, 71)';
 
@@ -26,7 +27,6 @@ const LOGGED_OUT_COLOR = 'rgb(209, 107, 71)';
 class StatusBar extends Component {
 	constructor( props ) {
 		super( props );
-
 		const statusbarWidth = max( 0.34 * window.innerWidth, 300 );
 		const side = ( window.innerWidth - statusbarWidth ) / 2.0;
 
@@ -37,7 +37,6 @@ class StatusBar extends Component {
 			statusbarWidth,
 			side
 		};
-
 		this.hidden = true;
 	}
 
