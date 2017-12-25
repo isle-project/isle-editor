@@ -164,4 +164,4 @@ EnlargeableGrid.propTypes = {
 
 // EXPORTS //
 
-export default EnlargableGrid;
+export default EnlargeableGrid;
