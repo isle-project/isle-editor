@@ -20,13 +20,10 @@ class IFrame extends Component {
 	}
 
 	componentDidMount() {
-		var el = document.getElementById( this.props.id );
-		if ( el ) {
-			this.correctedPos = this.getPos( el );
-			this.setState({
-				corrected: true
-			});
-		}
+		this.correctedPos = this.getPos( this.wrapper );
+		this.setState({
+			corrected: true
+		});
 	}
 
 	getPos( elem ) {
@@ -37,9 +34,13 @@ class IFrame extends Component {
 		};
 	}
 
-	renderFrame() {
+	saveRef = ( div ) => {
+		this.wrapper = div;
+	}
+
+	render() {
 		if ( this.state.corrected === false ) {
-			return <div id={this.props.id}></div>;
+			return <div id={this.props.id} ref={this.saveRef}></div>;
 		}
 		var style = {
 			position: 'absolute',
@@ -50,20 +51,12 @@ class IFrame extends Component {
 			display: 'inlineBlock'
 		};
 		return (
-			<div id={this.props.id} style={style} >
+			<div id={this.props.id} ref={this.saveRef} style={style} >
 				<iframe
-					src={this.props.address}
+					src={this.props.src}
 					width={this.width}
 					height={this.height}
 				></iframe>
-			</div>
-		);
-	}
-
-	render() {
-		return (
-			<div id={this.props.id}>
-				{this.renderFrame()}
 			</div>
 		);
 	}
@@ -79,7 +72,7 @@ IFrame.defaultProps = {
 // PROPERTY TYPES //
 
 IFrame.propTypes = {
-	address: PropTypes.string.isRequired
+	src: PropTypes.string.isRequired
 };
 
 
