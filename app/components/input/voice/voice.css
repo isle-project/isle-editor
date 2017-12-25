@@ -1,6 +1,7 @@
 .voice-input {
 	height: 36px;
 	border:solid 1px rgb(90,90,90);
+	margin-bottom: 20px;
 }
 
 .voice-input:hover {

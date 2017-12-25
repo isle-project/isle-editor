@@ -66,6 +66,47 @@ class VoiceInput extends Input {
 		recognizer.continuous = true;
 		recognizer.interimResults = true;
 		this.recognizer = recognizer;
+
+		this.recognizer.onerror = function onError(){
+			console.log('ON ERROR ' + this.props.id);
+		};
+
+		this.recognizer.onend = function onError(){
+			console.log('ON END ' + this.props.id);
+		};
+
+		this.recognizer.onstart = function onError(){
+			console.log('ON START' + this.props.id);
+		};
+
+		this.recognizer.onaudioend = function onError(){
+			console.log('ON AUDIO END ' + this.props.id);
+		};
+
+		this.recognizer.onaudiostart = function onError(){
+			console.log('ON AUDIO START	 ' + this.props.id);
+		};
+
+		this.recognizer.onsoundend = function onError(){
+			console.log('ON SOUND END ' + this.props.id);
+		};
+
+		this.recognizer.onsoundstart = function onError(){
+			console.log('ON SOUND START' + this.props.id);
+		};
+
+		this.recognizer.onspeechend = function onError(){
+			console.log('ON SPEECH END ' + this.props.id);
+		};
+
+		this.recognizer.onspeechstart = function onError(){
+			console.log('ON SPEECH START	 ' + this.props.id);
+		};
+
+		this.recognizer.nomatch = function onError(){
+			console.log('ON NO MATCH' + this.props.id);
+		};
+
 		recognizer.onresult = this.onResult;
 		recognizer.start();
 		this.setState({
