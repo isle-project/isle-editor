@@ -39,10 +39,10 @@
 }
 
 .instructor-view-handler {
-	position: 'absolute';
+	position: absolute;
 	opacity: 0.7;
-	cursor: 'pointer';
-	top: '43%';
+	cursor: pointer;
+	top: 43%;
 	width: 0;
 	height: 0;
 	border-style: solid;
