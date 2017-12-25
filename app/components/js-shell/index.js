@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
 import ChatButton from 'components/chat-button';
 import { Button, ButtonToolbar, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import hasOwnProp from '@stdlib/assert/has-own-property';
@@ -89,6 +90,10 @@ class JSShell extends Component {
 		// this.aceSession.getDocument().setNewLineMode( 'auto' );
 		this.editor.setValue( this.props.code, -1 );
 		this.innerConsole();
+	}
+
+	componentDidUpdate() {
+		this.scrollToBottom();
 	}
 
 	getLogs = () => {
@@ -230,6 +235,16 @@ class JSShell extends Component {
 		);
 	}
 
+	/**
+	* Scrolls to the bottom of the console output.
+	*/
+	scrollToBottom() {
+		const $outputPanel = $( this.consoleOutput );
+		$outputPanel.animate({
+			scrollTop: $outputPanel.prop( 'scrollHeight' )
+		}, 1000 );
+	}
+
 	renderLogs() {
 		let list = this.state.log;
 		let res = [];
@@ -285,7 +300,11 @@ class JSShell extends Component {
 						{ toolbar }
 						<br />
 					</div>
-					<div id={this.props.id} className="console" >
+					<div
+						id={this.props.id}
+						ref={( div ) => { this.consoleOutput = div; }}
+						className="console"
+					>
 						<div className="reset" onClick={this.resetConsole} >☒</div>
 						{this.renderLogs()}
 					</div>
