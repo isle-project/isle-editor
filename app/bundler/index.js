@@ -115,7 +115,6 @@ class Lesson extends Component {
 
 	componentDidMount() {
 		global.lesson = this;
-
 		const loader = document.getElementById( 'loading' );
 		if ( loader ) {
 			loader.remove();
@@ -270,6 +269,12 @@ function writeIndexFile({
 					loader: 'json-loader'
 				},
 				{
+					test: /\.svg$/i,
+					use: {
+						loader: 'svg-react-loader'
+					}
+				},
+				{
 					test: /\.css$$/,
 					use: [
 						'style-loader',
@@ -301,7 +306,6 @@ function writeIndexFile({
 
 	const yamlStr = content.match( /---([\S\s]*)---/ )[ 1 ];
 	const meta = yaml.load( yamlStr );
-
 	const appDir = path.join( outputPath, outputDir );
 	const indexPath = path.resolve( './public/index.js' );
 	const htmlPath = path.join( appDir, 'index.html' );
@@ -340,9 +344,7 @@ function writeIndexFile({
 				${content}
 			</Deck>`;
 	}
-
 	const usedComponents = getComponentList( content );
-
 	const str = generateIndexJS( content, usedComponents, yamlStr, basePath, filePath );
 	debug( `Create JS file: ${str}` );
 
@@ -363,8 +365,6 @@ function writeIndexFile({
 	}
 
 	let imgPath = path.join( basePath, 'app', 'img' );
-	fs.mkdirSync( path.join( appDir, 'img' ) );
-	fs.copySync( path.join( imgPath ), path.join( appDir, 'img' ) );
 	fs.copySync( path.join( imgPath, 'favicon.ico' ), path.join( appDir, 'favicon.ico' ) );
 
 	config.entry = indexPath;
@@ -373,7 +373,6 @@ function writeIndexFile({
 		filename: 'bundle.js'
 	};
 	const compiler = webpack( config );
-
 	compiler.run( ( err, stats ) => {
 		if ( err ) {
 			throw err;
