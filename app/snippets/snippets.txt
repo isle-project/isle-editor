@@ -27,6 +27,18 @@ snippet Dashboard
 		${3:}
 	</Dashboard>
 
+snippet DataExplorer
+	<DataExplorer
+		data={${1:}}
+		categorical={${2:[]}}
+		continuous={${3:[]}}
+	/>
+
+snippet DataTable
+	<DataTable
+		data={${1:}}
+	/>
+
 snippet DensityPlot
 	<DensityPlot
 		data={${1:}}
@@ -35,6 +47,11 @@ snippet DensityPlot
 		ymax={0.15}
 		nBins={2}
 	/>
+
+snippet DraggableGrid
+	<DraggableGrid ${1:isDraggable} ${2:isResizable} >
+		${3:}
+	</DraggableGrid>
 
 snippet DraggableList
 	<DraggableList
@@ -48,6 +65,14 @@ snippet DraggableList
 		}}
 	/>
 
+snippet Editor
+	<Editor ${1:voiceControl} />
+
+snippet Expire
+	<Expire delay={${1:1000}}>
+		${2:}
+	</Expire>
+
 snippet FeedbackButtons
 	<FeedbackButtons
 		for="${1:divID}"
@@ -59,12 +84,28 @@ snippet FreeTextQuestion
 		solution="Enter solution"
 	/>
 
+snippet FreeTextSurvey
+	<FreeTextSurvey anonymous question={${1:Enter question}} />
+
+snippet Gate
+	<Gate banner={{$1:null}} ${2:user} ${3:owner}>
+		${4:}
+	</Gate>
+
 snippet Grid
 	<Grid>
 		<Row>
 			<Col md={12}></Col>
 		</Row>
 	</Grid>
+
+snippet IFrame
+	<IFrame src={${1:http://www.wikipedia.org}} />
+
+snippet JSShell
+	<JSShell
+		code="${1:}"
+	/>
 
 snippet LessonSubmit
 	<LessonSubmit />
@@ -114,6 +155,14 @@ snippet Panel
 	<Panel>
 		${1:}
 	</Panel>
+
+snippet ProportionsInput
+	<ProportionsInput
+		legends = {${1:[ 'Robotics', 'Bitcoin', 'Gold', 'Diamonds', 'Vegetables', 'Fruits' ]}}
+		precision={${2:2}}
+		step={${3:0.25}}
+		nElements={${4:6}}
+	/>
 
 snippet RHelp
 	<RHelp library="${1:}" >${2:}</RHelp>
