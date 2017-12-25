@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import VoiceInput from 'components/input/voice';
 import './wikipedia.css';
 import SpeechRecognition from 'components/speech-recognition';
 
@@ -70,7 +71,10 @@ class Wikipedia extends Component {
 			var text = value.substring( x, value.length );
 			this.wikipediaIFrame( text );
 		}
-		else console.log( 'marker not found' );
+		else {
+			console.log( 'marker not found' );
+			this.wikipediaIFrame( value );
+		}
 	}
 
 
@@ -108,6 +112,7 @@ class Wikipedia extends Component {
 		this.recognition.trigger();
 	}
 
+
 	keyDown( event ) {
 		switch ( event.keyCode ) {
 		case 13:
@@ -124,7 +129,7 @@ class Wikipedia extends Component {
 		});
 	}
 
-	renderSpeech() {
+	renderSpeechOld() {
 		var name = 'Wikipedia';
 		if ( this.props.language === 'fr-FR') {
 			name = 'Wikipédia';
@@ -145,6 +150,20 @@ class Wikipedia extends Component {
 		}
 	}
 
+
+	renderSpeech() {
+		if ( this.props.speech ) {
+			return (
+				<VoiceInput
+					style={{ float: 'left' }}
+					language={this.props.language}
+					onSubmit={this.getResult.bind(this)}
+					onFinalText={this.getResult.bind(this)}
+				/>
+			);
+		}
+	}
+
 	renderSearch() {
 		if ( this.props.showSearch ) {
 			return (
@@ -161,7 +180,7 @@ class Wikipedia extends Component {
 			return (
 				<div
 					onClick={this.click}
-					className="wikipedia_logo">
+					className="wikipedia-logo">
 				</div>
 			);
 		}
@@ -186,8 +205,8 @@ class Wikipedia extends Component {
 		return (
 			<div className={this.props.className} id={this.props.id}>
 				{ this.renderSearch() }
-				{ this.renderLogo() }
 				{ this.renderSpeech() }
+				{ this.renderLogo() }
 				<div className="seperator"></div>
 				{ this.renderResult() }
 			</div>
