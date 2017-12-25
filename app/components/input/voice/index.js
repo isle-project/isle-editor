@@ -57,6 +57,16 @@ class VoiceInput extends Input {
 		}
 	}
 
+	createGrammarList() {
+		var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList; //eslint-disable-line
+		var grammarList = new SpeechGrammarList();
+		for (var i = 0; i < this.props.grammars.length; i++) {
+			var { src, weight} = this.props.grammars[ i ];
+			grammarList.addFromString( src, weight );
+		}
+		return grammarList;
+	}
+
 
 	start() {
 		this.recognizer = null;
@@ -66,44 +76,45 @@ class VoiceInput extends Input {
 		recognizer.continuous = true;
 		recognizer.interimResults = true;
 		this.recognizer = recognizer;
+		this.recognizer.grammars = this.createGrammarList();
 
-		this.recognizer.onerror = function onError(){
+		this.recognizer.onerror = () => {
 			console.log('ON ERROR ' + this.props.id);
 		};
 
-		this.recognizer.onend = function onError(){
+		this.recognizer.onend = () => {
 			console.log('ON END ' + this.props.id);
 		};
 
-		this.recognizer.onstart = function onError(){
+		this.recognizer.onstart = () => {
 			console.log('ON START' + this.props.id);
 		};
 
-		this.recognizer.onaudioend = function onError(){
+		this.recognizer.onaudioend = () => {
 			console.log('ON AUDIO END ' + this.props.id);
 		};
 
-		this.recognizer.onaudiostart = function onError(){
+		this.recognizer.onaudiostart = () =>{
 			console.log('ON AUDIO START	 ' + this.props.id);
 		};
 
-		this.recognizer.onsoundend = function onError(){
+		this.recognizer.onsoundend = () => {
 			console.log('ON SOUND END ' + this.props.id);
 		};
 
-		this.recognizer.onsoundstart = function onError(){
+		this.recognizer.onsoundstart = () =>{
 			console.log('ON SOUND START' + this.props.id);
 		};
 
-		this.recognizer.onspeechend = function onError(){
+		this.recognizer.onspeechend = () => {
 			console.log('ON SPEECH END ' + this.props.id);
 		};
 
-		this.recognizer.onspeechstart = function onError(){
+		this.recognizer.onspeechstart = () => {
 			console.log('ON SPEECH START	 ' + this.props.id);
 		};
 
-		this.recognizer.nomatch = function onError(){
+		this.recognizer.nomatch = () => {
 			console.log('ON NO MATCH' + this.props.id);
 		};
 
@@ -221,14 +232,15 @@ class VoiceInput extends Input {
 VoiceInput.defaultProps = {
 	autorecord: false,
 	defaultValue: '',
-	width: 500,
+	grammars: [],
 	language: 'en-US',
 	legend: '',
 	onChange() {},
 	onFinalText() {},
 	onSegment() {},
 	onSubmit() {},
-	placeholder: 'Enter text'
+	placeholder: 'Enter text',
+	width: 500
 };
 
 
@@ -237,6 +249,7 @@ VoiceInput.defaultProps = {
 VoiceInput.propTypes = {
 	autorecord: PropTypes.bool,
 	defaultValue: PropTypes.string,
+	grammars: PropTypes.array,
 	language: PropTypes.string,
 	legend: PropTypes.string,
 	onChange: PropTypes.func,
