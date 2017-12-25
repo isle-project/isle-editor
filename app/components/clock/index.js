@@ -16,18 +16,6 @@ class Clock extends Component {
 				minute: '2-digit'
 			})
 		};
-
-		this.updateTime = () => {
-			const currentTime = new Date().toLocaleTimeString([], {
-				hour: '2-digit',
-				minute: '2-digit'
-			});
-			if ( this.state.time !== currentTime ) {
-				this.setState({
-					time: currentTime
-				});
-			}
-		};
 	}
 
 	componentDidMount() {
@@ -36,6 +24,18 @@ class Clock extends Component {
 
 	componentWillUnmount() {
 		clearInterval( this.interval );
+	}
+
+	updateTime = () => {
+		const currentTime = new Date().toLocaleTimeString([], {
+			hour: '2-digit',
+			minute: '2-digit'
+		});
+		if ( this.state.time !== currentTime ) {
+			this.setState({
+				time: currentTime
+			});
+		}
 	}
 
 	render() {
@@ -51,6 +51,7 @@ class Clock extends Component {
 		);
 	}
 }
+
 
 // PROPERTY TYPES //
 

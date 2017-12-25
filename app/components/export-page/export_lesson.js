@@ -35,61 +35,61 @@ class ExportLesson extends Component {
 			minify: false,
 			alreadyExists: false
 		};
+	}
 
-		this.openFolder = () => {
-			const fullPath = path.join( this.state.outputPath, this.state.outputDir, 'index.html' );
-			shell.showItemInFolder( fullPath );
-		};
+	openFolder = () => {
+		const fullPath = path.join( this.state.outputPath, this.state.outputDir, 'index.html' );
+		shell.showItemInFolder( fullPath );
+	}
 
-		this.openLesson = () => {
-			const fullPath = path.join( this.state.outputPath, this.state.outputDir, 'index.html' );
-			shell.openItem( fullPath );
-		};
+	openLesson = () => {
+		const fullPath = path.join( this.state.outputPath, this.state.outputDir, 'index.html' );
+		shell.openItem( fullPath );
+	}
 
-		this.handleFileInputClick = () => {
-			const outputPath = dialog.showOpenDialog({
-				properties: [ 'openDirectory' ]
-			})[ 0 ];
-			this.setState({ outputPath, finished: false, alreadyExists: false });
-		};
+	handleFileInputClick = () => {
+		const outputPath = dialog.showOpenDialog({
+			properties: [ 'openDirectory' ]
+		})[ 0 ];
+		this.setState({ outputPath, finished: false, alreadyExists: false });
+	}
 
-		this.handleInputChange = ( event ) => {
-			const target = event.target;
-			const value = target.value;
-			const name = target.name;
+	handleInputChange = ( event ) => {
+		const target = event.target;
+		const value = target.value;
+		const name = target.name;
 
-			localStorage.setItem( name, value );
+		localStorage.setItem( name, value );
+		this.setState({
+			[ name ]: value
+		});
+	}
+
+	generateApp = () => {
+		const { outputPath, outputDir, minify } = this.state;
+		if ( exists.sync( path.join( outputPath, outputDir ) ) ) {
 			this.setState({
-				[ name ]: value
+				alreadyExists: true
 			});
-		};
-
-		this.generateApp = () => {
-			const { outputPath, outputDir, minify } = this.state;
-			if ( exists.sync( path.join( outputPath, outputDir ) ) ) {
+		} else {
+			this.setState({
+				finished: false,
+				spinning: true
+			});
+			bundler({
+				outputPath: outputPath,
+				filePath: this.props.filePath,
+				basePath: IS_PACKAGED ? path.join( process.resourcesPath, 'app' ) : '.',
+				content: this.props.content,
+				outputDir,
+				minify
+			}, ( err ) => {
 				this.setState({
-					alreadyExists: true
+					finished: true,
+					spinning: false
 				});
-			} else {
-				this.setState({
-					finished: false,
-					spinning: true
-				});
-				bundler({
-					outputPath: outputPath,
-					filePath: this.props.filePath,
-					basePath: IS_PACKAGED ? path.join( process.resourcesPath, 'app' ) : '.',
-					content: this.props.content,
-					outputDir,
-					minify
-				}, ( err ) => {
-					this.setState({
-						finished: true,
-						spinning: false
-					});
-				});
-			}
-		};
+			});
+		}
 	}
 
 	render() {

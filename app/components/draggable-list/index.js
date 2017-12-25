@@ -17,26 +17,26 @@ class Container extends Component {
 		this.state = {
 			cards: this.props.data
 		};
-
-		this.moveCard = ( dragIndex, hoverIndex ) => {
-			const { cards } = this.state;
-			const dragCard = cards[ dragIndex ];
-
-			this.setState( update( this.state, {
-				cards: {
-					$splice: [
-						[ dragIndex, 1 ],
-						[ hoverIndex, 0, dragCard ]
-					]
-				}
-			}), () => {
-				this.props.onChange( this.state.cards );
-			});
-		};
 	}
 
 	componentDidMount() {
 		this.props.onInit( this.state.cards );
+	}
+
+	moveCard = ( dragIndex, hoverIndex ) => {
+		const { cards } = this.state;
+		const dragCard = cards[ dragIndex ];
+
+		this.setState( update( this.state, {
+			cards: {
+				$splice: [
+					[ dragIndex, 1 ],
+					[ hoverIndex, 0, dragCard ]
+				]
+			}
+		}), () => {
+			this.props.onChange( this.state.cards );
+		});
 	}
 
 	render() {

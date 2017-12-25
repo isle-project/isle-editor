@@ -18,19 +18,6 @@ function Dimensions( ComposedComponent ) {
 		constructor( props ) {
 			super( props );
 			this.state = {};
-
-			this.updateDimensions = () => {
-				const dimensions = getDimensions( this._parent );
-				if (
-					dimensions[ 0 ] !== this.state.containerWidth ||
-					dimensions[ 1 ] !== this.state.containerHeight
-				) {
-					this.setState({
-						containerWidth: dimensions[ 0 ],
-						containerHeight: dimensions[ 1 ]
-					});
-				}
-			};
 		}
 
 		componentDidMount() {
@@ -40,6 +27,19 @@ function Dimensions( ComposedComponent ) {
 			this._parent = this.wrapper.parentNode;
 			this.updateDimensions();
 			onElementResize( this._parent, this.updateDimensions );
+		}
+
+		updateDimensions = () => {
+			const dimensions = getDimensions( this._parent );
+			if (
+				dimensions[ 0 ] !== this.state.containerWidth ||
+				dimensions[ 1 ] !== this.state.containerHeight
+			) {
+				this.setState({
+					containerWidth: dimensions[ 0 ],
+					containerHeight: dimensions[ 1 ]
+				});
+			}
 		}
 
 		getWrappedInstance() {

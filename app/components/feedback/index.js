@@ -20,70 +20,69 @@ class FeedbackButtons extends Component {
 		this.state = {
 			showModal: false
 		};
+	}
 
-		/**
-		* Callback invoked when user clicks on the "Confused" button. Sends
-		* data to server and display notification.
-		*/
-		this.submitConfused = () => {
-			const { session } = this.context;
-			session.log({
-				id: this.props.for,
-				type: 'USER_FEEDBACK_CONFUSED',
-				value: 'confused'
-			}, 'members' );
-			session.addNotification({
-				title: 'Thank you!',
-				message: 'We are sorry to hear that. Your feedback helps us to improve the material.',
-				level: 'info',
-				position: 'tr'
-			});
+	/**
+	* Callback invoked when user clicks on the "Confused" button. Sends
+	* data to server and display notification.
+	*/
+	submitConfused = () => {
+		const { session } = this.context;
+		session.log({
+			id: this.props.for,
+			type: 'USER_FEEDBACK_CONFUSED',
+			value: 'confused'
+		}, 'members' );
+		session.addNotification({
+			title: 'Thank you!',
+			message: 'We are sorry to hear that. Your feedback helps us to improve the material.',
+			level: 'info',
+			position: 'tr'
+		});
+	}
+
+	/**
+	* Callback invoked when the user clicks the "Understood" button. Sends
+	* data to server and display notification.
+	*/
+	submitUnderstood = () => {
+		const { session } = this.context;
+		session.log({
+			id: this.props.for,
+			type: 'USER_FEEDBACK_UNDERSTOOD',
+			value: 'understood'
+		}, 'members' );
+		session.addNotification({
+			title: 'Thank you!',
+			message: 'Glad to hear that! Thank you for your feedback.',
+			level: 'info',
+			position: 'tr'
+		});
+	}
+
+	submitFeedback = () => {
+		const { session } = this.context;
+
+		// Fetch form values.
+		const formData = {
+			noUnderstanding: this.checkbox01.state.value,
+			needsExplanation: this.checkbox02.state.value,
+			noLogic: this.checkbox03.state.value,
+			comments: this.textarea.state.value
 		};
+		session.log({
+			id: this.props.for,
+			type: 'USER_FEEDBACK_FORM',
+			value: formData
+		}, 'members' );
 
-		/**
-		* Callback invoked when the user clicks the "Understood" button. Sends
-		* data to server and display notification.
-		*/
-		this.submitUnderstood = () => {
-			const { session } = this.context;
-			session.log({
-				id: this.props.for,
-				type: 'USER_FEEDBACK_UNDERSTOOD',
-				value: 'understood'
-			}, 'members' );
-			session.addNotification({
-				title: 'Thank you!',
-				message: 'Glad to hear that! Thank you for your feedback.',
-				level: 'info',
-				position: 'tr'
-			});
-		};
-
-		this.submitFeedback = () => {
-			const { session } = this.context;
-
-			// Fetch form values.
-			const formData = {
-				noUnderstanding: this.checkbox01.state.value,
-				needsExplanation: this.checkbox02.state.value,
-				noLogic: this.checkbox03.state.value,
-				comments: this.textarea.state.value
-			};
-			session.log({
-				id: this.props.for,
-				type: 'USER_FEEDBACK_FORM',
-				value: formData
-			}, 'members' );
-
-			this.setState({ showModal: false });
-
-			session.addNotification({
-				title: 'Thank you!',
-				message: 'Thank you for for taking the time to send us feedback.',
-				level: 'info',
-				position: 'tr'
-			});
-		};
+		this.setState({ showModal: false });
+		session.addNotification({
+			title: 'Thank you!',
+			message: 'Thank you for for taking the time to send us feedback.',
+			level: 'info',
+			position: 'tr'
+		});
 	}
 
 	/*

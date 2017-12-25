@@ -33,7 +33,7 @@ class ErrorBoundary extends Component {
 	render() {
 		if ( this.state.hasError ) {
 			return (
-				<div className="errorMessage">
+				<div className="error-message">
 					<h3>Encountered an error:</h3>
 					<span>{this.state.msg}</span>
 				</div>

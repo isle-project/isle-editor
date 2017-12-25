@@ -48,154 +48,6 @@ class UploadLesson extends Component {
 			showResponseModal: false,
 			showConfirmModal: false
 		};
-
-		this.handleInputChange = ( event ) => {
-			const target = event.target;
-			const value = target.value;
-			const name = target.name;
-			this.setState({
-				[ name ]: value
-			});
-		};
-
-		this.handleSelectChange = ( event ) => {
-			debug( 'Change the selected namespace...' );
-			const target = event.target;
-			const value = target.value;
-			debug( 'The selected namespace is: ' + value );
-			this.setState({
-				namespaceName: value
-			});
-		};
-
-		this.closeResponseModal = () => {
-			this.setState({
-				showResponseModal: false
-			});
-		};
-
-		this.closeConfirmModal = () => {
-			this.setState({
-				showConfirmModal: false
-			});
-		};
-
-		this.zipLesson = ( outputPath, outputDir, clbk ) => {
-			let output = fs.createWriteStream( path.join( outputPath, outputDir+'.zip' ) );
-			let archive = archiver( 'zip', {
-				store: true
-			});
-			output.on( 'close', function onClose() {
-				console.log( archive.pointer() + ' total bytes' );
-				console.log( 'archiver has been finalized and the output file descriptor has closed.' );
-				clbk();
-			});
-			archive.on( 'error', function onError( err ) {
-				throw err;
-			});
-			archive.pipe( output );
-			archive.directory( path.join( outputPath, outputDir ), '/' );
-			archive.finalize();
-		};
-
-		this.upstreamData = ({ outputPath, outputDir }) => {
-			let { lessonName, namespaceName } = this.state;
-
-			console.log( 'Sending POST request to create lesson...' );
-			const form = new FormData();
-			form.append( 'namespaceName', namespaceName );
-			form.append( 'lessonName', lessonName );
-			form.append( 'zipped', fs.createReadStream( path.join( outputPath, outputDir+'.zip' ) ) );
-
-			const headers = form.getHeaders();
-			headers[ 'Authorization' ] = 'JWT ' + this.state.token;
-
-			const options = {
-				method: 'post',
-				path: '/create_lesson',
-				headers: headers
-			};
-			let request;
-			const re = /^https?:\/\/([^:]+):?([0-9]{0,5})/i;
-			const matches = this.state.server.match( re );
-			console.log( matches );
-			if ( contains( this.state.server, 'https' ) ) {
-				options.host = matches[ 1 ];
-				if ( matches[ 2 ]) {
-					options.port = matches[ 2 ];
-				}
-				options.rejectUnauthorized = false;
-				request = https.request( options );
-			} else {
-				options.host = matches[ 1 ];
-				if ( matches[ 2 ]) {
-					options.port = matches[ 2 ];
-				}
-				request = http.request( options );
-			}
-			form.pipe( request );
-
-			request.on( 'response', ( res ) => {
-				if ( res.statusCode === 200 ) {
-					let lessonLink = this.state.server + '/' + namespaceName + '/' + lessonName;
-					let msg = <span>
-						The lesson has been uploaded successfully and can be accessed at the following address: <a href={lessonLink}>{lessonLink}</a>
-					</span>;
-					this.setState({
-						spinning: false,
-						showResponseModal: true,
-						modalMessage: msg,
-						dirname: randomstring.generate()
-					});
-				}
-			});
-			request.on( 'error', ( err ) => {
-				console.log( 'Encountered error: ' + err.message );
-			});
-		};
-
-		this.checkLesson = () => {
-			const qs = {
-				namespace: this.state.namespaceName,
-				lessonName: this.state.lessonName
-			};
-			console.log( qs );
-			request.get( this.state.server + '/get_lesson', {
-				qs: qs,
-				rejectUnauthorized: false
-			}, ( err, res, body ) => {
-				if ( err ) {
-					return err;
-				}
-				body = JSON.parse( body );
-				if ( body.lesson ) {
-					this.setState({
-						showConfirmModal: true
-					});
-				} else {
-					this.publishLesson();
-				}
-			});
-		};
-
-		this.publishLesson = () => {
-			this.setState({
-				spinning: true
-			});
-			const settings = {
-				outputPath: os.tmpdir(),
-				filePath: this.props.filePath,
-				basePath: IS_PACKAGED ? path.join( process.resourcesPath, 'app' ) : '.',
-				content: this.props.content,
-				outputDir: this.state.dirname,
-				minify: this.state.minify
-			};
-			bundler( settings, ( err ) => {
-				this.zipLesson( settings.outputPath, settings.outputDir, () => {
-					this.upstreamData( settings );
-				});
-			});
-		};
 	}
 
 	componentDidMount() {
@@ -216,6 +68,154 @@ class UploadLesson extends Component {
 				});
 			});
 		}
+	}
+
+	handleInputChange = ( event ) => {
+		const target = event.target;
+		const value = target.value;
+		const name = target.name;
+		this.setState({
+			[ name ]: value
+		});
+	}
+
+	handleSelectChange = ( event ) => {
+		debug( 'Change the selected namespace...' );
+		const target = event.target;
+		const value = target.value;
+		debug( 'The selected namespace is: ' + value );
+		this.setState({
+			namespaceName: value
+		});
+	}
+
+	closeResponseModal = () => {
+		this.setState({
+			showResponseModal: false
+		});
+	}
+
+	closeConfirmModal = () => {
+		this.setState({
+			showConfirmModal: false
+		});
+	}
+
+	zipLesson = ( outputPath, outputDir, clbk ) => {
+		let output = fs.createWriteStream( path.join( outputPath, outputDir+'.zip' ) );
+		let archive = archiver( 'zip', {
+			store: true
+		});
+		output.on( 'close', function onClose() {
+			debug( archive.pointer() + ' total bytes' );
+			debug( 'archiver has been finalized and the output file descriptor has closed.' );
+			clbk();
+		});
+		archive.on( 'error', function onError( err ) {
+			throw err;
+		});
+		archive.pipe( output );
+		archive.directory( path.join( outputPath, outputDir ), '/' );
+		archive.finalize();
+	};
+
+	upstreamData = ({ outputPath, outputDir }) => {
+		let { lessonName, namespaceName } = this.state;
+
+		debug( 'Sending POST request to create lesson...' );
+		const form = new FormData();
+		form.append( 'namespaceName', namespaceName );
+		form.append( 'lessonName', lessonName );
+		form.append( 'zipped', fs.createReadStream( path.join( outputPath, outputDir+'.zip' ) ) );
+
+		const headers = form.getHeaders();
+		headers[ 'Authorization' ] = 'JWT ' + this.state.token;
+
+		const options = {
+			method: 'post',
+			path: '/create_lesson',
+			headers: headers
+		};
+		let request;
+		const re = /^https?:\/\/([^:]+):?([0-9]{0,5})/i;
+		const matches = this.state.server.match( re );
+		debug( 'Matches %s', matches );
+		if ( contains( this.state.server, 'https' ) ) {
+			options.host = matches[ 1 ];
+			if ( matches[ 2 ]) {
+				options.port = matches[ 2 ];
+			}
+			options.rejectUnauthorized = false;
+			request = https.request( options );
+		} else {
+			options.host = matches[ 1 ];
+			if ( matches[ 2 ]) {
+				options.port = matches[ 2 ];
+			}
+			request = http.request( options );
+		}
+		form.pipe( request );
+
+		request.on( 'response', ( res ) => {
+			if ( res.statusCode === 200 ) {
+				let lessonLink = this.state.server + '/' + namespaceName + '/' + lessonName;
+				let msg = <span>
+					The lesson has been uploaded successfully and can be accessed at the following address: <a href={lessonLink}>{lessonLink}</a>
+				</span>;
+				this.setState({
+					spinning: false,
+					showResponseModal: true,
+					modalMessage: msg,
+					dirname: randomstring.generate()
+				});
+			}
+		});
+		request.on( 'error', ( err ) => {
+			debug( 'Encountered error: ' + err.message );
+		});
+	}
+
+	checkLesson = () => {
+		const qs = {
+			namespace: this.state.namespaceName,
+			lessonName: this.state.lessonName
+		};
+		debug( 'Querystring: '+JSON.stringify(qs) );
+		request.get( this.state.server + '/get_lesson', {
+			qs: qs,
+			rejectUnauthorized: false
+		}, ( err, res, body ) => {
+			if ( err ) {
+				return err;
+			}
+			body = JSON.parse( body );
+			if ( body.lesson ) {
+				this.setState({
+					showConfirmModal: true
+				});
+			} else {
+				this.publishLesson();
+			}
+		});
+	}
+
+	publishLesson = () => {
+		this.setState({
+			spinning: true
+		});
+		const settings = {
+			outputPath: os.tmpdir(),
+			filePath: this.props.filePath,
+			basePath: IS_PACKAGED ? path.join( process.resourcesPath, 'app' ) : '.',
+			content: this.props.content,
+			outputDir: this.state.dirname,
+			minify: this.state.minify
+		};
+		bundler( settings, ( err ) => {
+			this.zipLesson( settings.outputPath, settings.outputDir, () => {
+				this.upstreamData( settings );
+			});
+		});
 	}
 
 	render() {

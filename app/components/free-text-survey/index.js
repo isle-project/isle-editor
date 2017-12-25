@@ -27,39 +27,38 @@ class FreeTextSurvey extends Component {
 			submitted: false,
 			value: null
 		};
+	}
 
-		this.submitQuestion = () => {
-			const { session } = this.context;
-
-			const val = this.containsProfanity( this.state.value );
-			if ( val ) {
-				session.addNotification({
-					title: 'Action required',
-					message: `Your answer contains an offensive word: ${val}. Please remove.`,
-					level: 'warning',
-					position: 'tr'
-				});
-			} else {
-				if ( this.props.id ) {
-					session.log({
-						id: this.props.id,
-						type: 'TEXT_SURVEY_SUBMISSION',
-						value: this.state.value,
-						anonymous: this.props.anonymous
-					}, 'members' );
-				}
-				this.setState({
-					submitted: true
-				});
-				session.addNotification({
-					title: 'Submitted',
-					message: 'Your answer has been submitted.',
-					level: 'success',
-					position: 'tr'
-				});
-				this.props.onSubmit( this.state.value );
+	submitQuestion = () => {
+		const { session } = this.context;
+		const val = this.containsProfanity( this.state.value );
+		if ( val ) {
+			session.addNotification({
+				title: 'Action required',
+				message: `Your answer contains an offensive word: ${val}. Please remove.`,
+				level: 'warning',
+				position: 'tr'
+			});
+		} else {
+			if ( this.props.id ) {
+				session.log({
+					id: this.props.id,
+					type: 'TEXT_SURVEY_SUBMISSION',
+					value: this.state.value,
+					anonymous: this.props.anonymous
+				}, 'members' );
 			}
-		};
+			this.setState({
+				submitted: true
+			});
+			session.addNotification({
+				title: 'Submitted',
+				message: 'Your answer has been submitted.',
+				level: 'success',
+				position: 'tr'
+			});
+			this.props.onSubmit( this.state.value );
+		}
 	}
 
 	onData = ( data ) => {

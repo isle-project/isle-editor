@@ -7,6 +7,7 @@ import Input from 'components/input/base';
 import Microphone from '-!svg-react-loader!./../../../img/microphone.svg';
 import './voice.css';
 
+
 // MAIN //
 
 class VoiceInput extends Input {
@@ -147,13 +148,13 @@ class VoiceInput extends Input {
 		);
 	}
 
-
 	render() {
 		let mike = 'voice-microphone';
 		if ( this.state.isRecording === true) mike = 'voice-microphone voice-recording';
 
 		return (
 			<div className="voice-input" style={{ width: this.props.width }} >
+				{ this.props.legend ? <label>{this.props.legend}:</label> : <span /> }
 				<input
 					className="voice-input-text"
 					type="text"
@@ -181,11 +182,11 @@ VoiceInput.defaultProps = {
 	defaultValue: '',
 	width: 500,
 	language: 'en-US',
+	legend: '',
 	onChange() {},
 	onFinalText() {},
 	onSegment() {},
 	onSubmit() {},
-	inline: false,
 	placeholder: 'Enter text'
 };
 
@@ -195,8 +196,8 @@ VoiceInput.defaultProps = {
 VoiceInput.propTypes = {
 	autorecord: PropTypes.bool,
 	defaultValue: PropTypes.string,
-	inline: PropTypes.bool,
 	language: PropTypes.string,
+	legend: PropTypes.string,
 	onChange: PropTypes.func,
 	onFinalText: PropTypes.func,
 	onSegment: PropTypes.func,

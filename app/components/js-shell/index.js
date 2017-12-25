@@ -80,90 +80,6 @@ class JSShell extends Component {
 				}
 			}
 		}
-
-		this.getLogs = () => {
-			this.setState({
-				log: this.jslog
-			});
-		};
-
-		this.resetConsole = () => {
-			this.jslog = [];
-			this.setState({
-				log: []
-			});
-		};
-
-		this.handleSolutionClick = () => {
-			const val = this.editor.getValue();
-			const solutionUnescaped = this.props.solution.replace( /\\n/g, '\n' );
-			if ( this.state.solutionOpen === false ) {
-				this.editor.setTheme( 'ace/theme/solarized_light' );
-				this.editor.setOptions({
-					highlightActiveLine: false,
-					highlightGutterLine: false,
-					readOnly: true
-				});
-			} else {
-				this.editor.setTheme( 'ace/theme/monokai' );
-				this.editor.setOptions({
-					highlightActiveLine: true,
-					highlightGutterLine: true,
-					readOnly: false
-				});
-			}
-
-			if ( val !== solutionUnescaped ) {
-				if ( this.props.id ) {
-					const { session } = this.context;
-					session.log({
-						id: this.props.id,
-						type: 'JSSHELL_DISPLAY_SOLUTION',
-						value: val
-					});
-				}
-				this.setState({
-					lastSolution: val,
-					solutionOpen: !this.state.solutionOpen
-				});
-				this.editor.setValue( solutionUnescaped, 1 );
-			} else {
-				this.setState({
-					solutionOpen: !this.state.solutionOpen
-				});
-				this.editor.setValue( this.state.lastSolution || solutionUnescaped, 1 );
-			}
-		};
-
-		this.handleEvaluationClick = () => {
-			this.isActive = true;
-			let currentCode = this.editor.getValue();
-			if ( this.props.id ) {
-				const { session } = this.context;
-				session.log({
-					id: this.props.id,
-					type: 'JSSHELL_EVALUATION',
-					value: currentCode
-				});
-			}
-			try {
-				if ( this.props.check ) {
-					currentCode += ';' + this.props.check;
-					eval( currentCode );  // eslint-disable-line no-eval
-				} else {
-					eval( currentCode ); // eslint-disable-line no-eval
-				}
-			}
-			catch ( err ) {
-				var x = {
-					type: 'error',
-					msg: err.message
-				};
-				this.jslog.push( x );
-			}
-			this.isActive = false;
-			this.getLogs();
-		};
 	}
 
 	componentDidMount() {
@@ -172,10 +88,91 @@ class JSShell extends Component {
 		this.editor.setTheme( 'ace/theme/monokai' );
 		// this.aceSession.getDocument().setNewLineMode( 'auto' );
 		this.editor.setValue( this.props.code, -1 );
-
-		const { session } = this.context;  // eslint-disable-line
-		// hier müsste subscribe und unsubscribe folgen
 		this.innerConsole();
+	}
+
+	getLogs = () => {
+		this.setState({
+			log: this.jslog
+		});
+	}
+
+	resetConsole = () => {
+		this.jslog = [];
+		this.setState({
+			log: []
+		});
+	}
+
+	handleSolutionClick = () => {
+		const val = this.editor.getValue();
+		const solutionUnescaped = this.props.solution.replace( /\\n/g, '\n' );
+		if ( this.state.solutionOpen === false ) {
+			this.editor.setTheme( 'ace/theme/solarized_light' );
+			this.editor.setOptions({
+				highlightActiveLine: false,
+				highlightGutterLine: false,
+				readOnly: true
+			});
+		} else {
+			this.editor.setTheme( 'ace/theme/monokai' );
+			this.editor.setOptions({
+				highlightActiveLine: true,
+				highlightGutterLine: true,
+				readOnly: false
+			});
+		}
+
+		if ( val !== solutionUnescaped ) {
+			if ( this.props.id ) {
+				const { session } = this.context;
+				session.log({
+					id: this.props.id,
+					type: 'JSSHELL_DISPLAY_SOLUTION',
+					value: val
+				});
+			}
+			this.setState({
+				lastSolution: val,
+				solutionOpen: !this.state.solutionOpen
+			});
+			this.editor.setValue( solutionUnescaped, 1 );
+		} else {
+			this.setState({
+				solutionOpen: !this.state.solutionOpen
+			});
+			this.editor.setValue( this.state.lastSolution || solutionUnescaped, 1 );
+		}
+	}
+
+	handleEvaluationClick = () => {
+		this.isActive = true;
+		let currentCode = this.editor.getValue();
+		if ( this.props.id ) {
+			const { session } = this.context;
+			session.log({
+				id: this.props.id,
+				type: 'JSSHELL_EVALUATION',
+				value: currentCode
+			});
+		}
+		try {
+			if ( this.props.check ) {
+				currentCode += ';' + this.props.check;
+				eval( currentCode );  // eslint-disable-line no-eval
+			} else {
+				eval( currentCode ); // eslint-disable-line no-eval
+			}
+		}
+		catch ( err ) {
+			var x = {
+				type: 'error',
+				msg: err.message
+			};
+			this.jslog.push( x );
+		}
+		this.isActive = false;
+		this.getLogs();
 	}
 
 	innerConsole() {
