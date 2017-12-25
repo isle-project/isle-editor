@@ -31,13 +31,14 @@
     height: 100px;
 }
 
-.wikipedia_logo {
+.wikipedia-logo {
     width: 80px;
     height: 80px;
-    float: right;
+    float: left;
     text-align: center;
     cursor: pointer;
-    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: -20px;
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Wikipedia_Logo_1.0.png/220px-Wikipedia_Logo_1.0.png');
     background-size: 80px 100%;
     border-radius: 50%;

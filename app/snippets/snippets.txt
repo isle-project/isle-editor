@@ -241,7 +241,6 @@ snippet Well
 
 snippet Wikipedia
 	<Wikipedia
-		showSearch
 		speech
 		language = "en-US"
 	/>

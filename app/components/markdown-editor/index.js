@@ -6,6 +6,8 @@ import SimpleMDE from 'simplemde';
 import replace from '@stdlib/string/replace';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import markdownIt from 'markdown-it';
+import VoiceInput from 'components/input/voice';
+import FileSaver from 'file-saver';
 
 
 // VARIABLES //
@@ -16,6 +18,17 @@ const md = markdownIt({
 	breaks: true,
 	typographer: false
 });
+
+const createHTML = ( title, body ) => `<!doctype html>
+<html lang=en>
+	<head>
+		<meta charset=utf-8>
+		<title>${title}</title>
+	</head>
+	<body>
+	${body}
+	</body>
+</html>`;
 
 
 // MAIN //
@@ -29,22 +42,14 @@ class MarkdownEditor extends Component {
 		};
 	}
 
+
 	componentDidMount() {
 		this.simplemde = new SimpleMDE({
 			element: this.simplemdeRef,
 			initialValue: this.props.defaultValue,
 			previewRender: this.previewRender,
-			toolbar: [
-				'bold', 'italic', 'strikethrough', '|', 'heading', 'quote', 'unordered-list', 'ordered-list', 'link', '|', 'preview', 'side-by-side', 'fullscreen', '|', 'guide',
-				{
-					name: 'custom',
-					action: function customFunction( editor ){
-						// Add your own code
-					},
-					className: 'fa fa-save',
-					title: 'Save HTML File'
-				}
-			]
+			toolbar: this.createToolbar(),
+			...this.props.options
 		});
 
 		// Add event listeners:
@@ -68,6 +73,57 @@ class MarkdownEditor extends Component {
 		});
 	}
 
+	createToolbar() {
+		const toolbar = [
+			'bold', 'italic', 'strikethrough', '|', 'heading', 'quote', 'unordered-list', 'ordered-list', 'link', '|', 'preview', 'side-by-side', 'fullscreen', '|', 'guide',
+			{
+				name: 'markdown',
+				action: (editor) => {
+					const mdValue = this.simplemde.value();
+					const blob = new Blob([ mdValue ], { type: 'text/html'});
+					FileSaver.saveAs( blob, 'provisoric.md' );
+				},
+				className: 'fa fa-file-text',
+				title: 'Save Markdown File'
+			},
+			{
+				name: 'html',
+				action: (editor) => {
+					const mdValue = this.simplemde.value();
+					const body = this.previewRender( mdValue );
+					const html = createHTML( 'provisoric', body );
+					const blob = new Blob([ html ], { type: 'text/html'});
+					FileSaver.saveAs( blob, 'provisoric.html' );
+				},
+				className: 'fa fa-save',
+				title: 'Save HTML File'
+			}
+		];
+		if ( this.props.voiceControl) {
+			toolbar.push({
+				name: 'custom',
+				action: ( editor ) => {
+					this.voiceRef.handleClick();
+				},
+				className: 'fa fa-microphone',
+				title: 'Record Text'
+			});
+		}
+		return toolbar;
+	}
+
+
+	recordedText = (text) => {
+		var sel = this.simplemde.codemirror.somethingSelected();
+		if ( sel ) {
+			this.simplemde.codemirror.replaceSelection( text);
+		}
+		else {
+			var c = this.simplemde.codemirror.getCursor();
+			this.simplemde.codemirror.replaceRange( text, c);
+		}
+	}
+
 	previewRender = ( plainText ) => {
 		const { hash } = this.state;
 		for ( let key in hash ) {
@@ -82,9 +138,22 @@ class MarkdownEditor extends Component {
 		event.preventDefault();
 	}
 
+	renderVoiceControl() {
+		if ( !this.props.voiceControl ) return null;
+		return (
+			<VoiceInput mode="status"
+				timeout={5000}
+				width='90%'
+				onFinalText={this.recordedText} ref={( voice ) => { this.voiceRef = voice; }} />
+		);
+	}
+
 	render() {
 		return (
-			<textarea ref={( area ) => { this.simplemdeRef = area; }} autoComplete="off" {...this.props.options} />
+			<div>
+				<textarea ref={( area ) => { this.simplemdeRef = area; }} autoComplete="off" {...this.props.options} />
+				{ this.renderVoiceControl() }
+			</div>
 		);
 	}
 }
@@ -95,7 +164,8 @@ class MarkdownEditor extends Component {
 MarkdownEditor.defaultProps = {
 	defaultValue: '',
 	onChange() {},
-	options: {}
+	options: {},
+	voiceControl: false
 };
 
 
@@ -104,7 +174,8 @@ MarkdownEditor.defaultProps = {
 MarkdownEditor.propTypes = {
 	defaultValue: PropTypes.string,
 	onChange: PropTypes.func,
-	options: PropTypes.object
+	options: PropTypes.object,
+	voiceControl: PropTypes.bool
 };
 
 

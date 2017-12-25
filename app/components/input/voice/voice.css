@@ -26,6 +26,37 @@ voice-input svg {
 	outline-width: 0;
 }
 
+
+.voice-input-status-text {
+	float: left;
+	width: 100% !important;
+	height: 40px;
+	border:solid 1px gainsboro !important;
+	border: none;
+	padding-left: 8px;
+	color: rgb(60,60,60);
+	font-family: Open Sans;
+}
+
+
+.voice-input-status {
+	float: left;
+	width: 94% !important;
+	height: 100%;
+	border: none;
+	padding-top: 6px;
+	font-size: 14px;
+	padding-left: 8px; 
+	color: rgb(128,128,128);
+	font-family: Open Sans;
+}
+
+
+.voice-solo-microphone {
+	width: 60px;
+	height: 60px;
+}
+
 .voice-microphone {
 	float: right;
 	margin-top: 2px;
