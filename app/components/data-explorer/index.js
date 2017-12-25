@@ -23,7 +23,7 @@ import FrequencyTable from 'components/data-explorer/frequency-table';
 import SummaryStatistics from 'components/data-explorer/summary-statistics';
 import SimpleLinearRegression from 'components/data-explorer/linear-regression';
 import VariableTransformer from 'components/data-explorer/variable-transformer';
-import GridLayout from 'components/grid-layout';
+import GridLayout from './grid_layout.js';
 import Pages from 'components/pages';
 import Gate from 'components/gate';
 import RealtimeMetrics from 'components/metrics/realtime';
