@@ -166,6 +166,7 @@ class JSShell extends Component {
 				currentCode += ';' + this.props.check;
 				eval( currentCode );  // eslint-disable-line no-eval
 			} else {
+				this.checkObject( currentCode );
 				eval( currentCode ); // eslint-disable-line no-eval
 			}
 		}
@@ -174,11 +175,17 @@ class JSShell extends Component {
 				type: 'error',
 				msg: err.message
 			};
+
 			this.jslog.push( x );
 		}
 		this.isActive = false;
 		this.getLogs();
 	}
+
+	checkObject( code ) {
+		// if ( code === '[object Object]') debug("OBJEKT");
+	}
+
 
 	innerConsole() {
 		var self = this;
@@ -257,6 +264,17 @@ class JSShell extends Component {
 		return res;
 	}
 
+	renderResetButton() {
+		if (this.state.log.length > 6) {
+			return (
+				<div className="reset3" onClick={this.resetConsole} >☒</div>
+			);
+		}
+		return (
+			<div className="reset2" onClick={this.resetConsole} >☒</div>
+		);
+	}
+
 	render() {
 		const nHints = this.props.hints.length;
 		const toolbar = <ButtonToolbar style={{ float: 'right', marginTop: '8px' }}>
@@ -300,12 +318,12 @@ class JSShell extends Component {
 						{ toolbar }
 						<br />
 					</div>
+					{ this.renderResetButton() }
 					<div
 						id={this.props.id}
 						ref={( div ) => { this.consoleOutput = div; }}
 						className="console"
 					>
-						<div className="reset" onClick={this.resetConsole} >☒</div>
 						{this.renderLogs()}
 					</div>
 				</div>
