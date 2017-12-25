@@ -3,11 +3,12 @@
 import * as actions from 'actions';
 import { ipcRenderer } from 'electron';
 import Configstore from 'configstore';
-const debug = require( 'debug' )( 'isle-editor' );
+import logger from 'debug';
 
 
 // VARIABLES //
 
+const debug = logger( 'isle-editor' );
 const config = new Configstore( 'ISLE' );
 
 

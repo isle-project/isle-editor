@@ -2,13 +2,18 @@
 
 import React, { Component } from 'react';
 import { ListGroup } from 'react-bootstrap';
+import logger from 'debug';
 import objectEntries from '@stdlib/utils/entries';
 import copy from '@stdlib/utils/copy';
 import PropTypes from 'prop-types';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
-const debug = require( 'debug' )( 'isle-editor' );
 import Action from './action.js';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor' );
 
 
 // MAIN //

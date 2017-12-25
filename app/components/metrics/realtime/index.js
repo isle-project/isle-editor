@@ -2,9 +2,14 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import contains from '@stdlib/assert/contains';
 import { copy } from '@stdlib/utils';
-const debug = require( 'debug' )( 'isle-editor' );
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor' );
 
 
 // MAIN //

@@ -3,8 +3,13 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Gate from 'components/gate';
-const debug = require( 'debug' )( 'isle-editor' );
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor' );
 
 
 // MAIN //

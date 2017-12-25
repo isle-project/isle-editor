@@ -13,18 +13,19 @@ import randomstring from 'randomstring';
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
+import logger from 'debug';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
 import Spinner from 'components/spinner';
-const debug = require( 'debug' )( 'isle-editor' );
 
 
 // VARIABLES //
 
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
+const debug = logger( 'isle-editor' );
 
 
 // MAIN //

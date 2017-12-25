@@ -3,13 +3,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonToolbar, FormControl, OverlayTrigger, Panel, Tooltip } from 'react-bootstrap';
+import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import isString from '@stdlib/assert/is-string';
 import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
 import HintButton from 'components/hint-button';
-const debug = require( 'debug' )( 'isle:free-text-question' );
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:free-text-question' );
 
 
 // MAIN //
