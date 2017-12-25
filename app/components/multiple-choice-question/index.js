@@ -84,7 +84,7 @@ class MultipleChoiceQuestion extends Component {
 					}
 				}
 			}
-			let active = new Array( props.answers.length );
+			let active = new Array( this.props.answers.length );
 			this.setState({
 				correct: newCorrect,
 				submitted: true,
