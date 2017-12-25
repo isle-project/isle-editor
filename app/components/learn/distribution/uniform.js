@@ -19,10 +19,7 @@ import TeX from 'components/tex';
 class UniformProbs extends Component {
 	constructor( props ) {
 		super( props );
-
-		this.state = {
-
-		};
+		this.state = {};
 	}
 
 	generate1 = ( min, max, x0 ) => {

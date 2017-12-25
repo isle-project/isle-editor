@@ -24,10 +24,7 @@ var NEAR_ONE = 0.999999;
 class ExponentialProbs extends Component {
 	constructor( props ) {
 		super( props );
-
-		this.state = {
-
-		};
+		this.state = {};
 	}
 
 	render() {

@@ -4,14 +4,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Panel, Grid, Col } from 'react-bootstrap';
+import logger from 'debug';
 import ProportionsInput from 'components/input/proportions';
-
 import Gate from 'components/gate';
 import InstructorBar from 'components/instructor-bar';
 import RealtimeMetrics from 'components/metrics/realtime';
-const debug = require( 'debug' )( 'isle-editor' );
 
-var colorList = [
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor' );
+const colorList = [
 	'tomato',
 	'orange',
 	'gold',
@@ -24,6 +27,7 @@ var colorList = [
 	'darkseagreen'
 ];
 
+
 // MAIN //
 
 class ProportionsSurvey extends Component {
@@ -31,40 +35,35 @@ class ProportionsSurvey extends Component {
 		super( props );
 
 		this.results = [];
-
 		this.state = {
 			submitted: false,
 			value: null,
 			resultValues: null,
 			nResults: 0
 		};
-
-		this.submitQuestion = () => {
-			console.log( 'schicke die Daten ab' + this.state.value );
-
-			const { session } = this.context;
-			if ( this.props.id ) {
-				session.log({
-					id: this.props.id,
-					type: 'PROPORTIONS_SURVEY_SUBMISSION',
-					value: JSON.stringify( this.state.value ),
-					anonymous: this.props.anonymous
-				}, 'members' );
-			}
-			this.setState({
-				submitted: true
-			});
-			session.addNotification({
-				title: 'Submitted',
-				message: 'Your answer has been submitted.',
-				level: 'success',
-				position: 'tr'
-			});
-			this.props.onSubmit( this.state.value );
-		};
 	}
 
-	componentDidMount() {
+	submitQuestion = () => {
+		debug( 'Sending the data: ' + this.state.value );
+		const { session } = this.context;
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'PROPORTIONS_SURVEY_SUBMISSION',
+				value: JSON.stringify( this.state.value ),
+				anonymous: this.props.anonymous
+			}, 'members' );
+		}
+		this.setState({
+			submitted: true
+		});
+		session.addNotification({
+			title: 'Submitted',
+			message: 'Your answer has been submitted.',
+			level: 'success',
+			position: 'tr'
+		});
+		this.props.onSubmit( this.state.value );
 	}
 
 	onData = ( data ) => {
@@ -75,31 +74,25 @@ class ProportionsSurvey extends Component {
 
 	getAverage( data ) {
 		var list = new Array( data.length );
-
 		for ( var i = 0; i < data.length; i++ ) {
 			var temp = JSON.parse( data[ i ]);
 			list[ i ] = temp;
 		}
-
-
 		var sum = new Array( this.props.nElements ).fill( 0 );
 		var mean = new Array( this.props.nElements ).fill( 0 );
 
-		for ( i = 0; i < list.length; i++ ) {                	// Reflects arrays of arrays = results
+		for ( i = 0; i < list.length; i++ ) {
+			// Reflects arrays of arrays = results
 			for ( let j = 0; j < list[ i ].length; j++ ) {
 				sum[ j ] += list[ i ][ j ];
 			}
 		}
-
-		console.log( sum );
-
+		debug( 'The sum is'+ sum );
 		var no = this.props.nElements;
 		for ( let j = 0; j < no; j++ ) {
 			mean[ j ] = sum[ j ] / list.length;
 		}
-
-		console.log( 'Mean is ' + mean );
-
+		debug( 'Mean is ' + mean );
 		this.setState({
 			resultValues: mean,
 			nResults: list.length
@@ -185,7 +178,7 @@ ProportionsSurvey.defaultProps = {
 	anonymous: false,
 	disabled: false,
 
-	// for the Proportion
+	// For the Proportion:
 	nElements: 6,
 	legends: 'Legend',
 	group: 'group results',

@@ -14,30 +14,30 @@ class Metrics extends Component {
 		this.state = {
 			active: false
 		};
-
-		this.getData = () => {
-			const { session } = this.context;
-			session.retrieveData({
-				componentID: this.props.for
-			}, this.props.onData );
-		};
-
-		this.start = () => {
-			if ( this.props.interval ) {
-				this.runner = window.setInterval( this.getData, this.props.interval );
-			} else {
-				this.getData();
-			}
-		};
-
-		this.stop = () => {
-			if ( this.runner ) {
-				clearInterval( this.runner );
-			}
-		};
 	}
 
 	componentWillUnmount() {
+		if ( this.runner ) {
+			clearInterval( this.runner );
+		}
+	}
+
+	getData = () => {
+		const { session } = this.context;
+		session.retrieveData({
+			componentID: this.props.for
+		}, this.props.onData );
+	}
+
+	start = () => {
+		if ( this.props.interval ) {
+			this.runner = window.setInterval( this.getData, this.props.interval );
+		} else {
+			this.getData();
+		}
+	}
+
+	stop = () => {
 		if ( this.runner ) {
 			clearInterval( this.runner );
 		}

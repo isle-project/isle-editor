@@ -21,39 +21,38 @@ class MultipleChoiceSurvey extends Component {
 		let active = props.multipleAnswers ?
 			new Array( props.answers.length ) :
 			null;
-
 		this.state = {
 			data: [],
 			submitted: false,
 			active,
 			answerSelected: false
 		};
+	}
 
-		this.submitQuestion = () => {
-			const { session } = this.context;
-			if ( this.props.id ) {
-				session.log({
-					id: this.props.id,
-					type: 'MULTIPLE_CHOICE_SURVEY_SUBMISSION',
-					value: this.props.multipleAnswers ?
-						this.state.active.map( idx => this.props.answers[ idx ]) :
-						this.props.answers[ this.state.active ],
-					anonymous: this.props.anonymous
-				}, 'members' );
-			}
-			if ( !this.props.allowMultipleAnswers ) {
-				this.setState({
-					submitted: true
-				});
-			}
-			session.addNotification({
-				title: 'Submitted',
-				message: 'Your answer has been submitted.',
-				level: 'success',
-				position: 'tr'
+	submitQuestion = () => {
+		const { session } = this.context;
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'MULTIPLE_CHOICE_SURVEY_SUBMISSION',
+				value: this.props.multipleAnswers ?
+					this.state.active.map( idx => this.props.answers[ idx ]) :
+					this.props.answers[ this.state.active ],
+				anonymous: this.props.anonymous
+			}, 'members' );
+		}
+		if ( !this.props.allowMultipleAnswers ) {
+			this.setState({
+				submitted: true
 			});
-			this.props.onSubmit( this.state.active );
-		};
+		}
+		session.addNotification({
+			title: 'Submitted',
+			message: 'Your answer has been submitted.',
+			level: 'success',
+			position: 'tr'
+		});
+		this.props.onSubmit( this.state.active );
 	}
 
 	onData = ( data ) => {

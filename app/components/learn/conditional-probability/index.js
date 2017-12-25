@@ -53,7 +53,6 @@ probabilityTableLabels.propTypes = {
 class ConditionalProbability extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			A: 'A',
 			B: 'B',

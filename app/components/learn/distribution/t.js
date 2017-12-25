@@ -18,7 +18,6 @@ import TeX from 'components/tex';
 class TProbs extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			df1: 1,
 			df2: 1,

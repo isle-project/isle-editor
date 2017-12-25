@@ -52,34 +52,33 @@ function getBins( data ) {
 class NumberSurvey extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			data: [],
 			submitted: false,
 			value: null
 		};
+	}
 
-		this.submitQuestion = () => {
-			const { session } = this.context;
-			if ( this.props.id ) {
-				session.log({
-					id: this.props.id,
-					type: 'NUMBER_SURVEY_SUBMISSION',
-					value: this.state.value,
-					anonymous: this.props.anonymous
-				}, 'members' );
-			}
-			this.setState({
-				submitted: true
-			});
-			session.addNotification({
-				title: 'Submitted',
-				message: 'Your answer has been submitted.',
-				level: 'success',
-				position: 'tr'
-			});
-			this.props.onSubmit( this.state.value );
-		};
+	submitQuestion = () => {
+		const { session } = this.context;
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'NUMBER_SURVEY_SUBMISSION',
+				value: this.state.value,
+				anonymous: this.props.anonymous
+			}, 'members' );
+		}
+		this.setState({
+			submitted: true
+		});
+		session.addNotification({
+			title: 'Submitted',
+			message: 'Your answer has been submitted.',
+			level: 'success',
+			position: 'tr'
+		});
+		this.props.onSubmit( this.state.value );
 	}
 
 	onData = ( data ) => {

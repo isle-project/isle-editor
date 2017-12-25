@@ -29,76 +29,6 @@ class LessonSubmit extends Component {
 			visibleLogin: false,
 			visibleSignup: false
 		};
-
-		this.closeUserModal = () => {
-			this.setState({
-				showUserModal: false,
-				visibleLogin: false,
-				visibleSignup: false
-			});
-		};
-
-		this.login = ( e ) => {
-			e.stopPropagation();
-			this.setState({
-				visibleLogin: true,
-				visibleSignup: false
-			});
-		};
-
-		this.signup = ( e ) => {
-			e.stopPropagation();
-			this.setState({
-				visibleSignup: true,
-				visibleLogin: false
-			});
-		};
-
-		this.closeSignup = () => {
-			this.setState({
-				visibleSignup: false,
-				showUserModal: false
-			});
-		};
-
-		this.closeLogin = () => {
-			this.setState({
-				visibleLogin: false,
-				showUserModal: false
-			});
-		};
-
-		this.finalizeSession = ( item ) => {
-			const { session } = this.context;
-			session.finalize();
-			session.addNotification({
-				title: 'Completed',
-				message: 'Lesson successfully completed. You will receive a confirmation email shortly.',
-				level: 'success',
-				position: 'tr'
-			});
-			const msg = createMessage( session, this.props.message );
-			session.sendMail( msg, session.user.email );
-			this.setState({
-				disabled: true
-			});
-			window.removeEventListener( 'beforeunload', beforeUnload );
-		};
-
-		this.handleClick = () => {
-			this.props.onClick();
-			const { session } = this.context;
-			const str = 'ISLE_USER_' + session.server;
-			let item = localStorage.getItem( str );
-			if ( !item ) {
-				this.setState({
-					showUserModal: true
-				});
-			}
-			else {
-				this.finalizeSession( item );
-			}
-		};
 	}
 
 	componentDidMount() {
@@ -110,6 +40,76 @@ class LessonSubmit extends Component {
 
 	componentWillUnmount() {
 		this.unsubsribe();
+	}
+
+	closeUserModal = () => {
+		this.setState({
+			showUserModal: false,
+			visibleLogin: false,
+			visibleSignup: false
+		});
+	}
+
+	login = ( e ) => {
+		e.stopPropagation();
+		this.setState({
+			visibleLogin: true,
+			visibleSignup: false
+		});
+	}
+
+	signup = ( e ) => {
+		e.stopPropagation();
+		this.setState({
+			visibleSignup: true,
+			visibleLogin: false
+		});
+	}
+
+	closeSignup = () => {
+		this.setState({
+			visibleSignup: false,
+			showUserModal: false
+		});
+	}
+
+	closeLogin = () => {
+		this.setState({
+			visibleLogin: false,
+			showUserModal: false
+		});
+	};
+
+	finalizeSession = ( item ) => {
+		const { session } = this.context;
+		session.finalize();
+		session.addNotification({
+			title: 'Completed',
+			message: 'Lesson successfully completed. You will receive a confirmation email shortly.',
+			level: 'success',
+			position: 'tr'
+		});
+		const msg = createMessage( session, this.props.message );
+		session.sendMail( msg, session.user.email );
+		this.setState({
+			disabled: true
+		});
+		window.removeEventListener( 'beforeunload', beforeUnload );
+	}
+
+	handleClick = () => {
+		this.props.onClick();
+		const { session } = this.context;
+		const str = 'ISLE_USER_' + session.server;
+		let item = localStorage.getItem( str );
+		if ( !item ) {
+			this.setState({
+				showUserModal: true
+			});
+		}
+		else {
+			this.finalizeSession( item );
+		}
 	}
 
 	render() {

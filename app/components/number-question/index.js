@@ -28,46 +28,6 @@ class NumberQuestion extends Component {
 			value: null,
 			submitted: false
 		};
-
-		/*
-		* Event handler invoked when text area value changes. Updates `value` and invokes `onChange` callback with the new value as its first argument
-		*/
-		this.handleChange = ( newValue ) => {
-			this.setState({ value: newValue });
-			this.props.onChange( newValue );
-		};
-
-		this.submitHandler = ( event ) => {
-			const { session } = this.context;
-			if ( this.props.solution ) {
-				const correct = parseFloat( this.state.value ) === this.props.solution;
-				session.addNotification({
-					title: 'Answer submitted.',
-					message: correct ? 'Congratulations, that is correct!' : 'Not quite. Compare your answer with the solution.',
-					level: correct ? 'success' : 'error',
-					position: 'tr'
-				});
-			} else {
-				session.addNotification({
-					title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
-					message: this.state.submitted ?
-						'You have successfully re-submitted your answer.' :
-						'Your answer has been submitted.',
-					level: 'info',
-					position: 'tr'
-				});
-			}
-			this.setState({
-				submitted: true
-			});
-			if ( this.props.id ) {
-				session.log({
-					id: this.props.id,
-					type: 'NUMBER_QUESTION_SUBMIT_ANSWER',
-					value: this.state.value
-				});
-			}
-		};
 	}
 
 	componentWillReceiveProps( nextProps ) {
@@ -78,6 +38,46 @@ class NumberQuestion extends Component {
 			this.setState({
 				value: null,
 				submitted: false
+			});
+		}
+	}
+
+	/*
+	* Event handler invoked when text area value changes. Updates `value` and invokes `onChange` callback with the new value as its first argument
+	*/
+	handleChange = ( newValue ) => {
+		this.setState({ value: newValue });
+		this.props.onChange( newValue );
+	}
+
+	submitHandler = ( event ) => {
+		const { session } = this.context;
+		if ( this.props.solution ) {
+			const correct = parseFloat( this.state.value ) === this.props.solution;
+			session.addNotification({
+				title: 'Answer submitted.',
+				message: correct ? 'Congratulations, that is correct!' : 'Not quite. Compare your answer with the solution.',
+				level: correct ? 'success' : 'error',
+				position: 'tr'
+			});
+		} else {
+			session.addNotification({
+				title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
+				message: this.state.submitted ?
+					'You have successfully re-submitted your answer.' :
+					'Your answer has been submitted.',
+				level: 'info',
+				position: 'tr'
+			});
+		}
+		this.setState({
+			submitted: true
+		});
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'NUMBER_QUESTION_SUBMIT_ANSWER',
+				value: this.state.value
 			});
 		}
 	}

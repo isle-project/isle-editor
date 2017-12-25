@@ -23,20 +23,9 @@ const md = markdownIt({
 class MarkdownEditor extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			value: props.defaultValue,
 			hash: {}
-		};
-
-		this.previewRender = ( plainText ) => {
-			const { hash } = this.state;
-			for ( let key in hash ) {
-				if ( hasOwnProp( hash, key ) ) {
-					plainText = replace( plainText, key, hash[ key ]);
-				}
-			}
-			return md.render( plainText );
 		};
 	}
 
@@ -77,6 +66,16 @@ class MarkdownEditor extends Component {
 				hash
 			});
 		});
+	}
+
+	previewRender = ( plainText ) => {
+		const { hash } = this.state;
+		for ( let key in hash ) {
+			if ( hasOwnProp( hash, key ) ) {
+				plainText = replace( plainText, key, hash[ key ]);
+			}
+		}
+		return md.render( plainText );
 	}
 
 	allowDrop( event ) {

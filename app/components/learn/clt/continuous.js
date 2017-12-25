@@ -103,26 +103,26 @@ class ContinuousCLT extends Component {
 			rightProb: 1,
 			cutoff: 0
 		};
+	}
 
-		this.handleSelect = ( key ) => {
-			let formula;
-			switch ( key ) {
-			default:
-			case 1:
-				formula = <TeX raw={`\\text{Uniform}(${this.state.a},${this.state.b})`} />;
-				break;
-			case 2:
-				formula = <TeX raw={`\\text{Exponential}(${this.state.lambda})`} />;
-				break;
-			case 3:
-				formula = <TeX raw={`\\text{Normal}(${this.state.mu},${this.state.sigma})`} />;
-				break;
-			}
-			this.setState({
-				activeDistribution: key,
-				distFormula: formula
-			});
-		};
+	handleSelect = ( key ) => {
+		let formula;
+		switch ( key ) {
+		default:
+		case 1:
+			formula = <TeX raw={`\\text{Uniform}(${this.state.a},${this.state.b})`} />;
+			break;
+		case 2:
+			formula = <TeX raw={`\\text{Exponential}(${this.state.lambda})`} />;
+			break;
+		case 3:
+			formula = <TeX raw={`\\text{Normal}(${this.state.mu},${this.state.sigma})`} />;
+			break;
+		}
+		this.setState({
+			activeDistribution: key,
+			distFormula: formula
+		});
 	}
 
 	clear() {

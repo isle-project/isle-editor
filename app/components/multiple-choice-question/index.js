@@ -34,56 +34,6 @@ class MultipleChoiceQuestion extends Component {
 				answerSelected: false
 			};
 		}
-
-		this.submitQuestion = () => {
-			let sol = this.props.solution;
-			let newCorrect = new Array( this.props.answers.length );
-
-			if ( this.props.id ) {
-				const { session } = this.context;
-				session.log({
-					id: this.props.id,
-					type: 'MULTIPLE_CHOICE_SUBMISSION',
-					value: this.state.active
-				});
-			}
-
-			if ( isArray( sol ) ) {
-				for ( let i = 0; i < this.state.active.length; i++ ) {
-					if ( this.state.active[ i ] === true ) {
-						if ( contains( sol, i ) ) {
-							newCorrect[ i ] = true;
-						} else {
-							newCorrect[ i ] = false;
-						}
-					}
-				}
-				let active = new Array( props.answers.length );
-				this.setState({
-					correct: newCorrect,
-					submitted: true,
-					active
-				});
-			}
-			else {
-				for ( let i = 0; i < newCorrect.length; i++ ) {
-					if ( this.state.active === i ) {
-						if ( i === sol ) {
-							newCorrect[ i ] = true;
-						} else {
-							newCorrect[ i ] = false;
-						}
-					}
-				}
-				let active = null;
-				this.setState({
-					correct: newCorrect,
-					submitted: true,
-					active
-				});
-			}
-			this.props.onSubmit( this.state.active );
-		};
 	}
 
 	componentDidMount() {
@@ -111,6 +61,54 @@ class MultipleChoiceQuestion extends Component {
 
 	componentWillUnmount() {
 		this.unsubscribe();
+	}
+
+	submitQuestion = () => {
+		let sol = this.props.solution;
+		let newCorrect = new Array( this.props.answers.length );
+		if ( this.props.id ) {
+			const { session } = this.context;
+			session.log({
+				id: this.props.id,
+				type: 'MULTIPLE_CHOICE_SUBMISSION',
+				value: this.state.active
+			});
+		}
+		if ( isArray( sol ) ) {
+			for ( let i = 0; i < this.state.active.length; i++ ) {
+				if ( this.state.active[ i ] === true ) {
+					if ( contains( sol, i ) ) {
+						newCorrect[ i ] = true;
+					} else {
+						newCorrect[ i ] = false;
+					}
+				}
+			}
+			let active = new Array( props.answers.length );
+			this.setState({
+				correct: newCorrect,
+				submitted: true,
+				active
+			});
+		}
+		else {
+			for ( let i = 0; i < newCorrect.length; i++ ) {
+				if ( this.state.active === i ) {
+					if ( i === sol ) {
+						newCorrect[ i ] = true;
+					} else {
+						newCorrect[ i ] = false;
+					}
+				}
+			}
+			let active = null;
+			this.setState({
+				correct: newCorrect,
+				submitted: true,
+				active
+			});
+		}
+		this.props.onSubmit( this.state.active );
 	}
 
 	render() {

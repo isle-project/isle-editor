@@ -7,6 +7,8 @@ import newslist from './list.json';
 import EXCEPTIONS from './exceptions.json';
 import $ from 'jquery';
 import capitalize from '@stdlib/string/capitalize';
+
+
 // MAIN //
 
 class News extends Component {
@@ -71,13 +73,13 @@ class News extends Component {
 				result = newslist[ i ].trig;
 			}
 		}
-		if ( result ) this.getArticles( result );
+		if ( result ) {
+			this.getArticles( result );
+		}
 	}
-
 
 	trigger( value ) {
 		var marker = 'in';
-
 		switch ( this.props.language ) {
 		case 'en-US':
 			marker = 'in';
@@ -101,13 +103,11 @@ class News extends Component {
 		}
 	}
 
-
 	hide() {
 		this.setState({
 			visible: null
 		});
 	}
-
 
 	getArticle( item, id ) {
 		let author = item.author;
@@ -125,7 +125,6 @@ class News extends Component {
 			</div>
 		);
 	}
-
 
 	articles() {
 		if ( this.state.articles === null ) return null;
@@ -162,7 +161,6 @@ class News extends Component {
 		);
 	}
 
-
 	render() {
 		return (
 			<div className={this.props.className} id={this.props.id}>
@@ -196,8 +194,7 @@ News.propTypes = {
 
 // CONTEXT TYPES //
 
-News.contextTypes = {
-};
+News.contextTypes = {};
 
 
 // EXPORTS //

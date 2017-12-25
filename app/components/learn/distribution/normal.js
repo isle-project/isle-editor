@@ -19,7 +19,6 @@ import TeX from 'components/tex';
 class NormalProbs extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			mean1: 0,
 			sd1: 1,
