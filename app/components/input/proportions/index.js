@@ -7,6 +7,7 @@ import NumberInput from 'components/input/number';
 import { VictoryPie } from 'victory';
 import isArray from '@stdlib/assert/is-array';
 
+
 // MAIN //
 
 class ProportionInput extends Input {
@@ -81,7 +82,9 @@ class ProportionInput extends Input {
 	rest( arr, ndx ) {
 		let sum = 0;
 		for ( let i = 0; i < arr.length; i++ ) {
-			if ( i !== ndx ) sum += arr[ i ];
+			if ( i !== ndx ) {
+				sum += arr[ i ];
+			}
 		}
 		return sum;
 	}
