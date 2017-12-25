@@ -6,6 +6,7 @@ import { Tooltip, OverlayTrigger} from 'react-bootstrap';
 import Input from 'components/input/base';
 import Microphone from '-!svg-react-loader!./../../../img/microphone.svg';
 import './voice.css';
+import { clearTimeout } from 'timers';
 
 
 // MAIN //
@@ -23,7 +24,12 @@ class VoiceInput extends Input {
 		};
 	}
 
+	setTimeout() {
+		this.timer = setTimeout( this.stop, this.props.timeout);
+	}
+
 	segment( text ) {
+		if ( this.timer) clearTimeout( this.timer );
 		this.setState({
 			value: text
 		});
@@ -32,6 +38,8 @@ class VoiceInput extends Input {
 	}
 
 	finalText( text ) {
+		if ( this.props.timeout) this.setTimeout();
+
 		console.log( 'Received final text' );
 
 		this.setState({
@@ -102,7 +110,7 @@ class VoiceInput extends Input {
 	}
 
 
-	stop() {
+	stop = () => {
 		this.recognizer.stop();
 		this.setState({
 			isRecording: false
@@ -176,29 +184,59 @@ class VoiceInput extends Input {
 		);
 	}
 
+
 	render() {
 		let mike = 'voice-microphone';
 		if ( this.state.isRecording === true) mike = 'voice-microphone voice-recording';
+		switch ( this.props.mode ) {
+		case 'full':
+			return (
+				<div className="voice-input" style={{ width: this.props.width, ...this.props.style }} >
+					{ this.props.legend ? <label>{this.props.legend}:</label> : <span /> }
+					<input
+						className="voice-input-text"
+						type="text"
+						onKeyDown={this.handleKeyDown}
+						onChange={this.handleChange}
+						placeholder={this.props.placeholder}
+						value={this.state.value}
+						ref={( input ) => {
+							this.textInput = input;
+						}}
+					/>
+					<OverlayTrigger placement="bottom" overlay={this.renderTooltip()}>
+						<Microphone onClick={this.handleClick} className={mike} />
+					</OverlayTrigger>
+				</div>
+			);
 
-		return (
-			<div className="voice-input" style={{ width: this.props.width }} >
-				{ this.props.legend ? <label>{this.props.legend}:</label> : <span /> }
-				<input
-					className="voice-input-text"
-					type="text"
-					onKeyDown={this.handleKeyDown}
-					onChange={this.handleChange}
-					placeholder={this.props.placeholder}
-					value={this.state.value}
-					ref={( input ) => {
-						this.textInput = input;
-					}}
-				/>
-				<OverlayTrigger placement="bottom" overlay={this.renderTooltip()}>
-					<Microphone onClick={this.handleClick} className={mike} />
-				</OverlayTrigger>
-			</div>
-		);
+		case 'status':
+			return (
+				<div className="voice-input-status-text" style={{ width: this.props.width, ...this.props.style }} >
+					{ this.props.legend ? <label>{this.props.legend}:</label> : <span /> }
+					<div
+						className="voice-input-status"
+					>
+						{this.state.value}
+					</div>
+					<OverlayTrigger placement="bottom" overlay={this.renderTooltip()}>
+						<Microphone onClick={this.handleClick} className={mike} />
+					</OverlayTrigger>
+				</div>
+			);
+
+		case 'microphone':
+			return (
+				<div className="voice-solo-microphone">
+					<OverlayTrigger placement="bottom" overlay={this.renderTooltip()}>
+						<Microphone onClick={this.handleClick} className={mike} />
+					</OverlayTrigger>
+				</div>
+			);
+
+		case 'none':
+			return null;
+		}
 	}
 }
 
@@ -211,6 +249,7 @@ VoiceInput.defaultProps = {
 	grammars: [],
 	language: 'en-US',
 	legend: '',
+	mode: 'full',
 	onChange() {},
 	onFinalText() {},
 	onSegment() {},
@@ -218,6 +257,8 @@ VoiceInput.defaultProps = {
 	onRecordingStop() {},
 	onSubmit() {},
 	placeholder: 'Enter text',
+	style: {},
+	timeout: null,
 	width: 500
 };
 
@@ -230,6 +271,7 @@ VoiceInput.propTypes = {
 	grammars: PropTypes.array,
 	language: PropTypes.string,
 	legend: PropTypes.string,
+	mode: PropTypes.string,
 	onChange: PropTypes.func,
 	onFinalText: PropTypes.func,
 	onRecordingStart: PropTypes.func,
@@ -237,6 +279,8 @@ VoiceInput.propTypes = {
 	onSegment: PropTypes.func,
 	onSubmit: PropTypes.func,
 	placeholder: PropTypes.string,
+	style: PropTypes.object,
+	timeout: PropTypes.number,
 	width: PropTypes.number
 };
 
