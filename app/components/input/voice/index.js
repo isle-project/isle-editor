@@ -18,14 +18,13 @@ class VoiceInput extends Input {
 			value: props.bind && session.state ?
 				session.state[ props.bind ]:
 				props.defaultValue,
-			isRecording: props.autorecord,
-			recognized: 'recognized text'
+			isRecording: props.autorecord
 		};
 	}
 
 	segment( text ) {
 		this.setState({
-			recognized: text
+			value: text
 		});
 
 		this.props.onSegment( text );
@@ -35,8 +34,7 @@ class VoiceInput extends Input {
 		console.log( 'Received final text' );
 
 		this.setState({
-			recognized: text,
-			finalText: text //eslint-disable-line
+			value: text
 		});
 		this.props.onFinalText( text );
 	}
@@ -185,6 +183,7 @@ VoiceInput.defaultProps = {
 	language: 'en-US',
 	onChange() {},
 	onFinalText() {},
+	onSegment() {},
 	onSubmit() {},
 	inline: false,
 	placeholder: 'Enter text'
@@ -200,6 +199,7 @@ VoiceInput.propTypes = {
 	language: PropTypes.string,
 	onChange: PropTypes.func,
 	onFinalText: PropTypes.func,
+	onSegment: PropTypes.func,
 	onSubmit: PropTypes.func,
 	placeholder: PropTypes.string,
 	width: PropTypes.number
