@@ -148,7 +148,6 @@ class RShell extends React.Component {
 		this.handleSolutionClick = () => {
 			const val = this.editor.getValue();
 			const solutionUnescaped = this.props.solution.replace( /\\n/g, '\n' );
-
 			if ( this.state.solutionOpen === false ) {
 				this.editor.setTheme( 'ace/theme/solarized_light' );
 				this.editor.setOptions({
@@ -164,7 +163,6 @@ class RShell extends React.Component {
 					readOnly: false
 				});
 			}
-
 			if ( val !== solutionUnescaped ) {
 				if ( this.props.id ) {
 					const { session } = this.context;
@@ -184,21 +182,6 @@ class RShell extends React.Component {
 					solutionOpen: !this.state.solutionOpen
 				});
 				this.editor.setValue( this.state.lastSolution || solutionUnescaped, 1 );
-			}
-		};
-
-		this.handleResetClick = () => {
-			this.editor.setValue( this.props.code, 1 );
-		};
-
-		this.logHint = ( idx ) => {
-			const { session } = this.context;
-			if ( this.props.id ) {
-				session.log({
-					id: this.props.id,
-					type: 'RSHELL_OPEN_HINT',
-					value: idx
-				});
 			}
 		};
 
@@ -273,12 +256,6 @@ class RShell extends React.Component {
 					}
 				});
 			}
-		};
-
-		this.hideHelp = () => {
-			this.setState({
-				help: ''
-			});
 		};
 	}
 
@@ -380,6 +357,25 @@ class RShell extends React.Component {
 		this.unsubscribe();
 		this.editor.destroy();
 		this.editor = null;
+	}
+
+	handleResetClick = () => {
+		this.editor.setValue( this.props.code, 1 );
+	}
+
+	logHint = ( idx ) => {
+		const { session } = this.context;
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'RSHELL_OPEN_HINT',
+				value: idx
+			});
+		}
+	}
+
+	hideHelp = () => {
+		this.setState({ help: '' });
 	}
 
 	getLastAction = ( val, id ) => {

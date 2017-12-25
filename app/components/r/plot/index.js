@@ -12,7 +12,6 @@ import Image from 'components/image';
 class RPlot extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			plotURL: null,
 			plot: null,

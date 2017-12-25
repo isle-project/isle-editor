@@ -13,43 +13,10 @@ import createPrependCode from 'components/r/utils/create-prepend-code';
 class RTable extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			data: null,
 			last: '',
 			waiting: false
-		};
-
-		this.getTable = ( nextProps ) => {
-			let code;
-			if ( nextProps ) {
-				code = nextProps.code;
-			} else {
-				code = this.props.code;
-			}
-			if ( code !== this.state.last ) {
-				this.setState({
-					waiting: true,
-					last: this.props.code
-				});
-				let jsonCode = 'library( jsonlite );\n';
-				let prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
-
-				jsonCode = jsonCode +
-					prependCode +
-					code.replace( /\n\s*([ A-Z0-9._()]+)\n*$/i, '\n toJSON($1)' );
-
-				const { session } = this.context;
-				session.executeRCode({
-					code: jsonCode,
-					onResult: ( err, res, body ) => {
-						this.setState({
-							data: JSON.parse( body ),
-							waiting: false
-						});
-					}
-				});
-			}
 		};
 	}
 
@@ -59,6 +26,38 @@ class RTable extends Component {
 
 	componentWillReceiveProps( nextProps ) {
 		this.getTable( nextProps );
+	}
+
+	getTable = ( nextProps ) => {
+		let code;
+		if ( nextProps ) {
+			code = nextProps.code;
+		} else {
+			code = this.props.code;
+		}
+		if ( code !== this.state.last ) {
+			this.setState({
+				waiting: true,
+				last: this.props.code
+			});
+			let jsonCode = 'library( jsonlite );\n';
+			let prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
+
+			jsonCode = jsonCode +
+				prependCode +
+				code.replace( /\n\s*([ A-Z0-9._()]+)\n*$/i, '\n toJSON($1)' );
+
+			const { session } = this.context;
+			session.executeRCode({
+				code: jsonCode,
+				onResult: ( err, res, body ) => {
+					this.setState({
+						data: JSON.parse( body ),
+						waiting: false
+					});
+				}
+			});
+		}
 	}
 
 	render() {

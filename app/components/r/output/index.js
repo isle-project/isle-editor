@@ -32,40 +32,6 @@ class ROutput extends Component {
 			running: false,
 			last: ''
 		};
-
-		this.getResult = ( nextProps ) => {
-			let code;
-			if ( nextProps ) {
-				code = nextProps.code;
-			} else {
-				code = this.props.code;
-			}
-			if ( code !== this.state.last ) {
-				this.setState({
-					last: this.props.code,
-					running: true
-				});
-
-				const { session } = this.context;
-				const prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
-				const fullCode = prependCode + code;
-				session.executeRCode({
-					code: fullCode,
-					onError: ( error ) => {
-						this.setState({
-							result: error,
-							running: false
-						});
-					},
-					onResult: ( err, res, body ) => {
-						this.setState({
-							result: body,
-							running: false
-						});
-					}
-				});
-			}
-		};
 	}
 
 	componentDidMount() {
@@ -74,6 +40,40 @@ class ROutput extends Component {
 
 	componentWillReceiveProps( props ) {
 		this.getResult( props );
+	}
+
+	getResult = ( nextProps ) => {
+		let code;
+		if ( nextProps ) {
+			code = nextProps.code;
+		} else {
+			code = this.props.code;
+		}
+		if ( code !== this.state.last ) {
+			this.setState({
+				last: this.props.code,
+				running: true
+			});
+
+			const { session } = this.context;
+			const prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
+			const fullCode = prependCode + code;
+			session.executeRCode({
+				code: fullCode,
+				onError: ( error ) => {
+					this.setState({
+						result: error,
+						running: false
+					});
+				},
+				onResult: ( err, res, body ) => {
+					this.setState({
+						result: body,
+						running: false
+					});
+				}
+			});
+		}
 	}
 
 	render() {
