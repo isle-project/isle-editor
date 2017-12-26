@@ -5,7 +5,7 @@ A list of draggable elements that can be re-ordered by the students.
 #### Example:
 
 ``` js
-<DraggableList "
+<DraggableList
     data={[
         { id: 0, text: "Compact" },
         { id: 1, text: "Large" },
