@@ -156,6 +156,14 @@ snippet Panel
 		${1:}
 	</Panel>
 
+snippet Playground
+	<Playground 
+		code="${1:}"
+		scope={{
+			${2:}
+		}}
+	/>
+
 snippet ProportionsInput
 	<ProportionsInput
 		legends = {${1:[ 'Robotics', 'Bitcoin', 'Gold', 'Diamonds', 'Vegetables', 'Fruits' ]}}
