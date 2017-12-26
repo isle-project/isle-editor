@@ -2,6 +2,7 @@
 	height: 36px;
 	border:solid 1px rgb(90,90,90);
 	margin-bottom: 20px;
+	background: white;
 }
 
 .voice-input:hover {
@@ -14,7 +15,7 @@ voice-input svg {
 
 .voice-input-text {
 	float: left;
-	width: 94% !important;
+	width: 90% !important;
 	height: 100%;
 	border: none;
 	padding-left: 8px;
