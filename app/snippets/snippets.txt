@@ -158,7 +158,7 @@ snippet Panel
 
 snippet Playground
 	<Playground 
-		code="${1:}"
+		code={`${1:}`}
 		scope={{
 			${2:}
 		}}
