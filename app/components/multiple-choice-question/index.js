@@ -41,26 +41,30 @@ class MultipleChoiceQuestion extends Component {
 			this.submitQuestion();
 		}
 		const { session } = this.context;
-		this.unsubscribe = session.subscribe( ( type, val ) => {
-			if ( type === 'retrieved_current_user_actions' ) {
-				let actions = val[ this.props.id ];
-				if ( isArray( actions ) ) {
-					actions = actions.filter( action => {
-						return action.type === 'MULTIPLE_CHOICE_SUBMISSION';
-					});
-					if ( actions.length > 0 ) {
-						const lastAction = actions[ 0 ].value;
-						this.setState({
-							active: lastAction
+		if ( session ) {
+			this.unsubscribe = session.subscribe( ( type, val ) => {
+				if ( type === 'retrieved_current_user_actions' ) {
+					let actions = val[ this.props.id ];
+					if ( isArray( actions ) ) {
+						actions = actions.filter( action => {
+							return action.type === 'MULTIPLE_CHOICE_SUBMISSION';
 						});
+						if ( actions.length > 0 ) {
+							const lastAction = actions[ 0 ].value;
+							this.setState({
+								active: lastAction
+							});
+						}
 					}
 				}
-			}
-		});
+			});
+		}
 	}
 
 	componentWillUnmount() {
-		this.unsubscribe();
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 	}
 
 	submitQuestion = () => {
@@ -198,7 +202,7 @@ class MultipleChoiceQuestion extends Component {
 					onClick={this.submitQuestion}
 					disabled={disabled}
 				>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
-				<InstructorBar id={props.id} />
+				{props.id ? <InstructorBar id={props.id} /> : null }
 			</Panel>
 		);
 	}
