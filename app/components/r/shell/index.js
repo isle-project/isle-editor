@@ -230,10 +230,16 @@ class RShell extends React.Component {
 				}
 				currentCode = prependCode + currentCode + '\n';
 				this.props.onEvaluate( currentCode );
+				if ( !session ) {
+					return this.setState({
+						result: 'R code can only be run in a production environment',
+						nEvaluations: this.state.nEvaluations + 1,
+						running: false
+					});
+				}
 				session.executeRCode({
 					code: currentCode,
 					onResult: ( err, res, body ) => {
-						console.log( body );
 						this.setState({
 							result: body,
 							nEvaluations: this.state.nEvaluations + 1
@@ -299,29 +305,30 @@ class RShell extends React.Component {
 		}
 
 		const { session } = this.context;
-		this.unsubscribe = session.subscribe( ( type, val ) => {
-			if ( type === 'retrieved_current_user_actions' ) {
-				let lastAction = this.getLastAction( val, this.props.id );
-				if ( isString( lastAction ) ) {
-					this.setState({
-						lastSolution: lastAction,
-						solutionOpen: false
-					});
-					this.editor.setValue( lastAction, 1 );
+		if ( session ) {
+			this.unsubscribe = session.subscribe( ( type, val ) => {
+				if ( type === 'retrieved_current_user_actions' ) {
+					let lastAction = this.getLastAction( val, this.props.id );
+					if ( isString( lastAction ) ) {
+						this.setState({
+							lastSolution: lastAction,
+							solutionOpen: false
+						});
+						this.editor.setValue( lastAction, 1 );
+					}
+				} else {
+					this.forceUpdate();
 				}
-			} else {
-				this.forceUpdate();
-			}
-		});
-
-		const actions = session.currentUserActions;
-		const value = this.getLastAction( actions, this.props.id );
-		if ( isString( value ) ) {
-			this.setState({
-				lastSolution: value,
-				solutionOpen: false
 			});
-			this.editor.setValue( value, 1 );
+			const actions = session.currentUserActions;
+			const value = this.getLastAction( actions, this.props.id );
+			if ( isString( value ) ) {
+				this.setState({
+					lastSolution: value,
+					solutionOpen: false
+				});
+				this.editor.setValue( value, 1 );
+			}
 		}
 	}
 
@@ -354,7 +361,9 @@ class RShell extends React.Component {
 	componentWillUnmount() {
 		counter = 0;
 		rCode = [];
-		this.unsubscribe();
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 		this.editor.destroy();
 		this.editor = null;
 	}
@@ -464,7 +473,7 @@ class RShell extends React.Component {
 					{ showResult( this.state.result ) }
 					{ insertImages( this.state.plots ) }
 				</div>
-				<InstructorBar id={this.props.id} />
+				{ this.props.id ? <InstructorBar id={this.props.id} /> : null }
 				<Modal
 					backdrop={false}
 					show={Boolean( this.state.help )}
