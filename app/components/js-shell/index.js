@@ -87,7 +87,6 @@ class JSShell extends Component {
 		this.editor = ace.edit( this.props.id );
 		this.editor.getSession().setMode( 'ace/mode/javascript' );
 		this.editor.setTheme( 'ace/theme/monokai' );
-		// this.aceSession.getDocument().setNewLineMode( 'auto' );
 		this.editor.setValue( this.props.code, -1 );
 		this.innerConsole();
 	}
@@ -164,7 +163,7 @@ class JSShell extends Component {
 		try {
 			if ( this.props.check ) {
 				currentCode += ';' + this.props.check;
-				eval( currentCode );  // eslint-disable-line no-eval
+				eval( currentCode ); // eslint-disable-line no-eval
 			} else {
 				eval( currentCode ); // eslint-disable-line no-eval
 			}
@@ -174,9 +173,9 @@ class JSShell extends Component {
 				type: 'error',
 				msg: err.message
 			};
-
 			this.jslog.push( x );
 		}
+		this.props.onEvaluate( currentCode );
 		this.isActive = false;
 		this.getLogs();
 	}
@@ -188,12 +187,12 @@ class JSShell extends Component {
 		return arg;
 	}
 
-
 	innerConsole() {
 		var self = this;
 		var lg = [ 'log', 'debug', 'info', 'warn', 'error' ];
 		for ( let i = 0; i < lg.length; i++ ) {
 			let verb = lg[ i ];
+			// eslint-disable-next-line no-console
 			console[ verb ] = ( ( method, verb ) => {
 				return function logger() {
 					method.apply( console, arguments );
@@ -202,25 +201,26 @@ class JSShell extends Component {
 						var msg = '';
 						if ( verb === 'log' ) {
 							for ( var i = 0; i < arguments.length; i++) {
-								if ( i > 0) msg += ' ';
+								if ( i > 0 ) {
+									msg += ' ';
+								}
 								msg += self.stringifyObject( arguments[i] );
 							}
 						}
-						if (msg === '') msg = Array.prototype.slice.call( arguments ).join( ' ' );
-
+						if ( msg === '' ) {
+							msg = Array.prototype.slice.call( arguments ).join( ' ' );
+						}
 						var x = {
 							type: verb,
 							msg: msg
 						};
-
 						self.jslog.push( x );
 					}
 				};
-			})( console[ verb ], verb );
+			})( console[ verb ], verb ); // eslint-disable-line no-console
 		}
 	}
 
-	// Now the ordinary functions:
 	getLog( e, i ) {
 		const type = e.type || 'default';
 		const style = CONSOLE_STYLES[ type ];
@@ -363,26 +363,17 @@ JSShell.defaultProps = {
 
 // PROPERTY TYPES //
 
-/* eslint-disable react/no-unused-prop-types */
-
 JSShell.propTypes = {
 	chat: PropTypes.bool,
 	check: PropTypes.string,
 	code: PropTypes.string,
 	disabled: PropTypes.bool,
-	fontFamily: PropTypes.string,
-	fontSize: PropTypes.number,
 	hints: PropTypes.array,
 	id: PropTypes.string,
-	libraries: PropTypes.array,
-	lines: PropTypes.number,
 	onEvaluate: PropTypes.func,
-	onResult: PropTypes.func,
 	solution: PropTypes.string,
 	vars: PropTypes.object
 };
-
-/* eslint-enable */
 
 
 // CONTEXT TYPES //

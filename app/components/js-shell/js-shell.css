@@ -22,8 +22,6 @@
     margin-bottom: 10px;
 }
 
-
-
 .reset {
     position: absolute;
     font-family: monospace;
@@ -36,7 +34,6 @@
     color: white;
     z-index: 2;
 }
-
 
 .console {
     position: relative;
@@ -54,5 +51,5 @@
 .toolbar {
     margin-left: 1%;
     width: 96%;
-    margin-bottom: 10px;    
+    margin-bottom: 10px;
 }
