@@ -2,11 +2,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
+import capitalize from '@stdlib/string/capitalize';
+import VoiceInput from 'components/input/voice';
 import './styles.css';
 import newslist from './list.json';
 import EXCEPTIONS from './exceptions.json';
-import $ from 'jquery';
-import capitalize from '@stdlib/string/capitalize';
 
 
 // MAIN //
@@ -26,8 +27,8 @@ class News extends Component {
 		this.list = newslist;
 	}
 
-
 	displayArticles( data ) {
+		this.props.onArticles( data );
 		this.setState({
 			visible: true,
 			articles: data
@@ -47,7 +48,6 @@ class News extends Component {
 			async: false,
 			dataType: 'json',
 			success: function success( data, textStatus, jqXHR ) {
-				console.log( data );
 				if ( data.articles ) self.displayArticles( data.articles );
 			}
 		});
@@ -109,18 +109,24 @@ class News extends Component {
 		});
 	}
 
+	getDate( date ) {
+		return ( new Date(date).toLocaleString( this.props.language) );
+	}
+
 	getArticle( item, id ) {
 		let author = item.author;
-		if ( author === 'null' ) author = '';
-
+		if ( author === 'null' ) {
+			author = '';
+		}
+		var date = this.getDate( item.publishedAt );
 		return (
 			<div className="article">
-				<div className="article_author">{ author }</div>
-				<div className="article_title">{ item.title }</div>
+				<div className="article-author">{author}</div>
+				<div className="article-title">{item.title}</div>
 				<div className="image"><img src={item.urlToImage} /></div>
-				<div className="article_description">{ item.description}</div>
-				<div className="article_source">
-					<a href={item.url} >{item.publishedAt }</a>
+				<div className="article-description">{item.description}</div>
+				<div className="article-source">
+					<a href={item.url} >{date}</a>
 				</div>
 			</div>
 		);
@@ -131,8 +137,6 @@ class News extends Component {
 		let list = [];
 		for ( var i = 0; i < this.state.articles.length; i++ ) {
 			let item = this.state.articles[ i ];
-			console.log( item );
-
 			list.push(
 				this.getArticle( item, i )
 			);
@@ -142,11 +146,8 @@ class News extends Component {
 
 	renderArticles() {
 		if ( this.state.visible === null ) return null;
-		if (this.state.articles ) console.log( 'sollte die Artikel rendern ' + this.state.articles.length );
-
 		return (
 			<div className="articles">
-				<div onClick={this.hide.bind( this )} className="articles_exit">×</div>
 				{ this.articles() }
 			</div>
 		);
@@ -155,15 +156,24 @@ class News extends Component {
 	renderLogo() {
 		if ( !this.props.logo ) return null;
 		return (
-			<div onClick={this.click.bind( this )} className={this.state.class_name}>
-				NEWS
+			<div>
+				<div className="article-header">NEWS</div>
+				<VoiceInput
+					placeholder="Pick a newspaper"
+					style={{ float: 'left', width: '80%' }}
+					language={this.props.language}
+					onSubmit={this.find.bind(this)}
+					onFinalText={this.trigger.bind(this)}
+				/>
+				<div onClick={this.hide.bind( this )} className="articles-exit">×</div>
 			</div>
+
 		);
 	}
 
 	render() {
 		return (
-			<div className={this.props.className} id={this.props.id}>
+			<div className="article-container" id={this.props.id}>
 				{ this.renderLogo() }
 				{ this.renderArticles() }
 			</div>
@@ -175,20 +185,18 @@ class News extends Component {
 // DEFAULT PROPERTIES //
 
 News.defaultProps = {
-	id: 'News',
-	className: 'News',
 	language: 'en-US',
-	logo: null
+	logo: true,
+	onArticles() {}
 };
 
 
 // PROPERTY TYPES //
 
 News.propTypes = {
-	className: PropTypes.string,
-	id: PropTypes.string,
 	language: PropTypes.string,
-	logo: PropTypes.bool
+	logo: PropTypes.bool,
+	onArticles: PropTypes.func
 };
 
 
