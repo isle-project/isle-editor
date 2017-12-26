@@ -16,8 +16,25 @@ class DefaultSlider extends Component {
 		const childDivs = props.children && props.children.length > 0 ?
 			React.Children.map( props.children, child => <div> {child} </div> ) :
 			<div></div>;
+		const settings = {
+			className: 'center',
+			speed: 1000,
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			prevArrow: <PrevArrow onClick={props.onClick} />,
+			nextArrow: <NextArrow onClick={props.onClick} />,
+			...props
+		};
+
+		if (props.interval) {
+			settings.autoplay = true;
+			settings.autoplaySpeed = props.interval;
+		}
+
 		this.state = {
-			childDivs
+			childDivs,
+			settings
+
 		};
 	}
 
@@ -39,16 +56,15 @@ class DefaultSlider extends Component {
 		}
 	}
 
+
+	renderTitle() {
+		if (this.props.title === '') return null;
+		return (
+			<h3>{this.props.title}</h3>
+		);
+	}
+
 	render() {
-		const settings = {
-			className: 'center',
-			speed: 1000,
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			prevArrow: <PrevArrow onClick={this.props.onClick} />,
-			nextArrow: <NextArrow onClick={this.props.onClick} />,
-			...this.props
-		};
 		return (
 			<Panel
 				bsSize="large"
@@ -61,9 +77,9 @@ class DefaultSlider extends Component {
 					height: '100%',
 					...this.props.style
 				}}
-				header={<h3>{this.props.title}</h3>}
+				header={this.renderTitle()}
 			>
-				<Slider ref={( slider ) => { this.slider = slider; }} {...settings}>
+				<Slider ref={( slider ) => { this.slider = slider; }} {...this.state.settings}>
 					{ this.state.childDivs }
 				</Slider>
 			</Panel>
@@ -80,6 +96,7 @@ DefaultSlider.defaultProps = {
 	fade: false,
 	goto: 0,
 	infinite: false,
+	interval: null,
 	onClick() {},
 	style: {},
 	swipeToSlide: true,
@@ -95,6 +112,7 @@ DefaultSlider.propTypes = {
 	fade: PropTypes.bool,
 	goto: PropTypes.number,
 	infinite: PropTypes.bool,
+	interval: PropTypes.number,
 	onClick: PropTypes.func,
 	style: PropTypes.object,
 	swipeToSlide: PropTypes.bool,
