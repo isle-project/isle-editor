@@ -154,7 +154,7 @@ class News extends Component {
 	}
 
 	renderLogo() {
-		if ( !this.props.logo ) return null;
+		if ( this.props.invisible ) return null;
 		return (
 			<div>
 				<div className="article-header">NEWS</div>
@@ -186,7 +186,7 @@ class News extends Component {
 
 News.defaultProps = {
 	language: 'en-US',
-	logo: true,
+	invisible: false,
 	onArticles() {}
 };
 
@@ -194,8 +194,8 @@ News.defaultProps = {
 // PROPERTY TYPES //
 
 News.propTypes = {
+	invisible: PropTypes.bool,
 	language: PropTypes.string,
-	logo: PropTypes.bool,
 	onArticles: PropTypes.func
 };
 
