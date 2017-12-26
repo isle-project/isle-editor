@@ -69,6 +69,7 @@ const NumberQuestion = require( 'components/number-question' );
 const NumberSurvey = require( 'components/number-survey' );
 const Pages = require( 'components/pages' );
 const Panel = ReactBootstrap.Panel;
+const Playground = require( 'components/playground' );
 const Plotly = require( 'components/plotly' );
 const ProportionsInput = require( 'components/input/proportions' );
 const ProportionsSurvey = require( 'components/proportions-survey' );

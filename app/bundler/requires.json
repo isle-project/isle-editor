@@ -39,6 +39,7 @@
 	"NumberSurvey": "const NumberSurvey = require( \"components/number-survey\" )",
 	"Pages": "const Pages = require( \"components/pages\" )",
 	"Panel": "const Panel = require( \"react-bootstrap\" ).Panel",
+	"Playground": "const Playground = require( \"components/playground\" )",
 	"Plotly": "const Plotly = require( \"components/plotly\" )",
 	"ProportionsInput": "const ProportionsInput = require( \"components/input/proportions\" )",
 	"ProportionsSurvey": "const ProportionsSurvey = require( \"components/proportions-survey\" )",
