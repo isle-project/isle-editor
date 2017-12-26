@@ -73,6 +73,10 @@ class JSShell extends Component {
 
 		this.isActive = false;
 		this.jslog = [];
+		this.aceID = new Date().
+			getTime().
+			toString();
+		this.aceID += Math.round( Math.random()*100 );
 
 		if ( this.props.vars ) {
 			for ( var key in this.props.vars ) {
@@ -84,7 +88,7 @@ class JSShell extends Component {
 	}
 
 	componentDidMount() {
-		this.editor = ace.edit( this.props.id );
+		this.editor = ace.edit( this.editorDiv );
 		this.editor.getSession().setMode( 'ace/mode/javascript' );
 		this.editor.setTheme( 'ace/theme/monokai' );
 		this.editor.setValue( this.props.code, -1 );
@@ -231,7 +235,7 @@ class JSShell extends Component {
 		);
 	}
 
-	logHint( idx ) {
+	logHint = ( idx ) => {
 		const { session } = this.context;
 		if ( this.props.id ) {
 			session.log({
@@ -305,7 +309,9 @@ class JSShell extends Component {
 			}
 		</ButtonToolbar>;
 
-		const editor = <div className="jsedit" id={this.props.id}></div>;
+		const editor = <div className="jsedit" ref={( div ) => {
+			this.editorDiv = div;
+		}} ></div>;
 		return (
 			<div>
 				<div className="JSShell">
@@ -328,7 +334,6 @@ class JSShell extends Component {
 					</div>
 					{ this.renderResetButton() }
 					<div
-						id={this.props.id}
 						ref={( div ) => { this.consoleOutput = div; }}
 						className="console"
 					>
@@ -345,8 +350,7 @@ class JSShell extends Component {
 
 JSShell.defaultProps = {
 	onResult() {},
-	onEvaluate(){},
-	id: 'editor',
+	onEvaluate() {},
 	chat: false,
 	check: null,
 	code: '',
@@ -369,7 +373,6 @@ JSShell.propTypes = {
 	code: PropTypes.string,
 	disabled: PropTypes.bool,
 	hints: PropTypes.array,
-	id: PropTypes.string,
 	onEvaluate: PropTypes.func,
 	solution: PropTypes.string,
 	vars: PropTypes.object

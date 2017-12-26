@@ -50,3 +50,15 @@
         
         check = "( function() { if (b === 22) alert('BRAVO'); console.log('Aufgabe gelöst'); })();" >
 </JSShell>
+
+
+
+
+``` js
+<JSShell id = "jseditor" 
+        code = "var b = 22;"
+        hints = { ['Denken Sie daran: Gesagt getan!', 'also: var a = 17;'] }
+        solution = { 'var res = [1,2,3,4]'}
+        chat
+        check = "( function() { if (b === 22) alert('BRAVO'); console.log('Aufgabe gelöst'); })();" >
+</JSShell>

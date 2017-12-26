@@ -1,55 +1,59 @@
 .JSShell {
-    position: relative;
-    width: 99.9%;
-    height: auto;
-    margin-left: 0%;
-    font-family: monospace;
-    font-size: 18px;
-    background: ivory;
-    margin-bottom: 20px;
-    border: solid 1px black;
-    box-shadow: 2px 2px 10px;
+	position: relative;
+	width: 99.9%;
+	height: auto;
+	margin-left: 0%;
+	font-family: monospace;
+	font-size: 18px;
+	background: ivory;
+	margin-bottom: 20px;
+	border: solid 1px black;
+	box-shadow: 2px 2px 10px;
 }
 
 .jsedit {
-    width: 98%;
-    margin-top: 1%;
-    margin-left: 1%;
-    height: 400px;
-    font-family: monospace;
-    font-size: 20px;
-    line-height: 28px;
-    margin-bottom: 10px;
+	width: 98%;
+	margin-top: 1%;
+	margin-left: 1%;
+	height: 400px;
+	font-family: monospace;
+	font-size: 20px;
+	line-height: 28px;
+	margin-bottom: 10px;
 }
 
 .reset {
-    position: absolute;
-    font-family: monospace;
-    right: 34px;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    font-size: 24px;
-    text-align: center;
-    color: white;
-    z-index: 2;
+	position: absolute;
+	font-family: monospace;
+	right: 34px;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	font-size: 24px;
+	text-align: center;
+	color: white;
+	z-index: 2;
 }
 
 .console {
-    position: relative;
-    width: 98%;
-    height: 160px;
-    background: rgb(60,60,60);
-    margin-left: 1%;
-    margin-bottom: 20px;
-    border: solid 1px black;
-    overflow: auto;
-    display: block;
-    overflow-y: scroll;
+	position: relative;
+	width: 98%;
+	height: 160px;
+	background: rgb(60,60,60);
+	margin-left: 1%;
+	margin-bottom: 20px;
+	border: solid 1px black;
+	overflow: auto;
+	display: block;
+	overflow-y: scroll;
+}
+
+.console p {
+	margin: 0 0 0px;
 }
 
 .toolbar {
-    margin-left: 1%;
-    width: 96%;
-    margin-bottom: 10px;
+	margin-left: 1%;
+	width: 96%;
+	margin-bottom: 10px;
 }
