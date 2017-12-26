@@ -1,4 +1,5 @@
 .JSShell {
+    position: relative;
     width: 99.9%;
     height: auto;
     margin-left: 0%;
@@ -18,22 +19,27 @@
     font-family: monospace;
     font-size: 20px;
     line-height: 28px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
+
+
 .reset {
-    margin-right: 4px;
-    float: right;
-    width: 22px;
-    height: 22px;
+    position: absolute;
+    font-family: monospace;
+    right: 34px;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 24px;
     text-align: center;
     color: white;
     z-index: 2;
 }
 
+
 .console {
+    position: relative;
     width: 98%;
     height: 160px;
     background: rgb(60,60,60);
@@ -42,9 +48,11 @@
     border: solid 1px black;
     overflow: auto;
     display: block;
+    overflow-y: scroll;
 }
 
 .toolbar {
     margin-left: 1%;
     width: 96%;
+    margin-bottom: 10px;    
 }

@@ -166,7 +166,6 @@ class JSShell extends Component {
 				currentCode += ';' + this.props.check;
 				eval( currentCode );  // eslint-disable-line no-eval
 			} else {
-				this.checkObject( currentCode );
 				eval( currentCode ); // eslint-disable-line no-eval
 			}
 		}
@@ -182,8 +181,11 @@ class JSShell extends Component {
 		this.getLogs();
 	}
 
-	checkObject( code ) {
-		// if ( code === '[object Object]') debug("OBJEKT");
+	stringifyObject( arg ) {
+		if ( typeof arg === 'object' ) {
+			return ( JSON.stringify( arg, null, 2 ) );
+		}
+		return arg;
 	}
 
 
@@ -195,11 +197,22 @@ class JSShell extends Component {
 			console[ verb ] = ( ( method, verb ) => {
 				return function logger() {
 					method.apply( console, arguments );
-					var x = {
-						type: verb,
-						msg: Array.prototype.slice.call( arguments ).join( ' ' )
-					};
+
 					if ( self.isActive ) {
+						var msg = '';
+						if ( verb === 'log' ) {
+							for ( var i = 0; i < arguments.length; i++) {
+								if ( i > 0) msg += ' ';
+								msg += self.stringifyObject( arguments[i] );
+							}
+						}
+						if (msg === '') msg = Array.prototype.slice.call( arguments ).join( ' ' );
+
+						var x = {
+							type: verb,
+							msg: msg
+						};
+
 						self.jslog.push( x );
 					}
 				};
@@ -212,9 +225,9 @@ class JSShell extends Component {
 		const type = e.type || 'default';
 		const style = CONSOLE_STYLES[ type ];
 		return (
-			<div key={i} style={style} >
+			<p key={i} style={style} >
 				{ e.msg }
-			</div>
+			</p>
 		);
 	}
 
@@ -265,13 +278,8 @@ class JSShell extends Component {
 	}
 
 	renderResetButton() {
-		if (this.state.log.length > 6) {
-			return (
-				<div className="reset3" onClick={this.resetConsole} >☒</div>
-			);
-		}
 		return (
-			<div className="reset2" onClick={this.resetConsole} >☒</div>
+			<div className="reset" onClick={this.resetConsole} >☒</div>
 		);
 	}
 

@@ -2,23 +2,27 @@
 	"log": {
 		"marginLeft": "8px",
 		"fontFamily": "monospace",
-		"color": "lightgreen"
+		"color": "lightgreen",
+		"whiteSpace": "pre-wrap"
 	},
 	"error": {
 		"marginLeft": "8px",
 		"fontFamily": "monospace",
 		"color": "red",
-		"fontWeight": 800
+		"fontWeight": 800,
+		"whiteSpace": "pre-wrap"
 	},
 	"info": {
 		"marginLeft": "8px",
 		"fontFamily": "monospace",
-		"color": "darkcyan"
+		"color": "darkcyan",
+		"whiteSpace": "pre-wrap"
 	},
 	"warn": {
 		"marginLeft": "8px",
 		"fontFamily": "monospace",
-		"color": "darkorange"
+		"color": "darkorange",
+		"whiteSpace": "pre-wrap"
 	},
 	"default": {
 		"marginLeft": "8px",
