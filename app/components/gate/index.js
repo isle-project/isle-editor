@@ -17,19 +17,23 @@ class Gate extends Component {
 	}
 
 	componentDidMount() {
-		const { session } = this.context;
 		this._isMounted = true;
-		this.unsubscribe = session.subscribe( () => {
+		const { session } = this.context;
+		if ( session ) {
+			this.unsubscribe = session.subscribe( () => {
+				this.checkAuthorization();
+				if ( this._isMounted ) {
+					this.forceUpdate();
+				}
+			});
 			this.checkAuthorization();
-			if ( this._isMounted ) {
-				this.forceUpdate();
-			}
-		});
-		this.checkAuthorization();
+		}
 	}
 
 	componentWillUnmount() {
-		this.unsubscribe();
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 		this._isMounted = false;
 	}
 
@@ -51,19 +55,20 @@ class Gate extends Component {
 		let { currentRole, session } = this.context;
 		const { anonymous, user, enrolled, owner } = this.props;
 		let authenticated = false;
-		if ( anonymous ) {
-			authenticated = true;
-		}
 		if ( !currentRole ) {
 			currentRole = 'anonymous';
 		}
-		if ( user && ( !session.anonymous || currentRole !== 'anonymous' ) ) {
+		console.log( anonymous )
+		if ( anonymous ) {
 			authenticated = true;
 		}
-		if ( enrolled && ( this.state.isEnrolled || currentRole === 'enrolled' ) ) {
+		else if ( user && ( !session.anonymous || currentRole !== 'anonymous' ) ) {
 			authenticated = true;
 		}
-		if ( owner && ( this.state.isOwner || currentRole === 'owner' ) ) {
+		else if ( enrolled && ( this.state.isEnrolled || currentRole === 'enrolled' ) ) {
+			authenticated = true;
+		}
+		else if ( owner && ( this.state.isOwner || currentRole === 'owner' ) ) {
 			authenticated = true;
 		}
 		if ( authenticated ) {
