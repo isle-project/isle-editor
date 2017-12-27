@@ -60,6 +60,11 @@ class Login extends Component {
 				} else {
 					try {
 						const body = JSON.parse( res.body );
+						if ( body.type === 'incorrect_password' ) {
+							return this.setState({
+								encounteredError: new Error( body.message )
+							});
+						}
 						localStorage.setItem( 'token', body.token );
 						this.forceUpdate();
 					} catch ( error ) {
