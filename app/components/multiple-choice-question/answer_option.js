@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ListGroupItem, OverlayTrigger, Popover } from 'react-bootstrap';
-
+import './multiple-choice-styles.css';
 
 // MAIN //
 
@@ -29,7 +29,7 @@ const AnswerOption = ( props ) => {
 
 	if ( props.disabled ) {
 		return (
-			<ListGroupItem
+			<ListGroupItem className="multiple-choice-answer"
 				bsStyle={bsStyle}
 				disabled
 			>
@@ -44,7 +44,7 @@ const AnswerOption = ( props ) => {
 				placement="right"
 				overlay={props.answerExplanation ? popover : <span />}
 			>
-				<ListGroupItem
+				<ListGroupItem className="multiple-choice-answer"
 					onClick={props.onAnswerSelected}
 					bsStyle={bsStyle}
 					disabled={!props.provideFeedback}
@@ -55,7 +55,7 @@ const AnswerOption = ( props ) => {
 		);
 	}
 	return (
-		<ListGroupItem
+		<ListGroupItem className="multiple-choice-answer"
 			onClick={props.onAnswerSelected}
 			active={props.active}
 		>
