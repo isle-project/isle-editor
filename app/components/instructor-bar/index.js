@@ -35,28 +35,31 @@ class InstructorBar extends Component {
 
 	componentDidMount() {
 		const { session } = this.context;
-
-		this.unsubscribe = session.subscribe( ( type, action ) => {
-			if ( type === 'member_action' ) {
-				if ( action.type === 'COMPONENT_FEEDBACK' ) {
-					if ( this.props.id === action.id ) {
-						const receivedFeedbacks = this.state.receivedFeedbacks.slice();
-						receivedFeedbacks.push( action.value );
-						this.setState({
-							receivedFeedbacks
-						});
+		if ( session ) {
+			this.unsubscribe = session.subscribe( ( type, action ) => {
+				if ( type === 'member_action' ) {
+					if ( action.type === 'COMPONENT_FEEDBACK' ) {
+						if ( this.props.id === action.id ) {
+							const receivedFeedbacks = this.state.receivedFeedbacks.slice();
+							receivedFeedbacks.push( action.value );
+							this.setState({
+								receivedFeedbacks
+							});
+						}
 					}
+					this.forceUpdate();
 				}
-				this.forceUpdate();
-			}
-			else if ( type === 'retrieved_user_actions' ) {
-				this.addSessionActions();
-			}
-		});
+				else if ( type === 'retrieved_user_actions' ) {
+					this.addSessionActions();
+				}
+			});
+		}
 	}
 
 	componentWillUnmount() {
-		this.unsubscribe();
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 	}
 
 	onFeedback = ( text ) => {
