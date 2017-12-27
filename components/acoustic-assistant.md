@@ -19,6 +19,6 @@ The supported interfaces are
 #### Options:
 
 * __language__: the input language. Default is **en-US**. Up to now English (**en-US**), German(**de-DE**) and French(**fr-FR**) are tested.
-* __autoplay__: if set, the recordings starts when the component is mounted
+* __autoplay__: if this `boolean` is set, the recordings starts when the component is mounted
 * __wikipedia__: the name by which the Wikipedia interface is triggered
 * __css__: the name by which the AcousticCSS interface is triggered

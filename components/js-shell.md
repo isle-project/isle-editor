@@ -1,20 +1,20 @@
 # JS-Shell
 
-Die JS-Shell funktioniert (vom Interface hwer betrachtet) wie die R-Shell
+An interactive Javascript Shell that can be used to execute JavascriptCommand. The shell contains a console that displays error messages, warnings etc. 
+
+#### Example:
 
 ``` js
-<JSShell id = "jseditor35" 
-        code = "var b = 22;"
-        hints = { ['Denken Sie daran: Gesagt getan!', 'also: var a = 17;'] }
-        
-        solution = { 'var res = [1,2,3,4]'}
-
-        chat
-        
-        check = "( function() { if (b === 22) alert('BRAVO'); console.log('Aufgabe gelöst'); })();" >
+<JSShell id = "jseditor" 
+        code = "var a = 22;" >
 </JSShell>
 ```
 
-Man kann Hints geben, eine Lösung, sowie einen Chat hinzufügen.
-
-Ein Novum: Man kann eine **Check** Funtion einfügen, die dem User-Code angehänt wird und diesen evaluiert.
+#### Options: 
+* __chat__: this `boolean` indicates whether student may interact on this component via chat. Default: `false`.
+*__code__: a `string` that contains code that will be displayed in the
+* __hints__: For programming questions, an `Array` of `strings` providing guidance on how to approach the problem. Default: `[]`.
+*__onEvaluate__: callback `function` that returns the code which is executed in the internal eval process
+* __solution__: For programming questions, an Javascript code `string` representing the official solution can be supplied. Default: `''`.
+* __disabled__: a `boolean` flag that allows the solution just to be seen after all the hints are exhausted
+* __vars__: an `object` that can be handed over to the JSShell context (not implemented yet) 
