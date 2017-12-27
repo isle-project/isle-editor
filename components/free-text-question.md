@@ -12,6 +12,8 @@ An ISLE component for questions where the answers by the students should be supp
 />
 ``` 
 
+ [Open interactive preview](https://isle.heinz.cmu.edu/components/free-text-question/)
+
 #### Options:
 
 * __question__: the question displayed at the top of the free text question component.
