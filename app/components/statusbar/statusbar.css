@@ -15,3 +15,64 @@
 	opacity: 0.7;
 	cursor: pointer;
 }
+
+#Lesson .statusbar-left {
+	position: absolute;
+	left: 0;
+	width: 20%;
+	height: 100%;
+	background-color: rgb(232, 232, 232);
+	transform: skewX(45deg);
+	border-left: solid 1px darkgrey;
+	border-bottom: solid 1px darkgrey;
+}
+
+#Lesson .statusbar-middle {
+	position: absolute;
+	left: 10%;
+	width: 80%;
+	height: 100%;
+	background-color: rgb(232, 232, 232);
+	border-bottom: solid 1px darkgrey;
+	z-index: 5;
+}
+
+#Lesson .statusbar-right {
+	position: absolute;
+	left: 80%;
+	width: 20%;
+	height: 100%;
+	background-color: rgb(232, 232, 232);
+	transform: skewX(-45deg);
+	border-bottom: solid 1px darkgrey;
+	border-right: solid 1px darkgrey;
+}
+
+#Lesson .statusbar-text {
+	bottom: -1px;
+	height: auto;
+	position: absolute;
+	right: 20px;
+	font-size: 12px;
+	font-family: Open Sans;
+	z-index: 2;
+}
+
+#Lesson .statusbar-username {
+	bottom: -1px;
+	height: auto;
+	margin-left: 10px;
+	position: absolute;
+	font-size: 12px;
+	font-family: Open Sans;
+}
+
+#Lesson .statusbar-presence {
+	width: 10px;
+	left: -10px;
+	height: 10px;
+	bottom: 4px;
+	position: absolute;
+	border-radius: 50%;
+	box-shadow: 1px 1px 2px grey;
+}
