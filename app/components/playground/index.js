@@ -27,6 +27,7 @@ class Playground extends Component {
 		};
 		return (
 			<div className="component-documentation" style={this.props.style}>
+				<div className="playground-editable">EDITABLE SOURCE</div>
 				<ComponentPlayground codeText={this.props.code} scope={scope} />
 			</div>
 		);

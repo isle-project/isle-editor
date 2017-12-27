@@ -12,11 +12,9 @@ The **Wikipedia** component scans the **Wikipedia** and returns an article - if 
 />
 ```
 
+ [Open interactive preview](https://isle.heinz.cmu.edu/components/wikipedia/)
+
 #### Options:
 
-* __showSearch__: `boolean` indicating whether to render a search input.
 * __language__: specifies the given language. **us-EN**, **de-DE**, and **fr-FR** are supported (English, German, French).
-* __speech__: `boolean` indicating whether to allow inputs via speech recognition. The recognition identifier is the name **Wikipedia**. For example: if you ask "Wikipedia, what do you know about Hillary Clinton", you will see the wikipedia entry for Hillary Clinton.
-
-
-<iframe src="http://richardjurban.net/<project-name>/<page-name>" width="100%" height="600"></iframe>  
+* __invisible__: `boolean` indicating whether the component is invisible or not (invisible makes sense in an environment where speech recognition shall be the sole interface)
