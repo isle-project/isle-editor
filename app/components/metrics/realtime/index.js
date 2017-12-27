@@ -23,31 +23,33 @@ class RealTimeMetrics extends Component {
 	}
 
 	componentDidMount() {
-		const { session } = this.context;
 		this._isMounted = true;
-		this.unsubscribe = session.subscribe( ( type, action ) => {
-			if ( type === 'member_action' ) {
-				if ( contains( this.props.for, action.id ) ) {
-					let actions = copy( this.state.actions );
-					actions.push( this.props.returnFullObject ? action : action.value );
-					this.setState({
-						actions
-					}, () => {
-						debug( 'A new value for the given IDs was submitted: ' + JSON.stringify( this.state.actions 	) );
-						this.props.onData( this.state.actions );
-						this.props.onDatum( this.state.actions[ this.state.actions.length-1 ]);
-					});
+		const { session } = this.context;
+		if ( session ) {
+			this.unsubscribe = session.subscribe( ( type, action ) => {
+				if ( type === 'member_action' ) {
+					if ( contains( this.props.for, action.id ) ) {
+						let actions = copy( this.state.actions );
+						actions.push( this.props.returnFullObject ? action : action.value );
+						this.setState({
+							actions
+						}, () => {
+							debug( 'A new value for the given IDs was submitted: ' + JSON.stringify( this.state.actions 	) );
+							this.props.onData( this.state.actions );
+							this.props.onDatum( this.state.actions[ this.state.actions.length-1 ]);
+						});
+					}
 				}
-			}
-			if ( this._isMounted ) {
-				this.forceUpdate();
-			}
-		});
+				if ( this._isMounted ) {
+					this.forceUpdate();
+				}
+			});
+		}
 	}
 
 	componentWillUnmount() {
 		this._isMounted = false;
-		this.unsubscribe();
+		if ( this.unsubscribe ) this.unsubscribe();
 	}
 
 	render() {

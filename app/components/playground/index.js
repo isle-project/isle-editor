@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import ComponentPlayground from 'component-playground';
 import PropTypes from 'prop-types';
-import hasOwnProp from '@stdlib/assert/has-own-property';
+import Provider from 'components/provider';
 import './syntax.css';
 import './codemirror.css';
 import './playground.css';
@@ -12,17 +12,13 @@ import './playground.css';
 // MAIN //
 
 class Playground extends Component {
-	constructor( props, context ) {
+	constructor( props ) {
 		super( props );
-		for ( let key in props.scope ) {
-			if ( hasOwnProp( props.scope, key ) ) {
-				props.scope[ key ].context = context;
-			}
-		}
 	}
 	render() {
 		const scope = {
 			React,
+			Provider,
 			...this.props.scope
 		};
 		return (
@@ -49,10 +45,6 @@ Playground.propTypes = {
 	code: PropTypes.string,
 	scope: PropTypes.object,
 	style: PropTypes.object
-};
-
-Playground.contextTypes = {
-	session: PropTypes.object
 };
 
 
