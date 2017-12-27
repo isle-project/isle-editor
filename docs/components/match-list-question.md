@@ -18,6 +18,8 @@ An ISLE component that renders a question in which the learner has to match elem
 />
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/match-list-question/)
+
 #### Options
 
 * __elements__: an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties.

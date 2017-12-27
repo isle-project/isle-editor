@@ -14,3 +14,5 @@ ISLE uses the [react-bootstrap](https://react-bootstrap.github.io) grid system, 
     </Row>
 </Grid>
 ```
+
+[Open interactive preview](https://isle.heinz.cmu.edu/components/grid/)

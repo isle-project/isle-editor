@@ -12,6 +12,8 @@ A number input component. Usually, this will be used as part of an [ISLE dashboa
 />
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/number-input/)
+
 #### Options:
 
 * __defaultValue__: The value the slider is initialized with. Default: `0`.

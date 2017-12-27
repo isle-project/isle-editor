@@ -16,6 +16,8 @@ The supported interfaces are
 ></AcousticAssistant>
 ``` 
 
+ [Open interactive preview](https://isle.heinz.cmu.edu/components/acoustic-assistant/)
+
 #### Options:
 
 * __language__: the input language. Default is **en-US**. Up to now English (**en-US**), German(**de-DE**) and French(**fr-FR**) are tested.

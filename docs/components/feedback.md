@@ -11,6 +11,8 @@ Attach buttons to collect user feedback for an HTML element identified by its `i
 />
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/feedback/)
+
 #### Options:
 
 * __for__: `string` giving the `id` of the HTML element to collect feedback for. Required option.
