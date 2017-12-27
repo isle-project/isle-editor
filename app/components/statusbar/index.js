@@ -191,45 +191,13 @@ class StatusBar extends Component {
 					onMouseOver={this.onMouseOver.bind( this )}
 					onMouseOut={this.onMouseOut.bind( this )}
 				>
-					<div className="statusLeft" style={{
-						position: 'absolute',
-						left: 0,
-						width: '20%',
-						height: '100%',
-						backgroundColor: 'rgb(232, 232, 232)',
-						transform: 'skewX(45deg)',
-						borderLeft: 'solid 1px darkgrey',
-						borderBottom: 'solid 1px darkgrey'
-					}}>
-					</div>
-					<div className="statusMiddle" style={{
-						position: 'absolute',
-						left: '10%',
-						width: '80%',
-						height: '100%',
-						backgroundColor: 'rgb(232, 232, 232)',
-						borderBottom: 'solid 1px darkgrey',
-						zIndex: 5
-					}}>
-						<div className="presence" style={{
-							width: '10px',
-							left: '-10px',
-							height: '10px',
-							bottom: '4px',
-							backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR,
-							position: 'absolute',
-							borderRadius: '50%',
-							boxShadow: '1px 1px 2px grey'
+					<div className="statusbar-left"></div>
+					<div className="statusbar-middle">
+						<div className="statusbar-presence" style={{
+							backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR
 						}}>
 						</div>
-						<div className="username" style={{
-							bottom: '-1px',
-							height: 'auto',
-							marginLeft: '10px',
-							position: 'absolute',
-							fontSize: '12px',
-							fontFamily: 'Open Sans'
-						}}>
+						<div className="statusbar-username">
 							{ session.anonymous ? 'Anonymous' : session.user.name }
 						</div>
 						{ session.anonymous ?
@@ -249,29 +217,11 @@ class StatusBar extends Component {
 								>Login</Button>
 							</div> :
 							<Button bsSize="xsmall" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout.bind( this )}>Log Out</Button> }
-						<div style={{
-							bottom: '-1px',
-							height: 'auto',
-							position: 'absolute',
-							right: '20px',
-							fontSize: '12px',
-							fontFamily: 'Open Sans',
-							zIndex: 2
-						}}>
+						<div className="statusbar-text">
 							ISLE
 						</div>
 					</div>
-					<div className="statusRight" style={{
-						position: 'absolute',
-						left: '80%',
-						width: '20%',
-						height: '100%',
-						backgroundColor: 'rgb(232, 232, 232)',
-						transform: 'skewX(-45deg)',
-						borderBottom: 'solid 1px darkgrey',
-						borderRight: 'solid 1px darkgrey'
-					}}>
-					</div>
+					<div className="statusbar-right"></div>
 					<Login show={this.state.visibleLogin} onClose={this.closeLogin} />
 					<Signup show={this.state.visibleSignup} onClose={this.closeSignup} />
 					<ConfirmModal
