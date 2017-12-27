@@ -196,6 +196,9 @@ export default class Preview extends Component {
 			// Replace Markdown by HTML...
 			code = markdownToHTML( code );
 
+			if ( !preamble.hideToolbar ) {
+				code = '<StatusBar className="fixedPos" />\n' + code;
+			}
 			if ( preamble.type === 'presentation' ) {
 				debug( 'Should render a presentation...' );
 				let progress = 'number';
@@ -240,7 +243,6 @@ export default class Preview extends Component {
 				render() {
 					return (
 						<div id="Lesson" className="Lesson" >
-							<StatusBar className="fixedPos" hidden={global.session.config.hideToolbar} />
 							<div>${code}</div>
 							<NotificationSystem
 								ref={ ( div ) => this.notificationSystem = div }

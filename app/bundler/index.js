@@ -95,7 +95,6 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import yaml from 'js-yaml';
 import NotificationSystem from 'react-notification-system';
-import StatusBar from 'components/statusbar';
 import Provider from 'components/provider';
 `;
 
@@ -128,7 +127,6 @@ class Lesson extends Component {
 	render() {
 		return (
 			<div id="Lesson" className="Lesson" >
-				<StatusBar className="fixedPos" />
 				<div>${lessonContent}</div>
 				<NotificationSystem ref={ ( div ) => this.notificationSystem = div } allowHTML={true} />
 			</div>
@@ -321,7 +319,9 @@ function writeIndexFile({
 
 	// Replace Markdown by HTML...
 	content = markdownToHTML( content );
-
+	if ( !meta.hideToolbar ) {
+		content = '<StatusBar className="fixedPos" />\n' + content;
+	}
 	if ( meta.type === 'presentation' ) {
 		// Automatically insert <Slide> tags if not manually set...
 		if ( !contains( content, '<Slide' ) || !contains( content, '</Slide>' ) ) {
