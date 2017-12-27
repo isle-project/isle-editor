@@ -12,6 +12,8 @@ The **Wikipedia** component scans the **Wikipedia** and returns an article - if 
 />
 ```
 
+ [Open interactive live-preview](https://isle.heinz.cmu.edu/components/wikipedia/)
+
 #### Options:
 
 * __showSearch__: `boolean` indicating whether to render a search input.
