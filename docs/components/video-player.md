@@ -11,6 +11,8 @@ A component for playing media files and content from YouTube, SoundCloud and Vim
 />
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/video-player/)
+
 #### Options:
 
 * __url__: URL of the video. Default: `''`.

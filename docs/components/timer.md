@@ -15,6 +15,8 @@ The Timer component provides a timer that will trigger a predefined callback whe
 />
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/timer/)
+
 #### Options:
 
 * __id__:  the unique `string` ID for the timer. The timer component is persistent over page refreshes. Required.

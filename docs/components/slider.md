@@ -13,6 +13,8 @@ A component which displays its children in a slideshow or carousel.
 </Slider>
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/slider/)
+
 #### Options:
 
 * __fade__: `boolean` indicating whether fading is used for transitioning between the slides. Default: `false`.

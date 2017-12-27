@@ -16,6 +16,8 @@ A select input component. Usually, this will be used as part of an [ISLE dashboa
 />
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/select-input/)
+
 #### Options:
 
 * __defaultValue__: The option the select input is initialized with. Default: `''`.
