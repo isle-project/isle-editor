@@ -9,7 +9,6 @@
 	border-radius: 5px;
 	overflow: hidden;
 	background: #efefef;
-	font-weight: 800;
 	color: black;
 	caret-color: red;
 	margin-bottom: 30px;
@@ -35,11 +34,13 @@
 
 .playgroundCode .CodeMirror{
 	background: #efefef;
+	font-weight: 800;
 }
 
 .playground.collapsableCode .playgroundCode {
 	height: 0;
 	overflow: hidden;
+	font-weight: 800;
 }
 
 .playground.collapsableCode .playgroundCode.expandedCode {
