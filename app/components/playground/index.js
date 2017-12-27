@@ -26,7 +26,7 @@ class Playground extends Component {
 			...this.props.scope
 		};
 		return (
-			<div className="component-documentation">
+			<div className="component-documentation" style={this.props.style}>
 				<ComponentPlayground codeText={this.props.code} scope={scope} />
 			</div>
 		);
@@ -38,14 +38,16 @@ class Playground extends Component {
 
 Playground.defaultProps = {
 	code: '',
-	scope: {}
+	scope: {},
+	style: {}
 };
 
 // PROPERTY TYPES //
 
 Playground.propTypes = {
 	code: PropTypes.string,
-	scope: PropTypes.object
+	scope: PropTypes.object,
+	style: PropTypes.object
 };
 
 Playground.contextTypes = {

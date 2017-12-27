@@ -1,11 +1,17 @@
 /* BASICS */
 
-.CodeMirror {
+.component-documentation .CodeMirror {
     /* Set height, width, borders, and global font properties here */
+    height: auto !important;
+    min-height: 0;
+    max-height: 300px;
     font-family: monospace;
+    border:solid 2px black;
   }
-  .CodeMirror-scroll {
+.CodeMirror-scroll {
     /* Set scrolling behaviour here */
+    min-height: 0;
+    max-height: 300px;
     overflow: auto;
   }
   
