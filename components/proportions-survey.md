@@ -15,7 +15,7 @@ Component that allows a group of people to vote on the weights and importance of
     personalHeight={300}
     groupHeight={200}
     margin="80px"
-    legends={[ "Bitcoin", "Gold", "Diamanten" ]}
+    legends={[ "bitcoin", "old", "diamonds" ]}
 />
 ```
 

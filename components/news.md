@@ -12,6 +12,8 @@ The **News** component scans the public **News API** (consisting of 71 internati
 />
 ```
 
+ [Open interactive preview](https://isle.heinz.cmu.edu/components/news/)
+
 #### Options:
 
 * __invisible__: `boolean` indicating whether to render the component. To set it to invisible makes only sense when the component is triggered by voice recognition.
