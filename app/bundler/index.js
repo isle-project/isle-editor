@@ -141,6 +141,12 @@ render(
 	document.getElementById( 'App' )
 );`;
 
+/**
+ * Generates a list of components used in the lesson.
+ *
+ * @param {string} code - lesson code
+ * @returns {Array} array of used components
+ */
 const getComponentList = ( code ) => {
 	const ret = [];
 	const availableComponents = Object.keys( REQUIRES );
@@ -239,6 +245,10 @@ function writeIndexFile({
 				'victory': path.resolve(
 					basePath,
 					'./node_modules/victory/dist/victory/'
+				),
+				'browserify-aes/browser': path.resolve(
+					basePath,
+					'./node_modules/parse-asn1/node_modules/browserify-aes/browser.js'
 				)
 			},
 			mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
@@ -296,9 +306,6 @@ function writeIndexFile({
 				}
 			}),
 			new webpack.IgnorePlugin( /vertx/ )
-		],
-		externals: [
-			'crypto-browserify'
 		]
 	};
 
