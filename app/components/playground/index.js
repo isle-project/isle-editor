@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import ComponentPlayground from 'component-playground';
 import PropTypes from 'prop-types';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 import Provider from 'components/provider';
 import './syntax.css';
 import './codemirror.css';
@@ -12,14 +13,28 @@ import './playground.css';
 // MAIN //
 
 class Playground extends Component {
-	constructor( props ) {
+	constructor( props, context ) {
 		super( props );
+
+		const wrappedScope = {};
+		for ( let key in props.scope ) {
+			if ( hasOwnProp( props.scope, key ) ) {
+				let Comp = props.scope[ key ];
+				wrappedScope[ key ] = class Wrapper extends Component {
+					render() {
+						return ( <Provider session={context.session} >
+							<Comp {...this.props} />
+						</Provider> );
+					}
+				};
+			}
+		}
+		this.wrappedScope = wrappedScope;
 	}
 	render() {
 		const scope = {
 			React,
-			Provider,
-			...this.props.scope
+			...this.wrappedScope
 		};
 		return (
 			<div className="component-documentation" style={this.props.style}>
@@ -45,6 +60,10 @@ Playground.propTypes = {
 	code: PropTypes.string,
 	scope: PropTypes.object,
 	style: PropTypes.object
+};
+
+Playground.contextTypes = {
+	session: PropTypes.object
 };
 
 
