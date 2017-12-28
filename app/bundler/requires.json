@@ -16,6 +16,7 @@
 	"Editor": "const Editor = require( \"components/markdown-editor\" )",
 	"EnlargeableGrid": "const EnlargeableGrid = require( \"components/enlargeable-grid\" )",
 	"Experiment": "const ABTest = require( \"components/experiment\" )",
+	"Expire": "const Expire = require( \"components/expire\" )",
 	"FeedbackButtons": "const FeedbackButtons = require( \"components/feedback\" )",
 	"FreeTextQuestion": "const FreeTextQuestion = require( \"components/free-text-question\" )",
 	"FreeTextSurvey": "const FreeTextSurvey = require( \"components/free-text-survey\" )",

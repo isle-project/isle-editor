@@ -45,6 +45,7 @@ const NetworkPlot = require( 'components/d3/network-plot' );
 const DraggableList = require( 'components/draggable-list' );
 const Editor = require( 'components/markdown-editor' );
 const EnlargeableGrid = require( 'components/enlargeable-grid' );
+const Expire = require( 'components/expire' );
 // const Experiment = require( 'components/experiment' );
 const FeedbackButtons = require( 'components/feedback' );
 const FreeTextSurvey = require( 'components/free-text-survey' );
