@@ -101,6 +101,7 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
+    "@planeshifter/brace": "^0.8.0",
     "@stdlib/stdlib": "0.0.30",
     "archiver": "^2.0.0",
     "babel-core": "6.26.0",
@@ -117,11 +118,10 @@
     "babel-runtime": "^6.9.2",
     "bl": "^1.2.0",
     "bootstrap": "^3.3.6",
-    "brace": "git+https://github.com/Planeshifter/brace.git",
     "bufferutil": "^3.0.1",
     "camelcase": "^4.1.0",
     "component-playground": "^3.0.0",
-    "compute-chunkify": "git+https://github.com/compute-io/chunkify.git",
+    "compute-chunkify": "0.0.0",
     "compute-iqr": "^1.1.0",
     "compute-max": "^1.0.1",
     "compute-mean": "^3.0.0",
@@ -221,6 +221,6 @@
     "webpack": "3.10.0"
   },
   "devEngines": {
-    "node": "5.x || 6.x || 7.x || 8.x"
+    "node": "5.x || 6.x || 7.x || 8.x || 9.x"
   }
 }
