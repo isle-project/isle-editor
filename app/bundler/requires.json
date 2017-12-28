@@ -26,6 +26,7 @@
 	"IFrame": "const IFrame = require( \"components/iframe\" )",
 	"JSShell": "const JSShell = require( \"components/js-shell\" )",
 	"LessonSubmit": "const LessonSubmit = require( \"components/lesson-submit\" )",
+	"MatchListQuestion": "const MatchListQuestion = require( \"components/match-list-question\" )",
 	"Metrics": "const Metrics = require( \"components/metrics/db\" )",
 	"Modal": "const Modal = require( \"react-bootstrap\" ).Modal",
 	"MultipleChoiceQuestion": "const MultipleChoiceQuestion = require( \"components/multiple-choice-question\" )",
