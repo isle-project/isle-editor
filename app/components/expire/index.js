@@ -22,7 +22,9 @@ class Expire extends Component {
 	* Invoked once on client after the initial rendering. Sets up component timer.
 	*/
 	componentDidMount() {
-		this.setTimer();
+		if ( this.props.active ) {
+			this.setTimer();
+		}
 	}
 	/**
 	* Invoked when component is receiving new children, this method sets
@@ -34,6 +36,9 @@ class Expire extends Component {
 		if ( newProps.children !== this.props.children ) {
 			this.setTimer();
 			this.setState({ visible: true });
+		}
+		if ( newProps.active ) {
+			this.setTimer();
 		}
 	}
 	/*
@@ -68,6 +73,7 @@ class Expire extends Component {
 // DEFAULT PROPERTIES //
 
 Expire.defaultProps = {
+	active: false,
 	delay: 1000
 };
 
@@ -75,6 +81,7 @@ Expire.defaultProps = {
 // PROPERTY TYPES //
 
 Expire.propTypes = {
+	active: PropTypes.bool,
 	delay: PropTypes.number
 };
 
