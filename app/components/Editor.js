@@ -2,12 +2,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ace, { TokenIterator } from 'brace';
+import ace, { TokenIterator } from '@planeshifter/brace';
 import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
-import 'brace/mode/html';
-import 'brace/theme/github';
-import 'brace/ext/searchbox';
-import 'brace/ext/language_tools';
+import '@planeshifter/brace/mode/html';
+import '@planeshifter/brace/theme/github';
+import '@planeshifter/brace/ext/searchbox';
+import '@planeshifter/brace/ext/language_tools';
 import noop from '@stdlib/utils/noop';
 import aceSnippets from 'snippets';
 import './Editor.css';
