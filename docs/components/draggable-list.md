@@ -21,6 +21,8 @@ A list of draggable elements that can be re-ordered by the students.
 />
 ```
 
+ [Open interactive preview](https://isle.heinz.cmu.edu/components/draggable-list/)
+
 #### Options:
 
 * __data__: An `Array` of list elements, each represented as an `Object` with `id` and `text` fields. Default: `[]`.
