@@ -17,7 +17,7 @@ An ISLE component that renders a multiple choice question. It supports the case 
 />
 ```
 
- [Open interactive preview](https://isle.heinz.cmu.edu/components/multiple-choice-question/)
+[Open interactive preview](https://isle.heinz.cmu.edu/components/multiple-choice-question/)
 
 #### Options:
 

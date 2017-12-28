@@ -13,7 +13,7 @@
 </Dashboard>
 ```
 
- [Open interactive preview](https://isle.heinz.cmu.edu/components/dashboard/)
+[Open interactive preview](https://isle.heinz.cmu.edu/components/dashboard/)
 
 #### Options:
 

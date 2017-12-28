@@ -21,7 +21,7 @@ A list of draggable elements that can be re-ordered by the students.
 />
 ```
 
- [Open interactive preview](https://isle.heinz.cmu.edu/components/draggable-list/)
+[Open interactive preview](https://isle.heinz.cmu.edu/components/draggable-list/)
 
 #### Options:
 

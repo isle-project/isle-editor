@@ -11,6 +11,8 @@ data`}
 />
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/r-table/)
+
 #### Options:
 
 * __code__: R code `string` from which to form the table. The last line must refer to a `data.frame` or `matrix`. Default: `''`.

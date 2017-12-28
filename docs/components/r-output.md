@@ -8,6 +8,8 @@ Component for rendering R output inside an ISLE lesson.
 <ROutput code={this.state.code} />
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/r-output/)
+
 #### Options:
 
 * __code__: R code used to evaluate. Default: `''`.

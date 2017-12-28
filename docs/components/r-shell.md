@@ -10,6 +10,8 @@ An interactive R Shell that can be used to execute R commands in the cloud using
 />
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/r-shell/)
+
 #### Options:
 
 * __code__: R code `string` to be evaluated. Default: `''`.

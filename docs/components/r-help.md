@@ -8,9 +8,7 @@ Make words pull up R documentation in a modal window when clicked.
 <RHelp library="graphics">hist</RHelp> is used to create a histogram.
 ```
 
- [Open interactive preview](https://isle.heinz.cmu.edu/components/r-help/)
-
-
+[Open interactive preview](https://isle.heinz.cmu.edu/components/r-help/)
 
 #### Options:
 

@@ -11,6 +11,8 @@ A checkbox input component. Usually, this component will be used as part of an [
 />
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/checkbox-input)
+
 #### Options:
 
 * __defaultValue__: The value the checkbox is initialized with. Default: `false`.

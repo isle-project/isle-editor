@@ -11,6 +11,8 @@
 />
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/latex/)
+
 #### Options:
 
 * __raw__: The literal LaTeX `string` to render. Also accepts `numbers`. Default: `''`.

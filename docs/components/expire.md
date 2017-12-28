@@ -10,6 +10,8 @@ The Expire component will causes all of its children to become invisible after a
 </Expire>
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/expire/)
+
 #### Options:
 
 * __delay__: `number` denoting the milliseconds before the children of the component disappear. Default: `1000`.
