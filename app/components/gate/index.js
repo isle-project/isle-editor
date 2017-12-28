@@ -58,11 +58,10 @@ class Gate extends Component {
 		if ( !currentRole ) {
 			currentRole = 'anonymous';
 		}
-		console.log( anonymous )
 		if ( anonymous ) {
 			authenticated = true;
 		}
-		else if ( user && ( !session.anonymous || currentRole !== 'anonymous' ) ) {
+		else if ( user && ( currentRole !== 'anonymous' || ( session && !session.anonymous)) ) {
 			authenticated = true;
 		}
 		else if ( enrolled && ( this.state.isEnrolled || currentRole === 'enrolled' ) ) {
