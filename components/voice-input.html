@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>R Output · ISLE Editor Documentation</title>
+        <title>Voice Input · ISLE Editor Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="r-shell.html" />
+    <link rel="next" href="draggable-list.html" />
     
     
-    <link rel="prev" href="r-help.html" />
+    <link rel="prev" href="text-input.html" />
     
 
     </head>
@@ -279,7 +279,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2.6" data-path="voice-input.html">
+        <li class="chapter active" data-level="1.4.2.6" data-path="voice-input.html">
             
                 <a href="voice-input.html">
             
@@ -524,7 +524,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.18" data-path="r-output.html">
+        <li class="chapter " data-level="1.4.18" data-path="r-output.html">
             
                 <a href="r-output.html">
             
@@ -715,7 +715,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >R Output</a>
+        <a href=".." >Voice Input</a>
     </h1>
 </div>
 
@@ -730,16 +730,21 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="r-output">R Output</h1>
-<p>Component for rendering R output inside an ISLE lesson.</p>
+                                <h1 id="voice-input">Voice Input</h1>
+<p>A voice input component. Usually, this will be used as part of an <a href="dashboard.html">ISLE dashboard</a>, but it can also be used standalone. In this case, you want to handle changes via the <code>onChange</code> attribute. </p>
 <h4 id="example">Example:</h4>
-<pre class="language-"><code class="lang-js"><span class="token operator">&lt;</span>ROutput code<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>code<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+<pre class="language-"><code class="lang-js"><span class="token operator">&lt;</span>VoiceInput
+    langage<span class="token operator">=</span><span class="token string">&quot;en-US&quot;</span>
+    defaultValue<span class="token operator">=</span><span class="token string">&quot;Enter text&quot;</span>
+<span class="token operator">/</span><span class="token operator">&gt;</span>
 </code></pre>
 <h4 id="options">Options:</h4>
 <ul>
-<li><strong>code</strong>: R code used to evaluate. Default: <code>&apos;&apos;</code>.</li>
-<li><strong>libraries</strong>: <code>Array</code> of R libraries that should be loaded automatically when the input <code>code</code> is executed. Default: <code>[]</code>.</li>
-<li><strong>prependCode</strong>: <code>string</code> or an <code>Array</code> of R code to be prepended to the code stored in <code>code</code> when evaluating. Default: <code>&apos;&apos;</code>.</li>
+<li><strong>defaultValue</strong>: The text input is initialized with. Default: <code>&apos;&apos;</code>.</li>
+<li><strong>inline</strong>: <code>boolean</code> indicating whether the element should be displayed inline. Default: <code>false</code>.</li>
+<li><strong>legend</strong>: <code>string</code> to be displayed as the title of te component. Default: <code>&apos;&apos;</code>.</li>
+<li><strong>onChange</strong>: Callback <code>function</code> invoked after each change of the text value. Default: <code>null</code>.</li>
+<li><strong>width</strong>: width of the text input field in pixels. Default: <code>80</code>.</li>
 </ul>
 
                                 
@@ -768,12 +773,12 @@
 
             
                 
-                <a href="r-help.html" class="navigation navigation-prev " aria-label="Previous page: R Help">
+                <a href="text-input.html" class="navigation navigation-prev " aria-label="Previous page: Text Input">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="r-shell.html" class="navigation navigation-next " aria-label="Next page: R Shell">
+                <a href="draggable-list.html" class="navigation navigation-next " aria-label="Next page: Draggable List">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -784,7 +789,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"R Output","level":"1.4.18","depth":2,"next":{"title":"R Shell","level":"1.4.19","depth":2,"path":"components/r-shell.md","ref":"components/r-shell.md","articles":[]},"previous":{"title":"R Help","level":"1.4.17","depth":2,"path":"components/r-help.md","ref":"components/r-help.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":3},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/r-output.md","mtime":"2017-12-20T19:26:26.596Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-12-28T10:45:09.790Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Voice Input","level":"1.4.2.6","depth":3,"next":{"title":"Draggable List","level":"1.4.3","depth":2,"path":"components/draggable-list.md","ref":"components/draggable-list.md","articles":[]},"previous":{"title":"Text Input","level":"1.4.2.5","depth":3,"path":"components/text-input.md","ref":"components/text-input.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":3},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/voice-input.md","mtime":"2017-12-25T14:51:20.865Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-12-28T10:45:09.790Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
