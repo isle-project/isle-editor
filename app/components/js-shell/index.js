@@ -73,10 +73,6 @@ class JSShell extends Component {
 
 		this.isActive = false;
 		this.jslog = [];
-		this.aceID = new Date().
-			getTime().
-			toString();
-		this.aceID += Math.round( Math.random()*100 );
 
 		if ( this.props.vars ) {
 			for ( var key in this.props.vars ) {
