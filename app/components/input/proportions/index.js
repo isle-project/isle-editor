@@ -205,6 +205,8 @@ ProportionInput.defaultProps = {
 
 ProportionInput.propTypes = {
 	disabled: PropTypes.bool,
+	height: PropTypes.number,
+	innerRadius: PropTypes.number,
 	legends: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.array

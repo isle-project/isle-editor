@@ -234,7 +234,7 @@ class Recorder extends Component {
 	}
 
 	render() {
-		let recordingColor = this.state.recording ? 'red' : 'rgb(250,160,160)';
+		let recordingColor = this.state.recording ? 'red' : 'rgb(100,100,100)';
 		const { audio, screen } = this.props;
 		if ( !audio && !screen ) {
 			return null;

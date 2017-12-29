@@ -145,6 +145,12 @@ snippet NumberInput
 		step={${3:1}}
 	/>
 
+snippet NumberQuestion
+	<NumberQuestion 
+		question="${1:}"
+		${2:}
+	/>
+
 snippet Pages
 	<Pages>
 		${1:}
@@ -170,6 +176,12 @@ snippet ProportionsInput
 		precision={${2:2}}
 		step={${3:0.25}}
 		nElements={${4:6}}
+	/>
+
+snippet Recorder
+	<Recorder
+		audio
+		screen
 	/>
 
 snippet RHelp

@@ -12,6 +12,7 @@
 	"DataTable": "const DataTable = require( \"components/data-table\" )",
 	"Dashboard": "const Dashboard = require( \"components/dashboard\" )",
 	"DensityPlot": "const DensityPlot = require( \"components/d3/density-plot\" )",
+	"DraggableGrid": "const DraggableGrid = require( \"components/draggable-grid\" )",
 	"DraggableList": "const DraggableList = require( \"components/draggable-list\" )",
 	"Editor": "const Editor = require( \"components/markdown-editor\" )",
 	"EnlargeableGrid": "const EnlargeableGrid = require( \"components/enlargeable-grid\" )",
