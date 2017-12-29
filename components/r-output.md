@@ -5,8 +5,10 @@ Component for rendering R output inside an ISLE lesson.
 #### Example:
 
 ``` js
-<ROutput code={this.state.code} />
+<ROutput code="runif(10)" />
 ```
+
+[Open interactive preview](https://isle.heinz.cmu.edu/components/r-output/)
 
 #### Options:
 

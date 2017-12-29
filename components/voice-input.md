@@ -11,6 +11,8 @@ A voice input component. Usually, this will be used as part of an [ISLE dashboar
 />
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/voice-input/)
+
 #### Options:
 
 * __defaultValue__: The text input is initialized with. Default: `''`.

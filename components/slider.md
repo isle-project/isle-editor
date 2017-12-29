@@ -13,9 +13,12 @@ A component which displays its children in a slideshow or carousel.
 </Slider>
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/slider/)
+
 #### Options:
 
 * __fade__: `boolean` indicating whether fading is used for transitioning between the slides. Default: `false`.
 * __infinite__: `boolean` indicating whether the slideshow wraps around it's contents. Default: `false`.
+* __interval__: sets the interval of the automatic change
 * __title__: `string` with a title for the slideshow / carousel to be displayed at its top. Default: `''`.
 

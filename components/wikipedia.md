@@ -12,7 +12,7 @@ The **Wikipedia** component scans the **Wikipedia** and returns an article - if 
 />
 ```
 
- [Open interactive preview](https://isle.heinz.cmu.edu/components/wikipedia/)
+[Open interactive preview](https://isle.heinz.cmu.edu/components/wikipedia/)
 
 #### Options:
 

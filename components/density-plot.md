@@ -13,6 +13,8 @@ ISLE component to generate a density plot for one or multiple data sets.
 />
 ```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/density-plot/)
+
 #### Options:
 
 * __data__: an `array` or `array of arrays` holding the data for which the density plot should be created.

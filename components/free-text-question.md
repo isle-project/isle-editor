@@ -12,7 +12,7 @@ An ISLE component for questions where the answers by the students should be supp
 />
 ``` 
 
- [Open interactive preview](https://isle.heinz.cmu.edu/components/free-text-question/)
+[Open interactive preview](https://isle.heinz.cmu.edu/components/free-text-question/)
 
 #### Options:
 
