@@ -266,8 +266,7 @@ class RShell extends React.Component {
 	}
 
 	componentDidMount() {
-		const node = ReactDom.findDOMNode( this );
-		this.editor = ace.edit( node.firstChild );
+		this.editor = ace.edit( this.editorDiv );
 		this.aceSession = this.editor.getSession();
 		this.aceSession.setMode( 'ace/mode/r' );
 		this.aceSession.getDocument().setNewLineMode( 'unix' );
@@ -408,9 +407,7 @@ class RShell extends React.Component {
 			<div className="rshell"
 				style={this.props.style}
 			>
-				<div id="ace" style={{
-					width: '100%'
-				}}></div>
+				<div className="rshell-editor" ref={( div ) => { this.editorDiv = div; }}></div>
 				{ !this.state.disabled ?
 					<Button
 						bsStyle="primary"
