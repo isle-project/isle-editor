@@ -61,11 +61,6 @@ class Tokenizer{
 			this.tokens.push( this._current );
 			this._level += 1;
 			this._current = char;
-		} else if ( char === '{' ) {
-			this._state = IN_JSX_EXPRESSION;
-			this.tokens.push( this._current );
-			this._braceLevel += 1;
-			this._current = char;
 		} else {
 			this._current += char;
 		}

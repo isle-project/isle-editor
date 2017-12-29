@@ -2,6 +2,7 @@
 
 const markdownIT = require( 'markdown-it' );
 const hasOwnProp = require( '@stdlib/assert/has-own-property' );
+const replace = require( '@stdlib/string/replace' );
 const Tokenizer = require( './tokenizer.js' );
 
 
@@ -47,6 +48,11 @@ function toMarkdown( str ) {
 	}
 	str = arr.join( '' );
 	str = md.render( str );
+
+	str = replace( str, '{', 'OPEN_CURLY_BRACE' );
+	str = replace( str, '}', 'CLOSE_CURLY_BRACE' );
+	str = replace( str, 'OPEN_CURLY_BRACE', '{\'{\'}' );
+	str = replace( str, 'CLOSE_CURLY_BRACE', '{\'}\'}' );
 
 	for ( let key in tokenizer.divHash ) {
 		if ( hasOwnProp( tokenizer.divHash, key ) ) {
