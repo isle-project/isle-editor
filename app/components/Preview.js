@@ -42,6 +42,7 @@ const Dashboard = require( 'components/dashboard' );
 const DataTable = require( 'components/data-table' );
 const DensityPlot = require( 'components/d3/density-plot' );
 const NetworkPlot = require( 'components/d3/network-plot' );
+const DraggableGrid = require( 'components/draggable-grid' );
 const DraggableList = require( 'components/draggable-list' );
 const Editor = require( 'components/markdown-editor' );
 const EnlargeableGrid = require( 'components/enlargeable-grid' );
