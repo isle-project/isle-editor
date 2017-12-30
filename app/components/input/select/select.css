@@ -1,3 +1,25 @@
 .select-option {
     background: red;
 }
+
+.select-field {
+	font-weight: 600;
+}
+
+
+.select-field-options {
+	background: rgba(186, 204, 234, 0.3);
+	box-shadow: none;
+	cursor: pointer;
+}
+
+.select-field-item:active {
+	background: rgba(204,88,0, 0.16);
+	border:solid 2px black;
+}
+
+
+.select-field-options option {
+	background: rgba(204,88,0, 0.16);
+	
+}

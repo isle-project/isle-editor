@@ -32,7 +32,7 @@ class SelectInput extends Input {
 		super( props );
 
 		this.options = this.props.options.map( e => {
-			return { 'label': e, 'value': e };
+			return { 'label': e, 'value': e, 'className': 'select-field-options' };
 		});
 		const { defaultValue } = props;
 		let value = null;
@@ -97,7 +97,7 @@ class SelectInput extends Input {
 		}
 		if ( nextProps.options !== this.props.options ) {
 			this.options = nextProps.options.map( e => {
-				return { 'label': e, 'value': e };
+				return { 'label': e, 'value': e, 'className': 'select-field-options' };
 			});
 		}
 		if ( !isEmptyObject( newState ) ) {
@@ -113,7 +113,8 @@ class SelectInput extends Input {
 		if ( this.props.inline ) {
 			style = {
 				width: 'auto',
-				display: 'inline'
+				display: 'inline',
+				fontWeight: 600
 			};
 		}
 		let clearable = this.props.multi ? true : false;
@@ -129,6 +130,7 @@ class SelectInput extends Input {
 					}
 					<Select
 						name="form-field-name"
+						className="select-field"
 						value={this.state.value}
 						options={this.options}
 						onChange={this.handleChange}
