@@ -41,7 +41,7 @@ We will include the explorer with the following code:
 
 * __data__: The name of the .json dataset that will be used in the explorer
 * __onSelect__: A function to be passed.
-* __tabs__:
+* __tabs__: An array containing additional tabs to be used in the display interface. Each entry in the array will include a string 'title' and content. For example, if one wishes to add an additional tab with a text content of "A Note", the following code would be used: ```tabs={[ {title: 'Note', content: <div>A Note</div>} ]}```
 * __Questions__: Questions to be asked of the dataset. May also be embedded in a question object independent of the data explorer apparatus.
 * __transformer__: A bool value indicating whether a transformation is to be applied to a variable.
 * __statistics__: Relevant statistical operations that can be applied to data, such as "mean" or "correlation". The following operations are enabled by default:
