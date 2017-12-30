@@ -1,6 +1,6 @@
 # R Table
 
-Component for rendering a R data frame or matrix in a tabular display. This component uses the [fixed-data-package](http://facebook.github.io/fixed-data-table) library under the hood.
+Component for rendering a R data frame or matrix in a tabular display.
 
 #### Example:
 

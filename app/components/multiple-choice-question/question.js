@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 const Question = ( props ) => {
 	return ( <span className="question">
-		<h3>{props.content}</h3>
+		<label>{props.content}</label><br />
 		<span style={{ fontSize: '18px' }}>{props.task}:</span>
 	</span> );
 };

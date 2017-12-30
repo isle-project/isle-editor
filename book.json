@@ -4,6 +4,7 @@
     "description": "Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)",
     "author": "Philipp Burckhardt",
     "plugins": [
+        "expandable-chapters",
         "edit-link",
         "prism",
         "-highlight"

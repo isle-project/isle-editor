@@ -1,4 +1,4 @@
-# ProportionsSurvey
+# Proportions Survey
 
 Component that allows a group of people to vote on the weights and importance of given options.
 

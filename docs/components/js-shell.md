@@ -1,4 +1,4 @@
-# JS-Shell
+# JavaScript Shell
 
 An interactive Javascript Shell that can be used to execute JavascriptCommand. The shell contains a console that displays error messages, warnings etc. 
 

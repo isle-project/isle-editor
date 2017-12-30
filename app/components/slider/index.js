@@ -6,6 +6,8 @@ import { Panel } from 'react-bootstrap';
 import Slider from 'react-slick';
 import NextArrow from './next_arrow';
 import PrevArrow from './previous_arrow';
+import './slick-theme.min.css';
+import './slick.min.css';
 
 
 // MAIN //

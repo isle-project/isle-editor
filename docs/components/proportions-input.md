@@ -1,4 +1,4 @@
-# ProportionsInput
+# Proportions Input
 
 Component that allows a group of people to vote on the weights and importance of given options.
 
@@ -19,7 +19,7 @@ Component that allows a group of people to vote on the weights and importance of
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/proportions-survey/)
+[Open interactive preview](https://isle.heinz.cmu.edu/components/proportions-input/)
 
 #### Options:
 

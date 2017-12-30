@@ -1,4 +1,5 @@
 # Data Explorer
+<<<<<<< HEAD
 
 This component is used by students to briefly summarize data as it is presented and perform various statistical tests. This component may be used as a standalone feature in a lesson. 
 
@@ -126,3 +127,5 @@ DataExplorer.defaultProps = {
 	distributions: [ 'Normal', 'Uniform', 'Exponential' ]
 };
 ```
+=======
+>>>>>>> 06a8573d9a1452cb3fbcbefb69418f126718d441

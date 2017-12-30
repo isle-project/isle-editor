@@ -2,11 +2,21 @@
 	display: flex;
 	width: 100%;
 	padding: 15px;
-	border: 2px solid lightblue;
 	background-color: white;
 	flex-direction: column;
 	max-width: 650px;
-	box-shadow: 2px 2px 8px rgb(60,60,60);
+	border: 1px solid  rgba(92,92,92, 0.6);
+	border-radius: 6px;
+	box-shadow: 0 0 4px rgba(92,92,92, 0.5);
+	margin-bottom: 15px;
+}
+
+
+.match-list-question-container .question {
+	font-stretch: extra-expanded;
+	font-weight: 500;
+	color: #2e4468;
+	text-shadow: 0 0 1px  rgba(92,92,92, 0.5);
 }
 
 .match-list-question-lists {
