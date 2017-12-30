@@ -30,6 +30,5 @@
 }
 
 .slider-next-button:disabled {
-	display: none;
 	opacity: 0;
 }
