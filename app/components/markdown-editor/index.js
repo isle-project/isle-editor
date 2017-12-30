@@ -8,7 +8,9 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import markdownIt from 'markdown-it';
 import VoiceInput from 'components/input/voice';
 import FileSaver from 'file-saver';
+import 'simplemde/dist/simplemde.min.css';
 import './markdown-editor.css';
+
 
 // VARIABLES //
 
@@ -41,7 +43,6 @@ class MarkdownEditor extends Component {
 			hash: {}
 		};
 	}
-
 
 	componentDidMount() {
 		this.simplemde = new SimpleMDE({
@@ -111,7 +112,6 @@ class MarkdownEditor extends Component {
 		}
 		return toolbar;
 	}
-
 
 	recordedText = (text) => {
 		var sel = this.simplemde.codemirror.somethingSelected();
