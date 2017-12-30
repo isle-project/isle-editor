@@ -1,17 +1,22 @@
 # Data Table
 
-A number question component. Usually, this will be used as part of an [ISLE dashboard](dashboard.md), but it can also be used standalone. In this case, you want to handle changes via the `onChange` attribute. 
+A component rendering data in a tabular display. Built on top of [react-table](https://react-table.js.org/).
 
 #### Example:
 
 ``` js
 <DataTable
-    question="What is the number PI - three digits after the period"
-    solution={3.142}
+    showRemove
+    onClickRemove={( data ) => { console.log(data); }}
+    data={{ 
+        firstName: [ 'Hans', 'Lotti', 'Fritz' ], 
+        lastName: [ 'Bauer', 'Müller', 'Schultz' ],
+        age: [ 37, 55, 62 ]
+    }}
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/number-question/)
+[Open interactive preview](https://isle.heinz.cmu.edu/components/data-table)
 
 #### Options:
 
