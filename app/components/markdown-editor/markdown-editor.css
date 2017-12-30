@@ -4,3 +4,14 @@
 	box-shadow: 0 0 8px rgba(92,92,92, 0.5);
 	margin-bottom: 15px;
 }
+
+
+.editor-toolbar {
+	background: ghostwhite;
+	opacity: 0.6;
+}
+
+.editor-statusbar {
+	background: ghostwhite;
+	opacity: 0.6;
+}
