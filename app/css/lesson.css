@@ -63,7 +63,8 @@ body {
 
 #Lesson .panel-heading {
 	background-image: none;
-	box-shadow: 1px 1px 1px darkgrey;
+	background: lightsteelblue;
+
 }
 
 #Lesson .popover {
