@@ -102,7 +102,6 @@ const TextInput = require( 'components/input/text' );
 const Text = require( 'components/text' );
 const Timer = require( 'components/timer' );
 const Tree = require( 'components/d3/tree' );
-const VennDiagramBuilder = require( 'components/venn-diagram-builder' );
 const Bar = require( 'victory' ).Bar;
 // const Variant = require( 'react-ab-test' ).Variant;
 const VictoryAnimation = require( 'victory' ).VictoryAnimation;
