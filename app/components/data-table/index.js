@@ -105,7 +105,7 @@ class DataTable extends Component {
 								const newValue = event.target.value;
 								onChange( newValue );
 							}}
-							style={{ width: '100%' }}
+							style={{ width: '100%', backgroundColor: 'ghostwhite' }}
 							value={filter ? filter.value : 'all'}
 						>
 							<option value="all">Show All</option>
