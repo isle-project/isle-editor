@@ -1,0 +1,35 @@
+.slider-next-button { 
+	transition: 0.5s;
+	margin-right: 6px;
+	text-align: center;
+	border:none;
+	width: 80px;
+	border-radius: 5px;
+	outline: none;
+	font-size: 12px;
+	font-weight: 600;
+	font-family: Open Sans;
+	box-shadow: 1px 1px 1px rgba(60, 60, 120, 1), inset 0px 0px 0px rgba(0, 0, 0, 1);
+}
+
+
+.slider-next-button:hover {
+	background: rgba(175,192,222,1);
+	transition: 0.5s;
+	box-shadow: 1px 1px 8px rgba(92,92,92, 1);
+	text-shadow: none;
+	color: black;
+}
+
+
+.slider-next-button:focus {
+	outline: none;
+	border: 1px solid  rgba(92,92,92, 0.6);
+	box-shadow: 1px 1px 8px rgba(92,92,92, 0.5);
+	text-shadow: none;
+}
+
+.slider-next-button:disabled {
+	display: none;
+	opacity: 0;
+}

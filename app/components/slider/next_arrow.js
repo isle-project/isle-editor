@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
-
+import './next_arrow.css';
 
 // VARIABLES //
 
@@ -16,7 +16,7 @@ class NextArrow extends Component {
 	render() {
 		const disabled = RE.test( this.props.className );
 		return (
-			<Button
+			<Button className='slider-next-button'
 				bsSize="small"
 				onClick={this.props.onClick}
 				style={{
