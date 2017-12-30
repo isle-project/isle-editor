@@ -180,9 +180,8 @@ class MultipleChoiceQuestion extends Component {
 		}
 
 		return (
-			<Panel className="multipleChoiceQuestion" style={{
+			<Panel className="multiple-choice-question-container" style={{
 				margin: '0 auto 10px',
-				maxWidth: 600,
 				marginTop: '8px'
 			}}>
 				<Question

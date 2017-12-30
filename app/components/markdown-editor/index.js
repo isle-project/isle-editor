@@ -8,7 +8,7 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import markdownIt from 'markdown-it';
 import VoiceInput from 'components/input/voice';
 import FileSaver from 'file-saver';
-
+import './markdown-editor.css';
 
 // VARIABLES //
 
@@ -150,7 +150,7 @@ class MarkdownEditor extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="markdown-editor">
 				<textarea ref={( area ) => { this.simplemdeRef = area; }} autoComplete="off" {...this.props.options} />
 				{ this.renderVoiceControl() }
 			</div>

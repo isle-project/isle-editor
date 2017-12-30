@@ -7,8 +7,9 @@
 	font-size: 18px;
 	background: ivory;
 	margin-bottom: 20px;
-	border: solid 1px black;
-	box-shadow: 2px 2px 10px;
+    border: 1px solid  rgba(92,92,92, 0.6);
+	border-radius: 6px;
+	box-shadow: 0 0 8px rgba(92,92,92, 0.5);
 }
 
 .jsedit {

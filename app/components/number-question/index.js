@@ -10,7 +10,7 @@ import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
 import NumberInput from 'components/input/number';
 import HintButton from 'components/hint-button';
-
+import './number-question.css';
 
 // VARIABLES //
 
@@ -105,7 +105,7 @@ class NumberQuestion extends Component {
 	render() {
 		const nHints = this.props.hints.length;
 		return (
-			<Panel className="NumberQuestion">
+			<Panel className="NumberQuestion number-question">
 				{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
 				<label>Your answer:</label>
 				<NumberInput
