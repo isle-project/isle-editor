@@ -10,6 +10,7 @@ import isString from '@stdlib/assert/is-string';
 import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
 import HintButton from 'components/hint-button';
+import './free-text-question.css';
 
 
 // VARIABLES //
@@ -207,7 +208,7 @@ class FreeTextQuestion extends Component {
 	render() {
 		const nHints = this.props.hints.length;
 		return (
-			<Panel className="FreeFormQuestion">
+			<Panel className="free-text-question">
 				{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
 				<label>{ this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' } </label>
 				<FormControl
