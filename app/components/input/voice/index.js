@@ -3,9 +3,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+import logger from 'debug';
 import Input from 'components/input/base';
 import Microphone from '-!svg-react-loader!./../../../img/microphone.svg';
 import './voice.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor' );
 
 
 // MAIN //
@@ -38,9 +44,7 @@ class VoiceInput extends Input {
 
 	finalText( text ) {
 		if ( this.props.timeout) this.setTimeout();
-
-		console.log( 'Received final text' );
-
+		debug( 'Received final text' );
 		this.setState({
 			value: text
 		});
@@ -51,7 +55,7 @@ class VoiceInput extends Input {
 	onResult = ( event ) => {
 		if ( typeof ( event.results ) === 'undefined' ) {
 			this.recognizer.stop();
-			console.log( 'Something went wrong...' );
+			debug( 'Something went wrong...' );
 			return;
 		}
 		for ( let i = event.resultIndex; i < event.results.length; ++i ) {
@@ -92,12 +96,12 @@ class VoiceInput extends Input {
 		};
 
 		this.recognizer.onend = () => {
-			console.log('ON END ' + this.props.id);
+			debug('onend: %s', this.props.id );
 			this.props.onRecordingStop();
 		};
 
 		this.recognizer.onstart = () => {
-			console.log('ON START' + this.props.id);
+			debug('onstart: %s', this.props.id );
 			this.props.onRecordingStart();
 		};
 
