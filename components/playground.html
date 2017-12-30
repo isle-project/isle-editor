@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>R Output · ISLE Editor Documentation</title>
+        <title>Playground · ISLE Editor Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -61,10 +61,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="r-plot.html" />
+    <link rel="next" href="plots.html" />
     
     
-    <link rel="prev" href="r-help.html" />
+    <link rel="prev" href="pages.html" />
     
 
     </head>
@@ -509,7 +509,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.19" data-path="playground.html">
+        <li class="chapter active" data-level="1.4.19" data-path="playground.html">
             
                 <a href="playground.html">
             
@@ -606,7 +606,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.24" data-path="r-output.html">
+        <li class="chapter " data-level="1.4.24" data-path="r-output.html">
             
                 <a href="r-output.html">
             
@@ -836,7 +836,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >R Output</a>
+        <a href=".." >Playground</a>
     </h1>
 </div>
 
@@ -851,18 +851,28 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="r-output">R Output</h1>
-<p>Component for rendering R output inside an ISLE lesson.</p>
-<h4 id="example">Example:</h4>
-<pre class="language-"><code class="lang-js"><span class="token operator">&lt;</span>ROutput code<span class="token operator">=</span><span class="token string">&quot;runif(10)&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                                <pre class="language-"><code class="lang-js"><span class="token operator">&lt;</span>Playground style <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> position<span class="token punctuation">:</span> <span class="token string">&quot;absolute&quot;</span><span class="token punctuation">,</span>  
+    left<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> 
+    top<span class="token punctuation">:</span> <span class="token string">&apos;0px&apos;</span><span class="token punctuation">,</span>
+    width<span class="token punctuation">:</span> <span class="token string">&apos;800px&apos;</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
+    code<span class="token operator">=</span><span class="token punctuation">{</span><span class="token template-string"><span class="token string">`&lt;JSShell
+        code = &quot;var a = 22;&quot;
+    /&gt;`</span></span><span class="token punctuation">}</span>
+    scope<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>
+        JSShell<span class="token punctuation">,</span> Wikipedia
+    <span class="token punctuation">}</span><span class="token punctuation">}</span>
+<span class="token operator">/</span><span class="token operator">&gt;</span>
 </code></pre>
-<p><a href="https://isle.heinz.cmu.edu/components/r-output/" target="_blank">Open interactive preview</a></p>
-<h4 id="options">Options:</h4>
-<ul>
-<li><strong>code</strong>: R code used to evaluate. Default: <code>&apos;&apos;</code>.</li>
-<li><strong>libraries</strong>: <code>Array</code> of R libraries that should be loaded automatically when the input <code>code</code> is executed. Default: <code>[]</code>.</li>
-<li><strong>prependCode</strong>: <code>string</code> or an <code>Array</code> of R code to be prepended to the code stored in <code>code</code> when evaluating. Default: <code>&apos;&apos;</code>.</li>
-</ul>
+<pre class="language-"><code class="lang-js"><span class="token operator">&lt;</span>Playground style <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> position<span class="token punctuation">:</span> <span class="token string">&quot;absolute&quot;</span><span class="token punctuation">,</span>  
+    left<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> 
+    top<span class="token punctuation">:</span> <span class="token string">&apos;0px&apos;</span><span class="token punctuation">,</span>
+    width<span class="token punctuation">:</span> <span class="token string">&apos;800px&apos;</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
+    code<span class="token operator">=</span><span class="token punctuation">{</span><span class="token template-string"><span class="token string">`&lt;Wikipedia /&gt;`</span></span><span class="token punctuation">}</span>
+    scope<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>
+        Wikipedia
+    <span class="token punctuation">}</span><span class="token punctuation">}</span>
+<span class="token operator">/</span><span class="token operator">&gt;</span>
+</code></pre>
 
                                 
                                 </section>
@@ -890,12 +900,12 @@
 
             
                 
-                <a href="r-help.html" class="navigation navigation-prev " aria-label="Previous page: R Help">
+                <a href="pages.html" class="navigation navigation-prev " aria-label="Previous page: Pages">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="r-plot.html" class="navigation navigation-next " aria-label="Next page: R Plot">
+                <a href="plots.html" class="navigation navigation-next " aria-label="Next page: Plots">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -906,7 +916,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"R Output","level":"1.4.24","depth":2,"next":{"title":"R Plot","level":"1.4.25","depth":2,"path":"components/r-plot.md","ref":"components/r-plot.md","articles":[]},"previous":{"title":"R Help","level":"1.4.23","depth":2,"path":"components/r-help.md","ref":"components/r-help.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","edit-link","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":3},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/r-output.md","mtime":"2017-12-29T14:07:43.350Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-30T10:43:05.957Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Playground","level":"1.4.19","depth":2,"next":{"title":"Plots","level":"1.4.20","depth":2,"path":"components/plots.md","ref":"components/plots.md","articles":[{"title":"Density Plot","level":"1.4.20.1","depth":3,"path":"components/density-plot.md","ref":"components/density-plot.md","articles":[]},{"title":"R Plot","level":"1.4.20.2","depth":3,"path":"components/r-plot.md","ref":"components/r-plot.md","articles":[]}]},"previous":{"title":"Pages","level":"1.4.18","depth":2,"path":"components/pages.md","ref":"components/pages.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","edit-link","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":3},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/playground.md","mtime":"2017-12-27T16:15:18.816Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-30T10:43:05.957Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
