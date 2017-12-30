@@ -1,10 +1,11 @@
 .rshell {
-	max-width: 900px;
+	max-width: 100%;
 	padding: 5px;
-	border: 2px solid #2e4468;
-	border-radius: 4px;
 	text-align: left;
 	margin: 0 auto;
+    border: 1px solid  rgba(92,92,92, 0.6);
+	border-radius: 6px;
+	box-shadow: 0 0 8px rgba(92,92,92, 0.5);
 }
 
 .rshell-editor {
