@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ControlLabel, Form, FormControl, FormGroup, Panel } from 'react-bootstrap';
+import './select-question.css';
 
 
 // MAIN //
@@ -94,7 +95,7 @@ class SelectQuestion extends Component {
 
 						>
 							{this.props.options.map( ( e, idx ) => {
-								return <option key={idx} value={e}>{e}</option>;
+								return <option className="select-question-option" key={idx} value={e}>{e}</option>;
 							})}
 						</FormControl>
 					</FormGroup>
