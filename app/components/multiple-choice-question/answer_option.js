@@ -77,13 +77,17 @@ AnswerOption.propTypes = {
 		PropTypes.element,
 		PropTypes.string
 	]).isRequired,
-	correct: PropTypes.bool.isRequired,
+	correct: PropTypes.bool,
 	disabled: PropTypes.bool.isRequired,
-	no: PropTypes.string.isRequired,
+	no: PropTypes.number.isRequired,
 	onAnswerSelected: PropTypes.func.isRequired,
 	provideFeedback: PropTypes.bool.isRequired,
 	solution: PropTypes.bool.isRequired,
 	submitted: PropTypes.bool.isRequired
+};
+
+AnswerOption.defaultProps = {
+	correct: null
 };
 
 
