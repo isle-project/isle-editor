@@ -38,7 +38,6 @@ const generateIndexHTML = ( title, minify ) => `
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
 		<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css' />
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
-		<link href="css/fixed-data-table.min.css" rel="stylesheet" />
 		<link href="css/slick.min.css" rel="stylesheet" type="text/css" />
 		<link href="css/slick-theme.min.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
