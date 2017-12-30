@@ -42,3 +42,6 @@ main.js.map
 #################
 .vscode/
 jsconfig.json
+
+# public should be ignored
+public/
