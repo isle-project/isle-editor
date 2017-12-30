@@ -13,7 +13,7 @@
     * [Display](chapters/display.md)
         * [Draggable Grid](components/draggable-grid.md)
         * [Draggable List](components/draggable-list.md)
-        * [Enlargeable Grid](components/enleargeable-grid.md)
+        * [Enlargeable Grid](components/enlargeable-grid.md)
         * [Grid](components/grid.md)
         * [Pages](components/pages.md)
         * [Slider](components/slider.md)

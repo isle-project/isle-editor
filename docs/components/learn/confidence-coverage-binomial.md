@@ -1,1 +1,3 @@
-# Confidence Interval Coverage - Binomial Distribution
+# Confidence Interval Coverage 
+
+## Binomial Distribution
