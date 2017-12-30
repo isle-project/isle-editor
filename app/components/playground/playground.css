@@ -10,9 +10,7 @@
 	overflow: hidden;
 	background: #efefef;
 	color: black;
-	caret-color: red;
 	margin-bottom: 30px;
-	cursor: pointer;
 }
 
 .playground-editable {
