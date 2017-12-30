@@ -1,3 +1,16 @@
+.multiple-choice-question-container {
+    border: 1px solid  rgba(92,92,92, 0.6);
+	border-radius: 6px;
+    box-shadow: 0 0 8px rgba(92,92,92, 0.5);
+    width: 75%;
+}
+
+
+.multiple-choice-answer .list-group-item {
+    background: orange !important;
+}
+
+
 .multiple-choice-answer {
     line-height: 22px !important;
 }
