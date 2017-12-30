@@ -38,4 +38,91 @@ We will include the explorer with the following code:
 
 #### Options
 
+* __data__: The name of the .json dataset that will be used in the explorer
+* __onSelect__: A function to be passed. 
+* __tabs__: 
+* __Questions__: Questions to be asked of the dataset. May also be embedded in a question object independent of the data explorer apparatus. 
+* __transformer__: A bool value indicating whether a transformation is to be applied to a variable. 
+* __statistics__: Relevant statistical operations that can be applied to data, such as "mean" or "correlation". The following operations are enabled by default:
+	* Mean
+	* Median
+	* Min
+	* Max
+	* Interquartile Range
+	* Standard Deviation
+	* Variance
+	* Correlation
+* __plots__: Specification of which plots may be produced by the explorer. The following may be used and are enabled by default:
+	* Bar Chart
+	* Pie Chart
+	* Histogram
+	* Box Plot
+	* Scatterplot
+	* Heat Map
+	* Mosaic Plot
+* __tables__: Two-way tables that may be compiled from the data. One maty choose either (or both) of the following options:
+	* Frequency Table
+	* Contingency Table
+* __tests__: Statistical tests that may be applied to the data. Must be some combination of the following, all of which are enabled by default:
+	* One-Sample Mean Test
+	* One-Sample Proportion Test
+	* Two-Sample Mean Test
+	* Two-Sample Proportion Test
+	* Correlation Test
+	* Chi-squared Independence Test
+	* One-Way ANOVA
+* __models__: Modelling paradigms to be used in creating models from the variables presented. Currently this functionality is limited to "Simple Linear Regression" (which is enabled by default), yet will be extended in the future. 
+* __categorical__: An array of string variables that represent the categorical variables in a dataset. 
+* __continuous__: An array of string variables that represent the continuous variables in a dataset. 
+* __distributions__: Distributions that may be used in calculating probabilities. This functionality exists independently of the dataset provided. Currently limited to normal, uniform and exponential distributions. 
 
+#### Default Options
+
+``` js
+DataExplorer.defaultProps = {
+	data: {},
+	onSelect(){},
+	tabs: [],
+	questions: null,
+	transformer: false,
+	statistics: [
+		'Mean',
+		'Median',
+		'Min',
+		'Max',
+		'Range',
+		'Interquartile Range',
+		'Standard Deviation',
+		'Variance',
+		'Correlation'
+	],
+	plots: [
+		'Bar Chart',
+		'Pie Chart',
+		'Histogram',
+		'Box Plot',
+		'Scatterplot',
+		'Heat Map',
+		'Mosaic Plot'
+	],
+	tables: [
+		'Frequency Table',
+		'Contingency Table'
+	],
+	tests: [
+		'One-Sample Mean Test',
+		'One-Sample Proportion Test',
+		'Two-Sample Mean Test',
+		'Two-Sample Proportion Test',
+		'Correlation Test',
+		'Chi-squared Independence Test',
+		'One-Way ANOVA'
+	],
+	models: [
+		'Simple Linear Regression'
+	],
+	categorical: [],
+	continuous: [],
+	distributions: [ 'Normal', 'Uniform', 'Exponential' ]
+};
+```
