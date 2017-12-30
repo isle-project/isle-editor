@@ -105,7 +105,7 @@ class MatchListQuestion extends Component {
 		);
 		return (
 			<div className="match-list-question-container">
-				<span>{question}</span>
+				<span className="question">{question}</span>
 				<div className="match-list-question-lists">
 					<OptionsList
 						options={elements.map( q => q.a )}
