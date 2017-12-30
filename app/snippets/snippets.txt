@@ -124,7 +124,7 @@ snippet MatchListQuestion
 
 snippet MultipleChoiceQuestion
 	<MultipleChoiceQuestion
-		solution={${1:}}
+		solution={${1:0}}
 		answers={[
 			{content:"${2:}", explanation:"${3:}"}
 		]}
