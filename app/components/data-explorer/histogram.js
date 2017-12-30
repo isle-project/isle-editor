@@ -82,8 +82,8 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 			traces[ 0 ][ 'histnorm' ] = 'probability density';
 		}
 		layout = {
-			xaxis: {title: variable },
-			yaxis: {title: overlayDensity ? 'Density' : 'Count' },
+			xaxis: { title: variable },
+			yaxis: { title: overlayDensity ? 'Density' : 'Count' },
 			reversescale: true,
 			title: variable
 		};
@@ -152,7 +152,7 @@ class Histogram extends Component {
 			chooseBins: false,
 			overlayDensity: false,
 			variable: props.defaultValue || props.variables[ 0 ],
-			group: null,
+			group: null, // eslint-disable-line react/no-unused-state
 			nBins: 10,
 			densityType: 'Data-driven'
 		};
@@ -199,7 +199,7 @@ class Histogram extends Component {
 					clearable={true}
 					onChange={( value )=>{
 						this.setState({
-							group: value
+							group: value // eslint-disable-line react/no-unused-state
 						});
 					}}
 				/>

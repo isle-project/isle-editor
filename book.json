@@ -13,7 +13,7 @@
         "fontsettings": {
             "theme": "white",
             "family": "sans",
-            "size": 3
+            "size": 2
         },
         "edit-link": {
             "base": "https://github.com/Planeshifter/isle-editor/edit/master/docs",

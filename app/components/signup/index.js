@@ -127,7 +127,7 @@ class Signup extends Component {
 						</OverlayTrigger>
 						<OverlayTrigger placement="right" overlay={createTooltip( 'Please enter your name (minimum three characters).' )}>
 							<FormGroup
-								controlId="formHorizontalName"
+								controlId="signup-form-name"
 								validationState={this.getNameValidationState()}
 							>
 								<Col componentClass={ControlLabel} sm={2}>
@@ -147,7 +147,7 @@ class Signup extends Component {
 						</OverlayTrigger>
 						<OverlayTrigger placement="right" overlay={createTooltip( 'Please enter a password of your choosing with at least six characters' )}>
 							<FormGroup
-								controlId="formHorizontalPassword"
+								controlId="signup-form-password"
 								validationState={this.getPasswordValidationState()}
 							>
 								<Col componentClass={ControlLabel} sm={2}>
@@ -167,7 +167,7 @@ class Signup extends Component {
 							</FormGroup>
 						</OverlayTrigger>
 						<FormGroup
-							controlId="formHorizontalPassword"
+							controlId="signup-form-password-confirmation"
 							validationState={this.getPasswordValidationState()}
 						>
 							<Col componentClass={ControlLabel} sm={2}>

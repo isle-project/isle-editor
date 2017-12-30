@@ -12,6 +12,7 @@ import NormalDistribution from 'components/learn/distribution/normal';
 import TDistribution from 'components/learn/distribution/t';
 import UniformDistribution from 'components/learn/distribution/uniform';
 import ConditionalProbability from 'components/learn/conditional-probability';
+import VennDiagramBuilder from 'components/learn/venn-diagram-builder';
 import WordVennDiagram from 'components/learn/word-venn-diagram';
 import MeanVSMedian from 'components/learn/mean-vs-median';
 import Standardize from 'components/learn/standardize';
@@ -35,6 +36,7 @@ export default {
 	NormalDistribution,
 	TDistribution,
 	UniformDistribution,
+	VennDiagramBuilder,
 	WordVennDiagram,
 	MeanVSMedian,
 	Standardize,
