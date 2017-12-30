@@ -155,6 +155,7 @@
     "form-data": "^2.2.0",
     "fs-extra": "^5.0.0",
     "gitbook-plugin-edit-link": "^2.0.2",
+    "gitbook-plugin-expandable-chapters": "^0.2.0",
     "gitbook-plugin-prism": "^2.3.0",
     "highlight.js": "^9.4.0",
     "immutability-helper": "^2.4.0",
