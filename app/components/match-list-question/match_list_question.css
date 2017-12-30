@@ -11,6 +11,14 @@
 	margin-bottom: 15px;
 }
 
+
+.match-list-question-container .question {
+	font-stretch: extra-expanded;
+	font-weight: 500;
+	color: #2e4468;
+	text-shadow: 0 0 1px  rgba(92,92,92, 0.5);
+}
+
 .match-list-question-lists {
 	display: flex;
 	flex-direction: row;
