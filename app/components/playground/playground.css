@@ -19,12 +19,13 @@
 	text-align: center;
 	font-size: 22px;
 	letter-spacing: 5px;
+	border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .playground-editable:hover {
 	color: white;
 }
-
 
 .playground .box {
 	background: #efefef;
