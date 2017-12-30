@@ -9,7 +9,7 @@ import isString from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/math/constants/float64-pinf';
 import NINF from '@stdlib/math/constants/float64-ninf';
-
+import './number.css';
 
 // MAIN //
 
@@ -133,6 +133,7 @@ class NumberInput extends Input {
 					<input
 						type={this.props.numbersOnly ? 'number' : 'text'}
 						name="input"
+						className="number-number-input"
 						disabled={this.props.disabled}
 						value={value}
 						step={this.props.step}
@@ -161,6 +162,7 @@ class NumberInput extends Input {
 		let input = <input
 			type={this.props.numbersOnly ? 'number' : 'text'}
 			name="input"
+			className="number-number-input"
 			disabled={this.props.disabled}
 			value={value}
 			step={this.props.step}
@@ -170,9 +172,6 @@ class NumberInput extends Input {
 				marginRight: '8px',
 				paddingLeft: '16px',
 				paddingRight: '4px',
-				border: 'solid 1px darkgrey',
-				borderRadius: '2px',
-				background: 'rgb(186, 204, 234)',
 				width: this.props.width,
 				textAlign: 'left',
 				float: 'right',

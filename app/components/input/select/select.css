@@ -1,11 +1,7 @@
-.select-option {
-    background: red;
-}
 
 .select-field {
 	font-weight: 600;
 }
-
 
 .select-field-options {
 	background: rgba(186, 204, 234, 0.3);
@@ -13,13 +9,16 @@
 	cursor: pointer;
 }
 
-.select-field-item:active {
-	background: rgba(204,88,0, 0.16);
-	border:solid 2px black;
+.Select-option {
+	box-sizing: border-box;
+	background-color: #fff;
+	color: #666666;
+	cursor: pointer;
+	display: block;
+	padding: 8px 10px;
 }
 
-
-.select-field-options option {
-	background: rgba(204,88,0, 0.16);
-	
+.Select-option.is-focused {
+	background: rgba(204,88,0, 0.16); 
+	color: #333;
 }

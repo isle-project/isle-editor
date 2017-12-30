@@ -7,19 +7,63 @@
 
 .text-inline-input {
 	border: solid 1px darkgrey;
-	background: white;
 	text-align: left;
 	display: inline;
 	padding-left: 3px;
 	padding-right: 3px;
+
+	background: rgba(186, 204, 234, 0.3);
+	border: solid 1px darkgrey;
+	border-radius: 2px;
+	text-align: left;
+	font-weight: 600;
+	font-size: 16px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	color: rgb(92,92,92);
+	box-shadow: inset 1px 1px 4px  rgba(186, 204, 234, 1);
+	border: solid 1px darkgrey;
+	border-radius: 2px;
+	text-align: left;
+	font-weight: 600;
+	font-size: 16px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	color: rgb(92,92,92);
+	box-shadow: inset 1px 1px 4px  rgba(186, 204, 234, 1);
+
+	min-width: 120px;
+
 }
 
 .text-input {
 	margin-right: 8px;
-	padding-left: 16px;
+	padding-left: 8px;
 	padding-right: 4px;
 	border: solid 1px darkgrey;
 	background: white;
+
+	background: rgba(186, 204, 234, 0.3);
+	border: solid 1px darkgrey;
+	font-weight: 600;
+	font-size: 14px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	color: rgb(92,92,92);
+	box-shadow: inset 1px 1px 4px  rgba(186, 204, 234, 1);
+	min-width: 120px;
 	text-align: left;
 	float: right;
+	
+}
+
+.text-inline-input:focus {
+    background: rgba(204,88,0, 0.16);
+    box-shadow: none
+}
+
+
+.text-input:focus {
+    background: rgba(204,88,0, 0.16);
+    box-shadow: none
 }

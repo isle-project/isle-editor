@@ -92,7 +92,7 @@ class TextInput extends Input {
 		}
 		return (
 			<div className="text-container-div" >
-				<span style={{ marginLeft: '8px' }}>
+				<span>
 					<label>{this.props.legend}:</label>
 					{ this.props.description ?
 						<span> {this.props.description}</span> :

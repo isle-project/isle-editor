@@ -1,10 +1,4 @@
-.slider-outer-div {
-	margin-bottom: 4px;
-	margin-top: 4px;
-	clear: both;
-}
-
-.slider-number-input {
+.number-number-input {
 	width: 80px;
 	margin-right: 8px;
 	margin-bottom: 4px;
@@ -17,24 +11,15 @@
 	font-weight: 600;
 	font-size: 16px;
 	padding-top: 4px;
-	padding-bottom: 2px;
 	color: rgb(92,92,92);
 	box-shadow: inset 1px 1px 4px  rgba(186, 204, 234, 1);
 }
 
-.slider-number-input:hover{
+.number-number-input:hover{
 	background: rgba(186, 204, 234, 0.65);
 }
 
-.slider-number-input:focus {
+.number-number-input:focus {
     background: rgba(204,88,0, 0.16);
     box-shadow: none
-}
-
-
-
-.slider-range-input {
-	margin-bottom: 4px;
-	margin-left: 8px;
-	margin-right: 8px;
 }

@@ -9,8 +9,8 @@ import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import Input from 'components/input/base';
 import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 import './select.css';
-import './react-select.css';
 
 
 // VARIABLES //
