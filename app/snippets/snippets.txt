@@ -65,8 +65,8 @@ snippet DraggableList
 		}}
 	/>
 
-snippet Editor
-	<Editor ${1:voiceControl} />
+snippet MarkdownEditor
+	<MarkdownEditor ${1:voiceControl} />
 
 snippet Expire
 	<Expire delay={${1:1000}}>
@@ -146,7 +146,7 @@ snippet NumberInput
 	/>
 
 snippet NumberQuestion
-	<NumberQuestion 
+	<NumberQuestion
 		question="${1:}"
 		${2:}
 	/>
@@ -163,7 +163,7 @@ snippet Panel
 	</Panel>
 
 snippet Playground
-	<Playground 
+	<Playground
 		code={`${1:}`}
 		scope={{
 			${2:}
