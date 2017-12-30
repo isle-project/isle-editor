@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ControlLabel, Form, FormControl, FormGroup } from 'react-bootstrap';
+import { ControlLabel, Form, FormControl, FormGroup, Panel } from 'react-bootstrap';
 
 
 // MAIN //
@@ -78,26 +78,28 @@ class SelectQuestion extends Component {
 			);
 		}
 		return (
-			<Form>
-				<FormGroup controlId="formControlsSelect" validationState={this.state.answerState}>
-					{ this.props.legend ?
-						<ControlLabel>{this.props.legend}</ControlLabel> :
-						null
-					}
-					<FormControl
-						value={this.state.value}
-						defaultValue={this.props.defaultValue}
-						componentClass="select"
-						placeholder="select"
-						onChange={this.handleChange}
+			<Panel className="select-question">
+				<Form>
+					<FormGroup controlId="formControlsSelect" validationState={this.state.answerState}>
+						{ this.props.question ?
+							<ControlLabel>{this.props.question}</ControlLabel> :
+							null
+						}
+						<FormControl
+							value={this.state.value}
+							defaultValue={this.props.defaultValue}
+							componentClass="select"
+							placeholder="select"
+							onChange={this.handleChange}
 
-					>
-						{this.props.options.map( ( e, idx ) => {
-							return <option key={idx} value={e}>{e}</option>;
-						})}
-					</FormControl>
-				</FormGroup>
-			</Form>
+						>
+							{this.props.options.map( ( e, idx ) => {
+								return <option key={idx} value={e}>{e}</option>;
+							})}
+						</FormControl>
+					</FormGroup>
+				</Form>
+			</Panel>
 		);
 	}
 }
@@ -109,7 +111,7 @@ SelectQuestion.defaultProps = {
 	onChange() {},
 	defaultValue: '',
 	inline: false,
-	legend: '',
+	question: '',
 	successMsg: 'That\'s the correct answer!',
 	failureMsg: 'Not quite, try again!'
 };
@@ -121,9 +123,9 @@ SelectQuestion.propTypes = {
 	defaultValue: PropTypes.string,
 	failureMsg: PropTypes.string,
 	inline: PropTypes.bool,
-	legend: PropTypes.string,
 	onChange: PropTypes.func,
 	options: PropTypes.array.isRequired,
+	question: PropTypes.string,
 	solution: PropTypes.string.isRequired,
 	successMsg: PropTypes.string
 };
