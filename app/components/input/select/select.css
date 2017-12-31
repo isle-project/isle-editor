@@ -22,3 +22,18 @@
 	background: rgba(204,88,0, 0.16); 
 	color: #333;
 }
+
+
+.Select-option.is-selected {
+	background-color: #f5faff;
+	/* Fallback color for IE 8 */
+	background-color: rgba(0, 126, 255, 0.04);
+	color: #333;
+  }
+
+
+.Select-value {
+	background: rgba(186, 204, 234, 0.3);
+  }
+
+
