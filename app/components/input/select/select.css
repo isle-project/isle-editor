@@ -9,6 +9,11 @@
 	cursor: pointer;
 }
 
+.select-field:hover {
+	box-shadow: 0 0 4px rgb(60,60,60);
+}
+
+
 .Select-option {
 	box-sizing: border-box;
 	background-color: #fff;
