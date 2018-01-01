@@ -1,6 +1,6 @@
 .voice-input {
 	height: 36px;
-	border:solid 1px rgb(90,90,90);
+	border:solid 1px rgb(150,150,150);
 	margin-bottom: 20px;
 	background: white;
 }
@@ -9,8 +9,12 @@
 	box-shadow: 0 0 4px rgb(60,60,60);
 }
 
-voice-input svg {
-	opacity: 0.4;
+.voice-input-text .recording {
+	background: rgba(204,88,0, 0.16); 
+}
+
+.voice-input svg {
+	opacity: 0.7;
 }
 
 .voice-input-text {
