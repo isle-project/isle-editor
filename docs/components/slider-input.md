@@ -16,8 +16,6 @@ A slider input component. Usually, this will be used as part of an [ISLE dashboa
 
 [Open interactive preview](https://isle.heinz.cmu.edu/components/slider-input/)
 
-#### Options:
-
 #### Options
 * __legend__: The `string` caption of the input. For example, if one wishes to use a slider input to capture age, the `legend` would be "Age". Default: `''`.
 * __defaultValue__: The value the slider is initialized with. Default: `10`.
