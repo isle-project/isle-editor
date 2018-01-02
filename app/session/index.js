@@ -713,6 +713,14 @@ class Session {
 			rejectUnauthorized
 		}, ( err, res ) => {
 			if ( !err ) {
+				if ( res.statusCode !== 200 ) {
+					return this.addNotification({
+						title: 'User not created',
+						message: res.body,
+						level: 'error',
+						position: 'tl'
+					});
+				}
 				this.addNotification({
 					title: 'User created',
 					message: 'You have successfully signed up.',
