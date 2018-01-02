@@ -821,22 +821,29 @@ class Session {
 				email
 			},
 			rejectUnauthorized
-		}, ( error ) => {
+		}, ( error, res ) => {
 			if ( error ) {
-				this.addNotification({
+				return this.addNotification({
 					title: 'New Password',
 					message: error.message,
 					level: 'error',
 					position: 'tl'
 				});
-			} else {
-				this.addNotification({
+			}
+			if ( res.statusCode >= 400 ) {
+				return this.props.addNotification({
 					title: 'New Password',
-					message: 'Check your email inbox for a link to choose a new password.',
-					level: 'success',
+					message: res.body,
+					level: 'error',
 					position: 'tl'
 				});
 			}
+			this.addNotification({
+				title: 'New Password',
+				message: 'Check your email inbox for a link to choose a new password.',
+				level: 'success',
+				position: 'tl'
+			});
 		});
 	}
 
