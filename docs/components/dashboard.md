@@ -1,8 +1,5 @@
 # Dashboard
 
-
-
-
 #### Example:
 
 ``` js
