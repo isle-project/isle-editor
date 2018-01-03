@@ -7,3 +7,5 @@ By default, only Markdown at the top-level will be processed. In case you wish t
 ``` js
 <Text>*Markdown* formatted text comes here...</Text>
 ```
+
+[Open Formatting Guide](http://isle.heinz.cmu.edu/components/text-input/)
