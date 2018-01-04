@@ -1,5 +1,4 @@
 # Data Explorer
-<<<<<<< HEAD
 
 This component is used by students to briefly summarize data as it is presented and perform various statistical tests. This component may be used as a standalone feature in a lesson. 
 
