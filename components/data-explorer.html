@@ -1690,6 +1690,133 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="data-explorer">Data Explorer</h1>
+<p>This component is used by students to briefly summarize data as it is presented and perform various statistical tests. This component may be used as a standalone feature in a lesson. </p>
+<h4 id="example">Example</h4>
+<p>In creating a data explorer, one needs a <em>.json dataset. This step may be accomplished by including the following in the header of a </em>.isle file:</p>
+<pre class="language-"><code class="lang-js">require<span class="token punctuation">:</span>
+    dataName<span class="token punctuation">:</span> <span class="token string">&quot;./dataName.json&quot;</span>
+</code></pre>
+<p>Consider a dataset called &quot;heartdisease&quot; with the following variables:</p>
+<ul>
+<li><strong>Gender</strong>: <em>Categorical</em></li>
+<li><strong>Drugs</strong>: <em>Categorical</em></li>
+<li><strong>Complications</strong>: <em>Categorical</em></li>
+<li><strong>Cost</strong>: <em>Continuous</em></li>
+<li><strong>Age</strong>: <em>Continuous</em></li>
+<li><strong>Interventions</strong>: <em>Continuous</em></li>
+<li><strong>ERVisit</strong>: <em>Continuous</em></li>
+<li><em>_Comorbidities: _Continuous</em></li>
+<li><strong>Duration</strong>: <em>Continuous</em></li>
+</ul>
+<p>We will include the explorer with the following code:</p>
+<p>``` js, eval=FALSE</p>
+<p><dataexplorer id="heartdisease" data="{heartdisease}" categorical="{[&apos;Gender&apos;,&apos;Drugs&apos;,&apos;Complications&apos;]}" continuous="{[&apos;Cost&apos;,&apos;Age&apos;,&apos;Interventions&apos;,&apos;ERVisit&apos;,&apos;Comorbidities&apos;,&apos;Duration&apos;]}" tests="{[]}"></dataexplorer></p>
+<pre class="language-"><code>
+[Open interactive preview](https://isle.heinz.cmu.edu/components/data-explorer/)
+
+#### Options
+
+* __data__: The name of the .json dataset that will be used in the explorer
+* __onSelect__: A function to be passed.
+* __tabs__: An array containing additional tabs to be used in the display interface. Each entry in the array will include a string &apos;title&apos; and content. For example, if one wishes to add an additional tab with a text content of &quot;A Note&quot;, the following code would be used: ```tabs={[ {title: &apos;Note&apos;, content: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>A Note<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>} ]}
+</code></pre><ul>
+<li><strong>Questions</strong>: Questions to be asked of the dataset. May also be embedded in a question object independent of the data explorer apparatus.</li>
+<li><strong>transformer</strong>: A bool value indicating whether a transformation is to be applied to a variable.</li>
+<li><strong>statistics</strong>: Relevant statistical operations that can be applied to data, such as &quot;mean&quot; or &quot;correlation&quot;. The following operations are enabled by default:
+-- Mean
+-- Median
+-- Min
+-- Max
+-- Interquartile Range
+-- Standard Deviation
+-- Variance
+-- Correlation</li>
+<li><strong>plots</strong>: Specification of which plots may be produced by the explorer. The following may be used and are enabled by default:
+-- Bar Chart
+-- Pie Chart
+-- Histogram
+-- Box Plot
+-- Scatterplot
+-- Heat Map
+-- Mosaic Plot</li>
+<li><strong>tables</strong>: Two-way tables that may be compiled from the data. One maty choose either (or both) of the following options: Frequency Table, Contingency Table</li>
+<li><strong>tests</strong>: Statistical tests that may be applied to the data. Must be some combination of the following, all of which are enabled by default:
+-- One-Sample Mean Test
+-- One-Sample Proportion Test
+-- Two-Sample Mean Test
+-- Two-Sample Proportion Test
+-- Correlation Test
+-- Chi-squared Independence Test
+-- One-Way ANOVA</li>
+<li><strong>models</strong>: Modelling paradigms to be used in creating models from the variables presented. Currently this functionality is limited to &quot;Simple Linear Regression&quot; (which is enabled by default), yet will be extended in the future.</li>
+<li><strong>categorical</strong>: An array of string variables that represent the categorical variables in a dataset.</li>
+<li><strong>continuous</strong>: An array of string variables that represent the continuous variables in a dataset.</li>
+<li><strong>distributions</strong>: Distributions that may be used in calculating probabilities. This functionality exists independently of the dataset provided. Currently limited to normal, uniform and exponential distributions.</li>
+</ul>
+<h4 id="default-options">Default Options</h4>
+<pre class="language-"><code class="lang-js">DataExplorer<span class="token punctuation">.</span>defaultProps <span class="token operator">=</span> <span class="token punctuation">{</span>
+    data<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function">onSelect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    tabs<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    questions<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+    transformer<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    statistics<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">&apos;Mean&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Median&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Min&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Max&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Range&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Interquartile Range&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Standard Deviation&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Variance&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Correlation&apos;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    plots<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">&apos;Bar Chart&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Pie Chart&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Histogram&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Box Plot&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Scatterplot&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Heat Map&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Mosaic Plot&apos;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    tables<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">&apos;Frequency Table&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Contingency Table&apos;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    tests<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">&apos;One-Sample Mean Test&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;One-Sample Proportion Test&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Two-Sample Mean Test&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Two-Sample Proportion Test&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Correlation Test&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;Chi-squared Independence Test&apos;</span><span class="token punctuation">,</span>
+        <span class="token string">&apos;One-Way ANOVA&apos;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    models<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">&apos;Simple Linear Regression&apos;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    categorical<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    continuous<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    distributions<span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token string">&apos;Normal&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Uniform&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Exponential&apos;</span> <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>=======</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>06a8573d9a1452cb3fbcbefb69418f126718d441</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 
                                 
                                 </section>
@@ -1733,7 +1860,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Data Explorer","level":"1.4.2","depth":2,"next":{"title":"Data Table","level":"1.4.3","depth":2,"path":"components/data-table.md","ref":"components/data-table.md","articles":[]},"previous":{"title":"Dashboard","level":"1.4.1","depth":2,"path":"components/dashboard.md","ref":"components/dashboard.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","edit-link","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":2},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/data-explorer.md","mtime":"2017-12-30T12:47:25.395Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-30T16:53:32.587Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Data Explorer","level":"1.4.2","depth":2,"next":{"title":"Data Table","level":"1.4.3","depth":2,"path":"components/data-table.md","ref":"components/data-table.md","articles":[]},"previous":{"title":"Dashboard","level":"1.4.1","depth":2,"path":"components/dashboard.md","ref":"components/dashboard.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","edit-link","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":2},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/data-explorer.md","mtime":"2018-01-04T16:19:35.543Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-01-04T16:20:11.160Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
