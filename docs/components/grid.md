@@ -1,6 +1,6 @@
 # Grid
 
-ISLE uses the [react-bootstrap](https://react-bootstrap.github.io) grid system, see the associated [documentation](https://react-bootstrap.github.io/components.html#grid). The only difference is that the `Col` component is exported as `Column` in ISLE.
+ISLE uses the [react-bootstrap](https://react-bootstrap.github.io) grid system, see the associated [documentation](https://react-bootstrap.github.io/components.html#grid). The only difference is that the `Col` component is exported as `Col` in ISLE.
 
 #### Example
 
