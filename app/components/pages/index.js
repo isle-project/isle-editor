@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import { Pagination } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import papply from '@stdlib/utils/papply';
+import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import './pages.css';
 
 
@@ -16,14 +18,14 @@ class Pages extends Component {
 		};
 	}
 
-	handleSelect = ( eventKey ) => {
-		this.props.onSelect( eventKey );
+	firstPage = () => {
+		this.props.onSelect( 1 );
 		this.setState({
-			activePage: eventKey
+			activePage: 1
 		});
 	}
 
-	nextPage() {
+	nextPage = () => {
 		const nPages = this.props.children.length || 1;
 		if ( this.state.activePage === nPages ) {
 			return this.props.onSelect( this.state.activePage );
@@ -34,7 +36,7 @@ class Pages extends Component {
 		});
 	}
 
-	prevPage() {
+	prevPage = () => {
 		if ( this.state.activePage === 1 ) {
 			return this.props.onSelect( this.state.activePage );
 		}
@@ -44,7 +46,14 @@ class Pages extends Component {
 		});
 	}
 
-	jumpTo( page ) {
+	lastPage = () => {
+		this.props.onSelect( this.props.children.length );
+		this.setState({
+			activePage: this.props.children.length
+		});
+	}
+
+	jumpTo = ( page ) => {
 		const nPages = this.props.children.length || 1;
 		if ( page < 1 || page > nPages ) {
 			return this.props.onSelect( this.state.activePage );
@@ -62,27 +71,43 @@ class Pages extends Component {
 		const header = <div className="panel-heading">
 			<h3 className="panel-title">{this.props.title}</h3>
 		</div>;
+		const items = [];
+		for ( let i = 1; i <= this.props.children.length; i++) {
+			if ( absdiff( i, this.state.activePage ) > 3 ) {
+				continue;
+			}
+			if ( absdiff( i, this.state.activePage ) === 3 ) {
+				items.push( <Pagination.Ellipsis /> );
+				continue;
+			}
+			items.push(
+				<Pagination.Item
+					active={i === this.state.activePage}
+					onClick={papply( this.jumpTo, i )}
+				>
+					{i}
+				</Pagination.Item>
+			);
+		}
 		return (
 			<div
 				className="panel panel-default page"
 			>
 				{ this.props.title ? header : null }
 				<Pagination className="my-pagination"
-					prev next first last
 					bsSize="medium"
 					maxButtons={4}
 					items={this.props.children.length || 1}
 					activePage={this.state.activePage}
-					onSelect={this.handleSelect}
-				/>
+				>
+					<Pagination.First onClick={this.firstPage} />
+					<Pagination.Prev onClick={this.prevPage} />
+					{items}
+					<Pagination.Next onClick={this.nextPage} />
+					<Pagination.Last onClick={this.lastPage} />
+				</Pagination>
 				<div className="page-children-wrapper" style={{
-					height: this.props.height,
-					overflowY: 'scroll',
-					padding: '5px',
-					borderWidth: '1px 0px 0px 0px',
-					borderColor: 'transparent',
-					borderStyle: 'solid',
-					background: 'transparent'
+					height: this.props.height
 				}}>
 					{this.props.children[ this.state.activePage-1 ] || this.props.children}
 				</div>

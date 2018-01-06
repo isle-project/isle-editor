@@ -12,3 +12,12 @@
 	padding-left: 15px;
 	font-weight: 600;
 }
+
+.page-children-wrapper {
+	overflow-y: scroll;
+	padding: 5px;
+	border-width: 1px 0px 0px 0px;
+	border-color: transparent;
+	border-style: solid;
+	background: transparent;
+}
