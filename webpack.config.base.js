@@ -35,10 +35,11 @@ export default {
 			use: 'raw-loader'
 		},
 		{
-			test: /\.svg$/i,
-			use: {
-				loader: 'svg-react-loader'
-			}
+			test: /\.css$/,
+			use: [
+				'style-loader',
+				'css-loader?sourceMap'
+			]
 		},
 		{
 			test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,

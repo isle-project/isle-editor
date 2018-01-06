@@ -27,11 +27,10 @@ const config = {
 		rules: [
 			...baseConfig.module.rules,
 			{
-				test: /\.css$/,
-				use: [
-					'style-loader',
-					'css-loader?sourceMap'
-				]
+				test: /\.svg$/i,
+				use: {
+					loader: 'svg-react-loader'
+				}
 			}
 		]
 	},

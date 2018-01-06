@@ -3,7 +3,7 @@
 // For babel-plugin-webpack-loaders...
 require( 'babel-register' );
 const path = require( 'path' );
-const devConfigs = require( './webpack.config.development' );
+const baseConfigs = require( './webpack.config.base.js' );
 
 
 // EXPORTS //
@@ -13,7 +13,16 @@ module.exports = {
 		libraryTarget: 'commonjs2'
 	},
 	module: {
-		loaders: devConfigs.module.rules.slice( 1 ) // Remove babel-loader
+		rules: [
+			...baseConfigs.module.rules.
+			slice( 1 ), // Remove babel-loader
+			{
+				test: /\.svg$/i,
+				use: {
+					loader: 'null-loader'
+				}
+			}
+		]
 	},
 	resolve: {
 		modules: [

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import logger from 'debug';
 import Input from 'components/input/base';
-import Microphone from '-!svg-react-loader!./../../../img/microphone.svg';
+import Microphone from './microphone.js';
 import './voice.css';
 
 
