@@ -132,7 +132,7 @@ test( 'when clicked, the component jumps to the chosen page', t => {
 	</Pages>
 	);
 	const pagination = wrapper.find( '.my-pagination' ).first();
-	const listItems = pagination.find( 'span' );
+	const listItems = pagination.find( 'li' );
 
 	const lastPageButton = listItems.last();
 	const nextPageButton = listItems.at( listItems.length - 1 );
