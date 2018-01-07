@@ -2,9 +2,11 @@
 
 import test from 'tape';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow, configure } from 'enzyme';
 import Wikipedia from 'components/wikipedia';
+import Adapter from 'enzyme-adapter-react-16';
 
+configure({ adapter: new Adapter() });
 
 // TESTS //
 
@@ -25,3 +27,28 @@ test( 'the component renders the speech recognition element', t => {
 	t.strictEqual( div.find( 'mike' ).length, 0, 'expected className mike' );
 	t.end();
 });
+
+
+test( 'the component triggers the wikipedia search externally', t => {
+	const div = shallow( <Wikipedia
+		language="de-DE"
+		showSearch /> );
+	div.instance().trigger('Was weißt du über Angela Merkel');
+	t.end();
+});
+
+test( 'the component returns the default language', t => {
+	const wrapper = shallow( <Wikipedia
+		showSearch /> );
+	t.strictEqual( wrapper.instance().props.language, 'en-US', 'expected default language' );
+	t.end();
+});
+
+
+/*
+test( 'the component renders the logo', t => {
+	const wrapper = mount( <Wikipedia
+		showSearch /> );
+	t.end();
+});
+*/
