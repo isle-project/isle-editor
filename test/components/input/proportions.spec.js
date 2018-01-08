@@ -51,3 +51,13 @@ test( 'the component renders the given legends', t => {
 
 	t.end();
 });
+
+
+test( 'the component renders NumberInputs', t => {
+	const wrapper = render( <Proportions
+		nElements={4} /> );
+
+	const input = wrapper.find( 'input' );
+	t.ok( input.length, 4, 'renders the expected number of NumberInputs' );
+	t.end();
+});
