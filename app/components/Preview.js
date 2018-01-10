@@ -244,7 +244,7 @@ export default class Preview extends Component {
 				render() {
 					return (
 						<div id="Lesson" className="Lesson" >
-							<div>${code}</div>
+							<React.Fragment>${code}</React.Fragment>
 							<NotificationSystem
 								ref={ ( div ) => this.notificationSystem = div }
 								allowHTML={true}
