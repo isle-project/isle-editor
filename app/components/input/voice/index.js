@@ -81,32 +81,36 @@ class VoiceInput extends Input {
 
 	start() {
 		this.recognizer = null;
-		var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition; //eslint-disable-line
-		const recognizer = new SpeechRecognition();
-		recognizer.lang = this.props.language;
-		recognizer.continuous = true;
-		recognizer.interimResults = true;
-		this.recognizer = recognizer;
-		this.recognizer.grammars = this.createGrammarList();
+		var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; //eslint-disable-line
+		if ( SpeechRecognition ) {
+			const recognizer = new SpeechRecognition();
+			recognizer.lang = this.props.language;
+			recognizer.continuous = true;
+			recognizer.interimResults = true;
+			this.recognizer = recognizer;
+			this.recognizer.grammars = this.createGrammarList();
 
-		this.recognizer.onerror = () => {
-			this.setState({
-				isRecording: false
-			});
-		};
+			this.recognizer.onerror = () => {
+				this.setState({
+					isRecording: false
+				});
+			};
 
-		this.recognizer.onend = () => {
-			debug('onend: %s', this.props.id );
-			this.props.onRecordingStop();
-		};
+			this.recognizer.onend = () => {
+				debug('onend: %s', this.props.id );
+				this.props.onRecordingStop();
+			};
 
-		this.recognizer.onstart = () => {
-			debug('onstart: %s', this.props.id );
-			this.props.onRecordingStart();
-		};
+			this.recognizer.onstart = () => {
+				debug('onstart: %s', this.props.id );
+				this.props.onRecordingStart();
+			};
 
-		recognizer.onresult = this.onResult;
-		recognizer.start();
+			recognizer.onresult = this.onResult;
+			recognizer.start();
+		}
+
+		console.log('set recording true');
 		this.setState({
 			isRecording: true
 		});
@@ -114,7 +118,10 @@ class VoiceInput extends Input {
 
 
 	stop = () => {
-		this.recognizer.stop();
+		if ( this.recognizer ) {
+			this.recognizer.stop();
+		}
+
 		this.setState({
 			isRecording: false
 		});
