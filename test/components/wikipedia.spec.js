@@ -2,11 +2,10 @@
 
 import test from 'tape';
 import React from 'react';
-import { mount, shallow, configure } from 'enzyme';
+import { shallow } from 'enzyme';
 import Wikipedia from 'components/wikipedia';
-import Adapter from 'enzyme-adapter-react-16';
+import VoiceInput from 'components/input/voice';
 
-configure({ adapter: new Adapter() });
 
 // TESTS //
 
@@ -45,10 +44,10 @@ test( 'the component returns the default language', t => {
 });
 
 
-/*
-test( 'the component renders the logo', t => {
-	const wrapper = mount( <Wikipedia
+test( 'the component renders the VoiceInput', t => {
+	const wrapper = shallow( <Wikipedia
 		showSearch /> );
+	const no = wrapper.find( VoiceInput );
+	t.equal( no.length, 1, 'length is equal to one' );
 	t.end();
 });
-*/
