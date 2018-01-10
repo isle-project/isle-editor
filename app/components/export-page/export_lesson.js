@@ -98,8 +98,10 @@ class ExportLesson extends Component {
 		}
 		return ( <Panel bsStyle="success">
 			<Panel.Heading>
-				<h3>App successfully exported!</h3>
-				</Panel.Heading>
+				<Panel.Title componentClass="h3">
+					App successfully exported!
+				</Panel.Title>
+			</Panel.Heading>
 			<Panel.Body>
 				<ButtonToolbar style={{ position: 'relative', margin: 'auto' }} >
 					<Button style={{ float: 'left' }} bsStyle="primary" onClick={this.openFolder}>Open containing folder</Button>
@@ -115,7 +117,9 @@ class ExportLesson extends Component {
 		}
 		return ( <Panel bsStyle="danger">
 			<Panel.Heading>
-				<h3>Directory already exists.</h3>
+				<Panel.Title componentClass="h3">
+					Directory already exists.
+				</Panel.Title>
 			</Panel.Heading>
 			<Panel.Body>
 				<p>A directory with the chosen name already exists. Please pick a different name.</p>
@@ -127,7 +131,9 @@ class ExportLesson extends Component {
 		return (
 			<Panel bsStyle="primary">
 				<Panel.Heading>
-					Export Lesson
+					<Panel.Title componentClass="h1">
+						Export Lesson
+					</Panel.Title>
 				</Panel.Heading>
 				<Panel.Body>
 					<p>Package and export the currently opened lesson into a single-page application viewable in any web-browser.</p>

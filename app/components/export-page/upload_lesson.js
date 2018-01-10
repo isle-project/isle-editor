@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ControlLabel, Form, FormControl,
 	FormGroup, Modal, Panel } from 'react-bootstrap';
@@ -178,7 +178,7 @@ class UploadLesson extends Component {
 
 	checkLesson = () => {
 		const qs = {
-			namespace: this.state.namespaceName,
+			namespaceName: this.state.namespaceName,
 			lessonName: this.state.lessonName
 		};
 		debug( 'Querystring: '+JSON.stringify(qs) );
@@ -189,12 +189,15 @@ class UploadLesson extends Component {
 			if ( err ) {
 				return err;
 			}
-			body = JSON.parse( body );
-			if ( body.lesson ) {
-				this.setState({
-					showConfirmModal: true
-				});
+			if ( res.statusCode === 200 ) {
+				body = JSON.parse( body );
+				if ( body.lesson ) {
+					this.setState({
+						showConfirmModal: true
+					});
+				}
 			} else {
+				// Lesson does not exist:
 				this.publishLesson();
 			}
 		});
@@ -219,13 +222,53 @@ class UploadLesson extends Component {
 		});
 	}
 
-	render() {
+	renderModals = () => {
 		return (
-			<div>
-				<Panel header={<h1>Upload Lesson</h1>} bsStyle="primary">
+			<Fragment>
+				<Modal show={this.state.showResponseModal} onHide={this.closeResponseModal}>
+				<Modal.Header closeButton>
+					<Modal.Title>Server Response</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					{this.state.modalMessage}
+				</Modal.Body>
+				<Modal.Footer>
+					<Button onClick={this.closeResponseModal}>Close</Button>
+				</Modal.Footer>
+				</Modal>
+				<Modal show={this.state.showConfirmModal}>
+					<Modal.Header>
+						<Modal.Title>Overwrite Lesson?</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						A lesson with the name {this.state.lessonName} is already present in the namespace. Please confirm that you wish to overwrite the lesson or cancel the upload procedure and choose a different name.
+					</Modal.Body>
+					<Modal.Footer>
+						<Button onClick={this.closeConfirmModal}>Cancel</Button>
+						<Button bsStyle="warning" onClick={() => {
+							this.publishLesson();
+							this.setState({
+								showConfirmModal: false
+							});
+						}}>Overwrite</Button>
+					</Modal.Footer>
+				</Modal>
+			</Fragment>
+		);
+	}
+
+	renderUploadPanel = () => {
+		return (
+			<Panel bsStyle="primary">
+				<Panel.Heading>
+					<Panel.Title componentClass="h1">
+						Upload Lesson
+					</Panel.Title>
+				</Panel.Heading>
+				<Panel.Body>
 					<p>Upload and deploy lessons directly to ISLE server.</p>
 					{ this.state.token ?
-						<div>
+						<Fragment>
 							<Form>
 								<FormGroup>
 									<ControlLabel>Select Course</ControlLabel>
@@ -272,41 +315,22 @@ class UploadLesson extends Component {
 							</Form>
 							<br />
 							<Spinner width={128} height={64} running={this.state.spinning} />
-						</div>:
+						</Fragment>:
 						<Panel bsStyle="warning">
 							You need to connect the ISLE editor to an ISLE server under settings before you can upload lessons.
 						</Panel>
 					}
-				</Panel>
-				<Modal show={this.state.showResponseModal} onHide={this.closeResponseModal}>
-					<Modal.Header closeButton>
-						<Modal.Title>Server Response</Modal.Title>
-					</Modal.Header>
-					<Modal.Body>
-						{this.state.modalMessage}
-					</Modal.Body>
-					<Modal.Footer>
-						<Button onClick={this.closeResponseModal}>Close</Button>
-					</Modal.Footer>
-				</Modal>
-				<Modal show={this.state.showConfirmModal}>
-					<Modal.Header>
-						<Modal.Title>Overwrite Lesson?</Modal.Title>
-					</Modal.Header>
-					<Modal.Body>
-						A lesson with the name {this.state.lessonName} is already present in the namespace. Please confirm that you wish to overwrite the lesson or cancel the upload procedure and choose a different name.
-					</Modal.Body>
-					<Modal.Footer>
-						<Button onClick={this.closeConfirmModal}>Cancel</Button>
-						<Button bsStyle="warning" onClick={() => {
-							this.publishLesson();
-							this.setState({
-								showConfirmModal: false
-							});
-						}}>Overwrite</Button>
-					</Modal.Footer>
-				</Modal>
-			</div>
+				</Panel.Body>
+			</Panel>
+		);
+	}
+
+	render() {
+		return (
+			<Fragment>
+				{this.renderUploadPanel()}
+				{this.renderModals()}
+			</Fragment>
 		);
 	}
 }
