@@ -133,3 +133,16 @@ test( 'the component updates the value after the user has changed the input', t 
 	t.strictEqual( wrapper.instance().state.value, 'Lion', 'gets expected value' );
 	t.end();
 });
+
+
+test( 'the component updates the value after the user has press the return button', t => {
+	const wrapper = mount( <VoiceInput
+		mode="full"
+		/> );
+
+	wrapper.find( '.voice-input-text' ).simulate('change', {target: {value: 'Lion'}});
+	wrapper.find( '.voice-input-text' ).simulate('keydown', {keyCode: 13 });
+	t.strictEqual( wrapper.instance().state.value, 'Lion', 'gets expected value' );
+	wrapper.find( '.voice-input-text' ).simulate('keydown', {keyCode: 77 });
+	t.end();
+});
