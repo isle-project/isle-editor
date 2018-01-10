@@ -24,5 +24,6 @@ A voice input component. Usually, this will be used as part of an [ISLE dashboar
 * __onSegment__: Callback `function` invoked after a small text portion has been recorded: `null`.
 * __onRecordingStart__: Callback `function` invoked after the start of the recording: `null`.
 * __onRecordingStop__: Callback `function` invoked after the recording has been stopped: `null`.
+* __onSubmit__: Callback `function` invoked after the user has submitted the text input: `null`.
 * __timeout__: `number` of milliseconds (silence) after which the recording is stopped. Default: `500`.
 * __width__: width of the text input field in pixels. Default: `80`.

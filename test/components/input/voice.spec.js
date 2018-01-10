@@ -123,3 +123,13 @@ test( 'the component starts and stops recording (in status mode)', t => {
 	t.strictEqual( wrapper.instance().state.isRecording, false, 'isRecording is false' );
 	t.end();
 });
+
+test( 'the component updates the value after the user has changed the input', t => {
+	const wrapper = mount( <VoiceInput
+		mode="full"
+		/> );
+
+	wrapper.find( '.voice-input-text' ).simulate('change', {target: {value: 'Lion'}});
+	t.strictEqual( wrapper.instance().state.value, 'Lion', 'gets expected value' );
+	t.end();
+});
