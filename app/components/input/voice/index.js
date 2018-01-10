@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import logger from 'debug';
@@ -194,47 +194,54 @@ class VoiceInput extends Input {
 		switch ( this.props.mode ) {
 		case 'full':
 			return (
-				<div className="voice-input" style={{ width: this.props.width, ...this.props.style }} >
-					{ this.props.legend ? <label>{this.props.legend}:</label> : <span /> }
-					<input
-						className="voice-input-text"
-						type="text"
-						onKeyDown={this.handleKeyDown}
-						onChange={this.handleChange}
-						placeholder={this.props.placeholder}
-						value={this.state.value}
-						ref={( input ) => {
-							this.textInput = input;
-						}}
-					/>
-					<OverlayTrigger placement="bottom" overlay={this.renderTooltip()}>
-						<Microphone onClick={this.handleClick} className={mike} />
-					</OverlayTrigger>
-				</div>
+				<Fragment>
+					{ this.props.legend ? <label>{this.props.legend}</label> : null }
+					<div className="voice-input" style={{ width: this.props.width, ...this.props.style }} >
+						<input
+							className="voice-input-text"
+							type="text"
+							onKeyDown={this.handleKeyDown}
+							onChange={this.handleChange}
+							placeholder={this.props.placeholder}
+							value={this.state.value}
+							ref={( input ) => {
+								this.textInput = input;
+							}}
+						/>
+						<OverlayTrigger placement="bottom" overlay={this.renderTooltip()}>
+							<Microphone onClick={this.handleClick} className={mike} />
+						</OverlayTrigger>
+					</div>
+				</Fragment>
 			);
 
 		case 'status':
 			return (
-				<div className="voice-input-status-text" style={{ width: this.props.width, ...this.props.style }} >
-					{ this.props.legend ? <label>{this.props.legend}:</label> : <span /> }
-					<div
-						className="voice-input-status"
-					>
-						{this.state.value}
+				<Fragment>
+					{ this.props.legend ? <label>{this.props.legend}</label> : null }
+					<div className="voice-input-status-text" style={{ width: this.props.width, ...this.props.style }} >
+						<div
+							className="voice-input-status"
+						>
+							{this.state.value}
+						</div>
+						<OverlayTrigger placement="bottom" overlay={this.renderTooltip()}>
+							<Microphone onClick={this.handleClick} className={mike} />
+						</OverlayTrigger>
 					</div>
-					<OverlayTrigger placement="bottom" overlay={this.renderTooltip()}>
-						<Microphone onClick={this.handleClick} className={mike} />
-					</OverlayTrigger>
-				</div>
+				</Fragment>
 			);
 
 		case 'microphone':
 			return (
-				<div className="voice-solo-microphone">
-					<OverlayTrigger placement="bottom" overlay={this.renderTooltip()}>
-						<Microphone onClick={this.handleClick} className={mike} />
-					</OverlayTrigger>
-				</div>
+				<Fragment>
+					{ this.props.legend ? <label>{this.props.legend}</label> : null }
+					<div className="voice-solo-microphone">
+						<OverlayTrigger placement="bottom" overlay={this.renderTooltip()}>
+							<Microphone onClick={this.handleClick} className={mike} />
+						</OverlayTrigger>
+					</div>
+				</Fragment>
 			);
 
 		case 'none':
