@@ -2,7 +2,7 @@
 
 import test from 'tape';
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Proportions from 'components/input/proportions';
 import NumberInput from 'components/input/number';
 import { VictoryPie } from 'victory';
@@ -37,7 +37,7 @@ test( 'the component takes the given props', t => {
 });
 
 test( 'the component renders the given legends', t => {
-	const wrapper = render( <Proportions
+	const wrapper = mount( <Proportions
 		legends={[ 'bitcoin', 'gold', 'diamonds' ]}
 		nElements={3} /> );
 	let expected = 'bitcoin';
@@ -52,12 +52,3 @@ test( 'the component renders the given legends', t => {
 	t.end();
 });
 
-
-test( 'the component renders NumberInputs', t => {
-	const wrapper = render( <Proportions
-		nElements={4} /> );
-
-	const input = wrapper.find( 'input' );
-	t.ok( input.length, 4, 'renders the expected number of NumberInputs' );
-	t.end();
-});
