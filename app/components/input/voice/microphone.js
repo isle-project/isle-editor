@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 class Shim extends Component {
 	render() {
-		return <div onClick={this.props.onClick }></div>;
+		return <div onClick={this.props.onClick}></div>;
 	}
 }
 
