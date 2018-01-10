@@ -92,84 +92,103 @@ class ExportLesson extends Component {
 		}
 	}
 
+	renderFinished = () => {
+		if ( !this.state.finished ) {
+			return <Spinner width={128} height={64} running={this.state.spinning} />;
+		}
+		return ( <Panel bsStyle="success">
+			<Panel.Heading>
+				<h3>App successfully exported!</h3>
+				</Panel.Heading>
+			<Panel.Body>
+				<ButtonToolbar style={{ position: 'relative', margin: 'auto' }} >
+					<Button style={{ float: 'left' }} bsStyle="primary" onClick={this.openFolder}>Open containing folder</Button>
+					<Button style={{ float: 'right' }} bsStyle="success" onClick={this.openLesson}>Open lesson in Browser</Button>
+				</ButtonToolbar>
+			</Panel.Body>
+		</Panel> );
+	}
+
+	renderAlreadyExists = () => {
+		if ( !this.state.alreadyExists ) {
+			return null;
+		}
+		return ( <Panel bsStyle="danger">
+			<Panel.Heading>
+				<h3>Directory already exists.</h3>
+			</Panel.Heading>
+			<Panel.Body>
+				<p>A directory with the chosen name already exists. Please pick a different name.</p>
+			</Panel.Body>
+		</Panel> );
+	}
+
 	render() {
 		return (
-			<Panel header={<h1>Export Lesson</h1>} bsStyle="primary">
-				<p>Package and export the currently opened lesson into a
-				single-page application viewable in any web-browser.</p>
-				<FormGroup>
-					<ControlLabel>Settings</ControlLabel>
-					<CheckboxInput
-						legend="Minify code"
-						onChange={( value ) => {
-							this.setState({
-								minify: value
-							});
+			<Panel bsStyle="primary">
+				<Panel.Heading>
+					Export Lesson
+				</Panel.Heading>
+				<Panel.Body>
+					<p>Package and export the currently opened lesson into a single-page application viewable in any web-browser.</p>
+					<FormGroup>
+						<ControlLabel>Settings</ControlLabel>
+						<CheckboxInput
+							legend="Minify code"
+							onChange={( value ) => {
+								this.setState({
+									minify: value
+								});
+							}}
+						/>
+					</FormGroup>
+					<FormGroup>
+						<ControlLabel>Directory name</ControlLabel>
+						<FormControl
+							type="text"
+							placeholder="Enter text"
+							defaultValue={this.state.outputDir}
+							onChange={( event ) => {
+								this.setState({
+									outputDir: event.target.value,
+									finished: false,
+									alreadyExists: false
+								});
+							}}
+						/>
+					</FormGroup>
+					<br />
+					<Button
+						bsStyle="primary"
+						onClick={this.handleFileInputClick}
+					>Select output path</Button>
+					<Well
+						style={{
+							marginLeft: '8px',
+							height: '34px',
+							paddingTop: '6px',
+							color: 'darkred'
 						}}
-					/>
-				</FormGroup>
-				<FormGroup>
-					<ControlLabel>Directory name</ControlLabel>
-					<FormControl
-						type="text"
-						placeholder="Enter text"
-						defaultValue={this.state.outputDir}
-						onChange={( event ) => {
-							this.setState({
-								outputDir: event.target.value,
-								finished: false,
-								alreadyExists: false
-							});
-						}}
-					/>
-				</FormGroup>
-				<br />
-				<Button
-					bsStyle="primary"
-					onClick={this.handleFileInputClick}
-				>Select output path</Button>
-				<Well
-					style={{
-						marginLeft: '8px',
-						height: '34px',
-						paddingTop: '6px',
-						color: 'darkred'
-					}}
-				> Path: {this.state.outputPath} </Well>
-				<Button
-					bsStyle="success"
-					bsSize="sm"
-					onClick={this.generateApp}
-					block
-					style={{
-						marginTop: '15px'
-					}}
-					disabled={this.state.spinning || !this.state.outputPath || !this.state.outputDir || this.state.finished}
-				> Generate lesson </Button>
-				<br />
-				{ this.state.finished ?
-					<Panel
-						header={<h3>App successfully exported!</h3>}
+					> Path: {this.state.outputPath} </Well>
+					<Button
 						bsStyle="success"
-					>
-						<ButtonToolbar style={{ position: 'relative', margin: 'auto' }} >
-							<Button style={{ float: 'left' }} bsStyle="primary" onClick={this.openFolder}>Open containing folder</Button>
-							<Button style={{ float: 'right' }} bsStyle="success" onClick={this.openLesson}>Open lesson in Browser</Button>
-						</ButtonToolbar>
-					</Panel> : <Spinner width={128} height={64} running={this.state.spinning} />
-				}
-				{ this.state.alreadyExists ?
-					<Panel
-						header={<h3>Directory already exists.</h3>}
-						bsStyle="danger"
-					>
-						A directory with the chosen name already exists. Please pick a different name.
-					</Panel> : null
-				}
+						bsSize="sm"
+						onClick={this.generateApp}
+						block
+						style={{
+							marginTop: '15px'
+						}}
+						disabled={this.state.spinning || !this.state.outputPath || !this.state.outputDir || this.state.finished}
+					> Generate lesson </Button>
+					<br />
+					{this.renderFinished()}
+					{this.renderAlreadyExists()}
+				</Panel.Body>
 			</Panel>
 		);
 	}
 }
+
 
 // TYPES //
 
