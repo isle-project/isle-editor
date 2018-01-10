@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Accordion, Panel, Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
+import { Panel, PanelGroup, Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import $ from 'jquery';
@@ -30,7 +30,7 @@ class InstructorView extends Component {
 
 		this.state = {
 			hidden: true,
-			actionLogHeader: <h4>Action Log</h4>,
+			actionLogHeader: <span>Action Log</span>,
 			period: {
 				from: moment( 0 ).startOf( 'day' ),
 				to: moment().endOf( 'day' )
@@ -48,7 +48,7 @@ class InstructorView extends Component {
 			if ( type === 'logout' ) {
 				debug( 'Should reset the filters after user logout:' );
 				this.setState({
-					actionLogHeader: <h4>Action Log</h4>
+					actionLogHeader: <span>Action Log</span>
 				});
 			}
 			else if ( type === 'member_action' ) {
@@ -119,8 +119,60 @@ class InstructorView extends Component {
 		});
 	}
 
-	render() {
+	renderAccordion = () => {
 		const { session } = this.context;
+		return ( <PanelGroup accordion >
+			<Panel eventKey="1">
+				<Panel.Heading>
+					<Panel.Title toggle>Active Users</Panel.Title>
+				</Panel.Heading>
+				<Panel.Body collapsible>
+					<UserList session={session} />
+				</Panel.Body>
+			</Panel>
+			<Panel eventKey="2">
+				<Panel.Heading>
+					<Panel.Title toggle>
+						{this.state.actionLogHeader}
+					</Panel.Title>
+				</Panel.Heading>
+				<Panel.Body collapsible>
+					<RangePicker onChange={( newPeriod ) => {
+						this.setState({
+							period: newPeriod
+						});
+					}} />
+					<ActionLog
+						period={this.state.period}
+						onFilter={( newHeader, nActions ) => {
+							this.setState({
+								actionLogHeader: newHeader,
+								nActions: nActions
+							});
+						}}
+						onTimeRangeChange={( from, to, nActions ) => {
+							this.setState({
+								nActions
+							});
+						}}
+					/>
+					<ButtonToolbar>
+						<ButtonGroup bsSize="xsmall">
+							<Button onClick={this.saveJSON} >Save JSON</Button>
+							<Button onClick={this.saveCSV} >Save CSV</Button>
+						</ButtonGroup>
+						<ButtonGroup>
+							<span style={{ fontSize: '12px', fontWeight: 600 }}>
+								{'# of Actions: '+this.state.nActions}
+							</span>
+						</ButtonGroup>
+					</ButtonToolbar>
+				</Panel.Body>
+			</Panel>
+		</PanelGroup> );
+	}
+
+	render() {
 		return (
 			<div
 				className="instructor-view unselectable"
@@ -134,43 +186,7 @@ class InstructorView extends Component {
 					<hr style={{ background: '#333', backgroundImage: 'linear-gradient(to right, #ccc, #333, #ccc)', height: '1px', border: 0 }} />
 				</div>
 				<div className="instructor-view-middle">
-					<Accordion>
-						<Panel header="Active Users" eventKey="1">
-							<UserList session={session} />
-						</Panel>
-						<Panel header={this.state.actionLogHeader} eventKey="2">
-							<RangePicker onChange={( newPeriod ) => {
-								this.setState({
-									period: newPeriod
-								});
-							}} />
-							<ActionLog
-								period={this.state.period}
-								onFilter={( newHeader, nActions ) => {
-									this.setState({
-										actionLogHeader: newHeader,
-										nActions: nActions
-									});
-								}}
-								onTimeRangeChange={( from, to, nActions ) => {
-									this.setState({
-										nActions
-									});
-								}}
-							/>
-							<ButtonToolbar>
-								<ButtonGroup bsSize="xsmall">
-									<Button onClick={this.saveJSON} >Save JSON</Button>
-									<Button onClick={this.saveCSV} >Save CSV</Button>
-								</ButtonGroup>
-								<ButtonGroup>
-									<span style={{ fontSize: '12px', fontWeight: 600 }}>
-										{'# of Actions: '+this.state.nActions}
-									</span>
-								</ButtonGroup>
-							</ButtonToolbar>
-						</Panel>
-					</Accordion>
+					{this.renderAccordion()}
 				</div>
 				<div className="instructor-view-bottom"></div>
 				<div className="instructor-view-handler"

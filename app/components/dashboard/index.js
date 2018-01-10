@@ -89,22 +89,29 @@ class Dashboard extends Component {
 		return (
 			<Panel
 				className="dashboard"
-				header={this.props.title ? <h4>{this.props.title}</h4> : null}
 				style={{
 					maxWidth: this.props.maxWidth
 				}}
 			>
-				<p>{this.props.description}</p>
-				{children}
-				{ !this.props.autoUpdate ?
-					<Button
-						bsStyle="primary"
-						className="dashboard-button"
-						onClick={this.handleClick}
-						block
-					>{this.props.label}</Button> :
-					<span />
+				{ this.props.title ?
+					<Panel.Heading>
+						<Panel.Title componentClass="h4">{this.props.title}</Panel.Title>
+					</Panel.Heading>:
+					null
 				}
+				<Panel.Body>
+					<p>{this.props.description}</p>
+					{children}
+					{ !this.props.autoUpdate ?
+						<Button
+							bsStyle="primary"
+							className="dashboard-button"
+							onClick={this.handleClick}
+							block
+						>{this.props.label}</Button> :
+						<span />
+					}
+				</Panel.Body>
 			</Panel>
 		);
 	}

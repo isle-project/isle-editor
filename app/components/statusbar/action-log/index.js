@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { ListGroup } from 'react-bootstrap';
 import logger from 'debug';
 import objectEntries from '@stdlib/utils/entries';
@@ -88,8 +88,8 @@ class ActionLog extends Component {
 
 	createHeader = ( filter ) => {
 		let entries = filter ? objectEntries( filter ) : [];
-		let newHeader = <div>
-			<h4 style={{ display: 'inline' }} >Action Log</h4>
+		let newHeader = <Fragment>
+			<span style={{ display: 'inline' }} >Action Log</span>
 			<div style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
 				{entries.map( ( arr, idx ) => {
 					return ( <span
@@ -99,7 +99,7 @@ class ActionLog extends Component {
 					>{arr[ 0 ]}: {arr[ 1 ]}</span> );
 				})}
 			</div>
-		</div>;
+		</Fragment>;
 		return newHeader;
 	}
 

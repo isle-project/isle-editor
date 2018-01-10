@@ -79,61 +79,77 @@ class Login extends Component {
 
 	render() {
 		return (
-			<Panel header={<h1>Connect to ISLE server</h1>} bsStyle="primary">
-				{ localStorage.getItem( 'token' ) === null ?
-					<Form>
-						<FormGroup>
-							<ControlLabel>Server Address</ControlLabel>
-							<FormControl
-								name="server"
-								type="text"
-								placeholder="Enter text"
-								onChange={this.handleInputChange}
-								value={this.state.server}
-							/>
-						</FormGroup>
-						<FormGroup>
-							<ControlLabel>Email</ControlLabel>
-							<FormControl
-								name="email"
-								type="text"
-								placeholder="Enter email address"
-								onChange={this.handleInputChange}
-								value={this.state.email}
-							/>
-						</FormGroup>
-						<FormGroup>
-							<ControlLabel>Password</ControlLabel>
-							<FormControl
-								name="password"
-								type="password"
-								placeholder="Enter password"
-								onChange={this.handleInputChange}
-								value={this.state.password}
-							/>
-						</FormGroup>
-						<Button
-							bsStyle="primary"
-							bsSize="sm"
-							block
-							onClick={this.connectToServer}
-						>Connect</Button>
-						{ this.state.encounteredError ?
-							<Panel style={{ marginTop: 20 }} header={<h3>Error encountered</h3>} bsStyle="danger">
-								The following error was encountered while connecting to {this.state.server}: <br />{this.state.encounteredError.message}.
-							</Panel> : null
-						}
-					</Form> :
-					<Panel bsStyle="success">
-						You are linked to the ISLE server at {this.state.server}.
-						<Button
-							bsStyle="danger"
-							bsSize="sm"
-							onClick={this.unlink}
-							style={{ float: 'right' }}
-						>Unlink</Button>
-					</Panel>
-				}
+			<Panel bsStyle="primary">
+				<Panel.Heading>
+					<Panel.Title componentClass="h1">
+						Connect to ISLE server
+					</Panel.Title>
+				</Panel.Heading>
+				<Panel.Body>
+					{ localStorage.getItem( 'token' ) === null ?
+						<Form>
+							<FormGroup>
+								<ControlLabel>Server Address</ControlLabel>
+								<FormControl
+									name="server"
+									type="text"
+									placeholder="Enter text"
+									onChange={this.handleInputChange}
+									value={this.state.server}
+								/>
+							</FormGroup>
+							<FormGroup>
+								<ControlLabel>Email</ControlLabel>
+								<FormControl
+									name="email"
+									type="text"
+									placeholder="Enter email address"
+									onChange={this.handleInputChange}
+									value={this.state.email}
+								/>
+							</FormGroup>
+							<FormGroup>
+								<ControlLabel>Password</ControlLabel>
+								<FormControl
+									name="password"
+									type="password"
+									placeholder="Enter password"
+									onChange={this.handleInputChange}
+									value={this.state.password}
+								/>
+							</FormGroup>
+							<Button
+								bsStyle="primary"
+								bsSize="sm"
+								block
+								onClick={this.connectToServer}
+							>Connect</Button>
+							{ this.state.encounteredError ?
+								<Panel style={{ marginTop: 20 }} bsStyle="danger">
+									<Panel.Heading>
+										<Panel.Title componentClass="h3">
+											Error encountered
+										</Panel.Title>
+									</Panel.Heading>
+									<Panel.Body>
+									The following error was encountered while connecting to {this.state.server}: <br />{this.state.encounteredError.message}.
+									</Panel.Body>
+								</Panel> : null
+							}
+						</Form> :
+						<Panel bsStyle="success">
+							<Panel.Body>
+								<p>You are linked to the ISLE server at {this.state.server}.</p>
+								<Button
+									bsStyle="danger"
+									bsSize="sm"
+									onClick={this.unlink}
+									style={{ float: 'right' }}
+								>Unlink</Button>
+							</Panel.Body>
+						</Panel>
+					}
+				</Panel.Body>
 			</Panel>
 		);
 	}
@@ -167,16 +183,23 @@ class Settings extends Component {
 				<br />
 				<br />
 				<Login />
-				<Panel header={<h1>Settings</h1>}>
-					<NumberInput
-						description="Editor text height in pixels"
-						legend="Font Size"
-						onChange={handleFontSizeChange}
-						min={8}
-						max={56}
-						step={1}
-						defaultValue={parseInt( localStorage.getItem( 'fontSize' ), 10 ) || 14}
-					/>
+				<Panel>
+					<Panel.Heading>
+						<Panel.Title componentClass="h1">
+							Settings
+						</Panel.Title>
+					</Panel.Heading>
+					<Panel.Body>
+						<NumberInput
+							description="Editor text height in pixels"
+							legend="Font Size"
+							onChange={handleFontSizeChange}
+							min={8}
+							max={56}
+							step={1}
+							defaultValue={parseInt( localStorage.getItem( 'fontSize' ), 10 ) || 14}
+						/>
+					</Panel.Body>
 				</Panel>
 			</div>
 		);
