@@ -58,11 +58,14 @@ class DefaultSlider extends Component {
 		}
 	}
 
-
 	renderTitle() {
 		if (this.props.title === '') return null;
 		return (
-			<h3>{this.props.title}</h3>
+			<Panel.Heading>
+				<Panel.Title componentClass="h3">
+					{this.props.title}
+				</Panel.Title>
+			</Panel.Heading>
 		);
 	}
 
@@ -79,11 +82,13 @@ class DefaultSlider extends Component {
 					height: '100%',
 					...this.props.style
 				}}
-				header={this.renderTitle()}
 			>
-				<Slider ref={( slider ) => { this.slider = slider; }} {...this.state.settings}>
-					{ this.state.childDivs }
-				</Slider>
+				{this.renderTitle()}
+				<Panel.Body>
+					<Slider ref={( slider ) => { this.slider = slider; }} {...this.state.settings}>
+						{ this.state.childDivs }
+					</Slider>
+				</Panel.Body>
 			</Panel>
 		);
 	}
