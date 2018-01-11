@@ -2,7 +2,7 @@
 
 import test from 'tape';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Wikipedia from 'components/wikipedia';
 import VoiceInput from 'components/input/voice';
 
@@ -49,5 +49,17 @@ test( 'the component renders the VoiceInput', t => {
 		showSearch /> );
 	const no = wrapper.find( VoiceInput );
 	t.equal( no.length, 1, 'length is equal to one' );
+	t.end();
+});
+
+test( 'the component transforms the input into a valid wikipedia address and opens an IFrame', t => {
+	const wrapper = mount( <Wikipedia
+		/> );
+
+	const voice = wrapper.find( VoiceInput );
+	voice.find( '.voice-input-text' ).simulate('change', {target: {value: 'Angela Merkel'}});
+	wrapper.find( '.wikipedia-logo' ).simulate('click');
+	t.strictEqual( wrapper.instance().state.response, 'https://en.wikipedia.org/wiki/Angela_Merkel', 'gets expected value' );
+	t.ok( wrapper.find( 'iframe' ).length > 0, 'expected length is greater than 0' );
 	t.end();
 });
