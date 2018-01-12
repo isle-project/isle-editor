@@ -90,7 +90,8 @@ class DiceThrowing extends Component {
 					/> ) )}
 					<Button onClick={() => {
 						this.setState({
-							tally: this.state.tally.map( x => 0 )
+							tally: this.state.tally.map( x => 0 ),
+							nThrows: 0
 						});
 					}}>Reset</Button>
 				</Col>
@@ -115,7 +116,7 @@ class DiceThrowing extends Component {
 		return ( <Panel>
 			<Panel.Heading>Dice</Panel.Heading>
 			<Panel.Body>
-				<Panel>{ this.state.draw ? this.state.draw.join( ' - ' ) : 'X' }</Panel>
+				<Panel><Panel.Body>{ this.state.draw ? this.state.draw.join( ' - ' ) : 'X' }</Panel.Body></Panel>
 				<ButtonGroup>
 					<Button onClick={() => {
 						this.throwDice( 1 );
