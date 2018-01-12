@@ -95,25 +95,7 @@ class DiceThrowing extends Component {
 					}}>Reset</Button>
 				</Col>
 				<Col md={6}>
-					{ this.state.valid ?
-						<Panel header="Dice" >
-							<Panel>{ this.state.draw ? this.state.draw.join( ' - ' ) : 'X' }</Panel>
-							<ButtonGroup>
-								<Button onClick={() => {
-									this.throwDice( 1 );
-								}}>Throw ⚅ 1x</Button>
-								<Button onClick={() => {
-									this.throwDice( 5 );
-								}}>Throw ⚅ 5x</Button>
-								<Button onClick={() => {
-									this.throwDice( 10 );
-								}}>Throw ⚅ 10x</Button>
-							</ButtonGroup>
-						</Panel> :
-						<Panel>
-							<h3>Please make sure that all probabilities add up to one</h3>
-						</Panel>
-					}
+					{this.renderDice()}
 				</Col>
 				<Col md={1}>
 					<FeedbackButtons
@@ -122,6 +104,31 @@ class DiceThrowing extends Component {
 				</Col>
 			</Grid>
 		);
+	}
+
+	renderDice() {
+		if ( !this.state.valid ) {
+			return ( <Panel><Panel.Body>
+				<h3>Please make sure that all probabilities add up to one</h3>
+			</Panel.Body></Panel> );
+		}
+		return ( <Panel>
+			<Panel.Heading>Dice</Panel.Heading>
+			<Panel.Body>
+				<Panel>{ this.state.draw ? this.state.draw.join( ' - ' ) : 'X' }</Panel>
+				<ButtonGroup>
+					<Button onClick={() => {
+						this.throwDice( 1 );
+					}}>Throw ⚅ 1x</Button>
+					<Button onClick={() => {
+						this.throwDice( 5 );
+					}}>Throw ⚅ 5x</Button>
+					<Button onClick={() => {
+						this.throwDice( 10 );
+					}}>Throw ⚅ 10x</Button>
+				</ButtonGroup>
+			</Panel.Body>
+		</Panel> );
 	}
 
 	renderTable() {
@@ -147,18 +154,20 @@ class DiceThrowing extends Component {
 
 	render() {
 		return ( <Panel>
-			<NumberInput
-				legend="Number of Sides"
-				defaultValue={6}
-				step={1}
-				max={20}
-				min={2}
-				onChange={this.chooseNSides}
-			/>
-			<p>Choose custom probabilities for the sides and then throw some dice!</p>
-			{this.renderGrid()}
-			{this.renderTable()}
-			<p>Total number of throws: {this.state.nThrows}</p>
+			<Panel.Body>
+				<NumberInput
+					legend="Number of Sides"
+					defaultValue={6}
+					step={1}
+					max={20}
+					min={2}
+					onChange={this.chooseNSides}
+				/>
+				<p>Choose custom probabilities for the sides and then throw some dice!</p>
+				{this.renderGrid()}
+				{this.renderTable()}
+				<p>Total number of throws: {this.state.nThrows}</p>
+			</Panel.Body>
 		</Panel> );
 	}
 }
