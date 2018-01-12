@@ -96,60 +96,85 @@ class Standardize extends Component {
 		});
 	}
 
-	render() {
-		const standardized = <Panel header="Standardized">
-			<VictoryChart domain={{ x: [ -5, 5 ], y: [ 0, 0.4 ] }}>
-				<VictoryLine
-					samples={200}
-					y={( data ) => {
-						return dnorm( data.x, 0.0, 1.0 );
+	renderNumberInputPanel() {
+		return ( <Panel>
+			<Panel.Heading>
+				<Panel.Title componentClass="h4">From Normal to Standard Normal</Panel.Title>
+			</Panel.Heading>
+			<Panel.Body>
+				<NumberInput
+					legend="Mean"
+					defaultValue={4}
+					step={this.props.step}
+					min={-25}
+					max={25}
+					onChange={mean => {
+						this.generateState( mean, this.state.sd );
 					}}
 				/>
-				{this.state.standardizedLines}
-			</VictoryChart>
-		</Panel>;
+				<NumberInput
+					legend="Standard Deviation"
+					defaultValue={3}
+					step={this.props.step}
+					min={1}
+					max={10}
+					onChange={sd => {
+						this.generateState( this.state.mean, sd );
+					}}
+				/>
+			</Panel.Body>
+		</Panel> );
+	}
 
+	renderUnstandardizedPlot() {
+		return ( <Panel>
+			<Panel.Heading>
+				<Panel.Title componentClass="h4">Unstandardized</Panel.Title>
+			</Panel.Heading>
+			<Panel.Body>
+				<VictoryChart domain={{
+					x: [ -30, 30 ],
+					y: [ 0, 0.4 ]
+				}}>
+					<VictoryLine
+						data={this.state.data}
+					/>
+					{this.state.unstandardizedLines}
+				</VictoryChart>
+			</Panel.Body>
+		</Panel> );
+	}
+
+	renderStandardizedPlot() {
+		return ( <Panel>
+			<Panel.Heading>
+				<Panel.Title componentClass="h4">Standardized</Panel.Title>
+			</Panel.Heading>
+			<Panel.Body>
+				<VictoryChart domain={{ x: [ -5, 5 ], y: [ 0, 0.4 ] }}>
+					<VictoryLine
+						samples={200}
+						y={( data ) => {
+							return dnorm( data.x, 0.0, 1.0 );
+						}}
+					/>
+					{this.state.standardizedLines}
+				</VictoryChart>
+			</Panel.Body>
+		</Panel> );
+	}
+
+	render() {
 		return (
 			<Grid>
 				<Row>
 					<Col md={12}>
-						<Panel header="From Normal to Standard Normal">
-							<NumberInput
-								legend="Mean"
-								defaultValue={4}
-								step={this.props.step}
-								min={-25}
-								max={25}
-								onChange={mean => {
-									this.generateState( mean, this.state.sd );
-								}}
-							/>
-							<NumberInput
-								legend="Standard Deviation"
-								defaultValue={3}
-								step={this.props.step}
-								min={1}
-								max={10}
-								onChange={sd => {
-									this.generateState( this.state.mean, sd );
-								}}
-							/>
-						</Panel>
+						{this.renderNumberInputPanel()}
 					</Col>
 				</Row>
 				<Row>
 					<Col md={4}>
-						<Panel header="Unstandardized">
-							<VictoryChart domain={{
-								x: [ -30, 30 ],
-								y: [ 0, 0.4 ]
-							}} >
-								<VictoryLine
-									data={this.state.data}
-								/>
-								{this.state.unstandardizedLines}
-							</VictoryChart>
-						</Panel>
+						{this.renderUnstandardizedPlot()}
 					</Col>
 					<Col md={4}>
 						<TeX raw={this.state.eqn} displayMode tag="" />
@@ -169,13 +194,14 @@ class Standardize extends Component {
 						/>
 					</Col>
 					<Col md={4}>
-						{standardized}
+						{this.renderStandardizedPlot}
 					</Col>
 				</Row>
 			</Grid>
 		);
 	}
 }
+
 
 // PROPERTY TYPES //
 
