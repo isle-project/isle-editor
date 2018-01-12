@@ -177,89 +177,95 @@ class PropTest2 extends Component {
 
 		return (
 			<Panel
-				header={<h4>Two-Sample Proportion Test</h4>}
 				style={{ fontSize: '14px' }}
 			>
-				<Row>
-					<Col md={6}>
-						<SelectInput
-							legend="Variable:"
-							defaultValue={categorical[ 0 ]}
-							options={categorical}
-							onChange={( val ) => {
-								let categories = copy( this.props.data[ val ]);
-								unique( categories );
-								this.setState({
-									categories,
-									var1: val
-								});
-							}}
-						/>
-					</Col>
-					<Col md={6}>
-						<SelectInput
-							legend="Success:"
-							defaultValue={this.state.categories[ 0 ]}
-							options={this.state.categories}
-							onChange={( value ) => {
-								this.setState({
-									success: value
-								});
-							}}
-						/>
-					</Col>
-				</Row>
-				<Row>
-					<Col md={5}>
-						<SelectInput
-							legend="Groups:"
-							options={binary}
-							clearable
-							onChange={( value ) => {
-								this.setState({
-									grouping: value,
-									var2: null
-								});
-							}}
-						/>
-					</Col>
-					<Col md={2}><p>OR</p></Col>
-					<Col md={5}>
-						<SelectInput
-							legend="Second Variable: "
-							options={categorical.filter( elem =>
-								contains( this.state.categories, elem )
-							)}
-							clearable
-							onChange={( value ) => {
-								this.propTestgroupSelect.setState({
-									grouping: null,
-									var2: value
-								});
-							}}
-						/>
-					</Col>
-				</Row>
-				<NumberInput
-					legend="Difference under H0"
-					defaultValue={this.state.diff}
-					min={0}
-					max={1}
-					step="any"
-				/>
-				<SelectInput
-					legend="Direction:"
-					defaultValue={this.state.direction}
-					options={[ 'less', 'greater', 'two-sided' ]}
-				/>
-				<NumberInput
-					legend={<span>Significance level <TeX raw="\alpha" /></span>}
-					defaultValue={this.state.alpha}
-					min={0.0}
-					max={1.0}
-					step="any"
-				/>
-				<Button bsStyle="primary" block onClick={this.calculateTwoSamplePropTest}>Calculate</Button>
+				<Panel.Header>
+					<Panel.Title componentClass="h4">
+						Two-Sample Proportion Test
+					</Panel.Title>
+				</Panel.Header>
+				<Panel.Body>
+					<Row>
+						<Col md={6}>
+							<SelectInput
+								legend="Variable:"
+								defaultValue={categorical[ 0 ]}
+								options={categorical}
+								onChange={( val ) => {
+									let categories = copy( this.props.data[ val ]);
+									unique( categories );
+									this.setState({
+										categories,
+										var1: val
+									});
+								}}
+							/>
+						</Col>
+						<Col md={6}>
+							<SelectInput
+								legend="Success:"
+								defaultValue={this.state.categories[ 0 ]}
+								options={this.state.categories}
+								onChange={( value ) => {
+									this.setState({
+										success: value
+									});
+								}}
+							/>
+						</Col>
+					</Row>
+					<Row>
+						<Col md={5}>
+							<SelectInput
+								legend="Groups:"
+								options={binary}
+								clearable
+								onChange={( value ) => {
+									this.setState({
+										grouping: value,
+										var2: null
+									});
+								}}
+							/>
+						</Col>
+						<Col md={2}><p>OR</p></Col>
+						<Col md={5}>
+							<SelectInput
+								legend="Second Variable: "
+								options={categorical.filter( elem =>
+									contains( this.state.categories, elem )
+								)}
+								clearable
+								onChange={( value ) => {
+									this.propTestgroupSelect.setState({
+										grouping: null,
+										var2: value
+									});
+								}}
+							/>
+						</Col>
+					</Row>
+					<NumberInput
+						legend="Difference under H0"
+						defaultValue={this.state.diff}
+						min={0}
+						max={1}
+						step="any"
+					/>
+					<SelectInput
+						legend="Direction:"
+						defaultValue={this.state.direction}
+						options={[ 'less', 'greater', 'two-sided' ]}
+					/>
+					<NumberInput
+						legend={<span>Significance level <TeX raw="\alpha" /></span>}
+						defaultValue={this.state.alpha}
+						min={0.0}
+						max={1.0}
+						step="any"
+					/>
+					<Button bsStyle="primary" block onClick={this.calculateTwoSamplePropTest}>Calculate</Button>
+				</Panel.Body>
 			</Panel>
 		);
 	}

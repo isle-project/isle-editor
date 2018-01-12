@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Panel } from 'react-bootstrap';
 import CheckboxInput from 'components/input/checkbox';
@@ -309,96 +309,107 @@ class Scatterplot extends Component {
 		this.props.onCreated( output );
 	}
 
-	render() {
+	renderInputs() {
 		const { variables, groupingVariables } = this.props;
+		return ( <Fragment>
+			<SelectInput
+				legend="Variable on x-axis:"
+				defaultValue={this.state.xval}
+				options={variables}
+				onChange={( value ) => {
+					this.setState({
+						xval: value
+					});
+				}}
+			/>
+			<SelectInput
+				legend="Variable on y-axis:"
+				defaultValue={this.state.yval}
+				options={variables}
+				onChange={( value ) => {
+					this.setState({
+						yval: value
+					});
+				}}
+			/>
+			<div style={{ width: '100%' }}>
+				<SelectInput
+					legend="Color:"
+					options={groupingVariables}
+					clearable={true}
+					style={{ float: 'left', paddingRight: 10, width: '33.3%' }}
+					onChange={( value ) => {
+						this.setState({
+							color: value
+						});
+					}}
+				/>
+				<SelectInput
+					legend="Type:"
+					options={groupingVariables}
+					clearable={true}
+					style={{ float: 'left', paddingLeft: 10, paddingRight: 10, width: '33.3%' }}
+					onChange={( value ) => {
+						this.setState({
+							type: value
+						});
+					}}
+				/>
+				<SelectInput
+					legend="Size:"
+					options={variables}
+					clearable={true}
+					style={{ float: 'left', paddingLeft: 10, width: '33.3%' }}
+					onChange={( value ) => {
+						this.setState({
+							size: value
+						});
+					}}
+				/>
+			</div>
+		</Fragment> );
+	}
+
+	renderRegressionLineOptions() {
+		return ( <div style={{
+			width: '100%',
+			opacity: this.props.showRegressionOption ? 1.0 : 0.0
+		}}>
+			<CheckboxInput
+				inline
+				legend="Show Regression Line"
+				defaultValue={false}
+				style={{ float: 'left', paddingLeft: 10 }}
+				onChange={() => {
+					this.setState({
+						regressionLine: !this.state.regressionLine
+					});
+				}}
+			/>
+			<SelectInput
+				legend="Split By:"
+				options={this.props.groupingVariables}
+				clearable={true}
+				style={{ float: 'right', paddingLeft: 10, width: '40%' }}
+				disabled={!this.state.regressionLine}
+				onChange={( value ) => {
+					this.setState({
+						lineBy: value
+					});
+				}}
+			/>
+		</div> );
+	}
+
+	render() {
 		return (
-			<Panel
-				header="Scatterplot"
-			>
-				<SelectInput
-					legend="Variable on x-axis:"
-					defaultValue={this.state.xval}
-					options={variables}
-					onChange={( value ) => {
-						this.setState({
-							xval: value
-						});
-					}}
-				/>
-				<SelectInput
-					legend="Variable on y-axis:"
-					defaultValue={this.state.yval}
-					options={variables}
-					onChange={( value ) => {
-						this.setState({
-							yval: value
-						});
-					}}
-				/>
-				<div style={{ width: '100%' }}>
-					<SelectInput
-						legend="Color:"
-						options={groupingVariables}
-						clearable={true}
-						style={{ float: 'left', paddingRight: 10, width: '33.3%' }}
-						onChange={( value ) => {
-							this.setState({
-								color: value
-							});
-						}}
-					/>
-					<SelectInput
-						legend="Type:"
-						options={groupingVariables}
-						clearable={true}
-						style={{ float: 'left', paddingLeft: 10, paddingRight: 10, width: '33.3%' }}
-						onChange={( value ) => {
-							this.setState({
-								type: value
-							});
-						}}
-					/>
-					<SelectInput
-						legend="Size:"
-						options={variables}
-						clearable={true}
-						style={{ float: 'left', paddingLeft: 10, width: '33.3%' }}
-						onChange={( value ) => {
-							this.setState({
-								size: value
-							});
-						}}
-					/>
-				</div>
+			<Panel>
+				<Panel.Heading>
+					<Panel.Title>Scatterplot</Panel.Title>
+				</Panel.Heading>
+				{this.renderInputs()}
 				<div style={{ clear: 'both' }}></div>
-				<div style={{
-					width: '100%',
-					opacity: this.props.showRegressionOption ? 1.0 : 0.0
-				}}>
-					<CheckboxInput
-						inline
-						legend="Show Regression Line"
-						defaultValue={false}
-						style={{ float: 'left', paddingLeft: 10 }}
-						onChange={() => {
-							this.setState({
-								regressionLine: !this.state.regressionLine
-							});
-						}}
-					/>
-					<SelectInput
-						legend="Split By:"
-						options={groupingVariables}
-						clearable={true}
-						style={{ float: 'right', paddingLeft: 10, width: '40%' }}
-						disabled={!this.state.regressionLine}
-						onChange={( value ) => {
-							this.setState({
-								lineBy: value
-							});
-						}}
-					/>
-				</div>
+				{this.renderRegressionLineOptions()}
 				<div style={{ clear: 'both' }}></div>
 				<Button bsStyle="primary" block onClick={this.generateScatterplot}>Generate</Button>
 			</Panel>
