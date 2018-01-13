@@ -272,16 +272,8 @@ class InstructorBar extends Component {
 		</ListGroupItem>);
 	}
 
-
-	render() {
-		let colplot = null;
-		if ( this.state.actions.length > 0 ) {
-			colplot = this.props.dataType === 'text' ?
-				this.renderBarchart() :
-				this.renderHistogram();
-		}
-
-		const deleteModal = <Modal show={this.state.showDeleteModal}>
+	renderDeleteModal() {
+		return ( <Modal show={this.state.showDeleteModal}>
 			<Modal.Header>
 				<Modal.Title>Delete user action?</Modal.Title>
 			</Modal.Header>
@@ -297,63 +289,78 @@ class InstructorBar extends Component {
 					Delete
 				</Button>
 			</Modal.Footer>
-		</Modal>;
+		</Modal> );
+	}
 
+	renderFullscreenModal() {
+		let colplot = null;
+		if ( this.state.actions.length > 0 ) {
+			colplot = this.props.dataType === 'text' ?
+				this.renderBarchart() :
+				this.renderHistogram();
+		}
+		return ( <Modal
+			show={this.state.showActions}
+			onHide={this.toggleActions}
+			dialogClassName="fullscreen-modal"
+		>
+			<Modal.Header closeButton>
+				<Modal.Title>Actions</Modal.Title>
+				<RangePicker onChange={this.onPeriodChange} />
+			</Modal.Header>
+			<Modal.Body style={{ height: 0.75 * window.innerHeight, width: 0.90 * window.innerWidth }} >
+				<Grid>
+					<Row>
+						<Col md={6}>
+							{ this.state.actions.length > 0 ?
+								<ListGroup fill style={{ marginLeft: 0, overflowY: 'scroll', height: 0.73 * window.innerHeight }}>
+									{this.state.actions.map(
+										this.renderListGroupItem
+									)}
+								</ListGroup> :
+								<Well>
+									<h2>There is no data for the selected time period</h2>
+								</Well>
+							}
+						</Col>
+						<Col md={6}>
+							{colplot}
+						</Col>
+					</Row>
+				</Grid>
+			</Modal.Body>
+			<Modal.Footer>
+				<Button onClick={this.toggleExtended}>{ this.state.showExtended ? 'Hide Extended' : 'Show Extended' }</Button>
+				<Button onClick={this.toggleActions}>Close</Button>
+			</Modal.Footer>
+		</Modal> );
+	}
+
+	render() {
 		if ( !this.props.id ) {
-			return null;
+			return <Gate owner><label>No ID supplied.</label></Gate>;
 		}
 		return (
 			<div>
 				<Gate user>
-					{ this.state.receivedFeedbacks.length > 0 ? <Panel header="Feedback">
-						<ListGroup fill style={{ marginLeft: 0 }}>
-							{this.state.receivedFeedbacks.map( ( elem, idx ) =>
-								( <ListGroupItem key={idx} style={{ padding: '2px 5px' }}>
-									<p>{elem}</p>
-								</ListGroupItem> )
-							)}
-						</ListGroup>
+					{ this.state.receivedFeedbacks.length > 0 ? <Panel>
+						<Panel.Header>Feedback</Panel.Header>
+						<Panel.Body>
+							<ListGroup fill style={{ marginLeft: 0 }}>
+								{this.state.receivedFeedbacks.map( ( elem, idx ) =>
+									( <ListGroupItem key={idx} style={{ padding: '2px 5px' }}>
+										<p>{elem}</p>
+									</ListGroupItem> )
+								)}
+							</ListGroup>
+						</Panel.Body>
 					</Panel> : null }
 				</Gate>
 				<Gate owner>
 					<div>
 						<label>Component ID:</label>
 						<span style={{ marginLeft: '5px' }}>{this.props.id}</span>
-						<Modal
-							show={this.state.showActions}
-							onHide={this.toggleActions}
-							dialogClassName="fullscreen-modal"
-						>
-							<Modal.Header closeButton>
-								<Modal.Title>Actions</Modal.Title>
-								<RangePicker onChange={this.onPeriodChange} />
-							</Modal.Header>
-							<Modal.Body style={{ height: 0.75 * window.innerHeight, width: 0.90 * window.innerWidth }} >
-								<Grid>
-									<Row>
-										<Col md={6}>
-											{ this.state.actions.length > 0 ?
-												<ListGroup fill style={{ marginLeft: 0, overflowY: 'scroll', height: 0.73 * window.innerHeight }}>
-													{this.state.actions.map(
-														this.renderListGroupItem
-													)}
-												</ListGroup> :
-												<Well>
-													<h2>There is no data for the selected time period</h2>
-												</Well>
-											}
-										</Col>
-										<Col md={6}>
-											{colplot}
-										</Col>
-									</Row>
-								</Grid>
-							</Modal.Body>
-							<Modal.Footer>
-								<Button onClick={this.toggleExtended}>{ this.state.showExtended ? 'Hide Extended' : 'Show Extended' }</Button>
-								<Button onClick={this.toggleActions}>Close</Button>
-							</Modal.Footer>
-						</Modal>
+						{this.renderFullscreenModal()}
 					</div>
 					<ButtonGroup bsSize="small" >
 						<Button onClick={this.toggleFeedback} >Feedback</Button>
@@ -365,7 +372,7 @@ class InstructorBar extends Component {
 							<Button bsSize="small" onClick={this.sendFeedback} >Send Feedback to all</Button>
 						</div>
 					</Collapse>
-					{deleteModal}
+					{this.renderDeleteModal()}
 				</Gate>
 			</div>
 		);

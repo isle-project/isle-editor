@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonGroup, Panel } from 'react-bootstrap';
 import * as venn from 'venn.js';
@@ -202,7 +202,7 @@ class WordVennDiagram extends Component {
 	render() {
 		const inputs = [];
 		for ( let i = 0; i < this.state.nWords; i++ ) {
-			inputs[ i ] = <div><TextInput
+			inputs[ i ] = <Fragment><TextInput
 				legend={`Word ${i+1}`}
 				defaultValue={this.state.words[ i ]}
 				width={120}
@@ -220,35 +220,41 @@ class WordVennDiagram extends Component {
 						minCount: newMinCount
 					});
 				}}
-			/></div>;
+			/></Fragment>;
 		}
 		return (
-			<div>
-				<Panel header="Settings">
-					<p>
-						<label>Number of Words: </label>
-					</p>
-					<ButtonGroup>
-						{[ 'One', 'Two', 'Three' ].map( ( w, i ) => (<Button key={i} bsStyle={( i === this.state.nWords-1 ) ? 'success' : 'default'} onClick={()=> {
-							this.setState({
-								nWords: i+1,
-								disabled: true,
-								words: new Array( i+1 ),
-								minCount: new Array( i+1 ).fill( 1 )
-							});
-						}}>{w}</Button>))}
-					</ButtonGroup>
-					{inputs}
-					<Button onClick={this.updatePlot} disabled={this.state.disabled}>Draw Venn Diagram</Button>
+			<Fragment>
+				<Panel>
+					<Panel.Header>Settings</Panel.Header>
+					<Panel.Body>
+						<p>
+							<label>Number of Words: </label>
+						</p>
+						<ButtonGroup>
+							{[ 'One', 'Two', 'Three' ].map( ( w, i ) => (<Button key={i} bsStyle={( i === this.state.nWords-1 ) ? 'success' : 'default'} onClick={()=> {
+								this.setState({
+									nWords: i+1,
+									disabled: true,
+									words: new Array( i+1 ),
+									minCount: new Array( i+1 ).fill( 1 )
+								});
+							}}>{w}</Button>))}
+						</ButtonGroup>
+						{inputs}
+						<Button onClick={this.updatePlot} disabled={this.state.disabled}>Draw Venn Diagram</Button>
+					</Panel.Body>
 				</Panel>
-				<Panel header="Venn Diagram" >
-					<span style={{
-						position: 'absolute',
-						right: 40
-					}}>Total # of Texts: {this.props.nTexts}</span>
-					<div id={this.state.id}></div>
+				<Panel>
+					<Panel.Header>Venn Diagram</Panel.Header>
+					<Panel.Body>
+						<span style={{
+							position: 'absolute',
+							right: 40
+						}}>Total # of Texts: {this.props.nTexts}</span>
+						<div id={this.state.id}></div>
+					</Panel.Body>
 				</Panel>
-			</div>
+			</Fragment>
 		);
 	}
 }
