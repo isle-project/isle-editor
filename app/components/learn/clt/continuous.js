@@ -270,7 +270,7 @@ class ContinuousCLT extends Component {
 		});
 	}
 
-	render() {
+	renderDistributionSelectionPanel() {
 		const exponential = <div>
 			<NumberInput legend="Rate parameter"
 				max={100} min={0.01} step={1} defaultValue={this.state.lambda}
@@ -280,7 +280,6 @@ class ContinuousCLT extends Component {
 				}}
 			/>
 		</div>;
-
 		const uniform = <div>
 			<NumberInput
 				legend="Minimum"
@@ -305,7 +304,6 @@ class ContinuousCLT extends Component {
 				}}
 			/>
 		</div>;
-
 		const normal = <div>
 			<NumberInput
 				legend={<span>Mean <TeX raw="\mu" /></span>}
@@ -347,6 +345,46 @@ class ContinuousCLT extends Component {
 			</div>;
 			break;
 		}
+		return ( <Panel>
+			<Panel.Body>
+				<Col md={6}>
+					<Tabs activeKey={this.state.activeDistribution} id="distribution-tabs" onSelect={this.handleSelect} >
+						<Tab eventKey={1} title="Uniform">{uniform}</Tab>
+						<Tab eventKey={2} title="Exponential">{exponential}</Tab>
+						<Tab eventKey={3} title="Normal">{normal}</Tab>
+					</Tabs>
+				</Col>
+				<Col md={6}>
+					<label>Distribution: {this.state.distFormula}</label>
+					{populationParams}
+					<NumberInput
+						legend="Sample Size"
+						step={1} min={1} defaultValue={10} max={500}
+						onChange={( n ) => {
+							this.setState({ 'n': n });
+						}}
+					/>
+					<ButtonGroup>
+						<Button onClick={() => {
+							this.generateSamples( 1 );
+						}}>
+							Draw Sample
+						</Button>
+						<Button onClick={() => {
+							this.generateSamples( 25 );
+						}}>
+							Draw 25 Samples
+						</Button>
+						<Button onClick={this.clear.bind( this )}>
+							Clear
+						</Button>
+					</ButtonGroup>
+				</Col>
+			</Panel.Body>
+		</Panel> );
+	}
+
+	renderXbarHistogram() {
 		const plotlyData = [
 			{
 				x: this.state.xbars,
@@ -362,51 +400,64 @@ class ContinuousCLT extends Component {
 				name: 'density'
 			});
 		}
+		return ( <Panel>
+			<Panel.Body>
+				<p><label>Histogram of <TeX raw="\bar x" />'s</label></p>
+				{ this.state.xbars.length > 1 ?
+					<Plotly data={plotlyData} layout={{
+						width: 400,
+						height: 250,
+						showlegend: false,
+						shapes: [
+							{
+								type: 'line',
+								x0: this.state.avgXBars,
+								y0: 0,
+								x1: this.state.avgXBars,
+								y1: dnorm( this.state.avgXBars, this.state.avgXBars, this.state.stdevXBars ),
+								line: {
+									color: 'red',
+									width: 3
+								}
+							}
+						]
+					}} removeButtons toggleFullscreen={false} /> :
+					<span>Please draw at least two samples.</span>
+				}
+				<CheckboxInput legend="Overlay normal density" onChange={( value ) => {
+					this.setState({
+						overlayNormal: value
+					});
+				}} />
+				{ this.state.avgXBars ?
+					<p>
+						<label> Mean of <TeX raw="\bar x" />'s: </label>
+						&nbsp;{this.state.avgXBars.toFixed( 3 )} (shown as the red line)
+					</p> : null
+				}
+				{ this.state.stdevXBars ?
+					<p>
+						<label>Standard deviation of <TeX raw="\bar x" />'s: </label>
+						&nbsp;{this.state.stdevXBars.toFixed( 3 )}
+					</p> : null
+				}
+			</Panel.Body>
+		</Panel> );
+	}
 
+	render() {
 		return (
 			<div>
 				<Grid>
 					<Row>
-						<Panel>
-							<Col md={6}>
-								<Tabs activeKey={this.state.activeDistribution} id="distribution-tabs" onSelect={this.handleSelect} >
-									<Tab eventKey={1} title="Uniform">{uniform}</Tab>
-									<Tab eventKey={2} title="Exponential">{exponential}</Tab>
-									<Tab eventKey={3} title="Normal">{normal}</Tab>
-								</Tabs>
-							</Col>
-							<Col md={6}>
-								<label>Distribution: {this.state.distFormula}</label>
-								{populationParams}
-								<NumberInput
-									legend="Sample Size"
-									step={1} min={1} defaultValue={10} max={500}
-									onChange={( n ) => {
-										this.setState({ 'n': n });
-									}}
-								/>
-								<ButtonGroup>
-									<Button onClick={() => {
-										this.generateSamples( 1 );
-									}}>
-										Draw Sample
-									</Button>
-									<Button onClick={() => {
-										this.generateSamples( 25 );
-									}}>
-										Draw 25 Samples
-									</Button>
-									<Button onClick={this.clear.bind( this )}>
-										Clear
-									</Button>
-								</ButtonGroup>
-							</Col>
-						</Panel>
+						{this.renderDistributionSelectionPanel()}
 					</Row>
 					<Row>
 						<Col md={6}>
-							<Panel><label>Number of Samples: {this.state.xbars.length} </label></Panel>
-							<Panel style={{ height: '400px', overflowY: 'scroll' }}>
+							<Panel><Panel.Body>
+								<label>Number of Samples: {this.state.xbars.length}</label>
+							</Panel.Body></Panel>
+							<Panel style={{ height: '400px', overflowY: 'scroll' }}><Panel.Body>
 								<GridLayout
 									className="layout"
 									layout={this.state.layout}
@@ -419,51 +470,11 @@ class ContinuousCLT extends Component {
 										</div> );
 									})}
 								</GridLayout>
-							</Panel>
+							</Panel.Body></Panel>
 						</Col>
 						<Col md={6}>
-							<Panel>
-								<p><label>Histogram of <TeX raw="\bar x" />'s</label></p>
-								{ this.state.xbars.length > 1 ?
-									<Plotly data={plotlyData} layout={{
-										width: 400,
-										height: 250,
-										showlegend: false,
-										shapes: [
-											{
-												type: 'line',
-												x0: this.state.avgXBars,
-												y0: 0,
-												x1: this.state.avgXBars,
-												y1: dnorm( this.state.avgXBars, this.state.avgXBars, this.state.stdevXBars ),
-												line: {
-													color: 'red',
-													width: 3
-												}
-											}
-										]
-									}} removeButtons toggleFullscreen={false} /> :
-									<span>Please draw at least two samples.</span>
-								}
-								<CheckboxInput legend="Overlay normal density" onChange={( value ) => {
-									this.setState({
-										overlayNormal: value
-									});
-								}} />
-								{ this.state.avgXBars ?
-									<p>
-										<label> Mean of <TeX raw="\bar x" />'s: </label>
-										&nbsp;{this.state.avgXBars.toFixed( 3 )} (shown as the red line)
-									</p> : null
-								}
-								{ this.state.stdevXBars ?
-									<p>
-										<label>Standard deviation of <TeX raw="\bar x" />'s: </label>
-										&nbsp;{this.state.stdevXBars.toFixed( 3 )}
-									</p> : null
-								}
-							</Panel>
-							<Panel>
+							{this.renderXbarHistogram()}
+							<Panel><Panel.Body>
 								<NumberInput
 									step="any"
 									legend={<TeX raw="x" />}
@@ -487,7 +498,7 @@ class ContinuousCLT extends Component {
 								<TeX raw={`\\hat P(\\bar X < ${this.state.cutoff} ) = ${this.state.leftProb.toFixed( 3 )}`} displayMode />
 								<TeX raw={`\\hat P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightProb.toFixed( 3 )}`} displayMode
 								/>
-							</Panel>
+							</Panel.Body></Panel>
 						</Col>
 					</Row>
 				</Grid>
