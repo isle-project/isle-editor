@@ -573,7 +573,7 @@ class DataExplorer extends Component {
 		if ( !this.state.data ) {
 			return ( <Panel style={{ textAlign: 'center' }} >
 				<Panel.Heading>
-					<Panel.Title componentClass="h1">Data Explorer</Panel.Title>
+					<Panel.Title componentClass="h2">Data Explorer</Panel.Title>
 				</Panel.Heading>
 				<Panel.Body>
 					<label>Please upload a data set (CSV format):</label>
@@ -608,7 +608,7 @@ class DataExplorer extends Component {
 			const variableNames = Object.keys( this.state.data );
 			return ( <Panel>
 				<Panel.Heading>
-					<Panel.Title componentClass="h1">Data Explorer</Panel.Title>
+					<Panel.Title componentClass="h2">Data Explorer</Panel.Title>
 				</Panel.Heading>
 				<Panel.Body>
 					<h3>Please select which variables should be treated as numeric and which ones as categorical:</h3>
