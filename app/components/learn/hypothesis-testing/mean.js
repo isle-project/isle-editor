@@ -149,8 +149,8 @@ class MeanTest extends Component {
 		});
 	}
 
-	render() {
-		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples, zStat } = this.state;
+	renderParametersPanel() {
+		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples } = this.state;
 		const firstSampleParams = <div>
 			<Label>First Sample</Label>
 			<NumberInput
@@ -221,130 +221,146 @@ class MeanTest extends Component {
 				}}
 			/>
 		</div>;
-		const testStat= samples === 'Two-Sample' ? '\\mu_1 - \\mu_2' : '\\mu';
+		const testStat = samples === 'Two-Sample' ? '\\mu_1 - \\mu_2' : '\\mu';
+		return ( <Panel maxWidth={1600}>
+			<Panel.Heading>
+				<Panel.Title componentClass="h4">Parameters</Panel.Title>
+			</Panel.Heading>
+			<Panel.Body>
+				<Well>
+					<SelectInput
+						options={[ 'One-Sample', 'Two-Sample' ]}
+						defaultValue={samples}
+						onChange={( value ) => {
+							this.setState({
+								samples: value
+							}, this.onGenerate );
+						}}
+					/>
+					<NumberInput
+						legend={`Hypothesized ${samples === 'Two-Sample' ? 'difference' : 'mean'} (null hypothesis)`}
+						defaultValue={mu0}
+						step="any"
+						onChange={( value ) => {
+							this.setState({
+								mu0: value
+							}, this.onGenerate );
+						}}
+					/>
+				</Well>
+				<p>Let's assume that we have observed data with the following characteristics</p>
+				<Well>
+					{firstSampleParams}
+					{samples === 'Two-Sample' ? secondSampleParams : null}
+				</Well>
+				<p>We conduct the following test (click on the formula to switch between the one-sided variants and the two-sided test):</p>
+				<Switch onChange={this.onDirectionChange}>
+					<TeX displayMode tag="" raw={`H_0: ${testStat} = ${mu0} \\; vs. \\; H_1: ${testStat} \\ne ${mu0}`} />
+					<TeX displayMode tag="" raw={`H_0: ${testStat} \\le ${mu0} \\; vs. \\; H_1: ${testStat} > ${mu0}`} />
+					<TeX displayMode tag="" raw={`H_0: ${testStat} \\ge ${mu0} \\; vs. \\; H_1: ${testStat} < ${mu0}`} />
+				</Switch>
+				<p>We calculate the following test statistic:</p>
+				{ samples === 'Two-Sample' ?
+					<TeX
+						displayMode
+						tag=""
+						style={{
+							fontSize: '1.5em'
+						}}
+						raw="z  = \frac{\bar x_1 - \bar x_2 - (\mu_1 - \mu_2)}{\sqrt{\tfrac{s_1^2}{n_1}+\tfrac{s_2^2}{n_2}}}"
+						elems={{
+							'n': {
+								tooltip: 'Sample Size'
+							},
+							's': {
+								tooltip: 'Standard Deviation'
+							},
+							'μ': {
+								tooltip: 'True mean'
+							},
+							'x': {
+								tooltip: 'Sample Mean'
+							},
+							'z': {
+								tooltip: 'Test Statistic'
+							}
+						}}
+					/> :
+					<TeX
+						displayMode
+						tag=""
+						style={{
+							fontSize: '1.5em'
+						}}
+						raw="z = \frac{\bar x - \mu}{s/\sqrt{n}}"
+						elems={{
+							'n': {
+								tooltip: 'Sample Size'
+							},
+							's': {
+								tooltip: 'Standard Deviation'
+							},
+							'μ': {
+								tooltip: 'Mean under the Null Hypothesis'
+							},
+							'x': {
+								tooltip: 'Sample Mean'
+							},
+							'z': {
+								tooltip: 'Test Statistic'
+							}
+						}}
+					/>
+				}
+			</Panel.Body>
+		</Panel> );
+	}
 
+	renderResultPanel() {
+		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples, zStat } = this.state;
+		return ( <Panel>
+			<Panel.Heading><Panel.Title componentClass="h4">Test Result</Panel.Title></Panel.Heading>
+			<Panel.Body>
+				<p>Plugging in our values, we have:</p>
+				{ samples === 'Two-Sample' ?
+					<TeX
+						tag=""
+						displayMode
+						raw={`z  = \\frac{${roundn( xbar - xbar2, -3 )} - ${mu0}}{\\sqrt{${roundn( ( ( sigma*sigma ) / n ) + ( ( sigma2*sigma2 )/ n2 ), -3 )}}} = ${zStat}`}
+					/> :
+					<TeX
+						tag=""
+						displayMode
+						raw={`z  = \\frac{${xbar} - ${mu0}}{${sigma} / \\sqrt{${n}}} = ${zStat}`}
+					/>
+				}
+				<p>Under the null hypothesis, we calculate the p-value:</p>
+				<TeX raw={this.state.probFormula} />
+				<VictoryChart
+					domain={{ x: [ -3, 3 ]}}
+				>
+					<VictoryLine data={this.state.pdfData} />
+					<VictoryArea
+						data={this.state.areaData}
+						style={areaStyle}
+					/>
+					{ this.state.areaData2 ? <VictoryArea
+						data={this.state.areaData2}
+						style={areaStyle}
+					/> : null }
+				</VictoryChart>
+			</Panel.Body>
+		</Panel> );
+	}
+
+	render() {
 		return ( <Grid>
 			<Row>
 				<Col md={6}>
-					<Panel header={<h4>Parameters</h4>} maxWidth={1600}>
-						<Well>
-							<SelectInput
-								options={[ 'One-Sample', 'Two-Sample' ]}
-								defaultValue={samples}
-								onChange={( value ) => {
-									this.setState({
-										samples: value
-									}, this.onGenerate );
-								}}
-							/>
-							<NumberInput
-								legend={`Hypothesized ${samples === 'Two-Sample' ? 'difference' : 'mean'} (null hypothesis)`}
-								defaultValue={mu0}
-								step="any"
-								onChange={( value ) => {
-									this.setState({
-										mu0: value
-									}, this.onGenerate );
-								}}
-							/>
-						</Well>
-						<p>Let's assume that we have observed data with the following characteristics</p>
-						<Well>
-							{firstSampleParams}
-							{samples === 'Two-Sample' ? secondSampleParams : null}
-						</Well>
-						<p>We conduct the following test (click on the formula to switch between the one-sided variants and the two-sided test):</p>
-						<Switch onChange={this.onDirectionChange}>
-							<TeX displayMode tag="" raw={`H_0: ${testStat} = ${mu0} \\; vs. \\; H_1: ${testStat} \\ne ${mu0}`} />
-							<TeX displayMode tag="" raw={`H_0: ${testStat} \\le ${mu0} \\; vs. \\; H_1: ${testStat} > ${mu0}`} />
-							<TeX displayMode tag="" raw={`H_0: ${testStat} \\ge ${mu0} \\; vs. \\; H_1: ${testStat} < ${mu0}`} />
-						</Switch>
-						<p>We calculate the following test statistic:</p>
-						{ samples === 'Two-Sample' ?
-							<TeX
-								displayMode
-								tag=""
-								style={{
-									fontSize: '1.5em'
-								}}
-								raw="z  = \frac{\bar x_1 - \bar x_2 - (\mu_1 - \mu_2)}{\sqrt{\tfrac{s_1^2}{n_1}+\tfrac{s_2^2}{n_2}}}"
-								elems={{
-									'n': {
-										tooltip: 'Sample Size'
-									},
-									's': {
-										tooltip: 'Standard Deviation'
-									},
-									'μ': {
-										tooltip: 'True mean'
-									},
-									'x': {
-										tooltip: 'Sample Mean'
-									},
-									'z': {
-										tooltip: 'Test Statistic'
-									}
-								}}
-							/> :
-							<TeX
-								displayMode
-								tag=""
-								style={{
-									fontSize: '1.5em'
-								}}
-								raw="z = \frac{\bar x - \mu}{s/\sqrt{n}}"
-								elems={{
-									'n': {
-										tooltip: 'Sample Size'
-									},
-									's': {
-										tooltip: 'Standard Deviation'
-									},
-									'μ': {
-										tooltip: 'Mean under the Null Hypothesis'
-									},
-									'x': {
-										tooltip: 'Sample Mean'
-									},
-									'z': {
-										tooltip: 'Test Statistic'
-									}
-								}}
-							/>
-						}
-					</Panel>
+					{this.renderParametersPanel()}
 				</Col>
 				<Col md={6}>
-					<Panel title="Test Result">
-						<p>Plugging in our values, we have:</p>
-						{ samples === 'Two-Sample' ?
-							<TeX
-								tag=""
-								displayMode
-								raw={`z  = \\frac{${roundn( xbar - xbar2, -3 )} - ${mu0}}{\\sqrt{${roundn( ( ( sigma*sigma ) / n ) + ( ( sigma2*sigma2 )/ n2 ), -3 )}}} = ${zStat}`}
-							/> :
-							<TeX
-								tag=""
-								displayMode
-								raw={`z  = \\frac{${xbar} - ${mu0}}{${sigma} / \\sqrt{${n}}} = ${zStat}`}
-							/>
-						}
-						<p>Under the null hypothesis, we calculate the p-value:</p>
-						<TeX raw={this.state.probFormula} />
-						<VictoryChart
-							domain={{ x: [ -3, 3 ]}}
-						>
-							<VictoryLine data={this.state.pdfData} />
-							<VictoryArea
-								data={this.state.areaData}
-								style={areaStyle}
-							/>
-							{ this.state.areaData2 ? <VictoryArea
-								data={this.state.areaData2}
-								style={areaStyle}
-							/> : null }
-						</VictoryChart>
-					</Panel>
+					{this.renderResultPanel()}
 				</Col>
 			</Row>
 		</Grid> );
