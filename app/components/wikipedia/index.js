@@ -93,16 +93,6 @@ class Wikipedia extends Component {
 		this.getResult( this.state.text );
 	}
 
-	keyDown = ( event ) => {
-		switch ( event.keyCode ) {
-		case 13: // "Enter" key
-			this.wikipediaIFrame( this.state.text );
-			break;
-		default:
-			break;
-		}
-	}
-
 	changeVoiceHandler = ( text ) => {
 		this.setState({
 			text
