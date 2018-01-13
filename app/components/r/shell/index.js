@@ -401,6 +401,42 @@ class RShell extends React.Component {
 		return null;
 	}
 
+	renderHelpModal() {
+		return ( <Modal
+			backdrop={false}
+			show={Boolean( this.state.help )}
+			title="R Help"
+			onHide={this.hideHelp}
+			style={{
+				left: 'auto',
+				padding: '10px',
+				position: 'fixed',
+				top: '10px',
+				right: '30px',
+				zIndex: 99999,
+				overflow: 'hidden'
+			}}
+			enforceFocus={false}
+		>
+			<Modal.Header closeButton>
+				<Modal.Title id="contained-modal-title-lg">R Help</Modal.Title>
+			</Modal.Header>
+			<Modal.Body style={{
+				height: '400',
+				overflow: 'auto'
+			}}>
+				<span
+					dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
+						__html: this.state.help
+					}}
+				></span>
+			</Modal.Body>
+			<Modal.Footer>
+				<Button onClick={this.hideHelp}>Close</Button>
+			</Modal.Footer>
+		</Modal> );
+	}
+
 	render() {
 		const nHints = this.props.hints.length;
 		return (
@@ -470,40 +506,8 @@ class RShell extends React.Component {
 					{ showResult( this.state.result ) }
 					{ insertImages( this.state.plots ) }
 				</div>
-				{ this.props.id ? <InstructorBar id={this.props.id} /> : null }
-				<Modal
-					backdrop={false}
-					show={Boolean( this.state.help )}
-					title="R Help"
-					onHide={this.hideHelp}
-					style={{
-						left: 'auto',
-						padding: '10px',
-						position: 'fixed',
-						top: '10px',
-						right: '30px',
-						zIndex: 99999,
-						overflow: 'hidden'
-					}}
-					enforceFocus={false}
-				>
-					<Modal.Header closeButton>
-						<Modal.Title id="contained-modal-title-lg">R Help</Modal.Title>
-					</Modal.Header>
-					<Modal.Body style={{
-						height: '400',
-						overflow: 'auto'
-					}}>
-						<span
-							dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
-								__html: this.state.help
-							}}
-						></span>
-					</Modal.Body>
-					<Modal.Footer>
-						<Button onClick={this.hideHelp}>Close</Button>
-					</Modal.Footer>
-				</Modal>
+				<InstructorBar id={this.props.id} />
+				{this.renderHelpModal()}
 			</div>
 		);
 	}
