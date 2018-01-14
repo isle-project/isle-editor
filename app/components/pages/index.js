@@ -7,6 +7,7 @@ import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import './pages.css';
 
+import SpeechInterface from 'speech-interface'; // this may be deleted
 
 // MAIN //
 
@@ -17,6 +18,38 @@ class Pages extends Component {
 			activePage: 1
 		};
 	}
+
+	componentDidMount() {
+		this.register();
+	}
+
+	register() {
+		if (!global.speechInterface) {
+			global.speechInterface = new SpeechInterface();
+		}
+		global.speechInterface.register({
+			name: ['pager', 'please'],
+			ref: this,
+			commands: [{
+				command: 'nextPage',
+				trigger: 'next'
+			},
+			{
+				command: 'prevPage',
+				trigger: 'previous'
+			},
+			{
+				command: 'firstPage',
+				trigger: 'first'
+			},
+			{
+				command: 'lastPage',
+				trigger: 'last'
+			}
+		]
+		});
+	}
+
 
 	firstPage = () => {
 		this.props.onSelect( 1 );
