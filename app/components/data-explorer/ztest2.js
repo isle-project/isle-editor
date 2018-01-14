@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Panel, Row, Col } from 'react-bootstrap';
 import NumberInput from 'components/input/number';
@@ -143,94 +143,105 @@ class ZTest2 extends Component {
 		return out;
 	}
 
-	render() {
+	renderInputs() {
 		const { continuous, categorical } = this.props;
 		const binary = this.getBinaryVars( categorical );
+		return ( <Fragment>
+			<SelectInput
+				legend="Variable:"
+				defaultValue={this.state.var1}
+				options={continuous}
+				onChange={( value ) => {
+					this.setState({
+						var1: value
+					});
+				}}
+			/>
+			<Row>
+				<Col md={5}>
+					<SelectInput
+						legend="Groups:"
+						options={binary}
+						defaultValue={this.state.grouping}
+						clearable
+						onChange={( value ) => {
+							this.setState({
+								grouping: value,
+								var2: null
+							});
+						}}
+					/>
+				</Col>
+				<Col md={2}>
+					<p>OR</p>
+				</Col>
+				<Col md={5}>
+					<SelectInput
+						legend="Second Variable:"
+						options={continuous}
+						defaultValue={this.state.var2}
+						clearable
+						onChange={( value ) => {
+							this.setState({
+								var2: value,
+								grouping: null
+							});
+						}}
+					/>
+				</Col>
+			</Row>
+			<NumberInput
+				legend="Difference under H0"
+				defaultValue={this.state.diff}
+				step="any"
+				onChange={( value ) => {
+					this.setState({
+						diff: value
+					});
+				}}
+			/>
+			<SelectInput
+				legend="Direction:"
+				defaultValue={this.state.direction}
+				options={[ 'less', 'greater', 'two-sided' ]}
+				onChange={( value ) => {
+					this.setState({
+						direction: value
+					});
+				}}
+			/>
+			<NumberInput
+				legend={<span>Significance level <TeX raw="\alpha" /></span>}
+				defaultValue={this.state.alpha}
+				min={0.0}
+				max={1.0}
+				step="any"
+				onChange={( value ) => {
+					this.setState({
+						alpha: value
+					});
+				}}
+			/>
+		</Fragment> );
+	}
+
+	render() {
 		return (
 			<Panel
-				header={<h4>Two-Sample Mean Test</h4>}
 				style={{ fontSize: '14px' }}
 			>
-				<SelectInput
-					legend="Variable:"
-					defaultValue={this.state.var1}
-					options={continuous}
-					onChange={( value ) => {
-						this.setState({
-							var1: value
-						});
-					}}
-				/>
-				<Row>
-					<Col md={5}>
-						<SelectInput
-							legend="Groups:"
-							options={binary}
-							defaultValue={this.state.grouping}
-							clearable
-							onChange={( value ) => {
-								this.setState({
-									grouping: value,
-									var2: null
-								});
-							}}
-						/>
-					</Col>
-					<Col md={2}>
-						<p>OR</p>
-					</Col>
-					<Col md={5}>
-						<SelectInput
-							legend="Second Variable:"
-							options={continuous}
-							defaultValue={this.state.var2}
-							clearable
-							onChange={( value ) => {
-								this.setState({
-									var2: value,
-									grouping: null
-								});
-							}}
-						/>
-					</Col>
-				</Row>
-				<NumberInput
-					legend="Difference under H0"
-					defaultValue={this.state.diff}
-					step="any"
-					onChange={( value ) => {
-						this.setState({
-							diff: value
-						});
-					}}
-				/>
-				<SelectInput
-					legend="Direction:"
-					defaultValue={this.state.direction}
-					options={[ 'less', 'greater', 'two-sided' ]}
-					onChange={( value ) => {
-						this.setState({
-							direction: value
-						});
-					}}
-				/>
-				<NumberInput
-					legend={<span>Significance level <TeX raw="\alpha" /></span>}
-					defaultValue={this.state.alpha}
-					min={0.0}
-					max={1.0}
-					step="any"
-					onChange={( value ) => {
-						this.setState({
-							alpha: value
-						});
-					}}
-				/>
+				<Panel.Heading>
+					<Panel.Title componentClass="h4">
+						Two-Sample Mean Test
+					</Panel.Title>
+				</Panel.Heading>
+				{this.renderInputs()}
 				<Button bsStyle="primary" block onClick={this.calculateTwoSampleZTest}>Calculate</Button>
 			</Panel>
 		);
 	}
 }
+
 
 // DEFAULT PROPERTIES //
 

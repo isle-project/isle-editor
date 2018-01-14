@@ -14,8 +14,20 @@
     },
     "test": {
       "plugins": [
-        ["webpack-loaders", { "config": "webpack.config.test.js", "verbose": false }],
-        ["resolver", {"resolveDirs": ["app", "node_modules/@stdlib/stdlib/lib/node_modules"]}]
+        [
+          "webpack-loaders", {
+            "config": "webpack.config.test.js",
+            "verbose": false
+          }
+        ],
+        [
+          "resolver", {
+            "resolveDirs": [
+                "app",
+                "node_modules/@stdlib/stdlib/lib/node_modules"
+              ]
+            }
+        ]
       ]
     }
   }

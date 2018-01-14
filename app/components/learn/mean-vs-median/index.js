@@ -106,79 +106,104 @@ class MeanVSMedian extends Component {
 		});
 	}
 
+	renderMeanPanel() {
+		return ( <Panel>
+			<Panel.Heading>
+				<Panel.Title componentClass="h4">Mean</Panel.Title>
+			</Panel.Heading>
+			<Panel.Body>
+				<VictoryChart domain={this.state.lognormalDomain} containerComponent={
+					<VictoryCursorContainer
+						events={{ onClick: this.meanEvaluation }}
+						cursorDimension="x"
+						cursorLabel={( d ) => `${roundn( d.x, -1 )}`}
+						onCursorChange={( value ) => {
+							if ( !this.state.showLognormalMean ) {
+								this.setState({
+									meanLognormalGuess: value
+								});
+							}
+						}}
+					/>
+				}>
+					<VictoryLine data={this.state.lognormalData} x="x" y="y" />
+					{ this.state.showLognormalMean ?
+						<VictoryLine data={[ { x: this.state.meanLognormalGuess, y: 0 }, { x: this.state.meanLognormalGuess, y: this.state.lognormalDomain.y[ 1 ] } ]} labels={[ 'Your Guess', '' ]} /> :
+						null
+					}
+					{ this.state.showLognormalMean ?
+						<VictoryLine data={[ { x: lognormal.mean( this.state.mu, this.state.sigma ), y: 0 }, { x: lognormal.mean( this.state.mu, this.state.sigma ), y: this.state.lognormalDomain.y[ 1 ] } ]}
+							labels={[ '', 'True Mean' ]}
+						/> :
+						null
+					}
+				</VictoryChart>
+			</Panel.Body>
+		</Panel> );
+	}
+
+	renderMedianPanel() {
+		return ( <Panel>
+			<Panel.Heading>
+				<Panel.Title componentClass="h4">Median</Panel.Title>
+			</Panel.Heading>
+			<Panel.Body>
+				<VictoryChart domain={this.state.lognormalDomain} containerComponent={
+					<VictoryCursorContainer
+						events={{ onClick: this.medianEvaluation }}
+						cursorDimension="x"
+						cursorLabel={( d ) => `${roundn( d.x, -1 )}`}
+						onCursorChange={( value ) => {
+							if ( !this.state.showLognormalMedian ) {
+								this.setState({
+									medianLognormalGuess: value
+								});
+							}
+						}}
+					/>
+				}>
+					<VictoryLine data={this.state.lognormalData} x="x" y="y" />
+					{ this.state.showLognormalMedian ?
+						<VictoryLine data={[ { x: this.state.medianLognormalGuess, y: 0 }, { x: this.state.medianLognormalGuess, y: this.state.lognormalDomain.y[ 1 ] } ]} labels={[ 'Your Guess', '' ]} /> :
+						null
+					}
+					{ this.state.showLognormalMedian ?
+						<VictoryLine data={[ { x: lognormal.median( this.state.mu, this.state.sigma ), y: 0 }, { x: lognormal.median( this.state.mu, this.state.sigma ), y: this.state.lognormalDomain.y[ 1 ] } ]}
+							labels={[ '', 'True Median' ]}
+						/> :
+						null
+					}
+				</VictoryChart>
+			</Panel.Body>
+		</Panel> );
+	}
+
 	render() {
 		return (
-			<Panel header={this.props.header}>
-				<Grid>
-					{this.props.intro}
-					<Row>
-						<Col md={6}>
-							<Panel header={<h3>Mean</h3>}>
-								<VictoryChart domain={this.state.lognormalDomain} containerComponent={
-									<VictoryCursorContainer
-										events={{ onClick: this.meanEvaluation }}
-										cursorDimension="x"
-										cursorLabel={( d ) => `${roundn( d.x, -1 )}`}
-										onCursorChange={( value ) => {
-											if ( !this.state.showLognormalMean ) {
-												this.setState({
-													meanLognormalGuess: value
-												});
-											}
-										}}
-									/>
-								}>
-									<VictoryLine data={this.state.lognormalData} x="x" y="y" />
-									{ this.state.showLognormalMean ?
-										<VictoryLine data={[ { x: this.state.meanLognormalGuess, y: 0 }, { x: this.state.meanLognormalGuess, y: this.state.lognormalDomain.y[ 1 ] } ]} labels={[ 'Your Guess', '' ]} /> :
-										null
-									}
-									{ this.state.showLognormalMean ?
-										<VictoryLine data={[ { x: lognormal.mean( this.state.mu, this.state.sigma ), y: 0 }, { x: lognormal.mean( this.state.mu, this.state.sigma ), y: this.state.lognormalDomain.y[ 1 ] } ]}
-											labels={[ '', 'True Mean' ]}
-										/> :
-										null
-									}
-								</VictoryChart>
-							</Panel>
-						</Col>
-						<Col md={6}>
-							<Panel header={<h3>Median</h3>}>
-								<VictoryChart domain={this.state.lognormalDomain} containerComponent={
-									<VictoryCursorContainer
-										events={{ onClick: this.medianEvaluation }}
-										cursorDimension="x"
-										cursorLabel={( d ) => `${roundn( d.x, -1 )}`}
-										onCursorChange={( value ) => {
-											if ( !this.state.showLognormalMedian ) {
-												this.setState({
-													medianLognormalGuess: value
-												});
-											}
-										}}
-									/>
-								}>
-									<VictoryLine data={this.state.lognormalData} x="x" y="y" />
-									{ this.state.showLognormalMedian ?
-										<VictoryLine data={[ { x: this.state.medianLognormalGuess, y: 0 }, { x: this.state.medianLognormalGuess, y: this.state.lognormalDomain.y[ 1 ] } ]} labels={[ 'Your Guess', '' ]} /> :
-										null
-									}
-									{ this.state.showLognormalMedian ?
-										<VictoryLine data={[ { x: lognormal.median( this.state.mu, this.state.sigma ), y: 0 }, { x: lognormal.median( this.state.mu, this.state.sigma ), y: this.state.lognormalDomain.y[ 1 ] } ]}
-											labels={[ '', 'True Median' ]}
-										/> :
-										null
-									}
-								</VictoryChart>
-							</Panel>
-						</Col>
-					</Row>
-					<Row>
-						<div className="well" style={{ maxWidth: 400, margin: '0 auto 10px' }}>
-							<Button bsStyle="primary" bsSize="large" block onClick={this.generateData} >Generate</Button>
-						</div>
-					</Row>
-				</Grid>
+			<Panel>
+				<Panel.Heading>
+					<Panel.Title componentClass="h3">
+						{this.props.header}
+					</Panel.Title>
+				</Panel.Heading>
+				<Panel.Body>
+					<Grid>
+						{this.props.intro}
+						<Row>
+							<Col md={6}>
+								{this.renderMeanPanel()}
+							</Col>
+							<Col md={6}>
+								{this.renderMedianPanel()}
+							</Col>
+						</Row>
+						<Row>
+							<div className="well" style={{ maxWidth: 400, margin: '0 auto 10px' }}>
+								<Button bsStyle="primary" bsSize="large" block onClick={this.generateData} >Generate</Button>
+							</div>
+						</Row>
+					</Grid>
+				</Panel.Body>
 			</Panel>
 		);
 	}
@@ -189,14 +214,14 @@ class MeanVSMedian extends Component {
 
 MeanVSMedian.defaultProps = {
 	intro: <div></div>,
-	header: <h3>Measures of Location: Mean vs. Median</h3>
+	header: 'Measures of Location: Mean vs. Median'
 };
 
 
 // PROPERTY TYPES //
 
 MeanVSMedian.propTypes = {
-	header: PropTypes.node,
+	header: PropTypes.string,
 	intro: PropTypes.node
 };
 

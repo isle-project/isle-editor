@@ -572,61 +572,69 @@ class DataExplorer extends Component {
 	render() {
 		if ( !this.state.data ) {
 			return ( <Panel style={{ textAlign: 'center' }} >
-				<h1>Data Explorer</h1>
-				<label>Please upload a data set (CSV format):</label>
-				<input
-					type="file"
-					accept=".csv"
-					onChange={this.handleFileUpload}
-					ref={fileUpload => {
-						this.fileUpload = fileUpload;
-					}}
-					style={{ margin: 'auto' }}
-				/>
-				<p>or</p>
-				<div
-					onDrop={this.onFileDrop}
-					onDragOver={this.ignoreDrag}
-					onDragEnd={this.ignoreDrag}
-					style={{
-						minHeight: '150px',
-						width: '250px',
-						border: '1px solid blue',
-						margin: 'auto',
-						padding: '10px'
-					}}
-				>
-					<span>Drop file here</span>
-				</div>
+				<Panel.Heading>
+					<Panel.Title componentClass="h2">Data Explorer</Panel.Title>
+				</Panel.Heading>
+				<Panel.Body>
+					<label>Please upload a data set (CSV format):</label>
+					<input
+						type="file"
+						accept=".csv"
+						onChange={this.handleFileUpload}
+						ref={fileUpload => {
+							this.fileUpload = fileUpload;
+						}}
+						style={{ margin: 'auto' }}
+					/>
+					<p>or</p>
+					<div
+						onDrop={this.onFileDrop}
+						onDragOver={this.ignoreDrag}
+						onDragEnd={this.ignoreDrag}
+						style={{
+							minHeight: '150px',
+							width: '250px',
+							border: '1px solid blue',
+							margin: 'auto',
+							padding: '10px'
+						}}
+					>
+						<span>Drop file here</span>
+					</div>
+				</Panel.Body>
 			</Panel> );
 		}
 		if ( !this.state.ready ) {
 			const variableNames = Object.keys( this.state.data );
 			return ( <Panel>
-				<h1>Data Explorer</h1>
-				<h3>Please select which variables should be treated as numeric and which ones as categorical:</h3>
-				<SelectInput
-					legend="Continuous:"
-					options={variableNames}
-					defaultValue={this.state.continuous}
-					multi
-					onChange={( continuous ) => this.setState({ continuous })}
-				/>
-				<SelectInput
-					legend="Categorical:"
-					options={variableNames}
-					defaultValue={this.state.categorical}
-					multi
-					onChange={( categorical ) => this.setState({ categorical })}
-				/>
-				<Button onClick={() => {
-					const groupVars = this.state.categorical.slice();
-					const ready = true;
-					this.setState({
-						groupVars,
-						ready
-					});
-				}}>Submit</Button>
+				<Panel.Heading>
+					<Panel.Title componentClass="h2">Data Explorer</Panel.Title>
+				</Panel.Heading>
+				<Panel.Body>
+					<h3>Please select which variables should be treated as numeric and which ones as categorical:</h3>
+					<SelectInput
+						legend="Continuous:"
+						options={variableNames}
+						defaultValue={this.state.continuous}
+						multi
+						onChange={( continuous ) => this.setState({ continuous })}
+					/>
+					<SelectInput
+						legend="Categorical:"
+						options={variableNames}
+						defaultValue={this.state.categorical}
+						multi
+						onChange={( categorical ) => this.setState({ categorical })}
+					/>
+					<Button onClick={() => {
+						const groupVars = this.state.categorical.slice();
+						const ready = true;
+						this.setState({
+							groupVars,
+							ready
+						});
+					}}>Submit</Button>
+				</Panel.Body>
 			</Panel> );
 		}
 		let colWidth = this.props.questions ? 4 : 6;
@@ -938,19 +946,23 @@ class DataExplorer extends Component {
 					>{this.props.questions}</Pages></Col> : null }
 					<Col md={colWidth}>
 						<Panel
-							header={<h3>Toolbox</h3>}
 							style={{ minHeight: 600 }}
 						>
-							<Tab.Container id="options-menu" defaultActiveKey={defaultActiveKey}>
-								<Row className="clearfix">
-									<Col sm={12}>
-										{navbar}
-									</Col>
-									<Col sm={12}>
-										{tabs}
-									</Col>
-								</Row>
-							</Tab.Container>
+							<Panel.Heading>
+								<Panel.Title componentClass="h3">Toolbox</Panel.Title>
+							</Panel.Heading>
+							<Panel.Body>
+								<Tab.Container id="options-menu" defaultActiveKey={defaultActiveKey}>
+									<Row className="clearfix">
+										<Col sm={12}>
+											{navbar}
+										</Col>
+										<Col sm={12}>
+											{tabs}
+										</Col>
+									</Row>
+								</Tab.Container>
+							</Panel.Body>
 						</Panel>
 						<Gate owner>
 							<Modal
@@ -1025,8 +1037,8 @@ class DataExplorer extends Component {
 // DEFAULT PROPERTIES //
 
 DataExplorer.defaultProps = {
-	data: {},
-	onSelect(){},
+	data: null,
+	onSelect() {},
 	tabs: [],
 	questions: null,
 	transformer: false,

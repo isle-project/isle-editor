@@ -182,76 +182,81 @@ class Histogram extends Component {
 	render() {
 		const { variables, groupingVariables } = this.props;
 		return (
-			<Panel header="Histogram">
-				<SelectInput
-					legend="Variable:"
-					defaultValue={this.state.variable}
-					options={variables}
-					onChange={( value )=>{
-						this.setState({
-							variable: value
-						});
-					}}
-				/>
-				<SelectInput
-					legend="Group By:"
-					options={groupingVariables}
-					clearable={true}
-					onChange={( value )=>{
-						this.setState({
-							group: value // eslint-disable-line react/no-unused-state
-						});
-					}}
-				/>
-				<div>
-					<CheckboxInput
-						legend="Choose # of bins"
-						defaultValue={this.state.chooseBins}
-						inline
-						onChange={()=>{
-							this.setState({
-								chooseBins: !this.state.chooseBins
-							});
-						}}
-					/>
-					<SliderInput
-						defaultValue={this.state.nBins}
-						min={1}
-						step={1}
-						disabled={!this.state.chooseBins}
+			<Panel>
+				<Panel.Heading>
+					<Panel.Title>Histogram</Panel.Title>
+				</Panel.Heading>
+				<Panel.Body>
+					<SelectInput
+						legend="Variable:"
+						defaultValue={this.state.variable}
+						options={variables}
 						onChange={( value )=>{
 							this.setState({
-								nBins: value
-							});
-						}}
-						inline
-					/>
-				</div>
-				<div style={{
-					opacity: this.props.showDensityOption ? 1.0 : 0.0
-				}}>
-					<CheckboxInput
-						legend="Overlay Density"
-						defaultValue={this.state.overlayDensity}
-						onChange={( value )=>{
-							this.setState({
-								overlayDensity: !this.state.overlayDensity
+								variable: value
 							});
 						}}
 					/>
 					<SelectInput
-						legend="Type:"
-						options={[ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ]}
-						disabled={!this.state.overlayDensity}
-						defaultValue={this.state.densityType}
+						legend="Group By:"
+						options={groupingVariables}
+						clearable={true}
 						onChange={( value )=>{
 							this.setState({
-								densityType: value
+								group: value // eslint-disable-line react/no-unused-state
 							});
 						}}
 					/>
-				</div>
-				<Button bsStyle="primary" block onClick={this.generateHistogram.bind( this )}>Generate</Button>
+					<div>
+						<CheckboxInput
+							legend="Choose # of bins"
+							defaultValue={this.state.chooseBins}
+							inline
+							onChange={()=>{
+								this.setState({
+									chooseBins: !this.state.chooseBins
+								});
+							}}
+						/>
+						<SliderInput
+							defaultValue={this.state.nBins}
+							min={1}
+							step={1}
+							disabled={!this.state.chooseBins}
+							onChange={( value )=>{
+								this.setState({
+									nBins: value
+								});
+							}}
+							inline
+						/>
+					</div>
+					<div style={{
+						opacity: this.props.showDensityOption ? 1.0 : 0.0
+					}}>
+						<CheckboxInput
+							legend="Overlay Density"
+							defaultValue={this.state.overlayDensity}
+							onChange={( value )=>{
+								this.setState({
+									overlayDensity: !this.state.overlayDensity
+								});
+							}}
+						/>
+						<SelectInput
+							legend="Type:"
+							options={[ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ]}
+							disabled={!this.state.overlayDensity}
+							defaultValue={this.state.densityType}
+							onChange={( value )=>{
+								this.setState({
+									densityType: value
+								});
+							}}
+						/>
+					</div>
+					<Button bsStyle="primary" block onClick={this.generateHistogram.bind( this )}>Generate</Button>
+				</Panel.Body>
 			</Panel>
 		);
 	}

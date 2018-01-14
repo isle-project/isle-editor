@@ -96,7 +96,6 @@ class ProportionTest extends Component {
 			probFormula = `P( Z > ${pStat}) = ${roundn( 1-pnorm( pStat, 0, 1 ), -3 )}`;
 			break;
 		case 0:
-			console.log( pStat );
 			if ( !isInfinite( pStat ) && !isnan( pStat ) ) {
 				areaData = linspace( abs( pStat ), 3, 200 ).map( this.normalPDF );
 				areaData2 = linspace( -3, -abs( pStat ), 200 ).map( this.normalPDF );
@@ -110,7 +109,6 @@ class ProportionTest extends Component {
 		const newState = {
 			n, n2, p0, phat, phat2, pStat, areaData, areaData2, pdfData, probFormula, stderr
 		};
-		console.log( newState );
 		this.setState( newState );
 	}
 
@@ -150,7 +148,7 @@ class ProportionTest extends Component {
 		});
 	}
 
-	render() {
+	renderParametersPanel() {
 		const firstSampleParams = <div>
 			<Label>First Sample</Label>
 			<NumberInput
@@ -203,119 +201,135 @@ class ProportionTest extends Component {
 				}}
 			/>
 		</div>;
-		const { p0, phat, phat2, pStat, samples, n, stderr } = this.state;
+		const { p0, samples } = this.state;
 		const testStat= samples === 'Two-Sample' ? 'p_1 - p_2' : 'p';
+		return ( <Panel maxWidth={1600}>
+			<Panel.Heading>
+				<Panel.Title componentClass="h4">Parameters</Panel.Title>
+			</Panel.Heading>
+			<Panel.Body>
+				<Well>
+					<SelectInput
+						options={[ 'One-Sample', 'Two-Sample' ]}
+						defaultValue={samples}
+						onChange={( value ) => {
+							this.setState({
+								samples: value,
+								p0: value === 'Two-Sample' ? 0.0 : 0.5
+							}, this.onGenerate );
+						}}
+					/>
+					<NumberInput
+						legend={`${ samples === 'Two-Sample' ? 'Difference in proportions' : 'Hypothesized proportion' } (null hypothesis)`}
+						defaultValue={p0}
+						step={0.001}
+						min={0}
+						max={1}
+						onChange={( value ) => {
+							this.setState({
+								p0: value
+							}, this.onGenerate );
+						}}
+					/>
+				</Well>
+				Let's assume that we have observed data with the following characteristics:
+				<Well>
+					{firstSampleParams}
+					{samples === 'Two-Sample' ? secondSampleParams : null }
+				</Well>
+				<p>We conduct the following test (click on the formula to switch between the one-sided variants and the two-sided test):</p>
+				<Switch onChange={this.onDirectionChange}>
+					<TeX displayMode tag="" raw={`H_0: ${testStat} = ${p0} \\; vs. \\; H_1: ${testStat} \\ne ${p0}`} />
+					<TeX displayMode tag="" raw={`H_0: ${testStat} \\le ${p0} \\; vs. \\; H_1: ${testStat} > ${p0}`} />
+					<TeX displayMode tag="" raw={`H_0: ${testStat} \\ge ${p0} \\; vs. \\; H_1: ${testStat} < ${p0}`} />
+				</Switch>
+				<p>We calculate the following test statistic:</p>
+				{ samples === 'Two-Sample' ?
+					<TeX
+						displayMode
+						tag=""
+						style={{ fontSize: '1.5em' }}
+						raw="z  = \frac{\hat p_1 - \hat p_2 - (p_1 - p_2)}{\sqrt{\tfrac{\hat p_1 (1- \hat p_1)}{n_1} + \tfrac{\hat p_2 (1 - \hat p_2)}{n_2} }}"
+						elems={{
+							'n': {
+								tooltip: 'Sample Size'
+							},
+							'p': {
+								tooltip: 'Proportion'
+							},
+							'z': {
+								tooltip: 'Test Statistic'
+							}
+						}}
+					/> :
+					<TeX
+						displayMode
+						tag=""
+						style={{ fontSize: '1.5em' }}
+						raw="z = \frac{\hat p - p_0}{\sqrt{p_0 (1-p_0) / n}}"
+						elems={{
+							'n': {
+								tooltip: 'Sample Size'
+							},
+							'p': {
+								tooltip: 'Proportion'
+							},
+							'z': {
+								tooltip: 'Test Statistic'
+							}
+						}}
+					/>
+				}
+			</Panel.Body>
+		</Panel> );
+	}
 
+	renderResultPanel() {
+		const { p0, phat, phat2, pStat, samples, n, stderr } = this.state;
+		return ( <Panel>
+			<Panel.Heading><Panel.Title componentClass="h4">Test Result</Panel.Title></Panel.Heading>
+			<Panel.Body>
+				<p>Plugging in our values, we have:</p>
+				{ samples === 'Two-Sample' ?
+					<TeX
+						tag=""
+						displayMode
+						raw={`z  = \\frac{${roundn( phat - phat2, -3 )} - ${p0}}{\\sqrt{${roundn( stderr*stderr, -5 )}}} = ${pStat}`}
+					/> :
+					<TeX
+						tag=""
+						displayMode
+						raw={`z  = \\frac{${phat} - ${p0}}{\\sqrt{${roundn( p0*( 1-p0 )/n, -3 )}}} = ${pStat}`}
+					/>
+				}
+				<p>Under the null hypothesis, we calculate the p-value: </p>
+				<TeX raw={this.state.probFormula} />
+				<VictoryChart
+					domain={{ x: [ -3, 3 ]}}
+				>
+					<VictoryLine data={this.state.pdfData} />
+					<VictoryArea
+						data={this.state.areaData}
+						style={areaStyle}
+					/>
+					{ this.state.areaData2 ? <VictoryArea
+						data={this.state.areaData2}
+						style={areaStyle}
+					/> : null }
+				</VictoryChart>
+			</Panel.Body>
+		</Panel> );
+	}
+
+	render() {
 		return (
 			<Grid>
 				<Row>
 					<Col md={6}>
-						<Panel header={<h4>Parameters</h4>} maxWidth={1600}>
-							<Well>
-								<SelectInput
-									options={[ 'One-Sample', 'Two-Sample' ]}
-									defaultValue={samples}
-									onChange={( value ) => {
-										this.setState({
-											samples: value,
-											p0: value === 'Two-Sample' ? 0.0 : 0.5
-										}, this.onGenerate );
-									}}
-								/>
-								<NumberInput
-									legend={`${ samples === 'Two-Sample' ? 'Difference in proportions' : 'Hypothesized proportion' } (null hypothesis)`}
-									defaultValue={p0}
-									step={0.001}
-									min={0}
-									max={1}
-									onChange={( value ) => {
-										this.setState({
-											p0: value
-										}, this.onGenerate );
-									}}
-								/>
-							</Well>
-							Let's assume that we have observed data with the following characteristics:
-							<Well>
-								{firstSampleParams}
-								{samples === 'Two-Sample' ? secondSampleParams : null }
-							</Well>
-							<p>We conduct the following test (click on the formula to switch between the one-sided variants and the two-sided test):</p>
-							<Switch onChange={this.onDirectionChange}>
-								<TeX displayMode tag="" raw={`H_0: ${testStat} = ${p0} \\; vs. \\; H_1: ${testStat} \\ne ${p0}`} />
-								<TeX displayMode tag="" raw={`H_0: ${testStat} \\le ${p0} \\; vs. \\; H_1: ${testStat} > ${p0}`} />
-								<TeX displayMode tag="" raw={`H_0: ${testStat} \\ge ${p0} \\; vs. \\; H_1: ${testStat} < ${p0}`} />
-							</Switch>
-							<p>We calculate the following test statistic:</p>
-							{ samples === 'Two-Sample' ?
-								<TeX
-									displayMode
-									tag=""
-									style={{ fontSize: '1.5em' }}
-									raw="z  = \frac{\hat p_1 - \hat p_2 - (p_1 - p_2)}{\sqrt{\tfrac{\hat p_1 (1- \hat p_1)}{n_1} + \tfrac{\hat p_2 (1 - \hat p_2)}{n_2} }}"
-									elems={{
-										'n': {
-											tooltip: 'Sample Size'
-										},
-										'p': {
-											tooltip: 'Proportion'
-										},
-										'z': {
-											tooltip: 'Test Statistic'
-										}
-									}}
-								/> :
-								<TeX
-									displayMode
-									tag=""
-									style={{ fontSize: '1.5em' }}
-									raw="z = \frac{\hat p - p_0}{\sqrt{p_0 (1-p_0) / n}}"
-									elems={{
-										'n': {
-											tooltip: 'Sample Size'
-										},
-										'p': {
-											tooltip: 'Proportion'
-										},
-										'z': {
-											tooltip: 'Test Statistic'
-										}
-									}}
-								/>
-							}
-						</Panel>
+						{this.renderParametersPanel()}
 					</Col>
 					<Col md={6}>
-						<Panel title="Test Result">
-							<p>Plugging in our values, we have:</p>
-							{ samples === 'Two-Sample' ?
-								<TeX
-									tag=""
-									displayMode
-									raw={`z  = \\frac{${roundn( phat - phat2, -3 )} - ${p0}}{\\sqrt{${roundn( stderr*stderr, -5 )}}} = ${pStat}`}
-								/> :
-								<TeX
-									tag=""
-									displayMode
-									raw={`z  = \\frac{${phat} - ${p0}}{\\sqrt{${roundn( p0*( 1-p0 )/n, -3 )}}} = ${pStat}`}
-								/>
-							}
-							<p>Under the null hypothesis, we calculate the p-value: </p>
-							<TeX raw={this.state.probFormula} />
-							<VictoryChart
-								domain={{ x: [ -3, 3 ]}}
-							>
-								<VictoryLine data={this.state.pdfData} />
-								<VictoryArea
-									data={this.state.areaData}
-									style={areaStyle}
-								/>
-								{ this.state.areaData2 ? <VictoryArea
-									data={this.state.areaData2}
-									style={areaStyle}
-								/> : null }
-							</VictoryChart>
-						</Panel>
+						{this.renderResultPanel()}
 					</Col>
 				</Row>
 			</Grid>
