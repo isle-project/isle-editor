@@ -32,22 +32,31 @@ checkCommands(text, comp) {
         let trigger = comp.commands[n].trigger;
 
         if (isArray( trigger) === true){
-           for (let x = 0; x < trigger.length; x++) {
-                let found = false;
+            let found = false;
+
+            for (let x = 0; x < trigger.length; x++) {
                 if (text.search( trigger[x]) !== -1 ) {
                     if ( !found) {
-                        let command = comp.commands[n].command;
-                        comp.ref[command]();
+                        let command = comp.commands[n];
+                        this.execute( comp.ref, command, text);
                         found = true;
                     }
                }
            }
         } else if (text.search( trigger) !== -1 ) {
-                console.log( trigger );
-                let command = comp.commands[n].command;
-                comp.ref[command]();
+                let command = comp.commands[n];
+                this.execute( comp.ref, command, text);
         }
     }
+}
+
+
+execute( ref, command, text) {
+    let com = command.command;
+    if (command.text) {
+        command.text = text;
+    }
+    ref[com](command.text);
 }
 
 
