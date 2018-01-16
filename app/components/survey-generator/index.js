@@ -130,7 +130,7 @@ class MCSgenerator extends Component {
 
 	render() {
 		return ( <Panel>
-			<Gate owner>
+			<Gate owner {...this.props} >
 				<Well style={{
 					maxWidth: '800px',
 					border: 'solid 2px rgb(186, 204, 234)'
