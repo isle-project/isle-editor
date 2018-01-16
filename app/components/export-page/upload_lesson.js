@@ -317,7 +317,9 @@ class UploadLesson extends Component {
 							<Spinner width={128} height={64} running={this.state.spinning} />
 						</Fragment>:
 						<Panel bsStyle="warning">
+							<Panel.Body>
 							You need to connect the ISLE editor to an ISLE server under settings before you can upload lessons.
+							</Panel.Body>
 						</Panel>
 					}
 				</Panel.Body>
