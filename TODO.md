@@ -17,4 +17,6 @@ TODO
    - Should be able to change labels on graphs
 6. Gate
     This shall contain a **timed** parameter allowing scheduled gating
-
+7. Surveys
+    - Handle ordered categories
+    - Don't show invalid axis labels before answers are submitted
