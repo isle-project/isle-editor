@@ -50,7 +50,6 @@ checkCommands(text, comp) {
     }
 }
 
-
 execute( ref, command, text) {
     let com = command.command;
     if (command.text) {
@@ -58,7 +57,6 @@ execute( ref, command, text) {
     }
     ref[com](command.text);
 }
-
 
 register( component){
     if ( isObject(component) && component.name && isObject( component.ref)) {
