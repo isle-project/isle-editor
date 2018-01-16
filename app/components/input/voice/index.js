@@ -19,7 +19,6 @@ const debug = logger( 'isle-editor' );
 class VoiceInput extends Input {
 	constructor( props, context ) {
 		super( props );
-
 		const { session } = context;
 		this.state = {
 			value: props.bind && session.state ?
@@ -27,6 +26,24 @@ class VoiceInput extends Input {
 				props.defaultValue,
 			isRecording: props.autorecord
 		};
+
+		if (this.props.remote) {
+			window.onkeydown = this.remoteControl;
+		}
+	}
+
+	remoteControl = (event) => {
+		switch ( event.keyCode) {
+			case this.props.remote.stop:
+				this.stop();
+			break;
+
+			case this.props.remote.start:
+				if (!this.state.recording) {
+					this.start();
+					}
+			break;
+		}
 	}
 
 	setTimeout() {
@@ -274,6 +291,7 @@ VoiceInput.defaultProps = {
 	onRecordingStop() {},
 	onSubmit() {},
 	placeholder: 'Enter text',
+	remote: null,
 	style: {},
 	timeout: null,
 	width: 500
@@ -296,6 +314,7 @@ VoiceInput.propTypes = {
 	onSegment: PropTypes.func,
 	onSubmit: PropTypes.func,
 	placeholder: PropTypes.string,
+	remote: PropTypes.object,
 	style: PropTypes.object,
 	timeout: PropTypes.number,
 	width: PropTypes.number

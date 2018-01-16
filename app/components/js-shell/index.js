@@ -16,6 +16,8 @@ import HintButton from 'components/hint-button';
 import './js-shell.css';
 import CONSOLE_STYLES from './console_styles.json';
 
+import SpeechInterface from 'speech-interface';
+
 
 // FUNCTIONS //
 
@@ -83,16 +85,32 @@ class JSShell extends Component {
 		}
 	}
 
+
 	componentDidMount() {
 		this.editor = ace.edit( this.editorDiv );
 		this.editor.getSession().setMode( 'ace/mode/javascript' );
 		this.editor.setTheme( 'ace/theme/monokai' );
 		this.editor.setValue( this.props.code, -1 );
 		this.innerConsole();
+		this.register();  // registers the component for the speech interface
 	}
 
 	componentDidUpdate() {
 		this.scrollToBottom();
+	}
+
+	register() {
+		if (!global.speechInterface) {
+			global.speechInterface = new SpeechInterface();
+		}
+		global.speechInterface.register({
+			name: ['shell', 'console'],
+			ref: this,
+			commands: [{
+				command: 'resetConsole',
+				trigger: 'reset'
+			}]
+		});
 	}
 
 	getLogs = () => {
