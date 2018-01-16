@@ -34,11 +34,11 @@ class VoiceInput extends Input {
 
 	remoteControl = (event) => {
 		switch ( event.keyCode) {
-			case 33:
+			case this.props.remote.stop:
 				this.stop();
 			break;
 
-			case 34:
+			case this.props.remote.start:
 				if (!this.state.recording) {
 					this.start();
 					}
@@ -291,7 +291,7 @@ VoiceInput.defaultProps = {
 	onRecordingStop() {},
 	onSubmit() {},
 	placeholder: 'Enter text',
-	remote: false,
+	remote: null,
 	style: {},
 	timeout: null,
 	width: 500
@@ -314,7 +314,7 @@ VoiceInput.propTypes = {
 	onSegment: PropTypes.func,
 	onSubmit: PropTypes.func,
 	placeholder: PropTypes.string,
-	remote: PropTypes.bool,
+	remote: PropTypes.object,
 	style: PropTypes.object,
 	timeout: PropTypes.number,
 	width: PropTypes.number
