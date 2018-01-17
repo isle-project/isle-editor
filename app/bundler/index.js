@@ -249,7 +249,7 @@ function writeIndexFile({
 				),
 				'plotly.js': path.resolve(
 					basePath,
-					'./app/bundler/plotly.js'
+					'./node_modules/plotly.js/dist/plotly-cartesian.min.js'
 				),
 				'jquery': path.resolve(
 					basePath,
