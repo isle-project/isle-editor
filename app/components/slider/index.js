@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Panel } from 'react-bootstrap';
+import Panel from 'react-bootstrap/lib/Panel';
 import Slider from 'react-slick';
 import NextArrow from './next_arrow';
 import PrevArrow from './previous_arrow';

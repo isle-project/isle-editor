@@ -3,11 +3,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SimpleMDE from 'simplemde';
+import markdownIt from 'markdown-it';
+import FileSaver from 'file-saver';
 import replace from '@stdlib/string/replace';
 import hasOwnProp from '@stdlib/assert/has-own-property';
-import markdownIt from 'markdown-it';
 import VoiceInput from 'components/input/voice';
-import FileSaver from 'file-saver';
 import 'simplemde/dist/simplemde.min.css';
 import './markdown-editor.css';
 

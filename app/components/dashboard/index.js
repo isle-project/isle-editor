@@ -2,7 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Panel } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Panel from 'react-bootstrap/lib/Panel';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
 import CheckboxInput from 'components/input/checkbox';
 import NumberInput from 'components/input/number';

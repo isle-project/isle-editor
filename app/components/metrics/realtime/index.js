@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
-import { copy } from '@stdlib/utils';
+import copy from '@stdlib/utils/copy';
 
 
 // VARIABLES //

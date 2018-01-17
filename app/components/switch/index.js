@@ -1,7 +1,8 @@
 // MODULES //
 
 import React from 'react';
-import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import PropTypes from 'prop-types';
 import copy from '@stdlib/utils/copy';
 import isArray from '@stdlib/assert/is-array';
