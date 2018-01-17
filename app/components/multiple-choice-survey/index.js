@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/lib/Col';
 import Grid from 'react-bootstrap/lib/Grid';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 import Panel from 'react-bootstrap/lib/Panel';
-import { VictoryAxis, VictoryBar, VictoryChart } from 'victory';
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryLabel } from 'victory';
 import logger from 'debug';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import tabulate from '@stdlib/utils/tabulate';
@@ -103,9 +103,16 @@ class MultipleChoiceSurvey extends Component {
 			return null;
 		}
 		return ( <VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
-			<VictoryAxis tickValues={this.props.answers} />
+			<VictoryAxis
+				tickLabelComponent={
+					<VictoryLabel angle={45} />
+				}
+			/>
 			<VictoryAxis dependentAxis />
 			<VictoryBar
+				categories={{
+					x: this.props.answers
+				}}
 				data={this.state.data}
 				x="x"
 				y="y"
@@ -174,7 +181,9 @@ class MultipleChoiceSurvey extends Component {
 							maxWidth: 600,
 							marginTop: '8px'
 						}}>
-							<h3>{props.question}</h3>
+							<Panel.Heading>
+								<Panel.Title componentClass="h4">{props.question}</Panel.Title>
+							</Panel.Heading>
 							{ multipleAnswers ? <span>You may select multiple answers</span> : null }
 							<ListGroup fill >
 								{ multipleAnswers ?

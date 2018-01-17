@@ -143,8 +143,10 @@ class FreeTextSurvey extends Component {
 							maxWidth: 600,
 							marginTop: '8px'
 						}}>
+							<Panel.Heading>
+								<Panel.Title componentClass="h4">{props.question}</Panel.Title>
+							</Panel.Heading>
 							<Panel.Body>
-								<h3>{props.question}</h3>
 								<TextArea
 									{...props}
 									inline
