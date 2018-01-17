@@ -30,7 +30,15 @@ test( 'the component performs a valid Apixu call', t => {
         t.ok( contains( wrapper.text(), humidity ), 'contains humidity info' );
         let wind = 'wind';
         t.ok( contains( wrapper.text(), wind ), 'contains wind info' );
+        wrapper.instance().changeTemperatureType();
+        let fahrenheit = '°F';
+        t.ok( contains( wrapper.text(), fahrenheit ), 'contains Fahrenheit' );
         t.end();
     }, 3000);
 });
 
+test( 'the component registers itself', t => {
+	const wrapper = shallow( <Weather speechInterface location="Paris" language='fr-FR' /> );
+    t.strictEqual( wrapper.instance().props.speechInterface, true, 'gets registered' );
+    t.end();
+});
