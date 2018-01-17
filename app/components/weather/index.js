@@ -41,7 +41,12 @@ class Weather extends Component {
 		});
 	}
 
-    trigger( text ) {
+    trigger( text, callback ) {
+        if (callback) {
+            this.callback = callback;
+        } else {
+            this.callback = null;
+        }
         var marker = 'in';
 
         switch ( this.props.language) {
@@ -87,9 +92,12 @@ class Weather extends Component {
 
     setWeatherData( data ) {
         console.log( data );
+        if (this.callback) {
+            this.callback( data );
+        }
 
         this.setState({
-			data: data
+            data: data
         });
 
         global.data = this.state.data;
