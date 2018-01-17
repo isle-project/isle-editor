@@ -3,11 +3,11 @@
 import React, { Component, Fragment } from 'react';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 import logger from 'debug';
-import objectEntries from '@stdlib/utils/entries';
-import copy from '@stdlib/utils/copy';
 import PropTypes from 'prop-types';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import objectEntries from '@stdlib/utils/entries';
+import copy from '@stdlib/utils/copy';
 import Action from './action.js';
 
 

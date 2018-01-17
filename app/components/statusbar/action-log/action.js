@@ -2,8 +2,8 @@
 
 import React from 'react';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
-import isObject from '@stdlib/assert/is-object';
 import PropTypes from 'prop-types';
+import isObject from '@stdlib/assert/is-object';
 
 
 // MAIN //

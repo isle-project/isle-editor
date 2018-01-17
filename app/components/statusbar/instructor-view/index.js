@@ -24,6 +24,7 @@ import './instructor_view.css';
 
 const EDITOR_OFFSET = isElectron ? '15px' : '0px';
 const debug = logger( 'isle-editor' );
+moment.locale( 'us' );
 
 
 // MAIN //

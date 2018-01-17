@@ -3,7 +3,9 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
-import { Overlay, Tooltip, Popover } from 'react-bootstrap';
+import Overlay from 'react-bootstrap/lib/Overlay';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
+import Popover from 'react-bootstrap/lib/Popover';
 import { select } from 'd3';
 import katex from 'katex';
 import NumberInput from 'components/input/number';
