@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import Plot from 'react-plotly.js';
-import Plotly from 'plotly.js';
+import PlotlyIcons from 'plotly.js/build/ploticon';
 
 
 // VARIABLES //
@@ -43,14 +43,14 @@ class Wrapper extends Component {
 		if ( props.onShare ) {
 			buttonsToAdd.push({
 				name: 'Share',
-				icon: Plotly.Icons[ 'plotlylogo' ],
+				icon: PlotlyIcons[ 'plotlylogo' ],
 				click: props.onShare
 			});
 		}
 		if ( props.toggleFullscreen ) {
 			buttonsToAdd.push({
 				name: 'Toggle FullScreen',
-				icon: Plotly.Icons[ 'zoombox' ],
+				icon: PlotlyIcons[ 'zoombox' ],
 				click: this.toggleFullscreen
 			});
 		}
