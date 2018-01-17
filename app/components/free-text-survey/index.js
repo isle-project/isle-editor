@@ -3,11 +3,15 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Panel, Grid, Col } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Panel from 'react-bootstrap/lib/Panel';
+import Grid from 'react-bootstrap/lib/Grid';
+import Col from 'react-bootstrap/lib/Col';
 import profanities from 'profanities';
-import { VictoryBar, VictoryChart } from 'victory';
+import { VictoryAxis, VictoryBar, VictoryChart } from 'victory';
 import logger from 'debug';
-import { tabulate } from '@stdlib/utils';
+import isEmptyArray from '@stdlib/assert/is-empty-array';
+import tabulate from '@stdlib/utils/tabulate';
 import lowercase from '@stdlib/string/lowercase';
 import tokenize from '@stdlib/nlp/tokenize';
 import TextArea from 'components/text-area';
@@ -112,6 +116,21 @@ class FreeTextSurvey extends Component {
 		return null;
 	}
 
+	renderChart() {
+		if ( isEmptyArray( this.state.data ) ) {
+			return null;
+		}
+		return ( <VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
+			<VictoryAxis />
+			<VictoryAxis dependentAxis />
+			<VictoryBar
+				data={this.state.data}
+				x="x"
+				y="y"
+			/>
+		</VictoryChart> );
+	}
+
 	render() {
 		const props = this.props;
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
@@ -124,36 +143,32 @@ class FreeTextSurvey extends Component {
 							maxWidth: 600,
 							marginTop: '8px'
 						}}>
-							<h3>{props.question}</h3>
-							<TextArea
-								{...props}
-								inline
-								disabled={disabled}
-								onChange={( value ) => {
-									this.setState({
-										value
-									});
-								}}
-								rows={this.props.rows}
-							/>
-							<Button
-								bsSize="small"
-								bsStyle="success"
-								block fill
-								onClick={this.submitQuestion}
-								disabled={disabled}
-							>{ disabled ? 'Submitted' : 'Submit'}</Button>
+							<Panel.Body>
+								<h3>{props.question}</h3>
+								<TextArea
+									{...props}
+									inline
+									disabled={disabled}
+									onChange={( value ) => {
+										this.setState({
+											value
+										});
+									}}
+									rows={this.props.rows}
+								/>
+								<Button
+									bsSize="small"
+									bsStyle="success"
+									block fill
+									onClick={this.submitQuestion}
+									disabled={disabled}
+								>{ disabled ? 'Submitted' : 'Submit'}</Button>
+							</Panel.Body>
 						</Panel>
 					</Col>
 					<Col md={6}>
 						<RealtimeMetrics for={this.props.id} onData={this.onData} />
-						<VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
-							<VictoryBar
-								data={this.state.data}
-								x="x"
-								y="y"
-							/>
-						</VictoryChart>
+						{this.renderChart()}
 						{this.state.freqTable}
 					</Col>
 				</Grid>

@@ -2,10 +2,15 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Col, Grid, ListGroup, Panel } from 'react-bootstrap';
-import { VictoryBar, VictoryChart } from 'victory';
+import Button from 'react-bootstrap/lib/Button';
+import Col from 'react-bootstrap/lib/Col';
+import Grid from 'react-bootstrap/lib/Grid';
+import ListGroup from 'react-bootstrap/lib/ListGroup';
+import Panel from 'react-bootstrap/lib/Panel';
+import { VictoryAxis, VictoryBar, VictoryChart } from 'victory';
 import logger from 'debug';
-import { tabulate } from '@stdlib/utils';
+import isEmptyArray from '@stdlib/assert/is-empty-array';
+import tabulate from '@stdlib/utils/tabulate';
 import Gate from 'components/gate';
 import InstructorBar from 'components/instructor-bar';
 import RealtimeMetrics from 'components/metrics/realtime';
@@ -93,6 +98,21 @@ class MultipleChoiceSurvey extends Component {
 		});
 	}
 
+	renderChart() {
+		if ( isEmptyArray( this.state.data ) ) {
+			return null;
+		}
+		return ( <VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
+			<VictoryAxis tickValues={this.props.answers} />
+			<VictoryAxis dependentAxis />
+			<VictoryBar
+				data={this.state.data}
+				x="x"
+				y="y"
+			/>
+		</VictoryChart> );
+	}
+
 	render() {
 		const props = this.props;
 		const { multipleAnswers } = props;
@@ -173,13 +193,7 @@ class MultipleChoiceSurvey extends Component {
 					</Col>
 					<Col md={6}>
 						<RealtimeMetrics for={this.props.id} onData={this.onData} />
-						<VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
-							<VictoryBar
-								data={this.state.data}
-								x="x"
-								y="y"
-							/>
-						</VictoryChart>
+						{this.renderChart()}
 						<p>
 							{this.state.freqTable}
 						</p>

@@ -3,12 +3,18 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Panel, Grid, Col } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Col from 'react-bootstrap/lib/Col';
+import Grid from 'react-bootstrap/lib/Grid';
+import Panel from 'react-bootstrap/lib/Panel';
 import { VictoryAxis, VictoryArea, VictoryChart } from 'victory';
 import logger from 'debug';
+import isEmptyArray from '@stdlib/assert/is-empty-array';
 import isNumber from '@stdlib/assert/is-number';
 import inmap from '@stdlib/utils/inmap';
-import { abs, pow, round } from '@stdlib/math/base/special';
+import abs from '@stdlib/math/base/special/abs';
+import pow from '@stdlib/math/base/special/pow';
+import round from '@stdlib/math/base/special/round';
 import mean from 'compute-mean';
 import stdev from 'compute-stdev';
 import iqr from 'compute-iqr';
@@ -97,6 +103,26 @@ class NumberSurvey extends Component {
 		});
 	}
 
+	renderChart() {
+		const { data } = this.state;
+		if ( isEmptyArray( data ) ) {
+			return null;
+		}
+		return ( <VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
+			<VictoryArea
+				data={data.length > 2 ? getBins( data ) : []}
+				interpolation="step"
+			/>
+			<VictoryAxis
+				label="Answer"
+			/>
+			<VictoryAxis
+				dependentAxis
+				label="Count"
+			/>
+		</VictoryChart> );
+	}
+
 	render() {
 		const props = this.props;
 		const { data } = this.state;
@@ -110,6 +136,7 @@ class NumberSurvey extends Component {
 							maxWidth: 600,
 							marginTop: '8px'
 						}}>
+							<Panel.Body>
 							<h3>{props.question}</h3>
 							<NumberInput
 								{...props}
@@ -128,23 +155,12 @@ class NumberSurvey extends Component {
 								onClick={this.submitQuestion}
 								disabled={disabled}
 							>{ disabled ? 'Submitted' : 'Submit'}</Button>
+							</Panel.Body>
 						</Panel>
 					</Col>
 					<Col md={6}>
 						<RealtimeMetrics for={this.props.id} onData={this.onData} />
-						<VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
-							<VictoryArea
-								data={data.length > 2 ? getBins( data ) : []}
-								interpolation="step"
-							/>
-							<VictoryAxis
-								label="Answer"
-							/>
-							<VictoryAxis
-								dependentAxis
-								label="Count"
-							/>
-						</VictoryChart>
+						{this.renderChart()}
 						{ isNumber( this.state.avg ) && isNumber( this.state.sd ) ?
 							<p>The average is {this.state.avg.toFixed( 3 )} (SD: {this.state.sd.toFixed( 3 )}).
 							</p> : null
