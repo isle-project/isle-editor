@@ -146,6 +146,7 @@ class ExportLesson extends Component {
 									minify: value
 								});
 							}}
+							disabled={this.state.spinning}
 						/>
 					</FormGroup>
 					<FormGroup>
@@ -161,6 +162,7 @@ class ExportLesson extends Component {
 									alreadyExists: false
 								});
 							}}
+							disabled={this.state.spinning}
 						/>
 					</FormGroup>
 					<br />
