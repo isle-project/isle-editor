@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
-import { ListGroup } from 'react-bootstrap';
+import ListGroup from 'react-bootstrap/lib/ListGroup';
 import logger from 'debug';
 import objectEntries from '@stdlib/utils/entries';
 import copy from '@stdlib/utils/copy';

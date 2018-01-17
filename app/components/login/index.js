@@ -1,10 +1,15 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import {
-	Button, Col, ControlLabel, FormControl, FormGroup,
-	Form, Overlay, Modal, Popover
-} from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Col from 'react-bootstrap/lib/Col';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import Form from 'react-bootstrap/lib/Form';
+import Overlay from 'react-bootstrap/lib/Overlay';
+import Modal from 'react-bootstrap/lib/Modal';
+import Popover from 'react-bootstrap/lib/Popover';
 import PropTypes from 'prop-types';
 import './login.css';
 

@@ -1,7 +1,7 @@
 // MODULES //
 
 import React from 'react';
-import { ListGroupItem } from 'react-bootstrap';
+import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import isObject from '@stdlib/assert/is-object';
 import PropTypes from 'prop-types';
 

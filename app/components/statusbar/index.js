@@ -1,10 +1,12 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
-import { ceil, max, min } from '@stdlib/math/base/special';
+import ceil from '@stdlib/math/base/special/ceil';
+import max from '@stdlib/math/base/special/max';
+import min from '@stdlib/math/base/special/min';
 import logger from 'debug';
 import Signup from 'components/signup';
 import Login from 'components/login';

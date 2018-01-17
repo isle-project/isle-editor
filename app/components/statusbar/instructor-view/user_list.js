@@ -2,7 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import ListGroup from 'react-bootstrap/lib/ListGroup';
+import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 
 
 // MAIN //

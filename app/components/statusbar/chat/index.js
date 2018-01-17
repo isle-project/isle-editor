@@ -1,7 +1,12 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { FormGroup, InputGroup, ListGroup, ListGroupItem, OverlayTrigger, Popover } from 'react-bootstrap';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import InputGroup from 'react-bootstrap/lib/InputGroup';
+import ListGroup from 'react-bootstrap/lib/ListGroup';
+import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Popover from 'react-bootstrap/lib/Popover';
 import logger from 'debug';
 import $ from 'jquery';
 import TextArea from 'components/text-area';

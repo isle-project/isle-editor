@@ -1,7 +1,18 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Button, Col, ControlLabel, FormControl, FormGroup, Form, HelpBlock, Modal, OverlayTrigger, Overlay, Popover, Tooltip } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Col from 'react-bootstrap/lib/Col';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import Form from 'react-bootstrap/lib/Form';
+import HelpBlock from 'react-bootstrap/lib/HelpBlock';
+import Modal from 'react-bootstrap/lib/Modal';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Overlay from 'react-bootstrap/lib/Overlay';
+import Popover from 'react-bootstrap/lib/Popover';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
 import PropTypes from 'prop-types';
 
 

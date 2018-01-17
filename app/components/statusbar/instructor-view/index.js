@@ -1,7 +1,11 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Panel, PanelGroup, Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
+import Panel from 'react-bootstrap/lib/Panel';
+import PanelGroup from 'react-bootstrap/lib/PanelGroup';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import $ from 'jquery';
