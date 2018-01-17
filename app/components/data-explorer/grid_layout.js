@@ -1,7 +1,9 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Grid, Col, Row } from 'react-bootstrap';
+import Grid from 'react-bootstrap/lib/Grid';
+import Col from 'react-bootstrap/lib/Col';
+import Row from 'react-bootstrap/lib/Row';
 import chunkify from 'compute-chunkify';
 
 
