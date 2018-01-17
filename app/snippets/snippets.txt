@@ -80,12 +80,12 @@ snippet FeedbackButtons
 
 snippet FreeTextQuestion
 	<FreeTextQuestion
-		question="Enter question"
-		solution="Enter solution"
+		question="${1:Enter question}"
+		solution="${2:Enter solution}"
 	/>
 
 snippet FreeTextSurvey
-	<FreeTextSurvey anonymous question={${1:Enter question}} />
+	<FreeTextSurvey anonymous question="${1:Enter question}" />
 
 snippet Gate
 	<Gate banner={{$1:null}} ${2:user} ${3:owner}>
@@ -131,6 +131,13 @@ snippet MultipleChoiceQuestion
 		question="${4:}"
 	/>
 
+snippet MultipleChoiceSurvey
+	<MultipleChoiceSurvey
+		anonymous
+		question="${1:Enter question""
+		answers={[ '${2:First}', '${3:Second}' ]}/>
+	/>
+
 snippet Nav justified
 	<Nav defaultActiveKey={1}>
 		<NavItem eventKey={1}>NavItem 1 content</NavItem>
@@ -147,9 +154,12 @@ snippet NumberInput
 
 snippet NumberQuestion
 	<NumberQuestion
-		question="${1:}"
+		question="${1:Enter question}"
 		${2:}
 	/>
+
+snippet NumberSurvey
+	<NumberSurvey anonymous question="${1:Enter question}"/>
 
 snippet Pages
 	<Pages>
@@ -217,6 +227,9 @@ snippet SliderInput
 		max={${4:100}}
 		step={${5:1}}
 	/>
+
+snippet SurveyGenerator
+	<SurveyGenerator />
 
 snippet Switch
 	<Switch></Switch>
