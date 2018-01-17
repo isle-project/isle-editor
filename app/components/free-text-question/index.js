@@ -209,76 +209,78 @@ class FreeTextQuestion extends Component {
 		const nHints = this.props.hints.length;
 		return (
 			<Panel className="free-text-question">
-				{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
-				<label>{ this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' } </label>
-				<FormControl
-					id={`${this.props.id}_textarea`}
-					componentClass="textarea"
-					placeholder={this.props.placeholder}
-					onChange={this.handleChange}
-					style={{
-						resize: this.props.resizable ? 'both' : 'none'
-					}}
-					rows={this.props.rows}
-					value={this.state.value}
-					disabled={this.state.solutionDisplayed}
-				/>
-				{
-					this.state.value.length >= 1 ?
-						<Button
-							bsStyle="primary"
-							bsSize="sm"
-							style={{
-								marginTop: '8px',
-								marginBottom: '8px'
-							}}
-							onClick={this.submitHandler}
-						>{ !this.state.submitted ? 'Submit' : 'Resubmit' }</Button> :
-						<OverlayTrigger
-							placement="top"
-							positionLeft={100}
-							overlay={<Tooltip id="submitTooltip">
-								Click submit after you have typed your answer.
-							</Tooltip>}
-							rootClose={true}
-						>
-							<div style={{ display: 'inline-block' }}>
-								<Button
-									bsStyle="primary"
-									bsSize="sm"
-									style={{
-										marginTop: '8px',
-										marginBottom: '8px',
-										pointerEvents: 'none'
-									}}
-									disabled
-								>Submit</Button>
-							</div>
-						</OverlayTrigger>
-				}
+				<Panel.Body>
+					{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
+					<label>{ this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' } </label>
+					<FormControl
+						id={`${this.props.id}_textarea`}
+						componentClass="textarea"
+						placeholder={this.props.placeholder}
+						onChange={this.handleChange}
+						style={{
+							resize: this.props.resizable ? 'both' : 'none'
+						}}
+						rows={this.props.rows}
+						value={this.state.value}
+						disabled={this.state.solutionDisplayed}
+					/>
+					{
+						this.state.value.length >= 1 ?
+							<Button
+								bsStyle="primary"
+								bsSize="sm"
+								style={{
+									marginTop: '8px',
+									marginBottom: '8px'
+								}}
+								onClick={this.submitHandler}
+							>{ !this.state.submitted ? 'Submit' : 'Resubmit' }</Button> :
+							<OverlayTrigger
+								placement="top"
+								positionLeft={100}
+								overlay={<Tooltip id="submitTooltip">
+									Click submit after you have typed your answer.
+								</Tooltip>}
+								rootClose={true}
+							>
+								<div style={{ display: 'inline-block' }}>
+									<Button
+										bsStyle="primary"
+										bsSize="sm"
+										style={{
+											marginTop: '8px',
+											marginBottom: '8px',
+											pointerEvents: 'none'
+										}}
+										disabled
+									>Submit</Button>
+								</div>
+							</OverlayTrigger>
+					}
 
-				<ButtonToolbar style={{ marginTop: '8px', marginBottom: '4px', float: 'right' }}>
-					{ nHints > 0 ?
-						<HintButton
-							onClick={this.logHint}
-							hints={this.props.hints}
-							onFinished={() => {
-								this.setState({ exhaustedHints: true });
-							}}
-							placement={this.props.hintPlacement} /> :
-						null
-					}
-					{
-						this.renderSolutionButton()
-					}
-					{
-						this.props.chat && this.props.id ?
-							<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-								<ChatButton for={this.props.id} />
-							</div> : null
-					}
-				</ButtonToolbar>
-				<InstructorBar id={this.props.id} />
+					<ButtonToolbar style={{ marginTop: '8px', marginBottom: '4px', float: 'right' }}>
+						{ nHints > 0 ?
+							<HintButton
+								onClick={this.logHint}
+								hints={this.props.hints}
+								onFinished={() => {
+									this.setState({ exhaustedHints: true });
+								}}
+								placement={this.props.hintPlacement} /> :
+							null
+						}
+						{
+							this.renderSolutionButton()
+						}
+						{
+							this.props.chat && this.props.id ?
+								<div style={{ display: 'inline-block', marginLeft: '4px' }}>
+									<ChatButton for={this.props.id} />
+								</div> : null
+						}
+					</ButtonToolbar>
+					<InstructorBar id={this.props.id} />
+				</Panel.Body>
 			</Panel>
 		);
 	}
