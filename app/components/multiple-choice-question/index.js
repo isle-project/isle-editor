@@ -2,7 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ListGroup, Panel } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import ListGroup from 'react-bootstrap/lib/ListGroup';
+import Panel from 'react-bootstrap/lib/Panel';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import InstructorBar from 'components/instructor-bar';
@@ -184,24 +186,26 @@ class MultipleChoiceQuestion extends Component {
 				margin: '0 auto 10px',
 				marginTop: '8px'
 			}}>
-				<Question
-					content={props.question}
-					task={allowMultipleAnswers ? 'Choose all that apply' : 'Pick the correct answer'}
-				/>
-				<ListGroup fill >
-					{ allowMultipleAnswers ?
-						props.answers.map( renderAnswerOptionsMultiple ) :
-						props.answers.map( renderAnswerOptionsSingle )
-					}
-				</ListGroup>
-				<Button
-					bsSize="small"
-					bsStyle="success"
-					block fill
-					onClick={this.submitQuestion}
-					disabled={disabled}
-				>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
-				{props.id ? <InstructorBar id={props.id} /> : null }
+				<Panel.Body>
+					<Question
+						content={props.question}
+						task={allowMultipleAnswers ? 'Choose all that apply' : 'Pick the correct answer'}
+					/>
+					<ListGroup fill >
+						{ allowMultipleAnswers ?
+							props.answers.map( renderAnswerOptionsMultiple ) :
+							props.answers.map( renderAnswerOptionsSingle )
+						}
+					</ListGroup>
+					<Button
+						bsSize="small"
+						bsStyle="success"
+						block fill
+						onClick={this.submitQuestion}
+						disabled={disabled}
+					>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
+					{props.id ? <InstructorBar id={props.id} /> : null }
+				</Panel.Body>
 			</Panel>
 		);
 	}
