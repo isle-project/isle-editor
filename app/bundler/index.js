@@ -89,7 +89,6 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import yaml from 'js-yaml';
 import NotificationSystem from 'react-notification-system';
 import Provider from 'components/provider';
 `;
@@ -159,7 +158,7 @@ const getComponentList = ( code ) => {
 };
 
 const getISLEcode = ( yamlStr ) => {
-	return 'const preamble = yaml.load(`' + yamlStr + '`);';
+	return `const preamble = ${JSON.stringify( yaml.load( yamlStr ) )};`;
 };
 
 const getSessionCode = ( basePath ) => {
@@ -218,6 +217,7 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath
 * @param {string} options.outputDir - name of output directory
 * @param {string} options.yamlStr - lesson meta data in YAML format
 * @param {boolean} options.minify - boolean indicating whether code should be minified
+* @param {boolean} options.writeStats - boolean indicating whether bundle stats should be written to `stats.json` file
 * @param {Function} clbk - callback function
 */
 function writeIndexFile({
@@ -226,7 +226,8 @@ function writeIndexFile({
 	basePath,
 	content,
 	outputDir,
-	minify
+	minify,
+	writeStats
 }, clbk ) {
 	const modulePaths = [
 		path.resolve( basePath, './node_modules' ),
@@ -240,7 +241,19 @@ function writeIndexFile({
 			alias: {
 				'victory': path.resolve(
 					basePath,
-					'./node_modules/victory/dist/victory/'
+					'./node_modules/victory/dist/victory.min.js'
+				),
+				'katex': path.resolve(
+					basePath,
+					'./node_modules/katex/dist/katex.min.js'
+				),
+				'plotly.js': path.resolve(
+					basePath,
+					'./app/bundler/plotly.js'
+				),
+				'jquery': path.resolve(
+					basePath,
+					'./node_modules/jquery/dist/jquery.min.js'
 				),
 				'browserify-aes/browser': path.resolve(
 					basePath,
@@ -301,6 +314,8 @@ function writeIndexFile({
 					NODE_ENV: '"production"'
 				}
 			}),
+			new webpack.IgnorePlugin( /^\.\/locale$/, /moment$/ ),
+			new webpack.ContextReplacementPlugin( /moment[/\\]locale$/, /us/ ),
 			new webpack.IgnorePlugin( /vertx/ )
 		]
 	};
@@ -310,6 +325,7 @@ function writeIndexFile({
 	const appDir = path.join( outputPath, outputDir );
 	const indexPath = path.resolve( './public/index.js' );
 	const htmlPath = path.join( appDir, 'index.html' );
+	const statsFile = path.join( appDir, 'stats.json' );
 	const bundlePath = path.join( appDir, 'bundle.js' );
 	const getCSSPath = () => {
 		return path.join( basePath, 'app', 'css' );
@@ -381,6 +397,9 @@ function writeIndexFile({
 			throw err;
 		}
 		debug( stats );
+		if ( writeStats ) {
+			fs.writeFileSync( statsFile, JSON.stringify( stats.toJson() ) );
+		}
 		fs.unlinkSync( indexPath );
 		fs.writeFileSync( htmlPath, generateIndexHTML( meta.title, minify ) );
 
