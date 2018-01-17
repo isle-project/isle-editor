@@ -187,10 +187,7 @@ class Weather extends Component {
 
     renderData() {
         if ( !this.state.data) return null;
-
         let current = this.state.data.current;
-        global.g = current;
-
         return (
             <Fragment>
                 { this.renderLocation(current) }
