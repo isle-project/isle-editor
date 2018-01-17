@@ -36,6 +36,7 @@ const AcousticCSS = require( 'components/acoustic-css' );
 const AcousticAssistant = require( 'components/acoustic-assistant' );
 const Button = ReactBootstrap.Button;
 const CheckboxInput = require( 'components/input/checkbox' );
+const Clock = require( 'components/clock' );
 const ColorPicker = require( 'components/color-picker' );
 const Col = ReactBootstrap.Col;
 const Dashboard = require( 'components/dashboard' );
@@ -126,6 +127,7 @@ const VictoryVoronoiContainer = require( 'victory' ).VictoryVoronoiContainer;
 const VictoryZoomContainer = require( 'victory' ).VictoryZoomContainer;
 const VideoPlayer = require( 'components/video-player' );
 const VoiceInput = require( 'components/input/voice' );
+const Weather = require( 'components/weather' );
 const Wikipedia = require( 'components/wikipedia' );
 
 const Appear = require( 'spectacle' ).Appear;

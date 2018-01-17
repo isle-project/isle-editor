@@ -1,0 +1,89 @@
+.weather {
+    width: 580px;
+    background: white;
+    padding: 10px;
+    height: 120px;
+    box-shadow: 0 0 4px rgba(0,0,0, 0.3);
+    padding:3px;
+    margin-bottom: 8px;
+}
+
+.weather-details {
+    width: 50%;
+    margin-top: -30px;
+    float: right;
+}
+
+.weather-description {
+    padding-left: 10px;
+    width: 100%;
+    float: left;
+    text-align: left;
+    float: left;
+}
+
+.weather-icon {
+    width: 40px;
+    margin-left: 20px;
+    height: auto;
+}
+
+
+.weather-location{
+    font-size: 1.3vw;
+    width: 100%;
+}
+
+.weather-place{
+    font-size: 1.3vw;
+    padding-left: 10px;
+    color: darkblue;
+    float: left;
+}
+
+
+.weather-location-region{
+    margin-top: 4px;
+    font-size: 1vw;
+    float: left;
+    margin-left: 4px;
+    vertical-align: sub;
+}
+
+.weather-location-country{
+    margin-top: 4px;
+    font-size: 1vw;
+    float: left;
+    margin-left: 4px;
+    vertical-align: sub;
+}
+
+
+.weather-temperature{
+    padding-left: 10px;
+    font-size: 1.5vw;
+    float: left;
+    margin-left: 4px;
+}
+
+
+.weather-temperature-type{
+    font-size: 1vw;
+    margin-left: 2px;
+    vertical-align: super;
+    color: darkred;
+}
+
+
+.weather-temperature-type:hover{
+    cursor: pointer;
+    color: red;
+}
+
+
+
+.weather-humidity {
+}
+
+.weather-wind {
+}
