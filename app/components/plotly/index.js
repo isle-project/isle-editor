@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import Plot from 'react-plotly.js';
-import PlotlyIcons from 'plotly.js/build/ploticon';
+import PlotlyIcons from './icons.js';
 
 
 // VARIABLES //
