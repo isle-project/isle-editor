@@ -99,7 +99,7 @@
 	"VictoryBar": "const VictoryBar = require( \"victory\" ).VictoryBar",
 	"VictoryBrushContainer": "const VictoryBrushContainer = require( \"victory\" ).VictoryBrushContainer",
 	"VictoryCursorContainer": "const VictoryCursorContainer = require( \"victory\" ).VictoryCursorContainer",
-	"VictoryTheme": "const VictoryTheme = require( \"victory\" ).VictoryTheme",
+	"VictoryTheme": "const VictoryTheme = require( \"victory-core/src/victory-theme/victory-theme\" )",
 	"VictoryChart": "const VictoryChart = require( \"victory\" ).VictoryChart",
 	"VictoryGroup": "const VictoryGroup = require( \"victory\" ).VictoryGroup",
 	"VictoryAxis": "const VictoryAxis = require( \"victory\" ).VictoryAxis",
