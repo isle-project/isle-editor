@@ -38,6 +38,7 @@ class UploadLesson extends Component {
 
 		// Initialize state variables...
 		this.state = {
+			error: null,
 			spinning: false,
 			namespaces: [],
 			namespaceName: null,
@@ -60,7 +61,9 @@ class UploadLesson extends Component {
 				rejectUnauthorized: false
 			}, ( error, response, body ) => {
 				if ( error ) {
-					return error;
+					return this.setState({
+						error
+					});
 				}
 				body = JSON.parse( body );
 				this.setState({
@@ -112,8 +115,10 @@ class UploadLesson extends Component {
 			debug( 'archiver has been finalized and the output file descriptor has closed.' );
 			clbk();
 		});
-		archive.on( 'error', function onError( err ) {
-			throw err;
+		archive.on( 'error', function onError( error ) {
+			return this.setState({
+				error
+			});
 		});
 		archive.pipe( output );
 		archive.directory( path.join( outputPath, outputDir ), '/' );
@@ -171,8 +176,9 @@ class UploadLesson extends Component {
 				});
 			}
 		});
-		request.on( 'error', ( err ) => {
-			debug( 'Encountered error: ' + err.message );
+		request.on( 'error', ( error ) => {
+			debug( 'Encountered error: ' + error.message );
+			this.setState({ error });
 		});
 	}
 
@@ -185,9 +191,9 @@ class UploadLesson extends Component {
 		request.get( this.state.server + '/get_lesson', {
 			qs: qs,
 			rejectUnauthorized: false
-		}, ( err, res, body ) => {
-			if ( err ) {
-				return err;
+		}, ( error, res, body ) => {
+			if ( error ) {
+				return this.setState({ error });
 			}
 			if ( res.statusCode === 200 ) {
 				body = JSON.parse( body );
@@ -195,17 +201,18 @@ class UploadLesson extends Component {
 					this.setState({
 						showConfirmModal: true
 					});
+				} else {
+					// Lesson does not exist:
+					this.publishLesson();
 				}
-			} else {
-				// Lesson does not exist:
-				this.publishLesson();
 			}
 		});
 	}
 
 	publishLesson = () => {
 		this.setState({
-			spinning: true
+			spinning: true,
+			error: null
 		});
 		const settings = {
 			outputPath: os.tmpdir(),
@@ -215,7 +222,10 @@ class UploadLesson extends Component {
 			outputDir: this.state.dirname,
 			minify: this.state.minify
 		};
-		bundler( settings, ( err ) => {
+		bundler( settings, ( error ) => {
+			if ( error ) {
+				return this.setState({ error });
+			}
 			this.zipLesson( settings.outputPath, settings.outputDir, () => {
 				this.upstreamData( settings );
 			});
@@ -257,6 +267,22 @@ class UploadLesson extends Component {
 		);
 	}
 
+	renderProgress() {
+		return ( <Fragment>
+			<Spinner width={128} height={64} running={this.state.spinning} />
+			{ this.state.error ? <Panel bsStyle="danger">
+				<Panel.Heading>
+					<Panel.Title componentClass="h3">
+						Error encountered
+					</Panel.Title>
+				</Panel.Heading>
+				<Panel.Body>
+					<p>{this.state.error.message}</p>
+				</Panel.Body>
+			</Panel> : null }
+		</Fragment>);
+	}
+
 	renderUploadPanel = () => {
 		return (
 			<Panel bsStyle="primary">
@@ -277,6 +303,7 @@ class UploadLesson extends Component {
 										onChange={this.handleSelectChange}
 										componentClass="select"
 										placeholder="No courses found"
+										disabled={this.state.spinning}
 									>
 										{this.state.namespaces.map( ( ns, id ) =>
 											<option key={id} value={ns.title}>{ns.title}</option>
@@ -291,6 +318,7 @@ class UploadLesson extends Component {
 										placeholder="Enter lesson name"
 										onChange={this.handleInputChange}
 										value={this.state.lessonName}
+										disabled={this.state.spinning}
 									/>
 								</FormGroup>
 								<FormGroup>
@@ -302,6 +330,7 @@ class UploadLesson extends Component {
 												minify: value
 											});
 										}}
+										disabled={this.state.spinning}
 										defaultValue={true}
 									/>
 								</FormGroup>
@@ -314,7 +343,7 @@ class UploadLesson extends Component {
 								>Upload</Button>
 							</Form>
 							<br />
-							<Spinner width={128} height={64} running={this.state.spinning} />
+							{this.renderProgress()}
 						</Fragment>:
 						<Panel bsStyle="warning">
 							<Panel.Body>
