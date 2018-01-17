@@ -125,7 +125,6 @@ class NumberSurvey extends Component {
 
 	render() {
 		const props = this.props;
-		const { data } = this.state;
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
 			<Gate {...props} >

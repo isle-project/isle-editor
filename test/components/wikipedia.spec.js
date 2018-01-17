@@ -32,7 +32,7 @@ test( 'the component triggers the wikipedia search externally', t => {
 	const div = shallow( <Wikipedia
 		language="de-DE"
 		showSearch /> );
-	div.instance().trigger('Was weißt du über Angela Merkel');
+	div.instance().trigger( 'Was weißt du über Angela Merkel' );
 	t.end();
 });
 
@@ -71,8 +71,12 @@ test( 'the component gets a French request, transforms the input into a valid wi
 		/> );
 
 	const voice = wrapper.find( VoiceInput );
-	voice.find( '.voice-input-text' ).simulate('change', {target: {value: 'Qu\'est-ce-que tu sais sur Angela Merkel'}});
-	wrapper.find( '.wikipedia-logo' ).simulate('click');
+	voice.find( '.voice-input-text' ).simulate( 'change', {
+		target: {
+			value: 'Qu\'est-ce-que tu sais sur Angela Merkel'
+		}
+	});
+	wrapper.find( '.wikipedia-logo' ).simulate( 'click' );
 	t.strictEqual( wrapper.instance().state.response, 'https://fr.wikipedia.org/wiki/Angela_Merkel', 'gets expected value' );
 	t.ok( wrapper.find( 'iframe' ).length > 0, 'expected length is greater than 0' );
 	t.end();

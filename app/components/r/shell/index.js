@@ -500,7 +500,7 @@ class RShell extends React.Component {
 					}
 					{
 						( this.props.chat && this.props.id ) ?
-							<span style={{display: 'inline-block', marginLeft: '4px' }}>
+							<span style={{ display: 'inline-block', marginLeft: '4px' }}>
 								<ChatButton for={this.props.id} />
 							</span> :
 							null

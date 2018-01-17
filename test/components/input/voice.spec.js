@@ -33,7 +33,7 @@ test( 'the component renders the legend', t => {
 		defaultValue="Enter this text"
 		/> );
 
-	let expected = 'Voice Recording';
+	const expected = 'Voice Recording';
 	t.ok( contains( wrapper.text(), expected ), 'contains expected legend' );
 	t.end();
 });
@@ -45,10 +45,10 @@ test( 'the component renders in full mode', t => {
 		legend="Legend"
 		/> );
 
-	let expected = 'Legend';
+	const expected = 'Legend';
 	t.ok( contains( wrapper.text(), expected ), 'contains expected legend' );
 
-	let div = wrapper.find( '.voice-input-text' );
+	const div = wrapper.find( '.voice-input-text' );
 	t.ok( div, true, 'renders the voice-input-text' );
 	t.end();
 });
@@ -59,10 +59,10 @@ test( 'the component renders in status mode', t => {
 		defaultValue="Enter this text"
 		/> );
 
-	let div = wrapper.find( '.voice-input-text' );
+	const div = wrapper.find( '.voice-input-text' );
 	t.ok( div, false, 'does not render the voice-input-text' );
 
-	let status = wrapper.find( '.voice-input-status' );
+	const status = wrapper.find( '.voice-input-status' );
 	t.ok( status, true, 'renders the voice-input-status' );
 
 	t.end();
@@ -74,7 +74,7 @@ test( 'the component renders the solo-microphone', t => {
 		defaultValue="Enter this text"
 		/> );
 
-	let status = wrapper.find( '.voice-solo-microphone' );
+	const status = wrapper.find( '.voice-solo-microphone' );
 	t.ok( status, true, 'renders the voice-solo-microphone' );
 
 	t.end();
@@ -86,11 +86,10 @@ test( 'the component starts and stops recording (in microphone mode)', t => {
 		defaultValue="Enter this text"
 		/> );
 
-	let mike = wrapper.find( Microphone ).simulate('click');
-	console.log( mike );
+	const mic = wrapper.find( Microphone ).simulate('click');
 	t.strictEqual( wrapper.instance().state.isRecording, true, 'isRecording is true' );
 
-	mike.simulate('click');
+	mic.simulate('click');
 	t.strictEqual( wrapper.instance().state.isRecording, false, 'isRecording is false' );
 	t.end();
 });
@@ -99,12 +98,10 @@ test( 'the component starts and stops recording (in full mode)', t => {
 	const wrapper = mount( <VoiceInput
 		mode="full"
 		/> );
-
-	let mike = wrapper.find( Microphone ).simulate('click');
-	console.log( mike );
+	const mic = wrapper.find( Microphone ).simulate('click');
 	t.strictEqual( wrapper.instance().state.isRecording, true, 'isRecording is true' );
 
-	mike.simulate('click');
+	mic.simulate('click');
 	t.strictEqual( wrapper.instance().state.isRecording, false, 'isRecording is false' );
 	t.end();
 });
@@ -115,11 +112,10 @@ test( 'the component starts and stops recording (in status mode)', t => {
 		mode="status"
 		/> );
 
-	let mike = wrapper.find( Microphone ).simulate('click');
-	console.log( mike );
+	const mic = wrapper.find( Microphone ).simulate('click');
 	t.strictEqual( wrapper.instance().state.isRecording, true, 'isRecording is true' );
 
-	mike.simulate('click');
+	mic.simulate('click');
 	t.strictEqual( wrapper.instance().state.isRecording, false, 'isRecording is false' );
 	t.end();
 });
@@ -129,7 +125,7 @@ test( 'the component updates the value after the user has changed the input', t 
 		mode="full"
 		/> );
 
-	wrapper.find( '.voice-input-text' ).simulate('change', {target: {value: 'Lion'}});
+	wrapper.find( '.voice-input-text' ).simulate('change', { target: { value: 'Lion' }});
 	t.strictEqual( wrapper.instance().state.value, 'Lion', 'gets expected value' );
 	t.end();
 });
@@ -140,9 +136,9 @@ test( 'the component updates the value after the user has press the return butto
 		mode="full"
 		/> );
 
-	wrapper.find( '.voice-input-text' ).simulate('change', {target: {value: 'Lion'}});
-	wrapper.find( '.voice-input-text' ).simulate('keydown', {keyCode: 13 });
+	wrapper.find( '.voice-input-text' ).simulate('change', { target: { value: 'Lion' }});
+	wrapper.find( '.voice-input-text' ).simulate('keydown', { keyCode: 13 });
 	t.strictEqual( wrapper.instance().state.value, 'Lion', 'gets expected value' );
-	wrapper.find( '.voice-input-text' ).simulate('keydown', {keyCode: 77 });
+	wrapper.find( '.voice-input-text' ).simulate('keydown', { keyCode: 77 });
 	t.end();
 });
