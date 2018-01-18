@@ -208,7 +208,7 @@ class MultipleChoiceSurvey extends Component {
 						</p>
 					</Col>
 				</Grid>
-				<InstructorBar id={props.id} />
+				<InstructorBar id={props.id} dataType="factor" />
 			</Gate>
 		);
 	}

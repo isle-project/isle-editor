@@ -204,7 +204,7 @@ class MultipleChoiceQuestion extends Component {
 						onClick={this.submitQuestion}
 						disabled={disabled}
 					>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
-					{props.id ? <InstructorBar id={props.id} /> : null }
+					{props.id ? <InstructorBar id={props.id} dataType="factor" /> : null }
 				</Panel.Body>
 			</Panel>
 		);

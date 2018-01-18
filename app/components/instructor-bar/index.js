@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Collapse from 'react-bootstrap/lib/Collapse';
@@ -12,7 +13,6 @@ import Modal from 'react-bootstrap/lib/Modal';
 import Panel from 'react-bootstrap/lib/Panel';
 import Row from 'react-bootstrap/lib/Row';
 import Well from 'react-bootstrap/lib/Well';
-import PropTypes from 'prop-types';
 import isString from '@stdlib/assert/is-string';
 import tabulate from '@stdlib/utils/tabulate';
 import trim from '@stdlib/string/trim';
@@ -21,6 +21,7 @@ import Plotly from 'components/plotly';
 import Gate from 'components/gate';
 import TextArea from 'components/text-area';
 import RangePicker from 'components/range-picker';
+import WordCloud from 'components/word-cloud';
 
 
 // MAIN //
@@ -131,7 +132,7 @@ class InstructorBar extends Component {
 				}
 			}
 		}
-		if ( this.props.dataType === 'text' ) {
+		if ( this.props.dataType === 'factor' ) {
 			const { categories, counts } = this.tabulateValues( filtered );
 			this.setState({
 				actions: filtered,
@@ -205,6 +206,23 @@ class InstructorBar extends Component {
 		});
 	}
 
+	renderWordCloud() {
+		const data = this.state.categories.map( ( x, i ) => {
+			return { text: x, value: this.state.counts[ i ] };
+		});
+		console.log( data );
+		return (
+			<div style={{ height: 0.75 * window.innerHeight }}>
+				<WordCloud
+					data={data}
+					height={0.5 * window.innerHeight} width={500}
+					rotate={0}
+					fontSizeMapper={( word ) => word.value}
+				/>
+			</div>
+		);
+	}
+
 	renderBarchart() {
 		return (
 			<div style={{ height: 0.75 * window.innerHeight }}>
@@ -226,7 +244,7 @@ class InstructorBar extends Component {
 							title: 'Value'
 						},
 						margin: {
-							l: 400
+							l: 250
 						}
 					}}
 				/>
@@ -305,9 +323,17 @@ class InstructorBar extends Component {
 	renderFullscreenModal() {
 		let colplot = null;
 		if ( this.state.actions.length > 0 ) {
-			colplot = this.props.dataType === 'text' ?
-				this.renderBarchart() :
-				this.renderHistogram();
+			switch ( this.props.dataType ) {
+				case 'text':
+				default:
+					colplot = this.renderWordCloud();
+				break;
+				case 'factor':
+					colplot = this.renderBarchart();
+				break;
+				case 'number':
+					colplot = this.renderHistogram();
+			}
 		}
 		return ( <Modal
 			show={this.state.showActions}
@@ -394,7 +420,7 @@ class InstructorBar extends Component {
 
 InstructorBar.propTypes = {
 	dataType: PropTypes.oneOf([
-		'text', 'number'
+		'factor', 'text', 'number'
 	])
 };
 
