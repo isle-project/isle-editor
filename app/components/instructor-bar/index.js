@@ -16,12 +16,23 @@ import Well from 'react-bootstrap/lib/Well';
 import isString from '@stdlib/assert/is-string';
 import tabulate from '@stdlib/utils/tabulate';
 import trim from '@stdlib/string/trim';
+import removePunctuation from '@stdlib/string/remove-punctuation';
+import tokenize from '@stdlib/nlp/tokenize';
+import contains from '@stdlib/assert/contains';
+import lowercase from '@stdlib/string/lowercase';
+import objectEntries from '@stdlib/utils/entries';
 import NINF from '@stdlib/math/constants/float64-ninf';
+import STOPWORDS_EN from '@stdlib/datasets/stopwords-en';
 import Plotly from 'components/plotly';
 import Gate from 'components/gate';
 import TextArea from 'components/text-area';
 import RangePicker from 'components/range-picker';
 import WordCloud from 'components/word-cloud';
+
+
+// VARIABLES //
+
+const stopwords = STOPWORDS_EN();
 
 
 // MAIN //
@@ -40,7 +51,8 @@ class InstructorBar extends Component {
 			showExtended: false,
 			showDeleteModal: false,
 			selectedAction: null,
-			period: null
+			period: null,
+			wordCounts: []
 		};
 	}
 
@@ -132,7 +144,20 @@ class InstructorBar extends Component {
 				}
 			}
 		}
-		if ( this.props.dataType === 'factor' ) {
+		if ( this.props.dataType === 'text' ) {
+			const bagOfWords = this.createBagOfWords( filtered );
+			const wordCounts = objectEntries( bagOfWords ).map( arr => {
+				return {
+					text: arr[ 0 ],
+					value: arr[ 1 ]
+				};
+			});
+			this.setState({
+				actions: filtered,
+				wordCounts
+			});
+		}
+		else if ( this.props.dataType === 'factor' ) {
 			const { categories, counts } = this.tabulateValues( filtered );
 			this.setState({
 				actions: filtered,
@@ -145,6 +170,33 @@ class InstructorBar extends Component {
 				actions: filtered
 			});
 		}
+	}
+
+	createBagOfWords = ( actions ) => {
+		let tokens = [];
+		for ( let i = 0; i < actions.length; i++ ) {
+			let text = actions[ i ].value;
+			text = removePunctuation( text );
+			let newTokens = tokenize( text );
+			tokens = tokens.concat( newTokens );
+		}
+		for ( let i = 0; i < tokens.length; i++ ) {
+			tokens[ i ] = lowercase( tokens[ i ] );
+		}
+		for ( let i = tokens.length; i > 0; i-- ) {
+			if ( tokens[i] && contains( stopwords, lowercase( tokens[i] ) ) ) {
+				tokens.splice( i, 1 );
+			}
+		}
+		let bagOfWords = {};
+		for ( let i = 0; i < tokens.length; i++ ) {
+			if ( bagOfWords[ tokens[ i ] ] ) {
+				bagOfWords[ tokens[ i ] ] += 1;
+			} else {
+				bagOfWords[ tokens[ i ] ] = 1;
+			}
+		}
+		return bagOfWords;
 	}
 
 	tabulateValues = ( actions ) => {
@@ -207,14 +259,10 @@ class InstructorBar extends Component {
 	}
 
 	renderWordCloud() {
-		const data = this.state.categories.map( ( x, i ) => {
-			return { text: x, value: this.state.counts[ i ] };
-		});
-		console.log( data );
 		return (
 			<div style={{ height: 0.75 * window.innerHeight }}>
 				<WordCloud
-					data={data}
+					data={this.state.wordCounts}
 					height={0.5 * window.innerHeight} width={500}
 					rotate={0}
 					fontSizeMapper={( word ) => word.value}
