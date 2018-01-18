@@ -40,8 +40,7 @@ class InstructorBar extends Component {
 			showExtended: false,
 			showDeleteModal: false,
 			selectedAction: null,
-			period: null,
-			wordCounts: []
+			period: null
 		};
 	}
 
