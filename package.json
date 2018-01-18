@@ -116,7 +116,6 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-runtime": "^6.9.2",
     "bl": "^1.2.0",
-    "bootstrap": "^3.3.6",
     "bufferutil": "^3.0.1",
     "camelcase": "^4.1.0",
     "component-playground": "^3.0.0",
