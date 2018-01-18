@@ -173,13 +173,13 @@ class Weather extends Component {
 	}
 
 	renderDetails( current ) {
-	   return (
-		<div className="weather-details">
-			<div className="weather-humidity">humidity: { current.humidity }%</div>
-			{ this.renderWind(current) }
-			{ this.renderPrecipitation(current) }
-		</div>
-	   );
+		return (
+			<div className="weather-details">
+				<div className="weather-humidity">humidity: { current.humidity }%</div>
+				{ this.renderWind(current) }
+				{ this.renderPrecipitation(current) }
+			</div>
+		);
 	}
 
 	renderData() {
