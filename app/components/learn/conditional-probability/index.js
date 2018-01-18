@@ -2,7 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Col, Grid, Panel, Row } from 'react-bootstrap';
+import Col from 'react-bootstrap/lib/Col';
+import Grid from 'react-bootstrap/lib/Grid';
+import Panel from 'react-bootstrap/lib/Panel';
+import Row from 'react-bootstrap/lib/Row';
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryLine, VictoryTheme } from 'victory';
 import roundn from '@stdlib/math/base/special/roundn';
 import max from '@stdlib/math/base/special/max';
@@ -289,7 +292,7 @@ class ConditionalProbability extends Component {
 											<Col md={4}>
 												<VictoryChart
 													theme={VictoryTheme.material}
-													domainPadding={{x: 50, y: [ 10, 20 ]}}
+													domainPadding={{ x: 50, y: [ 10, 20 ]}}
 													style={{
 														height: 100,
 														width: 200
@@ -298,13 +301,13 @@ class ConditionalProbability extends Component {
 													<VictoryAxis dependentAxis tickFormat={( x ) => x/100} />
 													<VictoryAxis />
 													<VictoryBar
-														data={[ {x: `P( ${A}|${B})`, y: 100*this.state.pAgivenB }, {x: `P( ${A}|not ${B} )`, y: this.state.pAgivenNotB*100 } ]}
-														domain={{ y: [ 0, 100 ] }}
+														data={[ { x: `P( ${A}|${B})`, y: 100*this.state.pAgivenB }, { x: `P( ${A}|not ${B} )`, y: this.state.pAgivenNotB*100 } ]}
+														domain={{ y: [ 0, 100 ]}}
 														x="x"
 														y="y"
 														labels={( d ) => roundn( d.y/100, -3 )}
 													/>
-													{ this.state.independent ? <VictoryLine data={[ {x: `P( ${A}| ${B})`, y: 100*this.state.pAgivenB }, {x: `P( ${A}|not  ${B})`, y: this.state.pAgivenNotB*100 } ]} /> : null }
+													{ this.state.independent ? <VictoryLine data={[ { x: `P( ${A}| ${B})`, y: 100*this.state.pAgivenB }, { x: `P( ${A}|not  ${B})`, y: this.state.pAgivenNotB*100 } ]} /> : null }
 												</VictoryChart>
 											</Col>
 										</Row>
