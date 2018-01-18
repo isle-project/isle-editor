@@ -258,7 +258,7 @@ class FreeTextQuestion extends Component {
 							</OverlayTrigger>
 					}
 
-					<ButtonToolbar style={{ marginTop: '8px', marginBottom: '4px', float: 'right' }}>
+					<ButtonToolbar className="free-text-question-toolbar" >
 						{ nHints > 0 ?
 							<HintButton
 								onClick={this.logHint}
