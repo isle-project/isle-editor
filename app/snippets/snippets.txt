@@ -267,6 +267,9 @@ snippet VideoPlayer
 snippet VoiceInput
 	<VoiceInput />
 
+snippet Weather
+	<Weather location="${1:location}"/>
+
 snippet Well
 	<Well>
 		${1:}
