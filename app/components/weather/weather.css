@@ -3,9 +3,11 @@
     background: white;
     padding: 10px;
     height: 120px;
-    box-shadow: 0 0 4px rgba(0,0,0, 0.3);
     padding:3px;
     margin-bottom: 8px;
+    border: 1px solid rgba(92,92,92,0.6);
+	border-radius: 6px;
+	box-shadow: 0 0 4px rgba(92,92,92,0.5);
 }
 
 .weather-details {
