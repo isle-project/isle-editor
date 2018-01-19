@@ -1,7 +1,10 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Panel, Grid, Row, Col } from 'react-bootstrap';
+import Grid from 'react-bootstrap/lib/Grid';
+import Col from 'react-bootstrap/lib/Col';
+import Panel from 'react-bootstrap/lib/Panel';
+import Row from 'react-bootstrap/lib/Row';
 import { VictoryAxis, VictoryChart, VictoryErrorBar, VictoryLine, VictoryTheme, VictoryTooltip } from 'victory';
 import abs from '@stdlib/math/base/special/abs';
 import qt from '@stdlib/math/base/dists/t/quantile';
