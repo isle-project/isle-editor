@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
+import './rhelp.css';
 
 
 // MAIN //
@@ -53,15 +54,7 @@ class RHelp extends Component {
 					show={this.state.visible}
 					title="R Help"
 					onHide={this.hideModal}
-					style={{
-						left: 'auto',
-						padding: '10px',
-						position: 'fixed',
-						top: '0px',
-						right: '30px',
-						zIndex: 99999,
-						overflow: 'hidden'
-					}}
+					className="r-help-modal"
 					enforceFocus={false}
 				>
 					<Modal.Header closeButton>

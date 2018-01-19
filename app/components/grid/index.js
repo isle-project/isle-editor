@@ -1,8 +1,9 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Grid } from 'react-bootstrap';
+import Grid from 'react-bootstrap/lib/Grid';
 import PropTypes from 'prop-types';
+
 
 // MAIN //
 

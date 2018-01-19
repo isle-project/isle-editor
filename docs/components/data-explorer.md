@@ -6,7 +6,7 @@ This component is used by students to briefly summarize data as it is presented 
 
 In creating a data explorer, one needs a *.json dataset. This step may be accomplished by including the following in the header of a *.isle file:
 
-``` js
+```js
 require:
 	dataName: "./dataName.json"
 ```
@@ -19,17 +19,17 @@ Consider a dataset called "heartdisease" with the following variables:
 * __Age__: _Continuous_
 * __Interventions__: _Continuous_
 * __ERVisit__: _Continuous_
-* __Comorbidities: _Continuous_
+* __Comorbidities__: _Continuous_
 * __Duration__: _Continuous_
 
 We will include the explorer with the following code:
 
-``` js, eval=FALSE
+```js
 <DataExplorer 
-    id="heartdisease"
+	id="heartdisease"
 	data={heartdisease} 
-	categorical={['Gender','Drugs','Complications']}
-	continuous={['Cost','Age','Interventions','ERVisit','Comorbidities','Duration']}
+	categorical={[ 'Gender', 'Drugs', 'Complications' ]}
+	continuous={[ 'Cost', 'Age', 'Interventions', 'ERVisit', 'Comorbidities', 'Duration' ]}
 	tests={[]}
 />
 ```
@@ -124,5 +124,3 @@ DataExplorer.defaultProps = {
 	distributions: [ 'Normal', 'Uniform', 'Exponential' ]
 };
 ```
-=======
->>>>>>> 06a8573d9a1452cb3fbcbefb69418f126718d441

@@ -5,6 +5,7 @@ import { Col, Grid, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ExportLesson from './export_lesson.js';
 import UploadLesson from './upload_lesson.js';
+import './export_page.css';
 
 
 // MAIN //
@@ -15,24 +16,10 @@ class ExportPage extends Component {
 	}
 	render() {
 		return (
-			<div
-				style={{
-					marginLeft: '20px',
-					marginRight: '20px',
-					marginTop: '20px'
-				}}
-			>
+			<div className="export-page">
 				<Link
 					to="/"
-					style={{
-						float: 'right',
-						color: 'silver',
-						position: 'absolute',
-						top: '12px',
-						right: '12px',
-						fontSize: '26px',
-						zIndex: 2
-					}}
+					className="export-page-link"
 				>Back to Editor</Link>
 				<br />
 				<br />

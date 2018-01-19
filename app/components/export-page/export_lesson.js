@@ -10,6 +10,7 @@ import exists from '@stdlib/fs/exists';
 import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
 import Spinner from 'components/spinner';
+import './export_page.css';
 
 
 // VARIABLES //
@@ -170,14 +171,7 @@ class ExportLesson extends Component {
 						bsStyle="primary"
 						onClick={this.handleFileInputClick}
 					>Select output path</Button>
-					<Well
-						style={{
-							marginLeft: '8px',
-							height: '34px',
-							paddingTop: '6px',
-							color: 'darkred'
-						}}
-					> Path: {this.state.outputPath} </Well>
+					<Well className="export-page-well"> Path: {this.state.outputPath} </Well>
 					<Button
 						bsStyle="success"
 						bsSize="sm"

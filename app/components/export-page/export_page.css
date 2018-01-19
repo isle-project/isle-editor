@@ -1,0 +1,22 @@
+.export-page {
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 20px;
+}
+
+.export-page-link {
+	float: right;
+	color: silver;
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	font-size: 26px;
+	z-index: 2;
+}
+
+.export-page-well {
+	margin-left: 8px;
+	height: 34px;
+	padding-top: 6px;
+	color: darkred;
+}

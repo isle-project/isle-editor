@@ -3,7 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { hasOwnProp, isAbsolutePath, isObject } from '@stdlib/assert';
+import hasOwnProp from '@stdlib/assert/has-own-property';
+import isAbsolutePath from '@stdlib/assert/is-absolute-path';
+import isObject from '@stdlib/assert/is-object';
 import path from 'path';
 import css from 'css';
 import fs from 'fs';
