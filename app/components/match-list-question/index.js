@@ -2,7 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
 import shuffle from '@stdlib/math/random/shuffle';
 import * as d3 from 'd3';
 import OptionsList from './options_list.js';

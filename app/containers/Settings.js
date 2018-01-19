@@ -3,7 +3,12 @@
 import React, { Component } from 'react';
 import NumberInput from 'components/input/number';
 import request from 'request';
-import { Button, ControlLabel, Form, FormControl, FormGroup, Panel } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import Form from 'react-bootstrap/lib/Form';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import Panel from 'react-bootstrap/lib/Panel';
 import { Link } from 'react-router-dom';
 
 
