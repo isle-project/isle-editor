@@ -1,12 +1,21 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Button, ButtonGroup, Grid, Col, Panel, Row } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import Grid from 'react-bootstrap/lib/Grid';
+import Col from 'react-bootstrap/lib/Col';
+import Panel from 'react-bootstrap/lib/Panel';
+import Row from 'react-bootstrap/lib/Row';
 import PropTypes from 'prop-types';
-import { sample } from '@stdlib/math/random';
+import sample from '@stdlib/math/random/sample';
 import dnorm from '@stdlib/math/base/dists/normal/pdf';
-import { copy, inmap } from '@stdlib/utils';
-import { abs, floor, pow, round, roundn } from '@stdlib/math/base/special';
+import copy from '@stdlib/utils/copy';
+import inmap from '@stdlib/utils/inmap';
+import abs from '@stdlib/math/base/special/abs';
+import floor from '@stdlib/math/base/special/floor';
+import pow from '@stdlib/math/base/special/pow';
+import round from '@stdlib/math/base/special/round';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
