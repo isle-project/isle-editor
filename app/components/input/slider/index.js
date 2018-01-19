@@ -2,7 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
 import Input from 'components/input/base';
 import roundn from '@stdlib/math/base/special/roundn';
 import isEmptyObject from '@stdlib/assert/is-empty-object';

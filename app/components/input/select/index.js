@@ -2,7 +2,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ControlLabel, Form, FormGroup } from 'react-bootstrap';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import Form from 'react-bootstrap/lib/Form';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
 import logger from 'debug';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isArray from '@stdlib/assert/is-array';

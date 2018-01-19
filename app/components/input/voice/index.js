@@ -2,7 +2,8 @@
 
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import logger from 'debug';
 import Input from 'components/input/base';
 import Microphone from './microphone.js';
