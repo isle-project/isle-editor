@@ -159,7 +159,7 @@ snippet NumberQuestion
 	/>
 
 snippet NumberSurvey
-	<NumberSurvey anonymous question="${1:Enter question}"/>
+	<NumberSurvey anonymous question="${1:Enter question}" />
 
 snippet Pages
 	<Pages>
@@ -262,13 +262,13 @@ snippet Timer
 	/>
 
 snippet VideoPlayer
-	<VideoPlayer url="${1:url}"/>
+	<VideoPlayer url="${1:url}" />
 
 snippet VoiceInput
 	<VoiceInput />
 
 snippet Weather
-	<Weather location="${1:location}"/>
+	<Weather location="${1:location}" />
 
 snippet Well
 	<Well>
