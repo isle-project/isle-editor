@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import $ from 'jquery';
 import './weather.css';
 import SpeechInterface from 'speech-interface'; // this may be deleted
-
+import apixu from './conf.json';
 
 // MAIN //
 
@@ -75,9 +75,9 @@ class Weather extends Component {
 	getData( location ) {
 		var base = 'http://api.apixu.com/v1';
 		var json = '/current.json';
-		var key = '3b94f972948543b8a1780701171211';
+		// var key = '3b94f972948543b8a1780701171211';
 		var q = location;
-		var url = base + json + '?key=' + key + '&q=' + q;
+		var url = base + json + '?key=' + apixu.key + '&q=' + q;
 		var self = this;
 
 		$.ajax({
