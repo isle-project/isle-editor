@@ -2,12 +2,18 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import $ from 'jquery';
+import request from 'request';
 import capitalize from '@stdlib/string/capitalize';
+import isElectron from 'utils/is-electron';
 import VoiceInput from 'components/input/voice';
 import './styles.css';
 import newslist from './list.json';
 import EXCEPTIONS from './exceptions.json';
+
+
+// VARIABLES //
+
+const rejectUnauthorized = isElectron ? false : true;
 
 
 // MAIN //
@@ -38,17 +44,16 @@ class News extends Component {
 	getArticles( source ) {
 		var base = 'https://newsapi.org/v1/articles?source=';
 		var type = '&sortBy=latest&apiKey=';
-		var key = '2987fd19bd374249979c4e38e40ef8b8';
-		var url = base + source + type + key;
+		var url = base + source + type + this.props.key;
 
-		var self = this;
-		$.ajax({
-			type: 'GET',
-			url: url,
-			async: false,
-			dataType: 'json',
-			success: function success( data, textStatus, jqXHR ) {
-				if ( data.articles ) self.displayArticles( data.articles );
+		request.get( url, {
+			rejectUnauthorized
+		}, ( err, res, data ) => {
+			if ( !err ) {
+				data = JSON.parse( data );
+				if ( data.articles ) {
+					this.displayArticles( data.articles );
+				}
 			}
 		});
 	}
@@ -187,6 +192,7 @@ class News extends Component {
 News.defaultProps = {
 	language: 'en-US',
 	invisible: false,
+	key: '2987fd19bd374249979c4e38e40ef8b8',
 	onArticles() {}
 };
 
@@ -195,6 +201,7 @@ News.defaultProps = {
 
 News.propTypes = {
 	invisible: PropTypes.bool,
+	key: PropTypes.string,
 	language: PropTypes.string,
 	onArticles: PropTypes.func
 };

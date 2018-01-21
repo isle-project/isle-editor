@@ -2,10 +2,16 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import $ from 'jquery';
+import request from 'request';
+import isElectron from 'utils/is-electron';
 import './weather.css';
 import SpeechInterface from 'speech-interface'; // this may be deleted
-import apixu from './conf.json';
+
+
+// VARIABLES //
+
+const rejectUnauthorized = isElectron ? false : true;
+
 
 // MAIN //
 
@@ -20,22 +26,22 @@ class Weather extends Component {
 	}
 
 	componentDidMount() {
-		this.getData( this.props.location);
+		this.getData( this.props.location );
 		if ( this.props.speechInterface ) {
 			this.register();
 		}
 	}
 
 	register() {
-		if (!global.speechInterface) {
+		if ( !global.speechInterface ) {
 			global.speechInterface = new SpeechInterface();
 		}
 		global.speechInterface.register({
-			name: ['weather'],
+			name: [ 'weather' ],
 			ref: this,
 			commands: [{
 				command: 'trigger',
-				trigger: ['weather', 'in'],
+				trigger: [ 'weather', 'in' ],
 				text: true,
 				params: {}
 			}]
@@ -43,66 +49,57 @@ class Weather extends Component {
 	}
 
 	trigger( text, callback ) {
-		if (callback) {
+		if ( callback ) {
 			this.callback = callback;
 		} else {
 			this.callback = null;
 		}
-		var marker = 'in';
-
+		let marker = 'in';
 		switch ( this.props.language) {
 		case 'en-US':
-				marker= ' in';
+			marker= ' in';
 			break;
-
 		case 'de-DE':
 			marker= ' in';
 			break;
-
 		case 'fr-FR':
 			marker = ' à';
 			break;
 		}
-
-		var n = text.search(marker);
+		let n = text.search( marker );
 		n += (marker.length + 1);
-		if (n !== -1) {
-			let location = text.substring( n, text.length);
+		if ( n !== -1 ) {
+			let location = text.substring( n, text.length );
 			this.getData( location );
 		}
 	}
 
 	getData( location ) {
-		var base = 'http://api.apixu.com/v1';
-		var json = '/current.json';
-		// var key = '3b94f972948543b8a1780701171211';
-		var q = location;
-		var url = base + json + '?key=' + apixu.key + '&q=' + q;
-		var self = this;
-
-		$.ajax({
-			url: url,
-			dataType: 'json',
-			success: function success(data) {
-				self.setWeatherData( data );
+		const base = 'http://api.apixu.com/v1';
+		const json = '/current.json';
+		const q = location;
+		const url = base + json + '?key=' + this.props.key + '&q=' + q;
+		request.get( url, {
+			rejectUnauthorized
+		}, ( err, res, data ) => {
+			if ( !err ) {
+				data = JSON.parse( data );
+				this.setWeatherData( data );
 			}
-		} );
+		});
 	}
 
 	setWeatherData( data ) {
-		if (this.callback) {
+		if ( this.callback ) {
 			this.callback( data );
 		}
-
 		this.setState({
 			data: data
 		});
-
-		global.data = this.state.data;
 	}
 
 	changeTemperatureType = () => {
-		if (this.state.temperature === 'celsius') {
+		if ( this.state.temperature === 'celsius' ) {
 			this.setState({
 				temperature: 'fahrenheit'
 			});
@@ -114,8 +111,8 @@ class Weather extends Component {
 		}
 	}
 
-	renderTemperature(current) {
-		if (this.state.temperature === 'celsius') {
+	renderTemperature( current ) {
+		if ( this.state.temperature === 'celsius' ) {
 			return (
 				<div className="weather-temperature">{ current.temp_c } °
 					<span onClick={this.changeTemperatureType} className="weather-temperature-type">C</span>
@@ -124,13 +121,13 @@ class Weather extends Component {
 		}
 		return (
 			<div className="weather-temperature">{ current.temp_f } °
-			<span onClick={this.changeTemperatureType} className="weather-temperature-type">F</span>
-		</div>
+				<span onClick={this.changeTemperatureType} className="weather-temperature-type">F</span>
+			</div>
 		);
 	}
 
 	renderWind( current ) {
-		if (this.state.temperature === 'celsius') {
+		if ( this.state.temperature === 'celsius' ) {
 			return (
 				<div className="weather-wind">wind: { current.wind_kph } kmh / { current.wind_dir }</div>
 			);
@@ -209,12 +206,14 @@ class Weather extends Component {
 // PROPERTY TYPES //
 
 Weather.propTypes = {
+	key: PropTypes.string,
 	language: PropTypes.string,
 	location: PropTypes.string,
 	speechInterface: PropTypes.bool
 };
 
 Weather.defaultProps = {
+	key: '3b94f972948543b8a1780701171211',
 	language: 'en-US',
 	location: 'Berlin',
 	speechInterface: false
