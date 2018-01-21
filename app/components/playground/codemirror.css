@@ -11,5 +11,7 @@
 
 .component-documentation .CodeMirror-scroll {
 	/* Set scrolling behaviour here */
+	min-height: 0;
+	max-height: 300px;
 	overflow: auto;
 }
