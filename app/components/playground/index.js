@@ -5,8 +5,8 @@ import ComponentPlayground from 'component-playground';
 import PropTypes from 'prop-types';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import Provider from 'components/provider';
-import './syntax.css';
 import './codemirror.css';
+import './syntax.css';
 import './playground.css';
 
 
@@ -31,6 +31,11 @@ class Playground extends Component {
 		}
 		this.wrappedScope = wrappedScope;
 	}
+
+	componentDidMount() {
+		this.forceUpdate();
+	}
+
 	render() {
 		const scope = {
 			React,
@@ -53,6 +58,7 @@ Playground.defaultProps = {
 	scope: {},
 	style: {}
 };
+
 
 // PROPERTY TYPES //
 

@@ -1,4 +1,3 @@
-
 .component-documentation {
 	margin: 0 auto;
 	max-width: 1200px;
@@ -20,7 +19,7 @@
 	font-size: 22px;
 	letter-spacing: 5px;
 	border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 .playground-editable:hover {
@@ -31,15 +30,13 @@
 	background: #efefef;
 }
 
-.playgroundCode .CodeMirror{
+.playgroundCode .CodeMirror {
 	background: #efefef;
-	font-weight: 800;
 }
 
 .playground.collapsableCode .playgroundCode {
 	height: 0;
 	overflow: hidden;
-	font-weight: 800;
 }
 
 .playground.collapsableCode .playgroundCode.expandedCode {
@@ -57,10 +54,6 @@
 
 .playgroundToggleCodeLink:hover {
 	color: #aaa;
-}
-
-.CodeMirror {
-	padding: 10px;
 }
 
 .playgroundPreview {
