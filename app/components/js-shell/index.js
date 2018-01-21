@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
-import $ from 'jquery';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import max from '@stdlib/math/base/special/max';
 import PINF from '@stdlib/math/constants/float64-pinf';
@@ -18,6 +17,7 @@ import '@planeshifter/brace/mode/javascript';
 import '@planeshifter/brace/theme/katzenmilch';
 import '@planeshifter/brace/theme/monokai';
 import '@planeshifter/brace/theme/solarized_light';
+import scrollTo from 'utils/scroll-to';
 import './js-shell.css';
 import CONSOLE_STYLES from './console_styles.json';
 
@@ -287,10 +287,7 @@ class JSShell extends Component {
 	* Scrolls to the bottom of the console output.
 	*/
 	scrollToBottom() {
-		const $outputPanel = $( this.consoleOutput );
-		$outputPanel.animate({
-			scrollTop: $outputPanel.prop( 'scrollHeight' )
-		}, 1000 );
+		scrollTo( this.consoleOutput, this.consoleOutput.scrollHeight, 1000 );
 	}
 
 	renderLogs() {

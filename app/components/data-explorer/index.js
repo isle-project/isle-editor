@@ -4,8 +4,19 @@ import React, { Component } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { Button, ButtonGroup, Grid, Row, Col, MenuItem, Modal, Nav, NavDropdown, NavItem, Panel, Tab, Well } from 'react-bootstrap';
-import $ from 'jquery';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import Grid from 'react-bootstrap/lib/Grid';
+import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/lib/Col';
+import MenuItem from 'react-bootstrap/lib/MenuItem';
+import Modal from 'react-bootstrap/lib/Modal';
+import Nav from 'react-bootstrap/lib/Nav';
+import NavDropdown from 'react-bootstrap/lib/NavDropdown';
+import NavItem from 'react-bootstrap/lib/NavItem';
+import Panel from 'react-bootstrap/lib/Panel';
+import Tab from 'react-bootstrap/lib/Tab';
+import Well from 'react-bootstrap/lib/Well';
 import parse from 'csv-parse';
 import detect from 'detect-csv';
 import isString from '@stdlib/assert/is-string';
@@ -17,6 +28,7 @@ import entries from '@stdlib/utils/entries';
 import hasProp from '@stdlib/assert/has-property';
 import copy from '@stdlib/utils/copy';
 import { generate } from 'randomstring';
+import scrollTo from 'utils/scroll-to';
 import SelectInput from 'components/input/select';
 import ContingencyTable from 'components/data-explorer/contingency-table';
 import FrequencyTable from 'components/data-explorer/frequency-table';
@@ -377,18 +389,14 @@ class DataExplorer extends Component {
 	* Scrolls to the bottom of the output panel after result has been inserted.
 	*/
 	scrollToBottom() {
-		const $outputPanel = $( '#outputPanel' );
-		$outputPanel.animate({
-			scrollTop: $outputPanel.prop( 'scrollHeight' )
-		}, 1000 );
+		const outputPanel = document.getElementById( 'outputPanel' );
+		scrollTo( outputPanel, outputPanel.scrollHeight, 1000 );
 	}
 
 	componentWillUpdate( nextProps, nextState ){
 		if ( nextState.output !== this.state.output ) {
-			const $outputPanel = $( '#outputPanel' );
-			$outputPanel.animate({
-				scrollTop: $outputPanel.prop( 'scrollHeight' )
-			}, 1000 );
+			const outputPanel = document.getElementById( 'outputPanel' );
+			scrollTo( outputPanel, outputPanel.scrollHeight, 1000 );
 		}
 	}
 
@@ -1037,7 +1045,7 @@ class DataExplorer extends Component {
 // DEFAULT PROPERTIES //
 
 DataExplorer.defaultProps = {
-	data: null,
+	data: {},
 	onSelect() {},
 	tabs: [],
 	questions: null,
