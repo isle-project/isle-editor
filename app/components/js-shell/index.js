@@ -4,18 +4,19 @@ import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
-import ChatButton from 'components/chat-button';
+import hasOwnProp from '@stdlib/assert/has-own-property';
+import max from '@stdlib/math/base/special/max';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
-import hasOwnProp from '@stdlib/assert/has-own-property';
+import ChatButton from 'components/chat-button';
+import HintButton from 'components/hint-button';
 import ace from '@planeshifter/brace';
 import '@planeshifter/brace/mode/javascript';
 import '@planeshifter/brace/theme/katzenmilch';
 import '@planeshifter/brace/theme/monokai';
 import '@planeshifter/brace/theme/solarized_light';
-import HintButton from 'components/hint-button';
 import './js-shell.css';
 import CONSOLE_STYLES from './console_styles.json';
 
@@ -94,6 +95,10 @@ class JSShell extends Component {
 		this.editor.getSession().setMode( 'ace/mode/javascript' );
 		this.editor.setTheme( 'ace/theme/monokai' );
 		this.editor.setValue( this.props.code, -1 );
+		this.editor.setOptions({
+			maxLines: max( 5, this.props.lines ),
+			minLines: this.props.lines
+		});
 		this.innerConsole();
 		this.register();  // registers the component for the speech interface
 	}
@@ -390,6 +395,7 @@ JSShell.propTypes = {
 	code: PropTypes.string,
 	disabled: PropTypes.bool,
 	hints: PropTypes.array,
+	lines: PropTypes.number,
 	onEvaluate: PropTypes.func,
 	solution: PropTypes.string,
 	vars: PropTypes.object
