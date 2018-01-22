@@ -107,7 +107,7 @@ class NumberQuestion extends Component {
 	render() {
 		const nHints = this.props.hints.length;
 		return (
-			<Panel className="NumberQuestion number-question">
+			<Panel className="number-question">
 				<Panel.Body>
 					{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
 					<label>Your answer:</label>

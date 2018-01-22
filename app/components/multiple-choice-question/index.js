@@ -182,10 +182,7 @@ class MultipleChoiceQuestion extends Component {
 		}
 
 		return (
-			<Panel className="multiple-choice-question-container" style={{
-				margin: '0 auto 10px',
-				marginTop: '8px'
-			}}>
+			<Panel className="multiple-choice-question-container">
 				<Panel.Body>
 					<Question
 						content={props.question}
