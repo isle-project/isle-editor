@@ -12,6 +12,8 @@ import ceil from '@stdlib/math/base/special/ceil';
 import min from 'compute-min';
 import max from 'compute-max';
 import isNumberArray from '@stdlib/assert/is-number-array';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
+import isObject from '@stdlib/assert/is-object';
 import isArray from '@stdlib/assert/is-array';
 import 'react-table/react-table.css';
 import './input_range.css';
@@ -37,6 +39,9 @@ class DataTable extends Component {
 		let rows;
 		let keys;
 		let isArr = isArray( props.data );
+		if ( !isArr && !isObject( props.data ) ) {
+			return {};
+		}
 		if ( isArr ) {
 			// Case: `data` is already an array of observations
 			rows = props.data;
@@ -142,6 +147,9 @@ class DataTable extends Component {
 	}
 
 	createRows( data ) {
+		if ( isEmptyObject( data ) ) {
+			return [];
+		}
 		const keys = Object.keys( data );
 		const nRows = data[ keys[ 0 ] ].length;
 		const rows = new Array( nRows );
