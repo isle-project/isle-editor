@@ -2,7 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
 import Input from 'components/input/base';
 import contains from '@stdlib/assert/contains';
 import isString from '@stdlib/assert/is-string';
@@ -10,6 +11,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/math/constants/float64-pinf';
 import NINF from '@stdlib/math/constants/float64-ninf';
 import './number.css';
+
 
 // MAIN //
 

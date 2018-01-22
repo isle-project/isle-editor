@@ -8,7 +8,7 @@ import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
 import logger from 'debug';
-import $ from 'jquery';
+import scrollTo from 'utils/scroll-to';
 import TextArea from 'components/text-area';
 import PropTypes from 'prop-types';
 import isElectron from 'utils/is-electron';
@@ -58,8 +58,9 @@ class Chat extends Component {
 	}
 
 	onScroll = () => {
-		const $chatbody = $( this.chatbody );
-		if ( $chatbody.scrollTop() + $chatbody.innerHeight() >= $chatbody[ 0 ].scrollHeight ) {
+		if (
+			this.chatbody.scrollTop + this.chatbody.clientHeight >= this.chatbody.scrollHeight
+		) {
 			const { session } = this.context;
 			session.markChatMessagesAsRead( this.props.chat.name );
 		}
@@ -68,11 +69,7 @@ class Chat extends Component {
 	sendMessage = () => {
 		const { session } = this.context;
 		session.sendChatMessage( this.props.chat.name, this.state.value );
-
-		const $chatbody = $( this.chatbody );
-		$chatbody.animate({
-			scrollTop: $chatbody.prop( 'scrollHeight' )
-		}, 1000 );
+		scrollTo( this.chatbody, this.chatbody.scrollHeight, 1000 );
 
 		this.setState({
 			value: ''
@@ -93,13 +90,13 @@ class Chat extends Component {
 
 	onMouseOver() {
 		if ( !this.opened ) {
-			$( this.chat ).css( 'opacity', this.state.opened ? 0.7 : 1.0 );
+			this.chat.style.opacity = this.state.opened ? 0.7 : 1.0;
 		}
 	}
 
 	onMouseOut() {
 		if ( !this.opened ) {
-			$( this.chat ).css( 'opacity', this.state.opened ? 1.0 : 0.7 );
+			this.chat.style.opacity = this.state.opened ? 1.0 : 0.7;
 		}
 	}
 

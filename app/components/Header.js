@@ -3,7 +3,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import DropdownButton from 'react-bootstrap/lib/DropdownButton';
+import MenuItem from 'react-bootstrap/lib/MenuItem';
 import * as colors from 'constants/colors';
 
 

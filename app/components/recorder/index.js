@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
 import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder } from 'recordrtc';
 import inEditor from 'utils/is-electron';
 import getScreenId from './get_screen_id.js';

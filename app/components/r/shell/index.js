@@ -20,6 +20,7 @@ import isObject from '@stdlib/assert/is-object';
 import isString from '@stdlib/assert/is-string';
 import max from '@stdlib/math/base/special/max';
 import logger from 'debug';
+import PINF from '@stdlib/math/constants/float64-pinf';
 import ace from '@planeshifter/brace';
 import '@planeshifter/brace/mode/r';
 import '@planeshifter/brace/theme/katzenmilch';
@@ -275,7 +276,7 @@ class RShell extends React.Component {
 		this.aceSession.setMode( 'ace/mode/r' );
 		this.aceSession.getDocument().setNewLineMode( 'unix' );
 		this.editor.setTheme( 'ace/theme/katzenmilch' );
-		this.editor.$blockScrolling = Infinity;
+		this.editor.$blockScrolling = PINF;
 		this.editor.setOptions({
 			maxLines: max( 5, this.props.lines ),
 			minLines: this.props.lines,

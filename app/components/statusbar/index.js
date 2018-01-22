@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import PropTypes from 'prop-types';
-import $ from 'jquery';
 import ceil from '@stdlib/math/base/special/ceil';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
@@ -13,6 +12,7 @@ import Login from 'components/login';
 import Gate from 'components/gate';
 import InstructorView from 'components/statusbar/instructor-view';
 import Chat from 'components/statusbar/chat';
+import animatePosition from 'utils/animate-position';
 import ConfirmModal from './confirm_modal.js';
 import './statusbar.css';
 
@@ -101,23 +101,25 @@ class StatusBar extends Component {
 
 	toggleBar() {
 		if ( this.hidden ) {
-			$( this.statusbar ).animate({ top: 0, opacity: 1.0 }, 300 );
+			animatePosition( this.statusbar, 'top', 0, 300 );
+			this.statusbar.style.opacity = 1.0;
 			this.hidden = false;
 		} else {
-			$( this.statusbar ).animate({ top: -32, opacity: 0.7 }, 300 );
+			animatePosition( this.statusbar, 'top', -32, 300 );
+			this.statusbar.style.opacity = 0.7;
 			this.hidden = true;
 		}
 	}
 
 	onMouseOver() {
 		if ( this.hidden ) {
-			$( this.statusbar ).css( 'opacity', 1.0 );
+			this.statusbar.style.opacity = 1.0;
 		}
 	}
 
 	onMouseOut() {
 		if ( this.hidden ) {
-			$( this.statusbar ).css( 'opacity', 0.7 );
+			this.statusbar.style.opacity = 0.7;
 		}
 	}
 
@@ -192,6 +194,9 @@ class StatusBar extends Component {
 					onClick={this.toggleBar.bind( this )}
 					onMouseOver={this.onMouseOver.bind( this )}
 					onMouseOut={this.onMouseOut.bind( this )}
+					style={{
+						top: '-32px'
+					}}
 				>
 					<div className="statusbar-left"></div>
 					<div className="statusbar-middle">

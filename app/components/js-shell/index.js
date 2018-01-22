@@ -3,16 +3,21 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
-import $ from 'jquery';
-import ChatButton from 'components/chat-button';
-import { Button, ButtonToolbar, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import max from '@stdlib/math/base/special/max';
+import PINF from '@stdlib/math/constants/float64-pinf';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
+import ChatButton from 'components/chat-button';
+import HintButton from 'components/hint-button';
 import ace from '@planeshifter/brace';
 import '@planeshifter/brace/mode/javascript';
 import '@planeshifter/brace/theme/katzenmilch';
 import '@planeshifter/brace/theme/monokai';
 import '@planeshifter/brace/theme/solarized_light';
-import HintButton from 'components/hint-button';
+import scrollTo from 'utils/scroll-to';
 import './js-shell.css';
 import CONSOLE_STYLES from './console_styles.json';
 
@@ -91,6 +96,11 @@ class JSShell extends Component {
 		this.editor.getSession().setMode( 'ace/mode/javascript' );
 		this.editor.setTheme( 'ace/theme/monokai' );
 		this.editor.setValue( this.props.code, -1 );
+		this.editor.$blockScrolling = PINF;
+		this.editor.setOptions({
+			maxLines: max( 5, this.props.lines ),
+			minLines: this.props.lines
+		});
 		this.innerConsole();
 		this.register();  // registers the component for the speech interface
 	}
@@ -277,10 +287,7 @@ class JSShell extends Component {
 	* Scrolls to the bottom of the console output.
 	*/
 	scrollToBottom() {
-		const $outputPanel = $( this.consoleOutput );
-		$outputPanel.animate({
-			scrollTop: $outputPanel.prop( 'scrollHeight' )
-		}, 1000 );
+		scrollTo( this.consoleOutput, this.consoleOutput.scrollHeight, 1000 );
 	}
 
 	renderLogs() {
@@ -387,6 +394,7 @@ JSShell.propTypes = {
 	code: PropTypes.string,
 	disabled: PropTypes.bool,
 	hints: PropTypes.array,
+	lines: PropTypes.number,
 	onEvaluate: PropTypes.func,
 	solution: PropTypes.string,
 	vars: PropTypes.object

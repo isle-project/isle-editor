@@ -2,7 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ButtonToolbar, Panel } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
+import Panel from 'react-bootstrap/lib/Panel';
 import logger from 'debug';
 import PINF from '@stdlib/math/constants/float64-pinf';
 import NINF from '@stdlib/math/constants/float64-ninf';
@@ -106,53 +108,55 @@ class NumberQuestion extends Component {
 		const nHints = this.props.hints.length;
 		return (
 			<Panel className="NumberQuestion number-question">
-				{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
-				<label>Your answer:</label>
-				<NumberInput
-					step="any"
-					onChange={this.handleChange}
-					defaultValue={this.state.value}
-					disabled={this.state.submitted && this.props.solution}
-					inline
-					width={90}
-					min={this.props.min}
-					max={this.props.max}
-					numbersOnly={false}
-				/>
-				{ this.state.submitted && this.props.solution ?
-					<span>
-						<span> | </span>
-						<label>Solution:</label>
-						<NumberInput
-							disabled
-							defaultValue={this.props.solution}
-							inline
-							width={90}
-						/>
-					</span>:
-					null
-				}
-				<ButtonToolbar style={{ marginTop: '8px', marginBottom: '4px' }}>
-					<Button
-						bsStyle="primary"
-						bsSize="sm"
+				<Panel.Body>
+					{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
+					<label>Your answer:</label>
+					<NumberInput
+						step="any"
+						onChange={this.handleChange}
+						defaultValue={this.state.value}
 						disabled={this.state.submitted && this.props.solution}
-						onClick={this.submitHandler}
-					>
-						{ ( this.state.submitted && !this.props.solution ) ? 'Resubmit' : 'Submit' }
-					</Button>
-					{ nHints > 0 ?
-						<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
+						inline
+						width={90}
+						min={this.props.min}
+						max={this.props.max}
+						numbersOnly={false}
+					/>
+					{ this.state.submitted && this.props.solution ?
+						<span>
+							<span> | </span>
+							<label>Solution:</label>
+							<NumberInput
+								disabled
+								defaultValue={this.props.solution}
+								inline
+								width={90}
+							/>
+						</span>:
 						null
 					}
-					{
-						this.props.chat && this.props.id ?
-							<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-								<ChatButton for={this.props.id} />
-							</div> : null
-					}
-				</ButtonToolbar>
-				<InstructorBar id={this.props.id} dataType="number" />
+					<ButtonToolbar style={{ marginTop: '8px', marginBottom: '4px' }}>
+						<Button
+							bsStyle="primary"
+							bsSize="sm"
+							disabled={this.state.submitted && this.props.solution}
+							onClick={this.submitHandler}
+						>
+							{ ( this.state.submitted && !this.props.solution ) ? 'Resubmit' : 'Submit' }
+						</Button>
+						{ nHints > 0 ?
+							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
+							null
+						}
+						{
+							this.props.chat && this.props.id ?
+								<div style={{ display: 'inline-block', marginLeft: '4px' }}>
+									<ChatButton for={this.props.id} />
+								</div> : null
+						}
+					</ButtonToolbar>
+					<InstructorBar id={this.props.id} dataType="number" />
+				</Panel.Body>
 			</Panel>
 		);
 	}

@@ -8,7 +8,7 @@ import Panel from 'react-bootstrap/lib/Panel';
 import Grid from 'react-bootstrap/lib/Grid';
 import Col from 'react-bootstrap/lib/Col';
 import profanities from 'profanities';
-import { VictoryAxis, VictoryBar, VictoryChart } from 'victory';
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryLabel } from 'victory';
 import logger from 'debug';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import tabulate from '@stdlib/utils/tabulate';
@@ -124,7 +124,11 @@ class FreeTextSurvey extends Component {
 			);
 		}
 		return ( <VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
-			<VictoryAxis />
+			<VictoryAxis
+				tickLabelComponent={
+					<VictoryLabel angle={90} />
+				}
+			/>
 			<VictoryAxis dependentAxis />
 			<VictoryBar
 				data={this.state.data}

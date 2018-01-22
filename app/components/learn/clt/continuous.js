@@ -1,11 +1,25 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Button, ButtonGroup, Grid, Col, Panel, Row, Tabs, Tab } from 'react-bootstrap';
-import { exponential as rExponential, uniform as rUniform, normal as rNormal } from '@stdlib/math/base/random';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import Grid from 'react-bootstrap/lib/Grid';
+import Col from 'react-bootstrap/lib/Col';
+import Panel from 'react-bootstrap/lib/Panel';
+import Row from 'react-bootstrap/lib/Row';
+import Tabs from 'react-bootstrap/lib/Tabs';
+import Tab from 'react-bootstrap/lib/Tab';
+import rExponential from '@stdlib/math/base/random/exponential';
+import rUniform from '@stdlib/math/base/random/uniform';
+import rNormal from '@stdlib/math/base/random/normal';
 import dnorm from '@stdlib/math/base/dists/normal/pdf';
-import { copy, inmap } from '@stdlib/utils';
-import { abs, floor, pow, round, sqrt } from '@stdlib/math/base/special';
+import copy from '@stdlib/utils/copy';
+import inmap from '@stdlib/utils/inmap';
+import abs from '@stdlib/math/base/special/abs';
+import floor from '@stdlib/math/base/special/floor';
+import pow from '@stdlib/math/base/special/pow';
+import round from '@stdlib/math/base/special/round';
+import sqrt from '@stdlib/math/base/special/sqrt';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import stdev from 'compute-stdev';
 import mean from 'compute-mean';

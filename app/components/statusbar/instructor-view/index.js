@@ -8,7 +8,6 @@ import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import $ from 'jquery';
 import logger from 'debug';
 import FileSaver from 'file-saver';
 import stringify from 'csv-stringify';
@@ -16,13 +15,14 @@ import max from '@stdlib/math/base/special/max';
 import isElectron from 'utils/is-electron';
 import ActionLog from 'components/statusbar/action-log';
 import RangePicker from 'components/range-picker';
+import animatePosition from 'utils/animate-position';
 import UserList from './user_list.js';
 import './instructor_view.css';
 
 
 // VARIABLES //
 
-const EDITOR_OFFSET = isElectron ? '15px' : '0px';
+const EDITOR_OFFSET = isElectron ? 15 : 0;
 const debug = logger( 'isle-editor' );
 moment.locale( 'us' );
 
@@ -76,14 +76,14 @@ class InstructorView extends Component {
 
 	toggleBar() {
 		if ( this.state.hidden ) {
-			$( this.instructorView ).animate({ right: EDITOR_OFFSET }, 400 );
-			$( this.handler ).css( 'opacity', 0.7 );
+			animatePosition( this.instructorView, 'right', EDITOR_OFFSET, 400 );
+			this.handler.style.opacity = 0.7;
 			this.setState({
 				hidden: false
 			});
 		} else {
-			$( this.instructorView ).animate({ right: -max( window.innerWidth * 0.45, 400 ) }, 400 );
-			$( this.handler ).css( 'opacity', 0.7 );
+			animatePosition( this.instructorView, 'right', -max( window.innerWidth * 0.45, 400 ), 400 );
+			this.handler.style.opacity = 0.7;
 			this.setState({
 				hidden: true
 			});
@@ -92,13 +92,13 @@ class InstructorView extends Component {
 
 	onMouseOver() {
 		if ( this.state.hidden ) {
-			$( this.handler ).css( 'opacity', 1.0 );
+			this.handler.style.opacity = 1.0;
 		}
 	}
 
 	onMouseOut() {
 		if ( this.state.hidden ) {
-			$( this.handler ).css( 'opacity', 0.7 );
+			this.handler.style.opacity = 0.7;
 		}
 	}
 

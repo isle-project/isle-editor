@@ -1,9 +1,14 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Button, ButtonGroup, Grid, Col, Panel, Row } from 'react-bootstrap';
-import { binomial as rBinomial } from '@stdlib/math/base/random';
-import { copy } from '@stdlib/utils';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import Grid from 'react-bootstrap/lib/Grid';
+import Col from 'react-bootstrap/lib/Col';
+import Panel from 'react-bootstrap/lib/Panel';
+import Row from 'react-bootstrap/lib/Row';
+import rBinomial from '@stdlib/math/base/random/binomial';
+import copy from '@stdlib/utils/copy';
 import dnorm from '@stdlib/math/base/dists/normal/pdf';
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
@@ -12,7 +17,8 @@ import mean from 'compute-mean';
 import min from 'compute-min';
 import max from 'compute-max';
 import linspace from '@stdlib/math/utils/linspace';
-import { floor, sqrt } from '@stdlib/math/base/special';
+import floor from '@stdlib/math/base/special/floor';
+import sqrt from '@stdlib/math/base/special/sqrt';
 import NumberInput from 'components/input/number';
 import CheckboxInput from 'components/input/checkbox';
 import Plotly from 'components/plotly';

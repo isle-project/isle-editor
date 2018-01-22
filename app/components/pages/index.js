@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Pagination } from 'react-bootstrap';
+import Pagination from 'react-bootstrap/lib/Pagination';
 import PropTypes from 'prop-types';
 import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';

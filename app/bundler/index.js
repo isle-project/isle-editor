@@ -40,6 +40,7 @@ const generateIndexHTML = ( title, minify ) => `
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
 		<link rel="stylesheet" href="css/lesson.css" />
 		<script src="https://use.fontawesome.com/1ef7eff9d5.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/codemirror.min.css"/>
 	</head>
 	<body>
 	<div id="loading">
@@ -250,10 +251,6 @@ function writeIndexFile({
 				'plotly.js': path.resolve(
 					basePath,
 					'./node_modules/plotly.js/dist/plotly-cartesian.min.js'
-				),
-				'jquery': path.resolve(
-					basePath,
-					'./node_modules/jquery/dist/jquery.min.js'
 				),
 				'browserify-aes/browser': path.resolve(
 					basePath,

@@ -3,7 +3,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Panel, Grid, Col } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Panel from 'react-bootstrap/lib/Panel';
+import Grid from 'react-bootstrap/lib/Grid';
+import Col from 'react-bootstrap/lib/Col';
 import logger from 'debug';
 import ProportionsInput from 'components/input/proportions';
 import Gate from 'components/gate';

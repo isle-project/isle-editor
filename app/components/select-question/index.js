@@ -2,7 +2,11 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ControlLabel, Form, FormControl, FormGroup, Panel } from 'react-bootstrap';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import Form from 'react-bootstrap/lib/Form';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import Panel from 'react-bootstrap/lib/Panel';
 import './select-question.css';
 
 
