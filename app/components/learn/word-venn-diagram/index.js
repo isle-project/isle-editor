@@ -225,7 +225,7 @@ class WordVennDiagram extends Component {
 		return (
 			<Fragment>
 				<Panel>
-					<Panel.Header>Settings</Panel.Header>
+					<Panel.Heading>Settings</Panel.Heading>
 					<Panel.Body>
 						<p>
 							<label>Number of Words: </label>
@@ -245,7 +245,7 @@ class WordVennDiagram extends Component {
 					</Panel.Body>
 				</Panel>
 				<Panel>
-					<Panel.Header>Venn Diagram</Panel.Header>
+					<Panel.Heading>Venn Diagram</Panel.Heading>
 					<Panel.Body>
 						<span style={{
 							position: 'absolute',

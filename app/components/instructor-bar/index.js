@@ -381,7 +381,7 @@ class InstructorBar extends Component {
 			<div>
 				<Gate user>
 					{ this.state.receivedFeedbacks.length > 0 ? <Panel>
-						<Panel.Header>Feedback</Panel.Header>
+						<Panel.Heading>Feedback</Panel.Heading>
 						<Panel.Body>
 							<ListGroup fill style={{ marginLeft: 0 }}>
 								{this.state.receivedFeedbacks.map( ( elem, idx ) =>

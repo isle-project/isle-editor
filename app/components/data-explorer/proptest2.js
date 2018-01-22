@@ -179,11 +179,11 @@ class PropTest2 extends Component {
 			<Panel
 				style={{ fontSize: '14px' }}
 			>
-				<Panel.Header>
+				<Panel.Heading>
 					<Panel.Title componentClass="h4">
 						Two-Sample Proportion Test
 					</Panel.Title>
-				</Panel.Header>
+				</Panel.Heading>
 				<Panel.Body>
 					<Row>
 						<Col md={6}>
