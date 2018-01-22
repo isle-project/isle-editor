@@ -10,6 +10,7 @@ import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import by from './by.js';
 
+
 // FUNCTIONS //
 
 function getFrequencies( x, relativeFreqs ) {

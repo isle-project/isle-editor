@@ -18,8 +18,8 @@ import TextArea from 'components/text-area';
 import Gate from 'components/gate';
 import InstructorBar from 'components/instructor-bar';
 import RealtimeMetrics from 'components/metrics/realtime';
-
 import './free-text-survey.css';
+
 
 // VARIABLES //
 

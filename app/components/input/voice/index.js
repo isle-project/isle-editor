@@ -212,7 +212,6 @@ class VoiceInput extends Input {
 		);
 	}
 
-
 	render() {
 		let mike = 'voice-microphone';
 		if ( this.state.isRecording === true) mike = 'voice-microphone voice-recording';
