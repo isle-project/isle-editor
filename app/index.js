@@ -25,7 +25,7 @@ const PATH_REGEX = /\/[0-9]*$/;
 
 // MAIN //
 
-if (localStorage && process.env.NODE_ENV === 'development' ) { // eslint-disable-line no-process-env
+if ( localStorage && process.env.NODE_ENV === 'development' ) { // eslint-disable-line no-process-env
 	localStorage.debug = process.env.DEBUG; // eslint-disable-line no-process-env
 }
 
