@@ -16,6 +16,7 @@ import abs from '@stdlib/math/base/special/abs';
 import floor from '@stdlib/math/base/special/floor';
 import pow from '@stdlib/math/base/special/pow';
 import round from '@stdlib/math/base/special/round';
+import roundn from '@stdlib/math/base/special/roundn';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
