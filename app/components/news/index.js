@@ -9,6 +9,7 @@ import './styles.css';
 import newslist from './list.json';
 import EXCEPTIONS from './exceptions.json';
 
+import SpeechInterface from 'speech-interface'; // this may be deleted
 
 // MAIN //
 
@@ -25,7 +26,28 @@ class News extends Component {
 
 	componentDidMount() {
 		this.list = newslist;
+		if (this.props.speechInterface) {
+			this.register();
+		}
 	}
+
+
+	register() {
+		if (!global.speechInterface) {
+			global.speechInterface = new SpeechInterface();
+		}
+		global.speechInterface.register({
+			name: ['news'],
+			ref: this,
+			commands: [{
+				command: 'trigger',
+				trigger: ['news', 'hey'],
+				text: true,
+				params: {}
+			}]
+		});
+	}
+
 
 	displayArticles( data ) {
 		this.props.onArticles( data );
@@ -79,6 +101,7 @@ class News extends Component {
 	}
 
 	trigger( value ) {
+		console.log('externally triggered');
 		var marker = 'in';
 		switch ( this.props.language ) {
 		case 'en-US':
@@ -187,7 +210,8 @@ class News extends Component {
 News.defaultProps = {
 	language: 'en-US',
 	invisible: false,
-	onArticles() {}
+	onArticles() {},
+	speechInterface: false
 };
 
 
@@ -196,7 +220,8 @@ News.defaultProps = {
 News.propTypes = {
 	invisible: PropTypes.bool,
 	language: PropTypes.string,
-	onArticles: PropTypes.func
+	onArticles: PropTypes.func,
+	speechInterface: PropTypes.bool
 };
 
 
