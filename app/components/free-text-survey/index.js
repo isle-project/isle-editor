@@ -180,8 +180,8 @@ class FreeTextSurvey extends Component {
 							{this.state.freqTable}
 						</Col>
 					</Grid>
+					<InstructorBar id={props.id} />
 				</Panel>
-				<InstructorBar id={props.id} />
 			</Gate>
 		);
 	}
