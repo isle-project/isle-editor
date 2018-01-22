@@ -1,7 +1,10 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Grid, Row, Col, Panel } from 'react-bootstrap';
+import Grid from 'react-bootstrap/lib/Grid';
+import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/lib/Col';
+import Panel from 'react-bootstrap/lib/Panel';
 import { VictoryChart, VictoryLine } from 'victory';
 import PropTypes from 'prop-types';
 import roundn from '@stdlib/math/base/special/roundn';
@@ -194,7 +197,7 @@ class Standardize extends Component {
 						/>
 					</Col>
 					<Col md={4}>
-						{this.renderStandardizedPlot}
+						{this.renderStandardizedPlot()}
 					</Col>
 				</Row>
 			</Grid>
