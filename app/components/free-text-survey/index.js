@@ -19,6 +19,7 @@ import Gate from 'components/gate';
 import InstructorBar from 'components/instructor-bar';
 import RealtimeMetrics from 'components/metrics/realtime';
 
+import './free-text-survey.css';
 
 // VARIABLES //
 
@@ -118,7 +119,9 @@ class FreeTextSurvey extends Component {
 
 	renderChart() {
 		if ( isEmptyArray( this.state.data ) ) {
-			return null;
+			return (
+				<h3>No responses yet</h3>
+			);
 		}
 		return ( <VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
 			<VictoryAxis />
@@ -136,44 +139,44 @@ class FreeTextSurvey extends Component {
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
 			<Gate {...props} >
-				<Grid>
-					<Col md={6}>
-						<Panel className="FreeTextSurvey" style={{
-							margin: '0 auto 10px',
-							maxWidth: 600,
-							marginTop: '8px'
-						}}>
-							<Panel.Heading>
-								<Panel.Title componentClass="h4">{props.question}</Panel.Title>
-							</Panel.Heading>
-							<Panel.Body>
-								<TextArea
-									{...props}
-									inline
-									disabled={disabled}
-									onChange={( value ) => {
-										this.setState({
-											value
-										});
-									}}
-									rows={this.props.rows}
-								/>
-								<Button
-									bsSize="small"
-									bsStyle="success"
-									block fill
-									onClick={this.submitQuestion}
-									disabled={disabled}
-								>{ disabled ? 'Submitted' : 'Submit'}</Button>
-							</Panel.Body>
-						</Panel>
-					</Col>
-					<Col md={6}>
-						<RealtimeMetrics for={this.props.id} onData={this.onData} />
-						{this.renderChart()}
-						{this.state.freqTable}
-					</Col>
-				</Grid>
+				<Panel>
+					<Panel.Heading>
+						<Panel.Title componentClass="h3">SURVEY</Panel.Title>
+					</Panel.Heading>
+					<Grid>
+						<Col md={6}>
+							<Panel className="free-text-survey">
+								<Panel.Body>
+									<p><label>{props.question}</label></p>
+									<label>Your answer:</label>
+									<TextArea
+										{...props}
+										inline
+										disabled={disabled}
+										onChange={( value ) => {
+											this.setState({
+												value
+											});
+										}}
+										rows={this.props.rows}
+									/>
+									<Button
+										bsSize="small"
+										bsStyle="success"
+										block fill
+										onClick={this.submitQuestion}
+										disabled={disabled}
+									>{ disabled ? 'Submitted' : 'Submit'}</Button>
+								</Panel.Body>
+							</Panel>
+						</Col>
+						<Col md={6}>
+							<RealtimeMetrics for={this.props.id} onData={this.onData} />
+							{this.renderChart()}
+							{this.state.freqTable}
+						</Col>
+					</Grid>
+				</Panel>
 				<InstructorBar id={props.id} />
 			</Gate>
 		);

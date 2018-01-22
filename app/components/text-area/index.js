@@ -45,13 +45,20 @@ class TextArea extends Component {
 		this.props.onChange( value );
 	}
 
+	renderLegend() {
+		if (this.props.legend !== '') {
+			return <ControlLabel>{this.props.legend}</ControlLabel>;
+		}
+		return null;
+	}
+
 	/*
 	* React component render method.
 	*/
 	render() {
 		return (
 			<FormGroup controlId="formControlsTextarea">
-				<ControlLabel>{this.props.legend}</ControlLabel>
+				{this.renderLegend()}
 				<FormControl
 					componentClass="textarea"
 					placeholder={this.props.placeholder}
