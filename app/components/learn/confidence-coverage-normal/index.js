@@ -73,10 +73,15 @@ class ConfidenceCoverageNormal extends Component {
 		});
 	}
 
-	render() {
-		const intro = <p><TeX raw="X \sim \text{Normal}(  \mu, \sigma^2 )" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\bar X \sim \text{Normal}( \mu, \sigma/\sqrt{n} )" elems={ELEM_TOOLTIPS} />.  Our confidence interval is then <TeX raw="\bar X \pm Z_{\alpha/2} \cdot \sigma/\sqrt{n}" elems={ELEM_TOOLTIPS} />. For our choice of sample size (n), mu, sigma, and confidence level, we'll simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.</p>;
-
-		const plot= <VictoryChart padding={30} height={180} theme={VictoryTheme.material}
+	renderChart() {
+		const { errorBars } = this.state;
+		if ( !errorBars || errorBars.length === 0 ) {
+			return null;
+		}
+		return ( <VictoryChart
+			padding={30}
+			height={180}
+			theme={VictoryTheme.material}
 		>
 			<VictoryAxis
 				padding={20}
@@ -111,12 +116,16 @@ class ConfidenceCoverageNormal extends Component {
 					{ x: 20, y: this.state.mu }
 				]}
 			/>
-		</VictoryChart>;
+		</VictoryChart> );
+	}
+
+	render() {
+		const intro = <p><TeX raw="X \sim \text{Normal}(  \mu, \sigma^2 )" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\bar X \sim \text{Normal}( \mu, \sigma/\sqrt{n} )" elems={ELEM_TOOLTIPS} />.  Our confidence interval is then <TeX raw="\bar X \pm Z_{\alpha/2} \cdot \sigma/\sqrt{n}" elems={ELEM_TOOLTIPS} />. For our choice of sample size (n), mu, sigma, and confidence level, we'll simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.</p>;
 
 		return (
-			<Panel>
+			<Panel id="coverageModuleNormal">
 				<Panel.Heading>
-					<Panel.Title componentClass="h4">Confidence Interval Coverage for Sample Mean" id="coverageModule</Panel.Title>
+					<Panel.Title componentClass="h4">Confidence Interval Coverage for Sample Mean</Panel.Title>
 				</Panel.Heading>
 				<Panel.Body>
 					<Grid>
@@ -166,7 +175,7 @@ class ConfidenceCoverageNormal extends Component {
 										<Panel.Title componentClass="h4">Confidence Intervals</Panel.Title>
 									</Panel.Heading>
 									<Panel.Body>
-										{plot}
+										{this.renderChart()}
 										<p>Of the 20 confidence intervals, {this.state.nTrapped} capture the true mean <b>(coverage:  {this.state.nTrapped/20}).</b></p>
 									</Panel.Body>
 								</Panel>

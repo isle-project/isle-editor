@@ -54,7 +54,6 @@ class ConfidenceCoverageBinomial extends Component {
 			let res = ztest( data, sd, {
 				'alpha': alpha
 			});
-			console.log( ztest );
 			let o = {
 				'num': i,
 				'yval': res.statistic * res.sd,
@@ -75,13 +74,12 @@ class ConfidenceCoverageBinomial extends Component {
 		});
 	}
 
-	render() {
-		const intro = <div>
-			<p>Now we'll switch to asking a Yes/No question about a population.  We're interested in estimating the true population proportion p of "Yes" answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size n, find how many observations in our sample are a "Yes", and then estimate the true proportion p with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ p(1-p)/n } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <TeX raw="\hat p \pm Z_{\alpha/2} \cdot \sqrt{p(1-p)/n}" elems={ELEM_TOOLTIPS} />.</p>
-			<p>For our choice of sample size (n), true proportion p, and confidence level, we'll simulate 20 different samples from our normal distribution and calculate the corresponding sample proportions and confidence intervals.</p>
-		</div>;
-
-		const plot= <VictoryChart
+	renderChart() {
+		const { errorBars } = this.state;
+		if ( !errorBars || errorBars.length === 0 ) {
+			return null;
+		}
+		return ( <VictoryChart
 			padding={30}
 			height={180}
 			theme={VictoryTheme.material}
@@ -120,10 +118,17 @@ class ConfidenceCoverageBinomial extends Component {
 					{ x: 20, y: this.state.p }
 				]}
 			/>
-		</VictoryChart>;
+		</VictoryChart> );
+	}
+
+	render() {
+		const intro = <div>
+			<p>Now we'll switch to asking a Yes/No question about a population.  We're interested in estimating the true population proportion p of "Yes" answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size n, find how many observations in our sample are a "Yes", and then estimate the true proportion p with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ p(1-p)/n } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <TeX raw="\hat p \pm Z_{\alpha/2} \cdot \sqrt{p(1-p)/n}" elems={ELEM_TOOLTIPS} />.</p>
+			<p>For our choice of sample size (n), true proportion p, and confidence level, we'll simulate 20 different samples from our normal distribution and calculate the corresponding sample proportions and confidence intervals.</p>
+		</div>;
 
 		return (
-			<Panel id="coverageModule">
+			<Panel id="coverageModuleBinomial">
 				<Panel.Heading>
 					<Panel.Title componentClass="h4">Confidence Interval Coverage for Sample Proportion</Panel.Title>
 				</Panel.Heading>
@@ -168,7 +173,7 @@ class ConfidenceCoverageBinomial extends Component {
 										<Panel.Title componentClass="h4">Confidence Intervals</Panel.Title>
 									</Panel.Heading>
 									<Panel.Body>
-										{plot}
+										{this.renderChart()}
 										<p>Of the 20 confidence intervals, {this.state.nTrapped} capture the true proportion <b>(coverage: {this.state.nTrapped/20}).</b></p>
 									</Panel.Body>
 								</Panel>
