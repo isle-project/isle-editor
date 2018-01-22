@@ -143,7 +143,7 @@ class MarkdownEditor extends Component {
 		return (
 			<VoiceInput mode="status"
 				language={this.props.language}
-				timeout={5000}
+				timeout={this.props.voiceTimeout}
 				width='90%'
 				onFinalText={this.recordedText} ref={( voice ) => { this.voiceRef = voice; }} />
 		);
@@ -167,7 +167,8 @@ MarkdownEditor.defaultProps = {
 	language: 'en-US',
 	onChange() {},
 	options: {},
-	voiceControl: false
+	voiceControl: false,
+	voiceTimeout: 5000
 };
 
 
@@ -178,7 +179,8 @@ MarkdownEditor.propTypes = {
 	language: PropTypes.string,
 	onChange: PropTypes.func,
 	options: PropTypes.object,
-	voiceControl: PropTypes.bool
+	voiceControl: PropTypes.bool,
+	voiceTimeout: PropTypes.number
 };
 
 
