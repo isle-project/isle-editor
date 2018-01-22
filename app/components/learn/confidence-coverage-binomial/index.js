@@ -123,52 +123,62 @@ class ConfidenceCoverageBinomial extends Component {
 		</VictoryChart>;
 
 		return (
-			<Panel header="Confidence Interval Coverage for Sample Proportion" id="coverageModule">
-				<Grid>
-					<Row>
-						{intro}
-					</Row>
-					<Row>
-						<Col md={4}>
-							<Dashboard
-								title="Change parameters"
-								onGenerate={this.onGenerate}
-								autoStart={true}
-							>
-								<NumberInput
-									legend="Sample size (n)"
-									defaultValue={30}
-									max={999}
-									step={1}
+			<Panel id="coverageModule">
+				<Panel.Heading>
+					<Panel.Title componentClass="h4">Confidence Interval Coverage for Sample Proportion</Panel.Title>
+				</Panel.Heading>
+				<Panel.Body>
+					<Grid>
+						<Row>
+							{intro}
+						</Row>
+						<Row>
+							<Col md={4}>
+								<Dashboard
+									title="Change parameters"
+									onGenerate={this.onGenerate}
+									autoStart={true}
+								>
+									<NumberInput
+										legend="Sample size (n)"
+										defaultValue={30}
+										max={999}
+										step={1}
+									/>
+									<NumberInput
+										legend="True proportion p"
+										defaultValue={0.5}
+										max={1}
+										min={0}
+										step={0.01}
+									/>
+									<SliderInput
+										legend="Confidence level"
+										defaultValue={0.95}
+										min={0.01}
+										max={0.99}
+										step={0.01}
+										fractionDigits={2}
+									/>
+								</Dashboard>
+							</Col>
+							<Col md={8}>
+								<Panel>
+									<Panel.Heading>
+										<Panel.Title componentClass="h4">Confidence Intervals</Panel.Title>
+									</Panel.Heading>
+									<Panel.Body>
+										{plot}
+										<p>Of the 20 confidence intervals, {this.state.nTrapped} capture the true proportion <b>(coverage: {this.state.nTrapped/20}).</b></p>
+									</Panel.Body>
+								</Panel>
+								<FeedbackButtons
+									for="coverageModuleBinomial"
 								/>
-								<NumberInput
-									legend="True proportion p"
-									defaultValue={0.5}
-									max={1}
-									min={0}
-									step={0.01}
-								/>
-								<SliderInput
-									legend="Confidence level"
-									defaultValue={0.95}
-									min={0.01}
-									max={0.99}
-									step={0.01}
-									fractionDigits={2}
-								/>
-							</Dashboard>
-						</Col>
-						<Col md={8}>
-							<Panel header="Confidence Intervals">
-								{plot}
-								<p>Of the 20 confidence intervals, {this.state.nTrapped} capture the true proportion <b>(coverage:  {this.state.nTrapped/20}).</b></p>
-							</Panel>
-							<FeedbackButtons
-								for="coverageModuleBinomial"
-							/>
-						</Col>
-					</Row>
-				</Grid>
+							</Col>
+						</Row>
+					</Grid>
+				</Panel.Body>
 			</Panel>
 		);
 	}

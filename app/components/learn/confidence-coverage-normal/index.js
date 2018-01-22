@@ -114,59 +114,69 @@ class ConfidenceCoverageNormal extends Component {
 		</VictoryChart>;
 
 		return (
-			<Panel header="Confidence Interval Coverage for Sample Mean" id="coverageModule">
-				<Grid>
-					<Row>
-						{intro}
-					</Row>
-					<Row>
-						<Col md={4}>
-							<Dashboard
-								title="Change parameters"
-								onGenerate={this.onGenerate}
-								autoStart={true}
-							>
-								<NumberInput
-									legend="Sample size (n)"
-									defaultValue={30}
-									max={100}
-									step={1}
+			<Panel>
+				<Panel.Heading>
+					<Panel.Title componentClass="h4">Confidence Interval Coverage for Sample Mean" id="coverageModule</Panel.Title>
+				</Panel.Heading>
+				<Panel.Body>
+					<Grid>
+						<Row>
+							{intro}
+						</Row>
+						<Row>
+							<Col md={4}>
+								<Dashboard
+									title="Change parameters"
+									onGenerate={this.onGenerate}
+									autoStart={true}
+								>
+									<NumberInput
+										legend="Sample size (n)"
+										defaultValue={30}
+										max={100}
+										step={1}
+									/>
+									<NumberInput
+										legend="Mean (mu)"
+										defaultValue={1}
+										max={5}
+										min={-5}
+										step={1}
+									/>
+									<NumberInput
+										legend="Standard deviation (sigma)"
+										defaultValue={1}
+										max={20}
+										min={1}
+										step={1}
+									/>
+									<SliderInput
+										legend="Confidence level"
+										defaultValue={0.95}
+										min={0.01}
+										max={0.99}
+										step={0.01}
+										fractionDigits={2}
+									/>
+								</Dashboard>
+							</Col>
+							<Col md={8}>
+								<Panel>
+									<Panel.Heading>
+										<Panel.Title componentClass="h4">Confidence Intervals</Panel.Title>
+									</Panel.Heading>
+									<Panel.Body>
+										{plot}
+										<p>Of the 20 confidence intervals, {this.state.nTrapped} capture the true mean <b>(coverage:  {this.state.nTrapped/20}).</b></p>
+									</Panel.Body>
+								</Panel>
+								<FeedbackButtons
+									for="coverageModuleNormal"
 								/>
-								<NumberInput
-									legend="Mean (mu)"
-									defaultValue={1}
-									max={5}
-									min={-5}
-									step={1}
-								/>
-								<NumberInput
-									legend="Standard deviation (sigma)"
-									defaultValue={1}
-									max={20}
-									min={1}
-									step={1}
-								/>
-								<SliderInput
-									legend="Confidence level"
-									defaultValue={0.95}
-									min={0.01}
-									max={0.99}
-									step={0.01}
-									fractionDigits={2}
-								/>
-							</Dashboard>
-						</Col>
-						<Col md={8}>
-							<Panel header="Confidence Intervals">
-								{plot}
-								<p>Of the 20 confidence intervals, {this.state.nTrapped} capture the true mean <b>(coverage:  {this.state.nTrapped/20}).</b></p>
-							</Panel>
-							<FeedbackButtons
-								for="coverageModuleNormal"
-							/>
-						</Col>
-					</Row>
-				</Grid>
+							</Col>
+						</Row>
+					</Grid>
+				</Panel.Body>
 			</Panel>
 		);
 	}
