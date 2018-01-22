@@ -2,11 +2,12 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ButtonGroup, Panel } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import Panel from 'react-bootstrap/lib/Panel';
 import * as venn from 'venn.js';
 import * as d3 from 'd3';
 import isStringArray from '@stdlib/assert/is-string-array';
-import contains from '@stdlib/assert/contains';
 import lowercase from '@stdlib/string/lowercase';
 import randu from '@stdlib/math/base/random/randu';
 import round from '@stdlib/math/base/special/round';
@@ -67,11 +68,11 @@ class WordVennDiagram extends Component {
 
 	wordChangeFactory( idx ) {
 		return ( value ) => {
-			const newWords = copy( this.state.words );
+			const newWords = Array.prototype.slice.call( this.state.words );
 			newWords[ idx ] = lowercase( value ) || null;
 			this.setState({
 				words: newWords,
-				disabled: !isStringArray( newWords ) && !contains( newWords, '' )
+				disabled: !isStringArray( newWords )
 			});
 		};
 	}
@@ -172,6 +173,17 @@ class WordVennDiagram extends Component {
 		return { sets: [ words[ i ], words[ j ], words[ k ] ], size: freq };
 	}
 
+	wordNumberClickFactory = ( i ) => {
+		return () => {
+			this.setState({
+				nWords: i+1,
+				disabled: true,
+				words: new Array( i+1 ),
+				minCount: new Array( i+1 ).fill( 1 )
+			});
+		};
+	}
+
 	updatePlot = () => {
 		const newFreqs = [];
 		for ( let i = 0; i < this.state.nWords; i++ ) {
@@ -231,14 +243,7 @@ class WordVennDiagram extends Component {
 							<label>Number of Words: </label>
 						</p>
 						<ButtonGroup>
-							{[ 'One', 'Two', 'Three' ].map( ( w, i ) => (<Button key={i} bsStyle={( i === this.state.nWords-1 ) ? 'success' : 'default'} onClick={()=> {
-								this.setState({
-									nWords: i+1,
-									disabled: true,
-									words: new Array( i+1 ),
-									minCount: new Array( i+1 ).fill( 1 )
-								});
-							}}>{w}</Button>))}
+							{[ 'One', 'Two', 'Three' ].map( ( w, i ) => (<Button key={i} bsStyle={( i === this.state.nWords-1 ) ? 'success' : 'default'} onClick={this.wordNumberClickFactory( i )}>{w}</Button>))}
 						</ButtonGroup>
 						{inputs}
 						<Button onClick={this.updatePlot} disabled={this.state.disabled}>Draw Venn Diagram</Button>
