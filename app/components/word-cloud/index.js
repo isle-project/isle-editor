@@ -42,11 +42,18 @@ class Wrapper extends Component {
 
 	componentWillReceiveProps( nextProps ) {
 		if (
-			nextProps.data.length !== this.props.data.length
+			nextProps.data !== this.props.data
 		) {
 			const newState = this.createBagOfWords( nextProps.data );
 			this.setState( newState );
 		}
+	}
+
+	shouldComponentUpdate( nextProps ) {
+		if ( nextProps.data !== this.props.data ) {
+			return true;
+		}
+		return false;
 	}
 
 	createBagOfWords = ( texts ) => {
