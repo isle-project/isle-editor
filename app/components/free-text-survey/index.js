@@ -145,7 +145,7 @@ class FreeTextSurvey extends Component {
 			<Gate {...props} >
 				<Panel>
 					<Panel.Heading>
-						<Panel.Title componentClass="h3">SURVEY</Panel.Title>
+						<Panel.Title componentClass="h3">Survey</Panel.Title>
 					</Panel.Heading>
 					<Grid>
 						<Col md={6}>

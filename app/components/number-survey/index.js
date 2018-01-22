@@ -24,6 +24,7 @@ import NumberInput from 'components/input/number';
 import Gate from 'components/gate';
 import InstructorBar from 'components/instructor-bar';
 import RealtimeMetrics from 'components/metrics/realtime';
+import './number-survey.css';
 
 
 // VARIABLES //
@@ -106,7 +107,7 @@ class NumberSurvey extends Component {
 	renderChart() {
 		const { data } = this.state;
 		if ( isEmptyArray( data ) ) {
-			return null;
+			return <h3>No responses yet</h3>;
 		}
 		return ( <VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
 			<VictoryArea
@@ -128,47 +129,47 @@ class NumberSurvey extends Component {
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
 			<Gate {...props} >
-				<Grid>
-					<Col md={6}>
-						<Panel className="NumberSurvey" style={{
-							margin: '0 auto 10px',
-							maxWidth: 600,
-							marginTop: '8px'
-						}}>
-							<Panel.Heading>
-								<Panel.Title componentClass="h4">{props.question}</Panel.Title>
-							</Panel.Heading>
-							<Panel.Body>
-							<NumberInput
-								{...props}
-								inline
-								disabled={disabled}
-								onChange={( value ) => {
-									this.setState({
-										value
-									});
-								}}
-							/>
-							<Button
-								bsSize="small"
-								bsStyle="success"
-								block fill
-								onClick={this.submitQuestion}
-								disabled={disabled}
-							>{ disabled ? 'Submitted' : 'Submit'}</Button>
-							</Panel.Body>
-						</Panel>
-					</Col>
-					<Col md={6}>
-						<RealtimeMetrics for={this.props.id} onData={this.onData} />
-						{this.renderChart()}
-						{ isNumber( this.state.avg ) && isNumber( this.state.sd ) ?
-							<p>The average is {this.state.avg.toFixed( 3 )} (SD: {this.state.sd.toFixed( 3 )}).
-							</p> : null
-						}
-					</Col>
-				</Grid>
-				<InstructorBar id={props.id} />
+				<Panel>
+					<Panel.Heading>
+						<Panel.Title componentClass="h3">Survey</Panel.Title>
+					</Panel.Heading>
+					<Grid>
+						<Col md={6}>
+							<Panel className="number-survey">
+								<Panel.Body>
+									<p><label>{props.question}</label></p>
+									<label>Your answer:</label>
+									<NumberInput
+										{...props}
+										inline
+										disabled={disabled}
+										onChange={( value ) => {
+											this.setState({
+												value
+											});
+										}}
+									/>
+									<Button
+										bsSize="small"
+										bsStyle="success"
+										block fill
+										onClick={this.submitQuestion}
+										disabled={disabled}
+									>{ disabled ? 'Submitted' : 'Submit'}</Button>
+								</Panel.Body>
+							</Panel>
+						</Col>
+						<Col md={6}>
+							<RealtimeMetrics for={this.props.id} onData={this.onData} />
+							{this.renderChart()}
+							{ isNumber( this.state.avg ) && isNumber( this.state.sd ) ?
+								<p>The average is {this.state.avg.toFixed( 3 )} (SD: {this.state.sd.toFixed( 3 )}).
+								</p> : null
+							}
+						</Col>
+					</Grid>
+					<InstructorBar id={props.id} />
+				</Panel>
 			</Gate>
 		);
 	}

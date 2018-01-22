@@ -15,6 +15,7 @@ import Gate from 'components/gate';
 import InstructorBar from 'components/instructor-bar';
 import RealtimeMetrics from 'components/metrics/realtime';
 import AnswerOption from './answer_option';
+import './multiple-choice-survey.css';
 
 
 // VARIABLES //
@@ -100,7 +101,7 @@ class MultipleChoiceSurvey extends Component {
 
 	renderChart() {
 		if ( isEmptyArray( this.state.data ) ) {
-			return null;
+			return <h3>No responses yet</h3>;
 		}
 		return ( <VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
 			<VictoryAxis
@@ -174,41 +175,42 @@ class MultipleChoiceSurvey extends Component {
 
 		return (
 			<Gate {...props} >
-				<Grid>
-					<Col md={6}>
-						<Panel className="multipleChoiceSurvey" style={{
-							margin: '0 auto 10px',
-							maxWidth: 600,
-							marginTop: '8px'
-						}}>
-							<Panel.Heading>
-								<Panel.Title componentClass="h4">{props.question}</Panel.Title>
-							</Panel.Heading>
-							{ multipleAnswers ? <span>You may select multiple answers</span> : null }
-							<ListGroup fill >
-								{ multipleAnswers ?
-									props.answers.map( renderAnswerOptionsMultiple ) :
-									props.answers.map( renderAnswerOptionsSingle )
-								}
-							</ListGroup>
-							<Button
-								bsSize="small"
-								bsStyle="success"
-								block fill
-								onClick={this.submitQuestion}
-								disabled={disabled}
-							>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
-						</Panel>
-					</Col>
-					<Col md={6}>
-						<RealtimeMetrics for={this.props.id} onData={this.onData} />
-						{this.renderChart()}
-						<p>
-							{this.state.freqTable}
-						</p>
-					</Col>
-				</Grid>
-				<InstructorBar id={props.id} dataType="factor" />
+				<Panel>
+					<Panel.Heading>
+						<Panel.Title componentClass="h3">Survey</Panel.Title>
+					</Panel.Heading>
+					<Grid>
+						<Col md={6}>
+							<Panel className="multiple-choice-survey">
+								<Panel.Body>
+									<p><label>{props.question}</label></p>
+									{ multipleAnswers ? <span>You may select multiple answers</span> : null }
+									<ListGroup fill >
+										{ multipleAnswers ?
+											props.answers.map( renderAnswerOptionsMultiple ) :
+											props.answers.map( renderAnswerOptionsSingle )
+										}
+									</ListGroup>
+									<Button
+										bsSize="small"
+										bsStyle="success"
+										block fill
+										onClick={this.submitQuestion}
+										disabled={disabled}
+									>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
+								</Panel.Body>
+							</Panel>
+						</Col>
+						<Col md={6}>
+							<RealtimeMetrics for={this.props.id} onData={this.onData} />
+							{this.renderChart()}
+							<p>
+								{this.state.freqTable}
+							</p>
+						</Col>
+					</Grid>
+					<InstructorBar id={props.id} dataType="factor" />
+				</Panel>
 			</Gate>
 		);
 	}
