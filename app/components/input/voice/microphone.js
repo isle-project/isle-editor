@@ -1,8 +1,9 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import Microphone from './../../../img/microphone.svg';
 import PropTypes from 'prop-types';
+import Microphone from './../../../img/microphone.svg';
+
 
 // MAIN //
 
