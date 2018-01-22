@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Panel, Tabs, Tab } from 'react-bootstrap';
 import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
-import { roundn } from '@stdlib/math/base/special';
+import roundn from '@stdlib/math/base/special/roundn';
 import linspace from '@stdlib/math/utils/linspace';
 import dexp from '@stdlib/math/base/dists/exponential/pdf';
 import pexp from '@stdlib/math/base/dists/exponential/cdf';
