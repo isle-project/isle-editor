@@ -78,9 +78,11 @@ const renderIQRTable = ( e, idx ) => {
 						<th>IQR</th>
 						<th>Lower</th>
 						<th>Upper</th>
+						<th>N</th>
 					</tr>
 					<tr>
-						{e.value.map( ( e, i ) => <td key={i}>{e}</td> )}
+						{e.result.value.map( ( e, i ) => <td key={i}>{e}</td> )}
+						<td>{e.result.size}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -97,9 +99,11 @@ const renderRangeTable = ( e, idx ) => {
 					<tr>
 						<th>Min</th>
 						<th>Max</th>
+						<th>N</th>
 					</tr>
 					<tr>
-						{e.value.map( ( e, i ) => <td key={i}>{e}</td> )}
+						{e.result.value.map( ( e, i ) => <td key={i}>{e}</td> )}
+						<td>{e.result.size}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -177,7 +181,8 @@ const OutputPanel = ( output, clearOutput ) => {
 					</div>;
 					return makeDraggable( elem );
 				}
-				else if ( isNumber( e.value ) ) {
+				else if ( e.result.value && e.result.size ) {
+					const { value, size } = e.result;
 					let elem = <div key={idx} >
 						<Button
 							bsSize="xs"
@@ -189,11 +194,11 @@ const OutputPanel = ( output, clearOutput ) => {
 							<span>&times;</span>
 						</Button>
 						<label>{e.variable}: </label>
-						<pre>{e.type}: {e.value.toFixed( 3 )}</pre>
+						<pre>{e.type}: {value.toFixed( 3 )} (N: {size})</pre>
 					</div>;
 					return makeDraggable( elem );
 				}
-				else if ( isObject( e.value ) ) {
+				else if ( isObject( e.result ) ) {
 					let elem = <div key={idx} >
 						<label>{e.variable}: </label>
 						<Button
@@ -213,6 +218,7 @@ const OutputPanel = ( output, clearOutput ) => {
 											<th>{e.group}</th>
 											<th>Range</th>
 											<th></th>
+											<th>N</th>
 										</tr>: null
 									}
 									{ e.type === 'Interquartile Range' ?
@@ -221,29 +227,33 @@ const OutputPanel = ( output, clearOutput ) => {
 											<th>IQR</th>
 											<th>Lower</th>
 											<th>Upper</th>
+											<th>N</th>
 										</tr>: null
 									}
 									{ e.type !== 'Range' && e.type !== 'Interquartile Range' ?
 										<tr>
 											<th>{e.group}</th>
 											<th>{e.type}</th>
+											<th>N</th>
 										</tr>: null
 									}
-									{entries( e.value ).map( ( arr, i ) => {
-										if ( isArray( arr[ 1 ]) ) {
+									{entries( e.result ).map( ( arr, i ) => {
+										if ( isArray( arr[ 1 ].value ) ) {
 											return (
 												<tr key={i} >
 													<td>{arr[ 0 ]}</td>
-													{arr[ 1 ].map( ( x, j ) => {
+													{arr[ 1 ].value.map( ( x, j ) => {
 														return <td key={j}>{x}</td>;
 													})}
+													<td>{arr[ 1 ].size}</td>
 												</tr>
 											);
 										}
 										return (
 											<tr key={i} >
-												<td>{arr[ 0 ]} </td>
-												<td>{arr[ 1 ].toFixed( 3 )} </td>
+												<td>{arr[ 0 ]}</td>
+												<td>{arr[ 1 ].value.toFixed( 3 )} </td>
+												<td>{arr[ 1 ].size} </td>
 											</tr>
 										);
 									})}
@@ -252,10 +262,10 @@ const OutputPanel = ( output, clearOutput ) => {
 						</pre>
 					</div>;
 					return makeDraggable( elem );
-				} else if ( isArray( e.value ) && e.type === 'Range' ) {
+				} else if ( isArray( e.result.value ) && e.type === 'Range' ) {
 					let elem = renderRangeTable( e, idx );
 					return makeDraggable( elem );
-				} else if ( isArray( e.value ) && e.type === 'Interquartile Range' ) {
+				} else if ( isArray( e.result.value ) && e.type === 'Interquartile Range' ) {
 					let elem = renderIQRTable( e, idx );
 					return makeDraggable( elem );
 				}
