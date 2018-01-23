@@ -33,7 +33,7 @@ class FullscreenActionDisplay extends Component {
 					{elem.value}
 				</span>
 			}
-			{ this.state.showExtended ?
+			{ this.props.showExtended ?
 				<Button
 					bsSize="xs"
 					style={{ float: 'right' }}
@@ -78,8 +78,8 @@ class FullscreenActionDisplay extends Component {
 				</Grid>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button onClick={this.toggleExtended}>{ this.props.showExtended ? 'Hide Extended' : 'Show Extended' }</Button>
-				<Button onClick={this.toggleActions}>Close</Button>
+				<Button onClick={this.props.toggleExtended}>{ this.props.showExtended ? 'Hide Extended' : 'Show Extended' }</Button>
+				<Button onClick={this.props.toggleActions}>Close</Button>
 			</Modal.Footer>
 		</Modal> );
 	}
@@ -95,7 +95,8 @@ FullscreenActionDisplay.propTypes = {
 	onPeriodChange: PropTypes.func.isRequired,
 	show: PropTypes.bool.isRequired,
 	showExtended: PropTypes.bool.isRequired,
-	toggleActions: PropTypes.func.isRequired
+	toggleActions: PropTypes.func.isRequired,
+	toggleExtended: PropTypes.func.isRequired
 };
 
 

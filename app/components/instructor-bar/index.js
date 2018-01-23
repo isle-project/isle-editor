@@ -316,6 +316,8 @@ class InstructorBar extends Component {
 			show={this.state.showActions}
 			deleteFactory={this.deleteFactory}
 			onPeriodChange={this.onPeriodChange}
+			toggleExtended={this.toggleExtended}
+			toggleActions={this.toggleActions}
 		/> );
 	}
 
