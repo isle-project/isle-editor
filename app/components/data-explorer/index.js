@@ -21,7 +21,6 @@ import parse from 'csv-parse';
 import detect from 'detect-csv';
 import isString from '@stdlib/assert/is-string';
 import isArray from '@stdlib/assert/is-array';
-import isNumber from '@stdlib/assert/is-number';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import isObject from '@stdlib/assert/is-object';
 import entries from '@stdlib/utils/entries';

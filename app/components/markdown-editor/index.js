@@ -81,7 +81,9 @@ class MarkdownEditor extends Component {
 				name: 'markdown',
 				action: (editor) => {
 					const mdValue = this.simplemde.value();
-					const blob = new Blob([ mdValue ], { type: 'text/html'});
+					const blob = new Blob([ mdValue ], {
+						type: 'text/html'
+					});
 					FileSaver.saveAs( blob, 'provisoric.md' );
 				},
 				className: 'fa fa-file-text',
@@ -93,7 +95,9 @@ class MarkdownEditor extends Component {
 					const mdValue = this.simplemde.value();
 					const body = this.previewRender( mdValue );
 					const html = createHTML( 'provisoric', body );
-					const blob = new Blob([ html ], { type: 'text/html'});
+					const blob = new Blob([ html ], {
+						type: 'text/html'
+					});
 					FileSaver.saveAs( blob, 'provisoric.html' );
 				},
 				className: 'fa fa-save',

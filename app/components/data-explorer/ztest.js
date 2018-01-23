@@ -49,7 +49,7 @@ class ZTest extends Component {
 	}
 
 	render() {
-		const { continuous} = this.props;
+		const { continuous } = this.props;
 		return (
 			<Dashboard
 				title="One-Sample Mean Test"

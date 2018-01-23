@@ -16,7 +16,6 @@ import RangePicker from 'components/range-picker';
 // MAIN //
 
 class FullscreenActionDisplay extends Component {
-
 	constructor( props ) {
 		super( props );
 
