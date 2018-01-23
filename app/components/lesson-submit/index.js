@@ -84,14 +84,20 @@ class LessonSubmit extends Component {
 	finalizeSession = ( item ) => {
 		const { session } = this.context;
 		session.finalize();
+		let notificationMesage = 'Lesson successfully completed.';
+		if ( this.props.message ) {
+			notificationMesage += 'You will receive a confirmation email shortly';
+		}
 		session.addNotification({
 			title: 'Completed',
-			message: 'Lesson successfully completed. You will receive a confirmation email shortly.',
+			message: notificationMesage,
 			level: 'success',
 			position: 'tr'
 		});
-		const msg = createMessage( session, this.props.message );
-		session.sendMail( msg, session.user.email );
+		if ( this.props.message ) {
+			const msg = createMessage( session, this.props.message );
+			session.sendMail( msg, session.user.email );
+		}
 		this.setState({
 			disabled: true
 		});
