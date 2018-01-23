@@ -25,7 +25,7 @@ class FullscreenActionDisplay extends Component {
 
 	renderListGroupItem = ( elem, idx ) => {
 		return ( <ListGroupItem key={idx}>
-			{ this.state.showExtended ?
+			{ this.props.showExtended ?
 				<span style={{ textAlign: 'left' }}>
 					<b>{elem.name}:</b> {elem.value}
 				</span> :
