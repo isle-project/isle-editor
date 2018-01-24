@@ -795,6 +795,7 @@ class DataExplorer extends Component {
 						{...continuousProps}
 						logAction={this.logAction}
 						session={this.context.session}
+						showDensityOption={this.props.histogramDensities}
 					/>;
 					break;
 				case 'Box Plot':
@@ -1097,7 +1098,8 @@ DataExplorer.defaultProps = {
 	],
 	categorical: [],
 	continuous: [],
-	distributions: [ 'Normal', 'Uniform', 'Exponential' ]
+	distributions: [ 'Normal', 'Uniform', 'Exponential' ],
+	histogramDensities: true
 };
 
 
@@ -1108,6 +1110,7 @@ DataExplorer.propTypes = {
 	continuous: PropTypes.array,
 	data: PropTypes.object,
 	distributions: PropTypes.array,
+	histogramDensities: PropTypes.bool,
 	models: PropTypes.array,
 	onSelect: PropTypes.func,
 	plots: PropTypes.array,
