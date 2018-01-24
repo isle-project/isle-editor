@@ -955,9 +955,8 @@ class DataExplorer extends Component {
 				<Row>
 					{ this.props.questions ? <Col md={colWidth}><Pages
 						title="Questions"
-						draggable={false}
-						dots={false}
 						height={470}
+						bsSize="small"
 						style={{
 							marginTop: 0
 						}}
