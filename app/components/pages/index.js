@@ -9,6 +9,7 @@ import './pages.css';
 
 import SpeechInterface from 'speech-interface'; // this may be deleted
 
+
 // MAIN //
 
 class Pages extends Component {
@@ -149,7 +150,13 @@ class Pages extends Component {
 				<div className="page-children-wrapper" style={{
 					height: this.props.height
 				}}>
-					{this.props.children[ this.state.activePage-1 ] || this.props.children}
+					{this.props.children.map( ( elem, idx ) => {
+						return ( <span key={idx} style={{
+							display: this.state.activePage-1 !== idx ? 'none' : 'inline'
+						}}>
+							{elem}
+						</span> );
+					})}
 				</div>
 			</div>
 		);
