@@ -105,11 +105,18 @@ class Pages extends Component {
 			<h3 className="panel-title">{this.props.title}</h3>
 		</div>;
 		const items = [];
+		let cutoff = 3;
+		if ( this.state.activePage < 3 ) {
+			cutoff += 3 - this.state.activePage;
+		}
+		else if ( this.state.activePage > this.props.children.length - 3 ) {
+			cutoff += 2 - ( this.props.children.length - this.state.activePage );
+		}
 		for ( let i = 1; i <= this.props.children.length; i++) {
-			if ( absdiff( i, this.state.activePage ) > 3 ) {
+			if ( absdiff( i, this.state.activePage ) > cutoff ) {
 				continue;
 			}
-			if ( absdiff( i, this.state.activePage ) === 3 ) {
+			if ( absdiff( i, this.state.activePage ) === cutoff ) {
 				items.push( <Pagination.Ellipsis /> );
 				continue;
 			}
@@ -128,7 +135,7 @@ class Pages extends Component {
 			>
 				{ this.props.title ? header : null }
 				<Pagination className="my-pagination"
-					bsSize="medium"
+					bsSize={this.props.bsSize}
 					maxButtons={4}
 					items={this.props.children.length || 1}
 					activePage={this.state.activePage}
@@ -153,6 +160,15 @@ class Pages extends Component {
 // TYPES //
 
 Pages.propTypes = {
+	bsSize: PropTypes.oneOf([
+		'default',
+		'lg',
+		'large',
+		'sm',
+		'small',
+		'xs',
+		'xsmall'
+	]),
 	height: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
@@ -162,6 +178,7 @@ Pages.propTypes = {
 };
 
 Pages.defaultProps = {
+	bsSize: 'default',
 	height: null,
 	onSelect() {},
 	title: ''
