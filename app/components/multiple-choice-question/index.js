@@ -63,6 +63,14 @@ class MultipleChoiceQuestion extends Component {
 		}
 	}
 
+	componentWillReceiveProps( nextProps ) {
+		if ( nextProps.question !== this.props.question ) {
+			this.setState({
+				submitted: false
+			});
+		}
+	}
+
 	componentWillUnmount() {
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
@@ -215,7 +223,8 @@ MultipleChoiceQuestion.defaultProps = {
 	disabled: false,
 	displaySolution: false,
 	provideFeedback: true,
-	onSubmit(){}
+	onSubmit(){},
+	question: ''
 };
 
 
@@ -227,6 +236,7 @@ MultipleChoiceQuestion.propTypes = {
 	displaySolution: PropTypes.bool,
 	onSubmit: PropTypes.func,
 	provideFeedback: PropTypes.bool,
+	question: PropTypes.string,
 	solution: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.array
