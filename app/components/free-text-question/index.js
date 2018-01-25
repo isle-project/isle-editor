@@ -58,8 +58,8 @@ class FreeTextQuestion extends Component {
 
 	componentWillReceiveProps( nextProps ) {
 		if (
-			nextProps.placeholder !== this.props.placeholder &&
-			nextProps.solution !== this.props.solution &&
+			nextProps.placeholder !== this.props.placeholder ||
+			nextProps.solution !== this.props.solution ||
 			nextProps.question !== this.props.question
 		) {
 			this.setState({
