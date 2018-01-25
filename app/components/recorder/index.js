@@ -91,6 +91,13 @@ class Recorder extends Component {
 			};
 		}
 
+		if (props.camera) {
+			this.recorderConfig = {
+				type: 'video',
+				mimeType: 'video/webm'
+			};
+		}
+
 		window.getChromeExtensionStatus( ( status ) => {
 			if ( status !== 'installed-enabled' ) {
 				this.setState({
@@ -174,6 +181,35 @@ class Recorder extends Component {
 
 	setupRecorder() {
 		const { audio, camera, screen } = this.props;
+
+		if (camera && !audio && !screen) {
+			captureCamera( ( camera ) => {
+					camera.width = window.screen.width;
+					camera.height = window.screen.height;
+					camera.fullcanvas = true;
+					this.camera = camera;
+					let recorder = RecordRTC([ camera ], this.recorderConfig );
+					recorder.startRecording();
+					this.recorder = recorder;
+				});
+		}
+
+		if ( audio && camera && !screen ) {
+			captureAudio( ( audio ) => {
+				captureCamera( ( camera ) => {
+					camera.width = window.screen.width;
+					camera.height = window.screen.height;
+					camera.fullcanvas = true;
+					this.audio = audio;
+					this.camera = camera;
+					let recorder = RecordRTC([ audio, camera ], this.recorderConfig );
+					recorder.startRecording();
+					this.recorder = recorder;
+				});
+			});
+		}
+
+
 		if ( audio && !screen && !camera ) {
 			captureAudio( ( audio ) => {
 				let recorder = RecordRTC( audio, this.recorderConfig );
@@ -233,10 +269,44 @@ class Recorder extends Component {
 		}
 	}
 
+	renderAudioVideo( player ) {
+		const { audio, camera, screen } = this.props;
+		if ( audio && camera && !screen) {
+			return ( <video
+				width="320px"
+				height="auto"
+				style={{ display: this.state.recording ? 'none' : 'block' }}
+				ref={( player ) => { this.player = player; }}
+				controls autoPlay></video>
+			);
+		}
+
+		if ( audio && !camera && !screen) {
+			return (
+				<audio
+					style={{ display: this.state.recording ? 'none' : 'block' }}
+					ref={( player ) => { this.player = player; }}
+					controls autoPlay></audio>
+			);
+		}
+
+		if ( screen) {
+			return (
+			<video
+				width="320px"
+				height="auto"
+				style={{ display: this.state.recording ? 'none' : 'block' }}
+				ref={( player ) => { this.player = player; }}
+				controls autoPlay></video>
+			);
+		}
+	}
+
+
 	render() {
 		let recordingColor = this.state.recording ? 'red' : 'rgb(100,100,100)';
-		const { audio, screen } = this.props;
-		if ( !audio && !screen ) {
+		const { audio, screen, camera } = this.props;
+		if ( !audio && !screen && !camera ) {
 			return null;
 		}
 		return (
@@ -254,10 +324,7 @@ class Recorder extends Component {
 					className="recorder-rec"
 					style={{ color: recordingColor }}
 				>REC</div>
-				{ audio && !screen ?
-					<audio style={{ display: this.state.recording ? 'none' : 'block' }} ref={( player ) => { this.player = player; }} controls autoPlay></audio> :
-					<video width="320px" height="auto" style={{ display: this.state.recording ? 'none' : 'block' }} ref={( player ) => { this.player = player; }} controls autoPlay></video>
-				}
+				{ this.renderAudioVideo() }
 				{ !this.state.available && !inEditor ? <button onClick={() => {
 					window.open( 'https://chrome.google.com/webstore/detail/screen-capturing/ajhifddimkapgcifgcodmmfdlknahffk', '_blank' );
 				}} id="install-button">
