@@ -39,7 +39,7 @@ class NumberQuestion extends Component {
 
 	componentWillReceiveProps( nextProps ) {
 		if (
-			nextProps.question !== this.props.question &&
+			nextProps.question !== this.props.question ||
 			nextProps.solution !== this.props.solution
 		) {
 			this.setState({
