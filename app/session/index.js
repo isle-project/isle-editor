@@ -570,7 +570,7 @@ class Session {
 					}
 					return user;
 				});
-				if ( data.email !== this.user.email ) {
+				if ( this.config.joinNotifications && data.email !== this.user.email ) {
 					this.addNotification({
 						title: 'User has left',
 						message: `User ${data.name} (${data.email}) has left us.`,
