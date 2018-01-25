@@ -7,6 +7,7 @@ import WordCloud from 'react-d3-cloud';
 import removePunctuation from '@stdlib/string/remove-punctuation';
 import tokenize from '@stdlib/nlp/tokenize';
 import contains from '@stdlib/assert/contains';
+import isString from '@stdlib/assert/is-string';
 import lowercase from '@stdlib/string/lowercase';
 import objectEntries from '@stdlib/utils/entries';
 import isArray from '@stdlib/assert/is-array';
@@ -63,9 +64,11 @@ class Wrapper extends Component {
 		let tokens = [];
 		for ( let i = 0; i < texts.length; i++ ) {
 			let text = texts[ i ];
-			text = removePunctuation( text );
-			let newTokens = tokenize( text );
-			tokens = tokens.concat( newTokens );
+			if ( isString( text ) ) {
+				text = removePunctuation( text );
+				let newTokens = tokenize( text );
+				tokens = tokens.concat( newTokens );
+			}
 		}
 		for ( let i = 0; i < tokens.length; i++ ) {
 			tokens[ i ] = lowercase( tokens[ i ] );
