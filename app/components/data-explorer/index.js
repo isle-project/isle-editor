@@ -21,6 +21,7 @@ import parse from 'csv-parse';
 import detect from 'detect-csv';
 import isString from '@stdlib/assert/is-string';
 import isArray from '@stdlib/assert/is-array';
+import isNumber from '@stdlib/assert/is-number';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import isObject from '@stdlib/assert/is-object';
 import entries from '@stdlib/utils/entries';
@@ -180,7 +181,7 @@ const OutputPanel = ( output, clearOutput ) => {
 					</div>;
 					return makeDraggable( elem );
 				}
-				else if ( e.result.value && e.result.size ) {
+				else if ( isNumber( e.result.value ) && e.result.size ) {
 					const { value, size } = e.result;
 					let elem = <div key={idx} >
 						<Button
@@ -195,6 +196,13 @@ const OutputPanel = ( output, clearOutput ) => {
 						<label>{e.variable}: </label>
 						<pre>{e.type}: {value.toFixed( 3 )} (N: {size})</pre>
 					</div>;
+					return makeDraggable( elem );
+				}
+				else if ( isArray( e.result.value ) && e.type === 'Range' ) {
+					let elem = renderRangeTable( e, idx );
+					return makeDraggable( elem );
+				} else if ( isArray( e.result.value ) && e.type === 'Interquartile Range' ) {
+					let elem = renderIQRTable( e, idx );
 					return makeDraggable( elem );
 				}
 				else if ( isObject( e.result ) ) {
@@ -260,12 +268,6 @@ const OutputPanel = ( output, clearOutput ) => {
 							</table>
 						</pre>
 					</div>;
-					return makeDraggable( elem );
-				} else if ( isArray( e.result.value ) && e.type === 'Range' ) {
-					let elem = renderRangeTable( e, idx );
-					return makeDraggable( elem );
-				} else if ( isArray( e.result.value ) && e.type === 'Interquartile Range' ) {
-					let elem = renderIQRTable( e, idx );
 					return makeDraggable( elem );
 				}
 				return null;
