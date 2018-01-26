@@ -7,8 +7,8 @@ import Tooltip from 'react-bootstrap/lib/Tooltip';
 import Input from 'components/input/base';
 import roundn from '@stdlib/math/base/special/roundn';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
-import PINF from '@stdlib/math/constants/float64-pinf';
-import NINF from '@stdlib/math/constants/float64-ninf';
+import PINF from '@stdlib/constants/math/float64-pinf';
+import NINF from '@stdlib/constants/math/float64-ninf';
 import './slider.css';
 
 
