@@ -7,7 +7,7 @@ import Grid from 'react-bootstrap/lib/Grid';
 import Col from 'react-bootstrap/lib/Col';
 import Panel from 'react-bootstrap/lib/Panel';
 import Row from 'react-bootstrap/lib/Row';
-import rBinomial from '@stdlib/math/base/random/binomial';
+import rBinomial from '@stdlib/random/base/binomial';
 import copy from '@stdlib/utils/copy';
 import dnorm from '@stdlib/math/base/dists/normal/pdf';
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';

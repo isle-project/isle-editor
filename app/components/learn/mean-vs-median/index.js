@@ -4,8 +4,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Grid, Row, Col, Panel } from 'react-bootstrap';
 import { VictoryChart, VictoryCursorContainer, VictoryLine } from 'victory';
-import { abs, roundn } from '@stdlib/math/base/special';
-import randu from '@stdlib/math/base/random/randu';
+import abs from '@stdlib/math/base/special/abs';
+import roundn from '@stdlib/math/base/special/roundn';
+import randu from '@stdlib/random/base/randu';
 import linspace from '@stdlib/math/utils/linspace';
 import lognormal from '@stdlib/math/base/dists/lognormal';
 

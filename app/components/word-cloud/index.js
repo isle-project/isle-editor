@@ -11,8 +11,8 @@ import isString from '@stdlib/assert/is-string';
 import lowercase from '@stdlib/string/lowercase';
 import objectEntries from '@stdlib/utils/entries';
 import isArray from '@stdlib/assert/is-array';
-import PINF from '@stdlib/math/constants/float64-pinf';
-import NINF from '@stdlib/math/constants/float64-ninf';
+import PINF from '@stdlib/constants/math/float64-pinf';
+import NINF from '@stdlib/constants/math/float64-ninf';
 import STOPWORDS_EN from '@stdlib/datasets/stopwords-en';
 
 

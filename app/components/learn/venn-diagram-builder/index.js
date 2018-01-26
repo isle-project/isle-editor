@@ -2,10 +2,13 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Row, Col, Panel } from 'react-bootstrap';
+import Grid from 'react-bootstrap/lib/Grid';
+import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/lib/Col';
+import Panel from 'react-bootstrap/lib/Panel';
 import * as venn from 'venn.js';
 import * as d3 from 'd3';
-import randu from '@stdlib/math/base/random/randu';
+import randu from '@stdlib/random/base/randu';
 import round from '@stdlib/math/base/special/round';
 import min from '@stdlib/math/base/special/min';
 import NumberInput from 'components/input/number';
