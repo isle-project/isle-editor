@@ -6,13 +6,14 @@ import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import Panel from 'react-bootstrap/lib/Panel';
 import logger from 'debug';
-import PINF from '@stdlib/math/constants/float64-pinf';
-import NINF from '@stdlib/math/constants/float64-ninf';
+import PINF from '@stdlib/constants/math/float64-pinf';
+import NINF from '@stdlib/constants/math/float64-ninf';
 import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
 import NumberInput from 'components/input/number';
 import HintButton from 'components/hint-button';
 import './number-question.css';
+
 
 // VARIABLES //
 

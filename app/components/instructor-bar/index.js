@@ -12,7 +12,7 @@ import Panel from 'react-bootstrap/lib/Panel';
 import isString from '@stdlib/assert/is-string';
 import tabulate from '@stdlib/utils/tabulate';
 import trim from '@stdlib/string/trim';
-import NINF from '@stdlib/math/constants/float64-ninf';
+import NINF from '@stdlib/constants/math/float64-ninf';
 import Plotly from 'components/plotly';
 import Gate from 'components/gate';
 import TextArea from 'components/text-area';
