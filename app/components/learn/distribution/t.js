@@ -116,7 +116,11 @@ class TProbs extends Component {
 							<TeX raw={this.state.eqn1} displayMode tag="" />
 						</Dashboard>
 						<VictoryChart
-							domain={{ x: [ -4, 4 ], y: [ 0, dt( 0, this.state.df1 ) ] }}>
+							domain={{
+								x: [ -4, 4 ],
+								y: [ 0, dt( 0, this.state.df1 ) ]
+							}}
+						>
 							<VictoryArea
 								animate={{ duration: 500 }}
 								data={this.state.data1}
@@ -155,7 +159,11 @@ class TProbs extends Component {
 							<TeX raw={this.state.eqn2} displayMode tag="" />
 						</Dashboard>
 						<VictoryChart
-							domain={{ x: [ -4, 4 ], y: [ 0, dt( 0, this.state.df2 ) ] }}>
+							domain={{
+								x: [ -4, 4 ],
+								y: [ 0, dt( 0, this.state.df2 ) ]
+							}}
+						>
 							<VictoryArea
 								animate={{ duration: 500 }}
 								data={this.state.data2}
@@ -201,7 +209,11 @@ class TProbs extends Component {
 							<TeX raw={this.state.eqn3} displayMode tag="" />
 						</Dashboard>
 						<VictoryChart
-							domain={{ x: [ -4, 4 ], y: [ 0, dt( 0.0, this.state.df3 ) ] }}>
+							domain={{
+								x: [ -4, 4 ],
+								y: [ 0, dt( 0.0, this.state.df3 ) ]
+							}}
+						>
 							<VictoryArea
 								animate={{ duration: 500 }}
 								data={this.state.data3}

@@ -147,7 +147,11 @@ class DiscreteCLT extends Component {
 							fontSize: 15, padding: 5
 						}
 					}} />
-					<VictoryBar data={data} style={{ 'bar': { 'data': { 'padding': -10 } } }} />
+					<VictoryBar data={data} style={{
+						'bar': {
+							'data': { 'padding': -10 }
+						}
+					}} />
 				</VictoryChart>
 			</div>;
 			barplots.push( plot );

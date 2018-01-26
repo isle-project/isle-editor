@@ -83,7 +83,9 @@ class ConfidenceCoverageBinomial extends Component {
 			padding={30}
 			height={180}
 			theme={VictoryTheme.material}
-			domain={{ y: [ 0, 1 ] }}
+			domain={{
+				y: [ 0, 1 ]
+			}}
 		>
 			<VictoryAxis
 				padding={20}

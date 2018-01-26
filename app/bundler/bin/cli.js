@@ -5,7 +5,7 @@
 
 const fs = require( 'fs' );
 const path = require( 'path' );
-const cwd = require( '@stdlib/utils/cwd' );
+const cwd = require( '@stdlib/process/cwd' );
 const parseArgs = require( 'minimist' );
 const pkg = require( './../../../package.json' );
 const opts = require( './opts.json' );

@@ -104,7 +104,9 @@ class ExponentialProbs extends Component {
 							<TeX raw={this.state.eqn1} />
 						</Dashboard>
 						<VictoryChart
-							domain={{ x: [ 0, qexp( NEAR_ONE, this.state.rate1 ) + 2 ] }}
+							domain={{
+								x: [ 0, qexp( NEAR_ONE, this.state.rate1 ) + 2 ]
+							}}
 						>
 							<VictoryArea
 								data={this.state.data1}
@@ -141,7 +143,9 @@ class ExponentialProbs extends Component {
 							<TeX raw={this.state.eqn2} />
 						</Dashboard>
 						<VictoryChart
-							domain={{ x: [ 0, qexp( NEAR_ONE, this.state.rate2 ) + 2 ] }}
+							domain={{
+								x: [ 0, qexp( NEAR_ONE, this.state.rate2 ) + 2 ]
+							}}
 						>
 							<VictoryArea
 								data={this.state.data2}
@@ -184,7 +188,10 @@ class ExponentialProbs extends Component {
 							<TeX raw={this.state.eqn3} />
 						</Dashboard>
 						<VictoryChart
-							domain={{ x: [ 0, qexp( NEAR_ONE, this.state.rate3 ) + 2 ] }}>
+							domain={{
+								x: [ 0, qexp( NEAR_ONE, this.state.rate3 ) + 2 ]
+							}}
+						>
 							<VictoryArea
 								data={this.state.data3}
 								style={{

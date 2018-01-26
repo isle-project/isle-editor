@@ -118,7 +118,9 @@ class NormalProbs extends Component {
 							<TeX raw={this.state.eqn1} displayMode tag="" />
 						</Dashboard>
 						<VictoryChart
-							domain={{ x: [ this.state.mean1-this.state.sd1*4, this.state.mean1+this.state.sd1*4 ], y: [ 0, dnorm( this.state.mean1, this.state.mean1, this.state.sd1 ) ] }}>
+							domain={{
+								x: [ this.state.mean1-this.state.sd1*4, this.state.mean1+this.state.sd1*4 ], y: [ 0, dnorm( this.state.mean1, this.state.mean1, this.state.sd1 ) ]
+							}}>
 							<VictoryArea
 								data={this.state.data1}
 								style={{
