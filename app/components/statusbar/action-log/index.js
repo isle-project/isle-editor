@@ -176,7 +176,6 @@ class ActionLog extends Component {
 	}
 
 	renderItem = ( index, key ) => {
-		console.log( `Index: ${index}; Key: ${key}` );
 		const action = this.state.displayedActions[ index ];
 		return (
 			<Action
@@ -194,7 +193,8 @@ class ActionLog extends Component {
 				<ReactList
 					itemRenderer={this.renderItem}
 					length={this.state.displayedActions.length}
-					type="simple"
+					type="variable"
+					pageSize={50}
 				/>
 			</div>
 		);

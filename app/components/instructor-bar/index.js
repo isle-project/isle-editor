@@ -213,7 +213,8 @@ class InstructorBar extends Component {
 			<div style={{ height: 0.75 * window.innerHeight }}>
 				<WordCloud
 					data={this.state.texts}
-					height={0.5 * window.innerHeight} width={500}
+					height={0.73 * window.innerHeight}
+					width={0.5*window.innerWidth}
 					rotate={0}
 				/>
 			</div>

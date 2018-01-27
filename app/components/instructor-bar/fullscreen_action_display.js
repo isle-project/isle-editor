@@ -22,8 +22,9 @@ class FullscreenActionDisplay extends Component {
 		this.state = {};
 	}
 
-	renderListGroupItem = ( elem, idx ) => {
-		return ( <ListGroupItem key={idx}>
+	renderListGroupItem = ( index, key ) => {
+		const elem = this.props.actions[ index ];
+		return ( <ListGroupItem key={key}>
 			{ this.props.showExtended ?
 				<span style={{ textAlign: 'left' }}>
 					<b>{elem.name}:</b> {elem.value}
@@ -36,7 +37,7 @@ class FullscreenActionDisplay extends Component {
 				<Button
 					bsSize="xs"
 					style={{ float: 'right' }}
-					onClick={this.props.deleteFactory( idx )}
+					onClick={this.props.deleteFactory( index )}
 				>
 					<span>&times;</span>
 				</Button> :
@@ -63,8 +64,9 @@ class FullscreenActionDisplay extends Component {
 								<div style={{ marginLeft: 0, overflowY: 'scroll', height: 0.73 * window.innerHeight }}>
 									<ReactList
 										itemRenderer={this.renderListGroupItem}
-										length={this.state.actions.length}
-										type="simple"
+										length={this.props.actions.length}
+										type="variable"
+										pageSize={50}
 									/>
 								</div> :
 								<Well>
