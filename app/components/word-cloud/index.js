@@ -179,7 +179,7 @@ Wrapper.propTypes = {
 	data: PropTypes.array,
 	height: PropTypes.number,
 	language: PropTypes.oneOf([
-		'en'
+		'en', 'fin', 'fr', 'ger', 'it', 'por', 'sp', 'swe'
 	]),
 	minCount: PropTypes.number,
 	precalculated: PropTypes.bool,
