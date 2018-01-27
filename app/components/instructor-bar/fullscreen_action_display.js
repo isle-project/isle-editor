@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/lib/Row';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import Modal from 'react-bootstrap/lib/Modal';
 import Well from 'react-bootstrap/lib/Well';
-import ListGroup from 'react-bootstrap/lib/ListGroup';
+import ReactList from 'react-list';
 import RangePicker from 'components/range-picker';
 
 
@@ -60,11 +60,13 @@ class FullscreenActionDisplay extends Component {
 					<Row>
 						<Col md={6}>
 							{ this.props.actions.length > 0 ?
-								<ListGroup fill style={{ marginLeft: 0, overflowY: 'scroll', height: 0.73 * window.innerHeight }}>
-									{this.props.actions.map(
-										this.renderListGroupItem
-									)}
-								</ListGroup> :
+								<div style={{ marginLeft: 0, overflowY: 'scroll', height: 0.73 * window.innerHeight }}>
+									<ReactList
+										itemRenderer={this.renderListGroupItem}
+										length={this.state.actions.length}
+										type="simple"
+									/>
+								</div> :
 								<Well>
 									<h2>There is no data for the selected time period</h2>
 								</Well>

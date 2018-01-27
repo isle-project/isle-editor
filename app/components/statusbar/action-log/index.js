@@ -1,9 +1,9 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
-import ListGroup from 'react-bootstrap/lib/ListGroup';
-import logger from 'debug';
 import PropTypes from 'prop-types';
+import logger from 'debug';
+import ReactList from 'react-list';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import objectEntries from '@stdlib/utils/entries';
@@ -54,6 +54,17 @@ class ActionLog extends Component {
 		) {
 			this.buildActionsArray( nextProps, this.props.onTimeRangeChange );
 		}
+	}
+
+	shouldComponentUpdate( nextProps, nextState ) {
+		if (
+			nextProps.period.from !== this.props.period.from ||
+			nextProps.period.to !== this.props.period.to ||
+			nextState.displayedActions.length !== this.state.displayedActions.length
+		) {
+			return true;
+		}
+		return false;
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
@@ -164,10 +175,29 @@ class ActionLog extends Component {
 		}
 	}
 
+	renderItem = ( index, key ) => {
+		console.log( `Index: ${index}; Key: ${key}` );
+		const action = this.state.displayedActions[ index ];
+		return (
+			<Action
+				key={key}
+				backgroundColor={key % 2 ? 'white' : 'lightgrey' }
+				clickFactory={this.clickFactory}
+				{...action}
+			/>
+		);
+	}
+
 	render() {
-		return ( <ListGroup style={{ overflowY: 'scroll', height: window.innerHeight / 2 }}>
-			{this.state.displayedActions.map( ( action, idx ) => <Action key={idx} {...action} backgroundColor={idx % 2 ? 'white' : 'lightgrey'} clickFactory={this.clickFactory} /> )}
-		</ListGroup> );
+		return (
+			<div style={{ overflowY: 'scroll', height: window.innerHeight / 2 }}>
+				<ReactList
+					itemRenderer={this.renderItem}
+					length={this.state.displayedActions.length}
+					type="simple"
+				/>
+			</div>
+		);
 	}
 }
 
