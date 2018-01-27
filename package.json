@@ -132,7 +132,7 @@
     "bl": "^1.2.0",
     "bufferutil": "^3.0.1",
     "camelcase": "^4.1.0",
-    "component-playground": "^3.0.0",
+    "component-playground": "^3.1.1",
     "compute-chunkify": "0.0.0",
     "compute-iqr": "^1.1.0",
     "compute-max": "^1.0.1",
