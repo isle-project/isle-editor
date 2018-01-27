@@ -202,6 +202,7 @@
     "react-dom": "16.2.0",
     "react-grid-layout": "^0.16.0",
     "react-input-range": "^1.2.1",
+    "react-list": "^0.8.8",
     "react-notification-system": "^0.2.7",
     "react-player": "^1.0.0",
     "react-plotly.js": "^1.2.0",
