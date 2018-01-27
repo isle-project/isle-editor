@@ -180,7 +180,7 @@ class ActionLog extends Component {
 		return (
 			<Action
 				key={key}
-				backgroundColor={key % 2 ? 'white' : 'lightgrey' }
+				backgroundColor={key % 2 ? 'white' : 'lightgrey'}
 				clickFactory={this.clickFactory}
 				{...action}
 			/>
