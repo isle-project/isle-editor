@@ -21,24 +21,24 @@ import min from 'compute-min';
 
 var COLORS = [
 	'#1f77b4',
-	'#aec7e8',
 	'#ff7f0e',
-	'#ffbb78',
 	'#2ca02c',
-	'#98df8a',
 	'#d62728',
-	'#ff9896',
 	'#9467bd',
-	'#c5b0d5',
 	'#8c564b',
 	'#c49c94',
 	'#e377c2',
-	'#f7b6d2',
-	'#7f7f7f',
-	'#c7c7c7',
-	'#bcbd22',
-	'#dbdb8d',
 	'#17becf',
+	'#aec7e8',
+	'#ffbb78',
+	'#ff9896',
+	'#98df8a',
+	'#7f7f7f',
+	'#c5b0d5',
+	'#f7b6d2',
+	'#bcbd22',
+	'#c7c7c7',
+	'#dbdb8d',
 	'#9edae5'
 ];
 
@@ -407,11 +407,13 @@ class Scatterplot extends Component {
 				<Panel.Heading>
 					<Panel.Title>Scatterplot</Panel.Title>
 				</Panel.Heading>
-				{this.renderInputs()}
-				<div style={{ clear: 'both' }}></div>
-				{this.renderRegressionLineOptions()}
-				<div style={{ clear: 'both' }}></div>
-				<Button bsStyle="primary" block onClick={this.generateScatterplot}>Generate</Button>
+				<Panel.Body>
+					{this.renderInputs()}
+					<div style={{ clear: 'both' }}></div>
+					{this.renderRegressionLineOptions()}
+					<div style={{ clear: 'both' }}></div>
+					<Button bsStyle="primary" block onClick={this.generateScatterplot}>Generate</Button>
+				</Panel.Body>
 			</Panel>
 		);
 	}
