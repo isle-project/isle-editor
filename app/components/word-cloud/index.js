@@ -135,7 +135,7 @@ class Wrapper extends Component {
 				filtered.push( wordCounts[ i ] );
 			}
 		}
-		return { min, max, filtered };
+		return { min, max, wordCounts: filtered };
 	}
 
 	fontSizeMapper = ( word ) => {
