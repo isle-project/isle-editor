@@ -27,7 +27,6 @@ test( 'the component renders the speech recognition element', t => {
 	t.end();
 });
 
-
 test( 'the component triggers the wikipedia search externally', t => {
 	const div = shallow( <Wikipedia
 		language="de-DE"
@@ -43,7 +42,6 @@ test( 'the component returns the default language', t => {
 	t.end();
 });
 
-
 test( 'the component renders the VoiceInput', t => {
 	const wrapper = shallow( <Wikipedia
 		showSearch /> );
@@ -57,13 +55,16 @@ test( 'the component transforms the input into a valid wikipedia address and ope
 		/> );
 
 	const voice = wrapper.find( VoiceInput );
-	voice.find( '.voice-input-text' ).simulate('change', {target: {value: 'Angela Merkel'}});
-	wrapper.find( '.wikipedia-logo' ).simulate('click');
+	voice.find( '.voice-input-text' ).simulate( 'change', {
+		target: {
+			value: 'Angela Merkel'
+		}
+	});
+	wrapper.find( '.wikipedia-logo' ).simulate( 'click' );
 	t.strictEqual( wrapper.instance().state.response, 'https://en.wikipedia.org/wiki/Angela_Merkel', 'gets expected value' );
 	t.ok( wrapper.find( 'iframe' ).length > 0, 'expected length is greater than 0' );
 	t.end();
 });
-
 
 test( 'the component gets a French request, transforms the input into a valid wikipedia address and opens an IFrame', t => {
 	const wrapper = mount( <Wikipedia

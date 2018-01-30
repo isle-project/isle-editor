@@ -5,7 +5,7 @@ import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import max from '@stdlib/math/base/special/max';
-import PINF from '@stdlib/math/constants/float64-pinf';
+import PINF from '@stdlib/constants/math/float64-pinf';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';

@@ -199,9 +199,6 @@ export default class Preview extends Component {
 			// Replace Markdown by HTML...
 			code = markdownToHTML( code );
 
-			if ( !preamble.hideToolbar ) {
-				code = '<StatusBar className="fixedPos" />\n' + code;
-			}
 			if ( preamble.type === 'presentation' ) {
 				debug( 'Should render a presentation...' );
 				let progress = 'number';
@@ -230,6 +227,9 @@ export default class Preview extends Component {
 					transition={[]}
 					theme={theme}
 				>${code}</Deck>`;
+			}
+			if ( !preamble.hideToolbar ) {
+				code = '<StatusBar className="fixedPos" />\n' + code;
 			}
 
 			const es6code = `class Lesson extends React.Component {

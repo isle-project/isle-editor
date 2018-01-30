@@ -548,7 +548,7 @@ class Session {
 			debug( 'A user has joined and should be added to the user list: ' + data );
 			data = JSON.parse( data );
 			this.userList.push( data );
-			if ( data.email !== this.user.email ) {
+			if ( this.config.joinNotifications && data.email !== this.user.email ) {
 				this.addNotification({
 					title: 'User has joined',
 					message: `User ${data.name} (${data.email}) has joined us.`,
@@ -570,7 +570,7 @@ class Session {
 					}
 					return user;
 				});
-				if ( data.email !== this.user.email ) {
+				if ( this.config.joinNotifications && data.email !== this.user.email ) {
 					this.addNotification({
 						title: 'User has left',
 						message: `User ${data.name} (${data.email}) has left us.`,

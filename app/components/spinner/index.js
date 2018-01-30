@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
-import PI from '@stdlib/math/constants/float64-pi';
+import PI from '@stdlib/constants/math/float64-pi';
 
 
 // MAIN //

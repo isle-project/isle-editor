@@ -252,9 +252,9 @@ function writeIndexFile({
 					basePath,
 					'./node_modules/plotly.js/dist/plotly-cartesian.min.js'
 				),
-				'browserify-aes/browser': path.resolve(
+				'react-transition-group/TransitionGroup': path.resolve(
 					basePath,
-					'./node_modules/parse-asn1/node_modules/browserify-aes/browser.js'
+					'./node_modules/spectacle/node_modules/react-transition-group/TransitionGroup.js'
 				)
 			},
 			mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
@@ -335,9 +335,6 @@ function writeIndexFile({
 
 	// Replace Markdown by HTML...
 	content = markdownToHTML( content );
-	if ( !meta.hideToolbar ) {
-		content = '<StatusBar className="fixedPos" />\n' + content;
-	}
 	if ( meta.type === 'presentation' ) {
 		// Automatically insert <Slide> tags if not manually set...
 		if ( !contains( content, '<Slide' ) || !contains( content, '</Slide>' ) ) {
@@ -359,6 +356,9 @@ function writeIndexFile({
 			>
 				${content}
 			</Deck>`;
+	}
+	if ( !meta.hideToolbar ) {
+		content = '<StatusBar className="fixedPos" />\n' + content;
 	}
 	const usedComponents = getComponentList( content );
 	const str = generateIndexJS( content, usedComponents, yamlStr, basePath, filePath );

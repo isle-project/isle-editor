@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import floor from '@stdlib/math/base/special/floor';
-import randu from '@stdlib/math/base/random/randu';
+import randu from '@stdlib/random/base/randu';
 
 
 // VARIABLES //

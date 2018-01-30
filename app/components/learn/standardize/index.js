@@ -55,10 +55,12 @@ class Standardize extends Component {
 		let unstandardizedLines = newMarked.map( ( x, id ) => {
 			return ( <VictoryLine
 				key={id}
-				data={[ {x: x, y: 0 }, { x: x, y: 0.5 } ]}
+				data={[ { x: x, y: 0 }, { x: x, y: 0.5 } ]}
 				x={d => d.x}
 				y={d => d.y}
-				style={{ data: { stroke: colors[ id%colors.length ]}}}
+				style={{
+					data: { stroke: colors[ id%colors.length ] }
+				}}
 			/> );
 		});
 		let standardizedLines = newMarked.map( ( x, id ) => {
@@ -154,7 +156,10 @@ class Standardize extends Component {
 				<Panel.Title componentClass="h4">Standardized</Panel.Title>
 			</Panel.Heading>
 			<Panel.Body>
-				<VictoryChart domain={{ x: [ -5, 5 ], y: [ 0, 0.4 ] }}>
+				<VictoryChart domain={{
+					x: [ -5, 5 ],
+					y: [ 0, 0.4 ]
+				}}>
 					<VictoryLine
 						samples={200}
 						y={( data ) => {

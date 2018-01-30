@@ -6,8 +6,53 @@ import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import statistic from 'components/data-explorer/statistic.js';
 import hasOwnProp from '@stdlib/assert/has-own-property';
-import by from './by.js';
-import by2 from './by2.js';
+import isArray from '@stdlib/assert/is-array';
+
+
+// FUNCTIONS //
+
+function byWithCount( arr, factor, fun ) {
+	let ret = {};
+	for ( let i = 0; i < arr.length; i++ ) {
+		if ( !isArray( ret[ factor[ i ] ]) ) {
+			ret[ factor[ i ] ] = [];
+		}
+		ret[ factor[ i ] ].push( arr[ i ]);
+	}
+	for ( let key in ret ) {
+		if ( hasOwnProp( ret, key ) ) {
+			ret[ key ] = {
+				value: fun( ret[ key ] ),
+				size: ret[ key ].length
+			};
+		}
+	}
+	return ret;
+}
+
+function by2WithCount( arr1, arr2, factor, fun ) {
+	let out = {};
+	let ret1 = {};
+	let ret2 = {};
+	for ( let i = 0; i < factor.length; i++ ) {
+		if ( !isArray( ret1[ factor[ i ] ]) ) {
+			ret1[ factor[ i ] ] = [];
+			ret2[ factor[ i ] ] = [];
+		}
+		ret1[ factor[ i ] ].push( arr1[ i ]);
+		ret2[ factor[ i ] ].push( arr2[ i ]);
+	}
+	for ( let key in ret1 ) {
+		if ( hasOwnProp( ret1, key ) ) {
+			out[ key ] = {
+				value: fun( ret1[ key ], ret2[ key ]),
+				size: ret1[ key ].length
+			};
+		}
+	}
+	return out;
+}
+
 
 // MAIN //
 
@@ -26,34 +71,38 @@ class SummaryStatistics extends Component {
 		let res;
 
 		fun = statistic( statName );
-
 		if ( statName === 'Correlation' ) {
 			if ( !group ) {
 				res = fun( data[ variable ], data[ secondVariable ]);
 				// Extract correlation coefficient from correlation matrix:
-				res = res[ 0 ][ 1 ];
+				res = {
+					value: res[ 0 ][ 1 ],
+					size: data[ variable ].length
+				};
 			} else {
-				res = by2( data[ variable ], data[ secondVariable ], data[ group ], fun );
-
+				res = by2WithCount( data[ variable ], data[ secondVariable ], data[ group ], fun );
 				for ( let key in res ) {
-					if (hasOwnProp( res, key) ){
+					if ( hasOwnProp( res, key ) ){
 						// Extract correlation coefficient from correlation matrix:
-						res[ key ] = res[ key ][ 0 ][ 1 ];
+						res[ key ].value = res[ key ].value[ 0 ][ 1 ];
 					}
 				}
 			}
 			variable = `${variable} vs. ${secondVariable}`;
 		}
 		else if ( !group ) {
-			res = fun( data[ variable ]);
+			res = {
+				value: fun( data[ variable ] ),
+				size: data[ variable ].length
+			};
 		} else {
-			res = by( data[ variable ], data[ group ], fun );
+			res = byWithCount( data[ variable ], data[ group ], fun );
 		}
 
 		const output = {
 			variable: variable,
 			type: statName,
-			value: res,
+			result: res,
 			group
 		};
 

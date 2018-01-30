@@ -25,7 +25,10 @@ ipcMain.on( 'save-file', ( e, { data, filePath }) => {
 
 function openFile( filePath, browserWindow ) {
 	if (
-		EXTENSIONS.indexOf( extname( filePath ).slice( 1 ).toLowerCase() ) !== -1 ||
+		EXTENSIONS.indexOf( extname( filePath )
+			.slice( 1 )
+			.toLowerCase()
+		) !== -1 ||
 		!extname( filePath )
 	) {
 		const fileSize = fs.statSync( filePath )[ 'size' ];
@@ -85,7 +88,7 @@ export function hideToolbar( browserWindow ) {
 }
 
 export function openBrowser( url ) {
-	console.log( `Should open ${url} in the default browser...` );
+	console.log( `Should open ${url} in the default browser...` ); // eslint-disable-line no-console
 	exec( 'xdg-open ' + url );
 }
 
@@ -121,6 +124,6 @@ export function newFile({ browserWindow }) {
 }
 
 export function closeApp({ browserWindow }) {
-	console.log( 'Should close browser window...' );
+	console.log( 'Should close browser window...' ); // eslint-disable-line no-console
 	browserWindow.close();
 }

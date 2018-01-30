@@ -5,23 +5,19 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Collapse from 'react-bootstrap/lib/Collapse';
-import Col from 'react-bootstrap/lib/Col';
-import Grid from 'react-bootstrap/lib/Grid';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import Modal from 'react-bootstrap/lib/Modal';
 import Panel from 'react-bootstrap/lib/Panel';
-import Row from 'react-bootstrap/lib/Row';
-import Well from 'react-bootstrap/lib/Well';
 import isString from '@stdlib/assert/is-string';
 import tabulate from '@stdlib/utils/tabulate';
 import trim from '@stdlib/string/trim';
-import NINF from '@stdlib/math/constants/float64-ninf';
+import NINF from '@stdlib/constants/math/float64-ninf';
 import Plotly from 'components/plotly';
 import Gate from 'components/gate';
 import TextArea from 'components/text-area';
-import RangePicker from 'components/range-picker';
 import WordCloud from 'components/word-cloud';
+import FullscreenActionDisplay from './fullscreen_action_display.js';
 
 
 // MAIN //
@@ -217,7 +213,8 @@ class InstructorBar extends Component {
 			<div style={{ height: 0.75 * window.innerHeight }}>
 				<WordCloud
 					data={this.state.texts}
-					height={0.5 * window.innerHeight} width={500}
+					height={0.73 * window.innerHeight}
+					width={0.5*window.innerWidth}
 					rotate={0}
 				/>
 			</div>
@@ -278,29 +275,6 @@ class InstructorBar extends Component {
 		);
 	}
 
-	renderListGroupItem = ( elem, idx ) => {
-		return (<ListGroupItem key={idx}>
-			{ this.state.showExtended ?
-				<span style={{ textAlign: 'left' }}>
-					<b>{elem.name}:</b> {elem.value}
-				</span> :
-				<span style={{ textAlign: 'left' }}>
-					{elem.value}
-				</span>
-			}
-			{ this.state.showExtended ?
-				<Button
-					bsSize="xs"
-					style={{ float: 'right' }}
-					onClick={this.deleteFactory( idx )}
-				>
-					<span>&times;</span>
-				</Button> :
-				null
-			}
-		</ListGroupItem>);
-	}
-
 	renderDeleteModal() {
 		return ( <Modal show={this.state.showDeleteModal}>
 			<Modal.Header>
@@ -336,41 +310,16 @@ class InstructorBar extends Component {
 					colplot = this.renderHistogram();
 			}
 		}
-		return ( <Modal
+		return ( <FullscreenActionDisplay
+			actions={this.state.actions}
+			colplot={colplot}
+			showExtended={this.state.showExtended}
 			show={this.state.showActions}
-			onHide={this.toggleActions}
-			dialogClassName="fullscreen-modal"
-		>
-			<Modal.Header closeButton>
-				<Modal.Title>Actions</Modal.Title>
-				<RangePicker onChange={this.onPeriodChange} />
-			</Modal.Header>
-			<Modal.Body style={{ height: 0.75 * window.innerHeight, width: 0.90 * window.innerWidth }} >
-				<Grid>
-					<Row>
-						<Col md={6}>
-							{ this.state.actions.length > 0 ?
-								<ListGroup fill style={{ marginLeft: 0, overflowY: 'scroll', height: 0.73 * window.innerHeight }}>
-									{this.state.actions.map(
-										this.renderListGroupItem
-									)}
-								</ListGroup> :
-								<Well>
-									<h2>There is no data for the selected time period</h2>
-								</Well>
-							}
-						</Col>
-						<Col md={6}>
-							{colplot}
-						</Col>
-					</Row>
-				</Grid>
-			</Modal.Body>
-			<Modal.Footer>
-				<Button onClick={this.toggleExtended}>{ this.state.showExtended ? 'Hide Extended' : 'Show Extended' }</Button>
-				<Button onClick={this.toggleActions}>Close</Button>
-			</Modal.Footer>
-		</Modal> );
+			deleteFactory={this.deleteFactory}
+			onPeriodChange={this.onPeriodChange}
+			toggleExtended={this.toggleExtended}
+			toggleActions={this.toggleActions}
+		/> );
 	}
 
 	render() {

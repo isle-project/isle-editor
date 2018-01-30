@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/lib/Col';
 import Panel from 'react-bootstrap/lib/Panel';
 import Row from 'react-bootstrap/lib/Row';
 import PropTypes from 'prop-types';
-import sample from '@stdlib/math/random/sample';
+import sample from '@stdlib/random/sample';
 import dnorm from '@stdlib/math/base/dists/normal/pdf';
 import copy from '@stdlib/utils/copy';
 import inmap from '@stdlib/utils/inmap';
@@ -227,7 +227,11 @@ class SampleCLT extends Component {
 								fontSize: 15, padding: 5
 							}
 						}} />
-						<VictoryBar data={data} style={{ 'bar': { 'data': { 'padding': -10 } } }} />
+						<VictoryBar data={data} style={{
+							'bar': {
+								'data': { 'padding': -10 }
+							}
+						}} />
 					</VictoryChart>
 				</div>;
 				plots.push( plot );

@@ -1,6 +1,6 @@
 // MODULES //
 
-var ENV = require( '@stdlib/utils/env' );
+var ENV = require( '@stdlib/process/env' );
 
 
 // MAIN //

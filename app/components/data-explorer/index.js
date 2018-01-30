@@ -68,9 +68,22 @@ import Anova from 'components/data-explorer/anova';
 
 // FUNCTIONS //
 
-const renderIQRTable = ( e, idx ) => {
+const ClearButton = ( props ) => ( <Button
+	bsSize="xs"
+	style={{ float: 'right' }}
+	onClick={props.onClick}
+>
+	<span>&times;</span>
+</Button> );
+
+ClearButton.propTypes = {
+	'onClick': PropTypes.func.isRequired
+};
+
+const renderIQRTable = ( e, idx, clearOutput ) => {
 	return ( <div key={idx}>
 		<label>{e.variable}: </label>
+		<ClearButton onClick={() => { clearOutput( idx ); }} />
 		<pre>
 			<table>
 				<tbody>
@@ -78,9 +91,11 @@ const renderIQRTable = ( e, idx ) => {
 						<th>IQR</th>
 						<th>Lower</th>
 						<th>Upper</th>
+						<th>N</th>
 					</tr>
 					<tr>
-						{e.value.map( ( e, i ) => <td key={i}>{e}</td> )}
+						{e.result.value.map( ( e, i ) => <td key={i}>{e}</td> )}
+						<td>{e.result.size}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -88,18 +103,21 @@ const renderIQRTable = ( e, idx ) => {
 	</div> );
 };
 
-const renderRangeTable = ( e, idx ) => {
+const renderRangeTable = ( e, idx, clearOutput ) => {
 	return ( <div key={idx}>
 		<label>{e.variable}: </label>
+		<ClearButton onClick={() => { clearOutput( idx ); }} />
 		<pre>
 			<table>
 				<tbody>
 					<tr>
 						<th>Min</th>
 						<th>Max</th>
+						<th>N</th>
 					</tr>
 					<tr>
-						{e.value.map( ( e, i ) => <td key={i}>{e}</td> )}
+						{e.result.value.map( ( e, i ) => <td key={i}>{e}</td> )}
+						<td>{e.result.size}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -144,15 +162,7 @@ const OutputPanel = ( output, clearOutput ) => {
 				if ( e.type === 'Chart' ) {
 					return ( <div key={idx} style={{ height: 300, marginBottom: 40 }} >
 						<label>Chart: </label>
-						<Button
-							bsSize="xs"
-							style={{ float: 'right' }}
-							onClick={() => {
-								clearOutput( idx );
-							}}
-						>
-							<span>&times;</span>
-						</Button>
+						<ClearButton onClick={() => { clearOutput( idx ); }} />
 						{e.value}
 					</div> );
 				}
@@ -164,47 +174,31 @@ const OutputPanel = ( output, clearOutput ) => {
 					e.type === 'Simple Linear Regression'
 				) {
 					let elem = <div key={idx} >
-						<Button
-							bsSize="xs"
-							style={{ float: 'right' }}
-							onClick={() => {
-								clearOutput( idx );
-							}}
-						>
-							<span>&times;</span>
-						</Button>
+						<ClearButton onClick={() => { clearOutput( idx ); }} />
 						{e.value}
 					</div>;
 					return makeDraggable( elem );
 				}
-				else if ( isNumber( e.value ) ) {
+				else if ( isNumber( e.result.value ) && e.result.size ) {
+					const { value, size } = e.result;
 					let elem = <div key={idx} >
-						<Button
-							bsSize="xs"
-							style={{ float: 'right' }}
-							onClick={() => {
-								clearOutput( idx );
-							}}
-						>
-							<span>&times;</span>
-						</Button>
+						<ClearButton onClick={() => { clearOutput( idx ); }} />
 						<label>{e.variable}: </label>
-						<pre>{e.type}: {e.value.toFixed( 3 )}</pre>
+						<pre>{e.type}: {value.toFixed( 3 )} (N: {size})</pre>
 					</div>;
 					return makeDraggable( elem );
 				}
-				else if ( isObject( e.value ) ) {
+				else if ( isArray( e.result.value ) && e.type === 'Range' ) {
+					let elem = renderRangeTable( e, idx, clearOutput );
+					return makeDraggable( elem );
+				} else if ( isArray( e.result.value ) && e.type === 'Interquartile Range' ) {
+					let elem = renderIQRTable( e, idx, clearOutput );
+					return makeDraggable( elem );
+				}
+				else if ( isObject( e.result ) ) {
 					let elem = <div key={idx} >
 						<label>{e.variable}: </label>
-						<Button
-							bsSize="xs"
-							style={{ float: 'right' }}
-							onClick={() => {
-								clearOutput( idx );
-							}}
-						>
-							<span>&times;</span>
-						</Button>
+						<ClearButton onClick={() => { clearOutput( idx ); }} />
 						<pre>
 							<table>
 								<tbody>
@@ -213,6 +207,7 @@ const OutputPanel = ( output, clearOutput ) => {
 											<th>{e.group}</th>
 											<th>Range</th>
 											<th></th>
+											<th>N</th>
 										</tr>: null
 									}
 									{ e.type === 'Interquartile Range' ?
@@ -221,29 +216,33 @@ const OutputPanel = ( output, clearOutput ) => {
 											<th>IQR</th>
 											<th>Lower</th>
 											<th>Upper</th>
+											<th>N</th>
 										</tr>: null
 									}
 									{ e.type !== 'Range' && e.type !== 'Interquartile Range' ?
 										<tr>
 											<th>{e.group}</th>
 											<th>{e.type}</th>
+											<th>N</th>
 										</tr>: null
 									}
-									{entries( e.value ).map( ( arr, i ) => {
-										if ( isArray( arr[ 1 ]) ) {
+									{entries( e.result ).map( ( arr, i ) => {
+										if ( isArray( arr[ 1 ].value ) ) {
 											return (
 												<tr key={i} >
 													<td>{arr[ 0 ]}</td>
-													{arr[ 1 ].map( ( x, j ) => {
+													{arr[ 1 ].value.map( ( x, j ) => {
 														return <td key={j}>{x}</td>;
 													})}
+													<td>{arr[ 1 ].size}</td>
 												</tr>
 											);
 										}
 										return (
 											<tr key={i} >
-												<td>{arr[ 0 ]} </td>
-												<td>{arr[ 1 ].toFixed( 3 )} </td>
+												<td>{arr[ 0 ]}</td>
+												<td>{arr[ 1 ].value.toFixed( 3 )} </td>
+												<td>{arr[ 1 ].size} </td>
 											</tr>
 										);
 									})}
@@ -251,12 +250,6 @@ const OutputPanel = ( output, clearOutput ) => {
 							</table>
 						</pre>
 					</div>;
-					return makeDraggable( elem );
-				} else if ( isArray( e.value ) && e.type === 'Range' ) {
-					let elem = renderRangeTable( e, idx );
-					return makeDraggable( elem );
-				} else if ( isArray( e.value ) && e.type === 'Interquartile Range' ) {
-					let elem = renderIQRTable( e, idx );
 					return makeDraggable( elem );
 				}
 				return null;
@@ -786,6 +779,7 @@ class DataExplorer extends Component {
 						{...continuousProps}
 						logAction={this.logAction}
 						session={this.context.session}
+						showDensityOption={this.props.histogramDensities}
 					/>;
 					break;
 				case 'Box Plot':
@@ -945,9 +939,8 @@ class DataExplorer extends Component {
 				<Row>
 					{ this.props.questions ? <Col md={colWidth}><Pages
 						title="Questions"
-						draggable={false}
-						dots={false}
 						height={470}
+						bsSize="small"
 						style={{
 							marginTop: 0
 						}}
@@ -1088,7 +1081,8 @@ DataExplorer.defaultProps = {
 	],
 	categorical: [],
 	continuous: [],
-	distributions: [ 'Normal', 'Uniform', 'Exponential' ]
+	distributions: [ 'Normal', 'Uniform', 'Exponential' ],
+	histogramDensities: true
 };
 
 
@@ -1099,6 +1093,7 @@ DataExplorer.propTypes = {
 	continuous: PropTypes.array,
 	data: PropTypes.object,
 	distributions: PropTypes.array,
+	histogramDensities: PropTypes.bool,
 	models: PropTypes.array,
 	onSelect: PropTypes.func,
 	plots: PropTypes.array,

@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/lib/Row';
 import { VictoryAxis, VictoryChart, VictoryErrorBar, VictoryLine, VictoryTheme, VictoryTooltip } from 'victory';
 import abs from '@stdlib/math/base/special/abs';
 import sqrt from '@stdlib/math/base/special/sqrt';
-import randu from '@stdlib/math/base/random/randu';
+import randu from '@stdlib/random/base/randu';
 import qnorm from '@stdlib/math/base/dists/normal/quantile';
 import ztest from '@stdlib/math/stats/ztest';
 import Dashboard from 'components/dashboard';
@@ -83,7 +83,9 @@ class ConfidenceCoverageBinomial extends Component {
 			padding={30}
 			height={180}
 			theme={VictoryTheme.material}
-			domain={{ y: [ 0, 1 ] }}
+			domain={{
+				y: [ 0, 1 ]
+			}}
 		>
 			<VictoryAxis
 				padding={20}

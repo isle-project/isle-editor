@@ -9,7 +9,7 @@ import * as venn from 'venn.js';
 import * as d3 from 'd3';
 import isStringArray from '@stdlib/assert/is-string-array';
 import lowercase from '@stdlib/string/lowercase';
-import randu from '@stdlib/math/base/random/randu';
+import randu from '@stdlib/random/base/randu';
 import round from '@stdlib/math/base/special/round';
 import copy from '@stdlib/utils/copy';
 import NumberInput from 'components/input/number';

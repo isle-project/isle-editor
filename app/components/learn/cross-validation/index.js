@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { VictoryArea, VictoryChart, VictoryScatter } from 'victory';
-import runif from '@stdlib/math/base/random/uniform';
+import runif from '@stdlib/random/base/uniform';
 import floor from '@stdlib/math/base/special/floor';
 
 

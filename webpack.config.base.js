@@ -61,7 +61,8 @@ export default {
 		alias: {
 			'esprima': path.resolve( './node_modules/esprima-fb' ),
 			'victory': require.resolve( 'victory/dist/victory' ),
-			'form-data': path.resolve( './node_modules/form-data/lib/form_data.js' )
+			'form-data': path.resolve( './node_modules/form-data/lib/form_data.js' ),
+			'react-transition-group/TransitionGroup': path.resolve( './node_modules/spectacle/node_modules/react-transition-group/TransitionGroup.js' )
 		},
 		modules: [
 			path.resolve( './app' ),

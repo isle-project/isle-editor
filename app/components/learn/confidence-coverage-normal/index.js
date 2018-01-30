@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/lib/Row';
 import { VictoryAxis, VictoryChart, VictoryErrorBar, VictoryLine, VictoryTheme, VictoryTooltip } from 'victory';
 import abs from '@stdlib/math/base/special/abs';
 import qt from '@stdlib/math/base/dists/t/quantile';
-import normal from '@stdlib/math/base/random/normal';
+import normal from '@stdlib/random/base/normal';
 import ttest from '@stdlib/math/stats/ttest';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
