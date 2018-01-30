@@ -252,10 +252,6 @@ function writeIndexFile({
 					basePath,
 					'./node_modules/plotly.js/dist/plotly-cartesian.min.js'
 				),
-				'browserify-aes/browser': path.resolve(
-					basePath,
-					'./node_modules/parse-asn1/node_modules/browserify-aes/browser.js'
-				),
 				'react-transition-group/TransitionGroup': path.resolve(
 					basePath,
 					'./node_modules/spectacle/node_modules/react-transition-group/TransitionGroup.js'
