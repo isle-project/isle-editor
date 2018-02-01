@@ -151,9 +151,10 @@ class Pages extends Component {
 					height: this.props.height
 				}}>
 					{this.props.children.map( ( elem, idx ) => {
-						return ( <span key={idx} style={{
-							display: this.state.activePage-1 !== idx ? 'none' : 'inline'
-						}}>
+						return ( <span
+							className={this.state.activePage-1 !== idx ? 'invisible-page' : 'visible-page'}
+							key={idx}
+						>
 							{elem}
 						</span> );
 					})}

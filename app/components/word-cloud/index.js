@@ -23,6 +23,41 @@ import STOPWORDS_SP from '@stdlib/datasets/savoy-stopwords-sp';
 import STOPWORDS_SWE from '@stdlib/datasets/savoy-stopwords-swe';
 
 
+// FUNCTIONS //
+
+const generateStopwords = ( language ) => {
+	let stopwords;
+	switch ( language ) {
+		default:
+		case 'en':
+			stopwords = STOPWORDS_EN();
+		break;
+		case 'fin':
+			stopwords = STOPWORDS_FIN();
+		break;
+		case 'fr':
+			stopwords = STOPWORDS_FR();
+		break;
+		case 'ger':
+			stopwords = STOPWORDS_GER();
+		break;
+		case 'it':
+			stopwords = STOPWORDS_IT();
+		break;
+		case 'por':
+			stopwords = STOPWORDS_POR();
+		break;
+		case 'sp':
+			stopwords = STOPWORDS_SP();
+		break;
+		case 'swe':
+			stopwords = STOPWORDS_SWE();
+		break;
+	}
+	return stopwords;
+}
+
+
 // MAIN //
 
 class Wrapper extends Component {
@@ -41,33 +76,7 @@ class Wrapper extends Component {
 				wordCounts: props.data
 			};
 		}
-
-		switch ( props.language ) {
-			case 'en':
-				this.stopwords = STOPWORDS_EN();
-			break;
-			case 'fin':
-				this.stopwords = STOPWORDS_FIN();
-			break;
-			case 'fr':
-				this.stopwords = STOPWORDS_FR();
-			break;
-			case 'ger':
-				this.stopwords = STOPWORDS_GER();
-			break;
-			case 'it':
-				this.stopwords = STOPWORDS_IT();
-			break;
-			case 'por':
-				this.stopwords = STOPWORDS_POR();
-			break;
-			case 'sp':
-				this.stopwords = STOPWORDS_SP();
-			break;
-			case 'swe':
-				this.stopwords = STOPWORDS_SWE();
-			break;
-		}
+		this.stopwords = generateStopwords( props.language );
 	}
 
 	componentWillReceiveProps( nextProps ) {
@@ -98,6 +107,9 @@ class Wrapper extends Component {
 				let newTokens = tokenize( text );
 				tokens = tokens.concat( newTokens );
 			}
+		}
+		if ( !this.stopwords ) {
+			this.stopwords = generateStopwords( this.props.language );
 		}
 		for ( let i = 0; i < tokens.length; i++ ) {
 			tokens[ i ] = lowercase( tokens[ i ] );
@@ -135,7 +147,7 @@ class Wrapper extends Component {
 				filtered.push( wordCounts[ i ] );
 			}
 		}
-		return { min, max, filtered };
+		return { min, max, wordCounts: filtered };
 	}
 
 	fontSizeMapper = ( word ) => {
