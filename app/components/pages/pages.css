@@ -21,3 +21,11 @@
 	border-style: solid;
 	background: transparent;
 }
+
+.visible-page {
+	display: inline;
+}
+
+.invisible-page {
+	display: none;
+}

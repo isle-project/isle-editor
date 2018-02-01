@@ -36,11 +36,17 @@ test( 'the `jumpTo` method allows one to call up a certain page', t => {
 	);
 
 	wrapper.instance().jumpTo( 2 );
+	wrapper.update();
 	const state = wrapper.instance().state;
 
-	const p = wrapper.find( 'p' );
-	const html = p.html();
-	t.strictEqual(html, '<p>TWO</p>', 'renders the correct element' );
+	const span = wrapper.find( '.page-children-wrapper span' );
+	span.forEach( ( elem, idx ) => {
+		if ( idx !== 1 ) {
+			t.strictEqual( elem.hasClass( 'visible-page' ), false, 'does not show page' );
+		} else {
+			t.strictEqual( elem.hasClass( 'visible-page' ), true, 'shows page' );
+		}
+	});
 	t.strictEqual(state.activePage, 2, 'active page is equal to 2' );
 	t.end();
 });
@@ -56,18 +62,31 @@ test( 'the `jumpTo` method stays at the current age if supplied a page outside t
 
 	wrapper.instance().jumpTo( 3 );
 	wrapper.instance().jumpTo( 5 );
+	wrapper.update();
 	let state = wrapper.instance().state;
-	let p = wrapper.find( 'p' );
-	let html = p.html();
-	t.strictEqual(html, '<p>THREE</p>', 'renders the correct element' );
+	let span = wrapper.find( '.page-children-wrapper span' );
+	span.forEach( ( elem, idx ) => {
+		if ( idx !== 2 ) {
+			t.strictEqual( elem.hasClass( 'visible-page' ), false, 'does not show page' );
+		} else {
+			t.strictEqual( elem.hasClass( 'visible-page' ), true, 'shows page' );
+		}
+	});
 	t.strictEqual(state.activePage, 3, 'active page is equal to 3' );
 
 	wrapper.instance().jumpTo( 1 );
 	wrapper.instance().jumpTo( 0 );
+	wrapper.update();
 	state = wrapper.instance().state;
-	p = wrapper.find( 'p' );
-	html = p.html();
-	t.strictEqual(html, '<p>ONE</p>', 'renders the correct element' );
+
+	span = wrapper.find( '.page-children-wrapper span' );
+	span.forEach( ( elem, idx ) => {
+		if ( idx !== 0 ) {
+			t.strictEqual( elem.hasClass( 'visible-page' ), false, 'does not show page' );
+		} else {
+			t.strictEqual( elem.hasClass( 'visible-page' ), true, 'shows page' );
+		}
+	});
 	t.strictEqual(state.activePage, 1, 'active page is equal to 1' );
 	t.end();
 });
@@ -81,8 +100,9 @@ test( 'the `nextPage` method allows one to call the next page externally', t => 
 	</Pages> );
 
 	wrapper.instance().nextPage();
+	wrapper.update();
 	let state = wrapper.instance().state;
-	let div = wrapper.find( '.page-children-wrapper' );
+	let div = wrapper.find( '.visible-page' );
 	let text = div.text();
 	t.strictEqual( text, 'TWO', 'renders the correct element' );
 	t.equal( state.activePage, 2, 'active page is equal to 2' );
@@ -90,8 +110,9 @@ test( 'the `nextPage` method allows one to call the next page externally', t => 
 	wrapper.instance().nextPage();
 	wrapper.instance().nextPage();
 	wrapper.instance().nextPage();
+	wrapper.update();
 	state = wrapper.instance().state;
-	div = wrapper.find( '.page-children-wrapper' );
+	div = wrapper.find( '.visible-page' );
 	text = div.text();
 	t.strictEqual( text, 'FOUR', 'renders the correct element' );
 	t.equal( state.activePage, 4, 'active page is equal to 4' );
@@ -108,16 +129,18 @@ test( 'the `prevPage` method allows one to call the previous page externally', t
 	);
 
 	wrapper.instance().prevPage();
+	wrapper.update();
 	let state = wrapper.instance().state;
-	let div = wrapper.find( '.page-children-wrapper' );
+	let div = wrapper.find( '.visible-page' );
 	let text = div.text();
 	t.strictEqual( text, 'ONE', 'renders the correct element' );
 	t.equal(state.activePage, 1, 'active page is equal to 1' );
 
 	wrapper.instance().jumpTo( 4 );
 	wrapper.instance().prevPage();
+	wrapper.update();
 	state = wrapper.instance().state;
-	div = wrapper.find( '.page-children-wrapper' );
+	div = wrapper.find( '.visible-page' );
 	text = div.text();
 	t.strictEqual( text, 'THREE', 'renders the correct element' );
 	t.equal(state.activePage, 3, 'active page is equal to 3' );
