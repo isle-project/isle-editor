@@ -6,7 +6,7 @@
 const fs = require( 'fs' );
 const path = require( 'path' );
 const spawn = require( 'child_process' ).spawn;
-const cwd = require( '@stdlib/utils/cwd' );
+const cwd = require( '@stdlib/process/cwd' );
 const electron = require( 'electron' );
 const parseArgs = require( 'minimist' );
 const pkg = require( './../package.json' );
