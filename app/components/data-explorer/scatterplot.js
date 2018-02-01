@@ -2,10 +2,12 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Panel } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Panel from 'react-bootstrap/lib/Panel';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Plotly from 'components/plotly';
+import lowess from '@stdlib/math/stats/lowess';
 import linspace from '@stdlib/math/utils/linspace';
 import mapValues from '@stdlib/utils/map-values';
 import groupBy from '@stdlib/utils/group-by';
@@ -93,7 +95,7 @@ function scale( arr, a, b ) {
 	return out;
 }
 
-export function generateScatterplotConfig({ data, xval, yval, color, type, size, regressionLine, lineBy }) {
+export function generateScatterplotConfig({ data, xval, yval, color, type, size, regressionLine, regressionMethod, lineBy }) {
 	let nColors;
 	let traces;
 
@@ -212,12 +214,21 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 			for ( let i = 0; i < groups.length; i++ ) {
 				const xvals = xgrouped[ groups[ i ] ];
 				const yvals = ygrouped[ groups[ i ] ];
-				const coefs = calculateCoefficients( xvals, yvals );
-				const values = linspace( min( xvals ), max( xvals ), 100 );
-				const predicted = values.map( x => coefs[ 0 ] + coefs[ 1 ]*x );
+				let predicted;
+				let values;
+				if ( regressionMethod === 'linear' ) {
+					values = linspace( min( xvals ), max( xvals ), 100 );
+					const coefs = calculateCoefficients( xvals, yvals );
+					predicted = values.map( x => coefs[ 0 ] + coefs[ 1 ]*x );
+				} else if ( regressionMethod === 'smooth' ) {
+					const out = lowess( xvals, yvals );
+					values = out.x;
+					predicted = out.y;
+				}
 				traces.push({
 					x: values,
 					y: predicted,
+					mode: 'lines',
 					name: groups[ i ],
 					type: 'line',
 					line: {
@@ -227,15 +238,28 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 				});
 			}
 		} else {
-			const xvals = data[ xval ];
-			const yvals = data[ yval ];
-			const coefs = calculateCoefficients( xvals, yvals );
-			const values = linspace( min( xvals ), max( xvals ), 100 );
-			const predicted = values.map( x => coefs[ 0 ] + coefs[ 1 ]*x );
+			let xvals = data[ xval ];
+			let yvals = data[ yval ];
+			let predicted;
+			let values;
+			let name;
+			if ( regressionMethod === 'linear' ) {
+				const coefs = calculateCoefficients( xvals, yvals );
+				values = linspace( min( xvals ), max( xvals ), 100 );
+				predicted = values.map( x => coefs[ 0 ] + coefs[ 1 ]*x );
+				name = 'Linear Fit';
+			}
+			else if ( regressionMethod === 'smooth' ) {
+				const out = lowess( xvals, yvals );
+				values = out.x;
+				predicted = out.y;
+				name = 'Smoothed Fit';
+			}
 			traces.push({
 				x: values,
 				y: predicted,
-				name: 'Linear Fit',
+				mode: 'lines',
+				name: name,
 				type: 'line'
 			});
 		}
@@ -280,6 +304,7 @@ class Scatterplot extends Component {
 			color: null,
 			type: null,
 			regressionLine: false,
+			regressionMethod: 'linear',
 			lineBy: null
 		};
 	}
@@ -372,32 +397,44 @@ class Scatterplot extends Component {
 
 	renderRegressionLineOptions() {
 		return ( <div style={{
-			width: '100%',
 			opacity: this.props.showRegressionOption ? 1.0 : 0.0
 		}}>
 			<CheckboxInput
 				inline
 				legend="Show Regression Line"
 				defaultValue={false}
-				style={{ float: 'left', paddingLeft: 10 }}
 				onChange={() => {
 					this.setState({
 						regressionLine: !this.state.regressionLine
 					});
 				}}
 			/>
-			<SelectInput
-				legend="Split By:"
-				options={this.props.groupingVariables}
-				clearable={true}
-				style={{ float: 'right', paddingLeft: 10, width: '40%' }}
-				disabled={!this.state.regressionLine}
-				onChange={( value ) => {
-					this.setState({
-						lineBy: value
-					});
-				}}
-			/>
+			<div style={{ width: '100%' }}>
+				<SelectInput
+					legend="Method:"
+					defaultValue="linear"
+					options={[ 'linear', 'smooth' ]}
+					style={{ float: 'right', paddingLeft: 10, width: '45%' }}
+					disabled={!this.state.regressionLine}
+					onChange={( value ) => {
+						this.setState({
+							regressionMethod: value
+						});
+					}}
+				/>
+				<SelectInput
+					legend="Split By:"
+					options={this.props.groupingVariables}
+					clearable={true}
+					style={{ float: 'right', paddingLeft: 10, width: '45%' }}
+					disabled={!this.state.regressionLine}
+					onChange={( value ) => {
+						this.setState({
+							lineBy: value
+						});
+					}}
+				/>
+			</div>
 		</div> );
 	}
 
