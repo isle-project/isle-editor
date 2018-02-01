@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import contains from '@stdlib/assert/contains';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
 import Grid from 'react-bootstrap/lib/Grid';
@@ -11,7 +13,7 @@ import Modal from 'react-bootstrap/lib/Modal';
 import Well from 'react-bootstrap/lib/Well';
 import ReactList from 'react-list';
 import RangePicker from 'components/range-picker';
-
+import Search from 'components/instructor-bar/search';
 
 // MAIN //
 
@@ -19,11 +21,39 @@ class FullscreenActionDisplay extends Component {
 	constructor( props ) {
 		super( props );
 
-		this.state = {};
+		this.state = {filtered: props.actions };
 	}
 
+	componentWillReceiveProps( nextProps ) {
+		let newState = {};
+		if ( nextProps.actions !== this.props.actions ) {
+			newState.filtered = nextProps.actions;
+		} 
+
+		if ( !isEmptyObject( newState ) ) {
+			this.setState( newState );
+		}
+	}
+
+	searchFilter = (value) => {
+		const { filtered } = this.state;
+		var i;
+		var newFilter;
+		newFilter = [];
+
+		for ( i = 0; i < this.props.actions.length; i++ ) {
+			// Now search for value
+			if ( contains(this.props.actions[i].value, value) ) {
+				newFilter.push(this.props.actions[i]);
+			}
+		}
+
+		this.setState( { filtered: newFilter } );
+
+	};
+
 	renderListGroupItem = ( index, key ) => {
-		const elem = this.props.actions[ index ];
+		const elem = this.state.filtered[ index ];
 		return ( <ListGroupItem key={key}>
 			{ this.props.showExtended ?
 				<span style={{ textAlign: 'left' }}>
@@ -55,16 +85,17 @@ class FullscreenActionDisplay extends Component {
 			<Modal.Header closeButton>
 				<Modal.Title>Actions</Modal.Title>
 				<RangePicker onChange={this.props.onPeriodChange} />
+				<Search onClick={this.searchFilter}/>
 			</Modal.Header>
 			<Modal.Body style={{ height: 0.75 * window.innerHeight, width: 0.90 * window.innerWidth }} >
 				<Grid>
 					<Row>
 						<Col md={6}>
-							{ this.props.actions.length > 0 ?
+							{ this.state.filtered.length > 0 ?
 								<div style={{ marginLeft: 0, overflowY: 'scroll', height: 0.73 * window.innerHeight }}>
 									<ReactList
 										itemRenderer={this.renderListGroupItem}
-										length={this.props.actions.length}
+										length={this.state.filtered.length}
 										type="variable"
 										pageSize={50}
 									/>
