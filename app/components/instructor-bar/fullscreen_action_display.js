@@ -44,15 +44,16 @@ class FullscreenActionDisplay extends Component {
 	searchFilter = ( value ) => {
 		if ( isStrictEqual( value, '' ) ) {
 			this.setState( { filtered: this.props.actions } );
-		}
-		const newFilter = [];
-		for ( let i = 0; i < this.props.actions.length; i++ ) {
-			// Now search for value
-			if ( contains( String( this.props.actions[i].value ), value ) ) {
-				newFilter.push( this.props.actions[i] );
+		} else {
+			const newFilter = [];
+			for ( let i = 0; i < this.props.actions.length; i++ ) {
+				// Now search for value
+				if ( contains( String( this.props.actions[i].value ), value ) ) {
+					newFilter.push( this.props.actions[i] );
+				}
 			}
+			this.setState( { filtered: newFilter } );
 		}
-		this.setState( { filtered: newFilter } );
 	}
 
 	renderWordCloud() {
