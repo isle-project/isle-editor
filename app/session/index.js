@@ -548,7 +548,8 @@ class Session {
 			debug( 'A user has joined and should be added to the user list: ' + data );
 			data = JSON.parse( data );
 			this.userList.push( data );
-			if ( this.config.joinNotifications && data.email !== this.user.email ) {
+			const isUser = data.email === this.user.email;
+			if ( this.config.joinNotifications && isUser ) {
 				this.addNotification({
 					title: 'User has joined',
 					message: `User ${data.name} (${data.email}) has joined us.`,
@@ -570,7 +571,8 @@ class Session {
 					}
 					return user;
 				});
-				if ( this.config.joinNotifications && data.email !== this.user.email ) {
+				const isUser = data.email === this.user.email;
+				if ( this.config.joinNotifications && !isUser ) {
 					this.addNotification({
 						title: 'User has left',
 						message: `User ${data.name} (${data.email}) has left us.`,
@@ -578,7 +580,7 @@ class Session {
 						position: 'tl'
 					});
 					this.update();
-				} else {
+				} else if ( isUser ) {
 					// Case: Oneself has logged on another browser tab
 					this.forcedLogout();
 				}
