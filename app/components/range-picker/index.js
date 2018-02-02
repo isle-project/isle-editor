@@ -97,7 +97,7 @@ class RangePicker extends Component {
 			textShadow: 'none'
 		};
 		return (
-			<ButtonToolbar style={{ marginBottom: '10px' }} >
+			<ButtonToolbar style={{ marginBottom: '10px', ...this.props.style }} >
 				<ButtonGroup bsSize="xsmall">
 					<Button
 						className="date-selection"
@@ -163,14 +163,16 @@ class RangePicker extends Component {
 // PROPERTY TYPES //
 
 RangePicker.propTypes = {
-	onChange: PropTypes.func
+	onChange: PropTypes.func,
+	style: PropTypes.object
 };
 
 
 // DEFAULT PROPERTIES //
 
 RangePicker.defaultProps = {
-	onChange() {}
+	onChange() {},
+	style: {}
 };
 
 
