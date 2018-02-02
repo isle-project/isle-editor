@@ -3,7 +3,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import WordCloud from 'react-d3-cloud';
+import ReactFauxDom from 'react-faux-dom';
+import { scaleOrdinal, schemeCategory10, select } from 'd3';
+import cloud from 'd3-cloud';
 import removePunctuation from '@stdlib/string/remove-punctuation';
 import tokenize from '@stdlib/nlp/tokenize';
 import contains from '@stdlib/assert/contains';
@@ -21,6 +23,11 @@ import STOPWORDS_IT from '@stdlib/datasets/savoy-stopwords-it';
 import STOPWORDS_POR from '@stdlib/datasets/savoy-stopwords-por';
 import STOPWORDS_SP from '@stdlib/datasets/savoy-stopwords-sp';
 import STOPWORDS_SWE from '@stdlib/datasets/savoy-stopwords-swe';
+
+
+// VARIABLES //
+
+const fill = scaleOrdinal( schemeCategory10 );
 
 
 // FUNCTIONS //
@@ -55,7 +62,7 @@ const generateStopwords = ( language ) => {
 		break;
 	}
 	return stopwords;
-}
+};
 
 
 // MAIN //
@@ -81,15 +88,16 @@ class Wrapper extends Component {
 
 	componentWillReceiveProps( nextProps ) {
 		if (
-			nextProps.data !== this.props.data
+			nextProps.data.length !== this.props.data.length
 		) {
 			const newState = this.createBagOfWords( nextProps.data );
+			this.addWordCloud();
 			this.setState( newState );
 		}
 	}
 
 	shouldComponentUpdate( nextProps ) {
-		if ( nextProps.data !== this.props.data ) {
+		if ( nextProps.data.length !== this.props.data.length ) {
 			return true;
 		}
 		return false;
@@ -155,19 +163,49 @@ class Wrapper extends Component {
 		return ( word.value - min ) / ( max - min ) * 36.0 + 14.0;
 	}
 
+	addWordCloud() {
+		select( this.wordCloud ).selectAll( '*' ).remove();
+		const layout = cloud()
+			.size([ this.props.width, this.props.height ])
+			.font( this.props.font )
+			.words( this.state.wordCounts )
+			.padding( this.props.padding )
+			.rotate( this.props.rotate )
+			.fontSize( this.fontSizeMapper )
+			.on('end', words => {
+				select( this.wordCloud )
+				.append( 'svg' )
+				.attr( 'width', layout.size()[0] )
+				.attr( 'height', layout.size()[1] )
+				.append( 'g' )
+				.attr( 'transform', `translate(${layout.size()[0] / 2},${layout.size()[1] / 2})` )
+				.selectAll( 'text' )
+				.data( words )
+				.enter()
+				.append( 'text' )
+				.style( 'font-size', d => `${d.size}px` )
+				.style( 'font-family', this.props.font )
+				.style( 'fill', ( d, i ) => fill( i ) )
+				.style( 'cursor', 'pointer' )
+				.attr( 'text-anchor', 'middle' )
+				.attr( 'transform',
+					d => `translate(${[d.x, d.y]})rotate(${d.rotate})`
+				)
+				.text( d => d.text )
+				.on( 'click', this.props.onClick );
+			});
+		layout.start();
+	}
+
 	render() {
 		if ( this.state.wordCounts.length === 0 ) {
 			return null;
 		}
-		return (
-			<WordCloud
-				data={this.state.wordCounts}
-				fontSizeMapper={this.fontSizeMapper}
-				rotate={this.props.rotate}
-				width={this.props.width}
-				height={this.props.height}
-			/>
-		);
+		if ( !this.wordCloud ) {
+			this.wordCloud = ReactFauxDom.createElement( 'div' );
+			this.addWordCloud();
+		}
+		return this.wordCloud.toReact();
 	}
 }
 
@@ -176,12 +214,15 @@ class Wrapper extends Component {
 
 Wrapper.defaultProps = {
 	data: [],
+	font: 'serif',
 	precalculated: false,
 	rotate: word => word.value % 360,
 	width: 700,
 	height: 600,
 	language: 'en',
-	minCount: null
+	minCount: null,
+	onClick() {},
+	padding: 5
 };
 
 
@@ -189,11 +230,17 @@ Wrapper.defaultProps = {
 
 Wrapper.propTypes = {
 	data: PropTypes.array,
+	font: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.func
+	]),
 	height: PropTypes.number,
 	language: PropTypes.oneOf([
 		'en', 'fin', 'fr', 'ger', 'it', 'por', 'sp', 'swe'
 	]),
 	minCount: PropTypes.number,
+	onClick: PropTypes.func,
+	padding: PropTypes.number,
 	precalculated: PropTypes.bool,
 	rotate: PropTypes.func,
 	width: PropTypes.number
