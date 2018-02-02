@@ -20,12 +20,9 @@ function animatePosition( element, prop, to, duration ) {
 	if ( duration <= 0 ) {
 		return;
 	}
-	console.log( 'Current: '+element.style[ prop ] );
 	const current = castToNumber( element.style[ prop ] );
 	const difference = to - current;
-	console.log( 'Diff: '+ difference );
 	const perTick = difference / duration * 10.0;
-	console.log( 'perTick: '+perTick );
 	setTimeout( function onTimeout() {
 		const newVal = castToNumber( element.style[ prop ] ) + perTick;
 		element.style[ prop ] = `${newVal}px`;
