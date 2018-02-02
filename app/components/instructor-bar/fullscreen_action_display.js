@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import isStrictEqual from '@stdlib/assert/is-strict-equal';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
 import Grid from 'react-bootstrap/lib/Grid';
@@ -42,9 +43,11 @@ class FullscreenActionDisplay extends Component {
 
 	searchFilter = ( value ) => {
 		const newFilter = [];
+		// have a way to reset --> compare in for loop
 		for ( let i = 0; i < this.props.actions.length; i++ ) {
 			// Now search for value
-			if ( contains(this.props.actions[i].value, value) ) {
+			if ( (contains(this.props.actions[i].value, value)  || 
+				isStrictEqual(value, '')) ) {
 				newFilter.push(this.props.actions[i]);
 			}
 		}
