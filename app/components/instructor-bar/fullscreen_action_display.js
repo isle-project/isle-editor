@@ -13,6 +13,7 @@ import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import Modal from 'react-bootstrap/lib/Modal';
 import Well from 'react-bootstrap/lib/Well';
 import ReactList from 'react-list';
+import Highlighter from 'react-highlight-words';
 import RangePicker from 'components/range-picker';
 import Search from 'components/instructor-bar/search';
 import Plotly from 'components/plotly';
@@ -26,7 +27,8 @@ class FullscreenActionDisplay extends Component {
 		super( props );
 
 		this.state = {
-			filtered: props.actions
+			filtered: props.actions,
+			searchwords: []
 		};
 	}
 
@@ -43,7 +45,10 @@ class FullscreenActionDisplay extends Component {
 
 	searchFilter = ( value ) => {
 		if ( isStrictEqual( value, '' ) ) {
-			this.setState( { filtered: this.props.actions } );
+			this.setState({
+				filtered: this.props.actions,
+				searchwords: []
+			});
 		} else {
 			const newFilter = [];
 			for ( let i = 0; i < this.props.actions.length; i++ ) {
@@ -52,7 +57,10 @@ class FullscreenActionDisplay extends Component {
 					newFilter.push( this.props.actions[i] );
 				}
 			}
-			this.setState( { filtered: newFilter } );
+			this.setState({
+				filtered: newFilter,
+				searchwords: [ value ]
+			});
 		}
 	}
 
@@ -128,14 +136,17 @@ class FullscreenActionDisplay extends Component {
 
 	renderListGroupItem = ( index, key ) => {
 		const elem = this.state.filtered[ index ];
+		const higlighter = <Highlighter
+			searchWords={this.state.searchwords}
+			autoEscape={true}
+			textToHighlight={elem.value}
+		/>;
 		return ( <ListGroupItem key={key}>
 			{ this.props.showExtended ?
 				<span style={{ textAlign: 'left' }}>
-					<b>{elem.name}:</b> {elem.value}
+					<b>{elem.name}:</b> {higlighter}
 				</span> :
-				<span style={{ textAlign: 'left' }}>
-					{elem.value}
-				</span>
+				higlighter
 			}
 			{ this.props.showExtended ?
 				<Button
