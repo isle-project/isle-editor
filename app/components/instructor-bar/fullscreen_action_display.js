@@ -42,13 +42,14 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	searchFilter = ( value ) => {
+		if ( isStrictEqual( value, '' ) ) {
+			this.setState( { filtered: this.props.actions } );
+		}
 		const newFilter = [];
-		// have a way to reset --> compare in for loop
 		for ( let i = 0; i < this.props.actions.length; i++ ) {
 			// Now search for value
-			if ( (contains(this.props.actions[i].value, value)  || 
-				isStrictEqual(value, '')) ) {
-				newFilter.push(this.props.actions[i]);
+			if ( contains( String( this.props.actions[i].value ), value ) ) {
+				newFilter.push( this.props.actions[i] );
 			}
 		}
 		this.setState( { filtered: newFilter } );
@@ -172,18 +173,22 @@ class FullscreenActionDisplay extends Component {
 			onHide={this.props.toggleActions}
 			dialogClassName="fullscreen-modal"
 		>
-			<Modal.Header closeButton>
-				<Modal.Title>Actions</Modal.Title>
-				<div>
+			<Modal.Header style={{ paddingBottom: '5px' }} closeButton >
+				<Modal.Title>
+					<h3 style={{ float: 'left', margin: '2px 14px 2px 2px' }} >Actions</h3>
 					<RangePicker
 						style={{ float: 'left' }}
+						bsSize="small"
 						onChange={this.props.onPeriodChange}
 					/>
 					<Search
 						style={{ float: 'left', width: '30%' }}
 						onClick={this.searchFilter}
 					/>
-				</div>
+					<span style={{ fontSize: '14x', float: 'left', padding: '4px 4px 4px 20px' }}>
+						{'# of displayed actions: '+this.state.filtered.length}
+					</span>
+					</Modal.Title>
 			</Modal.Header>
 			<Modal.Body style={{ height: 0.75 * window.innerHeight, width: 0.90 * window.innerWidth }} >
 				<Grid>
@@ -199,7 +204,7 @@ class FullscreenActionDisplay extends Component {
 									/>
 								</div> :
 								<Well>
-									<h2>There is no data for the selected time period</h2>
+									<h2>There is no data matching the selected parameters</h2>
 								</Well>
 							}
 						</Col>

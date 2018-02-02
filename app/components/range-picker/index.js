@@ -98,7 +98,7 @@ class RangePicker extends Component {
 		};
 		return (
 			<ButtonToolbar style={{ marginBottom: '10px', ...this.props.style }} >
-				<ButtonGroup bsSize="xsmall">
+				<ButtonGroup bsSize={this.props.bsSize}>
 					<Button
 						className="date-selection"
 						id="last_hour"
@@ -130,7 +130,7 @@ class RangePicker extends Component {
 						style={this.state.active === 4 ? activeStyle : {}}
 					>Year</Button>
 				</ButtonGroup>
-				<ButtonGroup bsSize="xsmall">
+				<ButtonGroup bsSize={this.props.bsSize}>
 					<Button
 						className="date-selection"
 						id="all_time"
@@ -163,6 +163,16 @@ class RangePicker extends Component {
 // PROPERTY TYPES //
 
 RangePicker.propTypes = {
+	bsSize: PropTypes.oneOf(
+		[
+			'xsmall',
+			'xs',
+			'small',
+			'sm',
+			'large',
+			'lg'
+		]
+	),
 	onChange: PropTypes.func,
 	style: PropTypes.object
 };
@@ -171,6 +181,7 @@ RangePicker.propTypes = {
 // DEFAULT PROPERTIES //
 
 RangePicker.defaultProps = {
+	bsSize: 'xsmall',
 	onChange() {},
 	style: {}
 };
