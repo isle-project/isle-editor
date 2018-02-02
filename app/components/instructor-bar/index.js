@@ -13,10 +13,8 @@ import isString from '@stdlib/assert/is-string';
 import tabulate from '@stdlib/utils/tabulate';
 import trim from '@stdlib/string/trim';
 import NINF from '@stdlib/constants/math/float64-ninf';
-import Plotly from 'components/plotly';
 import Gate from 'components/gate';
 import TextArea from 'components/text-area';
-import WordCloud from 'components/word-cloud';
 import FullscreenActionDisplay from './fullscreen_action_display.js';
 
 
@@ -130,8 +128,7 @@ class InstructorBar extends Component {
 		}
 		if ( this.props.dataType === 'text' ) {
 			this.setState({
-				actions: filtered,
-				texts: filtered.map( x => x.value )
+				actions: filtered
 			});
 		}
 		else if ( this.props.dataType === 'factor' ) {
@@ -208,73 +205,6 @@ class InstructorBar extends Component {
 		});
 	}
 
-	renderWordCloud() {
-		return (
-			<div style={{ height: 0.75 * window.innerHeight }}>
-				<WordCloud
-					data={this.state.texts}
-					height={0.73 * window.innerHeight}
-					width={0.5*window.innerWidth}
-					rotate={0}
-				/>
-			</div>
-		);
-	}
-
-	renderBarchart() {
-		return (
-			<div style={{ height: 0.75 * window.innerHeight }}>
-				<Plotly
-					data={[
-						{
-							y: this.state.categories,
-							x: this.state.counts,
-							type: 'bar',
-							orientation: 'h'
-						}
-					]}
-					fit
-					layout={{
-						xaxis: {
-							title: 'Count'
-						},
-						yaxis: {
-							title: 'Value'
-						},
-						margin: {
-							l: 250
-						}
-					}}
-				/>
-			</div>
-		);
-	}
-
-	renderHistogram() {
-		return (
-			<div style={{ height: 0.75 * window.innerHeight }}>
-				<Plotly
-					data={[
-						{
-							x: this.state.actions.map( x => x.value ),
-							type: 'histogram',
-							name: 'histogram'
-						}
-					]}
-					fit
-					layout={{
-						xaxis: {
-							title: 'Count'
-						},
-						yaxis: {
-							title: 'Value'
-						}
-					}}
-				/>
-			</div>
-		);
-	}
-
 	renderDeleteModal() {
 		return ( <Modal show={this.state.showDeleteModal}>
 			<Modal.Header>
@@ -296,29 +226,17 @@ class InstructorBar extends Component {
 	}
 
 	renderFullscreenModal() {
-		let colplot = null;
-		if ( this.state.actions.length > 0 ) {
-			switch ( this.props.dataType ) {
-				case 'text':
-				default:
-					colplot = this.renderWordCloud();
-				break;
-				case 'factor':
-					colplot = this.renderBarchart();
-				break;
-				case 'number':
-					colplot = this.renderHistogram();
-			}
-		}
 		return ( <FullscreenActionDisplay
 			actions={this.state.actions}
-			colplot={colplot}
 			showExtended={this.state.showExtended}
 			show={this.state.showActions}
 			deleteFactory={this.deleteFactory}
 			onPeriodChange={this.onPeriodChange}
 			toggleExtended={this.toggleExtended}
 			toggleActions={this.toggleActions}
+			dataType={this.props.dataType}
+			counts={this.state.counts}
+			categories={this.state.categories}
 		/> );
 	}
 

@@ -14,6 +14,9 @@ import Well from 'react-bootstrap/lib/Well';
 import ReactList from 'react-list';
 import RangePicker from 'components/range-picker';
 import Search from 'components/instructor-bar/search';
+import Plotly from 'components/plotly';
+import WordCloud from 'components/word-cloud';
+
 
 // MAIN //
 
@@ -21,36 +24,102 @@ class FullscreenActionDisplay extends Component {
 	constructor( props ) {
 		super( props );
 
-		this.state = {filtered: props.actions };
+		this.state = {
+			filtered: props.actions
+		};
 	}
 
 	componentWillReceiveProps( nextProps ) {
 		let newState = {};
 		if ( nextProps.actions !== this.props.actions ) {
 			newState.filtered = nextProps.actions;
-		} 
+		}
 
 		if ( !isEmptyObject( newState ) ) {
 			this.setState( newState );
 		}
 	}
 
-	searchFilter = (value) => {
-		const { filtered } = this.state;
-		var i;
-		var newFilter;
-		newFilter = [];
-
-		for ( i = 0; i < this.props.actions.length; i++ ) {
+	searchFilter = ( value ) => {
+		const newFilter = [];
+		for ( let i = 0; i < this.props.actions.length; i++ ) {
 			// Now search for value
 			if ( contains(this.props.actions[i].value, value) ) {
 				newFilter.push(this.props.actions[i]);
 			}
 		}
-
 		this.setState( { filtered: newFilter } );
+	}
 
-	};
+	renderWordCloud() {
+		return (
+			<div style={{ height: 0.75 * window.innerHeight }}>
+				<WordCloud
+					data={this.props.actions.map( x => x.value )}
+					height={0.73 * window.innerHeight}
+					width={0.5*window.innerWidth}
+					rotate={0}
+					onClick={( d ) => {
+						this.searchFilter( d.text );
+					}}
+				/>
+			</div>
+		);
+	}
+
+	renderBarchart() {
+		return (
+			<div style={{ height: 0.75 * window.innerHeight }}>
+				<Plotly
+					data={[
+						{
+							y: this.props.categories,
+							x: this.props.counts,
+							type: 'bar',
+							orientation: 'h'
+						}
+					]}
+					fit
+					layout={{
+						xaxis: {
+							title: 'Count'
+						},
+						yaxis: {
+							title: 'Value'
+						},
+						margin: {
+							l: 250
+						}
+					}}
+				/>
+			</div>
+		);
+	}
+
+	renderHistogram() {
+		return (
+			<div style={{ height: 0.75 * window.innerHeight }}>
+				<Plotly
+					data={[
+						{
+							x: this.props.actions.map( x => x.value ),
+							type: 'histogram',
+							name: 'histogram'
+						}
+					]}
+					fit
+					layout={{
+						xaxis: {
+							title: 'Count'
+						},
+						yaxis: {
+							title: 'Value'
+						}
+					}}
+				/>
+			</div>
+		);
+	}
 
 	renderListGroupItem = ( index, key ) => {
 		const elem = this.state.filtered[ index ];
@@ -76,6 +145,24 @@ class FullscreenActionDisplay extends Component {
 		</ListGroupItem> );
 	}
 
+	renderPlot() {
+		let plot;
+		if ( this.props.actions.length > 0 ) {
+			switch ( this.props.dataType ) {
+				case 'text':
+				default:
+					plot = this.renderWordCloud();
+				break;
+				case 'factor':
+					plot = this.renderBarchart();
+				break;
+				case 'number':
+					plot = this.renderHistogram();
+			}
+		}
+		return plot;
+	}
+
 	render() {
 		return ( <Modal
 			show={this.props.show}
@@ -84,8 +171,16 @@ class FullscreenActionDisplay extends Component {
 		>
 			<Modal.Header closeButton>
 				<Modal.Title>Actions</Modal.Title>
-				<RangePicker onChange={this.props.onPeriodChange} />
-				<Search onClick={this.searchFilter}/>
+				<div>
+					<RangePicker
+						style={{ float: 'left' }}
+						onChange={this.props.onPeriodChange}
+					/>
+					<Search
+						style={{ float: 'left', width: '30%' }}
+						onClick={this.searchFilter}
+					/>
+				</div>
 			</Modal.Header>
 			<Modal.Body style={{ height: 0.75 * window.innerHeight, width: 0.90 * window.innerWidth }} >
 				<Grid>
@@ -106,7 +201,7 @@ class FullscreenActionDisplay extends Component {
 							}
 						</Col>
 						<Col md={6}>
-							{this.props.colplot}
+							{this.renderPlot()}
 						</Col>
 					</Row>
 				</Grid>
@@ -124,7 +219,9 @@ class FullscreenActionDisplay extends Component {
 
 FullscreenActionDisplay.propTypes = {
 	actions: PropTypes.array.isRequired,
-	colplot: PropTypes.node.isRequired,
+	categories: PropTypes.array.isRequired,
+	counts: PropTypes.array.isRequired,
+	dataType: PropTypes.string.isRequired,
 	deleteFactory: PropTypes.func.isRequired,
 	onPeriodChange: PropTypes.func.isRequired,
 	show: PropTypes.bool.isRequired,
