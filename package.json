@@ -115,7 +115,7 @@
   },
   "dependencies": {
     "@planeshifter/brace": "^0.8.0",
-    "@stdlib/stdlib": "0.0.32",
+    "@stdlib/stdlib": "0.0.33",
     "archiver": "^2.1.1",
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",
