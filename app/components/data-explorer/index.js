@@ -29,6 +29,7 @@ import hasProp from '@stdlib/assert/has-property';
 import copy from '@stdlib/utils/copy';
 import { generate } from 'randomstring';
 import scrollTo from 'utils/scroll-to';
+import MarkdownEditor from 'components/markdown-editor';
 import SelectInput from 'components/input/select';
 import ContingencyTable from 'components/data-explorer/contingency-table';
 import FrequencyTable from 'components/data-explorer/frequency-table';
@@ -136,7 +137,7 @@ const generateTransformationCode = ( variable ) => `if ( datum.${variable} > 0 )
 */
 const makeDraggable = ( div ) => {
 	let markup = ReactDOMServer.renderToStaticMarkup( div );
-	let plain = `<!-- OUTPUT_${generate( 3 )}  -->`;
+	let plain = `<!-- OUTPUT_${generate( 3 )} -->`;
 	return ( <div
 		draggable="true"
 		onDragStart={( ev ) => {
@@ -721,8 +722,16 @@ class DataExplorer extends Component {
 						<MenuItem key={i} eventKey={`7.${i+1}`}>{e}</MenuItem> )}
 				</NavDropdown> : null
 			}
+			{ this.props.showEditor > 0 ?
+				<NavItem
+					eventKey="8"
+					title="Editor"
+				>
+					Editor
+				</NavItem> : null
+			}
 			{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
-				return ( <NavItem key={i} eventKey={`${8+i}`}>
+				return ( <NavItem key={i} eventKey={`${9+i}`}>
 					{e.title}
 				</NavItem> );
 			}) : null }
@@ -927,8 +936,11 @@ class DataExplorer extends Component {
 					{content}
 				</Tab.Pane> );
 			})}
+			{ this.props.showEditor ? <Tab.Pane eventKey="8">
+				<MarkdownEditor />
+			</Tab.Pane> : null }
 			{this.props.tabs.map( ( e, i ) => {
-				return ( <Tab.Pane key={i} eventKey={`${8+i}`}>
+				return ( <Tab.Pane key={i} eventKey={`${9+i}`}>
 					{e.content}
 				</Tab.Pane> );
 			})}
@@ -1082,7 +1094,8 @@ DataExplorer.defaultProps = {
 	categorical: [],
 	continuous: [],
 	distributions: [ 'Normal', 'Uniform', 'Exponential' ],
-	histogramDensities: true
+	histogramDensities: true,
+	showEditor: false
 };
 
 
@@ -1098,6 +1111,7 @@ DataExplorer.propTypes = {
 	onSelect: PropTypes.func,
 	plots: PropTypes.array,
 	questions: PropTypes.node,
+	showEditor: PropTypes.bool,
 	statistics: PropTypes.array,
 	tables: PropTypes.array,
 	tabs: PropTypes.array,
