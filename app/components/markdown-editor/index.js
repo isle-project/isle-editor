@@ -44,6 +44,33 @@ const createHTML = ( title, body ) => `<!doctype html>
 				height: 100%;
 				display: block;
 			}
+			h1 {
+				color: #2e4468;
+				font-size: 40px;
+				font-weight: bold;
+				letter-spacing: 1px;
+			}
+			h2 {
+				font-size: 32px;
+				color: #3c763d;
+				font-weight: 600;
+			}
+			h3 {
+				font-size: 24px;
+				color: #2e4468;
+				font-weight: 600;
+			}
+			h4 {
+				font-size: 20px;
+				color: #ca5800;
+				font-weight: 600;
+			}
+			th, td {
+				padding: 5px;
+			}
+			a {
+				color: #2e4468;
+			}
 		</style>
 		<script src="https://use.fontawesome.com/1ef7eff9d5.js"></script>
 	</head>
