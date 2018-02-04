@@ -5,9 +5,11 @@
 	margin-bottom: 15px;
 }
 
-.CodeMirror,
+.CodeMirror {
+	max-height: 380px;
+}
 .CodeMirror-scroll {
-	height: 380px;
+	min-height: 380px;
 	max-height: 380px;
 }
 
@@ -17,8 +19,10 @@
 }
 
 .CodeMirror-fullscreen .CodeMirror-scroll {
+	min-height: 0;
 	max-height: none;
 }
+
 .editor-toolbar {
 	background: ghostwhite;
 	opacity: 0.6;
