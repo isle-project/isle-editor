@@ -70,7 +70,7 @@ import Anova from 'components/data-explorer/anova';
 
 // VARIABLES //
 
-const RE_CLEAR_BUTTON = /<button[^>]*>/;
+const RE_CLEAR_BUTTON = /<button[\s\S]*<\/button>/;
 
 
 // FUNCTIONS //
