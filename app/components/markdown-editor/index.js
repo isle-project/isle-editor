@@ -26,6 +26,26 @@ const createHTML = ( title, body ) => `<!doctype html>
 	<head>
 		<meta charset=utf-8>
 		<title>${title}</title>
+		<link rel="shortcut icon" href="favicon.ico" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css" integrity="sha384-B41nY7vEWuDrE9Mr+J2nBL0Liu+nl/rBXTdpQal730oTHdlrlXHzYMOhDU60cwde" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css' />
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
+		<style media="screen" type="text/css">
+			body {
+				font-family: 'Open Sans', sans-serif;
+				font-size: 16px !important;
+				margin-left: auto;
+				margin-right: auto;
+				padding: 10px;
+				width: 100%;
+				max-width: 1200px;
+				height: 100%;
+				display: block;
+			}
+		</style>
+		<script src="https://use.fontawesome.com/1ef7eff9d5.js"></script>
 	</head>
 	<body>
 	${body}
@@ -85,6 +105,7 @@ class MarkdownEditor extends Component {
 	}
 
 	createToolbar() {
+		const title = document.title || 'provisoric';
 		const toolbar = [
 			'bold', 'italic', 'strikethrough', '|', 'heading', 'quote', 'unordered-list', 'ordered-list', 'link', '|', 'preview', 'side-by-side', 'fullscreen', '|', 'guide',
 			{
@@ -95,7 +116,7 @@ class MarkdownEditor extends Component {
 					const blob = new Blob([ text ], {
 						type: 'text/html'
 					});
-					FileSaver.saveAs( blob, 'provisoric.md' );
+					FileSaver.saveAs( blob, title+'.md' );
 				},
 				className: 'fa fa-file-text',
 				title: 'Save Markdown File'
@@ -105,11 +126,11 @@ class MarkdownEditor extends Component {
 				action: (editor) => {
 					const mdValue = this.simplemde.value();
 					const body = this.previewRender( mdValue );
-					const html = createHTML( 'provisoric', body );
+					const html = createHTML( title, body );
 					const blob = new Blob([ html ], {
 						type: 'text/html'
 					});
-					FileSaver.saveAs( blob, 'provisoric.html' );
+					FileSaver.saveAs( blob, title+'.html' );
 				},
 				className: 'fa fa-save',
 				title: 'Save HTML File'

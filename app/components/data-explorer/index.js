@@ -26,6 +26,7 @@ import isNumberArray from '@stdlib/assert/is-number-array';
 import isObject from '@stdlib/assert/is-object';
 import entries from '@stdlib/utils/entries';
 import hasProp from '@stdlib/assert/has-property';
+import replace from '@stdlib/string/replace';
 import copy from '@stdlib/utils/copy';
 import { generate } from 'randomstring';
 import scrollTo from 'utils/scroll-to';
@@ -65,6 +66,11 @@ import Chi2Test from 'components/data-explorer/chi2';
 import PropTest from 'components/data-explorer/proptest';
 import PropTest2 from 'components/data-explorer/proptest2';
 import Anova from 'components/data-explorer/anova';
+
+
+// VARIABLES //
+
+const RE_CLEAR_BUTTON = /<button[^>]*>/;
 
 
 // FUNCTIONS //
@@ -137,6 +143,7 @@ const generateTransformationCode = ( variable ) => `if ( datum.${variable} > 0 )
 */
 const makeDraggable = ( div ) => {
 	let markup = ReactDOMServer.renderToStaticMarkup( div );
+	markup = replace( markup, RE_CLEAR_BUTTON, '' );
 	let plain = `<!-- OUTPUT_${generate( 3 )} -->`;
 	return ( <div
 		draggable="true"
