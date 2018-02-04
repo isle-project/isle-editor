@@ -237,12 +237,12 @@ body {
 }
 
 .row.no-gutter {
-	margin-left: 2;
-	margin-right: 2;
+	margin-left: 0px;
+	margin-right: 0px;
 }
 
 .row.no-gutter [class*='col-']:not(:first-child),
 .row.no-gutter [class*='col-']:not(:last-child) {
-	padding-right: 2;
-	padding-left: 2;
+	padding-right: 2px;
+	padding-left: 2px;
 }
