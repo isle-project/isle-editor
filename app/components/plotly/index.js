@@ -1,10 +1,12 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import Plot from 'react-plotly.js';
+import Plotly from 'plotly.js';
+import { generate } from 'randomstring';
 import PlotlyIcons from './icons.js';
 
 
@@ -62,19 +64,52 @@ class Wrapper extends Component {
 		};
 	}
 
+	componentDidMount() {
+		Plotly.plot( this.hiddenDiv, this.props.data, this.props.layout )
+			.then( ( gd ) => {
+				const opts = { format: 'png', height: 300, width: 450 };
+				Plotly.toImage( gd, opts )
+					.then( ( data ) => {
+						this.plotData = `<img src="${data}" style="display: block;
+						margin: 0 auto;" />`;
+					});
+		});
+	}
+
 	toggleFullscreen = () => {
 		this.setState({
 			fullscreen: !this.state.fullscreen
 		});
 	}
 
+	makeDraggable = ( div ) => {
+		let plain = `<!-- PLOT_${generate( 3 )} -->`;
+		return ( <div
+			draggable="true"
+			style={{ height: '100%', width: '100%' }}
+			onDragStart={( ev ) => {
+				ev.dataTransfer.setData( 'text/html', this.plotData );
+				ev.dataTransfer.setData( 'text/plain', plain );
+			}}
+		>
+			{div}
+		</div> );
+	}
+
 	render() {
-		const plot = <Plot
+		let plot = this.makeDraggable( <Plot
 			data={this.props.data}
 			layout={this.props.layout}
 			config={this.config}
 			fit={this.props.fit}
-		/>;
+		/> );
+		plot = <Fragment>
+			{plot}
+			<div
+				ref={(div) => { this.hiddenDiv = div; }}
+				style={{ display: 'none' }}
+			/>
+		</Fragment>;
 		if ( this.state.fullscreen ) {
 			return (
 				<Modal

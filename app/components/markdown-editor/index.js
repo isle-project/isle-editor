@@ -74,14 +74,25 @@ class MarkdownEditor extends Component {
 		});
 	}
 
+	replacePlaceholders( plainText ) {
+		const { hash } = this.state;
+		for ( let key in hash ) {
+			if ( hasOwnProp( hash, key ) ) {
+				plainText = replace( plainText, key, hash[ key ]);
+			}
+		}
+		return plainText;
+	}
+
 	createToolbar() {
 		const toolbar = [
 			'bold', 'italic', 'strikethrough', '|', 'heading', 'quote', 'unordered-list', 'ordered-list', 'link', '|', 'preview', 'side-by-side', 'fullscreen', '|', 'guide',
 			{
 				name: 'markdown',
 				action: (editor) => {
-					const mdValue = this.simplemde.value();
-					const blob = new Blob([ mdValue ], {
+					let text = this.simplemde.value();
+					text = this.replacePlaceholders( text );
+					const blob = new Blob([ text ], {
 						type: 'text/html'
 					});
 					FileSaver.saveAs( blob, 'provisoric.md' );
@@ -129,12 +140,7 @@ class MarkdownEditor extends Component {
 	}
 
 	previewRender = ( plainText ) => {
-		const { hash } = this.state;
-		for ( let key in hash ) {
-			if ( hasOwnProp( hash, key ) ) {
-				plainText = replace( plainText, key, hash[ key ]);
-			}
-		}
+		plainText = this.replacePlaceholders( plainText );
 		return md.render( plainText );
 	}
 
