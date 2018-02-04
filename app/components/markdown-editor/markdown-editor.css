@@ -5,10 +5,19 @@
 	margin-bottom: 15px;
 }
 
-.editor-toolbar.fullscreen, .CodeMirror-fullscreen, .editor-preview-side {
-	z-index: 1002 !important;
+.CodeMirror,
+.CodeMirror-scroll {
+	max-height: 400px;
 }
 
+.editor-toolbar.fullscreen, .CodeMirror-fullscreen, .editor-preview-side {
+	z-index: 1002 !important;
+	max-height: none;
+}
+
+.CodeMirror-fullscreen .CodeMirror-scroll {
+	max-height: none;
+}
 .editor-toolbar {
 	background: ghostwhite;
 	opacity: 0.6;
