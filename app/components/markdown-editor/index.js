@@ -112,13 +112,18 @@ class MarkdownEditor extends Component {
 				this.props.onChange( this.state.value );
 			});
 		});
+
 		this.simplemde.codemirror.on( 'drop', ( instance, event ) => {
 			event.preventDefault();
 			const key = event.dataTransfer.getData( 'text/plain' );
 			const html = event.dataTransfer.getData( 'text/html' );
 			const { hash } = this.state;
 			hash[ key ] = html;
-			instance.replaceSelection( key );
+			const coords = instance.coordsChar({
+				left: event.x,
+				top: event.y
+			});
+			instance.replaceRange( key, coords );
 			this.setState({
 				hash
 			});
@@ -152,6 +157,7 @@ class MarkdownEditor extends Component {
 					hash
 				});
 			}
+			this.simplemde.codemirror.execCommand( 'selectAll' );
 			this.simplemde.codemirror.replaceSelection( text );
 		};
 		reader.readAsText( files[ 0 ] );
