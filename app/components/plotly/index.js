@@ -83,7 +83,7 @@ class Wrapper extends Component {
 	}
 
 	makeDraggable = ( div ) => {
-		let plain = `<!-- PLOT_${generate( 3 )} -->`;
+		let plain = `<!-- IMAGE_${generate( 3 )} -->`;
 		return ( <div
 			draggable="true"
 			style={{ height: '100%', width: '100%' }}

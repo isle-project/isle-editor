@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import SimpleMDE from 'simplemde';
 import markdownIt from 'markdown-it';
 import FileSaver from 'file-saver';
+import { generate } from 'randomstring';
+import isArray from '@stdlib/assert/is-array';
 import replace from '@stdlib/string/replace';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import VoiceInput from 'components/input/voice';
@@ -13,6 +15,8 @@ import './markdown-editor.css';
 
 
 // VARIABLES //
+
+const RE_IMG = /<img[^>]*\/>/g;
 
 const md = markdownIt({
 	html: true,
@@ -131,12 +135,45 @@ class MarkdownEditor extends Component {
 		return plainText;
 	}
 
+	handleFileSelect = ( evt ) => {
+		const files = evt.target.files;
+		const reader = new FileReader();
+		reader.onload = () => {
+			let text = reader.result;
+			const hash = {};
+			const matches = text.match( RE_IMG );
+			if ( isArray( matches ) ) {
+				for ( let i = 0; i < matches.length; i++ ) {
+					let replacement = `<!-- IMAGE_${generate( 3 )} -->`;
+					hash[ replacement ] = matches[ i ];
+					text = replace( text, matches[ i ], replacement );
+				}
+				this.setState({
+					hash
+				});
+			}
+			this.simplemde.codemirror.replaceSelection( text );
+		};
+		reader.readAsText( files[ 0 ] );
+	}
+
 	createToolbar() {
 		const title = document.title || 'provisoric';
 		const toolbar = [
 			'bold', 'italic', 'strikethrough', '|', 'heading', 'quote', 'unordered-list', 'ordered-list', 'link', '|', 'preview', 'side-by-side', 'fullscreen', '|', 'guide',
 			{
-				name: 'markdown',
+				name: 'open_markdown',
+				action: (editor) => {
+					const input = document.createElement( 'input' );
+					input.type = 'file';
+					input.addEventListener( 'change', this.handleFileSelect, false );
+					input.click();
+				},
+				className: 'fa fa-folder-open',
+				title: 'Open Markdown File'
+			},
+			{
+				name: 'save_markdown',
 				action: (editor) => {
 					let text = this.simplemde.value();
 					text = this.replacePlaceholders( text );
