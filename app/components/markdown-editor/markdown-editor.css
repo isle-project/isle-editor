@@ -7,7 +7,8 @@
 
 .CodeMirror,
 .CodeMirror-scroll {
-	max-height: 400px;
+	height: 380px;
+	max-height: 380px;
 }
 
 .editor-toolbar.fullscreen, .CodeMirror-fullscreen, .editor-preview-side {
