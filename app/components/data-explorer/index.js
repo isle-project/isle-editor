@@ -308,6 +308,27 @@ class DataExplorer extends Component {
 		};
 	}
 
+	componentWillReceiveProps( nextProps ) {
+		const newState = {};
+		if ( nextProps.data !== this.props.data ) {
+			newState.data = nextProps.data;
+		}
+		if ( nextProps.continuous !== this.props.continuous ) {
+			newState.continuous = nextProps.continuous;
+		}
+		if ( nextProps.continuous !== this.props.continuous ) {
+			newState.categorical = nextProps.categorical;
+		}
+		this.setState( newState );
+	}
+
+	componentWillUpdate( nextProps, nextState ){
+		if ( nextState.output !== this.state.output ) {
+			const outputPanel = document.getElementById( 'outputPanel' );
+			scrollTo( outputPanel, outputPanel.scrollHeight, 1000 );
+		}
+	}
+
 	/**
 	* Display gallery of recently created plots by the students.
 	*/
@@ -392,13 +413,6 @@ class DataExplorer extends Component {
 	scrollToBottom() {
 		const outputPanel = document.getElementById( 'outputPanel' );
 		scrollTo( outputPanel, outputPanel.scrollHeight, 1000 );
-	}
-
-	componentWillUpdate( nextProps, nextState ){
-		if ( nextState.output !== this.state.output ) {
-			const outputPanel = document.getElementById( 'outputPanel' );
-			scrollTo( outputPanel, outputPanel.scrollHeight, 1000 );
-		}
 	}
 
 	/**
@@ -559,20 +573,6 @@ class DataExplorer extends Component {
 			reader.addEventListener( 'load', this.onFileRead, false );
 			reader.readAsText( file, 'utf-8' );
 		}
-	}
-
-	componentWillReceiveProps( nextProps ) {
-		const newState = {};
-		if ( nextProps.data !== this.props.data ) {
-			newState.data = nextProps.data;
-		}
-		if ( nextProps.continuous !== this.props.continuous ) {
-			newState.continuous = nextProps.continuous;
-		}
-		if ( nextProps.continuous !== this.props.continuous ) {
-			newState.categorical = nextProps.categorical;
-		}
-		this.setState( newState );
 	}
 
 	/**
@@ -954,101 +954,99 @@ class DataExplorer extends Component {
 		</Tab.Content>;
 
 		return (
-			<Grid>
-				<Row>
-					{ this.props.questions ? <Col md={colWidth}><Pages
-						title="Questions"
-						height={470}
-						bsSize="small"
-						style={{
-							marginTop: 0
-						}}
-					>{this.props.questions}</Pages></Col> : null }
-					<Col md={colWidth}>
-						<Panel
-							style={{ minHeight: 600 }}
+			<Row className="no-gutter">
+				{ this.props.questions ? <Col md={colWidth}><Pages
+					title="Questions"
+					height={470}
+					bsSize="small"
+					style={{
+						marginTop: 0
+					}}
+				>{this.props.questions}</Pages></Col> : null }
+				<Col md={colWidth}>
+					<Panel
+						style={{ minHeight: 600 }}
+					>
+						<Panel.Heading>
+							<Panel.Title componentClass="h3">Toolbox</Panel.Title>
+						</Panel.Heading>
+						<Panel.Body>
+							<Tab.Container id="options-menu" defaultActiveKey={defaultActiveKey}>
+								<Row className="clearfix">
+									<Col sm={12}>
+										{navbar}
+									</Col>
+									<Col sm={12}>
+										{tabs}
+									</Col>
+								</Row>
+							</Tab.Container>
+						</Panel.Body>
+					</Panel>
+					<Gate owner>
+						<Modal
+							show={this.state.showStudentPlots}
+							onHide={this.toggleStudentPlots}
+							dialogClassName="fullscreen-modal"
 						>
-							<Panel.Heading>
-								<Panel.Title componentClass="h3">Toolbox</Panel.Title>
-							</Panel.Heading>
-							<Panel.Body>
-								<Tab.Container id="options-menu" defaultActiveKey={defaultActiveKey}>
-									<Row className="clearfix">
-										<Col sm={12}>
-											{navbar}
-										</Col>
-										<Col sm={12}>
-											{tabs}
-										</Col>
-									</Row>
-								</Tab.Container>
-							</Panel.Body>
-						</Panel>
-						<Gate owner>
-							<Modal
-								show={this.state.showStudentPlots}
-								onHide={this.toggleStudentPlots}
-								dialogClassName="fullscreen-modal"
-							>
-								<Modal.Header closeButton>
-									<Modal.Title>Plots</Modal.Title>
-								</Modal.Header>
-								<Modal.Body style={{ height: 0.80 * window.innerHeight, overflowY: 'scroll' }}>
-									{ this.state.studentPlots.length > 0 ?
-										<GridLayout>
-											{this.state.studentPlots.map( ( elem, idx ) => {
-												const config = JSON.parse( elem.config );
-												return (
-													<div key={idx} style={{ height: '400px' }}>
-														{
-															isString( config ) ?
-																<RPlot
-																	code={config}
-																	libraries={[ 'MASS' ]}
-																/>:
-																<Plotly
-																	data={config.data}
-																	layout={config.layout}
-																	removeButtons
-																	fit
-																/>
-														}
-														<span>
-															<b>Count: </b>{elem.count}
-														</span>
-													</div>
-												);
-											})}
-										</GridLayout> :
-										<Well>
-											No plots have been created yet...
-										</Well>
-									}
-								</Modal.Body>
-								<Modal.Footer>
-									<Button onClick={this.clearPlots}>Clear Plots</Button>
-									<Button onClick={this.toggleStudentPlots}>Close</Button>
-								</Modal.Footer>
-							</Modal>
-							<ButtonGroup bsSize="small" >
-								<Button onClick={this.toggleStudentPlots} >Open Plots</Button>
-							</ButtonGroup>
-							<RealtimeMetrics returnFullObject for={this.props.id} onDatum={this.onUserAction} />
-						</Gate>
-					</Col>
-					<Col md={colWidth}>
-						<div className="panel panel-default" style={{ minHeight: 600, padding: 0 }}>
-							<div className="panel-heading">
-								<h3 className="panel-title">Output</h3>
-							</div>
-							{OutputPanel( this.state.output, this.clearOutput )}
-							<Button bsSize="small" block onClick={() => {
-								this.setState({ output: []});
-							}}>Clear All</Button>
+							<Modal.Header closeButton>
+								<Modal.Title>Plots</Modal.Title>
+							</Modal.Header>
+							<Modal.Body style={{ height: 0.80 * window.innerHeight, overflowY: 'scroll' }}>
+								{ this.state.studentPlots.length > 0 ?
+									<GridLayout>
+										{this.state.studentPlots.map( ( elem, idx ) => {
+											const config = JSON.parse( elem.config );
+											return (
+												<div key={idx} style={{ height: '400px' }}>
+													{
+														isString( config ) ?
+															<RPlot
+																code={config}
+																libraries={[ 'MASS' ]}
+															/>:
+															<Plotly
+																data={config.data}
+																layout={config.layout}
+																removeButtons
+																fit
+															/>
+													}
+													<span>
+														<b>Count: </b>{elem.count}
+													</span>
+												</div>
+											);
+										})}
+									</GridLayout> :
+									<Well>
+										No plots have been created yet...
+									</Well>
+								}
+							</Modal.Body>
+							<Modal.Footer>
+								<Button onClick={this.clearPlots}>Clear Plots</Button>
+								<Button onClick={this.toggleStudentPlots}>Close</Button>
+							</Modal.Footer>
+						</Modal>
+						<ButtonGroup bsSize="small" >
+							<Button onClick={this.toggleStudentPlots} >Open Plots</Button>
+						</ButtonGroup>
+						<RealtimeMetrics returnFullObject for={this.props.id} onDatum={this.onUserAction} />
+					</Gate>
+				</Col>
+				<Col md={colWidth}>
+					<div className="panel panel-default" style={{ minHeight: 600, padding: 0 }}>
+						<div className="panel-heading">
+							<h3 className="panel-title">Output</h3>
 						</div>
-					</Col>
-				</Row>
-			</Grid>
+						{OutputPanel( this.state.output, this.clearOutput )}
+						<Button bsSize="small" block onClick={() => {
+							this.setState({ output: []});
+						}}>Clear All</Button>
+					</div>
+				</Col>
+			</Row>
 		);
 	}
 }

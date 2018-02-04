@@ -235,3 +235,14 @@ body {
 	content: attr(data-count);
 	display: block;
 }
+
+.row.no-gutter {
+	margin-left: 2;
+	margin-right: 2;
+}
+
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+	padding-right: 2;
+	padding-left: 2;
+}
