@@ -401,7 +401,7 @@ class Scatterplot extends Component {
 		}}>
 			<CheckboxInput
 				inline
-				legend="Show Regression Line"
+				legend="Show Regression Model"
 				defaultValue={false}
 				onChange={() => {
 					this.setState({
