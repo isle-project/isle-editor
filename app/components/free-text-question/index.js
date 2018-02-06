@@ -4,7 +4,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Panel from 'react-bootstrap/lib/Panel';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
@@ -215,20 +217,22 @@ class FreeTextQuestion extends Component {
 		return (
 			<Panel className="free-text-question">
 				<Panel.Body>
-					{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
-					<label>{ this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' } </label>
-					<FormControl
-						id={`${this.props.id}_textarea`}
-						componentClass="textarea"
-						placeholder={this.props.placeholder}
-						onChange={this.handleChange}
-						style={{
-							resize: this.props.resizable ? 'both' : 'none'
-						}}
-						rows={this.props.rows}
-						value={this.state.value}
-						disabled={this.state.solutionDisplayed}
-					/>
+					{ this.props.question ? <label>{this.props.question}</label> : null }
+					<FormGroup>
+						<ControlLabel>{this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' }</ControlLabel>
+						<FormControl
+							id={`${this.props.id}_textarea`}
+							componentClass="textarea"
+							placeholder={this.props.placeholder}
+							onChange={this.handleChange}
+							style={{
+								resize: this.props.resizable ? 'both' : 'none'
+							}}
+							rows={this.props.rows}
+							value={this.state.value}
+							disabled={this.state.solutionDisplayed}
+						/>
+					</FormGroup>
 					{
 						this.state.value.length >= 1 ?
 							<Button
