@@ -203,22 +203,16 @@ class FullscreenActionDisplay extends Component {
 			dialogClassName="fullscreen-modal"
 		>
 			<Modal.Header style={{ paddingBottom: '5px' }} closeButton >
-				<Modal.Title>
-					<h3 style={{ float: 'left', margin: '2px 14px 2px 2px' }} >Actions</h3>
-					<RangePicker
-						style={{ float: 'left' }}
-						bsSize="small"
-						onChange={this.props.onPeriodChange}
-					/>
-					<Search
-						style={{ float: 'left', width: '30%' }}
-						onClick={this.searchFilter}
-						onExact={this.handleBox}
-					/>
-					<span style={{ fontSize: '14x', float: 'left', padding: '4px 4px 4px 20px' }}>
-						{'# of displayed actions: '+this.state.filtered.length}
-					</span>
-					</Modal.Title>
+				<h3 style={{ float: 'left', margin: '2px 14px 2px 2px' }} >Actions</h3>
+				<RangePicker
+					style={{ float: 'left' }}
+					bsSize="small"
+					onChange={this.props.onPeriodChange}
+				/>
+				<Search
+					onClick={this.searchFilter}
+					onExact={this.handleBox}
+				/>
 			</Modal.Header>
 			<Modal.Body style={{ height: 0.75 * window.innerHeight, width: 0.90 * window.innerWidth }} >
 				<Grid>
@@ -245,6 +239,9 @@ class FullscreenActionDisplay extends Component {
 				</Grid>
 			</Modal.Body>
 			<Modal.Footer>
+				<span style={{ fontSize: '14x', float: 'left', padding: '4px 4px 4px 20px' }}>
+					{'# of displayed actions: '+this.state.filtered.length}
+				</span>
 				<Button onClick={this.props.toggleExtended}>{ this.props.showExtended ? 'Hide Extended' : 'Show Extended' }</Button>
 				<Button onClick={this.props.toggleActions}>Close</Button>
 			</Modal.Footer>

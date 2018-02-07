@@ -1,12 +1,13 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
-import CheckboxInput from 'components/input/checkbox';
+import Checkbox from 'react-bootstrap/lib/Checkbox';
+
 
 // MAIN //
 
@@ -25,36 +26,43 @@ class Search extends Component {
 		});
 	}
 
-	handleClick = ( event ) => {
+	handleSubmit = ( event ) => {
 		// Need to get it back to the parent
 		this.props.onClick( this.state.search );
 	}
 
+	handleReset = () => {
+		this.props.onClick( '' );
+	}
+
 	render() {
 		return (
-			<FormGroup style={this.props.style} >
-				<InputGroup bsSize="small" >
-					<FormControl
-						bsSize="xsmall"
-						type="text"
-						placeholder="Enter text..."
-						onChange={this.handleSearch}
-					/>
-					<InputGroup.Button>
-						<Button
-							onClick={this.handleClick}
-						>
-							Search
-						</Button>
-					</InputGroup.Button>
-					<CheckboxInput
-						inline={true}
-						legend="Exact Value?"
-						defaultValue={false}
-						onChange={this.props.onExact}
-					/>
-				</InputGroup>
-			</FormGroup>
+			<Fragment>
+				<FormGroup style={{ float: 'left', width: '300px' }} >
+					<InputGroup bsSize="small" >
+						<FormControl
+							bsSize="small"
+							type="text"
+							placeholder="Enter text..."
+							onChange={this.handleSearch}
+						/>
+						<InputGroup.Button bsSize="small">
+							<Button
+								onClick={this.handleSubmit}
+							>
+								Search
+							</Button>
+						</InputGroup.Button>
+					</InputGroup>
+				</FormGroup>
+				<FormGroup style={{ float: 'left', margin: '4px' }} >
+					<Checkbox bsSize="small" inline onChange={this.props.onExact}>Whole Word</Checkbox>
+					<Checkbox bsSize="small" inline >Case-sensitive</Checkbox>
+				</FormGroup>
+				<Button style={{ float: 'left' }} bsSize="small" onClick={this.handleReset} >
+					Reset
+				</Button>
+			</Fragment>
 		);
 	}
 }
@@ -64,14 +72,12 @@ class Search extends Component {
 
 Search.propTypes = {
 	onClick: PropTypes.func,
-	onExact: PropTypes.func,
-	style: PropTypes.object
+	onExact: PropTypes.func
 };
 
 Search.defaultProps = {
 	onClick() {},
-	onExact() {},
-	style: {}
+	onExact() {}
 };
 
 
