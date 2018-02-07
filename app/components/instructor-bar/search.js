@@ -31,19 +31,6 @@ class Search extends Component {
 		this.props.onClick( this.state.search );
 	}
 
-	handleBox = (event) => {
-		// This is an issue for us negating it
-		if ( this.state.exact ) {
-			this.setState({
-				exact: false
-			});
-		} else {
-			this.setState({
-				exact: true
-			});
-		}
-	}
-
 	render() {
 		return (
 			<FormGroup style={this.props.style} >
@@ -65,7 +52,7 @@ class Search extends Component {
 						inline={true}
 						legend="Exact Value?"
 						defaultValue={false}
-						onChange={this.handleBox}
+						onChange={this.this.props.onExact}
 					/>
 				</InputGroup>
 			</FormGroup>
@@ -78,7 +65,8 @@ class Search extends Component {
 
 Search.propTypes = {
 	onClick: PropTypes.func,
-	style: PropTypes.object
+	style: PropTypes.object, 
+	onExact: PropTypes.func
 };
 
 Search.defaultProps = {

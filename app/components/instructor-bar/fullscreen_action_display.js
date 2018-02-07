@@ -28,7 +28,8 @@ class FullscreenActionDisplay extends Component {
 
 		this.state = {
 			filtered: props.actions,
-			searchwords: []
+			searchwords: [], 
+			exact: false
 		};
 	}
 
@@ -69,6 +70,13 @@ class FullscreenActionDisplay extends Component {
 				searchwords: [ value ]
 			});
 		}
+	}
+
+	handleBox = (event) => {
+		// This is an issue for us negating it
+		this.setState({
+			exact: !this.state.exact
+		});
 	}
 
 	renderWordCloud() {
@@ -203,6 +211,7 @@ class FullscreenActionDisplay extends Component {
 					<Search
 						style={{ float: 'left', width: '30%' }}
 						onClick={this.searchFilter}
+						onExact={this.handleBox}
 					/>
 					<span style={{ fontSize: '14x', float: 'left', padding: '4px 4px 4px 20px' }}>
 						{'# of displayed actions: '+this.state.filtered.length}
