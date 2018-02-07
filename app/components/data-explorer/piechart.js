@@ -94,6 +94,7 @@ class PieChart extends Component {
 			variable: variable,
 			type: 'Chart',
 			value: <Plotly
+				editable
 				fit
 				data={config.data}
 				layout={config.layout}

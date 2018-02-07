@@ -165,7 +165,7 @@ class Histogram extends Component {
 		const output = {
 			variable: this.state.variable,
 			type: 'Chart',
-			value: <Plotly fit data={config.data} layout={config.layout} onShare={() => {
+			value: <Plotly editable fit data={config.data} layout={config.layout} onShare={() => {
 				this.props.session.addNotification({
 					title: 'Plot shared.',
 					message: 'You have successfully shared your plot.',
@@ -184,7 +184,7 @@ class Histogram extends Component {
 		return (
 			<Panel>
 				<Panel.Heading>
-					<Panel.Title>Histogram</Panel.Title>
+					<Panel.Title componentClass="h4" >Histogram</Panel.Title>
 				</Panel.Heading>
 				<Panel.Body>
 					<SelectInput

@@ -316,6 +316,7 @@ class Scatterplot extends Component {
 			variable: `${this.state.xval} against ${this.state.yval}`,
 			type: 'Chart',
 			value: <Plotly
+				editable
 				fit
 				data={config.data}
 				layout={config.layout}
@@ -441,8 +442,8 @@ class Scatterplot extends Component {
 	render() {
 		return (
 			<Panel>
-				<Panel.Heading>
-					<Panel.Title>Scatterplot</Panel.Title>
+				<Panel.Heading >
+					<Panel.Title componentClass="h4" >Scatterplot</Panel.Title>
 				</Panel.Heading>
 				<Panel.Body>
 					{this.renderInputs()}
