@@ -51,9 +51,15 @@ class FullscreenActionDisplay extends Component {
 			});
 		} else {
 			const newFilter = [];
+			var functinonFilter;
+			if (this.props.exact) {
+				functinonFilter = isStrictEqual;
+			} else {
+				functinonFilter = contains;
+			}
 			for ( let i = 0; i < this.props.actions.length; i++ ) {
 				// Now search for value
-				if ( contains( String( this.props.actions[i].value ), value ) ) {
+				if ( functinonFilter( String( this.props.actions[i].value ), value ) ) {
 					newFilter.push( this.props.actions[i] );
 				}
 			}

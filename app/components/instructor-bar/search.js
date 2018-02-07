@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/lib/Button';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
-
+import CheckboxInput from 'components/input/checkbox';
 
 // MAIN //
 
@@ -15,7 +15,8 @@ class Search extends Component {
 		super();
 
 		this.state = {
-			search: ''
+			search: '', 
+			exact: false
 		};
 	}
 
@@ -28,6 +29,19 @@ class Search extends Component {
 	handleClick = ( event ) => {
 		// Need to get it back to the parent
 		this.props.onClick( this.state.search );
+	}
+
+	handleBox = (event) => {
+		// This is an issue for us negating it
+		if ( this.state.exact ) {
+			this.setState({
+				exact: false
+			});
+		} else {
+			this.setState({
+				exact: true
+			});
+		}
 	}
 
 	render() {
@@ -47,6 +61,11 @@ class Search extends Component {
 							Search
 						</Button>
 					</InputGroup.Button>
+					<CheckboxInput
+						legend="Exact Value?"
+						defaultValue={false}
+						onChange={this.handleBox}
+					/>
 				</InputGroup>
 			</FormGroup>
 		);
