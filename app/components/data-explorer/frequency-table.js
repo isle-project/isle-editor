@@ -31,27 +31,24 @@ function getFrequencies( x, relativeFreqs ) {
 
 const frequencyTable = ( variable, freqs, relative ) => {
 	return (
-		<div>
-			<label>{variable}: </label>
-			<pre>
-				<table>
-					<thead>
-						<tr>
-							<th>Category</th>
-							<th>{ relative ? 'Relative' : 'Count' }</th>
-						</tr>
-					</thead>
-					<tbody>
-						{freqs.map( ( elem, id ) => {
-							return ( <tr key={id}>
-								<td>{elem.category}</td>
-								<td>{relative ? elem.count.toFixed( 3 ) : elem.count}</td>
-							</tr> );
-						})}
-					</tbody>
-				</table>
-			</pre>
-		</div>
+		<table className="table table-condensed">
+			<thead>
+				<tr>
+					<th>Variable</th>
+					<th>Category</th>
+					<th>{ relative ? 'Relative' : 'Count' }</th>
+				</tr>
+			</thead>
+			<tbody>
+				{freqs.map( ( elem, id ) => {
+					return ( <tr key={id}>
+						<th>{ id === 0 ? variable : null }</th>
+						<td>{elem.category}</td>
+						<td>{relative ? elem.count.toFixed( 3 ) : elem.count}</td>
+					</tr> );
+				})}
+			</tbody>
+		</table>
 	);
 };
 
@@ -70,7 +67,7 @@ const groupedFrequencyTable = ( variable, freqs, relative ) => {
 				);
 				return ( <pre key={i} >
 					<label>{arr[ 0 ]}: </label>
-					<table>
+					<table className="table table-condensed">
 						<thead>
 							<tr>
 								<th>Category</th>

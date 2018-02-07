@@ -50,7 +50,7 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs ) => {
 			columnTotals.push( <td>{colfreq}</td> );
 		}
 	}
-	let table = <table>
+	let table = <table className="table table-condensed" >
 		<tbody>
 			<tr>
 				<th></th>
@@ -117,7 +117,7 @@ const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFre
 			{table.map( ( x, i ) => {
 				return ( <div key={i}>
 					<label>{`${keys[ i ]}`}: </label>
-					<pre>{x}</pre>
+					{x}
 				</div> );
 			})}
 		</div>

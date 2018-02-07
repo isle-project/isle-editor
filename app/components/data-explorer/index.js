@@ -74,69 +74,6 @@ const RE_CLEAR_BUTTON = /<button[\s\S]*<\/button>/;
 
 // FUNCTIONS //
 
-const ClearButton = ( props ) => ( <Button
-	bsSize="xs"
-	style={{ float: 'right' }}
-	onClick={props.onClick}
->
-	<span>&times;</span>
-</Button> );
-
-ClearButton.propTypes = {
-	'onClick': PropTypes.func.isRequired
-};
-
-const renderIQRTable = ( e, idx, clearOutput ) => {
-	return ( <div key={idx}>
-		<label>{e.variable}: </label>
-		<ClearButton onClick={() => { clearOutput( idx ); }} />
-		<pre>
-			<table>
-				<tbody>
-					<tr>
-						<th>IQR</th>
-						<th>Lower</th>
-						<th>Upper</th>
-						<th>N</th>
-					</tr>
-					<tr>
-						{e.result.value.map( ( e, i ) => <td key={i}>{e}</td> )}
-						<td>{e.result.size}</td>
-					</tr>
-				</tbody>
-			</table>
-		</pre>
-	</div> );
-};
-
-const renderRangeTable = ( e, idx, clearOutput ) => {
-	return ( <div key={idx}>
-		<label>{e.variable}: </label>
-		<ClearButton onClick={() => { clearOutput( idx ); }} />
-		<pre>
-			<table>
-				<tbody>
-					<tr>
-						<th>Min</th>
-						<th>Max</th>
-						<th>N</th>
-					</tr>
-					<tr>
-						{e.result.value.map( ( e, i ) => <td key={i}>{e}</td> )}
-						<td>{e.result.size}</td>
-					</tr>
-				</tbody>
-			</table>
-		</pre>
-	</div> );
-};
-
-const generateTransformationCode = ( variable ) => `if ( datum.${variable} > 0 ) {
-	return 'Yes'
-} else {
-	return 'No'
-}`;
-
 /**
 * Wraps the supplied div element such that it can be dragged.
 */
@@ -155,6 +92,69 @@ const makeDraggable = ( div ) => {
 	</div> );
 };
 
+const ClearButton = ( props ) => ( <Button
+	bsSize="xs"
+	style={{ float: 'right' }}
+	onClick={props.onClick}
+>
+	<span>&times;</span>
+</Button> );
+
+ClearButton.propTypes = {
+	'onClick': PropTypes.func.isRequired
+};
+
+const renderIQRTable = ( e, idx, clearOutput ) => {
+	const table = <table className="table table-condensed">
+		<tbody>
+			<tr>
+				<th>Variable</th>
+				<th>IQR</th>
+				<th>Lower</th>
+				<th>Upper</th>
+				<th>N</th>
+			</tr>
+			<tr>
+				<td>{e.variable}</td>
+				{e.result.value.map( ( e, i ) => <td key={i}>{e.toFixed( 3 )}</td> )}
+				<td>{e.result.size}</td>
+			</tr>
+		</tbody>
+	</table>;
+	return ( <pre key={idx}>
+		<ClearButton onClick={() => { clearOutput( idx ); }} />
+		{makeDraggable( table )}
+	</pre> );
+};
+
+const renderRangeTable = ( e, idx, clearOutput ) => {
+	const table = <table className="table table-condensed">
+		<tbody>
+			<tr>
+				<th>Variable</th>
+				<th>Min</th>
+				<th>Max</th>
+				<th>N</th>
+			</tr>
+			<tr>
+				<td>{e.variable}</td>
+				{e.result.value.map( ( e, i ) => <td key={i}>{e.toFixed( 3 )}</td> )}
+				<td>{e.result.size}</td>
+			</tr>
+		</tbody>
+	</table>;
+	return ( <pre key={idx}>
+		<ClearButton onClick={() => { clearOutput( idx ); }} />
+		{makeDraggable( table )}
+	</pre> );
+};
+
+const generateTransformationCode = ( variable ) => `if ( datum.${variable} > 0 ) {
+	return 'Yes'
+} else {
+	return 'No'
+}`;
+
 /**
 * Maps over the output array and returns the filled output panel.
 */
@@ -168,7 +168,6 @@ const OutputPanel = ( output, clearOutput ) => {
 			{output.map( ( e, idx ) => {
 				if ( e.type === 'Chart' ) {
 					return ( <div key={idx} style={{ height: 300, marginBottom: 40 }} >
-						<label>Chart: </label>
 						<ClearButton onClick={() => { clearOutput( idx ); }} />
 						{e.value}
 					</div> );
@@ -180,37 +179,47 @@ const OutputPanel = ( output, clearOutput ) => {
 					e.type === 'Test' ||
 					e.type === 'Simple Linear Regression'
 				) {
-					let elem = <div key={idx} >
-						<ClearButton onClick={() => { clearOutput( idx ); }} />
-						{e.value}
-					</div>;
-					return makeDraggable( elem );
+					let elem = <pre key={idx} >
+						<ClearButton onClick={() => { clearOutput( idx ); }} /><br />
+						{makeDraggable( e.value )}
+					</pre>;
+					return elem;
 				}
 				else if ( isNumber( e.result.value ) && e.result.size ) {
 					const { value, size } = e.result;
-					let elem = <div key={idx} >
+					const table = <table className="table table-condensed">
+						<tbody>
+							<tr>
+								<th>Variable</th>
+								<th>{e.type}</th>
+								<th>N</th>
+							</tr>
+							<tr>
+								<th>{e.variable}</th>
+								<td>{value.toFixed( 3 )}</td>
+								<td>{size}</td>
+							</tr>
+						</tbody>
+					</table>;
+					const elem = <pre key={idx} >
 						<ClearButton onClick={() => { clearOutput( idx ); }} />
-						<label>{e.variable}: </label>
-						<pre>{e.type}: {value.toFixed( 3 )} (N: {size})</pre>
-					</div>;
-					return makeDraggable( elem );
+						{makeDraggable( table )}
+					</pre>;
+					return elem;
 				}
 				else if ( isArray( e.result.value ) && e.type === 'Range' ) {
-					let elem = renderRangeTable( e, idx, clearOutput );
-					return makeDraggable( elem );
+					return renderRangeTable( e, idx, clearOutput );
 				} else if ( isArray( e.result.value ) && e.type === 'Interquartile Range' ) {
-					let elem = renderIQRTable( e, idx, clearOutput );
-					return makeDraggable( elem );
+					return renderIQRTable( e, idx, clearOutput );
 				}
 				else if ( isObject( e.result ) ) {
-					let elem = <div key={idx} >
-						<label>{e.variable}: </label>
+					let elem = <pre key={idx} >
 						<ClearButton onClick={() => { clearOutput( idx ); }} />
-						<pre>
-							<table>
+							<table className="table table-condensed">
 								<tbody>
 									{ e.type === 'Range' ?
 										<tr>
+											<th>Variable</th>
 											<th>{e.group}</th>
 											<th>Range</th>
 											<th></th>
@@ -219,6 +228,7 @@ const OutputPanel = ( output, clearOutput ) => {
 									}
 									{ e.type === 'Interquartile Range' ?
 										<tr>
+											<th>Variable</th>
 											<th>{e.group}</th>
 											<th>IQR</th>
 											<th>Lower</th>
@@ -228,6 +238,7 @@ const OutputPanel = ( output, clearOutput ) => {
 									}
 									{ e.type !== 'Range' && e.type !== 'Interquartile Range' ?
 										<tr>
+											<th>Variable</th>
 											<th>{e.group}</th>
 											<th>{e.type}</th>
 											<th>N</th>
@@ -237,9 +248,10 @@ const OutputPanel = ( output, clearOutput ) => {
 										if ( isArray( arr[ 1 ].value ) ) {
 											return (
 												<tr key={i} >
+													{ i === 0 ? <th>{e.variable}</th> : <th></th>}
 													<td>{arr[ 0 ]}</td>
 													{arr[ 1 ].value.map( ( x, j ) => {
-														return <td key={j}>{x}</td>;
+														return <td key={j}>{x.toFixed( 3 )}</td>;
 													})}
 													<td>{arr[ 1 ].size}</td>
 												</tr>
@@ -247,6 +259,7 @@ const OutputPanel = ( output, clearOutput ) => {
 										}
 										return (
 											<tr key={i} >
+												{ i === 0 ? <th>{e.variable}</th> : <th></th>}
 												<td>{arr[ 0 ]}</td>
 												<td>{arr[ 1 ].value.toFixed( 3 )} </td>
 												<td>{arr[ 1 ].size} </td>
@@ -255,8 +268,7 @@ const OutputPanel = ( output, clearOutput ) => {
 									})}
 								</tbody>
 							</table>
-						</pre>
-					</div>;
+						</pre>;
 					return makeDraggable( elem );
 				}
 				return null;
