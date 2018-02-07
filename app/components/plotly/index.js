@@ -1,7 +1,8 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import debounce from 'lodash.debounce';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import Plot from 'react-plotly.js';
@@ -57,6 +58,7 @@ class Wrapper extends Component {
 			});
 		}
 		this.config = {
+			editable: this.props.editable,
 			displayModeBar: true,
 			displaylogo: false,
 			modeBarButtonsToRemove: this.props.removeButtons ? BUTTONS : [ 'sendDataToCloud', 'hoverClosestCartesian', 'hoverCompareCartesian' ],
@@ -64,16 +66,30 @@ class Wrapper extends Component {
 		};
 	}
 
-	componentDidMount() {
-		Plotly.plot( this.hiddenDiv, this.props.data, this.props.layout )
-			.then( ( gd ) => {
-				const opts = { format: 'png', height: 300, width: 450 };
-				Plotly.toImage( gd, opts )
-					.then( ( data ) => {
-						this.plotData = `<img src="${data}" style="display: block;
-						margin: 0 auto;" />`;
-					});
-		});
+	onInitialized = ( gd ) => {
+		this.gd = gd;
+		this.drawPlot();
+	}
+
+	handleUpdate = () => {
+		this.drawPlot();
+	}
+
+	onUpdate = () => {
+		if ( this.debouncedChange ) {
+			this.debouncedChange();
+		} else {
+			this.debouncedChange = debounce( this.handleUpdate, 2000 );
+			this.debouncedChange();
+		}
+	}
+
+	drawPlot = () => {
+		const opts = { format: 'png', height: 300, width: 450 };
+		Plotly.toImage( this.gd, opts )
+			.then( ( data ) => {
+				this.plotData = `<img src="${data}" style="display: block; margin: 0 auto;" />`;
+			});
 	}
 
 	toggleFullscreen = () => {
@@ -97,19 +113,14 @@ class Wrapper extends Component {
 	}
 
 	render() {
-		let plot = this.makeDraggable( <Plot
+		const plot = this.makeDraggable( <Plot
 			data={this.props.data}
 			layout={this.props.layout}
 			config={this.config}
 			fit={this.props.fit}
+			onInitialized={this.onInitialized}
+			onUpdate={this.onUpdate}
 		/> );
-		plot = <Fragment>
-			{plot}
-			<div
-				ref={(div) => { this.hiddenDiv = div; }}
-				style={{ display: 'none' }}
-			/>
-		</Fragment>;
 		if ( this.state.fullscreen ) {
 			return (
 				<Modal
@@ -141,6 +152,7 @@ class Wrapper extends Component {
 // DEFAULT PROPERTIES //
 
 Wrapper.defaultProps = {
+	editable: false,
 	fit: false,
 	layout: {},
 	onShare: null,
@@ -153,6 +165,7 @@ Wrapper.defaultProps = {
 
 Wrapper.propTypes = {
 	data: PropTypes.array.isRequired,
+	editable: PropTypes.bool,
 	fit: PropTypes.bool,
 	layout: PropTypes.object,
 	onShare: PropTypes.func,
