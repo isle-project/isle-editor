@@ -52,7 +52,7 @@ class Search extends Component {
 						inline={true}
 						legend="Exact Value?"
 						defaultValue={false}
-						onChange={this.this.props.onExact}
+						onChange={this.props.onExact}
 					/>
 				</InputGroup>
 			</FormGroup>
