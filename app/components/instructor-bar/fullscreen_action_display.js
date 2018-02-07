@@ -52,6 +52,7 @@ class FullscreenActionDisplay extends Component {
 		} else {
 			const newFilter = [];
 			var functinonFilter;
+			// Change the function depending on the exact value
 			if (this.props.exact) {
 				functinonFilter = isStrictEqual;
 			} else {

@@ -62,6 +62,7 @@ class Search extends Component {
 						</Button>
 					</InputGroup.Button>
 					<CheckboxInput
+						inline={true}
 						legend="Exact Value?"
 						defaultValue={false}
 						onChange={this.handleBox}
