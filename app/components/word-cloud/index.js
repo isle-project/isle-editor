@@ -149,6 +149,9 @@ class Wrapper extends Component {
 				value: arr[ 1 ]
 			};
 		});
+		if ( !this.props.minCount ) {
+			return { min, max, wordCounts };
+		}
 		const filtered = [];
 		for ( let i = 0; i < wordCounts.length; i++ ) {
 			if ( wordCounts[ i ].value >= this.props.minCount ) {
@@ -160,6 +163,9 @@ class Wrapper extends Component {
 
 	fontSizeMapper = ( word ) => {
 		const { min, max } = this.state;
+		if ( max === min ) {
+			return 50.0;
+		}
 		return ( word.value - min ) / ( max - min ) * 36.0 + 14.0;
 	}
 
