@@ -15,8 +15,7 @@ class Search extends Component {
 		super();
 
 		this.state = {
-			search: '', 
-			exact: false
+			search: ''
 		};
 	}
 
@@ -65,12 +64,13 @@ class Search extends Component {
 
 Search.propTypes = {
 	onClick: PropTypes.func,
-	style: PropTypes.object, 
-	onExact: PropTypes.func
+	onExact: PropTypes.func,
+	style: PropTypes.object
 };
 
 Search.defaultProps = {
 	onClick() {},
+	onExact() {},
 	style: {}
 };
 
