@@ -28,7 +28,7 @@ class FullscreenActionDisplay extends Component {
 
 		this.state = {
 			filtered: props.actions,
-			searchwords: [], 
+			searchwords: [],
 			exact: false
 		};
 	}
@@ -52,37 +52,21 @@ class FullscreenActionDisplay extends Component {
 			});
 		} else {
 			const newFilter = [];
-			// Change the function depending on the exact value
-
-			var padded; // For padding the string with whitespace
-			var expr = new RegExp('[^\w]' + value + '[^\w]','g');
-			console.log('This is line 59');
-			console.log(this.state.exact);
+			const expr = new RegExp( '[^\\w]' + value + '[^\\w]' );
 			if ( !this.state.exact ) {
-				console.log()
 				for ( let i = 0; i < this.props.actions.length; i++ ) {
 					if ( contains(this.props.actions[i].value, value) ) {
 						newFilter.push( this.props.actions[i] );
 					}
 				}
 			} else {
-				// Padded = ' frank ';
-				console.log('we are at line 68');
-				// Console.log(expr.test( padded ));
-				
 				for ( let i = 0; i < this.props.actions.length; i++ ) {
-					padded = ' ' + this.props.actions[i].value + ' ';
-					console.log('we made it in the for loop');
-					console.log(this.props.actions[i].value);
-					console.log(expr.test( padded ));
+					let padded = ' ' + this.props.actions[i].value + ' '; // For padding the string with whitespace
 					if ( expr.test( padded ) ) {
 						newFilter.push( this.props.actions[i] );
-						console.log('we passed the conditional');
-						console.log(newFilter);
 					}
 				}
 			}
-			console.log(newFilter);
 			this.setState({
 				filtered: newFilter,
 				searchwords: [ value ]
