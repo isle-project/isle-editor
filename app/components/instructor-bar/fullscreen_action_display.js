@@ -52,19 +52,25 @@ class FullscreenActionDisplay extends Component {
 			});
 		} else {
 			const newFilter = [];
-			var functinonFilter;
 			// Change the function depending on the exact value
-			if (this.props.exact) {
-				functinonFilter = isStrictEqual;
+
+			var padded; // For padding the string with whitespace
+			var expr = new RegExp('[^w]' + value + '[^\w]','g');
+
+			if ( !this.state.exact ) {
+				for ( let i = 0; i < this.props.actions.length; i++ ) {
+					if ( contains(this.props.actions[i], value) ) {
+						newFilter.push( this.props.actions[i] );
+					}
+				}
 			} else {
-				functinonFilter = contains;
-			}
-			for ( let i = 0; i < this.props.actions.length; i++ ) {
-				// Now search for value
-				if ( functinonFilter( String( this.props.actions[i].value ), value ) ) {
-					newFilter.push( this.props.actions[i] );
+				for ( let i = 0; i < this.props.actions.length; i++ ) {
+					if ( expr.test(this.props.actions[i]) ) {
+						newFilter.push( this.props.actions[i] );
+					}
 				}
 			}
+
 			this.setState({
 				filtered: newFilter,
 				searchwords: [ value ]
