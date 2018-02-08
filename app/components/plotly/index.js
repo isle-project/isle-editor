@@ -89,7 +89,7 @@ class Wrapper extends Component {
 	}
 
 	drawPlot = () => {
-		const opts = { format: 'png', height: 300, width: 450 };
+		const opts = { format: 'png', height: 400, width: 600 };
 		Plotly.toImage( this.gd, opts )
 			.then( ( data ) => {
 				this.plotData = {
