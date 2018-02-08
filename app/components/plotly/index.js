@@ -8,6 +8,7 @@ import Modal from 'react-bootstrap/lib/Modal';
 import Plot from 'react-plotly.js';
 import Plotly from 'plotly.js';
 import { generate } from 'randomstring';
+import isUndefined from '@stdlib/assert/is-undefined';
 import PlotlyIcons from './icons.js';
 
 
@@ -39,7 +40,8 @@ class Wrapper extends Component {
 		super( props );
 
 		this.state = {
-			fullscreen: false
+			fullscreen: false,
+			layout: props.layout
 		};
 		this.plotData = {
 			key: null,
@@ -47,20 +49,33 @@ class Wrapper extends Component {
 		};
 
 		const buttonsToAdd = [];
+		if ( props.legendButtons ) {
+			buttonsToAdd.push({
+				name: 'Toggle Legend',
+				icon: PlotlyIcons[ 'legend' ],
+				click: this.toggleLegend
+			});
+			buttonsToAdd.push({
+				name: 'Change Legend Orientation',
+				icon: PlotlyIcons[ 'changeLegendOrientation' ],
+				click: this.toggleLegendOrientation
+			});
+		}
 		if ( props.onShare ) {
 			buttonsToAdd.push({
 				name: 'Share',
-				icon: PlotlyIcons[ 'plotlylogo' ],
+				icon: PlotlyIcons[ 'share' ],
 				click: props.onShare
 			});
 		}
 		if ( props.toggleFullscreen ) {
 			buttonsToAdd.push({
 				name: 'Toggle FullScreen',
-				icon: PlotlyIcons[ 'zoombox' ],
+				icon: PlotlyIcons[ 'fullscreen' ],
 				click: this.toggleFullscreen
 			});
 		}
+
 		this.config = {
 			editable: this.props.editable,
 			displayModeBar: true,
@@ -105,6 +120,35 @@ class Wrapper extends Component {
 		});
 	}
 
+	toggleLegend = () => {
+		const newLayout = this.state.layout;
+		if (
+			isUndefined( this.state.layout.showlegend ) ||
+			this.state.layout.showlegend === true
+		) {
+			newLayout.showlegend = false;
+		} else {
+			newLayout.showlegend = true;
+		}
+		this.setState({
+			layout: newLayout
+		});
+	}
+
+	toggleLegendOrientation = () => {
+		const newLayout = this.state.layout;
+		let newPos = 'h';
+		if ( newLayout.legend && newLayout.legend.orientation === 'h' ) {
+			newPos = 'v';
+		}
+		newLayout.legend = {
+			'orientation': newPos
+		};
+		this.setState({
+			layout: newLayout
+		});
+	}
+
 	makeDraggable = ( div ) => {
 		return ( <div
 			draggable="true"
@@ -121,7 +165,7 @@ class Wrapper extends Component {
 	render() {
 		const plot = this.makeDraggable( <Plot
 			data={this.props.data}
-			layout={this.props.layout}
+			layout={this.state.layout}
 			config={this.config}
 			fit={this.props.fit}
 			onInitialized={this.onInitialized}
@@ -161,6 +205,7 @@ Wrapper.defaultProps = {
 	editable: false,
 	fit: false,
 	layout: {},
+	legendButtons: true,
 	onShare: null,
 	removeButtons: false,
 	toggleFullscreen: true
@@ -174,6 +219,7 @@ Wrapper.propTypes = {
 	editable: PropTypes.bool,
 	fit: PropTypes.bool,
 	layout: PropTypes.object,
+	legendButtons: PropTypes.bool,
 	onShare: PropTypes.func,
 	removeButtons: PropTypes.bool,
 	toggleFullscreen: PropTypes.bool
