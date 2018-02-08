@@ -147,8 +147,8 @@ class MarkdownEditor extends Component {
 			const key = event.dataTransfer.getData( 'text/plain' );
 			const html = event.dataTransfer.getData( 'text/html' );
 			const coords = instance.coordsChar({
-				left: event.x,
-				top: event.y
+				left: event.x + window.pageXOffset,
+				top: event.y + window.pageYOffset
 			});
 			if ( key && html ) {
 				const { hash } = this.state;

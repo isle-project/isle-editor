@@ -85,7 +85,6 @@ const makeDraggable = ( div, asMarkdown = true ) => {
 	markup = replace( markup, RE_CLEAR_BUTTON, '' );
 	if ( asMarkdown ) {
 		markup = turndownService.turndown( markup );
-		console.log( markup );
 	}
 	return ( <div
 		draggable="true"
