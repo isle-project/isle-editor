@@ -18,6 +18,7 @@ import Tab from 'react-bootstrap/lib/Tab';
 import Well from 'react-bootstrap/lib/Well';
 import parse from 'csv-parse';
 import detect from 'detect-csv';
+import TurndownService from 'turndown';
 import isString from '@stdlib/assert/is-string';
 import isArray from '@stdlib/assert/is-array';
 import isNumber from '@stdlib/assert/is-number';
@@ -27,7 +28,6 @@ import entries from '@stdlib/utils/entries';
 import hasProp from '@stdlib/assert/has-property';
 import replace from '@stdlib/string/replace';
 import copy from '@stdlib/utils/copy';
-import { generate } from 'randomstring';
 import scrollTo from 'utils/scroll-to';
 import MarkdownEditor from 'components/markdown-editor';
 import SelectInput from 'components/input/select';
@@ -70,6 +70,9 @@ import Anova from 'components/data-explorer/anova';
 // VARIABLES //
 
 const RE_CLEAR_BUTTON = /<button[\s\S]*<\/button>/;
+const turndownService = new TurndownService();
+const turndownPluginGfm = require( 'turndown-plugin-gfm' );
+turndownService.use( turndownPluginGfm.gfm );
 
 
 // FUNCTIONS //
@@ -77,15 +80,17 @@ const RE_CLEAR_BUTTON = /<button[\s\S]*<\/button>/;
 /**
 * Wraps the supplied div element such that it can be dragged.
 */
-const makeDraggable = ( div ) => {
+const makeDraggable = ( div, asMarkdown = true ) => {
 	let markup = ReactDOMServer.renderToStaticMarkup( div );
 	markup = replace( markup, RE_CLEAR_BUTTON, '' );
-	let plain = `<!-- OUTPUT_${generate( 3 )} -->`;
+	if ( asMarkdown ) {
+		markup = turndownService.turndown( markup );
+		console.log( markup );
+	}
 	return ( <div
 		draggable="true"
 		onDragStart={( ev ) => {
-			ev.dataTransfer.setData( 'text/html', markup );
-			ev.dataTransfer.setData( 'text/plain', plain );
+			ev.dataTransfer.setData( 'text/plain', markup );
 		}}
 	>
 		{div}
@@ -1009,7 +1014,7 @@ class DataExplorer extends Component {
 										{this.state.studentPlots.map( ( elem, idx ) => {
 											const config = JSON.parse( elem.config );
 											return (
-												<div key={idx} style={{ height: '400px' }}>
+												<div key={idx} style={{ height: '450px' }}>
 													{
 														isString( config ) ?
 															<RPlot
