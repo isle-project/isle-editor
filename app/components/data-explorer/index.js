@@ -90,6 +90,7 @@ const makeDraggable = ( div, asMarkdown = true ) => {
 		draggable="true"
 		onDragStart={( ev ) => {
 			ev.dataTransfer.setData( 'text/plain', markup );
+			ev.dataTransfer.setData( 'text/html', '' );
 		}}
 	>
 		{div}
