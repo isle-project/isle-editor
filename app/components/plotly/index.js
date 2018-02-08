@@ -39,7 +39,8 @@ class Wrapper extends Component {
 		super( props );
 
 		this.state = {
-			fullscreen: false
+			fullscreen: false,
+			id: generate( 6 )
 		};
 
 		const buttonsToAdd = [];
@@ -89,6 +90,9 @@ class Wrapper extends Component {
 		Plotly.toImage( this.gd, opts )
 			.then( ( data ) => {
 				this.plotData = `<img src="${data}" style="display: block; margin: 0 auto;" />`;
+				this.setState({
+					id: generate( 6 )
+				});
 			});
 	}
 
@@ -99,7 +103,7 @@ class Wrapper extends Component {
 	}
 
 	makeDraggable = ( div ) => {
-		let plain = `<!-- IMAGE_${generate( 3 )} -->`;
+		let plain = `<!-- IMAGE_${this.state.id} -->`;
 		return ( <div
 			draggable="true"
 			style={{ height: '100%', width: '100%' }}
