@@ -1,6 +1,6 @@
 # Data Explorer
 
-This component is used by students to briefly summarize data as it is presented and perform various statistical tests. This component may be used as a standalone feature in a lesson. 
+This component is used by students to briefly summarize data as it is presented and perform various statistical tests. This component may be used as a standalone feature in a lesson. If you wish to allow students the ability to import a `.csv` file, set the `'data` option to be `false`.
 
 #### Example
 
@@ -38,7 +38,7 @@ We will include the explorer with the following code:
 
 #### Options
 
-* __data__: The name of the .json dataset that will be used in the explorer
+* __data__: The name of the .json dataset that will be used in the explorer. If you wish to allow students to enter in a `.csv` file, set to `{false}`.
 * __onSelect__: A function to be passed.
 * __tabs__: An array containing additional tabs to be used in the display interface. Each entry in the array will include a string 'title' and content. For example, if one wishes to add an additional tab with a text content of "A Note", the following code would be used: ```tabs={[ {title: 'Note', content: <div>A Note</div>} ]}```
 * __Questions__: Questions to be asked of the dataset. May also be embedded in a question object independent of the data explorer apparatus.
