@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SimpleMDE from 'simplemde';
 import markdownIt from 'markdown-it';
+import katex from 'markdown-it-katex';
 import FileSaver from 'file-saver';
 import { generate } from 'randomstring';
 import isArray from '@stdlib/assert/is-array';
@@ -24,6 +25,10 @@ const md = markdownIt({
 	breaks: true,
 	typographer: false
 });
+md.use( katex, {
+	throwOnError: false,
+	errorColor: '#cc0000'
+});
 
 const createHTML = ( title, body ) => `<!doctype html>
 <html lang=en>
@@ -32,8 +37,6 @@ const createHTML = ( title, body ) => `<!doctype html>
 		<title>${title}</title>
 		<link rel="shortcut icon" href="favicon.ico" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css" integrity="sha384-B41nY7vEWuDrE9Mr+J2nBL0Liu+nl/rBXTdpQal730oTHdlrlXHzYMOhDU60cwde" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
 		<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css' />
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
 		<style media="screen" type="text/css">
@@ -69,8 +72,38 @@ const createHTML = ( title, body ) => `<!doctype html>
 				color: #ca5800;
 				font-weight: 600;
 			}
+			tr {
+				display: table-row;
+				vertical-align: inherit;
+				border-color: inherit;
+			}
+			th {
+				color: #464a4c;
+				background-color: #eceeef;
+				padding: .3rem;
+				border-top: 1px solid #eceeef;
+				text-align: left;
+				font-weight: bold;
+			}
 			th, td {
-				padding: 5px;
+				display: table-cell;
+			}
+			td {
+				padding: .3rem;
+				vertical-align: top;
+				border-top: 1px solid #eceeef;
+			}
+			thead {
+				display: table-header-group;
+				vertical-align: middle;
+			}
+			table {
+				width: 100%;
+				max-width: 100%;
+				margin-bottom: 1rem;
+				display: table;
+				border-spacing: 2px;
+				border-color: grey;
 			}
 			a {
 				color: #2e4468;
@@ -89,6 +122,7 @@ const createHTML = ( title, body ) => `<!doctype html>
 class MarkdownEditor extends Component {
 	constructor( props ) {
 		super( props );
+
 		this.state = {
 			value: props.defaultValue,
 			hash: {}
@@ -117,16 +151,24 @@ class MarkdownEditor extends Component {
 			event.preventDefault();
 			const key = event.dataTransfer.getData( 'text/plain' );
 			const html = event.dataTransfer.getData( 'text/html' );
-			const { hash } = this.state;
-			hash[ key ] = html;
 			const coords = instance.coordsChar({
-				left: event.x,
-				top: event.y
+				left: event.x + window.pageXOffset,
+				top: event.y + window.pageYOffset
 			});
-			instance.replaceRange( key, coords );
-			this.setState({
-				hash
-			});
+			if ( key && html ) {
+				const { hash } = this.state;
+				hash[ key ] = html;
+				instance.replaceRange( key, coords );
+				this.setState({
+					hash
+				});
+			}
+			else if ( key && !html ) {
+				instance.replaceRange( key, coords );
+			}
+			else if ( !key && html ) {
+				instance.replaceRange( html, coords );
+			}
 		});
 	}
 
@@ -282,6 +324,10 @@ MarkdownEditor.propTypes = {
 	options: PropTypes.object,
 	voiceControl: PropTypes.bool,
 	voiceTimeout: PropTypes.number
+};
+
+MarkdownEditor.contextTypes = {
+	session: PropTypes.object
 };
 
 

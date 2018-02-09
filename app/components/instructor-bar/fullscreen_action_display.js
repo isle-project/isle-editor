@@ -28,7 +28,7 @@ class FullscreenActionDisplay extends Component {
 
 		this.state = {
 			filtered: props.actions,
-			searchwords: [], 
+			searchwords: [],
 			exact: false
 		};
 	}
@@ -52,36 +52,27 @@ class FullscreenActionDisplay extends Component {
 			});
 		} else {
 			const newFilter = [];
-			// Change the function depending on the exact value
-
-			var padded; // For padding the string with whitespace
-			var expr = new RegExp('[^\w]' + value + '[^\w]','g');
-			console.log('This is line 59');
-			console.log(this.state.exact);
+			const expr = new RegExp( '[^\\w]' + value + '[^\\w]' );
 			if ( !this.state.exact ) {
-				console.log()
 				for ( let i = 0; i < this.props.actions.length; i++ ) {
 					if ( contains(this.props.actions[i].value, value) ) {
 						newFilter.push( this.props.actions[i] );
 					}
 				}
 			} else {
+<<<<<<< HEAD
 				// Padded = ' frank ';
 				console.log('we are at line 68');
 				// Console.log(expr.test( padded ));
+=======
+>>>>>>> 867d323b51b140c824ad5ebb3611f4557b546ea9
 				for ( let i = 0; i < this.props.actions.length; i++ ) {
-					padded = ' ' + this.props.actions[i].value + ' ';
-					console.log('we made it in the for loop');
-					console.log(this.props.actions[i].value);
-					console.log(expr.test( padded ));
+					let padded = ' ' + this.props.actions[i].value + ' '; // For padding the string with whitespace
 					if ( expr.test( padded ) ) {
 						newFilter.push( this.props.actions[i] );
-						console.log('we passed the conditional');
-						console.log(newFilter);
 					}
 				}
 			}
-			console.log(newFilter);
 			this.setState({
 				filtered: newFilter,
 				searchwords: [ value ]
@@ -218,22 +209,16 @@ class FullscreenActionDisplay extends Component {
 			dialogClassName="fullscreen-modal"
 		>
 			<Modal.Header style={{ paddingBottom: '5px' }} closeButton >
-				<Modal.Title>
-					<h3 style={{ float: 'left', margin: '2px 14px 2px 2px' }} >Actions</h3>
-					<RangePicker
-						style={{ float: 'left' }}
-						bsSize="small"
-						onChange={this.props.onPeriodChange}
-					/>
-					<Search
-						style={{ float: 'left', width: '30%' }}
-						onClick={this.searchFilter}
-						onExact={this.handleBox}
-					/>
-					<span style={{ fontSize: '14x', float: 'left', padding: '4px 4px 4px 20px' }}>
-						{'# of displayed actions: '+this.state.filtered.length}
-					</span>
-					</Modal.Title>
+				<h3 style={{ float: 'left', margin: '2px 14px 2px 2px' }} >Actions</h3>
+				<RangePicker
+					style={{ float: 'left' }}
+					bsSize="small"
+					onChange={this.props.onPeriodChange}
+				/>
+				<Search
+					onClick={this.searchFilter}
+					onExact={this.handleBox}
+				/>
 			</Modal.Header>
 			<Modal.Body style={{ height: 0.75 * window.innerHeight, width: 0.90 * window.innerWidth }} >
 				<Grid>
@@ -260,6 +245,9 @@ class FullscreenActionDisplay extends Component {
 				</Grid>
 			</Modal.Body>
 			<Modal.Footer>
+				<span style={{ fontSize: '14x', float: 'left', padding: '4px 4px 4px 20px' }}>
+					{'# of displayed actions: '+this.state.filtered.length}
+				</span>
 				<Button onClick={this.props.toggleExtended}>{ this.props.showExtended ? 'Hide Extended' : 'Show Extended' }</Button>
 				<Button onClick={this.props.toggleActions}>Close</Button>
 			</Modal.Footer>
