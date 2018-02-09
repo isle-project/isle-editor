@@ -596,7 +596,7 @@ class DataExplorer extends Component {
 					<Panel.Title componentClass="h2">Data Explorer</Panel.Title>
 				</Panel.Heading>
 				<Panel.Body>
-					<label>Please upload a data set (CSV format):</label>
+					<label>Please upload a data set (CSV format):</label>				
 					<input
 						type="file"
 						accept=".csv"

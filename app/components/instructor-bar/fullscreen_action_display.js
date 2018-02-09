@@ -69,7 +69,6 @@ class FullscreenActionDisplay extends Component {
 				// Padded = ' frank ';
 				console.log('we are at line 68');
 				// Console.log(expr.test( padded ));
-				
 				for ( let i = 0; i < this.props.actions.length; i++ ) {
 					padded = ' ' + this.props.actions[i].value + ' ';
 					console.log('we made it in the for loop');
