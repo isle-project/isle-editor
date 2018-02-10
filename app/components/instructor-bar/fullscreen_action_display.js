@@ -60,12 +60,6 @@ class FullscreenActionDisplay extends Component {
 					}
 				}
 			} else {
-<<<<<<< HEAD
-				// Padded = ' frank ';
-				console.log('we are at line 68');
-				// Console.log(expr.test( padded ));
-=======
->>>>>>> 867d323b51b140c824ad5ebb3611f4557b546ea9
 				for ( let i = 0; i < this.props.actions.length; i++ ) {
 					let padded = ' ' + this.props.actions[i].value + ' '; // For padding the string with whitespace
 					if ( expr.test( padded ) ) {
