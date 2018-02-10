@@ -13,6 +13,7 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import VoiceInput from 'components/input/voice';
 import 'simplemde/dist/simplemde.min.css';
 import './markdown-editor.css';
+import { clearInterval } from 'timers';
 
 
 // VARIABLES //
@@ -123,29 +124,77 @@ class MarkdownEditor extends Component {
 	constructor( props ) {
 		super( props );
 
+		var value = props.defaultValue;	
+		if ( props.id ) {
+			var previous = localStorage.getItem(props.id);
+			if ( previous ) {
+				value = previous;
+			}
+		}
+
 		this.state = {
-			value: props.defaultValue,
+			value: value,
 			hash: {}
 		};
 	}
 
+	handleAutosave = () => {
+		console.log('frank');
+		if ( this.props.id && this.state && this.state.value ) {
+			localStorage.setItem(this.props.id, this.state.value);
+		}
+	}
+
 	componentDidMount() {
+		console.log('line 150');
+		this.interval = setInterval( this.handleAutosave, this.props.intervalTime );
 		this.simplemde = new SimpleMDE({
 			element: this.simplemdeRef,
-			initialValue: this.props.defaultValue,
+			initialValue: this.state.value,
 			previewRender: this.previewRender,
 			toolbar: this.createToolbar(),
+			autoRefresh: true,
+			forceSync: true,
 			...this.props.options
 		});
+		console.log(this.simplemde);
+
+		setTimeout(() => {
+			this.simplemde.codemirror.refresh();
+			console.log('hi philipp');
+		}, 4000);
+
+		console.log('line 158');
+		// This.simplemde.codemirror.refresh();
 
 		// Add event listeners:
 		this.simplemde.codemirror.on( 'change', () => {
+			console.log('line 164');
 			this.setState({
 				value: this.simplemde.value()
 			}, () => {
+				console.log('line 168');
 				this.props.onChange( this.state.value );
 			});
 		});
+
+		this.simplemde.codemirror.on( 'cursorActivity', () => {
+			console.log('line 182');
+		});
+
+		this.simplemde.codemirror.on( 'focus', () => {
+			console.log('line 186');
+		});
+
+		this.simplemde.codemirror.on( 'refresh', () => {
+			console.log('line 190');
+		});
+
+		this.simplemde.codemirror.on( 'update', () => {
+			console.log('line 194');
+		});
+
+
 
 		this.simplemde.codemirror.on( 'drop', ( instance, event ) => {
 			event.preventDefault();
@@ -172,7 +221,13 @@ class MarkdownEditor extends Component {
 		});
 	}
 
+	componentDidUnmount() {
+		clearInterval(this.interval);
+	}
+
 	replacePlaceholders( plainText ) {
+		console.log('line 210');
+		console.log('line 212');
 		const { hash } = this.state;
 		for ( let key in hash ) {
 			if ( hasOwnProp( hash, key ) ) {
@@ -273,7 +328,11 @@ class MarkdownEditor extends Component {
 	}
 
 	previewRender = ( plainText ) => {
+		// Take the plaintext and insert the images via hash
+		console.log('line 313');
+		console.log('line 315');
 		plainText = this.replacePlaceholders( plainText );
+		// Now render the markdown
 		return md.render( plainText );
 	}
 
@@ -306,7 +365,9 @@ class MarkdownEditor extends Component {
 // DEFAULT PROPERTIES //
 
 MarkdownEditor.defaultProps = {
+	autoSave: true,
 	defaultValue: '',
+	intervalTime: 3000,
 	language: 'en-US',
 	onChange() {},
 	options: {},
@@ -318,7 +379,9 @@ MarkdownEditor.defaultProps = {
 // PROPERTY TYPES //
 
 MarkdownEditor.propTypes = {
+	autoSave: PropTypes.bool,
 	defaultValue: PropTypes.string,
+	intervalTime: PropTypes.number,
 	language: PropTypes.string,
 	onChange: PropTypes.func,
 	options: PropTypes.object,
