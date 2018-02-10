@@ -184,7 +184,7 @@
     "minimist": "^1.2.0",
     "moment": "2.20.1",
     "node-libs-browser": "^2.0.0",
-    "normalize.css": "^7.0.0",
+    "normalize.css": "^8.0.0",
     "plotly.js": "^1.33.0",
     "profanities": "^2.5.0",
     "prop-types": "^15.5.10",
