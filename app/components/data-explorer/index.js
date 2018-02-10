@@ -16,8 +16,6 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 import Panel from 'react-bootstrap/lib/Panel';
 import Tab from 'react-bootstrap/lib/Tab';
 import Well from 'react-bootstrap/lib/Well';
-import parse from 'csv-parse';
-import detect from 'detect-csv';
 import TurndownService from 'turndown';
 import isString from '@stdlib/assert/is-string';
 import isArray from '@stdlib/assert/is-array';
@@ -43,6 +41,7 @@ import RealtimeMetrics from 'components/metrics/realtime';
 import Plotly from 'components/plotly';
 import RPlot from 'components/r/plot';
 import Learn from 'components/learn';
+import SpreadsheetUpload from 'components/spreadsheet-upload';
 
 
 // PLOT COMPONENTS //
@@ -496,22 +495,8 @@ class DataExplorer extends Component {
 		}
 	}
 
-	/**
-	* Event handler invoked once student-supplied CSV file has been uploaded. Parses the file and extracts its categorical and continuous variables.
-	*/
-	onFileRead = ( event ) => {
-		const text = event.target.result;
-		const csv = detect( text );
-		parse( text, { delimiter: csv.delimiter, columns: true, auto_parse: true }, ( err, output ) => {
-			if ( err ) {
-				const { session } = this.context;
-				return session.addNotification({
-					title: 'Could not read file.',
-					message: `The following error was encountered while trying to read the file:${err.message}`,
-					level: 'error',
-					position: 'tr'
-				});
-			}
+	onFileUpload = ( err, output ) => {
+		if ( !err ) {
 			const data = {};
 			const columnNames = Object.keys( output[ 0 ]);
 			for ( let j = 0; j < columnNames.length; j++ ) {
@@ -538,56 +523,6 @@ class DataExplorer extends Component {
 				categorical: categoricalGuesses,
 				data
 			});
-		});
-	}
-
-	/**
-	* Creates FileReader and attaches event listener for when the file is ready.
-	*/
-	handleFileUpload = () => {
-		const reader = new FileReader();
-		const selectedFile = this.fileUpload.files[ 0 ];
-		reader.addEventListener( 'load', this.onFileRead, false );
-		reader.readAsText( selectedFile, 'utf-8' );
-	}
-
-	/**
-	* Event handler ignoring default dragging behavior and preventing bubbling-up.
-	*/
-	ignoreDrag = ( evt ) => {
-		evt.stopPropagation();
-		evt.preventDefault();
-	}
-
-	/**
-	* Event handler invoked when user drags CSV file onto the upload area.
-	*/
-	onFileDrop = ( evt ) => {
-		evt.stopPropagation();
-		evt.preventDefault();
-		const dt = evt.dataTransfer;
-		const reader = new FileReader();
-		let file = null;
-		if ( dt.items ) {
-			if ( dt.items[ 0 ].kind === 'file' ) {
-				file = dt.items[ 0 ].getAsFile();
-			}
-		} else {
-			file = dt.files[ 0 ];
-		}
-		if ( file ) {
-			const mimeType = file.type;
-			if ( mimeType !== 'text/csv' ) {
-				const { session } = this.context;
-				return session.addNotification({
-					title: 'No CSV file.',
-					message: 'The supplied file is not a CSV file.',
-					level: 'error',
-					position: 'tr'
-				});
-			}
-			reader.addEventListener( 'load', this.onFileRead, false );
-			reader.readAsText( file, 'utf-8' );
 		}
 	}
 
@@ -596,38 +531,12 @@ class DataExplorer extends Component {
 	*/
 	render() {
 		if ( !this.state.data ) {
-			return ( <Panel style={{ textAlign: 'center' }} >
-				<Panel.Heading>
-					<Panel.Title componentClass="h2">Data Explorer</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body>
-					<label>Please upload a data set (CSV format):</label>				
-					<input
-						type="file"
-						accept=".csv"
-						onChange={this.handleFileUpload}
-						ref={fileUpload => {
-							this.fileUpload = fileUpload;
-						}}
-						style={{ margin: 'auto' }}
-					/>
-					<p>or</p>
-					<div
-						onDrop={this.onFileDrop}
-						onDragOver={this.ignoreDrag}
-						onDragEnd={this.ignoreDrag}
-						style={{
-							minHeight: '150px',
-							width: '250px',
-							border: '1px solid blue',
-							margin: 'auto',
-							padding: '10px'
-						}}
-					>
-						<span>Drop file here</span>
-					</div>
-				</Panel.Body>
-			</Panel> );
+			return (
+				<SpreadsheetUpload
+					title="Data Explorer"
+					onUpload={this.onFileUpload}
+				/>
+			);
 		}
 		if ( !this.state.ready ) {
 			const variableNames = Object.keys( this.state.data );
