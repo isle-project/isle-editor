@@ -124,7 +124,7 @@ class MarkdownEditor extends Component {
 	constructor( props ) {
 		super( props );
 
-		var value = props.defaultValue;	
+		var value = props.defaultValue;
 		if ( props.id ) {
 			var previous = localStorage.getItem(props.id);
 			if ( previous ) {
@@ -138,63 +138,24 @@ class MarkdownEditor extends Component {
 		};
 	}
 
-	handleAutosave = () => {
-		console.log('frank');
-		if ( this.props.id && this.state && this.state.value ) {
-			localStorage.setItem(this.props.id, this.state.value);
-		}
-	}
-
 	componentDidMount() {
-		console.log('line 150');
 		this.interval = setInterval( this.handleAutosave, this.props.intervalTime );
 		this.simplemde = new SimpleMDE({
 			element: this.simplemdeRef,
 			initialValue: this.state.value,
 			previewRender: this.previewRender,
 			toolbar: this.createToolbar(),
-			autoRefresh: true,
-			forceSync: true,
 			...this.props.options
 		});
-		console.log(this.simplemde);
-
-		setTimeout(() => {
-			this.simplemde.codemirror.refresh();
-			console.log('hi philipp');
-		}, 4000);
-
-		console.log('line 158');
-		// This.simplemde.codemirror.refresh();
 
 		// Add event listeners:
 		this.simplemde.codemirror.on( 'change', () => {
-			console.log('line 164');
 			this.setState({
 				value: this.simplemde.value()
 			}, () => {
-				console.log('line 168');
 				this.props.onChange( this.state.value );
 			});
 		});
-
-		this.simplemde.codemirror.on( 'cursorActivity', () => {
-			console.log('line 182');
-		});
-
-		this.simplemde.codemirror.on( 'focus', () => {
-			console.log('line 186');
-		});
-
-		this.simplemde.codemirror.on( 'refresh', () => {
-			console.log('line 190');
-		});
-
-		this.simplemde.codemirror.on( 'update', () => {
-			console.log('line 194');
-		});
-
-
 
 		this.simplemde.codemirror.on( 'drop', ( instance, event ) => {
 			event.preventDefault();
@@ -221,13 +182,21 @@ class MarkdownEditor extends Component {
 		});
 	}
 
+	componentDidUpdate() {
+		this.simplemde.codemirror.refresh();
+	}
+
 	componentDidUnmount() {
-		clearInterval(this.interval);
+		clearInterval( this.interval );
+	}
+
+	handleAutosave = () => {
+		if ( this.props.id ) {
+			localStorage.setItem( this.props.id, this.state.value );
+		}
 	}
 
 	replacePlaceholders( plainText ) {
-		console.log('line 210');
-		console.log('line 212');
 		const { hash } = this.state;
 		for ( let key in hash ) {
 			if ( hasOwnProp( hash, key ) ) {
@@ -329,9 +298,8 @@ class MarkdownEditor extends Component {
 
 	previewRender = ( plainText ) => {
 		// Take the plaintext and insert the images via hash
-		console.log('line 313');
-		console.log('line 315');
 		plainText = this.replacePlaceholders( plainText );
+
 		// Now render the markdown
 		return md.render( plainText );
 	}
