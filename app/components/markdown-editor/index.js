@@ -204,10 +204,14 @@ class MarkdownEditor extends Component {
 	}
 
 	replacePlaceholders( plainText ) {
+		var replacementHash;
 		const { hash } = this.state;
 		for ( let key in hash ) {
 			if ( hasOwnProp( hash, key ) ) {
-				plainText = replace( plainText, key, hash[ key ]);
+				replacementHash = `START:${key}
+${hash[ key ]}
+END`;
+				plainText = replace( plainText, key, replacementHash);
 			}
 		}
 		return plainText;
@@ -215,15 +219,34 @@ class MarkdownEditor extends Component {
 
 	reMakeText = (text) => {
 		const hash = {};
-		const matches = text.match( RE_IMG );
-		if ( isArray( matches ) ) {
-			for ( let i = 0; i < matches.length; i++ ) {
-				let replacement = `<!-- IMAGE_${generate( 3 )} -->`;
-				hash[ replacement ] = matches[ i ];
-				text = replace( text, matches[ i ], replacement );
-			}
+		var startIndex;
+		var startS;
+		var endE;
+		var bigE;
+		var key;
+		var data;
+		var newText;
+		var section;
+
+		newText = text;
+		startIndex = 0;
+		while (text.indexOf('START:', startIndex) !== -1 ) {
+			// We start on the first match
+			startS = text.indexOf('START:', startIndex);
+			endE = text.indexOf('-->', startS);
+			bigE = text.indexOf('END', startS);
+
+			key = text.substr(startS + 6, endE + 3 - startS - 6);
+			data = text.substr(endE + 3, bigE - 1 - endE - 3);
+			section = text.substr(startS, bigE + 3 - startS);
+	
+			hash[key] = data;
+			newText = replace( newText, section, key );
+
+			// Update startIndex
+			startIndex = bigE + 3;
 		}
-		return {'text': text, 'hash': hash};
+		return {'text': newText, 'hash': hash};
 	}
 
 	handleFileSelect = ( evt ) => {

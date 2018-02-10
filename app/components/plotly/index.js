@@ -108,7 +108,7 @@ class Wrapper extends Component {
 		Plotly.toImage( this.gd, opts )
 			.then( ( data ) => {
 				this.plotData = {
-					key: `<!-- IMAGE_${generate( 6 )} -->`,
+					key: `<!--IMAGE_${generate( 6 )}-->`,
 					value: `<img src="${data}" style="display: block; margin: 0 auto;" />`
 				};
 			});
