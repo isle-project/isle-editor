@@ -125,16 +125,20 @@ class MarkdownEditor extends Component {
 		super( props );
 
 		var value = props.defaultValue;
+		var hash = {};
+		var out;
 		if ( props.id ) {
 			var previous = localStorage.getItem(props.id);
 			if ( previous ) {
-				value = previous;
+				out = this.reMakeText(previous);
+				value = out.text;
+				hash = out.hash;
 			}
 		}
 
 		this.state = {
 			value: value,
-			hash: {}
+			hash: hash
 		};
 	}
 
@@ -192,7 +196,10 @@ class MarkdownEditor extends Component {
 
 	handleAutosave = () => {
 		if ( this.props.id ) {
-			localStorage.setItem( this.props.id, this.state.value );
+			// Get the text
+			var text = this.state.value;
+			text = this.replacePlaceholders( text );
+			localStorage.setItem( this.props.id, text );
 		}
 	}
 
@@ -206,25 +213,30 @@ class MarkdownEditor extends Component {
 		return plainText;
 	}
 
+	reMakeText = (text) => {
+		const hash = {};
+		const matches = text.match( RE_IMG );
+		if ( isArray( matches ) ) {
+			for ( let i = 0; i < matches.length; i++ ) {
+				let replacement = `<!-- IMAGE_${generate( 3 )} -->`;
+				hash[ replacement ] = matches[ i ];
+				text = replace( text, matches[ i ], replacement );
+			}
+		}
+		return {'text': text, 'hash': hash};
+	}
+
 	handleFileSelect = ( evt ) => {
 		const files = evt.target.files;
 		const reader = new FileReader();
 		reader.onload = () => {
 			let text = reader.result;
-			const hash = {};
-			const matches = text.match( RE_IMG );
-			if ( isArray( matches ) ) {
-				for ( let i = 0; i < matches.length; i++ ) {
-					let replacement = `<!-- IMAGE_${generate( 3 )} -->`;
-					hash[ replacement ] = matches[ i ];
-					text = replace( text, matches[ i ], replacement );
-				}
-				this.setState({
-					hash
-				});
-			}
+			var out = this.reMakeText(text);
+			this.setState({
+				'hash': out.hash
+			});
 			this.simplemde.codemirror.execCommand( 'selectAll' );
-			this.simplemde.codemirror.replaceSelection( text );
+			this.simplemde.codemirror.replaceSelection( out.text );
 		};
 		reader.readAsText( files[ 0 ] );
 	}
