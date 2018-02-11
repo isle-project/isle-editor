@@ -6,8 +6,6 @@ import SimpleMDE from 'simplemde';
 import markdownIt from 'markdown-it';
 import katex from 'markdown-it-katex';
 import FileSaver from 'file-saver';
-import { generate } from 'randomstring';
-import isArray from '@stdlib/assert/is-array';
 import replace from '@stdlib/string/replace';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import VoiceInput from 'components/input/voice';
@@ -17,8 +15,6 @@ import { clearInterval } from 'timers';
 
 
 // VARIABLES //
-
-const RE_IMG = /<img[^>]*\/>/g;
 
 const md = markdownIt({
 	html: true,
@@ -232,21 +228,21 @@ END`;
 		startIndex = 0;
 		while (text.indexOf('START:', startIndex) !== -1 ) {
 			// We start on the first match
-			startS = text.indexOf('START:', startIndex);
-			endE = text.indexOf('-->', startS);
-			bigE = text.indexOf('END', startS);
+			startS = text.indexOf( 'START:', startIndex );
+			endE = text.indexOf( '-->', startS );
+			bigE = text.indexOf( 'END', startS );
 
-			key = text.substr(startS + 6, endE + 3 - startS - 6);
-			data = text.substr(endE + 3, bigE - 1 - endE - 3);
-			section = text.substr(startS, bigE + 3 - startS);
-	
+			key = text.substr( startS + 6, endE + 3 - startS - 6 );
+			data = text.substr( endE + 3, bigE - 1 - endE - 3 );
+			section = text.substr( startS, bigE + 3 - startS );
+
 			hash[key] = data;
 			newText = replace( newText, section, key );
 
 			// Update startIndex
 			startIndex = bigE + 3;
 		}
-		return {'text': newText, 'hash': hash};
+		return { 'text': newText, 'hash': hash };
 	}
 
 	handleFileSelect = ( evt ) => {
