@@ -124,9 +124,9 @@ class MarkdownEditor extends Component {
 		var hash = {};
 		var out;
 		if ( props.id ) {
-			var previous = localStorage.getItem(props.id);
+			var previous = localStorage.getItem( props.id );
 			if ( previous ) {
-				out = this.reMakeText(previous);
+				out = this.reMakeText( previous );
 				value = out.text;
 				hash = out.hash;
 			}
@@ -209,13 +209,13 @@ class MarkdownEditor extends Component {
 				replacementHash = `<!-- START:${id} -->
 ${hash[ key ]}
 <!-- END -->`;
-				plainText = replace( plainText, key, replacementHash);
+				plainText = plainText.replace( key, replacementHash );
 			}
 		}
 		return plainText;
 	}
 
-	reMakeText = (text) => {
+	reMakeText = ( text ) => {
 		const hash = {};
 		var startIndex;
 		var startS;
@@ -238,8 +238,8 @@ ${hash[ key ]}
 			data = text.substr( endE + 3, bigE - 1 - endE - 3 );
 			section = text.substr( startS, bigE + 12 - startS );
 
-			hash[ key ] = data;
-			newText = replace( newText, section, `<!--${key}-->` );
+			hash[ `<!--${key}-->` ] = data;
+			newText = newText.replace( section, `<!--${key}-->` );
 
 			// Update startIndex
 			startIndex = bigE + 3;
@@ -330,7 +330,7 @@ ${hash[ key ]}
 		}
 		if ( this.props.voiceControl) {
 			toolbar.push({
-				name: 'custom',
+				name: 'recorder',
 				action: ( editor ) => {
 					this.voiceRef.handleClick();
 				},
