@@ -204,9 +204,11 @@ class MarkdownEditor extends Component {
 		const { hash } = this.state;
 		for ( let key in hash ) {
 			if ( hasOwnProp( hash, key ) ) {
-				replacementHash = `START:${key}
+				let id = replace( key, '<!--', '' );
+				id = replace( id, '-->', '' );
+				replacementHash = `<!-- START:${id} -->
 ${hash[ key ]}
-END`;
+<!-- END -->`;
 				plainText = replace( plainText, key, replacementHash);
 			}
 		}
@@ -226,18 +228,18 @@ END`;
 
 		newText = text;
 		startIndex = 0;
-		while (text.indexOf('START:', startIndex) !== -1 ) {
+		while ( text.indexOf( '<!-- START:', startIndex ) !== -1 ) {
 			// We start on the first match
-			startS = text.indexOf( 'START:', startIndex );
+			startS = text.indexOf( '<!-- START:', startIndex );
 			endE = text.indexOf( '-->', startS );
-			bigE = text.indexOf( 'END', startS );
+			bigE = text.indexOf( '<!-- END -->', startS );
 
-			key = text.substr( startS + 6, endE + 3 - startS - 6 );
+			key = text.substr( startS + 11, endE - startS - 12 );
 			data = text.substr( endE + 3, bigE - 1 - endE - 3 );
-			section = text.substr( startS, bigE + 3 - startS );
+			section = text.substr( startS, bigE + 12 - startS );
 
-			hash[key] = data;
-			newText = replace( newText, section, key );
+			hash[ key ] = data;
+			newText = replace( newText, section, `<!--${key}-->` );
 
 			// Update startIndex
 			startIndex = bigE + 3;
