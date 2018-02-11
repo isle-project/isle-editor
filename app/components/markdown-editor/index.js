@@ -302,9 +302,32 @@ ${hash[ key ]}
 					FileSaver.saveAs( blob, title+'.html' );
 				},
 				className: 'fa fa-save',
-				title: 'Save HTML File'
+				title: 'Export to HTML File'
 			}
 		];
+		if ( this.props.submitButton ) {
+			toolbar.push({
+				name: 'submit',
+				action: (editor) => {
+					const { session } = this.context;
+					session.addNotification({
+						title: 'Submitted',
+						message: 'Your report has been successfully submitted',
+						level: 'success',
+						position: 'tr'
+					});
+					if ( this.props.id ) {
+						session.log({
+							id: this.props.id,
+							type: 'MARKDOWN_EDITOR_SUBMIT',
+							value: this.state.value
+						});
+					}
+				},
+				className: 'fa fa-share-square',
+				title: 'Submit'
+			});
+		}
 		if ( this.props.voiceControl) {
 			toolbar.push({
 				name: 'custom',
@@ -372,6 +395,7 @@ MarkdownEditor.defaultProps = {
 	language: 'en-US',
 	onChange() {},
 	options: {},
+	submitButton: false,
 	voiceControl: false,
 	voiceTimeout: 5000
 };
@@ -386,6 +410,7 @@ MarkdownEditor.propTypes = {
 	language: PropTypes.string,
 	onChange: PropTypes.func,
 	options: PropTypes.object,
+	submitButton: PropTypes.bool,
 	voiceControl: PropTypes.bool,
 	voiceTimeout: PropTypes.number
 };
