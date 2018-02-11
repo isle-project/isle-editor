@@ -869,7 +869,7 @@ class DataExplorer extends Component {
 				</Tab.Pane> );
 			})}
 			{ this.props.showEditor ? <Tab.Pane eventKey="8">
-				<MarkdownEditor id={this.props.id ? this.props.id + '_editor' : null} />
+				<MarkdownEditor id={this.props.id ? this.props.id + '_editor' : null} submitButton />
 			</Tab.Pane> : null }
 			{this.props.tabs.map( ( e, i ) => {
 				return ( <Tab.Pane key={i} eventKey={`${9+i}`}>
