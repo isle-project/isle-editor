@@ -6,8 +6,6 @@ import SimpleMDE from 'simplemde';
 import markdownIt from 'markdown-it';
 import katex from 'markdown-it-katex';
 import FileSaver from 'file-saver';
-import { generate } from 'randomstring';
-import isArray from '@stdlib/assert/is-array';
 import replace from '@stdlib/string/replace';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import VoiceInput from 'components/input/voice';
@@ -17,8 +15,6 @@ import { clearInterval } from 'timers';
 
 
 // VARIABLES //
-
-const RE_IMG = /<img[^>]*\/>/g;
 
 const md = markdownIt({
 	html: true,
@@ -128,9 +124,9 @@ class MarkdownEditor extends Component {
 		var hash = {};
 		var out;
 		if ( props.id ) {
-			var previous = localStorage.getItem(props.id);
+			var previous = localStorage.getItem( props.id );
 			if ( previous ) {
-				out = this.reMakeText(previous);
+				out = this.reMakeText( previous );
 				value = out.text;
 				hash = out.hash;
 			}
@@ -208,16 +204,18 @@ class MarkdownEditor extends Component {
 		const { hash } = this.state;
 		for ( let key in hash ) {
 			if ( hasOwnProp( hash, key ) ) {
-				replacementHash = `START:${key}
+				let id = replace( key, '<!--', '' );
+				id = replace( id, '-->', '' );
+				replacementHash = `<!-- START:${id} -->
 ${hash[ key ]}
-END`;
-				plainText = replace( plainText, key, replacementHash);
+<!-- END -->`;
+				plainText = plainText.replace( key, replacementHash );
 			}
 		}
 		return plainText;
 	}
 
-	reMakeText = (text) => {
+	reMakeText = ( text ) => {
 		const hash = {};
 		var startIndex;
 		var startS;
@@ -230,23 +228,32 @@ END`;
 
 		newText = text;
 		startIndex = 0;
-		while (text.indexOf('START:', startIndex) !== -1 ) {
+		while ( text.indexOf( '<!-- START:', startIndex ) !== -1 ) {
 			// We start on the first match
-			startS = text.indexOf('START:', startIndex);
-			endE = text.indexOf('-->', startS);
-			bigE = text.indexOf('END', startS);
+			startS = text.indexOf( '<!-- START:', startIndex );
+			endE = text.indexOf( '-->', startS );
+			bigE = text.indexOf( '<!-- END -->', startS );
 
+			key = text.substr( startS + 11, endE - startS - 12 );
+			data = text.substr( endE + 3, bigE - 1 - endE - 3 );
+			section = text.substr( startS, bigE + 12 - startS );
+
+<<<<<<< HEAD
 			key = text.substr(startS + 6, endE + 3 - startS - 6);
 			data = text.substr(endE + 3, bigE - 1 - endE - 3);
 			section = text.substr(startS, bigE + 3 - startS);
 
 			hash[key] = data;
 			newText = replace( newText, section, key );
+=======
+			hash[ `<!--${key}-->` ] = data;
+			newText = newText.replace( section, `<!--${key}-->` );
+>>>>>>> 7c8b7addd131097adcb30967e89524acfb529118
 
 			// Update startIndex
 			startIndex = bigE + 3;
 		}
-		return {'text': newText, 'hash': hash};
+		return { 'text': newText, 'hash': hash };
 	}
 
 	handleFileSelect = ( evt ) => {
@@ -304,12 +311,35 @@ END`;
 					FileSaver.saveAs( blob, title+'.html' );
 				},
 				className: 'fa fa-save',
-				title: 'Save HTML File'
+				title: 'Export to HTML File'
 			}
 		];
+		if ( this.props.submitButton ) {
+			toolbar.push({
+				name: 'submit',
+				action: (editor) => {
+					const { session } = this.context;
+					session.addNotification({
+						title: 'Submitted',
+						message: 'Your report has been successfully submitted',
+						level: 'success',
+						position: 'tr'
+					});
+					if ( this.props.id ) {
+						session.log({
+							id: this.props.id,
+							type: 'MARKDOWN_EDITOR_SUBMIT',
+							value: this.state.value
+						});
+					}
+				},
+				className: 'fa fa-share-square',
+				title: 'Submit'
+			});
+		}
 		if ( this.props.voiceControl) {
 			toolbar.push({
-				name: 'custom',
+				name: 'recorder',
 				action: ( editor ) => {
 					this.voiceRef.handleClick();
 				},
@@ -374,6 +404,7 @@ MarkdownEditor.defaultProps = {
 	language: 'en-US',
 	onChange() {},
 	options: {},
+	submitButton: false,
 	voiceControl: false,
 	voiceTimeout: 5000
 };
@@ -388,6 +419,7 @@ MarkdownEditor.propTypes = {
 	language: PropTypes.string,
 	onChange: PropTypes.func,
 	options: PropTypes.object,
+	submitButton: PropTypes.bool,
 	voiceControl: PropTypes.bool,
 	voiceTimeout: PropTypes.number
 };

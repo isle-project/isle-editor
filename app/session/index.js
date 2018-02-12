@@ -7,6 +7,7 @@ import isFunction from '@stdlib/assert/is-function';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import copy from '@stdlib/utils/copy';
+import Buffer from '@stdlib/buffer/ctor';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 import isElectron from 'utils/is-electron';
 import io from 'socket.io-client';
@@ -307,15 +308,16 @@ class Session {
 				arr.forEach( elem => {
 					if ( GRAPHICS_REGEX.test( elem ) === true ) {
 						const imgURL = OPEN_CPU + elem + '/' + filetype;
-						if ( filetype === 'svg' ) {
-							request.get( imgURL, {
-								rejectUnauthorized
-							}, ( error, response, body ) => {
-								clbk( error, imgURL, body );
-							});
-						} else {
-							clbk( null, imgURL );
-						}
+						request.get( imgURL, {
+							encoding: null,
+							rejectUnauthorized
+						}, ( error, response, body ) => {
+							if ( filetype === 'png' ) {
+								const buf = new Buffer( body );
+								body = 'data:'+response.headers['content-type']+';base64,' + buf.toString( 'base64' );
+							}
+							clbk( error, imgURL, body );
+						});
 					}
 				});
 			} else {
