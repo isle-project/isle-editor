@@ -238,17 +238,8 @@ ${hash[ key ]}
 			data = text.substr( endE + 3, bigE - 1 - endE - 3 );
 			section = text.substr( startS, bigE + 12 - startS );
 
-<<<<<<< HEAD
-			key = text.substr(startS + 6, endE + 3 - startS - 6);
-			data = text.substr(endE + 3, bigE - 1 - endE - 3);
-			section = text.substr(startS, bigE + 3 - startS);
-
-			hash[key] = data;
-			newText = replace( newText, section, key );
-=======
 			hash[ `<!--${key}-->` ] = data;
 			newText = newText.replace( section, `<!--${key}-->` );
->>>>>>> 7c8b7addd131097adcb30967e89524acfb529118
 
 			// Update startIndex
 			startIndex = bigE + 3;
