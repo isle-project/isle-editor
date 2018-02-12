@@ -239,7 +239,7 @@ END`;
 			key = text.substr(startS + 6, endE + 3 - startS - 6);
 			data = text.substr(endE + 3, bigE - 1 - endE - 3);
 			section = text.substr(startS, bigE + 3 - startS);
-	
+
 			hash[key] = data;
 			newText = replace( newText, section, key );
 
