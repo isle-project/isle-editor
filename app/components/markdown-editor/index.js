@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 import SimpleMDE from 'simplemde';
 import markdownIt from 'markdown-it';
 import katex from 'markdown-it-katex';
+import markdownSub from 'markdown-it-sub';
+import markdownIns from 'markdown-it-ins';
+import markdownContainer from 'markdown-it-container';
 import FileSaver from 'file-saver';
 import replace from '@stdlib/string/replace';
 import hasOwnProp from '@stdlib/assert/has-own-property';
@@ -26,6 +29,9 @@ md.use( katex, {
 	throwOnError: false,
 	errorColor: '#cc0000'
 });
+md.use( markdownSub );
+md.use( markdownContainer, 'center' );
+md.use( markdownIns );
 
 const createHTML = ( title, body ) => `<!doctype html>
 <html lang=en>
@@ -101,9 +107,17 @@ const createHTML = ( title, body ) => `<!doctype html>
 				display: table;
 				border-spacing: 2px;
 				border-color: grey;
+				text-align: left;
 			}
 			a {
 				color: #2e4468;
+			}
+			.center {
+				width: 50%;
+				display: block;
+				margin: 0 auto;
+				text-align: center;
+				line-height: 100px;
 			}
 		</style>
 		<script src="https://use.fontawesome.com/1ef7eff9d5.js"></script>
@@ -265,7 +279,46 @@ ${hash[ key ]}
 	createToolbar() {
 		const title = document.title || 'provisoric';
 		const toolbar = [
-			'bold', 'italic', 'strikethrough', '|', 'heading', 'quote', 'unordered-list', 'ordered-list', 'link', '|', 'preview', 'side-by-side', 'fullscreen', '|', 'guide',
+			'bold', 'italic', {
+				name: 'underline',
+				action: ( editor ) => {
+					const cm = this.simplemde.codemirror;
+					const start = '++';
+					const end = '++';
+					const startPoint = cm.getCursor( 'start' );
+					const endPoint = cm.getCursor( 'end' );
+					let text = cm.getSelection();
+					text = text.split( '++' ).join( '' );
+					cm.replaceSelection( start + text + end );
+
+					startPoint.ch += 2;
+					endPoint.ch = startPoint.ch + text.length;
+					cm.setSelection( startPoint, endPoint );
+					cm.focus();
+				},
+				className: 'fa fa-underline',
+				title: 'Underline Text'
+			},
+			{
+				name: 'center',
+				action: ( editor ) => {
+					const cm = this.simplemde.codemirror;
+					const start = '::: center';
+					const end = ':::';
+					const startPoint = cm.getCursor( 'start' );
+					const endPoint = cm.getCursor( 'end' );
+					let text = cm.getSelection();
+					text = text.split( ':::' ).join( '' );
+					cm.replaceSelection( start + '\n' + text + '\n' + end );
+
+					startPoint.ch += 3;
+					endPoint.ch = startPoint.ch + text.length;
+					cm.setSelection( startPoint, endPoint );
+					cm.focus();
+				},
+				className: 'fa fa-align-center',
+				title: 'Center Element'
+			}, '|', 'heading', 'quote', 'unordered-list', 'ordered-list', 'link', '|', 'preview', 'side-by-side', 'fullscreen', '|',
 			{
 				name: 'open_markdown',
 				action: (editor) => {
@@ -328,7 +381,7 @@ ${hash[ key ]}
 				title: 'Submit'
 			});
 		}
-		if ( this.props.voiceControl) {
+		if ( this.props.voiceControl ) {
 			toolbar.push({
 				name: 'recorder',
 				action: ( editor ) => {

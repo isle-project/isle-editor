@@ -73,8 +73,6 @@ body {
 	box-shadow: 0 0 8px rgba(92,92,92, 0.5);
 }
 
-
-
 #Lesson .popover {
 	font-family: 'Open Sans', sans-serif;
 }
@@ -245,4 +243,12 @@ body {
 .row.no-gutter [class*='col-']:not(:last-child) {
 	padding-right: 2px;
 	padding-left: 2px;
+}
+
+.center {
+	width: 50%;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	line-height: 100px;
 }
