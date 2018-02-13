@@ -37,6 +37,7 @@ class HeatMap extends Component {
 			value: <div>
 				<label>{`${xval} against ${yval}`}: </label>
 				<RPlot
+					height={300}
 					code={code}
 					libraries={[ 'MASS' ]}
 					onDone={this.props.onPlotDone}
