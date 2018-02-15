@@ -166,7 +166,7 @@ const generateTransformationCode = ( variable ) => `if ( datum.${variable} > 0 )
 const OutputPanel = ( output, clearOutput ) => {
 	return (
 		<div id="outputPanel" style={{
-			height: 520,
+			height: (window.innerHeight*0.9) - 80,
 			overflowY: 'scroll',
 			padding: '5px'
 		}}>
@@ -880,9 +880,7 @@ class DataExplorer extends Component {
 		</Tab.Content>;
 
 		return (
-			<Row className="no-gutter data-explorer" style={{
-				height: window.innerHeight * 0.95
-			}}>
+			<Row className="no-gutter data-explorer">
 				{ this.props.questions ? <Col md={colWidth}><Pages
 					title="Questions"
 					height={470}
@@ -891,7 +889,7 @@ class DataExplorer extends Component {
 				>{this.props.questions}</Pages></Col> : null }
 				<Col md={colWidth}>
 					<Panel
-						style={{ minHeight: window.innerHeight }}
+						style={{ minHeight: window.innerHeight*0.9 }}
 					>
 						<Panel.Heading>
 							<Panel.Title componentClass="h3">Toolbox</Panel.Title>
@@ -918,7 +916,7 @@ class DataExplorer extends Component {
 							<Modal.Header closeButton>
 								<Modal.Title>Plots</Modal.Title>
 							</Modal.Header>
-							<Modal.Body style={{ height: 0.80 * window.innerHeight, overflowY: 'scroll' }}>
+							<Modal.Body style={{ height: 0.90 * window.innerHeight, overflowY: 'scroll' }}>
 								{ this.state.studentPlots.length > 0 ?
 									<GridLayout>
 										{this.state.studentPlots.map( ( elem, idx ) => {
@@ -962,7 +960,7 @@ class DataExplorer extends Component {
 					</Gate>
 				</Col>
 				<Col md={colWidth}>
-					<div className="panel panel-default" style={{ minHeight: window.innerHeight, padding: 0 }}>
+					<div className="panel panel-default" style={{ minHeight: window.innerHeight*0.9, padding: 0 }}>
 						<div className="panel-heading">
 							<h3 className="panel-title">Output</h3>
 						</div>
