@@ -1,10 +1,13 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
 import InputRange from 'react-input-range';
 import unique from 'uniq';
+import Button from 'react-bootstrap/lib/Button';
+import Modal from 'react-bootstrap/lib/Modal';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 import contains from '@stdlib/assert/contains';
 import lowercase from '@stdlib/string/lowercase';
 import floor from '@stdlib/math/base/special/floor';
@@ -204,28 +207,111 @@ class DataTable extends Component {
 		});
 	}
 
+	showDescriptions = () => {
+		this.setState({showVarModal: true});
+	}
+	// Add in the function to format it with key-value pairs
+
+	createDescriptions = (descriptions) => {
+		var strTable;
+		var varName;
+		var finalStr;
+
+		strTable = [];
+		for (varName in descriptions) {
+			console.log('I made it 222');
+			if ( hasOwnProp(descriptions, varName) ) {
+				strTable.push(<tr><td>{varName}</td><td>{descriptions[varName]}</td></tr>);
+			}
+		}
+		finalStr = <table>
+			{strTable}
+		</table>;
+		return finalStr;
+	}
+
+	showInfo = () => {
+		this.setState({showInfo: true});
+	}
+
+	createInfo = () => {
+		return;
+	}
+
 	render() {
 		const { selectedRows } = this.state;
+		let modal = null;
+		if ( this.state.showVarModal ) {
+			modal = <Modal
+				show={this.state.showVarModal}
+				onHide={()=>{
+					this.setState({showVarModal: false});
+				}}>
+				<Modal.Header closeButton>
+					<Modal.Title>
+						Variables
+					</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					{this.createDescriptions(this.props.descriptions)}
+				</Modal.Body>
+			</Modal>;
+		} else if ( this.state.showInfo ) {
+			modal = <Modal
+				show={this.state.showInfo}
+				onHide={()=>{
+					this.setState({showInfo: false});
+				}}>
+				<Modal.Header closeButton>
+					<Modal.Title>
+						Problem Set Description
+					</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					{this.createInfo()}
+				</Modal.Body>
+			</Modal>;
+		}
 		return (
-			<div style={{
-				fontSize: '12px',
-				...this.props.style
-			}}>
-				<ReactTable
-					ref={( table ) => { this.table = table; }}
-					data={this.state.rows}
-					columns={this.state.columns}
-					showPagination={true}
-					sortable={true}
-					resizable={true}
-					filterable={true}
-					showPageSizeOptions={false}
-					defaultPageSize={50}
-					onFilteredChange={this.handleFilterChange}
-					style={this.props.style}
-				/>
-				<label><i>Number of rows: {selectedRows} (total: {this.state.rows.length})</i></label>
-			</div>
+			<Fragment>
+				<div style={{
+					fontSize: '12px',
+					...this.props.style
+				}}>
+					<Button
+						onClick={this.showInfo}
+						block
+						bsStyle="primary"
+						style={{float: 'center'}}>
+						I am not active yet
+					</Button>
+					<ReactTable
+						ref={( table ) => { this.table = table; }}
+						data={this.state.rows}
+						columns={this.state.columns}
+						showPagination={true}
+						sortable={true}
+						resizable={true}
+						filterable={true}
+						showPageSizeOptions={false}
+						defaultPageSize={50}
+						onFilteredChange={this.handleFilterChange}
+						style={this.props.style}
+					/>
+					<label><i>Number of rows: {selectedRows} (total: {this.state.rows.length})</i></label>
+					<Button
+						onClick={this.showDescriptions}
+						bsStyle="primary"
+						bsSize="small"
+						style={{float: 'right',
+								marginTop: '-2px',
+								marginRight: '7px'}}
+					>
+						Show Descriptions
+					</Button>
+				</div>
+				{modal}
+			</Fragment>
 		);
 	}
 }
@@ -234,6 +320,7 @@ class DataTable extends Component {
 // DEFAULT PROPERTIES //
 
 DataTable.defaultProps = {
+	descriptions: {},
 	onClickRemove() {},
 	showRemove: false,
 	style: {}
@@ -247,6 +334,7 @@ DataTable.propTypes = {
 		PropTypes.array,
 		PropTypes.object
 	]).isRequired,
+	descriptions: PropTypes.object,
 	onClickRemove: PropTypes.func,
 	showRemove: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
 	style: PropTypes.object

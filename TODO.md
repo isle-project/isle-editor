@@ -1,8 +1,12 @@
 TODO
 ====
 
-* Multiple Plots with the same ID may not be inserted multiple times
-* Inserting four spaces in front of the `<!--IMAGE_>` tag, then the code of `<!--START:IMAGE_>` shows in the rendering
+* Data tab in data-explorer
+* Make dynamic titling for data-explorer
+* When loading .txt files in the pre-amble, automatically convert it to atring
+
+LONG-TERM
+===
 * Needed learning components:
     - ...
 * Make data persistent so that students don't lose their progress once they refresh the page. Options: Storing in local storage, in the Mongo database on our server. Others?

@@ -42,7 +42,11 @@ import Plotly from 'components/plotly';
 import RPlot from 'components/r/plot';
 import Learn from 'components/learn';
 import SpreadsheetUpload from 'components/spreadsheet-upload';
+<<<<<<< HEAD
+import DataTable from 'components/data-table';
+=======
 import './data_explorer.css';
+>>>>>>> 5892e026d2ae6a6428bef2b0fb8ec0c4d708b989
 
 
 // PLOT COMPONENTS //
@@ -597,6 +601,9 @@ class DataExplorer extends Component {
 		};
 
 		const navbar = <Nav bsStyle="tabs">
+			<NavItem eventKey="0">
+			Data
+			</NavItem>
 			{ nStatistics > 0 ?
 				<NavItem eventKey="1">
 				Statistics
@@ -674,6 +681,9 @@ class DataExplorer extends Component {
 		</Nav>;
 
 		const tabs = <Tab.Content animation>
+			<Tab.Pane eventKey="0">
+				<DataTable data={this.state.data} descriptions={this.props.descriptions} />
+			</Tab.Pane>
 			<Tab.Pane eventKey="1">
 				<SummaryStatistics
 					{...continuousProps}
