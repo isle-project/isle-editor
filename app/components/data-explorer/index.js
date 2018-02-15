@@ -42,7 +42,11 @@ import Plotly from 'components/plotly';
 import RPlot from 'components/r/plot';
 import Learn from 'components/learn';
 import SpreadsheetUpload from 'components/spreadsheet-upload';
+<<<<<<< HEAD
 import DataTable from 'components/data-table';
+=======
+import './data_explorer.css';
+>>>>>>> 5892e026d2ae6a6428bef2b0fb8ec0c4d708b989
 
 
 // PLOT COMPONENTS //
@@ -886,18 +890,18 @@ class DataExplorer extends Component {
 		</Tab.Content>;
 
 		return (
-			<Row className="no-gutter">
+			<Row className="no-gutter data-explorer" style={{
+				height: window.innerHeight * 0.95
+			}}>
 				{ this.props.questions ? <Col md={colWidth}><Pages
 					title="Questions"
 					height={470}
 					bsSize="small"
-					style={{
-						marginTop: 0
-					}}
+					className="data-explorer-questions"
 				>{this.props.questions}</Pages></Col> : null }
 				<Col md={colWidth}>
 					<Panel
-						style={{ minHeight: 600 }}
+						style={{ minHeight: window.innerHeight }}
 					>
 						<Panel.Heading>
 							<Panel.Title componentClass="h3">Toolbox</Panel.Title>
@@ -968,7 +972,7 @@ class DataExplorer extends Component {
 					</Gate>
 				</Col>
 				<Col md={colWidth}>
-					<div className="panel panel-default" style={{ minHeight: 600, padding: 0 }}>
+					<div className="panel panel-default" style={{ minHeight: window.innerHeight, padding: 0 }}>
 						<div className="panel-heading">
 							<h3 className="panel-title">Output</h3>
 						</div>

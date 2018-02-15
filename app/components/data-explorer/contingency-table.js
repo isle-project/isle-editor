@@ -29,8 +29,9 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs ) => {
 			let key2 = colKeys[ l ];
 			let size = 0;
 			for ( let n = 0; n < nobs; n++ ) {
-				if ( rowValues[ n ] === key1 &&
-					colValues[ n ] === key2
+				if (
+					String( rowValues[ n ] ) === key1 &&
+					String( colValues[ n ] ) === key2
 				) {
 					size += 1;
 				}
@@ -38,7 +39,6 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs ) => {
 			freqs[ key1 + '-' + key2 ] = !relativeFreqs ? size : size / nobs;
 		}
 	}
-
 	let columnTotals = [];
 	for ( let key in colFreqs ) {
 		if ( hasOwnProp( colFreqs, key ) ) {
