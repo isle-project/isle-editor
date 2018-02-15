@@ -152,7 +152,7 @@ class Wrapper extends Component {
 	makeDraggable = ( div ) => {
 		return ( <div
 			draggable="true"
-			style={{ height: '100%', width: '100%' }}
+			style={{ height: '100%', width: '100%', cursor: 'move' }}
 			onDragStart={( ev ) => {
 				ev.dataTransfer.setData( 'text/html', this.plotData.value );
 				ev.dataTransfer.setData( 'text/plain', this.plotData.key );

@@ -88,6 +88,9 @@ const makeDraggable = ( div, asMarkdown = true ) => {
 	}
 	return ( <div
 		draggable="true"
+		style={{
+			cursor: 'move'
+		}}
 		onDragStart={( ev ) => {
 			ev.dataTransfer.setData( 'text/plain', markup );
 			ev.dataTransfer.setData( 'text/html', '' );
