@@ -657,9 +657,9 @@ class DataExplorer extends Component {
 			{ this.props.showEditor > 0 ?
 				<NavItem
 					eventKey="8"
-					title="Editor"
+					title={this.props.editorTitle}
 				>
-					Editor
+					{this.props.editorTitle}
 				</NavItem> : null
 			}
 			{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
@@ -1024,6 +1024,7 @@ DataExplorer.defaultProps = {
 	categorical: [],
 	continuous: [],
 	distributions: [ 'Normal', 'Uniform', 'Exponential' ],
+	editorTitle: 'Report',
 	histogramDensities: true,
 	showEditor: false
 };
@@ -1036,6 +1037,7 @@ DataExplorer.propTypes = {
 	continuous: PropTypes.array,
 	data: PropTypes.object,
 	distributions: PropTypes.array,
+	editorTitle: PropTypes.string,
 	histogramDensities: PropTypes.bool,
 	models: PropTypes.array,
 	onSelect: PropTypes.func,
