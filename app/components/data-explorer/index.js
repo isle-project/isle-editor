@@ -675,7 +675,7 @@ class DataExplorer extends Component {
 
 		const tabs = <Tab.Content animation>
 			<Tab.Pane eventKey="0">
-				<DataTable data={this.state.data} />
+				<DataTable data={this.state.data} descriptions={this.props.descriptions} />
 			</Tab.Pane>
 			<Tab.Pane eventKey="1">
 				<SummaryStatistics

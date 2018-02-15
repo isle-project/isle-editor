@@ -2,6 +2,8 @@ TODO
 ====
 
 * Data tab in data-explorer
+* Make dynamic titling for data-explorer
+* When loading .txt files in the pre-amble, automatically convert it to atring
 
 LONG-TERM
 ===
