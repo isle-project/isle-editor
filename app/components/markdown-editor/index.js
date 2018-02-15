@@ -12,6 +12,8 @@ import FileSaver from 'file-saver';
 import replace from '@stdlib/string/replace';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import startsWith from '@stdlib/string/starts-with';
+import endsWith from '@stdlib/string/ends-with';
+import removeLast from '@stdlib/string/remove-last';
 import VoiceInput from 'components/input/voice';
 import 'simplemde/dist/simplemde.min.css';
 import './markdown-editor.css';
@@ -223,7 +225,8 @@ class MarkdownEditor extends Component {
 				replacementHash = `<!-- START:${id} -->
 ${hash[ key ]}
 <!-- END -->`;
-				plainText = plainText.replace( key, replacementHash );
+				var re = new RegExp('\\s*' + key, 'g');
+				plainText = plainText.replace( re, replacementHash );
 			}
 		}
 		return plainText;
@@ -298,6 +301,34 @@ ${hash[ key ]}
 				},
 				className: 'fa fa-underline',
 				title: 'Underline Text'
+			},
+			{
+				name: 'newLine',
+				action: ( editor ) => {
+					const cm = this.simplemde.codemirror;
+					// When we get the cursor we want to get the head
+					// Add the newline to the left of the cursor
+					const startPoint = cm.getCursor( 'start' );
+					const endPoint = cm.getCursor( 'end' );
+					while (startPoint.line !== endPoint.line) {
+						var currentLine = cm.getLine(startPoint.line);
+						if ( endsWith(currentLine, '\\') ) {
+							cm.replaceRange( removeLast(currentLine),
+								{ line: startPoint.line, ch: 0 },
+								{ line: startPoint.line, ch: 99999999999999 }
+							);
+						} else {
+							cm.replaceRange(currentLine + '\\',
+								{ line: startPoint.line, ch: 0 },
+								{ line: startPoint.line, ch: 99999999999999 }
+							);
+						}
+						startPoint.line += 1;
+					}
+					cm.focus();
+				},
+				className: 'fa fa-arrow-down',
+				title: 'Add newLine Separators'
 			},
 			{
 				name: 'center',
