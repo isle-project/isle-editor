@@ -32,3 +32,35 @@
 	background: ghostwhite;
 	opacity: 0.6;
 }
+
+.editor-preview-side th, .editor-preview th {
+	color: #464a4c;
+	background-color: #eceeef;
+	padding: .3rem;
+	border-top: 1px solid #eceeef;
+	text-align: left;
+	font-weight: bold;
+	display: table-cell;
+}
+
+.editor-preview-side td, .editor-preview td {
+	padding: .3rem;
+	vertical-align: top;
+	border-top: 1px solid #eceeef;
+	display: table-cell;
+}
+
+.editor-preview-side thead, .editor-preview thead {
+	display: table-header-group;
+	vertical-align: middle;
+}
+
+.editor-preview-side table, .editor-preview table {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 1rem;
+	display: table;
+	border-spacing: 2px;
+	border-color: grey;
+	text-align: left;
+}
