@@ -356,6 +356,7 @@ ${hash[ key ]}
 						);
 					}
 					else if (
+						prevLine && nextLine &&
 						startsWith( prevLine, '::: center' ) &&
 						startsWith( nextLine, ':::' )
 					) {
