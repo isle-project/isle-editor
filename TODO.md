@@ -1,12 +1,12 @@
 TODO
 ====
 
-1. Needed learning components:
+* Needed learning components:
     - ...
-2. Make data persistent so that students don't lose their progress once they refresh the page. Options: Storing in local storage, in the Mongo database on our server. Others?
-3. Landing page before start of lesson showing the title, brief overview of content, learning objectives. Should include a way for users to clear the ISLE variables in localStorage.
-4. Many of the react components need properties for event handlers (onClick, onChange)...
-5. Data Explorer 
+* Make data persistent so that students don't lose their progress once they refresh the page. Options: Storing in local storage, in the Mongo database on our server. Others?
+* Landing page before start of lesson showing the title, brief overview of content, learning objectives. Should include a way for users to clear the ISLE variables in localStorage.
+* Many of the react components need properties for event handlers (onClick, onChange)...
+* Data Explorer 
    - how to handle missing data?
    - remove any R dependencies
    - Boxplots categorized by more than one group (+ ability to reorder)
@@ -15,8 +15,8 @@ TODO
    - Display additional information when hovering over bars of barcharts (percentage, description, other variables?)
    - We have been deliberately loose with respect to terminology: z-test vs. t-test
    - Should be able to change labels on graphs
-6. Gate
+* Gate
     This shall contain a **timed** parameter allowing scheduled gating
-7. Surveys
+* Surveys
     - Handle ordered categories
     - Don't show invalid axis labels before answers are submitted
