@@ -42,11 +42,8 @@ import Plotly from 'components/plotly';
 import RPlot from 'components/r/plot';
 import Learn from 'components/learn';
 import SpreadsheetUpload from 'components/spreadsheet-upload';
-<<<<<<< HEAD
 import DataTable from 'components/data-table';
-=======
 import './data_explorer.css';
->>>>>>> 5892e026d2ae6a6428bef2b0fb8ec0c4d708b989
 
 
 // PLOT COMPONENTS //
