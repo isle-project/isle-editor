@@ -14,6 +14,7 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import startsWith from '@stdlib/string/starts-with';
 import endsWith from '@stdlib/string/ends-with';
 import removeLast from '@stdlib/string/remove-last';
+import removeFirst from '@stdlib/string/remove-first';
 import VoiceInput from 'components/input/voice';
 import 'simplemde/dist/simplemde.min.css';
 import './markdown-editor.css';
@@ -291,12 +292,39 @@ ${hash[ key ]}
 					const startPoint = cm.getCursor( 'start' );
 					const endPoint = cm.getCursor( 'end' );
 					let text = cm.getSelection();
-					text = text.split( '++' ).join( '' );
-					cm.replaceSelection( start + text + end );
+					if (
+						startsWith( text, start ) &&
+						endsWith( text, end )
+					) {
+						text = removeLast( text );
+						text = removeLast( text );
+						text = removeFirst( text );
+						text = removeFirst( text );
+						cm.replaceSelection( text );
+					} else {
+						const wrappedStart = {
+							line: startPoint.line,
+							ch: startPoint.ch - 2
+						};
+						const wrappedEnd = {
+							line: endPoint.line,
+							ch: endPoint.ch + 2
+						};
+						let wrapped = cm.getRange( wrappedStart, wrappedEnd );
+						if (
+							startsWith( wrapped, start ) &&
+							endsWith( wrapped, end )
+						) {
+							cm.replaceRange( text, wrappedStart, wrappedEnd );
+						} else {
+							text = text.split( '++' ).join( '' );
+							cm.replaceSelection( start + text + end );
 
-					startPoint.ch += 2;
-					endPoint.ch = startPoint.ch + text.length;
-					cm.setSelection( startPoint, endPoint );
+							startPoint.ch += 2;
+							endPoint.ch = startPoint.ch + text.length;
+							cm.setSelection( startPoint, endPoint );
+						}
+					}
 					cm.focus();
 				},
 				className: 'fa fa-underline',
