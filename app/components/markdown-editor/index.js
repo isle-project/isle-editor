@@ -11,6 +11,7 @@ import markdownContainer from 'markdown-it-container';
 import FileSaver from 'file-saver';
 import replace from '@stdlib/string/replace';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import startsWith from '@stdlib/string/starts-with';
 import VoiceInput from 'components/input/voice';
 import 'simplemde/dist/simplemde.min.css';
 import './markdown-editor.css';
@@ -117,7 +118,6 @@ const createHTML = ( title, body ) => `<!doctype html>
 				display: block;
 				margin: 0 auto;
 				text-align: center;
-				line-height: 100px;
 			}
 		</style>
 		<script src="https://use.fontawesome.com/1ef7eff9d5.js"></script>
@@ -307,14 +307,48 @@ ${hash[ key ]}
 					const end = ':::';
 					const startPoint = cm.getCursor( 'start' );
 					const endPoint = cm.getCursor( 'end' );
-					let text = cm.getSelection();
-					text = text.split( ':::' ).join( '' );
-					cm.replaceSelection( start + '\n' + text + '\n' + end );
 
-					startPoint.ch += 3;
-					endPoint.ch = startPoint.ch + text.length;
-					cm.setSelection( startPoint, endPoint );
-					cm.focus();
+					const startLine = cm.getLine( startPoint.line );
+					const endLine = cm.getLine( endPoint.line );
+					const prevLine = cm.getLine( startPoint.line - 1 );
+					const nextLine = cm.getLine( endPoint.line + 1 );
+					if (
+						startsWith( startLine, '::: center' ) &&
+						startsWith( endLine, ':::' )
+					) {
+						cm.replaceRange( '',
+							{ line: startPoint.line, ch: 0 },
+							{ line: startPoint.line, ch: 99999999999999 }
+						);
+						cm.replaceRange( '',
+							{ line: endPoint.line, ch: 0 },
+							{ line: endPoint.line, ch: 99999999999999 }
+						);
+					}
+					else if (
+						startsWith( prevLine, '::: center' ) &&
+						startsWith( nextLine, ':::' )
+					) {
+						cm.replaceRange( '',
+							{ line: startPoint.line - 1, ch: 0 },
+							{ line: startPoint.line - 1, ch: 99999999999999 }
+						);
+						cm.replaceRange( '',
+							{ line: endPoint.line + 1, ch: 0 },
+							{ line: endPoint.line + 1, ch: 99999999999999 }
+						);
+					}
+					else {
+						let text = cm.getSelection();
+						text = text.split( ':::' ).join( '' );
+						cm.replaceSelection( start + '\n' + text + '\n' + end );
+
+						startPoint.ch = 0;
+						endPoint.ch = 3;
+						endPoint.line += 2;
+						cm.setSelection( startPoint, endPoint );
+						cm.focus();
+					}
 				},
 				className: 'fa fa-align-center',
 				title: 'Center Element'
@@ -324,6 +358,7 @@ ${hash[ key ]}
 				action: (editor) => {
 					const input = document.createElement( 'input' );
 					input.type = 'file';
+					input.accept = '.md';
 					input.addEventListener( 'change', this.handleFileSelect, false );
 					input.click();
 				},
