@@ -225,7 +225,8 @@ class MarkdownEditor extends Component {
 				replacementHash = `<!-- START:${id} -->
 ${hash[ key ]}
 <!-- END -->`;
-				plainText = plainText.replace( key, replacementHash );
+				var re = new RegExp('\\s*' + key, 'g');
+				plainText = plainText.replace( re, replacementHash );
 			}
 		}
 		return plainText;
