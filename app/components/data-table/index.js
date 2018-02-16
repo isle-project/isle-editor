@@ -234,10 +234,6 @@ class DataTable extends Component {
 		this.setState({showInfo: true});
 	}
 
-	createInfo = () => {
-		return;
-	}
-
 	render() {
 		const { selectedRows } = this.state;
 		let modal = null;
@@ -253,7 +249,7 @@ class DataTable extends Component {
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					{this.createDescriptions(this.props.descriptions)}
+					{this.createDescriptions(this.props.varDescriptions)}
 				</Modal.Body>
 			</Modal>;
 		} else if ( this.state.showInfo ) {
@@ -268,7 +264,7 @@ class DataTable extends Component {
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					{this.createInfo()}
+					{this.props.dataInfo.info}
 				</Modal.Body>
 			</Modal>;
 		}
@@ -283,7 +279,7 @@ class DataTable extends Component {
 						block
 						bsStyle="primary"
 						style={{float: 'center'}}>
-						I am not active yet
+						Dataset Description
 					</Button>
 					<ReactTable
 						ref={( table ) => { this.table = table; }}
@@ -320,7 +316,8 @@ class DataTable extends Component {
 // DEFAULT PROPERTIES //
 
 DataTable.defaultProps = {
-	descriptions: {},
+	dataInfo: {"info": ''},
+	varDescriptions: {},
 	onClickRemove() {},
 	showRemove: false,
 	style: {}
@@ -334,7 +331,8 @@ DataTable.propTypes = {
 		PropTypes.array,
 		PropTypes.object
 	]).isRequired,
-	descriptions: PropTypes.object,
+	dataInfo: PropTypes.object,
+	varDescriptions: PropTypes.object,
 	onClickRemove: PropTypes.func,
 	showRemove: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
 	style: PropTypes.object
