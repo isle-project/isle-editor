@@ -99,11 +99,11 @@ RPlot.contextTypes = {
 RPlot.defaultProps = {
 	code: '',
 	fileType: 'png',
-	height: 400,
+	height: 350,
 	libraries: [],
 	onDone() {},
 	prependCode: '',
-	width: 600
+	width: null
 };
 
 
