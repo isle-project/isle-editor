@@ -7,6 +7,8 @@ import InputRange from 'react-input-range';
 import unique from 'uniq';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
 import markdownIt from 'markdown-it';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import contains from '@stdlib/assert/contains';
@@ -77,8 +79,17 @@ class DataTable extends Component {
 			selectedRows: rows.length
 		};
 		const columns = keys.map( key => {
+			let header = key;
+			if ( this.props.dataInfo.variables ) {
+				const tooltip = <Tooltip id={key}>
+					{this.props.dataInfo.variables[ key ]}
+				</Tooltip>;
+				header = <OverlayTrigger placement="top" overlay={tooltip}>
+					<span>{key}</span>
+				</OverlayTrigger>;
+			}
 			const out = {
-				Header: key,
+				Header: header,
 				accessor: key
 			};
 			let vals;
