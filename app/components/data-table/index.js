@@ -80,7 +80,7 @@ class DataTable extends Component {
 		};
 		const columns = keys.map( key => {
 			let header = key;
-			if ( this.props.dataInfo.variables ) {
+			if ( this.props.dataInfo.variables && this.props.dataInfo.variables[ key ]) {
 				const tooltip = <Tooltip id={key}>
 					{this.props.dataInfo.variables[ key ]}
 				</Tooltip>;
