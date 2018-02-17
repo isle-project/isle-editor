@@ -21,6 +21,7 @@ import isArray from '@stdlib/assert/is-array';
 import 'react-table/react-table.css';
 import './input_range.css';
 import './react_table_height.css';
+import './data_table.css';
 
 
 // MAIN //
@@ -219,7 +220,6 @@ class DataTable extends Component {
 
 		strTable = [];
 		for (varName in descriptions) {
-			console.log('I made it 222');
 			if ( hasOwnProp(descriptions, varName) ) {
 				strTable.push(<tr><td>{varName}</td><td>{descriptions[varName]}</td></tr>);
 			}
@@ -249,7 +249,7 @@ class DataTable extends Component {
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					{this.createDescriptions(this.props.varDescriptions)}
+					{this.createDescriptions(this.props.dataInfo.variables)}
 				</Modal.Body>
 			</Modal>;
 		} else if ( this.state.showInfo ) {
@@ -260,7 +260,7 @@ class DataTable extends Component {
 				}}>
 				<Modal.Header closeButton>
 					<Modal.Title>
-						Problem Set Description
+						{this.props.dataInfo.name} Description
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
@@ -277,9 +277,11 @@ class DataTable extends Component {
 					<Button
 						onClick={this.showInfo}
 						block
-						bsStyle="primary"
-						style={{float: 'center'}}>
-						Dataset Description
+						className='title-button'>
+						<h4 className='title-button-h4'
+							onClick={this.showInfo}>
+							{this.props.dataInfo.name} Dataset
+						</h4>
 					</Button>
 					<ReactTable
 						ref={( table ) => { this.table = table; }}
@@ -303,7 +305,7 @@ class DataTable extends Component {
 								marginTop: '-2px',
 								marginRight: '7px'}}
 					>
-						Show Descriptions
+						Variable Descriptions
 					</Button>
 				</div>
 				{modal}
@@ -316,8 +318,7 @@ class DataTable extends Component {
 // DEFAULT PROPERTIES //
 
 DataTable.defaultProps = {
-	dataInfo: {"info": ''},
-	varDescriptions: {},
+	dataInfo: {'info': '', 'name': '', 'variables': {}},
 	onClickRemove() {},
 	showRemove: false,
 	style: {}
@@ -332,7 +333,6 @@ DataTable.propTypes = {
 		PropTypes.object
 	]).isRequired,
 	dataInfo: PropTypes.object,
-	varDescriptions: PropTypes.object,
 	onClickRemove: PropTypes.func,
 	showRemove: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
 	style: PropTypes.object

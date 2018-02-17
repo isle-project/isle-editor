@@ -679,7 +679,7 @@ class DataExplorer extends Component {
 
 		const tabs = <Tab.Content animation>
 			<Tab.Pane eventKey="0">
-				<DataTable data={this.state.data} varDescriptions={this.props.descriptions} dataInfo={this.props.dataInfo} />
+				<DataTable data={this.state.data} dataInfo={this.props.dataInfo} />
 			</Tab.Pane>
 			<Tab.Pane eventKey="1">
 				<SummaryStatistics
@@ -990,7 +990,7 @@ class DataExplorer extends Component {
 
 DataExplorer.defaultProps = {
 	data: {},
-	dataInfo: {"info": ''},
+	dataInfo: {'info': '', 'name': '', 'variables': {}},
 	onSelect() {},
 	tabs: [],
 	questions: null,
@@ -1048,7 +1048,6 @@ DataExplorer.propTypes = {
 	data: PropTypes.object,
 	dataInfo: PropTypes.object,
 	distributions: PropTypes.array,
-	descriptions: PropTypes.object,
 	editorTitle: PropTypes.string,
 	histogramDensities: PropTypes.bool,
 	models: PropTypes.array,

@@ -1,0 +1,15 @@
+.title-button {
+	float: center;
+	background: rgba(0, 0, 0, 0.045);
+	box-shadow: none;
+	border-color: rgba(0, 0, 0, 0.30);
+}
+
+.title-button-h4 {
+	text-align: center;
+	cursor: pointer;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size: 21px;
+	letter-spacing: 2.5px;
+}
