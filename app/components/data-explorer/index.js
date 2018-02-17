@@ -990,7 +990,11 @@ class DataExplorer extends Component {
 
 DataExplorer.defaultProps = {
 	data: {},
-	dataInfo: {'info': '', 'name': '', 'variables': {}},
+	dataInfo: {
+		'info': '',
+		'name': '',
+		'variables': {}
+	},
 	onSelect() {},
 	tabs: [],
 	questions: null,

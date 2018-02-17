@@ -13,3 +13,9 @@
 	font-size: 21px;
 	letter-spacing: 2.5px;
 }
+
+.variable-description-button {
+	float: right;
+	margin-top: -2px;
+	margin-right: 7px;
+}

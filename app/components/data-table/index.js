@@ -7,6 +7,7 @@ import InputRange from 'react-input-range';
 import unique from 'uniq';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
+import markdownIt from 'markdown-it';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import contains from '@stdlib/assert/contains';
 import lowercase from '@stdlib/string/lowercase';
@@ -22,6 +23,16 @@ import 'react-table/react-table.css';
 import './input_range.css';
 import './react_table_height.css';
 import './data_table.css';
+
+
+// VARIABLES //
+
+const md = markdownIt({
+	html: true,
+	xhtmlOut: true,
+	breaks: true,
+	typographer: false
+});
 
 
 // MAIN //
@@ -209,11 +220,13 @@ class DataTable extends Component {
 	}
 
 	showDescriptions = () => {
-		this.setState({showVarModal: true});
+		this.setState({
+			showVarModal: true
+		});
 	}
 	// Add in the function to format it with key-value pairs
 
-	createDescriptions = (descriptions) => {
+	createDescriptions = ( descriptions ) => {
 		var strTable;
 		var varName;
 		var finalStr;
@@ -231,7 +244,7 @@ class DataTable extends Component {
 	}
 
 	showInfo = () => {
-		this.setState({showInfo: true});
+		this.setState({ showInfo: true });
 	}
 
 	render() {
@@ -241,7 +254,7 @@ class DataTable extends Component {
 			modal = <Modal
 				show={this.state.showVarModal}
 				onHide={()=>{
-					this.setState({showVarModal: false});
+					this.setState({ showVarModal: false });
 				}}>
 				<Modal.Header closeButton>
 					<Modal.Title>
@@ -256,15 +269,18 @@ class DataTable extends Component {
 			modal = <Modal
 				show={this.state.showInfo}
 				onHide={()=>{
-					this.setState({showInfo: false});
+					this.setState({
+						showInfo: false
+					});
 				}}>
 				<Modal.Header closeButton>
 					<Modal.Title>
 						{this.props.dataInfo.name} Description
 					</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>
-					{this.props.dataInfo.info}
+				<Modal.Body dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
+					__html: md.render( this.props.dataInfo.info.join( '' ) )
+				}}>
 				</Modal.Body>
 			</Modal>;
 		}
@@ -274,7 +290,7 @@ class DataTable extends Component {
 					fontSize: '12px',
 					...this.props.style
 				}}>
-					<Button
+					{ this.props.dataInfo.name ? <Button
 						onClick={this.showInfo}
 						block
 						className='title-button'>
@@ -282,7 +298,7 @@ class DataTable extends Component {
 							onClick={this.showInfo}>
 							{this.props.dataInfo.name} Dataset
 						</h4>
-					</Button>
+					</Button> : null }
 					<ReactTable
 						ref={( table ) => { this.table = table; }}
 						data={this.state.rows}
@@ -297,16 +313,14 @@ class DataTable extends Component {
 						style={this.props.style}
 					/>
 					<label><i>Number of rows: {selectedRows} (total: {this.state.rows.length})</i></label>
-					<Button
+					{ this.props.dataInfo.variables ? <Button
 						onClick={this.showDescriptions}
 						bsStyle="primary"
 						bsSize="small"
-						style={{float: 'right',
-								marginTop: '-2px',
-								marginRight: '7px'}}
+						className="variable-description-button"
 					>
 						Variable Descriptions
-					</Button>
+					</Button> : null }
 				</div>
 				{modal}
 			</Fragment>
@@ -318,7 +332,7 @@ class DataTable extends Component {
 // DEFAULT PROPERTIES //
 
 DataTable.defaultProps = {
-	dataInfo: {'info': '', 'name': '', 'variables': {}},
+	dataInfo: { 'info': [], 'name': '', 'variables': null },
 	onClickRemove() {},
 	showRemove: false,
 	style: {}
