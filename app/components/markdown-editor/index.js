@@ -162,6 +162,7 @@ class MarkdownEditor extends Component {
 			initialValue: this.state.value,
 			previewRender: this.previewRender,
 			toolbar: this.createToolbar(),
+			status: [ 'lines', 'words' ],
 			...this.props.options
 		});
 
