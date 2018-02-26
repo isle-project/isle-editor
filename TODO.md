@@ -26,3 +26,4 @@ LONG-TERM
 * Surveys
     - Handle ordered categories
     - Don't show invalid axis labels before answers are submitted
+* Add functionality to export Markdown reports as posters
