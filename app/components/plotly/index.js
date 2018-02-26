@@ -49,7 +49,7 @@ class Wrapper extends Component {
 		};
 
 		const buttonsToAdd = [];
-		if ( props.legendButtons ) {
+		if ( props.legendButtons && !props.removeButtons ) {
 			buttonsToAdd.push({
 				name: 'Toggle Legend',
 				icon: PlotlyIcons[ 'legend' ],
@@ -61,14 +61,14 @@ class Wrapper extends Component {
 				click: this.toggleLegendOrientation
 			});
 		}
-		if ( props.onShare ) {
+		if ( props.onShare && !props.removeButtons ) {
 			buttonsToAdd.push({
 				name: 'Share',
 				icon: PlotlyIcons[ 'share' ],
 				click: props.onShare
 			});
 		}
-		if ( props.toggleFullscreen ) {
+		if ( props.toggleFullscreen && !props.removeButtons ) {
 			buttonsToAdd.push({
 				name: 'Toggle FullScreen',
 				icon: PlotlyIcons[ 'fullscreen' ],
@@ -167,7 +167,6 @@ class Wrapper extends Component {
 			data={this.props.data}
 			layout={this.state.layout}
 			config={this.config}
-			fit={this.props.fit}
 			onInitialized={this.onInitialized}
 			onUpdate={this.onUpdate}
 		/> );
@@ -203,7 +202,6 @@ class Wrapper extends Component {
 
 Wrapper.defaultProps = {
 	editable: false,
-	fit: false,
 	layout: {},
 	legendButtons: true,
 	onShare: null,
@@ -217,7 +215,6 @@ Wrapper.defaultProps = {
 Wrapper.propTypes = {
 	data: PropTypes.array.isRequired,
 	editable: PropTypes.bool,
-	fit: PropTypes.bool,
 	layout: PropTypes.object,
 	legendButtons: PropTypes.bool,
 	onShare: PropTypes.func,
