@@ -55,7 +55,8 @@ class FullscreenActionDisplay extends Component {
 			const expr = new RegExp( '[^\\w]' + value + '[^\\w]' );
 			if ( !this.state.exact ) {
 				for ( let i = 0; i < this.props.actions.length; i++ ) {
-					if ( contains(this.props.actions[i].value, value) ) {
+					let actionVal = String( this.props.actions[i].value );
+					if ( contains( actionVal, String( value ) ) ) {
 						newFilter.push( this.props.actions[i] );
 					}
 				}
@@ -156,7 +157,7 @@ class FullscreenActionDisplay extends Component {
 		const higlighter = <Highlighter
 			searchWords={this.state.searchwords}
 			autoEscape={true}
-			textToHighlight={elem.value}
+			textToHighlight={String( elem.value )}
 		/>;
 		return ( <ListGroupItem key={key}>
 			{ this.props.showExtended ?
