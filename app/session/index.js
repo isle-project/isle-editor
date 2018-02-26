@@ -632,6 +632,23 @@ class Session {
 		this.socket = socket;
 	}
 
+	getFakeUsers = ( clbk ) => {
+		request.get( this.server+'/get_fake_users', {
+			headers: {
+				'Authorization': 'JWT ' + this.user.token
+			},
+			rejectUnauthorized
+		}, ( error, response, body ) => {
+			if ( error ) {
+				return clbk( error );
+			}
+			if ( response.statusCode === 200 ) {
+				body = JSON.parse( body );
+				return clbk( null, body );
+			}
+		});
+	}
+
 	/**
 	* Retrieves all actions by users for the current lesson for course owners.
 	*
@@ -645,7 +662,8 @@ class Session {
 				'Authorization': 'JWT ' + this.user.token
 			},
 			form: {
-				lessonID: this.lessonID
+				lessonID: this.lessonID,
+				anonymous: true
 			},
 			rejectUnauthorized
 		}, ( error, response, body ) => {

@@ -1,6 +1,8 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import ToggleButtonGroup from 'react-bootstrap/lib/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/lib/ToggleButton';
 import Panel from 'react-bootstrap/lib/Panel';
 import PanelGroup from 'react-bootstrap/lib/PanelGroup';
 import Button from 'react-bootstrap/lib/Button';
@@ -34,6 +36,7 @@ class InstructorView extends Component {
 		super( props );
 
 		this.state = {
+			anonymized: true,
 			hidden: true,
 			actionLogHeader: <span>Action Log</span>,
 			period: {
@@ -102,25 +105,49 @@ class InstructorView extends Component {
 		}
 	}
 
+	handleRadioChange = ( val ) => {
+		this.setState({
+			anonymized: !this.state.anonymized
+		});
+	}
+
 	saveJSON = () => {
 		const { session } = this.context;
-		const blob = new Blob([ JSON.stringify( session.socketActions ) ], {
-			type: 'application/json'
+		session.getFakeUsers( ( err, hash ) => {
+			const actions = session.socketActions.slice();
+			if ( this.state.anonymized ) {
+				for ( let i = 0; i < actions.length; i++ ) {
+					actions[ i ].name = hash.name[ actions[ i ].name ];
+					actions[ i ].email = hash.email[ actions[ i ].email ];
+				}
+			}
+			const blob = new Blob([ JSON.stringify( actions ) ], {
+				type: 'application/json'
+			});
+			const name = `actions_${session.namespaceName}_${session.lessonName}.json`;
+			FileSaver.saveAs( blob, name );
 		});
-		const name = `actions_${session.namespaceName}_${session.lessonName}.json`;
-		FileSaver.saveAs( blob, name );
 	}
 
 	saveCSV = () => {
 		const { session } = this.context;
-		stringify( session.socketActions, {
-			header: true
-		}, ( err, output ) => {
-			const blob = new Blob([ output ], {
-				type: 'text/plain'
+		session.getFakeUsers( ( err, hash ) => {
+			const actions = session.socketActions.slice();
+			if ( this.state.anonymized ) {
+				for ( let i = 0; i < actions.length; i++ ) {
+					actions[ i ].name = hash.name[ actions[ i ].name ];
+					actions[ i ].email = hash.email[ actions[ i ].email ];
+				}
+			}
+			stringify( actions, {
+				header: true
+			}, ( err, output ) => {
+				const blob = new Blob([ output ], {
+					type: 'text/plain'
+				});
+				const name = `actions_${session.namespaceName}_${session.lessonName}.csv`;
+				FileSaver.saveAs( blob, name );
 			});
-			const name = `actions_${session.namespaceName}_${session.lessonName}.csv`;
-			FileSaver.saveAs( blob, name );
 		});
 	}
 
@@ -162,15 +189,37 @@ class InstructorView extends Component {
 						}}
 					/>
 					<ButtonToolbar>
-						<ButtonGroup bsSize="xsmall">
-							<Button onClick={this.saveJSON} >Save JSON</Button>
-							<Button onClick={this.saveCSV} >Save CSV</Button>
-						</ButtonGroup>
 						<ButtonGroup>
 							<span style={{ fontSize: '12px', fontWeight: 600 }}>
 								{'# of Actions: '+this.state.nActions}
 							</span>
 						</ButtonGroup>
+						<ButtonGroup bsSize="xsmall">
+							<Button onClick={this.saveJSON} >Save JSON</Button>
+							<Button onClick={this.saveCSV} >Save CSV</Button>
+						</ButtonGroup>
+						<ToggleButtonGroup
+							name="options"
+							onChange={this.handleRadioChange}
+							type="radio"
+							bsSize="xsmall"
+							value={this.state.anonymized}
+						>
+							<ToggleButton
+								value={false}
+								style={{
+									fontSize: '12px',
+									color: this.state.anonymized ? '#A9A9A9' : 'black'
+								}}
+							>Original</ToggleButton>
+							<ToggleButton
+								value={true}
+								style={{
+									fontSize: '12px',
+									color: this.state.anonymized ? 'black' : '#A9A9A9'
+								}}
+							>Anonymized</ToggleButton>
+						</ToggleButtonGroup>
 					</ButtonToolbar>
 				</Panel.Body>
 			</Panel>
