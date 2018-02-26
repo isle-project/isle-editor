@@ -235,8 +235,10 @@ class ZTest2 extends Component {
 						Two-Sample Mean Test
 					</Panel.Title>
 				</Panel.Heading>
-				{this.renderInputs()}
-				<Button bsStyle="primary" block onClick={this.calculateTwoSampleZTest}>Calculate</Button>
+				<Panel.Body>
+					{this.renderInputs()}
+					<Button bsStyle="primary" block onClick={this.calculateTwoSampleZTest}>Calculate</Button>
+				</Panel.Body>
 			</Panel>
 		);
 	}
