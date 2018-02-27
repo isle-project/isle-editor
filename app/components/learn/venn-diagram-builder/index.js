@@ -146,13 +146,14 @@ class VennDiagramBuilder extends Component {
 					.style( 'stroke-opacity', 0 );
 			});
 		this.setState({
-			first, second, third, vennDiagram, sizeA, sizeB, sizeC, sizeBC, sizeAB, sizeAC, tooltip
+			first, second, third, vennDiagram, sizeA, sizeB, sizeC, sizeBC, sizeAB, sizeAC, sizeABC, tooltip
 		});
 	}
 
 	render() {
 		let dashboard;
 		if ( !this.props.three ) {
+			const { first, second, sizeA, sizeB, sizeAB } = this.state;
 			dashboard = <Dashboard
 				title="Venn Diagram Builder"
 				autoUpdate
@@ -169,28 +170,30 @@ class VennDiagramBuilder extends Component {
 					width={120}
 				/>
 				<NumberInput
-					legend={<TeX raw={`|\\text{${this.state.first}}|`} />}
+					legend={<TeX raw={`|\\text{${first}}|`} />}
 					defaultValue={12}
 					step={1}
 					min={0}
 				/>
 				<NumberInput
-					legend={<TeX raw={`|\\text{${this.state.second}}|`} />}
+					legend={<TeX raw={`|\\text{${second}}|`} />}
 					defaultValue={10}
 					step={1}
 					min={0}
 				/>
 				<br />
 				<NumberInput
-					legend={<TeX raw={`| \\text{${this.state.first}} \\cap \\text{${this.state.second}} | `} />}
+					legend={<TeX raw={`| \\text{${first}} \\cap \\text{${second}} | `} />}
 					defaultValue={2}
-					max={min( this.state.sizeA, this.state.sizeB )}
+					max={min( sizeA, sizeB )}
 					step={1}
 					min={0}
 				/>
+				<TeX style={{ marginLeft: '5px' }} raw={`| \\text{${first}}^c \\cap \\text{${second}}^c | = ${this.props.nobs - sizeA - sizeB + sizeAB }`} />
 			</Dashboard>;
 		}
 		else {
+			const { first, second, third, sizeA, sizeB, sizeC, sizeAB, sizeAC, sizeBC, sizeABC } = this.state;
 			dashboard = <Dashboard
 				title="Venn Diagram Builder"
 				autoUpdate
@@ -212,53 +215,61 @@ class VennDiagramBuilder extends Component {
 					width={120}
 				/>
 				<NumberInput
-					legend={<TeX raw={`|\\text{${this.state.first}}|`} />}
+					legend={<TeX raw={`|\\text{${first}}|`} />}
 					defaultValue={12}
 					step={1}
 					min={0}
 				/>
 				<NumberInput
-					legend={<TeX raw={`|\\text{${this.state.second}}|`} />}
+					legend={<TeX raw={`|\\text{${second}}|`} />}
 					defaultValue={10}
 					step={1}
 					min={0}
 				/>
 				<NumberInput
-					legend={<TeX raw={`|\\text{${this.state.third}}|`} />}
+					legend={<TeX raw={`|\\text{${third}}|`} />}
 					defaultValue={8}
 					step={1}
 					min={0}
 				/>
 				<br />
 				<NumberInput
-					legend={<TeX raw={`| \\text{${this.state.first}} \\cap \\text{${this.state.second}} | `} />}
+					legend={<TeX raw={`| \\text{${first}} \\cap \\text{${second}} | `} />}
 					defaultValue={2}
-					max={min( this.state.sizeA, this.state.sizeB )}
+					max={min( sizeA, sizeB )}
 					step={1}
 					min={0}
 				/>
 				<NumberInput
-					legend={<TeX raw={`| \\text{${this.state.second}} \\cap \\text{${this.state.third}} | `} />}
-					max={min( this.state.sizeB, this.state.sizeC )}
+					legend={<TeX raw={`| \\text{${second}} \\cap \\text{${third}} | `} />}
+					max={min( sizeB, sizeC )}
 					defaultValue={2}
 					step={1}
 					min={0}
 				/>
 				<NumberInput
-					legend={<TeX raw={`| \\text{${this.state.first}} \\cap \\text{${this.state.third}} | `} />}
+					legend={<TeX raw={`| \\text{${first}} \\cap \\text{${third}} | `} />}
 					defaultValue={2}
-					max={min( this.state.sizeA, this.state.sizeC )}
+					max={min( sizeA, sizeC )}
 					step={1}
 					min={0}
 				/>
 				<NumberInput
-					legend={<TeX raw={`| \\text{${this.state.first}}\\cap \\text{${this.state.second}} \\cap \\text{${this.state.third}} | `} />}
+					legend={<TeX raw={`| \\text{${first}}\\cap \\text{${second}} \\cap \\text{${third}} | `} />}
 					defaultValue={1}
-					max={min( this.state.sizeAC, this.state.sizeAB, this.state.sizeBC )}
+					max={min( sizeAC, sizeAB, sizeBC )}
 					step={1}
 					min={0}
 				/>
+				<TeX style={{ marginLeft: '5px' }} raw={`| \\text{${first}}^c \\cap \\text{${second}}^c \\cap \\text{${third}}^c | = ${this.props.nobs - sizeA - sizeB - sizeC + sizeAC + sizeAB + sizeBC - sizeABC }`} />
 			</Dashboard>;
+		}
+		let count = null;
+		if ( this.props.nobs ) {
+			count = <span style={{
+				position: 'absolute',
+				right: 40
+			}}>Total # of observations: {this.props.nobs}</span>;
 		}
 		return (
 			<div>
@@ -269,6 +280,7 @@ class VennDiagramBuilder extends Component {
 						</Col>
 						<Col md={8}>
 							<Panel>
+							{count}
 								<div id={this.state.id}></div>
 							</Panel>
 						</Col>
@@ -283,10 +295,12 @@ class VennDiagramBuilder extends Component {
 // PROPERTY TYPES //
 
 VennDiagramBuilder.propTypes = {
+	nobs: PropTypes.number,
 	three: PropTypes.bool
 };
 
 VennDiagramBuilder.defaultProps = {
+	nobs: null,
 	three: false
 };
 
