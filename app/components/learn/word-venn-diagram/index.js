@@ -89,14 +89,21 @@ class WordVennDiagram extends Component {
 		} else {
 			tooltip = this.state.tooltip;
 		}
-		let vennDiagram = venn.VennDiagram();
+		let vennDiagram = venn
+			.VennDiagram()
+			.width( this.props.width )
+			.height( this.props.height );
 		chart.datum( sets ).call( vennDiagram );
 		chart.selectAll( 'g' )
 			.on( 'mouseover', function onMouseOver( d, i ) {
 				venn.sortAreas( chart, d );
-				tooltip.transition().duration( 400 ).style( 'opacity', 0.9 );
+				tooltip.transition()
+					.duration( 400 )
+					.style( 'opacity', 0.9 );
 				tooltip.text( d.sets.join( ' and ' ) + ' (' + d.size + ')' );
-				var selection = d3.select( this ).transition( 'tooltip' ).duration( 400 );
+				var selection = d3.select( this )
+					.transition( 'tooltip' )
+					.duration( 400 );
 				selection.select( 'path' )
 					.style( 'stroke-width', 3 )
 					.style( 'stroke', 'black' )
@@ -108,8 +115,13 @@ class WordVennDiagram extends Component {
 					.style( 'top', ( d3.event.pageY - 28 ) + 'px' );
 			})
 			.on( 'mouseout', function onMouseOut( d, i ) {
-				tooltip.transition().duration( 400 ).style( 'opacity', 0 );
-				var selection = d3.select( this ).transition( 'tooltip' ).duration( 400 );
+				tooltip
+					.transition()
+					.duration( 400 )
+					.style( 'opacity', 0 );
+				var selection = d3.select( this )
+					.transition( 'tooltip' )
+					.duration( 400 );
 				selection.select( 'path' )
 					.style( 'fill-opacity', d.sets.length === 1 ? 0.25 : 0.0 )
 					.style( 'stroke-opacity', 0 );
@@ -268,17 +280,21 @@ class WordVennDiagram extends Component {
 // PROPERTY TYPES //
 
 WordVennDiagram.propTypes = {
+	height: PropTypes.number,
 	nTexts: PropTypes.number.isRequired,
 	onClick: PropTypes.func,
 	tdm: PropTypes.array.isRequired,
-	vocabulary: PropTypes.array.isRequired
+	vocabulary: PropTypes.array.isRequired,
+	width: PropTypes.number
 };
 
 
 // DEFAULT PROPERTIES //
 
 WordVennDiagram.defaultProps = {
-	onClick(){}
+	height: 350,
+	onClick() {},
+	width: 600
 };
 
 
