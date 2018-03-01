@@ -133,6 +133,7 @@ class Pages extends Component {
 		return (
 			<div
 				className="panel panel-default page"
+				style={this.props.style}
 			>
 				{ this.props.title ? header : null }
 				<Pagination className="my-pagination"
@@ -182,6 +183,7 @@ Pages.propTypes = {
 		PropTypes.string
 	]),
 	onSelect: PropTypes.func,
+	style: PropTypes.object,
 	title: PropTypes.string
 };
 
@@ -189,6 +191,7 @@ Pages.defaultProps = {
 	bsSize: 'default',
 	height: null,
 	onSelect() {},
+	style: {},
 	title: ''
 };
 
