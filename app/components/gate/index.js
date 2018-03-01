@@ -53,10 +53,13 @@ class Gate extends Component {
 
 	render() {
 		let { currentRole, session } = this.context;
-		const { anonymous, user, enrolled, owner } = this.props;
+		const { anonymous, disabled, user, enrolled, owner } = this.props;
 		let authenticated = false;
 		if ( !currentRole ) {
 			currentRole = 'anonymous';
+		}
+		if ( disabled ) {
+			return this.props.banner;
 		}
 		if ( anonymous ) {
 			authenticated = true;
@@ -83,6 +86,7 @@ class Gate extends Component {
 Gate.defaultProps = {
 	anonymous: false,
 	banner: null,
+	disabled: false,
 	enrolled: false,
 	owner: false,
 	user: false
@@ -94,6 +98,7 @@ Gate.defaultProps = {
 Gate.propTypes = {
 	anonymous: PropTypes.bool,
 	banner: PropTypes.node,
+	disabled: PropTypes.bool,
 	enrolled: PropTypes.bool,
 	owner: PropTypes.bool,
 	user: PropTypes.bool
