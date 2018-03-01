@@ -19,7 +19,7 @@ class DefaultSlider extends Component {
 			React.Children.map( props.children, child => <div> {child} </div> ) :
 			<div></div>;
 		const settings = {
-			className: 'center',
+			className: 'centered',
 			speed: 1000,
 			slidesToShow: 1,
 			slidesToScroll: 1,

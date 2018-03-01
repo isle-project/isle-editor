@@ -56,7 +56,7 @@ body {
 	margin-right: auto;
 	padding: 10px;
 	width: 100%;
-	max-width: 1400px;
+	max-width: 1200px;
 	height: 100%;
 	display: block;
 }
@@ -243,6 +243,11 @@ body {
 .row.no-gutter [class*='col-']:not(:last-child) {
 	padding-right: 2px;
 	padding-left: 2px;
+}
+
+.centered {
+	display: block;
+	margin: 0 auto;
 }
 
 .center {
