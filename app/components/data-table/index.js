@@ -194,14 +194,18 @@ class DataTable extends Component {
 			return true;
 		}
 		const id = filter.pivotId || filter.id;
-		return row[ id ] ?
-			String( row[ id ]) === filter.value :
-			true;
+		if ( row[ id ] === void 0 ) {
+			return true;
+		}
+		return String( row[ id ] ) === filter.value;
 	}
 
 	filterMethodStrings = ( filter, row, column ) => {
 		const id = filter.pivotId || filter.id;
-		return row[ id ] ? String( row[ id ]).startsWith( filter.value ) : true;
+		if ( row[ id ] === void 0 ) {
+			return true;
+		}
+		return String( row[ id ] ).startsWith( filter.value );
 	}
 
 	filterMethodNumbers = ( filter, row ) => {
