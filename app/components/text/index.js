@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 const md = require( 'markdown-it' )({
 	html: true,
 	xhtmlOut: true
@@ -11,9 +12,15 @@ const md = require( 'markdown-it' )({
 
 class Text extends Component {
 	render() {
-		const { children } = this.props;
+		const { children, raw } = this.props;
+		let content;
+		if ( raw ) {
+			content = raw;
+		} else {
+			content = children || '';
+		}
 		const html = {
-			__html: children ? md.renderInline( children ) : ''
+			__html: md.renderInline( content )
 		};
 		return (
 			<span
@@ -23,6 +30,17 @@ class Text extends Component {
 		);
 	}
 }
+
+
+// PROPERTIES //
+
+Text.defaultProps = {
+	raw: ''
+};
+
+Text.propTypes = {
+	raw: PropTypes.bool
+};
 
 
 // EXPORTS //
