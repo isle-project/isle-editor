@@ -9,6 +9,7 @@ import * as venn from 'venn.js';
 import * as d3 from 'd3';
 import isStringArray from '@stdlib/assert/is-string-array';
 import lowercase from '@stdlib/string/lowercase';
+import trim from '@stdlib/string/trim';
 import randu from '@stdlib/random/base/randu';
 import round from '@stdlib/math/base/special/round';
 import copy from '@stdlib/utils/copy';
@@ -69,7 +70,7 @@ class WordVennDiagram extends Component {
 	wordChangeFactory( idx ) {
 		return ( value ) => {
 			const newWords = Array.prototype.slice.call( this.state.words );
-			newWords[ idx ] = lowercase( value ) || null;
+			newWords[ idx ] = lowercase( trim( value ) ) || null;
 			this.setState({
 				words: newWords,
 				disabled: !isStringArray( newWords )
