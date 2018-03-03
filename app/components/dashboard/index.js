@@ -66,21 +66,26 @@ class Dashboard extends Component {
 		this.props.onGenerate( ...args );
 	};
 
-	handleFieldChangeFactory = ( child, fieldId ) => {
-		return ( value ) => {
-			var newState = {};
-			newState[ fieldId ] = value;
-			this.setState( newState, () => {
-				if ( this.props.autoUpdate ) {
-					this.handleClick();
-				}
-			}, () => {
-				child.props.onChange( value );
-			});
-		};
+	getCounter = () => {
+		if ( this._counter === void 0 ) {
+			this._counter = 0;
+		} else {
+			this._counter += 1;
+		}
+		return this._counter;
 	}
 
-	registerChildren = ( children ) => {
+	handleFieldChange = ( fieldId, value ) => {
+		const newState = {};
+		newState[ fieldId ] = value;
+		this.setState( newState, () => {
+			if ( this.props.autoUpdate ) {
+				this.handleClick();
+			}
+		});
+	}
+
+	registerChildren = ( children, level ) => {
 		if ( !children ) {
 			return null;
 		}
@@ -96,8 +101,11 @@ class Dashboard extends Component {
 						child.type === SliderInput ||
 						child.type === TextInput
 					) {
-						this._counter += 1;
-						newProps.onChange = this.handleFieldChangeFactory( child, this._counter );
+						const idx = this.getCounter();
+						newProps.onChange = ( value ) => {
+							this.handleFieldChange( idx, value );
+							child.props.onChange( value );
+						};
 					}
 					if ( child.props && child.props.children ) {
 						newChildren = this.registerChildren( child.props.children );
@@ -110,7 +118,7 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		this._counter = -1;
+		this._counter = void 0;
 		this._children = this.registerChildren( this.props.children );
 		return (
 			<Panel
@@ -132,6 +140,7 @@ class Dashboard extends Component {
 						<Button
 							bsStyle="primary"
 							className="dashboard-button"
+							disabled={this.props.disabled}
 							onClick={this.handleClick}
 							block
 						>{this.props.label}</Button> :
@@ -150,6 +159,7 @@ Dashboard.defaultProps = {
 	autoStart: true,
 	autoUpdate: false,
 	description: '',
+	disabled: false,
 	label: 'Generate',
 	maxWidth: 600,
 	onGenerate() {},
@@ -163,6 +173,7 @@ Dashboard.propTypes = {
 	autoStart: PropTypes.bool,
 	autoUpdate: PropTypes.bool,
 	description: PropTypes.string,
+	disabled: PropTypes.bool,
 	label: PropTypes.string,
 	maxWidth: PropTypes.number,
 	onGenerate: PropTypes.func,
