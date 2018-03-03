@@ -170,6 +170,7 @@ class Wrapper extends Component {
 	}
 
 	addWordCloud() {
+		const fontSizeMapper = this.props.fontSizeMapper || this.fontSizeMapper;
 		select( this.wordCloud ).selectAll( '*' ).remove();
 		const layout = cloud()
 			.size([ this.props.width, this.props.height ])
@@ -177,7 +178,7 @@ class Wrapper extends Component {
 			.words( this.state.wordCounts )
 			.padding( this.props.padding )
 			.rotate( this.props.rotate )
-			.fontSize( this.fontSizeMapper )
+			.fontSize( fontSizeMapper )
 			.on('end', words => {
 				select( this.wordCloud )
 				.append( 'svg' )
@@ -221,6 +222,7 @@ class Wrapper extends Component {
 Wrapper.defaultProps = {
 	data: [],
 	font: 'serif',
+	fontSizeMapper: null,
 	precalculated: false,
 	rotate: word => word.value % 360,
 	width: 700,
@@ -240,6 +242,7 @@ Wrapper.propTypes = {
 		PropTypes.string,
 		PropTypes.func
 	]),
+	fontSizeMapper: PropTypes.func,
 	height: PropTypes.number,
 	language: PropTypes.oneOf([
 		'en', 'fin', 'fr', 'ger', 'it', 'por', 'sp', 'swe'
