@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import ReactFauxDom from 'react-faux-dom';
 import { scaleOrdinal, schemeCategory10, select } from 'd3';
 import cloud from 'd3-cloud';
+import min from '@stdlib/math/base/special/min';
 import removePunctuation from '@stdlib/string/remove-punctuation';
 import tokenize from '@stdlib/nlp/tokenize';
 import contains from '@stdlib/assert/contains';
@@ -65,7 +66,8 @@ const generateStopwords = ( language ) => {
 };
 
 function guessEquality( x, y ) {
-	for ( let i = 0; i < 10; i++ ) {
+	let nobs = min( x.length, 10 );
+	for ( let i = 0; i < nobs; i++ ) {
 		if ( x[ i ] !== y[ i ] ) {
 			return false;
 		}
