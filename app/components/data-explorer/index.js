@@ -55,7 +55,7 @@ import Histogram, { generateHistogramConfig } from 'components/data-explorer/his
 import MosaicPlot, { generateMosaicPlotCode } from 'components/data-explorer/mosaicplot';
 import Piechart, { generatePiechartConfig } from 'components/data-explorer/piechart';
 import Scatterplot, { generateScatterplotConfig } from 'components/data-explorer/scatterplot';
-
+import ContourChart, { generateContourChart } from 'components/data-explorer/contour.js';
 
 // TEST COMPONENTS //
 
@@ -403,6 +403,9 @@ class DataExplorer extends Component {
 		}
 		else if ( action.type === 'DATA_EXPLORER_SHARE:HEATMAP' ) {
 			config = generateHeatmapCode({ data: this.state.data, ...action.value });
+		}
+		else if ( action.type === 'DATA_EXPLORER_SHARE:CONTOURCHART' ) {
+			config = generateContourChart({ data: this.state.data, ...action.value });
 		}
 		if ( config ) {
 			const newStudentPlots = copy( this.state.studentPlots );
@@ -762,6 +765,13 @@ class DataExplorer extends Component {
 						session={this.context.session}
 					/>;
 					break;
+				case 'Contour Chart':
+					content = <ContourChart
+						{...continuousProps}
+						logAction={this.logAction}
+						session={this.context.session}
+					/>;
+					break;
 				}
 				return ( <Tab.Pane key={i} eventKey={`3.${i+1}`}>
 					{content}
@@ -1017,7 +1027,8 @@ DataExplorer.defaultProps = {
 		'Box Plot',
 		'Scatterplot',
 		'Heat Map',
-		'Mosaic Plot'
+		'Mosaic Plot',
+		'Contour Chart'
 	],
 	tables: [
 		'Frequency Table',
