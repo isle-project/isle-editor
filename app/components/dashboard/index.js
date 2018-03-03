@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Panel from 'react-bootstrap/lib/Panel';
+import isNull from '@stdlib/assert/is-null';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
 import CheckboxInput from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
@@ -20,12 +21,26 @@ class Dashboard extends Component {
 		super( props );
 
 		const initialState = {};
+		this.nArgs = 0;
 
-		React.Children.forEach( props.children, ( elem, idx ) => {
-			if ( hasOwnProperty( elem.props, 'defaultValue' ) ) {
-				initialState[ idx ] = elem.props.defaultValue;
+		const walk = ( children ) => {
+			if ( !children ) {
+				return;
 			}
-		});
+			React.Children.forEach( children, ( elem ) => {
+				if ( isNull( elem ) ) {
+					return;
+				}
+				if ( hasOwnProperty( elem.props, 'defaultValue' ) ) {
+					initialState[ this.nArgs ] = elem.props.defaultValue;
+					this.nArgs +=1;
+				}
+				if ( hasOwnProperty( elem.props, 'children' ) ) {
+					walk( elem.props.children );
+				}
+			});
+		};
+		walk( props.children );
 		this.state = initialState;
 	}
 
@@ -36,13 +51,10 @@ class Dashboard extends Component {
 	}
 
 	handleClick = () => {
-		let args = [];
-		React.Children.forEach( this.props.children, ( elem, idx ) => {
-			if ( hasOwnProperty( this.state, idx ) ) {
-				const value = this.state[ idx ];
-				args.push( value );
-			}
-		});
+		const args = new Array( this.nArgs );
+		for ( let i = 0; i < this.nArgs; i++ ) {
+			args[ i ] = this.state[ i ];
+		}
 		if ( this.props.id ) {
 			const { session } = this.context;
 			session.log({
@@ -54,20 +66,29 @@ class Dashboard extends Component {
 		this.props.onGenerate( ...args );
 	};
 
-	handleFieldChange = ( fieldId, value ) => {
-		var newState = {};
-		newState[ fieldId ] = value;
-		this.setState( newState, () => {
-			if ( this.props.autoUpdate ) {
-				this.handleClick();
-			}
-		});
+	handleFieldChangeFactory = ( child, fieldId ) => {
+		return ( value ) => {
+			var newState = {};
+			newState[ fieldId ] = value;
+			this.setState( newState, () => {
+				if ( this.props.autoUpdate ) {
+					this.handleClick();
+				}
+			}, () => {
+				child.props.onChange( value );
+			});
+		};
 	}
 
-	render() {
-		const children = React.Children.map( this.props.children,
-			( child, idx ) => {
+	registerChildren = ( children ) => {
+		if ( !children ) {
+			return null;
+		}
+		return React.Children.map( children,
+			( child ) => {
 				if ( React.isValidElement( child ) ) {
+					const newProps = {};
+					let newChildren = [];
 					if (
 						child.type === CheckboxInput ||
 						child.type === NumberInput ||
@@ -75,18 +96,22 @@ class Dashboard extends Component {
 						child.type === SliderInput ||
 						child.type === TextInput
 					) {
-						return React.cloneElement( child, {
-							onChange: ( value ) => {
-								this.handleFieldChange( idx, value );
-								child.props.onChange( value );
-							}
-						});
+						this._counter += 1;
+						newProps.onChange = this.handleFieldChangeFactory( child, this._counter );
 					}
+					if ( child.props && child.props.children ) {
+						newChildren = this.registerChildren( child.props.children );
+					}
+					return React.cloneElement( child, newProps, ...newChildren );
 				}
 				return child;
 			}
 		);
+	}
 
+	render() {
+		this._counter = -1;
+		this._children = this.registerChildren( this.props.children );
 		return (
 			<Panel
 				className="dashboard"
@@ -102,7 +127,7 @@ class Dashboard extends Component {
 				}
 				<Panel.Body>
 					<p>{this.props.description}</p>
-					{children}
+					{this._children}
 					{ !this.props.autoUpdate ?
 						<Button
 							bsStyle="primary"
