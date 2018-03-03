@@ -14,6 +14,7 @@ import isString from '@stdlib/assert/is-string';
 import lowercase from '@stdlib/string/lowercase';
 import objectEntries from '@stdlib/utils/entries';
 import isArray from '@stdlib/assert/is-array';
+import copy from '@stdlib/utils/copy';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import STOPWORDS_EN from '@stdlib/datasets/stopwords-en';
@@ -91,7 +92,7 @@ class Wrapper extends Component {
 			};
 		} else {
 			this.state = {
-				wordCounts: props.data
+				wordCounts: copy( props.data )
 			};
 		}
 		this.stopwords = generateStopwords( props.language );
@@ -100,25 +101,25 @@ class Wrapper extends Component {
 	componentWillReceiveProps( nextProps ) {
 		if (
 			nextProps.data.length !== this.props.data.length ||
-			guessEquality( nextProps.data, this.props.data )
+			!guessEquality( nextProps.data, this.props.data )
 		) {
 			let newState;
 			if ( !nextProps.precalculated ) {
 				newState = this.createBagOfWords( nextProps.data );
 			} else {
 				newState = {
-					wordCounts: nextProps.data
+					wordCounts: copy( nextProps.data )
 				};
 			}
-			this.addWordCloud();
+			this.wordCloud = null;
 			this.setState( newState );
 		}
 	}
 
 	shouldComponentUpdate( nextProps ) {
 		if (
-			nextProps.data.length !== this.props.data.length  ||
-			guessEquality( nextProps.data, this.props.data )
+			nextProps.data.length !== this.props.data.length ||
+			!guessEquality( nextProps.data, this.props.data )
 		) {
 			return true;
 		}
