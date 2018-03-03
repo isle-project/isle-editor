@@ -64,6 +64,15 @@ const generateStopwords = ( language ) => {
 	return stopwords;
 };
 
+function guessEquality( x, y ) {
+	for ( let i = 0; i < 10; i++ ) {
+		if ( x[ i ] !== y[ i ] ) {
+			return false;
+		}
+	}
+	return true;
+}
+
 
 // MAIN //
 
@@ -88,16 +97,27 @@ class Wrapper extends Component {
 
 	componentWillReceiveProps( nextProps ) {
 		if (
-			nextProps.data.length !== this.props.data.length
+			nextProps.data.length !== this.props.data.length ||
+			guessEquality( nextProps.data, this.props.data )
 		) {
-			const newState = this.createBagOfWords( nextProps.data );
+			let newState;
+			if ( !nextProps.precalculated ) {
+				newState = this.createBagOfWords( nextProps.data );
+			} else {
+				newState = {
+					wordCounts: nextProps.data
+				};
+			}
 			this.addWordCloud();
 			this.setState( newState );
 		}
 	}
 
 	shouldComponentUpdate( nextProps ) {
-		if ( nextProps.data.length !== this.props.data.length ) {
+		if (
+			nextProps.data.length !== this.props.data.length  ||
+			guessEquality( nextProps.data, this.props.data )
+		) {
 			return true;
 		}
 		return false;
