@@ -40,14 +40,15 @@ class RTable extends Component {
 				waiting: true,
 				last: this.props.code
 			});
+			const { session } = this.context;
+			let { libraries, prependCode } = this.props;
 			let jsonCode = 'library( jsonlite );\n';
-			let prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
+			prependCode = createPrependCode( libraries, prependCode, session );
 
 			jsonCode = jsonCode +
 				prependCode +
 				code.replace( /\n\s*([ A-Z0-9._()]+)\n*$/i, '\n toJSON($1)' );
 
-			const { session } = this.context;
 			session.executeRCode({
 				code: jsonCode,
 				onResult: ( err, res, body ) => {

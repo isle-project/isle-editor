@@ -56,7 +56,7 @@ class ROutput extends Component {
 			});
 
 			const { session } = this.context;
-			const prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
+			const prependCode = createPrependCode( this.props.libraries, this.props.prependCode, session );
 			const fullCode = prependCode + code;
 			session.executeRCode({
 				code: fullCode,

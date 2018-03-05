@@ -48,9 +48,9 @@ class RPlot extends Component {
 				waiting: true,
 				last: this.props.code
 			});
-			const prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
-			const fullCode = prependCode + this.props.code;
 			const { session } = this.context;
+			const prependCode = createPrependCode( this.props.libraries, this.props.prependCode, session );
+			const fullCode = prependCode + this.props.code;
 			session.getRPlot( fullCode, this.props.fileType, this.savePlot );
 		}
 	}

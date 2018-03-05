@@ -226,7 +226,7 @@ class RShell extends React.Component {
 					});
 				}
 
-				let prependCode = createPrependCode( this.props.libraries, this.props.prependCode );
+				let prependCode = createPrependCode( this.props.libraries, this.props.prependCode, session );
 				if ( this.props.addPreceding ) {
 					for ( let i = 0; i < this.state.id; i++ ) {
 						prependCode += rCode[ i ];

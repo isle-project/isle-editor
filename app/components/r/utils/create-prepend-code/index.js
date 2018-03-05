@@ -18,10 +18,11 @@ const requireLibs = ( libs ) => {
 *
 * @param {Array} libs - array of libraries to requireLibs
 * @param {(Array|string)} prependCode - array of strings or single string of code to prepend
+* @param {Object} session - session object
 * @param {string} generated code
 */
-function createPrependCode( libs, prependCode ) {
-	const { rshell } = global.session.config;
+function createPrependCode( libs, prependCode, session ) {
+	const { rshell } = session.config;
 	if ( rshell && rshell.libraries ) {
 		libs = libs.concat( rshell.libraries );
 	}
