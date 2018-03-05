@@ -279,10 +279,6 @@ function writeIndexFile({
 					}
 				},
 				{
-					test: /\.json$/,
-					loader: 'json-loader'
-				},
-				{
 					test: /\.svg$/i,
 					use: {
 						loader: 'svg-react-loader'
@@ -297,6 +293,9 @@ function writeIndexFile({
 				}
 			],
 			noParse: /node_modules\/json-schema\/lib\/validate\.js/
+		},
+		optimization: {
+			minimize: false
 		},
 		node: {
 			child_process: 'empty',
