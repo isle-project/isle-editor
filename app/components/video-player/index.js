@@ -81,7 +81,7 @@ class Video extends Component {
 					onPause={this.handlePause}
 					onEnded={this.handleEnded}
 					onProgress={this.handleProgress}
-					progressFrequency={1000}
+					progressInterval={1000}
 				/>
 			</div>
 		);
