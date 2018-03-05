@@ -27,10 +27,6 @@ export default {
 			]
 		},
 		{
-			test: /\.json$/,
-			use: 'json-loader'
-		},
-		{
 			test: /\.txt$/,
 			use: 'raw-loader'
 		},
@@ -81,6 +77,7 @@ export default {
 		// Node 3rd party libraries which can't be built with webpack go here...
 		'child_process',
 		'webpack',
-		'uglify-es'
+		'uglify-es',
+		'@stdlib'
 	]
 };

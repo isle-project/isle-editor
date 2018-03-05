@@ -1,7 +1,6 @@
 // MODULES //
 
 import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import path from 'path';
 import baseConfig from './webpack.config.base';
 
@@ -13,13 +12,21 @@ const config = {
 
 	devtool: 'source-map',
 
-	entry: './app/index',
+	entry: {
+		index: './app/index'
+	},
+
+	optimization: {
+		minimize: false
+	},
 
 	output: {
 		...baseConfig.output,
 
 		publicPath: '../dist/'
 	},
+
+
 
 	module: {
 		...baseConfig.module,
@@ -47,9 +54,6 @@ const config = {
 					path.join( __dirname, 'node_modules', 'unique-string' ),
 					path.join( __dirname, 'node_modules', 'katex' )
 				]
-			}, {
-				test: /\.json$/,
-				use: 'json-loader'
 			},
 			{
 				test: /\.txt$/,
@@ -73,11 +77,7 @@ const config = {
 
 	plugins: [
 		...baseConfig.plugins,
-		new webpack.optimize.OccurrenceOrderPlugin(),
-		new ExtractTextPlugin({
-			filename: 'style.css',
-			allChunks: true
-		})
+		new webpack.optimize.OccurrenceOrderPlugin()
 	],
 
 	target: 'electron-renderer'
