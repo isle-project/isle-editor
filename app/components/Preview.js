@@ -1,172 +1,192 @@
 // MODULES //
 
 /*
-	Disable no-unused-vars warning as modules might be consumed in evaluated user code:
-*/
-/* eslint no-unused-vars: 0 */
-
-/*
 	Disable no-eval warning as evaluating code in an editor
 	is one of the few valid use-cases of this otherwise dangerous function:
 */
-/* eslint no-eval: 0 */
+/* eslint no-new-func: 0 */
 
-const fs = require( 'fs' );
-const path = require( 'path' );
-const PropTypes = require( 'prop-types' );
-const React = require( 'react' );
-const ReactBootstrap = require( 'react-bootstrap' );
-const render = require( 'react-dom' ).render;
-const NotificationSystem = require( 'react-notification-system' );
-const contains = require( '@stdlib/assert/contains' );
-const request = require( 'request' );
-const debug = require( 'debug' )( 'isle-editor' );
-const Session = require( 'session' );
-import { Component } from 'react';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 import { transform } from 'babel-core';
+import PropTypes from 'prop-types';
+import NotificationSystem from 'react-notification-system';
+import request from 'request';
+import contains from '@stdlib/assert/contains';
+import logger from 'debug';
 import markdownToHTML from 'utils/markdown-to-html';
+import pluginTransformJSX from 'babel-plugin-transform-react-jsx';
+import Loadable from 'components/loadable';
+import Session from 'session';
+import Accordion from 'react-bootstrap/lib/Accordion';
+import Button from 'react-bootstrap/lib/Button';
+import Col from 'react-bootstrap/lib/Col';
+import Modal from 'react-bootstrap/lib/Modal';
+import Nav from 'react-bootstrap/lib/Nav';
+import Navbar from 'react-bootstrap/lib/Navbar';
+import NavItem from 'react-bootstrap/lib/NavItem';
+import Row from 'react-bootstrap/lib/Row';
+import Tab from 'react-bootstrap/lib/Tab';
+import Tabs from 'react-bootstrap/lib/Tabs';
+import Well from 'react-bootstrap/lib/Well';
+import SPECTACLE_THEME from 'components/spectacle/theme.json';
 
-const Deck = require( 'spectacle' ).Deck;
-
-// E-LEARNING MODULE COMPONENTS //
-
-// Babel does not support `eval`, so we have to require modules using CommonJS...
-const Accordion = ReactBootstrap.Accordion;
-const AcousticCSS = require( 'components/acoustic-css' );
-const AcousticAssistant = require( 'components/acoustic-assistant' );
-const Button = ReactBootstrap.Button;
-const CheckboxInput = require( 'components/input/checkbox' );
-const Clock = require( 'components/clock' );
-const ColorPicker = require( 'components/color-picker' );
-const Col = ReactBootstrap.Col;
-const Dashboard = require( 'components/dashboard' );
-const DataTable = require( 'components/data-table' );
-const DensityPlot = require( 'components/d3/density-plot' );
-const NetworkPlot = require( 'components/d3/network-plot' );
-const DraggableGrid = require( 'components/draggable-grid' );
-const DraggableList = require( 'components/draggable-list' );
-const MarkdownEditor = require( 'components/markdown-editor' );
-const EnlargeableGrid = require( 'components/enlargeable-grid' );
-const Expire = require( 'components/expire' );
 // const Experiment = require( 'components/experiment' );
-const FeedbackButtons = require( 'components/feedback' );
-const FreeTextSurvey = require( 'components/free-text-survey' );
-const FreeTextQuestion = require( 'components/free-text-question' );
-const Gate = require( 'components/gate' );
-const Grid = require( 'components/grid' );
-const IFrame = require( 'components/iframe' );
-const JSShell = require( 'components/js-shell' );
-const LessonSubmit = require( 'components/lesson-submit' );
-const Metrics = require( 'components/metrics/db' );
-const Modal = ReactBootstrap.Modal;
-const MultipleChoiceQuestion = require( 'components/multiple-choice-question' );
-const MultipleChoiceSurvey = require( 'components/multiple-choice-survey' );
-const SurveyGenerator = require( 'components/survey-generator' );
-const MatchListQuestion = require( 'components/match-list-question' );
-const Nav = ReactBootstrap.Nav;
-const Navbar = ReactBootstrap.Navbar;
-const NavItem = ReactBootstrap.NavItem;
-const News = require( 'components/news' );
-const NumberInput = require( 'components/input/number' );
-const NumberQuestion = require( 'components/number-question' );
-const NumberSurvey = require( 'components/number-survey' );
-const Pages = require( 'components/pages' );
-const Panel = require( 'components/panel' );
-const Playground = require( 'components/playground' );
-const Plotly = require( 'components/plotly' );
-const ProportionsInput = require( 'components/input/proportions' );
-const ProportionsSurvey = require( 'components/proportions-survey' );
-const Provider = require( 'components/provider' );
-const RealtimeMetrics = require( 'components/metrics/realtime' );
-const Recorder = require( 'components/recorder' );
-const RPlot = require( 'components/r/plot' );
-const RHelp = require( 'components/r/help' );
-const RShell = require( 'components/r/shell' );
-const RTable = require( 'components/r/table' );
-const ROutput = require( 'components/r/output' );
-const Row = ReactBootstrap.Row;
-const Runner = require( 'components/runner' );
-const SelectInput = require( 'components/input/select' );
-const SelectQuestion = require( 'components/select-question' );
-const SliderInput = require( 'components/input/slider' );
-const Slider = require( 'components/slider' );
-const theme = require( 'components/spectacle/theme.json' );
-const SpeechRecognition = require( 'components/speech-recognition' );
-const Spinner = require( 'components/spinner' );
-const StatusBar = require( 'components/statusbar' );
-const Switch = require( 'components/switch' );
-const Tab = ReactBootstrap.Tab;
-const Tabs = ReactBootstrap.Tabs;
-const TeX = require( 'components/tex' );
-const TextArea = require( 'components/text-area' );
-const TextInput = require( 'components/input/text' );
-const Text = require( 'components/text' );
-const Timer = require( 'components/timer' );
-const Tree = require( 'components/d3/tree' );
-const Bar = require( 'victory' ).Bar;
 // const Variant = require( 'react-ab-test' ).Variant;
-const VictoryAnimation = require( 'victory' ).VictoryAnimation;
-const VictoryArea = require( 'victory' ).VictoryArea;
-const VictoryBar = require( 'victory' ).VictoryBar;
-const VictoryBrushContainer = require( 'victory' ).VictoryBrushContainer;
-const VictoryChart = require( 'victory' ).VictoryChart;
-const VictoryContainer = require( 'victory' ).VictoryContainer;
-const VictoryCursorContainer = require( 'victory' ).VictoryCursorContainer;
-const VictoryGroup = require( 'victory' ).VictoryGroup;
-const VictoryAxis = require( 'victory' ).VictoryAxis;
-const VictoryErrorBar = require( 'victory' ).VictoryErrorBar;
-const VictoryLabel = require( 'victory' ).VictoryLabel;
-const VictoryLegend = require( 'victory' ).VictoryLegend;
-const VictoryLine = require( 'victory' ).VictoryLine;
-const VictoryPie = require( 'victory' ).VictoryPie;
-const VictoryScatter = require( 'victory' ).VictoryScatter;
-const VictoryStack = require( 'victory' ).VictoryStack;
-const VictoryTheme = require( 'victory' ).VictoryTheme;
-const VictoryTooltip = require( 'victory' ).VictoryTooltip;
-const VictoryVoronoiContainer = require( 'victory' ).VictoryVoronoiContainer;
-const VictoryZoomContainer = require( 'victory' ).VictoryZoomContainer;
-const VideoPlayer = require( 'components/video-player' );
-const VoiceInput = require( 'components/input/voice' );
-const Weather = require( 'components/weather' );
-const Wikipedia = require( 'components/wikipedia' );
-
-const Appear = require( 'spectacle' ).Appear;
-const BlockQuote = require( 'spectacle' ).BlockQuote;
-const Cite = require( 'spectacle' ).Cite;
-const Code = require( 'spectacle' ).Code;
-const CodePane = require( 'spectacle' ).CodePane;
-const ComponentPlayground = require( 'spectacle' ).ComponentPlayground;
-const Fill = require( 'spectacle' ).Fill;
-const Fit = require( 'spectacle' ).Fit;
-const Heading = require( 'spectacle' ).Heading;
-const Image = require( 'spectacle' ).Image;
-const Layout = require( 'spectacle' ).Layout;
-const ListItem = require( 'spectacle' ).ListItem;
-const List = require( 'spectacle' ).List;
-const Quote = require( 'spectacle' ).Quote;
-const Slide = require( 'spectacle' ).Slide;
-const Table = require( 'spectacle' ).Table;
-const TableRow = require( 'spectacle' ).TableRow;
-const TableHeaderItem = require( 'spectacle' ).TableHeaderItem;
-const TableItem = require( 'spectacle' ).TableItem;
-const TableBody = require( 'spectacle' ).TableBody;
-const TableHeader = require( 'spectacle' ).TableHeader;
-const SText = require( 'spectacle' ).Text;
-const Well = ReactBootstrap.Well;
-const WordCloud = require( 'components/word-cloud' );
 
 
-// LEARNING MODULES //
+import { Bar, VictoryAnimation, VictoryArea, VictoryBar, VictoryBrushContainer, VictoryChart, VictoryContainer, VictoryCursorContainer, VictoryGroup, VictoryAxis, VictoryErrorBar, VictoryLabel, VictoryLegend, VictoryLine, VictoryPie, VictoryScatter, VictoryStack, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer, VictoryZoomContainer } from 'victory';
+import { Appear, BlockQuote, Cite, Code, CodePane, ComponentPlayground, Deck, Fill, Fit, Heading, Image, Layout, ListItem, List, Quote, Slide, Table, TableRow, TableHeaderItem, TableItem, TableBody, TableHeader, Text as SText } from 'spectacle';
 
-const DataExplorer = require( 'components/data-explorer' );
-const Learn = require( 'components/learn' );
-
-const pluginTransformJSX = require( 'babel-plugin-transform-react-jsx' );
 
 // VARIABLES //
 
 const OPTS = {
 	plugins: [ pluginTransformJSX ]
+};
+const debug = logger( 'isle-editor' );
+
+const createScope = ( session ) => {
+	const SCOPE = {
+		React,
+		Component,
+		render,
+		session,
+		NotificationSystem,
+		request,
+
+		AcousticAssistant: Loadable( () => import( 'components/acoustic-css' ), session ),
+		AcousticCSS: Loadable( () => import( 'components/acoustic-css' ), session ),
+		CheckboxInput: Loadable( () => import( 'components/input/checkbox' ), session ),
+		Clock: Loadable( () => import( 'components/clock' ), session ),
+		ColorPicker: Loadable( () => import( 'components/color-picker' ), session ),
+		Dashboard: Loadable( () => import( 'components/dashboard' ), session ),
+		DataExplorer: Loadable( () => import( 'components/data-explorer' ), session ),
+		DataTable: Loadable( () => import( 'components/data-table' ), session ),
+		DensityPlot: Loadable( () => import( 'components/d3/density-plot' ), session ),
+		DraggableGrid: Loadable( () => import( 'components/draggable-grid' ), session ),
+		DraggableList: Loadable( () => import( 'components/draggable-list' ), session ),
+		EnlargeableGrid: Loadable( () => import( 'components/enlargeable-grid' ), session ),
+		Expire: Loadable( () => import( 'components/expire' ), session ),
+		FeedbackButtons: Loadable( () => import( 'components/feedback' ), session ),
+		FreeTextSurvey: Loadable( () => import( 'components/free-text-survey' ), session ),
+		FreeTextQuestion: Loadable( () => import( 'components/free-text-question' ), session ),
+		Gate: Loadable( () => import( 'components/gate' ), session ),
+		Grid: Loadable( () => import( 'components/grid' ), session ),
+		IFrame: Loadable( () => import( 'components/iframe' ), session ),
+		JSShell: Loadable( () => import( 'components/js-shell' ), session ),
+		Learn: Loadable( () => import( 'components/learn' ), session ),
+		LessonSubmit: Loadable( () => import( 'components/lesson-submit' ), session ),
+		MarkdownEditor: Loadable( () => import( 'components/markdown-editor' ), session ),
+		MatchListQuestion: Loadable( () => import( 'components/match-list-question' ), session ),
+		Metrics: Loadable( () => import( 'components/metrics/db' ), session ),
+		MultipleChoiceQuestion: Loadable( () => import( 'components/multiple-choice-question' ), session ),
+		MultipleChoiceSurvey: Loadable( () => import( 'components/multiple-choice-survey' ), session ),
+		NetworkPlot: Loadable( () => import( 'components/d3/network-plot' ), session ),
+		News: Loadable( () => import( 'components/news' ), session ),
+		NumberInput: Loadable( () => import( 'components/input/number' ), session ),
+		NumberQuestion: Loadable( () => import( 'components/number-question' ), session ),
+		NumberSurvey: Loadable( () => import( 'components/number-survey' ), session ),
+		Pages: Loadable( () => import( 'components/pages' ), session ),
+		Panel: Loadable( () => import( 'components/panel' ), session ),
+		Playground: Loadable( () => import( 'components/playground' ), session ),
+		Plotly: Loadable( () => import( 'components/plotly' ), session ),
+		ProportionsInput: Loadable( () => import( 'components/input/proportions' ), session ),
+		ProportionsSurvey: Loadable( () => import( 'components/proportions-survey' ), session ),
+		RealtimeMetrics: Loadable( () => import( 'components/metrics/realtime' ), session ),
+		Recorder: Loadable( () => import( 'components/recorder' ), session ),
+		RPlot: Loadable( () => import( 'components/r/plot' ), session ),
+		RHelp: Loadable( () => import( 'components/r/help' ), session ),
+		RShell: Loadable( () => import( 'components/r/shell' ), session ),
+		RTable: Loadable( () => import( 'components/r/table' ), session ),
+		ROutput: Loadable( () => import( 'components/r/output' ), session ),
+		Runner: Loadable( () => import( 'components/runner' ), session ),
+		SelectInput: Loadable( () => import( 'components/input/select' ), session ),
+		SelectQuestion: Loadable( () => import( 'components/select-question' ), session ),
+		SliderInput: Loadable( () => import( 'components/input/slider' ), session ),
+		Slider: Loadable( () => import( 'components/slider' ), session ),
+		SpeechRecognition: Loadable( () => import( 'components/speech-recognition' ), session ),
+		Spinner: Loadable( () => import( 'components/spinner' ), session ),
+
+		StatusBar: Loadable( () => import( 'components/statusbar' ), session ),
+		SurveyGenerator: Loadable( () => import( 'components/survey-generator' ), session ),
+		Switch: Loadable( () => import( 'components/switch' ), session ),
+
+		TeX: Loadable( () => import( 'components/text' ), session ),
+		TextArea: Loadable( () => import( 'components/text-area' ), session ),
+		TextInput: Loadable( () => import( 'components/input/text' ), session ),
+		Text: Loadable( () => import( 'components/text' ), session ),
+		Timer: Loadable( () => import( 'components/timer' ), session ),
+		Tree: Loadable( () => import( 'components/d3/tree' ), session ),
+		VideoPlayer: Loadable( () => import( 'components/video-player' ), session ),
+		VoiceInput: Loadable( () => import( 'components/input/voice' ), session ),
+		Weather: Loadable( () => import( 'components/weather' ), session ),
+		Wikipedia: Loadable( () => import( 'components/wikipedia' ), session ),
+		WordCloud: Loadable( () => import( 'components/word-cloud' ), session ),
+
+		// REACT BOOTSTRAP //
+		Accordion,
+		Button,
+		Col,
+		Modal,
+		Nav,
+		Navbar,
+		NavItem,
+		Row,
+		Tab,
+		Tabs,
+		Well,
+
+		// VICTORY //
+		Bar,
+		VictoryAnimation,
+		VictoryArea,
+		VictoryBar,
+		VictoryBrushContainer,
+		VictoryChart,
+		VictoryContainer,
+		VictoryCursorContainer,
+		VictoryGroup,
+		VictoryAxis,
+		VictoryErrorBar,
+		VictoryLabel,
+		VictoryLegend,
+		VictoryLine,
+		VictoryPie,
+		VictoryScatter,
+		VictoryStack,
+		VictoryTheme,
+		VictoryTooltip,
+		VictoryVoronoiContainer,
+		VictoryZoomContainer,
+
+		// SPECTACLE //
+		Appear,
+		BlockQuote,
+		Cite,
+		Code,
+		CodePane,
+		ComponentPlayground,
+		Deck,
+		Fill,
+		Fit,
+		Heading,
+		Image,
+		Layout,
+		ListItem,
+		List,
+		Quote,
+		Slide,
+		Table,
+		TableRow,
+		TableHeaderItem,
+		TableItem,
+		TableBody,
+		TableHeader,
+		SText,
+		SPECTACLE_THEME
+	};
+	return SCOPE;
 };
 
 
@@ -176,106 +196,24 @@ export default class Preview extends Component {
 	constructor( props ) {
 		super( props );
 
-		this.state = {
-			preambleIsValid: !props.errorMsg
-		};
-
-		if ( this.state.preambleIsValid ) {
+		let lessonState = {};
+		const preambleIsValid = !props.errorMsg;
+		if ( preambleIsValid ) {
 			const offline = props.currentMode === 'offline';
-			global.session = new Session( props.preamble, offline );
+			const session = new Session( props.preamble, offline );
+			this.scope = createScope( session );
+			lessonState = session.config.state;
 		}
-
-		this.shouldRenderPreview = true;
-		this.renderPreview = () => {
-			debug( 'Should render the lesson...' );
-			let es5code;
-			let { code, preamble, currentRole } = this.props;
-			let session = global.session;
-
-			// Remove preamble and comments:
-			code = code.replace( /---([\S\s]*)---/, '' );
-			code = code.replace( /<!--([\S\s]*)-->/, '' );
-
-			// Replace Markdown by HTML...
-			code = markdownToHTML( code );
-
-			if ( preamble.type === 'presentation' ) {
-				debug( 'Should render a presentation...' );
-				let progress = 'number';
-				if ( preamble.presentation ) {
-					if ( preamble.presentation.progress ) {
-						progress = preamble.presentation.progress;
-					}
-				}
-				// Automatically insert <Slide> tags if not manually set...
-				if ( !contains( code, '<Slide' ) || !contains( code, '</Slide>' ) ) {
-					let pres = '<Slide>';
-					let arr = code.split( '<p>===</p>' );
-					pres += arr.join( '</Slide><Slide>' );
-					pres += '</Slide>';
-					pres = pres.replace( /<h([0-5])>(.*?)<\/h[0-5]>/g, '<Heading size={$1}>$2</Heading>' );
-					pres = pres.replace( /<p[^>]*>([\s\S]+?)<\/p>/g, '<SText>$1</SText>' );
-					pres = pres.replace( /<ul[^>]*>([\s\S]+?)<\/ul>/g, '<List>$1</List>' );
-					pres = pres.replace( /<li[^>]*>([\s\S]+?)<\/li>/g, '<ListItem>$1</ListItem>' );
-					code = pres;
-				}
-				code = `
-				<Deck
-					globalStyles={false}
-					controls={true}
-					progress="${progress}"
-					transition={[]}
-					theme={theme}
-				>${code}</Deck>`;
-			}
-			if ( !preamble.hideToolbar ) {
-				code = '<StatusBar className="fixedPos" />\n' + code;
-			}
-
-			const es6code = `class Lesson extends React.Component {
-				constructor() {
-					super();
-					this.state = global.session.config.state || {};
-				}
-				componentDidMount() {
-					global.lesson = this;
-				}
-				componentWillUnmount() {
-					this.unmounted = true;
-				}
-				render() {
-					return (
-						<div id="Lesson" className="Lesson" >
-							<React.Fragment>${code}</React.Fragment>
-							<NotificationSystem
-								ref={ ( div ) => this.notificationSystem = div }
-								allowHTML={true}
-							/>
-						</div>
-					);
-				}
-			}
-			render(
-				<Provider session={session} currentRole="${currentRole}" >
-					<Lesson />
-				</Provider>,
-				document.getElementById( 'Preview' )
-			);`;
-
-			debug( 'Transpile code to ES5...' );
-			try {
-				es5code = transform( es6code, OPTS );
-				if ( es5code && es5code.code ) {
-					eval( es5code.code );
-				}
-			} catch ( err ) {
-				this.renderErrorMessage( err.message );
-			}
+		this.state = {
+			preambleIsValid,
+			...lessonState
 		};
+		this.shouldRenderPreview = true;
 	}
 
 	componentDidMount() {
 		debug( 'Preview did mount.' );
+		global.lesson = this;
 		if ( this.state.preambleIsValid ) {
 			this.renderPreview();
 		} else {
@@ -304,7 +242,8 @@ export default class Preview extends Component {
 			nextProps.currentMode !== this.props.currentMode
 		) {
 			const offline = nextProps.currentMode === 'offline';
-			global.session = new Session( nextProps.preamble, offline );
+			const session = new Session( nextProps.preamble, offline );
+			this.scope = createScope( session );
 		}
 		if ( nextProps.preamble.type !== this.props.preamble.type ) {
 			if ( this.state.preambleIsValid ) {
@@ -322,27 +261,85 @@ export default class Preview extends Component {
 		}
 	}
 
+	renderPreview = () => {
+		debug( 'Should render the lesson...' );
+		let es5code;
+		let { code, preamble, currentRole } = this.props;
+
+		// Remove preamble and comments:
+		code = code.replace( /---([\S\s]*)---/, '' );
+		code = code.replace( /<!--([\S\s]*)-->/, '' );
+
+		// Replace Markdown by HTML...
+		code = markdownToHTML( code );
+
+		if ( preamble.type === 'presentation' ) {
+			debug( 'Should render a presentation...' );
+			let progress = 'number';
+			if ( preamble.presentation ) {
+				if ( preamble.presentation.progress ) {
+					progress = preamble.presentation.progress;
+				}
+			}
+			// Automatically insert <Slide> tags if not manually set...
+			if ( !contains( code, '<Slide' ) || !contains( code, '</Slide>' ) ) {
+				let pres = '<Slide>';
+				let arr = code.split( '<p>===</p>' );
+				pres += arr.join( '</Slide><Slide>' );
+				pres += '</Slide>';
+				pres = pres.replace( /<h([0-5])>(.*?)<\/h[0-5]>/g, '<Heading size={$1}>$2</Heading>' );
+				pres = pres.replace( /<p[^>]*>([\s\S]+?)<\/p>/g, '<SText>$1</SText>' );
+				pres = pres.replace( /<ul[^>]*>([\s\S]+?)<\/ul>/g, '<List>$1</List>' );
+				pres = pres.replace( /<li[^>]*>([\s\S]+?)<\/li>/g, '<ListItem>$1</ListItem>' );
+				code = pres;
+			}
+			code = `
+			<Deck
+				globalStyles={false}
+				controls={true}
+				progress="${progress}"
+				transition={[]}
+				theme={SPECTACLE_THEME}
+			>${code}</Deck>`;
+		}
+		if ( !preamble.hideToolbar ) {
+			code = '<StatusBar className="fixedPos" />\n' + code;
+		}
+		debug( 'Transpile code to ES5...' );
+		try {
+			es5code = transform( `var out = <React.Fragment>${code}</React.Fragment>`, OPTS );
+			es5code.code += '\n\n return out;';
+			if ( es5code && es5code.code ) {
+				const SCOPE_KEYS = Object.keys( this.scope );
+				const SCOPE_VALUES = SCOPE_KEYS.map( key => this.scope[key] );
+				const f = new Function( '_poly', ...SCOPE_KEYS, es5code.code ).bind( this );
+				global.SCOPE_VALUES = SCOPE_VALUES;
+				const out = f( '_poly', ...SCOPE_VALUES );
+				return out;
+			}
+		} catch ( err ) {
+			console.log( err );
+			return this.renderErrorMessage( err.message );
+		}
+	}
+
 	renderErrorMessage( err ) {
-		let code = `<div className="error-message">
+		return ( <div className="error-message">
 			<h3>Encountered an error:</h3>
 			<span>${err}</span>
-		</div>`;
-		code = `
-			render(
-				${code},
-				document.getElementById( 'Preview' )
-			)
-		`;
-		code = transform( code, OPTS ).code;
-		eval( code );
+		</div> );
 	}
 
 	render() {
-		return (
-			<div
-				ref={( div ) => { this.preview = div; }}
-				className="Preview" id="Preview"></div>
-		);
+		return ( <div id="Lesson" className="Lesson" >
+			{this.renderPreview()}
+			<NotificationSystem
+				ref={( div ) => {
+					this.notificationSystem = div;
+				}}
+				allowHTML={true}
+			/>
+		</div> );
 	}
 }
 
@@ -353,6 +350,7 @@ Preview.defaultProps = {
 	code: '',
 	errorMsg: ''
 };
+
 
 // PROPERTY TYPES //
 
