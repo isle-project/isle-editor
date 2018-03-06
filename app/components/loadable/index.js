@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Loadable from 'react-loadable';
-import Provider from 'components/provider';
 
 
 // FUNCTIONS //
@@ -14,15 +13,13 @@ const loading = () => {
 
 // MAIN //
 
-function MyLoadable( loader, session ) {
+function MyLoadable( loader ) {
 	return Loadable({
 		loader: loader,
 		loading,
 		render( loaded, props ) {
 			let Component = loaded.default;
-			return ( <Provider session={session}>
-				<Component {...props} />
-			</Provider> );
+			return <Component {...props} />;
 		}
 	});
 }

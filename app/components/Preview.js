@@ -16,6 +16,7 @@ import contains from '@stdlib/assert/contains';
 import logger from 'debug';
 import markdownToHTML from 'utils/markdown-to-html';
 import pluginTransformJSX from 'babel-plugin-transform-react-jsx';
+import Provider from 'components/provider';
 import Loadable from 'components/loadable';
 import Session from 'session';
 import Accordion from 'react-bootstrap/lib/Accordion';
@@ -29,7 +30,18 @@ import Row from 'react-bootstrap/lib/Row';
 import Tab from 'react-bootstrap/lib/Tab';
 import Tabs from 'react-bootstrap/lib/Tabs';
 import Well from 'react-bootstrap/lib/Well';
+import EnlargeableGrid from 'components/enlargeable-grid';
+import TeX from 'components/tex';
+import Dashboard from 'components/dashboard';
+import CheckboxInput from 'components/input/checkbox';
+import NumberInput from 'components/input/number';
+import ProportionsInput from 'components/input/proportions';
+import SelectInput from 'components/input/select';
+import SliderInput from 'components/input/slider';
+import TextInput from 'components/input/text';
+import VoiceInput from 'components/input/voice';
 import SPECTACLE_THEME from 'components/spectacle/theme.json';
+
 
 // const Experiment = require( 'components/experiment' );
 // const Variant = require( 'react-ab-test' ).Variant;
@@ -55,74 +67,74 @@ const createScope = ( session ) => {
 		NotificationSystem,
 		request,
 
-		AcousticAssistant: Loadable( () => import( 'components/acoustic-css' ), session ),
-		AcousticCSS: Loadable( () => import( 'components/acoustic-css' ), session ),
-		CheckboxInput: Loadable( () => import( 'components/input/checkbox' ), session ),
-		Clock: Loadable( () => import( 'components/clock' ), session ),
-		ColorPicker: Loadable( () => import( 'components/color-picker' ), session ),
-		Dashboard: Loadable( () => import( 'components/dashboard' ), session ),
-		DataExplorer: Loadable( () => import( 'components/data-explorer' ), session ),
-		DataTable: Loadable( () => import( 'components/data-table' ), session ),
-		DensityPlot: Loadable( () => import( 'components/d3/density-plot' ), session ),
-		DraggableGrid: Loadable( () => import( 'components/draggable-grid' ), session ),
-		DraggableList: Loadable( () => import( 'components/draggable-list' ), session ),
-		EnlargeableGrid: Loadable( () => import( 'components/enlargeable-grid' ), session ),
-		Expire: Loadable( () => import( 'components/expire' ), session ),
-		FeedbackButtons: Loadable( () => import( 'components/feedback' ), session ),
-		FreeTextSurvey: Loadable( () => import( 'components/free-text-survey' ), session ),
-		FreeTextQuestion: Loadable( () => import( 'components/free-text-question' ), session ),
-		Gate: Loadable( () => import( 'components/gate' ), session ),
-		Grid: Loadable( () => import( 'components/grid' ), session ),
-		IFrame: Loadable( () => import( 'components/iframe' ), session ),
-		JSShell: Loadable( () => import( 'components/js-shell' ), session ),
-		Learn: Loadable( () => import( 'components/learn' ), session ),
-		LessonSubmit: Loadable( () => import( 'components/lesson-submit' ), session ),
-		MarkdownEditor: Loadable( () => import( 'components/markdown-editor' ), session ),
-		MatchListQuestion: Loadable( () => import( 'components/match-list-question' ), session ),
-		Metrics: Loadable( () => import( 'components/metrics/db' ), session ),
-		MultipleChoiceQuestion: Loadable( () => import( 'components/multiple-choice-question' ), session ),
-		MultipleChoiceSurvey: Loadable( () => import( 'components/multiple-choice-survey' ), session ),
-		NetworkPlot: Loadable( () => import( 'components/d3/network-plot' ), session ),
-		News: Loadable( () => import( 'components/news' ), session ),
-		NumberInput: Loadable( () => import( 'components/input/number' ), session ),
-		NumberQuestion: Loadable( () => import( 'components/number-question' ), session ),
-		NumberSurvey: Loadable( () => import( 'components/number-survey' ), session ),
-		Pages: Loadable( () => import( 'components/pages' ), session ),
-		Panel: Loadable( () => import( 'components/panel' ), session ),
-		Playground: Loadable( () => import( 'components/playground' ), session ),
-		Plotly: Loadable( () => import( 'components/plotly' ), session ),
-		ProportionsInput: Loadable( () => import( 'components/input/proportions' ), session ),
-		ProportionsSurvey: Loadable( () => import( 'components/proportions-survey' ), session ),
-		RealtimeMetrics: Loadable( () => import( 'components/metrics/realtime' ), session ),
-		Recorder: Loadable( () => import( 'components/recorder' ), session ),
-		RPlot: Loadable( () => import( 'components/r/plot' ), session ),
-		RHelp: Loadable( () => import( 'components/r/help' ), session ),
-		RShell: Loadable( () => import( 'components/r/shell' ), session ),
-		RTable: Loadable( () => import( 'components/r/table' ), session ),
-		ROutput: Loadable( () => import( 'components/r/output' ), session ),
-		Runner: Loadable( () => import( 'components/runner' ), session ),
-		SelectInput: Loadable( () => import( 'components/input/select' ), session ),
-		SelectQuestion: Loadable( () => import( 'components/select-question' ), session ),
-		SliderInput: Loadable( () => import( 'components/input/slider' ), session ),
-		Slider: Loadable( () => import( 'components/slider' ), session ),
-		SpeechRecognition: Loadable( () => import( 'components/speech-recognition' ), session ),
-		Spinner: Loadable( () => import( 'components/spinner' ), session ),
+		AcousticAssistant: Loadable( () => import( 'components/acoustic-css' ) ),
+		AcousticCSS: Loadable( () => import( 'components/acoustic-css' ) ),
+		CheckboxInput: CheckboxInput,
+		Clock: Loadable( () => import( 'components/clock' ) ),
+		ColorPicker: Loadable( () => import( 'components/color-picker' ) ),
+		Dashboard,
+		DataExplorer: Loadable( () => import( 'components/data-explorer' ) ),
+		DataTable: Loadable( () => import( 'components/data-table' ) ),
+		DensityPlot: Loadable( () => import( 'components/d3/density-plot' ) ),
+		DraggableGrid: Loadable( () => import( 'components/draggable-grid' ) ),
+		DraggableList: Loadable( () => import( 'components/draggable-list' ) ),
+		EnlargeableGrid,
+		Expire: Loadable( () => import( 'components/expire' ) ),
+		FeedbackButtons: Loadable( () => import( 'components/feedback' ) ),
+		FreeTextSurvey: Loadable( () => import( 'components/free-text-survey' ) ),
+		FreeTextQuestion: Loadable( () => import( 'components/free-text-question' ) ),
+		Gate: Loadable( () => import( 'components/gate' ) ),
+		Grid: Loadable( () => import( 'components/grid' ) ),
+		IFrame: Loadable( () => import( 'components/iframe' ) ),
+		JSShell: Loadable( () => import( 'components/js-shell' ) ),
+		Learn: Loadable( () => import( 'components/learn' ) ),
+		LessonSubmit: Loadable( () => import( 'components/lesson-submit' ) ),
+		MarkdownEditor: Loadable( () => import( 'components/markdown-editor' ) ),
+		MatchListQuestion: Loadable( () => import( 'components/match-list-question' ) ),
+		Metrics: Loadable( () => import( 'components/metrics/db' ) ),
+		MultipleChoiceQuestion: Loadable( () => import( 'components/multiple-choice-question' ) ),
+		MultipleChoiceSurvey: Loadable( () => import( 'components/multiple-choice-survey' ) ),
+		NetworkPlot: Loadable( () => import( 'components/d3/network-plot' ) ),
+		News: Loadable( () => import( 'components/news' ) ),
+		NumberInput,
+		NumberQuestion: Loadable( () => import( 'components/number-question' ) ),
+		NumberSurvey: Loadable( () => import( 'components/number-survey' ) ),
+		Pages: Loadable( () => import( 'components/pages' ) ),
+		Panel: Loadable( () => import( 'components/panel' ) ),
+		Playground: Loadable( () => import( 'components/playground' ) ),
+		Plotly: Loadable( () => import( 'components/plotly' ) ),
+		ProportionsInput,
+		ProportionsSurvey: Loadable( () => import( 'components/proportions-survey' ) ),
+		RealtimeMetrics: Loadable( () => import( 'components/metrics/realtime' ) ),
+		Recorder: Loadable( () => import( 'components/recorder' ) ),
+		RPlot: Loadable( () => import( 'components/r/plot' ) ),
+		RHelp: Loadable( () => import( 'components/r/help' ) ),
+		RShell: Loadable( () => import( 'components/r/shell' ) ),
+		RTable: Loadable( () => import( 'components/r/table' ) ),
+		ROutput: Loadable( () => import( 'components/r/output' ) ),
+		Runner: Loadable( () => import( 'components/runner' ) ),
+		SelectInput,
+		SelectQuestion: Loadable( () => import( 'components/select-question' ) ),
+		SliderInput,
+		Slider: Loadable( () => import( 'components/slider' ) ),
+		SpeechRecognition: Loadable( () => import( 'components/speech-recognition' ) ),
+		Spinner: Loadable( () => import( 'components/spinner' ) ),
 
-		StatusBar: Loadable( () => import( 'components/statusbar' ), session ),
-		SurveyGenerator: Loadable( () => import( 'components/survey-generator' ), session ),
-		Switch: Loadable( () => import( 'components/switch' ), session ),
+		StatusBar: Loadable( () => import( 'components/statusbar' ) ),
+		SurveyGenerator: Loadable( () => import( 'components/survey-generator' ) ),
+		Switch: Loadable( () => import( 'components/switch' ) ),
 
-		TeX: Loadable( () => import( 'components/text' ), session ),
-		TextArea: Loadable( () => import( 'components/text-area' ), session ),
-		TextInput: Loadable( () => import( 'components/input/text' ), session ),
-		Text: Loadable( () => import( 'components/text' ), session ),
-		Timer: Loadable( () => import( 'components/timer' ), session ),
-		Tree: Loadable( () => import( 'components/d3/tree' ), session ),
-		VideoPlayer: Loadable( () => import( 'components/video-player' ), session ),
-		VoiceInput: Loadable( () => import( 'components/input/voice' ), session ),
-		Weather: Loadable( () => import( 'components/weather' ), session ),
-		Wikipedia: Loadable( () => import( 'components/wikipedia' ), session ),
-		WordCloud: Loadable( () => import( 'components/word-cloud' ), session ),
+		TeX,
+		TextArea: Loadable( () => import( 'components/text-area' ) ),
+		TextInput,
+		Text: Loadable( () => import( 'components/text' ) ),
+		Timer: Loadable( () => import( 'components/timer' ) ),
+		Tree: Loadable( () => import( 'components/d3/tree' ) ),
+		VideoPlayer: Loadable( () => import( 'components/video-player' ) ),
+		VoiceInput,
+		Weather: Loadable( () => import( 'components/weather' ) ),
+		Wikipedia: Loadable( () => import( 'components/wikipedia' ) ),
+		WordCloud: Loadable( () => import( 'components/word-cloud' ) ),
 
 		// REACT BOOTSTRAP //
 		Accordion,
@@ -201,6 +213,7 @@ export default class Preview extends Component {
 		if ( preambleIsValid ) {
 			const offline = props.currentMode === 'offline';
 			const session = new Session( props.preamble, offline );
+			this.session = session;
 			this.scope = createScope( session );
 			lessonState = session.config.state;
 		}
@@ -238,7 +251,12 @@ export default class Preview extends Component {
 		) {
 			const offline = nextProps.currentMode === 'offline';
 			const session = new Session( nextProps.preamble, offline );
+			this.session = session;
 			this.scope = createScope( session );
+			let lessonState = session.config.state;
+			this.setState({
+				...lessonState
+			});
 		}
 	}
 
@@ -307,7 +325,7 @@ export default class Preview extends Component {
 	renderErrorMessage( err ) {
 		return ( <div className="error-message">
 			<h3>Encountered an error:</h3>
-			<span>${err}</span>
+			<span>{err}</span>
 		</div> );
 	}
 
@@ -316,7 +334,9 @@ export default class Preview extends Component {
 			return this.renderErrorMessage( 'The preamble cannot be parsed. Please check the syntax.' );
 		}
 		return ( <div id="Lesson" className="Lesson" >
-			{this.renderPreview()}
+			<Provider session={this.session}>
+				{this.renderPreview()}
+			</Provider>
 			<NotificationSystem
 				ref={( div ) => {
 					this.notificationSystem = div;
