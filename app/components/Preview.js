@@ -214,11 +214,6 @@ export default class Preview extends Component {
 	componentDidMount() {
 		debug( 'Preview did mount.' );
 		global.lesson = this;
-		if ( this.state.preambleIsValid ) {
-			this.renderPreview();
-		} else {
-			this.renderErrorMessage( this.props.errorMsg );
-		}
 	}
 
 	componentWillReceiveProps( nextProps ) {
@@ -244,20 +239,6 @@ export default class Preview extends Component {
 			const offline = nextProps.currentMode === 'offline';
 			const session = new Session( nextProps.preamble, offline );
 			this.scope = createScope( session );
-		}
-		if ( nextProps.preamble.type !== this.props.preamble.type ) {
-			if ( this.state.preambleIsValid ) {
-				this.renderPreview();
-			}
-		}
-	}
-
-	componentDidUpdate() {
-		debug( 'Preview did update.' );
-		if ( this.state.preambleIsValid ) {
-			this.renderPreview();
-		} else {
-			this.renderErrorMessage( this.props.errorMsg );
 		}
 	}
 
@@ -331,6 +312,9 @@ export default class Preview extends Component {
 	}
 
 	render() {
+		if ( !this.state.preambleIsValid ) {
+			return this.renderErrorMessage( 'The preamble cannot be parsed. Please check the syntax.' );
+		}
 		return ( <div id="Lesson" className="Lesson" >
 			{this.renderPreview()}
 			<NotificationSystem
