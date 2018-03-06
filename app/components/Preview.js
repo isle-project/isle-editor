@@ -48,6 +48,7 @@ import SPECTACLE_THEME from 'components/spectacle/theme.json';
 
 
 import { Bar, VictoryAnimation, VictoryArea, VictoryBar, VictoryBrushContainer, VictoryChart, VictoryContainer, VictoryCursorContainer, VictoryGroup, VictoryAxis, VictoryErrorBar, VictoryLabel, VictoryLegend, VictoryLine, VictoryPie, VictoryScatter, VictoryStack, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer, VictoryZoomContainer } from 'victory';
+import VictoryWrapper from 'components/victory-wrapper';
 import { Appear, BlockQuote, Cite, Code, CodePane, ComponentPlayground, Deck, Fill, Fit, Heading, Image, Layout, ListItem, List, Quote, Slide, Table, TableRow, TableHeaderItem, TableItem, TableBody, TableHeader, Text as SText } from 'spectacle';
 
 
@@ -171,6 +172,7 @@ const createScope = ( session ) => {
 		VictoryTooltip,
 		VictoryVoronoiContainer,
 		VictoryZoomContainer,
+		VictoryWrapper,
 
 		// SPECTACLE //
 		Appear,

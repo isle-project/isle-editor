@@ -76,6 +76,7 @@ function getCSSStyles( parentElement ) {
 
 function getSVGString( svgNode ) {
 	svgNode.setAttribute( 'xlink', 'http://www.w3.org/1999/xlink' );
+	svgNode.setAttribute( 'style', 'background: white;' );
 	const cssStyleText = getCSSStyles( svgNode );
 	appendCSS( cssStyleText, svgNode );
 

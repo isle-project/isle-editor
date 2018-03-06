@@ -63,7 +63,7 @@
 	"SurveyGenerator": "const SurveyGenerator = require( \"components/survey-generator\" )",
 	"SpeechRecognition": "const SpeechRecognition = require( \"components/speech-recognition\" )",
 	"VoiceInput": "const VoiceInput = require( \"components/input/voice\" )",
-	"Weather": "const Weather = require( \"components/weather\" )",	
+	"Weather": "const Weather = require( \"components/weather\" )",
 	"Wikipedia": "const Wikipedia = require( \"components/wikipedia\" )",
 	"Appear": "const Appear = require( 'spectacle' ).Appear",
 	"BlockQuote": "const BlockQuote = require( 'spectacle' ).BlockQuote",
@@ -115,6 +115,7 @@
 	"VictoryVoronoiContainer": "const VictoryVoronoiContainer = require( \"victory\" ).VictoryVoronoiContainer",
 	"VictoryVoronoi": "const VictoryVoronoi = require( \"victory\" ).VictoryVoronoi",
 	"VictoryZoomContainer": "const VictoryZoomContainer = require( \"victory\" ).VictoryZoomContainer",
+	"VictoryWrapper": "const VictoryWrapper = require( \"components/victory-wrapper\" )",
 	"VideoPlayer": "const VideoPlayer = require( \"components/video-player\" )",
 	"Well": "const Well = require( \"react-bootstrap/lib/Well\" )",
 	"WordCloud": "const WordCloud = require( \"components/word-cloud\" )"
