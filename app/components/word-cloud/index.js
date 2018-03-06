@@ -266,7 +266,7 @@ class Wrapper extends Component {
 			<Button bsSize="xsmall" onClick={this.saveToPNG} style={{
 				position: 'relative',
 				top: '0px',
-				right: '0px'
+				left: '5px'
 			}}>Save Word Cloud</Button>
 		</div> );
 	}
