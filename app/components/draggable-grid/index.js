@@ -55,7 +55,7 @@ class DraggableGrid extends Component {
 			cols={{ lg: 18, md: 12, sm: 12, xs: 12, xxs: 6 }}
 			isResizable={this.props.isResizable}
 			isDraggable={this.props.isDraggable}
-			rowHeight={60}
+			rowHeight={this.props.rowHeight}
 		>
 			{this.props.children.map( ( element, idx ) => {
 				return ( <div key={`cell-${idx}`}>
@@ -70,7 +70,8 @@ class DraggableGrid extends Component {
 
 DraggableGrid.defaultProps = {
 	isDraggable: false,
-	isResizable: false
+	isResizable: false,
+	rowHeight: 60
 };
 
 
@@ -78,7 +79,8 @@ DraggableGrid.defaultProps = {
 
 DraggableGrid.propTypes = {
 	isDraggable: PropTypes.bool,
-	isResizable: PropTypes.bool
+	isResizable: PropTypes.bool,
+	rowHeight: PropTypes.number
 };
 
 
