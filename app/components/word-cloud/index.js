@@ -3,9 +3,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import ReactFauxDom from 'react-faux-dom';
+import { findDOMNode } from 'react-dom';
+import Button from 'react-bootstrap/lib/Button';
 import { scaleOrdinal, schemeCategory10, select } from 'd3';
 import cloud from 'd3-cloud';
+import FileSaver from 'file-saver';
 import min from '@stdlib/math/base/special/min';
 import removePunctuation from '@stdlib/string/remove-punctuation';
 import tokenize from '@stdlib/nlp/tokenize';
@@ -25,6 +27,7 @@ import STOPWORDS_IT from '@stdlib/datasets/savoy-stopwords-it';
 import STOPWORDS_POR from '@stdlib/datasets/savoy-stopwords-por';
 import STOPWORDS_SP from '@stdlib/datasets/savoy-stopwords-sp';
 import STOPWORDS_SWE from '@stdlib/datasets/savoy-stopwords-swe';
+import { svgString2Image, getSVGString } from 'utils/svg';
 
 
 // VARIABLES //
@@ -98,6 +101,12 @@ class Wrapper extends Component {
 		this.stopwords = generateStopwords( props.language );
 	}
 
+	componentDidMount() {
+		if ( this.state.wordCounts.length > 0 ) {
+			this.addWordCloud();
+		}
+	}
+
 	componentWillReceiveProps( nextProps ) {
 		if (
 			nextProps.data.length !== this.props.data.length ||
@@ -124,6 +133,12 @@ class Wrapper extends Component {
 			return true;
 		}
 		return false;
+	}
+
+	componentDidUpdate() {
+		if ( !this.wordCloud && this.state.wordCounts.length > 0 ) {
+			this.addWordCloud();
+		}
 	}
 
 	createBagOfWords = ( texts ) => {
@@ -194,7 +209,9 @@ class Wrapper extends Component {
 
 	addWordCloud() {
 		const fontSizeMapper = this.props.fontSizeMapper || this.fontSizeMapper;
-		select( this.wordCloud ).selectAll( '*' ).remove();
+		select( findDOMNode( this ) )
+			.selectAll( 'svg' )
+			.remove();
 		const layout = cloud()
 			.size([ this.props.width, this.props.height ])
 			.font( this.props.font )
@@ -202,40 +219,56 @@ class Wrapper extends Component {
 			.padding( this.props.padding )
 			.rotate( this.props.rotate )
 			.fontSize( fontSizeMapper )
-			.on('end', words => {
-				select( this.wordCloud )
+			.on( 'end', words => {
+				this.svg = select( findDOMNode( this ) )
 				.append( 'svg' )
-				.attr( 'width', layout.size()[0] )
-				.attr( 'height', layout.size()[1] )
-				.append( 'g' )
-				.attr( 'transform', `translate(${layout.size()[0] / 2},${layout.size()[1] / 2})` )
-				.selectAll( 'text' )
-				.data( words )
-				.enter()
-				.append( 'text' )
-				.style( 'font-size', d => `${d.size}px` )
-				.style( 'font-family', this.props.font )
-				.style( 'fill', ( d, i ) => fill( i ) )
-				.style( 'cursor', 'pointer' )
-				.attr( 'text-anchor', 'middle' )
-				.attr( 'transform',
-					d => `translate(${[d.x, d.y]})rotate(${d.rotate})`
-				)
-				.text( d => d.text )
-				.on( 'click', this.props.onClick );
+					.attr( 'width', layout.size()[0] )
+					.attr( 'height', layout.size()[1] )
+					.style( 'background', '#ffffff' );
+				this.svg.append( 'g' )
+					.attr( 'transform', `translate(${layout.size()[0] / 2},${layout.size()[1] / 2})` )
+					.selectAll( 'text' )
+					.data( words )
+					.enter()
+					.append( 'text' )
+					.style( 'font-size', d => `${d.size}px` )
+					.style( 'font-family', this.props.font )
+					.style( 'fill', ( d, i ) => fill( i ) )
+					.style( 'cursor', 'pointer' )
+					.attr( 'text-anchor', 'middle' )
+					.attr( 'transform',
+						d => `translate(${[d.x, d.y]})rotate(${d.rotate})`
+					)
+					.text( d => d.text )
+					.on( 'click', this.props.onClick );
 			});
 		layout.start();
 	}
 
+	saveToPNG = () => {
+		const { width, height } = this.props;
+		const svgString = getSVGString( this.svg.node() );
+		svgString2Image( svgString, 2.0*width, 2.0*height, 'png', save );
+
+		let name;
+		if ( this.props.id ) {
+			name = this.props.id+'.png';
+		} else {
+			name = 'wordcloud.png';
+		}
+		function save( dataBlob, filesize ) {
+			FileSaver.saveAs( dataBlob, name );
+		}
+	}
+
 	render() {
-		if ( this.state.wordCounts.length === 0 ) {
-			return null;
-		}
-		if ( !this.wordCloud ) {
-			this.wordCloud = ReactFauxDom.createElement( 'div' );
-			this.addWordCloud();
-		}
-		return this.wordCloud.toReact();
+		return ( <div>
+			<Button bsSize="xsmall" onClick={this.saveToPNG} style={{
+				position: 'relative',
+				top: '0px',
+				right: '0px'
+			}}>Save Word Cloud</Button>
+		</div> );
 	}
 }
 
