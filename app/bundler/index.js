@@ -248,6 +248,10 @@ function writeIndexFile({
 					basePath,
 					'./node_modules/katex/dist/katex.min.js'
 				),
+				'plotly.js/dist/plotly': path.resolve(
+					basePath,
+					'./node_modules/plotly.js/dist/plotly-cartesian.min.js'
+				),
 				'plotly.js': path.resolve(
 					basePath,
 					'./node_modules/plotly.js/dist/plotly-cartesian.min.js'
