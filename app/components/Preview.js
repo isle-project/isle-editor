@@ -265,7 +265,7 @@ export default class Preview extends Component {
 	renderPreview = () => {
 		debug( 'Should render the lesson...' );
 		let es5code;
-		let { code, preamble, currentRole } = this.props;
+		let { code, preamble } = this.props;
 
 		// Remove preamble and comments:
 		code = code.replace( /---([\S\s]*)---/, '' );
@@ -336,7 +336,7 @@ export default class Preview extends Component {
 			return this.renderErrorMessage( 'The preamble cannot be parsed. Please check the syntax.' );
 		}
 		return ( <div id="Lesson" className="Lesson" >
-			<Provider session={this.session}>
+			<Provider session={this.session} currentRole={this.props.currentRole}>
 				{this.renderPreview()}
 			</Provider>
 			<NotificationSystem

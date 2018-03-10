@@ -26,8 +26,6 @@ const config = {
 		publicPath: '../dist/'
 	},
 
-
-
 	module: {
 		...baseConfig.module,
 
