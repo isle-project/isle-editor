@@ -465,6 +465,27 @@ ${hash[ key ]}
 						level: 'success',
 						position: 'tr'
 					});
+					let text = this.simplemde.value();
+					text = this.replacePlaceholders( text );
+					let html = this.previewRender( text );
+					html = createHTML( title, html );
+					const msg = {
+						text: `Dear ${session.user.name}, your report has been successfully recorded. For your convenience, your report and the generated HTML file are attached to this email.`,
+						subject: 'Report submitted',
+						attachments: [
+							{
+								filename: 'report.html',
+								content: html,
+								contentType: 'text/html'
+							},
+							{
+								filename: 'report.md',
+								content: text,
+								contentType: 'text/plain'
+							}
+						]
+					};
+					session.sendMail( msg, session.user.email );
 					if ( this.props.id ) {
 						session.log({
 							id: this.props.id,
