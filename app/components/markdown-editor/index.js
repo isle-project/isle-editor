@@ -204,7 +204,7 @@ class MarkdownEditor extends Component {
 		this.simplemde.codemirror.refresh();
 	}
 
-	componentDidUnmount() {
+	omponentWillUnmoun() {
 		clearInterval( this.interval );
 	}
 
