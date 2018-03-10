@@ -86,6 +86,8 @@ The following icons are used under a Creative Commons CCBY license.
 - "Lightbulb" by Jeremy J Bristol
 - "Microphone" by Aleksandr Vector
 - "Positive Feedback Loop" by Richard Slater
+- "bar chart" by Barracuda
+- "Scatterplot" by JeraOcean
 
 [electron]: http://electron.atom.io/
 [git]: http://git-scm.com/
