@@ -146,7 +146,6 @@ class Login extends Component {
 					<a href="" style={{ float: 'left', marginTop: '8px' }} onClick={this.handleForgotPassword}>Forgot password?</a>
 					<Button
 						bsStyle="primary"
-						className="centered"
 						type="submit"
 						onClick={this.handleSubmit}
 					>Sign in</Button>
