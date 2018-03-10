@@ -15,8 +15,8 @@
     "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 tape -r babel-register test/setup.js test/**/*.spec.js | tap-spec",
     "test-cov": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 istanbul cover --dir ./reports/coverage --report lcov tape -- -r babel-register test/setup.js test/**/*.spec.js",
     "lint": "eslint app test *.js",
-    "build-main": "cross-env NODE_ENV=production node --max_old_space_size=4096 -r babel-register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.electron.js --progress --profile --colors",
-    "build-renderer": "cross-env NODE_ENV=production node --max_old_space_size=4096 -r babel-register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.production.js --progress --profile --colors",
+    "build-main": "cross-env NODE_ENV=production node --max_old_space_size=4096 -r babel-register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.electron.js --progress --colors",
+    "build-renderer": "cross-env NODE_ENV=production node --max_old_space_size=4096 -r babel-register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.production.js --progress --colors",
     "build": "npm run build-main && npm run build-renderer",
     "start": "cross-env NODE_ENV=production electron ./",
     "package": "cross-env NODE_ENV=production node -r babel-register package.js",
@@ -26,7 +26,7 @@
     "view-cov": "xdg-open ./reports/coverage/lcov-report/index.html",
     "view-docs": "concurrently --kill-others \"gitbook serve\" \"sensible-browser http://localhost:4000\"",
     "dev": "cross-env START_HOT=1 npm run start-renderer-dev",
-    "start-renderer-dev": "cross-env START_HOT=1 NODE_ENV=development node --max-old-space-size=4096 --trace-warnings -r babel-register ./node_modules/webpack-dev-server/bin/webpack-dev-server --config=webpack.config.development.js",
+    "start-renderer-dev": "cross-env START_HOT=1 NODE_ENV=development node --max-old-space-size=4096 --trace-warnings -r babel-register ./node_modules/webpack-dev-server/bin/webpack-dev-server --config=webpack.config.development.js --mode=development",
     "start-main-dev": "cross-env HOT=1 NODE_ENV=development electron -r babel-register ./main.development.js"
   },
   "repository": {

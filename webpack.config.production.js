@@ -22,8 +22,8 @@ const config = {
 
 	output: {
 		...baseConfig.output,
-
-		publicPath: '../dist/'
+		publicPath: '../dist/',
+		filename: 'renderer.prod.js'
 	},
 
 	module: {

@@ -18,9 +18,10 @@
 		<script>
 			( function() {
 				const script = document.createElement( 'script' );
-				script.src = (process.env.HOT) ?
-					'http://localhost:3000/dist/bundle.js' :
-					'../dist/bundle.js';
+				const port = process.env.PORT || 1212;
+				script.src = ( process.env.HOT ) ?
+					'http://localhost:'+port+'/dist/renderer.dev.js' :
+					'../dist/renderer.prod.js';
 				document.write( script.outerHTML );
 			}() );
 		</script>
