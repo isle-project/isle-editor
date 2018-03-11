@@ -18,12 +18,7 @@ export default {
 			},
 			include: [
 				path.join( __dirname, 'main.development.js' ),
-				path.join( __dirname, 'app' ),
-				path.join( __dirname, 'node_modules', 'configstore' ),
-				path.join( __dirname, 'node_modules', 'crypto-random-string' ),
-				path.join( __dirname, 'node_modules', 'fs-extra' ),
-				path.join( __dirname, 'node_modules', 'unique-string' ),
-				path.join( __dirname, 'node_modules', 'katex' )
+				path.join( __dirname, 'app' )
 			]
 		},
 		{
@@ -77,7 +72,6 @@ export default {
 		// Node 3rd party libraries which can't be built with webpack go here...
 		'child_process',
 		'webpack',
-		'uglify-es',
-		'@stdlib'
+		'uglify-es'
 	]
 };
