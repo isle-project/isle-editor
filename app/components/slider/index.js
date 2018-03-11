@@ -79,7 +79,6 @@ class DefaultSlider extends Component {
 					marginBottom: '5px',
 					paddingBottom: '20px',
 					width: '100%',
-					height: '100%',
 					...this.props.style
 				}}
 			>
