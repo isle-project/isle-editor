@@ -1,5 +1,6 @@
-.slider-previous-button { 
-    transition: 0.5s;
+.slider-previous-button {
+	transition: 0.5s;
+	padding-top: 3px;
 	margin-right: 6px;
 	text-align: center;
 	border:none;
@@ -30,6 +31,6 @@
 }
 
 .slider-previous-button:disabled {
-    transition: 0.3;
+	transition: 0.3;
 	opacity: 0;
 }

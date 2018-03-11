@@ -1,5 +1,6 @@
-.slider-next-button { 
+.slider-next-button {
 	transition: 0.5s;
+	padding-top: 3px;
 	margin-right: 6px;
 	text-align: center;
 	border:none;
