@@ -109,6 +109,7 @@
     "redux-logger": "^3.0.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.0",
+    "uglifyjs-webpack-plugin": "^1.2.3",
     "webpack-cli": "^2.0.11",
     "webpack-dev-server": "^3.1.1"
   },
@@ -233,7 +234,7 @@
     "svg-react-loader": "^0.4.5",
     "turndown": "^4.0.1",
     "turndown-plugin-gfm": "^1.0.1",
-    "uglify-es": "3.3.10",
+    "uglify-es": "3.3.9",
     "uniq": "^1.0.1",
     "utf-8-validate": "^4.0.0",
     "venn.js": "0.2.20",
