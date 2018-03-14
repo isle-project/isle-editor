@@ -1,9 +1,10 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import SimpleMDE from 'simplemde';
 import markdownIt from 'markdown-it';
+import pdfMake from 'pdfmake/build/pdfmake.min.js';
 import katex from 'markdown-it-katex';
 import markdownSub from 'markdown-it-sub';
 import markdownIns from 'markdown-it-ins';
@@ -15,9 +16,13 @@ import startsWith from '@stdlib/string/starts-with';
 import endsWith from '@stdlib/string/ends-with';
 import removeLast from '@stdlib/string/remove-last';
 import removeFirst from '@stdlib/string/remove-first';
+import noop from '@stdlib/utils/noop';
 import VoiceInput from 'components/input/voice';
 import 'simplemde/dist/simplemde.min.css';
 import './markdown-editor.css';
+import fonts from './fonts.js';
+import generatePDF from './generate_pdf.js';
+import SaveModal from './save_modal.js';
 import { clearInterval } from 'timers';
 
 
@@ -36,6 +41,8 @@ md.use( katex, {
 md.use( markdownSub );
 md.use( markdownContainer, 'center' );
 md.use( markdownIns );
+
+pdfMake.vfs = fonts;
 
 const createHTML = ( title, body ) => `<!doctype html>
 <html lang=en>
@@ -116,6 +123,20 @@ const createHTML = ( title, body ) => `<!doctype html>
 			a {
 				color: #2e4468;
 			}
+			pre {
+				display: block;
+				padding: 9.5px;
+				margin: 0 0 10px;
+				line-height: 1.42857143;
+				color: #333;
+				word-break: break-all;
+				word-wrap: break-word;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+			}
+			code {
+				white-space: pre-wrap;
+			}
 			.center {
 				width: 50%;
 				display: block;
@@ -151,7 +172,8 @@ class MarkdownEditor extends Component {
 
 		this.state = {
 			value: value,
-			hash: hash
+			hash: hash,
+			showSaveModal: false
 		};
 	}
 
@@ -163,6 +185,8 @@ class MarkdownEditor extends Component {
 			previewRender: this.previewRender,
 			toolbar: this.createToolbar(),
 			status: [ 'lines', 'words' ],
+			indentWithTabs: false,
+			tabSize: 2,
 			...this.props.options
 		});
 
@@ -282,7 +306,6 @@ ${hash[ key ]}
 	}
 
 	createToolbar() {
-		const title = document.title || 'provisoric';
 		const toolbar = [
 			'bold', 'italic', {
 				name: 'underline',
@@ -357,7 +380,7 @@ ${hash[ key ]}
 					cm.focus();
 				},
 				className: 'fa fa-arrow-down',
-				title: 'Add newLine Separators'
+				title: 'Add new line separator'
 			},
 			{
 				name: 'center',
@@ -413,7 +436,7 @@ ${hash[ key ]}
 				},
 				className: 'fa fa-align-center',
 				title: 'Center Element'
-			}, '|', 'heading', 'quote', 'unordered-list', 'ordered-list', 'link', '|', 'preview', 'side-by-side', 'fullscreen', '|',
+			}, '|', 'heading', 'unordered-list', 'ordered-list', 'link', '|', 'preview', 'side-by-side', 'fullscreen', '|',
 			{
 				name: 'open_markdown',
 				action: (editor) => {
@@ -427,32 +450,14 @@ ${hash[ key ]}
 				title: 'Open Markdown File'
 			},
 			{
-				name: 'save_markdown',
+				name: 'save',
 				action: (editor) => {
-					let text = this.simplemde.value();
-					text = this.replacePlaceholders( text );
-					const blob = new Blob([ text ], {
-						type: 'text/html'
-					});
-					FileSaver.saveAs( blob, title+'.md' );
-				},
-				className: 'fa fa-file-text',
-				title: 'Save Markdown File'
-			},
-			{
-				name: 'html',
-				action: (editor) => {
-					const mdValue = this.simplemde.value();
-					const body = this.previewRender( mdValue );
-					const html = createHTML( title, body );
-					const blob = new Blob([ html ], {
-						type: 'text/html'
-					});
-					FileSaver.saveAs( blob, title+'.html' );
+					this.toggleSaveModal();
 				},
 				className: 'fa fa-save',
-				title: 'Export to HTML File'
+				title: 'Save Report'
 			}
+					// <div style="page-break-after: always;"></div>
 		];
 		if ( this.props.submitButton ) {
 			toolbar.push({
@@ -468,6 +473,7 @@ ${hash[ key ]}
 					let text = this.simplemde.value();
 					text = this.replacePlaceholders( text );
 					let html = this.previewRender( text );
+					const title = document.title || 'provisoric';
 					html = createHTML( title, html );
 					const msg = {
 						text: `Dear ${session.user.name}, your report has been successfully recorded. For your convenience, your report and the generated HTML file are attached to this email.`,
@@ -511,7 +517,7 @@ ${hash[ key ]}
 		return toolbar;
 	}
 
-	recordedText = (text) => {
+	recordedText = ( text ) => {
 		var sel = this.simplemde.codemirror.somethingSelected();
 		if ( sel ) {
 			this.simplemde.codemirror.replaceSelection( text);
@@ -534,6 +540,44 @@ ${hash[ key ]}
 		event.preventDefault();
 	}
 
+	toggleSaveModal = ( event, clbk = noop ) => {
+		this.setState({
+			showSaveModal: !this.state.showSaveModal
+		}, clbk );
+	}
+
+	saveMarkdown = () => {
+		const title = document.title || 'provisoric';
+		let text = this.simplemde.value();
+		text = this.replacePlaceholders( text );
+		const blob = new Blob([ text ], {
+			type: 'text/html'
+		});
+		FileSaver.saveAs( blob, title+'.md' );
+	}
+
+	exportHTML = () => {
+		const title = document.title || 'provisoric';
+		const mdValue = this.simplemde.value();
+		const body = this.previewRender( mdValue );
+		const html = createHTML( title, body );
+		const blob = new Blob([ html ], {
+			type: 'text/html'
+		});
+		FileSaver.saveAs( blob, title+'.html' );
+	}
+
+	exportPDF = () => {
+		const title = document.title || 'provisoric';
+		let text = this.simplemde.value();
+		text = this.replacePlaceholders( text );
+		const ast = md.parse( text );
+		const doc = generatePDF( ast );
+		this.toggleSaveModal( null, () => {
+			pdfMake.createPdf( doc ).download( title );
+		});
+	}
+
 	renderVoiceControl() {
 		if ( !this.props.voiceControl ) return null;
 		return (
@@ -547,10 +591,19 @@ ${hash[ key ]}
 
 	render() {
 		return (
-			<div className="markdown-editor">
-				<textarea ref={( area ) => { this.simplemdeRef = area; }} autoComplete="off" {...this.props.options} />
-				{ this.renderVoiceControl() }
-			</div>
+			<Fragment>
+				<div className="markdown-editor">
+					<textarea ref={( area ) => { this.simplemdeRef = area; }} autoComplete="off" {...this.props.options} />
+					{this.renderVoiceControl()}
+				</div>
+				<SaveModal
+					show={this.state.showSaveModal}
+					onHide={this.toggleSaveModal}
+					exportPDF={this.exportPDF}
+					exportHTML={this.exportHTML}
+					saveMarkdown={this.saveMarkdown}
+				/>
+			</Fragment>
 		);
 	}
 }
