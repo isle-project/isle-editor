@@ -890,7 +890,7 @@ class DataExplorer extends Component {
 				</Tab.Pane> );
 			})}
 			{ this.props.showEditor ? <Tab.Pane eventKey="8">
-				<MarkdownEditor id={this.props.id ? this.props.id + '_editor' : null} submitButton />
+				<MarkdownEditor {...this.props.editorProps} id={this.props.id ? this.props.id + '_editor' : null} submitButton />
 			</Tab.Pane> : null }
 			{this.props.tabs.map( ( e, i ) => {
 				return ( <Tab.Pane key={i} eventKey={`${9+i}`}>
@@ -1049,6 +1049,7 @@ DataExplorer.defaultProps = {
 	categorical: [],
 	continuous: [],
 	distributions: [ 'Normal', 'Uniform', 'Exponential' ],
+	editorProps: null,
 	editorTitle: 'Report',
 	histogramDensities: true,
 	showEditor: false
@@ -1063,6 +1064,7 @@ DataExplorer.propTypes = {
 	data: PropTypes.object,
 	dataInfo: PropTypes.object,
 	distributions: PropTypes.array,
+	editorProps: PropTypes.object,
 	editorTitle: PropTypes.string,
 	histogramDensities: PropTypes.bool,
 	models: PropTypes.array,
