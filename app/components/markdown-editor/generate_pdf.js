@@ -153,6 +153,14 @@ function applyStyles( ast, text ) {
 				}
 				state.italics = true;
 			break;
+			case 'heading_open':
+				if ( closing ) {
+					text.push( state );
+					state = omit( state, 'text' );
+					closing = false;
+				}
+				state.style = current.tag;
+			break;
 			case 'ins_open':
 				if ( closing ) {
 					text.push( state );
@@ -180,6 +188,7 @@ function applyStyles( ast, text ) {
 			break;
 			case 'container_center_close':
 			case 'em_close':
+			case 'heading_close':
 			case 'ins_close':
 			case 'strong_close':
 			case 'link_close':
@@ -219,14 +228,32 @@ function generatePDF( ast ) {
 		'content': [],
 		'styles': STYLES
 	};
+	const state = {};
 	for ( let i = 0; i < ast.length; i++ ) {
 		const elem = ast[ i ];
-		if ( elem.type === 'heading_open' ) {
+		if ( elem.type === 'container_center_open' ) {
+			state.alignment = 'center';
+		}
+		else if ( elem.type === 'container_center_close' ) {
+			delete state.alignment;
+		} else if ( elem.type === 'heading_open' ) {
 			const level = elem.tag;
-			doc.content.push({
-				text: ast[ i+1 ].content,
-				style: level
-			});
+			const next = ast[ i+1 ];
+			if ( next.children ) {
+				const text = [];
+				applyStyles( next.children, text );
+				doc.content.push({
+					text,
+					style: level,
+					...state
+				});
+			} else {
+				doc.content.push({
+					text: next.content,
+					style: level,
+					...state
+				});
+			}
 			i += 2;
 		}
 		else if ( elem.type === 'paragraph_open' ) {
@@ -235,11 +262,13 @@ function generatePDF( ast ) {
 				const text = [];
 				applyStyles( next.children, text );
 				doc.content.push({
-					text
+					text,
+					...state
 				});
 			} else {
 				doc.content.push({
-					text: next.content
+					text: next.content,
+					...state
 				});
 			}
 			i += 2;
@@ -273,13 +302,15 @@ function generatePDF( ast ) {
 				else {
 					const list = extractList( arr );
 					const ordered = elem.type === 'ordered_list_open';
-					const o = {};
+					const o = {
+						...state
+					};
 					o[ ordered ? 'ol' : 'ul' ] = list;
 					doc.content.push( o );
 					break;
 				}
 			}
-			i += j;
+			i = j;
 		} else if ( elem.type === 'table_open' ) {
 			const arr = [];
 			let j = i;
@@ -294,7 +325,8 @@ function generatePDF( ast ) {
 					break;
 				}
 			}
-			i += j;
+			console.log( j +':'+ast.length );
+			i = j;
 		}
 	}
 	console.log( doc );

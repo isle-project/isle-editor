@@ -161,7 +161,7 @@ class MarkdownEditor extends Component {
 		var value = props.defaultValue;
 		var hash = {};
 		var out;
-		if ( props.id ) {
+		if ( props.id && props.autoSave ) {
 			var previous = localStorage.getItem( props.id );
 			if ( previous ) {
 				out = this.reMakeText( previous );
@@ -248,9 +248,11 @@ class MarkdownEditor extends Component {
 			if ( hasOwnProp( hash, key ) ) {
 				let id = replace( key, '<!--', '' );
 				id = replace( id, '-->', '' );
-				replacementHash = `<!-- START:${id} -->
+				replacementHash = `
+<!-- START:${id} -->
 ${hash[ key ]}
-<!-- END -->`;
+<!-- END -->
+				`;
 				var re = new RegExp('\\s*' + key, 'g');
 				plainText = plainText.replace( re, replacementHash );
 			}
@@ -572,7 +574,9 @@ ${hash[ key ]}
 		let text = this.simplemde.value();
 		text = this.replacePlaceholders( text );
 		const ast = md.parse( text );
+		console.log( ast );
 		const doc = generatePDF( ast );
+		console.log( doc );
 		this.toggleSaveModal( null, () => {
 			pdfMake.createPdf( doc ).download( title );
 		});
