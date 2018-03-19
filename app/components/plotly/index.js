@@ -9,6 +9,7 @@ import Plot from 'react-plotly.js';
 import Plotly from 'plotly.js';
 import { generate } from 'randomstring';
 import isUndefined from '@stdlib/assert/is-undefined';
+import copy from '@stdlib/utils/copy';
 import PlotlyIcons from './icons.js';
 
 
@@ -39,9 +40,12 @@ class Wrapper extends Component {
 	constructor( props ) {
 		super( props );
 
+		const { layout } = props;
+		layout.autosize = true;
+
 		this.state = {
 			fullscreen: false,
-			layout: props.layout
+			layout
 		};
 		this.plotData = {
 			key: null,
@@ -85,16 +89,18 @@ class Wrapper extends Component {
 		};
 	}
 
-	onInitialized = ( gd ) => {
-		this.gd = gd;
+	onInitialized = ( figure ) => {
+		this.figure = figure;
 		this.drawPlot();
 	}
 
 	handleUpdate = () => {
 		this.drawPlot();
+		this.setState( this.figure );
 	}
 
-	onUpdate = () => {
+	onUpdate = ( figure ) => {
+		this.figure = figure;
 		if ( this.debouncedChange ) {
 			this.debouncedChange();
 		} else {
@@ -105,7 +111,7 @@ class Wrapper extends Component {
 
 	drawPlot = () => {
 		const opts = { format: 'png', height: 400, width: 600 };
-		Plotly.toImage( this.gd, opts )
+		Plotly.toImage( this.figure, opts )
 			.then( ( data ) => {
 				this.plotData = {
 					key: `<!--IMAGE_${generate( 6 )}-->`,
@@ -121,7 +127,7 @@ class Wrapper extends Component {
 	}
 
 	toggleLegend = () => {
-		const newLayout = this.state.layout;
+		const newLayout = copy( this.state.layout );
 		if (
 			isUndefined( this.state.layout.showlegend ) ||
 			this.state.layout.showlegend === true
@@ -136,7 +142,7 @@ class Wrapper extends Component {
 	}
 
 	toggleLegendOrientation = () => {
-		const newLayout = this.state.layout;
+		const newLayout = copy( this.state.layout );
 		let newPos = 'h';
 		if ( newLayout.legend && newLayout.legend.orientation === 'h' ) {
 			newPos = 'v';
@@ -167,9 +173,13 @@ class Wrapper extends Component {
 			data={this.props.data}
 			layout={this.state.layout}
 			config={this.config}
-			fit={this.props.fit}
 			onInitialized={this.onInitialized}
 			onUpdate={this.onUpdate}
+			useResizeHandler
+			style={{
+				width: '100%',
+				height: '100%'
+			}}
 		/> );
 		if ( this.state.fullscreen ) {
 			return (
@@ -203,7 +213,6 @@ class Wrapper extends Component {
 
 Wrapper.defaultProps = {
 	editable: false,
-	fit: false,
 	layout: {},
 	legendButtons: true,
 	onShare: null,
@@ -217,7 +226,6 @@ Wrapper.defaultProps = {
 Wrapper.propTypes = {
 	data: PropTypes.array.isRequired,
 	editable: PropTypes.bool,
-	fit: PropTypes.bool,
 	layout: PropTypes.object,
 	legendButtons: PropTypes.bool,
 	onShare: PropTypes.func,
