@@ -1003,7 +1003,7 @@ DataExplorer.defaultProps = {
 	dataInfo: {
 		'info': '',
 		'name': '',
-		'variables': {}
+		'variables': null
 	},
 	onSelect() {},
 	tabs: [],
