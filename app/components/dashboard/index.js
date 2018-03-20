@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
 import Panel from 'react-bootstrap/lib/Panel';
 import isNull from '@stdlib/assert/is-null';
@@ -12,6 +13,11 @@ import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import TextInput from 'components/input/text';
 import './dashboard.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor:dashboard' );
 
 
 // MAIN //
@@ -41,6 +47,7 @@ class Dashboard extends Component {
 			});
 		};
 		walk( props.children );
+		debug( 'Initial state: %s', JSON.stringify( initialState ) );
 		this.state = initialState;
 	}
 
@@ -76,6 +83,7 @@ class Dashboard extends Component {
 	}
 
 	handleFieldChange = ( fieldId, value ) => {
+		debug( `Setting ${fieldId} to ${value}` );
 		const newState = {};
 		newState[ fieldId ] = value;
 		this.setState( newState, () => {
@@ -89,6 +97,7 @@ class Dashboard extends Component {
 		if ( !children ) {
 			return null;
 		}
+		debug( `Registering ${React.Children.count(children)} children...` );
 		return React.Children.map( children,
 			( child ) => {
 				if ( React.isValidElement( child ) ) {
@@ -99,8 +108,10 @@ class Dashboard extends Component {
 						child.type === NumberInput ||
 						child.type === SelectInput ||
 						child.type === SliderInput ||
-						child.type === TextInput
+						child.type === TextInput ||
+						child.type.name === 'Input'
 					) {
+						debug( 'Encountering an input element...' );
 						const idx = this.getCounter();
 						newProps.onChange = ( value ) => {
 							this.handleFieldChange( idx, value );
@@ -110,6 +121,7 @@ class Dashboard extends Component {
 					if ( child.props && child.props.children ) {
 						newChildren = this.registerChildren( child.props.children );
 					}
+					debug( 'Clone child element with new properties...' );
 					return React.cloneElement( child, newProps, ...newChildren );
 				}
 				return child;
