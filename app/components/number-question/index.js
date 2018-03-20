@@ -33,7 +33,7 @@ class NumberQuestion extends Component {
 
 		// Initialize state variables...
 		this.state = {
-			value: null,
+			value: void 0,
 			submitted: false
 		};
 	}
@@ -44,7 +44,7 @@ class NumberQuestion extends Component {
 			nextProps.solution !== this.props.solution
 		) {
 			this.setState({
-				value: null,
+				value: void 0,
 				submitted: false
 			});
 		}
