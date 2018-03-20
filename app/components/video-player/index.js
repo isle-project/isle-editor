@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
 import Dimensions from 'components/dimensions';
+import omit from '@stdlib/utils/omit';
 
 
 // FUNCTIONS //
@@ -61,22 +62,24 @@ class Video extends Component {
 	}
 
 	render() {
+		let props = this.props;
 		const style = {
-			width: this.props.width,
-			height: this.props.height,
+			width: props.width,
+			height: props.height,
 			marginTop: '30px',
-			...this.props.style
+			...props.style
 		};
-		if ( this.props.center ) {
-			style.marginLeft = calculateMargin( this.props.containerWidth, this.props.width );
-			style.marginRight = calculateMargin( this.props.containerWidth, this.props.width );
+		if ( props.center ) {
+			style.marginLeft = calculateMargin( props.containerWidth, props.width );
+			style.marginRight = calculateMargin( props.containerWidth, props.width );
 		}
+		props = omit( props, 'center' );
 		return (
 			<div
 				style={style}
 				className="video"
 			>
-				<ReactPlayer {...this.props}
+				<ReactPlayer {...props}
 					onPlay={this.handlePlay}
 					onPause={this.handlePause}
 					onEnded={this.handleEnded}
