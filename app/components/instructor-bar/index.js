@@ -31,6 +31,7 @@ class InstructorBar extends Component {
 			receivedFeedbacks: [],
 			feedbackIsOpen: false,
 			feedback: '',
+			showActions: false,
 			showExtended: false,
 			showDeleteModal: false,
 			selectedAction: null,
