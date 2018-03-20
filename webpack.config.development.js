@@ -10,7 +10,7 @@ import baseConfig from './webpack.config.base';
 
 // VARIABLES //
 
-const port = process.env.PORT || 1212;
+const port = process.env.PORT || 1212; // eslint-disable-line no-process-env
 const publicPath = `http://localhost:${port}/dist`;
 
 
@@ -80,12 +80,12 @@ const config = {
 			disableDotRule: false
 		},
 		before() {
-			if ( process.env.START_HOT ) {
+			if ( process.env.START_HOT ) { // eslint-disable-line no-process-env
 				console.log('Starting Main Process...');
 				spawn(
 					'npm',
 					[ 'run', 'start-main-dev' ],
-					{ shell: true, env: process.env, stdio: 'inherit' }
+					{ shell: true, env: process.env, stdio: 'inherit' } // eslint-disable-line no-process-env
 				)
 					.on( 'close', code => process.exit(code) )
 					.on( 'error', spawnError => console.error(spawnError) );
