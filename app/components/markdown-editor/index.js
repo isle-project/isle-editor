@@ -466,6 +466,14 @@ ${hash[ key ]}
 				name: 'submit',
 				action: (editor) => {
 					const { session } = this.context;
+					if ( session.anonymous ) {
+						return session.addNotification({
+							title: 'Sign in',
+							message: 'You have to sign in before you can submit your report',
+							level: 'warning',
+							position: 'tr'
+						});
+					}
 					session.addNotification({
 						title: 'Submitted',
 						message: 'Your report has been successfully submitted',
@@ -477,30 +485,41 @@ ${hash[ key ]}
 					let html = this.previewRender( text );
 					const title = document.title || 'provisoric';
 					html = createHTML( title, html );
-					const msg = {
-						text: `Dear ${session.user.name}, your report has been successfully recorded. For your convenience, your report and the generated HTML file are attached to this email.`,
-						subject: 'Report submitted',
-						attachments: [
-							{
-								filename: 'report.html',
-								content: html,
-								contentType: 'text/html'
-							},
-							{
-								filename: 'report.md',
-								content: text,
-								contentType: 'text/plain'
-							}
-						]
-					};
-					session.sendMail( msg, session.user.email );
-					if ( this.props.id ) {
-						session.log({
-							id: this.props.id,
-							type: 'MARKDOWN_EDITOR_SUBMIT',
-							value: this.state.value
-						});
-					}
+					const ast = md.parse( text );
+					const doc = generatePDF( ast );
+					const pdfDocGenerator = pdfMake.createPdf( doc );
+					pdfDocGenerator.getBase64( ( pdf ) => {
+						const msg = {
+							text: `Dear ${session.user.name}, your report has been successfully recorded. For your convenience, your report and the generated HTML file are attached to this email.`,
+							subject: 'Report submitted',
+							attachments: [
+								{
+									filename: 'report.html',
+									content: html,
+									contentType: 'text/html'
+								},
+								{
+									filename: 'report.md',
+									content: text,
+									contentType: 'text/plain'
+								},
+								{
+									filename: 'report.pdf',
+									content: pdf,
+									contentType: 'application/pdf',
+									encoding: 'base64'
+								}
+							]
+						};
+						session.sendMail( msg, session.user.email );
+						if ( this.props.id ) {
+							session.log({
+								id: this.props.id,
+								type: 'MARKDOWN_EDITOR_SUBMIT',
+								value: this.state.value
+							});
+						}
+					});
 				},
 				className: 'fa fa-share-square',
 				title: 'Submit'
@@ -574,9 +593,7 @@ ${hash[ key ]}
 		let text = this.simplemde.value();
 		text = this.replacePlaceholders( text );
 		const ast = md.parse( text );
-		console.log( ast );
 		const doc = generatePDF( ast );
-		console.log( doc );
 		this.toggleSaveModal( null, () => {
 			pdfMake.createPdf( doc ).download( title );
 		});
