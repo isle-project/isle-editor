@@ -1,11 +1,14 @@
 // MODULES //
 
+import logger from 'debug';
 import omit from '@stdlib/utils/omit';
 import startsWith from '@stdlib/string/starts-with';
 
 
 // VARIABLES //
 
+const debug = logger( 'markdown-editor:pdf' );
+const MARGINS = [ 5, 2, 2, 5 ];
 const STYLES = {
 	'h1': {
 		fontSize: 32,
@@ -245,13 +248,15 @@ function generatePDF( ast ) {
 				doc.content.push({
 					text,
 					style: level,
-					...state
+					...state,
+					margin: MARGINS
 				});
 			} else {
 				doc.content.push({
 					text: next.content,
 					style: level,
-					...state
+					...state,
+					margin: MARGINS
 				});
 			}
 			i += 2;
@@ -263,12 +268,14 @@ function generatePDF( ast ) {
 				applyStyles( next.children, text );
 				doc.content.push({
 					text,
-					...state
+					...state,
+					margin: MARGINS
 				});
 			} else {
 				doc.content.push({
 					text: next.content,
-					...state
+					...state,
+					margin: MARGINS
 				});
 			}
 			i += 2;
@@ -282,7 +289,8 @@ function generatePDF( ast ) {
 				doc.content.push({
 					image: elem.content.substr( start, end - start ),
 					width: 300,
-					alignment: 'center'
+					alignment: 'center',
+					margin: MARGINS
 				});
 			}
 		} else if (
@@ -321,15 +329,15 @@ function generatePDF( ast ) {
 				}
 				else {
 					const table = extractTable( arr );
+					table.margin = MARGINS;
 					doc.content.push( table );
 					break;
 				}
 			}
-			console.log( j +':'+ast.length );
 			i = j;
 		}
 	}
-	console.log( doc );
+	debug( 'Document: %s', JSON.stringify( doc, null, 2 ) );
 	return doc;
 }
 
