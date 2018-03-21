@@ -79,7 +79,7 @@ class ExponentialProbs extends Component {
 	}
 
 	render() {
-		return ( <Panel>
+		return ( <Panel style={this.props.style}>
 			<Panel.Heading>
 				<Panel.Title componentClass="h3">Exponential Distribution</Panel.Title>
 			</Panel.Heading>
@@ -220,14 +220,16 @@ ExponentialProbs.propTypes = {
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
-	])
+	]),
+	style: PropTypes.object
 };
 
 
 // DEFAULT PROPERTIES //
 
 ExponentialProbs.defaultProps = {
-	step: 0.01
+	step: 0.01,
+	style: {}
 };
 
 
