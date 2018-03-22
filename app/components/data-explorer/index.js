@@ -176,9 +176,15 @@ const OutputPanel = ( output, clearOutput ) => {
 		}}>
 			{output.map( ( e, idx ) => {
 				if ( e.type === 'Chart' ) {
-					return ( <div key={idx} style={{ height: 300, marginBottom: 40 }} >
+					return ( <div key={idx}>
 						<ClearButton onClick={() => { clearOutput( idx ); }} />
-						{e.value}
+						<div style={{
+							height: 300,
+							marginBottom: 40,
+							marginRight: 20
+						}} >
+							{e.value}
+						</div>
 					</div> );
 				}
 				else if (
