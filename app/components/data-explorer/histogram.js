@@ -22,6 +22,15 @@ import iqr from 'compute-iqr';
 import by from './by.js';
 
 
+// VARIABLES //
+
+const SETTINGS = {
+	yaxis: {
+		tickformat: '-,r'
+	}
+};
+
+
 // FUNCTIONS //
 
 /**
@@ -85,7 +94,8 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 			xaxis: { title: variable },
 			yaxis: { title: overlayDensity ? 'Density' : 'Count' },
 			reversescale: true,
-			title: variable
+			title: variable,
+			...SETTINGS
 		};
 	} else {
 		let freqs = by( data[ variable ], data[ group ], arr => {
@@ -101,7 +111,8 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 						type: 'histogram',
 						histnorm: 'probability density',
 						name: key+':histogram',
-						opacity: 0.5
+						opacity: 0.5,
+						...SETTINGS
 					};
 					if ( chooseBins ) {
 						config.nbinsx = nBins;
