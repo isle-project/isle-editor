@@ -8,6 +8,7 @@ import Panel from 'react-bootstrap/lib/Panel';
 import logger from 'debug';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
+import roundn from '@stdlib/math/base/special/roundn';
 import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
 import NumberInput from 'components/input/number';
@@ -59,9 +60,16 @@ class NumberQuestion extends Component {
 	}
 
 	submitHandler = ( event ) => {
+		const { digits, solution } = this.props;
 		const { session } = this.context;
-		if ( this.props.solution ) {
-			const correct = parseFloat( this.state.value ) === this.props.solution;
+		if ( solution ) {
+			const val = parseFloat( this.state.value );
+			let correct;
+			if ( digits === void 0 ) {
+				correct = val === solution;
+			} else {
+				correct = roundn( val, -digits ) === roundn( solution, -digits );
+			}
 			session.addNotification({
 				title: 'Answer submitted.',
 				message: correct ? 'Congratulations, that is correct!' : 'Not quite. Compare your answer with the solution.',
@@ -168,6 +176,7 @@ class NumberQuestion extends Component {
 
 NumberQuestion.defaultProps = {
 	chat: false,
+	digits: void 0,
 	hints: [],
 	hintPlacement: 'bottom',
 	max: PINF,
@@ -182,6 +191,7 @@ NumberQuestion.defaultProps = {
 
 NumberQuestion.propTypes = {
 	chat: PropTypes.bool,
+	digits: PropTypes.number,
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
 	max: PropTypes.number,
