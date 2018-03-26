@@ -79,6 +79,7 @@ const loadRequires = ( libs, filePath ) => {
 	/* eslint-disable no-eval */
 	debug( 'Should require files or modules...' );
 	let dirname = path.dirname( filePath );
+	debug( 'Directory: '+dirname );
 	if ( isObject( libs ) ) {
 		for ( let key in libs ) {
 			if ( hasOwnProp( libs, key ) ) {
@@ -89,14 +90,17 @@ const loadRequires = ( libs, filePath ) => {
 					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
 				}
 				if ( /\.svg$/.test( lib ) ) {
+					debug( 'Read SVG from disk: '+lib );
 					let content = fs.readFileSync( lib ).toString( 'base64' );
 					eval( `global[ '${key}' ] = 'data:image/svg+xml;base64,${content}';` );
 				}
 				else if ( /\.(?:jpg|png)$/.test( lib ) ) {
+					debug( 'Read image from disk: '+lib );
 					let buffer = fs.readFileSync( lib );
 					eval( `global[ '${key}' ] = 'data:image/jpeg;base64,${buffer.toString( 'base64' )}'` );
 				}
 				else {
+					debug( `Load '${lib}' library...` );
 					eval( `global[ '${key}' ] = require( '${lib}' );` );
 				}
 			}
