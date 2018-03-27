@@ -8,6 +8,8 @@ import Tooltip from 'react-bootstrap/lib/Tooltip';
 import Popover from 'react-bootstrap/lib/Popover';
 import { select } from 'd3';
 import katex from 'katex';
+import NINF from '@stdlib/constants/math/float64-ninf';
+import PINF from '@stdlib/constants/math/float64-pinf';
 import NumberInput from 'components/input/number';
 import isNumber from '@stdlib/assert/is-number';
 
@@ -38,6 +40,18 @@ class TeX extends Component {
 	}
 
 	componentDidMount() {
+		this.registerElements();
+	}
+
+	componentDidUpdate() {
+		this.registerElements();
+	}
+
+	componentWillUnmount() {
+		counter = 1;
+	}
+
+	registerElements() {
 		const dom = findDOMNode( this );
 		const self = this;
 		select( dom ).
@@ -46,6 +60,9 @@ class TeX extends Component {
 
 		function onMord( d ) {
 			const $this = select( this );
+			if ( self.state.popoverTarget !== this ) {
+				$this.style( 'color', 'black' );
+			}
 			Object.keys( self.props.elems ).forEach( ( prop ) => {
 				let elem = self.props.elems[ prop ];
 				if ( $this.text() === prop ) {
@@ -74,16 +91,27 @@ class TeX extends Component {
 						if ( elem.variable ) {
 							let config = {
 								legend: elem.legend || elem.variable,
-								min: elem.min || 0,
-								max: elem.max || 100,
+								min: elem.min || NINF,
+								max: elem.max || PINF,
 								step: elem.step || 'any'
 							};
+							if ( elem.onChange ) {
+								config.onChange = elem.onChange;
+								config.defaultValue = elem.defaultValue;
+							} else {
+								config.bind = elem.variable;
+							}
+							let showPopover;
+							if ( self.state.popoverTarget !== this ) {
+								showPopover = true;
+							} else {
+								showPopover = !self.state.showPopover;
+							}
 							self.setState({
 								showTooltip: false,
-								showPopover: !self.state.showPopover,
+								showPopover,
 								popoverContent: elem.body,
 								popoverTarget: this,
-								targetVariable: elem.variable,
 								config
 							});
 						}
@@ -91,10 +119,6 @@ class TeX extends Component {
 				}
 			});
 		}
-	}
-
-	componentWillUnmount() {
-		counter = 1;
 	}
 
 	/**
@@ -109,19 +133,18 @@ class TeX extends Component {
 				show={this.state.showTooltip}
 				container={document.body}
 				target={this.state.tooltipTarget}
-				placement="right"
+				placement="top"
 			>
-				<Tooltip id="tooltip-right">{this.state.tooltipText}</Tooltip>
+				<Tooltip id="tooltip-top">{this.state.tooltipText}</Tooltip>
 			</Overlay>
 			<Overlay
 				show={this.state.showPopover}
 				container={document.body}
 				target={this.state.popoverTarget}
-				placement="right"
+				placement="top"
 			>
-				<Popover id="popover-right">
+				<Popover id="popover-top">
 					<NumberInput
-						bind={this.state.targetVariable}
 						{...this.state.config}
 					/>
 				</Popover>
