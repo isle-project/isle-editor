@@ -34,6 +34,7 @@ class ExportLesson extends Component {
 			finished: false,
 			spinning: false,
 			minify: false,
+			writeStats: false,
 			alreadyExists: false
 		};
 	}
@@ -67,7 +68,7 @@ class ExportLesson extends Component {
 	}
 
 	generateApp = () => {
-		const { outputPath, outputDir, minify } = this.state;
+		const { outputPath, outputDir, minify, writeStats } = this.state;
 		if ( exists.sync( path.join( outputPath, outputDir ) ) ) {
 			this.setState({
 				alreadyExists: true
@@ -83,7 +84,8 @@ class ExportLesson extends Component {
 				basePath: IS_PACKAGED ? path.join( process.resourcesPath, 'app' ) : '.',
 				content: this.props.content,
 				outputDir,
-				minify
+				minify,
+				writeStats
 			}, ( err ) => {
 				this.setState({
 					finished: true,
@@ -145,6 +147,15 @@ class ExportLesson extends Component {
 							onChange={( value ) => {
 								this.setState({
 									minify: value
+								});
+							}}
+							disabled={this.state.spinning}
+						/>
+						<CheckboxInput
+							legend="Save bundle stats"
+							onChange={( value ) => {
+								this.setState({
+									writeStats: value
 								});
 							}}
 							disabled={this.state.spinning}
