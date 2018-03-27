@@ -93,6 +93,10 @@ const createScope = ( session ) => {
 		LearnTDistribution: Loadable( () => import( 'components/learn/distribution/t' ) ),
 		LearnUniformDistribution: Loadable( () => import( 'components/learn/distribution/uniform' ) ),
 		LearnStandardize: Loadable( () => import( 'components/learn/standardize' ) ),
+		LearnContinuousCLT: Loadable( () => import( 'components/learn/clt/continuous' ) ),
+		LearnDiscreteCLT: Loadable( () => import( 'components/learn/clt/discrete' ) ),
+		LearnSampleCLT: Loadable( () => import( 'components/learn/clt/sample' ) ),
+
 		LessonSubmit: Loadable( () => import( 'components/lesson-submit' ) ),
 		MarkdownEditor: Loadable( () => import( 'components/markdown-editor' ) ),
 		MatchListQuestion: Loadable( () => import( 'components/match-list-question' ) ),
