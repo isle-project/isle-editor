@@ -39,7 +39,7 @@ export default function createWindow( filePath, callback ) {
 	}
 
 	mainWindow.showUrl( indexPath, () => {
-		console.log( 'FILE PATH: ' + filePath ); // eslint-disable-line no-console
+		debug( 'Open file: ' + filePath );
 		if ( filePath ) {
 			fs.readFile( filePath, 'utf-8', ( err, file ) => {
 				if ( err ) {
