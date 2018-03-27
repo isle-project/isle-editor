@@ -39,7 +39,8 @@ class Standardize extends Component {
 			sd: 3,
 			lower: -4,
 			upper: 4,
-			rangeProb: 1
+			rangeProb: 1,
+			area: []
 		};
 	}
 
@@ -170,7 +171,7 @@ class Standardize extends Component {
 							return dnorm( data.x, 0.0, 1.0 );
 						}}
 					/>
-					{ this.props.showProbabilities ? <VictoryArea
+					{ this.props.showProbabilities && this.state.area.length > 0 ? <VictoryArea
 						data={this.state.area}
 						style={{
 							data: {
