@@ -13,6 +13,9 @@ import rExponential from '@stdlib/random/base/exponential';
 import rUniform from '@stdlib/random/base/uniform';
 import rNormal from '@stdlib/random/base/normal';
 import dnorm from '@stdlib/math/base/dists/normal/pdf';
+import pnorm from '@stdlib/math/base/dists/normal/cdf';
+import pexp from '@stdlib/math/base/dists/exponential/cdf';
+import punif from '@stdlib/math/base/dists/uniform/cdf';
 import copy from '@stdlib/utils/copy';
 import inmap from '@stdlib/utils/inmap';
 import abs from '@stdlib/math/base/special/abs';
@@ -32,6 +35,8 @@ import NumberInput from 'components/input/number';
 import CheckboxInput from 'components/input/checkbox';
 import { VictoryArea, VictoryAxis, VictoryChart } from 'victory';
 import TeX from 'components/tex';
+import ProbabilityRange from './probability_range.js';
+import SampleRange from './sample_range.js';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
@@ -115,7 +120,10 @@ class ContinuousCLT extends Component {
 			overlayNormal: false,
 			leftProb: 0,
 			rightProb: 1,
-			cutoff: 0
+			popLeftProb: 0,
+			popRightProb: 1,
+			cutoff: 0,
+			popCutoff: 0
 		};
 	}
 
@@ -136,6 +144,8 @@ class ContinuousCLT extends Component {
 		this.setState({
 			activeDistribution: key,
 			distFormula: formula
+		}, () => {
+			this.updatePopProbs( this.state.popCutoff );
 		});
 	}
 
@@ -281,6 +291,28 @@ class ContinuousCLT extends Component {
 			stdevXBars,
 			densityX,
 			densityY
+		});
+	}
+
+	updatePopProbs = ( value ) => {
+		let popLeftProb;
+		switch ( this.state.activeDistribution ) {
+			default:
+			case 1:
+				popLeftProb = punif( value, this.state.a, this.state.b );
+				break;
+			case 2:
+				popLeftProb = pexp( value, this.state.lambda );
+				break;
+			case 3:
+				popLeftProb = pnorm( value, this.state.mu, this.state.sigma );
+				break;
+		}
+		const popRightProb = 1.0 - popLeftProb;
+		this.setState({
+			popCutoff: value,
+			popLeftProb,
+			popRightProb
 		});
 	}
 
@@ -488,6 +520,23 @@ class ContinuousCLT extends Component {
 						</Col>
 						<Col md={6}>
 							{this.renderXbarHistogram()}
+						</Col>
+					</Row>
+					<Row>
+						<Col md={6}>
+							<Panel><Panel.Body>
+								<NumberInput
+									step="any"
+									legend={<TeX raw="x" />}
+									onChange={this.updatePopProbs}
+								/>
+								<TeX raw={`P( X < ${this.state.popCutoff} ) = ${this.state.popLeftProb.toFixed( 3 )}`} displayMode />
+								<TeX raw={`P( X \\ge ${this.state.popCutoff} ) = ${this.state.popRightProb.toFixed( 3 )}`} displayMode
+								/>
+							</Panel.Body></Panel>
+							<ProbabilityRange {...this.state} />
+						</Col>
+						<Col md={6}>
 							<Panel><Panel.Body>
 								<NumberInput
 									step="any"
@@ -513,6 +562,7 @@ class ContinuousCLT extends Component {
 								<TeX raw={`\\hat P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightProb.toFixed( 3 )}`} displayMode
 								/>
 							</Panel.Body></Panel>
+							<SampleRange xbars={this.state.xbars} />
 						</Col>
 					</Row>
 				</Grid>
