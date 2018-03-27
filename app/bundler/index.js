@@ -394,20 +394,26 @@ function writeIndexFile({
 	const compiler = webpack( config );
 	compiler.run( ( err, stats ) => {
 		if ( err ) {
+			debug( 'Encountered an error during bundling: ' + err );
 			throw err;
 		}
-		debug( stats );
+		if ( stats.errors ) {
+			stats.errors.forEach( debug );
+		}
 		if ( writeStats ) {
+			debug( 'Write statistics to file...' );
 			fs.writeFileSync( statsFile, JSON.stringify( stats.toJson() ) );
 		}
 		fs.unlinkSync( indexPath );
 		fs.writeFileSync( htmlPath, generateIndexHTML( meta.title, minify ) );
 
 		if ( minify ) {
+			debug( 'Minifying bundle...' );
 			const child = cp.fork( path.resolve( basePath, './app/bundler/minify.js' ) );
 			const code = fs.readFileSync( bundlePath ).toString();
 			child.on( 'message', function onMessage( minified ) {
 				if ( minified.error ) {
+					debug( 'Encountered an error during minification: ' + minified.error );
 					throw minified.error;
 				}
 				fs.writeFileSync( path.join( appDir, 'bundle.min.js' ), minified.code );
