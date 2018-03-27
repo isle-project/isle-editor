@@ -5,10 +5,11 @@ import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import Panel from 'react-bootstrap/lib/Panel';
-import { VictoryChart, VictoryLine } from 'victory';
+import { VictoryChart, VictoryLine, VictoryArea } from 'victory';
 import PropTypes from 'prop-types';
 import roundn from '@stdlib/math/base/special/roundn';
 import dnorm from '@stdlib/math/base/dists/normal/pdf';
+import pnorm from '@stdlib/math/base/dists/normal/cdf';
 import linspace from '@stdlib/math/utils/linspace';
 import TeX from 'components/tex';
 import NumberInput from 'components/input/number';
@@ -35,7 +36,10 @@ class Standardize extends Component {
 		super( props );
 		this.state = {
 			mean: 4,
-			sd: 3
+			sd: 3,
+			lower: -4,
+			upper: 4,
+			rangeProb: 1
 		};
 	}
 
@@ -166,8 +170,62 @@ class Standardize extends Component {
 							return dnorm( data.x, 0.0, 1.0 );
 						}}
 					/>
+					{ this.props.showProbabilities ? <VictoryArea
+						data={this.state.area}
+						style={{
+							data: {
+								opacity: 0.3,
+								fill: 'tomato'
+							}
+						}}
+					/> : null
+					}
 					{this.state.standardizedLines}
 				</VictoryChart>
+				{ this.props.showProbabilities ? <TeX raw={`P( L = ${this.state.lower} < X < U = ${this.state.upper}) = ${this.state.rangeProb.toFixed( 3 )}`} elems={{
+					L: {
+						variable: 'L',
+						onChange: ( lower ) => {
+							const len = 200;
+							let x = linspace( lower, this.state.upper, len );
+							let area = new Array( len );
+							for ( let i = 0; i < x.length; i++ ) {
+								area[ i ] = {
+									x: x[ i ],
+									y: dnorm( x[ i ], 0.0, 1.0 )
+								};
+							}
+							const rangeProb = pnorm( this.state.upper, 0.0, 1.0 ) - pnorm( lower, 0.0, 1.0 );
+							this.setState({
+								area,
+								rangeProb,
+								lower
+							});
+						},
+						defaultValue: this.state.lower
+					},
+					U: {
+						variable: 'U',
+						onChange: ( upper ) => {
+							const len = 200;
+							let x = linspace( this.state.lower, upper, len );
+							let area = new Array( len );
+							for ( let i = 0; i < x.length; i++ ) {
+								area[ i ] = {
+									x: x[ i ],
+									y: dnorm( x[ i ], 0.0, 1.0 )
+								};
+							}
+							const rangeProb = pnorm( upper, 0.0, 1.0 ) - pnorm( this.state.lower, 0.0, 1.0 );
+							this.setState({
+								area,
+								rangeProb,
+								upper
+							});
+						},
+						defaultValue: this.state.upper
+					}
+				}} displayMode /> : null }
 			</Panel.Body>
 		</Panel> );
 	}
@@ -214,6 +272,7 @@ class Standardize extends Component {
 // PROPERTY TYPES //
 
 Standardize.propTypes = {
+	showProbabilities: PropTypes.bool,
 	step: PropTypes.oneOf([
 		PropTypes.number,
 		PropTypes.string
@@ -224,6 +283,7 @@ Standardize.propTypes = {
 // DEFAULT PROPERTIES //
 
 Standardize.defaultProps = {
+	showProbabilities: false,
 	step: 'any'
 };
 
