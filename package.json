@@ -131,7 +131,7 @@
     "babel-runtime": "^6.9.2",
     "bl": "^1.2.2",
     "bufferutil": "^3.0.1",
-    "camelcase": "^4.1.0",
+    "camelcase": "5.0.0",
     "component-playground": "^3.1.1",
     "compute-chunkify": "0.0.0",
     "compute-iqr": "^1.1.0",
@@ -238,7 +238,7 @@
     "uniq": "^1.0.1",
     "utf-8-validate": "^4.0.0",
     "venn.js": "0.2.20",
-    "victory": "0.25.6",
+    "victory": "0.25.7",
     "webpack": "4.3.0"
   },
   "devEngines": {
