@@ -31,7 +31,7 @@ class ProbabilityRange extends Component {
 		this.state = {
 			lower: NINF,
 			upper: PINF,
-			rangeProb: 0
+			rangeProb: 1.0
 		};
 	}
 

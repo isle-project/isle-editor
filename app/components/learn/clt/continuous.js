@@ -13,9 +13,6 @@ import rExponential from '@stdlib/random/base/exponential';
 import rUniform from '@stdlib/random/base/uniform';
 import rNormal from '@stdlib/random/base/normal';
 import dnorm from '@stdlib/math/base/dists/normal/pdf';
-import pnorm from '@stdlib/math/base/dists/normal/cdf';
-import pexp from '@stdlib/math/base/dists/exponential/cdf';
-import punif from '@stdlib/math/base/dists/uniform/cdf';
 import copy from '@stdlib/utils/copy';
 import inmap from '@stdlib/utils/inmap';
 import abs from '@stdlib/math/base/special/abs';
@@ -36,7 +33,9 @@ import CheckboxInput from 'components/input/checkbox';
 import { VictoryArea, VictoryAxis, VictoryChart } from 'victory';
 import TeX from 'components/tex';
 import ProbabilityRange from './probability_range.js';
-import SampleRange from './sample_range.js';
+import ProbMeanRange from './prob_mean_range.js';
+import ProbMean from './prob_mean.js';
+import PopProbability from './pop_probability.js';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
@@ -117,13 +116,7 @@ class ContinuousCLT extends Component {
 			enlarged: [],
 			activeDistribution: 1,
 			distFormula: <TeX raw="\text{Uniform}(0,1)" />,
-			overlayNormal: false,
-			leftProb: 0,
-			rightProb: 1,
-			popLeftProb: 0,
-			popRightProb: 1,
-			cutoff: 0,
-			popCutoff: 0
+			overlayNormal: false
 		};
 	}
 
@@ -144,8 +137,6 @@ class ContinuousCLT extends Component {
 		this.setState({
 			activeDistribution: key,
 			distFormula: formula
-		}, () => {
-			this.updatePopProbs( this.state.popCutoff );
 		});
 	}
 
@@ -294,28 +285,6 @@ class ContinuousCLT extends Component {
 		});
 	}
 
-	updatePopProbs = ( value ) => {
-		let popLeftProb;
-		switch ( this.state.activeDistribution ) {
-			default:
-			case 1:
-				popLeftProb = punif( value, this.state.a, this.state.b );
-				break;
-			case 2:
-				popLeftProb = pexp( value, this.state.lambda );
-				break;
-			case 3:
-				popLeftProb = pnorm( value, this.state.mu, this.state.sigma );
-				break;
-		}
-		const popRightProb = 1.0 - popLeftProb;
-		this.setState({
-			popCutoff: value,
-			popLeftProb,
-			popRightProb
-		});
-	}
-
 	renderDistributionSelectionPanel() {
 		const exponential = <div>
 			<NumberInput legend="Rate parameter"
@@ -387,7 +356,7 @@ class ContinuousCLT extends Component {
 		case 3:
 			populationParams = <div>
 				<p><label>Population mean: </label> <TeX raw={`\\mu = ${this.state.mu.toFixed( 3 )}`} /></p>
-				<p><label>Population standard deviation: </label><TeX raw={`\\sigma = ${this.state.sigma.toFixed( 3 )}`} /> </p>
+				<p><label>Population standard deviation: </label> <TeX raw={`\\sigma = ${this.state.sigma.toFixed( 3 )}`} /> </p>
 			</div>;
 			break;
 		}
@@ -410,21 +379,6 @@ class ContinuousCLT extends Component {
 							this.setState({ 'n': n });
 						}}
 					/>
-					<ButtonGroup>
-						<Button onClick={() => {
-							this.generateSamples( 1 );
-						}}>
-							Draw Sample
-						</Button>
-						<Button onClick={() => {
-							this.generateSamples( 25 );
-						}}>
-							Draw 25 Samples
-						</Button>
-						<Button onClick={this.clear.bind( this )}>
-							Clear
-						</Button>
-					</ButtonGroup>
 				</Col>
 			</Panel.Body>
 		</Panel> );
@@ -500,8 +454,34 @@ class ContinuousCLT extends Component {
 					</Row>
 					<Row>
 						<Col md={6}>
+							<PopProbability {...this.state} />
+							<ProbabilityRange {...this.state} />
+						</Col>
+						<Col md={6}>
+							<ProbMean {...this.state} />
+							<ProbMeanRange {...this.state} />
+						</Col>
+					</Row>
+					<Row>
+						<Col md={6}>
 							<Panel><Panel.Body>
 								<label>Number of Samples: {this.state.xbars.length}</label>
+								<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<ButtonGroup>
+									<Button onClick={() => {
+										this.generateSamples( 1 );
+									}}>
+										Draw Sample
+									</Button>
+									<Button onClick={() => {
+										this.generateSamples( 25 );
+									}}>
+										Draw 25 Samples
+									</Button>
+									<Button onClick={this.clear.bind( this )}>
+										Clear
+									</Button>
+								</ButtonGroup>
 							</Panel.Body></Panel>
 							<Panel style={{ height: '400px', overflowY: 'scroll' }}><Panel.Body>
 								<GridLayout
@@ -520,49 +500,6 @@ class ContinuousCLT extends Component {
 						</Col>
 						<Col md={6}>
 							{this.renderXbarHistogram()}
-						</Col>
-					</Row>
-					<Row>
-						<Col md={6}>
-							<Panel><Panel.Body>
-								<NumberInput
-									step="any"
-									legend={<TeX raw="x" />}
-									onChange={this.updatePopProbs}
-								/>
-								<TeX raw={`P( X < ${this.state.popCutoff} ) = ${this.state.popLeftProb.toFixed( 3 )}`} displayMode />
-								<TeX raw={`P( X \\ge ${this.state.popCutoff} ) = ${this.state.popRightProb.toFixed( 3 )}`} displayMode
-								/>
-							</Panel.Body></Panel>
-							<ProbabilityRange {...this.state} />
-						</Col>
-						<Col md={6}>
-							<Panel><Panel.Body>
-								<NumberInput
-									step="any"
-									legend={<TeX raw="x" />}
-									onChange={( value ) => {
-										let leftProb = 0;
-										let len = this.state.xbars.length;
-										for ( let i = 0; i < len; i++ ) {
-											if ( this.state.xbars[ i ] < value ) {
-												leftProb += 1;
-											}
-										}
-										leftProb /= len;
-										let rightProb = 1.0 - leftProb;
-										this.setState({
-											leftProb,
-											rightProb,
-											cutoff: value
-										});
-									}}
-								/>
-								<TeX raw={`\\hat P(\\bar X < ${this.state.cutoff} ) = ${this.state.leftProb.toFixed( 3 )}`} displayMode />
-								<TeX raw={`\\hat P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightProb.toFixed( 3 )}`} displayMode
-								/>
-							</Panel.Body></Panel>
-							<SampleRange xbars={this.state.xbars} />
 						</Col>
 					</Row>
 				</Grid>
