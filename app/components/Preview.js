@@ -96,7 +96,10 @@ const createScope = ( session ) => {
 		LearnContinuousCLT: Loadable( () => import( 'components/learn/clt/continuous' ) ),
 		LearnDiscreteCLT: Loadable( () => import( 'components/learn/clt/discrete' ) ),
 		LearnSampleCLT: Loadable( () => import( 'components/learn/clt/sample' ) ),
-
+		LearnConfidenceCoverageBinomial: Loadable( () => import( 'components/learn/confidence-coverage-binomial') ),
+		LearnConfidenceCoverageNormal: Loadable( () => import( 'components/learn/confidence-coverage-normal' ) ),
+		LearnMeanTest: Loadable( () => import( 'components/learn/hypothesis-testing/mean' ) ),
+		LearnProportionTest: Loadable( () => import( 'components/learn/hypothesis-testing/proportion' ) ),
 		LessonSubmit: Loadable( () => import( 'components/lesson-submit' ) ),
 		MarkdownEditor: Loadable( () => import( 'components/markdown-editor' ) ),
 		MatchListQuestion: Loadable( () => import( 'components/match-list-question' ) ),
