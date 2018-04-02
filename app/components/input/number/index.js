@@ -233,7 +233,7 @@ NumberInput.defaultProps = {
 	step: 1,
 	width: 80,
 	defaultValue: 0,
-	onChange(){},
+	onChange() {},
 	inline: false,
 	numbersOnly: true
 };

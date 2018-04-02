@@ -44,7 +44,10 @@ Input.defaultProps = {
 
 Input.propTypes = {
 	defaultValue: PropTypes.number,
-	legend: PropTypes.string,
+	legend: PropTypes.oneOfType([
+		PropTypes.element,
+		PropTypes.string
+	]),
 	onChange: PropTypes.func
 };
 
