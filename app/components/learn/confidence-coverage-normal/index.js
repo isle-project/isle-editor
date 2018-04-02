@@ -108,6 +108,7 @@ class ConfidenceCoverageNormal extends Component {
 				x="num"
 				y="yval"
 				errorY={( d ) => d.err}
+				errorX={( d ) => 0.2}
 				labels={( d ) => d.label}
 			/>
 			<VictoryLine
@@ -120,7 +121,7 @@ class ConfidenceCoverageNormal extends Component {
 	}
 
 	render() {
-		const intro = <p><TeX raw="X \sim \text{Normal}(  \mu, \sigma^2 )" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\bar X \sim \text{Normal}( \mu, \sigma/\sqrt{n} )" elems={ELEM_TOOLTIPS} />.  Our confidence interval is then <TeX raw="\bar X \pm Z_{\alpha/2} \cdot \sigma/\sqrt{n}" elems={ELEM_TOOLTIPS} />. For our choice of sample size (n), mu, sigma, and confidence level, we'll simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.</p>;
+		const intro = <p><TeX raw="X \sim \text{Normal}(  \mu, \sigma^2 )" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\bar X \sim \text{Normal}( \mu, \sigma/\sqrt{n} )" elems={ELEM_TOOLTIPS} />.  Our confidence interval is then <TeX raw="\bar X \pm Z_{\alpha/2} \cdot \sigma/\sqrt{n}" elems={ELEM_TOOLTIPS} />. For our choice of sample size (n), <TeX raw="\mu" />, <TeX raw="\sigma" />, and confidence level, we'll simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.</p>;
 
 		return (
 			<Panel id="coverageModuleNormal">

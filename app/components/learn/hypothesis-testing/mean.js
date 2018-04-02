@@ -269,7 +269,7 @@ class MeanTest extends Component {
 						style={{
 							fontSize: '1.5em'
 						}}
-						raw="z  = \frac{\bar x_1 - \bar x_2 - (\mu_1 - \mu_2)}{\sqrt{\tfrac{s_1^2}{n_1}+\tfrac{s_2^2}{n_2}}}"
+						raw="z  = \frac{(\bar x_1 - \bar x_2) - (\mu_1 - \mu_2)}{\sqrt{\tfrac{s_1^2}{n_1}+\tfrac{s_2^2}{n_2}}}"
 						elems={{
 							'n': {
 								tooltip: 'Sample Size'

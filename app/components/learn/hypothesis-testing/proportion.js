@@ -251,7 +251,7 @@ class ProportionTest extends Component {
 						displayMode
 						tag=""
 						style={{ fontSize: '1.5em' }}
-						raw="z  = \frac{\hat p_1 - \hat p_2 - (p_1 - p_2)}{\sqrt{\tfrac{\hat p_1 (1- \hat p_1)}{n_1} + \tfrac{\hat p_2 (1 - \hat p_2)}{n_2} }}"
+						raw="z  = \frac{(\hat p_1 - \hat p_2) - (p_1 - p_2)}{\sqrt{\tfrac{\hat p_1 (1- \hat p_1)}{n_1} + \tfrac{\hat p_2 (1 - \hat p_2)}{n_2} }}"
 						elems={{
 							'n': {
 								tooltip: 'Sample Size'
