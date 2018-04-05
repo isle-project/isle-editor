@@ -6,3 +6,20 @@
 	box-shadow: 0 0 8px rgba(92,92,92, 0.5);
 	margin-bottom: 15px;
 }
+
+.rt-table {
+	overflow: hidden !important;
+}
+
+.rt-tbody {
+	min-width: 0px !important;
+}
+
+.rt-thead {
+	min-width: 0px !important;
+	overflow: hidden !important;
+}
+
+.rt-tr {
+	min-width: 0px !important;
+}

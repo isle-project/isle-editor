@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
 import InputRange from 'react-input-range';
@@ -43,6 +44,17 @@ class DataTable extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = this.generateInitialState( props );
+	}
+
+	componentDidMount() {
+		const thead = findDOMNode( this.table ).getElementsByClassName( 'rt-thead' )[ 0 ];
+		const theadControls = findDOMNode( this.table ).getElementsByClassName( 'rt-thead' )[ 1 ];
+		const tbody = findDOMNode( this.table ).getElementsByClassName( 'rt-tbody' )[0];
+
+		tbody.addEventListener( 'scroll', () => {
+			thead.scrollLeft = tbody.scrollLeft;
+			theadControls.scrollLeft = tbody.scrollLeft;
+		});
 	}
 
 	componentWillReceiveProps( nextProps ) {
