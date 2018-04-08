@@ -12,8 +12,9 @@ import Login from 'components/login';
 // VARIABLES //
 
 function createMessage( session, message ) {
+	let msg = message || '';
 	return {
-		text: `Dear ${session.user.name}, this is an automatic confirmation email to inform you that you have successfully completed ${session.lessonName} of course ${session.namespaceName}. ${message}`,
+		text: `Dear ${session.user.name}, this is an automatic confirmation email to inform you that you have successfully completed ${session.lessonName} of course ${session.namespaceName}. ${msg}`,
 		subject: `${session.lessonName} successfully completed!`
 	};
 }
@@ -94,10 +95,13 @@ class LessonSubmit extends Component {
 			level: 'success',
 			position: 'tr'
 		});
-		if ( this.props.message ) {
-			const msg = createMessage( session, this.props.message );
-			session.sendMail( msg, session.user.email );
-		}
+		session.log({
+			id: session.lessonName,
+			type: 'LESSON_SUBMIT',
+			value: 'Lesson submitted!'
+		});
+		const msg = createMessage( session, this.props.message );
+		session.sendMail( msg, session.user.email );
 		this.setState({
 			disabled: true
 		});
