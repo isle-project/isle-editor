@@ -58,6 +58,7 @@
 	"Plotly": "const Plotly = require( \"components/plotly\" )",
 	"ProportionsInput": "const ProportionsInput = require( \"components/input/proportions\" )",
 	"ProportionsSurvey": "const ProportionsSurvey = require( \"components/proportions-survey\" )",
+	"RangeQuestion": "const RangeQuestion = require( \"components/range-question\" )",
 	"RealtimeMetrics": "const RealtimeMetrics = require( \"components/metrics/realtime\" )",
 	"Recorder": "const Recorder = require( \"components/recorder\" )",
 	"RHelp": "const RHelp = require( \"components/r/help\" )",
