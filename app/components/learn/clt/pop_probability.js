@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import Panel from 'react-bootstrap/lib/Panel';
 import TeX from 'components/tex';
 import NumberInput from 'components/input/number';
-import pexp from '@stdlib/math/base/dists/exponential/cdf';
-import punif from '@stdlib/math/base/dists/uniform/cdf';
-import pnorm from '@stdlib/math/base/dists/normal/cdf';
+import pexp from '@stdlib/stats/base/dists/exponential/cdf';
+import punif from '@stdlib/stats/base/dists/uniform/cdf';
+import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 
 
 // MAIN //

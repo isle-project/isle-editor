@@ -15,9 +15,9 @@ import max from 'compute-max';
 import mean from 'compute-mean';
 import stdev from 'compute-stdev';
 import pow from '@stdlib/math/base/special/pow';
-import gaussian from '@stdlib/math/base/dists/normal/pdf';
-import dexp from '@stdlib/math/base/dists/exponential/pdf';
-import dunif from '@stdlib/math/base/dists/uniform/pdf';
+import gaussian from '@stdlib/stats/base/dists/normal/pdf';
+import dexp from '@stdlib/stats/base/dists/exponential/pdf';
+import dunif from '@stdlib/stats/base/dists/uniform/pdf';
 import iqr from 'compute-iqr';
 import by from './by.js';
 

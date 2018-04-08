@@ -7,7 +7,7 @@ import TeX from 'components/tex';
 import NumberInput from 'components/input/number';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import abs from '@stdlib/math/base/special/abs';
-import pnorm from '@stdlib/math/base/dists/normal/cdf';
+import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 
 
 // VARIABLES //

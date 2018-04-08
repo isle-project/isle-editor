@@ -6,9 +6,9 @@ import Panel from 'react-bootstrap/lib/Panel';
 import TeX from 'components/tex';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import PINF from '@stdlib/constants/math/float64-pinf';
-import normal from '@stdlib/math/base/dists/normal/cdf';
-import exponential from '@stdlib/math/base/dists/exponential/cdf';
-import uniform from '@stdlib/math/base/dists/uniform/cdf';
+import normal from '@stdlib/stats/base/dists/normal/cdf';
+import exponential from '@stdlib/stats/base/dists/exponential/cdf';
+import uniform from '@stdlib/stats/base/dists/uniform/cdf';
 
 
 // MAIN //

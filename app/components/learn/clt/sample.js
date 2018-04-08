@@ -9,7 +9,7 @@ import Panel from 'react-bootstrap/lib/Panel';
 import Row from 'react-bootstrap/lib/Row';
 import PropTypes from 'prop-types';
 import sample from '@stdlib/random/sample';
-import dnorm from '@stdlib/math/base/dists/normal/pdf';
+import dnorm from '@stdlib/stats/base/dists/normal/pdf';
 import copy from '@stdlib/utils/copy';
 import inmap from '@stdlib/utils/inmap';
 import abs from '@stdlib/math/base/special/abs';

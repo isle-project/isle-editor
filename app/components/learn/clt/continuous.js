@@ -12,7 +12,7 @@ import Tab from 'react-bootstrap/lib/Tab';
 import rExponential from '@stdlib/random/base/exponential';
 import rUniform from '@stdlib/random/base/uniform';
 import rNormal from '@stdlib/random/base/normal';
-import dnorm from '@stdlib/math/base/dists/normal/pdf';
+import dnorm from '@stdlib/stats/base/dists/normal/pdf';
 import copy from '@stdlib/utils/copy';
 import inmap from '@stdlib/utils/inmap';
 import abs from '@stdlib/math/base/special/abs';

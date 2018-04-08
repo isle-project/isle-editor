@@ -8,7 +8,7 @@ import abs from '@stdlib/math/base/special/abs';
 import roundn from '@stdlib/math/base/special/roundn';
 import randu from '@stdlib/random/base/randu';
 import linspace from '@stdlib/math/utils/linspace';
-import lognormal from '@stdlib/math/base/dists/lognormal';
+import lognormal from '@stdlib/stats/base/dists/lognormal';
 
 
 // MAIN //

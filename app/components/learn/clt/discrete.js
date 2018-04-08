@@ -9,7 +9,7 @@ import Panel from 'react-bootstrap/lib/Panel';
 import Row from 'react-bootstrap/lib/Row';
 import rBinomial from '@stdlib/random/base/binomial';
 import copy from '@stdlib/utils/copy';
-import dnorm from '@stdlib/math/base/dists/normal/pdf';
+import dnorm from '@stdlib/stats/base/dists/normal/pdf';
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import stdev from 'compute-stdev';

@@ -8,7 +8,7 @@ import NINF from '@stdlib/constants/math/float64-ninf';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import abs from '@stdlib/math/base/special/abs';
 import sqrt from '@stdlib/math/base/special/sqrt';
-import pnorm from '@stdlib/math/base/dists/normal/cdf';
+import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 
 
 // VARIABLES //

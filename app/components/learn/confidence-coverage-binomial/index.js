@@ -9,7 +9,7 @@ import { VictoryAxis, VictoryChart, VictoryErrorBar, VictoryLine, VictoryTheme, 
 import abs from '@stdlib/math/base/special/abs';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import randu from '@stdlib/random/base/randu';
-import qnorm from '@stdlib/math/base/dists/normal/quantile';
+import qnorm from '@stdlib/stats/base/dists/normal/quantile';
 import ztest from '@stdlib/stats/ztest';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
