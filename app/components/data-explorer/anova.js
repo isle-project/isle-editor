@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
-import ROutput from 'components/r/output';
+import anova1 from '@stdlib/stats/anova1';
 
 
 // MAIN //
@@ -19,14 +19,7 @@ class Anova extends Component {
 			const groups = data[ grouping ].map( x => `"${x}"` );
 			const value = <div>
 				<label>ANOVA for {variable} between {grouping}</label><br />
-				<ROutput code={`
-					df = data.frame(
-						${variable} = c(${vals}),
-						${grouping} = c(${groups})
-					)
-					fit = lm( ${variable} ~ ${grouping}, data = df )
-					anova( fit )`}
-				/>
+				{anova1( vals, groups ).print()}
 			</div>;
 			const output = {
 				variable: 'One-way ANOVA',

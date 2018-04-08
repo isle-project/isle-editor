@@ -9,7 +9,7 @@ import { VictoryAxis, VictoryChart, VictoryErrorBar, VictoryLine, VictoryTheme, 
 import abs from '@stdlib/math/base/special/abs';
 import qt from '@stdlib/math/base/dists/t/quantile';
 import normal from '@stdlib/random/base/normal';
-import ttest from '@stdlib/math/stats/ttest';
+import ttest from '@stdlib/stats/ttest';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
 import FeedbackButtons from 'components/feedback';

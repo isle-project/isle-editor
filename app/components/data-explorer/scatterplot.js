@@ -7,7 +7,7 @@ import Panel from 'react-bootstrap/lib/Panel';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Plotly from 'components/plotly';
-import lowess from '@stdlib/math/stats/lowess';
+import lowess from '@stdlib/stats/lowess';
 import linspace from '@stdlib/math/utils/linspace';
 import mapValues from '@stdlib/utils/map-values';
 import groupBy from '@stdlib/utils/group-by';

@@ -8,7 +8,7 @@ import SelectInput from 'components/input/select';
 import TeX from 'components/tex';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
-import ztest2 from '@stdlib/math/stats/ztest2';
+import ztest2 from '@stdlib/stats/ztest2';
 import copy from '@stdlib/utils/copy';
 import roundn from '@stdlib/math/base/special/roundn';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
