@@ -35,9 +35,9 @@ class NumberInput extends Input {
 
 		const { session } = context;
 		this.state = {
-			value: props.bind && session.state ?
+			value: props.value || (props.bind && session.state ?
 				session.state[ props.bind ]:
-				props.defaultValue,
+				props.defaultValue),
 			tooltip: this.createTooltip( props )
 		};
 
@@ -47,9 +47,8 @@ class NumberInput extends Input {
 			this.setState({
 				value
 			}, () => {
-				if (
-					valid && value !== '' &&
-					value !== '-' && value !== '.' && value !== '-.'
+				if (this.props.value || (valid && value !== '' && 
+					value !== '-' && value !== '.' && value !== '-.')
 				) {
 					value = parseFloat( value );
 					this.props.onChange( value );
@@ -98,6 +97,7 @@ class NumberInput extends Input {
 					value
 				}, () => {
 					this.props.onChange( value );
+					this.props.onBlur( value );
 					if ( this.props.bind ) {
 						global.lesson.setState({
 							[ this.props.bind ]: value
@@ -137,6 +137,9 @@ class NumberInput extends Input {
 
 	render() {
 		let { value } = this.state;
+		if ( this.props.value ) {
+			value = this.props.value;	
+		}
 		if ( this.props.inline === true ) {
 			let input =
 				<span style={{ padding: '5px' }}>
@@ -233,9 +236,11 @@ NumberInput.defaultProps = {
 	step: 1,
 	width: 80,
 	defaultValue: 0,
+	onBlur() {},
 	onChange() {},
 	inline: false,
-	numbersOnly: true
+	numbersOnly: true,
+	value: null
 };
 
 
@@ -249,12 +254,14 @@ NumberInput.propTypes = {
 	max: PropTypes.number,
 	min: PropTypes.number,
 	numbersOnly: PropTypes.bool,
+	onBlur: PropTypes.func,
 	onChange: PropTypes.func,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
 	]),
-	width: PropTypes.number
+	width: PropTypes.number,
+	value: PropTypes.number
 };
 
 
