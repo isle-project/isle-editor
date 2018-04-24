@@ -9,6 +9,7 @@ var pow = require( '@stdlib/math/base/special/pow' );
 var inv = require( '@stdlib/math/base/special/inv' );
 var exp = require( '@stdlib/math/base/special/exp' );
 var log = require( '@stdlib/math/base/special/log' );
+var log2 = require( '@stdlib/math/base/special/log2' );
 var sqrt = require( '@stdlib/math/base/special/sqrt' );
 var log10 = require( '@stdlib/math/base/special/log10' );
 var choose = require( '@stdlib/math/base/special/binomcoef')
@@ -16,7 +17,37 @@ var factorial = require( '@stdlib/math/base/special/factorial' );
 var FLOAT64_MAX = require( '@stdlib/constants/math/float64-max' );
 var FLOAT64_MIN_SAFE_INTEGER = require( '@stdlib/constants/math/float64-min-safe-integer' );
 var isDigitString = require( '@stdlib/assert/is-digit-string' );
+var isStrictEqual = require( '@stdlib/assert/is-strict-equal' );
+var isEmptyString = require( '@stdlib/assert/is-empty-string' );
+var isAlphaNumeric = require( '@stdlib/assert/is-alphanumeric' );
+var hasOwnProp = require( '@stdlib/assert/has-own-property' );
 
+// VARIABLES //
+
+var order = {
+	'/': 1,
+	'*': 1.5,
+	'+': 2,
+	'-': 2.5
+};
+
+var funs = {
+	'sin(': sin,
+	'cos(': cos,
+	'tan(': tan,
+	'ln(': ln,
+	'sqrt(': sqrt,
+	'square(': function square(x) { return multiply(x, x); },
+	'choose(': choose,
+	'factorial(': factorial,
+	'log10(': log10,
+	'log2(': log2,
+	'pow(': pow,
+	'abs(': abs,
+	'log(': log,
+	'exp(': exp,
+	'inv(': inv
+}
 
 // FUNCTIONS //
 
@@ -157,7 +188,7 @@ function multiply(x, y) {
 * @throws {Error} Product must not be exceeded by int min
 * @returns {number} the multiplication of X and Y
 */
-function division(x, y) {
+function divide(x, y) {
 	if ( x > FLOAT64_MAX ) {
 		throw new Error('X must not exceed int max');
 	}
@@ -192,69 +223,112 @@ function division(x, y) {
 // MAIN //
 
 function evaluateStr(expression) {
+	var splitArr;
 	var reLetter; // use re_letter.test()
 	var xEval;
 	var yEval;
-	var order;
-	var ops;
+	var ans;
+	var fun;
 	var op;
 	var i;
+	var j;
+	var k;
 	var x;
 	var y;
 
-	order = {
-		'/': 1,
-		'*': 1.5,
-		'+': 2,
-		'-': 2.5
-	};
-
 	// REGEXP for letter, the i ignores casing considerations
 	reLetter = /[a-z]/i;
-
 	if ( isDigitString(expression) ) {
 		return parseFloat(expression);
 	}
 
+	i = 0;
 	while ( (expression[i] === '.') || (isDigitString(expression[i])) || (expression[i] === ' ') ) {
 		i++;
 	}
-
-	// we stop on our first operation
+	console.log(expression[i]);
+	// We stop on our first operation
 	if ( !reLetter.test(expression[i]) ) {
-		// we know it is not a letter
+		// We know it is not a letter
 
 		op = expression[i];
 		x = expression.substring(0, i);
 		y = expression.substring(i + 1, expression.length);
 
+
 		if ( order[op] >= 2 ) {
-			// we know that we have a primitive operation --> case on operation
-			xEval = evaluateStr(x);
-			yEval = evaluateStr(y);
+			// We know that we have a primitive operation --> case on operation
+			if ( isEmptyString(x.trim()) ) {
+				xEval = 0;
+			} else {
+				xEval = evaluateStr(x.trim());
+			}
+			yEval = evaluateStr(y.trim());
 
 			if ( op === '+' ) {
-				return add(xEval, yEval);
+				ans = add(xEval, yEval);
 			} else {
-				assert( op === '-' );
-				return subtract(xEval, yEval);
+				ans =  subtract(xEval, yEval);
 			}
 		} else {
-			// we know we have something
-			xEval = evaluateStr(x);
-			yEval = evaluateStr(y);
+			xEval = evaluateStr(x.trim());
+			yEval = evaluateStr(y.trim());
 
 			if ( op === '*' ) {
-				return multiply(xEval, yEval);
+				ans = multiply(xEval, yEval);
 			} else {
-				assert( op === '/' );
-				return divide(xEval, yEval);
+				ans = divide(xEval, yEval);
 			}
 		}
 
+	} else {
+		// handle pi case before
+		console.log('we made it into the letters')
+		// we know it is a letter
+		// loop until we have the open paren
+		j = i;
+		while ( isAlphaNumeric(expression[j]) ) {
+			j++;
+		}
+		console.log(i, j);
+		console.log(expression.substring(i, j));
+
+		// Check if we have an open par
+		if ( expression[j] === '(' ) {
+			console.log('open paren');
+			// We know that it is a function --> evaluate it
+			// Loop through k to get to the end
+			k = j + 1;
+			while ( k < expression.length && expression[k] !== ')' ) {
+				k++;
+			}
+
+			if ( k === expression.length ) {
+				throw new Error('Parenthesis not closed!');
+			}
+
+			fun = expression.substring(i, j + 2);
+			console.log(fun);
+
+			if ( hasOwnProp(funs, fun) ) {
+				// We know it is a function
+				if ( fun.length === 1 ) {
+					// We know it takes one argument look for the )
+					// Check to make sure that we can go to j + 2
+
+					xEval = evaluateStr(expression.substring(j + 2, k));
+					ans = fun(xEval);
+				}
+				// We get the x and y
+				splitArr = expression.substring(j + 2, k).split(',');
+				xEval = evaluateStr(splitArr[0].trim());
+				yEval = evaluateStr(splitArr[1].trim());
+				ans = fun(xEval, yEval);
+			}
+		}
 	}
-
-
-
-
+	return ans;
 }
+
+var a = 'sin(5)';
+console.log(evaluateStr(a));
