@@ -38,6 +38,9 @@ class ProportionInput extends Input {
 				visualData: this.pieData( nextProps.values )
 			});
 		}
+		if ( nextProps.legends !== this.props.legends ) {
+			this.legends = this.checkLegends();
+		}
 	}
 
 	setValues() {
@@ -47,7 +50,6 @@ class ProportionInput extends Input {
 
 		for ( var i = 0; i < no; i++ ) {
 			values[ i ] = initial;
-			//
 		}
 		return values;
 	}
@@ -190,7 +192,7 @@ class ProportionInput extends Input {
 
 ProportionInput.defaultProps = {
 	nElements: 6,
-	legends: 'Legend',
+	legends: null,
 	precision: 1,
 	step: 0.1,
 	disabled: false,
@@ -207,10 +209,7 @@ ProportionInput.propTypes = {
 	disabled: PropTypes.bool,
 	height: PropTypes.number,
 	innerRadius: PropTypes.number,
-	legends: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.array
-	]),
+	legends: PropTypes.array,
 	margin: PropTypes.string,
 	nElements: PropTypes.number,
 	onChange: PropTypes.func,

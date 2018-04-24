@@ -21,6 +21,7 @@
 	"LearnConfidenceCoverageNormal": "const LearnConfidenceCoverageNormal = require( \"components/learn/confidence-coverage-normal\" )",
 	"LearnMeanTest": "const LearnMeanTest = require( \"components/learn/hypothesis-testing/mean\" )",
 	"LearnProportionTest": "const LearnProportionTest = require( \"components/learn/hypothesis-testing/proportion\" )",
+	"LearnMeanVsMedian": "const LearnMeanVsMedian = require( \"components/learn/mean-vs-median\" )",
 	"DataExplorer": "const DataExplorer = require( \"components/data-explorer\" )",
 	"DataTable": "const DataTable = require( \"components/data-table\" )",
 	"Dashboard": "const Dashboard = require( \"components/dashboard\" )",
