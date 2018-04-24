@@ -59,8 +59,8 @@ import ContourChart, { generateContourChart } from 'components/data-explorer/con
 
 // TEST COMPONENTS //
 
-import ZTest from 'components/data-explorer/ztest';
-import ZTest2 from 'components/data-explorer/ztest2';
+import MeanTest from 'components/data-explorer/meantest';
+import MeanTest2 from 'components/data-explorer/meantest2';
 import CorrTest from 'components/data-explorer/corrtest';
 import Chi2Test from 'components/data-explorer/chi2';
 import PropTest from 'components/data-explorer/proptest';
@@ -787,7 +787,7 @@ class DataExplorer extends Component {
 				let content = null;
 				switch ( e ) {
 				case 'One-Sample Mean Test':
-					content = <ZTest
+					content = <MeanTest
 						onCreated={this.addToOutputs}
 						data={this.state.data}
 						continuous={this.state.continuous}
@@ -795,7 +795,7 @@ class DataExplorer extends Component {
 					/>;
 					break;
 				case 'Two-Sample Mean Test':
-					content = <ZTest2
+					content = <MeanTest2
 						onCreated={this.addToOutputs}
 						data={this.state.data}
 						continuous={this.state.continuous}

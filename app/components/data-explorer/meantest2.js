@@ -6,16 +6,24 @@ import { Button, Panel, Row, Col } from 'react-bootstrap';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import TeX from 'components/tex';
+import ttest2 from '@stdlib/stats/ttest2';
 import ztest2 from '@stdlib/stats/ztest2';
 import copy from '@stdlib/utils/copy';
+import replace from '@stdlib/string/replace';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
 import unique from 'uniq';
 import stdev from 'compute-stdev';
 
 
+// VARIABLES //
+
+var RE_ONESIDED_SMALLER = /95% confidence interval: \[-Infinity,[\d.]+\]/;
+var RE_ONESIDED_GREATER = /95% confidence interval: \[[\d.]+,Infinity\]/;
+
+
 // MAIN //
 
-class ZTest2 extends Component {
+class MeanTest2 extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -25,12 +33,13 @@ class ZTest2 extends Component {
 			var2: null,
 			diff: 0,
 			direction: 'two-sided',
-			alpha: 0.05
+			alpha: 0.05,
+			type: 'Z Test'
 		};
 	}
 
 	calculateTwoSampleZTest = () => {
-		const { var1, grouping, var2, diff, direction, alpha } = this.state;
+		const { var1, grouping, var2, diff, direction, alpha, type } = this.state;
 		const { data } = this.props;
 		let secondCategory;
 		let firstCategory;
@@ -52,17 +61,29 @@ class ZTest2 extends Component {
 			});
 			x = splitted[ 0 ];
 			y = splitted[ 1 ];
-			const result = ztest2( x, y, stdev( x ), stdev( y ), {
-				'alpha': alpha,
-				'alternative': direction,
-				'difference': diff
-			});
+			let result;
+			if ( type === 'Z Test' ) {
+				result = ztest2( x, y, stdev( x ), stdev( y ), {
+					'alpha': alpha,
+					'alternative': direction,
+					'difference': diff
+				});
+			} else {
+				result = ttest2( x, y, {
+					'alpha': alpha,
+					'alternative': direction,
+					'difference': diff
+				});
+			}
 			let arrow = '\\ne';
 			if ( direction === 'less' ) {
 				arrow = '<';
 			} else if ( direction === 'greater' ){
 				arrow = '>';
 			}
+			let printout = result.print();
+			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
+			printout = replace( printout, RE_ONESIDED_GREATER, '' );
 			value = <div>
 				<label>Hypothesis test for {var1} between {grouping}:</label>
 				<TeX
@@ -76,23 +97,35 @@ class ZTest2 extends Component {
 					raw={`H_1: \\mu_{\\text{${grouping}:${firstCategory}}} - \\mu_{\\text{${grouping}:${secondCategory}}} ${arrow} ${diff}`}
 					tag="" />
 				<pre style={{ fontSize: '11px' }}>
-					{result.print()}
+					{printout}
 				</pre>
 			</div>;
 		} else if ( var2 ) {
 			x = data[ var1 ];
 			y = data[ var2 ];
-			const result = ztest2( x, y, stdev( x ), stdev( y ), {
-				'alpha': alpha,
-				'alternative': direction,
-				'difference': diff
-			});
+			let result;
+			if ( type === 'Z Test' ) {
+				result = ztest2( x, y, stdev( x ), stdev( y ), {
+					'alpha': alpha,
+					'alternative': direction,
+					'difference': diff
+				});
+			} else {
+				result = ztest2( x, y, {
+					'alpha': alpha,
+					'alternative': direction,
+					'difference': diff
+				});
+			}
 			let arrow = '\\ne';
 			if ( direction === 'less' ) {
 				arrow = '<';
 			} else if ( direction === 'greater' ){
 				arrow = '>';
 			}
+			let printout = result.print();
+			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
+			printout = replace( printout, RE_ONESIDED_GREATER, '' );
 			value = <div>
 				<label>Hypothesis test for {var1} against {var2}:</label>
 				<TeX
@@ -107,7 +140,7 @@ class ZTest2 extends Component {
 					tag=""
 				/>
 				<pre style={{ fontSize: '11px' }}>
-					{result.print()}
+					{printout}
 				</pre>
 			</div>;
 		} else {
@@ -147,6 +180,16 @@ class ZTest2 extends Component {
 		const { continuous, categorical } = this.props;
 		const binary = this.getBinaryVars( categorical );
 		return ( <Fragment>
+			<SelectInput
+				legend="Type of Test:"
+				defaultValue="Z Test"
+				options={[ 'Z Test', 'T Test' ]}
+				onChange={( value ) => {
+					this.setState({
+						type: value
+					});
+				}}
+			/>
 			<SelectInput
 				legend="Variable:"
 				defaultValue={this.state.var1}
@@ -247,7 +290,7 @@ class ZTest2 extends Component {
 
 // DEFAULT PROPERTIES //
 
-ZTest2.defaultProps = {
+MeanTest2.defaultProps = {
 	categorical: null,
 	logAction() {},
 	session: {}
@@ -256,7 +299,7 @@ ZTest2.defaultProps = {
 
 // PROPERTY TYPES //
 
-ZTest2.propTypes = {
+MeanTest2.propTypes = {
 	categorical: PropTypes.array,
 	continuous: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
@@ -268,4 +311,4 @@ ZTest2.propTypes = {
 
 // EXPORTS //
 
-export default ZTest2;
+export default MeanTest2;
