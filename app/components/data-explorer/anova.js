@@ -14,12 +14,14 @@ class Anova extends Component {
 		super( props );
 
 		this.calculateANOVA = ( variable, grouping ) => {
-			const { data } = this.props;
+			const { data, showDecision } = this.props;
 			const vals = data[ variable ];
 			const groups = data[ grouping ].map( x => `"${x}"` );
 			const value = <div>
 				<label>ANOVA for {variable} between {grouping}</label><br />
-				<span style={{ fontSize: '10px' }}>{anova1( vals, groups ).print()}</span>
+				<span style={{ fontSize: '10px' }}>{anova1( vals, groups ).print({
+					decision: showDecision
+				})}</span>
 			</div>;
 			const output = {
 				variable: 'One-way ANOVA',
@@ -65,11 +67,13 @@ Anova.propTypes = {
 	continuous: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
-	onCreated: PropTypes.func.isRequired
+	onCreated: PropTypes.func.isRequired,
+	showDecision: PropTypes.bool
 };
 
 Anova.defaultProps = {
-	logAction() {}
+	logAction() {},
+	showDecision: true
 };
 
 

@@ -47,6 +47,9 @@ class PropTest extends Component {
 			} else if ( direction === 'greater' ){
 				arrow = '>';
 			}
+			const printout = result.print({
+				decision: this.props.showDecision
+			});
 			const output = {
 				variable: `One-Sample Proportion Test for ${variable}`,
 				type: 'Test',
@@ -58,7 +61,7 @@ class PropTest extends Component {
 					<TeX displayMode raw={`H_0: p = ${p0} \\; vs. \\; H_1: p ${arrow} ${p0}`} tag="" />
 					<label>Sample proportion: {roundn( mean( binary ), -3 )}</label>
 					<pre style={{ fontSize: '11px' }}>
-						{result.print()}
+						{printout}
 					</pre>
 				</div>
 			};
@@ -126,12 +129,14 @@ PropTest.propTypes = {
 	categorical: PropTypes.array,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
-	onCreated: PropTypes.func.isRequired
+	onCreated: PropTypes.func.isRequired,
+	showDecision: PropTypes.bool
 };
 
 PropTest.defaultProps = {
 	categorical: null,
-	logAction() {}
+	logAction() {},
+	showDecision: true
 };
 
 

@@ -57,10 +57,11 @@ import Piechart, { generatePiechartConfig } from 'components/data-explorer/piech
 import Scatterplot, { generateScatterplotConfig } from 'components/data-explorer/scatterplot';
 import ContourChart, { generateContourChart } from 'components/data-explorer/contour.js';
 
+
 // TEST COMPONENTS //
 
-import ZTest from 'components/data-explorer/ztest';
-import ZTest2 from 'components/data-explorer/ztest2';
+import MeanTest from 'components/data-explorer/meantest';
+import MeanTest2 from 'components/data-explorer/meantest2';
 import CorrTest from 'components/data-explorer/corrtest';
 import Chi2Test from 'components/data-explorer/chi2';
 import PropTest from 'components/data-explorer/proptest';
@@ -787,21 +788,23 @@ class DataExplorer extends Component {
 				let content = null;
 				switch ( e ) {
 				case 'One-Sample Mean Test':
-					content = <ZTest
+					content = <MeanTest
 						onCreated={this.addToOutputs}
 						data={this.state.data}
 						continuous={this.state.continuous}
 						logAction={this.logAction}
+						showDecision={this.props.showTestDecisions}
 					/>;
 					break;
 				case 'Two-Sample Mean Test':
-					content = <ZTest2
+					content = <MeanTest2
 						onCreated={this.addToOutputs}
 						data={this.state.data}
 						continuous={this.state.continuous}
 						categorical={this.state.categorical}
 						logAction={this.logAction}
 						session={this.context.session}
+						showDecision={this.props.showTestDecisions}
 					/>;
 					break;
 				case 'One-Sample Proportion Test':
@@ -810,6 +813,7 @@ class DataExplorer extends Component {
 						data={this.state.data}
 						categorical={this.state.categorical}
 						logAction={this.logAction}
+						showDecision={this.props.showTestDecisions}
 					/>;
 					break;
 				case 'Two-Sample Proportion Test':
@@ -819,6 +823,7 @@ class DataExplorer extends Component {
 						categorical={this.state.categorical}
 						logAction={this.logAction}
 						session={this.context.session}
+						showDecision={this.props.showTestDecisions}
 					/>;
 					break;
 				case 'One-Way ANOVA':
@@ -828,6 +833,7 @@ class DataExplorer extends Component {
 						continuous={this.state.continuous}
 						categorical={this.state.categorical}
 						logAction={this.logAction}
+						showDecision={this.props.showTestDecisions}
 					/>;
 					break;
 				case 'Correlation Test':
@@ -836,6 +842,7 @@ class DataExplorer extends Component {
 						data={this.state.data}
 						continuous={this.state.continuous}
 						logAction={this.logAction}
+						showDecision={this.props.showTestDecisions}
 					/>;
 					break;
 				case 'Chi-squared Independence Test':
@@ -844,6 +851,7 @@ class DataExplorer extends Component {
 						data={this.state.data}
 						categorical={this.state.categorical}
 						logAction={this.logAction}
+						showDecision={this.props.showTestDecisions}
 					/>;
 					break;
 				}
@@ -1058,7 +1066,8 @@ DataExplorer.defaultProps = {
 	editorProps: null,
 	editorTitle: 'Report',
 	histogramDensities: true,
-	showEditor: false
+	showEditor: false,
+	showTestDecisions: true
 };
 
 
@@ -1078,6 +1087,7 @@ DataExplorer.propTypes = {
 	plots: PropTypes.array,
 	questions: PropTypes.node,
 	showEditor: PropTypes.bool,
+	showTestDecisions: PropTypes.bool,
 	statistics: PropTypes.array,
 	tables: PropTypes.array,
 	tabs: PropTypes.array,

@@ -16,7 +16,7 @@ class CorrTest extends Component {
 		super( props );
 
 		this.calculateCorrTest = ( var1, var2, rho0, direction, alpha ) => {
-			const { data } = this.props;
+			const { data, showDecision } = this.props;
 			const x = data[ var1 ];
 			const y = data[ var2 ];
 			const result = pcorrtest( x, y, {
@@ -37,7 +37,9 @@ class CorrTest extends Component {
 					<label>Hypothesis test for correlation between {var1} and {var2}:</label>
 					<TeX displayMode raw={`H_0: \\rho = ${rho0} \\; vs. \\; H_1: \\rho ${arrow} ${rho0}`} tag="" />
 					<pre style={{ fontSize: '11px' }}>
-						{result.print()}
+						{result.print({
+							decision: showDecision
+						})}
 					</pre>
 				</div>
 			};
@@ -98,11 +100,13 @@ CorrTest.propTypes = {
 	continuous: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
-	onCreated: PropTypes.func.isRequired
+	onCreated: PropTypes.func.isRequired,
+	showDecision: PropTypes.bool
 };
 
 CorrTest.defaultProps = {
-	logAction() {}
+	logAction() {},
+	showDecision: true
 };
 
 
