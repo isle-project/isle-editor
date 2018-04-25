@@ -40,7 +40,7 @@ class MeanTest2 extends Component {
 
 	calculateTwoSampleZTest = () => {
 		const { var1, grouping, var2, diff, direction, alpha, type } = this.state;
-		const { data } = this.props;
+		const { data, showDecision } = this.props;
 		let secondCategory;
 		let firstCategory;
 		let value;
@@ -81,7 +81,9 @@ class MeanTest2 extends Component {
 			} else if ( direction === 'greater' ){
 				arrow = '>';
 			}
-			let printout = result.print();
+			let printout = result.print({
+				decision: showDecision
+			});
 			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 			printout = replace( printout, RE_ONESIDED_GREATER, '' );
 			value = <div>
@@ -123,7 +125,9 @@ class MeanTest2 extends Component {
 			} else if ( direction === 'greater' ){
 				arrow = '>';
 			}
-			let printout = result.print();
+			let printout = result.print({
+				decision: showDecision
+			});
 			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 			printout = replace( printout, RE_ONESIDED_GREATER, '' );
 			value = <div>
@@ -293,7 +297,8 @@ class MeanTest2 extends Component {
 MeanTest2.defaultProps = {
 	categorical: null,
 	logAction() {},
-	session: {}
+	session: {},
+	showDecision: true
 };
 
 
@@ -305,7 +310,8 @@ MeanTest2.propTypes = {
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
-	session: PropTypes.object
+	session: PropTypes.object,
+	showDecision: PropTypes.bool
 };
 
 

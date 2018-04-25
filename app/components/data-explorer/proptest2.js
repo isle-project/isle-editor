@@ -44,7 +44,7 @@ class PropTest2 extends Component {
 
 	calculateTwoSamplePropTest = () => {
 		const { var1, success, grouping, var2, diff, direction, alpha } = this.state;
-		const { data } = this.props;
+		const { data, showDecision } = this.props;
 		let firstCategory;
 		let secondCategory;
 		let value;
@@ -104,7 +104,9 @@ class PropTest2 extends Component {
 				<label>Sample proportion in group {firstCategory}: {roundn( mean( x ), -3 )}</label>
 				<label>Sample proportion in group {secondCategory}: {roundn( mean( y ), -3 )}</label>
 				<pre style={{ fontSize: '11px' }}>
-					{result.print()}
+					{result.print({
+						decision: showDecision
+					})}
 				</pre>
 			</div>;
 		} else if ( var2 ) {
@@ -135,7 +137,9 @@ class PropTest2 extends Component {
 				<label>Sample proportion in group {var1}: {roundn( mean( x ), -3 )}</label>
 				<label>Sample proportion in group {var2}: {roundn( mean( y ), -3 )}</label>
 				<pre style={{ fontSize: '11px' }}>
-					{result.print()}
+					{result.print({
+						decision: showDecision
+					})}
 				</pre>
 			</div>;
 		} else {
@@ -279,13 +283,15 @@ PropTest2.propTypes = {
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
-	session: PropTypes.object
+	session: PropTypes.object,
+	showDecision: PropTypes.bool
 };
 
 PropTest2.defaultProps = {
 	categorical: null,
 	logAction() {},
-	session: {}
+	session: {},
+	showDecision: true
 };
 
 

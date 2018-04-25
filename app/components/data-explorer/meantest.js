@@ -25,7 +25,7 @@ class MeanTest extends Component {
 		super( props );
 
 		this.calculateMeanTest = ( type, variable, mu0, direction, alpha ) => {
-			const { data } = this.props;
+			const { data, showDecision } = this.props;
 			let result;
 			const x = data[ variable ];
 			if ( type === 'Z Test' ) {
@@ -47,7 +47,9 @@ class MeanTest extends Component {
 			} else if ( direction === 'greater' ){
 				arrow = '>';
 			}
-			let printout = result.print();
+			let printout = result.print({
+				decision: showDecision
+			});
 			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 			printout = replace( printout, RE_ONESIDED_GREATER, '' );
 			const output = {
@@ -112,7 +114,8 @@ class MeanTest extends Component {
 // DEFAULT PROPERTIES //
 
 MeanTest.defaultProps = {
-	logAction() {}
+	logAction() {},
+	showDecision: true
 };
 
 
@@ -122,7 +125,8 @@ MeanTest.propTypes = {
 	continuous: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
-	onCreated: PropTypes.func.isRequired
+	onCreated: PropTypes.func.isRequired,
+	showDecision: PropTypes.bool
 };
 
 
