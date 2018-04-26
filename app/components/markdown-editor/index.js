@@ -16,6 +16,7 @@ import startsWith from '@stdlib/string/starts-with';
 import endsWith from '@stdlib/string/ends-with';
 import removeLast from '@stdlib/string/remove-last';
 import removeFirst from '@stdlib/string/remove-first';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import noop from '@stdlib/utils/noop';
 import VoiceInput from 'components/input/voice';
 import 'simplemde/dist/simplemde.min.css';
@@ -179,6 +180,31 @@ class MarkdownEditor extends Component {
 
 	componentDidMount() {
 		this.interval = setInterval( this.handleAutosave, this.props.intervalTime );
+		this.initializeEditor();
+	}
+
+	componentWillReceiveProps( nextProps ) {
+		let newState = {};
+		if ( nextProps.defaultValue !== this.props.defaultValue ) {
+			newState.value = nextProps.defaultValue;
+		}
+		if ( !isEmptyObject( newState ) ) {
+			this.setState( newState, () => {
+				this.simplemde.toTextArea(); // Reset text area to remove SimpleMDE instance...
+				this.initializeEditor();
+			});
+		}
+	}
+
+	componentDidUpdate() {
+		this.simplemde.codemirror.refresh();
+	}
+
+	omponentWillUnmoun() {
+		clearInterval( this.interval );
+	}
+
+	initializeEditor() {
 		this.simplemde = new SimpleMDE({
 			element: this.simplemdeRef,
 			initialValue: this.state.value,
@@ -222,14 +248,6 @@ class MarkdownEditor extends Component {
 				instance.replaceRange( html, coords );
 			}
 		});
-	}
-
-	componentDidUpdate() {
-		this.simplemde.codemirror.refresh();
-	}
-
-	omponentWillUnmoun() {
-		clearInterval( this.interval );
 	}
 
 	handleAutosave = () => {
