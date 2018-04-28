@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
@@ -36,12 +36,16 @@ const SaveModal = ( props ) => {
 // PROPERTY TYPES //
 
 SaveModal.propTypes = {
-	show: PropTypes.bool.isRequired,
-	hide: PropTypes.func.isRequired,
 	exportHTML: PropTypes.func.isRequired,
 	exportPDF: PropTypes.func.isRequired,
-	saveMarkdown: PropTypes.func.isRequired
-}
+	onHide: PropTypes.func,
+	saveMarkdown: PropTypes.func.isRequired,
+	show: PropTypes.bool.isRequired
+};
+
+SaveModal.defaultProps = {
+	onHide() {}
+};
 
 
 // EXPORTS //
