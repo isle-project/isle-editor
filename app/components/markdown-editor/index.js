@@ -719,8 +719,8 @@ ${hash[ key ]}
 					handleSave={() => {
 						this.toggleSaveModal();
 						this.context.session.addNotification({
-							title: 'Saved',
-							message: 'Report saved',
+							title: 'Report saved',
+							message: 'The report has been saved in the local storage of the current browser.',
 							level: 'success',
 							position: 'tr'
 						});
