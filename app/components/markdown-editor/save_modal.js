@@ -18,14 +18,17 @@ const SaveModal = ( props ) => {
 		</Modal.Header>
 		<Modal.Body>
 			<div className="well">
+				<Button onClick={props.handleSave} bsStyle="primary" bsSize="large" block>
+					Save (in browser)
+				</Button>
 				<Button onClick={props.exportHTML} bsStyle="primary" bsSize="large" block>
-					Save as HTML
+					Export as HTML
 				</Button>
 				<Button onClick={props.exportPDF} bsStyle="primary" bsSize="large" block>
-					Save as PDF
+					Export as PDF
 				</Button>
 				<Button onClick={props.saveMarkdown} bsSize="large" block>
-					Save Markdown Source (to restore later)
+					Export Markdown Source (to restore later)
 				</Button>
 			</div>
 		</Modal.Body>
@@ -38,6 +41,7 @@ const SaveModal = ( props ) => {
 SaveModal.propTypes = {
 	exportHTML: PropTypes.func.isRequired,
 	exportPDF: PropTypes.func.isRequired,
+	handleSave: PropTypes.func.isRequired,
 	onHide: PropTypes.func,
 	saveMarkdown: PropTypes.func.isRequired,
 	show: PropTypes.bool.isRequired
