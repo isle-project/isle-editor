@@ -153,7 +153,6 @@
     "csv-stringify": "^3.0.0",
     "d3": "5.1.0",
     "d3-cloud": "1.2.5",
-    "dayjs": "^1.5.16",
     "debug": "^3.1.0",
     "detect-csv": "^1.1.0",
     "dompurify": "^1.0.1",
@@ -183,6 +182,7 @@
     "markdown-it-katex": "^2.0.3",
     "markdown-it-sub": "^1.0.0",
     "minimist": "^1.2.0",
+    "moment": "2.22.1",
     "node-libs-browser": "^2.0.0",
     "normalize.css": "^8.0.0",
     "pdfmake": "^0.1.36",
@@ -242,6 +242,6 @@
     "webpack": "4.6.0"
   },
   "devEngines": {
-    "node": "6.x || 7.x || 8.x || 9.x || 10.x"
+    "node": "6.x || 7.x || 8.x || 9.x"
   }
 }

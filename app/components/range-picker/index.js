@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
-import dayjs from 'dayjs';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import DateRangePicker from 'react-dates/esm/components/DateRangePicker';
 import './_datepicker.css';
@@ -17,8 +17,8 @@ class RangePicker extends Component {
 		super( props );
 		this.state = {
 			period: {
-				from: dayjs( 0 ).subtract( 60, 'minutes' ),
-				to: dayjs()
+				from: moment( 0 ).subtract( 60, 'minutes' ),
+				to: moment()
 			},
 			active: 5
 		};
@@ -29,52 +29,52 @@ class RangePicker extends Component {
 		switch ( type ) {
 		case 'last_hour':
 			ret = () => {
-				const from = dayjs().subtract( 60, 'minutes' );
-				const to = dayjs();
+				const from = moment().subtract( 60, 'minutes' );
+				const to = moment();
 				this.updatePeriod( from, to, 0 );
 			};
 			return ret;
 		default:
 		case 'last_day':
 			ret = () => {
-				const from = dayjs().
+				const from = moment().
 					subtract( 1, 'minutes' ).
 					startOf( 'day' );
-				const to = dayjs().endOf( 'day' );
+				const to = moment().endOf( 'day' );
 				this.updatePeriod( from, to, 1 );
 			};
 			return ret;
 		case 'last_week':
 			ret = () => {
-				const from = dayjs().
+				const from = moment().
 					subtract( 7, 'days' ).
 					startOf( 'day' );
-				const to = dayjs().endOf( 'day' );
+				const to = moment().endOf( 'day' );
 				this.updatePeriod( from, to, 2 );
 			};
 			return ret;
 		case 'last_month':
 			ret = () => {
-				const from = dayjs().
+				const from = moment().
 					subtract( 30, 'days' ).
 					startOf( 'day' );
-				const to = dayjs().endOf( 'day' );
+				const to = moment().endOf( 'day' );
 				this.updatePeriod( from, to, 3 );
 			};
 			return ret;
 		case 'last_year':
 			ret = () => {
-				const from = dayjs().
+				const from = moment().
 					subtract( 365, 'days' ).
 					startOf( 'day' );
-				const to = dayjs().endOf( 'day' );
+				const to = moment().endOf( 'day' );
 				this.updatePeriod( from, to, 4 );
 			};
 			return ret;
 		case 'all_time':
 			ret = () => {
-				const from = dayjs( 0 ).startOf( 'day' );
-				const to = dayjs().endOf( 'day' );
+				const from = moment( 0 ).startOf( 'day' );
+				const to = moment().endOf( 'day' );
 				this.updatePeriod( from, to, 5 );
 			};
 			return ret;
