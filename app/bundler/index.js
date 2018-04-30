@@ -314,8 +314,6 @@ function writeIndexFile({
 					NODE_ENV: '"production"'
 				}
 			}),
-			new webpack.IgnorePlugin( /^\.\/locale$/, /moment$/ ),
-			new webpack.ContextReplacementPlugin( /moment[/\\]locale$/, /us/ ),
 			new webpack.IgnorePlugin( /vertx/ )
 		]
 	};

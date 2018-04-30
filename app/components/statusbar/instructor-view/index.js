@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import logger from 'debug';
 import FileSaver from 'file-saver';
 import stringify from 'csv-stringify';
@@ -26,7 +26,6 @@ import './instructor_view.css';
 
 const EDITOR_OFFSET = isElectron ? 15 : 0;
 const debug = logger( 'isle-editor' );
-moment.locale( 'us' );
 
 
 // MAIN //
@@ -40,8 +39,8 @@ class InstructorView extends Component {
 			hidden: true,
 			actionLogHeader: <span>Action Log</span>,
 			period: {
-				from: moment( 0 ).startOf( 'day' ),
-				to: moment().endOf( 'day' )
+				from: dayjs( 0 ).startOf( 'day' ),
+				to: dayjs().endOf( 'day' )
 			},
 			nActions: null
 		};

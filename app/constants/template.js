@@ -1,6 +1,6 @@
 // MODULES //
 
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 
 // MAIN //
@@ -8,7 +8,7 @@ import moment from 'moment';
 const template = `---
 title: "Lesson"
 author: John Doe
-date: ${moment().format( 'MMM Do, YYYY' )}
+date: ${dayjs().format( 'MMM Do, YYYY' )}
 state:
 server: ${localStorage.getItem( 'server' ) || 'https://isle.heinz.cmu.edu'}
 ---
