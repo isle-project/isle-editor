@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
@@ -18,14 +18,17 @@ const SaveModal = ( props ) => {
 		</Modal.Header>
 		<Modal.Body>
 			<div className="well">
+				<Button onClick={props.handleSave} bsStyle="primary" bsSize="large" block>
+					Save (in browser)
+				</Button>
 				<Button onClick={props.exportHTML} bsStyle="primary" bsSize="large" block>
-					Save as HTML
+					Export as HTML
 				</Button>
 				<Button onClick={props.exportPDF} bsStyle="primary" bsSize="large" block>
-					Save as PDF
+					Export as PDF
 				</Button>
 				<Button onClick={props.saveMarkdown} bsSize="large" block>
-					Save Markdown Source (to restore later)
+					Export Markdown Source (to restore later)
 				</Button>
 			</div>
 		</Modal.Body>
@@ -36,12 +39,17 @@ const SaveModal = ( props ) => {
 // PROPERTY TYPES //
 
 SaveModal.propTypes = {
-	show: PropTypes.bool.isRequired,
-	hide: PropTypes.func.isRequired,
 	exportHTML: PropTypes.func.isRequired,
 	exportPDF: PropTypes.func.isRequired,
-	saveMarkdown: PropTypes.func.isRequired
-}
+	handleSave: PropTypes.func.isRequired,
+	onHide: PropTypes.func,
+	saveMarkdown: PropTypes.func.isRequired,
+	show: PropTypes.bool.isRequired
+};
+
+SaveModal.defaultProps = {
+	onHide() {}
+};
 
 
 // EXPORTS //

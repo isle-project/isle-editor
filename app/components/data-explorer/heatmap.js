@@ -5,20 +5,77 @@ import PropTypes from 'prop-types';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
-import RPlot from 'components/r/plot';
+import Plotly from 'components/plotly';
+import max from '@stdlib/math/base/special/max';
+import floor from '@stdlib/math/base/special/floor';
+import kde2d from '@stdlib/stats/kde2d';
 
 
 // FUNCTIONS //
 
-export function generateHeatmapCode({ data, xval, yval, overlayPoints }) {
-	let code = `x = c(${data[ xval ]})
-		y = c(${data[ yval ]})
-		f1 <- kde2d( x, y )
-		image( f1, xlab="${xval}", ylab="${yval}")`;
-	if ( overlayPoints ) {
-		code += '\n points( x, y, col="grey" )';
+function calculateOpacity(nobs) {
+	return max( 0.05, 0.6 - floor( nobs / 500 ) );
+}
+
+function toArrayArray( arr ) {
+	const nRows = arr.shape[ 0 ];
+	const nCols = arr.shape[ 1 ];
+	const out = new Array( nRows );
+	for ( let i = 0; i < nRows; i++ ) {
+		const row = Array( nCols );
+		for ( let j = 0; j < nCols; j++ ) {
+			row[ j ] = arr.get( i, j );
+		}
+		out[ i ] = row;
 	}
-	return code;
+	return out;
+}
+
+export function generateHeatmap({ data, xval, yval, overlayPoints }) {
+	var x = data[ xval ];
+	var y = data[ yval ];
+	var out = kde2d( x, y );
+	var traces = [
+		{
+			x: out.x,
+			y: out.y,
+			z: toArrayArray( out.z ),
+			type: 'heatmap',
+			showscale: false,
+			transpose: true
+		}
+	];
+	if ( overlayPoints ) {
+		const points = {
+			x: x,
+			y: y,
+			mode: 'markers',
+			name: 'points',
+			marker: {
+				color: 'white',
+				opacity: calculateOpacity(x.length)
+			},
+			type: 'scatter'
+		};
+		traces.push( points );
+	}
+	let layout = {
+		title: `${xval} vs. ${yval}`,
+		xaxis: {
+			showgrid: true,
+			zeroline: true,
+			title: xval
+		},
+		yaxis: {
+			showgrid: true,
+			zeroline: true,
+			title: yval
+		}
+	};
+	return {
+		layout,
+		data: traces
+	};
 }
 
 
@@ -30,17 +87,17 @@ class HeatMap extends Component {
 	}
 
 	generateHeatmap( xval, yval, overlayPoints ) {
-		const code = generateHeatmapCode({ data: this.props.data, xval, yval, overlayPoints });
+		const config = generateHeatmap({ data: this.props.data, xval, yval, overlayPoints });
 		const output ={
 			variable: `${xval} against ${yval}`,
 			type: 'Chart',
 			value: <div>
 				<label>{`${xval} against ${yval}`}: </label>
-				<RPlot
-					height={300}
-					code={code}
-					libraries={[ 'MASS' ]}
-					onDone={this.props.onPlotDone}
+				<Plotly
+					editable
+					fit
+					data={config.data}
+					layout={config.layout}
 					onShare={() => {
 						this.props.session.addNotification({
 							title: 'Plot shared.',
@@ -91,7 +148,6 @@ HeatMap.defaultProps = {
 	defaultX: null,
 	defaultY: null,
 	logAction() {},
-	onPlotDone() {},
 	session: {}
 };
 
@@ -104,7 +160,6 @@ HeatMap.propTypes = {
 	defaultY: PropTypes.string,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
-	onPlotDone: PropTypes.func,
 	session: PropTypes.object,
 	variables: PropTypes.array.isRequired
 };

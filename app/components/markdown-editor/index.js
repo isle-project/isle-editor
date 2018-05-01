@@ -14,6 +14,7 @@ import replace from '@stdlib/string/replace';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import startsWith from '@stdlib/string/starts-with';
 import endsWith from '@stdlib/string/ends-with';
+import uppercase from '@stdlib/string/uppercase';
 import removeLast from '@stdlib/string/remove-last';
 import removeFirst from '@stdlib/string/remove-first';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
@@ -153,6 +154,19 @@ const createHTML = ( title, body ) => `<!doctype html>
 </html>`;
 
 
+// FUNCTIONS //
+
+function replacer( key, value ) {
+	if ( key === 'origin' ) {
+		return void 0;
+	}
+	if ( key === 'sticky' ) {
+		return void 0;
+	}
+	return value;
+}
+
+
 // MAIN //
 
 class MarkdownEditor extends Component {
@@ -172,6 +186,10 @@ class MarkdownEditor extends Component {
 		}
 
 		this.state = {
+			change: {
+				text: '',
+				removed: ''
+			},
 			value: value,
 			hash: hash,
 			showSaveModal: false
@@ -204,6 +222,26 @@ class MarkdownEditor extends Component {
 		clearInterval( this.interval );
 	}
 
+	logChange() {
+		const { change } = this.state;
+		if ( change.origin && change.text.length > 0 ) {
+			let origin = change.origin;
+			if ( startsWith( origin, '+' ) ) {
+				origin = removeFirst( origin );
+			}
+			if ( this.props.id ) {
+				const { session } = this.context;
+				session.log({
+					id: this.props.id,
+					type: 'MARKDOWN_EDITOR_'+uppercase( origin ),
+					value: JSON.stringify( change, replacer )
+				});
+			}
+			return true;
+		}
+		return false;
+	}
+
 	initializeEditor() {
 		this.simplemde = new SimpleMDE({
 			element: this.simplemdeRef,
@@ -217,8 +255,34 @@ class MarkdownEditor extends Component {
 		});
 
 		// Add event listeners:
-		this.simplemde.codemirror.on( 'change', () => {
+		this.simplemde.codemirror.on( 'change', ( instance, change ) => {
+			let obj = this.state.change;
+			if ( !obj.origin ) {
+				obj.origin = change.origin;
+			}
+			else if ( change.origin !== obj.origin ) {
+				this.logChange();
+				obj = {
+					'text': '',
+					'removed': ''
+				};
+			}
+			obj.from = change.from;
+			obj.to = change.to;
+			if ( change.origin === '+input' ) {
+				obj.text += change.text.join( '\n' );
+				obj.removed += change.removed.join( '\n' );
+			}
+			else if ( change.origin === '+delete' ) {
+				obj.text += change.text.join( '\n' );
+				obj.removed += change.removed.join( '\n' );
+			}
+			else if ( change.origin === 'paste' ) {
+				obj.text += change.text.join( '\n' );
+				obj.removed += change.removed.join( '\n' );
+			}
 			this.setState({
+				change: obj,
 				value: this.simplemde.value()
 			}, () => {
 				this.props.onChange( this.state.value );
@@ -252,10 +316,17 @@ class MarkdownEditor extends Component {
 
 	handleAutosave = () => {
 		if ( this.props.id ) {
-			// Get the text
-			var text = this.state.value;
+			let text = this.state.value;
 			text = this.replacePlaceholders( text );
 			localStorage.setItem( this.props.id, text );
+			const logged = this.logChange();
+			if ( logged ) {
+				this.setState({
+					change: {
+						'text': []
+					}
+				});
+			}
 		}
 	}
 
@@ -592,7 +663,9 @@ ${hash[ key ]}
 		const blob = new Blob([ text ], {
 			type: 'text/html'
 		});
-		FileSaver.saveAs( blob, title+'.md' );
+		this.toggleSaveModal( null, () => {
+			FileSaver.saveAs( blob, title+'.md' );
+		});
 	}
 
 	exportHTML = () => {
@@ -603,7 +676,9 @@ ${hash[ key ]}
 		const blob = new Blob([ html ], {
 			type: 'text/html'
 		});
-		FileSaver.saveAs( blob, title+'.html' );
+		this.toggleSaveModal( null, () => {
+			FileSaver.saveAs( blob, title+'.html' );
+		});
 	}
 
 	exportPDF = () => {
@@ -641,6 +716,16 @@ ${hash[ key ]}
 					exportPDF={this.exportPDF}
 					exportHTML={this.exportHTML}
 					saveMarkdown={this.saveMarkdown}
+					handleSave={() => {
+						this.toggleSaveModal();
+						this.context.session.addNotification({
+							title: 'Report saved',
+							message: 'The report has been saved in the local storage of the current browser.',
+							level: 'success',
+							position: 'tr'
+						});
+						this.handleAutosave();
+					}}
 				/>
 			</Fragment>
 		);
@@ -653,7 +738,7 @@ ${hash[ key ]}
 MarkdownEditor.defaultProps = {
 	autoSave: true,
 	defaultValue: '',
-	intervalTime: 3000,
+	intervalTime: 60000,
 	language: 'en-US',
 	onChange() {},
 	options: {},

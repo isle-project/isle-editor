@@ -13,7 +13,7 @@ import Plotly from 'components/plotly';
 // FUNCTIONS //
 
 function calculateOpacity(nobs) {
-	return max(0.05, 0.6 - floor(nobs / 500));
+	return max( 0.05, 0.6 - floor( nobs / 500 ) );
 }
 
 export function generateContourChart({ data, xval, yval, overlayPoints }) {
@@ -25,9 +25,10 @@ export function generateContourChart({ data, xval, yval, overlayPoints }) {
 		mode: 'density',
 		type: 'histogram2dcontour',
 		colorscale: 'YIOrRd',
+		showscale: false,
 		reversescale: true
 	};
-	var traces = [trace1];
+	var traces = [ trace1 ];
 	if ( overlayPoints ) {
 		var trace2 = {
 			x: x,
@@ -44,7 +45,6 @@ export function generateContourChart({ data, xval, yval, overlayPoints }) {
 	}
 
 	let layout = {
-		showLegend: true,
 		title: `${xval} vs. ${yval}`,
 		xaxis: {
 			showgrid: true,
