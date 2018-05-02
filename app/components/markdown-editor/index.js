@@ -299,7 +299,6 @@ class MarkdownEditor extends Component {
 				obj.text += change.text.join( '\n' );
 				obj.removed += change.removed.join( '\n' );
 			}
-			console.log( obj );
 			this.setState({
 				change: obj,
 				value: this.simplemde.value()
