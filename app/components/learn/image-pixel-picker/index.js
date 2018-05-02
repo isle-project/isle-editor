@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Col } from 'react-bootstrap';
+import Col from 'react-bootstrap/lib/Col';
 import landscape from '@stdlib/datasets/img-french-alpine-landscape';
 import boats from '@stdlib/datasets/img-nagasaki-boats';
 import airplane from '@stdlib/datasets/img-airplane-from-above';

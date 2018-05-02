@@ -1,7 +1,12 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Grid, Row, Col, Label, Panel, Well } from 'react-bootstrap';
+import Grid from 'react-bootstrap/lib/Grid';
+import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/lib/Col';
+import Label from 'react-bootstrap/lib/Label';
+import Panel from 'react-bootstrap/lib/Panel';
+import Well from 'react-bootstrap/lib/Well';
 import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
 import logger from 'debug';
 import abs from '@stdlib/math/base/special/abs';
