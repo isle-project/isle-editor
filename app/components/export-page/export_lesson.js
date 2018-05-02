@@ -2,8 +2,13 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ButtonToolbar, ControlLabel, FormControl,
-	FormGroup, Panel, Well } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import Panel from 'react-bootstrap/lib/Panel';
+import Well from 'react-bootstrap/lib/Well';
 import { remote, shell } from 'electron';
 import path from 'path';
 import exists from '@stdlib/fs/exists';

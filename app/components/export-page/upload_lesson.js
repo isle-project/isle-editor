@@ -2,8 +2,13 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ControlLabel, Form, FormControl,
-	FormGroup, Modal, Panel } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import Form from 'react-bootstrap/lib/Form';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import Modal from 'react-bootstrap/lib/Modal';
+import Panel from 'react-bootstrap/lib/Panel';
 import FormData from 'form-data';
 import https from 'https';
 import http from 'http';

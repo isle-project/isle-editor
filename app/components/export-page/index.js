@@ -1,7 +1,9 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Col, Grid, Row } from 'react-bootstrap';
+import Grid from 'react-bootstrap/lib/Grid';
+import Col from 'react-bootstrap/lib/Col';
+import Row from 'react-bootstrap/lib/Row';
 import { Link } from 'react-router-dom';
 import ExportLesson from './export_lesson.js';
 import UploadLesson from './upload_lesson.js';
