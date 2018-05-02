@@ -148,7 +148,7 @@ const getComponentList = ( code ) => {
 	const availableComponents = Object.keys( REQUIRES );
 
 	for ( let i = 0; i < availableComponents.length; i++ ) {
-		const regexp = new RegExp( `<${availableComponents[ i ]}[^>]*>`, 'gi' );
+		const regexp = new RegExp( `<${availableComponents[ i ]}[^>]*>`, 'g' );
 		if ( regexp.test( code ) === true ) {
 			ret.push( availableComponents[ i ]);
 		}
