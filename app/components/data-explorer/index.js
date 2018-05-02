@@ -40,7 +40,9 @@ import Gate from 'components/gate';
 import RealtimeMetrics from 'components/metrics/realtime';
 import Plotly from 'components/plotly';
 import RPlot from 'components/r/plot';
-import Learn from 'components/learn';
+import LearnNormalDistribution from 'components/learn/distribution/normal';
+import LearnExponentialDistribution from 'components/learn/distribution/exponential';
+import LearnUniformDistribution from 'components/learn/distribution/uniform';
 import SpreadsheetUpload from 'components/spreadsheet-upload';
 import DataTable from 'components/data-table';
 import './data_explorer.css';
@@ -890,13 +892,13 @@ class DataExplorer extends Component {
 				let content = null;
 				switch ( e ) {
 				case 'Normal':
-					content = <Learn.NormalDistribution step="any" />;
+					content = <LearnNormalDistribution step="any" />;
 					break;
 				case 'Uniform':
-					content = <Learn.UniformDistribution step="any" />;
+					content = <LearnUniformDistribution step="any" />;
 					break;
 				case 'Exponential':
-					content = <Learn.ExponentialDistribution step="any" />;
+					content = <LearnExponentialDistribution step="any" />;
 					break;
 				}
 				return ( <Tab.Pane key={i} eventKey={`7.${i+1}`}>
