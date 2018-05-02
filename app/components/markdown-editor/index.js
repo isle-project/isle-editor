@@ -267,8 +267,26 @@ class MarkdownEditor extends Component {
 					'removed': ''
 				};
 			}
-			obj.from = change.from;
-			obj.to = change.to;
+			if ( !obj.from ) {
+				obj.from = change.from;
+			} else {
+				if ( change.from.line < obj.from.line ) {
+					obj.from.line = change.from.line;
+				}
+				if ( change.from.ch < obj.from.ch ) {
+					obj.from.ch = change.from.ch;
+				}
+			}
+			if ( !obj.to || change.to.ch > obj.to.ch ) {
+				obj.to = change.to;
+			} else {
+				if ( change.to.line > obj.to.line ) {
+					obj.to.line = change.to.line;
+				}
+				if ( change.to.ch > obj.to.ch ) {
+					obj.to.ch = change.to.ch;
+				}
+			}
 			if ( change.origin === '+input' ) {
 				obj.text += change.text.join( '\n' );
 				obj.removed += change.removed.join( '\n' );
@@ -281,6 +299,7 @@ class MarkdownEditor extends Component {
 				obj.text += change.text.join( '\n' );
 				obj.removed += change.removed.join( '\n' );
 			}
+			console.log( obj );
 			this.setState({
 				change: obj,
 				value: this.simplemde.value()
