@@ -130,17 +130,6 @@ class Login extends Component {
 							</Col>
 						</FormGroup>
 					</Form>
-					<Overlay
-						show={this.state.showInputOverlay}
-						target={this.state.overlayTarget}
-						placement="right"
-						container={this}
-						containerPadding={20}
-					>
-						<Popover id="popover-contained" title="Not valid">
-							{this.state.invalidInputMessage}
-						</Popover>
-					</Overlay>
 				</Modal.Body>
 				<Modal.Footer>
 					<a href="" style={{ float: 'left', marginTop: '8px' }} onClick={this.handleForgotPassword}>Forgot password?</a>
@@ -151,6 +140,17 @@ class Login extends Component {
 					>Sign in</Button>
 					<Button onClick={this.props.onClose}>Close</Button>
 				</Modal.Footer>
+				<Overlay
+					show={this.state.showInputOverlay}
+					target={this.state.overlayTarget}
+					placement="top"
+					container={this}
+					containerPadding={20}
+				>
+					<Popover id="popover-contained" title="Not valid">
+						{this.state.invalidInputMessage}
+					</Popover>
+				</Overlay>
 			</Modal>
 		);
 	}
