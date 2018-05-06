@@ -25,6 +25,15 @@ class Login extends Component {
 		};
 	}
 
+	componentWillUpdate( nextProps ) {
+		if ( nextProps.show !== this.props.show ) {
+			this.setState({
+				email: '',
+				password: ''
+			});
+		}
+	}
+
 	handleInputChange = ( event ) => {
 		const target = event.target;
 		const value = target.value;
@@ -48,6 +57,14 @@ class Login extends Component {
 		}
 	}
 
+	hideAfterDelay = () => {
+		setTimeout( () => {
+			this.setState({
+				showInputOverlay: false
+			});
+		}, 2000 );
+	}
+
 	handleSubmit = ( event ) => {
 		event.preventDefault();
 		let form = {
@@ -59,14 +76,14 @@ class Login extends Component {
 				showInputOverlay: true,
 				overlayTarget: this.emailInput,
 				invalidInputMessage: 'Enter your email address.	'
-			});
+			}, this.hideAfterDelay );
 		}
 		else if ( form.password === '' ) {
 			this.setState({
 				showInputOverlay: true,
 				overlayTarget: this.passwordInput,
 				invalidInputMessage: 'Enter your password.'
-			});
+			}, this.hideAfterDelay );
 		}
 		else {
 			const { session } = this.context;
@@ -80,13 +97,7 @@ class Login extends Component {
 							showInputOverlay: true,
 							overlayTarget: type === 'no_user' ? this.emailInput : this.passwordInput,
 							invalidInputMessage: message
-						}, () => {
-							setTimeout( () => {
-								this.setState({
-									showInputOverlay: false
-								});
-							}, 2000 );
-						});
+						}, this.hideAfterDelay );
 					}
 				}
 			});
