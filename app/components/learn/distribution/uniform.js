@@ -2,7 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Panel, Tabs, Tab } from 'react-bootstrap';
+import Panel from 'react-bootstrap/lib/Panel';
+import Tabs from 'react-bootstrap/lib/Tabs';
+import Tab from 'react-bootstrap/lib/Tab';
 import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
 import roundn from '@stdlib/math/base/special/roundn';
 import linspace from '@stdlib/math/utils/linspace';

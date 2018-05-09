@@ -1,7 +1,11 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Button, ButtonGroup, Col, Grid, Panel } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import Col from 'react-bootstrap/lib/Col';
+import Grid from 'react-bootstrap/lib/Grid';
+import Panel from 'react-bootstrap/lib/Panel';
 import inmap from '@stdlib/utils/inmap';
 import roundn from '@stdlib/math/base/special/roundn';
 import sample from '@stdlib/random/sample';

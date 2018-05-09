@@ -2,7 +2,11 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Grid, Row, Col, Panel } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Grid from 'react-bootstrap/lib/Grid';
+import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/lib/Col';
+import Panel from 'react-bootstrap/lib/Panel';
 import { VictoryChart, VictoryCursorContainer, VictoryLine } from 'victory';
 import abs from '@stdlib/math/base/special/abs';
 import roundn from '@stdlib/math/base/special/roundn';

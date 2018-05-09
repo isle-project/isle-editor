@@ -2,7 +2,10 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Panel, Row, Col } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Panel from 'react-bootstrap/lib/Panel';
+import Col from 'react-bootstrap/lib/Col';
+import Row from 'react-bootstrap/lib/Row';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import TeX from 'components/tex';

@@ -1,7 +1,8 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Button, Panel } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Panel from 'react-bootstrap/lib/Panel';
 import PropTypes from 'prop-types';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
@@ -26,7 +27,7 @@ import by from './by.js';
 
 const SETTINGS = {
 	yaxis: {
-		tickformat: '-,r'
+		tickformat: '-,.4r'
 	}
 };
 
@@ -111,8 +112,7 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 						type: 'histogram',
 						histnorm: 'probability density',
 						name: key+':histogram',
-						opacity: 0.5,
-						...SETTINGS
+						opacity: 0.5
 					};
 					if ( chooseBins ) {
 						config.nbinsx = nBins;
@@ -142,7 +142,8 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 		layout = {
 			xaxis: { title: variable },
 			yaxis: { title: overlayDensity ? 'Density' : 'Count' },
-			title: `${variable} given ${group}`
+			title: `${variable} given ${group}`,
+			...SETTINGS
 		};
 		layout.barmode = 'overlay';
 	}
