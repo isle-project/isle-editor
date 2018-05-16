@@ -9,10 +9,18 @@ Summer
 * Dashboard: Have a repository with old TA notes
 * Scatterplot: Add functionality to add smooth and linear regression at the same time
 * `.pdf` poster export
-* Calculator parser
+* **Calculator parser**
 * Build mosiac plot
 * LaTeX Equation in the explorer for the pdf
 * Data transformation: generate a new column of transformed variables. Beef it up.
+
+Priotity
+====
+(To be done by summer 1 end)
+1. Instructor Notes
+2. Scatterplot
+3. `.pdf` poster export
+4. Parser. 
 
 General
 ====
