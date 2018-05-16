@@ -5,6 +5,9 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import Button from 'react-bootstrap/lib/Button';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
 import { scaleOrdinal, schemeCategory10, select } from 'd3';
 import cloud from 'd3-cloud';
 import FileSaver from 'file-saver';
@@ -36,6 +39,10 @@ const fill = scaleOrdinal( schemeCategory10 );
 
 
 // FUNCTIONS //
+
+const createTooltip = ( str ) => {
+	return <Tooltip id="tooltip">{str}</Tooltip>;
+};
 
 const generateStopwords = ( language ) => {
 	let stopwords;
@@ -120,7 +127,6 @@ class Wrapper extends Component {
 					wordCounts: copy( nextProps.data )
 				};
 			}
-			this.wordCloud = null;
 			this.setState( newState );
 		}
 	}
@@ -136,7 +142,7 @@ class Wrapper extends Component {
 	}
 
 	componentDidUpdate() {
-		if ( !this.wordCloud && this.state.wordCounts.length > 0 ) {
+		if ( this.state.wordCounts.length > 0 ) {
 			this.addWordCloud();
 		}
 	}
@@ -262,12 +268,15 @@ class Wrapper extends Component {
 	}
 
 	render() {
-		return ( <div>
-			<Button bsSize="xsmall" onClick={this.saveToPNG} style={{
-				position: 'relative',
-				top: '0px',
-				left: '5px'
-			}}>Save Word Cloud</Button>
+		return ( <div style={{ width: this.props.width, position: 'relative' }}>
+			{ this.state.wordCounts.length > 0 ? <OverlayTrigger placement="left" overlay={createTooltip( 'Save Word Cloud' )}>
+				<Button bsSize="xsmall" onClick={this.saveToPNG} style={{
+					position: 'absolute',
+					right: -12,
+					top: -12,
+					zIndex: 2
+				}}><Glyphicon glyph="floppy-save" /></Button>
+			</OverlayTrigger> : null }
 		</div> );
 	}
 }
