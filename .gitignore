@@ -45,3 +45,6 @@ jsconfig.json
 
 # public should be ignored
 public/
+
+# Ignore custom build script for Frank's version of stdlib
+.build.sh
