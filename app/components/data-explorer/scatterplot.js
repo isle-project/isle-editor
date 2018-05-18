@@ -444,7 +444,6 @@ class Scatterplot extends Component {
 						if ( !isArray(value) ) {
 							value = [value];
 						}
-						console.log(value);
 						this.setState({
 							regressionMethod: value
 						});
