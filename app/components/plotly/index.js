@@ -115,7 +115,7 @@ class Wrapper extends Component {
 			.then( ( data ) => {
 				this.plotData = {
 					key: `<!--IMAGE_${generate( 6 )}-->`,
-					value: `<img src="${data}" style="display: block; margin: 0 auto;" />`
+					value: `<img src="${data}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%" />`
 				};
 			});
 	}
