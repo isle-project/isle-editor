@@ -18,7 +18,9 @@ Priotity
 ====
 (To be done by summer 1 end)
 1. Instructor Notes
-2. Scatterplot
+2. Enable students to put plots side-by-side in reports
+    - button to scaffold table
+    - shrink plots to fit in table cells
 3. `.pdf` poster export
 4. Parser. 
 
