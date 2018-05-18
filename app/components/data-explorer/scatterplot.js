@@ -7,6 +7,8 @@ import Panel from 'react-bootstrap/lib/Panel';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Plotly from 'components/plotly';
+import isArray from '@stdlib/assert/is-array';
+import contains from '@stdlib/assert/contains';
 import lowess from '@stdlib/stats/lowess';
 import linspace from '@stdlib/math/utils/linspace';
 import mapValues from '@stdlib/utils/map-values';
@@ -214,54 +216,74 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 			for ( let i = 0; i < groups.length; i++ ) {
 				const xvals = xgrouped[ groups[ i ] ];
 				const yvals = ygrouped[ groups[ i ] ];
-				let predicted;
+				let predictedLinear;
+				let predictedSmooth;
 				let values;
-				if ( regressionMethod === 'linear' ) {
+				// const numLines = max([1, regressionMethod.length]);
+				if ( contains(regressionMethod, 'linear') ) {
 					values = linspace( min( xvals ), max( xvals ), 100 );
 					const coefs = calculateCoefficients( xvals, yvals );
-					predicted = values.map( x => coefs[ 0 ] + coefs[ 1 ]*x );
-				} else if ( regressionMethod === 'smooth' ) {
+					predictedLinear = values.map( x => coefs[ 0 ] + coefs[ 1 ]*x );
+					traces.push({
+						x: values,
+						y: predictedLinear,
+						mode: 'lines',
+						name: groups[ i ],
+						type: 'line',
+						line: {
+							color: COLORS[ colorOffset+i ],
+							width: 1.5
+						}
+					});
+				}
+				if ( contains(regressionMethod, 'smooth') ) {
 					const out = lowess( xvals, yvals );
 					values = out.x;
-					predicted = out.y;
+					predictedSmooth = out.y;
+					traces.push({
+						x: values,
+						y: predictedSmooth,
+						mode: 'lines',
+						name: groups[ i ],
+						type: 'line',
+						line: {
+							color: COLORS[ colorOffset+i ],
+							width: 1.5
+						}
+					});
 				}
-				traces.push({
-					x: values,
-					y: predicted,
-					mode: 'lines',
-					name: groups[ i ],
-					type: 'line',
-					line: {
-						color: COLORS[ colorOffset+i ],
-						width: 1.5
-					}
-				});
 			}
 		} else {
 			let xvals = data[ xval ];
 			let yvals = data[ yval ];
-			let predicted;
+			let predictedLinear;
+			let predictedSmooth;
 			let values;
-			let name;
-			if ( regressionMethod === 'linear' ) {
-				const coefs = calculateCoefficients( xvals, yvals );
+			// const numLines = max([1, regressionMethod.length]);
+			if ( contains(regressionMethod, 'linear') ) {
 				values = linspace( min( xvals ), max( xvals ), 100 );
-				predicted = values.map( x => coefs[ 0 ] + coefs[ 1 ]*x );
-				name = 'Linear Fit';
+				const coefs = calculateCoefficients( xvals, yvals );
+				predictedLinear = values.map( x => coefs[ 0 ] + coefs[ 1 ]*x );
+				traces.push({
+					x: values,
+					y: predictedLinear,
+					mode: 'lines',
+					name: 'Linear Fit',
+					type: 'line'
+				});
 			}
-			else if ( regressionMethod === 'smooth' ) {
+			if ( contains(regressionMethod, 'smooth') ) {
 				const out = lowess( xvals, yvals );
 				values = out.x;
-				predicted = out.y;
-				name = 'Smoothed Fit';
+				predictedSmooth = out.y;
+				traces.push({
+					x: values,
+					y: predictedSmooth,
+					mode: 'lines',
+					name: 'Smoothed Fit',
+					type: 'line'
+				});
 			}
-			traces.push({
-				x: values,
-				y: predicted,
-				mode: 'lines',
-				name: name,
-				type: 'line'
-			});
 		}
 	}
 	return {
@@ -304,7 +326,7 @@ class Scatterplot extends Component {
 			color: null,
 			type: null,
 			regressionLine: false,
-			regressionMethod: 'linear',
+			regressionMethod: ['linear'],
 			lineBy: null
 		};
 	}
@@ -414,10 +436,15 @@ class Scatterplot extends Component {
 				<SelectInput
 					legend="Method:"
 					defaultValue="linear"
+					multi={[true]}
 					options={[ 'linear', 'smooth' ]}
 					style={{ float: 'right', paddingLeft: 10, width: '45%' }}
 					disabled={!this.state.regressionLine}
 					onChange={( value ) => {
+						if ( !isArray(value) ) {
+							value = [value];
+						}
+						console.log(value);
 						this.setState({
 							regressionMethod: value
 						});
