@@ -115,7 +115,7 @@
   },
   "dependencies": {
     "@planeshifter/brace": "^0.8.0",
-    "@stdlib/stdlib": "0.0.38",
+    "@stdlib/stdlib": "0.0.40",
     "archiver": "^2.1.1",
     "babel-core": "6.26.3",
     "babel-loader": "7.1.4",
@@ -129,7 +129,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "babel-runtime": "^6.9.2",
-    "bl": "^1.2.2",
+    "bl": "^2.0.0",
     "bufferutil": "^3.0.5",
     "camelcase": "5.0.0",
     "component-playground": "^3.1.2",
@@ -151,7 +151,7 @@
     "css-modules-require-hook": "^4.2.3",
     "csv-parse": "^2.4.0",
     "csv-stringify": "^3.0.0",
-    "d3": "5.3.0",
+    "d3": "5.4.0",
     "d3-cloud": "1.2.5",
     "debug": "^3.1.0",
     "detect-csv": "^1.1.0",
@@ -198,7 +198,7 @@
     "react-color": "^2.14.1",
     "react-contextmenu": "^2.6.5",
     "react-copy-to-clipboard": "^5.0.0",
-    "react-dates": "16.6.1",
+    "react-dates": "16.7.0",
     "react-dnd": "^2.6.0",
     "react-dnd-html5-backend": "^2.6.0",
     "react-dom": "16.3.2",
@@ -223,7 +223,7 @@
     "recordrtc": "^5.4.1",
     "redux": "3.7.2",
     "redux-thunk": "^2.0.1",
-    "request": "2.85.0",
+    "request": "2.86.0",
     "ripemd160": "^2.0.2",
     "semver": "^5.5.0",
     "simplemde": "^1.11.2",
@@ -238,8 +238,8 @@
     "uniq": "^1.0.1",
     "utf-8-validate": "^4.0.2",
     "venn.js": "0.2.20",
-    "victory": "0.26.0",
-    "webpack": "4.8.2"
+    "victory": "0.26.1",
+    "webpack": "4.8.3"
   },
   "devEngines": {
     "node": "6.x || 7.x || 8.x || 9.x"
