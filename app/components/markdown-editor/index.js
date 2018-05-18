@@ -547,17 +547,6 @@ class MarkdownEditor extends Component {
 				action: ( editor ) => {
 					const cm = this.simplemde.codemirror;
 					const tbl = '| Column1 | Column2 |\n| --- | --- |\n| Row1.1 | Row1.2 |\n| Row2.1 | Row2.2 |';
-					/*
-					| Variable | Category | Count |
-					| --- | --- | --- |
-					| Interceptions | 0 | 1670 |
-					|  | 1 | 1268 |
-					|  | 2 | 582 |
-					|  | 3 | 184 |
-					|  | 4 | 53 |
-					|  | 5 | 10 |
-					|  | 6 | 1 |
-					*/
 					const startPoint = cm.getCursor( 'start' );
 					cm.replaceRange( tbl,
 						{ line: startPoint.line, ch: 0 },
