@@ -355,11 +355,7 @@ class MarkdownEditor extends Component {
 			if ( hasOwnProp( hash, key ) ) {
 				let id = replace( key, '<!--', '' );
 				id = replace( id, '-->', '' );
-				replacementHash = `
-<!-- START:${id} -->
-${hash[ key ]}
-<!-- END -->
-				`;
+				replacementHash = `<!-- START:${id} -->${hash[ key ]}<!-- END -->`;
 				var re = new RegExp('\\s*' + key, 'g');
 				plainText = plainText.replace( re, replacementHash );
 			}
