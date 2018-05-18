@@ -436,7 +436,7 @@ class Scatterplot extends Component {
 				<SelectInput
 					legend="Method:"
 					defaultValue="linear"
-					multi={[true]}
+					multi={true}
 					options={[ 'linear', 'smooth' ]}
 					style={{ float: 'right', paddingLeft: 10, width: '45%' }}
 					disabled={!this.state.regressionLine}
