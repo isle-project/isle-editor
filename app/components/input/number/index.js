@@ -47,8 +47,8 @@ class NumberInput extends Input {
 			this.setState({
 				value
 			}, () => {
-				if (this.props.value || (valid && value !== '' && 
-					value !== '-' && value !== '.' && value !== '-.')
+				if ( this.props.value || (valid && value !== '' &&
+					value !== '-' && value !== '.' && value !== '-.' )
 				) {
 					value = parseFloat( value );
 					this.props.onChange( value );
@@ -138,7 +138,7 @@ class NumberInput extends Input {
 	render() {
 		let { value } = this.state;
 		if ( this.props.value ) {
-			value = this.props.value;	
+			value = this.props.value;
 		}
 		if ( this.props.inline === true ) {
 			let input =
@@ -260,8 +260,8 @@ NumberInput.propTypes = {
 		PropTypes.number,
 		PropTypes.string
 	]),
-	width: PropTypes.number,
-	value: PropTypes.number
+	value: PropTypes.number,
+	width: PropTypes.number
 };
 
 
