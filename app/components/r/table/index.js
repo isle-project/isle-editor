@@ -18,14 +18,12 @@ class RTable extends Component {
 			last: '',
 			waiting: false
 		};
-	}
 
-	componentWillMount() {
 		this.getTable();
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		this.getTable( nextProps );
+	componentDidUpdate() {
+		this.getTable( this.props );
 	}
 
 	getTable = ( nextProps ) => {
