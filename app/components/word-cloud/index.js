@@ -86,6 +86,61 @@ function guessEquality( x, y ) {
 	return true;
 }
 
+const createBagOfWords = ({ texts, stopwords, minCount }) => {
+	if ( !isArray( texts ) || texts.length === 0 ) {
+		return { min: PINF, max: NINF, wordCounts: []};
+	}
+	let tokens = [];
+	for ( let i = 0; i < texts.length; i++ ) {
+		let text = texts[ i ];
+		if ( isString( text ) ) {
+			text = removePunctuation( text );
+			let newTokens = tokenize( text );
+			tokens = tokens.concat( newTokens );
+		}
+	}
+	for ( let i = 0; i < tokens.length; i++ ) {
+		tokens[ i ] = lowercase( tokens[ i ] );
+	}
+	for ( let i = tokens.length; i > 0; i-- ) {
+		if ( tokens[i] && contains( stopwords, lowercase( tokens[i] ) ) ) {
+			tokens.splice( i, 1 );
+		}
+	}
+	let bagOfWords = {};
+	for ( let i = 0; i < tokens.length; i++ ) {
+		if ( bagOfWords[ tokens[ i ] ] ) {
+			bagOfWords[ tokens[ i ] ] += 1;
+		} else {
+			bagOfWords[ tokens[ i ] ] = 1;
+		}
+	}
+	let max = NINF;
+	let min = PINF;
+	const wordCounts = objectEntries( bagOfWords ).map( arr => {
+		if ( arr[ 1 ] > max ) {
+			max = arr[ 1 ];
+		}
+		if ( arr[ 1 ] < min ) {
+			min = arr[ 1 ];
+		}
+		return {
+			text: arr[ 0 ],
+			value: arr[ 1 ]
+		};
+	});
+	if ( !minCount ) {
+		return { min, max, wordCounts };
+	}
+	const filtered = [];
+	for ( let i = 0; i < wordCounts.length; i++ ) {
+		if ( wordCounts[ i ].value >= minCount ) {
+			filtered.push( wordCounts[ i ] );
+		}
+	}
+	return { min, max, wordCounts: filtered };
+};
+
 
 // MAIN //
 
@@ -93,41 +148,46 @@ class Wrapper extends Component {
 	constructor( props ) {
 		super( props );
 
+		const stopwords = generateStopwords( props.language );
 		if ( !props.precalculated ) {
-			const { min, max, wordCounts } = this.createBagOfWords( props.data );
+			const { min, max, wordCounts } = createBagOfWords({
+				texts: props.data,
+				stopwords,
+				minCount: props.minCount
+			});
 			this.state = {
 				wordCounts,
 				min,
-				max
+				max,
+				stopwords
 			};
 		} else {
 			this.state = {
-				wordCounts: copy( props.data )
+				wordCounts: copy( props.data ),
+				stopwords
 			};
 		}
-		this.stopwords = generateStopwords( props.language );
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		let newState;
+		if ( !nextProps.precalculated ) {
+			newState = createBagOfWords({
+				texts: nextProps.data,
+				stopwords: prevState.stopwords,
+				minCount: nextProps.minCount
+			});
+		} else {
+			newState = {
+				wordCounts: copy( nextProps.data )
+			};
+		}
+		return newState;
 	}
 
 	componentDidMount() {
 		if ( this.state.wordCounts.length > 0 ) {
 			this.addWordCloud();
-		}
-	}
-
-	componentWillReceiveProps( nextProps ) {
-		if (
-			nextProps.data.length !== this.props.data.length ||
-			!guessEquality( nextProps.data, this.props.data )
-		) {
-			let newState;
-			if ( !nextProps.precalculated ) {
-				newState = this.createBagOfWords( nextProps.data );
-			} else {
-				newState = {
-					wordCounts: copy( nextProps.data )
-				};
-			}
-			this.setState( newState );
 		}
 	}
 
@@ -145,64 +205,6 @@ class Wrapper extends Component {
 		if ( this.state.wordCounts.length > 0 ) {
 			this.addWordCloud();
 		}
-	}
-
-	createBagOfWords = ( texts ) => {
-		if ( !isArray( texts ) || texts.length === 0 ) {
-			return { min: PINF, max: NINF, wordCounts: []};
-		}
-		let tokens = [];
-		for ( let i = 0; i < texts.length; i++ ) {
-			let text = texts[ i ];
-			if ( isString( text ) ) {
-				text = removePunctuation( text );
-				let newTokens = tokenize( text );
-				tokens = tokens.concat( newTokens );
-			}
-		}
-		if ( !this.stopwords ) {
-			this.stopwords = generateStopwords( this.props.language );
-		}
-		for ( let i = 0; i < tokens.length; i++ ) {
-			tokens[ i ] = lowercase( tokens[ i ] );
-		}
-		for ( let i = tokens.length; i > 0; i-- ) {
-			if ( tokens[i] && contains( this.stopwords, lowercase( tokens[i] ) ) ) {
-				tokens.splice( i, 1 );
-			}
-		}
-		let bagOfWords = {};
-		for ( let i = 0; i < tokens.length; i++ ) {
-			if ( bagOfWords[ tokens[ i ] ] ) {
-				bagOfWords[ tokens[ i ] ] += 1;
-			} else {
-				bagOfWords[ tokens[ i ] ] = 1;
-			}
-		}
-		let max = NINF;
-		let min = PINF;
-		const wordCounts = objectEntries( bagOfWords ).map( arr => {
-			if ( arr[ 1 ] > max ) {
-				max = arr[ 1 ];
-			}
-			if ( arr[ 1 ] < min ) {
-				min = arr[ 1 ];
-			}
-			return {
-				text: arr[ 0 ],
-				value: arr[ 1 ]
-			};
-		});
-		if ( !this.props.minCount ) {
-			return { min, max, wordCounts };
-		}
-		const filtered = [];
-		for ( let i = 0; i < wordCounts.length; i++ ) {
-			if ( wordCounts[ i ].value >= this.props.minCount ) {
-				filtered.push( wordCounts[ i ] );
-			}
-		}
-		return { min, max, wordCounts: filtered };
 	}
 
 	fontSizeMapper = ( word ) => {
