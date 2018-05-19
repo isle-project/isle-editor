@@ -147,40 +147,42 @@ class FreeTextSurvey extends Component {
 					<Panel.Heading>
 						<Panel.Title componentClass="h3">Survey</Panel.Title>
 					</Panel.Heading>
-					<Grid>
-						<Col md={6}>
-							<Panel className="free-text-survey">
-								<Panel.Body>
-									<p><label>{props.question}</label></p>
-									<label>Your answer:</label>
-									<TextArea
-										{...props}
-										inline
-										disabled={disabled}
-										onChange={( value ) => {
-											this.setState({
-												value
-											});
-										}}
-										rows={this.props.rows}
-									/>
-									<Button
-										bsSize="small"
-										bsStyle="success"
-										block fill
-										onClick={this.submitQuestion}
-										disabled={disabled}
-									>{ disabled ? 'Submitted' : 'Submit'}</Button>
-								</Panel.Body>
-							</Panel>
-						</Col>
-						<Col md={6}>
-							<RealtimeMetrics for={this.props.id} onData={this.onData} />
-							{this.renderChart()}
-							{this.state.freqTable}
-						</Col>
-					</Grid>
-					<InstructorBar id={props.id} />
+					<Panel.Body>
+						<Grid>
+							<Col md={6}>
+								<Panel className="free-text-survey">
+									<Panel.Body>
+										<p><label>{props.question}</label></p>
+										<label>Your answer:</label>
+										<TextArea
+											{...props}
+											inline
+											disabled={disabled}
+											onChange={( value ) => {
+												this.setState({
+													value
+												});
+											}}
+											rows={this.props.rows}
+										/>
+										<Button
+											bsSize="small"
+											bsStyle="success"
+											block fill
+											onClick={this.submitQuestion}
+											disabled={disabled}
+										>{ disabled ? 'Submitted' : 'Submit'}</Button>
+									</Panel.Body>
+								</Panel>
+							</Col>
+							<Col md={6}>
+								<RealtimeMetrics for={this.props.id} onData={this.onData} />
+								{this.renderChart()}
+								{this.state.freqTable}
+							</Col>
+						</Grid>
+						<InstructorBar id={props.id} />
+					</Panel.Body>
 				</Panel>
 			</Gate>
 		);

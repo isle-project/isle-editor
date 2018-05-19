@@ -179,37 +179,39 @@ class MultipleChoiceSurvey extends Component {
 					<Panel.Heading>
 						<Panel.Title componentClass="h3">Survey</Panel.Title>
 					</Panel.Heading>
-					<Grid>
-						<Col md={6}>
-							<Panel className="multiple-choice-survey">
-								<Panel.Body>
-									<p><label>{props.question}</label></p>
-									{ multipleAnswers ? <span>You may select multiple answers</span> : null }
-									<ListGroup fill >
-										{ multipleAnswers ?
-											props.answers.map( renderAnswerOptionsMultiple ) :
-											props.answers.map( renderAnswerOptionsSingle )
-										}
-									</ListGroup>
-									<Button
-										bsSize="small"
-										bsStyle="success"
-										block fill
-										onClick={this.submitQuestion}
-										disabled={disabled}
-									>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
-								</Panel.Body>
-							</Panel>
-						</Col>
-						<Col md={6}>
-							<RealtimeMetrics for={this.props.id} onData={this.onData} />
-							{this.renderChart()}
-							<p>
-								{this.state.freqTable}
-							</p>
-						</Col>
-					</Grid>
-					<InstructorBar id={props.id} dataType="factor" />
+					<Panel.Body>
+						<Grid>
+							<Col md={6}>
+								<Panel className="multiple-choice-survey">
+									<Panel.Body>
+										<p><label>{props.question}</label></p>
+										{ multipleAnswers ? <span>You may select multiple answers</span> : null }
+										<ListGroup fill >
+											{ multipleAnswers ?
+												props.answers.map( renderAnswerOptionsMultiple ) :
+												props.answers.map( renderAnswerOptionsSingle )
+											}
+										</ListGroup>
+										<Button
+											bsSize="small"
+											bsStyle="success"
+											block fill
+											onClick={this.submitQuestion}
+											disabled={disabled}
+										>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
+									</Panel.Body>
+								</Panel>
+							</Col>
+							<Col md={6}>
+								<RealtimeMetrics for={this.props.id} onData={this.onData} />
+								{this.renderChart()}
+								<p>
+									{this.state.freqTable}
+								</p>
+							</Col>
+						</Grid>
+						<InstructorBar id={props.id} dataType="factor" />
+					</Panel.Body>
 				</Panel>
 			</Gate>
 		);

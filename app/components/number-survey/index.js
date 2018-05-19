@@ -133,42 +133,44 @@ class NumberSurvey extends Component {
 					<Panel.Heading>
 						<Panel.Title componentClass="h3">Survey</Panel.Title>
 					</Panel.Heading>
-					<Grid>
-						<Col md={6}>
-							<Panel className="number-survey">
-								<Panel.Body>
-									<p><label>{props.question}</label></p>
-									<label>Your answer:</label>
-									<NumberInput
-										{...props}
-										inline
-										disabled={disabled}
-										onChange={( value ) => {
-											this.setState({
-												value
-											});
-										}}
-									/>
-									<Button
-										bsSize="small"
-										bsStyle="success"
-										block fill
-										onClick={this.submitQuestion}
-										disabled={disabled}
-									>{ disabled ? 'Submitted' : 'Submit'}</Button>
-								</Panel.Body>
-							</Panel>
-						</Col>
-						<Col md={6}>
-							<RealtimeMetrics for={this.props.id} onData={this.onData} />
-							{this.renderChart()}
-							{ isNumber( this.state.avg ) && isNumber( this.state.sd ) ?
-								<p>The average is {this.state.avg.toFixed( 3 )} (SD: {this.state.sd.toFixed( 3 )}).
-								</p> : null
-							}
-						</Col>
-					</Grid>
-					<InstructorBar id={props.id} />
+					<Panel.Body>
+						<Grid>
+							<Col md={6}>
+								<Panel className="number-survey">
+									<Panel.Body>
+										<p><label>{props.question}</label></p>
+										<label>Your answer:</label>
+										<NumberInput
+											{...props}
+											inline
+											disabled={disabled}
+											onChange={( value ) => {
+												this.setState({
+													value
+												});
+											}}
+										/>
+										<Button
+											bsSize="small"
+											bsStyle="success"
+											block fill
+											onClick={this.submitQuestion}
+											disabled={disabled}
+										>{ disabled ? 'Submitted' : 'Submit'}</Button>
+									</Panel.Body>
+								</Panel>
+							</Col>
+							<Col md={6}>
+								<RealtimeMetrics for={this.props.id} onData={this.onData} />
+								{this.renderChart()}
+								{ isNumber( this.state.avg ) && isNumber( this.state.sd ) ?
+									<p>The average is {this.state.avg.toFixed( 3 )} (SD: {this.state.sd.toFixed( 3 )}).
+									</p> : null
+								}
+							</Col>
+						</Grid>
+						<InstructorBar id={props.id} />
+					</Panel.Body>
 				</Panel>
 			</Gate>
 		);
