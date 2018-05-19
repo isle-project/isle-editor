@@ -87,7 +87,7 @@ class FullscreenActionDisplay extends Component {
 			<div style={{ height: 0.75 * window.innerHeight }}>
 				<WordCloud
 					data={this.props.actions.map( x => x.value )}
-					height={0.73 * window.innerHeight}
+					height={0.70 * window.innerHeight}
 					width={0.5*window.innerWidth}
 					rotate={0}
 					onClick={( d ) => {
