@@ -13,6 +13,7 @@ Summer
 * Build mosiac plot
 * LaTeX Equation in the explorer for the pdf
 * Data transformation: generate a new column of transformed variables. Beef it up.
+* Minification and bundling times
 
 Priotity
 ====
@@ -20,7 +21,7 @@ Priotity
 1. Instructor Notes
 2. Build "Tiles Popup" to select dimensions of inserted Markdown table
 3. `.pdf` poster export
-4. Parser. 
+4. Parser.
 
 General
 ====
@@ -36,7 +37,7 @@ LONG-TERM
 * Make data persistent so that students don't lose their progress once they refresh the page. Options: Storing in local storage, in the Mongo database on our server. Others?
 * Landing page before start of lesson showing the title, brief overview of content, learning objectives. Should include a way for users to clear the ISLE variables in localStorage.
 * Many of the react components need properties for event handlers (onClick, onChange)...
-* Data Explorer 
+* Data Explorer
    - how to handle missing data?
    - remove any R dependencies for mosaic
    - Boxplots categorized by more than one group (+ ability to reorder)
