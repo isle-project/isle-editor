@@ -14,7 +14,7 @@ import SplitPane from 'react-split-pane';
 import logger from 'debug';
 import yaml from 'js-yaml';
 import ErrorBoundary from 'components/error-boundary';
-import Panel from 'components/Panel';
+import SplitPanel from 'components/split-panel';
 import Header from 'components/Header';
 import Editor from 'components/Editor';
 import Preview from 'components/Preview';
@@ -244,7 +244,7 @@ class App extends Component {
 						'bottom': '0'
 					}}
 				>
-					<Panel ref={( elem ) => { this.editor = elem; }} onScroll={this.onEditorScroll}>
+					<SplitPanel ref={( elem ) => { this.editor = elem; }} onScroll={this.onEditorScroll}>
 						<Editor
 							ref={( elem ) => { this.code = elem; }}
 							value={markdown}
@@ -257,8 +257,8 @@ class App extends Component {
 								showPrintMargin: false
 							}}
 						/>
-					</Panel>
-					<Panel ref={( elem ) => { this.preview = elem; }} onScroll={this.onPreviewScroll}>
+					</SplitPanel>
+					<SplitPanel ref={( elem ) => { this.preview = elem; }} onScroll={this.onPreviewScroll}>
 						<ErrorBoundary code={markdown}>
 							<Preview
 								errorMsg={error ? error.message : null}
@@ -269,7 +269,7 @@ class App extends Component {
 								currentMode={currentMode}
 							/>
 						</ErrorBoundary>
-					</Panel>
+					</SplitPanel>
 				</SplitPane>
 				{
 					( () => {

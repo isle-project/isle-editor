@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 
-// PANEL //
+// MAIN //
 
-class Panel extends Component {
+class SplitPanel extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -74,18 +74,18 @@ class Panel extends Component {
 
 // DEFAULT PROPERTIES //
 
-Panel.defaultProps = {
+SplitPanel.defaultProps = {
 	onScroll() {}
 };
 
 
 // PROPERTY TYPES //
 
-Panel.propTypes = {
+SplitPanel.propTypes = {
 	onScroll: PropTypes.func
 };
 
 
 // EXPORTS //
 
-export default Panel;
+export default SplitPanel;
