@@ -12,9 +12,6 @@ class IFrame extends Component {
 		this.state = {
 			corrected: false
 		};
-	}
-
-	componentWillMount() {
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
 	}
