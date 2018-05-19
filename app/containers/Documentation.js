@@ -26,9 +26,7 @@ class Documentation extends Component {
 				height: window.innerHeight
 			});
 		};
-	}
 
-	componentWillMount() {
 		this.resize();
 	}
 
