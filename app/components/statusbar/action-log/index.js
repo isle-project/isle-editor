@@ -47,15 +47,6 @@ class ActionLog extends Component {
 		});
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		if (
-			nextProps.period.from !== this.props.period.from ||
-			nextProps.period.to !== this.props.period.to
-		) {
-			this.buildActionsArray( nextProps, this.props.onTimeRangeChange );
-		}
-	}
-
 	shouldComponentUpdate( nextProps, nextState ) {
 		if (
 			nextProps.period.from !== this.props.period.from ||
@@ -71,6 +62,12 @@ class ActionLog extends Component {
 		if ( this.state.filter !== prevState.filter ) {
 			debug( 'Should filter out actions...' );
 			this.buildActionsArray( this.props );
+		}
+		else if (
+			this.props.period.from !== prevProps.period.from ||
+			this.props.period.to !== prevProps.period.to
+		) {
+			this.buildActionsArray( this.props, prevProps.onTimeRangeChange );
 		}
 	}
 
