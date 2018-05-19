@@ -41,11 +41,11 @@ class RangeQuestion extends Component {
 		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
+	componentDidUpdate( prevProps ) {
 		if (
-			nextProps.question !== this.props.question ||
-			nextProps.solution[1] !== this.props.solution[1] ||
-			nextProps.solution[0] !== this.props.solution[0]
+			this.props.question !== prevProps.question ||
+			this.props.solution[1] !== prevProps.solution[1] ||
+			this.props.solution[0] !== prevProps.solution[0]
 		) {
 			this.setState({
 				lower: void 0,
@@ -80,7 +80,7 @@ class RangeQuestion extends Component {
 			if ( digits === void 0 ) {
 				correct = (lowerVal === lowerSol && upperVal === upperSol);
 			} else {
-				correct = (roundn( lowerVal, -digits ) === roundn( lowerVal, -digits ) && 
+				correct = (roundn( lowerVal, -digits ) === roundn( lowerVal, -digits ) &&
 					(roundn(upperVal, -digits) === roundn(upperSol, -digits)));
 			}
 			session.addNotification({
@@ -106,7 +106,7 @@ class RangeQuestion extends Component {
 			session.log({
 				id: this.props.id,
 				type: 'RANGE_QUESTION_SUBMIT_ANSWER',
-				value: `${this.state.lower}` + ', ' + `${this.state.upper}`
+				value: `${this.state.lower} , ${this.state.upper}`
 			});
 		}
 	}
@@ -122,7 +122,6 @@ class RangeQuestion extends Component {
 			this.setState({ lower: this.state.upper });
 		}
 	}
-
 
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
@@ -173,7 +172,7 @@ class RangeQuestion extends Component {
 					/>
 					{ this.state.submitted && this.props.solution ?
 						<span>
-							<br/>
+							<br />
 							<label>Solution:</label>
 							<span> {this.props.solution[0]}, {this.props.solution[1]} </span>
 						</span>:
@@ -232,8 +231,8 @@ RangeQuestion.propTypes = {
 	hints: PropTypes.arrayOf( PropTypes.string ),
 	max: PropTypes.number,
 	min: PropTypes.number,
-	onChangeUpper: PropTypes.func,
 	onChangeLower: PropTypes.func,
+	onChangeUpper: PropTypes.func,
 	question: PropTypes.string,
 	solution: PropTypes.arrayOf( PropTypes.number )
 };
