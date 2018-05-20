@@ -17,6 +17,7 @@ import max from '@stdlib/math/base/special/max';
 import isElectron from 'utils/is-electron';
 import ActionLog from 'components/statusbar/action-log';
 import RangePicker from 'components/range-picker';
+import MarkdownEditor from 'components/markdown-editor';
 import animatePosition from 'utils/animate-position';
 import UserList from './user_list.js';
 import './instructor_view.css';
@@ -152,6 +153,7 @@ class InstructorView extends Component {
 	}
 
 	renderAccordion = () => {
+		// This is the button that toggles it
 		const { session } = this.context;
 		return ( <PanelGroup accordion >
 			<Panel eventKey="1">
@@ -221,6 +223,16 @@ class InstructorView extends Component {
 							>Anonymized</ToggleButton>
 						</ToggleButtonGroup>
 					</ButtonToolbar>
+				</Panel.Body>
+			</Panel>
+			<Panel eventKey="3">
+				<Panel.Heading>
+					<Panel.Title toggle>
+						{<span>Instructor Notes</span>}
+					</Panel.Title>
+				</Panel.Heading>
+				<Panel.Body collapsible>
+					<MarkdownEditor id={'instructor_view'} submitButton />
 				</Panel.Body>
 			</Panel>
 		</PanelGroup> );
