@@ -57,9 +57,9 @@ class DataTable extends Component {
 		});
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		if ( nextProps.data !== this.props.data ) {
-			const newState = this.generateInitialState( nextProps );
+	componentDidUpdate( prevProps ) {
+		if ( this.props.data !== prevProps.data ) {
+			const newState = this.generateInitialState( this.props );
 			this.setState( newState );
 		}
 	}
