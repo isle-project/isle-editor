@@ -184,6 +184,50 @@ class DiscreteCLT extends Component {
 		});
 	}
 
+	renderDistSelectionPanel() {
+		return (
+			<Panel>
+				<Panel.Body>
+					<Col md={6}>
+						<label>Binomial Distribution</label>
+						<NumberInput
+							legend="n"
+							step={1} min={1} defaultValue={10} max={500}
+							onChange={( n ) => {
+								this.setState({ 'n': n });
+							}}
+						/>
+						<NumberInput legend="p"
+							max={1} min={0} step={0.01} defaultValue={0.5}
+							onChange={( p ) => {
+								this.setState({ 'p': p });
+							}}
+						/>
+					</Col>
+					<Col md={6}>
+						<p><label>Population proportion</label> <TeX raw={`${this.state.p.toFixed( 3 )}`} /></p>
+						<p><label>Population standard deviation:</label> <TeX raw={`\\sqrt{ p \\cdot (1-p) } = ${sqrt( this.state.p*( 1-this.state.p ) ).toFixed( 3 )}`} /> </p>
+						<ButtonGroup>
+							<Button bsSize="small" onClick={() => {
+								this.generateSamples( 1 );
+							}}>
+								Draw Sample
+							</Button>
+							<Button bsSize="small" onClick={() => {
+								this.generateSamples( 25 );
+							}}>
+								Draw 25 Samples
+							</Button>
+							<Button bsSize="small" onClick={this.clear.bind( this )}>
+								Clear
+							</Button>
+						</ButtonGroup>
+					</Col>
+				</Panel.Body>
+			</Panel>
+		);
+	}
+
 	render() {
 		const plotlyData = [
 			{
@@ -205,68 +249,34 @@ class DiscreteCLT extends Component {
 			<div>
 				<Grid>
 					<Row>
-						<Panel>
-							<Col md={6}>
-								<label>Binomial Distribution</label>
-								<NumberInput
-									legend="n"
-									step={1} min={1} defaultValue={10} max={500}
-									onChange={( n ) => {
-										this.setState({ 'n': n });
-									}}
-								/>
-								<NumberInput legend="p"
-									max={1} min={0} step={0.01} defaultValue={0.5}
-									onChange={( p ) => {
-										this.setState({ 'p': p });
-									}}
-								/>
-							</Col>
-							<Col md={6}>
-								<p><label>Population proportion</label> <TeX raw={`${this.state.p.toFixed( 3 )}`} /></p>
-								<p><label>Population standard deviation:</label> <TeX raw={`\\sqrt{ p \\cdot (1-p) } = ${sqrt( this.state.p*( 1-this.state.p ) ).toFixed( 3 )}`} /> </p>
-								<ButtonGroup>
-									<Button bsSize="small" onClick={() => {
-										this.generateSamples( 1 );
-									}}>
-										Draw Sample
-									</Button>
-									<Button bsSize="small" onClick={() => {
-										this.generateSamples( 25 );
-									}}>
-										Draw 25 Samples
-									</Button>
-									<Button bsSize="small" onClick={this.clear.bind( this )}>
-										Clear
-									</Button>
-								</ButtonGroup>
-							</Col>
-						</Panel>
+						{this.renderDistSelectionPanel()}
 					</Row>
 					<Row>
 						<Col md={6}>
 							<Panel style={{ height: '400px', overflowY: 'scroll' }}>
-								<GridLayout
-									className="layout"
-									layout={this.state.layout}
-									cols={12}
-									rowHeight={30}
-								>
-									{this.state.barplots.map( ( x, i ) => {
-										return ( <div key={i} onClick={this.enlargePlotFactory( i )} style={{ border: '2px solid darkgray' }}>
-											{x}
-										</div> );
-									})}
-								</GridLayout>
+								<Panel.Body>
+									<GridLayout
+										className="layout"
+										layout={this.state.layout}
+										cols={12}
+										rowHeight={30}
+									>
+										{this.state.barplots.map( ( x, i ) => {
+											return ( <div key={i} onClick={this.enlargePlotFactory( i )} style={{ border: '2px solid darkgray' }}>
+												{x}
+											</div> );
+										})}
+									</GridLayout>
+								</Panel.Body>
 							</Panel>
 						</Col>
 						<Col md={6}>
-							<Panel>
+							<Panel><Panel.Body>
 								<p>
 									<label>Number of Samples: {this.state.phats.length} </label>
 								</p>
-							</Panel>
-							<Panel>
+							</Panel.Body></Panel>
+							<Panel><Panel.Body>
 								<label>Histogram of <TeX raw="\hat p" />'s</label>
 								{ this.state.phats.length > 1 ?
 									<Plotly data={plotlyData} layout={{
@@ -306,7 +316,7 @@ class DiscreteCLT extends Component {
 										&nbsp;{this.state.stdevPHats.toFixed( 3 )}
 									</p> : null
 								}
-							</Panel>
+							</Panel.Body></Panel>
 						</Col>
 					</Row>
 				</Grid>
