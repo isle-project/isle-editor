@@ -16,6 +16,35 @@ import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 const SQRT12_INV = 1.0 / sqrt( 12.0 );
 
 
+// FUNCTIONS //
+
+const generateProbs = ( lower, upper, props ) => {
+	let mean;
+	let se;
+	switch ( props.activeDistribution ) {
+		default:
+		case 1:
+			mean = ( props.b + props.a ) / 2.0;
+			se = SQRT12_INV * abs( props.b - props.a ) / sqrt( props.n );
+			break;
+		case 2:
+			mean = 1.0 / props.lambda;
+			se = ( 1.0 / props.lambda ) / sqrt( props.n );
+			break;
+		case 3:
+			mean = props.mu;
+			se = props.sigma / sqrt( props.n );
+			break;
+	}
+	let rangeProb = pnorm( upper, mean, se ) - pnorm( lower, mean, se );
+	return {
+		rangeProb,
+		lower,
+		upper
+	};
+};
+
+
 // MAIN //
 
 class ProbMeanRange extends Component {
@@ -25,48 +54,28 @@ class ProbMeanRange extends Component {
 		this.state = {
 			lower: NINF,
 			upper: PINF,
-			rangeProb: 1.0
+			rangeProb: 1.0,
+			...props
 		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
+	static getDerivedStateFromProps( nextProps, prevState ) {
 		if (
-			nextProps.activeDistribution !== this.props.activeDistribution ||
-			nextProps.a !== this.props.a ||
-			nextProps.b !== this.props.b ||
-			nextProps.lambda !== this.props.lambda ||
-			nextProps.mu !== this.props.mu ||
-			nextProps.sigma !== this.props.sigma ||
-			nextProps.n !== this.props.n
+			nextProps.activeDistribution !== prevState.activeDistribution ||
+			nextProps.a !== prevState.a ||
+			nextProps.b !== prevState.b ||
+			nextProps.lambda !== prevState.lambda ||
+			nextProps.mu !== prevState.mu ||
+			nextProps.sigma !== prevState.sigma ||
+			nextProps.n !== prevState.n
 		) {
-			this.updateProbs( this.state.lower, this.state.upper );
+			const newState = {
+				...generateProbs( this.state.lower, this.state.upper, nextProps ),
+				...nextProps
+			};
+			return newState;
 		}
-	}
-
-	updateProbs( lower, upper ) {
-		let mean;
-		let se;
-		switch ( this.props.activeDistribution ) {
-			default:
-			case 1:
-				mean = ( this.props.b + this.props.a ) / 2.0;
-				se = SQRT12_INV * abs( this.props.b - this.props.a ) / sqrt( this.props.n );
-				break;
-			case 2:
-				mean = 1.0 / this.props.lambda;
-				se = ( 1.0 / this.props.lambda ) / sqrt( this.props.n );
-				break;
-			case 3:
-				mean = this.props.mu;
-				se = this.props.sigma / sqrt( this.props.n );
-				break;
-		}
-		let rangeProb = pnorm( upper, mean, se ) - pnorm( lower, mean, se );
-		this.setState({
-			rangeProb,
-			lower,
-			upper
-		});
+		return null;
 	}
 
 	render() {
@@ -76,14 +85,16 @@ class ProbMeanRange extends Component {
 					L: {
 						variable: 'L',
 						onChange: ( lower ) => {
-							this.updateProbs( lower, this.state.upper );
+							const newState = generateProbs( lower, this.state.upper, this.props );
+							this.setState( newState );
 						},
 						defaultValue: this.state.lower
 					},
 					U: {
 						variable: 'U',
 						onChange: ( upper ) => {
-							this.updateProbs( this.state.lower, upper );
+							const newState = generateProbs( this.state.lower, upper, this.props );
+							this.setState( newState );
 						},
 						defaultValue: this.state.upper
 					}

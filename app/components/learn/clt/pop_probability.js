@@ -10,6 +10,31 @@ import punif from '@stdlib/stats/base/dists/uniform/cdf';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 
 
+// FUNCTIONS //
+
+const generatePopProbs = ( value, props ) => {
+	let popLeftProb;
+	switch ( props.activeDistribution ) {
+		default:
+		case 1:
+			popLeftProb = punif( value, props.a, props.b );
+			break;
+		case 2:
+			popLeftProb = pexp( value, props.lambda );
+			break;
+		case 3:
+			popLeftProb = pnorm( value, props.mu, props.sigma );
+			break;
+	}
+	const popRightProb = 1.0 - popLeftProb;
+	return {
+		popCutoff: value,
+		popLeftProb,
+		popRightProb
+	};
+};
+
+
 // MAIN //
 
 class ProbMean extends Component {
@@ -18,60 +43,46 @@ class ProbMean extends Component {
 		this.state = {
 			popLeftProb: 0,
 			popRightProb: 1,
-			popCutoff: 0
+			popCutoff: 0,
+			...props
 		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
+	static getDerivedStateFromProps( nextProps, prevState ) {
 		if (
-			nextProps.activeDistribution !== this.props.activeDistribution ||
-			nextProps.a !== this.props.a ||
-			nextProps.b !== this.props.b ||
-			nextProps.lambda !== this.props.lambda ||
-			nextProps.mu !== this.props.mu ||
-			nextProps.sigma !== this.props.sigma
+			nextProps.activeDistribution !== prevState.activeDistribution ||
+			nextProps.a !== prevState.a ||
+			nextProps.b !== prevState.b ||
+			nextProps.lambda !== prevState.lambda ||
+			nextProps.mu !== prevState.mu ||
+			nextProps.sigma !== prevState.sigma
 		) {
-			this.updatePopProbs( this.state.popCutoff, nextProps );
+			return {
+				...generatePopProbs( prevState.popCutoff, nextProps ),
+				...nextProps
+			};
 		}
-	}
-
-	updatePopProbs = ( value, props ) => {
-		let popLeftProb;
-		switch ( props.activeDistribution ) {
-			default:
-			case 1:
-				popLeftProb = punif( value, props.a, props.b );
-				break;
-			case 2:
-				popLeftProb = pexp( value, props.lambda );
-				break;
-			case 3:
-				popLeftProb = pnorm( value, props.mu, props.sigma );
-				break;
-		}
-		const popRightProb = 1.0 - popLeftProb;
-		this.setState({
-			popCutoff: value,
-			popLeftProb,
-			popRightProb
-		});
+		return null;
 	}
 
 	render() {
 		return (
-			<Panel><Panel.Body>
-				<NumberInput
-					step="any"
-					legend={<TeX raw="x" />}
-					onChange={( value ) => {
-						this.updatePopProbs( value, this.props );
-					}}
-				/>
-				<TeX raw={`P( X < ${this.state.popCutoff} ) = ${this.state.popLeftProb.toFixed( 3 )}`} />
-				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				<TeX raw={`P( X \\ge ${this.state.popCutoff} ) = ${this.state.popRightProb.toFixed( 3 )}`}
-				/>
-			</Panel.Body></Panel>
+			<Panel>
+				<Panel.Body>
+					<NumberInput
+						step="any"
+						legend={<TeX raw="x" />}
+						onChange={( value ) => {
+							const newState = generatePopProbs( value, this.props );
+							this.setState( newState );
+						}}
+					/>
+					<TeX raw={`P( X < ${this.state.popCutoff} ) = ${this.state.popLeftProb.toFixed( 3 )}`} />
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<TeX raw={`P( X \\ge ${this.state.popCutoff} ) = ${this.state.popRightProb.toFixed( 3 )}`}
+					/>
+				</Panel.Body>
+			</Panel>
 		);
 	}
 }
