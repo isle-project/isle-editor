@@ -33,13 +33,14 @@ class EnlargeableGrid extends Component {
 
 		this.state = {
 			layout,
-			enlarged: []
+			enlarged: [],
+			children: props.children
 		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		if ( nextProps.children !== this.props.children ) {
-			const { itemHeight } = this.props;
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if ( nextProps.children !== prevState.children ) {
+			const { itemHeight } = nextProps;
 			const layout = nextProps.children.map( ( x, i ) => {
 				return {
 					i: String( i ),
@@ -51,10 +52,12 @@ class EnlargeableGrid extends Component {
 					isResizable: nextProps.isResizable
 				};
 			});
-			this.setState({
-				layout
-			});
+			return {
+				layout,
+				children: nextProps.children
+			};
 		}
+		return null;
 	}
 
 	enlargeDivFactory = ( i ) => {
