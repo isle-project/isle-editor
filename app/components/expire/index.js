@@ -10,14 +10,26 @@ class Expire extends Component {
 	/**
 	* Constructor function
 	*/
-	constructor() {
+	constructor( props) {
 		super();
 
 		// Set initial component states...
 		this.state = {
-			visible: true
+			visible: true,
+			children: props.children
 		};
 	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if ( nextProps.children !== prevState.children ) {
+			return {
+				visible: true,
+				children: nextProps.children
+			};
+		}
+		return null;
+	}
+
 	/*
 	* Invoked once on client after the initial rendering. Sets up component timer.
 	*/
@@ -26,21 +38,13 @@ class Expire extends Component {
 			this.setTimer();
 		}
 	}
-	/**
-	* Invoked when component is receiving new children, this method sets
-	*  up the time and sets the component visible before rendering.
-	*
-	* @param {Object} newProps - new properties
-	*/
-	componentWillReceiveProps( newProps ) {
-		if ( newProps.children !== this.props.children ) {
-			this.setTimer();
-			this.setState({ visible: true });
-		}
-		if ( newProps.active ) {
+
+	componentDidUpdate( prevProps ) {
+		if ( this.props.children !== prevProps.children || this.props.active ) {
 			this.setTimer();
 		}
 	}
+
 	/*
 	* Invoked immediately before component is unmounted from DOM. Performs clean-up of
 	* component timer.
