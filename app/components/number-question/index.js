@@ -35,18 +35,21 @@ class NumberQuestion extends Component {
 		// Initialize state variables...
 		this.state = {
 			value: void 0,
-			submitted: false
+			submitted: false,
+			...props
 		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
+	static getDerivedStateFromProps( nextProps, prevState ) {
 		if (
-			nextProps.question !== this.props.question ||
-			nextProps.solution !== this.props.solution
+			nextProps.question !== prevState.question ||
+			nextProps.solution !== prevState.solution
 		) {
 			this.setState({
 				value: void 0,
-				submitted: false
+				submitted: false,
+				question: nextProps.question,
+				solution: nextProps.solution
 			});
 		}
 	}
