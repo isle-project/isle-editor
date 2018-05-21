@@ -38,8 +38,8 @@ class ROutput extends Component {
 		this.getResult( this.props );
 	}
 
-	componentWillReceiveProps( props ) {
-		this.getResult( props );
+	componentDidUpdate() {
+		this.getResult( this.props );
 	}
 
 	getResult = ( nextProps ) => {

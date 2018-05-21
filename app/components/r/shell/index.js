@@ -336,28 +336,26 @@ class RShell extends React.Component {
 		}
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		if ( this.props.code !== nextProps.code ) {
-			rCode[ this.state.id ] = nextProps.code;
-			this.editor.setValue( nextProps.code, 1 );
-			if ( nextProps.precompute ) {
+	componentDidUpdate( prevProps ) {
+		if ( this.props.code !== prevProps.code ) {
+			rCode[ this.state.id ] = this.props.code;
+			this.editor.setValue( this.props.code, 1 );
+			if ( this.props.precompute ) {
 				this.handleEvaluationClick();
 			}
-		}
-	}
-
-	componentDidUpdate() {
-		this.editor.resize();
-		const node = ReactDom.findDOMNode( this );
-		// Undo Spectacle scaling as it messes up the rendering of the ACE editor:
-		let slide = node.closest( '.spectacle-content' );
-		if ( slide ) {
-			let computedStyle = window.getComputedStyle( slide );
-			let transform = computedStyle.getPropertyValue( 'transform' );
-			let match = /matrix\(([0-9.]*)/.exec( transform );
-			if ( isArray( match ) && match.length > 1 ) {
-				let scaleFactor = [ 1 ];
-				node.style.transform = `scale(${1/scaleFactor})`;
+		} else {
+			this.editor.resize();
+			const node = ReactDom.findDOMNode( this );
+			// Undo Spectacle scaling as it messes up the rendering of the ACE editor:
+			let slide = node.closest( '.spectacle-content' );
+			if ( slide ) {
+				let computedStyle = window.getComputedStyle( slide );
+				let transform = computedStyle.getPropertyValue( 'transform' );
+				let match = /matrix\(([0-9.]*)/.exec( transform );
+				if ( isArray( match ) && match.length > 1 ) {
+					let scaleFactor = [ 1 ];
+					node.style.transform = `scale(${1/scaleFactor})`;
+				}
 			}
 		}
 	}
