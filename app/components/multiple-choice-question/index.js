@@ -33,9 +33,20 @@ class MultipleChoiceQuestion extends Component {
 				submitted: false,
 				active,
 				correct: new Array( props.answers.length ),
-				answerSelected: false
+				answerSelected: false,
+				question: props.question
 			};
 		}
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if ( nextProps.question !== prevState.question ) {
+			return {
+				submitted: false,
+				question: nextProps.question
+			};
+		}
+		return null;
 	}
 
 	componentDidMount() {
@@ -59,14 +70,6 @@ class MultipleChoiceQuestion extends Component {
 						}
 					}
 				}
-			});
-		}
-	}
-
-	componentWillReceiveProps( nextProps ) {
-		if ( nextProps.question !== this.props.question ) {
-			this.setState({
-				submitted: false
 			});
 		}
 	}

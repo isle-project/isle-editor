@@ -45,8 +45,29 @@ class FreeTextQuestion extends Component {
 			exhaustedHints: props.hints.length === 0,
 			value: isString( value ) ? value : '',
 			solutionDisplayed: false,
-			submitted: isString( value )
+			submitted: isString( value ),
+			placeholder: props.placeholder,
+			solution: props.solution,
+			question: props.question
 		};
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if (
+			nextProps.placeholder !== prevState.placeholder ||
+			nextProps.solution !== prevState.solution ||
+			nextProps.question !== prevState.question
+		) {
+			return {
+				value: '',
+				solutionDisplayed: false,
+				submitted: false,
+				placeholder: nextProps.placeholder,
+				solution: nextProps.solution,
+				question: nextProps.question
+			};
+		}
+		return null;
 	}
 
 	componentDidMount() {
@@ -56,20 +77,6 @@ class FreeTextQuestion extends Component {
 				this.setToLastAction();
 			}
 		});
-	}
-
-	componentWillReceiveProps( nextProps ) {
-		if (
-			nextProps.placeholder !== this.props.placeholder ||
-			nextProps.solution !== this.props.solution ||
-			nextProps.question !== this.props.question
-		) {
-			this.setState({
-				value: '',
-				solutionDisplayed: false,
-				submitted: false
-			});
-		}
 	}
 
 	componentWillUnmount() {
