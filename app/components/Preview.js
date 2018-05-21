@@ -240,33 +240,34 @@ export default class Preview extends Component {
 		this.shouldRenderPreview = true;
 	}
 
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		debug( 'Preview will receive props.' );
+		if ( nextProps.errorMsg ) {
+			return {
+				preambleIsValid: false
+			};
+		} else if ( !prevState.preambleIsValid ) {
+			return {
+				preambleIsValid: true
+			};
+		}
+		return null;
+	}
+
 	componentDidMount() {
 		debug( 'Preview did mount.' );
 		global.lesson = this;
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		debug( 'Preview will receive props.' );
-		if ( nextProps.errorMsg ) {
-			this.setState({
-				preambleIsValid: false
-			});
-		} else if ( !this.state.preambleIsValid ) {
-			this.setState({
-				preambleIsValid: true
-			});
-		}
-	}
-
-	componentWillUpdate( nextProps ) {
+	componentDidUpdate( prevProps ) {
 		debug( 'Preview will update.' );
 		if (
-			nextProps.preamble.server !== this.props.preamble.server ||
-			nextProps.preamble.state !== this.props.preamble.state ||
-			nextProps.currentMode !== this.props.currentMode
+			this.props.preamble.server !== prevProps.preamble.server ||
+			this.props.preamble.state !== prevProps.preamble.state ||
+			this.props.currentMode !== prevProps.currentMode
 		) {
-			const offline = nextProps.currentMode === 'offline';
-			const session = new Session( nextProps.preamble, offline );
+			const offline = this.props.currentMode === 'offline';
+			const session = new Session( this.props.preamble, offline );
 			this.session = session;
 			this.scope = createScope( session );
 			let lessonState = session.config.state;
