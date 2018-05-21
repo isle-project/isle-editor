@@ -40,7 +40,16 @@ class Expire extends Component {
 	}
 
 	componentDidUpdate( prevProps ) {
-		if ( this.props.children !== prevProps.children || this.props.active ) {
+		if (
+			this.props.children !== prevProps.children &&
+			this.props.active
+		) {
+			this.setTimer();
+		}
+		else if (
+			this.props.active &&
+			this.props.active !== prevProps.active
+		) {
 			this.setTimer();
 		}
 	}
