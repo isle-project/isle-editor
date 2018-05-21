@@ -32,8 +32,9 @@ class TextArea extends Component {
 			newState.value = nextProps.defaultValue;
 		}
 		if ( !isEmptyObject( newState ) ) {
-			this.setState( newState );
+			return newState;
 		}
+		return null;
 	}
 
 	/*
