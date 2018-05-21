@@ -70,7 +70,7 @@ class ProbMeanRange extends Component {
 			nextProps.n !== prevState.n
 		) {
 			const newState = {
-				...generateProbs( this.state.lower, this.state.upper, nextProps ),
+				...generateProbs( prevState.lower, prevState.upper, nextProps ),
 				...nextProps
 			};
 			return newState;
