@@ -285,7 +285,7 @@ class ContinuousCLT extends Component {
 		});
 	}
 
-	renderDistributionSelectionPanel() {
+	renderDistSelectionPanel() {
 		const exponential = <div>
 			<NumberInput legend="Rate parameter"
 				max={100} min={0.01} step={1} defaultValue={this.state.lambda}
@@ -450,7 +450,7 @@ class ContinuousCLT extends Component {
 			<div>
 				<Grid>
 					<Row>
-						{this.renderDistributionSelectionPanel()}
+						{this.renderDistSelectionPanel()}
 					</Row>
 					<Row>
 						<Col md={6}>
