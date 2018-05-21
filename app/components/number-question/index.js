@@ -45,13 +45,14 @@ class NumberQuestion extends Component {
 			nextProps.question !== prevState.question ||
 			nextProps.solution !== prevState.solution
 		) {
-			this.setState({
+			return {
 				value: void 0,
 				submitted: false,
 				question: nextProps.question,
 				solution: nextProps.solution
-			});
+			};
 		}
+		return null;
 	}
 
 	/*
