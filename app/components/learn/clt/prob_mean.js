@@ -69,10 +69,10 @@ class ProbMean extends Component {
 			nextProps.sigma !== prevState.sigma
 		) {
 			const newState = calculateProb( prevState.cutoff, nextProps );
-			this.setState({
+			return {
 				...newState,
 				...nextProps
-			});
+			};
 		}
 	}
 
