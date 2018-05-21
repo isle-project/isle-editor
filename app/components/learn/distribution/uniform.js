@@ -216,7 +216,7 @@ class UniformProbs extends Component {
 							<TeX raw={this.state.eqn3} />
 						</Dashboard>
 						<VictoryChart
-							domain={{ x: [ this.state.min3 - 1.0, this.state.max3 + 1.0 ], y: [ 0, this.state.yheight3 + 0.1 ] }}>
+							domain={{ x: [ this.state.min3 - 1.0, this.state.max3 + 1.0 ], y: [ 0, this.state.yheight3 + 0.1 ]}}>
 							<VictoryArea
 								data={this.state.data3}
 								style={{
