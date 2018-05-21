@@ -31,10 +31,10 @@ class Node extends Component {
 		this.applyTransform(transform);
 	}
 
-	componentWillUpdate(nextProps) {
+	componentDidUpdate() {
 		const transform = this.setTransformOrientation(
-			nextProps.nodeData.x,
-			nextProps.nodeData.y,
+			this.props.nodeData.x,
+			this.props.nodeData.y,
 		);
 		this.applyTransform(transform);
 	}
