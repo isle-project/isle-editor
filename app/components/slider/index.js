@@ -28,7 +28,7 @@ class DefaultSlider extends Component {
 			...props
 		};
 
-		if (props.interval) {
+		if ( props.interval ) {
 			settings.autoplay = true;
 			settings.autoplaySpeed = props.interval;
 		}
@@ -36,7 +36,6 @@ class DefaultSlider extends Component {
 		this.state = {
 			childDivs,
 			settings
-
 		};
 	}
 
@@ -44,17 +43,17 @@ class DefaultSlider extends Component {
 		this.slider.slickGoTo( this.props.goto );
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		if ( nextProps.children !== this.props.children ) {
-			let childDivs = nextProps.children && nextProps.children.length > 0 ?
-				React.Children.map( nextProps.children, child => <div> {child} </div> ) :
+	componentDidUpdate( prevProps ) {
+		if ( this.props.children !== prevProps.children ) {
+			let childDivs = this.props.children && this.props.children.length > 0 ?
+				React.Children.map( this.props.children, child => <div> {child} </div> ) :
 				<div></div>;
 			this.setState({
 				childDivs
 			});
 		}
-		if ( nextProps.goto !== this.props.goto ) {
-			this.slider.slickGoTo( nextProps.goto );
+		if ( this.props.goto !== prevProps.goto ) {
+			this.slider.slickGoTo( this.props.goto );
 		}
 	}
 
