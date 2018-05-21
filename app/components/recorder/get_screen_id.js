@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Last time updated at Feb 16, 2017, 08:32:23
 
 // Latest file can be found here: https://cdn.webrtc-experiment.com/getScreenId.js
@@ -10,14 +12,14 @@
 // getScreenId.js
 
 /*
-getScreenId(function (error, sourceId, screenConstraints) {
+getScreenId(function (error, sourceId, screen_constraints) {
 	// error    == null || 'permission-denied' || 'not-installed' || 'installed-disabled' || 'not-chrome'
 	// sourceId == null || 'string' || 'firefox'
 
 	if(sourceId == 'firefox') {
-		navigator.mozGetUserMedia(screenConstraints, onSuccess, onFailure);
+		navigator.mozGetUserMedia(screen_constraints, onSuccess, onFailure);
 	}
-	else navigator.webkitGetUserMedia(screenConstraints, onSuccess, onFailure);
+	else navigator.webkitGetUserMedia(screen_constraints, onSuccess, onFailure);
 });
 */
 
@@ -25,8 +27,8 @@ getScreenId(function (error, sourceId, screenConstraints) {
 export default function getScreenId( callback ) {
 	// for Firefox:
 	// sourceId == 'firefox'
-	// screenConstraints = {...}
-	if ( navigator.mozGetUserMedia ) {
+	// screen_constraints = {...}
+	if ( !!navigator.mozGetUserMedia ) {
 		callback( null, 'firefox', {
 			video: {
 				mozMediaSource: 'window',
@@ -51,15 +53,15 @@ export default function getScreenId( callback ) {
 			callback( event.data.chromeExtensionStatus, null, getScreenConstraints( event.data.chromeExtensionStatus ) );
 		}
 
-		// This event listener is no more needed
+		// this event listener is no more needed
 		window.removeEventListener( 'message', onIFrameCallback );
 	}
 
 	setTimeout( postGetSourceIdMessage, 100 );
-}
+};
 
 function getScreenConstraints( error, sourceId ) {
-	var screenConstraints = {
+	var screen_constraints = {
 		audio: false,
 		video: {
 			mandatory: {
@@ -72,13 +74,11 @@ function getScreenConstraints( error, sourceId ) {
 	};
 
 	if ( sourceId ) {
-		screenConstraints.video.mandatory.chromeMediaSourceId = sourceId;
+		screen_constraints.video.mandatory.chromeMediaSourceId = sourceId;
 	}
 
-	return screenConstraints;
+	return screen_constraints;
 }
-
-var iframe;
 
 function postGetSourceIdMessage() {
 	if ( !iframe ) {
@@ -96,11 +96,13 @@ function postGetSourceIdMessage() {
 	}, '*' );
 }
 
+var iframe;
+
 // this function is used in RTCMultiConnection v3
-window.getScreenConstraints = function getScreenConstraints( callback ) {
-	loadIFrame( function onFrame() {
-		getScreenId( function onId( error, sourceId, screenConstraints ) {
-			callback( error, screenConstraints.video );
+window.getScreenConstraints = function( callback ) {
+	loadIFrame( function() {
+		getScreenId( function( error, sourceId, screen_constraints ) {
+			callback( error, screen_constraints.video );
 		});
 	});
 };
@@ -112,7 +114,7 @@ function loadIFrame( loadCallback ) {
 	}
 
 	iframe = document.createElement( 'iframe' );
-	iframe.onload = function onload() {
+	iframe.onload = function() {
 		iframe.isLoaded = true;
 
 		loadCallback();
@@ -122,9 +124,9 @@ function loadIFrame( loadCallback ) {
 	( document.body || document.documentElement ).appendChild( iframe );
 }
 
-window.getChromeExtensionStatus = function getChromeExtensionStatus( callback ) {
+window.getChromeExtensionStatus = function( callback ) {
 	// for Firefox:
-	if ( navigator.mozGetUserMedia ) {
+	if ( !!navigator.mozGetUserMedia ) {
 		callback( 'installed-enabled' );
 		return;
 	}
@@ -138,7 +140,7 @@ window.getChromeExtensionStatus = function getChromeExtensionStatus( callback ) 
 			callback( event.data.chromeExtensionStatus );
 		}
 
-		// This event listener is no more needed
+		// this event listener is no more needed
 		window.removeEventListener( 'message', onIFrameCallback );
 	}
 
