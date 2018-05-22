@@ -35,25 +35,25 @@ class ProbabilityRange extends Component {
 		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
+	componentDidUpdate( prevProps ) {
 		if (
-			nextProps.activeDistribution !== this.props.activeDistribution ||
-			nextProps.a !== this.props.a ||
-			nextProps.b !== this.props.b ||
-			nextProps.lambda !== this.props.lambda ||
-			nextProps.mu !== this.props.mu ||
-			nextProps.sigma !== this.props.sigma
+			this.props.activeDistribution !== prevProps.activeDistribution ||
+			this.props.a !== prevProps.a ||
+			this.props.b !== prevProps.b ||
+			this.props.lambda !== prevProps.lambda ||
+			this.props.mu !== prevProps.mu ||
+			this.props.sigma !== prevProps.sigma
 		) {
-			switch ( nextProps.activeDistribution ) {
+			switch ( this.props.activeDistribution ) {
 				default:
 				case 1:
-					this.cdf = uniform.factory( nextProps.a, nextProps.b );
+					this.cdf = uniform.factory( this.props.a, this.props.b );
 					break;
 				case 2:
-					this.cdf = exponential.factory( nextProps.lambda );
+					this.cdf = exponential.factory( this.props.lambda );
 					break;
 				case 3:
-					this.cdf = normal.factory( nextProps.mu, nextProps.sigma );
+					this.cdf = normal.factory( this.props.mu, this.props.sigma );
 					break;
 			}
 			const rangeProb = this.cdf( this.state.upper ) - this.cdf( this.state.lower );

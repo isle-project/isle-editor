@@ -71,10 +71,10 @@ class Standardize extends Component {
 		let standardizedLines = newMarked.map( ( x, id ) => {
 			return ( <VictoryLine
 				key={id}
-				data={[ {x: ( x-this.state.mean )/this.state.sd, y: 0 }, { x: ( x-this.state.mean )/this.state.sd, y: 0.5 } ]}
+				data={[ { x: ( x-this.state.mean )/this.state.sd, y: 0 }, { x: ( x-this.state.mean )/this.state.sd, y: 0.5 } ]}
 				x={d => d.x}
 				y={d => d.y}
-				style={{ data: { stroke: colors[ id%colors.length ]}}}
+				style={{ data: { stroke: colors[ id%colors.length ] }}}
 			/> );
 		});
 

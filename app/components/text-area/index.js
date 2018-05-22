@@ -21,18 +21,20 @@ class TextArea extends Component {
 
 		// Initialize state variables...
 		this.state = {
-			value: props.defaultValue
+			value: props.defaultValue,
+			...props
 		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
+	static getDerivedStateFromProps( nextProps, prevState ) {
 		let newState = {};
-		if ( nextProps.defaultValue !== this.props.defaultValue ) {
+		if ( nextProps.defaultValue !== prevState.defaultValue ) {
 			newState.value = nextProps.defaultValue;
 		}
 		if ( !isEmptyObject( newState ) ) {
-			this.setState( newState );
+			return newState;
 		}
+		return null;
 	}
 
 	/*

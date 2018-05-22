@@ -21,17 +21,20 @@ class Login extends Component {
 		super( props );
 		this.state = {
 			email: '',
-			password: ''
+			password: '',
+			show: props.show
 		};
 	}
 
-	componentWillUpdate( nextProps ) {
-		if ( nextProps.show !== this.props.show ) {
-			this.setState({
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if ( nextProps.show !== prevState.show ) {
+			return {
 				email: '',
-				password: ''
-			});
+				password: '',
+				show: nextProps.show
+			};
 		}
+		return null;
 	}
 
 	handleInputChange = ( event ) => {

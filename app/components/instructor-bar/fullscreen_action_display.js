@@ -29,19 +29,21 @@ class FullscreenActionDisplay extends Component {
 		this.state = {
 			filtered: props.actions,
 			searchwords: [],
-			exact: false
+			exact: false,
+			actions: props.actions
 		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
+	static getDerivedStateFromProps( nextProps, prevState ) {
 		let newState = {};
-		if ( nextProps.actions !== this.props.actions ) {
+		if ( nextProps.actions !== prevState.actions ) {
 			newState.filtered = nextProps.actions;
 		}
-
 		if ( !isEmptyObject( newState ) ) {
-			this.setState( newState );
+			newState.actions = nextProps.actions;
+			return newState;
 		}
+		return null;
 	}
 
 	searchFilter = ( value ) => {

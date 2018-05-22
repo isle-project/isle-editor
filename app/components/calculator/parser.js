@@ -12,15 +12,15 @@ var log = require( '@stdlib/math/base/special/log' );
 var log2 = require( '@stdlib/math/base/special/log2' );
 var sqrt = require( '@stdlib/math/base/special/sqrt' );
 var log10 = require( '@stdlib/math/base/special/log10' );
-var choose = require( '@stdlib/math/base/special/binomcoef')
+var choose = require( '@stdlib/math/base/special/binomcoef' );
 var factorial = require( '@stdlib/math/base/special/factorial' );
 var FLOAT64_MAX = require( '@stdlib/constants/math/float64-max' );
 var FLOAT64_MIN_SAFE_INTEGER = require( '@stdlib/constants/math/float64-min-safe-integer' );
 var isDigitString = require( '@stdlib/assert/is-digit-string' );
-var isStrictEqual = require( '@stdlib/assert/is-strict-equal' );
 var isEmptyString = require( '@stdlib/assert/is-empty-string' );
 var isAlphaNumeric = require( '@stdlib/assert/is-alphanumeric' );
 var hasOwnProp = require( '@stdlib/assert/has-own-property' );
+
 
 // VARIABLES //
 
@@ -47,7 +47,7 @@ var funs = {
 	'log(': log,
 	'exp(': exp,
 	'inv(': inv
-}
+};
 
 // FUNCTIONS //
 
@@ -268,7 +268,7 @@ function evaluateStr(expression) {
 			if ( op === '+' ) {
 				ans = add(xEval, yEval);
 			} else {
-				ans =  subtract(xEval, yEval);
+				ans = subtract(xEval, yEval);
 			}
 		} else {
 			xEval = evaluateStr(x.trim());
@@ -280,10 +280,9 @@ function evaluateStr(expression) {
 				ans = divide(xEval, yEval);
 			}
 		}
-
 	} else {
 		// handle pi case before
-		console.log('we made it into the letters')
+		console.log('we made it into the letters');
 		// we know it is a letter
 		// loop until we have the open paren
 		j = i;

@@ -84,14 +84,7 @@ class Recorder extends Component {
 		if ( props.audio ) {
 			this.recorderConfig = getAudioConfig();
 		}
-		else if ( props.screen || props.video ) {
-			this.recorderConfig = {
-				type: 'video',
-				mimeType: 'video/webm'
-			};
-		}
-
-		if (props.camera) {
+		else if ( props.screen || props.camera ) {
 			this.recorderConfig = {
 				type: 'video',
 				mimeType: 'video/webm'
@@ -99,6 +92,7 @@ class Recorder extends Component {
 		}
 
 		window.getChromeExtensionStatus( ( status ) => {
+			console.log( 'Extension status: ' + status );
 			if ( status !== 'installed-enabled' ) {
 				this.setState({
 					available: false
@@ -352,8 +346,7 @@ Recorder.propTypes = {
 	camera: PropTypes.bool,
 	downloadable: PropTypes.bool,
 	screen: PropTypes.bool,
-	uploadable: PropTypes.bool,
-	video: PropTypes.bool
+	uploadable: PropTypes.bool
 };
 
 
@@ -365,8 +358,7 @@ Recorder.defaultProps = {
 	camera: false,
 	downloadable: false,
 	screen: false,
-	uploadable: false,
-	video: false
+	uploadable: false
 };
 
 

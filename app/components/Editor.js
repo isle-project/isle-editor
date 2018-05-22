@@ -101,10 +101,10 @@ class Editor extends Component {
 		});
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		if ( this.editor && this.editor.getValue() !== nextProps.value ) {
+	componentDidUpdate() {
+		if ( this.editor && this.editor.getValue() !== this.props.value ) {
 			const pos = this.editor.getCursorPosition();
-			this.editor.setValue( nextProps.value, nextProps.cursorStart );
+			this.editor.setValue( this.props.value, this.props.cursorStart );
 			this.editor.moveCursorToPosition( pos );
 		}
 	}

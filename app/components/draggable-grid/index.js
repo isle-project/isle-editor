@@ -12,40 +12,43 @@ import floor from '@stdlib/math/base/special/floor';
 const ResponsiveReactGridLayout = WidthProvider( Responsive );
 
 
+// FUNCTIONS //
+
+const createLayout = ( props ) => {
+	let layouts = props.children.map( ( e, i ) => {
+		return {
+			lg: { i: `cell-${i}`, x: i*6 % 18, y: floor( i / 3 ) * 4, w: 6, h: 4 },
+			md: { i: `cell-${i}`, x: i*6 % 12, y: floor( i / 2 ) * 4, w: 6, h: 4 },
+			sm: { i: `cell-${i}`, x: i*6 % 12, y: floor( i / 2 ) * 4, w: 6, h: 4 },
+			xs: { i: `cell-${i}`, x: i*6 % 12, y: floor( i / 2 ) * 4, w: 6, h: 4 },
+			xxs: { i: `cell-${i}`, x: i*4 % 6, y: floor( i / 1 ) * 4, w: 6, h: 4 }
+		};
+	});
+	layouts = {
+		lg: pluck( layouts, 'lg' ),
+		md: pluck( layouts, 'md' ),
+		sm: pluck( layouts, 'sm' ),
+		xs: pluck( layouts, 'xs' ),
+		xxs: pluck( layouts, 'xxs' )
+	};
+	return layouts;
+};
+
+
 // MAIN //
 
 class DraggableGrid extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			layouts: this.createLayout( props )
+			layouts: createLayout( props )
 		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		this.createLayout( nextProps );
-	}
-
-	createLayout( props ) {
-		let layouts = props.children.map( ( e, i ) => {
-			return {
-				lg: { i: `cell-${i}`, x: i*6 % 18, y: floor( i / 3 ) * 4, w: 6, h: 4 },
-				md: { i: `cell-${i}`, x: i*6 % 12, y: floor( i / 2 ) * 4, w: 6, h: 4 },
-				sm: { i: `cell-${i}`, x: i*6 % 12, y: floor( i / 2 ) * 4, w: 6, h: 4 },
-				xs: { i: `cell-${i}`, x: i*6 % 12, y: floor( i / 2 ) * 4, w: 6, h: 4 },
-				xxs: { i: `cell-${i}`, x: i*4 % 6, y: floor( i / 1 ) * 4, w: 6, h: 4 }
-			};
-		});
-		layouts = {
-			lg: pluck( layouts, 'lg' ),
-			md: pluck( layouts, 'md' ),
-			sm: pluck( layouts, 'sm' ),
-			xs: pluck( layouts, 'xs' ),
-			xxs: pluck( layouts, 'xxs' )
+	static getDerivedStateFromProps( nextProps ) {
+		return {
+			layouts: createLayout( nextProps )
 		};
-		this.setState({
-			layouts
-		});
 	}
 
 	render() {

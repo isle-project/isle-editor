@@ -11,16 +11,19 @@ class ErrorBoundary extends Component {
 		super( props );
 		this.state = {
 			hasError: false,
-			msg: null
+			msg: null,
+			code: props.code
 		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		if ( nextProps.code !== this.props.code ) {
-			this.setState({
-				hasError: false
-			});
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if ( nextProps.code !== prevState.code ) {
+			return {
+				hasError: false,
+				code: nextProps.code
+			};
 		}
+		return null;
 	}
 
 	componentDidCatch( error ) {

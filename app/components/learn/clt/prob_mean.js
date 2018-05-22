@@ -15,6 +15,36 @@ import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 const SQRT12_INV = 1.0 / sqrt( 12.0 );
 
 
+// FUNCTIONS //
+
+const calculateProb = ( value, props ) => {
+	let mean;
+	let se;
+	switch ( props.activeDistribution ) {
+		default:
+		case 1:
+			mean = ( props.b + props.a ) / 2.0;
+			se = SQRT12_INV * abs( props.b - props.a ) / sqrt( props.n );
+			break;
+		case 2:
+			mean = 1.0 / props.lambda;
+			se = ( 1.0 / props.lambda ) / sqrt( props.n );
+			break;
+		case 3:
+			mean = props.mu;
+			se = props.sigma / sqrt( props.n );
+			break;
+	}
+	const leftProb = pnorm( value, mean, se );
+	const rightProb = 1.0 - leftProb;
+	return {
+		leftProb,
+		rightProb,
+		cutoff: value
+	};
+};
+
+
 // MAIN //
 
 class ProbMean extends Component {
@@ -23,49 +53,27 @@ class ProbMean extends Component {
 		this.state = {
 			cutoff: 0,
 			leftProb: 0,
-			rightProb: 1
+			rightProb: 1,
+			...props
 		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
+	static getDerivedStateFromProps( nextProps, prevState ) {
 		if (
-			nextProps.activeDistribution !== this.props.activeDistribution ||
-			nextProps.a !== this.props.a ||
-			nextProps.b !== this.props.b ||
-			nextProps.lambda !== this.props.lambda ||
-			nextProps.mu !== this.props.mu ||
-			nextProps.n !== this.props.n ||
-			nextProps.sigma !== this.props.sigma
+			nextProps.activeDistribution !== prevState.activeDistribution ||
+			nextProps.a !== prevState.a ||
+			nextProps.b !== prevState.b ||
+			nextProps.lambda !== prevState.lambda ||
+			nextProps.mu !== prevState.mu ||
+			nextProps.n !== prevState.n ||
+			nextProps.sigma !== prevState.sigma
 		) {
-			this.updateProb( this.state.cutoff, nextProps );
+			const newState = calculateProb( prevState.cutoff, nextProps );
+			return {
+				...newState,
+				...nextProps
+			};
 		}
-	}
-
-	updateProb = ( value, props ) => {
-		let mean;
-		let se;
-		switch ( props.activeDistribution ) {
-			default:
-			case 1:
-				mean = ( props.b + props.a ) / 2.0;
-				se = SQRT12_INV * abs( props.b - props.a ) / sqrt( props.n );
-				break;
-			case 2:
-				mean = 1.0 / props.lambda;
-				se = ( 1.0 / props.lambda ) / sqrt( props.n );
-				break;
-			case 3:
-				mean = props.mu;
-				se = props.sigma / sqrt( props.n );
-				break;
-		}
-		let leftProb = pnorm( value, mean, se );
-		let rightProb = 1.0 - leftProb;
-		this.setState({
-			leftProb,
-			rightProb,
-			cutoff: value
-		});
 	}
 
 	render() {

@@ -192,8 +192,21 @@ class MarkdownEditor extends Component {
 			},
 			value: value,
 			hash: hash,
-			showSaveModal: false
+			showSaveModal: false,
+			defaultValue: props.defaultValue
 		};
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		let newState = {};
+		if ( nextProps.defaultValue !== prevState.defaultValue ) {
+			newState.value = nextProps.defaultValue;
+		}
+		if ( !isEmptyObject( newState ) ) {
+			newState.defaultValue = nextProps.defaultValue;
+			return newState;
+		}
+		return null;
 	}
 
 	componentDidMount() {
@@ -201,20 +214,11 @@ class MarkdownEditor extends Component {
 		this.initializeEditor();
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		let newState = {};
-		if ( nextProps.defaultValue !== this.props.defaultValue ) {
-			newState.value = nextProps.defaultValue;
+	componentDidUpdate( prevProps, prevState ) {
+		if ( this.state.defaultValue !== prevState.defaultValue ) {
+			this.simplemde.toTextArea(); // Reset text area to remove SimpleMDE instance...
+			this.initializeEditor();
 		}
-		if ( !isEmptyObject( newState ) ) {
-			this.setState( newState, () => {
-				this.simplemde.toTextArea(); // Reset text area to remove SimpleMDE instance...
-				this.initializeEditor();
-			});
-		}
-	}
-
-	componentDidUpdate() {
 		this.simplemde.codemirror.refresh();
 	}
 

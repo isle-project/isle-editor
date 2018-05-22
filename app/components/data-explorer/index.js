@@ -22,6 +22,7 @@ import isArray from '@stdlib/assert/is-array';
 import isNumber from '@stdlib/assert/is-number';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import isObject from '@stdlib/assert/is-object';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import entries from '@stdlib/utils/entries';
 import hasProp from '@stdlib/assert/has-property';
 import replace from '@stdlib/string/replace';
@@ -322,7 +323,12 @@ class DataExplorer extends Component {
 			groupVars,
 			ready,
 			showStudentPlots: false,
-			studentPlots: []
+			studentPlots: [],
+			unaltered: {
+				data: props.data,
+				continuous: props.continuous,
+				categorical: props.categorical
+			}
 		};
 
 		this.logAction = ( type, value ) => {
@@ -337,22 +343,30 @@ class DataExplorer extends Component {
 		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
+	static getDerivedStateFromProps( nextProps, prevState ) {
 		const newState = {};
-		if ( nextProps.data !== this.props.data ) {
+		if ( nextProps.data !== prevState.unaltered.data ) {
 			newState.data = nextProps.data;
 		}
-		if ( nextProps.continuous !== this.props.continuous ) {
+		if ( nextProps.continuous !== prevState.unaltered.continuous ) {
 			newState.continuous = nextProps.continuous;
 		}
-		if ( nextProps.continuous !== this.props.continuous ) {
+		if ( nextProps.continuous !== prevState.continuous ) {
 			newState.categorical = nextProps.categorical;
 		}
-		this.setState( newState );
+		if ( !isEmptyObject( newState ) ) {
+			newState.unaltered = {
+				data: nextProps.data,
+				continuous: nextProps.continuous,
+				categorical: nextProps.categorical
+			};
+			return newState;
+		}
+		return null;
 	}
 
-	componentWillUpdate( nextProps, nextState ){
-		if ( nextState.output !== this.state.output ) {
+	componentDidUpdate( prevProps, prevState ){
+		if ( this.state.output !== prevState.output ) {
 			const outputPanel = document.getElementById( 'outputPanel' );
 			scrollTo( outputPanel, outputPanel.scrollHeight, 1000 );
 		}
@@ -559,10 +573,10 @@ class DataExplorer extends Component {
 			const variableNames = Object.keys( this.state.data );
 			return ( <Panel>
 				<Panel.Heading>
-					<Panel.Title componentClass="h2">Data Explorer</Panel.Title>
+					<Panel.Title componentClass="h3">Data Explorer</Panel.Title>
 				</Panel.Heading>
 				<Panel.Body>
-					<h3>Please select which variables should be treated as numeric and which ones as categorical:</h3>
+					<h4>Please select which variables should be treated as numeric and which ones as categorical:</h4>
 					<SelectInput
 						legend="Continuous:"
 						options={variableNames}

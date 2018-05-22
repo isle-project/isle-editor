@@ -34,20 +34,20 @@ class Tree extends Component {
 		this.setState({ initialRender: false }); // eslint-disable-line
 	}
 
-	componentWillReceiveProps(nextProps) {
+	componentDidUpdate( prevProps ) {
 		// Clone new data & assign internal properties
-		if (!deepEqual(this.props.data, nextProps.data)) {
+		if (!deepEqual(this.props.data, prevProps.data)) {
 			this.setState({
-				data: this.assignInternalProperties(clone(nextProps.data))
+				data: this.assignInternalProperties(clone(this.props.data))
 			});
 		}
 
 		// If zoom-specific props change -> rebind listener with new values
 		if (
-			!deepEqual(this.props.translate, nextProps.translate) ||
-			!deepEqual(this.props.scaleExtent, nextProps.scaleExtent)
+			!deepEqual(this.props.translate, prevProps.translate) ||
+			!deepEqual(this.props.scaleExtent, prevProps.scaleExtent)
 		) {
-			this.bindZoomListener(nextProps);
+			this.bindZoomListener( this.props );
 		}
 	}
 
