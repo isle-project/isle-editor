@@ -48,3 +48,8 @@ public/
 
 # Ignore custom build script for Frank's version of stdlib
 .build.sh
+
+# R history files
+.Rhistory
+
+app/components/calculator/parser.js
