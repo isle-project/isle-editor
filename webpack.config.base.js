@@ -1,7 +1,23 @@
 // MODULES //
 
 import webpack from 'webpack';
-import path from 'path';
+import { join, resolve } from 'path';
+
+
+// VARIABLES //
+
+var EXTERNALS = [
+	'child_process',
+	'webpack',
+	'uglify-es',
+	'react',
+	'react-dom',
+	'victory',
+	'plotly.js',
+	/^@stdlib/,
+	'camelcase',
+	'spectacle'
+];
 
 
 // MAIN //
@@ -17,8 +33,8 @@ export default {
 				}
 			},
 			include: [
-				path.join( __dirname, 'main.development.js' ),
-				path.join( __dirname, 'app' )
+				join( __dirname, 'main.development.js' ),
+				join( __dirname, 'app' )
 			]
 		},
 		{
@@ -44,22 +60,22 @@ export default {
 		]
 	},
 	output: {
-		path: path.join( __dirname, 'dist' ),
+		path: join( __dirname, 'dist' ),
 		filename: 'bundle.js',
 		libraryTarget: 'commonjs2'
 	},
 	resolve: {
 		alias: {
-			'esprima': path.resolve( './node_modules/esprima-fb' ),
+			'esprima': resolve( './node_modules/esprima-fb' ),
 			'victory': require.resolve( 'victory/dist/victory' ),
-			'form-data': path.resolve( './node_modules/form-data/lib/form_data.js' ),
-			'react-transition-group/TransitionGroup': path.resolve( './node_modules/spectacle/node_modules/react-transition-group/TransitionGroup.js' )
+			'form-data': resolve( './node_modules/form-data/lib/form_data.js' ),
+			'react-transition-group/TransitionGroup': resolve( './node_modules/spectacle/node_modules/react-transition-group/TransitionGroup.js' )
 		},
 		modules: [
-			path.resolve( './app' ),
-			path.resolve( './node_modules' ),
-			path.resolve( './node_modules/@stdlib/stdlib/lib/node_modules' ),
-			path.resolve( './node_modules/@stdlib/stdlib/node_modules' )
+			resolve( './app' ),
+			resolve( './node_modules' ),
+			resolve( './node_modules/@stdlib/stdlib/lib/node_modules' ),
+			resolve( './node_modules/@stdlib/stdlib/node_modules' )
 		],
 		extensions: [ '.js', '.jsx', '.json' ],
 		mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
@@ -68,10 +84,5 @@ export default {
 		new webpack.IgnorePlugin( /vertx/ ),
 		new webpack.IgnorePlugin( /^(xor|props)$/ )
 	],
-	externals: [
-		// Node 3rd party libraries which can't be built with webpack go here...
-		'child_process',
-		'webpack',
-		'uglify-es'
-	]
+	externals: EXTERNALS
 };
