@@ -63,8 +63,11 @@ const loadRequires = ( libs, filePath ) => {
 		for ( let key in libs ) {
 			if ( hasOwnProp( libs, key ) ) {
 				let lib = libs[ key ];
-				if ( isAbsolutePath( lib ) || /\.\//.test( lib ) ) {
+				if ( isAbsolutePath( lib ) || /\.(\/|\\)/.test( lib ) ) {
 					lib = path.join( dirname, libs[ key ]);
+					if ( process.platform === 'win32' ) {
+						lib = replace( lib, '\\', '\\\\' );
+					}
 				} else if ( /@stdlib/.test( lib ) ) {
 					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
 				}
@@ -271,12 +274,12 @@ function writeIndexFile({
 					loader: 'babel-loader',
 					query: {
 						plugins: [
-							'add-module-exports'
+							path.resolve( basePath, './node_modules/babel-plugin-add-module-exports' )
 						],
 						presets: [
-							'es2015',
-							'react',
-							'stage-0'
+							path.resolve( basePath, './node_modules/babel-preset-es2015' ),
+							path.resolve( basePath, './node_modules/babel-preset-react' ),
+							path.resolve( basePath, './node_modules/babel-preset-stage-0' )
 						],
 						babelrc: false,
 						cacheDirectory: true
@@ -371,13 +374,14 @@ function writeIndexFile({
 
 	// Copy CSS files:
 	fs.copySync( getCSSPath(), path.join( appDir, 'css' ) );
-	// Override `lesson.css` file if custom CSS file is specified:
 	if ( meta.css ) {
+		// Append custom CSS file to `lesson.css` file:
 		let fpath = meta.css;
 		if ( !isAbsolutePath( meta.css ) ) {
 			fpath = path.join( path.dirname( filePath ), meta.css );
 		}
-		fs.copySync( fpath, path.join( appDir, 'css', 'lesson.css' ) );
+		const css = fs.readFileSync( fpath ).toString();
+		fs.appendFileSync( path.join( appDir, 'css', 'lesson.css' ), css );
 	}
 	if ( meta.style ) {
 		fs.appendFileSync( path.join( appDir, 'css', 'lesson.css' ), meta.style );
