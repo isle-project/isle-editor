@@ -107,7 +107,6 @@ const createScope = ( session ) => {
 		LearnVennDiagramBuilder: Loadable( () => import( 'components/learn/venn-diagram-builder' ) ),
 		LearnWordVennDiagram: Loadable( () => import( 'components/learn/word-venn-diagram' ) ),
 		LearnImagePixelPicker: Loadable( () => import( 'components/learn/image-pixel-picker' ) ),
-
 		LessonSubmit: Loadable( () => import( 'components/lesson-submit' ) ),
 		MarkdownEditor: Loadable( () => import( 'components/markdown-editor' ) ),
 		MatchListQuestion: Loadable( () => import( 'components/match-list-question' ) ),
