@@ -14,9 +14,7 @@ var EXTERNALS = [
 	'react-dom',
 	'victory',
 	'plotly.js',
-	/^@stdlib/,
-	'camelcase',
-	'spectacle'
+	'camelcase'
 ];
 
 
