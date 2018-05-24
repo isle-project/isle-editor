@@ -19,6 +19,7 @@ import Header from 'components/Header';
 import Editor from 'components/Editor';
 import Preview from 'components/Preview';
 import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError } from 'actions';
+import replace from '@stdlib/string/replace';
 
 
 // VARIABLES //
@@ -59,6 +60,11 @@ const applyStyles = ( preamble, filePath ) => {
 			let fpath = preamble.css;
 			if ( !isAbsolutePath( fpath ) ) {
 				fpath = path.join( path.dirname( filePath ), fpath );
+
+				if ( process.platform === 'win32' ) {
+					fpath = replace( fpath, '\\', '\\\\' );
+				}
+
 			}
 			css += fs.readFileSync( fpath ).toString();
 		}
@@ -79,6 +85,7 @@ const loadRequires = ( libs, filePath ) => {
 	/* eslint-disable no-eval */
 	debug( 'Should require files or modules...' );
 	let dirname = path.dirname( filePath );
+	console.log( dirname );
 	debug( 'Directory: '+dirname );
 	if ( isObject( libs ) ) {
 		for ( let key in libs ) {
@@ -86,6 +93,9 @@ const loadRequires = ( libs, filePath ) => {
 				let lib = libs[ key ];
 				if ( isAbsolutePath( lib ) || /\.(\/|\\)/.test( lib ) ) {
 					lib = path.join( dirname, libs[ key ]);
+					if ( process.platform === 'win32' ) {
+						lib = replace( lib, '\\', '\\\\' );
+					}
 				} else if ( /@stdlib/.test( lib ) ) {
 					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
 				}
