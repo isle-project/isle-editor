@@ -64,7 +64,7 @@ class DiceThrowing extends Component {
 
 	renderGrid() {
 		return (
-			<Grid>
+			<Grid fluid={true}>
 				<Col md={5}>
 					<h3>Probabilities:</h3>
 					{inmap( this.state.sides, ( x, i ) => ( <NumberInput
@@ -117,7 +117,7 @@ class DiceThrowing extends Component {
 				<h3>Please make sure that all probabilities add up to one</h3>
 			</Panel.Body></Panel> );
 		}
-		return ( <Panel>
+		return ( <Panel fluid={true}>
 			<Panel.Heading>Dice</Panel.Heading>
 			<Panel.Body>
 				<Panel><Panel.Body>{ this.state.draw ? this.state.draw.join( ' - ' ) : 'X' }</Panel.Body></Panel>
@@ -138,7 +138,7 @@ class DiceThrowing extends Component {
 
 	renderTable() {
 		return (
-			<table className="table table-bordered">
+			<table className="table table-bordered table-responsive-sm">
 				<tbody>
 					<tr>
 						<th>Side:</th>
@@ -158,22 +158,27 @@ class DiceThrowing extends Component {
 	}
 
 	render() {
-		return ( <Panel>
-			<Panel.Body>
-				<NumberInput
-					legend="Number of Sides"
-					defaultValue={6}
-					step={1}
-					max={20}
-					min={2}
-					onChange={this.chooseNSides}
-				/>
-				<p>Choose custom probabilities for the sides and then throw some dice!</p>
-				{this.renderGrid()}
-				{this.renderTable()}
-				<p>Total number of throws: {this.state.nThrows}</p>
-			</Panel.Body>
-		</Panel> );
+		return (
+			<Panel id="diceThrowingModule">
+				<Panel.Heading>
+					<Panel.Title componentClass="h4">Simulate Random Dice Throws</Panel.Title>
+				</Panel.Heading>
+				<Panel.Body>
+					<NumberInput
+						legend="Number of Sides"
+						defaultValue={6}
+						step={1}
+						max={20}
+						min={2}
+						onChange={this.chooseNSides}
+					/>
+					<p>Choose custom probabilities for the sides and then throw some dice!</p>
+						{this.renderGrid()}
+						{this.renderTable()}
+					<p>Total number of throws: {this.state.nThrows}</p>
+				</Panel.Body>
+			</Panel>
+		);
 	}
 }
 
