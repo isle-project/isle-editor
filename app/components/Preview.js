@@ -89,6 +89,7 @@ const createScope = ( session ) => {
 		IFrame: Loadable( () => import( 'components/iframe' ) ),
 		JSShell: Loadable( () => import( 'components/js-shell' ) ),
 		LearnCrossValidation: Loadable( () => import( 'components/learn/cross-validation' ) ),
+		LearnDiceThrowing: Loadable( () => import( 'components/learn/dice-throwing' ) ),
 		LearnExponentialDistribution: Loadable( () => import( 'components/learn/distribution/exponential' ) ),
 		LearnNormalDistribution: Loadable( () => import( 'components/learn/distribution/normal' ) ),
 		LearnTDistribution: Loadable( () => import( 'components/learn/distribution/t' ) ),

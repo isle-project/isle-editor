@@ -9,6 +9,7 @@
 	"Col": "const Col = require( \"react-bootstrap/lib/Col\" )",
 	"Learn": "const Learn = require( \"components/learn\" )",
 	"LearnCrossValidation": "const LearnCrossValidation = require( \"components/learn/cross-validation\" )",
+	"LearnDiceThrowing": "var LearnDiceThrowing = require( \"components/learn/dice-throwing\" )",
 	"LearnExponentialDistribution": "const LearnExponentialDistribution = require( \"components/learn/distribution/exponential\" )",
 	"LearnNormalDistribution": "const LearnNormalDistribution = require( \"components/learn/distribution/normal\" )",
 	"LearnTDistribution": "const LearnTDistribution = require( \"components/learn/distribution/t\" )",
