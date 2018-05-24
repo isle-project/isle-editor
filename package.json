@@ -9,6 +9,7 @@
     "isle-bundler": "./app/bundler/bin/cli.js"
   },
   "scripts": {
+    "analyze": "source-map-explorer dist/renderer.prod.js dist/renderer.prod.js.map",
     "clean": "rm -rf node_modules",
     "coverage": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 istanbul cover --dir ./reports/codecov/coverage --report lcovonly tape -- -r babel-register test/setup.js test/**/*.spec.js && cat ./reports/codecov/coverage/lcov.info | codecov && rm -rf ./reports/codecov",
     "ftest": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 tape -r babel-register test/setup.js test/**/${TEST:-*}.spec.js | tap-spec",
@@ -107,6 +108,7 @@
     "redux-devtools-dock-monitor": "^1.1.3",
     "redux-devtools-log-monitor": "^1.0.11",
     "redux-logger": "^3.0.0",
+    "source-map-explorer": "^1.5.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
