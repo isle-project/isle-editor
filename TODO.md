@@ -4,10 +4,10 @@ For various to-do items related to the `ISLE` project.
 
 Summer
 ====
-* Scaffolding for the labs. This would involve notes for the TAs about when to interject, what to teach, etc.
-* Instructor notes within the instructor panel. Start out with the skeleton for the lab and have thme fill it in.
+~~* Scaffolding for the labs. This would involve notes for the TAs about when to interject, what to teach, etc.~~
+* Instructor notes within the instructor panel. Start out with the skeleton for the lab and have them fill it in.
 * Dashboard: Have a repository with old TA notes
-* Scatterplot: Add functionality to add smooth and linear regression at the same time
+~~* Scatterplot: Add functionality to add smooth and linear regression at the same time~~
 * `.pdf` poster export
 * **Calculator parser**
 * Build mosiac plot
@@ -25,9 +25,9 @@ Priotity
 
 General
 ====
-* Data tab in data-explorer
+~~* Data tab in data-explorer~~
 * Make dynamic titling for data-explorer
-* When loading .txt files in the pre-amble, automatically convert it to atring
+* When loading .txt files in the pre-amble, automatically convert it to a string
 
 LONG-TERM
 ===
