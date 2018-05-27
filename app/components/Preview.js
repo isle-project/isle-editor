@@ -88,6 +88,7 @@ const createScope = ( session ) => {
 		Grid: Loadable( () => import( 'components/grid' ) ),
 		IFrame: Loadable( () => import( 'components/iframe' ) ),
 		JSShell: Loadable( () => import( 'components/js-shell' ) ),
+		KeyControls: Loadable( () => import( 'components/key-controls' ) ),
 		LearnCrossValidation: Loadable( () => import( 'components/learn/cross-validation' ) ),
 		LearnDiceThrowing: Loadable( () => import( 'components/learn/dice-throwing' ) ),
 		LearnExponentialDistribution: Loadable( () => import( 'components/learn/distribution/exponential' ) ),
@@ -314,14 +315,31 @@ export default class Preview extends Component {
 				pres = pres.replace( /<li[^>]*>([\s\S]+?)<\/li>/g, '<ListItem>$1</ListItem>' );
 				code = pres;
 			}
-			code = `
-			<Deck
-				globalStyles={false}
-				controls={true}
-				progress="${progress}"
-				transition={[]}
-				theme={SPECTACLE_THEME}
-			>${code}</Deck>`;
+			code = `<div>
+				<KeyControls actions={{ 
+					'ArrowUp': function() {
+						const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowRight', 'code': 'ArrowRight' });
+						delete e.keyCode;
+						Object.defineProperty( e, 'keyCode', { 'value' : 39 });
+						document.dispatchEvent( e );
+					}, 
+					'ArrowDown': function() {
+						const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowLeft', 'code': 'ArrowLeft' });
+						delete e.keyCode;
+						Object.defineProperty( e, 'keyCode', { 'value' : 37 });
+						document.dispatchEvent( e );
+					}
+				}}/>
+				<Deck
+					globalStyles={false}
+					controls={true}
+					progress="${progress}"
+					transition={[]}
+					theme={SPECTACLE_THEME}
+				>
+					${code}
+				</Deck>
+			</div>`;
 		}
 		if ( !preamble.hideToolbar ) {
 			code = '<StatusBar className="fixedPos" />\n' + code;
