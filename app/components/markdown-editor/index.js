@@ -564,7 +564,7 @@ class MarkdownEditor extends Component {
 			}, 'heading', 'unordered-list', 'ordered-list', 'link', '|', 'preview', 'side-by-side', 'fullscreen', '|',
 			{
 				name: 'open_markdown',
-				action: (editor) => {
+				action: ( editor ) => {
 					const input = document.createElement( 'input' );
 					input.type = 'file';
 					input.accept = '.md';
@@ -576,7 +576,7 @@ class MarkdownEditor extends Component {
 			},
 			{
 				name: 'save',
-				action: (editor) => {
+				action: ( editor ) => {
 					this.toggleSaveModal();
 				},
 				className: 'fa fa-save',
@@ -587,7 +587,7 @@ class MarkdownEditor extends Component {
 		if ( this.props.submitButton ) {
 			toolbar.push({
 				name: 'submit',
-				action: (editor) => {
+				action: ( editor ) => {
 					const { session } = this.context;
 					if ( session.anonymous ) {
 						return session.addNotification({
