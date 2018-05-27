@@ -354,14 +354,30 @@ function writeIndexFile({
 			pres = pres.replace( /<li[^>]*>([\s\S]+?)<\/li>/g, '<ListItem>$1</ListItem>' );
 			content = pres;
 		}
-		content = `<Deck
+		content = `<div>
+			<KeyControls actions={{ 
+				'ArrowUp': function() {
+					const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowRight', 'code': 'ArrowRight' });
+					delete e.keyCode;
+					Object.defineProperty( e, 'keyCode', { 'value' : 39 });
+					document.dispatchEvent( e );
+				}, 
+				'ArrowDown': function() {
+					const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowLeft', 'code': 'ArrowLeft' });
+					delete e.keyCode;
+					Object.defineProperty( e, 'keyCode', { 'value' : 37 });
+					document.dispatchEvent( e );
+				}
+			}}/>
+			<Deck
 				theme={theme}
 				globalStyles={false}
 				transition={[]}
 				progress="number"
 			>
 				${content}
-			</Deck>`;
+			</Deck>
+		</div>`;
 	}
 	if ( !meta.hideToolbar ) {
 		content = '<StatusBar className="fixedPos" />\n' + content;

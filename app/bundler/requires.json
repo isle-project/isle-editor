@@ -45,6 +45,7 @@
 	"Input": "const Input = require( \"components/input\" )",
 	"IFrame": "const IFrame = require( \"components/iframe\" )",
 	"JSShell": "const JSShell = require( \"components/js-shell\" )",
+	"KeyControls": "const KeyControls = require( \"components/key-controls\" )",
 	"LessonSubmit": "const LessonSubmit = require( \"components/lesson-submit\" )",
 	"MatchListQuestion": "const MatchListQuestion = require( \"components/match-list-question\" )",
 	"Metrics": "const Metrics = require( \"components/metrics/db\" )",
