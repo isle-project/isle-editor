@@ -17,7 +17,6 @@ import max from '@stdlib/math/base/special/max';
 import isElectron from 'utils/is-electron';
 import ActionLog from 'components/statusbar/action-log';
 import RangePicker from 'components/range-picker';
-// import MarkdownEditor from 'components/markdown-editor';
 import InstructorNotes from 'components/statusbar/instructor-notes';
 import animatePosition from 'utils/animate-position';
 import UserList from './user_list.js';
