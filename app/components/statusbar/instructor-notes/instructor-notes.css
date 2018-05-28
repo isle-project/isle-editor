@@ -8,9 +8,9 @@
 	margin-top: 0px;
 }
 
-.CodeMirror {
-	max-height: 380px;
-	min-height: 380px;
+.instructor-notes .CodeMirror {
+	max-height: 300px;
+	min-height: 300px;
 }
 
 .CodeMirror-scroll {

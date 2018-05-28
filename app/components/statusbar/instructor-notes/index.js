@@ -6,27 +6,19 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import SimpleMDE from 'simplemde';
 import markdownIt from 'markdown-it';
-import pdfMake from 'pdfmake/build/pdfmake.min.js';
 import katex from 'markdown-it-katex';
 import markdownSub from 'markdown-it-sub';
 import markdownIns from 'markdown-it-ins';
 import markdownContainer from 'markdown-it-container';
 import FileSaver from 'file-saver';
-import replace from '@stdlib/string/replace';
-import hasOwnProp from '@stdlib/assert/has-own-property';
 import startsWith from '@stdlib/string/starts-with';
 import endsWith from '@stdlib/string/ends-with';
 import uppercase from '@stdlib/string/uppercase';
 import removeLast from '@stdlib/string/remove-last';
 import removeFirst from '@stdlib/string/remove-first';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
-import noop from '@stdlib/utils/noop';
-import VoiceInput from 'components/input/voice';
 import 'simplemde/dist/simplemde.min.css';
 import './instructor-notes.css';
-import fonts from '../../markdown-editor/fonts.js';
-import generatePDF from './generate_pdf.js';
-import SaveModal from './save_modal.js';
 import { clearInterval } from 'timers';
 
 
@@ -46,115 +38,6 @@ md.use( markdownSub );
 md.use( markdownContainer, 'center' );
 md.use( markdownIns );
 
-pdfMake.vfs = fonts;
-
-const createHTML = ( title, body ) => `<!doctype html>
-<html lang=en>
-	<head>
-		<meta charset=utf-8>
-		<title>${title}</title>
-		<link rel="shortcut icon" href="favicon.ico" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css" integrity="sha384-B41nY7vEWuDrE9Mr+J2nBL0Liu+nl/rBXTdpQal730oTHdlrlXHzYMOhDU60cwde" crossorigin="anonymous">
-		<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css' />
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
-		<style media="screen" type="text/css">
-			body {
-				font-family: 'Open Sans', sans-serif;
-				font-size: 16px !important;
-				margin-left: auto;
-				margin-right: auto;
-				padding: 10px;
-				width: 100%;
-				max-width: 1200px;
-				height: 100%;
-				display: block;
-			}
-			h1 {
-				color: #2e4468;
-				font-size: 40px;
-				font-weight: bold;
-				letter-spacing: 1px;
-			}
-			h2 {
-				font-size: 32px;
-				color: #3c763d;
-				font-weight: 600;
-			}
-			h3 {
-				font-size: 24px;
-				color: #2e4468;
-				font-weight: 600;
-			}
-			h4 {
-				font-size: 20px;
-				color: #ca5800;
-				font-weight: 600;
-			}
-			tr {
-				display: table-row;
-				vertical-align: inherit;
-				border-color: inherit;
-			}
-			th {
-				color: #464a4c;
-				background-color: #eceeef;
-				padding: .3rem;
-				border-top: 1px solid #eceeef;
-				text-align: left;
-				font-weight: bold;
-			}
-			th, td {
-				display: table-cell;
-			}
-			td {
-				padding: .3rem;
-				vertical-align: top;
-				border-top: 1px solid #eceeef;
-			}
-			thead {
-				display: table-header-group;
-				vertical-align: middle;
-			}
-			table {
-				width: 100%;
-				max-width: 100%;
-				margin-bottom: 1rem;
-				display: table;
-				border-spacing: 2px;
-				border-color: grey;
-				text-align: left;
-			}
-			a {
-				color: #2e4468;
-			}
-			pre {
-				display: block;
-				padding: 9.5px;
-				margin: 0 0 10px;
-				line-height: 1.42857143;
-				color: #333;
-				word-break: break-all;
-				word-wrap: break-word;
-				border: 1px solid #ccc;
-				border-radius: 4px;
-			}
-			code {
-				white-space: pre-wrap;
-			}
-			.center {
-				width: 50%;
-				display: block;
-				margin: 0 auto;
-				text-align: center;
-			}
-		</style>
-		<script src="https://use.fontawesome.com/1ef7eff9d5.js"></script>
-	</head>
-	<body>
-	${body}
-	</body>
-</html>`;
-
 
 // FUNCTIONS //
 
@@ -171,20 +54,13 @@ function replacer( key, value ) {
 
 // MAIN //
 
-class instructorNotes extends Component {
+class InstructorNotes extends Component {
 	constructor( props ) {
 		super( props );
 
 		var value = props.defaultValue;
-		var hash = {};
-		var out;
 		if ( props.id && props.autoSave ) {
-			var previous = localStorage.getItem( props.id );
-			if ( previous ) {
-				out = this.reMakeText( previous );
-				value = out.text;
-				hash = out.hash;
-			}
+			value = localStorage.getItem( props.id );
 		}
 
 		this.state = {
@@ -192,9 +68,7 @@ class instructorNotes extends Component {
 				text: '',
 				removed: ''
 			},
-			value: value,
-			hash: hash,
-			showSaveModal: false
+			value: value
 		};
 	}
 
@@ -308,37 +182,11 @@ class instructorNotes extends Component {
 				this.props.onChange( this.state.value );
 			});
 		});
-
-		this.simplemde.codemirror.on( 'drop', ( instance, event ) => {
-			event.preventDefault();
-			const key = event.dataTransfer.getData( 'text/plain' );
-			const html = event.dataTransfer.getData( 'text/html' );
-			const coords = instance.coordsChar({
-				left: event.x + window.pageXOffset,
-				top: event.y + window.pageYOffset
-			});
-			if ( key && html ) {
-				const { hash } = this.state;
-				hash[ key ] = html;
-				instance.replaceRange( key, coords );
-				this.setState({
-					hash
-				});
-			}
-			else if ( key && !html ) {
-				instance.replaceRange( key, coords );
-			}
-			else if ( !key && html ) {
-				instance.replaceRange( html, coords );
-			}
-		});
 	}
 
 	handleAutosave = () => {
 		if ( this.props.id ) {
 			let text = this.state.value;
-			text = this.replacePlaceholders( text );
-			console.log(this.props.id);
 			localStorage.setItem( this.props.id, text );
 			const logged = this.logChange();
 			if ( logged ) {
@@ -351,64 +199,13 @@ class instructorNotes extends Component {
 		}
 	}
 
-	replacePlaceholders( plainText ) {
-		var replacementHash;
-		const { hash } = this.state;
-		for ( let key in hash ) {
-			if ( hasOwnProp( hash, key ) ) {
-				let id = replace( key, '<!--', '' );
-				id = replace( id, '-->', '' );
-				replacementHash = `<!-- START:${id} -->${hash[ key ]}<!-- END -->`;
-				var re = new RegExp('\\s*' + key, 'g');
-				plainText = plainText.replace( re, replacementHash );
-			}
-		}
-		return plainText;
-	}
-
-	reMakeText = ( text ) => {
-		const hash = {};
-		var startIndex;
-		var startS;
-		var endE;
-		var bigE;
-		var key;
-		var data;
-		var newText;
-		var section;
-
-		newText = text;
-		startIndex = 0;
-		while ( text.indexOf( '<!-- START:', startIndex ) !== -1 ) {
-			// We start on the first match
-			startS = text.indexOf( '<!-- START:', startIndex );
-			endE = text.indexOf( '-->', startS );
-			bigE = text.indexOf( '<!-- END -->', startS );
-
-			key = text.substr( startS + 11, endE - startS - 12 );
-			data = text.substr( endE + 3, bigE - 1 - endE - 3 );
-			section = text.substr( startS, bigE + 12 - startS );
-
-			hash[ `<!--${key}-->` ] = data;
-			newText = newText.replace( section, `<!--${key}-->` );
-
-			// Update startIndex
-			startIndex = bigE + 3;
-		}
-		return { 'text': newText, 'hash': hash };
-	}
-
 	handleFileSelect = ( evt ) => {
 		const files = evt.target.files;
 		const reader = new FileReader();
 		reader.onload = () => {
-			let text = reader.result;
-			var out = this.reMakeText(text);
-			this.setState({
-				'hash': out.hash
-			});
+			const text = reader.result;
 			this.simplemde.codemirror.execCommand( 'selectAll' );
-			this.simplemde.codemirror.replaceSelection( out.text );
+			this.simplemde.codemirror.replaceSelection( text );
 		};
 		reader.readAsText( files[ 0 ] );
 	}
@@ -560,184 +357,54 @@ class instructorNotes extends Component {
 				},
 				className: 'fa fa-table',
 				title: 'Insert Table'
-			}, 'heading', 'unordered-list', 'ordered-list', 'link', '|', 'preview', 'side-by-side', 'fullscreen', '|'
+			}, 'heading', 'unordered-list', 'ordered-list', 'link', '|', 'preview', '|'
 		];
-		if ( this.props.loadButton ) {
-			toolbar.push({
-				name: 'open_markdown',
-				action: (editor) => {
-					const input = document.createElement( 'input' );
-					input.type = 'file';
-					input.accept = '.md';
-					input.addEventListener( 'change', this.handleFileSelect, false );
-					input.click();
-				},
-				className: 'fa fa-folder-open',
-				title: 'Open Markdown File'
-			});
-		}
-		if ( this.props.saveButton ) {
-			toolbar.push({
-				name: 'save',
-				action: (editor) => {
-					this.toggleSaveModal();
-				},
-				className: 'fa fa-save',
-				title: 'Save Report'
-			});
-					// <div style="page-break-after: always;"></div>
-		}
-		if ( this.props.submitButton ) {
-			toolbar.push({
-				name: 'submit',
-				action: (editor) => {
-					const { session } = this.context;
-					if ( session.anonymous ) {
-						return session.addNotification({
-							title: 'Sign in',
-							message: 'You have to sign in before you can submit your report',
-							level: 'warning',
-							position: 'tr'
-						});
-					}
-					session.addNotification({
-						title: 'Submitted',
-						message: 'Your report has been successfully submitted',
-						level: 'success',
-						position: 'tr'
-					});
-					let text = this.simplemde.value();
-					text = this.replacePlaceholders( text );
-					let html = this.previewRender( text );
-					const title = document.title || 'provisoric';
-					html = createHTML( title, html );
-					const ast = md.parse( text );
-					const doc = generatePDF( ast );
-					const pdfDocGenerator = pdfMake.createPdf( doc );
-					pdfDocGenerator.getBase64( ( pdf ) => {
-						const msg = {
-							text: `Dear ${session.user.name}, your report has been successfully recorded. For your convenience, your report and the generated HTML file are attached to this email.`,
-							subject: 'Report submitted',
-							attachments: [
-								{
-									filename: 'report.html',
-									content: html,
-									contentType: 'text/html'
-								},
-								{
-									filename: 'report.md',
-									content: text,
-									contentType: 'text/plain'
-								},
-								{
-									filename: 'report.pdf',
-									content: pdf,
-									contentType: 'application/pdf',
-									encoding: 'base64'
-								}
-							]
-						};
-						session.sendMail( msg, session.user.email );
-						if ( this.props.id ) {
-							session.log({
-								id: this.props.id,
-								type: 'MARKDOWN_EDITOR_SUBMIT',
-								value: this.state.value
-							});
+		toolbar.push({
+			name: 'open_markdown',
+			action: (editor) => {
+				const input = document.createElement( 'input' );
+				input.type = 'file';
+				input.accept = '.md';
+				input.addEventListener( 'change', this.handleFileSelect, false );
+				input.click();
+			},
+			className: 'fa fa-folder-open',
+			title: 'Open Markdown File'
+		});
+		toolbar.push({
+			name: 'save',
+			action: ( editor ) => {
+				this.context.session.addNotification({
+					title: 'Notes saved',
+					message: 'Notes have been saved in the local storage of the current browser.',
+					level: 'success',
+					position: 'tr',
+					action: {
+						label: 'Save Markdown File',
+						callback: () => {
+							this.saveMarkdown();
 						}
-					});
-				},
-				className: 'fa fa-share-square',
-				title: 'Submit'
-			});
-		}
-		if ( this.props.voiceControl ) {
-			toolbar.push({
-				name: 'recorder',
-				action: ( editor ) => {
-					this.voiceRef.handleClick();
-				},
-				className: 'fa fa-microphone',
-				title: 'Record Text'
-			});
-		}
+					}
+				});
+				this.handleAutosave();
+			},
+			className: 'fa fa-save',
+			title: 'Save Notes'
+		});
 		return toolbar;
 	}
 
-	recordedText = ( text ) => {
-		var sel = this.simplemde.codemirror.somethingSelected();
-		if ( sel ) {
-			this.simplemde.codemirror.replaceSelection( text);
-		}
-		else {
-			var c = this.simplemde.codemirror.getCursor();
-			this.simplemde.codemirror.replaceRange( text, c);
-		}
-	}
-
 	previewRender = ( plainText ) => {
-		// Take the plaintext and insert the images via hash
-		plainText = this.replacePlaceholders( plainText );
-
-		// Now render the markdown
 		return md.render( plainText );
 	}
 
-	allowDrop( event ) {
-		event.preventDefault();
-	}
-
-	toggleSaveModal = ( event, clbk = noop ) => {
-		this.setState({
-			showSaveModal: !this.state.showSaveModal
-		}, clbk );
-	}
-
 	saveMarkdown = () => {
-		const title = document.title || 'provisoric';
-		let text = this.simplemde.value();
-		text = this.replacePlaceholders( text );
+		const title = document.title+'_notes' || 'notes';
+		const text = this.simplemde.value();
 		const blob = new Blob([ text ], {
 			type: 'text/html'
 		});
-		this.toggleSaveModal( null, () => {
-			FileSaver.saveAs( blob, title+'.md' );
-		});
-	}
-
-	exportHTML = () => {
-		const title = document.title || 'provisoric';
-		const mdValue = this.simplemde.value();
-		const body = this.previewRender( mdValue );
-		const html = createHTML( title, body );
-		const blob = new Blob([ html ], {
-			type: 'text/html'
-		});
-		this.toggleSaveModal( null, () => {
-			FileSaver.saveAs( blob, title+'.html' );
-		});
-	}
-
-	exportPDF = () => {
-		const title = document.title || 'provisoric';
-		let text = this.simplemde.value();
-		text = this.replacePlaceholders( text );
-		const ast = md.parse( text );
-		const doc = generatePDF( ast );
-		this.toggleSaveModal( null, () => {
-			pdfMake.createPdf( doc ).download( title );
-		});
-	}
-
-	renderVoiceControl() {
-		if ( !this.props.voiceControl ) return null;
-		return (
-			<VoiceInput mode="status"
-				language={this.props.language}
-				timeout={this.props.voiceTimeout}
-				width='90%'
-				onFinalText={this.recordedText} ref={( voice ) => { this.voiceRef = voice; }} />
-		);
+		FileSaver.saveAs( blob, title+'.md' );
 	}
 
 	render() {
@@ -745,25 +412,7 @@ class instructorNotes extends Component {
 			<Fragment>
 				<div className="instructor-notes">
 					<textarea ref={( area ) => { this.simplemdeRef = area; }} autoComplete="off" {...this.props.options} />
-					{this.renderVoiceControl()}
 				</div>
-				<SaveModal
-					show={this.state.showSaveModal}
-					onHide={this.toggleSaveModal}
-					exportPDF={this.exportPDF}
-					exportHTML={this.exportHTML}
-					saveMarkdown={this.saveMarkdown}
-					handleSave={() => {
-						this.toggleSaveModal();
-						this.context.session.addNotification({
-							title: 'Notes saved',
-							message: 'The instructor notes have been saved in the local storage of the current browser.',
-							level: 'success',
-							position: 'tr'
-						});
-						this.handleAutosave();
-					}}
-				/>
 			</Fragment>
 		);
 	}
@@ -772,42 +421,30 @@ class instructorNotes extends Component {
 
 // DEFAULT PROPERTIES //
 
-instructorNotes.defaultProps = {
+InstructorNotes.defaultProps = {
 	autoSave: true,
 	defaultValue: '',
 	intervalTime: 60000,
-	language: 'en-US',
-	loadButton: true,
 	onChange() {},
-	options: {},
-	saveButton: false,
-	submitButton: false,
-	voiceControl: false,
-	voiceTimeout: 5000
+	options: {}
 };
 
 
 // PROPERTY TYPES //
 
-instructorNotes.propTypes = {
+InstructorNotes.propTypes = {
 	autoSave: PropTypes.bool,
 	defaultValue: PropTypes.string,
 	intervalTime: PropTypes.number,
-	language: PropTypes.string,
-	loadButton: PropTypes.bool,
 	onChange: PropTypes.func,
-	options: PropTypes.object,
-	saveButton: PropTypes.bool,
-	submitButton: PropTypes.bool,
-	voiceControl: PropTypes.bool,
-	voiceTimeout: PropTypes.number
+	options: PropTypes.object
 };
 
-instructorNotes.contextTypes = {
+InstructorNotes.contextTypes = {
 	session: PropTypes.object
 };
 
 
 // EXPORTS //
 
-export default instructorNotes;
+export default InstructorNotes;
