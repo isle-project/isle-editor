@@ -223,7 +223,7 @@
     "react-table": "^6.8.5",
     "react-tools": "^0.13.3",
     "recordrtc": "^5.4.1",
-    "redux": "3.7.2",
+    "redux": "4.0.0",
     "redux-thunk": "^2.3.0",
     "request": "2.87.0",
     "ripemd160": "^2.0.2",
