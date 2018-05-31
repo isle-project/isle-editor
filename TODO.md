@@ -18,8 +18,8 @@ Summer
 Priotity
 ====
 (To be done by summer 1 end)
-1. Instructor Notes
-2. Build "Tiles Popup" to select dimensions of inserted Markdown table
+~~1. Instructor Notes~~
+~~2. Build "Tiles Popup" to select dimensions of inserted Markdown table~~
 3. `.pdf` poster export
 4. Parser.
 
