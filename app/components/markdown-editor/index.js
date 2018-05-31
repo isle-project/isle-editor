@@ -25,6 +25,7 @@ import './markdown-editor.css';
 import fonts from './fonts.js';
 import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
+import TableSelect from './table-select.js';
 import { clearInterval } from 'timers';
 
 
@@ -193,7 +194,8 @@ class MarkdownEditor extends Component {
 			value: value,
 			hash: hash,
 			showSaveModal: false,
-			defaultValue: props.defaultValue
+			defaultValue: props.defaultValue,
+			showTableSelect: false
 		};
 	}
 
@@ -222,7 +224,7 @@ class MarkdownEditor extends Component {
 		this.simplemde.codemirror.refresh();
 	}
 
-	omponentWillUnmoun() {
+	componentWillUnmount() {
 		clearInterval( this.interval );
 	}
 
@@ -548,16 +550,8 @@ class MarkdownEditor extends Component {
 			}, '|',
 			{
 				name: 'insert_new_table',
-				action: ( editor ) => {
-					const cm = this.simplemde.codemirror;
-					const tbl = '| Column1 | Column2 |\n| --- | --- |\n| Row1.1 | Row1.2 |\n| Row2.1 | Row2.2 |';
-					const startPoint = cm.getCursor( 'start' );
-					cm.replaceRange( tbl,
-						{ line: startPoint.line, ch: 0 },
-						{ line: startPoint.line, ch: 99999999999999 }
-					);
-					startPoint.line += 4;
-					cm.focus();
+				action: ( editor, event ) => {
+					this.toggleTableSelect();
 				},
 				className: 'fa fa-table',
 				title: 'Insert Table'
@@ -690,6 +684,12 @@ class MarkdownEditor extends Component {
 		}, clbk );
 	}
 
+	toggleTableSelect = () => {
+		this.setState({
+			showTableSelect: !this.state.showTableSelect
+		});
+	}
+
 	saveMarkdown = () => {
 		const title = document.title || 'provisoric';
 		let text = this.simplemde.value();
@@ -759,6 +759,14 @@ class MarkdownEditor extends Component {
 							position: 'tr'
 						});
 						this.handleAutosave();
+					}}
+				/>
+				<TableSelect
+					show={this.state.showTableSelect}
+					onHide={()=>{
+						this.setState({
+							showTableSelect: false
+						});
 					}}
 				/>
 			</Fragment>

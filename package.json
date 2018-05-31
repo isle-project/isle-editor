@@ -197,6 +197,8 @@
     "react-ab-test": "^2.0.1",
     "react-addons-shallow-compare": "^15.6.0",
     "react-bootstrap": "^0.32.0",
+    "react-bootstrap-table": "^4.3.1",
+    "react-bootstrap-table-next": "^0.1.12",
     "react-color": "^2.14.1",
     "react-contextmenu": "^2.6.5",
     "react-copy-to-clipboard": "^5.0.0",
