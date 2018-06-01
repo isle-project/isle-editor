@@ -20,6 +20,12 @@ Priotity
 (To be done by summer 1 end)
 ~~1. Instructor Notes~~
 ~~2. Build "Tiles Popup" to select dimensions of inserted Markdown table~~
+    A. Change file name to underscore
+    B. onMouseOver event
+        CSS styling of the table --> hover over for Rows and Cols
+        Change the cursor
+        No number input
+        No button
 3. `.pdf` poster export
 4. Parser.
 
