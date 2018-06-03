@@ -228,12 +228,12 @@ class InstructorView extends Component {
 			<Panel eventKey="3">
 				<Panel.Heading>
 					<Panel.Title toggle>
-						{<span>Instructor Notes</span>}
+						<span>Instructor Notes</span>
 					</Panel.Title>
 				</Panel.Heading>
 				<Panel.Body className='panel-body panel_instructor' collapsible >
 					<InstructorNotes
-						id="instructor_notes"
+						className="instructor_notebook"
 					/>
 				</Panel.Body>
 			</Panel>
