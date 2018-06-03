@@ -19,12 +19,14 @@ Priotity
 ====
 (To be done by summer 1 end)
 ~~1. Instructor Notes~~
+    A. Changed props to take array of what is needed
+        Still have VoiceControl as a prop because we dont have it working
 ~~2. Build "Tiles Popup" to select dimensions of inserted Markdown table~~
-    A. Change file name to underscore
-    B. onMouseOver event
-        CSS styling of the table --> hover over for Rows and Cols
-        Change the cursor
-        No number input
+    ~~A. Change file name to underscore~~
+    ~~B. onMouseOver event~~
+        ~~CSS styling of the table --> hover over for Rows and Cols~~
+        ~~Change the cursor~~
+        ~~No number input~~
         No button
 3. `.pdf` poster export
 4. Parser.

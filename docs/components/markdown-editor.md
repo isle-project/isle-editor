@@ -19,7 +19,22 @@
 * __intervalTime__: `number` value indicating the time interval between autosaves in milliseconds. Default: `3000`.
 * __onChange__: Callback `function` invoked whenever the user types a letter. Default: `function(){}`.
 * __options__: `object` of options used for the [SimpleMDE](https://simplemede.com) editor which forms the basis of this component. Default: `{}`.
-* __submitButton__: `boolean` value indicating whether or not to include a button allowing for students to submit the contents of their editor to the server. Default: `false`.
-* __voiceControl__: Emebds voice recognition in the editor (works only in Chrome). Default: `false`.
 * __voiceTimeout__: `number` indicating the time in milliseconds until voice control is de-activated. Default: `5000`.
+* __toolbarConfig__: `array` of `strings` indicating the arrangement of the toolbar, including vertical separators ('|'). Default value: `['bold', 'italic', 'underline', 'new_line', 'center', '|',' insert_table', 'heading', 'unordered_list', 'ordered_list', 'link', '|', 'open_markdown', 'save', 'submit', '|']`. 
+Each element must be some combination of the following elements:
+    - `'bold'`
+    - `'italic'`
+    - `'underline'`
+    - `'new_line'`
+    - `'center'`
+    - `'|'`
+    - `'insert_table'`
+    - `'heading'`
+    - `'unordered_list'`
+    - `'ordered_list'`
+    - `'link'`
+    - `'open_markdown'`
+    - `'save'`
+    - `'submit'`
+    - `'voice'`
 

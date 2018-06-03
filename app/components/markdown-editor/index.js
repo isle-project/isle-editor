@@ -155,6 +155,241 @@ const createHTML = ( title, body ) => `<!doctype html>
 </html>`;
 
 
+const toolbarOpts = {
+	'bold': 'bold',
+	'italic': 'italic',
+	'|': '|',
+	'underline': {
+		name: 'underline',
+		action: ( editor ) => {
+			const cm = this.simplemde.codemirror;
+			const start = '++';
+			const end = '++';
+			const startPoint = cm.getCursor( 'start' );
+			const endPoint = cm.getCursor( 'end' );
+			let text = cm.getSelection();
+			if (
+				startsWith( text, start ) &&
+				endsWith( text, end )
+			) {
+				text = removeLast( text );
+				text = removeLast( text );
+				text = removeFirst( text );
+				text = removeFirst( text );
+				cm.replaceSelection( text );
+			} else {
+				const wrappedStart = {
+					line: startPoint.line,
+					ch: startPoint.ch - 2
+				};
+				const wrappedEnd = {
+					line: endPoint.line,
+					ch: endPoint.ch + 2
+				};
+				let wrapped = cm.getRange( wrappedStart, wrappedEnd );
+				if (
+					startsWith( wrapped, start ) &&
+					endsWith( wrapped, end )
+				) {
+					cm.replaceRange( text, wrappedStart, wrappedEnd );
+				} else {
+					text = text.split( '++' ).join( '' );
+					cm.replaceSelection( start + text + end );
+					startPoint.ch += 2;
+					endPoint.ch = startPoint.ch + text.length;
+					cm.setSelection( startPoint, endPoint );
+				}
+			}
+			cm.focus();
+		},
+		className: 'fa fa-underline',
+		title: 'Underline Text'
+	},
+	'new_line': {
+		name: 'newLine',
+		action: ( editor ) => {
+			const cm = this.simplemde.codemirror;
+			// When we get the cursor we want to get the head
+			// Add the newline to the left of the cursor
+			const startPoint = cm.getCursor( 'start' );
+			const endPoint = cm.getCursor( 'end' );
+			while (startPoint.line !== endPoint.line) {
+				var currentLine = cm.getLine(startPoint.line);
+				if ( endsWith(currentLine, '\\') ) {
+					cm.replaceRange( removeLast(currentLine),
+						{ line: startPoint.line, ch: 0 },
+						{ line: startPoint.line, ch: 99999999999999 }
+					);
+				} else {
+					cm.replaceRange(currentLine + '\\',
+						{ line: startPoint.line, ch: 0 },
+						{ line: startPoint.line, ch: 99999999999999 }
+					);
+				}
+				startPoint.line += 1;
+			}
+			cm.focus();
+		},
+		className: 'fa fa-arrow-down',
+		title: 'Add new line separator'
+	},
+	'center': {
+		name: 'center',
+		action: ( editor ) => {
+			const cm = this.simplemde.codemirror;
+			const start = '::: center';
+			const end = ':::';
+			const startPoint = cm.getCursor( 'start' );
+			const endPoint = cm.getCursor( 'end' );
+			const startLine = cm.getLine( startPoint.line );
+			const endLine = cm.getLine( endPoint.line );
+			const prevLine = cm.getLine( startPoint.line - 1 );
+			const nextLine = cm.getLine( endPoint.line + 1 );
+			if (
+				startsWith( startLine, '::: center' ) &&
+				startsWith( endLine, ':::' )
+			) {
+				cm.replaceRange( '',
+					{ line: startPoint.line, ch: 0 },
+					{ line: startPoint.line, ch: 99999999999999 }
+				);
+				cm.replaceRange( '',
+					{ line: endPoint.line, ch: 0 },
+					{ line: endPoint.line, ch: 99999999999999 }
+				);
+			}
+			else if (
+				prevLine && nextLine &&
+				startsWith( prevLine, '::: center' ) &&
+				startsWith( nextLine, ':::' )
+			) {
+				cm.replaceRange( '',
+					{ line: startPoint.line - 1, ch: 0 },
+					{ line: startPoint.line - 1, ch: 99999999999999 }
+				);
+				cm.replaceRange( '',
+					{ line: endPoint.line + 1, ch: 0 },
+					{ line: endPoint.line + 1, ch: 99999999999999 }
+				);
+			}
+			else {
+				let text = cm.getSelection();
+				text = text.split( ':::' ).join( '' );
+				cm.replaceSelection( start + '\n' + text + '\n' + end );
+				startPoint.ch = 0;
+				endPoint.ch = 3;
+				endPoint.line += 2;
+				cm.setSelection( startPoint, endPoint );
+				cm.focus();
+			}
+		},
+		className: 'fa fa-align-center',
+		title: 'Center Element'
+	},
+	'insert_table': {
+		name: 'insert_new_table',
+		action: ( editor, event ) => {
+			this.toggleTableSelect();
+		},
+		className: 'fa fa-table',
+		title: 'Insert Table'
+	},
+	'heading': 'heading',
+	'unordered_list': 'unordered-list',
+	'ordered_list': 'ordered-list',
+	'link': 'link',
+	'open_markdown': {
+		name: 'open_markdown',
+		action: ( editor ) => {
+			const input = document.createElement( 'input' );
+			input.type = 'file';
+			input.accept = '.md';
+			input.addEventListener( 'change', this.handleFileSelect, false );
+			input.click();
+		},
+		className: 'fa fa-folder-open',
+		title: 'Open Markdown File'
+	},
+	'save': {
+		name: 'save',
+		action: ( editor ) => {
+			this.toggleSaveModal();
+		},
+		className: 'fa fa-save',
+		title: 'Save Report'
+	},
+	'submit': {
+		name: 'submit',
+		action: ( editor ) => {
+			const { session } = this.context;
+			if ( session.anonymous ) {
+				return session.addNotification({
+					title: 'Sign in',
+					message: 'You have to sign in before you can submit your report',
+					level: 'warning',
+					position: 'tr'
+				});
+			}
+			session.addNotification({
+				title: 'Submitted',
+				message: 'Your report has been successfully submitted',
+				level: 'success',
+				position: 'tr'
+			});
+			let text = this.simplemde.value();
+			text = this.replacePlaceholders( text );
+			let html = this.previewRender( text );
+			const title = document.title || 'provisoric';
+			html = createHTML( title, html );
+			const ast = md.parse( text );
+			const doc = generatePDF( ast );
+			const pdfDocGenerator = pdfMake.createPdf( doc );
+			pdfDocGenerator.getBase64( ( pdf ) => {
+				const msg = {
+					text: `Dear ${session.user.name}, your report has been successfully recorded. For your convenience, your report and the generated HTML file are attached to this email.`,
+					subject: 'Report submitted',
+					attachments: [
+						{
+							filename: 'report.html',
+							content: html,
+							contentType: 'text/html'
+						},
+						{
+							filename: 'report.md',
+							content: text,
+							contentType: 'text/plain'
+						},
+						{
+							filename: 'report.pdf',
+							content: pdf,
+							contentType: 'application/pdf',
+							encoding: 'base64'
+						}
+					]
+				};
+				session.sendMail( msg, session.user.email );
+				if ( this.props.id ) {
+					session.log({
+						id: this.props.id,
+						type: 'MARKDOWN_EDITOR_SUBMIT',
+						value: this.state.value
+					});
+				}
+			});
+		},
+		className: 'fa fa-share-square',
+		title: 'Submit'
+	},
+	'voice': {
+		name: 'recorder',
+		action: ( editor ) => {
+			this.voiceRef.handleClick();
+		},
+		className: 'fa fa-microphone',
+		title: 'Record Text'
+	}
+};
+
 // FUNCTIONS //
 
 function replacer( key, value ) {
@@ -417,240 +652,13 @@ class MarkdownEditor extends Component {
 	}
 
 	createToolbar() {
-		const toolbar = [
-			'bold', 'italic', {
-				name: 'underline',
-				action: ( editor ) => {
-					const cm = this.simplemde.codemirror;
-					const start = '++';
-					const end = '++';
-					const startPoint = cm.getCursor( 'start' );
-					const endPoint = cm.getCursor( 'end' );
-					let text = cm.getSelection();
-					if (
-						startsWith( text, start ) &&
-						endsWith( text, end )
-					) {
-						text = removeLast( text );
-						text = removeLast( text );
-						text = removeFirst( text );
-						text = removeFirst( text );
-						cm.replaceSelection( text );
-					} else {
-						const wrappedStart = {
-							line: startPoint.line,
-							ch: startPoint.ch - 2
-						};
-						const wrappedEnd = {
-							line: endPoint.line,
-							ch: endPoint.ch + 2
-						};
-						let wrapped = cm.getRange( wrappedStart, wrappedEnd );
-						if (
-							startsWith( wrapped, start ) &&
-							endsWith( wrapped, end )
-						) {
-							cm.replaceRange( text, wrappedStart, wrappedEnd );
-						} else {
-							text = text.split( '++' ).join( '' );
-							cm.replaceSelection( start + text + end );
-
-							startPoint.ch += 2;
-							endPoint.ch = startPoint.ch + text.length;
-							cm.setSelection( startPoint, endPoint );
-						}
-					}
-					cm.focus();
-				},
-				className: 'fa fa-underline',
-				title: 'Underline Text'
-			},
-			{
-				name: 'newLine',
-				action: ( editor ) => {
-					const cm = this.simplemde.codemirror;
-					// When we get the cursor we want to get the head
-					// Add the newline to the left of the cursor
-					const startPoint = cm.getCursor( 'start' );
-					const endPoint = cm.getCursor( 'end' );
-					while (startPoint.line !== endPoint.line) {
-						var currentLine = cm.getLine(startPoint.line);
-						if ( endsWith(currentLine, '\\') ) {
-							cm.replaceRange( removeLast(currentLine),
-								{ line: startPoint.line, ch: 0 },
-								{ line: startPoint.line, ch: 99999999999999 }
-							);
-						} else {
-							cm.replaceRange(currentLine + '\\',
-								{ line: startPoint.line, ch: 0 },
-								{ line: startPoint.line, ch: 99999999999999 }
-							);
-						}
-						startPoint.line += 1;
-					}
-					cm.focus();
-				},
-				className: 'fa fa-arrow-down',
-				title: 'Add new line separator'
-			},
-			{
-				name: 'center',
-				action: ( editor ) => {
-					const cm = this.simplemde.codemirror;
-					const start = '::: center';
-					const end = ':::';
-					const startPoint = cm.getCursor( 'start' );
-					const endPoint = cm.getCursor( 'end' );
-
-					const startLine = cm.getLine( startPoint.line );
-					const endLine = cm.getLine( endPoint.line );
-					const prevLine = cm.getLine( startPoint.line - 1 );
-					const nextLine = cm.getLine( endPoint.line + 1 );
-					if (
-						startsWith( startLine, '::: center' ) &&
-						startsWith( endLine, ':::' )
-					) {
-						cm.replaceRange( '',
-							{ line: startPoint.line, ch: 0 },
-							{ line: startPoint.line, ch: 99999999999999 }
-						);
-						cm.replaceRange( '',
-							{ line: endPoint.line, ch: 0 },
-							{ line: endPoint.line, ch: 99999999999999 }
-						);
-					}
-					else if (
-						prevLine && nextLine &&
-						startsWith( prevLine, '::: center' ) &&
-						startsWith( nextLine, ':::' )
-					) {
-						cm.replaceRange( '',
-							{ line: startPoint.line - 1, ch: 0 },
-							{ line: startPoint.line - 1, ch: 99999999999999 }
-						);
-						cm.replaceRange( '',
-							{ line: endPoint.line + 1, ch: 0 },
-							{ line: endPoint.line + 1, ch: 99999999999999 }
-						);
-					}
-					else {
-						let text = cm.getSelection();
-						text = text.split( ':::' ).join( '' );
-						cm.replaceSelection( start + '\n' + text + '\n' + end );
-
-						startPoint.ch = 0;
-						endPoint.ch = 3;
-						endPoint.line += 2;
-						cm.setSelection( startPoint, endPoint );
-						cm.focus();
-					}
-				},
-				className: 'fa fa-align-center',
-				title: 'Center Element'
-			}, '|',
-			{
-				name: 'insert_new_table',
-				action: ( editor, event ) => {
-					this.toggleTableSelect();
-				},
-				className: 'fa fa-table',
-				title: 'Insert Table'
-			}, 'heading', 'unordered-list', 'ordered-list', 'link', '|', 'preview', 'side-by-side', 'fullscreen', '|',
-			{
-				name: 'open_markdown',
-				action: ( editor ) => {
-					const input = document.createElement( 'input' );
-					input.type = 'file';
-					input.accept = '.md';
-					input.addEventListener( 'change', this.handleFileSelect, false );
-					input.click();
-				},
-				className: 'fa fa-folder-open',
-				title: 'Open Markdown File'
-			},
-			{
-				name: 'save',
-				action: ( editor ) => {
-					this.toggleSaveModal();
-				},
-				className: 'fa fa-save',
-				title: 'Save Report'
-			}
-					// <div style="page-break-after: always;"></div>
-		];
-		if ( this.props.submitButton ) {
-			toolbar.push({
-				name: 'submit',
-				action: ( editor ) => {
-					const { session } = this.context;
-					if ( session.anonymous ) {
-						return session.addNotification({
-							title: 'Sign in',
-							message: 'You have to sign in before you can submit your report',
-							level: 'warning',
-							position: 'tr'
-						});
-					}
-					session.addNotification({
-						title: 'Submitted',
-						message: 'Your report has been successfully submitted',
-						level: 'success',
-						position: 'tr'
-					});
-					let text = this.simplemde.value();
-					text = this.replacePlaceholders( text );
-					let html = this.previewRender( text );
-					const title = document.title || 'provisoric';
-					html = createHTML( title, html );
-					const ast = md.parse( text );
-					const doc = generatePDF( ast );
-					const pdfDocGenerator = pdfMake.createPdf( doc );
-					pdfDocGenerator.getBase64( ( pdf ) => {
-						const msg = {
-							text: `Dear ${session.user.name}, your report has been successfully recorded. For your convenience, your report and the generated HTML file are attached to this email.`,
-							subject: 'Report submitted',
-							attachments: [
-								{
-									filename: 'report.html',
-									content: html,
-									contentType: 'text/html'
-								},
-								{
-									filename: 'report.md',
-									content: text,
-									contentType: 'text/plain'
-								},
-								{
-									filename: 'report.pdf',
-									content: pdf,
-									contentType: 'application/pdf',
-									encoding: 'base64'
-								}
-							]
-						};
-						session.sendMail( msg, session.user.email );
-						if ( this.props.id ) {
-							session.log({
-								id: this.props.id,
-								type: 'MARKDOWN_EDITOR_SUBMIT',
-								value: this.state.value
-							});
-						}
-					});
-				},
-				className: 'fa fa-share-square',
-				title: 'Submit'
-			});
-		}
-		if ( this.props.voiceControl ) {
-			toolbar.push({
-				name: 'recorder',
-				action: ( editor ) => {
-					this.voiceRef.handleClick();
-				},
-				className: 'fa fa-microphone',
-				title: 'Record Text'
-			});
+		var toolbar = [];
+		var tbOpt; // Gives the name as a string of option
+		var tbObj; // Gives the object that will be put in array
+		for ( var i = 0; i < this.props.toolbarConfig.length; i++ ) {
+			tbOpt = this.props.toolbarConfig[i];
+			tbObj = toolbarOpts[tbOpt];
+			toolbar.push(tbObj);
 		}
 		return toolbar;
 	}
@@ -732,7 +740,7 @@ class MarkdownEditor extends Component {
 			<VoiceInput mode="status"
 				language={this.props.language}
 				timeout={this.props.voiceTimeout}
-				width='90%'
+				width={500}
 				onFinalText={this.recordedText} ref={( voice ) => { this.voiceRef = voice; }} />
 		);
 	}
@@ -769,7 +777,7 @@ class MarkdownEditor extends Component {
 						});
 					}}
 					onClick={(tblString, rows, cols)=>{
-						// insert into markdown editor
+						// Insert into markdown editor
 						var c = this.simplemde.codemirror.getCursor();
 						this.simplemde.codemirror.replaceRange( tblString, c);
 					}}
@@ -789,8 +797,11 @@ MarkdownEditor.defaultProps = {
 	language: 'en-US',
 	onChange() {},
 	options: {},
-	submitButton: false,
-	voiceControl: false,
+	toolbarConfig: ['bold', 'italic', 'underline',
+					'new_line', 'center', '|',
+					'insert_table', 'heading', 'unordered_list',
+					'ordered_list', 'link', '|',
+					'open_markdown', 'save', 'submit', '|'],
 	voiceTimeout: 5000
 };
 
@@ -804,8 +815,7 @@ MarkdownEditor.propTypes = {
 	language: PropTypes.string,
 	onChange: PropTypes.func,
 	options: PropTypes.object,
-	submitButton: PropTypes.bool,
-	voiceControl: PropTypes.bool,
+	toolbarConfig: PropTypes.arrayOf(PropTypes.string),
 	voiceTimeout: PropTypes.number
 };
 
