@@ -25,7 +25,7 @@ import './markdown-editor.css';
 import fonts from './fonts.js';
 import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
-import TableSelect from './table-select.js';
+import TableSelect from './table_select.js';
 import { clearInterval } from 'timers';
 
 
@@ -767,6 +767,11 @@ class MarkdownEditor extends Component {
 						this.setState({
 							showTableSelect: false
 						});
+					}}
+					onClick={(tblString, rows, cols)=>{
+						// insert into markdown editor
+						var c = this.simplemde.codemirror.getCursor();
+						this.simplemde.codemirror.replaceRange( tblString, c);
 					}}
 				/>
 			</Fragment>

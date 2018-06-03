@@ -1,0 +1,28 @@
+table.tableSelect {
+	border: 1px solid;
+	text-align: center;
+	width: 100%;
+	background-color: #9999ff;
+	border-collapse: collapse;
+}
+
+table.tableSelect tr td.cell {
+	border: 1px solid;
+}
+
+table.tableSelect tr td.grid_select {
+	border: 1px solid;
+}
+
+table.tableSelect tr td.cell:hover {
+	background-color: yellow;
+}
+
+table.tableSelect tr td.grid_select {
+	background-color: gray;
+	border: 2px solid;
+}
+
+table.tableSelect tr td.grid_select:hover {
+	background-color: yellow;
+}
