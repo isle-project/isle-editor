@@ -18,6 +18,7 @@ import uppercase from '@stdlib/string/uppercase';
 import removeLast from '@stdlib/string/remove-last';
 import removeFirst from '@stdlib/string/remove-first';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import contains from '@stdlib/assert/contains';
 import noop from '@stdlib/utils/noop';
 import VoiceInput from 'components/input/voice';
 import 'simplemde/dist/simplemde.min.css';
@@ -735,7 +736,7 @@ class MarkdownEditor extends Component {
 	}
 
 	renderVoiceControl() {
-		if ( !this.props.voiceControl ) return null;
+		if ( !contains(this.props.toolbarConfig, 'voice') ) return null;
 		return (
 			<VoiceInput mode="status"
 				language={this.props.language}
