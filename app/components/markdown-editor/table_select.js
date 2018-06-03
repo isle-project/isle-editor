@@ -7,8 +7,6 @@ import Modal from 'react-bootstrap/lib/Modal';
 import ReactDom from 'react-dom';
 import ReactTable from 'react-table';
 import noop from '@stdlib/utils/noop';
-import NumberInput from 'components/input/number';
-import BootstrapTable from 'react-bootstrap-table-next';
 import './table-select.css';
 
 
