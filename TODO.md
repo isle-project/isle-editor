@@ -9,6 +9,7 @@ Summer
 * Dashboard: Have a repository with old TA notes
 ~~* Scatterplot: Add functionality to add smooth and linear regression at the same time~~
 * `.pdf` poster export
+* Insert equation menu similar to table select
 * **Calculator parser**
 * Build mosiac plot
 * LaTeX Equation in the explorer for the pdf
