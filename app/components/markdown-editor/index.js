@@ -388,7 +388,10 @@ const toolbarOpts = {
 		},
 		className: 'fa fa-microphone',
 		title: 'Record Text'
-	}
+	},
+	'preview': 'preview',
+	'side_by_side': 'side-by-side',
+	'fullscreen': 'fullscreen'
 };
 
 // FUNCTIONS //
@@ -802,6 +805,7 @@ MarkdownEditor.defaultProps = {
 					'new_line', 'center', '|',
 					'insert_table', 'heading', 'unordered_list',
 					'ordered_list', 'link', '|',
+					'preview', 'side_by_side', 'fullscreen', '|',
 					'open_markdown', 'save', 'submit', '|'],
 	voiceTimeout: 5000
 };
