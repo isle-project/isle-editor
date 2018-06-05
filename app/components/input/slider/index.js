@@ -46,7 +46,6 @@ class SliderInput extends Input {
 			this.setState({
 				value
 			}, () => {
-				console.log( value );
 				if ( valid && value !== '' ) {
 					value = parseFloat( value );
 					this.props.onChange( value );

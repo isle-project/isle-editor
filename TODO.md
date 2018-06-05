@@ -31,6 +31,7 @@ Priotity
         No button
 3. `.pdf` poster export
 4. Parser.
+~~5. Loewess smoother changer for smooth on scatterplot~~
 
 General
 ====

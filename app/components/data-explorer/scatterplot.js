@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Panel from 'react-bootstrap/lib/Panel';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
+import SliderInput from 'components/input/slider';
 import Plotly from 'components/plotly';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
@@ -97,7 +98,7 @@ function scale( arr, a, b ) {
 	return out;
 }
 
-export function generateScatterplotConfig({ data, xval, yval, color, type, size, regressionLine, regressionMethod, lineBy }) {
+export function generateScatterplotConfig({ data, xval, yval, color, type, size, regressionLine, regressionMethod, lineBy, smoothSpan }) {
 	let nColors;
 	let traces;
 
@@ -237,7 +238,7 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 					});
 				}
 				if ( contains(regressionMethod, 'smooth') ) {
-					const out = lowess( xvals, yvals );
+					const out = lowess( xvals, yvals, { 'f': smoothSpan } );
 					values = out.x;
 					predictedSmooth = out.y;
 					traces.push({
@@ -273,7 +274,7 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 				});
 			}
 			if ( contains(regressionMethod, 'smooth') ) {
-				const out = lowess( xvals, yvals );
+				const out = lowess( xvals, yvals, { 'f': smoothSpan } );
 				values = out.x;
 				predictedSmooth = out.y;
 				traces.push({
@@ -327,13 +328,13 @@ class Scatterplot extends Component {
 			type: null,
 			regressionLine: false,
 			regressionMethod: ['linear'],
-			lineBy: null
+			lineBy: null,
+			smoothSpan: 0.66
 		};
 	}
 
 	generateScatterplot = () => {
 		const config = generateScatterplotConfig({ data: this.props.data, ...this.state });
-
 		const output = {
 			variable: `${this.state.xval} against ${this.state.yval}`,
 			type: 'Chart',
@@ -458,6 +459,19 @@ class Scatterplot extends Component {
 					onChange={( value ) => {
 						this.setState({
 							lineBy: value
+						});
+					}}
+				/>
+				<SliderInput
+					legend="Smoothing Parameter"
+					disabled={!contains(this.state.regressionMethod, 'smooth')}
+					min={0}
+					max={1}
+					step={0.01}
+					defaultValue={0.66}
+					onChange={( value ) => {
+						this.setState({
+							smoothSpan: value
 						});
 					}}
 				/>
