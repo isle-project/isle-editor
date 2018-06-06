@@ -465,7 +465,7 @@ class Scatterplot extends Component {
 				<SliderInput
 					legend="Smoothing Parameter"
 					disabled={!contains(this.state.regressionMethod, 'smooth')}
-					min={0}
+					min={0.01}
 					max={1}
 					step={0.01}
 					defaultValue={0.66}
