@@ -19,9 +19,10 @@ class SaveModal extends Component {
 			openPDF: false,
 			pageSize: 'LETTER',
 			customSize: false,
-			customWidth: 11,
-			customHeight: 8.5,
-			useString: true // for using the 'LETTER', etc.
+			customWidth: 11 * 72,
+			customHeight: 8.5 * 72,
+			useString: true,
+			pageOrientation: 'portrait'
 		};
 	}
 
@@ -32,6 +33,7 @@ class SaveModal extends Component {
 	}
 
 	savePDF = () => {
+		var config = {};
 		var pageDims;
 		if ( this.state.useString ) {
 			// If we use the string make it the string
@@ -41,7 +43,9 @@ class SaveModal extends Component {
 			pageDims.height = this.state.customHeight;
 			pageDims.width = this.state.customWidth;
 		}
-		this.props.exportPDF(pageDims);
+		config.pageSize = pageDims;
+		config.orientation = this.state.pageOrientation;
+		this.props.exportPDF(config);
 	}
 
 	clickHide = () => {
@@ -84,6 +88,16 @@ class SaveModal extends Component {
 										});
 									}}
 								/>
+								<SelectInput
+									legend="Orientation"
+									defaultValue={'portrait'}
+									options={['portrait', 'landscape']}
+									onChange={( value )=>{
+										this.setState({
+											pageOrientation: value
+										});
+									}}
+								/>
 								<Panel expanded={this.state.customSize}>
 									<Panel.Collapse>
 										<Panel.Body>
@@ -103,27 +117,27 @@ class SaveModal extends Component {
 											<div>
 												<p>Custom Sizes</p>
 												<NumberInput
-													legend="Pick the Width"
+													legend="Pick the with (Inches)"
 													defaultValue={8.5}
 													min={1}
-													max={20}
+													max={50}
 													step={0.5}
 													onChange={( value ) =>{
 														this.setState({
-															customWidth: value,
+															customWidth: 72 * value,
 															useString: false
 														});
 													}}
 												/>
 												<NumberInput
-													legend="Pick the Height"
+													legend="Pick the height (Inches)"
 													defaultValue={11.5}
 													min={1}
-													max={20}
+													max={50}
 													step={0.5}
 													onChange={( value ) =>{
 														this.setState({
-															customHeight: value,
+															customHeight: 72 * value,
 															useString: false
 														});
 													}}
@@ -152,7 +166,6 @@ SaveModal.propTypes = {
 	exportPDF: PropTypes.func.isRequired,
 	handleSave: PropTypes.func.isRequired,
 	onHide: PropTypes.func,
-	pickPaper: PropTypes.func.isRequired,
 	saveMarkdown: PropTypes.func.isRequired,
 	show: PropTypes.bool.isRequired
 };

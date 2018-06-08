@@ -226,11 +226,13 @@ function applyStyles( ast, text ) {
 
 // MAIN //
 
-function generatePDF( ast, pageSize, opts ) {
+function generatePDF( ast, config, opts ) {
+	// note that the DPI is 72
 	const doc = {
 		'content': [],
 		'styles': STYLES,
-		'pageSize': pageSize
+		'pageSize': config.pageSize,
+		'pageOrientation': config.pageOrientation
 	};
 	const state = {};
 	for ( let i = 0; i < ast.length; i++ ) {
@@ -339,7 +341,6 @@ function generatePDF( ast, pageSize, opts ) {
 		}
 	}
 	debug( 'Document: %s', JSON.stringify( doc, null, 2 ) );
-	console.log(doc);
 	return doc;
 }
 

@@ -727,12 +727,12 @@ class MarkdownEditor extends Component {
 		});
 	}
 
-	exportPDF = ( pageSize, opts ) => {
+	exportPDF = ( config, opts ) => {
 		const title = document.title || 'provisoric';
 		let text = this.simplemde.value();
 		text = this.replacePlaceholders( text );
 		const ast = md.parse( text );
-		const doc = generatePDF( ast, pageSize, opts );
+		const doc = generatePDF( ast, config, opts );
 		this.toggleSaveModal( null, () => {
 			pdfMake.createPdf( doc ).download( title );
 		});
