@@ -226,10 +226,11 @@ function applyStyles( ast, text ) {
 
 // MAIN //
 
-function generatePDF( ast ) {
+function generatePDF( ast, pageSize, opts ) {
 	const doc = {
 		'content': [],
-		'styles': STYLES
+		'styles': STYLES,
+		'pageSize': pageSize
 	};
 	const state = {};
 	for ( let i = 0; i < ast.length; i++ ) {
@@ -338,6 +339,7 @@ function generatePDF( ast ) {
 		}
 	}
 	debug( 'Document: %s', JSON.stringify( doc, null, 2 ) );
+	console.log(doc);
 	return doc;
 }
 

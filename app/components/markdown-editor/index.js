@@ -195,7 +195,8 @@ class MarkdownEditor extends Component {
 			hash: hash,
 			showSaveModal: false,
 			defaultValue: props.defaultValue,
-			showTableSelect: false
+			showTableSelect: false,
+			pageSize: 'LETTER'
 		};
 
 		this.toolbarOpts = {
@@ -385,7 +386,7 @@ class MarkdownEditor extends Component {
 					const title = document.title || 'provisoric';
 					html = createHTML( title, html );
 					const ast = md.parse( text );
-					const doc = generatePDF( ast );
+					const doc = generatePDF( ast, this.state.pageSize );
 					const pdfDocGenerator = pdfMake.createPdf( doc );
 					pdfDocGenerator.getBase64( ( pdf ) => {
 						const msg = {
@@ -726,12 +727,12 @@ class MarkdownEditor extends Component {
 		});
 	}
 
-	exportPDF = ( opts ) => {
+	exportPDF = ( pageSize, opts ) => {
 		const title = document.title || 'provisoric';
 		let text = this.simplemde.value();
 		text = this.replacePlaceholders( text );
 		const ast = md.parse( text );
-		const doc = generatePDF( ast, opts );
+		const doc = generatePDF( ast, pageSize, opts );
 		this.toggleSaveModal( null, () => {
 			pdfMake.createPdf( doc ).download( title );
 		});

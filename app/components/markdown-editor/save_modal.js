@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import Panel from 'react-bootstrap/lib/Panel';
-
+import SelectInput from 'components/input/select';
+import CheckboxInput from 'components/input/checkbox';
+import NumberInput from 'components/input/number';
 
 // MAIN //
 
@@ -14,7 +16,12 @@ class SaveModal extends Component {
 		super( props );
 
 		this.state = {
-			openPDF: false
+			openPDF: false,
+			pageSize: 'LETTER',
+			customSize: false,
+			customWidth: 11,
+			customHeight: 8.5,
+			useString: true // for using the 'LETTER', etc.
 		};
 	}
 
@@ -25,7 +32,16 @@ class SaveModal extends Component {
 	}
 
 	savePDF = () => {
-		this.props.exportPDF();
+		var pageDims;
+		if ( this.state.useString ) {
+			// If we use the string make it the string
+			pageDims = this.state.pageSize;
+		} else {
+			pageDims = {};
+			pageDims.height = this.state.customHeight;
+			pageDims.width = this.state.customWidth;
+		}
+		this.props.exportPDF(pageDims);
 	}
 
 	clickHide = () => {
@@ -59,6 +75,63 @@ class SaveModal extends Component {
 						<Panel.Collapse>
 							<Panel.Body>
 								<Button onClick={this.savePDF} >Save</Button>
+								<CheckboxInput
+									legend="Custom Page Dimensions?"
+									defaultValue={false}
+									onChange={( value )=>{
+										this.setState({
+											customSize: value
+										});
+									}}
+								/>
+								<Panel expanded={this.state.customSize}>
+									<Panel.Collapse>
+										<Panel.Body>
+											<div>
+												<SelectInput
+													legend="Pick a predefined value"
+													defaultValue={'LETTER'}
+													options={['LETTER', 'A4', 'A5', 'A10', 'LEGAL', 'EXECUTIVE', 'TABLOID']}
+													onChange={( value )=>{
+														this.setState({
+															pageSize: value,
+															useString: true
+														});
+													}}
+												/>
+											</div>
+											<div>
+												<p>Custom Sizes</p>
+												<NumberInput
+													legend="Pick the Width"
+													defaultValue={8.5}
+													min={1}
+													max={20}
+													step={0.5}
+													onChange={( value ) =>{
+														this.setState({
+															customWidth: value,
+															useString: false
+														});
+													}}
+												/>
+												<NumberInput
+													legend="Pick the Height"
+													defaultValue={11.5}
+													min={1}
+													max={20}
+													step={0.5}
+													onChange={( value ) =>{
+														this.setState({
+															customHeight: value,
+															useString: false
+														});
+													}}
+												/>
+											</div>
+										</Panel.Body>
+									</Panel.Collapse>
+								</Panel>
 							</Panel.Body>
 						</Panel.Collapse>
 					</Panel>
@@ -79,6 +152,7 @@ SaveModal.propTypes = {
 	exportPDF: PropTypes.func.isRequired,
 	handleSave: PropTypes.func.isRequired,
 	onHide: PropTypes.func,
+	pickPaper: PropTypes.func.isRequired,
 	saveMarkdown: PropTypes.func.isRequired,
 	show: PropTypes.bool.isRequired
 };
