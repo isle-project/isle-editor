@@ -71,7 +71,15 @@ class TableSelect extends Component {
 			}
 			rows[i - 1] = <tr>{cols}</tr>;
 		}
-		return <table className="tableSelect" align="center"><tbody>{rows}</tbody></table>;
+		var header = new Array(9);
+		for ( var z = 0; z < header.length; z++ ) {
+			if ( z <= this.state.cols - 1 ) {
+				header[z] = <th className="selected_cols">Col{z + 1}</th>;
+			} else {
+				header[z] = <th className="un_selected_cols">Col{z + 1}</th>;
+			}
+		}
+		return <table className="tableSelect" align="center"><thead>{header}</thead><tbody>{rows}</tbody></table>;
 	}
 
 	insertTableText = () => {
@@ -98,6 +106,13 @@ class TableSelect extends Component {
 		}
 		tableStr += '\n';
 		this.props.onClick(tableStr, this.state.rows, this.state.cols);
+		this.setState({
+			rows: 4,
+			cols: 3,
+			shouldUpdate: true,
+			hoverRow: 0,
+			hoverCol: 0
+		});
 		this.props.onHide();
 	}
 
@@ -108,16 +123,16 @@ class TableSelect extends Component {
 				show={this.props.show}
 			>
 				<Modal.Header closeButton>
-					<Modal.Title>Insert New Table</Modal.Title>
+					<Modal.Title className="titleTable">Choose Table Dimensions: Row: {this.state.hoverRow}  Col: {this.state.hoverCol}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<h4>Choose Table Dimensions</h4>
 					<div>
-						<p>Row: {this.state.hoverRow}</p>
-						<p>Col: {this.state.hoverCol}</p>
 						{this.createTable()}
 						<Button
+							block={true}
+							className="insert_button"
 							bsStyle="primary"
+							align="center"
 							onClick={this.insertTableText}
 							>
 							Insert {this.state.rows} x {this.state.cols} table

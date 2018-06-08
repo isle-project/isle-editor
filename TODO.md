@@ -28,8 +28,13 @@ Priotity
         ~~CSS styling of the table --> hover over for Rows and Cols~~
         ~~Change the cursor~~
         ~~No number input~~
-        No button
+        ~~No button~~
+        ~~Re design the fixed columns~~
 3. `.pdf` poster export
+    A. Change thte sizing of the pdf export
+        What happens if we make it like printing a paper?
+        http://pdfmake.org/#/gettingstarted
+        Page dimensions
 4. Parser.
 ~~5. Loewess smoother changer for smooth on scatterplot~~
 
