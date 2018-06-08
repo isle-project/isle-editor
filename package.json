@@ -109,7 +109,7 @@
     "redux-devtools-log-monitor": "^1.0.11",
     "redux-logger": "^3.0.0",
     "source-map-explorer": "^1.5.0",
-    "tap-spec": "^4.1.2",
+    "tap-spec": "^5.0.0",
     "tape": "^4.6.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack-cli": "^3.0.2",
@@ -215,7 +215,7 @@
     "react-plotly.js": "^2.2.0",
     "react-portal": "^4.1.5",
     "react-redux": "^5.0.1",
-    "react-router": "4.2.0",
+    "react-router": "4.3.0",
     "react-router-dom": "^4.1.1",
     "react-select": "^1.2.1",
     "react-slick": "0.23.1",
@@ -231,7 +231,7 @@
     "simplemde": "^1.11.2",
     "socket.io-client": "^2.1.0",
     "source-map-support": "^0.5.4",
-    "spectacle": "4.2.3",
+    "spectacle": "4.3.1",
     "style-loader": "^0.21.0",
     "svg-react-loader": "^0.4.5",
     "turndown": "^4.0.2",
@@ -240,8 +240,8 @@
     "uniq": "^1.0.1",
     "utf-8-validate": "^4.0.2",
     "venn.js": "0.2.20",
-    "victory": "0.26.1",
-    "webpack": "4.10.2"
+    "victory": "0.27.0",
+    "webpack": "4.11.1"
   },
   "devEngines": {
     "node": "6.x || 7.x || 8.x || 9.x"
