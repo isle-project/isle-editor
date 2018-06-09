@@ -227,7 +227,7 @@ function applyStyles( ast, text ) {
 // MAIN //
 
 function generatePDF( ast, config, opts ) {
-	// note that the DPI is 72
+	// Note that the DPI is 72
 	const doc = {
 		'content': [],
 		'styles': STYLES,
@@ -341,6 +341,7 @@ function generatePDF( ast, config, opts ) {
 		}
 	}
 	debug( 'Document: %s', JSON.stringify( doc, null, 2 ) );
+	// console.log(doc);
 	return doc;
 }
 

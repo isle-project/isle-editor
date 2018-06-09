@@ -732,6 +732,7 @@ class MarkdownEditor extends Component {
 		let text = this.simplemde.value();
 		text = this.replacePlaceholders( text );
 		const ast = md.parse( text );
+		// console.log(ast);
 		const doc = generatePDF( ast, config, opts );
 		this.toggleSaveModal( null, () => {
 			pdfMake.createPdf( doc ).download( title );
@@ -780,7 +781,7 @@ class MarkdownEditor extends Component {
 							showTableSelect: false
 						});
 					}}
-					onClick={(tblString, rows, cols)=>{
+					onClick={(tblString)=>{
 						// Insert into markdown editor
 						var c = this.simplemde.codemirror.getCursor();
 						this.simplemde.codemirror.replaceRange( tblString, c);

@@ -105,7 +105,9 @@ class TableSelect extends Component {
 			tableStr += '|\n';
 		}
 		tableStr += '\n';
-		this.props.onClick(tableStr, this.state.rows, this.state.cols);
+		// Pass up props to parent
+		this.props.onClick(tableStr);
+		// Reset state
 		this.setState({
 			rows: 4,
 			cols: 3,

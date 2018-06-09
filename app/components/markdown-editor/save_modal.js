@@ -44,13 +44,14 @@ class SaveModal extends Component {
 			pageDims.width = this.state.customWidth;
 		}
 		config.pageSize = pageDims;
-		config.orientation = this.state.pageOrientation;
+		config.pageOrientation = this.state.pageOrientation;
 		this.props.exportPDF(config);
 	}
 
 	clickHide = () => {
 		this.setState({
-			openPDF: false
+			openPDF: false,
+			customSize: false
 		}, () => {
 			this.props.onHide();
 		});
@@ -117,7 +118,7 @@ class SaveModal extends Component {
 											<div>
 												<p>Custom Sizes</p>
 												<NumberInput
-													legend="Pick the with (Inches)"
+													legend="Pick the width (Inches)"
 													defaultValue={8.5}
 													min={1}
 													max={50}
