@@ -27,6 +27,7 @@ import fonts from './fonts.js';
 import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
 import TableSelect from './table_select.js';
+import ColumnSelect from './column_select.js';
 import { clearInterval } from 'timers';
 
 
@@ -196,7 +197,8 @@ class MarkdownEditor extends Component {
 			showSaveModal: false,
 			defaultValue: props.defaultValue,
 			showTableSelect: false,
-			pageSize: 'LETTER'
+			pageSize: 'LETTER',
+			showColumnSelect: false
 		};
 
 		this.toolbarOpts = {
@@ -337,6 +339,14 @@ class MarkdownEditor extends Component {
 				},
 				className: 'fa fa-table',
 				title: 'Insert Table'
+			},
+			'insert_columns': {
+				name: 'insert_new_columns',
+				action: ( editor, event ) => {
+					this.toggleColumnSelect();
+				},
+				className: 'fa fa-align-justify',
+				title: 'Insert Columns'
 			},
 			'heading': 'heading',
 			'unordered_list': 'unordered-list',
@@ -690,6 +700,12 @@ class MarkdownEditor extends Component {
 		event.preventDefault();
 	}
 
+	toggleColumnSelect = () => {
+		this.setState({
+			showColumnSelect: !this.state.showColumnSelect
+		});
+	}
+
 	toggleSaveModal = ( event, clbk = noop ) => {
 		this.setState({
 			showSaveModal: !this.state.showSaveModal
@@ -781,10 +797,22 @@ class MarkdownEditor extends Component {
 							showTableSelect: false
 						});
 					}}
-					onClick={(tblString)=>{
+					onClick={( tblString )=>{
 						// Insert into markdown editor
 						var c = this.simplemde.codemirror.getCursor();
 						this.simplemde.codemirror.replaceRange( tblString, c);
+					}}
+				/>
+				<ColumnSelect
+					show={this.state.showColumnSelect}
+					onHide={()=>{
+						this.setState({
+							showColumnSelect: false
+						});
+					}}
+					onClick={( columnTag, lineCount )=>{
+						var c = this.simplemde.codemirror.getCursor();
+						this.simplemde.codemirror.replaceRange( columnTag, c);
 					}}
 				/>
 			</Fragment>
@@ -804,7 +832,7 @@ MarkdownEditor.defaultProps = {
 	options: {},
 	toolbarConfig: ['bold', 'italic', 'underline',
 					'new_line', 'center', '|',
-					'insert_table', 'heading', 'unordered_list',
+					'insert_table', 'insert_columns', 'heading', 'unordered_list',
 					'ordered_list', 'link', '|',
 					'preview', 'side_by_side', 'fullscreen', '|',
 					'open_markdown', 'save', 'submit', '|'],
