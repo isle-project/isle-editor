@@ -1,0 +1,30 @@
+{
+	"LETTER": {
+		"width": 8.5,
+		"height": 11
+	},
+	"LEGAL": {
+		"width": 8.5,
+		"height": 14
+	},
+	"A4": {
+		"width": 8.3,
+		"height": 11.7
+	},
+	"B5": {
+		"width": 6.9,
+		"height": 9.8
+	},
+	"TABLOID": {
+		"width": 11,
+		"height": 17
+	},
+	"EXECUTIVE": {
+		"width": 7,
+		"height": 10
+	},
+	"POSTER": {
+		"width": 42,
+		"height": 30
+	}
+}
