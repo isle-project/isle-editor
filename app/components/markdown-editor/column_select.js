@@ -24,8 +24,8 @@ class ColumnSelect extends Component {
 	}
 
 	insertColumn = () => {
-		var lines = 2;
-		var colText = '<!--ColumnStart-->\n<!--Column1-->';
+		var lines = 1;
+		var colText = '<!--Column1-->';
 		for ( var i = 1; i < this.state.columns; i++ ) {
 			colText += '\n\n<!--Column' + (i + 1) + '-->';
 			lines += 2;
@@ -53,7 +53,7 @@ class ColumnSelect extends Component {
 					<NumberInput
 						legend="Select Number of Columns"
 						defaultValue={2}
-						min={1}
+						min={2}
 						max={10}
 						step={1}
 						onChange={( value ) => {
