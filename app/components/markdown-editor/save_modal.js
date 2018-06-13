@@ -105,7 +105,7 @@ class SaveModal extends Component {
 									<Row className="showDimensions">
 										<Col xs={3} md={3}>
 											<CheckboxInput
-												legend="Choose Page Dimensions?"
+												legend="Choose Dimensions?"
 												defaultValue={false}
 												onChange={( value )=>{
 													this.setState({
@@ -114,7 +114,7 @@ class SaveModal extends Component {
 												}}
 											/>
 										</Col>
-										<Col xs={2} md={2}>
+										<Col xs={3} md={3}>
 											<SelectInput
 												legend="Page Sizing"
 												disabled={!this.state.customSize}
@@ -143,8 +143,8 @@ class SaveModal extends Component {
 												}}
 											/>
 										</Col>
-										<Col xs={4} md={4}>
-											<p>Current Page Size: {this.state.visibleWidth} x {this.state.visibleHeight}</p>
+										<Col xs={3} md={3}>
+											<p>Page Size: {this.state.visibleWidth} x {this.state.visibleHeight}</p>
 										</Col>
 									</Row>
 									<Panel expanded={(this.state.pageOptionConfig === 'Predefined') && this.state.customSize}>
