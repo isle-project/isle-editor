@@ -27,7 +27,7 @@ import fonts from './fonts.js';
 import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
 import TableSelect from './table_select.js';
-import ColumnSelect from './column_select.js';
+// import ColumnSelect from './column_select.js';
 import { clearInterval } from 'timers';
 
 
@@ -340,14 +340,6 @@ class MarkdownEditor extends Component {
 				className: 'fa fa-table',
 				title: 'Insert Table'
 			},
-			'insert_columns': {
-				name: 'insert_new_columns',
-				action: ( editor, event ) => {
-					this.toggleColumnSelect();
-				},
-				className: 'fa fa-align-justify',
-				title: 'Insert Columns'
-			},
 			'heading': 'heading',
 			'unordered_list': 'unordered-list',
 			'ordered_list': 'ordered-list',
@@ -396,6 +388,7 @@ class MarkdownEditor extends Component {
 					const title = document.title || 'provisoric';
 					html = createHTML( title, html );
 					const ast = md.parse( text );
+					console.log(ast);
 					const doc = generatePDF( ast, this.state.pageSize );
 					const pdfDocGenerator = pdfMake.createPdf( doc );
 					pdfDocGenerator.getBase64( ( pdf ) => {
@@ -803,18 +796,6 @@ class MarkdownEditor extends Component {
 						this.simplemde.codemirror.replaceRange( tblString, c);
 					}}
 				/>
-				<ColumnSelect
-					show={this.state.showColumnSelect}
-					onHide={()=>{
-						this.setState({
-							showColumnSelect: false
-						});
-					}}
-					onClick={( columnTag, lineCount )=>{
-						var c = this.simplemde.codemirror.getCursor();
-						this.simplemde.codemirror.replaceRange( columnTag, c);
-					}}
-				/>
 			</Fragment>
 		);
 	}
@@ -832,7 +813,7 @@ MarkdownEditor.defaultProps = {
 	options: {},
 	toolbarConfig: ['bold', 'italic', 'underline',
 					'new_line', 'center', '|',
-					'insert_table', 'insert_columns', 'heading', 'unordered_list',
+					'insert_table', 'heading', 'unordered_list',
 					'ordered_list', 'link', '|',
 					'preview', 'side_by_side', 'fullscreen', '|',
 					'open_markdown', 'save', 'submit', '|'],
