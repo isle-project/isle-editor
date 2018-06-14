@@ -636,7 +636,7 @@ class MarkdownEditor extends Component {
 			console.log(endE);
 			console.log(bigE);
 
-			key = text.substr( startS + startTag.length, endE - startS - lengthOfKey );
+			key = text.substr( startS + startTag.length, endE - startS - (startTag.length+1) );
 			data = text.substr( endE + 3, bigE - 1 - endE - 3 );
 			section = text.substr( startS, bigE + lengthOfKey - startS );
 			console.log(key);
