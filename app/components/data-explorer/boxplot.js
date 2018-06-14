@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
+import { generate } from 'randomstring';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import by from './by.js';
 
