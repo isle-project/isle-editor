@@ -1,5 +1,6 @@
 // MODULES //
 
+import isArray from '@stdlib/assert/is-array';
 import * as types from 'constants/actionTypes';
 import Configstore from 'configstore';
 import template from 'constants/template.js';
@@ -11,16 +12,17 @@ import yaml from 'js-yaml';
 const config = new Configstore( 'ISLE' );
 
 const data = config.get( 'mostRecentFileData' ) || template;
-const preamble = data.match( /---([\S\s]*)---/ )[ 1 ];
-let error = null;
+let preamble = data.match( /---([\S\s]*)---/ );
 let preambleObject = {};
-
-try {
-	preambleObject = yaml.load( preamble );
-} catch ( err ) {
-	error = err;
+let error = null;
+if ( isArray( preamble ) ) {
+	preamble = preamble[ 1 ];
+	try {
+		preambleObject = yaml.load( preamble );
+	} catch ( err ) {
+		error = err;
+	}
 }
-
 const initialState = {
 	markdown: config.get( 'mostRecentFileData' ) || template,
 	preamble: preambleObject,
