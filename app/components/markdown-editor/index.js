@@ -614,7 +614,7 @@ class MarkdownEditor extends Component {
 	reMakeText = ( text ) => {
 		const hash = {};
 		const lengthOfKey = 23;
-		const startTag = '<!--START:';
+		const startTag = '<!-- START:';
 		var startIndex;
 		var startS;
 		var endE;
@@ -626,15 +626,21 @@ class MarkdownEditor extends Component {
 
 		newText = text;
 		startIndex = 0;
+		console.log(text);
 		while ( text.indexOf( '<!-- START:', startIndex ) !== -1 ) {
 			// We start on the first match
 			startS = text.indexOf( '<!-- START:', startIndex );
 			endE = text.indexOf( '-->', startS );
 			bigE = text.indexOf( '<!-- END -->', startS );
+			console.log(startS);
+			console.log(endE);
+			console.log(bigE);
 
 			key = text.substr( startS + startTag.length, endE - startS - lengthOfKey );
 			data = text.substr( endE + 3, bigE - 1 - endE - 3 );
 			section = text.substr( startS, bigE + lengthOfKey - startS );
+			console.log(key);
+			console.log(section);
 
 			hash[ `<!--${key}-->` ] = data;
 			newText = newText.replace( section, `<!--${key}-->` );
