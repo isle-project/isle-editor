@@ -388,7 +388,6 @@ class MarkdownEditor extends Component {
 					const title = document.title || 'provisoric';
 					html = createHTML( title, html );
 					const ast = md.parse( text );
-					console.log(ast);
 					const doc = generatePDF( ast, this.state.pageSize );
 					const pdfDocGenerator = pdfMake.createPdf( doc );
 					pdfDocGenerator.getBase64( ( pdf ) => {
@@ -604,7 +603,7 @@ class MarkdownEditor extends Component {
 				let id = replace( key, '<!--', '' );
 				id = replace( id, '-->', '' );
 				replacementHash = `<!-- START:${id} -->${hash[ key ]}<!-- END -->`;
-				var re = new RegExp('\\s*' + key, 'g');
+				var re = new RegExp( '\\s*' + key, 'g' );
 				plainText = plainText.replace( re, replacementHash );
 			}
 		}
@@ -613,40 +612,37 @@ class MarkdownEditor extends Component {
 
 	reMakeText = ( text ) => {
 		const hash = {};
-		const lengthOfKey = 23;
-		const startTag = '<!-- START:';
-		var startIndex;
-		var startS;
-		var endE;
-		var bigE;
-		var key;
-		var data;
-		var newText;
-		var section;
+		const START_TAG = '<!-- START:';
+		const START_TAG_LEN = START_TAG.length;
+		const CLOSING_TAG = '-->';
+		const CLOSING_TAG_LEN = CLOSING_TAG.length;
+		const END_TAG = '<!-- END -->';
+		let startIndex;
+		let newText;
+		let section;
+		let startS;
+		let endE;
+		let bigE;
+		let data;
+		let key;
 
 		newText = text;
 		startIndex = 0;
-		console.log(text);
-		while ( text.indexOf( '<!-- START:', startIndex ) !== -1 ) {
-			// We start on the first match
-			startS = text.indexOf( '<!-- START:', startIndex );
-			endE = text.indexOf( '-->', startS );
-			bigE = text.indexOf( '<!-- END -->', startS );
-			console.log(startS);
-			console.log(endE);
-			console.log(bigE);
+		while ( text.indexOf( START_TAG, startIndex ) !== -1 ) {
+			// We start on the first match:
+			startS = text.indexOf( START_TAG, startIndex );
+			endE = text.indexOf( CLOSING_TAG, startS );
+			bigE = text.indexOf( END_TAG, startS );
 
-			key = text.substr( startS + startTag.length, endE - startS - (startTag.length+1) );
-			data = text.substr( endE + 3, bigE - 1 - endE - 3 );
-			section = text.substr( startS, bigE + lengthOfKey - startS );
-			console.log(key);
-			console.log(section);
+			key = text.substr( startS + START_TAG_LEN, endE - startS - (START_TAG_LEN+1) );
+			data = text.substr( endE + CLOSING_TAG_LEN, bigE - 1 - endE - CLOSING_TAG_LEN );
+			section = text.substr( startS, bigE + (START_TAG_LEN+1) - startS );
 
 			hash[ `<!--${key}-->` ] = data;
 			newText = newText.replace( section, `<!--${key}-->` );
 
-			// Update startIndex
-			startIndex = bigE + 3;
+			// Update the startIndex:
+			startIndex = bigE + CLOSING_TAG_LEN;
 		}
 		return { 'text': newText, 'hash': hash };
 	}
@@ -749,7 +745,6 @@ class MarkdownEditor extends Component {
 		let text = this.simplemde.value();
 		text = this.replacePlaceholders( text );
 		const ast = md.parse( text );
-		// console.log(ast);
 		const doc = generatePDF( ast, config, opts );
 		this.toggleSaveModal( null, () => {
 			pdfMake.createPdf( doc ).download( title );
