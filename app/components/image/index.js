@@ -83,7 +83,7 @@ class Image extends Component {
 					}}
 					onDragStart={( ev ) => {
 						const plotData = {
-							key: `<!--IMAGE_${generate( 6 )}-->`,
+							key: `<!--IMAGE_LOG:${this.props.id}_${generate( 6 )}-->`,
 							value: `<img src="${this.props.body}" width="400" height="300" style="display: block; margin: 0 auto;" />`
 						};
 						ev.dataTransfer.setData( 'text', `<img src="${this.props.src}" width="400" height="300" />` );
@@ -141,6 +141,7 @@ Image.propTypes = {
 	body: PropTypes.string,
 	containerWidth: PropTypes.number.isRequired,
 	height: PropTypes.number.isRequired,
+	id: PropTypes.string,
 	onShare: PropTypes.func,
 	showModal: PropTypes.bool,
 	src: PropTypes.string.isRequired,
@@ -152,6 +153,7 @@ Image.propTypes = {
 
 Image.defaultProps = {
 	body: null,
+	id: null,
 	onShare: null,
 	showModal: true,
 	title: 'Image'

@@ -8,6 +8,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import Plotly from 'components/plotly';
+import { generate } from 'randomstring';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import lowess from '@stdlib/stats/lowess';
@@ -335,12 +336,16 @@ class Scatterplot extends Component {
 
 	generateScatterplot = () => {
 		const config = generateScatterplotConfig({ data: this.props.data, ...this.state });
+		const plotId = generate( 6 );
+		const stateNew = { ...this.state };
+		stateNew.plotId = plotId;
 		const output = {
 			variable: `${this.state.xval} against ${this.state.yval}`,
 			type: 'Chart',
 			value: <Plotly
 				editable
 				fit
+				id={plotId}
 				data={config.data}
 				layout={config.layout}
 				onShare={() => {
@@ -350,11 +355,11 @@ class Scatterplot extends Component {
 						level: 'success',
 						position: 'tr'
 					});
-					this.props.logAction( 'DATA_EXPLORER_SHARE:SCATTERPLOT', this.state );
+					this.props.logAction( 'DATA_EXPLORER_SHARE:SCATTERPLOT', stateNew );
 				}}
 			/>
 		};
-		this.props.logAction( 'DATA_EXPLORER:SCATTERPLOT', this.state );
+		this.props.logAction( 'DATA_EXPLORER:SCATTERPLOT', stateNew );
 		this.props.onCreated( output );
 	}
 

@@ -6,6 +6,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import RPlot from 'components/r/plot';
+import { generate } from 'randomstring';
 import objectValues from '@stdlib/utils/values';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 
@@ -68,11 +69,13 @@ class MosaicPlot extends Component {
 			});
 		}
 		const code = generateMosaicPlotCode({ data: this.props.data, vars, showColors });
+		const plotId = generate( 6 );
 		const output ={
 			variable: 'Mosaic Plot',
 			type: 'Chart',
 			value: <RPlot
 				code={code}
+				id={plotId}
 				libraries={[ 'MASS' ]}
 				onDone={this.props.onPlotDone}
 				height={300}
@@ -84,13 +87,13 @@ class MosaicPlot extends Component {
 						position: 'tr'
 					});
 					this.props.logAction( 'DATA_EXPLORER_SHARE:MOSAIC', {
-						vars, showColors
+						vars, showColors, plotId
 					});
 				}}
 			/>
 		};
 		this.props.logAction( 'DATA_EXPLORER:MOSAIC', {
-			vars, showColors
+			vars, showColors, plotId
 		});
 		this.props.onCreated( output );
 	}

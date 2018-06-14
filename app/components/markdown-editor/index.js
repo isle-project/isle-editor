@@ -613,6 +613,8 @@ class MarkdownEditor extends Component {
 
 	reMakeText = ( text ) => {
 		const hash = {};
+		const lengthOfKey = 23;
+		const startTag = '<!--START:';
 		var startIndex;
 		var startS;
 		var endE;
@@ -630,9 +632,9 @@ class MarkdownEditor extends Component {
 			endE = text.indexOf( '-->', startS );
 			bigE = text.indexOf( '<!-- END -->', startS );
 
-			key = text.substr( startS + 11, endE - startS - 12 );
+			key = text.substr( startS + startTag.length, endE - startS - lengthOfKey );
 			data = text.substr( endE + 3, bigE - 1 - endE - 3 );
-			section = text.substr( startS, bigE + 12 - startS );
+			section = text.substr( startS, bigE + lengthOfKey - startS );
 
 			hash[ `<!--${key}-->` ] = data;
 			newText = newText.replace( section, `<!--${key}-->` );

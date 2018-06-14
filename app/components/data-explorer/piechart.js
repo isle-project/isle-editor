@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
+import { generate } from 'randomstring';
 import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
@@ -90,11 +91,13 @@ class PieChart extends Component {
 
 	generatePiechart( variable, group ) {
 		const config = generatePiechartConfig({ data: this.props.data, variable, group });
+		const plotId = generate( 6 );
 		const output = {
 			variable: variable,
 			type: 'Chart',
 			value: <Plotly
 				editable
+				id={plotId}
 				fit
 				data={config.data}
 				layout={config.layout}
@@ -106,14 +109,14 @@ class PieChart extends Component {
 						position: 'tr'
 					});
 					this.props.logAction( 'DATA_EXPLORER_SHARE:PIECHART', {
-						variable, group
+						variable, group, plotId
 					});
 				}}
 			/>
 		};
 		this.props.logAction( 'DATA_EXPLORER:PIECHART', {
 			variable,
-			group
+			group, plotId
 		});
 		this.props.onCreated( output );
 	}

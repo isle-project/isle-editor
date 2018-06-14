@@ -6,6 +6,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
+import { generate } from 'randomstring';
 import max from '@stdlib/math/base/special/max';
 import floor from '@stdlib/math/base/special/floor';
 import kde2d from '@stdlib/stats/kde2d';
@@ -88,6 +89,7 @@ class HeatMap extends Component {
 
 	generateHeatmap( xval, yval, overlayPoints ) {
 		const config = generateHeatmap({ data: this.props.data, xval, yval, overlayPoints });
+		const plotId = generate( 6 );
 		const output ={
 			variable: `${xval} against ${yval}`,
 			type: 'Chart',
@@ -96,6 +98,7 @@ class HeatMap extends Component {
 				<Plotly
 					editable
 					fit
+					id={plotId}
 					data={config.data}
 					layout={config.layout}
 					onShare={() => {
@@ -106,14 +109,14 @@ class HeatMap extends Component {
 							position: 'tr'
 						});
 						this.props.logAction( 'DATA_EXPLORER_SHARE:HEATMAP', {
-							xval, yval, overlayPoints
+							xval, yval, overlayPoints, plotId
 						});
 					}}
 				/>
 			</div>
 		};
 		this.props.logAction( 'DATA_EXPLORER:HEATMAP', {
-			xval, yval, overlayPoints
+			xval, yval, overlayPoints, plotId
 		});
 		this.props.onCreated( output );
 	}

@@ -114,7 +114,7 @@ class Wrapper extends Component {
 		Plotly.toImage( this.figure, opts )
 			.then( ( data ) => {
 				this.plotData = {
-					key: `<!--IMAGE_${generate( 6 )}-->`,
+					key: `<!--IMAGE_LOG:${this.props.id}_${generate( 6 )}-->`,
 					value: `<img src="${data}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%" />`
 				};
 			});
@@ -216,6 +216,7 @@ Wrapper.defaultProps = {
 	layout: {},
 	legendButtons: true,
 	onShare: null,
+	id: null,
 	removeButtons: false,
 	toggleFullscreen: true
 };
@@ -229,6 +230,7 @@ Wrapper.propTypes = {
 	layout: PropTypes.object,
 	legendButtons: PropTypes.bool,
 	onShare: PropTypes.func,
+	id: PropTypes.string,
 	removeButtons: PropTypes.bool,
 	toggleFullscreen: PropTypes.bool
 };

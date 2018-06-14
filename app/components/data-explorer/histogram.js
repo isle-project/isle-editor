@@ -8,6 +8,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import Plotly from 'components/plotly';
+import { generate } from 'randomstring';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import kernelSmooth from 'kernel-smooth';
 import linspace from '@stdlib/math/utils/linspace';
@@ -174,20 +175,23 @@ class Histogram extends Component {
 		const config = generateHistogramConfig({
 			data: this.props.data, ...this.state
 		});
+		const plotId = generate( 6 );
+		const stateNew = { ...this.state };
+		stateNew.plotId = plotId;
 		const output = {
 			variable: this.state.variable,
 			type: 'Chart',
-			value: <Plotly editable fit data={config.data} layout={config.layout} onShare={() => {
+			value: <Plotly editable id={plotId} fit data={config.data} layout={config.layout} onShare={() => {
 				this.props.session.addNotification({
 					title: 'Plot shared.',
 					message: 'You have successfully shared your plot.',
 					level: 'success',
 					position: 'tr'
 				});
-				this.props.logAction( 'DATA_EXPLORER_SHARE:HISTOGRAM', this.state );
+				this.props.logAction( 'DATA_EXPLORER_SHARE:HISTOGRAM', stateNew );
 			}} />
 		};
-		this.props.logAction( 'DATA_EXPLORER:HISTOGRAM', this.state );
+		this.props.logAction( 'DATA_EXPLORER:HISTOGRAM', stateNew );
 		this.props.onCreated( output );
 	}
 

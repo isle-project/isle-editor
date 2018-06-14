@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
+import { generate } from 'randomstring';
 import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
@@ -68,10 +69,11 @@ class Barchart extends Component {
 
 	generateBarchart( variable, group ) {
 		const config = generateBarchartConfig({ data: this.props.data, variable, group });
+		const plotId = generate( 6 );
 		const output = {
 			variable: variable,
 			type: 'Chart',
-			value: <Plotly editable fit data={config.data} layout={config.layout} onShare={() => {
+			value: <Plotly editable id={plotId} fit data={config.data} layout={config.layout} onShare={() => {
 				this.props.session.addNotification({
 					title: 'Plot shared.',
 					message: 'You have successfully shared your plot.',
@@ -79,13 +81,14 @@ class Barchart extends Component {
 					position: 'tr'
 				});
 				this.props.logAction( 'DATA_EXPLORER_SHARE:BARCHART', {
-					variable, group
+					variable, group, plotId
 				});
 			}} />
 		};
 		this.props.logAction( 'DATA_EXPLORER:BARCHART', {
 			variable,
-			group
+			group,
+			plotId
 		});
 		this.props.onCreated( output );
 	}

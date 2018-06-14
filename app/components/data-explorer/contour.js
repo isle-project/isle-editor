@@ -8,6 +8,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
+import { generate } from 'randomstring';
 
 
 // FUNCTIONS //
@@ -73,12 +74,14 @@ class ContourChart extends Component {
 
 	generateContourChart( xval, yval, overlayPoints ) {
 		const config = generateContourChart({ data: this.props.data, xval, yval, overlayPoints });
+		const plotId = generate( 6 );
 		const output = {
 			variable: `${xval} against ${yval}`,
 			type: 'Chart',
 			value: <Plotly
 				editable
 				fit
+				id={plotId}
 				data={config.data}
 				layout={config.layout}
 				onShare={() => {
@@ -89,13 +92,13 @@ class ContourChart extends Component {
 						position: 'tr'
 					});
 					this.props.logAction( 'DATA_EXPLORER_SHARE:CONTOURPLOT', {
-						xval, yval, overlayPoints
+						xval, yval, overlayPoints, plotId
 					});
 				}}
 			/>
 		};
 		this.props.logAction( 'DATA_EXPLORER:CONTOURPLOT', {
-			xval, yval, overlayPoints
+			xval, yval, overlayPoints, plotId
 		});
 		this.props.onCreated( output );
 	}
