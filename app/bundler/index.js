@@ -2,7 +2,10 @@
 
 const cp = require( 'child_process' );
 const fs = require( 'fs-extra' );
-const path = require( 'path' );
+const basename = require( 'path' ).basename;
+const dirname = require( 'path' ).dirname;
+const resolve = require( 'path' ).resolve;
+const join = require( 'path' ).join;
 const yaml = require( 'js-yaml' );
 const webpack = require( 'webpack' );
 const debug = require( 'debug' )( 'bundler' );
@@ -10,6 +13,7 @@ const contains = require( '@stdlib/assert/contains' );
 const isObject = require( '@stdlib/assert/is-object' );
 const hasOwnProp = require( '@stdlib/assert/has-own-property' );
 const replace = require( '@stdlib/string/replace' );
+const papplyRight = require( '@stdlib/utils/papply-right' );
 const isAbsolutePath = require( '@stdlib/assert/is-absolute-path' );
 const markdownToHTML = require( './../utils/markdown-to-html' );
 const REQUIRES = require( './requires.json' );
@@ -22,11 +26,11 @@ const makeOutputDir = ( outputDir ) => {
 };
 
 const generateISLE = ( outputDir, code ) => {
-	const islePath = path.join( outputDir, 'index.isle' );
+	const islePath = join( outputDir, 'index.isle' );
 	fs.writeFileSync( islePath, code );
 };
 
-const generateIndexHTML = ( title, minify ) => `
+const generateIndexHTML = ( title, minify, stats ) => `
 <!DOCTYPE html>
 <html>
 	<head>
@@ -51,20 +55,29 @@ const generateIndexHTML = ( title, minify ) => `
 		// Handle bug occurring when crypto-browserify is used with Webpack...
 		window._crypto = {};
 	</script>
-	<script src="${ minify ? 'bundle.min.js' : 'bundle.js' }"></script>
+	${stats.assets.map( ( asset ) => {
+		let link;
+		if ( !minify ) {
+			link = asset.name;
+		}
+		else {
+			link = basename( asset.name, '.js' ) + '.min.js';
+		}
+		return `<script src="${link}"></script>`;
+	}).join( '\n' )}
 	</body>
 </html>
 `;
 
 const loadRequires = ( libs, filePath ) => {
 	let str = '';
-	let dirname = path.dirname( filePath );
+	let dir = dirname( filePath );
 	if ( isObject( libs ) ) {
 		for ( let key in libs ) {
 			if ( hasOwnProp( libs, key ) ) {
 				let lib = libs[ key ];
 				if ( isAbsolutePath( lib ) || /\.(\/|\\)/.test( lib ) ) {
-					lib = path.join( dirname, libs[ key ]);
+					lib = join( dir, libs[ key ]);
 					if ( process.platform === 'win32' ) {
 						lib = replace( lib, '\\', '\\\\' );
 					}
@@ -166,7 +179,7 @@ const getISLEcode = ( yamlStr ) => {
 };
 
 const getSessionCode = ( basePath ) => {
-	let requirePath = path.resolve( path.join( basePath, 'app', 'session' ) );
+	let requirePath = resolve( join( basePath, 'app', 'session' ) );
 	if ( process.platform === 'win32' ) {
 		requirePath = replace( requirePath, '\\', '\\\\' );
 	}
@@ -234,32 +247,32 @@ function writeIndexFile({
 	writeStats
 }, clbk ) {
 	const modulePaths = [
-		path.resolve( basePath, './node_modules' ),
-		path.resolve( basePath, './node_modules/@stdlib/stdlib/lib/node_modules' ),
-		path.resolve( basePath, './node_modules/@stdlib/stdlib/node_modules' ),
-		path.resolve( basePath, './app/' )
+		resolve( basePath, './node_modules' ),
+		resolve( basePath, './node_modules/@stdlib/stdlib/lib/node_modules' ),
+		resolve( basePath, './node_modules/@stdlib/stdlib/node_modules' ),
+		resolve( basePath, './app/' )
 	];
 	const config = {
 		resolve: {
 			modules: modulePaths,
 			alias: {
-				'victory': path.resolve(
+				'victory': resolve(
 					basePath,
 					'./node_modules/victory/dist/victory.min.js'
 				),
-				'katex': path.resolve(
+				'katex': resolve(
 					basePath,
 					'./node_modules/katex/dist/katex.min.js'
 				),
-				'plotly.js/dist/plotly': path.resolve(
+				'plotly.js/dist/plotly': resolve(
 					basePath,
 					'./node_modules/plotly.js/dist/plotly-cartesian.min.js'
 				),
-				'plotly.js': path.resolve(
+				'plotly.js': resolve(
 					basePath,
 					'./node_modules/plotly.js/dist/plotly-cartesian.min.js'
 				),
-				'react-transition-group/TransitionGroup': path.resolve(
+				'react-transition-group/TransitionGroup': resolve(
 					basePath,
 					'./node_modules/spectacle/node_modules/react-transition-group/TransitionGroup.js'
 				)
@@ -274,12 +287,12 @@ function writeIndexFile({
 					loader: 'babel-loader',
 					query: {
 						plugins: [
-							path.resolve( basePath, './node_modules/babel-plugin-add-module-exports' )
+							resolve( basePath, './node_modules/babel-plugin-add-module-exports' )
 						],
 						presets: [
-							path.resolve( basePath, './node_modules/babel-preset-es2015' ),
-							path.resolve( basePath, './node_modules/babel-preset-react' ),
-							path.resolve( basePath, './node_modules/babel-preset-stage-0' )
+							resolve( basePath, './node_modules/babel-preset-es2015' ),
+							resolve( basePath, './node_modules/babel-preset-react' ),
+							resolve( basePath, './node_modules/babel-preset-stage-0' )
 						],
 						babelrc: false,
 						cacheDirectory: true
@@ -302,7 +315,10 @@ function writeIndexFile({
 			noParse: /node_modules\/json-schema\/lib\/validate\.js/
 		},
 		optimization: {
-			minimize: false
+			minimize: false,
+			splitChunks: {
+				chunks: 'all'
+			}
 		},
 		node: {
 			child_process: 'empty',
@@ -325,13 +341,12 @@ function writeIndexFile({
 
 	const yamlStr = content.match( /---([\S\s]*)---/ )[ 1 ];
 	const meta = yaml.load( yamlStr );
-	const appDir = path.join( outputPath, outputDir );
-	const indexPath = path.resolve( './public/index.js' );
-	const htmlPath = path.join( appDir, 'index.html' );
-	const statsFile = path.join( appDir, 'stats.json' );
-	const bundlePath = path.join( appDir, 'bundle.js' );
+	const appDir = join( outputPath, outputDir );
+	const indexPath = resolve( './public/index.js' );
+	const htmlPath = join( appDir, 'index.html' );
+	const statsFile = join( appDir, 'stats.json' );
 	const getCSSPath = () => {
-		return path.join( basePath, 'app', 'css' );
+		return join( basePath, 'app', 'css' );
 	};
 	makeOutputDir( appDir );
 	generateISLE( appDir, content );
@@ -355,13 +370,13 @@ function writeIndexFile({
 			content = pres;
 		}
 		content = `<div>
-			<KeyControls actions={{ 
+			<KeyControls actions={{
 				'ArrowUp': function() {
 					const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowRight', 'code': 'ArrowRight' });
 					delete e.keyCode;
 					Object.defineProperty( e, 'keyCode', { 'value' : 39 });
 					document.dispatchEvent( e );
-				}, 
+				},
 				'ArrowDown': function() {
 					const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowLeft', 'code': 'ArrowLeft' });
 					delete e.keyCode;
@@ -389,22 +404,22 @@ function writeIndexFile({
 	fs.writeFileSync( indexPath, str );
 
 	// Copy CSS files:
-	fs.copySync( getCSSPath(), path.join( appDir, 'css' ) );
+	fs.copySync( getCSSPath(), join( appDir, 'css' ) );
 	if ( meta.css ) {
 		// Append custom CSS file to `lesson.css` file:
 		let fpath = meta.css;
 		if ( !isAbsolutePath( meta.css ) ) {
-			fpath = path.join( path.dirname( filePath ), meta.css );
+			fpath = join( dirname( filePath ), meta.css );
 		}
 		const css = fs.readFileSync( fpath ).toString();
-		fs.appendFileSync( path.join( appDir, 'css', 'lesson.css' ), css );
+		fs.appendFileSync( join( appDir, 'css', 'lesson.css' ), css );
 	}
 	if ( meta.style ) {
-		fs.appendFileSync( path.join( appDir, 'css', 'lesson.css' ), meta.style );
+		fs.appendFileSync( join( appDir, 'css', 'lesson.css' ), meta.style );
 	}
 
-	let imgPath = path.join( basePath, 'app', 'img' );
-	fs.copySync( path.join( imgPath, 'favicon.ico' ), path.join( appDir, 'favicon.ico' ) );
+	let imgPath = join( basePath, 'app', 'img' );
+	fs.copySync( join( imgPath, 'favicon.ico' ), join( appDir, 'favicon.ico' ) );
 
 	config.entry = indexPath;
 	config.output = {
@@ -420,29 +435,39 @@ function writeIndexFile({
 		if ( stats.errors ) {
 			stats.errors.forEach( debug );
 		}
+		stats = stats.toJson();
 		if ( writeStats ) {
 			debug( 'Write statistics to file...' );
-			fs.writeFileSync( statsFile, JSON.stringify( stats.toJson() ) );
+			fs.writeFileSync( statsFile, JSON.stringify( stats ) );
 		}
 		fs.unlinkSync( indexPath );
-		fs.writeFileSync( htmlPath, generateIndexHTML( meta.title, minify ) );
+		fs.writeFileSync( htmlPath, generateIndexHTML( meta.title, minify, stats ) );
 
-		if ( minify ) {
-			debug( 'Minifying bundle...' );
-			const child = cp.fork( path.resolve( basePath, './app/bundler/minify.js' ) );
+		if ( !minify ) {
+			return clbk( err, meta );
+		}
+		let done = 0;
+		debug( 'Minifying bundle...' );
+		for ( let i = 0; i < stats.assets.length; i++ ) {
+			const child = cp.fork( resolve( basePath, './app/bundler/minify.js' ) );
+			const { name } = stats.assets[ i ];
+			const bundlePath = join( appDir, name );
 			const code = fs.readFileSync( bundlePath ).toString();
-			child.on( 'message', function onMessage( minified ) {
-				if ( minified.error ) {
-					debug( 'Encountered an error during minification: ' + minified.error );
-					throw minified.error;
-				}
-				fs.writeFileSync( path.join( appDir, 'bundle.min.js' ), minified.code );
-				fs.unlinkSync( path.join( appDir, 'bundle.js' ) );
-				clbk( err, meta );
-			});
+			child.on( 'message', papplyRight( onMessage, name, bundlePath ));
 			child.send( code );
-		} else {
-			clbk( err, meta );
+		}
+		function onMessage( minified, sendHandle, name, bundlePath ) {
+			if ( minified.error ) {
+				debug( 'Encountered an error during minification: ' + minified.error );
+				throw minified.error;
+			}
+			const minifiedPath = join( appDir, basename( name, '.js' )+'.min.js' );
+			fs.writeFileSync( minifiedPath, minified.code );
+			fs.unlinkSync( bundlePath );
+			done += 1;
+			if ( done === stats.assets.length ) {
+				return clbk( err, meta );
+			}
 		}
 	});
 }

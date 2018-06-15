@@ -2,18 +2,25 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import Panel from 'react-bootstrap/lib/Panel';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
+import ToggleButtonGroup from 'react-bootstrap/lib/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/lib/ToggleButton';
+import RangePicker from 'components/range-picker';
+import FileSaver from 'file-saver';
+import stringify from 'csv-stringify';
+import moment from 'moment';
 import logger from 'debug';
-import ReactList from 'react-list';
-import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
-import objectEntries from '@stdlib/utils/entries';
-import copy from '@stdlib/utils/copy';
-import Action from './action.js';
+import ActionList from './list.js';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle-editor' );
+moment.locale( 'us' );
 
 
 // MAIN //
@@ -22,52 +29,60 @@ class ActionLog extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			displayedActions: [],
-			filter: null
+			anonymized: true,
+			actionLogHeader: <span>Action Log</span>,
+			period: {
+				from: moment( 0 ).startOf( 'day' ),
+				to: moment().endOf( 'day' )
+			},
+			actions: []
 		};
 	}
 
 	componentDidMount() {
 		const { session } = this.context;
-		this.unsubscribe = session.subscribe( ( type ) => {
-			if ( session.socketActions.length === 0 && this.state.filter !== null ) {
+		if ( session.socketActions && session.socketActions.length > 0 ) {
+			debug( 'Initial construction of actions array...' );
+			this.setState({
+				actions: this.buildActionsArray()
+			});
+		}
+		this.unsubscribe = session.subscribe( ( type, value ) => {
+			if ( type === 'logout' ) {
+				debug( 'Should reset the filters after user logout:' );
 				this.setState({
-					filter: null
-				}, () => {
-					const newHeader = this.createHeader( null );
-					const nActions = this.state.displayedActions.length;
-					this.props.onFilter( newHeader, nActions );
+					actionLogHeader: <span>Action Log</span>
 				});
 			}
 			else if ( type === 'member_action' ) {
-				this.buildActionsArray( this.props );
-			} else if ( type === 'retrieved_user_actions' ) {
-				this.buildActionsArray( this.props );
+				this.setState({
+					actions: this.buildActionsArray()
+				});
+			}
+			else if ( type === 'retrieved_user_actions' ) {
+				this.setState({
+					actions: this.buildActionsArray()
+				});
+			}
+			if ( session.socketActions.length === 0 && this.state.filter !== null ) {
+				this.setState({
+					filter: {},
+					actionLogHeader: <span>Action Log</span>
+				});
 			}
 		});
-	}
-
-	shouldComponentUpdate( nextProps, nextState ) {
-		if (
-			nextProps.period.from !== this.props.period.from ||
-			nextProps.period.to !== this.props.period.to ||
-			nextState.displayedActions.length !== this.state.displayedActions.length
-		) {
-			return true;
-		}
-		return false;
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
 		if ( this.state.filter !== prevState.filter ) {
 			debug( 'Should filter out actions...' );
-			this.buildActionsArray( this.props );
+			this.setState({ actions: this.buildActionsArray() });
 		}
 		else if (
-			this.props.period.from !== prevProps.period.from ||
-			this.props.period.to !== prevProps.period.to
+			this.state.period.from !== prevState.period.from ||
+			this.state.period.to !== prevState.period.to
 		) {
-			this.buildActionsArray( this.props, prevProps.onTimeRangeChange );
+			this.setState({ actions: this.buildActionsArray() });
 		}
 	}
 
@@ -75,61 +90,32 @@ class ActionLog extends Component {
 		this.unsubscribe();
 	}
 
-	removeFactory = ( type ) => {
-		const onRemoveClick = ( event ) => {
-			event.stopPropagation();
-			let newFilter = copy( this.state.filter );
-			delete newFilter[ type ];
-			if ( isEmptyObject( newFilter ) ) {
-				newFilter = null;
+	buildActionsArray() {
+		let { from, to } = this.state.period;
+		debug( 'Building action array...' );
+		if ( from && to ) {
+			from = from.toDate();
+			to = to.toDate();
+			const { session } = this.context;
+			let actions = [];
+			for ( let i = 0; i < session.socketActions.length; i++ ) {
+				let action = session.socketActions[ i ];
+				if ( action.absoluteTime > from && action.absoluteTime < to ) {
+					actions.push( action );
+				}
 			}
-			this.setState({
-				filter: newFilter
-			}, () => {
-				const newHeader = this.createHeader( newFilter );
-				const nActions = this.state.displayedActions.length;
-				this.props.onFilter( newHeader, nActions );
-			});
-		};
-		return onRemoveClick;
+			if ( this.state.filter ) {
+				debug( 'Should filter actions: ' + actions.length );
+				this.removeMarkedActions( actions );
+			}
+			return actions;
+		}
+		return [];
 	}
 
-	createHeader = ( filter ) => {
-		let entries = filter ? objectEntries( filter ) : [];
-		let newHeader = <Fragment>
-			<span style={{ display: 'inline' }} >Action Log</span>
-			<div style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
-				{entries.map( ( arr, idx ) => {
-					return ( <span
-						style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }}
-						onClick={this.removeFactory( arr[ 0 ])}
-						key={idx}
-					>{arr[ 0 ]}: {arr[ 1 ]}</span> );
-				})}
-			</div>
-		</Fragment>;
-		return newHeader;
-	}
-
-	clickFactory = ( type, value ) => {
-		const onClick = () => {
-			const newFilter = this.state.filter ? copy( this.state.filter ) : {};
-			newFilter[ type ] = value;
-			this.setState({
-				filter: newFilter
-			}, () => {
-				debug( 'The filter was successfully changed: ' + JSON.stringify( this.state.filter ) );
-				const newHeader = this.createHeader( newFilter );
-				const nActions = this.state.displayedActions.length;
-				this.props.onFilter( newHeader, nActions );
-			});
-		};
-		return onClick;
-	}
-
-	removeMarkedActions( displayedActions ) {
-		for ( let i = displayedActions.length - 1; i >= 0; i-- ) {
-			let action = displayedActions[ i ];
+	removeMarkedActions( actions ) {
+		for ( let i = actions.length - 1; i >= 0; i-- ) {
+			let action = actions[ i ];
 			let markedForRemoval = false;
 			for ( let key in this.state.filter ) {
 				if ( hasOwnProp( this.state.filter, key ) ) {
@@ -140,85 +126,124 @@ class ActionLog extends Component {
 				}
 			}
 			if ( markedForRemoval ) {
-				displayedActions.splice( i, 1 );
+				actions.splice( i, 1 );
 			}
 		}
 	}
 
-	buildActionsArray( props, clbk ) {
-		let { from, to } = props.period;
-		if ( from && to ) {
-			from = from.toDate();
-			to = to.toDate();
-			const { session } = this.context;
-			let displayedActions = [];
-			for ( let i = 0; i < session.socketActions.length; i++ ) {
-				let action = session.socketActions[ i ];
-				if ( action.absoluteTime > from && action.absoluteTime < to ) {
-					displayedActions.push( action );
+	handleRadioChange = ( val ) => {
+		this.setState({
+			anonymized: !this.state.anonymized
+		});
+	}
+
+	saveJSON = () => {
+		const { session } = this.context;
+		session.getFakeUsers( ( err, hash ) => {
+			const actions = session.socketActions.slice();
+			if ( this.state.anonymized ) {
+				for ( let i = 0; i < actions.length; i++ ) {
+					actions[ i ].name = hash.name[ actions[ i ].name ];
+					actions[ i ].email = hash.email[ actions[ i ].email ];
 				}
 			}
-			if ( this.state.filter ) {
-				debug( 'Should filter actions: ' + displayedActions.length );
-				this.removeMarkedActions( displayedActions );
-			}
-			this.setState({
-				displayedActions
-			}, () => {
-				if ( clbk ) {
-					clbk( from, to, displayedActions.length );
-				}
+			const blob = new Blob([ JSON.stringify( actions ) ], {
+				type: 'application/json'
 			});
-		}
+			const name = `actions_${session.namespaceName}_${session.lessonName}.json`;
+			FileSaver.saveAs( blob, name );
+		});
 	}
 
-	renderItem = ( index, key ) => {
-		const action = this.state.displayedActions[ index ];
-		return (
-			<Action
-				key={key}
-				backgroundColor={key % 2 ? 'white' : 'lightgrey'}
-				clickFactory={this.clickFactory}
-				{...action}
-			/>
-		);
+	saveCSV = () => {
+		const { session } = this.context;
+		session.getFakeUsers( ( err, hash ) => {
+			const actions = session.socketActions.slice();
+			if ( this.state.anonymized ) {
+				for ( let i = 0; i < actions.length; i++ ) {
+					actions[ i ].name = hash.name[ actions[ i ].name ];
+					actions[ i ].email = hash.email[ actions[ i ].email ];
+				}
+			}
+			stringify( actions, {
+				header: true
+			}, ( err, output ) => {
+				const blob = new Blob([ output ], {
+					type: 'text/plain'
+				});
+				const name = `actions_${session.namespaceName}_${session.lessonName}.csv`;
+				FileSaver.saveAs( blob, name );
+			});
+		});
 	}
 
 	render() {
 		return (
-			<div style={{ overflowY: 'scroll', height: window.innerHeight / 2 }}>
-				<ReactList
-					itemRenderer={this.renderItem}
-					length={this.state.displayedActions.length}
-					type="variable"
-					pageSize={50}
-				/>
-			</div>
+			<Fragment>
+				<Panel.Heading>
+					<Panel.Title toggle>
+						{this.state.actionLogHeader}
+					</Panel.Title>
+				</Panel.Heading>
+				<Panel.Body collapsible>
+					<RangePicker onChange={( newPeriod ) => {
+						this.setState({
+							period: newPeriod
+						});
+					}} />
+					<ActionList
+						actions={this.state.actions}
+						period={this.state.period}
+						filter={this.state.filter}
+						height={window.innerHeight / 2}
+						onFilterChange={( newFilter, newHeader ) => {
+							this.setState({
+								filter: newFilter,
+								actionLogHeader: newHeader
+							});
+						}}
+					/>
+					<ButtonToolbar>
+						<ButtonGroup>
+							<span style={{ fontSize: '12px', fontWeight: 600 }}>
+								{'# of Actions: '+this.state.actions.length}
+							</span>
+						</ButtonGroup>
+						<ToggleButtonGroup
+							name="options"
+							onChange={this.handleRadioChange}
+							type="radio"
+							bsSize="xsmall"
+							value={this.state.anonymized}
+						>
+							<ToggleButton
+								value={false}
+								style={{
+									fontSize: '12px',
+									color: this.state.anonymized ? '#A9A9A9' : 'black'
+								}}
+							>Original</ToggleButton>
+							<ToggleButton
+								value={true}
+								style={{
+									fontSize: '12px',
+									color: this.state.anonymized ? 'black' : '#A9A9A9'
+								}}
+							>Anonymized</ToggleButton>
+						</ToggleButtonGroup>
+						<ButtonGroup bsSize="xsmall">
+							<Button onClick={this.saveJSON} >Save JSON</Button>
+							<Button onClick={this.saveCSV} >Save CSV</Button>
+						</ButtonGroup>
+					</ButtonToolbar>
+				</Panel.Body>
+			</Fragment>
 		);
 	}
 }
 
 
-// DEFAULT PROPERTIES //
-
-ActionLog.defaultProps = {
-	onFilter() {},
-	onTimeRangeChange() {}
-};
-
-
-// TYPES //
-
-ActionLog.propTypes = {
-	onFilter: PropTypes.func,
-	onTimeRangeChange: PropTypes.func,
-	period: PropTypes.shape(
-		{
-			from: PropTypes.object,
-			to: PropTypes.object
-		}
-	).isRequired
-};
+// CONTEXT TYPES //
 
 ActionLog.contextTypes = {
 	session: PropTypes.object

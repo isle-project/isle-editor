@@ -19,10 +19,16 @@ class InstructorNotes extends Component {
 			<Fragment>
 				<MarkdownEditor
 					className="instructor-notes"
-					toolbarConfig={['bold', 'italic',
-						'underline', 'heading', 'insert_table',
-						'|', 'open_markdown', 'save']}
-						/>
+					toolbarConfig={[
+						'bold',
+						'italic',
+						'underline',
+						'heading',
+						'|',
+						'open_markdown',
+						'save'
+					]}
+				/>
 			</Fragment>
 		);
 	}

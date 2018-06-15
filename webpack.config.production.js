@@ -35,7 +35,8 @@ const config = {
 							'transform-react-constant-elements',
 							'transform-react-inline-elements',
 							'transform-react-remove-prop-types'
-						]
+						],
+						cacheDirectory: true
 					}
 				},
 				include: [

@@ -11,6 +11,7 @@ import { generate } from 'randomstring';
 import isUndefined from '@stdlib/assert/is-undefined';
 import copy from '@stdlib/utils/copy';
 import PlotlyIcons from './icons.js';
+import calculateChanges from './calculate_changes.js';
 
 
 // VARIABLES //
@@ -45,6 +46,7 @@ class Wrapper extends Component {
 
 		this.state = {
 			fullscreen: false,
+			oldLayout: copy( layout ),
 			layout
 		};
 		this.plotData = {
@@ -96,7 +98,21 @@ class Wrapper extends Component {
 
 	handleUpdate = () => {
 		this.drawPlot();
-		this.setState( this.figure );
+		if ( this.props.id ) {
+			const { session } = this.context;
+			const changes = calculateChanges( this.figure.layout, this.state.oldLayout );
+			if ( changes.length > 0 ) {
+				session.log({
+					id: this.props.id,
+					type: 'PLOT_UPDATE',
+					value: changes
+				});
+			}
+		}
+		this.setState({
+			oldLayout: copy( this.figure.layout ),
+			layout: this.figure.layout
+		});
 	}
 
 	onUpdate = ( figure ) => {
@@ -213,10 +229,10 @@ class Wrapper extends Component {
 
 Wrapper.defaultProps = {
 	editable: false,
+	id: null,
 	layout: {},
 	legendButtons: true,
 	onShare: null,
-	id: null,
 	removeButtons: false,
 	toggleFullscreen: true
 };
@@ -227,12 +243,19 @@ Wrapper.defaultProps = {
 Wrapper.propTypes = {
 	data: PropTypes.array.isRequired,
 	editable: PropTypes.bool,
+	id: PropTypes.string,
 	layout: PropTypes.object,
 	legendButtons: PropTypes.bool,
 	onShare: PropTypes.func,
-	id: PropTypes.string,
 	removeButtons: PropTypes.bool,
 	toggleFullscreen: PropTypes.bool
+};
+
+
+// CONTEXT TYPES //
+
+Wrapper.contextTypes = {
+	session: PropTypes.object
 };
 
 

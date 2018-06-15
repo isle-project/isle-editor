@@ -27,7 +27,8 @@ export default {
 			use: {
 				loader: 'babel-loader',
 				options: {
-					plugins: []
+					plugins: [],
+					cacheDirectory: true
 				}
 			},
 			include: [
