@@ -41,6 +41,12 @@ class ActionLog extends Component {
 
 	componentDidMount() {
 		const { session } = this.context;
+		if ( session.socketActions && session.socketActions.length > 0 ) {
+			debug( 'Initial construction of actions array...' );
+			this.setState({
+				actions: this.buildActionsArray()
+			});
+		}
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if ( type === 'logout' ) {
 				debug( 'Should reset the filters after user logout:' );
@@ -49,10 +55,14 @@ class ActionLog extends Component {
 				});
 			}
 			else if ( type === 'member_action' ) {
-				this.buildActionsArray();
+				this.setState({
+					actions: this.buildActionsArray()
+				});
 			}
 			else if ( type === 'retrieved_user_actions' ) {
-				this.buildActionsArray();
+				this.setState({
+					actions: this.buildActionsArray()
+				});
 			}
 			if ( session.socketActions.length === 0 && this.state.filter !== null ) {
 				this.setState({
@@ -66,13 +76,13 @@ class ActionLog extends Component {
 	componentDidUpdate( prevProps, prevState ) {
 		if ( this.state.filter !== prevState.filter ) {
 			debug( 'Should filter out actions...' );
-			this.buildActionsArray();
+			this.setState({ actions: this.buildActionsArray() });
 		}
 		else if (
 			this.state.period.from !== prevState.period.from ||
 			this.state.period.to !== prevState.period.to
 		) {
-			this.buildActionsArray();
+			this.setState({ actions: this.buildActionsArray() });
 		}
 	}
 
@@ -82,6 +92,7 @@ class ActionLog extends Component {
 
 	buildActionsArray() {
 		let { from, to } = this.state.period;
+		debug( 'Building action array...' );
 		if ( from && to ) {
 			from = from.toDate();
 			to = to.toDate();
@@ -97,10 +108,9 @@ class ActionLog extends Component {
 				debug( 'Should filter actions: ' + actions.length );
 				this.removeMarkedActions( actions );
 			}
-			this.setState({
-				actions
-			});
+			return actions;
 		}
+		return [];
 	}
 
 	removeMarkedActions( actions ) {

@@ -3,7 +3,6 @@
 import React from 'react';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import PropTypes from 'prop-types';
-import isObjectLike from '@stdlib/assert/is-object-like';
 
 
 // MAIN //
@@ -23,7 +22,7 @@ const Action = ( props ) => {
 			<div className="actionNote">
 				<label>Value:&nbsp;</label>
 				<span style={{ 'userSelect': 'text' }} >
-					{ isObjectLike( props.value ) ? JSON.stringify( props.value, null, 2 ) : props.value }
+					{props.value}
 				</span>
 			</div>
 		</ListGroupItem>

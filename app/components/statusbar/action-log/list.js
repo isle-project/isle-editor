@@ -7,12 +7,16 @@ import ReactList from 'react-list';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import objectEntries from '@stdlib/utils/entries';
 import copy from '@stdlib/utils/copy';
+import isObjectLike from '@stdlib/assert/is-object-like';
 import Action from './action.js';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle-editor' );
+const LINE_HEIGHT = 20;
+const TEXT_LINE_HEIGHT = 16;
+const RE_NEWLINE = /\r?\n/g;
 
 
 // MAIN //
@@ -20,18 +24,27 @@ const debug = logger( 'isle-editor' );
 class ActionList extends Component {
 	constructor( props ) {
 		super( props );
+
+		this.state = {
+			actions: props.actions
+		};
 	}
 
-	shouldComponentUpdate( nextProps, nextState ) {
-		if (
-			nextProps.period.from !== this.props.period.from ||
-			nextProps.period.to !== this.props.period.to ||
-			nextProps.filter !== this.props.filter ||
-			nextProps.actions.length !== this.props.actions.length
-		) {
-			return true;
+	static getDerivedStateFromProps( props, state ) {
+		if ( props.actions.length !== state.actions.length ) {
+			const actions = new Array( props.actions.length );
+			for ( let i = 0; i < props.actions.length; i++ ) {
+				actions[ i ] = props.actions[ i ];
+				const val = actions[ i ].value;
+				if ( isObjectLike( val ) ) {
+					actions[ i ].value = JSON.stringify( val, null, 2 );
+				}
+			}
+			return {
+				actions: props.actions
+			};
 		}
-		return false;
+		return null;
 	}
 
 	removeFactory = ( type ) => {
@@ -76,12 +89,22 @@ class ActionList extends Component {
 		return onClick;
 	}
 
+	itemSizeGetter = ( index ) => {
+		let lines = 2 * LINE_HEIGHT;
+		const action = this.state.actions[ index ];
+		const noLines = ( String( action.value ).match( RE_NEWLINE ) || '' ).length + 1;
+		lines += noLines * TEXT_LINE_HEIGHT;
+		lines += LINE_HEIGHT; // first "Value" line
+		return lines;
+	}
+
 	renderItem = ( index, key ) => {
-		const action = this.props.actions[ index ];
+		debug( `Render ${index}th item` );
+		const action = this.state.actions[ index ];
 		return (
 			<Action
 				key={key}
-				backgroundColor={key % 2 ? 'white' : 'lightgrey'}
+				backgroundColor={index % 2 ? 'white' : 'lightgrey'}
 				clickFactory={this.clickFactory}
 				{...action}
 			/>
@@ -89,14 +112,23 @@ class ActionList extends Component {
 	}
 
 	render() {
+		const { height } = this.props;
+		const { actions } = this.state;
+		debug( 'Rendering list of actions...' );
+		let list = null;
+		if ( actions.length > 0 ) {
+			debug( 'Received more than one action: '+actions.length );
+			list = <ReactList
+				itemRenderer={this.renderItem}
+				length={actions.length}
+				type="variable"
+				pageSize={50}
+				itemSizeGetter={this.itemSizeGetter}
+			/>;
+		}
 		return (
-			<div style={{ overflowY: 'scroll', height: this.props.height }}>
-				<ReactList
-					itemRenderer={this.renderItem}
-					length={this.props.actions.length}
-					type="variable"
-					pageSize={50}
-				/>
+			<div style={{ overflowY: 'scroll', height: height }}>
+				{list}
 			</div>
 		);
 	}
