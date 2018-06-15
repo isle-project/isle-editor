@@ -30,7 +30,7 @@ class ColumnSelect extends Component {
 			colText += '\n\n<!--Column' + (i + 1) + '-->';
 			lines += 2;
 		}
-		colText += '\n\n<!--ColumnEnd-->\n';
+		colText += '\n\n<!--Column-ENDCOUNT-' + (i + 1) + '-->\n';
 		lines += 3;
 		this.props.onClick(colText, lines);
 		// Reset the state
