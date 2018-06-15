@@ -19,6 +19,7 @@ import removeLast from '@stdlib/string/remove-last';
 import removeFirst from '@stdlib/string/remove-first';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import contains from '@stdlib/assert/contains';
+import trim from '@stdlib/string/trim';
 import noop from '@stdlib/utils/noop';
 import VoiceInput from 'components/input/voice';
 import 'simplemde/dist/simplemde.min.css';
@@ -481,7 +482,7 @@ class MarkdownEditor extends Component {
 				session.log({
 					id: this.props.id,
 					type: 'MARKDOWN_EDITOR_'+uppercase( origin ),
-					value: JSON.stringify( change, replacer )
+					value: JSON.stringify( change, replacer, 2 )
 				});
 			}
 			return true;
@@ -602,8 +603,8 @@ class MarkdownEditor extends Component {
 			if ( hasOwnProp( hash, key ) ) {
 				let id = replace( key, '<!--', '' );
 				id = replace( id, '-->', '' );
-				replacementHash = `<!-- START:${id} -->${hash[ key ]}<!-- END -->`;
-				var re = new RegExp( '\\s*' + key, 'g' );
+				replacementHash = `\n\n<!-- START:${id} -->\n\n${hash[ key ]}\n\n<!-- END -->\n\n`;
+				var re = new RegExp( '\\s*'+key+'\\s*', 'g' );
 				plainText = plainText.replace( re, replacementHash );
 			}
 		}
@@ -635,10 +636,9 @@ class MarkdownEditor extends Component {
 			bigE = text.indexOf( END_TAG, startS );
 
 			key = text.substr( startS + START_TAG_LEN, endE - startS - (START_TAG_LEN+1) );
-			data = text.substr( endE + CLOSING_TAG_LEN, bigE - 1 - endE - CLOSING_TAG_LEN );
+			data = text.substr( endE + CLOSING_TAG_LEN, bigE - endE - CLOSING_TAG_LEN );
 			section = text.substr( startS, bigE + (START_TAG_LEN+1) - startS );
-
-			hash[ `<!--${key}-->` ] = data;
+			hash[ `<!--${key}-->` ] = '\n'+trim( data )+'\n';
 			newText = newText.replace( section, `<!--${key}-->` );
 
 			// Update the startIndex:
@@ -814,12 +814,14 @@ MarkdownEditor.defaultProps = {
 	language: 'en-US',
 	onChange() {},
 	options: {},
-	toolbarConfig: ['bold', 'italic', 'underline',
-					'new_line', 'center', '|',
-					'insert_table', 'heading', 'unordered_list',
-					'ordered_list', 'link', '|',
-					'preview', 'side_by_side', 'fullscreen', '|',
-					'open_markdown', 'save', 'submit', '|'],
+	toolbarConfig: [
+		'bold', 'italic', 'underline',
+		'new_line', 'center', '|',
+		'insert_table', 'heading', 'unordered_list',
+		'ordered_list', 'link', '|',
+		'preview', 'side_by_side', 'fullscreen', '|',
+		'open_markdown', 'save', 'submit', '|'
+	],
 	voiceTimeout: 5000
 };
 
