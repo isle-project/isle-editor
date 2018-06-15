@@ -741,6 +741,7 @@ class MarkdownEditor extends Component {
 	}
 
 	exportPDF = ( config, opts ) => {
+		// Not rewriting GET /dist/renderer.dev.js because the path includes a dot (.) character.
 		const title = document.title || 'provisoric';
 		let text = this.simplemde.value();
 		text = this.replacePlaceholders( text );
