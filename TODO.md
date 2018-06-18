@@ -8,13 +8,14 @@ Summer
 * Instructor notes within the instructor panel. Start out with the skeleton for the lab and have them fill it in.
 * Dashboard: Have a repository with old TA notes
 ~~* Scatterplot: Add functionality to add smooth and linear regression at the same time~~
-* `.pdf` poster export
+~~* `.pdf` poster export~~
 * Insert equation menu similar to table select
 * **Calculator parser**
 * Build mosiac plot
 * LaTeX Equation in the explorer for the pdf
 * Data transformation: generate a new column of transformed variables. Beef it up.
 * Minification and bundling times
+* Images did not show up on .pdf
 
 Priotity
 ====
