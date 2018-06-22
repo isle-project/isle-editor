@@ -87,7 +87,7 @@
     "codecov": "^3.0.2",
     "concurrently": "^3.0.0",
     "del": "^3.0.0",
-    "electron": "2.0.2",
+    "electron": "2.0.3",
     "electron-packager": "12.1.0",
     "electron-rebuild": "^1.7.3",
     "enzyme": "3.3.0",
@@ -200,7 +200,7 @@
     "react-color": "^2.14.1",
     "react-contextmenu": "^2.6.5",
     "react-copy-to-clipboard": "^5.0.0",
-    "react-dates": "16.7.0",
+    "react-dates": "17.0.0",
     "react-dnd": "^5.0.0",
     "react-dnd-html5-backend": "^5.0.0",
     "react-dom": "16.4.1",
@@ -239,7 +239,7 @@
     "uniq": "^1.0.1",
     "utf-8-validate": "^4.0.2",
     "venn.js": "0.2.20",
-    "victory": "0.27.0",
+    "victory": "0.27.1",
     "webpack": "4.12.0"
   },
   "devEngines": {
