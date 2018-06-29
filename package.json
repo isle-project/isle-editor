@@ -240,7 +240,7 @@
     "utf-8-validate": "^4.0.2",
     "venn.js": "0.2.20",
     "victory": "0.27.2",
-    "webpack": "4.12.2"
+    "webpack": "4.14.0"
   },
   "devEngines": {
     "node": "6.x || 7.x || 8.x || 9.x"
