@@ -218,7 +218,7 @@
     "react-router-dom": "^4.3.1",
     "react-select": "^1.2.1",
     "react-slick": "0.23.1",
-    "react-split-pane": "0.1.77",
+    "react-split-pane": "0.1.81",
     "react-table": "^6.8.5",
     "react-tools": "^0.13.3",
     "recordrtc": "^5.4.1",
