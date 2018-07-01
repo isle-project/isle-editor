@@ -23,7 +23,7 @@ import trim from '@stdlib/string/trim';
 import noop from '@stdlib/utils/noop';
 import VoiceInput from 'components/input/voice';
 import 'simplemde/dist/simplemde.min.css';
-import './markdown-editor.css';
+import './markdown_editor.css';
 import fonts from './fonts.js';
 import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
