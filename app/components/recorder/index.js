@@ -222,7 +222,7 @@ class Recorder extends Component {
 		}
 		// Case: Screen without Audio
 		if ( screen && !camera && !audio ) {
-			captureScreen( ( screen, audio ) => {
+			captureScreen( ( screen ) => {
 				screen.width = window.screen.width;
 				screen.height = window.screen.height;
 				screen.fullcanvas = true;
