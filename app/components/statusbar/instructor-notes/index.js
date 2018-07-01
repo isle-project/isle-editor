@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import MarkdownEditor from 'components/markdown-editor';
-import './instructor-notes.css';
+import './instructor_notes.css';
 
 
 // VARIABLES //

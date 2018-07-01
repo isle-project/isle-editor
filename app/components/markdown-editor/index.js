@@ -467,7 +467,9 @@ class MarkdownEditor extends Component {
 	}
 
 	componentWillUnmount() {
-		clearInterval( this.interval );
+		if ( this.interval ) {
+			clearInterval( this.interval );
+		}
 	}
 
 	logChange() {
