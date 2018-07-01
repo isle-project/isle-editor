@@ -6,11 +6,11 @@
 }
 
 .CodeMirror {
-	max-height: 500px;
+	max-height: 490px;
 }
 .CodeMirror-scroll {
-	min-height: 500px;
-	max-height: 500px;
+	min-height: 490px;
+	max-height: 490px;
 }
 
 .editor-toolbar.fullscreen, .CodeMirror-fullscreen, .editor-preview-side {

@@ -78,7 +78,7 @@ class InstructorView extends Component {
 						<span>Instructor Notes</span>
 					</Panel.Title>
 				</Panel.Heading>
-				<Panel.Body className='panel-body panel_instructor' collapsible >
+				<Panel.Body className='panel-body panel-notes' collapsible >
 					<InstructorNotes
 						className="instructor_notebook"
 					/>

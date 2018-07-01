@@ -9,12 +9,12 @@
 }
 
 .instructor-notes .CodeMirror {
-	max-height: 300px;
-	min-height: 300px;
+	max-height: 490px;
+	min-height: 490px;
 }
 
 .CodeMirror-scroll {
-	min-height: 260px;
+	min-height: 490px;
 	overflow-y: auto;
 }
 
