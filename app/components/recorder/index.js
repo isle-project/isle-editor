@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/lib/Button';
 import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder } from 'recordrtc';
 import inEditor from 'utils/is-electron';
 import getScreenId from './get_screen_id.js';
+import isElectron from 'utils/is-electron';
 import './recorder.css';
 
 
@@ -116,10 +117,22 @@ class Recorder extends Component {
 				track.stop();
 			});
 		}
+		if ( this.props.audio && this.audio ) {
+			this.audio.getAudioTracks().forEach( function onTrack( track ) {
+				track.stop();
+			});
+		}
 	}
 
 	storeFile = () => {
 		this.recorder.save( 'recoding.webm' );
+	}
+
+	clearFile = () => {
+		this.recorder = null;
+		this.setState({
+			finished: false
+		});
 	}
 
 	uploadFile = () => {
@@ -189,6 +202,7 @@ class Recorder extends Component {
 			captureAudio( ( audio ) => {
 				let recorder = RecordRTC( audio, this.recorderConfig );
 				recorder.startRecording();
+				this.audio = audio;
 				this.recorder = recorder;
 			});
 		}
@@ -265,11 +279,12 @@ class Recorder extends Component {
 		if ( !audio && !screen && !camera ) {
 			return null;
 		}
+		const editorStyle = isElectron ? ' recorder-in-editor' : '';
 		return (
-			<div className="recorder-container unselectable">
-				<div className="recorder-button-container">
+			<div className={`recorder-container unselectable${editorStyle}`} >
+				<div className={`recorder-button-container${editorStyle}`}>
 					<div
-						className="recorder-button"
+						className={`recorder-button${editorStyle}`}
 						onClick={this.handleClick}
 						style={{
 							background: recordingColor
@@ -286,6 +301,10 @@ class Recorder extends Component {
 				}} id="install-button">
 					<img width="100px" height="32px" src="https://www.webrtc-experiment.com/images/btn-install-chrome-extension.png" alt="Add to Chrome" />
 				</button> : null }
+				{ this.state.finished ?
+					<Button onClick={this.clearFile} bsStyle="warning">Clear</Button> :
+					null
+				}
 				{ this.state.finished && this.props.downloadable ?
 					<Button onClick={this.storeFile} bsStyle="primary">Download File</Button> :
 					null
