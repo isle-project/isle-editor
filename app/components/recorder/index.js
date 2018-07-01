@@ -282,9 +282,9 @@ class Recorder extends Component {
 		const editorStyle = isElectron ? ' recorder-in-editor' : '';
 		return (
 			<div className={`recorder-container unselectable${editorStyle}`} >
-				<div className={`recorder-button-container${editorStyle}`}>
+				<div className="recorder-button-container">
 					<div
-						className={`recorder-button${editorStyle}`}
+						className="recorder-button"
 						onClick={this.handleClick}
 						style={{
 							background: recordingColor
