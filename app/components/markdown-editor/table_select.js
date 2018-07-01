@@ -49,14 +49,14 @@ class TableSelect extends Component {
 			cols = new Array( 8 );
 			for ( let j = 9; j > 0; j-- ) {
 				if ( j <= this.state.cols && i <= this.state.rows ) {
-					cols[ j - 1 ] = <td
+					cols[ j-1 ] = <td
 						key={`${i}-${j}`}
 						className="grid_select"
 						onClick={this.onClickFactory(i, j)}
 						onMouseOver={this.onMouseOverFactory(i, j)}
 					>Cell</td>;
 				} else {
-					cols[ j - 1 ] = <td
+					cols[ j-1 ] = <td
 						key={`${i}-${j}`}
 						className="cell"
 						onClick={this.onClickFactory(i, j)}
@@ -64,7 +64,7 @@ class TableSelect extends Component {
 					>Cell</td>;
 				}
 			}
-			rows[i - 1] = <tr>{cols}</tr>;
+			rows[ i-1 ] = <tr key={i}>{cols}</tr>;
 		}
 		const header = new Array( 9 );
 		for ( let z = 0; z < header.length; z++ ) {
@@ -74,7 +74,12 @@ class TableSelect extends Component {
 				header[z] = <th key={z} className="un_selected_cols">Col{z + 1}</th>;
 			}
 		}
-		return <table className="tableSelect" align="center"><thead>{header}</thead><tbody>{rows}</tbody></table>;
+		return (
+			<table className="tableSelect" align="center">
+				<thead>{header}</thead>
+				<tbody>{rows}</tbody>
+			</table>
+		);
 	}
 
 	insertTableText = () => {
@@ -121,7 +126,7 @@ class TableSelect extends Component {
 				show={this.props.show}
 			>
 				<Modal.Header closeButton>
-					<Modal.Title className="titleTable">Choose Table Dimensions: Row: {this.state.hoverRow}  Col: {this.state.hoverCol}</Modal.Title>
+					<Modal.Title className="titleTable">Choose Table Dimensions: Row: {this.state.hoverRow} Col: {this.state.hoverCol}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<div>
@@ -132,7 +137,7 @@ class TableSelect extends Component {
 							bsStyle="primary"
 							align="center"
 							onClick={this.insertTableText}
-							>
+						>
 							Insert {this.state.rows} x {this.state.cols} table
 						</Button>
 					</div>
@@ -140,6 +145,7 @@ class TableSelect extends Component {
 			</Modal> );
 	}
 }
+
 
 // PROPERTY TYPES //
 
@@ -153,6 +159,7 @@ TableSelect.defaultProps = {
 	onClick: noop,
 	onHide: noop
 };
+
 
 // EXPORTS //
 
