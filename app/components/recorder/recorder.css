@@ -1,5 +1,5 @@
 .recorder-container {
-	position: absolute;
+	position: fixed;
 	right: 2%;
 	top: 0.5%;
 	width: 320px;
@@ -11,8 +11,12 @@
 	cursor: default;
 }
 
+.recorder-in-editor {
+	position: absolute !important;
+}
+
 .recorder-button-container {
-	position: absolute;
+	position: fixed;
 	border-radius: 50%;
 	margin-right: 10px;
 	color: rgba(0,0,0,1);
@@ -20,13 +24,12 @@
 	top: 8px;
 	width: 40px;
 	height: 40px;
-	right: 30%;
+	right: 265px;
 }
 
 .recorder-button-container:hover {
 	border: solid 4px black;
 }
-
 
 .recorder-rec {
 	font-family: Arial;
@@ -46,11 +49,9 @@
 	margin-right: 25px;
 }
 
-
 .recorder-rec:hover {
 	color: green;
 }
-
 
 #install-button {
 	padding: 0;
