@@ -642,13 +642,13 @@ class DataExplorer extends Component {
 
 		return (
 			<Row className="no-gutter data-explorer">
-				{ this.props.questions ? <Col md={colWidth}><Pages
+				{ this.props.questions ? <Col xs={colWidth} md={colWidth}><Pages
 					title="Questions"
 					height={470}
 					bsSize="small"
 					className="data-explorer-questions"
 				>{this.props.questions}</Pages></Col> : null }
-				<Col md={colWidth}>
+				<Col xs={colWidth} md={colWidth}>
 					<Panel>
 						<Navbar className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
 							<Nav>
@@ -736,7 +736,7 @@ class DataExplorer extends Component {
 						</Panel.Body>
 					</Panel>
 				</Col>
-				<Col md={colWidth}>
+				<Col xs={colWidth} md={colWidth}>
 					<div className="panel panel-default" style={{ minHeight: window.innerHeight*0.9, padding: 0 }}>
 						<div className="panel-heading clearfix">
 							<h3 className="data-explorer-output-header">Output</h3>
