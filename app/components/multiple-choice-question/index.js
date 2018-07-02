@@ -199,7 +199,7 @@ class MultipleChoiceQuestion extends Component {
 						content={props.question}
 						task={allowMultipleAnswers ? 'Choose all that apply' : 'Pick the correct answer'}
 					/>
-					<ListGroup fill >
+					<ListGroup>
 						{ allowMultipleAnswers ?
 							props.answers.map( renderAnswerOptionsMultiple ) :
 							props.answers.map( renderAnswerOptionsSingle )
@@ -208,7 +208,7 @@ class MultipleChoiceQuestion extends Component {
 					<Button
 						bsSize="small"
 						bsStyle="success"
-						block fill
+						block
 						onClick={this.submitQuestion}
 						disabled={disabled}
 					>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
