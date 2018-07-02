@@ -17,6 +17,7 @@ import endsWith from '@stdlib/string/ends-with';
 import uppercase from '@stdlib/string/uppercase';
 import removeLast from '@stdlib/string/remove-last';
 import removeFirst from '@stdlib/string/remove-first';
+import repeat from '@stdlib/string/repeat';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import contains from '@stdlib/assert/contains';
 import trim from '@stdlib/string/trim';
@@ -499,6 +500,7 @@ class MarkdownEditor extends Component {
 			toolbar: this.createToolbar(),
 			status: [ 'lines', 'words' ],
 			indentWithTabs: false,
+			promptURLs: true,
 			tabSize: 2,
 			...this.props.options
 		});
@@ -810,7 +812,7 @@ class MarkdownEditor extends Component {
 
 MarkdownEditor.defaultProps = {
 	autoSave: true,
-	defaultValue: '',
+	defaultValue: repeat( '\n', 15 ),
 	intervalTime: 60000,
 	language: 'en-US',
 	onChange() {},
