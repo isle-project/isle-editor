@@ -1161,7 +1161,7 @@ class Session {
 	* @param {Function} clbk - callback function
 	* @returns {void}
 	*/
-	uploadFile( formData, clbk ) {
+	uploadFile( formData, clbk = () => {} ) {
 		if ( this.lessonName ) {
 			formData.append( 'lessonName', this.lessonName );
 		}
