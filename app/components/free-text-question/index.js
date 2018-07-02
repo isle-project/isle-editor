@@ -328,7 +328,10 @@ FreeTextQuestion.propTypes = {
 	hints: PropTypes.arrayOf( PropTypes.string ),
 	onChange: PropTypes.func,
 	placeholder: PropTypes.string,
-	question: PropTypes.string,
+	question: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	resizable: PropTypes.bool,
 	resubmissionMsg: PropTypes.string,
 	rows: PropTypes.number,
