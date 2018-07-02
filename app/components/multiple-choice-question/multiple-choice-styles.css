@@ -16,8 +16,7 @@
 }
 
 .question label {
-	font-weight: 500;
+	font-weight: 600;
 	font-stretch: extra-expanded;
 	color: #2e4468;
-	text-shadow: 0 0 0.1px rgba(92,92,92,0.5);
 }
