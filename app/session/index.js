@@ -1167,6 +1167,14 @@ class Session {
 		if ( this.namespaceName ) {
 			formData.append( 'namespaceName', this.namespaceName );
 		}
+		if ( !this.user ) {
+			return this.addNotification({
+				title: 'File Upload',
+				message: 'You have to be signed in in order to upload files.',
+				level: 'warning',
+				position: 'tl'
+			});
+		}
 		const xhr = new XMLHttpRequest();
 		xhr.open( 'POST', this.server+'/upload_file', true );
 		xhr.setRequestHeader( 'Authorization', 'JWT ' + this.user.token );
