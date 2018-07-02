@@ -1158,9 +1158,10 @@ class Session {
 	* Uploads a file.
 	*
 	* @param {Object} formData - form data object
+	* @param {Function} clbk - callback function
 	* @returns {void}
 	*/
-	uploadFile( formData ) {
+	uploadFile( formData, clbk ) {
 		if ( this.lessonName ) {
 			formData.append( 'lessonName', this.lessonName );
 		}
@@ -1182,6 +1183,9 @@ class Session {
 			if ( xhr.readyState === XMLHttpRequest.DONE ) {
 				let message;
 				let level;
+				let err;
+
+				err = null;
 				if ( xhr.status === 200 ) {
 					const body = JSON.parse( xhr.responseText );
 					message = body.message;
@@ -1189,6 +1193,7 @@ class Session {
 				} else {
 					message = xhr.responseText;
 					level = 'error';
+					err = new Error( xhr.responseText );
 				}
 				this.addNotification({
 					title: 'File Upload',
@@ -1196,6 +1201,7 @@ class Session {
 					level,
 					position: 'tl'
 				});
+				return clbk( err );
 			}
 		};
 		xhr.send( formData );

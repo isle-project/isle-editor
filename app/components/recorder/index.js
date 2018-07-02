@@ -104,7 +104,8 @@ class Recorder extends Component {
 		this.state = {
 			recording: false,
 			available: true,
-			finished: false
+			finished: false,
+			uploaded: false
 		};
 
 		if ( props.screen || props.camera ) {
@@ -173,7 +174,13 @@ class Recorder extends Component {
 
 		const formData = new FormData();
 		formData.append( 'file', file );
-		session.uploadFile( formData );
+		session.uploadFile( formData, ( err ) => {
+			if ( !err ) {
+				this.setState({
+					uploaded: true
+				});
+			}
+		});
 	}
 
 	handleClick = () => {
@@ -187,7 +194,8 @@ class Recorder extends Component {
 			this.startRecording();
 			this.setState({
 				recording: true,
-				finished: false
+				finished: false,
+				uploaded: false
 			});
 		}
 	}
@@ -336,7 +344,7 @@ class Recorder extends Component {
 					null
 				}
 				{ this.state.finished && this.props.uploadable ?
-					<Button onClick={this.uploadFile} bsStyle="primary">Upload File</Button> :
+					<Button onClick={this.uploadFile} disabled={this.state.uploaded} bsStyle="primary">Upload File</Button> :
 					null
 				}
 			</div>
