@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
-import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder } from 'recordrtc';
+import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder, WhammyRecorder } from 'recordrtc';
 import inEditor from 'utils/is-electron';
 import getScreenId from './get_screen_id.js';
 import isElectron from 'utils/is-electron';
@@ -45,7 +45,7 @@ const isMimeTypeSupported = ( _mimeType ) => {
 	return MediaRecorder.isTypeSupported( _mimeType );
 };
 
-function getAudioConfig( type ) {
+function getAudioConfig( props ) {
 	let mimeType = 'audio/mpeg';
 	let recorderType = MediaStreamRecorder;
 	if ( isMimeTypeSupported( mimeType ) === false ) {
@@ -62,7 +62,36 @@ function getAudioConfig( type ) {
 			}
 		}
 	}
-	return { mimeType, recorderType, type: 'audio' };
+	return { mimeType, recorderType, type: 'audio', bitsPerSecond: props.bitsPerSecond };
+}
+
+function getVideoConfig( props ) {
+	let mimeType = 'video/x-matroska;codecs=avc1'; // MKV
+	let recorderType = MediaStreamRecorder;
+
+	if ( !isMimeTypeSupported( mimeType ) ) {
+		console.log(mimeType, 'is not supported.');
+		mimeType = 'video/webm\;codecs=h264'; // H264
+		if ( !isMimeTypeSupported( mimeType ) ) {
+			console.log(mimeType, 'is not supported.');
+			mimeType = 'video/webm\;codecs=vp9'; // VP9
+			if ( !isMimeTypeSupported( mimeType ) ) {
+				console.log(mimeType, 'is not supported.');
+				mimeType = 'video/webm\;codecs=vp8'; // VP8
+				if ( !isMimeTypeSupported( mimeType ) ) {
+					console.log(mimeType, 'is not supported.');
+					mimeType = 'video/webm';
+					if ( !isMimeTypeSupported( mimeType ) ) {
+						console.log(mimeType, 'is not supported.');
+						// Fallback to Whammy (WebP+WebM) solution...
+						mimeType = 'video/webm';
+						recorderType = WhammyRecorder;
+					}
+				}
+			}
+		}
+	}
+	return { mimeType, recorderType, type: 'video', bitsPerSecond: props.bitsPerSecond };
 }
 
 
@@ -79,12 +108,9 @@ class Recorder extends Component {
 		};
 
 		if ( props.screen || props.camera ) {
-			this.recorderConfig = {
-				type: 'video',
-				mimeType: 'video/webm'
-			};
+			this.recorderConfig = getVideoConfig( props );
 		} else if ( props.audio ) {
-			this.recorderConfig = getAudioConfig();
+			this.recorderConfig = getAudioConfig( props );
 		}
 
 		window.getChromeExtensionStatus( ( status ) => {
@@ -129,7 +155,7 @@ class Recorder extends Component {
 	}
 
 	clearFile = () => {
-		this.recorder = null;
+		this.recorder.clearRecordedData();
 		this.setState({
 			finished: false
 		});
@@ -324,6 +350,7 @@ class Recorder extends Component {
 Recorder.propTypes = {
 	audio: PropTypes.bool,
 	autostart: PropTypes.bool,
+	bitsPerSecond: PropTypes.number,
 	camera: PropTypes.bool,
 	downloadable: PropTypes.bool,
 	screen: PropTypes.bool,
@@ -336,6 +363,7 @@ Recorder.propTypes = {
 Recorder.defaultProps = {
 	audio: false,
 	autostart: false,
+	bitsPerSecond: 128000,
 	camera: false,
 	downloadable: false,
 	screen: false,
