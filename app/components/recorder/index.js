@@ -165,8 +165,8 @@ class Recorder extends Component {
 	uploadFile = () => {
 		const { session } = this.context;
 		const id = this.props.id;
-		const fileName = id || 'recorderFile';
-
+		const { namespaceName, lessonName, user } = session;
+		let fileName = `${namespaceName}_${lessonName}_${user.email}_${id || 'recorderFile'}`;
 		const blob = this.recorder.getBlob();
 		const file = new File([ blob ], fileName, {
 			type: this.recorderConfig.mimeType
