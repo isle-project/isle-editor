@@ -87,7 +87,7 @@
     "codecov": "^3.0.2",
     "concurrently": "^3.0.0",
     "del": "^3.0.0",
-    "electron": "2.0.3",
+    "electron": "2.0.4",
     "electron-packager": "12.1.0",
     "electron-rebuild": "^1.7.3",
     "enzyme": "3.3.0",
