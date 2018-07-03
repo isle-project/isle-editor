@@ -204,7 +204,13 @@ class Recorder extends Component {
 		if ( !this.recorder ) {
 			this.setupRecorder();
 		} else {
-			this.recorder.startRecording();
+			try {
+				this.recorder.startRecording();
+			} catch ( err ) {
+				this.setupRecorder( () => {
+					this.recorder.startRecording();
+				});
+			}
 		}
 	}
 
@@ -216,7 +222,7 @@ class Recorder extends Component {
 		});
 	}
 
-	setupRecorder() {
+	setupRecorder( clbk = () => {} ) {
 		const { audio, camera, screen } = this.props;
 
 		// Case: Camera + Audio / No Audio
@@ -229,6 +235,7 @@ class Recorder extends Component {
 				let recorder = RecordRTC( camera, this.recorderConfig );
 				recorder.startRecording();
 				this.recorder = recorder;
+				clbk();
 			}, audio );
 		}
 		// Case: Audio
@@ -238,6 +245,7 @@ class Recorder extends Component {
 				recorder.startRecording();
 				this.audio = audio;
 				this.recorder = recorder;
+				clbk();
 			});
 		}
 		// Case: Screen & Audio
@@ -251,6 +259,7 @@ class Recorder extends Component {
 					let recorder = RecordRTC( [ screen, audio ], this.recorderConfig );
 					recorder.startRecording();
 					this.recorder = recorder;
+					clbk();
 				});
 			}, true );
 		}
@@ -264,6 +273,7 @@ class Recorder extends Component {
 				let recorder = RecordRTC( screen, this.recorderConfig );
 				recorder.startRecording();
 				this.recorder = recorder;
+				clbk();
 			});
 		}
 		// Case: Screen & Camera
@@ -278,12 +288,13 @@ class Recorder extends Component {
 					let recorder = RecordRTC([ camera, screen ], this.recorderConfig );
 					recorder.startRecording();
 					this.recorder = recorder;
+					clbk();
 				}, audio );
 			}, audio );
 		}
 	}
 
-	renderAudioVideo( player ) {
+	renderAudioVideo() {
 		const { audio, camera, screen } = this.props;
 		if ( audio && !camera && !screen ) {
 			return (
