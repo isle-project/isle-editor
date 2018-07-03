@@ -3,7 +3,8 @@ TODO
 For various to-do items related to the `ISLE` project.
 
 Summer
-====
+=====
+* Font sizes and families.
 ~~* Scaffolding for the labs. This would involve notes for the TAs about when to interject, what to teach, etc.~~
 * Instructor notes within the instructor panel. Start out with the skeleton for the lab and have them fill it in.
 * Dashboard: Have a repository with old TA notes
@@ -38,6 +39,8 @@ Priotity
         Page dimensions
 4. Parser.
 ~~5. Loewess smoother changer for smooth on scatterplot~~
+6. Instructor view
+
 
 General
 ====
