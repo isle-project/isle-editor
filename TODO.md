@@ -32,7 +32,9 @@ Priotity
         Page dimensions
     B. Preamble for 
 4. Parser.
+5. Change icon of newline button and behavior such that clicking the button will work like "Enter" and insert the backslash at the end of the line
 6. Instructor view
+7. Restore the image side-by-side display
 
 
 General
