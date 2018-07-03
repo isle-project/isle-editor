@@ -1,8 +1,8 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import MarkdownEditor from 'components/markdown-editor';
-import './instructor-notes.css';
+import './instructor_notes.css';
 
 
 // VARIABLES //
@@ -16,20 +16,18 @@ class InstructorNotes extends Component {
 
 	render() {
 		return (
-			<Fragment>
-				<MarkdownEditor
-					className="instructor-notes"
-					toolbarConfig={[
-						'bold',
-						'italic',
-						'underline',
-						'heading',
-						'|',
-						'open_markdown',
-						'save'
-					]}
-				/>
-			</Fragment>
+			<MarkdownEditor
+				className="instructor-notes"
+				toolbarConfig={[
+					'bold',
+					'italic',
+					'underline',
+					'heading',
+					'|',
+					'open_markdown',
+					'save'
+				]}
+			/>
 		);
 	}
 }

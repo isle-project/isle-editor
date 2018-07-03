@@ -17,19 +17,19 @@ import endsWith from '@stdlib/string/ends-with';
 import uppercase from '@stdlib/string/uppercase';
 import removeLast from '@stdlib/string/remove-last';
 import removeFirst from '@stdlib/string/remove-first';
+import repeat from '@stdlib/string/repeat';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import contains from '@stdlib/assert/contains';
 import trim from '@stdlib/string/trim';
 import noop from '@stdlib/utils/noop';
 import VoiceInput from 'components/input/voice';
 import 'simplemde/dist/simplemde.min.css';
-import './markdown-editor.css';
+import './markdown_editor.css';
 import fonts from './fonts.js';
 import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
 import TableSelect from './table_select.js';
 // import ColumnSelect from './column_select.js';
-import { clearInterval } from 'timers';
 
 
 // VARIABLES //
@@ -467,7 +467,9 @@ class MarkdownEditor extends Component {
 	}
 
 	componentWillUnmount() {
-		clearInterval( this.interval );
+		if ( this.interval ) {
+			clearInterval( this.interval );
+		}
 	}
 
 	logChange() {
@@ -498,6 +500,7 @@ class MarkdownEditor extends Component {
 			toolbar: this.createToolbar(),
 			status: [ 'lines', 'words' ],
 			indentWithTabs: false,
+			promptURLs: true,
 			tabSize: 2,
 			...this.props.options
 		});
@@ -809,7 +812,7 @@ class MarkdownEditor extends Component {
 
 MarkdownEditor.defaultProps = {
 	autoSave: true,
-	defaultValue: '',
+	defaultValue: repeat( '\n', 15 ),
 	intervalTime: 60000,
 	language: 'en-US',
 	onChange() {},

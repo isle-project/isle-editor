@@ -1,11 +1,10 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import ReactDOMServer from 'react-dom/server';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import Navbar from 'react-bootstrap/lib/Navbar';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
@@ -16,16 +15,12 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 import Panel from 'react-bootstrap/lib/Panel';
 import Tab from 'react-bootstrap/lib/Tab';
 import Well from 'react-bootstrap/lib/Well';
-import TurndownService from 'turndown';
 import isString from '@stdlib/assert/is-string';
-import isArray from '@stdlib/assert/is-array';
-import isNumber from '@stdlib/assert/is-number';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import isObject from '@stdlib/assert/is-object';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
-import entries from '@stdlib/utils/entries';
 import hasProp from '@stdlib/assert/has-property';
-import replace from '@stdlib/string/replace';
+import startsWith from '@stdlib/string/starts-with';
 import copy from '@stdlib/utils/copy';
 import scrollTo from 'utils/scroll-to';
 import MarkdownEditor from 'components/markdown-editor';
@@ -46,6 +41,7 @@ import LearnExponentialDistribution from 'components/learn/distribution/exponent
 import LearnUniformDistribution from 'components/learn/distribution/uniform';
 import SpreadsheetUpload from 'components/spreadsheet-upload';
 import DataTable from 'components/data-table';
+import OutputPanel from './output_panel.js';
 import './data_explorer.css';
 
 
@@ -72,229 +68,13 @@ import PropTest2 from 'components/data-explorer/proptest2';
 import Anova from 'components/data-explorer/anova';
 
 
-// VARIABLES //
-
-const RE_CLEAR_BUTTON = /<button[\s\S]*<\/button>/;
-const turndownService = new TurndownService();
-const turndownPluginGfm = require( 'turndown-plugin-gfm' );
-turndownService.use( turndownPluginGfm.gfm );
-
-
 // FUNCTIONS //
-
-/**
-* Wraps the supplied div element such that it can be dragged.
-*/
-const makeDraggable = ( div, asMarkdown = true ) => {
-	let markup = ReactDOMServer.renderToStaticMarkup( div );
-	markup = replace( markup, RE_CLEAR_BUTTON, '' );
-	if ( asMarkdown ) {
-		markup = turndownService.turndown( markup );
-	}
-	return ( <div
-		draggable="true"
-		style={{
-			cursor: 'move'
-		}}
-		onDragStart={( ev ) => {
-			ev.dataTransfer.setData( 'text/plain', markup );
-			ev.dataTransfer.setData( 'text/html', '' );
-		}}
-	>
-		{div}
-	</div> );
-};
-
-const ClearButton = ( props ) => ( <Button
-	bsSize="xs"
-	style={{ float: 'right' }}
-	onClick={props.onClick}
->
-	<span>&times;</span>
-</Button> );
-
-ClearButton.propTypes = {
-	'onClick': PropTypes.func.isRequired
-};
-
-const renderIQRTable = ( e, idx, clearOutput ) => {
-	const table = <table className="table table-condensed">
-		<tbody>
-			<tr>
-				<th>Variable</th>
-				<th>IQR</th>
-				<th>Lower</th>
-				<th>Upper</th>
-				<th>N</th>
-			</tr>
-			<tr>
-				<td>{e.variable}</td>
-				{e.result.value.map( ( e, i ) => <td key={i}>{e.toFixed( 3 )}</td> )}
-				<td>{e.result.size}</td>
-			</tr>
-		</tbody>
-	</table>;
-	return ( <pre key={idx}>
-		<ClearButton onClick={() => { clearOutput( idx ); }} />
-		{makeDraggable( table )}
-	</pre> );
-};
-
-const renderRangeTable = ( e, idx, clearOutput ) => {
-	const table = <table className="table table-condensed">
-		<tbody>
-			<tr>
-				<th>Variable</th>
-				<th>Min</th>
-				<th>Max</th>
-				<th>N</th>
-			</tr>
-			<tr>
-				<td>{e.variable}</td>
-				{e.result.value.map( ( e, i ) => <td key={i}>{e.toFixed( 3 )}</td> )}
-				<td>{e.result.size}</td>
-			</tr>
-		</tbody>
-	</table>;
-	return ( <pre key={idx}>
-		<ClearButton onClick={() => { clearOutput( idx ); }} />
-		{makeDraggable( table )}
-	</pre> );
-};
 
 const generateTransformationCode = ( variable ) => `if ( datum.${variable} > 0 ) {
 	return 'Yes'
 } else {
 	return 'No'
 }`;
-
-/**
-* Maps over the output array and returns the filled output panel.
-*/
-const OutputPanel = ( output, clearOutput ) => {
-	return (
-		<div id="outputPanel" style={{
-			height: (window.innerHeight*0.9) - 80,
-			overflowY: 'scroll',
-			padding: '5px'
-		}}>
-			{output.map( ( e, idx ) => {
-				if ( e.type === 'Chart' ) {
-					return ( <div key={idx}>
-						<ClearButton onClick={() => { clearOutput( idx ); }} />
-						<div style={{
-							height: 300,
-							marginBottom: 40,
-							marginRight: 20
-						}} >
-							{e.value}
-						</div>
-					</div> );
-				}
-				else if (
-					e.type === 'Contingency Table' ||
-					e.type === 'Frequency Table' ||
-					e.type === 'Grouped Frequency Table' ||
-					e.type === 'Test' ||
-					e.type === 'Simple Linear Regression'
-				) {
-					let elem = <pre key={idx} >
-						<ClearButton onClick={() => { clearOutput( idx ); }} /><br />
-						{makeDraggable( e.value )}
-					</pre>;
-					return elem;
-				}
-				else if ( isNumber( e.result.value ) && e.result.size ) {
-					const { value, size } = e.result;
-					const table = <table className="table table-condensed">
-						<tbody>
-							<tr>
-								<th>Variable</th>
-								<th>{e.type}</th>
-								<th>N</th>
-							</tr>
-							<tr>
-								<th>{e.variable}</th>
-								<td>{value.toFixed( 3 )}</td>
-								<td>{size}</td>
-							</tr>
-						</tbody>
-					</table>;
-					const elem = <pre key={idx} >
-						<ClearButton onClick={() => { clearOutput( idx ); }} />
-						{makeDraggable( table )}
-					</pre>;
-					return elem;
-				}
-				else if ( isArray( e.result.value ) && e.type === 'Range' ) {
-					return renderRangeTable( e, idx, clearOutput );
-				} else if ( isArray( e.result.value ) && e.type === 'Interquartile Range' ) {
-					return renderIQRTable( e, idx, clearOutput );
-				}
-				else if ( isObject( e.result ) ) {
-					let elem = <pre key={idx} >
-						<ClearButton onClick={() => { clearOutput( idx ); }} />
-							<table className="table table-condensed">
-								<tbody>
-									{ e.type === 'Range' ?
-										<tr>
-											<th>Variable</th>
-											<th>{e.group}</th>
-											<th>Range</th>
-											<th></th>
-											<th>N</th>
-										</tr>: null
-									}
-									{ e.type === 'Interquartile Range' ?
-										<tr>
-											<th>Variable</th>
-											<th>{e.group}</th>
-											<th>IQR</th>
-											<th>Lower</th>
-											<th>Upper</th>
-											<th>N</th>
-										</tr>: null
-									}
-									{ e.type !== 'Range' && e.type !== 'Interquartile Range' ?
-										<tr>
-											<th>Variable</th>
-											<th>{e.group}</th>
-											<th>{e.type}</th>
-											<th>N</th>
-										</tr>: null
-									}
-									{entries( e.result ).map( ( arr, i ) => {
-										if ( isArray( arr[ 1 ].value ) ) {
-											return (
-												<tr key={i} >
-													{ i === 0 ? <th>{e.variable}</th> : <th></th>}
-													<td>{arr[ 0 ]}</td>
-													{arr[ 1 ].value.map( ( x, j ) => {
-														return <td key={j}>{x.toFixed( 3 )}</td>;
-													})}
-													<td>{arr[ 1 ].size}</td>
-												</tr>
-											);
-										}
-										return (
-											<tr key={i} >
-												{ i === 0 ? <th>{e.variable}</th> : <th></th>}
-												<td>{arr[ 0 ]}</td>
-												<td>{arr[ 1 ].value.toFixed( 3 )} </td>
-												<td>{arr[ 1 ].size} </td>
-											</tr>
-										);
-									})}
-								</tbody>
-							</table>
-						</pre>;
-					return makeDraggable( elem );
-				}
-				return null;
-			})}
-		</div>
-	);
-};
 
 
 // MAIN //
@@ -323,6 +103,7 @@ class DataExplorer extends Component {
 			groupVars,
 			ready,
 			showStudentPlots: false,
+			openedNav: '1',
 			studentPlots: [],
 			unaltered: {
 				data: props.data,
@@ -604,9 +385,9 @@ class DataExplorer extends Component {
 		}
 		let colWidth = this.props.questions ? 4 : 6;
 		let nStatistics = this.props.statistics.length;
-		let defaultActiveKey = 'first';
+		let defaultActiveKey = '1';
 		if ( nStatistics === 0 ) {
-			defaultActiveKey = 'second';
+			defaultActiveKey = '2';
 		}
 		const categoricalProps = {
 			data: this.state.data,
@@ -624,9 +405,6 @@ class DataExplorer extends Component {
 		};
 
 		const navbar = <Nav bsStyle="tabs">
-			<NavItem eventKey="0">
-			Data
-			</NavItem>
 			{ nStatistics > 0 ?
 				<NavItem eventKey="1">
 				Statistics
@@ -671,42 +449,9 @@ class DataExplorer extends Component {
 						<MenuItem key={i} eventKey={`5.${i+1}`}>{e}</MenuItem> )}
 				</NavDropdown> : null
 			}
-			{ this.props.transformer ?
-				<NavItem
-					eventKey="6"
-					title="Transform"
-				>
-					Transform
-				</NavItem> : null
-			}
-			{ this.props.distributions.length > 0 ?
-				<NavDropdown
-					eventKey="7"
-					title="Distributions"
-				>
-					{this.props.distributions.map( ( e, i ) =>
-						<MenuItem key={i} eventKey={`7.${i+1}`}>{e}</MenuItem> )}
-				</NavDropdown> : null
-			}
-			{ this.props.showEditor > 0 ?
-				<NavItem
-					eventKey="8"
-					title={this.props.editorTitle}
-				>
-					{this.props.editorTitle}
-				</NavItem> : null
-			}
-			{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
-				return ( <NavItem key={i} eventKey={`${9+i}`}>
-					{e.title}
-				</NavItem> );
-			}) : null }
 		</Nav>;
 
-		const tabs = <Tab.Content animation>
-			<Tab.Pane eventKey="0">
-				<DataTable data={this.state.data} dataInfo={this.props.dataInfo} />
-			</Tab.Pane>
+		const tabs = <Tab.Content animation={false}>
 			<Tab.Pane eventKey="1">
 				<SummaryStatistics
 					{...continuousProps}
@@ -893,126 +638,159 @@ class DataExplorer extends Component {
 					{content}
 				</Tab.Pane> );
 			})}
-			{ this.props.transformer ? <Tab.Pane eventKey="6">
-				<VariableTransformer
-					data={this.state.data}
-					logAction={this.logAction}
-					session={this.context.session}
-					defaultCode={generateTransformationCode( this.state.continuous[ 0 ])}
-					onGenerate={this.onGenerateTransformedVariable}
-				/>
-			</Tab.Pane> : null }
-			{this.props.distributions.map( ( e, i ) => {
-				let content = null;
-				switch ( e ) {
-				case 'Normal':
-					content = <LearnNormalDistribution step="any" />;
-					break;
-				case 'Uniform':
-					content = <LearnUniformDistribution step="any" />;
-					break;
-				case 'Exponential':
-					content = <LearnExponentialDistribution step="any" />;
-					break;
-				}
-				return ( <Tab.Pane key={i} eventKey={`7.${i+1}`}>
-					{content}
-				</Tab.Pane> );
-			})}
-			{ this.props.showEditor ? <Tab.Pane eventKey="8">
-				<MarkdownEditor {...this.props.editorProps} id={this.props.id ? this.props.id + '_editor' : null} submitButton />
-			</Tab.Pane> : null }
-			{this.props.tabs.map( ( e, i ) => {
-				return ( <Tab.Pane key={i} eventKey={`${9+i}`}>
-					{e.content}
-				</Tab.Pane> );
-			})}
 		</Tab.Content>;
 
 		return (
 			<Row className="no-gutter data-explorer">
-				{ this.props.questions ? <Col md={colWidth}><Pages
+				{ this.props.questions ? <Col xs={colWidth} md={colWidth}><Pages
 					title="Questions"
 					height={470}
 					bsSize="small"
 					className="data-explorer-questions"
 				>{this.props.questions}</Pages></Col> : null }
-				<Col md={colWidth}>
-					<Panel
-						style={{ minHeight: window.innerHeight*0.9 }}
-					>
-						<Panel.Heading>
-							<Panel.Title componentClass="h3">Toolbox</Panel.Title>
-						</Panel.Heading>
+				<Col xs={colWidth} md={colWidth}>
+					<Panel>
+						<Navbar className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
+							<Nav>
+								<NavItem eventKey="1" active={this.state.openedNav === '1'}>
+									Data
+								</NavItem>
+								<NavItem eventKey="2" active={this.state.openedNav === '2'}>
+									Toolbox
+								</NavItem>
+								{ this.props.distributions.length > 0 ?
+									<NavDropdown
+										eventKey="3"
+										title="Distributions"
+										active={startsWith( this.state.openedNav, '3' )}
+									>
+										{this.props.distributions.map( ( e, i ) =>
+											<MenuItem key={i} eventKey={`3.${i+1}`}>{e}</MenuItem> )}
+									</NavDropdown> : null
+								}
+								{ this.props.showEditor ?
+									<NavItem eventKey="4" active={this.state.openedNav === '4'}>
+										{this.props.editorTitle}
+									</NavItem> : null
+								}
+								{ this.props.transformer ?
+									<NavItem eventKey="5" active={this.state.openedNav === '5'}>
+										Transform
+									</NavItem> : null
+								}
+								{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
+									return ( <NavItem key={i} eventKey={`${6+i}`}>
+										{e.title}
+									</NavItem> );
+								}) : null }
+							</Nav>
+						</Navbar>
 						<Panel.Body>
-							<Tab.Container id="options-menu" defaultActiveKey={defaultActiveKey}>
-								<Row className="clearfix">
-									<Col sm={12}>
-										{navbar}
-									</Col>
-									<Col sm={12}>
-										{tabs}
-									</Col>
-								</Row>
-							</Tab.Container>
+							{ this.state.openedNav === '1' ?
+									<DataTable data={this.state.data} dataInfo={this.props.dataInfo} /> : null
+							}
+							{ this.state.openedNav === '2' ?
+								<Tab.Container id="options-menu" defaultActiveKey={defaultActiveKey}>
+									<Row className="clearfix">
+										<Col sm={12}>
+											{navbar}
+										</Col>
+										<Col sm={12}>
+											{tabs}
+										</Col>
+									</Row>
+								</Tab.Container> : null
+							}
+							{this.props.distributions.map( ( e, i ) => {
+								let content = null;
+								switch ( e ) {
+								case 'Normal':
+									content = <LearnNormalDistribution step="any" />;
+									break;
+								case 'Uniform':
+									content = <LearnUniformDistribution step="any" />;
+									break;
+								case 'Exponential':
+									content = <LearnExponentialDistribution step="any" />;
+									break;
+								}
+								return ( this.state.openedNav === `3.${i+1}` ?
+									content : null );
+							})}
+							{ this.state.openedNav === '4' ?
+								<MarkdownEditor {...this.props.editorProps} id={this.props.id ? this.props.id + '_editor' : null} submitButton /> : null
+							}
+							{ this.state.openedNav === '5' ?
+								<VariableTransformer
+									data={this.state.data}
+									logAction={this.logAction}
+									session={this.context.session}
+									defaultCode={generateTransformationCode( this.state.continuous[ 0 ])}
+									onGenerate={this.onGenerateTransformedVariable}
+								/> : null
+							}
+							{this.props.tabs.map( ( e, i ) => {
+								return ( this.state.openedNav === `6.${i+1}` ?
+									e.content : null );
+							})}
 						</Panel.Body>
 					</Panel>
-					<Gate owner>
-						<Modal
-							show={this.state.showStudentPlots}
-							onHide={this.toggleStudentPlots}
-							dialogClassName="fullscreen-modal"
-						>
-							<Modal.Header closeButton>
-								<Modal.Title>Plots</Modal.Title>
-							</Modal.Header>
-							<Modal.Body style={{ height: 0.90 * window.innerHeight, overflowY: 'scroll' }}>
-								{ this.state.studentPlots.length > 0 ?
-									<GridLayout>
-										{this.state.studentPlots.map( ( elem, idx ) => {
-											const config = JSON.parse( elem.config );
-											return (
-												<div key={idx} style={{ height: '450px' }}>
-													{
-														isString( config ) ?
-															<RPlot
-																code={config}
-																libraries={[ 'MASS' ]}
-															/>:
-															<Plotly
-																data={config.data}
-																layout={config.layout}
-																removeButtons
-																fit
-															/>
-													}
-													<span>
-														<b>Count: </b>{elem.count}
-													</span>
-												</div>
-											);
-										})}
-									</GridLayout> :
-									<Well>
-										No plots have been created yet...
-									</Well>
-								}
-							</Modal.Body>
-							<Modal.Footer>
-								<Button onClick={this.clearPlots}>Clear Plots</Button>
-								<Button onClick={this.toggleStudentPlots}>Close</Button>
-							</Modal.Footer>
-						</Modal>
-						<ButtonGroup bsSize="small" >
-							<Button onClick={this.toggleStudentPlots} >Open Plots</Button>
-						</ButtonGroup>
-						<RealtimeMetrics returnFullObject for={this.props.id} onDatum={this.onUserAction} />
-					</Gate>
 				</Col>
-				<Col md={colWidth}>
+				<Col xs={colWidth} md={colWidth}>
 					<div className="panel panel-default" style={{ minHeight: window.innerHeight*0.9, padding: 0 }}>
-						<div className="panel-heading">
-							<h3 className="panel-title">Output</h3>
+						<div className="panel-heading clearfix">
+							<h3 className="data-explorer-output-header">Output</h3>
+							<Gate owner>
+								<Modal
+									show={this.state.showStudentPlots}
+									onHide={this.toggleStudentPlots}
+									dialogClassName="fullscreen-modal"
+								>
+									<Modal.Header closeButton>
+										<Modal.Title>Plots</Modal.Title>
+									</Modal.Header>
+									<Modal.Body style={{ height: 0.90 * window.innerHeight, overflowY: 'scroll' }}>
+										{ this.state.studentPlots.length > 0 ?
+											<GridLayout>
+												{this.state.studentPlots.map( ( elem, idx ) => {
+													const config = JSON.parse( elem.config );
+													return (
+														<div key={idx} style={{ height: '450px' }}>
+															{
+																isString( config ) ?
+																	<RPlot
+																		code={config}
+																		libraries={[ 'MASS' ]}
+																	/>:
+																	<Plotly
+																		data={config.data}
+																		layout={config.layout}
+																		removeButtons
+																		fit
+																	/>
+															}
+															<span>
+																<b>Count: </b>{elem.count}
+															</span>
+														</div>
+													);
+												})}
+											</GridLayout> :
+											<Well>
+												No plots have been created yet...
+											</Well>
+										}
+									</Modal.Body>
+									<Modal.Footer>
+										<Button onClick={this.clearPlots}>Clear Plots</Button>
+										<Button onClick={this.toggleStudentPlots}>Close</Button>
+									</Modal.Footer>
+								</Modal>
+								<ButtonGroup bsSize="small" style={{ float: 'right' }} >
+									<Button onClick={this.toggleStudentPlots} >Open Shared Plots</Button>
+								</ButtonGroup>
+								<RealtimeMetrics returnFullObject for={this.props.id} onDatum={this.onUserAction} />
+							</Gate>
 						</div>
 						{OutputPanel( this.state.output, this.clearOutput )}
 						<Button bsSize="small" block onClick={() => {

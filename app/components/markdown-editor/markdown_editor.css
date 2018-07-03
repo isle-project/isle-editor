@@ -1,21 +1,16 @@
-.instructor-notes {
+.markdown-editor {
 	border: 1px solid  rgba(92,92,92, 0.6);
 	border-radius: 6px;
-	box-shadow: 0 0 7px rgba(92,92,92, 0.5);
-	margin-bottom: 0px;
-	margin-left: 0px;
-	margin-right: 0px;
-	margin-top: 0px;
+	box-shadow: 0 0 8px rgba(92,92,92, 0.5);
+	margin-bottom: 15px;
 }
 
-.instructor-notes .CodeMirror {
-	max-height: 300px;
-	min-height: 300px;
+.CodeMirror {
+	max-height: 420px;
 }
-
 .CodeMirror-scroll {
-	min-height: 260px;
-	overflow-y: auto;
+	min-height: 420px;
+	max-height: 420px;
 }
 
 .editor-toolbar.fullscreen, .CodeMirror-fullscreen, .editor-preview-side {
@@ -33,7 +28,7 @@
 	opacity: 0.6;
 }
 
-.editor-preview-side-statusbar {
+.editor-statusbar {
 	background: ghostwhite;
 	opacity: 0.6;
 }
@@ -69,4 +64,3 @@
 	border-color: grey;
 	text-align: left;
 }
-

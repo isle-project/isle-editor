@@ -47,3 +47,8 @@
 	height: 0;
 	border-style: solid;
 }
+
+.panel-notes {
+	height: 400px;
+	overflow-y: scroll;
+}

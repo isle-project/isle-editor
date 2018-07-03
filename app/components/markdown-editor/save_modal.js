@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import noop from '@stdlib/utils/noop';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import Panel from 'react-bootstrap/lib/Panel';
@@ -13,29 +14,33 @@ import NumberInput from 'components/input/number';
 import pageSizes from './page_sizes.json';
 
 
+// VARIABLES //
+
+const DEFAULT_STATE = {
+	openPDF: false,
+	pageSize: 'LETTER',
+	customSize: false,
+	showPageOptions: false,
+	pageOptionConfig: 'Predefined',
+	customWidth: 8.5 * 72,
+	customHeight: 11 * 72,
+	useString: true,
+	pageOrientation: 'portrait',
+	visibleWidth: 8.5,
+	visibleHeight: 11
+};
+
+
 // MAIN //
 
 class SaveModal extends Component {
 	constructor( props ) {
 		super( props );
 
-		this.state = {
-			openPDF: false,
-			pageSize: 'LETTER',
-			customSize: false,
-			showPageOptions: false,
-			pageOptionConfig: 'Predefined',
-			customWidth: 8.5 * 72,
-			customHeight: 11 * 72,
-			useString: true,
-			pageOrientation: 'portrait',
-			visibleWidth: 8.5,
-			visibleHeight: 11
-		};
+		this.state = DEFAULT_STATE;
 	}
 
 	togglePDFMenu = () => {
-		// Do some control flow to hide pageOptions too
 		if ( this.state.openPDF && this.state.showPageOptions ) {
 			this.setState({
 				openPDF: !this.state.openPDF,
@@ -52,7 +57,7 @@ class SaveModal extends Component {
 		var config = {};
 		var pageDims;
 		if ( this.state.useString ) {
-			// If we use the string make it the string
+			// If we use the string make page dimension the string:
 			pageDims = this.state.pageSize;
 		}
 		if ( !this.state.useString || this.state.pageSize === 'POSTER' ) {
@@ -66,13 +71,8 @@ class SaveModal extends Component {
 	}
 
 	clickHide = () => {
-		this.setState({
-			openPDF: false,
-			customSize: false,
-			showPageOptions: false
-		}, () => {
-			this.props.onHide();
-		});
+		this.setState( DEFAULT_STATE );
+		this.props.onHide();
 	}
 
 	render() {
@@ -99,7 +99,7 @@ class SaveModal extends Component {
 						<Button onClick={this.togglePDFMenu} bsStyle="primary" bsSize="large" block>
 							Export as PDF
 						</Button>
-						<Panel id="export-pdf-panel" expanded={this.state.openPDF}>
+						<Panel id="export-pdf-panel" expanded={this.state.openPDF} onToggle={noop} >
 							<Panel.Collapse>
 								<Panel.Body>
 									<Row className="showDimensions">
@@ -147,7 +147,7 @@ class SaveModal extends Component {
 											<p>Page Size: {this.state.visibleWidth} x {this.state.visibleHeight}</p>
 										</Col>
 									</Row>
-									<Panel expanded={(this.state.pageOptionConfig === 'Predefined') && this.state.customSize}>
+									<Panel expanded={(this.state.pageOptionConfig === 'Predefined') && this.state.customSize} onToggle={noop} >
 										<Panel.Collapse>
 											<Panel.Body>
 												<SelectInput
@@ -168,7 +168,7 @@ class SaveModal extends Component {
 											</Panel.Body>
 										</Panel.Collapse>
 									</Panel>
-									<Panel expanded={(this.state.pageOptionConfig === 'Custom') && this.state.customSize}>
+									<Panel expanded={(this.state.pageOptionConfig === 'Custom') && this.state.customSize} onToggle={noop} >
 										<Panel.Collapse>
 											<Panel.Body>
 												<p>Custom Sizes</p>

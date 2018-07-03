@@ -8,7 +8,6 @@ Summer
 ~~* Scaffolding for the labs. This would involve notes for the TAs about when to interject, what to teach, etc.~~
 * Instructor notes within the instructor panel. Start out with the skeleton for the lab and have them fill it in.
 * Dashboard: Have a repository with old TA notes
-~~* Scatterplot: Add functionality to add smooth and linear regression at the same time~~
 ~~* `.pdf` poster export~~
 * Insert equation menu similar to table select
 * **Calculator parser**
@@ -17,6 +16,9 @@ Summer
 * Data transformation: generate a new column of transformed variables. Beef it up.
 * Minification and bundling times
 * Images did not show up on .pdf
+* Ability to select multiple smoothing values / change them in real-time (similarly, for histogram ability to choose binwidth)
+* Ability to set font sizes and font family for reports
+* "Undo" button for plots (investigate Plotly's capabilities in this regard)
 
 Priotity
 ====
@@ -44,7 +46,6 @@ Priotity
 
 General
 ====
-~~* Data tab in data-explorer~~
 * Make dynamic titling for data-explorer
 * When loading .txt files in the pre-amble, automatically convert it to a string
 
@@ -64,7 +65,6 @@ LONG-TERM
    - For barcharts, instead of counts, add an option to display percentages (also conditional %)
    - Display additional information when hovering over bars of barcharts (percentage, description, other variables?)
    - We have been deliberately loose with respect to terminology: z-test vs. t-test
-   - Should be able to change labels on graphs
 * Gate
     This shall contain a **timed** parameter allowing scheduled gating
 * Surveys
