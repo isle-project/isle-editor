@@ -260,15 +260,18 @@ class MarkdownEditor extends Component {
 					// Add the newline to the left of the cursor
 					const startPoint = cm.getCursor( 'start' );
 					const endPoint = cm.getCursor( 'end' );
-					while (startPoint.line !== endPoint.line) {
-						var currentLine = cm.getLine(startPoint.line);
+					if ( startPoint.line === endPoint.line ) {
+						cm.replaceSelection( '\\\n' );
+					}
+					while ( startPoint.line !== endPoint.line ) {
+						var currentLine = cm.getLine( startPoint.line );
 						if ( endsWith(currentLine, '\\') ) {
-							cm.replaceRange( removeLast(currentLine),
+							cm.replaceRange( removeLast( currentLine ),
 								{ line: startPoint.line, ch: 0 },
 								{ line: startPoint.line, ch: 99999999999999 }
 							);
 						} else {
-							cm.replaceRange(currentLine + '\\',
+							cm.replaceRange( currentLine + '\\',
 								{ line: startPoint.line, ch: 0 },
 								{ line: startPoint.line, ch: 99999999999999 }
 							);
@@ -277,7 +280,7 @@ class MarkdownEditor extends Component {
 					}
 					cm.focus();
 				},
-				className: 'fa fa-arrow-down',
+				className: 'fa fa-reply fa-flip-vertical',
 				title: 'Add new line separator'
 			},
 			'center': {
@@ -384,7 +387,7 @@ class MarkdownEditor extends Component {
 						position: 'tr'
 					});
 					let text = this.simplemde.value();
-					text = this.replacePlaceholders( text );
+					text = this.replacePlaceholders( text, true );
 					let html = this.previewRender( text );
 					const title = document.title || 'provisoric';
 					html = createHTML( title, html );
@@ -599,14 +602,18 @@ class MarkdownEditor extends Component {
 		}
 	}
 
-	replacePlaceholders( plainText ) {
-		var replacementHash;
+	replacePlaceholders( plainText, skipCommens ) {
+		let replacementHash;
 		const { hash } = this.state;
 		for ( let key in hash ) {
 			if ( hasOwnProp( hash, key ) ) {
 				let id = replace( key, '<!--', '' );
 				id = replace( id, '-->', '' );
-				replacementHash = `\n\n<!-- START:${id} -->\n\n${hash[ key ]}\n\n<!-- END -->\n\n`;
+				if ( !skipCommens ) {
+					replacementHash = `<!-- START:${id} -->${hash[ key ]}<!-- END -->`;
+				} else {
+					replacementHash = `\n\n${hash[ key ]}\n\n`;
+				}
 				var re = new RegExp( '\\s*'+key+'\\s*', 'g' );
 				plainText = plainText.replace( re, replacementHash );
 			}
@@ -641,7 +648,7 @@ class MarkdownEditor extends Component {
 			key = text.substr( startS + START_TAG_LEN, endE - startS - (START_TAG_LEN+1) );
 			data = text.substr( endE + CLOSING_TAG_LEN, bigE - endE - CLOSING_TAG_LEN );
 			section = text.substr( startS, bigE + (START_TAG_LEN+1) - startS );
-			hash[ `<!--${key}-->` ] = '\n'+trim( data )+'\n';
+			hash[ `<!--${key}-->` ] = trim( data );
 			newText = newText.replace( section, `<!--${key}-->` );
 
 			// Update the startIndex:
@@ -746,7 +753,7 @@ class MarkdownEditor extends Component {
 	exportPDF = ( config, opts ) => {
 		const title = document.title || 'provisoric';
 		let text = this.simplemde.value();
-		text = this.replacePlaceholders( text );
+		text = this.replacePlaceholders( text, true );
 		const ast = md.parse( text );
 		const doc = generatePDF( ast, config, opts );
 		this.toggleSaveModal( null, () => {
@@ -768,7 +775,7 @@ class MarkdownEditor extends Component {
 	render() {
 		return (
 			<Fragment>
-				<div className="markdown-editor">
+				<div className="markdown-editor" style={this.props.style} >
 					<textarea ref={( area ) => { this.simplemdeRef = area; }} autoComplete="off" {...this.props.options} />
 					{this.renderVoiceControl()}
 				</div>
@@ -817,6 +824,7 @@ MarkdownEditor.defaultProps = {
 	language: 'en-US',
 	onChange() {},
 	options: {},
+	style: {},
 	toolbarConfig: [
 		'bold', 'italic', 'underline',
 		'new_line', 'center', '|',
@@ -838,6 +846,7 @@ MarkdownEditor.propTypes = {
 	language: PropTypes.string,
 	onChange: PropTypes.func,
 	options: PropTypes.object,
+	style: PropTypes.object,
 	toolbarConfig: PropTypes.arrayOf(PropTypes.string),
 	voiceTimeout: PropTypes.number
 };
