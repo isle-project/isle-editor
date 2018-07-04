@@ -3,11 +3,11 @@ TODO
 For various to-do items related to the `ISLE` project.
 
 Summer
-====
+=====
+* Font sizes and families.
 ~~* Scaffolding for the labs. This would involve notes for the TAs about when to interject, what to teach, etc.~~
 * Instructor notes within the instructor panel. Start out with the skeleton for the lab and have them fill it in.
 * Dashboard: Have a repository with old TA notes
-~~* `.pdf` poster export~~
 * Insert equation menu similar to table select
 * **Calculator parser**
 * Build mosiac plot
@@ -25,21 +25,17 @@ Priotity
 ~~1. Instructor Notes~~
     A. Changed props to take array of what is needed
         Still have VoiceControl as a prop because we dont have it working
-~~2. Build "Tiles Popup" to select dimensions of inserted Markdown table~~
-    ~~A. Change file name to underscore~~
-    ~~B. onMouseOver event~~
-        ~~CSS styling of the table --> hover over for Rows and Cols~~
-        ~~Change the cursor~~
-        ~~No number input~~
-        ~~No button~~
-        ~~Re design the fixed columns~~
 3. `.pdf` poster export
     A. Change thte sizing of the pdf export
         What happens if we make it like printing a paper?
         http://pdfmake.org/#/gettingstarted
         Page dimensions
+    B. Preamble for 
 4. Parser.
-~~5. Loewess smoother changer for smooth on scatterplot~~
+5. Change icon of newline button and behavior such that clicking the button will work like "Enter" and insert the backslash at the end of the line
+6. Instructor view
+7. Restore the image side-by-side display
+
 
 General
 ====
@@ -48,6 +44,7 @@ General
 
 LONG-TERM
 ===
+* Data Explorer Output Behavior 
 * Mobile. `isle-app`. Mobile responsiveness
 * Needed learning components:
     - ...
