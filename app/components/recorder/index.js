@@ -2,7 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
+import ToggleButtonGroup from 'react-bootstrap/lib/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/lib/ToggleButton';
 import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder, WhammyRecorder } from 'recordrtc';
 import inEditor from 'utils/is-electron';
 import getScreenId from './get_screen_id.js';
@@ -16,27 +19,6 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.mediaDevices.getUse
 
 
 // FUNCTIONS //
-
-function captureScreen( clbk, capture ) {
-	getScreenId( function getUserMedia( error, sourceId, screenConstraints ) {
-		navigator.getUserMedia( screenConstraints, clbk, function onMedia( error ) {
-			console.error( 'getScreenId error', error ); // eslint-disable-line no-console
-			alert( 'Failed to capture your screen. Please check Chrome console logs for further information.' );
-		});
-	}, capture );
-}
-
-function captureCamera( cb, captureAudio ) {
-	navigator.getUserMedia({ audio: captureAudio, video: true }, cb, function onMedia( error ) {
-		console.error( 'captureCamera error', error ); // eslint-disable-line no-console
-	});
-}
-
-function captureAudio( cb ) {
-	navigator.getUserMedia({ audio: true, video: false }, cb, function onMedia( error ) {
-		console.error( 'captureAudio error', error ); // eslint-disable-line no-console
-	});
-}
 
 const isMimeTypeSupported = ( _mimeType ) => {
 	if ( typeof MediaRecorder.isTypeSupported !== 'function' ) {
@@ -62,7 +44,13 @@ function getAudioConfig( props ) {
 			}
 		}
 	}
-	return { mimeType, recorderType, type: 'audio', bitsPerSecond: props.bitsPerSecond };
+	return {
+		mimeType,
+		recorderType,
+		type: 'audio',
+		bitsPerSecond: props.bitsPerSecond,
+		numberOfAudioChannels: 1
+	};
 }
 
 function getVideoConfig( props ) {
@@ -91,7 +79,12 @@ function getVideoConfig( props ) {
 			}
 		}
 	}
-	return { mimeType, recorderType, type: 'video', bitsPerSecond: props.bitsPerSecond };
+	return {
+		mimeType,
+		recorderType,
+		type: 'video',
+		bitsPerSecond: props.bitsPerSecond
+	};
 }
 
 
@@ -101,18 +94,24 @@ class Recorder extends Component {
 	constructor( props ) {
 		super( props );
 
+		let selectedSources = [];
+		if ( props.audio ) {
+			selectedSources.push( 'audio' );
+		}
+		if ( props.screen ) {
+			selectedSources.push( 'screen' );
+		}
+		if ( props.camera ) {
+			selectedSources.push( 'camera' );
+		}
+
 		this.state = {
 			recording: false,
 			available: true,
 			finished: false,
-			uploaded: false
+			uploaded: false,
+			selectedSources: selectedSources
 		};
-
-		if ( props.screen || props.camera ) {
-			this.recorderConfig = getVideoConfig( props );
-		} else if ( props.audio ) {
-			this.recorderConfig = getAudioConfig( props );
-		}
 
 		window.getChromeExtensionStatus( ( status ) => {
 			console.log( 'Extension status: ' + status );
@@ -125,10 +124,6 @@ class Recorder extends Component {
 	}
 
 	componentDidMount() {
-		const { session } = this.context;
-		this.unsubscribe = session.subscribe( () => {
-			this.forceUpdate();
-		});
 		if ( this.props.autostart ) {
 			this.startRecording();
 			this.setState({
@@ -138,7 +133,6 @@ class Recorder extends Component {
 	}
 
 	componentWillUnmount() {
-		this.unsubscribe();
 		if ( this.props.screen && this.screen ) {
 			this.screen.getVideoTracks().forEach( function onTrack( track ) {
 				track.stop();
@@ -149,6 +143,59 @@ class Recorder extends Component {
 				track.stop();
 			});
 		}
+	}
+
+	handleError( msg ) {
+		const { session } = this.context;
+		session.addNotification({
+			title: 'Encountered Error',
+			message: msg,
+			level: 'error',
+			position: 'tr'
+		});
+		this.setState({
+			recording: false,
+			finished: false
+		});
+	}
+
+	captureScreen( clbk ) {
+		getScreenId( function getUserMedia( error, sourceId, screenConstraints ) {
+			navigator.getUserMedia( screenConstraints, clbk, ( error ) => {
+				this.handleError( 'Failed to capture your screen' );
+			});
+		});
+	}
+
+	captureCamera( cb, captureAudio ) {
+		navigator.getUserMedia({ audio: captureAudio, video: true }, cb, ( error ) => {
+			this.handleError( 'Failed to capture your camera.' );
+		});
+	}
+
+	captureAudio( cb ) {
+		navigator.getUserMedia({ audio: true, video: false }, cb, function onMedia( error ) {
+			this.handleError( 'Failed to capture your microphone.' );
+		});
+	}
+
+	handleSourceChange = ( e ) => {
+		if ( this.audio ) {
+			this.audio = null;
+		}
+		if ( this.camera ) {
+			this.camera = null;
+		}
+		if ( this.screen ) {
+			this.screen = null;
+		}
+		if ( this.recorder ) {
+			this.recorder.destroy();
+			this.recorder = null;
+		}
+		this.setState({
+			selectedSources: e
+		});
 	}
 
 	storeFile = () => {
@@ -165,11 +212,18 @@ class Recorder extends Component {
 	uploadFile = () => {
 		const { session } = this.context;
 		const id = this.props.id;
+		const { audio, camera, screen } = this.getActiveSources();
+		let mimeType;
+		if ( audio && !camera && !screen ) {
+			mimeType = this.recorderAudioConfig.mimeType;
+		} else {
+			mimeType = this.recorderVideoConfig.mimeType;
+		}
 		const { namespaceName, lessonName, user } = session;
 		let fileName = `${namespaceName}_${lessonName}_${user.email}_${id || 'recorderFile'}`;
 		const blob = this.recorder.getBlob();
 		const file = new File([ blob ], fileName, {
-			type: this.recorderConfig.mimeType
+			type: mimeType
 		});
 
 		const formData = new FormData();
@@ -207,7 +261,7 @@ class Recorder extends Component {
 			try {
 				this.recorder.startRecording();
 			} catch ( err ) {
-				this.setupRecorder( () => {
+				this.setupRecorder( ( err ) => {
 					this.recorder.startRecording();
 				});
 			}
@@ -222,80 +276,127 @@ class Recorder extends Component {
 		});
 	}
 
+	getActiveSources = () => {
+		const sources = {
+			audio: false,
+			camera: false,
+			screen: false
+		};
+		for ( let i = 0; i < this.state.selectedSources.length; i++ ) {
+			if ( this.state.selectedSources[ i ] === 'audio' ) {
+				sources.audio = true;
+			}
+			else if ( this.state.selectedSources[ i ] === 'camera' ) {
+				sources.camera = true;
+			}
+			else if ( this.state.selectedSources[ i ] === 'screen' ) {
+				sources.screen = true;
+			}
+		}
+		return sources;
+	}
+
 	setupRecorder( clbk = () => {} ) {
-		const { audio, camera, screen } = this.props;
+		const { audio, camera, screen } = this.getActiveSources();
+
+		if ( screen || camera ) {
+			this.recorderVideoConfig = getVideoConfig( this.props );
+		} else if ( audio ) {
+			this.recorderAudioConfig = getAudioConfig( this.props );
+		}
 
 		// Case: Camera + Audio / No Audio
 		if ( camera && !screen ) {
-			captureCamera( ( camera ) => {
+			if ( this.camera ) {
+				this.recorder = RecordRTC( this.camera, this.recorderVideoConfig );
+				this.recorder.startRecording();
+				return clbk();
+			}
+			this.captureCamera( ( camera ) => {
 				camera.width = window.screen.width;
 				camera.height = window.screen.height;
 				camera.fullcanvas = true;
 				this.camera = camera;
-				let recorder = RecordRTC( camera, this.recorderConfig );
-				recorder.startRecording();
-				this.recorder = recorder;
+				this.recorder = RecordRTC( camera, this.recorderVideoConfig );
+				this.recorder.startRecording();
 				clbk();
 			}, audio );
 		}
 		// Case: Audio
 		if ( audio && !screen && !camera ) {
-			captureAudio( ( audio ) => {
-				let recorder = RecordRTC( audio, this.recorderConfig );
-				recorder.startRecording();
+			if ( this.audio ) {
+				this.recorder = RecordRTC( this.audio, this.recorderAudioConfig );
+				this.recorder.startRecording();
+				return clbk();
+			}
+			this.captureAudio( ( audio ) => {
+				this.recorder = RecordRTC( audio, this.recorderAudioConfig );
+				this.recorder.startRecording();
 				this.audio = audio;
-				this.recorder = recorder;
 				clbk();
 			});
 		}
 		// Case: Screen & Audio
 		if ( screen && !camera && audio ) {
-			captureScreen( ( screen ) => {
-				captureAudio( ( audio ) => {
+			if ( this.audio && this.screen ) {
+				this.recorder = RecordRTC( [ this.screen, this.audio ], this.recorderVideoConfig );
+				this.recorder.startRecording();
+				return clbk();
+			}
+			this.captureScreen( ( screen ) => {
+				this.captureAudio( ( audio ) => {
 					screen.width = window.screen.width;
 					screen.height = window.screen.height;
 					screen.fullcanvas = true;
 					this.screen = screen;
-					let recorder = RecordRTC( [ screen, audio ], this.recorderConfig );
-					recorder.startRecording();
-					this.recorder = recorder;
+					this.audio = audio;
+					this.recorder = RecordRTC( [ screen, audio ], this.recorderVideoConfig );
+					this.recorder.startRecording();
 					clbk();
 				});
-			}, true );
+			});
 		}
 		// Case: Screen without Audio
 		if ( screen && !camera && !audio ) {
-			captureScreen( ( screen ) => {
+			if ( this.screen ) {
+				this.recorder = RecordRTC( this.screen, this.recorderVideoConfig );
+				this.recorder.startRecording();
+				return clbk();
+			}
+			this.captureScreen( ( screen ) => {
 				screen.width = window.screen.width;
 				screen.height = window.screen.height;
 				screen.fullcanvas = true;
 				this.screen = screen;
-				let recorder = RecordRTC( screen, this.recorderConfig );
-				recorder.startRecording();
-				this.recorder = recorder;
+				this.recorder = RecordRTC( screen, this.recorderVideoConfig );
+				this.recorder.startRecording();
 				clbk();
 			});
 		}
 		// Case: Screen & Camera
+		if ( this.screen && this.camera ) {
+			this.recorder = RecordRTC([ this.camera, this.screen ], this.recorderVideoConfig );
+			this.recorder.startRecording();
+			return clbk();
+		}
 		if ( screen && camera ) {
-			captureCamera( ( camera ) => {
-				captureScreen( ( screen ) => {
+			this.captureCamera( ( camera ) => {
+				this.captureScreen( ( screen ) => {
 					screen.width = window.screen.width;
 					screen.height = window.screen.height;
 					screen.fullcanvas = true;
 					this.camera = camera;
 					this.screen = screen;
-					let recorder = RecordRTC([ camera, screen ], this.recorderConfig );
-					recorder.startRecording();
-					this.recorder = recorder;
+					this.recorder = RecordRTC([ camera, screen ], this.recorderVideoConfig );
+					this.recorder.startRecording();
 					clbk();
-				}, audio );
+				});
 			}, audio );
 		}
 	}
 
 	renderAudioVideo() {
-		const { audio, camera, screen } = this.props;
+		const { audio, camera, screen } = this.getActiveSources();
 		if ( audio && !camera && !screen ) {
 			return (
 				<audio
@@ -308,7 +409,7 @@ class Recorder extends Component {
 		if ( screen || camera ) {
 			return (
 				<video
-					width="320px"
+					width="300px"
 					height="auto"
 					style={{ display: this.state.recording ? 'none' : 'block' }}
 					ref={( player ) => { this.player = player; }}
@@ -319,43 +420,55 @@ class Recorder extends Component {
 	}
 
 	render() {
-		let recordingColor = this.state.recording ? 'red' : 'rgb(100,100,100)';
-		const { audio, screen, camera } = this.props;
-		if ( !audio && !screen && !camera ) {
-			return null;
-		}
+		const isAvailable = this.state.available || inEditor;
+		const recordingColor = this.state.recording ? 'red' : 'rgb(100,100,100)';
 		const editorStyle = isElectron ? ' recorder-in-editor' : '';
 		return (
 			<div className={`recorder-container unselectable${editorStyle}`} >
-				<div className="recorder-button-container">
-					<div
-						className="recorder-button"
-						onClick={this.handleClick}
-						style={{
-							background: recordingColor
-						}}
-					></div>
-				</div>
+				{ this.state.selectedSources.length > 0 && isAvailable ?
+					<div className="recorder-button-container">
+						<div
+							className="recorder-button"
+							onClick={this.handleClick}
+							style={{
+								background: recordingColor
+							}}
+						></div>
+					</div> : null }
 				<div
 					className="recorder-rec"
 					style={{ color: recordingColor }}
 				>REC</div>
+				{ !this.state.finished && isAvailable ?
+					<ToggleButtonGroup
+						className="recorder-buttongroup"
+						bsSize="xsmall" type="checkbox"
+						value={this.state.selectedSources}
+						onChange={this.handleSourceChange}
+					>
+						<ToggleButton className="recorder-togglebutton" disabled={!this.props.screen || this.state.recording} value="screen">Screen</ToggleButton>
+						<ToggleButton className="recorder-togglebutton" disabled={!this.props.camera || this.state.recording} value="camera">Cam</ToggleButton>
+						<ToggleButton className="recorder-togglebutton" disabled={!this.props.audio || this.state.recording} value="audio">Audio</ToggleButton>
+					</ToggleButtonGroup> : null
+				}
 				{ this.state.finished ? this.renderAudioVideo() : null }
-				{ !this.state.available && !inEditor ? <button onClick={() => {
+				{ !isAvailable ? <button onClick={() => {
 					window.open( 'https://chrome.google.com/webstore/detail/screen-capturing/ajhifddimkapgcifgcodmmfdlknahffk', '_blank' );
 				}} id="install-button">
 					<img width="100px" height="32px" src="https://www.webrtc-experiment.com/images/btn-install-chrome-extension.png" alt="Add to Chrome" />
 				</button> : null }
 				{ this.state.finished ?
-					<Button onClick={this.clearFile} bsStyle="warning">Clear</Button> :
-					null
-				}
-				{ this.state.finished && this.props.downloadable ?
-					<Button onClick={this.storeFile} bsStyle="primary">Download File</Button> :
-					null
-				}
-				{ this.state.finished && this.props.uploadable ?
-					<Button onClick={this.uploadFile} disabled={this.state.uploaded} bsStyle="primary">Upload File</Button> :
+					<ButtonGroup>
+						<Button onClick={this.clearFile} bsStyle="warning">Clear File</Button>
+						{ this.props.downloadable ?
+							<Button onClick={this.storeFile} bsStyle="primary">Download File</Button> :
+							null
+						}
+						{ this.props.uploadable ?
+							<Button onClick={this.uploadFile} disabled={this.state.uploaded} bsStyle="primary">Upload File</Button> :
+							null
+						}
+					</ButtonGroup> :
 					null
 				}
 			</div>
