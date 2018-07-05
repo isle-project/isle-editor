@@ -380,12 +380,6 @@ class MarkdownEditor extends Component {
 							position: 'tr'
 						});
 					}
-					session.addNotification({
-						title: 'Submitted',
-						message: 'Your report has been successfully submitted',
-						level: 'success',
-						position: 'tr'
-					});
 					let text = this.simplemde.value();
 					text = this.replacePlaceholders( text, true );
 					let html = this.previewRender( text );
@@ -418,6 +412,39 @@ class MarkdownEditor extends Component {
 							]
 						};
 						session.sendMail( msg, session.user.email );
+
+						// Upload report:
+						const htmlForm = new FormData();
+						const pdfForm = new FormData();
+
+						let filename = 'report.html';
+						if ( this.props.id ) {
+							filename = this.props.id+'_'+filename;
+						}
+						const htmlFile = new File([ html ], filename, {
+							type: 'text/html'
+						});
+						htmlForm.append( 'file', htmlFile );
+
+						filename = 'report.pdf';
+						if ( this.props.id ) {
+							filename = this.props.id+'_'+filename;
+						}
+						const pdfFile = new File([ pdf ], filename, {
+							type: 'application/pdf'
+						});
+						pdfForm.append( 'file', pdfFile );
+
+						session.uploadFile( htmlForm );
+						session.uploadFile( pdfForm );
+
+						session.addNotification({
+							title: 'Submitted',
+							message: 'Your report has been successfully submitted',
+							level: 'success',
+							position: 'tr'
+						});
+
 						if ( this.props.id ) {
 							session.log({
 								id: this.props.id,
