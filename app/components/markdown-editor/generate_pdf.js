@@ -3,6 +3,7 @@
 import logger from 'debug';
 import omit from '@stdlib/utils/omit';
 import startsWith from '@stdlib/string/starts-with';
+import contains from '@stdlib/assert/contains';
 
 
 // VARIABLES //
@@ -283,11 +284,11 @@ function generatePDF( ast, config, opts ) {
 			}
 			i += 2;
 		} else if ( elem.type === 'html_block' ) {
-			if ( startsWith( elem.content, '<img src=' ) ) {
-				let start = elem.content.indexOf( 'src="' );
+			if ( contains( elem.content, '<img src=' ) ) {
+				let start = elem.content.indexOf( '<img src="' );
 
-				// Move to right past `src="`
-				start += 5;
+				// Move to right past `<img src="`
+				start += 10;
 				const end = elem.content.indexOf( '"', start );
 				doc.content.push({
 					image: elem.content.substr( start, end - start ),

@@ -29,7 +29,7 @@ import fonts from './fonts.js';
 import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
 import TableSelect from './table_select.js';
-// import ColumnSelect from './column_select.js';
+import ColumnSelect from './column_select.js';
 import base64toBlob from './base64_to_blob.js';
 
 
