@@ -235,6 +235,7 @@ class FreeTextQuestion extends Component {
 							style={{
 								resize: this.props.resizable ? 'both' : 'none'
 							}}
+							maxlength={this.props.maxlength}
 							rows={this.props.rows}
 							value={this.state.value}
 							disabled={this.state.solutionDisplayed}
@@ -309,6 +310,7 @@ FreeTextQuestion.defaultProps = {
 	chat: false,
 	hintPlacement: 'bottom',
 	hints: [],
+	maxlength: 2500,
 	onChange() {},
 	placeholder: 'Enter your answer here...',
 	question: '',
@@ -326,6 +328,7 @@ FreeTextQuestion.propTypes = {
 	chat: PropTypes.bool,
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
+	maxlength: PropTypes.number,
 	onChange: PropTypes.func,
 	placeholder: PropTypes.string,
 	question: PropTypes.oneOfType([
