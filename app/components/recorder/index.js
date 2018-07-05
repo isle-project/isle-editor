@@ -211,7 +211,6 @@ class Recorder extends Component {
 
 	uploadFile = () => {
 		const { session } = this.context;
-		const id = this.props.id;
 		const { audio, camera, screen } = this.getActiveSources();
 		let mimeType;
 		if ( audio && !camera && !screen ) {
@@ -219,13 +218,15 @@ class Recorder extends Component {
 		} else {
 			mimeType = this.recorderVideoConfig.mimeType;
 		}
-		const { namespaceName, lessonName, user } = session;
-		let fileName = `${namespaceName}_${lessonName}_${user.email}_${id || 'recorderFile'}`;
+		const id = this.props.id;
+		let filename = 'recordedFile.webm';
+		if ( id ) {
+			filename = id+'_'+filename;
+		}
 		const blob = this.recorder.getBlob();
-		const file = new File([ blob ], fileName, {
+		const file = new File([ blob ], filename, {
 			type: mimeType
 		});
-
 		const formData = new FormData();
 		formData.append( 'file', file );
 		session.uploadFile( formData, ( err ) => {
