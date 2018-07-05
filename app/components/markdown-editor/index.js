@@ -30,6 +30,7 @@ import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
 import TableSelect from './table_select.js';
 // import ColumnSelect from './column_select.js';
+import base64toBlob from './base64_to_blob.js';
 
 
 // VARIABLES //
@@ -430,7 +431,8 @@ class MarkdownEditor extends Component {
 						if ( this.props.id ) {
 							filename = this.props.id+'_'+filename;
 						}
-						const pdfFile = new File([ pdf ], filename, {
+						const pdfBlob = base64toBlob( pdf, 'application/pdf' );
+						const pdfFile = new File([ pdfBlob ], filename, {
 							type: 'application/pdf'
 						});
 						pdfForm.append( 'file', pdfFile );
