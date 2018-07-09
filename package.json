@@ -120,7 +120,7 @@
     "@stdlib/stdlib": "0.0.42",
     "archiver": "^2.1.1",
     "babel-core": "6.26.3",
-    "babel-loader": "7.1.4",
+    "babel-loader": "7.1.5",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-resolver": "^1.1.0",
     "babel-plugin-transform-react-constant-elements": "^6.9.1",
@@ -149,7 +149,7 @@
     "configstore": "^3.1.2",
     "cross-env": "^5.1.5",
     "css": "^2.2.3",
-    "css-loader": "^0.28.11",
+    "css-loader": "^1.0.0",
     "css-modules-require-hook": "^4.2.3",
     "csv-parse": "^2.5.0",
     "csv-stringify": "^3.0.0",
@@ -243,6 +243,6 @@
     "webpack": "4.15.0"
   },
   "devEngines": {
-    "node": "6.x || 7.x || 8.x || 9.x"
+    "node": "7.x || 8.x || 9.x || 10.x"
   }
 }

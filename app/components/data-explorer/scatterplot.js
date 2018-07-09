@@ -99,10 +99,14 @@ function scale( arr, a, b ) {
 	return out;
 }
 
-export function generateScatterplotConfig({ data, xval, yval, color, type, size, regressionLine, regressionMethod, lineBy, smoothSpan }) {
+export function generateScatterplotConfig({ data, xval, yval, text, color, type, size, regressionLine, regressionMethod, lineBy, smoothSpan }) {
 	let nColors;
 	let traces;
 
+	let mode = 'markers';
+	if ( text ) {
+		mode += '+text';
+	}
 	if ( color && type ) {
 		const colors = data[ color ];
 		const types = data[ type ];
@@ -119,6 +123,12 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 		const ygrouped = groupBy( data[ yval ], ( v, i ) => {
 			return colors[ i ] + ':' + types[ i ];
 		});
+		let texts;
+		if ( text ) {
+			texts = groupBy( data[ text ], ( v, i ) => {
+				return colors[ i ] + ':' + types[ i ];
+			});
+		}
 		let sizegrouped;
 		if ( size ) {
 			sizegrouped = groupBy( data[ size ], ( v, i ) => {
@@ -131,11 +141,11 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 		for ( let i = 0; i < uniqueColors.length; i++ ) {
 			for ( let j = 0; j < uniqueTypes.length; j++ ) {
 				const grouping = uniqueColors[ i ] + ':' + uniqueTypes[ j ];
-				traces.push({
+				const trace = {
 					x: xgrouped[ grouping ],
 					y: ygrouped[ grouping ],
 					type: 'scatter',
-					mode: 'markers',
+					mode: mode,
 					name: grouping,
 					marker: {
 						symbol: SYMBOLS[ j ],
@@ -143,7 +153,12 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 						autocolorscale: false,
 						color: COLORS[ i ]
 					}
-				});
+				};
+				if ( text ) {
+					trace.text = texts[ grouping ];
+					trace.textposition = 'bottom';
+				}
+				traces.push( trace );
 			}
 		}
 	}
@@ -152,13 +167,17 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 		unique( groups );
 		const xgrouped = group( data[ xval ], data[ type ]);
 		const ygrouped = group( data[ yval ], data[ type ]);
+		let texts;
+		if ( text ) {
+			texts = group( data[ text ], data[ type ]);
+		}
 		traces = new Array( groups.length );
 		for ( let i = 0; i < groups.length; i++ ) {
 			traces[ i ] = {
 				x: xgrouped[ groups[ i ] ],
 				y: ygrouped[ groups[ i ] ],
 				type: 'scatter',
-				mode: 'markers',
+				mode: mode,
 				name: groups[ i ],
 				marker: {
 					symbol: SYMBOLS[ i ],
@@ -167,6 +186,10 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 					color: 'rgba(0,0,0,1)'
 				}
 			};
+			if ( text ) {
+				traces[ i ].text = texts[ groups[ i ] ];
+				traces[ i ].textposition = 'bottom';
+			}
 		}
 	}
 	else if ( color ) {
@@ -175,13 +198,17 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 		nColors = groups.length;
 		const xgrouped = group( data[ xval ], data[ color ]);
 		const ygrouped = group( data[ yval ], data[ color ]);
+		let texts;
+		if ( text ) {
+			texts = group( data[ text ], data[ color ]);
+		}
 		traces = new Array( nColors );
 		for ( let i = 0; i < nColors; i++ ) {
 			traces[ i ] = {
 				x: xgrouped[ groups[ i ] ],
 				y: ygrouped[ groups[ i ] ],
 				type: 'scatter',
-				mode: 'markers',
+				mode: mode,
 				name: groups[ i ],
 				marker: {
 					symbol: 'circle',
@@ -190,19 +217,27 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 					color: COLORS[ i ]
 				}
 			};
+			if ( text ) {
+				traces[ i ].text = texts[ groups[ i ] ];
+				traces[ i ].textposition = 'bottom';
+			}
 		}
 	} else {
 		traces = [ {
 			x: data[ xval ],
 			y: data[ yval ],
 			type: 'scatter',
-			mode: 'markers',
+			mode: mode,
 			name: 'Points',
 			marker: {
 				symbol: 'circle',
 				size: size ? scale( data[ size ], 5.0, 10.0 ) : 5.0
 			}
 		} ];
+		if ( text ) {
+			traces[ 0 ].text = data[ text ];
+			traces[ 0 ].textposition = 'bottom';
+		}
 	}
 
 	if ( regressionLine ) {
@@ -221,8 +256,7 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 				let predictedLinear;
 				let predictedSmooth;
 				let values;
-				// const numLines = max([1, regressionMethod.length]);
-				if ( contains(regressionMethod, 'linear') ) {
+				if ( contains( regressionMethod, 'linear' ) ) {
 					values = linspace( min( xvals ), max( xvals ), 100 );
 					const coefs = calculateCoefficients( xvals, yvals );
 					predictedLinear = values.map( x => coefs[ 0 ] + coefs[ 1 ]*x );
@@ -238,7 +272,7 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 						}
 					});
 				}
-				if ( contains(regressionMethod, 'smooth') ) {
+				if ( contains( regressionMethod, 'smooth' ) ) {
 					const out = lowess( xvals, yvals, { 'f': smoothSpan } );
 					values = out.x;
 					predictedSmooth = out.y;
@@ -261,8 +295,7 @@ export function generateScatterplotConfig({ data, xval, yval, color, type, size,
 			let predictedLinear;
 			let predictedSmooth;
 			let values;
-			// const numLines = max([1, regressionMethod.length]);
-			if ( contains(regressionMethod, 'linear') ) {
+			if ( contains( regressionMethod, 'linear' ) ) {
 				values = linspace( min( xvals ), max( xvals ), 100 );
 				const coefs = calculateCoefficients( xvals, yvals );
 				predictedLinear = values.map( x => coefs[ 0 ] + coefs[ 1 ]*x );
@@ -327,6 +360,7 @@ class Scatterplot extends Component {
 			yval: defaultY || variables[ 1 ],
 			color: null,
 			type: null,
+			text: null,
 			regressionLine: false,
 			regressionMethod: ['linear'],
 			lineBy: null,
@@ -366,26 +400,41 @@ class Scatterplot extends Component {
 	renderInputs() {
 		const { variables, groupingVariables } = this.props;
 		return ( <Fragment>
-			<SelectInput
-				legend="Variable on x-axis:"
-				defaultValue={this.state.xval}
-				options={variables}
-				onChange={( value ) => {
-					this.setState({
-						xval: value
-					});
-				}}
-			/>
-			<SelectInput
-				legend="Variable on y-axis:"
-				defaultValue={this.state.yval}
-				options={variables}
-				onChange={( value ) => {
-					this.setState({
-						yval: value
-					});
-				}}
-			/>
+			<div style={{ width: '100%' }}>
+				<SelectInput
+					legend="x-axis:"
+					defaultValue={this.state.xval}
+					options={variables}
+					style={{ float: 'left', paddingRight: 10, width: '33.3%' }}
+					onChange={( value ) => {
+						this.setState({
+							xval: value
+						});
+					}}
+				/>
+				<SelectInput
+					legend="y-axis:"
+					defaultValue={this.state.yval}
+					style={{ float: 'left', paddingLeft: 10, paddingRight: 10, width: '33.3%' }}
+					options={variables}
+					onChange={( value ) => {
+						this.setState({
+							yval: value
+						});
+					}}
+				/>
+				<SelectInput
+					legend="Labels:"
+					style={{ float: 'left', paddingLeft: 10, width: '33.3%' }}
+					clearable={true}
+					options={groupingVariables}
+					onChange={( value ) => {
+						this.setState({
+							text: value
+						});
+					}}
+				/>
+			</div>
 			<div style={{ width: '100%' }}>
 				<SelectInput
 					legend="Color:"
