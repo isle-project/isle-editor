@@ -255,7 +255,7 @@ class MeanTest extends Component {
 						}}
 					/>
 				</Well>
-				<p>Let's assume that we have observed data with the following characteristics</p>
+				<p>Let&#39;s assume that we have observed data with the following characteristics</p>
 				<Well>
 					{firstSampleParams}
 					{samples === 'Two-Sample' ? secondSampleParams : null}

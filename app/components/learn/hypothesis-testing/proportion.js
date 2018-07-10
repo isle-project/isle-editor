@@ -239,7 +239,7 @@ class ProportionTest extends Component {
 						}}
 					/>
 				</Well>
-				Let's assume that we have observed data with the following characteristics:
+				Let&#39;s assume that we have observed data with the following characteristics:
 				<Well>
 					{firstSampleParams}
 					{samples === 'Two-Sample' ? secondSampleParams : null }

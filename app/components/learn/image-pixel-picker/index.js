@@ -24,7 +24,7 @@ class ImagePixelPicker extends Component {
 
 	invert = () => {
 		for ( let i = 0; i < this.data.length; i += 4 ) {
-			this.data[ i ] = 255 - this.data[ i ];     // red
+			this.data[ i ] = 255 - this.data[ i ]; // red
 			this.data[ i + 1 ] = 255 - this.data[ i + 1 ]; // green
 			this.data[ i + 2 ] = 255 - this.data[ i + 2 ]; // blue
 		}
