@@ -30,7 +30,12 @@
       "properties": "never"
     }],
     "capitalized-comments": [ 1, "always", {
-      "ignoreInlineComments": true
+      "line": {
+          "ignorePattern": ".*"
+      },
+      "block": {
+          "ignoreInlineComments": true
+      }
     }],
     "comma-dangle": [ 2, "never" ],
     "comma-spacing": [ 2, {
