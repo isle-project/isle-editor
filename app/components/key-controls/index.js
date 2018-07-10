@@ -11,29 +11,27 @@ import isFunction from '@stdlib/assert/is-function';
 class KeyControls extends Component {
 	constructor( props ) {
 		super( props );
-    }
+	}
 
-    componentDidMount() {
-        document.addEventListener('keydown', this.triggerEvent );
-    }
+	componentDidMount() {
+		document.addEventListener('keydown', this.triggerEvent );
+	}
 
+	componentWillUnmount() {
+		document.removeEventListener('keydown', this.triggerEvent );
+	}
 
-    componentWillUnmount() {
-        document.removeEventListener('keydown', this.triggerEvent );
-    }
+	triggerEvent = ( event ) => {
+		const keyName = event.key;
 
-    triggerEvent = ( event ) => {
-        const keyName = event.key;
-
-        const fn = this.props.actions[keyName];
-        if ( isFunction(fn) ) {
-            fn();
-        }
-    }
-
+		const fn = this.props.actions[keyName];
+		if ( isFunction(fn) ) {
+			fn();
+		}
+	}
 
 	render() {
-        return null;
+		return null;
 	}
 }
 
@@ -41,14 +39,14 @@ class KeyControls extends Component {
 // DEFAULT PROPERTIES //
 
 KeyControls.defaultProps = {
-    actions: {}
+	actions: {}
 };
 
 
 // PROPERTY TYPES //
 
 KeyControls.propTypes = {
-    actions: PropTypes.objectOf(PropTypes.func)
+	actions: PropTypes.objectOf(PropTypes.func)
 };
 
 KeyControls.contextTypes = {
