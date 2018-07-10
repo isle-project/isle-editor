@@ -7,6 +7,7 @@
 	"CheckboxInput": "const CheckboxInput = require( \"components/input/checkbox\" )",
 	"ColorPicker": "const ColorPicker = require( \"components/color-picker\" )",
 	"Col": "const Col = require( \"react-bootstrap/lib/Col\" )",
+	"Joyride": "const Joyride = require( \"components/joyride\" )",
 	"Learn": "const Learn = require( \"components/learn\" )",
 	"LearnCrossValidation": "const LearnCrossValidation = require( \"components/learn/cross-validation\" )",
 	"LearnDiceThrowing": "const LearnDiceThrowing = require( \"components/learn/dice-throwing\" )",

@@ -87,6 +87,7 @@ const createScope = ( session ) => {
 		Gate: Loadable( () => import( 'components/gate' ) ),
 		Grid: Loadable( () => import( 'components/grid' ) ),
 		IFrame: Loadable( () => import( 'components/iframe' ) ),
+		Joyride: Loadable( () => import( 'components/joyride' ) ),
 		JSShell: Loadable( () => import( 'components/js-shell' ) ),
 		KeyControls: Loadable( () => import( 'components/key-controls' ) ),
 		LearnCrossValidation: Loadable( () => import( 'components/learn/cross-validation' ) ),
@@ -316,13 +317,13 @@ export default class Preview extends Component {
 				code = pres;
 			}
 			code = `<div>
-				<KeyControls actions={{ 
+				<KeyControls actions={{
 					'ArrowUp': function() {
 						const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowRight', 'code': 'ArrowRight' });
 						delete e.keyCode;
 						Object.defineProperty( e, 'keyCode', { 'value' : 39 });
 						document.dispatchEvent( e );
-					}, 
+					},
 					'ArrowDown': function() {
 						const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowLeft', 'code': 'ArrowLeft' });
 						delete e.keyCode;
