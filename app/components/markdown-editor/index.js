@@ -257,16 +257,18 @@ class MarkdownEditor extends Component {
 				name: 'newLine',
 				action: ( editor ) => {
 					const cm = this.simplemde.codemirror;
-					// When we get the cursor we want to get the head
-					// Add the newline to the left of the cursor
 					const startPoint = cm.getCursor( 'start' );
 					const endPoint = cm.getCursor( 'end' );
 					if ( startPoint.line === endPoint.line ) {
-						cm.replaceSelection( '\\\n' );
+						const pos = {
+							line: startPoint.line,
+							ch: endPoint.ch
+						};
+						cm.replaceRange( '\\\n', pos );
 					}
 					while ( startPoint.line !== endPoint.line ) {
 						var currentLine = cm.getLine( startPoint.line );
-						if ( endsWith(currentLine, '\\') ) {
+						if ( endsWith( currentLine, '\\' ) ) {
 							cm.replaceRange( removeLast( currentLine ),
 								{ line: startPoint.line, ch: 0 },
 								{ line: startPoint.line, ch: 99999999999999 }
@@ -725,10 +727,8 @@ class MarkdownEditor extends Component {
 	}
 
 	previewRender = ( plainText ) => {
-		// Take the plaintext and insert the images via hash
+		// Take the plaintext and insert the images via hash:
 		plainText = this.replacePlaceholders( plainText );
-
-		// Now render the markdown
 		return md.render( plainText );
 	}
 
