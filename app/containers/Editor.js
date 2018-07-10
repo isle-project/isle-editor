@@ -64,7 +64,6 @@ const applyStyles = ( preamble, filePath ) => {
 				if ( process.platform === 'win32' ) {
 					fpath = replace( fpath, '\\', '\\\\' );
 				}
-
 			}
 			css += fs.readFileSync( fpath ).toString();
 		}
@@ -85,7 +84,6 @@ const loadRequires = ( libs, filePath ) => {
 	/* eslint-disable no-eval */
 	debug( 'Should require files or modules...' );
 	let dirname = path.dirname( filePath );
-	console.log( dirname );
 	debug( 'Directory: '+dirname );
 	if ( isObject( libs ) ) {
 		for ( let key in libs ) {
