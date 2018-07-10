@@ -116,7 +116,8 @@ class PieChart extends Component {
 		};
 		this.props.logAction( 'DATA_EXPLORER:PIECHART', {
 			variable,
-			group, plotId
+			group,
+			plotId
 		});
 		this.props.onCreated( output );
 	}

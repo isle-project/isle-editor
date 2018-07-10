@@ -87,8 +87,8 @@ const config = {
 					[ 'run', 'start-main-dev' ],
 					{ shell: true, env: process.env, stdio: 'inherit' } // eslint-disable-line no-process-env
 				)
-					.on( 'close', code => process.exit(code) )
-					.on( 'error', spawnError => console.error(spawnError) );
+					.on( 'close', code => process.exit(code) ) // eslint-disable-line no-process-exit
+					.on( 'error', spawnError => console.error(spawnError) ); // eslint-disable-line no-console
 			}
 		}
 	}

@@ -277,7 +277,7 @@ class DiscreteCLT extends Component {
 								</p>
 							</Panel.Body></Panel>
 							<Panel><Panel.Body>
-								<label>Histogram of <TeX raw="\hat p" />'s</label>
+								<label>Histogram of <TeX raw="\hat p" />&#39;s</label>
 								{ this.state.phats.length > 1 ?
 									<Plotly data={plotlyData} layout={{
 										width: 400,
@@ -306,13 +306,13 @@ class DiscreteCLT extends Component {
 								}} />
 								{ this.state.avgPHats ?
 									<p>
-										<label> Mean of <TeX raw="\hat p" />'s: </label>
+										<label> Mean of <TeX raw="\hat p" />&#39;s: </label>
 										&nbsp;{this.state.avgPHats.toFixed( 3 )} (shown as the blue line)
 									</p> : null
 								}
 								{ this.state.stdevPHats ?
 									<p>
-										<label>Standard deviation of <TeX raw="\hat p" />'s: </label>
+										<label>Standard deviation of <TeX raw="\hat p" />&#39;s: </label>
 										&nbsp;{this.state.stdevPHats.toFixed( 3 )}
 									</p> : null
 								}

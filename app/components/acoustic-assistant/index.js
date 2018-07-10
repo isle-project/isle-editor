@@ -2,11 +2,17 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import SpeechRecognition from 'components/speech-recognition';
 import Wikipedia from 'components/wikipedia';
 import AcousticCSS from 'components/acoustic-css';
 import News from 'components/news';
 import './styles.css';
+
+
+// VARIABLES //
+
+var debug = logger( 'isle-editor:acoustic-assistant' );
 
 
 // MAIN //
@@ -15,8 +21,7 @@ class AcousticAssistant extends Component {
 	constructor( props, context ) {
 		super( props );
 
-		this.state = {
-		};
+		this.state = {};
 	}
 
 	componentDidMount() {
@@ -32,7 +37,7 @@ class AcousticAssistant extends Component {
 		if ( this.props.wikipedia !== '' ) {
 			let x = text.search( this.props.wikipedia );
 			if ( x !== -1 ) {
-				console.log( 'Wikipedia triggered' );
+				debug( 'Wikipedia triggered...' );
 				this.wikipediaref.trigger( text );
 			}
 		}
@@ -40,7 +45,7 @@ class AcousticAssistant extends Component {
 		if ( this.props.css !== '' ) {
 			let x = text.search( this.props.css );
 			if ( x !== -1 ) {
-				console.log( 'css triggered' );
+				debug( 'CSS triggered...' );
 				this.cssref.trigger( text );
 			}
 		}
@@ -48,7 +53,7 @@ class AcousticAssistant extends Component {
 		if ( this.props.news !== '' ) {
 			var x = text.search( this.props.news );
 			if ( x !== -1 ) {
-				console.log( 'news triggered' );
+				debug( 'News triggered...' );
 				this.newsref.trigger( text );
 			}
 		}
@@ -60,7 +65,7 @@ class AcousticAssistant extends Component {
 			<News
 				ref={( div ) => { this.newsref = div; }}
 				language={this.props.language}
-			></News>
+			/>
 		);
 	}
 
@@ -71,7 +76,7 @@ class AcousticAssistant extends Component {
 			<Wikipedia
 				ref={( div ) => { this.wikipediaref = div; }}
 				language={this.props.language}
-			></Wikipedia>
+			/>
 		);
 	}
 
@@ -83,7 +88,7 @@ class AcousticAssistant extends Component {
 				showSearch
 				logo={false}
 				language={this.props.language}
-			></AcousticCSS>
+			/>
 		);
 	}
 
