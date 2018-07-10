@@ -652,7 +652,7 @@ class DataExplorer extends Component {
 					<Panel>
 						<Navbar className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
 							<Nav>
-								<NavItem eventKey="1" active={this.state.openedNav === '1'}>
+								<NavItem eventKey="1" className="explorer-data-nav" active={this.state.openedNav === '1'}>
 									Data
 								</NavItem>
 								<NavItem eventKey="2" active={this.state.openedNav === '2'}>
@@ -669,7 +669,7 @@ class DataExplorer extends Component {
 									</NavDropdown> : null
 								}
 								{ this.props.showEditor ?
-									<NavItem eventKey="4" active={this.state.openedNav === '4'}>
+									<NavItem className="explorer-editor-nav" eventKey="4" active={this.state.openedNav === '4'}>
 										{this.props.editorTitle}
 									</NavItem> : null
 								}

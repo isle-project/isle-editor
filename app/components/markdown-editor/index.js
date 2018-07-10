@@ -804,7 +804,7 @@ class MarkdownEditor extends Component {
 	render() {
 		return (
 			<Fragment>
-				<div className="markdown-editor" style={this.props.style} >
+				<div id={this.props.id} className="markdown-editor" style={this.props.style} >
 					<textarea ref={( area ) => { this.simplemdeRef = area; }} autoComplete="off" {...this.props.options} />
 					{this.renderVoiceControl()}
 				</div>
