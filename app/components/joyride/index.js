@@ -11,7 +11,7 @@ const STYLES = {
 	options: {
 		arrowColor: '#fff',
 		backgroundColor: '#fff',
-		primaryColor: '#f04',
+		primaryColor: '#ca5800',
 		textColor: '#333',
 		overlayColor: 'rgba(0, 0, 0, 0.5)',
 		spotlightShadow: '0 0 15px rgba(0, 0, 0, 0.5)',
