@@ -81,7 +81,7 @@ const config = {
 		},
 		before() {
 			if ( process.env.START_HOT ) { // eslint-disable-line no-process-env
-				console.log('Starting Main Process...');
+				console.log( 'Starting Main Process...' ); // eslint-disable-line no-console
 				spawn(
 					'npm',
 					[ 'run', 'start-main-dev' ],
