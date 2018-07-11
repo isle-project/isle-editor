@@ -349,6 +349,14 @@ class MarkdownEditor extends Component {
 			'unordered_list': 'unordered-list',
 			'ordered_list': 'ordered-list',
 			'link': 'link',
+			'insert_columns': {
+				name: 'insert_new_columns',
+				action: ( editor, event ) => {
+					this.toggleColumnSelect();
+				},
+				className: 'fa fa-align-justify',
+				title: 'Insert Columns'
+			},
 			'open_markdown': {
 				name: 'open_markdown',
 				action: ( editor ) => {
@@ -784,6 +792,7 @@ class MarkdownEditor extends Component {
 		let text = this.simplemde.value();
 		text = this.replacePlaceholders( text, true );
 		const ast = md.parse( text );
+		console.log(ast);
 		const doc = generatePDF( ast, config, opts );
 		this.toggleSaveModal( null, () => {
 			pdfMake.createPdf( doc ).download( title );
@@ -838,6 +847,18 @@ class MarkdownEditor extends Component {
 						this.simplemde.codemirror.replaceRange( tblString, c);
 					}}
 				/>
+				<ColumnSelect
+					show={this.state.showColumnSelect}
+					onHide={()=>{
+						this.setState({
+							showColumnSelect: false
+						});
+					}}
+					onClick={( tblString, lines )=>{
+						var c = this.simplemde.codemirror.getCursor();
+						this.simplemde.codemirror.replaceRange( tblString, c);
+					}}
+				/>
 			</Fragment>
 		);
 	}
@@ -858,9 +879,10 @@ MarkdownEditor.defaultProps = {
 		'bold', 'italic', 'underline',
 		'new_line', 'center', '|',
 		'insert_table', 'heading', 'unordered_list',
-		'ordered_list', 'link', '|',
+		'ordered_list', 'link', 'insert_columns', '|',
 		'preview', 'side_by_side', 'fullscreen', '|',
-		'open_markdown', 'save', 'submit', '|'
+		'open_markdown', 'save', 'submit', '|',
+		'voice'
 	],
 	voiceTimeout: 5000
 };
