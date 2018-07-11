@@ -222,7 +222,7 @@ class FreeTextQuestion extends Component {
 	render() {
 		const nHints = this.props.hints.length;
 		return (
-			<Panel className="free-text-question">
+			<Panel id={this.props.id} className="free-text-question">
 				<Panel.Body>
 					{ this.props.question ? <label>{this.props.question}</label> : null }
 					<FormGroup>
@@ -235,7 +235,7 @@ class FreeTextQuestion extends Component {
 							style={{
 								resize: this.props.resizable ? 'both' : 'none'
 							}}
-							maxlength={this.props.maxlength}
+							maxLength={this.props.maxlength}
 							rows={this.props.rows}
 							value={this.state.value}
 							disabled={this.state.solutionDisplayed}
