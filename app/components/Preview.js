@@ -70,6 +70,7 @@ const createScope = ( session ) => {
 
 		AcousticAssistant: Loadable( () => import( 'components/acoustic-css' ) ),
 		AcousticCSS: Loadable( () => import( 'components/acoustic-css' ) ),
+		BeaconTooltip: Loadable( () => import( 'components/beacon-tooltip' ) ),
 		CheckboxInput: CheckboxInput,
 		Clock: Loadable( () => import( 'components/clock' ) ),
 		ColorPicker: Loadable( () => import( 'components/color-picker' ) ),
