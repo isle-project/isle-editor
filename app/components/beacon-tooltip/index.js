@@ -6,24 +6,38 @@ import PropTypes from 'prop-types';
 import './beacon_tooltip.css';
 
 
+// VARIABLES //
+
+const WAIT_TIME = 1000;
+
+
 // MAIN //
 
 class BeaconTooltip extends Component {
 	constructor( props ) {
 		super( props );
 
-		this.state = {};
+		this.state = {
+			ready: false
+		};
 	}
 
 	componentDidMount() {
-		if ( this.props.target ) {
-			this.setState({
-				target: this.props.target
-			});
-		}
+		setTimeout(() => {
+			this.show();
+		}, WAIT_TIME );
+	}
+
+	show() {
+		this.setState({
+			ready: true
+		});
 	}
 
 	render() {
+		if ( !this.state.ready ) {
+			return null;
+		}
 		return (
 			<Fragment>
 				{this.props.children}
@@ -40,7 +54,7 @@ class BeaconTooltip extends Component {
 						placement: 'top',
 						position: true
 					}}
-					{...this.state}
+					{...this.props}
 				>
 					<button
 						className="beacon-button"
@@ -59,12 +73,12 @@ class BeaconTooltip extends Component {
 // DEFAULT PROPERTIES //
 
 BeaconTooltip.defaultProps = {
-	clbk(){},
+	clbk() {},
 	content: '`content` comes here...',
 	event: 'click',
 	offset: 15,
 	placement: 'left',
-	target: null,
+	target: '',
 	title: null
 };
 
