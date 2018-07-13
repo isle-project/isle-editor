@@ -103,7 +103,7 @@ class DataExplorer extends Component {
 			groupVars,
 			ready,
 			showStudentPlots: false,
-			openedNav: '1',
+			openedNav: props.hideDataTable ? '2' : '1',
 			studentPlots: [],
 			unaltered: {
 				data: props.data,
@@ -652,9 +652,9 @@ class DataExplorer extends Component {
 					<Panel>
 						<Navbar className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
 							<Nav>
-								<NavItem eventKey="1" className="explorer-data-nav" active={this.state.openedNav === '1'}>
+								{ !this.props.hideDataTable ? <NavItem eventKey="1" className="explorer-data-nav" active={this.state.openedNav === '1'}>
 									Data
-								</NavItem>
+								</NavItem> : null }
 								<NavItem eventKey="2" active={this.state.openedNav === '2'}>
 									Toolbox
 								</NavItem>
@@ -811,6 +811,7 @@ DataExplorer.defaultProps = {
 		'name': '',
 		'variables': null
 	},
+	hideDataTable: false,
 	onSelect() {},
 	tabs: [],
 	questions: null,
@@ -873,6 +874,7 @@ DataExplorer.propTypes = {
 	distributions: PropTypes.array,
 	editorProps: PropTypes.object,
 	editorTitle: PropTypes.string,
+	hideDataTable: PropTypes.bool,
 	histogramDensities: PropTypes.bool,
 	models: PropTypes.array,
 	onSelect: PropTypes.func,
