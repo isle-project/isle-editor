@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ace from '@planeshifter/brace';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import { ContextMenu, MenuItem, ContextMenuTrigger, SubMenu } from 'react-contextmenu';
 import '@planeshifter/brace/mode/html';
 import '@planeshifter/brace/theme/github';
@@ -11,10 +12,9 @@ import '@planeshifter/brace/ext/language_tools';
 import noop from '@stdlib/utils/noop';
 import groupBy from '@stdlib/utils/group-by';
 import contains from '@stdlib/assert/contains';
-import removeFirst from '@stdlib/string/remove-first';
-import removeLast from '@stdlib/string/remove-last';
-import replace from '@stdlib/string/replace';
 import aceSnippets, { snippetText } from 'snippets';
+import COMPONENTS from './components.json';
+import extractSnippets from './extract_snippets.js';
 import './editor.css';
 
 
@@ -22,57 +22,6 @@ import './editor.css';
 
 const NO_ATTRIBUTE_WARNING_REGEXP = /Unexpected character in unquoted attribute/;
 const NO_DOCTYPE_REGEXP = /doctype first\. Expected/;
-const RE_SNIPPETS = /snippet ([^\n]*)\n([\s\S]*?)(?=snippet|$)/g;
-const DISPLAY_COMPONENTS = [
-	'Col',
-	'DraggableGrid',
-	'Expire',
-	'Gate',
-	'Grid',
-	'IFrame',
-	'Nav justified',
-	'Pages',
-	'Panel',
-	'Slider',
-	'Switch',
-	'Tabs',
-	'Well'
-];
-const MAIN_COMPONENTS = [
-	'DataExplorer',
-	'DataTable',
-	'FeedbackButtons',
-	'MarkdownEditor',
-	'TeX'
-];
-const R_COMPONENTS = [
-	'RHelp',
-	'ROutput',
-	'RPlot',
-	'RShell',
-	'RTable'
-];
-const LEARNING_COMPONENTS = [
-	'LearnConditionalProbability',
-	'LearnContinuousCLT',
-	'LearnDiceThrowing',
-	'LearnDiscreteCLT',
-	'LearnSampleCLT',
-	'LearnCrossValidation',
-	'LearnProportionTest',
-	'LearnMeanTest',
-	'LearnExponentialDistribution',
-	'LearnNormalDistribution',
-	'LearnTDistribution',
-	'LearnUniformDistribution',
-	'LearnVennDiagramBuilder',
-	'LearnWordVennDiagram',
-	'LearnMeanVSMedian',
-	'LearnStandardize',
-	'LearnConfidenceCoverageBinomial',
-	'LearnConfidenceCoverageNormal',
-	'LearnImagePixelPicker'
-];
 
 
 // VARIABLES //
@@ -97,47 +46,28 @@ const customCompleter = {
 // FUNCTIONS //
 
 function groupIndicator( v ) {
-	if ( contains( R_COMPONENTS, v.name ) ) {
+	if ( contains( COMPONENTS.R, v.name ) ) {
 		return 'rComponents';
 	}
-	if ( contains( LEARNING_COMPONENTS, v.name ) ) {
+	if ( contains( COMPONENTS.LEARNING, v.name ) ) {
 		return 'learning';
 	}
-	if ( contains( v.name, 'Survey' ) ) {
+	if ( contains( COMPONENTS.SURVEY, v.name ) ) {
 		return 'surveys';
 	}
-	if ( contains( v.name, 'Input' ) || v.name === 'Dashboard' ) {
+	if ( contains( COMPONENTS.INPUT, v.name ) ) {
 		return 'inputs';
 	}
-	if ( contains( v.name, 'Question' ) ) {
+	if ( contains( COMPONENTS.QUESTION, v.name ) ) {
 		return 'questions';
 	}
-	if ( contains( DISPLAY_COMPONENTS, v.name ) ) {
+	if ( contains( COMPONENTS.DISPLAY, v.name ) ) {
 		return 'displayComponents';
 	}
-	if ( contains( MAIN_COMPONENTS, v.name ) ) {
+	if ( contains( COMPONENTS.MAIN, v.name ) ) {
 		return 'main';
 	}
 	return 'general';
-}
-
-function extractSnippets( text ) {
-	const snippets = [];
-	let match;
-	do {
-		match = RE_SNIPPETS.exec( text );
-		if ( match ) {
-			let value = match[ 2 ];
-			value = replace( value, '\n\t', '\n' );
-			value = removeFirst( value );
-			value = removeLast( value );
-			snippets.push({
-				'name': match[ 1 ],
-				'value': value
-			});
-		}
-	} while ( match );
-	return snippets;
 }
 
 
@@ -220,9 +150,15 @@ class Editor extends Component {
 	}
 
 	handleContexMenuClick = ( evt, data ) => {
-		this.snippetManager.insertSnippetForSelection( this.editor, data.value );
-		this.editor.focus();
-		this.editor.tabstopManager.tabNext();
+		if ( !this.customClick ) {
+			this.snippetManager.insertSnippetForSelection( this.editor, data.value );
+			this.editor.focus();
+			this.editor.tabstopManager.tabNext();
+		}
+	}
+
+	handleCustomInsertClick = ( evt ) => {
+		this.customClick = true;
 	}
 
 	renderMenuItem = ( obj, idx ) => {
@@ -232,6 +168,11 @@ class Editor extends Component {
 			onClick={this.handleContexMenuClick}
 		>
 			{obj.name}
+			<Glyphicon
+				style={{ float: 'right' }}
+				glyph="floppy-save"
+				onClick={this.handleCustomInsertClick}
+			/>
 		</MenuItem>
 		);
 	}
