@@ -215,11 +215,10 @@ snippet ProportionsInput
 		nElements={${4:6}}
 	/>
 
-
 snippet RangeQuestion
 	<RangeQuestion
 		question="${1:Enter question}"
-		solution={[${2:lower},${3:upper}]}
+		solution={[${2:0},${3:1}]}
 	/>
 
 snippet Recorder
