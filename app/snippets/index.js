@@ -8,6 +8,7 @@ const snippetText = require( './snippets.txt' );
 function aceSnippets( editor, session ) {
 	const snippet = setup( editor, session, 'html', snippetText );
 	snippet.manager.register( snippet.m.snippet, snippet.m.scope );
+	return snippet.manager;
 }
 
 
@@ -35,4 +36,6 @@ function setup( editor, session, mode, snippetText ) {
 
 // EXPORTS //
 
-module.exports = aceSnippets;
+export default aceSnippets;
+
+export { snippetText };
