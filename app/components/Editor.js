@@ -54,7 +54,24 @@ const R_COMPONENTS = [
 ];
 const LEARNING_COMPONENTS = [
 	'LearnConditionalProbability',
-	'LearnMeanVSMedian'
+	'LearnContinuousCLT',
+	'LearnDiceThrowing',
+	'LearnDiscreteCLT',
+	'LearnSampleCLT',
+	'LearnCrossValidation',
+	'LearnProportionTest',
+	'LearnMeanTest',
+	'LearnExponentialDistribution',
+	'LearnNormalDistribution',
+	'LearnTDistribution',
+	'LearnUniformDistribution',
+	'LearnVennDiagramBuilder',
+	'LearnWordVennDiagram',
+	'LearnMeanVSMedian',
+	'LearnStandardize',
+	'LearnConfidenceCoverageBinomial',
+	'LearnConfidenceCoverageNormal',
+	'LearnImagePixelPicker'
 ];
 
 
