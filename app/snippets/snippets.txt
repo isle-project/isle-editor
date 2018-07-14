@@ -88,7 +88,7 @@ snippet FreeTextSurvey
 	<FreeTextSurvey anonymous question="${1:Enter question}" />
 
 snippet Gate
-	<Gate banner={{$1:null}} ${2:user} ${3:owner}>
+	<Gate banner={${1:null}} ${2:user} ${3:owner}>
 		${4:}
 	</Gate>
 
@@ -280,3 +280,60 @@ snippet Wikipedia
 		speech
 		language = "en-US"
 	/>
+
+snippet LearnConditionalProbability
+	<LearnConditionalProbability />
+
+snippet LearnCrossValidation
+	<LearnCrossValidation />
+
+snippet LearnDiceThrowing
+	<LearnDiceThrowing />
+
+snippet LearnMeanVSMedian
+	<LearnMeanVSMedian />
+
+snippet LearnExponentialDistribution
+	<LearnExponentialDistribution />
+
+snippet LearnNormalDistribution
+	<LearnNormalDistribution />
+
+snippet LearnTDistribution
+	<LearnTDistribution />
+
+snippet LearnUniformDistribution
+	<LearnUniformDistribution />
+
+snippet LearnStandardize
+	<LearnStandardize />
+
+snippet LearnContinuousCLT
+	<LearnContinuousCLT />
+
+snippet LearnDiscreteCLT
+	<LearnDiscreteCLT />
+
+snippet LearnSampleCLT
+	<LearnSampleCLT />
+
+snippet LearnConfidenceCoverageBinomial
+	<LearnConfidenceCoverageBinomial />
+
+snippet LearnConfidenceCoverageNormal
+	<LearnConfidenceCoverageNormal />
+
+snippet LearnMeanTest
+	<LearnMeanTest />
+
+snippet LearnProportionTest
+	<LearnProportionTest />
+
+snippet LearnVennDiagramBuilder
+	<LearnVennDiagramBuilder />
+
+snippet LearnWordVennDiagram
+	<LearnWordVennDiagram />
+
+snippet LearnImagePixelPicker
+	<LearnImagePixelPicker />
