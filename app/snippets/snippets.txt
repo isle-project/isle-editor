@@ -6,8 +6,8 @@ snippet AddNotification
 		level: 'success'
 	});
 
-snippet BeaconToolip
-	<BeaconToolip
+snippet BeaconTooltip
+	<BeaconTooltip
 		content="${1:Enter content}"
 		title="${2:}"
 		target="${3:}"
