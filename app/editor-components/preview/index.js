@@ -17,7 +17,7 @@ import logger from 'debug';
 import markdownToHTML from 'utils/markdown-to-html';
 import pluginTransformJSX from 'babel-plugin-transform-react-jsx';
 import Provider from 'components/provider';
-import Loadable from 'components/loadable';
+import Loadable from 'editor-components/loadable';
 import Session from 'session';
 import Accordion from 'react-bootstrap/lib/Accordion';
 import Button from 'react-bootstrap/lib/Button';

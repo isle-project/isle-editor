@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import ExportPage from 'components/export-page';
+import ExportPage from 'editor-components/export-page';
 import { convertMarkdown, toggleScrolling } from 'actions';
 
 
