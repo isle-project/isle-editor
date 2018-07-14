@@ -15,9 +15,9 @@ import logger from 'debug';
 import yaml from 'js-yaml';
 import ErrorBoundary from 'components/error-boundary';
 import SplitPanel from 'components/split-panel';
-import Header from 'components/Header';
-import Editor from 'components/Editor';
-import Preview from 'components/Preview';
+import Header from 'components/editor/header';
+import Editor from 'components/editor';
+import Preview from 'components/editor/preview';
 import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError } from 'actions';
 import replace from '@stdlib/string/replace';
 
