@@ -15,7 +15,7 @@ import removeFirst from '@stdlib/string/remove-first';
 import removeLast from '@stdlib/string/remove-last';
 import replace from '@stdlib/string/replace';
 import aceSnippets, { snippetText } from 'snippets';
-import './Editor.css';
+import './editor.css';
 
 
 // CONSTANTS //
