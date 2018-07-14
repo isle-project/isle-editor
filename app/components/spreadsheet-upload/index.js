@@ -20,7 +20,7 @@ class SpreadsheetUpload extends Component {
 		reader.readAsText( selectedFile, 'utf-8' );
 	}
 
-		/**
+	/**
 	* Event handler invoked once student-supplied CSV file has been uploaded. Parses the file and extracts its categorical and continuous variables.
 	*/
 	onFileRead = ( event ) => {
