@@ -239,6 +239,7 @@ export default class Preview extends Component {
 			const session = new Session( props.preamble, offline );
 			this.session = session;
 			this.scope = createScope( session );
+			this.props.onScope( this.scope );
 			lessonState = session.config.state;
 		}
 		this.state = {
@@ -278,6 +279,7 @@ export default class Preview extends Component {
 			const session = new Session( this.props.preamble, offline );
 			this.session = session;
 			this.scope = createScope( session );
+			this.props.onScope( this.scope );
 			let lessonState = session.config.state;
 			this.setState({
 				...lessonState
@@ -354,12 +356,10 @@ export default class Preview extends Component {
 				const SCOPE_KEYS = Object.keys( this.scope );
 				const SCOPE_VALUES = SCOPE_KEYS.map( key => this.scope[key] );
 				const f = new Function( '_poly', ...SCOPE_KEYS, es5code.code ).bind( this );
-				global.SCOPE_VALUES = SCOPE_VALUES;
 				const out = f( '_poly', ...SCOPE_VALUES );
 				return out;
 			}
 		} catch ( err ) {
-			console.log( err );
 			return this.renderErrorMessage( err.message );
 		}
 	}
@@ -394,7 +394,8 @@ export default class Preview extends Component {
 
 Preview.defaultProps = {
 	code: '',
-	errorMsg: ''
+	errorMsg: '',
+	onScope() {}
 };
 
 
@@ -405,6 +406,7 @@ Preview.propTypes = {
 	currentMode: PropTypes.string.isRequired,
 	currentRole: PropTypes.string.isRequired,
 	errorMsg: PropTypes.string,
+	onScope: PropTypes.func,
 	preamble: PropTypes.object.isRequired
 };
 

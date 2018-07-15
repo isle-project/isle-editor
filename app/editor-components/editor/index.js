@@ -13,6 +13,7 @@ import noop from '@stdlib/utils/noop';
 import groupBy from '@stdlib/utils/group-by';
 import contains from '@stdlib/assert/contains';
 import aceSnippets, { snippetText } from 'snippets';
+import ComponentConfigurator from './component_configurator.js';
 import COMPONENTS from './components.json';
 import extractSnippets from './extract_snippets.js';
 import './editor.css';
@@ -77,6 +78,11 @@ class Editor extends Component {
 	constructor( props ) {
 		super( props );
 
+		this.state = {
+			selectedComponent: null,
+			showComponentConfigurator: false
+		};
+
 		this.onChange = () => {
 			this.props.onChange( this.editor.getValue() );
 		};
@@ -86,6 +92,7 @@ class Editor extends Component {
 		langTools.addCompleter( customCompleter );
 
 		this.editor = ace.edit( this.editorWindow );
+		global.editor = this.editor;
 		this.editor.$blockScrolling = Infinity;
 
 		const session = this.editor.getSession();
@@ -149,16 +156,35 @@ class Editor extends Component {
 		clearInterval( this.interval );
 	}
 
+	toggleComponentConfigurator = ( name ) => {
+		this.setState({
+			selectedComponent: name,
+			showComponentConfigurator: !this.state.showComponentConfigurator
+		});
+	}
+
 	handleContexMenuClick = ( evt, data ) => {
 		if ( !this.customClick ) {
 			this.snippetManager.insertSnippetForSelection( this.editor, data.value );
 			this.editor.focus();
 			this.editor.tabstopManager.tabNext();
+		} else {
+			this.toggleComponentConfigurator( data.name );
 		}
 	}
 
-	handleCustomInsertClick = ( evt ) => {
+	handleComponentInsertion = ( text ) => {
+		this.setState({
+			selectedComponent: null,
+			showComponentConfigurator: !this.state.showComponentConfigurator
+		}, () => {
+			this.editor.insert( String( text ) );
+		});
+	}
+
+	handleCustomInsertClick = ( evt, data ) => {
 		this.customClick = true;
+		// Propagate to `handleContexMenuClick`...
 	}
 
 	renderMenuItem = ( obj, idx ) => {
@@ -170,7 +196,7 @@ class Editor extends Component {
 			{obj.name}
 			<Glyphicon
 				style={{ float: 'right' }}
-				glyph="floppy-save"
+				glyph="cog"
 				onClick={this.handleCustomInsertClick}
 			/>
 		</MenuItem>
@@ -217,6 +243,13 @@ class Editor extends Component {
 						{snippets.general.map( this.renderMenuItem )}
 					</SubMenu>
 				</ContextMenu>
+				<ComponentConfigurator
+					show={this.state.showComponentConfigurator}
+					onHide={this.toggleComponentConfigurator}
+					onInsert={this.handleComponentInsertion}
+					name={this.state.selectedComponent}
+					scope={this.props.scope}
+				/>
 			</div>
 		);
 	}
@@ -227,6 +260,7 @@ class Editor extends Component {
 
 Editor.defaultProps = {
 	onChange: noop,
+	scope: {},
 	value: '',
 	cursorStart: 1
 };
@@ -237,6 +271,7 @@ Editor.defaultProps = {
 Editor.propTypes = {
 	cursorStart: PropTypes.number,
 	onChange: PropTypes.func,
+	scope: PropTypes.object,
 	value: PropTypes.string
 };
 
