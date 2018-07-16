@@ -401,7 +401,9 @@ class MarkdownEditor extends Component {
 					const title = document.title || 'provisoric';
 					html = createHTML( title, html, this.state.fontSize );
 					const ast = md.parse( text );
-					const doc = generatePDF( ast, this.state.pageSize );
+					// Create the config so that the function can run
+					const config = {'pageSize': 'LETTER', 'pageOrientation': 'portrait'}
+					const doc = generatePDF( ast, config, this.state.pageSize );
 					const pdfDocGenerator = pdfMake.createPdf( doc );
 					pdfDocGenerator.getBase64( ( pdf ) => {
 						const msg = {
@@ -810,7 +812,7 @@ class MarkdownEditor extends Component {
 		let text = this.simplemde.value();
 		text = this.replacePlaceholders( text, true );
 		const ast = md.parse( text );
-		const doc = generatePDF( ast, config, opts );
+		const doc = generatePDF( ast, config, this.state.fontSize, opts );
 		this.toggleSaveModal( null, () => {
 			pdfMake.createPdf( doc ).download( title );
 		});

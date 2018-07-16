@@ -9,7 +9,11 @@ import startsWith from '@stdlib/string/starts-with';
 
 const debug = logger( 'markdown-editor:pdf' );
 const MARGINS = [ 5, 2, 2, 5 ];
-const STYLES = {
+
+// custon_font_size is passed in terms of html, so a size 16 in html will be a size 12 here
+
+/*
+const STYLES = ( custom_font_size ) => {
 	'h1': {
 		fontSize: 32,
 		color: '#2e4468',
@@ -29,8 +33,12 @@ const STYLES = {
 		fontSize: 16,
 		color: '#ca5800',
 		bold: true
+	},
+	'standardText': {
+		fontSize: custom_font_size
 	}
 };
+*/
 const TABLE_LAYOUT = {
 	hLineWidth( i, node ) {
 		if ( i === 0 || i === node.table.body.length ) {
@@ -54,6 +62,38 @@ const TABLE_LAYOUT = {
 
 
 // FUNCTIONS //
+
+function makeSTYLES( customFontSize = 16 ) {
+	// the 16 is x + 4 --> 12 font
+	const pdfSize = customFontSize - 4;
+	return (
+		{
+			'h1': {
+				fontSize: pdfSize + 16,
+				color: '#2e4468',
+				bold: true
+			},
+			'h2': {
+				fontSize: pdfSize + 14,
+				color: '#3c763d',
+				bold: true
+			},
+			'h3': {
+				fontSize: pdfSize + 8,
+				color: '#2e4468',
+				bold: true
+			},
+			'h4': {
+				fontSize: pdfSize + 4,
+				color: '#ca5800',
+				bold: true
+			},
+			'standardText': {
+				fontSize: pdfSize
+			}
+		}
+	)
+}
 
 function extractList( ast ) {
 	const list = [];
@@ -226,11 +266,11 @@ function applyStyles( ast, text ) {
 
 // MAIN //
 
-function generatePDF( ast, config, opts ) {
+function generatePDF( ast, config, standardFontSize, opts ) {
 	// Note that the DPI is 72
 	const doc = {
 		'content': [],
-		'styles': STYLES,
+		'styles': makeSTYLES(standardFontSize),
 		'pageSize': config.pageSize,
 		'pageOrientation': config.pageOrientation
 	};
@@ -272,7 +312,8 @@ function generatePDF( ast, config, opts ) {
 				doc.content.push({
 					text,
 					...state,
-					margin: MARGINS
+					margin: MARGINS,
+					style: 'standardText'
 				});
 			} else {
 				doc.content.push({
@@ -341,7 +382,7 @@ function generatePDF( ast, config, opts ) {
 		}
 	}
 	debug( 'Document: %s', JSON.stringify( doc, null, 2 ) );
-	// console.log(doc);
+	// console.log(JSON.stringify(doc));
 	return doc;
 }
 
