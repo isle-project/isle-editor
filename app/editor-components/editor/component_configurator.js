@@ -10,6 +10,7 @@ import Checkbox from 'react-bootstrap/lib/Checkbox';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Modal from 'react-bootstrap/lib/Modal';
 import Col from 'react-bootstrap/lib/Col';
+import Row from 'react-bootstrap/lib/Row';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isFunction from '@stdlib/assert/is-function';
 import typeOf from '@stdlib/utils/type-of';
@@ -184,18 +185,21 @@ class ComponentConfigurator extends Component {
 		for ( let i = 0; i < keys.length; i++ ) {
 			let key = keys[ i ];
 			let defaultValue = componentClass.defaultProps[ key ];
+			let description = componentClass.propDescriptions ?
+				componentClass.propDescriptions[ key ] : '';
 			let type = extractType( componentClass.propTypes[ key ] );
-			let elem = <FormGroup style={{ padding: 5 }} key={i}>
-				<Col sm={4} style={{ padding: 0 }}>
-					<Checkbox checked={contains( this.state.value, key )} onClick={this.checkboxClickFactory( key, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{key}</Checkbox>
-				</Col>
-				<Col sm={3} style={{ padding: 0 }}>
-					{ type ? `Type: ${type}.` : '' }
-				</Col>
-				<Col sm={5} style={{ padding: 0 }}>
-					{generateDefaultString( defaultValue )}
-				</Col>
-			</FormGroup>;
+			let elem = <Row style={{ marginRight: 0, marginLeft: 0 }} key={i} >
+					<Col sm={4} style={{ padding: 0 }}>
+						<Checkbox checked={contains( this.state.value, key )} onClick={this.checkboxClickFactory( key, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{key}</Checkbox>
+					</Col>
+					<Col sm={4} style={{ padding: 0 }}>{description}</Col>
+					<Col sm={2} style={{ padding: 0 }}>
+						{ type ? `Type: ${type}.` : '' }
+					</Col>
+					<Col sm={2} style={{ padding: 0 }}>
+						{generateDefaultString( defaultValue )}
+					</Col>
+				</Row>;
 			controls.push( elem );
 		}
 		return controls;
@@ -211,11 +215,11 @@ class ComponentConfigurator extends Component {
 				<Modal.Header closeButton>
 					<Modal.Title>Configure Component</Modal.Title>
 				</Modal.Header>
-				<Modal.Body style={{ height: '300px' }}>
-					<FormGroup style={{ height: '280px', width: '58%', float: 'left', overflowY: 'scroll' }}>
+				<Modal.Body>
+					<FormGroup style={{ height: '280px', overflowY: 'scroll' }}>
 						{this.renderPropertyControls()}
 					</FormGroup>
-					<FormGroup style={{ width: '40%', float: 'right' }}>
+					<FormGroup>
 						<ControlLabel>Code:</ControlLabel>
 						<FormControl
 							componentClass="textarea"
@@ -224,15 +228,15 @@ class ComponentConfigurator extends Component {
 							onChange={this.handleChange}
 							style={{ resize: 'none' }}
 						/>
-						<Button
-							bsStyle="primary" block
-							onClick={this.handleReset}
-						>Reset</Button>
 					</FormGroup>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button
-						block bsStyle="success"
+						bsStyle="primary"
+						onClick={this.handleReset}
+					>Reset</Button>
+					<Button
+						bsStyle="success"
 						onClick={this.handleClick}
 					>Insert</Button>
 				</Modal.Footer>
