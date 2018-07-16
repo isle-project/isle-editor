@@ -233,17 +233,27 @@ MultipleChoiceQuestion.defaultProps = {
 
 // PROPERTY TYPES //
 
+MultipleChoiceQuestion.propDescriptions = {
+	'question': 'the question displayed at the top of the multiple choice component',
+	'solution': 'a `number` denoting which answer is correct or an `Array` of the correct answer numbers in case the learner should be able to select multiple answers',
+	'answers': 'an `Array` of answer objects. Each answer should be an object with `content` and `explanation` fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect',
+	'disabled': '`boolean` controlling whether the question is disabled',
+	'provideFeedback': '`boolean` indicating whether feedback including the correct answer should be displayed after learners submit their answers',
+	'displaySolution': '`boolean` controlling whether the solution is displayed upfront',
+	'onSubmit': 'a callback `function` invoked after an answer is submitted.'
+};
+
 MultipleChoiceQuestion.propTypes = {
-	answers: PropTypes.array.isRequired,
-	disabled: PropTypes.bool,
-	displaySolution: PropTypes.bool,
-	onSubmit: PropTypes.func,
-	provideFeedback: PropTypes.bool,
 	question: PropTypes.string,
 	solution: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.array
-	]).isRequired
+	]).isRequired,
+	answers: PropTypes.array.isRequired,
+	disabled: PropTypes.bool,
+	provideFeedback: PropTypes.bool,
+	displaySolution: PropTypes.bool,
+	onSubmit: PropTypes.func
 };
 
 MultipleChoiceQuestion.contextTypes = {
