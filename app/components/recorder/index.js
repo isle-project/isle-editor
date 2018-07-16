@@ -482,6 +482,16 @@ class Recorder extends Component {
 
 // TYPES //
 
+Recorder.propDescriptions = {
+	audio: 'indicates whether audio should be recorded',
+	autostart: 'indicates whether recording should start immediately',
+	bitsPerSecond: 'bits per second',
+	camera: 'indicates whether webcam should be recorded',
+	downloadable: 'indicates whether users should be able to download the recoding',
+	screen: 'indicates whether the screen should be captured',
+	uploadable: 'indicates whether users should be able to upload the recoding to the server'
+};
+
 Recorder.propTypes = {
 	audio: PropTypes.bool,
 	autostart: PropTypes.bool,
