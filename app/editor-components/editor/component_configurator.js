@@ -177,7 +177,6 @@ class ComponentConfigurator extends Component {
 
 	renderPropertyControls() {
 		const { componentClass } = this.state;
-		global.componentClass = componentClass;
 		if ( !componentClass ) {
 			return <span>Loading component specification...</span>;
 		}
@@ -190,10 +189,10 @@ class ComponentConfigurator extends Component {
 				componentClass.propDescriptions[ key ] : '';
 			let type = extractType( componentClass.propTypes[ key ] );
 			let elem = <Panel style={{ marginBottom: 5 }}><Row style={{ marginRight: 3, marginLeft: 3 }} key={i} >
-					<Col sm={2} style={{ padding: 0 }}>
+					<Col sm={3} style={{ padding: 0 }}>
 						<Checkbox checked={contains( this.state.value, key )} onClick={this.checkboxClickFactory( key, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{key}</Checkbox>
 					</Col>
-					<Col sm={6} style={{ padding: 0 }}>Description: {description}</Col>
+					<Col sm={5} style={{ padding: 0 }}>Description: {description}</Col>
 					<Col sm={2} style={{ padding: 0 }}>
 						{ type ? `Type: ${type}.` : '' }
 					</Col>
@@ -235,11 +234,14 @@ class ComponentConfigurator extends Component {
 					<Button
 						bsStyle="primary"
 						onClick={this.handleReset}
-					>Reset</Button>
+					>Reset Code</Button>
 					<Button
 						bsStyle="success"
 						onClick={this.handleClick}
 					>Insert</Button>
+					<Button
+						onClick={this.clickHide}
+					>Close</Button>
 				</Modal.Footer>
 			</Modal>
 		);
