@@ -5,9 +5,8 @@ import Pagination from 'react-bootstrap/lib/Pagination';
 import PropTypes from 'prop-types';
 import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
-import './pages.css';
-
 import SpeechInterface from 'speech-interface'; // this may be deleted
+import './pages.css';
 
 
 // MAIN //

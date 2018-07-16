@@ -12,7 +12,7 @@ import './voice.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle-editor:voice-input' );
 
 
 // MAIN //
@@ -90,7 +90,7 @@ class VoiceInput extends Input {
 		var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList; //eslint-disable-line
 		var grammarList = new SpeechGrammarList();
 		for (var i = 0; i < this.props.grammars.length; i++) {
-			var { src, weight} = this.props.grammars[ i ];
+			var { src, weight } = this.props.grammars[ i ];
 			grammarList.addFromString( src, weight );
 		}
 		return grammarList;
@@ -128,7 +128,7 @@ class VoiceInput extends Input {
 			recognizer.start();
 		}
 
-		console.log('set recording true');
+		debug( 'Set isRecording to true...' );
 		this.setState({
 			isRecording: true
 		});

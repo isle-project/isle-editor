@@ -30,7 +30,12 @@
       "properties": "never"
     }],
     "capitalized-comments": [ 1, "always", {
-      "ignoreInlineComments": true
+      "line": {
+          "ignorePattern": ".*"
+      },
+      "block": {
+          "ignoreInlineComments": true
+      }
     }],
     "comma-dangle": [ 2, "never" ],
     "comma-spacing": [ 2, {
@@ -283,7 +288,7 @@
     "react/require-default-props": 2,
     "react/require-render-return": 2,
     "react/sort-comp": 1,
-    "react/sort-prop-types": 2,
+    "react/sort-prop-types": 0,
     "react/void-dom-elements-no-children": 2,
     "react/jsx-closing-bracket-location": 0,
     "react/jsx-closing-tag-location": 0,

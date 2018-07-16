@@ -1,0 +1,75 @@
+{
+	"DISPLAY": [
+		"Col",
+		"DraggableGrid",
+		"Expire",
+		"Gate",
+		"Grid",
+		"IFrame",
+		"Nav justified",
+		"Pages",
+		"Panel",
+		"Slider",
+		"Switch",
+		"Tabs",
+		"Well"
+	],
+	"INPUT": [
+		"CheckboxInput",
+		"Dashboard",
+		"NumberInput",
+		"ProportionsInput",
+		"SelectInput",
+		"SliderInput",
+		"TextInput",
+		"VoiceInput"
+	],
+	"LEARNING": [
+		"LearnConditionalProbability",
+		"LearnContinuousCLT",
+		"LearnDiceThrowing",
+		"LearnDiscreteCLT",
+		"LearnSampleCLT",
+		"LearnCrossValidation",
+		"LearnProportionTest",
+		"LearnMeanTest",
+		"LearnExponentialDistribution",
+		"LearnNormalDistribution",
+		"LearnTDistribution",
+		"LearnUniformDistribution",
+		"LearnVennDiagramBuilder",
+		"LearnWordVennDiagram",
+		"LearnMeanVSMedian",
+		"LearnStandardize",
+		"LearnConfidenceCoverageBinomial",
+		"LearnConfidenceCoverageNormal",
+		"LearnImagePixelPicker"
+	],
+	"MAIN": [
+		"DataExplorer",
+		"DataTable",
+		"FeedbackButtons",
+		"MarkdownEditor",
+		"TeX"
+	],
+	"QUESTION": [
+		"FreeTextQuestion",
+		"MatchListQuestion",
+		"MultipleChoiceQuestion",
+		"NumberQuestion",
+		"RangeQuestion"
+	],
+	"SURVEY": [
+		"FreeTextSurvey",
+		"MultipleChoiceSurvey",
+		"NumberSurvey",
+		"SurveyGenerator"
+	],
+	"R": [
+		"RHelp",
+		"ROutput",
+		"RPlot",
+		"RShell",
+		"RTable"
+	]
+}

@@ -3,8 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SpeechRecognition from 'components/speech-recognition';
-import './styles.css';
 import camelcase from 'camelcase';
+import './styles.css';
+
 
 // MAIN //
 
@@ -29,9 +30,7 @@ class AcousticCSS extends Component {
 	onInput( value ) {
 	}
 
-	getResult( value ) {
-		alert( value );
-	}
+	getResult( value ) {}
 
 	click() {
 		this.recognition.trigger();
@@ -124,7 +123,6 @@ class AcousticCSS extends Component {
 
 			var repix = / pixels*/;
 			value = value.replace( repix, 'px' );
-			console.log( value );
 
 			var vw = / viewport*/;
 			value = value.replace( vw, 'vw' );

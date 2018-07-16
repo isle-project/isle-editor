@@ -402,7 +402,7 @@ class ContinuousCLT extends Component {
 		}
 		return ( <Panel>
 			<Panel.Body>
-				<p><label>Histogram of <TeX raw="\bar x" />'s</label></p>
+				<p><label>Histogram of <TeX raw="\bar x" />&#39;s</label></p>
 				{ this.state.xbars.length > 1 ?
 					<Plotly data={plotlyData} layout={{
 						width: 400,
@@ -431,13 +431,13 @@ class ContinuousCLT extends Component {
 				}} />
 				{ this.state.avgXBars ?
 					<p>
-						<label> Mean of <TeX raw="\bar x" />'s: </label>
+						<label> Mean of <TeX raw="\bar x" />&#39;s: </label>
 						&nbsp;{this.state.avgXBars.toFixed( 3 )} (shown as the red line)
 					</p> : null
 				}
 				{ this.state.stdevXBars ?
 					<p>
-						<label>Standard deviation of <TeX raw="\bar x" />'s: </label>
+						<label>Standard deviation of <TeX raw="\bar x" />&#39;s: </label>
 						&nbsp;{this.state.stdevXBars.toFixed( 3 )}
 					</p> : null
 				}

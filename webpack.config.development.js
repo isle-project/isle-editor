@@ -81,14 +81,14 @@ const config = {
 		},
 		before() {
 			if ( process.env.START_HOT ) { // eslint-disable-line no-process-env
-				console.log('Starting Main Process...');
+				console.log( 'Starting Main Process...' ); // eslint-disable-line no-console
 				spawn(
 					'npm',
 					[ 'run', 'start-main-dev' ],
 					{ shell: true, env: process.env, stdio: 'inherit' } // eslint-disable-line no-process-env
 				)
-					.on( 'close', code => process.exit(code) )
-					.on( 'error', spawnError => console.error(spawnError) );
+					.on( 'close', code => process.exit(code) ) // eslint-disable-line no-process-exit
+					.on( 'error', spawnError => console.error(spawnError) ); // eslint-disable-line no-console
 			}
 		}
 	}

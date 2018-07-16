@@ -96,9 +96,9 @@ export function open({ browserWindow }) {
 	dialog.showOpenDialog( browserWindow, {
 		properties: [ 'openFile' ],
 		filters: [
-			{name: 'isle', extensions: ['isle']},
-			{name: 'markdown', extensions: ['markdown', 'md', 'mdown', 'mkd', 'mdwn']},
-			{name: 'html', extensions: ['html']}
+			{ name: 'isle', extensions: [ 'isle' ]},
+			{ name: 'markdown', extensions: [ 'markdown', 'md', 'mdown', 'mkd', 'mdwn' ]},
+			{ name: 'html', extensions: [ 'html' ]}
 		]
 	}, ( fileNames ) => {
 		if ( fileNames === void 0 ) {

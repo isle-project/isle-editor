@@ -58,7 +58,7 @@ class Boxplot extends Component {
 
 	generateBoxplot( variable, group ) {
 		const config = generateBoxplotConfig({ data: this.props.data, variable, group });
-		const plotId = generate( 6 ); 
+		const plotId = generate( 6 );
 		const output = {
 			variable: variable,
 			type: 'Chart',

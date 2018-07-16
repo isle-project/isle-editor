@@ -6,11 +6,26 @@ snippet AddNotification
 		level: 'success'
 	});
 
+snippet BeaconTooltip
+	<BeaconTooltip
+		content="${1:Enter content}"
+		title="${2:}"
+		target="${3:}"
+	/>
+
+snippet ChatButton
+	<ChatButton
+		for="${1:id}"
+	/>
+
 snippet CheckboxInput
 	<CheckboxInput
 		legend="${1:}"
 		defaultValue={${2:false}}
 	/>
+
+snippet Clock
+	<Clock />
 
 snippet ColorPicker
 	<ColorPicker />
@@ -88,7 +103,7 @@ snippet FreeTextSurvey
 	<FreeTextSurvey anonymous question="${1:Enter question}" />
 
 snippet Gate
-	<Gate banner={{$1:null}} ${2:user} ${3:owner}>
+	<Gate banner={${1:null}} ${2:user} ${3:owner}>
 		${4:}
 	</Gate>
 
@@ -101,6 +116,12 @@ snippet Grid
 
 snippet IFrame
 	<IFrame src={${1:http://www.wikipedia.org}} />
+
+snippet Joyride
+	<Joyride
+		run={${1:true}}
+		steps={${2:[]}}
+	/>
 
 snippet JSShell
 	<JSShell
@@ -180,12 +201,24 @@ snippet Playground
 		}}
 	/>
 
+snippet Plotly
+	<Plotly
+		data={${1:data array}}
+		layout={${2:{}}}
+	/>
+
 snippet ProportionsInput
 	<ProportionsInput
 		legends = {${1:[ 'Robotics', 'Bitcoin', 'Gold', 'Diamonds', 'Vegetables', 'Fruits' ]}}
 		precision={${2:2}}
 		step={${3:0.25}}
 		nElements={${4:6}}
+	/>
+
+snippet RangeQuestion
+	<RangeQuestion
+		question="${1:Enter question}"
+		solution={[${2:0},${3:1}]}
 	/>
 
 snippet Recorder
@@ -280,3 +313,60 @@ snippet Wikipedia
 		speech
 		language = "en-US"
 	/>
+
+snippet LearnConditionalProbability
+	<LearnConditionalProbability />
+
+snippet LearnCrossValidation
+	<LearnCrossValidation />
+
+snippet LearnDiceThrowing
+	<LearnDiceThrowing />
+
+snippet LearnMeanVSMedian
+	<LearnMeanVSMedian />
+
+snippet LearnExponentialDistribution
+	<LearnExponentialDistribution />
+
+snippet LearnNormalDistribution
+	<LearnNormalDistribution />
+
+snippet LearnTDistribution
+	<LearnTDistribution />
+
+snippet LearnUniformDistribution
+	<LearnUniformDistribution />
+
+snippet LearnStandardize
+	<LearnStandardize />
+
+snippet LearnContinuousCLT
+	<LearnContinuousCLT />
+
+snippet LearnDiscreteCLT
+	<LearnDiscreteCLT />
+
+snippet LearnSampleCLT
+	<LearnSampleCLT />
+
+snippet LearnConfidenceCoverageBinomial
+	<LearnConfidenceCoverageBinomial />
+
+snippet LearnConfidenceCoverageNormal
+	<LearnConfidenceCoverageNormal />
+
+snippet LearnMeanTest
+	<LearnMeanTest />
+
+snippet LearnProportionTest
+	<LearnProportionTest />
+
+snippet LearnVennDiagramBuilder
+	<LearnVennDiagramBuilder />
+
+snippet LearnWordVennDiagram
+	<LearnWordVennDiagram />
+
+snippet LearnImagePixelPicker
+	<LearnImagePixelPicker />

@@ -3,9 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import hasOwnProp from '@stdlib/assert/has-own-property';
-import isAbsolutePath from '@stdlib/assert/is-absolute-path';
-import isObject from '@stdlib/assert/is-object';
 import path from 'path';
 import css from 'css';
 import fs from 'fs';
@@ -13,13 +10,17 @@ import debounce from 'lodash.debounce';
 import SplitPane from 'react-split-pane';
 import logger from 'debug';
 import yaml from 'js-yaml';
-import ErrorBoundary from 'components/error-boundary';
-import SplitPanel from 'components/split-panel';
-import Header from 'components/Header';
-import Editor from 'components/Editor';
-import Preview from 'components/Preview';
-import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError } from 'actions';
+import hasOwnProp from '@stdlib/assert/has-own-property';
+import isAbsolutePath from '@stdlib/assert/is-absolute-path';
+import isObject from '@stdlib/assert/is-object';
 import replace from '@stdlib/string/replace';
+import keys from '@stdlib/utils/keys';
+import ErrorBoundary from 'editor-components/error-boundary';
+import SplitPanel from 'editor-components/split-panel';
+import Header from 'editor-components/header';
+import Editor from 'editor-components/editor';
+import Preview from 'editor-components/preview';
+import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError } from 'actions';
 
 
 // VARIABLES //
@@ -64,7 +65,6 @@ const applyStyles = ( preamble, filePath ) => {
 				if ( process.platform === 'win32' ) {
 					fpath = replace( fpath, '\\', '\\\\' );
 				}
-
 			}
 			css += fs.readFileSync( fpath ).toString();
 		}
@@ -85,7 +85,6 @@ const loadRequires = ( libs, filePath ) => {
 	/* eslint-disable no-eval */
 	debug( 'Should require files or modules...' );
 	let dirname = path.dirname( filePath );
-	console.log( dirname );
 	debug( 'Directory: '+dirname );
 	if ( isObject( libs ) ) {
 		for ( let key in libs ) {
@@ -127,6 +126,10 @@ class App extends Component {
 		super( props );
 
 		this.lastPreamble = null;
+
+		this.state = {
+			scope: null
+		};
 
 		this.onChange = ( value ) => {
 			debug( 'Editor text changed...' );
@@ -209,6 +212,13 @@ class App extends Component {
 		return false;
 	}
 
+	saveScope = ( scope ) => {
+		debug( `Saving scope of ${keys(scope).length} components` );
+		this.setState({
+			scope
+		});
+	}
+
 	sync( main, other ) {
 		return ( scrollTop, scrollHeight, offsetHeight ) => {
 			const percentage = ( scrollTop * 100 ) / ( scrollHeight - offsetHeight );
@@ -266,6 +276,7 @@ class App extends Component {
 								showGutter: true,
 								showPrintMargin: false
 							}}
+							scope={this.state.scope}
 						/>
 					</SplitPanel>
 					<SplitPanel ref={( elem ) => { this.preview = elem; }} onScroll={this.onPreviewScroll}>
@@ -277,6 +288,7 @@ class App extends Component {
 								preamble={preamble}
 								currentRole={currentRole}
 								currentMode={currentMode}
+								onScope={this.saveScope}
 							/>
 						</ErrorBoundary>
 					</SplitPanel>
@@ -285,7 +297,7 @@ class App extends Component {
 					( () => {
 						// eslint-disable-next-line no-process-env
 						if ( process.env.NODE_ENV !== 'production' ) {
-							const DevTools = require( './DevTools' ); // eslint-disable-line global-require
+							const DevTools = require( './dev_tools.js' ); // eslint-disable-line global-require
 							return <DevTools />;
 						}
 					})()

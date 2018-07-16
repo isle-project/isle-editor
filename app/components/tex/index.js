@@ -226,7 +226,7 @@ TeX.propTypes = {
 // DEFAULT PROPERTIES //
 
 TeX.defaultProps = {
-	onClick: null,
+	onClick() {},
 	displayMode: false,
 	tag: null,
 	numbered: false,

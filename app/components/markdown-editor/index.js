@@ -21,6 +21,7 @@ import repeat from '@stdlib/string/repeat';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import contains from '@stdlib/assert/contains';
 import trim from '@stdlib/string/trim';
+import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import VoiceInput from 'components/input/voice';
 import 'simplemde/dist/simplemde.min.css';
@@ -257,16 +258,18 @@ class MarkdownEditor extends Component {
 				name: 'newLine',
 				action: ( editor ) => {
 					const cm = this.simplemde.codemirror;
-					// When we get the cursor we want to get the head
-					// Add the newline to the left of the cursor
 					const startPoint = cm.getCursor( 'start' );
 					const endPoint = cm.getCursor( 'end' );
 					if ( startPoint.line === endPoint.line ) {
-						cm.replaceSelection( '\\\n' );
+						const pos = {
+							line: startPoint.line,
+							ch: endPoint.ch
+						};
+						cm.replaceRange( '\\\n', pos );
 					}
 					while ( startPoint.line !== endPoint.line ) {
 						var currentLine = cm.getLine( startPoint.line );
-						if ( endsWith(currentLine, '\\') ) {
+						if ( endsWith( currentLine, '\\' ) ) {
 							cm.replaceRange( removeLast( currentLine ),
 								{ line: startPoint.line, ch: 0 },
 								{ line: startPoint.line, ch: 99999999999999 }
@@ -491,7 +494,11 @@ class MarkdownEditor extends Component {
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
-		if ( this.state.defaultValue !== prevState.defaultValue ) {
+		if (
+			this.state.defaultValue !== prevState.defaultValue ||
+			this.props.toolbarConfig !== prevProps.toolbarConfig ||
+			this.props.voiceControl !== prevProps.voiceControl
+		) {
 			this.simplemde.toTextArea(); // Reset text area to remove SimpleMDE instance...
 			this.initializeEditor();
 		}
@@ -702,13 +709,17 @@ class MarkdownEditor extends Component {
 	}
 
 	createToolbar() {
-		var toolbar = [];
-		var tbOpt; // Gives the name as a string of option
-		var tbObj; // Gives the object that will be put in array
-		for ( var i = 0; i < this.props.toolbarConfig.length; i++ ) {
-			tbOpt = this.props.toolbarConfig[i];
-			tbObj = this.toolbarOpts[tbOpt];
-			toolbar.push(tbObj);
+		const toolbarConfig = copy( this.props.toolbarConfig );
+		const toolbar = [];
+		let tbOpt; // Gives the name as a string of option
+		let tbObj; // Gives the object that will be put in array
+		if ( this.props.voiceControl && !contains( toolbarConfig, 'voice' ) ) {
+			toolbarConfig.push( 'voice' );
+		}
+		for ( let i = 0; i < toolbarConfig.length; i++ ) {
+			tbOpt = toolbarConfig[ i ];
+			tbObj = this.toolbarOpts[ tbOpt ];
+			toolbar.push( tbObj );
 		}
 		return toolbar;
 	}
@@ -725,10 +736,8 @@ class MarkdownEditor extends Component {
 	}
 
 	previewRender = ( plainText ) => {
-		// Take the plaintext and insert the images via hash
+		// Take the plaintext and insert the images via hash:
 		plainText = this.replacePlaceholders( plainText );
-
-		// Now render the markdown
 		return md.render( plainText );
 	}
 
@@ -791,20 +800,27 @@ class MarkdownEditor extends Component {
 	}
 
 	renderVoiceControl() {
-		if ( !contains(this.props.toolbarConfig, 'voice') ) return null;
+		if (
+			!contains( this.props.toolbarConfig, 'voice' ) &&
+			!this.props.voiceControl
+		) {
+			return null;
+		}
 		return (
 			<VoiceInput mode="status"
 				language={this.props.language}
 				timeout={this.props.voiceTimeout}
 				width={500}
-				onFinalText={this.recordedText} ref={( voice ) => { this.voiceRef = voice; }} />
+				onFinalText={this.recordedText}
+				ref={( voice ) => { this.voiceRef = voice; }}
+			/>
 		);
 	}
 
 	render() {
 		return (
 			<Fragment>
-				<div className="markdown-editor" style={this.props.style} >
+				<div id={this.props.id} className="markdown-editor" style={this.props.style} >
 					<textarea ref={( area ) => { this.simplemdeRef = area; }} autoComplete="off" {...this.props.options} />
 					{this.renderVoiceControl()}
 				</div>
@@ -862,6 +878,7 @@ MarkdownEditor.defaultProps = {
 		'preview', 'side_by_side', 'fullscreen', '|',
 		'open_markdown', 'save', 'submit', '|'
 	],
+	voiceControl: false,
 	voiceTimeout: 5000
 };
 
@@ -876,7 +893,8 @@ MarkdownEditor.propTypes = {
 	onChange: PropTypes.func,
 	options: PropTypes.object,
 	style: PropTypes.object,
-	toolbarConfig: PropTypes.arrayOf(PropTypes.string),
+	toolbarConfig: PropTypes.array,
+	voiceControl: PropTypes.bool,
 	voiceTimeout: PropTypes.number
 };
 

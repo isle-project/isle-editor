@@ -17,7 +17,7 @@ import logger from 'debug';
 import markdownToHTML from 'utils/markdown-to-html';
 import pluginTransformJSX from 'babel-plugin-transform-react-jsx';
 import Provider from 'components/provider';
-import Loadable from 'components/loadable';
+import Loadable from 'editor-components/loadable';
 import Session from 'session';
 import Accordion from 'react-bootstrap/lib/Accordion';
 import Button from 'react-bootstrap/lib/Button';
@@ -70,6 +70,7 @@ const createScope = ( session ) => {
 
 		AcousticAssistant: Loadable( () => import( 'components/acoustic-css' ) ),
 		AcousticCSS: Loadable( () => import( 'components/acoustic-css' ) ),
+		BeaconTooltip: Loadable( () => import( 'components/beacon-tooltip' ) ),
 		CheckboxInput: CheckboxInput,
 		Clock: Loadable( () => import( 'components/clock' ) ),
 		ColorPicker: Loadable( () => import( 'components/color-picker' ) ),
@@ -87,6 +88,7 @@ const createScope = ( session ) => {
 		Gate: Loadable( () => import( 'components/gate' ) ),
 		Grid: Loadable( () => import( 'components/grid' ) ),
 		IFrame: Loadable( () => import( 'components/iframe' ) ),
+		Joyride: Loadable( () => import( 'components/joyride' ) ),
 		JSShell: Loadable( () => import( 'components/js-shell' ) ),
 		KeyControls: Loadable( () => import( 'components/key-controls' ) ),
 		LearnCrossValidation: Loadable( () => import( 'components/learn/cross-validation' ) ),
@@ -237,6 +239,7 @@ export default class Preview extends Component {
 			const session = new Session( props.preamble, offline );
 			this.session = session;
 			this.scope = createScope( session );
+			this.props.onScope( this.scope );
 			lessonState = session.config.state;
 		}
 		this.state = {
@@ -276,6 +279,7 @@ export default class Preview extends Component {
 			const session = new Session( this.props.preamble, offline );
 			this.session = session;
 			this.scope = createScope( session );
+			this.props.onScope( this.scope );
 			let lessonState = session.config.state;
 			this.setState({
 				...lessonState
@@ -316,13 +320,13 @@ export default class Preview extends Component {
 				code = pres;
 			}
 			code = `<div>
-				<KeyControls actions={{ 
+				<KeyControls actions={{
 					'ArrowUp': function() {
 						const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowRight', 'code': 'ArrowRight' });
 						delete e.keyCode;
 						Object.defineProperty( e, 'keyCode', { 'value' : 39 });
 						document.dispatchEvent( e );
-					}, 
+					},
 					'ArrowDown': function() {
 						const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowLeft', 'code': 'ArrowLeft' });
 						delete e.keyCode;
@@ -352,12 +356,10 @@ export default class Preview extends Component {
 				const SCOPE_KEYS = Object.keys( this.scope );
 				const SCOPE_VALUES = SCOPE_KEYS.map( key => this.scope[key] );
 				const f = new Function( '_poly', ...SCOPE_KEYS, es5code.code ).bind( this );
-				global.SCOPE_VALUES = SCOPE_VALUES;
 				const out = f( '_poly', ...SCOPE_VALUES );
 				return out;
 			}
 		} catch ( err ) {
-			console.log( err );
 			return this.renderErrorMessage( err.message );
 		}
 	}
@@ -392,7 +394,8 @@ export default class Preview extends Component {
 
 Preview.defaultProps = {
 	code: '',
-	errorMsg: ''
+	errorMsg: '',
+	onScope() {}
 };
 
 
@@ -403,6 +406,7 @@ Preview.propTypes = {
 	currentMode: PropTypes.string.isRequired,
 	currentRole: PropTypes.string.isRequired,
 	errorMsg: PropTypes.string,
+	onScope: PropTypes.func,
 	preamble: PropTypes.object.isRequired
 };
 
