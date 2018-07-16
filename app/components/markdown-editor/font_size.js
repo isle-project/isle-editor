@@ -38,7 +38,7 @@ class FontSizeSelect extends Component {
 					<NumberInput
 						legend="Select Font Size"
 						defaultValue={this.props.current}
-						min={2}
+						min={6}
 						step={1}
 						onChange={( value ) => {
 							this.setState({
