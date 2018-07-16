@@ -9,6 +9,7 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import Checkbox from 'react-bootstrap/lib/Checkbox';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Modal from 'react-bootstrap/lib/Modal';
+import Panel from 'react-bootstrap/lib/Panel';
 import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
@@ -188,18 +189,18 @@ class ComponentConfigurator extends Component {
 			let description = componentClass.propDescriptions ?
 				componentClass.propDescriptions[ key ] : '';
 			let type = extractType( componentClass.propTypes[ key ] );
-			let elem = <Row style={{ marginRight: 0, marginLeft: 0 }} key={i} >
-					<Col sm={4} style={{ padding: 0 }}>
+			let elem = <Panel style={{ marginBottom: 5 }}><Row style={{ marginRight: 3, marginLeft: 3 }} key={i} >
+					<Col sm={2} style={{ padding: 0 }}>
 						<Checkbox checked={contains( this.state.value, key )} onClick={this.checkboxClickFactory( key, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{key}</Checkbox>
 					</Col>
-					<Col sm={4} style={{ padding: 0 }}>{description}</Col>
+					<Col sm={6} style={{ padding: 0 }}>Description: {description}</Col>
 					<Col sm={2} style={{ padding: 0 }}>
 						{ type ? `Type: ${type}.` : '' }
 					</Col>
 					<Col sm={2} style={{ padding: 0 }}>
 						{generateDefaultString( defaultValue )}
 					</Col>
-				</Row>;
+				</Row></Panel>;
 			controls.push( elem );
 		}
 		return controls;
@@ -213,7 +214,7 @@ class ComponentConfigurator extends Component {
 				bsSize="large"
 			>
 				<Modal.Header closeButton>
-					<Modal.Title>Configure Component</Modal.Title>
+					<Modal.Title>Configure {this.props.name}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<FormGroup style={{ height: '280px', overflowY: 'scroll' }}>
