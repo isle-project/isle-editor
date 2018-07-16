@@ -11,6 +11,7 @@ import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Modal from 'react-bootstrap/lib/Modal';
 import Col from 'react-bootstrap/lib/Col';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import isFunction from '@stdlib/assert/is-function';
 import typeOf from '@stdlib/utils/type-of';
 import replace from '@stdlib/string/replace';
 import contains from '@stdlib/assert/contains';
@@ -23,6 +24,38 @@ const debug = logger( 'isle-editor' );
 
 
 // FUNCTIONS //
+
+function generateReplacement( defaultValue ) {
+	const type = typeOf( defaultValue );
+	switch ( type ) {
+		case 'boolean':
+			return '{'+!defaultValue+'}';
+		case 'function':
+			return '{() => {\n\n}}';
+		case 'object':
+		case 'array':
+			return '{'+JSON.stringify( defaultValue )+'}';
+		case 'string':
+			if ( contains( defaultValue, '\n' ) ) {
+				return '{`'+defaultValue+'`}';
+			}
+			return `"${defaultValue}"`;
+		case 'number':
+			return '{'+defaultValue+'}';
+		default:
+			return '{}';
+	}
+}
+
+function generateDefaultString( defaultValue ) {
+	if ( defaultValue === null || defaultValue === void 0 ) {
+		return 'Default: none.';
+	}
+	if ( isFunction( defaultValue ) ) {
+		return 'Default: '+defaultValue.toString()+'.';
+	}
+	return 'Default: '+JSON.stringify( defaultValue, null, 2 )+'.';
+}
 
 function extractType( fcn ) {
 	if ( fcn === PropTypes.string ) {
@@ -124,33 +157,7 @@ class ComponentConfigurator extends Component {
 	}
 
 	checkboxClickFactory = ( key, defaultValue ) => {
-		let replacement;
-		const type = typeOf( defaultValue );
-		switch ( type ) {
-			case 'boolean':
-				replacement = '{'+!defaultValue+'}';
-			break;
-			case 'function':
-				replacement = '{() => {\n\n}}';
-			break;
-			case 'object':
-			case 'array':
-				replacement = '{'+JSON.stringify( defaultValue )+'}';
-			break;
-			case 'string':
-				if ( contains( defaultValue, '\n' ) ) {
-					replacement = '{`'+defaultValue+'`}';
-				} else {
-					replacement = `"${defaultValue}"`;
-				}
-			break;
-			case 'number':
-				replacement = '{'+defaultValue+'}';
-			break;
-			default:
-				replacement = '{}';
-			break;
-		}
+		const replacement = generateReplacement( defaultValue );
 		return () => {
 			let { value } = this.state;
 			if ( !contains( value, key ) ) {
@@ -178,7 +185,7 @@ class ComponentConfigurator extends Component {
 			let key = keys[ i ];
 			let defaultValue = componentClass.defaultProps[ key ];
 			let type = extractType( componentClass.propTypes[ key ] );
-			let elem = <FormGroup key={i}>
+			let elem = <FormGroup style={{ padding: 5 }} key={i}>
 				<Col sm={4} style={{ padding: 0 }}>
 					<Checkbox checked={contains( this.state.value, key )} onClick={this.checkboxClickFactory( key, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{key}</Checkbox>
 				</Col>
@@ -186,10 +193,7 @@ class ComponentConfigurator extends Component {
 					{ type ? `Type: ${type}.` : '' }
 				</Col>
 				<Col sm={5} style={{ padding: 0 }}>
-					{ defaultValue !== null && defaultValue !== void 0 ?
-						'Default: '+JSON.stringify( defaultValue, null, 2 )+'.' :
-						'Default: none.'
-					}
+					{generateDefaultString( defaultValue )}
 				</Col>
 			</FormGroup>;
 			controls.push( elem );
