@@ -303,43 +303,57 @@ class FreeTextQuestion extends Component {
 	}
 }
 
-
 // DEFAULT PROPERTIES //
 
 FreeTextQuestion.defaultProps = {
-	chat: false,
-	hintPlacement: 'bottom',
-	hints: [],
-	maxlength: 2500,
-	onChange() {},
-	placeholder: 'Enter your answer here...',
 	question: '',
-	resizable: false,
-	resubmissionMsg: 'You have successfully re-submitted your answer.',
+	hints: [],
+	hintPlacement: 'bottom',
+	solution: '',
 	rows: 5,
-	solution: null,
-	submissionMsg: ''
+	chat: false,
+	placeholder: 'Enter your answer here...',
+	resizable: false,
+	submissionMsg: '',
+	resubmissionMsg: 'You have successfully re-submitted your answer.',
+	maxlength: 2500,
+	onChange() {}
 };
 
 
 // PROPERTY TYPES //
 
+FreeTextQuestion.propDescriptions = {
+	question: 'the question displayed at the top of the free text question component',
+	hints: 'an `Array` of `strings` providing guidance on how to answer the question',
+	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
+	solution: 'a `string` giving a model answer to the problem',
+	rows: '`number` of rows of the text field for students to type their answers',
+	chat: '`boolean` indicating whether group chat should be enabled for the question',
+	resizable: '`boolean` controlling whether the text area should be resizable',
+	placeholder: 'placeholder text displayed before user has entered any text',
+	submissionMsg: '`string` which is displayed as a notification when the learner first submits his answer',
+	resubmissionMsg: '`string` which is displayed as a notification for all submissions after the first one.',
+	maxlength: 'maximum allowed number of characters',
+	onChange: 'callback `function` invoked every time the text area value changes'
+};
+
 FreeTextQuestion.propTypes = {
-	chat: PropTypes.bool,
-	hintPlacement: PropTypes.string,
-	hints: PropTypes.arrayOf( PropTypes.string ),
-	maxlength: PropTypes.number,
-	onChange: PropTypes.func,
-	placeholder: PropTypes.string,
 	question: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.node
 	]),
-	resizable: PropTypes.bool,
-	resubmissionMsg: PropTypes.string,
-	rows: PropTypes.number,
+	hints: PropTypes.arrayOf( PropTypes.string ),
+	hintPlacement: PropTypes.string,
 	solution: PropTypes.string,
-	submissionMsg: PropTypes.string
+	rows: PropTypes.number,
+	chat: PropTypes.bool,
+	resizable: PropTypes.bool,
+	placeholder: PropTypes.string,
+	submissionMsg: PropTypes.string,
+	resubmissionMsg: PropTypes.string,
+	maxlength: PropTypes.number,
+	onChange: PropTypes.func
 };
 
 FreeTextQuestion.contextTypes = {

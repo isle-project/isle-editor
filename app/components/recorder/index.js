@@ -484,22 +484,22 @@ class Recorder extends Component {
 
 Recorder.propDescriptions = {
 	audio: 'indicates whether audio should be recorded',
-	autostart: 'indicates whether recording should start immediately',
-	bitsPerSecond: 'bits per second',
 	camera: 'indicates whether webcam should be recorded',
-	downloadable: 'indicates whether users should be able to download the recoding',
 	screen: 'indicates whether the screen should be captured',
-	uploadable: 'indicates whether users should be able to upload the recoding to the server'
+	autostart: 'indicates whether recording should start immediately',
+	downloadable: 'indicates whether users should be able to download the recoding',
+	uploadable: 'indicates whether users should be able to upload the recoding to the server',
+	bitsPerSecond: 'bits per second'
 };
 
 Recorder.propTypes = {
 	audio: PropTypes.bool,
-	autostart: PropTypes.bool,
-	bitsPerSecond: PropTypes.number,
 	camera: PropTypes.bool,
-	downloadable: PropTypes.bool,
 	screen: PropTypes.bool,
-	uploadable: PropTypes.bool
+	autostart: PropTypes.bool,
+	downloadable: PropTypes.bool,
+	uploadable: PropTypes.bool,
+	bitsPerSecond: PropTypes.number
 };
 
 
