@@ -893,7 +893,7 @@ MarkdownEditor.propTypes = {
 	onChange: PropTypes.func,
 	options: PropTypes.object,
 	style: PropTypes.object,
-	toolbarConfig: PropTypes.arrayOf( PropTypes.string ),
+	toolbarConfig: PropTypes.array,
 	voiceControl: PropTypes.bool,
 	voiceTimeout: PropTypes.number
 };
