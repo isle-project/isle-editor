@@ -157,6 +157,7 @@ class Editor extends Component {
 	}
 
 	toggleComponentConfigurator = ( name ) => {
+		this.customClick = false;
 		this.setState({
 			selectedComponent: name,
 			showComponentConfigurator: !this.state.showComponentConfigurator
