@@ -168,6 +168,11 @@ class FeedbackButtons extends Component {
 
 // TYPES //
 
+FeedbackButtons.propDescriptions = {
+	for: 'id of the component for which feedback shall be collected',
+	vertical: 'buttons are displayed vertically if set to `true`'
+};
+
 FeedbackButtons.propTypes = {
 	for: PropTypes.string.isRequired,
 	vertical: PropTypes.bool

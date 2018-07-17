@@ -325,17 +325,17 @@ FreeTextQuestion.defaultProps = {
 
 FreeTextQuestion.propDescriptions = {
 	question: 'the question displayed at the top of the free text question component',
-	hints: 'an `Array` of `strings` providing guidance on how to answer the question',
+	hints: 'hints providing guidance on how to answer the question',
 	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
-	solution: 'a `string` giving a model answer to the problem',
-	rows: '`number` of rows of the text field for students to type their answers',
-	chat: '`boolean` indicating whether group chat should be enabled for the question',
-	resizable: '`boolean` controlling whether the text area should be resizable',
+	solution: 'a model answer to the problem',
+	rows: 'number of rows of the text field for students to type their answers',
+	chat: 'controls whether to enable group chat should for the question',
+	resizable: 'controls whether the text area should be resizable',
 	placeholder: 'placeholder text displayed before user has entered any text',
-	submissionMsg: '`string` which is displayed as a notification when the learner first submits his answer',
-	resubmissionMsg: '`string` which is displayed as a notification for all submissions after the first one.',
+	submissionMsg: 'notification displayed when the learner first submits his answer',
+	resubmissionMsg: 'notification displayed for all submissions after the first one',
 	maxlength: 'maximum allowed number of characters',
-	onChange: 'callback `function` invoked every time the text area value changes'
+	onChange: 'callback invoked every time the text area value changes'
 };
 
 FreeTextQuestion.propTypes = {
