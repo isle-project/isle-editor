@@ -209,32 +209,45 @@ class RangeQuestion extends Component {
 // DEFAULT PROPERTIES //
 
 RangeQuestion.defaultProps = {
-	chat: false,
-	digits: void 0,
+	question: '',
+	solution: null,
 	hints: [],
 	hintPlacement: 'bottom',
+	chat: false,
+	digits: void 0,
 	max: PINF,
 	min: NINF,
 	onChangeUpper() {},
-	onChangeLower() {},
-	question: '',
-	solution: null
+	onChangeLower() {}
 };
 
 
 // PROPERTY TYPES //
 
+RangeQuestion.propDescriptions = {
+	question: 'displayed question',
+	solution: 'two-element array containing the endpoints of the correct range',
+	hints: 'hints providing guidance on how to answer the question',
+	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
+	chat: 'controls whether the element should have an integrated chat',
+	digits: 'number of digits that have to match between solution and user-supplied answer. If not given, the component checks for strict equality',
+	max: 'maximum input value',
+	min: 'minimum input value',
+	onChangeUpper: 'callback triggered after the upper bound is changed by the user',
+	onChangeLower: 'callback triggered after the lower bound is changed by the user'
+};
+
 RangeQuestion.propTypes = {
-	chat: PropTypes.bool,
-	digits: PropTypes.number,
+	question: PropTypes.string,
+	solution: PropTypes.arrayOf( PropTypes.number ),
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
+	chat: PropTypes.bool,
+	digits: PropTypes.number,
 	max: PropTypes.number,
 	min: PropTypes.number,
 	onChangeLower: PropTypes.func,
-	onChangeUpper: PropTypes.func,
-	question: PropTypes.string,
-	solution: PropTypes.arrayOf( PropTypes.number )
+	onChangeUpper: PropTypes.func
 };
 
 RangeQuestion.contextTypes = {
