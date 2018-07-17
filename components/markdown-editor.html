@@ -7,7 +7,7 @@
         <title>Markdown Editor · ISLE Editor Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="generator" content="GitBook 3.2.2">
         <meta name="author" content="Philipp Burckhardt">
         
         
@@ -1704,9 +1704,26 @@
 <li><strong>intervalTime</strong>: <code>number</code> value indicating the time interval between autosaves in milliseconds. Default: <code>3000</code>.</li>
 <li><strong>onChange</strong>: Callback <code>function</code> invoked whenever the user types a letter. Default: <code>function(){}</code>.</li>
 <li><strong>options</strong>: <code>object</code> of options used for the <a href="https://simplemede.com" target="_blank">SimpleMDE</a> editor which forms the basis of this component. Default: <code>{}</code>.</li>
-<li><strong>submitButton</strong>: <code>boolean</code> value indicating whether or not to include a button allowing for students to submit the contents of their editor to the server. Default: <code>false</code>.</li>
-<li><strong>voiceControl</strong>: Emebds voice recognition in the editor (works only in Chrome). Default: <code>false</code>.</li>
 <li><strong>voiceTimeout</strong>: <code>number</code> indicating the time in milliseconds until voice control is de-activated. Default: <code>5000</code>.</li>
+<li><strong>toolbarConfig</strong>: <code>array</code> of <code>strings</code> indicating the arrangement of the toolbar, including vertical separators (&apos;|&apos;). Default value: <code>[&apos;bold&apos;, &apos;italic&apos;, &apos;underline&apos;, &apos;new_line&apos;, &apos;center&apos;, &apos;|&apos;,&apos; insert_table&apos;, &apos;heading&apos;, &apos;unordered_list&apos;, &apos;ordered_list&apos;, &apos;link&apos;, &apos;|&apos;, &apos;open_markdown&apos;, &apos;save&apos;, &apos;submit&apos;, &apos;|&apos;]</code>. 
+Each element must be some combination of the following elements:<ul>
+<li><code>&apos;bold&apos;</code></li>
+<li><code>&apos;italic&apos;</code></li>
+<li><code>&apos;underline&apos;</code></li>
+<li><code>&apos;new_line&apos;</code></li>
+<li><code>&apos;center&apos;</code></li>
+<li><code>&apos;|&apos;</code></li>
+<li><code>&apos;insert_table&apos;</code></li>
+<li><code>&apos;heading&apos;</code></li>
+<li><code>&apos;unordered_list&apos;</code></li>
+<li><code>&apos;ordered_list&apos;</code></li>
+<li><code>&apos;link&apos;</code></li>
+<li><code>&apos;open_markdown&apos;</code></li>
+<li><code>&apos;save&apos;</code></li>
+<li><code>&apos;submit&apos;</code></li>
+<li><code>&apos;voice&apos;</code></li>
+</ul>
+</li>
 </ul>
 
                                 
@@ -1751,7 +1768,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Markdown Editor","level":"1.4.10.5","depth":3,"next":{"title":"Playground","level":"1.4.10.6","depth":3,"path":"components/playground.md","ref":"components/playground.md","articles":[]},"previous":{"title":"JSShell","level":"1.4.10.4","depth":3,"path":"components/js-shell.md","ref":"components/js-shell.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","edit-link","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":2},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/markdown-editor.md","mtime":"2018-02-19T00:48:24.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-12T17:18:44.016Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Markdown Editor","level":"1.4.10.5","depth":3,"next":{"title":"Playground","level":"1.4.10.6","depth":3,"path":"components/playground.md","ref":"components/playground.md","articles":[]},"previous":{"title":"JSShell","level":"1.4.10.4","depth":3,"path":"components/js-shell.md","ref":"components/js-shell.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","edit-link","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":2},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/markdown-editor.md","mtime":"2018-06-04T19:17:23.269Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-07-17T02:27:23.432Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
