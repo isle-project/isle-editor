@@ -1,0 +1,27 @@
+---
+title: "Image Pixel Picker"
+author: Francis R. Kovacs 
+date: May 27th, 2018
+require:
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Image Pixel Picker
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <LearnImagePixelPicker>
+    </LearnImagePixelPicker>
+`}
+    scope={{
+        LearnImagePixelPicker
+    }}
+/>
+

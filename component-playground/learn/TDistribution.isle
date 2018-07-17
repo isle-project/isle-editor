@@ -1,0 +1,32 @@
+---
+title: "T Distribution"
+author: Francis R. Kovacs 
+date: May 27th, 2018
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# T Distribution
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <LearnTDistribution>
+        step={0.05}
+    </LearnTDistribution>
+    
+`}
+    scope={{
+       LearnTDistribution
+    }}
+/>
+
+
+#### Options:
+
+* __step__: `float` indicating the stpes taking in using the scroll input. Default: `0.01`. 

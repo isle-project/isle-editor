@@ -1,0 +1,29 @@
+---
+title: "Cross Validation"
+author: Francis R. Kovacs 
+date: May 27th, 2018
+require: 
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Cross Validation
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <LearnCrossValidation>
+    
+    </LearnCrossValidation>
+    
+`}
+    scope={{
+        LearnCrossValidation
+    }}
+/>
+

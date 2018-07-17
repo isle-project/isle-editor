@@ -1,0 +1,40 @@
+---
+title: "Expire"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+
+---
+
+# Expire
+
+<br />
+
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <Expire 
+        active = { false }
+        delay = { 5000 }>
+        <h3>When activated this voice input will disappear in 5 secs</h3>
+        <VoiceInput></VoiceInput>
+    </Expire>
+
+`}
+    scope={{
+        Expire, VoiceInput
+    }}
+/>
+
+
+<br />
+
+#### Options:
+* __active__: `boolean` denoting whether the component is active.
+* __delay__: `number` denoting the milliseconds before the children of the component disappear. Default: `1000`.

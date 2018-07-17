@@ -1,0 +1,43 @@
+---
+title: "Data Table"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+
+---
+
+ # Data Table
+ 
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1000px'
+    }}
+    code={`
+ <DataTable
+    showRemove
+    onClickRemove={( data ) => { console.log( data ); }}
+    data={{ 
+        firstName: [ 'Hans', 'Lotti', 'Fritz' ], 
+        lastName: [ 'Bauer', 'Müller', 'Schultz' ],
+        age: [ 37, 55, 62 ]
+    }}
+ />
+
+`}
+    scope={{
+        DataTable
+    }}
+/>
+
+
+#### Options:
+
+* __data__: `object` holding a multitude of arrays.  
+* __showRemove__: `boolean` allowing to remove data entries individually. Default: `false`.
+* __onClickRemove__: callback `function` which is triggered after the checkbox to remoe an entry has been clicked. The function is called with the complete data-set as its first argument, augmented with a `removed` property allowing one to differentiate between the items. 
+* __style__: `object` for styling the tables. Default: `{}`.

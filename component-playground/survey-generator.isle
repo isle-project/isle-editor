@@ -1,0 +1,28 @@
+---
+title: "Survey Generator"
+author: Francis R. Kovacs 
+date: Jan 4th, 2018
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Survey Generator
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+<SurveyGenerator id="survey01" />
+
+`}
+    scope={{
+        SurveyGenerator
+    }}
+/>
+
+#### Options
+

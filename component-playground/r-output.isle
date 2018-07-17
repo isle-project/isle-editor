@@ -1,0 +1,37 @@
+---
+title: "R-Output"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+
+---
+
+ # R-Output
+
+
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1000px'
+    }}
+    code={`
+<ROutput code="runif(24)" />
+`}
+    scope={{
+        ROutput
+    }}
+/>
+
+
+
+
+#### Options:
+
+* __code__: R code used to evaluate. Default: `''`.
+* __libraries__: `Array` of R libraries that should be loaded automatically when the input `code` is executed. Default: `[]`.
+* __prependCode__: `string` or an `Array` of R code to be prepended to the code stored in `code` when evaluating. Default: `''`.

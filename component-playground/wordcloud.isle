@@ -1,0 +1,53 @@
+---
+title: "WordCloud"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+---
+
+# WordCloud
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <WordCloud data={[
+        "This is my holiday", 
+        "Breakfast is great", 
+        "My house is my castle", 
+        "A castle for a kingdom", 
+        "I am longing for breakfast",
+        "Having rolls for breakfast is a must",
+        "A horse for a kingdom",
+        "Mom like rolls",
+        "Orange juice is fine",
+        "Where is the butter",
+        "I am looking for a spoon",
+        "Coffee for coffee drinkers",
+        "Tea for the sleepy ones",
+        "The sleepy, sloppy, crazy King lives in a castle",
+        "A house for everybody"
+    ]} />`}
+    scope={{
+        WordCloud
+    }}
+/>
+
+
+<br />
+
+#### Options:
+
+* __data__: `array` holding a multitude of text strings. 
+* __height__: `number` setting the height of the wordcloud (in px). Default: `600`.
+* __language__: `string` denoting the language, determines which stopwords to remove. Default: `'en'`.
+* __minCount__: `number` setting the minimum above which a word will be displayed.
+* __precalculated__: `boolean` denoting whether the data is already pre-calculated (= an array of objects with `value` and `text` properties).
+* __rotate__: `function` receiving a `word` object and returning an angle that should be used for rotation.
+* __width__: `number` setting the width of the wordcloud (in px). Default: `700`.

@@ -1,0 +1,41 @@
+---
+title: "Feedback"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+---
+
+# Feedback
+
+<br />
+
+
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <div>
+        <span id="myDiv">For me, feedback is collected!</span>
+            <FeedbackButtons
+                for="myDiv"
+            />
+    </div>
+`}
+    scope={{
+        FeedbackButtons
+    }}
+/>
+
+
+<br />
+
+#### Options:
+
+* __func__: name of the `R function` for which to open the documentation. If not supplied, the content of the `RHelp` tag is assumed to be equal to the name of the function. Default: `''`.
+* __library__: name of the R package in which the function resides. Default: `base`.
+* __visible__: `boolean` indicating whether the help modal window should be opened at startup. Default: `false`.

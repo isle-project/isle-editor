@@ -1,0 +1,39 @@
+---
+title: "Markdown Editor"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+
+---
+
+ # Markdown Editor
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1000px'
+    }}
+    code={`
+<Editor
+    defaultValue="type some text"
+    voiceControl />
+
+`}
+    scope={{
+        Editor
+    }}
+/>
+
+
+
+
+#### Options:
+
+* __defaultValue__: `string` indicating the content of the editor. Default: ` `.
+* __onChange__: Callback `function` invoked whenever the user types a letter. 
+* __options__: `object` of options used for the [SimpleMDE](https://simplemde.com) editor which forms the basis of this component.
+* __voiceControl__: Emebds voice recognition in the editor (works only in Chrome).

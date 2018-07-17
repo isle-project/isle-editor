@@ -1,0 +1,46 @@
+---
+title: "Recorder"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: false
+
+---
+
+# Recorder
+
+<br />
+
+
+
+
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1000px'
+    }}
+    code={`
+<Recorder 
+    audio 
+    screen
+    downloadable
+/>
+`}
+    scope={{
+        Recorder
+    }}
+/>
+
+
+<br />
+
+#### Options:
+
+* __audio__: a `boolean` indicating that the recording stores audio date
+* __autostart__: a `boolean` indicating that the recording will start immediately. Default: `false`
+* __camera__: a `boolean` invoked every time the user input an answer. Default: `null`.
+* __downloadable__': a `boolean` which allows the user to download the recording, by making a `download` button appear
+* __screen__: a `boolean` indicating that the scree content is recorded. Default: `false`.
+* __video__: a `boolean` indicating that the camera is recorded. Default: `false`.

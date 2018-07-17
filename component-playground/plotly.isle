@@ -1,0 +1,37 @@
+---
+title: "Plotly"
+author: Francis R. Kovacs
+date: Jan 4th, 2018
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Plotly
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+<Plotly
+    data={[{
+        values: [ 24, 7, 0.5 ],
+        labels: [ 'English', 'Spanish', 'Other' ],
+        type: 'pie'
+            }]}
+    layout={{ width: 300 }}
+/>
+
+`}
+    scope={{
+        Plotly
+    }}
+/>
+
+#### Options
+
+* __data__:  An array of arrays of type `data` with various tags. These tags mirror the `plotly` functionality in the R wrapper for the HTML syntax.
+* __layout__: An array of dimension attributes.

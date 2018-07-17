@@ -1,0 +1,20 @@
+---
+title: "Wikipedia"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+---
+
+<Playground 
+    style={{
+        top: 0,
+        left: 0,
+        position: 'absolute'
+    }}
+    code={`<Wikipedia />`}
+    scope={{
+        Wikipedia
+    }}
+/>

@@ -1,0 +1,46 @@
+---
+title: "Gate"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: false
+---
+
+# Gate
+
+<br />
+
+
+
+
+
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+<Gate
+    banner = { <div>You have to be logged in to see the image</div>}
+    user>
+    <div>
+    <h1>For teachers only</h1>
+      <img src = "http://www.people-clipart.com/people_clipart_images/teacher_at_the_blackboard_in_front_of_her_class_0521-1005-1515-3822_SMU.jpg" />
+    </div>
+</Gate>
+`}
+    scope={{
+        Gate
+    }}
+/>
+
+
+#### Options:
+
+* __anonymous__: when set the gated content is displayed to anybody
+* __user__: when set the gated content is displayed to subscribed users.
+* __enrolled__: when set the gated content is displayed to the students enrolled in the course
+* __owner__: when set the gated content is displayed to the owner of the course (usually the instructor)
+* __banner__: a message which is visible to the visitors lacking the gate privilege

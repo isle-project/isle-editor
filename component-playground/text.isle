@@ -1,0 +1,113 @@
+---
+title: "Text"
+author: Francis R. Kovacs
+date: Jan 2nd, 2018
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Text
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+        <Text>*Markdown* formatted text comes here...</Text>    
+`}
+    scope={{
+        Text
+    }}
+/>
+
+## Style Guide
+
+Note: The guidelines for formatting text are derived from markdown syntax, a summary of which may be found at `https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet`
+
+### *Headers*
+
+# Header Level 1
+`# Header Level 1`
+or
+`Header Level 1
+===`
+
+## Header Level 2
+`## Header Level 2`
+Header level 2 may alternatively be written with three dashes (-) under the header text in a manner identical to Header Level 1. The text for the alternative measure causes a preamble error in this version of isle, so it will not be included. 
+
+### Header Level 3
+`### Header Level 3`
+
+#### Header Level 4
+`#### Header Level 4`
+
+##### Header Level 5
+`##### Header Level 5`
+
+###### Header Level 6
+`###### Header Level 6`
+
+### Text Permutations
+
+#### *Emphasis*
+
+Emphasis may be accomplished with asterisks or underscores. 
+
+*The Detroit Lions will go 16-0.*
+`\*The Detroit Lions will go 16-0.\*`
+
+_The Detroit Lions will go 16-0._
+`\_The Detroit Lions will go 16-0.\_`
+
+#### *Strong Emphasis*
+
+Strong emphasis may be accomplised in the same manner as emphasis albeit with double the markings (i.e. two asterisks instead of one)
+
+**The Detroit Lions will go 16-0.**
+`\*\*The Detroit Lions will go 16-0.\*\*`
+
+__The Detroit Lions will go 16-0.__
+`\_\_The Detroit Lions will go 16-0.\_\_`
+
+#### *Strikethrough*
+
+Strikethrough may be accomplished by buffering text iwth two tildes (~). 
+
+~~The Detroit Lions will go 16-0.~~
+`\~\~The Detroit Lions will go 16-0.\~\~`
+
+Note that emphsais, strong emphasis and strikethrough may be used in conjunction with one another. This principle does not extent to the specific delimiters, one may not start the declaration of an emphasis statement with an asterik and end with an underscore. 
+
+### *Lists*
+
+#### First-Ordered Sorted Lists
+
+First ordered sorted lists may be accomplished using a simple numbering and a newline. 
+1. First item 
+2. Second item
+`1. First item \n
+2. Second item`
+Note that the `\n` denotes a newline.
+
+#### First-Ordered Unsorted Lists
+
+First ordered unsorted lists may be accomplished using either an asterik, plus or minus and a newline. 
+
+* First item 
+* Second item
+`* First item \n
+* Second item`
+Note that the `\n` denotes a newline.
+
+To create a sublist, simply add two spaces. 
+
+### *Links*
+
+To create a link, place the text you wish to make reactive [ ] followed immediately by the link in parentheses.
+[Clickable link](https://github.com/frank113)
+`\[Clickable link](https://github.com/frank113)`
+
