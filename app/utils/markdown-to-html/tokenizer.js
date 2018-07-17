@@ -1,5 +1,11 @@
-// CONSTANTS //
+// MODULES //
 
+const logger = require( 'debug' );
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor:tokenizer' );
 const IN_BASE = 0;
 const IN_OPENING_TAG = 1;
 const IN_CLOSING_TAG = 2;
@@ -175,6 +181,8 @@ class Tokenizer{
 
 		for ( let i = 0; i < str.length; i++ ) {
 			let char = str.charAt( i );
+			debug( 'Processing character: '+ char );
+			debug( 'Current state: '+ this._state );
 			switch ( this._state ) {
 			case IN_BASE:
 				this._inBase( char, i );
