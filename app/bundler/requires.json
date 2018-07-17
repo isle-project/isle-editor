@@ -31,6 +31,7 @@
 	"LearnImagePixelPicker": "const LearnImagePixelPicker = require( \"components/learn/image-pixel-picker\" ) )",
 	"DataExplorer": "const DataExplorer = require( \"components/data-explorer\" )",
 	"DataTable": "const DataTable = require( \"components/data-table\" )",
+	"DateDisplay": "const DateDisplay = require( \"components/date-display\" )",
 	"Dashboard": "const Dashboard = require( \"components/dashboard\" )",
 	"DensityPlot": "const DensityPlot = require( \"components/d3/density-plot\" )",
 	"DraggableGrid": "const DraggableGrid = require( \"components/draggable-grid\" )",
