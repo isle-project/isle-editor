@@ -13,6 +13,7 @@
     "clean": "rm -rf node_modules",
     "coverage": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 istanbul cover --dir ./reports/codecov/coverage --report lcovonly tape -- -r babel-register test/setup.js test/**/*.spec.js && cat ./reports/codecov/coverage/lcov.info | codecov && rm -rf ./reports/codecov",
     "ftest": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 tape -r babel-register test/setup.js test/**/${TEST:-*}.spec.js | tap-spec",
+    "update-docs": "node ./scripts/update_docs.js",
     "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 tape -r babel-register test/setup.js test/**/*.spec.js | tap-spec",
     "test-cov": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 istanbul cover --dir ./reports/coverage --report lcov tape -- -r babel-register test/setup.js test/**/*.spec.js",
     "lint": "eslint app test *.js",
