@@ -9,10 +9,10 @@ hideToolbar: true
 ---
 
  # Number Question
- 
+
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1000px'
@@ -20,7 +20,8 @@ hideToolbar: true
     code={`
  <NumberQuestion
     question="What is the number PI - three digits after the period"
-    solution={3.142}
+    solution={Math.PI}
+    digits={3}
 />
 
 `}
@@ -30,13 +31,14 @@ hideToolbar: true
 />
 
 
+#### Options:
 
-
-* __chat__: `boolean` indicating whether the element should have a chat integrated
-* __hintPlacement__: `string`  indicating where the hints shall be displayed. Default: `bottom`
-* __hints__: `array` of `strings` containing the hints. Default: `[]`  
-* __max__: `number` indicating the input maximum. Default: `+Infinity`
-* __min__: `number` indicating the input minimum. Default: `-Infinity`
-* __onChange__: callback `function` which is triggered after the submit action. Default: empty function. 
-* __question__: `string` containing the number question. Default: `''`.
-* __solution__: `number` containing the number solution. Default: `null`.
+* __question__ | `string`: number question. Default: `''`.
+* __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'bottom'`.
+* __hints__ | `array<string>`: hints providing guidance on how to answer the question. Default: `[]`.
+* __solution__ | `number`: a numeric answer to the problem. Default: `none`.
+* __digits__ | `number`: number of digits for which the answer supplied by the student must match the solution to be considered correct. Default: `none`.
+* __max__ | `number`: maximum allowed input value. Default: `null`.
+* __min__ | `number`: minimum allowed input value. Default: `null`.
+* __chat__ | `boolean`: controls whether the element should have an integrated chat. Default: `false`.
+* __onChange__ | `function`: callback  which is triggered after the submit action. Default: `onChange() {}`.

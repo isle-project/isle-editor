@@ -235,12 +235,12 @@ MultipleChoiceQuestion.defaultProps = {
 
 MultipleChoiceQuestion.propDescriptions = {
 	'question': 'the question displayed at the top of the multiple choice component',
-	'solution': 'a `number` denoting which answer is correct or an `Array` of the correct answer numbers in case the learner should be able to select multiple answers',
-	'answers': 'an `Array` of answer objects. Each answer should be an object with `content` and `explanation` fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect',
-	'disabled': '`boolean` controlling whether the question is disabled',
-	'provideFeedback': '`boolean` indicating whether feedback including the correct answer should be displayed after learners submit their answers',
-	'displaySolution': '`boolean` controlling whether the solution is displayed upfront',
-	'onSubmit': 'a callback `function` invoked after an answer is submitted.'
+	'solution': 'number denoting which answer is correct or an `array` of the correct answer numbers in case the learner should be able to select multiple answers',
+	'answers': 'an `array` of answer objects. Each answer should be an object with `content` and `explanation` fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect',
+	'disabled': 'controls whether the question is disabled',
+	'provideFeedback': 'indicates whether feedback including the correct answer should be displayed after learners submit their answers',
+	'displaySolution': 'controls whether the solution is displayed upfront',
+	'onSubmit': 'callback invoked after an answer is submitted'
 };
 
 MultipleChoiceQuestion.propTypes = {
