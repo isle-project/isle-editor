@@ -64,3 +64,8 @@
 	border-color: grey;
 	text-align: left;
 }
+
+.font_size_button {
+	width: 40px !important;
+	height: 30px !important;
+}

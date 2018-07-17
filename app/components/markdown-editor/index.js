@@ -76,22 +76,22 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 			}
 			h1 {
 				color: #2e4468;
-				font-size: ${fontSize + 24}px;
+				font-size: ${fontSize + 24}px !important;
 				font-weight: bold;
 				letter-spacing: 1px;
 			}
 			h2 {
-				font-size: ${fontSize + 16}px;
+				font-size: ${fontSize + 16}px !important;
 				color: #3c763d;
 				font-weight: 600;
 			}
 			h3 {
-				font-size: ${fontSize + 8}px;
+				font-size: ${fontSize + 8}px !important;
 				color: #2e4468;
 				font-weight: 600;
 			}
 			h4 {
-				font-size: ${fontSize + 4}px;
+				font-size: ${fontSize + 4}px !important;
 				color: #ca5800;
 				font-weight: 600;
 			}
@@ -163,95 +163,21 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 // FUNCTIONS //
 
 function createPreviewSTYLES(fontSize) {
-	return `<style media="screen" type="text/css">
-			body {
-				font-family: 'Open Sans', sans-serif;
+	fontSize = Number( fontSize );
+	return `.editor-preview-active {
 				font-size: ${fontSize}px !important;
-				margin-left: auto;
-				margin-right: auto;
-				padding: 10px;
-				width: 100%;
-				max-width: 1200px;
-				height: 100%;
-				display: block;
 			}
-			h1 {
-				color: #2e4468;
-				font-size: ${fontSize + 24}px;
-				font-weight: bold;
-				letter-spacing: 1px;
+			.editor-preview-active h1 {
+				font-size: ${fontSize + 24}px !important;
 			}
-			h2 {
-				font-size: ${fontSize + 16}px;
-				color: #3c763d;
-				font-weight: 600;
+			.editor-preview-active h2 {
+				font-size: ${fontSize + 16}px !important;
 			}
-			h3 {
-				font-size: ${fontSize + 8}px;
-				color: #2e4468;
-				font-weight: 600;
+			.editor-preview-active h3 {
+				font-size: ${fontSize + 8}px !important;
 			}
-			h4 {
-				font-size: ${fontSize + 4}px;
-				color: #ca5800;
-				font-weight: 600;
-			}
-			tr {
-				display: table-row;
-				vertical-align: inherit;
-				border-color: inherit;
-			}
-			th {
-				color: #464a4c;
-				background-color: #eceeef;
-				padding: .3rem;
-				border-top: 1px solid #eceeef;
-				text-align: left;
-				font-weight: bold;
-			}
-			th, td {
-				display: table-cell;
-			}
-			td {
-				padding: .3rem;
-				vertical-align: top;
-				border-top: 1px solid #eceeef;
-			}
-			thead {
-				display: table-header-group;
-				vertical-align: middle;
-			}
-			table {
-				width: 100%;
-				max-width: 100%;
-				margin-bottom: 1rem;
-				display: table;
-				border-spacing: 2px;
-				border-color: grey;
-				text-align: left;
-			}
-			a {
-				color: #2e4468;
-			}
-			pre {
-				display: block;
-				padding: 9.5px;
-				margin: 0 0 10px;
-				line-height: 1.42857143;
-				color: #333;
-				word-break: break-all;
-				word-wrap: break-word;
-				border: 1px solid #ccc;
-				border-radius: 4px;
-			}
-			code {
-				white-space: pre-wrap;
-			}
-			.center {
-				width: 50%;
-				display: block;
-				margin: 0 auto;
-				text-align: center;
+			.editor-preview-active h4 {
+				font-size: ${fontSize + 4}px !important;
 			}
 		</style>`;
 }
@@ -497,7 +423,7 @@ class MarkdownEditor extends Component {
 					text = this.replacePlaceholders( text, true );
 					let html = this.previewRender( text );
 					const title = document.title || 'provisoric';
-					html = createHTML( title, html, this.state.fontSize );
+					html = createHTML( title, html, Number( this.state.fontSize ) );
 					const ast = md.parse( text );
 					// Create the config so that the function can run
 					const config = {'pageSize': 'LETTER', 'pageOrientation': 'portrait'}
@@ -886,6 +812,23 @@ class MarkdownEditor extends Component {
 		// Add columns
 		plainText = this.columnTagConvert( plainText );
 
+		// Cycle through and remove old stylings
+		var allStyles = document.getElementsByTagName('style');
+		var tmpStyle;
+		for ( var i = allStyles.length - 1; i >= 0; i-- ) {
+			tmpStyle = allStyles[i];
+			if ( contains(tmpStyle.innerText, '.editor-preview-active') ) {
+				tmpStyle.parentNode.removeChild(tmpStyle);
+			}
+		}
+
+		// Side effect: create style object
+		var style = document.createElement('style');
+		style.type = 'text/css';
+		style.appendChild(document.createTextNode(createPreviewSTYLES(this.state.fontSize)));
+
+		var head = document.head;
+		head.appendChild(style);
 		// var x = createHTML('frank', plainText, this.state.fontSize);
 
 		// Now render the markdown
@@ -930,7 +873,7 @@ class MarkdownEditor extends Component {
 		const title = document.title || 'provisoric';
 		const mdValue = this.simplemde.value();
 		const body = this.previewRender( mdValue );
-		const html = createHTML( title, body, this.state.fontSize );
+		const html = createHTML( title, body, Number( this.state.fontSize ) );
 		const blob = new Blob([ html ], {
 			type: 'text/html'
 		});
