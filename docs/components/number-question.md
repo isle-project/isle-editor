@@ -1,6 +1,6 @@
 # Number Question
 
-A number question component. Usually, this will be used as part of an [ISLE dashboard](dashboard.md), but it can also be used standalone. In this case, you want to handle changes via the `onChange` attribute. 
+A number question component.
 
 #### Example:
 
@@ -15,11 +15,12 @@ A number question component. Usually, this will be used as part of an [ISLE dash
 
 #### Options:
 
-* __chat__: `boolean` indicating whether the element should have a chat integrated
-* __hintPlacement__: `string`  indicating where the hints shall be displayed. Default: `bottom`
-* __hints__: `array` of `strings` containing the hints. Default: `[]`  
-* __max__: `number` indicating the input maximum. Default: `+Infinity`
-* __min__: `number` indicating the input minimum. Default: `-Infinity`
-* __onChange__: callback `function` which is triggered after the submit action. Default: empty function. 
-* __question__: `string` containing the number question. Default: `''`.
-* __solution__: `number` containing the number solution. Default: `null`.
+* __question__ | `string`: number question. Default: `''`.
+* __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'bottom'`.
+* __hints__ | `array<string>`: hints providing guidance on how to answer the question. Default: `[]`.
+* __solution__ | `number`: a numeric answer to the problem. Default: `none`.
+* __digits__ | `number`: number of digits for which the answer supplied by the student must match the solution to be considered correct. Default: `none`.
+* __max__ | `number`: maximum allowed input value. Default: `null`.
+* __min__ | `number`: minimum allowed input value. Default: `null`.
+* __chat__ | `boolean`: controls whether the element should have an integrated chat. Default: `false`.
+* __onChange__ | `function`: callback  which is triggered after the submit action. Default: `onChange() {}`.
