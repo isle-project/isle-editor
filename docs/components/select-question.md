@@ -6,6 +6,8 @@ A select question component.
 
 ``` js
 <SelectQuestion
+    question="The usual t-test is"
+    solution="two-sided"
     options={[
         'left-sided',
         'right-sided',
