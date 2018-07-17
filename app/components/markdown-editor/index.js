@@ -25,14 +25,14 @@ import trim from '@stdlib/string/trim';
 import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import VoiceInput from 'components/input/voice';
-import 'simplemde/dist/simplemde.min.css';
-import './markdown_editor.css';
 import fonts from './fonts.js';
 import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
 import TableSelect from './table_select.js';
 import ColumnSelect from './column_select.js';
 import base64toBlob from './base64_to_blob.js';
+import 'simplemde/dist/simplemde.min.css';
+import './markdown_editor.css';
 
 
 // VARIABLES //
@@ -426,7 +426,7 @@ class MarkdownEditor extends Component {
 					html = createHTML( title, html, Number( this.state.fontSize ) );
 					const ast = md.parse( text );
 					// Create the config so that the function can run
-					const config = {'pageSize': 'LETTER', 'pageOrientation': 'portrait'}
+					const config = { 'pageSize': 'LETTER', 'pageOrientation': 'portrait' };
 					const doc = generatePDF( ast, config, this.state.pageSize );
 					const pdfDocGenerator = pdfMake.createPdf( doc );
 					pdfDocGenerator.getBase64( ( pdf ) => {
