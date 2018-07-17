@@ -9,9 +9,6 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import Checkbox from 'react-bootstrap/lib/Checkbox';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Modal from 'react-bootstrap/lib/Modal';
-import Panel from 'react-bootstrap/lib/Panel';
-import Col from 'react-bootstrap/lib/Col';
-import Row from 'react-bootstrap/lib/Row';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isFunction from '@stdlib/assert/is-function';
 import typeOf from '@stdlib/utils/type-of';
@@ -52,12 +49,12 @@ function generateReplacement( defaultValue ) {
 
 function generateDefaultString( defaultValue ) {
 	if ( defaultValue === null || defaultValue === void 0 ) {
-		return 'Default: none.';
+		return 'none';
 	}
 	if ( isFunction( defaultValue ) ) {
-		return 'Default: '+defaultValue.toString()+'.';
+		return defaultValue.toString();
 	}
-	return 'Default: '+JSON.stringify( defaultValue, null, 2 )+'.';
+	return JSON.stringify( defaultValue, null, 2 );
 }
 
 function extractType( fcn ) {
@@ -212,18 +209,20 @@ class ComponentConfigurator extends Component {
 			let description = componentClass.propDescriptions ?
 				componentClass.propDescriptions[ key ] : '';
 			let type = extractType( componentClass.propTypes[ key ] );
-			let elem = <Panel style={{ marginBottom: 5 }}><Row style={{ marginRight: 3, marginLeft: 3 }} key={i} >
-					<Col sm={3} style={{ padding: 0 }}>
-						<Checkbox checked={contains( this.state.value, key )} onClick={this.checkboxClickFactory( key, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{key}</Checkbox>
-					</Col>
-					<Col sm={5} style={{ padding: 0 }}>Description: {description}.</Col>
-					<Col sm={2} style={{ padding: 0 }}>
-						{ type ? `Type: ${type}.` : '' }
-					</Col>
-					<Col sm={2} style={{ padding: 0 }}>
+			const isActive = contains( this.state.value, key );
+			const className = isActive ? 'success' : '';
+			let elem = <tr className={className} style={{ marginBottom: 5 }} key={i}>
+					<td>
+						<Checkbox checked={isActive} onClick={this.checkboxClickFactory( key, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{key}</Checkbox>
+					</td>
+					<td>{description}</td>
+					<td>
+						{ type ? `${type}` : '' }
+					</td>
+					<td>
 						{generateDefaultString( defaultValue )}
-					</Col>
-				</Row></Panel>;
+					</td>
+				</tr>;
 			controls.push( elem );
 		}
 		return controls;
@@ -240,14 +239,27 @@ class ComponentConfigurator extends Component {
 					<Modal.Title>Configure {this.props.component.name}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<FormGroup style={{ height: '280px', overflowY: 'scroll' }}>
-						{this.renderPropertyControls()}
-					</FormGroup>
+					<label>Click on the box to add the respective options:</label>
+					<div style={{ height: '350px', overflowY: 'scroll' }}>
+						<table className="table table-bordered table-condensed">
+							<thead>
+								<tr>
+									<th>Option</th>
+									<th>Description</th>
+									<th>Type</th>
+									<th>Default</th>
+								</tr>
+							</thead>
+							<tbody>
+								{this.renderPropertyControls()}
+							</tbody>
+						</table>
+					</div>
 					<FormGroup>
 						<ControlLabel>Code:</ControlLabel>
 						<FormControl
 							componentClass="textarea"
-							rows={10}
+							rows={6}
 							value={this.state.value}
 							onChange={this.handleChange}
 							style={{ resize: 'none' }}
