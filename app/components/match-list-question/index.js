@@ -172,23 +172,30 @@ class MatchListQuestion extends Component {
 // DEFAULT PROPERTIES //
 
 MatchListQuestion.defaultProps = {
-	colorScale: null,
+	question: '',
 	elements: [],
-	onSubmit() {},
-	question: null
+	colorScale: null,
+	onSubmit() {}
 };
 
 
 // PROPERTY TYPES //
 
+MatchListQuestion.propDescriptions = {
+	question: 'question to be displayed at the top of the match list question component',
+	elements: 'an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties',
+	colorScale: 'if set, the supplied colors are used for the tiles',
+	onSubmit: 'callback invoked every time the text area value changes'
+};
+
 MatchListQuestion.propTypes = {
-	colorScale: PropTypes.array,
+	question: PropTypes.string,
 	elements: PropTypes.arrayOf( PropTypes.shape({
 		a: PropTypes.string.isRequired,
 		b: PropTypes.string.isRequired
 	}) ),
-	onSubmit: PropTypes.func,
-	question: PropTypes.string
+	colorScale: PropTypes.array,
+	onSubmit: PropTypes.func
 };
 
 
