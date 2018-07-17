@@ -1,0 +1,27 @@
+---
+title: "Continuous CLT"
+author: Francis R. Kovacs 
+date: May 26th, 2018
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Continuous Central Limit Theorem
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <LearnContinuousCLT>
+    
+    </LearnContinuousCLT>
+    
+`}
+    scope={{
+        LearnContinuousCLT
+    }}
+/>

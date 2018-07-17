@@ -1,0 +1,34 @@
+---
+title: "Standardization"
+author: Francis R. Kovacs 
+date: May 27th, 2018
+require:
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Standardization
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <LearnStandardize
+        showProbabilities={true}
+        step={0.05}
+    />
+`}
+    scope={{
+        LearnStandardize
+    }}
+/>
+
+
+#### Options:
+
+* __showProbabilities__: A `bool` indicating whether the probabilities for each z-score are displayed. Default: `false`. 
+* __step__: `float` indicating the stpes taking in using the scroll input. Default: `0.01`. 

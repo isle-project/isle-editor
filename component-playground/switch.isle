@@ -1,0 +1,46 @@
+---
+title: "Switch"
+author: Francis R. Kovacs
+date: Jan 4th, 2018
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Switch Components
+
+<br />
+
+<Experiment>
+    anonymous={false}
+    user={false}
+</Experiment>
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <Switch>
+        <span><SliderInput
+            legend="Option 1 is a SliderInput"
+            defaultValue={10}
+            min={0}
+            max={100}
+            step={1}
+        /></span>
+        <span><TextInput
+            legend="Option 1 is TextInput"
+            defaultValue="value"
+        /></span>
+    </Switch>
+
+`}
+    scope={{
+        Switch, SliderInput, TextInput
+    }}
+/>
+
+#### Options:
+
+* __onChange__: Callback `function` invoked when elements are switched. Receives as its first argument `pos` the index of the currently displayed child. Default: `null`

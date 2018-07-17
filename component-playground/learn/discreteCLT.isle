@@ -1,0 +1,26 @@
+---
+title: "Discrete CLT"
+author: Francis R. Kovacs 
+date: May 26th, 2018
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Discrete Central Limit Theorem
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <LearnDiscreteCLT>
+    </LearnDiscreteCLT>
+    
+`}
+    scope={{
+        LearnDiscreteCLT
+    }}
+/>

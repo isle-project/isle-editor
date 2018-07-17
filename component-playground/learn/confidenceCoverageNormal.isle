@@ -1,0 +1,28 @@
+---
+title: "Confidence Coverage Normal"
+author: Francis R. Kovacs 
+date: May 27th, 2018
+require:
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Confidence Coverage Normal
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <LearnConfidenceCoverageNormal>
+    
+    </LearnConfidenceCoverageNormal>
+`}
+    scope={{
+        LearnConfidenceCoverageNormal
+    }}
+/>
+

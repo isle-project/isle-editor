@@ -84,26 +84,28 @@ class SelectQuestion extends Component {
 		}
 		return (
 			<Panel className="select-question">
-				<Form>
-					<FormGroup controlId="formControlsSelect" validationState={this.state.answerState}>
-						{ this.props.question ?
-							<ControlLabel>{this.props.question}</ControlLabel> :
-							null
-						}
-						<FormControl
-							value={this.state.value}
-							defaultValue={this.props.defaultValue}
-							componentClass="select"
-							placeholder="select"
-							onChange={this.handleChange}
+				<Panel.Body>
+					<Form>
+						<FormGroup controlId="formControlsSelect" validationState={this.state.answerState}>
+							{ this.props.question ?
+								<ControlLabel>{this.props.question}</ControlLabel> :
+								null
+							}
+							<FormControl
+								value={this.state.value}
+								defaultValue={this.props.defaultValue}
+								componentClass="select"
+								placeholder="select"
+								onChange={this.handleChange}
 
-						>
-							{this.props.options.map( ( e, idx ) => {
-								return <option className="select-question-option" key={idx} value={e}>{e}</option>;
-							})}
-						</FormControl>
-					</FormGroup>
-				</Form>
+							>
+								{this.props.options.map( ( e, idx ) => {
+									return <option className="select-question-option" key={idx} value={e}>{e}</option>;
+								})}
+							</FormControl>
+						</FormGroup>
+					</Form>
+				</Panel.Body>
 			</Panel>
 		);
 	}
@@ -113,26 +115,37 @@ class SelectQuestion extends Component {
 // DEFAULT PROPERTIES //
 
 SelectQuestion.defaultProps = {
-	onChange() {},
+	question: '',
 	defaultValue: '',
 	inline: false,
-	question: '',
+	failureMsg: 'Not quite, try again!',
 	successMsg: 'That\'s the correct answer!',
-	failureMsg: 'Not quite, try again!'
+	onChange() {}
 };
 
 
 // PROPERTY TYPES //
 
+SelectQuestion.propDescriptions = {
+	question: 'question for which the student has to select one of the available answer options',
+	options: 'available answer options from which the student can select',
+	solution: 'question solution (must be equal to one of the answer options)',
+	defaultValue: 'preselected answer option',
+	failureMsg: 'message to be displayed when student selects a wrong answer',
+	successMsg: 'message to be displayed when student selects the correct answer',
+	inline: 'controls whether the component should be inlined',
+	onChange: 'callback  which is triggered after the submit action'
+};
+
 SelectQuestion.propTypes = {
+	question: PropTypes.string,
+	options: PropTypes.array.isRequired,
+	solution: PropTypes.string.isRequired,
 	defaultValue: PropTypes.string,
 	failureMsg: PropTypes.string,
+	successMsg: PropTypes.string,
 	inline: PropTypes.bool,
-	onChange: PropTypes.func,
-	options: PropTypes.array.isRequired,
-	question: PropTypes.string,
-	solution: PropTypes.string.isRequired,
-	successMsg: PropTypes.string
+	onChange: PropTypes.func
 };
 
 SelectQuestion.contextTypes = {

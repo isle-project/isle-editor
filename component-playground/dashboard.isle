@@ -1,0 +1,42 @@
+---
+title: "Dashboard"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+---
+
+# Dashboard
+
+<br />
+
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px',
+    }}
+    code={
+    `
+<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>
+    <SliderInput
+        legend="Input value"
+    />
+</Dashboard>
+    `
+    }
+    scope={{
+        Dashboard, SliderInput
+    }}
+/>
+
+
+<br />
+
+#### Options:
+
+* __onGenerate__:
+* __title__: `string` with a title for the dashboard to be displayed at its top. Default: `''`.
+* __description__: subtitle `string` displayed beneath the `title`. Default: `''`.
+

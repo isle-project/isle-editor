@@ -1,0 +1,49 @@
+---
+title: "Lab 06"
+author: Francis R. Kovacs
+date: 19 February 2018
+require:
+    copy: "@stdlib/utils/copy"
+    randu: "@stdlib/random/base/randu"
+    roundn: "@stdlib/math/base/special/roundn"
+    normal: "@stdlib/random/base/normal"
+    mean: "compute-mean"
+    stdev: "compute-stdev"
+    RB: 'react-bootstrap'
+state:
+    table: {
+        'U-M': 0,
+        'U-F': 0,
+        'M-M': 0,
+        'M-F': 0,
+        'L-M': 0,
+        'L-F': 0
+    }
+    nDraws: 0
+    treatment: {
+        height: [],
+        age: [],
+        gender: { 
+            'Male': 0,
+            'Female': 0
+        },
+        effect: []
+    }
+    control: {
+        height: [],
+        age: [],
+        gender: { 
+            'Male': 0,
+            'Female': 0
+        },
+        effect: []
+    }
+    nSubjects: 100
+    samples: []
+server: https://isle.heinz.cmu.edu
+---
+
+# Dice Throwing
+
+<LearnDiceThrowing />
+

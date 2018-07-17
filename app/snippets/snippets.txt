@@ -247,6 +247,15 @@ snippet SelectInput
 		options={['${1:First option}','${2:Second Option}']}
 	/>
 
+snippet SelectQuestion
+	<SelectQuestion
+		question="${1:}"
+		solution="${2:}"
+		options={[
+			${3:}
+		]}
+	/>
+
 snippet Slider
 	<Slider>
 		${1:}

@@ -179,30 +179,42 @@ class NumberQuestion extends Component {
 // DEFAULT PROPERTIES //
 
 NumberQuestion.defaultProps = {
-	chat: false,
-	digits: void 0,
+	question: '',
 	hints: [],
 	hintPlacement: 'bottom',
+	solution: null,
+	digits: void 0,
 	max: PINF,
 	min: NINF,
-	onChange() {},
-	question: '',
-	solution: null
+	chat: false,
+	onChange() {}
 };
 
 
 // PROPERTY TYPES //
 
+NumberQuestion.propDescriptions = {
+	question: 'number question',
+	hints: 'hints providing guidance on how to answer the question',
+	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
+	solution: 'a numeric answer to the problem',
+	digits: 'number of digits for which the answer supplied by the student must match the solution to be considered correct',
+	max: 'maximum allowed input value',
+	min: 'minimum allowed input value',
+	chat: 'controls whether the element should have an integrated chat',
+	onChange: 'callback  which is triggered after the submit action'
+};
+
 NumberQuestion.propTypes = {
-	chat: PropTypes.bool,
-	digits: PropTypes.number,
+	question: PropTypes.string,
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
+	solution: PropTypes.number,
+	digits: PropTypes.number,
 	max: PropTypes.number,
 	min: PropTypes.number,
-	onChange: PropTypes.func,
-	question: PropTypes.string,
-	solution: PropTypes.number
+	chat: PropTypes.bool,
+	onChange: PropTypes.func
 };
 
 NumberQuestion.contextTypes = {

@@ -79,7 +79,7 @@ class Editor extends Component {
 		super( props );
 
 		this.state = {
-			selectedComponent: null,
+			selectedComponent: {},
 			showComponentConfigurator: false
 		};
 
@@ -156,10 +156,10 @@ class Editor extends Component {
 		clearInterval( this.interval );
 	}
 
-	toggleComponentConfigurator = ( name ) => {
+	toggleComponentConfigurator = ( data ) => {
 		this.customClick = false;
 		this.setState({
-			selectedComponent: name,
+			selectedComponent: data,
 			showComponentConfigurator: !this.state.showComponentConfigurator
 		});
 	}
@@ -170,13 +170,13 @@ class Editor extends Component {
 			this.editor.focus();
 			this.editor.tabstopManager.tabNext();
 		} else {
-			this.toggleComponentConfigurator( data.name );
+			this.toggleComponentConfigurator( data );
 		}
 	}
 
 	handleComponentInsertion = ( text ) => {
 		this.setState({
-			selectedComponent: null,
+			selectedComponent: {},
 			showComponentConfigurator: !this.state.showComponentConfigurator
 		}, () => {
 			this.editor.insert( String( text ) );
@@ -248,7 +248,7 @@ class Editor extends Component {
 					show={this.state.showComponentConfigurator}
 					onHide={this.toggleComponentConfigurator}
 					onInsert={this.handleComponentInsertion}
-					name={this.state.selectedComponent}
+					component={this.state.selectedComponent}
 					scope={this.props.scope}
 				/>
 			</div>

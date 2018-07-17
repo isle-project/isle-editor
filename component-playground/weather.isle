@@ -1,0 +1,44 @@
+---
+title: "Weather"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+
+---
+
+# Weather
+
+This component triggers the [Apixu](https://www.apixu.com/) API and downloads the weather of the given location. The component may also be triggered by voice input, just say: "What's the weather in New York" ... etc
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+<div>
+<Weather
+    speechInterface
+    location="Pittsburgh"></Weather>
+    <VoiceInput />
+</div>
+`}
+    scope={{
+        Weather, VoiceInput
+    }}
+/>
+
+
+<br />
+
+
+
+#### Options:
+
+* __language__: `string` of the text recognition logique. Default is `'en-US'`.
+* __location__: location `string`: `'Berlin'`.
+* __speechInterface__: `boolean` indicating whether the weather compoent demands voice support or not

@@ -1,6 +1,6 @@
 # Recorder
 
-An ISLE component for recording audio, screen and video. [**video** ist not implemented yet]
+An ISLE component for recording audio, screen and video.
 
 #### Example:
 
@@ -8,20 +8,18 @@ An ISLE component for recording audio, screen and video. [**video** ist not impl
 <Recorder 
     audio
     screen
-    downloadaböe
+    downloadable
 />
 ``` 
 
 [Open interactive preview](https://isle.heinz.cmu.edu/components/recorder/)
 
-
-
 #### Options:
 
-* __audio__: a `boolean` indicating that the recording stores audio date
-* __autostart__: a `boolean` indicating that the recording will start immediately. Default: `false`
-* __camera__: a `boolean` invoked every time the user input an answer. Default: `null`.
-* __downloadable__': a `boolean` which allows the user to download the recording, by making a `download` button appear
-* __screen__: a `boolean` indicating that the scree content is recorded. Default: `false`.
-* __video__: a `boolean` indicating that the camera is recorded. Default: `false`.
-
+* __audio__ | `boolean`: indicates whether audio should be recorded. Default: `false`.
+* __camera__ | `boolean`: indicates whether webcam should be recorded. Default: `false`.
+* __screen__ | `boolean`: indicates whether the screen should be captured. Default: `false`.
+* __autostart__ | `boolean`: indicates whether recording should start immediately. Default: `false`.
+* __downloadable__ | `boolean`: indicates whether users should be able to download the recoding. Default: `false`.
+* __uploadable__ | `boolean`: indicates whether users should be able to upload the recoding to the server. Default: `false`.
+* __bitsPerSecond__ | `number`: bits per second. Default: `128000`.

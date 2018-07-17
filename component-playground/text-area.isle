@@ -1,0 +1,39 @@
+---
+title: "Text Area"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+
+---
+
+ # Text Area
+
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1000px'
+    }}
+    code={`
+<TextArea
+    legend="Please enter a few sentences"
+    placeholder="Enter text"
+/>
+`}
+    scope={{
+        TextArea
+    }}
+/>
+
+
+#### Options:
+
+* __legend__: `string` to be displayed as the title of the component. Default: `''`.
+* __onChange__: Callback `function` invoked after each change of the text value. Default: `null`.
+* __placeholder__: 
+* __resize__: `boolean` indicating whether the element should be resizable. Default: `false`.
+* __rows__: `number` of rows. Default: `5`.

@@ -1,0 +1,44 @@
+---
+title: "Checkbox Input"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+
+---
+
+# Checkbox Input
+
+
+<br />
+
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1000px'
+    }}
+    code={`
+<CheckboxInput
+    legend="Check this if necessary"
+    defaultValue={false}
+    onChange={ function(value) {
+        alert( value ? "true" : "false" );
+    } }
+/>
+`}
+    scope={{
+        CheckboxInput
+    }}
+/>
+
+
+<br />
+
+
+#### Options:
+
+* __defaultValue__: The value the checkbox is initialized with. Default: `false`.
+* __legend__: `string` to be displayed as the title of te component. Default: `''`.
+* __onChange__: Callback `function` invoked after each change of the checkbox value. Default: `null`.

@@ -77,6 +77,7 @@ const createScope = ( session ) => {
 		Dashboard,
 		DataExplorer: Loadable( () => import( 'components/data-explorer' ) ),
 		DataTable: Loadable( () => import( 'components/data-table' ) ),
+		DateDisplay: Loadable( () => import( 'components/date-display' ) ),
 		DensityPlot: Loadable( () => import( 'components/d3/density-plot' ) ),
 		DraggableGrid: Loadable( () => import( 'components/draggable-grid' ) ),
 		DraggableList: Loadable( () => import( 'components/draggable-list' ) ),

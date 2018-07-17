@@ -15,5 +15,5 @@ Attach buttons to collect user feedback for an HTML element identified by its `i
 
 #### Options:
 
-* __for__: `string` giving the `id` of the HTML element to collect feedback for. Required option.
-* __url__: `string` giving the URL to which a POST request is made with the collected user data. Default: `''`.
+* __for__ | `string (required)`: id of the component for which feedback shall be collected. Default: `none`.
+* __vertical__ | `boolean`: buttons are displayed vertically if set to `true`. Default: `false`.

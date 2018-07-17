@@ -1,0 +1,38 @@
+---
+title: "News"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+---
+
+# News
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: '0%',
+        width: '1000px'
+    }}  
+    code={
+    `   <News
+        language="en-US"
+        onArticles={(data) => {
+            console.log( data ); 
+        }}
+    />`}
+    scope={{
+        News
+            
+    }}
+/>
+
+<br />
+
+#### Options:
+
+* __invisible__: `boolean` indicating whether to render the component. To set it to invisible makes only sense when the component is triggered by voice recognition.
+* __language__: specifies the given language. **us-EN**, **de-DE**, and **fr-FR** are supported (English, German, French).
+* __onArticles__: a callback `function` that receives the found articles in JSON format.

@@ -3,6 +3,7 @@
 import removeFirst from '@stdlib/string/remove-first';
 import removeLast from '@stdlib/string/remove-last';
 import replace from '@stdlib/string/replace';
+import contains from '@stdlib/assert/contains';
 
 
 // VARIABLES //
@@ -24,7 +25,8 @@ function extractSnippets( text ) {
 			value = removeLast( value );
 			snippets.push({
 				'name': match[ 1 ],
-				'value': value
+				'value': value,
+				'selfClosing': !contains( value, '</'+match[ 1 ]+'>' )
 			});
 		}
 	} while ( match );

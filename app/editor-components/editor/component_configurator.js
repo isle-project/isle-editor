@@ -16,6 +16,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isFunction from '@stdlib/assert/is-function';
 import typeOf from '@stdlib/utils/type-of';
 import replace from '@stdlib/string/replace';
+import removeLast from '@stdlib/string/remove-last';
 import contains from '@stdlib/assert/contains';
 import objectKeys from '@stdlib/utils/keys';
 
@@ -87,19 +88,23 @@ function extractType( fcn ) {
 class ComponentConfigurator extends Component {
 	constructor( props ) {
 		super( props );
-
+		const { name, selfClosing } = props.component;
 		this.state = {
 			componentClass: null,
-			name: props.name,
-			value: `<${props.name} />`
+			name: name,
+			value: selfClosing ?
+				`<${name} />` :
+				`<${name}>\n\n</${name}>`
 		};
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
 		let newState = {};
-		if ( nextProps.name !== prevState.name ) {
-			newState.name = nextProps.name;
-			newState.value = `<${nextProps.name} />`;
+		if ( nextProps.component.name !== prevState.name ) {
+			newState.name = nextProps.component.name;
+			newState.value = nextProps.component.selfClosing ?
+				`<${nextProps.component.name} />` :
+				`<${nextProps.component.name}>\n\n</${nextProps.component.name}>`;
 			newState.componentClass = null;
 		}
 		if ( !isEmptyObject( newState ) ) {
@@ -114,7 +119,7 @@ class ComponentConfigurator extends Component {
 			debug( `Preparing configuration menu for ${comp.name} component...` );
 			if ( comp.name === 'LoadableComponent' ) {
 				const { loader } = comp;
-				debug( 'Loading component...' );
+				debug( `Loading ${this.state.name} component...` );
 				let promise = loader();
 				promise.then( loaded => {
 					this.setState({
@@ -153,8 +158,11 @@ class ComponentConfigurator extends Component {
 	}
 
 	handleReset = () => {
+		const { name, selfClosing } = this.props.component;
 		this.setState({
-			value: `<${this.props.name} />`
+			value: selfClosing ?
+				`<${name} />` :
+				`<${name}>\n\n</${name}>`
 		});
 	}
 
@@ -163,10 +171,26 @@ class ComponentConfigurator extends Component {
 		return () => {
 			let { value } = this.state;
 			if ( !contains( value, key ) ) {
-				value = value.substring( 0, value.length - 3 );
-				value += ` ${key}=${replacement} />`;
+				if ( this.props.component.selfClosing ) {
+					value = value.substring( 0, value.length - 3 );
+					value += ` ${key}=${replacement} />`;
+				} else {
+					const idx = value.indexOf( '>' );
+					const rest = value.substring( idx+1 );
+					value = value.substring( 0, idx );
+					if ( value[ value.length-1 ] === ' ' ) {
+						value = removeLast( value );
+					}
+					value += ` ${key}=${replacement} >`;
+					value = value + rest;
+				}
 			} else {
-				let RE_KEY = new RegExp( key+'=[\\s\\S]*? (?=[a-z]+=|\\/>)', 'i' );
+				let RE_KEY;
+				if ( this.props.component.selfClosing ) {
+					RE_KEY = new RegExp( key+'=[\\s\\S]*? (?=[a-z]+=|\\/>)', 'i' );
+				} else {
+					RE_KEY = new RegExp( key+'=[\\s\\S]*? (?=[a-z]+=|>)', 'i' );
+				}
 				value = replace( value, RE_KEY, '' );
 			}
 			this.setState({
@@ -192,7 +216,7 @@ class ComponentConfigurator extends Component {
 					<Col sm={3} style={{ padding: 0 }}>
 						<Checkbox checked={contains( this.state.value, key )} onClick={this.checkboxClickFactory( key, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{key}</Checkbox>
 					</Col>
-					<Col sm={5} style={{ padding: 0 }}>Description: {description}</Col>
+					<Col sm={5} style={{ padding: 0 }}>Description: {description}.</Col>
 					<Col sm={2} style={{ padding: 0 }}>
 						{ type ? `Type: ${type}.` : '' }
 					</Col>
@@ -213,7 +237,7 @@ class ComponentConfigurator extends Component {
 				bsSize="large"
 			>
 				<Modal.Header closeButton>
-					<Modal.Title>Configure {this.props.name}</Modal.Title>
+					<Modal.Title>Configure {this.props.component.name}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<FormGroup style={{ height: '280px', overflowY: 'scroll' }}>
@@ -252,7 +276,7 @@ class ComponentConfigurator extends Component {
 // PROPERTY TYPES //
 
 ComponentConfigurator.propTypes = {
-	name: PropTypes.string,
+	component: PropTypes.object,
 	onHide: PropTypes.func,
 	onInsert: PropTypes.func,
 	scope: PropTypes.object,
@@ -260,7 +284,7 @@ ComponentConfigurator.propTypes = {
 };
 
 ComponentConfigurator.defaultProps = {
-	name: null,
+	component: {},
 	onHide() {},
 	onInsert() {},
 	scope: {}

@@ -213,10 +213,10 @@ class MarkdownEditor extends Component {
 			'|': '|',
 			'font_size': {
 				name: 'font_size',
-				action: ( ) => {
-					this.showFontSize();
+				action: ( editor, event ) => {
+					this.toggleFontSize();
 				},
-				className: 'fa fa-sort-numeric-up',
+				className: 'far fa-plus-square',
 				title: 'Select Font Size'
 			},
 			'underline': {
@@ -363,6 +363,14 @@ class MarkdownEditor extends Component {
 			'unordered_list': 'unordered-list',
 			'ordered_list': 'ordered-list',
 			'link': 'link',
+			'insert_columns': {
+				name: 'insert_new_columns',
+				action: ( editor, event ) => {
+					this.toggleColumnSelect();
+				},
+				className: 'fa fa-align-justify',
+				title: 'Insert Columns'
+			},
 			'open_markdown': {
 				name: 'open_markdown',
 				action: ( editor ) => {
@@ -401,7 +409,9 @@ class MarkdownEditor extends Component {
 					const title = document.title || 'provisoric';
 					html = createHTML( title, html, this.state.fontSize );
 					const ast = md.parse( text );
-					const doc = generatePDF( ast, this.state.pageSize );
+					// Create the config so that the function can run
+					const config = {'pageSize': 'LETTER', 'pageOrientation': 'portrait'}
+					const doc = generatePDF( ast, config, this.state.pageSize );
 					const pdfDocGenerator = pdfMake.createPdf( doc );
 					pdfDocGenerator.getBase64( ( pdf ) => {
 						const msg = {
@@ -746,9 +756,35 @@ class MarkdownEditor extends Component {
 		}
 	}
 
+	columnTagConvert = ( plainText ) => {
+		var firstIndex;
+		var colCount = 1;
+		const RANDOMSTR = '3hiueronenrklnwfkln';
+		plainText = plainText.replace('<!--ColGroupStart-->', `<div style="width: ${RANDOMSTR}%; float: left;"}>`);
+		while ( plainText.includes('<!--Column') ) {
+			firstIndex = plainText.indexOf('<!--Column');
+			if ( plainText.charAt(firstIndex + '<!--Column'.length) === '-' ) {
+				break;
+			}
+			colCount += 1;
+			plainText = plainText.replace(`<!--Column${colCount}-->`, `</div>\n<div style="width: ${RANDOMSTR}%; float: left;"}>`);
+		}
+
+		plainText = plainText.replace('<!ColGroupEnd-->', '</div>');
+		var colWidth = 100 / colCount;
+		plainText = replace(plainText, RANDOMSTR, colWidth.toString());
+
+		return plainText;
+	}
+
 	previewRender = ( plainText ) => {
 		// Take the plaintext and insert the images via hash:
 		plainText = this.replacePlaceholders( plainText );
+
+		// Add columns
+		plainText = this.columnTagConvert( plainText );
+
+		// Now render the markdown
 		return md.render( plainText );
 	}
 
@@ -796,7 +832,7 @@ class MarkdownEditor extends Component {
 		const title = document.title || 'provisoric';
 		const mdValue = this.simplemde.value();
 		const body = this.previewRender( mdValue );
-		const html = createHTML( title, body );
+		const html = createHTML( title, body, this.state.fontSize );
 		const blob = new Blob([ html ], {
 			type: 'text/html'
 		});
@@ -810,7 +846,7 @@ class MarkdownEditor extends Component {
 		let text = this.simplemde.value();
 		text = this.replacePlaceholders( text, true );
 		const ast = md.parse( text );
-		const doc = generatePDF( ast, config, opts );
+		const doc = generatePDF( ast, config, this.state.fontSize, opts );
 		this.toggleSaveModal( null, () => {
 			pdfMake.createPdf( doc ).download( title );
 		});
@@ -871,6 +907,18 @@ class MarkdownEditor extends Component {
 						this.simplemde.codemirror.replaceRange( tblString, c);
 					}}
 				/>
+				<ColumnSelect
+					show={this.state.showColumnSelect}
+					onHide={()=>{
+						this.setState({
+							showColumnSelect: false
+						});
+					}}
+					onClick={( tblString, lines )=>{
+						var c = this.simplemde.codemirror.getCursor();
+						this.simplemde.codemirror.replaceRange( tblString, c);
+					}}
+				/>
 				<FontSizeSelect
 					show={this.state.showFontSize}
 					onHide={()=>{
@@ -882,9 +930,10 @@ class MarkdownEditor extends Component {
 						// pass to state
 						this.setState({
 							fontSize: newSize
-						});
+						}, function() { console.log(this.state.fontSize);});
+						// this.state.fontSize = newSize;
 					}}
-
+					current={this.state.fontSize}
 				/>
 			</Fragment>
 		);
@@ -906,9 +955,10 @@ MarkdownEditor.defaultProps = {
 		'bold', 'italic', 'underline', 'font_size',
 		'new_line', 'center', '|',
 		'insert_table', 'heading', 'unordered_list',
-		'ordered_list', 'link', '|',
+		'ordered_list', 'link', 'insert_columns', '|',
 		'preview', 'side_by_side', 'fullscreen', '|',
-		'open_markdown', 'save', 'submit', '|'
+		'open_markdown', 'save', 'submit', '|',
+		'voice'
 	],
 	voiceControl: false,
 	voiceTimeout: 5000
