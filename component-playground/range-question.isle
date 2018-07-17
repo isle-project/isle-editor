@@ -1,17 +1,38 @@
+---
+title: "Range Question"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+---
+
 # Range Question
 
-A range question component.
+<br />
 
-#### Example:
 
-``` js
+
+
+<Playground
+    style={{
+        marginLeft: 0,
+        width: '1100px'
+    }}
+    code={`
 <RangeQuestion
     question="Approximately in which range lie 99% of observations drawn from a standard normal distribution?"
     solution={[-3,3]}
 />
-```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/range-question/)
+`}
+    scope={{
+        RangeQuestion
+    }}
+/>
+
+
+<br />
 
 #### Options:
 

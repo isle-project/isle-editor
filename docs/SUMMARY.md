@@ -77,7 +77,7 @@
         * [R Table](components/r-table.md)
     * [Spectacle Presentation](chapters/spectacle.md)
     * [Text](components/text.md)
-    * [LaTeX Equations](components/latex.md)
+    * [LaTeX Equations](components/tex.md)
     * [Web Service](chapters/web-service.md)
         * [News](components/news.md)   
         * [Wikipedia](components/wikipedia.md)
