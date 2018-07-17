@@ -29,7 +29,7 @@ else if ( config.has( 'mostRecentPath' ) ) {
 * Check for application updates and set application menu.
 */
 function onReady() {
-	console.log( 'Application is ready...' );
+	console.log( 'Application is ready...' ); // eslint-disable-line no-console
 	createWindow( pathToOpen, () => {
 		isReady = true;
 		autoUpdater( ( err, newVersion ) => {
@@ -82,5 +82,5 @@ app.on( 'activate', () => {
 });
 
 app.on( 'browser-window-created', ( e, browserWindow ) => {
-	console.log( 'Browser window created...' );
+	console.log( 'Browser window created...' ); // eslint-disable-line no-console
 });

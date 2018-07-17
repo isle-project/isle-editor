@@ -1,0 +1,26 @@
+---
+title: "Clock"
+author: Francis R. Kovacs
+date: Feb 9th, 2018
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Clock
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <Clock/> 
+`}
+    scope={{
+        Clock
+    }}
+/>
+
+#### Options
+
+* __style__: An `Object` with options `fontSize` and `fontFamily`. Default value: `{}`.

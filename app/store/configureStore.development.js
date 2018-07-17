@@ -5,7 +5,7 @@ import { persistState } from 'redux-devtools';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import rootReducer from 'reducers';
-import DevTools from 'containers/DevTools';
+import DevTools from 'containers/dev_tools.js';
 
 
 // LOGGER //

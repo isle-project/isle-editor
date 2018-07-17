@@ -1,0 +1,53 @@
+---
+title: "Draggable List"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+---
+
+# Draggable List
+
+<br />
+
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px',
+    }}
+    code={
+    `
+    <DraggableList
+        data={[
+            { id: 0, text: "Compact" },
+            { id: 1, text: "Large" },
+            { id: 2, text: "Midsize" },
+            { id: 3, text: "Small" }
+        ]}
+        onChange={ ( data ) => {
+            let str = data
+                .map( x => '"'+x.text+'"' )
+                .join( ', ');
+        		var ssu = new SpeechSynthesisUtterance("ok");
+			    ssu.lang = 'en-US';
+			    window.speechSynthesis.speak( ssu );
+        }}
+/>
+    `
+    }
+    scope={{
+        DraggableList
+    }}
+/>
+
+
+<br />
+
+#### Options:
+
+
+* __data__: An `Array` of list elements, each represented as an `Object` with `id` and `text` fields. Default: `[]`.
+* __onChange__: Callback `function` invoked after each change in the order of the elements. The function receives the new data as its first parameter. Default: `null`.
+* __onInit__: `function` invoked once after the component has been mounted. Default: `null`.

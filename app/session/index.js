@@ -15,7 +15,7 @@ import io from 'socket.io-client';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle-editor:session' );
 const PATH_REGEXP = /^\/([^/]*)\/([^/]*)\//i;
 const STDOUT_REGEX = /stdout/;
 const GRAPHICS_REGEX = /graphics/;
@@ -303,26 +303,25 @@ class Session {
 			},
 			rejectUnauthorized
 		}, ( error, response, body ) => {
-			if ( !error ) {
-				const arr = body.split( '\n' );
-				arr.forEach( elem => {
-					if ( GRAPHICS_REGEX.test( elem ) === true ) {
-						const imgURL = OPEN_CPU + elem + '/' + filetype;
-						request.get( imgURL, {
-							encoding: null,
-							rejectUnauthorized
-						}, ( error, response, body ) => {
-							if ( filetype === 'png' ) {
-								const buf = new Buffer( body );
-								body = 'data:'+response.headers['content-type']+';base64,' + buf.toString( 'base64' );
-							}
-							clbk( error, imgURL, body );
-						});
-					}
-				});
-			} else {
-				clbk( error );
+			if ( error ) {
+				return clbk( error );
 			}
+			const arr = body.split( '\n' );
+			arr.forEach( elem => {
+				if ( GRAPHICS_REGEX.test( elem ) === true ) {
+					const imgURL = OPEN_CPU + elem + '/' + filetype;
+					request.get( imgURL, {
+						encoding: null,
+						rejectUnauthorized
+					}, ( error, response, body ) => {
+						if ( filetype === 'png' ) {
+							const buf = new Buffer( body );
+							body = 'data:'+response.headers['content-type']+';base64,' + buf.toString( 'base64' );
+						}
+						clbk( error, imgURL, body );
+					});
+				}
+			});
 		});
 	}
 
@@ -421,7 +420,7 @@ class Session {
 	*/
 	joinChat( name ) {
 		if ( this.socket ) {
-			let chat = { name: name, messages: [], members: [] };
+			let chat = { name: name, messages: [], members: []};
 			let found = false;
 			for ( let i = 0; i < this.chats.length; i++ ) {
 				if ( this.chats[ i ].name === chat.name ) {
@@ -521,11 +520,11 @@ class Session {
 	* @returns {void}
 	*/
 	socketConnect() {
-		console.log( 'Connecting via socket to server... ' );
+		debug( 'Connecting via socket to server... ' );
 		const socket = io.connect( this.server );
 
 		socket.on( 'connect', () => {
-			console.log( 'I am connected...' );
+			debug( 'I am connected...' );
 			this.stopPingServer();
 		});
 
@@ -537,7 +536,7 @@ class Session {
 			userEmail: this.user.email
 		});
 		socket.on( 'console', function onConsole( msg ) {
-			console.log( msg );
+			debug( msg );
 		});
 
 		socket.on( 'userlist', ( data ) => {
@@ -590,7 +589,7 @@ class Session {
 		});
 
 		socket.on( 'chat_history', ({ name, messages, members }) => {
-			console.log( 'Received chat history: ' + JSON.stringify( messages ) );
+			debug( 'Received chat history: ' + JSON.stringify( messages ) );
 			const chat = this.getChat( name );
 			chat.messages = messages;
 			chat.members = members;
@@ -620,7 +619,7 @@ class Session {
 
 		socket.on( 'memberAction', this.saveAction.bind( this ) );
 
-		socket.on( 'error', console.error.bind( console ) );
+		socket.on( 'error', console.error.bind( console ) ); // eslint-disable-line no-console
 
 		socket.on( 'disconnect', () => {
 			debug( 'I am disconnected from the server...' );
@@ -656,7 +655,6 @@ class Session {
 	*/
 	getUserActions = () => {
 		debug( 'Retrieve user actions...' );
-		console.log( 'Retrieve user actions...' );
 		request.post( this.server+'/get_user_actions', {
 			headers: {
 				'Authorization': 'JWT ' + this.user.token

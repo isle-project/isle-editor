@@ -3,18 +3,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import request from 'request';
+import logger from 'debug';
 import capitalize from '@stdlib/string/capitalize';
 import isElectron from 'utils/is-electron';
 import VoiceInput from 'components/input/voice';
-import './styles.css';
+import SpeechInterface from 'speech-interface'; // this may be deleted
 import newslist from './list.json';
 import EXCEPTIONS from './exceptions.json';
+import './styles.css';
 
-import SpeechInterface from 'speech-interface'; // this may be deleted
 
 // VARIABLES //
 
 const rejectUnauthorized = isElectron ? false : true;
+const debug = logger( 'isle-editor:news' );
 
 
 // MAIN //
@@ -106,7 +108,7 @@ class News extends Component {
 	}
 
 	trigger( value ) {
-		console.log('externally triggered');
+		debug( 'News component is externally triggered...' );
 		var marker = 'in';
 		switch ( this.props.language ) {
 		case 'en-US':

@@ -1,0 +1,43 @@
+---
+title: "Word Venn Diagram"
+author: Francis R. Kovacs 
+date: May 27th, 2018
+require:
+    data: "./tdm_sparse.json"
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Word Venn Diagram
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <LearnWordVennDiagram
+        tdm={data.tdm} 
+        vocabulary={data.vocabulary}
+        nTexts={118}
+        height={250}
+        width={350}
+    />
+    
+`}
+    scope={{
+        LearnWordVennDiagram
+    }}
+/>
+
+
+#### Options:
+
+* __height__: `interger` indicating the height of the venn diagram in pixels. Default: `350`.
+* __nTexts__: An `integer` indicating the number of sources from which text was gathered. Required with no default.
+* __onClick__: A `function` for what is to be done when "Draw Venn Diagram" is clicked. Default: `function() { };`
+* __tdm__: An `array` that is to represent the [term document matrix](https://en.wikipedia.org/wiki/Document-term_matrix) provided. Required with no default.
+* __vocabulary__: An `array` in the order of the `tdm` array passed so that the indices may be matches to their words. Required with no default.
+* __height__: `interger` indicating the width of the venn diagram in pixels. Default: `600`.

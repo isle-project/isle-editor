@@ -1,0 +1,55 @@
+---
+title: "Grid"
+author: Francis R. Kovacs
+date: Jan 4th, 2018
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Grid
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <Grid>
+        <Row>
+            <Col sm={6} md={3}>First
+                <SliderInput
+                    legend="First Column Code"
+                    defaultValue={10}
+                    min={0}
+                    max={100}
+                    step={1}
+                />
+            </Col>
+            <Col sm={6} md={3}>Second 
+                <TextInput
+                    legend="Second Column"
+                    defaultValue="value"
+                />
+            </Col>
+                
+            <Col sm={6} md={3}>Third
+            <Text>
+                Text for the third column</Text>
+            </Col>
+            <Col sm={6} md={3}>Fourth
+                <FreeTextQuestion
+                   question="Type the word Frank"
+                    solution="Frank"
+                />
+            </Col>
+        </Row>
+    </Grid>
+`}
+    scope={{
+        Grid, Row, Col, SliderInput, TextInput, Text, FreeTextQuestion
+    }}
+/>
+
+

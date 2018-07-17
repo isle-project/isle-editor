@@ -209,29 +209,39 @@ class TeX extends Component {
 
 // PROPERTY TYPES //
 
+TeX.propDescriptions = {
+	raw: 'The literal LaTeX `string` to render. Also accepts `numbers`',
+	displayMode: '`boolean` indicating whether to display the equation inline or in display mode',
+	numbered: 'controls whether to display an equation number for display mode equations',
+	style: '`object` with CSS key-value pairs to be applied to the equation container',
+	tag: 'Custom characters displayed for display equations at the right side. Defaults to the number of the equation inside the lesson',
+	elems: '`object` with `keys` denoting LaTeX characters and their corresponding values being configuration `objects` to make them interactive. Setting a `tooltip` option will show a tooltip when hovering over the LaTeX characters. Setting a `variable` property will display an input slider to change the respective state variable; in this case, additional properties `legend`, `min`, `max`, and `step` are supported',
+	onClick: 'Callback `function` invoked whenever a user clicks on the equation'
+};
+
 TeX.propTypes = {
-	displayMode: PropTypes.bool,
-	elems: PropTypes.object,
-	numbered: PropTypes.bool,
-	onClick: PropTypes.func,
 	raw: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.number
 	]).isRequired,
+	displayMode: PropTypes.bool,
+	numbered: PropTypes.bool,
 	style: PropTypes.object,
-	tag: PropTypes.string
+	tag: PropTypes.string,
+	elems: PropTypes.object,
+	onClick: PropTypes.func
 };
 
 
 // DEFAULT PROPERTIES //
 
 TeX.defaultProps = {
-	onClick: null,
 	displayMode: false,
-	tag: null,
 	numbered: false,
 	style: {},
-	elems: {}
+	tag: null,
+	elems: {},
+	onClick() {}
 };
 
 

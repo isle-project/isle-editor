@@ -1,0 +1,40 @@
+---
+title: "Feedback"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+---
+
+# Feedback
+
+<br />
+
+
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <div>
+        <span id="myDiv">For me, feedback is collected!</span>
+            <FeedbackButtons
+                for="myDiv"
+            />
+    </div>
+`}
+    scope={{
+        FeedbackButtons
+    }}
+/>
+
+
+<br />
+
+#### Options:
+
+* __for__ | `string (required)`: id of the component for which feedback shall be collected. Default: `none`.
+* __vertical__ | `boolean`: buttons are displayed vertically if set to `true`. Default: `false`.

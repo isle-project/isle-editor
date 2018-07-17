@@ -1,0 +1,57 @@
+---
+title: "Number Survey"
+author: Francis R. Kovacs 
+date: Jan 2nd, 2018
+state:
+    propSurvey: []
+    xbar: 0
+    mu0: 0
+    sigma: 1
+    zStat: 0
+    pStat: 0
+    areaData: null
+    areaData2: null
+    surveyData: []
+    surveyDomain: { y: [0,1] }
+    type: 0
+    surveySD: 1
+    n: 5
+    np: 5
+    phat: 0
+    p0: 0.5
+server: https://isle.heinz.cmu.edu
+---
+
+# Number Survey
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <NumberSurvey
+        allowMultipleAnswers={true}
+    	anonymous="false"
+        id="generic_mean_question"
+        legend="Submit a number"
+        defaultValue={0}
+        step="any"
+    />                    
+`}
+    scope={{
+        NumberSurvey
+    }}
+/>
+
+#### Options
+
+* __allowMultipleAnswers__: A `string` `bool` value indicating whether the same user (or session is anonymous) may submit multiple answers. Default: `'false'`.
+* __id__: The `componentID` of the `query` used to obtain the data generated from the survey. Default: `''`.
+* __anonymous__: Allows for the students to submit data anonymously. Note that if this option is set to "true", then the instructors will be unable to see the ID of the submitting student. Input type is `string`. Default: `'false'`. 
+* __legend__: The display legent text to appear to the left of "=" in the panel. Default: `''`.
+* __defaultValue__: The starting value of the input. Default: `0`.
+* __step__: A `string` or `numeric` value indicating the step of the arrows seen when hovering the cursor above the input box. If `'any'`, the step will be set to `1`. Default: `'any'`, meaning `1`. 
+

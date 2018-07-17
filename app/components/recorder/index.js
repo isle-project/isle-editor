@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import logger from 'debug';
 import PropTypes from 'prop-types';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
@@ -15,6 +16,7 @@ import './recorder.css';
 
 // VARIABLES //
 
+var debug = logger( 'isle-editor:recorder' );
 navigator.getUserMedia = navigator.getUserMedia || navigator.mediaDevices.getUserMedia || navigator.webkitGetUserMedia;
 
 
@@ -27,17 +29,17 @@ const isMimeTypeSupported = ( _mimeType ) => {
 	return MediaRecorder.isTypeSupported( _mimeType );
 };
 
-function getAudioConfig( props ) {
+function getAudioConfig({ bitsPerSecond }) {
 	let mimeType = 'audio/mpeg';
 	let recorderType = MediaStreamRecorder;
 	if ( isMimeTypeSupported( mimeType ) === false ) {
-		console.log( mimeType, 'is not supported.' ); // eslint-disable-line no-console
+		debug( mimeType, 'is not supported.' );
 		mimeType = 'audio/ogg';
 		if ( isMimeTypeSupported( mimeType ) === false ) {
-			console.log( mimeType, 'is not supported.' ); // eslint-disable-line no-console
+			debug( mimeType, 'is not supported.' );
 			mimeType = 'audio/webm';
 			if ( isMimeTypeSupported( mimeType ) === false ) {
-				console.log( mimeType, 'is not supported.' ); // eslint-disable-line no-console
+				debug( mimeType, 'is not supported.' );
 				// Fallback to WebAudio solution:
 				mimeType = 'audio/wav';
 				recorderType = StereoAudioRecorder;
@@ -48,29 +50,29 @@ function getAudioConfig( props ) {
 		mimeType,
 		recorderType,
 		type: 'audio',
-		bitsPerSecond: props.bitsPerSecond,
+		bitsPerSecond: bitsPerSecond,
 		numberOfAudioChannels: 1
 	};
 }
 
-function getVideoConfig( props ) {
+function getVideoConfig({ bitsPerSecond }) {
 	let mimeType = 'video/x-matroska;codecs=avc1'; // MKV
 	let recorderType = MediaStreamRecorder;
 
 	if ( !isMimeTypeSupported( mimeType ) ) {
-		console.log(mimeType, 'is not supported.');
-		mimeType = 'video/webm\;codecs=h264'; // H264
+		debug(mimeType, 'is not supported.');
+		mimeType = 'video/webm;codecs=h264'; // H264
 		if ( !isMimeTypeSupported( mimeType ) ) {
-			console.log(mimeType, 'is not supported.');
-			mimeType = 'video/webm\;codecs=vp9'; // VP9
+			debug(mimeType, 'is not supported.');
+			mimeType = 'video/webm;codecs=vp9'; // VP9
 			if ( !isMimeTypeSupported( mimeType ) ) {
-				console.log(mimeType, 'is not supported.');
-				mimeType = 'video/webm\;codecs=vp8'; // VP8
+				debug(mimeType, 'is not supported.');
+				mimeType = 'video/webm;codecs=vp8'; // VP8
 				if ( !isMimeTypeSupported( mimeType ) ) {
-					console.log(mimeType, 'is not supported.');
+					debug(mimeType, 'is not supported.');
 					mimeType = 'video/webm';
 					if ( !isMimeTypeSupported( mimeType ) ) {
-						console.log(mimeType, 'is not supported.');
+						debug(mimeType, 'is not supported.');
 						// Fallback to Whammy (WebP+WebM) solution...
 						mimeType = 'video/webm';
 						recorderType = WhammyRecorder;
@@ -83,7 +85,7 @@ function getVideoConfig( props ) {
 		mimeType,
 		recorderType,
 		type: 'video',
-		bitsPerSecond: props.bitsPerSecond
+		bitsPerSecond: bitsPerSecond
 	};
 }
 
@@ -114,7 +116,7 @@ class Recorder extends Component {
 		};
 
 		window.getChromeExtensionStatus( ( status ) => {
-			console.log( 'Extension status: ' + status );
+			debug( 'Extension status: ' + status );
 			if ( status !== 'installed-enabled' ) {
 				this.setState({
 					available: false
@@ -301,9 +303,9 @@ class Recorder extends Component {
 		const { audio, camera, screen } = this.getActiveSources();
 
 		if ( screen || camera ) {
-			this.recorderVideoConfig = getVideoConfig( this.props );
+			this.recorderVideoConfig = getVideoConfig({ bitsPerSecond: this.props.bitsPerSecond });
 		} else if ( audio ) {
-			this.recorderAudioConfig = getAudioConfig( this.props );
+			this.recorderAudioConfig = getAudioConfig({ bitsPerSecond: this.props.bitsPerSecond });
 		}
 
 		// Case: Camera + Audio / No Audio
@@ -480,14 +482,24 @@ class Recorder extends Component {
 
 // TYPES //
 
+Recorder.propDescriptions = {
+	audio: 'indicates whether audio should be recorded',
+	camera: 'indicates whether webcam should be recorded',
+	screen: 'indicates whether the screen should be captured',
+	autostart: 'indicates whether recording should start immediately',
+	downloadable: 'indicates whether users should be able to download the recoding',
+	uploadable: 'indicates whether users should be able to upload the recoding to the server',
+	bitsPerSecond: 'bits per second'
+};
+
 Recorder.propTypes = {
 	audio: PropTypes.bool,
-	autostart: PropTypes.bool,
-	bitsPerSecond: PropTypes.number,
 	camera: PropTypes.bool,
-	downloadable: PropTypes.bool,
 	screen: PropTypes.bool,
-	uploadable: PropTypes.bool
+	autostart: PropTypes.bool,
+	downloadable: PropTypes.bool,
+	uploadable: PropTypes.bool,
+	bitsPerSecond: PropTypes.number
 };
 
 

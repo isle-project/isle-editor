@@ -21,6 +21,7 @@ import repeat from '@stdlib/string/repeat';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import contains from '@stdlib/assert/contains';
 import trim from '@stdlib/string/trim';
+import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import VoiceInput from 'components/input/voice';
 import 'simplemde/dist/simplemde.min.css';
@@ -30,6 +31,7 @@ import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
 import TableSelect from './table_select.js';
 import ColumnSelect from './column_select.js';
+import FontSizeSelect from './font_size.js';
 import base64toBlob from './base64_to_blob.js';
 
 
@@ -51,7 +53,7 @@ md.use( markdownIns );
 
 pdfMake.vfs = fonts;
 
-const createHTML = ( title, body ) => `<!doctype html>
+const createHTML = ( title, body, fontSize ) => `<!doctype html>
 <html lang=en>
 	<head>
 		<meta charset=utf-8>
@@ -63,7 +65,7 @@ const createHTML = ( title, body ) => `<!doctype html>
 		<style media="screen" type="text/css">
 			body {
 				font-family: 'Open Sans', sans-serif;
-				font-size: 16px !important;
+				font-size: ${fontSize}px !important;
 				margin-left: auto;
 				margin-right: auto;
 				padding: 10px;
@@ -74,22 +76,22 @@ const createHTML = ( title, body ) => `<!doctype html>
 			}
 			h1 {
 				color: #2e4468;
-				font-size: 40px;
+				font-size: ${fontSize + 24}px;
 				font-weight: bold;
 				letter-spacing: 1px;
 			}
 			h2 {
-				font-size: 32px;
+				font-size: ${fontSize + 16}px;
 				color: #3c763d;
 				font-weight: 600;
 			}
 			h3 {
-				font-size: 24px;
+				font-size: ${fontSize + 8}px;
 				color: #2e4468;
 				font-weight: 600;
 			}
 			h4 {
-				font-size: 20px;
+				font-size: ${fontSize + 4}px;
 				color: #ca5800;
 				font-weight: 600;
 			}
@@ -200,13 +202,23 @@ class MarkdownEditor extends Component {
 			defaultValue: props.defaultValue,
 			showTableSelect: false,
 			pageSize: 'LETTER',
-			showColumnSelect: false
+			showColumnSelect: false,
+			showFontSize: false,
+			fontSize: 16
 		};
 
 		this.toolbarOpts = {
 			'bold': 'bold',
 			'italic': 'italic',
 			'|': '|',
+			'font_size': {
+				name: 'font_size',
+				action: ( editor, event ) => {
+					this.toggleFontSize();
+				},
+				className: 'far fa-plus-square',
+				title: 'Select Font Size'
+			},
 			'underline': {
 				name: 'underline',
 				action: ( editor ) => {
@@ -257,16 +269,18 @@ class MarkdownEditor extends Component {
 				name: 'newLine',
 				action: ( editor ) => {
 					const cm = this.simplemde.codemirror;
-					// When we get the cursor we want to get the head
-					// Add the newline to the left of the cursor
 					const startPoint = cm.getCursor( 'start' );
 					const endPoint = cm.getCursor( 'end' );
 					if ( startPoint.line === endPoint.line ) {
-						cm.replaceSelection( '\\\n' );
+						const pos = {
+							line: startPoint.line,
+							ch: endPoint.ch
+						};
+						cm.replaceRange( '\\\n', pos );
 					}
 					while ( startPoint.line !== endPoint.line ) {
 						var currentLine = cm.getLine( startPoint.line );
-						if ( endsWith(currentLine, '\\') ) {
+						if ( endsWith( currentLine, '\\' ) ) {
 							cm.replaceRange( removeLast( currentLine ),
 								{ line: startPoint.line, ch: 0 },
 								{ line: startPoint.line, ch: 99999999999999 }
@@ -393,9 +407,11 @@ class MarkdownEditor extends Component {
 					text = this.replacePlaceholders( text, true );
 					let html = this.previewRender( text );
 					const title = document.title || 'provisoric';
-					html = createHTML( title, html );
+					html = createHTML( title, html, this.state.fontSize );
 					const ast = md.parse( text );
-					const doc = generatePDF( ast, this.state.pageSize );
+					// Create the config so that the function can run
+					const config = {'pageSize': 'LETTER', 'pageOrientation': 'portrait'}
+					const doc = generatePDF( ast, config, this.state.pageSize );
 					const pdfDocGenerator = pdfMake.createPdf( doc );
 					pdfDocGenerator.getBase64( ( pdf ) => {
 						const msg = {
@@ -499,7 +515,11 @@ class MarkdownEditor extends Component {
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
-		if ( this.state.defaultValue !== prevState.defaultValue ) {
+		if (
+			this.state.defaultValue !== prevState.defaultValue ||
+			this.props.toolbarConfig !== prevProps.toolbarConfig ||
+			this.props.voiceControl !== prevProps.voiceControl
+		) {
 			this.simplemde.toTextArea(); // Reset text area to remove SimpleMDE instance...
 			this.initializeEditor();
 		}
@@ -710,13 +730,17 @@ class MarkdownEditor extends Component {
 	}
 
 	createToolbar() {
-		var toolbar = [];
-		var tbOpt; // Gives the name as a string of option
-		var tbObj; // Gives the object that will be put in array
-		for ( var i = 0; i < this.props.toolbarConfig.length; i++ ) {
-			tbOpt = this.props.toolbarConfig[i];
-			tbObj = this.toolbarOpts[tbOpt];
-			toolbar.push(tbObj);
+		const toolbarConfig = copy( this.props.toolbarConfig );
+		const toolbar = [];
+		let tbOpt; // Gives the name as a string of option
+		let tbObj; // Gives the object that will be put in array
+		if ( this.props.voiceControl && !contains( toolbarConfig, 'voice' ) ) {
+			toolbarConfig.push( 'voice' );
+		}
+		for ( let i = 0; i < toolbarConfig.length; i++ ) {
+			tbOpt = toolbarConfig[ i ];
+			tbObj = this.toolbarOpts[ tbOpt ];
+			toolbar.push( tbObj );
 		}
 		return toolbar;
 	}
@@ -754,7 +778,7 @@ class MarkdownEditor extends Component {
 	}
 
 	previewRender = ( plainText ) => {
-		// Take the plaintext and insert the images via hash
+		// Take the plaintext and insert the images via hash:
 		plainText = this.replacePlaceholders( plainText );
 
 		// Add columns
@@ -771,6 +795,12 @@ class MarkdownEditor extends Component {
 	toggleColumnSelect = () => {
 		this.setState({
 			showColumnSelect: !this.state.showColumnSelect
+		});
+	}
+
+	toggleFontSize = () => {
+		this.setState({
+			showFontSize: !this.showFontSize
 		});
 	}
 
@@ -802,7 +832,7 @@ class MarkdownEditor extends Component {
 		const title = document.title || 'provisoric';
 		const mdValue = this.simplemde.value();
 		const body = this.previewRender( mdValue );
-		const html = createHTML( title, body );
+		const html = createHTML( title, body, this.state.fontSize );
 		const blob = new Blob([ html ], {
 			type: 'text/html'
 		});
@@ -816,28 +846,34 @@ class MarkdownEditor extends Component {
 		let text = this.simplemde.value();
 		text = this.replacePlaceholders( text, true );
 		const ast = md.parse( text );
-		console.log(ast);
-		const doc = generatePDF( ast, config, opts );
+		const doc = generatePDF( ast, config, this.state.fontSize, opts );
 		this.toggleSaveModal( null, () => {
 			pdfMake.createPdf( doc ).download( title );
 		});
 	}
 
 	renderVoiceControl() {
-		if ( !contains(this.props.toolbarConfig, 'voice') ) return null;
+		if (
+			!contains( this.props.toolbarConfig, 'voice' ) &&
+			!this.props.voiceControl
+		) {
+			return null;
+		}
 		return (
 			<VoiceInput mode="status"
 				language={this.props.language}
 				timeout={this.props.voiceTimeout}
 				width={500}
-				onFinalText={this.recordedText} ref={( voice ) => { this.voiceRef = voice; }} />
+				onFinalText={this.recordedText}
+				ref={( voice ) => { this.voiceRef = voice; }}
+			/>
 		);
 	}
 
 	render() {
 		return (
 			<Fragment>
-				<div className="markdown-editor" style={this.props.style} >
+				<div id={this.props.id} className="markdown-editor" style={this.props.style} >
 					<textarea ref={( area ) => { this.simplemdeRef = area; }} autoComplete="off" {...this.props.options} />
 					{this.renderVoiceControl()}
 				</div>
@@ -882,6 +918,18 @@ class MarkdownEditor extends Component {
 						var c = this.simplemde.codemirror.getCursor();
 						this.simplemde.codemirror.replaceRange( tblString, c);
 					}}
+				<FontSizeSelect
+					show={this.state.showFontSize}
+					onHide={()=>{
+						this.setState({
+							showFontSize: false
+						});
+					}}
+					onClick={( newSize )=>{
+						// pass to state
+						this.state.fontSize = newSize
+					}}
+					current={this.state.fontSize}
 				/>
 			</Fragment>
 		);
@@ -900,7 +948,7 @@ MarkdownEditor.defaultProps = {
 	options: {},
 	style: {},
 	toolbarConfig: [
-		'bold', 'italic', 'underline',
+		'bold', 'italic', 'underline', 'font_size',
 		'new_line', 'center', '|',
 		'insert_table', 'heading', 'unordered_list',
 		'ordered_list', 'link', 'insert_columns', '|',
@@ -908,6 +956,7 @@ MarkdownEditor.defaultProps = {
 		'open_markdown', 'save', 'submit', '|',
 		'voice'
 	],
+	voiceControl: false,
 	voiceTimeout: 5000
 };
 
@@ -922,7 +971,8 @@ MarkdownEditor.propTypes = {
 	onChange: PropTypes.func,
 	options: PropTypes.object,
 	style: PropTypes.object,
-	toolbarConfig: PropTypes.arrayOf(PropTypes.string),
+	toolbarConfig: PropTypes.array,
+	voiceControl: PropTypes.bool,
 	voiceTimeout: PropTypes.number
 };
 

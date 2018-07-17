@@ -1,5 +1,11 @@
-// CONSTANTS //
+// MODULES //
 
+const logger = require( 'debug' );
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor:tokenizer' );
 const IN_BASE = 0;
 const IN_OPENING_TAG = 1;
 const IN_CLOSING_TAG = 2;
@@ -7,6 +13,7 @@ const IN_STRING_ATTRIBUTE = 3;
 const IN_JSX_ATTRIBUTE = 4;
 const IN_BETWEEN_TAGS = 5;
 const IN_JSX_EXPRESSION = 6;
+const IN_CODE = 7;
 
 
 // FUNCTIONS //
@@ -60,6 +67,20 @@ class Tokenizer{
 			this._state = IN_OPENING_TAG;
 			this.tokens.push( this._current );
 			this._level += 1;
+			this._current = char;
+		} else if ( char === '`' && this._buffer.charAt( i+1 ) !== '`' ) {
+			this._state = IN_CODE;
+			this.tokens.push( this._current );
+			this._current = char;
+		} else {
+			this._current += char;
+		}
+	}
+
+	_inCode( char, i ) {
+		if ( char === '`' ) {
+			this._state = IN_BASE;
+			this.tokens.push( this._current );
 			this._current = char;
 		} else {
 			this._current += char;
@@ -160,9 +181,14 @@ class Tokenizer{
 
 		for ( let i = 0; i < str.length; i++ ) {
 			let char = str.charAt( i );
+			debug( 'Processing character: '+ char );
+			debug( 'Current state: '+ this._state );
 			switch ( this._state ) {
 			case IN_BASE:
 				this._inBase( char, i );
+				break;
+			case IN_CODE:
+				this._inCode( char, i );
 				break;
 			case IN_OPENING_TAG:
 				this._inOpeningTag( char, i );

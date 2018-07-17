@@ -358,9 +358,9 @@ class SampleCLT extends Component {
 	renderMeanHistogram() {
 		let label;
 		if ( this.state.type === 'numeric' ) {
-			label = <span> Histogram of <TeX raw="\bar x" />'s</span>;
+			label = <span> Histogram of <TeX raw="\bar x" />&#39;s</span>;
 		} else if ( this.state.type === 'binary' ) {
-			label = <span> Histogram of <TeX raw="\hat p" />'s</span>;
+			label = <span> Histogram of <TeX raw="\hat p" />&#39;s</span>;
 		}
 		return ( <Panel>
 			<Panel.Heading>
@@ -400,13 +400,13 @@ class SampleCLT extends Component {
 			<p><label>Number of Samples: {this.state.xbars.length} </label></p>
 			{ this.state.avg_xbars ?
 				<p>
-					<label> Mean of { this.state.type === 'numeric' ? <TeX raw="\bar x" /> : <TeX raw="\hat p" />}'s: </label>
+					<label> Mean of { this.state.type === 'numeric' ? <TeX raw="\bar x" /> : <TeX raw="\hat p" />}&#39;s: </label>
 					<span>&nbsp;{this.state.avg_xbars.toFixed( 3 )} (shown as the red line)</span>
 				</p> : null
 			}
 			{ this.state.stdev_xbars ?
 				<p>
-					<label>Standard deviation of { this.state.type === 'numeric' ? <TeX raw="\bar x" /> : <TeX raw="\hat p" />}'s: </label>
+					<label>Standard deviation of { this.state.type === 'numeric' ? <TeX raw="\bar x" /> : <TeX raw="\hat p" />}&#39;s: </label>
 					&nbsp;{this.state.stdev_xbars.toFixed( 3 )}
 				</p> : null
 			}
@@ -442,12 +442,6 @@ class SampleCLT extends Component {
 	}
 
 	render() {
-		let label;
-		if ( this.state.type === 'numeric' ) {
-			label = <span> Histograms of <TeX raw="\bar x" />'s</span>;
-		} else if ( this.state.type === 'binary' ) {
-			label = <span> Histograms of <TeX raw="\hat p" />'s</span>;
-		}
 		return (
 			<Grid>
 				<Row>

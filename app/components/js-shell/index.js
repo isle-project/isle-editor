@@ -17,11 +17,11 @@ import '@planeshifter/brace/mode/javascript';
 import '@planeshifter/brace/theme/katzenmilch';
 import '@planeshifter/brace/theme/monokai';
 import '@planeshifter/brace/theme/solarized_light';
+import SpeechInterface from 'speech-interface';
 import scrollTo from 'utils/scroll-to';
 import './js-shell.css';
 import CONSOLE_STYLES from './console_styles.json';
 
-import SpeechInterface from 'speech-interface';
 
 
 // FUNCTIONS //
@@ -323,7 +323,7 @@ class JSShell extends Component {
 			}
 			{
 				( this.props.chat && this.props.id ) ?
-					<span style={{display: 'inline-block', marginLeft: '4px' }}>
+					<span style={{ display: 'inline-block', marginLeft: '4px' }}>
 						<ChatButton for={this.props.id} />
 					</span> :
 					null

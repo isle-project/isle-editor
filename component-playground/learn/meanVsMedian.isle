@@ -1,0 +1,35 @@
+---
+title: "Mean Vs. Median"
+author: Francis R. Kovacs 
+date: May 27th, 2018
+require:
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Mean Vs. Median Location
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <LearnMeanVSMedian 
+        header="This is a header!"
+        intro={<div></div>}
+    />
+    
+`}
+    scope={{
+        LearnMeanVSMedian
+    }}
+/>
+
+
+#### Options:
+
+* __header__: A `string` of the title of the panel in which the mean and the median will be generated. Default: `Measures of Location: Mean vs. Median`
+* __intro__: A `node` of `html` code for any introductory material that may be needed. Default: `<div></div>`.

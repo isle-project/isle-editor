@@ -6,6 +6,8 @@ A select question component.
 
 ``` js
 <SelectQuestion
+    question="The usual t-test is"
+    solution="two-sided"
     options={[
         'left-sided',
         'right-sided',
@@ -18,8 +20,11 @@ A select question component.
 
 #### Options:
 
-* __defaultValue__: The option the select input is initialized with. Default: `''`.
-* __inline__: `boolean` indicating whether the element should be displayed inline. Default: `false`.
-* __legend__: `string` to be displayed as the title of te component. Default: `''`.
-* __onChange__: Callback `function` invoked after each change of the slider value. Default: `null`.
-* __options__: `Array` of options for the select input element. Default: `[]`.
+* __question__ | `string`: question for which the student has to select one of the available answer options. Default: `''`.
+* __options__ | `array (required)`: available answer options from which the student can select. Default: `none`.
+* __solution__ | `string (required)`: question solution (must be equal to one of the answer options). Default: `none`.
+* __defaultValue__ | `string`: preselected answer option. Default: `''`.
+* __failureMsg__ | `string`: message to be displayed when student selects a wrong answer. Default: `'Not quite, try again!'`.
+* __successMsg__ | `string`: message to be displayed when student selects the correct answer. Default: `'That's the correct answer!'`.
+* __inline__ | `boolean`: controls whether the component should be inlined. Default: `false`.
+* __onChange__ | `function`: callback  which is triggered after the submit action. Default: `onChange() {}`.

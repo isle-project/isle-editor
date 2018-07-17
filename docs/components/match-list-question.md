@@ -20,8 +20,9 @@ An ISLE component that renders a question in which the learner has to match elem
 
 [Open interactive preview](https://isle.heinz.cmu.edu/components/match-list-question/)
 
-#### Options
+#### Options:
 
-* __elements__: an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties.
-* __onChange__: callback `function` invoked every time the text area value changes. Default: `null`.
-* __question__: a `string` holding the question to be displayed at the top of the match list question component. Default: `null`.
+* __question__ | `string`: question to be displayed at the top of the match list question component. Default: `''`.
+* __elements__ | `array<{a,b}>`: an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties. Default: `[]`.
+* __colorScale__ | `array`: if set, the supplied colors are used for the tiles. Default: `none`.
+* __onSubmit__ | `function`: callback invoked every time the text area value changes. Default: `onSubmit() {}`.
