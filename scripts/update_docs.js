@@ -26,6 +26,8 @@ PropTypes.string = new String( 'string' );
 PropTypes.string.isRequired = 'string (required)';
 PropTypes.number = new String( 'number' );
 PropTypes.number.isRequired = 'number (required)';
+PropTypes.array = new String( 'array' );
+PropTypes.array.isRequired = 'array (required)';
 PropTypes.object = new String( 'object' );
 PropTypes.object.isRequired = 'object (required)';
 PropTypes.bool = new String( 'boolean' );
@@ -36,7 +38,12 @@ PropTypes.node = new String( 'node' );
 PropTypes.node.isRequired = 'node (required)';
 
 PropTypes.arrayOf = function arrayOf( str ) {
-	const out = new String( `Array<${str}>` );
+	const out = new String( `array<${str}>` );
+	out.isRequired = out+' (required)';
+	return out;
+};
+PropTypes.shape = function shape( obj ) {
+	const out = new String( `{${objectKeys( obj ).join( ',' )}}` );
 	out.isRequired = out+' (required)';
 	return out;
 };
