@@ -52,16 +52,8 @@ public/
 # R history files
 .Rhistory
 
-# Meaningless files from markdown-editor
-app/components/markdown-editor/ast*
-app/components/markdown-editor/copy.pdf
-app/components/markdown-editor/foo*
-app/components/markdown-editor/from_pull.js
-app/components/markdown-editor/ron.pdf
-app/components/markdown-editor/str_try.js
-app/components/markdown-editor/test.js
-app/components/markdown-editor/text.txt
-app/components/markdown-editor/tmp.js
+# Ignore pdf
+*.pdf
 
 # Ignore calculator files
 app/components/calculator/*
