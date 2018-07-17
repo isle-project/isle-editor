@@ -67,7 +67,7 @@ function makeSTYLES( customFontSize = 16 ) {
 				fontSize: pdfSize
 			}
 		}
-	)
+	);
 }
 
 function extractList( ast ) {
