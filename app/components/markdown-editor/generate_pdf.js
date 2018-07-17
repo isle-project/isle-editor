@@ -230,7 +230,7 @@ function isCol( astElem ) {
 	if ( astElem.type !== 'html_block' ) {
 		return false;
 	}
-	else if ( !startsWith( astElem.content, '<!--Column' ) ) {
+	else if ( !startsWith( astElem.content, '<!--Column' ) && !startsWith(astElem.content, '<!--ColGroup' ) ) {
 		return false;
 	}
 	return true;
@@ -241,7 +241,7 @@ function isStartTag( astElem ) {
 	if ( astElem.type !== 'html_block' ) {
 		return false;
 	}
-	else if ( !startsWith( astElem.content, '<!--Column1-->' ) ) {
+	else if ( !startsWith( astElem.content, '<!--ColGroupStart' ) ) {
 		return false;
 	}
 	return true;
@@ -252,7 +252,7 @@ function isEndTag( astElem ) {
 	if ( astElem.type !== 'html_block' ) {
 		return false;
 	}
-	else if ( !startsWith( astElem.content, '<!--Column-ENDCOUNT' ) ) {
+	else if ( !startsWith( astElem.content, '<!--ColGroupEnd' ) ) {
 		return false;
 	}
 	return true;
@@ -321,7 +321,7 @@ function parsePDF( ast, config, state, start, end ) {
 			}
 			i += 2;
 		} else if ( elem.type === 'html_block' ) {
-			if ( startsWith( elem.content, '<img src=' ) ) {
+			if ( contains( elem.content, '<img src=' ) ) {
 				let start = elem.content.indexOf( 'src="' );
 
 				// Move to right past `src="`
@@ -471,7 +471,7 @@ function generatePDF( ast, config, opts ) {
 	}
 
 	// debug( 'Document: %s', JSON.stringify( doc, null, 2 ) );
-	console.log(doc);
+	// console.log(doc);
 	return doc;
 }
 

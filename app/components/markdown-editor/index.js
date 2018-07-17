@@ -732,9 +732,33 @@ class MarkdownEditor extends Component {
 		}
 	}
 
+	columnTagConvert = ( plainText ) => {
+		var firstIndex;
+		var colCount = 1;
+		const RANDOMSTR = '3hiueronenrklnwfkln';
+		plainText = plainText.replace('<!--ColGroupStart-->', `<div style="width: ${RANDOMSTR}%; float: left;"}>`);
+		while ( plainText.includes('<!--Column') ) {
+			firstIndex = plainText.indexOf('<!--Column');
+			if ( plainText.charAt(firstIndex + '<!--Column'.length) === '-' ) {
+				break;
+			}
+			colCount += 1;
+			plainText = plainText.replace(`<!--Column${colCount}-->`, `</div>\n<div style="width: ${RANDOMSTR}%; float: left;"}>`);
+		}
+
+		plainText = plainText.replace('<!ColGroupEnd-->', '</div>');
+		var colWidth = 100 / colCount;
+		plainText = replace(plainText, RANDOMSTR, colWidth.toString());
+
+		return plainText;
+	}
+
 	previewRender = ( plainText ) => {
 		// Take the plaintext and insert the images via hash
 		plainText = this.replacePlaceholders( plainText );
+
+		// Add columns
+		plainText = this.columnTagConvert( plainText );
 
 		// Now render the markdown
 		return md.render( plainText );
