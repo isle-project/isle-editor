@@ -363,6 +363,14 @@ class MarkdownEditor extends Component {
 			'unordered_list': 'unordered-list',
 			'ordered_list': 'ordered-list',
 			'link': 'link',
+			'insert_columns': {
+				name: 'insert_new_columns',
+				action: ( editor, event ) => {
+					this.toggleColumnSelect();
+				},
+				className: 'fa fa-align-justify',
+				title: 'Insert Columns'
+			},
 			'open_markdown': {
 				name: 'open_markdown',
 				action: ( editor ) => {
@@ -748,9 +756,35 @@ class MarkdownEditor extends Component {
 		}
 	}
 
+	columnTagConvert = ( plainText ) => {
+		var firstIndex;
+		var colCount = 1;
+		const RANDOMSTR = '3hiueronenrklnwfkln';
+		plainText = plainText.replace('<!--ColGroupStart-->', `<div style="width: ${RANDOMSTR}%; float: left;"}>`);
+		while ( plainText.includes('<!--Column') ) {
+			firstIndex = plainText.indexOf('<!--Column');
+			if ( plainText.charAt(firstIndex + '<!--Column'.length) === '-' ) {
+				break;
+			}
+			colCount += 1;
+			plainText = plainText.replace(`<!--Column${colCount}-->`, `</div>\n<div style="width: ${RANDOMSTR}%; float: left;"}>`);
+		}
+
+		plainText = plainText.replace('<!ColGroupEnd-->', '</div>');
+		var colWidth = 100 / colCount;
+		plainText = replace(plainText, RANDOMSTR, colWidth.toString());
+
+		return plainText;
+	}
+
 	previewRender = ( plainText ) => {
 		// Take the plaintext and insert the images via hash:
 		plainText = this.replacePlaceholders( plainText );
+
+		// Add columns
+		plainText = this.columnTagConvert( plainText );
+
+		// Now render the markdown
 		return md.render( plainText );
 	}
 
@@ -873,6 +907,17 @@ class MarkdownEditor extends Component {
 						this.simplemde.codemirror.replaceRange( tblString, c);
 					}}
 				/>
+				<ColumnSelect
+					show={this.state.showColumnSelect}
+					onHide={()=>{
+						this.setState({
+							showColumnSelect: false
+						});
+					}}
+					onClick={( tblString, lines )=>{
+						var c = this.simplemde.codemirror.getCursor();
+						this.simplemde.codemirror.replaceRange( tblString, c);
+					}}
 				<FontSizeSelect
 					show={this.state.showFontSize}
 					onHide={()=>{
@@ -906,9 +951,10 @@ MarkdownEditor.defaultProps = {
 		'bold', 'italic', 'underline', 'font_size',
 		'new_line', 'center', '|',
 		'insert_table', 'heading', 'unordered_list',
-		'ordered_list', 'link', '|',
+		'ordered_list', 'link', 'insert_columns', '|',
 		'preview', 'side_by_side', 'fullscreen', '|',
-		'open_markdown', 'save', 'submit', '|'
+		'open_markdown', 'save', 'submit', '|',
+		'voice'
 	],
 	voiceControl: false,
 	voiceTimeout: 5000

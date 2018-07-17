@@ -4,8 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
-import ReactDom from 'react-dom';
-import ReactTable from 'react-table';
 import noop from '@stdlib/utils/noop';
 import NumberInput from 'components/input/number';
 // import './column-select.css';
@@ -25,12 +23,12 @@ class ColumnSelect extends Component {
 
 	insertColumn = () => {
 		var lines = 1;
-		var colText = '<!--Column1-->';
+		var colText = '<!--ColGroupStart-->';
 		for ( var i = 1; i < this.state.columns; i++ ) {
 			colText += '\n\n<!--Column' + (i + 1) + '-->';
 			lines += 2;
 		}
-		colText += '\n\n<!--Column-ENDCOUNT-' + (i + 1) + '-->\n';
+		colText += '\n\n<!--ColGroupEnd-->\n';
 		lines += 3;
 		this.props.onClick(colText, lines);
 		// Reset the state
