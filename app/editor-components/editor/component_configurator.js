@@ -192,7 +192,7 @@ class ComponentConfigurator extends Component {
 					<Col sm={3} style={{ padding: 0 }}>
 						<Checkbox checked={contains( this.state.value, key )} onClick={this.checkboxClickFactory( key, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{key}</Checkbox>
 					</Col>
-					<Col sm={5} style={{ padding: 0 }}>Description: {description}</Col>
+					<Col sm={5} style={{ padding: 0 }}>Description: {description}.</Col>
 					<Col sm={2} style={{ padding: 0 }}>
 						{ type ? `Type: ${type}.` : '' }
 					</Col>
