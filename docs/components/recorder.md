@@ -1,6 +1,6 @@
 # Recorder
 
-An ISLE component for recording audio, screen and video. [**video** ist not implemented yet]
+An ISLE component for recording audio, screen and video.
 
 #### Example:
 
@@ -8,13 +8,11 @@ An ISLE component for recording audio, screen and video. [**video** ist not impl
 <Recorder 
     audio
     screen
-    downloadaböe
+    downloadable
 />
 ``` 
 
 [Open interactive preview](https://isle.heinz.cmu.edu/components/recorder/)
-
-
 
 #### Options:
 
