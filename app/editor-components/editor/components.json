@@ -57,7 +57,8 @@
 		"MatchListQuestion",
 		"MultipleChoiceQuestion",
 		"NumberQuestion",
-		"RangeQuestion"
+		"RangeQuestion",
+		"SelectQuestion"
 	],
 	"SURVEY": [
 		"FreeTextSurvey",
