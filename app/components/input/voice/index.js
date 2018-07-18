@@ -214,13 +214,15 @@ class VoiceInput extends Input {
 
 	render() {
 		let mike = 'voice-microphone';
-		if ( this.state.isRecording === true) mike = 'voice-microphone voice-recording';
+		if ( this.state.isRecording === true ) {
+			mike = 'voice-microphone voice-recording';
+		}
 		switch ( this.props.mode ) {
 		case 'full':
 			return (
 				<Fragment>
 					{ this.props.legend ? <label>{this.props.legend}</label> : null }
-					<div className="voice-input" style={{ width: this.props.width, ...this.props.style }} >
+					<div className="voice-input" style={{ height: this.props.height, width: this.props.width, ...this.props.style }} >
 						<input
 							className="voice-input-text"
 							type="text"
@@ -238,12 +240,11 @@ class VoiceInput extends Input {
 					</div>
 				</Fragment>
 			);
-
 		case 'status':
 			return (
 				<Fragment>
 					{ this.props.legend ? <label>{this.props.legend}</label> : null }
-					<div className="voice-input-status-text" style={{ width: this.props.width, ...this.props.style }} >
+					<div className="voice-input-status-text" style={{ height: this.props.height, width: this.props.width, ...this.props.style }} >
 						<div
 							className="voice-input-status"
 						>
@@ -255,19 +256,17 @@ class VoiceInput extends Input {
 					</div>
 				</Fragment>
 			);
-
 		case 'microphone':
 			return (
 				<Fragment>
 					{ this.props.legend ? <label>{this.props.legend}</label> : null }
-					<div className="voice-solo-microphone">
+					<div className="voice-solo-microphone" style={{ height: this.props.height, width: this.props.width, ...this.props.style }}>
 						<OverlayTrigger placement="bottom" overlay={this.renderTooltip()}>
 							<Microphone onClick={this.handleClick} className={mike} />
 						</OverlayTrigger>
 					</div>
 				</Fragment>
 			);
-
 		case 'none':
 			return null;
 		}
@@ -294,7 +293,8 @@ VoiceInput.defaultProps = {
 	remote: null,
 	style: {},
 	timeout: null,
-	width: 500
+	width: 500,
+	height: 36
 };
 
 
@@ -317,7 +317,8 @@ VoiceInput.propTypes = {
 	remote: PropTypes.object,
 	style: PropTypes.object,
 	timeout: PropTypes.number,
-	width: PropTypes.number
+	width: PropTypes.number,
+	height: PropTypes.number
 };
 
 

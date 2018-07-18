@@ -1,6 +1,5 @@
 .voice-input {
-	height: 36px;
-	border:solid 1px rgb(150,150,150);
+	border: solid 1px rgb(150,150,150);
 	margin-bottom: 20px;
 	background: white;
 }
@@ -10,7 +9,7 @@
 }
 
 .voice-input-text .recording {
-	background: rgba(204,88,0, 0.16); 
+	background: rgba(204,88,0, 0.16);
 }
 
 .voice-input svg {
@@ -34,36 +33,34 @@
 
 .voice-input-status-text {
 	float: left;
-	width: 100% !important;
-	height: 40px;
-	border:solid 1px gainsboro !important;
+	border: solid 1px gainsboro !important;
 	border: none;
 	padding-left: 8px;
 	color: rgb(60,60,60);
 	font-family: Open Sans;
 }
 
-
 .voice-input-status {
 	float: left;
-	width: 94% !important;
 	height: 100%;
 	border: none;
-	padding-top: 6px;
 	font-size: 14px;
-	padding-left: 8px; 
+	padding-left: 8px;
 	color: rgb(128,128,128);
 	font-family: Open Sans;
 }
 
-
-.voice-solo-microphone {
-	width: 60px;
-	height: 60px;
-}
-
 .voice-microphone {
 	float: right;
+	margin-top: 2px;
+	height: 80%;
+	width: auto;
+	opacity: 0.7;
+	fill: gray;
+}
+
+.voice-solo-microphone .voice-microphone {
+	float: none;
 	margin-top: 2px;
 	height: 80%;
 	width: auto;
@@ -81,5 +78,9 @@
 }
 
 .voice-recording {
+	fill: red;
+}
+
+.voice-solo-microphone .voice-recording {
 	fill: red;
 }
