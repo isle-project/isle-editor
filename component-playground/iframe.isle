@@ -1,0 +1,26 @@
+---
+title: "IFrame"
+author: Philipp Burckhardt
+date: July 18th, 2018
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# IFrame
+
+<Playground
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <IFrame src="http://isledocs.com" />
+`}
+    scope={{
+        IFrame
+    }}
+/>
+
+#### Options:
+
+* __src__ | `string (required)`: source URL. Default: `none`.

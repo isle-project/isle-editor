@@ -39,7 +39,7 @@ class IFrame extends Component {
 		if ( this.state.corrected === false ) {
 			return <div id={this.props.id} ref={this.saveRef}></div>;
 		}
-		var style = {
+		const style = {
 			position: 'absolute',
 			left: '-' + this.correctedPos.x + 'px',
 			top: '-' + this.correctedPos.y + 'px',
@@ -60,23 +60,17 @@ class IFrame extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// TYPES //
 
-IFrame.defaultProps = {
+IFrame.propDescriptions = {
+	src: 'source URL'
 };
-
-
-// PROPERTY TYPES //
 
 IFrame.propTypes = {
 	src: PropTypes.string.isRequired
 };
 
-
-// CONTEXT TYPES //
-
-IFrame.contextTypes = {
-};
+IFrame.defaultProps = {};
 
 
 // EXPORTS //
