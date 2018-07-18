@@ -33,8 +33,7 @@ const config = {
 					options: {
 						plugins: [
 							'transform-react-constant-elements',
-							'transform-react-inline-elements',
-							'transform-react-remove-prop-types'
+							'transform-react-inline-elements'
 						],
 						cacheDirectory: true
 					}
