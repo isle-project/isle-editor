@@ -18,10 +18,11 @@ hideToolbar: true
         width: '1200px'
     }}
     code={`
-    <ColorPicker onChangeComplete={ color => {
-        console.log( color );
-        }}
-    />
+<ColorPicker 
+    onChangeComplete={ color => {
+        console.log( color ); 
+    }}
+/>
 `}
     scope={{
         ColorPicker
