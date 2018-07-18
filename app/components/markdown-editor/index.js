@@ -509,6 +509,11 @@ class MarkdownEditor extends Component {
 				name: 'font_size',
 				className: 'font_size_button',
 				title: 'Select Font Size'
+			},
+			'page_size': {
+				name: 'page_size',
+				className: 'page_size_holder_name',
+				title: 'Select Page Size'
 			}
 		};
 	}
@@ -529,7 +534,7 @@ class MarkdownEditor extends Component {
 		this.interval = setInterval( this.handleAutosave, this.props.intervalTime );
 		this.initializeEditor();
 		var editorToolbar = document.getElementsByClassName('editor-toolbar')[0];
-		var toRemove = editorToolbar.getElementsByClassName('font_size_button')[0];
+		var fontSizeToRemove = editorToolbar.getElementsByClassName('font_size_button')[0];
 		ReactDOM.render(<input type='number'
 			onChange={( event ) => {
 				this.setState({
@@ -538,9 +543,25 @@ class MarkdownEditor extends Component {
 			}}
 			defaultValue={this.state.fontSize}
 			className='font_size_input'
-		/>, toRemove);
+		/>, fontSizeToRemove);
 
 		// now do the same to create the page width
+		var pageSizeToRemove = editorToolbar.getElementsByClassName('page_size_holder_name')[0];
+		ReactDOM.render(<select 
+			className='select_page_size'
+			onChange={( event ) => {
+				this.setState({
+					pageSize: event.target.value
+				});
+			}}>
+			<option value='LETTER'>Letter</option>
+			<option value='LEGAL'>Legal</option>
+			<option value='A4'>A4</option>
+			<option value='B5'>B5</option>
+			<option value='TABLOID'>Tabloid</option>
+			<option value='EXECUTIVE'>Executive</option>
+			<option value='POSTER'>Poster</option>
+		</select>, pageSizeToRemove);
 		// ReactDOM.render(<p style={{ 'width': 15, 'height': 30}}) 
 		// toRemove.remove();
 	}
@@ -986,7 +1007,7 @@ MarkdownEditor.defaultProps = {
 		'ordered_list', 'link', 'insert_columns', '|',
 		'preview', 'side_by_side', 'fullscreen', '|',
 		'open_markdown', 'save', 'submit', '|',
-		'voice'
+		'voice', '|', 'page_size'
 	],
 	voiceControl: false,
 	voiceTimeout: 5000

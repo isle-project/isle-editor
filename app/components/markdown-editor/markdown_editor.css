@@ -75,12 +75,12 @@
 	height: 30px !important;
 }
 
-.page_width_button {
-	width: 55px !important;
+.page_size_holder_name {
+	width: 100px !important;
 	height: 30px !important;
 }
 
-.page_height_button {
-	width: 55px !important;
+.select_page_size {
+	width: 100px !important;
 	height: 30px !important;
 }
