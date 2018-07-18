@@ -11,17 +11,20 @@ class IFrame extends Component {
 		super( props );
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
+		this.state = {
+			corrected: false
+		};
 	}
 
 	componentDidMount() {
-		this.correctedPos = this.getPos( this.wrapper );
+		this.correctedPos = this.getPos();
 		this.setState({
 			corrected: true
 		});
 	}
 
-	getPos( elem ) {
-		const rect = elem.getBoundingClientRect();
+	getPos() {
+		const rect = this.wrapper.getBoundingClientRect();
 		return {
 			x: rect.left,
 			y: rect.top
