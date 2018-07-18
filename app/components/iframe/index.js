@@ -7,11 +7,8 @@ import PropTypes from 'prop-types';
 // MAIN //
 
 class IFrame extends Component {
-	constructor( props, context ) {
+	constructor( props ) {
 		super( props );
-		this.state = {
-			corrected: false
-		};
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
 	}
@@ -36,24 +33,26 @@ class IFrame extends Component {
 	}
 
 	render() {
-		if ( this.state.corrected === false ) {
-			return <div id={this.props.id} ref={this.saveRef}></div>;
+		let style;
+		if ( !this.state.corrected ) {
+			style = {};
+		} else {
+			style = {
+				position: 'absolute',
+				left: '-' + this.correctedPos.x + 'px',
+				top: '-' + this.correctedPos.y + 'px',
+				width: this.width + 'px',
+				height: this.height + 'px',
+				display: 'inlineBlock'
+			};
 		}
-		const style = {
-			position: 'absolute',
-			left: '-' + this.correctedPos.x + 'px',
-			top: '-' + this.correctedPos.y + 'px',
-			width: this.width + 'px',
-			height: this.height + 'px',
-			display: 'inlineBlock'
-		};
 		return (
 			<div id={this.props.id} ref={this.saveRef} style={style} >
-				<iframe
+				{ this.state.corrected ? <iframe
 					src={this.props.src}
 					width={this.width}
 					height={this.height}
-				></iframe>
+				/> : null }
 			</div>
 		);
 	}
