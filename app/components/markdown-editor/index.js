@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import SimpleMDE from 'simplemde';
 import markdownIt from 'markdown-it';
@@ -31,7 +32,6 @@ import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
 import TableSelect from './table_select.js';
 import ColumnSelect from './column_select.js';
-import FontSizeSelect from './font_size.js';
 import base64toBlob from './base64_to_blob.js';
 
 
@@ -162,6 +162,100 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 
 // FUNCTIONS //
 
+function createPreviewSTYLES(fontSize) {
+	return `<style media="screen" type="text/css">
+			body {
+				font-family: 'Open Sans', sans-serif;
+				font-size: ${fontSize}px !important;
+				margin-left: auto;
+				margin-right: auto;
+				padding: 10px;
+				width: 100%;
+				max-width: 1200px;
+				height: 100%;
+				display: block;
+			}
+			h1 {
+				color: #2e4468;
+				font-size: ${fontSize + 24}px;
+				font-weight: bold;
+				letter-spacing: 1px;
+			}
+			h2 {
+				font-size: ${fontSize + 16}px;
+				color: #3c763d;
+				font-weight: 600;
+			}
+			h3 {
+				font-size: ${fontSize + 8}px;
+				color: #2e4468;
+				font-weight: 600;
+			}
+			h4 {
+				font-size: ${fontSize + 4}px;
+				color: #ca5800;
+				font-weight: 600;
+			}
+			tr {
+				display: table-row;
+				vertical-align: inherit;
+				border-color: inherit;
+			}
+			th {
+				color: #464a4c;
+				background-color: #eceeef;
+				padding: .3rem;
+				border-top: 1px solid #eceeef;
+				text-align: left;
+				font-weight: bold;
+			}
+			th, td {
+				display: table-cell;
+			}
+			td {
+				padding: .3rem;
+				vertical-align: top;
+				border-top: 1px solid #eceeef;
+			}
+			thead {
+				display: table-header-group;
+				vertical-align: middle;
+			}
+			table {
+				width: 100%;
+				max-width: 100%;
+				margin-bottom: 1rem;
+				display: table;
+				border-spacing: 2px;
+				border-color: grey;
+				text-align: left;
+			}
+			a {
+				color: #2e4468;
+			}
+			pre {
+				display: block;
+				padding: 9.5px;
+				margin: 0 0 10px;
+				line-height: 1.42857143;
+				color: #333;
+				word-break: break-all;
+				word-wrap: break-word;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+			}
+			code {
+				white-space: pre-wrap;
+			}
+			.center {
+				width: 50%;
+				display: block;
+				margin: 0 auto;
+				text-align: center;
+			}
+		</style>`;
+}
+
 function replacer( key, value ) {
 	if ( key === 'origin' ) {
 		return void 0;
@@ -203,7 +297,6 @@ class MarkdownEditor extends Component {
 			showTableSelect: false,
 			pageSize: 'LETTER',
 			showColumnSelect: false,
-			showFontSize: false,
 			fontSize: 16
 		};
 
@@ -213,10 +306,7 @@ class MarkdownEditor extends Component {
 			'|': '|',
 			'font_size': {
 				name: 'font_size',
-				action: ( editor, event ) => {
-					this.toggleFontSize();
-				},
-				className: 'far fa-plus-square',
+				className: 'font_size_button',
 				title: 'Select Font Size'
 			},
 			'underline': {
@@ -363,6 +453,14 @@ class MarkdownEditor extends Component {
 			'unordered_list': 'unordered-list',
 			'ordered_list': 'ordered-list',
 			'link': 'link',
+			'insert_columns': {
+				name: 'insert_new_columns',
+				action: ( editor, event ) => {
+					this.toggleColumnSelect();
+				},
+				className: 'fa fa-align-justify',
+				title: 'Insert Columns'
+			},
 			'open_markdown': {
 				name: 'open_markdown',
 				action: ( editor ) => {
@@ -504,6 +602,18 @@ class MarkdownEditor extends Component {
 	componentDidMount() {
 		this.interval = setInterval( this.handleAutosave, this.props.intervalTime );
 		this.initializeEditor();
+		var editorToolbar = document.getElementsByClassName('editor-toolbar')[0];
+		var toRemove = editorToolbar.getElementsByClassName('font_size_button')[0];
+		ReactDOM.render(<input type='number'
+			onChange={( event ) => {
+				this.setState({
+					fontSize: event.target.value
+				});
+			}}
+			defaultValue={this.state.fontSize}
+			style={{ 'width': 40, 'height': 30 }}
+		/>, toRemove);
+		// toRemove.remove();
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
@@ -748,9 +858,37 @@ class MarkdownEditor extends Component {
 		}
 	}
 
+	columnTagConvert = ( plainText ) => {
+		var firstIndex;
+		var colCount = 1;
+		const RANDOMSTR = '3hiueronenrklnwfkln';
+		plainText = plainText.replace('<!--ColGroupStart-->', `<div style="width: ${RANDOMSTR}%; float: left;"}>`);
+		while ( plainText.includes('<!--Column') ) {
+			firstIndex = plainText.indexOf('<!--Column');
+			if ( plainText.charAt(firstIndex + '<!--Column'.length) === '-' ) {
+				break;
+			}
+			colCount += 1;
+			plainText = plainText.replace(`<!--Column${colCount}-->`, `</div>\n<div style="width: ${RANDOMSTR}%; float: left;"}>`);
+		}
+
+		plainText = plainText.replace('<!ColGroupEnd-->', '</div>');
+		var colWidth = 100 / colCount;
+		plainText = replace(plainText, RANDOMSTR, colWidth.toString());
+
+		return plainText;
+	}
+
 	previewRender = ( plainText ) => {
 		// Take the plaintext and insert the images via hash:
 		plainText = this.replacePlaceholders( plainText );
+
+		// Add columns
+		plainText = this.columnTagConvert( plainText );
+
+		// var x = createHTML('frank', plainText, this.state.fontSize);
+
+		// Now render the markdown
 		return md.render( plainText );
 	}
 
@@ -761,12 +899,6 @@ class MarkdownEditor extends Component {
 	toggleColumnSelect = () => {
 		this.setState({
 			showColumnSelect: !this.state.showColumnSelect
-		});
-	}
-
-	toggleFontSize = () => {
-		this.setState({
-			showFontSize: !this.showFontSize
 		});
 	}
 
@@ -873,18 +1005,17 @@ class MarkdownEditor extends Component {
 						this.simplemde.codemirror.replaceRange( tblString, c);
 					}}
 				/>
-				<FontSizeSelect
-					show={this.state.showFontSize}
+				<ColumnSelect
+					show={this.state.showColumnSelect}
 					onHide={()=>{
 						this.setState({
-							showFontSize: false
+							showColumnSelect: false
 						});
 					}}
-					onClick={( newSize )=>{
-						// pass to state
-						this.state.fontSize = newSize
+					onClick={( tblString, lines )=>{
+						var c = this.simplemde.codemirror.getCursor();
+						this.simplemde.codemirror.replaceRange( tblString, c);
 					}}
-					current={this.state.fontSize}
 				/>
 			</Fragment>
 		);
@@ -906,9 +1037,10 @@ MarkdownEditor.defaultProps = {
 		'bold', 'italic', 'underline', 'font_size',
 		'new_line', 'center', '|',
 		'insert_table', 'heading', 'unordered_list',
-		'ordered_list', 'link', '|',
+		'ordered_list', 'link', 'insert_columns', '|',
 		'preview', 'side_by_side', 'fullscreen', '|',
-		'open_markdown', 'save', 'submit', '|'
+		'open_markdown', 'save', 'submit', '|',
+		'voice'
 	],
 	voiceControl: false,
 	voiceTimeout: 5000
