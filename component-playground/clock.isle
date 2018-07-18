@@ -21,6 +21,6 @@ server: https://isle.heinz.cmu.edu
     }}
 />
 
-#### Options
+#### Options:
 
-* __style__: An `Object` with options `fontSize` and `fontFamily`. Default value: `{}`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.

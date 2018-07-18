@@ -55,6 +55,10 @@ class Clock extends Component {
 
 // PROPERTY TYPES //
 
+Clock.propDescriptions = {
+	'style': 'CSS inline styles'
+};
+
 Clock.propTypes = {
 	'style': PropTypes.object
 };
