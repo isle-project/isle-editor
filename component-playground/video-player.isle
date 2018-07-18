@@ -23,8 +23,8 @@ hideToolbar: true
     controls
     width= { 800 }
     height = { 450 }
-    url="https://www.youtube.com/watch?v=wPqtzj5VZus" />
-
+    url="https://www.youtube.com/watch?v=wPqtzj5VZus"
+/>
 `}
     scope={{
         VideoPlayer
