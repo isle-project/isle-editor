@@ -230,11 +230,6 @@ class MarkdownEditor extends Component {
 			'bold': 'bold',
 			'italic': 'italic',
 			'|': '|',
-			'font_size': {
-				name: 'font_size',
-				className: 'font_size_button',
-				title: 'Select Font Size'
-			},
 			'underline': {
 				name: 'underline',
 				action: ( editor ) => {
@@ -509,7 +504,12 @@ class MarkdownEditor extends Component {
 			},
 			'preview': 'preview',
 			'side_by_side': 'side-by-side',
-			'fullscreen': 'fullscreen'
+			'fullscreen': 'fullscreen',
+			'font_size': {
+				name: 'font_size',
+				className: 'font_size_button',
+				title: 'Select Font Size'
+			}
 		};
 	}
 
@@ -537,8 +537,11 @@ class MarkdownEditor extends Component {
 				});
 			}}
 			defaultValue={this.state.fontSize}
-			style={{ 'width': 40, 'height': 30 }}
+			className='font_size_input'
 		/>, toRemove);
+
+		// now do the same to create the page width
+		// ReactDOM.render(<p style={{ 'width': 15, 'height': 30}}) 
 		// toRemove.remove();
 	}
 
