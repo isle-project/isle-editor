@@ -83,23 +83,31 @@ class Switch extends React.Component {
 
 // PROPERTY TYPES //
 
+Switch.propDescriptions = {
+	tooltip: 'tooltip displayed when hovering over the switch element',
+	tooltipPos: 'placement of the tooltip (either `top`, `left`, `right`, or `bottom`)',
+	className: 'class name for the enclosing span element',
+	style: 'CSS inline styles',
+	onChange: 'Callback invoked when elements are switched. Receives as its first argument the index of the currently displayed child'
+};
+
 Switch.propTypes = {
-	className: PropTypes.string,
-	onChange: PropTypes.func,
-	style: PropTypes.object,
 	tooltip: PropTypes.string,
-	tooltipPos: PropTypes.string
+	tooltipPos: PropTypes.string,
+	className: PropTypes.string,
+	style: PropTypes.object,
+	onChange: PropTypes.func
 };
 
 
 // DEFAULT PROPERTIES //
 
 Switch.defaultProps = {
-	className: '',
-	onChange() {},
-	style: {},
 	tooltip: 'Click to cycle through available options.',
-	tooltipPos: 'top'
+	tooltipPos: 'top',
+	className: '',
+	style: {},
+	onChange() {}
 };
 
 
