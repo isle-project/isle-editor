@@ -287,7 +287,10 @@ function writeIndexFile({
 					loader: 'babel-loader',
 					query: {
 						plugins: [
-							resolve( basePath, './node_modules/babel-plugin-add-module-exports' )
+							resolve( basePath, './node_modules/babel-plugin-add-module-exports' ),
+							resolve( basePath, './node_modules/babel-plugin-transform-react-constant-elements' ),
+							resolve( basePath, './node_modules/babel-plugin-transform-react-inline-elements' ),
+							resolve( basePath, './node_modules/babel-plugin-transform-react-remove-prop-types' )
 						],
 						presets: [
 							resolve( basePath, './node_modules/babel-preset-es2015' ),
