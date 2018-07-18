@@ -75,9 +75,10 @@
 	height: 30px !important;
 }
 
-.page_size_holder_name {
-	width: 100px !important;
+.voice_input_button {
+	width: 30px !important;
 	height: 30px !important;
+	vertical-align: top;
 }
 
 .select_page_size {

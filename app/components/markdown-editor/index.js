@@ -160,9 +160,10 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 	</body>
 </html>`;
 
+
 // FUNCTIONS //
 
-function createPreviewSTYLES(fontSize) {
+function createPreviewStyles(fontSize) {
 	fontSize = Number( fontSize );
 	return `.editor-preview-active {
 				font-size: ${fontSize}px !important;
@@ -496,11 +497,8 @@ class MarkdownEditor extends Component {
 			},
 			'voice': {
 				name: 'recorder',
-				action: ( editor ) => {
-					this.voiceRef.handleClick();
-				},
-				className: 'fa fa-microphone',
-				title: 'Record Text'
+				className: 'voice_input_button',
+				title: ''
 			},
 			'preview': 'preview',
 			'side_by_side': 'side-by-side',
@@ -509,11 +507,6 @@ class MarkdownEditor extends Component {
 				name: 'font_size',
 				className: 'font_size_button',
 				title: 'Select Font Size'
-			},
-			'page_size': {
-				name: 'page_size',
-				className: 'page_size_holder_name',
-				title: 'Select Page Size'
 			}
 		};
 	}
@@ -533,37 +526,32 @@ class MarkdownEditor extends Component {
 	componentDidMount() {
 		this.interval = setInterval( this.handleAutosave, this.props.intervalTime );
 		this.initializeEditor();
-		var editorToolbar = document.getElementsByClassName('editor-toolbar')[0];
-		var fontSizeToRemove = editorToolbar.getElementsByClassName('font_size_button')[0];
-		ReactDOM.render(<input type='number'
-			onChange={( event ) => {
-				this.setState({
-					fontSize: event.target.value
-				});
-			}}
-			defaultValue={this.state.fontSize}
-			className='font_size_input'
-		/>, fontSizeToRemove);
-
-		// now do the same to create the page width
-		var pageSizeToRemove = editorToolbar.getElementsByClassName('page_size_holder_name')[0];
-		ReactDOM.render(<select 
-			className='select_page_size'
-			onChange={( event ) => {
-				this.setState({
-					pageSize: event.target.value
-				});
-			}}>
-			<option value='LETTER'>Letter</option>
-			<option value='LEGAL'>Legal</option>
-			<option value='A4'>A4</option>
-			<option value='B5'>B5</option>
-			<option value='TABLOID'>Tabloid</option>
-			<option value='EXECUTIVE'>Executive</option>
-			<option value='POSTER'>Poster</option>
-		</select>, pageSizeToRemove);
-		// ReactDOM.render(<p style={{ 'width': 15, 'height': 30}}) 
-		// toRemove.remove();
+		const toolbars = this.wrapper.getElementsByClassName( 'editor-toolbar' );
+		if ( toolbars.length > 0 ) {
+			const editorToolbar = toolbars[ 0 ];
+			const fontSizeToRemove = editorToolbar.getElementsByClassName( 'font_size_button' );
+			if ( fontSizeToRemove.length > 0 ) {
+				ReactDOM.render( <input type='number'
+					onChange={( event ) => {
+						this.setState({
+							fontSize: event.target.value
+						});
+					}}
+					defaultValue={this.state.fontSize}
+					className='font_size_input'
+				/>, fontSizeToRemove[ 0 ] );
+			}
+			const voiceToRemove = editorToolbar.getElementsByClassName( 'voice_input_button' );
+			if ( voiceToRemove.length > 0 ) {
+				ReactDOM.render( <VoiceInput mode="microphone"
+					language={this.props.language}
+					timeout={this.props.voiceTimeout}
+					width={30}
+					height={30}
+					onFinalText={this.recordedText}
+				/>, voiceToRemove[ 0 ] );
+			}
+		}
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
@@ -833,10 +821,10 @@ class MarkdownEditor extends Component {
 		// Take the plaintext and insert the images via hash:
 		plainText = this.replacePlaceholders( plainText );
 
-		// Add columns
+		// Add columns:
 		plainText = this.columnTagConvert( plainText );
 
-		// Cycle through and remove old stylings
+		// Cycle through and remove old stylings:
 		var allStyles = document.getElementsByTagName('style');
 		var tmpStyle;
 		for ( var i = allStyles.length - 1; i >= 0; i-- ) {
@@ -846,16 +834,15 @@ class MarkdownEditor extends Component {
 			}
 		}
 
-		// Side effect: create style object
+		// Side effect: Create style object and add to document head
 		var style = document.createElement('style');
 		style.type = 'text/css';
-		style.appendChild(document.createTextNode(createPreviewSTYLES(this.state.fontSize)));
+		style.appendChild( document.createTextNode( createPreviewStyles( this.state.fontSize ) ) );
 
 		var head = document.head;
-		head.appendChild(style);
-		// var x = createHTML('frank', plainText, this.state.fontSize);
+		head.appendChild( style );
 
-		// Now render the markdown
+		// Render the markdown:
 		return md.render( plainText );
 	}
 
@@ -917,30 +904,11 @@ class MarkdownEditor extends Component {
 		});
 	}
 
-	renderVoiceControl() {
-		if (
-			!contains( this.props.toolbarConfig, 'voice' ) &&
-			!this.props.voiceControl
-		) {
-			return null;
-		}
-		return (
-			<VoiceInput mode="status"
-				language={this.props.language}
-				timeout={this.props.voiceTimeout}
-				width={500}
-				onFinalText={this.recordedText}
-				ref={( voice ) => { this.voiceRef = voice; }}
-			/>
-		);
-	}
-
 	render() {
 		return (
 			<Fragment>
-				<div id={this.props.id} className="markdown-editor" style={this.props.style} >
+				<div id={this.props.id} ref={( div ) => { this.wrapper = div; }} className="markdown-editor" style={this.props.style} >
 					<textarea ref={( area ) => { this.simplemdeRef = area; }} autoComplete="off" {...this.props.options} />
-					{this.renderVoiceControl()}
 				</div>
 				<SaveModal
 					show={this.state.showSaveModal}
@@ -1007,7 +975,7 @@ MarkdownEditor.defaultProps = {
 		'ordered_list', 'link', 'insert_columns', '|',
 		'preview', 'side_by_side', 'fullscreen', '|',
 		'open_markdown', 'save', 'submit', '|',
-		'voice', '|', 'page_size'
+		'voice'
 	],
 	voiceControl: false,
 	voiceTimeout: 5000
