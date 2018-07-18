@@ -14,10 +14,10 @@ hideToolbar: true
 <Playground 
     style={{
         marginLeft: 0,
-        width: '1200px'
+        width: '800px'
     }}
     code={`
-<RPlot code="hist( c(20,50,40,70,40,30) )" />
+<RPlot code="hist( c(20,50,40,70,40,30) )" width={400} height={400} />
 `}
     scope={{
         RPlot
