@@ -114,7 +114,7 @@ class ComponentConfigurator extends Component {
 		const comp = this.props.scope[ this.state.name ];
 		if ( comp && !this.state.componentClass ) {
 			debug( `Preparing configuration menu for ${comp.name} component...` );
-			if ( comp.name === 'LoadableComponent' ) {
+			if ( comp.loader ) {
 				const { loader } = comp;
 				debug( `Loading ${this.state.name} component...` );
 				let promise = loader();
