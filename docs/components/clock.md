@@ -5,11 +5,11 @@ This component allows the user to integrate a continuously updating clock in-lin
 #### Example
 
 ```js
-<Clock/>
+<Clock />
 ```
 
-#### Options
+[Open interactive preview](https://isle.heinz.cmu.edu/components/clock/)
 
-* __style__: An `Object` with options `fontSize` and `fontFamily`. Default value: `{}`.
+#### Options:
 
-[Open interactive preview]
+* __style__ | `object`: CSS inline styles. Default: `{}`.

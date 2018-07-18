@@ -94,45 +94,61 @@ class Video extends Component {
 
 // PROPERTY TYPES //
 
+Video.propDescriptions = {
+	url: 'URL of the video',
+	controls: 'indicates whether to display control elements of the video player',
+	playing: 'indictes whether to automatically start playing the video',
+	volume: 'volume of the player',
+	center: 'controls whether to center the video player',
+	height: 'height of the player',
+	width: 'width of the player',
+	containerWidth: 'container width in pixel',
+	loop: 'controls whether to start the video anew after it was played',
+	style: 'CSS inline styles',
+	onEnded: 'callback invoked once the video ends',
+	onPause: 'callback invoked once the video pauses',
+	onPlay: 'callback invoked once the video starts or resumes playing after pausing'
+};
+
 Video.propTypes = {
-	center: PropTypes.bool,
-	containerWidth: PropTypes.number,
+	url: PropTypes.string,
 	controls: PropTypes.bool,
+	playing: PropTypes.bool,
+	volume: PropTypes.number,
+	center: PropTypes.bool,
 	height: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.number
 	]),
-	loop: PropTypes.bool,
-	onEnded: PropTypes.func,
-	onPause: PropTypes.func,
-	onPlay: PropTypes.func,
-	playing: PropTypes.bool,
-	style: PropTypes.object,
-	url: PropTypes.string,
-	volume: PropTypes.number,
 	width: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.number
-	])
+	]),
+	containerWidth: PropTypes.number,
+	loop: PropTypes.bool,
+	style: PropTypes.object,
+	onEnded: PropTypes.func,
+	onPause: PropTypes.func,
+	onPlay: PropTypes.func
 };
 
 
 // DEFAULT PROPERTIES //
 
 Video.defaultProps = {
-	center: true,
-	containerWidth: null,
+	url: '',
 	controls: false,
+	playing: false,
+	volume: 0.8,
+	center: true,
 	height: 360,
+	width: 640,
+	containerWidth: null,
 	loop: false,
+	style: {},
 	onEnded() {},
 	onPause() {},
-	onPlay() {},
-	playing: false,
-	style: {},
-	url: '',
-	volume: 0.8,
-	width: 640
+	onPlay() {}
 };
 
 

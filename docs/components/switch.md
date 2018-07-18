@@ -17,4 +17,8 @@ When clicking on an option, all code now in `Option 1` and within the `<span>` (
 
 #### Options:
 
-* __onChange__: Callback `function` invoked when elements are switched. Receives as its first argument `pos` the index of the currently displayed child. Default: `null`
+* __tooltip__ | `string`: tooltip displayed when hovering over the switch element. Default: `'Click to cycle through available options.'`.
+* __tooltipPos__ | `string`: placement of the tooltip (either `top`, `left`, `right`, or `bottom`). Default: `'top'`.
+* __className__ | `string`: class name for the enclosing span element. Default: `''`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
+* __onChange__ | `function`: Callback invoked when elements are switched. Receives as its first argument the index of the currently displayed child. Default: `onChange() {}`.

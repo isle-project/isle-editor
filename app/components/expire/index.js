@@ -93,6 +93,11 @@ Expire.defaultProps = {
 
 // PROPERTY TYPES //
 
+Expire.propDescriptions = {
+	active: 'controls whether the counter should be active',
+	delay: 'number of milliseconds before component disappears'
+};
+
 Expire.propTypes = {
 	active: PropTypes.bool,
 	delay: PropTypes.number

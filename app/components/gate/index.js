@@ -85,23 +85,32 @@ class Gate extends Component {
 
 Gate.defaultProps = {
 	anonymous: false,
-	banner: null,
-	disabled: false,
+	user: false,
 	enrolled: false,
 	owner: false,
-	user: false
+	banner: null,
+	disabled: false
 };
 
 
 // TYPES //
 
+Gate.propDescriptions = {
+	anonymous: 'when set the gated content is displayed to anybody',
+	user: 'when set the gated content is displayed to subscribed users',
+	enrolled: 'when set the gated content is displayed to the students enrolled in the course',
+	owner: 'when set the gated content is displayed to the owner of the course (usually the instructor)',
+	banner: 'a message which is visible to the visitors lacking the gate privilege',
+	disabled: 'if a gate is disabled, the banner will be displayed no matter what'
+};
+
 Gate.propTypes = {
 	anonymous: PropTypes.bool,
-	banner: PropTypes.node,
-	disabled: PropTypes.bool,
+	user: PropTypes.bool,
 	enrolled: PropTypes.bool,
 	owner: PropTypes.bool,
-	user: PropTypes.bool
+	banner: PropTypes.node,
+	disabled: PropTypes.bool
 };
 
 Gate.contextTypes = {

@@ -68,7 +68,7 @@ class Image extends Component {
 					style={{
 						marginLeft: margin,
 						marginRight: margin,
-						width,
+						width: this.props.width ? this.props.width : width,
 						height: this.props.height ? this.props.height : 'auto',
 						cursor: 'zoom-in'
 					}}
@@ -141,6 +141,7 @@ Image.propTypes = {
 	body: PropTypes.string,
 	containerWidth: PropTypes.number.isRequired,
 	height: PropTypes.number.isRequired,
+	width: PropTypes.number,
 	id: PropTypes.string,
 	onShare: PropTypes.func,
 	showModal: PropTypes.bool,
@@ -154,6 +155,7 @@ Image.propTypes = {
 Image.defaultProps = {
 	body: null,
 	id: null,
+	width: null,
 	onShare: null,
 	showModal: true,
 	title: 'Image'

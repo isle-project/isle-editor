@@ -1,0 +1,27 @@
+---
+title: "IFrame"
+author: Philipp Burckhardt
+date: July 18th, 2018
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+---
+
+# IFrame
+
+<Playground
+    style={{
+        marginLeft: 0,
+        width: '800px'
+    }}
+    code={`
+    <IFrame src="https://www.wikipedia.org" />
+`}
+    scope={{
+        IFrame
+    }}
+/>
+
+#### Options:
+
+* __src__ | `string (required)`: source URL. Default: `none`.
