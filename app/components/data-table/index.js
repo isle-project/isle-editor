@@ -322,16 +322,18 @@ class DataTable extends Component {
 					fontSize: '12px',
 					...this.props.style
 				}}>
-					{ this.props.dataInfo.info.length > 0 ? <Button
-						onClick={this.showInfo}
-						block
-						className='title-button'>
-							<h4 className='title-button-h4'
-								onClick={this.showInfo}>
-								{this.props.dataInfo.name} Dataset
-							</h4>
-						</Button> : null
-					}
+					{ this.props.dataInfo.info.length > 0 ? 
+					<div className='data_button_wrapper'>
+						<Button
+							onClick={this.showInfo}
+							block
+							className='title-button'>
+								<h4 className='title-button-h4'
+									onClick={this.showInfo}>
+									{this.props.dataInfo.name} Dataset
+								</h4>
+							</Button>
+						</div> : null}
 					{ this.props.dataInfo.info.length === 0 ?
 						<h4 className="title-nobutton-h4">
 							{this.props.dataInfo.name} Dataset
