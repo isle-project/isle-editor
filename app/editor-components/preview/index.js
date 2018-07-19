@@ -42,11 +42,6 @@ import VoiceInput from 'components/input/voice';
 import transformToPresentation from 'utils/transform-to-presentation';
 import SPECTACLE_THEME from 'components/spectacle/theme.json';
 
-
-// const Experiment = require( 'components/experiment' );
-// const Variant = require( 'react-ab-test' ).Variant;
-
-
 import { Bar, VictoryAnimation, VictoryArea, VictoryBar, VictoryBrushContainer, VictoryChart, VictoryContainer, VictoryCursorContainer, VictoryGroup, VictoryAxis, VictoryErrorBar, VictoryLabel, VictoryLegend, VictoryLine, VictoryPie, VictoryScatter, VictoryStack, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer, VictoryZoomContainer } from 'victory';
 import VictoryWrapper from 'components/victory-wrapper';
 import { Deck, Heading, Image, ListItem, List, Table, TableRow, TableHeaderItem, TableItem, TableBody, TableHeader, Text as SText } from 'spectacle';
