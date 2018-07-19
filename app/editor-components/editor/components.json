@@ -1,16 +1,22 @@
 {
 	"DISPLAY": [
+		"Accordion",
+		"Row",
 		"Col",
 		"DraggableGrid",
 		"Expire",
 		"Gate",
 		"Grid",
 		"IFrame",
+		"Modal",
 		"Nav justified",
+		"Navbar",
+		"NavItem",
 		"Pages",
 		"Panel",
 		"Slider",
 		"Switch",
+		"Tab",
 		"Tabs",
 		"Well"
 	],
@@ -72,5 +78,43 @@
 		"RPlot",
 		"RShell",
 		"RTable"
+	],
+	"PRESENTATION": [
+		"Slide",
+		"Appear",
+		"Layout",
+		"Fill",
+		"Fit",
+		"BlockQuote",
+		"Cite",
+		"Quote",
+		"Code"
+	],
+	"PLOTS": [
+		"Plotly"
+	],
+	"VICTORY": [
+		"Bar",
+		"VictoryAnimation",
+		"VictoryArea",
+		"VictoryBar",
+		"VictoryBrushContainer",
+		"VictoryChart",
+		"VictoryContainer",
+		"VictoryCursorContainer",
+		"VictoryGroup",
+		"VictoryAxis",
+		"VictoryErrorBar",
+		"VictoryLabel",
+		"VictoryLegend",
+		"VictoryLine",
+		"VictoryPie",
+		"VictoryScatter",
+		"VictoryStack",
+		"VictoryTheme",
+		"VictoryTooltip",
+		"VictoryVoronoiContainer",
+		"VictoryZoomContainer",
+		"VictoryWrapper"
 	]
 }

@@ -50,6 +50,15 @@ function groupIndicator( v ) {
 	if ( contains( COMPONENTS.R, v.name ) ) {
 		return 'rComponents';
 	}
+	if ( contains( COMPONENTS.PRESENTATION, v.name ) ) {
+		return 'presentation';
+	}
+	if ( contains( COMPONENTS.PLOTS, v.name ) ) {
+		return 'plots';
+	}
+	if ( contains( COMPONENTS.VICTORY, v.name ) ) {
+		return 'victory';
+	}
 	if ( contains( COMPONENTS.LEARNING, v.name ) ) {
 		return 'learning';
 	}
@@ -242,6 +251,15 @@ class Editor extends Component {
 					</SubMenu>
 					<SubMenu title="General">
 						{snippets.general.map( this.renderMenuItem )}
+					</SubMenu>
+					<SubMenu title="Presentation">
+						{snippets.presentation.map( this.renderMenuItem )}
+					</SubMenu>
+					<SubMenu title="Plots">
+						{snippets.plots.map( this.renderMenuItem )}
+						<SubMenu title="Victory Charts">
+							{snippets.victory.map( this.renderMenuItem )}
+						</SubMenu>
 					</SubMenu>
 				</ContextMenu>
 				<ComponentConfigurator
