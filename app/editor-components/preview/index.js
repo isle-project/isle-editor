@@ -49,7 +49,7 @@ import SPECTACLE_THEME from 'components/spectacle/theme.json';
 
 import { Bar, VictoryAnimation, VictoryArea, VictoryBar, VictoryBrushContainer, VictoryChart, VictoryContainer, VictoryCursorContainer, VictoryGroup, VictoryAxis, VictoryErrorBar, VictoryLabel, VictoryLegend, VictoryLine, VictoryPie, VictoryScatter, VictoryStack, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer, VictoryZoomContainer } from 'victory';
 import VictoryWrapper from 'components/victory-wrapper';
-import { Appear, BlockQuote, Cite, Code, CodePane, ComponentPlayground, Deck, Fill, Fit, Heading, Image, Layout, ListItem, List, Quote, Slide, Table, TableRow, TableHeaderItem, TableItem, TableBody, TableHeader, Text as SText } from 'spectacle';
+import { Deck, Heading, Image, ListItem, List, Table, TableRow, TableHeaderItem, TableItem, TableBody, TableHeader, Text as SText } from 'spectacle';
 
 
 // VARIABLES //
@@ -198,22 +198,20 @@ const createScope = ( session ) => {
 		VictoryWrapper,
 
 		// SPECTACLE //
-		Appear,
-		BlockQuote,
-		Cite,
-		Code,
-		CodePane,
-		ComponentPlayground,
+		Appear: Loadable( () => import( 'components/spectacle/appear' ) ),
+		BlockQuote: Loadable( () => import( 'components/spectacle/block-quote' ) ),
+		Cite: Loadable( () => import( 'components/spectacle/cite' ) ),
+		Code: Loadable( () => import( 'components/spectacle/code' ) ),
 		Deck,
-		Fill,
-		Fit,
+		Fill: Loadable( () => import( 'components/spectacle/fill' ) ),
+		Fit: Loadable( () => import( 'components/spectacle/fit' ) ),
 		Heading,
 		Image,
-		Layout,
+		Layout: Loadable( () => import( 'components/spectacle/layout' ) ),
 		ListItem,
 		List,
-		Quote,
-		Slide,
+		Quote: Loadable( () => import( 'components/spectacle/quote' ) ),
+		Slide: Loadable( () => import( 'components/spectacle/slide' ) ),
 		Table,
 		TableRow,
 		TableHeaderItem,
