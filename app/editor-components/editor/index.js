@@ -12,6 +12,7 @@ import '@planeshifter/brace/ext/language_tools';
 import noop from '@stdlib/utils/noop';
 import groupBy from '@stdlib/utils/group-by';
 import contains from '@stdlib/assert/contains';
+import trim from '@stdlib/string/trim';
 import aceSnippets, { snippetText } from 'snippets';
 import ComponentConfigurator from './component_configurator.js';
 import COMPONENTS from './components.json';
@@ -47,6 +48,7 @@ const customCompleter = {
 // FUNCTIONS //
 
 function groupIndicator( v ) {
+	v.name = trim( v.name );
 	if ( contains( COMPONENTS.R, v.name ) ) {
 		return 'rComponents';
 	}
