@@ -33,11 +33,23 @@
 	cursor: pointer;
 }
 
+.react-contextmenu-item:hover {
+	background-color: #ffffce;
+}
+
+.react-contextmenu-glyph {
+	float: 'right'
+}
+
+.react-contextmenu-glyph:hover {
+	background-color: #ca5800;
+}
+
 .react-contextmenu-item.react-contextmenu-item--active,
 .react-contextmenu-item.react-contextmenu-item--selected {
-	color: #fff;
-	background-color: #20a0ff;
-	border-color: #20a0ff;
+	color: #373a3c;
+	background-color: #ffffce;
+	border-color: #ffffce;
 	text-decoration: none;
 }
 
