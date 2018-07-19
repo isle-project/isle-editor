@@ -20,7 +20,12 @@ A component rendering data in a tabular display. Built on top of [react-table](h
 
 #### Options:
 
-* __data__: `object` holding a multitude of arrays.  
-* __showRemove__: `boolean` allowing to remove data entries individually. Default: `false`.
-* __onClickRemove__: callback `function` which is triggered after the checkbox to remove an entry has been clicked. The function is called with the complete data-set as its first argument, augmented with a `removed` property allowing one to differentiate between the items. 
-* __style__: `object` for styling the tables. Default: `{}`.
+* __data__ | `(array|object) (required)`: A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column.. Default: `none`.
+* __dataInfo__ | `object`: hints providing guidance on how to answer the question. Default: `{
+  'info': [],
+  'name': '',
+  'variables': null
+}`.
+* __onClickRemove__ | `function`: A function specifying an action to take for rows removed from the data. Defaults to an empty function.. Default: `onClickRemove() {}`.
+* __showRemove__ | `boolean`: A boolean value indicating whether to allow for rows to be removed.. Default: `false`.
+* __style__ | `object`: An object allowing for custom css styling. Defaults to an empty object.. Default: `{}`.
