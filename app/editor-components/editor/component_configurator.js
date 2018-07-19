@@ -205,7 +205,12 @@ class ComponentConfigurator extends Component {
 		const keys = objectKeys( componentClass.propTypes );
 		for ( let i = 0; i < keys.length; i++ ) {
 			let key = keys[ i ];
-			let defaultValue = componentClass.defaultProps[ key ];
+			if ( key === 'children' ) {
+				// Skip loop iteration for certain built-in props...
+				continue;
+			}
+			let defaultValue = componentClass.defaultProps ?
+				componentClass.defaultProps[ key ] : null;
 			let description = componentClass.propDescriptions ?
 				componentClass.propDescriptions[ key ] : '';
 			let type = extractType( componentClass.propTypes[ key ] );
