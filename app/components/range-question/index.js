@@ -77,7 +77,7 @@ class RangeQuestion extends Component {
 			const upperSol = solution[1];
 			const lowerSol = solution[0];
 			let correct;
-			if ( digits === void 0 ) {
+			if ( digits === null ) {
 				correct = (lowerVal === lowerSol && upperVal === upperSol);
 			} else {
 				correct = (roundn( lowerVal, -digits ) === roundn( lowerVal, -digits ) &&
@@ -140,6 +140,7 @@ class RangeQuestion extends Component {
 	*/
 	render() {
 		const nHints = this.props.hints.length;
+		const solutionPresent = this.props.solution !== null;
 		return (
 			<Panel className="range-question">
 				<Panel.Body>
@@ -149,7 +150,7 @@ class RangeQuestion extends Component {
 						legend="Lower"
 						onChange={this.handleChangeLower}
 						value={this.state.lower}
-						disabled={this.state.submitted && this.props.solution}
+						disabled={this.state.submitted && solutionPresent}
 						inline
 						width={90}
 						min={this.props.min}
@@ -162,7 +163,7 @@ class RangeQuestion extends Component {
 						legend="Upper"
 						onChange={this.handleChangeUpper}
 						value={this.state.upper}
-						disabled={this.state.submitted && this.props.solution}
+						disabled={this.state.submitted && solutionPresent}
 						inline
 						width={90}
 						min={this.props.min}
@@ -182,7 +183,7 @@ class RangeQuestion extends Component {
 						<Button
 							bsStyle="primary"
 							bsSize="sm"
-							disabled={this.state.submitted && this.props.solution}
+							disabled={this.state.submitted && solutionPresent}
 							onClick={this.submitHandler}
 						>
 							{ ( this.state.submitted && !this.props.solution ) ? 'Resubmit' : 'Submit' }
@@ -230,7 +231,7 @@ RangeQuestion.propDescriptions = {
 	hints: 'hints providing guidance on how to answer the question',
 	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
 	chat: 'controls whether the element should have an integrated chat',
-	digits: 'number of digits that have to match between solution and user-supplied answer. If not given, the component checks for strict equality',
+	digits: 'number of digits that have to match between solution and user-supplied answer. If not given or set to null, the component checks for strict equality. If set to 0, checks for integer equality.',
 	max: 'maximum input value',
 	min: 'minimum input value',
 	onChangeUpper: 'callback triggered after the upper bound is changed by the user',
