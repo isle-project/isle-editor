@@ -16,6 +16,7 @@ const replace = require( '@stdlib/string/replace' );
 const papplyRight = require( '@stdlib/utils/papply-right' );
 const isAbsolutePath = require( '@stdlib/assert/is-absolute-path' );
 const markdownToHTML = require( './../utils/markdown-to-html' );
+const transformToPresentation = require( './../utils/transform-to-presentation' );
 const REQUIRES = require( './requires.json' );
 
 
@@ -115,7 +116,7 @@ const getComponents = ( arr ) => {
 	return requireStatements.join( '\n' );
 };
 
-const getLessonComponent = ( lessonContent ) => `
+const getLessonComponent = ( lessonContent, className ) => `
 global.session = new Session( preamble );
 
 class Lesson extends Component {
@@ -138,7 +139,7 @@ class Lesson extends Component {
 
 	render() {
 		return (
-			<div id="Lesson" className="Lesson" >
+			<div id="Lesson" className="${className}" >
 				<div>${lessonContent}</div>
 				<NotificationSystem ref={ ( div ) => this.notificationSystem = div } allowHTML={true} />
 			</div>
@@ -209,7 +210,9 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath
 		res += loadRequires( meta.require, filePath );
 	}
 
+	let className = 'Lesson';
 	if ( contains( components, 'Deck' ) ) {
+		className = 'Presentation';
 		res += '\n';
 		res += 'const theme = require( \'components/spectacle/theme.json\' )';
 	}
@@ -219,7 +222,7 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath
 	res += getSessionCode( basePath );
 
 	res += getComponents( components );
-	res += getLessonComponent( lessonContent );
+	res += getLessonComponent( lessonContent, className );
 	return res;
 }
 
@@ -360,42 +363,7 @@ function writeIndexFile({
 	// Replace Markdown by HTML...
 	content = markdownToHTML( content );
 	if ( meta.type === 'presentation' ) {
-		// Automatically insert <Slide> tags if not manually set...
-		if ( !contains( content, '<Slide' ) || !contains( content, '</Slide>' ) ) {
-			let pres = '<Slide>';
-			let arr = content.split( '<p>===</p>' );
-			pres += arr.join( '</Slide><Slide>' );
-			pres += '</Slide>';
-			pres = pres.replace( /<h([0-5])>(.*?)<\/h[0-5]>/g, '<Heading size={$1}>$2</Heading>' );
-			pres = pres.replace( /<p[^>]*>([\s\S]+?)<\/p>/g, '<SText>$1</SText>' );
-			pres = pres.replace( /<ul[^>]*>([\s\S]+?)<\/ul>/g, '<List>$1</List>' );
-			pres = pres.replace( /<li[^>]*>([\s\S]+?)<\/li>/g, '<ListItem>$1</ListItem>' );
-			content = pres;
-		}
-		content = `<div>
-			<KeyControls actions={{
-				'ArrowUp': function() {
-					const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowRight', 'code': 'ArrowRight' });
-					delete e.keyCode;
-					Object.defineProperty( e, 'keyCode', { 'value' : 39 });
-					document.dispatchEvent( e );
-				},
-				'ArrowDown': function() {
-					const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowLeft', 'code': 'ArrowLeft' });
-					delete e.keyCode;
-					Object.defineProperty( e, 'keyCode', { 'value' : 37 });
-					document.dispatchEvent( e );
-				}
-			}}/>
-			<Deck
-				theme={theme}
-				globalStyles={false}
-				transition={[]}
-				progress="number"
-			>
-				${content}
-			</Deck>
-		</div>`;
+		content = transformToPresentation( content, meta );
 	}
 	if ( !meta.hideToolbar ) {
 		content = '<StatusBar className="fixedPos" />\n' + content;

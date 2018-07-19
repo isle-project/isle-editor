@@ -12,7 +12,6 @@ import { transform } from 'babel-core';
 import PropTypes from 'prop-types';
 import NotificationSystem from 'react-notification-system';
 import request from 'request';
-import contains from '@stdlib/assert/contains';
 import logger from 'debug';
 import markdownToHTML from 'utils/markdown-to-html';
 import pluginTransformJSX from 'babel-plugin-transform-react-jsx';
@@ -40,6 +39,7 @@ import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import TextInput from 'components/input/text';
 import VoiceInput from 'components/input/voice';
+import transformToPresentation from 'utils/transform-to-presentation';
 import SPECTACLE_THEME from 'components/spectacle/theme.json';
 
 
@@ -302,49 +302,7 @@ export default class Preview extends Component {
 
 		if ( preamble.type === 'presentation' ) {
 			debug( 'Should render a presentation...' );
-			let progress = 'number';
-			if ( preamble.presentation ) {
-				if ( preamble.presentation.progress ) {
-					progress = preamble.presentation.progress;
-				}
-			}
-			// Automatically insert <Slide> tags if not manually set...
-			if ( !contains( code, '<Slide' ) || !contains( code, '</Slide>' ) ) {
-				let pres = '<Slide>';
-				let arr = code.split( '<p>===</p>' );
-				pres += arr.join( '</Slide><Slide>' );
-				pres += '</Slide>';
-				pres = pres.replace( /<h([0-5])>(.*?)<\/h[0-5]>/g, '<Heading size={$1}>$2</Heading>' );
-				pres = pres.replace( /<p[^>]*>([\s\S]+?)<\/p>/g, '<SText>$1</SText>' );
-				pres = pres.replace( /<ul[^>]*>([\s\S]+?)<\/ul>/g, '<List>$1</List>' );
-				pres = pres.replace( /<li[^>]*>([\s\S]+?)<\/li>/g, '<ListItem>$1</ListItem>' );
-				code = pres;
-			}
-			code = `<div>
-				<KeyControls actions={{
-					'ArrowUp': function() {
-						const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowRight', 'code': 'ArrowRight' });
-						delete e.keyCode;
-						Object.defineProperty( e, 'keyCode', { 'value' : 39 });
-						document.dispatchEvent( e );
-					},
-					'ArrowDown': function() {
-						const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowLeft', 'code': 'ArrowLeft' });
-						delete e.keyCode;
-						Object.defineProperty( e, 'keyCode', { 'value' : 37 });
-						document.dispatchEvent( e );
-					}
-				}}/>
-				<Deck
-					globalStyles={false}
-					controls={true}
-					progress="${progress}"
-					transition={[]}
-					theme={SPECTACLE_THEME}
-				>
-					${code}
-				</Deck>
-			</div>`;
+			code = transformToPresentation( code, preamble );
 		}
 		if ( !preamble.hideToolbar ) {
 			code = '<StatusBar className="fixedPos" />\n' + code;
@@ -376,7 +334,8 @@ export default class Preview extends Component {
 		if ( !this.state.preambleIsValid ) {
 			return this.renderErrorMessage( 'The preamble cannot be parsed. Please check the syntax.' );
 		}
-		return ( <div id="Lesson" className="Lesson" >
+		const className = this.props.preamble.type === 'presentation' ? 'Presentation' : 'Lesson';
+		return ( <div id="Lesson" className={className} >
 			<Provider session={this.session} currentRole={this.props.currentRole}>
 				{this.renderPreview()}
 			</Provider>
