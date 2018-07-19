@@ -406,9 +406,6 @@ snippet Code
 snippet Cite
 	<Cite>${1:}</Cite>
 
-snippet CodePane
-	<CodePane source="${1:}" lang="${2:}" />
-
 snippet Fill
 	<Fill>${1:}</Fill>
 
