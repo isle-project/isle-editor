@@ -28,7 +28,7 @@ class Pages extends Component {
 			global.speechInterface = new SpeechInterface();
 		}
 		global.speechInterface.register({
-			name: ['pager', 'please'],
+			name: [ 'pager', 'please' ],
 			ref: this,
 			commands: [{
 				command: 'nextPage',

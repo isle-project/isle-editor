@@ -23,6 +23,10 @@ class Wrapper extends Component {
 
 // PROPERTY TYPES //
 
+Wrapper.propDescriptions = {
+	'header': 'panel heading (h3)'
+};
+
 Wrapper.propTypes = {
 	'header': PropTypes.string
 };
