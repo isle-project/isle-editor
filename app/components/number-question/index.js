@@ -69,7 +69,7 @@ class NumberQuestion extends Component {
 		if ( solution ) {
 			const val = parseFloat( this.state.value );
 			let correct;
-			if ( digits === void 0 ) {
+			if ( digits === null ) {
 				correct = val === solution;
 			} else {
 				correct = roundn( val, -digits ) === roundn( solution, -digits );
@@ -119,6 +119,7 @@ class NumberQuestion extends Component {
 	*/
 	render() {
 		const nHints = this.props.hints.length;
+		const solutionPresent = this.props.solution !== null;
 		return (
 			<Panel className="number-question">
 				<Panel.Body>
@@ -128,7 +129,7 @@ class NumberQuestion extends Component {
 						step="any"
 						onChange={this.handleChange}
 						defaultValue={this.state.value}
-						disabled={this.state.submitted && this.props.solution}
+						disabled={this.state.submitted && solutionPresent}
 						inline
 						width={90}
 						min={this.props.min}
@@ -152,7 +153,7 @@ class NumberQuestion extends Component {
 						<Button
 							bsStyle="primary"
 							bsSize="sm"
-							disabled={this.state.submitted && this.props.solution}
+							disabled={this.state.submitted && solutionPresent}
 							onClick={this.submitHandler}
 						>
 							{ ( this.state.submitted && !this.props.solution ) ? 'Resubmit' : 'Submit' }
@@ -198,7 +199,7 @@ NumberQuestion.propDescriptions = {
 	hints: 'hints providing guidance on how to answer the question',
 	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
 	solution: 'a numeric answer to the problem',
-	digits: 'number of digits for which the answer supplied by the student must match the solution to be considered correct',
+	digits: 'number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.',
 	max: 'maximum allowed input value',
 	min: 'minimum allowed input value',
 	chat: 'controls whether the element should have an integrated chat',
