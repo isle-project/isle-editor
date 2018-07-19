@@ -403,6 +403,9 @@ snippet BlockQuote
 snippet Code
 	<Code>${1:}</Code>
 
+snippet Cite
+	<Cite>${1:}</Cite>
+
 snippet CodePane
 	<CodePane source="${1:}" lang="${2:}" />
 
@@ -414,6 +417,9 @@ snippet Fit
 
 snippet Layout
 	<Layout>${1:}</Layout>
+
+snippet Quote
+	<Quote>${1:}</Quote>
 
 snippet Slide
 	<Slide>
