@@ -183,7 +183,7 @@ NumberQuestion.defaultProps = {
 	hints: [],
 	hintPlacement: 'bottom',
 	solution: null,
-	digits: void 0,
+	digits: 3,
 	max: PINF,
 	min: NINF,
 	chat: false,
