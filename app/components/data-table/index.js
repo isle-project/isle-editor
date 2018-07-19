@@ -385,6 +385,14 @@ DataTable.defaultProps = {
 
 // PROPERTY TYPES //
 
+DataTable.propDescriptions = {
+	data: 'A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column.',
+	dataInfo: 'hints providing guidance on how to answer the question',
+	onClickRemove: 'A function specifying an action to take for rows removed from the data. Defaults to an empty function.',
+	showRemove: 'A boolean value indicating whether to allow for rows to be removed.',
+	style: 'An object allowing for custom css styling. Defaults to an empty object.'
+};
+
 DataTable.propTypes = {
 	data: PropTypes.oneOfType([
 		PropTypes.array,

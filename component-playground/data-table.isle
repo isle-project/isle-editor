@@ -34,6 +34,30 @@ hideToolbar: true
     }}
 />
 
+## Representations of Data
+
+One may represent data in two manners in this component. 
+
+First, one may supply an object with keys whose names correspond to the column names and whose values are arrays of values representing the columns. 
+```js
+{ 
+    firstName: [ 'Hans', 'Lotti', 'Fritz' ], 
+    lastName: [ 'Bauer', 'Müller', 'Schultz' ],
+    age: [ 37, 55, 62 ]
+ }
+```
+
+The data above could also be represented as:
+```js
+[
+    {'firstName': 'Hans', 'lastName': 'Bauer', 'age': 37},
+    {'firstName': 'Lotti', 'lastName': 'Müller', 'age': 55}
+    {'firstName': 'Fritz', 'lastName': 'Schultz', 'age': 62}
+]
+```
+
+In which we see an array of objects, each object with a field representing an individuals value for that column.
+
 
 #### Options:
 
