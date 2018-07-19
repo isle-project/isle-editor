@@ -56,7 +56,8 @@
 		"DataTable",
 		"FeedbackButtons",
 		"MarkdownEditor",
-		"TeX"
+		"TeX",
+		"LessonSubmit"
 	],
 	"QUESTION": [
 		"FreeTextQuestion",
