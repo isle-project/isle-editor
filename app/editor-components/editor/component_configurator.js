@@ -239,6 +239,7 @@ class ComponentConfigurator extends Component {
 				onHide={this.clickHide}
 				show={this.props.show}
 				bsSize="large"
+				style={{ right: '-20%' }}
 			>
 				<Modal.Header closeButton>
 					<Modal.Title>Configure {this.props.component.name}</Modal.Title>
