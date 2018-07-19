@@ -214,7 +214,7 @@ RangeQuestion.defaultProps = {
 	hints: [],
 	hintPlacement: 'bottom',
 	chat: false,
-	digits: void 0,
+	digits: 3,
 	max: PINF,
 	min: NINF,
 	onChangeUpper() {},
