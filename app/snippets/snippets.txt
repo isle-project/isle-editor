@@ -30,11 +30,6 @@ snippet Clock
 snippet ColorPicker
 	<ColorPicker />
 
-snippet Col
-	<Col md={12}>
-
-	</Col>
-
 snippet Dashboard
 	<Dashboard onGenerate={(${1:})=>{
 		${2:}
@@ -379,3 +374,51 @@ snippet LearnWordVennDiagram
 
 snippet LearnImagePixelPicker
 	<LearnImagePixelPicker />
+
+/* REACT BOOTSTRAP SNIPPETS */
+
+snippet Row
+	<Row>
+
+	</Col>
+
+snippet Col
+	<Col md={12}>
+
+	</Col>
+
+/* SPECTACLE SNIPPETS */
+
+snippet Appear
+	<Appear>
+		${1:}
+	</Appear>
+
+snippet BlockQuote
+	<BlockQuote>
+		<Quote>${1:}</Quote>
+		<Cite>${2:}</Cite>
+	</BlockQuote>
+
+snippet Code
+	<Code>${1:}</Code>
+
+snippet CodePane
+	<CodePane source="${1:}" lang="${2:}" />
+
+snippet Fill
+	<Fill>${1:}</Fill>
+
+snippet Fit
+	<Fit>${1:}</Fit>
+
+snippet Layout
+	<Layout>${1:}</Layout>
+
+snippet Slide
+	<Slide>
+		${1:}
+	</Slide>
+
+snippet VictoryBar
+	<VictoryBar />
