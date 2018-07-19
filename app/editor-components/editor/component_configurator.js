@@ -273,13 +273,13 @@ class ComponentConfigurator extends Component {
 				</Modal.Body>
 				<Modal.Footer>
 					<Button
-						bsStyle="primary"
-						onClick={this.handleReset}
-					>Reset Code</Button>
-					<Button
 						bsStyle="success"
 						onClick={this.handleClick}
 					>Insert</Button>
+					<Button
+						bsStyle="primary"
+						onClick={this.handleReset}
+					>Reset</Button>
 					<Button
 						onClick={this.clickHide}
 					>Close</Button>
