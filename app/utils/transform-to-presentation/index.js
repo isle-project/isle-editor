@@ -3,6 +3,20 @@
 import contains from '@stdlib/assert/contains';
 
 
+// VARIABLES //
+
+const RE_HEADING = /<h([0-5])([^>]*)>(.*?)<\/h[0-5]>/g;
+const RE_PARAGRAPH = /<p([^>]*)>([\s\S]+?)<\/p>/g;
+const RE_TABLE = /<table([^>]*)>([\s\S]+?)<\/table>/g;
+const RE_LIST = /<ul([^>]*)>([\s\S]+?)<\/ul>/g;
+const RE_LIST_ITEM = /<li([^>]*)>([\s\S]+?)<\/li>/g;
+const RE_THEAD = /<thead([^>]*)>([\s\S]+?)<\/thead>/g;
+const RE_TBODY = /<tbody([^>]*)>([\s\S]+?)<\/tbody>/g;
+const RE_TABLE_ROW = /<tr([^>]*)>([\s\S]+?)<\/tr>/g;
+const RE_TABLE_HEADER_ITEM = /<th([^>]*)>([\s\S]+?)<\/th>/g;
+const RE_TABLE_ITEM = /<td([^>]*)>([\s\S]+?)<\/td>/g;
+
+
 // MAIN
 
 function transformToPresentation( code, preamble ) {
@@ -21,16 +35,16 @@ function transformToPresentation( code, preamble ) {
 		pres += arr.join( '</Slide><Slide>' );
 		pres += '</Slide>';
 	}
-	pres = pres.replace( /<h([0-5])>(.*?)<\/h[0-5]>/g, '<Heading size={$1}>$2</Heading>' );
-	pres = pres.replace( /<p[^>]*>([\s\S]+?)<\/p>/g, '<SText>$1</SText>' );
-	pres = pres.replace( /<ul[^>]*>([\s\S]+?)<\/ul>/g, '<List>$1</List>' );
-	pres = pres.replace( /<li[^>]*>([\s\S]+?)<\/li>/g, '<ListItem>$1</ListItem>' );
-	pres = pres.replace( /<table[^>]*>([\s\S]+?)<\/table>/g, '<Table>$1</Table>' );
-	pres = pres.replace( /<thead[^>]*>([\s\S]+?)<\/thead>/g, '<TableHeader>$1</TableHeader>' );
-	pres = pres.replace( /<tbody[^>]*>([\s\S]+?)<\/tbody>/g, '<TableBody>$1</TableBody>' );
-	pres = pres.replace( /<tr[^>]*>([\s\S]+?)<\/tr>/g, '<TableRow>$1</TableRow>' );
-	pres = pres.replace( /<th[^>]*>([\s\S]+?)<\/th>/g, '<TableHeaderItem>$1</TableHeaderItem>' );
-	pres = pres.replace( /<td[^>]*>([\s\S]+?)<\/td>/g, '<TableItem>$1</TableItem>' );
+	pres = pres.replace( RE_HEADING, '<Heading size={$1}$2>$3</Heading>' );
+	pres = pres.replace( RE_PARAGRAPH, '<SText$1>$2</SText>' );
+	pres = pres.replace( RE_LIST, '<List$1>$2</List>' );
+	pres = pres.replace( RE_LIST_ITEM, '<ListItem$1>$2</ListItem>' );
+	pres = pres.replace( RE_TABLE, '<Table$1>$2</Table>' );
+	pres = pres.replace( RE_THEAD, '<TableHeader$1>$2</TableHeader>' );
+	pres = pres.replace( RE_TBODY, '<TableBody$1>$2</TableBody>' );
+	pres = pres.replace( RE_TABLE_ROW, '<TableRow$1>$2</TableRow>' );
+	pres = pres.replace( RE_TABLE_HEADER_ITEM, '<TableHeaderItem$1>$2</TableHeaderItem>' );
+	pres = pres.replace( RE_TABLE_ITEM, '<TableItem$1>$2</TableItem>' );
 	return `<div>
 		<KeyControls actions={{
 			'ArrowUp': function() {
