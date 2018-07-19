@@ -17,12 +17,12 @@
 		},
 		"global":{
 			"body":{
-				"background":"#fffff8",
-				"fontFamily":"Open Sans, sans-serif",
-				"fontWeight":"normal",
-				"fontSize":"2em",
-				"color":"#2e4468",
-				"overflow":"hidden"
+				"background":"white !important",
+				"fontFamily":"Open Sans Condensed !important",
+				"fontWeight":"normal !important",
+				"fontSize":"2em !important",
+				"color":"black !important",
+				"overflow":"hidden !important"
 			},
 			"html, body":{
 				"height":"100%"
@@ -188,35 +188,35 @@
 			},
 			"heading":{
 				"h1":{
-					"color":"#c95d0a",
-					"fontSize":"5rem",
+					"color":"#2e4468",
+					"fontSize":"5rem !important",
 					"fontFamily":"Open Sans, sans-serif",
-					"lineHeight":1,
+					"lineHeight": "1 !important",
 					"fontWeight":"bold",
 					"margin":0,
 					"zoom":1
 				},
 				"h2":{
-					"color":"#2e4468",
+					"color":"#3c763d",
 					"fontSize":"4rem",
 					"fontFamily":"Open Sans, sans-serif",
-					"lineHeight":1,
+					"lineHeight": "1 !important",
 					"fontWeight":"bold",
 					"margin":0
 				},
 				"h3":{
-					"color":"black",
+					"color":"#2e4468",
 					"fontSize":"3.5rem",
 					"fontFamily":"Open Sans, sans-serif",
-					"lineHeight":1,
+					"lineHeight":"1 !important",
 					"fontWeight":"bold",
 					"margin":"0.5rem auto"
 				},
 				"h4":{
-					"color":"black",
+					"color":"#ca5800",
 					"fontSize":"3rem",
 					"fontFamily":"Open Sans, sans-serif",
-					"lineHeight":1,
+					"lineHeight":"1 !important",
 					"fontWeight":"bold",
 					"margin":"0.5rem auto"
 				},
@@ -224,7 +224,7 @@
 					"color":"black",
 					"fontSize":"2.5rem",
 					"fontFamily":"Open Sans, sans-serif",
-					"lineHeight":1,
+					"lineHeight":"1 !important",
 					"fontWeight":"bold",
 					"margin":"0.5rem auto"
 				},
@@ -232,7 +232,7 @@
 					"color":"black",
 					"fontSize":"2rem",
 					"fontFamily":"Open Sans, sans-serif",
-					"lineHeight":1,
+					"lineHeight":"1 !important",
 					"fontWeight":"bold",
 					"margin":"0.5rem auto"
 				}
@@ -258,14 +258,15 @@
 				}
 			},
 			"tableHeaderItem":{
-				"fontSize":"2.66rem",
-				"fontWeight":"bold"
+				"fontSize":"2.66rem !important",
+				"fontWeight":"bold !important"
 			},
 			"tableItem":{
-				"fontSize":"2.66rem"
+				"fontSize":"2.66rem !important"
 			},
 			"table":{
-				"width":"100%"
+				"width":"100% !important",
+				"fontSize":"2rem"
 			},
 			"text":{
 				"color":"black",
@@ -290,12 +291,12 @@
 		},
 		"global":{
 			"body":{
-				"background":"white",
-				"fontFamily":"Open Sans Condensed",
-				"fontWeight":"normal",
-				"fontSize":"2em",
-				"color":"black",
-				"overflow":"hidden"
+				"background":"white !important",
+				"fontFamily":"Open Sans Condensed !important",
+				"fontWeight":"normal !important",
+				"fontSize":"2em !important",
+				"color":"black !important",
+				"overflow":"hidden !important"
 			},
 			".hljs":{
 				"background":"white",
@@ -537,7 +538,8 @@
 				"fontSize":"2.66rem"
 			},
 			"table":{
-				"width":"100%"
+				"width":"100%",
+				"fontSize":"2rem"
 			},
 			"text":{
 				"color":"black",

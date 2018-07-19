@@ -49,7 +49,7 @@ body {
 	font-weight: 600;
 }
 
-#Lesson {
+.Lesson {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px !important;
 	margin-left: auto;
@@ -61,48 +61,48 @@ body {
 	display: block;
 }
 
-#Lesson .panel-heading {
+.Lesson .panel-heading {
 	background-image: none;
 	background: rgba(176, 192, 222, 0.15);
 
 }
 
-#Lesson .panel-default {
+.Lesson .panel-default {
 	border: 1px solid  rgba(92,92,92, 0.6);
 	border-radius: 6px;
 	box-shadow: 0 0 8px rgba(92,92,92, 0.5);
 }
 
-#Lesson .popover {
+.Lesson .popover {
 	font-family: 'Open Sans', sans-serif;
 }
 
-#Lesson .btn {
+.Lesson .btn {
 	font-family: 'Open Sans', sans-serif;
 	box-shadow: 1px 0px 2px rgba(60, 60, 60, 1), inset 1px 0px 2px rgba(160, 160, 160, 1);
 }
 
-#Lesson .btn-primary {
+.Lesson .btn-primary {
 	background: #2e4468;
 	border-color: black;
 }
 
-#Lesson .btn-primary:focus, .btn-primary.focus  {
+.Lesson .btn-primary:focus, .btn-primary.focus  {
 	box-shadow: 1px 1px 5px white;
 }
 
-#Lesson .btn-primary:hover {
+.Lesson .btn-primary:hover {
 	box-shadow: inset 1px 1px 5px white;
 	transition: 0.3s;
 }
 
-#Lesson .btn-primary.disabled, .btn-primary:disabled {
+.Lesson .btn-primary.disabled, .btn-primary:disabled {
 	box-shadow: none !important;
 	background-color: #0275d8;
 	border-color: #0275d8;
 }
 
-#Lesson .btn-primary:active, .btn-primary.active,
+.Lesson .btn-primary:active, .btn-primary.active,
 .show > .btn-primary.dropdown-toggle {
 	color: #fff;
 	background-color: #025aa5;
@@ -110,27 +110,27 @@ body {
 	border-color: #01549b;
 }
 
-#Lesson .btn-success {
+.Lesson .btn-success {
 	background: #3c763d;
 	border-color: black;
 }
 
-#Lesson .btn-success:hover {
+.Lesson .btn-success:hover {
 	box-shadow: inset 1px 1px 5px white;
 	transition: 0.3s;
 }
 
-#Lesson .btn-success:focus, .btn-success.focus {
+.Lesson .btn-success:focus, .btn-success.focus {
 	box-shadow: 1px 1px 5px white;
 }
 
-#Lesson .btn-success.disabled, .btn-success:disabled {
+.Lesson .btn-success.disabled, .btn-success:disabled {
 	box-shadow: none !important;
 	background-color: #5cb85c;
 	border-color: #5cb85c;
 }
 
-#Lesson .btn-success:active, .btn-success.active,
+.Lesson .btn-success:active, .btn-success.active,
 .show > .btn-success.dropdown-toggle {
 	color: #fff;
 	background-color: #449d44;
@@ -138,77 +138,77 @@ body {
 	border-color: #419641;
 }
 
-#Lesson .btn-xs {
+.Lesson .btn-xs {
 	box-shadow: none;
 }
 
-#Lesson .btn-group-xs {
+.Lesson .btn-group-xs {
 	box-shadow: none;
 }
 
-#Lesson .well {
+.Lesson .well {
 	background-image: none;
 	background-color: gainsboro;
 }
 
-#Lesson .date-selection {
+.Lesson .date-selection {
 	box-shadow: none;
 	border: 1px solid rbg(64,64,64);
 }
 
-#Lesson .active-button {
+.Lesson .active-button {
 	background: slategray;
 	color: white;
 	text-shadow: none;
 }
 
-#Lesson .actionNote {
+.Lesson .actionNote {
 	white-space: pre-wrap;
 }
 
-#Lesson .clickable {
+.Lesson .clickable {
 	background: transparent;
 	cursor: pointer;
 }
 
-#Lesson .clickable:hover {
+.Lesson .clickable:hover {
 	background: lightcoral;
 }
 
-#Lesson h1 {
+.Lesson h1 {
 	color: #2e4468;
 	font-size: 40px;
 	font-weight: bold;
 	letter-spacing: 1px;
 }
 
-#Lesson h2 {
+.Lesson h2 {
 	font-size: 32px;
 	color: #3c763d;
 	font-weight: 600;
 }
 
-#Lesson h3 {
+.Lesson h3 {
 	font-size: 24px;
 	color: #2e4468;
 	font-weight: 600;
 }
 
-#Lesson h4 {
+.Lesson h4 {
 	font-size: 20px;
 	color: #ca5800;
 	font-weight: 600;
 }
 
-#Lesson th, td {
+.Lesson th, .Lesson td {
 	padding: 5px;
 }
 
-#Lesson a {
+.Lesson a {
 	color: #2e4468;
 }
 
-#Lesson .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+.Lesson .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
 	color: #ca5800;
 	cursor: default;
 	background-color: #fff;
@@ -217,7 +217,7 @@ body {
 	font-weight: 600px;
 }
 
-#Lesson ul {
+.Lesson ul {
 	list-style-position: outside !important;
 }
 
