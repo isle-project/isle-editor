@@ -91,7 +91,8 @@
 		"Code"
 	],
 	"PLOTS": [
-		"Plotly"
+		"Plotly",
+		"DensityPlot"
 	],
 	"VICTORY": [
 		"Bar",
