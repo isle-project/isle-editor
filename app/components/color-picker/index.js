@@ -26,7 +26,7 @@ ColorPicker.propDescriptions = {
 	presetColors: 'HeX `strings` specifying the default colors at the bottom of the colorpicker',
 	width: 'width of the colorpicker (in px)',
 	onChange: 'callback invoked every time color is changed',
-	onChangeComplete: 'callback invoked once a color change is complete',
+	onChangeComplete: 'callback invoked once a color change is complete'
 };
 
 ColorPicker.propTypes = {

@@ -19,9 +19,8 @@ import '@planeshifter/brace/theme/monokai';
 import '@planeshifter/brace/theme/solarized_light';
 import SpeechInterface from 'speech-interface';
 import scrollTo from 'utils/scroll-to';
-import './js-shell.css';
 import CONSOLE_STYLES from './console_styles.json';
-
+import './js-shell.css';
 
 
 // FUNCTIONS //

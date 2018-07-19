@@ -322,7 +322,7 @@ class DataTable extends Component {
 					fontSize: '12px',
 					...this.props.style
 				}}>
-					{ this.props.dataInfo.info.length > 0 ? 
+					{ this.props.dataInfo.info.length > 0 ?
 					<div className='data_button_wrapper'>
 						<Button
 							onClick={this.showInfo}
