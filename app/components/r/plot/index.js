@@ -80,7 +80,7 @@ RPlot.propDescriptions = {
 	code: 'R code to generate the plot',
 	width: 'width of the plot (in px)',
 	height: 'height of the plot (in px)',
-	fileType: 'file type of the plot(`png` or `svg`)',
+	fileType: 'file type of the plot (`png` or `svg`)',
 	libraries: 'R libraries that should be loaded automatically when the input `code` is executed',
 	prependCode: '`string` or an `array` of R code snippets to be prepended to the code stored in `code` when evaluating',
 	onDone: 'callback invoked with `err`, `img` and `body` arguments once a plot is created'
