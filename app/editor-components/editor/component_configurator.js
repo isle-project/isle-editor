@@ -165,9 +165,16 @@ class ComponentConfigurator extends Component {
 
 	checkboxClickFactory = ( key, defaultValue ) => {
 		const replacement = generateReplacement( defaultValue );
+		let RE_FULL_KEY;
+		if ( this.props.component.selfClosing ) {
+			RE_FULL_KEY = new RegExp( key+'=[\\s\\S]*? (?=[a-z]+=|\\/>)', 'i' );
+		} else {
+			RE_FULL_KEY = new RegExp( key+'=[\\s\\S]*? (?=[a-z]+=|>)', 'i' );
+		}
+		const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${key}\\s*=` );
 		return () => {
 			let { value } = this.state;
-			if ( !contains( value, key ) ) {
+			if ( !RE_KEY_AROUND_WHITESPACE.test( this.state.value ) ) {
 				if ( this.props.component.selfClosing ) {
 					value = value.substring( 0, value.length - 3 );
 					value += ` ${key}=${replacement} />`;
@@ -182,13 +189,7 @@ class ComponentConfigurator extends Component {
 					value = value + rest;
 				}
 			} else {
-				let RE_KEY;
-				if ( this.props.component.selfClosing ) {
-					RE_KEY = new RegExp( key+'=[\\s\\S]*? (?=[a-z]+=|\\/>)', 'i' );
-				} else {
-					RE_KEY = new RegExp( key+'=[\\s\\S]*? (?=[a-z]+=|>)', 'i' );
-				}
-				value = replace( value, RE_KEY, '' );
+				value = replace( value, RE_FULL_KEY, '' );
 			}
 			this.setState({
 				value
@@ -209,14 +210,15 @@ class ComponentConfigurator extends Component {
 				// Skip loop iteration for certain built-in props...
 				continue;
 			}
-			let defaultValue = componentClass.defaultProps ?
+			const defaultValue = componentClass.defaultProps ?
 				componentClass.defaultProps[ key ] : null;
-			let description = componentClass.propDescriptions ?
+			const description = componentClass.propDescriptions ?
 				componentClass.propDescriptions[ key ] : '';
-			let type = extractType( componentClass.propTypes[ key ] );
-			const isActive = contains( this.state.value, key );
+			const type = extractType( componentClass.propTypes[ key ] );
+			const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${key}\\s*=` );
+			const isActive = RE_KEY_AROUND_WHITESPACE.test( this.state.value );
 			const className = isActive ? 'success' : '';
-			let elem = <tr className={className} style={{ marginBottom: 5 }} key={i}>
+			const elem = <tr className={className} style={{ marginBottom: 5 }} key={i}>
 					<td>
 						<Checkbox checked={isActive} onClick={this.checkboxClickFactory( key, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{key}</Checkbox>
 					</td>
