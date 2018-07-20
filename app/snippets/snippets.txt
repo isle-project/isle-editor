@@ -218,8 +218,8 @@ snippet RangeQuestion
 
 snippet Recorder
 	<Recorder
-		audio
-		screen
+		audio={${1:true}}
+		screen={${2:true}}
 	/>
 
 snippet RHelp
@@ -269,7 +269,9 @@ snippet SurveyGenerator
 	<SurveyGenerator />
 
 snippet Switch
-	<Switch></Switch>
+	<Switch>
+		${1:}
+	</Switch>
 
 snippet Tabs
 	 <Tabs defaultActiveKey={0} id="need-an-id">
@@ -314,7 +316,7 @@ snippet Well
 
 snippet Wikipedia
 	<Wikipedia
-		speech
+		speech={${1:true}}
 		language = "en-US"
 	/>
 
