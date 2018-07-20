@@ -21,6 +21,8 @@ import objectKeys from '@stdlib/utils/keys';
 // VARIABLES //
 
 const debug = logger( 'isle-editor' );
+const RE_SNIPPET_PLACEHOLDER = /\${[0-9]:([^}]+)}/g;
+const RE_SNIPPET_EMPTY_PLACEHOLDER = /\t*\${[0-9]:}\n?/g;
 
 
 // FUNCTIONS //
@@ -58,25 +60,51 @@ function generateDefaultString( defaultValue ) {
 }
 
 function extractType( fcn ) {
+	if ( fcn === PropTypes.string.isRequired ) {
+		return 'string (required)';
+	}
 	if ( fcn === PropTypes.string ) {
 		return 'string';
+	}
+	if ( fcn === PropTypes.number.isRequired ) {
+		return 'number (required)';
 	}
 	if ( fcn === PropTypes.number ) {
 		return 'number';
 	}
+	if ( fcn === PropTypes.bool.isRequired ) {
+		return 'boolean (required)';
+	}
 	if ( fcn === PropTypes.bool ) {
 		return 'boolean';
+	}
+	if ( fcn === PropTypes.func.isRequired ) {
+		return 'function (required)';
 	}
 	if ( fcn === PropTypes.func ) {
 		return 'function';
 	}
+	if ( fcn === PropTypes.object.isRequired ) {
+		return 'object (required)';
+	}
 	if ( fcn === PropTypes.object ) {
 		return 'object';
+	}
+	if ( fcn === PropTypes.array.isRequired ) {
+		return 'array (required)';
 	}
 	if ( fcn === PropTypes.array ) {
 		return 'array';
 	}
 	return null;
+}
+
+function removePlaceholderMarkup( str ) {
+	if ( !str ) {
+		return '';
+	}
+	str = replace( str, RE_SNIPPET_EMPTY_PLACEHOLDER, '' );
+	return replace( str, RE_SNIPPET_PLACEHOLDER, '$1' );
 }
 
 
@@ -85,13 +113,11 @@ function extractType( fcn ) {
 class ComponentConfigurator extends Component {
 	constructor( props ) {
 		super( props );
-		const { name, selfClosing } = props.component;
+		const { name, value } = props.component;
 		this.state = {
 			componentClass: null,
 			name: name,
-			value: selfClosing ?
-				`<${name} />` :
-				`<${name}>\n\n</${name}>`
+			value: removePlaceholderMarkup( value )
 		};
 	}
 
@@ -99,9 +125,7 @@ class ComponentConfigurator extends Component {
 		let newState = {};
 		if ( nextProps.component.name !== prevState.name ) {
 			newState.name = nextProps.component.name;
-			newState.value = nextProps.component.selfClosing ?
-				`<${nextProps.component.name} />` :
-				`<${nextProps.component.name}>\n\n</${nextProps.component.name}>`;
+			newState.value = removePlaceholderMarkup( nextProps.component.value );
 			newState.componentClass = null;
 		}
 		if ( !isEmptyObject( newState ) ) {
@@ -155,11 +179,8 @@ class ComponentConfigurator extends Component {
 	}
 
 	handleReset = () => {
-		const { name, selfClosing } = this.props.component;
 		this.setState({
-			value: selfClosing ?
-				`<${name} />` :
-				`<${name}>\n\n</${name}>`
+			value: removePlaceholderMarkup( this.props.component.value )
 		});
 	}
 
@@ -167,9 +188,9 @@ class ComponentConfigurator extends Component {
 		const replacement = generateReplacement( defaultValue );
 		let RE_FULL_KEY;
 		if ( this.props.component.selfClosing ) {
-			RE_FULL_KEY = new RegExp( key+'=[\\s\\S]*? (?=[a-z]+=|\\/>)', 'i' );
+			RE_FULL_KEY = new RegExp( '\\s*'+key+'=[\\s\\S]*?( |\t|\r?\n)(?=[a-z]+=|\\/>)', 'i' );
 		} else {
-			RE_FULL_KEY = new RegExp( key+'=[\\s\\S]*? (?=[a-z]+=|>)', 'i' );
+			RE_FULL_KEY = new RegExp( '\\s*'+key+'=[\\s\\S]*?( |\t|\r?\n)(?=[a-z]+=|>)', 'i' );
 		}
 		const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${key}\\s*=` );
 		return () => {
@@ -177,7 +198,7 @@ class ComponentConfigurator extends Component {
 			if ( !RE_KEY_AROUND_WHITESPACE.test( this.state.value ) ) {
 				if ( this.props.component.selfClosing ) {
 					value = value.substring( 0, value.length - 3 );
-					value += ` ${key}=${replacement} />`;
+					value += ` ${key}=${replacement}\n/>`;
 				} else {
 					const idx = value.indexOf( '>' );
 					const rest = value.substring( idx+1 );
@@ -185,11 +206,11 @@ class ComponentConfigurator extends Component {
 					if ( value[ value.length-1 ] === ' ' ) {
 						value = removeLast( value );
 					}
-					value += ` ${key}=${replacement} >`;
+					value += ` ${key}=${replacement}\n>`;
 					value = value + rest;
 				}
 			} else {
-				value = replace( value, RE_FULL_KEY, '' );
+				value = replace( value, RE_FULL_KEY, ' ' );
 			}
 			this.setState({
 				value
@@ -214,13 +235,21 @@ class ComponentConfigurator extends Component {
 				componentClass.defaultProps[ key ] : null;
 			const description = componentClass.propDescriptions ?
 				componentClass.propDescriptions[ key ] : '';
-			const type = extractType( componentClass.propTypes[ key ] );
-			const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${key}\\s*=` );
-			const isActive = RE_KEY_AROUND_WHITESPACE.test( this.state.value );
+			const propType = componentClass.propTypes[ key ];
+			const type = extractType( propType );
+			let isRequired = false;
+			if ( type ) {
+				isRequired = contains( type, '(required)' );
+			}
+			let isActive = isRequired;
+			if ( !isActive ) {
+				const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${key}\\s*=` );
+				isActive = RE_KEY_AROUND_WHITESPACE.test( this.state.value );
+			}
 			const className = isActive ? 'success' : '';
 			const elem = <tr className={className} style={{ marginBottom: 5 }} key={i}>
 					<td>
-						<Checkbox checked={isActive} onClick={this.checkboxClickFactory( key, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{key}</Checkbox>
+						{ !isRequired ? <Checkbox checked={isActive} onClick={this.checkboxClickFactory( key, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{key}</Checkbox> : <Checkbox checked disabled>{key}</Checkbox> }
 					</td>
 					<td>{description}</td>
 					<td>
