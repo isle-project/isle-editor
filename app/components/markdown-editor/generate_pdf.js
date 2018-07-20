@@ -398,7 +398,7 @@ function parsePDF( ast, config, state, start, end ) {
 
 // MAIN //
 
-function generatePDF( ast, config, standardFontSize, opts ) {
+function generatePDF( ast, config, standardFontSize ) {
 	const doc = {
 		'content': [],
 		'styles': makeSTYLES(standardFontSize),

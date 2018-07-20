@@ -67,7 +67,7 @@ class SaveModal extends Component {
 		}
 		config.pageSize = pageDims;
 		config.pageOrientation = this.state.pageOrientation;
-		this.props.exportPDF(config);
+		this.props.exportPDF( config );
 	}
 
 	clickHide = () => {

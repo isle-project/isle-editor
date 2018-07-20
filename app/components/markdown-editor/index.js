@@ -28,6 +28,7 @@ import VoiceInput from 'components/input/voice';
 import fonts from './fonts.js';
 import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
+import SubmitModal from './submit_modal.js';
 import TableSelect from './table_select.js';
 import ColumnSelect from './column_select.js';
 import base64toBlob from './base64_to_blob.js';
@@ -220,9 +221,9 @@ class MarkdownEditor extends Component {
 			value: value,
 			hash: hash,
 			showSaveModal: false,
+			showSubmitModal: false,
 			defaultValue: props.defaultValue,
 			showTableSelect: false,
-			pageSize: 'LETTER',
 			showColumnSelect: false,
 			fontSize: 16
 		};
@@ -365,7 +366,7 @@ class MarkdownEditor extends Component {
 			},
 			'insert_table': {
 				name: 'insert_new_table',
-				action: ( editor, event ) => {
+				action: () => {
 					this.toggleTableSelect();
 				},
 				className: 'fa fa-table',
@@ -377,7 +378,7 @@ class MarkdownEditor extends Component {
 			'link': 'link',
 			'insert_columns': {
 				name: 'insert_new_columns',
-				action: ( editor, event ) => {
+				action: () => {
 					this.toggleColumnSelect();
 				},
 				className: 'fa fa-align-justify',
@@ -397,7 +398,7 @@ class MarkdownEditor extends Component {
 			},
 			'save': {
 				name: 'save',
-				action: ( editor ) => {
+				action: () => {
 					this.toggleSaveModal();
 				},
 				className: 'fa fa-save',
@@ -405,92 +406,8 @@ class MarkdownEditor extends Component {
 			},
 			'submit': {
 				name: 'submit',
-				action: ( editor ) => {
-					const { session } = this.context;
-					if ( session.anonymous ) {
-						return session.addNotification({
-							title: 'Sign in',
-							message: 'You have to sign in before you can submit your report',
-							level: 'warning',
-							position: 'tr'
-						});
-					}
-					let text = this.simplemde.value();
-					text = this.replacePlaceholders( text, true );
-					let html = this.previewRender( text );
-					const title = document.title || 'provisoric';
-					html = createHTML( title, html, Number( this.state.fontSize ) );
-					const ast = md.parse( text );
-					// Create the config so that the function can run
-					const config = { 'pageSize': 'LETTER', 'pageOrientation': 'portrait' };
-					const doc = generatePDF( ast, config, this.state.pageSize );
-					const pdfDocGenerator = pdfMake.createPdf( doc );
-					pdfDocGenerator.getBase64( ( pdf ) => {
-						const msg = {
-							text: `Dear ${session.user.name}, your report has been successfully recorded. For your convenience, your report and the generated HTML file are attached to this email.`,
-							subject: 'Report submitted',
-							attachments: [
-								{
-									filename: 'report.html',
-									content: html,
-									contentType: 'text/html'
-								},
-								{
-									filename: 'report.md',
-									content: text,
-									contentType: 'text/plain'
-								},
-								{
-									filename: 'report.pdf',
-									content: pdf,
-									contentType: 'application/pdf',
-									encoding: 'base64'
-								}
-							]
-						};
-						session.sendMail( msg, session.user.email );
-
-						// Upload report:
-						const htmlForm = new FormData();
-						const pdfForm = new FormData();
-
-						let filename = 'report.html';
-						if ( this.props.id ) {
-							filename = this.props.id+'_'+filename;
-						}
-						const htmlFile = new File([ html ], filename, {
-							type: 'text/html'
-						});
-						htmlForm.append( 'file', htmlFile );
-
-						filename = 'report.pdf';
-						if ( this.props.id ) {
-							filename = this.props.id+'_'+filename;
-						}
-						const pdfBlob = base64toBlob( pdf, 'application/pdf' );
-						const pdfFile = new File([ pdfBlob ], filename, {
-							type: 'application/pdf'
-						});
-						pdfForm.append( 'file', pdfFile );
-
-						session.uploadFile( htmlForm );
-						session.uploadFile( pdfForm );
-
-						session.addNotification({
-							title: 'Submitted',
-							message: 'Your report has been successfully submitted',
-							level: 'success',
-							position: 'tr'
-						});
-
-						if ( this.props.id ) {
-							session.log({
-								id: this.props.id,
-								type: 'MARKDOWN_EDITOR_SUBMIT',
-								value: this.state.value
-							});
-						}
-					});
+				action: () => {
+					this.toggleSubmitModal();
 				},
 				className: 'fa fa-share-square',
 				title: 'Submit'
@@ -862,6 +779,12 @@ class MarkdownEditor extends Component {
 		}, clbk );
 	}
 
+	toggleSubmitModal = ( event, clbk = noop ) => {
+		this.setState({
+			showSubmitModal: !this.state.showSubmitModal
+		}, clbk );
+	}
+
 	toggleTableSelect = () => {
 		this.setState({
 			showTableSelect: !this.state.showTableSelect
@@ -893,14 +816,103 @@ class MarkdownEditor extends Component {
 		});
 	}
 
-	exportPDF = ( config, opts ) => {
+	exportPDF = ( config ) => {
 		const title = document.title || 'provisoric';
 		let text = this.simplemde.value();
 		text = this.replacePlaceholders( text, true );
 		const ast = md.parse( text );
-		const doc = generatePDF( ast, config, this.state.fontSize, opts );
+		const doc = generatePDF( ast, config, this.state.fontSize );
 		this.toggleSaveModal( null, () => {
 			pdfMake.createPdf( doc ).download( title );
+		});
+	}
+
+	submitReport = () => {
+		const { session } = this.context;
+		if ( session.anonymous ) {
+			return session.addNotification({
+				title: 'Sign in',
+				message: 'You have to sign in before you can submit your report',
+				level: 'warning',
+				position: 'tr'
+			});
+		}
+		let text = this.simplemde.value();
+		text = this.replacePlaceholders( text, true );
+		let html = this.previewRender( text );
+		const title = document.title || 'provisoric';
+		html = createHTML( title, html, Number( this.state.fontSize ) );
+		const ast = md.parse( text );
+
+		// Create the config so that the function can run:
+		const config = { 'pageSize': 'LETTER', 'pageOrientation': 'portrait' };
+		const doc = generatePDF( ast, config, this.state.fontSize );
+		const pdfDocGenerator = pdfMake.createPdf( doc );
+		pdfDocGenerator.getBase64( ( pdf ) => {
+			const msg = {
+				text: `Dear ${session.user.name}, your report has been successfully recorded. For your convenience, your report and the generated HTML file are attached to this email.`,
+				subject: 'Report submitted',
+				attachments: [
+					{
+						filename: 'report.html',
+						content: html,
+						contentType: 'text/html'
+					},
+					{
+						filename: 'report.md',
+						content: text,
+						contentType: 'text/plain'
+					},
+					{
+						filename: 'report.pdf',
+						content: pdf,
+						contentType: 'application/pdf',
+						encoding: 'base64'
+					}
+				]
+			};
+			session.sendMail( msg, session.user.email );
+
+			// Upload report:
+			const htmlForm = new FormData();
+			const pdfForm = new FormData();
+
+			let filename = 'report.html';
+			if ( this.props.id ) {
+				filename = this.props.id+'_'+filename;
+			}
+			const htmlFile = new File([ html ], filename, {
+				type: 'text/html'
+			});
+			htmlForm.append( 'file', htmlFile );
+
+			filename = 'report.pdf';
+			if ( this.props.id ) {
+				filename = this.props.id+'_'+filename;
+			}
+			const pdfBlob = base64toBlob( pdf, 'application/pdf' );
+			const pdfFile = new File([ pdfBlob ], filename, {
+				type: 'application/pdf'
+			});
+			pdfForm.append( 'file', pdfFile );
+
+			session.uploadFile( htmlForm );
+			session.uploadFile( pdfForm );
+
+			session.addNotification({
+				title: 'Submitted',
+				message: 'Your report has been successfully submitted',
+				level: 'success',
+				position: 'tr'
+			});
+
+			if ( this.props.id ) {
+				session.log({
+					id: this.props.id,
+					type: 'MARKDOWN_EDITOR_SUBMIT',
+					value: this.state.value
+				});
+			}
 		});
 	}
 
@@ -926,6 +938,11 @@ class MarkdownEditor extends Component {
 						});
 						this.handleAutosave();
 					}}
+				/>
+				<SubmitModal
+					show={this.state.showSubmitModal}
+					onHide={this.toggleSubmitModal}
+					onSubmit={this.submitReport}
 				/>
 				<TableSelect
 					show={this.state.showTableSelect}
