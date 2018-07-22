@@ -13,24 +13,39 @@ class Runner extends Component {
 	}
 
 	componentDidMount() {
-		if ( this.props.interval ) {
-			var intervalID = window.setInterval( this.props.onEvaluate, this.props.interval );
-			this.setState({ intervalID });
-		} else {
-			this.props.onEvaluate();
+		if ( this.props.active ) {
+			if ( this.props.interval ) {
+				this.intervalID = window.setInterval( this.props.onEvaluate, this.props.interval );
+			} else {
+				this.props.onEvaluate();
+			}
+		}
+	}
+
+	componentDidUpdate( prevProps ) {
+		if ( prevProps.active && !this.props.active ) {
+			if ( this.intervalID ) {
+				window.clearInterval( this.intervalID );
+				this.intervalID = null;
+			}
+		} 
+		else if ( !prevProps.active  && this.props.active ) {
+			if ( this.props.interval ) {
+				this.intervalID = window.setInterval( this.props.onEvaluate, this.props.interval );
+			} else {
+				this.props.onEvaluate();
+			}
 		}
 	}
 
 	componentWillUnmount() {
-		if ( this.state.intervalID ) {
-			window.clearInterval( this.state.intervalID );
+		if ( this.intervalID ) {
+			window.clearInterval( this.intervalID );
 		}
 	}
 
 	render() {
-		return (
-			<span></span>
-		);
+		return null;
 	}
 }
 
@@ -38,6 +53,7 @@ class Runner extends Component {
 // DEFAULT PROPERTIES //
 
 Runner.defaultProps = {
+	active: true,
 	interval: null,
 	onEvaluate() {}
 };
@@ -45,7 +61,14 @@ Runner.defaultProps = {
 
 // PROPERTY TYPES //
 
+Runner.propDescriptions = {
+	active: 'controls whether the runner should be active. Upon activation, the `onEvaluate` function is called in the given interval (or once)',
+	interval: 'number of milliseconds between invocations of `onEvaluate`. If no interval is set, the function is only invoked once',
+	onEvaluate: 'function to be invoked'
+};
+
 Runner.propTypes = {
+	active: PropTypes.bool,
 	interval: PropTypes.number,
 	onEvaluate: PropTypes.func
 };

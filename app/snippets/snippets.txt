@@ -237,6 +237,14 @@ snippet RShell
 snippet RTable
 	<RTable code="${1:}" />
 
+snippet Runner
+	<Runner
+		interval={${1:null}}
+		onEvaluate={${2:() => {
+
+		}}}
+	/>
+
 snippet SelectInput
 	<SelectInput
 		options={['${1:First option}','${2:Second Option}']}
