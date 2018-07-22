@@ -5,14 +5,9 @@ date: Dec 27th, 2017
 state:
 server: https://isle.heinz.cmu.edu
 hideToolbar: true
-
 ---
 
- # Slider
-
-
-
-<br />
+# Slider
 
 <Playground 
     style={{
@@ -35,16 +30,15 @@ hideToolbar: true
     }}
 />
 
-
-
-
 #### Options:
 
-* __code__: R code `string` from which to form the table. The last line must refer to a `data.frame` or `matrix`. Default: `''`.
-* __columnNames__: `array` of `strings` specifying the column names of the table. Setting this attribute overrides any existing column names attached to the R object, which will be used otherwise. Default: `null`.
-* __columnWidth__: `number` or `array` of values specifying the exact column width(s) of the table (in px). Default: `null`.
-* __maxHeight__:  `number` giving the maximum height of the created table (in px). A vertical scrollbar appears in case not all rows fit. Default: `600`.
-* __prependCode__: `string` or an `Array` of R code to be prepended to the code stored in `code` when evaluating. Default: `''`.
-* __width__: `number` giving the width of the created plot (in percent). Default: `0.5`.
-
-
+* __title__ | `string`: title for the slideshow / carousel to be displayed at its top. Default: `''`.
+* __dots__ | `boolean`: display dots at the bottom for quickly navigating to any slide. Default: `true`.
+* __fade__ | `boolean`: controls whether fading is used for transitioning between the slides. Default: `false`.
+* __draggable__ | `boolean`: controls whether users can drag the slides to navigate between them. Default: `true`.
+* __goto__ | `number`: If property is changed, the component jumps to the slide with the selected index. Default: `0`.
+* __infinite__ | `boolean`: controls whether the slideshow wraps around it's contents. Default: `false`.
+* __interval__ | `number`: sets a time interval for an automatic slide change. Default: `none`.
+* __onClick__ | `function`: callback invoked when clicking on the next/previous buttons. Default: `onClick() {}`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
+* __swipeToSlide__ | `boolean`: enables drag/swipe behavior. Default: `true`.

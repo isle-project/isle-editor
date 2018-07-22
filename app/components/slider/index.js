@@ -96,32 +96,44 @@ class DefaultSlider extends Component {
 // DEFAULT PROPERTIES //
 
 DefaultSlider.defaultProps = {
+	title: '',
 	dots: true,
-	draggable: true,
 	fade: false,
+	draggable: true,
 	goto: 0,
 	infinite: false,
 	interval: null,
-	onClick() {},
-	style: {},
 	swipeToSlide: true,
-	title: ''
+	style: {},
+	onClick() {}
 };
 
 
 // PROPERTY TYPES //
 
+DefaultSlider.propDescriptions = {
+	title: 'title for the slideshow / carousel to be displayed at its top',
+	dots: 'display dots at the bottom for quickly navigating to any slide',
+	fade: 'controls whether fading is used for transitioning between the slides', 
+	draggable: 'controls whether users can drag the slides to navigate between them',
+	goto: 'If property is changed, the component jumps to the slide with the selected index',
+	infinite: 'controls whether the slideshow wraps around it\'s contents',	interval: 'sets a time interval for an automatic slide change',
+	swipeToSlide: 'enables drag/swipe behavior',
+	style: 'CSS inline styles',
+	onClick: 'callback invoked when clicking on the next/previous buttons'
+};
+
 DefaultSlider.propTypes = {
+	title: PropTypes.string,
 	dots: PropTypes.bool,
-	draggable: PropTypes.bool,
 	fade: PropTypes.bool,
+	draggable: PropTypes.bool,
 	goto: PropTypes.number,
 	infinite: PropTypes.bool,
 	interval: PropTypes.number,
 	onClick: PropTypes.func,
 	style: PropTypes.object,
-	swipeToSlide: PropTypes.bool,
-	title: PropTypes.string
+	swipeToSlide: PropTypes.bool
 };
 
 
