@@ -167,7 +167,16 @@ class Pages extends Component {
 
 // TYPES //
 
+Pages.propDescriptions = {
+	title: 'displayed title of the pages container',
+	bsSize: 'size of the pagination buttons (one of `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`)',
+	height: 'the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added',
+	style: 'CSS inline styles',
+	onSelect: 'Function invoked when active change is changed. Receives the new active page index as a sole parameter'
+};
+
 Pages.propTypes = {
+	title: PropTypes.string,
 	bsSize: PropTypes.oneOf([
 		'default',
 		'lg',
@@ -181,17 +190,16 @@ Pages.propTypes = {
 		PropTypes.number,
 		PropTypes.string
 	]),
-	onSelect: PropTypes.func,
 	style: PropTypes.object,
-	title: PropTypes.string
+	onSelect: PropTypes.func,
 };
 
 Pages.defaultProps = {
+	title: '',
 	bsSize: 'default',
 	height: null,
-	onSelect() {},
 	style: {},
-	title: ''
+	onSelect() {}
 };
 
 
