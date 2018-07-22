@@ -14,7 +14,7 @@ function getDimensions( element ) {
 // MAIN //
 
 function Dimensions( ComposedComponent ) {
-	return class DimensionsHOC extends Component {
+	class DimensionsHOC extends Component {
 		constructor( props ) {
 			super( props );
 			this.state = {};
@@ -62,6 +62,11 @@ function Dimensions( ComposedComponent ) {
 			);
 		}
 	};
+	// Re-attach property information:
+	DimensionsHOC.propDescriptions = ComposedComponent.propDescriptions
+	DimensionsHOC.propTypes = ComposedComponent.propTypes;
+	DimensionsHOC.defaultProps = ComposedComponent.defaultProps;
+	return DimensionsHOC;
 }
 
 
