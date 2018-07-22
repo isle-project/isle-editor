@@ -15,10 +15,8 @@ data`}
 
 #### Options:
 
-* __code__: R code `string` from which to form the table. The last line must refer to a `data.frame` or `matrix`. Default: `''`.
-* __columnNames__: `array` of `strings` specifying the column names of the table. Setting this attribute overrides any existing column names attached to the R object, which will be used otherwise. Default: `null`.
-* __columnWidth__: `number` or `array` of values specifying the exact column width(s) of the table (in px). Default: `null`.
-* __maxHeight__:  `number` giving the maximum height of the created table (in px). A vertical scrollbar appears in case not all rows fit. Default: `600`.
-* __prependCode__: `string` or an `Array` of R code to be prepended to the code stored in `code` when evaluating. Default: `''`.
-* __width__: `number` giving the width of the created plot (in percent). Default: `0.5`.
-
+* __code__ | `string`: R code returning a data.frame containing the data to be displayed in the table. Default: `''`.
+* __containerWidth__ | `number`: width of the enclosing container. Default: `none`.
+* __libraries__ | `array`: R libraries that should be loaded automatically when the input `code` is executed. Default: `[]`.
+* __prependCode__ | `(string|array)`: R code `string` (or `array` of R code blocks) to be prepended to the code stored in `code` when evaluating. Default: `''`.
+* __width__ | `number`: width (between 0 and 1). Default: `0.5`.
