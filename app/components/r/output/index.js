@@ -112,6 +112,12 @@ class ROutput extends Component {
 
 // PROPERTY TYPES //
 
+ROutput.propDescriptions = {
+	code: 'R code used to evaluate',
+	libraries: 'R libraries that should be loaded automatically when the input `code` is executed',
+	prependCode: 'R code (or `array` of code blocks) to be prepended to the code stored in `code` when evaluating'
+};
+
 ROutput.propTypes = {
 	code: PropTypes.string,
 	libraries: PropTypes.array,
