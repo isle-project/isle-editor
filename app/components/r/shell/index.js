@@ -519,26 +519,45 @@ class RShell extends React.Component {
 
 // PROPERTY TYPES //
 
+RShell.propDescriptions = {
+	code: 'R code to be evaluated',
+	solution: 'for programming questions, R code `string` representing the official solution for the problem',
+	hints: 'for programming questions, an array of hints providing guidance on how to approach the problem',
+	addPreceding: 'if set to true, the shell will evaluate all the code from the current component and all previous ones occurring in the lesson',
+	libraries: 'R libraries that should be loaded automatically when the input `code` is executed',
+	precompute: 'controls whether the default code should be executed once the component has mounted',
+	prependCode: 'R code `string` (or `array` of R code blocks) to be prepended to the code stored in `code` when evaluating',
+	chat: 'controls whether group chat functionality should be enabled',
+	disabled: 'controls whether to disable all user inputs and make the code block static',
+	fontSize: 'used font size in the shell window',
+	fontFamily: 'font-family used in the shell window',
+	lines: 'number of lines to display',
+	resettable: 'controls whether to display a reset button for restoring the default code input',
+	style: 'CSS inline styles',
+	onEvaluate: 'callback invoked whenever the `Evaluate` button is clicked',
+	onResult: 'callback invoked whenever the result of a code execution is obtained from the cloud. The result `string` is passed as the only argument to the callback function',
+};
+
 RShell.propTypes = {
-	addPreceding: PropTypes.bool,
-	chat: PropTypes.bool,
 	code: PropTypes.string,
-	disabled: PropTypes.bool,
-	fontFamily: PropTypes.string,
-	fontSize: PropTypes.number,
+	solution: PropTypes.string,
 	hints: PropTypes.array,
+	addPreceding: PropTypes.bool,
 	libraries: PropTypes.array,
-	lines: PropTypes.number,
-	onEvaluate: PropTypes.func,
-	onResult: PropTypes.func,
 	precompute: PropTypes.bool,
 	prependCode: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.array
 	]),
+	chat: PropTypes.bool,
+	disabled: PropTypes.bool,
+	fontFamily: PropTypes.string,
+	fontSize: PropTypes.number,
+	lines: PropTypes.number,
 	resettable: PropTypes.bool,
-	solution: PropTypes.string,
-	style: PropTypes.object
+	style: PropTypes.object,
+	onEvaluate: PropTypes.func,
+	onResult: PropTypes.func,
 };
 
 RShell.contextTypes = {
@@ -549,22 +568,22 @@ RShell.contextTypes = {
 // DEFAULT PROPERTIES //
 
 RShell.defaultProps = {
-	addPreceding: false,
-	chat: false,
 	code: '',
+	solution: '',
+	hints: [],
+	addPreceding: false,
+	libraries: [],
+	precompute: false,
+	prependCode: '',
+	chat: false,
 	disabled: false,
 	fontFamily: 'Courier New',
 	fontSize: 16,
-	hints: [],
-	libraries: [],
 	lines: 5,
+	resettable: false,
+	style: {},
 	onEvaluate(){},
 	onResult() {},
-	precompute: false,
-	prependCode: '',
-	resettable: false,
-	solution: '',
-	style: {}
 };
 
 
