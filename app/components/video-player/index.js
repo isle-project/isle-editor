@@ -102,7 +102,6 @@ Video.propDescriptions = {
 	center: 'controls whether to center the video player',
 	height: 'height of the player',
 	width: 'width of the player',
-	containerWidth: 'container width in pixel',
 	loop: 'controls whether to start the video anew after it was played',
 	style: 'CSS inline styles',
 	onEnded: 'callback invoked once the video ends',
@@ -124,7 +123,6 @@ Video.propTypes = {
 		PropTypes.string,
 		PropTypes.number
 	]),
-	containerWidth: PropTypes.number,
 	loop: PropTypes.bool,
 	style: PropTypes.object,
 	onEnded: PropTypes.func,
@@ -143,7 +141,6 @@ Video.defaultProps = {
 	center: true,
 	height: 360,
 	width: 640,
-	containerWidth: null,
 	loop: false,
 	style: {},
 	onEnded() {},

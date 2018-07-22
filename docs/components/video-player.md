@@ -22,7 +22,6 @@ A component for playing media files and content from YouTube, SoundCloud and Vim
 * __center__ | `boolean`: controls whether to center the video player. Default: `true`.
 * __height__ | `(string|number)`: height of the player. Default: `360`.
 * __width__ | `(string|number)`: width of the player. Default: `640`.
-* __containerWidth__ | `number`: container width in pixel. Default: `none`.
 * __loop__ | `boolean`: controls whether to start the video anew after it was played. Default: `false`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onEnded__ | `function`: callback invoked once the video ends. Default: `onEnded() {}`.
