@@ -22,7 +22,27 @@ hideToolbar: true
     code={`
     <DataExplorer 
         id="heartdisease"
-	    data={heartdisease} 
+	    data={heartdisease}
+        dataInfo={
+            {"name": "Heart Disease",
+                "info": [
+                    "Health insurance premiums are decided by insurance companies by a subscriber’s age, medical history, and other lifestyle characteristics (diet, smoker status, etc).\n",
+                    "Predictions are made about a subscriber’s potential medical costs in the future; the premiums are set accordingly. High-risk subscribers that may incur more costs are charged higher premiums. Hospital stays or visits for ischemic (coronary) heart disease are costly and are often associated with complications, emergency room visits, etc. For subscribers who were treated for ischemic heart disease, we would like to better understand the relationship between their medical history during the claim period and the total cost of claims they made to the insurance company. Is a multivariate linear relationship appropriate? What characteristics are associated with increased cost of claims by the subscribers?\n",
+                    "You are given information on 788 subscribers during the period of January 1998 through December 1999."
+                ],
+                "variables": {
+                    "Cost": "Total cost of claims by subscriber (dollars)",
+                    "Age": "Age of subscriber (years)",
+                    "Gender": "Gender of subscriber: 1 if male, 0 if female",
+                    "Interventions": "Total number of interventions or procedures carried out",
+                    "Drugs": "Categorized number of drugs prescribed: 0 if none, 1 if one, 2 if more than one",
+                    "ERVisit": "Number of emergency room visits",
+                    "Complications": "Whether or not the subscriber had complications: 1 if Yes, 0 if No",
+                    "Comorbidities": "Number of other diseases that the subscriber had",
+                    "Duration": "Number of days of duration of treatment condition"
+                }
+            }
+        }
 	    categorical={['Gender','Drugs','Complications']}
 	    continuous={['Cost','Age','Interventions','ERVisit','Comorbidities','Duration']}
 	    tests={[]}
@@ -35,41 +55,102 @@ hideToolbar: true
     }}
 />
 
-#### Options
+#### Tests Defaults
 
-* __data__: The name of the .json dataset that will be used in the explorer. If you wish to allow students to enter in a `.csv` file, set to `{false}`.
-* __onSelect__: A function to be passed. 
-* __tabs__: 
-* __Questions__: Questions to be asked of the dataset. May also be embedded in a question object independent of the data explorer apparatus. 
-* __transformer__: A bool value indicating whether a transformation is to be applied to a variable. 
-* __statistics__: Relevant statistical operations that can be applied to data, such as "mean" or "correlation". The following operations are enabled by default:
-  -- Mean
-  -- Median
-  -- Min
-  -- Max
-  -- Interquartile Range
-  -- Standard Deviation
-  -- Variance
-  -- Correlation
-* __plots__: Specification of which plots may be produced by the explorer. The following may be used and are enabled by default:
-  -- Bar Chart
-  -- Pie Chart
-  -- Histogram
-  -- Box Plot
-  -- Scatterplot
-  -- Heat Map
-  -- Mosaic Plot
-* __tables__: Two-way tables that may be compiled from the data. One maty choose either (or both) of the following options: Frequency Table, Contingency Table
-* __tests__: Statistical tests that may be applied to the data. Must be some combination of the following, all of which are enabled by default:
-  -- One-Sample Mean Test
-  -- One-Sample Proportion Test
-  -- Two-Sample Mean Test
-  -- Two-Sample Proportion Test
-  -- Correlation Test
-  -- Chi-squared Independence Test
-  -- One-Way ANOVA
-* __models__: Modelling paradigms to be used in creating models from the variables presented. Currently this functionality is limited to "Simple Linear Regression" (which is enabled by default), yet will be extended in the future. 
-* __categorical__: An array of string variables that represent the categorical variables in a dataset. 
-* __continuous__: An array of string variables that represent the continuous variables in a dataset. 
-* __distributions__: Distributions that may be used in calculating probabilities. This functionality exists independently of the dataset provided. Currently limited to normal, uniform and exponential distributions.
-* __showEditor__: A `bool` value indicating whether the reports tab is to be shown. 
+The tests array can take the following values:
+
++ 'One-Sample Mean Test',
++ 'One-Sample Proportion Test',
++ 'Two-Sample Mean Test',
++ 'Two-Sample Proportion Test',
++ 'Correlation Test',
++ 'Chi-squared Independence Test',
++ 'One-Way ANOVA'
+
+#### Plot Defaults
+
+The plot array can take the following values:
+
++ `'Bar Chart'`
++ `'Pie Chart'`
++ `'Hisogram'`
++ `'Box Plot'`
++ `'Scatterplot'`
++ `'Heat Map'`
++ `'Mosaic Plot'`
++ `'Contour Chart'`
+
+#### Statistics Defaults
+
+The statistics array can take the following values:
+
++ `'Mean'`
++ `'Median'`
++ `'Min'`
++ `'Max'`
++ `'Interquartile Range'`
++ `'Standard Deviation'`
++ `'Variance'`
++ `'Correlation'`
+
+#### Options:
+
+* __categorical__ | `array`: An array of strings indicating the name of each categorical variable.. Default: `[]`.
+* __continuous__ | `array`: An array of strings indicating the name of each continuous variable.. Default: `[]`.
+* __data__ | `object`: A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column.. Default: `{}`.
+* __dataInfo__ | `object`: An object containing the keys 'name', whose value is a string, 'info', whose value is an array of strings in which each element in the array is a new line and 'variables', an object with keys as variable names and values as variable descriptions.. Default: `{
+  'info': '',
+  'name': '',
+  'variables': null
+}`.
+* __distributions__ | `array`: An array of strings indicating distributions that may be used in calculating probabilities. This functionality exists independently of the dataset provided. Currently limited to normal, uniform and exponential distributions. Default: `[
+  'Normal',
+  'Uniform',
+  'Exponential'
+]`.
+* __editorProps__ | `object`: An object to be passed to `MarkdownEditor` indicating properties to be used. Default: `none`.
+* __editorTitle__ | `string`: A string indicating the title of the explorer to be displayed. Default: `'Report'`.
+* __hideDataTable__ | `boolean`: A boolean value indicating whether to hide the data table from view. Default: `false`.
+* __histogramDensities__ | `boolean`: A boolean value indicating whether to display histogram densities. Default: `true`.
+* __models__ | `array`: An array of strings indicating models that may be fit on the data. Default: `[
+  'Simple Linear Regression'
+]`.
+* __plots__ | `array`: An array of strings indicating which plots to show to the user. Default: `[
+  'Bar Chart',
+  'Pie Chart',
+  'Histogram',
+  'Box Plot',
+  'Scatterplot',
+  'Heat Map',
+  'Mosaic Plot',
+  'Contour Chart'
+]`.
+* __questions__ | `node`: A node indicating surrounding text and question components to be displayed in a tabbed window. Default: `none`.
+* __showEditor__ | `boolean`: A boolean indicating whether to show the editor to the user. Default: `false`.
+* __showTestDecisions__ | `boolean`: A boolean indicating whether to show the decisions made for each test based on the calculated p-values. Default: `true`.
+* __statistics__ | `array`: An array of strings indicating which summary statistics may be calculated. Default: `[
+  'Mean',
+  'Median',
+  'Min',
+  'Max',
+  'Range',
+  'Interquartile Range',
+  'Standard Deviation',
+  'Variance',
+  'Correlation'
+]`.
+* __tables__ | `array`: An array of strings indicating which tables may be created from the data. Default: `[
+  'Frequency Table',
+  'Contingency Table'
+]`.
+* __tabs__ | `array`: An array of objects and keys indicating any custom tabs to add. Default: `[]`.
+* __tests__ | `array`: An array of strings indicating which hypothesis tests to include. Default: `[
+  'One-Sample Mean Test',
+  'One-Sample Proportion Test',
+  'Two-Sample Mean Test',
+  'Two-Sample Proportion Test',
+  'Correlation Test',
+  'Chi-squared Independence Test',
+  'One-Way ANOVA'
+]`.
+* __transformer__ | `boolean`: A boolean indicating whether one wants to display a variable transformer. Default: `false`.

@@ -812,7 +812,6 @@ DataExplorer.defaultProps = {
 		'variables': null
 	},
 	hideDataTable: false,
-	onSelect() {},
 	tabs: [],
 	questions: null,
 	transformer: false,
@@ -866,6 +865,28 @@ DataExplorer.defaultProps = {
 
 // TYPES //
 
+DataExplorer.propDescriptions = {
+	categorical: 'An array of strings indicating the name of each categorical variable.',
+	continuous: 'An array of strings indicating the name of each continuous variable.',
+	data: 'A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column.',
+	dataInfo: 'An object containing the keys \'name\', whose value is a string, \'info\', whose value is an array of strings in which each element in the array is a new line and \'variables\', an object with keys as variable names and values as variable descriptions.',
+	distributions: 'An array of strings indicating distributions that may be used in calculating probabilities. This functionality exists independently of the dataset provided. Currently limited to normal, uniform and exponential distributions',
+	editorProps: 'An object to be passed to `MarkdownEditor` indicating properties to be used',
+	editorTitle: 'A string indicating the title of the explorer to be displayed',
+	hideDataTable: 'A boolean value indicating whether to hide the data table from view',
+	histogramDensities: 'A boolean value indicating whether to display histogram densities',
+	models: 'An array of strings indicating models that may be fit on the data',
+	plots: 'An array of strings indicating which plots to show to the user',
+	questions: 'A node indicating surrounding text and question components to be displayed in a tabbed window',
+	showEditor: 'A boolean indicating whether to show the editor to the user',
+	showTestDecisions: 'A boolean indicating whether to show the decisions made for each test based on the calculated p-values',
+	statistics: 'An array of strings indicating which summary statistics may be calculated',
+	tables: 'An array of strings indicating which tables may be created from the data',
+	tabs: 'An array of objects and keys indicating any custom tabs to add',
+	tests: 'An array of strings indicating which hypothesis tests to include',
+	transformer: 'A boolean indicating whether one wants to display a variable transformer'
+};
+
 DataExplorer.propTypes = {
 	categorical: PropTypes.array,
 	continuous: PropTypes.array,
@@ -877,7 +898,6 @@ DataExplorer.propTypes = {
 	hideDataTable: PropTypes.bool,
 	histogramDensities: PropTypes.bool,
 	models: PropTypes.array,
-	onSelect: PropTypes.func,
 	plots: PropTypes.array,
 	questions: PropTypes.node,
 	showEditor: PropTypes.bool,

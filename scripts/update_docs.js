@@ -16,7 +16,11 @@ const isFunction = require( '@stdlib/assert/is-function' );
 const component = process.argv[ 2 ];
 const fpath = path.join( './app/components', component, 'index.js' );
 const mdpath = path.join( './docs/components', component+'.md' );
-const islepath = path.join( './component-playground', component+'.isle' );
+var islepath = path.join( './component-playground', component+'.isle' );
+if (component === 'data-explorer') {
+	islepath = path.join( './component-playground/data-explorer/data-explorer.isle');
+}
+
 const file = fs.readFileSync( fpath ).toString();
 const RE_DESCRIPTIONS = /\.(propDescriptions ?= ?{[\s\S]*?};)/;
 const RE_TYPES = /\.(propTypes ?= ?{[\s\S]*?};)/;
