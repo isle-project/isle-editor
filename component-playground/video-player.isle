@@ -5,13 +5,9 @@ date: Dec 27th, 2017
 state:
 server: https://isle.heinz.cmu.edu
 hideToolbar: true
-
 ---
 
 # Video Player
-
-
-<br />
 
 <Playground 
     style={{
@@ -30,10 +26,6 @@ hideToolbar: true
         VideoPlayer
     }}
 />
-
-
-<br />
-
 
 #### Options:
 

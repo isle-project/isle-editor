@@ -18,7 +18,9 @@ class RTable extends Component {
 			last: '',
 			waiting: false
 		};
+	}
 
+	componentDidMount() {
 		this.getTable();
 	}
 
@@ -91,13 +93,11 @@ RTable.propDescriptions = {
 	code: 'R code returning a data.frame containing the data to be displayed in the table',
 	libraries: 'R libraries that should be loaded automatically when the input `code` is executed',
 	prependCode: 'R code `string` (or `array` of R code blocks) to be prepended to the code stored in `code` when evaluating',
-	containerWidth: 'width of the enclosing container',
 	width: 'width (between 0 and 1)'
 };
 
 RTable.propTypes = {
 	code: PropTypes.string,
-	containerWidth: PropTypes.number,
 	libraries: PropTypes.array,
 	prependCode: PropTypes.oneOfType([
 		PropTypes.string,
@@ -115,7 +115,6 @@ RTable.contextTypes = {
 
 RTable.defaultProps = {
 	code: '',
-	containerWidth: null,
 	width: 0.5,
 	libraries: [],
 	prependCode: ''
