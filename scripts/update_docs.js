@@ -52,6 +52,11 @@ PropTypes.oneOfType = function oneOfType( arr ) {
 	out.isRequired = out+' (required)';
 	return out;
 };
+PropTypes.oneOf = function oneOf( arr ) {
+	const out = new String( typeof arr[ 0 ]);
+	out.isRequired = out+' (required)';
+	return out;
+};
 
 
 // FUNCTIONS //
