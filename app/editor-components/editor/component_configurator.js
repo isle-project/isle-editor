@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
@@ -223,8 +223,11 @@ class ComponentConfigurator extends Component {
 		if ( !componentClass ) {
 			return <span>Loading component specification...</span>;
 		}
-		const controls = [];
 		const keys = objectKeys( componentClass.propTypes );
+		if ( keys.length === 0 ) {
+			return <div style={{ marginBottom: 15 }}>Component has no properties.</div>
+		}
+		const controls = [];
 		for ( let i = 0; i < keys.length; i++ ) {
 			let key = keys[ i ];
 			if ( key === 'children' ) {
@@ -261,7 +264,26 @@ class ComponentConfigurator extends Component {
 				</tr>;
 			controls.push( elem );
 		}
-		return controls;
+		return ( 
+			<Fragment>
+				<label>Click on the box to add the respective options:</label>
+				<div style={{ height: '350px', overflowY: 'scroll' }}>
+					<table className="table table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th>Option</th>
+								<th>Description</th>
+								<th>Type</th>
+								<th>Default</th>
+							</tr>
+						</thead>
+						<tbody>
+							{controls}
+						</tbody>
+					</table>
+				</div>
+			</Fragment>
+		);
 	}
 
 	render() {
@@ -276,22 +298,7 @@ class ComponentConfigurator extends Component {
 					<Modal.Title>Configure {this.props.component.name}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<label>Click on the box to add the respective options:</label>
-					<div style={{ height: '350px', overflowY: 'scroll' }}>
-						<table className="table table-bordered table-condensed">
-							<thead>
-								<tr>
-									<th>Option</th>
-									<th>Description</th>
-									<th>Type</th>
-									<th>Default</th>
-								</tr>
-							</thead>
-							<tbody>
-								{this.renderPropertyControls()}
-							</tbody>
-						</table>
-					</div>
+					{this.renderPropertyControls()}
 					<FormGroup>
 						<ControlLabel>Code:</ControlLabel>
 						<FormControl
