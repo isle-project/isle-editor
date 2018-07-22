@@ -385,8 +385,6 @@ snippet LearnWordVennDiagram
 snippet LearnImagePixelPicker
 	<LearnImagePixelPicker />
 
-/* REACT BOOTSTRAP SNIPPETS */
-
 snippet Row
 	<Row>
 
@@ -396,8 +394,6 @@ snippet Col
 	<Col md={12}>
 
 	</Col>
-
-/* SPECTACLE SNIPPETS */
 
 snippet Appear
 	<Appear>
