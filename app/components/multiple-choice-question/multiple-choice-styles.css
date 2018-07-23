@@ -20,3 +20,9 @@
 	font-stretch: extra-expanded;
 	color: #2e4468;
 }
+
+.multiple-choice-question-toolbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}

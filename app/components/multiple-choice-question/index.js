@@ -5,11 +5,19 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 import Panel from 'react-bootstrap/lib/Panel';
+import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import InstructorBar from 'components/instructor-bar';
+import ChatButton from 'components/chat-button';
+import HintButton from 'components/hint-button';
 import AnswerOption from './answer_option.js';
 import Question from './question.js';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor:multiple-choice-question' );
 
 
 // MAIN //
@@ -80,6 +88,18 @@ class MultipleChoiceQuestion extends Component {
 		}
 	}
 
+	logHint = ( idx ) => {
+		debug( 'Logging hint...' );
+		const { session } = this.context;
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'MULTIPLE_CHOICE_OPEN_HINT',
+				value: idx
+			});
+		}
+	}
+
 	submitQuestion = () => {
 		let sol = this.props.solution;
 		let newCorrect = new Array( this.props.answers.length );
@@ -131,7 +151,7 @@ class MultipleChoiceQuestion extends Component {
 	render() {
 		const props = this.props;
 		const allowMultipleAnswers = isArray( this.props.solution );
-
+		const nHints = props.hints.length;
 		const renderAnswerOptionsMultiple = ( key, id ) => {
 			let isSolution = contains( this.props.solution, id );
 			return (
@@ -205,13 +225,25 @@ class MultipleChoiceQuestion extends Component {
 							props.answers.map( renderAnswerOptionsSingle )
 						}
 					</ListGroup>
-					<Button
-						bsSize="small"
-						bsStyle="success"
-						block
-						onClick={this.submitQuestion}
-						disabled={disabled}
-					>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
+					<div className="multiple-choice-question-toolbar">
+						<Button
+							bsSize="small"
+							bsStyle="success"
+							onClick={this.submitQuestion}
+							disabled={disabled}
+							block
+						>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
+						{ nHints > 0 ?
+							<HintButton onClick={this.logHint} hints={props.hints} placement={props.hintPlacement} /> :
+							null
+						}
+						{
+							props.chat && props.id ?
+							<div style={{ display: 'inline-block' }}>
+								<ChatButton for={props.id} />
+							</div> : null
+						}
+					</div>
 					{props.id ? <InstructorBar id={props.id} dataType="factor" /> : null }
 				</Panel.Body>
 			</Panel>
@@ -223,8 +255,11 @@ class MultipleChoiceQuestion extends Component {
 // DEFAULT PROPERTIES //
 
 MultipleChoiceQuestion.defaultProps = {
+	hints: [],
+	hintPlacement: 'bottom',
 	disabled: false,
 	displaySolution: false,
+	chat: false,
 	provideFeedback: true,
 	onSubmit(){},
 	question: ''
@@ -234,13 +269,14 @@ MultipleChoiceQuestion.defaultProps = {
 // PROPERTY TYPES //
 
 MultipleChoiceQuestion.propDescriptions = {
-	'question': 'the question displayed at the top of the multiple choice component',
-	'solution': 'number denoting which answer is correct or an `array` of the correct answer numbers in case the learner should be able to select multiple answers',
-	'answers': 'an `array` of answer objects. Each answer should be an object with `content` and `explanation` fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect',
-	'disabled': 'controls whether the question is disabled',
-	'provideFeedback': 'indicates whether feedback including the correct answer should be displayed after learners submit their answers',
-	'displaySolution': 'controls whether the solution is displayed upfront',
-	'onSubmit': 'callback invoked after an answer is submitted'
+	question: 'the question displayed at the top of the multiple choice component',
+	solution: 'number denoting which answer is correct or an `array` of the correct answer numbers in case the learner should be able to select multiple answers',
+	answers: 'an `array` of answer objects. Each answer should be an object with `content` and `explanation` fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect',
+	disabled: 'controls whether the question is disabled',
+	chat: 'controls whether the element should have an integrated chat',
+	provideFeedback: 'indicates whether feedback including the correct answer should be displayed after learners submit their answers',
+	displaySolution: 'controls whether the solution is displayed upfront',
+	onSubmit: 'callback invoked after an answer is submitted'
 };
 
 MultipleChoiceQuestion.propTypes = {
@@ -250,7 +286,10 @@ MultipleChoiceQuestion.propTypes = {
 		PropTypes.array
 	]).isRequired,
 	answers: PropTypes.array.isRequired,
+	hintPlacement: PropTypes.string,
+	hints: PropTypes.arrayOf( PropTypes.string ),
 	disabled: PropTypes.bool,
+	chat: PropTypes.bool,
 	provideFeedback: PropTypes.bool,
 	displaySolution: PropTypes.bool,
 	onSubmit: PropTypes.func

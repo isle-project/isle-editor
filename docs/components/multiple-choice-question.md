@@ -24,7 +24,10 @@ An ISLE component that renders a multiple choice question. It supports the case 
 * __question__ | `string`: the question displayed at the top of the multiple choice component. Default: `''`.
 * __solution__ | `(number|array) (required)`: number denoting which answer is correct or an `array` of the correct answer numbers in case the learner should be able to select multiple answers. Default: `none`.
 * __answers__ | `array (required)`: an `array` of answer objects. Each answer should be an object with `content` and `explanation` fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect. Default: `none`.
+* __hintPlacement__ | `string`: undefined. Default: `'bottom'`.
+* __hints__ | `array<string>`: undefined. Default: `[]`.
 * __disabled__ | `boolean`: controls whether the question is disabled. Default: `false`.
+* __chat__ | `boolean`: controls whether the element should have an integrated chat. Default: `false`.
 * __provideFeedback__ | `boolean`: indicates whether feedback including the correct answer should be displayed after learners submit their answers. Default: `true`.
 * __displaySolution__ | `boolean`: controls whether the solution is displayed upfront. Default: `false`.
 * __onSubmit__ | `function`: callback invoked after an answer is submitted. Default: `onSubmit(){}`.
