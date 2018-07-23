@@ -12,3 +12,10 @@
 	color: #2e4468;
 }
 
+.number-question-toolbar {
+	float: right;
+}
+
+.number-question-input-wrapper {
+	margin-bottom: 12px;
+}

@@ -16,11 +16,12 @@ A number question component.
 #### Options:
 
 * __question__ | `string`: number question. Default: `''`.
-* __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'bottom'`.
+* __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'top'`.
 * __hints__ | `array<string>`: hints providing guidance on how to answer the question. Default: `[]`.
 * __solution__ | `number`: a numeric answer to the problem. Default: `none`.
 * __digits__ | `number`: number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.. Default: `3`.
 * __max__ | `number`: maximum allowed input value. Default: `null`.
 * __min__ | `number`: minimum allowed input value. Default: `null`.
 * __chat__ | `boolean`: controls whether the element should have an integrated chat. Default: `false`.
-* __onChange__ | `function`: callback  which is triggered after the submit action. Default: `onChange() {}`.
+* __onChange__ | `function`: callback  which is triggered after the value of the number field changes; receives the current value as its sole argument. Default: `onChange() {}`.
+* __onSubmit__ | `function`: callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter. Default: `onSubmit() {}`.

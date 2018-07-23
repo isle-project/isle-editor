@@ -74,6 +74,7 @@ class NumberQuestion extends Component {
 			} else {
 				correct = roundn( val, -digits ) === roundn( solution, -digits );
 			}
+			this.props.onSubmit( correct, this.state.value );
 			session.addNotification({
 				title: 'Answer submitted.',
 				message: correct ? 'Congratulations, that is correct!' : 'Not quite. Compare your answer with the solution.',
@@ -81,6 +82,7 @@ class NumberQuestion extends Component {
 				position: 'tr'
 			});
 		} else {
+			this.props.onSubmit( null, this.state.value );
 			session.addNotification({
 				title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
 				message: this.state.submitted ?
@@ -124,40 +126,42 @@ class NumberQuestion extends Component {
 			<Panel className="number-question">
 				<Panel.Body>
 					{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
-					<label>Your answer:</label>
-					<NumberInput
-						step="any"
-						onChange={this.handleChange}
-						defaultValue={this.state.value}
-						disabled={this.state.submitted && solutionPresent}
-						inline
-						width={90}
-						min={this.props.min}
-						max={this.props.max}
-						numbersOnly={false}
-					/>
-					{ this.state.submitted && this.props.solution ?
-						<span>
-							<span> | </span>
-							<label>Solution:</label>
-							<NumberInput
-								disabled
-								defaultValue={this.props.solution}
-								inline
-								width={90}
-							/>
-						</span>:
-						null
-					}
-					<ButtonToolbar style={{ marginTop: '8px', marginBottom: '4px' }}>
-						<Button
-							bsStyle="primary"
-							bsSize="sm"
+					<div className="number-question-input-wrapper">
+						<label>Your answer:</label>
+						<NumberInput
+							step="any"
+							onChange={this.handleChange}
+							defaultValue={this.state.value}
 							disabled={this.state.submitted && solutionPresent}
-							onClick={this.submitHandler}
-						>
-							{ ( this.state.submitted && !this.props.solution ) ? 'Resubmit' : 'Submit' }
-						</Button>
+							inline
+							width={90}
+							min={this.props.min}
+							max={this.props.max}
+							numbersOnly={false}
+						/>
+						{ this.state.submitted && this.props.solution ?
+							<span>
+								<span> | </span>
+								<label>Solution:</label>
+								<NumberInput
+									disabled
+									defaultValue={this.props.solution}
+									inline
+									width={90}
+								/>
+							</span>:
+							null
+						}
+					</div>
+					<Button
+						bsStyle="primary"
+						bsSize="sm"
+						disabled={this.state.submitted && solutionPresent}
+						onClick={this.submitHandler}
+					>
+						{ ( this.state.submitted && !this.props.solution ) ? 'Resubmit' : 'Submit' }
+					</Button>
+					<ButtonToolbar className="number-question-toolbar">
 						{ nHints > 0 ?
 							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
 							null
@@ -182,13 +186,14 @@ class NumberQuestion extends Component {
 NumberQuestion.defaultProps = {
 	question: '',
 	hints: [],
-	hintPlacement: 'bottom',
+	hintPlacement: 'top',
 	solution: null,
 	digits: 3,
 	max: PINF,
 	min: NINF,
 	chat: false,
-	onChange() {}
+	onChange() {},
+	onSubmit() {}
 };
 
 
@@ -203,7 +208,8 @@ NumberQuestion.propDescriptions = {
 	max: 'maximum allowed input value',
 	min: 'minimum allowed input value',
 	chat: 'controls whether the element should have an integrated chat',
-	onChange: 'callback  which is triggered after the submit action'
+	onChange: 'callback  which is triggered after the value of the number field changes; receives the current value as its sole argument',
+	onSubmit: 'callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter'
 };
 
 NumberQuestion.propTypes = {
@@ -215,7 +221,8 @@ NumberQuestion.propTypes = {
 	max: PropTypes.number,
 	min: PropTypes.number,
 	chat: PropTypes.bool,
-	onChange: PropTypes.func
+	onChange: PropTypes.func,
+	onSubmit: PropTypes.func
 };
 
 NumberQuestion.contextTypes = {
