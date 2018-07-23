@@ -107,12 +107,22 @@ class CheckboxInput extends Input {
 
 // DEFAULT PROPERTIES //
 
+CheckboxInput.propDescriptions = {
+	bind: 'A string indicating the variable for the boolean to be assigned',
+	onChange: 'A function to be called when a checkbox is clicked. The function takes an argument value and should change whether value is true or false',
+	defaultValue: 'A boolean value indicating the default value of the checkbox',
+	disabled: 'A function to be called when an answer is submitted',
+	inline: 'Indicates whether the checkbox is displayed inline',
+	legend: 'A string indicating the text displayed next to the checkbox'
+}
+
 CheckboxInput.defaultProps = {
 	bind: '',
 	onChange() {},
 	defaultValue: false,
 	disabled: false,
-	inline: false
+	inline: false,
+	legend: 'Checkbox'
 };
 
 
@@ -123,7 +133,8 @@ CheckboxInput.propTypes = {
 	defaultValue: PropTypes.bool,
 	disabled: PropTypes.bool,
 	inline: PropTypes.bool,
-	onChange: PropTypes.func
+	onChange: PropTypes.func,
+	legend: PropTypes.string
 };
 
 
