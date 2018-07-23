@@ -238,7 +238,7 @@ NumberInput.propDescriptions = {
 	step: 'A number indicating the incremental changes when using the increment arrows',
 	width: 'A number indicating the width of the input bar in pixels',
 	inline: 'Indicates whether the input is displayed inline',
-	legend: 'A string indicating the text displayed next to the checkbox',
+	legend: 'A string indicating the text displayed next to the number input',
 	onBlur: 'A function to be called when using a blur method',
 	numbersOnly: 'A boolean value indicating whether only numbers are accepted',
 	value: 'A property indicating a value that can overwrite others'
