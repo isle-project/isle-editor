@@ -30,8 +30,8 @@ A module in which the author may place interactive content within a component, i
 
 [Open interactive preview](https://isle.heinz.cmu.edu/components/playground)
 
-#### Options
-* __style__: A `style` element with `position`, `left`, `right`, `top`, `width` and `height`. Optional argument. Default: `NULL`.
-* __code__: The code to be displayed in the playground box. This code will be editable by the user in the brower or lesson. Simply copy and paste desired code with '\`' surrounding the code. Default: `NULL`. 
-* __scope__: The comma-delimited names of the elements of the code that you wish to display. Msot often this is the name of the component you wish to display. Note if using multiple elements the `scope` argument behaves unpredictably and it is recommended that you include all components in order. Default: `NULL`.
+#### Options:
 
+* __code__ | `string`: The code to be displayed in the playground box. This code will be editable by the user in the brower or lesson. Default: `''`.
+* __scope__ | `object`: scope object with variables / components which should be made available to the executed code; most often this is the name of the component you wish to display. Default: `{}`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.

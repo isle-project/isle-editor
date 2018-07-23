@@ -62,6 +62,12 @@ Playground.defaultProps = {
 
 // PROPERTY TYPES //
 
+Playground.propDescriptions = {
+	code: 'The code to be displayed in the playground box. This code will be editable by the user in the brower or lesson',
+	scope: 'scope object with variables / components which should be made available to the executed code; most often this is the name of the component you wish to display',
+	style: 'CSS inline styles'
+};
+
 Playground.propTypes = {
 	code: PropTypes.string,
 	scope: PropTypes.object,
