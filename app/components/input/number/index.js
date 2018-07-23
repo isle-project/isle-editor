@@ -228,9 +228,26 @@ class NumberInput extends Input {
 
 // DEFAULT PROPERTIES //
 
+NumberInput.propDescriptions = {
+	bind: 'A string indicating the variable for the number to be assigned',
+	onChange: 'A function to be called when a number is inputted',
+	defaultValue: 'A value indicating the default value of the input at start',
+	disabled: 'A boolean indicating whether the input is active or not',
+	min: 'A number indicating the smallest possible value that may be inserted',
+	max: 'A number indicating the maximum value that may be inserted',
+	step: 'A number indicating the incremental changes when using the increment arrows',
+	width: 'A number indicating the width of the input bar in pixels',
+	inline: 'Indicates whether the input is displayed inline',
+	legend: 'A string indicating the text displayed next to the checkbox',
+	onBlur: 'A function to be called when using a blur method',
+	numbersOnly: 'A boolean value indicating whether only numbers are accepted',
+	value: 'A property indicating a value that can overwrite others'
+}
+
 NumberInput.defaultProps = {
 	bind: '',
 	disabled: false,
+	legend: 'Number Input',
 	min: NINF,
 	max: PINF,
 	step: 1,
@@ -251,6 +268,7 @@ NumberInput.propTypes = {
 	defaultValue: PropTypes.number,
 	disabled: PropTypes.bool,
 	inline: PropTypes.bool,
+	legend: PropTypes.string,
 	max: PropTypes.number,
 	min: PropTypes.number,
 	numbersOnly: PropTypes.bool,
