@@ -42,7 +42,7 @@ class BeaconTooltip extends Component {
 			<Fragment>
 				{this.props.children}
 				<Floater
-					callback={this.props.clbk}
+					callback={this.props.onChange}
 					content={this.props.content}
 					event={this.props.event}
 					placement={this.props.placement}
@@ -73,32 +73,42 @@ class BeaconTooltip extends Component {
 // DEFAULT PROPERTIES //
 
 BeaconTooltip.defaultProps = {
-	clbk() {},
+	title: null,
 	content: '`content` comes here...',
 	event: 'click',
-	offset: 15,
 	placement: 'left',
 	target: '',
-	title: null
+	offset: 15,
+	onChange() {},
 };
 
 
 // PROPERTY TYPES //
 
+BeaconTooltip.propDescriptions = {
+	title: 'title to be displayed at the top of the tooltip',
+	content: 'tooltip content',
+	event: 'if set to `click`, tooltip is toggled when clicking on beacon; if set to `hover`, the tooltip is activated via hovering',
+	placement: 'placement of the tooltip relative to `target` (either `top`, `top-start`, `top-end`, `bottom`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end`, `auto`, or `center`)',
+	target: 'class or ID selector for element to attach tooltip to',
+	offset: 'distance between the tooltip and `target` in pixels',
+	onChange: 'callback invoked upon state change of the tooltip. Receives two arguments: the `action` (`open` or `close`) and the passed `props`'
+};
+
 BeaconTooltip.propTypes = {
-	clbk: PropTypes.func,
+	title: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	content: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.node
 	]),
 	event: PropTypes.oneOf([ 'click', 'hover' ]),
-	offset: PropTypes.number,
 	placement: PropTypes.oneOf([ 'top', 'top-start', 'top-end', 'bottom', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end', 'auto', 'center' ]),
 	target: PropTypes.string,
-	title: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.node
-	])
+	offset: PropTypes.number,
+	onChange: PropTypes.func
 };
 
 
