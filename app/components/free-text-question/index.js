@@ -118,7 +118,7 @@ class FreeTextQuestion extends Component {
 				position: 'tr'
 			});
 		}
-
+		this.props.onSubmit( this.state.value );
 		this.setState({
 			submitted: true
 		});
@@ -317,7 +317,8 @@ FreeTextQuestion.defaultProps = {
 	submissionMsg: '',
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
 	maxlength: 2500,
-	onChange() {}
+	onChange() {},
+	onSubmit() {}
 };
 
 
@@ -335,7 +336,8 @@ FreeTextQuestion.propDescriptions = {
 	submissionMsg: 'notification displayed when the learner first submits his answer',
 	resubmissionMsg: 'notification displayed for all submissions after the first one',
 	maxlength: 'maximum allowed number of characters',
-	onChange: 'callback invoked every time the text area value changes'
+	onChange: 'callback invoked every time the text area value changes; receives the current text as its sole argument',
+	onSubmit: 'callback invoked when user submits an answer; receives the submitted text as its sole argument'
 };
 
 FreeTextQuestion.propTypes = {
@@ -353,7 +355,8 @@ FreeTextQuestion.propTypes = {
 	submissionMsg: PropTypes.string,
 	resubmissionMsg: PropTypes.string,
 	maxlength: PropTypes.number,
-	onChange: PropTypes.func
+	onChange: PropTypes.func,
+	onSubmit: PropTypes.func
 };
 
 FreeTextQuestion.contextTypes = {
