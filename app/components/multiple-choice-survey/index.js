@@ -233,6 +233,16 @@ MultipleChoiceSurvey.defaultProps = {
 
 // PROPERTY TYPES //
 
+MultipleChoiceSurvey.propDescriptions = {
+	allowMultipleAnswers: 'A boolean indicating whether one wishes to allow students to answer the survey multiple times',
+	anonymous: 'A boolean indicating whether student answers are anonymized',
+	answers: 'An array indicating answer choices for the students',
+	multipleAnswers: 'A boolean value indicating whether students may select more than one answer. Note that this differs from allowMultipleAnswers in that allow makes students able to submit the question multiple times.',
+	onSubmit: 'A function to be called when an answer is submitted',
+	question: 'A string indicating the question to ask the students'
+};
+
+
 MultipleChoiceSurvey.propTypes = {
 	allowMultipleAnswers: PropTypes.bool,
 	anonymous: PropTypes.bool,
