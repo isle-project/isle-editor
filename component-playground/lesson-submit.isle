@@ -1,14 +1,27 @@
+---
+title: "Lesson Submit"
+author: Philipp Burckhardt
+date: Jul 22nd, 2018
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+---
+
 # Lesson Submit
 
-A button to be displayed at the end of a lesson for students to click on. By default, a message confirming completion of the lesson is sent to their email address.
-
-#### Example:
-
-``` js
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '900px'
+    }}
+    code={`
 <LessonSubmit />
-```
+`}
+    scope={{
+        LessonSubmit
+    }}
+/>
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/js-shell/)
 
 #### Options:
 

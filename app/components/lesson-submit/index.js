@@ -86,8 +86,10 @@ class LessonSubmit extends Component {
 		const { session } = this.context;
 		session.finalize();
 		let notificationMesage = 'Lesson successfully completed.';
-		if ( this.props.message ) {
-			notificationMesage += 'You will receive a confirmation email shortly';
+		if ( this.props.sendConfirmationEmail ) {
+			notificationMesage += ' You will receive a confirmation email shortly';
+			const msg = createMessage( session, this.props.message );
+			session.sendMail( msg, session.user.email );
 		}
 		session.addNotification({
 			title: 'Completed',
@@ -100,8 +102,6 @@ class LessonSubmit extends Component {
 			type: 'LESSON_SUBMIT',
 			value: 'Lesson submitted!'
 		});
-		const msg = createMessage( session, this.props.message );
-		session.sendMail( msg, session.user.email );
 		this.setState({
 			disabled: true
 		});
@@ -163,18 +163,28 @@ class LessonSubmit extends Component {
 LessonSubmit.defaultProps = {
 	label: 'Finish lesson',
 	message: '',
-	onClick() {},
-	style: {}
+	sendConfirmationEmail: true,
+	style: {},
+	onClick() {}
 };
 
 
 // PROPERTY TYPES //
 
+LessonSubmit.propDescriptions = {
+	label: 'label of submit button',
+	message: 'message for confirmation email',
+	sendConfirmationEmail: 'controls whether to send confirmation email upon lesson submission',
+	style: 'CSS inline styles',
+	onClick: 'callback invoked when clicking on the submission button'
+};
+
 LessonSubmit.propTypes = {
 	label: PropTypes.string,
 	message: PropTypes.string,
-	onClick: PropTypes.func,
-	style: PropTypes.object
+	sendConfirmationEmail: PropTypes.bool,
+	style: PropTypes.object,
+	onClick: PropTypes.func
 };
 
 LessonSubmit.contextTypes = {
