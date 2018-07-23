@@ -149,6 +149,19 @@ class SelectInput extends Input {
 
 // DEFAULT PROPERTIES //
 
+SelectInput.propDescriptions = {
+	bind: 'A string indicating the variable for the number to be assigned',
+	onChange: 'A function to be called when a number is inputted',
+	clearable: 'A boolean value indicating whether one may clear choice(s) made',
+	defaultValue: 'A value indicating the default value of the input at start',
+	disabled: 'A boolean indicating whether the input is active or not',
+	inline: 'Indicates whether the input is displayed inline',
+	legend: 'A string indicating the text displayed next to the input',
+	options: 'An array of indicating the choices available the user',
+	multi: 'A boolean indicating whether one may select multiple answers',
+	placeholder: 'A string indicating the value to be displayed before an initial choice is made'
+}
+
 SelectInput.defaultProps = {
 	bind: '',
 	onChange() {},
