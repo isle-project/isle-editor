@@ -121,8 +121,22 @@ class TextInput extends Input {
 
 // DEFAULT PROPERTIES //
 
+TextInput.propDescriptions = {
+	onChange: 'A function to be called when a number is inputted',
+	defaultValue: 'A value indicating the default value of the input at start',
+	disabled: 'A boolean indicating whether the input is active or not',
+	width: 'A number indicating the width of the input in pixels',
+	inline: 'Indicates whether the input is displayed inline',
+	legend: 'A string indicating the text displayed next to the number input',
+	onBlur: 'A function to be called when using a blur method',
+	numbersOnly: 'A boolean value indicating whether only numbers are accepted',
+	value: 'A property indicating a value that can overwrite others',
+	placeholder: 'A string indicating the value to be displayed before an initial choice is made'
+}
+
 TextInput.defaultProps = {
 	defaultValue: '',
+	legend: 'Text Input',
 	width: 80,
 	onChange(){},
 	inline: false,
@@ -134,6 +148,7 @@ TextInput.defaultProps = {
 
 TextInput.propTypes = {
 	defaultValue: PropTypes.string,
+	legend: PropTypes.string,
 	inline: PropTypes.bool,
 	onChange: PropTypes.func,
 	placeholder: PropTypes.string,
