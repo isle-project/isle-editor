@@ -388,7 +388,7 @@ snippet LearnImagePixelPicker
 snippet Row
 	<Row>
 
-	</Col>
+	</Row>
 
 snippet Col
 	<Col md={12}>

@@ -103,8 +103,8 @@ body {
 
 .btn-primary.disabled, .btn-primary:disabled {
 	box-shadow: none !important;
-	background-color: #0275d8;
-	border-color: #0275d8;
+	background-color: #2e4468;
+	border-color: #2e4468;
 }
 
 .btn-primary:active, .btn-primary.active,
