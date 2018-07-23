@@ -2,7 +2,7 @@
 	"log": {
 		"marginLeft": "8px",
 		"fontFamily": "monospace",
-		"color": "lightgreen",
+		"color": "darkgreen",
 		"whiteSpace": "pre-wrap"
 	},
 	"error": {

@@ -133,7 +133,6 @@ class RShell extends React.Component {
 
 		this.state = {
 			id: counter,
-			disabled: props.disabled,
 			exhaustedHints: props.hints.length === 0,
 			result: '',
 			plots: [],
@@ -286,7 +285,7 @@ class RShell extends React.Component {
 		this.aceSession.setUseWrapMode( true );
 		this.editor.setValue( this.props.code, -1 );
 		this.editor.resize();
-		if ( this.state.disabled ) {
+		if ( this.props.disabled ) {
 			this.editor.setOptions({
 				readOnly: true,
 				highlightActiveLine: false,
@@ -343,7 +342,25 @@ class RShell extends React.Component {
 			if ( this.props.precompute ) {
 				this.handleEvaluationClick();
 			}
-		} else {
+		}
+		else if ( this.props.disabled !== prevProps.disabled ) {
+			let opts;
+			if ( this.props.disabled ) {
+				opts = {
+					readOnly: true,
+					highlightActiveLine: false,
+					highlightGutterLine: false
+				};
+			} else {
+				opts = {
+					readOnly: false,
+					highlightActiveLine: true,
+					highlightGutterLine: true
+				};
+			}
+			this.editor.setOptions( opts );
+		}
+		else {
 			this.editor.resize();
 			const node = ReactDom.findDOMNode( this );
 			// Undo Spectacle scaling as it messes up the rendering of the ACE editor:
@@ -447,7 +464,7 @@ class RShell extends React.Component {
 				style={this.props.style}
 			>
 				<div className="rshell-editor" ref={( div ) => { this.editorDiv = div; }}></div>
-				{ !this.state.disabled ?
+				{ !this.props.disabled ?
 					<Button
 						bsStyle="primary"
 						bsSize="sm"
@@ -473,7 +490,7 @@ class RShell extends React.Component {
 				<ButtonToolbar style={{ float: 'right', marginTop: '8px' }}>
 					{ nHints > 0 ?
 						<HintButton
-							disabled={this.state.disabled}
+							disabled={this.props.disabled}
 							hints={this.props.hints}
 							onClick={this.logHint}
 							onFinished={() => {
@@ -482,7 +499,7 @@ class RShell extends React.Component {
 						/> :
 						null
 					}
-					{ ( this.props.solution && !this.state.disabled ) ?
+					{ ( this.props.solution && !this.props.disabled ) ?
 						showSolutionButton(
 							this.state.exhaustedHints,
 							this.handleSolutionClick,
@@ -557,7 +574,7 @@ RShell.propTypes = {
 	resettable: PropTypes.bool,
 	style: PropTypes.object,
 	onEvaluate: PropTypes.func,
-	onResult: PropTypes.func,
+	onResult: PropTypes.func
 };
 
 RShell.contextTypes = {
@@ -583,7 +600,7 @@ RShell.defaultProps = {
 	resettable: false,
 	style: {},
 	onEvaluate(){},
-	onResult() {},
+	onResult() {}
 };
 
 

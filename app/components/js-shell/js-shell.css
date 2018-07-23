@@ -32,7 +32,7 @@
 	cursor: pointer;
 	font-size: 24px;
 	text-align: center;
-	color: white;
+	color: black;
 	z-index: 2;
 }
 
@@ -40,7 +40,7 @@
 	position: relative;
 	width: 98%;
 	height: 160px;
-	background: rgb(60,60,60);
+	background: #f3f2f3;
 	margin-left: 1%;
 	margin-bottom: 20px;
 	border: solid 1px black;

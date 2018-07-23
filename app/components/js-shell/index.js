@@ -71,7 +71,6 @@ class JSShell extends Component {
 		super( props );
 
 		this.state = {
-			disabled: props.disabled,
 			log: [],
 			exhaustedHints: props.hints.length === 0,
 			solutionOpen: false
@@ -89,22 +88,58 @@ class JSShell extends Component {
 		}
 	}
 
-
 	componentDidMount() {
 		this.editor = ace.edit( this.editorDiv );
 		this.editor.getSession().setMode( 'ace/mode/javascript' );
-		this.editor.setTheme( 'ace/theme/monokai' );
+		this.editor.setTheme( 'ace/theme/katzenmilch' );
 		this.editor.setValue( this.props.code, -1 );
 		this.editor.$blockScrolling = PINF;
 		this.editor.setOptions({
 			maxLines: max( 5, this.props.lines ),
-			minLines: this.props.lines
+			minLines: this.props.lines,
+			fontFamily: this.props.fontFamily,
+			fontSize: this.props.fontSize
 		});
+		if ( this.props.disabled ) {
+			this.editor.setOptions({
+				readOnly: true,
+				highlightActiveLine: false,
+				highlightGutterLine: false
+			});
+			this.editor.renderer.$cursorLayer.element.style.opacity = 0;
+			this.editor.textInput.getElement().disabled = true;
+		}
 		this.innerConsole();
+		if ( this.props.precompute ) {
+			this.handleEvaluationClick();
+		}
 		this.register();  // registers the component for the speech interface
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate( prevProps ) {
+		if ( this.props.code !== prevProps.code ) {
+			this.editor.setValue( this.props.code, 1 );
+			if ( this.props.precompute ) {
+				this.handleEvaluationClick();
+			}
+		}
+		else if ( this.props.disabled !== prevProps.disabled ) {
+			let opts;
+			if ( this.props.disabled ) {
+				opts = {
+					readOnly: true,
+					highlightActiveLine: false,
+					highlightGutterLine: false
+				};
+			} else {
+				opts = {
+					readOnly: false,
+					highlightActiveLine: true,
+					highlightGutterLine: true
+				};
+			}
+			this.editor.setOptions( opts );
+		}
 		this.scrollToBottom();
 	}
 
@@ -273,7 +308,7 @@ class JSShell extends Component {
 		return (
 			<HintButton
 				hints={this.props.hints}
-				disabled={this.state.disabled}
+				disabled={this.props.disabled}
 				onClick={this.logHint}
 				onFinished={() => {
 					this.setState({ exhaustedHints: true });
@@ -311,7 +346,7 @@ class JSShell extends Component {
 		const nHints = this.props.hints.length;
 		const toolbar = <ButtonToolbar style={{ float: 'right', marginTop: '8px' }}>
 			{ nHints > 0 ? this.showHints() : null }
-			{ ( this.props.solution && !this.state.disabled ) ?
+			{ ( this.props.solution && !this.props.disabled ) ?
 				showSolutionButton(
 					this.state.exhaustedHints,
 					this.handleSolutionClick,
@@ -337,7 +372,7 @@ class JSShell extends Component {
 				<div className="JSShell">
 					{editor}
 					<div className="toolbar">
-						{ !this.state.disabled ?
+						{ !this.props.disabled ?
 							<Button
 								bsStyle="primary"
 								bsSize="sm"
@@ -346,13 +381,13 @@ class JSShell extends Component {
 									marginBottom: '8px'
 								}}
 								onClick={this.handleEvaluationClick}
-							>Test Code</Button> :
+							>Evaluate</Button> :
 							<span />
 						}
 						{ toolbar }
 						<br />
 					</div>
-					{ this.renderResetButton() }
+					{ !this.props.disabled ? this.renderResetButton() : null }
 					<div
 						ref={( div ) => { this.consoleOutput = div; }}
 						className="console"
@@ -369,33 +404,48 @@ class JSShell extends Component {
 // DEFAULT PROPERTIES //
 
 JSShell.defaultProps = {
-	onResult() {},
-	onEvaluate() {},
+	code: '',
+	solution: '',
+	hints: [],
+	precompute: false,
 	chat: false,
 	check: null,
-	code: '',
-	lines: 5,
-	solution: '',
-	libraries: [],
-	hints: [],
-	fontSize: 16,
-	fontFamily: 'monospace',
 	disabled: false,
-	vars: null
+	lines: 5,
+	fontFamily: 'Courier New',
+	fontSize: 16,
+	vars: null,
+	onEvaluate() {}
 };
 
 
 // PROPERTY TYPES //
 
+JSShell.propDescriptions = {
+	code: 'JavaScript code to be evaluated',
+	solution: 'for programming questions, code `string` representing the official solution for the problem',
+	hints: 'for programming questions, an array of hints providing guidance on how to approach the problem',
+	precompute: 'controls whether the default code should be executed once the component has mounted',
+	chat: 'controls whether group chat functionality should be enabled',
+	check: 'appended JavaScript code to check the `code` to be evaluated',
+	disabled: 'controls whether to disable all user inputs and make the code block static',
+	lines: 'number of lines to display',
+	vars: 'scope object with variables that should be made available to evaluated `code`',
+	onEvaluate: 'callback invoked whenever the `Evaluate` button is clicked'
+};
+
 JSShell.propTypes = {
+	code: PropTypes.string,
+	solution: PropTypes.string,
+	hints: PropTypes.array,
+	precompute: PropTypes.bool,
 	chat: PropTypes.bool,
 	check: PropTypes.string,
-	code: PropTypes.string,
 	disabled: PropTypes.bool,
-	hints: PropTypes.array,
 	lines: PropTypes.number,
+	fontFamily: PropTypes.string,
+	fontSize: PropTypes.number,
 	onEvaluate: PropTypes.func,
-	solution: PropTypes.string,
 	vars: PropTypes.object
 };
 
