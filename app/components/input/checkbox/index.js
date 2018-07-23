@@ -111,7 +111,7 @@ CheckboxInput.propDescriptions = {
 	bind: 'A string indicating the variable for the boolean to be assigned',
 	onChange: 'A function to be called when a checkbox is clicked. The function takes an argument value and should change whether value is true or false',
 	defaultValue: 'A boolean value indicating the default value of the checkbox',
-	disabled: 'A function to be called when an answer is submitted',
+	disabled: 'A boolean indicating whether the input is active or not',
 	inline: 'Indicates whether the checkbox is displayed inline',
 	legend: 'A string indicating the text displayed next to the checkbox'
 }
