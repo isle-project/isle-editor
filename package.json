@@ -240,7 +240,7 @@
     "uniq": "^1.0.1",
     "utf-8-validate": "^5.0.1",
     "venn.js": "0.2.20",
-    "victory": "0.27.2",
+    "victory": "30.0.0",
     "webpack": "4.16.1"
   },
   "devEngines": {
