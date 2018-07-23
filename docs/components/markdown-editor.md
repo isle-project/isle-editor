@@ -1,29 +1,14 @@
----
-title: "Markdown Editor"
-author: Philipp Burckhardt
-date: Dec 27th, 2017
-state:
-server: https://isle.heinz.cmu.edu
-hideToolbar: true
----
+# Markdown Editor
 
- # Markdown Editor
+A markdown editor for writing notes or reports. Supports exporting of notes as HTML or PDF files, as well as automatic submission to the ISLE server. The component is based on [SimpleMDE](https://simplemde.com/).
 
-<Playground
-    style={{
-        marginLeft: 0,
-        width: '1000px'
-    }}
-    code={`
-<MarkdownEditor
-    defaultValue="type some text"
-    voiceControl 
-/>
-`}
-    scope={{
-        MarkdownEditor
-    }}
-/>
+#### Example:
+
+``` js
+<MarkdownEditor />
+```
+
+[Open interactive preview](https://isle.heinz.cmu.edu/components/markdown-editor/)
 
 #### Options:
 
