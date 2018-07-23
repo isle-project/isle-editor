@@ -192,6 +192,15 @@ class FreeTextSurvey extends Component {
 
 // DEFAULT PROPERTIES //
 
+FreeTextSurvey.propDescriptions = {
+	allowMultipleAnswers: 'A boolean indicating whether one wishes to allow students to answer the survey multiple times',
+	anonymous: 'A boolean indicating whether student answers are anonymized',
+	multipleAnswers: 'A boolean value indicating whether students may select more than one answer. Note that this differs from allowMultipleAnswers in that allow makes students able to submit the question multiple times.',
+	onSubmit: 'A function to be called when an answer is submitted',
+	question: 'A string indicating the question to ask the students',
+	rows: 'A number indicating the rows of text in the input method'
+}
+
 FreeTextSurvey.defaultProps = {
 	onSubmit() {},
 	allowMultipleAnswers: false,
