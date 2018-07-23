@@ -12,11 +12,17 @@ An interactive Javascript Shell that can be used to execute JavascriptCommand. T
 
 [Open interactive preview](https://isle.heinz.cmu.edu/components/js-shell/)
 
-#### Options: 
-* __chat__: this `boolean` indicates whether student may interact on this component via chat. Default: `false`.
-*__code__: a `string` that contains code that will be displayed in the
-* __hints__: For programming questions, an `Array` of `strings` providing guidance on how to approach the problem. Default: `[]`.
-*__onEvaluate__: callback `function` that returns the code which is executed in the internal eval process
-* __solution__: For programming questions, an Javascript code `string` representing the official solution can be supplied. Default: `''`.
-* __disabled__: a `boolean` flag that allows the solution just to be seen after all the hints are exhausted
-* __vars__: an `object` that can be handed over to the JSShell context (not implemented yet) 
+#### Options:
+
+* __code__ | `string`: JavaScript code to be evaluated. Default: `''`.
+* __solution__ | `string`: for programming questions, code `string` representing the official solution for the problem. Default: `''`.
+* __hints__ | `array`: for programming questions, an array of hints providing guidance on how to approach the problem. Default: `[]`.
+* __precompute__ | `boolean`: controls whether the default code should be executed once the component has mounted. Default: `false`.
+* __chat__ | `boolean`: controls whether group chat functionality should be enabled. Default: `false`.
+* __check__ | `string`: appended JavaScript code to check the `code` to be evaluated. Default: `none`.
+* __disabled__ | `boolean`: controls whether to disable all user inputs and make the code block static. Default: `false`.
+* __lines__ | `number`: number of lines to display. Default: `5`.
+* __fontFamily__ | `string`: undefined. Default: `'Courier New'`.
+* __fontSize__ | `number`: undefined. Default: `16`.
+* __onEvaluate__ | `function`: callback invoked whenever the `Evaluate` button is clicked. Default: `onEvaluate() {}`.
+* __vars__ | `object`: scope object with variables that should be made available to evaluated `code`. Default: `none`.
