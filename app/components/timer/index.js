@@ -17,9 +17,17 @@ class Timer extends Component {
 		};
 	}
 
+	componentDidMount() {
+		this.startCountdown();
+	}
+
 	componentDidUpdate( prevProps, prevState ) {
 		// Check if the clock should be active:
-		if ( this.props.active && !this.state.countdown ) {
+		if (
+			this.props.active &&
+			!prevProps.active &&
+			!this.state.countdown
+		) {
 			this.startCountdown();
 		}
 	}
@@ -68,23 +76,8 @@ class Timer extends Component {
 	}
 
 	render() {
-		const style = {
-			position: 'fixed',
-			top: 0,
-			right: 0,
-			marginTop: 100,
-			marginRight: 25,
-			zIndex: 9999,
-			fontSize: 24,
-			color: 'white',
-			backgroundColor: '#383D48',
-			paddingLeft: 10,
-			paddingRight: 10,
-			borderRadius: 3
-		};
-
 		return (
-			<div style={style}>
+			<div style={this.props.style} className="timer-div">
 				{this.fmtTime( this.state.timeLeft )}
 			</div>
 		);
@@ -94,11 +87,25 @@ class Timer extends Component {
 
 // PROPERTY TYPES //
 
+Timer.propDescriptions = {
+	active: 'flag that can be toggled to start or pause the timer',
+	duration: 'duration in seconds for the timer',
+	id: 'the unique `string` ID for the timer. The timer component is persistent over page refreshes',
+	style: 'CSS inline styles',
+	onTimeUp: 'Callback invoked when the timer runs out'
+};
+
 Timer.propTypes = {
 	active: PropTypes.bool.isRequired,
 	duration: PropTypes.number.isRequired,
 	id: PropTypes.string.isRequired,
-	onTimeUp: PropTypes.func.isRequired
+	style: PropTypes.object,
+	onTimeUp: PropTypes.func
+};
+
+Timer.defaultProps = {
+	style: {},
+	onTimeUp() {}
 };
 
 

@@ -1,0 +1,14 @@
+.timer-div {
+	position: fixed;
+	top: 0;
+	right: 0;
+	margin-top: 100;
+	margin-right: 25;
+	z-index: 9999;
+	font-size: 24;
+	color: white;
+	background-color: '#383D48';
+	padding-left: 10;
+	padding-right: 10;
+	border-radius: 3;
+}

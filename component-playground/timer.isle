@@ -1,10 +1,20 @@
+---
+title: "Timer"
+author: Philipp Burckhardt
+date: Jul 22nd, 2018
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+---
+
 # Timer
 
-The Timer component displays a timer that will trigger a predefined callback when the time is up. An example use case is for the timing of quizzes.
-
-#### Example:
-
-``` js
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '900px'
+    }}
+    code={`
 <Timer 
     id='test-quiz'
     active={true} 
@@ -13,9 +23,12 @@ The Timer component displays a timer that will trigger a predefined callback whe
       alert( 'done' );
     }}
 />
-```
+`}
+    scope={{
+        Timer
+    }}
+/>
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/timer/)
 
 #### Options:
 

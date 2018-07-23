@@ -10,7 +10,7 @@ An interactive Javascript Shell that can be used to execute JavascriptCommand. T
 </JSShell>
 ```
 
- [Open interactive preview](https://isle.heinz.cmu.edu/components/js-shell/)
+[Open interactive preview](https://isle.heinz.cmu.edu/components/js-shell/)
 
 #### Options: 
 * __chat__: this `boolean` indicates whether student may interact on this component via chat. Default: `false`.
