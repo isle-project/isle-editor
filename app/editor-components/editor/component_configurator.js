@@ -298,6 +298,7 @@ class ComponentConfigurator extends Component {
 					<Modal.Title>Configure {this.props.component.name}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
+					{this.state.componentClass ? this.state.componentClass.description : null}
 					{this.renderPropertyControls()}
 					<FormGroup>
 						<ControlLabel>Code:</ControlLabel>

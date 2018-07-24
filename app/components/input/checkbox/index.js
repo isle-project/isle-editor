@@ -107,6 +107,8 @@ class CheckboxInput extends Input {
 
 // DEFAULT PROPERTIES //
 
+CheckboxInput.description = 'A checkbox input component. Usually, this component will be used as part of an ISLE dashboard, but it can also be used standalone. In this case, you want to handle changes via the `onChange` attribute. ';
+
 CheckboxInput.propDescriptions = {
 	bind: 'A string indicating the variable for the boolean to be assigned',
 	onChange: 'A function to be called when a checkbox is clicked. The function takes an argument value and should change whether value is true or false',
