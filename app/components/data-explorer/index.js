@@ -717,7 +717,7 @@ class DataExplorer extends Component {
 								return ( this.state.openedNav === `3.${i+1}` ?
 									content : null );
 							})}
-							<MarkdownEditor {...this.props.editorProps} id={this.props.id ? this.props.id + '_editor' : null} style={{ display: this.state.openedNav !== '4' ? 'none' : null }} submitButton />
+							<MarkdownEditor {...this.props.editorProps} plots={this.state.output} id={this.props.id ? this.props.id + '_editor' : null} style={{ display: this.state.openedNav !== '4' ? 'none' : null }} submitButton />
 							{ this.state.openedNav === '5' ?
 								<VariableTransformer
 									data={this.state.data}
