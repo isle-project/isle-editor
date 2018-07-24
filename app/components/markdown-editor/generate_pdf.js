@@ -65,6 +65,19 @@ function makeSTYLES( customFontSize = 16 ) {
 			},
 			'standardText': {
 				fontSize: pdfSize
+			},
+			'titleText': {
+				fontSize: 72,
+				color: '#2e4468',
+				bold: true,
+				alignment: 'center'
+			},
+			'advisorText': {
+				fontSize: 48,
+				alignment: 'center'
+			},
+			'posterText': {
+				fontSize: 36
 			}
 		}
 	);
@@ -271,6 +284,16 @@ function isEndTag( astElem ) {
 	return true;
 }
 
+function isTitleTag( astElem ) {
+	if ( astElem.type !== 'html_block' ) {
+		return false;
+	}
+	else if ( !startsWith( astElem.content, '<!--TitleText' ) ) {
+		return false;
+	}
+	return true;
+}
+
 function parsePDF( ast, config, state, start, end ) {
 	// Note that the DPI is 72
 	if ( isUndefinedOrNull( state ) ) {
@@ -346,6 +369,32 @@ function parsePDF( ast, config, state, start, end ) {
 					width: 300,
 					alignment: 'center',
 					margin: MARGINS
+				});
+			} else if ( contains( elem.content, '<!--TitleText' ) ) {
+				// We know the title starts after \nTitle: 
+				const firstNewLineIndex = elem.content.indexOf('\n');
+				const titleStartIndex = firstNewLineIndex + 'Title: '.length + 1; // one is so that it starts on the right ploace
+
+				const secondNewLineIndex = elem.content.indexOf('\n', firstNewLineIndex + 1);
+				const title = elem.content.slice(titleStartIndex, secondNewLineIndex);
+
+				const nameStartIndex = secondNewLineIndex + 'Name: '.length + 1;
+				const thirdNewLineIndex = elem.content.indexOf('\n', secondNewLineIndex + 1);
+
+				const name = elem.content.slice(nameStartIndex, thirdNewLineIndex);
+
+				// to get the start of the advisor, just do the same thing with the last line
+				const fourthNewLineIndex = elem.content.indexOf('\n', thirdNewLineIndex + 1);
+				const advisorStartIndex = thirdNewLineIndex + 'Advisor: '.length + 1;
+				const advisor = elem.content.slice(advisorStartIndex, fourthNewLineIndex);
+
+				content.push({
+					text: title,
+					style: 'titleText'
+				});
+				content.push({
+					text: `${name}  Adsivor: ${advisor}`,
+					style: 'advisorText'
 				});
 			}
 		} else if (

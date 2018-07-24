@@ -34,6 +34,7 @@ import TableSelect from './table_select.js';
 import ColumnSelect from './column_select.js';
 import base64toBlob from './base64_to_blob.js';
 import FigureInsert from './figure_insert.js';
+import TitleInsert from './title_insert.js';
 import 'simplemde/dist/simplemde.min.css';
 import './markdown_editor.css';
 
@@ -229,7 +230,7 @@ class MarkdownEditor extends Component {
 			showColumnSelect: false,
 			fontSize: 16,
 			showFigureInsert: false,
-			showTitlePage: false,
+			showTitleInsert: false,
 		};
 
 		this.toolbarOpts = {
@@ -442,7 +443,7 @@ class MarkdownEditor extends Component {
 				className: 'fa fa-book',
 				title: 'Insert Title',
 				action: () => {
-					this.toggleTitle();
+					this.toggleTitleInsert();
 				}
 			}
 		};
@@ -823,9 +824,9 @@ class MarkdownEditor extends Component {
 		});
 	}
 	
-	toggleTitle = () => {
+	toggleTitleInsert = () => {
 		this.setState({
-			showTitlePage: this.state.showTitlePage
+			showTitleInsert: !this.state.showTitleInsert
 		});
 	}
 
@@ -1015,6 +1016,16 @@ class MarkdownEditor extends Component {
 						});
 					}}
 					studentPlots={this.props.plots}
+				/>
+				<TitleInsert
+					show={this.state.showTitleInsert}
+					onHide={this.toggleTitleInsert}
+					onClick={( ids )=>{
+						this.simplemde.codemirror.replaceRange( `<!--TitleText\nTitle: ${ids.name}\nName: ${ids.name}\nAdvisor: ${ids.advisor}\n-->`,
+								{ line: 1, ch: 0 },
+								{ line: 1, ch: 99999999999999 }
+							);
+					}}
 				/>
 			</Fragment>
 		);
