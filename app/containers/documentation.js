@@ -18,7 +18,10 @@ const openBrowser = ( url ) => {
 class Documentation extends Component {
 	constructor( props ) {
 		super( props );
-		this.state = {};
+		this.state = {
+			width: window.innerWidth,
+			height: window.innerHeight
+		};
 
 		this.resize = () => {
 			this.setState({
@@ -31,8 +34,7 @@ class Documentation extends Component {
 	}
 
 	componentDidMount() {
-		const webview = document.getElementById( 'DocumentationView' );
-		webview.addEventListener( 'new-window', ( e ) => {
+		this.webview.addEventListener( 'new-window', ( e ) => {
 			try {
 				openBrowser( e.url );
 			} catch ( error ) {
@@ -69,6 +71,7 @@ class Documentation extends Component {
 						height: this.state.height,
 						window: this.state.width
 					}}
+					ref={( div ) => { this.webview = div; }}
 					autosize="on"
 					disablewebsecurity
 				/>

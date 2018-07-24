@@ -24,6 +24,7 @@ import contains from '@stdlib/assert/contains';
 import trim from '@stdlib/string/trim';
 import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import VoiceInput from 'components/input/voice';
 import fonts from './fonts.js';
 import generatePDF from './generate_pdf.js';
@@ -32,6 +33,7 @@ import SubmitModal from './submit_modal.js';
 import TableSelect from './table_select.js';
 import ColumnSelect from './column_select.js';
 import base64toBlob from './base64_to_blob.js';
+import FigureInsert from './figure_insert.js';
 import 'simplemde/dist/simplemde.min.css';
 import './markdown_editor.css';
 
@@ -225,7 +227,8 @@ class MarkdownEditor extends Component {
 			defaultValue: props.defaultValue,
 			showTableSelect: false,
 			showColumnSelect: false,
-			fontSize: 16
+			fontSize: 16,
+			showFigureInsert: false
 		};
 
 		this.toolbarOpts = {
@@ -424,6 +427,15 @@ class MarkdownEditor extends Component {
 				name: 'font_size',
 				className: 'font_size_button',
 				title: 'Select Font Size'
+			},
+			'figure_insert': {
+				name: 'figure_insert',
+				className: 'fa fa-clone',
+				title: 'Insert Figures',
+				action: () => {
+					console.log(this.props.plots);
+					this.toggleFigureInsert();
+				}
 			}
 		};
 	}
@@ -691,8 +703,14 @@ class MarkdownEditor extends Component {
 		const toolbar = [];
 		let tbOpt; // Gives the name as a string of option
 		let tbObj; // Gives the object that will be put in array
+		// The negation is to make sure that voice is not added twice
 		if ( this.props.voiceControl && !contains( toolbarConfig, 'voice' ) ) {
 			toolbarConfig.push( 'voice' );
+		}
+		// Handle case of adding in figure insert
+		if ( this.props.figureInsert && !contains( toolbarConfig, 'figure_insert' ) ) {
+			toolbarConfig.push( '|' );
+			toolbarConfig.push(' figure_insert' );
 		}
 		for ( let i = 0; i < toolbarConfig.length; i++ ) {
 			tbOpt = toolbarConfig[ i ];
@@ -770,6 +788,12 @@ class MarkdownEditor extends Component {
 	toggleColumnSelect = () => {
 		this.setState({
 			showColumnSelect: !this.state.showColumnSelect
+		});
+	}
+
+	toggleFigureInsert = () => {
+		this.setState({
+			showFigureInsert: !this.state.showFigureInsert
 		});
 	}
 
@@ -969,6 +993,15 @@ class MarkdownEditor extends Component {
 						this.simplemde.codemirror.replaceRange( tblString, c);
 					}}
 				/>
+				<FigureInsert
+					show={this.state.showFigureInsert && (!isUndefinedOrNull(this.props.plots))}
+					onHide={()=>{
+						this.setState({
+							showFigureInsert: false
+						});
+					}}
+					studentPlots={this.props.plots}
+				/>
 			</Fragment>
 		);
 	}
@@ -978,40 +1011,64 @@ class MarkdownEditor extends Component {
 // DEFAULT PROPERTIES //
 
 MarkdownEditor.defaultProps = {
-	autoSave: true,
 	defaultValue: repeat( '\n', 15 ),
 	intervalTime: 60000,
 	language: 'en-US',
 	onChange() {},
 	options: {},
+	plots: [],
 	style: {},
 	toolbarConfig: [
 		'bold', 'italic', 'underline', 'font_size',
 		'new_line', 'center', '|',
 		'insert_table', 'heading', 'unordered_list',
-		'ordered_list', 'link', 'insert_columns', '|',
+		'ordered_list', 'link', 'insert_columns', '|', 
+		'figure_insert', '|',
 		'preview', 'side_by_side', 'fullscreen', '|',
 		'open_markdown', 'save', 'submit', '|',
 		'voice'
 	],
+	options: {},
+	autoSave: true,
+	intervalTime: 60000,
 	voiceControl: false,
-	voiceTimeout: 5000
+	voiceTimeout: 5000,
+	language: 'en-US',
+	style: {},
+	onChange() {}
 };
 
 
 // PROPERTY TYPES //
 
+MarkdownEditor.propDescriptions = {
+	defaultValue: 'default text of the editor',
+	toolbarConfig: 'array of toolbar element identifiers to be displayed',
+	options: 'options passed to the SimpleMDE constructor, the package on which this component is based; see their documentation for available options',
+	autoSave: 'controls whether the editor should save the current text to the local storage of the browser at a given time interval',
+	intervalTime: 'time between auto saves',
+	voiceControl: 'controls whether voice input is enabled',
+	voiceTimeout: 'time in milliseconds after a chunk of recorded voice input is inserted',
+	language: 'language identifier',
+	style: 'CSS inline styles',
+	onChange: 'callback invoked when editor text changes; receives the current text as its sole argument'
+};
+
 MarkdownEditor.propTypes = {
-	autoSave: PropTypes.bool,
 	defaultValue: PropTypes.string,
+	figureInsert: PropTypes.array,
+	toolbarConfig: PropTypes.array,
+	options: PropTypes.object,
+	autoSave: PropTypes.bool,
 	intervalTime: PropTypes.number,
+	voiceControl: PropTypes.bool,
+	voiceTimeout: PropTypes.number,
 	language: PropTypes.string,
 	onChange: PropTypes.func,
 	options: PropTypes.object,
+	plots: PropTypes.array,
 	style: PropTypes.object,
-	toolbarConfig: PropTypes.array,
-	voiceControl: PropTypes.bool,
-	voiceTimeout: PropTypes.number
+	onChange: PropTypes.func
 };
 
 MarkdownEditor.contextTypes = {

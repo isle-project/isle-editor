@@ -7,6 +7,9 @@ import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import shuffle from '@stdlib/random/shuffle';
 import * as d3 from 'd3';
+import ChatButton from 'components/chat-button';
+import HintButton from 'components/hint-button';
+import InstructorBar from 'components/instructor-bar';
 import OptionsList from './options_list.js';
 import './match_list_question.css';
 
@@ -94,8 +97,9 @@ class MatchListQuestion extends Component {
 	}
 
 	render() {
-		const { question, elements, onSubmit } = this.props;
+		const { question, elements, onSubmit, hints } = this.props;
 		const { answers } = this.state;
+		const nHints = hints.length;
 		const onSelectA = this.onSelect.bind( this, 'selectedA' );
 		const onSelectB = this.onSelect.bind( this, 'selectedB' );
 		const tooltip = (
@@ -162,6 +166,16 @@ class MatchListQuestion extends Component {
 							</div>
 						</OverlayTrigger>
 					}
+					{ nHints > 0 ?
+						<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
+						null
+					}
+					{
+						this.props.chat && this.props.id ?
+							<div style={{ display: 'inline-block', marginLeft: '4px' }}>
+								<ChatButton for={this.props.id} />
+							</div> : null
+					}
 				</div>
 			</div>
 		);
@@ -174,6 +188,9 @@ class MatchListQuestion extends Component {
 MatchListQuestion.defaultProps = {
 	question: '',
 	elements: [],
+	hints: [],
+	hintPlacement: 'bottom',
+	chat: false,
 	colorScale: null,
 	onSubmit() {}
 };
@@ -184,8 +201,11 @@ MatchListQuestion.defaultProps = {
 MatchListQuestion.propDescriptions = {
 	question: 'question to be displayed at the top of the match list question component',
 	elements: 'an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties',
+	hints: 'hints providing guidance on how to answer the question',
+	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
+	chat: 'controls whether the element should have an integrated chat',
 	colorScale: 'if set, the supplied colors are used for the tiles',
-	onSubmit: 'callback invoked every time the text area value changes'
+	onSubmit: 'callback invoked when students submits an answer'
 };
 
 MatchListQuestion.propTypes = {
@@ -194,6 +214,9 @@ MatchListQuestion.propTypes = {
 		a: PropTypes.string.isRequired,
 		b: PropTypes.string.isRequired
 	}) ),
+	hintPlacement: PropTypes.string,
+	hints: PropTypes.arrayOf( PropTypes.string ),
+	chat: PropTypes.bool,
 	colorScale: PropTypes.array,
 	onSubmit: PropTypes.func
 };
