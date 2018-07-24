@@ -15,6 +15,7 @@ import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
 import NumberInput from 'components/input/number';
 import HintButton from 'components/hint-button';
+import './range-question.css';
 
 
 // VARIABLES //
@@ -68,7 +69,7 @@ class RangeQuestion extends Component {
 		this.props.onChangeLower( min(newValue, this.state.upper) );
 	}
 
-	submitHandler = ( event ) => {
+	submitHandler = () => {
 		const { digits, solution } = this.props;
 		const { session } = this.context;
 		if ( solution ) {
@@ -83,6 +84,7 @@ class RangeQuestion extends Component {
 				correct = (roundn( lowerVal, -digits ) === roundn( lowerVal, -digits ) &&
 					(roundn(upperVal, -digits) === roundn(upperSol, -digits)));
 			}
+			this.props.onSubmit( correct, this.state.value );
 			session.addNotification({
 				title: 'Answer submitted.',
 				message: correct ? 'Congratulations, that is correct!' : 'Not quite. Compare your answer with the solution.',
@@ -90,6 +92,7 @@ class RangeQuestion extends Component {
 				position: 'tr'
 			});
 		} else {
+			this.props.onSubmit( null, this.state.value );
 			session.addNotification({
 				title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
 				message: this.state.submitted ?
@@ -145,49 +148,51 @@ class RangeQuestion extends Component {
 			<Panel className="range-question">
 				<Panel.Body>
 					{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
-					<NumberInput
-						step="any"
-						legend="Lower"
-						onChange={this.handleChangeLower}
-						value={this.state.lower}
-						disabled={this.state.submitted && solutionPresent}
-						inline
-						width={90}
-						min={this.props.min}
-						max={this.props.max}
-						numbersOnly={false}
-						onBlur={this.onNoClickLower}
-					/>
-					<NumberInput
-						step="any"
-						legend="Upper"
-						onChange={this.handleChangeUpper}
-						value={this.state.upper}
-						disabled={this.state.submitted && solutionPresent}
-						inline
-						width={90}
-						min={this.props.min}
-						max={this.props.max}
-						numbersOnly={false}
-						onBlur={this.onNoClickUpper}
-					/>
-					{ this.state.submitted && this.props.solution ?
-						<span>
-							<br />
-							<label>Solution:</label>
-							<span> {this.props.solution[0]}, {this.props.solution[1]} </span>
-						</span>:
-						null
-					}
-					<ButtonToolbar style={{ marginTop: '8px', marginBottom: '4px' }}>
-						<Button
-							bsStyle="primary"
-							bsSize="sm"
+					<div className="range-question-input-wrapper" >
+						<NumberInput
+							step="any"
+							legend="Lower"
+							onChange={this.handleChangeLower}
+							value={this.state.lower}
 							disabled={this.state.submitted && solutionPresent}
-							onClick={this.submitHandler}
-						>
-							{ ( this.state.submitted && !this.props.solution ) ? 'Resubmit' : 'Submit' }
-						</Button>
+							inline
+							width={90}
+							min={this.props.min}
+							max={this.props.max}
+							numbersOnly={false}
+							onBlur={this.onNoClickLower}
+						/>
+						<NumberInput
+							step="any"
+							legend="Upper"
+							onChange={this.handleChangeUpper}
+							value={this.state.upper}
+							disabled={this.state.submitted && solutionPresent}
+							inline
+							width={90}
+							min={this.props.min}
+							max={this.props.max}
+							numbersOnly={false}
+							onBlur={this.onNoClickUpper}
+						/>
+						{ this.state.submitted && this.props.solution ?
+							<span>
+								<br />
+								<label>Solution:</label>
+								<span> {this.props.solution[0]}, {this.props.solution[1]} </span>
+							</span>:
+							null
+						}
+					</div>
+					<Button
+						bsStyle="primary"
+						bsSize="sm"
+						disabled={this.state.submitted && solutionPresent}
+						onClick={this.submitHandler}
+					>
+						{ this.state.submitted ? 'Resubmit' : 'Submit' }
+					</Button>
+					<ButtonToolbar className="range-question-toolbar" >
 						{ nHints > 0 ?
 							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
 							null
@@ -213,13 +218,14 @@ RangeQuestion.defaultProps = {
 	question: '',
 	solution: null,
 	hints: [],
-	hintPlacement: 'bottom',
+	hintPlacement: 'top',
 	chat: false,
 	digits: 3,
 	max: PINF,
 	min: NINF,
 	onChangeUpper() {},
-	onChangeLower() {}
+	onChangeLower() {},
+	onSubmit() {}
 };
 
 
@@ -235,7 +241,8 @@ RangeQuestion.propDescriptions = {
 	max: 'maximum input value',
 	min: 'minimum input value',
 	onChangeUpper: 'callback triggered after the upper bound is changed by the user',
-	onChangeLower: 'callback triggered after the lower bound is changed by the user'
+	onChangeLower: 'callback triggered after the lower bound is changed by the user',
+	onSubmit: 'callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter'
 };
 
 RangeQuestion.propTypes = {
@@ -248,7 +255,8 @@ RangeQuestion.propTypes = {
 	max: PropTypes.number,
 	min: PropTypes.number,
 	onChangeLower: PropTypes.func,
-	onChangeUpper: PropTypes.func
+	onChangeUpper: PropTypes.func,
+	onSubmit: PropTypes.func
 };
 
 RangeQuestion.contextTypes = {

@@ -1011,7 +1011,6 @@ class MarkdownEditor extends Component {
 // DEFAULT PROPERTIES //
 
 MarkdownEditor.defaultProps = {
-	autoSave: true,
 	defaultValue: repeat( '\n', 15 ),
 	intervalTime: 60000,
 	language: 'en-US',
@@ -1029,26 +1028,47 @@ MarkdownEditor.defaultProps = {
 		'open_markdown', 'save', 'submit', '|',
 		'voice'
 	],
+	options: {},
+	autoSave: true,
+	intervalTime: 60000,
 	voiceControl: false,
-	voiceTimeout: 5000
+	voiceTimeout: 5000,
+	language: 'en-US',
+	style: {},
+	onChange() {}
 };
 
 
 // PROPERTY TYPES //
 
+MarkdownEditor.propDescriptions = {
+	defaultValue: 'default text of the editor',
+	toolbarConfig: 'array of toolbar element identifiers to be displayed',
+	options: 'options passed to the SimpleMDE constructor, the package on which this component is based; see their documentation for available options',
+	autoSave: 'controls whether the editor should save the current text to the local storage of the browser at a given time interval',
+	intervalTime: 'time between auto saves',
+	voiceControl: 'controls whether voice input is enabled',
+	voiceTimeout: 'time in milliseconds after a chunk of recorded voice input is inserted',
+	language: 'language identifier',
+	style: 'CSS inline styles',
+	onChange: 'callback invoked when editor text changes; receives the current text as its sole argument'
+};
+
 MarkdownEditor.propTypes = {
-	autoSave: PropTypes.bool,
 	defaultValue: PropTypes.string,
 	figureInsert: PropTypes.array,
+	toolbarConfig: PropTypes.array,
+	options: PropTypes.object,
+	autoSave: PropTypes.bool,
 	intervalTime: PropTypes.number,
+	voiceControl: PropTypes.bool,
+	voiceTimeout: PropTypes.number,
 	language: PropTypes.string,
 	onChange: PropTypes.func,
 	options: PropTypes.object,
 	plots: PropTypes.array,
 	style: PropTypes.object,
-	toolbarConfig: PropTypes.array,
-	voiceControl: PropTypes.bool,
-	voiceTimeout: PropTypes.number
+	onChange: PropTypes.func
 };
 
 MarkdownEditor.contextTypes = {

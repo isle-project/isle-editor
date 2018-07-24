@@ -6,7 +6,13 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Form from 'react-bootstrap/lib/Form';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
+import InputGroup from 'react-bootstrap/lib/InputGroup';
+import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
+import Button from 'react-bootstrap/lib/Button';
 import Panel from 'react-bootstrap/lib/Panel';
+import HintButton from 'components/hint-button';
+import InstructorBar from 'components/instructor-bar';
+import ChatButton from 'components/chat-button';
 import './select-question.css';
 
 
@@ -29,28 +35,39 @@ class SelectQuestion extends Component {
 	}
 
 	handleChange = ( event ) => {
-		const { session } = this.context;
 		const value = event.target.value;
 		this.setState({
 			value,
-			answerState: value === this.props.solution ? 'success' : 'error'
+			answerState: null
 		}, () => {
 			this.props.onChange( value );
-			if ( this.props.solution === value ) {
-				session.addNotification({
-					title: 'Correct',
-					message: this.props.successMsg,
-					level: 'success',
-					position: 'tr'
-				});
-			} else {
-				session.addNotification({
-					title: 'Incorrect',
-					message: this.props.failureMsg,
-					level: 'error',
-					position: 'tr'
-				});
-			}
+		});
+	}
+
+	handleSubmit = () => {
+		const { session } = this.context;
+		let correct;
+		if ( this.props.solution === this.state.value ) {
+			session.addNotification({
+				title: 'Correct',
+				message: this.props.successMsg,
+				level: 'success',
+				position: 'tr'
+			});
+			correct = true;
+		} else {
+			session.addNotification({
+				title: 'Incorrect',
+				message: this.props.failureMsg,
+				level: 'error',
+				position: 'tr'
+			});
+			correct = false;
+		}
+		this.props.onSubmit( correct, this.state.value );
+		this.setState({
+			answerState: correct ? 'success' : 'error',
+			submitted: true
 		});
 	}
 
@@ -58,27 +75,33 @@ class SelectQuestion extends Component {
 	* React component render method.
 	*/
 	render() {
+		const nHints = this.props.hints.length;
 		if ( this.props.inline ) {
 			return (
 				<FormGroup
-					controlId="formControlsSelect"
+					controlId="select-question-form-group"
 					validationState={this.state.answerState}
 					style={{
-						width: 'auto',
+						width: 'min-content',
 						display: 'inline'
 					}}
 				>
-					<FormControl
-						value={this.state.value}
-						defaultValue={this.props.defaultValue}
-						componentClass="select"
-						placeholder="select"
-						onChange={this.handleChange}
-					>
-						{this.props.options.map( ( e, idx ) => {
-							return <option key={idx} value={e}>{e}</option>;
-						})}
-					</FormControl>
+					<InputGroup>
+						<FormControl
+							value={this.state.value}
+							defaultValue={this.props.defaultValue}
+							componentClass="select"
+							placeholder="select"
+							onChange={this.handleChange}
+						>
+							{this.props.options.map( ( e, idx ) => {
+								return <option key={idx} value={e}>{e}</option>;
+							})}
+						</FormControl>
+						<InputGroup.Button>
+							<Button>Submit</Button>
+						</InputGroup.Button>
+					</InputGroup>
 				</FormGroup>
 			);
 		}
@@ -105,6 +128,20 @@ class SelectQuestion extends Component {
 							</FormControl>
 						</FormGroup>
 					</Form>
+					<div className="select-question-toolbar">
+						<Button bsStyle="primary" bsSize="sm" onClick={this.handleSubmit}>
+							{ this.state.submitted ? 'Resubmit' : 'Submit' }
+						</Button>
+						{ nHints > 0 ?
+							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
+							null
+						}
+						{
+							this.props.chat && this.props.id ?
+								<ChatButton for={this.props.id} /> : null
+						}
+					</div>
+					<InstructorBar id={this.props.id} dataType="text" />
 				</Panel.Body>
 			</Panel>
 		);
@@ -118,9 +155,13 @@ SelectQuestion.defaultProps = {
 	question: '',
 	defaultValue: '',
 	inline: false,
+	hints: [],
+	hintPlacement: 'bottom',
+	chat: false,
 	failureMsg: 'Not quite, try again!',
 	successMsg: 'That\'s the correct answer!',
-	onChange() {}
+	onChange() {},
+	onSubmit() {}
 };
 
 
@@ -131,10 +172,14 @@ SelectQuestion.propDescriptions = {
 	options: 'available answer options from which the student can select',
 	solution: 'question solution (must be equal to one of the answer options)',
 	defaultValue: 'preselected answer option',
+	inline: 'controls whether the component is rendered inline or not',
+	hints: 'hints providing guidance on how to answer the question',
+	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
+	chat: 'controls whether the element should have an integrated chat',
 	failureMsg: 'message to be displayed when student selects a wrong answer',
 	successMsg: 'message to be displayed when student selects the correct answer',
-	inline: 'controls whether the component should be inlined',
-	onChange: 'callback  which is triggered after the submit action'
+	onChange: 'callback  which is triggered after the submit action',
+	onSubmit: 'callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter'
 };
 
 SelectQuestion.propTypes = {
@@ -142,10 +187,14 @@ SelectQuestion.propTypes = {
 	options: PropTypes.array.isRequired,
 	solution: PropTypes.string.isRequired,
 	defaultValue: PropTypes.string,
+	inline: PropTypes.bool,
+	hintPlacement: PropTypes.string,
+	hints: PropTypes.arrayOf( PropTypes.string ),
+	chat: PropTypes.bool,
 	failureMsg: PropTypes.string,
 	successMsg: PropTypes.string,
-	inline: PropTypes.bool,
-	onChange: PropTypes.func
+	onChange: PropTypes.func,
+	onSubmit: PropTypes.func
 };
 
 SelectQuestion.contextTypes = {
