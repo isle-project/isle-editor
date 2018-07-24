@@ -214,7 +214,7 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath
 	if ( contains( components, 'Deck' ) ) {
 		className = 'Presentation';
 		res += '\n';
-		res += 'const theme = require( \'components/spectacle/theme.json\' )';
+		res += 'const SPECTACLE_THEME = require( \'components/spectacle/theme.json\' )';
 	}
 	res += '\n';
 	res += getISLEcode( yamlStr );
