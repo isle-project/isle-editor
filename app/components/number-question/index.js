@@ -127,9 +127,9 @@ class NumberQuestion extends Component {
 				<Panel.Body>
 					{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
 					<div className="number-question-input-wrapper">
-						<label>Your answer:</label>
 						<NumberInput
 							step="any"
+							legend="Your answer"
 							onChange={this.handleChange}
 							defaultValue={this.state.value}
 							disabled={this.state.submitted && solutionPresent}
@@ -142,8 +142,8 @@ class NumberQuestion extends Component {
 						{ this.state.submitted && this.props.solution ?
 							<span>
 								<span> | </span>
-								<label>Solution:</label>
 								<NumberInput
+									legend="Solution"
 									disabled
 									defaultValue={this.props.solution}
 									inline
