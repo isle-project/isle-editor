@@ -228,7 +228,8 @@ class MarkdownEditor extends Component {
 			showTableSelect: false,
 			showColumnSelect: false,
 			fontSize: 16,
-			showFigureInsert: false
+			showFigureInsert: false,
+			showTitlePage: false,
 		};
 
 		this.toolbarOpts = {
@@ -433,8 +434,15 @@ class MarkdownEditor extends Component {
 				className: 'fa fa-clone',
 				title: 'Insert Figures',
 				action: () => {
-					console.log(this.props.plots);
 					this.toggleFigureInsert();
+				}
+			},
+			'title_insert': {
+				name: 'title_insert',
+				className: 'fa fa-book',
+				title: 'Insert Title',
+				action: () => {
+					this.toggleTitle();
 				}
 			}
 		};
@@ -814,6 +822,12 @@ class MarkdownEditor extends Component {
 			showTableSelect: !this.state.showTableSelect
 		});
 	}
+	
+	toggleTitle = () => {
+		this.setState({
+			showTitlePage: this.state.showTitlePage
+		});
+	}
 
 	saveMarkdown = () => {
 		const title = document.title || 'provisoric';
@@ -1023,7 +1037,7 @@ MarkdownEditor.defaultProps = {
 		'new_line', 'center', '|',
 		'insert_table', 'heading', 'unordered_list',
 		'ordered_list', 'link', 'insert_columns', '|', 
-		'figure_insert', '|',
+		'figure_insert', '|', 'title_insert',
 		'preview', 'side_by_side', 'fullscreen', '|',
 		'open_markdown', 'save', 'submit', '|',
 		'voice'
