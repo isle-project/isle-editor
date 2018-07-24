@@ -135,8 +135,8 @@ class App extends Component {
 			debug( 'Editor text changed...' );
 			const handleChange = ( value ) => {
 				debug( 'Should handle change...' );
-				this.handlePreambleChange( value );
 				this.props.convertMarkdown( value );
+				this.handlePreambleChange( value );
 			};
 
 			if ( this.debouncedChange ) {
@@ -176,6 +176,7 @@ class App extends Component {
 		// Extract the capture group:
 		preamble = preamble[ 1 ];
 		let preambleHasChanged = this.checkPreambleChange( preamble );
+		console.log( 'Check whether preamble has changed: '+preambleHasChanged );
 		if ( preambleHasChanged ) {
 			try {
 				const newPreamble = yaml.load( preamble );
@@ -200,6 +201,8 @@ class App extends Component {
 				return this.props.encounteredError( new Error( 'Couldn\'t parse the preamble. Make sure it is valid YAML.' ) );
 			}
 		}
+		const pos = this.code.editor.getCursorPosition();
+		this.code.editor.moveCursorTo( pos.row, pos.column );
 	}
 
 	checkPreambleChange( preamble ) {
