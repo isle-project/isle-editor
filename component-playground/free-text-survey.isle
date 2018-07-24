@@ -34,8 +34,8 @@ hideToolbar: true
 
 #### Options:
 
-* __allowMultipleAnswers__: a `boolean` which - when set - allows the user to input multiple answers
-* __anonymous__: a `boolean` allowing an anonymous input which cannot be traced back to an user's ID.
-* __onSubmit__: callback `function` invoked every time the user input an answer. Default: `null`.
-* __question__: a `string` holding the question. Default: `''`.
-* __rows__: a `number` indicating the rows of the textarea. 
+* __allowMultipleAnswers__ | `boolean`: A boolean indicating whether one wishes to allow students to answer the survey multiple times. Default: `false`.
+* __anonymous__ | `boolean`: A boolean indicating whether student answers are anonymized. Default: `false`.
+* __onSubmit__ | `function`: A function to be called when an answer is submitted. Default: `onSubmit() {}`.
+* __question__ | `string`: A string indicating the question to ask the students. Default: `''`.
+* __rows__ | `number`: A number indicating the rows of text in the input method. Default: `4`.

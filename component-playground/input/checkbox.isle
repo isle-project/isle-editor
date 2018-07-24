@@ -1,0 +1,40 @@
+---
+title: "Checkbox Input"
+author: Francis R. Kovacs 
+date: Jan 1st, 2018
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Checkbox Input
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <CheckboxInput
+            legend="Check this if necessary"
+            defaultValue={false}
+            inline={false}
+            onChange={ function(value) {
+                    alert( value ? "true" : "false" );
+            } }
+    /> 
+`}
+    scope={{
+        CheckboxInput
+    }}
+/>
+
+#### Options:
+
+* __bind__ | `string`: A string indicating the variable for the boolean to be assigned. Default: `''`.
+* __defaultValue__ | `boolean`: A boolean value indicating the default value of the checkbox. Default: `false`.
+* __disabled__ | `boolean`: A boolean indicating whether the input is active or not. Default: `false`.
+* __inline__ | `boolean`: Indicates whether the checkbox is displayed inline. Default: `false`.
+* __onChange__ | `function`: A function to be called when a checkbox is clicked. The function takes an argument value and should change whether value is true or false. Default: `onChange() {}`.
+* __legend__ | `string`: A string indicating the text displayed next to the checkbox. Default: `'Checkbox'`.
