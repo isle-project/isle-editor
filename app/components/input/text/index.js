@@ -136,7 +136,7 @@ TextInput.propDescriptions = {
 
 TextInput.defaultProps = {
 	defaultValue: '',
-	legend: 'Text Input',
+	legend: '',
 	width: 80,
 	onChange(){},
 	inline: false,
