@@ -12,6 +12,7 @@ import Login from 'components/login';
 import Gate from 'components/gate';
 import InstructorView from 'components/statusbar/instructor-view';
 import Chat from 'components/statusbar/chat';
+import isElectron from 'utils/is-electron';
 import animatePosition from 'utils/animate-position';
 import ConfirmModal from './confirm_modal.js';
 import './statusbar.css';
@@ -51,17 +52,19 @@ class StatusBar extends Component {
 		let sentNotification = false;
 		const promptLogin = () => {
 			const { session } = this.context;
-			session.addNotification({
-				title: 'Login',
-				message: 'Please connect with your ISLE account or create a new one.',
-				level: 'success',
-				autoDismiss: 15,
-				position: 'tl',
-				children: <div style={{ marginBottom: '20px' }}>
-					<Button bsSize="xsmall" style={{ float: 'right', marginRight: '10px' }} onClick={this.signup.bind( this )}>Sign up</Button>
-					<Button bsSize="xsmall" bsStyle="primary" style={{ float: 'right', marginRight: '10px' }} onClick={this.login.bind( this )}>Login</Button>
-				</div>
-			});
+			if ( !isElectron ) {
+				session.addNotification({
+					title: 'Login',
+					message: 'Please connect with your ISLE account or create a new one.',
+					level: 'success',
+					autoDismiss: 15,
+					position: 'tl',
+					children: <div style={{ marginBottom: '20px' }}>
+						<Button bsSize="xsmall" style={{ float: 'right', marginRight: '10px' }} onClick={this.signup.bind( this )}>Sign up</Button>
+						<Button bsSize="xsmall" bsStyle="primary" style={{ float: 'right', marginRight: '10px' }} onClick={this.login.bind( this )}>Login</Button>
+					</div>
+				});
+			}
 		};
 
 		const { session } = this.context;
