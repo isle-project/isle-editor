@@ -205,7 +205,9 @@ class Session {
 	* @returns {void}
 	*/
 	executeRCode = ({ code, onPlots, onResult, onError }) => {
+		debug( 'Executing R code...' );
 		const OPEN_CPU = this.getOpenCPUServer();
+		debug( `Post request at ${OPEN_CPU + OPEN_CPU_IDENTITY} for code "${code}"` );
 		request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
 			form: {
 				x: code
