@@ -210,6 +210,14 @@ snippet ProportionsInput
 		nElements={${4:6}}
 	/>
 
+snippet Quiz
+	<Quiz
+		questions={[${1:
+			{ 'type': 'FreeTextQuestion', 'question': 'Enter questions here...' }
+		}]}
+		count={${2:0}}
+	/>
+
 snippet RangeQuestion
 	<RangeQuestion
 		question="${1:Enter question}"
@@ -258,6 +266,9 @@ snippet SelectQuestion
 			${3:}
 		]}
 	/>
+
+snippet Sketchpad
+	<Sketchpad />
 
 snippet Slider
 	<Slider>
