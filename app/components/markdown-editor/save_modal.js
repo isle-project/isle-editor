@@ -12,6 +12,7 @@ import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
 import pageSizes from './page_sizes.json';
+import './save_modal.css';
 
 
 // VARIABLES //
@@ -19,7 +20,7 @@ import pageSizes from './page_sizes.json';
 const DEFAULT_STATE = {
 	openPDF: false,
 	pageSize: 'LETTER',
-	customSize: false,
+	customSize: true,
 	showPageOptions: false,
 	pageOptionConfig: 'Predefined',
 	customWidth: 8.5 * 72,
@@ -102,32 +103,65 @@ class SaveModal extends Component {
 						<Panel id="export-pdf-panel" expanded={this.state.openPDF} onToggle={noop} >
 							<Panel.Collapse>
 								<Panel.Body>
+									<Row className="predefined-letter-button">									
+										<SelectInput
+											legend="Pick a predefined value"
+											defaultValue={this.state.pageSize}
+											options={['LETTER', 'LEGAL', 'A4', 'B5', 'TABLOID', 'EXECUTIVE', 'POSTER', 'CUSTOM']}
+											onChange={( value )=>{
+												if ( value !== 'CUSTOM' ) {
+													this.setState({
+														pageSize: value,
+														useString: true,
+														visibleHeight: pageSizes[value].height,
+														visibleWidth: pageSizes[value].width,
+														customHeight: pageSizes[value].height * 72,
+														customWidth: pageSizes[value].width * 72
+													});
+												} else {
+													this.setState({
+														pageSize: value,
+														useString: false
+													});
+												}
+											}}
+										/>
+									</Row>
+									<Row className="dimension-select">
+										<NumberInput
+											legend="Pick the width (Inches)"
+											defaultValue={this.state.visibleWidth}
+											min={1}
+											max={50}
+											step={0.5}
+											onChange={( value ) =>{
+												// Make it custom if changed
+												this.setState({
+													pageSize: 'CUSTOM',
+													customWidth: 72 * value,
+													useString: false,
+													visibleWidth: value
+												});
+											}}
+										/>
+										<NumberInput
+											legend="Pick the height (Inches)"
+											defaultValue={this.state.visibleHeight}
+											min={1}
+											max={50}
+											step={0.5}
+											onChange={( value ) =>{
+												this.setState({
+													pageSize: 'CUSTOM',
+													customHeight: 72 * value,
+													useString: false,
+													visibleHeight: value
+												});
+											}}
+										/>
+									</Row>
 									<Row className="showDimensions">
-										<Col xs={3} md={3}>
-											<CheckboxInput
-												legend="Choose Dimensions?"
-												defaultValue={false}
-												onChange={( value )=>{
-													this.setState({
-														customSize: value
-													});
-												}}
-											/>
-										</Col>
-										<Col xs={3} md={3}>
-											<SelectInput
-												legend="Page Sizing"
-												disabled={!this.state.customSize}
-												defaultValue={'Predefined'}
-												options={['Predefined', 'Custom']}
-												onChange={( value )=>{
-													this.setState({
-														pageOptionConfig: value
-													});
-												}}
-											/>
-										</Col>
-										<Col xs={3} md={3}>
+										<Col xs={6} md={6}>
 											<SelectInput
 												legend="Orientation"
 												defaultValue={'portrait'}
@@ -143,66 +177,7 @@ class SaveModal extends Component {
 												}}
 											/>
 										</Col>
-										<Col xs={3} md={3}>
-											<p>Page Size: {this.state.visibleWidth} x {this.state.visibleHeight}</p>
-										</Col>
 									</Row>
-									<Panel expanded={(this.state.pageOptionConfig === 'Predefined') && this.state.customSize} onToggle={noop} >
-										<Panel.Collapse>
-											<Panel.Body>
-												<SelectInput
-													legend="Pick a predefined value"
-													defaultValue={'LETTER'}
-													options={['LETTER', 'LEGAL', 'A4', 'B5', 'TABLOID', 'EXECUTIVE', 'POSTER']}
-													onChange={( value )=>{
-														this.setState({
-															pageSize: value,
-															useString: true,
-															visibleHeight: pageSizes[value].height,
-															visibleWidth: pageSizes[value].width,
-															customHeight: pageSizes[value].height * 72,
-															customWidth: pageSizes[value].width * 72
-														});
-													}}
-												/>
-											</Panel.Body>
-										</Panel.Collapse>
-									</Panel>
-									<Panel expanded={(this.state.pageOptionConfig === 'Custom') && this.state.customSize} onToggle={noop} >
-										<Panel.Collapse>
-											<Panel.Body>
-												<p>Custom Sizes</p>
-												<NumberInput
-													legend="Pick the width (Inches)"
-													defaultValue={this.state.visibleWidth}
-													min={1}
-													max={50}
-													step={0.5}
-													onChange={( value ) =>{
-														this.setState({
-															customWidth: 72 * value,
-															useString: false,
-															visibleWidth: value
-														});
-													}}
-												/>
-												<NumberInput
-													legend="Pick the height (Inches)"
-													defaultValue={this.state.visibleHeight}
-													min={1}
-													max={50}
-													step={0.5}
-													onChange={( value ) =>{
-														this.setState({
-															customHeight: 72 * value,
-															useString: false,
-															visibleHeight: value
-														});
-													}}
-												/>
-											</Panel.Body>
-										</Panel.Collapse>
-									</Panel>
 									<Button onClick={this.savePDF} block>Save</Button>
 								</Panel.Body>
 							</Panel.Collapse>
