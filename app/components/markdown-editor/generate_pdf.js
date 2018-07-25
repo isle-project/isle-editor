@@ -5,7 +5,7 @@ import omit from '@stdlib/utils/omit';
 import startsWith from '@stdlib/string/starts-with';
 import contains from '@stdlib/assert/contains';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
-
+import isObject from '@stdlib/assert/is-object';
 
 // VARIABLES //
 
@@ -38,7 +38,7 @@ const TABLE_LAYOUT = {
 
 // FUNCTIONS //
 
-function makeSTYLES( customFontSize = 16 ) {
+function makeSTYLES( customFontSize = 16, poster = false ) {
 	// the 16 is x + 4 --> 12 font
 	const pdfSize = customFontSize - 4;
 	return (
@@ -46,25 +46,40 @@ function makeSTYLES( customFontSize = 16 ) {
 			'h1': {
 				fontSize: pdfSize + 16,
 				color: '#2e4468',
-				bold: true
+				bold: true,
+				alignment: poster ? 'center' : null
 			},
 			'h2': {
 				fontSize: pdfSize + 14,
 				color: '#3c763d',
-				bold: true
+				bold: true,
+				alignment: poster ? 'center' : null
 			},
 			'h3': {
 				fontSize: pdfSize + 8,
 				color: '#2e4468',
-				bold: true
+				bold: true,
+				alignment: poster ? 'center' : null
 			},
 			'h4': {
 				fontSize: pdfSize + 4,
 				color: '#ca5800',
-				bold: true
+				bold: true,
+				alignment: poster ? 'center' : null
 			},
 			'standardText': {
 				fontSize: pdfSize
+			},
+			'titleText': {
+				fontSize: 72,
+				color: '#2e4468',
+				bold: true,
+				alignment: 'center'
+			},
+			'advisorText': {
+				fontSize: 48,
+				alignment: 'center',
+				pageMargins: [40, 60, 40, 100]
 			}
 		}
 	);
@@ -271,6 +286,16 @@ function isEndTag( astElem ) {
 	return true;
 }
 
+function isTitleTag( astElem ) {
+	if ( astElem.type !== 'html_block' ) {
+		return false;
+	}
+	else if ( !startsWith( astElem.content, '<!--TitleText' ) ) {
+		return false;
+	}
+	return true;
+}
+
 function parsePDF( ast, config, state, start, end ) {
 	// Note that the DPI is 72
 	if ( isUndefinedOrNull( state ) ) {
@@ -347,6 +372,32 @@ function parsePDF( ast, config, state, start, end ) {
 					alignment: 'center',
 					margin: MARGINS
 				});
+			} else if ( contains( elem.content, '<!--TitleText' ) ) {
+				// We know the title starts after \nTitle: 
+				const firstNewLineIndex = elem.content.indexOf('\n');
+				const titleStartIndex = firstNewLineIndex + 'Title: '.length + 1; // one is so that it starts on the right ploace
+
+				const secondNewLineIndex = elem.content.indexOf('\n', firstNewLineIndex + 1);
+				const title = elem.content.slice(titleStartIndex, secondNewLineIndex);
+
+				const nameStartIndex = secondNewLineIndex + 'Name: '.length + 1;
+				const thirdNewLineIndex = elem.content.indexOf('\n', secondNewLineIndex + 1);
+
+				const name = elem.content.slice(nameStartIndex, thirdNewLineIndex);
+
+				// to get the start of the advisor, just do the same thing with the last line
+				const fourthNewLineIndex = elem.content.indexOf('\n', thirdNewLineIndex + 1);
+				const advisorStartIndex = thirdNewLineIndex + 'Advisor: '.length + 1;
+				const advisor = elem.content.slice(advisorStartIndex, fourthNewLineIndex);
+
+				content.push({
+					text: title,
+					style: 'titleText'
+				});
+				content.push({
+					text: `${name}  Adsivor: ${advisor}`,
+					style: 'advisorText'
+				});
 			}
 		} else if (
 			elem.type === 'bullet_list_open' ||
@@ -396,12 +447,23 @@ function parsePDF( ast, config, state, start, end ) {
 	return content;
 }
 
+function isPoster( config ) {
+	if ( !isObject( config.pageSize ) ) {
+		return false;
+	}
+	else if ( config.pageSize.width === 72 * 42 && config.pageSize.height === 72 * 30 ) {
+		return true;
+	}
+	return false;
+}
+
 // MAIN //
 
 function generatePDF( ast, config, standardFontSize ) {
+	const isPosterBool = isPoster( config );
 	const doc = {
 		'content': [],
-		'styles': makeSTYLES(standardFontSize),
+		'styles': makeSTYLES(standardFontSize, isPosterBool),
 		'pageSize': config.pageSize,
 		'pageOrientation': config.pageOrientation
 	};
@@ -463,6 +525,7 @@ function generatePDF( ast, config, standardFontSize ) {
 
 		colObj = {};
 		colObj.columns = columns;
+		colObj.columnGap = 90;
 		doc.content.push(colObj);
 
 		// EndTag[z] to startTag[z + 1]

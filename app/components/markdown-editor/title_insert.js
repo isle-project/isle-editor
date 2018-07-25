@@ -11,7 +11,8 @@ import Row from 'react-bootstrap/lib/Row';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
-import TextInput from 'compponents/input/text';
+import TextInput from 'components/input/text';
+import './title_insert.css';
 
 // VARIABLES //
 
@@ -25,9 +26,14 @@ class TitleInsert extends Component {
 		this.state = {
             title: 'Default Title',
             name: '',
-            advisors: ''
+            advisor: ''
         };
 	}
+
+    closeWindow = () => {
+        // Insert code here
+        this.props.onHide();
+    }
 
     handleTitleChange = ( value ) => {
         this.setState({
@@ -41,26 +47,54 @@ class TitleInsert extends Component {
         });
     }
 
-    handleAdvisorChange = ( event ) => {
+    handleAdvisorChange = ( value ) => {
         this.setState({
-            advisors: value
+            advisor: value
         });
+    }
+
+    insertClick = () => {
+        // pass the entire state to onClick
+        this.props.onClick(this.state);
+        this.closeWindow();
     }
 
 	render() {
 		return ( <Modal
-			onHide={this.props.insertFunction}
+			onHide={this.closeWindow}
 			show={this.props.show}
 		>
 			<Modal.Header closeButton>
 				<Modal.Title>Insert Title</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-                <TextInput 
-                    onChange={this.handleTitleChange( value )}
-                    legend="Title: "
+                <TextInput
+                    onChange={this.handleTitleChange}
+                    legend="Title"
                     defaulValue=''
+                    width={480}
                 />
+                <hr />
+                <TextInput
+                    onChange={this.handleNameChange}
+                    legend='Name'
+                    defaultValue=''
+                    width={480}
+                />
+                <hr />
+                <TextInput
+                    onChange={this.handleAdvisorChange}
+                    legend='Advisor'
+                    defaultValue=''
+                    width={480}
+                />
+                <hr id='button_sep'/>
+                <Button 
+                    onClick={this.insertClick}
+                    block
+                    bsSize="medium">
+                    Insert Header
+                </Button>
 			</Modal.Body>
 		</Modal> );
 	}
@@ -70,13 +104,14 @@ class TitleInsert extends Component {
 // PROPERTY TYPES //
 
 TitleInsert.propTypes = {
-	insertFunction: PropTypes.func.isRequired,
+	onClick: PropTypes.func,
 	onHide: PropTypes.func,
 	show: PropTypes.bool.isRequired
 };
 
 TitleInsert.defaultProps = {
-	onHide() {}
+    onHide() {},
+    onClick: noop
 };
 
 
