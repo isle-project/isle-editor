@@ -11,7 +11,6 @@ import { render } from 'react-dom';
 import { transform } from 'babel-core';
 import PropTypes from 'prop-types';
 import NotificationSystem from 'react-notification-system';
-import request from 'request';
 import logger from 'debug';
 import markdownToHTML from 'utils/markdown-to-html';
 import pluginTransformJSX from 'babel-plugin-transform-react-jsx';
@@ -62,7 +61,6 @@ const createScope = ( session ) => {
 		render,
 		session,
 		NotificationSystem,
-		request,
 
 		AcousticAssistant: Loadable( () => import( 'components/acoustic-css' ) ),
 		AcousticCSS: Loadable( () => import( 'components/acoustic-css' ) ),

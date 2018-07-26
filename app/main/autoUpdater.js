@@ -1,7 +1,6 @@
 // MODULES //
 
 import semver from 'semver';
-import request from 'request';
 import { version as currentVersion } from './../../package.json';
 
 
@@ -9,19 +8,15 @@ import { version as currentVersion } from './../../package.json';
 
 function autoUpdater( callback ) {
 	const link = 'https://raw.githubusercontent.com/planeshifter/isle-editor/master/package.json';
-	request.get( link, ( err, res, body ) => {
-		if ( err ) {
-			return callback( err );
-		}
-		try {
-			const newVersion = JSON.parse( body ).version;
+	fetch( link )
+		.then( res => res.json() )
+		.then( body => {
+			const newVersion = body.version;
 			if ( semver.gt( newVersion, currentVersion ) ) {
 				return callback( null, newVersion );
 			}
-		} catch ( error ) {
-			return callback( error );
-		}
-	});
+		})
+		.catch( error => callback( error ) );
 }
 
 
