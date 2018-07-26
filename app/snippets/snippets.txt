@@ -1,7 +1,7 @@
 snippet AddNotification
 	this.addNotification({
 		title: '${1:title}',
-		message: '${2:msg',
+		message: '${2:msg}',
 		position: 'tr',
 		level: 'success'
 	});
@@ -160,6 +160,9 @@ snippet Nav justified
 		<NavItem eventKey={2}>NavItem 2 content</NavItem>
 		<NavItem eventKey={3}>NavItem 3 content</NavItem>
 	</Nav>
+
+snippet News
+	<News />
 
 snippet NumberInput
 	<NumberInput
