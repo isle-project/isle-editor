@@ -225,7 +225,7 @@ class ComponentConfigurator extends Component {
 		}
 		const keys = objectKeys( componentClass.propTypes );
 		if ( keys.length === 0 ) {
-			return <div style={{ marginBottom: 15 }}>Component has no properties.</div>
+			return <div style={{ marginBottom: 15 }}>Component has no properties.</div>;
 		}
 		const controls = [];
 		for ( let i = 0; i < keys.length; i++ ) {
@@ -252,7 +252,7 @@ class ComponentConfigurator extends Component {
 			const className = isActive ? 'success' : '';
 			const elem = <tr className={className} style={{ marginBottom: 5 }} key={i}>
 					<td>
-						{ !isRequired ? <Checkbox checked={isActive} onClick={this.checkboxClickFactory( key, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{key}</Checkbox> : <Checkbox checked disabled>{key}</Checkbox> }
+						{ !isRequired ? <Checkbox checked={isActive} onClick={this.checkboxClickFactory( key, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{key}</Checkbox> : <Checkbox defaultChecked={true} disabled>{key}</Checkbox> }
 					</td>
 					<td>{description}</td>
 					<td>
@@ -264,7 +264,7 @@ class ComponentConfigurator extends Component {
 				</tr>;
 			controls.push( elem );
 		}
-		return ( 
+		return (
 			<Fragment>
 				<label>Click on the box to add the respective options:</label>
 				<div style={{ height: '350px', overflowY: 'scroll' }}>
