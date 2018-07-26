@@ -15,7 +15,7 @@ var debug = logger( 'isle-editor' );
 // MAIN //
 
 class Wikipedia extends Component {
-	constructor( props, context ) {
+	constructor( props ) {
 		super( props );
 		this.state = {
 			text: '',
@@ -24,7 +24,9 @@ class Wikipedia extends Component {
 	}
 
 	componentDidMount() {
-		if ( this.props.autoplay ) this.handleClick();
+		if ( this.props.autoplay ) {
+			this.handleClick();
+		}
 	}
 
 	// This is externally triggered
@@ -125,7 +127,9 @@ class Wikipedia extends Component {
 	}
 
 	renderResult() {
-		if ( this.state.response === '' ) return null;
+		if ( this.state.response === '' ) {
+			return null;
+		}
 		return (
 			<div className="wikipedia-result">
 				<iframe
@@ -139,10 +143,10 @@ class Wikipedia extends Component {
 	render() {
 		return (
 			<div className="wikipedia" >
-				{ this.renderSpeech() }
-				{ this.renderLogo() }
+				{this.renderSpeech()}
+				{this.renderLogo()}
 				<div className="wikipedia-separator"></div>
-				{ this.renderResult() }
+				{this.renderResult()}
 			</div>
 		);
 	}
@@ -166,10 +170,8 @@ Wikipedia.propTypes = {
 	language: PropTypes.string
 };
 
-
-// CONTEXT TYPES //
-
 Wikipedia.contextTypes = {
+	session: PropTypes.object
 };
 
 
