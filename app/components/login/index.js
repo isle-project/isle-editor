@@ -90,9 +90,9 @@ class Login extends Component {
 		}
 		else {
 			const { session } = this.context;
-			session.login( form, ( err, res ) => {
+			session.login( form, ( err, res, body ) => {
 				if ( !err ) {
-					const { message, type } = JSON.parse( res.body );
+					const { message, type } = body;
 					if ( message === 'ok' ) {
 						this.props.onClose();
 					} else {
