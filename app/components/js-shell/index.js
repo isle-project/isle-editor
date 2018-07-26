@@ -17,7 +17,6 @@ import '@planeshifter/brace/mode/javascript';
 import '@planeshifter/brace/theme/katzenmilch';
 import '@planeshifter/brace/theme/monokai';
 import '@planeshifter/brace/theme/solarized_light';
-import SpeechInterface from 'speech-interface';
 import scrollTo from 'utils/scroll-to';
 import CONSOLE_STYLES from './console_styles.json';
 import './js-shell.css';
@@ -144,11 +143,8 @@ class JSShell extends Component {
 	}
 
 	register() {
-		if (!global.speechInterface) {
-			global.speechInterface = new SpeechInterface();
-		}
-		global.speechInterface.register({
-			name: ['shell', 'console'],
+		this.session.speechInterface.register({
+			name: [ 'shell', 'console' ],
 			ref: this,
 			commands: [{
 				command: 'resetConsole',

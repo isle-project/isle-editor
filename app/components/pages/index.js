@@ -5,7 +5,6 @@ import Pagination from 'react-bootstrap/lib/Pagination';
 import PropTypes from 'prop-types';
 import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
-import SpeechInterface from 'speech-interface'; // this may be deleted
 import './pages.css';
 
 
@@ -24,32 +23,29 @@ class Pages extends Component {
 	}
 
 	register() {
-		if (!global.speechInterface) {
-			global.speechInterface = new SpeechInterface();
-		}
-		global.speechInterface.register({
+		this.session.speechInterface.register({
 			name: [ 'pager', 'please' ],
 			ref: this,
-			commands: [{
-				command: 'nextPage',
-				trigger: 'next'
-			},
-			{
-				command: 'prevPage',
-				trigger: 'previous'
-			},
-			{
-				command: 'firstPage',
-				trigger: 'first'
-			},
-			{
-				command: 'lastPage',
-				trigger: 'last'
-			}
-		]
+			commands: [
+				{
+					command: 'nextPage',
+					trigger: 'next'
+				},
+				{
+					command: 'prevPage',
+					trigger: 'previous'
+				},
+				{
+					command: 'firstPage',
+					trigger: 'first'
+				},
+				{
+					command: 'lastPage',
+					trigger: 'last'
+				}
+			]
 		});
 	}
-
 
 	firstPage = () => {
 		this.props.onSelect( 1 );
@@ -191,7 +187,7 @@ Pages.propTypes = {
 		PropTypes.string
 	]),
 	style: PropTypes.object,
-	onSelect: PropTypes.func,
+	onSelect: PropTypes.func
 };
 
 Pages.defaultProps = {
@@ -200,6 +196,10 @@ Pages.defaultProps = {
 	height: null,
 	style: {},
 	onSelect() {}
+};
+
+Pages.contextTypes = {
+	session: PropTypes.object
 };
 
 
