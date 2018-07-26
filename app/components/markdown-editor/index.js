@@ -724,7 +724,7 @@ class MarkdownEditor extends Component {
 			toolbarConfig.push( 'voice' );
 		}
 		// Handle case of adding in figure insert
-		if ( this.props.figureInsert && !contains( toolbarConfig, 'figure_insert' ) ) {
+		if ( contains( toolbarConfig, 'figure_insert' ) ) {
 			toolbarConfig.push( '|' );
 			toolbarConfig.push(' figure_insert' );
 		}
@@ -1091,7 +1091,7 @@ MarkdownEditor.defaultProps = {
 		'new_line', 'center', '|',
 		'insert_table', 'heading', 'unordered_list',
 		'ordered_list', 'link', 'insert_columns', '|',
-		'figure_insert', '|', 'title_insert',
+		'title_insert',
 		'preview', 'side_by_side', 'fullscreen', '|',
 		'open_markdown', 'save', 'submit', '|',
 		'voice'
@@ -1124,7 +1124,6 @@ MarkdownEditor.propDescriptions = {
 
 MarkdownEditor.propTypes = {
 	defaultValue: PropTypes.string,
-	figureInsert: PropTypes.array,
 	toolbarConfig: PropTypes.array,
 	options: PropTypes.object,
 	autoSave: PropTypes.bool,
