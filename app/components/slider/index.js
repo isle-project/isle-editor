@@ -114,10 +114,11 @@ DefaultSlider.defaultProps = {
 DefaultSlider.propDescriptions = {
 	title: 'title for the slideshow / carousel to be displayed at its top',
 	dots: 'display dots at the bottom for quickly navigating to any slide',
-	fade: 'controls whether fading is used for transitioning between the slides', 
+	fade: 'controls whether fading is used for transitioning between the slides',
 	draggable: 'controls whether users can drag the slides to navigate between them',
 	goto: 'If property is changed, the component jumps to the slide with the selected index',
-	infinite: 'controls whether the slideshow wraps around it\'s contents',	interval: 'sets a time interval for an automatic slide change',
+	infinite: 'controls whether the slideshow wraps around it\'s contents',
+	interval: 'sets a time interval for an automatic slide change',
 	swipeToSlide: 'enables drag/swipe behavior',
 	style: 'CSS inline styles',
 	onClick: 'callback invoked when clicking on the next/previous buttons'
