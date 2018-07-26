@@ -1,6 +1,5 @@
 // MODULES //
 
-import request from 'request';
 import qs from 'querystring';
 import logger from 'debug';
 import isString from '@stdlib/assert/is-string';
@@ -23,11 +22,6 @@ const STDOUT_REGEX = /stdout/;
 const GRAPHICS_REGEX = /graphics/;
 const ERR_REGEX = /\nIn call:[\s\S]*$/gm;
 const HELP_PATH_REGEX = /\/(?:site-)?library\/([^/]*)\/help\/([^/"]*)/;
-
-/*
-* We don't reject unsecured server addresses inside of the editor. Lesson creators manually input the server they wish to use, they "opt-in". In contrast, end users do not have that luxury, so for deployed lessons the handshake has to be successful.
-*/
-const rejectUnauthorized = isElectron ? false : true;
 let userRights = null;
 
 
@@ -158,8 +152,9 @@ class Session {
 		debug( `Should ping the server at ${this.server}...` );
 		fetch( this.server + '/ping' )
 			.then( ( response ) => {
-				return response.text()
-			}).then( ( body ) => {
+				return response.text();
+			})
+			.then( ( body ) => {
 				if ( body === 'live' ) {
 					this.live = true;
 					if ( !this.lessonID && !this.namespaceID ) {
@@ -170,7 +165,8 @@ class Session {
 					this.live = false;
 				}
 				this.update();
-			}).catch( err => debug( 'Encountered an error: '+err.message ) );
+			})
+			.catch( err => debug( 'Encountered an error: '+err.message ) );
 	}
 
 	/**
@@ -211,36 +207,47 @@ class Session {
 		debug( 'Executing R code...' );
 		const OPEN_CPU = this.getOpenCPUServer();
 		debug( `Post request at ${OPEN_CPU + OPEN_CPU_IDENTITY} for code "${code}"` );
-		request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
-			form: {
-				x: code
-			},
-			rejectUnauthorized
-		}, ( error, response, body ) => {
-			if ( error ) {
-				return debug( 'Encountered an error: '+error.message );
-			}
-			const arr = body.split( '\n' );
-			const plots = [];
-			if ( response.statusCode !== 400 ) {
-				arr.forEach( elem => {
-					if ( GRAPHICS_REGEX.test( elem ) === true ) {
-						const imgURL = OPEN_CPU + elem + '/svg';
-						plots.push( imgURL );
+
+		const getElem = ( elem ) => {
+			fetch( OPEN_CPU + elem )
+				.then( res => {
+					res.text().then( body => {
+						onResult( null, res, body );
+					});
+				})
+				.catch( err => onResult( err ) );
+		};
+		const formData = new FormData();
+		formData.append( 'x', code );
+		fetch( OPEN_CPU + OPEN_CPU_IDENTITY, {
+			method: 'POST',
+			body: formData
+		})
+		.then( response => {
+			response.text().then( body => {
+				debug( 'Received body:\n '+body );
+				debug( 'Response status: '+response.status );
+				const arr = body.split( '\n' );
+				const plots = [];
+				if ( response.status !== 400 ) {
+					arr.forEach( elem => {
+						if ( GRAPHICS_REGEX.test( elem ) === true ) {
+							const imgURL = OPEN_CPU + elem + '/svg';
+							plots.push( imgURL );
+						}
+						if ( STDOUT_REGEX.test( elem ) === true ) {
+							getElem( elem );
+						}
+					});
+					if ( isFunction( onPlots ) ) {
+						onPlots( plots );
 					}
-					if ( STDOUT_REGEX.test( elem ) === true ) {
-						request.get( OPEN_CPU + elem, {
-							rejectUnauthorized
-						}, onResult );
-					}
-				});
-				if ( isFunction( onPlots ) ) {
-					onPlots( plots );
+				} else {
+					onError( body.replace( ERR_REGEX, '' ) );
 				}
-			} else {
-				onError( body.replace( ERR_REGEX, '' ) );
-			}
-		});
+			});
+		})
+		.catch( error => debug( 'Encountered an error: '+error.message ) );
 	}
 
 	/**
@@ -252,29 +259,39 @@ class Session {
 	*/
 	getRHelpPage = ( helpCommand, clbk ) => {
 		const OPEN_CPU = this.getOpenCPUServer();
-		request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
-			form: {
-				x: 'x = ' + helpCommand + '; x[1]'
-			},
-			rejectUnauthorized
-		}, ( error, response, body ) => {
-			if ( error ) {
-				return debug( 'Encountered an error: '+error.message );
-			}
-			const arr = body.split( '\n' );
-			if ( response.statusCode !== 400 ) {
-				arr.forEach( elem => {
-					if ( STDOUT_REGEX.test( elem ) === true ) {
-						request.get( OPEN_CPU + elem, {
-							rejectUnauthorized
-						}, ( err, res, helpPath ) => {
-							const [ , lib, topic ] = helpPath.match( HELP_PATH_REGEX );
-							request.get( `https://public.opencpu.org/ocpu/library/${lib}/man/${topic}/html`, clbk );
-						});
-					}
+		const fetchElem = ( elem ) => {
+			fetch( OPEN_CPU + elem )
+				.then( res => res.text() )
+				.then( helpPath => {
+					const [ , lib, topic ] = helpPath.match( HELP_PATH_REGEX );
+					fetch( `https://public.opencpu.org/ocpu/library/${lib}/man/${topic}/html` ).then( res => {
+						res.text().then( body => {
+							clbk( null, res, body );
+						})
+						.catch( err => clbk( err ) );
+					});
 				});
+		};
+		const formData = new FormData();
+		formData.append( 'x', 'y = ' + helpCommand + '; y[1]' );
+		fetch( OPEN_CPU + OPEN_CPU_IDENTITY, {
+			method: 'POST',
+			body: formData
+		})
+		.then( response => {
+			if ( response.status !== 400 ) {
+				return response.text();
 			}
-		});
+		})
+		.then( body => {
+			const arr = body.split( '\n' );
+			arr.forEach( elem => {
+				if ( STDOUT_REGEX.test( elem ) === true ) {
+					fetchElem( elem );
+				}
+			});
+		})
+		.catch( error => debug( 'Encountered an error: '+error.message ) );
 	}
 
 	/**
@@ -287,9 +304,13 @@ class Session {
 	*/
 	getRHelp = ( library, functionName, clbk ) => {
 		const OPEN_CPU = this.getOpenCPUServer();
-		request.get( OPEN_CPU + `/ocpu/library/${library}/man/${functionName}/html`, {
-			rejectUnauthorized
-		}, clbk );
+		fetch( OPEN_CPU + `/ocpu/library/${library}/man/${functionName}/html` )
+			.then( res => {
+				res.text().then( body => {
+					clbk( null, res, body );
+				})
+				.catch( err => clbk( err ) );
+			});
 	}
 
 	/**
@@ -302,32 +323,39 @@ class Session {
 	*/
 	getRPlot = ( code, filetype, clbk ) => {
 		const OPEN_CPU = this.getOpenCPUServer();
-		request.post( OPEN_CPU + OPEN_CPU_IDENTITY, {
-			form: {
-				x: code
-			},
-			rejectUnauthorized
-		}, ( error, response, body ) => {
-			if ( error ) {
-				return clbk( error );
-			}
-			const arr = body.split( '\n' );
-			arr.forEach( elem => {
-				if ( GRAPHICS_REGEX.test( elem ) === true ) {
-					const imgURL = OPEN_CPU + elem + '/' + filetype;
-					request.get( imgURL, {
-						encoding: null,
-						rejectUnauthorized
-					}, ( error, response, body ) => {
+
+		const fetchImage = ( imgURL ) => {
+			fetch( imgURL, {
+				encoding: null
+			})
+				.then( res => {
+					res.text().then( body => {
 						if ( filetype === 'png' ) {
 							const buf = new Buffer( body );
-							body = 'data:'+response.headers['content-type']+';base64,' + buf.toString( 'base64' );
+							body = 'data:'+res.headers['content-type']+';base64,' + buf.toString( 'base64' );
 						}
-						clbk( error, imgURL, body );
+						clbk( null, imgURL, body );
 					});
-				}
-			});
-		});
+				})
+				.catch( err => clbk( err ) );
+		};
+		const formData = new FormData();
+		formData.append( 'x', code );
+		fetch( OPEN_CPU + OPEN_CPU_IDENTITY, {
+			method: 'POST',
+			body: formData
+		})
+			.then( res => res.text() )
+			.then( body => {
+				const arr = body.split( '\n' );
+				arr.forEach( elem => {
+					if ( GRAPHICS_REGEX.test( elem ) === true ) {
+						const imgURL = OPEN_CPU + elem + '/' + filetype;
+						fetchImage( imgURL );
+					}
+				});
+			})
+			.catch( error => clbk( error ) );
 	}
 
 	/**
@@ -359,28 +387,31 @@ class Session {
 			!userRights
 		) {
 			this.userRightsQuestionPosed = true;
-			request.post( this.server+'/get_user_rights', {
+			fetch( this.server+'/get_user_rights', {
+				method: 'POST',
 				headers: {
+					'Content-Type': 'application/json',
 					'Authorization': 'JWT ' + this.user.token
 				},
-				form: {
+				body: JSON.stringify({
 					namespaceName: this.namespaceName,
 					lessonName: this.lessonName
-				},
-				rejectUnauthorized
-			}, ( err, res, body ) => {
-				this.userRightsQuestionPosed = false;
-				if ( !err ) {
-					const obj = JSON.parse( body );
-					userRights = obj;
-					if ( userRights.owner && isEmptyArray( this.socketActions ) ) {
-						// [3a] Retrieve all user actions for owners:
-						this.getUserActions();
-					} else if ( !this.currentUserActions ) {
-						// [3b] Retrieve only own actions otherwise:
-						this.getCurrentUserActions();
-					}
+				})
+			})
+			.then( res => res.json() )
+			.then( json => {
+				userRights = json;
+				if ( userRights.owner && isEmptyArray( this.socketActions ) ) {
+					// [3a] Retrieve all user actions for owners:
+					this.getUserActions();
+				} else if ( !this.currentUserActions ) {
+					// [3b] Retrieve only own actions otherwise:
+					this.getCurrentUserActions();
 				}
+			})
+			.catch( err => {
+				this.userRightsQuestionPosed = false;
+				debug( 'Encountered an error '+err.message );
 			});
 		}
 	}
@@ -637,20 +668,19 @@ class Session {
 	}
 
 	getFakeUsers = ( clbk ) => {
-		request.get( this.server+'/get_fake_users', {
+		fetch( this.server+'/get_fake_users', {
 			headers: {
 				'Authorization': 'JWT ' + this.user.token
-			},
-			rejectUnauthorized
-		}, ( error, response, body ) => {
-			if ( error ) {
-				return clbk( error );
 			}
-			if ( response.statusCode === 200 ) {
-				body = JSON.parse( body );
-				return clbk( null, body );
+		})
+		.then( response => {
+			if ( response.status === 200 ) {
+				response.json().then( body => {
+					clbk( null, body );
+				});
 			}
-		});
+		})
+		.catch( error => clbk( error ) );
 	}
 
 	/**
@@ -660,25 +690,27 @@ class Session {
 	*/
 	getUserActions = () => {
 		debug( 'Retrieve user actions...' );
-		request.post( this.server+'/get_user_actions', {
+
+		fetch( this.server+'/get_user_actions', {
+			method: 'POST',
 			headers: {
+				'Content-Type': 'application/json',
 				'Authorization': 'JWT ' + this.user.token
 			},
-			form: {
+			body: JSON.stringify({
 				lessonID: this.lessonID,
 				anonymous: true
-			},
-			rejectUnauthorized
-		}, ( error, response, body ) => {
-			if ( error ) {
-				return debug( 'Encountered an error: '+error.message );
+			})
+		})
+		.then( ( response ) => {
+			if ( response.status === 200 ) {
+				response.json().then( json => {
+					this.socketActions = json.actions;
+					this.update( 'retrieved_user_actions', json.actions );
+				});
 			}
-			if ( response.statusCode === 200 ) {
-				body = JSON.parse( body );
-				this.socketActions = body.actions;
-				this.update( 'retrieved_user_actions', body.actions );
-			}
-		});
+		})
+		.catch( error => debug( 'Encountered an error: '+error.message ) );
 	}
 
 	/**
@@ -687,24 +719,25 @@ class Session {
 	* @returns {void}
 	*/
 	getCurrentUserActions = () => {
-		request.post( this.server+'/get_current_user_actions', {
+		fetch( this.server+'/get_current_user_actions', {
+			method: 'POST',
 			headers: {
+				'Content-Type': 'application/json',
 				'Authorization': 'JWT ' + this.user.token
 			},
-			form: {
+			body: JSON.stringify({
 				lessonID: this.lessonID
-			},
-			rejectUnauthorized
-		}, ( error, response, body ) => {
-			if ( error ) {
-				return debug( 'Encountered an error: '+error.message );
+			})
+		})
+		.then( ( response ) => {
+			if ( response.status === 200 ) {
+				response.json().then( body => {
+					this.currentUserActions = body.actions;
+					this.update( 'retrieved_current_user_actions', this.currentUserActions );
+				});
 			}
-			if ( response.statusCode === 200 ) {
-				body = JSON.parse( body );
-				this.currentUserActions = body.actions;
-				this.update( 'retrieved_current_user_actions', this.currentUserActions );
-			}
-		});
+		})
+		.catch( error => debug( 'Encountered an error: '+error.message ) );
 	}
 
 	/**
@@ -739,7 +772,8 @@ class Session {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify( data )
-		}).then( ( response ) => {
+		})
+		.then( ( response ) => {
 			if ( response.status !== 200 ) {
 				response.text().then( message => {
 					this.addNotification({
@@ -758,7 +792,8 @@ class Session {
 				});
 				this.login({ email: data.email, password: data.password }, clbk );
 			}
-		}).catch( ( err ) => {
+		})
+		.catch( ( err ) => {
 			debug( 'Encountered an error: '+err.message );
 			clbk( err );
 		});
@@ -835,15 +870,17 @@ class Session {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify( form )
-		}).then( ( response ) => {
-			return response.json();
-		}).then( ( json ) => {
-			const { token, id, message } = json;
-			if ( message === 'ok' ) {
-				this.handleLogin({ token, id });
-			}
-			clbk( null, json );
-		}).catch( ( err ) => {
+		})
+		.then( response => {
+			response.json().then( body => {
+				const { token, id, message } = body;
+				if ( message === 'ok' ) {
+					this.handleLogin({ token, id });
+				}
+				clbk( null, response, body );
+			});
+		})
+		.catch( ( err ) => {
 			clbk( err );
 		});
 	}
@@ -896,20 +933,16 @@ class Session {
 		const { lessonName, namespaceName, server } = this;
 		debug( `Retrieve lesson info for ${namespaceName}/${lessonName} from ${server}` );
 		if ( lessonName && namespaceName ) {
-			request.get( this.server+'/get_lesson_info', {
-				qs: {
-					lessonName,
-					namespaceName
-				},
-				rejectUnauthorized
-			}, ( err, res ) => {
-				if ( !err ) {
-					const body = JSON.parse( res.body );
-					this.lessonID = body.lessonID;
-					this.namespaceID = body.namespaceID;
-					// [2] Retrieve user rights for said lesson and its namespace
-					this.getUserRights();
-				}
+			fetch( this.server+'/get_lesson_info?'+qs.stringify({ lessonName, namespaceName }) )
+			.then( res => res.json() )
+			.then( ( body ) => {
+				this.lessonID = body.lessonID;
+				this.namespaceID = body.namespaceID;
+				// [2] Retrieve user rights for said lesson and its namespace
+				this.getUserRights();
+			})
+			.catch( ( err ) => {
+				debug( 'Encountered an error: '+err.message );
 			});
 		}
 	}
@@ -922,19 +955,19 @@ class Session {
 	* @returns {void}
 	*/
 	retrieveData( query, onData ) {
-		request.post( this.server + '/retrieve_data', {
-			form: {
-				query: JSON.stringify( query ),
-				user: JSON.stringify( this.user )
+		fetch( this.server + '/retrieve_data', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
 			},
-			rejectUnauthorized
-		}, ( error, response, body ) => {
-			if ( error ) {
-				onData( error );
-			} else {
-				onData( null, JSON.parse( body ) );
-			}
-		});
+			body: JSON.stringify({
+				query,
+				user: this.user
+			})
+		})
+			.then( res => res.json() )
+			.then( body => onData( null, body ) )
+			.catch( error => onData( error ) );
 	}
 
 	/**
@@ -953,9 +986,11 @@ class Session {
 			body: JSON.stringify({
 				id: obj.id
 			})
-		}).then( ( response ) => {
+		})
+		.then( ( response ) => {
 			return response.json();
-		}).then( ( json ) => {
+		})
+		.then( ( json ) => {
 			this.addNotification({
 				title: 'Logged in',
 				message: 'You have successfully logged in.',
@@ -1063,16 +1098,12 @@ class Session {
 			userID: this.user ? this.user.id : null
 		};
 		if ( !this._offline ) {
-			request.post( this.server + '/updateSession', {
-				form: {
-					stringified: JSON.stringify( currentSession )
-				},
-				rejectUnauthorized
-			}, ( error, response, body ) => {
-				if ( error ) {
-					debug( 'Encountered an error: '+error.message );
-				}
-			});
+			fetch( this.server+'/updateSession', {
+				method: 'POST',
+				body: JSON.stringify({
+					stringified: currentSession
+				})
+			}).catch( err => debug( 'Encountered an error: '+err.message ) );
 		}
 	}
 
@@ -1099,38 +1130,24 @@ class Session {
 			data
 		};
 		if ( !this._offline ) {
-			request.post( this.server + '/store_session_element', {
-				form: {
-					stringified: JSON.stringify( obj )
-				},
-				rejectUnauthorized
-			}, ( error, response, body ) => {
-				if ( error ) {
-					debug( 'Encountered an error: '+error.message );
-				}
-			});
+			fetch( this.server+'/store_session_element', {
+				method: 'POST',
+				body: JSON.stringify({
+					stringified: obj
+				})
+			}).catch( err => debug( 'Encountered an error: '+err.message ) );
 		}
 	}
 
 	removeSessionElementFromDatabase( sessionElementID, clbk ) {
-		request.get( this.server+'/delete_session_element', {
-			qs: {
-				_id: sessionElementID
-			},
+		fetch( this.server+'/delete_session_element?' + qs.stringify({
+			_id: sessionElementID
+		}), {
 			headers: {
 				'Authorization': 'JWT ' + this.user.token
-			},
-			rejectUnauthorized
-		}, ( error ) => {
-			if ( error ) {
-				this.addNotification({
-					title: 'Error encountered',
-					message: error.message,
-					level: 'error',
-					position: 'tl'
-				});
-				return clbk( error );
 			}
+		})
+		.then( () => {
 			for ( let i = 0; i < this.socketActions.length; i++ ) {
 				if ( this.socketActions[ i ].sessiondataID === sessionElementID ) {
 					this.socketActions.splice( i, 1 );
@@ -1144,6 +1161,15 @@ class Session {
 				position: 'tl'
 			});
 			clbk( null );
+		})
+		.catch( error => {
+			this.addNotification({
+				title: 'Error encountered',
+				message: error.message,
+				level: 'error',
+				position: 'tl'
+			});
+			clbk( error );
 		});
 	}
 
@@ -1245,14 +1271,14 @@ class Session {
 		if ( !hasOwnProp( mailOptions, 'to' ) ) {
 			mailOptions.to = to;
 		}
-		request.post( this.config.server + '/send_mail', {
-			form: mailOptions,
-			rejectUnauthorized
-		}, ( error, response, body ) => {
-			if ( error ) {
-				return debug( 'Encountered an error: '+error.message );
-			}
-		});
+		fetch( this.config.server + '/send_mail', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify( mailOptions )
+		})
+		.catch( error => debug( 'Encountered an error: '+error.message ) );
 	}
 
 	/**
