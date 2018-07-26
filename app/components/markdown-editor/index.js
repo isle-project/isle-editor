@@ -477,7 +477,7 @@ class MarkdownEditor extends Component {
 			const editorToolbar = toolbars[ 0 ];
 			const fontSizeToRemove = editorToolbar.getElementsByClassName( 'font_size_button' );
 			if ( fontSizeToRemove.length > 0 ) {
-				ReactDOM.render( <input type='number'
+				ReactDOM.render( <input type='number' min={4} max={120}
 					onChange={( event ) => {
 						this.setState({
 							fontSize: event.target.value
