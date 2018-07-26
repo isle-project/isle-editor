@@ -87,7 +87,8 @@ class TeX extends Component {
 								showTooltip: false
 							});
 						}
-					}).on( 'click', () => {
+					})
+					.on( 'click', () => {
 						if ( elem.variable ) {
 							let config = {
 								legend: elem.legend || elem.variable,
