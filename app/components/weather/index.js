@@ -2,14 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import request from 'request';
 import isElectron from 'utils/is-electron';
 import './weather.css';
-
-
-// VARIABLES //
-
-const rejectUnauthorized = isElectron ? false : true;
 
 
 // MAIN //
@@ -75,14 +69,16 @@ class Weather extends Component {
 		const json = '/current.json';
 		const q = location;
 		const url = base + json + '?key=' + this.props.key + '&q=' + q;
-		request.get( url, {
-			rejectUnauthorized
-		}, ( err, res, data ) => {
-			if ( !err ) {
-				data = JSON.parse( data );
-				this.setWeatherData( data );
-			}
-		});
+		fetch( url )
+			.then( ( response ) => {
+				return response.json();
+			})
+			.then( ( json ) => {
+				console.log( json );
+				this.setWeatherData( json );
+			}).catch( ( err ) => {
+				console.error( err );
+			});
 	}
 
 	setWeatherData( data ) {
