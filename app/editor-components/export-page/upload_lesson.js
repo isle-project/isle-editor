@@ -62,7 +62,7 @@ class UploadLesson extends Component {
 				headers: {
 					'Authorization': 'JWT ' + this.state.token
 				}
-			}
+			})
 			.then( res => res.json() )
 			.then( body => {
 				this.setState({

@@ -54,11 +54,12 @@ class Login extends Component {
 				email: this.state.email
 			};
 			fetch( this.state.server+'/login', {
+				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify( form )
-			}
+			})
 			.then( res => res.json() )
 			.then( body => {
 				try {
