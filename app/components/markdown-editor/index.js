@@ -798,7 +798,8 @@ class MarkdownEditor extends Component {
 			}
 
 			// Do the replacement
-			return `<h1 class='center' style="font-size: 48px; width: 100%">${title}</h1>\n<h2 class='center' style="font-size: 44px; width: 100%"><p>${name}<br />Advisor(s): ${advisor}</p></h2>`;
+			return `<h1 class='center' style="font-size: 48px; width: 100%">${title}</h1>
+				<h2 class='center' style="font-size: 44px; width: 100%">${name}<br />${advisor !== null ? `Advisor(s): ${advisor}` : null}</h2>`;
 		}
 
 		// Using regexp
