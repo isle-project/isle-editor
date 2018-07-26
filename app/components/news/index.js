@@ -7,7 +7,6 @@ import logger from 'debug';
 import capitalize from '@stdlib/string/capitalize';
 import isElectron from 'utils/is-electron';
 import VoiceInput from 'components/input/voice';
-import SpeechInterface from 'speech-interface'; // this may be deleted
 import newslist from './list.json';
 import EXCEPTIONS from './exceptions.json';
 import './styles.css';
@@ -22,42 +21,36 @@ const debug = logger( 'isle-editor:news' );
 // MAIN //
 
 class News extends Component {
-	constructor( props, context ) {
+	constructor( props ) {
 		super( props );
 
 		this.state = {
 			articles: null,
 			visible: null
 		};
-		this.displayArticles.bind( this );
 	}
 
 	componentDidMount() {
 		this.list = newslist;
-		if (this.props.speechInterface) {
+		if ( this.props.speechInterface ) {
 			this.register();
 		}
 	}
 
-
 	register() {
-		if (!global.speechInterface) {
-			global.speechInterface = new SpeechInterface();
-		}
-		global.speechInterface.register({
-			name: ['news'],
+		this.session.speechInterface.register({
+			name: [ 'news' ],
 			ref: this,
 			commands: [{
 				command: 'trigger',
-				trigger: ['news', 'hey'],
+				trigger: [ 'news', 'hey' ],
 				text: true,
 				params: {}
 			}]
 		});
 	}
 
-
-	displayArticles( data ) {
+	displayArticles = ( data ) => {
 		this.props.onArticles( data );
 		this.setState({
 			visible: true,
@@ -66,10 +59,9 @@ class News extends Component {
 	}
 
 	getArticles( source ) {
-		var base = 'https://newsapi.org/v1/articles?source=';
-		var type = '&sortBy=latest&apiKey=';
-		var url = base + source + type + this.props.key;
-
+		const base = 'https://newsapi.org/v1/articles?source=';
+		const type = '&sortBy=latest&apiKey=';
+		const url = base + source + type + this.props.key;
 		request.get( url, {
 			rejectUnauthorized
 		}, ( err, res, data ) => {
@@ -83,7 +75,7 @@ class News extends Component {
 	}
 
 	exceptions( name ) {
-		var x = EXCEPTIONS[name];
+		var x = EXCEPTIONS[ name ];
 		if ( x ) {
 			return x;
 		}
@@ -140,7 +132,7 @@ class News extends Component {
 	}
 
 	getDate( date ) {
-		return ( new Date(date).toLocaleString( this.props.language) );
+		return ( new Date( date ).toLocaleString( this.props.language ) );
 	}
 
 	getArticle( item, id ) {
@@ -163,10 +155,12 @@ class News extends Component {
 	}
 
 	articles() {
-		if ( this.state.articles === null ) return null;
-		let list = [];
-		for ( var i = 0; i < this.state.articles.length; i++ ) {
-			let item = this.state.articles[ i ];
+		if ( !this.state.articles ) {
+			return null;
+		}
+		const list = [];
+		for ( let i = 0; i < this.state.articles.length; i++ ) {
+			const item = this.state.articles[ i ];
 			list.push(
 				this.getArticle( item, i )
 			);
@@ -175,16 +169,20 @@ class News extends Component {
 	}
 
 	renderArticles() {
-		if ( this.state.visible === null ) return null;
+		if ( !this.state.visible ) {
+			return null;
+		}
 		return (
 			<div className="articles">
-				{ this.articles() }
+				{this.articles()}
 			</div>
 		);
 	}
 
 	renderLogo() {
-		if ( this.props.invisible ) return null;
+		if ( this.props.invisible ) {
+			return null;
+		}
 		return (
 			<div>
 				<div className="article-header">NEWS</div>
@@ -233,10 +231,9 @@ News.propTypes = {
 	speechInterface: PropTypes.bool
 };
 
-
-// CONTEXT TYPES //
-
-News.contextTypes = {};
+News.contextTypes = {
+	session: PropTypes.object
+};
 
 
 // EXPORTS //
