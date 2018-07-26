@@ -752,7 +752,7 @@ class MarkdownEditor extends Component {
 		var firstIndex;
 		var colCount = 1;
 		const RANDOMSTR = '3hiueronenrklnwfkln';
-		plainText = plainText.replace('<!--ColGroupStart-->', `<div><div style="width: ${RANDOMSTR}%; float: left;">`);
+		plainText = plainText.replace('<!--ColGroupStart-->', `<div style="display: table"><div style="width: ${RANDOMSTR}%; float: left;">`);
 		while ( plainText.includes('<!--Column') ) {
 			firstIndex = plainText.indexOf('<!--Column');
 			if ( plainText.charAt(firstIndex + '<!--Column'.length) === '-' ) {
