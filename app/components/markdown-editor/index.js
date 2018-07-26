@@ -752,17 +752,17 @@ class MarkdownEditor extends Component {
 		var firstIndex;
 		var colCount = 1;
 		const RANDOMSTR = '3hiueronenrklnwfkln';
-		plainText = plainText.replace('<!--ColGroupStart-->', `<div style="width: ${RANDOMSTR}%; float: left;"}>`);
+		plainText = plainText.replace('<!--ColGroupStart-->', `<div><div style="width: ${RANDOMSTR}%; float: left;">`);
 		while ( plainText.includes('<!--Column') ) {
 			firstIndex = plainText.indexOf('<!--Column');
 			if ( plainText.charAt(firstIndex + '<!--Column'.length) === '-' ) {
 				break;
 			}
 			colCount += 1;
-			plainText = plainText.replace(`<!--Column${colCount}-->`, `</div>\n<div style="width: ${RANDOMSTR}%; float: left;"}>`);
+			plainText = plainText.replace(`<!--Column${colCount}-->`, `</div>\n<div style="width: ${RANDOMSTR}%; float: left;">`);
 		}
 
-		plainText = plainText.replace('<!ColGroupEnd-->', '</div>');
+		plainText = plainText.replace('<!--ColGroupEnd-->', '</div></div>');
 		var colWidth = 100 / colCount;
 		plainText = replace(plainText, RANDOMSTR, colWidth.toString());
 
@@ -798,7 +798,7 @@ class MarkdownEditor extends Component {
 			}
 
 			// Do the replacement
-			return `<h1 class='center' style="font-size: 48px; width: 100%">${title}</h1>\n<h2 class='center' style="font-size: 44px; width: 100%"><p>${name}\nAdvisor(s): ${advisor}</p></h2>`;
+			return `<h1 class='center' style="font-size: 48px; width: 100%">${title}</h1>\n<h2 class='center' style="font-size: 44px; width: 100%"><p>${name}<br />Advisor(s): ${advisor}</p></h2>`;
 		}
 
 		// Using regexp
