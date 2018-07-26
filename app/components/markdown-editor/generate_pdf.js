@@ -67,9 +67,6 @@ function makeSTYLES( customFontSize = 16, poster = false ) {
 				bold: true,
 				alignment: poster ? 'center' : null
 			},
-			'standardText': {
-				fontSize: pdfSize
-			},
 			'titleText': {
 				fontSize: 72,
 				color: '#2e4468',
@@ -80,6 +77,10 @@ function makeSTYLES( customFontSize = 16, poster = false ) {
 				fontSize: 48,
 				alignment: 'center',
 				pageMargins: [40, 60, 40, 100]
+			},
+			'columnText': {
+				fontSize: pdfSize,
+				border: '10px'
 			}
 		}
 	);
@@ -348,8 +349,7 @@ function parsePDF( ast, config, state, start, end ) {
 				content.push({
 					text,
 					...state,
-					margin: MARGINS,
-					style: 'standardText'
+					margin: MARGINS
 				});
 			} else {
 				content.push({
@@ -465,7 +465,10 @@ function generatePDF( ast, config, standardFontSize ) {
 		'content': [],
 		'styles': makeSTYLES(standardFontSize, isPosterBool),
 		'pageSize': config.pageSize,
-		'pageOrientation': config.pageOrientation
+		'pageOrientation': config.pageOrientation,
+		'defaultStyle': {
+			fontSize: standardFontSize
+		}
 	};
 
 	const state = {};
