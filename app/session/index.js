@@ -11,6 +11,7 @@ import Buffer from '@stdlib/buffer/ctor';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 import isElectron from 'utils/is-electron';
 import io from 'socket.io-client';
+import SpeechInterface from 'speech-interface';
 
 
 // VARIABLES //
@@ -76,6 +77,9 @@ class Session {
 
 		// State variables of the given lesson:
 		this.state = config.state;
+
+		// Register speech interface:
+		this.speechInterface = new SpeechInterface();
 
 		// Time variables:
 		this.startTime = new Date().getTime();
