@@ -56,13 +56,13 @@ class SaveModal extends Component {
 
 	savePDF = () => {
 		var config = {};
-		var pageDims;
+		var pageDims = {};
 		if ( this.state.useString ) {
 			// If we use the string make page dimension the string:
-			pageDims = this.state.pageSize;
+			pageDims.width = 72 * pageSizes[this.state.pageSize].width;
+			pageDims.height = 72 * pageSizes[this.state.pageSize].height;
 		}
 		if ( !this.state.useString || this.state.pageSize === 'POSTER' ) {
-			pageDims = {};
 			pageDims.height = this.state.customHeight;
 			pageDims.width = this.state.customWidth;
 		}

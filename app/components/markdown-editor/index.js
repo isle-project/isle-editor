@@ -228,7 +228,7 @@ class MarkdownEditor extends Component {
 			defaultValue: props.defaultValue,
 			showTableSelect: false,
 			showColumnSelect: false,
-			fontSize: 16,
+			fontSize: 12,
 			showFigureInsert: false,
 			showTitleInsert: false,
 		};
