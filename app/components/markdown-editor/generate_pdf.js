@@ -395,7 +395,7 @@ function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 					style: 'titleText'
 				});
 				content.push({
-					text: `${name}  Adsivor: ${advisor}`,
+					text: `${name}\nAdvisor(s): ${advisor}`,
 					style: 'advisorText'
 				});
 			}
