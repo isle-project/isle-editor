@@ -116,7 +116,8 @@ class SaveModal extends Component {
 														visibleHeight: pageSizes[value].height,
 														visibleWidth: pageSizes[value].width,
 														customHeight: pageSizes[value].height * 72,
-														customWidth: pageSizes[value].width * 72
+														customWidth: pageSizes[value].width * 72,
+														pageOrientation: 'portrait'
 													});
 												} else {
 													this.setState({
