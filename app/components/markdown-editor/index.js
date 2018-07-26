@@ -230,7 +230,7 @@ class MarkdownEditor extends Component {
 			showColumnSelect: false,
 			fontSize: 12,
 			showFigureInsert: false,
-			showTitleInsert: false,
+			showTitleInsert: false
 		};
 
 		this.toolbarOpts = {
@@ -1021,7 +1021,7 @@ class MarkdownEditor extends Component {
 					show={this.state.showTitleInsert}
 					onHide={this.toggleTitleInsert}
 					onClick={( ids )=>{
-						this.simplemde.codemirror.replaceRange( `<!--TitleText\nTitle: ${ids.name}\nName: ${ids.name}\nAdvisor: ${ids.advisor}\n-->`,
+						this.simplemde.codemirror.replaceRange( `<!--TitleText\nTitle: ${ids.title}\nName: ${ids.name}\nAdvisor: ${ids.advisor}\n-->`,
 								{ line: 1, ch: 0 },
 								{ line: 1, ch: 99999999999999 }
 							);
