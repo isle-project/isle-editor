@@ -1,7 +1,7 @@
 // MODULES //
 
 /*
-	Disable no-eval warning as evaluating code in an editor
+	Disable no-new-func warning as evaluating code in an editor
 	is one of the few valid use-cases of this otherwise dangerous function:
 */
 /* eslint no-new-func: 0 */
@@ -225,7 +225,7 @@ const createScope = ( session ) => {
 
 // MAIN //
 
-export default class Preview extends Component {
+class Preview extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -369,4 +369,4 @@ Preview.propTypes = {
 
 // EXPORTS //
 
-module.exports = Preview;
+export default Preview;
