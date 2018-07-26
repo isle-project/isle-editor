@@ -394,7 +394,7 @@ class MarkdownEditor extends Component {
 				action: () => {
 					this.toggleColumnSelect();
 				},
-				className: 'fa fa-align-justify',
+				className: 'fa fa-ellipsis-h',
 				title: 'Insert Columns'
 			},
 			'open_markdown': {
@@ -448,7 +448,7 @@ class MarkdownEditor extends Component {
 			},
 			'title_insert': {
 				name: 'title_insert',
-				className: 'fa fa-book',
+				className: 'fa fa-credit-card',
 				title: 'Insert Title',
 				action: () => {
 					this.toggleTitleInsert();
