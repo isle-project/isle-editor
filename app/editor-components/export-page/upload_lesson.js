@@ -17,6 +17,7 @@ import randomstring from 'randomstring';
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
+import qs from 'querystring';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
@@ -187,12 +188,13 @@ class UploadLesson extends Component {
 	}
 
 	checkLesson = () => {
-		const qs = {
+		const form = {
 			namespaceName: this.state.namespaceName,
 			lessonName: this.state.lessonName
 		};
-		debug( 'Querystring: '+JSON.stringify(qs) );
-		fetch( this.state.server + '/get_lesson?'+qs )
+		const query = qs.stringify( form );
+		debug( 'Querystring: '+query );
+		fetch( this.state.server + '/get_lesson?'+query )
 			.then( res => {
 				if ( res.status === 200 ) {
 					return res.json();
