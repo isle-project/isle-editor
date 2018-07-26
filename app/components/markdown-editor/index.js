@@ -25,6 +25,7 @@ import trim from '@stdlib/string/trim';
 import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
+import indexOf from '@stdlib/utils/index-of';
 import VoiceInput from 'components/input/voice';
 import fonts from './fonts.js';
 import generatePDF from './generate_pdf.js';
@@ -184,6 +185,13 @@ function createPreviewStyles(fontSize) {
 			.editor-preview-active h4 {
 				font-size: ${fontSize + 4}px !important;
 			}
+			.title-tag {
+				font-size: 72px !important;
+			}
+			.subtitle-tag {
+				font-size: 48px !important;
+				align
+			}
 		</style>`;
 }
 
@@ -228,9 +236,9 @@ class MarkdownEditor extends Component {
 			defaultValue: props.defaultValue,
 			showTableSelect: false,
 			showColumnSelect: false,
-			fontSize: 16,
+			fontSize: 12,
 			showFigureInsert: false,
-			showTitleInsert: false,
+			showTitleInsert: false
 		};
 
 		this.toolbarOpts = {
@@ -386,7 +394,7 @@ class MarkdownEditor extends Component {
 				action: () => {
 					this.toggleColumnSelect();
 				},
-				className: 'fa fa-align-justify',
+				className: 'fa fa-ellipsis-h',
 				title: 'Insert Columns'
 			},
 			'open_markdown': {
@@ -440,7 +448,7 @@ class MarkdownEditor extends Component {
 			},
 			'title_insert': {
 				name: 'title_insert',
-				className: 'fa fa-book',
+				className: 'fa fa-credit-card',
 				title: 'Insert Title',
 				action: () => {
 					this.toggleTitleInsert();
@@ -469,7 +477,7 @@ class MarkdownEditor extends Component {
 			const editorToolbar = toolbars[ 0 ];
 			const fontSizeToRemove = editorToolbar.getElementsByClassName( 'font_size_button' );
 			if ( fontSizeToRemove.length > 0 ) {
-				ReactDOM.render( <input type='number'
+				ReactDOM.render( <input type='number' min={4} max={99}
 					onChange={( event ) => {
 						this.setState({
 							fontSize: event.target.value
@@ -761,12 +769,52 @@ class MarkdownEditor extends Component {
 		return plainText;
 	}
 
+	titleTagConvert = ( plainText ) => {
+
+		function replacer( str, match, offset, s) {
+			let title;
+			let name;
+			let advisor;
+
+			const titleIndex = match.indexOf('Title: ');
+			if ( titleIndex !== -1 ) {
+				const titleStartsAt = titleIndex + 'Title: '.length;
+				const secondNewLineIndex = match.indexOf( '\n', titleIndex + 1 );
+				title = match.slice( titleStartsAt, secondNewLineIndex );
+			}
+
+			const nameIndex = match.indexOf('Name: ');
+			if ( nameIndex !== -1 ) {
+				const nameStartsAt = nameIndex + 'Name: '.length;
+				const nameLineIndex = match.indexOf( '\n', nameStartsAt );
+				name = match.slice( nameStartsAt, nameLineIndex );
+			}
+
+			const advisorIndex = match.indexOf('Advisor: ' );
+			if ( advisorIndex !== -1 ) {
+				const advisorStartsAt = advisorIndex + 'Advisor: '.length;
+				const advisorLineIndex = match.indexOf( '\n', advisorStartsAt );
+				advisor = match.slice( advisorStartsAt, advisorLineIndex );
+			}
+
+			// Do the replacement
+			return `<h1 class='center' style="font-size: 48px; width: 100%">${title}</h1>\n<h2 class='center' style="font-size: 44px; width: 100%"><p>${name}\nAdvisor(s): ${advisor}</p></h2>`;
+		}
+
+		// Using regexp
+		const regTitle = /<!--TitleText([\s\S]*?)-->/;
+		plainText = plainText.replace(regTitle, replacer);
+		return plainText;
+	}
+
 	previewRender = ( plainText ) => {
+		// Add columns:
+		plainText = this.columnTagConvert( plainText );
+
 		// Take the plaintext and insert the images via hash:
 		plainText = this.replacePlaceholders( plainText );
 
-		// Add columns:
-		plainText = this.columnTagConvert( plainText );
+		plainText = this.titleTagConvert( plainText );
 
 		// Cycle through and remove old stylings:
 		var allStyles = document.getElementsByTagName('style');
@@ -1021,7 +1069,7 @@ class MarkdownEditor extends Component {
 					show={this.state.showTitleInsert}
 					onHide={this.toggleTitleInsert}
 					onClick={( ids )=>{
-						this.simplemde.codemirror.replaceRange( `<!--TitleText\nTitle: ${ids.name}\nName: ${ids.name}\nAdvisor: ${ids.advisor}\n-->`,
+						this.simplemde.codemirror.replaceRange( `<!--TitleText\nTitle: ${ids.title}\nName: ${ids.name}\nAdvisor: ${ids.advisor}\n-->`,
 								{ line: 1, ch: 0 },
 								{ line: 1, ch: 99999999999999 }
 							);

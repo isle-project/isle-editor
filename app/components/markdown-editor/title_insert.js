@@ -24,7 +24,7 @@ class TitleInsert extends Component {
 		super( props );
 
 		this.state = {
-            title: 'Default Title',
+            title: '',
             name: '',
             advisor: ''
         };
@@ -65,7 +65,7 @@ class TitleInsert extends Component {
 			show={this.props.show}
 		>
 			<Modal.Header closeButton>
-				<Modal.Title>Insert Title</Modal.Title>
+				<Modal.Title>Create a Title</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
                 <TextInput
@@ -93,7 +93,7 @@ class TitleInsert extends Component {
                     onClick={this.insertClick}
                     block
                     bsSize="medium">
-                    Insert Header
+                    Insert Title
                 </Button>
 			</Modal.Body>
 		</Modal> );
