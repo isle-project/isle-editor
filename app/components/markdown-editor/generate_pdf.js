@@ -76,7 +76,8 @@ function makeSTYLES( customFontSize = 12, poster = false ) {
 			'advisorText': {
 				fontSize: poster ? 48 : pdfSize + 16,
 				alignment: 'center',
-				pageMargins: [40, 60, 40, 100]
+				pageMargins: [40, 60, 40, 100],
+				color: '#3c763d'
 			},
 			'columnText': {
 				fontSize: pdfSize,
