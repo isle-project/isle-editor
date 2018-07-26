@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import NumberInput from 'components/input/number';
-import request from 'request';
 import Button from 'react-bootstrap/lib/Button';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Form from 'react-bootstrap/lib/Form';
@@ -54,31 +53,33 @@ class Login extends Component {
 				password: this.state.password,
 				email: this.state.email
 			};
-			request.post( this.state.server+'/login', {
-				form,
-				rejectUnauthorized: false
-			}, ( err, res ) => {
-				if ( err ) {
-					this.setState({
-						encounteredError: err
-					});
-				} else {
-					try {
-						const body = JSON.parse( res.body );
-						if ( body.type === 'incorrect_password' ) {
-							return this.setState({
-								encounteredError: new Error( body.message )
-							});
-						}
-						localStorage.setItem( 'token', body.token );
-						this.forceUpdate();
-					} catch ( error ) {
-						this.setState({
-							encounteredError: 'Couldn\'t login to server. Please check the address and port.'
+			fetch( this.state.server+'/login', {
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify( form )
+			}
+			.then( res => res.json() )
+			.then( body => {
+				try {
+					if ( body.type === 'incorrect_password' ) {
+						return this.setState({
+							encounteredError: new Error( body.message )
 						});
 					}
+					localStorage.setItem( 'token', body.token );
+					this.forceUpdate();
+				} catch ( error ) {
+					this.setState({
+						encounteredError: 'Couldn\'t login to server. Please check the address and port.'
+					});
 				}
-			});
+			})
+			.catch( err => {
+				this.setState({
+					encounteredError: err
+				});
+			})
 		};
 	}
 
