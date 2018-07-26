@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import request from 'request';
 import logger from 'debug';
 import capitalize from '@stdlib/string/capitalize';
 import isElectron from 'utils/is-electron';
@@ -62,15 +61,17 @@ class News extends Component {
 		const base = 'https://newsapi.org/v1/articles?source=';
 		const type = '&sortBy=latest&apiKey=';
 		const url = base + source + type + this.props.key;
-		request.get( url, {
-			rejectUnauthorized
-		}, ( err, res, data ) => {
-			if ( !err ) {
-				data = JSON.parse( data );
-				if ( data.articles ) {
-					this.displayArticles( data.articles );
-				}
+		fetch( url ).then( res => res.json() ).then( data => {
+			if ( data.articles ) {
+				this.displayArticles( data.articles );
 			}
+		}).catch( err => {
+			this.addNotification({
+				title: 'Couldn\'t retrieve data.',
+				message: err.message,
+				position: 'tr',
+				level: 'failure'
+			});
 		});
 	}
 
