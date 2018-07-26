@@ -1,6 +1,7 @@
 // MODULES //
 
 import request from 'request';
+import qs from 'querystring';
 import logger from 'debug';
 import isString from '@stdlib/assert/is-string';
 import isFunction from '@stdlib/assert/is-function';
@@ -155,23 +156,21 @@ class Session {
 	*/
 	pingServer = () => {
 		debug( `Should ping the server at ${this.server}...` );
-		request.get( this.server + '/ping', {
-			rejectUnauthorized
-		}, ( err, res, body ) => {
-			if ( err ) {
-				debug( 'Encountered an error: '+err.message );
-			}
-			else if ( body === 'live' ) {
-				this.live = true;
-				if ( !this.lessonID && !this.namespaceID ) {
-					// [1] Retrieve lesson information:
-					this.getLessonInfo();
+		fetch( this.server + '/ping' )
+			.then( ( response ) => {
+				return response.text()
+			}).then( ( body ) => {
+				if ( body === 'live' ) {
+					this.live = true;
+					if ( !this.lessonID && !this.namespaceID ) {
+						// [1] Retrieve lesson information:
+						this.getLessonInfo();
+					}
+				} else {
+					this.live = false;
 				}
-			} else {
-				this.live = false;
-			}
-			this.update();
-		});
+				this.update();
+			}).catch( err => debug( 'Encountered an error: '+err.message ) );
 	}
 
 	/**
@@ -734,19 +733,23 @@ class Session {
 	}
 
 	registerUser( data, clbk ) {
-		request.post( this.server+'/create_user', {
-			form: data,
-			rejectUnauthorized
-		}, ( err, res ) => {
-			if ( !err ) {
-				if ( res.statusCode !== 200 ) {
-					return this.addNotification({
+		fetch( this.server+'/create_user', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify( data )
+		}).then( ( response ) => {
+			if ( response.status !== 200 ) {
+				response.text().then( message => {
+					this.addNotification({
 						title: 'User not created',
-						message: res.body,
+						message: message,
 						level: 'error',
 						position: 'tl'
 					});
-				}
+				});
+			} else {
 				this.addNotification({
 					title: 'User created',
 					message: 'You have successfully signed up.',
@@ -755,6 +758,9 @@ class Session {
 				});
 				this.login({ email: data.email, password: data.password }, clbk );
 			}
+		}).catch( ( err ) => {
+			debug( 'Encountered an error: '+err.message );
+			clbk( err );
 		});
 	}
 
@@ -823,15 +829,22 @@ class Session {
 	* @returns {void}
 	*/
 	login = ( form, clbk ) => {
-		request.post( this.server+'/login', {
-			form,
-			rejectUnauthorized
-		}, ( err, res ) => {
-			const { token, id, message } = JSON.parse( res.body );
-			if ( !err && message === 'ok' ) {
+		fetch( this.server+'/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify( form )
+		}).then( ( response ) => {
+			return response.json();
+		}).then( ( json ) => {
+			const { token, id, message } = json;
+			if ( message === 'ok' ) {
 				this.handleLogin({ token, id });
 			}
-			clbk( err, res );
+			clbk( null, json );
+		}).catch( ( err ) => {
+			clbk( err );
 		});
 	}
 
@@ -842,35 +855,38 @@ class Session {
 	* @returns {void}
 	*/
 	forgotPassword( email ) {
-		request.get( this.server+'/forgot_password', {
-			qs: {
-				email
-			},
-			rejectUnauthorized
-		}, ( error, res ) => {
-			if ( error ) {
-				return this.addNotification({
+		fetch( this.server+'/forgot_password?'+qs.stringify({ email }) )
+			.then( ( res ) => {
+				debug( 'GET: /forgot_password' );
+				if ( res.status < 400 ) {
+					this.addNotification({
+						title: 'New Password',
+						message: 'Check your email inbox for a link to choose a new password.',
+						level: 'success',
+						position: 'tl'
+					});
+				} else {
+					return res.text();
+				}
+			})
+			.then( ( body ) => {
+				if ( body ) {
+					this.addNotification({
+						title: 'New Password',
+						message: body,
+						level: 'error',
+						position: 'tl'
+					});
+				}
+			})
+			.catch( ( error ) => {
+				this.addNotification({
 					title: 'New Password',
 					message: error.message,
 					level: 'error',
 					position: 'tl'
 				});
-			}
-			if ( res.statusCode >= 400 ) {
-				return this.props.addNotification({
-					title: 'New Password',
-					message: res.body,
-					level: 'error',
-					position: 'tl'
-				});
-			}
-			this.addNotification({
-				title: 'New Password',
-				message: 'Check your email inbox for a link to choose a new password.',
-				level: 'success',
-				position: 'tl'
 			});
-		});
 	}
 
 	/**
@@ -928,18 +944,18 @@ class Session {
 	* @returns {void}
 	*/
 	handleLogin = ( obj ) => {
-		request.post( this.server+'/credentials', {
+		fetch( this.server+'/credentials', {
+			method: 'POST',
 			headers: {
-				'Authorization': 'JWT ' + obj.token
+				'Authorization': 'JWT ' + obj.token,
+				'Content-Type': 'application/json'
 			},
-			form: {
+			body: JSON.stringify({
 				id: obj.id
-			},
-			rejectUnauthorized
-		}, ( error, response, body ) => {
-			if ( error ) {
-				return debug( 'Encountered an error: '+error.message );
-			}
+			})
+		}).then( ( response ) => {
+			return response.json();
+		}).then( ( json ) => {
 			this.addNotification({
 				title: 'Logged in',
 				message: 'You have successfully logged in.',
@@ -948,13 +964,16 @@ class Session {
 			});
 			const user = {
 				...obj,
-				...JSON.parse( body )
+				...json
 			};
+
 			this.user = user;
 			this.anonymous = false;
 			this.storeUser( user );
 			this.socketConnect();
 			this.update();
+		}).catch( ( err ) => {
+			debug( 'Encountered an error: '+err.message );
 		});
 	}
 
