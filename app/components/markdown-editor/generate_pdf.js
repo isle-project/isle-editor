@@ -38,7 +38,7 @@ const TABLE_LAYOUT = {
 
 // FUNCTIONS //
 
-function makeSTYLES( customFontSize = 16, poster = false ) {
+function makeSTYLES( customFontSize = 12, poster = false ) {
 	// the 16 is x + 4 --> 12 font
 	const pdfSize = customFontSize - 4;
 	return (
@@ -68,13 +68,13 @@ function makeSTYLES( customFontSize = 16, poster = false ) {
 				alignment: poster ? 'center' : null
 			},
 			'titleText': {
-				fontSize: 72,
+				fontSize: poster ? 72 : pdfSize + 18,
 				color: '#2e4468',
 				bold: true,
 				alignment: 'center'
 			},
 			'advisorText': {
-				fontSize: 48,
+				fontSize: poster ? 48 : pdfSize + 16,
 				alignment: 'center',
 				pageMargins: [40, 60, 40, 100]
 			},
@@ -297,7 +297,7 @@ function isTitleTag( astElem ) {
 	return true;
 }
 
-function parsePDF( ast, config, state, start, end ) {
+function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 	// Note that the DPI is 72
 	if ( isUndefinedOrNull( state ) ) {
 		state = {};
@@ -368,7 +368,7 @@ function parsePDF( ast, config, state, start, end ) {
 				const end = elem.content.indexOf( '"', start );
 				content.push({
 					image: elem.content.substr( start, end - start ),
-					width: 300,
+					width: 0.5 * config.pageSize.width / columnCount,
 					alignment: 'center',
 					margin: MARGINS
 				});
@@ -459,7 +459,7 @@ function isPoster( config ) {
 
 // MAIN //
 
-function generatePDF( ast, config, standardFontSize ) {
+function generatePDF( ast, config, standardFontSize = 16 ) {
 	const isPosterBool = isPoster( config );
 	const doc = {
 		'content': [],

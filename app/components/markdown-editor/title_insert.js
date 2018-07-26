@@ -24,7 +24,7 @@ class TitleInsert extends Component {
 		super( props );
 
 		this.state = {
-            title: 'Default Title',
+            title: '',
             name: '',
             advisor: ''
         };
