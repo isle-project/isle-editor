@@ -12,7 +12,6 @@ import Panel from 'react-bootstrap/lib/Panel';
 import FormData from 'form-data';
 import https from 'https';
 import http from 'http';
-import request from 'request';
 import archiver from 'archiver';
 import randomstring from 'randomstring';
 import path from 'path';
@@ -59,21 +58,21 @@ class UploadLesson extends Component {
 
 	componentDidMount() {
 		if ( this.state.token ) {
-			request.get( this.state.server+'/get_namespaces', {
+			fetch( this.state.server+'/get_namespaces', {
 				headers: {
 					'Authorization': 'JWT ' + this.state.token
-				},
-				rejectUnauthorized: false
-			}, ( error, response, body ) => {
-				if ( error ) {
-					return this.setState({
-						error
-					});
 				}
-				body = JSON.parse( body );
+			}
+			.then( res => res.json() )
+			.then( body => {
 				this.setState({
 					namespaces: body.namespaces,
 					namespaceName: body.namespaces[ 0 ].title
+				});
+			})
+			.catch( error => {
+				return this.setState({
+					error
 				});
 			});
 		}
@@ -193,15 +192,13 @@ class UploadLesson extends Component {
 			lessonName: this.state.lessonName
 		};
 		debug( 'Querystring: '+JSON.stringify(qs) );
-		request.get( this.state.server + '/get_lesson', {
-			qs: qs,
-			rejectUnauthorized: false
-		}, ( error, res, body ) => {
-			if ( error ) {
-				return this.setState({ error });
-			}
-			if ( res.statusCode === 200 ) {
-				body = JSON.parse( body );
+		fetch( this.state.server + '/get_lesson?'+qs )
+			.then( res => {
+				if ( res.status === 200 ) {
+					return res.json();
+				}
+			})
+			.then( body => {
 				if ( body.lesson ) {
 					this.setState({
 						showConfirmModal: true
@@ -210,8 +207,10 @@ class UploadLesson extends Component {
 					// Lesson does not exist:
 					this.publishLesson();
 				}
-			}
-		});
+			})
+			.catch( error => {
+				return this.setState({ error });
+			});
 	}
 
 	publishLesson = () => {
