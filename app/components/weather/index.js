@@ -1,11 +1,10 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import request from 'request';
 import isElectron from 'utils/is-electron';
 import './weather.css';
-import SpeechInterface from 'speech-interface'; // this may be deleted
 
 
 // VARIABLES //
@@ -33,10 +32,7 @@ class Weather extends Component {
 	}
 
 	register() {
-		if ( !global.speechInterface ) {
-			global.speechInterface = new SpeechInterface();
-		}
-		global.speechInterface.register({
+		this.session.speechInterface.register({
 			name: [ 'weather' ],
 			ref: this,
 			commands: [{
@@ -55,7 +51,7 @@ class Weather extends Component {
 			this.callback = null;
 		}
 		let marker = 'in';
-		switch ( this.props.language) {
+		switch ( this.props.language ) {
 		case 'en-US':
 			marker= ' in';
 			break;
@@ -67,7 +63,7 @@ class Weather extends Component {
 			break;
 		}
 		let n = text.search( marker );
-		n += (marker.length + 1);
+		n += ( marker.length + 1 );
 		if ( n !== -1 ) {
 			let location = text.substring( n, text.length );
 			this.getData( location );
@@ -99,104 +95,101 @@ class Weather extends Component {
 	}
 
 	changeTemperatureType = () => {
-		if ( this.state.temperature === 'celsius' ) {
-			this.setState({
-				temperature: 'fahrenheit'
-			});
-		}
-		else {
-			this.setState({
-				temperature: 'celsius'
-			});
-		}
+		let temperature = this.state.temperature === 'celsius' ?
+			'fahrenheit' :
+			'celsius';
+		this.setState({
+			temperature
+		});
 	}
 
 	renderTemperature( current ) {
+		let label;
+		let type;
 		if ( this.state.temperature === 'celsius' ) {
-			return (
-				<div className="weather-temperature">{ current.temp_c } °
-					<span onClick={this.changeTemperatureType} className="weather-temperature-type">C</span>
-				</div>
-			);
+			label = current.temp_c;
+			type = 'C';
+		} else {
+			label = current.temp_f;
+			type = 'F';
 		}
 		return (
-			<div className="weather-temperature">{ current.temp_f } °
-				<span onClick={this.changeTemperatureType} className="weather-temperature-type">F</span>
+			<div className="weather-temperature">{label}°
+				<span onClick={this.changeTemperatureType} className="weather-temperature-type">{type}</span>
 			</div>
 		);
 	}
 
 	renderWind( current ) {
+		let content;
 		if ( this.state.temperature === 'celsius' ) {
-			return (
-				<div className="weather-wind">wind: { current.wind_kph } kmh / { current.wind_dir }</div>
-			);
+			content = `wind: ${current.wind_kph} kmh / ${current.wind_dir}`;
+		} else {
+			content = `wind: ${current.wind_mph} mph / ${current.wind_dir}`;
 		}
-		return (
-			<div className="weather-wind">wind: { current.wind_mph } mph / { current.wind_dir }</div>
-		);
+		return <div className="weather-wind">{content}</div>;
 	}
 
 	renderDescription( current ) {
 		let icon = 'http:' + current.condition.icon;
 		return (
-			<Fragment>
-				<div className="weather-description">{ current.condition.text }
+			<div className="weather-description">{ current.condition.text }
 				<img className="weather-icon" src={icon} />
-				</div>
-			</Fragment>
+			</div>
 		);
 	}
 
-	renderLocation( current ) {
+	renderLocation() {
 		return (
 			<div className="weather-location">
-				<div className="weather-place">{ this.state.data.location.name }</div>
-				<div className="weather-location-region">{ this.state.data.location.region }, </div>
-				<div className="weather-location-country">{ this.state.data.location.country }</div>
+				<div className="weather-place">
+					{this.state.data.location.name}
+				</div>
+				<div className="weather-location-region">
+					{this.state.data.location.region},
+				</div>
+				<div className="weather-location-country">
+					{this.state.data.location.country}
+				</div>
 			</div>
 		);
 	}
 
 	renderPrecipitation( current ) {
-		if ( this.state.temperature === 'celsius' ) {
-			return (
-				<div className="weather-wind">precipitation: { current.precip_mm } mm</div>
-			);
-		}
 		return (
-			<div className="weather-wind">precipitation: { current.precip_in } in</div>
+			<div className="weather-wind">
+				precipitation: {this.state.temperature === 'celsius' ?
+					current.precip_mm + ' mm':
+					current.precip_in + ' in'
+				}
+			</div>
 		);
 	}
 
 	renderDetails( current ) {
 		return (
 			<div className="weather-details">
-				<div className="weather-humidity">humidity: { current.humidity }%</div>
-				{ this.renderWind(current) }
-				{ this.renderPrecipitation(current) }
+				<div className="weather-humidity">
+					humidity: {current.humidity}%
+				</div>
+				{this.renderWind( current )}
+				{this.renderPrecipitation( current )}
 			</div>
 		);
 	}
 
-	renderData() {
-		if ( !this.state.data) return null;
+	render() {
+		if ( !this.state.data ) {
+			return null;
+		}
 		let current = this.state.data.current;
 		return (
-			<Fragment>
+			<div className="weather">
 				{this.renderLocation(current)}
 				{this.renderDescription(current)}
 				<br />
 				{this.renderTemperature(current)}
 				{this.renderDetails(current)}
-			</Fragment>
-		);
-	}
-
-	render() {
-		return (
-			<div className="weather">
-				{this.renderData()}
 			</div>
 		);
 	}
@@ -217,6 +210,10 @@ Weather.defaultProps = {
 	language: 'en-US',
 	location: 'Berlin',
 	speechInterface: false
+};
+
+Weather.contextTypes = {
+	session: PropTypes.object
 };
 
 
