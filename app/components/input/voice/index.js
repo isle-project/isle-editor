@@ -28,47 +28,48 @@ class VoiceInput extends Input {
 			isRecording: props.autorecord
 		};
 
-		if (this.props.remote) {
+		if ( this.props.remote ) {
 			window.onkeydown = this.remoteControl;
 		}
 	}
 
-	remoteControl = (event) => {
-		switch ( event.keyCode) {
+	remoteControl = ( event ) => {
+		switch ( event.keyCode ) {
 			case this.props.remote.stop:
 				this.stop();
 			break;
-
 			case this.props.remote.start:
-				if (!this.state.recording) {
+				if ( !this.state.recording ) {
 					this.start();
-					}
+				}
 			break;
 		}
 	}
 
 	setTimeout() {
-		this.timer = setTimeout( this.stop, this.props.timeout);
+		this.timer = setTimeout( this.stop, this.props.timeout );
 	}
 
 	segment( text ) {
-		if ( this.timer) clearTimeout( this.timer );
+		if ( this.timer ) {
+			clearTimeout( this.timer );
+		}
 		this.setState({
 			value: text
 		});
-
 		this.props.onSegment( text );
 	}
 
 	finalText( text ) {
-		if ( this.props.timeout) this.setTimeout();
+		if ( this.props.timeout ) {
+			this.setTimeout();
+		}
 		debug( 'Received final text' );
 		this.setState({
 			value: text
 		});
 		this.props.onFinalText( text );
 	}
-
 
 	onResult = ( event ) => {
 		if ( typeof ( event.results ) === 'undefined' ) {
@@ -89,13 +90,12 @@ class VoiceInput extends Input {
 	createGrammarList() {
 		var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList; //eslint-disable-line
 		var grammarList = new SpeechGrammarList();
-		for (var i = 0; i < this.props.grammars.length; i++) {
+		for ( let i = 0; i < this.props.grammars.length; i++ ) {
 			var { src, weight } = this.props.grammars[ i ];
 			grammarList.addFromString( src, weight );
 		}
 		return grammarList;
 	}
-
 
 	start() {
 		this.recognizer = null;
