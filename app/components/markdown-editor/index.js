@@ -25,7 +25,6 @@ import trim from '@stdlib/string/trim';
 import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
-import indexOf from '@stdlib/utils/index-of';
 import VoiceInput from 'components/input/voice';
 import fonts from './fonts.js';
 import generatePDF from './generate_pdf.js';
@@ -871,7 +870,7 @@ class MarkdownEditor extends Component {
 			showTableSelect: !this.state.showTableSelect
 		});
 	}
-	
+
 	toggleTitleInsert = () => {
 		this.setState({
 			showTitleInsert: !this.state.showTitleInsert
@@ -1085,25 +1084,20 @@ class MarkdownEditor extends Component {
 
 MarkdownEditor.defaultProps = {
 	defaultValue: repeat( '\n', 15 ),
-	intervalTime: 60000,
-	language: 'en-US',
-	onChange() {},
 	options: {},
-	plots: [],
-	style: {},
 	toolbarConfig: [
 		'bold', 'italic', 'underline', 'font_size',
 		'new_line', 'center', '|',
 		'insert_table', 'heading', 'unordered_list',
-		'ordered_list', 'link', 'insert_columns', '|', 
+		'ordered_list', 'link', 'insert_columns', '|',
 		'figure_insert', '|', 'title_insert',
 		'preview', 'side_by_side', 'fullscreen', '|',
 		'open_markdown', 'save', 'submit', '|',
 		'voice'
 	],
-	options: {},
 	autoSave: true,
 	intervalTime: 60000,
+	plots: [],
 	voiceControl: false,
 	voiceTimeout: 5000,
 	language: 'en-US',
@@ -1137,8 +1131,6 @@ MarkdownEditor.propTypes = {
 	voiceControl: PropTypes.bool,
 	voiceTimeout: PropTypes.number,
 	language: PropTypes.string,
-	onChange: PropTypes.func,
-	options: PropTypes.object,
 	plots: PropTypes.array,
 	style: PropTypes.object,
 	onChange: PropTypes.func
