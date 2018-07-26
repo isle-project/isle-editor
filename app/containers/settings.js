@@ -80,7 +80,7 @@ class Login extends Component {
 				this.setState({
 					encounteredError: err
 				});
-			})
+			});
 		};
 	}
 
