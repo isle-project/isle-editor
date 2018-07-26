@@ -798,16 +798,12 @@ class MarkdownEditor extends Component {
 			}
 
 			// Do the replacement
-			console.log(match);
-			return `<h1 class='center' style="font-size: 48px; width: 100%">${title}</h1>\n<h2 class='center' style="font-size: 444px; width: 100%"><p>${name}, ${advisor}</p></h2>`;
+			return `<h1 class='center' style="font-size: 48px; width: 100%">${title}</h1>\n<h2 class='center' style="font-size: 44px; width: 100%"><p>${name}\nAdvisor(s): ${advisor}</p></h2>`;
 		}
 
 		// Using regexp
 		const regTitle = /<!--TitleText([\s\S]*?)-->/;
 		plainText = plainText.replace(regTitle, replacer);
-		// plainText = plainText.replace(`<!--TitleText\nTitle: ${title}`, `<span class='title-tag'>${title}</span>`);
-		// plainText = plainText.replace(`\nName: ${name}\nAdvisor: ${advisor}\n-->`, `<div class='center'><p>${name}, ${advisor}</p></div>`);
-
 		return plainText;
 	}
 
