@@ -25,6 +25,7 @@ import trim from '@stdlib/string/trim';
 import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
+import indexOf from '@stdlib/utils/index-of';
 import VoiceInput from 'components/input/voice';
 import fonts from './fonts.js';
 import generatePDF from './generate_pdf.js';
@@ -183,6 +184,13 @@ function createPreviewStyles(fontSize) {
 			}
 			.editor-preview-active h4 {
 				font-size: ${fontSize + 4}px !important;
+			}
+			.title-tag {
+				font-size: 72px !important;
+			}
+			.subtitle-tag {
+				font-size: 48px !important;
+				align
 			}
 		</style>`;
 }
@@ -761,12 +769,56 @@ class MarkdownEditor extends Component {
 		return plainText;
 	}
 
+	titleTagConvert = ( plainText ) => {
+
+		function replacer( str, match, offset, s) {
+			let title;
+			let name;
+			let advisor;
+
+			const titleIndex = match.indexOf('Title: ');
+			if ( titleIndex !== -1 ) {
+				const titleStartsAt = titleIndex + 'Title: '.length;
+				const secondNewLineIndex = match.indexOf( '\n', titleIndex + 1 );
+				title = match.slice( titleStartsAt, secondNewLineIndex );
+			}
+
+			const nameIndex = match.indexOf('Name: ');
+			if ( nameIndex !== -1 ) {
+				const nameStartsAt = nameIndex + 'Name: '.length;
+				const nameLineIndex = match.indexOf( '\n', nameStartsAt );
+				name = match.slice( nameStartsAt, nameLineIndex );
+			}
+
+			const advisorIndex = match.indexOf('Advisor: ' );
+			if ( advisorIndex !== -1 ) {
+				const advisorStartsAt = advisorIndex + 'Advisor: '.length;
+				const advisorLineIndex = match.indexOf( '\n', advisorStartsAt );
+				advisor = match.slice( advisorStartsAt, advisorLineIndex );
+			}
+
+			// Do the replacement
+			console.log(match);
+			return `<h1 class='center' style="font-size: 48px; width: 100%">${title}</h1>\n<h2 class='center' style="font-size: 444px; width: 100%"><p>${name}, ${advisor}</p></h2>`;
+		}
+
+		// Using regexp
+		const regTitle = /<!--TitleText([\s\S]*?)-->/;
+		plainText = plainText.replace(regTitle, replacer);
+		// plainText = plainText.replace(`<!--TitleText\nTitle: ${title}`, `<span class='title-tag'>${title}</span>`);
+		// plainText = plainText.replace(`\nName: ${name}\nAdvisor: ${advisor}\n-->`, `<div class='center'><p>${name}, ${advisor}</p></div>`);
+
+		return plainText;
+	}
+
 	previewRender = ( plainText ) => {
+		// Add columns:
+		plainText = this.columnTagConvert( plainText );
+
 		// Take the plaintext and insert the images via hash:
 		plainText = this.replacePlaceholders( plainText );
 
-		// Add columns:
-		plainText = this.columnTagConvert( plainText );
+		plainText = this.titleTagConvert( plainText );
 
 		// Cycle through and remove old stylings:
 		var allStyles = document.getElementsByTagName('style');
