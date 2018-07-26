@@ -43,29 +43,29 @@ class ActionLog extends Component {
 		const { session } = this.context;
 		if ( session.socketActions && session.socketActions.length > 0 ) {
 			debug( 'Initial construction of actions array...' );
-			this.setState({
+			this.setState({ // eslint-disable-line react/no-did-mount-set-state
 				actions: this.buildActionsArray()
 			});
 		}
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if ( type === 'logout' ) {
 				debug( 'Should reset the filters after user logout:' );
-				this.setState({
+				this.setState({ // eslint-disable-line react/no-did-mount-set-state
 					actionLogHeader: <span>Action Log</span>
 				});
 			}
 			else if ( type === 'member_action' ) {
-				this.setState({
+				this.setState({ // eslint-disable-line react/no-did-mount-set-state
 					actions: this.buildActionsArray()
 				});
 			}
 			else if ( type === 'retrieved_user_actions' ) {
-				this.setState({
+				this.setState({ // eslint-disable-line react/no-did-mount-set-state
 					actions: this.buildActionsArray()
 				});
 			}
 			if ( session.socketActions.length === 0 && this.state.filter !== null ) {
-				this.setState({
+				this.setState({ // eslint-disable-line react/no-did-mount-set-state
 					filter: {},
 					actionLogHeader: <span>Action Log</span>
 				});

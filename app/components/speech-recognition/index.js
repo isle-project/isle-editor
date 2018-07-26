@@ -56,7 +56,7 @@ class SpeechRecognition extends Component {
 	}
 
 	finalText( text ) {
-		console.log( 'Received final text' );
+		debug( 'Received final text' );
 		text = this.checkNonames( text );
 		this.checkName( text );
 
