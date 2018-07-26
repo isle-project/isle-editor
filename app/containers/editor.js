@@ -201,8 +201,10 @@ class App extends Component {
 				return this.props.encounteredError( new Error( 'Couldn\'t parse the preamble. Make sure it is valid YAML.' ) );
 			}
 		}
-		const pos = this.code.editor.getCursorPosition();
-		this.code.editor.moveCursorTo( pos.row, pos.column );
+		if ( this.code ) {
+			const pos = this.code.editor.getCursorPosition();
+			this.code.editor.moveCursorTo( pos.row, pos.column );
+		}
 	}
 
 	checkPreambleChange( preamble ) {
