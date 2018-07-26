@@ -9,7 +9,6 @@ import Panel from 'react-bootstrap/lib/Panel';
 import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
 import SelectInput from 'components/input/select';
-import CheckboxInput from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
 import pageSizes from './page_sizes.json';
 import './save_modal.css';
@@ -168,13 +167,15 @@ class SaveModal extends Component {
 												defaultValue={'portrait'}
 												options={['portrait', 'landscape']}
 												onChange={( value )=>{
-													var oldWidth = this.state.visibleWidth;
-													var oldHeight = this.state.visibleHeight;
-													this.setState({
-														pageOrientation: value,
-														visibleWidth: oldHeight,
-														visibleHeight: oldWidth
-													});
+													if ( value !== this.state.pageOrientation ) {
+														var oldWidth = this.state.visibleWidth;
+														var oldHeight = this.state.visibleHeight;
+														this.setState({
+															pageOrientation: value,
+															visibleWidth: oldHeight,
+															visibleHeight: oldWidth
+														});
+													}	
 												}}
 											/>
 										</Col>
