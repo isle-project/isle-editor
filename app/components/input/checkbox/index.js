@@ -105,7 +105,7 @@ class CheckboxInput extends Input {
 }
 
 
-// DEFAULT PROPERTIES //
+// TYPES //
 
 CheckboxInput.description = 'A checkbox input component. Usually, this component will be used as part of an ISLE dashboard, but it can also be used standalone. In this case, you want to handle changes via the `onChange` attribute. ';
 
@@ -116,7 +116,7 @@ CheckboxInput.propDescriptions = {
 	disabled: 'A boolean indicating whether the input is active or not',
 	inline: 'Indicates whether the checkbox is displayed inline',
 	legend: 'A string indicating the text displayed next to the checkbox'
-}
+};
 
 CheckboxInput.defaultProps = {
 	bind: '',

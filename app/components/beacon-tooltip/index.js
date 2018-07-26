@@ -79,7 +79,7 @@ BeaconTooltip.defaultProps = {
 	placement: 'left',
 	target: '',
 	offset: 15,
-	onChange() {},
+	onChange() {}
 };
 
 

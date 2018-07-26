@@ -226,7 +226,7 @@ class NumberInput extends Input {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 NumberInput.propDescriptions = {
 	bind: 'A string indicating the variable for the number to be assigned',
@@ -242,7 +242,7 @@ NumberInput.propDescriptions = {
 	onBlur: 'A function to be called when using a blur method',
 	numbersOnly: 'A boolean value indicating whether only numbers are accepted',
 	value: 'A property indicating a value that can overwrite others'
-}
+};
 
 NumberInput.defaultProps = {
 	bind: '',
@@ -259,9 +259,6 @@ NumberInput.defaultProps = {
 	numbersOnly: true,
 	value: null
 };
-
-
-// PROPERTY TYPES //
 
 NumberInput.propTypes = {
 	bind: PropTypes.string,

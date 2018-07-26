@@ -190,7 +190,7 @@ class FreeTextSurvey extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// TYPES //
 
 FreeTextSurvey.propDescriptions = {
 	allowMultipleAnswers: 'A boolean indicating whether one wishes to allow students to answer the survey multiple times',
@@ -199,7 +199,7 @@ FreeTextSurvey.propDescriptions = {
 	onSubmit: 'A function to be called when an answer is submitted',
 	question: 'A string indicating the question to ask the students',
 	rows: 'A number indicating the rows of text in the input method'
-}
+};
 
 FreeTextSurvey.defaultProps = {
 	onSubmit() {},
@@ -208,9 +208,6 @@ FreeTextSurvey.defaultProps = {
 	anonymous: false,
 	rows: 4
 };
-
-
-// PROPERTY TYPES //
 
 FreeTextSurvey.propTypes = {
 	allowMultipleAnswers: PropTypes.bool,

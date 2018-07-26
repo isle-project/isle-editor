@@ -61,9 +61,10 @@ function Dimensions( ComposedComponent ) {
 				</div>
 			);
 		}
-	};
+	}
+
 	// Re-attach property information:
-	DimensionsHOC.propDescriptions = ComposedComponent.propDescriptions
+	DimensionsHOC.propDescriptions = ComposedComponent.propDescriptions;
 	DimensionsHOC.propTypes = ComposedComponent.propTypes;
 	DimensionsHOC.defaultProps = ComposedComponent.defaultProps;
 	return DimensionsHOC;
