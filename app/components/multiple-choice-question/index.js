@@ -149,9 +149,9 @@ class MultipleChoiceQuestion extends Component {
 	}
 
 	render() {
-		const props = this.props;
+		const { answers, hints, chat, hintPlacement, id, question } = this.props;
 		const allowMultipleAnswers = isArray( this.props.solution );
-		const nHints = props.hints.length;
+		const nHints = hints.length;
 		const renderAnswerOptionsMultiple = ( key, id ) => {
 			let isSolution = contains( this.props.solution, id );
 			return (
@@ -216,13 +216,13 @@ class MultipleChoiceQuestion extends Component {
 			<Panel className="multiple-choice-question-container">
 				<Panel.Body>
 					<Question
-						content={props.question}
+						content={question}
 						task={allowMultipleAnswers ? 'Choose all that apply' : 'Pick the correct answer'}
 					/>
 					<ListGroup>
 						{ allowMultipleAnswers ?
-							props.answers.map( renderAnswerOptionsMultiple ) :
-							props.answers.map( renderAnswerOptionsSingle )
+							answers.map( renderAnswerOptionsMultiple ) :
+							answers.map( renderAnswerOptionsSingle )
 						}
 					</ListGroup>
 					<div className="multiple-choice-question-toolbar">
@@ -234,17 +234,17 @@ class MultipleChoiceQuestion extends Component {
 							block
 						>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
 						{ nHints > 0 ?
-							<HintButton onClick={this.logHint} hints={props.hints} placement={props.hintPlacement} /> :
+							<HintButton onClick={this.logHint} hints={hints} placement={hintPlacement} /> :
 							null
 						}
 						{
-							props.chat && props.id ?
+							chat && id ?
 							<div style={{ display: 'inline-block' }}>
-								<ChatButton for={props.id} />
+								<ChatButton for={id} />
 							</div> : null
 						}
 					</div>
-					{props.id ? <InstructorBar id={props.id} dataType="factor" /> : null }
+					{id ? <InstructorBar id={id} dataType="factor" /> : null }
 				</Panel.Body>
 			</Panel>
 		);

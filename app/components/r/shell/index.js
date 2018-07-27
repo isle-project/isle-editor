@@ -552,7 +552,7 @@ RShell.propDescriptions = {
 	resettable: 'controls whether to display a reset button for restoring the default code input',
 	style: 'CSS inline styles',
 	onEvaluate: 'callback invoked whenever the `Evaluate` button is clicked',
-	onResult: 'callback invoked whenever the result of a code execution is obtained from the cloud. The result `string` is passed as the only argument to the callback function',
+	onResult: 'callback invoked whenever the result of a code execution is obtained from the cloud. The result `string` is passed as the only argument to the callback function'
 };
 
 RShell.propTypes = {

@@ -132,7 +132,7 @@ TextInput.propDescriptions = {
 	numbersOnly: 'A boolean value indicating whether only numbers are accepted',
 	value: 'A property indicating a value that can overwrite others',
 	placeholder: 'A string indicating the value to be displayed before an initial choice is made'
-}
+};
 
 TextInput.defaultProps = {
 	defaultValue: '',

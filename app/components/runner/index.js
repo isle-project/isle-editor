@@ -28,8 +28,8 @@ class Runner extends Component {
 				window.clearInterval( this.intervalID );
 				this.intervalID = null;
 			}
-		} 
-		else if ( !prevProps.active  && this.props.active ) {
+		}
+		else if ( !prevProps.active && this.props.active ) {
 			if ( this.props.interval ) {
 				this.intervalID = window.setInterval( this.props.onEvaluate, this.props.interval );
 			} else {

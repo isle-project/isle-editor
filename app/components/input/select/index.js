@@ -160,7 +160,7 @@ SelectInput.propDescriptions = {
 	options: 'An array of indicating the choices available the user',
 	multi: 'A boolean indicating whether one may select multiple answers',
 	placeholder: 'A string indicating the value to be displayed before an initial choice is made'
-}
+};
 
 SelectInput.defaultProps = {
 	bind: '',
