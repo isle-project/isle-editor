@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import SpeechRecognition from 'components/speech-recognition';
+import VoiceInput from 'components/input/voice';
 import Wikipedia from 'components/wikipedia';
 import AcousticCSS from 'components/acoustic-css';
 import News from 'components/news';
@@ -95,7 +95,7 @@ class AcousticAssistant extends Component {
 	renderSpeech() {
 		return (
 			<div>
-				<SpeechRecognition
+				<VoiceInput
 					ref={( div ) => { this.recognition = div; }}
 					name={name}
 					showText

@@ -85,7 +85,6 @@
 	"SliderInput": "const SliderInput = require( \"components/input/slider\" );",
 	"StatusBar": "const StatusBar = require( \"components/statusbar\" );",
 	"SurveyGenerator": "const SurveyGenerator = require( \"components/survey-generator\" );",
-	"SpeechRecognition": "const SpeechRecognition = require( \"components/speech-recognition\" );",
 	"VoiceInput": "const VoiceInput = require( \"components/input/voice\" );",
 	"Weather": "const Weather = require( \"components/weather\" );",
 	"Wikipedia": "const Wikipedia = require( \"components/wikipedia\" );",

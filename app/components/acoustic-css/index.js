@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SpeechRecognition from 'components/speech-recognition';
+import VoiceInput from 'components/input/voice';
 import camelcase from 'camelcase';
 import './styles.css';
 
@@ -145,7 +145,7 @@ class AcousticCSS extends Component {
 		if ( this.props.speech === false ) return null;
 		return (
 			<div>
-				<SpeechRecognition
+				<VoiceInput
 					ref={( div ) => { this.recognition = div; }}
 					name={this.props.name}
 					showText

@@ -137,7 +137,6 @@ const createScope = ( session ) => {
 		Sketchpad: Loadable( () => import( 'components/sketchpad' ) ),
 		SliderInput,
 		Slider: Loadable( () => import( 'components/slider' ) ),
-		SpeechRecognition: Loadable( () => import( 'components/speech-recognition' ) ),
 		Spinner: Loadable( () => import( 'components/spinner' ) ),
 
 		StatusBar: Loadable( () => import( 'components/statusbar' ) ),
