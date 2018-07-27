@@ -188,7 +188,7 @@
     "moment": "2.22.2",
     "node-libs-browser": "^2.0.0",
     "normalize.css": "^8.0.0",
-    "pdfmake": "^0.1.36",
+    "pdfmake-lite": "^0.1.36",
     "plotly.js": "^1.38.1",
     "profanities": "^2.5.0",
     "prop-types": "^15.5.10",
