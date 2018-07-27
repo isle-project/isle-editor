@@ -1,38 +1,31 @@
 .article-container {
-	position: absolute;
-	width: 39%;
+	position: fixed;
 	height: 94%;
-	left: 60%;
+	left: 50%;
 	top: 3%;
 	overflow: hidden;
 	z-index: 1;
-	background: transparent;
 }
 
 .article-header {
+	float: left;
 	font-family: "Times New Roman";
 	font-size: 40px;
 	text-shadow: 2px 2px 2px darkgray;
+	margin-right: 50px;
 }
 
 .articles {
 	position: relative;
-	width: 96%;
-	height: 90%;
+	height: 500px;
 	overflow: auto;
 	z-index: 1;
 }
 
 .articles-exit {
-	position: absolute;
-	top: 38px;
-	right: 32px;
-	height: 48px;
-	width: 48px;
-	font-size: 48px;
-	color: darkgray;
-	text-align: right;
-	cursor: pointer;
+	float: left;
+	margin-left: 80px;
+	margin-top: 10px;
 }
 
 .articles-exit:hover{

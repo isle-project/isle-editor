@@ -1,286 +1,286 @@
 [
-    {
-        "title": "ABC News",
-        "trig": "abc-news-aus"
-    },
-    {
-        "title": "Ars Technica",
-        "trig": "ars technica"
-    },
-    {
-        "title": "BBC News",
-        "trig": "bbc-news"
-    },
-    {
-        "title": "Bild",
-        "trig": "bild"
-    },
-    {
-        "title": "Business Insider (UK)",
-        "trig": "business-insider-uk"
-    },
-    {
-        "title": "BBC News",
-        "trig": "bbc-news"
-    },
-    {
-        "title": "CNBC",
-        "trig": "cnbc"
-    },
-    {
-        "title": "Daily Mail",
-        "trig": "daily-mail"
-    },
-    {
-        "title": "Die Zeit",
-        "trig": "die-zeit"
-    },
-    {
-        "title": "Entertainment Weekly",
-        "trig": "entertainment-weekly"
-    },
-    {
-        "title": "ESPN Cric Info",
-        "trig": "espn-cric-info"
-    },
-    {
-        "title": "Focus",
-        "trig": "focus"
-    },
-    {
-        "title": "Fortune",
-        "trig": "fortune"
-    },
-    {
-        "title": "BBC News",
-        "trig": "bbc-news"
-    },
-    {
-        "title": "Fox Sports",
-        "trig": "fox-sports"
-    },
-    {
-        "title": "Gruenderszene",
-        "trig": "gruenderszene"
-    },
-    {
-        "title": "Handelsblatt",
-        "trig": "handelsblatt"
-    },
-    {
-        "title": "Independent",
-        "trig": "independent"
-    },
-    {
-        "title": "Metro",
-        "trig": "metro"
-    },
-    {
-        "title": "National Geographic",
-        "trig": "national-geographic"
-    },
-    {
-        "title": "MTVNews",
-        "trig": "mtv-news"
-    },
-    {
-        "title": "Newsweek",
-        "trig": "newsweek"
-    },
-    {
-        "title": "BBC News",
-        "trig": "bbc-news"
-    },
-    {
-        "title": "NFL News",
-        "trig": "nfl-news"
-    },
-    {
-        "title": "Recode",
-        "trig": "recode"
-    },
-    {
-        "title": "Reuters",
-        "trig": "reuters"
-    },
-    {
-        "title": "T3n",
-        "trig": "t3n"
-    },
-    {
-        "title": "TechCrunch",
-        "trig": "techcrunch"
-    },
-    {
-        "title": "The Economist",
-        "trig": "the-economist"
-    },
-    {
-        "title": "The Guardian (UK)",
-        "trig": "the-guardian-uk"
-    },
-    {
-        "title": "The Huffington Post",
-        "trig": "the-huffington-post"
-    },
-    {
-        "title": "The New York Times",
-        "trig": "the-new-york-times"
-    },
-    {
-        "title": "The Sport Bible",
-        "trig": "the-sport-bible"
-    },
-    {
-        "title": "The Times of India",
-        "trig": "the-times-of-india"
-    },
-    {
-        "title": "The Wall Street Journal",
-        "trig": "the-wall-street-journal"
-    },
-    {
-        "title": "Time",
-        "trig": "time"
-    },
-    {
-        "title": "Wired.de",
-        "trig": "wired-de"
-    },
-    {
-        "title": "Al Jazeera English",
-        "trig": "al-jazeera-english"
-    },
-    {
-        "title": "Associated Press",
-        "trig": "associated-press"
-    },
-    {
-        "title": "BBC Sport",
-        "trig": "bbc-sport"
-    },
-    {
-        "title": "Bloomberg",
-        "trig": "bloomberg"
-    },
-    {
-        "title": "Business Insider",
-        "trig": "business-insider"
-    },
-    {
-        "title": "Buzzfeed",
-        "trig": "buzzfeed"
-    },
-    {
-        "title": "CNN",
-        "trig": "cnn"
-    },
-    {
-        "title": "Der Tagesspiegel",
-        "trig": "der-tagesspiegel"
-    },
-    {
-        "title": "Engadget",
-        "trig": "engadget"
-    },
-    {
-        "title": "ESPN",
-        "trig": "espn"
-    },
-    {
-        "title": "Financial Times",
-        "trig": "financial-times"
-    },
-    {
-        "title": "Football Italia",
-        "trig": "football-italia"
-    },
-    {
-        "title": "FourFourTwo",
-        "trig": "four-four-two"
-    },
-    {
-        "title": "GoogleNews",
-        "trig": "google-news"
-    },
-    {
-        "title": "Hacker News",
-        "trig": "hacker-news"
-    },
-    {
-        "title": "IGN",
-        "trig": "ign"
-    },
-    {
-        "title": "Mashable",
-        "trig": "mashable"
-    },
-    {
-        "title": "Mirror",
-        "trig": "mirror"
-    },
-    {
-        "title": "MTV News",
-        "trig": "mtv-news-uk"
-    },
-    {
-        "title": "New Scientist",
-        "trig": "new-scientist"
-    },
-    {
-        "title": "New York Magazine",
-        "trig": "new-york-magazine"
-    },
-    {
-        "title": "Polygon",
-        "trig": "polygon"
-    },
-    {
-        "title": "Reddit/r/all",
-        "trig": "reddit-r-all"
-    },
-    {
-        "title": "Spiegel Online",
-        "trig": "spiegel-online"
-    },
-    {
-        "title": "TalkSport",
-        "trig": "talksport"
-    },
-    {
-        "title": "TechRadar",
-        "trig": "techradar"
-    },
-    {
-        "title": "The Guardian (AU)",
-        "trig": "the-guardian-au"
-    },
-    {
-        "title": "The Hindu",
-        "trig": "the-hindu"
-    },
-    {
-        "title": "The Lad Bible",
-        "trig": "the-lad-bible"
-    },
-    {
-        "title": "The Next Web",
-        "trig": "the-next-web"
-    },
-    {
-        "title": "The Telegraph",
-        "trig": "the-telegraph"
-    },
-    {
-        "title": "The Verge",
-        "trig": "the-verge"
-    },
-    {
-        "title": "The Washington Post",
-        "trig": "the-washington-post"
-    },
-    {
-        "title": "USA Today",
-        "trig": "usa-today"
-    }
+	{
+		"title": "ABC News",
+		"trig": "abc-news-aus"
+	},
+	{
+		"title": "Ars Technica",
+		"trig": "ars technica"
+	},
+	{
+		"title": "BBC News",
+		"trig": "bbc-news"
+	},
+	{
+		"title": "Bild",
+		"trig": "bild"
+	},
+	{
+		"title": "Business Insider (UK)",
+		"trig": "business-insider-uk"
+	},
+	{
+		"title": "BBC News",
+		"trig": "bbc-news"
+	},
+	{
+		"title": "CNBC",
+		"trig": "cnbc"
+	},
+	{
+		"title": "Daily Mail",
+		"trig": "daily-mail"
+	},
+	{
+		"title": "Die Zeit",
+		"trig": "die-zeit"
+	},
+	{
+		"title": "Entertainment Weekly",
+		"trig": "entertainment-weekly"
+	},
+	{
+		"title": "ESPN Cric Info",
+		"trig": "espn-cric-info"
+	},
+	{
+		"title": "Focus",
+		"trig": "focus"
+	},
+	{
+		"title": "Fortune",
+		"trig": "fortune"
+	},
+	{
+		"title": "BBC News",
+		"trig": "bbc-news"
+	},
+	{
+		"title": "Fox Sports",
+		"trig": "fox-sports"
+	},
+	{
+		"title": "Gruenderszene",
+		"trig": "gruenderszene"
+	},
+	{
+		"title": "Handelsblatt",
+		"trig": "handelsblatt"
+	},
+	{
+		"title": "Independent",
+		"trig": "independent"
+	},
+	{
+		"title": "Metro",
+		"trig": "metro"
+	},
+	{
+		"title": "National Geographic",
+		"trig": "national-geographic"
+	},
+	{
+		"title": "MTVNews",
+		"trig": "mtv-news"
+	},
+	{
+		"title": "Newsweek",
+		"trig": "newsweek"
+	},
+	{
+		"title": "BBC News",
+		"trig": "bbc-news"
+	},
+	{
+		"title": "NFL News",
+		"trig": "nfl-news"
+	},
+	{
+		"title": "Recode",
+		"trig": "recode"
+	},
+	{
+		"title": "Reuters",
+		"trig": "reuters"
+	},
+	{
+		"title": "T3n",
+		"trig": "t3n"
+	},
+	{
+		"title": "TechCrunch",
+		"trig": "techcrunch"
+	},
+	{
+		"title": "The Economist",
+		"trig": "the-economist"
+	},
+	{
+		"title": "The Guardian (UK)",
+		"trig": "the-guardian-uk"
+	},
+	{
+		"title": "The Huffington Post",
+		"trig": "the-huffington-post"
+	},
+	{
+		"title": "The New York Times",
+		"trig": "the-new-york-times"
+	},
+	{
+		"title": "The Sport Bible",
+		"trig": "the-sport-bible"
+	},
+	{
+		"title": "The Times of India",
+		"trig": "the-times-of-india"
+	},
+	{
+		"title": "The Wall Street Journal",
+		"trig": "the-wall-street-journal"
+	},
+	{
+		"title": "Time",
+		"trig": "time"
+	},
+	{
+		"title": "Wired.de",
+		"trig": "wired-de"
+	},
+	{
+		"title": "Al Jazeera English",
+		"trig": "al-jazeera-english"
+	},
+	{
+		"title": "Associated Press",
+		"trig": "associated-press"
+	},
+	{
+		"title": "BBC Sport",
+		"trig": "bbc-sport"
+	},
+	{
+		"title": "Bloomberg",
+		"trig": "bloomberg"
+	},
+	{
+		"title": "Business Insider",
+		"trig": "business-insider"
+	},
+	{
+		"title": "Buzzfeed",
+		"trig": "buzzfeed"
+	},
+	{
+		"title": "CNN",
+		"trig": "cnn"
+	},
+	{
+		"title": "Der Tagesspiegel",
+		"trig": "der-tagesspiegel"
+	},
+	{
+		"title": "Engadget",
+		"trig": "engadget"
+	},
+	{
+		"title": "ESPN",
+		"trig": "espn"
+	},
+	{
+		"title": "Financial Times",
+		"trig": "financial-times"
+	},
+	{
+		"title": "Football Italia",
+		"trig": "football-italia"
+	},
+	{
+		"title": "FourFourTwo",
+		"trig": "four-four-two"
+	},
+	{
+		"title": "GoogleNews",
+		"trig": "google-news"
+	},
+	{
+		"title": "Hacker News",
+		"trig": "hacker-news"
+	},
+	{
+		"title": "IGN",
+		"trig": "ign"
+	},
+	{
+		"title": "Mashable",
+		"trig": "mashable"
+	},
+	{
+		"title": "Mirror",
+		"trig": "mirror"
+	},
+	{
+		"title": "MTV News",
+		"trig": "mtv-news-uk"
+	},
+	{
+		"title": "New Scientist",
+		"trig": "new-scientist"
+	},
+	{
+		"title": "New York Magazine",
+		"trig": "new-york-magazine"
+	},
+	{
+		"title": "Polygon",
+		"trig": "polygon"
+	},
+	{
+		"title": "Reddit/r/all",
+		"trig": "reddit-r-all"
+	},
+	{
+		"title": "Spiegel Online",
+		"trig": "spiegel-online"
+	},
+	{
+		"title": "TalkSport",
+		"trig": "talksport"
+	},
+	{
+		"title": "TechRadar",
+		"trig": "techradar"
+	},
+	{
+		"title": "The Guardian (AU)",
+		"trig": "the-guardian-au"
+	},
+	{
+		"title": "The Hindu",
+		"trig": "the-hindu"
+	},
+	{
+		"title": "The Lad Bible",
+		"trig": "the-lad-bible"
+	},
+	{
+		"title": "The Next Web",
+		"trig": "the-next-web"
+	},
+	{
+		"title": "The Telegraph",
+		"trig": "the-telegraph"
+	},
+	{
+		"title": "The Verge",
+		"trig": "the-verge"
+	},
+	{
+		"title": "The Washington Post",
+		"trig": "the-washington-post"
+	},
+	{
+		"title": "USA Today",
+		"trig": "usa-today"
+	}
 ]

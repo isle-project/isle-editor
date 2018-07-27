@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import Modal from 'react-bootstrap/lib/Modal';
+import Button from 'react-bootstrap/lib/Button';
 import capitalize from '@stdlib/string/capitalize';
 import VoiceInput from 'components/input/voice';
 import newslist from './list.json';
@@ -29,21 +31,26 @@ class News extends Component {
 
 	componentDidMount() {
 		this.list = newslist;
-		if ( this.props.speechInterface ) {
+		if ( this.props.voiceID ) {
 			this.register();
 		}
 	}
 
 	register = () => {
 		this.context.session.speechInterface.register({
-			name: [ 'news' ],
+			name: this.props.voiceID,
 			ref: this,
-			commands: [{
-				command: 'trigger',
-				trigger: [ 'news', 'hey' ],
-				text: true,
-				params: {}
-			}]
+			commands: [
+				{
+					command: 'trigger',
+					trigger: [ 'news', 'articles' ],
+					text: true
+				},
+				{
+					command: 'hide',
+					trigger: [ 'close' ]
+				}
+			]
 		});
 	}
 
@@ -59,18 +66,20 @@ class News extends Component {
 		const base = 'https://newsapi.org/v1/articles?source=';
 		const type = '&sortBy=latest&apiKey=';
 		const url = base + source + type + this.props.key;
-		fetch( url ).then( res => res.json() ).then( data => {
-			if ( data.articles ) {
-				this.displayArticles( data.articles );
-			}
-		}).catch( err => {
-			this.addNotification({
-				title: 'Couldn\'t retrieve data.',
-				message: err.message,
-				position: 'tr',
-				level: 'failure'
+		fetch( url ).then( res => res.json() )
+			.then( data => {
+				if ( data.articles ) {
+					this.displayArticles( data.articles );
+				}
+			})
+			.catch( err => {
+				this.addNotification({
+					title: 'Couldn\'t retrieve data.',
+					message: err.message,
+					position: 'tr',
+					level: 'failure'
+				});
 			});
-		});
 	}
 
 	exceptions( name ) {
@@ -81,7 +90,7 @@ class News extends Component {
 		return capitalize( name );
 	}
 
-	find( name ) {
+	find = ( name ) => {
 		name = name.replace( 'the ', '' );
 		name = this.exceptions( name );
 
@@ -98,7 +107,7 @@ class News extends Component {
 		}
 	}
 
-	trigger( value ) {
+	trigger = ( value ) => {
 		debug( 'News component is externally triggered...' );
 		var marker = 'in';
 		switch ( this.props.language ) {
@@ -115,7 +124,6 @@ class News extends Component {
 			marker = 'in';
 			break;
 		}
-
 		var x = value.search( marker );
 		if ( x !== -1 ){
 			x += ( marker.length +1 );
@@ -124,7 +132,7 @@ class News extends Component {
 		}
 	}
 
-	hide() {
+	hide = () => {
 		this.setState({
 			visible: null
 		});
@@ -172,38 +180,33 @@ class News extends Component {
 			return null;
 		}
 		return (
-			<div className="articles">
+			<Modal.Body className="articles">
 				{this.articles()}
-			</div>
-		);
-	}
-
-	renderLogo() {
-		if ( this.props.invisible ) {
-			return null;
-		}
-		return (
-			<div>
-				<div className="article-header">NEWS</div>
-				<VoiceInput
-					placeholder="Pick a newspaper"
-					style={{ float: 'left', width: '80%' }}
-					language={this.props.language}
-					onSubmit={this.find.bind(this)}
-					onFinalText={this.trigger.bind(this)}
-				/>
-				<div onClick={this.hide.bind( this )} className="articles-exit">×</div>
-			</div>
-
+			</Modal.Body>
 		);
 	}
 
 	render() {
 		return (
-			<div className="article-container" id={this.props.id}>
-				{ this.renderLogo() }
-				{ this.renderArticles() }
-			</div>
+			<Modal
+				show={this.state.visible || !this.props.invisible}
+				id={this.props.id}
+				className="article-container"
+				backdrop={false}
+			>
+				<Modal.Header>
+					<span className="article-header">NEWS</span>
+					{ !this.props.invisible ? <VoiceInput
+						placeholder="Pick a newspaper"
+						style={{ float: 'left', width: '45%', marginTop: 10 }}
+						language={this.props.language}
+						onSubmit={this.find}
+						onFinalText={this.trigger}
+					/> : null }
+					{ this.state.articles ? <Button onClick={this.hide} className="articles-exit">Clear</Button> : null }
+				</Modal.Header>
+				{this.renderArticles()}
+			</Modal>
 		);
 	}
 }
@@ -215,8 +218,8 @@ News.defaultProps = {
 	language: 'en-US',
 	invisible: false,
 	key: '2987fd19bd374249979c4e38e40ef8b8',
-	onArticles() {},
-	speechInterface: false
+	voiceID: null,
+	onArticles() {}
 };
 
 
@@ -226,8 +229,8 @@ News.propTypes = {
 	invisible: PropTypes.bool,
 	key: PropTypes.string,
 	language: PropTypes.string,
-	onArticles: PropTypes.func,
-	speechInterface: PropTypes.bool
+	voiceID: PropTypes.string,
+	onArticles: PropTypes.func
 };
 
 News.contextTypes = {

@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { APIXU_BASE_URL } from 'constants/apixu';
 import './weather.css';
 
 
@@ -19,25 +20,37 @@ class Weather extends Component {
 
 	componentDidMount() {
 		this.getData( this.props.location );
-		if ( this.props.speechInterface ) {
+		if ( this.props.voiceID ) {
 			this.register();
 		}
 	}
 
 	register = () => {
 		this.context.session.speechInterface.register({
-			name: [ 'weather' ],
+			name: this.props.voiceID,
 			ref: this,
-			commands: [{
-				command: 'trigger',
-				trigger: [ 'weather', 'in' ],
-				text: true,
-				params: {}
-			}]
+			commands: [
+				{
+					command: 'trigger',
+					trigger: [ 'in' ],
+					text: true
+				},
+				{
+					command: 'reset',
+					trigger: [ 'close' ]
+				}
+		]
 		});
 	}
 
-	trigger( text, callback ) {
+	reset = () => {
+		this.setState({
+			data: null
+		});
+	}
+
+	trigger = ( text, callback ) => {
+		console.log( 'Trigger weather retrieveal...' );
 		if ( callback ) {
 			this.callback = callback;
 		} else {
@@ -59,30 +72,33 @@ class Weather extends Component {
 		n += ( marker.length + 1 );
 		if ( n !== -1 ) {
 			let location = text.substring( n, text.length );
+			console.log( 'Get weather info for location: '+ location );
 			this.getData( location );
 		}
 	}
 
-	getData( location ) {
+	getData = ( location ) => {
 		if ( location ) {
-			const base = 'http://api.apixu.com/v1';
 			const json = '/current.json';
 			const q = location;
-			const url = base + json + '?key=' + this.props.key + '&q=' + q;
+			const url = APIXU_BASE_URL + json + '?key=' + this.props.key + '&q=' + q;
+			console.log( 'GET request: '+url );
 			fetch( url )
-				.then( ( response ) => {
+				.then( response => {
+					console.log( 'Status code: '+response.status );
 					return response.json();
 				})
 				.then( ( json ) => {
 					console.log( json );
 					this.setWeatherData( json );
-				}).catch( ( err ) => {
-					console.error( err );
+				})
+				.catch( ( err ) => {
+					console.log( 'Encountered an error: '+err.message );
 				});
 		}
 	}
 
-	setWeatherData( data ) {
+	setWeatherData = ( data ) => {
 		if ( this.callback ) {
 			this.callback( data );
 		}
@@ -181,7 +197,7 @@ class Weather extends Component {
 		}
 		let current = this.state.data.current;
 		return (
-			<div className="weather">
+			<div className="weather" style={this.props.style} >
 				{this.renderLocation(current)}
 				{this.renderDescription(current)}
 				<br />
@@ -199,14 +215,16 @@ Weather.propTypes = {
 	key: PropTypes.string,
 	language: PropTypes.string,
 	location: PropTypes.string,
-	speechInterface: PropTypes.bool
+	voiceID: PropTypes.string,
+	style: PropTypes.object
 };
 
 Weather.defaultProps = {
 	key: '3b94f972948543b8a1780701171211',
 	language: 'en-US',
 	location: null,
-	speechInterface: false
+	voiceID: null,
+	style: {}
 };
 
 Weather.contextTypes = {

@@ -5,6 +5,7 @@ import Pagination from 'react-bootstrap/lib/Pagination';
 import PropTypes from 'prop-types';
 import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
+import isArray from '@stdlib/assert/is-array';
 import './pages.css';
 
 
@@ -19,12 +20,14 @@ class Pages extends Component {
 	}
 
 	componentDidMount() {
-		this.register();
+		if ( this.props.voiceID ) {
+			this.register();
+		}
 	}
 
 	register() {
-		this.session.speechInterface.register({
-			name: [ 'pager', 'please' ],
+		this.context.session.speechInterface.register({
+			name: this.props.voiceID,
 			ref: this,
 			commands: [
 				{
@@ -37,7 +40,7 @@ class Pages extends Component {
 				},
 				{
 					command: 'firstPage',
-					trigger: 'first'
+					trigger: [ 'first', 'First' ]
 				},
 				{
 					command: 'lastPage',
@@ -146,14 +149,14 @@ class Pages extends Component {
 				<div className="page-children-wrapper" style={{
 					height: this.props.height
 				}}>
-					{this.props.children.map( ( elem, idx ) => {
+					{ isArray( this.props.children ) ? this.props.children.map( ( elem, idx ) => {
 						return ( <span
 							className={this.state.activePage-1 !== idx ? 'invisible-page' : 'visible-page'}
 							key={idx}
 						>
 							{elem}
 						</span> );
-					})}
+					}) : this.props.children }
 				</div>
 			</div>
 		);
@@ -186,14 +189,16 @@ Pages.propTypes = {
 		PropTypes.number,
 		PropTypes.string
 	]),
+	voiceID: PropTypes.string,
 	style: PropTypes.object,
-	onSelect: PropTypes.func
+	onSelect: PropTypes.func,
 };
 
 Pages.defaultProps = {
 	title: '',
 	bsSize: 'default',
 	height: null,
+	voiceID: null,
 	style: {},
 	onSelect() {}
 };
