@@ -64,6 +64,16 @@
 	z-index: 2;
 }
 
+#Lesson .statusbar-voice-text {
+	position: absolute;
+	font-size: 12px;
+	top: 22px;
+	left: 2px;
+	z-index: 2;
+	width: max-content;
+	background: lightblue;
+}
+
 #Lesson .statusbar-username {
 	bottom: -1px;
 	height: auto;

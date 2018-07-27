@@ -39,7 +39,8 @@ class StatusBar extends Component {
 			visibleLogin: false,
 			visibleLogout: false,
 			statusbarWidth,
-			side
+			side,
+			recordedText: null
 		};
 		this.hidden = true;
 	}
@@ -165,6 +166,12 @@ class StatusBar extends Component {
 
 	handleVoiceInput = ( text ) => {
 		console.log( 'Received voice input: ' + text );
+		this.setState({
+			recordedText: text
+		});
+		setTimeout(() => {
+			this.setState({ recordedText: null });
+		}, 3000 );
 		this.context.session.speechInterface.check( text );
 	}
 
@@ -220,7 +227,9 @@ class StatusBar extends Component {
 								stopTooltip="Disable voice control"
 								startTooltip="Enable voice control"
 								onFinalText={this.handleVoiceInput}
+								timeout={20000}
 							/>
+							<span className="statusbar-voice-text" >{this.state.recordedText}</span>
 						</div>
 						<div className="statusbar-presence" style={{
 							backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR

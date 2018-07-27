@@ -1007,7 +1007,8 @@ class Session {
 			this.storeUser( user );
 			this.socketConnect();
 			this.update();
-		}).catch( ( err ) => {
+		})
+		.catch( ( err ) => {
 			debug( 'Encountered an error: '+err.message );
 		});
 	}

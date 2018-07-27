@@ -19,16 +19,8 @@ class SpeechInterface {
 		for ( let i = 0; i < this.components.length; i++ ) {
 			const comp = this.components[i];
 			const name = comp.name;
-			if ( isArray( name ) ) {
-				for ( let j = 0; j < name.length; j++ ) {
-					if ( text.search( name[j] ) !== -1 ) {
-						console.log( 'Checking triggers for '+name[j]+ 'component...' );
-						this.checkCommands( text, comp );
-						break;
-					}
-				}
-			}
-			else if ( text.search( name ) !== -1 ) {
+			if ( text.search( name ) !== -1 ) {
+				console.log( 'Checking triggers for '+name+ ' component...' );
 				this.checkCommands( text, comp );
 			}
 		}
@@ -63,6 +55,7 @@ class SpeechInterface {
 	}
 
 	register( component ) {
+		console.log( 'Register component: '+component.name );
 		if (
 			isObject( component ) &&
 			component.name &&
