@@ -6,6 +6,7 @@ import startsWith from '@stdlib/string/starts-with';
 import contains from '@stdlib/assert/contains';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isObject from '@stdlib/assert/is-object';
+import extractTitles from './extract_titles';
 
 // VARIABLES //
 
@@ -288,6 +289,7 @@ function isEndTag( astElem ) {
 	return true;
 }
 
+/*
 function isTitleTag( astElem ) {
 	if ( astElem.type !== 'html_block' ) {
 		return false;
@@ -297,6 +299,7 @@ function isTitleTag( astElem ) {
 	}
 	return true;
 }
+*/
 
 function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 	// Note that the DPI is 72
@@ -374,31 +377,28 @@ function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 					margin: MARGINS
 				});
 			} else if ( contains( elem.content, '<!--TitleText' ) ) {
-				// We know the title starts after \nTitle: 
-				const firstNewLineIndex = elem.content.indexOf('\n');
-				const titleStartIndex = firstNewLineIndex + 'Title: '.length + 1; // one is so that it starts on the right ploace
+				// We know the title starts after \nTitle
+				var ids = extractTitles( elem.content );
 
-				const secondNewLineIndex = elem.content.indexOf('\n', firstNewLineIndex + 1);
-				const title = elem.content.slice(titleStartIndex, secondNewLineIndex);
+				if ( ids.title ) {
+					content.push({
+						text: ids.title,
+						style: 'titleText'
+					});
+				}
 
-				const nameStartIndex = secondNewLineIndex + 'Name: '.length + 1;
-				const thirdNewLineIndex = elem.content.indexOf('\n', secondNewLineIndex + 1);
+				if ( ids.name ) {
+					var tmpStr = ids.name;
 
-				const name = elem.content.slice(nameStartIndex, thirdNewLineIndex);
+					if ( ids.advisor ) {
+						tmpStr += `\nAdvisors(s): ${ids.advisor}`;
+					}
 
-				// to get the start of the advisor, just do the same thing with the last line
-				const fourthNewLineIndex = elem.content.indexOf('\n', thirdNewLineIndex + 1);
-				const advisorStartIndex = thirdNewLineIndex + 'Advisor: '.length + 1;
-				const advisor = elem.content.slice(advisorStartIndex, fourthNewLineIndex);
-
-				content.push({
-					text: title,
-					style: 'titleText'
-				});
-				content.push({
-					text: `${name}\nAdvisor(s): ${advisor}`,
-					style: 'advisorText'
-				});
+					content.push({
+						text: tmpStr,
+						style: 'advisorText'
+					});
+				}
 			}
 		} else if (
 			elem.type === 'bullet_list_open' ||

@@ -10,6 +10,7 @@ import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
 import SelectInput from 'components/input/select';
 import NumberInput from 'components/input/number';
+import Select from 'react-select';
 import pageSizes from './page_sizes.json';
 import './save_modal.css';
 
@@ -62,8 +63,13 @@ class SaveModal extends Component {
 			pageDims.height = 72 * pageSizes[this.state.pageSize].height;
 		}
 		if ( !this.state.useString || this.state.pageSize === 'POSTER' ) {
-			pageDims.height = this.state.customHeight;
-			pageDims.width = this.state.customWidth;
+			if ( this.state.pageOptionOrientation === 'landscape' ) {
+				pageDims.height = this.state.customWidth;
+				pageDims.width = this.state.customHeight;
+			} else {
+				pageDims.height = this.state.customHeight;
+				pageDims.width = this.state.customWidth;
+			}
 		}
 		config.pageSize = pageDims;
 		config.pageOrientation = this.state.pageOrientation;
@@ -164,7 +170,7 @@ class SaveModal extends Component {
 										<Col xs={6} md={6}>
 											<SelectInput
 												legend="Orientation"
-												defaultValue={'portrait'}
+												defaultValue={this.state.pageOrientation}
 												options={['portrait', 'landscape']}
 												onChange={( value )=>{
 													if ( value !== this.state.pageOrientation ) {
@@ -173,7 +179,9 @@ class SaveModal extends Component {
 														this.setState({
 															pageOrientation: value,
 															visibleWidth: oldHeight,
-															visibleHeight: oldWidth
+															visibleHeight: oldWidth,
+															customWidth: 72 * oldHeight,
+															customHeight: 72 * oldWidth
 														});
 													}	
 												}}

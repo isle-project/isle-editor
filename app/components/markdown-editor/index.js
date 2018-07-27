@@ -35,6 +35,7 @@ import ColumnSelect from './column_select.js';
 import base64toBlob from './base64_to_blob.js';
 import FigureInsert from './figure_insert.js';
 import TitleInsert from './title_insert.js';
+import extractTitles from './extract_titles.js';
 import 'simplemde/dist/simplemde.min.css';
 import './markdown_editor.css';
 
@@ -167,6 +168,13 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 
 
 // FUNCTIONS //
+
+function replacer( str, match ) {
+	var ids = extractTitles( match );
+	var html = `${ids.title ? <h1 className='center' style="font-size: 48px; width: 100%">${ids.title}</h1> : null}
+		${ids.name ? <h2 className='center' style="font-size: 44px; width: 100%">${ids.name}<br />${ids.advisor ? `Advisor(s): ${ids.advisor}` : null}</h2> : null}`;
+	return html;
+}
 
 function createPreviewStyles(fontSize) {
 	fontSize = Number( fontSize );
@@ -777,36 +785,6 @@ class MarkdownEditor extends Component {
 	}
 
 	titleTagConvert = ( plainText ) => {
-		function replacer( str, match ) {
-			let advisor;
-			let title;
-			let name;
-
-			const titleIndex = match.indexOf('Title: ');
-			if ( titleIndex !== -1 ) {
-				const titleStartsAt = titleIndex + 'Title: '.length;
-				const secondNewLineIndex = match.indexOf( '\n', titleIndex + 1 );
-				title = match.slice( titleStartsAt, secondNewLineIndex );
-			}
-
-			const nameIndex = match.indexOf('Name: ');
-			if ( nameIndex !== -1 ) {
-				const nameStartsAt = nameIndex + 'Name: '.length;
-				const nameLineIndex = match.indexOf( '\n', nameStartsAt );
-				name = match.slice( nameStartsAt, nameLineIndex );
-			}
-
-			const advisorIndex = match.indexOf('Advisor: ' );
-			if ( advisorIndex !== -1 ) {
-				const advisorStartsAt = advisorIndex + 'Advisor: '.length;
-				const advisorLineIndex = match.indexOf( '\n', advisorStartsAt );
-				advisor = match.slice( advisorStartsAt, advisorLineIndex );
-			}
-
-			// Do the replacement
-			return `<h1 class='center' style="font-size: 48px; width: 100%">${title}</h1>
-				<h2 class='center' style="font-size: 44px; width: 100%">${name}<br />${advisor !== null ? `Advisor(s): ${advisor}` : null}</h2>`;
-		}
 
 		// Using regexp
 		const regTitle = /<!--TitleText([\s\S]*?)-->/;
