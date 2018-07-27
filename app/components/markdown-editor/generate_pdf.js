@@ -370,9 +370,15 @@ function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 				// Move to right past `src="`
 				start += 5;
 				const end = elem.content.indexOf( '"', start );
+				var width;
+				if ( config.pageOrientation === 'landscape' ) {
+					width = config.pageSize.height;
+				} else {
+					width = config.pageSize.width;
+				}
 				content.push({
 					image: elem.content.substr( start, end - start ),
-					width: 0.5 * config.pageSize.width / columnCount,
+					width: 0.5 * config.pageSize.width / width,
 					alignment: 'center',
 					margin: MARGINS
 				});
