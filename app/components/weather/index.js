@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import isElectron from 'utils/is-electron';
 import './weather.css';
 
 
@@ -65,20 +64,22 @@ class Weather extends Component {
 	}
 
 	getData( location ) {
-		const base = 'http://api.apixu.com/v1';
-		const json = '/current.json';
-		const q = location;
-		const url = base + json + '?key=' + this.props.key + '&q=' + q;
-		fetch( url )
-			.then( ( response ) => {
-				return response.json();
-			})
-			.then( ( json ) => {
-				console.log( json );
-				this.setWeatherData( json );
-			}).catch( ( err ) => {
-				console.error( err );
-			});
+		if ( location ) {
+			const base = 'http://api.apixu.com/v1';
+			const json = '/current.json';
+			const q = location;
+			const url = base + json + '?key=' + this.props.key + '&q=' + q;
+			fetch( url )
+				.then( ( response ) => {
+					return response.json();
+				})
+				.then( ( json ) => {
+					console.log( json );
+					this.setWeatherData( json );
+				}).catch( ( err ) => {
+					console.error( err );
+				});
+		}
 	}
 
 	setWeatherData( data ) {
@@ -204,7 +205,7 @@ Weather.propTypes = {
 Weather.defaultProps = {
 	key: '3b94f972948543b8a1780701171211',
 	language: 'en-US',
-	location: 'Berlin',
+	location: null,
 	speechInterface: false
 };
 
