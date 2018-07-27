@@ -34,8 +34,8 @@ class News extends Component {
 		}
 	}
 
-	register() {
-		this.session.speechInterface.register({
+	register = () => {
+		this.context.session.speechInterface.register({
 			name: [ 'news' ],
 			ref: this,
 			commands: [{

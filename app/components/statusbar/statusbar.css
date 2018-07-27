@@ -57,10 +57,17 @@
 	z-index: 2;
 }
 
+#Lesson .statusbar-voice {
+	left: 10px;
+	bottom: 0px;
+	position: absolute;
+	z-index: 2;
+}
+
 #Lesson .statusbar-username {
 	bottom: -1px;
 	height: auto;
-	margin-left: 10px;
+	margin-left: 35%;
 	position: absolute;
 	font-size: 12px;
 	font-family: Open Sans;
@@ -68,9 +75,9 @@
 
 #Lesson .statusbar-presence {
 	width: 10px;
-	left: -10px;
+	left: 30%;
 	height: 10px;
-	bottom: 4px;
+	bottom: 3px;
 	position: absolute;
 	border-radius: 50%;
 	box-shadow: 1px 1px 2px grey;

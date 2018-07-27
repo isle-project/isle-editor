@@ -10,6 +10,7 @@ import logger from 'debug';
 import Signup from 'components/signup';
 import Login from 'components/login';
 import Gate from 'components/gate';
+import VoiceInput from 'components/input/voice';
 import InstructorView from 'components/statusbar/instructor-view';
 import Chat from 'components/statusbar/chat';
 import isElectron from 'utils/is-electron';
@@ -20,7 +21,7 @@ import './statusbar.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle-editor:statusbar' );
 const LOGGED_IN_COLOR = 'rgb(130, 224, 160)';
 const LOGGED_OUT_COLOR = 'rgb(209, 107, 71)';
 
@@ -162,6 +163,15 @@ class StatusBar extends Component {
 		});
 	}
 
+	handleVoiceInput = ( text ) => {
+		console.log( 'Received voice input: ' + text );
+		this.context.session.speechInterface.check( text );
+	}
+
+	handleVoiceInputChange = ( event ) => {
+		event.stopPropagation();
+	}
+
 	getChatPosition( idx ) {
 		const { session } = this.context;
 		const margin = 10;
@@ -203,6 +213,15 @@ class StatusBar extends Component {
 				>
 					<div className="statusbar-left"></div>
 					<div className="statusbar-middle">
+						<div className="statusbar-voice">
+							<VoiceInput
+								onClick={this.handleVoiceInputChange}
+								mode="microphone" width={18} height={18}
+								stopTooltip="Disable voice control"
+								startTooltip="Enable voice control"
+								onFinalText={this.handleVoiceInput}
+							/>
+						</div>
 						<div className="statusbar-presence" style={{
 							backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR
 						}}>

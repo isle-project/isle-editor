@@ -15,12 +15,14 @@ class SpeechInterface {
 	* Checks whether the text contains a valid name.
 	*/
 	check( text ) {
+		console.log( 'Checking text: `'+ text + '`' );
 		for ( let i = 0; i < this.components.length; i++ ) {
 			const comp = this.components[i];
 			const name = comp.name;
-			if ( isArray( name ) ){
+			if ( isArray( name ) ) {
 				for ( let j = 0; j < name.length; j++ ) {
 					if ( text.search( name[j] ) !== -1 ) {
+						console.log( 'Checking triggers for '+name[j]+ 'component...' );
 						this.checkCommands( text, comp );
 						break;
 					}
@@ -39,7 +41,7 @@ class SpeechInterface {
 		for ( let n = 0; n < comp.commands.length; n++ ) {
 			const command = comp.commands[ n ];
 			const trigger = command.trigger;
-			if ( isArray( trigger) === true ){
+			if ( isArray( trigger ) === true ) {
 				for ( let x = 0; x < trigger.length; x++ ) {
 					if ( text.search( trigger[x] ) !== -1 ) {
 						this.execute( comp.ref, command, text );
@@ -56,6 +58,7 @@ class SpeechInterface {
 		if ( command.text ) {
 			command.text = text;
 		}
+		console.log( `Executing ${command.command} command with input: `+command.text );
 		ref[ command.command ]( command.text );
 	}
 

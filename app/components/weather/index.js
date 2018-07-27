@@ -24,8 +24,8 @@ class Weather extends Component {
 		}
 	}
 
-	register() {
-		this.session.speechInterface.register({
+	register = () => {
+		this.context.session.speechInterface.register({
 			name: [ 'weather' ],
 			ref: this,
 			commands: [{
