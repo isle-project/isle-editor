@@ -378,7 +378,7 @@ function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 				}
 				content.push({
 					image: elem.content.substr( start, end - start ),
-					width: (1/3) * width / columnCount,
+					width: (1 / 3) * width / columnCount,
 					alignment: 'center',
 					margin: MARGINS
 				});
@@ -535,7 +535,11 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 
 		colObj = {};
 		colObj.columns = columns;
-		colObj.columnGap = 90;
+		if ( config.pageorientation === 'landscape' ) {
+			colObj.columnGap = 0.03 * config.pageSize.height;
+		} else {
+			colObj.columnGap = 0.03 * config.pageSize.width;
+		}
 		doc.content.push(colObj);
 
 		// EndTag[z] to startTag[z + 1]
