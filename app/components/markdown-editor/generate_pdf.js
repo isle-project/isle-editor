@@ -22,10 +22,16 @@ const TABLE_LAYOUT = {
 		}
 		return 1;
 	},
-	vLineWidth( i ) {
-		return 0;
+	vLineWidth( i, node ) {
+		if ( i === 0 || i === node.table.widths.length ) {
+			return 0;
+		}
+		return 1;
 	},
 	hLineColor( i ) {
+		return '#aaa';
+	},
+	vLineColor( i ) {
 		return '#aaa';
 	},
 	paddingLeft( i ) {
@@ -477,7 +483,6 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 			fontSize: standardFontSize
 		}
 	};
-
 	const state = {};
 
 	// Get the indices that have column tags
