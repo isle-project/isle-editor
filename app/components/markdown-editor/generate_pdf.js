@@ -11,9 +11,8 @@ import extractTitles from './extract_titles';
 // VARIABLES //
 
 const debug = logger( 'markdown-editor:pdf' );
-const MARGINS = [ 5, 2, 2, 5 ];
-
-// custon_font_size is passed in terms of html, so a size 16 in html will be a size 12 here
+const MARGINS = [ 2, 5, 2, 5 ];
+// left, top, right, bottom
 
 const TABLE_LAYOUT = {
 	hLineWidth( i, node ) {
@@ -46,7 +45,7 @@ const TABLE_LAYOUT = {
 // FUNCTIONS //
 
 function makeSTYLES( customFontSize = 12, poster = false ) {
-	// the 16 is x + 4 --> 12 font
+	// the 16 (html font) is x + 4 --> 12 font
 	const pdfSize = customFontSize - 4;
 	return (
 		{
@@ -83,7 +82,7 @@ function makeSTYLES( customFontSize = 12, poster = false ) {
 			'advisorText': {
 				fontSize: poster ? 48 : pdfSize + 16,
 				alignment: 'center',
-				pageMargins: [40, 60, 40, 100],
+				margins: [4, 6, 4, 6],
 				color: '#3c763d'
 			},
 			'columnText': {
@@ -384,7 +383,7 @@ function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 				}
 				content.push({
 					image: elem.content.substr( start, end - start ),
-					width: (1 / 3) * width / columnCount,
+					width: (.8) * width / columnCount,
 					alignment: 'center',
 					margin: MARGINS
 				});
@@ -481,7 +480,8 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 		'pageOrientation': config.pageOrientation,
 		'defaultStyle': {
 			fontSize: standardFontSize
-		}
+		},
+		'pageMargins': [40, 60, 40, 60] // left top right bottom
 	};
 	const state = {};
 
@@ -508,7 +508,7 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 		return doc;
 	}
 
-	var zeroStart = false;
+	var zeroStart = false; // zeroth index is not a column
 	if ( colGroups[0][0] === 0 ) {
 		zeroStart = true;
 	}
@@ -518,8 +518,9 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 	if ( !zeroStart ) {
 		subDoc = parsePDF(ast, config, state, 0, startTag[0]);
 		doc.content = subDoc;
-		// we know we are in colgroup 1
 	}
+
+	// we know we are in colgroup 1
 
 	var colTmp;
 	var colObj;
@@ -528,9 +529,10 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 		columns = new Array(colGroups[z].length - 1);
 		colTmp = colGroups[z];
 		// Invariant: colTmp.length === columns.length + 1
+		// two columns --> 3 tags. colStart | column2 | columnEnd
 		// Through all the col in the column group
 		for (let j = 0; j < colTmp.length - 1; j++ ) {
-			subDoc = parsePDF(ast, config, state, colTmp[j] + 1, colTmp[j + 1] - 1);
+			subDoc = parsePDF(ast, config, state, colTmp[j] + 1, colTmp[j + 1] - 1, colTmp.length - 1);
 
 			columns[j] = [];
 			for ( let x = 0; x < subDoc.length; x++ ) {
@@ -540,11 +542,13 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 
 		colObj = {};
 		colObj.columns = columns;
+		
 		if ( config.pageorientation === 'landscape' ) {
-			colObj.columnGap = 0.03 * config.pageSize.height;
+			colObj.columnGap = 0.015 * config.pageSize.height;
 		} else {
-			colObj.columnGap = 0.03 * config.pageSize.width;
+			colObj.columnGap = 0.015 * config.pageSize.width;
 		}
+		
 		doc.content.push(colObj);
 
 		// EndTag[z] to startTag[z + 1]
@@ -555,10 +559,11 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 				break;
 			}
 
-			// there is more
+			// there is more --> things from end of columns to end of text
 			subDoc = parsePDF(ast, config, state, endTag[z] + 1, ast.length);
 			doc.content.push(subDoc);
 		} else {
+			// Handle regulat text between columns
 			subDoc = parsePDF(ast, config, state, endTag[z] + 1, startTag[z + 1] - 1);
 			doc.content.push(subDoc);
 		}
