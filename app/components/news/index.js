@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import capitalize from '@stdlib/string/capitalize';
-import isElectron from 'utils/is-electron';
 import VoiceInput from 'components/input/voice';
 import newslist from './list.json';
 import EXCEPTIONS from './exceptions.json';
@@ -13,7 +12,6 @@ import './styles.css';
 
 // VARIABLES //
 
-const rejectUnauthorized = isElectron ? false : true;
 const debug = logger( 'isle-editor:news' );
 
 
