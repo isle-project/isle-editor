@@ -378,7 +378,7 @@ function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 				}
 				content.push({
 					image: elem.content.substr( start, end - start ),
-					width: 0.5 * config.pageSize.width / width,
+					width: (1/3) * width / columnCount,
 					alignment: 'center',
 					margin: MARGINS
 				});
