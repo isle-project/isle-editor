@@ -169,7 +169,7 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 
 // FUNCTIONS //
 
-function replacer( str, match ) {
+function replacerHTML( str, match ) {
 	var ids = extractTitles( match );
 	var html = `${ids.title ? <h1 className='center' style="font-size: 48px; width: 100%">${ids.title}</h1> : null}
 		${ids.name ? <h2 className='center' style="font-size: 44px; width: 100%">${ids.name}<br />${ids.advisor ? `Advisor(s): ${ids.advisor}` : null}</h2> : null}`;
@@ -788,7 +788,7 @@ class MarkdownEditor extends Component {
 
 		// Using regexp
 		const regTitle = /<!--TitleText([\s\S]*?)-->/;
-		plainText = plainText.replace(regTitle, replacer);
+		plainText = plainText.replace(regTitle, replacerHTML);
 		return plainText;
 	}
 
