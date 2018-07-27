@@ -62,7 +62,6 @@ const createScope = ( session ) => {
 		session,
 		NotificationSystem,
 
-		AcousticAssistant: Loadable( () => import( 'components/acoustic-css' ) ),
 		AcousticCSS: Loadable( () => import( 'components/acoustic-css' ) ),
 		BeaconTooltip: Loadable( () => import( 'components/beacon-tooltip' ) ),
 		CheckboxInput: CheckboxInput,

@@ -1,7 +1,6 @@
 {
 	"Accordion": "const Accordion = require( \"react-bootstrap/lib/Accordion\" );",
 	"AcousticCSS": "const AcousticCSS = require( \"components/acoustic-css\" );",
-	"AcousticAssistant": "const AcousticAssistant = require( \"components/acoustic-assistant\" );",
 	"Bar": "const Bar = require( \"victory\" ).Bar",
 	"BeaconTooltip": "const BeaconTooltip = require( \"components/beacon-tooltip\" );",
 	"Button": "const Button = require( \"react-bootstrap/lib/Button\" );",
