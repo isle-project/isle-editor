@@ -128,7 +128,7 @@ class VoiceInput extends Input {
 			recognizer.start();
 		}
 
-		debug( 'Set isRecording to true...' );
+		debug( 'Set `isRecording` to true...' );
 		this.setState({
 			isRecording: true
 		});
@@ -169,7 +169,8 @@ class VoiceInput extends Input {
 		}
 	}
 
-	handleClick = () => {
+	handleClick = ( event ) => {
+		this.props.onClick( event );
 		if ( this.state.isRecording ){
 			this.stop();
 		}
@@ -190,14 +191,14 @@ class VoiceInput extends Input {
 
 	tooltipMessage( recognizable ) {
 		let text = '';
-		if (!recognizable ) {
+		if ( !recognizable ) {
 			text = 'Your browser does not support voice recognition. You may use the Chrome Browser instead';
 		}
 		else if ( this.state.isRecording === true) {
-			text = 'Click to stop recording';
+			text = this.props.stopTooltip;
 		}
 		else {
-			text = 'Click to start recording';
+			text = this.props.startTooltip;
 		}
 		return text;
 	}
@@ -284,6 +285,7 @@ VoiceInput.defaultProps = {
 	legend: '',
 	mode: 'full',
 	onChange() {},
+	onClick() {},
 	onFinalText() {},
 	onSegment() {},
 	onRecordingStart() {},
@@ -293,6 +295,8 @@ VoiceInput.defaultProps = {
 	remote: null,
 	style: {},
 	timeout: null,
+	stopTooltip: 'Click to stop recording',
+	startTooltip: 'Click to start recording',
 	width: 500,
 	height: 36
 };
@@ -308,6 +312,7 @@ VoiceInput.propTypes = {
 	legend: PropTypes.string,
 	mode: PropTypes.string,
 	onChange: PropTypes.func,
+	onClick: PropTypes.func,
 	onFinalText: PropTypes.func,
 	onRecordingStart: PropTypes.func,
 	onRecordingStop: PropTypes.func,
@@ -317,6 +322,8 @@ VoiceInput.propTypes = {
 	remote: PropTypes.object,
 	style: PropTypes.object,
 	timeout: PropTypes.number,
+	stopTooltip: PropTypes.string,
+	startTooltip: PropTypes.string,
 	width: PropTypes.number,
 	height: PropTypes.number
 };
