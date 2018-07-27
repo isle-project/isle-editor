@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import noop from '@stdlib/utils/noop';
 import NumberInput from 'components/input/number';
-// import './column-select.css';
 
 
 // MAIN //
@@ -76,6 +75,7 @@ class ColumnSelect extends Component {
 	}
 }
 
+
 // PROPERTY TYPES //
 
 ColumnSelect.propTypes = {
@@ -88,6 +88,7 @@ ColumnSelect.defaultProps = {
 	onClick: noop,
 	onHide: noop
 };
+
 
 // EXPORTS //
 

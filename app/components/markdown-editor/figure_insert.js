@@ -74,7 +74,7 @@ FigureInsert.propTypes = {
     onHide: PropTypes.func,
     show: PropTypes.bool.isRequired,
     studentPlots: PropTypes.array,
-    insertFunction: PropTypes.function
+    insertFunction: PropTypes.func
 };
 
 FigureInsert.defaultProps = {

@@ -5,12 +5,13 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import SimpleMDE from 'simplemde';
 import markdownIt from 'markdown-it';
-import pdfMake from 'pdfmake/build/pdfmake.min.js';
+import pdfMake from 'pdfmake-lite/build/pdfmake.min.js';
 import katex from 'markdown-it-katex';
 import markdownSub from 'markdown-it-sub';
 import markdownIns from 'markdown-it-ins';
 import markdownContainer from 'markdown-it-container';
 import FileSaver from 'file-saver';
+import logger from 'debug';
 import replace from '@stdlib/string/replace';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import startsWith from '@stdlib/string/starts-with';
@@ -26,7 +27,6 @@ import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import VoiceInput from 'components/input/voice';
-import fonts from './fonts.js';
 import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
 import SubmitModal from './submit_modal.js';
@@ -41,6 +41,7 @@ import './markdown_editor.css';
 
 // VARIABLES //
 
+const debug = logger( 'isle-editor:markdown-editor' );
 const md = markdownIt({
 	html: true,
 	xhtmlOut: true,
@@ -55,7 +56,7 @@ md.use( markdownSub );
 md.use( markdownContainer, 'center' );
 md.use( markdownIns );
 
-pdfMake.vfs = fonts;
+pdfMake.vfs = {};
 
 const createHTML = ( title, body, fontSize ) => `<!doctype html>
 <html lang=en>
@@ -454,6 +455,7 @@ class MarkdownEditor extends Component {
 				}
 			}
 		};
+		this.loadFonts();
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -535,6 +537,12 @@ class MarkdownEditor extends Component {
 			return true;
 		}
 		return false;
+	}
+
+	loadFonts() {
+		import( /* webpackChunkName: "fonts" */ './fonts.js' )
+			.then( fonts => { pdfMake.vfs = fonts; })
+			.catch( err => debug( 'Encountered an error while loading fonts: '+err.message ) );
 	}
 
 	initializeEditor() {
@@ -739,11 +747,11 @@ class MarkdownEditor extends Component {
 	recordedText = ( text ) => {
 		var sel = this.simplemde.codemirror.somethingSelected();
 		if ( sel ) {
-			this.simplemde.codemirror.replaceSelection( text);
+			this.simplemde.codemirror.replaceSelection( text );
 		}
 		else {
 			var c = this.simplemde.codemirror.getCursor();
-			this.simplemde.codemirror.replaceRange( text, c);
+			this.simplemde.codemirror.replaceRange( text, c );
 		}
 	}
 
@@ -769,11 +777,10 @@ class MarkdownEditor extends Component {
 	}
 
 	titleTagConvert = ( plainText ) => {
-
-		function replacer( str, match, offset, s) {
+		function replacer( str, match ) {
+			let advisor;
 			let title;
 			let name;
-			let advisor;
 
 			const titleIndex = match.indexOf('Title: ');
 			if ( titleIndex !== -1 ) {
@@ -835,7 +842,7 @@ class MarkdownEditor extends Component {
 		head.appendChild( style );
 
 		// Render the markdown:
-		return md.render( plainText );
+			return md.render( plainText );
 	}
 
 	allowDrop( event ) {
