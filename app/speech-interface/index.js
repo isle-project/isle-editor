@@ -2,6 +2,12 @@
 
 import isObject from '@stdlib/assert/is-object';
 import isArray from '@stdlib/assert/is-array';
+import logger from 'debug';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor:speech-interface' );
 
 
 // MAIN //
@@ -15,12 +21,12 @@ class SpeechInterface {
 	* Checks whether the text contains a valid name.
 	*/
 	check( text ) {
-		console.log( 'Checking text: `'+ text + '`' );
+		debug( 'Checking text: `'+ text + '`' );
 		for ( let i = 0; i < this.components.length; i++ ) {
 			const comp = this.components[i];
 			const name = comp.name;
 			if ( text.search( name ) !== -1 ) {
-				console.log( 'Checking triggers for '+name+ ' component...' );
+				debug( 'Checking triggers for '+name+ ' component...' );
 				this.checkCommands( text, comp );
 			}
 		}
@@ -50,12 +56,12 @@ class SpeechInterface {
 		if ( command.text ) {
 			command.text = text;
 		}
-		console.log( `Executing ${command.command} command with input: `+command.text );
+		debug( `Executing ${command.command} command with input: `+command.text );
 		ref[ command.command ]( command.text );
 	}
 
 	register( component ) {
-		console.log( 'Register component: '+component.name );
+		debug( 'Register component: '+component.name );
 		if (
 			isObject( component ) &&
 			component.name &&
