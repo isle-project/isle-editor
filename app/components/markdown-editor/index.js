@@ -171,8 +171,11 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 
 function replacerHTML( str, match ) {
 	var ids = extractTitles( match );
-	var html = `${ids.title ? <h1 className='center' style="font-size: 48px; width: 100%">${ids.title}</h1> : null}
-		${ids.name ? <h2 className='center' style="font-size: 44px; width: 100%">${ids.name}<br />${ids.advisor ? `Advisor(s): ${ids.advisor}` : null}</h2> : null}`;
+	debug(' The object of the ids in replacerHTML is ' + JSON.stringify(ids) );
+	var html = `${ids.title ? `<h1 class='center' style="font-size: 48px; width: 100%">${ids.title}</h1>` : null}
+		${ids.name ? `<h2 class='center' style="font-size: 44px; width: 100%">${ids.name}` : null}`;
+	html += `<br />${ids.advisor ? `Advisor(s): ${ids.advisor}` : null}</h2>`;
+	debug(' the HTML in replacerHTML is ' + html );
 	return html;
 }
 
@@ -665,9 +668,11 @@ class MarkdownEditor extends Component {
 		const { hash } = this.state;
 		for ( let key in hash ) {
 			if ( hasOwnProp( hash, key ) ) {
+				var matchInPipeRegExp = new RegExp('\\|\\s*' + key + '\\s*\\|');
 				let id = replace( key, '<!--', '' );
 				id = replace( id, '-->', '' );
-				if ( !skipCommens ) {
+				if ( !skipCommens || matchInPipeRegExp.test(plainText) ) {
+					// will have an issue if insert one figure in table and same figure outside table
 					replacementHash = `<!-- START:${id} -->${hash[ key ]}<!-- END -->`;
 				} else {
 					replacementHash = `\n\n${hash[ key ]}\n\n`;
@@ -676,6 +681,7 @@ class MarkdownEditor extends Component {
 				plainText = plainText.replace( re, replacementHash );
 			}
 		}
+		debug('this is the plaintext ' + plainText);
 		return plainText;
 	}
 
@@ -797,7 +803,7 @@ class MarkdownEditor extends Component {
 		plainText = this.columnTagConvert( plainText );
 
 		// Take the plaintext and insert the images via hash:
-		plainText = this.replacePlaceholders( plainText );
+		plainText = this.replacePlaceholders( plainText, true );
 
 		plainText = this.titleTagConvert( plainText );
 
@@ -892,6 +898,7 @@ class MarkdownEditor extends Component {
 		const title = document.title || 'provisoric';
 		let text = this.simplemde.value();
 		text = this.replacePlaceholders( text, true );
+		// replace all new line characters in a table
 		const ast = md.parse( text );
 		const doc = generatePDF( ast, config, this.state.fontSize );
 		this.toggleSaveModal( null, () => {
@@ -915,7 +922,6 @@ class MarkdownEditor extends Component {
 		const title = document.title || 'provisoric';
 		html = createHTML( title, html, Number( this.state.fontSize ) );
 		const ast = md.parse( text );
-
 		// Create the config so that the function can run:
 		const config = { 'pageSize': 'LETTER', 'pageOrientation': 'portrait' };
 		const doc = generatePDF( ast, config, this.state.fontSize );

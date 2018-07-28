@@ -34,10 +34,10 @@ const TABLE_LAYOUT = {
 		return '#aaa';
 	},
 	paddingLeft( i ) {
-		return i === 0 ? 0 : 8;
+		return 8;
 	},
 	paddingRight( i, node ) {
-		return ( i === node.table.widths.length - 1 ) ? 0 : 8;
+		return 8;
 	}
 };
 
@@ -112,7 +112,7 @@ function extractList( ast ) {
 	return list;
 }
 
-function extractTable( ast ) {
+function extractTable( ast, widthTable ) {
 	let headerRows = 0;
 	const out = {
 		table: {
@@ -133,6 +133,24 @@ function extractTable( ast ) {
 		switch ( node.type ) {
 			case 'thead_open':
 				headerRows = 1;
+				var count;
+				var zElem;
+				for ( let z = i; z < ast.length; z++ ) {
+					zElem = ast[z];
+					if ( zElem.type === 'tr_open' ) {
+						count = 0;
+					}
+					if ( zElem.type === 'th_open' ) {
+						count += 1
+					}
+					if ( zElem.type === 'tr_close' ) {
+						break;
+					}
+				}
+				out.table.widths = new Array(count);
+				for ( let j = 0; j < count; j++ ) {
+					out.table.widths[j] = widthTable / count;
+				}
 			break;
 			case 'tr_open':
 				if ( !calculatedWidths ) {
@@ -141,10 +159,23 @@ function extractTable( ast ) {
 				row = [];
 			break;
 			case 'inline':
-				if ( !calculatedWidths ) {
-					widths.push( '*' );
-				}
-				if ( node.children ) {
+
+				if ( contains( node.content, '<img src=') ) {
+					let start = node.content.indexOf( 'src="' );
+	
+					// Move to right past `src="`
+					start += 5;
+					const end = node.content.indexOf( '"', start );
+					
+					row.push({
+						image: node.content.substr( start, end - start ),
+						alignment: 'center',
+						margin: MARGINS,
+						width: out.table.widths[row.length]
+					});
+					
+				} 
+				else if ( node.children ) {
 					const text = [];
 					applyStyles( node.children, text );
 					row.push({
@@ -157,10 +188,12 @@ function extractTable( ast ) {
 				}
 			break;
 			case 'tr_close':
+			/*
 				if ( !calculatedWidths ) {
 					out.table.widths = widths;
 					calculatedWidths = true;
 				}
+				*/
 				out.table.body.push( row );
 			break;
 			case 'thead_close':
@@ -368,8 +401,8 @@ function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 				});
 			}
 			i += 2;
-		} else if ( elem.type === 'html_block' ) {
-			if ( contains( elem.content, '<img src=' ) ) {
+		} else if ( elem.type === 'html_block' || elem.type === 'inline' ) {
+			if ( contains( elem.content, '<img') || contains(elem.content, '<img \nsrc=') ) {
 				let start = elem.content.indexOf( 'src="' );
 
 				// Move to right past `src="`
@@ -383,7 +416,7 @@ function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 				}
 				content.push({
 					image: elem.content.substr( start, end - start ),
-					width: (.8) * width / columnCount,
+					width: 0.8 * width / columnCount,
 					alignment: 'center',
 					margin: MARGINS
 				});
@@ -446,9 +479,24 @@ function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 					arr.push( cell );
 				}
 				else {
-					const table = extractTable( arr );
+					var width;
+					if ( config.pageOrientation === 'landscape' ) {
+						width = config.pageSize.height - (MARGINS[1] + MARGINS[3]);
+					} else {
+						width = config.pageSize.width - (MARGINS[0] + MARGINS[2]);
+					}
+					// calculate the width knowing 100 is good for 11.5
+					let tableWidth = width / columnCount;
+					tableWidth = 0.8 * tableWidth;
+					const table = extractTable( arr, tableWidth );
 					table.margin = MARGINS;
-					content.push( table );
+					content.push({
+						columns: [
+							{ text: '', width: 0 },
+							table,
+							{ text: '', width: 0.1 * tableWidth }
+						]
+					});
 					break;
 				}
 			}
