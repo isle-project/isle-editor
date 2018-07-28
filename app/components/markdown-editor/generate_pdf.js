@@ -299,10 +299,11 @@ function isCol( astElem ) {
 	if ( astElem.type !== 'html_block' ) {
 		return false;
 	}
-	else if ( !startsWith( astElem.content, '<!--Column' ) && !startsWith(astElem.content, '<!--ColGroup' ) ) {
-		return false;
+	// made the change to only pick up col
+	else if ( contains( astElem.content, '<!--Column' ) ) {
+		return true;
 	}
-	return true;
+	return false;
 }
 
 function isStartTag( astElem ) {
@@ -310,10 +311,10 @@ function isStartTag( astElem ) {
 	if ( astElem.type !== 'html_block' ) {
 		return false;
 	}
-	else if ( !startsWith( astElem.content, '<!--ColGroupStart' ) ) {
-		return false;
+	else if ( contains( astElem.content, '<!--ColGroupStart' ) ) {
+		return true;
 	}
-	return true;
+	return false;
 }
 
 function isEndTag( astElem ) {
@@ -321,10 +322,10 @@ function isEndTag( astElem ) {
 	if ( astElem.type !== 'html_block' ) {
 		return false;
 	}
-	else if ( !startsWith( astElem.content, '<!--ColGroupEnd' ) ) {
-		return false;
+	else if ( contains( astElem.content, '<!--ColGroupEnd' ) ) {
+		return true;
 	}
-	return true;
+	return false;
 }
 
 /*
@@ -557,7 +558,7 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 	}
 
 	var zeroStart = false; // zeroth index is not a column
-	if ( colGroups[0][0] === 0 ) {
+	if ( colGroups === [] || colGroups[0][0] === 0 ) {
 		zeroStart = true;
 	}
 
