@@ -558,7 +558,7 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 	}
 
 	var zeroStart = false; // zeroth index is not a column
-	if ( colGroups === [] || colGroups[0][0] === 0 ) {
+	if ( colGroups.length === 0 || colGroups[0][0] === 0 ) {
 		zeroStart = true;
 	}
 
