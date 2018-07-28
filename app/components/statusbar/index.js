@@ -165,7 +165,7 @@ class StatusBar extends Component {
 	}
 
 	handleVoiceInput = ( text ) => {
-		console.log( 'Received voice input: ' + text );
+		debug( 'Received voice input: ' + text );
 		this.setState({
 			recordedText: text
 		});

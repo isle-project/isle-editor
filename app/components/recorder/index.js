@@ -258,6 +258,7 @@ class Recorder extends Component {
 	}
 
 	startRecording() {
+		debug( 'Start recording...' );
 		if ( !this.recorder ) {
 			this.setupRecorder();
 		} else {
@@ -300,6 +301,7 @@ class Recorder extends Component {
 	}
 
 	setupRecorder( clbk = () => {} ) {
+		debug( 'Setting up the recorder...' );
 		const { audio, camera, screen } = this.getActiveSources();
 
 		if ( screen || camera ) {

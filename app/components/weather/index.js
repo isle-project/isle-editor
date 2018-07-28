@@ -2,8 +2,14 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import { APIXU_BASE_URL } from 'constants/apixu';
 import './weather.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor:weather' );
 
 
 // MAIN //
@@ -50,7 +56,7 @@ class Weather extends Component {
 	}
 
 	trigger = ( text, callback ) => {
-		console.log( 'Trigger weather retrieveal...' );
+		debug( 'Trigger weather retrieveal...' );
 		if ( callback ) {
 			this.callback = callback;
 		} else {
@@ -72,7 +78,7 @@ class Weather extends Component {
 		n += ( marker.length + 1 );
 		if ( n !== -1 ) {
 			let location = text.substring( n, text.length );
-			console.log( 'Get weather info for location: '+ location );
+			debug( 'Get weather info for location: '+ location );
 			this.getData( location );
 		}
 	}
@@ -82,18 +88,18 @@ class Weather extends Component {
 			const json = '/current.json';
 			const q = location;
 			const url = APIXU_BASE_URL + json + '?key=' + this.props.key + '&q=' + q;
-			console.log( 'GET request: '+url );
+			debug( 'GET request: '+url );
 			fetch( url )
 				.then( response => {
-					console.log( 'Status code: '+response.status );
+					debug( 'Status code: '+response.status );
 					return response.json();
 				})
 				.then( ( json ) => {
-					console.log( json );
+					debug( json );
 					this.setWeatherData( json );
 				})
 				.catch( ( err ) => {
-					console.log( 'Encountered an error: '+err.message );
+					debug( 'Encountered an error: '+err.message );
 				});
 		}
 	}

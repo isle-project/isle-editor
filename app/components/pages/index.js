@@ -191,7 +191,7 @@ Pages.propTypes = {
 	]),
 	voiceID: PropTypes.string,
 	style: PropTypes.object,
-	onSelect: PropTypes.func,
+	onSelect: PropTypes.func
 };
 
 Pages.defaultProps = {
