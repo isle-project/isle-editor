@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Joyride from 'react-joyride';
+import { ACTIONS, EVENTS } from 'react-joyride/es/constants';
 
 
 // VARIABLES //
@@ -59,3 +60,5 @@ Wrapper.defaultProps = {
 // EXPORTS //
 
 export default Wrapper;
+
+export { EVENTS as EVENTS, ACTIONS as ACTIONS };
