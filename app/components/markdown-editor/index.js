@@ -32,6 +32,7 @@ import SaveModal from './save_modal.js';
 import SubmitModal from './submit_modal.js';
 import TableSelect from './table_select.js';
 import ColumnSelect from './column_select.js';
+import Guides from './guides';
 import base64toBlob from './base64_to_blob.js';
 import FigureInsert from './figure_insert.js';
 import TitleInsert from './title_insert.js';
@@ -158,6 +159,12 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 				margin: 0 auto;
 				text-align: center;
 			}
+			blockquote {
+				font-size: ${fontSize + 3.5}px;
+				padding: 10px 20px;
+				margin: 0px 0px 20px;
+				border-left: 5px solid rgb(238, 238, 238);
+			}
 		</style>
 		<script src="https://use.fontawesome.com/1ef7eff9d5.js"></script>
 	</head>
@@ -202,6 +209,12 @@ function createPreviewStyles(fontSize) {
 			.subtitle-tag {
 				font-size: 48px !important;
 				align
+			}
+			.editor-preview-active blockquote {
+				font-size: ${fontSize + 3.5}px;
+				padding: 10px 20px;
+				margin: 0px 0px 20px;
+				border-left: 5px solid rgb(238, 238, 238);
 			}
 		</style>`;
 }
@@ -249,7 +262,8 @@ class MarkdownEditor extends Component {
 			showColumnSelect: false,
 			fontSize: 12,
 			showFigureInsert: false,
-			showTitleInsert: false
+			showTitleInsert: false,
+			showGuides: false
 		};
 
 		this.toolbarOpts = {
@@ -463,6 +477,14 @@ class MarkdownEditor extends Component {
 				title: 'Insert Title',
 				action: () => {
 					this.toggleTitleInsert();
+				}
+			},
+			'guides': {
+				name: 'guides',
+				className: 'fa fa-question-circle',
+				title: 'Editor Guides',
+				action: () => {
+					this.toggleGuides();
 				}
 			}
 		};
@@ -791,8 +813,7 @@ class MarkdownEditor extends Component {
 	}
 
 	titleTagConvert = ( plainText ) => {
-
-		// Using regexp
+		// Use a regular expression to match the contents of the title comment:
 		const regTitle = /<!--TitleText([\s\S]*?)-->/;
 		plainText = plainText.replace(regTitle, replacerHTML);
 		return plainText;
@@ -866,6 +887,12 @@ class MarkdownEditor extends Component {
 	toggleTitleInsert = () => {
 		this.setState({
 			showTitleInsert: !this.state.showTitleInsert
+		});
+	}
+
+	toggleGuides = () => {
+		this.setState({
+			showGuides: !this.state.showGuides
 		});
 	}
 
@@ -1056,6 +1083,14 @@ class MarkdownEditor extends Component {
 					}}
 					studentPlots={this.props.plots}
 				/>
+				<Guides
+					show={this.state.showGuides}
+					onHide={()=>{
+						this.setState({
+							showGuides: false
+						});
+					}}
+				/>
 				<TitleInsert
 					show={this.state.showTitleInsert}
 					onHide={this.toggleTitleInsert}
@@ -1085,7 +1120,7 @@ MarkdownEditor.defaultProps = {
 		'title_insert',
 		'preview', 'side_by_side', 'fullscreen', '|',
 		'open_markdown', 'save', 'submit', '|',
-		'voice'
+		'voice', 'guides'
 	],
 	autoSave: true,
 	intervalTime: 60000,

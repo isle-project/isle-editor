@@ -1,0 +1,20 @@
+[
+	{
+		"target": ".fa-credit-card",
+		"content": "Insert a title bar with your authorship information and the title of the poster presentation by clicking here.",
+		"placement": "center",
+		"placementBeacon": "center"
+	},
+	{
+		"target": ".fa-ellipsis-h",
+		"content": "You want to use a multi-column layout given how wide a poster format is. You can insert the markup to create multiple columns using this button. Insert any text between the column group tags and observe in the preview rnder how your text is now displayed in separate columns."
+	},
+	{
+		"target": ".font_size_input",
+		"content": "Before exporting your poster, don't forget to choose a sufficiently large base font size. A value in the range 24pt–34pt is recommended."
+	},
+	{
+		"target": ".fa-save",
+		"content": "Save the document as a poster by exporting it in PDF format and choosing the \"Poster\" format in \"landscape\" orientation. This will save the document in a standard academic poster format (40” wide x 32” tall)."
+	}
+]

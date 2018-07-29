@@ -1,0 +1,16 @@
+[
+	{
+		"target": ".CodeMirror",
+		"content": "Type your text in the editor window. A vertical scrollbar will appear once your number of lines exceeds the height of the editor window.",
+		"placement": "right",
+		"placementBeacon": "right"
+	},
+	{
+		"target": ".editor-toolbar",
+		"content": "The toolbar provides various buttons to help with formatting your document and saving it"
+	},
+	{
+		"target": ".editor-statusbar",
+		"content": "The statusbar at the bottom displays information on the number of lines and total amount of words in the current document."
+	}
+]

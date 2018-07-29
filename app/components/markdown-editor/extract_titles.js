@@ -1,9 +1,11 @@
+// MAIN //
+
 function extractTitles( match ) {
 	let advisor;
 	let title;
 	let name;
 
-	const titleIndex = match.indexOf('Title: ');
+	const titleIndex = match.indexOf( 'Title: ' );
 	if ( titleIndex !== -1 ) {
 		const titleStartsAt = titleIndex + 'Title: '.length;
 		const secondNewLineIndex = match.indexOf( '\n', titleIndex + 1 );
@@ -23,11 +25,14 @@ function extractTitles( match ) {
 		const advisorLineIndex = match.indexOf( '\n', advisorStartsAt );
 		advisor = match.slice( advisorStartsAt, advisorLineIndex );
 	}
-	var expObj = {
+	return {
 		'name': name,
 		'title': title,
 		'advisor': advisor
 	};
-	return expObj;
 }
+
+
+// EXPORTS //
+
 export default extractTitles;

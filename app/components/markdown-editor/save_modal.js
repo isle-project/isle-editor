@@ -10,7 +10,6 @@ import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
 import SelectInput from 'components/input/select';
 import NumberInput from 'components/input/number';
-import Select from 'react-select';
 import pageSizes from './page_sizes.json';
 import './save_modal.css';
 
@@ -85,6 +84,7 @@ class SaveModal extends Component {
 		return ( <Modal
 			onHide={this.clickHide}
 			show={this.props.show}
+			id="save-modal"
 		>
 			<Modal.Header closeButton>
 				<Modal.Title>Save Report</Modal.Title>
@@ -108,7 +108,7 @@ class SaveModal extends Component {
 						<Panel id="export-pdf-panel" expanded={this.state.openPDF} onToggle={noop} >
 							<Panel.Collapse>
 								<Panel.Body>
-									<Row className="predefined-letter-button">									
+									<Row className="predefined-letter-button">
 										<SelectInput
 											legend="Pick a predefined value"
 											defaultValue={this.state.pageSize}
@@ -183,7 +183,7 @@ class SaveModal extends Component {
 															customWidth: 72 * oldHeight,
 															customHeight: 72 * oldWidth
 														});
-													}	
+													}
 												}}
 											/>
 										</Col>
