@@ -269,8 +269,13 @@ class DataTable extends Component {
 				strTable.push(<tr><td>{varName}</td><td>{descriptions[varName]}</td></tr>);
 			}
 		}
-		finalStr = <table>
+		finalStr = <table className="table-bordered table-condensed" >
+			<thead>
+				<tr><th>Name</th><th>Description</th></tr>
+			</thead>
+			<tbody>
 			{strTable}
+			</tbody>
 		</table>;
 		return finalStr;
 	}
