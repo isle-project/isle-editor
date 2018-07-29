@@ -136,9 +136,7 @@ class Pages extends Component {
 				{ this.props.title ? header : null }
 				<Pagination className="my-pagination"
 					bsSize={this.props.bsSize}
-					maxButtons={4}
 					items={this.props.children.length || 1}
-					activePage={this.state.activePage}
 				>
 					<Pagination.First onClick={this.firstPage} />
 					<Pagination.Prev onClick={this.prevPage} />
