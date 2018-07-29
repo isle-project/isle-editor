@@ -147,7 +147,7 @@
     "compute-range": "^1.1.0",
     "compute-stdev": "^1.0.0",
     "compute-variance": "^3.0.0",
-    "configstore": "^3.1.2",
+    "configstore": "^4.0.0",
     "cross-env": "^5.1.5",
     "css": "^2.2.3",
     "css-loader": "^1.0.0",
@@ -206,7 +206,7 @@
     "react-dom": "16.4.1",
     "react-floater": "^0.5.4",
     "react-grid-layout": "^0.16.6",
-    "react-highlight-words": "^0.11.0",
+    "react-highlight-words": "^0.12.0",
     "react-input-range": "^1.2.1",
     "react-joyride": "^2.0.0-11",
     "react-list": "^0.8.8",
@@ -239,7 +239,7 @@
     "uniq": "^1.0.1",
     "utf-8-validate": "^5.0.1",
     "venn.js": "0.2.20",
-    "victory": "30.0.0",
+    "victory": "30.1.0",
     "webpack": "4.16.3"
   },
   "devEngines": {
