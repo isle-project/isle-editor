@@ -264,9 +264,11 @@ class DataTable extends Component {
 		var finalStr;
 
 		strTable = [];
-		for (varName in descriptions) {
-			if ( hasOwnProp(descriptions, varName) ) {
-				strTable.push(<tr><td>{varName}</td><td>{descriptions[varName]}</td></tr>);
+		for ( varName in descriptions ) {
+			if ( hasOwnProp( descriptions, varName ) ) {
+				strTable.push( <tr key={varName} >
+					<td>{varName}</td><td>{descriptions[varName]}</td>
+				</tr>);
 			}
 		}
 		finalStr = <table className="table-bordered table-condensed" >
