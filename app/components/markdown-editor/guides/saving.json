@@ -2,7 +2,6 @@
 	{
 		"target": ".fa-save",
 		"content": "When writing a document, we want to regularly save our work and then eventually create a final document. Clicking this button allows you to save a copy of your document as a Markdown file or to export it as an HTML or PDF document. When exporting as a PDF document, you can choose among several standard page sizes or even supply your custom width and height (in inches).",
-		"placement": "center",
 		"placementBeacon": "center"
 	},
 	{
