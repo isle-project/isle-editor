@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
@@ -85,20 +85,33 @@ class DataExplorer extends Component {
 	*/
 	constructor( props ) {
 		super( props );
-
-		let groupVars = props.categorical.slice();
+		let data = props.data;
+		let continuous;
+		let categorical;
+		let groupVars;
+		if ( !props.data && props.id ) {
+			// Try to load data from local storage:
+			data = JSON.parse( localStorage.getItem( props.id+'_data' ) );
+			continuous = JSON.parse( localStorage.getItem( props.id+'_continuous' ) );
+			categorical = JSON.parse( localStorage.getItem( props.id+'_categorical' ) );
+			groupVars = ( categorical || [] ).slice();
+		} else {
+			continuous = props.continuous;
+			categorical = props.categorical;
+			groupVars = props.categorical.slice();
+		}
 		let ready = false;
 		if (
-			isObject( props.data ) &&
-			props.continuous.length > 0 &&
-			props.categorical.length > 0
+			isObject( data ) &&
+			continuous.length > 0 &&
+			categorical.length > 0
 		) {
 			ready = true;
 		}
 		this.state = {
-			data: props.data,
-			continuous: props.continuous,
-			categorical: props.categorical,
+			data: data,
+			continuous: continuous,
+			categorical: categorical,
 			output: [],
 			groupVars,
 			ready,
@@ -129,11 +142,13 @@ class DataExplorer extends Component {
 		if ( nextProps.data !== prevState.unaltered.data ) {
 			newState.data = nextProps.data;
 		}
-		if ( nextProps.continuous !== prevState.unaltered.continuous ) {
-			newState.continuous = nextProps.continuous;
-		}
-		if ( nextProps.continuous !== prevState.continuous ) {
-			newState.categorical = nextProps.categorical;
+		if ( nextProps.data ) {
+			if ( nextProps.continuous !== prevState.unaltered.continuous ) {
+				newState.continuous = nextProps.continuous;
+			}
+			if ( nextProps.continuous !== prevState.continuous ) {
+				newState.categorical = nextProps.categorical;
+			}
 		}
 		if ( !isEmptyObject( newState ) ) {
 			newState.unaltered = {
@@ -151,6 +166,18 @@ class DataExplorer extends Component {
 			const outputPanel = document.getElementById( 'outputPanel' );
 			scrollTo( outputPanel, outputPanel.scrollHeight, 1000 );
 		}
+	}
+
+	resetLocalStorage = () => {
+		localStorage.removeItem( this.props.id+'_data' );
+		localStorage.removeItem( this.props.id+'_continuous' );
+		localStorage.removeItem( this.props.id+'_categorical' );
+		this.setState({
+			data: null,
+			categorical: [],
+			continuous: [],
+			ready: false
+		});
 	}
 
 	/**
@@ -334,6 +361,8 @@ class DataExplorer extends Component {
 				continuous: continuousGuesses,
 				categorical: categoricalGuesses,
 				data
+			}, () => {
+				localStorage.setItem( this.props.id+'_data', JSON.stringify( this.state.data ) );
 			});
 		}
 	}
@@ -363,14 +392,18 @@ class DataExplorer extends Component {
 						options={variableNames}
 						defaultValue={this.state.continuous}
 						multi
-						onChange={( continuous ) => this.setState({ continuous })}
+						onChange={( continuous ) => {
+							this.setState({ continuous });
+						}}
 					/>
 					<SelectInput
 						legend="Categorical:"
 						options={variableNames}
 						defaultValue={this.state.categorical}
 						multi
-						onChange={( categorical ) => this.setState({ categorical })}
+						onChange={( categorical ) => {
+							this.setState({ categorical });
+						}}
 					/>
 					<Button onClick={() => {
 						const groupVars = this.state.categorical.slice();
@@ -378,8 +411,14 @@ class DataExplorer extends Component {
 						this.setState({
 							groupVars,
 							ready
+						}, () => {
+							if ( this.props.id ) {
+								localStorage.setItem( this.props.id+'_continuous', JSON.stringify( this.state.continuous ) );
+								localStorage.setItem( this.props.id+'_categorical', JSON.stringify( this.state.categorical ) );
+							}
 						});
 					}}>Submit</Button>
+					<DataTable data={this.state.data} />
 				</Panel.Body>
 			</Panel> );
 		}
@@ -687,7 +726,10 @@ class DataExplorer extends Component {
 						</Navbar>
 						<Panel.Body>
 							{ this.state.openedNav === '1' ?
-									<DataTable data={this.state.data} dataInfo={this.props.dataInfo} /> : null
+								<Fragment>
+									{ !this.props.data ? <Button bsSize="small" onClick={this.resetLocalStorage} style={{ position: 'absolute' }}>Clear Data</Button> : null }
+									<DataTable data={this.state.data} dataInfo={this.props.dataInfo} />
+								</Fragment> : null
 							}
 							{ this.state.openedNav === '2' ?
 								<Tab.Container id="options-menu" defaultActiveKey={defaultActiveKey}>
