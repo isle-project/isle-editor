@@ -1,0 +1,17 @@
+[
+	{
+		"command": "startPlayer",
+		"trigger": "start",
+		"description": "Start player"
+	},
+	{
+		"command": "pausePlayer",
+		"trigger": "pause",
+		"description": "Pause player"
+	},
+	{
+		"command": "stopPlayer",
+		"trigger": "stop",
+		"description": "Stop player"
+	}
+]

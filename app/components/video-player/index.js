@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
 import Dimensions from 'components/dimensions';
 import omit from '@stdlib/utils/omit';
+import VoiceControl from 'components/voice-control';
+import VOICE_COMMANDS from './voice_commands.json';
 
 
 // FUNCTIONS //
@@ -61,6 +63,21 @@ class Video extends Component {
 		});
 	}
 
+	pausePlayer = () => {
+		const player = this.player.getInternalPlayer();
+		player.pauseVideo();
+	}
+
+	startPlayer = () => {
+		const player = this.player.getInternalPlayer();
+		player.playVideo();
+	}
+
+	stopPlayer = () => {
+		const player = this.player.getInternalPlayer();
+		player.stopVideo();
+	}
+
 	render() {
 		let props = this.props;
 		const style = {
@@ -79,12 +96,14 @@ class Video extends Component {
 				style={style}
 				className="video"
 			>
+				<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 				<ReactPlayer {...props}
 					onPlay={this.handlePlay}
 					onPause={this.handlePause}
 					onEnded={this.handleEnded}
 					onProgress={this.handleProgress}
 					progressInterval={1000}
+					ref={( div ) => { this.player = div; }}
 				/>
 			</div>
 		);
@@ -124,6 +143,7 @@ Video.propTypes = {
 		PropTypes.number
 	]),
 	loop: PropTypes.bool,
+	voiceID: PropTypes.string,
 	style: PropTypes.object,
 	onEnded: PropTypes.func,
 	onPause: PropTypes.func,
@@ -142,6 +162,7 @@ Video.defaultProps = {
 	height: 360,
 	width: 640,
 	loop: false,
+	voiceID: null,
 	style: {},
 	onEnded() {},
 	onPause() {},
