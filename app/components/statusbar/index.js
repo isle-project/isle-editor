@@ -228,6 +228,9 @@ class StatusBar extends Component {
 								startTooltip="Enable voice control"
 								onFinalText={this.handleVoiceInput}
 								timeout={20000}
+								remote={{
+									toggle: 120 // F9
+								}}
 							/>
 							<span className="statusbar-voice-text" >{this.state.recordedText}</span>
 						</div>
