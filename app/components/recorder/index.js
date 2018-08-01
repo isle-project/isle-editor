@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/lib/Button';
 import ToggleButtonGroup from 'react-bootstrap/lib/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/lib/ToggleButton';
 import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder, WhammyRecorder } from 'recordrtc';
+import VoiceControl from 'components/voice-control';
 import inEditor from 'utils/is-electron';
 import getScreenId from './get_screen_id.js';
 import isElectron from 'utils/is-electron';
@@ -18,6 +19,28 @@ import './recorder.css';
 
 var debug = logger( 'isle-editor:recorder' );
 navigator.getUserMedia = navigator.getUserMedia || navigator.mediaDevices.getUserMedia || navigator.webkitGetUserMedia;
+const VOICE_COMMANDS = [
+	{
+		command: 'startRecording',
+		trigger: 'start',
+		description: 'Start recording'
+	},
+	{
+		command: 'stopRecording',
+		trigger: 'stop',
+		description: 'Stop recording'
+	},
+	{
+		command: 'hide',
+		trigger: 'conceal',
+		description: 'Hide recorder'
+	},
+	{
+		command: 'show',
+		trigger: 'show',
+		description: 'Show recorder'
+	}
+];
 
 
 // FUNCTIONS //
@@ -112,6 +135,7 @@ class Recorder extends Component {
 			available: true,
 			finished: false,
 			uploaded: false,
+			hidden: false,
 			selectedSources: selectedSources
 		};
 
@@ -145,6 +169,18 @@ class Recorder extends Component {
 				track.stop();
 			});
 		}
+	}
+
+	hide = () => {
+		this.setState({
+			hidden: true
+		});
+	}
+
+	show = () => {
+		this.setState({
+			hidden: false
+		});
 	}
 
 	handleError( msg ) {
@@ -243,21 +279,17 @@ class Recorder extends Component {
 	handleClick = () => {
 		if ( this.state.recording ) {
 			this.stopRecording();
-			this.setState({
-				recording: false,
-				finished: true
-			});
 		} else {
 			this.startRecording();
-			this.setState({
-				recording: true,
-				finished: false,
-				uploaded: false
-			});
 		}
 	}
 
 	startRecording() {
+		this.setState({
+			recording: true,
+			finished: false,
+			uploaded: false
+		});
 		debug( 'Start recording...' );
 		if ( !this.recorder ) {
 			this.setupRecorder();
@@ -273,6 +305,10 @@ class Recorder extends Component {
 	}
 
 	stopRecording() {
+		this.setState({
+			recording: false,
+			finished: true
+		});
 		this.recorder.stopRecording( () => {
 			var blob = this.recorder.getBlob();
 			this.player.src = URL.createObjectURL( blob );
@@ -428,6 +464,9 @@ class Recorder extends Component {
 		const isAvailable = this.state.available || inEditor;
 		const recordingColor = this.state.recording ? 'red' : 'rgb(100,100,100)';
 		const editorStyle = isElectron ? ' recorder-in-editor' : '';
+		if ( this.state.hidden ) {
+			return null;
+		}
 		return (
 			<div className={`recorder-container unselectable${editorStyle}`} >
 				{ this.state.selectedSources.length > 0 && isAvailable ?
@@ -454,6 +493,7 @@ class Recorder extends Component {
 						<ToggleButton className="recorder-togglebutton" disabled={!this.props.screen || this.state.recording} value="screen">Screen</ToggleButton>
 						<ToggleButton className="recorder-togglebutton" disabled={!this.props.camera || this.state.recording} value="camera">Cam</ToggleButton>
 						<ToggleButton className="recorder-togglebutton" disabled={!this.props.audio || this.state.recording} value="audio">Audio</ToggleButton>
+						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</ToggleButtonGroup> : null
 				}
 				{ this.state.finished ? this.renderAudioVideo() : null }
@@ -501,7 +541,8 @@ Recorder.propTypes = {
 	autostart: PropTypes.bool,
 	downloadable: PropTypes.bool,
 	uploadable: PropTypes.bool,
-	bitsPerSecond: PropTypes.number
+	bitsPerSecond: PropTypes.number,
+	voiceID: PropTypes.string
 };
 
 
@@ -514,7 +555,8 @@ Recorder.defaultProps = {
 	camera: false,
 	downloadable: false,
 	screen: false,
-	uploadable: false
+	uploadable: false,
+	voiceID: null
 };
 
 
