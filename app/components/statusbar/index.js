@@ -224,8 +224,8 @@ class StatusBar extends Component {
 							<VoiceInput
 								onClick={this.handleVoiceInputChange}
 								mode="microphone" width={18} height={18}
-								stopTooltip="Disable voice control"
-								startTooltip="Enable voice control"
+								stopTooltip="Disable voice control (F9)"
+								startTooltip="Enable voice control (F9)"
 								onFinalText={this.handleVoiceInput}
 								timeout={20000}
 								remote={{
