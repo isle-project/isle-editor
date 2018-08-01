@@ -1,0 +1,17 @@
+[
+	{
+		"command": "handleSolutionClick",
+		"trigger": "solution",
+		"description": "Toggle the solution"
+	},
+	{
+		"command": "submitHandler",
+		"trigger": "submit",
+		"description": "Submit your answer"
+	},
+	{
+		"command": "triggerHint",
+		"trigger": "hint",
+		"description": "Toggle hint"
+	}
+]

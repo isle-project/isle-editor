@@ -19,6 +19,7 @@ import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
 import HintButton from 'components/hint-button';
 import VoiceControl from 'components/voice-control';
+import VOICE_COMMANDS from './voice_commands.json';
 import './free-text-question.css';
 
 
@@ -240,23 +241,7 @@ class FreeTextQuestion extends Component {
 			<Panel id={this.props.id} className="free-text-question">
 				<Panel.Body>
 					<VoiceControl id={this.props.voiceID} reference={this}
-						commands={[
-							{
-								command: 'handleSolutionClick',
-								trigger: 'solution',
-								description: 'Toggle the solution'
-							},
-							{
-								command: 'submitHandler',
-								trigger: 'submit',
-								description: 'Submit your answer'
-							},
-							{
-								command: 'triggerHint',
-								trigger: 'hint',
-								description: 'Toggle hint'
-							}
-						]}
+						commands={VOICE_COMMANDS}
 					/>
 					{ this.props.question ? <label>{this.props.question}</label> : null }
 					<FormGroup>
