@@ -39,8 +39,15 @@ class VoiceInput extends Input {
 				this.stop();
 			break;
 			case this.props.remote.start:
-				if ( !this.state.recording ) {
+				if ( !this.state.isRecording ) {
 					this.start();
+				}
+			break;
+			case this.props.remote.toggle:
+				if ( !this.state.isRecording ) {
+					this.start();
+				} else {
+					this.stop();
 				}
 			break;
 		}
@@ -117,6 +124,9 @@ class VoiceInput extends Input {
 			this.recognizer.onend = () => {
 				debug('onend: %s', this.props.id );
 				this.props.onRecordingStop();
+				this.setState({
+					isRecording: false
+				});
 			};
 
 			this.recognizer.onstart = () => {
