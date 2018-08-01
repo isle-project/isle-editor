@@ -14,18 +14,17 @@ class KeyControls extends Component {
 	}
 
 	componentDidMount() {
-		document.addEventListener('keydown', this.triggerEvent );
+		document.addEventListener( 'keydown', this.triggerEvent );
 	}
 
 	componentWillUnmount() {
-		document.removeEventListener('keydown', this.triggerEvent );
+		document.removeEventListener( 'keydown', this.triggerEvent );
 	}
 
 	triggerEvent = ( event ) => {
 		const keyName = event.key;
-
-		const fn = this.props.actions[keyName];
-		if ( isFunction(fn) ) {
+		const fn = this.props.actions[ keyName ];
+		if ( isFunction( fn ) ) {
 			fn();
 		}
 	}
@@ -46,7 +45,7 @@ KeyControls.defaultProps = {
 // PROPERTY TYPES //
 
 KeyControls.propTypes = {
-	actions: PropTypes.objectOf(PropTypes.func)
+	actions: PropTypes.objectOf( PropTypes.func )
 };
 
 KeyControls.contextTypes = {
