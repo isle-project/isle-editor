@@ -22,7 +22,7 @@ class Guides extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			selected: null,
+			selected: 'overview',
 			running: false
 		};
 	}
