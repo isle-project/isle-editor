@@ -106,12 +106,12 @@ function startPack() {
 
 				platforms.forEach( plat => {
 					archs.forEach( arch => {
-						pack( plat, arch, afterPack( plat, arch ) );
+						pack( plat, arch );
 					});
 				});
 			} else {
 				// Build for current platform only...
-				pack( os.platform(), os.arch(), afterPack( os.platform(), os.arch() ) );
+				pack( os.platform(), os.arch() );
 			}
 		})
 		.catch( err => {
@@ -119,7 +119,7 @@ function startPack() {
 		});
 }
 
-function pack( plat, arch, cb ) {
+function pack( plat, arch ) {
 	// There is no darwin ia32 electron
 	if ( plat === 'darwin' && arch === 'ia32' ) {
 		return;
@@ -153,17 +153,14 @@ function pack( plat, arch, cb ) {
 		out: `release/${plat}-${arch}`
 	});
 
-	packager( opts, cb );
-}
-
-function afterPack( plat, arch ) {
-	return function log( err, filepath ) {
-		if ( err ) {
-			return console.error( err );
-		}
-		console.log( `${plat}-${arch} finished!` );
-		cleanModules();
-	};
+	packager( opts )
+		.then( () => {
+			console.log( `${plat}-${arch} finished!` );
+			cleanModules();
+		})
+		.catch( ( err ) => {
+			console.error( err );
+		});
 
 	function cleanModules() {
 		const nodeModulesPath = plat !== 'darwin' ?
