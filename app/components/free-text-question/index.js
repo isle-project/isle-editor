@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
@@ -17,6 +18,7 @@ import isString from '@stdlib/assert/is-string';
 import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
 import HintButton from 'components/hint-button';
+import VoiceControl from 'components/voice-control';
 import './free-text-question.css';
 
 
@@ -133,6 +135,14 @@ class FreeTextQuestion extends Component {
 
 	handleSolutionClick = () => {
 		const { session } = this.context;
+		if ( !this.state.submitted || !this.state.exhaustedHints ) {
+			return session.addNotification({
+				title: 'Not allowed',
+				message: 'Solution becomes available after answer is submitted and all hints have been required.',
+				level: 'warning',
+				position: 'tr'
+			});
+		}
 		if ( this.state.solutionDisplayed ) {
 			this.setState({
 				solutionDisplayed: false,
@@ -216,6 +226,11 @@ class FreeTextQuestion extends Component {
 		</OverlayTrigger> );
 	}
 
+	triggerHint() {
+		const node = ReactDOM.findDOMNode( this.hintButton );
+		node.click();
+	}
+
 	/*
 	* React component render method.
 	*/
@@ -224,6 +239,25 @@ class FreeTextQuestion extends Component {
 		return (
 			<Panel id={this.props.id} className="free-text-question">
 				<Panel.Body>
+					<VoiceControl id={this.props.voiceID} reference={this}
+						commands={[
+							{
+								command: 'handleSolutionClick',
+								trigger: 'solution',
+								description: 'Toggle the solution'
+							},
+							{
+								command: 'submitHandler',
+								trigger: 'submit',
+								description: 'Submit your answer'
+							},
+							{
+								command: 'triggerHint',
+								trigger: 'hint',
+								description: 'Toggle hint'
+							}
+						]}
+					/>
 					{ this.props.question ? <label>{this.props.question}</label> : null }
 					<FormGroup>
 						<ControlLabel>{this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' }</ControlLabel>
@@ -279,6 +313,7 @@ class FreeTextQuestion extends Component {
 						{ nHints > 0 ?
 							<HintButton
 								onClick={this.logHint}
+								ref={( div ) => { this.hintButton = div; }}
 								hints={this.props.hints}
 								onFinished={() => {
 									this.setState({ exhaustedHints: true });
@@ -317,6 +352,7 @@ FreeTextQuestion.defaultProps = {
 	submissionMsg: '',
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
 	maxlength: 2500,
+	voiceID: null,
 	onChange() {},
 	onSubmit() {}
 };
@@ -355,6 +391,7 @@ FreeTextQuestion.propTypes = {
 	submissionMsg: PropTypes.string,
 	resubmissionMsg: PropTypes.string,
 	maxlength: PropTypes.number,
+	voiceID: PropTypes.string,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func
 };
