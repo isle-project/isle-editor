@@ -7,33 +7,8 @@ import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import isArray from '@stdlib/assert/is-array';
 import VoiceControl from 'components/voice-control';
+import VOICE_COMMANDS from './voice_commands.json';
 import './pages.css';
-
-
-// VARIABLES //
-
-const VOICE_COMMANDS = [
-	{
-		command: 'nextPage',
-		trigger: 'next',
-		description: 'Go to next page'
-	},
-	{
-		command: 'prevPage',
-		trigger: 'previous',
-		description: 'Go to the previous next page'
-	},
-	{
-		command: 'firstPage',
-		trigger: [ 'first', 'First' ],
-		description: 'Jump to the first page'
-	},
-	{
-		command: 'lastPage',
-		trigger: 'last',
-		description: 'Jump to the last page'
-	}
-];
 
 
 // MAIN //
