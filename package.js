@@ -10,6 +10,7 @@ const webpack = require( 'webpack' );
 const path = require( 'path' );
 const spawn = require( 'child_process' ).spawn;
 const exec = require( 'child_process' ).exec;
+const logger = require( 'debug' );
 const argv = require( 'minimist' )( process.argv.slice( 2 ) );
 const del = require( 'del' );
 const os = require( 'os' );
@@ -19,6 +20,7 @@ const cfg = require( './webpack.config.production.js' );
 
 // VARIABLES //
 
+const debug = logger( 'isle-editor:package' );
 const pkg = require( './package.json' );
 const deps = Object.keys( pkg.dependencies );
 const devDeps = Object.keys( pkg.devDependencies );
@@ -94,13 +96,13 @@ function build( cfg ) {
 }
 
 function startPack() {
-	console.log( 'start pack...' );
+	console.log( 'Start packing...' );
 	build( electronCfg )
 		.then( () => build( cfg ) )
 		.then( () => del( 'release' ) )
 		.then( paths => {
 			if ( shouldBuildAll ) {
-				// Build for all platforms...
+				console.log( 'Build for all platforms...' );
 				const archs = [ 'ia32', 'x64' ];
 				const platforms = [ 'linux', 'win32', 'darwin' ];
 
@@ -110,7 +112,7 @@ function startPack() {
 					});
 				});
 			} else {
-				// Build for current platform only...
+				console.log( 'Build for current platform only...' );
 				pack( os.platform(), os.arch() );
 			}
 		})
@@ -124,7 +126,7 @@ function pack( plat, arch ) {
 	if ( plat === 'darwin' && arch === 'ia32' ) {
 		return;
 	}
-
+	console.log( `Start packing ${plat}-${arch}...` );
 	const iconObj = {
 		icon: DEFAULT_OPTS.icon + ( () => {
 			let extension = '.png';
@@ -163,6 +165,7 @@ function pack( plat, arch ) {
 		});
 
 	function cleanModules() {
+		console.log( 'Clean-up unneeded modules...' );
 		const nodeModulesPath = plat !== 'darwin' ?
 			`release/${plat}-${arch}/ISLE Editor-${plat}-${arch}/resources/app/node_modules` :
 			`release/${plat}-${arch}/ISLE Editor-${plat}-${arch}/ISLE Editor.app/Contents/Resources/app/node_modules`;
@@ -183,6 +186,7 @@ function pack( plat, arch ) {
 	}
 
 	function zip() {
+		console.log( `Create *.zip filr for ${plat}-${arch}...` );
 		const zipper = spawn( 'zip', [ '-r', `ISLE Editor-${plat}-${arch}.zip`, `ISLE Editor-${plat}-${arch}` ], {
 			cwd: path.join(
 				process.cwd(),
@@ -190,10 +194,10 @@ function pack( plat, arch ) {
 			)
 		});
 		zipper.stdout.on( 'data', ( data ) => {
-			console.log( `stdout: ${data}` );
+			debug( `stdout: ${data}` );
 		});
 		zipper.stderr.on( 'data', ( data ) => {
-			console.log( `stderr: ${data}` );
+			debug( `stderr: ${data}` );
 		});
 		zipper.on( 'close', ( code ) => {
 			console.log( `zip exited with code ${code} (${plat}-${arch})` );
