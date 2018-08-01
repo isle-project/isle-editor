@@ -8,6 +8,7 @@ const path = require( 'path' );
 const fs = require( 'fs' );
 const objectKeys = require( '@stdlib/utils/keys' );
 const replace = require( '@stdlib/string/replace' );
+const repeat = require( '@stdlib/string/repeat' );
 const isFunction = require( '@stdlib/assert/is-function' );
 
 
@@ -16,8 +17,8 @@ const isFunction = require( '@stdlib/assert/is-function' );
 const component = process.argv[ 2 ];
 const fpath = path.join( './app/components', component, 'index.js' );
 const mdpath = path.join( './docs/components', component+'.md' );
-var islepath = path.join( './component-playground', component+'.isle' );
-if (component === 'data-explorer') {
+let islepath = path.join( './component-playground', component+'.isle' );
+if ( component === 'data-explorer' ) {
 	islepath = path.join( './component-playground/data-explorer/data-explorer.isle');
 }
 
@@ -61,6 +62,14 @@ PropTypes.oneOf = function oneOf( arr ) {
 	out.isRequired = out+' (required)';
 	return out;
 };
+const SCOPE_KEYS = [
+	'PropTypes',
+	'repeat'
+];
+const SCOPE_VALUES = [
+	PropTypes,
+	repeat
+];
 
 
 // FUNCTIONS //
@@ -88,14 +97,14 @@ let str = `#### Options:
 let defaultsMatch = RE_DEFAULTS.exec( file )[ 1 ];
 defaultsMatch = replace( defaultsMatch, 'PINF', '+Infinity' );
 defaultsMatch = replace( defaultsMatch, 'NINF', '-Infinity' );
-const extractDefaults = new Function( '', 'return '+defaultsMatch );
-const extractDescription = new Function( '', 'return '+RE_DESCRIPTIONS.exec( file )[ 1 ] );
+const extractDefaults = new Function( ...SCOPE_KEYS, 'return '+defaultsMatch );
+const extractDescription = new Function( ...SCOPE_KEYS, 'return '+RE_DESCRIPTIONS.exec( file )[ 1 ] );
 
 let typeMatch = RE_TYPES.exec( file )[ 1 ];
-const extractTypes = new Function( 'PropTypes', 'return '+typeMatch);
-const types = extractTypes( PropTypes );
-const description = extractDescription();
-const defaults = extractDefaults();
+const extractTypes = new Function( ...SCOPE_KEYS, 'return '+typeMatch);
+const types = extractTypes( ...SCOPE_VALUES );
+const description = extractDescription( ...SCOPE_VALUES );
+const defaults = extractDefaults( ...SCOPE_VALUES );
 const keys = objectKeys( types );
 
 for ( let i = 0; i < keys.length; i++ ) {
