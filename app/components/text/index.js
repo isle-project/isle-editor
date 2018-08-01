@@ -2,30 +2,33 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-const md = require( 'markdown-it' )({
-	html: true,
-	xhtmlOut: true
-});
+import VoiceControl from 'components/voice-control';
+
+
+// VARIABLES //
+
+const VOICE_COMMANDS = [
+	{
+		command: 'textToSpeech',
+		trigger: 'text to speech',
+		description: 'Read out the text'
+	}
+];
 
 
 // MAIN //
 
 class Text extends Component {
+	textToSpeech() {
+		var ssu = new SpeechSynthesisUtterance( this.props.raw );
+		ssu.lang = 'en-US';
+		window.speechSynthesis.speak( ssu );
+	}
 	render() {
-		const { children, raw } = this.props;
-		let content;
-		if ( raw ) {
-			content = raw;
-		} else {
-			content = children || '';
-		}
-		const html = {
-			__html: md.renderInline( content )
-		};
 		return (
-			<span
-				dangerouslySetInnerHTML={html} // eslint-disable-line react/no-danger
-			>
+			<span style={this.props.style}>
+				<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
+				{this.props.raw}
 			</span>
 		);
 	}
@@ -35,11 +38,15 @@ class Text extends Component {
 // PROPERTIES //
 
 Text.defaultProps = {
-	raw: ''
+	raw: '',
+	style: {},
+	voiceID: null
 };
 
 Text.propTypes = {
-	raw: PropTypes.bool
+	raw: PropTypes.string,
+	style: PropTypes.object,
+	voiceID: PropTypes.string
 };
 
 
