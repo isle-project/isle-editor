@@ -62,7 +62,6 @@ const createScope = ( session ) => {
 		session,
 		NotificationSystem,
 
-		AcousticCSS: Loadable( () => import( 'components/acoustic-css' ) ),
 		BeaconTooltip: Loadable( () => import( 'components/beacon-tooltip' ) ),
 		CheckboxInput: CheckboxInput,
 		Clock: Loadable( () => import( 'components/clock' ) ),
@@ -150,6 +149,7 @@ const createScope = ( session ) => {
 		Tree: Loadable( () => import( 'components/d3/tree' ) ),
 		VideoPlayer: Loadable( () => import( 'components/video-player' ) ),
 		VoiceInput,
+		VoiceControl: Loadable( () => import( 'components/voice-control' ) ),
 		Weather: Loadable( () => import( 'components/weather' ) ),
 		Wikipedia: Loadable( () => import( 'components/wikipedia' ) ),
 		WordCloud: Loadable( () => import( 'components/word-cloud' ) ),

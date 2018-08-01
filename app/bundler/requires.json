@@ -1,6 +1,5 @@
 {
 	"Accordion": "const Accordion = require( \"react-bootstrap/lib/Accordion\" );",
-	"AcousticCSS": "const AcousticCSS = require( \"components/acoustic-css\" );",
 	"Bar": "const Bar = require( \"victory\" ).Bar",
 	"BeaconTooltip": "const BeaconTooltip = require( \"components/beacon-tooltip\" );",
 	"Button": "const Button = require( \"react-bootstrap/lib/Button\" );",
@@ -85,6 +84,7 @@
 	"StatusBar": "const StatusBar = require( \"components/statusbar\" );",
 	"SurveyGenerator": "const SurveyGenerator = require( \"components/survey-generator\" );",
 	"VoiceInput": "const VoiceInput = require( \"components/input/voice\" );",
+	"VoiceControl": "const VoiceControl = require( \"components/voice-control\" );",
 	"Weather": "const Weather = require( \"components/weather\" );",
 	"Wikipedia": "const Wikipedia = require( \"components/wikipedia\" );",
 	"Appear": "const Appear = require( 'spectacle' ).Appear",
