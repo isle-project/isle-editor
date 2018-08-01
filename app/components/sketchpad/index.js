@@ -7,8 +7,18 @@ import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
+import FileSaver from 'file-saver';
 import { TwitterPicker } from 'react-color';
 import './sketchpad.css';
+
+// FUNCTIONS //
+
+const createTooltip = ( str ) => {
+	return <Tooltip id="tooltip">{str}</Tooltip>;
+};
 
 
 // MAIN //
@@ -145,6 +155,20 @@ class Sketchpad extends Component {
 		});
 	}
 
+	saveToPNG = () => {
+		let name;
+		if ( this.props.id ) {
+			name = this.props.id+'.png';
+		} else {
+			name = 'drawing.png';
+		}
+		this.ctx.fillStyle = 'white';
+		this.ctx.fillRect( 0, 0, this.canvas.width, this.canvas.height );
+		this.canvas.toBlob( function onBlob( blob ) {
+			FileSaver.saveAs( blob, name );
+		});
+	}
+
 	record = () => {
 		const recording = !this.state.recording;
 		let finishedRecording = false;
@@ -173,12 +197,18 @@ class Sketchpad extends Component {
 					<span className="sketch-header">{this.props.title}</span>
 					<ButtonGroup bsSize="small" style={{ float: 'right' }} >
 						<Button onClick={this.record} >{ !this.state.recording ? 'Record' : 'Stop' }</Button>
-						<Button disabled={!this.state.finishedRecording} onClick={this.redraw} >Play</Button>
-						<Button
-							disabled={this.state.lines.length === 0 || this.state.recording}
-							onClick={this.clear}
-						>Clear</Button>
-						<Button onClick={this.toggleColorPicker} style={{ background: this.state.brushColor, color: 'white', marginLeft: '12px' }} >Color</Button>
+						<OverlayTrigger placement="top" overlay={createTooltip( 'Play recording' )}>
+							<Button disabled={!this.state.finishedRecording} onClick={this.redraw} >Play</Button>
+						</OverlayTrigger>
+						<OverlayTrigger placement="top" overlay={createTooltip( 'Clear recording' )}>
+							<Button
+								disabled={this.state.lines.length === 0 || this.state.recording}
+								onClick={this.clear}
+							>Clear</Button>
+						</OverlayTrigger>
+						<OverlayTrigger placement="top" overlay={createTooltip( 'Change brush color' )}>
+							<Button onClick={this.toggleColorPicker} style={{ background: this.state.brushColor, color: 'white', marginLeft: '12px' }} >Color</Button>
+						</OverlayTrigger>
 						<InputGroup bsSize="small" className="sketch-input-group" >
 							<InputGroup.Addon>Size</InputGroup.Addon>
 							<FormControl
@@ -193,6 +223,11 @@ class Sketchpad extends Component {
 								defaultValue={this.state.brushSize}
 							/>
 						</InputGroup>
+						<OverlayTrigger placement="top" overlay={createTooltip( 'Save drawing' )}>
+							<Button style={{ marginLeft: '12px' }} bsSize="xsmall" onClick={this.saveToPNG}>
+								<Glyphicon glyph="floppy-save" />
+							</Button>
+						</OverlayTrigger>
 					</ButtonGroup>
 				</div>
 				<div style={{ display: this.state.showColorPicker ? 'initial' : 'none', top: '70px', right: '70px', position: 'absolute' }} >
