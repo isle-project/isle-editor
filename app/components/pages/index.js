@@ -6,7 +6,34 @@ import PropTypes from 'prop-types';
 import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import isArray from '@stdlib/assert/is-array';
+import VoiceControl from 'components/voice-control';
 import './pages.css';
+
+
+// VARIABLES //
+
+const VOICE_COMMANDS = [
+	{
+		command: 'nextPage',
+		trigger: 'next',
+		description: 'Go to next page'
+	},
+	{
+		command: 'prevPage',
+		trigger: 'previous',
+		description: 'Go to the previous next page'
+	},
+	{
+		command: 'firstPage',
+		trigger: [ 'first', 'First' ],
+		description: 'Jump to the first page'
+	},
+	{
+		command: 'lastPage',
+		trigger: 'last',
+		description: 'Jump to the last page'
+	}
+];
 
 
 // MAIN //
@@ -17,37 +44,6 @@ class Pages extends Component {
 		this.state = {
 			activePage: 1
 		};
-	}
-
-	componentDidMount() {
-		if ( this.props.voiceID ) {
-			this.register();
-		}
-	}
-
-	register() {
-		this.context.session.speechInterface.register({
-			name: this.props.voiceID,
-			ref: this,
-			commands: [
-				{
-					command: 'nextPage',
-					trigger: 'next'
-				},
-				{
-					command: 'prevPage',
-					trigger: 'previous'
-				},
-				{
-					command: 'firstPage',
-					trigger: [ 'first', 'First' ]
-				},
-				{
-					command: 'lastPage',
-					trigger: 'last'
-				}
-			]
-		});
 	}
 
 	firstPage = () => {
@@ -121,6 +117,7 @@ class Pages extends Component {
 			}
 			items.push(
 				<Pagination.Item
+					key={i}
 					active={i === this.state.activePage}
 					onClick={papply( this.jumpTo, i )}
 				>
@@ -134,15 +131,16 @@ class Pages extends Component {
 				style={this.props.style}
 			>
 				{ this.props.title ? header : null }
+				<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 				<Pagination className="my-pagination"
 					bsSize={this.props.bsSize}
 					items={this.props.children.length || 1}
 				>
-					<Pagination.First onClick={this.firstPage} />
-					<Pagination.Prev onClick={this.prevPage} />
+					<Pagination.First key="first" onClick={this.firstPage} />
+					<Pagination.Prev key="prev" onClick={this.prevPage} />
 					{items}
-					<Pagination.Next onClick={this.nextPage} />
-					<Pagination.Last onClick={this.lastPage} />
+					<Pagination.Next key="next" onClick={this.nextPage} />
+					<Pagination.Last key="last" onClick={this.lastPage} />
 				</Pagination>
 				<div className="page-children-wrapper" style={{
 					height: this.props.height
