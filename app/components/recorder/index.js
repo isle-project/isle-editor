@@ -12,6 +12,7 @@ import VoiceControl from 'components/voice-control';
 import inEditor from 'utils/is-electron';
 import getScreenId from './get_screen_id.js';
 import isElectron from 'utils/is-electron';
+import VOICE_COMMANDS from './voice_commands.json';
 import './recorder.css';
 
 
@@ -19,28 +20,6 @@ import './recorder.css';
 
 var debug = logger( 'isle-editor:recorder' );
 navigator.getUserMedia = navigator.getUserMedia || navigator.mediaDevices.getUserMedia || navigator.webkitGetUserMedia;
-const VOICE_COMMANDS = [
-	{
-		command: 'startRecording',
-		trigger: 'start',
-		description: 'Start recording'
-	},
-	{
-		command: 'stopRecording',
-		trigger: 'stop',
-		description: 'Stop recording'
-	},
-	{
-		command: 'hide',
-		trigger: 'conceal',
-		description: 'Hide recorder'
-	},
-	{
-		command: 'show',
-		trigger: 'show',
-		description: 'Show recorder'
-	}
-];
 
 
 // FUNCTIONS //

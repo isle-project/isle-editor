@@ -1,0 +1,22 @@
+[
+	{
+		"command": "startRecording",
+		"trigger": "start",
+		"description": "Start recording"
+	},
+	{
+		"command": "stopRecording",
+		"trigger": "stop",
+		"description": "Stop recording"
+	},
+	{
+		"command": "hide",
+		"trigger": "conceal",
+		"description": "Hide recorder"
+	},
+	{
+		"command": "show",
+		"trigger": "show",
+		"description": "Show recorder"
+	}
+]
