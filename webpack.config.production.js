@@ -2,6 +2,8 @@
 
 import webpack from 'webpack';
 import path from 'path';
+import HappyPack from 'happypack';
+import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 import baseConfig from './webpack.config.base';
 
 
@@ -27,17 +29,8 @@ const config = {
 
 		rules: [
 			{
-				test: /\.js?$/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-						plugins: [
-							'transform-react-constant-elements',
-							'transform-react-inline-elements'
-						],
-						cacheDirectory: true
-					}
-				},
+				test: /.js$/,
+				use: 'happypack/loader',
 				include: [
 					path.join( __dirname, 'main.development.js' ),
 					path.join( __dirname, 'app' )
@@ -65,7 +58,25 @@ const config = {
 
 	plugins: [
 		...baseConfig.plugins,
-		new webpack.optimize.OccurrenceOrderPlugin()
+		new webpack.DefinePlugin({
+			'process.env': {
+				'NODE_ENV': JSON.stringify( 'development' )
+			}
+		}),
+		new webpack.optimize.OccurrenceOrderPlugin(),
+		new HardSourceWebpackPlugin(),
+		new HappyPack({
+			loaders: [{
+				loader: 'babel-loader',
+				options: {
+					plugins: [
+						'transform-react-constant-elements',
+						'transform-react-inline-elements'
+					],
+					cacheDirectory: true
+				}
+			}]
+		})
 	],
 
 	target: 'electron-renderer'
