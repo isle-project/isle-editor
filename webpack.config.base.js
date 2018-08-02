@@ -14,7 +14,31 @@ var EXTERNALS = [
 	'react-dom',
 	'victory',
 	'plotly.js',
-	'camelcase'
+	'camelcase',
+	'compute-chunkify',
+	'compute-iqr',
+	'compute-max',
+	'compute-mean',
+	'compute-median',
+	'compute-min',
+	'compute-pcorr',
+	'compute-quantile',
+	'compute-range',
+	'compute-stdev',
+	'compute-variance',
+	'd3',
+	'd3-cloud',
+	'kernel-smooth',
+	'lodash',
+	'pdfmake-lite',
+	'uniq',
+	'katex',
+	'markdown-it',
+	'markdown-it-container',
+	'markdown-it-ins',
+	'markdown-it-katex',
+	'markdown-it-sub',
+	'moment'
 ];
 
 
