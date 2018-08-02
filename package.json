@@ -99,6 +99,8 @@
     "express": "^4.13.4",
     "gh-pages": "^1.0.0",
     "gitbook-cli": "^2.3.0",
+    "happypack": "^5.0.0",
+    "hard-source-webpack-plugin": "^0.12.0",
     "istanbul": "^1.1.0-alpha.1",
     "jsdom": "^11.10.0",
     "modclean": "^2.0.0",
