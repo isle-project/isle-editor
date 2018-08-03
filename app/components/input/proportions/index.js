@@ -110,9 +110,9 @@ class ProportionInput extends Input {
 		};
 		const free = 100.0 - this.total( this.state.values );
 		let maxValue = this.state.values[ ndx ] + free;
-		maxValue = maxValue.toFixed( this.props.precision );
+		maxValue = Number( maxValue.toFixed( this.props.precision ) );
 		return (
-			<div style={style} >
+			<div style={style} key={ndx} >
 				<NumberInput
 					key={ndx}
 					legend={this.legends[ ndx ]}
