@@ -104,13 +104,14 @@ class VoiceControl extends Component {
 // TYPES //
 
 VoiceControl.propTypes = {
-	id: PropTypes.string.isRequired,
+	id: PropTypes.string,
 	commands: PropTypes.array.isRequired,
 	hide: PropTypes.bool,
 	reference: PropTypes.object.isRequired
 };
 
 VoiceControl.defaultProps = {
+	id: null,
 	hide: false
 };
 
