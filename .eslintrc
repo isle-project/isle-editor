@@ -3,7 +3,8 @@
   "env": {
     "es6": true,
     "browser": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "rules": {
     "accessor-pairs": [ 2, { "setWithoutGet": true, "getWithoutSet": false } ],
@@ -319,7 +320,8 @@
   },
   "plugins": [
     "import",
-    "react"
+    "react",
+    "jest"
   ],
   "settings": {
     "import/external-module-folders": [ "node_modules" ],
