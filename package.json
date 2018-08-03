@@ -11,11 +11,9 @@
   "scripts": {
     "analyze": "source-map-explorer dist/renderer.prod.js dist/renderer.prod.js.map",
     "clean": "rm -rf node_modules",
-    "coverage": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 istanbul cover --dir ./reports/codecov/coverage --report lcovonly tape -- -r babel-register test/setup.js test/**/*.spec.js && cat ./reports/codecov/coverage/lcov.info | codecov && rm -rf ./reports/codecov",
-    "ftest": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 tape -r babel-register test/setup.js test/**/${TEST:-*}.spec.js | tap-spec",
     "update-docs": "node ./scripts/update_docs.js",
-    "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 tape -r babel-register test/setup.js test/**/*.spec.js | tap-spec",
-    "test-cov": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 istanbul cover --dir ./reports/coverage --report lcov tape -- -r babel-register test/setup.js test/**/*.spec.js",
+    "test": "jest",
+    "coverage": "jest && codecov",
     "lint": "eslint app test *.js",
     "build-main": "cross-env NODE_ENV=production node --max_old_space_size=4096 -r babel-register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.electron.js --progress --colors",
     "build-renderer": "cross-env NODE_ENV=production node --max_old_space_size=4096 -r babel-register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.production.js --progress --colors",
@@ -25,11 +23,20 @@
     "package-all": "npm run package -- --all",
     "init-docs": "gitbook install",
     "publish-docs": "gitbook build && echo isledocs.com > _book/CNAME && gh-pages --dist _book",
-    "view-cov": "xdg-open ./reports/coverage/lcov-report/index.html",
     "view-docs": "concurrently --kill-others \"gitbook serve\" \"sensible-browser http://localhost:4000\"",
     "dev": "cross-env START_HOT=1 npm run start-renderer-dev",
     "start-renderer-dev": "cross-env START_HOT=1 NODE_ENV=development node --max-old-space-size=4096 --trace-warnings -r babel-register ./node_modules/webpack-dev-server/bin/webpack-dev-server --config=webpack.config.development.js --mode=development",
     "start-main-dev": "cross-env HOT=1 NODE_ENV=development electron -r babel-register ./main.development.js"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "testURL": "http://localhost/",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/test/mocks/file_mock.js",
+      "\\.(css|less)$": "<rootDir>/test/mocks/style_mock.js"
+    }
   },
   "repository": {
     "type": "git",
@@ -94,6 +101,7 @@
     "enzyme": "3.3.0",
     "eslint": "^5.0.1",
     "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jest": "^21.18.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.6.1",
     "express": "^4.13.4",
@@ -112,8 +120,6 @@
     "redux-devtools-log-monitor": "^1.0.11",
     "redux-logger": "^3.0.0",
     "source-map-explorer": "^1.5.0",
-    "tap-spec": "^5.0.0",
-    "tape": "^4.9.1",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack-cli": "^3.0.3",
     "webpack-dev-server": "^3.1.4"
@@ -123,6 +129,7 @@
     "@stdlib/stdlib": "0.0.43",
     "archiver": "^2.1.1",
     "babel-core": "6.26.3",
+    "babel-jest": "^23.4.2",
     "babel-loader": "7.1.5",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-resolver": "^1.1.0",
@@ -176,6 +183,8 @@
     "highlight.js": "^9.4.0",
     "history": "^4.7.2",
     "immutability-helper": "^2.7.0",
+    "jest": "^23.4.2",
+    "jest-cli": "^23.4.2",
     "js-yaml": "^3.6.1",
     "json-loader": "^0.5.4",
     "katex": "^0.9.0",
