@@ -1,144 +1,139 @@
 // MODULES //
 
-import test from 'tape';
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import Microphone from 'components/input/voice/microphone.js';
 import VoiceInput from 'components/input/voice';
 import contains from '@stdlib/assert/contains';
 
 
+// VARIABLES //
+
+Enzyme.configure({ adapter: new Adapter() });
+
+
 // TESTS //
 
-test( 'the component renders the input field', t => {
-	const wrapper = shallow( <VoiceInput
-		language='fr-FR'
-		defaultValue="Enter text"
-		/> );
+describe( '<VoiceInput />', function test() {
+	it( 'renders the input field', () => {
+		const wrapper = shallow( <VoiceInput
+			language='fr-FR'
+			defaultValue="Enter text"
+			/> );
 
-	const props = wrapper.instance().props;
-	t.equal( props.language, 'fr-FR', 'finds expected language' );
-	const no = wrapper.find( 'input' );
-	t.equal( no.length, 1, 'length is equal to one' );
+		const props = wrapper.instance().props;
+		expect( props.language ).toBe( 'fr-FR' );
+		const no = wrapper.find( 'input' );
+		expect( no ).toHaveLength( 1 );
 
-	const value = wrapper.instance().state.value;
-	t.equal( value, 'Enter text', 'returns expected text' );
-	t.end();
-});
+		const value = wrapper.instance().state.value;
+		expect( value ).toBe( 'Enter text' );
+	});
 
-test( 'the component renders the legend', t => {
-	const wrapper = mount( <VoiceInput
-		language='fr-FR'
-		legend="Voice Recording"
-		defaultValue="Enter this text"
-		/> );
+	it( 'renders the legend', () => {
+		const wrapper = mount( <VoiceInput
+			language='fr-FR'
+			legend="Voice Recording"
+			defaultValue="Enter this text"
+			/> );
 
-	const expected = 'Voice Recording';
-	t.ok( contains( wrapper.text(), expected ), 'contains expected legend' );
-	t.end();
-});
+		const expected = 'Voice Recording';
+		expect( contains( wrapper.text(), expected ) ).toBeTruthy();
+	});
 
-test( 'the component renders in full mode', t => {
-	const wrapper = mount( <VoiceInput
-		mode="full"
-		defaultValue="Enter this text"
-		legend="Legend"
-		/> );
+	it( 'renders in full mode', () => {
+		const wrapper = mount( <VoiceInput
+			mode="full"
+			defaultValue="Enter this text"
+			legend="Legend"
+			/> );
 
-	const expected = 'Legend';
-	t.ok( contains( wrapper.text(), expected ), 'contains expected legend' );
+		const expected = 'Legend';
+		expect( contains( wrapper.text(), expected ) ).toBeTruthy();
 
-	const div = wrapper.find( '.voice-input-text' );
-	t.ok( div, true, 'renders the voice-input-text' );
-	t.end();
-});
+		const div = wrapper.find( '.voice-input-text' );
+		expect( div ).toBeTruthy();
+	});
 
-test( 'the component renders in status mode', t => {
-	const wrapper = mount( <VoiceInput
-		mode="full"
-		defaultValue="Enter this text"
-		/> );
+	it( 'renders in status mode', () => {
+		const wrapper = mount( <VoiceInput
+			mode="full"
+			defaultValue="Enter this text"
+			/> );
 
-	const div = wrapper.find( '.voice-input-text' );
-	t.ok( div, false, 'does not render the voice-input-text' );
+		const div = wrapper.find( '.voice-input-text' );
+		expect( div ).toBeTruthy();
 
-	const status = wrapper.find( '.voice-input-status' );
-	t.ok( status, true, 'renders the voice-input-status' );
+		const status = wrapper.find( '.voice-input-status' );
+		expect( status ).toBeTruthy();
 
-	t.end();
-});
+	});
 
-test( 'the component renders the solo-microphone', t => {
-	const wrapper = mount( <VoiceInput
-		mode="microphone"
-		defaultValue="Enter this text"
-		/> );
+	it( 'renders the solo-microphone', () => {
+		const wrapper = mount( <VoiceInput
+			mode="microphone"
+			defaultValue="Enter this text"
+			/> );
 
-	const status = wrapper.find( '.voice-solo-microphone' );
-	t.ok( status, true, 'renders the voice-solo-microphone' );
+		const status = wrapper.find( '.voice-solo-microphone' );
+		expect( status ).toBeTruthy();
+	});
 
-	t.end();
-});
+	it( 'starts and stops recording (in microphone mode)', () => {
+		const wrapper = mount( <VoiceInput
+			mode="microphone"
+			defaultValue="Enter this text"
+			/> );
 
-test( 'the component starts and stops recording (in microphone mode)', t => {
-	const wrapper = mount( <VoiceInput
-		mode="microphone"
-		defaultValue="Enter this text"
-		/> );
+		const mic = wrapper.find( Microphone ).simulate('click');
+		expect( wrapper.instance().state.isRecording ).toBeTruthy();
 
-	const mic = wrapper.find( Microphone ).simulate('click');
-	t.strictEqual( wrapper.instance().state.isRecording, true, 'isRecording is true' );
+		mic.simulate('click');
+		expect( wrapper.instance().state.isRecording ).toBeFalsy();
+	});
 
-	mic.simulate('click');
-	t.strictEqual( wrapper.instance().state.isRecording, false, 'isRecording is false' );
-	t.end();
-});
+	it( 'starts and stops recording (in full mode)', () => {
+		const wrapper = mount( <VoiceInput
+			mode="full"
+			/> );
+		const mic = wrapper.find( Microphone ).simulate('click');
+		expect( wrapper.instance().state.isRecording ).toBeTruthy();
 
-test( 'the component starts and stops recording (in full mode)', t => {
-	const wrapper = mount( <VoiceInput
-		mode="full"
-		/> );
-	const mic = wrapper.find( Microphone ).simulate('click');
-	t.strictEqual( wrapper.instance().state.isRecording, true, 'isRecording is true' );
-
-	mic.simulate('click');
-	t.strictEqual( wrapper.instance().state.isRecording, false, 'isRecording is false' );
-	t.end();
-});
+		mic.simulate('click');
+		expect( wrapper.instance().state.isRecording ).toBeFalsy();
+	});
 
 
-test( 'the component starts and stops recording (in status mode)', t => {
-	const wrapper = mount( <VoiceInput
-		mode="status"
-		/> );
+	it( 'starts and stops recording (in status mode)', () => {
+		const wrapper = mount( <VoiceInput
+			mode="status"
+			/> );
 
-	const mic = wrapper.find( Microphone ).simulate('click');
-	t.strictEqual( wrapper.instance().state.isRecording, true, 'isRecording is true' );
+		const mic = wrapper.find( Microphone ).simulate('click');
+		expect( wrapper.instance().state.isRecording ).toBeTruthy();
 
-	mic.simulate('click');
-	t.strictEqual( wrapper.instance().state.isRecording, false, 'isRecording is false' );
-	t.end();
-});
+		mic.simulate('click');
+		expect( wrapper.instance().state.isRecording ).toBeFalsy();
+	});
 
-test( 'the component updates the value after the user has changed the input', t => {
-	const wrapper = mount( <VoiceInput
-		mode="full"
-		/> );
+	it( 'updates the value after the user has changed the input', () => {
+		const wrapper = mount( <VoiceInput
+			mode="full"
+			/> );
 
-	wrapper.find( '.voice-input-text' ).simulate('change', { target: { value: 'Lion' }});
-	t.strictEqual( wrapper.instance().state.value, 'Lion', 'gets expected value' );
-	t.end();
-});
+		wrapper.find( '.voice-input-text' ).simulate( 'change', { target: { value: 'Lion' }});
+		expect( wrapper.instance().state.value ).toBe( 'Lion' );
+	});
 
+	it( 'updates the value after the user has press the return button', () => {
+		const wrapper = mount( <VoiceInput
+			mode="full"
+			/> );
 
-test( 'the component updates the value after the user has press the return button', t => {
-	const wrapper = mount( <VoiceInput
-		mode="full"
-		/> );
-
-	wrapper.find( '.voice-input-text' ).simulate('change', { target: { value: 'Lion' }});
-	wrapper.find( '.voice-input-text' ).simulate('keydown', { keyCode: 13 });
-	t.strictEqual( wrapper.instance().state.value, 'Lion', 'gets expected value' );
-	wrapper.find( '.voice-input-text' ).simulate('keydown', { keyCode: 77 });
-	t.end();
+		wrapper.find( '.voice-input-text' ).simulate( 'change', { target: { value: 'Lion' }});
+		wrapper.find( '.voice-input-text' ).simulate( 'keydown', { keyCode: 13 });
+		expect( wrapper.instance().state.value ).toBe( 'Lion' );
+		wrapper.find( '.voice-input-text' ).simulate( 'keydown', { keyCode: 77 });
+	});
 });
