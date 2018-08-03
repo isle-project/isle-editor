@@ -3,7 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import SimpleMDE from 'simplemde';
+import SimpleMDE from './simplemde.js';
 import markdownIt from 'markdown-it';
 import pdfMake from 'pdfmake-lite/build/pdfmake.min.js';
 import katex from 'markdown-it-katex';
@@ -37,7 +37,7 @@ import base64toBlob from './base64_to_blob.js';
 import FigureInsert from './figure_insert.js';
 import TitleInsert from './title_insert.js';
 import extractTitles from './extract_titles.js';
-import 'simplemde/dist/simplemde.min.css';
+import './simplemde.css';
 import './markdown_editor.css';
 
 
