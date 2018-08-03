@@ -1,84 +1,83 @@
 // MODULES //
 
-import test from 'tape';
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import Wikipedia from 'components/wikipedia';
 import VoiceInput from 'components/input/voice';
 
 
+// VARIABLES //
+
+Enzyme.configure({ adapter: new Adapter() });
+
+
 // TESTS //
 
-test( 'the component renders a div element', t => {
-	const div = shallow( <Wikipedia /> );
-	t.ok( div.find( 'div' ).length > 0, 'expected length is greater than 0' );
-	t.end();
-});
-
-test( 'the component renders the search field', t => {
-	const div = shallow( <Wikipedia showSearch /> );
-	t.strictEqual( div.find( 'wikipedia_search' ).length, 0, 'expected className wikipedia_search' );
-	t.end();
-});
-
-test( 'the component renders the speech recognition element', t => {
-	const div = shallow( <Wikipedia showSearch /> );
-	t.strictEqual( div.find( 'mike' ).length, 0, 'expected className mike' );
-	t.end();
-});
-
-test( 'the component triggers the wikipedia search externally', t => {
-	const div = shallow( <Wikipedia
-		language="de-DE"
-		showSearch /> );
-	div.instance().trigger( 'Was weißt du über Angela Merkel' );
-	t.end();
-});
-
-test( 'the component returns the default language', t => {
-	const wrapper = shallow( <Wikipedia
-		showSearch /> );
-	t.strictEqual( wrapper.instance().props.language, 'en-US', 'expected default language' );
-	t.end();
-});
-
-test( 'the component renders the VoiceInput', t => {
-	const wrapper = shallow( <Wikipedia
-		showSearch /> );
-	const no = wrapper.find( VoiceInput );
-	t.equal( no.length, 1, 'length is equal to one' );
-	t.end();
-});
-
-test( 'the component transforms the input into a valid wikipedia address and opens an IFrame', t => {
-	const wrapper = mount( <Wikipedia
-		/> );
-
-	const voice = wrapper.find( VoiceInput );
-	voice.find( '.voice-input-text' ).simulate( 'change', {
-		target: {
-			value: 'Angela Merkel'
-		}
+describe( '<Wikipedia />', function test(){
+	it( 'the component renders a div element', () => {
+		const div = shallow( <Wikipedia /> );
+		expect( div.find( 'div' ).length ).toBeGreaterThan( 0 );
 	});
-	wrapper.find( '.wikipedia-logo' ).simulate( 'click' );
-	t.strictEqual( wrapper.instance().state.response, 'https://en.wikipedia.org/wiki/Angela_Merkel', 'gets expected value' );
-	t.ok( wrapper.find( 'iframe' ).length > 0, 'expected length is greater than 0' );
-	t.end();
-});
 
-test( 'the component gets a French request, transforms the input into a valid wikipedia address and opens an IFrame', t => {
-	const wrapper = mount( <Wikipedia
-		language='fr-FR'
-		/> );
-
-	const voice = wrapper.find( VoiceInput );
-	voice.find( '.voice-input-text' ).simulate( 'change', {
-		target: {
-			value: 'Qu\'est-ce-que tu sais sur Angela Merkel'
-		}
+	it( 'the component renders the search field', () => {
+		const div = shallow( <Wikipedia showSearch /> );
+		expect( div.find( 'wikipedia_search' ) ).toHaveLength( 0 );
 	});
-	wrapper.find( '.wikipedia-logo' ).simulate( 'click' );
-	t.strictEqual( wrapper.instance().state.response, 'https://fr.wikipedia.org/wiki/Angela_Merkel', 'gets expected value' );
-	t.ok( wrapper.find( 'iframe' ).length > 0, 'expected length is greater than 0' );
-	t.end();
+
+	it( 'the component renders the speech recognition element', () => {
+		const div = shallow( <Wikipedia showSearch /> );
+		expect( div.find( 'mike' ) ).toHaveLength( 0 );
+	});
+
+	it( 'the component triggers the wikipedia search externally', () => {
+		const div = shallow( <Wikipedia
+			language="de-DE"
+			showSearch /> );
+		div.instance().trigger( 'Was weißt du über Angela Merkel' );
+	});
+
+	it( 'the component returns the default language', () => {
+		const wrapper = shallow( <Wikipedia
+			showSearch /> );
+		expect( wrapper.instance().props.language ).toBe( 'en-US' );
+	});
+
+	it( 'the component renders the VoiceInput', () => {
+		const wrapper = shallow( <Wikipedia
+			showSearch /> );
+		const no = wrapper.find( VoiceInput );
+		expect( no ).toHaveLength( 1 );
+	});
+
+	it( 'the component transforms the input into a valid wikipedia address and opens an IFrame', () => {
+		const wrapper = mount( <Wikipedia
+			/> );
+
+		const voice = wrapper.find( VoiceInput );
+		voice.find( '.voice-input-text' ).simulate( 'change', {
+			target: {
+				value: 'Angela Merkel'
+			}
+		});
+		wrapper.find( '.wikipedia-logo' ).simulate( 'click' );
+		expect( wrapper.instance().state.response ).toBe( 'https://en.wikipedia.org/wiki/Angela_Merkel' );
+		expect( wrapper.find( 'iframe' ).length ).toBeGreaterThan( 0 );
+	});
+
+	it( 'the component gets a French request, transforms the input into a valid wikipedia address and opens an IFrame', () => {
+		const wrapper = mount( <Wikipedia
+			language='fr-FR'
+			/> );
+
+		const voice = wrapper.find( VoiceInput );
+		voice.find( '.voice-input-text' ).simulate( 'change', {
+			target: {
+				value: 'Qu\'est-ce-que tu sais sur Angela Merkel'
+			}
+		});
+		wrapper.find( '.wikipedia-logo' ).simulate( 'click' );
+		expect( wrapper.instance().state.response ).toBe( 'https://fr.wikipedia.org/wiki/Angela_Merkel' );
+		expect( wrapper.find( 'iframe' ).length ).toBeGreaterThan( 0 );
+	});
 });
