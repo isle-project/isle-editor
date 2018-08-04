@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // MODULES //
 
 import React, { Component } from 'react';
@@ -19,13 +21,13 @@ import './figure_insert.css';
 // FUNCTIONS //
 
 function cutArray(arr, elems) {
-    if ( arr.length <= elems ) {
-        console.log('short circuiting early');
-        return arr;
-    }
+	if ( arr.length <= elems ) {
+		console.log('short circuiting early');
+		return arr;
+	}
 
-    const len = arr.length;
-    return arr.slice(len - elems, len);
+	const len = arr.length;
+	return arr.slice(len - elems, len);
 }
 
 // MAIN //
@@ -34,13 +36,13 @@ class FigureInsert extends Component {
 	constructor( props ) {
 		super( props );
 
-        // Cut the array
+		// Cut the array
 
 		this.state = {
-            rows: 2,
-            cols: 2,
-            htmlTableText: ''
-        };
+			rows: 2,
+			cols: 2,
+			htmlTableText: ''
+		};
 	}
 
 	render() {
@@ -53,14 +55,14 @@ class FigureInsert extends Component {
 			</Modal.Header>
 			<Modal.Body>
 				<Row>
-                    <Col xs={7} md={7}>
-                        <p>HTML table</p>
-                    </Col>
-                    <Col xs={5} md={5}>
-                        <h3 id="plot_side_insert">Plots</h3>
-                        {OutputPanel( this.props.studentPlots, noop )}
-                    </Col>
-                </Row>
+					<Col xs={7} md={7}>
+						<p>HTML table</p>
+					</Col>
+					<Col xs={5} md={5}>
+						<h3 id="plot_side_insert">Plots</h3>
+						{OutputPanel( this.props.studentPlots, noop )}
+					</Col>
+				</Row>
 			</Modal.Body>
 		</Modal> );
 	}
@@ -70,18 +72,18 @@ class FigureInsert extends Component {
 // PROPERTY TYPES //
 
 FigureInsert.propTypes = {
-    graphsToShow: PropTypes.number,
-    onHide: PropTypes.func,
-    show: PropTypes.bool.isRequired,
-    studentPlots: PropTypes.array,
-    insertFunction: PropTypes.func
+	graphsToShow: PropTypes.number,
+	onHide: PropTypes.func,
+	show: PropTypes.bool.isRequired,
+	studentPlots: PropTypes.array,
+	insertFunction: PropTypes.func
 };
 
 FigureInsert.defaultProps = {
-    onHide() {},
-    studentPlots: [],
-    graphsToShow: 6,
-    insertFunction: noop
+	onHide() {},
+	studentPlots: [],
+	graphsToShow: 6,
+	insertFunction: noop
 };
 
 

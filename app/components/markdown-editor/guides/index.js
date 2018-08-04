@@ -189,7 +189,7 @@ class Guides extends Component {
 						showProgress
 						run={this.state.running}
 						callback={( tour ) => {
-							const { action, index, type } = tour;
+							const type = tour.type;
 							if ( type === EVENTS.TOUR_END ) {
 								this.setState({ running: false });
 							}
@@ -203,7 +203,7 @@ class Guides extends Component {
 						continuous
 						run={this.state.running}
 						callback={( tour ) => {
-							const { action, index, type } = tour;
+							const type = tour.type;
 							if ( type === EVENTS.TOUR_END ) {
 								this.setState({ running: false });
 							}
@@ -216,7 +216,7 @@ class Guides extends Component {
 						showProgress
 						run={this.state.running}
 						callback={( tour ) => {
-							const { action, index, type } = tour;
+							const type = tour.type;
 							if ( type === EVENTS.TOUR_END ) {
 								this.setState({ running: false });
 							}

@@ -3,7 +3,6 @@
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import SimpleMDE from './simplemde.js';
 import markdownIt from 'markdown-it';
 import pdfMake from 'pdfmake-lite/build/pdfmake.min.js';
 import katex from 'markdown-it-katex';
@@ -27,6 +26,7 @@ import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import VoiceInput from 'components/input/voice';
+import SimpleMDE from './simplemde.js';
 import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
 import SubmitModal from './submit_modal.js';
