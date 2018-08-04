@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Navbar from 'react-bootstrap/lib/Navbar';
@@ -77,6 +78,11 @@ const generateTransformationCode = ( variable ) => `if ( datum.${variable} > 0 )
 }`;
 
 
+// VARIABLES //
+
+const debug = logger( 'isle-editor:data-explorer' );
+
+
 // MAIN //
 
 class DataExplorer extends Component {
@@ -89,16 +95,14 @@ class DataExplorer extends Component {
 		let continuous;
 		let categorical;
 		let groupVars;
-		if ( !props.data && props.id ) {
-			// Try to load data from local storage:
-			data = JSON.parse( localStorage.getItem( props.id+'_data' ) );
-			continuous = JSON.parse( localStorage.getItem( props.id+'_continuous' ) );
-			categorical = JSON.parse( localStorage.getItem( props.id+'_categorical' ) );
-			groupVars = ( categorical || [] ).slice();
-		} else {
+		if ( props.data && props.id ) {
 			continuous = props.continuous;
 			categorical = props.categorical;
 			groupVars = props.categorical.slice();
+		} else {
+			continuous = [];
+			categorical = [];
+			groupVars = [];
 		}
 		let ready = false;
 		if (
@@ -161,17 +165,38 @@ class DataExplorer extends Component {
 		return null;
 	}
 
-	componentDidUpdate( prevProps, prevState ){
+	componentDidMount() {
+		const session = this.context.session;
+		const promiseData = session.store.getItem( this.props.id+'_data' );
+		const promiseContinuous = session.store.getItem( this.props.id+'_continuous' );
+		const promiseCategorical = session.store.getItem( this.props.id+'_categorical' );
+		Promise.all([ promiseData, promiseContinuous, promiseCategorical ])
+			.then( ( values ) => {
+				const data = values[ 0 ] || null;
+				const continuous = values[ 1 ] || [];
+				const categorical = values[ 2 ] || [];
+				const groupVars = ( categorical || [] ).slice();
+				this.setState({
+					data, continuous, categorical, groupVars, ready: true
+				});
+			})
+			.catch( ( err ) => {
+				debug( err );
+			});
+	}
+
+	componentDidUpdate( prevProps, prevState ) {
 		if ( this.state.output !== prevState.output ) {
 			const outputPanel = document.getElementById( 'outputPanel' );
 			scrollTo( outputPanel, outputPanel.scrollHeight, 1000 );
 		}
 	}
 
-	resetLocalStorage = () => {
-		localStorage.removeItem( this.props.id+'_data' );
-		localStorage.removeItem( this.props.id+'_continuous' );
-		localStorage.removeItem( this.props.id+'_categorical' );
+	resetStorage = () => {
+		const { session } = this.context;
+		session.store.removeItem( this.props.id+'_data' );
+		session.store.removeItem( this.props.id+'_continuous' );
+		session.store.removeItem( this.props.id+'_categorical' );
 		this.setState({
 			data: null,
 			categorical: [],
@@ -335,6 +360,7 @@ class DataExplorer extends Component {
 	}
 
 	onFileUpload = ( err, output ) => {
+		const { session } = this.context;
 		if ( !err ) {
 			const data = {};
 			const columnNames = Object.keys( output[ 0 ]);
@@ -362,7 +388,7 @@ class DataExplorer extends Component {
 				categorical: categoricalGuesses,
 				data
 			}, () => {
-				localStorage.setItem( this.props.id+'_data', JSON.stringify( this.state.data ) );
+				session.store.setItem( this.props.id+'_data', this.state.data, debug );
 			});
 		}
 	}
@@ -413,8 +439,9 @@ class DataExplorer extends Component {
 							ready
 						}, () => {
 							if ( this.props.id ) {
-								localStorage.setItem( this.props.id+'_continuous', JSON.stringify( this.state.continuous ) );
-								localStorage.setItem( this.props.id+'_categorical', JSON.stringify( this.state.categorical ) );
+								const { session } = this.context;
+								session.store.setItem( this.props.id+'_continuous', this.state.continuous, debug );
+								session.store.setItem( this.props.id+'_categorical', this.state.categorical, debug );
 							}
 						});
 					}}>Submit</Button>
@@ -727,7 +754,7 @@ class DataExplorer extends Component {
 						<Panel.Body>
 							{ this.state.openedNav === '1' ?
 								<Fragment>
-									{ !this.props.data ? <Button bsSize="small" onClick={this.resetLocalStorage} style={{ position: 'absolute' }}>Clear Data</Button> : null }
+									{ !this.props.data ? <Button bsSize="small" onClick={this.resetStorage} style={{ position: 'absolute' }}>Clear Data</Button> : null }
 									<DataTable data={this.state.data} dataInfo={this.props.dataInfo} />
 								</Fragment> : null
 							}

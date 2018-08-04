@@ -2,6 +2,7 @@
 
 import qs from 'querystring';
 import logger from 'debug';
+import localforage from 'localforage';
 import isString from '@stdlib/assert/is-string';
 import isFunction from '@stdlib/assert/is-function';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
@@ -30,6 +31,13 @@ let userRights = null;
 class Session {
 	constructor( config, offline ) {
 		debug( 'Should create session...' );
+
+		// Create instance of indexedDB database:
+		this.store = localforage.createInstance({
+			driver: localforage.INDEXEDDB,
+			name: 'ISLE',
+			description: 'Persistent data storage for ISLE'
+		});
 
 		// Address where ISLE server is running:
 		this.server = config.server;

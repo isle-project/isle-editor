@@ -3,21 +3,44 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Panel from 'react-bootstrap/lib/Panel';
+import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import parse from 'csv-parse';
 import detect from 'detect-csv';
+import round from '@stdlib/math/base/special/round';
 
 
 // MAIN //
 
 class SpreadsheetUpload extends Component {
+	constructor( props ) {
+		super( props );
+
+		this.state = {
+			percentCompleted: 0,
+			uploading: false
+		};
+	}
+
 	/**
 	* Creates FileReader and attaches event listener for when the file is ready.
 	*/
 	handleFileUpload = () => {
-		const reader = new FileReader();
-		const selectedFile = this.fileUpload.files[ 0 ];
-		reader.addEventListener( 'load', this.onFileRead, false );
-		reader.readAsText( selectedFile, 'utf-8' );
+		this.setState({
+			uploading: true
+		}, () => {
+			const reader = new FileReader();
+			const selectedFile = this.fileUpload.files[ 0 ];
+			reader.addEventListener( 'load', this.onFileRead, false );
+			reader.addEventListener( 'progress', ( event ) => {
+				if ( event.lengthComputable ) {
+					const percentCompleted = event.loaded / event.total;
+					this.setState({
+						percentCompleted
+					});
+				}
+			}, false );
+			reader.readAsText( selectedFile, 'utf-8' );
+		});
 	}
 
 	/**
@@ -26,6 +49,10 @@ class SpreadsheetUpload extends Component {
 	onFileRead = ( event ) => {
 		const text = event.target.result;
 		const csv = detect( text );
+		this.setState({
+			percentCompleted: 0,
+			uploading: false
+		});
 		parse( text, { delimiter: csv.delimiter, columns: true, auto_parse: true }, ( err, output ) => {
 			if ( err ) {
 				const { session } = this.context;
@@ -82,6 +109,7 @@ class SpreadsheetUpload extends Component {
 	}
 
 	render() {
+		const completed = round( this.state.percentCompleted * 100.0 );
 		return ( <Panel style={{ textAlign: 'center' }} >
 			<Panel.Heading>
 				<Panel.Title componentClass="h2">{this.props.title}</Panel.Title>
@@ -112,6 +140,10 @@ class SpreadsheetUpload extends Component {
 				>
 					<span>Drop file here</span>
 				</div>
+				{ this.state.uploading ?
+					<ProgressBar now={completed} label={`${completed}%`} /> :
+					null
+				}
 			</Panel.Body>
 		</Panel> );
 	}
