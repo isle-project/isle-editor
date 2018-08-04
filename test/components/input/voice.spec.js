@@ -67,7 +67,6 @@ describe( '<VoiceInput />', function test() {
 
 		const status = wrapper.find( '.voice-input-status' );
 		expect( status ).toBeTruthy();
-
 	});
 
 	it( 'renders the solo-microphone', () => {

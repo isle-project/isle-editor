@@ -45,7 +45,7 @@ describe( '<Pages />', function test() {
 		const span = wrapper.find( '.page-children-wrapper span' );
 		span.forEach( ( elem, idx ) => {
 			if ( idx !== 1 ) {
-				expect( elem.hasClass( 'visible-page' ) ).toBeFalsy()
+				expect( elem.hasClass( 'visible-page' ) ).toBeFalsy();
 			} else {
 				expect( elem.hasClass( 'visible-page' ) ).toBeTruthy();
 			}
