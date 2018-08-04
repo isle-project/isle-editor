@@ -62,8 +62,9 @@ class RTable extends Component {
 	}
 
 	render() {
-		const margin = ( this.props.containerWidth * ( 1.0 - this.props.width ) ) / 2.0;
-		const tableWidth = this.props.containerWidth - margin * 2.0;
+		const props = this.props;
+		const margin = ( props.containerWidth * ( 1.0 - this.props.width ) ) / 2.0;
+		const tableWidth = props.containerWidth - margin * 2.0;
 		return (
 			<div className="rtable" style={{
 			}}>
