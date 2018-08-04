@@ -47,7 +47,7 @@ function SpellChecker( options ) {
 					SpellChecker.numLoaded++;
 
 					if ( SpellChecker.numLoaded === 2 ) {
-						SpellChecker.typo = new Typo('en_US', SpellChecker.aff_data, SpellChecker.dicData, {
+						SpellChecker.typo = new Typo('en_US', SpellChecker.affData, SpellChecker.dicData, {
 							platform: 'any'
 						});
 					}
@@ -66,7 +66,7 @@ function SpellChecker( options ) {
 					SpellChecker.numLoaded++;
 
 					if ( SpellChecker.numLoaded === 2 ) {
-						SpellChecker.typo = new Typo( 'en_US', SpellChecker.aff_data, SpellChecker.dicData, {
+						SpellChecker.typo = new Typo( 'en_US', SpellChecker.affData, SpellChecker.dicData, {
 							platform: 'any'
 						});
 					}
