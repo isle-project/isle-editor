@@ -2,17 +2,16 @@
 
 import logger from 'debug';
 import omit from '@stdlib/utils/omit';
-import startsWith from '@stdlib/string/starts-with';
 import contains from '@stdlib/assert/contains';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isObject from '@stdlib/assert/is-object';
 import extractTitles from './extract_titles';
 
+
 // VARIABLES //
 
 const debug = logger( 'markdown-editor:pdf' );
-const MARGINS = [ 2, 5, 2, 5 ];
-// left, top, right, bottom
+const MARGINS = [ 2, 5, 2, 5 ]; // left, top, right, bottom
 
 const TABLE_LAYOUT = {
 	hLineWidth( i, node ) {
@@ -126,8 +125,6 @@ function extractTable( ast, widthTable ) {
 		}
 	};
 	let row;
-	let widths;
-	let calculatedWidths = false;
 	for ( let i = 0; i < ast.length; i++ ) {
 		const node = ast[ i ];
 		switch ( node.type ) {
@@ -141,7 +138,7 @@ function extractTable( ast, widthTable ) {
 						count = 0;
 					}
 					if ( zElem.type === 'th_open' ) {
-						count += 1
+						count += 1;
 					}
 					if ( zElem.type === 'tr_close' ) {
 						break;
@@ -153,28 +150,23 @@ function extractTable( ast, widthTable ) {
 				}
 			break;
 			case 'tr_open':
-				if ( !calculatedWidths ) {
-					widths = [];
-				}
 				row = [];
 			break;
 			case 'inline':
-
 				if ( contains( node.content, '<img src=') ) {
 					let start = node.content.indexOf( 'src="' );
-	
+
 					// Move to right past `src="`
 					start += 5;
 					const end = node.content.indexOf( '"', start );
-					
+
 					row.push({
 						image: node.content.substr( start, end - start ),
 						alignment: 'center',
 						margin: MARGINS,
 						width: out.table.widths[row.length]
 					});
-					
-				} 
+				}
 				else if ( node.children ) {
 					const text = [];
 					applyStyles( node.children, text );
@@ -188,12 +180,6 @@ function extractTable( ast, widthTable ) {
 				}
 			break;
 			case 'tr_close':
-			/*
-				if ( !calculatedWidths ) {
-					out.table.widths = widths;
-					calculatedWidths = true;
-				}
-				*/
 				out.table.body.push( row );
 			break;
 			case 'thead_close':
@@ -327,18 +313,6 @@ function isEndTag( astElem ) {
 	}
 	return false;
 }
-
-/*
-function isTitleTag( astElem ) {
-	if ( astElem.type !== 'html_block' ) {
-		return false;
-	}
-	else if ( !startsWith( astElem.content, '<!--TitleText' ) ) {
-		return false;
-	}
-	return true;
-}
-*/
 
 function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 	// Note that the DPI is 72
@@ -480,13 +454,13 @@ function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 					arr.push( cell );
 				}
 				else {
-					var width;
+					let width;
 					if ( config.pageOrientation === 'landscape' ) {
 						width = config.pageSize.height - (MARGINS[1] + MARGINS[3]);
 					} else {
 						width = config.pageSize.width - (MARGINS[0] + MARGINS[2]);
 					}
-					// calculate the width knowing 100 is good for 11.5
+					// Calculate the width knowing 100 is good for 11.5:
 					let tableWidth = width / columnCount;
 					tableWidth = 0.8 * tableWidth;
 					const table = extractTable( arr, tableWidth );
@@ -569,8 +543,7 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 		doc.content = subDoc;
 	}
 
-	// we know we are in colgroup 1
-
+	// We know we are in column group 1:
 	var colTmp;
 	var colObj;
 	for ( let z = 0; z < colGroups.length; z++ ) {
@@ -591,28 +564,25 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 
 		colObj = {};
 		colObj.columns = columns;
-		
+
 		if ( config.pageorientation === 'landscape' ) {
 			colObj.columnGap = 0.015 * config.pageSize.height;
 		} else {
 			colObj.columnGap = 0.015 * config.pageSize.width;
 		}
-		
 		doc.content.push(colObj);
 
 		// EndTag[z] to startTag[z + 1]
-
 		if ( z === colGroups.length - 1 ) {
 			// Handle the case in which there is more
 			if ( endTag[z] === ast.length - 1 ) {
 				break;
 			}
-
 			// there is more --> things from end of columns to end of text
 			subDoc = parsePDF(ast, config, state, endTag[z] + 1, ast.length);
 			doc.content.push(subDoc);
 		} else {
-			// Handle regulat text between columns
+			// Handle regular text between columns
 			subDoc = parsePDF(ast, config, state, endTag[z] + 1, startTag[z + 1] - 1);
 			doc.content.push(subDoc);
 		}

@@ -80,7 +80,7 @@ class TitleInsert extends Component {
 					defaultValue=''
 					width={480}
 				/>
-				<hr id='button_sep'/>
+				<hr id='button_sep' />
 				<Button
 					onClick={this.insertClick}
 					block
