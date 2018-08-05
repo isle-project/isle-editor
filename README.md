@@ -21,7 +21,7 @@ A desktop-application that can be used to author and preview *interactive statis
 
 ### Binaries
 
-Current version: v0.17.2.
+Current version: v0.19.1.
 
 | OS      | x64 | ia32 |
 | ------- | --- | --- |
@@ -36,7 +36,7 @@ Current version: v0.17.2.
 Developing and running the ISLE Editor has the following prerequisites:
 
 * [git][git]: version control
-* [Node.js][node-js]: JavaScript runtime (version `>= 0.10`)
+* [Node.js][node-js]: JavaScript runtime (version `>= 7.0`)
 
 
 #### Download
@@ -93,11 +93,11 @@ The following icons are used under a Creative Commons CCBY license.
 [git]: http://git-scm.com/
 [license]: https://raw.githubusercontent.com/Planeshifter/isle-editor/master/LICENSE.md
 [node-js]: https://nodejs.org/en/
-[darwin-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.17.2/ISLE.Editor-darwin-x64.zip
-[linux-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.17.2/ISLE.Editor-linux-x64.zip
-[linux-ia32]: https://github.com/Planeshifter/isle-editor/releases/download/v0.17.2/ISLE.Editor-linux-ia32.zip
-[win32-ia32]: https://github.com/Planeshifter/isle-editor/releases/download/v0.17.2/ISLE.Editor-win32-ia32.zip
-[win32-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.17.2/ISLE.Editor-win32-x64.zip
+[darwin-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.19.1/ISLE.Editor-darwin-x64.zip
+[linux-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.19.1/ISLE.Editor-linux-x64.zip
+[linux-ia32]: https://github.com/Planeshifter/isle-editor/releases/download/v0.19.1/ISLE.Editor-linux-ia32.zip
+[win32-ia32]: https://github.com/Planeshifter/isle-editor/releases/download/v0.19.1/ISLE.Editor-win32-ia32.zip
+[win32-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.19.1/ISLE.Editor-win32-x64.zip
 
 [dependencies-image]: https://img.shields.io/david/planeshifter/isle-editor/master.svg
 [dependencies-url]: https://david-dm.org/planeshifter/isle-editor/master

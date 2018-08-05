@@ -1,6 +1,6 @@
 # Installation
 
-{% set softwareVersion = "v0.17.2" %}
+{% set softwareVersion = "v0.19.1" %}
 
 ## Binaries
 
@@ -19,7 +19,7 @@ Current version: _{{softwareVersion}}_.
 Developing and running the ISLE Editor has the following prerequisites:
 
 * [git][git]: version control
-* [Node.js][node-js]: JavaScript runtime (version `>= 0.10`)
+* [Node.js][node-js]: JavaScript runtime (version `>= 7.0`)
 
 
 ### Download
