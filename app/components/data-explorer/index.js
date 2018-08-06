@@ -95,7 +95,7 @@ class DataExplorer extends Component {
 		let continuous;
 		let categorical;
 		let groupVars;
-		if ( props.data && props.id ) {
+		if ( props.data ) {
 			continuous = props.continuous;
 			categorical = props.categorical;
 			groupVars = props.categorical.slice();
@@ -167,22 +167,24 @@ class DataExplorer extends Component {
 
 	componentDidMount() {
 		const session = this.context.session;
-		const promiseData = session.store.getItem( this.props.id+'_data' );
-		const promiseContinuous = session.store.getItem( this.props.id+'_continuous' );
-		const promiseCategorical = session.store.getItem( this.props.id+'_categorical' );
-		Promise.all([ promiseData, promiseContinuous, promiseCategorical ])
-			.then( ( values ) => {
-				const data = values[ 0 ] || null;
-				const continuous = values[ 1 ] || [];
-				const categorical = values[ 2 ] || [];
-				const groupVars = ( categorical || [] ).slice();
-				this.setState({
-					data, continuous, categorical, groupVars, ready: true
+		if ( !this.props.data && this.props.id ) {
+			const promiseData = session.store.getItem( this.props.id+'_data' );
+			const promiseContinuous = session.store.getItem( this.props.id+'_continuous' );
+			const promiseCategorical = session.store.getItem( this.props.id+'_categorical' );
+			Promise.all([ promiseData, promiseContinuous, promiseCategorical ])
+				.then( ( values ) => {
+					const data = values[ 0 ] || null;
+					const continuous = values[ 1 ] || [];
+					const categorical = values[ 2 ] || [];
+					const groupVars = ( categorical || [] ).slice();
+					this.setState({
+						data, continuous, categorical, groupVars, ready: true
+					});
+				})
+				.catch( ( err ) => {
+					debug( err );
 				});
-			})
-			.catch( ( err ) => {
-				debug( err );
-			});
+		}
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
@@ -194,9 +196,11 @@ class DataExplorer extends Component {
 
 	resetStorage = () => {
 		const { session } = this.context;
-		session.store.removeItem( this.props.id+'_data' );
-		session.store.removeItem( this.props.id+'_continuous' );
-		session.store.removeItem( this.props.id+'_categorical' );
+		if ( this.props.id ) {
+			session.store.removeItem( this.props.id+'_data' );
+			session.store.removeItem( this.props.id+'_continuous' );
+			session.store.removeItem( this.props.id+'_categorical' );
+		}
 		this.setState({
 			data: null,
 			categorical: [],
@@ -388,7 +392,9 @@ class DataExplorer extends Component {
 				categorical: categoricalGuesses,
 				data
 			}, () => {
-				session.store.setItem( this.props.id+'_data', this.state.data, debug );
+				if ( this.props.id ) {
+					session.store.setItem( this.props.id+'_data', this.state.data, debug );
+				}
 			});
 		}
 	}
