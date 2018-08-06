@@ -6,6 +6,7 @@ import localforage from 'localforage';
 import isString from '@stdlib/assert/is-string';
 import isFunction from '@stdlib/assert/is-function';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import copy from '@stdlib/utils/copy';
 import Buffer from '@stdlib/buffer/ctor';
@@ -55,7 +56,7 @@ class Session {
 		this.user = this.loadUser();
 
 		// Boolean indicating whether user is logged in or not:
-		this.anonymous = this.user ? false : true;
+		this.anonymous = isEmptyObject( this.user );
 
 		// Boolean whether lesson is finished:
 		this.finished = false;
@@ -114,7 +115,7 @@ class Session {
 		}
 
 		// Connect via WebSockets to other users...
-		if ( this.user && this.server && !this._offline ) {
+		if ( !isEmptyObject( this.user ) && this.server && !this._offline ) {
 			this.socketConnect();
 		}
 
@@ -606,7 +607,7 @@ class Session {
 		});
 
 		socket.on( 'user_leaves', ( data ) => {
-			if ( this.user ) {
+			if ( !isEmptyObject( this.user ) ) {
 				debug( 'A user has disconnected and should be removed: ' + data );
 				data = JSON.parse( data );
 				this.userList = this.userList.map( user => {
@@ -1037,8 +1038,7 @@ class Session {
 	*/
 	loadUser() {
 		const item = localStorage.getItem( this.userVal );
-		const user = item ? JSON.parse( item ) : null;
-		return user;
+		return item ? JSON.parse( item ) : {};
 	}
 
 	/**
@@ -1104,7 +1104,7 @@ class Session {
 			finished: this.finished,
 			vars: this.vars,
 			lessonID: this.lessonID,
-			userID: this.user ? this.user.id : null
+			userID: this.user.id
 		};
 		if ( !this._offline ) {
 			fetch( this.server+'/updateSession', {
@@ -1133,7 +1133,7 @@ class Session {
 		}
 		const obj = {
 			startTime: this.startTime,
-			userID: this.user ? this.user.id : null,
+			userID: this.user.id,
 			lessonID: this.lessonID,
 			type,
 			data
@@ -1226,7 +1226,7 @@ class Session {
 		if ( this.namespaceName ) {
 			formData.append( 'namespaceName', this.namespaceName );
 		}
-		if ( !this.user ) {
+		if ( isEmptyObject( this.user ) ) {
 			return this.addNotification({
 				title: 'File Upload',
 				message: 'You have to be signed in in order to upload files.',
