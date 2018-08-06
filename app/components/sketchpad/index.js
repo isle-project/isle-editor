@@ -10,9 +10,10 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
-import FileSaver from 'file-saver';
+import FileSaver from 'utils/file-saver';
 import { TwitterPicker } from 'react-color';
 import './sketchpad.css';
+
 
 // FUNCTIONS //
 

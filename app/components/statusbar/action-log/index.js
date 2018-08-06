@@ -9,7 +9,7 @@ import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import ToggleButtonGroup from 'react-bootstrap/lib/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/lib/ToggleButton';
 import RangePicker from 'components/range-picker';
-import FileSaver from 'file-saver';
+import FileSaver from 'utils/file-saver';
 import stringify from 'csv-stringify';
 import moment from 'moment';
 import logger from 'debug';
