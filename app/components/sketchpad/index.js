@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Panel from 'react-bootstrap/lib/Panel';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
@@ -10,9 +11,15 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
+import isArray from '@stdlib/assert/is-array';
 import saveAs from 'utils/file-saver';
 import { TwitterPicker } from 'react-color';
 import './sketchpad.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor:sketchpad' );
 
 
 // FUNCTIONS //
@@ -37,6 +44,23 @@ class Sketchpad extends Component {
 			lines: []
 		};
 		this.isMouseDown = false;
+	}
+
+	componentDidMount() {
+		if ( this.props.id ) {
+			const session = this.context.session;
+			const promise = session.store.getItem( this.props.id + '_lines' );
+			promise.then( ( data ) => {
+				if ( isArray( data ) ) {
+					this.setState({
+						lines: data
+					});
+				}
+			})
+			.catch( ( err ) => {
+				debug( err );
+			});
+		}
 	}
 
 	componentWillUnmount() {
@@ -82,6 +106,8 @@ class Sketchpad extends Component {
 		if ( this.ctx ) {
 			this.ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
 		}
+		const session = this.context.session;
+		session.store.removeItem( this.props.id+'_lines', debug );
 		this.setState({
 			finishedRecording: false,
 			lines: []
@@ -184,6 +210,10 @@ class Sketchpad extends Component {
 				this.ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
 			}
 			finishedRecording = true;
+			if ( this.props.id ) {
+				const session = this.context.session;
+				session.store.setItem( this.props.id+'_lines', this.state.lines, debug );
+			}
 		}
 		this.setState({
 			recording,
@@ -297,6 +327,10 @@ Sketchpad.propTypes = {
 	disabled: PropTypes.bool,
 	style: PropTypes.object,
 	onChange: PropTypes.func
+};
+
+Sketchpad.contextTypes = {
+	session: PropTypes.object
 };
 
 
