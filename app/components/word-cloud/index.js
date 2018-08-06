@@ -10,7 +10,7 @@ import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import { scaleOrdinal, schemeCategory10, select } from 'd3';
 import cloud from 'd3-cloud';
-import FileSaver from 'utils/file-saver';
+import saveAs from 'utils/file-saver';
 import min from '@stdlib/math/base/special/min';
 import removePunctuation from '@stdlib/string/remove-punctuation';
 import tokenize from '@stdlib/nlp/tokenize';
@@ -265,7 +265,7 @@ class Wrapper extends Component {
 			name = 'wordcloud.png';
 		}
 		function save( dataBlob, filesize ) {
-			FileSaver.saveAs( dataBlob, name );
+			saveAs( dataBlob, name );
 		}
 	}
 

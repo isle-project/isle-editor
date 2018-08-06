@@ -35,7 +35,7 @@ function throwOutside( ex ) {
 function autoBOM( blob ) {
 	// Prepend BOM for UTF-8 XML and text/* types (including HTML). Note: your browser will automatically convert UTF-16 U+FEFF to EF BB BF
 	if ( RE_AUTO_BOM.test( blob.type ) ) {
-		return new Blob([ String.fromCharCode(0xFEFF), blob ], {
+		return new Blob([ String.fromCharCode( 0xFEFF ), blob ], {
 			type: blob.type
 		});
 	}
@@ -63,7 +63,8 @@ function dispatch( filesaver, eventTypes, event ) {
 function saveFactory( view ) {
 	if (
 		typeof view === 'undefined' ||
-		typeof navigator !== 'undefined' && /MSIE [1-9]\./.test(navigator.userAgent)
+		typeof navigator !== 'undefined' &&
+		/MSIE [1-9]\./.test( navigator.userAgent )
 	) {
 		return;
 	}
@@ -74,7 +75,7 @@ function saveFactory( view ) {
 	}
 	function revoke( file ) {
 		function revoker() {
-			if (typeof file === 'string') { // file is an object URL
+			if ( typeof file === 'string' ) { // file is an object URL
 				getURL().revokeObjectURL(file);
 			} else { // file is a File
 				file.remove();
@@ -91,7 +92,7 @@ function saveFactory( view ) {
 	var forceSavableType = 'application/octet-stream';
 
 	function FileSaver(blob, name, noAutoBOM ) {
-		if (!noAutoBOM ) {
+		if ( !noAutoBOM ) {
 			blob = autoBOM(blob);
 		}
 		// First try a.download, then web filesystem, then object URLs
@@ -121,9 +122,9 @@ function saveFactory( view ) {
 				self.readyState = self.INIT;
 				return;
 			}
-			// don't create more object URLs than needed
-			if (!objectURL) {
-				objectURL = getURL().createObjectURL(blob);
+			// Don't create more object URLs than needed:
+			if ( !objectURL ) {
+				objectURL = getURL().createObjectURL( blob );
 			}
 			if ( force ) {
 				view.location.href = objectURL;
@@ -157,7 +158,7 @@ function saveFactory( view ) {
 	}
 	var proto = FileSaver.prototype;
 	function saveAs( blob, name, noAutoBOM ) {
-		return new FileSaver(blob, name || blob.name || 'download', noAutoBOM );
+		return new FileSaver( blob, name || blob.name || 'download', noAutoBOM );
 	}
 
 	// IE 10+ (native saveAs)
@@ -187,10 +188,10 @@ function saveFactory( view ) {
 	return saveAs;
 }
 
-const saveAs = window.saveAs || saveFactory(
+const saveAs = saveFactory(
 	typeof self !== 'undefined' && self ||
 	typeof window !== 'undefined' && window ||
-	this
+	this.content
 );
 
 

@@ -10,7 +10,7 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
-import FileSaver from 'utils/file-saver';
+import saveAs from 'utils/file-saver';
 import { TwitterPicker } from 'react-color';
 import './sketchpad.css';
 
@@ -166,7 +166,7 @@ class Sketchpad extends Component {
 		this.ctx.fillStyle = 'white';
 		this.ctx.fillRect( 0, 0, this.canvas.width, this.canvas.height );
 		this.canvas.toBlob( function onBlob( blob ) {
-			FileSaver.saveAs( blob, name );
+			saveAs( blob, name );
 		});
 	}
 

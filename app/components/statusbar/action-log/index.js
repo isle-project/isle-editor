@@ -9,7 +9,7 @@ import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import ToggleButtonGroup from 'react-bootstrap/lib/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/lib/ToggleButton';
 import RangePicker from 'components/range-picker';
-import FileSaver from 'utils/file-saver';
+import saveAs from 'utils/file-saver';
 import stringify from 'csv-stringify';
 import moment from 'moment';
 import logger from 'debug';
@@ -151,7 +151,7 @@ class ActionLog extends Component {
 				type: 'application/json'
 			});
 			const name = `actions_${session.namespaceName}_${session.lessonName}.json`;
-			FileSaver.saveAs( blob, name );
+			saveAs( blob, name );
 		});
 	}
 
@@ -172,7 +172,7 @@ class ActionLog extends Component {
 					type: 'text/plain'
 				});
 				const name = `actions_${session.namespaceName}_${session.lessonName}.csv`;
-				FileSaver.saveAs( blob, name );
+				saveAs( blob, name );
 			});
 		});
 	}

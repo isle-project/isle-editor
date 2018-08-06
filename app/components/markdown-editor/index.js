@@ -9,7 +9,7 @@ import katex from 'markdown-it-katex';
 import markdownSub from 'markdown-it-sub';
 import markdownIns from 'markdown-it-ins';
 import markdownContainer from 'markdown-it-container';
-import FileSaver from 'utils/file-saver';
+import saveAs from 'utils/file-saver';
 import logger from 'debug';
 import replace from '@stdlib/string/replace';
 import hasOwnProp from '@stdlib/assert/has-own-property';
@@ -904,7 +904,7 @@ class MarkdownEditor extends Component {
 			type: 'text/html'
 		});
 		this.toggleSaveModal( null, () => {
-			FileSaver.saveAs( blob, title+'.md' );
+			saveAs( blob, title+'.md' );
 		});
 	}
 
@@ -917,7 +917,7 @@ class MarkdownEditor extends Component {
 			type: 'text/html'
 		});
 		this.toggleSaveModal( null, () => {
-			FileSaver.saveAs( blob, title+'.html' );
+			saveAs( blob, title+'.html' );
 		});
 	}
 

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import { VictoryChart } from 'victory';
-import FileSaver from 'utils/file-saver';
+import saveAs from 'utils/file-saver';
 import { svgString2Image, getSVGString } from 'utils/svg';
 
 
@@ -26,7 +26,7 @@ class VictoryWrapper extends Component {
 			name = 'plot.png';
 		}
 		function save( dataBlob, filesize ) {
-			FileSaver.saveAs( dataBlob, name );
+			saveAs( dataBlob, name );
 		}
 	}
 
