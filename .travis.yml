@@ -27,7 +27,6 @@ before_script:
 script:
 - npm run lint
 - npm run test
-- travis_wait npm run build
 
 after_script:
 - npm run coverage
