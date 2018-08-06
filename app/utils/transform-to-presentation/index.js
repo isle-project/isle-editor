@@ -45,6 +45,20 @@ function transformToPresentation( code, preamble ) {
 	pres = pres.replace( RE_TABLE_ROW, '<TableRow$1>$2</TableRow>' );
 	pres = pres.replace( RE_TABLE_HEADER_ITEM, '<TableHeaderItem$1>$2</TableHeaderItem>' );
 	pres = pres.replace( RE_TABLE_ITEM, '<TableItem$1>$2</TableItem>' );
+
+	// Add opening <Deck> tag in front of first slide:
+	pres = pres.replace( '<Slide>', `<Deck
+		globalStyles={false}
+		controls={true}
+		progress="${progress}"
+		transition={[]}
+		theme={SPECTACLE_THEME}
+	><Slide>` );
+
+	// Append closing </Deck> after last slide:
+	const lastPos = pres.lastIndexOf( '</Slide>' );
+	const replacement = '</Slide></Deck>';
+	pres = pres.substring( 0, lastPos ) + replacement + pres.substring( lastPos+'</Slide>'.length );
 	return `<div>
 		<KeyControls actions={{
 			'ArrowUp': function() {
@@ -60,15 +74,7 @@ function transformToPresentation( code, preamble ) {
 				document.dispatchEvent( e );
 			}
 		}}/>
-		<Deck
-			globalStyles={false}
-			controls={true}
-			progress="${progress}"
-			transition={[]}
-			theme={SPECTACLE_THEME}
-		>
-			${pres}
-		</Deck>
+		${pres}
 	</div>`;
 }
 
