@@ -9,6 +9,12 @@ import VoiceControl from 'components/voice-control';
 import VOICE_COMMANDS from './voice_commands.json';
 
 
+// VARIABLES //
+
+const OMITTED_PROPS = [ 'center', 'containerWidth', 'containerHeight',
+'updateDimensions', 'voiceID' ];
+
+
 // FUNCTIONS //
 
 function calculateMargin( containerWidth, targetWidth ) {
@@ -90,7 +96,7 @@ class Video extends Component {
 			style.marginLeft = calculateMargin( props.containerWidth, props.width );
 			style.marginRight = calculateMargin( props.containerWidth, props.width );
 		}
-		props = omit( props, 'center' );
+		props = omit( props, OMITTED_PROPS );
 		return (
 			<div
 				style={style}
