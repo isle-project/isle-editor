@@ -3,42 +3,6 @@
 	font-weight: 600;
 }
 
-.select-field-options {
-	background: rgba(186, 204, 234, 0.3);
-	box-shadow: none;
-	cursor: pointer;
-}
-
 .select-field:hover {
 	box-shadow: 0 0 4px rgb(60,60,60);
-}
-
-.Select-option {
-	box-sizing: border-box;
-	background-color: #fff;
-	color: #666666;
-	cursor: pointer;
-	display: block;
-	padding: 8px 10px;
-}
-
-.Select-option.is-focused {
-	background: rgba(204,88,0, 0.16);
-	color: #333;
-}
-
-.Select-option.is-selected {
-	background-color: #f5faff;
-	/* Fallback color for IE 8 */
-	background-color: rgba(0, 126, 255, 0.04);
-	color: #333;
-}
-
-.Select-value {
-	background: rgba(186, 204, 234, 0.3);
-}
-
-.Select.is-disabled .Select-value {
-	background: none;
-	color: #aaa;
 }

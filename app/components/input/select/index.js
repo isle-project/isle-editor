@@ -11,13 +11,51 @@ import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import Input from 'components/input/base';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
 import './select.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle-editor' );
+const customStyles = {
+	control: ( base, state ) => {
+		if ( state.isDisabled ) {
+			return {
+				...base,
+				background: 'none',
+				color: '#aaa',
+				opacity: 0.5
+			};
+		}
+		return {
+			...base,
+			background: 'rgba(186, 204, 234, 0.3)',
+			boxShadow: 'none',
+			cursor: 'pointer'
+		};
+	},
+	option: ( base, state ) => {
+		let backgroundColor = '#fff';
+		let color = '#666666';
+		if ( state.isFocused ) {
+			backgroundColor = 'rgba(204,88,0, 0.16)';
+			color = '#333';
+		}
+		else if ( state.isSelected ) {
+			backgroundColor = '#f5faff';
+			color = '#333';
+		}
+		return {
+			...base,
+			boxSizing: 'border-box',
+			backgroundColor: backgroundColor,
+			color: color,
+			cursor: 'pointer',
+			display: 'block',
+			padding: '8px 10px'
+		};
+	}
+};
 
 
 // MAIN //
@@ -32,7 +70,7 @@ class SelectInput extends Input {
 		super( props );
 
 		this.options = this.props.options.map( e => {
-			return { 'label': e, 'value': e, 'className': 'select-field-options' };
+			return { 'label': e, 'value': e };
 		});
 		const { defaultValue } = props;
 		let value = null;
@@ -97,7 +135,7 @@ class SelectInput extends Input {
 		}
 		if ( nextProps.options !== this.props.options ) {
 			this.options = nextProps.options.map( e => {
-				return { 'label': e, 'value': e, 'className': 'select-field-options' };
+				return { 'label': e, 'value': e };
 			});
 		}
 		if ( !isEmptyObject( newState ) ) {
@@ -109,12 +147,18 @@ class SelectInput extends Input {
 	* React component render method.
 	*/
 	render() {
-		let style = {};
+		let style;
 		if ( this.props.inline ) {
 			style = {
-				width: 'auto',
-				display: 'inline',
-				fontWeight: 600
+				width: '180px',
+				display: 'inline-block',
+				fontWeight: 600,
+				...this.props.style
+			};
+		} else {
+			style = {
+				fontWeight: 600,
+				...this.props.style
 			};
 		}
 		let clearable = this.props.multi ? true : false;
@@ -122,8 +166,8 @@ class SelectInput extends Input {
 			clearable = this.props.clearable;
 		}
 		return (
-			<Form style={{ ...this.props.style }} >
-				<FormGroup controlId="formControlsSelect">
+			<Form style={{ ...style }} >
+				<FormGroup controlId="form-controls-select">
 					{ this.props.legend ?
 						<ControlLabel>{this.props.legend}</ControlLabel> :
 						null
@@ -135,10 +179,10 @@ class SelectInput extends Input {
 						options={this.options}
 						onChange={this.handleChange}
 						placeholder={this.props.placeholder}
-						multi={this.props.multi}
-						style={style}
-						clearable={clearable}
-						disabled={this.props.disabled}
+						isMulti={this.props.multi}
+						styles={customStyles}
+						isClearable={clearable}
+						isDisabled={this.props.disabled}
 					/>
 				</FormGroup>
 			</Form>
