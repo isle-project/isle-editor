@@ -1,0 +1,10 @@
+[
+	{
+		"command": "nextSlide",
+		"trigger": [ "next" ]
+	},
+	{
+		"command": "previousSlide",
+		"trigger": [ "previous" ]
+	}
+]

@@ -4,20 +4,7 @@ import React, { Component, Fragment } from 'react';
 import { Deck } from 'spectacle';
 import KeyControls from 'components/key-controls';
 import VoiceControl from 'components/voice-control';
-
-
-// VARIABLES //
-
-const VOICE_COMMANDS = [
-	{
-		command: 'nextSlide',
-		trigger: [ 'next' ]
-	},
-	{
-		command: 'previousSlide',
-		trigger: [ 'previous' ]
-	}
-];
+import VOICE_COMMANDS from './voice_commands.json';
 
 
 // MAIN //
