@@ -1,7 +1,7 @@
 [
 	{
 		"command": "startPlayer",
-		"trigger": "start",
+		"trigger": [ "start", "begin", "continue" ],
 		"description": "Start player"
 	},
 	{
