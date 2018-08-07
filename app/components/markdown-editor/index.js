@@ -30,6 +30,7 @@ import SimpleMDE from './simplemde.js';
 import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
 import SubmitModal from './submit_modal.js';
+import ResetModal from './reset_modal.js';
 import TableSelect from './table_select.js';
 import ColumnSelect from './column_select.js';
 import Guides from './guides';
@@ -59,6 +60,11 @@ md.use( markdownContainer, 'center' );
 md.use( markdownIns );
 
 pdfMake.vfs = {};
+
+const DEFAULT_VALUE = repeat( '\n', 15 );
+
+
+// FUNCTIONS //
 
 const createHTML = ( title, body, fontSize ) => `<!doctype html>
 <html lang=en>
@@ -173,9 +179,6 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 	</body>
 </html>`;
 
-
-// FUNCTIONS //
-
 function replacerHTML( str, match ) {
 	var ids = extractTitles( match );
 	debug(' The object of the ids in replacerHTML is ' + JSON.stringify(ids) );
@@ -257,6 +260,7 @@ class MarkdownEditor extends Component {
 			hash: hash,
 			showSaveModal: false,
 			showSubmitModal: false,
+			showResetModal: false,
 			defaultValue: props.defaultValue,
 			showTableSelect: false,
 			showColumnSelect: false,
@@ -486,6 +490,14 @@ class MarkdownEditor extends Component {
 				action: () => {
 					this.toggleGuides();
 				}
+			},
+			'reset': {
+				name: 'reset',
+				action: () => {
+					this.toggleResetModal();
+				},
+				className: 'fa fa-eraser',
+				title: 'Reset'
 			}
 		};
 		this.loadFonts();
@@ -767,10 +779,13 @@ class MarkdownEditor extends Component {
 		if ( this.props.voiceControl && !contains( toolbarConfig, 'voice' ) ) {
 			toolbarConfig.push( 'voice' );
 		}
-		// Handle case of adding in figure insert
+		// Handle case of adding in figure insert:
 		if ( contains( toolbarConfig, 'figure_insert' ) ) {
 			toolbarConfig.push( '|' );
-			toolbarConfig.push(' figure_insert' );
+			toolbarConfig.push( 'figure_insert' );
+		}
+		if ( this.props.defaultValue !== DEFAULT_VALUE ) {
+			toolbarConfig.push( 'reset' );
 		}
 		for ( let i = 0; i < toolbarConfig.length; i++ ) {
 			tbOpt = toolbarConfig[ i ];
@@ -878,6 +893,12 @@ class MarkdownEditor extends Component {
 		}, clbk );
 	}
 
+	toggleResetModal = ( event, clbk = noop ) => {
+		this.setState({
+			showResetModal: !this.state.showResetModal
+		}, clbk );
+	}
+
 	toggleTableSelect = () => {
 		this.setState({
 			showTableSelect: !this.state.showTableSelect
@@ -893,6 +914,18 @@ class MarkdownEditor extends Component {
 	toggleGuides = () => {
 		this.setState({
 			showGuides: !this.state.showGuides
+		});
+	}
+
+	resetEditor = () => {
+		localStorage.removeItem( this.props.id );
+		this.simplemde.codemirror.execCommand( 'selectAll' );
+		this.simplemde.codemirror.replaceSelection( this.props.defaultValue );
+		this.context.session.addNotification({
+			title: 'Reset',
+			message: 'Your report has been successfully deleted and the editor reset to its default value',
+			level: 'success',
+			position: 'tr'
 		});
 	}
 
@@ -1049,6 +1082,11 @@ class MarkdownEditor extends Component {
 					onHide={this.toggleSubmitModal}
 					onSubmit={this.submitReport}
 				/>
+				<ResetModal
+					show={this.state.showResetModal}
+					onHide={this.toggleResetModal}
+					onSubmit={this.resetEditor}
+				/>
 				<TableSelect
 					show={this.state.showTableSelect}
 					onHide={()=>{
@@ -1110,7 +1148,7 @@ class MarkdownEditor extends Component {
 // DEFAULT PROPERTIES //
 
 MarkdownEditor.defaultProps = {
-	defaultValue: repeat( '\n', 15 ),
+	defaultValue: DEFAULT_VALUE,
 	options: {},
 	toolbarConfig: [
 		'bold', 'italic', 'underline', 'font_size',
