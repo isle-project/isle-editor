@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import Pressure from 'pressure';
 import Panel from 'react-bootstrap/lib/Panel';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
@@ -20,6 +21,7 @@ import './sketchpad.css';
 // VARIABLES //
 
 const debug = logger( 'isle-editor:sketchpad' );
+const UNDO_LINES_NO = 5;
 
 
 // FUNCTIONS //
@@ -35,13 +37,17 @@ class Sketchpad extends Component {
 	constructor( props ) {
 		super( props );
 
+		this.force = 1.0;
+
 		this.state = {
 			brushColor: props.brushColor,
 			brushSize: props.brushSize,
 			showColorPicker: false,
 			recording: false,
 			finishedRecording: false,
-			lines: []
+			lines: [],
+			recordingEndPos: 0,
+			nUndos: 0
 		};
 		this.isMouseDown = false;
 	}
@@ -53,7 +59,8 @@ class Sketchpad extends Component {
 			promise.then( ( data ) => {
 				if ( isArray( data ) ) {
 					this.setState({
-						lines: data
+						lines: data,
+						finishedRecording: true
 					});
 				}
 			})
@@ -61,6 +68,12 @@ class Sketchpad extends Component {
 				debug( err );
 			});
 		}
+		Pressure.set( '.sketchpad-canvas', {
+			change: ( force, event ) => {
+				debug( 'changed pen pressue: '+force );
+				this.force = force;
+			}
+		});
 	}
 
 	componentWillUnmount() {
@@ -70,6 +83,9 @@ class Sketchpad extends Component {
 	}
 
 	redraw = () => {
+		this.setState({
+			playing: true
+		});
 		if ( this.ctx ) {
 			this.ctx.clearRect(0, 0, this.props.canvasWidth, this.props.canvasHeight);
 		}
@@ -79,9 +95,15 @@ class Sketchpad extends Component {
 		let iter = () => {
 			this.drawLine( lines[ idx ] );
 			idx += 1;
-			window.setTimeout( iter, lines[ idx ].time - lines[ idx-1 ].time );
+			if ( idx < lines.length ) {
+				window.setTimeout( iter, lines[ idx ].time - lines[ idx-1 ].time );
+			} else {
+				this.setState({
+					playing: false
+				});
+			}
 		};
-		window.setTimeout( iter, lines[ 0 ].time );
+		window.setTimeout( iter, 0.0 );
 	}
 
 	mousePosition = ( evt ) => {
@@ -106,17 +128,65 @@ class Sketchpad extends Component {
 		if ( this.ctx ) {
 			this.ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
 		}
+		const lines = this.state.lines.slice( 0, this.state.recordingEndPos );
+		this.setState({
+			nUndos: 0,
+			lines
+		});
+	}
+
+	delete = () => {
+		if ( this.ctx ) {
+			this.ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
+		}
 		const session = this.context.session;
 		session.store.removeItem( this.props.id+'_lines', debug );
 		this.setState({
 			finishedRecording: false,
-			lines: []
+			lines: [],
+			nUndos: 0,
+			recordingEndPos: 0
 		});
+	}
+
+	undo = () => {
+		const lines = this.state.lines;
+		let nUndos = this.state.nUndos;
+		if ( lines.length - nUndos > this.state.recordingEndPos ) {
+			if ( this.ctx ) {
+				this.ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
+			}
+			nUndos += UNDO_LINES_NO;
+			const end = lines.length - nUndos;
+			debug( `Redrawing lines ${this.state.recordingEndPos} to ${end} from ${lines.length} lines` );
+			for ( let i = this.state.recordingEndPos; i < end; i++ ) {
+				this.drawLine( lines[ i ] );
+			}
+			this.setState({
+				nUndos
+			});
+		}
+	}
+
+	redo = () => {
+		const { lines, nUndos } = this.state;
+		if ( nUndos > 0 ) {
+			const idx = lines.length - nUndos;
+			debug( 'Line index: '+idx );
+			if ( idx >= 0 ) {
+				for ( let i = idx; i < idx + UNDO_LINES_NO; i++ ) {
+					this.drawLine( this.state.lines[ i ]);
+				}
+				this.setState({
+					nUndos: this.state.nUndos - UNDO_LINES_NO
+				});
+			}
+		}
 	}
 
 	drawLine = ( line ) => {
 		if ( this.ctx ) {
-			this.ctx.lineWidth = line.size;
+			this.ctx.lineWidth = line.size * (1.0+this.force) * 0.5;
 			this.ctx.lineCap = 'round';
 			this.ctx.strokeStyle = line.color;
 			this.ctx.beginPath();
@@ -126,19 +196,22 @@ class Sketchpad extends Component {
 		}
 	}
 
-	drawStart = ( evt ) => {
-		const { x, y } = this.mousePosition( evt );
+	drawStart = ( event ) => {
+		event.stopPropagation();
+		const { x, y } = this.mousePosition( event );
 		this.x = x;
 		this.y = y;
 		this.isMouseDown = true;
-		this.draw( evt );
+		this.draw( event );
 	}
 
-	drawEnd = () => {
+	drawEnd = ( event ) => {
+		event.stopPropagation();
 		this.isMouseDown = false;
 	}
 
 	draw = ( evt ) => {
+		evt.stopPropagation();
 		if ( this.isMouseDown && !this.props.disabled ) {
 			let { x, y } = this.mousePosition( evt );
 
@@ -200,15 +273,16 @@ class Sketchpad extends Component {
 		const recording = !this.state.recording;
 		let finishedRecording = false;
 		if ( recording ) {
-			this.clear();
+			this.delete();
 			this.time = 0;
 			this.interval = setInterval( () => {
-				this.time += 1000;
-			}, 1000 );
+				this.time += 500;
+			}, 500 );
 		} else {
 			if ( this.ctx ) {
 				this.ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
 			}
+			clearInterval( this.interval );
 			finishedRecording = true;
 			if ( this.props.id ) {
 				const session = this.context.session;
@@ -217,11 +291,16 @@ class Sketchpad extends Component {
 		}
 		this.setState({
 			recording,
-			finishedRecording
+			finishedRecording,
+			recordingEndPos: this.state.lines.length
 		});
 	}
 
 	render() {
+		const deleteIsDisabled = this.state.lines.length === 0 ||
+			!this.state.finishedRecording ||
+			this.state.recording ||
+			this.state.playing;
 		return (
 			<Panel style={{ width: this.props.canvasWidth, position: 'relative' }}>
 				<div className="panel-heading clearfix">
@@ -229,13 +308,16 @@ class Sketchpad extends Component {
 					<ButtonGroup bsSize="small" style={{ float: 'right' }} >
 						<Button onClick={this.record} >{ !this.state.recording ? 'Record' : 'Stop' }</Button>
 						<OverlayTrigger placement="top" overlay={createTooltip( 'Play recording' )}>
-							<Button disabled={!this.state.finishedRecording} onClick={this.redraw} >Play</Button>
+							<Button bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={this.redraw} >Play</Button>
 						</OverlayTrigger>
-						<OverlayTrigger placement="top" overlay={createTooltip( 'Clear recording' )}>
+						<OverlayTrigger placement="top" overlay={createTooltip( 'Delete recording' )}>
 							<Button
-								disabled={this.state.lines.length === 0 || this.state.recording}
-								onClick={this.clear}
-							>Clear</Button>
+								disabled={deleteIsDisabled}
+								onClick={this.delete}
+							>Delete</Button>
+						</OverlayTrigger>
+						<OverlayTrigger placement="top" overlay={createTooltip( 'Clear canvas' )}>
+							<Button onClick={this.clear} style={{ marginLeft: '12px' }} >Clear</Button>
 						</OverlayTrigger>
 						<OverlayTrigger placement="top" overlay={createTooltip( 'Change brush color' )}>
 							<Button onClick={this.toggleColorPicker} style={{ background: this.state.brushColor, color: 'white', marginLeft: '12px' }} >Color</Button>
@@ -254,6 +336,16 @@ class Sketchpad extends Component {
 								defaultValue={this.state.brushSize}
 							/>
 						</InputGroup>
+						<OverlayTrigger placement="top" overlay={createTooltip( 'Undo' )}>
+							<Button style={{ marginLeft: '12px' }} bsSize="xsmall" onClick={this.undo}>
+								<Glyphicon glyph="step-backward" />
+							</Button>
+						</OverlayTrigger>
+						<OverlayTrigger placement="top" overlay={createTooltip( 'Redo' )}>
+							<Button bsSize="xsmall" disabled={this.state.nUndos <= 0} onClick={this.redo}>
+								<Glyphicon glyph="step-forward" />
+							</Button>
+						</OverlayTrigger>
 						<OverlayTrigger placement="top" overlay={createTooltip( 'Save drawing' )}>
 							<Button style={{ marginLeft: '12px' }} bsSize="xsmall" onClick={this.saveToPNG}>
 								<Glyphicon glyph="floppy-save" />
@@ -269,6 +361,7 @@ class Sketchpad extends Component {
 					/>
 				</div>
 				<canvas
+					className="sketchpad-canvas"
 					width={this.props.canvasWidth}
 					height={this.props.canvasHeight}
 					style={this.props.style}
@@ -311,8 +404,8 @@ Sketchpad.defaultProps = {
 	title: 'Canvas',
 	brushSize: 6,
 	brushColor: '#444444',
-	canvasWidth: 800,
-	canvasHeight: 400,
+	canvasWidth: 900,
+	canvasHeight: 500,
 	disabled: false,
 	style: {},
 	onChange() {}
