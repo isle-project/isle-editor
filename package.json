@@ -201,6 +201,7 @@
     "normalize.css": "^8.0.0",
     "pdfmake-lite": "^0.1.36",
     "plotly.js": "^1.38.1",
+    "pressure": "^2.1.2",
     "profanities": "^2.5.0",
     "prop-types": "^15.5.10",
     "randomstring": "^1.1.5",
