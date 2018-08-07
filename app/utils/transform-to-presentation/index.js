@@ -60,20 +60,6 @@ function transformToPresentation( code, preamble ) {
 	const replacement = '</Slide></Deck>';
 	pres = pres.substring( 0, lastPos ) + replacement + pres.substring( lastPos+'</Slide>'.length );
 	return `<div>
-		<KeyControls actions={{
-			'ArrowUp': function() {
-				const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowRight', 'code': 'ArrowRight' });
-				delete e.keyCode;
-				Object.defineProperty( e, 'keyCode', { 'value' : 39 });
-				document.dispatchEvent( e );
-			},
-			'ArrowDown': function() {
-				const e = new KeyboardEvent( 'keydown', { 'bubbles': true, 'key': 'ArrowLeft', 'code': 'ArrowLeft' });
-				delete e.keyCode;
-				Object.defineProperty( e, 'keyCode', { 'value' : 37 });
-				document.dispatchEvent( e );
-			}
-		}}/>
 		${pres}
 	</div>`;
 }

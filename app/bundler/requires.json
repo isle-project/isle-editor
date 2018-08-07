@@ -90,7 +90,7 @@
 	"Appear": "const Appear = require( 'spectacle' ).Appear",
 	"BlockQuote": "const BlockQuote = require( 'spectacle' ).BlockQuote",
 	"Cite": "const Cite = require( 'spectacle' ).Cite",
-	"Deck": "const Deck = require( 'spectacle' ).Deck",
+	"Deck": "const Deck = require( \"components/spectacle/deck\" );",
 	"Fill": "const Fill = require( 'spectacle' ).Fill",
 	"Fit": "const Fit = require( 'spectacle' ).Fit",
 	"Heading": "const Heading = require( 'spectacle' ).Heading",

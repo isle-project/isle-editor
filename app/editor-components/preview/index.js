@@ -43,8 +43,9 @@ import SPECTACLE_THEME from 'components/spectacle/theme.json';
 
 import { Bar, VictoryAnimation, VictoryArea, VictoryBar, VictoryBrushContainer, VictoryChart, VictoryContainer, VictoryCursorContainer, VictoryGroup, VictoryAxis, VictoryErrorBar, VictoryLabel, VictoryLegend, VictoryLine, VictoryPie, VictoryScatter, VictoryStack, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer, VictoryZoomContainer } from 'victory';
 import VictoryWrapper from 'components/victory-wrapper';
-import { Deck, Heading, Image, ListItem, List, Table, TableRow, TableHeaderItem, TableItem, TableBody, TableHeader, Text as SText } from 'spectacle';
+import { Heading, Image, ListItem, List, Table, TableRow, TableHeaderItem, TableItem, TableBody, TableHeader, Text as SText } from 'spectacle';
 import Slide from 'components/spectacle/slide';
+import Deck from 'components/spectacle/deck';
 
 
 // VARIABLES //
