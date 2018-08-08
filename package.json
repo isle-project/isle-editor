@@ -199,6 +199,7 @@
     "moment": "2.22.2",
     "node-libs-browser": "^2.0.0",
     "normalize.css": "^8.0.0",
+    "pdfjs-dist": "^2.0.489",
     "pdfmake-lite": "^0.1.36",
     "plotly.js": "^1.38.1",
     "pressure": "^2.1.2",
@@ -241,8 +242,8 @@
     "semver": "^5.5.0",
     "socket.io-client": "^2.1.0",
     "source-map-support": "^0.5.4",
-    "spectacle": "4.4.1",
-    "style-loader": "^0.21.0",
+    "spectacle": "5.0.0",
+    "style-loader": "^0.22.0",
     "svg-react-loader": "^0.4.5",
     "turndown": "^4.0.2",
     "turndown-plugin-gfm": "^1.0.2",
@@ -251,7 +252,7 @@
     "uniq": "^1.0.1",
     "utf-8-validate": "^5.0.1",
     "venn.js": "0.2.20",
-    "victory": "30.1.0",
+    "victory": "30.2.0",
     "webpack": "4.16.4"
   },
   "devEngines": {
