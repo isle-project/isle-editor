@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import pdfjs from 'pdfjs-dist';
+import pdfMake from 'pdfmake-lite/build/pdfmake.min.js';
 import logger from 'debug';
 import Pressure from 'pressure';
 import Panel from 'react-bootstrap/lib/Panel';
@@ -13,6 +15,7 @@ import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import isArray from '@stdlib/assert/is-array';
+import noop from '@stdlib/utils/noop';
 import saveAs from 'utils/file-saver';
 import { TwitterPicker } from 'react-color';
 import './sketchpad.css';
@@ -22,6 +25,7 @@ import './sketchpad.css';
 
 const debug = logger( 'isle-editor:sketchpad' );
 const UNDO_LINES_NO = 5;
+pdfjs.disableWorker = true;
 
 
 // FUNCTIONS //
@@ -29,6 +33,13 @@ const UNDO_LINES_NO = 5;
 const createTooltip = ( str ) => {
 	return <Tooltip id="tooltip">{str}</Tooltip>;
 };
+
+const TooltipButton = ({ tooltip, onClick, glyph, label }) => ( <OverlayTrigger placement="top" overlay={createTooltip( tooltip )}>
+<Button bsSize="xsmall" onClick={onClick}>
+	{ glyph ? <Glyphicon glyph={glyph} /> : null }
+	{label}
+</Button>
+</OverlayTrigger> );
 
 
 // MAIN //
@@ -38,16 +49,21 @@ class Sketchpad extends Component {
 		super( props );
 
 		this.force = 1.0;
+		this.lines = [ [] ];
+		this.backgrounds = [ null ];
+		this.canvas = [];
+		this.ctx = [];
 
 		this.state = {
 			brushColor: props.brushColor,
 			brushSize: props.brushSize,
 			showColorPicker: false,
+			currentPage: 0,
 			recording: false,
 			finishedRecording: false,
-			lines: [],
 			recordingEndPos: 0,
-			nUndos: 0
+			nUndos: 0,
+			noPages: 1
 		};
 		this.isMouseDown = false;
 	}
@@ -58,8 +74,8 @@ class Sketchpad extends Component {
 			const promise = session.store.getItem( this.props.id + '_lines' );
 			promise.then( ( data ) => {
 				if ( isArray( data ) ) {
+					this.lines = data;
 					this.setState({
-						lines: data,
 						finishedRecording: true
 					});
 				}
@@ -82,15 +98,41 @@ class Sketchpad extends Component {
 		}
 	}
 
+	renderBackground = ( pageNumber ) => {
+		console.log( this.backgrounds )
+		const page = this.backgrounds[ pageNumber ];
+		if ( page ) {
+			var scale = 1.5;
+			var viewport = page.getViewport( scale );
+			this.canvas[ pageNumber ].height = viewport.height;
+			this.canvas[ pageNumber ].width = viewport.width;
+
+			// Render PDF page into canvas context
+			var renderContext = {
+				canvasContext: this.ctx[ pageNumber ],
+				viewport: viewport
+			};
+			var renderTask = page.render( renderContext );
+			renderTask
+				.then( () => {
+					console.log('Page rendered');
+				})
+				.catch( err => {
+					console.log( err );
+				});
+		}
+	}
+
 	redraw = () => {
 		this.setState({
 			playing: true
 		});
-		if ( this.ctx ) {
-			this.ctx.clearRect(0, 0, this.props.canvasWidth, this.props.canvasHeight);
+		const ctx = this.ctx[ this.state.currentPage ];
+		if ( ctx ) {
+			ctx.clearRect(0, 0, this.props.canvasWidth, this.props.canvasHeight);
 		}
-		const { lines } = this.state;
-
+		this.renderBackground( this.state.currentPage );
+		const lines = this.lines[ this.state.currentPage ];
 		let idx = 0;
 		let iter = () => {
 			this.drawLine( lines[ idx ] );
@@ -107,7 +149,8 @@ class Sketchpad extends Component {
 	}
 
 	mousePosition = ( evt ) => {
-		const rect = this.canvas.getBoundingClientRect();
+		const canvas = this.canvas[ this.state.currentPage ];
+		const rect = canvas.getBoundingClientRect();
 		let clientX = evt.clientX;
 		let clientY = evt.clientY;
 
@@ -125,36 +168,41 @@ class Sketchpad extends Component {
 	}
 
 	clear = () => {
-		if ( this.ctx ) {
-			this.ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
+		const ctx = this.ctx[ this.state.currentPage ];
+		if ( ctx ) {
+			ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
 		}
-		const lines = this.state.lines.slice( 0, this.state.recordingEndPos );
+		this.lines = [ [] ];
+		this.backgrounds = [ null ];
 		this.setState({
 			nUndos: 0,
-			lines
+			currentPage: 0,
+			recordingEndPos: 0,
 		});
 	}
 
 	delete = () => {
-		if ( this.ctx ) {
-			this.ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
+		const ctx = this.ctx[ this.state.currentPage ];
+		if ( ctx ) {
+			ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
 		}
 		const session = this.context.session;
 		session.store.removeItem( this.props.id+'_lines', debug );
+		this.lines[ this.state.currentPage ] = [];
 		this.setState({
 			finishedRecording: false,
-			lines: [],
 			nUndos: 0,
 			recordingEndPos: 0
 		});
 	}
 
 	undo = () => {
-		const lines = this.state.lines;
+		const lines = this.lines[ this.state.currentPage ];
 		let nUndos = this.state.nUndos;
 		if ( lines.length - nUndos > this.state.recordingEndPos ) {
-			if ( this.ctx ) {
-				this.ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
+			const ctx = this.ctx[ this.state.currentPage ];
+			if ( ctx ) {
+				ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
 			}
 			nUndos += UNDO_LINES_NO;
 			const end = lines.length - nUndos;
@@ -169,13 +217,14 @@ class Sketchpad extends Component {
 	}
 
 	redo = () => {
-		const { lines, nUndos } = this.state;
+		const lines = this.lines[ this.state.currentPage ];
+		const nUndos = this.state.nUndos;
 		if ( nUndos > 0 ) {
 			const idx = lines.length - nUndos;
 			debug( 'Line index: '+idx );
 			if ( idx >= 0 ) {
 				for ( let i = idx; i < idx + UNDO_LINES_NO; i++ ) {
-					this.drawLine( this.state.lines[ i ]);
+					this.drawLine( lines[ i ]);
 				}
 				this.setState({
 					nUndos: this.state.nUndos - UNDO_LINES_NO
@@ -185,14 +234,15 @@ class Sketchpad extends Component {
 	}
 
 	drawLine = ( line ) => {
-		if ( this.ctx ) {
-			this.ctx.lineWidth = line.size * (1.0+this.force) * 0.5;
-			this.ctx.lineCap = 'round';
-			this.ctx.strokeStyle = line.color;
-			this.ctx.beginPath();
-			this.ctx.moveTo( line.startX, line.startY );
-			this.ctx.lineTo( line.endX, line.endY );
-			this.ctx.stroke();
+		const ctx = this.ctx[ this.state.currentPage ];
+		if ( ctx && line ) {
+			ctx.lineWidth = line.size * (1.0+this.force) * 0.5;
+			ctx.lineCap = 'round';
+			ctx.strokeStyle = line.color;
+			ctx.beginPath();
+			ctx.moveTo( line.startX, line.startY );
+			ctx.lineTo( line.endX, line.endY );
+			ctx.stroke();
 		}
 	}
 
@@ -228,17 +278,13 @@ class Sketchpad extends Component {
 				time: this.time
 			};
 			this.drawLine( line );
-			const lines = this.state.lines.slice();
+			const lines = this.lines[ this.state.currentPage ];
 			lines.push( line );
 			this.props.onChange( lines );
 
 			// Set to current coordinates:
 			this.x = x;
 			this.y = y;
-
-			this.setState({
-				lines
-			});
 		}
 	}
 
@@ -262,11 +308,116 @@ class Sketchpad extends Component {
 		} else {
 			name = 'drawing.png';
 		}
-		this.ctx.fillStyle = 'white';
-		this.ctx.fillRect( 0, 0, this.canvas.width, this.canvas.height );
-		this.canvas.toBlob( function onBlob( blob ) {
+		const current = this.state.currentPage;
+		const canvas = this.canvas[ current ];
+		if ( !this.backgrounds[ current ]) {
+			// Set white background if none present:
+			this.ctx[ current ].fillStyle = 'white';
+			this.ctx[ current ].fillRect( 0, 0, canvas.width, canvas.height );
+		}
+		canvas.toBlob( function onBlob( blob ) {
 			saveAs( blob, name );
 		});
+	}
+
+	saveAsPDF = () => {
+		const docDefinition = {
+			content: [],
+			pageSize: {
+				width: this.props.canvasWidth,
+				height: this.props.canvasHeight
+			}
+		};
+		console.log( this.canvas )
+		for ( let i = 0; i < this.state.noPages; i++ ) {
+			const data = this.canvas[ i ].toDataURL();
+			docDefinition.content.push({
+				image: data,
+				width: 500,
+			});
+		}
+		pdfMake.createPdf( docDefinition ).download( "Score_Details.pdf" );
+	}
+
+	insertPage = () => {
+		const idx = this.state.currentPage + 1;
+		this.lines.splice( idx, 0, []);
+		this.backgrounds.splice( idx, 0, null );
+		console.log( this.lines )
+		this.setState({
+			noPages: this.state.noPages + 1,
+			currentPage: idx
+		}, () => {
+			this.redraw();
+		});
+	}
+
+	nextPage = () => {
+		if ( this.state.currentPage < this.lines.length-1 ) {
+			const ctx = this.ctx[ this.state.currentPage ];
+			if ( ctx ) {
+				ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
+			}
+			this.setState({
+				currentPage: this.state.currentPage + 1
+			}, () => {
+				this.redraw();
+			});
+		}
+	}
+
+	previousPage = () => {
+		if ( this.state.currentPage > 0 ) {
+			const ctx = this.ctx[ this.state.currentPage ];
+			if ( ctx ) {
+				ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
+			}
+			this.setState({
+				currentPage: this.state.currentPage - 1
+			}, () => {
+				this.redraw();
+			});
+		}
+	}
+
+	loadPDF = () => {
+		const input = document.createElement( 'input' );
+		input.type = 'file';
+		input.accept = '.pdf';
+		input.addEventListener( 'change', this.handlePDFUpload, false );
+		input.click();
+	}
+
+	handlePDFUpload = ( evt ) => {
+		const files = evt.target.files;
+		const reader = new FileReader();
+		reader.onload = () => {
+			let pdfData = reader.result;
+			pdfData = new Uint8Array( pdfData );
+			var loadingTask = pdfjs.getDocument( pdfData );
+			loadingTask.then( ( pdf ) => {
+				console.log('PDF loaded');
+				const lines = new Array( pdf.numPages );
+				const promises = new Array( pdf.numPages );
+				this.setState({
+					noPages: pdf.numPages
+				}, () => {
+					for ( let i = 0; i < pdf.numPages; i++ ) {
+						lines[ i ] = [];
+						promises[ i ] = pdf.getPage( i + 1 );
+					}
+					Promise.all( promises ).then( values => {
+						console.log( 'Retrieved all pages...' );
+						this.backgrounds = values;
+						this.lines = lines;
+						this.redraw();
+					}).catch( error => debug( error ) );
+				});
+			}, function onError( err ) {
+				console.error( err );
+			});
+		};
+		reader.readAsArrayBuffer( files[ 0 ] );
 	}
 
 	record = () => {
@@ -279,32 +430,74 @@ class Sketchpad extends Component {
 				this.time += 500;
 			}, 500 );
 		} else {
-			if ( this.ctx ) {
-				this.ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
+			const ctx = this.ctx[ this.state.currentPage ];
+			if ( ctx ) {
+				ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
 			}
+			this.renderBackground( this.state.currentPage );
 			clearInterval( this.interval );
 			finishedRecording = true;
 			if ( this.props.id ) {
 				const session = this.context.session;
-				session.store.setItem( this.props.id+'_lines', this.state.lines, debug );
+				session.store.setItem( this.props.id+'_lines', this.lines, debug );
 			}
 		}
+		const recordingEndPos = this.lines[ this.state.currentPage ].length;
 		this.setState({
 			recording,
 			finishedRecording,
-			recordingEndPos: this.state.lines.length
+			recordingEndPos
 		});
 	}
 
 	render() {
-		const deleteIsDisabled = this.state.lines.length === 0 ||
+		const currentPage = this.state.currentPage;
+		const lines = this.lines[ currentPage ];
+		const deleteIsDisabled = lines.length === 0 ||
 			!this.state.finishedRecording ||
 			this.state.recording ||
 			this.state.playing;
+
+		const canvases = [];
+		for ( let i = 0; i < this.state.noPages; i++ ) {
+			canvases.push( <canvas
+				className="sketchpad-canvas"
+				width={this.props.canvasWidth}
+				height={this.props.canvasHeight}
+				style={{
+					visibility: i === this.state.currentPage ? 'visible' : 'hidden',
+					position: 'absolute',
+					...this.props.style
+				}}
+				ref={( canvas ) => {
+					if ( canvas ) {
+						this.canvas[ i ] = canvas;
+						this.ctx[ i ] = canvas.getContext( '2d' );
+					}
+				}}
+				onClick={noop}
+				onMouseDown={this.drawStart}
+				onMouseMove={this.draw}
+				onMouseOut={this.drawEnd}
+				onMouseUp={this.drawEnd}
+				onTouchCancel={this.drawEnd}
+				onTouchEnd={this.drawEnd}
+				onTouchMove={this.draw}
+				onTouchStart={this.drawStart}
+			/> );
+		}
+
 		return (
 			<Panel style={{ width: this.props.canvasWidth, position: 'relative' }}>
 				<div className="panel-heading clearfix">
 					<span className="sketch-header">{this.props.title}</span>
+					<ButtonGroup bsSize="small" className="sketch-pages" >
+						<Button disabled>Page: {currentPage+1}/{this.lines.length}</Button>
+						<TooltipButton tooltip="Go to previous page" onClick={this.previousPage} glyph="backward" />
+						<TooltipButton tooltip="Go to next page" onClick={this.nextPage} glyph="forward" />
+						<TooltipButton tooltip="Insert page after current one" onClick={this.insertPage} glyph="plus" />
+						<TooltipButton tooltip="Clear pages" onClick={this.clear} label="Clear" />
+					</ButtonGroup>
 					<ButtonGroup bsSize="small" style={{ float: 'right' }} >
 						<Button onClick={this.record} >{ !this.state.recording ? 'Record' : 'Stop' }</Button>
 						<OverlayTrigger placement="top" overlay={createTooltip( 'Play recording' )}>
@@ -315,9 +508,6 @@ class Sketchpad extends Component {
 								disabled={deleteIsDisabled}
 								onClick={this.delete}
 							>Delete</Button>
-						</OverlayTrigger>
-						<OverlayTrigger placement="top" overlay={createTooltip( 'Clear canvas' )}>
-							<Button onClick={this.clear} style={{ marginLeft: '12px' }} >Clear</Button>
 						</OverlayTrigger>
 						<OverlayTrigger placement="top" overlay={createTooltip( 'Change brush color' )}>
 							<Button onClick={this.toggleColorPicker} style={{ background: this.state.brushColor, color: 'white', marginLeft: '12px' }} >Color</Button>
@@ -346,41 +536,26 @@ class Sketchpad extends Component {
 								<Glyphicon glyph="step-forward" />
 							</Button>
 						</OverlayTrigger>
-						<OverlayTrigger placement="top" overlay={createTooltip( 'Save drawing' )}>
-							<Button style={{ marginLeft: '12px' }} bsSize="xsmall" onClick={this.saveToPNG}>
-								<Glyphicon glyph="floppy-save" />
+						<OverlayTrigger placement="top" overlay={createTooltip( 'Load PDF (clears current canvas)' )}>
+							<Button style={{ marginLeft: '12px' }} bsSize="xsmall" onClick={this.loadPDF}>
+								<Glyphicon glyph="file" />
 							</Button>
 						</OverlayTrigger>
+						<TooltipButton tooltip="Save current drawing (PNG)" onClick={this.saveToPNG} glyph="save" />
+						<TooltipButton tooltip="Save pages as PDF" onClick={this.saveAsPDF} glyph="floppy-save" />
 					</ButtonGroup>
 				</div>
-				<div style={{ display: this.state.showColorPicker ? 'initial' : 'none', top: '70px', right: '70px', position: 'absolute' }} >
+				<div style={{ display: this.state.showColorPicker ? 'initial' : 'none', top: '70px', right: '320px', position: 'absolute' }} >
 					<TwitterPicker
 						color={this.state.brushColor}
 						onChangeComplete={this.handleBrushColorChange}
 						triangle="top-right"
+						style={{ zIndex: 1000 }}
 					/>
 				</div>
-				<canvas
-					className="sketchpad-canvas"
-					width={this.props.canvasWidth}
-					height={this.props.canvasHeight}
-					style={this.props.style}
-					ref={( canvas ) => {
-						if ( canvas ) {
-							this.canvas = canvas;
-							this.ctx = canvas.getContext( '2d' );
-						}
-					}}
-					onClick={() => false}
-					onMouseDown={this.drawStart}
-					onMouseMove={this.draw}
-					onMouseOut={this.drawEnd}
-					onMouseUp={this.drawEnd}
-					onTouchCancel={this.drawEnd}
-					onTouchEnd={this.drawEnd}
-					onTouchMove={this.draw}
-					onTouchStart={this.drawStart}
-				/>
+				<div style={{ width: this.props.canvasWidth, height: this.props.canvasHeight, overflow: 'scroll', position: 'relative' }}>
+					{canvases}
+				</div>
 			</Panel>
 		);
 	}
@@ -404,8 +579,8 @@ Sketchpad.defaultProps = {
 	title: 'Canvas',
 	brushSize: 6,
 	brushColor: '#444444',
-	canvasWidth: 900,
-	canvasHeight: 500,
+	canvasWidth: 950,
+	canvasHeight: 550,
 	disabled: false,
 	style: {},
 	onChange() {}
