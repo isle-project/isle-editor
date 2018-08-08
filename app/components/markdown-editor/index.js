@@ -62,6 +62,7 @@ md.use( markdownIns );
 pdfMake.vfs = {};
 
 const DEFAULT_VALUE = repeat( '\n', 15 );
+const RE_MARKDOWN_NONLINK = /\[[^\]]*\](?=[^\[(:])/g;
 
 
 // FUNCTIONS //
@@ -957,13 +958,24 @@ class MarkdownEditor extends Component {
 	exportPDF = ( config ) => {
 		const title = document.title || 'provisoric';
 		let text = this.simplemde.value();
-		text = this.replacePlaceholders( text, true );
-		// replace all new line characters in a table
-		const ast = md.parse( text );
-		const doc = generatePDF( ast, config, this.state.fontSize );
-		this.toggleSaveModal( null, () => {
-			pdfMake.createPdf( doc ).download( title );
-		});
+		text = this.replacePlaceholders( text, true ); // replace all new line characters in tables for parsing to work
+
+		// Replace accidentally unescaped square brackets:
+		text = replace( text, RE_MARKDOWN_NONLINK, '\\[$1\\]' );
+		try {
+			const ast = md.parse( text );
+			const doc = generatePDF( ast, config, this.state.fontSize );
+			this.toggleSaveModal( null, () => {
+				pdfMake.createPdf( doc ).download( title );
+			});
+		} catch ( err ) {
+			this.context.session.addNotification({
+				title: 'Encountered an error while generating PDF',
+				message: `${err.message}. Please check the syntax of your Markdown content to make sure that it is correct.`,
+				level: 'error',
+				position: 'tr'
+			});
+		}
 	}
 
 	submitReport = () => {
