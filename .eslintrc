@@ -269,7 +269,7 @@
     "wrap-iife": [ 2, "inside" ],
     "wrap-regex": 0,
     "yoda": [ 2, "never", { "exceptRange": true } ],
-    "react/default-props-match-prop-types": 2,
+    "react/default-props-match-prop-types": [ 2, { "skipUndeclared": true } ],
     "react/no-danger": 2,
     "react/no-deprecated": 2,
     "react/no-did-mount-set-state": 1,
