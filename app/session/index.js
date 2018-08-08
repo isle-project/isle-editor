@@ -123,7 +123,7 @@ class Session {
 		this.startPingServer();
 
 		if ( !this.lessonID && !this.namespaceID ) {
-			// [1] Retrieve lesson information:
+			debug( '[1] Retrieve lesson information:' );
 			this.getLessonInfo();
 		}
 
@@ -411,10 +411,10 @@ class Session {
 			.then( json => {
 				userRights = json;
 				if ( userRights.owner && isEmptyArray( this.socketActions ) ) {
-					// [3a] Retrieve all user actions for owners:
+					debug( '[3a] Retrieve all user actions for owners:' )
 					this.getUserActions();
 				} else if ( !this.currentUserActions ) {
-					// [3b] Retrieve only own actions otherwise:
+					debug( '[3b] Retrieve only own actions otherwise:' );
 					this.getCurrentUserActions();
 				}
 			})
@@ -712,8 +712,10 @@ class Session {
 			})
 		})
 		.then( ( response ) => {
+			debug( '/get_user_actions response status: '+response.status );
 			if ( response.status === 200 ) {
 				response.json().then( json => {
+					debug ( `Received ${json.actions.length} actions...` );
 					this.socketActions = json.actions;
 					this.update( 'retrieved_user_actions', json.actions );
 				});
@@ -947,7 +949,7 @@ class Session {
 			.then( ( body ) => {
 				this.lessonID = body.lessonID;
 				this.namespaceID = body.namespaceID;
-				// [2] Retrieve user rights for said lesson and its namespace
+				debug( '[2] Retrieve user rights for said lesson and its namespace' );
 				this.getUserRights();
 			})
 			.catch( ( err ) => {
