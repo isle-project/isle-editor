@@ -990,12 +990,24 @@ class MarkdownEditor extends Component {
 		}
 		let text = this.simplemde.value();
 		text = this.replacePlaceholders( text, true );
+
+		// Replace accidentally unescaped square brackets:
+		text = replace( text, RE_MARKDOWN_NONLINK, '\\[$1\\]' );
+
 		let html = this.previewRender( text );
 		const title = document.title || 'provisoric';
 		html = createHTML( title, html, Number( this.state.fontSize ) );
 		const ast = md.parse( text );
+
 		// Create the config so that the function can run:
-		const config = { 'pageSize': 'LETTER', 'pageOrientation': 'portrait' };
+		const config = {
+			// LETTER size:
+			'pageSize': {
+				"width": 8.5 * 72,
+				"height": 11 * 72
+			},
+			'pageOrientation': 'portrait'
+		};
 		const doc = generatePDF( ast, config, this.state.fontSize );
 		const pdfDocGenerator = pdfMake.createPdf( doc );
 		pdfDocGenerator.getBase64( ( pdf ) => {

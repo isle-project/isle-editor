@@ -483,10 +483,10 @@ function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 }
 
 function isPoster( config ) {
-	if ( !isObject( config.pageSize ) ) {
-		return false;
-	}
-	else if ( config.pageSize.width === 72 * 42 && config.pageSize.height === 72 * 30 ) {
+	if (
+		config.pageSize.width === 72 * 42 &&
+		config.pageSize.height === 72 * 30
+	) {
 		return true;
 	}
 	return false;
@@ -498,7 +498,7 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 	const isPosterBool = isPoster( config );
 	const doc = {
 		'content': [],
-		'styles': makeSTYLES(standardFontSize, isPosterBool),
+		'styles': makeSTYLES( standardFontSize, isPosterBool ),
 		'pageSize': config.pageSize,
 		'pageOrientation': config.pageOrientation,
 		'defaultStyle': {
