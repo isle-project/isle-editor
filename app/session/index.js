@@ -1126,6 +1126,7 @@ class Session {
 	* @returns {void}
 	*/
 	logToDatabase( type, data ) {
+		debug( `Logging ${type} to database...` );
 		if ( this.anonymous ) {
 			data.email = 'anonymous';
 			data.name = 'anonymous';
@@ -1141,12 +1142,19 @@ class Session {
 			data
 		};
 		if ( !this._offline ) {
+			const body = JSON.stringify( obj );
+			debug( 'Storing session element: '+body );
 			fetch( this.server+'/store_session_element', {
 				method: 'POST',
-				body: JSON.stringify({
-					stringified: obj
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: body
+			})
+				.then( ( res ) => {
+					debug( '/store_session_element status code: '+res.status );
 				})
-			}).catch( err => debug( 'Encountered an error: '+err.message ) );
+				.catch( err => debug( 'Encountered an error: '+err.message ) );
 		}
 	}
 
