@@ -9,6 +9,7 @@ import Pressure from 'pressure';
 import Panel from 'react-bootstrap/lib/Panel';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
+import Modal from 'react-bootstrap/lib/Modal';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
@@ -17,6 +18,7 @@ import Tooltip from 'react-bootstrap/lib/Tooltip';
 import isArray from '@stdlib/assert/is-array';
 import noop from '@stdlib/utils/noop';
 import saveAs from 'utils/file-saver';
+import base64toBlob from 'utils/base64-to-blob';
 import { TwitterPicker } from 'react-color';
 import './sketchpad.css';
 
@@ -63,7 +65,8 @@ class Sketchpad extends Component {
 			finishedRecording: false,
 			recordingEndPos: 0,
 			nUndos: 0,
-			noPages: 1
+			noPages: 1,
+			showResponseModal: false
 		};
 		this.isMouseDown = false;
 	}
@@ -99,7 +102,6 @@ class Sketchpad extends Component {
 	}
 
 	renderBackground = ( pageNumber ) => {
-		console.log( this.backgrounds )
 		const page = this.backgrounds[ pageNumber ];
 		if ( page ) {
 			var scale = 1.5;
@@ -177,7 +179,7 @@ class Sketchpad extends Component {
 		this.setState({
 			nUndos: 0,
 			currentPage: 0,
-			recordingEndPos: 0,
+			recordingEndPos: 0
 		});
 	}
 
@@ -301,6 +303,38 @@ class Sketchpad extends Component {
 		});
 	}
 
+	uploadSketches = () => {
+		const doc = this.preparePDF();
+		doc.getBase64( ( pdf ) => {
+			const pdfForm = new FormData();
+			const name = this.props.id ? this.props.id : 'sketches';
+			const filename = name + '.pdf';
+			const pdfBlob = base64toBlob( pdf, 'application/pdf' );
+			const pdfFile = new File([ pdfBlob ], filename, {
+				type: 'application/pdf'
+			});
+			pdfForm.append( 'file', pdfFile );
+			this.context.session.uploadFile( pdfForm, ( err, res ) => {
+				if ( err ) {
+					this.setState({
+						modalMessage: err.message,
+						showResponseModal: true
+					});
+				} else {
+					const server = this.context.session.server;
+					const filename = res.filename;
+					const link = server + '/' + filename;
+					this.setState({
+						modalMessage: <span>
+							The file has been uploaded successfully and can be accessed at the following address: <a href={link}>{link}</a>
+						</span>,
+						showResponseModal: true
+					});
+				}
+			});
+		});
+	}
+
 	saveToPNG = () => {
 		let name;
 		if ( this.props.id ) {
@@ -320,7 +354,7 @@ class Sketchpad extends Component {
 		});
 	}
 
-	saveAsPDF = () => {
+	preparePDF = () => {
 		const docDefinition = {
 			content: [],
 			pageSize: {
@@ -328,22 +362,26 @@ class Sketchpad extends Component {
 				height: this.props.canvasHeight
 			}
 		};
-		console.log( this.canvas )
 		for ( let i = 0; i < this.state.noPages; i++ ) {
 			const data = this.canvas[ i ].toDataURL();
 			docDefinition.content.push({
 				image: data,
-				width: 500,
+				width: 500
 			});
 		}
-		pdfMake.createPdf( docDefinition ).download( "Score_Details.pdf" );
+		return pdfMake.createPdf( docDefinition );
+	}
+
+	saveAsPDF = () => {
+		const doc = this.preparePDF();
+		const name = this.props.id ? this.props.id : 'sketches';
+		doc.download( name+'.pdf' );
 	}
 
 	insertPage = () => {
 		const idx = this.state.currentPage + 1;
 		this.lines.splice( idx, 0, []);
 		this.backgrounds.splice( idx, 0, null );
-		console.log( this.lines )
 		this.setState({
 			noPages: this.state.noPages + 1,
 			currentPage: idx
@@ -450,6 +488,28 @@ class Sketchpad extends Component {
 		});
 	}
 
+	closeResponseModal = () => {
+		this.setState({
+			showResponseModal: false
+		});
+	}
+
+	renderUploadModal() {
+		return (
+			<Modal show={this.state.showResponseModal} onHide={this.closeResponseModal}>
+				<Modal.Header closeButton>
+					<Modal.Title>Server Response</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					{this.state.modalMessage}
+				</Modal.Body>
+				<Modal.Footer>
+					<Button onClick={this.closeResponseModal}>Close</Button>
+				</Modal.Footer>
+			</Modal>
+		);
+	}
+
 	render() {
 		const currentPage = this.state.currentPage;
 		const lines = this.lines[ currentPage ];
@@ -526,36 +586,29 @@ class Sketchpad extends Component {
 								defaultValue={this.state.brushSize}
 							/>
 						</InputGroup>
-						<OverlayTrigger placement="top" overlay={createTooltip( 'Undo' )}>
-							<Button style={{ marginLeft: '12px' }} bsSize="xsmall" onClick={this.undo}>
-								<Glyphicon glyph="step-backward" />
-							</Button>
-						</OverlayTrigger>
+						<TooltipButton tooltip="Undo" onClick={this.undo} glyph="step-backward" />
 						<OverlayTrigger placement="top" overlay={createTooltip( 'Redo' )}>
 							<Button bsSize="xsmall" disabled={this.state.nUndos <= 0} onClick={this.redo}>
 								<Glyphicon glyph="step-forward" />
 							</Button>
 						</OverlayTrigger>
-						<OverlayTrigger placement="top" overlay={createTooltip( 'Load PDF (clears current canvas)' )}>
-							<Button style={{ marginLeft: '12px' }} bsSize="xsmall" onClick={this.loadPDF}>
-								<Glyphicon glyph="file" />
-							</Button>
-						</OverlayTrigger>
+						<TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} glyph="file" />
 						<TooltipButton tooltip="Save current drawing (PNG)" onClick={this.saveToPNG} glyph="save" />
 						<TooltipButton tooltip="Save pages as PDF" onClick={this.saveAsPDF} glyph="floppy-save" />
+						<TooltipButton tooltip="Upload to the server" onClick={this.uploadSketches} glyph="cloud-upload" />
 					</ButtonGroup>
 				</div>
-				<div style={{ display: this.state.showColorPicker ? 'initial' : 'none', top: '70px', right: '320px', position: 'absolute' }} >
+				<div style={{ display: this.state.showColorPicker ? 'initial' : 'none', top: '70px', right: '320px', position: 'absolute', zIndex: 9999 }} >
 					<TwitterPicker
 						color={this.state.brushColor}
 						onChangeComplete={this.handleBrushColorChange}
 						triangle="top-right"
-						style={{ zIndex: 1000 }}
 					/>
 				</div>
 				<div style={{ width: this.props.canvasWidth, height: this.props.canvasHeight, overflow: 'scroll', position: 'relative' }}>
 					{canvases}
 				</div>
+				{this.renderUploadModal()}
 			</Panel>
 		);
 	}
