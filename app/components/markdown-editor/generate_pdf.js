@@ -4,7 +4,6 @@ import logger from 'debug';
 import omit from '@stdlib/utils/omit';
 import contains from '@stdlib/assert/contains';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
-import isObject from '@stdlib/assert/is-object';
 import extractTitles from './extract_titles';
 
 

@@ -62,7 +62,7 @@ md.use( markdownIns );
 pdfMake.vfs = {};
 
 const DEFAULT_VALUE = repeat( '\n', 15 );
-const RE_MARKDOWN_NONLINK = /\[[^\]]*\](?=[^\[(:])/g;
+const RE_MARKDOWN_NONLINK = /\[[^\]]*\](?=[^[(:])/g;
 
 
 // FUNCTIONS //
@@ -1003,8 +1003,8 @@ class MarkdownEditor extends Component {
 		const config = {
 			// LETTER size:
 			'pageSize': {
-				"width": 8.5 * 72,
-				"height": 11 * 72
+				'width': 8.5 * 72.0,
+				'height': 11.0 * 72.0
 			},
 			'pageOrientation': 'portrait'
 		};

@@ -411,7 +411,7 @@ class Session {
 			.then( json => {
 				userRights = json;
 				if ( userRights.owner && isEmptyArray( this.socketActions ) ) {
-					debug( '[3a] Retrieve all user actions for owners:' )
+					debug( '[3a] Retrieve all user actions for owners:' );
 					this.getUserActions();
 				} else if ( !this.currentUserActions ) {
 					debug( '[3b] Retrieve only own actions otherwise:' );
@@ -715,7 +715,7 @@ class Session {
 			debug( '/get_user_actions response status: '+response.status );
 			if ( response.status === 200 ) {
 				response.json().then( json => {
-					debug ( `Received ${json.actions.length} actions...` );
+					debug( `Received ${json.actions.length} actions...` );
 					this.socketActions = json.actions;
 					this.update( 'retrieved_user_actions', json.actions );
 				});
