@@ -27,6 +27,11 @@ import './sketchpad.css';
 
 const debug = logger( 'isle-editor:sketchpad' );
 const UNDO_LINES_NO = 5;
+const COLORPICKER_COLORS = [
+	'#000000', '#FF6900', '#FCB900',
+	'#00D084', '#8ED1FC', '#0693E3',
+	'#ABB8C3', '#EB144C', '#9900EF'
+];
 pdfjs.disableWorker = true;
 
 
@@ -36,8 +41,8 @@ const createTooltip = ( str ) => {
 	return <Tooltip id="tooltip">{str}</Tooltip>;
 };
 
-const TooltipButton = ({ tooltip, onClick, glyph, label }) => ( <OverlayTrigger placement="top" overlay={createTooltip( tooltip )}>
-<Button bsSize="xsmall" onClick={onClick}>
+const TooltipButton = ({ tooltip, onClick, glyph, label, disabled }) => ( <OverlayTrigger placement="bottom" overlay={createTooltip( tooltip )}>
+<Button bsSize="xsmall" onClick={onClick} disabled={disabled} >
 	{ glyph ? <Glyphicon glyph={glyph} /> : null }
 	{label}
 </Button>
@@ -557,23 +562,18 @@ class Sketchpad extends Component {
 					<span className="sketch-header">{this.props.title}</span>
 					<ButtonGroup bsSize="small" className="sketch-pages" >
 						<Button disabled>Page: {currentPage+1}/{this.lines.length}</Button>
-						<TooltipButton tooltip="Go to previous page" onClick={this.previousPage} glyph="backward" />
-						<TooltipButton tooltip="Go to next page" onClick={this.nextPage} glyph="forward" />
-						<TooltipButton tooltip="Insert page after current one" onClick={this.insertPage} glyph="plus" />
+						<TooltipButton tooltip="Go to previous page" onClick={this.previousPage} glyph="backward" disabled={this.state.playing} />
+						<TooltipButton tooltip="Go to next page" onClick={this.nextPage} glyph="forward" disabled={this.state.playing} />
+						<TooltipButton tooltip="Insert page after current one" onClick={this.insertPage} glyph="plus" disabled={this.state.playing} />
 						<TooltipButton tooltip="Clear pages" onClick={this.clear} label="Clear" />
 					</ButtonGroup>
 					<ButtonGroup bsSize="small" style={{ float: 'right', marginTop: '3px' }} >
 						<Button onClick={this.record} >{ !this.state.recording ? 'Record' : 'Stop' }</Button>
-						<OverlayTrigger placement="top" overlay={createTooltip( 'Play recording' )}>
+						<OverlayTrigger placement="bottom" overlay={createTooltip( 'Play recording' )}>
 							<Button bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={this.redraw} >Play</Button>
 						</OverlayTrigger>
-						<OverlayTrigger placement="top" overlay={createTooltip( 'Delete recording' )}>
-							<Button
-								disabled={deleteIsDisabled}
-								onClick={this.delete}
-							>Delete</Button>
-						</OverlayTrigger>
-						<OverlayTrigger placement="top" overlay={createTooltip( 'Change brush color' )}>
+						<TooltipButton tooltip="Delete recording" onClick={this.delete} label="Delete" disabled={deleteIsDisabled} />
+						<OverlayTrigger placement="bottom" overlay={createTooltip( 'Change brush color' )}>
 							<Button onClick={this.toggleColorPicker} style={{ background: this.state.brushColor, color: 'white', marginLeft: '12px' }} >Color</Button>
 						</OverlayTrigger>
 						<InputGroup bsSize="small" className="sketch-input-group" >
@@ -591,11 +591,7 @@ class Sketchpad extends Component {
 							/>
 						</InputGroup>
 						<TooltipButton tooltip="Undo" onClick={this.undo} glyph="step-backward" />
-						<OverlayTrigger placement="top" overlay={createTooltip( 'Redo' )}>
-							<Button bsSize="xsmall" disabled={this.state.nUndos <= 0} onClick={this.redo}>
-								<Glyphicon glyph="step-forward" />
-							</Button>
-						</OverlayTrigger>
+						<Tooltip tooltip="Redo" disabled={this.state.nUndos <= 0} glyph="step-forward" onClick={this.redo} />
 						<TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} glyph="file" />
 						<TooltipButton tooltip="Save current drawing (PNG)" onClick={this.saveToPNG} glyph="save" />
 						<TooltipButton tooltip="Save pages as PDF" onClick={this.saveAsPDF} glyph="floppy-save" />
@@ -605,6 +601,7 @@ class Sketchpad extends Component {
 				<div style={{ display: this.state.showColorPicker ? 'initial' : 'none', top: '70px', right: '320px', position: 'absolute', zIndex: 9999 }} >
 					<TwitterPicker
 						color={this.state.brushColor}
+						colors={COLORPICKER_COLORS}
 						onChangeComplete={this.handleBrushColorChange}
 						triangle="top-right"
 					/>
@@ -636,8 +633,8 @@ Sketchpad.defaultProps = {
 	title: 'Canvas',
 	brushSize: 6,
 	brushColor: '#444444',
-	canvasWidth: 950,
-	canvasHeight: 550,
+	canvasWidth: 1200,
+	canvasHeight: 600,
 	disabled: false,
 	style: {},
 	onChange() {}
