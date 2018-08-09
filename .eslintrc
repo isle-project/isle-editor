@@ -269,7 +269,7 @@
     "wrap-iife": [ 2, "inside" ],
     "wrap-regex": 0,
     "yoda": [ 2, "never", { "exceptRange": true } ],
-    "react/default-props-match-prop-types": [ 2, { "skipUndeclared": true } ],
+    "react/default-props-match-prop-types": 2,
     "react/no-danger": 2,
     "react/no-deprecated": 2,
     "react/no-did-mount-set-state": 1,
@@ -284,8 +284,9 @@
     "react/prefer-es6-class": [ 2, "always" ],
     "react/prefer-stateless-function": 0,
     "react/prop-types": [ 2, {
-      "ignore": [ "children", "id" ]
-    } ],
+      "ignore": [ "children", "id" ],
+      "skipUndeclared": true
+    }],
     "react/require-default-props": 2,
     "react/require-render-return": 2,
     "react/sort-comp": 1,
