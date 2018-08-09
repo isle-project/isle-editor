@@ -130,8 +130,9 @@ class Sketchpad extends Component {
 			playing: true
 		});
 		const ctx = this.ctx[ this.state.currentPage ];
+		const canvas = this.canvas[ this.state.currentPage ];
 		if ( ctx ) {
-			ctx.clearRect(0, 0, this.props.canvasWidth, this.props.canvasHeight);
+			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
 		this.renderBackground( this.state.currentPage );
 		const lines = this.lines[ this.state.currentPage ];
@@ -170,23 +171,30 @@ class Sketchpad extends Component {
 	}
 
 	clear = () => {
-		const ctx = this.ctx[ this.state.currentPage ];
-		if ( ctx ) {
-			ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
+		for ( let i = 0; i < this.state.noPages; i++ ) {
+			const canvas = this.canvas[ i ];
+			const ctx = this.ctx[ i ];
+			if ( ctx ) {
+				ctx.clearRect( 0, 0, canvas.width, canvas.height );
+			}
+			this.canvas[ i ] = null;
+			this.ctx[ i ] = null;
 		}
 		this.lines = [ [] ];
 		this.backgrounds = [ null ];
 		this.setState({
 			nUndos: 0,
 			currentPage: 0,
-			recordingEndPos: 0
+			recordingEndPos: 0,
+			noPages: 1
 		});
 	}
 
 	delete = () => {
+		const canvas = this.canvas[ this.state.currentPage ];
 		const ctx = this.ctx[ this.state.currentPage ];
 		if ( ctx ) {
-			ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
+			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
 		const session = this.context.session;
 		session.store.removeItem( this.props.id+'_lines', debug );
@@ -340,7 +348,7 @@ class Sketchpad extends Component {
 		if ( this.props.id ) {
 			name = this.props.id+'.png';
 		} else {
-			name = 'drawing.png';
+			name = 'sketches.png';
 		}
 		const current = this.state.currentPage;
 		const canvas = this.canvas[ current ];
@@ -358,15 +366,16 @@ class Sketchpad extends Component {
 		const docDefinition = {
 			content: [],
 			pageSize: {
-				width: this.props.canvasWidth,
-				height: this.props.canvasHeight
-			}
+				width: this.canvas[ 0 ].width, // peek at first page and assume it's consistent over all pages
+				height: this.canvas[ 0 ].height
+			},
+			pageMargins: [ 0, 0, 0, 0 ]
 		};
 		for ( let i = 0; i < this.state.noPages; i++ ) {
 			const data = this.canvas[ i ].toDataURL();
 			docDefinition.content.push({
 				image: data,
-				width: 500
+				width: this.canvas[ i ].width
 			});
 		}
 		return pdfMake.createPdf( docDefinition );
@@ -392,10 +401,6 @@ class Sketchpad extends Component {
 
 	nextPage = () => {
 		if ( this.state.currentPage < this.lines.length-1 ) {
-			const ctx = this.ctx[ this.state.currentPage ];
-			if ( ctx ) {
-				ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
-			}
 			this.setState({
 				currentPage: this.state.currentPage + 1
 			}, () => {
@@ -406,10 +411,6 @@ class Sketchpad extends Component {
 
 	previousPage = () => {
 		if ( this.state.currentPage > 0 ) {
-			const ctx = this.ctx[ this.state.currentPage ];
-			if ( ctx ) {
-				ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
-			}
 			this.setState({
 				currentPage: this.state.currentPage - 1
 			}, () => {
@@ -434,7 +435,7 @@ class Sketchpad extends Component {
 			pdfData = new Uint8Array( pdfData );
 			var loadingTask = pdfjs.getDocument( pdfData );
 			loadingTask.then( ( pdf ) => {
-				console.log('PDF loaded');
+				debug( 'PDF loaded...' );
 				const lines = new Array( pdf.numPages );
 				const promises = new Array( pdf.numPages );
 				this.setState({
@@ -444,12 +445,14 @@ class Sketchpad extends Component {
 						lines[ i ] = [];
 						promises[ i ] = pdf.getPage( i + 1 );
 					}
-					Promise.all( promises ).then( values => {
-						console.log( 'Retrieved all pages...' );
-						this.backgrounds = values;
-						this.lines = lines;
-						this.redraw();
-					}).catch( error => debug( error ) );
+					Promise.all( promises )
+						.then( values => {
+							debug( 'Retrieved all pages...' );
+							this.backgrounds = values;
+							this.lines = lines;
+							this.redraw();
+						})
+						.catch( error => debug( error ) );
 				});
 			}, function onError( err ) {
 				console.error( err );
@@ -522,6 +525,7 @@ class Sketchpad extends Component {
 		for ( let i = 0; i < this.state.noPages; i++ ) {
 			canvases.push( <canvas
 				className="sketchpad-canvas"
+				key={`canvas-${i}`}
 				width={this.props.canvasWidth}
 				height={this.props.canvasHeight}
 				style={{
@@ -558,7 +562,7 @@ class Sketchpad extends Component {
 						<TooltipButton tooltip="Insert page after current one" onClick={this.insertPage} glyph="plus" />
 						<TooltipButton tooltip="Clear pages" onClick={this.clear} label="Clear" />
 					</ButtonGroup>
-					<ButtonGroup bsSize="small" style={{ float: 'right' }} >
+					<ButtonGroup bsSize="small" style={{ float: 'right', marginTop: '3px' }} >
 						<Button onClick={this.record} >{ !this.state.recording ? 'Record' : 'Stop' }</Button>
 						<OverlayTrigger placement="top" overlay={createTooltip( 'Play recording' )}>
 							<Button bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={this.redraw} >Play</Button>
