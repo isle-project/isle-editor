@@ -536,6 +536,7 @@ class Sketchpad extends Component {
 				style={{
 					visibility: i === this.state.currentPage ? 'visible' : 'hidden',
 					position: 'absolute',
+					left: '0px',
 					...this.props.style
 				}}
 				ref={( canvas ) => {
