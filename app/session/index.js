@@ -1251,11 +1251,12 @@ class Session {
 			if ( xhr.readyState === XMLHttpRequest.DONE ) {
 				let message;
 				let level;
+				let body;
 				let err;
 
 				err = null;
 				if ( xhr.status === 200 ) {
-					const body = JSON.parse( xhr.responseText );
+					body = JSON.parse( xhr.responseText );
 					message = body.message;
 					level = 'success';
 				} else {
@@ -1269,7 +1270,7 @@ class Session {
 					level,
 					position: 'tl'
 				});
-				return clbk( err );
+				return clbk( err, body );
 			}
 		};
 		xhr.send( formData );
