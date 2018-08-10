@@ -231,9 +231,11 @@ class Sketchpad extends Component {
 		let nUndos = this.state.nUndos;
 		if ( lines.length - nUndos > this.state.recordingEndPos ) {
 			const ctx = this.ctx[ this.state.currentPage ];
+			const canvas = this.canvas[ this.state.currentPage ];
 			if ( ctx ) {
-				ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
+				ctx.clearRect( 0, 0, canvas.width, canvas.height );
 			}
+			this.renderBackground( this.state.currentPage );
 			nUndos += UNDO_LINES_NO;
 			const end = lines.length - nUndos;
 			debug( `Redrawing lines ${this.state.recordingEndPos} to ${end} from ${lines.length} lines` );
