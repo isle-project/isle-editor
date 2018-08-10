@@ -1,10 +1,10 @@
 TODO
 ====
+
 For various to-do items related to the `ISLE` project.
 
-Summer
+Fall
 =====
-* Font sizes and families.
 ~~* Scaffolding for the labs. This would involve notes for the TAs about when to interject, what to teach, etc.~~
 * Instructor notes within the instructor panel. Start out with the skeleton for the lab and have them fill it in.
 * Dashboard: Have a repository with old TA notes
@@ -12,30 +12,25 @@ Summer
 * **Calculator parser**
 * Build mosiac plot
 * LaTeX Equation in the explorer for the pdf
-* Data transformation: generate a new column of transformed variables. Beef it up.
+* Data transformation: generate a new column of transformed variables. 
 * Minification and bundling times
-* Images did not show up on .pdf
 * Ability to select multiple smoothing values / change them in real-time (similarly, for histogram ability to choose binwidth)
-* Ability to set font sizes and font family for reports
+* Ability to set font family for reports
 * "Undo" button for plots (investigate Plotly's capabilities in this regard)
+* Include "Text to TeX" equation parser 
+* Add React component for toggling between Text source / intermediate TeX representation / rendered equation. 
+* Add fullscreen option to sketchpad component (or just generally full width of page?
+* Allow text annotations for sketchpad
+* Add option to display a line grid instead of a white page as sketchpad background
+* 
 
-Priotity
+Priority
 ====
-(To be done by summer 1 end)
 ~~1. Instructor Notes~~
     A. Changed props to take array of what is needed
         Still have VoiceControl as a prop because we dont have it working
-3. `.pdf` poster export
-    A. Change thte sizing of the pdf export
-        What happens if we make it like printing a paper?
-        http://pdfmake.org/#/gettingstarted
-        Page dimensions
-    B. Preamble for 
-4. Parser.
-5. Change icon of newline button and behavior such that clicking the button will work like "Enter" and insert the backslash at the end of the line
-6. Instructor view
-7. Restore the image side-by-side display
-
+2. Parser for Calculator.
+3. Instructor view
 
 General
 ====
@@ -64,4 +59,3 @@ LONG-TERM
 * Surveys
     - Handle ordered categories
     - Don't show invalid axis labels before answers are submitted
-* Add functionality to export Markdown reports as posters
