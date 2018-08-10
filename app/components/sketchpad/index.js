@@ -609,7 +609,7 @@ class Sketchpad extends Component {
 							/>
 						</InputGroup>
 						<TooltipButton tooltip="Undo" onClick={this.undo} glyph="step-backward" />
-						<Tooltip tooltip="Redo" disabled={this.state.nUndos <= 0} glyph="step-forward" onClick={this.redo} />
+						<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0} glyph="step-forward" onClick={this.redo} />
 						<TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} glyph="file" />
 						<TooltipButton tooltip="Save current drawing (PNG)" onClick={this.saveToPNG} glyph="save" />
 						<TooltipButton tooltip="Save pages as PDF" onClick={this.saveAsPDF} glyph="floppy-save" />
