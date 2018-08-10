@@ -131,9 +131,6 @@ class Sketchpad extends Component {
 	}
 
 	redraw = () => {
-		this.setState({
-			playing: true
-		});
 		const ctx = this.ctx[ this.state.currentPage ];
 		const canvas = this.canvas[ this.state.currentPage ];
 		if ( ctx ) {
@@ -141,19 +138,37 @@ class Sketchpad extends Component {
 		}
 		this.renderBackground( this.state.currentPage );
 		const lines = this.lines[ this.state.currentPage ];
-		let idx = 0;
-		let iter = () => {
-			this.drawLine( lines[ idx ] );
-			idx += 1;
-			if ( idx < lines.length ) {
-				window.setTimeout( iter, lines[ idx ].time - lines[ idx-1 ].time );
-			} else {
-				this.setState({
-					playing: false
-				});
-			}
-		};
-		window.setTimeout( iter, 0.0 );
+
+		this.setState({
+			playing: true
+		}, () => {
+			let idx = 0;
+			let iter = () => {
+				this.drawLine( lines[ idx ] );
+				idx += 1;
+				if ( idx < lines.length ) {
+					window.setTimeout( iter, lines[ idx ].time - lines[ idx-1 ].time );
+				} else {
+					this.setState({
+						playing: false
+					});
+				}
+			};
+			window.setTimeout( iter, 0.0 );
+		});
+	}
+
+	drawPage = ( idx ) => {
+		const ctx = this.ctx[ idx ];
+		const canvas = this.canvas[ idx ];
+		if ( ctx ) {
+			ctx.clearRect( 0, 0, canvas.width, canvas.height );
+		}
+		this.renderBackground( idx );
+		const lines = this.lines[ idx ];
+		for ( let i = 0; i < lines.length; i++ ) {
+			this.drawLine( lines[ i ] );
+		}
 	}
 
 	mousePosition = ( evt ) => {
@@ -455,7 +470,9 @@ class Sketchpad extends Component {
 							debug( 'Retrieved all pages...' );
 							this.backgrounds = values;
 							this.lines = lines;
-							this.redraw();
+							for ( let i = 0; i < pdf.numPages; i++ ) {
+								this.drawPage( i );
+							}
 						})
 						.catch( error => debug( error ) );
 				});
