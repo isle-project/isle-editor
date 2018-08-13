@@ -24,7 +24,7 @@ Fall
 * Add option to display a line grid instead of a white page as sketchpad background
 * Quiz component
   -   Let students select their confidence level (either Likert scale or three options: confident, somewhat confident, gurssing)
-  -   Multiple-Choice-Question: capture answer selections4. Quiz component 
+  -   Multiple-Choice-Question: capture answer selections
 
 Priority
 ====
