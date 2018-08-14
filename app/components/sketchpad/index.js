@@ -26,7 +26,7 @@ import './sketchpad.css';
 // VARIABLES //
 
 const debug = logger( 'isle-editor:sketchpad' );
-const UNDO_LINES_NO = 5;
+const UNDO_ELEMENTS_NO = 5;
 const COLORPICKER_COLORS = [
 	'#000000', '#FF6900', '#FCB900',
 	'#00D084', '#8ED1FC', '#0693E3',
@@ -56,7 +56,7 @@ class Sketchpad extends Component {
 		super( props );
 
 		this.force = 1.0;
-		this.lines = [ [] ];
+		this.elements = [ [] ];
 		this.backgrounds = [ null ];
 		this.canvas = [];
 		this.ctx = [];
@@ -84,7 +84,7 @@ class Sketchpad extends Component {
 			const promise = session.store.getItem( this.props.id + '_lines' );
 			promise.then( ( data ) => {
 				if ( isArray( data ) ) {
-					this.lines = data;
+					this.elements = data;
 					this.setState({
 						finishedRecording: true
 					});
@@ -142,17 +142,17 @@ class Sketchpad extends Component {
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
 		this.renderBackground( this.state.currentPage );
-		const lines = this.lines[ this.state.currentPage ];
+		const elems = this.elements[ this.state.currentPage ];
 
 		this.setState({
 			playing: true
 		}, () => {
 			let idx = 0;
 			let iter = () => {
-				this.drawElement( lines[ idx ] );
+				this.drawElement( elems[ idx ] );
 				idx += 1;
-				if ( idx < lines.length ) {
-					window.setTimeout( iter, lines[ idx ].time - lines[ idx-1 ].time );
+				if ( idx < elems.length ) {
+					window.setTimeout( iter, elems[ idx ].time - elems[ idx-1 ].time );
 				} else {
 					this.setState({
 						playing: false
@@ -170,9 +170,9 @@ class Sketchpad extends Component {
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
 		this.renderBackground( idx );
-		const lines = this.lines[ idx ];
-		for ( let i = 0; i < lines.length; i++ ) {
-			this.drawElement( lines[ i ] );
+		const elems = this.elements[ idx ];
+		for ( let i = 0; i < elems.length; i++ ) {
+			this.drawElement( elems[ i ] );
 		}
 	}
 
@@ -205,7 +205,7 @@ class Sketchpad extends Component {
 			this.canvas[ i ] = null;
 			this.ctx[ i ] = null;
 		}
-		this.lines = [ [] ];
+		this.elements = [ [] ];
 		this.backgrounds = [ null ];
 		this.setState({
 			nUndos: 0,
@@ -226,8 +226,8 @@ class Sketchpad extends Component {
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
 		const session = this.context.session;
-		session.store.removeItem( this.props.id+'_lines', debug );
-		this.lines[ this.state.currentPage ] = [];
+		session.store.removeItem( this.props.id+'_elems', debug );
+		this.elements[ this.state.currentPage ] = [];
 		this.setState({
 			finishedRecording: false,
 			nUndos: 0,
@@ -236,20 +236,20 @@ class Sketchpad extends Component {
 	}
 
 	undo = () => {
-		const lines = this.lines[ this.state.currentPage ];
+		const elems = this.elements[ this.state.currentPage ];
 		let nUndos = this.state.nUndos;
-		if ( lines.length - nUndos > this.state.recordingEndPos ) {
+		if ( elems.length - nUndos > this.state.recordingEndPos ) {
 			const ctx = this.ctx[ this.state.currentPage ];
 			const canvas = this.canvas[ this.state.currentPage ];
 			if ( ctx ) {
 				ctx.clearRect( 0, 0, canvas.width, canvas.height );
 			}
 			this.renderBackground( this.state.currentPage );
-			nUndos += UNDO_LINES_NO;
-			const end = lines.length - nUndos;
-			debug( `Redrawing lines ${this.state.recordingEndPos} to ${end} from ${lines.length} lines` );
+			nUndos += UNDO_ELEMENTS_NO;
+			const end = elems.length - nUndos;
+			debug( `Redrawing elements ${this.state.recordingEndPos} to ${end} out of ${elems.length} elements` );
 			for ( let i = this.state.recordingEndPos; i < end; i++ ) {
-				this.drawElement( lines[ i ] );
+				this.drawElement( elems[ i ] );
 			}
 			this.setState({
 				nUndos
@@ -258,17 +258,17 @@ class Sketchpad extends Component {
 	}
 
 	redo = () => {
-		const lines = this.lines[ this.state.currentPage ];
+		const elems = this.elements[ this.state.currentPage ];
 		const nUndos = this.state.nUndos;
 		if ( nUndos > 0 ) {
-			const idx = lines.length - nUndos;
+			const idx = elems.length - nUndos;
 			debug( 'Line index: '+idx );
 			if ( idx >= 0 ) {
-				for ( let i = idx; i < idx + UNDO_LINES_NO; i++ ) {
-					this.drawElement( lines[ i ]);
+				for ( let i = idx; i < idx + UNDO_ELEMENTS_NO; i++ ) {
+					this.drawElement( elems[ i ]);
 				}
 				this.setState({
-					nUndos: this.state.nUndos - UNDO_LINES_NO
+					nUndos: this.state.nUndos - UNDO_ELEMENTS_NO
 				});
 			}
 		}
@@ -330,9 +330,9 @@ class Sketchpad extends Component {
 				type: 'line'
 			};
 			this.drawElement( line );
-			const lines = this.lines[ this.state.currentPage ];
-			lines.push( line );
-			this.props.onChange( lines );
+			const elems = this.elements[ this.state.currentPage ];
+			elems.push( line );
+			this.props.onChange( elems );
 
 			// Set to current coordinates:
 			this.x = x;
@@ -431,7 +431,7 @@ class Sketchpad extends Component {
 
 	insertPage = () => {
 		const idx = this.state.currentPage + 1;
-		this.lines.splice( idx, 0, []);
+		this.elements.splice( idx, 0, []);
 		this.backgrounds.splice( idx, 0, null );
 		this.setState({
 			noPages: this.state.noPages + 1,
@@ -460,9 +460,9 @@ class Sketchpad extends Component {
 				time: this.time,
 				type: 'text'
 			};
-			const lines = this.lines[ this.state.currentPage ];
-			lines.push( text );
-			this.props.onChange( lines );
+			const elems = this.elements[ this.state.currentPage ];
+			elems.push( text );
+			this.props.onChange( elems );
 		}
 	}
 
@@ -556,20 +556,20 @@ class Sketchpad extends Component {
 
 	processPDF = ( pdf ) => {
 		debug( 'PDF loaded...' );
-		const lines = new Array( pdf.numPages );
+		const elems = new Array( pdf.numPages );
 		const promises = new Array( pdf.numPages );
 		this.setState({
 			noPages: pdf.numPages
 		}, () => {
 			for ( let i = 0; i < pdf.numPages; i++ ) {
-				lines[ i ] = [];
+				elems[ i ] = [];
 				promises[ i ] = pdf.getPage( i + 1 );
 			}
 			Promise.all( promises )
 				.then( values => {
 					debug( 'Retrieved all pages...' );
 					this.backgrounds = values;
-					this.lines = lines;
+					this.elements = elems;
 					for ( let i = 0; i < pdf.numPages; i++ ) {
 						this.drawPage( i );
 					}
@@ -597,10 +597,10 @@ class Sketchpad extends Component {
 			finishedRecording = true;
 			if ( this.props.id ) {
 				const session = this.context.session;
-				session.store.setItem( this.props.id+'_lines', this.lines, debug );
+				session.store.setItem( this.props.id+'_elems', this.elements, debug );
 			}
 		}
-		const recordingEndPos = this.lines[ this.state.currentPage ].length;
+		const recordingEndPos = this.elements[ this.state.currentPage ].length;
 		this.setState({
 			recording,
 			finishedRecording,
@@ -638,8 +638,8 @@ class Sketchpad extends Component {
 
 	render() {
 		const currentPage = this.state.currentPage;
-		const lines = this.lines[ currentPage ];
-		const deleteIsDisabled = lines.length === 0 ||
+		const elems = this.elements[ currentPage ];
+		const deleteIsDisabled = elems.length === 0 ||
 			!this.state.finishedRecording ||
 			this.state.recording ||
 			this.state.playing;
@@ -680,7 +680,7 @@ class Sketchpad extends Component {
 				<div className="panel-heading clearfix">
 					<span className="sketch-header">{this.props.title}</span>
 					<ButtonGroup bsSize="small" className="sketch-pages" >
-						<Button disabled>Page:{currentPage+1}/{this.state.noPages}</Button>
+						<Button disabled>Page: {currentPage+1}/{this.state.noPages}</Button>
 						<TooltipButton tooltip="Go to first page" onClick={this.firstPage} glyph="fast-backward" disabled={this.state.playing} />
 						<TooltipButton tooltip="Go to previous page" onClick={this.previousPage} glyph="backward" disabled={this.state.playing} />
 						<TooltipButton tooltip="Go to next page" onClick={this.nextPage} glyph="forward" disabled={this.state.playing} />
@@ -688,11 +688,11 @@ class Sketchpad extends Component {
 						<TooltipButton tooltip="Insert page after current one" onClick={this.insertPage} glyph="plus" disabled={this.state.playing} />
 					</ButtonGroup>
 					<ButtonGroup bsSize="small" style={{ float: 'left', marginTop: '3px', marginLeft: '10px' }} >
-						<TooltipButton tooltip="Clear pages" onClick={this.clear} label="Clear" />
+						<TooltipButton tooltip="Clear pages" onClick={this.clear} label="Clear" disabled={this.state.playing || this.state.recording} />
 					</ButtonGroup>
 					<ButtonGroup bsSize="small" style={{ float: 'left', marginTop: '3px', marginLeft: '10px' }} >
 						<OverlayTrigger placement="right" overlay={createTooltip( 'Change brush color' )}>
-							<Button onClick={this.toggleColorPicker} style={{ background: this.state.brushColor, color: 'white' }} >Color</Button>
+							<Button bsSize="xsmall" onClick={this.toggleColorPicker} style={{ background: this.state.brushColor, color: 'white' }} >Color</Button>
 						</OverlayTrigger>
 					</ButtonGroup>
 					<ButtonGroup bsSize="small" style={{ float: 'right', marginTop: '3px', marginLeft: '10px' }}>
@@ -702,9 +702,13 @@ class Sketchpad extends Component {
 						<TooltipButton tooltip="Upload to the server" onClick={this.uploadSketches} glyph="cloud-upload" />
 					</ButtonGroup>
 					<ButtonGroup bsSize="small" style={{ float: 'right', marginTop: '3px', marginLeft: '10px' }}>
-						<Button onClick={this.record} ><Glyphicon glyph={ !this.state.recording ? 'record' : 'stop' } /></Button>
+						<Button bsSize="xsmall" disabled={this.state.playing} onClick={this.record} >
+							<Glyphicon glyph={!this.state.recording ? 'record' : 'stop'} />
+						</Button>
 						<OverlayTrigger placement="bottom" overlay={createTooltip( 'Play recording' )}>
-							<Button bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={this.redraw} ><Glyphicon glyph="play" /></Button>
+							<Button bsSize="xsmall" bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={this.redraw} >
+								<Glyphicon glyph="play" />
+							</Button>
 						</OverlayTrigger>
 						<TooltipButton tooltip="Delete recording" onClick={this.delete} glyph="remove" disabled={deleteIsDisabled} />
 					</ButtonGroup>
@@ -714,7 +718,7 @@ class Sketchpad extends Component {
 					</ButtonGroup>
 					<ButtonGroup bsSize="small" style={{ float: 'right', marginTop: '3px', marginLeft: '10px' }} >
 						<OverlayTrigger placement="bottom" overlay={createTooltip( 'Text Mode' )}>
-							<Button bsStyle={this.state.textMode ? 'success' : 'default'} onClick={this.toggleTextMode} ><Glyphicon glyph="font" /></Button>
+							<Button bsSize="xsmall" bsStyle={this.state.textMode ? 'success' : 'default'} onClick={this.toggleTextMode} ><Glyphicon glyph="font" /></Button>
 						</OverlayTrigger>
 						<InputGroup bsSize="small" className="sketch-input-group" >
 							<InputGroup.Addon>Font Size</InputGroup.Addon>
@@ -733,7 +737,7 @@ class Sketchpad extends Component {
 					</ButtonGroup>
 					<ButtonGroup bsSize="small" style={{ float: 'right', marginTop: '3px', marginLeft: '10px' }} >
 						<OverlayTrigger placement="bottom" overlay={createTooltip( 'Text Mode' )}>
-							<Button bsStyle={!this.state.textMode ? 'success' : 'default'} onClick={this.toggleTextMode} >
+							<Button bsSize="xsmall" bsStyle={!this.state.textMode ? 'success' : 'default'} onClick={this.toggleTextMode} >
 								<Glyphicon glyph="pencil" />
 							</Button>
 						</OverlayTrigger>
