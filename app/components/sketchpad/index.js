@@ -286,6 +286,9 @@ class Sketchpad extends Component {
 				ctx.lineTo( line.endX, line.endY );
 				ctx.stroke();
 			}
+			else if ( line.type === 'text' ) {
+				this.drawText( line.value, line.x, line.y );
+			}
 		}
 	}
 
@@ -794,7 +797,7 @@ Sketchpad.defaultProps = {
 	brushSize: 6,
 	brushColor: '#444444',
 	canvasWidth: 1200,
-	canvasHeight: 700,
+	canvasHeight: 650,
 	disabled: false,
 	fontSize: 24,
 	pdf: null,
