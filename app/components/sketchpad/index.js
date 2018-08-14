@@ -149,7 +149,7 @@ class Sketchpad extends Component {
 		}, () => {
 			let idx = 0;
 			let iter = () => {
-				this.drawLine( lines[ idx ] );
+				this.drawElement( lines[ idx ] );
 				idx += 1;
 				if ( idx < lines.length ) {
 					window.setTimeout( iter, lines[ idx ].time - lines[ idx-1 ].time );
@@ -172,7 +172,7 @@ class Sketchpad extends Component {
 		this.renderBackground( idx );
 		const lines = this.lines[ idx ];
 		for ( let i = 0; i < lines.length; i++ ) {
-			this.drawLine( lines[ i ] );
+			this.drawElement( lines[ i ] );
 		}
 	}
 
@@ -249,7 +249,7 @@ class Sketchpad extends Component {
 			const end = lines.length - nUndos;
 			debug( `Redrawing lines ${this.state.recordingEndPos} to ${end} from ${lines.length} lines` );
 			for ( let i = this.state.recordingEndPos; i < end; i++ ) {
-				this.drawLine( lines[ i ] );
+				this.drawElement( lines[ i ] );
 			}
 			this.setState({
 				nUndos
@@ -265,7 +265,7 @@ class Sketchpad extends Component {
 			debug( 'Line index: '+idx );
 			if ( idx >= 0 ) {
 				for ( let i = idx; i < idx + UNDO_LINES_NO; i++ ) {
-					this.drawLine( lines[ i ]);
+					this.drawElement( lines[ i ]);
 				}
 				this.setState({
 					nUndos: this.state.nUndos - UNDO_LINES_NO
@@ -274,16 +274,18 @@ class Sketchpad extends Component {
 		}
 	}
 
-	drawLine = ( line ) => {
+	drawElement = ( line ) => {
 		const ctx = this.ctx[ this.state.currentPage ];
 		if ( ctx && line ) {
-			ctx.lineWidth = line.size * (1.0+this.force) * 0.5;
-			ctx.lineCap = 'round';
-			ctx.strokeStyle = line.color;
-			ctx.beginPath();
-			ctx.moveTo( line.startX, line.startY );
-			ctx.lineTo( line.endX, line.endY );
-			ctx.stroke();
+			if ( line.type === 'line' ) {
+				ctx.lineWidth = line.size * (1.0+this.force) * 0.5;
+				ctx.lineCap = 'round';
+				ctx.strokeStyle = line.color;
+				ctx.beginPath();
+				ctx.moveTo( line.startX, line.startY );
+				ctx.lineTo( line.endX, line.endY );
+				ctx.stroke();
+			}
 		}
 	}
 
@@ -321,9 +323,10 @@ class Sketchpad extends Component {
 				startY: this.y,
 				endX: x,
 				endY: y,
-				time: this.time
+				time: this.time,
+				type: 'line'
 			};
-			this.drawLine( line );
+			this.drawElement( line );
 			const lines = this.lines[ this.state.currentPage ];
 			lines.push( line );
 			this.props.onChange( lines );
@@ -436,17 +439,27 @@ class Sketchpad extends Component {
 	}
 
 	handleEnter = ( event ) => {
-		console.log( 'Check if user hit ENTER...' );
+		debug( 'Check if user hit ENTER...' );
 		const rect = this.canvas[ this.state.currentPage ].getBoundingClientRect();
-		console.log( rect.left );
-		const x = parseInt( this.textInput.style.left ) - rect.left;
-		const y = parseInt( this.textInput.style.top ) - rect.top;
+		const x = parseInt( this.textInput.style.left, 10 ) - rect.left;
+		const y = parseInt( this.textInput.style.top, 10 ) - rect.top;
 		if ( event.keyCode === 13 ) {
-			const text = this.textInput.value
-			console.log( 'Drawing text: '+text+' at x='+x+' and y='+y );
+			const value = this.textInput.value;
+
+			debug( 'Drawing text: '+value+' at x = '+x+' and y = '+y );
 			this.textInput.value = '';
-			this.textInput.style.top = String( parseInt( this.textInput.style.top ) + this.state.fontSize ) + 'px';
-			this.drawText( text, x, y );
+			this.textInput.style.top = String( parseInt( this.textInput.style.top, 10 ) + this.state.fontSize ) + 'px';
+			this.drawText( value, x, y );
+			const text = {
+				value: value,
+				x: x,
+				y: y,
+				time: this.time,
+				type: 'text'
+			};
+			const lines = this.lines[ this.state.currentPage ];
+			lines.push( text );
+			this.props.onChange( lines );
 		}
 	}
 
