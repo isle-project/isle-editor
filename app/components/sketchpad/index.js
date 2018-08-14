@@ -16,7 +16,7 @@ import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import isArray from '@stdlib/assert/is-array';
-import noop from '@stdlib/utils/noop';
+import max from '@stdlib/math/base/special/max';
 import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
 import { TwitterPicker } from 'react-color';
@@ -66,12 +66,14 @@ class Sketchpad extends Component {
 			brushSize: props.brushSize,
 			showColorPicker: false,
 			currentPage: 0,
+			fontSize: props.fontSize,
 			recording: false,
 			finishedRecording: false,
 			recordingEndPos: 0,
 			nUndos: 0,
 			noPages: 1,
-			showResponseModal: false
+			showResponseModal: false,
+			textMode: false
 		};
 		this.isMouseDown = false;
 	}
@@ -210,6 +212,10 @@ class Sketchpad extends Component {
 			currentPage: 0,
 			recordingEndPos: 0,
 			noPages: 1
+		}, () => {
+			if ( this.props.pdf ) {
+				this.initializePDF();
+			}
 		});
 	}
 
@@ -283,11 +289,13 @@ class Sketchpad extends Component {
 
 	drawStart = ( event ) => {
 		event.stopPropagation();
-		const { x, y } = this.mousePosition( event );
-		this.x = x;
-		this.y = y;
-		this.isMouseDown = true;
-		this.draw( event );
+		if ( !this.state.textMode ) {
+			const { x, y } = this.mousePosition( event );
+			this.x = x;
+			this.y = y;
+			this.isMouseDown = true;
+			this.draw( event );
+		}
 	}
 
 	drawEnd = ( event ) => {
@@ -296,6 +304,9 @@ class Sketchpad extends Component {
 	}
 
 	draw = ( evt ) => {
+		if ( this.state.textMode ) {
+			return;
+		}
 		evt.stopPropagation();
 		if ( this.isMouseDown && !this.props.disabled ) {
 			let { x, y } = this.mousePosition( evt );
@@ -424,8 +435,59 @@ class Sketchpad extends Component {
 		});
 	}
 
+	handleEnter = ( event ) => {
+		console.log( 'Check if user hit ENTER...' );
+		const rect = this.canvas[ this.state.currentPage ].getBoundingClientRect();
+		console.log( rect.left );
+		const x = parseInt( this.textInput.style.left ) - rect.left;
+		const y = parseInt( this.textInput.style.top ) - rect.top;
+		if ( event.keyCode === 13 ) {
+			const text = this.textInput.value
+			console.log( 'Drawing text: '+text+' at x='+x+' and y='+y );
+			this.textInput.value = '';
+			this.textInput.style.top = String( parseInt( this.textInput.style.top ) + this.state.fontSize ) + 'px';
+			this.drawText( text, x, y );
+		}
+	}
+
+	drawText = ( text, x, y ) => {
+		const ctx = this.ctx[ this.state.currentPage ];
+		ctx.font = `${this.state.fontSize}px Arial`;
+		ctx.fillText( text, x, y+this.state.fontSize );
+	}
+
+	handleClick = ( event ) => {
+		const x = event.clientX;
+		const y = event.clientY;
+		if ( this.state.textMode ) {
+			const input = this.textInput;
+			input.style.left = x + 'px';
+			input.style.top = y + 'px';
+			const width = max( this.props.canvasWidth - x, 60 );
+			console.log( `Resize to width ${width}...` );
+			input.style.width = `${width}px`;
+			input.focus();
+		}
+	}
+
+	firstPage = () => {
+		this.setState({
+			currentPage: 0
+		}, () => {
+			this.redraw();
+		});
+	}
+
+	lastPage = () => {
+		this.setState({
+			currentPage: this.state.noPages - 1
+		}, () => {
+			this.redraw();
+		});
+	}
+
 	nextPage = () => {
-		if ( this.state.currentPage < this.lines.length-1 ) {
+		if ( this.state.currentPage < this.state.noPages-1 ) {
 			this.setState({
 				currentPage: this.state.currentPage + 1
 			}, () => {
@@ -529,6 +591,12 @@ class Sketchpad extends Component {
 		});
 	}
 
+	toggleTextMode = () => {
+		this.setState({
+			textMode: !this.state.textMode
+		});
+	}
+
 	closeResponseModal = () => {
 		this.setState({
 			showResponseModal: false
@@ -578,7 +646,7 @@ class Sketchpad extends Component {
 						this.ctx[ i ] = canvas.getContext( '2d' );
 					}
 				}}
-				onClick={noop}
+				onClick={this.handleClick}
 				onMouseDown={this.drawStart}
 				onMouseMove={this.draw}
 				onMouseOut={this.drawEnd}
@@ -595,23 +663,58 @@ class Sketchpad extends Component {
 				<div className="panel-heading clearfix">
 					<span className="sketch-header">{this.props.title}</span>
 					<ButtonGroup bsSize="small" className="sketch-pages" >
-						<Button disabled>Page: {currentPage+1}/{this.lines.length}</Button>
+						<Button disabled>Page:{currentPage+1}/{this.state.noPages}</Button>
+						<TooltipButton tooltip="Go to first page" onClick={this.firstPage} glyph="fast-backward" disabled={this.state.playing} />
 						<TooltipButton tooltip="Go to previous page" onClick={this.previousPage} glyph="backward" disabled={this.state.playing} />
 						<TooltipButton tooltip="Go to next page" onClick={this.nextPage} glyph="forward" disabled={this.state.playing} />
+						<TooltipButton tooltip="Go to last page" onClick={this.lastPage} glyph="fast-forward" disabled={this.state.playing} />
 						<TooltipButton tooltip="Insert page after current one" onClick={this.insertPage} glyph="plus" disabled={this.state.playing} />
+					</ButtonGroup>
+					<ButtonGroup bsSize="small" style={{ float: 'left', marginTop: '3px', marginLeft: '10px' }} >
 						<TooltipButton tooltip="Clear pages" onClick={this.clear} label="Clear" />
 					</ButtonGroup>
-					<ButtonGroup bsSize="small" style={{ float: 'right', marginTop: '3px' }} >
-						<Button onClick={this.record} >{ !this.state.recording ? 'Record' : 'Stop' }</Button>
+					<ButtonGroup bsSize="small" style={{ float: 'right', marginTop: '3px', marginLeft: '10px' }}>
+						<TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} disabled={this.props.pdf !== null} glyph="file" />
+						<TooltipButton tooltip="Save current drawing (PNG)" onClick={this.saveToPNG} glyph="save" />
+						<TooltipButton tooltip="Save pages as PDF" onClick={this.saveAsPDF} glyph="floppy-save" />
+						<TooltipButton tooltip="Upload to the server" onClick={this.uploadSketches} glyph="cloud-upload" />
+					</ButtonGroup>
+					<ButtonGroup bsSize="small" style={{ float: 'right', marginTop: '3px', marginLeft: '10px' }}>
+						<Button onClick={this.record} ><Glyphicon glyph={ !this.state.recording ? 'record' : 'stop' } /></Button>
 						<OverlayTrigger placement="bottom" overlay={createTooltip( 'Play recording' )}>
-							<Button bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={this.redraw} >Play</Button>
+							<Button bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={this.redraw} ><Glyphicon glyph="play" /></Button>
 						</OverlayTrigger>
-						<TooltipButton tooltip="Delete recording" onClick={this.delete} label="Delete" disabled={deleteIsDisabled} />
-						<OverlayTrigger placement="bottom" overlay={createTooltip( 'Change brush color' )}>
-							<Button onClick={this.toggleColorPicker} style={{ background: this.state.brushColor, color: 'white', marginLeft: '12px' }} >Color</Button>
+						<TooltipButton tooltip="Delete recording" onClick={this.delete} glyph="remove" disabled={deleteIsDisabled} />
+					</ButtonGroup>
+					<ButtonGroup bsSize="small" style={{ float: 'right', marginTop: '3px', marginLeft: '10px' }}>
+						<TooltipButton tooltip="Undo" onClick={this.undo} glyph="step-backward" />
+						<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0} glyph="step-forward" onClick={this.redo} />
+					</ButtonGroup>
+					<ButtonGroup bsSize="small" style={{ float: 'right', marginTop: '3px', marginLeft: '10px' }} >
+						<OverlayTrigger placement="bottom" overlay={createTooltip( 'Insert text' )}>
+							<Button bsStyle={this.state.textMode ? 'success' : 'default'} onClick={this.toggleTextMode} ><Glyphicon glyph="font" /></Button>
 						</OverlayTrigger>
 						<InputGroup bsSize="small" className="sketch-input-group" >
-							<InputGroup.Addon>Size</InputGroup.Addon>
+							<InputGroup.Addon>Font Size</InputGroup.Addon>
+							<FormControl
+								type="number"
+								min={12}
+								max={60}
+								onChange={( event ) => {
+									this.setState({
+										fontSize: Number( event.target.value )
+									});
+								}}
+								defaultValue={this.state.fontSize}
+							/>
+						</InputGroup>
+					</ButtonGroup>
+					<ButtonGroup bsSize="small" style={{ float: 'right', marginTop: '3px', marginLeft: '10px' }} >
+						<OverlayTrigger placement="bottom" overlay={createTooltip( 'Change brush color' )}>
+							<Button onClick={this.toggleColorPicker} style={{ background: this.state.brushColor, color: 'white', marginLeft: '12px' }} >Pen Color</Button>
+						</OverlayTrigger>
+						<InputGroup bsSize="small" className="sketch-input-group" >
+							<InputGroup.Addon>Pen Size</InputGroup.Addon>
 							<FormControl
 								type="number"
 								min={1}
@@ -624,12 +727,6 @@ class Sketchpad extends Component {
 								defaultValue={this.state.brushSize}
 							/>
 						</InputGroup>
-						<TooltipButton tooltip="Undo" onClick={this.undo} glyph="step-backward" />
-						<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0} glyph="step-forward" onClick={this.redo} />
-						<TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} disabled={this.props.pdf !== null} glyph="file" />
-						<TooltipButton tooltip="Save current drawing (PNG)" onClick={this.saveToPNG} glyph="save" />
-						<TooltipButton tooltip="Save pages as PDF" onClick={this.saveAsPDF} glyph="floppy-save" />
-						<TooltipButton tooltip="Upload to the server" onClick={this.uploadSketches} glyph="cloud-upload" />
 					</ButtonGroup>
 				</div>
 				<div style={{ display: this.state.showColorPicker ? 'initial' : 'none', top: '70px', right: '320px', position: 'absolute', zIndex: 9999 }} >
@@ -643,6 +740,13 @@ class Sketchpad extends Component {
 				<div style={{ width: this.props.canvasWidth, height: this.props.canvasHeight, overflow: 'scroll', position: 'relative' }}>
 					{canvases}
 				</div>
+				<input type="text" className="sketch-text-input" style={{
+					display: this.state.textMode ? 'inline-block' : 'none',
+					fontSize: this.state.fontSize,
+					width: this.props.canvasWidth
+				}} onKeyDown={this.handleEnter} ref={( div ) => {
+					this.textInput = div;
+				}} />
 				{this.renderUploadModal()}
 			</Panel>
 		);
@@ -668,8 +772,9 @@ Sketchpad.defaultProps = {
 	brushSize: 6,
 	brushColor: '#444444',
 	canvasWidth: 1200,
-	canvasHeight: 600,
+	canvasHeight: 700,
 	disabled: false,
+	fontSize: 24,
 	pdf: null,
 	style: {},
 	onChange() {}
@@ -682,6 +787,7 @@ Sketchpad.propTypes = {
 	canvasWidth: PropTypes.number,
 	canvasHeight: PropTypes.number,
 	disabled: PropTypes.bool,
+	fontSize: PropTypes.number,
 	pdf: PropTypes.string,
 	style: PropTypes.object,
 	onChange: PropTypes.func
