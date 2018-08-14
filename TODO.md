@@ -25,6 +25,14 @@ Fall
 * Quiz component
   -   Let students select their confidence level (either Likert scale or three options: confident, somewhat confident, gurssing)
   -   Multiple-Choice-Question: capture answer selections
+* Update logging
+  -   Log data table filtering and sorting operations
+* Add "Request Help" button for TA to come (to feedback buttons)?
+* Add save reminders in data explorer 
+* Update labs to move question components instead of markdown editor for easier analyses
+* Log actions in instructor bar
+* Distinguish between instructor / student (solution: add an instructor flag to actions by instructors)
+
 
 Priority
 ====
