@@ -16,7 +16,16 @@
 }
 
 .sketch-input-group {
-	width: 100px;
+	width: 125px;
 	display: inline-table;
-	margin-left: 12px;
+}
+
+.sketch-text-input {
+	position: fixed;
+	background: transparent;
+	border: none;
+}
+
+.sketch-text-input:focus{
+	outline: none;
 }
