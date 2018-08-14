@@ -92,6 +92,9 @@ class Sketchpad extends Component {
 				debug( err );
 			});
 		}
+		if ( this.props.pdf ) {
+			this.initializePDF();
+		}
 		Pressure.set( '.sketchpad-canvas', {
 			change: ( force, event ) => {
 				debug( 'changed pen pressue: '+force );
@@ -455,34 +458,45 @@ class Sketchpad extends Component {
 		reader.onload = () => {
 			let pdfData = reader.result;
 			pdfData = new Uint8Array( pdfData );
-			var loadingTask = pdfjs.getDocument( pdfData );
-			loadingTask.then( ( pdf ) => {
-				debug( 'PDF loaded...' );
-				const lines = new Array( pdf.numPages );
-				const promises = new Array( pdf.numPages );
-				this.setState({
-					noPages: pdf.numPages
-				}, () => {
-					for ( let i = 0; i < pdf.numPages; i++ ) {
-						lines[ i ] = [];
-						promises[ i ] = pdf.getPage( i + 1 );
-					}
-					Promise.all( promises )
-						.then( values => {
-							debug( 'Retrieved all pages...' );
-							this.backgrounds = values;
-							this.lines = lines;
-							for ( let i = 0; i < pdf.numPages; i++ ) {
-								this.drawPage( i );
-							}
-						})
-						.catch( error => debug( error ) );
+			pdfjs.getDocument( pdfData )
+				.then( this.processPDF )
+				.catch(function onError( err ) {
+					console.error( err );
 				});
-			}, function onError( err ) {
-				console.error( err );
-			});
 		};
 		reader.readAsArrayBuffer( files[ 0 ] );
+	}
+
+	initializePDF = () => {
+		pdfjs.getDocument( this.props.pdf )
+			.then( this.processPDF )
+			.catch(function onError( err ) {
+				console.error( err );
+			});
+	}
+
+	processPDF = ( pdf ) => {
+		debug( 'PDF loaded...' );
+		const lines = new Array( pdf.numPages );
+		const promises = new Array( pdf.numPages );
+		this.setState({
+			noPages: pdf.numPages
+		}, () => {
+			for ( let i = 0; i < pdf.numPages; i++ ) {
+				lines[ i ] = [];
+				promises[ i ] = pdf.getPage( i + 1 );
+			}
+			Promise.all( promises )
+				.then( values => {
+					debug( 'Retrieved all pages...' );
+					this.backgrounds = values;
+					this.lines = lines;
+					for ( let i = 0; i < pdf.numPages; i++ ) {
+						this.drawPage( i );
+					}
+				})
+				.catch( error => debug( error ) );
+		});
 	}
 
 	record = () => {
@@ -612,7 +626,7 @@ class Sketchpad extends Component {
 						</InputGroup>
 						<TooltipButton tooltip="Undo" onClick={this.undo} glyph="step-backward" />
 						<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0} glyph="step-forward" onClick={this.redo} />
-						<TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} glyph="file" />
+						<TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} disabled={this.props.pdf !== null} glyph="file" />
 						<TooltipButton tooltip="Save current drawing (PNG)" onClick={this.saveToPNG} glyph="save" />
 						<TooltipButton tooltip="Save pages as PDF" onClick={this.saveAsPDF} glyph="floppy-save" />
 						<TooltipButton tooltip="Upload to the server" onClick={this.uploadSketches} glyph="cloud-upload" />
@@ -656,6 +670,7 @@ Sketchpad.defaultProps = {
 	canvasWidth: 1200,
 	canvasHeight: 600,
 	disabled: false,
+	pdf: null,
 	style: {},
 	onChange() {}
 };
@@ -667,6 +682,7 @@ Sketchpad.propTypes = {
 	canvasWidth: PropTypes.number,
 	canvasHeight: PropTypes.number,
 	disabled: PropTypes.bool,
+	pdf: PropTypes.string,
 	style: PropTypes.object,
 	onChange: PropTypes.func
 };
