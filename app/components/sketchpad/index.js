@@ -453,6 +453,7 @@ class Sketchpad extends Component {
 	drawText = ( text, x, y ) => {
 		const ctx = this.ctx[ this.state.currentPage ];
 		ctx.font = `${this.state.fontSize}px Arial`;
+		ctx.fillStyle = this.state.brushColor;
 		ctx.fillText( text, x, y+this.state.fontSize );
 	}
 
@@ -673,6 +674,11 @@ class Sketchpad extends Component {
 					<ButtonGroup bsSize="small" style={{ float: 'left', marginTop: '3px', marginLeft: '10px' }} >
 						<TooltipButton tooltip="Clear pages" onClick={this.clear} label="Clear" />
 					</ButtonGroup>
+					<ButtonGroup bsSize="small" style={{ float: 'left', marginTop: '3px', marginLeft: '10px' }} >
+						<OverlayTrigger placement="right" overlay={createTooltip( 'Change brush color' )}>
+							<Button onClick={this.toggleColorPicker} style={{ background: this.state.brushColor, color: 'white' }} >Color</Button>
+						</OverlayTrigger>
+					</ButtonGroup>
 					<ButtonGroup bsSize="small" style={{ float: 'right', marginTop: '3px', marginLeft: '10px' }}>
 						<TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} disabled={this.props.pdf !== null} glyph="file" />
 						<TooltipButton tooltip="Save current drawing (PNG)" onClick={this.saveToPNG} glyph="save" />
@@ -691,7 +697,7 @@ class Sketchpad extends Component {
 						<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0} glyph="step-forward" onClick={this.redo} />
 					</ButtonGroup>
 					<ButtonGroup bsSize="small" style={{ float: 'right', marginTop: '3px', marginLeft: '10px' }} >
-						<OverlayTrigger placement="bottom" overlay={createTooltip( 'Insert text' )}>
+						<OverlayTrigger placement="bottom" overlay={createTooltip( 'Text Mode' )}>
 							<Button bsStyle={this.state.textMode ? 'success' : 'default'} onClick={this.toggleTextMode} ><Glyphicon glyph="font" /></Button>
 						</OverlayTrigger>
 						<InputGroup bsSize="small" className="sketch-input-group" >
@@ -710,8 +716,10 @@ class Sketchpad extends Component {
 						</InputGroup>
 					</ButtonGroup>
 					<ButtonGroup bsSize="small" style={{ float: 'right', marginTop: '3px', marginLeft: '10px' }} >
-						<OverlayTrigger placement="bottom" overlay={createTooltip( 'Change brush color' )}>
-							<Button onClick={this.toggleColorPicker} style={{ background: this.state.brushColor, color: 'white', marginLeft: '12px' }} >Pen Color</Button>
+						<OverlayTrigger placement="bottom" overlay={createTooltip( 'Text Mode' )}>
+							<Button bsStyle={!this.state.textMode ? 'success' : 'default'} onClick={this.toggleTextMode} >
+								<Glyphicon glyph="pencil" />
+							</Button>
 						</OverlayTrigger>
 						<InputGroup bsSize="small" className="sketch-input-group" >
 							<InputGroup.Addon>Pen Size</InputGroup.Addon>
@@ -729,7 +737,7 @@ class Sketchpad extends Component {
 						</InputGroup>
 					</ButtonGroup>
 				</div>
-				<div style={{ display: this.state.showColorPicker ? 'initial' : 'none', top: '70px', right: '320px', position: 'absolute', zIndex: 9999 }} >
+				<div style={{ display: this.state.showColorPicker ? 'initial' : 'none', top: '70px', left: '180px', position: 'absolute', zIndex: 9999 }} >
 					<TwitterPicker
 						color={this.state.brushColor}
 						colors={COLORPICKER_COLORS}
@@ -743,6 +751,7 @@ class Sketchpad extends Component {
 				<input type="text" className="sketch-text-input" style={{
 					display: this.state.textMode ? 'inline-block' : 'none',
 					fontSize: this.state.fontSize,
+					color: this.state.brushColor,
 					width: this.props.canvasWidth
 				}} onKeyDown={this.handleEnter} ref={( div ) => {
 					this.textInput = div;
