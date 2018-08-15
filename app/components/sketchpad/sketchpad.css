@@ -1,11 +1,20 @@
+.sketch-panel-heading {
+	color: #333;
+	background-color: #f5f5f5;
+	border-color: #ddd;
+	border-bottom: 1px solid transparent;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
 .sketch-header {
-	font-size: 24px;
+	font-size: 22px;
 	color: #2e4468;
 	font-weight: 600;
+	margin-top: 2px;
 	margin-bottom: 0px;
+	margin-left: 10px;
 	float: left;
-	margin-top: 0;
-	margin-bottom: 0;
 }
 
 .unselectable {
@@ -19,14 +28,19 @@
 }
 
 .sketch-button-group {
-	margin-top: 3px;
+	margin-top: 1px;
+	margin-left: 5px;
+}
+
+.sketch-drawing-buttons {
+	margin-top: 5px;
 	margin-left: 5px;
 }
 
 .sketch-pages {
 	cursor: default;
 	margin-left: 15px;
-	margin-top: 3px;
+	margin-top: 1px;
 }
 
 .sketch-input-group {

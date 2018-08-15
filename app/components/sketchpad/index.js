@@ -754,7 +754,7 @@ class Sketchpad extends Component {
 
 	renderDrawingButtons() {
 		return (
-			<ButtonGroup bsSize="small" className="sketch-button-group" >
+			<ButtonGroup bsSize="small" className="sketch-drawing-buttons" >
 				<OverlayTrigger placement="bottom" overlay={createTooltip( 'Drawing Mode' )}>
 					<Button bsSize="small" bsStyle={!this.state.textMode ? 'success' : 'default'} onClick={this.toggleTextMode} >
 						<Glyphicon glyph="pencil" />
@@ -780,7 +780,7 @@ class Sketchpad extends Component {
 
 	renderTextButtons() {
 		return (
-			<ButtonGroup bsSize="small" className="sketch-button-group" >
+			<ButtonGroup bsSize="small" className="sketch-drawing-buttons" >
 				<OverlayTrigger placement="bottom" overlay={createTooltip( 'Text Mode' )}>
 					<Button bsSize="small" bsStyle={this.state.textMode ? 'success' : 'default'} onClick={this.toggleTextMode} ><Glyphicon glyph="font" /></Button>
 				</OverlayTrigger>
@@ -874,7 +874,7 @@ class Sketchpad extends Component {
 		}
 		return (
 			<Panel className="modal-container" style={{ width: this.props.canvasWidth, position: 'relative' }}>
-				<div className="panel-heading clearfix unselectable">
+				<div className="sketch-panel-heading clearfix unselectable">
 					<span className="sketch-header unselectable">{this.props.title}</span>
 					{this.renderPagination()}
 					<ButtonGroup bsSize="small" className="sketch-button-group" >
@@ -945,7 +945,7 @@ Sketchpad.defaultProps = {
 	brushSize: 6,
 	color: '#444444',
 	canvasWidth: 1200,
-	canvasHeight: 650,
+	canvasHeight: 700,
 	disabled: false,
 	fontFamily: 'Arial',
 	fontSize: 24,
