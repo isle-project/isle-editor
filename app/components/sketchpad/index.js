@@ -63,6 +63,7 @@ class Sketchpad extends Component {
 		this.elements = new Array( props.noPages );
 		this.elements.fill( [] );
 		this.backgrounds = new Array( props.noPages );
+		this.backgrounds.fill( null );
 		this.canvas = new Array( props.noPages );
 		this.ctx = new Array( props.noPages );
 
