@@ -6,6 +6,9 @@
 	float: left;
 	margin-top: 0;
 	margin-bottom: 0;
+}
+
+.unselectable {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -15,15 +18,19 @@
 	cursor: default;
 }
 
+.sketch-button-group {
+	margin-top: 3px;
+	margin-left: 5px;
+}
+
 .sketch-pages {
 	cursor: default;
-	float: left;
 	margin-left: 15px;
 	margin-top: 3px;
 }
 
 .sketch-input-group {
-	width: 125px;
+	width: 100px;
 	display: inline-table;
 }
 
