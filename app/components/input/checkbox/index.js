@@ -124,7 +124,7 @@ CheckboxInput.defaultProps = {
 	defaultValue: false,
 	disabled: false,
 	inline: false,
-	legend: 'Checkbox'
+	legend: ''
 };
 
 

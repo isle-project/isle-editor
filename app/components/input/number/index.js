@@ -247,7 +247,7 @@ NumberInput.propDescriptions = {
 NumberInput.defaultProps = {
 	bind: '',
 	disabled: false,
-	legend: 'Number Input',
+	legend: '',
 	min: NINF,
 	max: PINF,
 	step: 1,

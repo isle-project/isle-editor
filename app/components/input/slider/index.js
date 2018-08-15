@@ -207,6 +207,7 @@ class SliderInput extends Input {
 
 SliderInput.defaultProps = {
 	inline: false,
+	legend: null,
 	min: 0,
 	max: 100,
 	step: 1,
