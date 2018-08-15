@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
+import lowercase from '@stdlib/string/lowercase';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
 import Grid from 'react-bootstrap/lib/Grid';
@@ -54,15 +55,18 @@ class FullscreenActionDisplay extends Component {
 			});
 		} else {
 			const newFilter = [];
-			const expr = new RegExp( '[^\\w]' + value + '[^\\w]' );
 			if ( !this.state.exact ) {
 				for ( let i = 0; i < this.props.actions.length; i++ ) {
 					let actionVal = String( this.props.actions[i].value );
-					if ( contains( actionVal, String( value ) ) ) {
+					actionVal = lowercase( actionVal );
+					let comparisonValue = String( value );
+					comparisonValue = lowercase( comparisonValue );
+					if ( contains( actionVal, comparisonValue ) ) {
 						newFilter.push( this.props.actions[i] );
 					}
 				}
 			} else {
+				const expr = new RegExp( '[^\\w]' + value + '[^\\w]', 'i' );
 				for ( let i = 0; i < this.props.actions.length; i++ ) {
 					let padded = ' ' + this.props.actions[i].value + ' '; // For padding the string with whitespace
 					if ( expr.test( padded ) ) {
