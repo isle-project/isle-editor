@@ -60,10 +60,11 @@ class Sketchpad extends Component {
 		super( props );
 
 		this.force = 1.0;
-		this.elements = [ [] ];
-		this.backgrounds = [ null ];
-		this.canvas = [];
-		this.ctx = [];
+		this.elements = new Array( props.noPages );
+		this.elements.fill( [] );
+		this.backgrounds = new Array( props.noPages );
+		this.canvas = new Array( props.noPages );
+		this.ctx = new Array( props.noPages );
 
 		this.state = {
 			color: props.color,
@@ -102,7 +103,7 @@ class Sketchpad extends Component {
 		if ( this.props.pdf ) {
 			this.initializePDF();
 		}
-		Pressure.set( '.sketchpad-canvas', {
+		Pressure.set( '.sketch-canvas', {
 			change: ( force, event ) => {
 				debug( 'Changed pen pressue: '+force );
 				this.force = force;
@@ -831,11 +832,19 @@ class Sketchpad extends Component {
 		);
 	}
 
+	renderHTMLOverlays() {
+		const node = this.props.nodes[ this.state.currentPage ];
+		if ( !node ) {
+			return null;
+		}
+		return <div className="sketch-node-container" >{node}</div>;
+	}
+
 	render() {
 		const canvases = [];
 		for ( let i = 0; i < this.state.noPages; i++ ) {
 			canvases.push( <canvas
-				className="sketchpad-canvas"
+				className="sketch-canvas"
 				key={`canvas-${i}`}
 				width={this.props.canvasWidth}
 				height={this.props.canvasHeight}
@@ -893,6 +902,7 @@ class Sketchpad extends Component {
 					/>
 				</div>
 				<div style={{ width: this.props.canvasWidth, height: this.props.canvasHeight, overflow: 'scroll', position: 'relative' }}>
+					{this.renderHTMLOverlays()}
 					{canvases}
 				</div>
 				<input type="text" className="sketch-text-input" style={{
@@ -923,6 +933,7 @@ Sketchpad.propDescriptions = {
 	disabled: 'whether to make the component read-only and forbid drawing on the sketchboard',
 	fontFamily: 'Font family',
 	fontSize: 'Font size',
+	noPages: 'initial number of pages',
 	pdf: 'Link to PDF file for baked-in page backgrounds',
 	style: 'CSS inline styles',
 	onChange: 'callback invoked whenever a new line element is drawn'
@@ -937,6 +948,8 @@ Sketchpad.defaultProps = {
 	disabled: false,
 	fontFamily: 'Arial',
 	fontSize: 24,
+	nodes: {},
+	noPages: 1,
 	pdf: null,
 	style: {},
 	onChange() {}
@@ -951,6 +964,8 @@ Sketchpad.propTypes = {
 	disabled: PropTypes.bool,
 	fontFamily: PropTypes.string,
 	fontSize: PropTypes.number,
+	nodes: PropTypes.object,
+	noPages: PropTypes.number,
 	pdf: PropTypes.string,
 	style: PropTypes.object,
 	onChange: PropTypes.func
