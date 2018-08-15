@@ -1,11 +1,13 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import pdfjs from 'pdfjs-dist';
 import pdfMake from 'pdfmake-lite/build/pdfmake.min.js';
 import logger from 'debug';
 import Pressure from 'pressure';
+import Nav from 'react-bootstrap/lib/Nav';
+import NavItem from 'react-bootstrap/lib/NavItem';
 import Panel from 'react-bootstrap/lib/Panel';
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
@@ -76,7 +78,8 @@ class Sketchpad extends Component {
 			nUndos: 0,
 			noPages: 1,
 			showResponseModal: false,
-			textMode: false
+			textMode: false,
+			showNavigationModal: false
 		};
 		this.isMouseDown = false;
 	}
@@ -84,14 +87,12 @@ class Sketchpad extends Component {
 	componentDidMount() {
 		if ( this.props.id ) {
 			const session = this.context.session;
-			const promise = session.store.getItem( this.props.id + '_lines' );
+			const promise = session.store.getItem( this.props.id + '_elems' );
 			promise.then( ( data ) => {
 				debug( 'Retrieved data from previous session...' );
 				if ( isArray( data ) ) {
 					this.elements = data;
-					this.setState({
-						finishedRecording: true
-					});
+					this.redraw();
 				}
 			})
 			.catch( ( err ) => {
@@ -139,7 +140,7 @@ class Sketchpad extends Component {
 		}
 	}
 
-	redraw = () => {
+	redraw = ( immediately = true ) => {
 		debug( `Redrawing page ${this.state.currentPage+1}` );
 		const ctx = this.ctx[ this.state.currentPage ];
 		const canvas = this.canvas[ this.state.currentPage ];
@@ -157,7 +158,11 @@ class Sketchpad extends Component {
 				this.drawElement( elems[ idx ] );
 				idx += 1;
 				if ( idx < elems.length ) {
-					window.setTimeout( iter, elems[ idx ].time - elems[ idx-1 ].time );
+					if ( !immediately ) {
+						window.setTimeout( iter, elems[ idx ].time - elems[ idx-1 ].time );
+					} else {
+						iter();
+					}
 				} else {
 					this.setState({
 						playing: false
@@ -210,6 +215,7 @@ class Sketchpad extends Component {
 			this.canvas[ i ] = null;
 			this.ctx[ i ] = null;
 		}
+		this.context.session.store.removeItem( this.props.id + '_elems' );
 		this.elements = [ [] ];
 		this.backgrounds = [ null ];
 		this.setState({
@@ -531,6 +537,15 @@ class Sketchpad extends Component {
 		}
 	}
 
+	gotoPage = ( idx ) => {
+		this.setState({
+			currentPage: idx,
+			showNavigationModal: false
+		}, () => {
+			this.redraw();
+		});
+	}
+
 	loadPDF = () => {
 		const input = document.createElement( 'input' );
 		input.type = 'file';
@@ -589,7 +604,8 @@ class Sketchpad extends Component {
 	saveInBrowser = () => {
 		if ( this.props.id ) {
 			const session = this.context.session;
-			session.store.setItem( this.props.id+'_elems', this.elements, () => {
+			session.store.setItem( this.props.id+'_elems', this.elements, ( err ) => {
+				console.log( err );
 				this.context.session.addNotification({
 					title: 'Saved',
 					message: 'Notes saved in browser',
@@ -644,7 +660,11 @@ class Sketchpad extends Component {
 
 	renderUploadModal() {
 		return (
-			<Modal show={this.state.showResponseModal} onHide={this.closeResponseModal}>
+			<Modal
+				show={this.state.showResponseModal}
+				onHide={this.closeResponseModal}
+				container={this}
+			>
 				<Modal.Header closeButton>
 					<Modal.Title>Server Response</Modal.Title>
 				</Modal.Header>
@@ -658,10 +678,45 @@ class Sketchpad extends Component {
 		);
 	}
 
+	toggleNavigationModal = () => {
+		this.setState({
+			showNavigationModal: !this.state.showNavigationModal
+		});
+	}
+
+	renderNavigationModal = () => {
+		return ( <Modal
+			onHide={this.toggleNavigationModal}
+			show={this.state.showNavigationModal}
+			id="sketch-goto-modal"
+			container={this}
+		>
+			<Modal.Header closeButton>
+				<Modal.Title>Jump to Page:</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>
+				<Nav justified bsStyle="pills" onSelect={this.gotoPage}>
+					{this.backgrounds.map( ( e, i ) => {
+						let elem = <NavItem key={i} eventKey={i} >
+							Page {i+1}
+						</NavItem>;
+						if ( i > 0 && i % 6 === 0 ) {
+							elem = <Fragment>
+								<br />
+								{elem}
+							</Fragment>;
+						}
+						return elem;
+					})}
+				</Nav>
+			</Modal.Body>
+		</Modal> );
+	}
+
 	renderPagination() {
 		const currentPage = this.state.currentPage;
 		return ( <ButtonGroup bsSize="small" className="sketch-pages" >
-			<Button disabled>Page: {currentPage+1}/{this.state.noPages}</Button>
+			<Button onClick={this.toggleNavigationModal}>{currentPage+1}/{this.state.noPages}</Button>
 			<TooltipButton tooltip="Go to first page" onClick={this.firstPage} glyph="fast-backward" disabled={this.state.playing} />
 			<TooltipButton tooltip="Go to previous page" onClick={this.previousPage} glyph="backward" disabled={this.state.playing} />
 			<TooltipButton tooltip="Go to next page" onClick={this.nextPage} glyph="forward" disabled={this.state.playing} />
@@ -671,7 +726,7 @@ class Sketchpad extends Component {
 	}
 
 	renderRecordingButtons() {
-		const elems = this.elements[ this.state.currentPage ];
+		const elems = this.elements[ this.state.currentPage ] || [];
 		const deleteIsDisabled = elems.length === 0 ||
 			!this.state.finishedRecording ||
 			this.state.recording ||
@@ -684,7 +739,9 @@ class Sketchpad extends Component {
 					</Button>
 				</OverlayTrigger>
 				<OverlayTrigger placement="bottom" overlay={createTooltip( 'Play recording' )}>
-					<Button bsSize="small" bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={this.redraw} >
+					<Button bsSize="small" bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={() => {
+						this.redraw( false );
+					}} >
 						<Glyphicon glyph="play" />
 					</Button>
 				</OverlayTrigger>
@@ -806,7 +863,7 @@ class Sketchpad extends Component {
 			/> );
 		}
 		return (
-			<Panel style={{ width: this.props.canvasWidth, position: 'relative' }}>
+			<Panel className="modal-container" style={{ width: this.props.canvasWidth, position: 'relative' }}>
 				<div className="panel-heading clearfix unselectable">
 					<span className="sketch-header unselectable">{this.props.title}</span>
 					{this.renderPagination()}
@@ -821,8 +878,8 @@ class Sketchpad extends Component {
 					{this.renderDrawingButtons()}
 					{this.renderTextButtons()}
 					<ButtonGroup bsSize="small" className="sketch-button-group">
-						<TooltipButton tooltip="Undo" onClick={this.undo} glyph="step-backward" />
-						<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0} glyph="step-forward" onClick={this.redo} />
+						<TooltipButton tooltip="Undo" onClick={this.undo} glyph="step-backward" disabled={this.state.playing} />
+						<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} />
 					</ButtonGroup>
 					{this.renderRecordingButtons()}
 					{this.renderSaveButtons()}
@@ -848,6 +905,7 @@ class Sketchpad extends Component {
 					this.textInput = div;
 				}} />
 				{this.renderUploadModal()}
+				{this.renderNavigationModal()}
 			</Panel>
 		);
 	}
