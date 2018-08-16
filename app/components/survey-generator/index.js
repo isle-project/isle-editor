@@ -19,7 +19,7 @@ import FreeTextSurvey from 'components/free-text-survey';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle-editor:survey-generator' );
 
 
 // MAIN //
@@ -40,8 +40,10 @@ class MCSgenerator extends Component {
 	componentDidMount() {
 		const { session } = this.context;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
+			debug( 'Received member action...' );
 			if ( type === 'member_action' ) {
 				if ( action.type === 'START_SURVEY' ) {
+					debug( 'Should start the survey...' );
 					if ( this.props.id === action.id ) {
 						this.setState({
 							question: action.value.question,
