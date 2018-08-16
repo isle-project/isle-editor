@@ -87,8 +87,8 @@ class Sketchpad extends Component {
 	}
 
 	componentDidMount() {
+		const { session } = this.context;
 		if ( this.props.id ) {
-			const session = this.context.session;
 			const promise = session.store.getItem( this.props.id + '_elems' );
 			promise.then( ( data ) => {
 				debug( 'Retrieved data from previous session...' );
@@ -110,11 +110,34 @@ class Sketchpad extends Component {
 				this.force = force;
 			}
 		});
+		if ( session ) {
+			this.unsubscribe = session.subscribe( ( type, action ) => {
+				if ( type === 'member_action' ) {
+					debug( 'Received member action...' );
+					if ( session.isOwner() ) {
+						return;
+					}
+					if ( action.type === 'SKETCHPAD_DRAW_TEXT' ) {
+						let text = JSON.parse( action.value );
+						text.shouldLog = false;
+						this.drawText( text );
+					}
+					else if ( action.type === 'SKETCHPAD_DRAW_LINE' ) {
+						let line = JSON.parse( action.value );
+						line.shouldLog = false;
+						this.drawLine( line );
+					}
+				}
+			});
+		}
 	}
 
 	componentWillUnmount() {
 		if ( this.interval ) {
 			clearInterval( this.interval );
+		}
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
 		}
 	}
 
@@ -288,19 +311,39 @@ class Sketchpad extends Component {
 	}
 
 	drawElement = ( elem ) => {
-		const ctx = this.ctx[ this.state.currentPage ];
-		if ( ctx && elem ) {
+		if ( elem ) {
 			if ( elem.type === 'line' ) {
-				ctx.lineWidth = elem.size * (1.0+this.force) * 0.5;
-				ctx.lineCap = 'round';
-				ctx.strokeStyle = elem.color;
-				ctx.beginPath();
-				ctx.moveTo( elem.startX, elem.startY );
-				ctx.lineTo( elem.endX, elem.endY );
-				ctx.stroke();
+				this.drawLine( elem );
 			}
 			else if ( elem.type === 'text' ) {
 				this.drawText( elem );
+			}
+		}
+	}
+
+	drawLine = ({ startX, startY, endX, endY, color, size, shouldLog = true }) => {
+		const ctx = this.ctx[ this.state.currentPage ];
+		if ( ctx ) {
+			ctx.lineWidth = size * ( 1.0 + this.force ) * 0.5;
+			ctx.lineCap = 'round';
+			ctx.strokeStyle = color;
+			ctx.beginPath();
+			ctx.moveTo( startX, startY );
+			ctx.lineTo( endX, endY );
+			ctx.stroke();
+			const { session } = this.context;
+			if ( shouldLog ) {
+				const logAction = {
+					id: this.props.id,
+					type: 'SKETCHPAD_DRAW_LINE',
+					value: JSON.stringify({ startX, startY, endX, endY, color, size }),
+					noSave: true
+				};
+				if ( session.isOwner() ) {
+					session.log( logAction, 'members' );
+				} else {
+					session.log( logAction, 'owners' );
+				}
 			}
 		}
 	}
@@ -487,16 +530,25 @@ class Sketchpad extends Component {
 		}
 	}
 
-	drawText = ({ x, y, value, color, fontSize, fontFamily }) => {
+	drawText = ({ x, y, value, color, fontSize, fontFamily, shouldLog = true }) => {
 		const ctx = this.ctx[ this.state.currentPage ];
 		ctx.font = `${fontSize}px ${fontFamily}`;
 		ctx.fillStyle = color;
 		ctx.fillText( value, x, y+fontSize );
-		this.context.session.log({
-			id: this.props.id,
-			type: 'SKETCHPAD_DRAW_TEXT',
-			value: value
-		});
+
+		const { session } = this.context;
+		if ( shouldLog ) {
+			const logAction = {
+				id: this.props.id,
+				type: 'SKETCHPAD_DRAW_TEXT',
+				value: JSON.stringify({ x, y, value, color, fontSize, fontFamily })
+			};
+			if ( session.isOwner() ) {
+				session.log( logAction, 'members' );
+			} else {
+				session.log( logAction );
+			}
+		}
 	}
 
 	handleClick = ( event ) => {
