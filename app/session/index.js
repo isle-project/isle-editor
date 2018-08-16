@@ -662,7 +662,7 @@ class Session {
 			this.update( 'chat_message' );
 		});
 
-		socket.on( 'memberAction', this.saveAction.bind( this ) );
+		socket.on( 'memberAction', this.saveAction );
 
 		socket.on( 'error', console.error.bind( console ) ); // eslint-disable-line no-console
 
@@ -752,17 +752,19 @@ class Session {
 	}
 
 	/**
-	* Saves action to array of socket actions and sends it to listening components.
+	* Sends action to listening components and saves it to array of socket actions, if not silenced.
 	*
 	* @param {Object} action - user action object
 	* @returns {void}
 	*/
-	saveAction( action ) {
+	saveAction = ( action ) => {
 		debug( 'Received a member action...' );
-		let newArray = this.socketActions;
-		newArray.unshift( action );
-		this.socketActions = newArray;
-		debug( 'Number of actions: ' + this.socketActions.length );
+		if ( !action.noSave ) {
+			let newArray = this.socketActions;
+			newArray.unshift( action );
+			this.socketActions = newArray;
+			debug( 'Number of actions: ' + this.socketActions.length );
+		}
 		this.update( 'member_action', action );
 	}
 
@@ -1200,26 +1202,29 @@ class Session {
 	* @returns {void}
 	*/
 	log( action, to ) {
-		if ( action.id ) {
+		if ( action && action.id ) {
 			action.absoluteTime = new Date().getTime();
 			action.time = action.absoluteTime - this.startTime;
-			this.actions.push( action );
-			this.logToDatabase( 'action', action );
 			this.sendSocketMessage( action, to );
+			if ( !action.noSave ) {
+				debug( 'Save action...' );
+				this.actions.push( action );
+				this.logToDatabase( 'action', action );
 
-			// Push to respective array of currentUserActions hash table:
-			const actions = this.currentUserActions;
-			if ( actions ) {
-				if ( !actions[ action.id ]) {
-					actions[ action.id ] = [ action ];
-				} else {
-					actions[ action.id ].push( action );
+				// Push to respective array of currentUserActions hash table:
+				const actions = this.currentUserActions;
+				if ( actions ) {
+					if ( !actions[ action.id ]) {
+						actions[ action.id ] = [ action ];
+					} else {
+						actions[ action.id ].push( action );
+					}
 				}
-			}
 
-			// If first action, create session on server:
-			if ( this.actions.length === 1 ) {
-				this.updateDatabase();
+				// If first action, create session on server:
+				if ( this.actions.length === 1 ) {
+					this.updateDatabase();
+				}
 			}
 		}
 	}
