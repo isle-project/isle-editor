@@ -134,10 +134,10 @@ class Sketchpad extends Component {
 			var renderTask = page.render( renderContext );
 			renderTask
 				.then( () => {
-					console.log('Page rendered');
+					debug('Page rendered');
 				})
 				.catch( err => {
-					console.log( err );
+					debug( err );
 				});
 		}
 	}
@@ -451,6 +451,11 @@ class Sketchpad extends Component {
 			currentPage: idx
 		}, () => {
 			this.redraw();
+			this.context.session.log({
+				id: this.props.id,
+				type: 'SKETCHPAD_INSERT_PAGE',
+				value: idx
+			});
 		});
 	}
 
@@ -487,6 +492,11 @@ class Sketchpad extends Component {
 		ctx.font = `${fontSize}px ${fontFamily}`;
 		ctx.fillStyle = color;
 		ctx.fillText( value, x, y+fontSize );
+		this.context.session.log({
+			id: this.props.id,
+			type: 'SKETCHPAD_DRAW_TEXT',
+			value: value
+		});
 	}
 
 	handleClick = ( event ) => {
@@ -497,7 +507,7 @@ class Sketchpad extends Component {
 			input.style.left = x + 'px';
 			input.style.top = y + 'px';
 			const width = max( this.props.canvasWidth - x, 60 );
-			console.log( `Resize to width ${width}...` );
+			debug( `Resize to width ${width}...` );
 			input.style.width = `${width}px`;
 			input.focus();
 		}
@@ -508,6 +518,11 @@ class Sketchpad extends Component {
 			currentPage: 0
 		}, () => {
 			this.redraw();
+			this.context.session.log({
+				id: this.props.id,
+				type: 'SKETCHPAD_FIRST_PAGE',
+				value: null
+			});
 		});
 	}
 
@@ -516,6 +531,11 @@ class Sketchpad extends Component {
 			currentPage: this.state.noPages - 1
 		}, () => {
 			this.redraw();
+			this.context.session.log({
+				id: this.props.id,
+				type: 'SKETCHPAD_LAST_PAGE',
+				value: null
+			});
 		});
 	}
 
@@ -525,6 +545,11 @@ class Sketchpad extends Component {
 				currentPage: this.state.currentPage + 1
 			}, () => {
 				this.redraw();
+				this.context.session.log({
+					id: this.props.id,
+					type: 'SKETCHPAD_NEXT_PAGE',
+					value: null
+				});
 			});
 		}
 	}
@@ -535,6 +560,11 @@ class Sketchpad extends Component {
 				currentPage: this.state.currentPage - 1
 			}, () => {
 				this.redraw();
+				this.context.session.log({
+					id: this.props.id,
+					type: 'SKETCHPAD_PREVIOUS_PAGE',
+					value: null
+				});
 			});
 		}
 	}
@@ -545,6 +575,11 @@ class Sketchpad extends Component {
 			showNavigationModal: false
 		}, () => {
 			this.redraw();
+			this.context.session.log({
+				id: this.props.id,
+				type: 'SKETCHPAD_GOTO_PAGE',
+				value: idx
+			});
 		});
 	}
 
@@ -565,7 +600,7 @@ class Sketchpad extends Component {
 			pdfjs.getDocument( pdfData )
 				.then( this.processPDF )
 				.catch(function onError( err ) {
-					console.error( err );
+					debug( err );
 				});
 		};
 		reader.readAsArrayBuffer( files[ 0 ] );
@@ -575,7 +610,7 @@ class Sketchpad extends Component {
 		pdfjs.getDocument( this.props.pdf )
 			.then( this.processPDF )
 			.catch(function onError( err ) {
-				console.error( err );
+				debug( err );
 			});
 	}
 
@@ -607,7 +642,14 @@ class Sketchpad extends Component {
 		if ( this.props.id ) {
 			const session = this.context.session;
 			session.store.setItem( this.props.id+'_elems', this.elements, ( err ) => {
-				console.log( err );
+				if ( err ) {
+					this.context.session.addNotification({
+						title: 'Encountered an error',
+						message: err.message,
+						level: 'error',
+						position: 'tr'
+					});
+				}
 				this.context.session.addNotification({
 					title: 'Saved',
 					message: 'Notes saved in browser',
