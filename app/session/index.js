@@ -1200,25 +1200,27 @@ class Session {
 	* @returns {void}
 	*/
 	log( action, to ) {
-		action.absoluteTime = new Date().getTime();
-		action.time = action.absoluteTime - this.startTime;
-		this.actions.push( action );
-		this.logToDatabase( 'action', action );
-		this.sendSocketMessage( action, to );
+		if ( action.id ) {
+			action.absoluteTime = new Date().getTime();
+			action.time = action.absoluteTime - this.startTime;
+			this.actions.push( action );
+			this.logToDatabase( 'action', action );
+			this.sendSocketMessage( action, to );
 
-		// Push to respective array of currentUserActions hash table:
-		const actions = this.currentUserActions;
-		if ( actions ) {
-			if ( !actions[ action.id ]) {
-				actions[ action.id ] = [ action ];
-			} else {
-				actions[ action.id ].push( action );
+			// Push to respective array of currentUserActions hash table:
+			const actions = this.currentUserActions;
+			if ( actions ) {
+				if ( !actions[ action.id ]) {
+					actions[ action.id ] = [ action ];
+				} else {
+					actions[ action.id ].push( action );
+				}
 			}
-		}
 
-		// If first action, create session on server:
-		if ( this.actions.length === 1 ) {
-			this.updateDatabase();
+			// If first action, create session on server:
+			if ( this.actions.length === 1 ) {
+				this.updateDatabase();
+			}
 		}
 	}
 
