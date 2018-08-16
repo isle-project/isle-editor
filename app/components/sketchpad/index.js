@@ -21,6 +21,7 @@ import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import isArray from '@stdlib/assert/is-array';
 import max from '@stdlib/math/base/special/max';
+import min from '@stdlib/math/base/special/min';
 import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
 import { TwitterPicker } from 'react-color';
@@ -115,21 +116,29 @@ class Sketchpad extends Component {
 				if ( type === 'member_action' ) {
 					debug( 'Received member action...' );
 					if (
+						!this.props.transmitOwner ||
 						session.isOwner() || // Prevent owners from re-drawing their own texts...
-						!this.props.transmitOwner
+						action.email === session.user.email // 'Early return since own action...'
 					) {
-
 						return;
 					}
-					if ( action.type === 'SKETCHPAD_DRAW_TEXT' ) {
-						let text = JSON.parse( action.value );
-						text.shouldLog = false;
-						this.drawText( text );
-					}
-					else if ( action.type === 'SKETCHPAD_DRAW_LINE' ) {
-						let line = JSON.parse( action.value );
-						line.shouldLog = false;
-						this.drawLine( line );
+					const type = action.type;
+					if (
+						type === 'SKETCHPAD_DRAW_TEXT' ||
+						type === 'SKETCHPAD_DRAW_LINE'
+					) {
+						let elem = JSON.parse( action.value );
+						elem.shouldLog = false;
+						const elements = this.elements[ elem.page ];
+						elements.push( elem );
+						this.props.onChange( elements );
+						if ( elem.page === this.state.currentPage ) {
+							if ( type === 'SKETCHPAD_DRAW_TEXT' ) {
+								this.drawText( elem );
+							} else {
+								this.drawLine( elem );
+							}
+						}
 					}
 				}
 			});
@@ -159,14 +168,16 @@ class Sketchpad extends Component {
 				viewport: viewport
 			};
 			var renderTask = page.render( renderContext );
-			renderTask
+			return renderTask
 				.then( () => {
-					debug('Page rendered');
+					debug( 'Page rendered' );
 				})
 				.catch( err => {
 					debug( err );
 				});
 		}
+		// Return promise tha immediately resolves as no background needs to be drawn:
+		return Promise.resolve();
 	}
 
 	redraw = ( immediately = true ) => {
@@ -284,16 +295,18 @@ class Sketchpad extends Component {
 			if ( ctx ) {
 				ctx.clearRect( 0, 0, canvas.width, canvas.height );
 			}
-			this.renderBackground( this.state.currentPage );
-			nUndos += UNDO_ELEMENTS_NO;
-			const end = elems.length - nUndos;
-			debug( `Redrawing elements ${this.state.recordingEndPos} to ${end} out of ${elems.length} elements` );
-			for ( let i = this.state.recordingEndPos; i < end; i++ ) {
-				this.drawElement( elems[ i ] );
-			}
-			this.setState({
-				nUndos
-			});
+			this.renderBackground( this.state.currentPage )
+				.then( () => {
+					nUndos += min( UNDO_ELEMENTS_NO, elems.length-nUndos );
+					const end = elems.length - nUndos;
+					this.setState({
+						nUndos
+					});
+					debug( `Redrawing elements ${this.state.recordingEndPos} to ${end} out of ${elems.length} elements` );
+					for ( let i = this.state.recordingEndPos; i < end; i++ ) {
+						this.drawElement( elems[ i ] );
+					}
+				});
 		}
 	}
 
@@ -301,10 +314,11 @@ class Sketchpad extends Component {
 		const elems = this.elements[ this.state.currentPage ];
 		const nUndos = this.state.nUndos;
 		if ( nUndos > 0 ) {
-			const idx = elems.length - nUndos;
+			const idx = max( elems.length - nUndos, 0 );
+			const end = min( idx + UNDO_ELEMENTS_NO, elems.length );
 			debug( 'Line index: '+idx );
 			if ( idx >= 0 ) {
-				for ( let i = idx; i < idx + UNDO_ELEMENTS_NO; i++ ) {
+				for ( let i = idx; i < end; i++ ) {
 					this.drawElement( elems[ i ]);
 				}
 				this.setState({
@@ -340,10 +354,18 @@ class Sketchpad extends Component {
 				const logAction = {
 					id: this.props.id,
 					type: 'SKETCHPAD_DRAW_LINE',
-					value: JSON.stringify({ startX, startY, endX, endY, color, size }),
+					value: JSON.stringify({
+						startX,
+						startY,
+						endX,
+						endY,
+						color,
+						size,
+						page: this.state.currentPage
+					}),
 					noSave: true
 				};
-				if ( session.isOwner() ) {
+				if ( session.isOwner() && this.props.transmitOwner ) {
 					session.log( logAction, 'members' );
 				} else {
 					session.log( logAction, 'owners' );
@@ -391,6 +413,17 @@ class Sketchpad extends Component {
 			};
 			this.drawElement( line );
 			const elems = this.elements[ this.state.currentPage ];
+
+			if ( this.state.nUndos > 0 ) {
+				elems.splice( elems.length - this.state.nUndos, this.state.nUndos );
+				debug( `Page ${this.state.currentPage} now has ${elems.length} elements`);
+				this.setState({
+					nUndos: 0
+				});
+			}
+
+			// Prevent future logging when redrawing element:
+			line.shouldLog = false;
 			elems.push( line );
 			this.props.onChange( elems );
 
@@ -495,7 +528,8 @@ class Sketchpad extends Component {
 		this.backgrounds.splice( idx, 0, null );
 		this.setState({
 			noPages: this.state.noPages + 1,
-			currentPage: idx
+			currentPage: idx,
+			nUndos: 0,
 		}, () => {
 			this.redraw();
 			this.context.session.log({
@@ -529,6 +563,17 @@ class Sketchpad extends Component {
 			};
 			this.drawText( text );
 			const elems = this.elements[ this.state.currentPage ];
+
+			if ( this.state.nUndos > 0 ) {
+				elems.splice( elems.length - this.state.nUndos, this.state.nUndos );
+				debug( `Page ${this.state.currentPage} now has ${elems.length} elements`);
+				this.setState({
+					nUndos: 0
+				});
+			}
+
+			// Prevent future logging when redrawing element:
+			text.shouldLog = false;
 			elems.push( text );
 			this.props.onChange( elems );
 		}
@@ -545,7 +590,15 @@ class Sketchpad extends Component {
 			const logAction = {
 				id: this.props.id,
 				type: 'SKETCHPAD_DRAW_TEXT',
-				value: JSON.stringify({ x, y, value, color, fontSize, fontFamily })
+				value: JSON.stringify({
+					x,
+					y,
+					value,
+					color,
+					fontSize,
+					fontFamily,
+					page: this.state.currentPage
+				})
 			};
 			if ( session.isOwner() ) {
 				session.log( logAction, 'members' );
@@ -571,7 +624,8 @@ class Sketchpad extends Component {
 
 	firstPage = () => {
 		this.setState({
-			currentPage: 0
+			currentPage: 0,
+			nUndos: 0
 		}, () => {
 			this.redraw();
 			this.context.session.log({
@@ -584,7 +638,8 @@ class Sketchpad extends Component {
 
 	lastPage = () => {
 		this.setState({
-			currentPage: this.state.noPages - 1
+			currentPage: this.state.noPages - 1,
+			nUndos: 0
 		}, () => {
 			this.redraw();
 			this.context.session.log({
@@ -598,7 +653,8 @@ class Sketchpad extends Component {
 	nextPage = () => {
 		if ( this.state.currentPage < this.state.noPages-1 ) {
 			this.setState({
-				currentPage: this.state.currentPage + 1
+				currentPage: this.state.currentPage + 1,
+				nUndos: 0
 			}, () => {
 				this.redraw();
 				this.context.session.log({
@@ -613,7 +669,8 @@ class Sketchpad extends Component {
 	previousPage = () => {
 		if ( this.state.currentPage > 0 ) {
 			this.setState({
-				currentPage: this.state.currentPage - 1
+				currentPage: this.state.currentPage - 1,
+				nUndos: 0
 			}, () => {
 				this.redraw();
 				this.context.session.log({
@@ -626,17 +683,24 @@ class Sketchpad extends Component {
 	}
 
 	gotoPage = ( idx ) => {
-		this.setState({
-			currentPage: idx,
-			showNavigationModal: false
-		}, () => {
-			this.redraw();
-			this.context.session.log({
-				id: this.props.id,
-				type: 'SKETCHPAD_GOTO_PAGE',
-				value: idx
+		if ( idx !== this.state.currentPage ) {
+			this.setState({
+				currentPage: idx,
+				showNavigationModal: false,
+				nUndos: 0
+			}, () => {
+				this.redraw();
+				this.context.session.log({
+					id: this.props.id,
+					type: 'SKETCHPAD_GOTO_PAGE',
+					value: idx
+				});
 			});
-		});
+		} else {
+			this.setState({
+				showNavigationModal: false
+			});
+		}
 	}
 
 	loadPDF = () => {
