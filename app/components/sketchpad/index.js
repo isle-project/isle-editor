@@ -114,7 +114,11 @@ class Sketchpad extends Component {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
 				if ( type === 'member_action' ) {
 					debug( 'Received member action...' );
-					if ( session.isOwner() ) {
+					if (
+						session.isOwner() || // Prevent owners from re-drawing their own texts...
+						!this.props.transmitOwner
+					) {
+
 						return;
 					}
 					if ( action.type === 'SKETCHPAD_DRAW_TEXT' ) {
@@ -1028,8 +1032,10 @@ Sketchpad.propDescriptions = {
 	disabled: 'whether to make the component read-only and forbid drawing on the sketchboard',
 	fontFamily: 'Font family',
 	fontSize: 'Font size',
+	nodes: 'components to be rendered on top of specified slides; `keys` should correspond to page numbers, `values` to the components',
 	noPages: 'initial number of pages',
 	pdf: 'Link to PDF file for baked-in page backgrounds',
+	transmitOwner: 'whether owner actions should be transmitted to other users in real-time',
 	style: 'CSS inline styles',
 	onChange: 'callback invoked whenever a new line element is drawn'
 };
@@ -1046,6 +1052,7 @@ Sketchpad.defaultProps = {
 	nodes: {},
 	noPages: 1,
 	pdf: null,
+	transmitOwner: true,
 	style: {},
 	onChange() {}
 };
@@ -1062,6 +1069,7 @@ Sketchpad.propTypes = {
 	nodes: PropTypes.object,
 	noPages: PropTypes.number,
 	pdf: PropTypes.string,
+	transmitOwner: PropTypes.bool,
 	style: PropTypes.object,
 	onChange: PropTypes.func
 };
