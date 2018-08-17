@@ -2,10 +2,14 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Button from 'react-bootstrap/lib/Button';
+import Radio from 'react-bootstrap/lib/Radio';
 import Panel from 'react-bootstrap/lib/Panel';
 import logger from 'debug';
 import sample from '@stdlib/random/sample';
+import isObject from '@stdlib/assert/is-plain-object';
 import incrspace from '@stdlib/math/utils/incrspace';
 import FreeTextQuestion from 'components/free-text-question';
 import MultipleChoiceQuestion from 'components/multiple-choice-question';
@@ -13,11 +17,23 @@ import MatchListQuestion from 'components/match-list-question';
 import NumberQuestion from 'components/number-question';
 import RangeQuestion from 'components/range-question';
 import SelectQuestion from 'components/select-question';
+import convertJSONtoJSX from 'utils/json-to-jsx';
+import './quiz.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle-editor:quiz' );
+
+
+// FUNCTIONS //
+
+function isHTMLConfig( elem ) {
+	return (
+		isObject( elem ) &&
+		elem.component
+	);
+}
 
 
 // MAIN //
@@ -29,11 +45,13 @@ class Quiz extends Component {
 		const indices = incrspace( 0, props.questions.length, 1 );
 		this.sample = sample.factory( indices, {
 			size: 1,
-			mutate: true
+			mutate: true,
+			replace: false
 		});
 		this.state = {
 			answers: new Array( props.questions.length ),
 			answered: false,
+			confidences: new Array( props.questions.length ),
 			current: this.sample()[ 0 ],
 			counter: 0,
 			finished: false,
@@ -77,10 +95,21 @@ class Quiz extends Component {
 	handleSubmission = ( val ) => {
 		const elem = this.props.questions[ this.state.current ];
 		const answers = this.state.answers.slice();
+
+		let answer;
+		let solution;
+		if ( elem.type === 'MultipleChoiceQuestion' ) {
+			answer = elem.answers[ val ].content;
+			solution = elem.answers[ elem.solution ].content;
+		} else {
+			answer = val;
+			solution = elem.solution;
+		}
+
 		answers[ this.state.current ] = {
 			question: elem.question,
-			answer: val,
-			solution: elem.solution
+			answer,
+			solution
 		};
 		this.setState({
 			answered: true,
@@ -89,6 +118,7 @@ class Quiz extends Component {
 	}
 
 	renderScoreboard() {
+		debug( 'Rendering scoreboard...' );
 		return ( <div>
 			<p>You have answered all questions. Here is a summary of your answers:</p>
 			<table className="table table-bordered" >
@@ -97,14 +127,25 @@ class Quiz extends Component {
 						<th>Question</th>
 						<th>Your answer</th>
 						<th>Solution</th>
+						{ this.props.confidence ? <th>Confidence</th> : null }
 					</tr>
 				</thead>
 				<tbody>
 					{this.state.answers.map( ( elem, idx ) => {
-						return ( <tr key={idx}>
+						let className;
+						if ( elem.answer === elem.solution ) {
+							className = 'quiz-right-answer';
+						} else {
+							className = 'quiz-wrong-answer';
+						}
+						return ( <tr className={className} key={idx}>
 							<td>{elem.question}</td>
 							<td>{elem.answer}</td>
 							<td>{elem.solution}</td>
+							{ this.props.confidence ?
+								<td>{this.state.confidences[ idx ]}</td> :
+								null
+							}
 						</tr> );
 					})}
 				</tbody>
@@ -113,21 +154,61 @@ class Quiz extends Component {
 	}
 
 	renderCurrentQuestion() {
-		const question = this.props.questions[ this.state.current ];
-		switch ( question.type ) {
-			case 'FreeTextQuestion':
-				return <FreeTextQuestion {...question} onSubmit={this.handleSubmission} />;
-			case 'MultipleChoiceQuestion':
-				return <MultipleChoiceQuestion {...question} onSubmit={this.handleSubmission} />;
-			case 'MatchListQuestion':
-				return <MatchListQuestion {...question} onSubmit={this.handleSubmission} />;
-			case 'NumberQuestion':
-				return <NumberQuestion {...question} onSubmit={this.handleSubmission} />;
-			case 'RangeQuestion':
-				return <RangeQuestion {...question} onSubmit={this.handleSubmission} />;
-			case 'SelectQuestion':
-				return <SelectQuestion {...question} onSubmit={this.handleSubmission} />;
+		const config = this.props.questions[ this.state.current ];
+		if ( isHTMLConfig( config.question ) ) {
+			debug( 'Question property is an object, convert to JSX...' );
+			config.question = convertJSONtoJSX( config.question );
 		}
+		switch ( config.type ) {
+			case 'FreeTextQuestion':
+				return <FreeTextQuestion {...config} onSubmit={this.handleSubmission} />;
+			case 'MultipleChoiceQuestion':
+				return <MultipleChoiceQuestion {...config} onSubmit={this.handleSubmission} />;
+			case 'MatchListQuestion':
+				return <MatchListQuestion {...config} onSubmit={this.handleSubmission} />;
+			case 'NumberQuestion':
+				return <NumberQuestion {...config} onSubmit={this.handleSubmission} />;
+			case 'RangeQuestion':
+				return <RangeQuestion {...config} onSubmit={this.handleSubmission} />;
+			case 'SelectQuestion':
+				return <SelectQuestion {...config} onSubmit={this.handleSubmission} />;
+		}
+	}
+
+	handleConfidenceChange = ( event ) => {
+		const confidence = event.target.getAttribute( 'data-confidence' );
+		const confidences = this.state.confidences.slice();
+		confidences[ this.state.current ] = confidence;
+		this.setState({
+			confidences: confidences
+		});
+	}
+
+	renderConfidenceSurvey() {
+		if ( !this.props.confidence ) {
+			return null;
+		}
+		return (
+			<FormGroup className="center" >
+				<ControlLabel>Please indicate how confident you are in your answer:</ControlLabel>
+				<br />
+				<Radio name="radio-group" data-confidence="-2" inline onClick={this.handleConfidenceChange} >
+					-2
+				</Radio>{' '}
+				<Radio name="radio-group" data-confidence="-1" inline onClick={this.handleConfidenceChange}>
+					-1
+				</Radio>{' '}
+				<Radio name="radio-group" data-confidence="0" inline onClick={this.handleConfidenceChange}>
+					0
+				</Radio>{' '}
+				<Radio name="radio-group" data-confidence="1" inline onClick={this.handleConfidenceChange}>
+					1
+				</Radio>{' '}
+				<Radio name="radio-group" data-confidence="2" inline onClick={this.handleConfidenceChange}>
+					2
+				</Radio>
+			</FormGroup>
+		);
 	}
 
 	render() {
@@ -146,9 +227,10 @@ class Quiz extends Component {
 					this.renderScoreboard() :
 					this.renderCurrentQuestion()
 				}
-				{ showButton ? <Button onClick={this.handleNextClick}>
+				{ showButton ? <Button className="quiz-button" onClick={this.handleNextClick}>
 					{this.state.last ? 'Finish Quiz' : 'Next Question' }
 				</Button> : null }
+				{ !this.state.finished ? this.renderConfidenceSurvey() : null }
 			</Panel.Body>
 		</Panel> );
 	}
@@ -158,18 +240,21 @@ class Quiz extends Component {
 // TYPES //
 
 Quiz.propDescriptions = {
+	confidence: 'whether to display a Likert scale asking for the confidence of the user\'s answer',
 	count: 'number of questions to include in the quiz',
 	questions: 'array of questions from which questions will be randomly selected',
 	skippable: 'controls whether questions in  the quiz are skippable'
 };
 
 Quiz.propTypes = {
+	confidence: PropTypes.bool,
 	count: PropTypes.number.isRequired,
 	questions: PropTypes.array.isRequired,
 	skippable: PropTypes.bool
 };
 
 Quiz.defaultProps = {
+	confidence: false,
 	skippable: true
 };
 
