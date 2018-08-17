@@ -19,7 +19,7 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
-import isArray from '@stdlib/assert/is-array';
+import isObject from '@stdlib/assert/is-object';
 import isNull from '@stdlib/assert/is-null';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
@@ -92,12 +92,14 @@ class Sketchpad extends Component {
 	componentDidMount() {
 		const { session } = this.context;
 		if ( this.props.id ) {
-			const promise = session.store.getItem( this.props.id + '_elems' );
+			const promise = session.store.getItem( this.props.id + '_sketchpad' );
 			promise.then( ( data ) => {
 				debug( 'Retrieved data from previous session...' );
-				if ( isArray( data ) ) {
-					this.elements = data;
-					this.redraw();
+				if ( isObject( data ) ) {
+					this.elements = data.elements;
+					this.setState( data.state, () => {
+						this.redraw();
+					});
 				}
 			})
 			.catch( ( err ) => {
@@ -127,7 +129,8 @@ class Sketchpad extends Component {
 					const type = action.type;
 					if (
 						type === 'SKETCHPAD_DRAW_TEXT' ||
-						type === 'SKETCHPAD_DRAW_LINE'
+						type === 'SKETCHPAD_DRAW_LINE' ||
+						type === 'SKETCHPAD_REPLAY'
 					) {
 						let elem = JSON.parse( action.value );
 						elem.shouldLog = false;
@@ -135,7 +138,7 @@ class Sketchpad extends Component {
 						elements.push( elem );
 						this.props.onChange( elements );
 						if ( elem.page === this.state.currentPage ) {
-							if ( type === 'SKETCHPAD_DRAW_TEXT' ) {
+							if ( elem.type === 'text' ) {
 								this.drawText( elem );
 							} else {
 								this.drawLine( elem );
@@ -185,7 +188,7 @@ class Sketchpad extends Component {
 		return Promise.resolve();
 	}
 
-	redraw = ( immediately = true ) => {
+	redraw = ( replay = false ) => {
 		debug( `Redrawing page ${this.state.currentPage+1}` );
 		const ctx = this.ctx[ this.state.currentPage ];
 		const canvas = this.canvas[ this.state.currentPage ];
@@ -203,7 +206,20 @@ class Sketchpad extends Component {
 					this.drawElement( elems[ idx ] );
 					idx += 1;
 					if ( idx < elems.length ) {
-						if ( !immediately ) {
+						if ( replay ) {
+							// Save replay actions and transmit to others:
+							const action = {
+								id: this.props.id,
+								type: 'SKETCHPAD_REPLAY',
+								value: JSON.stringify( elems[ idx ]),
+								noSave: true
+							};
+							const session = this.context.session;
+							if ( session.isOwner() && this.props.transmitOwner ) {
+								session.log( action, 'members' );
+							} else {
+								session.log( action, 'owners' );
+							}
 							window.setTimeout( iter, elems[ idx ].time - elems[ idx-1 ].time );
 						} else {
 							iter();
@@ -261,7 +277,7 @@ class Sketchpad extends Component {
 			this.canvas[ i ] = null;
 			this.ctx[ i ] = null;
 		}
-		this.context.session.store.removeItem( this.props.id + '_elems' );
+		this.context.session.store.removeItem( this.props.id + '_sketchpad' );
 		this.elements = [ [] ];
 		this.backgrounds = [ null ];
 		this.setState({
@@ -277,13 +293,18 @@ class Sketchpad extends Component {
 	}
 
 	delete = () => {
-		const canvas = this.canvas[ this.state.currentPage ];
-		const ctx = this.ctx[ this.state.currentPage ];
-		if ( ctx ) {
-			ctx.clearRect( 0, 0, canvas.width, canvas.height );
+		const currentPage = this.state.currentPage;
+		const canvas = this.canvas[ currentPage ];
+
+		if ( !isNull( this.backgrounds[ currentPage ] ) ) {
+			this.renderBackground( currentPage );
 		}
-		const session = this.context.session;
-		session.store.removeItem( this.props.id+'_elems', debug );
+		else {
+			const ctx = this.ctx[ currentPage ];
+			if ( ctx ) {
+				ctx.clearRect( 0, 0, canvas.width, canvas.height );
+			}
+		}
 		this.elements[ this.state.currentPage ] = [];
 		this.setState({
 			finishedRecording: false,
@@ -416,7 +437,8 @@ class Sketchpad extends Component {
 				endX: x,
 				endY: y,
 				time: this.time,
-				type: 'line'
+				type: 'line',
+				page: this.state.currentPage
 			};
 			this.drawElement( line );
 			const elems = this.elements[ this.state.currentPage ];
@@ -570,7 +592,8 @@ class Sketchpad extends Component {
 				fontSize: this.state.fontSize,
 				fontFamily: this.state.fontFamily,
 				time: this.time,
-				type: 'text'
+				type: 'text',
+				page: this.state.currentPage
 			};
 			this.drawText( text );
 			const elems = this.elements[ this.state.currentPage ];
@@ -773,7 +796,11 @@ class Sketchpad extends Component {
 	saveInBrowser = () => {
 		if ( this.props.id ) {
 			const session = this.context.session;
-			session.store.setItem( this.props.id+'_elems', this.elements, ( err ) => {
+			const data = {
+				elements: this.elements,
+				state: this.state
+			};
+			session.store.setItem( this.props.id+'_sketchpad', data, ( err ) => {
 				if ( err ) {
 					this.context.session.addNotification({
 						title: 'Encountered an error',
@@ -929,7 +956,7 @@ class Sketchpad extends Component {
 				</OverlayTrigger>
 				<OverlayTrigger placement="bottom" overlay={createTooltip( 'Play recording' )}>
 					<Button bsSize="small" bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={() => {
-						this.redraw( false );
+						this.redraw( true );
 					}} >
 						<Glyphicon glyph="play" />
 					</Button>
