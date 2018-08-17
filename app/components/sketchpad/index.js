@@ -809,10 +809,6 @@ class Sketchpad extends Component {
 			this.renderBackground( this.state.currentPage );
 			clearInterval( this.interval );
 			finishedRecording = true;
-			if ( this.props.id ) {
-				const session = this.context.session;
-				session.store.setItem( this.props.id+'_elems', this.elements, debug );
-			}
 		}
 		const recordingEndPos = this.elements[ this.state.currentPage ].length;
 		this.setState({
