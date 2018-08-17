@@ -478,7 +478,7 @@ class Sketchpad extends Component {
 						const link = server + '/' + filename;
 						this.setState({
 							modalMessage: <span>
-								The file has been uploaded successfully and can be accessed at the following address: <a href={link}>{link}</a>
+								The file has been uploaded successfully and can be accessed at the following address: <a href={link} target="_blank" >{link}</a>
 							</span>
 						});
 					}
