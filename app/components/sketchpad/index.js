@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import pdfjs from 'pdfjs-dist';
 import pdfMake from 'pdfmake-lite/build/pdfmake.min.js';
@@ -19,8 +19,11 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
+import incrspace from '@stdlib/math/utils/incrspace';
 import isObject from '@stdlib/assert/is-object';
 import isNull from '@stdlib/assert/is-null';
+import ceil from '@stdlib/math/base/special/ceil';
+import sqrt from '@stdlib/math/base/special/sqrt';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
 import saveAs from 'utils/file-saver';
@@ -743,6 +746,7 @@ class Sketchpad extends Component {
 	}
 
 	gotoPage = ( idx ) => {
+		debug( `Should go to page ${idx}...` );
 		if ( idx !== this.state.currentPage ) {
 			this.setState({
 				currentPage: idx,
@@ -929,6 +933,8 @@ class Sketchpad extends Component {
 	}
 
 	renderNavigationModal = () => {
+		const perRow = ceil( sqrt( this.state.noPages ) );
+		const rows = incrspace( 0, ceil( this.state.noPages / perRow ), 1 );
 		return ( <Modal
 			onHide={this.toggleNavigationModal}
 			show={this.state.showNavigationModal}
@@ -939,20 +945,23 @@ class Sketchpad extends Component {
 				<Modal.Title>Jump to Page:</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<Nav justified bsStyle="pills" onSelect={this.gotoPage}>
-					{this.backgrounds.map( ( e, i ) => {
-						let elem = <NavItem key={i} eventKey={i} >
-							Page {i+1}
-						</NavItem>;
-						if ( i > 0 && i % 6 === 0 ) {
-							elem = <Fragment>
-								<br />
-								{elem}
-							</Fragment>;
-						}
-						return elem;
-					})}
-				</Nav>
+				{rows.map( ( row ) => {
+					const no = min( this.state.noPages-(row*perRow), perRow );
+					const cells = incrspace( 0, no, 1 );
+					return (
+						<Nav
+							key={row} justified bsStyle="pills"
+							onSelect={this.gotoPage}
+						>
+							{cells.map( ( e, i ) => {
+								const page = i + perRow*row;
+								return ( <NavItem key={i} eventKey={page}>
+									Page {page+1}
+								</NavItem> );
+							})}
+						</Nav>
+					);
+				})}
 			</Modal.Body>
 		</Modal> );
 	}
@@ -1137,7 +1146,7 @@ class Sketchpad extends Component {
 					{this.renderRecordingButtons()}
 					{this.renderSaveButtons()}
 				</div>
-				<div style={{ display: this.state.showColorPicker ? 'initial' : 'none', top: '70px', left: '160px', position: 'absolute', zIndex: 9999 }} >
+				<div style={{ display: this.state.showColorPicker ? 'initial' : 'none', top: '70px', left: '130px', position: 'absolute', zIndex: 9999 }} >
 					<TwitterPicker
 						color={this.state.color}
 						colors={COLORPICKER_COLORS}
