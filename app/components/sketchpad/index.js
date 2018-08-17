@@ -119,7 +119,7 @@ class Sketchpad extends Component {
 					debug( 'Received member action...' );
 					if (
 						!this.props.transmitOwner ||
-						session.isOwner() || // Prevent owners from re-drawing their own texts...
+						session.isOwner() || // Prevent owners from processing actions...
 						action.email === session.user.email // 'Early return since own action...'
 					) {
 						return;
@@ -133,8 +133,6 @@ class Sketchpad extends Component {
 						elem.shouldLog = false;
 						const elements = this.elements[ elem.page ];
 						elements.push( elem );
-						console.log( 'ELEMENTS:');
-						console.log( elements );
 						this.props.onChange( elements );
 						if ( elem.page === this.state.currentPage ) {
 							if ( type === 'SKETCHPAD_DRAW_TEXT' ) {
@@ -143,6 +141,9 @@ class Sketchpad extends Component {
 								this.drawLine( elem );
 							}
 						}
+					}
+					else if ( type === 'SKETCHPAD_INSERT_PAGE' ) {
+						this.insertPage( action.value );
 					}
 				}
 			});
@@ -533,8 +534,7 @@ class Sketchpad extends Component {
 		doc.download( name+'.pdf' );
 	}
 
-	insertPage = () => {
-		const idx = this.state.currentPage + 1;
+	insertPage = ( idx ) => {
 		this.elements.splice( idx, 0, []);
 		this.backgrounds.splice( idx, 0, null );
 		this.setState({
@@ -547,7 +547,7 @@ class Sketchpad extends Component {
 				id: this.props.id,
 				type: 'SKETCHPAD_INSERT_PAGE',
 				value: idx
-			});
+			}, 'members' );
 		});
 	}
 
@@ -911,7 +911,10 @@ class Sketchpad extends Component {
 			<TooltipButton tooltip="Go to previous page" onClick={this.previousPage} glyph="backward" disabled={this.state.playing} />
 			<TooltipButton tooltip="Go to next page" onClick={this.nextPage} glyph="forward" disabled={this.state.playing} />
 			<TooltipButton tooltip="Go to last page" onClick={this.lastPage} glyph="fast-forward" disabled={this.state.playing} />
-			<TooltipButton tooltip="Insert page after current one" onClick={this.insertPage} glyph="plus" disabled={this.state.playing} />
+			<TooltipButton tooltip="Insert page after current one" onClick={() => {
+				const idx = this.state.currentPage + 1;
+				this.insertPage( idx );
+			}} glyph="plus" disabled={this.state.playing} />
 		</ButtonGroup> );
 	}
 
