@@ -66,6 +66,9 @@ class Sketchpad extends Component {
 		this.elements.fill( [] );
 		this.backgrounds = new Array( props.noPages );
 		this.backgrounds.fill( null );
+		this.recordingEndPositions = new Array( props.noPages );
+		this.recordingEndPositions.fill( 0 );
+
 		this.canvas = new Array( props.noPages );
 		this.ctx = new Array( props.noPages );
 
@@ -78,7 +81,6 @@ class Sketchpad extends Component {
 			fontSize: props.fontSize,
 			recording: false,
 			finishedRecording: false,
-			recordingEndPos: 0,
 			modalMessage: null,
 			nUndos: 0,
 			noPages: 1,
@@ -91,12 +93,19 @@ class Sketchpad extends Component {
 
 	componentDidMount() {
 		const { session } = this.context;
-		if ( this.props.id ) {
+		let init;
+		if ( this.props.pdf ) {
+			init = this.initializePDF();
+		} else {
+			init = Promise.resolve();
+		}
+		init.then( () => {
 			const promise = session.store.getItem( this.props.id + '_sketchpad' );
 			promise.then( ( data ) => {
 				debug( 'Retrieved data from previous session...' );
 				if ( isObject( data ) ) {
 					this.elements = data.elements;
+					this.recordingEndPositions = data.recordingEndPositions;
 					this.setState( data.state, () => {
 						this.redraw();
 					});
@@ -105,10 +114,7 @@ class Sketchpad extends Component {
 			.catch( ( err ) => {
 				debug( err );
 			});
-		}
-		if ( this.props.pdf ) {
-			this.initializePDF();
-		}
+		});
 		Pressure.set( '.sketch-canvas', {
 			change: ( force, event ) => {
 				debug( 'Changed pen pressue: '+force );
@@ -188,15 +194,34 @@ class Sketchpad extends Component {
 		return Promise.resolve();
 	}
 
-	redraw = ( replay = false ) => {
-		debug( `Redrawing page ${this.state.currentPage+1}` );
-		const ctx = this.ctx[ this.state.currentPage ];
-		const canvas = this.canvas[ this.state.currentPage ];
+	redraw = () => {
+		const currentPage = this.state.currentPage;
+		debug( `Redrawing page ${currentPage+1}` );
+		const ctx = this.ctx[ currentPage ];
+		const canvas = this.canvas[ currentPage ];
+		const recordingEndPos = this.recordingEndPositions[ currentPage ];
 		if ( ctx ) {
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
-		this.renderBackground( this.state.currentPage ).then( () => {
-			const elems = this.elements[ this.state.currentPage ];
+		this.renderBackground( currentPage ).then( () => {
+			const elems = this.elements[ currentPage ];
+			debug( `Rendering ${elems.length} elements...` );
+			for ( let i = recordingEndPos; i < elems.length; i++ ) {
+				this.drawElement( elems[ i ] );
+			}
+		});
+	}
+
+	replay = () => {
+		const currentPage = this.state.currentPage;
+		debug( `Playing recording for page ${currentPage+1}` );
+		const ctx = this.ctx[ currentPage ];
+		const canvas = this.canvas[ currentPage ];
+		if ( ctx ) {
+			ctx.clearRect( 0, 0, canvas.width, canvas.height );
+		}
+		this.renderBackground( currentPage ).then( () => {
+			const elems = this.elements[ currentPage ];
 			debug( `Rendering ${elems.length} elements...` );
 			this.setState({
 				playing: true
@@ -206,24 +231,20 @@ class Sketchpad extends Component {
 					this.drawElement( elems[ idx ] );
 					idx += 1;
 					if ( idx < elems.length ) {
-						if ( replay ) {
-							// Save replay actions and transmit to others:
-							const action = {
-								id: this.props.id,
-								type: 'SKETCHPAD_REPLAY',
-								value: JSON.stringify( elems[ idx ]),
-								noSave: true
-							};
-							const session = this.context.session;
-							if ( session.isOwner() && this.props.transmitOwner ) {
-								session.log( action, 'members' );
-							} else {
-								session.log( action, 'owners' );
-							}
-							window.setTimeout( iter, elems[ idx ].time - elems[ idx-1 ].time );
+						// Save replay actions and transmit to others:
+						const action = {
+							id: this.props.id,
+							type: 'SKETCHPAD_REPLAY',
+							value: JSON.stringify( elems[ idx ]),
+							noSave: true
+						};
+						const session = this.context.session;
+						if ( session.isOwner() && this.props.transmitOwner ) {
+							session.log( action, 'members' );
 						} else {
-							iter();
+							session.log( action, 'owners' );
 						}
+						window.setTimeout( iter, elems[ idx ].time - elems[ idx-1 ].time );
 					} else {
 						this.setState({
 							playing: false
@@ -278,18 +299,19 @@ class Sketchpad extends Component {
 			this.ctx[ i ] = null;
 		}
 		this.context.session.store.removeItem( this.props.id + '_sketchpad' );
-		this.elements = [ [] ];
-		this.backgrounds = [ null ];
-		this.setState({
-			nUndos: 0,
-			currentPage: 0,
-			recordingEndPos: 0,
-			noPages: 1
-		}, () => {
-			if ( this.props.pdf ) {
-				this.initializePDF();
-			}
-		});
+
+		if ( this.props.pdf ) {
+			this.initializePDF();
+		} else {
+			this.elements = [ [] ];
+			this.backgrounds = [ null ];
+			this.recordingEndPositions = [ 0 ];
+			this.setState({
+				nUndos: 0,
+				currentPage: 0,
+				noPages: 1
+			});
+		}
 	}
 
 	delete = () => {
@@ -305,32 +327,34 @@ class Sketchpad extends Component {
 				ctx.clearRect( 0, 0, canvas.width, canvas.height );
 			}
 		}
-		this.elements[ this.state.currentPage ] = [];
+		this.elements[ currentPage ] = [];
+		this.recordingEndPositions[ currentPage ] = 0;
 		this.setState({
 			finishedRecording: false,
-			nUndos: 0,
-			recordingEndPos: 0
+			nUndos: 0
 		});
 	}
 
 	undo = () => {
-		const elems = this.elements[ this.state.currentPage ];
+		const currentPage = this.state.currentPage;
+		const elems = this.elements[ currentPage ];
+		const recordingEndPos = this.recordingEndPositions[ currentPage ];
 		let nUndos = this.state.nUndos;
-		if ( elems.length - nUndos > this.state.recordingEndPos ) {
-			const ctx = this.ctx[ this.state.currentPage ];
-			const canvas = this.canvas[ this.state.currentPage ];
+		if ( elems.length - nUndos > recordingEndPos ) {
+			const ctx = this.ctx[ currentPage ];
+			const canvas = this.canvas[ currentPage ];
 			if ( ctx ) {
 				ctx.clearRect( 0, 0, canvas.width, canvas.height );
 			}
-			this.renderBackground( this.state.currentPage )
+			this.renderBackground( currentPage )
 				.then( () => {
 					nUndos += min( UNDO_ELEMENTS_NO, elems.length-nUndos );
 					const end = elems.length - nUndos;
 					this.setState({
 						nUndos
 					});
-					debug( `Redrawing elements ${this.state.recordingEndPos} to ${end} out of ${elems.length} elements` );
-					for ( let i = this.state.recordingEndPos; i < end; i++ ) {
+					debug( `Redrawing elements ${recordingEndPos} to ${end} out of ${elems.length} elements` );
+					for ( let i = recordingEndPos; i < end; i++ ) {
 						this.drawElement( elems[ i ] );
 					}
 				});
@@ -559,6 +583,7 @@ class Sketchpad extends Component {
 	insertPage = ( idx ) => {
 		this.elements.splice( idx, 0, []);
 		this.backgrounds.splice( idx, 0, null );
+		this.recordingEndPositions.splice( idx, 0, 0 );
 		this.setState({
 			noPages: this.state.noPages + 1,
 			currentPage: idx,
@@ -762,7 +787,7 @@ class Sketchpad extends Component {
 	}
 
 	initializePDF = () => {
-		pdfjs.getDocument( this.props.pdf )
+		return pdfjs.getDocument( this.props.pdf )
 			.then( this.processPDF )
 			.catch(function onError( err ) {
 				debug( err );
@@ -771,21 +796,25 @@ class Sketchpad extends Component {
 
 	processPDF = ( pdf ) => {
 		debug( 'PDF loaded...' );
-		const elems = new Array( pdf.numPages );
-		const promises = new Array( pdf.numPages );
+		const noPages = pdf.numPages;
+		const elems = new Array( noPages );
+		const promises = new Array( noPages );
+		const recordingEndPositions = new Array( noPages );
 		this.setState({
-			noPages: pdf.numPages
+			noPages: noPages
 		}, () => {
-			for ( let i = 0; i < pdf.numPages; i++ ) {
+			for ( let i = 0; i < noPages; i++ ) {
 				elems[ i ] = [];
 				promises[ i ] = pdf.getPage( i + 1 );
+				recordingEndPositions[ i ] = 0;
 			}
-			Promise.all( promises )
+			return Promise.all( promises )
 				.then( values => {
 					debug( 'Retrieved all pages...' );
 					this.backgrounds = values;
 					this.elements = elems;
-					for ( let i = 0; i < pdf.numPages; i++ ) {
+					this.recordingEndPositions = recordingEndPositions;
+					for ( let i = 0; i < noPages; i++ ) {
 						this.drawPage( i );
 					}
 				})
@@ -798,6 +827,7 @@ class Sketchpad extends Component {
 			const session = this.context.session;
 			const data = {
 				elements: this.elements,
+				recordingEndPositions: this.recordingEndPositions,
 				state: this.state
 			};
 			session.store.setItem( this.props.id+'_sketchpad', data, ( err ) => {
@@ -821,6 +851,7 @@ class Sketchpad extends Component {
 
 	record = () => {
 		const recording = !this.state.recording;
+		const currentPage = this.state.currentPage;
 		let finishedRecording = false;
 		if ( recording ) {
 			this.delete();
@@ -829,19 +860,19 @@ class Sketchpad extends Component {
 				this.time += 500;
 			}, 500 );
 		} else {
-			const ctx = this.ctx[ this.state.currentPage ];
+			const ctx = this.ctx[ currentPage ];
 			if ( ctx ) {
 				ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
 			}
-			this.renderBackground( this.state.currentPage );
+			this.renderBackground( currentPage );
 			clearInterval( this.interval );
 			finishedRecording = true;
 		}
-		const recordingEndPos = this.elements[ this.state.currentPage ].length;
+		const recordingEndPos = this.elements[ currentPage ].length;
+		this.recordingEndPositions[ currentPage ] = recordingEndPos;
 		this.setState({
 			recording,
-			finishedRecording,
-			recordingEndPos
+			finishedRecording
 		});
 	}
 
@@ -955,9 +986,7 @@ class Sketchpad extends Component {
 					</Button>
 				</OverlayTrigger>
 				<OverlayTrigger placement="bottom" overlay={createTooltip( 'Play recording' )}>
-					<Button bsSize="small" bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={() => {
-						this.redraw( true );
-					}} >
+					<Button bsSize="small" bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={this.replay} >
 						<Glyphicon glyph="play" />
 					</Button>
 				</OverlayTrigger>
