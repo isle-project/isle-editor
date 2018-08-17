@@ -20,6 +20,7 @@ import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import isArray from '@stdlib/assert/is-array';
+import isNull from '@stdlib/assert/is-null';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
 import saveAs from 'utils/file-saver';
@@ -78,9 +79,10 @@ class Sketchpad extends Component {
 			recording: false,
 			finishedRecording: false,
 			recordingEndPos: 0,
+			modalMessage: null,
 			nUndos: 0,
 			noPages: 1,
-			showResponseModal: false,
+			showUploadModal: false,
 			textMode: false,
 			showNavigationModal: false
 		};
@@ -131,6 +133,8 @@ class Sketchpad extends Component {
 						elem.shouldLog = false;
 						const elements = this.elements[ elem.page ];
 						elements.push( elem );
+						console.log( 'ELEMENTS:');
+						console.log( elements );
 						this.props.onChange( elements );
 						if ( elem.page === this.state.currentPage ) {
 							if ( type === 'SKETCHPAD_DRAW_TEXT' ) {
@@ -187,29 +191,30 @@ class Sketchpad extends Component {
 		if ( ctx ) {
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
-		this.renderBackground( this.state.currentPage );
-		const elems = this.elements[ this.state.currentPage ];
-
-		this.setState({
-			playing: true
-		}, () => {
-			let idx = 0;
-			let iter = () => {
-				this.drawElement( elems[ idx ] );
-				idx += 1;
-				if ( idx < elems.length ) {
-					if ( !immediately ) {
-						window.setTimeout( iter, elems[ idx ].time - elems[ idx-1 ].time );
+		this.renderBackground( this.state.currentPage ).then( () => {
+			const elems = this.elements[ this.state.currentPage ];
+			debug( `Rendering ${elems.length} elements...` );
+			this.setState({
+				playing: true
+			}, () => {
+				let idx = 0;
+				let iter = () => {
+					this.drawElement( elems[ idx ] );
+					idx += 1;
+					if ( idx < elems.length ) {
+						if ( !immediately ) {
+							window.setTimeout( iter, elems[ idx ].time - elems[ idx-1 ].time );
+						} else {
+							iter();
+						}
 					} else {
-						iter();
+						this.setState({
+							playing: false
+						});
 					}
-				} else {
-					this.setState({
-						playing: false
-					});
-				}
-			};
-			window.setTimeout( iter, 0.0 );
+				};
+				window.setTimeout( iter, 0.0 );
+			});
 		});
 	}
 
@@ -361,7 +366,8 @@ class Sketchpad extends Component {
 						endY,
 						color,
 						size,
-						page: this.state.currentPage
+						page: this.state.currentPage,
+						type: 'line'
 					}),
 					noSave: true
 				};
@@ -447,33 +453,36 @@ class Sketchpad extends Component {
 	}
 
 	uploadSketches = () => {
-		const doc = this.preparePDF();
-		doc.getBase64( ( pdf ) => {
-			const pdfForm = new FormData();
-			const name = this.props.id ? this.props.id : 'sketches';
-			const filename = name + '.pdf';
-			const pdfBlob = base64toBlob( pdf, 'application/pdf' );
-			const pdfFile = new File([ pdfBlob ], filename, {
-				type: 'application/pdf'
-			});
-			pdfForm.append( 'file', pdfFile );
-			this.context.session.uploadFile( pdfForm, ( err, res ) => {
-				if ( err ) {
-					this.setState({
-						modalMessage: err.message,
-						showResponseModal: true
-					});
-				} else {
-					const server = this.context.session.server;
-					const filename = res.filename;
-					const link = server + '/' + filename;
-					this.setState({
-						modalMessage: <span>
-							The file has been uploaded successfully and can be accessed at the following address: <a href={link}>{link}</a>
-						</span>,
-						showResponseModal: true
-					});
-				}
+		this.setState({
+			showUploadModal: true
+		}, () => {
+			const doc = this.preparePDF();
+			doc.getBase64( ( pdf ) => {
+				debug( 'Processing base64 string of PDF document' );
+				const pdfForm = new FormData();
+				const name = this.props.id ? this.props.id : 'sketches';
+				const filename = name + '.pdf';
+				const pdfBlob = base64toBlob( pdf, 'application/pdf' );
+				const pdfFile = new File([ pdfBlob ], filename, {
+					type: 'application/pdf'
+				});
+				pdfForm.append( 'file', pdfFile );
+				this.context.session.uploadFile( pdfForm, ( err, res ) => {
+					if ( err ) {
+						this.setState({
+							modalMessage: err.message
+						});
+					} else {
+						const server = this.context.session.server;
+						const filename = res.filename;
+						const link = server + '/' + filename;
+						this.setState({
+							modalMessage: <span>
+								The file has been uploaded successfully and can be accessed at the following address: <a href={link}>{link}</a>
+							</span>
+						});
+					}
+				});
 			});
 		});
 	}
@@ -498,6 +507,7 @@ class Sketchpad extends Component {
 	}
 
 	preparePDF = () => {
+		debug( 'Assembling PDF document object...' );
 		const docDefinition = {
 			content: [],
 			pageSize: {
@@ -513,6 +523,7 @@ class Sketchpad extends Component {
 				width: this.canvas[ i ].width
 			});
 		}
+		debug( 'Creating PDF...' );
 		return pdfMake.createPdf( docDefinition );
 	}
 
@@ -529,7 +540,7 @@ class Sketchpad extends Component {
 		this.setState({
 			noPages: this.state.noPages + 1,
 			currentPage: idx,
-			nUndos: 0,
+			nUndos: 0
 		}, () => {
 			this.redraw();
 			this.context.session.log({
@@ -597,7 +608,8 @@ class Sketchpad extends Component {
 					color,
 					fontSize,
 					fontFamily,
-					page: this.state.currentPage
+					page: this.state.currentPage,
+					type: 'text'
 				})
 			};
 			if ( session.isOwner() ) {
@@ -818,14 +830,28 @@ class Sketchpad extends Component {
 
 	closeResponseModal = () => {
 		this.setState({
-			showResponseModal: false
+			showUploadModal: false,
+			modalMessage: null
 		});
 	}
 
 	renderUploadModal() {
+		const isRunning = isNull( this.state.modalMessage );
+		if ( isRunning) {
+			return (
+				<Modal
+					show={this.state.showUploadModal}
+					container={this}
+				>
+					<Modal.Header>
+						<Modal.Title>Generating PDF...</Modal.Title>
+					</Modal.Header>
+				</Modal>
+			);
+		}
 		return (
 			<Modal
-				show={this.state.showResponseModal}
+				show={this.state.showUploadModal}
 				onHide={this.closeResponseModal}
 				container={this}
 			>
@@ -1056,7 +1082,7 @@ class Sketchpad extends Component {
 					{this.renderRecordingButtons()}
 					{this.renderSaveButtons()}
 				</div>
-				<div style={{ display: this.state.showColorPicker ? 'initial' : 'none', top: '70px', left: '180px', position: 'absolute', zIndex: 9999 }} >
+				<div style={{ display: this.state.showColorPicker ? 'initial' : 'none', top: '70px', left: '160px', position: 'absolute', zIndex: 9999 }} >
 					<TwitterPicker
 						color={this.state.color}
 						colors={COLORPICKER_COLORS}
