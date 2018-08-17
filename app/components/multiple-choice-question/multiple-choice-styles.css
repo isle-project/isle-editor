@@ -15,6 +15,10 @@
 	line-height: 22px !important;
 }
 
+.question {
+	white-space: pre-line;
+}
+
 .question label {
 	font-weight: 600;
 	font-stretch: extra-expanded;

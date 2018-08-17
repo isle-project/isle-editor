@@ -2,13 +2,19 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import isString from '@stdlib/assert/is-string';
 
 
 // MAIN //
 
 const Question = ( props ) => {
+	let content = props.content;
+	if ( isString( content ) ) {
+		content = <label>{content}</label>;
+	}
 	return ( <span className="question">
-		<label>{props.content}</label><br />
+		{content}
+		<br />
 		<span style={{ fontSize: '18px' }}>{props.task}:</span>
 	</span> );
 };
