@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import pdfjs from 'pdfjs-dist';
+import pdfjs from 'pdfjs-dist/webpack';
 import pdfMake from 'pdfmake-lite/build/pdfmake.min.js';
 import logger from 'debug';
 import Pressure from 'pressure';
@@ -41,7 +41,6 @@ const COLORPICKER_COLORS = [
 	'#00D084', '#8ED1FC', '#0693E3',
 	'#ABB8C3', '#EB144C', '#9900EF'
 ];
-pdfjs.disableWorker = true;
 
 
 // FUNCTIONS //
@@ -83,6 +82,7 @@ class Sketchpad extends Component {
 			fontFamily: props.fontFamily,
 			fontSize: props.fontSize,
 			recording: false,
+			isExporting: false,
 			finishedRecording: false,
 			modalMessage: null,
 			nUndos: 0,
@@ -528,7 +528,7 @@ class Sketchpad extends Component {
 
 	uploadSketches = () => {
 		this.setState({
-			showUploadModal: true
+			isExporting: true
 		}, () => {
 			const doc = this.preparePDF();
 			doc.getBase64( ( pdf ) => {
@@ -544,6 +544,8 @@ class Sketchpad extends Component {
 				this.context.session.uploadFile( pdfForm, ( err, res ) => {
 					if ( err ) {
 						this.setState({
+							isExporting: false,
+							showUploadModal: true,
 							modalMessage: err.message
 						});
 					} else {
@@ -551,6 +553,8 @@ class Sketchpad extends Component {
 						const filename = res.filename;
 						const link = server + '/' + filename;
 						this.setState({
+							isExporting: false,
+							showUploadModal: true,
 							modalMessage: <span>
 								The file has been uploaded successfully and can be accessed at the following address: <a href={link} target="_blank" >{link}</a>
 							</span>
@@ -602,9 +606,17 @@ class Sketchpad extends Component {
 	}
 
 	saveAsPDF = () => {
-		const doc = this.preparePDF();
-		const name = this.props.id ? this.props.id : 'sketches';
-		doc.download( name+'.pdf' );
+		this.setState({
+			isExporting: true
+		}, () => {
+			const doc = this.preparePDF();
+			const name = this.props.id ? this.props.id : 'sketches';
+			doc.download( name+'.pdf', () => {
+				this.setState({
+					isExporting: false
+				});
+			});
+		});
 	}
 
 	insertPage = ( idx ) => {
@@ -925,19 +937,25 @@ class Sketchpad extends Component {
 		});
 	}
 
+	renderProgressModal() {
+		if ( !this.state.isExporting ) {
+			return null;
+		}
+		return (
+			<Modal
+				show={this.state.isExporting}
+				container={this}
+			>
+				<Modal.Header>
+					<Modal.Title>Generating PDF...</Modal.Title>
+				</Modal.Header>
+			</Modal>
+		);
+	}
+
 	renderUploadModal() {
-		const isRunning = isNull( this.state.modalMessage );
-		if ( isRunning) {
-			return (
-				<Modal
-					show={this.state.showUploadModal}
-					container={this}
-				>
-					<Modal.Header>
-						<Modal.Title>Generating PDF...</Modal.Title>
-					</Modal.Header>
-				</Modal>
-			);
+		if ( !this.state.showUploadModal ) {
+			return null;
 		}
 		return (
 			<Modal
@@ -1202,6 +1220,7 @@ class Sketchpad extends Component {
 				}} />
 				{this.renderUploadModal()}
 				{this.renderNavigationModal()}
+				{this.renderProgressModal()}
 			</Panel>
 		);
 	}
