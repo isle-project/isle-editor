@@ -20,6 +20,7 @@ import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import incrspace from '@stdlib/math/utils/incrspace';
+import contains from '@stdlib/assert/contains';
 import isObject from '@stdlib/assert/is-object';
 import isNull from '@stdlib/assert/is-null';
 import ceil from '@stdlib/math/base/special/ceil';
@@ -160,6 +161,14 @@ class Sketchpad extends Component {
 				}
 			});
 		}
+
+		// Prevent scrolling when touching the canvas on iOS
+		const opts = {
+			passive: false
+		};
+		document.body.addEventListener( 'touchstart', this.preventDefaultTouch, opts );
+		document.body.addEventListener( 'touchend', this.preventDefaultTouch, opts );
+		document.body.addEventListener( 'touchmove', this.preventDefaultTouch, opts );
 	}
 
 	componentWillUnmount() {
@@ -168,6 +177,18 @@ class Sketchpad extends Component {
 		}
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
+		}
+		const opts = {
+			passive: false
+		};
+		document.body.removeEventListener( 'touchstart', this.preventDefaultTouch, opts );
+		document.body.removeEventListener( 'touchend', this.preventDefaultTouch, opts );
+		document.body.removeEventListener( 'touchmove', this.preventDefaultTouch, opts );
+	}
+
+	preventDefaultTouch = ( e ) => {
+		if ( this.canvas[ this.currentPage ] === e.target ) {
+			e.preventDefault();
 		}
 	}
 

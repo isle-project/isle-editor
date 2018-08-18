@@ -17,6 +17,11 @@
 	float: left;
 }
 
+.sketch-canvas {
+	cursor: crosshair;
+	touch-action: none;
+}
+
 .unselectable {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
