@@ -20,7 +20,6 @@ import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import incrspace from '@stdlib/math/utils/incrspace';
-import contains from '@stdlib/assert/contains';
 import isObject from '@stdlib/assert/is-object';
 import isNull from '@stdlib/assert/is-null';
 import ceil from '@stdlib/math/base/special/ceil';
@@ -90,6 +89,7 @@ class Sketchpad extends Component {
 			noPages: 1,
 			showUploadModal: false,
 			textMode: false,
+			drawingMode: true,
 			showNavigationModal: false
 		};
 		this.isMouseDown = false;
@@ -187,7 +187,10 @@ class Sketchpad extends Component {
 	}
 
 	preventDefaultTouch = ( e ) => {
-		if ( this.canvas[ this.currentPage ] === e.target ) {
+		if (
+			this.state.drawingMode &&
+			this.canvas[ this.state.currentPage ] === e.target
+		) {
 			e.preventDefault();
 		}
 	}
@@ -452,7 +455,7 @@ class Sketchpad extends Component {
 
 	drawStart = ( event ) => {
 		event.stopPropagation();
-		if ( !this.state.textMode ) {
+		if ( this.state.drawingMode ) {
 			const { x, y } = this.mousePosition( event );
 			this.x = x;
 			this.y = y;
@@ -467,7 +470,7 @@ class Sketchpad extends Component {
 	}
 
 	draw = ( evt ) => {
-		if ( this.state.textMode ) {
+		if ( !this.state.drawingMode ) {
 			return;
 		}
 		evt.stopPropagation();
@@ -903,7 +906,15 @@ class Sketchpad extends Component {
 
 	toggleTextMode = () => {
 		this.setState({
+			drawingMode: false,
 			textMode: !this.state.textMode
+		});
+	}
+
+	toggleDrawingMode = () => {
+		this.setState({
+			drawingMode: !this.state.drawingMode,
+			textMode: false
 		});
 	}
 
@@ -1029,7 +1040,7 @@ class Sketchpad extends Component {
 		return (
 			<ButtonGroup bsSize="small" className="sketch-drawing-buttons" >
 				<OverlayTrigger placement="bottom" overlay={createTooltip( 'Drawing Mode' )}>
-					<Button bsSize="small" bsStyle={!this.state.textMode ? 'success' : 'default'} onClick={this.toggleTextMode} >
+					<Button bsSize="small" bsStyle={this.state.drawingMode ? 'success' : 'default'} onClick={this.toggleDrawingMode} >
 						<Glyphicon glyph="pencil" />
 					</Button>
 				</OverlayTrigger>
@@ -1065,7 +1076,8 @@ class Sketchpad extends Component {
 					onSelect={(val) => {
 						this.setState({
 							fontFamily: val,
-							textMode: true
+							textMode: true,
+							drawingMode: false
 						});
 					}}
 				>

@@ -20,6 +20,8 @@
 .sketch-canvas {
 	cursor: crosshair;
 	touch-action: none;
+	position: fixed;
+	overflow: hidden
 }
 
 .unselectable {
