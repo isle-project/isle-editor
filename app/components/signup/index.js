@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
@@ -9,18 +10,9 @@ import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Form from 'react-bootstrap/lib/Form';
 import HelpBlock from 'react-bootstrap/lib/HelpBlock';
 import Modal from 'react-bootstrap/lib/Modal';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Overlay from 'react-bootstrap/lib/Overlay';
 import Popover from 'react-bootstrap/lib/Popover';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
-import PropTypes from 'prop-types';
-
-
-// FUNCTIONS //
-
-const createTooltip = ( str ) => {
-	return <Tooltip id="tooltip">{str}</Tooltip>;
-};
+import Tooltip from 'components/tooltip';
 
 
 // MAIN //
@@ -116,7 +108,7 @@ class Signup extends Component {
 						When solving ISLE lessons in the future from the current browser, you will not have to fill out this form again.
 						If you are already registered before, supplying your email address suffices.</p>
 					<Form horizontal>
-						<OverlayTrigger placement="right" overlay={createTooltip( 'Please enter a valid email address.' )}>
+						<Tooltip placement="right" tooltip="Please enter a valid email address." >
 							<FormGroup
 								controlId="formHorizontalEmail"
 								validationState={this.getEmailValidationState()}
@@ -135,8 +127,8 @@ class Signup extends Component {
 									<HelpBlock>Please enter your university email address.</HelpBlock>
 								</Col>
 							</FormGroup>
-						</OverlayTrigger>
-						<OverlayTrigger placement="right" overlay={createTooltip( 'Please enter your name (minimum three characters).' )}>
+						</Tooltip>
+						<Tooltip placement="right" tooltip="Please enter your name (minimum three characters)." >
 							<FormGroup
 								controlId="signup-form-name"
 								validationState={this.getNameValidationState()}
@@ -155,8 +147,8 @@ class Signup extends Component {
 									<HelpBlock>Please enter your name.</HelpBlock>
 								</Col>
 							</FormGroup>
-						</OverlayTrigger>
-						<OverlayTrigger placement="right" overlay={createTooltip( 'Please enter a password of your choosing with at least six characters' )}>
+						</Tooltip>
+						<Tooltip placement="right" tooltip="Please enter a password of your choosing with at least six characters" >
 							<FormGroup
 								controlId="signup-form-password"
 								validationState={this.getPasswordValidationState()}
@@ -176,7 +168,7 @@ class Signup extends Component {
 									<FormControl.Feedback />
 								</Col>
 							</FormGroup>
-						</OverlayTrigger>
+						</Tooltip>
 						<FormGroup
 							controlId="signup-form-password-confirmation"
 							validationState={this.getPasswordValidationState()}

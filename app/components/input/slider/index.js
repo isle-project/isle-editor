@@ -2,9 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
 import Input from 'components/input/base';
+import Tooltip from 'components/tooltip';
 import roundn from '@stdlib/math/base/special/roundn';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/constants/math/float64-pinf';
@@ -138,13 +137,10 @@ class SliderInput extends Input {
 				display: this.props.inline ? 'inline' : 'block'
 			}}
 		/>;
-		const numberInput = <OverlayTrigger
+		const numberInput = <Tooltip
+			id="inlineTooltip"
 			placement="top"
-			overlay={
-				<Tooltip id='inlineTooltip'>
-					{ this.props.disabled ? 'The slider input is disabled right now.' : this.state.tooltip}
-				</Tooltip>
-			}
+			tooltip={this.props.disabled ? 'The slider input is disabled right now.' : this.state.tooltip}
 		>
 			<input
 				type="number"
@@ -161,7 +157,7 @@ class SliderInput extends Input {
 					float: this.props.inline ? 'none' : 'right'
 				}}
 			/>
-		</OverlayTrigger>;
+		</Tooltip>;
 
 		if ( this.props.inline ) {
 			return (

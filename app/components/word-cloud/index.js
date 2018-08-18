@@ -6,8 +6,6 @@ import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
 import { scaleOrdinal, schemeCategory10, select } from 'd3';
 import cloud from 'd3-cloud';
 import saveAs from 'utils/file-saver';
@@ -30,6 +28,7 @@ import STOPWORDS_IT from '@stdlib/datasets/savoy-stopwords-it';
 import STOPWORDS_POR from '@stdlib/datasets/savoy-stopwords-por';
 import STOPWORDS_SP from '@stdlib/datasets/savoy-stopwords-sp';
 import STOPWORDS_SWE from '@stdlib/datasets/savoy-stopwords-swe';
+import Tooltip from 'components/tooltip';
 import { svgString2Image, getSVGString } from 'utils/svg';
 
 
@@ -39,10 +38,6 @@ const fill = scaleOrdinal( schemeCategory10 );
 
 
 // FUNCTIONS //
-
-const createTooltip = ( str ) => {
-	return <Tooltip id="tooltip">{str}</Tooltip>;
-};
 
 const generateStopwords = ( language ) => {
 	let stopwords;
@@ -271,14 +266,14 @@ class Wrapper extends Component {
 
 	render() {
 		return ( <div style={{ width: this.props.width, position: 'relative' }}>
-			{ this.state.wordCounts.length > 0 ? <OverlayTrigger placement="left" overlay={createTooltip( 'Save Word Cloud' )}>
+			{ this.state.wordCounts.length > 0 ? <Tooltip placement="left" tooltip="Save Word Cloud" >
 				<Button bsSize="xsmall" onClick={this.saveToPNG} style={{
 					position: 'absolute',
 					right: -12,
 					top: -12,
 					zIndex: 2
 				}}><Glyphicon glyph="floppy-save" /></Button>
-			</OverlayTrigger> : null }
+			</Tooltip> : null }
 		</div> );
 	}
 }

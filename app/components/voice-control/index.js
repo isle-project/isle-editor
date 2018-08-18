@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import Button from 'react-bootstrap/lib/Button';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import isArray from '@stdlib/assert/is-array';
+import OverlayTrigger from 'components/overlay-trigger';
 
 
 // FUNCTIONS //

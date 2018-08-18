@@ -8,7 +8,6 @@ import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Panel from 'react-bootstrap/lib/Panel';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import logger from 'debug';
@@ -19,6 +18,7 @@ import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
 import HintButton from 'components/hint-button';
 import VoiceControl from 'components/voice-control';
+import OverlayTrigger from 'components/overlay-trigger';
 import VOICE_COMMANDS from './voice_commands.json';
 import './free-text-question.css';
 

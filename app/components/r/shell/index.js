@@ -8,7 +8,6 @@ import InstructorBar from 'components/instructor-bar';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import Modal from 'react-bootstrap/lib/Modal';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import DOMPurify from 'dompurify';
 import createPrependCode from 'components/r/utils/create-prepend-code';
@@ -27,6 +26,7 @@ import '@planeshifter/brace/theme/katzenmilch';
 import '@planeshifter/brace/theme/solarized_light';
 import Spinner from 'components/spinner';
 import HintButton from 'components/hint-button';
+import OverlayTrigger from 'components/overlay-trigger';
 import './rshell.css';
 
 

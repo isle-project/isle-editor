@@ -1,19 +1,11 @@
 // MODULES //
 
 import React from 'react';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import PropTypes from 'prop-types';
 import copy from '@stdlib/utils/copy';
 import isArray from '@stdlib/assert/is-array';
+import Tooltip from 'components/tooltip';
 import './switch.css';
-
-
-// FUNCTIONS //
-
-const makeTooltip = ( text ) => (
-	<Tooltip id="tooltip">{text}</Tooltip>
-);
 
 
 // MAIN //
@@ -70,12 +62,12 @@ class Switch extends React.Component {
 			return content;
 		}
 		return (
-			<OverlayTrigger
+			<Tooltip
 				placement={this.props.tooltipPos}
-				overlay={makeTooltip( this.props.tooltip )}
+				tooltip={this.props.tooltip}
 			>
 				{content}
-			</OverlayTrigger>
+			</Tooltip>
 		);
 	}
 }

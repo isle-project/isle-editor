@@ -6,8 +6,7 @@ import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Modal from 'react-bootstrap/lib/Modal';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
+import Tooltip from 'components/tooltip';
 import TextArea from 'components/text-area';
 import CheckboxInput from 'components/input/checkbox';
 import './feedback.css';
@@ -101,21 +100,21 @@ class FeedbackButtons extends Component {
 		return (
 			<div className="feedback-buttons" style={{ float: 'right' }}>
 				<ButtonGroup style={{ float: 'right' }} vertical={this.props.vertical} >
-					<OverlayTrigger placement={tpos} overlay={<Tooltip id="tooltip_confused"><strong> I am confused. </strong></Tooltip>}>
+					<Tooltip id="tooltip_confused" placement={tpos} tooltip={<strong> I am confused.</strong>}>
 						<Button className="feedback-button" bsSize="small" onClick={this.submitConfused}>
 							<Confused className="icon" />
 						</Button>
-					</OverlayTrigger>
-					<OverlayTrigger placement={tpos} overlay={<Tooltip id="tooltip_understood"><strong> Makes sense. </strong></Tooltip>}>
+					</Tooltip>
+					<Tooltip id="tooltip_understood" placement={tpos} tooltip={<strong> Makes sense.</strong>} >
 						<Button className="feedback-button" bsSize="small" onClick={this.submitUnderstood}>
 							<Understood className="icon" />
 						</Button>
-					</OverlayTrigger>
-					<OverlayTrigger placement={tpos} overlay={<Tooltip id="tooltip_feedback"><strong> I have feedback. </strong></Tooltip>}>
+					</Tooltip>
+					<Tooltip placement={tpos} id="tooltip_feedback" tooltip={<strong> I have feedback. </strong>} >
 						<Button className="feedback-button" bsSize="small" onClick={openModal}>
 							<Feedback className="icon" />
 						</Button>
-					</OverlayTrigger>
+					</Tooltip>
 				</ButtonGroup>
 				<Modal
 					show={this.state.showModal}

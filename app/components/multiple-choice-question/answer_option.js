@@ -3,8 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
+import OverlayTrigger from 'components/overlay-trigger';
 import './multiple-choice-styles.css';
 
 

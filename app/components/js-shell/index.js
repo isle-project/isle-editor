@@ -1,14 +1,12 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import max from '@stdlib/math/base/special/max';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import ChatButton from 'components/chat-button';
 import HintButton from 'components/hint-button';
@@ -18,6 +16,7 @@ import '@planeshifter/brace/theme/katzenmilch';
 import '@planeshifter/brace/theme/monokai';
 import '@planeshifter/brace/theme/solarized_light';
 import scrollTo from 'utils/scroll-to';
+import OverlayTrigger from 'components/overlay-trigger';
 import CONSOLE_STYLES from './console_styles.json';
 import './js-shell.css';
 

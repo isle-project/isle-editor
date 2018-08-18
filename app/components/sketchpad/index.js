@@ -17,8 +17,6 @@ import Modal from 'react-bootstrap/lib/Modal';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
 import incrspace from '@stdlib/math/utils/incrspace';
 import isObject from '@stdlib/assert/is-object';
 import isNull from '@stdlib/assert/is-null';
@@ -28,6 +26,7 @@ import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
 import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
+import Tooltip from 'components/tooltip';
 import { TwitterPicker } from 'react-color';
 import './sketchpad.css';
 
@@ -45,16 +44,12 @@ const COLORPICKER_COLORS = [
 
 // FUNCTIONS //
 
-const createTooltip = ( str ) => {
-	return <Tooltip id="tooltip">{str}</Tooltip>;
-};
-
-const TooltipButton = ({ tooltip, onClick, glyph, label, disabled }) => ( <OverlayTrigger placement="bottom" overlay={createTooltip( tooltip )}>
-<Button bsSize="small" onClick={onClick} disabled={disabled} >
-	{ glyph ? <Glyphicon glyph={glyph} /> : null }
-	{label}
-</Button>
-</OverlayTrigger> );
+const TooltipButton = ({ tooltip, onClick, glyph, label, disabled }) => ( <Tooltip placement="bottom" tooltip={tooltip}>
+	<Button bsSize="small" onClick={onClick} disabled={disabled} >
+		{ glyph ? <Glyphicon glyph={glyph} /> : null }
+		{label}
+	</Button>
+</Tooltip> );
 
 
 // MAIN //
@@ -1039,16 +1034,16 @@ class Sketchpad extends Component {
 			this.state.playing;
 		return (
 			<ButtonGroup bsSize="small" className="sketch-button-group">
-				<OverlayTrigger placement="bottom" overlay={!this.state.recording ? createTooltip( 'Record drawing' ) : createTooltip( 'Pause recording' )}>
+				<Tooltip placement="bottom" tooltip={!this.state.recording ? 'Record drawing' : 'Pause recording'} >
 					<Button bsSize="small" disabled={this.state.playing} onClick={this.record} >
 						<Glyphicon glyph={!this.state.recording ? 'record' : 'stop'} />
 					</Button>
-				</OverlayTrigger>
-				<OverlayTrigger placement="bottom" overlay={createTooltip( 'Play recording' )}>
+				</Tooltip>
+				<Tooltip placement="bottom" tooltip="Play recording" >
 					<Button bsSize="small" bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={this.replay} >
 						<Glyphicon glyph="play" />
 					</Button>
-				</OverlayTrigger>
+				</Tooltip>
 				<TooltipButton tooltip="Delete recording" onClick={this.delete} glyph="remove" disabled={deleteIsDisabled} />
 			</ButtonGroup>
 		);
@@ -1057,11 +1052,11 @@ class Sketchpad extends Component {
 	renderDrawingButtons() {
 		return (
 			<ButtonGroup bsSize="small" className="sketch-drawing-buttons" >
-				<OverlayTrigger placement="bottom" overlay={createTooltip( 'Drawing Mode' )}>
+				<Tooltip placement="bottom" tooltip="Drawing Mode" >
 					<Button bsSize="small" bsStyle={this.state.drawingMode ? 'success' : 'default'} onClick={this.toggleDrawingMode} >
 						<Glyphicon glyph="pencil" />
 					</Button>
-				</OverlayTrigger>
+				</Tooltip>
 				<InputGroup bsSize="small" className="sketch-input-group" >
 					<InputGroup.Addon>Size</InputGroup.Addon>
 					<FormControl
@@ -1083,9 +1078,9 @@ class Sketchpad extends Component {
 	renderTextButtons() {
 		return (
 			<ButtonGroup bsSize="small" className="sketch-drawing-buttons" >
-				<OverlayTrigger placement="bottom" overlay={createTooltip( 'Text Mode' )}>
+				<Tooltip placement="bottom" tooltip="Text Mode" >
 					<Button bsSize="small" bsStyle={this.state.textMode ? 'success' : 'default'} onClick={this.toggleTextMode} ><Glyphicon glyph="font" /></Button>
-				</OverlayTrigger>
+				</Tooltip>
 				<DropdownButton
 					id="sketch-font-dropdown"
 					bsSize="small"
@@ -1184,9 +1179,9 @@ class Sketchpad extends Component {
 						<TooltipButton tooltip="Clear pages" onClick={this.clear} label="Clear" disabled={this.state.playing || this.state.recording} />
 					</ButtonGroup>
 					<ButtonGroup bsSize="small" className="sketch-button-group" >
-						<OverlayTrigger placement="right" overlay={createTooltip( 'Change brush color' )}>
+						<Tooltip placement="right" tooltip="Change brush color" >
 							<Button bsSize="small" onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Color</Button>
-						</OverlayTrigger>
+						</Tooltip>
 					</ButtonGroup>
 					{this.renderDrawingButtons()}
 					{this.renderTextButtons()}

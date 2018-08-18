@@ -2,14 +2,13 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
 import Input from 'components/input/base';
 import contains from '@stdlib/assert/contains';
 import isString from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
+import Tooltip from 'components/tooltip';
 import './number.css';
 
 
@@ -168,9 +167,9 @@ class NumberInput extends Input {
 				</span>;
 			return this.props.disabled ?
 				input:
-				<OverlayTrigger placement="top" overlay={<Tooltip id='numberInputTooltip'>{this.state.tooltip}</Tooltip>}>
+				<Tooltip id="numberInputTooltip" placement="top" tooltip={this.state.tooltip} >
 					{input}
-				</OverlayTrigger>;
+				</Tooltip>;
 		}
 
 		let input = <input
@@ -216,9 +215,9 @@ class NumberInput extends Input {
 				</span>
 				{this.props.disabled ?
 					input:
-					<OverlayTrigger placement="top" overlay={<Tooltip id='numberInputTooltip'>{this.state.tooltip}</Tooltip>}>
+					<Tooltip id="numberInputTooltip" placement="top" tooltip={this.state.tooltip} >
 						{input}
-					</OverlayTrigger>
+					</Tooltip>
 				}
 			</div>
 		);
