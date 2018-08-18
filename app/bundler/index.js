@@ -259,6 +259,14 @@ function writeIndexFile({
 		resolve: {
 			modules: modulePaths,
 			alias: {
+				'csv-parse': resolve(
+					basePath,
+					'./node_modules/csv-parse/lib/es5/index.js'
+				),
+				'csv-stringify': resolve(
+					basePath,
+					'./node_modules/csv-parse/lib/es5/index.js'
+				),
 				'victory': resolve(
 					basePath,
 					'./node_modules/victory/dist/victory.min.js'
