@@ -1,0 +1,14 @@
+.quiz-right-answer {
+	background: #3c763d;
+	color: white;
+}
+
+.quiz-wrong-answer {
+	background: #d9534f;
+	color: white;
+}
+
+.quiz-button {
+	float: right;
+	margin-top: 20px;
+}
