@@ -6,7 +6,7 @@ import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import logger from 'debug';
-import camelcase from 'camelcase';
+import camelcase from 'utils/camelcase';
 
 
 // VARIABLES //

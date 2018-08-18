@@ -142,7 +142,6 @@
     "babel-runtime": "^6.9.2",
     "bl": "^2.0.0",
     "bufferutil": "^4.0.0",
-    "camelcase": "5.0.0",
     "codemirror": "^5.39.2",
     "component-playground": "^3.1.2",
     "compute-chunkify": "0.0.0",
