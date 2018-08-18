@@ -44,12 +44,14 @@ const COLORPICKER_COLORS = [
 
 // FUNCTIONS //
 
-const TooltipButton = ({ tooltip, onClick, glyph, label, disabled }) => ( <Tooltip placement="bottom" tooltip={tooltip}>
-	<Button bsSize="small" onClick={onClick} disabled={disabled} >
-		{ glyph ? <Glyphicon glyph={glyph} /> : null }
-		{label}
-	</Button>
-</Tooltip> );
+const TooltipButton = ({ tooltip, onClick, glyph, label, disabled }) => {
+	return ( <Tooltip placement="bottom" tooltip={tooltip} >
+		<Button bsSize="small" onClick={onClick} disabled={disabled} >
+			{ glyph ? <Glyphicon glyph={glyph} /> : null }
+			{label}
+		</Button>
+	</Tooltip> );
+};
 
 
 // MAIN //
