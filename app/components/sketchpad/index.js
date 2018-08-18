@@ -24,6 +24,7 @@ import ceil from '@stdlib/math/base/special/ceil';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
+import noop from '@stdlib/utils/noop';
 import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
 import Tooltip from 'components/tooltip';
@@ -68,8 +69,8 @@ class Sketchpad extends Component {
 		this.recordingEndPositions = new Array( props.noPages );
 		this.recordingEndPositions.fill( 0 );
 
-		this.canvas = new Array( props.noPages );
-		this.ctx = new Array( props.noPages );
+		this.canvas = null;
+		this.ctx = null;
 
 		this.state = {
 			color: props.color,
@@ -186,7 +187,7 @@ class Sketchpad extends Component {
 	preventDefaultTouch = ( e ) => {
 		if (
 			this.state.drawingMode &&
-			this.canvas[ this.state.currentPage ] === e.target
+			this.canvas === e.target
 		) {
 			e.preventDefault();
 		}
@@ -197,18 +198,18 @@ class Sketchpad extends Component {
 		if ( page ) {
 			var scale = 1.5;
 			var viewport = page.getViewport( scale );
-			this.canvas[ pageNumber ].height = viewport.height;
-			this.canvas[ pageNumber ].width = viewport.width;
+			this.canvas.height = viewport.height;
+			this.canvas.width = viewport.width;
 
 			// Render PDF page into canvas context
 			var renderContext = {
-				canvasContext: this.ctx[ pageNumber ],
+				canvasContext: this.ctx,
 				viewport: viewport
 			};
 			var renderTask = page.render( renderContext );
 			return renderTask
 				.then( () => {
-					debug( 'Page rendered' );
+					debug( `Background rendered for page ${pageNumber}` );
 				})
 				.catch( err => {
 					debug( err );
@@ -221,8 +222,8 @@ class Sketchpad extends Component {
 	redraw = () => {
 		const currentPage = this.state.currentPage;
 		debug( `Redrawing page ${currentPage+1}` );
-		const ctx = this.ctx[ currentPage ];
-		const canvas = this.canvas[ currentPage ];
+		const ctx = this.ctx;
+		const canvas = this.canvas;
 		const recordingEndPos = this.recordingEndPositions[ currentPage ];
 		if ( ctx ) {
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
@@ -239,8 +240,8 @@ class Sketchpad extends Component {
 	replay = () => {
 		const currentPage = this.state.currentPage;
 		debug( `Playing recording for page ${currentPage+1}` );
-		const ctx = this.ctx[ currentPage ];
-		const canvas = this.canvas[ currentPage ];
+		const ctx = this.ctx;
+		const canvas = this.canvas;
 		if ( ctx ) {
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
@@ -281,8 +282,8 @@ class Sketchpad extends Component {
 	}
 
 	drawPage = ( idx ) => {
-		const ctx = this.ctx[ idx ];
-		const canvas = this.canvas[ idx ];
+		const ctx = this.ctx;
+		const canvas = this.canvas;
 		if ( ctx ) {
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
@@ -294,7 +295,7 @@ class Sketchpad extends Component {
 	}
 
 	mousePosition = ( evt ) => {
-		const canvas = this.canvas[ this.state.currentPage ];
+		const canvas = this.canvas;
 		const rect = canvas.getBoundingClientRect();
 		let clientX = evt.clientX;
 		let clientY = evt.clientY;
@@ -314,13 +315,11 @@ class Sketchpad extends Component {
 
 	clear = () => {
 		for ( let i = 0; i < this.state.noPages; i++ ) {
-			const canvas = this.canvas[ i ];
-			const ctx = this.ctx[ i ];
+			const canvas = this.canvas;
+			const ctx = this.ctx;
 			if ( ctx ) {
 				ctx.clearRect( 0, 0, canvas.width, canvas.height );
 			}
-			this.canvas[ i ] = null;
-			this.ctx[ i ] = null;
 		}
 		this.context.session.store.removeItem( this.props.id + '_sketchpad' );
 
@@ -340,13 +339,13 @@ class Sketchpad extends Component {
 
 	delete = () => {
 		const currentPage = this.state.currentPage;
-		const canvas = this.canvas[ currentPage ];
+		const canvas = this.canvas;
 
 		if ( !isNull( this.backgrounds[ currentPage ] ) ) {
 			this.renderBackground( currentPage );
 		}
 		else {
-			const ctx = this.ctx[ currentPage ];
+			const ctx = this.ctx;
 			if ( ctx ) {
 				ctx.clearRect( 0, 0, canvas.width, canvas.height );
 			}
@@ -365,8 +364,8 @@ class Sketchpad extends Component {
 		const recordingEndPos = this.recordingEndPositions[ currentPage ];
 		let nUndos = this.state.nUndos;
 		if ( elems.length - nUndos > recordingEndPos ) {
-			const ctx = this.ctx[ currentPage ];
-			const canvas = this.canvas[ currentPage ];
+			const ctx = this.ctx;
+			const canvas = this.canvas;
 			if ( ctx ) {
 				ctx.clearRect( 0, 0, canvas.width, canvas.height );
 			}
@@ -415,7 +414,7 @@ class Sketchpad extends Component {
 	}
 
 	drawLine = ({ startX, startY, endX, endY, color, size, shouldLog = true }) => {
-		const ctx = this.ctx[ this.state.currentPage ];
+		const ctx = this.ctx;
 		if ( ctx ) {
 			ctx.lineWidth = size * ( 1.0 + this.force ) * 0.5;
 			ctx.lineCap = 'round';
@@ -527,36 +526,38 @@ class Sketchpad extends Component {
 		this.setState({
 			isExporting: true
 		}, () => {
-			const doc = this.preparePDF();
-			doc.getBase64( ( pdf ) => {
-				debug( 'Processing base64 string of PDF document' );
-				const pdfForm = new FormData();
-				const name = this.props.id ? this.props.id : 'sketches';
-				const filename = name + '.pdf';
-				const pdfBlob = base64toBlob( pdf, 'application/pdf' );
-				const pdfFile = new File([ pdfBlob ], filename, {
-					type: 'application/pdf'
-				});
-				pdfForm.append( 'file', pdfFile );
-				this.context.session.uploadFile( pdfForm, ( err, res ) => {
-					if ( err ) {
-						this.setState({
-							isExporting: false,
-							showUploadModal: true,
-							modalMessage: err.message
-						});
-					} else {
-						const server = this.context.session.server;
-						const filename = res.filename;
-						const link = server + '/' + filename;
-						this.setState({
-							isExporting: false,
-							showUploadModal: true,
-							modalMessage: <span>
-								The file has been uploaded successfully and can be accessed at the following address: <a href={link} target="_blank" >{link}</a>
-							</span>
-						});
-					}
+			this.preparePDF( ( err, doc ) => {
+				doc.getBase64( ( pdf ) => {
+					debug( 'Processing base64 string of PDF document' );
+					const pdfForm = new FormData();
+					const name = this.props.id ? this.props.id : 'sketches';
+					const filename = name + '.pdf';
+					const pdfBlob = base64toBlob( pdf, 'application/pdf' );
+					const pdfFile = new File([ pdfBlob ], filename, {
+						type: 'application/pdf'
+					});
+					pdfForm.append( 'file', pdfFile );
+					const onUpload = ( err, res ) => {
+						if ( err ) {
+							this.setState({
+								isExporting: false,
+								showUploadModal: true,
+								modalMessage: err.message
+							});
+						} else {
+							const server = this.context.session.server;
+							const filename = res.filename;
+							const link = server + '/' + filename;
+							this.setState({
+								isExporting: false,
+								showUploadModal: true,
+								modalMessage: <span>
+									The file has been uploaded successfully and can be accessed at the following address: <a href={link} target="_blank" >{link}</a>
+								</span>
+							});
+						}
+					};
+					this.context.session.uploadFile( pdfForm, onUpload );
 				});
 			});
 		});
@@ -570,47 +571,65 @@ class Sketchpad extends Component {
 			name = 'sketches.png';
 		}
 		const current = this.state.currentPage;
-		const canvas = this.canvas[ current ];
+		const canvas = this.canvas;
 		if ( !this.backgrounds[ current ]) {
 			// Set white background if none present:
-			this.ctx[ current ].fillStyle = 'white';
-			this.ctx[ current ].fillRect( 0, 0, canvas.width, canvas.height );
+			this.ctx.fillStyle = 'white';
+			this.ctx.fillRect( 0, 0, canvas.width, canvas.height );
 		}
 		canvas.toBlob( function onBlob( blob ) {
 			saveAs( blob, name );
 		});
 	}
 
-	preparePDF = () => {
+	preparePDF = ( clbk = noop ) => {
 		debug( 'Assembling PDF document object...' );
 		const docDefinition = {
 			content: [],
 			pageSize: {
-				width: this.canvas[ 0 ].width, // peek at first page and assume it's consistent over all pages
-				height: this.canvas[ 0 ].height
+				width: this.canvas.width, // peek at first page and assume it's consistent over all pages
+				height: this.canvas.height
 			},
 			pageMargins: [ 0, 0, 0, 0 ]
 		};
-		for ( let i = 0; i < this.state.noPages; i++ ) {
-			const data = this.canvas[ i ].toDataURL();
-			docDefinition.content.push({
-				image: data,
-				width: this.canvas[ i ].width
+		let idx = 0;
+		const iter = () => {
+			debug( `Creating page ${idx+1}` );
+			this.renderBackground( idx ).then( () => {
+				const elems = this.elements[ idx ];
+				debug( `Rendering ${elems.length} elements...` );
+				for ( let i = 0; i < elems.length; i++ ) {
+					this.drawElement( elems[ i ] );
+				}
+				const data = this.canvas.toDataURL();
+				docDefinition.content.push({
+					image: data,
+					width: this.canvas.width
+				});
+				idx += 1;
+				if ( idx < this.state.noPages ) {
+					iter();
+				} else {
+					debug( 'Creating PDF...' );
+					return clbk( null, pdfMake.createPdf( docDefinition ) );
+				}
 			});
-		}
-		debug( 'Creating PDF...' );
-		return pdfMake.createPdf( docDefinition );
+		};
+
+		// Start rendering pages one by one:
+		iter();
 	}
 
 	saveAsPDF = () => {
 		this.setState({
 			isExporting: true
 		}, () => {
-			const doc = this.preparePDF();
-			const name = this.props.id ? this.props.id : 'sketches';
-			doc.download( name+'.pdf', () => {
-				this.setState({
-					isExporting: false
+			this.preparePDF( ( err, doc ) => {
+				const name = this.props.id ? this.props.id : 'sketches';
+				doc.download( name+'.pdf', () => {
+					this.setState({
+						isExporting: false
+					});
 				});
 			});
 		});
@@ -636,7 +655,7 @@ class Sketchpad extends Component {
 
 	handleEnter = ( event ) => {
 		debug( 'Check if user hit ENTER...' );
-		const rect = this.canvas[ this.state.currentPage ].getBoundingClientRect();
+		const rect = this.canvas.getBoundingClientRect();
 		const x = parseInt( this.textInput.style.left, 10 ) - rect.left;
 		const y = parseInt( this.textInput.style.top, 10 ) - rect.top;
 		if ( event.keyCode === 13 ) {
@@ -675,7 +694,7 @@ class Sketchpad extends Component {
 	}
 
 	drawText = ({ x, y, value, color, fontSize, fontFamily, shouldLog = true }) => {
-		const ctx = this.ctx[ this.state.currentPage ];
+		const ctx = this.ctx;
 		ctx.font = `${fontSize}px ${fontFamily}`;
 		ctx.fillStyle = color;
 		ctx.fillText( value, x, y+fontSize );
@@ -897,7 +916,7 @@ class Sketchpad extends Component {
 				this.time += 500;
 			}, 500 );
 		} else {
-			const ctx = this.ctx[ currentPage ];
+			const ctx = this.ctx;
 			if ( ctx ) {
 				ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
 			}
@@ -1142,36 +1161,31 @@ class Sketchpad extends Component {
 	}
 
 	render() {
-		const canvases = [];
-		for ( let i = 0; i < this.state.noPages; i++ ) {
-			canvases.push( <canvas
-				className="sketch-canvas"
-				key={`canvas-${i}`}
-				width={this.props.canvasWidth}
-				height={this.props.canvasHeight}
-				style={{
-					visibility: i === this.state.currentPage ? 'visible' : 'hidden',
-					position: 'absolute',
-					left: '0px',
-					...this.props.style
-				}}
-				ref={( canvas ) => {
-					if ( canvas ) {
-						this.canvas[ i ] = canvas;
-						this.ctx[ i ] = canvas.getContext( '2d' );
-					}
-				}}
-				onClick={this.handleClick}
-				onMouseDown={this.drawStart}
-				onMouseMove={this.draw}
-				onMouseOut={this.drawEnd}
-				onMouseUp={this.drawEnd}
-				onTouchCancel={this.drawEnd}
-				onTouchEnd={this.drawEnd}
-				onTouchMove={this.draw}
-				onTouchStart={this.drawStart}
-			/> );
-		}
+		const canvas = <canvas
+			className="sketch-canvas"
+			width={this.props.canvasWidth}
+			height={this.props.canvasHeight}
+			style={{
+				position: 'absolute',
+				left: '0px',
+				...this.props.style
+			}}
+			ref={( canvas ) => {
+				if ( canvas ) {
+					this.canvas = canvas;
+					this.ctx = canvas.getContext( '2d' );
+				}
+			}}
+			onClick={this.handleClick}
+			onMouseDown={this.drawStart}
+			onMouseMove={this.draw}
+			onMouseOut={this.drawEnd}
+			onMouseUp={this.drawEnd}
+			onTouchCancel={this.drawEnd}
+			onTouchEnd={this.drawEnd}
+			onTouchMove={this.draw}
+			onTouchStart={this.drawStart}
+		/>;
 		return (
 			<Panel className="modal-container" style={{ width: this.props.canvasWidth, position: 'relative' }}>
 				<div className="sketch-panel-heading clearfix unselectable">
@@ -1204,7 +1218,7 @@ class Sketchpad extends Component {
 				</div>
 				<div style={{ width: this.props.canvasWidth, height: this.props.canvasHeight, overflow: 'scroll', position: 'relative' }}>
 					{this.renderHTMLOverlays()}
-					{canvases}
+					{canvas}
 				</div>
 				<input type="text" className="sketch-text-input" style={{
 					display: this.state.textMode ? 'inline-block' : 'none',
