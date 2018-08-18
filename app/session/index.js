@@ -14,6 +14,7 @@ import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 import isElectron from 'utils/is-electron';
 import io from 'socket.io-client';
 import SpeechInterface from 'speech-interface';
+import 'whatwg-fetch';
 
 
 // VARIABLES //
