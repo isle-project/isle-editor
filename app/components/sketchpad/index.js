@@ -35,7 +35,6 @@ import './sketchpad.css';
 // VARIABLES //
 
 const debug = logger( 'isle-editor:sketchpad' );
-const UNDO_ELEMENTS_NO = 5;
 const COLORPICKER_COLORS = [
 	'#000000', '#FF6900', '#FCB900',
 	'#00D084', '#8ED1FC', '#0693E3',
@@ -71,6 +70,8 @@ class Sketchpad extends Component {
 
 		this.canvas = null;
 		this.ctx = null;
+
+		this.currentDrawing = 0;
 
 		this.state = {
 			color: props.color,
@@ -111,6 +112,8 @@ class Sketchpad extends Component {
 					this.setState( data.state, () => {
 						this.redraw();
 					});
+				} else {
+					this.redraw();
 				}
 			})
 			.catch( ( err ) => {
@@ -363,40 +366,78 @@ class Sketchpad extends Component {
 		const elems = this.elements[ currentPage ];
 		const recordingEndPos = this.recordingEndPositions[ currentPage ];
 		let nUndos = this.state.nUndos;
-		if ( elems.length - nUndos > recordingEndPos ) {
-			const ctx = this.ctx;
-			const canvas = this.canvas;
-			if ( ctx ) {
-				ctx.clearRect( 0, 0, canvas.width, canvas.height );
-			}
-			this.renderBackground( currentPage )
-				.then( () => {
-					nUndos += min( UNDO_ELEMENTS_NO, elems.length-nUndos );
-					const end = elems.length - nUndos;
-					this.setState({
-						nUndos
-					});
-					debug( `Redrawing elements ${recordingEndPos} to ${end} out of ${elems.length} elements` );
-					for ( let i = recordingEndPos; i < end; i++ ) {
+		const ctx = this.ctx;
+		const canvas = this.canvas;
+		if ( ctx ) {
+			ctx.clearRect( 0, 0, canvas.width, canvas.height );
+		}
+		this.renderBackground( currentPage )
+			.then( () => {
+				nUndos += 1;
+				let count = -1;
+				let lastID;
+				let end = elems.length - 1;
+				for ( let i = end; i >= recordingEndPos; i-- ) {
+					const elem = elems[ i ];
+					if ( elem.type === 'text' ) {
+						count += 1;
+					} else if ( elem.type === 'line' ) {
+						if ( lastID !== elem.drawID ) {
+							count += 1;
+							lastID = elem.drawID;
+						}
+					}
+					if ( count === nUndos ) {
+						end = i;
+						break;
+					} else if ( i === recordingEndPos ) {
+						end = null;
+					}
+				}
+				this.setState({
+					nUndos
+				});
+				if ( !isNull( end ) ) {
+					debug( `UNDO: Redrawing elements ${recordingEndPos} to ${end} out of ${elems.length} elements` );
+					for ( let i = recordingEndPos; i <= end; i++ ) {
 						this.drawElement( elems[ i ] );
 					}
-				});
-		}
+				}
+			});
 	}
 
 	redo = () => {
 		const elems = this.elements[ this.state.currentPage ];
-		const nUndos = this.state.nUndos;
+		let nUndos = this.state.nUndos;
 		if ( nUndos > 0 ) {
-			const idx = max( elems.length - nUndos, 0 );
-			const end = min( idx + UNDO_ELEMENTS_NO, elems.length );
+			const idx = min( elems.length - nUndos, 0 );
 			debug( 'Line index: '+idx );
 			if ( idx >= 0 ) {
-				for ( let i = idx; i < end; i++ ) {
+				let count = -1;
+				let lastID;
+				let end = elems.length - 1;
+				nUndos -= 1;
+				for ( let i = end; i >= 0; i-- ) {
+					const elem = elems[ i ];
+					if ( elem.type === 'text' ) {
+						count += 1;
+					} else if ( elem.type === 'line' ) {
+						if ( lastID !== elem.drawID ) {
+							count += 1;
+							lastID = elem.drawID;
+						}
+					}
+					if ( count === nUndos ) {
+						end = i;
+						break;
+					}
+				}
+				debug( `REDO: Redrawing elements ${idx} to ${end} out of ${elems.length} elements` );
+				for ( let i = idx; i <= end; i++ ) {
 					this.drawElement( elems[ i ]);
 				}
 				this.setState({
-					nUndos: this.state.nUndos - UNDO_ELEMENTS_NO
+					nUndos
 				});
 			}
 		}
@@ -461,8 +502,12 @@ class Sketchpad extends Component {
 	}
 
 	drawEnd = ( event ) => {
+		debug( 'Mouse is not clicked anymore...' );
 		event.stopPropagation();
-		this.isMouseDown = false;
+		if ( this.isMouseDown ) {
+			this.isMouseDown = false;
+			this.currentDrawing += 1;
+		}
 	}
 
 	draw = ( evt ) => {
@@ -485,7 +530,8 @@ class Sketchpad extends Component {
 				endY: y,
 				time: this.time,
 				type: 'line',
-				page: this.state.currentPage
+				page: this.state.currentPage,
+				drawID: this.currentDrawing
 			};
 			this.drawElement( line );
 			const elems = this.elements[ this.state.currentPage ];
@@ -843,14 +889,24 @@ class Sketchpad extends Component {
 	}
 
 	initializePDF = () => {
-		return pdfjs.getDocument( this.props.pdf )
-			.then( this.processPDF )
-			.catch(function onError( err ) {
-				debug( err );
-			});
+		return new Promise( ( resolve, reject ) => {
+			pdfjs.getDocument( this.props.pdf )
+				.then( ( pdf ) => {
+					this.processPDF( pdf, ( err ) => {
+						if ( err ) {
+							reject( err );
+						} else {
+							resolve();
+						}
+					});
+				})
+				.catch(function onError( err ) {
+					debug( err );
+				});
+		});
 	}
 
-	processPDF = ( pdf ) => {
+	processPDF = ( pdf, clbk = noop ) => {
 		debug( 'PDF loaded...' );
 		const noPages = pdf.numPages;
 		const elems = new Array( noPages );
@@ -870,11 +926,12 @@ class Sketchpad extends Component {
 					this.backgrounds = values;
 					this.elements = elems;
 					this.recordingEndPositions = recordingEndPositions;
-					for ( let i = 0; i < noPages; i++ ) {
-						this.drawPage( i );
-					}
+					clbk( null );
 				})
-				.catch( error => debug( error ) );
+				.catch( error => {
+					debug( error );
+					clbk( error );
+				});
 		});
 	}
 
