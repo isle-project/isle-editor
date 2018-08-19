@@ -53,6 +53,22 @@ const TooltipButton = ({ tooltip, onClick, glyph, label, disabled }) => {
 	</Tooltip> );
 };
 
+const removeUndoElements = ( arr, nUndos ) => {
+	let count = 0;
+	let lastID;
+	let elem;
+	while ( count <= nUndos && arr.length > 0 ) {
+		elem = arr.pop();
+		if ( elem.type === 'text' ) {
+			count += 1;
+		} else if ( elem.type === 'line' && lastID !== elem.drawID ) {
+			count += 1;
+			lastID = elem.drawID;
+		}
+	}
+	arr.push( elem );
+};
+
 
 // MAIN //
 
@@ -327,7 +343,9 @@ class Sketchpad extends Component {
 		this.context.session.store.removeItem( this.props.id + '_sketchpad' );
 
 		if ( this.props.pdf ) {
-			this.initializePDF();
+			this.initializePDF().then( () => {
+				this.redraw();
+			});
 		} else {
 			this.elements = [ [] ];
 			this.backgrounds = [ null ];
@@ -391,9 +409,11 @@ class Sketchpad extends Component {
 						end = i;
 						break;
 					} else if ( i === recordingEndPos ) {
+						nUndos = count + 1;
 						end = null;
 					}
 				}
+				debug( 'Current number of undos: '+nUndos );
 				this.setState({
 					nUndos
 				});
@@ -537,7 +557,7 @@ class Sketchpad extends Component {
 			const elems = this.elements[ this.state.currentPage ];
 
 			if ( this.state.nUndos > 0 ) {
-				elems.splice( elems.length - this.state.nUndos, this.state.nUndos );
+				removeUndoElements( elems, this.state.nUndos );
 				debug( `Page ${this.state.currentPage} now has ${elems.length} elements`);
 				this.setState({
 					nUndos: 0
@@ -725,7 +745,7 @@ class Sketchpad extends Component {
 			const elems = this.elements[ this.state.currentPage ];
 
 			if ( this.state.nUndos > 0 ) {
-				elems.splice( elems.length - this.state.nUndos, this.state.nUndos );
+				removeUndoElements( elems, this.state.nUndos );
 				debug( `Page ${this.state.currentPage} now has ${elems.length} elements`);
 				this.setState({
 					nUndos: 0
