@@ -264,6 +264,7 @@ class Sketchpad extends Component {
 		if ( ctx ) {
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
+		const endPos = this.recordingEndPositions[ currentPage ];
 		this.renderBackground( currentPage ).then( () => {
 			const elems = this.elements[ currentPage ];
 			debug( `Rendering ${elems.length} elements...` );
@@ -274,7 +275,7 @@ class Sketchpad extends Component {
 				let iter = () => {
 					this.drawElement( elems[ idx ] );
 					idx += 1;
-					if ( idx < elems.length ) {
+					if ( idx < endPos ) {
 						// Save replay actions and transmit to others:
 						const action = {
 							id: this.props.id,
@@ -345,6 +346,10 @@ class Sketchpad extends Component {
 		if ( this.props.pdf ) {
 			this.initializePDF().then( () => {
 				this.redraw();
+				this.setState({
+					nUndos: 0,
+					finishedRecording: false
+				});
 			});
 		} else {
 			this.elements = [ [] ];
@@ -353,7 +358,8 @@ class Sketchpad extends Component {
 			this.setState({
 				nUndos: 0,
 				currentPage: 0,
-				noPages: 1
+				noPages: 1,
+				finishedRecording: false
 			});
 		}
 	}
@@ -418,8 +424,8 @@ class Sketchpad extends Component {
 					nUndos
 				});
 				if ( !isNull( end ) ) {
-					debug( `UNDO: Redrawing elements ${recordingEndPos} to ${end} out of ${elems.length} elements` );
-					for ( let i = recordingEndPos; i <= end; i++ ) {
+					debug( `UNDO: Redrawing elements 0 to ${end} out of ${elems.length} elements` );
+					for ( let i = 0; i <= end; i++ ) {
 						this.drawElement( elems[ i ] );
 					}
 				}
