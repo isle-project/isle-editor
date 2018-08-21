@@ -189,6 +189,10 @@ class Sketchpad extends Component {
 			});
 		}
 
+		if ( this.props.autoSave ) {
+			this.saveInterval = setInterval( this.saveInBrowser, this.props.intervalTime );
+		}
+
 		// Prevent scrolling when touching the canvas on iOS
 		const opts = {
 			passive: false
@@ -199,8 +203,11 @@ class Sketchpad extends Component {
 	}
 
 	componentWillUnmount() {
-		if ( this.interval ) {
-			clearInterval( this.interval );
+		if ( this.recordingInterval ) {
+			clearInterval( this.recordingInterval );
+		}
+		if ( this.saveInterval ) {
+			clearInterval( this.saveInterval );
 		}
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
@@ -934,7 +941,7 @@ class Sketchpad extends Component {
 			this.context.session.log({
 				id: this.props.id,
 				type: 'SKETCHPAD_FIRST_PAGE',
-				value: null
+				value: this.state.currentPage
 			});
 		});
 	}
@@ -948,7 +955,7 @@ class Sketchpad extends Component {
 			this.context.session.log({
 				id: this.props.id,
 				type: 'SKETCHPAD_LAST_PAGE',
-				value: null
+				value: this.state.currentPage
 			});
 		});
 	}
@@ -963,7 +970,7 @@ class Sketchpad extends Component {
 				this.context.session.log({
 					id: this.props.id,
 					type: 'SKETCHPAD_NEXT_PAGE',
-					value: null
+					value: this.state.currentPage
 				});
 			});
 		}
@@ -979,7 +986,7 @@ class Sketchpad extends Component {
 				this.context.session.log({
 					id: this.props.id,
 					type: 'SKETCHPAD_PREVIOUS_PAGE',
-					value: null
+					value: this.state.currentPage
 				});
 			});
 		}
@@ -1077,7 +1084,7 @@ class Sketchpad extends Component {
 		});
 	}
 
-	saveInBrowser = () => {
+	saveInBrowser = ( clbk = noop ) => {
 		if ( this.props.id ) {
 			const session = this.context.session;
 			const data = {
@@ -1085,22 +1092,7 @@ class Sketchpad extends Component {
 				recordingEndPositions: this.recordingEndPositions,
 				state: this.state
 			};
-			session.store.setItem( this.props.id+'_sketchpad', data, ( err ) => {
-				if ( err ) {
-					this.context.session.addNotification({
-						title: 'Encountered an error',
-						message: err.message,
-						level: 'error',
-						position: 'tr'
-					});
-				}
-				this.context.session.addNotification({
-					title: 'Saved',
-					message: 'Notes saved in browser',
-					level: 'success',
-					position: 'tr'
-				});
-			});
+			session.store.setItem( this.props.id+'_sketchpad', data, clbk );
 		}
 	}
 
@@ -1111,7 +1103,7 @@ class Sketchpad extends Component {
 		if ( recording ) {
 			this.delete();
 			this.time = 0;
-			this.interval = setInterval( () => {
+			this.recordingInterval = setInterval( () => {
 				this.time += RECORD_TIME_INCREMENT;
 			}, RECORD_TIME_INCREMENT );
 		} else {
@@ -1120,7 +1112,7 @@ class Sketchpad extends Component {
 				ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
 			}
 			this.renderBackground( currentPage );
-			clearInterval( this.interval );
+			clearInterval( this.recordingInterval );
 			finishedRecording = true;
 		}
 		const recordingEndPos = this.elements[ currentPage ].length;
@@ -1356,7 +1348,24 @@ class Sketchpad extends Component {
 				{ !this.props.pdf ? <TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} glyph="file" /> : null }
 				<TooltipButton tooltip="Export current page (PNG)" onClick={this.saveToPNG} glyph="save-file" />
 				<TooltipButton tooltip="Export pages as PDF" onClick={this.saveAsPDF} glyph="floppy-save" />
-				{ this.props.id ? <TooltipButton tooltip="Save in browser" onClick={this.saveInBrowser} glyph="save" /> : null }
+				{ this.props.id ? <TooltipButton tooltip="Save in browser" onClick={() => {
+					this.saveInBrowser( ( err ) => {
+						if ( err ) {
+							this.context.session.addNotification({
+								title: 'Encountered an error',
+								message: err.message,
+								level: 'error',
+								position: 'tr'
+							});
+						}
+						this.context.session.addNotification({
+							title: 'Saved',
+							message: 'Notes saved in browser',
+							level: 'success',
+							position: 'tr'
+						});
+					});
+				}} glyph="save" /> : null }
 				{ this.props.id ? <TooltipButton tooltip="Upload to the server" onClick={this.uploadSketches} glyph="cloud-upload" /> : null }
 			</ButtonGroup>
 		);
@@ -1380,7 +1389,7 @@ class Sketchpad extends Component {
 						<Button bsSize="small" bsStyle={this.state.transmitOwner ? 'success' : 'default'} onClick={this.toggleTransmit} ><Glyphicon glyph="bullhorn" /></Button>
 					</Tooltip>
 				</ButtonGroup>
-				<OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+				<OverlayTrigger trigger="click" placement="bottom" rootClose overlay={popover}>
 					<Button bsSize="small" >
 						<Glyphicon glyph="eye-open" />
 					</Button>
@@ -1437,14 +1446,6 @@ class Sketchpad extends Component {
 				<div className="sketch-panel-heading clearfix unselectable">
 					{this.renderPagination()}
 					<ButtonGroup bsSize="small" className="sketch-button-group" >
-						<TooltipButton tooltip="Clear pages" onClick={this.clear} label="Clear" disabled={this.state.playing || this.state.recording} />
-					</ButtonGroup>
-					<ButtonGroup bsSize="small" className="sketch-button-group" >
-						<Tooltip placement="right" tooltip="Change brush color" >
-							<Button bsSize="small" onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Color</Button>
-						</Tooltip>
-					</ButtonGroup>
-					<ButtonGroup bsSize="small" className="sketch-button-group" >
 						<Tooltip placement="bottom" tooltip="Drag Mode" >
 							<Button bsSize="small" bsStyle={this.state.mode === 'drag' ? 'success' : 'default'} onClick={this.toggleDragMode} ><Glyphicon glyph="move" /></Button>
 						</Tooltip>
@@ -1454,9 +1455,15 @@ class Sketchpad extends Component {
 					</ButtonGroup>
 					{this.renderDrawingButtons()}
 					{this.renderTextButtons()}
+					<ButtonGroup bsSize="small" className="sketch-button-group" >
+						<Tooltip placement="right" tooltip="Change brush color" >
+							<Button bsSize="small" onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Color</Button>
+						</Tooltip>
+					</ButtonGroup>
 					<ButtonGroup bsSize="small" className="sketch-button-group">
 						<TooltipButton tooltip="Undo" onClick={this.undo} glyph="step-backward" disabled={this.state.playing} />
 						<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} />
+						<TooltipButton tooltip="Clear pages" onClick={this.clear} label="Clear" disabled={this.state.playing || this.state.recording} />
 					</ButtonGroup>
 					{this.renderRecordingButtons()}
 					{this.renderTransmitButtons()}
@@ -1495,6 +1502,8 @@ class Sketchpad extends Component {
 // TYPES //
 
 Sketchpad.propDescriptions = {
+	autoSave: 'controls whether the editor should save the current text to the local storage of the browser at a given time interval',
+	intervalTime: 'time between auto saves',
 	brushSize: 'size of the brush to paint with',
 	color: 'color of the brush and texts',
 	canvasWidth: 'width of the canvas element (in px)',
@@ -1511,6 +1520,8 @@ Sketchpad.propDescriptions = {
 };
 
 Sketchpad.defaultProps = {
+	autoSave: true,
+	intervalTime: 30000,
 	brushSize: 6,
 	color: '#444444',
 	canvasWidth: 1200,
@@ -1527,6 +1538,8 @@ Sketchpad.defaultProps = {
 };
 
 Sketchpad.propTypes = {
+	autoSave: PropTypes.bool,
+	intervalTime: PropTypes.number,
 	brushSize: PropTypes.number,
 	color: PropTypes.string,
 	canvasWidth: PropTypes.number,
