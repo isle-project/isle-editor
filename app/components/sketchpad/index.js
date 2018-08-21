@@ -44,6 +44,7 @@ const COLORPICKER_COLORS = [
 	'#00D084', '#8ED1FC', '#0693E3',
 	'#ABB8C3', '#EB144C', '#9900EF'
 ];
+const RECORD_TIME_INCREMENT = 100;
 
 
 // FUNCTIONS //
@@ -258,7 +259,8 @@ class Sketchpad extends Component {
 		}
 		this.renderBackground( currentPage ).then( () => {
 			const elems = this.elements[ currentPage ];
-			debug( `Rendering ${elems.length} elements...` );
+			console.log( this.elements )
+			debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
 			for ( let i = recordingEndPos; i < elems.length; i++ ) {
 				this.drawElement( elems[ i ] );
 			}
@@ -354,8 +356,6 @@ class Sketchpad extends Component {
 
 		if ( this.props.pdf ) {
 			this.initializePDF().then( () => {
-				this.elements = new Array( this.state.noPages );
-				this.elements.fill( [] );
 				this.redraw();
 				this.setState({
 					nUndos: 0,
@@ -1112,8 +1112,8 @@ class Sketchpad extends Component {
 			this.delete();
 			this.time = 0;
 			this.interval = setInterval( () => {
-				this.time += 500;
-			}, 500 );
+				this.time += RECORD_TIME_INCREMENT;
+			}, RECORD_TIME_INCREMENT );
 		} else {
 			const ctx = this.ctx;
 			if ( ctx ) {
@@ -1274,7 +1274,7 @@ class Sketchpad extends Component {
 						<Glyphicon glyph="play" />
 					</Button>
 				</Tooltip>
-				<TooltipButton tooltip="Delete recording" onClick={this.delete} glyph="remove" disabled={deleteIsDisabled} />
+				<TooltipButton tooltip="Delete recording" onClick={this.delete} glyph="trash" disabled={deleteIsDisabled} />
 			</ButtonGroup>
 		);
 	}
