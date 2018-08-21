@@ -7,18 +7,7 @@
 	border-top-right-radius: 3px;
 }
 
-.sketch-header {
-	font-size: 22px;
-	color: #2e4468;
-	font-weight: 600;
-	margin-top: 2px;
-	margin-bottom: 0px;
-	margin-left: 10px;
-	float: left;
-}
-
 .sketch-canvas {
-	cursor: crosshair;
 	position: fixed;
 	overflow: hidden
 }
@@ -43,6 +32,11 @@
 	margin-left: 5px;
 }
 
+.sketch-text-buttons {
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
 .sketch-pages {
 	cursor: default;
 	margin-left: 15px;
@@ -58,6 +52,12 @@
 	position: fixed;
 	background: transparent;
 	border: none;
+}
+
+.sketch-delete-button {
+	position: fixed;
+	background: transparent;
+	border: 2px;
 }
 
 .sketch-text-input:focus{
