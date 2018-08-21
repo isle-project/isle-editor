@@ -9,6 +9,8 @@ import Pressure from 'pressure';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Panel from 'react-bootstrap/lib/Panel';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Popover from 'react-bootstrap/lib/Popover';
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
@@ -29,6 +31,8 @@ import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
 import Tooltip from 'components/tooltip';
 import { TwitterPicker } from 'react-color';
+import Gate from 'components/gate';
+import SelectInput from 'react-select';
 import './sketchpad.css';
 
 
@@ -103,9 +107,10 @@ class Sketchpad extends Component {
 			nUndos: 0,
 			noPages: 1,
 			showUploadModal: false,
-			textMode: false,
-			drawingMode: true,
-			showNavigationModal: false
+			mode: 'drawing',
+			showNavigationModal: false,
+			transmitOwner: props.transmitOwner,
+			receiveFrom: {}
 		};
 		this.isMouseDown = false;
 	}
@@ -147,11 +152,16 @@ class Sketchpad extends Component {
 				if ( type === 'member_action' ) {
 					debug( 'Received member action...' );
 					if (
-						!this.props.transmitOwner ||
-						session.isOwner() || // Prevent owners from processing actions...
 						action.email === session.user.email // 'Early return since own action...'
 					) {
 						return;
+					}
+					// Owners should only process actions from selected users:
+					if ( session.isOwner() ) {
+						console.log( action.name );
+						if ( this.state.receiveFrom.name === action.name ) {
+							return;
+						}
 					}
 					const type = action.type;
 					if (
@@ -205,7 +215,7 @@ class Sketchpad extends Component {
 
 	preventDefaultTouch = ( e ) => {
 		if (
-			this.state.drawingMode &&
+			this.state.mode === 'drawing' &&
 			this.canvas === e.target
 		) {
 			e.preventDefault();
@@ -215,17 +225,17 @@ class Sketchpad extends Component {
 	renderBackground = ( pageNumber ) => {
 		const page = this.backgrounds[ pageNumber ];
 		if ( page ) {
-			var scale = 1.5;
-			var viewport = page.getViewport( scale );
+			const scale = 1.5;
+			const viewport = page.getViewport( scale );
 			this.canvas.height = viewport.height;
 			this.canvas.width = viewport.width;
 
 			// Render PDF page into canvas context
-			var renderContext = {
+			const renderContext = {
 				canvasContext: this.ctx,
 				viewport: viewport
 			};
-			var renderTask = page.render( renderContext );
+			const renderTask = page.render( renderContext );
 			return renderTask
 				.then( () => {
 					debug( `Background rendered for page ${pageNumber}` );
@@ -284,7 +294,7 @@ class Sketchpad extends Component {
 							noSave: true
 						};
 						const session = this.context.session;
-						if ( session.isOwner() && this.props.transmitOwner ) {
+						if ( session.isOwner() && this.state.transmitOwner ) {
 							session.log( action, 'members' );
 						} else {
 							session.log( action, 'owners' );
@@ -345,6 +355,8 @@ class Sketchpad extends Component {
 
 		if ( this.props.pdf ) {
 			this.initializePDF().then( () => {
+				this.elements = new Array( this.state.noPages );
+				this.elements.fill( [] );
 				this.redraw();
 				this.setState({
 					nUndos: 0,
@@ -480,12 +492,12 @@ class Sketchpad extends Component {
 		}
 	}
 
-	drawLine = ({ startX, startY, endX, endY, color, size, shouldLog = true }) => {
+	drawLine = ({ startX, startY, endX, endY, color, lineWidth, selected, shouldLog = true }) => {
 		const ctx = this.ctx;
 		if ( ctx ) {
-			ctx.lineWidth = size * ( 1.0 + this.force ) * 0.5;
+			ctx.lineWidth = lineWidth;
 			ctx.lineCap = 'round';
-			ctx.strokeStyle = color;
+			ctx.strokeStyle = selected ? 'yellow' : color;
 			ctx.beginPath();
 			ctx.moveTo( startX, startY );
 			ctx.lineTo( endX, endY );
@@ -501,13 +513,13 @@ class Sketchpad extends Component {
 						endX,
 						endY,
 						color,
-						size,
+						lineWidth,
 						page: this.state.currentPage,
 						type: 'line'
 					}),
 					noSave: true
 				};
-				if ( session.isOwner() && this.props.transmitOwner ) {
+				if ( session.isOwner() && this.state.transmitOwner ) {
 					session.log( logAction, 'members' );
 				} else {
 					session.log( logAction, 'owners' );
@@ -518,10 +530,12 @@ class Sketchpad extends Component {
 
 	drawStart = ( event ) => {
 		event.stopPropagation();
-		if ( this.state.drawingMode ) {
-			const { x, y } = this.mousePosition( event );
-			this.x = x;
-			this.y = y;
+		debug( '`onMouseDown` or `onTouchStart` event fired...' );
+		const { x, y } = this.mousePosition( event );
+		this.x = x;
+		this.y = y;
+		console.log( `Get mouse position: x=${x} y=${y}` );
+		if ( this.state.mode === 'drawing' ) {
 			this.isMouseDown = true;
 			this.draw( event );
 		}
@@ -532,24 +546,46 @@ class Sketchpad extends Component {
 		event.stopPropagation();
 		if ( this.isMouseDown ) {
 			this.isMouseDown = false;
-			this.currentDrawing += 1;
 		}
+		this.currentDrawing += 1;
 	}
 
 	draw = ( evt ) => {
-		if ( !this.state.drawingMode ) {
-			return;
-		}
 		evt.stopPropagation();
+		let { x, y } = this.mousePosition( evt );
+		if ( this.isSelected ) {
+			if ( this.state.mode === 'drag' ) {
+				// Drag elements around:
+				const dx = x - this.x;
+				const dy = y - this.y;
+				const elems = this.elements[ this.state.currentPage ];
+				for ( let i = 0; i < elems.length; i++ ){
+					const e = elems[ i ];
+					if ( e.selected ) {
+						if ( e.type === 'line' ) {
+							e.startX += dx;
+							e.endX += dx;
+							e.startY += dy;
+							e.endY += dy;
+						}
+						else if ( e.type === 'text' ) {
+							e.x += dx;
+							e.y += dy;
+						}
+					}
+				}
+				this.x = x;
+				this.y = y;
+			}
+			this.redraw();
+		}
 		if ( this.isMouseDown && !this.props.disabled ) {
-			let { x, y } = this.mousePosition( evt );
-
 			// Offset by one to always draw at least a dot:
 			x += 1;
 			y += 1;
 			const line = {
 				color: this.state.color,
-				size: this.state.brushSize,
+				lineWidth: this.state.brushSize * ( 1.0 + this.force ) * 0.5,
 				startX: this.x,
 				startY: this.y,
 				endX: x,
@@ -557,7 +593,8 @@ class Sketchpad extends Component {
 				time: this.time,
 				type: 'line',
 				page: this.state.currentPage,
-				drawID: this.currentDrawing
+				drawID: this.currentDrawing,
+				shadow: 0
 			};
 			this.drawElement( line );
 			const elems = this.elements[ this.state.currentPage ];
@@ -584,6 +621,12 @@ class Sketchpad extends Component {
 	toggleColorPicker = () => {
 		this.setState({
 			showColorPicker: !this.state.showColorPicker
+		});
+	}
+
+	toggleTransmit = () => {
+		this.setState({
+			transmitOwner: !this.state.transmitOwner
 		});
 	}
 
@@ -745,7 +788,8 @@ class Sketchpad extends Component {
 				fontFamily: this.state.fontFamily,
 				time: this.time,
 				type: 'text',
-				page: this.state.currentPage
+				page: this.state.currentPage,
+				drawID: this.currentDrawing
 			};
 			this.drawText( text );
 			const elems = this.elements[ this.state.currentPage ];
@@ -765,12 +809,11 @@ class Sketchpad extends Component {
 		}
 	}
 
-	drawText = ({ x, y, value, color, fontSize, fontFamily, shouldLog = true }) => {
+	drawText = ({ x, y, value, color, fontSize, fontFamily, selected, shouldLog = true }) => {
 		const ctx = this.ctx;
 		ctx.font = `${fontSize}px ${fontFamily}`;
-		ctx.fillStyle = color;
+		ctx.fillStyle = selected ? 'yellow' : color;
 		ctx.fillText( value, x, y+fontSize );
-
 		const { session } = this.context;
 		if ( shouldLog ) {
 			const logAction = {
@@ -795,10 +838,19 @@ class Sketchpad extends Component {
 		}
 	}
 
+	deselectElements = () => {
+		const elems = this.elements[ this.state.currentPage ];
+		for ( let i = 0; i < elems.length; i++ ) {
+			elems[ i ].selected = false;
+		}
+		this.isSelected = false;
+	}
+
 	handleClick = ( event ) => {
-		const x = event.clientX;
-		const y = event.clientY;
-		if ( this.state.textMode ) {
+		console.log( 'Handle click event...' );
+		if ( this.state.mode === 'text' ) {
+			const x = event.clientX;
+			const y = event.clientY;
 			const input = this.textInput;
 			input.style.left = x + 'px';
 			input.style.top = y + 'px';
@@ -806,6 +858,74 @@ class Sketchpad extends Component {
 			debug( `Resize to width ${width}...` );
 			input.style.width = `${width}px`;
 			input.focus();
+		} else if ( this.state.mode === 'drawing' ) {
+			// Handle click while drawing...
+		} else if ( this.isSelected ) {
+			this.deselectElements();
+			this.redraw();
+		} else {
+			console.log( 'Checking whether a shape has been selected...' );
+			const { x, y } = this.mousePosition( event );
+			const elems = this.elements[ this.state.currentPage ];
+			let found = null;
+			for ( let i = 0; i < elems.length; i++ ) {
+				const elem = elems[ i ];
+				if ( elem.type === 'line' ) {
+					this.ctx.beginPath();
+					this.ctx.lineCap = 'round';
+					this.ctx.lineWidth = elem.linWidth;
+					this.ctx.moveTo( elem.startX, elem.startY );
+					this.ctx.lineTo( elem.endX, elem.endY );
+					this.ctx.closePath();
+					if ( this.ctx.isPointInStroke( x, y ) ) {
+						found = i;
+						this.isSelected = true;
+						break;
+					}
+				}
+				else if ( elem.type === 'text' ) {
+					console.log( `x: ${x}, y: ${y}` );
+					console.log( `elemx: ${elem.x}, elemy: ${elem.y}` );
+					const width = this.ctx.measureText( elem.value ).width;
+					if (
+						elem.x <= x &&
+						x <= elem.x + width &&
+						elem.y <= y &&
+						y <= elem.y + elem.fontSize
+					) {
+						found = i;
+						this.isSelected = true;
+						break;
+					}
+				}
+			}
+			let deleteStart;
+			let deleteEnd;
+			if ( !isNull( found ) ) {
+				const id = elems[ found ].drawID;
+				for ( let j = found; j < elems.length; j++ ) {
+					if ( elems[ j ].drawID === id ) {
+						deleteEnd = j;
+						elems[ j ].selected = true;
+					} else {
+						break;
+					}
+				}
+				for ( let j = found; j >= 0; j-- ) {
+					if ( elems[ j ].drawID === id ) {
+						deleteStart = j;
+						elems[ j ].selected = true;
+					} else {
+						break;
+					}
+				}
+
+				if ( this.state.mode === 'delete' ) {
+					console.log( `Delete elements ${deleteStart} to ${deleteEnd}` );
+					elems.splice( deleteStart, deleteEnd - deleteStart + 1 );
+				}
+				this.redraw();
+			}
 		}
 	}
 
@@ -1017,15 +1137,25 @@ class Sketchpad extends Component {
 
 	toggleTextMode = () => {
 		this.setState({
-			drawingMode: false,
-			textMode: !this.state.textMode
+			mode: this.state.mode === 'text' ? 'none' : 'text'
 		});
 	}
 
 	toggleDrawingMode = () => {
 		this.setState({
-			drawingMode: !this.state.drawingMode,
-			textMode: false
+			mode: this.state.mode === 'drawing' ? 'none' : 'drawing'
+		});
+	}
+
+	toggleDragMode = () => {
+		this.setState({
+			mode: this.state.mode === 'drag' ? 'none' : 'drag'
+		});
+	}
+
+	toggleDeleteMode = () => {
+		this.setState({
+			mode: this.state.mode === 'delete' ? 'none' : 'delete'
 		});
 	}
 
@@ -1157,7 +1287,7 @@ class Sketchpad extends Component {
 		return (
 			<ButtonGroup bsSize="small" className="sketch-drawing-buttons" >
 				<Tooltip placement="bottom" tooltip="Drawing Mode" >
-					<Button bsSize="small" bsStyle={this.state.drawingMode ? 'success' : 'default'} onClick={this.toggleDrawingMode} >
+					<Button bsSize="small" bsStyle={this.state.mode === 'drawing' ? 'success' : 'default'} onClick={this.toggleDrawingMode} >
 						<Glyphicon glyph="pencil" />
 					</Button>
 				</Tooltip>
@@ -1169,7 +1299,8 @@ class Sketchpad extends Component {
 						max={42}
 						onChange={( event ) => {
 							this.setState({
-								brushSize: event.target.value
+								brushSize: event.target.value,
+								mode: 'drawing'
 							});
 						}}
 						defaultValue={this.state.brushSize}
@@ -1181,9 +1312,9 @@ class Sketchpad extends Component {
 
 	renderTextButtons() {
 		return (
-			<ButtonGroup bsSize="small" className="sketch-drawing-buttons" >
+			<ButtonGroup bsSize="small" className="sketch-text-buttons" >
 				<Tooltip placement="bottom" tooltip="Text Mode" >
-					<Button bsSize="small" bsStyle={this.state.textMode ? 'success' : 'default'} onClick={this.toggleTextMode} ><Glyphicon glyph="font" /></Button>
+					<Button bsSize="small" bsStyle={this.state.mode === 'text' ? 'success' : 'default'} onClick={this.toggleTextMode} ><Glyphicon glyph="font" /></Button>
 				</Tooltip>
 				<DropdownButton
 					id="sketch-font-dropdown"
@@ -1193,8 +1324,7 @@ class Sketchpad extends Component {
 					onSelect={(val) => {
 						this.setState({
 							fontFamily: val,
-							textMode: true,
-							drawingMode: false
+							mode: 'text'
 						});
 					}}
 				>
@@ -1213,7 +1343,8 @@ class Sketchpad extends Component {
 						max={60}
 						onChange={( event ) => {
 							this.setState({
-								fontSize: Number( event.target.value )
+								fontSize: Number( event.target.value ),
+								mode: 'text'
 							});
 						}}
 						defaultValue={this.state.fontSize}
@@ -1235,6 +1366,33 @@ class Sketchpad extends Component {
 		);
 	}
 
+	renderTransmitButtons() {
+		const users = this.context.session.userList.map( user => {
+			return { value: user.name, label: user.name };
+		});
+		const popover = <Popover id="popover-positioned-right" title="Receive actions from...">
+			<SelectInput isClearable inline options={users} onChange={( newValue ) => {
+				this.setState({
+					receiveFrom: newValue
+				});
+			}} />
+		</Popover>;
+		return (
+			<Gate owner>
+				<ButtonGroup bsSize="small" className="sketch-button-group" >
+					<Tooltip placement="bottom" tooltip="Transmit Actions" >
+						<Button bsSize="small" bsStyle={this.state.transmitOwner ? 'success' : 'default'} onClick={this.toggleTransmit} ><Glyphicon glyph="bullhorn" /></Button>
+					</Tooltip>
+				</ButtonGroup>
+				<OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+					<Button bsSize="small" >
+						<Glyphicon glyph="eye-open" />
+					</Button>
+				</OverlayTrigger>
+			</Gate>
+		);
+	}
+
 	renderHTMLOverlays() {
 		const node = this.props.nodes[ this.state.currentPage ];
 		if ( !node ) {
@@ -1244,6 +1402,14 @@ class Sketchpad extends Component {
 	}
 
 	render() {
+		let cursor = 'default';
+		if ( this.state.mode === 'drawing' ) {
+			cursor = 'crosshair';
+		} else if ( this.state.mode === 'text' ) {
+			cursor = 'text';
+		} else if ( this.state.mode === 'drag' ) {
+			cursor = 'move';
+		}
 		const canvas = <canvas
 			className="sketch-canvas"
 			width={this.props.canvasWidth}
@@ -1251,6 +1417,7 @@ class Sketchpad extends Component {
 			style={{
 				position: 'absolute',
 				left: '0px',
+				cursor: cursor,
 				...this.props.style
 			}}
 			ref={( canvas ) => {
@@ -1272,7 +1439,6 @@ class Sketchpad extends Component {
 		return (
 			<Panel className="modal-container" style={{ width: this.props.canvasWidth, position: 'relative' }}>
 				<div className="sketch-panel-heading clearfix unselectable">
-					<span className="sketch-header unselectable">{this.props.title}</span>
 					{this.renderPagination()}
 					<ButtonGroup bsSize="small" className="sketch-button-group" >
 						<TooltipButton tooltip="Clear pages" onClick={this.clear} label="Clear" disabled={this.state.playing || this.state.recording} />
@@ -1282,6 +1448,14 @@ class Sketchpad extends Component {
 							<Button bsSize="small" onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Color</Button>
 						</Tooltip>
 					</ButtonGroup>
+					<ButtonGroup bsSize="small" className="sketch-button-group" >
+						<Tooltip placement="bottom" tooltip="Drag Mode" >
+							<Button bsSize="small" bsStyle={this.state.mode === 'drag' ? 'success' : 'default'} onClick={this.toggleDragMode} ><Glyphicon glyph="move" /></Button>
+						</Tooltip>
+						<Tooltip placement="bottom" tooltip="Delete Mode" >
+							<Button bsSize="small" bsStyle={this.state.mode === 'delete' ? 'success' : 'default'} onClick={this.toggleDeleteMode} ><Glyphicon glyph="remove" /></Button>
+						</Tooltip>
+					</ButtonGroup>
 					{this.renderDrawingButtons()}
 					{this.renderTextButtons()}
 					<ButtonGroup bsSize="small" className="sketch-button-group">
@@ -1289,6 +1463,7 @@ class Sketchpad extends Component {
 						<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} />
 					</ButtonGroup>
 					{this.renderRecordingButtons()}
+					{this.renderTransmitButtons()}
 					{this.renderSaveButtons()}
 				</div>
 				<div style={{ display: this.state.showColorPicker ? 'initial' : 'none', top: '70px', left: '130px', position: 'absolute', zIndex: 9999 }} >
@@ -1304,7 +1479,7 @@ class Sketchpad extends Component {
 					{canvas}
 				</div>
 				<input type="text" className="sketch-text-input" style={{
-					display: this.state.textMode ? 'inline-block' : 'none',
+					display: this.state.mode === 'text' ? 'inline-block' : 'none',
 					fontSize: this.state.fontSize,
 					fontFamily: this.state.fontFamily,
 					color: this.state.color,
@@ -1324,7 +1499,6 @@ class Sketchpad extends Component {
 // TYPES //
 
 Sketchpad.propDescriptions = {
-	title: 'title to be displayed in the panel header',
 	brushSize: 'size of the brush to paint with',
 	color: 'color of the brush and texts',
 	canvasWidth: 'width of the canvas element (in px)',
@@ -1341,7 +1515,6 @@ Sketchpad.propDescriptions = {
 };
 
 Sketchpad.defaultProps = {
-	title: 'Canvas',
 	brushSize: 6,
 	color: '#444444',
 	canvasWidth: 1200,
@@ -1358,7 +1531,6 @@ Sketchpad.defaultProps = {
 };
 
 Sketchpad.propTypes = {
-	title: PropTypes.string,
 	brushSize: PropTypes.number,
 	color: PropTypes.string,
 	canvasWidth: PropTypes.number,
