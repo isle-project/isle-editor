@@ -85,7 +85,7 @@ snippet Expire
 
 snippet FeedbackButtons
 	<FeedbackButtons
-		for="${1:divID}"
+		id="${1:Enter ID}"
 	/>
 
 snippet FreeTextQuestion
