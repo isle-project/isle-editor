@@ -176,7 +176,7 @@ class MatchListQuestion extends Component {
 								<ChatButton for={this.props.id} />
 							</div> : null
 					}
-					<InstructorBar id={this.props.id} />
+					<InstructorBar buttonLabel="Answers" id={this.props.id} />
 				</div>
 			</div>
 		);

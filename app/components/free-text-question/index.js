@@ -316,7 +316,7 @@ class FreeTextQuestion extends Component {
 								</div> : null
 						}
 					</ButtonToolbar>
-					<InstructorBar id={this.props.id} />
+					<InstructorBar buttonLabel="Answers" id={this.props.id} />
 				</Panel.Body>
 			</Panel>
 		);

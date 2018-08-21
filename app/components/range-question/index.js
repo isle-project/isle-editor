@@ -204,7 +204,7 @@ class RangeQuestion extends Component {
 								</div> : null
 						}
 					</ButtonToolbar>
-					<InstructorBar id={this.props.id} dataType="number" />
+					<InstructorBar buttonLabel="Answers" id={this.props.id} dataType="number" />
 				</Panel.Body>
 			</Panel>
 		);

@@ -244,7 +244,7 @@ class MultipleChoiceQuestion extends Component {
 							</div> : null
 						}
 					</div>
-					{id ? <InstructorBar id={id} dataType="factor" /> : null }
+					{id ? <InstructorBar buttonLabel="Answers" id={id} dataType="factor" /> : null }
 				</Panel.Body>
 			</Panel>
 		);
