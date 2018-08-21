@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import { OverlayTrigger } from 'react-bootstrap';
+import Tooltip from 'components/tooltip';
 import Adapter from 'enzyme-adapter-react-16';
 import Switch from 'components/switch';
 
@@ -22,12 +22,12 @@ describe( '<Switch />', function test() {
 
 	it( 'the component renders a tooltip if the tooltip property is non-empty', () => {
 		const div = shallow( <Switch tooltip="non-empty"></Switch> );
-		expect( div.find( OverlayTrigger ) ).toHaveLength( 1 );
+		expect( div.find( Tooltip ) ).toHaveLength( 1 );
 	});
 
 	it( 'the component does not render a tooltip if the tooltip property is empty', () => {
 		const div = shallow( <Switch tooltip=""></Switch> );
-		expect( div.find( OverlayTrigger ) ).toHaveLength( 0 );
+		expect( div.find( Tooltip ) ).toHaveLength( 0 );
 	});
 
 	it( 'by default, the component displays only the first child element', () => {
