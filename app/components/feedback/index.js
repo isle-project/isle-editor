@@ -9,10 +9,11 @@ import Modal from 'react-bootstrap/lib/Modal';
 import Tooltip from 'components/tooltip';
 import TextArea from 'components/text-area';
 import CheckboxInput from 'components/input/checkbox';
-import './feedback.css';
+import InstructorBar from 'components/instructor-bar';
 import Confused from '-!svg-react-loader!./../../img/confused.svg';
 import Understood from '-!svg-react-loader!./../../img/lightbulb.svg';
 import Feedback from '-!svg-react-loader!./../../img/feedback.svg';
+import './feedback.css';
 
 
 // MAIN //
@@ -33,7 +34,7 @@ class FeedbackButtons extends Component {
 	submitConfused = () => {
 		const { session } = this.context;
 		session.log({
-			id: this.props.for,
+			id: this.props.id,
 			type: 'USER_FEEDBACK_CONFUSED',
 			value: 'confused'
 		}, 'members' );
@@ -52,7 +53,7 @@ class FeedbackButtons extends Component {
 	submitUnderstood = () => {
 		const { session } = this.context;
 		session.log({
-			id: this.props.for,
+			id: this.props.id,
 			type: 'USER_FEEDBACK_UNDERSTOOD',
 			value: 'understood'
 		}, 'members' );
@@ -75,7 +76,7 @@ class FeedbackButtons extends Component {
 			comments: this.textarea.state.value
 		};
 		session.log({
-			id: this.props.for,
+			id: this.props.id,
 			type: 'USER_FEEDBACK_FORM',
 			value: formData
 		}, 'members' );
@@ -159,6 +160,7 @@ class FeedbackButtons extends Component {
 					</Modal.Footer>
 				</Modal>
 				<div id="response"></div>
+				<InstructorBar buttonLabel="Responses" showID={false} id={this.props.id} />
 			</div>
 		);
 	}
@@ -168,12 +170,10 @@ class FeedbackButtons extends Component {
 // TYPES //
 
 FeedbackButtons.propDescriptions = {
-	for: 'id of the component for which feedback shall be collected',
 	vertical: 'buttons are displayed vertically if set to `true`'
 };
 
 FeedbackButtons.propTypes = {
-	for: PropTypes.string.isRequired,
 	vertical: PropTypes.bool
 };
 
