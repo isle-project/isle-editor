@@ -158,7 +158,6 @@ class Sketchpad extends Component {
 					}
 					// Owners should only process actions from selected users:
 					if ( session.isOwner() ) {
-						console.log( action.name );
 						if ( this.state.receiveFrom.name === action.name ) {
 							return;
 						}
@@ -534,7 +533,6 @@ class Sketchpad extends Component {
 		const { x, y } = this.mousePosition( event );
 		this.x = x;
 		this.y = y;
-		console.log( `Get mouse position: x=${x} y=${y}` );
 		if ( this.state.mode === 'drawing' ) {
 			this.isMouseDown = true;
 			this.draw( event );
@@ -847,7 +845,7 @@ class Sketchpad extends Component {
 	}
 
 	handleClick = ( event ) => {
-		console.log( 'Handle click event...' );
+		debug( 'Handle click event...' );
 		if ( this.state.mode === 'text' ) {
 			const x = event.clientX;
 			const y = event.clientY;
@@ -864,7 +862,7 @@ class Sketchpad extends Component {
 			this.deselectElements();
 			this.redraw();
 		} else {
-			console.log( 'Checking whether a shape has been selected...' );
+			debug( 'Checking whether a shape has been selected...' );
 			const { x, y } = this.mousePosition( event );
 			const elems = this.elements[ this.state.currentPage ];
 			let found = null;
@@ -884,8 +882,6 @@ class Sketchpad extends Component {
 					}
 				}
 				else if ( elem.type === 'text' ) {
-					console.log( `x: ${x}, y: ${y}` );
-					console.log( `elemx: ${elem.x}, elemy: ${elem.y}` );
 					const width = this.ctx.measureText( elem.value ).width;
 					if (
 						elem.x <= x &&
@@ -921,7 +917,7 @@ class Sketchpad extends Component {
 				}
 
 				if ( this.state.mode === 'delete' ) {
-					console.log( `Delete elements ${deleteStart} to ${deleteEnd}` );
+					debug( `Delete elements ${deleteStart} to ${deleteEnd}` );
 					elems.splice( deleteStart, deleteEnd - deleteStart + 1 );
 				}
 				this.redraw();
@@ -1466,7 +1462,7 @@ class Sketchpad extends Component {
 					{this.renderTransmitButtons()}
 					{this.renderSaveButtons()}
 				</div>
-				<div style={{ display: this.state.showColorPicker ? 'initial' : 'none', top: '70px', left: '130px', position: 'absolute', zIndex: 9999 }} >
+				<div className="sketch-colorpicker" style={{ display: this.state.showColorPicker ? 'initial' : 'none' }} >
 					<TwitterPicker
 						color={this.state.color}
 						colors={COLORPICKER_COLORS}
