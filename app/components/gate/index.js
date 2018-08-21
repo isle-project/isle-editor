@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 
@@ -74,7 +74,7 @@ class Gate extends Component {
 			authenticated = true;
 		}
 		if ( authenticated ) {
-			return <div>{this.props.children}</div>;
+			return <Fragment>{this.props.children}</Fragment>;
 		}
 		return this.props.banner;
 	}
