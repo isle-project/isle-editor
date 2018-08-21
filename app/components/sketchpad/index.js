@@ -1403,6 +1403,12 @@ class Sketchpad extends Component {
 		if ( !node ) {
 			return null;
 		}
+		if ( isObject( node ) && node.component ) {
+			let style = node.style ? node.style : {};
+			return ( <div className="sketch-node-container" style={style} >
+				{node.component}
+			</div> );
+		}
 		return <div className="sketch-node-container" >{node}</div>;
 	}
 
