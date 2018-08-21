@@ -127,6 +127,7 @@ InstructorView.contextTypes = {
 	session: PropTypes.object
 };
 
+
 // EXPORTS //
 
 export default InstructorView;
