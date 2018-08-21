@@ -71,3 +71,10 @@
 	transform: translate(-50%);
 	z-index: 2;
 }
+
+.sketch-colorpicker {
+	top: 70px;
+	left: 100px;
+	position: absolute;
+	z-index: 9999;
+}
