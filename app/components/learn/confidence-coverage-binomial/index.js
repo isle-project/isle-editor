@@ -181,7 +181,7 @@ class ConfidenceCoverageBinomial extends Component {
 									</Panel.Body>
 								</Panel>
 								<FeedbackButtons
-									for="coverageModuleBinomial"
+									id="coverageModuleBinomial"
 								/>
 							</Col>
 						</Row>

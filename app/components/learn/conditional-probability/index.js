@@ -344,7 +344,7 @@ class ConditionalProbability extends Component {
 						</Col>
 						<Col sm="1">
 							<FeedbackButtons
-								for="independence_applet"
+								id="independence_applet"
 								vertical
 							/>
 						</Col>

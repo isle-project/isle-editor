@@ -181,7 +181,7 @@ class ConfidenceCoverageNormal extends Component {
 									</Panel.Body>
 								</Panel>
 								<FeedbackButtons
-									for="coverageModuleNormal"
+									id="coverageModuleNormal"
 								/>
 							</Col>
 						</Row>

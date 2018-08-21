@@ -104,7 +104,7 @@ class DiceThrowing extends Component {
 				</Col>
 				<Col md={1}>
 					<FeedbackButtons
-						for="loaded_dice"
+						id="loaded_dice"
 					/>
 				</Col>
 			</Grid>
