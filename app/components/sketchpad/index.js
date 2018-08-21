@@ -1357,7 +1357,7 @@ class Sketchpad extends Component {
 	renderSaveButtons() {
 		return (
 			<ButtonGroup bsSize="small" className="sketch-button-group">
-				<TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} disabled={this.props.pdf !== null} glyph="file" />
+				{ !this.props.pdf ? <TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} glyph="file" /> : null }
 				<TooltipButton tooltip="Export current page (PNG)" onClick={this.saveToPNG} glyph="save-file" />
 				<TooltipButton tooltip="Export pages as PDF" onClick={this.saveAsPDF} glyph="floppy-save" />
 				{ this.props.id ? <TooltipButton tooltip="Save in browser" onClick={this.saveInBrowser} glyph="save" /> : null }
