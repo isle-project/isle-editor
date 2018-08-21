@@ -57,6 +57,7 @@ class FullscreenActionDisplay extends Component {
 			const newFilter = [];
 			if ( !this.state.exact ) {
 				for ( let i = 0; i < this.props.actions.length; i++ ) {
+					console.log( this.props.actions[i].value );
 					let actionVal = String( this.props.actions[i].value );
 					actionVal = lowercase( actionVal );
 					let comparisonValue = String( value );

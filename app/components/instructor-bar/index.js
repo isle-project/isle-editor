@@ -4,18 +4,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Collapse from 'react-bootstrap/lib/Collapse';
-import ListGroup from 'react-bootstrap/lib/ListGroup';
-import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import Modal from 'react-bootstrap/lib/Modal';
-import Panel from 'react-bootstrap/lib/Panel';
 import isString from '@stdlib/assert/is-string';
 import tabulate from '@stdlib/utils/tabulate';
 import trim from '@stdlib/string/trim';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import Gate from 'components/gate';
-import TextArea from 'components/text-area';
 import FullscreenActionDisplay from './fullscreen_action_display.js';
+import extractValue from './extract_value.js';
 
 
 // MAIN //
@@ -28,9 +24,6 @@ class InstructorBar extends Component {
 			actions: [],
 			counts: [],
 			categories: [],
-			receivedFeedbacks: [],
-			feedbackIsOpen: false,
-			feedback: '',
 			showActions: false,
 			showExtended: false,
 			showDeleteModal: false,
@@ -43,19 +36,7 @@ class InstructorBar extends Component {
 		const { session } = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
-				if ( type === 'member_action' ) {
-					if ( action.type === 'COMPONENT_FEEDBACK' ) {
-						if ( this.props.id === action.id ) {
-							const receivedFeedbacks = this.state.receivedFeedbacks.slice();
-							receivedFeedbacks.push( action.value );
-							this.setState({
-								receivedFeedbacks
-							});
-						}
-					}
-					this.forceUpdate();
-				}
-				else if ( type === 'retrieved_user_actions' ) {
+				if ( type === 'retrieved_user_actions' ) {
 					this.addSessionActions();
 				}
 			});
@@ -66,27 +47,6 @@ class InstructorBar extends Component {
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
 		}
-	}
-
-	onFeedback = ( text ) => {
-		this.setState({
-			feedback: text
-		});
-	}
-
-	toggleFeedback = () => {
-		this.setState({
-			feedbackIsOpen: !this.state.feedbackIsOpen
-		});
-	}
-
-	sendFeedback = () => {
-		const { session } = this.context;
-		session.log({
-			id: this.props.id,
-			type: 'COMPONENT_FEEDBACK',
-			value: this.state.feedback
-		}, 'members' );
 	}
 
 	toggleActions = () => {
@@ -117,6 +77,7 @@ class InstructorBar extends Component {
 		for ( let i = 0; i < actions.length; i++ ) {
 			let action = actions[ i ];
 			if ( action.id === this.props.id ) {
+				action = extractValue( action );
 				if ( this.state.period ) {
 					const { from, to } = this.state.period;
 					if ( action.absoluteTime > from && action.absoluteTime < to ) {
@@ -246,40 +207,17 @@ class InstructorBar extends Component {
 			return <Gate owner><label>No ID supplied.</label></Gate>;
 		}
 		return (
-			<div>
-				<Gate user>
-					{ this.state.receivedFeedbacks.length > 0 ? <Panel>
-						<Panel.Heading>Feedback</Panel.Heading>
-						<Panel.Body>
-							<ListGroup fill style={{ marginLeft: 0 }}>
-								{this.state.receivedFeedbacks.map( ( elem, idx ) =>
-									( <ListGroupItem key={idx} style={{ padding: '2px 5px' }}>
-										<p>{elem}</p>
-									</ListGroupItem> )
-								)}
-							</ListGroup>
-						</Panel.Body>
-					</Panel> : null }
-				</Gate>
-				<Gate owner>
-					<div>
-						<label>Component ID:</label>
-						<span style={{ marginLeft: '5px' }}>{this.props.id}</span>
-						{this.renderFullscreenModal()}
-					</div>
-					<ButtonGroup bsSize="small" >
-						<Button onClick={this.toggleFeedback} >Feedback</Button>
-						<Button onClick={this.toggleActions} >Actions</Button>
-					</ButtonGroup>
-					<Collapse in={this.state.feedbackIsOpen}>
-						<div>
-							<TextArea onChange={this.onFeedback} />
-							<Button bsSize="small" onClick={this.sendFeedback} >Send Feedback to all</Button>
-						</div>
-					</Collapse>
-					{this.renderDeleteModal()}
-				</Gate>
-			</div>
+			<Gate owner>
+				{ this.props.showID ? <div>
+					<label>Component ID:</label>
+					<span style={{ marginLeft: '5px' }}>{this.props.id}</span>
+				</div> : null }
+				{this.renderFullscreenModal()}
+				<ButtonGroup bsSize="small" >
+					<Button onClick={this.toggleActions} >{this.props.buttonLabel}</Button>
+				</ButtonGroup>
+				{this.renderDeleteModal()}
+			</Gate>
 		);
 	}
 }
@@ -288,13 +226,17 @@ class InstructorBar extends Component {
 // PROPERTY TYPES //
 
 InstructorBar.propTypes = {
+	buttonLabel: PropTypes.string,
 	dataType: PropTypes.oneOf([
 		'factor', 'text', 'number'
-	])
+	]),
+	showID: PropTypes.bool
 };
 
 InstructorBar.defaultProps = {
-	dataType: 'text'
+	buttonLabel: 'Actions',
+	dataType: 'text',
+	showID: true
 };
 
 InstructorBar.contextTypes = {
