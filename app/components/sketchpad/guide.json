@@ -1,0 +1,30 @@
+[
+	{
+		"target": ".sketch-drawing-buttons",
+		"content": "In the drawing mode, you can draw lines on the sketchboard. Try it out. Also try changing the brush size and brush color."
+	},
+	{
+		"target": ".sketch-pages",
+		"content": "Use the + button to insert a new page and the other buttons for navigation."
+	},
+	{
+		"target": ".sketch-text-buttons",
+		"content": "In the text mode, you can insert text annotations. Click on a point on the sketchpad to create a note and insert it by hitting ENTER."
+	},
+	{
+		"target": ".sketch-drag-delete-modes",
+		"content": "The drag and delete modes allow you to move around and delete created elements, respectively. Once either mode is selected, simply click on an element on the page to drag or delete it."
+	},
+	{
+		"target": ".sketch-undo-redo",
+		"content": "The undo button allows you to revert the last additions you made to the slides, while the redo button can redraw elements which were previously undone."
+	},
+	{
+		"target": ".sketch-save-buttons",
+		"content": "You can either export the current page as an image file or all pages as a PDF document. Alternatively, your notes can also be uploaded directly to the ISLE server by clicking the button to the right. Once the upload is finished, make sure to save the displayed link to the uploaded file."
+	},
+	{
+		"target": ".sketch-save-buttons",
+		"content": "Your notes are autosaved to the local storage of your web browser at regular intervals. However, to make sure the latest changes are saved, you are advised to click the \"Save in browser\" button before closing the page."
+	}
+]

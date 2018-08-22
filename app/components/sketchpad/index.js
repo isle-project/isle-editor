@@ -29,10 +29,12 @@ import min from '@stdlib/math/base/special/min';
 import noop from '@stdlib/utils/noop';
 import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
+import Joyride from 'components/joyride';
 import Tooltip from 'components/tooltip';
 import { TwitterPicker } from 'react-color';
 import Gate from 'components/gate';
 import SelectInput from 'react-select';
+import guide from './guide.json';
 import './sketchpad.css';
 
 
@@ -266,7 +268,6 @@ class Sketchpad extends Component {
 		}
 		this.renderBackground( currentPage ).then( () => {
 			const elems = this.elements[ currentPage ];
-			console.log( this.elements )
 			debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
 			for ( let i = recordingEndPos; i < elems.length; i++ ) {
 				this.drawElement( elems[ i ] );
@@ -1344,7 +1345,7 @@ class Sketchpad extends Component {
 
 	renderSaveButtons() {
 		return (
-			<ButtonGroup bsSize="small" className="sketch-button-group">
+			<ButtonGroup bsSize="small" className="sketch-save-buttons sketch-button-group">
 				{ !this.props.pdf ? <TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} glyph="file" /> : null }
 				<TooltipButton tooltip="Export current page (PNG)" onClick={this.saveToPNG} glyph="save-file" />
 				<TooltipButton tooltip="Export pages as PDF" onClick={this.saveAsPDF} glyph="floppy-save" />
@@ -1451,7 +1452,7 @@ class Sketchpad extends Component {
 			<Panel className="modal-container" style={{ width: this.props.canvasWidth, position: 'relative' }}>
 				<div className="sketch-panel-heading clearfix unselectable">
 					{this.renderPagination()}
-					<ButtonGroup bsSize="small" className="sketch-button-group" >
+					<ButtonGroup bsSize="small" className="sketch-drag-delete-modes sketch-button-group" >
 						<Tooltip placement="bottom" tooltip="Drag Mode" >
 							<Button bsSize="small" bsStyle={this.state.mode === 'drag' ? 'success' : 'default'} onClick={this.toggleDragMode} ><Glyphicon glyph="move" /></Button>
 						</Tooltip>
@@ -1466,7 +1467,7 @@ class Sketchpad extends Component {
 							<Button bsSize="small" onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Color</Button>
 						</Tooltip>
 					</ButtonGroup>
-					<ButtonGroup bsSize="small" className="sketch-button-group">
+					<ButtonGroup bsSize="small" className="sketch-undo-redo sketch-button-group">
 						<TooltipButton tooltip="Undo" onClick={this.undo} glyph="step-backward" disabled={this.state.playing} />
 						<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} />
 						<TooltipButton tooltip="Clear pages" onClick={this.clear} label="Clear" disabled={this.state.playing || this.state.recording} />
@@ -1499,6 +1500,13 @@ class Sketchpad extends Component {
 				{this.renderUploadModal()}
 				{this.renderNavigationModal()}
 				{this.renderProgressModal()}
+				{ this.props.showTutorial ?
+					<Joyride
+						steps={guide}
+						showProgress
+						run={true}
+					/> : null
+				}
 			</Panel>
 		);
 	}
@@ -1520,6 +1528,7 @@ Sketchpad.propDescriptions = {
 	nodes: 'components to be rendered on top of specified slides; `keys` should correspond to page numbers, `values` to the components',
 	noPages: 'initial number of pages',
 	pdf: 'Link to PDF file for baked-in page backgrounds',
+	showTutorial: 'show a tutorial for the sketchpad',
 	transmitOwner: 'whether owner actions should be transmitted to other users in real-time',
 	style: 'CSS inline styles',
 	onChange: 'callback invoked whenever a new line element is drawn'
@@ -1538,6 +1547,7 @@ Sketchpad.defaultProps = {
 	nodes: {},
 	noPages: 1,
 	pdf: null,
+	showTutorial: false,
 	transmitOwner: true,
 	style: {},
 	onChange() {}
@@ -1556,6 +1566,7 @@ Sketchpad.propTypes = {
 	nodes: PropTypes.object,
 	noPages: PropTypes.number,
 	pdf: PropTypes.string,
+	showTutorial: PropTypes.bool,
 	transmitOwner: PropTypes.bool,
 	style: PropTypes.object,
 	onChange: PropTypes.func
