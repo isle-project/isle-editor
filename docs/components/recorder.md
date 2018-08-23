@@ -23,3 +23,4 @@ An ISLE component for recording audio, screen and video.
 * __downloadable__ | `boolean`: indicates whether users should be able to download the recoding. Default: `false`.
 * __uploadable__ | `boolean`: indicates whether users should be able to upload the recoding to the server. Default: `false`.
 * __bitsPerSecond__ | `number`: bits per second. Default: `128000`.
+* __voiceID__ | `string`: undefined. Default: `none`.
