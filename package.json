@@ -218,7 +218,7 @@
     "react-dom": "16.4.2",
     "react-floater": "^0.5.4",
     "react-grid-layout": "^0.16.6",
-    "react-highlight-words": "^0.13.0",
+    "react-highlight-words": "^0.14.0",
     "react-input-range": "^1.2.1",
     "react-joyride": "^2.0.0-11",
     "react-list": "^0.8.8",
