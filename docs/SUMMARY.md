@@ -77,6 +77,7 @@
         * [R Plot](components/r/plot.md)
         * [Victory](components/victory.md)
         * [Word Cloud](components/word-cloud.md)
+    * [Sketchpad](components/sketchpad.md)
     * [Spectacle Presentation](chapters/spectacle.md)
     * [Text](components/text.md)
     * [Web Service](chapters/web-service.md)
