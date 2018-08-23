@@ -85,3 +85,12 @@ export function changeMode( mode ) {
 		}
 	};
 }
+
+export function changeNamespace( namespaceName ) {
+	return {
+		type: types.SERVER_NAMESPACE_CHANGED,
+		payload: {
+			namespaceName
+		}
+	};
+}

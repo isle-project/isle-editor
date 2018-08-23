@@ -1,6 +1,6 @@
 // MODULES //
 
-import { dialog, ipcMain, BrowserWindow } from 'electron';
+import { app, dialog, ipcMain, BrowserWindow } from 'electron';
 import fs from 'fs-extra';
 import { extname, basename } from 'path';
 import { EXTENSIONS } from './globals.js';
@@ -9,6 +9,17 @@ import { exec } from 'child_process';
 
 
 // MAIN //
+
+app.on( 'certificate-error', ( event, webContents, url, error, certificate, callback ) => {
+	console.log( 'Test URL:' );
+	if ( /https:\/\/localhost/g.test( url ) ) {
+		// Verification logic.
+		event.preventDefault();
+		callback( true );
+	} else {
+		callback( false );
+	}
+});
 
 ipcMain.on( 'save-file', ( e, { data, filePath }) => {
 	fs.writeFile( filePath, data, 'utf-8', ( err ) => {

@@ -48,7 +48,6 @@ class UploadLesson extends Component {
 			error: null,
 			spinning: false,
 			namespaces: [],
-			namespaceName: null,
 			minify: true,
 			lessonName,
 			dirname: randomstring.generate(),
@@ -69,8 +68,7 @@ class UploadLesson extends Component {
 			.then( res => res.json() )
 			.then( body => {
 				this.setState({
-					namespaces: body.namespaces,
-					namespaceName: body.namespaces[ 0 ].title
+					namespaces: body.namespaces
 				});
 			})
 			.catch( error => {
@@ -95,9 +93,7 @@ class UploadLesson extends Component {
 		const target = event.target;
 		const value = target.value;
 		debug( 'The selected namespace is: ' + value );
-		this.setState({
-			namespaceName: value
-		});
+		this.props.changeNamespace( value );
 	}
 
 	closeResponseModal = () => {
@@ -133,7 +129,8 @@ class UploadLesson extends Component {
 	};
 
 	upstreamData = ({ outputPath, outputDir }) => {
-		let { lessonName, namespaceName } = this.state;
+		let { lessonName } = this.state;
+		let { namespaceName } = this.props;
 
 		debug( 'Sending POST request to create lesson...' );
 		const form = new FormData();
@@ -191,7 +188,7 @@ class UploadLesson extends Component {
 
 	checkLesson = () => {
 		const form = {
-			namespaceName: this.state.namespaceName,
+			namespaceName: this.props.namespaceName,
 			lessonName: this.state.lessonName
 		};
 		const query = qs.stringify( form );
@@ -293,6 +290,60 @@ class UploadLesson extends Component {
 	}
 
 	renderUploadPanel = () => {
+		let formGroups;
+		if ( this.state.namespaces.length > 0 ) {
+			formGroups = <Fragment>
+				<FormGroup>
+					<ControlLabel>Select Course</ControlLabel>
+					<FormControl
+						name="namespaceName"
+						onChange={this.handleSelectChange}
+						componentClass="select"
+						value={this.props.namespaceName}
+						disabled={this.state.spinning}
+					>
+						{this.state.namespaces.map( ( ns, id ) =>
+							<option key={id} value={ns.title}>{ns.title}</option>
+						)}
+					</FormControl>
+				</FormGroup>
+				<FormGroup>
+					<ControlLabel>Lesson name</ControlLabel>
+					<FormControl
+						name="lessonName"
+						type="text"
+						placeholder="Enter lesson name"
+						onChange={this.handleInputChange}
+						value={this.state.lessonName}
+						disabled={this.state.spinning}
+					/>
+				</FormGroup>
+				<FormGroup>
+					<ControlLabel>Settings</ControlLabel>
+					<CheckboxInput
+						legend="Minify code"
+						onChange={( value ) => {
+							this.setState({
+								minify: value
+							});
+						}}
+						disabled={this.state.spinning}
+						defaultValue={true}
+					/>
+				</FormGroup>
+			</Fragment>;
+		} else {
+			formGroups = <Panel bsStyle="danger">
+				<Panel.Heading>
+					<Panel.Title componentClass="h3">
+						No courses found
+					</Panel.Title>
+				</Panel.Heading>
+				<Panel.Body>
+					Please create a course on the ISLE dashboard or request to be added as an owner to an existing course.
+				</Panel.Body>
+			</Panel>;
+		}
 		return (
 			<Panel bsStyle="primary">
 				<Panel.Heading>
@@ -305,44 +356,7 @@ class UploadLesson extends Component {
 					{ this.state.token ?
 						<Fragment>
 							<Form>
-								<FormGroup>
-									<ControlLabel>Select Course</ControlLabel>
-									<FormControl
-										name="namespaceName"
-										onChange={this.handleSelectChange}
-										componentClass="select"
-										placeholder="No courses found"
-										disabled={this.state.spinning}
-									>
-										{this.state.namespaces.map( ( ns, id ) =>
-											<option key={id} value={ns.title}>{ns.title}</option>
-										)}
-									</FormControl>
-								</FormGroup>
-								<FormGroup>
-									<ControlLabel>Lesson name</ControlLabel>
-									<FormControl
-										name="lessonName"
-										type="text"
-										placeholder="Enter lesson name"
-										onChange={this.handleInputChange}
-										value={this.state.lessonName}
-										disabled={this.state.spinning}
-									/>
-								</FormGroup>
-								<FormGroup>
-									<ControlLabel>Settings</ControlLabel>
-									<CheckboxInput
-										legend="Minify code"
-										onChange={( value ) => {
-											this.setState({
-												minify: value
-											});
-										}}
-										disabled={this.state.spinning}
-										defaultValue={true}
-									/>
-								</FormGroup>
+								{formGroups}
 								<Button
 									bsStyle="success"
 									bsSize="sm"
@@ -385,6 +399,8 @@ UploadLesson.defaultProps = {
 };
 
 UploadLesson.propTypes = {
+	changeNamespace: PropTypes.func.isRequired,
+	namespaceName: PropTypes.string.isRequired,
 	content: PropTypes.string,
 	fileName: PropTypes.string,
 	filePath: PropTypes.string

@@ -32,6 +32,7 @@ const initialState = {
 	fileName: config.get( 'mostRecentFileName' ),
 	currentRole: 'anonymous',
 	currentMode: 'offline',
+	namespaceName: null,
 	error
 };
 
@@ -70,6 +71,10 @@ export default function markdown( state = initialState, action ) {
 	case types.MODE_CHANGED:
 		return Object.assign({}, state, {
 			currentMode: action.payload.mode
+		});
+	case types.SERVER_NAMESPACE_CHANGED:
+		return Object.assign({}, state, {
+			namespaceName: action.payload.namespaceName
 		});
 	case types.TOGGLE_SCROLLING:
 		return Object.assign({}, state, {
