@@ -17,18 +17,6 @@ import RealtimeMetrics from 'components/metrics/realtime';
 // VARIABLES //
 
 const debug = logger( 'isle-editor' );
-const colorList = [
-	'tomato',
-	'orange',
-	'gold',
-	'darkcyan',
-	'salmon',
-	'lightgreen',
-	'gainsboro',
-	'lightpurple',
-	'darkkhaki',
-	'darkseagreen'
-];
 
 
 // MAIN //
@@ -187,7 +175,18 @@ ProportionsSurvey.defaultProps = {
 	group: 'group results',
 	precision: 1,
 	step: 0.1,
-	colors: colorList,
+	colors: [
+		'tomato',
+		'orange',
+		'gold',
+		'darkcyan',
+		'salmon',
+		'lightgreen',
+		'gainsboro',
+		'lightpurple',
+		'darkkhaki',
+		'darkseagreen'
+	],
 	personalHeight: 200,
 	personalInnerRadius: 60,
 	groupHeight: 100,

@@ -219,7 +219,7 @@ class MeanVSMedian extends Component {
 
 MeanVSMedian.defaultProps = {
 	header: 'Measures of Location: Mean vs. Median',
-	intro: <div></div>
+	intro: null
 };
 
 
