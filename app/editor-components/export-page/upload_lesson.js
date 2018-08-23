@@ -14,13 +14,15 @@ import https from 'https';
 import http from 'http';
 import archiver from 'archiver';
 import randomstring from 'randomstring';
-import path from 'path';
-import fs from 'fs';
+import { join } from 'path';
+import { createReadStream, createWriteStream } from 'fs';
 import os from 'os';
 import qs from 'querystring';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
+import endsWith from '@stdlib/string/ends-with';
+import removeLast from '@stdlib/string/remove-last';
 import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
 import Spinner from 'components/spinner';
@@ -30,7 +32,7 @@ import Spinner from 'components/spinner';
 
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle-editor:export-page' );
 
 
 // MAIN //
@@ -111,7 +113,7 @@ class UploadLesson extends Component {
 	}
 
 	zipLesson = ( outputPath, outputDir, clbk ) => {
-		let output = fs.createWriteStream( path.join( outputPath, outputDir+'.zip' ) );
+		let output = createWriteStream( join( outputPath, outputDir+'.zip' ) );
 		let archive = archiver( 'zip', {
 			store: true
 		});
@@ -126,7 +128,7 @@ class UploadLesson extends Component {
 			});
 		});
 		archive.pipe( output );
-		archive.directory( path.join( outputPath, outputDir ), '/' );
+		archive.directory( join( outputPath, outputDir ), '/' );
 		archive.finalize();
 	};
 
@@ -137,7 +139,8 @@ class UploadLesson extends Component {
 		const form = new FormData();
 		form.append( 'namespaceName', namespaceName );
 		form.append( 'lessonName', lessonName );
-		form.append( 'zipped', fs.createReadStream( path.join( outputPath, outputDir+'.zip' ) ) );
+		const zipPath = join( outputPath, outputDir+'.zip' );
+		form.append( 'zipped', createReadStream( zipPath ) );
 
 		const headers = form.getHeaders();
 		headers[ 'Authorization' ] = 'JWT ' + this.state.token;
@@ -151,25 +154,24 @@ class UploadLesson extends Component {
 		const re = /^https?:\/\/([^:]+):?([0-9]{0,5})/i;
 		const matches = this.state.server.match( re );
 		debug( 'Matches %s', matches );
+		options.host = matches[ 1 ];
+		if ( endsWith( options.host, '/' ) ) {
+			options.host = removeLast( options.host );
+		}
+		if ( matches[ 2 ]) {
+			options.port = matches[ 2 ];
+		}
 		if ( contains( this.state.server, 'https' ) ) {
-			options.host = matches[ 1 ];
-			if ( matches[ 2 ]) {
-				options.port = matches[ 2 ];
-			}
 			options.rejectUnauthorized = false;
 			request = https.request( options );
 		} else {
-			options.host = matches[ 1 ];
-			if ( matches[ 2 ]) {
-				options.port = matches[ 2 ];
-			}
 			request = http.request( options );
 		}
 		form.pipe( request );
 
 		request.on( 'response', ( res ) => {
 			if ( res.statusCode === 200 ) {
-				let lessonLink = this.state.server + '/' + namespaceName + '/' + lessonName;
+				let lessonLink = join( this.state.server, namespaceName, lessonName );
 				let msg = <span>
 					The lesson has been uploaded successfully and can be accessed at the following address: <a href={lessonLink}>{lessonLink}</a>
 				</span>;
@@ -223,7 +225,7 @@ class UploadLesson extends Component {
 		const settings = {
 			outputPath: os.tmpdir(),
 			filePath: this.props.filePath,
-			basePath: IS_PACKAGED ? path.join( process.resourcesPath, 'app' ) : '.',
+			basePath: IS_PACKAGED ? join( process.resourcesPath, 'app' ) : '.',
 			content: this.props.content,
 			outputDir: this.state.dirname,
 			minify: this.state.minify
@@ -232,6 +234,7 @@ class UploadLesson extends Component {
 			if ( error ) {
 				return this.setState({ error });
 			}
+			debug( 'Lesson successfully bundled...' );
 			this.zipLesson( settings.outputPath, settings.outputDir, () => {
 				this.upstreamData( settings );
 			});
