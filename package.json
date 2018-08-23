@@ -94,7 +94,7 @@
     "codecov": "^3.0.2",
     "concurrently": "^3.0.0",
     "del": "^3.0.0",
-    "electron": "2.0.7",
+    "electron": "2.0.8",
     "electron-packager": "12.1.1",
     "electron-rebuild": "^1.7.3",
     "enzyme": "3.4.4",
@@ -126,7 +126,7 @@
   "dependencies": {
     "@planeshifter/brace": "^0.8.0",
     "@stdlib/stdlib": "0.0.43",
-    "archiver": "^2.1.1",
+    "archiver": "^3.0.0",
     "babel-core": "6.26.3",
     "babel-jest": "^23.4.2",
     "babel-loader": "7.1.5",
@@ -218,7 +218,7 @@
     "react-dom": "16.4.2",
     "react-floater": "^0.5.4",
     "react-grid-layout": "^0.16.6",
-    "react-highlight-words": "^0.12.0",
+    "react-highlight-words": "^0.13.0",
     "react-input-range": "^1.2.1",
     "react-joyride": "^2.0.0-11",
     "react-list": "^0.8.8",
@@ -252,7 +252,7 @@
     "utf-8-validate": "^5.0.1",
     "venn.js": "0.2.20",
     "victory": "30.2.0",
-    "webpack": "4.17.0",
+    "webpack": "4.17.1",
     "whatwg-fetch": "^2.0.4"
   },
   "devEngines": {
