@@ -6,6 +6,7 @@
 
 const path = require( 'path' );
 const fs = require( 'fs' );
+const glob = require( 'glob' ).sync;
 const objectKeys = require( '@stdlib/utils/keys' );
 const replace = require( '@stdlib/string/replace' );
 const repeat = require( '@stdlib/string/repeat' );
@@ -14,15 +15,10 @@ const isFunction = require( '@stdlib/assert/is-function' );
 
 // VARIABLES //
 
-const component = process.argv[ 2 ];
-const fpath = path.join( './app/components', component, 'index.js' );
-const mdpath = path.join( './docs/components', component+'.md' );
-let islepath = path.join( './component-playground', component+'.isle' );
-if ( component === 'data-explorer' ) {
-	islepath = path.join( './component-playground/data-explorer/data-explorer.isle');
-}
+const files = glob( '**/index.js', {
+	'cwd': path.join( __dirname, '..', 'app', 'components' )
+});
 
-const file = fs.readFileSync( fpath ).toString();
 const RE_DESCRIPTIONS = /\.(propDescriptions ?= ?{[\s\S]*?};)/;
 const RE_TYPES = /\.(propTypes ?= ?{[\s\S]*?};)/;
 const RE_DEFAULTS = /\.(defaultProps ?= ?{[\s\S]*?};)/;
@@ -41,9 +37,13 @@ PropTypes.func = new String( 'function' );
 PropTypes.func.isRequired = 'function (required)';
 PropTypes.node = new String( 'node' );
 PropTypes.node.isRequired = 'node (required)';
-
 PropTypes.arrayOf = function arrayOf( str ) {
 	const out = new String( `array<${str}>` );
+	out.isRequired = out+' (required)';
+	return out;
+};
+PropTypes.objectOf = function objectOf( str ) {
+	const out = new String( `object<${str}>` );
 	out.isRequired = out+' (required)';
 	return out;
 };
@@ -64,11 +64,13 @@ PropTypes.oneOf = function oneOf( arr ) {
 };
 const SCOPE_KEYS = [
 	'PropTypes',
-	'repeat'
+	'repeat',
+	'DEFAULT_VALUE'
 ];
 const SCOPE_VALUES = [
 	PropTypes,
-	repeat
+	repeat,
+	repeat( '\n', 15 )
 ];
 
 
@@ -89,35 +91,63 @@ function generateDefaultString( defaultValue ) {
 
 // MAIN //
 
-let str = `#### Options:
+
+for ( let i = 0; i < files.length; i++ ) {
+	const component = path.dirname( files[ i ] );
+	const fpath = path.join( './app/components', component, 'index.js' );
+	const mdpath = path.join( './docs/components', component+'.md' );
+	const islepath = path.join( './component-playground', component+'.isle' );
+
+	const file = fs.readFileSync( fpath ).toString();
+	let str = `#### Options:
 
 `;
 
+	let defaultsMatch = RE_DEFAULTS.exec( file );
+	let types = {};
+	let defaults = {};
+	let description = {};
 
-let defaultsMatch = RE_DEFAULTS.exec( file )[ 1 ];
-defaultsMatch = replace( defaultsMatch, 'PINF', '+Infinity' );
-defaultsMatch = replace( defaultsMatch, 'NINF', '-Infinity' );
-const extractDefaults = new Function( ...SCOPE_KEYS, 'return '+defaultsMatch );
-const extractDescription = new Function( ...SCOPE_KEYS, 'return '+RE_DESCRIPTIONS.exec( file )[ 1 ] );
+	if ( defaultsMatch ) {
+		defaultsMatch = defaultsMatch[ 1 ];
+		defaultsMatch = replace( defaultsMatch, 'PINF', '+Infinity' );
+		defaultsMatch = replace( defaultsMatch, 'NINF', '-Infinity' );
+		const extractDefaults = new Function( ...SCOPE_KEYS, 'return '+defaultsMatch );
+		defaults = extractDefaults( ...SCOPE_VALUES );
+	}
+	const descrMatch = RE_DESCRIPTIONS.exec( file );
+	if ( descrMatch ) {
+		const extractDescription = new Function( ...SCOPE_KEYS, 'return '+descrMatch[ 1 ] );
+		description = extractDescription( ...SCOPE_VALUES );
+	}
+	let typeMatch = RE_TYPES.exec( file );
+	if ( typeMatch ) {
+		const extractTypes = new Function( ...SCOPE_KEYS, 'return '+typeMatch[ 1 ]);
+		types = extractTypes( ...SCOPE_VALUES );
+	}
 
-let typeMatch = RE_TYPES.exec( file )[ 1 ];
-const extractTypes = new Function( ...SCOPE_KEYS, 'return '+typeMatch);
-const types = extractTypes( ...SCOPE_VALUES );
-const description = extractDescription( ...SCOPE_VALUES );
-const defaults = extractDefaults( ...SCOPE_VALUES );
-const keys = objectKeys( types );
+	const keys = objectKeys( types );
+	for ( let i = 0; i < keys.length; i++ ) {
+		const key = keys[ i ];
+		const defaultStr = generateDefaultString( defaults[ key ] );
+		str += `* __${key}__ | \`${types[ key ] }\`: ${description[ key ]}. ${defaultStr}`;
+		str += '\n';
+	}
 
-for ( let i = 0; i < keys.length; i++ ) {
-	const key = keys[ i ];
-	const defaultStr = generateDefaultString( defaults[ key ] );
-	str += `* __${key}__ | \`${types[ key ] }\`: ${description[ key ]}. ${defaultStr}`;
-	str += '\n';
+	try {
+		let md = fs.readFileSync( mdpath ).toString();
+		md = replace( md, /#### Options[\s\S]*$/, str );
+		fs.writeFileSync( mdpath, md );
+	} catch ( err ) {
+		console.log( `Documentation for ${component} does not exist` );
+	}
+
+	try {
+		let isle = fs.readFileSync( islepath ).toString();
+		isle = replace( isle, /#### Options[\s\S]*$/, str );
+		fs.writeFileSync( islepath, isle );
+	}
+	catch ( err ) {
+		console.log( `Playground site for ${component} does not exist` );
+	}
 }
-
-let md = fs.readFileSync( mdpath ).toString();
-md = replace( md, /#### Options[\s\S]*$/, str );
-fs.writeFileSync( mdpath, md );
-
-let isle = fs.readFileSync( islepath ).toString();
-isle = replace( isle, /#### Options[\s\S]*$/, str );
-fs.writeFileSync( islepath, isle );
