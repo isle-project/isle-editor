@@ -217,9 +217,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="markdown-editor.md">
+        <li class="chapter " data-level="1.4.3" data-path="markdown-editor.html">
             
-                <span>
+                <a href="markdown-editor.html">
             
                     
                     Markdown Editor
@@ -529,9 +529,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.13.2" data-path="checkbox-input.html">
+        <li class="chapter " data-level="1.4.13.2" data-path="input/checkbox.html">
             
-                <a href="checkbox-input.html">
+                <a href="input/checkbox.html">
             
                     
                     Checkbox Input
@@ -542,9 +542,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.13.3" data-path="number-input.html">
+        <li class="chapter " data-level="1.4.13.3" data-path="input/number.md">
             
-                <a href="number-input.html">
+                <span>
             
                     
                     Number Input
@@ -555,9 +555,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.13.4" data-path="proportions-input.html">
+        <li class="chapter " data-level="1.4.13.4" data-path="input/proportions.md">
             
-                <a href="proportions-input.html">
+                <span>
             
                     
                     Proportions Input
@@ -568,9 +568,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.13.5" data-path="select-input.html">
+        <li class="chapter " data-level="1.4.13.5" data-path="input/select.md">
             
-                <a href="select-input.html">
+                <span>
             
                     
                     Select Input
@@ -581,9 +581,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.13.6" data-path="slider-input.html">
+        <li class="chapter " data-level="1.4.13.6" data-path="input/slider.md">
             
-                <a href="slider-input.html">
+                <span>
             
                     
                     Slider Input
@@ -594,9 +594,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.13.7" data-path="text-area.html">
+        <li class="chapter " data-level="1.4.13.7" data-path="input/text-area.md">
             
-                <a href="text-area.html">
+                <span>
             
                     
                     Text Area
@@ -607,9 +607,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.13.8" data-path="text-input.html">
+        <li class="chapter " data-level="1.4.13.8" data-path="input/text.md">
             
-                <a href="text-input.html">
+                <span>
             
                     
                     Text Input
@@ -620,9 +620,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.13.9" data-path="voice-input.html">
+        <li class="chapter " data-level="1.4.13.9" data-path="input/voice.md">
             
-                <a href="voice-input.html">
+                <span>
             
                     
                     Voice Input
@@ -1155,7 +1155,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.20" data-path="../chapters/spectacle.html">
+        <li class="chapter " data-level="1.4.20" data-path="sketchpad.html">
+            
+                <a href="sketchpad.html">
+            
+                    
+                    Sketchpad
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21" data-path="../chapters/spectacle.html">
             
                 <a href="../chapters/spectacle.html">
             
@@ -1168,7 +1181,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.21" data-path="text.html">
+        <li class="chapter " data-level="1.4.22" data-path="text.html">
             
                 <a href="text.html">
             
@@ -1181,7 +1194,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.22" data-path="../chapters/web-service.html">
+        <li class="chapter " data-level="1.4.23" data-path="../chapters/web-service.html">
             
                 <a href="../chapters/web-service.html">
             
@@ -1195,7 +1208,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.22.1" data-path="news.html">
+        <li class="chapter " data-level="1.4.23.1" data-path="news.html">
             
                 <a href="news.html">
             
@@ -1208,7 +1221,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.22.2" data-path="wikipedia.html">
+        <li class="chapter " data-level="1.4.23.2" data-path="wikipedia.html">
             
                 <a href="wikipedia.html">
             
@@ -1651,7 +1664,10 @@
 <li><strong>question</strong> | <code>string</code>: the question displayed at the top of the multiple choice component. Default: <code>&apos;&apos;</code>.</li>
 <li><strong>solution</strong> | <code>(number|array) (required)</code>: number denoting which answer is correct or an <code>array</code> of the correct answer numbers in case the learner should be able to select multiple answers. Default: <code>none</code>.</li>
 <li><strong>answers</strong> | <code>array (required)</code>: an <code>array</code> of answer objects. Each answer should be an object with <code>content</code> and <code>explanation</code> fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect. Default: <code>none</code>.</li>
+<li><strong>hintPlacement</strong> | <code>string</code>: undefined. Default: <code>&apos;bottom&apos;</code>.</li>
+<li><strong>hints</strong> | <code>array<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span><span class="token punctuation">&gt;</span></span></code>: undefined. Default: <code>[]</code>.</li>
 <li><strong>disabled</strong> | <code>boolean</code>: controls whether the question is disabled. Default: <code>false</code>.</li>
+<li><strong>chat</strong> | <code>boolean</code>: controls whether the element should have an integrated chat. Default: <code>false</code>.</li>
 <li><strong>provideFeedback</strong> | <code>boolean</code>: indicates whether feedback including the correct answer should be displayed after learners submit their answers. Default: <code>true</code>.</li>
 <li><strong>displaySolution</strong> | <code>boolean</code>: controls whether the solution is displayed upfront. Default: <code>false</code>.</li>
 <li><strong>onSubmit</strong> | <code>function</code>: callback invoked after an answer is submitted. Default: <code>onSubmit(){}</code>.</li>
@@ -1699,7 +1715,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Multiple Choice Question","level":"1.4.4.3","depth":3,"next":{"title":"Number Question","level":"1.4.4.4","depth":3,"path":"components/number-question.md","ref":"components/number-question.md","articles":[]},"previous":{"title":"Match List Question","level":"1.4.4.2","depth":3,"path":"components/match-list-question.md","ref":"components/match-list-question.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","edit-link","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":2},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/multiple-choice-question.md","mtime":"2018-07-17T05:43:13.017Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-07-23T03:52:28.946Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Multiple Choice Question","level":"1.4.4.3","depth":3,"next":{"title":"Number Question","level":"1.4.4.4","depth":3,"path":"components/number-question.md","ref":"components/number-question.md","articles":[]},"previous":{"title":"Match List Question","level":"1.4.4.2","depth":3,"path":"components/match-list-question.md","ref":"components/match-list-question.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","edit-link","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":2},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/multiple-choice-question.md","mtime":"2018-07-23T21:43:01.369Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-08-23T17:48:51.408Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
