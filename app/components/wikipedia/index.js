@@ -9,7 +9,7 @@ import './wikipedia.css';
 
 // VARIABLES //
 
-var debug = logger( 'isle-editor' );
+var debug = logger( 'isle-editor:wikipedia' );
 
 
 // MAIN //
@@ -21,12 +21,6 @@ class Wikipedia extends Component {
 			text: '',
 			response: ''
 		};
-	}
-
-	componentDidMount() {
-		if ( this.props.autoplay ) {
-			this.handleClick();
-		}
 	}
 
 	// This is externally triggered
@@ -135,7 +129,8 @@ class Wikipedia extends Component {
 				<iframe
 					src={this.state.response}
 					width="100%"
-					height={600} />
+					height={600}
+				/>
 			</div>
 		);
 	}
@@ -153,19 +148,19 @@ class Wikipedia extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTY TYPES //
+
+Wikipedia.propDescriptions = {
+	invisible: 'controls whether to display a text input field to search for Wikipedia articles',
+	language: 'language identifier'
+};
 
 Wikipedia.defaultProps = {
 	invisible: false,
-	language: 'en-US',
-	autoplay: false
+	language: 'en-US'
 };
 
-
-// PROPERTY TYPES //
-
 Wikipedia.propTypes = {
-	autoplay: PropTypes.bool,
 	invisible: PropTypes.bool,
 	language: PropTypes.string
 };

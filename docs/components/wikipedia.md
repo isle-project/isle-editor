@@ -16,5 +16,5 @@ The **Wikipedia** component scans the **Wikipedia** and returns an article - if 
 
 #### Options:
 
-* __language__: specifies the given language. **us-EN**, **de-DE**, and **fr-FR** are supported (English, German, French).
-* __invisible__: `boolean` indicating whether the component is invisible or not (invisible makes sense in an environment where speech recognition shall be the sole interface)
+* __invisible__ | `boolean`: controls whether to display a text input field to search for Wikipedia articles. Default: `false`.
+* __language__ | `string`: language identifier. Default: `'en-US'`.
