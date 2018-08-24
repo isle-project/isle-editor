@@ -193,6 +193,7 @@ class News extends Component {
 				id={this.props.id}
 				className="article-container"
 				backdrop={false}
+				enforceFocus={false}
 			>
 				<Modal.Header>
 					<span className="article-header">NEWS</span>
