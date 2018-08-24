@@ -510,7 +510,8 @@ Recorder.propDescriptions = {
 	autostart: 'indicates whether recording should start immediately',
 	downloadable: 'indicates whether users should be able to download the recoding',
 	uploadable: 'indicates whether users should be able to upload the recoding to the server',
-	bitsPerSecond: 'bits per second'
+	bitsPerSecond: 'bits per second',
+	voiceID: 'voice control identifier'
 };
 
 Recorder.propTypes = {
