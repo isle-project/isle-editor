@@ -128,6 +128,7 @@ Video.propDescriptions = {
 	height: 'height of the player',
 	width: 'width of the player',
 	loop: 'controls whether to start the video anew after it was played',
+	voiceID: 'voice control identifier',
 	style: 'CSS inline styles',
 	onEnded: 'callback invoked once the video ends',
 	onPause: 'callback invoked once the video pauses',
