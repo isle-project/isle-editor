@@ -1,6 +1,6 @@
 # ISLE Editor
 
-[Documentation][docs] | [Video Tutorials][videos]
+[Documentation][docs]
 
 #### Dependencies
 
@@ -60,8 +60,7 @@ $ npm install
 To live-edit the ISLE Editor,
 
 ``` bash
-$ npm start
-$ open http://localhost:3000
+$ npm run dev
 ```
 
 Editing source files will result in changes appearing directly without reloading.
@@ -72,6 +71,12 @@ To build and package the [Electron][electron] application,
 
 ``` bash
 $ npm run build
+```
+
+The bundled version can be started with
+
+``` bash
+$ npm start
 ```
 
 ## License
@@ -106,4 +111,3 @@ The following icons are used under a Creative Commons CCBY license.
 [dev-dependencies-url]: https://david-dm.org/planeshifter/isle-editor/master#info=devDependencies
 
 [docs]: http://isledocs.com/
-[videos]: https://www.youtube.com/watch?v=yCgEw_8qFuI&list=PLJ0sgUfBmqefPfeLzoqwXVqf78aDL9kpG
