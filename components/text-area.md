@@ -15,8 +15,11 @@ A text area component. Used as a stand-alone component, changes should be handle
 
 #### Options:
 
-* __legend__: `string` to be displayed as the title of te component. Default: `''`.
-* __onChange__: Callback `function` invoked after each change of the text value. Default: `null`.
-* __placeholder__: 
-* __resize__: `boolean` indicating whether the element should be resizable. Default: `false`.
-* __rows__: `number` of rows. Default: `5`.
+* __defaultValue__ | `string`: undefined. Default: `''`.
+* __disabled__ | `boolean`: undefined. Default: `false`.
+* __legend__ | `string`: undefined. Default: `''`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __placeholder__ | `string`: undefined. Default: `'Enter text'`.
+* __resizable__ | `boolean`: undefined. Default: `false`.
+* __rows__ | `number`: undefined. Default: `5`.
+* __style__ | `object`: undefined. Default: `{}`.

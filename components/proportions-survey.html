@@ -1663,16 +1663,33 @@
 <p><a href="https://isle.heinz.cmu.edu/components/proportions-survey/" target="_blank">Open interactive preview</a></p>
 <h4 id="options">Options:</h4>
 <ul>
-<li><strong>user</strong>: Makes it visible to registered users.</li>
-<li><strong>id</strong>: <code>string</code> - the ID of the component (required).</li>
-<li><strong>question</strong>: <code>string</code> that describes the question at hand.</li>
-<li><strong>group</strong>: <code>string</code> that gives the title of the group decision.</li>
-<li><strong>nElements</strong>: <code>number of elements</code> that shall be weighed.</li>
-<li><strong>legends</strong>: <code>Array of strings</code> that describe the options to be weighed.</li>
-<li><strong>colors</strong>: <code>Array of strings</code> that define the colors. If not defined, a custom color scale will be used.</li>
-<li><strong>personalHeight</strong>: <code>number</code> which defines the height of the personal input.</li>
-<li><strong>groupHeight</strong>: <code>number</code> which defines the height of the group element.</li>
-<li><strong>margin</strong>: <code>string in px</code> which allows the correction of the number display.</li>
+<li><strong>allowMultipleAnswers</strong> | <code>boolean</code>: undefined. Default: <code>false</code>.</li>
+<li><strong>anonymous</strong> | <code>boolean</code>: undefined. Default: <code>false</code>.</li>
+<li><strong>colors</strong> | <code>array</code>: undefined. Default: <code>[
+&apos;tomato&apos;,
+&apos;orange&apos;,
+&apos;gold&apos;,
+&apos;darkcyan&apos;,
+&apos;salmon&apos;,
+&apos;lightgreen&apos;,
+&apos;gainsboro&apos;,
+&apos;lightpurple&apos;,
+&apos;darkkhaki&apos;,
+&apos;darkseagreen&apos;
+]</code>.</li>
+<li><strong>disabled</strong> | <code>boolean</code>: undefined. Default: <code>false</code>.</li>
+<li><strong>group</strong> | <code>string</code>: undefined. Default: <code>&apos;group results&apos;</code>.</li>
+<li><strong>groupHeight</strong> | <code>number</code>: undefined. Default: <code>100</code>.</li>
+<li><strong>groupInnerRadius</strong> | <code>number</code>: undefined. Default: <code>40</code>.</li>
+<li><strong>legends</strong> | <code>(string|array)</code>: undefined. Default: <code>&apos;Legend&apos;</code>.</li>
+<li><strong>margin</strong> | <code>string</code>: undefined. Default: <code>&apos;40px&apos;</code>.</li>
+<li><strong>nElements</strong> | <code>number</code>: undefined. Default: <code>6</code>.</li>
+<li><strong>onSubmit</strong> | <code>function</code>: undefined. Default: <code>onSubmit() {}</code>.</li>
+<li><strong>personalHeight</strong> | <code>number</code>: undefined. Default: <code>200</code>.</li>
+<li><strong>personalInnerRadius</strong> | <code>number</code>: undefined. Default: <code>60</code>.</li>
+<li><strong>precision</strong> | <code>number</code>: undefined. Default: <code>1</code>.</li>
+<li><strong>question</strong> | <code>string</code>: undefined. Default: <code>&apos;&apos;</code>.</li>
+<li><strong>step</strong> | <code>number</code>: undefined. Default: <code>0.1</code>.</li>
 </ul>
 
                                 
@@ -1717,7 +1734,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Proportions Survey","level":"1.4.15.3","depth":3,"next":{"title":"Survey Generator","level":"1.4.15.4","depth":3,"path":"components/survey-generator.md","ref":"components/survey-generator.md","articles":[]},"previous":{"title":"Number Survey","level":"1.4.15.2","depth":3,"path":"components/number-survey.md","ref":"components/number-survey.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","edit-link","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":2},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/proportions-survey.md","mtime":"2017-12-30T12:26:35.462Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-08-23T17:48:51.408Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Proportions Survey","level":"1.4.15.3","depth":3,"next":{"title":"Survey Generator","level":"1.4.15.4","depth":3,"path":"components/survey-generator.md","ref":"components/survey-generator.md","articles":[]},"previous":{"title":"Number Survey","level":"1.4.15.2","depth":3,"path":"components/number-survey.md","ref":"components/number-survey.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","edit-link","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":2},"edit-link":{"label":"Edit This Page","base":"https://github.com/Planeshifter/isle-editor/edit/master/docs"},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/proportions-survey.md","mtime":"2018-08-24T03:15:54.539Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-08-24T03:17:01.224Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
