@@ -1,32 +1,46 @@
+---
+title: "Word Cloud"
+author: Philipp Burckhardt
+date: Dec 27th, 2017
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+---
+
 # Word Cloud
 
-A word cloud component built on top of [d3-cloud][d3-cloud].
+<br />
 
-#### Example:
+<Playground
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <WordCloud data={[
+        'This is my holiday',
+        'Breakfast is great',
+        'My house is my castle',
+        'A castle for a kingdom',
+        'I am longing for breakfast',
+        'Having rolls for breakfast is a must',
+        'A horse for a kingdom',
+        'Mom like rolls',
+        'Orange juice is fine',
+        'Where is the butter',
+        'I am looking for a spoon',
+        'Coffee for coffee drinkers',
+        'Tea for the sleepy ones',
+        'The sleepy, sloppy, crazy King lives in a castle',
+        'A house for everybody'
+    ]} />`}
+    scope={{
+        WordCloud
+    }}
+/>
 
-```js
-<WordCloud data={[
-	'This is my holiday', 
-	'Breakfast is great', 
-	'My house is my castle', 
-	'A castle for a kingdom', 
-	'I am longing for breakfast',
-	'Having rolls for breakfast is a must',
-	'A horse for a kingdom',
-	'Mom like rolls',
-	'Orange juice is fine',
-	'Where is the butter',
-	'I am looking for a spoon',
-	'Coffee for coffee drinkers',
-	'Tea for the sleepy ones',
-	'The sleepy, sloppy, crazy King lives in a castle',
-	'A house for everybody'
-]} />
-```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/word-cloud/)
-
-[d3-cloud]: https://github.com/jasondavies/d3-cloud
+<br />
 
 #### Options:
 
