@@ -16,6 +16,8 @@ The **News** component scans the public **News API** (consisting of 71 internati
 
 #### Options:
 
-* __invisible__: `boolean` indicating whether to render the component. To set it to invisible makes only sense when the component is triggered by voice recognition.
-* __language__: specifies the given language. **us-EN**, **de-DE**, and **fr-FR** are supported (English, German, French).
-* __onArticles__: a callback `function` that receives the found articles in JSON format.
+* __invisible__ | `boolean`: indicates whether to show the input fields or rely solely on voice control to be triggered. Default: `false`.
+* __key__ | `string`: authentication key for the News API. Default: `'2987fd19bd374249979c4e38e40ef8b8'`.
+* __language__ | `string`: language identifier. Default: `'en-US'`.
+* __voiceID__ | `string`: voice control identifier. Default: `none`.
+* __onArticles__ | `function`: callback function invoked with an array of article objects once they are received. Default: `onArticles() {}`.

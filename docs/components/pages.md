@@ -23,6 +23,6 @@ An ISLE pagination component that allows the user to step through a sequence of 
 * __title__ | `string`: displayed title of the pages container. Default: `''`.
 * __bsSize__ | `string`: size of the pagination buttons (one of `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`). Default: `'default'`.
 * __height__ | `(number|string)`: the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added. Default: `none`.
-* __voiceID__ | `string`: undefined. Default: `none`.
+* __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onSelect__ | `function`: Function invoked when active change is changed. Receives the new active page index as a sole parameter. Default: `onSelect() {}`.

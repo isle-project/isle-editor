@@ -214,6 +214,14 @@ class News extends Component {
 
 // DEFAULT PROPERTIES //
 
+News.propDescriptions = {
+	invisible: 'indicates whether to show the input fields or rely solely on voice control to be triggered',
+	key: 'authentication key for the News API',
+	language: 'language identifier',
+	voiceID: 'voice control identifier',
+	onArticles: 'callback function invoked with an array of article objects once they are received'
+};
+
 News.defaultProps = {
 	language: 'en-US',
 	invisible: false,
