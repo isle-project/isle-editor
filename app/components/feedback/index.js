@@ -16,6 +16,16 @@ import Feedback from '-!svg-react-loader!./../../img/feedback.svg';
 import './feedback.css';
 
 
+// VARIABLES //
+
+const ORIGINAL_STATE = {
+	showModal: false,
+	needsExplanation: false,
+	noUnderstanding: false,
+	noLogic: false
+};
+
+
 // MAIN //
 
 class FeedbackButtons extends Component {
@@ -23,10 +33,7 @@ class FeedbackButtons extends Component {
 		super();
 
 		this.state = {
-			showModal: false,
-			needsExplanation: false,
-			noUnderstanding: false,
-			noLogic: false
+			...ORIGINAL_STATE
 		};
 	}
 
@@ -84,7 +91,9 @@ class FeedbackButtons extends Component {
 			value: formData
 		}, 'members' );
 
-		this.setState({ showModal: false });
+		this.setState({
+			...ORIGINAL_STATE
+		});
 		session.addNotification({
 			title: 'Thank you!',
 			message: 'Thank you for for taking the time to send us feedback.',
@@ -93,14 +102,19 @@ class FeedbackButtons extends Component {
 		});
 	}
 
+	closeModal = () => {
+		return this.setState({ ...ORIGINAL_STATE });
+	}
+
+	openModal = () => {
+		this.setState({ showModal: true });
+	}
+
 	/*
 	* React component render method.
 	*/
 	render() {
-		const closeModal = () => this.setState({ showModal: false });
-		const openModal = () => this.setState({ showModal: true });
 		const tpos = (this.props.vertical ? 'left' : 'bottom');
-
 		return (
 			<div className="feedback-buttons" style={{ float: 'right' }}>
 				<ButtonGroup style={{ float: 'right' }} vertical={this.props.vertical} >
@@ -115,14 +129,14 @@ class FeedbackButtons extends Component {
 						</Button>
 					</Tooltip>
 					<Tooltip placement={tpos} id="tooltip_feedback" tooltip={<strong> I have feedback. </strong>} >
-						<Button className="feedback-button" bsSize="small" onClick={openModal}>
+						<Button className="feedback-button" bsSize="small" onClick={this.openModal}>
 							<Feedback className="icon" />
 						</Button>
 					</Tooltip>
 				</ButtonGroup>
 				<Modal
 					show={this.state.showModal}
-					onHide={closeModal}
+					onHide={this.closeModal}
 					bsSize="lg"
 					title="Feedback"
 					backdrop={true}
@@ -166,7 +180,7 @@ class FeedbackButtons extends Component {
 						/>
 					</Modal.Body>
 					<Modal.Footer>
-						<Button onClick={closeModal}>
+						<Button onClick={this.closeModal}>
 							Cancel
 						</Button>
 						<Button bsStyle="primary" onClick={this.submitFeedback}>
