@@ -162,7 +162,7 @@
     "css-modules-require-hook": "^4.2.3",
     "csv-parse": "^2.5.0",
     "csv-stringify": "^3.0.0",
-    "d3": "5.6.0",
+    "d3": "5.7.0",
     "d3-cloud": "1.2.5",
     "debug": "^3.1.0",
     "detect-csv": "^1.1.0",
@@ -251,7 +251,7 @@
     "uniq": "^1.0.1",
     "utf-8-validate": "^5.0.1",
     "venn.js": "0.2.20",
-    "victory": "30.2.0",
+    "victory": "30.3.0",
     "webpack": "4.17.1",
     "whatwg-fetch": "^2.0.4"
   },
