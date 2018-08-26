@@ -161,7 +161,10 @@ class Sketchpad extends Component {
 					}
 					// Owners should only process actions from selected users:
 					if ( session.isOwner() ) {
-						if ( this.state.receiveFrom.name === action.name ) {
+						if (
+							this.state.receiveFrom.name !== action.name &&
+							!action.owner
+						) {
 							return;
 						}
 					}
