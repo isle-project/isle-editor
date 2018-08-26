@@ -1,6 +1,13 @@
 // MODULES //
 
 import copy from '@stdlib/utils/copy';
+import logger from 'debug';
+import isObject from '@stdlib/assert/is-object';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor:instructor-bar' );
 
 
 // MAIN //
@@ -8,7 +15,13 @@ import copy from '@stdlib/utils/copy';
 function extractValue( action ) {
 	if ( action.type === 'USER_FEEDBACK_FORM' ) {
 		action = copy( action );
-		const json = JSON.parse( action.value );
+		debug( 'Received a feedback action...' );
+		let json;
+		if ( isObject( action.value ) ) {
+			json = action.value;
+		} else {
+			json = JSON.parse( action.value );
+		}
 		action.value = '';
 		if ( json.comments ) {
 			action.value += json.comments + '. ';
@@ -19,7 +32,7 @@ function extractValue( action ) {
 		if ( json.needsExplanation ) {
 			action.value += 'It needs a more detailed explanation. ';
 		}
-		if ( json.needsExplanation ) {
+		if ( json.noLogic ) {
 			action.value += 'I can\'t follow the logic. ';
 		}
 	}
