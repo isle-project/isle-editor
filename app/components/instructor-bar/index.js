@@ -39,6 +39,12 @@ class InstructorBar extends Component {
 				if ( type === 'retrieved_user_actions' ) {
 					this.addSessionActions();
 				}
+				else if (
+					type === 'member_action' &&
+					action.id === this.props.id
+				) {
+					this.pushSessionAction( action );
+				}
 			});
 		}
 	}
@@ -68,6 +74,37 @@ class InstructorBar extends Component {
 		this.setState({
 			period: newPeriod
 		}, this.addSessionActions );
+	}
+
+	pushSessionAction = ( action ) => {
+		action = extractValue( action );
+		const filtered = this.state.actions;
+		if ( this.state.period ) {
+			const { from, to } = this.state.period;
+			if ( action.absoluteTime > from && action.absoluteTime < to ) {
+				filtered.unshift( action );
+			}
+		} else {
+			filtered.unshift( action );
+		}
+		if ( this.props.dataType === 'text' ) {
+			this.setState({
+				actions: filtered
+			});
+		}
+		else if ( this.props.dataType === 'factor' ) {
+			const { categories, counts } = this.tabulateValues( filtered );
+			this.setState({
+				actions: filtered,
+				counts: counts,
+				categories: categories
+			});
+		} else {
+			// Case: props.dataType === 'number':
+			this.setState({
+				actions: filtered
+			});
+		}
 	}
 
 	addSessionActions = () => {
@@ -190,6 +227,7 @@ class InstructorBar extends Component {
 	renderFullscreenModal() {
 		return ( <FullscreenActionDisplay
 			actions={this.state.actions}
+			actionLabel={this.props.buttonLabel}
 			showExtended={this.state.showExtended}
 			show={this.state.showActions}
 			deleteFactory={this.deleteFactory}
