@@ -19,14 +19,16 @@ class NetworkPlot extends D3Plot {
 			.attr( 'class', 'links' )
 			.selectAll( 'line' )
 			.data( data.links )
-			.enter().append( 'line' )
+			.enter()
+			.append( 'line' )
 			.attr( 'stroke-width', 2 );
 
 		var node = chart.append( 'g' )
 			.attr( 'class', 'nodes' )
 			.selectAll( 'circle' )
 			.data( data.nodes )
-			.enter().append( 'circle' )
+			.enter()
+			.append( 'circle' )
 			.attr( 'r', 5 )
 			.call( d3.drag()
 				.on( 'start', this.dragstarted )

@@ -23,7 +23,7 @@ const mdInline = markdownIT({
 const DEFAULT_INLINE_MATH_DELIMITERS = [
 	/\\\((.*?)\\\)/g
 ];
-const DEFAULT_DISPLAY_MATH_DELIMITERS = [
+const DEFAULT_DISP_MATH_DELIMITERS = [
 	/\$\$([\s\S]*?)\$\$/g,
 	/\\\[([\s\S]*?)\\\]/g
 ];
@@ -38,7 +38,7 @@ function toMarkdown( str ) {
 	DEFAULT_INLINE_MATH_DELIMITERS.forEach( regexp => {
 		str = str.replace( regexp, '<TeX raw="$1" />' );
 	});
-	DEFAULT_DISPLAY_MATH_DELIMITERS.forEach( regexp => {
+	DEFAULT_DISP_MATH_DELIMITERS.forEach( regexp => {
 		str = str.replace( regexp, '<TeX raw="$1" displayMode />' );
 	});
 

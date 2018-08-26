@@ -26,6 +26,7 @@ class Export extends Component {
 // TYPES //
 
 Export.propTypes = {
+	changeNamespace: PropTypes.func,
 	fileName: PropTypes.string,
 	filePath: PropTypes.string,
 	markdown: PropTypes.string,
@@ -33,6 +34,7 @@ Export.propTypes = {
 };
 
 Export.defaultProps = {
+	changeNamespace() {},
 	fileName: null,
 	filePath: null,
 	markdown: '',

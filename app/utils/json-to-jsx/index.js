@@ -14,7 +14,6 @@ const debug = logger( 'isle-editor:convert-json' );
 // MAIN //
 
 function convertJSONtoJSX( config ) {
-	console.log( config );
 	debug( `Convert JSON ${config.component} object to React element...` );
 	let children = config.children;
 	if ( isArray( children ) ) {

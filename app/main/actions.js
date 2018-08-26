@@ -3,22 +3,27 @@
 import { app, dialog, ipcMain, BrowserWindow } from 'electron';
 import fs from 'fs-extra';
 import { extname, basename } from 'path';
+import logger from 'debug';
 import { EXTENSIONS } from './globals.js';
 import createWindow from './createWindow';
 import { exec } from 'child_process';
 
 
+// VARIABLES //
+
+const debug = logger( 'isle-editor:main' );
+
+
 // MAIN //
 
 app.on( 'certificate-error', ( event, webContents, url, error, certificate, callback ) => {
-	console.log( 'Test URL:' );
+	debug( 'Test URL:' );
 	if ( /https:\/\/localhost/g.test( url ) ) {
 		// Verification logic.
 		event.preventDefault();
-		callback( true );
-	} else {
-		callback( false );
+		return callback( true );
 	}
+	callback( false );
 });
 
 ipcMain.on( 'save-file', ( e, { data, filePath }) => {
