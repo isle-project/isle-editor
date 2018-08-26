@@ -23,7 +23,10 @@ class FeedbackButtons extends Component {
 		super();
 
 		this.state = {
-			showModal: false
+			showModal: false,
+			needsExplanation: false,
+			noUnderstanding: false,
+			noLogic: false
 		};
 	}
 
@@ -70,9 +73,9 @@ class FeedbackButtons extends Component {
 
 		// Fetch form values.
 		const formData = {
-			noUnderstanding: this.checkbox01.state.value,
-			needsExplanation: this.checkbox02.state.value,
-			noLogic: this.checkbox03.state.value,
+			noUnderstanding: this.state.noUnderstanding,
+			needsExplanation: this.state.needsExplanation,
+			noLogic: this.state.noLogic,
 			comments: this.textarea.state.value
 		};
 		session.log({
@@ -130,15 +133,27 @@ class FeedbackButtons extends Component {
 					<Modal.Body>
 						<FormGroup>
 							<CheckboxInput
-								ref={( div ) => { this.checkbox01 = div; }}
+								onChange={() => {
+									this.setState({
+										noUnderstanding: !this.state.noUnderstanding
+									});
+								}}
 								legend="I do not understand this at all."
 							/>
 							<CheckboxInput
-								ref={( div ) => { this.checkbox02 = div; }}
+								onChange={() => {
+									this.setState({
+										needsExplanation: !this.state.needsExplanation
+									});
+								}}
 								legend="This needs a more detailed explanation."
 							/>
 							<CheckboxInput
-								ref={( div ) => { this.checkbox03 = div; }}
+								onChange={() => {
+									this.setState({
+										noLogic: !this.state.noLogic
+									});
+								}}
 								legend="I can't follow the logic."
 							/>
 						</FormGroup>
