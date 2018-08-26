@@ -101,10 +101,18 @@ class ActionList extends Component {
 	renderItem = ( index, key ) => {
 		debug( `Render ${index}th item` );
 		const action = this.state.actions[ index ];
+		let backgroundColor = index % 2 ? 'white' : 'lightgrey';
+		let color;
+		if ( action.owner ) {
+			color = '#3c763d';
+		} else {
+			color = 'black';
+		}
 		return (
 			<Action
 				key={key}
-				backgroundColor={index % 2 ? 'white' : 'lightgrey'}
+				backgroundColor={backgroundColor}
+				color={color}
 				clickFactory={this.clickFactory}
 				{...action}
 			/>

@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 
 const Action = ( props ) => {
 	return (
-		<ListGroupItem style={{ background: props.backgroundColor, fontSize: 15, fontFamily: 'Open Sans', padding: '2px 1px 2px 1px', lineHeight: 1 }}>
+		<ListGroupItem style={{ background: props.backgroundColor, color: props.color, fontSize: 15, fontFamily: 'Open Sans', padding: '2px 1px 2px 1px', lineHeight: 1 }}>
 			<div className="actionNote">
 				<label>Time:&nbsp;</label>
 				{ new Date( props.absoluteTime ).toLocaleTimeString() }|
@@ -35,6 +35,7 @@ const Action = ( props ) => {
 Action.propTypes = {
 	absoluteTime: PropTypes.number.isRequired,
 	backgroundColor: PropTypes.string.isRequired,
+	color: PropTypes.string.isRequired,
 	clickFactory: PropTypes.func.isRequired,
 	email: PropTypes.string.isRequired,
 	type: PropTypes.string.isRequired,
