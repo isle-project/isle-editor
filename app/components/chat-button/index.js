@@ -41,14 +41,26 @@ class ChatButton extends Component {
 
 	componentDidMount() {
 		const { session } = this.context;
-		this.unsubscribe = session.subscribe( () => {
-			let chat = session.getChat( this.props.for );
-			if ( !chat ) {
-				this.setState({
-					opened: false
-				});
+		this.unsubscribe = session.subscribe( ( type, name ) => {
+			if ( name === this.props.for ) {
+				let chat = session.getChat( this.props.for );
+				if ( !chat || type === 'self_has_left_chat' ) {
+					this.setState({
+						opened: false
+					});
+				}
+				else if ( type === 'self_has_joined_chat' ) {
+					this.setState({
+						opened: true
+					});
+				}
+				else if ( type === 'removed_chat' ) {
+					this.setState({
+						opened: false
+					});
+				}
+				this.forceUpdate();
 			}
-			this.forceUpdate();
 		});
 	}
 

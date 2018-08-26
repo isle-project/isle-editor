@@ -17,7 +17,7 @@ import './chat.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle-editor:statusbar' );
 
 
 // MAIN //
@@ -45,7 +45,7 @@ class Chat extends Component {
 					hasNews: true
 				});
 			}
-			if ( type === 'mark_messages' ) {
+			else if ( type === 'mark_messages' ) {
 				this.setState({
 					hasNews: false
 				});

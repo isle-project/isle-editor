@@ -396,6 +396,7 @@ class Session {
 			!this._offline &&
 			!userRights
 		) {
+			debug( 'Retrieve user rights...' );
 			this.userRightsQuestionPosed = true;
 			fetch( this.server+'/get_user_rights', {
 				method: 'POST',
@@ -439,7 +440,9 @@ class Session {
 	* @returns {boolean} boolean indicating whether user is enrolled
 	*/
 	isEnrolled = () => {
+		debug( 'Check whether user is enrolled...' );
 		if ( !userRights ) {
+			debug( 'Need to retrieve user rights from server' );
 			this.getUserRights();
 			return false;
 		}
@@ -452,7 +455,9 @@ class Session {
 	* @returns {boolean} boolean indicating whether user is course owner
 	*/
 	isOwner = () => {
+		debug( 'Check whether user is an owner...' );
 		if ( !userRights ) {
+			debug( 'Need to retrieve user rights from server...' );
 			this.getUserRights();
 			return false;
 		}
@@ -466,15 +471,14 @@ class Session {
 	*/
 	joinChat( name ) {
 		if ( this.socket ) {
-			let chat = { name: name, messages: [], members: []};
 			let found = false;
 			for ( let i = 0; i < this.chats.length; i++ ) {
-				if ( this.chats[ i ].name === chat.name ) {
+				if ( this.chats[ i ].name === name ) {
 					found = true;
 				}
 			}
 			if ( !found ) {
-				this.chats.push( chat );
+				this.chats.push({ name: name, messages: [], members: []});
 				this.update();
 				this.socket.emit( 'join_chat', name );
 			}
@@ -529,10 +533,7 @@ class Session {
 	* @returns {(Object|null)} chat room if found, null otherwise
 	*/
 	getChat( name ) {
-		let idx = name.indexOf( ':' );
-		if ( idx !== -1 ) {
-			name = name.substr( idx+1 );
-		}
+		name = this.stripChatName( name );
 		for ( let i = 0; i < this.chats.length; i++ ) {
 			let chat = this.chats[ i ];
 			if ( chat.name === name ) {
@@ -542,6 +543,25 @@ class Session {
 		return null;
 	}
 
+	stripChatName( name ) {
+		let idx = name.indexOf( ':' );
+		if ( idx !== -1 ) {
+			name = name.substr( idx+1 );
+		}
+		return name;
+	}
+
+	removeChat = ( name ) => {
+		name = this.stripChatName( name );
+		debug( `Remove the "${name}" chat from the list of chats` );
+		for ( let i = this.chats.length - 1; i >= 0; i-- ) {
+			if ( this.chats[ i ].name === name ) {
+				this.chats.splice( i, 1 );
+			}
+		}
+		this.update( 'removed_chat', name );
+	}
+
 	/**
 	* Leaves chat with the given name and removes it from the current list of chats.
 	*
@@ -549,11 +569,7 @@ class Session {
 	* @returns {void}
 	*/
 	leaveChat( name ) {
-		for ( let i = this.chats.length - 1; i >= 0; i-- ) {
-			if ( this.chats[ i ].name === name ) {
-				this.chats.splice( i, 1 );
-			}
-		}
+		this.removeChat( name );
 		this.update();
 		if ( this.socket ) {
 			this.socket.emit( 'leave_chat', name );
@@ -588,7 +604,7 @@ class Session {
 		socket.on( 'userlist', ( data ) => {
 			debug( 'Received list of users currently in the lesson: ' + data );
 			this.userList = JSON.parse( data );
-			this.update();
+			this.update( 'received_users' );
 		});
 
 		socket.on( 'user_joins', ( data ) => {
@@ -604,7 +620,7 @@ class Session {
 					position: 'tl'
 				});
 			}
-			this.update();
+			this.update( 'user_joined' );
 		});
 
 		socket.on( 'user_leaves', ( data ) => {
@@ -619,6 +635,7 @@ class Session {
 					return user;
 				});
 				const isUser = data.email === this.user.email;
+				this.update( 'user_left' );
 				if ( this.config.joinNotifications && !isUser ) {
 					this.addNotification({
 						title: 'User has left',
@@ -626,7 +643,6 @@ class Session {
 						level: 'success',
 						position: 'tl'
 					});
-					this.update();
 				} else if ( isUser ) {
 					// Case: Oneself has logged on another browser tab
 					this.forcedLogout();
@@ -636,22 +652,44 @@ class Session {
 
 		socket.on( 'chat_history', ({ name, messages, members }) => {
 			debug( 'Received chat history: ' + JSON.stringify( messages ) );
-			const chat = this.getChat( name );
-			chat.messages = messages;
-			chat.members = members;
+			let chat = this.getChat( name );
+			if ( !chat ) {
+				name = this.stripChatName( name );
+				chat = { name, messages, members };
+				this.chats.push( chat );
+			} else {
+				chat.messages = messages;
+				chat.members = members;
+			}
 			this.update();
 		});
 
 		socket.on( 'member_has_joined_chat', ({ name, member }) => {
+			debug( `Member ${member.name} has joined chat ${name}` );
 			const chat = this.getChat( name );
-			chat.members.push( member );
-			this.update( 'member_has_joined_chat' );
+			name = this.stripChatName( name );
+			if ( chat ) {
+				chat.members.push( member );
+				this.update( 'member_has_joined_chat', name );
+			} else if ( member.email === this.user.email ) {
+				this.chats.push({ name: name, messages: [], members: []});
+				this.socket.emit( 'join_chat', name );
+				this.update( 'self_has_joined_chat', name );
+			}
 		});
 
 		socket.on( 'member_has_left_chat', ({ name, member }) => {
 			const chat = this.getChat( name );
+			name = this.stripChatName( name );
 			chat.members = chat.members.filter( m => m.email !== member.email );
-			this.update( 'member_has_left_chat' );
+			if ( this.user.email === member.email ) {
+				debug( 'I have left the chat...' );
+				this.removeChat( name );
+				this.update( 'self_has_left_chat', name );
+			} else {
+				debug( 'Somebody else has left the chat' );
+				this.update( 'member_has_left_chat', name );
+			}
 		});
 
 		socket.on( 'chat_message', ( data ) => {
@@ -716,7 +754,7 @@ class Session {
 			debug( '/get_user_actions response status: '+response.status );
 			if ( response.status === 200 ) {
 				response.json().then( json => {
-					debug( `Received ${json.actions.length} actions...` );
+					debug( `Received ${json.actions.length} actions for lesson ${this.lessonName} (id: ${this.lessonID})...` );
 					this.socketActions = json.actions;
 					this.update( 'retrieved_user_actions', json.actions );
 				});
@@ -822,8 +860,9 @@ class Session {
 		debug( `Logout initiated by user ${this.user.name}` );
 		localStorage.removeItem( this.userVal );
 		this.socket.emit( 'leave' );
-		this.user = null;
+		this.user = {};
 		this.anonymous = true;
+		this.userRightsQuestionPosed = false;
 		this.reset();
 		this.addNotification({
 			title: 'Logged out',
@@ -842,8 +881,9 @@ class Session {
 	forcedLogout() {
 		debug( `Forced logout of user ${this.user.name} by server` );
 		localStorage.removeItem( this.userVal );
-		this.user = null;
+		this.user = {};
 		this.anonymous = true;
+		this.userRightsQuestionPosed = false;
 		this.reset();
 		this.addNotification({
 			title: 'Logged out',
@@ -1206,6 +1246,7 @@ class Session {
 		if ( action && action.id ) {
 			action.absoluteTime = new Date().getTime();
 			action.time = action.absoluteTime - this.startTime;
+			action.owner = this.isOwner();
 			this.sendSocketMessage( action, to );
 			if ( !action.noSave ) {
 				debug( 'Save action...' );
