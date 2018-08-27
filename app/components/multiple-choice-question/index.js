@@ -161,7 +161,7 @@ class MultipleChoiceQuestion extends Component {
 
 	render() {
 		const { answers, hints, chat, hintPlacement, id, question } = this.props;
-		const allowMultipleAnswers = isArray( this.props.solution );
+		const allowMultipleAnswers = isArray( this.props.solution ) && isArray( this.state.active );
 		const nHints = hints.length;
 		const renderAnswerOptionsMultiple = ( key, id ) => {
 			let isSolution = contains( this.props.solution, id );
