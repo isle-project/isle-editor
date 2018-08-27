@@ -4,8 +4,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import Popover from 'react-bootstrap/lib/Popover';
+import isObject from '@stdlib/assert/is-plain-object';
 import OverlayTrigger from 'components/overlay-trigger';
+import convertJSONtoJSX from 'utils/json-to-jsx';
 import './multiple-choice-styles.css';
+
+
+// FUNCTIONS //
+
+function isHTMLConfig( elem ) {
+	return (
+		isObject( elem ) &&
+		elem.component
+	);
+}
 
 
 // MAIN //
@@ -24,6 +36,9 @@ const AnswerOption = ( props ) => {
 			bsStyle = 'warning';
 		}
 	}
+	const answerContent = isHTMLConfig( props.answerContent ) ?
+		convertJSONtoJSX( props.answerContent ) :
+		props.answerContent;
 	const popover =
 		<Popover id={props.no}>
 			<strong>{ props.solution ? 'Correct answer: ' : 'Incorrect answer: ' }</strong>
@@ -36,7 +51,7 @@ const AnswerOption = ( props ) => {
 				bsStyle={bsStyle}
 				disabled
 			>
-				{props.answerContent}
+				{answerContent}
 			</ListGroupItem>
 		);
 	}
@@ -52,7 +67,7 @@ const AnswerOption = ( props ) => {
 					bsStyle={bsStyle}
 					disabled={!props.provideFeedback}
 				>
-					{props.answerContent}
+					{answerContent}
 				</ListGroupItem>
 			</OverlayTrigger>
 		);
@@ -62,7 +77,7 @@ const AnswerOption = ( props ) => {
 			onClick={props.onAnswerSelected}
 			active={props.active}
 		>
-			{props.answerContent}
+			{answerContent}
 		</ListGroupItem>
 	);
 };
@@ -77,6 +92,7 @@ AnswerOption.propTypes = {
 		PropTypes.string
 	]).isRequired,
 	answerExplanation: PropTypes.oneOfType([
+		PropTypes.object,
 		PropTypes.element,
 		PropTypes.string
 	]).isRequired,
