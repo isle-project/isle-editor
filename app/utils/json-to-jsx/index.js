@@ -4,6 +4,7 @@ import { createElement } from 'react';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import isPlainObject from '@stdlib/assert/is-plain-object';
+import TeX from 'components/tex';
 
 
 // VARIABLES //
@@ -26,8 +27,12 @@ function convertJSONtoJSX( config ) {
 	} else if ( isPlainObject( children ) ) {
 		children = convertJSONtoJSX( children );
 	}
+	let component = config.component;
+	if ( component === 'TeX' ) {
+		component = TeX;
+	}
 	const props = config.props || {};
-	return createElement( config.component, props, children );
+	return createElement( component, props, children );
 }
 
 
