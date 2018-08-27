@@ -82,6 +82,17 @@ class MultipleChoiceQuestion extends Component {
 		}
 	}
 
+	componentDidUpdate( prevProps ) {
+		if ( prevProps.solution !== this.props.solution ) {
+			const active = isArray( this.props.solution ) ?
+				new Array( this.props.answers.length ) :
+				null;
+			this.setState({
+				active
+			});
+		}
+	}
+
 	componentWillUnmount() {
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
