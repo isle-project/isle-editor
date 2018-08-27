@@ -4,10 +4,11 @@
 	padding: 15px;
 	background-color: white;
 	flex-direction: column;
-	max-width: 650px;
+	max-width: 900px;
 	border: 1px solid  rgba(92,92,92,0.6);
 	border-radius: 6px;
 	box-shadow: 0 0 4px rgba(92,92,92,0.5);
+	margin: 0 auto 10px;
 	margin-bottom: 15px;
 }
 
