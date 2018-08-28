@@ -60,10 +60,6 @@ export default function createWindow( filePath, callback ) {
 		}
 	});
 
-	if ( process.env.NODE_ENV === 'development' ) {
-		mainWindow.webContents.openDevTools();
-	}
-
 	mainWindowState.manage( mainWindow );
 
 	function openExternal( e, url ) {
