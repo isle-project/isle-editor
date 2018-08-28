@@ -237,9 +237,11 @@ class Sketchpad extends Component {
 	renderBackground = ( pageNumber ) => {
 		const page = this.backgrounds[ pageNumber ];
 		if ( page ) {
-			const viewport = page.getViewport( this.props.canvasWidth / page.getViewport(1.0).width );
+			const heightRatio = this.props.canvasHeight / page.getViewport(1.0).height;
+			const widthRatio = this.props.canvasWidth / page.getViewport(1.0).width;
+			const viewport = page.getViewport( min( widthRatio, heightRatio ) );
 			this.canvas.height = viewport.height;
-			this.canvas.width = viewport.width;
+			this.canvas.width = this.props.canvasWidth;
 
 			// Render PDF page into canvas context
 			const renderContext = {
@@ -1486,7 +1488,7 @@ class Sketchpad extends Component {
 						triangle="top-right"
 					/>
 				</div>
-				<div style={{ width: this.props.canvasWidth, height: this.props.canvasHeight, overflow: 'scroll', position: 'relative' }}>
+				<div style={{ width: this.props.canvasWidth, height: this.props.canvasHeight, overflow: 'auto', position: 'relative' }}>
 					{this.renderHTMLOverlays()}
 					{canvas}
 				</div>
