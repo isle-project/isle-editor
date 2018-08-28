@@ -1466,7 +1466,7 @@ class Sketchpad extends Component {
 			onTouchStart={this.drawStart}
 		/>;
 		return (
-			<Panel className="modal-container" style={{ width: this.props.canvasWidth, position: 'relative' }}>
+			<Panel className="modal-container" style={{ width: this.props.canvasWidth+2, position: 'relative' }}>
 				<div className="sketch-panel-heading clearfix unselectable">
 					{this.renderPagination()}
 					<ButtonGroup bsSize="small" className="sketch-drag-delete-modes sketch-button-group" >
