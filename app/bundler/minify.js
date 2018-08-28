@@ -1,38 +1,38 @@
 // MODULES //
 
-const UglifyJS = require( 'uglify-es' );
+const terser = require( 'terser' );
 
 
 // MAIN //
 
 process.on( 'message', function onMessage( code ) {
-	const minified = UglifyJS.minify( code, {
+	const minified = terser.minify( code, {
 		warnings: true,
 		compress: {
-			arrows: true,
-			booleans: true,
-			collapse_vars: true,
-			comparisons: true,
-			computed_props: true,
-			hoist_funs: true,
-			hoist_props: true,
-			hoist_vars: true,
-			if_return: true,
-			inline: true,
-			join_vars: true,
-			keep_infinity: true,
-			loops: true,
-			negate_iife: true,
-			properties: true,
-			reduce_funcs: true,
-			reduce_vars: true,
-			sequences: true,
-			side_effects: true,
-			switches: true,
-			top_retain: true,
-			toplevel: true,
-			typeofs: true,
-			unused: true,
+			arrows: false,
+			booleans: false,
+			collapse_vars: false,
+			comparisons: false,
+			computed_props: false,
+			hoist_funs: false,
+			hoist_props: false,
+			hoist_vars: false,
+			if_return: false,
+			inline: false,
+			join_vars: false,
+			keep_infinity: false,
+			loops: false,
+			negate_iife: false,
+			properties: false,
+			reduce_funcs: false,
+			reduce_vars: false,
+			sequences: false,
+			side_effects: false,
+			switches: false,
+			top_retain: false,
+			toplevel: false,
+			typeofs: false,
+			unused: false,
 			conditionals: true,
 			dead_code: true,
 			evaluate: true
