@@ -1,9 +1,10 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import logger from 'debug';
 import Panel from 'react-bootstrap/lib/Panel';
 import PanelGroup from 'react-bootstrap/lib/PanelGroup';
-import PropTypes from 'prop-types';
 import max from '@stdlib/math/base/special/max';
 import isElectron from 'utils/is-electron';
 import ActionLog from 'components/statusbar/action-log';
@@ -16,6 +17,7 @@ import './instructor_view.css';
 // VARIABLES //
 
 const EDITOR_OFFSET = isElectron ? 15 : 0;
+const debug = logger( 'isle-editor:instructor-view' );
 
 
 // MAIN //
@@ -25,8 +27,24 @@ class InstructorView extends Component {
 		super( props );
 
 		this.state = {
-			hidden: true
+			hidden: true,
+			rightPos: -max( window.innerWidth * 0.45, 400 )
 		};
+	}
+
+	componentDidMount() {
+		this.windowResize = window.addEventListener( 'resize', () => {
+			debug( 'Process a `window.resize` event...' );
+			this.setState({
+				rightPos: -max( window.innerWidth * 0.45, 400 )
+			});
+		});
+	}
+
+	componentWillUnmount() {
+		if ( this.windowResize ) {
+			clearInterval( this.windowResize );
+		}
 	}
 
 	toggleBar() {
@@ -37,7 +55,7 @@ class InstructorView extends Component {
 				hidden: false
 			});
 		} else {
-			animatePosition( this.instructorView, 'right', -max( window.innerWidth * 0.45, 400 ), 400 );
+			animatePosition( this.instructorView, 'right', this.state.rightPos, 400 );
 			this.handler.style.opacity = 0.7;
 			this.setState({
 				hidden: true
@@ -93,7 +111,7 @@ class InstructorView extends Component {
 				className="instructor-view unselectable"
 				ref={( instructorView ) => { this.instructorView = instructorView; }}
 				style={{
-					right: -max( window.innerWidth * 0.45, 400 )
+					right: this.state.rightPos
 				}}
 			>
 				<div className="instructor-view-top">
