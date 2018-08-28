@@ -237,8 +237,7 @@ class Sketchpad extends Component {
 	renderBackground = ( pageNumber ) => {
 		const page = this.backgrounds[ pageNumber ];
 		if ( page ) {
-			const scale = 1.5;
-			const viewport = page.getViewport( scale );
+			const viewport = page.getViewport( this.props.canvasWidth / page.getViewport(1.0).width );
 			this.canvas.height = viewport.height;
 			this.canvas.width = viewport.width;
 
