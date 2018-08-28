@@ -243,6 +243,19 @@ class Sketchpad extends Component {
 			this.canvas.height = viewport.height;
 			this.canvas.width = this.props.canvasWidth;
 
+			// Move page to the center:
+			viewport.transform[ 4 ] = max( ( this.props.canvasWidth - viewport.width ) / 2.0, 0.0 );
+			/*
+				`transform: [ a, b, c, d, e, f ]`
+
+				a: Horizontal scaling.
+				b: Horizontal skewing.
+				c: Vertical skewing.
+				d: Vertical scaling.
+				e: Horizontal moving.
+				f: Vertical moving.
+			*/
+
 			// Render PDF page into canvas context
 			const renderContext = {
 				canvasContext: this.ctx,
