@@ -11,6 +11,7 @@ import contains from '@stdlib/assert/contains';
 import InstructorBar from 'components/instructor-bar';
 import ChatButton from 'components/chat-button';
 import HintButton from 'components/hint-button';
+import FeedbackButtons from 'components/feedback';
 import AnswerOption from './answer_option.js';
 import Question from './question.js';
 
@@ -222,10 +223,17 @@ class MultipleChoiceQuestion extends Component {
 		} else {
 			disabled = this.props.disabled || this.state.submitted || !this.state.answerSelected;
 		}
+		let bodyStyle = {};
+		if ( this.props.feedback ) {
+			bodyStyle.width = '90%';
+			bodyStyle.display = 'inline-block';
+		} else {
+			bodyStyle.width = '100%';
+		}
 
 		return (
-			<Panel className="multiple-choice-question-container" style={this.props.style} >
-				<Panel.Body>
+			<Panel className="multiple-choice-question-container" >
+				<Panel.Body style={bodyStyle} >
 					<Question
 						content={question}
 						task={allowMultipleAnswers ? 'Choose all that apply' : 'Select an answer'}
@@ -257,6 +265,10 @@ class MultipleChoiceQuestion extends Component {
 					</div>
 					{id ? <InstructorBar buttonLabel="Answers" id={id} dataType="factor" /> : null }
 				</Panel.Body>
+				{ this.props.id && this.props.feedback ? <FeedbackButtons
+					vertical
+					id={this.props.id+'_feedback'}
+				/> : null }
 			</Panel>
 		);
 	}
@@ -269,6 +281,7 @@ MultipleChoiceQuestion.defaultProps = {
 	question: '',
 	hints: [],
 	hintPlacement: 'bottom',
+	feedback: false,
 	disabled: false,
 	displaySolution: false,
 	chat: false,
@@ -284,6 +297,9 @@ MultipleChoiceQuestion.propDescriptions = {
 	question: 'the question displayed at the top of the multiple choice component',
 	solution: 'number denoting which answer is correct or an `array` of the correct answer numbers in case the learner should be able to select multiple answers',
 	answers: 'an `array` of answer objects. Each answer should be an object with `content` and `explanation` fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect',
+	hints: 'hints providing guidance on how to answer the question',
+	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
+	feedback: 'controls whether to display feedback buttons',
 	disabled: 'controls whether the question is disabled',
 	chat: 'controls whether the element should have an integrated chat',
 	provideFeedback: 'indicates whether feedback including the correct answer should be displayed after learners submit their answers',
@@ -301,6 +317,7 @@ MultipleChoiceQuestion.propTypes = {
 	answers: PropTypes.array.isRequired,
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
+	feedback: PropTypes.bool,
 	disabled: PropTypes.bool,
 	chat: PropTypes.bool,
 	provideFeedback: PropTypes.bool,
