@@ -225,14 +225,14 @@ class MultipleChoiceQuestion extends Component {
 		}
 		let bodyStyle = {};
 		if ( this.props.feedback ) {
-			bodyStyle.width = '90%';
+			bodyStyle.width = 'calc(100%-60px)';
 			bodyStyle.display = 'inline-block';
 		} else {
 			bodyStyle.width = '100%';
 		}
 
 		return (
-			<Panel className="multiple-choice-question-container" >
+			<Panel className="multiple-choice-question-container" style={{ ...this.props.style }} >
 				<Panel.Body style={bodyStyle} >
 					<Question
 						content={question}

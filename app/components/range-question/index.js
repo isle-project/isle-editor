@@ -147,7 +147,7 @@ class RangeQuestion extends Component {
 		const solutionPresent = this.props.solution !== null;
 		return (
 			<Panel className="range-question">
-				<Panel.Body style={{ width: this.props.feedback ? '90%' : '100%', display: 'inline-block' }}>
+				<Panel.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}>
 					{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
 					<div className="range-question-input-wrapper" >
 						<NumberInput

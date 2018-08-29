@@ -41,7 +41,7 @@ const AnswerOption = ( props ) => {
 		props.answerContent;
 	const popover =
 		<Popover id={props.no}>
-			<strong>{ props.solution ? 'Correct answer: ' : 'Incorrect answer: ' }</strong>
+			<strong>{ props.solution ? 'Correct answer' : 'Incorrect answer' }{props.answerExplanation ? ': ' : ''}</strong>
 			{props.answerExplanation}
 		</Popover>;
 
@@ -60,7 +60,7 @@ const AnswerOption = ( props ) => {
 			<OverlayTrigger
 				trigger={[ 'click', 'hover' ]}
 				placement="right"
-				overlay={props.answerExplanation ? popover : <span />}
+				overlay={popover}
 			>
 				<ListGroupItem className="multiple-choice-answer"
 					onClick={props.onAnswerSelected}

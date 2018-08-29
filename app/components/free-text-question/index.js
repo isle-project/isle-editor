@@ -240,7 +240,7 @@ class FreeTextQuestion extends Component {
 		const nHints = this.props.hints.length;
 		return (
 			<Panel id={this.props.id} className="free-text-question">
-				<Panel.Body style={{ width: this.props.feedback ? '90%' : '100%', display: 'inline-block' }}>
+				<Panel.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}>
 					<VoiceControl id={this.props.voiceID} reference={this}
 						commands={VOICE_COMMANDS}
 					/>

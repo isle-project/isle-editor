@@ -66,7 +66,7 @@ class OrderQuestion extends Component {
 		const nHints = this.props.hints.length;
 		return (
 			<Panel className="order-question">
-				<Panel.Body style={{ width: this.props.feedback ? '90%' : '100%', display: 'inline-block' }} >
+				<Panel.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
 					<DraggableList shuffle data={this.props.options} onChange={this.handleChange} />
 					<div className="order-question-toolbar">
