@@ -108,7 +108,7 @@ class Sketchpad extends Component {
 			finishedRecording: false,
 			modalMessage: null,
 			nUndos: 0,
-			noPages: 1,
+			noPages: props.noPages,
 			showUploadModal: false,
 			mode: 'drawing',
 			showNavigationModal: false,
