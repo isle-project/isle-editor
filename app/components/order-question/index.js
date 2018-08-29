@@ -107,13 +107,13 @@ OrderQuestion.defaultProps = {
 
 OrderQuestion.propDescriptions = {
 	question: 'question for which the student has to bring the available `options` into the correct order',
-	options: 'an array of objects with `id` and `text` keys which the student has to bring into the correct ordering, which is assumed to correspond to the supplied array',
+	options: 'an array of objects with `id` and `text` keys which the student has to bring into the correct ordering, which is assumed to be the supplied order',
 	hints: 'hints providing guidance on how to answer the question',
 	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
 	chat: 'controls whether the element should have an integrated chat',
 	failureMsg: 'message to be displayed when student submits a wrong answer',
 	successMsg: 'message to be displayed when student submits the correct answer',
-	onChange: 'callback  which is triggered after dragging an element',
+	onChange: 'callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering',
 	onSubmit: 'callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order'
 };
 
