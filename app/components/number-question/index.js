@@ -13,12 +13,13 @@ import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
 import NumberInput from 'components/input/number';
 import HintButton from 'components/hint-button';
+import FeedbackButtons from 'components/feedback';
 import './number-question.css';
 
 
 // VARIABLES //
 
-const debug = logger( 'isle:number-question' );
+const debug = logger( 'isle-editor:number-question' );
 
 
 // MAIN //
@@ -124,7 +125,7 @@ class NumberQuestion extends Component {
 		const solutionPresent = this.props.solution !== null;
 		return (
 			<Panel className="number-question">
-				<Panel.Body>
+				<Panel.Body style={{ width: this.props.feedback ? '90%' : '100%', display: 'inline-block' }} >
 					{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
 					<div className="number-question-input-wrapper">
 						<NumberInput
@@ -175,6 +176,10 @@ class NumberQuestion extends Component {
 					</ButtonToolbar>
 					<InstructorBar buttonLabel="Answers" id={this.props.id} dataType="number" />
 				</Panel.Body>
+				{ this.props.id && this.props.feedback ? <FeedbackButtons
+					vertical
+					id={this.props.id+'_feedback'}
+				/> : null }
 			</Panel>
 		);
 	}
@@ -187,6 +192,7 @@ NumberQuestion.defaultProps = {
 	question: '',
 	hints: [],
 	hintPlacement: 'top',
+	feedback: false,
 	solution: null,
 	digits: 3,
 	max: PINF,
@@ -203,6 +209,7 @@ NumberQuestion.propDescriptions = {
 	question: 'number question',
 	hints: 'hints providing guidance on how to answer the question',
 	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
+	feedback: 'controls whether to display feedback buttons',
 	solution: 'a numeric answer to the problem',
 	digits: 'number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.',
 	max: 'maximum allowed input value',
@@ -216,6 +223,7 @@ NumberQuestion.propTypes = {
 	question: PropTypes.string,
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
+	feedback: PropTypes.bool,
 	solution: PropTypes.number,
 	digits: PropTypes.number,
 	max: PropTypes.number,
