@@ -12,6 +12,7 @@ import Panel from 'react-bootstrap/lib/Panel';
 import HintButton from 'components/hint-button';
 import InstructorBar from 'components/instructor-bar';
 import ChatButton from 'components/chat-button';
+import FeedbackButtons from 'components/feedback';
 import './select-question.css';
 
 
@@ -141,6 +142,9 @@ class SelectQuestion extends Component {
 						}
 					</div>
 					<InstructorBar id={this.props.id} dataType="text" />
+					{ this.props.id && this.props.feedback ? <FeedbackButtons
+						id={this.props.id+'_feedback'}
+					/> : null }
 				</Panel.Body>
 			</Panel>
 		);
@@ -156,6 +160,7 @@ SelectQuestion.defaultProps = {
 	inline: false,
 	hints: [],
 	hintPlacement: 'bottom',
+	feedback: false,
 	chat: false,
 	failureMsg: 'Not quite, try again!',
 	successMsg: 'That\'s the correct answer!',
@@ -174,6 +179,7 @@ SelectQuestion.propDescriptions = {
 	inline: 'controls whether the component is rendered inline or not',
 	hints: 'hints providing guidance on how to answer the question',
 	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
+	feedback: 'controls whether to display feedback buttons',
 	chat: 'controls whether the element should have an integrated chat',
 	failureMsg: 'message to be displayed when student selects a wrong answer',
 	successMsg: 'message to be displayed when student selects the correct answer',
@@ -189,6 +195,7 @@ SelectQuestion.propTypes = {
 	inline: PropTypes.bool,
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
+	feedback: PropTypes.bool,
 	chat: PropTypes.bool,
 	failureMsg: PropTypes.string,
 	successMsg: PropTypes.string,
