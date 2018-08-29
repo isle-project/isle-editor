@@ -15,6 +15,7 @@ import ChatButton from 'components/chat-button';
 import InstructorBar from 'components/instructor-bar';
 import NumberInput from 'components/input/number';
 import HintButton from 'components/hint-button';
+import FeedbackButtons from 'components/feedback';
 import './range-question.css';
 
 
@@ -146,7 +147,7 @@ class RangeQuestion extends Component {
 		const solutionPresent = this.props.solution !== null;
 		return (
 			<Panel className="range-question">
-				<Panel.Body>
+				<Panel.Body style={{ width: this.props.feedback ? '90%' : '100%', display: 'inline-block' }}>
 					{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
 					<div className="range-question-input-wrapper" >
 						<NumberInput
@@ -206,6 +207,10 @@ class RangeQuestion extends Component {
 					</ButtonToolbar>
 					<InstructorBar buttonLabel="Answers" id={this.props.id} dataType="number" />
 				</Panel.Body>
+				{ this.props.id && this.props.feedback ? <FeedbackButtons
+					vertical
+					id={this.props.id+'_feedback'}
+				/> : null }
 			</Panel>
 		);
 	}
@@ -219,6 +224,7 @@ RangeQuestion.defaultProps = {
 	solution: null,
 	hints: [],
 	hintPlacement: 'top',
+	feedback: false,
 	chat: false,
 	digits: 3,
 	max: PINF,
@@ -236,6 +242,7 @@ RangeQuestion.propDescriptions = {
 	solution: 'two-element array containing the endpoints of the correct range',
 	hints: 'hints providing guidance on how to answer the question',
 	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
+	feedback: 'controls whether to display feedback buttons',
 	chat: 'controls whether the element should have an integrated chat',
 	digits: 'number of digits that have to match between solution and user-supplied answer. If not given or set to null, the component checks for strict equality. If set to 0, checks for integer equality.',
 	max: 'maximum input value',
@@ -250,6 +257,7 @@ RangeQuestion.propTypes = {
 	solution: PropTypes.arrayOf( PropTypes.number ),
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
+	feedback: PropTypes.bool,
 	chat: PropTypes.bool,
 	digits: PropTypes.number,
 	max: PropTypes.number,
