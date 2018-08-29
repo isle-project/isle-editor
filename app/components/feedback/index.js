@@ -116,7 +116,7 @@ class FeedbackButtons extends Component {
 	render() {
 		const tpos = (this.props.vertical ? 'left' : 'bottom');
 		return (
-			<div className="feedback-buttons" style={{ float: 'right' }}>
+			<div className="feedback-buttons" style={{ ...this.props.style }}>
 				<ButtonGroup style={{ float: 'right' }} vertical={this.props.vertical} >
 					<Tooltip id="tooltip_confused" placement={tpos} tooltip={<strong> I am confused.</strong>}>
 						<Button className="feedback-button" bsSize="small" onClick={this.submitConfused}>
@@ -133,6 +133,7 @@ class FeedbackButtons extends Component {
 							<Feedback className="icon" />
 						</Button>
 					</Tooltip>
+					<InstructorBar buttonLabel="Results" buttonStyle={{ fontSize: '10px', lineHeight: this.props.vertical ? '2em' : '37px' }} showID={false} id={this.props.id} />
 				</ButtonGroup>
 				<Modal
 					show={this.state.showModal}
@@ -189,7 +190,6 @@ class FeedbackButtons extends Component {
 					</Modal.Footer>
 				</Modal>
 				<div id="response"></div>
-				<InstructorBar buttonLabel="Responses" showID={false} id={this.props.id} />
 			</div>
 		);
 	}
@@ -199,11 +199,13 @@ class FeedbackButtons extends Component {
 // TYPES //
 
 FeedbackButtons.propDescriptions = {
-	vertical: 'buttons are displayed vertically if set to `true`'
+	vertical: 'buttons are displayed vertically if set to `true`',
+	style: 'CSS inline styles'
 };
 
 FeedbackButtons.propTypes = {
-	vertical: PropTypes.bool
+	vertical: PropTypes.bool,
+	style: PropTypes.object
 };
 
 FeedbackButtons.contextTypes = {
@@ -214,7 +216,8 @@ FeedbackButtons.contextTypes = {
 // DEFAULT PROPERTIES //
 
 FeedbackButtons.defaultProps = {
-	vertical: false
+	vertical: false,
+	style: {}
 };
 
 

@@ -11,6 +11,11 @@
 	outline: none;
 }
 
+.feedback-buttons {
+	display: inline-block;
+	float: right;
+}
+
 .feedback-button {
 	fill: rgba(92,92,92,0.6);
 	transition: 0.3;
