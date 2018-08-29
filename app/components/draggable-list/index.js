@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import update from 'immutability-helper';
+import shuffle from '@stdlib/random/shuffle';
 import Card from './card';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -15,7 +16,9 @@ class Container extends Component {
 		super( props );
 
 		this.state = {
-			cards: this.props.data
+			cards: props.shuffle ?
+				shuffle( this.props.data ) :
+				this.props.data
 		};
 	}
 
@@ -41,7 +44,6 @@ class Container extends Component {
 
 	render() {
 		const { cards } = this.state;
-
 		return (
 			<div style={{
 				maxWidth: '600px',
@@ -67,7 +69,8 @@ class Container extends Component {
 
 Container.defaultProps = {
 	onChange(){},
-	onInit(){}
+	onInit(){},
+	shuffle: false
 };
 
 
@@ -76,7 +79,8 @@ Container.defaultProps = {
 Container.propTypes = {
 	data: PropTypes.array.isRequired,
 	onChange: PropTypes.func,
-	onInit: PropTypes.func
+	onInit: PropTypes.func,
+	shuffle: PropTypes.bool
 };
 
 
