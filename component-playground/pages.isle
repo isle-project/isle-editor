@@ -11,19 +11,16 @@ hideToolbar: true
 
 <br />
 
-
-
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
     }}
     code={`
-    <Pages title = "Cats" 
-        height = { 500 }>
-        <img src = "https://www.aspca.org/sites/default/files/cat-care_urine-marking_main-image.jpg" />
-        <img src = "https://c1.staticflickr.com/1/50/160490011_b0cecf8fa1_b.jpg" />
-        <img src = "https://c1.staticflickr.com/6/5014/5420415856_c299390790_b.jpg" />
+<Pages title = "Cats" height = { 500 }>
+    <img src = "https://www.aspca.org/sites/default/files/cat-care_urine-marking_main-image.jpg" />
+    <img src = "https://c1.staticflickr.com/1/50/160490011_b0cecf8fa1_b.jpg" />
+    <img src = "https://c1.staticflickr.com/6/5014/5420415856_c299390790_b.jpg" />
 </Pages>
 `}
     scope={{
@@ -36,5 +33,6 @@ hideToolbar: true
 * __title__ | `string`: displayed title of the pages container. Default: `''`.
 * __bsSize__ | `string`: size of the pagination buttons (one of `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`). Default: `'default'`.
 * __height__ | `(number|string)`: the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added. Default: `none`.
+* __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onSelect__ | `function`: Function invoked when active change is changed. Receives the new active page index as a sole parameter. Default: `onSelect() {}`.
