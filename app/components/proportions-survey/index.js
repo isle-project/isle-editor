@@ -153,7 +153,7 @@ class ProportionsSurvey extends Component {
 						</Panel>
 					</Col>
 				</Grid>
-				<InstructorBar id={props.id} />
+				<InstructorBar buttonLabel="Responses" id={props.id} />
 			</Gate>
 		);
 	}

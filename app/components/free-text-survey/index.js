@@ -181,7 +181,7 @@ class FreeTextSurvey extends Component {
 								{this.state.freqTable}
 							</Col>
 						</Grid>
-						<InstructorBar id={props.id} />
+						<InstructorBar buttonLabel="Responses" id={props.id} />
 					</Panel.Body>
 				</Panel>
 			</Gate>
