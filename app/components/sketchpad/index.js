@@ -85,11 +85,13 @@ class Sketchpad extends Component {
 
 		this.force = 1.0;
 		this.elements = new Array( props.noPages );
-		this.elements.fill( [] );
 		this.backgrounds = new Array( props.noPages );
-		this.backgrounds.fill( null );
 		this.recordingEndPositions = new Array( props.noPages );
-		this.recordingEndPositions.fill( 0 );
+		for ( let i = 0; i < props.noPages; i++ ) {
+			this.elements[ i ] = [];
+			this.backgrounds[ i ] = null;
+			this.recordingEndPositions[ i ] = 0;
+		}
 
 		this.canvas = null;
 		this.ctx = null;
@@ -128,19 +130,9 @@ class Sketchpad extends Component {
 		}
 		init.then( () => {
 			const promise = session.store.getItem( this.props.id + '_sketchpad' );
-			promise.then( ( data ) => {
-				debug( 'Retrieved data from previous session...' );
-				if ( isObject( data ) ) {
-					this.elements = data.elements;
-					this.recordingEndPositions = data.recordingEndPositions;
-					this.setState( data.state, () => {
-						this.redraw();
-					});
-				} else {
-					this.redraw();
-				}
-			})
-			.catch( ( err ) => {
+			promise
+			.then( this.retrieveData )
+				.catch( ( err ) => {
 				debug( err );
 			});
 		});
@@ -207,6 +199,27 @@ class Sketchpad extends Component {
 		document.body.addEventListener( 'touchmove', this.preventDefaultTouch, opts );
 	}
 
+	componentDidUpdate( prevProps ) {
+		if ( prevProps.noPages !== this.props.noPages ) {
+			this.elements = new Array( this.props.noPages );
+			this.backgrounds = new Array( this.props.noPages );
+			this.recordingEndPositions = new Array( this.props.noPages );
+			for ( let i = 0; i < this.props.noPages; i++ ) {
+				this.elements[ i ] = [];
+				this.backgrounds[ i ] = null;
+				this.recordingEndPositions[ i ] = 0;
+			}
+			this.setState({
+				noPages: this.props.noPages
+			}, () => {
+				this.redraw();
+			});
+		}
+		if ( prevProps.pdf !== this.props.pdf ) {
+			this.initializePDF();
+		}
+	}
+
 	componentWillUnmount() {
 		if ( this.recordingInterval ) {
 			clearInterval( this.recordingInterval );
@@ -223,6 +236,19 @@ class Sketchpad extends Component {
 		document.body.removeEventListener( 'touchstart', this.preventDefaultTouch, opts );
 		document.body.removeEventListener( 'touchend', this.preventDefaultTouch, opts );
 		document.body.removeEventListener( 'touchmove', this.preventDefaultTouch, opts );
+	}
+
+	retrieveData = ( data ) => {
+		debug( 'Retrieved data from previous session...' );
+		if ( isObject( data ) ) {
+			this.elements = data.elements;
+			this.recordingEndPositions = data.recordingEndPositions;
+			this.setState( data.state, () => {
+				this.redraw();
+			});
+		} else {
+			this.redraw();
+		}
 	}
 
 	preventDefaultTouch = ( e ) => {
@@ -285,6 +311,7 @@ class Sketchpad extends Component {
 		}
 		this.renderBackground( currentPage ).then( () => {
 			const elems = this.elements[ currentPage ];
+			console.log( this.elements );
 			debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
 			for ( let i = recordingEndPos; i < elems.length; i++ ) {
 				this.drawElement( elems[ i ] );
@@ -980,6 +1007,7 @@ class Sketchpad extends Component {
 
 	nextPage = () => {
 		if ( this.state.currentPage < this.state.noPages-1 ) {
+			debug( 'Should go to next page...' );
 			this.setState({
 				currentPage: this.state.currentPage + 1,
 				nUndos: 0
