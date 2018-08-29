@@ -115,6 +115,7 @@ const createScope = ( session ) => {
 		NumberInput,
 		NumberQuestion: Loadable( () => import( 'components/number-question' ) ),
 		NumberSurvey: Loadable( () => import( 'components/number-survey' ) ),
+		OrderQuestion: Loadable( () => import( 'components/order-question' ) ),
 		Pages: Loadable( () => import( 'components/pages' ) ),
 		Panel: Loadable( () => import( 'components/panel' ) ),
 		Playground: Loadable( () => import( 'components/playground' ) ),

@@ -64,6 +64,7 @@
 		"MatchListQuestion",
 		"MultipleChoiceQuestion",
 		"NumberQuestion",
+		"OrderQuestion",
 		"RangeQuestion",
 		"SelectQuestion"
 	],

@@ -1,0 +1,15 @@
+.order-question {
+	border: 1px solid  rgba(92,92,92, 0.6);
+	border-radius: 6px;
+	box-shadow: 0 0 4px rgba(92,92,92, 0.5);
+	width: 100%;
+	max-width: 650px;
+	margin: 0 auto 10px;
+	font-family: Open Sans;
+}
+
+.order-question-toolbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
