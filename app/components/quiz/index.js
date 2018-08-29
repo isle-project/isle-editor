@@ -15,6 +15,7 @@ import FreeTextQuestion from 'components/free-text-question';
 import MultipleChoiceQuestion from 'components/multiple-choice-question';
 import MatchListQuestion from 'components/match-list-question';
 import NumberQuestion from 'components/number-question';
+import OrderQuestion from 'components/order-question';
 import RangeQuestion from 'components/range-question';
 import SelectQuestion from 'components/select-question';
 import convertJSONtoJSX from 'utils/json-to-jsx';
@@ -160,6 +161,8 @@ class Quiz extends Component {
 			config.question = convertJSONtoJSX( config.question );
 		}
 		switch ( config.type ) {
+			case 'Composite':
+				return <div>{config.children}</div>;
 			case 'FreeTextQuestion':
 				return <FreeTextQuestion {...config} onSubmit={this.handleSubmission} />;
 			case 'MultipleChoiceQuestion':
@@ -168,6 +171,8 @@ class Quiz extends Component {
 				return <MatchListQuestion {...config} onSubmit={this.handleSubmission} />;
 			case 'NumberQuestion':
 				return <NumberQuestion {...config} onSubmit={this.handleSubmission} />;
+			case 'OrderQuestion':
+				return <OrderQuestion {...config} onSubmit={this.handleSubmission} />;
 			case 'RangeQuestion':
 				return <RangeQuestion {...config} onSubmit={this.handleSubmission} />;
 			case 'SelectQuestion':
