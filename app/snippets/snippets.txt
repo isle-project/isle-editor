@@ -180,6 +180,16 @@ snippet NumberQuestion
 snippet NumberSurvey
 	<NumberSurvey anonymous question="${1:Enter question}" />
 
+snippet OrderQuestion
+	<OrderQuestion
+		question="${1:Enter question}"
+		options={[
+			{ id: 0, text: "${2:First}" },
+			{ id: 1, text: "${3:Second}" },
+			{ id: 2, text: "${4:Third}" }
+		]}
+	/>
+
 snippet Pages
 	<Pages>
 		${1:}
