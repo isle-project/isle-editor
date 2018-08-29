@@ -224,7 +224,7 @@ class MultipleChoiceQuestion extends Component {
 		}
 
 		return (
-			<Panel className="multiple-choice-question-container">
+			<Panel className="multiple-choice-question-container" style={this.props.style} >
 				<Panel.Body>
 					<Question
 						content={question}
@@ -266,14 +266,15 @@ class MultipleChoiceQuestion extends Component {
 // DEFAULT PROPERTIES //
 
 MultipleChoiceQuestion.defaultProps = {
+	question: '',
 	hints: [],
 	hintPlacement: 'bottom',
 	disabled: false,
 	displaySolution: false,
 	chat: false,
 	provideFeedback: true,
-	onSubmit(){},
-	question: ''
+	style: {},
+	onSubmit(){}
 };
 
 
@@ -287,6 +288,7 @@ MultipleChoiceQuestion.propDescriptions = {
 	chat: 'controls whether the element should have an integrated chat',
 	provideFeedback: 'indicates whether feedback including the correct answer should be displayed after learners submit their answers',
 	displaySolution: 'controls whether the solution is displayed upfront',
+	style: 'CSS inline styles',
 	onSubmit: 'callback invoked after an answer is submitted'
 };
 
@@ -303,6 +305,7 @@ MultipleChoiceQuestion.propTypes = {
 	chat: PropTypes.bool,
 	provideFeedback: PropTypes.bool,
 	displaySolution: PropTypes.bool,
+	style: PropTypes.object,
 	onSubmit: PropTypes.func
 };
 
