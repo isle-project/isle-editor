@@ -34,6 +34,7 @@ import Tooltip from 'components/tooltip';
 import { TwitterPicker } from 'react-color';
 import Gate from 'components/gate';
 import SelectInput from 'react-select';
+import ResetModal from './reset_modal.js';
 import guide from './guide.json';
 import './sketchpad.css';
 
@@ -115,7 +116,8 @@ class Sketchpad extends Component {
 			mode: 'drawing',
 			showNavigationModal: false,
 			transmitOwner: props.transmitOwner,
-			receiveFrom: {}
+			receiveFrom: {},
+			showResetModal: false
 		};
 		this.isMouseDown = false;
 	}
@@ -311,7 +313,6 @@ class Sketchpad extends Component {
 		}
 		this.renderBackground( currentPage ).then( () => {
 			const elems = this.elements[ currentPage ];
-			console.log( this.elements );
 			debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
 			for ( let i = recordingEndPos; i < elems.length; i++ ) {
 				this.drawElement( elems[ i ] );
@@ -397,15 +398,20 @@ class Sketchpad extends Component {
 	}
 
 	clear = () => {
-		for ( let i = 0; i < this.state.noPages; i++ ) {
-			const canvas = this.canvas;
-			const ctx = this.ctx;
-			if ( ctx ) {
-				ctx.clearRect( 0, 0, canvas.width, canvas.height );
-			}
+		const currentPage = this.state.currentPage;
+		this.elements[ currentPage ] = [];
+		this.backgrounds[ currentPage ] = null;
+		this.recordingEndPositions[ currentPage ] = 0;
+		this.redraw();
+	}
+
+	clearAll = () => {
+		const canvas = this.canvas;
+		const ctx = this.ctx;
+		if ( ctx ) {
+			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
 		this.context.session.store.removeItem( this.props.id + '_sketchpad' );
-
 		if ( this.props.pdf ) {
 			this.initializePDF().then( () => {
 				this.redraw();
@@ -415,13 +421,19 @@ class Sketchpad extends Component {
 				});
 			});
 		} else {
-			this.elements = [ [] ];
-			this.backgrounds = [ null ];
-			this.recordingEndPositions = [ 0 ];
+			const noPages = this.props.noPages;
+			this.elements = new Array( noPages );
+			this.backgrounds = new Array( noPages );
+			this.recordingEndPositions = new Array( noPages );
+			for ( let i = 0; i < noPages; i++ ) {
+				this.elements[ i ] = [];
+				this.backgrounds[ i ] = null;
+				this.recordingEndPositions[ i ] = 0;
+			}
 			this.setState({
 				nUndos: 0,
 				currentPage: 0,
-				noPages: 1,
+				noPages: noPages,
 				finishedRecording: false
 			});
 		}
@@ -1515,7 +1527,12 @@ class Sketchpad extends Component {
 					<ButtonGroup bsSize="small" className="sketch-undo-redo sketch-button-group">
 						<TooltipButton tooltip="Undo" onClick={this.undo} glyph="step-backward" disabled={this.state.playing} />
 						<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} />
-						<TooltipButton tooltip="Clear pages" onClick={this.clear} label="Clear" disabled={this.state.playing || this.state.recording} />
+						<TooltipButton tooltip="Clear current page" onClick={this.clear} label="Clear" disabled={this.state.playing || this.state.recording} />
+						<TooltipButton tooltip="Reset all pages" onClick={() => {
+							this.setState({
+								showResetModal: !this.state.showResetModal
+							});
+						}} label="Reset" disabled={this.state.playing || this.state.recording} />
 					</ButtonGroup>
 					{this.renderRecordingButtons()}
 					{this.renderTransmitButtons()}
@@ -1545,6 +1562,14 @@ class Sketchpad extends Component {
 				{this.renderUploadModal()}
 				{this.renderNavigationModal()}
 				{this.renderProgressModal()}
+				<ResetModal
+					container={this}
+					show={this.state.showResetModal}
+					onSubmit={this.clearAll}
+					onHide={() => {
+						this.setState({ showResetModal: false });
+					}}
+				/>
 				{ this.props.showTutorial ?
 					<Joyride
 						steps={guide}
