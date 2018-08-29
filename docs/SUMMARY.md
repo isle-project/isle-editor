@@ -15,6 +15,7 @@
         * [Match List Question](components/match-list-question.md)
         * [Multiple Choice Question](components/multiple-choice-question.md)
         * [Number Question](components/number-question.md)
+        * [Order Question](components/order-question.md)
         * [Range Question](components/range-question.md)
         * [Select Question](components/select-question.md)
     * [Feedback](components/feedback.md)
