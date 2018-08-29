@@ -1,0 +1,25 @@
+---
+title: "{{TODO: Add component title}}"
+author: {{TODO: Add author(s)}}
+date: {{TODO: Insert current date}}
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+---
+
+# {{TODO: Insert component name}}
+
+<Playground
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+{{TODO: Insert code snippet}}
+`}
+    scope={{
+        {{TODO: Give component tag}}
+    }}
+/>
+
+#### Options:
