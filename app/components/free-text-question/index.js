@@ -19,6 +19,7 @@ import InstructorBar from 'components/instructor-bar';
 import HintButton from 'components/hint-button';
 import VoiceControl from 'components/voice-control';
 import OverlayTrigger from 'components/overlay-trigger';
+import FeedbackButtons from 'components/feedback';
 import VOICE_COMMANDS from './voice_commands.json';
 import './free-text-question.css';
 
@@ -239,7 +240,7 @@ class FreeTextQuestion extends Component {
 		const nHints = this.props.hints.length;
 		return (
 			<Panel id={this.props.id} className="free-text-question">
-				<Panel.Body>
+				<Panel.Body style={{ width: this.props.feedback ? '90%' : '100%', display: 'inline-block' }}>
 					<VoiceControl id={this.props.voiceID} reference={this}
 						commands={VOICE_COMMANDS}
 					/>
@@ -318,6 +319,10 @@ class FreeTextQuestion extends Component {
 					</ButtonToolbar>
 					<InstructorBar buttonLabel="Answers" id={this.props.id} />
 				</Panel.Body>
+				{ this.props.id && this.props.feedback ? <FeedbackButtons
+					vertical
+					id={this.props.id+'_feedback'}
+				/> : null }
 			</Panel>
 		);
 	}
@@ -329,6 +334,7 @@ FreeTextQuestion.defaultProps = {
 	question: '',
 	hints: [],
 	hintPlacement: 'bottom',
+	feedback: false,
 	solution: '',
 	rows: 5,
 	chat: false,
@@ -349,6 +355,7 @@ FreeTextQuestion.propDescriptions = {
 	question: 'the question displayed at the top of the free text question component',
 	hints: 'hints providing guidance on how to answer the question',
 	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
+	feedback: 'controls whether to display feedback buttons',
 	solution: 'a model answer to the problem',
 	rows: 'number of rows of the text field for students to type their answers',
 	chat: 'controls whether to enable group chat should for the question',
@@ -368,6 +375,7 @@ FreeTextQuestion.propTypes = {
 	]),
 	hints: PropTypes.arrayOf( PropTypes.string ),
 	hintPlacement: PropTypes.string,
+	feedback: PropTypes.bool,
 	solution: PropTypes.string,
 	rows: PropTypes.number,
 	chat: PropTypes.bool,
