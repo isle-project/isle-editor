@@ -8,6 +8,7 @@ import DraggableList from 'components/draggable-list';
 import HintButton from 'components/hint-button';
 import InstructorBar from 'components/instructor-bar';
 import ChatButton from 'components/chat-button';
+import FeedbackButtons from 'components/feedback';
 import './order-question.css';
 
 
@@ -65,7 +66,7 @@ class OrderQuestion extends Component {
 		const nHints = this.props.hints.length;
 		return (
 			<Panel className="order-question">
-				<Panel.Body>
+				<Panel.Body style={{ width: this.props.feedback ? '90%' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
 					<DraggableList shuffle data={this.props.options} onChange={this.handleChange} />
 					<div className="order-question-toolbar">
@@ -83,6 +84,10 @@ class OrderQuestion extends Component {
 					</div>
 					<InstructorBar id={this.props.id} dataType="text" />
 				</Panel.Body>
+				{ this.props.id && this.props.feedback ? <FeedbackButtons
+					vertical
+					id={this.props.id+'_feedback'}
+				/> : null }
 			</Panel>
 		);
 	}
@@ -95,6 +100,7 @@ OrderQuestion.defaultProps = {
 	question: '',
 	hints: [],
 	hintPlacement: 'bottom',
+	feedback: false,
 	chat: false,
 	failureMsg: 'Not quite, try again!',
 	successMsg: 'That\'s the correct ordering!',
@@ -110,6 +116,7 @@ OrderQuestion.propDescriptions = {
 	options: 'an array of objects with `id` and `text` keys which the student has to bring into the correct ordering, which is assumed to be the supplied order',
 	hints: 'hints providing guidance on how to answer the question',
 	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
+	feedback: 'controls whether to display feedback buttons',
 	chat: 'controls whether the element should have an integrated chat',
 	failureMsg: 'message to be displayed when student submits a wrong answer',
 	successMsg: 'message to be displayed when student submits the correct answer',
@@ -122,6 +129,7 @@ OrderQuestion.propTypes = {
 	options: PropTypes.array.isRequired,
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
+	feedback: PropTypes.bool,
 	chat: PropTypes.bool,
 	failureMsg: PropTypes.string,
 	successMsg: PropTypes.string,
