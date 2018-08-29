@@ -252,7 +252,7 @@ class InstructorBar extends Component {
 				</div> : null }
 				{this.renderFullscreenModal()}
 				<ButtonGroup bsSize="small" >
-					<Button onClick={this.toggleActions} >{this.props.buttonLabel}</Button>
+					<Button onClick={this.toggleActions} style={{...this.props.buttonStyle}} >{this.props.buttonLabel}</Button>
 				</ButtonGroup>
 				{this.renderDeleteModal()}
 			</Gate>
@@ -265,6 +265,7 @@ class InstructorBar extends Component {
 
 InstructorBar.propTypes = {
 	buttonLabel: PropTypes.string,
+	buttonStyle: PropTypes.object,
 	dataType: PropTypes.oneOf([
 		'factor', 'text', 'number'
 	]),
@@ -273,6 +274,7 @@ InstructorBar.propTypes = {
 
 InstructorBar.defaultProps = {
 	buttonLabel: 'Actions',
+	buttonStyle: {},
 	dataType: 'text',
 	showID: true
 };
