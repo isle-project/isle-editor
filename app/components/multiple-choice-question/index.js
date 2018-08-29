@@ -228,7 +228,7 @@ class MultipleChoiceQuestion extends Component {
 				<Panel.Body>
 					<Question
 						content={question}
-						task={allowMultipleAnswers ? 'Choose all that apply' : 'Pick the correct answer'}
+						task={allowMultipleAnswers ? 'Choose all that apply' : 'Select an answer'}
 					/>
 					<ListGroup>
 						{ allowMultipleAnswers ?
