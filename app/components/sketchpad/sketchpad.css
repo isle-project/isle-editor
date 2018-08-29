@@ -72,6 +72,11 @@
 	z-index: 2;
 }
 
+.sketch-node-container-basic {
+	position: absolute;
+	z-index: 2;
+}
+
 .sketch-colorpicker {
 	top: 70px;
 	left: 430px;
