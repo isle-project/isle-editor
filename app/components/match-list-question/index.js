@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
@@ -10,6 +10,7 @@ import ChatButton from 'components/chat-button';
 import HintButton from 'components/hint-button';
 import InstructorBar from 'components/instructor-bar';
 import OverlayTrigger from 'components/overlay-trigger';
+import FeedbackButtons from 'components/feedback';
 import OptionsList from './options_list.js';
 import './match_list_question.css';
 
@@ -110,7 +111,7 @@ class MatchListQuestion extends Component {
 			</Tooltip>
 		);
 		return (
-			<div className="match-list-question-container">
+			<div className="match-list-question-container" >
 				<span className="question">{question}</span>
 				<div className="match-list-question-lists">
 					<OptionsList
@@ -178,6 +179,10 @@ class MatchListQuestion extends Component {
 					}
 					<InstructorBar buttonLabel="Answers" id={this.props.id} />
 				</div>
+				{ this.props.id && this.props.feedback ? <FeedbackButtons
+					style={{ marginTop: '10px', marginRight: '8px' }}
+					id={this.props.id+'_feedback'}
+				/> : null }
 			</div>
 		);
 	}
@@ -191,6 +196,7 @@ MatchListQuestion.defaultProps = {
 	elements: [],
 	hints: [],
 	hintPlacement: 'bottom',
+	feedback: false,
 	chat: false,
 	colorScale: null,
 	onSubmit() {}
@@ -204,6 +210,7 @@ MatchListQuestion.propDescriptions = {
 	elements: 'an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties',
 	hints: 'hints providing guidance on how to answer the question',
 	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
+	feedback: 'controls whether to display feedback buttons',
 	chat: 'controls whether the element should have an integrated chat',
 	colorScale: 'if set, the supplied colors are used for the tiles',
 	onSubmit: 'callback invoked when students submits an answer'
@@ -217,6 +224,7 @@ MatchListQuestion.propTypes = {
 	}) ),
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
+	feedback: PropTypes.object,
 	chat: PropTypes.bool,
 	colorScale: PropTypes.array,
 	onSubmit: PropTypes.func
