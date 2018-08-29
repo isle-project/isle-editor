@@ -19,6 +19,7 @@ An ISLE component for questions where answers by students should be supplied in 
 * __question__ | `(string|node)`: the question displayed at the top of the free text question component. Default: `''`.
 * __hints__ | `array<string>`: hints providing guidance on how to answer the question. Default: `[]`.
 * __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'bottom'`.
+* __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `false`.
 * __solution__ | `string`: a model answer to the problem. Default: `''`.
 * __rows__ | `number`: number of rows of the text field for students to type their answers. Default: `5`.
 * __chat__ | `boolean`: controls whether to enable group chat should for the question. Default: `false`.
