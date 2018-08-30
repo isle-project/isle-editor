@@ -125,7 +125,7 @@ class Sketchpad extends Component {
 	static getDerivedStateFromProps( props, state ) {
 		if ( props.fullscreen ) {
 			return {
-				canvasHeight: window.innerHeight - 40,
+				canvasHeight: window.innerHeight - 60,
 				canvasWidth: window.innerWidth - 40
 			};
 		}
@@ -146,8 +146,10 @@ class Sketchpad extends Component {
 		if ( this.props.fullscreen ) {
 			this.windowResize = window.addEventListener( 'resize', () => {
 				this.setState({
-					canvasHeight: window.innerHeight - 40,
+					canvasHeight: window.innerHeight - 60,
 					canvasWidth: window.innerWidth - 40
+				}, () => {
+					this.redraw();
 				});
 			});
 		}
