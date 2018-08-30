@@ -15,7 +15,7 @@
 
 ## Introduction
 
-A desktop-application that can be used to author and preview *interactive statistics learning environment* (ISLE) lessons before they are deployed online.
+A desktop-application that can be used to author and preview *integrated statistics learning environment* (ISLE) lessons before they are deployed online.
 
 ## Installation
 
