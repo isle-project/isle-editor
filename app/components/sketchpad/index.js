@@ -52,9 +52,9 @@ const RECORD_TIME_INCREMENT = 100;
 
 // FUNCTIONS //
 
-const TooltipButton = ({ tooltip, onClick, glyph, label, disabled }) => {
+const TooltipButton = ({ tooltip, onClick, glyph, label, disabled, bsSize }) => {
 	return ( <Tooltip placement="bottom" tooltip={tooltip} >
-		<Button bsSize="small" onClick={onClick} disabled={disabled} >
+		<Button bsSize={bsSize} onClick={onClick} disabled={disabled} >
 			{ glyph ? <Glyphicon glyph={glyph} /> : null }
 			{label}
 		</Button>
@@ -400,7 +400,6 @@ class Sketchpad extends Component {
 	clear = () => {
 		const currentPage = this.state.currentPage;
 		this.elements[ currentPage ] = [];
-		this.backgrounds[ currentPage ] = null;
 		this.recordingEndPositions[ currentPage ] = 0;
 		this.redraw();
 	}
@@ -1292,52 +1291,55 @@ class Sketchpad extends Component {
 	}
 
 	renderPagination() {
+		const bsSize = this.props.bsSize;
 		const currentPage = this.state.currentPage;
-		return ( <ButtonGroup bsSize="small" className="sketch-pages" >
+		return ( <ButtonGroup bsSize={bsSize} className="sketch-pages" >
 			<Button onClick={this.toggleNavigationModal}>{currentPage+1}/{this.state.noPages}</Button>
-			<TooltipButton tooltip="Go to first page" onClick={this.firstPage} glyph="fast-backward" disabled={this.state.playing} />
-			<TooltipButton tooltip="Go to previous page" onClick={this.previousPage} glyph="backward" disabled={this.state.playing} />
-			<TooltipButton tooltip="Go to next page" onClick={this.nextPage} glyph="forward" disabled={this.state.playing} />
-			<TooltipButton tooltip="Go to last page" onClick={this.lastPage} glyph="fast-forward" disabled={this.state.playing} />
+			<TooltipButton tooltip="Go to first page" onClick={this.firstPage} glyph="fast-backward" disabled={this.state.playing} bsSize={bsSize} />
+			<TooltipButton tooltip="Go to previous page" onClick={this.previousPage} glyph="backward" disabled={this.state.playing} bsSize={bsSize} />
+			<TooltipButton tooltip="Go to next page" onClick={this.nextPage} glyph="forward" disabled={this.state.playing} bsSize={bsSize} />
+			<TooltipButton tooltip="Go to last page" onClick={this.lastPage} glyph="fast-forward" disabled={this.state.playing} bsSize={bsSize} />
 			<TooltipButton tooltip="Insert page after current one" onClick={() => {
 				const idx = this.state.currentPage + 1;
 				this.insertPage( idx );
-			}} glyph="plus" disabled={this.state.playing} />
+			}} glyph="plus" disabled={this.state.playing} bsSize={bsSize} />
 		</ButtonGroup> );
 	}
 
 	renderRecordingButtons() {
+		const bsSize = this.props.bsSize;
 		const elems = this.elements[ this.state.currentPage ] || [];
 		const deleteIsDisabled = elems.length === 0 ||
 			!this.state.finishedRecording ||
 			this.state.recording ||
 			this.state.playing;
 		return (
-			<ButtonGroup bsSize="small" className="sketch-button-group">
+			<ButtonGroup bsSize={bsSize} className="sketch-button-group">
 				<Tooltip placement="bottom" tooltip={!this.state.recording ? 'Record drawing' : 'Pause recording'} >
-					<Button bsSize="small" disabled={this.state.playing} onClick={this.record} >
+					<Button bsSize={bsSize} disabled={this.state.playing} onClick={this.record} >
 						<Glyphicon glyph={!this.state.recording ? 'record' : 'stop'} />
 					</Button>
 				</Tooltip>
 				<Tooltip placement="bottom" tooltip="Play recording" >
-					<Button bsSize="small" bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={this.replay} >
+					<Button bsSize={bsSize} bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={this.replay} >
 						<Glyphicon glyph="play" />
 					</Button>
 				</Tooltip>
-				<TooltipButton tooltip="Delete recording" onClick={this.delete} glyph="trash" disabled={deleteIsDisabled} />
+				<TooltipButton tooltip="Delete recording" onClick={this.delete} glyph="trash" disabled={deleteIsDisabled} bsSize={bsSize} />
 			</ButtonGroup>
 		);
 	}
 
 	renderDrawingButtons() {
+		const bsSize = this.props.bsSize;
 		return (
-			<ButtonGroup bsSize="small" className="sketch-drawing-buttons" >
+			<ButtonGroup bsSize={bsSize} className="sketch-drawing-buttons" >
 				<Tooltip placement="bottom" tooltip="Drawing Mode" >
-					<Button bsSize="small" bsStyle={this.state.mode === 'drawing' ? 'success' : 'default'} onClick={this.toggleDrawingMode} >
+					<Button bsSize={bsSize} bsStyle={this.state.mode === 'drawing' ? 'success' : 'default'} onClick={this.toggleDrawingMode} >
 						<Glyphicon glyph="pencil" />
 					</Button>
 				</Tooltip>
-				<InputGroup bsSize="small" className="sketch-input-group" >
+				<InputGroup bsSize={bsSize} className="sketch-input-group" >
 					<InputGroup.Addon>Size</InputGroup.Addon>
 					<FormControl
 						type="number"
@@ -1357,14 +1359,15 @@ class Sketchpad extends Component {
 	}
 
 	renderTextButtons() {
+		const bsSize = this.props.bsSize;
 		return (
-			<ButtonGroup bsSize="small" className="sketch-text-buttons" >
+			<ButtonGroup bsSize={bsSize} className="sketch-text-buttons" >
 				<Tooltip placement="bottom" tooltip="Text Mode" >
-					<Button bsSize="small" bsStyle={this.state.mode === 'text' ? 'success' : 'default'} onClick={this.toggleTextMode} ><Glyphicon glyph="font" /></Button>
+					<Button bsSize={bsSize} bsStyle={this.state.mode === 'text' ? 'success' : 'default'} onClick={this.toggleTextMode} ><Glyphicon glyph="font" /></Button>
 				</Tooltip>
 				<DropdownButton
 					id="sketch-font-dropdown"
-					bsSize="small"
+					bsSize={bsSize}
 					title={this.state.fontFamily}
 					style={{ width: 90, textAlign: 'left' }}
 					onSelect={(val) => {
@@ -1381,7 +1384,7 @@ class Sketchpad extends Component {
 					<MenuItem eventKey="Verdana">Verdana</MenuItem>
 					<MenuItem eventKey="Palatino">Palatino</MenuItem>
 				</DropdownButton>
-				<InputGroup bsSize="small" className="sketch-input-group" >
+				<InputGroup bsSize={bsSize} className="sketch-input-group" >
 					<InputGroup.Addon>Size</InputGroup.Addon>
 					<FormControl
 						type="number"
@@ -1401,11 +1404,12 @@ class Sketchpad extends Component {
 	}
 
 	renderSaveButtons() {
+		const bsSize = this.props.bsSize;
 		return (
-			<ButtonGroup bsSize="small" className="sketch-save-buttons sketch-button-group">
-				{ !this.props.pdf ? <TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} glyph="file" /> : null }
-				<TooltipButton tooltip="Export current page (PNG)" onClick={this.saveToPNG} glyph="save-file" />
-				<TooltipButton tooltip="Export pages as PDF" onClick={this.saveAsPDF} glyph="floppy-save" />
+			<ButtonGroup bsSize={bsSize} className="sketch-save-buttons sketch-button-group">
+				{ !this.props.pdf ? <TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} bsSize={bsSize} glyph="file" /> : null }
+				<TooltipButton tooltip="Export current page (PNG)" onClick={this.saveToPNG} glyph="save-file" bsSize={bsSize} />
+				<TooltipButton tooltip="Export pages as PDF" onClick={this.saveAsPDF} glyph="floppy-save" bsSize={bsSize} />
 				{ this.props.id ? <TooltipButton tooltip="Save in browser" onClick={() => {
 					this.saveInBrowser( ( err ) => {
 						if ( err ) {
@@ -1423,13 +1427,14 @@ class Sketchpad extends Component {
 							position: 'tr'
 						});
 					});
-				}} glyph="save" /> : null }
-				{ this.props.id ? <TooltipButton tooltip="Upload to the server" onClick={this.uploadSketches} glyph="cloud-upload" /> : null }
+				}} glyph="save" bsSize={bsSize} /> : null }
+				{ this.props.id ? <TooltipButton tooltip="Upload to the server" onClick={this.uploadSketches} glyph="cloud-upload" bsSize={bsSize} /> : null }
 			</ButtonGroup>
 		);
 	}
 
 	renderTransmitButtons() {
+		const bsSize = this.props.bsSize;
 		const users = this.context.session.userList.map( user => {
 			return { value: user.name, label: user.name };
 		});
@@ -1442,13 +1447,13 @@ class Sketchpad extends Component {
 		</Popover>;
 		return (
 			<Gate owner>
-				<ButtonGroup bsSize="small" className="sketch-button-group" >
+				<ButtonGroup bsSize={bsSize} className="sketch-button-group" >
 					<Tooltip placement="bottom" tooltip="Transmit Actions" >
-						<Button bsSize="small" bsStyle={this.state.transmitOwner ? 'success' : 'default'} onClick={this.toggleTransmit} ><Glyphicon glyph="bullhorn" /></Button>
+						<Button bsSize={bsSize} bsStyle={this.state.transmitOwner ? 'success' : 'default'} onClick={this.toggleTransmit} ><Glyphicon glyph="bullhorn" /></Button>
 					</Tooltip>
 				</ButtonGroup>
 				<OverlayTrigger trigger="click" placement="bottom" rootClose overlay={popover}>
-					<Button bsSize="small" >
+					<Button bsSize={bsSize} >
 						<Glyphicon glyph="eye-open" />
 					</Button>
 				</OverlayTrigger>
@@ -1473,6 +1478,7 @@ class Sketchpad extends Component {
 	}
 
 	render() {
+		const bsSize = this.props.bsSize;
 		let cursor = 'default';
 		if ( this.state.mode === 'drawing' ) {
 			cursor = 'crosshair';
@@ -1511,30 +1517,30 @@ class Sketchpad extends Component {
 			<Panel className="modal-container" style={{ width: this.props.canvasWidth+2, position: 'relative' }}>
 				<div className="sketch-panel-heading clearfix unselectable">
 					{this.renderPagination()}
-					<ButtonGroup bsSize="small" className="sketch-drag-delete-modes sketch-button-group" >
+					<ButtonGroup bsSize={bsSize} className="sketch-drag-delete-modes sketch-button-group" >
 						<Tooltip placement="bottom" tooltip="Drag Mode" >
-							<Button bsSize="small" bsStyle={this.state.mode === 'drag' ? 'success' : 'default'} onClick={this.toggleDragMode} ><Glyphicon glyph="move" /></Button>
+							<Button bsSize={bsSize} bsStyle={this.state.mode === 'drag' ? 'success' : 'default'} onClick={this.toggleDragMode} ><Glyphicon glyph="move" /></Button>
 						</Tooltip>
 						<Tooltip placement="bottom" tooltip="Delete Mode" >
-							<Button bsSize="small" bsStyle={this.state.mode === 'delete' ? 'success' : 'default'} onClick={this.toggleDeleteMode} ><Glyphicon glyph="remove" /></Button>
+							<Button bsSize={bsSize} bsStyle={this.state.mode === 'delete' ? 'success' : 'default'} onClick={this.toggleDeleteMode} ><Glyphicon glyph="remove" /></Button>
 						</Tooltip>
 					</ButtonGroup>
 					{this.renderDrawingButtons()}
 					{this.renderTextButtons()}
-					<ButtonGroup bsSize="small" className="sketch-button-group" >
+					<ButtonGroup bsSize={bsSize} className="sketch-button-group" >
 						<Tooltip placement="right" tooltip="Change brush color" >
-							<Button bsSize="small" onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Color</Button>
+							<Button bsSize={bsSize} onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Color</Button>
 						</Tooltip>
 					</ButtonGroup>
-					<ButtonGroup bsSize="small" className="sketch-undo-redo sketch-button-group">
-						<TooltipButton tooltip="Undo" onClick={this.undo} glyph="step-backward" disabled={this.state.playing} />
-						<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} />
-						<TooltipButton tooltip="Clear current page" onClick={this.clear} label="Clear" disabled={this.state.playing || this.state.recording} />
+					<ButtonGroup bsSize={bsSize} className="sketch-undo-redo sketch-button-group">
+						<TooltipButton tooltip="Undo" onClick={this.undo} glyph="step-backward" disabled={this.state.playing} bsSize={bsSize} />
+						<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} bsSize={bsSize} />
+						<TooltipButton tooltip="Clear current page" onClick={this.clear} label="Clear" disabled={this.state.playing || this.state.recording} bsSize={bsSize} />
 						<TooltipButton tooltip="Reset all pages" onClick={() => {
 							this.setState({
 								showResetModal: !this.state.showResetModal
 							});
-						}} label="Reset" disabled={this.state.playing || this.state.recording} />
+						}} label="Reset" disabled={this.state.playing || this.state.recording} bsSize={bsSize} />
 					</ButtonGroup>
 					{this.renderRecordingButtons()}
 					{this.renderTransmitButtons()}
@@ -1591,6 +1597,7 @@ Sketchpad.propDescriptions = {
 	autoSave: 'controls whether the editor should save the current text to the local storage of the browser at a given time interval',
 	intervalTime: 'time between auto saves',
 	brushSize: 'size of the brush to paint with',
+	bsSize: 'button sizes',
 	color: 'color of the brush and texts',
 	canvasWidth: 'width of the canvas element (in px)',
 	canvasHeight: 'height of the canvas element (in px)',
@@ -1610,6 +1617,7 @@ Sketchpad.defaultProps = {
 	autoSave: true,
 	intervalTime: 30000,
 	brushSize: 6,
+	bsSize: 'small',
 	color: '#444444',
 	canvasWidth: 1200,
 	canvasHeight: 700,
@@ -1629,6 +1637,7 @@ Sketchpad.propTypes = {
 	autoSave: PropTypes.bool,
 	intervalTime: PropTypes.number,
 	brushSize: PropTypes.number,
+	bsSize: PropTypes.oneOf(['default', 'lg', 'large', 'sm', 'small', 'xs', 'xsmall']),
 	color: PropTypes.string,
 	canvasWidth: PropTypes.number,
 	canvasHeight: PropTypes.number,
