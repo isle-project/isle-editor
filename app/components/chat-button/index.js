@@ -9,7 +9,7 @@ import Gate from 'components/gate';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle-editor:chat-button' );
 
 
 // MAIN //
