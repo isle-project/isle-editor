@@ -122,8 +122,35 @@ class Sketchpad extends Component {
 		this.isMouseDown = false;
 	}
 
+	static getDerivedStateFromProps( props, state ) {
+		if ( props.fullscreen ) {
+			return {
+				canvasHeight: window.innerHeight - 40,
+				canvasWidth: window.innerWidth - 40
+			};
+		}
+		if (
+			state.canvasHeight !== props.canvasHeight ||
+			state.canvasWidth !== props.canvasWidth
+		) {
+			return {
+				canvasHeight: props.canvasHeight,
+				canvasWidth: props.canvasWidth
+			};
+		}
+		return null;
+	}
+
 	componentDidMount() {
 		const { session } = this.context;
+		if ( this.props.fullscreen ) {
+			this.windowResize = window.addEventListener( 'resize', () => {
+				this.setState({
+					canvasHeight: window.innerHeight - 40,
+					canvasWidth: window.innerWidth - 40
+				});
+			});
+		}
 		let init;
 		if ( this.props.pdf ) {
 			init = this.initializePDF();
@@ -232,6 +259,9 @@ class Sketchpad extends Component {
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
 		}
+		if ( this.windowResize ) {
+			window.removeEventListener( 'resize', this.windowResize );
+		}
 		const opts = {
 			passive: false
 		};
@@ -265,14 +295,14 @@ class Sketchpad extends Component {
 	renderBackground = ( pageNumber ) => {
 		const page = this.backgrounds[ pageNumber ];
 		if ( page ) {
-			const heightRatio = this.props.canvasHeight / page.getViewport(1.0).height;
-			const widthRatio = this.props.canvasWidth / page.getViewport(1.0).width;
+			const heightRatio = this.state.canvasHeight / page.getViewport(1.0).height;
+			const widthRatio = this.state.canvasWidth / page.getViewport(1.0).width;
 			const viewport = page.getViewport( min( widthRatio, heightRatio ) );
 			this.canvas.height = viewport.height;
-			this.canvas.width = this.props.canvasWidth;
+			this.canvas.width = this.state.canvasWidth;
 
 			// Move page to the center:
-			viewport.transform[ 4 ] = max( ( this.props.canvasWidth - viewport.width ) / 2.0, 0.0 );
+			viewport.transform[ 4 ] = max( ( this.state.canvasWidth - viewport.width ) / 2.0, 0.0 );
 			/*
 				`transform: [ a, b, c, d, e, f ]`
 
@@ -915,7 +945,7 @@ class Sketchpad extends Component {
 			const input = this.textInput;
 			input.style.left = x + 'px';
 			input.style.top = y + 'px';
-			const width = max( this.props.canvasWidth - x, 60 );
+			const width = max( this.state.canvasWidth - x, 60 );
 			debug( `Resize to width ${width}...` );
 			input.style.width = `${width}px`;
 			input.focus();
@@ -1166,7 +1196,7 @@ class Sketchpad extends Component {
 		} else {
 			const ctx = this.ctx;
 			if ( ctx ) {
-				ctx.clearRect( 0, 0, this.props.canvasWidth, this.props.canvasHeight );
+				ctx.clearRect( 0, 0, this.state.canvasWidth, this.state.canvasHeight );
 			}
 			this.renderBackground( currentPage );
 			clearInterval( this.recordingInterval );
@@ -1489,8 +1519,8 @@ class Sketchpad extends Component {
 		}
 		const canvas = <canvas
 			className="sketch-canvas"
-			width={this.props.canvasWidth}
-			height={this.props.canvasHeight}
+			width={this.state.canvasWidth}
+			height={this.state.canvasHeight}
 			style={{
 				position: 'absolute',
 				left: '0px',
@@ -1514,7 +1544,7 @@ class Sketchpad extends Component {
 			onTouchStart={this.drawStart}
 		/>;
 		return (
-			<Panel className="modal-container" style={{ width: this.props.canvasWidth+2, position: 'relative' }}>
+			<Panel className="modal-container" style={{ width: this.state.canvasWidth+2, position: 'relative' }}>
 				<div className="sketch-panel-heading clearfix unselectable">
 					{this.renderPagination()}
 					<ButtonGroup bsSize={bsSize} className="sketch-drag-delete-modes sketch-button-group" >
@@ -1554,7 +1584,7 @@ class Sketchpad extends Component {
 						triangle="top-right"
 					/>
 				</div>
-				<div style={{ width: this.props.canvasWidth, height: this.props.canvasHeight, overflow: 'auto', position: 'relative' }}>
+				<div style={{ width: this.state.canvasWidth, height: this.state.canvasHeight, overflow: 'auto', position: 'relative' }}>
 					{this.renderHTMLOverlays()}
 					{canvas}
 				</div>
@@ -1563,7 +1593,7 @@ class Sketchpad extends Component {
 					fontSize: this.state.fontSize,
 					fontFamily: this.state.fontFamily,
 					color: this.state.color,
-					width: this.props.canvasWidth
+					width: this.state.canvasWidth
 				}} onKeyDown={this.handleEnter} ref={( div ) => {
 					this.textInput = div;
 				}} />
@@ -1601,6 +1631,7 @@ Sketchpad.propDescriptions = {
 	color: 'color of the brush and texts',
 	canvasWidth: 'width of the canvas element (in px)',
 	canvasHeight: 'height of the canvas element (in px)',
+	fullscreen: 'controls whether to automatically resize the canvas to the width and height of the browser window',
 	disabled: 'whether to make the component read-only and forbid drawing on the sketchboard',
 	fontFamily: 'Font family',
 	fontSize: 'Font size',
@@ -1621,6 +1652,7 @@ Sketchpad.defaultProps = {
 	color: '#444444',
 	canvasWidth: 1200,
 	canvasHeight: 700,
+	fullscreen: false,
 	disabled: false,
 	fontFamily: 'Arial',
 	fontSize: 24,
@@ -1641,6 +1673,7 @@ Sketchpad.propTypes = {
 	color: PropTypes.string,
 	canvasWidth: PropTypes.number,
 	canvasHeight: PropTypes.number,
+	fullscreen: PropTypes.bool,
 	disabled: PropTypes.bool,
 	fontFamily: PropTypes.string,
 	fontSize: PropTypes.number,
