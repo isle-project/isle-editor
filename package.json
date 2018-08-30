@@ -108,8 +108,6 @@
     "gitbook-cli": "^2.3.0",
     "happypack": "^5.0.0",
     "hard-source-webpack-plugin": "^0.12.0",
-    "istanbul": "^1.1.0-alpha.1",
-    "jsdom": "11.10.0",
     "modclean": "^2.0.0",
     "null-loader": "^0.1.1",
     "react-hot-loader": "^4.3.1",
