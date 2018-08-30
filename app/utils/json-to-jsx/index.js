@@ -1,9 +1,10 @@
 // MODULES //
 
-import { createElement } from 'react';
+import { createElement, Fragment } from 'react';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import isPlainObject from '@stdlib/assert/is-plain-object';
+import copy from '@stdlib/utils/copy';
 import TeX from 'components/tex';
 import FreeTextQuestion from 'components/free-text-question';
 import MultipleChoiceQuestion from 'components/multiple-choice-question';
@@ -23,7 +24,7 @@ const debug = logger( 'isle-editor:convert-json' );
 
 function convertJSONtoJSX( config ) {
 	debug( `Convert JSON ${config.component} object to React element...` );
-	let children = config.children;
+	let children = copy( config.children );
 	if ( isArray( children ) ) {
 		for ( let i = 0; i < children.length; i++ ) {
 			const child = children[ i ];
@@ -36,6 +37,9 @@ function convertJSONtoJSX( config ) {
 	}
 	let component = config.component;
 	switch ( component ) {
+		case 'Fragment':
+			component = Fragment;
+		break;
 		case 'TeX':
 			component = TeX;
 		break;
@@ -59,6 +63,9 @@ function convertJSONtoJSX( config ) {
 		break;
 		case 'SelectQuestion':
 			component = SelectQuestion;
+		break;
+		default:
+			component = config.component;
 		break;
 	}
 	const props = config.props || {};

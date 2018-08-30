@@ -160,9 +160,9 @@ class Quiz extends Component {
 			debug( 'Question property is an object, convert to JSX...' );
 			config.question = convertJSONtoJSX( config.question );
 		}
-		switch ( config.type ) {
-			case 'Composite':
-				return <div>{config.children}</div>;
+		switch ( config.component ) {
+			case 'Fragment':
+				return convertJSONtoJSX( config );
 			case 'FreeTextQuestion':
 				return <FreeTextQuestion {...config} onSubmit={this.handleSubmission} />;
 			case 'MultipleChoiceQuestion':
