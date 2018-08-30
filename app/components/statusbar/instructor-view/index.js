@@ -43,7 +43,7 @@ class InstructorView extends Component {
 
 	componentWillUnmount() {
 		if ( this.windowResize ) {
-			clearInterval( this.windowResize );
+			window.removeEventListener( 'resize', this.windowResize );
 		}
 	}
 
