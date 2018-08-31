@@ -170,7 +170,7 @@ class Quiz extends Component {
 			case 'MultipleChoiceQuestion':
 				return <MultipleChoiceQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
 			case 'MatchListQuestion':
-				return <MatchListQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
+				return <MatchListQuestion showSolution={false} {...config} onSubmit={this.handleSubmission} />;
 			case 'NumberQuestion':
 				return <NumberQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
 			case 'OrderQuestion':
