@@ -211,7 +211,30 @@ class Sketchpad extends Component {
 						}
 					}
 					else if ( type === 'SKETCHPAD_INSERT_PAGE' ) {
+						debug( `Should insert page at ${action.value}...` );
 						this.insertPage( action.value );
+					}
+					else if ( type === 'SKETCHPAD_DELETE_ELEMENT' ) {
+						const { drawID, page } = JSON.parse( action.value );
+						debug( `Should delete element with id ${drawID}` );
+						const elems = this.elements[ page ];
+						let deleteStart;
+						let deleteEnd;
+						for ( let i = 0; i < elems.length; i++ ) {
+							if ( deleteStart === void 0 && elems[ i ].drawID === drawID ) {
+								deleteStart = i;
+							} else if ( deleteStart && elems[ i ].drawID !== drawID ) {
+								deleteEnd = i;
+								break;
+							}
+						}
+						// Handle case where last element shall be removed:
+						if ( deleteStart && !deleteEnd ) {
+							deleteEnd = elems.length - 1;
+						}
+						debug( `Delete elements ${deleteStart} to ${deleteEnd}` );
+						elems.splice( deleteStart, deleteEnd - deleteStart + 1 );
+						this.redraw();
 					}
 				}
 			});
@@ -586,7 +609,7 @@ class Sketchpad extends Component {
 		}
 	}
 
-	drawLine = ({ startX, startY, endX, endY, color, lineWidth, selected, shouldLog = true }) => {
+	drawLine = ({ startX, startY, endX, endY, color, drawID, lineWidth, selected, shouldLog = true }) => {
 		const ctx = this.ctx;
 		if ( ctx ) {
 			ctx.lineWidth = lineWidth;
@@ -609,7 +632,8 @@ class Sketchpad extends Component {
 						color,
 						lineWidth,
 						page: this.state.currentPage,
-						type: 'line'
+						type: 'line',
+						drawID: drawID
 					}),
 					noSave: true
 				};
@@ -676,6 +700,7 @@ class Sketchpad extends Component {
 			// Offset by one to always draw at least a dot:
 			x += 1;
 			y += 1;
+			const username = this.context.session.user.email || '';
 			const line = {
 				color: this.state.color,
 				lineWidth: this.state.brushSize * ( 1.0 + this.force ) * 0.5,
@@ -686,7 +711,7 @@ class Sketchpad extends Component {
 				time: this.time,
 				type: 'line',
 				page: this.state.currentPage,
-				drawID: this.currentDrawing,
+				drawID: username+':'+this.currentDrawing,
 				shadow: 0
 			};
 			this.drawElement( line );
@@ -872,6 +897,7 @@ class Sketchpad extends Component {
 			debug( 'Drawing text: '+value+' at x = '+x+' and y = '+y );
 			this.textInput.value = '';
 			this.textInput.style.top = String( parseInt( this.textInput.style.top, 10 ) + this.state.fontSize ) + 'px';
+			const username = this.context.session.user.email || '';
 			const text = {
 				value: value,
 				x: x,
@@ -882,7 +908,7 @@ class Sketchpad extends Component {
 				time: this.time,
 				type: 'text',
 				page: this.state.currentPage,
-				drawID: this.currentDrawing
+				drawID: username+':'+this.currentDrawing
 			};
 			this.drawText( text );
 			const elems = this.elements[ this.state.currentPage ];
@@ -902,7 +928,7 @@ class Sketchpad extends Component {
 		}
 	}
 
-	drawText = ({ x, y, value, color, fontSize, fontFamily, selected, shouldLog = true }) => {
+	drawText = ({ x, y, value, color, drawID, fontSize, fontFamily, selected, shouldLog = true }) => {
 		const ctx = this.ctx;
 		ctx.font = `${fontSize}px ${fontFamily}`;
 		ctx.fillStyle = selected ? 'yellow' : color;
@@ -920,6 +946,7 @@ class Sketchpad extends Component {
 					fontSize,
 					fontFamily,
 					page: this.state.currentPage,
+					drawID: drawID,
 					type: 'text'
 				})
 			};
@@ -990,34 +1017,51 @@ class Sketchpad extends Component {
 					}
 				}
 			}
-			let deleteStart;
-			let deleteEnd;
 			if ( !isNull( found ) ) {
 				const id = elems[ found ].drawID;
-				for ( let j = found; j < elems.length; j++ ) {
-					if ( elems[ j ].drawID === id ) {
-						deleteEnd = j;
-						elems[ j ].selected = true;
-					} else {
-						break;
-					}
+				this.deleteElement( id, found, elems );
+				const action = {
+					id: this.props.id,
+					type: 'SKETCHPAD_DELETE_ELEMENT',
+					value: JSON.stringify({
+						drawID: id,
+						page: this.state.currentPage
+					})
+				};
+				const session = this.context.session;
+				if ( session.isOwner() && this.state.transmitOwner ) {
+					session.log( action, 'members' );
+				} else {
+					session.log( action, 'owners' );
 				}
-				for ( let j = found; j >= 0; j-- ) {
-					if ( elems[ j ].drawID === id ) {
-						deleteStart = j;
-						elems[ j ].selected = true;
-					} else {
-						break;
-					}
-				}
-
-				if ( this.state.mode === 'delete' ) {
-					debug( `Delete elements ${deleteStart} to ${deleteEnd}` );
-					elems.splice( deleteStart, deleteEnd - deleteStart + 1 );
-				}
-				this.redraw();
 			}
 		}
+	}
+
+	deleteElement = ( id, foundPos, elems ) => {
+		let deleteStart;
+		let deleteEnd;
+		for ( let j = foundPos; j < elems.length; j++ ) {
+			if ( elems[ j ].drawID === id ) {
+				deleteEnd = j;
+				elems[ j ].selected = true;
+			} else {
+				break;
+			}
+		}
+		for ( let j = foundPos; j >= 0; j-- ) {
+			if ( elems[ j ].drawID === id ) {
+				deleteStart = j;
+				elems[ j ].selected = true;
+			} else {
+				break;
+			}
+		}
+		if ( this.state.mode === 'delete' ) {
+			debug( `Delete elements ${deleteStart} to ${deleteEnd}` );
+			elems.splice( deleteStart, deleteEnd - deleteStart + 1 );
+		}
+		this.redraw();
 	}
 
 	firstPage = () => {
