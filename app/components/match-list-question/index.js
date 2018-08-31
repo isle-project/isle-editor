@@ -78,6 +78,32 @@ class MatchListQuestion extends Component {
 		this.setState({ [ list ]: option, answers, colorScale });
 	}
 
+	handleSubmit = () => {
+		const session = this.context.session;
+		if ( this.state.submitted ) {
+			session.addNotification({
+				title: 'Answer re-submitted.',
+				message: this.props.resubmissionMsg,
+				level: 'success',
+				position: 'tr'
+			});
+		} else {
+			session.addNotification({
+				title: 'Answer submitted.',
+				message: this.props.submissionMsg,
+				level: 'success',
+				position: 'tr'
+			});
+		}
+		this.setState({
+			submitted: true
+		});
+
+		this.props.onSubmit(
+			this.state.answers.map( ans => ({ a: ans.a, b: ans.b }) )
+		);
+	}
+
 	toggleSolution = () => {
 		let { elements, colorScale } = this.props;
 		if ( !colorScale ) {
@@ -98,7 +124,7 @@ class MatchListQuestion extends Component {
 	}
 
 	render() {
-		const { question, elements, onSubmit, hints } = this.props;
+		const { question, elements, hints } = this.props;
 		const { answers } = this.state;
 		const nHints = hints.length;
 		const onSelectA = this.onSelect.bind( this, 'selectedA' );
@@ -110,6 +136,29 @@ class MatchListQuestion extends Component {
 				Solution becomes available after answer is submitted.
 			</Tooltip>
 		);
+		const solutionButton = this.state.submitted ?
+			<Button
+				bsStyle="warning"
+				bsSize="sm"
+				onClick={this.toggleSolution}
+			>{ !this.state.userAnswers ? 'Show Solution' : 'Hide Solution' }</Button> :
+			<OverlayTrigger
+				placement="top"
+				positionLeft={100}
+				overlay={tooltip}
+				rootClose={true}
+			>
+				<div style={{ display: 'inline-block' }}>
+					<Button
+						bsStyle="warning"
+						bsSize="sm"
+						disabled
+						style={{
+							pointerEvents: 'none'
+						}}
+					>Show Solution</Button>
+				</div>
+			</OverlayTrigger>;
 		return (
 			<div className="match-list-question-container" >
 				<span className="question">{question}</span>
@@ -132,41 +181,11 @@ class MatchListQuestion extends Component {
 					<Button
 						bsStyle="primary"
 						bsSize="sm"
-						onClick={() => {
-							this.setState({
-								submitted: true
-							});
-							onSubmit(
-								answers.map( ans => ({ a: ans.a, b: ans.b }) )
-							);
-						}}
+						onClick={this.handleSubmit}
 						disabled={answers.length !== elements.length}>
 						{ !this.state.submitted ? 'Submit' : 'Resubmit' }
 					</Button>
-					{ this.state.submitted ?
-						<Button
-							bsStyle="warning"
-							bsSize="sm"
-							onClick={this.toggleSolution}
-						>{ !this.state.userAnswers ? 'Show Solution' : 'Hide Solution' }</Button> :
-						<OverlayTrigger
-							placement="top"
-							positionLeft={100}
-							overlay={tooltip}
-							rootClose={true}
-						>
-							<div style={{ display: 'inline-block' }}>
-								<Button
-									bsStyle="warning"
-									bsSize="sm"
-									disabled
-									style={{
-										pointerEvents: 'none'
-									}}
-								>Show Solution</Button>
-							</div>
-						</OverlayTrigger>
-					}
+					{ this.props.showSolution ? solutionButton : null }
 					{ nHints > 0 ?
 						<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
 						null
@@ -196,9 +215,12 @@ MatchListQuestion.defaultProps = {
 	elements: [],
 	hints: [],
 	hintPlacement: 'bottom',
+	showSolution: true,
 	feedback: false,
 	chat: false,
 	colorScale: null,
+	submissionMsg: 'You have successfully submitted your answer.',
+	resubmissionMsg: 'You have successfully re-submitted your answer.',
 	onSubmit() {}
 };
 
@@ -210,9 +232,13 @@ MatchListQuestion.propDescriptions = {
 	elements: 'an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties',
 	hints: 'hints providing guidance on how to answer the question',
 	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
+	showSolution: 'indicates whether the solution should be accessible after learners submit their answers',
 	feedback: 'controls whether to display feedback buttons',
 	chat: 'controls whether the element should have an integrated chat',
 	colorScale: 'if set, the supplied colors are used for the tiles',
+	submissionMsg: 'notification displayed when the learner first submits his answer',
+	resubmissionMsg: 'notification displayed for all submissions after the first one',
+	maxlength: 'maximum allowed number of characters',
 	onSubmit: 'callback invoked when students submits an answer'
 };
 
@@ -224,10 +250,17 @@ MatchListQuestion.propTypes = {
 	}) ),
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
+	showSolution: PropTypes.bool,
 	feedback: PropTypes.object,
 	chat: PropTypes.bool,
 	colorScale: PropTypes.array,
+	submissionMsg: PropTypes.string,
+	resubmissionMsg: PropTypes.string,
 	onSubmit: PropTypes.func
+};
+
+MatchListQuestion.contextTypes = {
+	session: PropTypes.object
 };
 
 
