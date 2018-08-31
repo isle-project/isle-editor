@@ -1,7 +1,5 @@
 # ISLE Editor
 
-[Documentation][docs]
-
 #### Dependencies
 
 [![Dependencies][dependencies-image]][dependencies-url] 
@@ -15,7 +13,12 @@
 
 ## Introduction
 
-A desktop-application that can be used to author and preview *integrated statistics learning environment* (ISLE) lessons before they are deployed online.
+A desktop-application that can be used to author and preview *integrated statistics learning environment* (ISLE) lessons before they are deployed online. Other parts of the ISLE environment are: 
+
+-   the [isle-server][isle-server] is the server program responsible for user management and data storage
+-   the [isle-dashboard][isle-dashboard] is the online dashboard used to deploy, organize and monitor ISLE lessons
+
+#### [Open Documentation][docs]
 
 ## Installation
 
@@ -93,6 +96,9 @@ The following icons are used under a Creative Commons CCBY license.
 - "Positive Feedback Loop" by Richard Slater
 - "bar chart" by Barracuda
 - "Scatterplot" by JeraOcean
+
+[isle-dashboard]: https://github.com/Planeshifter/isle-dashboard
+[isle-server]: https://github.com/Planeshifter/isle-server
 
 [electron]: http://electron.atom.io/
 [git]: http://git-scm.com/

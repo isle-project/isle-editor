@@ -19,11 +19,8 @@ Fall
 * "Undo" button for plots (investigate Plotly's capabilities in this regard)
 * Include "Text to TeX" equation parser 
 * Add React component for toggling between Text source / intermediate TeX representation / rendered equation. 
-* Add fullscreen option to sketchpad component (or just generally full width of page?
-* Allow text annotations for sketchpad
 * Add option to display a line grid instead of a white page as sketchpad background
 * Quiz component
-  -   Let students select their confidence level (either Likert scale or three options: confident, somewhat confident, gurssing)
   -   Multiple-Choice-Question: capture answer selections
 * Update logging
   -   Log data table filtering and sorting operations
@@ -31,7 +28,6 @@ Fall
 * Add save reminders in data explorer 
 * Update labs to move question components instead of markdown editor for easier analyses
 * Log actions in instructor bar
-* Distinguish between instructor / student (solution: add an instructor flag to actions by instructors)
 
 
 Priority
@@ -53,7 +49,6 @@ LONG-TERM
 * Mobile. `isle-app`. Mobile responsiveness
 * Needed learning components:
     - ...
-* Make data persistent so that students don't lose their progress once they refresh the page. Options: Storing in local storage, in the Mongo database on our server. Others?
 * Landing page before start of lesson showing the title, brief overview of content, learning objectives. Should include a way for users to clear the ISLE variables in localStorage.
 * Many of the react components need properties for event handlers (onClick, onChange)...
 * Data Explorer
