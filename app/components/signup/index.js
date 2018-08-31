@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
+import pick from '@stdlib/utils/pick';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
@@ -13,6 +15,12 @@ import Modal from 'react-bootstrap/lib/Modal';
 import Overlay from 'react-bootstrap/lib/Overlay';
 import Popover from 'react-bootstrap/lib/Popover';
 import Tooltip from 'components/tooltip';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor:signup' );
+const FORM_DATA = [ 'name', 'email', 'password', 'passwordRepeat' ];
 
 
 // MAIN //
@@ -36,7 +44,8 @@ class Signup extends Component {
 			this.getNameValidationState() === 'success' &&
 			this.getPasswordValidationState() === 'success'
 		) {
-			session.registerUser( this.state, () => {
+			const data = pick( this.state, FORM_DATA );
+			session.registerUser( data, () => {
 				this.props.onClose();
 			});
 		} else {
@@ -58,6 +67,7 @@ class Signup extends Component {
 		const target = event.target;
 		const value = target.value;
 		const name = target.name;
+		debug( `Update "${name}" state to "${value}"...` );
 		this.setState({
 			[ name ]: value
 		});
@@ -73,7 +83,7 @@ class Signup extends Component {
 
 	getNameValidationState = () => {
 		const { name } = this.state;
-		if ( name.length > 3 ) {
+		if ( name.length >= 3 ) {
 			return 'success';
 		}
 		return 'warning';
