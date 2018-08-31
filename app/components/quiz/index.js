@@ -56,7 +56,8 @@ class Quiz extends Component {
 			current: this.sample()[ 0 ],
 			counter: 0,
 			finished: false,
-			last: false
+			last: false,
+			checked: 1
 		};
 	}
 
@@ -89,6 +90,7 @@ class Quiz extends Component {
 			newState.current = this.sample()[ 0 ];
 			debug( 'Selected question at index '+newState.current );
 		}
+		newState.checked = 'Somewhat sure';
 		newState.counter = counter;
 		this.setState( newState);
 	}
@@ -164,27 +166,29 @@ class Quiz extends Component {
 			case 'Fragment':
 				return convertJSONtoJSX( config );
 			case 'FreeTextQuestion':
-				return <FreeTextQuestion {...config} onSubmit={this.handleSubmission} />;
+				return <FreeTextQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
 			case 'MultipleChoiceQuestion':
-				return <MultipleChoiceQuestion {...config} onSubmit={this.handleSubmission} />;
+				return <MultipleChoiceQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
 			case 'MatchListQuestion':
-				return <MatchListQuestion {...config} onSubmit={this.handleSubmission} />;
+				return <MatchListQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
 			case 'NumberQuestion':
-				return <NumberQuestion {...config} onSubmit={this.handleSubmission} />;
+				return <NumberQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
 			case 'OrderQuestion':
-				return <OrderQuestion {...config} onSubmit={this.handleSubmission} />;
+				return <OrderQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
 			case 'RangeQuestion':
-				return <RangeQuestion {...config} onSubmit={this.handleSubmission} />;
+				return <RangeQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
 			case 'SelectQuestion':
-				return <SelectQuestion {...config} onSubmit={this.handleSubmission} />;
+				return <SelectQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
 		}
 	}
 
 	handleConfidenceChange = ( event ) => {
+		debug( 'Choosing confidence...' );
 		const confidence = event.target.getAttribute( 'data-confidence' );
 		const confidences = this.state.confidences.slice();
 		confidences[ this.state.current ] = confidence;
 		this.setState({
+			checked: confidence,
 			confidences: confidences
 		});
 	}
@@ -197,21 +201,15 @@ class Quiz extends Component {
 			<FormGroup className="center" >
 				<ControlLabel>Please indicate how confident you are in your answer:</ControlLabel>
 				<br />
-				<Radio name="radio-group" data-confidence="-2" inline onClick={this.handleConfidenceChange} >
-					-2
+				<Radio checked={this.state.checked === 'Guessed'} name="radio-group" data-confidence="Guessed" inline onClick={this.handleConfidenceChange}>
+					Guessed
 				</Radio>{' '}
-				<Radio name="radio-group" data-confidence="-1" inline onClick={this.handleConfidenceChange}>
-					-1
+				<Radio checked={this.state.checked === 'Somewhat sure'} name="radio-group" data-confidence="Somewhat sure" inline onClick={this.handleConfidenceChange}>
+					Somewhat sure
 				</Radio>{' '}
-				<Radio name="radio-group" data-confidence="0" inline onClick={this.handleConfidenceChange}>
-					0
+				<Radio checked={this.state.checked === 'Confident'} name="radio-group" data-confidence="Confident" inline onClick={this.handleConfidenceChange}>
+				Confident
 				</Radio>{' '}
-				<Radio name="radio-group" data-confidence="1" inline onClick={this.handleConfidenceChange}>
-					1
-				</Radio>{' '}
-				<Radio name="radio-group" data-confidence="2" inline onClick={this.handleConfidenceChange}>
-					2
-				</Radio>
 			</FormGroup>
 		);
 	}
