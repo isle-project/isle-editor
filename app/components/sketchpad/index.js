@@ -236,6 +236,27 @@ class Sketchpad extends Component {
 						elems.splice( deleteStart, deleteEnd - deleteStart + 1 );
 						this.redraw();
 					}
+					else if ( type === 'SKETCHPAD_DRAG_ELEMENT' ) {
+						const { drawID, page, dx, dy } = JSON.parse( action.value );
+						debug( `Should drag element with id ${drawID} by dx: ${dx} and dy: ${dy}...` );
+						const elems = this.elements[ page ];
+						for ( let i = 0; i < elems.length; i++ ) {
+							const e = elems[ i ];
+							if ( e.drawID === drawID ) {
+								if ( e.type === 'line' ) {
+									e.startX += dx;
+									e.endX += dx;
+									e.startY += dy;
+									e.endY += dy;
+								}
+								else if ( e.type === 'text' ) {
+									e.x += dx;
+									e.y += dy;
+								}
+							}
+						}
+						this.redraw();
+					}
 				}
 			});
 		}
@@ -320,6 +341,10 @@ class Sketchpad extends Component {
 	renderBackground = ( pageNumber ) => {
 		const page = this.backgrounds[ pageNumber ];
 		if ( page ) {
+			if ( this.renderTask ) {
+				debug( 'Active render task, need to cancel first: ' );
+				return this.renderTask.cancel();
+			}
 			const heightRatio = this.state.canvasHeight / page.getViewport(1.0).height;
 			const widthRatio = this.state.canvasWidth / page.getViewport(1.0).width;
 			const viewport = page.getViewport( min( widthRatio, heightRatio ) );
@@ -344,16 +369,13 @@ class Sketchpad extends Component {
 				canvasContext: this.ctx,
 				viewport: viewport
 			};
-			const renderTask = page.render( renderContext );
-			return renderTask
+			this.renderTask = page.render( renderContext );
+			return this.renderTask
 				.then( () => {
 					debug( `Background rendered for page ${pageNumber}` );
-				})
-				.catch( err => {
-					debug( err );
 				});
 		}
-		// Return promise tha immediately resolves as no background needs to be drawn:
+		// Return promise that immediately resolves as no background needs to be drawn:
 		return Promise.resolve();
 	}
 
@@ -366,13 +388,19 @@ class Sketchpad extends Component {
 		if ( ctx ) {
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
-		this.renderBackground( currentPage ).then( () => {
-			const elems = this.elements[ currentPage ];
-			debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
-			for ( let i = recordingEndPos; i < elems.length; i++ ) {
-				this.drawElement( elems[ i ] );
-			}
-		});
+		this.renderBackground( currentPage )
+			.then( () => {
+				const elems = this.elements[ currentPage ];
+				debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
+				for ( let i = recordingEndPos; i < elems.length; i++ ) {
+					this.drawElement( elems[ i ] );
+				}
+				this.renderTask = null;
+			})
+			.catch( ( err ) => {
+				console.log( err );
+				this.redraw();
+			});
 	}
 
 	replay = () => {
@@ -672,7 +700,7 @@ class Sketchpad extends Component {
 		let { x, y } = this.mousePosition( evt );
 		if ( this.isSelected ) {
 			if ( this.state.mode === 'drag' ) {
-				// Drag elements around:
+				debug( 'Drag elements around...' );
 				const dx = x - this.x;
 				const dy = y - this.y;
 				const elems = this.elements[ this.state.currentPage ];
@@ -691,10 +719,27 @@ class Sketchpad extends Component {
 						}
 					}
 				}
+				const action = {
+					id: this.props.id,
+					type: 'SKETCHPAD_DRAG_ELEMENT',
+					value: JSON.stringify({
+						dx: dx,
+						dy: dy,
+						page: this.state.currentPage,
+						drawID: this.isSelected
+					}),
+					noSave: true
+				};
+				const session = this.context.session;
+				if ( session.isOwner() ) {
+					session.log( action, 'members' );
+				} else {
+					session.log( action );
+				}
 				this.x = x;
 				this.y = y;
+				this.redraw();
 			}
-			this.redraw();
 		}
 		if ( this.isMouseDown && !this.props.disabled ) {
 			// Offset by one to always draw at least a dot:
@@ -963,7 +1008,7 @@ class Sketchpad extends Component {
 		for ( let i = 0; i < elems.length; i++ ) {
 			elems[ i ].selected = false;
 		}
-		this.isSelected = false;
+		this.isSelected = null;
 	}
 
 	handleClick = ( event ) => {
@@ -999,7 +1044,7 @@ class Sketchpad extends Component {
 					this.ctx.closePath();
 					if ( this.ctx.isPointInStroke( x, y ) ) {
 						found = i;
-						this.isSelected = true;
+						this.isSelected = elem.drawID;
 						break;
 					}
 				}
@@ -1012,7 +1057,7 @@ class Sketchpad extends Component {
 						y <= elem.y + elem.fontSize
 					) {
 						found = i;
-						this.isSelected = true;
+						this.isSelected = elem.drawID;
 						break;
 					}
 				}
