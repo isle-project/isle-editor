@@ -36,3 +36,4 @@ server: https://isle.heinz.cmu.edu
 #### Options:
 
 * __vertical__ | `boolean`: buttons are displayed vertically if set to `true`. Default: `false`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
