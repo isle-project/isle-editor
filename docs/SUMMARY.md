@@ -25,6 +25,7 @@
     * [Beacon Tooltip](components/beacon-tooltip.md)
     * [Expire](components/expire.md)
     * [Gate](components/gate.md)
+    * [Revealer](components/revealer.md)
     * [Runner](components/runner.md)
     * [R](chapters/r.md)
         * [R Help](components/r/help.md)

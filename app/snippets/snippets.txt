@@ -243,6 +243,11 @@ snippet Recorder
 		screen={${2:true}}
 	/>
 
+snippet Revealer
+	<Revealer id="${1:Enter ID}">
+		${2:Component to Display}
+	</Revealer>
+
 snippet RHelp
 	<RHelp library="${1:}" >${2:}</RHelp>
 

@@ -70,6 +70,7 @@
 	"RangeQuestion": "const RangeQuestion = require( \"components/range-question\" );",
 	"RealtimeMetrics": "const RealtimeMetrics = require( \"components/metrics/realtime\" );",
 	"Recorder": "const Recorder = require( \"components/recorder\" );",
+	"Revealer": "const Revealer = require( \"components/revealer\" );",
 	"RHelp": "const RHelp = require( \"components/r/help\" );",
 	"ROutput": "const ROutput = require( \"components/r/output\" );",
 	"RPlot": "const RPlot = require( \"components/r/plot\" );",
