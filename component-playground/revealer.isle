@@ -1,0 +1,35 @@
+---
+title: "Revealer"
+author: Francis R. Kovacs
+date: September 1st, 2018
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Revealer
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <Revealer
+        id="mudgelove"
+    >
+        <div>
+            <h3>Content that will be revealed.</h3>
+        </div>
+    </Revealer>
+
+`}
+    scope={{
+        Revealer 
+    }}
+/>
+
+#### Options:
+
+* __message__ | `string`: Message to be displayed when content is hidden. Default: `'Content hidden by instructor'`.

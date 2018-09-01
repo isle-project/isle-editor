@@ -126,6 +126,7 @@ const createScope = ( session ) => {
 		RangeQuestion: Loadable( () => import('components/range-question' ) ),
 		RealtimeMetrics: Loadable( () => import( 'components/metrics/realtime' ) ),
 		Recorder: Loadable( () => import( 'components/recorder' ) ),
+		Revealer: Loadable( () => import('components/revealer') ),
 		RPlot: Loadable( () => import( 'components/r/plot' ) ),
 		RHelp: Loadable( () => import( 'components/r/help' ) ),
 		RShell: Loadable( () => import( 'components/r/shell' ) ),
