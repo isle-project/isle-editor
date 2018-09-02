@@ -189,17 +189,21 @@ class Sketchpad extends Component {
 						this.insertPage( action.value );
 					}
 					else if ( type === 'SKETCHPAD_DELETE_ELEMENT' ) {
-						const { drawID, page } = JSON.parse( action.value );
-						debug( `Should delete element with id ${drawID}` );
+						const { drawID, page, user } = JSON.parse( action.value );
+						debug( `Should delete element with id ${drawID} by user ${user}` );
 						const elems = this.elements[ page ];
 						let deleteStart;
 						let deleteEnd;
 						for ( let i = 0; i < elems.length; i++ ) {
-							if ( deleteStart === void 0 && elems[ i ].drawID === drawID ) {
+							if (
+								deleteStart === void 0 &&
+								elems[ i ].drawID === drawID &&
+								elems[ i ].user === user
+							) {
 								deleteStart = i;
 							} else if (
 								deleteStart !== void 0 &&
-								elems[ i ].drawID !== drawID
+								( elems[ i ].drawID !== drawID || elems[ i ].user === user )
 							) {
 								deleteEnd = i;
 								break;
@@ -214,12 +218,12 @@ class Sketchpad extends Component {
 						this.redraw();
 					}
 					else if ( type === 'SKETCHPAD_DRAG_ELEMENT' ) {
-						const { drawID, page, dx, dy } = JSON.parse( action.value );
+						const { drawID, user, page, dx, dy } = JSON.parse( action.value );
 						debug( `Should drag element with id ${drawID} by dx: ${dx} and dy: ${dy}...` );
 						const elems = this.elements[ page ];
 						for ( let i = 0; i < elems.length; i++ ) {
 							const e = elems[ i ];
-							if ( e.drawID === drawID ) {
+							if ( e.drawID === drawID && e.user === user ) {
 								if ( e.type === 'line' ) {
 									e.startX += ( dx / this.canvas.width );
 									e.endX += ( dx / this.canvas.width );
@@ -232,6 +236,20 @@ class Sketchpad extends Component {
 								}
 							}
 						}
+						this.redraw();
+					}
+					else if ( type === 'SKETCHPAD_CLEAR_PAGE' ) {
+						const page = action.value;
+						const user = action.email;
+						const elems = this.elements[ page ];
+						const newElems = [];
+						for ( let i = 0; i < elems.length; i++ ) {
+							const e = elems[ i ];
+							if ( e.user !== user ) {
+								newElems.push( e );
+							}
+						}
+						this.elements[ page ] = newElems;
 						this.redraw();
 					}
 				}
@@ -467,6 +485,19 @@ class Sketchpad extends Component {
 		const currentPage = this.state.currentPage;
 		this.elements[ currentPage ] = [];
 		this.recordingEndPositions[ currentPage ] = 0;
+		const logAction = {
+			id: this.props.id,
+			type: 'SKETCHPAD_CLEAR_PAGE',
+			value: currentPage
+		};
+		const session = this.context.session;
+		if (
+			session.isOwner() && this.state.transmitOwner
+		) {
+			session.log( logAction, 'members' );
+		} else {
+			session.log( logAction, 'owners' );
+		}
 		this.redraw();
 	}
 
@@ -620,7 +651,7 @@ class Sketchpad extends Component {
 		}
 	}
 
-	drawLine = ({ startX, startY, endX, endY, color, drawID, lineWidth, selected, shouldLog = true }) => {
+	drawLine = ({ startX, startY, endX, endY, color, drawID, user, lineWidth, selected, shouldLog = true }) => {
 		const ctx = this.ctx;
 		if ( ctx ) {
 			ctx.lineWidth = lineWidth;
@@ -648,7 +679,8 @@ class Sketchpad extends Component {
 						lineWidth,
 						page: this.state.currentPage,
 						type: 'line',
-						drawID: drawID
+						drawID: drawID,
+						user: user
 					}),
 					noSave: true
 				};
@@ -709,6 +741,7 @@ class Sketchpad extends Component {
 						}
 					}
 				}
+				const username = this.context.session.user.email || '';
 				const action = {
 					id: this.props.id,
 					type: 'SKETCHPAD_DRAG_ELEMENT',
@@ -716,7 +749,8 @@ class Sketchpad extends Component {
 						dx: dx,
 						dy: dy,
 						page: this.state.currentPage,
-						drawID: this.isSelected
+						drawID: this.isSelected,
+						user: username
 					}),
 					noSave: true
 				};
@@ -746,7 +780,8 @@ class Sketchpad extends Component {
 				time: this.time,
 				type: 'line',
 				page: this.state.currentPage,
-				drawID: username+':'+this.currentDrawing,
+				drawID: this.currentDrawing,
+				user: username,
 				shadow: 0
 			};
 			this.drawElement( line );
@@ -941,7 +976,8 @@ class Sketchpad extends Component {
 				time: this.time,
 				type: 'text',
 				page: this.state.currentPage,
-				drawID: username+':'+this.currentDrawing
+				user: username,
+				drawID: this.currentDrawing
 			};
 			this.drawText( text );
 			const elems = this.elements[ this.state.currentPage ];
@@ -961,7 +997,7 @@ class Sketchpad extends Component {
 		}
 	}
 
-	drawText = ({ x, y, value, color, drawID, fontSize, fontFamily, selected, shouldLog = true }) => {
+	drawText = ({ x, y, value, color, drawID, user, fontSize, fontFamily, selected, shouldLog = true }) => {
 		const ctx = this.ctx;
 		ctx.font = `${fontSize}px ${fontFamily}`;
 		ctx.fillStyle = selected ? 'yellow' : color;
@@ -983,6 +1019,7 @@ class Sketchpad extends Component {
 					fontFamily,
 					page: this.state.currentPage,
 					drawID: drawID,
+					user: user,
 					type: 'text'
 				})
 			};
@@ -1063,12 +1100,14 @@ class Sketchpad extends Component {
 				const id = elems[ found ].drawID;
 				this.deleteElement( id, found, elems );
 				if ( this.state.mode === 'delete' ) {
+					const username = this.context.session.user.email || '';
 					const action = {
 						id: this.props.id,
 						type: 'SKETCHPAD_DELETE_ELEMENT',
 						value: JSON.stringify({
 							drawID: id,
-							page: this.state.currentPage
+							page: this.state.currentPage,
+							user: username
 						})
 					};
 					const session = this.context.session;
