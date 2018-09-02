@@ -16,3 +16,4 @@ Attach buttons to collect user feedback for an HTML element identified by its `i
 #### Options:
 
 * __vertical__ | `boolean`: buttons are displayed vertically if set to `true`. Default: `false`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.

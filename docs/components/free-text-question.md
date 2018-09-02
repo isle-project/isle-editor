@@ -28,6 +28,6 @@ An ISLE component for questions where answers by students should be supplied in 
 * __submissionMsg__ | `string`: notification displayed when the learner first submits his answer. Default: `''`.
 * __resubmissionMsg__ | `string`: notification displayed for all submissions after the first one. Default: `'You have successfully re-submitted your answer.'`.
 * __maxlength__ | `number`: maximum allowed number of characters. Default: `2500`.
-* __voiceID__ | `string`: undefined. Default: `none`.
+* __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __onChange__ | `function`: callback invoked every time the text area value changes; receives the current text as its sole argument. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback invoked when user submits an answer; receives the submitted text as its sole argument. Default: `onSubmit() {}`.
