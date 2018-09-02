@@ -364,6 +364,7 @@ FreeTextQuestion.propDescriptions = {
 	submissionMsg: 'notification displayed when the learner first submits his answer',
 	resubmissionMsg: 'notification displayed for all submissions after the first one',
 	maxlength: 'maximum allowed number of characters',
+	voiceID: 'voice control identifier',
 	onChange: 'callback invoked every time the text area value changes; receives the current text as its sole argument',
 	onSubmit: 'callback invoked when user submits an answer; receives the submitted text as its sole argument'
 };
