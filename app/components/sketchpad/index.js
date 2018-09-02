@@ -6,8 +6,6 @@ import pdfjs from 'pdfjs-dist/webpack';
 import pdfMake from 'pdfmake-lite/build/pdfmake.min.js';
 import logger from 'debug';
 import Pressure from 'pressure';
-import Nav from 'react-bootstrap/lib/Nav';
-import NavItem from 'react-bootstrap/lib/NavItem';
 import Panel from 'react-bootstrap/lib/Panel';
 import Checkbox from 'react-bootstrap/lib/Checkbox';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
@@ -20,12 +18,9 @@ import Modal from 'react-bootstrap/lib/Modal';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
-import incrspace from '@stdlib/math/utils/incrspace';
 import isObject from '@stdlib/assert/is-object';
 import isNull from '@stdlib/assert/is-null';
-import ceil from '@stdlib/math/base/special/ceil';
 import round from '@stdlib/math/base/special/round';
-import sqrt from '@stdlib/math/base/special/sqrt';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
 import noop from '@stdlib/utils/noop';
@@ -37,6 +32,7 @@ import { TwitterPicker } from 'react-color';
 import Gate from 'components/gate';
 import SelectInput from 'react-select';
 import ResetModal from './reset_modal.js';
+import NavigationModal from './navigation_modal.js';
 import guide from './guide.json';
 import './sketchpad.css';
 
@@ -108,7 +104,7 @@ class Sketchpad extends Component {
 			currentPage: 0,
 			fontFamily: props.fontFamily,
 			fontSize: props.fontSize,
-			groupMode: false,
+			groupMode: props.groupMode,
 			recording: false,
 			isExporting: false,
 			finishedRecording: false,
@@ -1410,40 +1406,6 @@ class Sketchpad extends Component {
 		});
 	}
 
-	renderNavigationModal = () => {
-		const perRow = ceil( sqrt( this.state.noPages ) );
-		const rows = incrspace( 0, ceil( this.state.noPages / perRow ), 1 );
-		return ( <Modal
-			onHide={this.toggleNavigationModal}
-			show={this.state.showNavigationModal}
-			id="sketch-goto-modal"
-			container={this}
-		>
-			<Modal.Header closeButton>
-				<Modal.Title>Jump to Page:</Modal.Title>
-			</Modal.Header>
-			<Modal.Body>
-				{rows.map( ( row ) => {
-					const no = min( this.state.noPages-(row*perRow), perRow );
-					const cells = incrspace( 0, no, 1 );
-					return (
-						<Nav
-							key={row} justified bsStyle="pills"
-							onSelect={this.gotoPage}
-						>
-							{cells.map( ( e, i ) => {
-								const page = i + perRow*row;
-								return ( <NavItem key={i} eventKey={page}>
-									Page {page+1}
-								</NavItem> );
-							})}
-						</Nav>
-					);
-				})}
-			</Modal.Body>
-		</Modal> );
-	}
-
 	renderPagination() {
 		const bsSize = this.props.bsSize;
 		const currentPage = this.state.currentPage;
@@ -1723,7 +1685,13 @@ class Sketchpad extends Component {
 					this.textInput = div;
 				}} />
 				{this.renderUploadModal()}
-				{this.renderNavigationModal()}
+				<NavigationModal
+					container={this}
+					show={this.state.showNavigationModal}
+					onSelect={this.gotoPage}
+					noPages={this.state.noPages}
+					onHide={this.toggleNavigationModal}
+				/>
 				{this.renderProgressModal()}
 				<ResetModal
 					container={this}
@@ -1765,6 +1733,7 @@ Sketchpad.propDescriptions = {
 	pdf: 'Link to PDF file for baked-in page backgrounds',
 	showTutorial: 'show a tutorial for the sketchpad',
 	transmitOwner: 'whether owner actions should be transmitted to other users in real-time',
+	groupMode: 'controls whether all user\'s actions are transmitted to everyone else',
 	style: 'CSS inline styles',
 	onChange: 'callback invoked whenever a new line element is drawn'
 };
@@ -1786,6 +1755,7 @@ Sketchpad.defaultProps = {
 	pdf: null,
 	showTutorial: false,
 	transmitOwner: true,
+	groupMode: false,
 	style: {},
 	onChange() {}
 };
@@ -1807,6 +1777,7 @@ Sketchpad.propTypes = {
 	pdf: PropTypes.string,
 	showTutorial: PropTypes.bool,
 	transmitOwner: PropTypes.bool,
+	groupMode: PropTypes.bool,
 	style: PropTypes.object,
 	onChange: PropTypes.func
 };
