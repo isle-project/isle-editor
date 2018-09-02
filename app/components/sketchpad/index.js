@@ -33,7 +33,9 @@ import Gate from 'components/gate';
 import SelectInput from 'react-select';
 import ResetModal from './reset_modal.js';
 import NavigationModal from './navigation_modal.js';
+import TooltipButton from './tooltip_button.js';
 import guide from './guide.json';
+import removeUndoElements from './remove_undo_elements.js';
 import './sketchpad.css';
 
 
@@ -46,34 +48,6 @@ const COLORPICKER_COLORS = [
 	'#ABB8C3', '#EB144C', '#9900EF'
 ];
 const RECORD_TIME_INCREMENT = 100;
-
-
-// FUNCTIONS //
-
-const TooltipButton = ({ tooltip, onClick, glyph, label, disabled, bsSize }) => {
-	return ( <Tooltip placement="bottom" tooltip={tooltip} >
-		<Button bsSize={bsSize} onClick={onClick} disabled={disabled} >
-			{ glyph ? <Glyphicon glyph={glyph} /> : null }
-			{label}
-		</Button>
-	</Tooltip> );
-};
-
-const removeUndoElements = ( arr, nUndos ) => {
-	let count = 0;
-	let lastID;
-	let elem;
-	while ( count <= nUndos && arr.length > 0 ) {
-		elem = arr.pop();
-		if ( elem.type === 'text' ) {
-			count += 1;
-		} else if ( elem.type === 'line' && lastID !== elem.drawID ) {
-			count += 1;
-			lastID = elem.drawID;
-		}
-	}
-	arr.push( elem );
-};
 
 
 // MAIN //
@@ -185,7 +159,8 @@ class Sketchpad extends Component {
 					if ( session.isOwner() ) {
 						if (
 							this.state.receiveFrom.name !== action.name &&
-							!action.owner
+							!action.owner &&
+							!this.state.groupMode
 						) {
 							return;
 						}
@@ -217,7 +192,6 @@ class Sketchpad extends Component {
 						const { drawID, page } = JSON.parse( action.value );
 						debug( `Should delete element with id ${drawID}` );
 						const elems = this.elements[ page ];
-						console.log( elems );
 						let deleteStart;
 						let deleteEnd;
 						for ( let i = 0; i < elems.length; i++ ) {
@@ -243,7 +217,6 @@ class Sketchpad extends Component {
 						const { drawID, page, dx, dy } = JSON.parse( action.value );
 						debug( `Should drag element with id ${drawID} by dx: ${dx} and dy: ${dy}...` );
 						const elems = this.elements[ page ];
-						console.log( elems );
 						for ( let i = 0; i < elems.length; i++ ) {
 							const e = elems[ i ];
 							if ( e.drawID === drawID ) {
