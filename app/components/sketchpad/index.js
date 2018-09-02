@@ -9,6 +9,7 @@ import Pressure from 'pressure';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Panel from 'react-bootstrap/lib/Panel';
+import Checkbox from 'react-bootstrap/lib/Checkbox';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
@@ -107,6 +108,7 @@ class Sketchpad extends Component {
 			currentPage: 0,
 			fontFamily: props.fontFamily,
 			fontSize: props.fontSize,
+			groupMode: false,
 			recording: false,
 			isExporting: false,
 			finishedRecording: false,
@@ -219,18 +221,22 @@ class Sketchpad extends Component {
 						const { drawID, page } = JSON.parse( action.value );
 						debug( `Should delete element with id ${drawID}` );
 						const elems = this.elements[ page ];
+						console.log( elems );
 						let deleteStart;
 						let deleteEnd;
 						for ( let i = 0; i < elems.length; i++ ) {
 							if ( deleteStart === void 0 && elems[ i ].drawID === drawID ) {
 								deleteStart = i;
-							} else if ( deleteStart && elems[ i ].drawID !== drawID ) {
+							} else if (
+								deleteStart !== void 0 &&
+								elems[ i ].drawID !== drawID
+							) {
 								deleteEnd = i;
 								break;
 							}
 						}
 						// Handle case where last element shall be removed:
-						if ( deleteStart && !deleteEnd ) {
+						if ( deleteStart !== void 0 && !deleteEnd ) {
 							deleteEnd = elems.length - 1;
 						}
 						debug( `Delete elements ${deleteStart} to ${deleteEnd}` );
@@ -241,18 +247,19 @@ class Sketchpad extends Component {
 						const { drawID, page, dx, dy } = JSON.parse( action.value );
 						debug( `Should drag element with id ${drawID} by dx: ${dx} and dy: ${dy}...` );
 						const elems = this.elements[ page ];
+						console.log( elems );
 						for ( let i = 0; i < elems.length; i++ ) {
 							const e = elems[ i ];
 							if ( e.drawID === drawID ) {
 								if ( e.type === 'line' ) {
-									e.startX += dx;
-									e.endX += dx;
-									e.startY += dy;
-									e.endY += dy;
+									e.startX += ( dx / this.canvas.width );
+									e.endX += ( dx / this.canvas.width );
+									e.startY += ( dy / this.canvas.height );
+									e.endY += ( dy / this.canvas.height );
 								}
 								else if ( e.type === 'text' ) {
-									e.x += dx;
-									e.y += dy;
+									e.x += ( dx / this.canvas.width );
+									e.y += ( dy / this.canvas.height );
 								}
 							}
 						}
@@ -330,6 +337,12 @@ class Sketchpad extends Component {
 		}
 	}
 
+	toggleGroupMode = () => {
+		this.setState({
+			groupMode: !this.state.groupMode
+		});
+	}
+
 	preventDefaultTouch = ( e ) => {
 		if (
 			this.state.mode === 'drawing' &&
@@ -377,7 +390,6 @@ class Sketchpad extends Component {
 
 	redraw = () => {
 		if ( this.pageRendering ) {
-			console.log( this.renderTask )
 			return debug( 'Early return because of active render task...' );
 		}
 		this.pageRendering = true;
@@ -393,10 +405,6 @@ class Sketchpad extends Component {
 			.then( () => {
 				const elems = this.elements[ currentPage ];
 				debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
-				console.log( elems )
-				console.log( this.state.canvasWidth )
-				console.log( this.state.canvasHeight )
-				console.log( this.canvas )
 				for ( let i = recordingEndPos; i < elems.length; i++ ) {
 					this.drawElement( elems[ i ] );
 				}
@@ -404,7 +412,8 @@ class Sketchpad extends Component {
 			})
 			.catch( ( err ) => {
 				this.pageRendering = false;
-				this.redraw();
+				debug( 'Encountered an error: '+err.message );
+				// this.redraw();
 			});
 	}
 
@@ -674,7 +683,10 @@ class Sketchpad extends Component {
 					}),
 					noSave: true
 				};
-				if ( session.isOwner() && this.state.transmitOwner ) {
+				if (
+					this.state.groupMode ||
+					session.isOwner() && this.state.transmitOwner
+				) {
 					session.log( logAction, 'members' );
 				} else {
 					session.log( logAction, 'owners' );
@@ -740,7 +752,7 @@ class Sketchpad extends Component {
 					noSave: true
 				};
 				const session = this.context.session;
-				if ( session.isOwner() ) {
+				if ( session.isOwner() || this.state.groupMode ) {
 					session.log( action, 'members' );
 				} else {
 					session.log( action );
@@ -1005,7 +1017,7 @@ class Sketchpad extends Component {
 					type: 'text'
 				})
 			};
-			if ( session.isOwner() ) {
+			if ( session.isOwner() || this.state.groupMode ) {
 				session.log( logAction, 'members' );
 			} else {
 				session.log( logAction );
@@ -1081,19 +1093,24 @@ class Sketchpad extends Component {
 			if ( !isNull( found ) ) {
 				const id = elems[ found ].drawID;
 				this.deleteElement( id, found, elems );
-				const action = {
-					id: this.props.id,
-					type: 'SKETCHPAD_DELETE_ELEMENT',
-					value: JSON.stringify({
-						drawID: id,
-						page: this.state.currentPage
-					})
-				};
-				const session = this.context.session;
-				if ( session.isOwner() && this.state.transmitOwner ) {
-					session.log( action, 'members' );
-				} else {
-					session.log( action, 'owners' );
+				if ( this.state.mode === 'delete' ) {
+					const action = {
+						id: this.props.id,
+						type: 'SKETCHPAD_DELETE_ELEMENT',
+						value: JSON.stringify({
+							drawID: id,
+							page: this.state.currentPage
+						})
+					};
+					const session = this.context.session;
+					if (
+						( session.isOwner() && this.state.transmitOwner ) ||
+						this.state.groupMode
+					) {
+						session.log( action, 'members' );
+					} else {
+						session.log( action, 'owners' );
+					}
 				}
 			}
 		}
@@ -1581,6 +1598,7 @@ class Sketchpad extends Component {
 					receiveFrom: newValue
 				});
 			}} />
+			<Checkbox checked={this.state.groupMode} onClick={this.toggleGroupMode} >Group Mode</Checkbox>
 		</Popover>;
 		return (
 			<Gate owner>
