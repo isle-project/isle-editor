@@ -23,6 +23,7 @@ import incrspace from '@stdlib/math/utils/incrspace';
 import isObject from '@stdlib/assert/is-object';
 import isNull from '@stdlib/assert/is-null';
 import ceil from '@stdlib/math/base/special/ceil';
+import round from '@stdlib/math/base/special/round';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
@@ -199,9 +200,6 @@ class Sketchpad extends Component {
 					) {
 						let elem = JSON.parse( action.value );
 						elem.shouldLog = false;
-						const elements = this.elements[ elem.page ];
-						elements.push( elem );
-						this.props.onChange( elements );
 						if ( elem.page === this.state.currentPage ) {
 							if ( elem.type === 'text' ) {
 								this.drawText( elem );
@@ -209,6 +207,9 @@ class Sketchpad extends Component {
 								this.drawLine( elem );
 							}
 						}
+						const elements = this.elements[ elem.page ];
+						elements.push( elem );
+						this.props.onChange( elements );
 					}
 					else if ( type === 'SKETCHPAD_INSERT_PAGE' ) {
 						debug( `Should insert page at ${action.value}...` );
@@ -341,10 +342,6 @@ class Sketchpad extends Component {
 	renderBackground = ( pageNumber ) => {
 		const page = this.backgrounds[ pageNumber ];
 		if ( page ) {
-			if ( this.renderTask ) {
-				debug( 'Active render task, need to cancel first: ' );
-				return this.renderTask.cancel();
-			}
 			const heightRatio = this.state.canvasHeight / page.getViewport(1.0).height;
 			const widthRatio = this.state.canvasWidth / page.getViewport(1.0).width;
 			const viewport = page.getViewport( min( widthRatio, heightRatio ) );
@@ -369,8 +366,7 @@ class Sketchpad extends Component {
 				canvasContext: this.ctx,
 				viewport: viewport
 			};
-			this.renderTask = page.render( renderContext );
-			return this.renderTask
+			return page.render( renderContext )
 				.then( () => {
 					debug( `Background rendered for page ${pageNumber}` );
 				});
@@ -380,6 +376,11 @@ class Sketchpad extends Component {
 	}
 
 	redraw = () => {
+		if ( this.pageRendering ) {
+			console.log( this.renderTask )
+			return debug( 'Early return because of active render task...' );
+		}
+		this.pageRendering = true;
 		const currentPage = this.state.currentPage;
 		debug( `Redrawing page ${currentPage+1}` );
 		const ctx = this.ctx;
@@ -392,13 +393,17 @@ class Sketchpad extends Component {
 			.then( () => {
 				const elems = this.elements[ currentPage ];
 				debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
+				console.log( elems )
+				console.log( this.state.canvasWidth )
+				console.log( this.state.canvasHeight )
+				console.log( this.canvas )
 				for ( let i = recordingEndPos; i < elems.length; i++ ) {
 					this.drawElement( elems[ i ] );
 				}
-				this.renderTask = null;
+				this.pageRendering = false;
 			})
 			.catch( ( err ) => {
-				console.log( err );
+				this.pageRendering = false;
 				this.redraw();
 			});
 	}
@@ -644,8 +649,12 @@ class Sketchpad extends Component {
 			ctx.lineCap = 'round';
 			ctx.strokeStyle = selected ? 'yellow' : color;
 			ctx.beginPath();
-			ctx.moveTo( startX, startY );
-			ctx.lineTo( endX, endY );
+			const startXabs = round( startX*this.canvas.width );
+			const startYabs = round( startY*this.canvas.height );
+			ctx.moveTo( startXabs, startYabs );
+			const endXabs = round( endX*this.canvas.width );
+			const endYabs = round( endY*this.canvas.height );
+			ctx.lineTo( endXabs, endYabs );
 			ctx.stroke();
 			const { session } = this.context;
 			if ( shouldLog ) {
@@ -653,10 +662,10 @@ class Sketchpad extends Component {
 					id: this.props.id,
 					type: 'SKETCHPAD_DRAW_LINE',
 					value: JSON.stringify({
-						startX,
-						startY,
-						endX,
-						endY,
+						startX: startX,
+						startY: startY,
+						endX: endX,
+						endY: endY,
 						color,
 						lineWidth,
 						page: this.state.currentPage,
@@ -708,14 +717,14 @@ class Sketchpad extends Component {
 					const e = elems[ i ];
 					if ( e.selected ) {
 						if ( e.type === 'line' ) {
-							e.startX += dx;
-							e.endX += dx;
-							e.startY += dy;
-							e.endY += dy;
+							e.startX += ( dx / this.canvas.width );
+							e.endX += ( dx / this.canvas.width );
+							e.startY += ( dy / this.canvas.height );
+							e.endY += ( dy / this.canvas.height );
 						}
 						else if ( e.type === 'text' ) {
-							e.x += dx;
-							e.y += dy;
+							e.x += ( dx / this.canvas.width );
+							e.y += ( dy / this.canvas.height );
 						}
 					}
 				}
@@ -749,10 +758,10 @@ class Sketchpad extends Component {
 			const line = {
 				color: this.state.color,
 				lineWidth: this.state.brushSize * ( 1.0 + this.force ) * 0.5,
-				startX: this.x,
-				startY: this.y,
-				endX: x,
-				endY: y,
+				startX: this.x / this.canvas.width,
+				startY: this.y / this.canvas.height,
+				endX: x / this.canvas.width,
+				endY: y / this.canvas.height,
 				time: this.time,
 				type: 'line',
 				page: this.state.currentPage,
@@ -938,15 +947,13 @@ class Sketchpad extends Component {
 		const y = parseInt( this.textInput.style.top, 10 ) - rect.top;
 		if ( event.keyCode === 13 ) {
 			const value = this.textInput.value;
-
-			debug( 'Drawing text: '+value+' at x = '+x+' and y = '+y );
 			this.textInput.value = '';
 			this.textInput.style.top = String( parseInt( this.textInput.style.top, 10 ) + this.state.fontSize ) + 'px';
 			const username = this.context.session.user.email || '';
 			const text = {
 				value: value,
-				x: x,
-				y: y,
+				x: x / this.canvas.width,
+				y: y / this.canvas.height,
 				color: this.state.color,
 				fontSize: this.state.fontSize,
 				fontFamily: this.state.fontFamily,
@@ -977,15 +984,18 @@ class Sketchpad extends Component {
 		const ctx = this.ctx;
 		ctx.font = `${fontSize}px ${fontFamily}`;
 		ctx.fillStyle = selected ? 'yellow' : color;
-		ctx.fillText( value, x, y+fontSize );
+		const xval = round( x*this.canvas.width );
+		const yval = round( y*this.canvas.height ) + fontSize;
+		debug( `Draw text at x: ${xval} and y: ${yval}` );
+		ctx.fillText( value, xval, yval );
 		const { session } = this.context;
 		if ( shouldLog ) {
 			const logAction = {
 				id: this.props.id,
 				type: 'SKETCHPAD_DRAW_TEXT',
 				value: JSON.stringify({
-					x,
-					y,
+					x: x,
+					y: y,
 					value,
 					color,
 					fontSize,
@@ -1039,8 +1049,12 @@ class Sketchpad extends Component {
 					this.ctx.beginPath();
 					this.ctx.lineCap = 'round';
 					this.ctx.lineWidth = elem.linWidth;
-					this.ctx.moveTo( elem.startX, elem.startY );
-					this.ctx.lineTo( elem.endX, elem.endY );
+					const startXabs = round( elem.startX*this.canvas.width );
+					const startYabs = round( elem.startY*this.canvas.height );
+					const endXabs = round( elem.endX*this.canvas.width );
+					const endYabs = round( elem.endY*this.canvas.height );
+					this.ctx.moveTo( startXabs, startYabs );
+					this.ctx.lineTo( endXabs, endYabs );
 					this.ctx.closePath();
 					if ( this.ctx.isPointInStroke( x, y ) ) {
 						found = i;
@@ -1050,11 +1064,13 @@ class Sketchpad extends Component {
 				}
 				else if ( elem.type === 'text' ) {
 					const width = this.ctx.measureText( elem.value ).width;
+					const xabs = round( elem.x * this.canvas.width );
+					const yabs = round( elem.y * this.canvas.height );
 					if (
-						elem.x <= x &&
-						x <= elem.x + width &&
-						elem.y <= y &&
-						y <= elem.y + elem.fontSize
+						xabs <= x &&
+						x <= xabs + width &&
+						yabs <= y &&
+						y <= yabs + elem.fontSize
 					) {
 						found = i;
 						this.isSelected = elem.drawID;
