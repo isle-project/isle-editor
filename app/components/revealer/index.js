@@ -34,6 +34,7 @@ class Revealer extends Component {
 							}
 						}
 					} else if ( type === 'user_joined' ) {
+						// When new users join, make sure they can see the component when it was already revealed:
 						if ( this.state.showChildren ) {
 							this.context.session.log({
 								id: this.props.id,
@@ -57,6 +58,7 @@ class Revealer extends Component {
 		this.setState({
 			showChildren: !this.state.showChildren
 		}, () => {
+			// Send message to other users:
 			if ( this.state.showChildren ) {
 				this.context.session.log({
 					id: this.props.id,
@@ -71,7 +73,6 @@ class Revealer extends Component {
 				}, 'members' );
 			}
 		});
-		// Send message to other users at call
 	}
 
 	render() {
