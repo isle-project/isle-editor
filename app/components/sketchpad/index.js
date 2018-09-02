@@ -252,6 +252,21 @@ class Sketchpad extends Component {
 						this.elements[ page ] = newElems;
 						this.redraw();
 					}
+					else if ( type === 'SKETCHPAD_CLEAR_ALL_PAGES' ) {
+						const user = action.email;
+						for ( let page = 0; page < this.state.noPages; page++ ) {
+							const elems = this.elements[ page ];
+							const newElems = [];
+							for ( let i = 0; i < elems.length; i++ ) {
+								const e = elems[ i ];
+								if ( e.user !== user ) {
+									newElems.push( e );
+								}
+							}
+							this.elements[ page ] = newElems;
+						}
+						this.redraw();
+					}
 				}
 			});
 		}
@@ -532,6 +547,19 @@ class Sketchpad extends Component {
 				noPages: noPages,
 				finishedRecording: false
 			});
+		}
+		const logAction = {
+			id: this.props.id,
+			type: 'SKETCHPAD_CLEAR_ALL_PAGES',
+			value: null
+		};
+		const session = this.context.session;
+		if (
+			session.isOwner() && this.state.transmitOwner
+		) {
+			session.log( logAction, 'members' );
+		} else {
+			session.log( logAction, 'owners' );
 		}
 	}
 
