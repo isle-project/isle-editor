@@ -75,11 +75,15 @@ class Revealer extends Component {
 	}
 
 	render() {
-		const header = <h3 className='center'>{this.props.message}</h3>;
+		const header = <h3 className="center" >{this.props.message}</h3>;
 		return (<div>
 			<Gate owner >
 				<Button
+					className="centered"
 					onClick={this.toggleContent}
+					style={{
+						marginBottom: '10px'
+					}}
 				>
 					Click to {this.state.showChildren ? 'hide from' : 'reveal to'} users
 				</Button>
