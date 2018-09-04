@@ -30,6 +30,7 @@ import Joyride from 'components/joyride';
 import Tooltip from 'components/tooltip';
 import { TwitterPicker } from 'react-color';
 import Gate from 'components/gate';
+import KeyControls from 'components/key-controls';
 import SelectInput from 'react-select';
 import ResetModal from './reset_modal.js';
 import NavigationModal from './navigation_modal.js';
@@ -1748,6 +1749,12 @@ class Sketchpad extends Component {
 						run={true}
 					/> : null
 				}
+				<KeyControls
+					actions={{
+						'ArrowRight': this.nextPage,
+						'ArrowLeft': this.previousPage
+					}}
+				/>
 			</Panel>
 		);
 	}
