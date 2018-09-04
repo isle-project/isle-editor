@@ -187,7 +187,7 @@ class Sketchpad extends Component {
 					}
 					else if ( type === 'SKETCHPAD_INSERT_PAGE' ) {
 						debug( `Should insert page at ${action.value}...` );
-						this.insertPage( action.value );
+						this.insertPage( action.value, false );
 					}
 					else if ( type === 'SKETCHPAD_DELETE_ELEMENT' ) {
 						const { drawID, page, user } = JSON.parse( action.value );
@@ -795,9 +795,6 @@ class Sketchpad extends Component {
 			}
 		}
 		if ( this.isMouseDown && !this.props.disabled ) {
-			// Offset by one to always draw at least a dot:
-			x += 1;
-			y += 1;
 			const username = this.context.session.user.email || '';
 			const line = {
 				color: this.state.color,
@@ -967,7 +964,7 @@ class Sketchpad extends Component {
 		});
 	}
 
-	insertPage = ( idx ) => {
+	insertPage = ( idx, logging = true ) => {
 		this.elements.splice( idx, 0, []);
 		this.backgrounds.splice( idx, 0, null );
 		this.recordingEndPositions.splice( idx, 0, 0 );
@@ -977,11 +974,13 @@ class Sketchpad extends Component {
 			nUndos: 0
 		}, () => {
 			this.redraw();
-			this.context.session.log({
-				id: this.props.id,
-				type: 'SKETCHPAD_INSERT_PAGE',
-				value: idx
-			}, 'members' );
+			if ( logging ) {
+				this.context.session.log({
+					id: this.props.id,
+					type: 'SKETCHPAD_INSERT_PAGE',
+					value: idx
+				}, 'members' );
+			}
 		});
 	}
 
@@ -1672,7 +1671,15 @@ class Sketchpad extends Component {
 			onTouchStart={this.drawStart}
 		/>;
 		return (
-			<Panel className="modal-container" style={{ width: this.state.canvasWidth+2, position: 'relative' }}>
+			<Panel
+				ref={( div ) => { this.sketchpadPanel = div; }}
+				className="modal-container"
+				style={{
+					width: this.state.canvasWidth+2,
+					position: 'relative'
+				}}
+				tabindex="0"
+			>
 				<div className="sketch-panel-heading clearfix unselectable">
 					{this.renderPagination()}
 					<ButtonGroup bsSize={bsSize} className="sketch-drag-delete-modes sketch-button-group" >
@@ -1750,6 +1757,7 @@ class Sketchpad extends Component {
 					/> : null
 				}
 				<KeyControls
+					container={this.sketchpadPanel}
 					actions={{
 						'ArrowRight': this.nextPage,
 						'ArrowLeft': this.previousPage
