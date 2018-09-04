@@ -387,6 +387,11 @@ class Sketchpad extends Component {
 					debug( `Background rendered for page ${pageNumber}` );
 				});
 		}
+		const canvas = this.canvas;
+		const ctx = this.ctx;
+		if ( ctx ) {
+			ctx.clearRect( 0, 0, canvas.width, canvas.height );
+		}
 		// Return promise that immediately resolves as no background needs to be drawn:
 		return Promise.resolve();
 	}
@@ -874,9 +879,9 @@ class Sketchpad extends Component {
 								modalMessage: err.message
 							});
 						} else {
-							const server = this.context.session.server;
+							const session = this.context.session;
 							const filename = res.filename;
-							const link = server + '/' + filename;
+							const link = session.server + '/' + filename;
 							this.setState({
 								isExporting: false,
 								showUploadModal: true,
@@ -884,6 +889,11 @@ class Sketchpad extends Component {
 									The file has been uploaded successfully and can be accessed at the following address: <a href={link} target="_blank" >{link}</a>
 								</span>
 							});
+							const msg = {
+								text: `Dear ${session.user.name}, your notes have been successfully uploaded and are now available at <a href="${link}">${link}</a>.`,
+								subject: 'PDF uploaded'
+							};
+							session.sendMail( msg, session.user.email );
 						}
 					};
 					this.context.session.uploadFile( pdfForm, onUpload );
