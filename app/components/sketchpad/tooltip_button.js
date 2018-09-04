@@ -1,5 +1,6 @@
 // MODULES //
 
+import React from 'react';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import Button from 'react-bootstrap/lib/Button';
 import Tooltip from 'components/tooltip';
