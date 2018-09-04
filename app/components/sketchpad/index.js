@@ -49,6 +49,7 @@ const COLORPICKER_COLORS = [
 	'#ABB8C3', '#EB144C', '#9900EF'
 ];
 const RECORD_TIME_INCREMENT = 100;
+const RE_DIGITS = /^[0-9]*$/;
 
 
 // MAIN //
@@ -76,7 +77,7 @@ class Sketchpad extends Component {
 			color: props.color,
 			brushSize: props.brushSize,
 			showColorPicker: false,
-			currentPage: 0,
+			currentPage: this.readURL(),
 			fontFamily: props.fontFamily,
 			fontSize: props.fontSize,
 			groupMode: props.groupMode,
@@ -332,6 +333,10 @@ class Sketchpad extends Component {
 		if ( isObject( data ) ) {
 			this.elements = data.elements;
 			this.recordingEndPositions = data.recordingEndPositions;
+			const page = this.readURL();
+			if ( page > 0 ) {
+				data.state.currentPage = page;
+			}
 			this.setState( data.state, () => {
 				this.redraw();
 			});
@@ -402,6 +407,7 @@ class Sketchpad extends Component {
 		}
 		this.pageRendering = true;
 		const currentPage = this.state.currentPage;
+
 		debug( `Redrawing page ${currentPage+1}` );
 		const ctx = this.ctx;
 		const canvas = this.canvas;
@@ -1216,6 +1222,19 @@ class Sketchpad extends Component {
 		});
 	}
 
+	readURL = () => {
+		const hash = window.location.hash;
+		const pageNo = hash.slice( 2 );
+		if ( RE_DIGITS.test( pageNo ) ) {
+			return Number( pageNo ) - 1;
+		}
+		return 0;
+	}
+
+	updateURL = ( pageNo ) => {
+		window.location.hash = '#/'+(pageNo+1);
+	}
+
 	nextPage = () => {
 		if ( this.state.currentPage < this.state.noPages-1 ) {
 			debug( 'Should go to next page...' );
@@ -1223,6 +1242,9 @@ class Sketchpad extends Component {
 				currentPage: this.state.currentPage + 1,
 				nUndos: 0
 			}, () => {
+				// Update hash of URL:
+				this.updateURL( this.state.currentPage );
+
 				this.redraw();
 				this.context.session.log({
 					id: this.props.id,
@@ -1239,6 +1261,9 @@ class Sketchpad extends Component {
 				currentPage: this.state.currentPage - 1,
 				nUndos: 0
 			}, () => {
+				// Update hash of URL:
+				this.updateURL( this.state.currentPage );
+
 				this.redraw();
 				this.context.session.log({
 					id: this.props.id,
@@ -1257,6 +1282,9 @@ class Sketchpad extends Component {
 				showNavigationModal: false,
 				nUndos: 0
 			}, () => {
+				// Update hash of URL:
+				this.updateURL( this.state.currentPage );
+
 				this.redraw();
 				this.context.session.log({
 					id: this.props.id,
