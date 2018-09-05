@@ -49,7 +49,7 @@ const COLORPICKER_COLORS = [
 	'#ABB8C3', '#EB144C', '#9900EF'
 ];
 const RECORD_TIME_INCREMENT = 100;
-const RE_DIGITS = /^[0-9]*$/;
+const RE_DIGITS = /^[0-9]+$/;
 
 
 // MAIN //
