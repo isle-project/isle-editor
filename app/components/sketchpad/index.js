@@ -100,7 +100,7 @@ class Sketchpad extends Component {
 	static getDerivedStateFromProps( props, state ) {
 		if ( props.fullscreen ) {
 			return {
-				canvasHeight: window.innerHeight - 60,
+				canvasHeight: window.innerHeight - 85,
 				canvasWidth: window.innerWidth - 40
 			};
 		}
@@ -1714,7 +1714,8 @@ class Sketchpad extends Component {
 				className="modal-container"
 				style={{
 					width: this.state.canvasWidth+2,
-					position: 'relative'
+					position: 'relative',
+					marginBottom: this.props.fullscreen ? '0px' : '20px'
 				}}
 				tabindex="0"
 			>
@@ -1797,8 +1798,8 @@ class Sketchpad extends Component {
 				<KeyControls
 					container={this.sketchpadPanel}
 					actions={{
-						'ArrowRight': this.nextPage,
-						'ArrowLeft': this.previousPage
+						'PageDown': this.nextPage,
+						'PageUp': this.previousPage
 					}}
 				/>
 			</Panel>
