@@ -77,7 +77,7 @@ class Sketchpad extends Component {
 			color: props.color,
 			brushSize: props.brushSize,
 			showColorPicker: false,
-			currentPage: this.readURL(),
+			currentPage: this.readURL()-1,
 			fontFamily: props.fontFamily,
 			fontSize: props.fontSize,
 			groupMode: props.groupMode,
@@ -284,6 +284,12 @@ class Sketchpad extends Component {
 		document.body.addEventListener( 'touchstart', this.preventDefaultTouch, opts );
 		document.body.addEventListener( 'touchend', this.preventDefaultTouch, opts );
 		document.body.addEventListener( 'touchmove', this.preventDefaultTouch, opts );
+		window.addEventListener( 'hashchange', () => {
+			const page = this.readURL();
+			if ( page > 0 ) {
+				this.gotoPage( page-1 );
+			}
+		});
 	}
 
 	componentDidUpdate( prevProps ) {
@@ -1226,9 +1232,9 @@ class Sketchpad extends Component {
 		const hash = window.location.hash;
 		const pageNo = hash.slice( 2 );
 		if ( RE_DIGITS.test( pageNo ) ) {
-			return Number( pageNo ) - 1;
+			return Number( pageNo );
 		}
-		return 0;
+		return null;
 	}
 
 	updateURL = ( pageNo ) => {
