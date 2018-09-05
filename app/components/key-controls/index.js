@@ -83,10 +83,7 @@ KeyControls.defaultProps = {
 
 KeyControls.propTypes = {
 	actions: PropTypes.objectOf( PropTypes.func ),
-	container: PropTypes.oneOfType([
-		PropTypes.node,
-		PropTypes.null
-	])
+	container: PropTypes.node
 };
 
 KeyControls.contextTypes = {
