@@ -158,27 +158,28 @@ class Quiz extends Component {
 
 	renderCurrentQuestion() {
 		const config = this.props.questions[ this.state.current ];
-		if ( isHTMLConfig( config.question ) ) {
+		const props = config.props;
+		if ( isHTMLConfig( props.question ) ) {
 			debug( 'Question property is an object, convert to JSX...' );
-			config.question = convertJSONtoJSX( config.question );
+			props.question = convertJSONtoJSX( props.question );
 		}
 		switch ( config.component ) {
 			case 'Fragment':
 				return convertJSONtoJSX( config );
 			case 'FreeTextQuestion':
-				return <FreeTextQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
+				return <FreeTextQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
 			case 'MultipleChoiceQuestion':
-				return <MultipleChoiceQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
+				return <MultipleChoiceQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
 			case 'MatchListQuestion':
-				return <MatchListQuestion showSolution={false} {...config} onSubmit={this.handleSubmission} />;
+				return <MatchListQuestion showSolution={false} {...props} onSubmit={this.handleSubmission} />;
 			case 'NumberQuestion':
-				return <NumberQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
+				return <NumberQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
 			case 'OrderQuestion':
-				return <OrderQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
+				return <OrderQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
 			case 'RangeQuestion':
-				return <RangeQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
+				return <RangeQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
 			case 'SelectQuestion':
-				return <SelectQuestion provideFeedback={false} {...config} onSubmit={this.handleSubmission} />;
+				return <SelectQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
 		}
 	}
 
