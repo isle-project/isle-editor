@@ -1657,7 +1657,7 @@ class Sketchpad extends Component {
 	}
 
 	renderHTMLOverlays() {
-		const node = this.props.nodes[ this.state.currentPage ];
+		const node = this.props.nodes[ this.state.currentPage+1 ];
 		if ( !node ) {
 			return null;
 		}
