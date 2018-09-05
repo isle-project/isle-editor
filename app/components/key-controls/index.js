@@ -60,6 +60,7 @@ class KeyControls extends Component {
 		const keyName = event.key;
 		const fn = this.props.actions[ keyName ];
 		if ( isFunction( fn ) ) {
+			event.preventDefault();
 			fn();
 		}
 	}
