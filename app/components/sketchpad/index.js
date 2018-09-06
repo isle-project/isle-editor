@@ -703,8 +703,8 @@ class Sketchpad extends Component {
 			ctx.lineCap = 'round';
 			ctx.strokeStyle = selected ? 'yellow' : color;
 			ctx.beginPath();
-			ctx.moveTo( points[ 0 ], points[ 1 ] );
-			curve( ctx, points, 0.9, 50 );
+			ctx.moveTo( points[ 0 ]*this.canvas.width, points[ 1 ]*this.canvas.height );
+			curve( ctx, points, this.canvas.width, this.canvas.height, 0.9, 50 );
 			ctx.stroke();
 		}
 	}
@@ -740,6 +740,12 @@ class Sketchpad extends Component {
 
 			const { session } = this.context;
 			const username = session.user.email || '';
+
+			// Convert to relative coordinates:
+			for ( let i = 0; i < this.currentPoints.length; i++ ) {
+				this.currentPoints[ i ] /= ( i % 2 === 0 ) ? this.canvas.width : this.canvas.height;
+			}
+
 			const line = {
 				points: this.currentPoints,
 				color: this.state.color,
@@ -750,9 +756,6 @@ class Sketchpad extends Component {
 				drawID: this.currentDrawing,
 				user: username
 			};
-
-			// Prevent future logging when redrawing element:
-			line.shouldLog = false;
 			elems.push( line );
 			this.props.onChange( elems );
 
@@ -1106,7 +1109,7 @@ class Sketchpad extends Component {
 					this.ctx.lineCap = 'round';
 					this.ctx.lineWidth = elem.linWidth;
 					this.ctx.moveTo( points[0], points[1] );
-					curve( this.ctx, points, 0.9, 50 );
+					curve( this.ctx, points, this.canvas.width, this.canvas.height, 0.9, 50 );
 					this.ctx.closePath();
 					if ( this.ctx.isPointInStroke( x, y ) ) {
 						found = i;

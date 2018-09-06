@@ -6,6 +6,16 @@
 *	License: MIT
 */
 
+// MODULES //
+
+import logger from 'debug';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor:sketchpad' );
+
+
 // MAIN //
 
 /**
@@ -22,19 +32,24 @@
 *
 * @param {CanvasRenderingContext2D} ctx - context to use
 * @param {Array} points - point array
-* @param {Number} [tension=0.5] - tension. Typically between [0.0, 1.0] but can be exceeded
-* @param {Number} [numOfSeg=25] - number of segments between two points (line resolution)
-* @param {Boolean} [close=false] - Close the ends making the line continuous
+* @param {integer} width - canvas width
+* @param {integer} height - canvas height
+* @param {number} [tension=0.5] - tension. Typically between [0.0, 1.0] but can be exceeded
+* @param {number} [numOfSeg=25] - number of segments between two points (line resolution)
+* @param {boolean} [close=false] - Close the ends making the line continuous
 * @returns {Float32Array} New array with the calculated points that was added to the path
 */
-function curve( ctx, points, tension, numOfSeg, close ) {
-	if ( typeof points === 'undefined' || points.length < 2 ) return new Float32Array(0);
+function curve( ctx, points, width, height, tension, numOfSeg, close ) {
+	debug( 'Received points: '+points.join( ', ' ) );
+	if ( typeof points === 'undefined' || points.length < 2 ) {
+		return new Float32Array( 0 );
+	}
 
 	// options or defaults
 	tension = typeof tension === 'number' ? tension : 0.5;
 	numOfSeg = typeof numOfSeg === 'number' ? numOfSeg : 25;
 
-	let pts;// for cloning point array
+	let pts; // for cloning point array
 	let i = 1;
 	let l = points.length;
 	let rPos = 0;
@@ -44,16 +59,15 @@ function curve( ctx, points, tension, numOfSeg, close ) {
 	let cachePtr = 4;
 
 	pts = points.slice( 0 );
-
 	if ( close ) {
-		pts.unshift(points[l - 1]); // insert end point as first point
-		pts.unshift(points[l - 2]);
-		pts.push(points[0], points[1]); // first point as last point
+		pts.unshift( points[l - 1] ); // insert end point as first point
+		pts.unshift( points[l - 2] );
+		pts.push( points[0], points[1] ); // first point as last point
 	}
 	else {
-		pts.unshift(points[1]); // copy 1. point and insert at beginning
-		pts.unshift(points[0]);
-		pts.push(points[l - 2], points[l - 1]); // duplicate end-points
+		pts.unshift( points[1] ); // copy 1. point and insert at beginning
+		pts.unshift( points[0] );
+		pts.push( points[l - 2], points[l - 1] ); // duplicate end-points
 	}
 
 	// cache inner-loop calculations as they are based on t alone
@@ -113,12 +127,13 @@ function curve( ctx, points, tension, numOfSeg, close ) {
 
 	// Add last point:
 	l = close ? 0 : points.length - 2;
-	res[rPos++] = points[l++];
-	res[rPos] = points[l];
+	res[ rPos++ ] = points[ l++ ];
+	res[ rPos ] = points[ l ];
 
 	// Add lines to path:
 	for ( i = 0, l = res.length; i < l; i += 2 ) {
-		ctx.lineTo(res[i], res[i+1]);
+		debug( `Draw line to x: ${res[i]*width} and y: ${res[i+1]*height}` );
+		ctx.lineTo( res[i]*width, res[i+1]*height );
 	}
 	return res;
 }
