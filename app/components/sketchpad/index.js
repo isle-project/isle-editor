@@ -88,6 +88,7 @@ class Sketchpad extends Component {
 			modalMessage: null,
 			nUndos: 0,
 			noPages: props.noPages,
+			insertedPages: [],
 			showUploadModal: false,
 			mode: 'drawing',
 			showNavigationModal: false,
@@ -547,7 +548,8 @@ class Sketchpad extends Component {
 				this.redraw();
 				this.setState({
 					nUndos: 0,
-					finishedRecording: false
+					finishedRecording: false,
+					insertedPages: []
 				});
 			});
 		} else {
@@ -564,7 +566,8 @@ class Sketchpad extends Component {
 				nUndos: 0,
 				currentPage: 0,
 				noPages: noPages,
-				finishedRecording: false
+				finishedRecording: false,
+				insertedPages: []
 			});
 		}
 		const logAction = {
@@ -985,9 +988,13 @@ class Sketchpad extends Component {
 		this.elements.splice( idx, 0, []);
 		this.backgrounds.splice( idx, 0, null );
 		this.recordingEndPositions.splice( idx, 0, 0 );
+
+		const newInsertedPages = this.state.insertedPages;
+		newInsertedPages.push( idx );
 		this.setState({
 			noPages: this.state.noPages + 1,
 			currentPage: idx,
+			insertedPages: newInsertedPages,
 			nUndos: 0
 		}, () => {
 			this.redraw();
@@ -1649,8 +1656,20 @@ class Sketchpad extends Component {
 		);
 	}
 
+	toOriginalPage = ( idx ) => {
+		const addedPages = this.state.insertedPages;
+		let out = idx;
+		for ( let i = 0; i < addedPages.length; i++ ) {
+			if ( addedPages[ i ] <= idx ) {
+				out -= 1;
+			}
+		}
+		return out;
+	}
+
 	renderHTMLOverlays() {
-		const node = this.props.nodes[ this.state.currentPage+1 ];
+		const page = this.toOriginalPage( this.state.currentPage );
+		const node = this.props.nodes[ page+1 ];
 		if ( !node ) {
 			return null;
 		}
