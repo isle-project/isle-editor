@@ -362,11 +362,20 @@ class Sketchpad extends Component {
 	renderBackground = ( pageNumber ) => {
 		const page = this.backgrounds[ pageNumber ];
 		if ( page ) {
-			const heightRatio = this.state.canvasHeight / page.getViewport(1.0).height;
-			const widthRatio = this.state.canvasWidth / page.getViewport(1.0).width;
-			const viewport = page.getViewport( min( widthRatio, heightRatio ) );
-			this.canvas.height = viewport.height;
-			this.canvas.width = this.state.canvasWidth;
+			let ratio;
+			if ( this.props.fill === 'vertical' ) {
+				ratio = this.state.canvasHeight / page.getViewport(1.0).height;
+			} else {
+				ratio = this.state.canvasWidth / page.getViewport(1.0).width;
+			}
+			const viewport = page.getViewport( ratio );
+			if ( this.props.fill === 'vertical' ) {
+				this.canvas.height = viewport.height;
+				this.canvas.width = this.state.canvasWidth;
+			} else {
+				this.canvas.height = viewport.height;
+				this.canvas.width = viewport.width - 15; // account for vertical scrollbar
+			}
 
 			// Move page to the center:
 			viewport.transform[ 4 ] = max( ( this.state.canvasWidth - viewport.width ) / 2.0, 0.0 );
@@ -1800,6 +1809,7 @@ Sketchpad.propDescriptions = {
 	canvasWidth: 'width of the canvas element (in px)',
 	canvasHeight: 'height of the canvas element (in px)',
 	fullscreen: 'controls whether to automatically resize the canvas to the width and height of the browser window',
+	fill: 'if `horizontal`, fill all available horizontal space when drawing a PDF; if `vertical`, all vertical space is used to prevent y-axis overflow',
 	disabled: 'whether to make the component read-only and forbid drawing on the sketchboard',
 	fontFamily: 'Font family',
 	fontSize: 'Font size',
@@ -1822,6 +1832,7 @@ Sketchpad.defaultProps = {
 	canvasWidth: 1200,
 	canvasHeight: 700,
 	fullscreen: false,
+	fill: 'vertical',
 	disabled: false,
 	fontFamily: 'Arial',
 	fontSize: 24,
@@ -1844,6 +1855,7 @@ Sketchpad.propTypes = {
 	canvasWidth: PropTypes.number,
 	canvasHeight: PropTypes.number,
 	fullscreen: PropTypes.bool,
+	fill: PropTypes.oneOf(['vertical', 'horizontal']),
 	disabled: PropTypes.bool,
 	fontFamily: PropTypes.string,
 	fontSize: PropTypes.number,
