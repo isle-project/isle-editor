@@ -666,14 +666,12 @@ class Sketchpad extends Component {
 	drawElement = ( elem ) => {
 		if ( elem ) {
 			if ( elem.type === 'line' ) {
-				console.log( 'Draw line...' );
 				this.drawLine( elem );
 			}
 			else if ( elem.type === 'text' ) {
 				this.drawText( elem );
 			}
 			else if ( elem.type === 'curve' ) {
-				console.log( 'Draw curve...' );
 				this.drawCurve( elem );
 			}
 		}
@@ -733,9 +731,6 @@ class Sketchpad extends Component {
 			this.isMouseDown = false;
 
 			const elems = this.elements[ this.state.currentPage ];
-			console.log( this.elements );
-			console.log( this.state.currentPage );
-			console.log( elems );
 
 			const { session } = this.context;
 			const username = session.user.email || '';
