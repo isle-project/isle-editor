@@ -109,6 +109,15 @@ class Quiz extends Component {
 			solution = elem.solution;
 		}
 
+		const session = this.context.session;
+		if ( elem.props.id ) {
+			session.log({
+				id: this.props.id+'_confidence',
+				type: 'QUESTION_CONFIDENCE',
+				value: this.state.checked
+			});
+		}
+
 		answers[ this.state.current ] = {
 			question: elem.question,
 			answer,
@@ -260,6 +269,10 @@ Quiz.propTypes = {
 Quiz.defaultProps = {
 	confidence: false,
 	skippable: true
+};
+
+Quiz.contextTypes = {
+	session: PropTypes.object
 };
 
 
