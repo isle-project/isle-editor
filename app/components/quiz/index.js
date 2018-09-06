@@ -90,7 +90,7 @@ class Quiz extends Component {
 			newState.current = this.sample()[ 0 ];
 			debug( 'Selected question at index '+newState.current );
 		}
-		newState.checked = 'Somewhat sure';
+		newState.checked = null;
 		newState.counter = counter;
 		this.setState( newState);
 	}
@@ -145,15 +145,18 @@ class Quiz extends Component {
 				<tbody>
 					{this.state.answers.map( ( elem, idx ) => {
 						let className;
-						if ( elem.answer === elem.solution ) {
+						if ( !elem.props ) {
+							elem.props = {};
+						}
+						if ( elem.props.answer === elem.props.solution ) {
 							className = 'quiz-right-answer';
 						} else {
 							className = 'quiz-wrong-answer';
 						}
 						return ( <tr className={className} key={idx}>
-							<td>{elem.question}</td>
-							<td>{elem.answer}</td>
-							<td>{elem.solution}</td>
+							<td>{elem.props.question}</td>
+							<td>{elem.props.answer}</td>
+							<td>{elem.props.solution}</td>
 							{ this.props.confidence ?
 								<td>{this.state.confidences[ idx ]}</td> :
 								null
@@ -167,7 +170,7 @@ class Quiz extends Component {
 
 	renderCurrentQuestion() {
 		const config = this.props.questions[ this.state.current ];
-		const props = config.props;
+		let props = config.props || {};
 		if ( isHTMLConfig( props.question ) ) {
 			debug( 'Question property is an object, convert to JSX...' );
 			props.question = convertJSONtoJSX( props.question );
