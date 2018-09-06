@@ -112,7 +112,7 @@ class Quiz extends Component {
 		const session = this.context.session;
 		if ( elem.props.id ) {
 			session.log({
-				id: elem.props.id+'_confidence',
+				id: elem.props.id,
 				type: 'QUESTION_CONFIDENCE',
 				value: this.state.checked
 			});
