@@ -336,7 +336,6 @@ class Sketchpad extends Component {
 			if ( page > 0 ) {
 				data.state.currentPage = page;
 			}
-			console.log( data.state );
 			this.setState( data.state, () => {
 				this.redraw();
 			});
@@ -620,8 +619,6 @@ class Sketchpad extends Component {
 						end = null;
 					}
 				}
-				console.log( end );
-				console.log( nUndos );
 				debug( 'Current number of undos: '+nUndos );
 				this.setState({
 					nUndos
