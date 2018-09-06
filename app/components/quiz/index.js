@@ -9,6 +9,7 @@ import Radio from 'react-bootstrap/lib/Radio';
 import Panel from 'react-bootstrap/lib/Panel';
 import logger from 'debug';
 import sample from '@stdlib/random/sample';
+import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-plain-object';
 import incrspace from '@stdlib/math/utils/incrspace';
 import FreeTextQuestion from 'components/free-text-question';
@@ -78,6 +79,33 @@ class Quiz extends Component {
 	handleNextClick = () => {
 		debug( 'Display next question...' );
 		const newState = {};
+		if ( !this.state.answered ) {
+			const elem = this.props.questions[ this.state.current ];
+			const answers = this.state.answers.slice();
+			if ( elem.props ) {
+				let solution;
+				if ( elem.component === 'MultipleChoiceQuestion' ) {
+					const correct = elem.props.solution;
+					if ( isArray( correct ) ) {
+						solution = '';
+						for ( let i = 0; i < correct.length; i++ ) {
+							solution += elem.props.answers[ correct[ i ] ];
+							solution += '; ';
+						}
+					} else {
+						solution = elem.props.answers[ correct ].content;
+					}
+				} else {
+					solution = elem.props.solution;
+				}
+				answers[ this.state.current ] = {
+					question: elem.props ? elem.props.question : null,
+					answer: null,
+					solution
+				};
+				newState.answers = answers;
+			}
+		}
 		let counter = this.state.counter;
 		counter += 1;
 		if ( counter >= this.props.count ) {
@@ -90,6 +118,7 @@ class Quiz extends Component {
 			newState.current = this.sample()[ 0 ];
 			debug( 'Selected question at index '+newState.current );
 		}
+		newState.answered = false;
 		newState.checked = null;
 		newState.counter = counter;
 		this.setState( newState);
@@ -101,28 +130,39 @@ class Quiz extends Component {
 
 		let answer;
 		let solution;
-		if ( elem.type === 'MultipleChoiceQuestion' ) {
-			answer = elem.answers[ val ].content;
-			solution = elem.answers[ elem.solution ].content;
-		} else {
-			answer = val;
-			solution = elem.solution;
-		}
+		if ( elem.props ) {
+			if ( elem.component === 'MultipleChoiceQuestion' ) {
+				answer = elem.props.answers[ val ].content;
+				const correct = elem.props.solution;
+				if ( isArray( correct ) ) {
+					solution = '';
+					for ( let i = 0; i < correct.length; i++ ) {
+						solution += elem.props.answers[ correct[ i ] ];
+						solution += '; ';
+					}
+				} else {
+					solution = elem.props.answers[ correct ].content;
+				}
+			} else {
+				answer = val;
+				solution = elem.props.solution;
+			}
 
-		const session = this.context.session;
-		if ( elem.props.id ) {
-			session.log({
-				id: elem.props.id,
-				type: 'QUESTION_CONFIDENCE',
-				value: this.state.checked
-			});
-		}
+			const session = this.context.session;
+			if ( elem.props.id ) {
+				session.log({
+					id: elem.props.id,
+					type: 'QUESTION_CONFIDENCE',
+					value: this.state.checked
+				});
+			}
 
-		answers[ this.state.current ] = {
-			question: elem.question,
-			answer,
-			solution
-		};
+			answers[ this.state.current ] = {
+				question: elem.props ? elem.props.question : null,
+				answer,
+				solution
+			};
+		}
 		this.setState({
 			answered: true,
 			answers: answers
@@ -139,24 +179,33 @@ class Quiz extends Component {
 						<th>Question</th>
 						<th>Your answer</th>
 						<th>Solution</th>
-						{ this.props.confidence ? <th>Confidence</th> : null }
+						{ this.props.confidence ? <th>Your Confidence</th> : null }
 					</tr>
 				</thead>
 				<tbody>
 					{this.state.answers.map( ( elem, idx ) => {
 						let className;
-						if ( !elem.props ) {
-							elem.props = {};
-						}
-						if ( elem.props.answer === elem.props.solution ) {
+						if ( elem.answer === elem.solution ) {
 							className = 'quiz-right-answer';
 						} else {
 							className = 'quiz-wrong-answer';
 						}
+						let question = elem.question;
+						if ( isHTMLConfig( question ) ) {
+							question = convertJSONtoJSX( question );
+						}
+						let answer = elem.answer;
+						if ( isHTMLConfig( answer ) ) {
+							answer = convertJSONtoJSX( answer );
+						}
+						let solution = elem.solution;
+						if ( isHTMLConfig( solution ) ) {
+							solution = convertJSONtoJSX( solution );
+						}
 						return ( <tr className={className} key={idx}>
-							<td>{elem.props.question}</td>
-							<td>{elem.props.answer}</td>
-							<td>{elem.props.solution}</td>
+							<td>{question}</td>
+							<td>{answer}</td>
+							<td>{solution}</td>
 							{ this.props.confidence ?
 								<td>{this.state.confidences[ idx ]}</td> :
 								null
