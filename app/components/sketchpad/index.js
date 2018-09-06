@@ -223,7 +223,9 @@ class Sketchpad extends Component {
 
 									// eslint-disable-next-line max-depth
 									for ( let i = 0; i < points.length; i++ ) {
-										points[ i ] += i % 2 === 0 ? dx : dy;
+										points[ i ] += i % 2 === 0 ?
+											( dx / this.canvas.width ) :
+											( dy / this.canvas.height );
 									}
 								}
 								else if ( e.type === 'text' ) {
@@ -795,7 +797,9 @@ class Sketchpad extends Component {
 				if ( e.type === 'curve' ) {
 					const points = e.points;
 					for ( let i = 0; i < points.length; i++ ) {
-						points[ i ] += i % 2 === 0 ? dx : dy;
+						points[ i ] += i % 2 === 0 ?
+							( dx / this.canvas.width ) :
+							( dy / this.canvas.height );
 					}
 				}
 				else if ( e.type === 'text' ) {
@@ -1810,8 +1814,8 @@ class Sketchpad extends Component {
 				<KeyControls
 					container={this.sketchpadPanel}
 					actions={{
-						'PageDown': this.nextPage,
-						'PageUp': this.previousPage
+						'ArrowDown': this.nextPage,
+						'ArrowUp': this.previousPage
 					}}
 				/>
 			</Panel>
