@@ -187,7 +187,7 @@ class Signup extends Component {
 							</Col>
 							<Col sm={10}>
 								<FormControl
-									name="passwordRepeat"
+									name="password-repeat"
 									type="password"
 									placeholder="Confirm Password"
 									onChange={this.handleInputChange}
@@ -201,8 +201,7 @@ class Signup extends Component {
 					<Overlay
 						show={this.state.showSubmitOverlay}
 						target={this.state.overlayTarget}
-						placement="bottom"
-						container={this}
+						placement="right"
 						containerPadding={20}
 					>
 						<Popover id="popover-contained" title="Input fields are not valid">

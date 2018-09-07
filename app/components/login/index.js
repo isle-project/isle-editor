@@ -1,6 +1,8 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
@@ -12,6 +14,11 @@ import Modal from 'react-bootstrap/lib/Modal';
 import Popover from 'react-bootstrap/lib/Popover';
 import PropTypes from 'prop-types';
 import './login.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor:login' );
 
 
 // MAIN //
@@ -51,8 +58,8 @@ class Login extends Component {
 		if ( this.state.email === '' ) {
 			this.setState({
 				showInputOverlay: true,
-				overlayTarget: this.emailInput,
-				invalidInputMessage: 'Enter your email address.	'
+				overlayTarget: ReactDOM.findDOMNode( this.emailInput ),
+				invalidInputMessage: 'Please enter your email address before requesting a new password.'
 			});
 		} else {
 			const { session } = this.context;
@@ -70,21 +77,23 @@ class Login extends Component {
 
 	handleSubmit = ( event ) => {
 		event.preventDefault();
-		let form = {
+		const form = {
 			password: this.state.password,
 			email: this.state.email
 		};
 		if ( form.email === '' ) {
+			debug( 'Email input field is empty, show message...' );
 			this.setState({
 				showInputOverlay: true,
-				overlayTarget: this.emailInput,
-				invalidInputMessage: 'Enter your email address.	'
+				overlayTarget: ReactDOM.findDOMNode( this.emailInput ),
+				invalidInputMessage: 'Enter your email address.'
 			}, this.hideAfterDelay );
 		}
 		else if ( form.password === '' ) {
+			debug( 'Password input field is empty, show message...' );
 			this.setState({
 				showInputOverlay: true,
-				overlayTarget: this.passwordInput,
+				overlayTarget: ReactDOM.findDOMNode( this.passwordInput ),
 				invalidInputMessage: 'Enter your password.'
 			}, this.hideAfterDelay );
 		}
@@ -115,7 +124,7 @@ class Login extends Component {
 				</Modal.Header>
 				<Modal.Body>
 					<Form horizontal>
-						<FormGroup controlId="formHorizontalEmail">
+						<FormGroup controlId="form-email" >
 							<Col componentClass={ControlLabel} sm={2}>
 								Email
 							</Col>
@@ -129,7 +138,7 @@ class Login extends Component {
 								/>
 							</Col>
 						</FormGroup>
-						<FormGroup controlId="formHorizontalPassword">
+						<FormGroup controlId="form-password" >
 							<Col componentClass={ControlLabel} sm={2}>
 								Password
 							</Col>
@@ -157,8 +166,7 @@ class Login extends Component {
 				<Overlay
 					show={this.state.showInputOverlay}
 					target={this.state.overlayTarget}
-					placement="top"
-					container={this}
+					placement="right"
 					containerPadding={20}
 				>
 					<Popover id="popover-contained" title="Not valid">
