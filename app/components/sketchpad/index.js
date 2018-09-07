@@ -1664,15 +1664,23 @@ class Sketchpad extends Component {
 		const addedPages = this.state.insertedPages;
 		let out = idx;
 		for ( let i = 0; i < addedPages.length; i++ ) {
-			if ( addedPages[ i ] <= idx ) {
+			const page = addedPages[ i ];
+			if ( page === idx ) {
+				return null;
+			}
+			else if ( addedPages[ i ] < idx ) {
 				out -= 1;
 			}
 		}
+		debug( `Page with index ${idx} corresponds to original page number ${out}...` );
 		return out;
 	}
 
 	renderHTMLOverlays() {
 		const page = this.toOriginalPage( this.state.currentPage );
+		if ( isNull( page ) ) {
+			return null;
+		}
 		const node = this.props.nodes[ page+1 ];
 		if ( !node ) {
 			return null;
