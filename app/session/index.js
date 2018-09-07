@@ -926,6 +926,22 @@ class Session {
 			body: JSON.stringify( form )
 		})
 		.then( response => {
+			if ( response.status === 404 ) {
+				return this.addNotification({
+					title: response.statusText,
+					message: 'A user with the supplied email address does not exist',
+					level: 'error',
+					position: 'tl'
+				});
+			}
+			if ( response.status === 401 ) {
+				return this.addNotification({
+					title: response.statusText,
+					message: 'Please make sure that you enter the correct password. You can set a new password by clicking on the "Forgot password?" link',
+					level: 'error',
+					position: 'tl'
+				});
+			}
 			response.json().then( body => {
 				const { token, id, message } = body;
 				if ( message === 'ok' ) {
