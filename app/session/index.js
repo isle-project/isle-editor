@@ -419,6 +419,8 @@ class Session {
 					debug( '[3b] Retrieve only own actions otherwise:' );
 					this.getCurrentUserActions();
 				}
+				// Send message to subscribed compoonents:
+				this.update( 'RECEIVED_USER_RIGHTS', userRights );
 			})
 			.catch( err => {
 				this.userRightsQuestionPosed = false;
