@@ -20,8 +20,10 @@ class Gate extends Component {
 		this._isMounted = true;
 		const { session } = this.context;
 		if ( session ) {
-			this.unsubscribe = session.subscribe( () => {
-				this.checkAuthorization();
+			this.unsubscribe = session.subscribe( ( type ) => {
+				if ( type === 'RECEIVED_USER_RIGHTS' ) {
+					this.checkAuthorization();
+				}
 				if ( this._isMounted ) {
 					this.forceUpdate();
 				}
