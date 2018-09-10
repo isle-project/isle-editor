@@ -5,7 +5,6 @@
     "author": "Philipp Burckhardt",
     "plugins": [
         "expandable-chapters",
-        "edit-link",
         "prism",
         "-highlight"
     ],
@@ -14,10 +13,6 @@
             "theme": "white",
             "family": "sans",
             "size": 2
-        },
-        "edit-link": {
-            "base": "https://github.com/Planeshifter/isle-editor/edit/master/docs",
-            "label": "Edit This Page"
         }
     }
 }
