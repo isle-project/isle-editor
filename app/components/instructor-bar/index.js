@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Badge from 'react-bootstrap/lib/Badge';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Modal from 'react-bootstrap/lib/Modal';
@@ -34,6 +35,7 @@ class InstructorBar extends Component {
 
 	componentDidMount() {
 		const { session } = this.context;
+		this.addSessionActions();
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
 				if ( type === 'retrieved_user_actions' ) {
@@ -252,7 +254,13 @@ class InstructorBar extends Component {
 				</div> : null }
 				{this.renderFullscreenModal()}
 				<ButtonGroup bsSize="small" >
-					<Button onClick={this.toggleActions} style={{...this.props.buttonStyle}} >{this.props.buttonLabel}</Button>
+					<Button
+						onClick={this.toggleActions}
+						style={{...this.props.buttonStyle}}
+					>
+						<span style={{ marginRight: '5px'}} >{this.props.buttonLabel}</span>
+						<Badge style={{ fontSize: '10px' } }>{this.state.actions.length}</Badge>
+					</Button>
 				</ButtonGroup>
 				{this.renderDeleteModal()}
 			</Gate>
