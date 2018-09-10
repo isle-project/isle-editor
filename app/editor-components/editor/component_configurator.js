@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import markdownIt from 'markdown-it';
 import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
@@ -11,6 +12,7 @@ import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Modal from 'react-bootstrap/lib/Modal';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isFunction from '@stdlib/assert/is-function';
+import endsWith from '@stdlib/string/ends-with';
 import typeOf from '@stdlib/utils/type-of';
 import replace from '@stdlib/string/replace';
 import removeLast from '@stdlib/string/remove-last';
@@ -23,6 +25,12 @@ import objectKeys from '@stdlib/utils/keys';
 const debug = logger( 'isle-editor' );
 const RE_SNIPPET_PLACEHOLDER = /\${[0-9]:([^}]+)}/g;
 const RE_SNIPPET_EMPTY_PLACEHOLDER = /\t*\${[0-9]:}\n?/g;
+const md = markdownIt({
+	html: true,
+	xhtmlOut: true,
+	breaks: true,
+	typographer: false
+});
 
 
 // FUNCTIONS //
@@ -267,7 +275,7 @@ class ComponentConfigurator extends Component {
 		return (
 			<Fragment>
 				<label>Click on the box to add the respective options:</label>
-				<div style={{ height: '350px', overflowY: 'scroll' }}>
+				<div style={{ height: '300px', overflowY: 'scroll' }}>
 					<table className="table table-bordered table-condensed">
 						<thead>
 							<tr>
@@ -287,6 +295,21 @@ class ComponentConfigurator extends Component {
 	}
 
 	render() {
+		let componentDescription = null;
+		if ( this.state.componentClass ) {
+			let descr = this.state.componentClass.description || 'Description missing';
+			if ( !endsWith( descr, '.' ) ) {
+				descr += '.';
+			}
+			const innerHTML = {
+				'__html': md.render( descr )
+			};
+			/* eslint-disable react/no-danger */
+			componentDescription = <div>
+				<label dangerouslySetInnerHTML={innerHTML}></label>
+			</div>;
+			/* eslint-enable react/no-danger */
+		}
 		return (
 			<Modal
 				onHide={this.clickHide}
@@ -298,7 +321,7 @@ class ComponentConfigurator extends Component {
 					<Modal.Title>Configure {this.props.component.name}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					{this.state.componentClass ? this.state.componentClass.description : null}
+					{componentDescription}
 					{this.renderPropertyControls()}
 					<FormGroup>
 						<ControlLabel>Code:</ControlLabel>
