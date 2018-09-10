@@ -1,6 +1,6 @@
 # Range Question
 
-A range question component.
+A range question component that asks students to supply a lower and upper end point.
 
 #### Example:
 

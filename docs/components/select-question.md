@@ -1,6 +1,6 @@
 # Select Question
 
-A select question component. 
+A select question component.
 
 #### Example:
 

@@ -217,7 +217,9 @@ class RangeQuestion extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+RangeQuestion.description = 'A range question component that asks students to supply a lower and upper end point';
 
 RangeQuestion.defaultProps = {
 	question: '',
@@ -233,9 +235,6 @@ RangeQuestion.defaultProps = {
 	onChangeLower() {},
 	onSubmit() {}
 };
-
-
-// PROPERTY TYPES //
 
 RangeQuestion.propDescriptions = {
 	question: 'displayed question',
