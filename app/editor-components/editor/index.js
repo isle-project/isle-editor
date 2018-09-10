@@ -218,7 +218,7 @@ class Editor extends Component {
 	render() {
 		return (
 			<div>
-				<ContextMenuTrigger id="editorWindow">
+				<ContextMenuTrigger id="editorWindow" holdToDisplay={-1} >
 					<div
 						ref={( div ) => {
 							this.editorWindow = div;
