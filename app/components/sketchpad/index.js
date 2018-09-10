@@ -1834,6 +1834,8 @@ class Sketchpad extends Component {
 
 // TYPES //
 
+Sketchpad.description = 'A drawing sketchpad for note taking on lecture slides or empty pages';
+
 Sketchpad.propDescriptions = {
 	autoSave: 'controls whether the editor should save the current text to the local storage of the browser at a given time interval',
 	intervalTime: 'time between auto saves',

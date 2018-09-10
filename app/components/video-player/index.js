@@ -117,7 +117,9 @@ class Video extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
+
+Video.description = 'A component for playing media files and content from YouTube, SoundCloud and Vimeo';
 
 Video.propDescriptions = {
 	url: 'URL of the video',
@@ -157,9 +159,6 @@ Video.propTypes = {
 	onPlay: PropTypes.func
 };
 
-
-// DEFAULT PROPERTIES //
-
 Video.defaultProps = {
 	url: '',
 	controls: false,
@@ -175,9 +174,6 @@ Video.defaultProps = {
 	onPause() {},
 	onPlay() {}
 };
-
-
-// CONTEXT TYPES //
 
 Video.contextTypes = {
 	session: PropTypes.object
