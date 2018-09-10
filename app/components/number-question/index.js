@@ -186,7 +186,9 @@ class NumberQuestion extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+NumberQuestion.description = 'A number question component';
 
 NumberQuestion.defaultProps = {
 	question: '',
@@ -201,9 +203,6 @@ NumberQuestion.defaultProps = {
 	onChange() {},
 	onSubmit() {}
 };
-
-
-// PROPERTY TYPES //
 
 NumberQuestion.propDescriptions = {
 	question: 'number question',

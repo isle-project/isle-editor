@@ -275,7 +275,9 @@ class MultipleChoiceQuestion extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+MultipleChoiceQuestion.description = 'An ISLE component that renders a multiple choice question. It supports the case where the learner has to select a single answer and when there might be multiple correct answers and all correct ones must be picked';
 
 MultipleChoiceQuestion.defaultProps = {
 	question: '',
@@ -289,9 +291,6 @@ MultipleChoiceQuestion.defaultProps = {
 	style: {},
 	onSubmit(){}
 };
-
-
-// PROPERTY TYPES //
 
 MultipleChoiceQuestion.propDescriptions = {
 	question: 'the question displayed at the top of the multiple choice component',

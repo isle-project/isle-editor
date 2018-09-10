@@ -178,28 +178,35 @@ class NumberSurvey extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
-NumberSurvey.defaultProps = {
-	onSubmit() {},
-	allowMultipleAnswers: false,
-	question: '',
-	anonymous: false,
-	step: 'any'
+NumberSurvey.description = 'A survey component in which the instructor may collect numeric survey data from students in real-time';
+
+NumberSurvey.propDescriptions = {
+	question: 'the question to be displayed',
+	allowMultipleAnswers: 'controls whether the same user (or session if anonymous) may submit multiple answers)',
+	anonymous: 'Allows for the students to submit data anonymously. Note that if this option is set to "true", then the instructors will be unable to see the ID of the submitting student.',
+	step: 'A `string` or `numeric` value indicating the step of the arrows seen when hovering the cursor above the input box. If `\'any\'`, the step will be set to `1`',
+	onSubmit: 'callback function invoked once students submits an answer'
 };
 
-
-// PROPERTY TYPES //
+NumberSurvey.defaultProps = {
+	question: '',
+	allowMultipleAnswers: false,
+	anonymous: false,
+	step: 'any',
+	onSubmit() {}
+};
 
 NumberSurvey.propTypes = {
+	question: PropTypes.string,
 	allowMultipleAnswers: PropTypes.bool,
 	anonymous: PropTypes.bool,
-	onSubmit: PropTypes.func,
-	question: PropTypes.string,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
-	])
+	]),
+	onSubmit: PropTypes.func
 };
 
 NumberSurvey.contextTypes = {

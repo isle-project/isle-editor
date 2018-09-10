@@ -1169,7 +1169,9 @@ class MarkdownEditor extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+MarkdownEditor.description = 'A markdown editor for writing notes or reports. Supports exporting of notes as HTML or PDF files, as well as automatic submission to the ISLE server.';
 
 MarkdownEditor.defaultProps = {
 	defaultValue: DEFAULT_VALUE,
@@ -1193,9 +1195,6 @@ MarkdownEditor.defaultProps = {
 	style: {},
 	onChange() {}
 };
-
-
-// PROPERTY TYPES //
 
 MarkdownEditor.propDescriptions = {
 	defaultValue: 'default text of the editor',

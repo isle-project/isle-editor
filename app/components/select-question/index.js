@@ -152,7 +152,9 @@ class SelectQuestion extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+SelectQuestion.description = 'A select question component';
 
 SelectQuestion.defaultProps = {
 	question: '',
@@ -167,9 +169,6 @@ SelectQuestion.defaultProps = {
 	onChange() {},
 	onSubmit() {}
 };
-
-
-// PROPERTY TYPES //
 
 SelectQuestion.propDescriptions = {
 	question: 'question for which the student has to select one of the available answer options',
