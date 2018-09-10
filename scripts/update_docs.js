@@ -10,6 +10,7 @@ const glob = require( 'glob' ).sync;
 const objectKeys = require( '@stdlib/utils/keys' );
 const replace = require( '@stdlib/string/replace' );
 const repeat = require( '@stdlib/string/repeat' );
+const endsWith = require( '@stdlib/string/ends-with' );
 const isFunction = require( '@stdlib/assert/is-function' );
 
 
@@ -19,6 +20,7 @@ const files = glob( '**/index.js', {
 	'cwd': path.join( __dirname, '..', 'app', 'components' )
 });
 
+const RE_DESCRIPTION = /\.description ?= '([\s\S]*?)';/;
 const RE_DESCRIPTIONS = /\.(propDescriptions ?= ?{[\s\S]*?};)/;
 const RE_TYPES = /\.(propTypes ?= ?{[\s\S]*?};)/;
 const RE_DEFAULTS = /\.(defaultProps ?= ?{[\s\S]*?};)/;
@@ -136,6 +138,15 @@ for ( let i = 0; i < files.length; i++ ) {
 
 	try {
 		let md = fs.readFileSync( mdpath ).toString();
+		let matches = file.match( RE_DESCRIPTION );
+		let componentDescription = matches[ 1 ];
+		if ( !endsWith( componentDescription, '.' ) ) {
+			componentDescription += '.';
+		}
+		if ( componentDescription ) {
+			const replacement = '#$1\n\n'+componentDescription+'\n\n#### Example:';
+			md = replace( md, /#([\s\S]+?)\n([\s\S]+?)#### Example:/, replacement );
+		}
 		md = replace( md, /#### Options[\s\S]*$/, str );
 		fs.writeFileSync( mdpath, md );
 	} catch ( err ) {
