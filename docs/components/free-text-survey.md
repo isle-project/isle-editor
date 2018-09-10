@@ -1,14 +1,13 @@
-# Free Text Survey
+#  Free Text Survey
 
-An ISLE component for questions where the answers by the students should be supplied in the form of free text. Which differentiates this component from the **Fre Text Question** is the fact that the aggregated group data is displayed to.
+An ISLE component for questions where the answers by the students should be supplied in the form of free text. What differentiates this component from the **FreeTextQuestion** is the fact that the aggregated group data is displayed to everyone in real-time.
 
 #### Example:
 
 ``` js
-<FreeTextQuestion 
-    question="What is the p-value your obtained for this test?" 
-    rows={1} 
-    solution="1.476303e-05" 
+<FreeTextSurvey 
+    question="Where are you from?"
+    anonymous
 />
 ``` 
 

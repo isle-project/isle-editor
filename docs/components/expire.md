@@ -1,6 +1,6 @@
 # Expire
 
-The Expire component will causes all of its children to become invisible after a specified amount of time.
+The expire component will cause all of its children to become invisible after a specified amount of time.
 
 #### Example:
 

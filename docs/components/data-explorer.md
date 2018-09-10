@@ -1,6 +1,6 @@
 # Data Explorer
 
-This component is used by students to briefly summarize data as it is presented and perform various statistical tests. This component may be used as a standalone feature in a lesson. If you wish to allow students the ability to import a `.csv` file, set the `'data` option to be `false`.
+This component is used by students to briefly summarize data as it is presented and perform various statistical tests. This component may be used as a standalone feature in a lesson.
 
 #### Example
 
@@ -40,7 +40,7 @@ We will include the explorer with the following code:
 
 * __categorical__ | `array`: An array of strings indicating the name of each categorical variable.. Default: `[]`.
 * __continuous__ | `array`: An array of strings indicating the name of each continuous variable.. Default: `[]`.
-* __data__ | `object`: A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column.. Default: `{}`.
+* __data__ | `object`: A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column. If you wish to allow students the ability to import a `.csv` file, set the `data` option to be `false`.. Default: `{}`.
 * __dataInfo__ | `object`: An object containing the keys 'name', whose value is a string, 'info', whose value is an array of strings in which each element in the array is a new line and 'variables', an object with keys as variable names and values as variable descriptions.. Default: `{
   'info': '',
   'name': '',

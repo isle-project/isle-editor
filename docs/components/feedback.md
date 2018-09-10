@@ -1,13 +1,12 @@
 # Feedback Buttons
 
-Attach buttons to collect user feedback for an HTML element identified by its `id`.
+Buttons to collect user feedback.
 
 #### Example:
 
 ``` js
-<span id="myDiv">For me, feedback is collected!</span>
 <FeedbackButtons
-    for="myDiv"
+    id="my_feedback"
 />
 ```
 
