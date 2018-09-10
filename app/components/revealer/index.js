@@ -95,14 +95,13 @@ class Revealer extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+Revealer.description = 'An ISLE component that instructors to selectively reveal or hide children content';
 
 Revealer.defaultProps = {
 	message: 'Content hidden by instructor'
 };
-
-
-// TYPES //
 
 Revealer.propDescriptions = {
 	message: 'Message to be displayed when content is hidden'

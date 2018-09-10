@@ -93,7 +93,9 @@ class DefaultSlider extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+DefaultSlider.description = 'A component which displays its children in a slideshow or carousel';
 
 DefaultSlider.defaultProps = {
 	title: '',
@@ -107,9 +109,6 @@ DefaultSlider.defaultProps = {
 	style: {},
 	onClick() {}
 };
-
-
-// PROPERTY TYPES //
 
 DefaultSlider.propDescriptions = {
 	title: 'title for the slideshow / carousel to be displayed at its top',

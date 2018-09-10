@@ -86,7 +86,9 @@ class Timer extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
+
+Timer.description = 'Displays a timer that will trigger a predefined callback when the time is up. An example use case is the timing of quizzes';
 
 Timer.propDescriptions = {
 	active: 'flag that can be toggled to start or pause the timer',

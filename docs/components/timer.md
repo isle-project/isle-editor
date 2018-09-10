@@ -1,6 +1,6 @@
 # Timer
 
-The Timer component displays a timer that will trigger a predefined callback when the time is up. An example use case is for the timing of quizzes.
+Displays a timer that will trigger a predefined callback when the time is up. An example use case is the timing of quizzes.
 
 #### Example:
 

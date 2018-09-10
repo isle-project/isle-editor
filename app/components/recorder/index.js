@@ -501,7 +501,9 @@ class Recorder extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
+
+Recorder.description = 'An ISLE component for recording audio, screen and video';
 
 Recorder.propDescriptions = {
 	audio: 'indicates whether audio should be recorded',
@@ -525,9 +527,6 @@ Recorder.propTypes = {
 	voiceID: PropTypes.string
 };
 
-
-// DEFAULT PROPERTIES //
-
 Recorder.defaultProps = {
 	audio: false,
 	autostart: false,
@@ -538,9 +537,6 @@ Recorder.defaultProps = {
 	uploadable: false,
 	voiceID: null
 };
-
-
-// CONTEXT TYPES //
 
 Recorder.contextTypes = {
 	session: PropTypes.object

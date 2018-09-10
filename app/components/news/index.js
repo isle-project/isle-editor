@@ -213,7 +213,9 @@ class News extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+News.description = 'The **News** component scans the public **News API** (consisting of 71 international newspapers) and displays the latest 10 articles of the given newspaper. There are two ways to enter a source: one by typing into the search field and submitting via the ENTER button, the second via voice.';
 
 News.propDescriptions = {
 	invisible: 'indicates whether to show the input fields or rely solely on voice control to be triggered',
@@ -230,9 +232,6 @@ News.defaultProps = {
 	voiceID: null,
 	onArticles() {}
 };
-
-
-// PROPERTY TYPES //
 
 News.propTypes = {
 	invisible: PropTypes.bool,
