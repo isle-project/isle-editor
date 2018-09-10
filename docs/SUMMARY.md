@@ -86,27 +86,4 @@
         * [News](components/news.md)   
         * [Wikipedia](components/wikipedia.md)
 * [Learning Module Components](learning-module-components.md)
-    * Central Limit Theorem
-        * [Continuous](components/learn/clt-continuous.md)
-        * [Discrete](components/learn/clt-discrete.md)
-        * [Sample](components/learn/clt-sample.md)
-    * [Conditional Probability](components/learn/conditional-probability.md)
-    * Confidence Intervals
-        * [Binomial](components/learn/confidence-coverage-binomial.md)
-        * [Normal](components/learn/confidence-coverage-normal.md)
-    * [Cross-Validation](components/learn/cross-validation.md)
-    * [Dice Throwing](components/learn/dice-throwing.md)
-    * Distribution
-        * [Exponential](components/learn/distribution-exponential.md)
-        * [Normal](components/learn/distribution-normal.md)
-        * [T](components/learn/distribution-t.md)
-        * [Uniform](components/learn/distribution-uniform.md)
-    * Hypothesis Testing 
-        * [Mean](components/learn/hypothesis-testing-mean.md)
-        * [Proportion](components/learn/hypothesis-testing-proportion.md)
-    * [Image Pixel Picker](components/learn/image-pixel-picker.md)
-    * [Mean vs. Median](components/learn/mean-vs-median.md)
-    * [Standardize](components/learn/standardize.md)
-    * [Venn Diagram Builder](components/learn/venn-diagram-builder.md)
-    * [Word Venn Diagram](components/learn/word-venn-diagram.md)
 * [Publishing Lessons](packaging.md)
