@@ -2,8 +2,6 @@
 
 The Switch component allows the display of one element out of a list of several elements. Users can cycle through the different children of the Switch tag by clicking on the currently displayed one.
 
-When clicking on an option, all code now in `Option 1` and within the `<span>` (or any other divider) will be ignored. 
-
 #### Example:
 
 ``` js

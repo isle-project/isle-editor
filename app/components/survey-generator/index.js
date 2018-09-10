@@ -210,14 +210,17 @@ class MCSgenerator extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+MCSgenerator.description = 'Allows instructors to create multiple-choice surveys, free text surveys and number surveys on the fly in real-time through an easy-to-use interface';
+
+MCSgenerator.propDescriptions = {
+	id: 'component identifier'
+};
 
 MCSgenerator.defaultProps = {
 
 };
-
-
-// PROPERTY TYPES //
 
 MCSgenerator.propTypes = {
 	id: PropTypes.string.isRequired

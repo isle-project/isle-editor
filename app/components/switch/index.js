@@ -73,7 +73,9 @@ class Switch extends React.Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
+
+Switch.description = 'The Switch component allows the display of one element out of a list of several elements. Users can cycle through the different children of the Switch tag by clicking on the currently displayed one.';
 
 Switch.propDescriptions = {
 	tooltip: 'tooltip displayed when hovering over the switch element',
@@ -90,9 +92,6 @@ Switch.propTypes = {
 	style: PropTypes.object,
 	onChange: PropTypes.func
 };
-
-
-// DEFAULT PROPERTIES //
 
 Switch.defaultProps = {
 	tooltip: 'Click to cycle through available options.',

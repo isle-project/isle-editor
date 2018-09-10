@@ -50,16 +50,15 @@ class Runner extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+Runner.description = 'The runner component will execute a supplied function either once or at a given interval';
 
 Runner.defaultProps = {
 	active: true,
 	interval: null,
 	onEvaluate() {}
 };
-
-
-// PROPERTY TYPES //
 
 Runner.propDescriptions = {
 	active: 'controls whether the runner should be active. Upon activation, the `onEvaluate` function is called in the given interval (or once)',
