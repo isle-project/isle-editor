@@ -863,7 +863,7 @@ class MarkdownEditor extends Component {
 		head.appendChild( style );
 
 		// Render the markdown:
-			return md.render( plainText );
+		return md.render( plainText );
 	}
 
 	allowDrop( event ) {
