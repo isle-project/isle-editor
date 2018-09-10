@@ -83,7 +83,9 @@ class Gate extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+Gate.description = 'An ISLE component that allows to display its children only to reserved audiences';
 
 Gate.defaultProps = {
 	anonymous: false,
@@ -93,9 +95,6 @@ Gate.defaultProps = {
 	banner: null,
 	disabled: false
 };
-
-
-// TYPES //
 
 Gate.propDescriptions = {
 	anonymous: 'when set the gated content is displayed to anybody',

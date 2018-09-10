@@ -196,7 +196,9 @@ class FeedbackButtons extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
+
+FeedbackButtons.description = 'Buttons to collect user feedback';
 
 FeedbackButtons.propDescriptions = {
 	vertical: 'buttons are displayed vertically if set to `true`',
@@ -211,9 +213,6 @@ FeedbackButtons.propTypes = {
 FeedbackButtons.contextTypes = {
 	session: PropTypes.object
 };
-
-
-// DEFAULT PROPERTIES //
 
 FeedbackButtons.defaultProps = {
 	vertical: false,

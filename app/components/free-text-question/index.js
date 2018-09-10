@@ -328,7 +328,10 @@ class FreeTextQuestion extends Component {
 	}
 }
 
-// DEFAULT PROPERTIES //
+
+// PROPERTIES //
+
+FreeTextQuestion.description = 'An ISLE component for questions where answers by students should be supplied in the form of free text';
 
 FreeTextQuestion.defaultProps = {
 	question: '',
@@ -347,9 +350,6 @@ FreeTextQuestion.defaultProps = {
 	onChange() {},
 	onSubmit() {}
 };
-
-
-// PROPERTY TYPES //
 
 FreeTextQuestion.propDescriptions = {
 	question: 'the question displayed at the top of the free text question component',

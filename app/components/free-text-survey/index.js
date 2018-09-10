@@ -190,7 +190,9 @@ class FreeTextSurvey extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
+
+FreeTextSurvey.description = 'An ISLE component for questions where the answers by the students should be supplied in the form of free text. What differentiates this component from the **FreeTextQuestion** is the fact that the aggregated group data is displayed to everyone in real-time';
 
 FreeTextSurvey.propDescriptions = {
 	allowMultipleAnswers: 'A boolean indicating whether one wishes to allow students to answer the survey multiple times',

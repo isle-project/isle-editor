@@ -69,16 +69,16 @@ class DraggableGrid extends Component {
 	}
 }
 
-// DEFAULT PROPERTIES //
+
+// PROPERTIES //
+
+DraggableGrid.description = 'A responsive draggable grid layout';
 
 DraggableGrid.defaultProps = {
 	isDraggable: false,
 	isResizable: false,
 	rowHeight: 60
 };
-
-
-// PROPERTY TYPES //
 
 DraggableGrid.propTypes = {
 	isDraggable: PropTypes.bool,

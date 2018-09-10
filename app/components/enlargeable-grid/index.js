@@ -146,7 +146,10 @@ class EnlargeableGrid extends Component {
 	}
 }
 
-// DEFAULT PROPERTIES //
+
+// PROPERTIES //
+
+EnlargeableGrid.description = 'An enlargeable grid';
 
 EnlargeableGrid.defaultProps = {
 	enlargeable: true,

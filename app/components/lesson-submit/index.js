@@ -158,7 +158,9 @@ class LessonSubmit extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+LessonSubmit.description = 'A button to be displayed at the end of a lesson for students to click on. By default, a message confirming completion of the lesson is sent to their email address';
 
 LessonSubmit.defaultProps = {
 	label: 'Finish lesson',
@@ -167,9 +169,6 @@ LessonSubmit.defaultProps = {
 	style: {},
 	onClick() {}
 };
-
-
-// PROPERTY TYPES //
 
 LessonSubmit.propDescriptions = {
 	label: 'label of submit button',

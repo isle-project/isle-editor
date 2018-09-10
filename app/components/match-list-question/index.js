@@ -208,7 +208,9 @@ class MatchListQuestion extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+MatchListQuestion.description = 'An ISLE component that renders a question in which the learner has to match elements from two lists with each other in the correct way';
 
 MatchListQuestion.defaultProps = {
 	question: '',
@@ -223,9 +225,6 @@ MatchListQuestion.defaultProps = {
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
 	onSubmit() {}
 };
-
-
-// PROPERTY TYPES //
 
 MatchListQuestion.propDescriptions = {
 	question: 'question to be displayed at the top of the match list question component',

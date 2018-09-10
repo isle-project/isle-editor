@@ -65,16 +65,15 @@ class Container extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+Container.description = 'A list of draggable elements that can be re-ordered by the students';
 
 Container.defaultProps = {
 	onChange(){},
 	onInit(){},
 	shuffle: false
 };
-
-
-// PROPERTY TYPES //
 
 Container.propTypes = {
 	data: PropTypes.array.isRequired,

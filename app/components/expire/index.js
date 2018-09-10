@@ -83,15 +83,14 @@ class Expire extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+Expire.description = 'The expire component will cause all of its children to become invisible after a specified amount of time';
 
 Expire.defaultProps = {
 	active: false,
 	delay: 1000
 };
-
-
-// PROPERTY TYPES //
 
 Expire.propDescriptions = {
 	active: 'controls whether the counter should be active',
