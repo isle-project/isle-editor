@@ -227,6 +227,8 @@ class NumberInput extends Input {
 
 // PROPERTIES //
 
+NumberInput.description = 'A number input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute';
+
 NumberInput.propDescriptions = {
 	bind: 'A string indicating the variable for the number to be assigned',
 	onChange: 'A function to be called when a number is inputted',

@@ -191,7 +191,9 @@ class SelectInput extends Input {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+SelectInput.description = 'A select input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute';
 
 SelectInput.propDescriptions = {
 	bind: 'A string indicating the variable for the number to be assigned',
@@ -217,9 +219,6 @@ SelectInput.defaultProps = {
 	multi: false,
 	placeholder: 'Select...'
 };
-
-
-// PROPERTY TYPES //
 
 SelectInput.propTypes = {
 	bind: PropTypes.string,

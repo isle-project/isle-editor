@@ -188,7 +188,9 @@ class ProportionInput extends Input {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+ProportionInput.description = 'A proportions input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute';
 
 ProportionInput.defaultProps = {
 	nElements: 6,
@@ -202,9 +204,6 @@ ProportionInput.defaultProps = {
 	onChange(){}
 };
 
-
-// PROPERTY TYPES //
-
 ProportionInput.propTypes = {
 	disabled: PropTypes.bool,
 	height: PropTypes.number,
@@ -216,9 +215,6 @@ ProportionInput.propTypes = {
 	precision: PropTypes.number,
 	step: PropTypes.number
 };
-
-
-// CONTEXT TYPES //
 
 ProportionInput.contextTypes = {
 	triggerDashboardClick: PropTypes.func,

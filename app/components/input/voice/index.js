@@ -286,7 +286,9 @@ class VoiceInput extends Input {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+VoiceInput.description = 'A voice input component';
 
 VoiceInput.defaultProps = {
 	autorecord: false,

@@ -105,9 +105,9 @@ class CheckboxInput extends Input {
 }
 
 
-// TYPES //
+// PROPERTIES //
 
-CheckboxInput.description = 'A checkbox input component. Usually, this component will be used as part of an ISLE dashboard, but it can also be used standalone. In this case, you want to handle changes via the `onChange` attribute. ';
+CheckboxInput.description = 'A checkbox input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute';
 
 CheckboxInput.propDescriptions = {
 	bind: 'A string indicating the variable for the boolean to be assigned',
@@ -127,9 +127,6 @@ CheckboxInput.defaultProps = {
 	legend: ''
 };
 
-
-// PROPERTY TYPES //
-
 CheckboxInput.propTypes = {
 	bind: PropTypes.string,
 	defaultValue: PropTypes.bool,
@@ -138,9 +135,6 @@ CheckboxInput.propTypes = {
 	onChange: PropTypes.func,
 	legend: PropTypes.string
 };
-
-
-// CONTEXT TYPES //
 
 CheckboxInput.contextTypes = {
 	session: PropTypes.object

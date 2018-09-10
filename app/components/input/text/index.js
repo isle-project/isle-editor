@@ -119,7 +119,9 @@ class TextInput extends Input {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+TextInput.description = 'A text input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute';
 
 TextInput.propDescriptions = {
 	onChange: 'A function to be called when a text value is changed',
@@ -143,9 +145,6 @@ TextInput.defaultProps = {
 	placeholder: 'Enter text'
 };
 
-
-// PROPERTY TYPES //
-
 TextInput.propTypes = {
 	defaultValue: PropTypes.string,
 	legend: PropTypes.string,
@@ -154,9 +153,6 @@ TextInput.propTypes = {
 	placeholder: PropTypes.string,
 	width: PropTypes.number
 };
-
-
-// CONTEXT TYPES //
 
 TextInput.contextTypes = {
 	session: PropTypes.object
