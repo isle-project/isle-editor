@@ -298,7 +298,7 @@ class Quiz extends Component {
 			<Panel.Body>
 				{ this.state.finished ?
 					this.renderScoreboard() :
-					this.renderCurrentQuestion()
+					<span key={this.state.current}>{this.renderCurrentQuestion()}</span>
 				}
 				{ showButton ? <Button className="quiz-button" onClick={this.handleNextClick}>
 					{this.state.last ? 'Finish Quiz' : 'Next Question' }
