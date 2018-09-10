@@ -1,6 +1,6 @@
-#  Text Area
+# Text Area
 
-A text area component. Used as a stand-alone component, changes should be handled via the `onChange` attribute. 
+A text area component. Used as a stand-alone component, changes should be handled via the `onChange` attribute.
 
 #### Example:
 
