@@ -337,7 +337,7 @@ class Sketchpad extends Component {
 			this.recordingEndPositions = data.recordingEndPositions;
 			const page = this.readURL();
 			if ( page > 0 ) {
-				data.state.currentPage = page;
+				data.state.currentPage = page - 1;
 			}
 			this.setState( data.state, () => {
 				this.redraw();
