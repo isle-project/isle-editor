@@ -110,7 +110,9 @@ class ROutput extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
+
+ROutput.description = 'Component for rendering R output inside an ISLE lesson';
 
 ROutput.propDescriptions = {
 	code: 'R code used to evaluate',

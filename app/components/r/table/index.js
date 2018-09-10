@@ -88,7 +88,9 @@ class RTable extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
+
+RTable.description = 'Component for rendering a R data frame or matrix in a tabular display';
 
 RTable.propDescriptions = {
 	code: 'R code returning a data.frame containing the data to be displayed in the table',
@@ -107,18 +109,15 @@ RTable.propTypes = {
 	width: PropTypes.number
 };
 
-RTable.contextTypes = {
-	session: PropTypes.object
-};
-
-
-// DEFAULT PROPERTIES //
-
 RTable.defaultProps = {
 	code: '',
 	width: 0.5,
 	libraries: [],
 	prependCode: ''
+};
+
+RTable.contextTypes = {
+	session: PropTypes.object
 };
 
 

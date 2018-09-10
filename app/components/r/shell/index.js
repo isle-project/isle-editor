@@ -534,7 +534,9 @@ class RShell extends React.Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
+
+RShell.description = 'An interactive R Shell that can be used to execute R commands in the cloud using [OpenCPU](https://www.opencpu.org/)';
 
 RShell.propDescriptions = {
 	code: 'R code to be evaluated',
@@ -577,13 +579,6 @@ RShell.propTypes = {
 	onResult: PropTypes.func
 };
 
-RShell.contextTypes = {
-	session: PropTypes.object
-};
-
-
-// DEFAULT PROPERTIES //
-
 RShell.defaultProps = {
 	code: '',
 	solution: '',
@@ -601,6 +596,10 @@ RShell.defaultProps = {
 	style: {},
 	onEvaluate(){},
 	onResult() {}
+};
+
+RShell.contextTypes = {
+	session: PropTypes.object
 };
 
 

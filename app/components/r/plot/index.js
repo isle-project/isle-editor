@@ -74,7 +74,9 @@ class RPlot extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
+
+RPlot.description = 'Component for rendering an R plot inside an ISLE lesson';
 
 RPlot.propDescriptions = {
 	code: 'R code to generate the plot',
@@ -99,13 +101,6 @@ RPlot.propTypes = {
 	onDone: PropTypes.func
 };
 
-RPlot.contextTypes = {
-	session: PropTypes.object
-};
-
-
-// DEFAULT PROPERTIES //
-
 RPlot.defaultProps = {
 	code: '',
 	width: 600,
@@ -114,6 +109,10 @@ RPlot.defaultProps = {
 	libraries: [],
 	prependCode: '',
 	onDone() {}
+};
+
+RPlot.contextTypes = {
+	session: PropTypes.object
 };
 
 

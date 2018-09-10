@@ -208,7 +208,9 @@ class TeX extends Component {
 	}
 }
 
-// PROPERTY TYPES //
+// PROPERTIES //
+
+TeX.description = '`TeX` is an ISLE element that can be used to display LaTeX equations. Under the hood, the component uses [KaTeX](https://github.com/Khan/KaTeX) for blazingly fast rendering';
 
 TeX.propDescriptions = {
 	raw: 'The literal LaTeX `string` to render. Also accepts `numbers`',
@@ -232,9 +234,6 @@ TeX.propTypes = {
 	elems: PropTypes.object,
 	onClick: PropTypes.func
 };
-
-
-// DEFAULT PROPERTIES //
 
 TeX.defaultProps = {
 	displayMode: false,
