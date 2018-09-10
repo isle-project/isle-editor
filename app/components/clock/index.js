@@ -53,7 +53,9 @@ class Clock extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
+
+Clock.description = 'Clock component displaying the current time';
 
 Clock.propDescriptions = {
 	'style': 'CSS inline styles'

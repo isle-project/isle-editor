@@ -70,7 +70,9 @@ class BeaconTooltip extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+BeaconTooltip.description = 'Component placeing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed';
 
 BeaconTooltip.defaultProps = {
 	title: null,
@@ -81,9 +83,6 @@ BeaconTooltip.defaultProps = {
 	offset: 15,
 	onChange() {}
 };
-
-
-// PROPERTY TYPES //
 
 BeaconTooltip.propDescriptions = {
 	title: 'title to be displayed at the top of the tooltip',

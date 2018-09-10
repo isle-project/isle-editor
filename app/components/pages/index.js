@@ -135,7 +135,9 @@ class Pages extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
+
+Pages.description = 'An ISLE pagination component that allows the user to step through a sequence of pages';
 
 Pages.propDescriptions = {
 	title: 'displayed title of the pages container',

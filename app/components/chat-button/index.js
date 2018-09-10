@@ -83,7 +83,9 @@ class ChatButton extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
+
+ChatButton.description = 'A button for joining and leaving chat rooms';
 
 ChatButton.propTypes = {
 	for: PropTypes.string.isRequired

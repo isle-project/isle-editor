@@ -142,14 +142,16 @@ class NetworkPlot extends D3Plot {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+NetworkPlot.description = 'A d3-based network plot';
 
 NetworkPlot.defaultProps = {
 	width: 900,
 	height: 600
 };
 
-NetworkPlot.propTupes = {
+NetworkPlot.propTypes = {
 	width: PropTypes.number,
 	height: PropTypes.number
 };

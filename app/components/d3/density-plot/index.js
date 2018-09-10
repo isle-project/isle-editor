@@ -173,7 +173,9 @@ class DensityPlot extends D3Plot {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
+
+DensityPlot.description = 'A d3-based density plot component';
 
 DensityPlot.propTypes = {
 	bandwidth: PropTypes.number,
@@ -185,9 +187,6 @@ DensityPlot.propTypes = {
 	xmin: PropTypes.number,
 	ymax: PropTypes.number
 };
-
-
-// DEFAULT PROPERTIES //
 
 DensityPlot.defaultProps = {
 	bandwidth: 4,
