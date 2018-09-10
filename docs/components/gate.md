@@ -6,10 +6,10 @@ An ISLE component that allows to display its children only to reserved audiences
 
 ``` js
 <Gate 
-    banner={"<div>You have to be logged in to see the image</div>"}
+    banner={"<div>You have to be logged in to see the content</div>"}
     user 
 >
-    <h1>For teachers only</div>
+    <h1>For users only</div>
 </Gate>
 ``` 
 
