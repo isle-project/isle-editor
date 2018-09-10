@@ -137,17 +137,21 @@ for ( let i = 0; i < files.length; i++ ) {
 	}
 
 	try {
+		console.log( mdpath );
 		let md = fs.readFileSync( mdpath ).toString();
-		let matches = file.match( RE_DESCRIPTION );
-		let componentDescription = matches[ 1 ];
+		let matches = file.match( RE_DESCRIPTION ) || [];
+		let componentDescription = matches[ 1 ] || 'Description is missing.';
 		if ( !endsWith( componentDescription, '.' ) ) {
 			componentDescription += '.';
 		}
+		console.log( 'Replacing component description...' );
 		if ( componentDescription ) {
 			const replacement = '#$1\n\n'+componentDescription+'\n\n#### Example:';
 			md = replace( md, /#([\s\S]+?)\n([\s\S]+?)#### Example:/, replacement );
 		}
+		console.log( 'Replacing parameter descriptions...' );
 		md = replace( md, /#### Options[\s\S]*$/, str );
+
 		fs.writeFileSync( mdpath, md );
 	} catch ( err ) {
 		console.log( `Documentation for ${component} does not exist` );
@@ -161,4 +165,5 @@ for ( let i = 0; i < files.length; i++ ) {
 	catch ( err ) {
 		console.log( `Playground site for ${component} does not exist` );
 	}
+	console.log( '\n\n' );
 }
