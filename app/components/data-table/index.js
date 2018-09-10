@@ -376,7 +376,9 @@ class DataTable extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+DataTable.description = 'A component rendering data in a tabular display. Built on top of [react-table](https://react-table.js.org/)';
 
 DataTable.defaultProps = {
 	dataInfo: {
@@ -388,9 +390,6 @@ DataTable.defaultProps = {
 	showRemove: false,
 	style: {}
 };
-
-
-// PROPERTY TYPES //
 
 DataTable.propDescriptions = {
 	data: 'A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column.',

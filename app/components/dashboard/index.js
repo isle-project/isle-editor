@@ -165,7 +165,9 @@ class Dashboard extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+Dashboard.description = 'A dashboard for combining the handling of multiple child input fields';
 
 Dashboard.defaultProps = {
 	autoStart: true,
@@ -177,9 +179,6 @@ Dashboard.defaultProps = {
 	onGenerate() {},
 	title: ''
 };
-
-
-// TYPES //
 
 Dashboard.propTypes = {
 	autoStart: PropTypes.bool,
