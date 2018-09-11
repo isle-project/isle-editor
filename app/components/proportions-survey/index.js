@@ -102,30 +102,31 @@ class ProportionsSurvey extends Component {
 							maxWidth: 600,
 							marginTop: '8px'
 						}}>
-							<h3>{props.question}</h3>
-
-							<ProportionsInput
-								legends={this.props.legends}
-								precision={2}
-								step={0.25}
-								height={this.props.personalHeight}
-								innerRadius={this.props.personalInnerRadius}
-								colors={this.props.colors}
-								margin={this.props.margin}
-								nElements={this.props.nElements}
-								onChange={( value ) => {
-									this.setState({
-										value
-									});
-								}}
-							/>
-							<Button
-								bsSize="small"
-								bsStyle="success"
-								block fill
-								onClick={this.submitQuestion}
-								disabled={disabled}
-							>{ disabled ? 'Submitted' : 'Submit'}</Button>
+							<Panel.Body>
+								<h3>{props.question}</h3>
+								<ProportionsInput
+									legends={this.props.legends}
+									precision={2}
+									step={0.25}
+									height={this.props.personalHeight}
+									innerRadius={this.props.personalInnerRadius}
+									colors={this.props.colors}
+									margin={this.props.margin}
+									nElements={this.props.nElements}
+									onChange={( value ) => {
+										this.setState({
+											value
+										});
+									}}
+								/>
+								<Button
+									bsSize="small"
+									bsStyle="success"
+									block fill
+									onClick={this.submitQuestion}
+									disabled={disabled}
+								>{ disabled ? 'Submitted' : 'Submit'}</Button>
+							</Panel.Body>
 						</Panel>
 					</Col>
 
@@ -135,21 +136,23 @@ class ProportionsSurvey extends Component {
 							maxWidth: 600,
 							marginTop: '8px'
 						}}>
-							<h3>{ this.props.group}</h3>
-							<RealtimeMetrics for={[ this.props.id ]} onData={this.onData} />
-							<h4>Number of votes: { this.state.nResults } </h4>
-
-							<ProportionsInput
-								legends={this.props.legends}
-								precision={2}
-								step={0.25}
-								height={this.props.groupHeight}
-								innerRadius={this.props.groupInnerRadius}
-								colors={this.props.colors}
-								disabled={true}
-								margin={this.props.margin}
-								values={this.state.resultValues}
-								nElements={this.props.nElements} />
+							<Panel.Body>
+								<h3>{ this.props.group}</h3>
+								<RealtimeMetrics for={[ this.props.id ]} onData={this.onData} />
+								<h4>Number of votes: { this.state.nResults } </h4>
+								<ProportionsInput
+									legends={this.props.legends}
+									precision={2}
+									step={0.25}
+									height={this.props.groupHeight}
+									innerRadius={this.props.groupInnerRadius}
+									colors={this.props.colors}
+									disabled={true}
+									margin={this.props.margin}
+									values={this.state.resultValues}
+									nElements={this.props.nElements}
+								/>
+							</Panel.Body>
 						</Panel>
 					</Col>
 				</Grid>
@@ -160,7 +163,9 @@ class ProportionsSurvey extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+ProportionsSurvey.description = 'Component that allows a group of people to vote on the weights and importance of given options';
 
 ProportionsSurvey.defaultProps = {
 	onSubmit() {},
@@ -193,9 +198,6 @@ ProportionsSurvey.defaultProps = {
 	groupInnerRadius: 40,
 	margin: '40px'
 };
-
-
-// PROPERTY TYPES //
 
 ProportionsSurvey.propTypes = {
 	allowMultipleAnswers: PropTypes.bool,
