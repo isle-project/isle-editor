@@ -1,6 +1,6 @@
 # Slider
 
-A component which displays its children in a slideshow or carousel. 
+A component which displays its children in a slideshow or carousel.
 
 #### Example:
 

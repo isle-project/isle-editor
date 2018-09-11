@@ -1,13 +1,11 @@
 # Wikipedia
 
-The **Wikipedia** component scans the **Wikipedia** and returns an article - if anything valid is found under the given address.
+The **Wikipedia** component scans the **Wikipedia** and returns an article - if anything valid is found under the entered search tem.
 
 #### Example:
 
 ```js
 <Wikipedia
-    showSearch
-    speech
     language = "de-DE"
 />
 ```

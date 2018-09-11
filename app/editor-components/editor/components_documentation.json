@@ -1896,7 +1896,7 @@
         "description": "callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order"
       }
     ],
-    "description": "Description is missing."
+    "description": "An order question component that asks student to bring a collection of elements into the correct order."
   },
   "Pages": {
     "props": [
@@ -2109,7 +2109,7 @@
         "default": 0.1
       }
     ],
-    "description": "Description is missing."
+    "description": "Component that allows a group of people to vote on the weights and importance of given options."
   },
   "Quiz": {
     "props": [
@@ -3300,7 +3300,7 @@
         "default": "en-US"
       }
     ],
-    "description": "Description is missing."
+    "description": "The **Wikipedia** component scans the **Wikipedia** and returns an article - if anything valid is found under the entered search tem."
   },
   "WordCloud": {
     "props": [
@@ -3375,6 +3375,6 @@
         "default": 700
       }
     ],
-    "description": "Description is missing."
+    "description": "A word cloud component built on top of [d3-cloud](https://github.com/jasondavies/d3-cloud)."
   }
 }

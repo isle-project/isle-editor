@@ -1,6 +1,6 @@
 # Word Cloud
 
-A word cloud component built on top of [d3-cloud][d3-cloud].
+A word cloud component built on top of [d3-cloud](https://github.com/jasondavies/d3-cloud).
 
 #### Example:
 
@@ -25,8 +25,6 @@ A word cloud component built on top of [d3-cloud][d3-cloud].
 ```
 
 [Open interactive preview](https://isle.heinz.cmu.edu/components/word-cloud/)
-
-[d3-cloud]: https://github.com/jasondavies/d3-cloud
 
 #### Options:
 
