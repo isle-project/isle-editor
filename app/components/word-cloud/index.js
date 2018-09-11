@@ -281,6 +281,8 @@ class Wrapper extends Component {
 
 // PROPERTIES //
 
+Wrapper.description = 'A word cloud component built on top of [d3-cloud](https://github.com/jasondavies/d3-cloud)';
+
 Wrapper.propDescriptions = {
 	data: 'either an array of texts from which to generate the word cloud or, if `precalculated` is set to `true`, and array of word count objects (with `text` and `value` keys)',
 	font: 'accessor function specifying the font face for each word. Also accepts a constant instead of a function',

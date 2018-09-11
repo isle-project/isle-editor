@@ -269,7 +269,6 @@ class Editor extends Component {
 					onHide={this.toggleComponentConfigurator}
 					onInsert={this.handleComponentInsertion}
 					component={this.state.selectedComponent}
-					scope={this.props.scope}
 				/>
 			</div>
 		);
@@ -281,7 +280,6 @@ class Editor extends Component {
 
 Editor.defaultProps = {
 	onChange: noop,
-	scope: {},
 	value: '',
 	cursorStart: 1
 };
@@ -292,7 +290,6 @@ Editor.defaultProps = {
 Editor.propTypes = {
 	cursorStart: PropTypes.number,
 	onChange: PropTypes.func,
-	scope: PropTypes.object,
 	value: PropTypes.string
 };
 

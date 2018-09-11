@@ -14,7 +14,6 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import isObject from '@stdlib/assert/is-object';
 import replace from '@stdlib/string/replace';
-import keys from '@stdlib/utils/keys';
 import ErrorBoundary from 'editor-components/error-boundary';
 import SplitPanel from 'editor-components/split-panel';
 import Header from 'editor-components/header';
@@ -127,10 +126,6 @@ class App extends Component {
 
 		this.lastPreamble = null;
 
-		this.state = {
-			scope: null
-		};
-
 		this.onChange = ( value ) => {
 			debug( 'Editor text changed...' );
 			const handleChange = ( value ) => {
@@ -217,13 +212,6 @@ class App extends Component {
 		return false;
 	}
 
-	saveScope = ( scope ) => {
-		debug( `Saving scope of ${keys(scope).length} components` );
-		this.setState({
-			scope
-		});
-	}
-
 	sync( main, other ) {
 		return ( scrollTop, scrollHeight, offsetHeight ) => {
 			const percentage = ( scrollTop * 100 ) / ( scrollHeight - offsetHeight );
@@ -281,7 +269,6 @@ class App extends Component {
 								showGutter: true,
 								showPrintMargin: false
 							}}
-							scope={this.state.scope}
 						/>
 					</SplitPanel>
 					<SplitPanel ref={( elem ) => { this.preview = elem; }} onScroll={this.onPreviewScroll}>

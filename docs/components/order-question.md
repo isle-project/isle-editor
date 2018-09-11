@@ -1,6 +1,6 @@
 # Order Question
 
-An order question component.
+An order question component that asks student to bring a collection of elements into the correct order.
 
 #### Example:
 

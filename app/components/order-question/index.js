@@ -94,7 +94,9 @@ class OrderQuestion extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+OrderQuestion.description = 'An order question component that asks student to bring a collection of elements into the correct order';
 
 OrderQuestion.defaultProps = {
 	question: '',
@@ -107,9 +109,6 @@ OrderQuestion.defaultProps = {
 	onChange() {},
 	onSubmit() {}
 };
-
-
-// PROPERTY TYPES //
 
 OrderQuestion.propDescriptions = {
 	question: 'question for which the student has to bring the available `options` into the correct order',

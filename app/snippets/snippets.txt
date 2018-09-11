@@ -223,6 +223,17 @@ snippet ProportionsInput
 		nElements={${4:6}}
 	/>
 
+snippet ProportionsSurvey
+	<ProportionsSurvey
+		user
+		question="${1:Invest now!}"
+		group="${2:Group Decision}"
+		nElements ={${3:3}}
+		personalHeight={${4:300}}
+		colors = {${5:['red', 'blue', 'gold']}}
+		legends = {${6:['Robotics', 'Bitcoin', 'Gold']}}
+	/>
+
 snippet Quiz
 	<Quiz
 		questions={[${1:

@@ -11,6 +11,7 @@ import logger from 'debug';
 import sample from '@stdlib/random/sample';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-plain-object';
+import isInteger from '@stdlib/assert/is-integer';
 import incrspace from '@stdlib/math/utils/incrspace';
 import FreeTextQuestion from 'components/free-text-question';
 import MultipleChoiceQuestion from 'components/multiple-choice-question';
@@ -92,7 +93,7 @@ class Quiz extends Component {
 							solution += elem.props.answers[ correct[ i ] ];
 							solution += '; ';
 						}
-					} else {
+					} else if ( isInteger( correct ) ) {
 						solution = elem.props.answers[ correct ].content;
 					}
 				} else {
@@ -151,7 +152,7 @@ class Quiz extends Component {
 			const session = this.context.session;
 			if ( elem.props.id ) {
 				session.log({
-					id: elem.props.id,
+					id: elem.props.id+'_confidence',
 					type: 'QUESTION_CONFIDENCE',
 					value: this.state.checked
 				});
@@ -172,7 +173,7 @@ class Quiz extends Component {
 	renderScoreboard() {
 		debug( 'Rendering scoreboard...' );
 		return ( <div>
-			<p>You have answered all questions. Here is a summary of your answers:</p>
+			<p>You have finished the quiz. Here is a summary of your answers:</p>
 			<table className="table table-bordered" >
 				<thead>
 					<tr>
@@ -260,19 +261,21 @@ class Quiz extends Component {
 			return null;
 		}
 		return (
-			<FormGroup className="center" >
-				<ControlLabel>Please indicate how confident you are in your answer:</ControlLabel>
-				<br />
-				<Radio checked={this.state.checked === 'Guessed'} name="radio-group" data-confidence="Guessed" inline onClick={this.handleConfidenceChange}>
-					Guessed
-				</Radio>{' '}
-				<Radio checked={this.state.checked === 'Somewhat sure'} name="radio-group" data-confidence="Somewhat sure" inline onClick={this.handleConfidenceChange}>
-					Somewhat sure
-				</Radio>{' '}
-				<Radio checked={this.state.checked === 'Confident'} name="radio-group" data-confidence="Confident" inline onClick={this.handleConfidenceChange}>
-				Confident
-				</Radio>{' '}
-			</FormGroup>
+			<Panel className="center" style={{ width: '75%' }}>
+				<FormGroup className="center" >
+					<ControlLabel>Please indicate how confident you are in your answer(s):</ControlLabel>
+					<br />
+					<Radio checked={this.state.checked === 'Guessed'} name="radio-group" data-confidence="Guessed" inline onClick={this.handleConfidenceChange}>
+						Guessed
+					</Radio>{' '}
+					<Radio checked={this.state.checked === 'Somewhat sure'} name="radio-group" data-confidence="Somewhat sure" inline onClick={this.handleConfidenceChange}>
+						Somewhat sure
+					</Radio>{' '}
+					<Radio checked={this.state.checked === 'Confident'} name="radio-group" data-confidence="Confident" inline onClick={this.handleConfidenceChange}>
+					Confident
+					</Radio>{' '}
+				</FormGroup>
+			</Panel>
 		);
 	}
 
@@ -285,12 +288,17 @@ class Quiz extends Component {
 		}
 		return ( <Panel>
 			<Panel.Heading>
-				<Panel.Title>Questions</Panel.Title>
+				<Panel.Title>
+					{ this.state.finished ?
+						<span>Answer Summary</span> :
+						<span>Question {this.state.counter+1}/{this.props.count}</span>
+					}
+				</Panel.Title>
 			</Panel.Heading>
 			<Panel.Body>
 				{ this.state.finished ?
 					this.renderScoreboard() :
-					this.renderCurrentQuestion()
+					<span key={this.state.current}>{this.renderCurrentQuestion()}</span>
 				}
 				{ showButton ? <Button className="quiz-button" onClick={this.handleNextClick}>
 					{this.state.last ? 'Finish Quiz' : 'Next Question' }

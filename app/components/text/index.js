@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import markdownIt from 'markdown-it';
 import VoiceControl from 'components/voice-control';
 
 
@@ -14,6 +15,12 @@ const VOICE_COMMANDS = [
 		description: 'Read out the text'
 	}
 ];
+const md = markdownIt({
+	html: true,
+	xhtmlOut: true,
+	breaks: true,
+	typographer: false
+});
 
 
 // MAIN //
@@ -25,12 +32,17 @@ class Text extends Component {
 		window.speechSynthesis.speak( ssu );
 	}
 	render() {
+		const node = {
+			'__html': md.render( this.props.raw )
+		};
+		/* eslint-disable react/no-danger */
 		return (
 			<span style={this.props.style}>
 				<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
-				{this.props.raw}
+				<span dangerouslySetInnerHTML={node}></span>
 			</span>
 		);
+		/* eslint-enable react/no-danger */
 	}
 }
 
