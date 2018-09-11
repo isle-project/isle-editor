@@ -96,7 +96,15 @@ class Quiz extends Component {
 					} else if ( isInteger( correct ) ) {
 						solution = elem.props.answers[ correct ].content;
 					}
-				} else {
+				}
+				else if ( elem.component === 'MatchListQuestion' ) {
+					solution = '';
+					for ( let i = 0; i < elem.props.elements.length; i++ ) {
+						const val = elem.props.elements[ i ];
+						solution += `${val.a}:${val.b}; `;
+					}
+				}
+				else {
 					solution = elem.props.solution;
 				}
 				answers[ this.state.current ] = {
@@ -144,7 +152,18 @@ class Quiz extends Component {
 				} else {
 					solution = elem.props.answers[ correct ].content;
 				}
-			} else {
+			}
+			else if ( elem.component === 'MatchListQuestion' ) {
+				answer = '';
+				solution = '';
+				for ( let i = 0; i < elem.props.elements.length; i++ ) {
+					const e = elem.props.elements[ i ];
+					const userElem = val[ i ];
+					solution += `${e.a}:${e.b}; `;
+					answer += `${userElem.a}:${userElem.b}; `;
+				}
+			}
+			else {
 				answer = val;
 				solution = elem.props.solution;
 			}
