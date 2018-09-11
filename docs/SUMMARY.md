@@ -62,7 +62,6 @@
         * [Date Range Picker](components/date-range-picker.md)
         * [JSShell](components/js-shell.md)
         * [Playground](components/playground.md)
-        * [Spinner](components/spinner.md)
         * [Timer](components/timer.md)
     * [Media](chapters/media.md)
         * [IFrame](components/iframe.md)
