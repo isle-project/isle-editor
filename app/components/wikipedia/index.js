@@ -148,7 +148,9 @@ class Wikipedia extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
+
+Wikipedia.description = 'The **Wikipedia** component scans the **Wikipedia** and returns an article - if anything valid is found under the entered search tem';
 
 Wikipedia.propDescriptions = {
 	invisible: 'controls whether to display a text input field to search for Wikipedia articles',
