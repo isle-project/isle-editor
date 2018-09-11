@@ -269,7 +269,7 @@ class InstructorBar extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 InstructorBar.propTypes = {
 	buttonLabel: PropTypes.string,

@@ -1637,9 +1637,11 @@ class Sketchpad extends Component {
 
 	renderTransmitButtons() {
 		const bsSize = this.props.bsSize;
-		const users = this.context.session.userList.map( user => {
-			return { value: user.name, label: user.name };
-		});
+		const users = this.context.session.userList
+			.filter( user => isNull( user.exitTime ) )
+			.map( user => {
+				return { value: user.name, label: user.name };
+			});
 		const popover = <Popover id="popover-positioned-right" title="Receive actions from...">
 			<SelectInput isClearable inline options={users} onChange={( newValue ) => {
 				this.setState({
