@@ -151,6 +151,9 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 						opacity: 0.5
 					};
 					if ( chooseBins ) {
+						config.nbinsx = nBins;
+						/*
+						Code below for making different bin sizes for each category
 						const maxVal = max(vals);
 						const minVal = min(vals);
 						const sizeVal = ((1.0 * maxVal) - minVal) / nBins;
@@ -160,6 +163,7 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 							start: minVal,
 							end: maxVal
 						};
+						*/
 					}
 					traces.push( config );
 				}
