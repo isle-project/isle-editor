@@ -80,7 +80,15 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 			name: 'histogram'
 		} ];
 		if ( chooseBins ) {
-			traces[ 0 ].nbinsx = nBins;
+			const maxVal = max(vals);
+			const minVal = min(vals);
+			const sizeVal = ((1.0 * maxVal) - minVal) / nBins;
+			traces[ 0 ].autobinx = false;
+			traces[ 0 ].xbins = {
+				size: sizeVal,
+				start: minVal,
+				end: maxVal
+			};
 		}
 		if ( overlayDensity ) {
 			const [ x, y ] = calculateDensityValues( vals, densityType );
@@ -116,7 +124,16 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 						opacity: 0.5
 					};
 					if ( chooseBins ) {
-						config.nbinsx = nBins;
+						// config.nbinsx = nBins;
+						const maxVal = max(vals);
+						const minVal = min(vals);
+						const sizeVal = ((1.0 * maxVal) - minVal) / nBins;
+						config.autobinx = false;
+						config.xbins = {
+							size: sizeVal,
+							start: minVal,
+							end: maxVal
+						};
 					}
 					traces.push( config );
 					const [ x, y ] = calculateDensityValues( vals, densityType );
@@ -134,7 +151,15 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 						opacity: 0.5
 					};
 					if ( chooseBins ) {
-						config.nbinsx = nBins;
+						const maxVal = max(vals);
+						const minVal = min(vals);
+						const sizeVal = ((1.0 * maxVal) - minVal) / nBins;
+						config.autobinx = false;
+						config.xbins = {
+							size: sizeVal,
+							start: minVal,
+							end: maxVal
+						};
 					}
 					traces.push( config );
 				}
@@ -175,6 +200,18 @@ class Histogram extends Component {
 		const config = generateHistogramConfig({
 			data: this.props.data, ...this.state
 		});
+		/*
+		variable: this.state.variable,
+			group: this.state.group,
+			overlayDensity: this.state.overlayDensity,
+			densityType: this.state.densityType,
+			chooseBins: this.state.chooseBins,
+			nBins: this.state.nBins
+		*/
+		console.log(this.state.chooseBins);
+		console.log(this.state.nBins);
+		console.log('in histogram.js the config is');
+		console.log(config);
 		const plotId = generate( 6 );
 		const stateNew = { ...this.state };
 		stateNew.plotId = plotId;
