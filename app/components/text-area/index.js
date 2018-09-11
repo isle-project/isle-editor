@@ -79,7 +79,9 @@ class TextArea extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
+
+TextArea.description = 'A text area component. Used as a stand-alone component, changes should be handled via the `onChange` attribute';
 
 TextArea.defaultProps = {
 	defaultValue: '',
@@ -91,9 +93,6 @@ TextArea.defaultProps = {
 	rows: 5,
 	style: {}
 };
-
-
-// PROPERTY TYPES //
 
 TextArea.propTypes = {
 	defaultValue: PropTypes.string,
