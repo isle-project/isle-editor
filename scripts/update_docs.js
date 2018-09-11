@@ -1,4 +1,4 @@
-/* eslint-disable no-new-func, no-new-wrappers */
+/* eslint-disable no-new-func */
 
 'use strict';
 
@@ -7,6 +7,7 @@
 const path = require( 'path' );
 const fs = require( 'fs' );
 const glob = require( 'glob' ).sync;
+const logger = require( 'debug' );
 const objectKeys = require( '@stdlib/utils/keys' );
 const replace = require( '@stdlib/string/replace' );
 const repeat = require( '@stdlib/string/repeat' );
@@ -14,10 +15,12 @@ const endsWith = require( '@stdlib/string/ends-with' );
 const isFunction = require( '@stdlib/assert/is-function' );
 const invert = require( '@stdlib/utils/object-inverse' );
 const REQUIRES = invert( require( './../app/bundler/requires.json' ) );
+const PropTypes = require( './prop_types.js' );
 
 
 // VARIABLES //
 
+const debug = logger( 'isle-editor:update-docs' );
 const files = glob( '**/index.js', {
 	'cwd': path.join( __dirname, '..', 'app', 'components' )
 });
@@ -26,46 +29,6 @@ const RE_DESCRIPTION = /\.description ?= '([\s\S]*?)';/;
 const RE_DESCRIPTIONS = /\.(propDescriptions ?= ?{[\s\S]*?};)/;
 const RE_TYPES = /\.(propTypes ?= ?{[\s\S]*?};)/;
 const RE_DEFAULTS = /\.(defaultProps ?= ?{[\s\S]*?};)/;
-const PropTypes = {};
-PropTypes.string = new String( 'string' );
-PropTypes.string.isRequired = 'string (required)';
-PropTypes.number = new String( 'number' );
-PropTypes.number.isRequired = 'number (required)';
-PropTypes.array = new String( 'array' );
-PropTypes.array.isRequired = 'array (required)';
-PropTypes.object = new String( 'object' );
-PropTypes.object.isRequired = 'object (required)';
-PropTypes.bool = new String( 'boolean' );
-PropTypes.bool.isRequired = 'boolean (required)';
-PropTypes.func = new String( 'function' );
-PropTypes.func.isRequired = 'function (required)';
-PropTypes.node = new String( 'node' );
-PropTypes.node.isRequired = 'node (required)';
-PropTypes.arrayOf = function arrayOf( str ) {
-	const out = new String( `array<${str}>` );
-	out.isRequired = out+' (required)';
-	return out;
-};
-PropTypes.objectOf = function objectOf( str ) {
-	const out = new String( `object<${str}>` );
-	out.isRequired = out+' (required)';
-	return out;
-};
-PropTypes.shape = function shape( obj ) {
-	const out = new String( `{${objectKeys( obj ).join( ',' )}}` );
-	out.isRequired = out+' (required)';
-	return out;
-};
-PropTypes.oneOfType = function oneOfType( arr ) {
-	const out = new String( `(${arr.join( '|' )})` );
-	out.isRequired = out+' (required)';
-	return out;
-};
-PropTypes.oneOf = function oneOf( arr ) {
-	const out = new String( typeof arr[ 0 ]);
-	out.isRequired = out+' (required)';
-	return out;
-};
 const SCOPE_KEYS = [
 	'PropTypes',
 	'repeat',
@@ -156,19 +119,18 @@ for ( let i = 0; i < files.length; i++ ) {
 	}
 
 	try {
-		console.log( mdpath );
 		let md = fs.readFileSync( mdpath ).toString();
-		console.log( 'Replacing component description...' );
+		debug( 'Replacing component description...' );
 		if ( componentDescription ) {
 			const replacement = '#$1\n\n'+componentDescription+'\n\n#### Example:';
 			md = replace( md, /#([\s\S]+?)\n([\s\S]+?)#### Example:/, replacement );
 		}
-		console.log( 'Replacing parameter descriptions...' );
+		debug( 'Replacing parameter descriptions...' );
 		md = replace( md, /#### Options[\s\S]*$/, str );
 
 		fs.writeFileSync( mdpath, md );
 	} catch ( err ) {
-		console.log( `Documentation for ${component} does not exist` );
+		debug( `Documentation for ${component} does not exist` );
 	}
 
 	try {
@@ -177,10 +139,12 @@ for ( let i = 0; i < files.length; i++ ) {
 		fs.writeFileSync( islepath, isle );
 	}
 	catch ( err ) {
-		console.log( `Playground site for ${component} does not exist` );
+		debug( `Playground site for ${component} does not exist` );
 	}
-	console.log( '\n\n' );
+	debug( '\n\n' );
 }
 
 console.log( 'Write `component_documentation.json` file...' );
 fs.writeFileSync( './app/editor-components/editor/components_documentation.json', JSON.stringify( DOCS, null, 2 ) );
+
+console.log( 'Finished updating docs.' );
