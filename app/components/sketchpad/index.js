@@ -90,7 +90,7 @@ class Sketchpad extends Component {
 			noPages: props.noPages,
 			insertedPages: [],
 			showUploadModal: false,
-			mode: 'drawing',
+			mode: 'drag',
 			showNavigationModal: false,
 			transmitOwner: props.transmitOwner,
 			receiveFrom: {},
@@ -1203,6 +1203,8 @@ class Sketchpad extends Component {
 			currentPage: 0,
 			nUndos: 0
 		}, () => {
+			// Update hash of URL:
+			this.updateURL( this.state.currentPage );
 			this.redraw();
 			this.context.session.log({
 				id: this.props.id,
@@ -1217,6 +1219,8 @@ class Sketchpad extends Component {
 			currentPage: this.state.noPages - 1,
 			nUndos: 0
 		}, () => {
+			// Update hash of URL:
+			this.updateURL( this.state.currentPage );
 			this.redraw();
 			this.context.session.log({
 				id: this.props.id,
