@@ -12,6 +12,8 @@ const replace = require( '@stdlib/string/replace' );
 const repeat = require( '@stdlib/string/repeat' );
 const endsWith = require( '@stdlib/string/ends-with' );
 const isFunction = require( '@stdlib/assert/is-function' );
+const invert = require( '@stdlib/utils/object-inverse' );
+const REQUIRES = invert( require( './../app/bundler/requires.json' ) );
 
 
 // VARIABLES //
@@ -93,9 +95,13 @@ function generateDefaultString( defaultValue ) {
 
 // MAIN //
 
-
+const DOCS = {};
 for ( let i = 0; i < files.length; i++ ) {
 	const component = path.dirname( files[ i ] );
+	const tagName = REQUIRES[ 'components/'+component ];
+	DOCS[ tagName ] = {
+		props: []
+	};
 	const fpath = path.join( './app/components', component, 'index.js' );
 	const mdpath = path.join( './docs/components', component+'.md' );
 	const islepath = path.join( './component-playground', component+'.isle' );
@@ -128,22 +134,30 @@ for ( let i = 0; i < files.length; i++ ) {
 		types = extractTypes( ...SCOPE_VALUES );
 	}
 
+	let matches = file.match( RE_DESCRIPTION ) || [];
+	let componentDescription = matches[ 1 ] || 'Description is missing.';
+	if ( !endsWith( componentDescription, '.' ) ) {
+		componentDescription += '.';
+	}
+	DOCS[ tagName ].description = componentDescription;
+
 	const keys = objectKeys( types );
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
 		const defaultStr = generateDefaultString( defaults[ key ] );
 		str += `* __${key}__ | \`${types[ key ] }\`: ${description[ key ]}. ${defaultStr}`;
 		str += '\n';
+		DOCS[ tagName ].props.push({
+			name: key,
+			type: types[ key ],
+			description: description[ key ],
+			default: defaults[ key ]
+		});
 	}
 
 	try {
 		console.log( mdpath );
 		let md = fs.readFileSync( mdpath ).toString();
-		let matches = file.match( RE_DESCRIPTION ) || [];
-		let componentDescription = matches[ 1 ] || 'Description is missing.';
-		if ( !endsWith( componentDescription, '.' ) ) {
-			componentDescription += '.';
-		}
 		console.log( 'Replacing component description...' );
 		if ( componentDescription ) {
 			const replacement = '#$1\n\n'+componentDescription+'\n\n#### Example:';
@@ -167,3 +181,6 @@ for ( let i = 0; i < files.length; i++ ) {
 	}
 	console.log( '\n\n' );
 }
+
+console.log( 'Write `component_documentation.json` file...' );
+fs.writeFileSync( './app/editor-components/editor/components_documentation.json', JSON.stringify( DOCS, null, 2 ) );
