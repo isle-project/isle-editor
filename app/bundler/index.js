@@ -112,7 +112,7 @@ import Provider from 'components/provider';
 `;
 
 const getComponents = ( arr ) => {
-	const requireStatements = arr.map( elem => REQUIRES[ elem ]);
+	const requireStatements = arr.map( elem => `const ${elem} = require( '${REQUIRES[ elem ]}' );` );
 	return requireStatements.join( '\n' );
 };
 
