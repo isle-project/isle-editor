@@ -335,6 +335,11 @@ class Sketchpad extends Component {
 		if ( isObject( data ) ) {
 			this.elements = data.elements;
 			this.recordingEndPositions = data.recordingEndPositions;
+			for ( let i = 0; i < data.state.insertedPages.length; i++ ) {
+				// Insert empty pages at the correct locations:
+				const pageNo = data.state.insertedPages[ i ];
+				this.backgrounds.splice( pageNo, 0, null );
+			}
 			const page = this.readURL();
 			if ( page > 0 ) {
 				data.state.currentPage = page - 1;
