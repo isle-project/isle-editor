@@ -258,8 +258,8 @@ class InstructorBar extends Component {
 						onClick={this.toggleActions}
 						style={{...this.props.buttonStyle}}
 					>
-						<span style={{ marginRight: '5px'}} >{this.props.buttonLabel}</span>
-						<Badge style={{ fontSize: '10px' } }>{this.state.actions.length}</Badge>
+						<span style={{ marginRight: '5px' }} >{this.props.buttonLabel}</span>
+						<Badge style={{ fontSize: '10px' }}>{this.state.actions.length}</Badge>
 					</Button>
 				</ButtonGroup>
 				{this.renderDeleteModal()}
