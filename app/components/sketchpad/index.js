@@ -90,7 +90,7 @@ class Sketchpad extends Component {
 			noPages: props.noPages,
 			insertedPages: [],
 			showUploadModal: false,
-			mode: 'drag',
+			mode: 'none',
 			showNavigationModal: false,
 			transmitOwner: props.transmitOwner,
 			receiveFrom: {},
