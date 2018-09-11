@@ -233,6 +233,18 @@ class FreeTextQuestion extends Component {
 		node.click();
 	}
 
+	logHint = ( idx ) => {
+		debug( 'Logging hint...' );
+		const { session } = this.context;
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'FREE_TEXT_QUESTION_OPEN_HINT',
+				value: idx
+			});
+		}
+	}
+
 	/*
 	* React component render method.
 	*/

@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
 import Panel from 'react-bootstrap/lib/Panel';
 import DraggableList from 'components/draggable-list';
@@ -10,6 +11,11 @@ import InstructorBar from 'components/instructor-bar';
 import ChatButton from 'components/chat-button';
 import FeedbackButtons from 'components/feedback';
 import './order-question.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor:order-question' );
 
 
 // MAIN //
@@ -39,20 +45,41 @@ class OrderQuestion extends Component {
 		});
 	}
 
+	logHint = ( idx ) => {
+		debug( 'Logging hint...' );
+		const { session } = this.context;
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'ORDER_QUESTION_OPEN_HINT',
+				value: idx
+			});
+		}
+	}
+
 	handleSubmit = () => {
 		const { session } = this.context;
-		if ( this.state.correct ) {
-			session.addNotification({
-				title: 'Correct',
-				message: this.props.successMsg,
-				level: 'success',
-				position: 'tr'
-			});
+		if ( this.props.provideFeedback ) {
+			if ( this.state.correct ) {
+				session.addNotification({
+					title: 'Correct',
+					message: this.props.successMsg,
+					level: 'success',
+					position: 'tr'
+				});
+			} else {
+				session.addNotification({
+					title: 'Incorrect',
+					message: this.props.failureMsg,
+					level: 'error',
+					position: 'tr'
+				});
+			}
 		} else {
 			session.addNotification({
-				title: 'Incorrect',
-				message: this.props.failureMsg,
-				level: 'error',
+				title: 'Submitted',
+				message: 'You have successfully submitted your answer',
+				level: 'info',
 				position: 'tr'
 			});
 		}
@@ -100,6 +127,7 @@ OrderQuestion.description = 'An order question component that asks student to br
 
 OrderQuestion.defaultProps = {
 	question: '',
+	provideFeedback: true,
 	hints: [],
 	hintPlacement: 'bottom',
 	feedback: false,
@@ -113,6 +141,7 @@ OrderQuestion.defaultProps = {
 OrderQuestion.propDescriptions = {
 	question: 'question for which the student has to bring the available `options` into the correct order',
 	options: 'an array of objects with `id` and `text` keys which the student has to bring into the correct ordering, which is assumed to be the supplied order',
+	provideFeedback: 'controls whether to show a notification displaying whether the submitted answer is correct or not',
 	hints: 'hints providing guidance on how to answer the question',
 	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
 	feedback: 'controls whether to display feedback buttons',
@@ -126,6 +155,7 @@ OrderQuestion.propDescriptions = {
 OrderQuestion.propTypes = {
 	question: PropTypes.string,
 	options: PropTypes.array.isRequired,
+	provideFeedback: PropTypes.bool,
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
 	feedback: PropTypes.bool,
