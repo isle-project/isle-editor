@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
-import { VictoryChart } from 'victory';
+import VictoryChart from 'components/victory/chart';
 import saveAs from 'utils/file-saver';
 import { svgString2Image, getSVGString } from 'utils/svg';
 
