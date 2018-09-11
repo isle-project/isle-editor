@@ -14,7 +14,6 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import isObject from '@stdlib/assert/is-object';
 import replace from '@stdlib/string/replace';
-import keys from '@stdlib/utils/keys';
 import ErrorBoundary from 'editor-components/error-boundary';
 import SplitPanel from 'editor-components/split-panel';
 import Header from 'editor-components/header';
