@@ -187,7 +187,7 @@ class Signup extends Component {
 							</Col>
 							<Col sm={10}>
 								<FormControl
-									name="password-repeat"
+									name="passwordRepeat"
 									type="password"
 									placeholder="Confirm Password"
 									onChange={this.handleInputChange}
