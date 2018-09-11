@@ -41,12 +41,6 @@ import VoiceInput from 'components/input/voice';
 import transformToPresentation from 'utils/transform-to-presentation';
 import SPECTACLE_THEME from 'components/spectacle/theme.json';
 
-import { Bar, VictoryAnimation, VictoryArea, VictoryBar, VictoryBrushContainer, VictoryChart, VictoryContainer, VictoryCursorContainer, VictoryGroup, VictoryAxis, VictoryErrorBar, VictoryLabel, VictoryLegend, VictoryLine, VictoryPie, VictoryScatter, VictoryStack, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer, VictoryZoomContainer } from 'victory';
-import VictoryWrapper from 'components/victory-wrapper';
-import { Heading, Image, ListItem, List, Table, TableRow, TableHeaderItem, TableItem, TableBody, TableHeader, Text as SText } from 'spectacle';
-import Slide from 'components/spectacle/slide';
-import Deck from 'components/spectacle/deck';
-
 
 // VARIABLES //
 
@@ -171,51 +165,50 @@ const createScope = ( session ) => {
 		Well,
 
 		// VICTORY //
-		Bar,
-		VictoryAnimation,
-		VictoryArea,
-		VictoryBar,
-		VictoryBrushContainer,
-		VictoryChart,
-		VictoryContainer,
-		VictoryCursorContainer,
-		VictoryGroup,
-		VictoryAxis,
-		VictoryErrorBar,
-		VictoryLabel,
-		VictoryLegend,
-		VictoryLine,
-		VictoryPie,
-		VictoryScatter,
-		VictoryStack,
-		VictoryTheme,
-		VictoryTooltip,
-		VictoryVoronoiContainer,
-		VictoryZoomContainer,
-		VictoryWrapper,
+		VictoryAnimation: Loadable( () => import( 'components/victory/animation' ) ),
+		VictoryArea: Loadable( () => import( 'components/victory/area' ) ),
+		VictoryBar: Loadable( () => import( 'components/victory/bar' ) ),
+		VictoryBrushContainer: Loadable( () => import( 'components/victory/brush-container' ) ),
+		VictoryChart: Loadable( () => import( 'components/victory/chart' ) ),
+		VictoryContainer: Loadable( () => import( 'components/victory/container' ) ),
+		VictoryCursorContainer: Loadable( () => import( 'components/victory/cursor-container' ) ),
+		VictoryGroup: Loadable( () => import( 'components/victory/group' ) ),
+		VictoryAxis: Loadable( () => import( 'components/victory/axis' ) ),
+		VictoryErrorBar: Loadable( () => import( 'components/victory/error-bar' ) ),
+		VictoryLabel: Loadable( () => import( 'components/victory/label' ) ),
+		VictoryLegend: Loadable( () => import( 'components/victory/legend' ) ),
+		VictoryLine: Loadable( () => import( 'components/victory/line' ) ),
+		VictoryPie: Loadable( () => import( 'components/victory/pie' ) ),
+		VictoryScatter: Loadable( () => import( 'components/victory/scatter' ) ),
+		VictoryStack: Loadable( () => import( 'components/victory/stack' ) ),
+		VictoryTheme: Loadable( () => import( 'components/victory/theme' ) ),
+		VictoryTooltip: Loadable( () => import( 'components/victory/tooltip' ) ),
+		VictoryVoronoiContainer: Loadable( () => import( 'components/victory/voronoi-container' ) ),
+		VictoryZoomContainer: Loadable( () => import( 'components/victory/zoom-container' ) ),
+		VictoryWrapper: Loadable( () => import( 'components/victory/wrapper' ) ),
 
 		// SPECTACLE //
 		Appear: Loadable( () => import( 'components/spectacle/appear' ) ),
 		BlockQuote: Loadable( () => import( 'components/spectacle/block-quote' ) ),
 		Cite: Loadable( () => import( 'components/spectacle/cite' ) ),
 		Code: Loadable( () => import( 'components/spectacle/code' ) ),
-		Deck,
+		Deck: Loadable( () => import( 'components/spectacle/deck' ) ),
 		Fill: Loadable( () => import( 'components/spectacle/fill' ) ),
 		Fit: Loadable( () => import( 'components/spectacle/fit' ) ),
-		Heading,
-		Image,
+		Heading: Loadable( () => import( 'components/spectacle/heading' ) ),
+		Image: Loadable( () => import( 'components/spectacle/image' ) ),
 		Layout: Loadable( () => import( 'components/spectacle/layout' ) ),
-		ListItem,
-		List,
+		ListItem: Loadable( () => import( 'components/spectacle/list-item' ) ),
+		List: Loadable( () => import( 'components/spectacle/list' ) ),
 		Quote: Loadable( () => import( 'components/spectacle/quote' ) ),
-		Slide,
-		Table,
-		TableRow,
-		TableHeaderItem,
-		TableItem,
-		TableBody,
-		TableHeader,
-		SText,
+		Slide: Loadable( () => import( 'components/spectacle/slide' ) ),
+		Table: Loadable( () => import( 'components/spectacle/table' ) ),
+		TableRow: Loadable( () => import( 'components/spectacle/table-row' ) ),
+		TableHeaderItem: Loadable( () => import( 'components/spectacle/table-header-item' ) ),
+		TableItem: Loadable( () => import( 'components/spectacle/table-item' ) ),
+		TableBody: Loadable( () => import( 'components/spectacle/table-body' ) ),
+		TableHeader: Loadable( () => import( 'components/spectacle/table-header' ) ),
+		SText: Loadable( () => import( 'components/spectacle/text' ) ),
 		SPECTACLE_THEME
 	};
 	return SCOPE;
