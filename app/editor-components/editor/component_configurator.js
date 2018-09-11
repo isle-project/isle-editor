@@ -3,7 +3,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import markdownIt from 'markdown-it';
-import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
@@ -12,17 +11,15 @@ import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Modal from 'react-bootstrap/lib/Modal';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isFunction from '@stdlib/assert/is-function';
-import endsWith from '@stdlib/string/ends-with';
 import typeOf from '@stdlib/utils/type-of';
 import replace from '@stdlib/string/replace';
 import removeLast from '@stdlib/string/remove-last';
 import contains from '@stdlib/assert/contains';
-import objectKeys from '@stdlib/utils/keys';
+import COMPONENT_DOCS from './components_documentation.json';
 
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor' );
 const RE_SNIPPET_PLACEHOLDER = /\${[0-9]:([^}]+)}/g;
 const RE_SNIPPET_EMPTY_PLACEHOLDER = /\t*\${[0-9]:}\n?/g;
 const md = markdownIt({
@@ -67,46 +64,6 @@ function generateDefaultString( defaultValue ) {
 	return JSON.stringify( defaultValue, null, 2 );
 }
 
-function extractType( fcn ) {
-	if ( fcn === PropTypes.string.isRequired ) {
-		return 'string (required)';
-	}
-	if ( fcn === PropTypes.string ) {
-		return 'string';
-	}
-	if ( fcn === PropTypes.number.isRequired ) {
-		return 'number (required)';
-	}
-	if ( fcn === PropTypes.number ) {
-		return 'number';
-	}
-	if ( fcn === PropTypes.bool.isRequired ) {
-		return 'boolean (required)';
-	}
-	if ( fcn === PropTypes.bool ) {
-		return 'boolean';
-	}
-	if ( fcn === PropTypes.func.isRequired ) {
-		return 'function (required)';
-	}
-	if ( fcn === PropTypes.func ) {
-		return 'function';
-	}
-	if ( fcn === PropTypes.object.isRequired ) {
-		return 'object (required)';
-	}
-	if ( fcn === PropTypes.object ) {
-		return 'object';
-	}
-	if ( fcn === PropTypes.array.isRequired ) {
-		return 'array (required)';
-	}
-	if ( fcn === PropTypes.array ) {
-		return 'array';
-	}
-	return null;
-}
-
 function removePlaceholderMarkup( str ) {
 	if ( !str ) {
 		return '';
@@ -123,7 +80,6 @@ class ComponentConfigurator extends Component {
 		super( props );
 		const { name, value } = props.component;
 		this.state = {
-			componentClass: null,
 			name: name,
 			value: removePlaceholderMarkup( value )
 		};
@@ -140,29 +96,6 @@ class ComponentConfigurator extends Component {
 			return newState;
 		}
 		return null;
-	}
-
-	componentDidUpdate() {
-		const comp = this.props.scope[ this.state.name ];
-		if ( comp && !this.state.componentClass ) {
-			debug( `Preparing configuration menu for ${comp.name} component...` );
-			if ( comp.loader ) {
-				const { loader } = comp;
-				debug( `Loading ${this.state.name} component...` );
-				let promise = loader();
-				promise.then( loaded => {
-					this.setState({
-						componentClass: loaded
-					});
-				}).catch( err => {
-					throw err;
-				});
-			} else {
-				this.setState({
-					componentClass: comp
-				});
-			}
-		}
 	}
 
 	clickHide = () => {
@@ -227,40 +160,29 @@ class ComponentConfigurator extends Component {
 	}
 
 	renderPropertyControls() {
-		const { componentClass } = this.state;
-		if ( !componentClass ) {
-			return <span>Loading component specification...</span>;
-		}
-		const keys = objectKeys( componentClass.propTypes );
-		if ( keys.length === 0 ) {
+		const { props } = COMPONENT_DOCS[ this.props.component.name ];
+		if ( props.length === 0 ) {
 			return <div style={{ marginBottom: 15 }}>Component has no properties.</div>;
 		}
 		const controls = [];
-		for ( let i = 0; i < keys.length; i++ ) {
-			let key = keys[ i ];
-			if ( key === 'children' ) {
-				// Skip loop iteration for certain built-in props...
-				continue;
-			}
-			const defaultValue = componentClass.defaultProps ?
-				componentClass.defaultProps[ key ] : null;
-			const description = componentClass.propDescriptions ?
-				componentClass.propDescriptions[ key ] : '';
-			const propType = componentClass.propTypes[ key ];
-			const type = extractType( propType );
+		for ( let i = 0; i < props.length; i++ ) {
+			let prop = props[ i ];
+			const defaultValue = prop.default;
+			const description = prop.description;
+			const type = prop.type;
 			let isRequired = false;
 			if ( type ) {
 				isRequired = contains( type, '(required)' );
 			}
 			let isActive = isRequired;
 			if ( !isActive ) {
-				const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${key}\\s*=` );
+				const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${prop.name}\\s*=` );
 				isActive = RE_KEY_AROUND_WHITESPACE.test( this.state.value );
 			}
 			const className = isActive ? 'success' : '';
 			const elem = <tr className={className} style={{ marginBottom: 5 }} key={i}>
 					<td>
-						{ !isRequired ? <Checkbox checked={isActive} onClick={this.checkboxClickFactory( key, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{key}</Checkbox> : <Checkbox defaultChecked={true} disabled>{key}</Checkbox> }
+						{ !isRequired ? <Checkbox checked={isActive} onClick={this.checkboxClickFactory( prop.name, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{prop.name}</Checkbox> : <Checkbox defaultChecked={true} disabled>{prop.name}</Checkbox> }
 					</td>
 					<td>{description}</td>
 					<td>
@@ -295,21 +217,15 @@ class ComponentConfigurator extends Component {
 	}
 
 	render() {
-		let componentDescription = null;
-		if ( this.state.componentClass ) {
-			let descr = this.state.componentClass.description || 'Description missing';
-			if ( !endsWith( descr, '.' ) ) {
-				descr += '.';
-			}
-			const innerHTML = {
-				'__html': md.render( descr )
-			};
-			/* eslint-disable react/no-danger */
-			componentDescription = <div>
-				<label dangerouslySetInnerHTML={innerHTML}></label>
-			</div>;
-			/* eslint-enable react/no-danger */
-		}
+		const { description } = COMPONENT_DOCS[ this.props.component.name ];
+		const innerHTML = {
+			'__html': md.render( description )
+		};
+		/* eslint-disable react/no-danger */
+		const componentDescription = <div>
+			<label dangerouslySetInnerHTML={innerHTML}></label>
+		</div>;
+		/* eslint-enable react/no-danger */
 		return (
 			<Modal
 				onHide={this.clickHide}
@@ -359,15 +275,13 @@ ComponentConfigurator.propTypes = {
 	component: PropTypes.object,
 	onHide: PropTypes.func,
 	onInsert: PropTypes.func,
-	scope: PropTypes.object,
 	show: PropTypes.bool.isRequired
 };
 
 ComponentConfigurator.defaultProps = {
 	component: {},
 	onHide() {},
-	onInsert() {},
-	scope: {}
+	onInsert() {}
 };
 
 
