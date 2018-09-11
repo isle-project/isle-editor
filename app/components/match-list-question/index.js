@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import shuffle from '@stdlib/random/shuffle';
@@ -13,6 +14,11 @@ import OverlayTrigger from 'components/overlay-trigger';
 import FeedbackButtons from 'components/feedback';
 import OptionsList from './options_list.js';
 import './match_list_question.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor:match-list-question' );
 
 
 // FUNCTIONS //
@@ -98,16 +104,28 @@ class MatchListQuestion extends Component {
 		this.setState({
 			submitted: true
 		});
-
-		this.props.onSubmit(
-			this.state.answers.map( ans => ({ a: ans.a, b: ans.b }) )
-		);
+		const answers = this.state.answers.map( ans => ({ a: ans.a, b: ans.b }) );
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'MATCH_LIST_SUBMISSION',
+				value: JSON.stringify( answers )
+			});
+		}
+		this.props.onSubmit( answers );
 	}
 
 	toggleSolution = () => {
 		let { elements, colorScale } = this.props;
 		if ( !colorScale ) {
 			colorScale = createColorScale( 2 * elements.length );
+		}
+		if ( this.props.id ) {
+			this.context.session.log({
+				id: this.props.id,
+				type: 'MATCH_LIST_TOGGLE_SOLUTION',
+				value: null
+			});
 		}
 		if ( !this.state.userAnswers ) {
 			const userAnswers = this.state.answers;
@@ -120,6 +138,18 @@ class MatchListQuestion extends Component {
 			const userAnswers = null;
 			const answers = this.state.userAnswers;
 			this.setState({ answers, userAnswers });
+		}
+	}
+
+	logHint = ( idx ) => {
+		debug( 'Logging hint...' );
+		const { session } = this.context;
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'MATCH_LIST_OPEN_HINT',
+				value: idx
+			});
 		}
 	}
 
