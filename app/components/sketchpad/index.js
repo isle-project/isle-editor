@@ -1006,6 +1006,9 @@ class Sketchpad extends Component {
 			insertedPages: newInsertedPages,
 			nUndos: 0
 		}, () => {
+			// Update hash of URL:
+			this.updateURL( this.state.currentPage );
+
 			this.redraw();
 			if ( logging ) {
 				this.context.session.log({
