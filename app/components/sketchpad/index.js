@@ -72,10 +72,10 @@ class Sketchpad extends Component {
 		this.canvas = null;
 		this.ctx = null;
 
-		this.currentDrawing = 0;
 		const loc = this.readURL();
 		this.state = {
 			color: props.color,
+			currentDrawing: 0,
 			brushSize: props.brushSize,
 			showColorPicker: false,
 			currentPage: loc ? loc - 1 : 0,
@@ -765,7 +765,7 @@ class Sketchpad extends Component {
 				page: this.state.currentPage,
 				time: this.time,
 				type: 'curve',
-				drawID: this.currentDrawing,
+				drawID: this.state.currentDrawing,
 				user: username
 			};
 			elems.push( line );
@@ -788,7 +788,9 @@ class Sketchpad extends Component {
 				session.log( logAction, 'owners' );
 			}
 			this.currentPoints = [];
-			this.currentDrawing += 1;
+			this.setState({
+				currentDrawing: this.state.currentDrawing + 1
+			});
 		}
 	}
 
@@ -1043,7 +1045,7 @@ class Sketchpad extends Component {
 				type: 'text',
 				page: this.state.currentPage,
 				user: username,
-				drawID: this.currentDrawing
+				drawID: this.state.currentDrawing
 			};
 			this.drawText( text );
 			const elems = this.elements[ this.state.currentPage ];
@@ -1094,7 +1096,9 @@ class Sketchpad extends Component {
 			} else {
 				session.log( logAction );
 			}
-			this.currentDrawing += 1;
+			this.setState({
+				currentDrawing: this.state.currentDrawing + 1
+			});
 		}
 	}
 
@@ -1618,6 +1622,30 @@ class Sketchpad extends Component {
 		);
 	}
 
+	renderRemoveButtons() {
+		const bsSize = this.props.bsSize;
+		const page = this.state.currentPage;
+		const showUndo = this.elements[ page ] && this.elements[ page ].length > this.state.nUndos;
+		return (
+			<ButtonGroup bsSize={bsSize} className="sketch-undo-redo sketch-button-group">
+				<TooltipButton
+					tooltip="Undo"
+					onClick={this.undo}
+					glyph="step-backward"
+					disabled={!showUndo ||this.state.playing}
+					bsSize={bsSize}
+				/>
+				<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} bsSize={bsSize} />
+				<TooltipButton tooltip="Clear current page" onClick={this.clear} label="Clear" disabled={this.state.playing || this.state.recording} bsSize={bsSize} />
+				<TooltipButton tooltip="Reset all pages" onClick={() => {
+					this.setState({
+						showResetModal: !this.state.showResetModal
+					});
+				}} label="Reset" disabled={this.state.playing || this.state.recording} bsSize={bsSize} />
+			</ButtonGroup>
+		);
+	}
+
 	renderSaveButtons() {
 		if ( this.props.hideSaveButtons ) {
 			return null;
@@ -1785,16 +1813,7 @@ class Sketchpad extends Component {
 							<Button bsSize={bsSize} onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Color</Button>
 						</Tooltip>
 					</ButtonGroup>
-					<ButtonGroup bsSize={bsSize} className="sketch-undo-redo sketch-button-group">
-						<TooltipButton tooltip="Undo" onClick={this.undo} glyph="step-backward" disabled={this.state.playing} bsSize={bsSize} />
-						<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} bsSize={bsSize} />
-						<TooltipButton tooltip="Clear current page" onClick={this.clear} label="Clear" disabled={this.state.playing || this.state.recording} bsSize={bsSize} />
-						<TooltipButton tooltip="Reset all pages" onClick={() => {
-							this.setState({
-								showResetModal: !this.state.showResetModal
-							});
-						}} label="Reset" disabled={this.state.playing || this.state.recording} bsSize={bsSize} />
-					</ButtonGroup>
+					{this.renderRemoveButtons()}
 					{this.renderRecordingButtons()}
 					{this.renderTransmitButtons()}
 					{this.renderSaveButtons()}
