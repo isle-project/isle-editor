@@ -1514,6 +1514,9 @@ class Sketchpad extends Component {
 	}
 
 	renderRecordingButtons() {
+		if ( this.props.hideRecordingButtons ) {
+			return null;
+		}
 		const bsSize = this.props.bsSize;
 		const elems = this.elements[ this.state.currentPage ] || [];
 		const deleteIsDisabled = elems.length === 0 ||
@@ -1611,6 +1614,9 @@ class Sketchpad extends Component {
 	}
 
 	renderSaveButtons() {
+		if ( this.props.hideSaveButtons ) {
+			return null;
+		}
 		const bsSize = this.props.bsSize;
 		return (
 			<ButtonGroup bsSize={bsSize} className="sketch-save-buttons sketch-button-group">
@@ -1641,6 +1647,9 @@ class Sketchpad extends Component {
 	}
 
 	renderTransmitButtons() {
+		if ( this.props.hideTransmitButtons ) {
+			return null;
+		}
 		const bsSize = this.props.bsSize;
 		const users = this.context.session.userList
 			.filter( user => isNull( user.exitTime ) )
@@ -1850,6 +1859,9 @@ Sketchpad.description = 'A drawing sketchpad for note taking on lecture slides o
 Sketchpad.propDescriptions = {
 	autoSave: 'controls whether the editor should save the current text to the local storage of the browser at a given time interval',
 	intervalTime: 'time between auto saves',
+	hideRecordingButtons: 'controls whether to hide the recording buttons',
+	hideSaveButtons: 'controls whether to hide the save buttons',
+	hideTransmitButtons: 'controls whether to hide buttons for transmitting user actions',
 	brushSize: 'size of the brush to paint with',
 	bsSize: 'button sizes',
 	color: 'color of the brush and texts',
@@ -1873,6 +1885,9 @@ Sketchpad.propDescriptions = {
 Sketchpad.defaultProps = {
 	autoSave: true,
 	intervalTime: 30000,
+	hideRecordingButtons: false,
+	hideSaveButtons: false,
+	hideTransmitButtons: false,
 	brushSize: 6,
 	bsSize: 'small',
 	color: '#444444',
@@ -1896,6 +1911,9 @@ Sketchpad.defaultProps = {
 Sketchpad.propTypes = {
 	autoSave: PropTypes.bool,
 	intervalTime: PropTypes.number,
+	hideRecordingButtons: PropTypes.bool,
+	hideSaveButtons: PropTypes.bool,
+	hideTransmitButtons: PropTypes.bool,
 	brushSize: PropTypes.number,
 	bsSize: PropTypes.oneOf(['default', 'lg', 'large', 'sm', 'small', 'xs', 'xsmall']),
 	color: PropTypes.string,
