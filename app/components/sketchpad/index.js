@@ -343,6 +343,8 @@ class Sketchpad extends Component {
 			const page = this.readURL();
 			if ( page > 0 ) {
 				data.state.currentPage = page - 1;
+			} else {
+				data.state.currentPage = 0;
 			}
 			this.setState( data.state, () => {
 				this.redraw();
