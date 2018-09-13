@@ -369,10 +369,10 @@ class Session {
 	}
 
 	/**
-	* Send data packet to specified group of users.
+	* Send data packet to specified group of users or a single user.
 	*
 	* @param {Object} data - message data
-	* @param {string} [to='owners] - group of people to send message to. Can be either of `owners` or `members`
+	* @param {string} [to='owners] - group of people to send message to. Can be either of `owners`, `members`, or an email address of a single user
 	* @returns {void}
 	*/
 	sendSocketMessage = ( data, to ) => {
@@ -622,7 +622,7 @@ class Session {
 					position: 'tl'
 				});
 			}
-			this.update( 'user_joined' );
+			this.update( 'user_joined', data );
 		});
 
 		socket.on( 'user_leaves', ( data ) => {
@@ -1254,10 +1254,10 @@ class Session {
 	}
 
 	/**
-	* Logs session action to database and sends it via socket connection to specified group.
+	* Logs session action to database and sends it via socket connection to specified user(s).
 	*
 	* @param {Object} action - action object
-	* @param {string} to - group to send log message to (either `owners` or `members`)
+	* @param {string} to - group to send log message to (either `owners`, `members`, or email address of an individual user)
 	* @returns {void}
 	*/
 	log( action, to ) {

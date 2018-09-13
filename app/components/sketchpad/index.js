@@ -152,7 +152,19 @@ class Sketchpad extends Component {
 		});
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
-				if ( type === 'member_action' ) {
+				if ( type === 'user_joined' ) {
+					debug( `User "${action.email}" joined...` );
+					const insertAction = {
+						id: this.props.id,
+						type: 'SKETCHPAD_INIT_PAGES',
+						value: this.state.insertedPages,
+						noSave: true
+					};
+					if ( session.isOwner() ) {
+						session.log( insertAction, action.email );
+					}
+				}
+				else if ( type === 'member_action' ) {
 					debug( 'Received member action...' );
 					if (
 						action.email === session.user.email // 'Early return since own action...'
@@ -191,6 +203,24 @@ class Sketchpad extends Component {
 					else if ( type === 'SKETCHPAD_INSERT_PAGE' ) {
 						debug( `Should insert page at ${action.value}...` );
 						this.insertPage( action.value, false );
+					}
+					else if ( type === 'SKETCHPAD_INIT_PAGES' ) {
+						const pagesToInsert = action.value;
+						debug( 'Initialize new pages: '+pagesToInsert.join( ', ' ) );
+						const newInsertedPages = this.state.insertedPages;
+						for ( let i = 0; i < pagesToInsert.length; i++ ) {
+							const idx = pagesToInsert[ i ];
+							this.elements.splice( idx, 0, []);
+							this.backgrounds.splice( idx, 0, null );
+							this.recordingEndPositions.splice( idx, 0, 0 );
+							newInsertedPages.push( idx );
+						}
+						this.setState({
+							insertedPages: newInsertedPages,
+							noPages: this.state.noPages + pagesToInsert.length
+						}, () => {
+							this.redraw();
+						});
 					}
 					else if ( type === 'SKETCHPAD_DELETE_ELEMENT' ) {
 						const { drawID, page, user } = JSON.parse( action.value );
