@@ -132,7 +132,6 @@ function curve( ctx, points, width, height, tension, numOfSeg, close ) {
 
 	// Add lines to path:
 	for ( i = 0, l = res.length; i < l; i += 2 ) {
-		debug( `Draw line to x: ${res[i]*width} and y: ${res[i+1]*height}` );
 		ctx.lineTo( res[i]*width, res[i+1]*height );
 	}
 	return res;

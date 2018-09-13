@@ -774,7 +774,7 @@ class Sketchpad extends Component {
 	}
 
 	drawEnd = ( event ) => {
-		debug( 'Mouse is not clicked anymore...' );
+		// Mouse is not clicked anymore...
 		event.stopPropagation();
 		if ( this.isMouseDown ) {
 			this.isMouseDown = false;
