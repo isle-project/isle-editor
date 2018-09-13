@@ -25,6 +25,7 @@ import round from '@stdlib/math/base/special/round';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
 import noop from '@stdlib/utils/noop';
+import objectKeys from '@stdlib/utils/keys';
 import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
 import Joyride from 'components/joyride';
@@ -1761,22 +1762,30 @@ class Sketchpad extends Component {
 
 	renderHTMLOverlays() {
 		const page = this.toOriginalPage( this.state.currentPage );
-		if ( isNull( page ) ) {
-			return null;
-		}
-		const node = this.props.nodes[ page+1 ];
-		if ( !node ) {
-			return null;
-		}
-		if ( isObject( node ) && node.component ) {
-			if ( node.style ) {
-				return <div style={node.style} className="sketch-node-container-basic">{node.component}</div>;
+		const keys = objectKeys( this.props.nodes );
+		const divs = [];
+		for ( let i = 0; i < keys.length; i++ ) {
+			const node = this.props.nodes[ keys[ i ] ];
+			let className = 'invisible-page';
+			if ( keys[ i ] === String( page+1 ) ) {
+				className = 'sketch-node-container';
 			}
-			return ( <div className="sketch-node-container" >
-				{node.component}
-			</div> );
+			if ( isObject( node ) && node.component ) {
+				if ( node.style ) {
+					if ( keys[ i ] === String( page+1 ) ) {
+						className = 'sketch-node-container-basic';
+					}
+					divs.push( <div style={node.style} className={className} >{node.component}</div> );
+				} else {
+					divs.push( <div className={className} >
+						{node.component}
+					</div> );
+				}
+			} else {
+				divs.push( <div className={className} >{node}</div> );
+			}
 		}
-		return <div className="sketch-node-container" >{node}</div>;
+		return divs;
 	}
 
 	render() {
