@@ -83,3 +83,7 @@
 	position: absolute;
 	z-index: 9999;
 }
+
+.invisible-page {
+	display: none;
+}
