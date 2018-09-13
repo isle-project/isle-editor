@@ -585,7 +585,9 @@ class Session {
 	*/
 	socketConnect() {
 		debug( 'Connecting via socket to server... ' );
-		const socket = io.connect( this.server );
+		const socket = io.connect( this.server, {
+			transports: [ 'websocket' ]
+		});
 
 		socket.on( 'connect', () => {
 			debug( 'I am connected...' );
