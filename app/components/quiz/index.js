@@ -59,7 +59,7 @@ class Quiz extends Component {
 			counter: 0,
 			finished: false,
 			last: false,
-			checked: 1
+			checked: null
 		};
 	}
 
@@ -319,9 +319,16 @@ class Quiz extends Component {
 					this.renderScoreboard() :
 					<span key={this.state.current}>{this.renderCurrentQuestion()}</span>
 				}
-				{ showButton ? <Button className="quiz-button" onClick={this.handleNextClick}>
-					{this.state.last ? 'Finish Quiz' : 'Next Question' }
-				</Button> : null }
+				{ showButton ?
+					<Button
+						className="quiz-button"
+						onClick={this.handleNextClick}
+						disabled={this.props.forceConfidence && this.state.answered && !this.state.checked}
+					>
+						{this.state.last ? 'Finish Quiz' : 'Next Question' }
+					</Button> :
+					null
+				}
 				{ !this.state.finished ? this.renderConfidenceSurvey() : null }
 			</Panel.Body>
 		</Panel> );
@@ -333,6 +340,7 @@ class Quiz extends Component {
 
 Quiz.propDescriptions = {
 	confidence: 'whether to display a Likert scale asking for the confidence of the user\'s answer',
+	forceConfidence: 'controls whether a user has to supply a confidence level before moving to the next question',
 	count: 'number of questions to include in the quiz',
 	questions: 'array of questions from which questions will be randomly selected',
 	skippable: 'controls whether questions in  the quiz are skippable'
@@ -340,6 +348,7 @@ Quiz.propDescriptions = {
 
 Quiz.propTypes = {
 	confidence: PropTypes.bool,
+	forceConfidence: PropTypes.bool,
 	count: PropTypes.number.isRequired,
 	questions: PropTypes.array.isRequired,
 	skippable: PropTypes.bool
@@ -347,6 +356,7 @@ Quiz.propTypes = {
 
 Quiz.defaultProps = {
 	confidence: false,
+	forceConfidence: false,
 	skippable: true
 };
 
