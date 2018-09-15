@@ -20,6 +20,21 @@ const debug = logger( 'isle-editor:order-question' );
 
 // MAIN //
 
+/**
+* An order question component that asks student to bring a collection of elements into the correct order.
+*
+* @property {string} question - question for which the student has to bring the available `options` into the correct order
+* @property {Array} options - an array of objects with `id` and `text` keys which the student has to bring into the correct ordering, which is assumed to be the supplied order
+* @property {boolean} provideFeedback - controls whether to show a notification displaying whether the submitted answer is correct or not
+* @property {Array} hints - hints providing guidance on how to answer the question
+* @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
+* @property {boolean} feedback - controls whether to display feedback buttons
+* @property {boolean} chat - controls whether the element should have an integrated chat
+* @property {string} failureMsg - message to be displayed when student submits a wrong answer
+* @property {string} successMsg - message to be displayed when student submits the correct answer
+* @property {Function} onChange - callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering
+* @property {Function} onSubmit - callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order'
+*/
 class OrderQuestion extends Component {
 	constructor( props ) {
 		super( props );
@@ -123,8 +138,6 @@ class OrderQuestion extends Component {
 
 // PROPERTIES //
 
-OrderQuestion.description = 'An order question component that asks student to bring a collection of elements into the correct order';
-
 OrderQuestion.defaultProps = {
 	question: '',
 	provideFeedback: true,
@@ -136,20 +149,6 @@ OrderQuestion.defaultProps = {
 	successMsg: 'That\'s the correct ordering!',
 	onChange() {},
 	onSubmit() {}
-};
-
-OrderQuestion.propDescriptions = {
-	question: 'question for which the student has to bring the available `options` into the correct order',
-	options: 'an array of objects with `id` and `text` keys which the student has to bring into the correct ordering, which is assumed to be the supplied order',
-	provideFeedback: 'controls whether to show a notification displaying whether the submitted answer is correct or not',
-	hints: 'hints providing guidance on how to answer the question',
-	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
-	feedback: 'controls whether to display feedback buttons',
-	chat: 'controls whether the element should have an integrated chat',
-	failureMsg: 'message to be displayed when student submits a wrong answer',
-	successMsg: 'message to be displayed when student submits the correct answer',
-	onChange: 'callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering',
-	onSubmit: 'callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order'
 };
 
 OrderQuestion.propTypes = {

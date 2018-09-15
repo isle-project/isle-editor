@@ -22,6 +22,9 @@ const IS_TOUCH = isTouchDevice();
 
 // MAIN //
 
+/**
+* Wrapper around react-bootstrap's OverlayTrigger disabling the overlay on touch devices.
+*/
 class Placeholder extends Component {
 	render() {
 		if ( IS_TOUCH ) {

@@ -6,6 +6,12 @@ import PropTypes from 'prop-types';
 
 // MAIN //
 
+/**
+* Component supplying the session object to all its children.
+*
+* @property {string} currentRole - current user role (used in editor)
+* @property {Object} session - active session
+*/
 class Provider extends Component {
 	getChildContext() {
 		return {

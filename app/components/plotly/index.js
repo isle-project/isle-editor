@@ -37,6 +37,18 @@ const BUTTONS = [
 
 // MAIN //
 
+/**
+* Plotly visualization.
+*
+* @property {Array} data - data array
+* @property {boolean} editable - controls whether labels of the created plot are editable
+* @property {string} id - component identifier
+* @property {Object} layout - Plotly layout object
+* @property {boolean} legendButtons - controls whether to display buttons for changing the legend
+* @property {boolean} toggleFullscreen - controls whether to display the plot in fullscreen mode
+* @property {boolean} removeButtons - controls whether to remove all buttons
+* @property {Function} onShare - callback function invoked when clicking on the "Share" button
+*/
 class Wrapper extends Component {
 	constructor( props ) {
 		super( props );
@@ -225,7 +237,7 @@ class Wrapper extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 Wrapper.defaultProps = {
 	editable: false,
@@ -237,9 +249,6 @@ Wrapper.defaultProps = {
 	toggleFullscreen: true
 };
 
-
-// PROPERTY TYPES //
-
 Wrapper.propTypes = {
 	data: PropTypes.array.isRequired,
 	editable: PropTypes.bool,
@@ -250,9 +259,6 @@ Wrapper.propTypes = {
 	removeButtons: PropTypes.bool,
 	toggleFullscreen: PropTypes.bool
 };
-
-
-// CONTEXT TYPES //
 
 Wrapper.contextTypes = {
 	session: PropTypes.object

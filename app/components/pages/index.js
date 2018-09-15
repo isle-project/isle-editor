@@ -13,6 +13,16 @@ import './pages.css';
 
 // MAIN //
 
+/**
+* An ISLE pagination component that allows the user to step through a sequence of pages.
+*
+* @property {string} title - displayed title of the pages container
+* @property {string} bsSize - size of the pagination buttons (one of `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`)
+* @property {number} height - the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added
+* @property {strings} voiceID - voice control identifier
+* @property {Object} style - CSS inline styles
+* @property {Function} onSelect - Function invoked when active change is changed. Receives the new active page index as a sole parameter
+*/
 class Pages extends Component {
 	constructor( props ) {
 		super( props );
@@ -136,17 +146,6 @@ class Pages extends Component {
 
 
 // PROPERTIES //
-
-Pages.description = 'An ISLE pagination component that allows the user to step through a sequence of pages';
-
-Pages.propDescriptions = {
-	title: 'displayed title of the pages container',
-	bsSize: 'size of the pagination buttons (one of `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`)',
-	height: 'the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added',
-	voiceID: 'voice control identifier',
-	style: 'CSS inline styles',
-	onSelect: 'Function invoked when active change is changed. Receives the new active page index as a sole parameter'
-};
 
 Pages.propTypes = {
 	title: PropTypes.string,

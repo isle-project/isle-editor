@@ -61,6 +61,15 @@ function getBins( data ) {
 
 // MAIN //
 
+/**
+* A survey component in which the instructor may collect numeric survey data from students in real-time.
+*
+* @property {string} question - the question to be displayed
+* @property {boolean} allowMultipleAnswers - controls whether the same user (or session if anonymous) may submit multiple answers)
+* @property {boolean} anonymous - Allows for the students to submit data anonymously. Note that if this option is set to "true", then the instructors will be unable to see the ID of the submitting student
+* @property {(number|string)} step - A `string` or `numeric` value indicating the step of the arrows seen when hovering the cursor above the input box. If `'any'`, the step will be set to `1`
+* @property {Function} onSubmit - callback function invoked once students submits an answer
+*/
 class NumberSurvey extends Component {
 	constructor( props ) {
 		super( props );
@@ -179,16 +188,6 @@ class NumberSurvey extends Component {
 
 
 // PROPERTIES //
-
-NumberSurvey.description = 'A survey component in which the instructor may collect numeric survey data from students in real-time';
-
-NumberSurvey.propDescriptions = {
-	question: 'the question to be displayed',
-	allowMultipleAnswers: 'controls whether the same user (or session if anonymous) may submit multiple answers)',
-	anonymous: 'Allows for the students to submit data anonymously. Note that if this option is set to "true", then the instructors will be unable to see the ID of the submitting student.',
-	step: 'A `string` or `numeric` value indicating the step of the arrows seen when hovering the cursor above the input box. If `\'any\'`, the step will be set to `1`',
-	onSubmit: 'callback function invoked once students submits an answer'
-};
 
 NumberSurvey.defaultProps = {
 	question: '',

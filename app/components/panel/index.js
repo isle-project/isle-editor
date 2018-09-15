@@ -7,6 +7,11 @@ import Panel from 'react-bootstrap/lib/Panel';
 
 // MAIN //
 
+/**
+* Panel component.
+*
+* @property {string} header - panel heading (h3)
+*/
 class Wrapper extends Component {
 	render() {
 		return ( <Panel {...this.props} >
@@ -21,11 +26,7 @@ class Wrapper extends Component {
 }
 
 
-// PROPERTY TYPES //
-
-Wrapper.propDescriptions = {
-	'header': 'panel heading (h3)'
-};
+// PROPERTIES //
 
 Wrapper.propTypes = {
 	'header': PropTypes.string

@@ -12,6 +12,13 @@ import './playground.css';
 
 // MAIN //
 
+/**
+* Playground component to experiment with ISLE components.
+*
+* @property {string} code - code to be displayed in the playground box. This code will be editable by the user in the brower or lesson
+* @property {Object} scope - scope object with variables / components which should be made available to the executed code; most often this is the name of the component you wish to display
+* @property {Object} style - CSS inline styles
+ */
 class Playground extends Component {
 	constructor( props, context ) {
 		super( props );
@@ -60,13 +67,7 @@ Playground.defaultProps = {
 };
 
 
-// PROPERTY TYPES //
-
-Playground.propDescriptions = {
-	code: 'The code to be displayed in the playground box. This code will be editable by the user in the brower or lesson',
-	scope: 'scope object with variables / components which should be made available to the executed code; most often this is the name of the component you wish to display',
-	style: 'CSS inline styles'
-};
+// PROPERTIES //
 
 Playground.propTypes = {
 	code: PropTypes.string,

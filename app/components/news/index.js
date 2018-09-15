@@ -19,6 +19,15 @@ const debug = logger( 'isle-editor:news' );
 
 // MAIN //
 
+/**
+* The **News** component scans the public **News API** (consisting of 71 international  newspapers) and displays the latest 10 articles of the given newspaper. There are two ways to enter a source: one by typing into the search field and submitting via the ENTER button, the second via voice.
+*
+* @property {boolean} invisible - indicates whether to show the input fields or rely solely on voice control to be triggered
+* @property {string} key - authentication key for the News API
+* @property {string} language - language identifier
+* @property {string} voiceID - voice control identifier
+* @property {Function} onArticles - callback function invoked with an array of article objects once they are received
+*/
 class News extends Component {
 	constructor( props ) {
 		super( props );
@@ -214,16 +223,6 @@ class News extends Component {
 
 
 // PROPERTIES //
-
-News.description = 'The **News** component scans the public **News API** (consisting of 71 international newspapers) and displays the latest 10 articles of the given newspaper. There are two ways to enter a source: one by typing into the search field and submitting via the ENTER button, the second via voice.';
-
-News.propDescriptions = {
-	invisible: 'indicates whether to show the input fields or rely solely on voice control to be triggered',
-	key: 'authentication key for the News API',
-	language: 'language identifier',
-	voiceID: 'voice control identifier',
-	onArticles: 'callback function invoked with an array of article objects once they are received'
-};
 
 News.defaultProps = {
 	language: 'en-US',
