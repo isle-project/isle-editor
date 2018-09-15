@@ -28,6 +28,12 @@ const ORIGINAL_STATE = {
 
 // MAIN //
 
+/**
+* FeedbackButtons.description = 'Buttons to collect user feedback.
+*
+* @property {boolean} vertical - buttons are displayed vertically if set to `true`
+* @property {Object} style - CSS inline styles
+*/
 class FeedbackButtons extends Component {
 	constructor() {
 		super();
@@ -197,13 +203,6 @@ class FeedbackButtons extends Component {
 
 
 // PROPERTIES //
-
-FeedbackButtons.description = 'Buttons to collect user feedback';
-
-FeedbackButtons.propDescriptions = {
-	vertical: 'buttons are displayed vertically if set to `true`',
-	style: 'CSS inline styles'
-};
 
 FeedbackButtons.propTypes = {
 	vertical: PropTypes.bool,

@@ -7,6 +7,12 @@ import PropTypes from 'prop-types';
 
 // MAIN //
 
+
+/**
+* Grid wrapper.
+*
+* @property {boolean} fluid - turn any fixed-width grid layout into a full-width layout
+*/
 class myGrid extends Component {
 	render() {
 		let { fluid, ...other } = this.props;

@@ -6,6 +6,16 @@ import PropTypes from 'prop-types';
 
 // MAIN //
 
+/**
+* An ISLE component that allows to display its children only to reserved audiences.
+*
+* @property {boolean} anonymous - when set the gated content is displayed to anybody
+* @property {boolean} user - when set the gated content is displayed to subscribed users
+* @property {boolean} enrolled - when set the gated content is displayed to the students enrolled in the course
+* @property {boolean} owner - when set the gated content is displayed to the owner of the course (usually the instructor)
+* @property {Node} banner - a message which is visible to the visitors lacking the gate privilege
+* @property {boolean} disabled - if a gate is disabled, the banner will be displayed no matter what
+*/
 class Gate extends Component {
 	constructor( props ) {
 		super( props );
@@ -85,8 +95,6 @@ class Gate extends Component {
 
 // PROPERTIES //
 
-Gate.description = 'An ISLE component that allows to display its children only to reserved audiences';
-
 Gate.defaultProps = {
 	anonymous: false,
 	user: false,
@@ -94,15 +102,6 @@ Gate.defaultProps = {
 	owner: false,
 	banner: null,
 	disabled: false
-};
-
-Gate.propDescriptions = {
-	anonymous: 'when set the gated content is displayed to anybody',
-	user: 'when set the gated content is displayed to subscribed users',
-	enrolled: 'when set the gated content is displayed to the students enrolled in the course',
-	owner: 'when set the gated content is displayed to the owner of the course (usually the instructor)',
-	banner: 'a message which is visible to the visitors lacking the gate privilege',
-	disabled: 'if a gate is disabled, the banner will be displayed no matter what'
 };
 
 Gate.propTypes = {

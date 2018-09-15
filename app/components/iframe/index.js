@@ -6,6 +6,11 @@ import PropTypes from 'prop-types';
 
 // MAIN //
 
+/**
+* An iFrame component.
+*
+* @property {string} src - source URL
+*/
 class IFrame extends Component {
 	constructor( props ) {
 		super( props );

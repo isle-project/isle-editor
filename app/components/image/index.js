@@ -51,6 +51,19 @@ const calculateMargin = ( containerWidth ) => {
 
 // MAIN //
 
+/**
+* Component to display an image.
+*
+* @property {string} src - image source location
+* @property {string} body - base64 encoded data of image
+* @property {number} containerWidth - width of container (in px)
+* @property {number} height - image height (in px)
+* @property {number} width - image width (in px)
+* @property {string} id - component identifier
+* @property {boolean} showModal - controls whether to display fullscreen modal view
+* @property {string} title - image title
+* @property {Function} onShare - callback invoked with the image if the "share" button is clicked
+*/
 class Image extends Component {
 	constructor( props ) {
 		super( props );

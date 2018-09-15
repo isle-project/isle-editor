@@ -11,6 +11,14 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 // MAIN //
 
+/**
+* A list of draggable elements that can be re-ordered by the students.
+*
+* @property {Array} data - array of objects with `id` and `text` keys
+* @property {Function} onChange - callback invoked with newly ordered data array on each change
+* @property {Function} onInit - callback function invoked after mounting of component
+* @property {boolean} shuffle - controls whether data elements should be shuffled in initial display
+*/
 class Container extends Component {
 	constructor( props ) {
 		super( props );
@@ -66,8 +74,6 @@ class Container extends Component {
 
 
 // PROPERTIES //
-
-Container.description = 'A list of draggable elements that can be re-ordered by the students';
 
 Container.defaultProps = {
 	onChange(){},

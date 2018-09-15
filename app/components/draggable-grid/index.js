@@ -37,6 +37,13 @@ const createLayout = ( props ) => {
 
 // MAIN //
 
+/**
+* A responsive draggable grid layout.
+*
+* @property {boolean} isDraggable - controls whether grid elements are draggable
+* @property {boolean} isResizable - controls whether grid elements are resizable
+* @property {number} rowHeight - height of a single row (in px)
+*/
 class DraggableGrid extends Component {
 	constructor( props ) {
 		super( props );
@@ -71,8 +78,6 @@ class DraggableGrid extends Component {
 
 
 // PROPERTIES //
-
-DraggableGrid.description = 'A responsive draggable grid layout';
 
 DraggableGrid.defaultProps = {
 	isDraggable: false,

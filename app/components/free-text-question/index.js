@@ -31,6 +31,25 @@ const debug = logger( 'isle:free-text-question' );
 
 // MAIN //
 
+/**
+* An ISLE component for questions where answers by students should be supplied in the form of free text.
+*
+* @property {(string|Node)} question - the question displayed at the top of the free text question component
+* @property {Array<string>} hints - hints providing guidance on how to answer the question
+* @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
+* @property {boolean} feedback - controls whether to display feedback buttons
+* @property {string} solution - a model answer to the problem
+* @property {number} rows - number of rows of the text field for students to type their answers
+* @property {boolean} chat - controls whether to enable group chat should for the question
+* @property {boolean} resizable - controls whether the text area should be resizable
+* @property {string} placeholder - placeholder text displayed before user has entered any text
+* @property {string} submissionMsg - notification displayed when the learner first submits his answer
+* @property {string} resubmissionMsg - notification displayed for all submissions after the first one
+* @property {number} maxlength - maximum allowed number of characters
+* @property {string} voiceID - voice control identifier
+* @property {Function} onChange - callback invoked every time the text area value changes; receives the current text as its sole argument
+* @property {Function} onSubmit - callback invoked when user submits an answer; receives the submitted text as its sole argument
+*/
 class FreeTextQuestion extends Component {
 	/**
 	* Create a free-form question with a text input field.
@@ -343,8 +362,6 @@ class FreeTextQuestion extends Component {
 
 // PROPERTIES //
 
-FreeTextQuestion.description = 'An ISLE component for questions where answers by students should be supplied in the form of free text';
-
 FreeTextQuestion.defaultProps = {
 	question: '',
 	hints: [],
@@ -361,24 +378,6 @@ FreeTextQuestion.defaultProps = {
 	voiceID: null,
 	onChange() {},
 	onSubmit() {}
-};
-
-FreeTextQuestion.propDescriptions = {
-	question: 'the question displayed at the top of the free text question component',
-	hints: 'hints providing guidance on how to answer the question',
-	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
-	feedback: 'controls whether to display feedback buttons',
-	solution: 'a model answer to the problem',
-	rows: 'number of rows of the text field for students to type their answers',
-	chat: 'controls whether to enable group chat should for the question',
-	resizable: 'controls whether the text area should be resizable',
-	placeholder: 'placeholder text displayed before user has entered any text',
-	submissionMsg: 'notification displayed when the learner first submits his answer',
-	resubmissionMsg: 'notification displayed for all submissions after the first one',
-	maxlength: 'maximum allowed number of characters',
-	voiceID: 'voice control identifier',
-	onChange: 'callback invoked every time the text area value changes; receives the current text as its sole argument',
-	onSubmit: 'callback invoked when user submits an answer; receives the submitted text as its sole argument'
 };
 
 FreeTextQuestion.propTypes = {

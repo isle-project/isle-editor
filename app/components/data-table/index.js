@@ -40,6 +40,15 @@ const md = markdownIt({
 
 // MAIN //
 
+/**
+* A component rendering data in a tabular display. Built on top of [react-table](https://react-table.js.org/).
+*
+* @property {(Object|Array)} data - A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column
+* @property {Object} dataInfo - hints providing guidance on how to answer the question
+* @property {boolean} showRemove - A boolean value indicating whether to allow for rows to be removed
+* @property {Object} style - An object allowing for custom css styling. Defaults to an empty object
+* @property {Function} onClickRemove - A function specifying an action to take for rows removed from the data. Defaults to an empty function
+*/
 class DataTable extends Component {
 	constructor( props ) {
 		super( props );
@@ -378,8 +387,6 @@ class DataTable extends Component {
 
 // PROPERTIES //
 
-DataTable.description = 'A component rendering data in a tabular display. Built on top of [react-table](https://react-table.js.org/)';
-
 DataTable.defaultProps = {
 	dataInfo: {
 		'info': [],
@@ -389,14 +396,6 @@ DataTable.defaultProps = {
 	onClickRemove() {},
 	showRemove: false,
 	style: {}
-};
-
-DataTable.propDescriptions = {
-	data: 'A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column.',
-	dataInfo: 'hints providing guidance on how to answer the question',
-	onClickRemove: 'A function specifying an action to take for rows removed from the data. Defaults to an empty function.',
-	showRemove: 'A boolean value indicating whether to allow for rows to be removed.',
-	style: 'An object allowing for custom css styling. Defaults to an empty object.'
 };
 
 DataTable.propTypes = {

@@ -80,7 +80,7 @@ class D3Plot extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 D3Plot.propTypes = {
 	className: PropTypes.string,
