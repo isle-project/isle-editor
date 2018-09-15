@@ -22,6 +22,15 @@ function createMessage( session, message ) {
 
 // MAIN //
 
+/**
+* A button to be displayed at the end of a lesson for students to click on. By default, a message confirming completion of the lesson is sent to their email address.
+*
+* @property {string} label - label of submit button
+* @property {string} message - message for confirmation email
+* @property {boolean} sendConfirmationEmail - controls whether to send confirmation email upon lesson submission
+* @property {Object} style - CSS inline styles
+* @property {Function} onClick - callback invoked when clicking on the submission button
+*/
 class LessonSubmit extends Component {
 	constructor( props ) {
 		super( props );
@@ -160,22 +169,12 @@ class LessonSubmit extends Component {
 
 // PROPERTIES //
 
-LessonSubmit.description = 'A button to be displayed at the end of a lesson for students to click on. By default, a message confirming completion of the lesson is sent to their email address';
-
 LessonSubmit.defaultProps = {
 	label: 'Finish lesson',
 	message: '',
 	sendConfirmationEmail: true,
 	style: {},
 	onClick() {}
-};
-
-LessonSubmit.propDescriptions = {
-	label: 'label of submit button',
-	message: 'message for confirmation email',
-	sendConfirmationEmail: 'controls whether to send confirmation email upon lesson submission',
-	style: 'CSS inline styles',
-	onClick: 'callback invoked when clicking on the submission button'
 };
 
 LessonSubmit.propTypes = {

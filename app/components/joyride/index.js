@@ -27,6 +27,12 @@ const STYLES = {
 
 // MAIN //
 
+/**
+* Wrapper around [react-joyride](https://github.com/gilbarbara/react-joyride) to create walkthroughs and guided tours.
+*
+* @property {Array} steps - array of step `objects`
+* @property {boolean} run - controls whether the guide is active
+*/
 class Wrapper extends Component {
 	constructor( props ) {
 		super( props );
@@ -48,12 +54,11 @@ class Wrapper extends Component {
 
 Wrapper.propTypes = {
 	run: PropTypes.bool,
-	steps: PropTypes.array
+	steps: PropTypes.array.isRequired
 };
 
 Wrapper.defaultProps = {
-	run: false,
-	steps: []
+	run: false
 };
 
 

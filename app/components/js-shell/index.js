@@ -64,6 +64,20 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 
 // MAIN //
 
+/**
+* A JavaScript shell component.
+*
+* @property {string} code - JavaScript code to be evaluated
+* @property {string} solution - for programming questions, code `string` representing the official solution for the problem
+* @property {Array<string>} hints - for programming questions, an array of hints providing guidance on how to approach the problem
+* @property {boolean} precompute - controls whether the default code should be executed once the component has mounted
+* @property {boolean} chat - controls whether group chat functionality should be enabled
+* @property {boolean} check - appended JavaScript code to check the `code` to be evaluated
+* @property {boolean} disabled - controls whether to disable all user inputs and make the code block static
+* @property {number} lines - number of lines to display
+* @property {Object} vars - scope object with variables that should be made available to evaluated `code`
+* @property {Function} onEvaluate - callback invoked whenever the `Evaluate` button is clicked
+*/
 class JSShell extends Component {
 	constructor( props, context ) {
 		super( props );
@@ -396,7 +410,7 @@ class JSShell extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 JSShell.defaultProps = {
 	code: '',
@@ -413,22 +427,6 @@ JSShell.defaultProps = {
 	onEvaluate() {}
 };
 
-
-// PROPERTY TYPES //
-
-JSShell.propDescriptions = {
-	code: 'JavaScript code to be evaluated',
-	solution: 'for programming questions, code `string` representing the official solution for the problem',
-	hints: 'for programming questions, an array of hints providing guidance on how to approach the problem',
-	precompute: 'controls whether the default code should be executed once the component has mounted',
-	chat: 'controls whether group chat functionality should be enabled',
-	check: 'appended JavaScript code to check the `code` to be evaluated',
-	disabled: 'controls whether to disable all user inputs and make the code block static',
-	lines: 'number of lines to display',
-	vars: 'scope object with variables that should be made available to evaluated `code`',
-	onEvaluate: 'callback invoked whenever the `Evaluate` button is clicked'
-};
-
 JSShell.propTypes = {
 	code: PropTypes.string,
 	solution: PropTypes.string,
@@ -443,9 +441,6 @@ JSShell.propTypes = {
 	onEvaluate: PropTypes.func,
 	vars: PropTypes.object
 };
-
-
-// CONTEXT TYPES //
 
 JSShell.contextTypes = {
 	session: PropTypes.object

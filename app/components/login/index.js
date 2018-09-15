@@ -23,6 +23,12 @@ const debug = logger( 'isle-editor:login' );
 
 // MAIN //
 
+/**
+* Login modal window.
+*
+* @property {boolean} show - controls whether to display the modal window
+* @property {Function} onClose - callback invoked when closing the modal window
+*/
 class Login extends Component {
 	constructor( props ) {
 		super( props );
@@ -178,7 +184,8 @@ class Login extends Component {
 	}
 }
 
-// TYPES //
+
+// PROPERTIES //
 
 Login.contextTypes = {
 	session: PropTypes.object

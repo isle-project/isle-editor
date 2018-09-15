@@ -15,6 +15,12 @@ const debug = logger( 'isle-editor:key-controls' );
 
 // MAIN //
 
+/**
+* Keyboard controls.
+*
+* @property {Object} actions - object mapping key codes to events
+* @property {Node} container - DOM node for which to attach event listeners
+*/
 class KeyControls extends Component {
 	constructor( props ) {
 		super( props );
@@ -71,15 +77,12 @@ class KeyControls extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 KeyControls.defaultProps = {
 	actions: {},
 	container: null
 };
-
-
-// PROPERTY TYPES //
 
 KeyControls.propTypes = {
 	actions: PropTypes.objectOf( PropTypes.func ),

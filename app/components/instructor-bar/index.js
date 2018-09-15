@@ -17,6 +17,14 @@ import extractValue from './extract_value.js';
 
 // MAIN //
 
+/**
+* Instructor bar for accessing component actions.
+*
+* @property {string} buttonLabel - label of button to pull of action display
+* @property {Object} buttonStyle - button CSS styles
+* @property {string} dataType - type of data to visualize
+* @property {string} showID - whether to display the component ID
+*/
 class InstructorBar extends Component {
 	constructor() {
 		super();
@@ -256,7 +264,7 @@ class InstructorBar extends Component {
 				<ButtonGroup bsSize="small" >
 					<Button
 						onClick={this.toggleActions}
-						style={{...this.props.buttonStyle}}
+						style={{ ...this.props.buttonStyle }}
 					>
 						<span style={{ marginRight: '5px' }} >{this.props.buttonLabel}</span>
 						<Badge style={{ fontSize: '10px' }}>{this.state.actions.length}</Badge>
