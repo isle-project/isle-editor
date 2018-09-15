@@ -25,6 +25,23 @@ function calculateMargin( containerWidth, targetWidth ) {
 
 // VIDEO //
 
+/**
+* A component for playing media files and content from YouTube, SoundCloud and Vimeo.
+*
+* @property {string} url - URL of the video
+* @property {boolean} controls - indicates whether to display control elements of the video player
+* @property {boolean} playing - indictes whether to automatically start playing the video
+* @property {number} volume - volume of the player
+* @property {boolean} center - controls whether to center the video player
+* @property {(string|number)} height - height of the player
+* @property {(string|number)} width - width of the player
+* @property {boolean} loop - controls whether to start the video anew after it was played
+* @property {string} voiceID - voice control identifier
+* @property {Object} style - CSS inline styles
+* @property {Function} onEnded - callback invoked once the video ends
+* @property {Function} onPause - callback invoked once the video pauses
+* @property {Function} onPlay - callback invoked once the video starts or resumes playing after pausing
+*/
 class Video extends Component {
 	constructor( props ) {
 		super( props );
@@ -118,24 +135,6 @@ class Video extends Component {
 
 
 // PROPERTIES //
-
-Video.description = 'A component for playing media files and content from YouTube, SoundCloud and Vimeo';
-
-Video.propDescriptions = {
-	url: 'URL of the video',
-	controls: 'indicates whether to display control elements of the video player',
-	playing: 'indictes whether to automatically start playing the video',
-	volume: 'volume of the player',
-	center: 'controls whether to center the video player',
-	height: 'height of the player',
-	width: 'width of the player',
-	loop: 'controls whether to start the video anew after it was played',
-	voiceID: 'voice control identifier',
-	style: 'CSS inline styles',
-	onEnded: 'callback invoked once the video ends',
-	onPause: 'callback invoked once the video pauses',
-	onPlay: 'callback invoked once the video starts or resumes playing after pausing'
-};
 
 Video.propTypes = {
 	url: PropTypes.string,

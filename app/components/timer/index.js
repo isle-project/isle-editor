@@ -9,6 +9,15 @@ import './timer.css';
 
 // MAIN //
 
+/**
+* Displays a timer that will trigger a predefined callback when the time is up. An example use case is the timing of quizzes.
+*
+* @property {boolean} active - flag that can be toggled to start or pause the timer
+* @property {number} duration - duration in seconds for the timer
+* @property {string} id - the unique `string` ID for the timer. The timer component is persistent over page refreshes
+* @property {Object} style - CSS inline styles
+* @property {Function} onTimeUp - callback invoked when the timer runs out
+*/
 class Timer extends Component {
 	constructor( props ) {
 		super( props );
@@ -87,16 +96,6 @@ class Timer extends Component {
 
 
 // PROPERTIES //
-
-Timer.description = 'Displays a timer that will trigger a predefined callback when the time is up. An example use case is the timing of quizzes';
-
-Timer.propDescriptions = {
-	active: 'flag that can be toggled to start or pause the timer',
-	duration: 'duration in seconds for the timer',
-	id: 'the unique `string` ID for the timer. The timer component is persistent over page refreshes',
-	style: 'CSS inline styles',
-	onTimeUp: 'Callback invoked when the timer runs out'
-};
 
 Timer.propTypes = {
 	active: PropTypes.bool.isRequired,

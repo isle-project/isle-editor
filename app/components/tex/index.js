@@ -21,6 +21,17 @@ let counter = 1;
 
 // LATEX //
 
+/**
+* `TeX` is an ISLE element that can be used to display LaTeX equations. Under the hood, the component uses [KaTeX](https://github.com/Khan/KaTeX) for blazingly fast rendering.
+*
+* @property {(string|number)} raw - The literal LaTeX `string` to render. Also accepts `numbers`
+* @property {boolean} displayMode - `boolean` indicating whether to display the equation inline or in display mode
+* @property {boolean} numbered - controls whether to display an equation number for display mode equations
+* @property {Object} style - `object` with CSS key-value pairs to be applied to the equation container
+* @property {string} tag - Custom characters displayed for display equations at the right side. Defaults to the number of the equation inside the lesson
+* @property {Object} elems - `object` with `keys` denoting LaTeX characters and their corresponding values being configuration `objects` to make them interactive. Setting a `tooltip` option will show a tooltip when hovering over the LaTeX characters. Setting a `variable` property will display an input slider to change the respective state variable; in this case, additional properties `legend`, `min`, `max`, and `step` are supported
+* @property {Function} onClick - callback `function` invoked whenever a user clicks on the equation
+*/
 class TeX extends Component {
 	constructor( props ) {
 		super( props );
@@ -209,18 +220,6 @@ class TeX extends Component {
 }
 
 // PROPERTIES //
-
-TeX.description = '`TeX` is an ISLE element that can be used to display LaTeX equations. Under the hood, the component uses [KaTeX](https://github.com/Khan/KaTeX) for blazingly fast rendering';
-
-TeX.propDescriptions = {
-	raw: 'The literal LaTeX `string` to render. Also accepts `numbers`',
-	displayMode: '`boolean` indicating whether to display the equation inline or in display mode',
-	numbered: 'controls whether to display an equation number for display mode equations',
-	style: '`object` with CSS key-value pairs to be applied to the equation container',
-	tag: 'Custom characters displayed for display equations at the right side. Defaults to the number of the equation inside the lesson',
-	elems: '`object` with `keys` denoting LaTeX characters and their corresponding values being configuration `objects` to make them interactive. Setting a `tooltip` option will show a tooltip when hovering over the LaTeX characters. Setting a `variable` property will display an input slider to change the respective state variable; in this case, additional properties `legend`, `min`, `max`, and `step` are supported',
-	onClick: 'Callback `function` invoked whenever a user clicks on the equation'
-};
 
 TeX.propTypes = {
 	raw: PropTypes.oneOfType([

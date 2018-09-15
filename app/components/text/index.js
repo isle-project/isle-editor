@@ -25,6 +25,13 @@ const md = markdownIt({
 
 // MAIN //
 
+/**
+* Text component, which allows rendering of raw text as Markdown and enables voice control.
+*
+* @property {string} raw - text to be rendered
+* @property {Object} style - CSS inline styles
+* @property {string} voiceID - voice control identifier
+*/
 class Text extends Component {
 	textToSpeech() {
 		var ssu = new SpeechSynthesisUtterance( this.props.raw );

@@ -14,6 +14,12 @@ var debug = logger( 'isle-editor:wikipedia' );
 
 // MAIN //
 
+/**
+* The **Wikipedia** component scans the **Wikipedia** and returns an article - if anything valid is found under the entered search tem
+*
+* @property {boolean} invisible - controls whether to display a text input field to search for Wikipedia articles
+* @property {string} language - language identifier
+*/
 class Wikipedia extends Component {
 	constructor( props ) {
 		super( props );
@@ -149,13 +155,6 @@ class Wikipedia extends Component {
 
 
 // PROPERTIES //
-
-Wikipedia.description = 'The **Wikipedia** component scans the **Wikipedia** and returns an article - if anything valid is found under the entered search tem';
-
-Wikipedia.propDescriptions = {
-	invisible: 'controls whether to display a text input field to search for Wikipedia articles',
-	language: 'language identifier'
-};
 
 Wikipedia.defaultProps = {
 	invisible: false,

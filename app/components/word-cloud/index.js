@@ -139,6 +139,22 @@ const createBagOfWords = ({ texts, stopwords, minCount }) => {
 
 // MAIN //
 
+/**
+* A word cloud component built on top of [d3-cloud](https://github.com/jasondavies/d3-cloud).
+*
+* @property {Array} data - either an array of texts from which to generate the word cloud or, if `precalculated` is set to `true`, and array of word count objects (with `text` and `value` keys)
+* @property {Function} font - accessor function specifying the font face for each word. Also accepts a constant instead of a function
+* @property {Function} fontSizeMapper - accessor function indicating the font size for each word. Defaults to `( count - min ) / ( max - min ) * 36.0 + 14.0`, where `min` and `max` denote the minimum and maximum word `counts`, respectively
+* @property {boolean} precalculated - controls whether the word cloud expects an array of precalculated word counts or will generate them for given texts
+* @property {(Function|number)} rotate - accessor function indicating the rotation angle (in degrees) for each word. Also accepts a constant instead of a function
+* @property {number} width - width of the word cloud (in px)
+* @property {number} height - height of the word clloud (in px)
+* @property {string} language - language identifier (determines the stopwords to be removed)
+* @property {number} minCount - if set, only include words that appear more than `minCount` times in the given data
+* @property {boolean} saveButton - controls whether to display a button for saving the word cloud as an image
+* @property {(Function|number)} padding - accessor function or constant indicating the numerical padding for each word
+* @property {Function} onClick - callback function invoked when a word on the word cloud is clicked
+*/
 class Wrapper extends Component {
 	constructor( props ) {
 		super( props );
@@ -281,23 +297,6 @@ class Wrapper extends Component {
 
 // PROPERTIES //
 
-Wrapper.description = 'A word cloud component built on top of [d3-cloud](https://github.com/jasondavies/d3-cloud)';
-
-Wrapper.propDescriptions = {
-	data: 'either an array of texts from which to generate the word cloud or, if `precalculated` is set to `true`, and array of word count objects (with `text` and `value` keys)',
-	font: 'accessor function specifying the font face for each word. Also accepts a constant instead of a function',
-	fontSizeMapper: 'accessor function indicating the font size for each word. Defaults to `( count - min ) / ( max - min ) * 36.0 + 14.0`, where `min` and `max` denote the minimum and maximum word `counts`, respectively',
-	precalculated: 'controls whether the word cloud expects an array of precalculated word counts or will generate them for given texts',
-	rotate: 'accessor function indicating the rotation angle (in degrees) for each word. Also accepts a constant instead of a function',
-	width: 'width of the word cloud (in px)',
-	height: 'height of the word clloud (in px)',
-	language: 'language identifier (determines the stopwords to be removed)',
-	minCount: 'if set, only include words that appear more than `minCount` times in the given data',
-	saveButton: 'controls whether to display a button for saving the word cloud as an image',
-	onClick: 'callback function invoked when a word on the word cloud is clicked',
-	padding: 'accessor function indicating the numerical padding for each word'
-};
-
 Wrapper.defaultProps = {
 	data: [],
 	font: 'serif',
@@ -327,9 +326,15 @@ Wrapper.propTypes = {
 	minCount: PropTypes.number,
 	saveButton: PropTypes.bool,
 	onClick: PropTypes.func,
-	padding: PropTypes.number,
+	padding: PropTypes.oneOfType([
+		PropTypes.func,
+		PropTypes.number
+	]),
 	precalculated: PropTypes.bool,
-	rotate: PropTypes.func,
+	rotate: PropTypes.oneOfType([
+		PropTypes.func,
+		PropTypes.number
+	]),
 	width: PropTypes.number
 };
 

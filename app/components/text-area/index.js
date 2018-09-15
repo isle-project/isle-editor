@@ -10,6 +10,18 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 
 // MAIN //
 
+/**
+* A text area component. Used as a stand-alone component, changes should be handled via the `onChange` attribute.
+*
+* @property {string} defaultValue - default value of the text area,
+* @property {boolean} disabled - controls whether the text area shall be disabled
+* @property {string} legend - legend text
+* @property {string} placeholder - placeholder text
+* @property {boolean} resizable - controls whether the text area shall be resizable
+* @property {number} rows - number of rows
+* @property {Object} style - CSS inline styles
+* @property {Function} onChange - callback function invoked with the new text when the area text changes
+*/
 class TextArea extends Component {
 	/**
 	* Create a text area
@@ -80,8 +92,6 @@ class TextArea extends Component {
 
 
 // PROPERTIES //
-
-TextArea.description = 'A text area component. Used as a stand-alone component, changes should be handled via the `onChange` attribute';
 
 TextArea.defaultProps = {
 	defaultValue: '',

@@ -14,6 +14,15 @@ const debug = logger( 'isle-editor:weather' );
 
 // MAIN //
 
+/**
+* A component for displaying the current weather at a designated location.
+*
+* @property {string} location - location name
+* @property {string} language - language identifier
+* @property {string} key - APIXU key
+* @property {string} voiceID - voice control identifier
+* @property {Object} style - CSS inline styles
+*/
 class Weather extends Component {
 	constructor( props ) {
 		super( props );
@@ -215,7 +224,7 @@ class Weather extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 Weather.propTypes = {
 	key: PropTypes.string,

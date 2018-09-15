@@ -41,6 +41,14 @@ const createTooltip = ( commands ) => {
 
 // MAIN //
 
+/**
+* Component to register a reference with the speech control interface.
+*
+* @property {string} id - unique identifier
+* @property {Array} commands - array of voice commands
+* @property {Object} reference - reference object
+* @property {boolean} hide - controls whether to hide control elements for toggling on/off voice control and display a list of available commands
+*/
 class VoiceControl extends Component {
 	constructor( props ) {
 		super( props );
@@ -101,7 +109,8 @@ class VoiceControl extends Component {
 	}
 }
 
-// TYPES //
+
+// PROPERTIES //
 
 VoiceControl.propTypes = {
 	id: PropTypes.string,
