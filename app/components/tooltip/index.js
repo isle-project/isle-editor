@@ -8,6 +8,12 @@ import OverlayTrigger from 'components/overlay-trigger';
 
 // MAIN //
 
+/**
+* A tooltip overlay.
+*
+* @property {string} tooltip - tooltip content
+* @property {string} placement - direction of the tooltip
+*/
 class Wrapper extends Component {
 	render() {
 		const id = this.props.id || 'tooltip';
@@ -20,13 +26,8 @@ class Wrapper extends Component {
 	}
 }
 
-// PROPERTY TYPES //
 
-Wrapper.propDescriptions = {
-	tooltip: 'tooltip content',
-	placement: 'direction of the tooltip'
-
-};
+// PROPERTIES //
 
 Wrapper.propTypes = {
 	tooltip: PropTypes.oneOfType([

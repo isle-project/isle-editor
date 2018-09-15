@@ -13,6 +13,17 @@ const WAIT_TIME = 1000;
 
 // MAIN //
 
+/**
+* Component placeing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed.
+*
+* @property {(string|node)} title -title to be displayed at the top of the tooltip
+* @property {(string|node)} content - tooltip content
+* @property {string} event - if set to `click`, tooltip is toggled when clicking on beacon; if set to `hover`, the tooltip is activated via hovering
+* @property {string} placement - placement of the tooltip relative to `target` (either `top`, `top-start`, `top-end`, `bottom`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end`, `auto`, or `center`)
+* @property {string} target - class or ID selector for element to attach tooltip to
+* @property {number} offset - distance between the tooltip and `target` in pixels
+* @property {Function} onChange - callback invoked upon state change of the tooltip. Receives two arguments: the `action` (`open` or `close`) and the passed `props`
+*/
 class BeaconTooltip extends Component {
 	constructor( props ) {
 		super( props );
@@ -72,8 +83,6 @@ class BeaconTooltip extends Component {
 
 // PROPERTIES //
 
-BeaconTooltip.description = 'Component placeing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed';
-
 BeaconTooltip.defaultProps = {
 	title: null,
 	content: '`content` comes here...',
@@ -82,16 +91,6 @@ BeaconTooltip.defaultProps = {
 	target: '',
 	offset: 15,
 	onChange() {}
-};
-
-BeaconTooltip.propDescriptions = {
-	title: 'title to be displayed at the top of the tooltip',
-	content: 'tooltip content',
-	event: 'if set to `click`, tooltip is toggled when clicking on beacon; if set to `hover`, the tooltip is activated via hovering',
-	placement: 'placement of the tooltip relative to `target` (either `top`, `top-start`, `top-end`, `bottom`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end`, `auto`, or `center`)',
-	target: 'class or ID selector for element to attach tooltip to',
-	offset: 'distance between the tooltip and `target` in pixels',
-	onChange: 'callback invoked upon state change of the tooltip. Receives two arguments: the `action` (`open` or `close`) and the passed `props`'
 };
 
 BeaconTooltip.propTypes = {

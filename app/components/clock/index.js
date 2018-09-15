@@ -6,6 +6,11 @@ import PropTypes from 'prop-types';
 
 // MAIN //
 
+/**
+* Clock component displaying the current time.
+*
+* @property {Object} style - CSS inline styles
+*/
 class Clock extends Component {
 	constructor( props ) {
 		super( props );
@@ -54,12 +59,6 @@ class Clock extends Component {
 
 
 // PROPERTIES //
-
-Clock.description = 'Clock component displaying the current time';
-
-Clock.propDescriptions = {
-	'style': 'CSS inline styles'
-};
 
 Clock.propTypes = {
 	'style': PropTypes.object

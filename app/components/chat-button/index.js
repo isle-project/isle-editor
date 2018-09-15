@@ -14,6 +14,11 @@ const debug = logger( 'isle-editor:chat-button' );
 
 // MAIN //
 
+/**
+* A button for joining and leaving chat rooms.
+*
+* @property {string} for - chat room identifier
+*/
 class ChatButton extends Component {
 	constructor( props ) {
 		super( props );
@@ -84,8 +89,6 @@ class ChatButton extends Component {
 
 
 // PROPERTIES //
-
-ChatButton.description = 'A button for joining and leaving chat rooms';
 
 ChatButton.propTypes = {
 	for: PropTypes.string.isRequired
