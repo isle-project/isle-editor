@@ -24,6 +24,11 @@ const debug = logger( 'isle-editor:survey-generator' );
 
 // MAIN //
 
+/**
+* Component allowing instructors to create multiple-choice surveys, free text surveys and number surveys on the fly in real-time through an easy-to-use interface
+*
+* @property {string} id - component identifier
+*/
 class MCSgenerator extends Component {
 	constructor( props ) {
 		super( props );
@@ -211,12 +216,6 @@ class MCSgenerator extends Component {
 
 
 // PROPERTIES //
-
-MCSgenerator.description = 'Allows instructors to create multiple-choice surveys, free text surveys and number surveys on the fly in real-time through an easy-to-use interface';
-
-MCSgenerator.propDescriptions = {
-	id: 'component identifier'
-};
 
 MCSgenerator.defaultProps = {
 

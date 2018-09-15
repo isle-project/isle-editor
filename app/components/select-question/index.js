@@ -18,6 +18,23 @@ import './select-question.css';
 
 // MAIN //
 
+/**
+* A select question component.
+*
+* @property {string} question - question for which the student has to select one of the available answer options
+* @property {Array} options - available answer options from which the student can select
+* @property {string} solution - question solution (must be equal to one of the answer options)
+* @property {string} defaultValue - preselected answer option
+* @property {boolean} inline - controls whether the component is rendered inline or not
+* @property {Array<string>} hints - hints providing guidance on how to answer the question
+* @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
+* @property {boolean} feedback - controls whether to display feedback buttons
+* @property {boolean} chat - controls whether the element should have an integrated chat
+* @property {string} failureMsg - message to be displayed when student selects a wrong answer
+* @property {string} successMsg - message to be displayed when student selects the correct answer
+* @property {Function} onChange - callback  which is triggered after the submit action
+* @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter
+ */
 class SelectQuestion extends Component {
 	/**
 	* Create a select question.
@@ -154,8 +171,6 @@ class SelectQuestion extends Component {
 
 // PROPERTIES //
 
-SelectQuestion.description = 'A select question component';
-
 SelectQuestion.defaultProps = {
 	question: '',
 	defaultValue: '',
@@ -168,22 +183,6 @@ SelectQuestion.defaultProps = {
 	successMsg: 'That\'s the correct answer!',
 	onChange() {},
 	onSubmit() {}
-};
-
-SelectQuestion.propDescriptions = {
-	question: 'question for which the student has to select one of the available answer options',
-	options: 'available answer options from which the student can select',
-	solution: 'question solution (must be equal to one of the answer options)',
-	defaultValue: 'preselected answer option',
-	inline: 'controls whether the component is rendered inline or not',
-	hints: 'hints providing guidance on how to answer the question',
-	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
-	feedback: 'controls whether to display feedback buttons',
-	chat: 'controls whether the element should have an integrated chat',
-	failureMsg: 'message to be displayed when student selects a wrong answer',
-	successMsg: 'message to be displayed when student selects the correct answer',
-	onChange: 'callback  which is triggered after the submit action',
-	onSubmit: 'callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter'
 };
 
 SelectQuestion.propTypes = {

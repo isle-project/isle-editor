@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import copy from '@stdlib/utils/copy';
 import isArray from '@stdlib/assert/is-array';
@@ -10,7 +10,16 @@ import './switch.css';
 
 // MAIN //
 
-class Switch extends React.Component {
+/**
+* The Switch component allows the display of one element out of a list of several elements. Users can cycle through the different children of the Switch tag by clicking on the currently displayed one.
+*
+* @property {string} tooltip - tooltip displayed when hovering over the switch element
+* @property {string} tooltipPos - placement of the tooltip (either `top`, `left`, `right`, or `bottom`)
+* @property {string} className - class name for the enclosing span element
+* @property {Object} style - CSS inline styles
+* @property {Function} onChange - callback invoked when elements are switched. Receives as its first argument the index of the currently displayed child
+*/
+class Switch extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -74,16 +83,6 @@ class Switch extends React.Component {
 
 
 // PROPERTIES //
-
-Switch.description = 'The Switch component allows the display of one element out of a list of several elements. Users can cycle through the different children of the Switch tag by clicking on the currently displayed one.';
-
-Switch.propDescriptions = {
-	tooltip: 'tooltip displayed when hovering over the switch element',
-	tooltipPos: 'placement of the tooltip (either `top`, `left`, `right`, or `bottom`)',
-	className: 'class name for the enclosing span element',
-	style: 'CSS inline styles',
-	onChange: 'Callback invoked when elements are switched. Receives as its first argument the index of the currently displayed child'
-};
 
 Switch.propTypes = {
 	tooltip: PropTypes.string,

@@ -12,6 +12,20 @@ import './slick.min.css';
 
 // MAIN //
 
+/**
+* A component which displays its children in a slideshow or carousel.
+*
+* @property {string} title - title for the slideshow / carousel to be displayed at its top
+* @property {boolean} dots - display dots at the bottom for quickly navigating to any slide
+* @property {boolean} fade - controls whether fading is used for transitioning between the slides
+* @property {boolean} draggable - controls whether users can drag the slides to navigate between them
+* @property {number} goto - If property is changed, the component jumps to the slide with the selected index
+* @property {boolean} infinite - controls whether the slideshow wraps around it's contents
+* @property {number} interval - sets a time interval for an automatic slide change
+* @property {boolean} swipeToSlide - enables drag/swipe behavior
+* @property {Object} style - CSS inline styles
+* @property {Function} onClick - callback invoked when clicking on the next/previous buttons
+*/
 class DefaultSlider extends Component {
 	constructor( props ) {
 		super( props );
@@ -95,8 +109,6 @@ class DefaultSlider extends Component {
 
 // PROPERTIES //
 
-DefaultSlider.description = 'A component which displays its children in a slideshow or carousel';
-
 DefaultSlider.defaultProps = {
 	title: '',
 	dots: true,
@@ -108,19 +120,6 @@ DefaultSlider.defaultProps = {
 	swipeToSlide: true,
 	style: {},
 	onClick() {}
-};
-
-DefaultSlider.propDescriptions = {
-	title: 'title for the slideshow / carousel to be displayed at its top',
-	dots: 'display dots at the bottom for quickly navigating to any slide',
-	fade: 'controls whether fading is used for transitioning between the slides',
-	draggable: 'controls whether users can drag the slides to navigate between them',
-	goto: 'If property is changed, the component jumps to the slide with the selected index',
-	infinite: 'controls whether the slideshow wraps around it\'s contents',
-	interval: 'sets a time interval for an automatic slide change',
-	swipeToSlide: 'enables drag/swipe behavior',
-	style: 'CSS inline styles',
-	onClick: 'callback invoked when clicking on the next/previous buttons'
 };
 
 DefaultSlider.propTypes = {

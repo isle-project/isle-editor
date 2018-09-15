@@ -11,6 +11,12 @@ import round from '@stdlib/math/base/special/round';
 
 // MAIN //
 
+/**
+* Component allowing students upload a *.csv spreadsheet.
+*
+* @property {string} title - panel title
+* @property {Function} onUpload - callback function called with ( err, output ) after loading of file
+*/
 class SpreadsheetUpload extends Component {
 	constructor( props ) {
 		super( props );

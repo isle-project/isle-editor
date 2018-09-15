@@ -25,6 +25,12 @@ const FORM_DATA = [ 'name', 'email', 'password', 'passwordRepeat' ];
 
 // MAIN //
 
+/**
+* Signup modal window.
+*
+* @property {boolean} show - controls whether to display the modal window
+* @property {Function} onClose - callback invoked when closing the modal window
+*/
 class Signup extends Component {
 	constructor( props ) {
 		super( props );

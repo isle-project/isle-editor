@@ -8,6 +8,15 @@ import PI from '@stdlib/constants/math/float64-pi';
 
 // MAIN //
 
+/**
+* Spinner to visualize load times.
+*
+* @property {string} display - CSS display property
+* @property {number} height - height (in px)
+* @property {number} width - width (in px)
+* @property {number} lines - number of lines
+* @property {Object} style - CSS inline styles
+*/
 class Spinner extends Component {
 	constructor( props ) {
 		super( props );
@@ -69,7 +78,7 @@ class Spinner extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 Spinner.defaultProps = {
 	display: 'block',
@@ -78,9 +87,6 @@ Spinner.defaultProps = {
 	style: {},
 	width: 128
 };
-
-
-// PROPERTY TYPES //
 
 Spinner.propTypes = {
 	display: PropTypes.string,
