@@ -9,6 +9,13 @@ import './rhelp.css';
 
 // MAIN //
 
+/**
+* Make words pull up R documentation in a modal window when clicked.
+*
+* @property {Function} func - name of the `R function` for which to open the documentation. If not supplied, the content of the `RHelp` tag is assumed to be equal to the name of the function
+* @property {string} library - name of the R package in which the function resides
+* @property {boolean} visible - controls whether the help modal window should be opened at startup
+*/
 class RHelp extends Component {
 	constructor( props ) {
 		super( props );
@@ -78,14 +85,6 @@ class RHelp extends Component {
 
 
 // PROPERTIES //
-
-RHelp.description = 'Make words pull up R documentation in a modal window when clicked';
-
-RHelp.propDescriptions = {
-	func: 'name of the `R function` for which to open the documentation. If not supplied, the content of the `RHelp` tag is assumed to be equal to the name of the function',
-	library: 'name of the R package in which the function resides',
-	visible: 'controls whether the help modal window should be opened at startup'
-};
 
 RHelp.propTypes = {
 	func: PropTypes.string,

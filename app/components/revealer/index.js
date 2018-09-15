@@ -8,6 +8,11 @@ import Gate from 'components/gate';
 
 // MAIN //
 
+/**
+* An ISLE component that instructors to selectively reveal or hide children content.
+*
+* @property {string} message - message to be displayed when content is hidden
+*/
 class Revealer extends Component {
 	constructor( props ) {
 		super( props );
@@ -97,14 +102,8 @@ class Revealer extends Component {
 
 // PROPERTIES //
 
-Revealer.description = 'An ISLE component that instructors to selectively reveal or hide children content';
-
 Revealer.defaultProps = {
 	message: 'Content hidden by instructor'
-};
-
-Revealer.propDescriptions = {
-	message: 'Message to be displayed when content is hidden'
 };
 
 Revealer.propTypes = {

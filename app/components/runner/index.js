@@ -6,6 +6,13 @@ import PropTypes from 'prop-types';
 
 // MAIN //
 
+/**
+* The runner component will execute a supplied function either once or at a given interval.
+*
+* @property {boolean} active - controls whether the runner should be active. Upon activation, the `onEvaluate` function is called in the given interval (or once)
+* @property {number} interval - number of milliseconds between invocations of `onEvaluate`. If no interval is set, the function is only invoked once
+* @property {Function} onEvaluate - function to be invoked
+*/
 class Runner extends Component {
 	constructor( props ) {
 		super( props );
@@ -52,18 +59,10 @@ class Runner extends Component {
 
 // PROPERTIES //
 
-Runner.description = 'The runner component will execute a supplied function either once or at a given interval';
-
 Runner.defaultProps = {
 	active: true,
 	interval: null,
 	onEvaluate() {}
-};
-
-Runner.propDescriptions = {
-	active: 'controls whether the runner should be active. Upon activation, the `onEvaluate` function is called in the given interval (or once)',
-	interval: 'number of milliseconds between invocations of `onEvaluate`. If no interval is set, the function is only invoked once',
-	onEvaluate: 'function to be invoked'
 };
 
 Runner.propTypes = {

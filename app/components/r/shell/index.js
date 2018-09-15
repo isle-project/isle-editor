@@ -125,8 +125,28 @@ const showResetButton = ( clickHandler ) => {
 };
 
 
-// R SHELL //
+// MAIN //
 
+/**
+* An interactive R Shell that can be used to execute R commands in the cloud using [OpenCPU](https://www.opencpu.org/).
+*
+* @property {string} code - R code to be evaluated
+* @property {string} solution - for programming questions, R code `string` representing the official solution for the problem
+* @property {Array<string>} hints - for programming questions, an array of hints providing guidance on how to approach the problem
+* @property {boolean} addPreceding - if set to true, the shell will evaluate all the code from the current component and all previous ones occurring in the lesson
+* @property {Array<string>} libraries - R libraries that should be loaded automatically when the input `code` is executed
+* @property {boolean} precompute - controls whether the default code should be executed once the component has mounted
+* @property {(string|Array<string>)} prependCode - R code `string` (or `array` of R code blocks) to be prepended to the code stored in `code` when evaluating
+* @property {boolean} chat - controls whether group chat functionality should be enabled
+* @property {boolean} disabled - controls whether to disable all user inputs and make the code block static
+* @property {number} fontSize - used font size in the shell window
+* @property {string} fontFamily - font-family used in the shell window
+* @property {number} lines - number of lines to display
+* @property {boolean} resettable - controls whether to display a reset button for restoring the default code input
+* @property {Object} style - CSS inline styles
+* @property {Function} onEvaluate - callback invoked whenever the `Evaluate` button is clicked
+* @property {Function} onResult - callback invoked whenever the result of a code execution is obtained from the cloud. The result `string` is passed as the only argument to the callback function
+*/
 class RShell extends React.Component {
 	constructor( props ) {
 		super( props );
@@ -535,27 +555,6 @@ class RShell extends React.Component {
 
 
 // PROPERTIES //
-
-RShell.description = 'An interactive R Shell that can be used to execute R commands in the cloud using [OpenCPU](https://www.opencpu.org/)';
-
-RShell.propDescriptions = {
-	code: 'R code to be evaluated',
-	solution: 'for programming questions, R code `string` representing the official solution for the problem',
-	hints: 'for programming questions, an array of hints providing guidance on how to approach the problem',
-	addPreceding: 'if set to true, the shell will evaluate all the code from the current component and all previous ones occurring in the lesson',
-	libraries: 'R libraries that should be loaded automatically when the input `code` is executed',
-	precompute: 'controls whether the default code should be executed once the component has mounted',
-	prependCode: 'R code `string` (or `array` of R code blocks) to be prepended to the code stored in `code` when evaluating',
-	chat: 'controls whether group chat functionality should be enabled',
-	disabled: 'controls whether to disable all user inputs and make the code block static',
-	fontSize: 'used font size in the shell window',
-	fontFamily: 'font-family used in the shell window',
-	lines: 'number of lines to display',
-	resettable: 'controls whether to display a reset button for restoring the default code input',
-	style: 'CSS inline styles',
-	onEvaluate: 'callback invoked whenever the `Evaluate` button is clicked',
-	onResult: 'callback invoked whenever the result of a code execution is obtained from the cloud. The result `string` is passed as the only argument to the callback function'
-};
 
 RShell.propTypes = {
 	code: PropTypes.string,

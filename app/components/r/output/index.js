@@ -23,6 +23,13 @@ const showResult = ( res ) => {
 
 // MAIN //
 
+/**
+* Component for rendering R output inside an ISLE lesson.
+*
+* @property {string} code - R code used to evaluate
+* @property {Array<string>} libraries - R libraries that should be loaded automatically when the input `code` is executed
+* @property {(string|Array<string>)} prependCode - R code (or `array` of code blocks) to be prepended to the code stored in `code` when evaluating
+*/
 class ROutput extends Component {
 	constructor( props ) {
 		super( props );
@@ -111,14 +118,6 @@ class ROutput extends Component {
 
 
 // PROPERTIES //
-
-ROutput.description = 'Component for rendering R output inside an ISLE lesson';
-
-ROutput.propDescriptions = {
-	code: 'R code used to evaluate',
-	libraries: 'R libraries that should be loaded automatically when the input `code` is executed',
-	prependCode: 'R code (or `array` of code blocks) to be prepended to the code stored in `code` when evaluating'
-};
 
 ROutput.propTypes = {
 	code: PropTypes.string,

@@ -94,6 +94,18 @@ function getVideoConfig({ bitsPerSecond }) {
 
 // MAIN //
 
+/**
+* An ISLE component for recording audio, screen and video.
+*
+* @property {boolean} audio - indicates whether audio should be recorded
+* @property {boolean} camera - indicates whether webcam should be recorded
+* @property {boolean} screen - indicates whether the screen should be captured
+* @property {boolean} autostart - indicates whether recording should start immediately
+* @property {boolean} downloadable - indicates whether users should be able to download the recoding
+* @property {boolean} uploadable - indicates whether users should be able to upload the recoding to the server
+* @property {number} bitsPerSecond - bits per second
+* @property {string} voiceID - voice control identifier
+*/
 class Recorder extends Component {
 	constructor( props ) {
 		super( props );
@@ -502,19 +514,6 @@ class Recorder extends Component {
 
 
 // PROPERTIES //
-
-Recorder.description = 'An ISLE component for recording audio, screen and video';
-
-Recorder.propDescriptions = {
-	audio: 'indicates whether audio should be recorded',
-	camera: 'indicates whether webcam should be recorded',
-	screen: 'indicates whether the screen should be captured',
-	autostart: 'indicates whether recording should start immediately',
-	downloadable: 'indicates whether users should be able to download the recoding',
-	uploadable: 'indicates whether users should be able to upload the recoding to the server',
-	bitsPerSecond: 'bits per second',
-	voiceID: 'voice control identifier'
-};
 
 Recorder.propTypes = {
 	audio: PropTypes.bool,

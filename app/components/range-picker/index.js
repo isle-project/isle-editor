@@ -12,6 +12,13 @@ import './_datepicker.css';
 
 // MAIN //
 
+/**
+* Data range picker.
+*
+* @property {string} bsSize - button size
+* @property {Object} style - CSS inline styles
+* @property {Function} onChange - callback invoked when the data selection is changed; calledwith the current period (object with `from` and `to` properties)
+*/
 class RangePicker extends Component {
 	constructor( props ) {
 		super( props );
@@ -160,7 +167,7 @@ class RangePicker extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 RangePicker.propTypes = {
 	bsSize: PropTypes.oneOf(
@@ -176,9 +183,6 @@ RangePicker.propTypes = {
 	onChange: PropTypes.func,
 	style: PropTypes.object
 };
-
-
-// DEFAULT PROPERTIES //
 
 RangePicker.defaultProps = {
 	bsSize: 'xsmall',

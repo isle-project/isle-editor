@@ -41,6 +41,15 @@ function isHTMLConfig( elem ) {
 
 // MAIN //
 
+/**
+* A quiz component displaying a sequence of question components.
+*
+* @property {Array} questions - array of questions from which questions will be randomly selected
+* @property {number} count - number of questions to include in the quiz
+* @property {boolean} confidence - whether to display a Likert scale asking for the confidence of the user's answer
+* @property {boolean} forceConfidence - controls whether a user has to supply a confidence level before moving to the next question
+* @property {boolean} skippable - controls whether questions in  the quiz are skippable
+*/
 class Quiz extends Component {
 	constructor( props ) {
 		super( props );
@@ -337,14 +346,6 @@ class Quiz extends Component {
 
 
 // TYPES //
-
-Quiz.propDescriptions = {
-	confidence: 'whether to display a Likert scale asking for the confidence of the user\'s answer',
-	forceConfidence: 'controls whether a user has to supply a confidence level before moving to the next question',
-	count: 'number of questions to include in the quiz',
-	questions: 'array of questions from which questions will be randomly selected',
-	skippable: 'controls whether questions in  the quiz are skippable'
-};
 
 Quiz.propTypes = {
 	confidence: PropTypes.bool,

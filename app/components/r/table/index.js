@@ -10,6 +10,14 @@ import createPrependCode from 'components/r/utils/create-prepend-code';
 
 // MAIN //
 
+/**
+* Component for rendering a R data frame or matrix in a tabular display.
+*
+* @property {string} code - R code returning a data.frame containing the data to be displayed in the table
+* @property {Array<string>} libraries - R libraries that should be loaded automatically when the input `code` is executed
+* @property {(string|Array<string>)} prependCode - R code `string` (or `array` of R code blocks) to be prepended to the code stored in `code` when evaluating
+* @property {number} width - width (between 0 and 1)
+*/
 class RTable extends Component {
 	constructor( props ) {
 		super( props );
@@ -89,15 +97,6 @@ class RTable extends Component {
 
 
 // PROPERTIES //
-
-RTable.description = 'Component for rendering a R data frame or matrix in a tabular display';
-
-RTable.propDescriptions = {
-	code: 'R code returning a data.frame containing the data to be displayed in the table',
-	libraries: 'R libraries that should be loaded automatically when the input `code` is executed',
-	prependCode: 'R code `string` (or `array` of R code blocks) to be prepended to the code stored in `code` when evaluating',
-	width: 'width (between 0 and 1)'
-};
 
 RTable.propTypes = {
 	code: PropTypes.string,

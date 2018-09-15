@@ -9,6 +9,17 @@ import Image from 'components/image';
 
 // MAIN //
 
+/**
+* Component for rendering an R plot inside an ISLE lesson.
+*
+* @property {string} code - R code to generate the plot
+* @property {number} width - width of the plot (in px)
+* @property {number} height - height of the plot (in px)
+* @property {string} fileType - file type of the plot (`png` or `svg`)
+* @property {Array} libraries - R libraries that should be loaded automatically when the input `code` is executed
+* @property {(string|Array<string>)} prependCode - `string` or an `array` of R code snippets to be prepended to the code stored in `code` when evaluating
+* @property {Function} onDone - callback invoked with `err`, `img` and `body` arguments once a plot is created
+*/
 class RPlot extends Component {
 	constructor( props ) {
 		super( props );
@@ -75,18 +86,6 @@ class RPlot extends Component {
 
 
 // PROPERTIES //
-
-RPlot.description = 'Component for rendering an R plot inside an ISLE lesson';
-
-RPlot.propDescriptions = {
-	code: 'R code to generate the plot',
-	width: 'width of the plot (in px)',
-	height: 'height of the plot (in px)',
-	fileType: 'file type of the plot (`png` or `svg`)',
-	libraries: 'R libraries that should be loaded automatically when the input `code` is executed',
-	prependCode: '`string` or an `array` of R code snippets to be prepended to the code stored in `code` when evaluating',
-	onDone: 'callback invoked with `err`, `img` and `body` arguments once a plot is created'
-};
 
 RPlot.propTypes = {
 	code: PropTypes.string,

@@ -26,6 +26,22 @@ const debug = logger( 'isle:range-question' );
 
 // MAIN //
 
+/**
+* A range question component that asks students to supply a lower and upper end point
+*
+* @property {string} question - displayed question
+* @property {Array<number>} solution - two-element array containing the endpoints of the correct range
+* @property {Array<string>} hints - hints providing guidance on how to answer the question
+* @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
+* @property {boolean} feedback - controls whether to display feedback buttons
+* @property {boolean} chat - controls whether the element should have an integrated chat
+* @property {number} digits - number of digits that have to match between solution and user-supplied answer. If not given or set to null, the component checks for strict equality. If set to 0, checks for integer equality.
+* @property {number} max - maximum input value
+* @property {number} min - minimum input value
+* @property {Function} onChangeUpper - callback triggered after the upper bound is changed by the user
+* @property {Function} onChangeLower - callback triggered after the lower bound is changed by the user
+* @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter
+ */
 class RangeQuestion extends Component {
 	/**
 	* Create a number question with a number input field.
@@ -219,8 +235,6 @@ class RangeQuestion extends Component {
 
 // PROPERTIES //
 
-RangeQuestion.description = 'A range question component that asks students to supply a lower and upper end point';
-
 RangeQuestion.defaultProps = {
 	question: '',
 	solution: null,
@@ -234,21 +248,6 @@ RangeQuestion.defaultProps = {
 	onChangeUpper() {},
 	onChangeLower() {},
 	onSubmit() {}
-};
-
-RangeQuestion.propDescriptions = {
-	question: 'displayed question',
-	solution: 'two-element array containing the endpoints of the correct range',
-	hints: 'hints providing guidance on how to answer the question',
-	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
-	feedback: 'controls whether to display feedback buttons',
-	chat: 'controls whether the element should have an integrated chat',
-	digits: 'number of digits that have to match between solution and user-supplied answer. If not given or set to null, the component checks for strict equality. If set to 0, checks for integer equality.',
-	max: 'maximum input value',
-	min: 'minimum input value',
-	onChangeUpper: 'callback triggered after the upper bound is changed by the user',
-	onChangeLower: 'callback triggered after the lower bound is changed by the user',
-	onSubmit: 'callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter'
 };
 
 RangeQuestion.propTypes = {
