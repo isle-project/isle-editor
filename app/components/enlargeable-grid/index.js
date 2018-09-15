@@ -14,6 +14,15 @@ const GridLayout = WidthProvider( ReactGridLayout );
 
 // MAIN //
 
+/**
+* An enlargeable grid.
+*
+* @property {boolean} enlargeable - controls whether items can be enlarged
+* @property {number} enlargedHeight - height of item after enlarging it
+* @property {boolean} isDraggable - controls whether the grid elements are draggable
+* @property {boolean} isResizable - controls whether the grid elements are resizable
+* @property {number} itemHeight - height of items (in px)
+*/
 class EnlargeableGrid extends Component {
 	constructor( props ) {
 		super( props );
@@ -148,8 +157,6 @@ class EnlargeableGrid extends Component {
 
 
 // PROPERTIES //
-
-EnlargeableGrid.description = 'An enlargeable grid';
 
 EnlargeableGrid.defaultProps = {
 	enlargeable: true,

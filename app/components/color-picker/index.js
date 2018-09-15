@@ -7,6 +7,16 @@ import { SketchPicker } from 'react-color';
 
 // MAIN //
 
+/**
+* A wrapper for the [react-color](https://casesandberg.github.io/react-color/) colorpicker.
+*
+* @property {(string|Object)} color - `string` holding an HeX code or an `object` holding RGB or HSL values such as `{ r: 255, g: 255, b: 255 }` or `{ h: 0, s: 0, l: .10 }`, which determines the active color. Both accept an `a` property for alpha values other than one
+* @property {boolean} disableAlpha - controls whether to remove alpha slider and options
+* @property {Array<string>} presetColors - HeX `strings` specifying the default colors at the bottom of the colorpicker
+* @property {number} width - width of the colorpicker (in px)
+* @property {Function} onChange - callback invoked every time color is changed
+* @property {Function} onChangeComplete - callback invoked once a color change is complete
+*/
 class ColorPicker extends Component {
 	render() {
 		return (
@@ -19,17 +29,6 @@ class ColorPicker extends Component {
 
 
 // PROPERTIES //
-
-ColorPicker.description = 'A wrapper for the [react-color](https://casesandberg.github.io/react-color/) colorpicker';
-
-ColorPicker.propDescriptions = {
-	color: '`string` holding an HeX code or an `object` holding RGB or HSL values such as `{ r: 255, g: 255, b: 255 }` or `{ h: 0, s: 0, l: .10 }`, which determines the active color. Both accept an `a` property for alpha values other than one',
-	disableAlpha: 'controls whether to remove alpha slider and options',
-	presetColors: 'HeX `strings` specifying the default colors at the bottom of the colorpicker',
-	width: 'width of the colorpicker (in px)',
-	onChange: 'callback invoked every time color is changed',
-	onChangeComplete: 'callback invoked once a color change is complete'
-};
 
 ColorPicker.propTypes = {
 	color: PropTypes.oneOfType([

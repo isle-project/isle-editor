@@ -6,6 +6,12 @@ import PropTypes from 'prop-types';
 
 // MAIN //
 
+/**
+* The expire component will cause all of its children to become invisible after a specified amount of time.
+*
+* @property {boolean} active - controls whether the counter should be active
+* @property {number} delay - number of milliseconds before component disappears
+*/
 class Expire extends Component {
 	/**
 	* Constructor function
@@ -85,16 +91,9 @@ class Expire extends Component {
 
 // PROPERTIES //
 
-Expire.description = 'The expire component will cause all of its children to become invisible after a specified amount of time';
-
 Expire.defaultProps = {
 	active: false,
 	delay: 1000
-};
-
-Expire.propDescriptions = {
-	active: 'controls whether the counter should be active',
-	delay: 'number of milliseconds before component disappears'
 };
 
 Expire.propTypes = {
