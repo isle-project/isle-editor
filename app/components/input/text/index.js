@@ -9,6 +9,18 @@ import './text.css';
 
 // MAIN //
 
+/**
+* A text input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute.
+*
+* @property {Function} onChange - A function to be called when a text value is changed
+* @property {string} defaultValue - A value indicating the default value of the input at start
+* @property {boolean} disabled - A boolean indicating whether the input is active or not
+* @property {number} width - A number indicating the width of the input in pixels
+* @property {boolean} inline - Indicates whether the input is displayed inline
+* @property {string} legend - A string indicating the text displayed next to the number input
+* @property {string} value - text value (for controlled component)
+* @property {string} placeholder - A string indicating the value to be displayed before an initial choice is made
+*/
 class TextInput extends Input {
 	constructor( props, context ) {
 		super( props );
@@ -120,21 +132,6 @@ class TextInput extends Input {
 
 
 // PROPERTIES //
-
-TextInput.description = 'A text input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute';
-
-TextInput.propDescriptions = {
-	onChange: 'A function to be called when a text value is changed',
-	defaultValue: 'A value indicating the default value of the input at start',
-	disabled: 'A boolean indicating whether the input is active or not',
-	width: 'A number indicating the width of the input in pixels',
-	inline: 'Indicates whether the input is displayed inline',
-	legend: 'A string indicating the text displayed next to the number input',
-	onBlur: 'A function to be called when using a blur method',
-	numbersOnly: 'A boolean value indicating whether only numbers are accepted',
-	value: 'A property indicating a value that can overwrite others',
-	placeholder: 'A string indicating the value to be displayed before an initial choice is made'
-};
 
 TextInput.defaultProps = {
 	defaultValue: '',

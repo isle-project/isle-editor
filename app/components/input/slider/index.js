@@ -13,6 +13,9 @@ import './slider.css';
 
 // MAIN //
 
+/**
+* A slider input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute.
+*/
 class SliderInput extends Input {
 	createTooltip( props ) {
 		let tooltip = `Enter a${ props.step === 1 ? 'n integer' : ' number'} `;
@@ -200,8 +203,6 @@ class SliderInput extends Input {
 
 
 // PROPERTIES //
-
-SliderInput.description = 'A slider input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute';
 
 SliderInput.defaultProps = {
 	inline: false,

@@ -17,6 +17,9 @@ const debug = logger( 'isle-editor:voice-input' );
 
 // MAIN //
 
+/**
+* A voice input component.
+*/
 class VoiceInput extends Input {
 	constructor( props, context ) {
 		super( props );
@@ -287,8 +290,6 @@ class VoiceInput extends Input {
 
 
 // PROPERTIES //
-
-VoiceInput.description = 'A voice input component';
 
 VoiceInput.defaultProps = {
 	autorecord: false,

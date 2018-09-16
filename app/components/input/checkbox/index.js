@@ -8,6 +8,16 @@ import Input from 'components/input/base';
 
 // MAIN //
 
+/**
+* A checkbox input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute.
+*
+* @property {string} bind - name of global variable for the checkbox value to be assigned to
+* @property {boolean} defaultValue - A boolean value indicating the default value of the checkbox
+* @property {boolean} disabled - indicates whether the input is active or not
+* @property {boolean} inline - indicates whether the checkbox is displayed inline
+* @property {string} legend - text displayed next to the checkbox'
+* @property {Function} onChange - callback function to be invoked when checkbox is clicked. The function is called with the current checkbox value
+*/
 class CheckboxInput extends Input {
 	constructor( props, context ) {
 		super( props );
@@ -106,17 +116,6 @@ class CheckboxInput extends Input {
 
 
 // PROPERTIES //
-
-CheckboxInput.description = 'A checkbox input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute';
-
-CheckboxInput.propDescriptions = {
-	bind: 'A string indicating the variable for the boolean to be assigned',
-	onChange: 'A function to be called when a checkbox is clicked. The function takes an argument value and should change whether value is true or false',
-	defaultValue: 'A boolean value indicating the default value of the checkbox',
-	disabled: 'A boolean indicating whether the input is active or not',
-	inline: 'Indicates whether the checkbox is displayed inline',
-	legend: 'A string indicating the text displayed next to the checkbox'
-};
 
 CheckboxInput.defaultProps = {
 	bind: '',

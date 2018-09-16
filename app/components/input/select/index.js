@@ -60,6 +60,20 @@ const customStyles = {
 
 // MAIN //
 
+/**
+* A select input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute.
+*
+* @property {string} options - array of indicating the choices available the user
+* @property {string} bind - name of global variable for the number to be assigned to
+* @property {string} onChange - callback function to be invoked when a choice is made
+* @property {string} clearable - boolean value indicating whether one may clear choice(s) made
+* @property {string} defaultValue - default value of the input at startup
+* @property {string} disabled - controls whether the input is active or not
+* @property {string} inline - indicates whether the input is displayed inline
+* @property {string} legend - text displayed next to the input
+* @property {string} multi - controls whether one may select multiple answers
+* @property {string} placeholder - value to be displayed before an initial choice is made
+*/
 class SelectInput extends Input {
 	/**
 	* Create a select input field.
@@ -192,21 +206,6 @@ class SelectInput extends Input {
 
 
 // PROPERTIES //
-
-SelectInput.description = 'A select input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute';
-
-SelectInput.propDescriptions = {
-	bind: 'A string indicating the variable for the number to be assigned',
-	onChange: 'A function to be called when a number is inputted',
-	clearable: 'A boolean value indicating whether one may clear choice(s) made',
-	defaultValue: 'A value indicating the default value of the input at start',
-	disabled: 'A boolean indicating whether the input is active or not',
-	inline: 'Indicates whether the input is displayed inline',
-	legend: 'A string indicating the text displayed next to the input',
-	options: 'An array of indicating the choices available the user',
-	multi: 'A boolean indicating whether one may select multiple answers',
-	placeholder: 'A string indicating the value to be displayed before an initial choice is made'
-};
 
 SelectInput.defaultProps = {
 	bind: '',

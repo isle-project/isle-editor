@@ -10,6 +10,9 @@ import isArray from '@stdlib/assert/is-array';
 
 // MAIN //
 
+/**
+* A proportions input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute.
+*/
 class ProportionInput extends Input {
 	constructor( props ) {
 		super( props );
@@ -189,8 +192,6 @@ class ProportionInput extends Input {
 
 
 // PROPERTIES //
-
-ProportionInput.description = 'A proportions input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute';
 
 ProportionInput.defaultProps = {
 	nElements: 6,

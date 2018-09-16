@@ -14,6 +14,23 @@ import './number.css';
 
 // MAIN //
 
+/**
+* A number input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute.
+*
+* @property {string} bind: name of global variable for the number to be assigned to
+* @property {number} value - number value (for controlled component)
+* @property {number} defaultValue - value indicating the default value of the input at startup
+* @property {boolean} disabled - boolean indicating whether the input is active or not
+* @property {number} min - number indicating the smallest possible value that may be inserted
+* @property {number} max - number indicating the maximum value that may be inserted
+* @property {number} step - number indicating the incremental changes when using the increment arrows
+* @property {number} width - number indicating the width of the input bar in pixels
+* @property {boolean} inline - indicates whether the input is displayed inline
+* @property {string} legend - string indicating the text displayed next to the number input
+* @property {boolean} numbersOnly - controls whether only numbers are accepted
+* @property {Function} onBlur - callback function to be invoked when using a blur method
+* @property {Function} onChange - callback function to be invoked when number input is changed
+*/
 class NumberInput extends Input {
 	createTooltip( props ) {
 		let tooltip = `Enter a${ props.step === 1 ? 'n integer' : ' number'} `;
@@ -226,24 +243,6 @@ class NumberInput extends Input {
 
 
 // PROPERTIES //
-
-NumberInput.description = 'A number input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute';
-
-NumberInput.propDescriptions = {
-	bind: 'A string indicating the variable for the number to be assigned',
-	onChange: 'A function to be called when a number is inputted',
-	defaultValue: 'A value indicating the default value of the input at start',
-	disabled: 'A boolean indicating whether the input is active or not',
-	min: 'A number indicating the smallest possible value that may be inserted',
-	max: 'A number indicating the maximum value that may be inserted',
-	step: 'A number indicating the incremental changes when using the increment arrows',
-	width: 'A number indicating the width of the input bar in pixels',
-	inline: 'Indicates whether the input is displayed inline',
-	legend: 'A string indicating the text displayed next to the number input',
-	onBlur: 'A function to be called when using a blur method',
-	numbersOnly: 'A boolean value indicating whether only numbers are accepted',
-	value: 'A property indicating a value that can overwrite others'
-};
 
 NumberInput.defaultProps = {
 	bind: '',
