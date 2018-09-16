@@ -85,6 +85,29 @@ const debug = logger( 'isle-editor:data-explorer' );
 
 // MAIN //
 
+/**
+* This component is used by students to briefly summarize data as it is presented and perform various statistical tests.
+*
+* @property {Array} categorical - array of strings indicating the name of each categorical variable
+* @property {Array} continuous - array of strings indicating the name of each continuous variable
+* @property {(Object|Array)} data - data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column. If you wish to allow students the ability to import a `.csv` file, set the `data` option to be `false`
+* @property {Object} dataInfo - object containing the keys \'name\', whose value is a string, \'info\', whose value is an array of strings in which each element in the array is a new line and \'variables\', an object with keys as variable names and values as variable descriptions
+* @property {Array<string>} distributions - array of strings indicating distributions that may be used in calculating probabilities. This functionality exists independently of the dataset provided. Currently limited to normal, uniform and exponential distributions
+* @property {Object} editorProps - object to be passed to `MarkdownEditor` indicating properties to be used
+* @property {string} editorTitle - string indicating the title of the explorer to be displayed
+* @property {boolean} hideDataTable - boolean value indicating whether to hide the data table from view
+* @property {boolean} histogramDensities - boolean value indicating whether to display histogram densities
+* @property {Array<string>} models - array of strings indicating models that may be fit on the data
+* @property {Array<string>} plots - array of strings indicating which plots to show to the user
+* @property {Node} questions - node indicating surrounding text and question components to be displayed in a tabbed window
+* @property {boolean} showEditor - boolean indicating whether to show the editor to the user
+* @property {boolean} showTestDecisions - boolean indicating whether to show the decisions made for each test based on the calculated p-values
+* @property {Array<string>} statistics - array of strings indicating which summary statistics may be calculated
+* @property {Array<string>} tables - array of strings indicating which tables may be created from the data
+* @property {Array<Object>} tabs - array of objects and keys indicating any custom tabs to add
+* @property {Array<string>} tests - array of strings indicating which hypothesis tests to include
+* @property {boolean} transformer - boolean indicating whether one wants to display a variable transformer
+*/
 class DataExplorer extends Component {
 	/**
 	* Constructor function
@@ -879,8 +902,6 @@ class DataExplorer extends Component {
 
 // PROPERTIES //
 
-DataExplorer.description = 'This component is used by students to briefly summarize data as it is presented and perform various statistical tests';
-
 DataExplorer.defaultProps = {
 	data: {},
 	dataInfo: {
@@ -937,28 +958,6 @@ DataExplorer.defaultProps = {
 	histogramDensities: true,
 	showEditor: false,
 	showTestDecisions: true
-};
-
-DataExplorer.propDescriptions = {
-	categorical: 'An array of strings indicating the name of each categorical variable.',
-	continuous: 'An array of strings indicating the name of each continuous variable.',
-	data: 'A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column. If you wish to allow students the ability to import a `.csv` file, set the `data` option to be `false`.',
-	dataInfo: 'An object containing the keys \'name\', whose value is a string, \'info\', whose value is an array of strings in which each element in the array is a new line and \'variables\', an object with keys as variable names and values as variable descriptions.',
-	distributions: 'An array of strings indicating distributions that may be used in calculating probabilities. This functionality exists independently of the dataset provided. Currently limited to normal, uniform and exponential distributions',
-	editorProps: 'An object to be passed to `MarkdownEditor` indicating properties to be used',
-	editorTitle: 'A string indicating the title of the explorer to be displayed',
-	hideDataTable: 'A boolean value indicating whether to hide the data table from view',
-	histogramDensities: 'A boolean value indicating whether to display histogram densities',
-	models: 'An array of strings indicating models that may be fit on the data',
-	plots: 'An array of strings indicating which plots to show to the user',
-	questions: 'A node indicating surrounding text and question components to be displayed in a tabbed window',
-	showEditor: 'A boolean indicating whether to show the editor to the user',
-	showTestDecisions: 'A boolean indicating whether to show the decisions made for each test based on the calculated p-values',
-	statistics: 'An array of strings indicating which summary statistics may be calculated',
-	tables: 'An array of strings indicating which tables may be created from the data',
-	tabs: 'An array of objects and keys indicating any custom tabs to add',
-	tests: 'An array of strings indicating which hypothesis tests to include',
-	transformer: 'A boolean indicating whether one wants to display a variable transformer'
 };
 
 DataExplorer.propTypes = {

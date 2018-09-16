@@ -48,6 +48,9 @@ const getHintLabel = ( id, noHints, hintOpen ) => {
 
 // MAIN //
 
+/**
+* A button for displaying question hints.
+*/
 class HintButton extends Component {
 	constructor( props ) {
 		super( props );

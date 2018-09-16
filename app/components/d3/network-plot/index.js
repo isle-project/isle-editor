@@ -9,6 +9,9 @@ import './style.css';
 
 // MAIN //
 
+/**
+* A d3-based network plot.
+*/
 class NetworkPlot extends D3Plot {
 	constructor( props ) {
 		super( props );
@@ -143,8 +146,6 @@ class NetworkPlot extends D3Plot {
 
 
 // PROPERTIES //
-
-NetworkPlot.description = 'A d3-based network plot';
 
 NetworkPlot.defaultProps = {
 	width: 900,

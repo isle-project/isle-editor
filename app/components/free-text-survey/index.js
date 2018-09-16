@@ -28,6 +28,16 @@ const debug = logger( 'isle-editor' );
 
 // MAIN //
 
+/**
+* An ISLE component for questions where the answers by the students should be supplied in the form of free text. What differentiates this component from the **FreeTextQuestion** is the fact that the aggregated group data is displayed to everyone in real-time.
+*
+* @property {string} question - the question to ask the students
+* @property {boolean} allowMultipleAnswers - controls whether one wishes to allow students to answer the survey multiple times
+* @property {boolean} anonymous - controls whether student answers are anonymized
+* @property {boolean} multipleAnswers - controls whether students may select more than one answer. Note that this differs from `allowMultipleAnswers`, which allows students able to submit an answer multiple times
+* @property {number} rows - number of text rows in the input field
+* @property {Function} onSubmit - callback function called when an answer is submitted
+*/
 class FreeTextSurvey extends Component {
 	constructor( props ) {
 		super( props );
@@ -191,17 +201,6 @@ class FreeTextSurvey extends Component {
 
 
 // PROPERTIES //
-
-FreeTextSurvey.description = 'An ISLE component for questions where the answers by the students should be supplied in the form of free text. What differentiates this component from the **FreeTextQuestion** is the fact that the aggregated group data is displayed to everyone in real-time';
-
-FreeTextSurvey.propDescriptions = {
-	allowMultipleAnswers: 'A boolean indicating whether one wishes to allow students to answer the survey multiple times',
-	anonymous: 'A boolean indicating whether student answers are anonymized',
-	multipleAnswers: 'A boolean value indicating whether students may select more than one answer. Note that this differs from allowMultipleAnswers in that allow makes students able to submit the question multiple times.',
-	onSubmit: 'A function to be called when an answer is submitted',
-	question: 'A string indicating the question to ask the students',
-	rows: 'A number indicating the rows of text in the input method'
-};
 
 FreeTextSurvey.defaultProps = {
 	onSubmit() {},

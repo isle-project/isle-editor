@@ -42,6 +42,9 @@ function epanechnikovKernel( bandwidth ) {
 
 // MAIN //
 
+/**
+* A d3-based density plot component.
+*/
 class DensityPlot extends D3Plot {
 	constructor( props ) {
 		super( props );
@@ -174,8 +177,6 @@ class DensityPlot extends D3Plot {
 
 
 // PROPERTIES //
-
-DensityPlot.description = 'A d3-based density plot component';
 
 DensityPlot.propTypes = {
 	bandwidth: PropTypes.number,
