@@ -38,6 +38,22 @@ function createColorScale( length ) {
 
 // MAIN //
 
+/**
+* An ISLE component that renders a question in which the learner has to match elements from two lists with each other in the correct way.
+*
+* @property {string} question - question to be displayed at the top of the match list question component
+* @property {Array} elements - an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties
+* @property {Array<string>} hints - hints providing guidance on how to answer the question
+* @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
+* @property {boolean} showSolution - indicates whether the solution should be accessible after learners submit their answers
+* @property {boolean} feedback - controls whether to display feedback buttons
+* @property {boolean} chat - controls whether the element should have an integrated chat
+* @property {Array} colorScale - if set, the supplied colors are used for the tiles
+* @property {string} submissionMsg - notification displayed when the learner first submits his answer
+* @property {string} resubmissionMsg - notification displayed for all submissions after the first one
+* @property {number} maxlength - maximum allowed number of characters
+* @property {Function} onSubmit - callback invoked when students submits an answer
+*/
 class MatchListQuestion extends Component {
 	constructor( props ) {
 		super( props );
@@ -240,8 +256,6 @@ class MatchListQuestion extends Component {
 
 // PROPERTIES //
 
-MatchListQuestion.description = 'An ISLE component that renders a question in which the learner has to match elements from two lists with each other in the correct way';
-
 MatchListQuestion.defaultProps = {
 	question: '',
 	elements: [],
@@ -254,21 +268,6 @@ MatchListQuestion.defaultProps = {
 	submissionMsg: 'You have successfully submitted your answer.',
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
 	onSubmit() {}
-};
-
-MatchListQuestion.propDescriptions = {
-	question: 'question to be displayed at the top of the match list question component',
-	elements: 'an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties',
-	hints: 'hints providing guidance on how to answer the question',
-	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
-	showSolution: 'indicates whether the solution should be accessible after learners submit their answers',
-	feedback: 'controls whether to display feedback buttons',
-	chat: 'controls whether the element should have an integrated chat',
-	colorScale: 'if set, the supplied colors are used for the tiles',
-	submissionMsg: 'notification displayed when the learner first submits his answer',
-	resubmissionMsg: 'notification displayed for all submissions after the first one',
-	maxlength: 'maximum allowed number of characters',
-	onSubmit: 'callback invoked when students submits an answer'
 };
 
 MatchListQuestion.propTypes = {

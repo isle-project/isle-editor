@@ -27,7 +27,7 @@ const debug = logger( 'isle:range-question' );
 // MAIN //
 
 /**
-* A range question component that asks students to supply a lower and upper end point
+* A range question component that asks students to supply a lower and upper end point.
 *
 * @property {string} question - displayed question
 * @property {Array<number>} solution - two-element array containing the endpoints of the correct range

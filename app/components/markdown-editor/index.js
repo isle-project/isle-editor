@@ -236,6 +236,20 @@ function replacer( key, value ) {
 
 // MAIN //
 
+/**
+* A markdown editor for writing notes or reports. Supports exporting of notes as HTML or PDF files, as well as automatic submission to the ISLE server.
+*
+* @property {string} defaultValue - default text of the editor
+* @property {Array} toolbarConfig - array of toolbar element identifiers to be displayed
+* @property {Object} options - options passed to the SimpleMDE constructor, the package on which this component is based; see their documentation for available options
+* @property {boolean} autoSave - controls whether the editor should save the current text to the local storage of the browser at a given time interval
+* @property {number} intervalTime - time between auto saves
+* @property {boolean} voiceControl - controls whether voice input is enabled
+* @property {number} voiceTimeout - time in milliseconds after a chunk of recorded voice input is inserted
+* @property {string} language - language identifier
+* @property {Object} style - CSS inline styles
+* @property {Function} onChange - callback invoked when editor text changes; receives the current text as its sole argument
+*/
 class MarkdownEditor extends Component {
 	constructor( props ) {
 		super( props );
@@ -1171,8 +1185,6 @@ class MarkdownEditor extends Component {
 
 // PROPERTIES //
 
-MarkdownEditor.description = 'A markdown editor for writing notes or reports. Supports exporting of notes as HTML or PDF files, as well as automatic submission to the ISLE server.';
-
 MarkdownEditor.defaultProps = {
 	defaultValue: DEFAULT_VALUE,
 	options: {},
@@ -1194,19 +1206,6 @@ MarkdownEditor.defaultProps = {
 	language: 'en-US',
 	style: {},
 	onChange() {}
-};
-
-MarkdownEditor.propDescriptions = {
-	defaultValue: 'default text of the editor',
-	toolbarConfig: 'array of toolbar element identifiers to be displayed',
-	options: 'options passed to the SimpleMDE constructor, the package on which this component is based; see their documentation for available options',
-	autoSave: 'controls whether the editor should save the current text to the local storage of the browser at a given time interval',
-	intervalTime: 'time between auto saves',
-	voiceControl: 'controls whether voice input is enabled',
-	voiceTimeout: 'time in milliseconds after a chunk of recorded voice input is inserted',
-	language: 'language identifier',
-	style: 'CSS inline styles',
-	onChange: 'callback invoked when editor text changes; receives the current text as its sole argument'
 };
 
 MarkdownEditor.propTypes = {

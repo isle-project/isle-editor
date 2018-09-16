@@ -24,6 +24,21 @@ const debug = logger( 'isle-editor:number-question' );
 
 // MAIN //
 
+/**
+* A number question component.
+*
+* @property {string} question - number question
+* @property {Array<string>} hints - hints providing guidance on how to answer the question
+* @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
+* @property {boolean} feedback - controls whether to display feedback buttons
+* @property {number} solution - a numeric answer to the problem
+* @property {number} digits - number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.
+* @property {number} max - maximum allowed input value
+* @property {number} min - minimum allowed input value
+* @property {boolean} chat - controls whether the element should have an integrated chat
+* @property {Function} onChange - callback  which is triggered after the value of the number field changes; receives the current value as its sole argument
+* @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter
+*/
 class NumberQuestion extends Component {
 	/**
 	* Create a number question with a number input field.
@@ -188,8 +203,6 @@ class NumberQuestion extends Component {
 
 // PROPERTIES //
 
-NumberQuestion.description = 'A number question component';
-
 NumberQuestion.defaultProps = {
 	question: '',
 	hints: [],
@@ -202,20 +215,6 @@ NumberQuestion.defaultProps = {
 	chat: false,
 	onChange() {},
 	onSubmit() {}
-};
-
-NumberQuestion.propDescriptions = {
-	question: 'number question',
-	hints: 'hints providing guidance on how to answer the question',
-	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
-	feedback: 'controls whether to display feedback buttons',
-	solution: 'a numeric answer to the problem',
-	digits: 'number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.',
-	max: 'maximum allowed input value',
-	min: 'minimum allowed input value',
-	chat: 'controls whether the element should have an integrated chat',
-	onChange: 'callback  which is triggered after the value of the number field changes; receives the current value as its sole argument',
-	onSubmit: 'callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter'
 };
 
 NumberQuestion.propTypes = {

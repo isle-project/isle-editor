@@ -25,6 +25,17 @@ const debug = logger( 'isle-editor' );
 
 // MAIN //
 
+/**
+* A survey component in which the instructor may collect multiple-choice survey data from students in real-time.
+*
+* @property {boolean} allowMultipleAnswers - contols whether one wishes to allow students to answer the survey multiple times
+* @property {boolean} anonymous - contols whether student answers are anonymized
+* @property {Array} answers - array indicating answer choices for the students
+* @property {boolean} multipleAnswers - indicates whether students may select more than one answer. Note that this differs from allowMultipleAnswers in that allow makes students able to submit the question multiple times
+* @property {string} title - panel title
+* @property {Function} onSubmit - function to be called when an answer is submitted
+* @property {string} question - string indicating the question to ask the students
+*/
 class MultipleChoiceSurvey extends Component {
 	constructor( props ) {
 		super( props );
@@ -229,16 +240,6 @@ MultipleChoiceSurvey.defaultProps = {
 	title: 'Survey',
 	onSubmit() {},
 	question: ''
-};
-
-MultipleChoiceSurvey.propDescriptions = {
-	allowMultipleAnswers: 'A boolean indicating whether one wishes to allow students to answer the survey multiple times',
-	anonymous: 'A boolean indicating whether student answers are anonymized',
-	answers: 'An array indicating answer choices for the students',
-	multipleAnswers: 'A boolean value indicating whether students may select more than one answer. Note that this differs from allowMultipleAnswers in that allow makes students able to submit the question multiple times.',
-	title: 'panel title',
-	onSubmit: 'A function to be called when an answer is submitted',
-	question: 'A string indicating the question to ask the students'
 };
 
 MultipleChoiceSurvey.propTypes = {

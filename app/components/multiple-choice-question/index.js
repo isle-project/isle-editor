@@ -23,6 +23,22 @@ const debug = logger( 'isle-editor:multiple-choice-question' );
 
 // MAIN //
 
+/**
+* An ISLE component that renders a multiple choice question. It supports the case where the learner has to select a single answer and when there might be multiple correct answers and all correct ones must be picked.
+*
+* @property {string} question - the question displayed at the top of the multiple choice component
+* @property {number} solution - number denoting which answer is correct or an `array` of the correct answer numbers in case the learner should be able to select multiple answers
+* @property {Array} answers - an `array` of answer objects. Each answer should be an object with `content` and `explanation` fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect
+* @property {Array<string>} hints - hints providing guidance on how to answer the question
+* @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
+* @property {boolean} feedback - controls whether to display feedback buttons
+* @property {boolean} disabled - controls whether the question is disabled
+* @property {boolean} chat - controls whether the element should have an integrated chat
+* @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
+* @property {boolean} displaySolution - controls whether the solution is displayed upfront
+* @property {Object} style - CSS inline styles
+* @property {Function} onSubmit - callback invoked after an answer is submitted
+*/
 class MultipleChoiceQuestion extends Component {
 	constructor( props ) {
 		super( props );
@@ -277,8 +293,6 @@ class MultipleChoiceQuestion extends Component {
 
 // PROPERTIES //
 
-MultipleChoiceQuestion.description = 'An ISLE component that renders a multiple choice question. It supports the case where the learner has to select a single answer and when there might be multiple correct answers and all correct ones must be picked';
-
 MultipleChoiceQuestion.defaultProps = {
 	question: '',
 	hints: [],
@@ -290,21 +304,6 @@ MultipleChoiceQuestion.defaultProps = {
 	provideFeedback: true,
 	style: {},
 	onSubmit(){}
-};
-
-MultipleChoiceQuestion.propDescriptions = {
-	question: 'the question displayed at the top of the multiple choice component',
-	solution: 'number denoting which answer is correct or an `array` of the correct answer numbers in case the learner should be able to select multiple answers',
-	answers: 'an `array` of answer objects. Each answer should be an object with `content` and `explanation` fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect',
-	hints: 'hints providing guidance on how to answer the question',
-	hintPlacement: 'placement of the hints (either `top`, `left`, `right`, or `bottom`)',
-	feedback: 'controls whether to display feedback buttons',
-	disabled: 'controls whether the question is disabled',
-	chat: 'controls whether the element should have an integrated chat',
-	provideFeedback: 'indicates whether feedback including the correct answer should be displayed after learners submit their answers',
-	displaySolution: 'controls whether the solution is displayed upfront',
-	style: 'CSS inline styles',
-	onSubmit: 'callback invoked after an answer is submitted'
 };
 
 MultipleChoiceQuestion.propTypes = {

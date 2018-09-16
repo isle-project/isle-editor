@@ -21,6 +21,9 @@ const debug = logger( 'isle-editor' );
 
 // MAIN //
 
+/**
+* Component that allows a group of people to vote on the weights and importance of given options.
+*/
 class ProportionsSurvey extends Component {
 	constructor( props ) {
 		super( props );
@@ -164,8 +167,6 @@ class ProportionsSurvey extends Component {
 
 
 // PROPERTIES //
-
-ProportionsSurvey.description = 'Component that allows a group of people to vote on the weights and importance of given options';
 
 ProportionsSurvey.defaultProps = {
 	onSubmit() {},

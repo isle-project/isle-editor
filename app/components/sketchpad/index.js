@@ -56,6 +56,33 @@ const RE_DIGITS = /^[0-9]+$/;
 
 // MAIN //
 
+/**
+* A drawing sketchpad for note taking on lecture slides or empty pages.
+*
+* @property {boolean} autoSave - controls whether the editor should save the current text to the local storage of the browser at a given time interval
+* @property {number} intervalTime - time between auto saves
+* @property {boolean} hideRecordingButtons - controls whether to hide the recording buttons
+* @property {boolean} hideSaveButtons - controls whether to hide the save buttons
+* @property {boolean} hideTransmitButtons - controls whether to hide buttons for transmitting user actions
+* @property {number} brushSize - size of the brush to paint with
+* @property {string} bsSize - button sizes
+* @property {string} color - color of the brush and texts
+* @property {number} canvasWidth - width of the canvas element (in px)
+* @property {number} canvasHeight - height of the canvas element (in px)
+* @property {boolean} fullscreen - controls whether to automatically resize the canvas to the width and height of the browser window
+* @property {string} fill - if `horizontal`, fill all available horizontal space when drawing a PDF; if `vertical`, all vertical space is used to prevent y-axis overflow
+* @property {boolean} disabled - whether to make the component read-only and forbid drawing on the sketchboard
+* @property {string} fontFamily - font family
+* @property {number} fontSize - font size
+* @property {Object} nodes - components to be rendered on top of specified slides; `keys` should correspond to page numbers, `values` to the components
+* @property {number} noPages - initial number of pages
+* @property {string} pdf - Link to PDF file for baked-in page backgrounds
+* @property {boolean} showTutorial - show a tutorial for the sketchpad
+* @property {boolean} transmitOwner - whether owner actions should be transmitted to other users in real-time
+* @property {boolean} groupMode - controls whether all user's actions are transmitted to everyone else
+* @property {Object} style - CSS inline styles
+* @property {Function} onChange - callback invoked whenever a new line element is drawn
+*/
 class Sketchpad extends Component {
 	constructor( props ) {
 		super( props );
@@ -1916,34 +1943,6 @@ class Sketchpad extends Component {
 
 
 // TYPES //
-
-Sketchpad.description = 'A drawing sketchpad for note taking on lecture slides or empty pages';
-
-Sketchpad.propDescriptions = {
-	autoSave: 'controls whether the editor should save the current text to the local storage of the browser at a given time interval',
-	intervalTime: 'time between auto saves',
-	hideRecordingButtons: 'controls whether to hide the recording buttons',
-	hideSaveButtons: 'controls whether to hide the save buttons',
-	hideTransmitButtons: 'controls whether to hide buttons for transmitting user actions',
-	brushSize: 'size of the brush to paint with',
-	bsSize: 'button sizes',
-	color: 'color of the brush and texts',
-	canvasWidth: 'width of the canvas element (in px)',
-	canvasHeight: 'height of the canvas element (in px)',
-	fullscreen: 'controls whether to automatically resize the canvas to the width and height of the browser window',
-	fill: 'if `horizontal`, fill all available horizontal space when drawing a PDF; if `vertical`, all vertical space is used to prevent y-axis overflow',
-	disabled: 'whether to make the component read-only and forbid drawing on the sketchboard',
-	fontFamily: 'Font family',
-	fontSize: 'Font size',
-	nodes: 'components to be rendered on top of specified slides; `keys` should correspond to page numbers, `values` to the components',
-	noPages: 'initial number of pages',
-	pdf: 'Link to PDF file for baked-in page backgrounds',
-	showTutorial: 'show a tutorial for the sketchpad',
-	transmitOwner: 'whether owner actions should be transmitted to other users in real-time',
-	groupMode: 'controls whether all user\'s actions are transmitted to everyone else',
-	style: 'CSS inline styles',
-	onChange: 'callback invoked whenever a new line element is drawn'
-};
 
 Sketchpad.defaultProps = {
 	autoSave: true,

@@ -19,7 +19,7 @@ import isNumber from '@stdlib/assert/is-number';
 let counter = 1;
 
 
-// LATEX //
+// MAIN //
 
 /**
 * `TeX` is an ISLE element that can be used to display LaTeX equations. Under the hood, the component uses [KaTeX](https://github.com/Khan/KaTeX) for blazingly fast rendering.
