@@ -346,13 +346,13 @@ class DataTable extends Component {
 							className='title-button'>
 								<h4 className='title-button-h4'
 									onClick={this.showInfo}>
-									{this.props.dataInfo.name} Dataset
+									{this.props.dataInfo.name} Data
 								</h4>
 							</Button>
 						</div> : null}
 					{ this.props.dataInfo.info.length === 0 ?
 						<h4 className="title-nobutton-h4">
-							{this.props.dataInfo.name} Dataset
+							{this.props.dataInfo.name} Data
 						</h4>: null
 					}
 					<ReactTable
