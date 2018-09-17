@@ -25,7 +25,7 @@ const debug = logger( 'isle-editor:update-docs' );
 const files = glob( '**/index.js', {
 	'cwd': path.join( __dirname, '..', 'app', 'components' )
 });
-const RE_JSDOC = /(\/\*\*[\s\S]*?\*\/)\nclass/;
+const RE_JSDOC = /(\/\*\*[\s\S]*?\*\/)\n(?:class|export)/;
 const RE_TYPES = /\.(propTypes ?= ?{[\s\S]*?};)/;
 const RE_DEFAULTS = /\.(defaultProps ?= ?{[\s\S]*?};)/;
 const SCOPE_KEYS = [
@@ -89,20 +89,19 @@ for ( let i = 0; i < files.length; i++ ) {
 	const jsdoc = file.match( RE_JSDOC );
 	let componentDescription = 'Description is missing.';
 	if ( jsdoc ) {
-		// console.log( jsdoc )
 		const ast = parseJSDoc( jsdoc[ 1 ], { unwrap: true });
-		if ( ast.description ) {
+		if ( ast.description && ast.description.length > 0 ) {
 			componentDescription = ast.description;
 			if ( !endsWith( componentDescription, '.' ) ) {
 				componentDescription += '.';
 			}
 		}
-		DOCS[ tagName ].description = componentDescription;
 		for ( let i = 0; i < ast.tags.length; i++ ) {
 			const tag = ast.tags[ i ];
 			description[ tag.name ] = tag.description;
 		}
 	}
+	DOCS[ tagName ].description = componentDescription;
 	let typeMatch = RE_TYPES.exec( file );
 	if ( typeMatch ) {
 		const extractTypes = new Function( ...SCOPE_KEYS, 'return '+typeMatch[ 1 ]);
