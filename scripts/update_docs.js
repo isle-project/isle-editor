@@ -6,6 +6,7 @@
 
 const path = require( 'path' );
 const fs = require( 'fs' );
+const parseJSDoc = require( 'doctrine' ).parse;
 const glob = require( 'glob' ).sync;
 const logger = require( 'debug' );
 const objectKeys = require( '@stdlib/utils/keys' );
@@ -24,9 +25,7 @@ const debug = logger( 'isle-editor:update-docs' );
 const files = glob( '**/index.js', {
 	'cwd': path.join( __dirname, '..', 'app', 'components' )
 });
-
-const RE_DESCRIPTION = /\.description ?= '([\s\S]*?)';/;
-const RE_DESCRIPTIONS = /\.(propDescriptions ?= ?{[\s\S]*?};)/;
+const RE_JSDOC = /(\/\*\*[\s\S]*?\*\/)\nclass/;
 const RE_TYPES = /\.(propTypes ?= ?{[\s\S]*?};)/;
 const RE_DEFAULTS = /\.(defaultProps ?= ?{[\s\S]*?};)/;
 const SCOPE_KEYS = [
@@ -86,24 +85,29 @@ for ( let i = 0; i < files.length; i++ ) {
 		const extractDefaults = new Function( ...SCOPE_KEYS, 'return '+defaultsMatch );
 		defaults = extractDefaults( ...SCOPE_VALUES );
 	}
-	const descrMatch = RE_DESCRIPTIONS.exec( file );
-	if ( descrMatch ) {
-		const extractDescription = new Function( ...SCOPE_KEYS, 'return '+descrMatch[ 1 ] );
-		description = extractDescription( ...SCOPE_VALUES );
+
+	const jsdoc = file.match( RE_JSDOC );
+	let componentDescription = 'Description is missing.';
+	if ( jsdoc ) {
+		// console.log( jsdoc )
+		const ast = parseJSDoc( jsdoc[ 1 ], { unwrap: true });
+		if ( ast.description ) {
+			componentDescription = ast.description;
+			if ( !endsWith( componentDescription, '.' ) ) {
+				componentDescription += '.';
+			}
+		}
+		DOCS[ tagName ].description = componentDescription;
+		for ( let i = 0; i < ast.tags.length; i++ ) {
+			const tag = ast.tags[ i ];
+			description[ tag.name ] = tag.description;
+		}
 	}
 	let typeMatch = RE_TYPES.exec( file );
 	if ( typeMatch ) {
 		const extractTypes = new Function( ...SCOPE_KEYS, 'return '+typeMatch[ 1 ]);
 		types = extractTypes( ...SCOPE_VALUES );
 	}
-
-	let matches = file.match( RE_DESCRIPTION ) || [];
-	let componentDescription = matches[ 1 ] || 'Description is missing.';
-	if ( !endsWith( componentDescription, '.' ) ) {
-		componentDescription += '.';
-	}
-	DOCS[ tagName ].description = componentDescription;
-
 	const keys = objectKeys( types );
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
