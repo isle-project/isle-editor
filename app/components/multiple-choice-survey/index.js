@@ -132,75 +132,72 @@ class MultipleChoiceSurvey extends Component {
 		</VictoryChart> );
 	}
 
+	renderAnswerOptionsSingle = ( key, id ) => {
+		return (
+			<AnswerOption
+				key={id}
+				no={id}
+				answerContent={key}
+				active={this.state.active === id}
+				submitted={this.state.submitted}
+				onAnswerSelected={() => {
+					if ( !this.state.submitted ) {
+						this.setState({
+							active: id,
+							answerSelected: true
+						});
+					}
+				}}
+			/>
+		);
+	}
+
+	renderAnswerOptionsMultiple = ( key, id ) => {
+		return (
+			<AnswerOption
+				key={key}
+				no={id}
+				answerContent={key}
+				active={this.state.active[ id ]}
+				submitted={this.state.submitted}
+				onAnswerSelected={() => {
+					if ( !this.state.submitted ) {
+						let newActive = this.state.active.slice();
+						newActive[ id ] = !newActive[ id ];
+						this.setState({
+							active: newActive
+						});
+					}
+				}}
+			/>
+		);
+	}
+
 	render() {
-		const props = this.props;
-		const { multipleAnswers } = props;
-
-		const renderAnswerOptionsMultiple = ( key, id ) => {
-			return (
-				<AnswerOption
-					key={key}
-					no={id}
-					answerContent={key}
-					active={this.state.active[ id ]}
-					submitted={this.state.submitted}
-					onAnswerSelected={() => {
-						if ( !this.state.submitted ) {
-							let newActive = this.state.active.slice();
-							newActive[ id ] = !newActive[ id ];
-							this.setState({
-								active: newActive
-							});
-						}
-					}}
-				/>
-			);
-		};
-
-		const renderAnswerOptionsSingle = ( key, id ) => {
-			return (
-				<AnswerOption
-					key={id}
-					no={id}
-					answerContent={key}
-					active={this.state.active === id}
-					submitted={this.state.submitted}
-					onAnswerSelected={() => {
-						if ( !this.state.submitted ) {
-							this.setState({
-								active: id,
-								answerSelected: true
-							});
-						}
-					}}
-				/>
-			);
-		};
-
+		const { answers, id, title, multipleAnswers, question } = this.props;
 		let disabled;
 		if ( multipleAnswers ) {
 			disabled = this.state.submitted;
 		} else {
 			disabled = this.state.submitted || !this.state.answerSelected;
 		}
-
 		return (
 			<Gate user banner={<h2>Please sign in...</h2>} >
 				<Panel>
 					<Panel.Heading>
-						<Panel.Title componentClass="h3">{this.props.title}</Panel.Title>
+						<Panel.Title componentClass="h3">{title}</Panel.Title>
 					</Panel.Heading>
 					<Panel.Body>
 						<Grid>
 							<Col md={6}>
 								<Panel className="multiple-choice-survey">
 									<Panel.Body>
-										<p><label>{props.question}</label></p>
+										<p><label>{question}</label></p>
 										{ multipleAnswers ? <span>You may select multiple answers</span> : null }
 										<ListGroup fill >
 											{ multipleAnswers ?
-												props.answers.map( renderAnswerOptionsMultiple ) :
-												props.answers.map( renderAnswerOptionsSingle )
+												answers.map( this.renderAnswerOptionsMultiple ) :
+												answers.map( this.renderAnswerOptionsSingle )
 											}
 										</ListGroup>
 										<Button
@@ -214,14 +211,14 @@ class MultipleChoiceSurvey extends Component {
 								</Panel>
 							</Col>
 							<Col md={6}>
-								<RealtimeMetrics for={this.props.id} onData={this.onData} />
+								<RealtimeMetrics for={id} onData={this.onData} />
 								{this.renderChart()}
 								<p>
 									{this.state.freqTable}
 								</p>
 							</Col>
 						</Grid>
-						<InstructorBar buttonLabel="Responses" id={props.id} dataType="factor" />
+						<InstructorBar buttonLabel="Responses" id={id} dataType="factor" />
 					</Panel.Body>
 				</Panel>
 			</Gate>

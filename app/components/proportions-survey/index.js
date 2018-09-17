@@ -111,8 +111,10 @@ class ProportionsSurvey extends Component {
 	}
 
 	render() {
-		const props = this.props;
-		const disabled = this.state.submitted && !props.allowMultipleAnswers;
+		const disabled = (
+			( this.state.submitted && !this.props.allowMultipleAnswers ) ||
+			this.props.disabled
+		);
 		return (
 			<Gate user banner={<h2>Please sign in...</h2>} >
 				<Grid>
@@ -123,11 +125,11 @@ class ProportionsSurvey extends Component {
 							marginTop: '8px'
 						}}>
 							<Panel.Body>
-								<h3>{props.question}</h3>
+								<h3>{this.props.question}</h3>
 								<ProportionsInput
 									legends={this.props.legends}
 									precision={this.props.precision}
-									step={0.25}
+									step={this.props.step}
 									height={this.props.personalHeight}
 									innerRadius={this.props.personalInnerRadius}
 									colors={this.props.colors}
@@ -163,7 +165,7 @@ class ProportionsSurvey extends Component {
 								<ProportionsInput
 									legends={this.props.legends}
 									precision={this.props.precision}
-									step={0.25}
+									step={this.props.step}
 									height={this.props.groupHeight}
 									innerRadius={this.props.groupInnerRadius}
 									colors={this.props.colors}
@@ -176,7 +178,7 @@ class ProportionsSurvey extends Component {
 						</Panel>
 					</Col>
 				</Grid>
-				<InstructorBar buttonLabel="Responses" id={props.id} />
+				<InstructorBar buttonLabel="Responses" id={this.props.id} />
 			</Gate>
 		);
 	}
@@ -195,7 +197,7 @@ ProportionsSurvey.defaultProps = {
 	legends: null,
 	group: 'group results',
 	precision: 2,
-	step: 0.1,
+	step: 0.25,
 	colors: [
 		'tomato',
 		'orange',
