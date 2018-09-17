@@ -152,7 +152,7 @@ class FreeTextSurvey extends Component {
 		const props = this.props;
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
-			<Gate {...props} >
+			<Gate user banner={<h2>Please sign in...</h2>} >
 				<Panel>
 					<Panel.Heading>
 						<Panel.Title componentClass="h3">Survey</Panel.Title>

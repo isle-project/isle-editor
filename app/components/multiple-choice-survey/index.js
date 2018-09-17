@@ -185,7 +185,7 @@ class MultipleChoiceSurvey extends Component {
 		}
 
 		return (
-			<Gate {...props} >
+			<Gate user banner={<h2>Please sign in...</h2>} >
 				<Panel>
 					<Panel.Heading>
 						<Panel.Title componentClass="h3">{this.props.title}</Panel.Title>

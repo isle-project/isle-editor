@@ -23,6 +23,23 @@ const debug = logger( 'isle-editor' );
 
 /**
 * Component that allows a group of people to vote on the weights and importance of given options.
+*
+* @property {number} question - the question to be displayed
+* @property {boolean} allowMultipleAnswers - contols whether one wishes to allow students to answer the survey multiple times
+* @property {boolean} anonymous - contols whether student answers are anonymized
+* @property {boolean} disabled - controls whether the survey is deactivated
+* @property {number} nElements - number of elements that shall be weighed
+* @property {Array} legends - legend labels that describe the options to be weighed
+* @property {number} group - group display heading
+* @property {number} precision - displayed precision of proportion values
+* @property {number} step - the step of the arrows seen when hovering the cursor above the input box
+* @property {number} colors - array of colors for the pie chart components. If not defined, a custom color scale will be used
+* @property {number} personalHeight - proportions input height for individual student (in px)
+* @property {number} personalInnerRadius - inner radius of proportions pie chart for individual student (in px)
+* @property {number} groupHeight - proportions input height for group display (in px)
+* @property {number} groupInnerRadius - inner radius of proportions pie chart for group display (in px)
+* @property {number} margin - proportion input margin (in px)
+* @property {Function} onSubmit - callback function invoked once students submits an answer
 */
 class ProportionsSurvey extends Component {
 	constructor( props ) {
@@ -97,7 +114,7 @@ class ProportionsSurvey extends Component {
 		const props = this.props;
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
-			<Gate {...props} >
+			<Gate user banner={<h2>Please sign in...</h2>} >
 				<Grid>
 					<Col md={6}>
 						<Panel className="ProportionsSurvey" style={{
@@ -109,7 +126,7 @@ class ProportionsSurvey extends Component {
 								<h3>{props.question}</h3>
 								<ProportionsInput
 									legends={this.props.legends}
-									precision={2}
+									precision={this.props.precision}
 									step={0.25}
 									height={this.props.personalHeight}
 									innerRadius={this.props.personalInnerRadius}
@@ -145,7 +162,7 @@ class ProportionsSurvey extends Component {
 								<h4>Number of votes: { this.state.nResults } </h4>
 								<ProportionsInput
 									legends={this.props.legends}
-									precision={2}
+									precision={this.props.precision}
 									step={0.25}
 									height={this.props.groupHeight}
 									innerRadius={this.props.groupInnerRadius}
@@ -174,12 +191,10 @@ ProportionsSurvey.defaultProps = {
 	question: '',
 	anonymous: false,
 	disabled: false,
-
-	// For the Proportion:
 	nElements: 6,
-	legends: 'Legend',
+	legends: null,
 	group: 'group results',
-	precision: 1,
+	precision: 2,
 	step: 0.1,
 	colors: [
 		'tomato',
@@ -208,10 +223,7 @@ ProportionsSurvey.propTypes = {
 	group: PropTypes.string,
 	groupHeight: PropTypes.number,
 	groupInnerRadius: PropTypes.number,
-	legends: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.array
-	]),
+	legends: PropTypes.array,
 	margin: PropTypes.string,
 	nElements: PropTypes.number,
 	onSubmit: PropTypes.func,
