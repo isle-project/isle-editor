@@ -9,6 +9,9 @@ import VOICE_COMMANDS from './voice_commands.json';
 
 // MAIN //
 
+/**
+* Spectacle slide deck. Wraps `<Slide>` tags.
+*/
 class CustomDeck extends Component {
 	nextSlide() {
 		const e = new KeyboardEvent( 'keydown', {
