@@ -46,11 +46,16 @@ class SimpleLinearRegression extends Component {
 			let output = {
 				variable: `Regression of ${yval} on ${xval} by ${group}`,
 				type: 'Simple Linear Regression',
-				value: objectValues( mapValues( res, ( elem, key ) => {
+				value: <div>
+					<label>Regression of {yval} on {xval}</label>
+					<p>
+						<i>Grouped by {group}:</i>
+					</p>
+					{objectValues( mapValues( res, ( elem, key ) => {
 						const [ yint, slope ] = elem;
 						return (
 							<div>
-								<label>Regression of {yval} on {xval}:</label>
+								<label>{key}:</label>
 								<table className="table table-condensed">
 									<tbody>
 										<tr>
@@ -69,7 +74,8 @@ class SimpleLinearRegression extends Component {
 								</table>
 							</div>
 						);
-					}) )
+					}) )}
+					</div>
 			};
 			this.props.onCreated( output );
 		}
