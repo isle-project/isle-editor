@@ -22,6 +22,18 @@ const debug = logger( 'isle-editor:dashboard' );
 
 // MAIN //
 
+/**
+* A dashboard for combining the handling of multiple child input fields.
+*
+* @property {string} title - panel title
+* @property {string} description - dashboard description
+* @property {boolean} autoStart - if set to `true`, the `onGenerate` function is executed at startup with the default input values
+* @property {boolean} autoUpdate - controls whether the `onGenerate` function should be invoked automatically when one of the child input fields changes
+* @property {boolean} disabled - controls whether the dashboard shall be disabled
+* @property {string} label - button label
+* @property {number} maxWidth - maximum width of dashboard
+* @property {Function} onGenerate - function invoked when the button is clicked or one of the dashboard input values changes (if `autoUpdate` is set to `true`). The function is called with the values of the input fields, in the order in which they are placed in the dashboard
+*/
 class Dashboard extends Component {
 	constructor( props ) {
 		super( props );
@@ -166,8 +178,6 @@ class Dashboard extends Component {
 
 
 // PROPERTIES //
-
-Dashboard.description = 'A dashboard for combining the handling of multiple child input fields';
 
 Dashboard.defaultProps = {
 	autoStart: true,

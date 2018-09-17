@@ -39,6 +39,8 @@ This component triggers the [Apixu](https://www.apixu.com/) API and downloads th
 
 #### Options:
 
-* __language__: `string` of the text recognition logique. Default is `'en-US'`.
-* __location__: location `string`: `'Berlin'`.
-* __speechInterface__: `boolean` indicating whether the weather compoent demands voice support or not
+* __key__ | `string`: APIXU key. Default: `'3b94f972948543b8a1780701171211'`.
+* __language__ | `string`: language identifier. Default: `'en-US'`.
+* __location__ | `string`: location name. Default: `none`.
+* __voiceID__ | `string`: voice control identifier. Default: `none`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.

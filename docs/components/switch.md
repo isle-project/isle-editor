@@ -19,4 +19,4 @@ The Switch component allows the display of one element out of a list of several 
 * __tooltipPos__ | `string`: placement of the tooltip (either `top`, `left`, `right`, or `bottom`). Default: `'top'`.
 * __className__ | `string`: class name for the enclosing span element. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
-* __onChange__ | `function`: Callback invoked when elements are switched. Receives as its first argument the index of the currently displayed child. Default: `onChange() {}`.
+* __onChange__ | `function`: callback invoked when elements are switched. Receives as its first argument the index of the currently displayed child. Default: `onChange() {}`.

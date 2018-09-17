@@ -32,8 +32,11 @@ hideToolbar: true
 
 #### Options:
 
-* __legend__: `string` to be displayed as the title of the component. Default: `''`.
-* __onChange__: Callback `function` invoked after each change of the text value. Default: `null`.
-* __placeholder__: 
-* __resize__: `boolean` indicating whether the element should be resizable. Default: `false`.
-* __rows__: `number` of rows. Default: `5`.
+* __defaultValue__ | `string`: default value of the text area,. Default: `''`.
+* __disabled__ | `boolean`: controls whether the text area shall be disabled. Default: `false`.
+* __legend__ | `string`: legend text. Default: `''`.
+* __onChange__ | `function`: callback function invoked with the new text when the area text changes. Default: `onChange() {}`.
+* __placeholder__ | `string`: placeholder text. Default: `'Enter text'`.
+* __resizable__ | `boolean`: controls whether the text area shall be resizable. Default: `false`.
+* __rows__ | `number`: number of rows. Default: `5`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.

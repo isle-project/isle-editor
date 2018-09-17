@@ -18,4 +18,4 @@ An ISLE component that instructors to selectively reveal or hide children conten
 
 #### Options:
 
-* __message__ | `string`: Message to be displayed when content is hidden. Default: `'Content hidden by instructor'`.
+* __message__ | `string`: message to be displayed when content is hidden. Default: `'Content hidden by instructor'`.

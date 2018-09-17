@@ -168,40 +168,48 @@
       {
         "name": "autoStart",
         "type": "boolean",
+        "description": "if set to `true`, the `onGenerate` function is executed at startup with the default input values",
         "default": true
       },
       {
         "name": "autoUpdate",
         "type": "boolean",
+        "description": "controls whether the `onGenerate` function should be invoked automatically when one of the child input fields changes",
         "default": false
       },
       {
         "name": "description",
         "type": "string",
+        "description": "dashboard description",
         "default": ""
       },
       {
         "name": "disabled",
         "type": "boolean",
+        "description": "controls whether the dashboard shall be disabled",
         "default": false
       },
       {
         "name": "label",
         "type": "string",
+        "description": "button label",
         "default": "Generate"
       },
       {
         "name": "maxWidth",
         "type": "number",
+        "description": "maximum width of dashboard",
         "default": 600
       },
       {
         "name": "onGenerate",
-        "type": "function"
+        "type": "function",
+        "description": "function invoked when the button is clicked or one of the dashboard input values changes (if `autoUpdate` is set to `true`). The function is called with the values of the input fields, in the order in which they are placed in the dashboard"
       },
       {
         "name": "title",
         "type": "string",
+        "description": "panel title",
         "default": ""
       }
     ],
@@ -212,25 +220,25 @@
       {
         "name": "categorical",
         "type": "array",
-        "description": "An array of strings indicating the name of each categorical variable.",
+        "description": "array of strings indicating the name of each categorical variable",
         "default": []
       },
       {
         "name": "continuous",
         "type": "array",
-        "description": "An array of strings indicating the name of each continuous variable.",
+        "description": "array of strings indicating the name of each continuous variable",
         "default": []
       },
       {
         "name": "data",
         "type": "object",
-        "description": "A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column. If you wish to allow students the ability to import a `.csv` file, set the `data` option to be `false`.",
+        "description": "data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column. If you wish to allow students the ability to import a `.csv` file, set the `data` option to be `false`",
         "default": {}
       },
       {
         "name": "dataInfo",
         "type": "object",
-        "description": "An object containing the keys 'name', whose value is a string, 'info', whose value is an array of strings in which each element in the array is a new line and 'variables', an object with keys as variable names and values as variable descriptions.",
+        "description": "object containing the keys \\'name\\', whose value is a string, \\'info\\', whose value is an array of strings in which each element in the array is a new line and \\'variables\\', an object with keys as variable names and values as variable descriptions",
         "default": {
           "info": "",
           "name": "",
@@ -240,7 +248,7 @@
       {
         "name": "distributions",
         "type": "array",
-        "description": "An array of strings indicating distributions that may be used in calculating probabilities. This functionality exists independently of the dataset provided. Currently limited to normal, uniform and exponential distributions",
+        "description": "array of strings indicating distributions that may be used in calculating probabilities. This functionality exists independently of the dataset provided. Currently limited to normal, uniform and exponential distributions",
         "default": [
           "Normal",
           "Uniform",
@@ -250,31 +258,31 @@
       {
         "name": "editorProps",
         "type": "object",
-        "description": "An object to be passed to `MarkdownEditor` indicating properties to be used",
+        "description": "object to be passed to `MarkdownEditor` indicating properties to be used",
         "default": null
       },
       {
         "name": "editorTitle",
         "type": "string",
-        "description": "A string indicating the title of the explorer to be displayed",
+        "description": "string indicating the title of the explorer to be displayed",
         "default": "Report"
       },
       {
         "name": "hideDataTable",
         "type": "boolean",
-        "description": "A boolean value indicating whether to hide the data table from view",
+        "description": "boolean value indicating whether to hide the data table from view",
         "default": false
       },
       {
         "name": "histogramDensities",
         "type": "boolean",
-        "description": "A boolean value indicating whether to display histogram densities",
+        "description": "boolean value indicating whether to display histogram densities",
         "default": true
       },
       {
         "name": "models",
         "type": "array",
-        "description": "An array of strings indicating models that may be fit on the data",
+        "description": "array of strings indicating models that may be fit on the data",
         "default": [
           "Simple Linear Regression"
         ]
@@ -282,7 +290,7 @@
       {
         "name": "plots",
         "type": "array",
-        "description": "An array of strings indicating which plots to show to the user",
+        "description": "array of strings indicating which plots to show to the user",
         "default": [
           "Bar Chart",
           "Pie Chart",
@@ -297,25 +305,25 @@
       {
         "name": "questions",
         "type": "node",
-        "description": "A node indicating surrounding text and question components to be displayed in a tabbed window",
+        "description": "node indicating surrounding text and question components to be displayed in a tabbed window",
         "default": null
       },
       {
         "name": "showEditor",
         "type": "boolean",
-        "description": "A boolean indicating whether to show the editor to the user",
+        "description": "boolean indicating whether to show the editor to the user",
         "default": false
       },
       {
         "name": "showTestDecisions",
         "type": "boolean",
-        "description": "A boolean indicating whether to show the decisions made for each test based on the calculated p-values",
+        "description": "boolean indicating whether to show the decisions made for each test based on the calculated p-values",
         "default": true
       },
       {
         "name": "statistics",
         "type": "array",
-        "description": "An array of strings indicating which summary statistics may be calculated",
+        "description": "array of strings indicating which summary statistics may be calculated",
         "default": [
           "Mean",
           "Median",
@@ -331,7 +339,7 @@
       {
         "name": "tables",
         "type": "array",
-        "description": "An array of strings indicating which tables may be created from the data",
+        "description": "array of strings indicating which tables may be created from the data",
         "default": [
           "Frequency Table",
           "Contingency Table"
@@ -340,13 +348,13 @@
       {
         "name": "tabs",
         "type": "array",
-        "description": "An array of objects and keys indicating any custom tabs to add",
+        "description": "array of objects and keys indicating any custom tabs to add",
         "default": []
       },
       {
         "name": "tests",
         "type": "array",
-        "description": "An array of strings indicating which hypothesis tests to include",
+        "description": "array of strings indicating which hypothesis tests to include",
         "default": [
           "One-Sample Mean Test",
           "One-Sample Proportion Test",
@@ -360,7 +368,7 @@
       {
         "name": "transformer",
         "type": "boolean",
-        "description": "A boolean indicating whether one wants to display a variable transformer",
+        "description": "boolean indicating whether one wants to display a variable transformer",
         "default": false
       }
     ],
@@ -371,7 +379,7 @@
       {
         "name": "data",
         "type": "(array|object) (required)",
-        "description": "A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column."
+        "description": "A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column"
       },
       {
         "name": "dataInfo",
@@ -386,18 +394,18 @@
       {
         "name": "onClickRemove",
         "type": "function",
-        "description": "A function specifying an action to take for rows removed from the data. Defaults to an empty function."
+        "description": "A function specifying an action to take for rows removed from the data. Defaults to an empty function"
       },
       {
         "name": "showRemove",
         "type": "boolean",
-        "description": "A boolean value indicating whether to allow for rows to be removed.",
+        "description": "A boolean value indicating whether to allow for rows to be removed",
         "default": false
       },
       {
         "name": "style",
         "type": "object",
-        "description": "An object allowing for custom css styling. Defaults to an empty object.",
+        "description": "An object allowing for custom css styling. Defaults to an empty object",
         "default": {}
       }
     ],
@@ -412,16 +420,19 @@
       {
         "name": "isDraggable",
         "type": "boolean",
+        "description": "controls whether grid elements are draggable",
         "default": false
       },
       {
         "name": "isResizable",
         "type": "boolean",
+        "description": "controls whether grid elements are resizable",
         "default": false
       },
       {
         "name": "rowHeight",
         "type": "number",
+        "description": "height of a single row (in px)",
         "default": 60
       }
     ],
@@ -431,19 +442,23 @@
     "props": [
       {
         "name": "data",
-        "type": "array (required)"
+        "type": "array (required)",
+        "description": "array of objects with `id` and `text` keys"
       },
       {
         "name": "onChange",
-        "type": "function"
+        "type": "function",
+        "description": "callback invoked with newly ordered data array on each change"
       },
       {
         "name": "onInit",
-        "type": "function"
+        "type": "function",
+        "description": "callback function invoked after mounting of component"
       },
       {
         "name": "shuffle",
         "type": "boolean",
+        "description": "controls whether data elements should be shuffled in initial display",
         "default": false
       }
     ],
@@ -454,26 +469,31 @@
       {
         "name": "enlargeable",
         "type": "boolean",
+        "description": "controls whether items can be enlarged",
         "default": true
       },
       {
         "name": "enlargedHeight",
         "type": "number",
+        "description": "height of item after enlarging it",
         "default": 18
       },
       {
         "name": "isDraggable",
         "type": "boolean",
+        "description": "controls whether the grid elements are draggable",
         "default": false
       },
       {
         "name": "isResizable",
         "type": "boolean",
+        "description": "controls whether the grid elements are resizable",
         "default": false
       },
       {
         "name": "itemHeight",
         "type": "number",
+        "description": "height of items (in px)",
         "default": 9
       }
     ],
@@ -611,30 +631,30 @@
       {
         "name": "allowMultipleAnswers",
         "type": "boolean",
-        "description": "A boolean indicating whether one wishes to allow students to answer the survey multiple times",
+        "description": "controls whether one wishes to allow students to answer the survey multiple times",
         "default": false
       },
       {
         "name": "anonymous",
         "type": "boolean",
-        "description": "A boolean indicating whether student answers are anonymized",
+        "description": "controls whether student answers are anonymized",
         "default": false
       },
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "A function to be called when an answer is submitted"
+        "description": "callback function called when an answer is submitted"
       },
       {
         "name": "question",
         "type": "string",
-        "description": "A string indicating the question to ask the students",
+        "description": "the question to ask the students",
         "default": ""
       },
       {
         "name": "rows",
         "type": "number",
-        "description": "A number indicating the rows of text in the input method",
+        "description": "number of text rows in the input field",
         "default": 4
       }
     ],
@@ -686,10 +706,11 @@
       {
         "name": "fluid",
         "type": "boolean",
+        "description": "turn any fixed-width grid layout into a full-width layout",
         "default": false
       }
     ],
-    "description": "Description is missing."
+    "description": "Grid wrapper."
   },
   "IFrame": {
     "props": [
@@ -699,14 +720,14 @@
         "description": "source URL"
       }
     ],
-    "description": "Description is missing."
+    "description": "An iFrame component."
   },
   "CheckboxInput": {
     "props": [
       {
         "name": "bind",
         "type": "string",
-        "description": "A string indicating the variable for the boolean to be assigned",
+        "description": "name of global variable for the checkbox value to be assigned to",
         "default": ""
       },
       {
@@ -718,24 +739,24 @@
       {
         "name": "disabled",
         "type": "boolean",
-        "description": "A boolean indicating whether the input is active or not",
+        "description": "indicates whether the input is active or not",
         "default": false
       },
       {
         "name": "inline",
         "type": "boolean",
-        "description": "Indicates whether the checkbox is displayed inline",
+        "description": "indicates whether the checkbox is displayed inline",
         "default": false
       },
       {
         "name": "onChange",
         "type": "function",
-        "description": "A function to be called when a checkbox is clicked. The function takes an argument value and should change whether value is true or false"
+        "description": "callback function to be invoked when checkbox is clicked. The function is called with the current checkbox value"
       },
       {
         "name": "legend",
         "type": "string",
-        "description": "A string indicating the text displayed next to the checkbox",
+        "description": "text displayed next to the checkbox'",
         "default": ""
       }
     ],
@@ -750,77 +771,77 @@
       {
         "name": "bind",
         "type": "string",
-        "description": "A string indicating the variable for the number to be assigned",
+        "description": ": name of global variable for the number to be assigned to",
         "default": ""
       },
       {
         "name": "defaultValue",
         "type": "number",
-        "description": "A value indicating the default value of the input at start",
+        "description": "value indicating the default value of the input at startup",
         "default": 0
       },
       {
         "name": "disabled",
         "type": "boolean",
-        "description": "A boolean indicating whether the input is active or not",
+        "description": "boolean indicating whether the input is active or not",
         "default": false
       },
       {
         "name": "inline",
         "type": "boolean",
-        "description": "Indicates whether the input is displayed inline",
+        "description": "indicates whether the input is displayed inline",
         "default": false
       },
       {
         "name": "legend",
         "type": "string",
-        "description": "A string indicating the text displayed next to the number input",
+        "description": "string indicating the text displayed next to the number input",
         "default": ""
       },
       {
         "name": "max",
         "type": "number",
-        "description": "A number indicating the maximum value that may be inserted",
+        "description": "number indicating the maximum value that may be inserted",
         "default": null
       },
       {
         "name": "min",
         "type": "number",
-        "description": "A number indicating the smallest possible value that may be inserted",
+        "description": "number indicating the smallest possible value that may be inserted",
         "default": null
       },
       {
         "name": "numbersOnly",
         "type": "boolean",
-        "description": "A boolean value indicating whether only numbers are accepted",
+        "description": "controls whether only numbers are accepted",
         "default": true
       },
       {
         "name": "onBlur",
         "type": "function",
-        "description": "A function to be called when using a blur method"
+        "description": "callback function to be invoked when using a blur method"
       },
       {
         "name": "onChange",
         "type": "function",
-        "description": "A function to be called when a number is inputted"
+        "description": "callback function to be invoked when number input is changed"
       },
       {
         "name": "step",
         "type": "(number|string)",
-        "description": "A number indicating the incremental changes when using the increment arrows",
+        "description": "number indicating the incremental changes when using the increment arrows",
         "default": 1
       },
       {
         "name": "value",
         "type": "number",
-        "description": "A property indicating a value that can overwrite others",
+        "description": "number value (for controlled component)",
         "default": null
       },
       {
         "name": "width",
         "type": "number",
-        "description": "A number indicating the width of the input bar in pixels",
+        "description": "number indicating the width of the input bar in pixels",
         "default": 80
       }
     ],
@@ -879,59 +900,59 @@
       {
         "name": "bind",
         "type": "string",
-        "description": "A string indicating the variable for the number to be assigned",
+        "description": "name of global variable for the number to be assigned to",
         "default": ""
       },
       {
         "name": "clearable",
         "type": "boolean",
-        "description": "A boolean value indicating whether one may clear choice(s) made"
+        "description": "boolean value indicating whether one may clear choice(s) made"
       },
       {
         "name": "defaultValue",
         "type": "(number|string|array)",
-        "description": "A value indicating the default value of the input at start",
+        "description": "default value of the input at startup",
         "default": null
       },
       {
         "name": "disabled",
         "type": "boolean",
-        "description": "A boolean indicating whether the input is active or not",
+        "description": "controls whether the input is active or not",
         "default": false
       },
       {
         "name": "inline",
         "type": "boolean",
-        "description": "Indicates whether the input is displayed inline",
+        "description": "indicates whether the input is displayed inline",
         "default": false
       },
       {
         "name": "legend",
         "type": "string",
-        "description": "A string indicating the text displayed next to the input",
+        "description": "text displayed next to the input",
         "default": ""
       },
       {
         "name": "multi",
         "type": "boolean",
-        "description": "A boolean indicating whether one may select multiple answers",
+        "description": "controls whether one may select multiple answers",
         "default": false
       },
       {
         "name": "onChange",
         "type": "function",
-        "description": "A function to be called when a number is inputted"
+        "description": "callback function to be invoked when a choice is made"
       },
       {
         "name": "options",
         "type": "array",
-        "description": "An array of indicating the choices available the user",
+        "description": "array of indicating the choices available the user",
         "default": []
       },
       {
         "name": "placeholder",
         "type": "string",
-        "description": "A string indicating the value to be displayed before an initial choice is made",
+        "description": "value to be displayed before an initial choice is made",
         "default": "Select..."
       }
     ],
@@ -1134,15 +1155,16 @@
       {
         "name": "run",
         "type": "boolean",
+        "description": "controls whether the guide is active",
         "default": false
       },
       {
         "name": "steps",
-        "type": "array",
-        "default": []
+        "type": "array (required)",
+        "description": "array of step `objects`"
       }
     ],
-    "description": "Description is missing."
+    "description": "Wrapper around [react-joyride](https://github.com/gilbarbara/react-joyride) to create walkthroughs and guided tours."
   },
   "JSShell": {
     "props": [
@@ -1216,22 +1238,24 @@
         "default": null
       }
     ],
-    "description": "Description is missing."
+    "description": "An interactive Javascript shell that can be used to execute JavaScript commands. The shell contains a console that displays error messages, warnings etc."
   },
   "KeyControls": {
     "props": [
       {
         "name": "actions",
         "type": "object<function>",
+        "description": "object mapping key codes to events",
         "default": {}
       },
       {
         "name": "container",
         "type": "node",
+        "description": "DOM node for which to attach event listeners",
         "default": null
       }
     ],
-    "description": "Description is missing."
+    "description": "Keyboard controls."
   },
   "LearnConditionalProbability": {
     "props": [
@@ -1664,40 +1688,46 @@
       {
         "name": "allowMultipleAnswers",
         "type": "boolean",
-        "description": "A boolean indicating whether one wishes to allow students to answer the survey multiple times",
+        "description": "contols whether one wishes to allow students to answer the survey multiple times",
         "default": false
       },
       {
         "name": "anonymous",
         "type": "boolean",
-        "description": "A boolean indicating whether student answers are anonymized",
+        "description": "contols whether student answers are anonymized",
         "default": false
       },
       {
         "name": "answers",
         "type": "array",
-        "description": "An array indicating answer choices for the students",
+        "description": "array indicating answer choices for the students",
         "default": []
       },
       {
         "name": "multipleAnswers",
         "type": "boolean",
-        "description": "A boolean value indicating whether students may select more than one answer. Note that this differs from allowMultipleAnswers in that allow makes students able to submit the question multiple times.",
+        "description": "indicates whether students may select more than one answer. Note that this differs from allowMultipleAnswers in that allow makes students able to submit the question multiple times",
         "default": false
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "description": "panel title",
+        "default": "Survey"
       },
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "A function to be called when an answer is submitted"
+        "description": "function to be called when an answer is submitted"
       },
       {
         "name": "question",
         "type": "string",
-        "description": "A string indicating the question to ask the students",
+        "description": "string indicating the question to ask the students",
         "default": ""
       }
     ],
-    "description": "Description is missing."
+    "description": "A survey component in which the instructor may collect multiple-choice survey data from students in real-time."
   },
   "News": {
     "props": [
@@ -1731,7 +1761,7 @@
         "description": "callback function invoked with an array of article objects once they are received"
       }
     ],
-    "description": "The **News** component scans the public **News API** (consisting of 71 international newspapers) and displays the latest 10 articles of the given newspaper. There are two ways to enter a source: one by typing into the search field and submitting via the ENTER button, the second via voice."
+    "description": "The **News** component scans the public **News API** (consisting of 71 international  newspapers) and displays the latest 10 articles of the given newspaper. There are two ways to enter a source: one by typing into the search field and submitting via the ENTER button, the second via voice."
   },
   "NumberQuestion": {
     "props": [
@@ -1819,7 +1849,7 @@
       {
         "name": "anonymous",
         "type": "boolean",
-        "description": "Allows for the students to submit data anonymously. Note that if this option is set to \"true\", then the instructors will be unable to see the ID of the submitting student.",
+        "description": "Allows for the students to submit data anonymously. Note that if this option is set to \"true\", then the instructors will be unable to see the ID of the submitting student",
         "default": false
       },
       {
@@ -1953,14 +1983,14 @@
         "default": null
       }
     ],
-    "description": "Description is missing."
+    "description": "Panel component."
   },
   "Playground": {
     "props": [
       {
         "name": "code",
         "type": "string",
-        "description": "The code to be displayed in the playground box. This code will be editable by the user in the brower or lesson",
+        "description": "code to be displayed in the playground box. This code will be editable by the user in the brower or lesson",
         "default": ""
       },
       {
@@ -1976,51 +2006,59 @@
         "default": {}
       }
     ],
-    "description": "Description is missing."
+    "description": "Playground component to experiment with ISLE components."
   },
   "Plotly": {
     "props": [
       {
         "name": "data",
-        "type": "array (required)"
+        "type": "array (required)",
+        "description": "data array"
       },
       {
         "name": "editable",
         "type": "boolean",
+        "description": "controls whether labels of the created plot are editable",
         "default": false
       },
       {
         "name": "id",
         "type": "string",
+        "description": "component identifier",
         "default": null
       },
       {
         "name": "layout",
         "type": "object",
+        "description": "Plotly layout object",
         "default": {}
       },
       {
         "name": "legendButtons",
         "type": "boolean",
+        "description": "controls whether to display buttons for changing the legend",
         "default": true
       },
       {
         "name": "onShare",
         "type": "function",
+        "description": "callback function invoked when clicking on the \"Share\" button",
         "default": null
       },
       {
         "name": "removeButtons",
         "type": "boolean",
+        "description": "controls whether to remove all buttons",
         "default": false
       },
       {
         "name": "toggleFullscreen",
         "type": "boolean",
+        "description": "controls whether to display the plot in fullscreen mode",
         "default": true
       }
     ],
-    "description": "Description is missing."
+    "description": "Plotly visualization."
   },
   "ProportionsSurvey": {
     "props": [
@@ -2126,6 +2164,12 @@
         "default": false
       },
       {
+        "name": "forceConfidence",
+        "type": "boolean",
+        "description": "controls whether a user has to supply a confidence level before moving to the next question",
+        "default": false
+      },
+      {
         "name": "count",
         "type": "number (required)",
         "description": "number of questions to include in the quiz"
@@ -2142,7 +2186,7 @@
         "default": true
       }
     ],
-    "description": "Description is missing."
+    "description": "A quiz component displaying a sequence of question components."
   },
   "RHelp": {
     "props": [
@@ -2496,7 +2540,7 @@
       {
         "name": "message",
         "type": "string",
-        "description": "Message to be displayed when content is hidden",
+        "description": "message to be displayed when content is hidden",
         "default": "Content hidden by instructor"
       }
     ],
@@ -2686,13 +2730,13 @@
       {
         "name": "fontFamily",
         "type": "string",
-        "description": "Font family",
+        "description": "font family",
         "default": "Arial"
       },
       {
         "name": "fontSize",
         "type": "number",
-        "description": "Font size",
+        "description": "font size",
         "default": 24
       },
       {
@@ -2811,35 +2855,35 @@
   },
   "Appear": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Wrapped elements in the appear tag makes them appear/disappear in order in response to navigation."
   },
   "BlockQuote": {
     "props": [],
-    "description": "Description is missing."
+    "description": "A styled blockquote. Should be used in conjunction with the Spectacle `Cite` and `Quote` tags."
   },
   "Cite": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Component wrapping the citation source. Should be used in conjunction with the Spectacle `BlockQuote` and `Quote` tags."
   },
   "Deck": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Spectacle slide deck. Wraps `<Slide>` tags."
   },
   "Fill": {
     "props": [],
-    "description": "Description is missing."
+    "description": "The fill tag takes up all the space available to it. Fill tags next to each other form an equidistant grid."
   },
   "Fit": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Component taking up as much space as its bounds provide, but not more."
   },
   "Heading": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Spectacle slide headings."
   },
   "Image": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Spectacle slide image."
   },
   "Spectacle": {
     "props": [],
@@ -2847,51 +2891,51 @@
   },
   "Layout": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Component wrapping `Fit` and `Fill` tags to provide a row."
   },
   "ListItem": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Spectacle list item component."
   },
   "List": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Spectacle list component."
   },
   "Quote": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Component wrapping a quote. Should be used in conjunction with the Spectacle `BlockQuote` and `Cite` tags."
   },
   "Slide": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Spectacle presentation slide."
   },
   "TableBody": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Spectacle table body component."
   },
   "TableHeaderItem": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Spectacle table header item component."
   },
   "TableHeader": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Spectacle table header component."
   },
   "TableItem": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Spectacle table item component."
   },
   "TableRow": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Spectacle table row component."
   },
   "Table": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Spectacle table component."
   },
   "SText": {
     "props": [],
-    "description": "Description is missing."
+    "description": "Spectacle text component."
   },
   "StatusBar": {
     "props": [],
@@ -2905,7 +2949,7 @@
         "description": "component identifier"
       }
     ],
-    "description": "Allows instructors to create multiple-choice surveys, free text surveys and number surveys on the fly in real-time through an easy-to-use interface."
+    "description": "Component allowing instructors to create multiple-choice surveys, free text surveys and number surveys on the fly in real-time through an easy-to-use interface."
   },
   "Switch": {
     "props": [
@@ -2936,7 +2980,7 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "Callback invoked when elements are switched. Receives as its first argument the index of the currently displayed child"
+        "description": "callback invoked when elements are switched. Receives as its first argument the index of the currently displayed child"
       }
     ],
     "description": "The Switch component allows the display of one element out of a list of several elements. Users can cycle through the different children of the Switch tag by clicking on the currently displayed one."
@@ -2981,7 +3025,7 @@
       {
         "name": "onClick",
         "type": "function",
-        "description": "Callback `function` invoked whenever a user clicks on the equation"
+        "description": "callback `function` invoked whenever a user clicks on the equation"
       }
     ],
     "description": "`TeX` is an ISLE element that can be used to display LaTeX equations. Under the hood, the component uses [KaTeX](https://github.com/Khan/KaTeX) for blazingly fast rendering."
@@ -2991,40 +3035,48 @@
       {
         "name": "defaultValue",
         "type": "string",
+        "description": "default value of the text area,",
         "default": ""
       },
       {
         "name": "disabled",
         "type": "boolean",
+        "description": "controls whether the text area shall be disabled",
         "default": false
       },
       {
         "name": "legend",
         "type": "string",
+        "description": "legend text",
         "default": ""
       },
       {
         "name": "onChange",
-        "type": "function"
+        "type": "function",
+        "description": "callback function invoked with the new text when the area text changes"
       },
       {
         "name": "placeholder",
         "type": "string",
+        "description": "placeholder text",
         "default": "Enter text"
       },
       {
         "name": "resizable",
         "type": "boolean",
+        "description": "controls whether the text area shall be resizable",
         "default": false
       },
       {
         "name": "rows",
         "type": "number",
+        "description": "number of rows",
         "default": 5
       },
       {
         "name": "style",
         "type": "object",
+        "description": "CSS inline styles",
         "default": {}
       }
     ],
@@ -3035,20 +3087,23 @@
       {
         "name": "raw",
         "type": "string",
+        "description": "text to be rendered",
         "default": ""
       },
       {
         "name": "style",
         "type": "object",
+        "description": "CSS inline styles",
         "default": {}
       },
       {
         "name": "voiceID",
         "type": "string",
+        "description": "voice control identifier",
         "default": null
       }
     ],
-    "description": "Description is missing."
+    "description": "Text component, which allows rendering of raw text as Markdown and enables voice control."
   },
   "Timer": {
     "props": [
@@ -3076,7 +3131,7 @@
       {
         "name": "onTimeUp",
         "type": "function",
-        "description": "Callback invoked when the timer runs out"
+        "description": "callback invoked when the timer runs out"
       }
     ],
     "description": "Displays a timer that will trigger a predefined callback when the time is up. An example use case is the timing of quizzes."
@@ -3261,53 +3316,62 @@
       {
         "name": "id",
         "type": "string",
+        "description": "unique identifier",
         "default": null
       },
       {
         "name": "commands",
-        "type": "array (required)"
+        "type": "array (required)",
+        "description": "array of voice commands"
       },
       {
         "name": "hide",
         "type": "boolean",
+        "description": "controls whether to hide control elements for toggling on/off voice control and display a list of available commands",
         "default": false
       },
       {
         "name": "reference",
-        "type": "object (required)"
+        "type": "object (required)",
+        "description": "reference object"
       }
     ],
-    "description": "Description is missing."
+    "description": "Component to register a reference with the speech control interface."
   },
   "Weather": {
     "props": [
       {
         "name": "key",
         "type": "string",
+        "description": "APIXU key",
         "default": "3b94f972948543b8a1780701171211"
       },
       {
         "name": "language",
         "type": "string",
+        "description": "language identifier",
         "default": "en-US"
       },
       {
         "name": "location",
         "type": "string",
+        "description": "location name",
         "default": null
       },
       {
         "name": "voiceID",
         "type": "string",
+        "description": "voice control identifier",
         "default": null
       },
       {
         "name": "style",
         "type": "object",
+        "description": "CSS inline styles",
         "default": {}
       }
     ],
-    "description": "Description is missing."
+    "description": "A component for displaying the current weather at a designated location."
   },
   "Wikipedia": {
     "props": [
@@ -3377,8 +3441,8 @@
       },
       {
         "name": "padding",
-        "type": "number",
-        "description": "accessor function indicating the numerical padding for each word",
+        "type": "(function|number)",
+        "description": "accessor function or constant indicating the numerical padding for each word",
         "default": 5
       },
       {
@@ -3389,7 +3453,7 @@
       },
       {
         "name": "rotate",
-        "type": "function",
+        "type": "(function|number)",
         "description": "accessor function indicating the rotation angle (in degrees) for each word. Also accepts a constant instead of a function"
       },
       {
