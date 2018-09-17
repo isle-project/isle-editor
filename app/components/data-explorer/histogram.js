@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
 import Panel from 'react-bootstrap/lib/Panel';
 import PropTypes from 'prop-types';
@@ -26,6 +27,7 @@ import by from './by.js';
 
 // VARIABLES //
 
+const debug = logger( 'isle-editor:data-explorer:histogram' );
 const SETTINGS = {
 	yaxis: {
 		tickformat: '-,.4r'
@@ -151,19 +153,8 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 						opacity: 0.5
 					};
 					if ( chooseBins ) {
+						// Supply `nBins` as a suggested value for the number of bins; exact number of bins may differ...
 						config.nbinsx = nBins;
-						/*
-						Code below for making different bin sizes for each category
-						const maxVal = max(vals);
-						const minVal = min(vals);
-						const sizeVal = ((1.0 * maxVal) - minVal) / nBins;
-						config.autobinx = false;
-						config.xbins = {
-							size: sizeVal,
-							start: minVal,
-							end: maxVal
-						};
-						*/
 					}
 					traces.push( config );
 				}
@@ -204,18 +195,7 @@ class Histogram extends Component {
 		const config = generateHistogramConfig({
 			data: this.props.data, ...this.state
 		});
-		/*
-		variable: this.state.variable,
-			group: this.state.group,
-			overlayDensity: this.state.overlayDensity,
-			densityType: this.state.densityType,
-			chooseBins: this.state.chooseBins,
-			nBins: this.state.nBins
-		*/
-		console.log(this.state.chooseBins);
-		console.log(this.state.nBins);
-		console.log('in histogram.js the config is');
-		console.log(config);
+		debug( `Generate a histogram with ${this.state.nBins} bins` );
 		const plotId = generate( 6 );
 		const stateNew = { ...this.state };
 		stateNew.plotId = plotId;
