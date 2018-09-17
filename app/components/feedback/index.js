@@ -29,7 +29,7 @@ const ORIGINAL_STATE = {
 // MAIN //
 
 /**
-* FeedbackButtons.description = 'Buttons to collect user feedback.
+* Buttons to collect user feedback.
 *
 * @property {boolean} vertical - buttons are displayed vertically if set to `true`
 * @property {Object} style - CSS inline styles

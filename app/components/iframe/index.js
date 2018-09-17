@@ -69,10 +69,6 @@ class IFrame extends Component {
 
 // TYPES //
 
-IFrame.propDescriptions = {
-	src: 'source URL'
-};
-
 IFrame.propTypes = {
 	src: PropTypes.string.isRequired
 };

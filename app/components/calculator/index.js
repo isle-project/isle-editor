@@ -24,9 +24,7 @@ class Calculator extends Component {
 }
 
 
-// PROPERTY TYPES //
-
-Calculator.propDescriptions = {};
+// PROPERTIES //
 
 Calculator.defaultProps = {};
 
