@@ -852,44 +852,53 @@
       {
         "name": "disabled",
         "type": "boolean",
+        "description": "controls whether the input field is deactivated",
         "default": false
       },
       {
         "name": "height",
         "type": "number",
+        "description": "proportions input height (in px)",
         "default": 200
       },
       {
         "name": "innerRadius",
         "type": "number",
+        "description": "inner radius of proportions pie chart (in px)",
         "default": 75
       },
       {
         "name": "legends",
         "type": "array",
+        "description": "group labels",
         "default": null
       },
       {
         "name": "margin",
-        "type": "string"
+        "type": "string",
+        "description": "proportion input margin (in px)"
       },
       {
         "name": "nElements",
         "type": "number",
+        "description": "number of elements",
         "default": 6
       },
       {
         "name": "onChange",
-        "type": "function"
+        "type": "function",
+        "description": "callback function to be invoked when a choice is made"
       },
       {
         "name": "precision",
         "type": "number",
+        "description": "displayed precision of proportion values",
         "default": 1
       },
       {
         "name": "step",
         "type": "number",
+        "description": "the step of the arrows seen when hovering the cursor above the input box",
         "default": 0.1
       }
     ],
@@ -1052,99 +1061,120 @@
       {
         "name": "autorecord",
         "type": "boolean",
+        "description": "controls whether to automatically start recording",
         "default": false
       },
       {
         "name": "defaultValue",
         "type": "string",
+        "description": "default text value",
         "default": ""
       },
       {
         "name": "grammars",
         "type": "array",
+        "description": "speech grammar list (unsupported)",
         "default": []
       },
       {
         "name": "language",
         "type": "string",
+        "description": "language identifier",
         "default": "en-US"
       },
       {
         "name": "legend",
         "type": "string",
+        "description": "legend displayed in front of input field",
         "default": ""
       },
       {
         "name": "mode",
         "type": "string",
+        "description": "set to `full` to display a text input field alongside the microphone, `status` to only display a statusbar with the transcribed texts, `microphone` to show just a button to toggle recording, or `none` when the voice input should be invisible and purely controlled via hotkeys / voice commands",
         "default": "full"
       },
       {
         "name": "onChange",
-        "type": "function"
+        "type": "function",
+        "description": "callback function invoked when text input value is updated"
       },
       {
         "name": "onClick",
-        "type": "function"
+        "type": "function",
+        "description": "callback function invoked when clicking on the microphone button"
       },
       {
         "name": "onFinalText",
-        "type": "function"
+        "type": "function",
+        "description": "callback function invoked once final text is received"
       },
       {
         "name": "onRecordingStart",
-        "type": "function"
+        "type": "function",
+        "description": "callback function invoked when recording is started"
       },
       {
         "name": "onRecordingStop",
-        "type": "function"
+        "type": "function",
+        "description": "callback function invoked once recording is stopped"
       },
       {
         "name": "onSegment",
-        "type": "function"
+        "type": "function",
+        "description": "callback function invoked with text segments"
       },
       {
         "name": "onSubmit",
-        "type": "function"
+        "type": "function",
+        "description": "callback function when submitting text input value by hitting \"Enter\""
       },
       {
         "name": "placeholder",
         "type": "string",
+        "description": "text input placeholder",
         "default": "Enter text"
       },
       {
         "name": "remote",
         "type": "object",
+        "description": "object with `start`, `stop`, and `toggle` and associated hotkeys",
         "default": null
       },
       {
         "name": "style",
         "type": "object",
+        "description": "CSS inline styles",
         "default": {}
       },
       {
         "name": "timeout",
         "type": "number",
+        "description": "number of milliseconds after which to timeout the recording",
         "default": null
       },
       {
         "name": "stopTooltip",
         "type": "string",
+        "description": "tooltip message desplayed while recording",
         "default": "Click to stop recording"
       },
       {
         "name": "startTooltip",
         "type": "string",
+        "description": "tooltip message desplayed while not recording",
         "default": "Click to start recording"
       },
       {
         "name": "width",
         "type": "number",
+        "description": "voice input width (in px)",
         "default": 500
       },
       {
         "name": "height",
         "type": "number",
+        "description": "voice input height (in px)",
         "default": 36
       }
     ],
@@ -2065,16 +2095,19 @@
       {
         "name": "allowMultipleAnswers",
         "type": "boolean",
+        "description": "contols whether one wishes to allow students to answer the survey multiple times",
         "default": false
       },
       {
         "name": "anonymous",
         "type": "boolean",
+        "description": "contols whether student answers are anonymized",
         "default": false
       },
       {
         "name": "colors",
         "type": "array",
+        "description": "array of colors for the pie chart components. If not defined, a custom color scale will be used",
         "default": [
           "tomato",
           "orange",
@@ -2091,65 +2124,78 @@
       {
         "name": "disabled",
         "type": "boolean",
+        "description": "controls whether the survey is deactivated",
         "default": false
       },
       {
         "name": "group",
         "type": "string",
+        "description": "group display heading",
         "default": "group results"
       },
       {
         "name": "groupHeight",
         "type": "number",
+        "description": "proportions input height for group display (in px)",
         "default": 100
       },
       {
         "name": "groupInnerRadius",
         "type": "number",
+        "description": "inner radius of proportions pie chart for group display (in px)",
         "default": 40
       },
       {
         "name": "legends",
-        "type": "(string|array)",
-        "default": "Legend"
+        "type": "array",
+        "description": "legend labels that describe the options to be weighed",
+        "default": null
       },
       {
         "name": "margin",
         "type": "string",
+        "description": "proportion input margin (in px)",
         "default": "40px"
       },
       {
         "name": "nElements",
         "type": "number",
+        "description": "number of elements that shall be weighed",
         "default": 6
       },
       {
         "name": "onSubmit",
-        "type": "function"
+        "type": "function",
+        "description": "callback function invoked once students submits an answer"
       },
       {
         "name": "personalHeight",
         "type": "number",
+        "description": "proportions input height for individual student (in px)",
         "default": 200
       },
       {
         "name": "personalInnerRadius",
         "type": "number",
+        "description": "inner radius of proportions pie chart for individual student (in px)",
         "default": 60
       },
       {
         "name": "precision",
         "type": "number",
-        "default": 1
+        "description": "displayed precision of proportion values",
+        "default": 2
       },
       {
         "name": "question",
         "type": "string",
+        "description": "the question to be displayed",
         "default": ""
       },
       {
         "name": "step",
         "type": "number",
+        "description": "the step of the arrows seen when hovering the cursor above the input box",
         "default": 0.1
       }
     ],

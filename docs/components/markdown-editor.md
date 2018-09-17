@@ -1,6 +1,6 @@
 # Markdown Editor
 
-A markdown editor for writing notes or reports. Supports exporting of notes as HTML or PDF files, as well as automatic submission to the ISLE server. The component is based on [SimpleMDE](https://simplemde.com/).
+A markdown editor for writing notes or reports. Supports exporting of notes as HTML or PDF files, as well as automatic submission to the ISLE server.
 
 #### Example:
 
@@ -28,6 +28,7 @@ A markdown editor for writing notes or reports. Supports exporting of notes as H
   'link',
   'insert_columns',
   '|',
+  'title_insert',
   'preview',
   'side_by_side',
   'fullscreen',
@@ -36,7 +37,8 @@ A markdown editor for writing notes or reports. Supports exporting of notes as H
   'save',
   'submit',
   '|',
-  'voice'
+  'voice',
+  'guides'
 ]`.
 * __options__ | `object`: options passed to the SimpleMDE constructor, the package on which this component is based; see their documentation for available options. Default: `{}`.
 * __autoSave__ | `boolean`: controls whether the editor should save the current text to the local storage of the browser at a given time interval. Default: `true`.
@@ -44,5 +46,6 @@ A markdown editor for writing notes or reports. Supports exporting of notes as H
 * __voiceControl__ | `boolean`: controls whether voice input is enabled. Default: `false`.
 * __voiceTimeout__ | `number`: time in milliseconds after a chunk of recorded voice input is inserted. Default: `5000`.
 * __language__ | `string`: language identifier. Default: `'en-US'`.
+* __plots__ | `array`: undefined. Default: `[]`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked when editor text changes; receives the current text as its sole argument. Default: `onChange() {}`.

@@ -19,6 +19,28 @@ const debug = logger( 'isle-editor:voice-input' );
 
 /**
 * A voice input component.
+*
+* @property {boolean} autorecord - controls whether to automatically start recording
+* @property {string} defaultValue - default text value
+* @property {Array} grammars - speech grammar list (unsupported)
+* @property {string} language - language identifier
+* @property {string} legend - legend displayed in front of input field
+* @property {string} mode - set to `full` to display a text input field alongside the microphone, `status` to only display a statusbar with the transcribed texts, `microphone` to show just a button to toggle recording, or `none` when the voice input should be invisible and purely controlled via hotkeys / voice commands
+* @property {Function} onChange - callback function invoked when text input value is updated
+* @property {Function} onClick - callback function invoked when clicking on the microphone button
+* @property {Function} onFinalText - callback function invoked once final text is received
+* @property {Function} onSegment - callback function invoked with text segments
+* @property {Function} onRecordingStart - callback function invoked when recording is started
+* @property {Function} onRecordingStop - callback function invoked once recording is stopped
+* @property {Function} onSubmit - callback function when submitting text input value by hitting "Enter"
+* @property {string} placeholder - text input placeholder
+* @property {Object} remote - object with `start`, `stop`, and `toggle` and associated hotkeys
+* @property {Function} timeout - number of milliseconds after which to timeout the recording
+* @property {Function} stopTooltip - tooltip message desplayed while recording
+* @property {Function} startTooltip - tooltip message desplayed while not recording
+* @property {number} width - voice input width (in px)
+* @property {number} height - voice input height (in px)
+* @property {Object} style - CSS inline styles
 */
 class VoiceInput extends Input {
 	constructor( props, context ) {
