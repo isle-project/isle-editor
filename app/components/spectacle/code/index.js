@@ -3,14 +3,12 @@
 import { Code } from 'spectacle';
 
 
-// MAIN //
-
-Code.propDescriptions = {
-	className: 'class name',
-	style: 'CSS inline styles'
-};
-
-
 // EXPORTS //
 
+/**
+* Component displaying inline text in a monospace font.
+*
+* @property {string} className - class name
+* @property {Object} style - CSS inline styles
+*/
 export default Code;

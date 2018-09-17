@@ -3,13 +3,11 @@
 import { Layout } from 'spectacle';
 
 
-// MAIN //
-
-Layout.propDescriptions = {
-	style: 'CSS inline styles'
-};
-
-
 // EXPORTS //
 
+/**
+* Component wrapping `Fit` and `Fill` tags to provide a row.
+*
+* @property {Object} style - CSS inline styles
+*/
 export default Layout;
