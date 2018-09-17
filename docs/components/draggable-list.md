@@ -25,7 +25,7 @@ A list of draggable elements that can be re-ordered by the students.
 
 #### Options:
 
-* __data__ | `array (required)`: undefined. Default: `none`.
-* __onChange__ | `function`: undefined. Default: `onChange(){}`.
-* __onInit__ | `function`: undefined. Default: `onInit(){}`.
-* __shuffle__ | `boolean`: undefined. Default: `false`.
+* __data__ | `array (required)`: array of objects with `id` and `text` keys. Default: `none`.
+* __onChange__ | `function`: callback invoked with newly ordered data array on each change. Default: `onChange(){}`.
+* __onInit__ | `function`: callback function invoked after mounting of component. Default: `onInit(){}`.
+* __shuffle__ | `boolean`: controls whether data elements should be shuffled in initial display. Default: `false`.

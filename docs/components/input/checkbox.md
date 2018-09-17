@@ -17,9 +17,9 @@ Note: To see a prior version of the demonstration, visit [the old link](https://
 
 #### Options:
 
-* __bind__ | `string`: A string indicating the variable for the boolean to be assigned. Default: `''`.
+* __bind__ | `string`: name of global variable for the checkbox value to be assigned to. Default: `''`.
 * __defaultValue__ | `boolean`: A boolean value indicating the default value of the checkbox. Default: `false`.
-* __disabled__ | `boolean`: A boolean indicating whether the input is active or not. Default: `false`.
-* __inline__ | `boolean`: Indicates whether the checkbox is displayed inline. Default: `false`.
-* __onChange__ | `function`: A function to be called when a checkbox is clicked. The function takes an argument value and should change whether value is true or false. Default: `onChange() {}`.
-* __legend__ | `string`: A string indicating the text displayed next to the checkbox. Default: `''`.
+* __disabled__ | `boolean`: indicates whether the input is active or not. Default: `false`.
+* __inline__ | `boolean`: indicates whether the checkbox is displayed inline. Default: `false`.
+* __onChange__ | `function`: callback function to be invoked when checkbox is clicked. The function is called with the current checkbox value. Default: `onChange() {}`.
+* __legend__ | `string`: text displayed next to the checkbox'. Default: `''`.

@@ -16,7 +16,7 @@ const WAIT_TIME = 1000;
 /**
 * Component placeing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed.
 *
-* @property {(string|node)} title -title to be displayed at the top of the tooltip
+* @property {(string|node)} title - title to be displayed at the top of the tooltip
 * @property {(string|node)} content - tooltip content
 * @property {string} event - if set to `click`, tooltip is toggled when clicking on beacon; if set to `hover`, the tooltip is activated via hovering
 * @property {string} placement - placement of the tooltip relative to `target` (either `top`, `top-start`, `top-end`, `bottom`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end`, `auto`, or `center`)

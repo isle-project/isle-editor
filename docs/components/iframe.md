@@ -1,6 +1,6 @@
 # IFrame
 
-An ISLE component to render a third-party website in an IFrame.
+An iFrame component.
 
 #### Example:
 

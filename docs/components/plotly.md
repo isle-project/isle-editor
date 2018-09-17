@@ -15,7 +15,13 @@ The `plotly` function is a generic plotting function used to handle multiple typ
 
 [Open interactive preview](https://isle.heinz.cmu.edu/components/plotly)
 
-#### Options
+#### Options:
 
-* __data__:  An array of arrays of type `data` with various tags. These tags mirror the `plotly` functionality in the R wrapper for the HTML syntax.
-* __layout__: An array of dimension attributes.
+* __data__ | `array (required)`: data array. Default: `none`.
+* __editable__ | `boolean`: controls whether labels of the created plot are editable. Default: `false`.
+* __id__ | `string`: component identifier. Default: `none`.
+* __layout__ | `object`: Plotly layout object. Default: `{}`.
+* __legendButtons__ | `boolean`: controls whether to display buttons for changing the legend. Default: `true`.
+* __onShare__ | `function`: callback function invoked when clicking on the "Share" button. Default: `none`.
+* __removeButtons__ | `boolean`: controls whether to remove all buttons. Default: `false`.
+* __toggleFullscreen__ | `boolean`: controls whether to display the plot in fullscreen mode. Default: `true`.

@@ -1,6 +1,6 @@
 # Survey Generator
 
-Allows instructors to create multiple-choice surveys, free text surveys and number surveys on the fly in real-time through an easy-to-use interface.
+Component allowing instructors to create multiple-choice surveys, free text surveys and number surveys on the fly in real-time through an easy-to-use interface.
 
 #### Example:
 

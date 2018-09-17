@@ -38,7 +38,6 @@ hideToolbar: true
 
 #### Options:
 
-* __data__: `object` holding a multitude of arrays.  
-* __showRemove__: `boolean` allowing to remove data entries individually. Default: `false`
-* __onClickRemove__: callback `function` which is triggered after the an entry has been removed. It returns the complete data-set, augmented with a  `removed` property allowing to differentiate between the items. 
-* __style__: `object` for styling the tables: `''`.
+* __isDraggable__ | `boolean`: controls whether grid elements are draggable. Default: `false`.
+* __isResizable__ | `boolean`: controls whether grid elements are resizable. Default: `false`.
+* __rowHeight__ | `number`: height of a single row (in px). Default: `60`.
