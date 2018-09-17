@@ -1,6 +1,6 @@
 # JavaScript Shell
 
-An interactive Javascript Shell that can be used to execute JavascriptCommand. The shell contains a console that displays error messages, warnings etc. 
+An interactive Javascript shell that can be used to execute JavaScript commands. The shell contains a console that displays error messages, warnings etc.
 
 #### Example:
 

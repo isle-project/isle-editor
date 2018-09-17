@@ -65,7 +65,7 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 // MAIN //
 
 /**
-* A JavaScript shell component.
+* An interactive Javascript shell that can be used to execute JavaScript commands. The shell contains a console that displays error messages, warnings etc.
 *
 * @property {string} code - JavaScript code to be evaluated
 * @property {string} solution - for programming questions, code `string` representing the official solution for the problem

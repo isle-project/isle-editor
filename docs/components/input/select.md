@@ -20,13 +20,13 @@ A select input component. Can be used as part of an ISLE dashboard or standalone
 
 #### Options:
 
-* __bind__ | `string`: A string indicating the variable for the number to be assigned. Default: `''`.
-* __clearable__ | `boolean`: A boolean value indicating whether one may clear choice(s) made. Default: `none`.
-* __defaultValue__ | `(number|string|array)`: A value indicating the default value of the input at start. Default: `none`.
-* __disabled__ | `boolean`: A boolean indicating whether the input is active or not. Default: `false`.
-* __inline__ | `boolean`: Indicates whether the input is displayed inline. Default: `false`.
-* __legend__ | `string`: A string indicating the text displayed next to the input. Default: `''`.
-* __multi__ | `boolean`: A boolean indicating whether one may select multiple answers. Default: `false`.
-* __onChange__ | `function`: A function to be called when a number is inputted. Default: `onChange() {}`.
-* __options__ | `array`: An array of indicating the choices available the user. Default: `[]`.
-* __placeholder__ | `string`: A string indicating the value to be displayed before an initial choice is made. Default: `'Select...'`.
+* __bind__ | `string`: name of global variable for the number to be assigned to. Default: `''`.
+* __clearable__ | `boolean`: boolean value indicating whether one may clear choice(s) made. Default: `none`.
+* __defaultValue__ | `(number|string|array)`: default value of the input at startup. Default: `none`.
+* __disabled__ | `boolean`: controls whether the input is active or not. Default: `false`.
+* __inline__ | `boolean`: indicates whether the input is displayed inline. Default: `false`.
+* __legend__ | `string`: text displayed next to the input. Default: `''`.
+* __multi__ | `boolean`: controls whether one may select multiple answers. Default: `false`.
+* __onChange__ | `function`: callback function to be invoked when a choice is made. Default: `onChange() {}`.
+* __options__ | `array`: array of indicating the choices available the user. Default: `[]`.
+* __placeholder__ | `string`: value to be displayed before an initial choice is made. Default: `'Select...'`.
