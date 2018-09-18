@@ -9,7 +9,7 @@ import './weather.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:weather' );
+const debug = logger( 'isle:weather' );
 
 
 // MAIN //

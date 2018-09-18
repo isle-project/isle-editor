@@ -80,7 +80,7 @@ const generateTransformationCode = ( variable ) => `if ( datum.${variable} > 0 )
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:data-explorer' );
+const debug = logger( 'isle:data-explorer' );
 
 
 // MAIN //

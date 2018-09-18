@@ -20,7 +20,7 @@ import './multiple-choice-survey.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle:multiple-choice-survey' );
 
 
 // MAIN //

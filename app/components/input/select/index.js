@@ -16,7 +16,7 @@ import './select.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle:select-input' );
 const customStyles = {
 	control: ( base, state ) => {
 		if ( state.isDisabled ) {

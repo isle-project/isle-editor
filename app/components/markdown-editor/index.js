@@ -44,7 +44,7 @@ import './markdown_editor.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:markdown-editor' );
+const debug = logger( 'isle:markdown-editor' );
 const md = markdownIt({
 	html: true,
 	xhtmlOut: true,

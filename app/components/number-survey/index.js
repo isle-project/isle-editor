@@ -29,7 +29,7 @@ import './number-survey.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle:number-survey' );
 
 
 // FUNCTIONS //

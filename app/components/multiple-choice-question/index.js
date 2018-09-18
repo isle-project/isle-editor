@@ -18,7 +18,7 @@ import Question from './question.js';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:multiple-choice-question' );
+const debug = logger( 'isle:multiple-choice-question' );
 
 
 // MAIN //

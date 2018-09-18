@@ -18,7 +18,7 @@ import './recorder.css';
 
 // VARIABLES //
 
-var debug = logger( 'isle-editor:recorder' );
+var debug = logger( 'isle:recorder' );
 navigator.getUserMedia = navigator.getUserMedia || navigator.mediaDevices.getUserMedia || navigator.webkitGetUserMedia;
 
 

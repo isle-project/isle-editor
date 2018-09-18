@@ -17,7 +17,7 @@ import './dashboard.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:dashboard' );
+const debug = logger( 'isle:dashboard' );
 
 
 // MAIN //

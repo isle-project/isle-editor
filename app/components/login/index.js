@@ -18,7 +18,7 @@ import './login.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:login' );
+const debug = logger( 'isle:login' );
 
 
 // MAIN //

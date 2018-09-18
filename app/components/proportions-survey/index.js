@@ -16,7 +16,7 @@ import RealtimeMetrics from 'components/metrics/realtime';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle:proportions-survey' );
 
 
 // MAIN //

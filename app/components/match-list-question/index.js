@@ -18,7 +18,7 @@ import './match_list_question.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:match-list-question' );
+const debug = logger( 'isle:match-list-question' );
 
 
 // FUNCTIONS //

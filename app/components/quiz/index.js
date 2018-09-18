@@ -26,7 +26,7 @@ import './quiz.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:quiz' );
+const debug = logger( 'isle:quiz' );
 
 
 // FUNCTIONS //

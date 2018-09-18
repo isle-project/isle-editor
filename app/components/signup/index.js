@@ -19,7 +19,7 @@ import Tooltip from 'components/tooltip';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:signup' );
+const debug = logger( 'isle:signup' );
 const FORM_DATA = [ 'name', 'email', 'password', 'passwordRepeat' ];
 
 

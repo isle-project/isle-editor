@@ -10,7 +10,7 @@ import isFunction from '@stdlib/assert/is-function';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:key-controls' );
+const debug = logger( 'isle:key-controls' );
 
 
 // MAIN //

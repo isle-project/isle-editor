@@ -32,7 +32,7 @@ import './rshell.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle:r-shell' );
 const HELP_REGEX = /(help\([^)]*\)|\?[^\n]*)/;
 let counter = 0;
 let rCode = [];

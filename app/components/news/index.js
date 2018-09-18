@@ -14,7 +14,7 @@ import './styles.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:news' );
+const debug = logger( 'isle:news' );
 
 
 // MAIN //

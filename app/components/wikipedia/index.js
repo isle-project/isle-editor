@@ -9,7 +9,7 @@ import './wikipedia.css';
 
 // VARIABLES //
 
-var debug = logger( 'isle-editor:wikipedia' );
+var debug = logger( 'isle:wikipedia' );
 
 
 // MAIN //

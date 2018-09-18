@@ -9,7 +9,7 @@ import copy from '@stdlib/utils/copy';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle:real-time-metrics' );
 
 
 // MAIN //

@@ -44,7 +44,7 @@ import './sketchpad.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:sketchpad' );
+const debug = logger( 'isle:sketchpad' );
 const COLORPICKER_COLORS = [
 	'#000000', '#FF6900', '#FCB900',
 	'#00D084', '#8ED1FC', '#0693E3',

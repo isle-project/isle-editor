@@ -15,7 +15,7 @@ import './order-question.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:order-question' );
+const debug = logger( 'isle:order-question' );
 
 
 // MAIN //

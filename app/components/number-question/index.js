@@ -19,7 +19,7 @@ import './number-question.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:number-question' );
+const debug = logger( 'isle:number-question' );
 
 
 // MAIN //

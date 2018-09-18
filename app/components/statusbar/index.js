@@ -21,7 +21,7 @@ import './statusbar.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:statusbar' );
+const debug = logger( 'isle:statusbar' );
 const LOGGED_IN_COLOR = 'rgb(130, 224, 160)';
 const LOGGED_OUT_COLOR = 'rgb(209, 107, 71)';
 
