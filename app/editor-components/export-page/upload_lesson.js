@@ -118,7 +118,7 @@ class UploadLesson extends Component {
 			debug( 'archiver has been finalized and the output file descriptor has closed.' );
 			clbk();
 		});
-		archive.on( 'error', function onError( error ) {
+		archive.on( 'error', ( error ) => {
 			return this.setState({
 				error
 			});
