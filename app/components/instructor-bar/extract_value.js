@@ -7,7 +7,7 @@ import isObject from '@stdlib/assert/is-object';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:instructor-bar' );
+const debug = logger( 'isle:instructor-bar' );
 
 
 // MAIN //

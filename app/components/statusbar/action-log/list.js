@@ -13,7 +13,7 @@ import Action from './action.js';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle:statusbar:action-log' );
 const LINE_HEIGHT = 20;
 const TEXT_LINE_HEIGHT = 16;
 const RE_NEWLINE = /\r?\n/g;

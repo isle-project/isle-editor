@@ -13,7 +13,7 @@ import logger from 'debug';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:sketchpad' );
+const debug = logger( 'isle:sketchpad:curve' );
 
 
 // MAIN //

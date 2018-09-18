@@ -12,7 +12,7 @@ import './voice.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:voice-input' );
+const debug = logger( 'isle:voice-input' );
 
 
 // MAIN //

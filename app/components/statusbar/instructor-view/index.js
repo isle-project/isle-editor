@@ -17,7 +17,7 @@ import './instructor_view.css';
 // VARIABLES //
 
 const EDITOR_OFFSET = isElectron ? 15 : 0;
-const debug = logger( 'isle-editor:instructor-view' );
+const debug = logger( 'isle:statusbar-instructor-view' );
 
 
 // MAIN //

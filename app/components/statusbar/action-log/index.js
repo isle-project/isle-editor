@@ -19,7 +19,7 @@ import ActionList from './list.js';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle:statusbar:action-log' );
 moment.locale( 'us' );
 
 

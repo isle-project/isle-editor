@@ -19,7 +19,7 @@ import FreeTextSurvey from 'components/free-text-survey';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:survey-generator' );
+const debug = logger( 'isle:survey-generator' );
 
 
 // MAIN //

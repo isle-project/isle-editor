@@ -9,7 +9,7 @@ import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:user-list' );
+const debug = logger( 'isle:statusbar:instructor-view' );
 
 
 // MAIN //

@@ -27,7 +27,7 @@ import by from './by.js';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:data-explorer:histogram' );
+const debug = logger( 'isle:data-explorer:histogram' );
 const SETTINGS = {
 	yaxis: {
 		tickformat: '-,.4r'

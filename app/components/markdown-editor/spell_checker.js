@@ -17,7 +17,7 @@ import logger from 'debug';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:spell-checker' );
+const debug = logger( 'isle:markdown-editor:spell-checker' );
 const RX_WORD = '!\'"#$%&()*+,-./:;<=>?@[\\]^_`{|}~ ';
 const AFF_URL = 'https://cdn.jsdelivr.net/codemirror.spell-checker/latest/en_US.aff';
 const DIC_URL = 'https://cdn.jsdelivr.net/codemirror.spell-checker/latest/en_US.dic';

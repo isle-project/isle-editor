@@ -30,7 +30,7 @@ const areaStyle = {
 		fill: 'tomato', stroke: 'tomato', opacity: 0.3
 	}
 };
-const debug = logger( 'isle-editor' );
+const debug = logger( 'isle:learn:hypothesis-testing-proportion' );
 
 
 // MAIN //

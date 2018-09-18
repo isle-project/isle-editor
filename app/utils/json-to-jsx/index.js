@@ -17,7 +17,7 @@ import SelectQuestion from 'components/select-question';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:convert-json' );
+const debug = logger( 'isle:convert-json' );
 
 
 // MAIN //

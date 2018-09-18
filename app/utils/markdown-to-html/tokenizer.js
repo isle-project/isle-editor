@@ -5,7 +5,7 @@ const logger = require( 'debug' );
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:tokenizer' );
+const debug = logger( 'isle:tokenizer' );
 const IN_BASE = 0;
 const IN_OPENING_TAG = 1;
 const IN_CLOSING_TAG = 2;

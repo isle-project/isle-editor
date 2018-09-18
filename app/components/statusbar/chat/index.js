@@ -17,7 +17,7 @@ import './chat.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:statusbar' );
+const debug = logger( 'isle:statusbar:chat' );
 
 
 // MAIN //
