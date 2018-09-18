@@ -19,7 +19,7 @@ import 'whatwg-fetch';
 
 // VARIABLES //
 
-const debug = logger( 'isle-editor:session' );
+const debug = logger( 'isle:session' );
 const PATH_REGEXP = /^\/([^/]*)\/([^/]*)\//i;
 const STDOUT_REGEX = /stdout/;
 const GRAPHICS_REGEX = /graphics/;
