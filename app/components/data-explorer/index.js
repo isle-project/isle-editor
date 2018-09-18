@@ -266,29 +266,30 @@ class DataExplorer extends Component {
 	*/
 	onUserAction = ( action ) => {
 		let config;
+		const value = JSON.parse( action.value );
 		if ( action.type === 'DATA_EXPLORER_SHARE:HISTOGRAM' ) {
-			config = generateHistogramConfig({ data: this.state.data, ...action.value });
+			config = generateHistogramConfig({ data: this.state.data, ...value });
 		}
 		else if ( action.type === 'DATA_EXPLORER_SHARE:BARCHART' ) {
-			config = generateBarchartConfig({ data: this.state.data, ...action.value });
+			config = generateBarchartConfig({ data: this.state.data, ...value });
 		}
 		else if ( action.type === 'DATA_EXPLORER_SHARE:BOXPLOT' ) {
-			config = generateBoxplotConfig({ data: this.state.data, ...action.value });
+			config = generateBoxplotConfig({ data: this.state.data, ...value });
 		}
 		else if ( action.type === 'DATA_EXPLORER_SHARE:PIECHART' ) {
-			config = generatePiechartConfig({ data: this.state.data, ...action.value });
+			config = generatePiechartConfig({ data: this.state.data, ...value });
 		}
 		else if ( action.type === 'DATA_EXPLORER_SHARE:SCATTERPLOT' ) {
-			config = generateScatterplotConfig({ data: this.state.data, ...action.value });
+			config = generateScatterplotConfig({ data: this.state.data, ...value });
 		}
 		else if ( action.type === 'DATA_EXPLORER_SHARE:MOSAIC' ) {
-			config = generateMosaicPlotCode({ data: this.state.data, ...action.value });
+			config = generateMosaicPlotCode({ data: this.state.data, ...value });
 		}
 		else if ( action.type === 'DATA_EXPLORER_SHARE:HEATMAP' ) {
-			config = generateHeatmapCode({ data: this.state.data, ...action.value });
+			config = generateHeatmapCode({ data: this.state.data, ...value });
 		}
 		else if ( action.type === 'DATA_EXPLORER_SHARE:CONTOURCHART' ) {
-			config = generateContourChart({ data: this.state.data, ...action.value });
+			config = generateContourChart({ data: this.state.data, ...value });
 		}
 		if ( config ) {
 			const newStudentPlots = copy( this.state.studentPlots );
@@ -862,7 +863,6 @@ class DataExplorer extends Component {
 																		data={config.data}
 																		layout={config.layout}
 																		removeButtons
-																		fit
 																	/>
 															}
 															<span>
