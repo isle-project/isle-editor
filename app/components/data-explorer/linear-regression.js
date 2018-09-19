@@ -117,12 +117,12 @@ class SimpleLinearRegression extends Component {
 				onGenerate={this.fitRegression.bind( this )}
 			>
 				<SelectInput
-					legend="Response Variable:"
+					legend="Response Variable (Y):"
 					defaultValue={continuous[ 0 ]}
 					options={continuous}
 				/>
 				<SelectInput
-					legend="Explanatory Variable:"
+					legend="Explanatory Variable (X):"
 					defaultValue={continuous[ 1 ]}
 					options={continuous}
 				/>
