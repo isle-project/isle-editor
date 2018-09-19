@@ -242,10 +242,30 @@ snippet Quiz
 		count={${2:0}}
 	/>
 
+snippet Metrics
+	<Metrics
+		for="${1:ID}"
+		interval={false}
+		onData={( data ) => {
+			${3:}
+		}}
+	/>
+
 snippet RangeQuestion
 	<RangeQuestion
 		question="${1:Enter question}"
 		solution={[${2:0},${3:1}]}
+	/>
+
+snippet RealTimeMetrics
+	<RealTimeMetrics
+		for="${1:ID}"
+		onDatum={( datum ) => {
+			${2:}
+		}}
+		onData={( data ) => {
+			${3:}
+		}}
 	/>
 
 snippet Recorder
@@ -332,7 +352,7 @@ snippet TeX
 	<TeX raw="${1:}" />
 
 snippet Text
-	<Text>${1:}</Text>
+	<Text raw="${1:}" />
 
 snippet TextInput
 	<TextInput
@@ -471,3 +491,6 @@ snippet Slide
 
 snippet VictoryBar
 	<VictoryBar />
+
+snippet WordCloud
+	<WordCloud data={[${1:'First document','Second document'}]} />

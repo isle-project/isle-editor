@@ -98,7 +98,8 @@
 	],
 	"PLOTS": [
 		"Plotly",
-		"DensityPlot"
+		"DensityPlot",
+		"WordCloud"
 	],
 	"VICTORY": [
 		"Bar",

@@ -14,6 +14,14 @@ const debug = logger( 'isle:real-time-metrics' );
 
 // MAIN //
 
+/**
+* Invisible component listening to incoming member actions and invoking a given callback.
+*
+* @property {string} for - ID of component whose actions should trigger callback(s)
+* @property {Function} onData - callback function called with an array of all actions when a new member action arrives
+* @property {Function} onDatum - callback function invoked with every individual incoming member action
+* @property {boolean} returnFullObject - controls whether to invoke the supplied callback(s) with the full action object or only its value
+*/
 class RealTimeMetrics extends Component {
 	constructor() {
 		super();

@@ -1603,41 +1603,48 @@
     "props": [
       {
         "name": "for",
-        "type": "string (required)"
+        "type": "string (required)",
+        "description": "ID of component whose actions should be retrieved"
       },
       {
         "name": "interval",
         "type": "number",
+        "description": "interval at which to call the database; if falsy, retrievals have to be manually triggered by clicking on the displayed button",
         "default": null
       },
       {
         "name": "onData",
-        "type": "function"
+        "type": "function",
+        "description": "callback function called with an array of all actions"
       }
     ],
-    "description": "Description is missing."
+    "description": "Component allowing retrieval of member actions corresponding to a specified component ID from the database."
   },
   "RealtimeMetrics": {
     "props": [
       {
         "name": "for",
-        "type": "string (required)"
+        "type": "string (required)",
+        "description": "ID of component whose actions should trigger callback(s)"
       },
       {
         "name": "onData",
-        "type": "function"
+        "type": "function",
+        "description": "callback function called with an array of all actions when a new member action arrives"
       },
       {
         "name": "onDatum",
-        "type": "function"
+        "type": "function",
+        "description": "callback function invoked with every individual incoming member action"
       },
       {
         "name": "returnFullObject",
         "type": "boolean",
+        "description": "controls whether to invoke the supplied callback(s) with the full action object or only its value",
         "default": false
       }
     ],
-    "description": "Description is missing."
+    "description": "Invisible component listening to incoming member actions and invoking a given callback."
   },
   "MultipleChoiceQuestion": {
     "props": [
@@ -2196,7 +2203,7 @@
         "name": "step",
         "type": "number",
         "description": "the step of the arrows seen when hovering the cursor above the input box",
-        "default": 0.1
+        "default": 0.25
       }
     ],
     "description": "Component that allows a group of people to vote on the weights and importance of given options."

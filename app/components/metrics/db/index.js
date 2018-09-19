@@ -7,6 +7,13 @@ import Button from 'react-bootstrap/lib/Button';
 
 // MAIN //
 
+/**
+* Component allowing retrieval of member actions corresponding to a specified component ID from the database.
+*
+* @property {string} for - ID of component whose actions should be retrieved
+* @property {number} interval - interval at which to call the database; if falsy, retrievals have to be manually triggered by clicking on the displayed button
+* @property {Function} onData - callback function called with an array of all actions
+*/
 class Metrics extends Component {
 	constructor() {
 		super();
