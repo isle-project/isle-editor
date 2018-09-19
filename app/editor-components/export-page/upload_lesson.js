@@ -67,11 +67,13 @@ class UploadLesson extends Component {
 			})
 			.then( res => res.json() )
 			.then( body => {
+				debug( 'Received namespaces...' );
 				this.setState({
 					namespaces: body.namespaces
 				});
 			})
 			.catch( error => {
+				debug( 'Ecountered an error: '+error.message );
 				return this.setState({
 					error
 				});
