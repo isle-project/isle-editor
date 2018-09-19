@@ -57,14 +57,12 @@ class ProportionsSurvey extends Component {
 	submitQuestion = () => {
 		debug( 'Sending the data: ' + this.state.value );
 		const { session } = this.context;
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: 'PROPORTIONS_SURVEY_SUBMISSION',
-				value: JSON.stringify( this.state.value ),
-				anonymous: this.props.anonymous
-			}, 'members' );
-		}
+		session.log({
+			id: this.props.id,
+			type: 'PROPORTIONS_SURVEY_SUBMISSION',
+			value: JSON.stringify( this.state.value ),
+			anonymous: this.props.anonymous
+		}, 'members' );
 		this.setState({
 			submitted: true
 		});
@@ -218,6 +216,7 @@ ProportionsSurvey.defaultProps = {
 };
 
 ProportionsSurvey.propTypes = {
+	id: PropTypes.string.isRequired,
 	allowMultipleAnswers: PropTypes.bool,
 	anonymous: PropTypes.bool,
 	colors: PropTypes.array,

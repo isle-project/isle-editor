@@ -16,7 +16,7 @@ import OverlayTrigger from 'components/overlay-trigger';
 */
 class Wrapper extends Component {
 	render() {
-		const id = this.props.id || 'tooltip';
+		const id = this.props.id;
 		const tooltip = <Tooltip id={id} >{this.props.tooltip}</Tooltip>;
 		return (
 			<OverlayTrigger placement={this.props.placement} overlay={tooltip} >
@@ -30,6 +30,7 @@ class Wrapper extends Component {
 // PROPERTIES //
 
 Wrapper.propTypes = {
+	id: PropTypes.string,
 	tooltip: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.node
@@ -38,6 +39,7 @@ Wrapper.propTypes = {
 };
 
 Wrapper.defaultProps = {
+	id: 'tooltip',
 	placement: 'right'
 };
 

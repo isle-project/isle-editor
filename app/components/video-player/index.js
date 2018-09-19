@@ -52,31 +52,37 @@ class Video extends Component {
 
 	handlePlay = () => {
 		const { session } = this.context;
-		session.log({
-			id: this.props.id,
-			type: 'VIDEO_PLAY',
-			value: this.state.progress.playedSeconds
-		});
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'VIDEO_PLAY',
+				value: this.state.progress.playedSeconds
+			});
+		}
 		this.props.onPlay();
 	}
 
 	handlePause = () => {
 		const { session } = this.context;
-		session.log({
-			id: this.props.id,
-			type: 'VIDEO_PAUSE',
-			value: this.state.progress.playedSeconds
-		});
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'VIDEO_PAUSE',
+				value: this.state.progress.playedSeconds
+			});
+		}
 		this.props.onPause();
 	}
 
 	handleEnded = () => {
 		const { session } = this.context;
-		session.log({
-			id: this.props.id,
-			type: 'VIDEO_END',
-			value: this.state.progress.playedSeconds
-		});
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'VIDEO_END',
+				value: this.state.progress.playedSeconds
+			});
+		}
 		this.props.onEnded();
 	}
 

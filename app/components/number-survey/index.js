@@ -82,14 +82,12 @@ class NumberSurvey extends Component {
 
 	submitQuestion = () => {
 		const { session } = this.context;
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: 'NUMBER_SURVEY_SUBMISSION',
-				value: this.state.value,
-				anonymous: this.props.anonymous
-			}, 'members' );
-		}
+		session.log({
+			id: this.props.id,
+			type: 'NUMBER_SURVEY_SUBMISSION',
+			value: this.state.value,
+			anonymous: this.props.anonymous
+		}, 'members' );
 		this.setState({
 			submitted: true
 		});
@@ -198,6 +196,7 @@ NumberSurvey.defaultProps = {
 };
 
 NumberSurvey.propTypes = {
+	id: PropTypes.string.isRequired,
 	question: PropTypes.string,
 	allowMultipleAnswers: PropTypes.bool,
 	anonymous: PropTypes.bool,

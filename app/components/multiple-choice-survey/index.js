@@ -53,16 +53,14 @@ class MultipleChoiceSurvey extends Component {
 
 	submitQuestion = () => {
 		const { session } = this.context;
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: 'MULTIPLE_CHOICE_SURVEY_SUBMISSION',
-				value: this.props.multipleAnswers ?
-					this.state.active.map( idx => this.props.answers[ idx ]) :
-					this.props.answers[ this.state.active ],
-				anonymous: this.props.anonymous
-			}, 'members' );
-		}
+		session.log({
+			id: this.props.id,
+			type: 'MULTIPLE_CHOICE_SURVEY_SUBMISSION',
+			value: this.props.multipleAnswers ?
+				this.state.active.map( idx => this.props.answers[ idx ]) :
+				this.props.answers[ this.state.active ],
+			anonymous: this.props.anonymous
+		}, 'members' );
 		if ( !this.props.allowMultipleAnswers ) {
 			this.setState({
 				submitted: true
@@ -240,6 +238,7 @@ MultipleChoiceSurvey.defaultProps = {
 };
 
 MultipleChoiceSurvey.propTypes = {
+	id: PropTypes.string.isRequired,
 	allowMultipleAnswers: PropTypes.bool,
 	anonymous: PropTypes.bool,
 	answers: PropTypes.array,

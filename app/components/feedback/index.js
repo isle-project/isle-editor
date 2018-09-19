@@ -205,6 +205,7 @@ class FeedbackButtons extends Component {
 // PROPERTIES //
 
 FeedbackButtons.propTypes = {
+	id: PropTypes.string.isRequired,
 	vertical: PropTypes.bool,
 	style: PropTypes.object
 };

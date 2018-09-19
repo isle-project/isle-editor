@@ -107,6 +107,7 @@ Revealer.defaultProps = {
 };
 
 Revealer.propTypes = {
+	id: PropTypes.string.isRequired,
 	message: PropTypes.string
 };
 

@@ -60,14 +60,12 @@ class FreeTextSurvey extends Component {
 				position: 'tr'
 			});
 		} else {
-			if ( this.props.id ) {
-				session.log({
-					id: this.props.id,
-					type: 'TEXT_SURVEY_SUBMISSION',
-					value: this.state.value,
-					anonymous: this.props.anonymous
-				}, 'members' );
-			}
+			session.log({
+				id: this.props.id,
+				type: 'TEXT_SURVEY_SUBMISSION',
+				value: this.state.value,
+				anonymous: this.props.anonymous
+			}, 'members' );
 			this.setState({
 				submitted: true
 			});
@@ -211,6 +209,7 @@ FreeTextSurvey.defaultProps = {
 };
 
 FreeTextSurvey.propTypes = {
+	id: PropTypes.string.isRequired,
 	allowMultipleAnswers: PropTypes.bool,
 	anonymous: PropTypes.bool,
 	onSubmit: PropTypes.func,
