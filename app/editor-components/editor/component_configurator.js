@@ -160,13 +160,14 @@ class ComponentConfigurator extends Component {
 	}
 
 	renderPropertyControls() {
-		const { props } = COMPONENT_DOCS[ this.props.component.name ];
+		const doc = COMPONENT_DOCS[ this.props.component.name ] || {};
+		const props = doc.props || [];
 		if ( props.length === 0 ) {
 			return <div style={{ marginBottom: 15 }}>Component has no properties.</div>;
 		}
 		const controls = [];
 		for ( let i = 0; i < props.length; i++ ) {
-			let prop = props[ i ];
+			const prop = props[ i ] || {};
 			const defaultValue = prop.default;
 			const description = prop.description;
 			const type = prop.type;
@@ -217,7 +218,8 @@ class ComponentConfigurator extends Component {
 	}
 
 	render() {
-		const { description } = COMPONENT_DOCS[ this.props.component.name ];
+		const doc = COMPONENT_DOCS[ this.props.component.name ] || {};
+		const description = doc.description || 'Component description is missing.';
 		const innerHTML = {
 			'__html': md.render( description )
 		};

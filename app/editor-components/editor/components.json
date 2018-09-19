@@ -75,6 +75,7 @@
 		"FreeTextSurvey",
 		"MultipleChoiceSurvey",
 		"NumberSurvey",
+		"ProportionsSurvey",
 		"SurveyGenerator"
 	],
 	"R": [
