@@ -16,7 +16,7 @@ class Export extends Component {
 				content={this.props.markdown}
 				filePath={this.props.filePath}
 				fileName={this.props.fileName}
-				namespaceName={this.props.namespaceName}
+				namespaceName={this.props.namespaceName || ''}
 				changeNamespace={this.props.changeNamespace}
 			/>
 		);
