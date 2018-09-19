@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import { APIXU_BASE_URL } from 'constants/apixu';
+import { APIXU_BASE_URL, APIXU_AUTH_KEY } from 'constants/apixu';
 import './weather.css';
 
 
@@ -235,7 +235,7 @@ Weather.propTypes = {
 };
 
 Weather.defaultProps = {
-	key: '3b94f972948543b8a1780701171211',
+	key: APIXU_AUTH_KEY,
 	language: 'en-US',
 	location: null,
 	voiceID: null,
