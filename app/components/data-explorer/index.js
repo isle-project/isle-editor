@@ -746,7 +746,7 @@ class DataExplorer extends Component {
 				>{this.props.questions}</Pages></Col> : null }
 				<Col xs={colWidth} md={colWidth}>
 					<Panel>
-						<Navbar className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
+						<Navbar fluid className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
 							<Nav>
 								{ !this.props.hideDataTable ? <NavItem eventKey="1" className="explorer-data-nav" active={this.state.openedNav === '1'}>
 									Data
