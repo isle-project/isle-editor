@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
@@ -13,6 +13,7 @@ import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-plain-object';
 import isInteger from '@stdlib/assert/is-integer';
 import incrspace from '@stdlib/math/utils/incrspace';
+import Timer from 'components/timer';
 import FreeTextQuestion from 'components/free-text-question';
 import MultipleChoiceQuestion from 'components/multiple-choice-question';
 import MatchListQuestion from 'components/match-list-question';
@@ -201,7 +202,7 @@ class Quiz extends Component {
 	renderScoreboard() {
 		debug( 'Rendering scoreboard...' );
 		return ( <div>
-			<p>You have finished the quiz. Here is a summary of your answers:</p>
+			<p>{ this.props.duration ? 'Your time is up. ' : 'You have finished the quiz. ' } Here is a summary of your answers:</p>
 			<table className="table table-bordered" >
 				<thead>
 					<tr>
@@ -314,33 +315,52 @@ class Quiz extends Component {
 		} else {
 			showButton = this.state.answered || this.props.skippable;
 		}
-		return ( <Panel>
-			<Panel.Heading>
-				<Panel.Title>
-					{ this.state.finished ?
-						<span>Answer Summary</span> :
-						<span>Question {this.state.counter+1}/{this.props.count}</span>
-					}
-				</Panel.Title>
-			</Panel.Heading>
-			<Panel.Body>
-				{ this.state.finished ?
-					this.renderScoreboard() :
-					<span key={this.state.current}>{this.renderCurrentQuestion()}</span>
-				}
-				{ showButton ?
-					<Button
-						className="quiz-button"
-						onClick={this.handleNextClick}
-						disabled={this.props.forceConfidence && this.state.answered && !this.state.checked}
-					>
-						{this.state.last ? 'Finish Quiz' : 'Next Question' }
-					</Button> :
+		return (
+			<Fragment>
+				{this.props.duration ?
+					<Timer
+						invisible
+						id={this.props.id}
+						active={this.props.active}
+						duration={this.props.duration}
+						onTimeUp={() => {
+							debug( 'Time is up...' );
+							this.setState({
+								finished: true
+							});
+						}}
+					/> :
 					null
 				}
-				{ !this.state.finished ? this.renderConfidenceSurvey() : null }
-			</Panel.Body>
-		</Panel> );
+				<Panel>
+					<Panel.Heading>
+						<Panel.Title>
+							{ this.state.finished ?
+								<span>Answer Summary</span> :
+								<span>Question {this.state.counter+1}/{this.props.count}</span>
+							}
+						</Panel.Title>
+					</Panel.Heading>
+					<Panel.Body>
+						{ this.state.finished ?
+							this.renderScoreboard() :
+							<span key={this.state.current}>{this.renderCurrentQuestion()}</span>
+						}
+						{ showButton ?
+							<Button
+								className="quiz-button"
+								onClick={this.handleNextClick}
+								disabled={this.props.forceConfidence && this.state.answered && !this.state.checked}
+							>
+								{this.state.last ? 'Finish Quiz' : 'Next Question' }
+							</Button> :
+							null
+						}
+						{ !this.state.finished ? this.renderConfidenceSurvey() : null }
+					</Panel.Body>
+				</Panel>
+			</Fragment>
+		);
 	}
 }
 
@@ -352,12 +372,16 @@ Quiz.propTypes = {
 	forceConfidence: PropTypes.bool,
 	count: PropTypes.number.isRequired,
 	questions: PropTypes.array.isRequired,
+	active: PropTypes.bool,
+	duration: PropTypes.number,
 	skippable: PropTypes.bool
 };
 
 Quiz.defaultProps = {
 	confidence: false,
 	forceConfidence: false,
+	active: true,
+	duration: null,
 	skippable: true
 };
 
