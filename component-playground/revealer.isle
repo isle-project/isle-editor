@@ -32,4 +32,5 @@ server: https://isle.heinz.cmu.edu
 
 #### Options:
 
+* __id__ | `string (required)`: undefined. Default: `none`.
 * __message__ | `string`: message to be displayed when content is hidden. Default: `'Content hidden by instructor'`.
