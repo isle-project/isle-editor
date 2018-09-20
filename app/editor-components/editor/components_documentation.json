@@ -519,6 +519,10 @@
   "FeedbackButtons": {
     "props": [
       {
+        "name": "id",
+        "type": "string (required)"
+      },
+      {
         "name": "vertical",
         "type": "boolean",
         "description": "buttons are displayed vertically if set to `true`",
@@ -628,6 +632,10 @@
   },
   "FreeTextSurvey": {
     "props": [
+      {
+        "name": "id",
+        "type": "string (required)"
+      },
       {
         "name": "allowMultipleAnswers",
         "type": "boolean",
@@ -1723,6 +1731,10 @@
   "MultipleChoiceSurvey": {
     "props": [
       {
+        "name": "id",
+        "type": "string (required)"
+      },
+      {
         "name": "allowMultipleAnswers",
         "type": "boolean",
         "description": "contols whether one wishes to allow students to answer the survey multiple times",
@@ -1871,6 +1883,10 @@
   },
   "NumberSurvey": {
     "props": [
+      {
+        "name": "id",
+        "type": "string (required)"
+      },
       {
         "name": "question",
         "type": "string",
@@ -2100,6 +2116,10 @@
   "ProportionsSurvey": {
     "props": [
       {
+        "name": "id",
+        "type": "string (required)"
+      },
+      {
         "name": "allowMultipleAnswers",
         "type": "boolean",
         "description": "contols whether one wishes to allow students to answer the survey multiple times",
@@ -2231,6 +2251,16 @@
         "name": "questions",
         "type": "array (required)",
         "description": "array of questions from which questions will be randomly selected"
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "duration",
+        "type": "number",
+        "default": null
       },
       {
         "name": "skippable",
@@ -2590,6 +2620,10 @@
   },
   "Revealer": {
     "props": [
+      {
+        "name": "id",
+        "type": "string (required)"
+      },
       {
         "name": "message",
         "type": "string",
@@ -3161,6 +3195,11 @@
   "Timer": {
     "props": [
       {
+        "name": "id",
+        "type": "string (required)",
+        "description": "the unique `string` ID for the timer. The timer component is persistent over page refreshes"
+      },
+      {
         "name": "active",
         "type": "boolean (required)",
         "description": "flag that can be toggled to start or pause the timer"
@@ -3171,9 +3210,9 @@
         "description": "duration in seconds for the timer"
       },
       {
-        "name": "id",
-        "type": "string (required)",
-        "description": "the unique `string` ID for the timer. The timer component is persistent over page refreshes"
+        "name": "invisible",
+        "type": "boolean",
+        "default": false
       },
       {
         "name": "style",
@@ -3397,7 +3436,7 @@
         "name": "key",
         "type": "string",
         "description": "APIXU key",
-        "default": "3b94f972948543b8a1780701171211"
+        "default": "<number>"
       },
       {
         "name": "language",

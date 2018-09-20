@@ -14,5 +14,6 @@ Buttons to collect user feedback.
 
 #### Options:
 
+* __id__ | `string (required)`: undefined. Default: `none`.
 * __vertical__ | `boolean`: buttons are displayed vertically if set to `true`. Default: `false`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
