@@ -32,8 +32,9 @@ hideToolbar: true
 
 #### Options:
 
+* __id__ | `string (required)`: the unique `string` ID for the timer. The timer component is persistent over page refreshes. Default: `none`.
 * __active__ | `boolean (required)`: flag that can be toggled to start or pause the timer. Default: `none`.
 * __duration__ | `number (required)`: duration in seconds for the timer. Default: `none`.
-* __id__ | `string (required)`: the unique `string` ID for the timer. The timer component is persistent over page refreshes. Default: `none`.
+* __invisible__ | `boolean`: undefined. Default: `false`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onTimeUp__ | `function`: callback invoked when the timer runs out. Default: `onTimeUp() {}`.

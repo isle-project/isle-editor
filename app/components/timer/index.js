@@ -86,6 +86,9 @@ class Timer extends Component {
 	}
 
 	render() {
+		if ( this.props.invisible ) {
+			return null;
+		}
 		return (
 			<div style={this.props.style} className="timer-div">
 				{this.fmtTime( this.state.timeLeft )}
@@ -101,11 +104,13 @@ Timer.propTypes = {
 	id: PropTypes.string.isRequired,
 	active: PropTypes.bool.isRequired,
 	duration: PropTypes.number.isRequired,
+	invisible: PropTypes.bool,
 	style: PropTypes.object,
 	onTimeUp: PropTypes.func
 };
 
 Timer.defaultProps = {
+	invisible: false,
 	style: {},
 	onTimeUp() {}
 };
