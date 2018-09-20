@@ -31,12 +31,14 @@ const RE_DEFAULTS = /\.(defaultProps ?= ?{[\s\S]*?};)/;
 const SCOPE_KEYS = [
 	'PropTypes',
 	'repeat',
-	'DEFAULT_VALUE'
+	'DEFAULT_VALUE',
+	'APIXU_AUTH_KEY'
 ];
 const SCOPE_VALUES = [
 	PropTypes,
 	repeat,
-	repeat( '\n', 15 )
+	repeat( '\n', 15 ),
+	'<number>'
 ];
 
 
