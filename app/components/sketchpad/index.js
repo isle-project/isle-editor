@@ -25,6 +25,7 @@ import round from '@stdlib/math/base/special/round';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
 import noop from '@stdlib/utils/noop';
+import omit from '@stdlib/utils/omit';
 import objectKeys from '@stdlib/utils/keys';
 import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
@@ -49,6 +50,9 @@ const COLORPICKER_COLORS = [
 	'#000000', '#FF6900', '#FCB900',
 	'#00D084', '#8ED1FC', '#0693E3',
 	'#ABB8C3', '#EB144C', '#9900EF'
+];
+const OMITTED_KEYS = [
+	'isExporting', 'showColorPicker', 'showUploadModal', 'showNavigationModal', 'showResetModal'
 ];
 const RECORD_TIME_INCREMENT = 100;
 const RE_DIGITS = /^[0-9]+$/;
@@ -404,6 +408,7 @@ class Sketchpad extends Component {
 			} else {
 				data.state.currentPage = 0;
 			}
+			data.state = omit( data.state, [ 'isExporting' ] );
 			this.setState( data.state, () => {
 				this.redraw();
 			});
@@ -1452,10 +1457,11 @@ class Sketchpad extends Component {
 	saveInBrowser = ( clbk = noop ) => {
 		if ( this.props.id ) {
 			const session = this.context.session;
+			const state = omit( this.state, OMITTED_KEYS );
 			const data = {
 				elements: this.elements,
 				recordingEndPositions: this.recordingEndPositions,
-				state: this.state
+				state: state
 			};
 			session.store.setItem( this.props.id+'_sketchpad', data, clbk );
 		}
