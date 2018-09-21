@@ -31,6 +31,7 @@ class InstructorBar extends Component {
 
 		this.state = {
 			actions: [],
+			nActions: 0,
 			counts: [],
 			categories: [],
 			showActions: false,
@@ -99,7 +100,8 @@ class InstructorBar extends Component {
 		}
 		if ( this.props.dataType === 'text' ) {
 			this.setState({
-				actions: filtered
+				actions: filtered,
+				nActions: this.state.nActions + 1
 			});
 		}
 		else if ( this.props.dataType === 'factor' ) {
@@ -107,12 +109,14 @@ class InstructorBar extends Component {
 			this.setState({
 				actions: filtered,
 				counts: counts,
-				categories: categories
+				categories: categories,
+				nActions: this.state.nActions + 1
 			});
 		} else {
 			// Case: props.dataType === 'number':
 			this.setState({
-				actions: filtered
+				actions: filtered,
+				nActions: this.state.nActions + 1
 			});
 		}
 	}
@@ -135,24 +139,30 @@ class InstructorBar extends Component {
 				}
 			}
 		}
+		let newState;
 		if ( this.props.dataType === 'text' ) {
-			this.setState({
+			newState = {
 				actions: filtered
-			});
+			};
 		}
 		else if ( this.props.dataType === 'factor' ) {
 			const { categories, counts } = this.tabulateValues( filtered );
-			this.setState({
+			newState = {
 				actions: filtered,
 				counts: counts,
 				categories: categories
-			});
+			};
 		} else {
 			// Case: props.dataType === 'number':
-			this.setState({
+			newState = {
 				actions: filtered
-			});
+			};
 		}
+		if ( !this.state.period ) {
+			// Attach total number of actions on initial call:
+			newState.nActions = filtered.length;
+		}
+		this.setState( newState );
 	}
 
 	tabulateValues = ( actions ) => {
@@ -267,7 +277,7 @@ class InstructorBar extends Component {
 						style={{ ...this.props.buttonStyle }}
 					>
 						<span style={{ marginRight: '5px' }} >{this.props.buttonLabel}</span>
-						<Badge style={{ fontSize: '10px' }}>{this.state.actions.length}</Badge>
+						<Badge style={{ fontSize: '10px' }}>{this.state.nActions}</Badge>
 					</Button>
 				</ButtonGroup>
 				{this.renderDeleteModal()}
