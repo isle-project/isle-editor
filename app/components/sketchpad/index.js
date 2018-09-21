@@ -408,7 +408,7 @@ class Sketchpad extends Component {
 			} else {
 				data.state.currentPage = 0;
 			}
-			data.state = omit( data.state, [ 'isExporting' ] );
+			data.state = omit( data.state, OMITTED_KEYS );
 			this.setState( data.state, () => {
 				this.redraw();
 			});
@@ -1195,11 +1195,14 @@ class Sketchpad extends Component {
 					const points = elem.points;
 					this.ctx.beginPath();
 					this.ctx.lineCap = 'round';
-					this.ctx.lineWidth = elem.linWidth;
-					this.ctx.moveTo( points[0], points[1] );
+
+					// Use a minimum line width to make selecting easier:
+					this.ctx.lineWidth = max( elem.lineWidth, 16.0 );
+					this.ctx.moveTo( points[0]*this.canvas.width, points[1]*this.canvas.height );
 					curve( this.ctx, points, this.canvas.width, this.canvas.height, 0.9, 50 );
 					this.ctx.closePath();
 					if ( this.ctx.isPointInStroke( x, y ) ) {
+						debug( `Point (${x}, ${y}) is in path of element with ID ${elem.drawID}` );
 						found = i;
 						this.selectedElement = elem;
 						break;
