@@ -21,7 +21,7 @@
 	"LearnConfidenceCoverageNormal": "components/learn/confidence-coverage-normal",
 	"LearnMeanTest": "components/learn/hypothesis-testing/mean",
 	"LearnProportionTest": "components/learn/hypothesis-testing/proportion",
-	"LearnMeanVsMedian": "components/learn/mean-vs-median",
+	"LearnMeanVSMedian": "components/learn/mean-vs-median",
 	"LearnConditionalProbability": "components/learn/conditional-probability",
 	"LearnVennDiagramBuilder": "components/learn/venn-diagram-builder",
 	"LearnWordVennDiagram": "components/learn/word-venn-diagram",
