@@ -53,7 +53,8 @@ class MeanVSMedian extends Component {
 				if ( distance < xmax/20 ) {
 					msg = 'Very Good!';
 				}
-				global.session.addNotification({
+				const { session } = this.context;
+				session.addNotification({
 					title: 'Score',
 					message: msg,
 					position: 'tc',
