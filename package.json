@@ -95,7 +95,7 @@
     "concurrently": "^4.0.0",
     "del": "^3.0.0",
     "doctrine": "^2.1.0",
-    "electron": "2.0.10",
+    "electron": "3.0.0",
     "electron-packager": "12.1.2",
     "electron-rebuild": "^1.7.3",
     "enzyme": "3.6.0",
@@ -210,7 +210,7 @@
     "react-color": "^2.14.1",
     "react-contextmenu": "^2.6.5",
     "react-copy-to-clipboard": "^5.0.0",
-    "react-dates": "18.0.4",
+    "react-dates": "18.1.0",
     "react-dnd": "^5.0.0",
     "react-dnd-html5-backend": "^5.0.0",
     "react-dom": "16.5.2",
@@ -250,7 +250,7 @@
     "utf-8-validate": "^5.0.1",
     "venn.js": "0.2.20",
     "victory": "30.3.1",
-    "webpack": "4.19.0",
+    "webpack": "4.19.1",
     "whatwg-fetch": "^3.0.0"
   },
   "devEngines": {
