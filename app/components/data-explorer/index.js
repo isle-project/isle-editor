@@ -98,6 +98,7 @@ const debug = logger( 'isle:data-explorer' );
 * @property {boolean} hideDataTable - boolean value indicating whether to hide the data table from view
 * @property {boolean} histogramDensities - boolean value indicating whether to display histogram densities
 * @property {Array<string>} models - array of strings indicating models that may be fit on the data
+* @property {string} opened - page opened at startup
 * @property {Array<string>} plots - array of strings indicating which plots to show to the user
 * @property {Node} questions - node indicating surrounding text and question components to be displayed in a tabbed window
 * @property {boolean} showEditor - boolean indicating whether to show the editor to the user
@@ -143,7 +144,7 @@ class DataExplorer extends Component {
 			groupVars,
 			ready,
 			showStudentPlots: false,
-			openedNav: props.hideDataTable ? '2' : '1',
+			openedNav: props.opened || ( props.hideDataTable ? 'toolbox' : 'data' ),
 			studentPlots: [],
 			unaltered: {
 				data: props.data,
@@ -748,29 +749,29 @@ class DataExplorer extends Component {
 					<Panel>
 						<Navbar fluid className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
 							<Nav>
-								{ !this.props.hideDataTable ? <NavItem eventKey="1" className="explorer-data-nav" active={this.state.openedNav === '1'}>
+								{ !this.props.hideDataTable ? <NavItem eventKey="data" className="explorer-data-nav" active={this.state.openedNav === 'data'}>
 									Data
 								</NavItem> : null }
-								<NavItem eventKey="2" active={this.state.openedNav === '2'}>
+								<NavItem eventKey="toolbox" active={this.state.openedNav === 'toolbox'}>
 									Toolbox
 								</NavItem>
 								{ this.props.distributions.length > 0 ?
 									<NavDropdown
-										eventKey="3"
+										eventKey="distributions"
 										title="Distributions"
-										active={startsWith( this.state.openedNav, '3' )}
+										active={startsWith( this.state.openedNav, 'distributions' )}
 									>
 										{this.props.distributions.map( ( e, i ) =>
-											<MenuItem key={i} eventKey={`3.${i+1}`}>{e}</MenuItem> )}
+											<MenuItem key={i} eventKey={`distributions.${i+1}`}>{e}</MenuItem> )}
 									</NavDropdown> : null
 								}
 								{ this.props.showEditor ?
-									<NavItem className="explorer-editor-nav" eventKey="4" active={this.state.openedNav === '4'}>
+									<NavItem className="explorer-editor-nav" eventKey="editor" active={this.state.openedNav === 'editor'}>
 										{this.props.editorTitle}
 									</NavItem> : null
 								}
 								{ this.props.transformer ?
-									<NavItem eventKey="5" active={this.state.openedNav === '5'}>
+									<NavItem eventKey="transform" active={this.state.openedNav === 'transform'}>
 										Transform
 									</NavItem> : null
 								}
@@ -782,13 +783,13 @@ class DataExplorer extends Component {
 							</Nav>
 						</Navbar>
 						<Panel.Body>
-							{ this.state.openedNav === '1' ?
+							{ this.state.openedNav === 'data' ?
 								<Fragment>
 									{ !this.props.data ? <Button bsSize="small" onClick={this.resetStorage} style={{ position: 'absolute' }}>Clear Data</Button> : null }
 									<DataTable data={this.state.data} dataInfo={this.props.dataInfo} />
 								</Fragment> : null
 							}
-							{ this.state.openedNav === '2' ?
+							{ this.state.openedNav === 'toolbox' ?
 								<Tab.Container id="options-menu" defaultActiveKey={defaultActiveKey}>
 									<Row className="clearfix">
 										<Col sm={12}>
@@ -813,11 +814,11 @@ class DataExplorer extends Component {
 									content = <LearnExponentialDistribution step="any" />;
 									break;
 								}
-								return ( this.state.openedNav === `3.${i+1}` ?
+								return ( this.state.openedNav === `distributions.${i+1}` ?
 									content : null );
 							})}
-							<MarkdownEditor {...this.props.editorProps} plots={this.state.output} id={this.props.id ? this.props.id + '_editor' : null} style={{ display: this.state.openedNav !== '4' ? 'none' : null }} submitButton />
-							{ this.state.openedNav === '5' ?
+							<MarkdownEditor {...this.props.editorProps} plots={this.state.output} id={this.props.id ? this.props.id + '_editor' : null} style={{ display: this.state.openedNav !== 'editor' ? 'none' : null }} submitButton />
+							{ this.state.openedNav === 'transform' ?
 								<VariableTransformer
 									data={this.state.data}
 									logAction={this.logAction}
@@ -950,6 +951,7 @@ DataExplorer.defaultProps = {
 	models: [
 		'Simple Linear Regression'
 	],
+	opened: null,
 	categorical: [],
 	continuous: [],
 	distributions: [ 'Normal', 'Uniform', 'Exponential' ],
@@ -971,6 +973,7 @@ DataExplorer.propTypes = {
 	hideDataTable: PropTypes.bool,
 	histogramDensities: PropTypes.bool,
 	models: PropTypes.array,
+	opened: PropTypes.oneOf([ 'data', 'toolbox', 'editor' ]),
 	plots: PropTypes.array,
 	questions: PropTypes.node,
 	showEditor: PropTypes.bool,
