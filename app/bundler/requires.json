@@ -118,6 +118,7 @@
 	"TextArea": "components/text-area",
 	"TextInput": "components/input/text",
 	"Timer": "components/timer",
+	"Tooltip": "components/tooltip",
 	"VictoryAnimation": "components/victory/animation",
 	"VictoryArea": "components/victory/area",
 	"VictoryBar": "components/victory/bar",

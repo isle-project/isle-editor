@@ -143,6 +143,7 @@ const createScope = ( session ) => {
 		TextInput,
 		Text: Loadable( () => import( 'components/text' ) ),
 		Timer: Loadable( () => import( 'components/timer' ) ),
+		Tooltip: Loadable( () => import( 'components/tooltip' ) ),
 		Tree: Loadable( () => import( 'components/d3/tree' ) ),
 		VideoPlayer: Loadable( () => import( 'components/video-player' ) ),
 		VoiceInput,
