@@ -58,6 +58,7 @@ We will include the explorer with the following code:
 * __models__ | `array`: array of strings indicating models that may be fit on the data. Default: `[
   'Simple Linear Regression'
 ]`.
+* __opened__ | `string`: page opened at startup. Default: `none`.
 * __plots__ | `array`: array of strings indicating which plots to show to the user. Default: `[
   'Bar Chart',
   'Pie Chart',

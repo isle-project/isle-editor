@@ -208,7 +208,7 @@
       },
       {
         "name": "title",
-        "type": "string",
+        "type": "(string|node)",
         "description": "panel title",
         "default": ""
       }
@@ -286,6 +286,12 @@
         "default": [
           "Simple Linear Regression"
         ]
+      },
+      {
+        "name": "opened",
+        "type": "string",
+        "description": "page opened at startup",
+        "default": null
       },
       {
         "name": "plots",
@@ -1332,7 +1338,7 @@
     "props": [],
     "description": "Description is missing."
   },
-  "LearnMeanVsMedian": {
+  "LearnMeanVSMedian": {
     "props": [
       {
         "name": "header",
@@ -3227,6 +3233,27 @@
       }
     ],
     "description": "Displays a timer that will trigger a predefined callback when the time is up. An example use case is the timing of quizzes."
+  },
+  "Tooltip": {
+    "props": [
+      {
+        "name": "id",
+        "type": "string",
+        "default": "tooltip"
+      },
+      {
+        "name": "tooltip",
+        "type": "(string|node) (required)",
+        "description": "tooltip content"
+      },
+      {
+        "name": "placement",
+        "type": "string",
+        "description": "direction of the tooltip",
+        "default": "right"
+      }
+    ],
+    "description": "A tooltip overlay."
   },
   "VictoryAnimation": {
     "props": [],
