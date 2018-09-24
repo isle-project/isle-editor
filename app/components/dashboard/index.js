@@ -198,7 +198,10 @@ Dashboard.propTypes = {
 	label: PropTypes.string,
 	maxWidth: PropTypes.number,
 	onGenerate: PropTypes.func,
-	title: PropTypes.string
+	title: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	])
 };
 
 Dashboard.contextTypes = {

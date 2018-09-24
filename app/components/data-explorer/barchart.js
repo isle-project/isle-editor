@@ -10,6 +10,7 @@ import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import QuestionButton from './question_button.js';
 import by from './by.js';
 
 
@@ -95,9 +96,10 @@ class Barchart extends Component {
 
 	render() {
 		const { variables, defaultValue, groupingVariables } = this.props;
+		const description = 'A bar chart is a graph that displays categorical data as rectangular bars with the bar heights being proportional to the frequency of each category. When grouping by a second variable, the bar chart becomes a grouped bar chart, in which multiple bars are shown for each category. An alternative would be to stack the bars on top of each other; in this case, the chart is called a stacked bar chart.';
 		return (
 			<Dashboard
-				title="Bar Chart"
+				title={<span>Bar Chart<QuestionButton title="Bar Chart" content={description} /></span>}
 				autoStart={false}
 				onGenerate={this.generateBarchart.bind( this )}
 			>

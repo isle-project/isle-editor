@@ -9,6 +9,7 @@ import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import by from './by.js';
+import QuestionButton from './question_button.js';
 
 
 // FUNCTIONS //
@@ -121,10 +122,11 @@ class FrequencyTable extends Component {
 
 	render() {
 		const { variables, defaultValue, groupingVariables } = this.props;
+		const description = 'A frequency table is a tabular display for either the raw absolute or relative frequencies of a categorical variable\'s values.';
 		return (
 			<Dashboard
 				autoStart={false}
-				title="Frequency Table"
+				title={<span>Frequency Table<QuestionButton title="Frequency Table" content={description} /></span>}
 				onGenerate={this.generateFrequencyTable.bind( this )}
 			>
 				<SelectInput

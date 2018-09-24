@@ -7,6 +7,7 @@ import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import { generate } from 'randomstring';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import QuestionButton from './question_button.js';
 import by from './by.js';
 
 
@@ -84,10 +85,11 @@ class Boxplot extends Component {
 
 	render() {
 		const { variables, defaultValue, groupingVariables } = this.props;
+		const description = 'A box plot (full name: box and whisker plot, coined by famous statistician John Tukey) is a display for quantitative data. For any variable, the boxplot displays its 25% quantile (a value that is greater than 25% of the data), its median, and its 75% quantile as a box. Whiskers extend from this box up to +-1.5*IQR or the minimum/maximum.';
 		return (
 			<Dashboard
 				autoStart={false}
-				title="Box Plot"
+				title={<span>Box Plot<QuestionButton title="Box Plot" content={description} /></span>}
 				onGenerate={this.generateBoxplot.bind( this )}
 			>
 				<SelectInput

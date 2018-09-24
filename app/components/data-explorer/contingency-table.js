@@ -9,6 +9,7 @@ import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import isObject from '@stdlib/assert/is-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import QuestionButton from './question_button.js';
 
 
 // FUNCTIONS //
@@ -163,10 +164,11 @@ class ContingencyTable extends Component {
 
 	render() {
 		const { variables, defaultRowVar, defaultColVar, groupingVariables } = this.props;
+		const description = 'A contigency table displays either the raw absolute or relative frequencies of two categorical variable\'s values alongside their row and column totals.';
 		return (
 			<Dashboard
 				autoStart={false}
-				title="Contingency Table"
+				title={<span>Contingency Table<QuestionButton title="Contingency Table" content={description} /></span>}
 				onGenerate={this.generateContingencyTable.bind( this )}
 			>
 				<SelectInput

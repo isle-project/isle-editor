@@ -21,6 +21,7 @@ import unique from 'uniq';
 import mean from 'compute-mean';
 import max from 'compute-max';
 import min from 'compute-min';
+import QuestionButton from './question_button.js';
 
 
 // VARIABLES //
@@ -534,10 +535,11 @@ class Scatterplot extends Component {
 	}
 
 	render() {
+		const description = 'A scatterplot is used to display the values of two quantitative variables inside a Cartesian coordinate system. Three additional variables can be displayed on the plot in this implementation: The color and type of the dots corresponding to each observation can represent categorical variables, and a quantitative variable can be chosen to govern the size of the dots. In cases where there is a textual identifier for each observation, it can be displayed as a label next to the dots. It is also possible to overlay a linear and/or smoothed regression line.';
 		return (
 			<Panel>
 				<Panel.Heading >
-					<Panel.Title componentClass="h4" >Scatterplot</Panel.Title>
+					<Panel.Title componentClass="h4" >Scatterplot<QuestionButton title="Scatterplot" content={description} /></Panel.Title>
 				</Panel.Heading>
 				<Panel.Body>
 					{this.renderInputs()}

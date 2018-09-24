@@ -12,6 +12,7 @@ import identity from '@stdlib/utils/identity-function';
 import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import QuestionButton from './question_button.js';
 import by from './by.js';
 
 
@@ -124,9 +125,10 @@ class PieChart extends Component {
 
 	render() {
 		const { variables, defaultValue, groupingVariables } = this.props;
+		const description = 'Statistical display for categorical data. The arc length of each slice in the pie is proportional to the quantity of the respective category. An alternative display for categorical data is a bar chart.'
 		return (
 			<Dashboard
-				title="Pie Chart"
+				title={<span>Pie Chart<QuestionButton title="Pie Chart" content={description} /></span>}
 				autoStart={false}
 				onGenerate={this.generatePiechart.bind( this )}
 			>

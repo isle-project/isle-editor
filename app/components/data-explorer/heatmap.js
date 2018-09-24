@@ -10,6 +10,7 @@ import { generate } from 'randomstring';
 import max from '@stdlib/math/base/special/max';
 import floor from '@stdlib/math/base/special/floor';
 import kde2d from '@stdlib/stats/kde2d';
+import QuestionButton from './question_button.js';
 
 
 // FUNCTIONS //
@@ -93,27 +94,24 @@ class HeatMap extends Component {
 		const output ={
 			variable: `${xval} against ${yval}`,
 			type: 'Chart',
-			value: <div>
-				<label>{`${xval} against ${yval}`}: </label>
-				<Plotly
-					editable
-					fit
-					id={plotId}
-					data={config.data}
-					layout={config.layout}
-					onShare={() => {
-						this.props.session.addNotification({
-							title: 'Plot shared.',
-							message: 'You have successfully shared your plot.',
-							level: 'success',
-							position: 'tr'
-						});
-						this.props.logAction( 'DATA_EXPLORER_SHARE:HEATMAP', {
-							xval, yval, overlayPoints, plotId
-						});
-					}}
-				/>
-			</div>
+			value: <Plotly
+				editable
+				fit
+				id={plotId}
+				data={config.data}
+				layout={config.layout}
+				onShare={() => {
+					this.props.session.addNotification({
+						title: 'Plot shared.',
+						message: 'You have successfully shared your plot.',
+						level: 'success',
+						position: 'tr'
+					});
+					this.props.logAction( 'DATA_EXPLORER_SHARE:HEATMAP', {
+						xval, yval, overlayPoints, plotId
+					});
+				}}
+			/>
 		};
 		this.props.logAction( 'DATA_EXPLORER:HEATMAP', {
 			xval, yval, overlayPoints, plotId
@@ -123,8 +121,13 @@ class HeatMap extends Component {
 
 	render() {
 		const { variables, defaultX, defaultY } = this.props;
+		const description = 'A data display for quantitative variables in which data values are represented as colors. Regions with many observations are colored red, whereas regions without observations are colored in dark blue.';
 		return (
-			<Dashboard autoStart={false} title="Heat Map" onGenerate={this.generateHeatmap.bind( this )}>
+			<Dashboard
+				autoStart={false}
+				title={<span>Heat Map<QuestionButton title="Heat Map" content={description} /></span>}
+				onGenerate={this.generateHeatmap.bind( this )}
+			>
 				<SelectInput
 					legend="Variable on x-axis:"
 					defaultValue={defaultX || variables[ 0 ]}

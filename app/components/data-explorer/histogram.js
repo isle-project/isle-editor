@@ -22,6 +22,7 @@ import gaussian from '@stdlib/stats/base/dists/normal/pdf';
 import dexp from '@stdlib/stats/base/dists/exponential/pdf';
 import dunif from '@stdlib/stats/base/dists/uniform/pdf';
 import iqr from 'compute-iqr';
+import QuestionButton from './question_button.js';
 import by from './by.js';
 
 
@@ -218,10 +219,14 @@ class Histogram extends Component {
 
 	render() {
 		const { variables, groupingVariables } = this.props;
+		const description = 'A histogram allows one to visualize the distribution of a quantitative variable. In order to create a histogram, the observed range of values is divided into different, non-overlapping intervals called "bins"; the height of each bin corresponds to how many observations are in that bin range.';
 		return (
 			<Panel>
 				<Panel.Heading>
-					<Panel.Title componentClass="h4" >Histogram</Panel.Title>
+					<Panel.Title componentClass="h4" >
+						Histogram
+						<QuestionButton title="Histogram" content={description} />
+					</Panel.Title>
 				</Panel.Heading>
 				<Panel.Body>
 					<SelectInput

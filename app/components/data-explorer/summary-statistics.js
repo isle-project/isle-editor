@@ -7,6 +7,7 @@ import Dashboard from 'components/dashboard';
 import statistic from 'components/data-explorer/statistic.js';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isArray from '@stdlib/assert/is-array';
+import QuestionButton from './question_button.js';
 
 
 // FUNCTIONS //
@@ -124,11 +125,11 @@ class SummaryStatistics extends Component {
 			defaultStatistic,
 			groupingVariables
 		} = this.props;
-
+		const description = 'Compute various statistics of interest, i.e. summary measures of the variables in the data set.';
 		return (
 			<Dashboard
 				autoStart={false}
-				title="Summary Statistics"
+				title={<span>Summary Statistics<QuestionButton title="Summary Statistics" content={description} /></span>}
 				label="Calculate"
 				onGenerate={this.generateStatistics.bind( this )}
 			>
