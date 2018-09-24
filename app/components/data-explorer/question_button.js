@@ -28,7 +28,8 @@ const QuestionButton = ( props ) => {
 };
 
 QuestionButton.propTypes = {
-	'content': PropTypes.string.isRequired
+	'content': PropTypes.string.isRequired,
+	'title': PropTypes.string.isRequired
 };
 
 
