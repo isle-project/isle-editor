@@ -267,7 +267,10 @@ class DataExplorer extends Component {
 	*/
 	onUserAction = ( action ) => {
 		let config;
-		const value = JSON.parse( action.value );
+		let value = action.value;
+		if ( isString( value ) ) {
+			value = JSON.parse( value );
+		}
 		if ( action.type === 'DATA_EXPLORER_SHARE:HISTOGRAM' ) {
 			config = generateHistogramConfig({ data: this.state.data, ...value });
 		}
