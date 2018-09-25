@@ -1,0 +1,38 @@
+#link-export {
+	color: silver;
+	font-size: 18px;
+	margin-right: 10px;
+}
+
+#link-settings {
+	color: silver;
+	font-size: 18px;
+	margin-right: 10px;
+}
+
+#link-docs {
+	color: silver;
+	font-size: 18px;
+}
+
+#header-lower-bar {
+	background-color: #E8E8E8;
+	height: 40px;
+	min-height: 40px;
+	color: #373D49;
+	display: flex;
+	align-items: center;
+	padding: 5px;
+	justify-content: space-between;
+}
+
+#header-upper-bar {
+	color: white;
+	background-color: #373D49;
+	height: 48px;
+	min-height: 48px;
+	display: flex;
+	align-items: center;
+	padding: 5px;
+	justify-content: space-between;
+}

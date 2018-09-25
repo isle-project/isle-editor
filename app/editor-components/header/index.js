@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
-import * as colors from 'constants/colors';
+import './header.css';
 
 
 // MAIN //
@@ -54,58 +54,34 @@ class Header extends Component {
 		return (
 			<div>
 				<div
-					style={{
-						color: 'white',
-						backgroundColor: colors.GRAY,
-						height: '48px',
-						minHeight: '48px',
-						display: 'flex',
-						alignItems: 'center',
-						padding: '5px',
-						justifyContent: 'space-between'
-					}}
+					id="header-upper-bar"
+					className="unselectable"
 				>
 					<h3>ISLE Editor</h3>
 					<div>
 						<Link
+							id="link-export"
+							className="unselectable"
 							to="/export"
-							style={{
-								color: 'silver',
-								fontSize: '18px',
-								marginRight: '10px'
-							}}
 						>Export</Link>
 						<Link
+							id="link-settings"
+							className="unselectable"
 							to="/settings"
-							style={{
-								color: 'silver',
-								fontSize: '18px',
-								marginRight: '10px'
-							}}
 						>Settings</Link>
 						<Link
+							id="link-docs"
+							className="unselectable"
 							to="/docs"
-							style={{
-								color: 'silver',
-								fontSize: '18px'
-							}}
 						>Documentation</Link>
 					</div>
 				</div>
 				<div
-					style={{
-						backgroundColor: colors.LIGHT_GRAY,
-						height: '40px',
-						minHeight: '40px',
-						color: colors.GRAY,
-						display: 'flex',
-						alignItems: 'center',
-						padding: '5px',
-						justifyContent: 'space-between'
-					}}
+					id="header-lower-bar"
+					className="unselectable"
 				>
 					<span style={{ paddingLeft: 5 }} >{this.props.fileName || 'Untitled Document'}</span>
-					<ButtonGroup style={{ zIndex: 1001 }} >
+					<ButtonGroup className="unselectable" style={{ zIndex: 1001 }} >
 						<DropdownButton
 							title={this.props.mode}
 							id="bg-mode-dropdown"

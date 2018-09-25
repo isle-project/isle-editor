@@ -271,3 +271,11 @@ body {
 .modal-container .modal, .modal-container .modal-backdrop {
 	position: absolute;
 }
+
+.unselectable {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none; /* From IE10 only */
+	user-select: none;
+	-webkit-user-drag: none;
+}
