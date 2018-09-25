@@ -15,11 +15,17 @@ import min from '@stdlib/math/base/special/min';
 
 class NavigationModal extends Component {
 	render() {
-		let bsSize = 'default';
-		if ( this.props.noPages > 50 ) {
+		let bsSize;
+		if ( this.props.noPages > 120 ) {
+			bsSize = 'lg';
+		}
+		else if ( this.props.noPages > 50 ) {
 			bsSize = 'large';
 		}
-		const perRow = ceil( sqrt( this.props.noPages ) );
+		else {
+			bsSize = 'default';
+		}
+		const perRow = min( ceil( sqrt( this.props.noPages ) ), 13 );
 		const rows = incrspace( 0, ceil( this.props.noPages / perRow ), 1 );
 		return ( <Modal
 			onHide={this.props.onHide}
