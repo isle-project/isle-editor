@@ -78,6 +78,9 @@ class InstructorView extends Component {
 	renderAccordion = () => {
 		// This is the button that toggles it
 		const { session } = this.context;
+		if ( this.state.hidden ) {
+			return null;
+		}
 		return ( <PanelGroup accordion >
 			<Panel eventKey="1">
 				<Panel.Heading>
@@ -98,6 +101,7 @@ class InstructorView extends Component {
 				</Panel.Heading>
 				<Panel.Body className='panel-body panel-notes' collapsible >
 					<InstructorNotes
+						id={session.lessonID+'instructor_notebook'}
 						className="instructor_notebook"
 					/>
 				</Panel.Body>

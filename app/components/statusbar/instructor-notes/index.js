@@ -18,6 +18,7 @@ class InstructorNotes extends Component {
 		return (
 			<MarkdownEditor
 				className="instructor-notes"
+				id={this.props.id}
 				toolbarConfig={[
 					'bold',
 					'italic',
