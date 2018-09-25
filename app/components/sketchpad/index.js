@@ -779,7 +779,7 @@ class Sketchpad extends Component {
 			ctx.strokeStyle = selected ? 'yellow' : color;
 			ctx.beginPath();
 			ctx.moveTo( points[ 0 ]*this.canvas.width, points[ 1 ]*this.canvas.height );
-			curve( ctx, points, this.canvas.width, this.canvas.height, 0.9, 50 );
+			curve( ctx, points, this.canvas.width, this.canvas.height, 0.4, 50 );
 			ctx.stroke();
 		}
 	}
@@ -1199,7 +1199,7 @@ class Sketchpad extends Component {
 					// Use a minimum line width to make selecting easier:
 					this.ctx.lineWidth = max( elem.lineWidth, 16.0 );
 					this.ctx.moveTo( points[0]*this.canvas.width, points[1]*this.canvas.height );
-					curve( this.ctx, points, this.canvas.width, this.canvas.height, 0.9, 50 );
+					curve( this.ctx, points, this.canvas.width, this.canvas.height, 0.4, 50 );
 					this.ctx.closePath();
 					if ( this.ctx.isPointInStroke( x, y ) ) {
 						debug( `Point (${x}, ${y}) is in path of element with ID ${elem.drawID}` );
