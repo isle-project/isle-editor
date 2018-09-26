@@ -55,6 +55,7 @@ class TitleInsert extends Component {
 		return ( <Modal
 			onHide={this.closeWindow}
 			show={this.props.show}
+			dialogClassName="modal-50w"
 		>
 			<Modal.Header closeButton>
 				<Modal.Title>Create a Title</Modal.Title>
