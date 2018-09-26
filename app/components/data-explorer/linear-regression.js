@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Table from 'react-bootstrap/lib/Table';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import mean from 'compute-mean';
@@ -56,7 +57,7 @@ class SimpleLinearRegression extends Component {
 						return (
 							<div>
 								<label>{key}:</label>
-								<table className="table table-condensed">
+								<Table bordered size="sm" >
 									<tbody>
 										<tr>
 											<th>Variable</th>
@@ -71,7 +72,7 @@ class SimpleLinearRegression extends Component {
 											<td>{yint.toFixed( 4 )}</td>
 										</tr>
 									</tbody>
-								</table>
+								</Table>
 							</div>
 						);
 					}) )}
@@ -86,7 +87,7 @@ class SimpleLinearRegression extends Component {
 				type: 'Simple Linear Regression',
 				value: <div>
 					<label>Regression of {yval} on {xval}:</label>
-					<table>
+					<Table bordered size="sm" >
 						<tbody>
 							<tr>
 								<th>Variable</th>
@@ -101,7 +102,7 @@ class SimpleLinearRegression extends Component {
 								<td>{yint.toFixed( 6 )}</td>
 							</tr>
 						</tbody>
-					</table>
+					</Table>
 				</div>
 			};
 			this.props.onCreated( output );
