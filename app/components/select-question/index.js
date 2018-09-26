@@ -106,7 +106,7 @@ class SelectQuestion extends Component {
 						<FormControl
 							value={this.state.value}
 							defaultValue={this.props.defaultValue}
-							componentClass="select"
+							as="select"
 							placeholder="select"
 							onChange={this.handleChange}
 						>
@@ -132,7 +132,7 @@ class SelectQuestion extends Component {
 						<FormControl
 							value={this.state.value}
 							defaultValue={this.props.defaultValue}
-							componentClass="select"
+							as="select"
 							placeholder="select"
 							onChange={this.handleChange}
 

@@ -279,7 +279,7 @@ class FreeTextQuestion extends Component {
 						<label>{this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' }</label>
 						<FormControl
 							id={`${this.props.id}_textarea`}
-							componentClass="textarea"
+							as="textarea"
 							placeholder={this.props.placeholder}
 							onChange={this.handleChange}
 							style={{

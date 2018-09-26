@@ -7,7 +7,6 @@ import Button from 'react-bootstrap/lib/Button';
 import Card from 'react-bootstrap/lib/Card';
 import Table from 'react-bootstrap/lib/Table';
 import FormControl from 'react-bootstrap/lib/FormControl';
-import Form from 'react-bootstrap/lib/Form';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Modal from 'react-bootstrap/lib/Modal';
 import Checkbox from 'components/input/checkbox';
@@ -92,7 +91,6 @@ class ComponentConfigurator extends Component {
 		if ( nextProps.component.name !== prevState.name ) {
 			newState.name = nextProps.component.name;
 			newState.value = removePlaceholderMarkup( nextProps.component.value );
-			newState.componentClass = null;
 		}
 		if ( !isEmptyObject( newState ) ) {
 			return newState;
