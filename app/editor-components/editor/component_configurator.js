@@ -183,7 +183,10 @@ class ComponentConfigurator extends Component {
 			const className = isActive ? 'success' : '';
 			const elem = <tr className={className} style={{ marginBottom: 5 }} key={i}>
 					<td>
-						{ !isRequired ? <Checkbox id={prop.name} value={isActive} onChange={this.checkboxClickFactory( prop.name, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{prop.name}</Checkbox> : <Checkbox id={prop.name} defaultValue={true} disabled>{prop.name}</Checkbox> }
+						{ !isRequired ?
+							<Checkbox id={prop.name} defaultValue={isActive} onChange={this.checkboxClickFactory( prop.name, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} legend={prop.name} /> :
+							<Checkbox id={prop.name} defaultValue={true} disabled legend={prop.name} />
+						}
 					</td>
 					<td>{description}</td>
 					<td>
@@ -199,7 +202,7 @@ class ComponentConfigurator extends Component {
 			<Fragment>
 				<Card.Subtitle className="mb-2 text-muted">Click on the box to add the respective options:</Card.Subtitle>
 				<div style={{ height: '300px', overflowY: 'scroll' }}>
-					<Table striped bordered size="sm">
+					<Table striped bordered size="sm" style={{ fontSize: '14px' }}>
 						<thead>
 							<tr>
 								<th>Option</th>
