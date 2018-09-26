@@ -88,10 +88,6 @@ class Header extends Component {
 							size="sm"
 							variant="warning"
 							onSelect={this.handleModeSelection}
-							style={{
-								width: 100,
-								paddingRight: 20
-							}}
 						>
 							<DropdownItem eventKey="1">offline</DropdownItem>
 							<DropdownItem eventKey="2">online</DropdownItem>
@@ -102,9 +98,6 @@ class Header extends Component {
 							size="sm"
 							variant="success"
 							onSelect={this.handleRoleSelection}
-							style={{
-								width: 100
-							}}
 						>
 							<DropdownItem eventKey="1">anonymous</DropdownItem>
 							<DropdownItem eventKey="2">user</DropdownItem>
@@ -112,7 +105,8 @@ class Header extends Component {
 							<DropdownItem eventKey="4">owner</DropdownItem>
 						</DropdownButton>
 						<span style={{
-							paddingLeft: 15,
+							paddingTop: 4,
+							paddingLeft: 25,
 							paddingRight: 5
 						}}>Preview</span>
 					</ButtonGroup>
