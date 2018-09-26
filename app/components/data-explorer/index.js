@@ -845,7 +845,7 @@ class DataExplorer extends Component {
 									<Modal.Header closeButton>
 										<Modal.Title>Plots</Modal.Title>
 									</Modal.Header>
-									<Modal.Body style={{ height: 0.90 * window.innerHeight, overflowY: 'scroll' }}>
+									<Modal.Body style={{ height: 0.80 * window.innerHeight, overflowY: 'scroll' }}>
 										{ this.state.studentPlots.length > 0 ?
 											<GridLayout>
 												{this.state.studentPlots.map( ( elem, idx ) => {
