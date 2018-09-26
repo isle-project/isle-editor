@@ -15,7 +15,7 @@ const ClearButton = ( props ) => (
 		tooltip="Delete"
 	>
 		<Button
-			bsSize="xs"
+			size="sm"
 			style={{ float: 'right' }}
 			onClick={props.onClick}
 		>

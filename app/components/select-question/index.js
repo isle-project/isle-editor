@@ -144,7 +144,7 @@ class SelectQuestion extends Component {
 					</FormGroup>
 				</Form>
 				<div className="select-question-toolbar">
-					<Button bsStyle="primary" bsSize="sm" onClick={this.handleSubmit}>
+					<Button bsStyle="primary" size="sm" onClick={this.handleSubmit}>
 						{ this.state.submitted ? 'Resubmit' : 'Submit' }
 					</Button>
 					{ nHints > 0 ?

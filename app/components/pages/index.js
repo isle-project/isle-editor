@@ -17,7 +17,7 @@ import './pages.css';
 * An ISLE pagination component that allows the user to step through a sequence of pages.
 *
 * @property {string} title - displayed title of the pages container
-* @property {string} bsSize - size of the pagination buttons (one of `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`)
+* @property {string} size - size of the pagination buttons (one of `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`)
 * @property {number} height - the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added
 * @property {strings} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
@@ -118,7 +118,7 @@ class Pages extends Component {
 				{ this.props.title ? header : null }
 				<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 				<Pagination className="my-pagination"
-					bsSize={this.props.bsSize}
+					size={this.props.size}
 					items={this.props.children.length || 1}
 				>
 					<Pagination.First key="first" onClick={this.firstPage} />
@@ -149,14 +149,12 @@ class Pages extends Component {
 
 Pages.propTypes = {
 	title: PropTypes.string,
-	bsSize: PropTypes.oneOf([
+	size: PropTypes.oneOf([
 		'default',
 		'lg',
 		'large',
 		'sm',
-		'small',
-		'xs',
-		'xsmall'
+		'small'
 	]),
 	height: PropTypes.oneOfType([
 		PropTypes.number,
@@ -169,7 +167,7 @@ Pages.propTypes = {
 
 Pages.defaultProps = {
 	title: '',
-	bsSize: 'default',
+	size: 'default',
 	height: null,
 	voiceID: null,
 	style: {},

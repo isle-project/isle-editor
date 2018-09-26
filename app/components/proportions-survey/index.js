@@ -139,7 +139,7 @@ class ProportionsSurvey extends Component {
 								}}
 							/>
 							<Button
-								bsSize="small"
+								size="small"
 								bsStyle="success"
 								block fill
 								onClick={this.submitQuestion}

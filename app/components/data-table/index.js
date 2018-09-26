@@ -372,7 +372,7 @@ class DataTable extends Component {
 					{ this.props.dataInfo.variables ? <Button
 						onClick={this.showDescriptions}
 						bsStyle="primary"
-						bsSize="small"
+						size="small"
 						className="variable-description-button"
 					>
 						Variable Descriptions

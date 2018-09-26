@@ -22,7 +22,7 @@ class SubmitModal extends Component {
 		return ( <Modal
 			onHide={this.clickHide}
 			show={this.props.show}
-			bsSize="small"
+			size="small"
 		>
 			<Modal.Header closeButton>
 				<Modal.Title>Submit Report</Modal.Title>

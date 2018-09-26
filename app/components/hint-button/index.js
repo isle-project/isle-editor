@@ -91,7 +91,7 @@ class HintButton extends Component {
 			>
 				<Button
 					bsStyle="success"
-					bsSize="sm"
+					size="sm"
 					onClick={this.handleHintClick}
 					disabled={this.props.disabled}
 				>{label}</Button>

@@ -477,7 +477,7 @@ class Recorder extends Component {
 				{ !this.state.finished && isAvailable ?
 					<ToggleButtonGroup
 						className="recorder-buttongroup"
-						bsSize="xsmall" type="checkbox"
+						size="sm" type="checkbox"
 						value={this.state.selectedSources}
 						onChange={this.handleSourceChange}
 					>

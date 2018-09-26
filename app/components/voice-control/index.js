@@ -99,7 +99,7 @@ class VoiceControl extends Component {
 				placement="left"
 				overlay={createTooltip( this.props.commands )}
 			>
-				<Button style={{ boxShadow: 'none', float: 'right' }} bsStyle={bsStyle} onClick={this.handleClick} bsSize="xsmall" >
+				<Button style={{ boxShadow: 'none', float: 'right' }} bsStyle={bsStyle} onClick={this.handleClick} size="sm" >
 					<div className="fa fa-phone" />
 					<span style={{ marginLeft: 4 }} >{this.props.id}</span>
 				</Button>

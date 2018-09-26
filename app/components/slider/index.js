@@ -83,7 +83,7 @@ class DefaultSlider extends Component {
 	render() {
 		return (
 			<Card
-				bsSize="large"
+				size="large"
 				style={{
 					margin: '0 auto',
 					marginTop: '5px',

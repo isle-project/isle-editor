@@ -34,7 +34,7 @@ class VictoryWrapper extends Component {
 		return ( <div ref={( div ) => {
 			this.victoryWrapper = div;
 		}}>
-			<Button bsSize="xsmall" onClick={this.saveToPNG} style={{
+			<Button size="sm" onClick={this.saveToPNG} style={{
 				position: 'relative',
 				top: '0px',
 				left: '5px'

@@ -198,7 +198,7 @@ class MultipleChoiceSurvey extends Component {
 										}
 									</ListGroup>
 									<Button
-										bsSize="small"
+										size="small"
 										bsStyle="success"
 										block fill
 										onClick={this.submitQuestion}

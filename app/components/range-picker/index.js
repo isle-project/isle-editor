@@ -15,7 +15,7 @@ import './_datepicker.css';
 /**
 * Data range picker.
 *
-* @property {string} bsSize - button size
+* @property {string} size - button size
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked when the data selection is changed; calledwith the current period (object with `from` and `to` properties)
 */
@@ -105,7 +105,7 @@ class RangePicker extends Component {
 		};
 		return (
 			<ButtonToolbar style={{ marginBottom: '10px', ...this.props.style }} >
-				<ButtonGroup bsSize={this.props.bsSize}>
+				<ButtonGroup size={this.props.size}>
 					<Button
 						className="date-selection"
 						id="last_hour"
@@ -137,7 +137,7 @@ class RangePicker extends Component {
 						style={this.state.active === 4 ? activeStyle : {}}
 					>Year</Button>
 				</ButtonGroup>
-				<ButtonGroup bsSize={this.props.bsSize}>
+				<ButtonGroup size={this.props.size}>
 					<Button
 						className="date-selection"
 						id="all_time"
@@ -170,10 +170,8 @@ class RangePicker extends Component {
 // PROPERTIES //
 
 RangePicker.propTypes = {
-	bsSize: PropTypes.oneOf(
+	size: PropTypes.oneOf(
 		[
-			'xsmall',
-			'xs',
 			'small',
 			'sm',
 			'large',
@@ -185,7 +183,7 @@ RangePicker.propTypes = {
 };
 
 RangePicker.defaultProps = {
-	bsSize: 'xsmall',
+	size: 'small',
 	onChange() {},
 	style: {}
 };

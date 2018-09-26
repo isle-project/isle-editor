@@ -93,17 +93,17 @@ class SaveModal extends Component {
 			<Modal.Body>
 				<div className="well">
 					<div>
-						<Button onClick={this.props.handleSave} bsStyle="primary" bsSize="large" block>
+						<Button onClick={this.props.handleSave} bsStyle="primary" size="large" block>
 							Save (in browser)
 						</Button>
 					</div>
 					<div>
-						<Button onClick={this.props.exportHTML} bsStyle="primary" bsSize="large" block>
+						<Button onClick={this.props.exportHTML} bsStyle="primary" size="large" block>
 							Export as HTML
 						</Button>
 					</div>
 					<div>
-						<Button onClick={this.togglePDFMenu} bsStyle="primary" bsSize="large" block>
+						<Button onClick={this.togglePDFMenu} bsStyle="primary" size="large" block>
 							Export as PDF
 						</Button>
 						<Card id="export-pdf-panel" expanded={this.state.openPDF} onToggle={noop} >
@@ -195,7 +195,7 @@ class SaveModal extends Component {
 						</Card>
 					</div>
 					<div>
-					<Button onClick={this.props.saveMarkdown} bsSize="large" block>
+					<Button onClick={this.props.saveMarkdown} size="large" block>
 						Export Markdown Source (to restore later)
 					</Button>
 					</div>

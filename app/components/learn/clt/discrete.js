@@ -207,17 +207,17 @@ class DiscreteCLT extends Component {
 					<p><label>Population proportion</label> <TeX raw={`${this.state.p.toFixed( 3 )}`} /></p>
 					<p><label>Population standard deviation:</label> <TeX raw={`\\sqrt{ p \\cdot (1-p) } = ${sqrt( this.state.p*( 1-this.state.p ) ).toFixed( 3 )}`} /> </p>
 					<ButtonGroup>
-						<Button bsSize="small" onClick={() => {
+						<Button size="small" onClick={() => {
 							this.generateSamples( 1 );
 						}}>
 							Draw Sample
 						</Button>
-						<Button bsSize="small" onClick={() => {
+						<Button size="small" onClick={() => {
 							this.generateSamples( 25 );
 						}}>
 							Draw 25 Samples
 						</Button>
-						<Button bsSize="small" onClick={this.clear.bind( this )}>
+						<Button size="small" onClick={this.clear.bind( this )}>
 							Clear
 						</Button>
 					</ButtonGroup>

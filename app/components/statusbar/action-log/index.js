@@ -215,7 +215,7 @@ class ActionLog extends Component {
 								name="options"
 								onChange={this.handleRadioChange}
 								type="radio"
-								bsSize="xsmall"
+								size="xsmall"
 								value={this.state.anonymized}
 							>
 								<ToggleButton
@@ -233,7 +233,7 @@ class ActionLog extends Component {
 									}}
 								>Anonymized</ToggleButton>
 							</ToggleButtonGroup>
-							<ButtonGroup bsSize="xsmall">
+							<ButtonGroup size="xsmall">
 								<Button onClick={this.saveJSON} >Save JSON</Button>
 								<Button onClick={this.saveCSV} >Save CSV</Button>
 							</ButtonGroup>

@@ -174,7 +174,7 @@ class FullscreenActionDisplay extends Component {
 			}
 			{ this.props.showExtended ?
 				<Button
-					bsSize="xs"
+					size="sm"
 					style={{ float: 'right' }}
 					onClick={this.props.deleteFactory( index )}
 				>
@@ -213,7 +213,7 @@ class FullscreenActionDisplay extends Component {
 				<h3 style={{ float: 'left', margin: '2px 14px 2px 2px' }} >{this.props.actionLabel}</h3>
 				<RangePicker
 					style={{ float: 'left' }}
-					bsSize="small"
+					size="small"
 					onChange={this.props.onPeriodChange}
 				/>
 				<Search

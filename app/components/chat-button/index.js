@@ -78,7 +78,7 @@ class ChatButton extends Component {
 			<Gate user>
 				<Button
 					bsStyle="primary"
-					bsSize="sm"
+					size="sm"
 					onClick={this.onClick}
 				>{this.state.opened ? 'Leave Chat' : 'Join Chat' }
 				</Button>

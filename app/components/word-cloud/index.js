@@ -282,7 +282,7 @@ class Wrapper extends Component {
 	render() {
 		return ( <div style={{ width: this.props.width, position: 'relative' }}>
 			{ this.props.saveButton && this.state.wordCounts.length > 0 ? <Tooltip placement="left" tooltip="Save Word Cloud" >
-				<Button bsSize="xsmall" onClick={this.saveToPNG} style={{
+				<Button size="sm" onClick={this.saveToPNG} style={{
 					position: 'absolute',
 					right: -12,
 					top: -12,
