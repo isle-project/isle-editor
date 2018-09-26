@@ -162,7 +162,7 @@ class Dashboard extends Component {
 					{this._children}
 					{ !this.props.autoUpdate ?
 						<Button
-							bsStyle="primary"
+							variant="primary"
 							className="dashboard-button"
 							disabled={this.props.disabled}
 							onClick={this.handleClick}

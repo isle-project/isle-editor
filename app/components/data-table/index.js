@@ -371,7 +371,7 @@ class DataTable extends Component {
 					<label><i>Number of rows: {selectedRows} (total: {this.state.rows.length})</i></label>
 					{ this.props.dataInfo.variables ? <Button
 						onClick={this.showDescriptions}
-						bsStyle="primary"
+						variant="primary"
 						size="small"
 						className="variable-description-button"
 					>

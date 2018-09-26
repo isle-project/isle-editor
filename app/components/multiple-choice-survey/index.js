@@ -199,7 +199,7 @@ class MultipleChoiceSurvey extends Component {
 									</ListGroup>
 									<Button
 										size="small"
-										bsStyle="success"
+										variant="success"
 										block fill
 										onClick={this.submitQuestion}
 										disabled={disabled}

@@ -31,7 +31,7 @@ class ResetModal extends Component {
 				Are you sure you want to reset the editor contents to their default value? This action is irreversible and all your work will be lost unless you saved the Markdown source file.
 			</Modal.Body>
 			<Modal.Footer>
-				<Button bsStyle="danger" onClick={this.handleClick} block>Reset</Button>
+				<Button variant="danger" onClick={this.handleClick} block>Reset</Button>
 			</Modal.Footer>
 		</Modal> );
 	}

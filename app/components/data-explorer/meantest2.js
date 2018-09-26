@@ -285,7 +285,7 @@ class MeanTest2 extends Component {
 				</Card.Header>
 				<Card.Body>
 					{this.renderInputs()}
-					<Button bsStyle="primary" block onClick={this.calculateTwoSampleZTest}>Calculate</Button>
+					<Button variant="primary" block onClick={this.calculateTwoSampleZTest}>Calculate</Button>
 				</Card.Body>
 			</Card>
 		);

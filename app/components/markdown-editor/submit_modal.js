@@ -31,7 +31,7 @@ class SubmitModal extends Component {
 				Click the button to submit your report. This action cannot be undone, although additional versions of the report may be submitted.
 			</Modal.Body>
 			<Modal.Footer>
-				<Button bsStyle="success" onClick={this.handleSubmission} block>Submit</Button>
+				<Button variant="success" onClick={this.handleSubmission} block>Submit</Button>
 			</Modal.Footer>
 		</Modal> );
 	}

@@ -203,7 +203,7 @@ class MeanVSMedian extends Component {
 						</Row>
 						<Row>
 							<div className="well" style={{ maxWidth: 400, margin: '0 auto 10px' }}>
-								<Button bsStyle="primary" size="large" block onClick={this.generateData} >Generate</Button>
+								<Button variant="primary" size="large" block onClick={this.generateData} >Generate</Button>
 							</div>
 						</Row>
 					</Container>

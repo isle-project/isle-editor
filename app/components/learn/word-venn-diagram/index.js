@@ -256,7 +256,7 @@ class WordVennDiagram extends Component {
 							<label>Number of Words: </label>
 						</p>
 						<ButtonGroup>
-							{[ 'One', 'Two', 'Three' ].map( ( w, i ) => (<Button key={i} bsStyle={( i === this.state.nWords-1 ) ? 'success' : 'default'} onClick={this.wordNumberClickFactory( i )}>{w}</Button>))}
+							{[ 'One', 'Two', 'Three' ].map( ( w, i ) => (<Button key={i} variant={( i === this.state.nWords-1 ) ? 'success' : 'default'} onClick={this.wordNumberClickFactory( i )}>{w}</Button>))}
 						</ButtonGroup>
 						{inputs}
 						<Button onClick={this.updatePlot} disabled={this.state.disabled}>Draw Venn Diagram</Button>

@@ -134,7 +134,7 @@ class TableSelect extends Component {
 						<Button
 							block={true}
 							className="insert_button"
-							bsStyle="primary"
+							variant="primary"
 							align="center"
 							onClick={this.insertTableText}
 						>

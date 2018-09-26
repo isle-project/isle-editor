@@ -53,7 +53,7 @@ class Guides extends Component {
 					You are currently in a tour on the functionality of the editor. You will only be able to start a new tour if you cancel the current one. Do you wish to cancel it?
 				</p>
 				<ButtonToolbar>
-					<Button bsStyle="warning" onClick={this.handleStartClick} >Cancel</Button>
+					<Button variant="warning" onClick={this.handleStartClick} >Cancel</Button>
 				</ButtonToolbar>
 			</Card>
 		);
@@ -95,7 +95,7 @@ class Guides extends Component {
 					</FormGroup>
 				</Form>
 				<ButtonToolbar>
-					<Button bsStyle="success" onClick={this.handleStartClick} >Start Tour</Button>
+					<Button variant="success" onClick={this.handleStartClick} >Start Tour</Button>
 				</ButtonToolbar>
 			</Card>
 		);

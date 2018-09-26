@@ -269,7 +269,7 @@ class PropTest2 extends Component {
 						max={1.0}
 						step="any"
 					/>
-					<Button bsStyle="primary" block onClick={this.calculateTwoSamplePropTest}>Calculate</Button>
+					<Button variant="primary" block onClick={this.calculateTwoSamplePropTest}>Calculate</Button>
 				</Card.Body>
 			</Card>
 		);

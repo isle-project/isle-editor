@@ -546,7 +546,7 @@ class Scatterplot extends Component {
 					<div style={{ clear: 'both' }}></div>
 					{this.renderRegressionLineOptions()}
 					<div style={{ clear: 'both' }}></div>
-					<Button bsStyle="primary" block onClick={this.generateScatterplot}>Generate</Button>
+					<Button variant="primary" block onClick={this.generateScatterplot}>Generate</Button>
 				</Card.Body>
 			</Card>
 		);

@@ -235,7 +235,7 @@ class InstructorBar extends Component {
 			<Modal.Footer>
 				<Button onClick={this.closeDeleteModal}>Cancel</Button>
 				<Button
-					bsStyle="warning"
+					variant="warning"
 					onClick={this.deleteSelectedAction}
 				>
 					Delete

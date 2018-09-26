@@ -295,7 +295,7 @@ class Histogram extends Component {
 							}}
 						/>
 					</div>
-					<Button bsStyle="primary" block onClick={this.generateHistogram.bind( this )}>Generate</Button>
+					<Button variant="primary" block onClick={this.generateHistogram.bind( this )}>Generate</Button>
 				</Card.Body>
 			</Card>
 		);

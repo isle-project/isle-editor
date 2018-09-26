@@ -116,7 +116,7 @@ class OrderQuestion extends Component {
 							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
 							null
 						}
-						<Button bsStyle="primary" size="sm" onClick={this.handleSubmit}>
+						<Button variant="primary" size="sm" onClick={this.handleSubmit}>
 							{ this.state.submitted ? 'Resubmit' : 'Submit' }
 						</Button>
 						{

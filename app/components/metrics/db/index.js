@@ -53,7 +53,7 @@ class Metrics extends Component {
 	render() {
 		return (
 			<Button
-				bsStyle="primary"
+				variant="primary"
 				onClick={() => {
 					this.setState({
 						active: !this.state.active

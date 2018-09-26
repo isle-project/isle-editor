@@ -503,11 +503,11 @@ class DataExplorer extends Component {
 			onPlotDone: this.scrollToBottom
 		};
 
-		const navbar = <Nav bsStyle="tabs">
+		const navbar = <Nav variant="tabs">
 			{ nStatistics > 0 ?
-				<NavItem eventKey="1">
+				<Nav.Item eventKey="1">
 				Statistics
-				</NavItem> : null
+				</Nav.Item> : null
 			}
 			{ this.props.tables.length > 0 && this.state.categorical.length > 0 ?
 				<NavDropdown
