@@ -107,60 +107,64 @@ class RangePicker extends Component {
 			<ButtonToolbar style={{ marginBottom: '10px', ...this.props.style }} >
 				<ButtonGroup size={this.props.size}>
 					<Button
+						variant="light"
 						className="date-selection"
 						id="last_hour"
 						onClick={this.timeClickFactory( 'last_hour' )}
 						style={this.state.active === 0 ? activeStyle : {}}
 					>Last Hour</Button>
 					<Button
+						variant="light"
 						className="date-selection"
 						id="last_day"
 						onClick={this.timeClickFactory( 'last_day' )}
 						style={this.state.active === 1 ? activeStyle : {}}
 					>Day</Button>
 					<Button
+						variant="light"
 						className="date-selection"
 						id="last_week"
 						onClick={this.timeClickFactory( 'last_week' )}
 						style={this.state.active === 2 ? activeStyle : {}}
 					>Week</Button>
 					<Button
+						variant="light"
 						className="date-selection"
 						id="last_month"
 						onClick={this.timeClickFactory( 'last_month' )}
 						style={this.state.active === 3 ? activeStyle : {}}
 					>Month</Button>
 					<Button
+						variant="light"
 						className="date-selection"
 						id="last_year"
 						onClick={this.timeClickFactory( 'last_year' )}
 						style={this.state.active === 4 ? activeStyle : {}}
 					>Year</Button>
-				</ButtonGroup>
-				<ButtonGroup size={this.props.size}>
 					<Button
+						variant="light"
 						className="date-selection"
 						id="all_time"
 						onClick={this.timeClickFactory( 'all_time' )}
 						style={this.state.active === 5 ? activeStyle : {}}
-					>All Data</Button>
-					<DateRangePicker
-						startDate={this.state.period.from}
-						endDate={this.state.period.to}
-						onDatesChange={({ startDate, endDate }) => {
-							const newPeriod = {
-								from: startDate,
-								to: endDate
-							};
-							this.setState({
-								period: newPeriod
-							});
-						}}
-						focusedInput={this.state.focusedInput}
-						onFocusChange={focusedInput => this.setState({ focusedInput })}
-						isOutsideRange={() => false}
-					/>
+					>All</Button>
 				</ButtonGroup>
+				<DateRangePicker
+					startDate={this.state.period.from}
+					endDate={this.state.period.to}
+					onDatesChange={({ startDate, endDate }) => {
+						const newPeriod = {
+							from: startDate,
+							to: endDate
+						};
+						this.setState({
+							period: newPeriod
+						});
+					}}
+					focusedInput={this.state.focusedInput}
+					onFocusChange={focusedInput => this.setState({ focusedInput })}
+					isOutsideRange={() => false}
+				/>
 			</ButtonToolbar>
 		);
 	}
