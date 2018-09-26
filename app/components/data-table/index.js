@@ -300,6 +300,7 @@ class DataTable extends Component {
 		let modal = null;
 		if ( this.state.showVarModal ) {
 			modal = <Modal
+				dialogClassName="modal-50w"
 				show={this.state.showVarModal}
 				onHide={()=>{
 					this.setState({ showVarModal: false });
@@ -316,6 +317,7 @@ class DataTable extends Component {
 		} else if ( this.state.showInfo ) {
 			modal = <Modal
 				show={this.state.showInfo}
+				dialogClassName="modal-50w"
 				onHide={()=>{
 					this.setState({
 						showInfo: false
