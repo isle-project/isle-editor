@@ -7,7 +7,6 @@ import Modal from 'react-bootstrap/lib/Modal';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { generate } from 'randomstring';
 import Dimensions from 'components/dimensions';
-import './image.css';
 
 
 // FUNCTIONS //
@@ -107,14 +106,10 @@ class Image extends Component {
 				<Modal
 					show={this.state.showModal}
 					onHide={closeModal}
-					dialogClassName="image-modal"
 					title={this.props.title}
 					backdrop={true}
-					rootClose={true}
+					dialogClassName="modal-100w"
 				>
-					<Modal.Header closeButton>
-						<Modal.Title id="contained-modal-title-lg">{this.props.title}</Modal.Title>
-					</Modal.Header>
 					<Modal.Body>
 						<img
 							src={this.props.src}
@@ -122,7 +117,8 @@ class Image extends Component {
 								margin: 'auto',
 								display: 'block'
 							}}
-							width="100%"
+							width="auto"
+							alt={this.props.title}
 						/>
 					</Modal.Body>
 					<Modal.Footer>

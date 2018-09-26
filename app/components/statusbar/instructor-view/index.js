@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Card from 'react-bootstrap/lib/Card';
-import CardGroup from 'react-bootstrap/lib/CardGroup';
 import max from '@stdlib/math/base/special/max';
 import isElectron from 'utils/is-electron';
+import Accordion from 'components/accordion';
 import ActionLog from 'components/statusbar/action-log';
 import InstructorNotes from 'components/statusbar/instructor-notes';
 import animatePosition from 'utils/animate-position';
@@ -81,7 +81,7 @@ class InstructorView extends Component {
 		if ( this.state.hidden ) {
 			return null;
 		}
-		return ( <CardGroup accordion >
+		return ( <Accordion>
 			<Card eventKey="1">
 				<Card.Header>
 					<Card.Title toggle>Active Users</Card.Title>
@@ -106,7 +106,7 @@ class InstructorView extends Component {
 					/>
 				</Card.Body>
 			</Card>
-		</CardGroup> );
+		</Accordion> );
 	}
 
 	render() {
