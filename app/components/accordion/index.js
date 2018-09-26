@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Collapse from 'react-bootstrap/lib/Collapse';
 
 
@@ -10,8 +11,12 @@ class Accordion extends Component {
 	/**
 	* Constructor function
 	*/
-	constructor() {
-		super();
+	constructor( props ) {
+		super( props );
+
+		this.state = {
+			active: props.active
+		};
 	}
 
 	/**
@@ -19,7 +24,19 @@ class Accordion extends Component {
 	*/
 	render() {
 		return React.Children.map( this.props.children, ( elem, idx ) => {
-			return <Collapse key={idx} >{elem}</Collapse>;
+			return (
+				<Collapse
+					key={idx}
+					in={idx === this.state.active}
+					onClick={() => {
+						this.setState({
+							active: idx
+						});
+					}}
+				>
+					{elem}
+				</Collapse>
+			);
 		});
 	}
 }
@@ -27,9 +44,13 @@ class Accordion extends Component {
 
 // PROPERTIES //
 
-Accordion.defaultProps = {};
+Accordion.defaultProps = {
+	active: 0
+};
 
-Accordion.propTypes = {};
+Accordion.propTypes = {
+	active: PropTypes.number
+};
 
 
 // EXPORTS //
