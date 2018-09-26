@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Table from 'react-bootstrap/lib/Table';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
@@ -51,7 +52,7 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs ) => {
 			columnTotals.push( <td>{colfreq}</td> );
 		}
 	}
-	let table = <table className="table table-condensed" >
+	let table = <Table bordered size="sm">
 		<tbody>
 			<tr>
 				<th></th>
@@ -83,8 +84,7 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs ) => {
 				<th>{ !relativeFreqs ? nobs : ( 1.0 ).toFixed( 3 ) }</th>
 			</tr>
 		</tbody>
-	</table>;
-
+	</Table>;
 	return table;
 };
 

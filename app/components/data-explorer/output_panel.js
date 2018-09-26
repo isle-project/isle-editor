@@ -46,7 +46,7 @@ const makeDraggable = ( div, asMarkdown = true ) => {
 };
 
 const renderIQRTable = ( e, idx, clearOutput ) => {
-	const table = <Table striped bordered size="sm">
+	const table = <Table bordered size="sm">
 		<tbody>
 			<tr>
 				<th>Variable</th>
@@ -69,7 +69,7 @@ const renderIQRTable = ( e, idx, clearOutput ) => {
 };
 
 const renderRangeTable = ( e, idx, clearOutput ) => {
-	const table = <Table striped bordered size="sm">
+	const table = <Table bordered size="sm">
 		<tbody>
 			<tr>
 				<th>Variable</th>
@@ -132,7 +132,7 @@ const OutputPanel = ( output, clearOutput ) => {
 				}
 				else if ( isNumber( e.result.value ) && e.result.size ) {
 					const { value, size } = e.result;
-					const table = <table className="table table-condensed">
+					const table = <Table bordered size="sm">
 						<tbody>
 							<tr>
 								<th>Variable</th>
@@ -145,7 +145,7 @@ const OutputPanel = ( output, clearOutput ) => {
 								<td>{size}</td>
 							</tr>
 						</tbody>
-					</table>;
+					</Table>;
 					const elem = <pre key={idx} >
 						<ClearButton onClick={() => { clearOutput( idx ); }} />
 						{makeDraggable( table )}
@@ -160,7 +160,7 @@ const OutputPanel = ( output, clearOutput ) => {
 				else if ( isObject( e.result ) ) {
 					let elem = <pre key={idx} >
 						<ClearButton onClick={() => { clearOutput( idx ); }} />
-							<table className="table table-condensed">
+							<Table bordered size="sm">
 								<tbody>
 									{ e.type === 'Range' ?
 										<tr>
@@ -212,7 +212,7 @@ const OutputPanel = ( output, clearOutput ) => {
 										);
 									})}
 								</tbody>
-							</table>
+							</Table>
 						</pre>;
 					return makeDraggable( elem );
 				}

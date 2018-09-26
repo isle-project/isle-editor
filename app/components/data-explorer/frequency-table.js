@@ -33,7 +33,7 @@ function getFrequencies( x, relativeFreqs ) {
 
 const frequencyTable = ( variable, freqs, relative ) => {
 	return (
-		<table className="table table-condensed">
+		<Table bordered size="sm">
 			<thead>
 				<tr>
 					<th>Variable</th>
@@ -50,7 +50,7 @@ const frequencyTable = ( variable, freqs, relative ) => {
 					</tr> );
 				})}
 			</tbody>
-		</table>
+		</Table>
 	);
 };
 
@@ -69,7 +69,7 @@ const groupedFrequencyTable = ( variable, freqs, relative ) => {
 				);
 				return ( <pre key={i} >
 					<label>{arr[ 0 ]}: </label>
-					<Table striped bordered size="sm">
+					<Table bordered size="sm">
 						<thead>
 							<tr>
 								<th>Category</th>

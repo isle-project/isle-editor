@@ -548,7 +548,7 @@ class DataExplorer extends Component {
 			}
 		</Nav>;
 
-		const tabs = <Tab.Content animation={false}>
+		const tabs = <Tab.Content>
 			<Tab.Pane eventKey="1">
 				<SummaryStatistics
 					{...continuousProps}
@@ -747,7 +747,7 @@ class DataExplorer extends Component {
 				>{this.props.questions}</Pages></Col> : null }
 				<Col xs={colWidth} md={colWidth}>
 					<Card>
-						<Navbar fluid className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
+						<Navbar className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
 							<Nav>
 								{ !this.props.hideDataTable ? <Nav.Item className="explorer-data-nav" >
 									<Nav.Link eventKey="data" active={this.state.openedNav === 'data'}>Data</Nav.Link>
