@@ -18,7 +18,8 @@ const QuestionButton = ( props ) => {
 		<OverlayTrigger trigger="click" placement="right" rootClose overlay={popover}>
 			<Button
 				size="sm"
-				style={{ float: 'right' }}
+				variant="outline-secondary"
+				style={{ float: 'right', padding: '0rem .4rem' }}
 			>
 				<div className="fa fa-question" />
 			</Button>

@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Table from 'react-bootstrap/lib/Table';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
@@ -68,7 +69,7 @@ const groupedFrequencyTable = ( variable, freqs, relative ) => {
 				);
 				return ( <pre key={i} >
 					<label>{arr[ 0 ]}: </label>
-					<table className="table table-condensed">
+					<Table striped bordered size="sm">
 						<thead>
 							<tr>
 								<th>Category</th>
@@ -79,7 +80,7 @@ const groupedFrequencyTable = ( variable, freqs, relative ) => {
 							<th>{ relative ? 'Relative' : 'Count' }</th>
 							{counts}
 						</tbody>
-					</table>
+					</Table>
 				</pre> );
 			})}
 		</div>

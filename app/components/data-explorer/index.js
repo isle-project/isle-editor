@@ -4,7 +4,6 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
@@ -12,7 +11,6 @@ import DropdownItem from 'react-bootstrap/lib/DropdownItem';
 import Modal from 'react-bootstrap/lib/Modal';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
-import NavItem from 'react-bootstrap/lib/NavItem';
 import Card from 'react-bootstrap/lib/Card';
 import Tab from 'react-bootstrap/lib/Tab';
 import isString from '@stdlib/assert/is-string';
@@ -505,8 +503,8 @@ class DataExplorer extends Component {
 
 		const navbar = <Nav variant="tabs">
 			{ nStatistics > 0 ?
-				<Nav.Item eventKey="1">
-				Statistics
+				<Nav.Item>
+					<Nav.Link eventKey="1">Statistics</Nav.Link>
 				</Nav.Item> : null
 			}
 			{ this.props.tables.length > 0 && this.state.categorical.length > 0 ?
@@ -751,12 +749,12 @@ class DataExplorer extends Component {
 					<Card>
 						<Navbar fluid className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
 							<Nav>
-								{ !this.props.hideDataTable ? <NavItem eventKey="data" className="explorer-data-nav" active={this.state.openedNav === 'data'}>
-									Data
-								</NavItem> : null }
-								<NavItem eventKey="toolbox" active={this.state.openedNav === 'toolbox'}>
-									Toolbox
-								</NavItem>
+								{ !this.props.hideDataTable ? <Nav.Item className="explorer-data-nav" >
+									<Nav.Link eventKey="data" active={this.state.openedNav === 'data'}>Data</Nav.Link>
+								</Nav.Item> : null }
+								<Nav.Item>
+									<Nav.Link eventKey="toolbox" active={this.state.openedNav === 'toolbox'}>Toolbox</Nav.Link>
+								</Nav.Item>
 								{ this.props.distributions.length > 0 ?
 									<NavDropdown
 										eventKey="distributions"
@@ -764,23 +762,26 @@ class DataExplorer extends Component {
 										active={startsWith( this.state.openedNav, 'distributions' )}
 									>
 										{this.props.distributions.map( ( e, i ) =>
-											<DropdownItem key={i} eventKey={`distributions.${i+1}`}>{e}</DropdownItem> )}
+											<NavDropdown.Item key={i} eventKey={`distributions.${i+1}`}>{e}</NavDropdown.Item> )}
 									</NavDropdown> : null
 								}
 								{ this.props.showEditor ?
-									<NavItem className="explorer-editor-nav" eventKey="editor" active={this.state.openedNav === 'editor'}>
-										{this.props.editorTitle}
-									</NavItem> : null
+									<Nav.Item className="explorer-editor-nav">
+										<Nav.Link
+											active={this.state.openedNav === 'editor'}
+											eventKey="editor"
+										>{this.props.editorTitle}</Nav.Link>
+									</Nav.Item> : null
 								}
 								{ this.props.transformer ?
-									<NavItem eventKey="transform" active={this.state.openedNav === 'transform'}>
+									<Nav.Item eventKey="transform" active={this.state.openedNav === 'transform'}>
 										Transform
-									</NavItem> : null
+									</Nav.Item> : null
 								}
 								{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
-									return ( <NavItem key={i} eventKey={`${6+i}`}>
+									return ( <Nav.Item key={i} eventKey={`${6+i}`}>
 										{e.title}
-									</NavItem> );
+									</Nav.Item> );
 								}) : null }
 							</Nav>
 						</Navbar>
@@ -793,14 +794,9 @@ class DataExplorer extends Component {
 							}
 							{ this.state.openedNav === 'toolbox' ?
 								<Tab.Container id="options-menu" defaultActiveKey={defaultActiveKey}>
-									<Row className="clearfix">
-										<Col sm={12}>
-											{navbar}
-										</Col>
-										<Col sm={12}>
-											{tabs}
-										</Col>
-									</Row>
+									{navbar}
+									<br />
+									{tabs}
 								</Tab.Container> : null
 							}
 							{this.props.distributions.map( ( e, i ) => {
@@ -881,16 +877,16 @@ class DataExplorer extends Component {
 										}
 									</Modal.Body>
 									<Modal.Footer>
-										<Button onClick={this.clearPlots}>Clear Plots</Button>
+										<Button variant="danger" onClick={this.clearPlots}>Clear Plots</Button>
 										<Button onClick={this.toggleStudentPlots}>Close</Button>
 									</Modal.Footer>
 								</Modal>
-								<Button size="sm" style={{ float: 'right' }} onClick={this.toggleStudentPlots} >Open Shared Plots</Button>
+								<Button variant="secondary" size="sm" style={{ float: 'right' }} onClick={this.toggleStudentPlots} >Open Shared Plots</Button>
 								<RealtimeMetrics returnFullObject for={this.props.id} onDatum={this.onUserAction} />
 							</Gate>
 						</div>
 						{OutputPanel( this.state.output, this.clearOutput )}
-						<Button size="small" block onClick={() => {
+						<Button size="sm" variant="outline-danger" block onClick={() => {
 							this.setState({ output: []});
 						}}>Clear All</Button>
 					</div>

@@ -127,19 +127,19 @@ class Image extends Component {
 					</Modal.Body>
 					<Modal.Footer>
 						{ this.props.body ?
-							<CopyToClipboard text={this.props.body} onCopy={closeModal}><Button>Copy SVG</Button></CopyToClipboard> : null
+							<CopyToClipboard text={this.props.body} onCopy={closeModal}><Button variant="secondary">Copy SVG</Button></CopyToClipboard> : null
 						}
 						{ this.props.onShare ?
-							<Button onClick={() => {
+							<Button variant="secondary" onClick={() => {
 								this.props.onShare( this.props.src );
 								closeModal();
 							}}>
 								Share
 							</Button> : null
 						}
-						<CopyToClipboard text={`<img src="${this.props.src}" width="400" height="300" />`} onCopy={closeModal}><Button>Copy Link</Button></CopyToClipboard>
-						<Button href={this.props.src} download="plot.png" >Save Plot</Button>
-						<Button onClick={closeModal}>Close</Button>
+						<CopyToClipboard text={`<img src="${this.props.src}" width="400" height="300" />`} onCopy={closeModal}><Button variant="secondary">Copy Link</Button></CopyToClipboard>
+						<Button variant="secondary" href={this.props.src} download="plot.png" >Save Plot</Button>
+						<Button variant="secondary" onClick={closeModal}>Close</Button>
 					</Modal.Footer>
 				</Modal>
 			</span>

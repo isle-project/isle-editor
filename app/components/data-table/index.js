@@ -341,6 +341,7 @@ class DataTable extends Component {
 					{ this.props.dataInfo.info.length > 0 ?
 					<div className='data_button_wrapper'>
 						<Button
+							variant="light"
 							onClick={this.showInfo}
 							block
 							className='title-button'>
