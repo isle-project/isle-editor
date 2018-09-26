@@ -5,8 +5,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
-import Grid from 'react-bootstrap/lib/Grid';
-import Panel from 'react-bootstrap/lib/Panel';
+import Container from 'react-bootstrap/lib/Container';
+import Card from 'react-bootstrap/lib/Card';
 import { VictoryAxis, VictoryArea, VictoryChart } from 'victory';
 import logger from 'debug';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
@@ -136,36 +136,34 @@ class NumberSurvey extends Component {
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
 			<Gate user banner={<h2>Please sign in...</h2>} >
-				<Panel>
-					<Panel.Heading>
-						<Panel.Title componentClass="h3">Survey</Panel.Title>
-					</Panel.Heading>
-					<Panel.Body>
-						<Grid>
+				<Card>
+					<Card.Header as="h3">
+						Survey
+					</Card.Header>
+					<Card.Body>
+						<Container>
 							<Col md={6}>
-								<Panel className="number-survey">
-									<Panel.Body>
-										<p><label>{props.question}</label></p>
-										<label>Your answer:</label>
-										<NumberInput
-											{...props}
-											inline
-											disabled={disabled}
-											onChange={( value ) => {
-												this.setState({
-													value
-												});
-											}}
-										/>
-										<Button
-											bsSize="small"
-											bsStyle="success"
-											block fill
-											onClick={this.submitQuestion}
-											disabled={disabled}
-										>{ disabled ? 'Submitted' : 'Submit'}</Button>
-									</Panel.Body>
-								</Panel>
+								<Card className="number-survey" body>
+									<Card.Title as="h5">{props.question}</Card.Title>
+									<label>Your answer:</label>
+									<NumberInput
+										{...props}
+										inline
+										disabled={disabled}
+										onChange={( value ) => {
+											this.setState({
+												value
+											});
+										}}
+									/>
+									<Button
+										size="small"
+										variant="success"
+										block fill
+										onClick={this.submitQuestion}
+										disabled={disabled}
+									>{ disabled ? 'Submitted' : 'Submit'}</Button>
+								</Card>
 							</Col>
 							<Col md={6}>
 								<RealtimeMetrics for={this.props.id} onData={this.onData} />
@@ -175,10 +173,10 @@ class NumberSurvey extends Component {
 									</p> : null
 								}
 							</Col>
-						</Grid>
+						</Container>
 						<InstructorBar buttonLabel="Responses" id={props.id} />
-					</Panel.Body>
-				</Panel>
+					</Card.Body>
+				</Card>
 			</Gate>
 		);
 	}

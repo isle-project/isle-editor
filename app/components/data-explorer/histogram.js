@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import PropTypes from 'prop-types';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
@@ -221,14 +221,12 @@ class Histogram extends Component {
 		const { variables, groupingVariables } = this.props;
 		const description = 'A histogram allows one to visualize the distribution of a quantitative variable. In order to create a histogram, the observed range of values is divided into different, non-overlapping intervals called "bins"; the height of each bin corresponds to how many observations are in that bin range.';
 		return (
-			<Panel>
-				<Panel.Heading>
-					<Panel.Title componentClass="h4" >
-						Histogram
-						<QuestionButton title="Histogram" content={description} />
-					</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body>
+			<Card>
+				<Card.Header as="h4">
+					Histogram
+					<QuestionButton title="Histogram" content={description} />
+				</Card.Header>
+				<Card.Body>
 					<SelectInput
 						legend="Variable:"
 						defaultValue={this.state.variable}
@@ -297,9 +295,9 @@ class Histogram extends Component {
 							}}
 						/>
 					</div>
-					<Button bsStyle="primary" block onClick={this.generateHistogram.bind( this )}>Generate</Button>
-				</Panel.Body>
-			</Panel>
+					<Button variant="primary" block onClick={this.generateHistogram.bind( this )}>Generate</Button>
+				</Card.Body>
+			</Card>
 		);
 	}
 }

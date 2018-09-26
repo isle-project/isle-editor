@@ -214,7 +214,7 @@ class Wrapper extends Component {
 				<Modal
 					show={this.state.fullscreen}
 					onHide={this.toggleFullscreen}
-					dialogClassName="fullscreen-modal"
+					dialogClassName="modal-100w"
 				>
 					<Modal.Body
 						style={{
@@ -222,7 +222,6 @@ class Wrapper extends Component {
 							width: 0.90 * window.innerWidth,
 							marginBottom: 50
 						}}
-						className="fullscreen-modal-content"
 					>
 						{plot}
 					</Modal.Body>

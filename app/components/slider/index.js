@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import Slider from 'react-slick';
 import NextArrow from './next_arrow';
 import PrevArrow from './previous_arrow';
@@ -74,18 +74,16 @@ class DefaultSlider extends Component {
 	renderTitle() {
 		if (this.props.title === '') return null;
 		return (
-			<Panel.Heading>
-				<Panel.Title componentClass="h3">
-					{this.props.title}
-				</Panel.Title>
-			</Panel.Heading>
+			<Card.Header as="h3">
+				{this.props.title}
+			</Card.Header>
 		);
 	}
 
 	render() {
 		return (
-			<Panel
-				bsSize="large"
+			<Card
+				size="large"
 				style={{
 					margin: '0 auto',
 					marginTop: '5px',
@@ -96,12 +94,12 @@ class DefaultSlider extends Component {
 				}}
 			>
 				{this.renderTitle()}
-				<Panel.Body>
+				<Card.Body>
 					<Slider ref={( slider ) => { this.slider = slider; }} {...this.state.settings}>
 						{ this.state.childDivs }
 					</Slider>
-				</Panel.Body>
-			</Panel>
+				</Card.Body>
+			</Card>
 		);
 	}
 }

@@ -18,7 +18,7 @@ class PreviousArrow extends Component {
 		const disabled = RE.test( this.props.className );
 		return (
 			<Button className="slider-previous-button"
-				bsSize="small"
+				size="small"
 				onClick={this.props.onClick}
 				style={{
 					position: 'absolute',

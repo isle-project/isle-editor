@@ -4,18 +4,15 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
-import MenuItem from 'react-bootstrap/lib/MenuItem';
+import DropdownItem from 'react-bootstrap/lib/DropdownItem';
 import Modal from 'react-bootstrap/lib/Modal';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
-import NavItem from 'react-bootstrap/lib/NavItem';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import Tab from 'react-bootstrap/lib/Tab';
-import Well from 'react-bootstrap/lib/Well';
 import isString from '@stdlib/assert/is-string';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import isObject from '@stdlib/assert/is-object';
@@ -441,11 +438,11 @@ class DataExplorer extends Component {
 		}
 		if ( !this.state.ready ) {
 			const variableNames = Object.keys( this.state.data );
-			return ( <Panel>
-				<Panel.Heading>
-					<Panel.Title componentClass="h3">Data Explorer</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body>
+			return ( <Card>
+				<Card.Header as="h3">
+					Data Explorer
+				</Card.Header>
+				<Card.Body>
 					<h4>Please select which variables should be treated as numeric and which ones as categorical:</h4>
 					<SelectInput
 						legend="Continuous:"
@@ -480,8 +477,8 @@ class DataExplorer extends Component {
 						});
 					}}>Submit</Button>
 					<DataTable data={this.state.data} />
-				</Panel.Body>
-			</Panel> );
+				</Card.Body>
+			</Card> );
 		}
 		let colWidth = this.props.questions ? 4 : 6;
 		let nStatistics = this.props.statistics.length;
@@ -504,11 +501,11 @@ class DataExplorer extends Component {
 			onPlotDone: this.scrollToBottom
 		};
 
-		const navbar = <Nav bsStyle="tabs">
+		const navbar = <Nav variant="tabs">
 			{ nStatistics > 0 ?
-				<NavItem eventKey="1">
-				Statistics
-				</NavItem> : null
+				<Nav.Item>
+					<Nav.Link eventKey="1">Statistics</Nav.Link>
+				</Nav.Item> : null
 			}
 			{ this.props.tables.length > 0 && this.state.categorical.length > 0 ?
 				<NavDropdown
@@ -516,7 +513,7 @@ class DataExplorer extends Component {
 					title="Tables"
 				>
 					{ this.props.tables.map(
-						( e, i ) => <MenuItem key={i} eventKey={`2.${i+1}`}>{e}</MenuItem>
+						( e, i ) => <DropdownItem key={i} eventKey={`2.${i+1}`}>{e}</DropdownItem>
 					) }
 				</NavDropdown> : null
 			}
@@ -526,7 +523,7 @@ class DataExplorer extends Component {
 					title="Plots"
 				>
 					{ this.props.plots.map(
-						( e, i ) => <MenuItem key={i} eventKey={`3.${i+1}`}>{e}</MenuItem>
+						( e, i ) => <DropdownItem key={i} eventKey={`3.${i+1}`}>{e}</DropdownItem>
 					) }
 				</NavDropdown> : null
 			}
@@ -536,7 +533,7 @@ class DataExplorer extends Component {
 					title="Tests"
 				>
 					{ this.props.tests.map(
-						( e, i ) => <MenuItem key={i} eventKey={`4.${i+1}`}>{e}</MenuItem>
+						( e, i ) => <DropdownItem key={i} eventKey={`4.${i+1}`}>{e}</DropdownItem>
 					) }
 				</NavDropdown> : null
 			}
@@ -546,12 +543,12 @@ class DataExplorer extends Component {
 					title="Models"
 				>
 					{this.props.models.map( ( e, i ) =>
-						<MenuItem key={i} eventKey={`5.${i+1}`}>{e}</MenuItem> )}
+						<DropdownItem key={i} eventKey={`5.${i+1}`}>{e}</DropdownItem> )}
 				</NavDropdown> : null
 			}
 		</Nav>;
 
-		const tabs = <Tab.Content animation={false}>
+		const tabs = <Tab.Content>
 			<Tab.Pane eventKey="1">
 				<SummaryStatistics
 					{...continuousProps}
@@ -745,19 +742,19 @@ class DataExplorer extends Component {
 				{ this.props.questions ? <Col xs={colWidth} md={colWidth}><Pages
 					title="Questions"
 					height={470}
-					bsSize="small"
+					size="small"
 					className="data-explorer-questions"
 				>{this.props.questions}</Pages></Col> : null }
 				<Col xs={colWidth} md={colWidth}>
-					<Panel>
-						<Navbar fluid className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
+					<Card>
+						<Navbar className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
 							<Nav>
-								{ !this.props.hideDataTable ? <NavItem eventKey="data" className="explorer-data-nav" active={this.state.openedNav === 'data'}>
-									Data
-								</NavItem> : null }
-								<NavItem eventKey="toolbox" active={this.state.openedNav === 'toolbox'}>
-									Toolbox
-								</NavItem>
+								{ !this.props.hideDataTable ? <Nav.Item className="explorer-data-nav" >
+									<Nav.Link eventKey="data" active={this.state.openedNav === 'data'}>Data</Nav.Link>
+								</Nav.Item> : null }
+								<Nav.Item>
+									<Nav.Link eventKey="toolbox" active={this.state.openedNav === 'toolbox'}>Toolbox</Nav.Link>
+								</Nav.Item>
 								{ this.props.distributions.length > 0 ?
 									<NavDropdown
 										eventKey="distributions"
@@ -765,43 +762,41 @@ class DataExplorer extends Component {
 										active={startsWith( this.state.openedNav, 'distributions' )}
 									>
 										{this.props.distributions.map( ( e, i ) =>
-											<MenuItem key={i} eventKey={`distributions.${i+1}`}>{e}</MenuItem> )}
+											<NavDropdown.Item key={i} eventKey={`distributions.${i+1}`}>{e}</NavDropdown.Item> )}
 									</NavDropdown> : null
 								}
 								{ this.props.showEditor ?
-									<NavItem className="explorer-editor-nav" eventKey="editor" active={this.state.openedNav === 'editor'}>
-										{this.props.editorTitle}
-									</NavItem> : null
+									<Nav.Item className="explorer-editor-nav">
+										<Nav.Link
+											active={this.state.openedNav === 'editor'}
+											eventKey="editor"
+										>{this.props.editorTitle}</Nav.Link>
+									</Nav.Item> : null
 								}
 								{ this.props.transformer ?
-									<NavItem eventKey="transform" active={this.state.openedNav === 'transform'}>
+									<Nav.Item eventKey="transform" active={this.state.openedNav === 'transform'}>
 										Transform
-									</NavItem> : null
+									</Nav.Item> : null
 								}
 								{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
-									return ( <NavItem key={i} eventKey={`${6+i}`}>
+									return ( <Nav.Item key={i} eventKey={`${6+i}`}>
 										{e.title}
-									</NavItem> );
+									</Nav.Item> );
 								}) : null }
 							</Nav>
 						</Navbar>
-						<Panel.Body>
+						<Card.Body>
 							{ this.state.openedNav === 'data' ?
 								<Fragment>
-									{ !this.props.data ? <Button bsSize="small" onClick={this.resetStorage} style={{ position: 'absolute' }}>Clear Data</Button> : null }
+									{ !this.props.data ? <Button size="small" onClick={this.resetStorage} style={{ position: 'absolute' }}>Clear Data</Button> : null }
 									<DataTable data={this.state.data} dataInfo={this.props.dataInfo} />
 								</Fragment> : null
 							}
 							{ this.state.openedNav === 'toolbox' ?
 								<Tab.Container id="options-menu" defaultActiveKey={defaultActiveKey}>
-									<Row className="clearfix">
-										<Col sm={12}>
-											{navbar}
-										</Col>
-										<Col sm={12}>
-											{tabs}
-										</Col>
-									</Row>
+									{navbar}
+									<br />
+									{tabs}
 								</Tab.Container> : null
 							}
 							{this.props.distributions.map( ( e, i ) => {
@@ -834,23 +829,23 @@ class DataExplorer extends Component {
 								return ( this.state.openedNav === `6.${i+1}` ?
 									e.content : null );
 							})}
-						</Panel.Body>
-					</Panel>
+						</Card.Body>
+					</Card>
 				</Col>
 				<Col xs={colWidth} md={colWidth}>
-					<div className="panel panel-default" style={{ minHeight: window.innerHeight*0.9, padding: 0 }}>
-						<div className="panel-heading clearfix">
+					<div className="card card-default" style={{ minHeight: window.innerHeight*0.9, padding: 0 }}>
+						<div className="card-header clearfix">
 							<h3 className="data-explorer-output-header">Output</h3>
 							<Gate owner>
 								<Modal
 									show={this.state.showStudentPlots}
 									onHide={this.toggleStudentPlots}
-									dialogClassName="fullscreen-modal"
+									dialogClassName="modal-100w"
 								>
 									<Modal.Header closeButton>
 										<Modal.Title>Plots</Modal.Title>
 									</Modal.Header>
-									<Modal.Body style={{ height: 0.90 * window.innerHeight, overflowY: 'scroll' }}>
+									<Modal.Body style={{ height: 0.80 * window.innerHeight, overflowY: 'scroll' }}>
 										{ this.state.studentPlots.length > 0 ?
 											<GridLayout>
 												{this.state.studentPlots.map( ( elem, idx ) => {
@@ -876,24 +871,22 @@ class DataExplorer extends Component {
 													);
 												})}
 											</GridLayout> :
-											<Well>
+											<Card body className="bg-light">
 												No plots have been created yet...
-											</Well>
+											</Card>
 										}
 									</Modal.Body>
 									<Modal.Footer>
-										<Button onClick={this.clearPlots}>Clear Plots</Button>
+										<Button variant="danger" onClick={this.clearPlots}>Clear Plots</Button>
 										<Button onClick={this.toggleStudentPlots}>Close</Button>
 									</Modal.Footer>
 								</Modal>
-								<ButtonGroup bsSize="small" style={{ float: 'right' }} >
-									<Button onClick={this.toggleStudentPlots} >Open Shared Plots</Button>
-								</ButtonGroup>
+								<Button variant="secondary" size="sm" style={{ float: 'right' }} onClick={this.toggleStudentPlots} >Open Shared Plots</Button>
 								<RealtimeMetrics returnFullObject for={this.props.id} onDatum={this.onUserAction} />
 							</Gate>
 						</div>
 						{OutputPanel( this.state.output, this.clearOutput )}
-						<Button bsSize="small" block onClick={() => {
+						<Button size="sm" variant="outline-danger" block onClick={() => {
 							this.setState({ output: []});
 						}}>Clear All</Button>
 					</div>

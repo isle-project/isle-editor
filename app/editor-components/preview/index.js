@@ -17,7 +17,6 @@ import pluginTransformJSX from 'babel-plugin-transform-react-jsx';
 import Provider from 'components/provider';
 import Loadable from 'editor-components/loadable';
 import Session from 'session';
-import Accordion from 'react-bootstrap/lib/Accordion';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
 import Modal from 'react-bootstrap/lib/Modal';
@@ -27,7 +26,6 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 import Row from 'react-bootstrap/lib/Row';
 import Tab from 'react-bootstrap/lib/Tab';
 import Tabs from 'react-bootstrap/lib/Tabs';
-import Well from 'react-bootstrap/lib/Well';
 import EnlargeableGrid from 'components/enlargeable-grid';
 import TeX from 'components/tex';
 import Dashboard from 'components/dashboard';
@@ -57,6 +55,7 @@ const createScope = ( session ) => {
 		session,
 		NotificationSystem,
 
+		Accordion: Loadable( () => import( 'components/accordion' ) ),
 		BeaconTooltip: Loadable( () => import( 'components/beacon-tooltip' ) ),
 		CheckboxInput: CheckboxInput,
 		Clock: Loadable( () => import( 'components/clock' ) ),
@@ -74,7 +73,7 @@ const createScope = ( session ) => {
 		FreeTextSurvey: Loadable( () => import( 'components/free-text-survey' ) ),
 		FreeTextQuestion: Loadable( () => import( 'components/free-text-question' ) ),
 		Gate: Loadable( () => import( 'components/gate' ) ),
-		Grid: Loadable( () => import( 'components/grid' ) ),
+		Container: Loadable( () => import( 'components/container' ) ),
 		IFrame: Loadable( () => import( 'components/iframe' ) ),
 		Joyride: Loadable( () => import( 'components/joyride' ) ),
 		JSShell: Loadable( () => import( 'components/js-shell' ) ),
@@ -153,7 +152,6 @@ const createScope = ( session ) => {
 		WordCloud: Loadable( () => import( 'components/word-cloud' ) ),
 
 		// REACT BOOTSTRAP //
-		Accordion,
 		Button,
 		Col,
 		Modal,
@@ -163,7 +161,6 @@ const createScope = ( session ) => {
 		Row,
 		Tab,
 		Tabs,
-		Well,
 
 		// VICTORY //
 		VictoryAnimation: Loadable( () => import( 'components/victory/animation' ) ),

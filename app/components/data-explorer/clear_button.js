@@ -15,8 +15,9 @@ const ClearButton = ( props ) => (
 		tooltip="Delete"
 	>
 		<Button
-			bsSize="xs"
-			style={{ float: 'right' }}
+			variant="outline-danger"
+			size="sm"
+			style={{ float: 'right', padding: '0rem .4rem' }}
 			onClick={props.onClick}
 		>
 			<span>&times;</span>

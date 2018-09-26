@@ -22,7 +22,7 @@ class SubmitModal extends Component {
 		return ( <Modal
 			onHide={this.clickHide}
 			show={this.props.show}
-			bsSize="small"
+			size="small"
 		>
 			<Modal.Header closeButton>
 				<Modal.Title>Submit Report</Modal.Title>
@@ -31,7 +31,7 @@ class SubmitModal extends Component {
 				Click the button to submit your report. This action cannot be undone, although additional versions of the report may be submitted.
 			</Modal.Body>
 			<Modal.Footer>
-				<Button bsStyle="success" onClick={this.handleSubmission} block>Submit</Button>
+				<Button variant="success" onClick={this.handleSubmission} block>Submit</Button>
 			</Modal.Footer>
 		</Modal> );
 	}

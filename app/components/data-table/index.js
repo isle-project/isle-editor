@@ -300,6 +300,7 @@ class DataTable extends Component {
 		let modal = null;
 		if ( this.state.showVarModal ) {
 			modal = <Modal
+				dialogClassName="modal-50w"
 				show={this.state.showVarModal}
 				onHide={()=>{
 					this.setState({ showVarModal: false });
@@ -316,6 +317,7 @@ class DataTable extends Component {
 		} else if ( this.state.showInfo ) {
 			modal = <Modal
 				show={this.state.showInfo}
+				dialogClassName="modal-50w"
 				onHide={()=>{
 					this.setState({
 						showInfo: false
@@ -341,6 +343,7 @@ class DataTable extends Component {
 					{ this.props.dataInfo.info.length > 0 ?
 					<div className='data_button_wrapper'>
 						<Button
+							variant="light"
 							onClick={this.showInfo}
 							block
 							className='title-button'>
@@ -371,8 +374,8 @@ class DataTable extends Component {
 					<label><i>Number of rows: {selectedRows} (total: {this.state.rows.length})</i></label>
 					{ this.props.dataInfo.variables ? <Button
 						onClick={this.showDescriptions}
-						bsStyle="primary"
-						bsSize="small"
+						variant="primary"
+						size="small"
 						className="variable-description-button"
 					>
 						Variable Descriptions

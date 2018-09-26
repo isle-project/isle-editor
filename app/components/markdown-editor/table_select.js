@@ -126,7 +126,10 @@ class TableSelect extends Component {
 				show={this.props.show}
 			>
 				<Modal.Header closeButton>
-					<Modal.Title className="titleTable">Choose Table Dimensions: Row: {this.state.hoverRow} Col: {this.state.hoverCol}</Modal.Title>
+					<Modal.Title as="h5">
+						Choose Table Dimensions:
+						Row: {this.state.hoverRow} Col: {this.state.hoverCol}
+					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<div>
@@ -134,7 +137,7 @@ class TableSelect extends Component {
 						<Button
 							block={true}
 							className="insert_button"
-							bsStyle="primary"
+							variant="primary"
 							align="center"
 							onClick={this.insertTableText}
 						>

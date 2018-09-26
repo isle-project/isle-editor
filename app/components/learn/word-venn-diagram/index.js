@@ -4,7 +4,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import * as venn from 'venn.js';
 import * as d3 from 'd3';
 import isStringArray from '@stdlib/assert/is-string-array';
@@ -249,29 +249,29 @@ class WordVennDiagram extends Component {
 		}
 		return (
 			<Fragment>
-				<Panel>
-					<Panel.Heading>Settings</Panel.Heading>
-					<Panel.Body>
+				<Card>
+					<Card.Header>Settings</Card.Header>
+					<Card.Body>
 						<p>
 							<label>Number of Words: </label>
 						</p>
 						<ButtonGroup>
-							{[ 'One', 'Two', 'Three' ].map( ( w, i ) => (<Button key={i} bsStyle={( i === this.state.nWords-1 ) ? 'success' : 'default'} onClick={this.wordNumberClickFactory( i )}>{w}</Button>))}
+							{[ 'One', 'Two', 'Three' ].map( ( w, i ) => (<Button key={i} variant={( i === this.state.nWords-1 ) ? 'success' : 'default'} onClick={this.wordNumberClickFactory( i )}>{w}</Button>))}
 						</ButtonGroup>
 						{inputs}
 						<Button onClick={this.updatePlot} disabled={this.state.disabled}>Draw Venn Diagram</Button>
-					</Panel.Body>
-				</Panel>
-				<Panel>
-					<Panel.Heading>Venn Diagram</Panel.Heading>
-					<Panel.Body>
+					</Card.Body>
+				</Card>
+				<Card>
+					<Card.Header>Venn Diagram</Card.Header>
+					<Card.Body>
 						<span style={{
 							position: 'absolute',
 							right: 40
 						}}>Total # of Texts: {this.props.nTexts}</span>
 						<div id={this.state.id}></div>
-					</Panel.Body>
-				</Panel>
+					</Card.Body>
+				</Card>
 			</Fragment>
 		);
 	}

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import logger from 'debug';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
@@ -162,9 +162,9 @@ class RangeQuestion extends Component {
 		const nHints = this.props.hints.length;
 		const solutionPresent = this.props.solution !== null;
 		return (
-			<Panel className="range-question">
-				<Panel.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}>
-					{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
+			<Card className="range-question" >
+				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}>
+					{ this.props.question ? <Card.Title as="h5">{this.props.question}</Card.Title> : null }
 					<div className="range-question-input-wrapper" >
 						<NumberInput
 							step="any"
@@ -202,8 +202,8 @@ class RangeQuestion extends Component {
 						}
 					</div>
 					<Button
-						bsStyle="primary"
-						bsSize="sm"
+						variant="primary"
+						size="sm"
 						disabled={this.state.submitted && solutionPresent}
 						onClick={this.submitHandler}
 					>
@@ -222,12 +222,12 @@ class RangeQuestion extends Component {
 						}
 					</ButtonToolbar>
 					<InstructorBar buttonLabel="Answers" id={this.props.id} dataType="number" />
-				</Panel.Body>
+				</Card.Body>
 				{ this.props.id && this.props.feedback ? <FeedbackButtons
 					vertical
 					id={this.props.id+'_feedback'}
 				/> : null }
-			</Panel>
+			</Card>
 		);
 	}
 }

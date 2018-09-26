@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import Grid from 'react-bootstrap/lib/Grid';
+import Container from 'react-bootstrap/lib/Container';
 import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
 import chunkify from 'compute-chunkify';
@@ -25,7 +25,7 @@ class GridLayout extends Component {
 			}
 		}
 		return (
-			<Grid>
+			<Container>
 				{chunks.map( ( chunk, id ) => {
 					return (
 						<Row key={`row${id}`} >
@@ -33,7 +33,7 @@ class GridLayout extends Component {
 						</Row>
 					);
 				})}
-			</Grid>
+			</Container>
 		);
 	}
 }

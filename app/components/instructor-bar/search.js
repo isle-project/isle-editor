@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/lib/Button';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
-import Checkbox from 'react-bootstrap/lib/Checkbox';
+import Form from 'react-bootstrap/lib/Form';
 
 
 // MAIN //
@@ -39,14 +39,14 @@ class Search extends Component {
 		return (
 			<Fragment>
 				<FormGroup style={{ float: 'left', width: '300px' }} >
-					<InputGroup bsSize="small" >
+					<InputGroup size="small" >
 						<FormControl
-							bsSize="small"
+							size="small"
 							type="text"
 							placeholder="Enter text..."
 							onChange={this.handleSearch}
 						/>
-						<InputGroup.Button bsSize="small">
+						<InputGroup.Button size="small">
 							<Button
 								onClick={this.handleSubmit}
 							>
@@ -56,10 +56,10 @@ class Search extends Component {
 					</InputGroup>
 				</FormGroup>
 				<FormGroup style={{ float: 'left', margin: '4px' }} >
-					<Checkbox bsSize="small" inline onChange={this.props.onExact}>Whole Word</Checkbox>
-					<Checkbox bsSize="small" inline >Case-sensitive</Checkbox>
+					<Form.Check type="checkbox" size="small" inline onChange={this.props.onExact}>Whole Word</Form.Check >
+					<Form.Check type="checkbox" size="small" inline >Case-sensitive</Form.Check >
 				</FormGroup>
-				<Button style={{ float: 'left' }} bsSize="small" onClick={this.handleReset} >
+				<Button style={{ float: 'left' }} size="small" onClick={this.handleReset} >
 					Reset
 				</Button>
 			</Fragment>

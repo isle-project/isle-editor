@@ -1,4 +1,8 @@
 {
+  "undefined": {
+    "props": [],
+    "description": "Description is missing."
+  },
   "BeaconTooltip": {
     "props": [
       {
@@ -44,10 +48,6 @@
       }
     ],
     "description": "Component placeing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed."
-  },
-  "undefined": {
-    "props": [],
-    "description": "Description is missing."
   },
   "ColorPicker": {
     "props": [
@@ -103,6 +103,17 @@
       }
     ],
     "description": "A wrapper for the [react-color](https://casesandberg.github.io/react-color/) colorpicker."
+  },
+  "Container": {
+    "props": [
+      {
+        "name": "fluid",
+        "type": "boolean",
+        "description": "turn any fixed-width Ccntainer layout into a full-width layout",
+        "default": false
+      }
+    ],
+    "description": "Container wrapper."
   },
   "DensityPlot": {
     "props": [
@@ -209,7 +220,7 @@
       {
         "name": "title",
         "type": "(string|node)",
-        "description": "panel title",
+        "description": "card title",
         "default": ""
       }
     ],
@@ -714,17 +725,6 @@
       }
     ],
     "description": "An ISLE component that allows to display its children only to reserved audiences."
-  },
-  "Grid": {
-    "props": [
-      {
-        "name": "fluid",
-        "type": "boolean",
-        "description": "turn any fixed-width grid layout into a full-width layout",
-        "default": false
-      }
-    ],
-    "description": "Grid wrapper."
   },
   "IFrame": {
     "props": [
@@ -2002,7 +2002,7 @@
         "default": ""
       },
       {
-        "name": "bsSize",
+        "name": "size",
         "type": "string",
         "description": "size of the pagination buttons (one of `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`)",
         "default": "default"
@@ -2042,7 +2042,7 @@
         "default": null
       }
     ],
-    "description": "Panel component."
+    "description": "Card component."
   },
   "Playground": {
     "props": [
@@ -2777,12 +2777,6 @@
         "type": "number",
         "description": "size of the brush to paint with",
         "default": 6
-      },
-      {
-        "name": "bsSize",
-        "type": "string",
-        "description": "button sizes",
-        "default": "small"
       },
       {
         "name": "color",

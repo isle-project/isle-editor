@@ -2,7 +2,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Form from 'react-bootstrap/lib/Form';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import logger from 'debug';
@@ -183,7 +182,7 @@ class SelectInput extends Input {
 			<Form style={{ ...style }} >
 				<FormGroup controlId="form-controls-select">
 					{ this.props.legend ?
-						<ControlLabel>{this.props.legend}</ControlLabel> :
+						<label>{this.props.legend}</label> :
 						null
 					}
 					<Select

@@ -3,6 +3,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import TurndownService from 'turndown';
+import Table from 'react-bootstrap/lib/Table';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import isNumber from '@stdlib/assert/is-number';
@@ -45,7 +46,7 @@ const makeDraggable = ( div, asMarkdown = true ) => {
 };
 
 const renderIQRTable = ( e, idx, clearOutput ) => {
-	const table = <table className="table table-condensed">
+	const table = <Table bordered size="sm">
 		<tbody>
 			<tr>
 				<th>Variable</th>
@@ -60,7 +61,7 @@ const renderIQRTable = ( e, idx, clearOutput ) => {
 				<td>{e.result.size}</td>
 			</tr>
 		</tbody>
-	</table>;
+	</Table>;
 	return ( <pre key={idx}>
 		<ClearButton onClick={() => { clearOutput( idx ); }} />
 		{makeDraggable( table )}
@@ -68,7 +69,7 @@ const renderIQRTable = ( e, idx, clearOutput ) => {
 };
 
 const renderRangeTable = ( e, idx, clearOutput ) => {
-	const table = <table className="table table-condensed">
+	const table = <Table bordered size="sm">
 		<tbody>
 			<tr>
 				<th>Variable</th>
@@ -82,7 +83,7 @@ const renderRangeTable = ( e, idx, clearOutput ) => {
 				<td>{e.result.size}</td>
 			</tr>
 		</tbody>
-	</table>;
+	</Table>;
 	return ( <pre key={idx}>
 		<ClearButton onClick={() => { clearOutput( idx ); }} />
 		{makeDraggable( table )}
@@ -108,8 +109,9 @@ const OutputPanel = ( output, clearOutput ) => {
 						<ClearButton onClick={() => { clearOutput( idx ); }} />
 						<div style={{
 							height: 300,
+							marinTop: 0,
 							marginBottom: 40,
-							marginRight: 20
+							marginRight: 25
 						}} >
 							{e.value}
 						</div>
@@ -130,7 +132,7 @@ const OutputPanel = ( output, clearOutput ) => {
 				}
 				else if ( isNumber( e.result.value ) && e.result.size ) {
 					const { value, size } = e.result;
-					const table = <table className="table table-condensed">
+					const table = <Table bordered size="sm">
 						<tbody>
 							<tr>
 								<th>Variable</th>
@@ -143,7 +145,7 @@ const OutputPanel = ( output, clearOutput ) => {
 								<td>{size}</td>
 							</tr>
 						</tbody>
-					</table>;
+					</Table>;
 					const elem = <pre key={idx} >
 						<ClearButton onClick={() => { clearOutput( idx ); }} />
 						{makeDraggable( table )}
@@ -158,7 +160,7 @@ const OutputPanel = ( output, clearOutput ) => {
 				else if ( isObject( e.result ) ) {
 					let elem = <pre key={idx} >
 						<ClearButton onClick={() => { clearOutput( idx ); }} />
-							<table className="table table-condensed">
+							<Table bordered size="sm">
 								<tbody>
 									{ e.type === 'Range' ?
 										<tr>
@@ -210,7 +212,7 @@ const OutputPanel = ( output, clearOutput ) => {
 										);
 									})}
 								</tbody>
-							</table>
+							</Table>
 						</pre>;
 					return makeDraggable( elem );
 				}

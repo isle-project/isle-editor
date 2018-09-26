@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
@@ -248,8 +248,8 @@ class MultipleChoiceQuestion extends Component {
 		}
 
 		return (
-			<Panel className="multiple-choice-question-container" style={{ ...this.props.style }} >
-				<Panel.Body style={bodyStyle} >
+			<Card className="multiple-choice-question-container" style={{ ...this.props.style }} >
+				<Card.Body style={bodyStyle} >
 					<Question
 						content={question}
 						task={allowMultipleAnswers ? 'Choose all that apply' : 'Select an answer'}
@@ -262,8 +262,8 @@ class MultipleChoiceQuestion extends Component {
 					</ListGroup>
 					<div className="multiple-choice-question-toolbar">
 						<Button
-							bsSize="small"
-							bsStyle="success"
+							size="small"
+							variant="success"
 							onClick={this.submitQuestion}
 							disabled={disabled}
 							block
@@ -280,12 +280,12 @@ class MultipleChoiceQuestion extends Component {
 						}
 					</div>
 					{id ? <InstructorBar buttonLabel="Answers" id={id} dataType="factor" /> : null }
-				</Panel.Body>
+				</Card.Body>
 				{ this.props.id && this.props.feedback ? <FeedbackButtons
 					vertical
 					id={this.props.id+'_feedback'}
 				/> : null }
-			</Panel>
+			</Card>
 		);
 	}
 }

@@ -3,12 +3,10 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
-import Form from 'react-bootstrap/lib/Form';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Modal from 'react-bootstrap/lib/Modal';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import FormData from 'form-data';
 import https from 'https';
 import http from 'http';
@@ -263,7 +261,7 @@ class UploadLesson extends Component {
 					</Modal.Body>
 					<Modal.Footer>
 						<Button onClick={this.closeConfirmModal}>Cancel</Button>
-						<Button bsStyle="warning" onClick={() => {
+						<Button variant="warning" onClick={() => {
 							this.publishLesson();
 							this.setState({
 								showConfirmModal: false
@@ -278,16 +276,14 @@ class UploadLesson extends Component {
 	renderProgress() {
 		return ( <Fragment>
 			<Spinner width={128} height={64} running={this.state.spinning} />
-			{ this.state.error ? <Panel bsStyle="danger">
-				<Panel.Heading>
-					<Panel.Title componentClass="h3">
-						Error encountered
-					</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body>
+			{ this.state.error ? <Card bg="danger" text="white" >
+				<Card.Header as="h5">
+					Error encountered
+				</Card.Header>
+				<Card.Body>
 					<p>{this.state.error.message}</p>
-				</Panel.Body>
-			</Panel> : null }
+				</Card.Body>
+			</Card> : null }
 		</Fragment>);
 	}
 
@@ -296,11 +292,11 @@ class UploadLesson extends Component {
 		if ( this.state.namespaces.length > 0 ) {
 			formGroups = <Fragment>
 				<FormGroup>
-					<ControlLabel>Select Course</ControlLabel>
+					<label>Select Course</label>
 					<FormControl
 						name="namespaceName"
 						onChange={this.handleSelectChange}
-						componentClass="select"
+						as="select"
 						value={this.props.namespaceName}
 						disabled={this.state.spinning}
 					>
@@ -310,7 +306,7 @@ class UploadLesson extends Component {
 					</FormControl>
 				</FormGroup>
 				<FormGroup>
-					<ControlLabel>Lesson name</ControlLabel>
+					<label>Lesson name</label>
 					<FormControl
 						name="lessonName"
 						type="text"
@@ -321,7 +317,7 @@ class UploadLesson extends Component {
 					/>
 				</FormGroup>
 				<FormGroup>
-					<ControlLabel>Settings</ControlLabel>
+					<label>Settings</label>
 					<CheckboxInput
 						legend="Minify code"
 						onChange={( value ) => {
@@ -335,49 +331,41 @@ class UploadLesson extends Component {
 				</FormGroup>
 			</Fragment>;
 		} else {
-			formGroups = <Panel bsStyle="danger">
-				<Panel.Heading>
-					<Panel.Title componentClass="h3">
-						No courses found
-					</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body>
+			formGroups = <Card bg="danger" text="white">
+				<Card.Header as="h5">
+					No courses found
+				</Card.Header>
+				<Card.Body>
 					Please create a course on the ISLE dashboard or request to be added as an owner to an existing course.
-				</Panel.Body>
-			</Panel>;
+				</Card.Body>
+			</Card>;
 		}
 		return (
-			<Panel bsStyle="primary">
-				<Panel.Heading>
-					<Panel.Title componentClass="h1">
-						Upload Lesson
-					</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body>
+			<Card border="primary">
+				<Card.Header as="h5">
+					Upload Lesson
+				</Card.Header>
+				<Card.Body>
 					<p>Upload and deploy lessons directly to ISLE server.</p>
 					{ this.state.token ?
 						<Fragment>
-							<Form>
-								{formGroups}
-								<Button
-									bsStyle="success"
-									bsSize="sm"
-									block
-									onClick={this.checkLesson}
-									disabled={this.state.spinning || !this.state.token || !this.state.lessonName}
-								>Upload</Button>
-							</Form>
+							{formGroups}
+							<Button
+								variant="success"
+								size="sm"
+								block
+								onClick={this.checkLesson}
+								disabled={this.state.spinning || !this.state.token || !this.state.lessonName}
+							>Upload</Button>
 							<br />
 							{this.renderProgress()}
 						</Fragment>:
-						<Panel bsStyle="warning">
-							<Panel.Body>
+						<Card bg="warning" body >
 							You need to connect the ISLE editor to an ISLE server under settings before you can upload lessons.
-							</Panel.Body>
-						</Panel>
+						</Card>
 					}
-				</Panel.Body>
-			</Panel>
+				</Card.Body>
+			</Card>
 		);
 	}
 

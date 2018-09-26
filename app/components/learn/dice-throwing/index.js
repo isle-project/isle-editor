@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Col from 'react-bootstrap/lib/Col';
-import Grid from 'react-bootstrap/lib/Grid';
-import Panel from 'react-bootstrap/lib/Panel';
+import Container from 'react-bootstrap/lib/Container';
+import Card from 'react-bootstrap/lib/Card';
 import inmap from '@stdlib/utils/inmap';
 import roundn from '@stdlib/math/base/special/roundn';
 import sample from '@stdlib/random/sample';
@@ -64,7 +64,7 @@ class DiceThrowing extends Component {
 
 	renderGrid() {
 		return (
-			<Grid fluid={true}>
+			<Container fluid={true}>
 				<Col md={5}>
 					<h3>Probabilities:</h3>
 					{inmap( this.state.sides, ( x, i ) => ( <NumberInput
@@ -107,20 +107,20 @@ class DiceThrowing extends Component {
 						id="loaded_dice"
 					/>
 				</Col>
-			</Grid>
+			</Container>
 		);
 	}
 
 	renderDice() {
 		if ( !this.state.valid ) {
-			return ( <Panel><Panel.Body>
+			return ( <Card body>
 				<h3>Please make sure that all probabilities add up to one</h3>
-			</Panel.Body></Panel> );
+			</Card> );
 		}
-		return ( <Panel fluid={true}>
-			<Panel.Heading>Dice</Panel.Heading>
-			<Panel.Body>
-				<Panel><Panel.Body>{ this.state.draw ? this.state.draw.join( ' - ' ) : 'X' }</Panel.Body></Panel>
+		return ( <Card fluid={true}>
+			<Card.Header>Dice</Card.Header>
+			<Card.Body>
+				<Card body>{ this.state.draw ? this.state.draw.join( ' - ' ) : 'X' }</Card>
 				<ButtonGroup>
 					<Button onClick={() => {
 						this.throwDice( 1 );
@@ -132,8 +132,8 @@ class DiceThrowing extends Component {
 						this.throwDice( 10 );
 					}}>Throw ⚅ 10x</Button>
 				</ButtonGroup>
-			</Panel.Body>
-		</Panel> );
+			</Card.Body>
+		</Card> );
 	}
 
 	renderTable() {
@@ -159,11 +159,11 @@ class DiceThrowing extends Component {
 
 	render() {
 		return (
-			<Panel id="diceThrowingModule">
-				<Panel.Heading>
-					<Panel.Title componentClass="h4">Simulate Random Dice Throws</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body>
+			<Card id="diceThrowingModule">
+				<Card.Header as="h4">
+					Simulate Random Dice Throws
+				</Card.Header>
+				<Card.Body>
 					<NumberInput
 						legend="Number of Sides"
 						defaultValue={6}
@@ -176,8 +176,8 @@ class DiceThrowing extends Component {
 						{this.renderGrid()}
 						{this.renderTable()}
 					<p>Total number of throws: {this.state.nThrows}</p>
-				</Panel.Body>
-			</Panel>
+				</Card.Body>
+			</Card>
 		);
 	}
 }

@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import Grid from 'react-bootstrap/lib/Grid';
+import Container from 'react-bootstrap/lib/Container';
 import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
 import { Link } from 'react-router-dom';
@@ -25,7 +25,7 @@ class ExportPage extends Component {
 				>Back to Editor</Link>
 				<br />
 				<br />
-				<Grid>
+				<Container>
 					<Row>
 						<Col md={4} >
 							<UploadLesson {...this.props} />
@@ -37,7 +37,7 @@ class ExportPage extends Component {
 							<ExportLesson {...this.props} />
 						</Col>
 					</Row>
-				</Grid>
+				</Container>
 			</div>
 		);
 	}

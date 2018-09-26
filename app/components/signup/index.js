@@ -6,11 +6,9 @@ import logger from 'debug';
 import pick from '@stdlib/utils/pick';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Form from 'react-bootstrap/lib/Form';
-import HelpBlock from 'react-bootstrap/lib/HelpBlock';
 import Modal from 'react-bootstrap/lib/Modal';
 import Overlay from 'react-bootstrap/lib/Overlay';
 import Popover from 'react-bootstrap/lib/Popover';
@@ -108,16 +106,11 @@ class Signup extends Component {
 
 	render() {
 		return (
-			<Modal show={this.props.show} style={{
-				position: 'fixed',
-				top: '5%',
-				height: 'auto',
-				left: 0,
-				right: 0,
-				margin: 'auto'
-			}}>
+			<Modal show={this.props.show}
+				dialogClassName="modal-75w"
+			>
 				<Modal.Header>
-					<Modal.Title>Create User</Modal.Title>
+					<Modal.Title as="h5">Create User</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<p>Please fill in the required information to set up an ISLE user account.
@@ -129,8 +122,8 @@ class Signup extends Component {
 								controlId="formHorizontalEmail"
 								validationState={this.getEmailValidationState()}
 							>
-								<Col componentClass={ControlLabel} sm={2}>
-									Email
+								<Col sm={2}>
+									<label>Email</label>
 								</Col>
 								<Col sm={10}>
 									<FormControl
@@ -140,7 +133,7 @@ class Signup extends Component {
 										onChange={this.handleInputChange}
 									/>
 									<FormControl.Feedback />
-									<HelpBlock>Please enter your university email address.</HelpBlock>
+									<small className="form-text text-muted" >Please enter your university email address.</small>
 								</Col>
 							</FormGroup>
 						</Tooltip>
@@ -149,8 +142,8 @@ class Signup extends Component {
 								controlId="signup-form-name"
 								validationState={this.getNameValidationState()}
 							>
-								<Col componentClass={ControlLabel} sm={2}>
-									Name
+								<Col sm={2}>
+									<label>Name</label>
 								</Col>
 								<Col sm={10}>
 									<FormControl
@@ -160,7 +153,7 @@ class Signup extends Component {
 										onChange={this.handleInputChange}
 									/>
 									<FormControl.Feedback />
-									<HelpBlock>Please enter your name.</HelpBlock>
+									<small className="form-text text-muted" >Please enter your name.</small>
 								</Col>
 							</FormGroup>
 						</Tooltip>
@@ -169,8 +162,8 @@ class Signup extends Component {
 								controlId="signup-form-password"
 								validationState={this.getPasswordValidationState()}
 							>
-								<Col componentClass={ControlLabel} sm={2}>
-									Password
+								<Col sm={2}>
+									<label>Password</label>
 								</Col>
 								<Col sm={10}>
 									<FormControl
@@ -189,8 +182,7 @@ class Signup extends Component {
 							controlId="signup-form-password-confirmation"
 							validationState={this.getPasswordValidationState()}
 						>
-							<Col componentClass={ControlLabel} sm={2}>
-							</Col>
+							<Col sm={2}></Col>
 							<Col sm={10}>
 								<FormControl
 									name="passwordRepeat"
@@ -217,7 +209,7 @@ class Signup extends Component {
 				</Modal.Body>
 				<Modal.Footer>
 					<Button
-						bsStyle="primary"
+						variant="primary"
 						className="centered"
 						type="submit"
 						onClick={this.handleSubmit}

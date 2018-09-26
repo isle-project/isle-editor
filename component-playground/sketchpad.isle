@@ -29,7 +29,6 @@ server: https://isle.heinz.cmu.edu
 * __hideSaveButtons__ | `boolean`: controls whether to hide the save buttons. Default: `false`.
 * __hideTransmitButtons__ | `boolean`: controls whether to hide buttons for transmitting user actions. Default: `false`.
 * __brushSize__ | `number`: size of the brush to paint with. Default: `6`.
-* __bsSize__ | `string`: button sizes. Default: `'small'`.
 * __color__ | `string`: color of the brush and texts. Default: `'#444444'`.
 * __canvasWidth__ | `number`: width of the canvas element (in px). Default: `1200`.
 * __canvasHeight__ | `number`: height of the canvas element (in px). Default: `700`.

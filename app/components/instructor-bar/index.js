@@ -235,7 +235,7 @@ class InstructorBar extends Component {
 			<Modal.Footer>
 				<Button onClick={this.closeDeleteModal}>Cancel</Button>
 				<Button
-					bsStyle="warning"
+					variant="warning"
 					onClick={this.deleteSelectedAction}
 				>
 					Delete
@@ -262,7 +262,7 @@ class InstructorBar extends Component {
 
 	render() {
 		if ( !this.props.id ) {
-			return <Gate owner><label>No ID supplied.</label></Gate>;
+			return <Gate owner><label style={{ marginLeft: 5 }}>No ID supplied.</label></Gate>;
 		}
 		return (
 			<Gate owner>
@@ -271,13 +271,14 @@ class InstructorBar extends Component {
 					<span style={{ marginLeft: '5px' }}>{this.props.id}</span>
 				</div> : null }
 				{this.renderFullscreenModal()}
-				<ButtonGroup bsSize="small" >
+				<ButtonGroup size="small" >
 					<Button
 						onClick={this.toggleActions}
 						style={{ ...this.props.buttonStyle }}
+						variant="light"
 					>
 						<span style={{ marginRight: '5px' }} >{this.props.buttonLabel}</span>
-						<Badge style={{ fontSize: '10px' }}>{this.state.nActions}</Badge>
+						<Badge variant="dark" style={{ fontSize: '10px' }}>{this.state.nActions}</Badge>
 					</Button>
 				</ButtonGroup>
 				{this.renderDeleteModal()}

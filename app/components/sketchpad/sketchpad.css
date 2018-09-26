@@ -23,17 +23,14 @@
 }
 
 .sketch-button-group {
-	margin-top: 1px;
 	margin-left: 5px;
 }
 
 .sketch-drawing-buttons {
-	margin-top: 5px;
 	margin-left: 5px;
 }
 
 .sketch-text-buttons {
-	margin-top: 5px;
 	margin-left: 5px;
 }
 
@@ -41,11 +38,6 @@
 	cursor: default;
 	margin-left: 5px;
 	margin-top: 1px;
-}
-
-.sketch-input-group {
-	width: 100px;
-	display: inline-table;
 }
 
 .sketch-text-input {

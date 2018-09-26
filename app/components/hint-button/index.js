@@ -90,8 +90,8 @@ class HintButton extends Component {
 				overlay={displayHint( this.state.currentHint - 1, this.props.hints )}
 			>
 				<Button
-					bsStyle="success"
-					bsSize="sm"
+					variant="success"
+					size="sm"
 					onClick={this.handleHintClick}
 					disabled={this.props.disabled}
 				>{label}</Button>

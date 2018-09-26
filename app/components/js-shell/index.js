@@ -41,8 +41,8 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 			>
 				<span style={{ display: 'inline-block', marginLeft: '4px' }}>
 					<Button
-						bsStyle="warning"
-						bsSize="sm"
+						variant="warning"
+						size="sm"
 						disabled
 						style={{
 							pointerEvents: 'none'
@@ -54,8 +54,8 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 	}
 	return (
 		<Button
-			bsStyle="warning"
-			bsSize="sm"
+			variant="warning"
+			size="sm"
 			onClick={clickHandler}
 		>{ !displayed ? 'Show Solution' : 'Hide Solution' }</Button>
 	);
@@ -383,8 +383,8 @@ class JSShell extends Component {
 					<div className="toolbar">
 						{ !this.props.disabled ?
 							<Button
-								bsStyle="primary"
-								bsSize="sm"
+								variant="primary"
+								size="sm"
 								style={{
 									marginTop: '8px',
 									marginBottom: '8px'

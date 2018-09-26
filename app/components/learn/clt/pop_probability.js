@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import TeX from 'components/tex';
 import NumberInput from 'components/input/number';
 import pexp from '@stdlib/stats/base/dists/exponential/cdf';
@@ -67,22 +67,20 @@ class ProbMean extends Component {
 
 	render() {
 		return (
-			<Panel>
-				<Panel.Body>
-					<NumberInput
-						step="any"
-						legend={<TeX raw="x" />}
-						onChange={( value ) => {
-							const newState = generatePopProbs( value, this.props );
-							this.setState( newState );
-						}}
-					/>
-					<TeX raw={`P( X < ${this.state.popCutoff} ) = ${this.state.popLeftProb.toFixed( 3 )}`} />
-					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					<TeX raw={`P( X \\ge ${this.state.popCutoff} ) = ${this.state.popRightProb.toFixed( 3 )}`}
-					/>
-				</Panel.Body>
-			</Panel>
+			<Card body>
+				<NumberInput
+					step="any"
+					legend={<TeX raw="x" />}
+					onChange={( value ) => {
+						const newState = generatePopProbs( value, this.props );
+						this.setState( newState );
+					}}
+				/>
+				<TeX raw={`P( X < ${this.state.popCutoff} ) = ${this.state.popLeftProb.toFixed( 3 )}`} />
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<TeX raw={`P( X \\ge ${this.state.popCutoff} ) = ${this.state.popRightProb.toFixed( 3 )}`}
+				/>
+			</Card>
 		);
 	}
 }

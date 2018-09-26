@@ -3,11 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Col from 'react-bootstrap/lib/Col';
-import Panel from 'react-bootstrap/lib/Panel';
-import Well from 'react-bootstrap/lib/Well';
+import Card from 'react-bootstrap/lib/Card';
 import logger from 'debug';
 import Gate from 'components/gate';
 import { CheckboxInput, SelectInput, TextInput } from 'components/input';
@@ -141,76 +139,74 @@ class MCSgenerator extends Component {
 	}
 
 	render() {
-		return ( <Panel>
-			<Panel.Body>
-				<Gate owner {...this.props} >
-					<Well style={{
-						maxWidth: '800px',
-						border: 'solid 2px rgb(186, 204, 234)'
-					}}>
-						<h3>Survey Generator</h3>
+		return ( <Card body>
+			<Gate owner {...this.props} >
+				<Card body className="bg-light" style={{
+					maxWidth: '800px',
+					border: 'solid 2px rgb(186, 204, 234)'
+				}}>
+					<Card.Title>Survey Generator</Card.Title>
+					<FormGroup>
+						<Col md={3}><label>Question Type:</label></Col>
+						<Col md={9}>
+							<SelectInput options={[ 'multiple-choice', 'number', 'free-text' ]} onChange={this.setType} />
+						</Col>
+					</FormGroup>
+					<TextInput
+						legend="Question"
+						ref={( questionDIV ) => { this.questionDIV = questionDIV; }}onChange={this.setQuestion}
+						width={400}
+					/>
+					{ this.state.type === 'multiple-choice' ?
 						<FormGroup>
-							<Col componentClass={ControlLabel} md={3}>Question Type:</Col>
-							<Col md={9}>
-								<SelectInput options={[ 'multiple-choice', 'number', 'free-text' ]} onChange={this.setType} />
-							</Col>
-						</FormGroup>
-						<TextInput
-							legend="Question"
-							ref={( questionDIV ) => { this.questionDIV = questionDIV; }}onChange={this.setQuestion}
-							width={400}
-						/>
-						{ this.state.type === 'multiple-choice' ?
-							<FormGroup>
-								<TextArea legend="Answer Options (new-line delimited)" onChange={this.getAnswers} />
-							</FormGroup> : null
-						}
-						<CheckboxInput
-							legend="Make the survey anonymous"
-							defaultValue={true}
-							onChange={this.toggleAnonymous}
-						/>
-						<Button
-							disabled={this.state.disabled && !this.state.showSurvey}
-							onClick={this.startSurvey}
-						>
-							{ !this.state.showSurvey ? 'Start Survey' : 'Stop Survey' }
-						</Button>
-					</Well>
-				</Gate>
-				{ this.state.showSurvey ?
-					<div>
-						{ this.state.type === 'multiple-choice' ?
-							<MultipleChoiceSurvey
-								user
-								question={this.state.question}
-								answers={this.state.answers}
-								id={this.props.id+':question'}
-								anonymous={this.state.anonymous}
-							/> : null
-						}
-						{ this.state.type === 'number' ?
-							<NumberSurvey
-								user
-								question={this.state.question}
-								id={this.props.id+':question'}
-								anonymous={this.state.anonymous}
-							/> : null
-						}
-						{ this.state.type === 'free-text' ?
-							<FreeTextSurvey
-								user
-								question={this.state.question}
-								answers={this.state.answers}
-								id={this.props.id+':question'}
-								anonymous={this.state.anonymous}
-							/> : null
-						}
-						<label>Data is { !this.state.anonymous ? 'not' : '' }collected anonymously.</label>
-					</div> : <h3>The survey has not been started yet.</h3>
-				}
-			</Panel.Body>
-		</Panel> );
+							<TextArea legend="Answer Options (new-line delimited)" onChange={this.getAnswers} />
+						</FormGroup> : null
+					}
+					<CheckboxInput
+						legend="Make the survey anonymous"
+						defaultValue={true}
+						onChange={this.toggleAnonymous}
+					/>
+					<Button
+						disabled={this.state.disabled && !this.state.showSurvey}
+						onClick={this.startSurvey}
+					>
+						{ !this.state.showSurvey ? 'Start Survey' : 'Stop Survey' }
+					</Button>
+				</Card>
+			</Gate>
+			{ this.state.showSurvey ?
+				<div>
+					{ this.state.type === 'multiple-choice' ?
+						<MultipleChoiceSurvey
+							user
+							question={this.state.question}
+							answers={this.state.answers}
+							id={this.props.id+':question'}
+							anonymous={this.state.anonymous}
+						/> : null
+					}
+					{ this.state.type === 'number' ?
+						<NumberSurvey
+							user
+							question={this.state.question}
+							id={this.props.id+':question'}
+							anonymous={this.state.anonymous}
+						/> : null
+					}
+					{ this.state.type === 'free-text' ?
+						<FreeTextSurvey
+							user
+							question={this.state.question}
+							answers={this.state.answers}
+							id={this.props.id+':question'}
+							anonymous={this.state.anonymous}
+						/> : null
+					}
+					<label>Data is { !this.state.anonymous ? 'not' : '' }collected anonymously.</label>
+				</div> : <h3>The survey has not been started yet.</h3>
+			}
+		</Card> );
 	}
 }
 

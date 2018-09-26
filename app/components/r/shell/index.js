@@ -78,8 +78,8 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 			>
 				<span style={{ display: 'inline-block', marginLeft: '4px' }}>
 					<Button
-						bsStyle="warning"
-						bsSize="sm"
+						variant="warning"
+						size="sm"
 						disabled
 						style={{
 							pointerEvents: 'none'
@@ -91,8 +91,8 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 	}
 	return (
 		<Button
-			bsStyle="warning"
-			bsSize="sm"
+			variant="warning"
+			size="sm"
 			onClick={clickHandler}
 		>{ !displayed ? 'Show Solution' : 'Hide Solution' }</Button>
 	);
@@ -115,8 +115,8 @@ const showResetButton = ( clickHandler ) => {
 		>
 			<span style={{ display: 'inline-block', marginLeft: '4px' }}>
 				<Button
-					bsStyle="warning"
-					bsSize="sm"
+					variant="warning"
+					size="sm"
 					onClick={clickHandler}
 				>Reset</Button>
 			</span>
@@ -486,8 +486,8 @@ class RShell extends React.Component {
 				<div className="rshell-editor" ref={( div ) => { this.editorDiv = div; }}></div>
 				{ !this.props.disabled ?
 					<Button
-						bsStyle="primary"
-						bsSize="sm"
+						variant="primary"
+						size="sm"
 						style={{
 							marginTop: '8px',
 							marginBottom: '8px'

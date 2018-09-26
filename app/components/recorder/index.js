@@ -477,7 +477,7 @@ class Recorder extends Component {
 				{ !this.state.finished && isAvailable ?
 					<ToggleButtonGroup
 						className="recorder-buttongroup"
-						bsSize="xsmall" type="checkbox"
+						size="sm" type="checkbox"
 						value={this.state.selectedSources}
 						onChange={this.handleSourceChange}
 					>
@@ -495,13 +495,13 @@ class Recorder extends Component {
 				</button> : null }
 				{ this.state.finished ?
 					<ButtonGroup>
-						<Button onClick={this.clearFile} bsStyle="warning">Clear File</Button>
+						<Button onClick={this.clearFile} variant="warning">Clear File</Button>
 						{ this.props.downloadable ?
-							<Button onClick={this.storeFile} bsStyle="primary">Download File</Button> :
+							<Button onClick={this.storeFile} variant="primary">Download File</Button> :
 							null
 						}
 						{ this.props.uploadable ?
-							<Button onClick={this.uploadFile} disabled={this.state.uploaded} bsStyle="primary">Upload File</Button> :
+							<Button onClick={this.uploadFile} disabled={this.state.uploaded} variant="primary">Upload File</Button> :
 							null
 						}
 					</ButtonGroup> :

@@ -3,10 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Panel from 'react-bootstrap/lib/Panel';
-import PanelGroup from 'react-bootstrap/lib/PanelGroup';
+import Card from 'react-bootstrap/lib/Card';
 import max from '@stdlib/math/base/special/max';
 import isElectron from 'utils/is-electron';
+import Accordion from 'components/accordion';
 import ActionLog from 'components/statusbar/action-log';
 import InstructorNotes from 'components/statusbar/instructor-notes';
 import animatePosition from 'utils/animate-position';
@@ -81,32 +81,32 @@ class InstructorView extends Component {
 		if ( this.state.hidden ) {
 			return null;
 		}
-		return ( <PanelGroup accordion >
-			<Panel eventKey="1">
-				<Panel.Heading>
-					<Panel.Title toggle>Active Users</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body collapsible>
+		return ( <Accordion>
+			<Card eventKey="1">
+				<Card.Header>
+					<Card.Title toggle>Active Users</Card.Title>
+				</Card.Header>
+				<Card.Body collapsible>
 					<UserList session={session} />
-				</Panel.Body>
-			</Panel>
-			<Panel eventKey="2">
+				</Card.Body>
+			</Card>
+			<Card eventKey="2">
 				<ActionLog />
-			</Panel>
-			<Panel eventKey="3">
-				<Panel.Heading>
-					<Panel.Title toggle>
+			</Card>
+			<Card eventKey="3">
+				<Card.Header>
+					<Card.Title toggle>
 						<span>Instructor Notes</span>
-					</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body className='panel-body panel-notes' collapsible >
+					</Card.Title>
+				</Card.Header>
+				<Card.Body className='card-body panel-notes' collapsible >
 					<InstructorNotes
 						id={session.lessonID+'instructor_notebook'}
 						className="instructor_notebook"
 					/>
-				</Panel.Body>
-			</Panel>
-		</PanelGroup> );
+				</Card.Body>
+			</Card>
+		</Accordion> );
 	}
 
 	render() {

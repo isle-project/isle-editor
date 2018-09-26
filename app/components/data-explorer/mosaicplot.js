@@ -79,7 +79,8 @@ class MosaicPlot extends Component {
 				id={plotId}
 				libraries={[ 'MASS' ]}
 				onDone={this.props.onPlotDone}
-				height={300}
+				width="90%"
+				height="auto"
 				onShare={() => {
 					this.props.session.addNotification({
 						title: 'Plot shared.',

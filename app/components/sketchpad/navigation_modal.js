@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import Nav from 'react-bootstrap/lib/Nav';
-import NavItem from 'react-bootstrap/lib/NavItem';
 import Modal from 'react-bootstrap/lib/Modal';
 import PropTypes from 'prop-types';
 import incrspace from '@stdlib/math/utils/incrspace';
@@ -14,16 +13,40 @@ import min from '@stdlib/math/base/special/min';
 // MAIN //
 
 class NavigationModal extends Component {
+	constructor( props) {
+		super( props );
+
+		this.state = {
+			active: null
+		};
+	}
+
+	hoverOn = ( event ) => {
+		const page = event.target.getAttribute( 'data-rb-event-key' );
+		this.setState({
+			active: Number( page )
+		});
+	}
+
+	hoverOff = () => {
+		this.setState({
+			active: null
+		});
+	}
+
 	render() {
-		let bsSize;
+		let dialogClassName;
 		if ( this.props.noPages > 120 ) {
-			bsSize = 'lg';
+			dialogClassName = 'modal-90w';
+		}
+		else if ( this.props.noPages > 65 ) {
+			dialogClassName = 'modal-75w';
 		}
 		else if ( this.props.noPages > 50 ) {
-			bsSize = 'large';
+			dialogClassName = 'modal-60w';
 		}
 		else {
-			bsSize = 'default';
+			dialogClassName = 'modal-40w';
 		}
 		const perRow = min( ceil( sqrt( this.props.noPages ) ), 13 );
 		const rows = incrspace( 0, ceil( this.props.noPages / perRow ), 1 );
@@ -32,10 +55,10 @@ class NavigationModal extends Component {
 			show={this.props.show}
 			id="sketch-goto-modal"
 			container={this.props.container}
-			bsSize={bsSize}
+			dialogClassName={dialogClassName}
 		>
 			<Modal.Header closeButton>
-				<Modal.Title>Jump to Page:</Modal.Title>
+				<Modal.Title as="h4" >Jump to Page:</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				{rows.map( ( row ) => {
@@ -43,14 +66,25 @@ class NavigationModal extends Component {
 					const cells = incrspace( 0, no, 1 );
 					return (
 						<Nav
-							key={row} justified bsStyle="pills"
+							activeKey={this.state.active}
+							variant="pills"
+							key={row}
+							justify
 							onSelect={this.props.onSelect}
 						>
 							{cells.map( ( e, i ) => {
 								const page = i + perRow*row;
-								return ( <NavItem key={i} eventKey={page}>
-									Page {page+1}
-								</NavItem> );
+								console.log( 'Page: '+page );
+								return (
+								<Nav.Item
+									key={page}
+									onMouseEnter={this.hoverOn}
+									onMouseLeave={this.hoverOff}
+								>
+									<Nav.Link eventKey={page}>
+										Page {page+1}
+									</Nav.Link>
+								</Nav.Item> );
 							})}
 						</Nav>
 					);

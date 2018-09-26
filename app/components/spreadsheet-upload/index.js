@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import parse from 'csv-parse';
 import detect from 'detect-csv';
@@ -14,7 +14,7 @@ import round from '@stdlib/math/base/special/round';
 /**
 * Component allowing students upload a *.csv spreadsheet.
 *
-* @property {string} title - panel title
+* @property {string} title - card title
 * @property {Function} onUpload - callback function called with ( err, output ) after loading of file
 */
 class SpreadsheetUpload extends Component {
@@ -116,11 +116,11 @@ class SpreadsheetUpload extends Component {
 
 	render() {
 		const completed = round( this.state.percentCompleted * 100.0 );
-		return ( <Panel style={{ textAlign: 'center' }} >
-			<Panel.Heading>
-				<Panel.Title componentClass="h2">{this.props.title}</Panel.Title>
-			</Panel.Heading>
-			<Panel.Body>
+		return ( <Card style={{ textAlign: 'center' }} >
+			<Card.Header as="h2">
+				{this.props.title}
+			</Card.Header>
+			<Card.Body>
 				<label>Please upload a data set (CSV format):</label>
 				<input
 					type="file"
@@ -150,8 +150,8 @@ class SpreadsheetUpload extends Component {
 					<ProgressBar now={completed} label={`${completed}%`} /> :
 					null
 				}
-			</Panel.Body>
-		</Panel> );
+			</Card.Body>
+		</Card> );
 	}
 }
 

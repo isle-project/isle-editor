@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import TeX from 'components/tex';
 import NumberInput from 'components/input/number';
 import sqrt from '@stdlib/math/base/special/sqrt';
@@ -78,18 +78,18 @@ class ProbMean extends Component {
 
 	render() {
 		return (
-			<Panel><Panel.Body>
-			<NumberInput
-				step="any"
-				legend={<TeX raw="x" />}
-				onChange={( value ) => {
-					this.updateProb( value, this.props );
-				}}
-			/>
-			<TeX raw={`P( \\bar X < ${this.state.cutoff} ) = ${this.state.leftProb.toFixed( 3 )}`} />
-			<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-			<TeX raw={`P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightProb.toFixed( 3 )}`} />
-		</Panel.Body></Panel>
+			<Card body>
+				<NumberInput
+					step="any"
+					legend={<TeX raw="x" />}
+					onChange={( value ) => {
+						this.updateProb( value, this.props );
+					}}
+				/>
+				<TeX raw={`P( \\bar X < ${this.state.cutoff} ) = ${this.state.leftProb.toFixed( 3 )}`} />
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<TeX raw={`P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightProb.toFixed( 3 )}`} />
+			</Card>
 		);
 	}
 }

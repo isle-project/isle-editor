@@ -2,11 +2,10 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Button from 'react-bootstrap/lib/Button';
-import Radio from 'react-bootstrap/lib/Radio';
-import Panel from 'react-bootstrap/lib/Panel';
+import Form from 'react-bootstrap/lib/Form';
+import Card from 'react-bootstrap/lib/Card';
 import logger from 'debug';
 import sample from '@stdlib/random/sample';
 import isArray from '@stdlib/assert/is-array';
@@ -290,21 +289,21 @@ class Quiz extends Component {
 			return null;
 		}
 		return (
-			<Panel className="center" style={{ width: '75%' }}>
+			<Card className="center" style={{ width: '75%' }}>
 				<FormGroup className="center" >
-					<ControlLabel>Please indicate how confident you are in your answer(s):</ControlLabel>
+					<label>Please indicate how confident you are in your answer(s):</label>
 					<br />
-					<Radio checked={this.state.checked === 'Guessed'} name="radio-group" data-confidence="Guessed" inline onClick={this.handleConfidenceChange}>
+					<Form.Check type="radio" checked={this.state.checked === 'Guessed'} name="radio-group" data-confidence="Guessed" inline onClick={this.handleConfidenceChange}>
 						Guessed
-					</Radio>{' '}
-					<Radio checked={this.state.checked === 'Somewhat sure'} name="radio-group" data-confidence="Somewhat sure" inline onClick={this.handleConfidenceChange}>
+					</Form.Check>{' '}
+					<Form.Check type="radio" checked={this.state.checked === 'Somewhat sure'} name="radio-group" data-confidence="Somewhat sure" inline onClick={this.handleConfidenceChange}>
 						Somewhat sure
-					</Radio>{' '}
-					<Radio checked={this.state.checked === 'Confident'} name="radio-group" data-confidence="Confident" inline onClick={this.handleConfidenceChange}>
+					</Form.Check>{' '}
+					<Form.Check type="radio" checked={this.state.checked === 'Confident'} name="radio-group" data-confidence="Confident" inline onClick={this.handleConfidenceChange}>
 					Confident
-					</Radio>{' '}
+					</Form.Check>{' '}
 				</FormGroup>
-			</Panel>
+			</Card>
 		);
 	}
 
@@ -332,16 +331,14 @@ class Quiz extends Component {
 					/> :
 					null
 				}
-				<Panel>
-					<Panel.Heading>
-						<Panel.Title>
-							{ this.state.finished ?
-								<span>Answer Summary</span> :
-								<span>Question {this.state.counter+1}/{this.props.count}</span>
-							}
-						</Panel.Title>
-					</Panel.Heading>
-					<Panel.Body>
+				<Card>
+					<Card.Header>
+						{ this.state.finished ?
+							<span>Answer Summary</span> :
+							<span>Question {this.state.counter+1}/{this.props.count}</span>
+						}
+					</Card.Header>
+					<Card.Body>
 						{ this.state.finished ?
 							this.renderScoreboard() :
 							<span key={this.state.current}>{this.renderCurrentQuestion()}</span>
@@ -357,8 +354,8 @@ class Quiz extends Component {
 							null
 						}
 						{ !this.state.finished ? this.renderConfidenceSurvey() : null }
-					</Panel.Body>
-				</Panel>
+					</Card.Body>
+				</Card>
 			</Fragment>
 		);
 	}

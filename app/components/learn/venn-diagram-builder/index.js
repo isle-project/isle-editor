@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Grid from 'react-bootstrap/lib/Grid';
+import Container from 'react-bootstrap/lib/Container';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import * as venn from 'venn.js';
 import * as d3 from 'd3';
 import randu from '@stdlib/random/base/randu';
@@ -273,19 +273,19 @@ class VennDiagramBuilder extends Component {
 		}
 		return (
 			<div>
-				<Grid>
+				<Container>
 					<Row>
 						<Col md={4}>
 							{dashboard}
 						</Col>
 						<Col md={8}>
-							<Panel>
+							<Card>
 							{count}
 								<div id={this.state.id}></div>
-							</Panel>
+							</Card>
 						</Col>
 					</Row>
-				</Grid>
+				</Container>
 			</div>
 		);
 	}

@@ -6,18 +6,17 @@ import pdfjs from 'pdfjs-dist/webpack';
 import pdfMake from 'pdfmake-lite/build/pdfmake.min.js';
 import logger from 'debug';
 import Pressure from 'pressure';
-import Panel from 'react-bootstrap/lib/Panel';
-import Checkbox from 'react-bootstrap/lib/Checkbox';
+import Card from 'react-bootstrap/lib/Card';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
-import MenuItem from 'react-bootstrap/lib/MenuItem';
+import DropdownItem from 'react-bootstrap/lib/DropdownItem';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
+import Checkbox from 'components/input/checkbox';
 import isNumber from '@stdlib/assert/is-number';
 import isObject from '@stdlib/assert/is-object';
 import isNull from '@stdlib/assert/is-null';
@@ -69,7 +68,6 @@ const RE_DIGITS = /^[0-9]+$/;
 * @property {boolean} hideSaveButtons - controls whether to hide the save buttons
 * @property {boolean} hideTransmitButtons - controls whether to hide buttons for transmitting user actions
 * @property {number} brushSize - size of the brush to paint with
-* @property {string} bsSize - button sizes
 * @property {string} color - color of the brush and texts
 * @property {number} canvasWidth - width of the canvas element (in px)
 * @property {number} canvasHeight - height of the canvas element (in px)
@@ -372,6 +370,7 @@ class Sketchpad extends Component {
 	}
 
 	componentWillUnmount() {
+		this.saveInBrowser();
 		if ( this.recordingInterval ) {
 			clearInterval( this.recordingInterval );
 		}
@@ -490,12 +489,7 @@ class Sketchpad extends Component {
 		const currentPage = this.state.currentPage;
 
 		debug( `Redrawing page ${currentPage+1}` );
-		const ctx = this.ctx;
-		const canvas = this.canvas;
 		const recordingEndPos = this.recordingEndPositions[ currentPage ];
-		if ( ctx ) {
-			ctx.clearRect( 0, 0, canvas.width, canvas.height );
-		}
 		this.renderBackground( currentPage )
 			.then( () => {
 				const elems = this.elements[ currentPage ];
@@ -1364,6 +1358,7 @@ class Sketchpad extends Component {
 
 	gotoPage = ( idx ) => {
 		debug( `Should go to page ${idx}...` );
+		idx = parseInt( idx, 10 );
 		if ( idx !== this.state.currentPage ) {
 			this.setState({
 				currentPage: idx,
@@ -1574,18 +1569,17 @@ class Sketchpad extends Component {
 	}
 
 	renderPagination() {
-		const bsSize = this.props.bsSize;
 		const currentPage = this.state.currentPage;
-		return ( <ButtonGroup bsSize={bsSize} className="sketch-pages" >
-			<Button onClick={this.toggleNavigationModal}>{currentPage+1}/{this.state.noPages}</Button>
-			<TooltipButton tooltip="Go to first page" onClick={this.firstPage} glyph="fast-backward" disabled={this.state.playing} bsSize={bsSize} />
-			<TooltipButton tooltip="Go to previous page" onClick={this.previousPage} glyph="backward" disabled={this.state.playing} bsSize={bsSize} />
-			<TooltipButton tooltip="Go to next page" onClick={this.nextPage} glyph="forward" disabled={this.state.playing} bsSize={bsSize} />
-			<TooltipButton tooltip="Go to last page" onClick={this.lastPage} glyph="fast-forward" disabled={this.state.playing} bsSize={bsSize} />
+		return ( <ButtonGroup size="sm" className="sketch-pages" >
+			<Button variant="light" onClick={this.toggleNavigationModal}>{currentPage+1}/{this.state.noPages}</Button>
+			<TooltipButton tooltip="Go to first page" onClick={this.firstPage} glyph="fast-backward" disabled={this.state.playing} size="sm" />
+			<TooltipButton tooltip="Go to previous page" onClick={this.previousPage} glyph="backward" disabled={this.state.playing} size="sm" />
+			<TooltipButton tooltip="Go to next page" onClick={this.nextPage} glyph="forward" disabled={this.state.playing} size="sm" />
+			<TooltipButton tooltip="Go to last page" onClick={this.lastPage} glyph="fast-forward" disabled={this.state.playing} size="sm" />
 			<TooltipButton tooltip="Insert page after current one" onClick={() => {
 				const idx = this.state.currentPage + 1;
 				this.insertPage( idx );
-			}} glyph="plus" disabled={this.state.playing} bsSize={bsSize} />
+			}} glyph="plus" disabled={this.state.playing} size="sm" />
 		</ButtonGroup> );
 	}
 
@@ -1593,40 +1587,40 @@ class Sketchpad extends Component {
 		if ( this.props.hideRecordingButtons ) {
 			return null;
 		}
-		const bsSize = this.props.bsSize;
 		const elems = this.elements[ this.state.currentPage ] || [];
 		const deleteIsDisabled = elems.length === 0 ||
 			!this.state.finishedRecording ||
 			this.state.recording ||
 			this.state.playing;
 		return (
-			<ButtonGroup bsSize={bsSize} className="sketch-button-group">
+			<ButtonGroup size="sm" className="sketch-button-group">
 				<Tooltip placement="bottom" tooltip={!this.state.recording ? 'Record drawing' : 'Pause recording'} >
-					<Button bsSize={bsSize} disabled={this.state.playing} onClick={this.record} >
-						<Glyphicon glyph={!this.state.recording ? 'record' : 'stop'} />
+					<Button variant="light" size="sm" disabled={this.state.playing} onClick={this.record} >
+						<div className={!this.state.recording ? 'fa fa-camera' : 'fa fa-stop'} />
 					</Button>
 				</Tooltip>
 				<Tooltip placement="bottom" tooltip="Play recording" >
-					<Button bsSize={bsSize} bsStyle={this.state.playing ? 'success' : 'default'} disabled={!this.state.finishedRecording} onClick={this.replay} >
-						<Glyphicon glyph="play" />
+					<Button size="sm" variant={this.state.playing ? 'success' : 'light'} disabled={!this.state.finishedRecording} onClick={this.replay} >
+						<div className="fa fa-play" />
 					</Button>
 				</Tooltip>
-				<TooltipButton tooltip="Delete recording" onClick={this.delete} glyph="trash" disabled={deleteIsDisabled} bsSize={bsSize} />
+				<TooltipButton tooltip="Delete recording" onClick={this.delete} glyph="trash" disabled={deleteIsDisabled} size="sm" />
 			</ButtonGroup>
 		);
 	}
 
 	renderDrawingButtons() {
-		const bsSize = this.props.bsSize;
 		return (
-			<ButtonGroup bsSize={bsSize} className="sketch-drawing-buttons" >
+			<ButtonGroup size="sm" className="sketch-drawing-buttons" >
 				<Tooltip placement="bottom" tooltip="Drawing Mode" >
-					<Button bsSize={bsSize} bsStyle={this.state.mode === 'drawing' ? 'success' : 'default'} onClick={this.toggleDrawingMode} >
-						<Glyphicon glyph="pencil" />
+					<Button size="sm" variant={this.state.mode === 'drawing' ? 'success' : 'secondary'} onClick={this.toggleDrawingMode} >
+						<div className="fa fa-pencil-alt" />
 					</Button>
 				</Tooltip>
-				<InputGroup bsSize={bsSize} className="sketch-input-group" >
-					<InputGroup.Addon>Size</InputGroup.Addon>
+				<InputGroup size="sm" className="sketch-input-group" >
+					<InputGroup.Prepend>
+						<InputGroup.Text>Size</InputGroup.Text>
+					</InputGroup.Prepend>
 					<FormControl
 						type="number"
 						min={1}
@@ -1637,6 +1631,7 @@ class Sketchpad extends Component {
 								mode: 'drawing'
 							});
 						}}
+						aria-describedby="btnGroupAddon"
 						defaultValue={this.state.brushSize}
 					/>
 				</InputGroup>
@@ -1645,15 +1640,17 @@ class Sketchpad extends Component {
 	}
 
 	renderTextButtons() {
-		const bsSize = this.props.bsSize;
 		return (
-			<ButtonGroup bsSize={bsSize} className="sketch-text-buttons" >
+			<ButtonGroup size="sm" >
 				<Tooltip placement="bottom" tooltip="Text Mode" >
-					<Button bsSize={bsSize} bsStyle={this.state.mode === 'text' ? 'success' : 'default'} onClick={this.toggleTextMode} ><Glyphicon glyph="font" /></Button>
+					<Button size="sm" variant={this.state.mode === 'text' ? 'success' : 'secondary'} onClick={this.toggleTextMode} >
+						<div className="fa fa-font" />
+					</Button>
 				</Tooltip>
 				<DropdownButton
 					id="sketch-font-dropdown"
-					bsSize={bsSize}
+					size="sm"
+					variant={this.state.mode === 'text' ? 'success' : 'secondary'}
 					title={this.state.fontFamily}
 					style={{ width: 90, textAlign: 'left' }}
 					onSelect={(val) => {
@@ -1663,15 +1660,17 @@ class Sketchpad extends Component {
 						});
 					}}
 				>
-					<MenuItem eventKey="Arial">Arial</MenuItem>
-					<MenuItem eventKey="Helvetica">Helvetica</MenuItem>
-					<MenuItem eventKey="Times">Times</MenuItem>
-					<MenuItem eventKey="Courier">Courier</MenuItem>
-					<MenuItem eventKey="Verdana">Verdana</MenuItem>
-					<MenuItem eventKey="Palatino">Palatino</MenuItem>
+					<DropdownItem eventKey="Arial">Arial</DropdownItem>
+					<DropdownItem eventKey="Helvetica">Helvetica</DropdownItem>
+					<DropdownItem eventKey="Times">Times</DropdownItem>
+					<DropdownItem eventKey="Courier">Courier</DropdownItem>
+					<DropdownItem eventKey="Verdana">Verdana</DropdownItem>
+					<DropdownItem eventKey="Palatino">Palatino</DropdownItem>
 				</DropdownButton>
-				<InputGroup bsSize={bsSize} className="sketch-input-group" >
-					<InputGroup.Addon>Size</InputGroup.Addon>
+				<InputGroup size="sm" >
+					<InputGroup.Prepend>
+						<InputGroup.Text>Size</InputGroup.Text>
+					</InputGroup.Prepend>
 					<FormControl
 						type="number"
 						min={12}
@@ -1690,25 +1689,24 @@ class Sketchpad extends Component {
 	}
 
 	renderRemoveButtons() {
-		const bsSize = this.props.bsSize;
 		const page = this.state.currentPage;
 		const showUndo = this.elements[ page ] && this.elements[ page ].length > this.state.nUndos;
 		return (
-			<ButtonGroup bsSize={bsSize} className="sketch-undo-redo sketch-button-group">
+			<ButtonGroup size="sm" className="sketch-undo-redo sketch-button-group">
 				<TooltipButton
 					tooltip="Undo"
 					onClick={this.undo}
 					glyph="step-backward"
 					disabled={!showUndo ||this.state.playing}
-					bsSize={bsSize}
+					size="sm"
 				/>
-				<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} bsSize={bsSize} />
-				<TooltipButton tooltip="Clear current page" onClick={this.clear} label="Clear" disabled={this.state.playing || this.state.recording} bsSize={bsSize} />
+				<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} size="sm" />
+				<TooltipButton tooltip="Clear current page" onClick={this.clear} label="Clear" disabled={this.state.playing || this.state.recording} size="sm" />
 				<TooltipButton tooltip="Reset all pages" onClick={() => {
 					this.setState({
 						showResetModal: !this.state.showResetModal
 					});
-				}} label="Reset" disabled={this.state.playing || this.state.recording} bsSize={bsSize} />
+				}} label="Reset" disabled={this.state.playing || this.state.recording} size="sm" />
 			</ButtonGroup>
 		);
 	}
@@ -1717,12 +1715,11 @@ class Sketchpad extends Component {
 		if ( this.props.hideSaveButtons ) {
 			return null;
 		}
-		const bsSize = this.props.bsSize;
 		return (
-			<ButtonGroup bsSize={bsSize} className="sketch-save-buttons sketch-button-group">
-				{ !this.props.pdf ? <TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} bsSize={bsSize} glyph="file" /> : null }
-				<TooltipButton tooltip="Export current page (PNG)" onClick={this.saveToPNG} glyph="save-file" bsSize={bsSize} />
-				<TooltipButton tooltip="Export pages as PDF" onClick={this.saveAsPDF} glyph="floppy-save" bsSize={bsSize} />
+			<ButtonGroup size="sm" className="sketch-save-buttons sketch-button-group">
+				{ !this.props.pdf ? <TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} size="sm" glyph="file" /> : null }
+				<TooltipButton tooltip="Export current page (PNG)" onClick={this.saveToPNG} glyph="file-image" size="sm" />
+				<TooltipButton tooltip="Export pages as PDF" onClick={this.saveAsPDF} glyph="file-pdf" size="sm" />
 				{ this.props.id ? <TooltipButton tooltip="Save in browser" onClick={() => {
 					this.saveInBrowser( ( err ) => {
 						if ( err ) {
@@ -1740,8 +1737,8 @@ class Sketchpad extends Component {
 							position: 'tr'
 						});
 					});
-				}} glyph="save" bsSize={bsSize} /> : null }
-				{ this.props.id ? <TooltipButton tooltip="Upload to the server" onClick={this.uploadSketches} glyph="cloud-upload" bsSize={bsSize} /> : null }
+				}} glyph="save" size="sm" /> : null }
+				{ this.props.id ? <TooltipButton tooltip="Upload to the server" onClick={this.uploadSketches} glyph="upload" size="sm" /> : null }
 			</ButtonGroup>
 		);
 	}
@@ -1750,7 +1747,6 @@ class Sketchpad extends Component {
 		if ( this.props.hideTransmitButtons ) {
 			return null;
 		}
-		const bsSize = this.props.bsSize;
 		const users = this.context.session.userList
 			.filter( user => isNull( user.exitTime ) )
 			.map( user => {
@@ -1762,20 +1758,20 @@ class Sketchpad extends Component {
 					receiveFrom: newValue
 				});
 			}} />
-			<Checkbox checked={this.state.groupMode} onClick={this.toggleGroupMode} >Group Mode</Checkbox>
+			<Checkbox defaultValue={this.state.groupMode} onChange={this.toggleGroupMode} legend="Group Mode" />
 		</Popover>;
 		return (
 			<Gate owner>
-				<ButtonGroup bsSize={bsSize} className="sketch-button-group" >
+				<ButtonGroup size="sm" className="sketch-button-group" >
 					<Tooltip placement="bottom" tooltip="Transmit Actions" >
-						<Button bsSize={bsSize} bsStyle={this.state.transmitOwner ? 'success' : 'default'} onClick={this.toggleTransmit} ><Glyphicon glyph="bullhorn" /></Button>
+						<Button size="sm" variant={this.state.transmitOwner ? 'success' : 'light'} onClick={this.toggleTransmit} ><div className="fa fa-bullhorn" /></Button>
 					</Tooltip>
+					<OverlayTrigger trigger="click" placement="bottom" rootClose overlay={popover}>
+						<Button size="sm" variant="light" >
+							<div className="fa fa-eye" />
+						</Button>
+					</OverlayTrigger>
 				</ButtonGroup>
-				<OverlayTrigger trigger="click" placement="bottom" rootClose overlay={popover}>
-					<Button bsSize={bsSize} >
-						<Glyphicon glyph="eye-open" />
-					</Button>
-				</OverlayTrigger>
 			</Gate>
 		);
 	}
@@ -1825,7 +1821,6 @@ class Sketchpad extends Component {
 	}
 
 	render() {
-		const bsSize = this.props.bsSize;
 		let cursor = 'default';
 		if ( this.state.mode === 'drawing' ) {
 			cursor = 'crosshair';
@@ -1861,7 +1856,7 @@ class Sketchpad extends Component {
 			onTouchStart={this.drawStart}
 		/>;
 		return (
-			<Panel
+			<Card
 				ref={( div ) => { this.sketchpadPanel = div; }}
 				className="modal-container"
 				style={{
@@ -1873,19 +1868,19 @@ class Sketchpad extends Component {
 			>
 				<div className="sketch-panel-heading clearfix unselectable">
 					{this.renderPagination()}
-					<ButtonGroup bsSize={bsSize} className="sketch-drag-delete-modes sketch-button-group" >
+					<ButtonGroup size="sm" className="sketch-drag-delete-modes sketch-button-group" >
 						<Tooltip placement="bottom" tooltip="Drag Mode" >
-							<Button bsSize={bsSize} bsStyle={this.state.mode === 'drag' ? 'success' : 'default'} onClick={this.toggleDragMode} ><Glyphicon glyph="move" /></Button>
+							<Button size="sm" variant={this.state.mode === 'drag' ? 'success' : 'secondary'} onClick={this.toggleDragMode} ><div className="fa fa-arrows-alt" /></Button>
 						</Tooltip>
 						<Tooltip placement="bottom" tooltip="Delete Mode" >
-							<Button bsSize={bsSize} bsStyle={this.state.mode === 'delete' ? 'success' : 'default'} onClick={this.toggleDeleteMode} ><Glyphicon glyph="remove" /></Button>
+							<Button size="sm" variant={this.state.mode === 'delete' ? 'success' : 'secondary'} onClick={this.toggleDeleteMode} ><div className="fa fa-times" /></Button>
 						</Tooltip>
 					</ButtonGroup>
 					{this.renderDrawingButtons()}
 					{this.renderTextButtons()}
-					<ButtonGroup bsSize={bsSize} className="sketch-button-group" >
+					<ButtonGroup size="sm" className="sketch-button-group" >
 						<Tooltip placement="right" tooltip="Change brush color" >
-							<Button bsSize={bsSize} onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Color</Button>
+							<Button size="sm" onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Color</Button>
 						</Tooltip>
 					</ButtonGroup>
 					{this.renderRemoveButtons()}
@@ -1945,7 +1940,7 @@ class Sketchpad extends Component {
 						'ArrowUp': this.previousPage
 					}}
 				/>
-			</Panel>
+			</Card>
 		);
 	}
 }
@@ -1960,7 +1955,6 @@ Sketchpad.defaultProps = {
 	hideSaveButtons: false,
 	hideTransmitButtons: false,
 	brushSize: 6,
-	bsSize: 'small',
 	color: '#444444',
 	canvasWidth: 1200,
 	canvasHeight: 700,
@@ -1986,7 +1980,6 @@ Sketchpad.propTypes = {
 	hideSaveButtons: PropTypes.bool,
 	hideTransmitButtons: PropTypes.bool,
 	brushSize: PropTypes.number,
-	bsSize: PropTypes.oneOf(['default', 'lg', 'large', 'sm', 'small', 'xs', 'xsmall']),
 	color: PropTypes.string,
 	canvasWidth: PropTypes.number,
 	canvasHeight: PropTypes.number,
