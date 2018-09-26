@@ -1,12 +1,11 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import Grid from 'react-bootstrap/lib/Grid';
+import Container from 'react-bootstrap/lib/Container';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
-import Label from 'react-bootstrap/lib/Label';
-import Panel from 'react-bootstrap/lib/Panel';
-import Well from 'react-bootstrap/lib/Well';
+import Badge from 'react-bootstrap/lib/Badge';
+import Card from 'react-bootstrap/lib/Card';
 import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
 import logger from 'debug';
 import abs from '@stdlib/math/base/special/abs';
@@ -159,7 +158,7 @@ class MeanTest extends Component {
 	renderParametersPanel() {
 		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples } = this.state;
 		const firstSampleParams = <div>
-			<Label>First Sample</Label>
+			<Badge>First Sample</Badge>
 			<NumberInput
 				legend="Sample mean"
 				defaultValue={xbar}
@@ -194,7 +193,7 @@ class MeanTest extends Component {
 			/>
 		</div>;
 		const secondSampleParams = <div>
-			<Label>Second Sample</Label>
+			<Badge>Second Sample</Badge>
 			<NumberInput
 				legend="Sample mean"
 				defaultValue={xbar2}
@@ -229,12 +228,12 @@ class MeanTest extends Component {
 			/>
 		</div>;
 		const testStat = samples === 'Two-Sample' ? '\\mu_1 - \\mu_2' : '\\mu';
-		return ( <Panel maxWidth={1600}>
-			<Panel.Heading>
-				<Panel.Title componentClass="h4">Parameters</Panel.Title>
-			</Panel.Heading>
-			<Panel.Body>
-				<Well>
+		return ( <Card maxWidth={1600}>
+			<Card.Header as="h4">
+				Parameters
+			</Card.Header>
+			<Card.Body>
+				<Card body className="bg-light">
 					<SelectInput
 						options={[ 'One-Sample', 'Two-Sample' ]}
 						defaultValue={samples}
@@ -254,12 +253,12 @@ class MeanTest extends Component {
 							}, this.onGenerate );
 						}}
 					/>
-				</Well>
+				</Card>
 				<p>Let&#39;s assume that we have observed data with the following characteristics</p>
-				<Well>
+				<Card body className="bg-light">
 					{firstSampleParams}
 					{samples === 'Two-Sample' ? secondSampleParams : null}
-				</Well>
+				</Card>
 				<p>We conduct the following test (click on the formula to switch between the one-sided variants and the two-sided test):</p>
 				<Switch onChange={this.onDirectionChange}>
 					<TeX displayMode tag="" raw={`H_0: ${testStat} = ${mu0} \\; vs. \\; H_1: ${testStat} \\ne ${mu0}`} />
@@ -319,15 +318,15 @@ class MeanTest extends Component {
 						}}
 					/>
 				}
-			</Panel.Body>
-		</Panel> );
+			</Card.Body>
+		</Card> );
 	}
 
 	renderResultPanel() {
 		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples, zStat } = this.state;
-		return ( <Panel>
-			<Panel.Heading><Panel.Title componentClass="h4">Test Result</Panel.Title></Panel.Heading>
-			<Panel.Body>
+		return ( <Card>
+			<Card.Header as="h4">Test Result</Card.Header>
+			<Card.Body>
 				<p>Plugging in our values, we have:</p>
 				{ samples === 'Two-Sample' ?
 					<TeX
@@ -356,12 +355,12 @@ class MeanTest extends Component {
 						style={areaStyle}
 					/> : null }
 				</VictoryChart>
-			</Panel.Body>
-		</Panel> );
+			</Card.Body>
+		</Card> );
 	}
 
 	render() {
-		return ( <Grid>
+		return ( <Container>
 			<Row>
 				<Col md={6}>
 					{this.renderParametersPanel()}
@@ -370,7 +369,7 @@ class MeanTest extends Component {
 					{this.renderResultPanel()}
 				</Col>
 			</Row>
-		</Grid> );
+		</Container> );
 	}
 }
 

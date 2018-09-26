@@ -62,8 +62,8 @@ class StatusBar extends Component {
 					autoDismiss: 15,
 					position: 'tl',
 					children: <div style={{ marginBottom: '20px' }}>
-						<Button bsSize="xsmall" style={{ float: 'right', marginRight: '10px' }} onClick={this.signup.bind( this )}>Sign up</Button>
-						<Button bsSize="xsmall" bsStyle="primary" style={{ float: 'right', marginRight: '10px' }} onClick={this.login.bind( this )}>Login</Button>
+						<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.signup.bind( this )}>Sign up</Button>
+						<Button size="sm" variant="primary" style={{ float: 'right', marginRight: '10px' }} onClick={this.login.bind( this )}>Login</Button>
 					</div>
 				});
 			}
@@ -244,20 +244,20 @@ class StatusBar extends Component {
 						{ session.anonymous ?
 							<div>
 								<Button
-									bsSize="xsmall"
+									size="sm"
 									style={{ float: 'right', marginRight: '-20px' }}
 									onClick={this.signup.bind( this )}
 									disabled={!session.live}
 								>Sign up</Button>
 								<Button
-									bsSize="xsmall"
-									bsStyle="primary"
+									size="sm"
+									variant="primary"
 									style={{ float: 'right', marginRight: '10px' }}
 									onClick={this.login.bind( this )}
 									disabled={!session.live}
 								>Login</Button>
 							</div> :
-							<Button bsSize="xsmall" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout.bind( this )}>Log Out</Button> }
+							<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout.bind( this )}>Log Out</Button> }
 						<div className="statusbar-text">
 							ISLE
 						</div>

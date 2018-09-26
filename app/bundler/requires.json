@@ -1,5 +1,5 @@
 {
-	"Accordion": "react-bootstrap/lib/Accordion",
+	"Accordion": "components/Accordion",
 	"BeaconTooltip": "components/beacon-tooltip",
 	"Button": "react-bootstrap/lib/Button",
 	"CheckboxInput": "components/input/checkbox",
@@ -26,6 +26,7 @@
 	"LearnVennDiagramBuilder": "components/learn/venn-diagram-builder",
 	"LearnWordVennDiagram": "components/learn/word-venn-diagram",
 	"LearnImagePixelPicker": "components/learn/image-pixel-picker",
+	"Container": "components/container",
 	"DataExplorer": "components/data-explorer",
 	"DataTable": "components/data-table",
 	"DateDisplay": "components/date-display",
@@ -40,7 +41,6 @@
 	"FreeTextQuestion": "components/free-text-question",
 	"FreeTextSurvey": "components/free-text-survey",
 	"Gate": "components/gate",
-	"Grid": "components/grid",
 	"Input": "components/input",
 	"IFrame": "components/iframe",
 	"JSShell": "components/js-shell",
@@ -141,6 +141,5 @@
 	"VictoryZoomContainer": "components/victory/zoom-container",
 	"VictoryWrapper": "components/victory/wrapper",
 	"VideoPlayer": "components/video-player",
-	"Well": "react-bootstrap/lib/Well",
 	"WordCloud": "components/word-cloud"
 }

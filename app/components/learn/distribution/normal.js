@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import Tabs from 'react-bootstrap/lib/Tabs';
 import Tab from 'react-bootstrap/lib/Tab';
 import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
@@ -91,11 +91,11 @@ class NormalProbs extends Component {
 	}
 
 	render() {
-		return ( <Panel>
-			<Panel.Heading>
-				<Panel.Title componentClass="h3">Normal Distribution</Panel.Title>
-			</Panel.Heading>
-			<Panel.Body>
+		return ( <Card>
+			<Card.Header as="h3">
+				Normal Distribution
+			</Card.Header>
+			<Card.Body>
 				<Tabs defaultActiveKey={1} id="normal-tabs">
 					<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
 						<Dashboard autoUpdate onGenerate={this.onGenerateSmaller}>
@@ -234,8 +234,8 @@ class NormalProbs extends Component {
 						</VictoryChart>
 					</Tab>
 				</Tabs>
-			</Panel.Body>
-		</Panel> );
+			</Card.Body>
+		</Card> );
 	}
 }
 

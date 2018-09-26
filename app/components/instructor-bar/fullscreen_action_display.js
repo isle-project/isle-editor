@@ -8,11 +8,11 @@ import isStrictEqual from '@stdlib/assert/is-strict-equal';
 import lowercase from '@stdlib/string/lowercase';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
-import Grid from 'react-bootstrap/lib/Grid';
+import Container from 'react-bootstrap/lib/Container';
+import Card from 'react-bootstrap/lib/Card';
 import Row from 'react-bootstrap/lib/Row';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import Modal from 'react-bootstrap/lib/Modal';
-import Well from 'react-bootstrap/lib/Well';
 import ReactList from 'react-list';
 import Highlighter from 'react-highlight-words';
 import RangePicker from 'components/range-picker';
@@ -222,7 +222,7 @@ class FullscreenActionDisplay extends Component {
 				/>
 			</Modal.Header>
 			<Modal.Body style={{ height: 0.75 * window.innerHeight, width: 0.90 * window.innerWidth }} >
-				<Grid>
+				<Container>
 					<Row>
 						<Col md={6}>
 							{ this.state.filtered.length > 0 ?
@@ -234,16 +234,16 @@ class FullscreenActionDisplay extends Component {
 										pageSize={50}
 									/>
 								</div> :
-								<Well>
+								<Card body className="bg-light">
 									<h2>There is no data matching the selected parameters</h2>
-								</Well>
+								</Card>
 							}
 						</Col>
 						<Col md={6}>
 							{this.renderPlot()}
 						</Col>
 					</Row>
-				</Grid>
+				</Container>
 			</Modal.Body>
 			<Modal.Footer>
 				<span style={{ fontSize: '14x', float: 'left', padding: '4px 4px 4px 20px' }}>

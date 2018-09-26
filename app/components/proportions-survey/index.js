@@ -4,8 +4,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
-import Panel from 'react-bootstrap/lib/Panel';
-import Grid from 'react-bootstrap/lib/Grid';
+import Card from 'react-bootstrap/lib/Card';
+import Container from 'react-bootstrap/lib/Container';
 import Col from 'react-bootstrap/lib/Col';
 import logger from 'debug';
 import ProportionsInput from 'components/input/proportions';
@@ -115,67 +115,63 @@ class ProportionsSurvey extends Component {
 		);
 		return (
 			<Gate user banner={<h2>Please sign in...</h2>} >
-				<Grid>
+				<Container>
 					<Col md={6}>
-						<Panel className="ProportionsSurvey" style={{
+						<Card body className="ProportionsSurvey" style={{
 							margin: '0 auto 10px',
 							maxWidth: 600,
 							marginTop: '8px'
 						}}>
-							<Panel.Body>
-								<h3>{this.props.question}</h3>
-								<ProportionsInput
-									legends={this.props.legends}
-									precision={this.props.precision}
-									step={this.props.step}
-									height={this.props.personalHeight}
-									innerRadius={this.props.personalInnerRadius}
-									colors={this.props.colors}
-									margin={this.props.margin}
-									nElements={this.props.nElements}
-									onChange={( value ) => {
-										this.setState({
-											value
-										});
-									}}
-								/>
-								<Button
-									bsSize="small"
-									bsStyle="success"
-									block fill
-									onClick={this.submitQuestion}
-									disabled={disabled}
-								>{ disabled ? 'Submitted' : 'Submit'}</Button>
-							</Panel.Body>
-						</Panel>
+							<h3>{this.props.question}</h3>
+							<ProportionsInput
+								legends={this.props.legends}
+								precision={this.props.precision}
+								step={this.props.step}
+								height={this.props.personalHeight}
+								innerRadius={this.props.personalInnerRadius}
+								colors={this.props.colors}
+								margin={this.props.margin}
+								nElements={this.props.nElements}
+								onChange={( value ) => {
+									this.setState({
+										value
+									});
+								}}
+							/>
+							<Button
+								bsSize="small"
+								bsStyle="success"
+								block fill
+								onClick={this.submitQuestion}
+								disabled={disabled}
+							>{ disabled ? 'Submitted' : 'Submit'}</Button>
+						</Card>
 					</Col>
 
 					<Col md={6}>
-						<Panel className="ProportionsSurvey" style={{
+						<Card body className="ProportionsSurvey" style={{
 							margin: '0 auto 10px',
 							maxWidth: 600,
 							marginTop: '8px'
 						}}>
-							<Panel.Body>
-								<h3>{ this.props.group}</h3>
-								<RealtimeMetrics for={[ this.props.id ]} onData={this.onData} />
-								<h4>Number of votes: { this.state.nResults } </h4>
-								<ProportionsInput
-									legends={this.props.legends}
-									precision={this.props.precision}
-									step={this.props.step}
-									height={this.props.groupHeight}
-									innerRadius={this.props.groupInnerRadius}
-									colors={this.props.colors}
-									disabled={true}
-									margin={this.props.margin}
-									values={this.state.resultValues}
-									nElements={this.props.nElements}
-								/>
-							</Panel.Body>
-						</Panel>
+							<h3>{ this.props.group}</h3>
+							<RealtimeMetrics for={[ this.props.id ]} onData={this.onData} />
+							<h4>Number of votes: { this.state.nResults } </h4>
+							<ProportionsInput
+								legends={this.props.legends}
+								precision={this.props.precision}
+								step={this.props.step}
+								height={this.props.groupHeight}
+								innerRadius={this.props.groupInnerRadius}
+								colors={this.props.colors}
+								disabled={true}
+								margin={this.props.margin}
+								values={this.state.resultValues}
+								nElements={this.props.nElements}
+							/>
+						</Card>
 					</Col>
-				</Grid>
+				</Container>
 				<InstructorBar buttonLabel="Responses" id={this.props.id} />
 			</Gate>
 		);

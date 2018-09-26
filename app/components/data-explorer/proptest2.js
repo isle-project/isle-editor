@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
 import NumberInput from 'components/input/number';
@@ -183,15 +183,13 @@ class PropTest2 extends Component {
 		let binary = this.getBinaryVars( categorical );
 
 		return (
-			<Panel
+			<Card
 				style={{ fontSize: '14px' }}
 			>
-				<Panel.Heading>
-					<Panel.Title componentClass="h4">
-						Two-Sample Proportion Test
-					</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body>
+				<Card.Header as="h4">
+					Two-Sample Proportion Test
+				</Card.Header>
+				<Card.Body>
 					<Row>
 						<Col md={6}>
 							<SelectInput
@@ -272,8 +270,8 @@ class PropTest2 extends Component {
 						step="any"
 					/>
 					<Button bsStyle="primary" block onClick={this.calculateTwoSamplePropTest}>Calculate</Button>
-				</Panel.Body>
-			</Panel>
+				</Card.Body>
+			</Card>
 		);
 	}
 }

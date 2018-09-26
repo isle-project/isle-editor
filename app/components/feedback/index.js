@@ -125,17 +125,17 @@ class FeedbackButtons extends Component {
 			<div className="feedback-buttons" style={{ ...this.props.style }}>
 				<ButtonGroup style={{ float: 'right' }} vertical={this.props.vertical} >
 					<Tooltip id="tooltip_confused" placement={tpos} tooltip={<strong> I am confused.</strong>}>
-						<Button className="feedback-button" bsSize="small" onClick={this.submitConfused}>
+						<Button variant="light" className="feedback-button" size="small" onClick={this.submitConfused}>
 							<Confused className="icon" />
 						</Button>
 					</Tooltip>
 					<Tooltip id="tooltip_understood" placement={tpos} tooltip={<strong> Makes sense.</strong>} >
-						<Button className="feedback-button" bsSize="small" onClick={this.submitUnderstood}>
+						<Button variant="light" className="feedback-button" size="small" onClick={this.submitUnderstood}>
 							<Understood className="icon" />
 						</Button>
 					</Tooltip>
 					<Tooltip placement={tpos} id="tooltip_feedback" tooltip={<strong> I have feedback. </strong>} >
-						<Button className="feedback-button" bsSize="small" onClick={this.openModal}>
+						<Button variant="light" className="feedback-button" size="small" onClick={this.openModal}>
 							<Feedback className="icon" />
 						</Button>
 					</Tooltip>
@@ -144,7 +144,7 @@ class FeedbackButtons extends Component {
 				<Modal
 					show={this.state.showModal}
 					onHide={this.closeModal}
-					bsSize="lg"
+					dialogClassName="modal-50w"
 					title="Feedback"
 					backdrop={true}
 				>
@@ -190,7 +190,7 @@ class FeedbackButtons extends Component {
 						<Button onClick={this.closeModal}>
 							Cancel
 						</Button>
-						<Button bsStyle="primary" onClick={this.submitFeedback}>
+						<Button variant="primary" onClick={this.submitFeedback}>
 							Submit
 						</Button>
 					</Modal.Footer>

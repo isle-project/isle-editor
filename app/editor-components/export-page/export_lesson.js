@@ -3,12 +3,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
-import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
-import Panel from 'react-bootstrap/lib/Panel';
-import Well from 'react-bootstrap/lib/Well';
+import InputGroup from 'react-bootstrap/lib/InputGroup';
+import Card from 'react-bootstrap/lib/Card';
 import { remote, shell } from 'electron';
 import path from 'path';
 import exists from '@stdlib/fs/exists';
@@ -104,49 +103,43 @@ class ExportLesson extends Component {
 		if ( !this.state.finished ) {
 			return <Spinner width={128} height={64} running={this.state.spinning} />;
 		}
-		return ( <Panel bsStyle="success">
-			<Panel.Heading>
-				<Panel.Title componentClass="h3">
+		return ( <Card bg="success" text="white">
+			<Card.Header as="h5">
 					App successfully exported!
-				</Panel.Title>
-			</Panel.Heading>
-			<Panel.Body>
-				<ButtonToolbar style={{ position: 'relative', margin: 'auto' }} >
-					<Button style={{ float: 'left' }} bsStyle="primary" onClick={this.openFolder}>Open containing folder</Button>
-					<Button style={{ float: 'right' }} bsStyle="success" onClick={this.openLesson}>Open lesson in Browser</Button>
-				</ButtonToolbar>
-			</Panel.Body>
-		</Panel> );
+			</Card.Header>
+			<Card.Body>
+				<ButtonGroup style={{ position: 'relative', margin: 'auto' }} >
+					<Button variant="primary" onClick={this.openFolder}>Open containing folder</Button>
+					<Button variant="secondary" onClick={this.openLesson}>Open lesson in Browser</Button>
+				</ButtonGroup>
+			</Card.Body>
+		</Card> );
 	}
 
 	renderAlreadyExists = () => {
 		if ( !this.state.alreadyExists ) {
 			return null;
 		}
-		return ( <Panel bsStyle="danger">
-			<Panel.Heading>
-				<Panel.Title componentClass="h3">
-					Directory already exists.
-				</Panel.Title>
-			</Panel.Heading>
-			<Panel.Body>
+		return ( <Card border="danger">
+			<Card.Header as="h3">
+				Directory already exists.
+			</Card.Header>
+			<Card.Body>
 				<p>A directory with the chosen name already exists. Please pick a different name.</p>
-			</Panel.Body>
-		</Panel> );
+			</Card.Body>
+		</Card> );
 	}
 
 	render() {
 		return (
-			<Panel bsStyle="primary">
-				<Panel.Heading>
-					<Panel.Title componentClass="h1">
+			<Card border="primary">
+				<Card.Header as="h5">
 						Export Lesson
-					</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body>
+				</Card.Header>
+				<Card.Body>
 					<p>Package and export the currently opened lesson into a single-page application viewable in any web-browser.</p>
 					<FormGroup>
-						<ControlLabel>Settings</ControlLabel>
+						<label>Settings</label>
 						<CheckboxInput
 							legend="Minify code"
 							onChange={( value ) => {
@@ -167,7 +160,7 @@ class ExportLesson extends Component {
 						/>
 					</FormGroup>
 					<FormGroup>
-						<ControlLabel>Directory name</ControlLabel>
+						<label>Directory name</label>
 						<FormControl
 							type="text"
 							placeholder="Enter text"
@@ -182,15 +175,18 @@ class ExportLesson extends Component {
 							disabled={this.state.spinning}
 						/>
 					</FormGroup>
-					<br />
+					<InputGroup>
+						<Button
+							variant="primary"
+							onClick={this.handleFileInputClick}
+						>Select output</Button>
+						<InputGroup.Append>
+							<InputGroup.Text>Path: {this.state.outputPath}</InputGroup.Text>
+						</InputGroup.Append>
+					</InputGroup>
 					<Button
-						bsStyle="primary"
-						onClick={this.handleFileInputClick}
-					>Select output path</Button>
-					<Well className="export-page-well"> Path: {this.state.outputPath} </Well>
-					<Button
-						bsStyle="success"
-						bsSize="sm"
+						variant="success"
+						size="small"
 						onClick={this.generateApp}
 						block
 						style={{
@@ -201,8 +197,8 @@ class ExportLesson extends Component {
 					<br />
 					{this.renderFinished()}
 					{this.renderAlreadyExists()}
-				</Panel.Body>
-			</Panel>
+				</Card.Body>
+			</Card>
 		);
 	}
 }

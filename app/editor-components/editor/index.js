@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ace from '@planeshifter/brace';
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import { ContextMenu, MenuItem, ContextMenuTrigger, SubMenu } from 'react-contextmenu';
 import '@planeshifter/brace/mode/html';
 import '@planeshifter/brace/theme/github';
@@ -206,9 +205,9 @@ class Editor extends Component {
 			onClick={this.handleContexMenuClick}
 		>
 			{obj.name}
-			<Glyphicon
+			<div
+				className="fa fa-cogs"
 				style={{ float: 'right' }}
-				glyph="cog"
 				onClick={this.handleCustomInsertClick}
 			/>
 		</MenuItem>

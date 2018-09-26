@@ -136,14 +136,14 @@ class LessonSubmit extends Component {
 		const { session } = this.context;
 		const disabled = !session.live || this.state.disabled;
 		return (
-			<div className="well" style={{
+			<div className="bg-light" style={{
 				maxWidth: 400,
-				margin: '0 auto 10px',
-				marginTop: '30px',
+				margin: '0 auto 0px',
+				padding: '20px',
 				fontFamily: 'Arial',
 				...this.props.style
 			}}>
-				<Button disabled={disabled} bsStyle="primary" bsSize="large" onClick={this.handleClick} block>{this.props.label}</Button>
+				<Button disabled={disabled} variant="primary" size="large" onClick={this.handleClick} block>{this.props.label}</Button>
 				<Modal show={this.state.showUserModal} onHide={this.closeUserModal}>
 					<Modal.Header closeButton>
 						<Modal.Title>Authentication</Modal.Title>
@@ -155,7 +155,7 @@ class LessonSubmit extends Component {
 						</p>
 					</Modal.Body>
 					<Modal.Footer style={{ textAlign: 'center' }}>
-						<Button bsStyle="primary" onClick={this.login.bind( this )} style={{ marginRight: '10px' }}>Login</Button>
+						<Button variant="primary" onClick={this.login.bind( this )} style={{ marginRight: '10px' }}>Login</Button>
 						<Button onClick={this.signup.bind( this )}>Sign up</Button>
 					</Modal.Footer>
 				</Modal>

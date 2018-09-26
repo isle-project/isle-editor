@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
-import MenuItem from 'react-bootstrap/lib/MenuItem';
+import DropdownItem from 'react-bootstrap/lib/DropdownItem';
 import './header.css';
 
 
@@ -81,38 +81,38 @@ class Header extends Component {
 					className="unselectable"
 				>
 					<span style={{ paddingLeft: 5 }} >{this.props.fileName || 'Untitled Document'}</span>
-					<ButtonGroup className="unselectable" style={{ zIndex: 1001 }} >
+					<ButtonGroup className="unselectable" style={{ zIndex: 1001 }} size="sm" >
 						<DropdownButton
 							title={this.props.mode}
 							id="bg-mode-dropdown"
-							bsSize="xsmall"
-							bsStyle="warning"
+							size="sm"
+							variant="warning"
 							onSelect={this.handleModeSelection}
 							style={{
 								width: 100,
-								paddingRight: 5
+								paddingRight: 20
 							}}
 						>
-							<MenuItem eventKey="1">offline</MenuItem>
-							<MenuItem eventKey="2">online</MenuItem>
+							<DropdownItem eventKey="1">offline</DropdownItem>
+							<DropdownItem eventKey="2">online</DropdownItem>
 						</DropdownButton>
 						<DropdownButton
 							title={this.props.role}
 							id="bg-user-dropdown"
-							bsSize="xsmall"
-							bsStyle="success"
+							size="sm"
+							variant="success"
 							onSelect={this.handleRoleSelection}
 							style={{
 								width: 100
 							}}
 						>
-							<MenuItem eventKey="1">anonymous</MenuItem>
-							<MenuItem eventKey="2">user</MenuItem>
-							<MenuItem eventKey="3">enrolled</MenuItem>
-							<MenuItem eventKey="4">owner</MenuItem>
+							<DropdownItem eventKey="1">anonymous</DropdownItem>
+							<DropdownItem eventKey="2">user</DropdownItem>
+							<DropdownItem eventKey="3">enrolled</DropdownItem>
+							<DropdownItem eventKey="4">owner</DropdownItem>
 						</DropdownButton>
 						<span style={{
-							paddingLeft: 5,
+							paddingLeft: 15,
 							paddingRight: 5
 						}}>Preview</span>
 					</ButtonGroup>

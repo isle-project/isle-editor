@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Form from 'react-bootstrap/lib/Form';
@@ -126,13 +125,13 @@ class Login extends Component {
 		return (
 			<Modal show={this.props.show} className="login-modal" >
 				<Modal.Header>
-					<Modal.Title>Login</Modal.Title>
+					<Modal.Title as="h4">Login</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<Form horizontal>
 						<FormGroup controlId="form-email" >
-							<Col componentClass={ControlLabel} sm={2}>
-								Email
+							<Col sm={2}>
+								<label>Email</label>
 							</Col>
 							<Col sm={10}>
 								<FormControl
@@ -145,8 +144,8 @@ class Login extends Component {
 							</Col>
 						</FormGroup>
 						<FormGroup controlId="form-password" >
-							<Col componentClass={ControlLabel} sm={2}>
-								Password
+							<Col sm={2}>
+								<label>Password</label>
 							</Col>
 							<Col sm={10}>
 								<FormControl
@@ -163,7 +162,7 @@ class Login extends Component {
 				<Modal.Footer>
 					<a href="" style={{ float: 'left', marginTop: '8px' }} onClick={this.handleForgotPassword}>Forgot password?</a>
 					<Button
-						bsStyle="primary"
+						variant="primary"
 						type="submit"
 						onClick={this.handleSubmit}
 					>Sign in</Button>

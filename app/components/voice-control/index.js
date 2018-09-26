@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import Button from 'react-bootstrap/lib/Button';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import isArray from '@stdlib/assert/is-array';
@@ -101,7 +100,7 @@ class VoiceControl extends Component {
 				overlay={createTooltip( this.props.commands )}
 			>
 				<Button style={{ boxShadow: 'none', float: 'right' }} bsStyle={bsStyle} onClick={this.handleClick} bsSize="xsmall" >
-					<Glyphicon glyph="earphone" />
+					<div className="fa fa-phone" />
 					<span style={{ marginLeft: 4 }} >{this.props.id}</span>
 				</Button>
 			</OverlayTrigger>

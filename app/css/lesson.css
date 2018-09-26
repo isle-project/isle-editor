@@ -279,3 +279,44 @@ body {
 	user-select: none;
 	-webkit-user-drag: none;
 }
+
+.modal-100w {
+	max-width: none !important;
+	width: 100%;
+}
+
+.modal-90w {
+	max-width: none !important;
+	width: 90%;
+}
+
+.modal-75w {
+	max-width: none !important;
+	width: 75%;
+}
+
+.modal-60w {
+	max-width: none !important;
+	width: 50%;
+}
+
+.modal-50w {
+	max-width: none !important;
+	width: 50%;
+}
+
+.modal-40w {
+	max-width: none !important;
+	width: 30%;
+}
+
+.modal-30w {
+	max-width: none !important;
+	width: 30%;
+}
+
+label {
+	font-weight: 600;
+	font-stretch: extra-expanded;
+	color: #2e4468;
+}

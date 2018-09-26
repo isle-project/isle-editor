@@ -3,10 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
-import Grid from 'react-bootstrap/lib/Grid';
+import Container from 'react-bootstrap/lib/Container';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import { VictoryChart, VictoryCursorContainer, VictoryLine } from 'victory';
 import abs from '@stdlib/math/base/special/abs';
 import roundn from '@stdlib/math/base/special/roundn';
@@ -113,11 +113,11 @@ class MeanVSMedian extends Component {
 	}
 
 	renderMeanPanel() {
-		return ( <Panel>
-			<Panel.Heading>
-				<Panel.Title componentClass="h4">Mean</Panel.Title>
-			</Panel.Heading>
-			<Panel.Body>
+		return ( <Card>
+			<Card.Header as="h4">
+				Mean
+			</Card.Header>
+			<Card.Body>
 				<VictoryChart domain={this.state.lognormalDomain} containerComponent={
 					<VictoryCursorContainer
 						events={{ onClick: this.meanEvaluation }}
@@ -144,16 +144,16 @@ class MeanVSMedian extends Component {
 						null
 					}
 				</VictoryChart>
-			</Panel.Body>
-		</Panel> );
+			</Card.Body>
+		</Card> );
 	}
 
 	renderMedianPanel() {
-		return ( <Panel>
-			<Panel.Heading>
-				<Panel.Title componentClass="h4">Median</Panel.Title>
-			</Panel.Heading>
-			<Panel.Body>
+		return ( <Card>
+			<Card.Header as="h4">
+				Median
+			</Card.Header>
+			<Card.Body>
 				<VictoryChart domain={this.state.lognormalDomain} containerComponent={
 					<VictoryCursorContainer
 						events={{ onClick: this.medianEvaluation }}
@@ -180,20 +180,18 @@ class MeanVSMedian extends Component {
 						null
 					}
 				</VictoryChart>
-			</Panel.Body>
-		</Panel> );
+			</Card.Body>
+		</Card> );
 	}
 
 	render() {
 		return (
-			<Panel>
-				<Panel.Heading>
-					<Panel.Title componentClass="h3">
-						{this.props.header}
-					</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body>
-					<Grid>
+			<Card>
+				<Card.Header as="h3">
+					{this.props.header}
+				</Card.Header>
+				<Card.Body>
+					<Container>
 						{this.props.intro}
 						<Row>
 							<Col md={6}>
@@ -208,9 +206,9 @@ class MeanVSMedian extends Component {
 								<Button bsStyle="primary" bsSize="large" block onClick={this.generateData} >Generate</Button>
 							</div>
 						</Row>
-					</Grid>
-				</Panel.Body>
-			</Panel>
+					</Container>
+				</Card.Body>
+			</Card>
 		);
 	}
 }

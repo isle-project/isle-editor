@@ -23,16 +23,16 @@ class ResetModal extends Component {
 			onHide={this.clickHide}
 			show={this.props.show}
 			container={this.props.container}
-			bsSize="small"
+			dialogClassName="modal-w30"
 		>
 			<Modal.Header closeButton>
-				<Modal.Title>Reset Sketchpad</Modal.Title>
+				<Modal.Title as="h4">Reset Sketchpad</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				Are you sure you want to reset the sketchpad contents to their default value? This action is irreversible and all your work will be lost unless you saved it.
 			</Modal.Body>
 			<Modal.Footer>
-				<Button bsStyle="danger" onClick={this.handleClick} block>Reset</Button>
+				<Button variant="danger" onClick={this.handleClick} block>Reset</Button>
 			</Modal.Footer>
 		</Modal> );
 	}

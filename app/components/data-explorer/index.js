@@ -8,14 +8,13 @@ import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
-import MenuItem from 'react-bootstrap/lib/MenuItem';
+import DropdownItem from 'react-bootstrap/lib/DropdownItem';
 import Modal from 'react-bootstrap/lib/Modal';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import NavItem from 'react-bootstrap/lib/NavItem';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import Tab from 'react-bootstrap/lib/Tab';
-import Well from 'react-bootstrap/lib/Well';
 import isString from '@stdlib/assert/is-string';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import isObject from '@stdlib/assert/is-object';
@@ -441,11 +440,11 @@ class DataExplorer extends Component {
 		}
 		if ( !this.state.ready ) {
 			const variableNames = Object.keys( this.state.data );
-			return ( <Panel>
-				<Panel.Heading>
-					<Panel.Title componentClass="h3">Data Explorer</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body>
+			return ( <Card>
+				<Card.Header as="h3">
+					Data Explorer
+				</Card.Header>
+				<Card.Body>
 					<h4>Please select which variables should be treated as numeric and which ones as categorical:</h4>
 					<SelectInput
 						legend="Continuous:"
@@ -480,8 +479,8 @@ class DataExplorer extends Component {
 						});
 					}}>Submit</Button>
 					<DataTable data={this.state.data} />
-				</Panel.Body>
-			</Panel> );
+				</Card.Body>
+			</Card> );
 		}
 		let colWidth = this.props.questions ? 4 : 6;
 		let nStatistics = this.props.statistics.length;
@@ -516,7 +515,7 @@ class DataExplorer extends Component {
 					title="Tables"
 				>
 					{ this.props.tables.map(
-						( e, i ) => <MenuItem key={i} eventKey={`2.${i+1}`}>{e}</MenuItem>
+						( e, i ) => <DropdownItem key={i} eventKey={`2.${i+1}`}>{e}</DropdownItem>
 					) }
 				</NavDropdown> : null
 			}
@@ -526,7 +525,7 @@ class DataExplorer extends Component {
 					title="Plots"
 				>
 					{ this.props.plots.map(
-						( e, i ) => <MenuItem key={i} eventKey={`3.${i+1}`}>{e}</MenuItem>
+						( e, i ) => <DropdownItem key={i} eventKey={`3.${i+1}`}>{e}</DropdownItem>
 					) }
 				</NavDropdown> : null
 			}
@@ -536,7 +535,7 @@ class DataExplorer extends Component {
 					title="Tests"
 				>
 					{ this.props.tests.map(
-						( e, i ) => <MenuItem key={i} eventKey={`4.${i+1}`}>{e}</MenuItem>
+						( e, i ) => <DropdownItem key={i} eventKey={`4.${i+1}`}>{e}</DropdownItem>
 					) }
 				</NavDropdown> : null
 			}
@@ -546,7 +545,7 @@ class DataExplorer extends Component {
 					title="Models"
 				>
 					{this.props.models.map( ( e, i ) =>
-						<MenuItem key={i} eventKey={`5.${i+1}`}>{e}</MenuItem> )}
+						<DropdownItem key={i} eventKey={`5.${i+1}`}>{e}</DropdownItem> )}
 				</NavDropdown> : null
 			}
 		</Nav>;
@@ -745,11 +744,11 @@ class DataExplorer extends Component {
 				{ this.props.questions ? <Col xs={colWidth} md={colWidth}><Pages
 					title="Questions"
 					height={470}
-					bsSize="small"
+					size="small"
 					className="data-explorer-questions"
 				>{this.props.questions}</Pages></Col> : null }
 				<Col xs={colWidth} md={colWidth}>
-					<Panel>
+					<Card>
 						<Navbar fluid className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
 							<Nav>
 								{ !this.props.hideDataTable ? <NavItem eventKey="data" className="explorer-data-nav" active={this.state.openedNav === 'data'}>
@@ -765,7 +764,7 @@ class DataExplorer extends Component {
 										active={startsWith( this.state.openedNav, 'distributions' )}
 									>
 										{this.props.distributions.map( ( e, i ) =>
-											<MenuItem key={i} eventKey={`distributions.${i+1}`}>{e}</MenuItem> )}
+											<DropdownItem key={i} eventKey={`distributions.${i+1}`}>{e}</DropdownItem> )}
 									</NavDropdown> : null
 								}
 								{ this.props.showEditor ?
@@ -785,10 +784,10 @@ class DataExplorer extends Component {
 								}) : null }
 							</Nav>
 						</Navbar>
-						<Panel.Body>
+						<Card.Body>
 							{ this.state.openedNav === 'data' ?
 								<Fragment>
-									{ !this.props.data ? <Button bsSize="small" onClick={this.resetStorage} style={{ position: 'absolute' }}>Clear Data</Button> : null }
+									{ !this.props.data ? <Button size="small" onClick={this.resetStorage} style={{ position: 'absolute' }}>Clear Data</Button> : null }
 									<DataTable data={this.state.data} dataInfo={this.props.dataInfo} />
 								</Fragment> : null
 							}
@@ -834,18 +833,18 @@ class DataExplorer extends Component {
 								return ( this.state.openedNav === `6.${i+1}` ?
 									e.content : null );
 							})}
-						</Panel.Body>
-					</Panel>
+						</Card.Body>
+					</Card>
 				</Col>
 				<Col xs={colWidth} md={colWidth}>
-					<div className="panel panel-default" style={{ minHeight: window.innerHeight*0.9, padding: 0 }}>
-						<div className="panel-heading clearfix">
+					<div className="card card-default" style={{ minHeight: window.innerHeight*0.9, padding: 0 }}>
+						<div className="card-header clearfix">
 							<h3 className="data-explorer-output-header">Output</h3>
 							<Gate owner>
 								<Modal
 									show={this.state.showStudentPlots}
 									onHide={this.toggleStudentPlots}
-									dialogClassName="fullscreen-modal"
+									dialogClassName="modal-100w"
 								>
 									<Modal.Header closeButton>
 										<Modal.Title>Plots</Modal.Title>
@@ -876,9 +875,9 @@ class DataExplorer extends Component {
 													);
 												})}
 											</GridLayout> :
-											<Well>
+											<Card body className="bg-light">
 												No plots have been created yet...
-											</Well>
+											</Card>
 										}
 									</Modal.Body>
 									<Modal.Footer>
@@ -886,14 +885,12 @@ class DataExplorer extends Component {
 										<Button onClick={this.toggleStudentPlots}>Close</Button>
 									</Modal.Footer>
 								</Modal>
-								<ButtonGroup bsSize="small" style={{ float: 'right' }} >
-									<Button onClick={this.toggleStudentPlots} >Open Shared Plots</Button>
-								</ButtonGroup>
+								<Button size="sm" style={{ float: 'right' }} onClick={this.toggleStudentPlots} >Open Shared Plots</Button>
 								<RealtimeMetrics returnFullObject for={this.props.id} onDatum={this.onUserAction} />
 							</Gate>
 						</div>
 						{OutputPanel( this.state.output, this.clearOutput )}
-						<Button bsSize="small" block onClick={() => {
+						<Button size="small" block onClick={() => {
 							this.setState({ output: []});
 						}}>Clear All</Button>
 					</div>

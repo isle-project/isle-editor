@@ -2,13 +2,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Form from 'react-bootstrap/lib/Form';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import Button from 'react-bootstrap/lib/Button';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import HintButton from 'components/hint-button';
 import InstructorBar from 'components/instructor-bar';
 import ChatButton from 'components/chat-button';
@@ -123,47 +122,45 @@ class SelectQuestion extends Component {
 			);
 		}
 		return (
-			<Panel className="select-question">
-				<Panel.Body>
-					<Form>
-						<FormGroup controlId="formControlsSelect" validationState={this.state.answerState}>
-							{ this.props.question ?
-								<ControlLabel>{this.props.question}</ControlLabel> :
-								null
-							}
-							<FormControl
-								value={this.state.value}
-								defaultValue={this.props.defaultValue}
-								componentClass="select"
-								placeholder="select"
-								onChange={this.handleChange}
-
-							>
-								{this.props.options.map( ( e, idx ) => {
-									return <option className="select-question-option" key={idx} value={e}>{e}</option>;
-								})}
-							</FormControl>
-						</FormGroup>
-					</Form>
-					<div className="select-question-toolbar">
-						<Button bsStyle="primary" bsSize="sm" onClick={this.handleSubmit}>
-							{ this.state.submitted ? 'Resubmit' : 'Submit' }
-						</Button>
-						{ nHints > 0 ?
-							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
+			<Card className="select-question" body>
+				<Form>
+					<FormGroup controlId="formControlsSelect" validationState={this.state.answerState}>
+						{ this.props.question ?
+							<label>{this.props.question}</label> :
 							null
 						}
-						{
-							this.props.chat && this.props.id ?
-								<ChatButton for={this.props.id} /> : null
-						}
-					</div>
-					<InstructorBar id={this.props.id} dataType="text" />
-					{ this.props.id && this.props.feedback ? <FeedbackButtons
-						id={this.props.id+'_feedback'}
-					/> : null }
-				</Panel.Body>
-			</Panel>
+						<FormControl
+							value={this.state.value}
+							defaultValue={this.props.defaultValue}
+							componentClass="select"
+							placeholder="select"
+							onChange={this.handleChange}
+
+						>
+							{this.props.options.map( ( e, idx ) => {
+								return <option className="select-question-option" key={idx} value={e}>{e}</option>;
+							})}
+						</FormControl>
+					</FormGroup>
+				</Form>
+				<div className="select-question-toolbar">
+					<Button bsStyle="primary" bsSize="sm" onClick={this.handleSubmit}>
+						{ this.state.submitted ? 'Resubmit' : 'Submit' }
+					</Button>
+					{ nHints > 0 ?
+						<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
+						null
+					}
+					{
+						this.props.chat && this.props.id ?
+							<ChatButton for={this.props.id} /> : null
+					}
+				</div>
+				<InstructorBar id={this.props.id} dataType="text" />
+				{ this.props.id && this.props.feedback ? <FeedbackButtons
+					id={this.props.id+'_feedback'}
+				/> : null }
+			</Card>
 		);
 	}
 }

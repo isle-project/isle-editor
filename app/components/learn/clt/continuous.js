@@ -3,9 +3,9 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Grid from 'react-bootstrap/lib/Grid';
+import Container from 'react-bootstrap/lib/Container';
 import Col from 'react-bootstrap/lib/Col';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import Row from 'react-bootstrap/lib/Row';
 import Tabs from 'react-bootstrap/lib/Tabs';
 import Tab from 'react-bootstrap/lib/Tab';
@@ -360,28 +360,26 @@ class ContinuousCLT extends Component {
 			</div>;
 			break;
 		}
-		return ( <Panel>
-			<Panel.Body>
-				<Col md={6}>
-					<Tabs activeKey={this.state.activeDistribution} id="distribution-tabs" onSelect={this.handleSelect} >
-						<Tab eventKey={1} title="Uniform">{uniform}</Tab>
-						<Tab eventKey={2} title="Exponential">{exponential}</Tab>
-						<Tab eventKey={3} title="Normal">{normal}</Tab>
-					</Tabs>
-				</Col>
-				<Col md={6}>
-					<label>Distribution: {this.state.distFormula}</label>
-					{populationParams}
-					<NumberInput
-						legend="Sample Size"
-						step={1} min={1} defaultValue={10} max={500}
-						onChange={( n ) => {
-							this.setState({ 'n': n });
-						}}
-					/>
-				</Col>
-			</Panel.Body>
-		</Panel> );
+		return ( <Card body>
+			<Col md={6}>
+				<Tabs activeKey={this.state.activeDistribution} id="distribution-tabs" onSelect={this.handleSelect} >
+					<Tab eventKey={1} title="Uniform">{uniform}</Tab>
+					<Tab eventKey={2} title="Exponential">{exponential}</Tab>
+					<Tab eventKey={3} title="Normal">{normal}</Tab>
+				</Tabs>
+			</Col>
+			<Col md={6}>
+				<label>Distribution: {this.state.distFormula}</label>
+				{populationParams}
+				<NumberInput
+					legend="Sample Size"
+					step={1} min={1} defaultValue={10} max={500}
+					onChange={( n ) => {
+						this.setState({ 'n': n });
+					}}
+				/>
+			</Col>
+		</Card> );
 	}
 
 	renderXbarHistogram() {
@@ -400,55 +398,53 @@ class ContinuousCLT extends Component {
 				name: 'density'
 			});
 		}
-		return ( <Panel>
-			<Panel.Body>
-				<p><label>Histogram of <TeX raw="\bar x" />&#39;s</label></p>
-				{ this.state.xbars.length > 1 ?
-					<Plotly data={plotlyData} layout={{
-						width: 400,
-						height: 250,
-						showlegend: false,
-						shapes: [
-							{
-								type: 'line',
-								x0: this.state.avgXBars,
-								y0: 0,
-								x1: this.state.avgXBars,
-								y1: dnorm( this.state.avgXBars, this.state.avgXBars, this.state.stdevXBars ),
-								line: {
-									color: 'red',
-									width: 3
-								}
+		return ( <Card body>
+			<p><label>Histogram of <TeX raw="\bar x" />&#39;s</label></p>
+			{ this.state.xbars.length > 1 ?
+				<Plotly data={plotlyData} layout={{
+					width: 400,
+					height: 250,
+					showlegend: false,
+					shapes: [
+						{
+							type: 'line',
+							x0: this.state.avgXBars,
+							y0: 0,
+							x1: this.state.avgXBars,
+							y1: dnorm( this.state.avgXBars, this.state.avgXBars, this.state.stdevXBars ),
+							line: {
+								color: 'red',
+								width: 3
 							}
-						]
-					}} removeButtons toggleFullscreen={false} /> :
-					<span>Please draw at least two samples.</span>
-				}
-				<CheckboxInput legend="Overlay normal density" onChange={( value ) => {
-					this.setState({
-						overlayNormal: value
-					});
-				}} />
-				{ this.state.avgXBars ?
-					<p>
-						<label> Mean of <TeX raw="\bar x" />&#39;s: </label>
-						&nbsp;{this.state.avgXBars.toFixed( 3 )} (shown as the red line)
-					</p> : null
-				}
-				{ this.state.stdevXBars ?
-					<p>
-						<label>Standard deviation of <TeX raw="\bar x" />&#39;s: </label>
-						&nbsp;{this.state.stdevXBars.toFixed( 3 )}
-					</p> : null
-				}
-			</Panel.Body>
-		</Panel> );
+						}
+					]
+				}} removeButtons toggleFullscreen={false} /> :
+				<span>Please draw at least two samples.</span>
+			}
+			<CheckboxInput legend="Overlay normal density" onChange={( value ) => {
+				this.setState({
+					overlayNormal: value
+				});
+			}} />
+			{ this.state.avgXBars ?
+				<p>
+					<label> Mean of <TeX raw="\bar x" />&#39;s: </label>
+					&nbsp;{this.state.avgXBars.toFixed( 3 )} (shown as the red line)
+				</p> : null
+			}
+			{ this.state.stdevXBars ?
+				<p>
+					<label>Standard deviation of <TeX raw="\bar x" />&#39;s: </label>
+					&nbsp;{this.state.stdevXBars.toFixed( 3 )}
+				</p> : null
+			}
+		</Card> );
 	}
 
 	render() {
 		return (
 			<div>
-				<Grid>
+				<Container>
 					<Row>
 						{this.renderDistSelectionPanel()}
 					</Row>
@@ -464,7 +460,7 @@ class ContinuousCLT extends Component {
 					</Row>
 					<Row>
 						<Col md={6}>
-							<Panel><Panel.Body>
+							<Card body>
 								<label>Number of Samples: {this.state.xbars.length}</label>
 								<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 								<ButtonGroup>
@@ -482,8 +478,8 @@ class ContinuousCLT extends Component {
 										Clear
 									</Button>
 								</ButtonGroup>
-							</Panel.Body></Panel>
-							<Panel style={{ height: '400px', overflowY: 'scroll' }}><Panel.Body>
+							</Card>
+							<Card style={{ height: '400px', overflowY: 'scroll' }} body>
 								<GridLayout
 									className="layout"
 									layout={this.state.layout}
@@ -496,13 +492,13 @@ class ContinuousCLT extends Component {
 										</div> );
 									})}
 								</GridLayout>
-							</Panel.Body></Panel>
+							</Card>
 						</Col>
 						<Col md={6}>
 							{this.renderXbarHistogram()}
 						</Col>
 					</Row>
-				</Grid>
+				</Container>
 			</div>
 		);
 	}

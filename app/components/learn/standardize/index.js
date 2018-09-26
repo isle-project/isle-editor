@@ -1,10 +1,10 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import Grid from 'react-bootstrap/lib/Grid';
+import Container from 'react-bootstrap/lib/Container';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import { VictoryChart, VictoryLine, VictoryArea } from 'victory';
 import PropTypes from 'prop-types';
 import roundn from '@stdlib/math/base/special/roundn';
@@ -107,11 +107,11 @@ class Standardize extends Component {
 	}
 
 	renderNumberInputPanel() {
-		return ( <Panel>
-			<Panel.Heading>
-				<Panel.Title componentClass="h4">From Normal to Standard Normal</Panel.Title>
-			</Panel.Heading>
-			<Panel.Body>
+		return ( <Card>
+			<Card.Header as="h4">
+				From Normal to Standard Normal
+			</Card.Header>
+			<Card.Body>
 				<NumberInput
 					legend="Mean"
 					defaultValue={4}
@@ -132,16 +132,16 @@ class Standardize extends Component {
 						this.generateState( this.state.mean, sd );
 					}}
 				/>
-			</Panel.Body>
-		</Panel> );
+			</Card.Body>
+		</Card> );
 	}
 
 	renderUnstandardizedPlot() {
-		return ( <Panel>
-			<Panel.Heading>
-				<Panel.Title componentClass="h4">Unstandardized</Panel.Title>
-			</Panel.Heading>
-			<Panel.Body>
+		return ( <Card>
+			<Card.Header as="h4">
+				Unstandardized
+			</Card.Header>
+			<Card.Body>
 				<VictoryChart domain={{
 					x: [ -30, 30 ],
 					y: [ 0, 0.4 ]
@@ -151,16 +151,16 @@ class Standardize extends Component {
 					/>
 					{this.state.unstandardizedLines}
 				</VictoryChart>
-			</Panel.Body>
-		</Panel> );
+			</Card.Body>
+		</Card> );
 	}
 
 	renderStandardizedPlot() {
-		return ( <Panel>
-			<Panel.Heading>
-				<Panel.Title componentClass="h4">Standardized</Panel.Title>
-			</Panel.Heading>
-			<Panel.Body>
+		return ( <Card>
+			<Card.Header as="h4">
+				Standardized
+			</Card.Header>
+			<Card.Body>
 				<VictoryChart domain={{
 					x: [ -5, 5 ],
 					y: [ 0, 0.4 ]
@@ -227,13 +227,13 @@ class Standardize extends Component {
 						defaultValue: this.state.upper
 					}
 				}} displayMode /> : null }
-			</Panel.Body>
-		</Panel> );
+			</Card.Body>
+		</Card> );
 	}
 
 	render() {
 		return (
-			<Grid>
+			<Container>
 				<Row>
 					<Col md={12}>
 						{this.renderNumberInputPanel()}
@@ -264,7 +264,7 @@ class Standardize extends Component {
 						{this.renderStandardizedPlot()}
 					</Col>
 				</Row>
-			</Grid>
+			</Container>
 		);
 	}
 }

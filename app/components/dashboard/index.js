@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import isNull from '@stdlib/assert/is-null';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
 import CheckboxInput from 'components/input/checkbox';
@@ -25,7 +25,7 @@ const debug = logger( 'isle:dashboard' );
 /**
 * A dashboard for combining the handling of multiple child input fields.
 *
-* @property {string} title - panel title
+* @property {string} title - card title
 * @property {string} description - dashboard description
 * @property {boolean} autoStart - if set to `true`, the `onGenerate` function is executed at startup with the default input values
 * @property {boolean} autoUpdate - controls whether the `onGenerate` function should be invoked automatically when one of the child input fields changes
@@ -145,19 +145,19 @@ class Dashboard extends Component {
 		this._counter = void 0;
 		this._children = this.registerChildren( this.props.children );
 		return (
-			<Panel
+			<Card
 				className="dashboard"
 				style={{
 					maxWidth: this.props.maxWidth
 				}}
 			>
 				{ this.props.title ?
-					<Panel.Heading>
-						<Panel.Title componentClass="h4">{this.props.title}</Panel.Title>
-					</Panel.Heading>:
+					<Card.Header as="h4">
+						{this.props.title}
+					</Card.Header>:
 					null
 				}
-				<Panel.Body>
+				<Card.Body>
 					<p>{this.props.description}</p>
 					{this._children}
 					{ !this.props.autoUpdate ?
@@ -170,8 +170,8 @@ class Dashboard extends Component {
 						>{this.props.label}</Button> :
 						<span />
 					}
-				</Panel.Body>
-			</Panel>
+				</Card.Body>
+			</Card>
 		);
 	}
 }

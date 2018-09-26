@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import Button from 'react-bootstrap/lib/Button';
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import { scaleOrdinal, schemeCategory10, select } from 'd3';
 import cloud from 'd3-cloud';
 import saveAs from 'utils/file-saver';
@@ -288,7 +287,9 @@ class Wrapper extends Component {
 					right: -12,
 					top: -12,
 					zIndex: 2
-				}}><Glyphicon glyph="floppy-save" /></Button>
+				}}>
+					<div className="fa fa-save" />
+				</Button>
 			</Tooltip> : null }
 		</div> );
 	}

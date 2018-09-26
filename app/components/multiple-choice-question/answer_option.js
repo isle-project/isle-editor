@@ -23,17 +23,17 @@ function isHTMLConfig( elem ) {
 // MAIN //
 
 const AnswerOption = ( props ) => {
-	let bsStyle;
+	let variant;
 	if ( props.provideFeedback ) {
 		if ( props.correct === true ) {
-			bsStyle = 'success';
+			variant = 'success';
 		}
 		else if ( props.correct === false ) {
-			bsStyle = 'danger';
+			variant = 'danger';
 		}
 		else if ( props.solution === true ) {
 			// Case: User did not pick correct answer...
-			bsStyle = 'warning';
+			variant = 'warning';
 		}
 	}
 	const answerContent = isHTMLConfig( props.answerContent ) ?
@@ -48,7 +48,7 @@ const AnswerOption = ( props ) => {
 	if ( props.disabled ) {
 		return (
 			<ListGroupItem className="multiple-choice-answer"
-				bsStyle={bsStyle}
+				variant={variant}
 				disabled
 			>
 				{answerContent}
@@ -64,7 +64,7 @@ const AnswerOption = ( props ) => {
 			>
 				<ListGroupItem className="multiple-choice-answer"
 					onClick={props.onAnswerSelected}
-					bsStyle={bsStyle}
+					variant={variant}
 					disabled={!props.provideFeedback}
 				>
 					{answerContent}

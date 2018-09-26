@@ -3,7 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
 import NumberInput from 'components/input/number';
@@ -277,19 +277,17 @@ class MeanTest2 extends Component {
 
 	render() {
 		return (
-			<Panel
+			<Card
 				style={{ fontSize: '14px' }}
 			>
-				<Panel.Heading>
-					<Panel.Title componentClass="h4">
-						Two-Sample Mean Test
-					</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body>
+				<Card.Header as="h4">
+					Two-Sample Mean Test
+				</Card.Header>
+				<Card.Body>
 					{this.renderInputs()}
 					<Button bsStyle="primary" block onClick={this.calculateTwoSampleZTest}>Calculate</Button>
-				</Panel.Body>
-			</Panel>
+				</Card.Body>
+			</Card>
 		);
 	}
 }

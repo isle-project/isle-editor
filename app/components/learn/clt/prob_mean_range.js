@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import TeX from 'components/tex';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import PINF from '@stdlib/constants/math/float64-pinf';
@@ -80,7 +80,7 @@ class ProbMeanRange extends Component {
 
 	render() {
 		return (
-			<Panel><Panel.Body>
+			<Card body>
 				<TeX raw={`P( L = ${this.state.lower} < \\bar X < U = ${this.state.upper}) = ${this.state.rangeProb.toFixed( 3 )}`} elems={{
 					L: {
 						variable: 'L',
@@ -99,7 +99,7 @@ class ProbMeanRange extends Component {
 						defaultValue: this.state.upper
 					}
 				}} displayMode />
-			</Panel.Body></Panel>
+			</Card>
 		);
 	}
 }

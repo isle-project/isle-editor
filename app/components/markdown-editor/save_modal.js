@@ -3,11 +3,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import noop from '@stdlib/utils/noop';
-import Button from 'react-bootstrap/lib/Button';
-import Modal from 'react-bootstrap/lib/Modal';
-import Panel from 'react-bootstrap/lib/Panel';
 import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
+import Card from 'react-bootstrap/lib/Card';
+import Button from 'react-bootstrap/lib/Button';
+import Modal from 'react-bootstrap/lib/Modal';
+import Collapse from 'react-bootstrap/lib/Collapse';
 import SelectInput from 'components/input/select';
 import NumberInput from 'components/input/number';
 import pageSizes from './page_sizes.json';
@@ -105,9 +106,9 @@ class SaveModal extends Component {
 						<Button onClick={this.togglePDFMenu} bsStyle="primary" bsSize="large" block>
 							Export as PDF
 						</Button>
-						<Panel id="export-pdf-panel" expanded={this.state.openPDF} onToggle={noop} >
-							<Panel.Collapse>
-								<Panel.Body>
+						<Card id="export-pdf-panel" expanded={this.state.openPDF} onToggle={noop} >
+							<Collapse>
+								<Card.Body>
 									<Row className="predefined-letter-button">
 										<SelectInput
 											legend="Pick a predefined value"
@@ -189,9 +190,9 @@ class SaveModal extends Component {
 										</Col>
 									</Row>
 									<Button onClick={this.savePDF} block>Save</Button>
-								</Panel.Body>
-							</Panel.Collapse>
-						</Panel>
+								</Card.Body>
+							</Collapse>
+						</Card>
 					</div>
 					<div>
 					<Button onClick={this.props.saveMarkdown} bsSize="large" block>

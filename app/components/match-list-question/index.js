@@ -184,8 +184,8 @@ class MatchListQuestion extends Component {
 		);
 		const solutionButton = this.state.submitted ?
 			<Button
-				bsStyle="warning"
-				bsSize="sm"
+				variant="warning"
+				size="sm"
 				onClick={this.toggleSolution}
 			>{ !this.state.userAnswers ? 'Show Solution' : 'Hide Solution' }</Button> :
 			<OverlayTrigger
@@ -196,8 +196,8 @@ class MatchListQuestion extends Component {
 			>
 				<div style={{ display: 'inline-block' }}>
 					<Button
-						bsStyle="warning"
-						bsSize="sm"
+						variant="warning"
+						size="sm"
 						disabled
 						style={{
 							pointerEvents: 'none'
@@ -225,8 +225,8 @@ class MatchListQuestion extends Component {
 				</div>
 				<div className="match-list-question-controls">
 					<Button
-						bsStyle="primary"
-						bsSize="sm"
+						variant="primary"
+						size="sm"
 						onClick={this.handleSubmit}
 						disabled={answers.length !== elements.length}>
 						{ !this.state.submitted ? 'Submit' : 'Resubmit' }

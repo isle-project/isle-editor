@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import DraggableList from 'components/draggable-list';
 import HintButton from 'components/hint-button';
 import InstructorBar from 'components/instructor-bar';
@@ -107,8 +107,8 @@ class OrderQuestion extends Component {
 	render() {
 		const nHints = this.props.hints.length;
 		return (
-			<Panel className="order-question">
-				<Panel.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
+			<Card className="order-question">
+				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
 					<DraggableList shuffle data={this.props.options} onChange={this.handleChange} />
 					<div className="order-question-toolbar">
@@ -125,12 +125,12 @@ class OrderQuestion extends Component {
 						}
 					</div>
 					<InstructorBar id={this.props.id} dataType="text" />
-				</Panel.Body>
+				</Card.Body>
 				{ this.props.id && this.props.feedback ? <FeedbackButtons
 					vertical
 					id={this.props.id+'_feedback'}
 				/> : null }
-			</Panel>
+			</Card>
 		);
 	}
 }

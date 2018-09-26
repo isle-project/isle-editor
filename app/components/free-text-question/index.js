@@ -5,10 +5,9 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
@@ -223,8 +222,8 @@ class FreeTextQuestion extends Component {
 		);
 		if ( this.state.submitted && this.state.exhaustedHints ) {
 			return ( <Button
-				bsStyle="warning"
-				bsSize="sm"
+				variant="warning"
+				size="sm"
 				onClick={this.handleSolutionClick}
 			>{ !this.state.solutionDisplayed ? 'Show Solution' : 'Hide Solution' }</Button> );
 		}
@@ -236,8 +235,8 @@ class FreeTextQuestion extends Component {
 		>
 			<div style={{ display: 'inline-block', marginLeft: '4px' }}>
 				<Button
-					bsStyle="warning"
-					bsSize="sm"
+					variant="warning"
+					size="sm"
 					disabled
 					style={{
 						pointerEvents: 'none'
@@ -270,14 +269,14 @@ class FreeTextQuestion extends Component {
 	render() {
 		const nHints = this.props.hints.length;
 		return (
-			<Panel id={this.props.id} className="free-text-question">
-				<Panel.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}>
+			<Card id={this.props.id} className="free-text-question">
+				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}>
 					<VoiceControl id={this.props.voiceID} reference={this}
 						commands={VOICE_COMMANDS}
 					/>
 					{ this.props.question ? <label>{this.props.question}</label> : null }
 					<FormGroup>
-						<ControlLabel>{this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' }</ControlLabel>
+						<label>{this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' }</label>
 						<FormControl
 							id={`${this.props.id}_textarea`}
 							componentClass="textarea"
@@ -295,8 +294,8 @@ class FreeTextQuestion extends Component {
 					{
 						this.state.value.length >= 1 ?
 							<Button
-								bsStyle="primary"
-								bsSize="sm"
+								variant="primary"
+								size="sm"
 								style={{
 									marginTop: '8px',
 									marginBottom: '8px'
@@ -313,8 +312,8 @@ class FreeTextQuestion extends Component {
 							>
 								<div style={{ display: 'inline-block' }}>
 									<Button
-										bsStyle="primary"
-										bsSize="sm"
+										variant="primary"
+										size="sm"
 										style={{
 											marginTop: '8px',
 											marginBottom: '8px',
@@ -349,12 +348,12 @@ class FreeTextQuestion extends Component {
 						}
 					</ButtonToolbar>
 					<InstructorBar buttonLabel="Answers" id={this.props.id} />
-				</Panel.Body>
+				</Card.Body>
 				{ this.props.id && this.props.feedback ? <FeedbackButtons
 					vertical
 					id={this.props.id+'_feedback'}
 				/> : null }
-			</Panel>
+			</Card>
 		);
 	}
 }

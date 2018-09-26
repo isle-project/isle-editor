@@ -1,9 +1,9 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import Grid from 'react-bootstrap/lib/Grid';
+import Container from 'react-bootstrap/lib/Container';
 import Col from 'react-bootstrap/lib/Col';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import Row from 'react-bootstrap/lib/Row';
 import { VictoryAxis, VictoryChart, VictoryErrorBar, VictoryLine, VictoryTheme, VictoryTooltip } from 'victory';
 import abs from '@stdlib/math/base/special/abs';
@@ -124,12 +124,12 @@ class ConfidenceCoverageNormal extends Component {
 		const intro = <p><TeX raw="X \sim \text{Normal}(  \mu, \sigma^2 )" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\bar X \sim \text{Normal}( \mu, \sigma/\sqrt{n} )" elems={ELEM_TOOLTIPS} />.  Our confidence interval is then <TeX raw="\bar X \pm Z_{\alpha/2} \cdot \sigma/\sqrt{n}" elems={ELEM_TOOLTIPS} />. For our choice of sample size (n), <TeX raw="\mu" />, <TeX raw="\sigma" />, and confidence level, we will simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.</p>;
 
 		return (
-			<Panel id="coverageModuleNormal">
-				<Panel.Heading>
-					<Panel.Title componentClass="h4">Confidence Interval Coverage for Sample Mean</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body>
-					<Grid>
+			<Card id="coverageModuleNormal">
+				<Card.Header as="h4">
+					Confidence Interval Coverage for Sample Mean
+				</Card.Header>
+				<Card.Body>
+					<Container>
 						<Row>
 							{intro}
 						</Row>
@@ -171,23 +171,23 @@ class ConfidenceCoverageNormal extends Component {
 								</Dashboard>
 							</Col>
 							<Col md={8}>
-								<Panel>
-									<Panel.Heading>
-										<Panel.Title componentClass="h4">Confidence Intervals</Panel.Title>
-									</Panel.Heading>
-									<Panel.Body>
+								<Card>
+									<Card.Header as="h4">
+										Confidence Intervals
+									</Card.Header>
+									<Card.Body>
 										{this.renderChart()}
 										<p>Of the 20 confidence intervals, {this.state.nTrapped} capture the true mean <b>(coverage:  {this.state.nTrapped/20}).</b></p>
-									</Panel.Body>
-								</Panel>
+									</Card.Body>
+								</Card>
 								<FeedbackButtons
 									id="coverageModuleNormal"
 								/>
 							</Col>
 						</Row>
-					</Grid>
-				</Panel.Body>
-			</Panel>
+					</Container>
+				</Card.Body>
+			</Card>
 		);
 	}
 }

@@ -3,8 +3,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/lib/Col';
-import Grid from 'react-bootstrap/lib/Grid';
-import Panel from 'react-bootstrap/lib/Panel';
+import Container from 'react-bootstrap/lib/Container';
+import Card from 'react-bootstrap/lib/Card';
 import Row from 'react-bootstrap/lib/Row';
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryLine, VictoryTheme } from 'victory';
 import roundn from '@stdlib/math/base/special/roundn';
@@ -267,10 +267,9 @@ class ConditionalProbability extends Component {
 		const victoryData = [ { x: `P(${A}|${B})`, y: 100*this.state.pAgivenB }, { x: `P(${A}|not ${B})`, y: this.state.pAgivenNotB*100 } ];
 		const victoryLineData = [ { x: `P(${A}|${B})`, y: 100*this.state.pAgivenB }, { x: `P(${A}|not ${B})`, y: this.state.pAgivenNotB*100 } ];
 		return (
-			<Panel>
-				<Panel.Body>
+			<Card body>
 				<p>Consider events <TextInput inline defaultValue={A} onChange={( A ) => this.setState({ A })} /> and <TextInput inline defaultValue={B} onChange={( B ) => this.setState({ B })} />. Let <TeX raw={`P(\\text{${A}}) = `} /><NumberInput min={0} max={1} step={0.01} defaultValue={0.5} inline onChange={this.changeProbA} /> and  <TeX raw={`P(\\text{${B}}) = `} /><NumberInput min={0} max={1} step={0.01} defaultValue={0.5} inline onChange={this.changeProbB} />. Then we have <TeX raw={`P(\\text{${A}}^C) = ${roundn( 1-pA, -4 )}`} /> and <TeX raw={`P(\\text{${B}}^C) = ${roundn( 1-pB, -4 )}`} />. These form the marginals in the following probability table.</p>
-				<Grid>
+				<Container>
 					<Row>
 						<Col sm={6}>
 							<p>What are the inner cells equal to? If the events are random, we have <TeX raw={`P(\\text{${A}} \\cap \\text{${B}} ) = P(\\text{${A}}) \\cdot P(\\text{${B}}) = ${roundn( pA*pB, -4 )}`} />. </p>
@@ -303,12 +302,12 @@ class ConditionalProbability extends Component {
 						<Col sm={5}>
 							<p>What about the conditional probabilities?</p>
 							{ pB === 0 || pA === 0 ?
-								<Panel>
+								<Card>
 									{ pB === 0 ? <span>The conditional probability is undefined when <TeX raw={`P( \\text{${B}}) = 0`} /></span> : <span>
 											When <TeX raw={`P( ${A}) = 0`} />, we must have <TeX raw={`P( \\text{${A}} \\mid \\text{${B}} ) = P( \\text{${A}} \\mid \\text{${B}}^C ) = 0`} /> in case B has non-zero probability.
 									</span>}
-								</Panel> :
-								<Grid>
+								</Card> :
+								<Container>
 									<Row>
 										<Col md={4}>
 											<VictoryChart
@@ -339,7 +338,7 @@ class ConditionalProbability extends Component {
 											<TeX raw={this.state.pAgivenB === 0 && this.state.pAgivenNotB === 0 ? `P( \\text{ ${A} } \\mid \\text{ ${B} } ) = P( \\text{${A}} \\mid \\text{ ${B} }^C \\neq P( \\text{${A}})` : `P( \\text{ ${A} } \\mid \\text{ ${B} } ) \\neq P( \\text{${A}} \\mid \\text{ ${B} }^C )`} /></Fragment>
 										}
 									</Row>
-								</Grid>
+								</Container>
 							}
 						</Col>
 						<Col sm="1">
@@ -349,9 +348,8 @@ class ConditionalProbability extends Component {
 							/>
 						</Col>
 					</Row>
-				</Grid>
-				</Panel.Body>
-			</Panel>
+				</Container>
+			</Card>
 		);
 	}
 }

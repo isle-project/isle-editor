@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
@@ -61,7 +60,7 @@ class TextArea extends Component {
 
 	renderLegend() {
 		if (this.props.legend !== '') {
-			return <ControlLabel>{this.props.legend}</ControlLabel>;
+			return <label>{this.props.legend}</label>;
 		}
 		return null;
 	}
@@ -74,7 +73,7 @@ class TextArea extends Component {
 			<FormGroup controlId="formControlsTextarea">
 				{this.renderLegend()}
 				<FormControl
-					componentClass="textarea"
+					as="textarea"
 					placeholder={this.props.placeholder}
 					onChange={this.handleChange}
 					style={{

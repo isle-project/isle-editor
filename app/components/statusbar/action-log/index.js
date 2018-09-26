@@ -2,7 +2,8 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
+import Collapse from 'react-bootstrap/lib/Collapse';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
@@ -180,63 +181,65 @@ class ActionLog extends Component {
 	render() {
 		return (
 			<Fragment>
-				<Panel.Heading>
-					<Panel.Title toggle>
+				<Card.Header>
+					<Card.Title toggle>
 						{this.state.actionLogHeader}
-					</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body collapsible>
-					<RangePicker onChange={( newPeriod ) => {
-						this.setState({
-							period: newPeriod
-						});
-					}} />
-					<ActionList
-						actions={this.state.actions}
-						period={this.state.period}
-						filter={this.state.filter}
-						height={window.innerHeight / 2}
-						onFilterChange={( newFilter, newHeader ) => {
+					</Card.Title>
+				</Card.Header>
+				<Collapse>
+					<Card.Body>
+						<RangePicker onChange={( newPeriod ) => {
 							this.setState({
-								filter: newFilter,
-								actionLogHeader: newHeader
+								period: newPeriod
 							});
-						}}
-					/>
-					<ButtonToolbar>
-						<ButtonGroup>
-							<span style={{ fontSize: '12px', fontWeight: 600 }}>
-								{'# of Actions: '+this.state.actions.length}
-							</span>
-						</ButtonGroup>
-						<ToggleButtonGroup
-							name="options"
-							onChange={this.handleRadioChange}
-							type="radio"
-							bsSize="xsmall"
-							value={this.state.anonymized}
-						>
-							<ToggleButton
-								value={false}
-								style={{
-									fontSize: '12px',
-									color: this.state.anonymized ? '#A9A9A9' : 'black'
-								}}
-							>Original</ToggleButton>
-							<ToggleButton
-								value={true}
-								style={{
-									fontSize: '12px',
-									color: this.state.anonymized ? 'black' : '#A9A9A9'
-								}}
-							>Anonymized</ToggleButton>
-						</ToggleButtonGroup>
-						<ButtonGroup bsSize="xsmall">
-							<Button onClick={this.saveJSON} >Save JSON</Button>
-							<Button onClick={this.saveCSV} >Save CSV</Button>
-						</ButtonGroup>
-					</ButtonToolbar>
-				</Panel.Body>
+						}} />
+						<ActionList
+							actions={this.state.actions}
+							period={this.state.period}
+							filter={this.state.filter}
+							height={window.innerHeight / 2}
+							onFilterChange={( newFilter, newHeader ) => {
+								this.setState({
+									filter: newFilter,
+									actionLogHeader: newHeader
+								});
+							}}
+						/>
+						<ButtonToolbar>
+							<ButtonGroup>
+								<span style={{ fontSize: '12px', fontWeight: 600 }}>
+									{'# of Actions: '+this.state.actions.length}
+								</span>
+							</ButtonGroup>
+							<ToggleButtonGroup
+								name="options"
+								onChange={this.handleRadioChange}
+								type="radio"
+								bsSize="xsmall"
+								value={this.state.anonymized}
+							>
+								<ToggleButton
+									value={false}
+									style={{
+										fontSize: '12px',
+										color: this.state.anonymized ? '#A9A9A9' : 'black'
+									}}
+								>Original</ToggleButton>
+								<ToggleButton
+									value={true}
+									style={{
+										fontSize: '12px',
+										color: this.state.anonymized ? 'black' : '#A9A9A9'
+									}}
+								>Anonymized</ToggleButton>
+							</ToggleButtonGroup>
+							<ButtonGroup bsSize="xsmall">
+								<Button onClick={this.saveJSON} >Save JSON</Button>
+								<Button onClick={this.saveCSV} >Save CSV</Button>
+							</ButtonGroup>
+						</ButtonToolbar>
+					</Card.Body>
+				</Collapse>
 			</Fragment>
 		);
 	}

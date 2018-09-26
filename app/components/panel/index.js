@@ -2,26 +2,26 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 
 
 // MAIN //
 
 /**
-* Panel component.
+* Card component.
 *
 * @property {string} header - panel heading (h3)
 */
 class Wrapper extends Component {
 	render() {
-		return ( <Panel {...this.props} >
-			{ this.props.header ? <Panel.Heading>
-				<Panel.Title componentClass="h3">{this.props.header}</Panel.Title>
-			</Panel.Heading> : null }
-			<Panel.Body>
+		return ( <Card {...this.props} >
+			{ this.props.header ? <Card.Header as="h3">
+				{this.props.header}
+			</Card.Header> : null }
+			<Card.Body>
 				{this.props.children}
-			</Panel.Body>
-		</Panel> );
+			</Card.Body>
+		</Card> );
 	}
 }
 

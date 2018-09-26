@@ -102,12 +102,12 @@ snippet Gate
 		${4:}
 	</Gate>
 
-snippet Grid
-	<Grid>
+snippet Container
+	<Container>
 		<Row>
 			<Col md={12}></Col>
 		</Row>
-	</Grid>
+	</Container>
 
 snippet IFrame
 	<IFrame src={${1:http://www.wikipedia.org}} />

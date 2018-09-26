@@ -3,9 +3,9 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Grid from 'react-bootstrap/lib/Grid';
+import Container from 'react-bootstrap/lib/Container';
 import Col from 'react-bootstrap/lib/Col';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import Row from 'react-bootstrap/lib/Row';
 import PropTypes from 'prop-types';
 import sample from '@stdlib/random/sample';
@@ -362,11 +362,11 @@ class SampleCLT extends Component {
 		} else if ( this.state.type === 'binary' ) {
 			label = <span> Histogram of <TeX raw="\hat p" />&#39;s</span>;
 		}
-		return ( <Panel>
-			<Panel.Heading>
-				<Panel.Title componentClass="h4">{label}</Panel.Title>
-			</Panel.Heading>
-			<Panel.Body>
+		return ( <Card>
+			<Card.Header as="h4">
+				{label}
+			</Card.Header>
+			<Card.Body>
 			{ this.state.xbars.length > 1 ?
 				<Plotly
 					data={[
@@ -410,17 +410,16 @@ class SampleCLT extends Component {
 					&nbsp;{this.state.stdev_xbars.toFixed( 3 )}
 				</p> : null
 			}
-			</Panel.Body>
-		</Panel> );
+			</Card.Body>
+		</Card> );
 	}
 
 	renderPopulationProbabilities() {
-		return ( <Panel>
-			<Panel.Heading>
-				<Panel.Title componentClass="h4">
-				Population Distribution of {this.state.variable}</Panel.Title>
-			</Panel.Heading>
-			<Panel.Body>
+		return ( <Card>
+			<Card.Header as="h4">
+				Population Distribution of {this.state.variable}
+			</Card.Header>
+			<Card.Body>
 				<Plotly
 					data={[
 						{ x: this.state.values, type: 'histogram' }
@@ -437,15 +436,15 @@ class SampleCLT extends Component {
 					<label>Population standard deviation: </label>
 					{this.state.trueStdev.toFixed( 3 )}
 				</p>
-			</Panel.Body>
-		</Panel> );
+			</Card.Body>
+		</Card> );
 	}
 
 	render() {
 		return (
-			<Grid>
+			<Container>
 				<Row>
-					<Panel><Panel.Body>
+					<Card body>
 						<Col md={6}>
 							<SelectInput legend="Select a variable" options={this.props.variables} onChange={this.onSelectVariable} />
 						</Col>
@@ -475,7 +474,7 @@ class SampleCLT extends Component {
 								</span> : null
 							}
 						</Col>
-					</Panel.Body></Panel>
+					</Card>
 				</Row>
 				{ this.state.type === 'numeric' || this.state.type === 'binary' ?
 					<Row>
@@ -483,8 +482,8 @@ class SampleCLT extends Component {
 							{ this.props.populationProbabilities ?
 								this.renderPopulationProbabilities() :
 								<div>
-									<Panel><label>Drawn Samples</label></Panel>
-									<Panel style={{ height: '400px', overflowY: 'scroll' }}>
+									<Card><label>Drawn Samples</label></Card>
+									<Card style={{ height: '400px', overflowY: 'scroll' }}>
 										<GridLayout
 											className="layout"
 											layout={this.state.layout}
@@ -497,31 +496,31 @@ class SampleCLT extends Component {
 												</div> );
 											})}
 										</GridLayout>
-									</Panel>
+									</Card>
 								</div>
 							}
-							<Panel>
+							<Card>
 								<NumberInput step="any" legend={<span>Evaluate probabilities for <TeX raw="X" /></span>} onChange={this.onXChange} />
 								<TeX raw={`P( X < ${this.state.cutoffPop} ) = ${this.state.leftProb.toFixed( 3 )}`} displayMode />
 								<TeX raw={`P( X \\ge ${this.state.cutoffPop} ) = ${this.state.rightProb.toFixed( 3 )}`} displayMode />
-							</Panel>
+							</Card>
 						</Col>
 						<Col md={6}>
 							<div>
 								{this.renderMeanHistogram()}
-								<Panel>
+								<Card>
 									<NumberInput step="any" legend={<span>Evaluate probabilities for <TeX raw="\bar X" /></span>} onChange={this.onXbarChange} />
 									<TeX raw={`\\hat P(\\bar X < ${this.state.cutoff} ) = ${this.state.leftXbarProb.toFixed( 3 )}`} displayMode />
 									<TeX raw={`\\hat P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightXbarProb.toFixed( 3 )}`} displayMode />
-								</Panel>
+								</Card>
 							</div>
 						</Col>
 					</Row> :
-					<Panel>
+					<Card>
 						Please sample from either a numeric variable or a categorical variable with two categories.
-					</Panel>
+					</Card>
 				}
-			</Grid>
+			</Container>
 		);
 	}
 }

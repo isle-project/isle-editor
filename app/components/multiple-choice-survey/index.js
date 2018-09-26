@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
-import Grid from 'react-bootstrap/lib/Grid';
+import Container from 'react-bootstrap/lib/Container';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryLabel } from 'victory';
 import logger from 'debug';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
@@ -181,32 +181,30 @@ class MultipleChoiceSurvey extends Component {
 		}
 		return (
 			<Gate user banner={<h2>Please sign in...</h2>} >
-				<Panel>
-					<Panel.Heading>
-						<Panel.Title componentClass="h3">{title}</Panel.Title>
-					</Panel.Heading>
-					<Panel.Body>
-						<Grid>
+				<Card>
+					<Card.Header as="h3">
+						{title}
+					</Card.Header>
+					<Card.Body>
+						<Container>
 							<Col md={6}>
-								<Panel className="multiple-choice-survey">
-									<Panel.Body>
-										<p><label>{question}</label></p>
-										{ multipleAnswers ? <span>You may select multiple answers</span> : null }
-										<ListGroup fill >
-											{ multipleAnswers ?
-												answers.map( this.renderAnswerOptionsMultiple ) :
-												answers.map( this.renderAnswerOptionsSingle )
-											}
-										</ListGroup>
-										<Button
-											bsSize="small"
-											bsStyle="success"
-											block fill
-											onClick={this.submitQuestion}
-											disabled={disabled}
-										>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
-									</Panel.Body>
-								</Panel>
+								<Card body className="multiple-choice-survey">
+									<p><label>{question}</label></p>
+									{ multipleAnswers ? <span>You may select multiple answers</span> : null }
+									<ListGroup fill >
+										{ multipleAnswers ?
+											answers.map( this.renderAnswerOptionsMultiple ) :
+											answers.map( this.renderAnswerOptionsSingle )
+										}
+									</ListGroup>
+									<Button
+										bsSize="small"
+										bsStyle="success"
+										block fill
+										onClick={this.submitQuestion}
+										disabled={disabled}
+									>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
+								</Card>
 							</Col>
 							<Col md={6}>
 								<RealtimeMetrics for={id} onData={this.onData} />
@@ -215,10 +213,10 @@ class MultipleChoiceSurvey extends Component {
 									{this.state.freqTable}
 								</p>
 							</Col>
-						</Grid>
+						</Container>
 						<InstructorBar buttonLabel="Responses" id={id} dataType="factor" />
-					</Panel.Body>
-				</Panel>
+					</Card.Body>
+				</Card>
 			</Gate>
 		);
 	}

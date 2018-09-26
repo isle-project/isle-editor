@@ -4,11 +4,13 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import markdownIt from 'markdown-it';
 import Button from 'react-bootstrap/lib/Button';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import Card from 'react-bootstrap/lib/Card';
+import Table from 'react-bootstrap/lib/Table';
 import FormControl from 'react-bootstrap/lib/FormControl';
-import Checkbox from 'react-bootstrap/lib/Checkbox';
+import Form from 'react-bootstrap/lib/Form';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Modal from 'react-bootstrap/lib/Modal';
+import Checkbox from 'components/input/checkbox';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isFunction from '@stdlib/assert/is-function';
 import typeOf from '@stdlib/utils/type-of';
@@ -183,7 +185,7 @@ class ComponentConfigurator extends Component {
 			const className = isActive ? 'success' : '';
 			const elem = <tr className={className} style={{ marginBottom: 5 }} key={i}>
 					<td>
-						{ !isRequired ? <Checkbox checked={isActive} onClick={this.checkboxClickFactory( prop.name, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{prop.name}</Checkbox> : <Checkbox defaultChecked={true} disabled>{prop.name}</Checkbox> }
+						{ !isRequired ? <Checkbox id={prop.name} value={isActive} onChange={this.checkboxClickFactory( prop.name, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} >{prop.name}</Checkbox> : <Checkbox id={prop.name} defaultValue={true} disabled>{prop.name}</Checkbox> }
 					</td>
 					<td>{description}</td>
 					<td>
@@ -197,9 +199,9 @@ class ComponentConfigurator extends Component {
 		}
 		return (
 			<Fragment>
-				<label>Click on the box to add the respective options:</label>
+				<Card.Subtitle className="mb-2 text-muted">Click on the box to add the respective options:</Card.Subtitle>
 				<div style={{ height: '300px', overflowY: 'scroll' }}>
-					<table className="table table-bordered table-condensed">
+					<Table striped bordered size="sm">
 						<thead>
 							<tr>
 								<th>Option</th>
@@ -211,7 +213,7 @@ class ComponentConfigurator extends Component {
 						<tbody>
 							{controls}
 						</tbody>
-					</table>
+					</Table>
 				</div>
 			</Fragment>
 		);
@@ -232,20 +234,19 @@ class ComponentConfigurator extends Component {
 			<Modal
 				onHide={this.clickHide}
 				show={this.props.show}
-				bsSize="large"
-				style={{ right: '-20%', top: '-5%' }}
+				dialogClassName="modal-90w"
 			>
 				<Modal.Header closeButton>
-					<Modal.Title>Configure {this.props.component.name}</Modal.Title>
+					<Modal.Title as="h5">Configure {this.props.component.name}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					{componentDescription}
 					{this.renderPropertyControls()}
-					<FormGroup>
-						<ControlLabel>Code:</ControlLabel>
+					<FormGroup style={{ marginTop: '15px' }}>
+						<Card.Subtitle className="mb-2 text-muted" >Code:</Card.Subtitle>
 						<FormControl
-							componentClass="textarea"
-							rows={6}
+							as="textarea"
+							rows={5}
 							value={this.state.value}
 							onChange={this.handleChange}
 							style={{ resize: 'none' }}
@@ -254,11 +255,11 @@ class ComponentConfigurator extends Component {
 				</Modal.Body>
 				<Modal.Footer>
 					<Button
-						bsStyle="success"
+						variant="success"
 						onClick={this.handleClick}
 					>Insert</Button>
 					<Button
-						bsStyle="primary"
+						variant="primary"
 						onClick={this.handleReset}
 					>Reset</Button>
 					<Button

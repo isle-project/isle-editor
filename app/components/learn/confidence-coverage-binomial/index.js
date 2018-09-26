@@ -1,9 +1,9 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import Grid from 'react-bootstrap/lib/Grid';
+import Container from 'react-bootstrap/lib/Container';
 import Col from 'react-bootstrap/lib/Col';
-import Panel from 'react-bootstrap/lib/Panel';
+import Card from 'react-bootstrap/lib/Card';
 import Row from 'react-bootstrap/lib/Row';
 import { VictoryAxis, VictoryChart, VictoryErrorBar, VictoryLine, VictoryTheme, VictoryTooltip } from 'victory';
 import abs from '@stdlib/math/base/special/abs';
@@ -131,12 +131,12 @@ class ConfidenceCoverageBinomial extends Component {
 		</div>;
 
 		return (
-			<Panel id="coverageModuleBinomial">
-				<Panel.Heading>
-					<Panel.Title componentClass="h4">Confidence Interval Coverage for Sample Proportion</Panel.Title>
-				</Panel.Heading>
-				<Panel.Body>
-					<Grid>
+			<Card id="coverageModuleBinomial">
+				<Card.Header as="h4">
+					Confidence Interval Coverage for Sample Proportion
+				</Card.Header>
+				<Card.Body>
+					<Container>
 						<Row>
 							{intro}
 						</Row>
@@ -171,23 +171,23 @@ class ConfidenceCoverageBinomial extends Component {
 								</Dashboard>
 							</Col>
 							<Col md={8}>
-								<Panel>
-									<Panel.Heading>
-										<Panel.Title componentClass="h4">Confidence Intervals</Panel.Title>
-									</Panel.Heading>
-									<Panel.Body>
+								<Card>
+									<Card.Header as="h4">
+										Confidence Intervals
+									</Card.Header>
+									<Card.Body>
 										{this.renderChart()}
 										<p>Of the 20 confidence intervals, {this.state.nTrapped} capture the true proportion <b>(coverage: {this.state.nTrapped/20}).</b></p>
-									</Panel.Body>
-								</Panel>
+									</Card.Body>
+								</Card>
 								<FeedbackButtons
 									id="coverageModuleBinomial"
 								/>
 							</Col>
 						</Row>
-					</Grid>
-				</Panel.Body>
-			</Panel>
+					</Container>
+				</Card.Body>
+			</Card>
 		);
 	}
 }
