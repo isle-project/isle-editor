@@ -59,7 +59,7 @@
 
 #Lesson .statusbar-voice {
 	left: 10px;
-	bottom: 0px;
+	bottom: 5px;
 	position: absolute;
 	z-index: 2;
 }

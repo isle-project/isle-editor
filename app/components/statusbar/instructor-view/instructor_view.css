@@ -21,8 +21,8 @@
 
 .instructor-view-bottom {
 	position: absolute;
-	top: 90%;
-	height: 10%;
+	top: 95%;
+	height: 5%;
 	width: 100%;
 	background-color: rgb(232, 232, 232);
 	border-left: solid 2px darkgrey;
@@ -32,9 +32,9 @@
 .instructor-view-middle {
 	position: absolute;
 	top: 10%;
-	height: 80%;
+	height: 85%;
 	width: 100%;
-	background-color: rgb(232, 232, 232);
+	background-color: rgb(250, 250, 250);
 	border-left: solid 2px darkgrey;
 }
 

@@ -3,10 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Card from 'react-bootstrap/lib/Card';
+import Tabs from 'react-bootstrap/lib/Tabs';
+import Tab from 'react-bootstrap/lib/Tab';
 import max from '@stdlib/math/base/special/max';
 import isElectron from 'utils/is-electron';
-import Accordion from 'components/accordion';
 import ActionLog from 'components/statusbar/action-log';
 import InstructorNotes from 'components/statusbar/instructor-notes';
 import animatePosition from 'utils/animate-position';
@@ -75,38 +75,28 @@ class InstructorView extends Component {
 		}
 	}
 
-	renderAccordion = () => {
+	renderTabs = () => {
 		// This is the button that toggles it
 		const { session } = this.context;
 		if ( this.state.hidden ) {
 			return null;
 		}
-		return ( <Accordion>
-			<Card eventKey="1">
-				<Card.Header>
-					<Card.Title toggle>Active Users</Card.Title>
-				</Card.Header>
-				<Card.Body collapsible>
+		return (
+			<Tabs defaultActiveKey="active_users" id="instructor-view-tabs">
+				<Tab eventKey="active_users" title="Active Users">
 					<UserList session={session} />
-				</Card.Body>
-			</Card>
-			<Card eventKey="2">
-				<ActionLog />
-			</Card>
-			<Card eventKey="3">
-				<Card.Header>
-					<Card.Title toggle>
-						<span>Instructor Notes</span>
-					</Card.Title>
-				</Card.Header>
-				<Card.Body className='card-body panel-notes' collapsible >
+				</Tab>
+				<Tab eventKey="action_log" title="Action Log">
+					<ActionLog />
+				</Tab>
+				<Tab eventKey="instructor_notes" title="Instructor Notes">
 					<InstructorNotes
 						id={session.lessonID+'instructor_notebook'}
 						className="instructor_notebook"
 					/>
-				</Card.Body>
-			</Card>
-		</Accordion> );
+				</Tab>
+			</Tabs>
+		);
 	}
 
 	render() {
@@ -123,7 +113,7 @@ class InstructorView extends Component {
 					<hr style={{ background: '#333', backgroundImage: 'linear-gradient(to right, #ccc, #333, #ccc)', height: '1px', border: 0 }} />
 				</div>
 				<div className="instructor-view-middle">
-					{this.renderAccordion()}
+					{this.renderTabs()}
 				</div>
 				<div className="instructor-view-bottom"></div>
 				<div className="instructor-view-handler"

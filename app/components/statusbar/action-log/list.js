@@ -55,17 +55,17 @@ class ActionList extends Component {
 			if ( isEmptyObject( newFilter ) ) {
 				newFilter = null;
 			}
-			const newHeader = this.createHeader( newFilter );
-			this.props.onFilterChange( newFilter, newHeader );
+			const newFilters = this.createFilters( newFilter );
+			this.props.onFilterChange( newFilter, newFilters );
 		};
 		return onRemoveClick;
 	}
 
-	createHeader = ( filter ) => {
+	createFilters = ( filter ) => {
 		let entries = filter ? objectEntries( filter ) : [];
-		let newHeader = <Fragment>
-			<span style={{ display: 'inline' }} >Action Log</span>
-			<div style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
+		let newFilters = <Fragment>
+			<label>Filters:</label>
+			<span style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
 				{entries.map( ( arr, idx ) => {
 					return ( <span
 						style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }}
@@ -73,9 +73,9 @@ class ActionList extends Component {
 						key={idx}
 					>{arr[ 0 ]}: {arr[ 1 ]}</span> );
 				})}
-			</div>
+			</span>
 		</Fragment>;
-		return newHeader;
+		return newFilters;
 	}
 
 	clickFactory = ( type, value ) => {
@@ -83,8 +83,8 @@ class ActionList extends Component {
 			const newFilter = this.props.filter ? copy( this.props.filter ) : {};
 			newFilter[ type ] = value;
 			debug( 'The filter was successfully changed: ' + JSON.stringify( newFilter ) );
-			const newHeader = this.createHeader( newFilter );
-			this.props.onFilterChange( newFilter, newHeader );
+			const newFilters = this.createFilters( newFilter );
+			this.props.onFilterChange( newFilter, newFilters );
 		};
 		return onClick;
 	}

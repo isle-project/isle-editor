@@ -1,9 +1,8 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/lib/Card';
-import Collapse from 'react-bootstrap/lib/Collapse';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
@@ -31,7 +30,7 @@ class ActionLog extends Component {
 		super( props );
 		this.state = {
 			anonymized: true,
-			actionLogHeader: <span>Action Log</span>,
+			filters: <label>Filters:</label>,
 			period: {
 				from: moment( 0 ).startOf( 'day' ),
 				to: moment().endOf( 'day' )
@@ -52,7 +51,7 @@ class ActionLog extends Component {
 			if ( type === 'logout' ) {
 				debug( 'Should reset the filters after user logout:' );
 				this.setState({ // eslint-disable-line react/no-did-mount-set-state
-					actionLogHeader: <span>Action Log</span>
+					filters: <label>Filters:</label>
 				});
 			}
 			else if ( type === 'member_action' ) {
@@ -68,7 +67,7 @@ class ActionLog extends Component {
 			if ( session.socketActions.length === 0 && this.state.filter !== null ) {
 				this.setState({ // eslint-disable-line react/no-did-mount-set-state
 					filter: {},
-					actionLogHeader: <span>Action Log</span>
+					filters: <label>Filters:</label>
 				});
 			}
 		});
@@ -180,67 +179,63 @@ class ActionLog extends Component {
 
 	render() {
 		return (
-			<Fragment>
-				<Card.Header>
-					<Card.Title toggle>
-						{this.state.actionLogHeader}
-					</Card.Title>
-				</Card.Header>
-				<Collapse>
-					<Card.Body>
-						<RangePicker onChange={( newPeriod ) => {
-							this.setState({
-								period: newPeriod
-							});
-						}} />
-						<ActionList
-							actions={this.state.actions}
-							period={this.state.period}
-							filter={this.state.filter}
-							height={window.innerHeight / 2}
-							onFilterChange={( newFilter, newHeader ) => {
-								this.setState({
-									filter: newFilter,
-									actionLogHeader: newHeader
-								});
+			<Card.Body>
+				<RangePicker size="sm" onChange={( newPeriod ) => {
+					this.setState({
+						period: newPeriod
+					});
+				}} />
+				<ActionList
+					actions={this.state.actions}
+					period={this.state.period}
+					filter={this.state.filter}
+					height={window.innerHeight / 2.0}
+					onFilterChange={( newFilter, newFilters ) => {
+						this.setState({
+							filter: newFilter,
+							filters: newFilters
+						});
+					}}
+				/>
+				{this.state.filters}
+				<ButtonToolbar>
+					<ButtonGroup>
+						<span style={{ fontSize: '14px', marginRight: 20, paddingTop: 5, fontWeight: 600 }}>
+							{'# of Actions: '+this.state.actions.length}
+						</span>
+					</ButtonGroup>
+					<ToggleButtonGroup
+						name="options"
+						onChange={this.handleRadioChange}
+						type="radio"
+						size="small"
+						value={this.state.anonymized}
+					>
+						<ToggleButton
+							size="sm"
+							variant="light"
+							value={false}
+							style={{
+								fontSize: '12px',
+								color: this.state.anonymized ? '#A9A9A9' : 'black'
 							}}
-						/>
-						<ButtonToolbar>
-							<ButtonGroup>
-								<span style={{ fontSize: '12px', fontWeight: 600 }}>
-									{'# of Actions: '+this.state.actions.length}
-								</span>
-							</ButtonGroup>
-							<ToggleButtonGroup
-								name="options"
-								onChange={this.handleRadioChange}
-								type="radio"
-								size="xsmall"
-								value={this.state.anonymized}
-							>
-								<ToggleButton
-									value={false}
-									style={{
-										fontSize: '12px',
-										color: this.state.anonymized ? '#A9A9A9' : 'black'
-									}}
-								>Original</ToggleButton>
-								<ToggleButton
-									value={true}
-									style={{
-										fontSize: '12px',
-										color: this.state.anonymized ? 'black' : '#A9A9A9'
-									}}
-								>Anonymized</ToggleButton>
-							</ToggleButtonGroup>
-							<ButtonGroup size="xsmall">
-								<Button onClick={this.saveJSON} >Save JSON</Button>
-								<Button onClick={this.saveCSV} >Save CSV</Button>
-							</ButtonGroup>
-						</ButtonToolbar>
-					</Card.Body>
-				</Collapse>
-			</Fragment>
+						>Original</ToggleButton>
+						<ToggleButton
+							size="sm"
+							variant="light"
+							value={true}
+							style={{
+								fontSize: '12px',
+								color: this.state.anonymized ? 'black' : '#A9A9A9'
+							}}
+						>Anonymized</ToggleButton>
+					</ToggleButtonGroup>
+					<ButtonGroup size="sm">
+						<Button variant="primary" onClick={this.saveJSON} >Save JSON</Button>
+						<Button variant="primary" onClick={this.saveCSV} >Save CSV</Button>
+					</ButtonGroup>
+				</ButtonToolbar>
+			</Card.Body>
 		);
 	}
 }
