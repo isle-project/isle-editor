@@ -153,8 +153,14 @@ class Image extends Component {
 Image.propTypes = {
 	body: PropTypes.string,
 	containerWidth: PropTypes.number.isRequired,
-	height: PropTypes.number.isRequired,
-	width: PropTypes.number,
+	height: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string
+	]).isRequired,
+	width: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string
+	]),
 	id: PropTypes.string,
 	onShare: PropTypes.func,
 	showModal: PropTypes.bool,
