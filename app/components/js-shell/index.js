@@ -156,7 +156,7 @@ class JSShell extends Component {
 	}
 
 	register() {
-		this.session.speechInterface.register({
+		this.context.session.speechInterface.register({
 			name: [ 'shell', 'console' ],
 			ref: this,
 			commands: [{
