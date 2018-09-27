@@ -175,13 +175,16 @@ class FullscreenActionDisplay extends Component {
 				higlighter
 			}
 			{ this.props.showExtended ?
-				<Button
-					size="sm"
-					style={{ float: 'right' }}
-					onClick={this.props.deleteFactory( index )}
-				>
-					<span>&times;</span>
-				</Button> :
+				<span>
+					<Button
+						variant="outline-danger"
+						size="sm"
+						style={{ float: 'right', padding: '0rem .4rem' }}
+						onClick={this.props.deleteFactory( index )}
+					>
+						<span>&times;</span>
+					</Button>
+				</span>:
 				null
 			}
 		</ListGroupItem> );
