@@ -2,18 +2,22 @@
 	{
 		"target": ".fa-save",
 		"content": "When writing a document, we want to regularly save our work and then eventually create a final document. Clicking this button allows you to save a copy of your document as a Markdown file or to export it as an HTML or PDF document. When exporting as a PDF document, you can choose among several standard page sizes or even supply your custom width and height (in inches).",
+		"placement": "right",
 		"placementBeacon": "center"
 	},
 	{
 		"target": ".fa-save",
-		"content": "Saving your document in the browser stores its contents locally, which means that they will be restored once you open the editor in the same browser on the same computer. Warning: Should you clear the browser cache, you will lose your progress. It is thus advisable to also from time to time download the document as a Markdown file."
+		"content": "Saving your document in the browser stores its contents locally, which means that they will be restored once you open the editor in the same browser on the same computer. Warning: Should you clear the browser cache, you will lose your progress. It is thus advisable to also from time to time download the document as a Markdown file.",
+		"placement": "right"
 	},
 	{
 		"target": ".fa-folder-open",
-		"content": "When you return to working on your report, you can load your .md file back into the report editor using this icon."
+		"content": "When you return to working on your report, you can load your .md file back into the report editor using this icon.",
+		"placement": "right"
 	},
 	{
 		"target": ".fa-share-square",
-		"content": "Once you are satisfied with your work, submit it on the platform by clicking this button. You will receive an email with your report shortly afer submission. Alternatively, you can manually export the report to see what it looks like."
+		"content": "Once you are satisfied with your work, submit it on the platform by clicking this button. You will receive an email with your report shortly afer submission. Alternatively, you can manually export the report to see what it looks like.",
+		"placement": "right"
 	}
 ]

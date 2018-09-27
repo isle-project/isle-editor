@@ -2,6 +2,7 @@
 	{
 		"target": ".fa-credit-card",
 		"content": "Insert a title bar with your authorship information and the title of the poster presentation by clicking here.",
+		"placement": "bottom",
 		"placementBeacon": "center"
 	},
 	{
@@ -14,6 +15,7 @@
 	},
 	{
 		"target": ".fa-save",
-		"content": "Save the document as a poster by exporting it in PDF format and choosing the \"Poster\" format in \"landscape\" orientation. This will save the document in a standard academic poster format (40” wide x 32” tall)."
+		"content": "Save the document as a poster by exporting it in PDF format and choosing the \"Poster\" format in \"landscape\" orientation. This will save the document in a standard academic poster format (40” wide x 32” tall).",
+		"placement": "right"
 	}
 ]
