@@ -460,6 +460,10 @@ class Recorder extends Component {
 		}
 		return (
 			<div className={`recorder-container unselectable${editorStyle}`} >
+				<div
+					className="recorder-rec"
+					style={{ color: recordingColor }}
+				>{ !this.state.recording ? 'REC' : '' }</div>
 				{ this.state.selectedSources.length > 0 && isAvailable ?
 					<div className="recorder-button-container">
 						<div
@@ -470,20 +474,16 @@ class Recorder extends Component {
 							}}
 						></div>
 					</div> : null }
-				<div
-					className="recorder-rec"
-					style={{ color: recordingColor }}
-				>REC</div>
-				{ !this.state.finished && isAvailable ?
+				{ !this.state.finished && isAvailable && !this.state.recording ?
 					<ToggleButtonGroup
 						className="recorder-buttongroup"
 						size="sm" type="checkbox"
 						value={this.state.selectedSources}
 						onChange={this.handleSourceChange}
 					>
-						<ToggleButton className="recorder-togglebutton" disabled={!this.props.screen || this.state.recording} value="screen">Screen</ToggleButton>
-						<ToggleButton className="recorder-togglebutton" disabled={!this.props.camera || this.state.recording} value="camera">Cam</ToggleButton>
-						<ToggleButton className="recorder-togglebutton" disabled={!this.props.audio || this.state.recording} value="audio">Audio</ToggleButton>
+						<ToggleButton variant="light" className="recorder-togglebutton" disabled={!this.props.screen || this.state.recording} value="screen">Screen</ToggleButton>
+						<ToggleButton variant="light" className="recorder-togglebutton" disabled={!this.props.camera || this.state.recording} value="camera">Cam</ToggleButton>
+						<ToggleButton variant="light" className="recorder-togglebutton" disabled={!this.props.audio || this.state.recording} value="audio">Audio</ToggleButton>
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</ToggleButtonGroup> : null
 				}
@@ -493,20 +493,22 @@ class Recorder extends Component {
 				}} id="install-button">
 					<img width="100px" height="32px" src="https://www.webrtc-experiment.com/images/btn-install-chrome-extension.png" alt="Add to Chrome" />
 				</button> : null }
+				<div style={{ background: 'rgba(0, 80,255,0.5)' }}>
 				{ this.state.finished ?
 					<ButtonGroup>
-						<Button onClick={this.clearFile} variant="warning">Clear File</Button>
+						<Button size="sm" onClick={this.clearFile} variant="warning">Clear File</Button>
 						{ this.props.downloadable ?
-							<Button onClick={this.storeFile} variant="primary">Download File</Button> :
+							<Button size="sm" onClick={this.storeFile} variant="primary">Download File</Button> :
 							null
 						}
 						{ this.props.uploadable ?
-							<Button onClick={this.uploadFile} disabled={this.state.uploaded} variant="primary">Upload File</Button> :
+							<Button size="sm" onClick={this.uploadFile} disabled={this.state.uploaded} variant="primary">Upload File</Button> :
 							null
 						}
 					</ButtonGroup> :
 					null
 				}
+				</div>
 			</div>
 		);
 	}
