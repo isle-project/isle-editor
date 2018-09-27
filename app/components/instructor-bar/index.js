@@ -266,21 +266,22 @@ class InstructorBar extends Component {
 		}
 		return (
 			<Gate owner>
-				{ this.props.showID ? <div>
-					<label>Component ID:</label>
-					<span style={{ marginLeft: '5px' }}>{this.props.id}</span>
-				</div> : null }
 				{this.renderFullscreenModal()}
-				<ButtonGroup size="small" >
+				<ButtonGroup size="sm" >
 					<Button
 						onClick={this.toggleActions}
 						style={{ ...this.props.buttonStyle }}
-						variant="light"
+						variant="secondary"
+						size="sm"
 					>
 						<span style={{ marginRight: '5px' }} >{this.props.buttonLabel}</span>
 						<Badge variant="dark" style={{ fontSize: '10px' }}>{this.state.nActions}</Badge>
 					</Button>
 				</ButtonGroup>
+				{ this.props.showID ? <span style={{ marginLeft: '5px' }}>
+					<label>Component ID:</label>
+					<span style={{ marginLeft: '5px' }}>{this.props.id}</span>
+				</span> : null }
 				{this.renderDeleteModal()}
 			</Gate>
 		);

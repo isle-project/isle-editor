@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/lib/Button';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
-import Form from 'react-bootstrap/lib/Form';
+import Checkbox from 'components/input/checkbox';
 
 
 // MAIN //
@@ -38,29 +38,26 @@ class Search extends Component {
 	render() {
 		return (
 			<Fragment>
-				<FormGroup style={{ float: 'left', width: '300px' }} >
+				<FormGroup style={{ width: window.innerWidth * 0.3, padding: '0px', marginBottom: '0px' }} >
 					<InputGroup size="small" >
 						<FormControl
-							size="small"
 							type="text"
 							placeholder="Enter text..."
 							onChange={this.handleSearch}
 						/>
-						<InputGroup.Button size="small">
-							<Button
-								onClick={this.handleSubmit}
-							>
-								Search
-							</Button>
-						</InputGroup.Button>
+						<Button
+							onClick={this.handleSubmit}
+						>
+							Search
+						</Button>
 					</InputGroup>
 				</FormGroup>
 				<FormGroup style={{ float: 'left', margin: '4px' }} >
-					<Form.Check type="checkbox" size="small" inline onChange={this.props.onExact}>Whole Word</Form.Check >
-					<Form.Check type="checkbox" size="small" inline >Case-sensitive</Form.Check >
+					<Checkbox size="small" inline onChange={this.props.onExact} legend="Whole Word" />
+					<Checkbox size="small" inline legend="Case-sensitive" />
 				</FormGroup>
 				<Button style={{ float: 'left' }} size="small" onClick={this.handleReset} >
-					Reset
+					Reset Search
 				</Button>
 			</Fragment>
 		);

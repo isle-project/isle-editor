@@ -7,6 +7,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
 import lowercase from '@stdlib/string/lowercase';
 import Button from 'react-bootstrap/lib/Button';
+import Badge from 'react-bootstrap/lib/Badge';
 import Col from 'react-bootstrap/lib/Col';
 import Container from 'react-bootstrap/lib/Container';
 import Card from 'react-bootstrap/lib/Card';
@@ -81,10 +82,11 @@ class FullscreenActionDisplay extends Component {
 		}
 	}
 
-	handleBox = (event) => {
-		// This is an issue for us negating it
+	handleBox = ( event ) => {
 		this.setState({
 			exact: !this.state.exact
+		}, () => {
+			this.searchFilter( this.state.searchwords[ 0 ] );
 		});
 	}
 
@@ -207,18 +209,14 @@ class FullscreenActionDisplay extends Component {
 		return ( <Modal
 			show={this.props.show}
 			onHide={this.props.toggleActions}
-			dialogClassName="fullscreen-modal"
+			dialogClassName="modal-100w"
 		>
 			<Modal.Header style={{ paddingBottom: '5px' }} closeButton >
-				<h3 style={{ float: 'left', margin: '2px 14px 2px 2px' }} >{this.props.actionLabel}</h3>
+				<h4 style={{ float: 'left', margin: '2px 14px 2px 2px' }} >{this.props.actionLabel}</h4>
 				<RangePicker
 					style={{ float: 'left' }}
-					size="small"
+					size="sm"
 					onChange={this.props.onPeriodChange}
-				/>
-				<Search
-					onClick={this.searchFilter}
-					onExact={this.handleBox}
 				/>
 			</Modal.Header>
 			<Modal.Body style={{ height: 0.75 * window.innerHeight, width: 0.90 * window.innerWidth }} >
@@ -235,7 +233,7 @@ class FullscreenActionDisplay extends Component {
 									/>
 								</div> :
 								<Card body className="bg-light">
-									<h2>There is no data matching the selected parameters</h2>
+									<h2>There are no data matching the selected parameters.</h2>
 								</Card>
 							}
 						</Col>
@@ -246,10 +244,16 @@ class FullscreenActionDisplay extends Component {
 				</Container>
 			</Modal.Body>
 			<Modal.Footer>
-				<span style={{ fontSize: '14x', float: 'left', padding: '4px 4px 4px 20px' }}>
-					{'# of displayed actions: '+this.state.filtered.length}
-				</span>
-				<Button onClick={this.props.toggleExtended}>{ this.props.showExtended ? 'Hide Extended' : 'Show Extended' }</Button>
+				<h4>
+					<Badge variant="secondary">
+						{'# of displayed actions: '+this.state.filtered.length}
+					</Badge>
+				</h4>
+				<Search
+					onClick={this.searchFilter}
+					onExact={this.handleBox}
+				/>
+				<Button variant="secondary" onClick={this.props.toggleExtended}>{ this.props.showExtended ? 'Hide Extended' : 'Show Extended' }</Button>
 				<Button onClick={this.props.toggleActions}>Close</Button>
 			</Modal.Footer>
 		</Modal> );
