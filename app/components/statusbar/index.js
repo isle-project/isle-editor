@@ -61,7 +61,7 @@ class StatusBar extends Component {
 					level: 'success',
 					autoDismiss: 15,
 					position: 'tl',
-					children: <div style={{ marginBottom: '20px' }}>
+					children: <div style={{ marginBottom: '30px' }}>
 						<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.signup.bind( this )}>Sign up</Button>
 						<Button size="sm" variant="primary" style={{ float: 'right', marginRight: '10px' }} onClick={this.login.bind( this )}>Login</Button>
 					</div>

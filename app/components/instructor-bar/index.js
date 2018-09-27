@@ -24,6 +24,7 @@ import extractValue from './extract_value.js';
 * @property {Object} buttonStyle - button CSS styles
 * @property {string} dataType - type of data to visualize
 * @property {string} showID - whether to display the component ID
+* @property {string} variant - button style variant
 */
 class InstructorBar extends Component {
 	constructor() {
@@ -271,7 +272,7 @@ class InstructorBar extends Component {
 					<Button
 						onClick={this.toggleActions}
 						style={{ ...this.props.buttonStyle }}
-						variant="secondary"
+						variant={this.props.variant}
 						size="sm"
 					>
 						<span style={{ marginRight: '5px' }} >{this.props.buttonLabel}</span>
@@ -297,14 +298,18 @@ InstructorBar.propTypes = {
 	dataType: PropTypes.oneOf([
 		'factor', 'text', 'number'
 	]),
-	showID: PropTypes.bool
+	showID: PropTypes.bool,
+	variant: PropTypes.oneOf([
+		'primary', 'secondary', 'light', 'dark'
+	])
 };
 
 InstructorBar.defaultProps = {
 	buttonLabel: 'Actions',
 	buttonStyle: {},
 	dataType: 'text',
-	showID: true
+	showID: true,
+	variant: 'secondary'
 };
 
 InstructorBar.contextTypes = {

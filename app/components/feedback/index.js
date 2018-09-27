@@ -139,7 +139,7 @@ class FeedbackButtons extends Component {
 							<Feedback className="icon" />
 						</Button>
 					</Tooltip>
-					<InstructorBar buttonLabel="" buttonStyle={{ fontSize: '10px', lineHeight: this.props.vertical ? '2em' : '37px' }} showID={false} id={this.props.id} />
+					<InstructorBar variant="light" buttonLabel="" buttonStyle={{ fontSize: '10px', lineHeight: this.props.vertical ? '2em' : '37px' }} showID={false} id={this.props.id} />
 				</ButtonGroup>
 				<Modal
 					show={this.state.showModal}
