@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
@@ -131,16 +131,28 @@ class FeedbackButtons extends Component {
 		return (
 			<div className="feedback-buttons" style={{ ...this.props.style }}>
 				<ButtonGroup style={{ float: 'right' }} vertical={this.props.vertical} >
-					<Tooltip id="tooltip_confused" placement={tpos} tooltip={<strong> I am confused.</strong>}>
-						<Button variant="light" disabled={this.state.submittedBinaryChoice} className="feedback-button" size="small" onClick={this.submitConfused}>
-							<Confused className="icon" />
-						</Button>
-					</Tooltip>
-					<Tooltip id="tooltip_understood" placement={tpos} tooltip={<strong> Makes sense.</strong>} >
-						<Button variant="light" disabled={this.state.submittedBinaryChoice} className="feedback-button" size="small" onClick={this.submitUnderstood}>
-							<Understood className="icon" />
-						</Button>
-					</Tooltip>
+					{ this.state.submittedBinaryChoice ?
+						<Fragment>
+							<Button variant="light" disabled className="feedback-button-disabled" size="small" >
+								<Confused className="icon" />
+							</Button>
+							<Button variant="light" disabled className="feedback-button-disabled" size="small" >
+								<Understood className="icon" />
+							</Button>
+						</Fragment> :
+						<Fragment>
+							<Tooltip id="tooltip_confused" placement={tpos} tooltip={<strong> I am confused.</strong>}>
+								<Button variant="light" className="feedback-button" size="small" onClick={this.submitConfused}>
+									<Confused className="icon" />
+								</Button>
+							</Tooltip>
+							<Tooltip id="tooltip_understood" placement={tpos} tooltip={<strong> Makes sense.</strong>} >
+								<Button variant="light" className="feedback-button" size="small" onClick={this.submitUnderstood}>
+									<Understood className="icon" />
+								</Button>
+							</Tooltip>
+						</Fragment>
+					}
 					<Tooltip placement={tpos} id="tooltip_feedback" tooltip={<strong> I have feedback. </strong>} >
 						<Button variant="light" className="feedback-button" size="small" onClick={this.openModal}>
 							<Feedback className="icon" />
