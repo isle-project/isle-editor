@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import Pagination from 'react-bootstrap/lib/Pagination';
+import Card from 'react-bootstrap/lib/Card';
 import PropTypes from 'prop-types';
 import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
@@ -81,9 +82,9 @@ class Pages extends Component {
 		if ( !this.props.children ) {
 			return null;
 		}
-		const header = <div className="panel-heading">
-			<h3 className="panel-title">{this.props.title}</h3>
-		</div>;
+		const header = <Card.Header>
+			<h3>{this.props.title}</h3>
+		</Card.Header>;
 		const items = [];
 		let cutoff = 3;
 		if ( this.state.activePage < 3 ) {
@@ -111,8 +112,7 @@ class Pages extends Component {
 			);
 		}
 		return (
-			<div
-				className="panel panel-default page"
+			<Card
 				style={this.props.style}
 			>
 				{ this.props.title ? header : null }
@@ -139,7 +139,7 @@ class Pages extends Component {
 						</span> );
 					}) : this.props.children }
 				</div>
-			</div>
+			</Card>
 		);
 	}
 }
