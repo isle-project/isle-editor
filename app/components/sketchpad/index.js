@@ -17,6 +17,7 @@ import Modal from 'react-bootstrap/lib/Modal';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Checkbox from 'components/input/checkbox';
+import contains from '@stdlib/assert/contains';
 import isNumber from '@stdlib/assert/is-number';
 import isObject from '@stdlib/assert/is-object';
 import isNull from '@stdlib/assert/is-null';
@@ -584,8 +585,35 @@ class Sketchpad extends Component {
 
 	clear = () => {
 		const currentPage = this.state.currentPage;
-		this.elements[ currentPage ] = [];
-		this.recordingEndPositions[ currentPage ] = 0;
+		if ( contains( this.state.insertedPages, currentPage ) ) {
+			debug( 'Clear an inserted page; deleting it completely...' );
+			this.elements.splice( currentPage, 1 );
+			this.backgrounds.splice( currentPage, 1 );
+			this.recordingEndPositions.splice( currentPage, 1 );
+			const newInsertedPages = [];
+			for ( let i = 0; i < this.state.insertedPages.length; i++ ) {
+				let page = this.state.insertedPages[ i ];
+				if ( currentPage !== page ) {
+					if ( page > currentPage ) {
+						page -= 1;
+					}
+					newInsertedPages.push( page );
+				}
+			}
+			debug( 'New inserted pages are: '+newInsertedPages.join( ', ' ) );
+			this.setState({
+				noPages: this.state.noPages - 1,
+				insertedPages: newInsertedPages,
+				currentPage: this.state.currentPage - 1
+			}, () => {
+				this.redraw();
+			});
+		}
+		else {
+			this.elements[ currentPage ] = [];
+			this.recordingEndPositions[ currentPage ] = 0;
+			this.redraw();
+		}
 		const logAction = {
 			id: this.props.id,
 			type: 'SKETCHPAD_CLEAR_PAGE',
@@ -599,7 +627,6 @@ class Sketchpad extends Component {
 		} else {
 			session.log( logAction, 'owners' );
 		}
-		this.redraw();
 	}
 
 	clearAll = () => {
