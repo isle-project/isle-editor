@@ -8,11 +8,17 @@ import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import Card from 'react-bootstrap/lib/Card';
 import { VictoryChart, VictoryCursorContainer, VictoryLine } from 'victory';
+import logger from 'debug';
 import abs from '@stdlib/math/base/special/abs';
 import roundn from '@stdlib/math/base/special/roundn';
 import randu from '@stdlib/random/base/randu';
 import linspace from '@stdlib/math/utils/linspace';
 import lognormal from '@stdlib/stats/base/dists/lognormal';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:mean-vs-median' );
 
 
 // MAIN //
@@ -124,6 +130,7 @@ class MeanVSMedian extends Component {
 						cursorDimension="x"
 						cursorLabel={( d ) => `${roundn( d.x, -1 )}`}
 						onCursorChange={( value ) => {
+							debug( `Received cursor change: ${value}` );
 							if ( !this.state.showLognormalMean ) {
 								this.setState({
 									meanLognormalGuess: value
@@ -202,8 +209,8 @@ class MeanVSMedian extends Component {
 							</Col>
 						</Row>
 						<Row>
-							<div className="well" style={{ maxWidth: 400, margin: '0 auto 10px' }}>
-								<Button variant="primary" size="large" block onClick={this.generateData} >Generate</Button>
+							<div style={{ paddingTop: '20px', maxWidth: 400, margin: '0 auto 10px' }}>
+								<Button variant="primary" size="lg" onClick={this.generateData} >Generate new data</Button>
 							</div>
 						</Row>
 					</Container>
@@ -214,15 +221,12 @@ class MeanVSMedian extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 MeanVSMedian.defaultProps = {
 	header: 'Measures of Location: Mean vs. Median',
 	intro: null
 };
-
-
-// PROPERTY TYPES //
 
 MeanVSMedian.propTypes = {
 	header: PropTypes.string,

@@ -5,8 +5,8 @@ import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Container from 'react-bootstrap/lib/Container';
 import Col from 'react-bootstrap/lib/Col';
-import Card from 'react-bootstrap/lib/Card';
 import Row from 'react-bootstrap/lib/Row';
+import Card from 'react-bootstrap/lib/Card';
 import Tabs from 'react-bootstrap/lib/Tabs';
 import Tab from 'react-bootstrap/lib/Tab';
 import rExponential from '@stdlib/random/base/exponential';
@@ -361,24 +361,47 @@ class ContinuousCLT extends Component {
 			break;
 		}
 		return ( <Card body>
-			<Col md={6}>
-				<Tabs activeKey={this.state.activeDistribution} id="distribution-tabs" onSelect={this.handleSelect} >
-					<Tab eventKey={1} title="Uniform">{uniform}</Tab>
-					<Tab eventKey={2} title="Exponential">{exponential}</Tab>
-					<Tab eventKey={3} title="Normal">{normal}</Tab>
-				</Tabs>
-			</Col>
-			<Col md={6}>
-				<label>Distribution: {this.state.distFormula}</label>
-				{populationParams}
-				<NumberInput
-					legend="Sample Size"
-					step={1} min={1} defaultValue={10} max={500}
-					onChange={( n ) => {
-						this.setState({ 'n': n });
-					}}
-				/>
-			</Col>
+			<Container>
+				<Row>
+					<Col md={6}>
+						<Tabs activeKey={this.state.activeDistribution} id="distribution-tabs" onSelect={this.handleSelect} >
+							<Tab eventKey={1} title="Uniform">{uniform}</Tab>
+							<Tab eventKey={2} title="Exponential">{exponential}</Tab>
+							<Tab eventKey={3} title="Normal">{normal}</Tab>
+						</Tabs>
+					</Col>
+					<Col md={6}>
+						<label>Distribution: {this.state.distFormula}</label>
+						{populationParams}
+						<NumberInput
+							legend="Sample Size"
+							step={1} min={1} defaultValue={10} max={500}
+							onChange={( n ) => {
+								this.setState({ 'n': n });
+							}}
+						/>
+					</Col>
+				</Row>
+				<Card body>
+					<label>Number of Samples: {this.state.xbars.length}</label>
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<ButtonGroup>
+						<Button onClick={() => {
+							this.generateSamples( 1 );
+						}}>
+							Draw Sample
+						</Button>
+						<Button onClick={() => {
+							this.generateSamples( 25 );
+						}}>
+							Draw 25 Samples
+						</Button>
+						<Button onClick={this.clear.bind( this )}>
+							Clear
+						</Button>
+					</ButtonGroup>
+				</Card>
+			</Container>
 		</Card> );
 	}
 
@@ -399,7 +422,7 @@ class ContinuousCLT extends Component {
 			});
 		}
 		return ( <Card body>
-			<p><label>Histogram of <TeX raw="\bar x" />&#39;s</label></p>
+			<label>Histogram of <TeX raw="\bar x" />&#39;s</label>
 			{ this.state.xbars.length > 1 ?
 				<Plotly data={plotlyData} layout={{
 					width: 400,
@@ -446,39 +469,12 @@ class ContinuousCLT extends Component {
 			<div>
 				<Container>
 					<Row>
-						{this.renderDistSelectionPanel()}
-					</Row>
-					<Row>
-						<Col md={6}>
-							<PopProbability {...this.state} />
-							<ProbabilityRange {...this.state} />
-						</Col>
-						<Col md={6}>
-							<ProbMean {...this.state} />
-							<ProbMeanRange {...this.state} />
+						<Col md={12} >
+							{this.renderDistSelectionPanel()}
 						</Col>
 					</Row>
 					<Row>
 						<Col md={6}>
-							<Card body>
-								<label>Number of Samples: {this.state.xbars.length}</label>
-								<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-								<ButtonGroup>
-									<Button onClick={() => {
-										this.generateSamples( 1 );
-									}}>
-										Draw Sample
-									</Button>
-									<Button onClick={() => {
-										this.generateSamples( 25 );
-									}}>
-										Draw 25 Samples
-									</Button>
-									<Button onClick={this.clear.bind( this )}>
-										Clear
-									</Button>
-								</ButtonGroup>
-							</Card>
 							<Card style={{ height: '400px', overflowY: 'scroll' }} body>
 								<GridLayout
 									className="layout"
@@ -496,6 +492,18 @@ class ContinuousCLT extends Component {
 						</Col>
 						<Col md={6}>
 							{this.renderXbarHistogram()}
+						</Col>
+					</Row>
+					<Row>
+						<Col md={6}>
+							<h4 className="center">Population Distribution</h4>
+							<PopProbability {...this.state} />
+							<ProbabilityRange {...this.state} />
+						</Col>
+						<Col md={6}>
+							<h4 className="center">Mean Distribution</h4>
+							<ProbMean {...this.state} />
+							<ProbMeanRange {...this.state} />
 						</Col>
 					</Row>
 				</Container>

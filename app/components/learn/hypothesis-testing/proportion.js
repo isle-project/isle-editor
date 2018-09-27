@@ -156,7 +156,7 @@ class ProportionTest extends Component {
 
 	renderParametersPanel() {
 		const firstSampleParams = <div>
-			<Badge>First Sample</Badge>
+			<Badge variant="secondary">First Sample</Badge>
 			<NumberInput
 				legend="Sample proportion"
 				defaultValue={this.state.phat}
@@ -182,7 +182,7 @@ class ProportionTest extends Component {
 			/>
 		</div>;
 		const secondSampleParams = <div>
-			<Badge>Second Sample</Badge>
+			<Badge variant="secondary">Second Sample</Badge>
 			<NumberInput
 				legend="Sample proportion"
 				defaultValue={this.state.phat2}

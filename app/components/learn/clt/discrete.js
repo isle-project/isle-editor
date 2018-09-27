@@ -187,41 +187,45 @@ class DiscreteCLT extends Component {
 	renderDistSelectionPanel() {
 		return (
 			<Card body>
-				<Col md={6}>
-					<label>Binomial Distribution</label>
-					<NumberInput
-						legend="n"
-						step={1} min={1} defaultValue={10} max={500}
-						onChange={( n ) => {
-							this.setState({ 'n': n });
-						}}
-					/>
-					<NumberInput legend="p"
-						max={1} min={0} step={0.01} defaultValue={0.5}
-						onChange={( p ) => {
-							this.setState({ 'p': p });
-						}}
-					/>
-				</Col>
-				<Col md={6}>
-					<p><label>Population proportion</label> <TeX raw={`${this.state.p.toFixed( 3 )}`} /></p>
-					<p><label>Population standard deviation:</label> <TeX raw={`\\sqrt{ p \\cdot (1-p) } = ${sqrt( this.state.p*( 1-this.state.p ) ).toFixed( 3 )}`} /> </p>
-					<ButtonGroup>
-						<Button size="small" onClick={() => {
-							this.generateSamples( 1 );
-						}}>
-							Draw Sample
-						</Button>
-						<Button size="small" onClick={() => {
-							this.generateSamples( 25 );
-						}}>
-							Draw 25 Samples
-						</Button>
-						<Button size="small" onClick={this.clear.bind( this )}>
-							Clear
-						</Button>
-					</ButtonGroup>
-				</Col>
+				<Container>
+					<Row>
+						<Col md={6}>
+							<label>Binomial Distribution</label>
+							<NumberInput
+								legend="n"
+								step={1} min={1} defaultValue={10} max={500}
+								onChange={( n ) => {
+									this.setState({ 'n': n });
+								}}
+							/>
+							<NumberInput legend="p"
+								max={1} min={0} step={0.01} defaultValue={0.5}
+								onChange={( p ) => {
+									this.setState({ 'p': p });
+								}}
+							/>
+						</Col>
+						<Col md={6}>
+							<p><label>Population proportion</label> <TeX raw={`${this.state.p.toFixed( 3 )}`} /></p>
+							<p><label>Population standard deviation:</label> <TeX raw={`\\sqrt{ p \\cdot (1-p) } = ${sqrt( this.state.p*( 1-this.state.p ) ).toFixed( 3 )}`} /> </p>
+							<ButtonGroup size="sm" >
+								<Button variant="primary" onClick={() => {
+									this.generateSamples( 1 );
+								}}>
+									Draw Sample
+								</Button>
+								<Button variant="primary" size="sm" onClick={() => {
+									this.generateSamples( 25 );
+								}}>
+									Draw 25 Samples
+								</Button>
+								<Button variant="primary" size="sm" onClick={this.clear.bind( this )}>
+									Clear
+								</Button>
+							</ButtonGroup>
+						</Col>
+					</Row>
+				</Container>
 			</Card>
 		);
 	}
@@ -247,7 +251,9 @@ class DiscreteCLT extends Component {
 			<div>
 				<Container>
 					<Row>
-						{this.renderDistSelectionPanel()}
+						<Col md={12}>
+							{this.renderDistSelectionPanel()}
+						</Col>
 					</Row>
 					<Row>
 						<Col md={6}>
@@ -268,9 +274,7 @@ class DiscreteCLT extends Component {
 						</Col>
 						<Col md={6}>
 							<Card body>
-								<p>
-									<label>Number of Samples: {this.state.phats.length} </label>
-								</p>
+								<label>Number of Samples: {this.state.phats.length} </label>
 							</Card>
 							<Card body>
 								<label>Histogram of <TeX raw="\hat p" />&#39;s</label>

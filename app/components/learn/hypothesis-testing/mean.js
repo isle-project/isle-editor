@@ -158,7 +158,7 @@ class MeanTest extends Component {
 	renderParametersPanel() {
 		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples } = this.state;
 		const firstSampleParams = <div>
-			<Badge>First Sample</Badge>
+			<Badge variant="secondary">First Sample</Badge>
 			<NumberInput
 				legend="Sample mean"
 				defaultValue={xbar}
@@ -193,7 +193,7 @@ class MeanTest extends Component {
 			/>
 		</div>;
 		const secondSampleParams = <div>
-			<Badge>Second Sample</Badge>
+			<Badge variant="secondary">Second Sample</Badge>
 			<NumberInput
 				legend="Sample mean"
 				defaultValue={xbar2}

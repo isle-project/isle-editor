@@ -83,7 +83,8 @@ class ProbMean extends Component {
 					step="any"
 					legend={<TeX raw="x" />}
 					onChange={( value ) => {
-						this.updateProb( value, this.props );
+						const newState = calculateProb( value, this.props );
+						this.setState( newState );
 					}}
 				/>
 				<TeX raw={`P( \\bar X < ${this.state.cutoff} ) = ${this.state.leftProb.toFixed( 3 )}`} />

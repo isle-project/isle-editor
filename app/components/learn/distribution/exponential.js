@@ -81,7 +81,7 @@ class ExponentialProbs extends Component {
 	}
 
 	render() {
-		return ( <Card style={this.props.style}>
+		return ( <Card style={{ maxWidth: 600, ...this.props.style }}>
 			<Card.Header as="h3">
 				Exponential Distribution
 			</Card.Header>
