@@ -67,31 +67,28 @@ class Guides extends Component {
 					<FormGroup>
 						<Form.Check
 							type="radio"
+							label="Editor Overview"
 							name="overview"
 							value="overview"
 							onChange={this.handleOptionChange}
 							checked={this.state.selected === 'overview'}
-						>
-							Editor Overview
-						</Form.Check>
+						/>
 						<Form.Check
 							type="radio"
+							label="Saving Progress"
 							name="saving"
 							value="saving"
 							onChange={this.handleOptionChange}
 							checked={this.state.selected === 'saving'}
-						>
-							Saving Progress
-						</Form.Check>
+						/>
 						<Form.Check
 							type="radio"
+							label="Creating a Poster"
 							name="poster"
 							value="poster"
 							onChange={this.handleOptionChange}
 							checked={this.state.selected === 'poster'}
-						>
-							Creating a Poster
-						</Form.Check>
+						/>
 					</FormGroup>
 				</Form>
 				<ButtonToolbar>
