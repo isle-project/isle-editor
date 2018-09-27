@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Col from 'react-bootstrap/lib/Col';
+import Row from 'react-bootstrap/lib/Row';
 import Card from 'react-bootstrap/lib/Card';
 import logger from 'debug';
 import Gate from 'components/gate';
@@ -145,17 +146,20 @@ class MCSgenerator extends Component {
 					maxWidth: '800px',
 					border: 'solid 2px rgb(186, 204, 234)'
 				}}>
-					<Card.Title>Survey Generator</Card.Title>
+					<Card.Title as="h2">Survey Generator</Card.Title>
 					<FormGroup>
-						<Col md={3}><label>Question Type:</label></Col>
-						<Col md={9}>
-							<SelectInput options={[ 'multiple-choice', 'number', 'free-text' ]} onChange={this.setType} />
-						</Col>
+						<Row>
+							<Col md={3}><label>Question Type:</label></Col>
+							<Col md={9}>
+								<SelectInput options={[ 'multiple-choice', 'number', 'free-text' ]} onChange={this.setType} />
+							</Col>
+						</Row>
 					</FormGroup>
 					<TextInput
 						legend="Question"
-						ref={( questionDIV ) => { this.questionDIV = questionDIV; }}onChange={this.setQuestion}
-						width={400}
+						ref={( questionDIV ) => { this.questionDIV = questionDIV; }}
+						width={300}
+						onChange={this.setQuestion}
 					/>
 					{ this.state.type === 'multiple-choice' ?
 						<FormGroup>
@@ -170,6 +174,7 @@ class MCSgenerator extends Component {
 					<Button
 						disabled={this.state.disabled && !this.state.showSurvey}
 						onClick={this.startSurvey}
+						style={{ float: 'right' }}
 					>
 						{ !this.state.showSurvey ? 'Start Survey' : 'Stop Survey' }
 					</Button>
