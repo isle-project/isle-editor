@@ -795,7 +795,6 @@ class DataExplorer extends Component {
 							{ this.state.openedNav === 'toolbox' ?
 								<Tab.Container id="options-menu" defaultActiveKey={defaultActiveKey}>
 									{navbar}
-									<br />
 									{tabs}
 								</Tab.Container> : null
 							}
