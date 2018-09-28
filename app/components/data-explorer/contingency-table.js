@@ -53,14 +53,9 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs ) => {
 		}
 	}
 	let table = <Table bordered size="sm">
-		<tbody>
+		<tbody >
 			<tr>
-				<th></th>
-				<th colSpan={`${colKeys.length}`}>{colVar}</th>
-				<th></th>
-			</tr>
-			<tr>
-				<th>{rowVar}</th>
+				<th>{rowVar} \ {colVar}</th>
 				{colKeys.map( (e, i) => <th key={i}>{e}</th> )}
 				<th>Row Totals</th>
 			</tr>
