@@ -106,8 +106,8 @@ class SaveModal extends Component {
 						<Button onClick={this.togglePDFMenu} variant="primary" size="large" block>
 							Export as PDF
 						</Button>
-						<Card id="export-pdf-panel" expanded={this.state.openPDF} onToggle={noop} >
-							<Collapse>
+						<Card border="primary" id="export-pdf-panel" >
+							<Collapse in={this.state.openPDF} >
 								<Card.Body>
 									<Row className="predefined-letter-button">
 										<SelectInput
