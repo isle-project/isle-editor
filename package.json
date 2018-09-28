@@ -95,7 +95,7 @@
     "concurrently": "^4.0.0",
     "del": "^3.0.0",
     "doctrine": "^2.1.0",
-    "electron": "3.0.0",
+    "electron": "3.0.2",
     "electron-packager": "12.1.2",
     "electron-rebuild": "^1.7.3",
     "enzyme": "3.6.0",
@@ -249,7 +249,7 @@
     "uniq": "^1.0.1",
     "utf-8-validate": "^5.0.1",
     "venn.js": "0.2.20",
-    "victory": "30.4.0",
+    "victory": "30.4.1",
     "webpack": "4.19.0",
     "whatwg-fetch": "^3.0.0"
   },
