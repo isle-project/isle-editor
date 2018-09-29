@@ -1190,14 +1190,11 @@ MarkdownEditor.defaultProps = {
 	defaultValue: DEFAULT_VALUE,
 	options: {},
 	toolbarConfig: [
-		'bold', 'italic', 'underline', 'font_size',
-		'new_line', 'center', '|',
-		'insert_table', 'heading', 'unordered_list',
-		'ordered_list', 'link', 'insert_columns', '|',
-		'title_insert',
-		'preview', 'side_by_side', 'fullscreen', '|',
+		'bold', 'italic', 'underline', 'font_size', 'new_line', 'center', '|',
+		'insert_table', 'heading', 'unordered_list', 'ordered_list', 'link', 'insert_columns', '|',
+		'title_insert', 'preview', 'side_by_side', 'fullscreen', '|',
 		'open_markdown', 'save', 'submit', '|',
-		'voice', 'guides'
+		'guides'
 	],
 	autoSave: true,
 	intervalTime: 60000,
