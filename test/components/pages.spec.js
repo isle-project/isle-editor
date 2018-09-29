@@ -19,14 +19,14 @@ describe( '<Pages />', function test() {
 		expect( wrapper.html() ).toBeNull();
 	});
 
-	it( 'renders a user-supplied `title`', () => {
+	it( 'renders a user-suppslied `title`', () => {
 		const wrapper = shallow( <Pages title="A Title" >
 			<div>ONE</div>
 			<div>TWO</div>
 		</Pages> );
 		const { title } = wrapper.instance().props;
 		expect( title ).toBe( 'A Title' );
-		const h3 = wrapper.find( '.panel-title' );
+		const h3 = wrapper.find( 'h3' );
 		expect( h3.text() ).toBe( 'A Title' );
 	});
 
@@ -161,16 +161,16 @@ describe( '<Pages />', function test() {
 		const firstPageButton = listItems.first();
 		const previousPageButton = listItems.at( 1 );
 
-		lastPageButton.simulate( 'click' );
+		lastPageButton.find( 'a' ).simulate( 'click' );
 		expect( wrapper.instance().state.activePage ).toBe( 3 );
 
-		previousPageButton.simulate( 'click' );
+		previousPageButton.find( 'a' ).simulate( 'click' );
 		expect( wrapper.instance().state.activePage ).toBe( 2 );
 
-		nextPageButton.simulate( 'click' );
+		nextPageButton.find( 'a' ).simulate( 'click' );
 		expect( wrapper.instance().state.activePage ).toBe( 3 );
 
-		firstPageButton.simulate( 'click' );
+		firstPageButton.find( 'a' ).simulate( 'click' );
 		expect( wrapper.instance().state.activePage ).toBe( 1 );
 
 		done();
