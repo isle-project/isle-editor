@@ -341,7 +341,7 @@ class Session {
 				.then( res => {
 					res.text().then( body => {
 						if ( filetype === 'png' ) {
-							const buf = new Buffer( body );
+							const buf = Buffer.from( body );
 							body = 'data:'+res.headers['content-type']+';base64,' + buf.toString( 'base64' );
 						}
 						clbk( null, imgURL, body );
