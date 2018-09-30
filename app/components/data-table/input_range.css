@@ -38,7 +38,7 @@
 	color: #2D2D2D;
 	font-family: "Arial";
 	font-weight: bold;
-	font-size: 0.8rem;
+	font-size: 0.6rem;
 	transform: translateZ(0);
 	white-space: nowrap;
 }
@@ -59,7 +59,7 @@
 
 .input-range__label--value {
 	position: absolute;
-	top: -1.8rem;
+	top: -1.4rem;
 }
 
 .input-range__label-container {
