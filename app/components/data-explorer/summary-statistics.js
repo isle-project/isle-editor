@@ -7,6 +7,7 @@ import Dashboard from 'components/dashboard';
 import statistic from 'components/data-explorer/statistic.js';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isArray from '@stdlib/assert/is-array';
+import CheckboxInput from 'components/input/checkbox';
 import QuestionButton from './question_button.js';
 
 
@@ -66,12 +67,12 @@ class SummaryStatistics extends Component {
 		};
 	}
 
-	generateStatistics = ( statName, variable, secondVariable, group ) => {
+	generateStatistics = ( statName, variable, secondVariable, group, omit ) => {
 		let { data } = this.props;
 		let fun;
 		let res;
 
-		fun = statistic( statName );
+		fun = statistic( statName, omit );
 		if ( statName === 'Correlation' ) {
 			if ( !group ) {
 				res = fun( data[ variable ], data[ secondVariable ]);
@@ -164,6 +165,9 @@ class SummaryStatistics extends Component {
 						clearable={true}
 					/> : null
 				}
+				<CheckboxInput
+					legend="Omit missing values"
+				/>
 			</Dashboard>
 		);
 	}
