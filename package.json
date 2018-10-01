@@ -229,7 +229,7 @@
     "semver": "^5.5.0",
     "socket.io-client": "^2.1.0",
     "source-map-support": "^0.5.4",
-    "spectacle": "5.1.0",
+    "spectacle": "5.2.0",
     "style-loader": "^0.23.0",
     "svg-react-loader": "^0.4.5",
     "terser": "^3.8.2",
@@ -240,7 +240,7 @@
     "utf-8-validate": "^5.0.1",
     "venn.js": "0.2.20",
     "victory": "30.4.1",
-    "webpack": "4.19.0",
+    "webpack": "4.20.2",
     "whatwg-fetch": "^3.0.0"
   },
   "devEngines": {

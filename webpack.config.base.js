@@ -7,6 +7,7 @@ import { join, resolve } from 'path';
 // VARIABLES //
 
 var EXTERNALS = [
+	'archiver',
 	'child_process',
 	'webpack',
 	'uglify-es',
