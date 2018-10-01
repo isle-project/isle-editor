@@ -13,6 +13,7 @@
 
 .multiple-choice-answer {
 	line-height: 22px !important;
+	cursor: pointer;
 }
 
 .question {
