@@ -1484,7 +1484,6 @@
           "save",
           "submit",
           "|",
-          "voice",
           "guides"
         ]
       },
@@ -2273,6 +2272,11 @@
         "type": "boolean",
         "description": "controls whether questions in  the quiz are skippable",
         "default": true
+      },
+      {
+        "name": "onFinished",
+        "type": "function",
+        "description": "callback invoked when the quiz is finished and the results page is displayed"
       }
     ],
     "description": "A quiz component displaying a sequence of question components."
@@ -2333,13 +2337,13 @@
       },
       {
         "name": "width",
-        "type": "number",
+        "type": "(number|string)",
         "description": "width of the plot (in px)",
         "default": 600
       },
       {
         "name": "height",
-        "type": "number",
+        "type": "(number|string)",
         "description": "height of the plot (in px)",
         "default": 350
       },

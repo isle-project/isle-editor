@@ -37,7 +37,6 @@ A markdown editor for writing notes or reports. Supports exporting of notes as H
   'save',
   'submit',
   '|',
-  'voice',
   'guides'
 ]`.
 * __options__ | `object`: options passed to the SimpleMDE constructor, the package on which this component is based; see their documentation for available options. Default: `{}`.
