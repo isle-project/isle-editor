@@ -18,9 +18,9 @@ import groupBy from '@stdlib/utils/group-by';
 import group from '@stdlib/utils/group';
 import copy from '@stdlib/utils/copy';
 import unique from 'uniq';
-import mean from 'compute-mean';
-import max from 'compute-max';
-import min from 'compute-min';
+import mean from 'utils/statistic/mean';
+import max from 'utils/statistic/max';
+import min from 'utils/statistic/min';
 import QuestionButton from './question_button.js';
 
 

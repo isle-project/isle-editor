@@ -9,7 +9,7 @@ import TeX from 'components/tex';
 import ztest from '@stdlib/stats/ztest';
 import ttest from '@stdlib/stats/ttest';
 import replace from '@stdlib/string/replace';
-import stdev from 'compute-stdev';
+import stdev from 'utils/statistic/stdev';
 
 
 // VARIABLES //

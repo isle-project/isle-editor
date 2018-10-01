@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import Table from 'react-bootstrap/lib/Table';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
-import mean from 'compute-mean';
 import objectValues from '@stdlib/utils/values';
 import mapValues from '@stdlib/utils/map-values';
+import mean from 'utils/statistic/mean';
 import QuestionButton from './question_button.js';
 import by2 from './by2.js';
 

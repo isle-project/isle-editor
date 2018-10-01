@@ -15,7 +15,7 @@ import copy from '@stdlib/utils/copy';
 import replace from '@stdlib/string/replace';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
 import unique from 'uniq';
-import stdev from 'compute-stdev';
+import stdev from 'utils/statistic/stdev';
 
 
 // VARIABLES //

@@ -12,7 +12,7 @@ import sqrt from '@stdlib/math/base/special/sqrt';
 import copy from '@stdlib/utils/copy';
 import roundn from '@stdlib/math/base/special/roundn';
 import unique from 'uniq';
-import mean from 'compute-mean';
+import mean from 'utils/statistic/mean';
 
 
 // MAIN //

@@ -16,8 +16,8 @@ import copy from '@stdlib/utils/copy';
 import roundn from '@stdlib/math/base/special/roundn';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
 import unique from 'uniq';
-import mean from 'compute-mean';
-import stdev from 'compute-stdev';
+import mean from 'utils/statistic/mean';
+import stdev from 'utils/statistic/stdev';
 
 
 // MAIN //

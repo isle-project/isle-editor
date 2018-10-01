@@ -24,11 +24,11 @@ import { VictoryArea, VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 import { NumberInput, SelectInput } from 'components/input';
 import Plotly from 'components/plotly';
 import TeX from 'components/tex';
-import mean from 'compute-mean';
-import stdev from 'compute-stdev';
-import iqr from 'compute-iqr';
-import min from 'compute-min';
-import max from 'compute-max';
+import mean from 'utils/statistic/mean';
+import stdev from 'utils/statistic/stdev';
+import iqr from 'utils/statistic/iqr';
+import min from 'utils/statistic/min';
+import max from 'utils/statistic/max';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
