@@ -373,6 +373,7 @@ class Quiz extends Component {
 							this.renderScoreboard() :
 							<span key={this.state.current}>{this.renderCurrentQuestion()}</span>
 						}
+						{ !this.state.finished ? this.renderConfidenceSurvey() : null }
 						{ showButton ?
 							<Button
 								className="quiz-button"
@@ -383,7 +384,6 @@ class Quiz extends Component {
 							</Button> :
 							null
 						}
-						{ !this.state.finished ? this.renderConfidenceSurvey() : null }
 					</Card.Body>
 				</Card>
 			</Fragment>
