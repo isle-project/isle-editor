@@ -49,6 +49,7 @@ function isHTMLConfig( elem ) {
 * @property {boolean} confidence - whether to display a Likert scale asking for the confidence of the user's answer
 * @property {boolean} forceConfidence - controls whether a user has to supply a confidence level before moving to the next question
 * @property {boolean} skippable - controls whether questions in  the quiz are skippable
+* @property {Function} onFinished - callback invoked when the quiz is finished and the results page is displayed
 */
 class Quiz extends Component {
 	constructor( props ) {
@@ -68,7 +69,7 @@ class Quiz extends Component {
 			counter: 0,
 			finished: false,
 			last: false,
-			checked: null
+			selectedConfidence: null
 		};
 	}
 
@@ -88,9 +89,32 @@ class Quiz extends Component {
 
 	handleNextClick = () => {
 		debug( 'Display next question...' );
+		const elem = this.props.questions[ this.state.current ];
+
+		// Save chosen confidence level:
+		if ( elem.props && elem.props.id && this.state.selectedConfidence ) {
+			const session = this.context.session;
+			session.log({
+				id: elem.props.id+'_confidence',
+				type: 'QUESTION_CONFIDENCE',
+				value: this.state.selectedConfidence
+			});
+		}
 		const newState = {};
+		let counter = this.state.counter;
+		counter += 1;
+		if ( counter >= this.props.count ) {
+			debug( 'No further questions should be shown...' );
+			newState.finished = true;
+			this.props.onFinished();
+		} else {
+			if ( counter === this.props.count-1 ) {
+				newState.last = true;
+			}
+			newState.current = this.sample()[ 0 ];
+			debug( 'Selected question at index '+newState.current );
+		}
 		if ( !this.state.answered ) {
-			const elem = this.props.questions[ this.state.current ];
 			const answers = this.state.answers.slice();
 			if ( elem.props ) {
 				let solution;
@@ -119,25 +143,14 @@ class Quiz extends Component {
 				answers[ this.state.current ] = {
 					question: elem.props ? elem.props.question : null,
 					answer: null,
+					counter,
 					solution
 				};
 				newState.answers = answers;
 			}
 		}
-		let counter = this.state.counter;
-		counter += 1;
-		if ( counter >= this.props.count ) {
-			debug( 'No further questions should be shown...' );
-			newState.finished = true;
-		} else {
-			if ( counter === this.props.count-1 ) {
-				newState.last = true;
-			}
-			newState.current = this.sample()[ 0 ];
-			debug( 'Selected question at index '+newState.current );
-		}
 		newState.answered = false;
-		newState.checked = null;
+		newState.selectedConfidence = null;
 		newState.counter = counter;
 		this.setState( newState);
 	}
@@ -176,20 +189,11 @@ class Quiz extends Component {
 				answer = val;
 				solution = elem.props.solution;
 			}
-
-			const session = this.context.session;
-			if ( elem.props.id ) {
-				session.log({
-					id: elem.props.id+'_confidence',
-					type: 'QUESTION_CONFIDENCE',
-					value: this.state.checked
-				});
-			}
-
 			answers[ this.state.current ] = {
 				question: elem.props ? elem.props.question : null,
 				answer,
-				solution
+				solution,
+				counter: this.state.counter
 			};
 		}
 		this.setState({
@@ -200,6 +204,13 @@ class Quiz extends Component {
 
 	renderScoreboard() {
 		debug( 'Rendering scoreboard...' );
+		const answers = this.state.answers.slice();
+		for ( let i = 0; i < this.state.answers.length; i++ ) {
+			if ( answers[ i ] ) {
+				answers[ i ].confidence = this.state.confidences[ i ];
+			}
+		}
+		answers.sort( ( a, b ) => a.counter > b.counter );
 		return ( <div>
 			<p>{ this.props.duration ? 'Your time is up. ' : 'You have finished the quiz. ' } Here is a summary of your answers:</p>
 			<table className="table table-bordered" >
@@ -212,7 +223,7 @@ class Quiz extends Component {
 					</tr>
 				</thead>
 				<tbody>
-					{this.state.answers.map( ( elem, idx ) => {
+					{answers.map( ( elem, idx ) => {
 						let className;
 						if ( elem.answer === elem.solution ) {
 							className = 'quiz-right-answer';
@@ -236,7 +247,7 @@ class Quiz extends Component {
 							<td>{answer}</td>
 							<td>{solution}</td>
 							{ this.props.confidence ?
-								<td>{this.state.confidences[ idx ]}</td> :
+								<td>{elem.confidence}</td> :
 								null
 							}
 						</tr> );
@@ -274,12 +285,12 @@ class Quiz extends Component {
 	}
 
 	handleConfidenceChange = ( event ) => {
-		debug( 'Choosing confidence...' );
-		const confidence = event.target.getAttribute( 'data-confidence' );
+		const confidence = event.target.value;
+		debug( 'Choosing confidence: '+confidence );
 		const confidences = this.state.confidences.slice();
 		confidences[ this.state.current ] = confidence;
 		this.setState({
-			checked: confidence,
+			selectedConfidence: confidence,
 			confidences: confidences
 		});
 	}
@@ -293,15 +304,32 @@ class Quiz extends Component {
 				<FormGroup className="center" >
 					<label>Please indicate how confident you are in your answer(s):</label>
 					<br />
-					<Form.Check type="radio" checked={this.state.checked === 'Guessed'} name="radio-group" data-confidence="Guessed" inline onClick={this.handleConfidenceChange}>
-						Guessed
-					</Form.Check>{' '}
-					<Form.Check type="radio" checked={this.state.checked === 'Somewhat sure'} name="radio-group" data-confidence="Somewhat sure" inline onClick={this.handleConfidenceChange}>
-						Somewhat sure
-					</Form.Check>{' '}
-					<Form.Check type="radio" checked={this.state.checked === 'Confident'} name="radio-group" data-confidence="Confident" inline onClick={this.handleConfidenceChange}>
-					Confident
-					</Form.Check>{' '}
+					<Form.Check
+						type="radio"
+						label="Guessed"
+						checked={this.state.selectedConfidence === 'Guessed'}
+						value="Guessed"
+						inline
+						onClick={this.handleConfidenceChange}
+					/>
+					{' '}
+					<Form.Check
+						type="radio"
+						label="Somewhat sure"
+						checked={this.state.selectedConfidence === 'Somewhat sure'}
+						value="Somewhat sure"
+						inline
+						onClick={this.handleConfidenceChange}
+					/>
+					{' '}
+					<Form.Check
+						type="radio"
+						label="Confident"
+						checked={this.state.selectedConfidence === 'Confident'}
+						value="Confident"
+						inline
+						onClick={this.handleConfidenceChange}
+					/>
 				</FormGroup>
 			</Card>
 		);
@@ -326,6 +354,8 @@ class Quiz extends Component {
 							debug( 'Time is up...' );
 							this.setState({
 								finished: true
+							}, () => {
+								this.props.onFinished();
 							});
 						}}
 					/> :
@@ -347,7 +377,7 @@ class Quiz extends Component {
 							<Button
 								className="quiz-button"
 								onClick={this.handleNextClick}
-								disabled={this.props.forceConfidence && this.state.answered && !this.state.checked}
+								disabled={this.props.forceConfidence && this.state.answered && !this.state.selectedConfidence}
 							>
 								{this.state.last ? 'Finish Quiz' : 'Next Question' }
 							</Button> :
@@ -371,7 +401,8 @@ Quiz.propTypes = {
 	questions: PropTypes.array.isRequired,
 	active: PropTypes.bool,
 	duration: PropTypes.number,
-	skippable: PropTypes.bool
+	skippable: PropTypes.bool,
+	onFinished: PropTypes.func
 };
 
 Quiz.defaultProps = {
@@ -379,7 +410,8 @@ Quiz.defaultProps = {
 	forceConfidence: false,
 	active: true,
 	duration: null,
-	skippable: true
+	skippable: true,
+	onFinished() {}
 };
 
 Quiz.contextTypes = {
