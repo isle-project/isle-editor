@@ -3,11 +3,16 @@
 import React from 'react';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import PropTypes from 'prop-types';
+import isBoolean from '@stdlib/assert/is-boolean';
 
 
 // MAIN //
 
 const Action = ( props ) => {
+	let value = props.value;
+	if ( isBoolean( value ) ) {
+		value = value ? 'true' : 'false';
+	}
 	return (
 		<ListGroupItem style={{ background: props.backgroundColor, color: props.color, fontSize: 15, fontFamily: 'Open Sans', padding: '2px 1px 2px 1px', lineHeight: 1 }}>
 			<div className="actionNote">
@@ -22,7 +27,7 @@ const Action = ( props ) => {
 			<div className="actionNote">
 				<label>Value:&nbsp;</label>
 				<span style={{ 'userSelect': 'text' }} >
-					{props.value}
+					{value}
 				</span>
 			</div>
 		</ListGroupItem>
