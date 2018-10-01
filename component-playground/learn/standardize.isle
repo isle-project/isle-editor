@@ -30,5 +30,5 @@ server: https://isle.heinz.cmu.edu
 
 #### Options:
 
-* __showProbabilities__: A `bool` indicating whether the probabilities for each z-score are displayed. Default: `false`. 
-* __step__: `float` indicating the stpes taking in using the scroll input. Default: `0.01`. 
+* __showProbabilities__ | `boolean`: undefined. Default: `false`.
+* __step__ | `object`: undefined. Default: `'any'`.

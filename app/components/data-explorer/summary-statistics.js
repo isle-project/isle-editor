@@ -4,11 +4,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
-import statistic from 'components/data-explorer/statistic.js';
+import statistic from 'components/data-explorer/statistic';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isArray from '@stdlib/assert/is-array';
 import CheckboxInput from 'components/input/checkbox';
 import QuestionButton from './question_button.js';
+import isNumber from '@stdlib/assert/is-number';
+import isnan from '@stdlib/assert/is-nan';
 
 
 // FUNCTIONS //
@@ -71,18 +73,45 @@ class SummaryStatistics extends Component {
 		let { data } = this.props;
 		let fun;
 		let res;
+		let x;
+		let y;
 
-		fun = statistic( statName, omit );
+		if ( omit ) {
+			x = [];
+			y = [];
+			if ( variable && secondVariable ) {
+				let first = data[ variable ];
+				let second = data[ secondVariable ];
+				for ( let i = 0; i < first.length; i++ ) {
+					if ( isNumber( first[ i ] ) && isNumber( second[ i ] ) ) {
+						x.push( first[ i ] );
+						y.push( second[ i ] );
+					}
+				}
+			} else {
+				let first = data[ variable ];
+				for ( let i = 0; i < first.length; i++ ) {
+					if ( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) {
+						x.push( first[ i ] );
+					}
+				}
+			}
+		} else {
+			x = data[ variable ];
+			y = data[ secondVariable ];
+		}
+
+		fun = statistic( statName );
 		if ( statName === 'Correlation' ) {
 			if ( !group ) {
-				res = fun( data[ variable ], data[ secondVariable ]);
+				res = fun( x, y );
 				// Extract correlation coefficient from correlation matrix:
 				res = {
 					value: res[ 0 ][ 1 ],
-					size: data[ variable ].length
+					size: x.length
 				};
 			} else {
-				res = by2WithCount( data[ variable ], data[ secondVariable ], data[ group ], fun );
+				res = by2WithCount( x, y, data[ group ], fun );
 				for ( let key in res ) {
 					if ( hasOwnProp( res, key ) ){
 						// Extract correlation coefficient from correlation matrix:
@@ -94,11 +123,11 @@ class SummaryStatistics extends Component {
 		}
 		else if ( !group ) {
 			res = {
-				value: fun( data[ variable ] ),
-				size: data[ variable ].length
+				value: fun( x ),
+				size: x.length
 			};
 		} else {
-			res = byWithCount( data[ variable ], data[ group ], fun );
+			res = byWithCount( x, data[ group ], fun );
 		}
 
 		const output = {
@@ -174,7 +203,7 @@ class SummaryStatistics extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 SummaryStatistics.defaultProps = {
 	groupingVariables: [],
@@ -194,9 +223,6 @@ SummaryStatistics.defaultProps = {
 		'Correlation'
 	]
 };
-
-
-// PROPERTY TYPES //
 
 SummaryStatistics.propTypes = {
 	data: PropTypes.object.isRequired,
