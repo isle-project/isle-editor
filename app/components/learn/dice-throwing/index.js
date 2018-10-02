@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Col from 'react-bootstrap/lib/Col';
+import Row from 'react-bootstrap/lib/Row';
 import Container from 'react-bootstrap/lib/Container';
 import Card from 'react-bootstrap/lib/Card';
 import inmap from '@stdlib/utils/inmap';
@@ -65,48 +66,51 @@ class DiceThrowing extends Component {
 	renderGrid() {
 		return (
 			<Container fluid={true}>
-				<Col md={5}>
-					<h3>Probabilities:</h3>
-					{inmap( this.state.sides, ( x, i ) => ( <NumberInput
-						legend={`Side ${i+1}`}
-						defaultValue={1/this.state.sides.length}
-						step="any"
-						max={1}
-						min={0}
-						width={100}
-						numbersOnly={false}
-						onChange={( val )=>{
-							const sideProbs = this.state.sideProbs.slice();
-							sideProbs[ i ] = val;
-							let sum = 0.0;
-							for ( let i = 0; i < sideProbs.length; i++ ) {
-								sum += sideProbs[ i ];
-							}
-							const tally = new Array( sideProbs.length );
-							inmap( tally, x => 0 );
+				<Row>
+					<Col md={5}>
+						<h3>Probabilities:</h3>
+						{inmap( this.state.sides, ( x, i ) => ( <NumberInput
+							legend={`Side ${i+1}`}
+							defaultValue={1/this.state.sides.length}
+							step="any"
+							max={1}
+							min={0}
+							width={100}
+							numbersOnly={false}
+							onChange={( val )=>{
+								const sideProbs = this.state.sideProbs.slice();
+								sideProbs[ i ] = val;
+								let sum = 0.0;
+								for ( let i = 0; i < sideProbs.length; i++ ) {
+									sum += sideProbs[ i ];
+								}
+								const tally = new Array( sideProbs.length );
+								inmap( tally, x => 0 );
+								this.setState({
+									sideProbs,
+									valid: absdiff( sum, 1.0 ) <= 1.5e-8,
+									tally,
+									draw: null
+								});
+							}}
+						/> ) )}
+						<Button onClick={() => {
 							this.setState({
-								sideProbs,
-								valid: absdiff( sum, 1.0 ) <= 1.5e-8,
-								tally,
-								draw: null
+								tally: this.state.tally.map( x => 0 ),
+								nThrows: 0
 							});
-						}}
-					/> ) )}
-					<Button onClick={() => {
-						this.setState({
-							tally: this.state.tally.map( x => 0 ),
-							nThrows: 0
-						});
-					}}>Reset</Button>
-				</Col>
-				<Col md={6}>
-					{this.renderDice()}
-				</Col>
-				<Col md={1}>
-					<FeedbackButtons
-						id="loaded_dice"
-					/>
-				</Col>
+						}}>Reset</Button>
+					</Col>
+					<Col md={6}>
+						{this.renderDice()}
+					</Col>
+					<Col md={1}>
+						<FeedbackButtons
+							id="loaded_dice"
+							vertical
+						/>
+					</Col>
+				</Row>
 			</Container>
 		);
 	}
