@@ -144,6 +144,8 @@
     "codemirror": "^5.39.2",
     "component-playground": "^3.1.2",
     "compute-chunkify": "0.0.0",
+    "compute-mean": "^3.0.0",
+    "compute-stdev": "^1.0.0",
     "configstore": "^4.0.0",
     "cross-env": "^5.1.5",
     "css": "^2.2.3",
