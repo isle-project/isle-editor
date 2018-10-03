@@ -47,7 +47,7 @@ import './data_explorer.css';
 
 import Barchart, { generateBarchartConfig } from 'components/data-explorer/barchart';
 import Boxplot, { generateBoxplotConfig } from 'components/data-explorer/boxplot';
-import Heatmap, { generateHeatmapCode } from 'components/data-explorer/heatmap';
+import Heatmap, { generateHeatmapConfig } from 'components/data-explorer/heatmap';
 import Histogram, { generateHistogramConfig } from 'components/data-explorer/histogram';
 import MosaicPlot, { generateMosaicPlotCode } from 'components/data-explorer/mosaicplot';
 import Piechart, { generatePiechartConfig } from 'components/data-explorer/piechart';
@@ -287,7 +287,7 @@ class DataExplorer extends Component {
 			config = generateMosaicPlotCode({ data: this.state.data, ...value });
 		}
 		else if ( action.type === 'DATA_EXPLORER_SHARE:HEATMAP' ) {
-			config = generateHeatmapCode({ data: this.state.data, ...value });
+			config = generateHeatmapConfig({ data: this.state.data, ...value });
 		}
 		else if ( action.type === 'DATA_EXPLORER_SHARE:CONTOURCHART' ) {
 			config = generateContourChart({ data: this.state.data, ...value });

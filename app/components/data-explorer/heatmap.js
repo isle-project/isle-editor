@@ -33,7 +33,7 @@ function toArrayArray( arr ) {
 	return out;
 }
 
-export function generateHeatmap({ data, xval, yval, overlayPoints }) {
+export function generateHeatmapConfig({ data, xval, yval, overlayPoints }) {
 	var x = data[ xval ];
 	var y = data[ yval ];
 	var out = kde2d( x, y );
@@ -89,7 +89,7 @@ class HeatMap extends Component {
 	}
 
 	generateHeatmap( xval, yval, overlayPoints ) {
-		const config = generateHeatmap({ data: this.props.data, xval, yval, overlayPoints });
+		const config = generateHeatmapConfig({ data: this.props.data, xval, yval, overlayPoints });
 		const plotId = generate( 6 );
 		const output ={
 			variable: `${xval} against ${yval}`,
