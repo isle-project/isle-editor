@@ -58,11 +58,6 @@ const config = {
 
 	plugins: [
 		...baseConfig.plugins,
-		new webpack.DefinePlugin({
-			'process.env': {
-				'NODE_ENV': JSON.stringify( 'development' )
-			}
-		}),
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new HardSourceWebpackPlugin(),
 		new HappyPack({
@@ -70,8 +65,8 @@ const config = {
 				loader: 'babel-loader',
 				options: {
 					plugins: [
-						'transform-react-constant-elements',
-						'transform-react-inline-elements'
+						'@babel/plugin-transform-react-constant-elements',
+						'@babel/plugin-transform-react-inline-elements'
 					],
 					cacheDirectory: true
 				}
