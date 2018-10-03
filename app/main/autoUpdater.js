@@ -10,6 +10,7 @@ import logger from 'debug';
 
 const debug = logger( 'isle-editor:auto-updater' );
 
+
 // MAIN //
 
 function autoUpdater( callback ) {

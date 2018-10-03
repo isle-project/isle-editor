@@ -60,12 +60,17 @@ function createWindow( options ) {
 }
 
 
-// EXPORTS //
+// MAIN //
 
-module.exports = {
+const main = {
 	createWindow,
 	windows: _windows,
 	_createWindow,
 	_loadUrl,
 	_unref
 };
+
+
+// EXPORTS //
+
+export default main;

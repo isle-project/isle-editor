@@ -15,7 +15,7 @@ const debug = logger( 'isle-editor' );
 
 // MAIN //
 
-export default function createWindow( filePath, callback ) {
+function createWindow( filePath, callback ) {
 	/* eslint-disable no-process-env */
 	debug( `Should create the browser window for file ${filePath}.` );
 
@@ -70,3 +70,8 @@ export default function createWindow( filePath, callback ) {
 	mainWindow.webContents.on( 'will-navigate', openExternal );
 	return mainWindow;
 }
+
+
+// EXPORTS //
+
+export default createWindow;

@@ -20,6 +20,7 @@ import Header from 'editor-components/header';
 import Editor from 'editor-components/editor';
 import Preview from 'editor-components/preview';
 import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError } from 'actions';
+import DevTools from './dev_tools.js';
 
 
 // VARIABLES //
@@ -289,7 +290,6 @@ class App extends Component {
 					( () => {
 						// eslint-disable-next-line no-process-env
 						if ( process.env.NODE_ENV !== 'production' ) {
-							const DevTools = require( './dev_tools.js' ); // eslint-disable-line global-require
 							return <DevTools />;
 						}
 					})()
@@ -321,6 +321,7 @@ App.propTypes = {
 	resetError: PropTypes.func.isRequired,
 	updatePreamble: PropTypes.func.isRequired
 };
+
 
 // EXPORTS //
 

@@ -43,4 +43,4 @@ function iqr( arr ) {
 
 // EXPORTS //
 
-module.exports = iqr;
+export default iqr;

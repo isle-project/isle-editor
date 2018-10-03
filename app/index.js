@@ -14,8 +14,8 @@ import configureStore from 'store/configureStore';
 import 'highlight.js/styles/github.css';
 import 'normalize.css/normalize.css';
 import './app.global.css';
-
 import configureIpcRenderer from './configure_ipc_renderer.js';
+
 
 // VARIABLES //
 
