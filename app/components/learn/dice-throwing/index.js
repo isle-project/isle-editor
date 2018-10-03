@@ -70,6 +70,7 @@ class DiceThrowing extends Component {
 					<Col md={5}>
 						<h3>Probabilities:</h3>
 						{inmap( this.state.sides, ( x, i ) => ( <NumberInput
+							key={i}
 							legend={`Side ${i+1}`}
 							defaultValue={1/this.state.sides.length}
 							step="any"
