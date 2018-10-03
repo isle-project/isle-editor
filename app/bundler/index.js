@@ -93,7 +93,7 @@ const loadRequires = ( libs, filePath ) => {
 					str += `global[ '${key}' ] = 'data:image/jpeg;base64,${buffer.toString( 'base64' )}';\n`;
 				}
 				else {
-					str += `global[ '${key}' ] = require( '${lib}' );\n`;
+					str += `import ${key} from '${lib}';\n`;
 				}
 			}
 		}
@@ -111,7 +111,7 @@ import Provider from 'components/provider';
 `;
 
 const getComponents = ( arr ) => {
-	const requireStatements = arr.map( elem => `const ${elem} = require( '${REQUIRES[ elem ]}' );` );
+	const requireStatements = arr.map( elem => `import ${elem} from '${REQUIRES[ elem ]}';` );
 	return requireStatements.join( '\n' );
 };
 
@@ -183,8 +183,7 @@ const getSessionCode = ( basePath ) => {
 	if ( process.platform === 'win32' ) {
 		requirePath = replace( requirePath, '\\', '\\\\' );
 	}
-	let str = 'const Session = ';
-	str += `require( '${requirePath}' );`;
+	let str = `import Session from '${requirePath}';`;
 	return str;
 };
 
@@ -213,7 +212,7 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath
 	if ( contains( components, 'Deck' ) ) {
 		className = 'Presentation';
 		res += '\n';
-		res += 'const SPECTACLE_THEME = require( \'components/spectacle/theme.json\' )';
+		res += 'import SPECTACLE_THEME from \'components/spectacle/theme.json\';';
 	}
 	res += '\n';
 	res += getISLEcode( yamlStr );
@@ -281,10 +280,6 @@ function writeIndexFile({
 				'plotly.js': resolve(
 					basePath,
 					'./node_modules/plotly.js/dist/plotly-cartesian.min.js'
-				),
-				'react-transition-group/TransitionGroup': resolve(
-					basePath,
-					'./node_modules/spectacle/node_modules/react-transition-group/TransitionGroup.js'
 				)
 			},
 			mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
@@ -381,6 +376,7 @@ function writeIndexFile({
 	const str = generateIndexJS( content, usedComponents, yamlStr, basePath, filePath );
 	debug( `Create JS file: ${str}` );
 
+	console.log( str );
 	fs.writeFileSync( indexPath, str );
 
 	// Copy CSS files:
@@ -413,6 +409,7 @@ function writeIndexFile({
 			throw err;
 		}
 		if ( stats.errors ) {
+			console.log( stats.errors );
 			stats.errors.forEach( debug );
 		}
 		stats = stats.toJson();
