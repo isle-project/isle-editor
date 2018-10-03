@@ -15,8 +15,8 @@
     "test": {
       "plugins": [
         [
-          "resolver", {
-            "resolveDirs": [
+          "module-resolver", {
+            "root": [
                 "app",
                 "node_modules/@stdlib/stdlib/lib/node_modules"
               ]
