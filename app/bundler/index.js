@@ -297,15 +297,17 @@ function writeIndexFile({
 					loader: 'babel-loader',
 					query: {
 						plugins: [
-							resolve( basePath, './node_modules/babel-plugin-add-module-exports' ),
-							resolve( basePath, './node_modules/babel-plugin-transform-react-constant-elements' ),
-							resolve( basePath, './node_modules/babel-plugin-transform-react-inline-elements' ),
-							resolve( basePath, './node_modules/babel-plugin-transform-react-remove-prop-types' )
+							resolve( basePath, './node_modules/@babel/plugin-transform-react-constant-elements' ),
+							resolve( basePath, './node_modules/@babel/plugin-transform-react-inline-elements' ),
+							resolve( basePath, './node_modules/babel-plugin-transform-react-remove-prop-types' ),
+							resolve( basePath, './node_modules/@babel/plugin-transform-react-jsx' ),
+							resolve( basePath, './node_modules/@babel/plugin-proposal-class-properties' ),
+							resolve( basePath, './node_modules/@babel/plugin-syntax-dynamic-import' )
+
 						],
 						presets: [
-							resolve( basePath, './node_modules/babel-preset-es2015' ),
-							resolve( basePath, './node_modules/babel-preset-react' ),
-							resolve( basePath, './node_modules/babel-preset-stage-0' )
+							resolve( basePath, './node_modules/@babel/preset-env' ),
+							resolve( basePath, './node_modules/@babel/preset-react' )
 						],
 						babelrc: false,
 						cacheDirectory: true
