@@ -26,6 +26,8 @@
 	"LearnVennDiagramBuilder": "components/learn/venn-diagram-builder",
 	"LearnWordVennDiagram": "components/learn/word-venn-diagram",
 	"LearnImagePixelPicker": "components/learn/image-pixel-picker",
+	"ListGroup": "react-bootstrap/lib/ListGroup",
+	"ListGroupItem": "react-bootstrap/lib/ListGroupItem",
 	"Container": "components/container",
 	"DataExplorer": "components/data-explorer",
 	"DataTable": "components/data-table",

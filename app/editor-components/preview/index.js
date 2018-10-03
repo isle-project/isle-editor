@@ -19,6 +19,8 @@ import Loadable from 'editor-components/loadable';
 import Session from 'session';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
+import ListGroup from 'react-bootstrap/lib/ListGroup';
+import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import Modal from 'react-bootstrap/lib/Modal';
 import Nav from 'react-bootstrap/lib/Nav';
 import Navbar from 'react-bootstrap/lib/Navbar';
@@ -154,6 +156,8 @@ const createScope = ( session ) => {
 		// REACT BOOTSTRAP //
 		Button,
 		Col,
+		ListGroup,
+		ListGroupItem,
 		Modal,
 		Nav,
 		Navbar,
