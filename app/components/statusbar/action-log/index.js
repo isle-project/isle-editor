@@ -141,6 +141,14 @@ class ActionLog extends Component {
 	saveJSON = () => {
 		const { session } = this.context;
 		session.getFakeUsers( ( err, hash ) => {
+			if ( err ) {
+				return session.addNotification({
+					title: 'Error encountered',
+					message: 'Encountered an error while generating fake users: '+err.message,
+					level: 'error',
+					position: 'tl'
+				});
+			}
 			let actions;
 			if ( this.state.anonymized ) {
 				actions = new Array( session.socketActions.length );
@@ -163,6 +171,14 @@ class ActionLog extends Component {
 	saveCSV = () => {
 		const { session } = this.context;
 		session.getFakeUsers( ( err, hash ) => {
+			if ( err ) {
+				return session.addNotification({
+					title: 'Error encountered',
+					message: 'Encountered an error while generating fake users: '+err.message,
+					level: 'error',
+					position: 'tl'
+				});
+			}
 			let actions;
 			if ( this.state.anonymized ) {
 				actions = new Array( session.socketActions.length );
@@ -177,6 +193,14 @@ class ActionLog extends Component {
 			stringify( actions, {
 				header: true
 			}, ( err, output ) => {
+				if ( err ) {
+					return session.addNotification({
+						title: 'Error encountered',
+						message: 'Encountered an error while creating CSV: '+err.message,
+						level: 'error',
+						position: 'tl'
+					});
+				}
 				const blob = new Blob([ output ], {
 					type: 'text/plain'
 				});
