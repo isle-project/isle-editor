@@ -602,8 +602,13 @@ class MarkdownEditor extends Component {
 
 	loadFonts() {
 		import( /* webpackChunkName: "fonts" */ './fonts.js' )
-			.then( fonts => { pdfMake.vfs = fonts; })
-			.catch( err => debug( 'Encountered an error while loading fonts: '+err.message ) );
+			.then( fonts => {
+				debug( 'Successfully loaded fonts...' );
+				pdfMake.vfs = fonts.default;
+			})
+			.catch( err => {
+				debug( 'Encountered an error while loading fonts: '+err.message );
+			});
 	}
 
 	initializeEditor() {
