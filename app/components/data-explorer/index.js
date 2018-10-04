@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import Draggable from 'react-draggable';
 import Button from 'react-bootstrap/lib/Button';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Row from 'react-bootstrap/lib/Row';
@@ -141,7 +142,8 @@ class DataExplorer extends Component {
 			groupVars,
 			ready,
 			showStudentPlots: false,
-			openedNav: props.opened || ( props.hideDataTable ? 'toolbox' : 'data' ),
+			showToolbox: false,
+			openedNav: props.opened || ( props.questions ? 'questions' : 'data' ),
 			studentPlots: [],
 			unaltered: {
 				data: props.data,
@@ -236,6 +238,12 @@ class DataExplorer extends Component {
 	toggleStudentPlots = () => {
 		this.setState({
 			showStudentPlots: !this.state.showStudentPlots
+		});
+	}
+
+	toggleToolbox = () => {
+		this.setState({
+			showToolbox: !this.state.showToolbox
 		});
 	}
 
@@ -480,7 +488,6 @@ class DataExplorer extends Component {
 				</Card.Body>
 			</Card> );
 		}
-		let colWidth = this.props.questions ? 4 : 6;
 		let nStatistics = this.props.statistics.length;
 		let defaultActiveKey = '1';
 		if ( nStatistics === 0 ) {
@@ -739,22 +746,16 @@ class DataExplorer extends Component {
 
 		return (
 			<Row className="no-gutter data-explorer">
-				{ this.props.questions ? <Col xs={colWidth} md={colWidth}><Pages
-					title="Questions"
-					height={470}
-					size="small"
-					className="data-explorer-questions"
-				>{this.props.questions}</Pages></Col> : null }
-				<Col xs={colWidth} md={colWidth}>
+				<Col xs={6} md={6}>
 					<Card>
 						<Navbar className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
 							<Nav>
+								{ this.props.questions ? <Nav.Item className="explorer-data-nav">
+									<Nav.Link eventKey="questions" active={this.state.openedNav === 'questions'}>Questions</Nav.Link>
+								</Nav.Item> : null }
 								{ !this.props.hideDataTable ? <Nav.Item className="explorer-data-nav" >
 									<Nav.Link eventKey="data" active={this.state.openedNav === 'data'}>Data</Nav.Link>
 								</Nav.Item> : null }
-								<Nav.Item>
-									<Nav.Link eventKey="toolbox" active={this.state.openedNav === 'toolbox'}>Toolbox</Nav.Link>
-								</Nav.Item>
 								{ this.props.distributions.length > 0 ?
 									<NavDropdown
 										eventKey="distributions"
@@ -784,20 +785,25 @@ class DataExplorer extends Component {
 									</Nav.Item> );
 								}) : null }
 							</Nav>
+							<Button variant="secondary" size="sm" style={{ position: 'absolute', right: '20px' }} onClick={this.toggleToolbox} >{this.state.showToolbox ? 'Hide Toolbox' : 'Show Toolbox' }</Button>
 						</Navbar>
 						<Card.Body>
-							{ this.state.openedNav === 'data' ?
-								<Fragment>
+							<Pages
+								height={470}
+								size="small"
+								className="data-explorer-questions"
+								style={{
+									display: this.state.openedNav !== 'questions' ? 'none' : null
+								}}
+							>{this.props.questions}</Pages>
+							<div
+								style={{
+									display: this.state.openedNav !== 'data' ? 'none' : null
+								}}
+							>
 									{ !this.props.data ? <Button size="small" onClick={this.resetStorage} style={{ position: 'absolute' }}>Clear Data</Button> : null }
 									<DataTable data={this.state.data} dataInfo={this.props.dataInfo} />
-								</Fragment> : null
-							}
-							{ this.state.openedNav === 'toolbox' ?
-								<Tab.Container id="options-menu" defaultActiveKey={defaultActiveKey}>
-									{navbar}
-									{tabs}
-								</Tab.Container> : null
-							}
+							</div>
 							{this.props.distributions.map( ( e, i ) => {
 								let content = null;
 								switch ( e ) {
@@ -831,7 +837,7 @@ class DataExplorer extends Component {
 						</Card.Body>
 					</Card>
 				</Col>
-				<Col xs={colWidth} md={colWidth}>
+				<Col xs={6} md={6}>
 					<div className="card card-default" style={{ minHeight: window.innerHeight*0.9, padding: 0 }}>
 						<div className="card-header clearfix">
 							<h3 className="data-explorer-output-header">Output</h3>
@@ -890,6 +896,20 @@ class DataExplorer extends Component {
 						}}>Clear All</Button>
 					</div>
 				</Col>
+				<Draggable>
+					<Card border="secondary" style={{ display: this.state.showToolbox ? 'inline' : 'none', zIndex: 1002, position: 'absolute', minWidth: '500px' }}>
+						<Card.Header style={{ height: '55px' }}>
+							<Card.Title as="h3" style={{ position: 'absolute', left: '20px' }}>Toolbox</Card.Title>
+							<Button variant="secondary" size="sm" style={{ position: 'absolute', right: '20px' }}onClick={this.toggleToolbox} >Hide Toolbox</Button>
+						</Card.Header>
+						<Card.Body style={{ paddingBottom: '0px' }}>
+							<Tab.Container defaultActiveKey={defaultActiveKey}>
+								{navbar}
+								{tabs}
+							</Tab.Container>
+						</Card.Body>
+					</Card>
+				</Draggable>
 			</Row>
 		);
 	}
