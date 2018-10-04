@@ -19,7 +19,7 @@ import QuestionButton from './question_button.js';
 function getFrequencies( variable, x, relativeFreqs ) {
 	const counts = countBy( x, identity );
 	const keys = variable.categories || objectKeys( counts );
-	const freqs = new Array( keys.length );
+	let freqs = new Array( keys.length );
 	for ( let i = 0; i < keys.length; i++ ) {
 		freqs[ i ] = { category: keys[ i ], count: counts[ keys[ i ] ] };
 	}
