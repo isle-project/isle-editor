@@ -7,7 +7,6 @@ import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import { generate } from 'randomstring';
 import objectKeys from '@stdlib/utils/keys';
-import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import QuestionButton from './question_button.js';
@@ -19,25 +18,31 @@ import by from './by.js';
 export function generateBarchartConfig({ data, variable, group }) {
 	let traces;
 	if ( !group ) {
-		let freqs = entries( countBy( data[ variable ], identity ) );
-		const categories = variable.categories || freqs.map( e => e[ 0 ]);
-		freqs = freqs.map( e => e[ 1 ]);
+		let freqs = countBy( data[ variable ], identity );
+		const categories = variable.categories || objectKeys( freqs );
+		const counts = new Array( categories.length );
+		for ( let i = 0; i < categories.length; i++ ) {
+			counts[ i ] = freqs[ categories[ i ] ];
+		}
 		traces = [ {
-			y: freqs,
+			y: counts,
 			x: categories,
 			type: 'bar'
 		} ];
 	} else {
 		let freqs = by( data[ variable ], data[ group ], arr => {
-			return entries( countBy( arr, identity ) );
+			return countBy( arr, identity );
 		});
 		traces = [];
 		const keys = group.categories || objectKeys( freqs );
 		for ( let i = 0; i < keys.length; i++ ) {
 			const key = keys[ i ];
 			const val = freqs[ key ];
-			const categories = val.map( e => e[ 0 ]);
-			const counts = val.map( e => e[ 1 ]);
+			const categories = variable.categories || objectKeys( val );
+			const counts = new Array( categories.length );
+			for ( let i = 0; i < categories.length; i++ ) {
+				counts[ i ] = val[ categories[ i ] ];
+			}
 			traces.push({
 				y: counts,
 				x: categories,

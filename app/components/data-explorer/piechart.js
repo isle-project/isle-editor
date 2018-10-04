@@ -7,7 +7,6 @@ import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import { generate } from 'randomstring';
 import objectKeys from '@stdlib/utils/keys';
-import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import floor from '@stdlib/math/base/special/floor';
@@ -22,17 +21,20 @@ export function generatePiechartConfig({ data, variable, group }) {
 	let annotations;
 	let traces;
 	if ( !group ) {
-		let freqs = entries( countBy( data[ variable ], identity ) );
-		const categories = variable.categories || freqs.map( e => e[ 0 ]);
-		freqs = freqs.map( e => e[ 1 ]);
+		const freqs = countBy( data[ variable ], identity );
+		const categories = variable.categories || objectKeys( freqs );
+		const counts = new Array( categories.length );
+		for ( let i = 0; i < categories.length; i++ ) {
+			counts[ i ] = freqs[ categories[ i ] ];
+		}
 		traces = [ {
-			values: freqs,
+			values: counts,
 			labels: categories,
 			type: 'pie'
 		} ];
 	} else {
 		const freqs = by( data[ variable ], data[ group ], arr => {
-			return entries( countBy( arr, identity ) );
+			return countBy( arr, identity );
 		});
 		const keys = group.categories || objectKeys( freqs );
 		const nPlots = keys.length;
@@ -46,8 +48,11 @@ export function generatePiechartConfig({ data, variable, group }) {
 			const row = floor( i / nCols );
 			const col = i - ( row*nCols );
 			const val = freqs[ key ];
-			const categories = variable.categories || val.map( e => e[ 0 ]);
-			const counts = val.map( e => e[ 1 ]);
+			const categories = variable.categories || objectKeys( val );
+			const counts = new Array( categories.length );
+			for ( let i = 0; i < categories.length; i++ ) {
+				counts[ i ] = val[ categories[ i ] ];
+			}
 			traces.push({
 				values: counts,
 				labels: categories,
