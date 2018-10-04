@@ -108,6 +108,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import NotificationSystem from 'react-notification-system';
 import Provider from 'components/provider';
+import factor from 'utils/factor-variable';
 `;
 
 const getComponents = ( arr ) => {

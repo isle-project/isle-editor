@@ -40,6 +40,7 @@ import TextInput from 'components/input/text';
 import VoiceInput from 'components/input/voice';
 import transformToPresentation from 'utils/transform-to-presentation';
 import SPECTACLE_THEME from 'components/spectacle/theme.json';
+import factor from 'utils/factor-variable';
 
 
 // VARIABLES //
@@ -55,6 +56,7 @@ const createScope = ( session ) => {
 		Component,
 		render,
 		session,
+		factor,
 		NotificationSystem,
 
 		Accordion: Loadable( () => import( 'components/accordion' ) ),
