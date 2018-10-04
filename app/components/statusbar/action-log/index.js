@@ -13,6 +13,7 @@ import saveAs from 'utils/file-saver';
 import stringify from 'csv-stringify';
 import moment from 'moment';
 import logger from 'debug';
+import copy from '@stdlib/utils/copy';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import ActionList from './list.js';
 
@@ -140,12 +141,16 @@ class ActionLog extends Component {
 	saveJSON = () => {
 		const { session } = this.context;
 		session.getFakeUsers( ( err, hash ) => {
-			const actions = session.socketActions.slice();
+			let actions;
 			if ( this.state.anonymized ) {
+				actions = new Array( session.socketActions.length );
 				for ( let i = 0; i < actions.length; i++ ) {
+					actions[ i ] = copy( session.socketActions[ i ] );
 					actions[ i ].name = hash.name[ actions[ i ].name ];
 					actions[ i ].email = hash.email[ actions[ i ].email ];
 				}
+			} else {
+				actions = session.socketActions;
 			}
 			const blob = new Blob([ JSON.stringify( actions ) ], {
 				type: 'application/json'
@@ -158,12 +163,16 @@ class ActionLog extends Component {
 	saveCSV = () => {
 		const { session } = this.context;
 		session.getFakeUsers( ( err, hash ) => {
-			const actions = session.socketActions.slice();
+			let actions;
 			if ( this.state.anonymized ) {
+				actions = new Array( session.socketActions.length );
 				for ( let i = 0; i < actions.length; i++ ) {
+					actions[ i ] = copy( session.socketActions[ i ] );
 					actions[ i ].name = hash.name[ actions[ i ].name ];
 					actions[ i ].email = hash.email[ actions[ i ].email ];
 				}
+			} else {
+				actions = session.socketActions;
 			}
 			stringify( actions, {
 				header: true
