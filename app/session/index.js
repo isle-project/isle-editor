@@ -9,7 +9,6 @@ import isEmptyArray from '@stdlib/assert/is-empty-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import copy from '@stdlib/utils/copy';
-import Buffer from '@stdlib/buffer/ctor';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 import isElectron from 'utils/is-electron';
 import io from 'socket.io-client';
@@ -28,7 +27,19 @@ const HELP_PATH_REGEX = /\/(?:site-)?library\/([^/]*)\/help\/([^/"]*)/;
 let userRights = null;
 
 
-// SESSION //
+// FUNCTIONS //
+
+function arrayBufferToBase64(buffer) {
+	let binary = '';
+	const bytes = [].slice.call( new Uint8Array( buffer ) );
+	bytes.forEach( ( b ) => {
+		binary += String.fromCharCode( b );
+	});
+	return window.btoa( binary );
+}
+
+
+// MAIN //
 
 class Session {
 	constructor( config, offline ) {
@@ -335,17 +346,19 @@ class Session {
 		const OPEN_CPU = this.getOpenCPUServer();
 
 		const fetchImage = ( imgURL ) => {
-			fetch( imgURL, {
-				encoding: null
-			})
+			fetch( imgURL )
 				.then( res => {
-					res.text().then( body => {
-						if ( filetype === 'png' ) {
-							const buf = Buffer.from( body );
-							body = 'data:'+res.headers['content-type']+';base64,' + buf.toString( 'base64' );
-						}
-						clbk( null, imgURL, body );
-					});
+					if ( filetype === 'png' ) {
+						res.arrayBuffer().then( buffer => {
+							const mimeType = res.headers.get( 'Content-Type' );
+							const base64String = `data:${mimeType};base64,${arrayBufferToBase64( buffer )}`;
+							clbk( null, imgURL, base64String );
+						});
+					} else {
+						res.text().then( body => {
+							clbk( null, imgURL, body );
+						});
+					}
 				})
 				.catch( err => clbk( err ) );
 		};
