@@ -6,12 +6,12 @@ import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import { generate } from 'randomstring';
+import objectKeys from '@stdlib/utils/keys';
 import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
-import hasOwnProp from '@stdlib/assert/has-own-property';
 import QuestionButton from './question_button.js';
 import by from './by.js';
 
@@ -23,9 +23,8 @@ export function generatePiechartConfig({ data, variable, group }) {
 	let traces;
 	if ( !group ) {
 		let freqs = entries( countBy( data[ variable ], identity ) );
-		let categories = freqs.map( e => e[ 0 ]);
+		const categories = variable.categories || freqs.map( e => e[ 0 ]);
 		freqs = freqs.map( e => e[ 1 ]);
-
 		traces = [ {
 			values: freqs,
 			labels: categories,
@@ -35,41 +34,39 @@ export function generatePiechartConfig({ data, variable, group }) {
 		const freqs = by( data[ variable ], data[ group ], arr => {
 			return entries( countBy( arr, identity ) );
 		});
-		const nPlots = Object.keys( freqs ).length;
+		const keys = group.categories || objectKeys( freqs );
+		const nPlots = keys.length;
 		const nRows = ceil( nPlots / 2 );
 		const nCols = 2;
 		traces = [];
 		annotations = [];
 
-		let i = 0;
-		for ( let key in freqs ) {
-			if ( hasOwnProp( freqs, key ) ) {
-				const row = floor( i / nCols );
-				const col = i - ( row*nCols );
-				const val = freqs[ key ];
-				const categories = val.map( e => e[ 0 ]);
-				const counts = val.map( e => e[ 1 ]);
-				traces.push({
-					values: counts,
-					labels: categories,
-					type: 'pie',
-					name: key,
-					domain: {
-						x: [ ( col ) / nCols, ( col+1 ) / nCols ],
-						y: [ ( row ) / nRows, ( row+0.8 ) / nRows ]
-					}
-				});
-				annotations.push({
-					text: key,
-					x: ( col % 2 ? col+0.8 : col+0.2 ) / nCols,
-					y: ( row+0.9 ) / nRows,
-					font: {
-						size: 18
-					},
-					showarrow: false
-				});
-				i += 1;
-			}
+		for ( let i = 0; i < keys.length; i++ ) {
+			const key = keys[ i ];
+			const row = floor( i / nCols );
+			const col = i - ( row*nCols );
+			const val = freqs[ key ];
+			const categories = variable.categories || val.map( e => e[ 0 ]);
+			const counts = val.map( e => e[ 1 ]);
+			traces.push({
+				values: counts,
+				labels: categories,
+				type: 'pie',
+				name: key,
+				domain: {
+					x: [ ( col ) / nCols, ( col+1 ) / nCols ],
+					y: [ ( row ) / nRows, ( row+0.8 ) / nRows ]
+				}
+			});
+			annotations.push({
+				text: key,
+				x: ( col % 2 ? col+0.8 : col+0.2 ) / nCols,
+				y: ( row+0.9 ) / nRows,
+				font: {
+					size: 18
+				},
+				showarrow: false
+			});
 		}
 	}
 	const layout = {

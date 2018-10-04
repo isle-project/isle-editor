@@ -6,6 +6,7 @@ import Table from 'react-bootstrap/lib/Table';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
+import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import isObject from '@stdlib/assert/is-object';
@@ -23,8 +24,8 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs ) => {
 	const rowFreqs = countBy( rowValues, identity );
 	const colFreqs = countBy( colValues, identity );
 
-	const rowKeys = Object.keys( rowFreqs );
-	const colKeys = Object.keys( colFreqs );
+	const rowKeys = rowVar.categories || objectKeys( rowFreqs );
+	const colKeys = colVar.categories || objectKeys( colFreqs );
 	for ( let i = 0; i < rowKeys.length; i++ ) {
 		for ( let l = 0; l < colKeys.length; l++ ) {
 			let key1 = rowKeys[ i ];
@@ -86,7 +87,7 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs ) => {
 const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFreqs ) => {
 	const groupedData = {};
 	for ( let i = 0; i < data[ group ].length; i++ ) {
-		let v = data[ group ][ i ];
+		const v = data[ group ][ i ];
 		if ( !isObject( groupedData[ v ]) ) {
 			groupedData[ v ] = {
 				[ rowVar ]: [],
@@ -96,15 +97,14 @@ const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFre
 		groupedData[ v ][ rowVar ].push( data[ rowVar ][ i ]);
 		groupedData[ v ][ colVar ].push( data[ colVar ][ i ]);
 	}
-
 	let table = [];
-	let keys = Object.keys( groupedData );
+	const keys = group.categories || objectKeys( groupedData );
 	for ( let i = 0; i < keys.length; i++ ) {
-		let key = keys[ i ];
+		const key = keys[ i ];
 		table.push( createContingencyTable( groupedData[ key ], rowVar, colVar, relativeFreqs ) );
 	}
 
-	let output = {
+	const output = {
 		variable: `${rowVar} by ${colVar}`,
 		type: 'Contingency Table',
 		value: <div>

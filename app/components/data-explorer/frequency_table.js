@@ -6,6 +6,7 @@ import Table from 'react-bootstrap/lib/Table';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
+import objectKeys from '@stdlib/utils/keys';
 import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
@@ -15,10 +16,13 @@ import QuestionButton from './question_button.js';
 
 // FUNCTIONS //
 
-function getFrequencies( x, relativeFreqs ) {
-	let freqs = entries( countBy( x, identity ) ).map( e => {
-		return { category: e[ 0 ], count: e[ 1 ] };
-	});
+function getFrequencies( variable, x, relativeFreqs ) {
+	const counts = countBy( x, identity );
+	const keys = variable.categories || objectKeys( counts );
+	const freqs = new Array( keys.length );
+	for ( let i = 0; i < keys.length; i++ ) {
+		freqs[ i ] = { category: keys[ i ], count: counts[ keys[ i ] ] };
+	}
 	if ( relativeFreqs ) {
 		let totalCount = freqs
 			.map( x => x.count )
@@ -98,11 +102,19 @@ class FrequencyTable extends Component {
 	generateFrequencyTable( variable, group, relativeFreqs ) {
 		let freqs;
 		if ( !group ) {
-			freqs = getFrequencies( this.props.data[ variable ], relativeFreqs );
+			freqs = getFrequencies( variable, this.props.data[ variable ], relativeFreqs );
 		} else {
 			freqs = by( this.props.data[ variable ], this.props.data[ group ], ( arr ) => {
-				return getFrequencies( arr, relativeFreqs );
+				return getFrequencies( variable, arr, relativeFreqs );
 			});
+			if ( group.categories ) {
+				// Create new object with different insertion order:
+				const tmp = {};
+				for ( let i = 0; i < group.categories.length; i++ ) {
+					tmp[ group.categories[ i ] ] = freqs[ group.categories[ i ] ];
+				}
+				freqs = tmp;
+			}
 		}
 		let output = {
 			variable: !group ? variable : `${variable} by ${group}`,

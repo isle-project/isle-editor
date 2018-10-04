@@ -6,7 +6,7 @@ import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import { generate } from 'randomstring';
-import hasOwnProp from '@stdlib/assert/has-own-property';
+import objectKeys from '@stdlib/utils/keys';
 import QuestionButton from './question_button.js';
 import by from './by.js';
 
@@ -27,15 +27,15 @@ export function generateBoxplotConfig({ data, variable, group }) {
 			return arr;
 		});
 		traces = [];
-		for ( let key in freqs ) {
-			if ( hasOwnProp( freqs, key ) ) {
-				let val = freqs[ key ];
-				traces.push({
-					y: val,
-					name: key,
-					type: 'box'
-				});
-			}
+		const keys = group.categories || objectKeys( freqs );
+		for ( let i = 0; i < keys.length; i++ ) {
+			const key = keys[ i ];
+			const val = freqs[ key ];
+			traces.push({
+				y: val,
+				name: key,
+				type: 'box'
+			});
 		}
 	}
 	return {

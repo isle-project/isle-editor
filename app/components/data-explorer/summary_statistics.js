@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import statistic from 'utils/statistic';
-import hasOwnProp from '@stdlib/assert/has-own-property';
+import objectKeys from '@stdlib/utils/keys';
 import isArray from '@stdlib/assert/is-array';
 import CheckboxInput from 'components/input/checkbox';
 import QuestionButton from './question_button.js';
@@ -15,26 +15,27 @@ import isnan from '@stdlib/assert/is-nan';
 
 // FUNCTIONS //
 
-function byWithCount( arr, factor, fun ) {
-	let ret = {};
+function byWithCount( arr, factor, fun, groups ) {
+	let table = {};
 	for ( let i = 0; i < arr.length; i++ ) {
-		if ( !isArray( ret[ factor[ i ] ]) ) {
-			ret[ factor[ i ] ] = [];
+		if ( !isArray( table[ factor[ i ] ]) ) {
+			table[ factor[ i ] ] = [];
 		}
-		ret[ factor[ i ] ].push( arr[ i ]);
+		table[ factor[ i ] ].push( arr[ i ]);
 	}
-	for ( let key in ret ) {
-		if ( hasOwnProp( ret, key ) ) {
-			ret[ key ] = {
-				value: fun( ret[ key ] ),
-				size: ret[ key ].length
-			};
-		}
+	const keys = groups || objectKeys( table );
+	const out = {};
+	for ( let i = 0; i < keys.length; i++ ) {
+		const key = keys[ i ];
+		out[ key ] = {
+			value: fun( table[ key ] ),
+			size: table[ key ].length
+		};
 	}
-	return ret;
+	return out;
 }
 
-function by2WithCount( arr1, arr2, factor, fun ) {
+function by2WithCount( arr1, arr2, factor, fun, groups ) {
 	let out = {};
 	let ret1 = {};
 	let ret2 = {};
@@ -46,13 +47,13 @@ function by2WithCount( arr1, arr2, factor, fun ) {
 		ret1[ factor[ i ] ].push( arr1[ i ]);
 		ret2[ factor[ i ] ].push( arr2[ i ]);
 	}
-	for ( let key in ret1 ) {
-		if ( hasOwnProp( ret1, key ) ) {
-			out[ key ] = {
-				value: fun( ret1[ key ], ret2[ key ]),
-				size: ret1[ key ].length
-			};
-		}
+	const keys = groups || objectKeys( ret1 );
+	for ( let i = 0; i < keys.length; i++ ) {
+		const key = keys[ i ];
+		out[ key ] = {
+			value: fun( ret1[ key ], ret2[ key ]),
+			size: ret1[ key ].length
+		};
 	}
 	return out;
 }
@@ -111,12 +112,14 @@ class SummaryStatistics extends Component {
 					size: x.length
 				};
 			} else {
-				res = by2WithCount( x, y, data[ group ], fun );
-				for ( let key in res ) {
-					if ( hasOwnProp( res, key ) ){
-						// Extract correlation coefficient from correlation matrix:
-						res[ key ].value = res[ key ].value[ 0 ][ 1 ];
-					}
+				const groups = group.categories;
+				res = by2WithCount( x, y, data[ group ], fun, groups );
+				const keys = groups || objectKeys( res );
+				for ( let i = 0; i < keys.length; i++ ) {
+					const key = keys[ i ];
+
+					// Extract correlation coefficient from correlation matrix:
+					res[ key ].value = res[ key ].value[ 0 ][ 1 ];
 				}
 			}
 			variable = `${variable} vs. ${secondVariable}`;
@@ -127,7 +130,8 @@ class SummaryStatistics extends Component {
 				size: x.length
 			};
 		} else {
-			res = byWithCount( x, data[ group ], fun );
+			const groups = group.categories;
+			res = byWithCount( x, data[ group ], fun, groups );
 		}
 
 		const output = {

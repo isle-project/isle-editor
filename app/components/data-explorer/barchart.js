@@ -6,10 +6,10 @@ import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import { generate } from 'randomstring';
+import objectKeys from '@stdlib/utils/keys';
 import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
-import hasOwnProp from '@stdlib/assert/has-own-property';
 import QuestionButton from './question_button.js';
 import by from './by.js';
 
@@ -20,7 +20,7 @@ export function generateBarchartConfig({ data, variable, group }) {
 	let traces;
 	if ( !group ) {
 		let freqs = entries( countBy( data[ variable ], identity ) );
-		let categories = freqs.map( e => e[ 0 ]);
+		const categories = variable.categories || freqs.map( e => e[ 0 ]);
 		freqs = freqs.map( e => e[ 1 ]);
 		traces = [ {
 			y: freqs,
@@ -32,18 +32,18 @@ export function generateBarchartConfig({ data, variable, group }) {
 			return entries( countBy( arr, identity ) );
 		});
 		traces = [];
-		for ( let key in freqs ) {
-			if ( hasOwnProp( freqs, key ) ) {
-				let val = freqs[ key ];
-				let categories = val.map( e => e[ 0 ]);
-				let counts = val.map( e => e[ 1 ]);
-				traces.push({
-					y: counts,
-					x: categories,
-					type: 'bar',
-					name: key
-				});
-			}
+		const keys = group.categories || objectKeys( freqs );
+		for ( let i = 0; i < keys.length; i++ ) {
+			const key = keys[ i ];
+			const val = freqs[ key ];
+			const categories = val.map( e => e[ 0 ]);
+			const counts = val.map( e => e[ 1 ]);
+			traces.push({
+				y: counts,
+				x: categories,
+				type: 'bar',
+				name: key
+			});
 		}
 	}
 	return {

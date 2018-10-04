@@ -10,7 +10,7 @@ import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import Plotly from 'components/plotly';
 import { generate } from 'randomstring';
-import hasOwnProp from '@stdlib/assert/has-own-property';
+import objectKeys from '@stdlib/utils/keys';
 import kernelSmooth from 'kernel-smooth';
 import linspace from '@stdlib/math/utils/linspace';
 import min from 'utils/statistic/min';
@@ -115,50 +115,50 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 			return arr;
 		});
 		traces = [];
-		for ( let key in freqs ) {
-			if ( hasOwnProp( freqs, key ) ) {
-				let vals = freqs[ key ];
-				if ( overlayDensity ) {
-					const config = {
-						x: vals,
-						type: 'histogram',
-						histnorm: 'probability density',
-						name: key+':histogram',
-						opacity: 0.5
+		const keys = group.categories || objectKeys( freqs );
+		for ( let i = 0; i < keys.length; i++ ) {
+			const key = keys[ i ];
+			let vals = freqs[ key ];
+			if ( overlayDensity ) {
+				const config = {
+					x: vals,
+					type: 'histogram',
+					histnorm: 'probability density',
+					name: key+':histogram',
+					opacity: 0.5
+				};
+				if ( chooseBins ) {
+					// config.nbinsx = nBins;
+					const maxVal = max(vals);
+					const minVal = min(vals);
+					const sizeVal = ((1.0 * maxVal) - minVal) / nBins;
+					config.autobinx = false;
+					config.xbins = {
+						size: sizeVal,
+						start: minVal,
+						end: maxVal
 					};
-					if ( chooseBins ) {
-						// config.nbinsx = nBins;
-						const maxVal = max(vals);
-						const minVal = min(vals);
-						const sizeVal = ((1.0 * maxVal) - minVal) / nBins;
-						config.autobinx = false;
-						config.xbins = {
-							size: sizeVal,
-							start: minVal,
-							end: maxVal
-						};
-					}
-					traces.push( config );
-					const [ x, y ] = calculateDensityValues( vals, densityType );
-					traces.push({
-						x: x,
-						y: y,
-						type: 'lines',
-						name: key+':density'
-					});
-				} else {
-					const config = {
-						x: vals,
-						type: 'histogram',
-						name: key,
-						opacity: 0.5
-					};
-					if ( chooseBins ) {
-						// Supply `nBins` as a suggested value for the number of bins; exact number of bins may differ...
-						config.nbinsx = nBins;
-					}
-					traces.push( config );
 				}
+				traces.push( config );
+				const [ x, y ] = calculateDensityValues( vals, densityType );
+				traces.push({
+					x: x,
+					y: y,
+					type: 'lines',
+					name: key+':density'
+				});
+			} else {
+				const config = {
+					x: vals,
+					type: 'histogram',
+					name: key,
+					opacity: 0.5
+				};
+				if ( chooseBins ) {
+					// Supply `nBins` as a suggested value for the number of bins; exact number of bins may differ...
+					config.nbinsx = nBins;
+				}
+				traces.push( config );
 			}
 		}
 		layout = {
