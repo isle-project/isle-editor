@@ -1,5 +1,8 @@
 // MAIN //
 
+/**
+* Forces an update of the current lesson.
+*/
 function updateLesson() {
 	const lesson = window.lesson || global.lesson;
 	if ( lesson && !lesson.unmounted ) {

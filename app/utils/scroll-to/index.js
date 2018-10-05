@@ -1,5 +1,13 @@
 // MAIN //
 
+/**
+* Scrolls a vertical scrolbar to the specified position.
+*
+* @param {Node} element - DOM node with the scrollbar to change
+* @param {number} to - vertical position of the scroll bar after animation
+* @param {integer} duration - number of milliseconds until animation shall be complete
+* @returns {void}
+*/
 function scrollTo( element, to, duration ) {
 	if ( duration <= 0 ) {
 		return;

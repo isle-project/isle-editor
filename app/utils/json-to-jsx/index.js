@@ -22,6 +22,16 @@ const debug = logger( 'isle:convert-json' );
 
 // MAIN //
 
+/**
+* Transforms a JSON configuration object to a React component and its children.
+*
+* ## Notes
+*
+* -   Only a subset of isle React component are supported.
+*
+* @param {Object} config - JSON configuration
+* @returns {Node} created component
+*/
 function convertJSONtoJSX( config ) {
 	debug( `Convert JSON ${config.component} object to React element...` );
 	let children = copy( config.children );

@@ -19,6 +19,13 @@ const RE_TABLE_ITEM = /<td([^>]*)>([\s\S]+?)<\/td>/g;
 
 // MAIN
 
+/**
+* Transforms the ISLE lesson code to a spectacle presentation.
+*
+* @param {string} code - lesson code to transform
+* @param {Object} preamble - lesson preamble
+* @returns {string} transformed lesson code
+*/
 function transformToPresentation( code, preamble ) {
 	let progress = 'number';
 	if ( preamble.presentation ) {
