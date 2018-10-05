@@ -264,7 +264,7 @@ function writeIndexFile({
 				),
 				'csv-stringify': resolve(
 					basePath,
-					'./node_modules/csv-parse/lib/es5/index.js'
+					'./node_modules/csv-stringify/lib/es5/index.js'
 				),
 				'victory': resolve(
 					basePath,
@@ -377,7 +377,6 @@ function writeIndexFile({
 	const str = generateIndexJS( content, usedComponents, yamlStr, basePath, filePath );
 	debug( `Create JS file: ${str}` );
 
-	console.log( str );
 	fs.writeFileSync( indexPath, str );
 
 	// Copy CSS files:
@@ -410,7 +409,6 @@ function writeIndexFile({
 			throw err;
 		}
 		if ( stats.errors ) {
-			console.log( stats.errors );
 			stats.errors.forEach( debug );
 		}
 		stats = stats.toJson();
