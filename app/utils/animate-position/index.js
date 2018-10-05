@@ -6,6 +6,13 @@ import endsWith from '@stdlib/string/ends-with';
 
 // FUNCTIONS //
 
+/**
+* Casts a pixel string to a number.
+*
+* @private
+* @param {(string|number)} x - input value
+* @param {number} cast number (in px)
+*/
 function castToNumber( x ) {
 	if ( endsWith( x, 'px' ) ) {
 		x = parseFloat( replace( x, 'px', '' ) );
@@ -16,6 +23,14 @@ function castToNumber( x ) {
 
 // MAIN //
 
+/**
+* Animates a position property of a specified DOM element.
+*
+* @param {Node} element - DOM node
+* @param {string} prop - property name
+* @param {number} to - target value for property
+* @param {integer} duration - number of milliseconds for the animation to complete
+*/
 function animatePosition( element, prop, to, duration ) {
 	if ( duration <= 0 ) {
 		return;
