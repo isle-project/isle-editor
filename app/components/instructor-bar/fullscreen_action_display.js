@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
+import uncapitalize from '@stdlib/string/uncapitalize';
 import lowercase from '@stdlib/string/lowercase';
 import Button from 'react-bootstrap/lib/Button';
 import Badge from 'react-bootstrap/lib/Badge';
@@ -249,7 +250,7 @@ class FullscreenActionDisplay extends Component {
 			<Modal.Footer>
 				<h4>
 					<Badge variant="secondary">
-						{'# of displayed actions: '+this.state.filtered.length}
+						{`# of displayed ${uncapitalize( this.props.actionLabel )}: ${this.state.filtered.length}`}
 					</Badge>
 				</h4>
 				<Search
