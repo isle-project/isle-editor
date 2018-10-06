@@ -5,12 +5,16 @@ import PropTypes from 'prop-types';
 import Badge from 'react-bootstrap/lib/Badge';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import Modal from 'react-bootstrap/lib/Modal';
+import hasOwnProperty from '@stdlib/assert/has-own-property';
 import isString from '@stdlib/assert/is-string';
 import tabulate from '@stdlib/utils/tabulate';
 import trim from '@stdlib/string/trim';
+import uncapitalize from '@stdlib/string/uncapitalize';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import Gate from 'components/gate';
+import Tooltip from 'components/tooltip';
 import FullscreenActionDisplay from './fullscreen_action_display.js';
 import extractValue from './extract_value.js';
 
@@ -27,12 +31,13 @@ import extractValue from './extract_value.js';
 * @property {string} variant - button style variant
 */
 class InstructorBar extends Component {
-	constructor() {
-		super();
+	constructor( props, context ) {
+		super( props );
 
 		this.state = {
 			actions: [],
 			nActions: 0,
+			completionPercentage: 0,
 			counts: [],
 			categories: [],
 			showActions: false,
@@ -126,10 +131,12 @@ class InstructorBar extends Component {
 		const { session } = this.context;
 		const actions = session.socketActions;
 		const filtered = [];
+		const emailHash = {};
 		for ( let i = 0; i < actions.length; i++ ) {
 			let action = actions[ i ];
 			if ( action.id === this.props.id ) {
 				action = extractValue( action );
+				emailHash[ action.email ] = true;
 				if ( this.state.period ) {
 					const { from, to } = this.state.period;
 					if ( action.absoluteTime > from && action.absoluteTime < to ) {
@@ -140,10 +147,22 @@ class InstructorBar extends Component {
 				}
 			}
 		}
+
+		const users = session.userList;
+		let completionPercentage = 0;
+		for ( let i = 0; i < users.length; i++ ) {
+			if ( hasOwnProperty( emailHash, users[ i ].email ) ) {
+				completionPercentage += 1;
+			}
+		}
+		completionPercentage /= session.userList.length;
+		completionPercentage *= 100.0;
+
 		let newState;
 		if ( this.props.dataType === 'text' ) {
 			newState = {
-				actions: filtered
+				actions: filtered,
+				completionPercentage
 			};
 		}
 		else if ( this.props.dataType === 'factor' ) {
@@ -151,12 +170,14 @@ class InstructorBar extends Component {
 			newState = {
 				actions: filtered,
 				counts: counts,
-				categories: categories
+				categories: categories,
+				completionPercentage
 			};
 		} else {
 			// Case: props.dataType === 'number':
 			newState = {
-				actions: filtered
+				actions: filtered,
+				completionPercentage
 			};
 		}
 		if ( !this.state.period ) {
@@ -268,21 +289,26 @@ class InstructorBar extends Component {
 		return (
 			<Gate owner>
 				{this.renderFullscreenModal()}
-				<ButtonGroup size="sm" >
-					<Button
-						onClick={this.toggleActions}
-						style={{ ...this.props.buttonStyle }}
-						variant={this.props.variant}
-						size="sm"
+				<ButtonGroup size="sm" vertical style={{ verticalAlign: 'inherit', ...this.props.style }} >
+					<Tooltip
+						tooltip={this.props.showID ? <span>
+							Open {uncapitalize( this.props.buttonLabel )} for component with ID {this.props.id}
+						</span> : null}
 					>
-						<span style={{ marginRight: '5px' }} >{this.props.buttonLabel}</span>
-						<Badge variant="dark" style={{ fontSize: '10px' }}>{this.state.nActions}</Badge>
-					</Button>
+						<Button
+							onClick={this.toggleActions}
+							style={{ ...this.props.buttonStyle }}
+							variant={this.props.variant}
+							size="sm"
+						>
+							<span style={{ marginRight: '5px' }} >{this.props.buttonLabel}</span>
+							<Badge variant="dark" style={{ fontSize: '10px' }}>{this.state.nActions}</Badge>
+						</Button>
+					</Tooltip>
+					<Tooltip placement="top" tooltip={`Interaction rate for currently active students: ${this.state.completionPercentage}%`}>
+						<ProgressBar style={{ width: '100%' }} variant="success" now={this.state.completionPercentage} max={100} min={0} />
+					</Tooltip>
 				</ButtonGroup>
-				{ this.props.showID ? <span style={{ marginLeft: '5px' }}>
-					<label>Component ID:</label>
-					<span style={{ marginLeft: '5px' }}>{this.props.id}</span>
-				</span> : null }
 				{this.renderDeleteModal()}
 			</Gate>
 		);
@@ -299,6 +325,7 @@ InstructorBar.propTypes = {
 		'factor', 'text', 'number'
 	]),
 	showID: PropTypes.bool,
+	style: PropTypes.object,
 	variant: PropTypes.oneOf([
 		'primary', 'secondary', 'light', 'dark'
 	])
@@ -309,6 +336,7 @@ InstructorBar.defaultProps = {
 	buttonStyle: {},
 	dataType: 'text',
 	showID: true,
+	style: {},
 	variant: 'secondary'
 };
 

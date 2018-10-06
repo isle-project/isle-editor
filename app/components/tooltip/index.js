@@ -17,6 +17,9 @@ import OverlayTrigger from 'components/overlay-trigger';
 class Wrapper extends Component {
 	render() {
 		const id = this.props.id;
+		if ( !this.props.tooltip ) {
+			return this.props.children;
+		}
 		const tooltip = <Tooltip id={id} >{this.props.tooltip}</Tooltip>;
 		return (
 			<OverlayTrigger placement={this.props.placement} overlay={tooltip} >
