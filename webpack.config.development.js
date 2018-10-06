@@ -21,7 +21,6 @@ const config = {
 	devtool: 'cheap-module-eval-source-map',
 
 	entry: [
-		'react-hot-loader/patch',
 		`webpack-dev-server/client?http://localhost:${port}/`,
 		'webpack/hot/only-dev-server',
 		path.join( __dirname, './app/index.js' )
@@ -63,7 +62,7 @@ const config = {
 		port,
 		publicPath,
 		compress: true,
-		noInfo: false,
+		noInfo: true,
 		stats: 'errors-only',
 		inline: true,
 		lazy: false,
@@ -85,7 +84,11 @@ const config = {
 				spawn(
 					'npm',
 					[ 'run', 'start-main-dev' ],
-					{ shell: true, env: process.env, stdio: 'inherit' } // eslint-disable-line no-process-env
+					{
+						shell: true,
+						env: process.env, // eslint-disable-line no-process-env
+						stdio: 'inherit'
+					}
 				)
 					.on( 'close', code => process.exit(code) ) // eslint-disable-line no-process-exit
 					.on( 'error', spawnError => console.error(spawnError) ); // eslint-disable-line no-console

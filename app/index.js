@@ -3,24 +3,9 @@
 import 'react-dates/initialize';
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router-dom';
-import createHashHistory from 'history/createHashHistory';
-import Editor from 'containers/editor.js';
-import Documentation from 'containers/documentation.js';
-import Settings from 'containers/settings.js';
-import Export from 'containers/export.js';
-import configureStore from 'store/configureStore';
 import 'highlight.js/styles/github.css';
 import 'normalize.css/normalize.css';
-import './app.global.css';
-import configureIpcRenderer from './configure_ipc_renderer.js';
-
-
-// VARIABLES //
-
-const history = createHashHistory();
-const PATH_REGEX = /\/[0-9]*$/;
+import App from './app.js';
 
 
 // MAIN //
@@ -29,26 +14,8 @@ if ( localStorage && process.env.NODE_ENV === 'development' ) { // eslint-disabl
 	localStorage.debug = process.env.DEBUG; // eslint-disable-line no-process-env
 }
 
-const store = configureStore();
-
-configureIpcRenderer( store );
-
 render(
-	<Provider store={store}>
-		<Router history={history}>
-			<div className="App">
-				<Route exact path="/" children={( match ) => {
-					// Account for routes of spectacle slides...
-					if ( PATH_REGEX.test( match.location.pathname ) ) {
-						return <Editor />;
-					}
-					return null;
-				}} />
-				<Route path="/docs" component={Documentation} />
-				<Route path="/settings" component={Settings} />
-				<Route path="/export" component={Export} />
-			</div>
-		</Router>
-	</Provider>,
+	<App />,
 	document.getElementById( 'root' )
 );
+
