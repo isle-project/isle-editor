@@ -15,7 +15,9 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import isRelativePath from '@stdlib/assert/is-relative-path';
 import isObject from '@stdlib/assert/is-object';
+import isError from '@stdlib/assert/is-error';
 import replace from '@stdlib/string/replace';
+import readJSON from '@stdlib/fs/read-json';
 import ErrorBoundary from 'editor-components/error-boundary';
 import SplitPanel from 'editor-components/split-panel';
 import Header from 'editor-components/header';
@@ -83,44 +85,6 @@ const applyStyles = ( preamble, filePath ) => {
 	}
 };
 
-const loadRequires = ( libs, filePath ) => {
-	/* eslint-disable no-eval */
-	debug( 'Should require files or modules...' );
-	let dirname = path.dirname( filePath );
-	debug( 'Directory: '+dirname );
-	if ( isObject( libs ) ) {
-		for ( let key in libs ) {
-			if ( hasOwnProp( libs, key ) ) {
-				let lib = libs[ key ];
-				if ( isAbsolutePath( lib ) || /\.(\/|\\)/.test( lib ) ) {
-					lib = path.join( dirname, libs[ key ]);
-					if ( process.platform === 'win32' ) {
-						lib = replace( lib, '\\', '\\\\' );
-					}
-				} else if ( /@stdlib/.test( lib ) ) {
-					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
-				}
-				if ( /\.svg$/.test( lib ) ) {
-					debug( 'Read SVG from disk: '+lib );
-					let content = fs.readFileSync( lib ).toString( 'base64' );
-					eval( `global[ '${key}' ] = 'data:image/svg+xml;base64,${content}';` );
-				}
-				else if ( /\.(?:jpg|png)$/.test( lib ) ) {
-					debug( 'Read image from disk: '+lib );
-					let buffer = fs.readFileSync( lib );
-					eval( `global[ '${key}' ] = 'data:image/jpeg;base64,${buffer.toString( 'base64' )}'` );
-				}
-				else {
-					debug( `Load '${lib}' library...` );
-					eval( `global[ '${key}' ] = require( '${lib}' );` );
-				}
-			}
-		}
-	}
-	/* eslint-enable no-eval */
-};
-
-
 // MAIN //
 
 class App extends Component {
@@ -147,7 +111,7 @@ class App extends Component {
 
 		if ( isObject( props.preamble ) ) {
 			try {
-				loadRequires( props.preamble.require, props.filePath || '' );
+				this.loadRequires( props.preamble.require, props.filePath || '' );
 			} catch ( err ) {
 				props.encounteredError( err );
 			}
@@ -182,6 +146,60 @@ class App extends Component {
 		this.onPreviewScroll = this.sync( preview, editor );
 	}
 
+	/*
+	// TO-DO
+	validatePreamble = ( preamble ) => {
+
+	}
+	*/
+
+	loadRequires = ( libs, filePath ) => {
+		/* eslint-disable no-eval */
+		debug( 'Should require files or modules...' );
+		let dirname = path.dirname( filePath );
+		debug( 'Directory: '+dirname );
+		if ( isObject( libs ) ) {
+			for ( let key in libs ) {
+				if ( hasOwnProp( libs, key ) ) {
+					let lib = libs[ key ];
+					if ( isAbsolutePath( lib ) || /\.(\/|\\)/.test( lib ) ) {
+						lib = path.join( dirname, libs[ key ]);
+						if ( process.platform === 'win32' ) {
+							lib = replace( lib, '\\', '\\\\' );
+						}
+					} else if ( /@stdlib/.test( lib ) ) {
+						lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
+					}
+					const ext = extname( lib );
+					if ( ext === '.svg' ) {
+						debug( 'Read SVG from disk: '+lib );
+						let content = fs.readFileSync( lib ).toString( 'base64' );
+						eval( `global[ '${key}' ] = 'data:image/svg+xml;base64,${content}';` );
+					}
+					else if ( ext === '.jpg' || ext === '.png' || ext === '.jpeg' ) {
+						debug( 'Read image from disk: '+lib );
+						let buffer = fs.readFileSync( lib );
+						eval( `global[ '${key}' ] = 'data:image/jpeg;base64,${buffer.toString( 'base64' )}'` );
+					}
+					else if ( ext === '.json' ) {
+						const json = readJSON.sync( lib );
+						if ( isError( json ) ) {
+							throw new Error(`\n Error encountered while reading ${lib}: ` + json.message);
+							// global[key] = {};
+						} else {
+							global[key] = json;
+						}
+					}
+					else {
+						debug( `Load '${lib}' library...` );
+						eval( `global[ '${key}' ] = require( '${lib}' );` );
+					}
+				}
+			}
+		}
+		/* eslint-enable no-eval */
+	}
+
 	handlePreambleChange( text ) {
 		let preamble = text.match( /---([\S\s]*)---/ );
 		if ( !preamble ) {
@@ -198,7 +216,7 @@ class App extends Component {
 					return this.props.encounteredError( new Error( 'Make sure the preamble is valid YAML code.' ) );
 				}
 				try {
-					loadRequires( newPreamble.require, this.props.filePath || '' );
+					this.loadRequires( newPreamble.require, this.props.filePath || '' );
 				} catch ( err ) {
 					return this.props.encounteredError( err );
 				}

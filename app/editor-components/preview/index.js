@@ -324,7 +324,7 @@ class Preview extends Component {
 
 	render() {
 		if ( !this.state.preambleIsValid ) {
-			return this.renderErrorMessage( 'The preamble cannot be parsed. Please check the syntax.' );
+			return this.renderErrorMessage( 'The preamble cannot be parsed.' + this.props.errorMsg );
 		}
 		const className = this.props.preamble.type === 'presentation' ? 'Presentation' : 'Lesson';
 		return ( <div id="Lesson" className={className} >
