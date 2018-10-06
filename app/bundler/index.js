@@ -4,6 +4,7 @@ const cp = require( 'child_process' );
 const fs = require( 'fs-extra' );
 const basename = require( 'path' ).basename;
 const dirname = require( 'path' ).dirname;
+const extname = require( 'path' ).dirname;
 const resolve = require( 'path' ).resolve;
 const join = require( 'path' ).join;
 const yaml = require( 'js-yaml' );
@@ -11,6 +12,7 @@ const webpack = require( 'webpack' );
 const debug = require( 'debug' )( 'bundler' );
 const contains = require( '@stdlib/assert/contains' );
 const isObject = require( '@stdlib/assert/is-object' );
+const isRelativePath = require( '@stdlib/assert/is-relative-path' );
 const hasOwnProp = require( '@stdlib/assert/has-own-property' );
 const replace = require( '@stdlib/string/replace' );
 const papplyRight = require( '@stdlib/utils/papply-right' );
@@ -175,8 +177,19 @@ const getComponentList = ( code ) => {
 	return ret;
 };
 
-const getISLEcode = ( yamlStr ) => {
-	return `const preamble = ${JSON.stringify( yaml.load( yamlStr ) )};`;
+const getISLEcode = ( yamlStr, filePath ) => {
+	let config = yaml.load( yamlStr );
+	if ( config.instructorNotes && extname( config.instructorNotes ) === '.md' ) {
+		if ( isRelativePath( config.instructorNotes ) ) {
+			const fPath = resolve( dirname(filePath), config.instructorNotes );
+			config.instructorNotes = fs.readFileSync( fPath );
+			config.instructorNotes = config.instructorNotes.toString();
+		} else if ( isAbsolutePath( config.instructorNotes ) ) {
+			config.instructorNotes = fs.readFileSync( config.instructorNotes );
+			config.instructorNotes = config.instructorNotes.toString();
+		}
+	}
+	return `const preamble = ${JSON.stringify( config )};`;
 };
 
 const getSessionCode = ( basePath ) => {
@@ -216,7 +229,7 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath
 		res += 'import SPECTACLE_THEME from \'components/spectacle/theme.json\';';
 	}
 	res += '\n';
-	res += getISLEcode( yamlStr );
+	res += getISLEcode( yamlStr, filePath );
 
 	res += getSessionCode( basePath );
 

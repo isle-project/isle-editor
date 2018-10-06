@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MarkdownEditor from 'components/markdown-editor';
 import './instructor_notes.css';
 
@@ -18,6 +19,7 @@ class InstructorNotes extends Component {
 		return (
 			<MarkdownEditor
 				className="instructor-notes"
+				defaultValue={this.context.session.config.instructorNotes || ''}
 				id={this.props.id}
 				toolbarConfig={[
 					'bold',
@@ -26,12 +28,17 @@ class InstructorNotes extends Component {
 					'heading',
 					'|',
 					'open_markdown',
-					'save'
+					'save',
+					'preview'
 				]}
 			/>
 		);
 	}
 }
+
+InstructorNotes.contextTypes = {
+	session: PropTypes.object
+};
 
 // EXPORTS //
 

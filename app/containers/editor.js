@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { dirname, resolve, extname } from 'path';
 import path from 'path';
 import css from 'css';
 import fs from 'fs';
@@ -12,6 +13,7 @@ import logger from 'debug';
 import yaml from 'js-yaml';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
+import isRelativePath from '@stdlib/assert/is-relative-path';
 import isObject from '@stdlib/assert/is-object';
 import replace from '@stdlib/string/replace';
 import ErrorBoundary from 'editor-components/error-boundary';
@@ -147,12 +149,28 @@ class App extends Component {
 			try {
 				loadRequires( props.preamble.require, props.filePath || '' );
 			} catch ( err ) {
-				this.props.encounteredError( err );
+				props.encounteredError( err );
+			}
+			try {
+				if ( props.preamble.instructorNotes ) {
+					if ( extname( props.preamble.instructorNotes === '.md' ) ) {
+						if ( isRelativePath( props.preamble.instructorNotes ) ) {
+							const fPath = resolve( dirname(props.filePath), props.preamble.instructorNotes );
+							props.preamble.instructorNotes = fs.readFileSync( fPath );
+							props.preamble.instructorNotes = props.preamble.instructorNotes.toString();
+						} else if ( isAbsolutePath( props.preamble.instructorNotes ) ) {
+							props.preamble.instructorNotes = fs.readFileSync( props.preamble.instructorNotes );
+							props.preamble.instructorNotes = props.preamble.instructorNotes.toString();
+						}
+					}
+				}
+			} catch ( err ) {
+				props.encounteredError( new Error( 'Ensure that instructor notes path is correct' ) );
 			}
 			try {
 				applyStyles( props.preamble, props.filePath || '' );
 			} catch ( err ) {
-				this.props.encounteredError( err );
+				props.encounteredError( err );
 			}
 		}
 	}
@@ -183,6 +201,20 @@ class App extends Component {
 					loadRequires( newPreamble.require, this.props.filePath || '' );
 				} catch ( err ) {
 					return this.props.encounteredError( err );
+				}
+				try {
+					if ( newPreamble.instructorNotes && extname( newPreamble.instructorNotes ) === '.md' ) {
+						if ( isRelativePath( newPreamble.instructorNotes ) ) {
+							const fPath = resolve( dirname(this.props.filePath), newPreamble.instructorNotes );
+							newPreamble.instructorNotes = fs.readFileSync( fPath );
+							newPreamble.instructorNotes = newPreamble.instructorNotes.toString();
+						} else if ( isAbsolutePath( newPreamble.instructorNotes ) ) {
+							newPreamble.instructorNotes = fs.readFileSync( newPreamble.instructorNotes );
+							newPreamble.instructorNotes = newPreamble.instructorNotes.toString();
+						}
+					}
+				} catch ( err ) {
+					return this.props.encounteredError( new Error( 'Ensure that instructor notes path is correct' ) );
 				}
 				try {
 					applyStyles( newPreamble, this.props.filePath || '' );
