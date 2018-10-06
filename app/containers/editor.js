@@ -190,7 +190,7 @@ class App extends Component {
 		// Extract the capture group:
 		preamble = preamble[ 1 ];
 		let preambleHasChanged = this.checkPreambleChange( preamble );
-		console.log( 'Check whether preamble has changed: '+preambleHasChanged );
+		debug( 'Check whether preamble has changed: '+preambleHasChanged );
 		if ( preambleHasChanged ) {
 			try {
 				const newPreamble = yaml.load( preamble );
