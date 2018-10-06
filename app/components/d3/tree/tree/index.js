@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
 import * as d3 from 'd3';
 import { select, zoom, event } from 'd3';
-import clone from 'clone';
+import copy from '@stdlib/utils/copy';
 import deepEqual from 'deep-equal';
 import uuid from 'uuid';
 import Node from '../node';
@@ -20,7 +20,7 @@ class Tree extends Component {
 		super(props);
 		this.state = {
 			initialRender: true,
-			data: this.assignInternalProperties( clone(props.data) )
+			data: this.assignInternalProperties( copy( props.data ) )
 		};
 		this.findNodesById = this.findNodesById.bind(this);
 		this.collapseNode = this.collapseNode.bind(this);
@@ -38,7 +38,7 @@ class Tree extends Component {
 		// Clone new data & assign internal properties
 		if (!deepEqual(this.props.data, prevProps.data)) {
 			this.setState({
-				data: this.assignInternalProperties(clone(this.props.data))
+				data: this.assignInternalProperties(copy(this.props.data))
 			});
 		}
 
@@ -182,7 +182,7 @@ class Tree extends Component {
 	* @return {void}
 	*/
 	handleNodeToggle( nodeId ) {
-		const data = clone( this.state.data );
+		const data = copy( this.state.data );
 		const matches = this.findNodesById( nodeId, data, []);
 		const targetNode = matches[ 0 ];
 
@@ -209,7 +209,7 @@ class Tree extends Component {
 	handleOnClickCb( targetNode ) {
 		const { onClick } = this.props;
 		if ( onClick && typeof onClick === 'function' ) {
-			onClick( clone( targetNode ) );
+			onClick( copy( targetNode ) );
 		}
 	}
 
@@ -230,7 +230,7 @@ class Tree extends Component {
 			orientation
 		} = this.props;
 
-		var data = d3.hierarchy( clone( this.state.data )[ 0 ], d => ( d._collapsed ? null : d._children ) );
+		var data = d3.hierarchy( copy( this.state.data )[ 0 ], d => ( d._collapsed ? null : d._children ) );
 
 		const tree = d3
 			.tree()
