@@ -13,6 +13,11 @@ import kde2d from '@stdlib/stats/kde2d';
 import QuestionButton from './question_button.js';
 
 
+// VARIABLES //
+
+const DESCRIPTION = 'A data display for quantitative variables in which data values are represented as colors. Regions with many observations are colored red, whereas regions without observations are colored in dark blue.';
+
+
 // FUNCTIONS //
 
 function calculateOpacity(nobs) {
@@ -121,11 +126,10 @@ class HeatMap extends Component {
 
 	render() {
 		const { variables, defaultX, defaultY } = this.props;
-		const description = 'A data display for quantitative variables in which data values are represented as colors. Regions with many observations are colored red, whereas regions without observations are colored in dark blue.';
 		return (
 			<Dashboard
 				autoStart={false}
-				title={<span>Heat Map<QuestionButton title="Heat Map" content={description} /></span>}
+				title={<span>Heat Map<QuestionButton title="Heat Map" content={DESCRIPTION} /></span>}
 				onGenerate={this.generateHeatmap.bind( this )}
 			>
 				<SelectInput

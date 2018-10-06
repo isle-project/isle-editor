@@ -12,6 +12,11 @@ import QuestionButton from './question_button.js';
 import by2 from './by2.js';
 
 
+// VARIABLES //
+
+const DESCRIPTION = 'Statistical model which estimates a best-fit line for a response variable of interest (Y) given exactly one predictor variable (X). The line is determined by its intercept (Y-value at X = 0) and slope (the increase in Y associated with a unit increase of X).';
+
+
 // FUNCTIONS //
 
 function calculateCoefficients( x, y ) {
@@ -112,10 +117,9 @@ class SimpleLinearRegression extends Component {
 
 	render() {
 		const { continuous, categorical } = this.props;
-		const description = 'Statistical model which estimates a best-fit line for a response variable of interest (Y) given exactly one predictor variable (X). The line is determined by its intercept (Y-value at X = 0) and slope (the increase in Y associated with a unit increase of X).';
 		return (
 			<Dashboard
-				title={<span>Simple Linear Regression<QuestionButton title="Simple Linear Regression" content={description} /></span>}
+				title={<span>Simple Linear Regression<QuestionButton title="Simple Linear Regression" content={DESCRIPTION} /></span>}
 				autoStart={false}
 				onGenerate={this.fitRegression.bind( this )}
 			>

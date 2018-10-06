@@ -15,6 +15,11 @@ import QuestionButton from './question_button.js';
 import by from './by.js';
 
 
+// VARIABLES //
+
+const DESCRIPTION = 'Statistical display for categorical data. The arc length of each slice in the pie is proportional to the quantity of the respective category. An alternative display for categorical data is a bar chart.';
+
+
 // FUNCTIONS //
 
 export function generatePiechartConfig({ data, variable, group }) {
@@ -127,10 +132,9 @@ class PieChart extends Component {
 
 	render() {
 		const { variables, defaultValue, groupingVariables } = this.props;
-		const description = 'Statistical display for categorical data. The arc length of each slice in the pie is proportional to the quantity of the respective category. An alternative display for categorical data is a bar chart.';
 		return (
 			<Dashboard
-				title={<span>Pie Chart<QuestionButton title="Pie Chart" content={description} /></span>}
+				title={<span>Pie Chart<QuestionButton title="Pie Chart" content={DESCRIPTION} /></span>}
 				autoStart={false}
 				onGenerate={this.generatePiechart.bind( this )}
 			>

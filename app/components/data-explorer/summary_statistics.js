@@ -13,6 +13,11 @@ import isNumber from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 
 
+// VARIABLES //
+
+const DESCRIPTION = 'Compute various statistics of interest, i.e. summary measures of the variables in the data set.';
+
+
 // FUNCTIONS //
 
 function byWithCount( arr, factor, fun, groups ) {
@@ -159,11 +164,10 @@ class SummaryStatistics extends Component {
 			defaultStatistic,
 			groupingVariables
 		} = this.props;
-		const description = 'Compute various statistics of interest, i.e. summary measures of the variables in the data set.';
 		return (
 			<Dashboard
 				autoStart={false}
-				title={<span>Summary Statistics<QuestionButton title="Summary Statistics" content={description} /></span>}
+				title={<span>Summary Statistics<QuestionButton title="Summary Statistics" content={DESCRIPTION} /></span>}
 				label="Calculate"
 				onGenerate={this.generateStatistics.bind( this )}
 			>

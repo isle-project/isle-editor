@@ -29,6 +29,7 @@ import by from './by.js';
 // VARIABLES //
 
 const debug = logger( 'isle:data-explorer:histogram' );
+const DESCRIPTION = 'A histogram allows one to visualize the distribution of a quantitative variable. In order to create a histogram, the observed range of values is divided into different, non-overlapping intervals called "bins"; the height of each bin corresponds to how many observations are in that bin range.';
 const SETTINGS = {
 	yaxis: {
 		tickformat: '-,.4r'
@@ -219,12 +220,11 @@ class Histogram extends Component {
 
 	render() {
 		const { variables, groupingVariables } = this.props;
-		const description = 'A histogram allows one to visualize the distribution of a quantitative variable. In order to create a histogram, the observed range of values is divided into different, non-overlapping intervals called "bins"; the height of each bin corresponds to how many observations are in that bin range.';
 		return (
 			<Card>
 				<Card.Header as="h4">
 					Histogram
-					<QuestionButton title="Histogram" content={description} />
+					<QuestionButton title="Histogram" content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput

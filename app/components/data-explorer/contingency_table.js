@@ -14,6 +14,11 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import QuestionButton from './question_button.js';
 
 
+// VARIABLES //
+
+const DESCRIPTION = 'A contigency table displays either the raw absolute or relative frequencies of two categorical variable\'s values alongside their row and column totals.';
+
+
 // FUNCTIONS //
 
 const createContingencyTable = ( data, rowVar, colVar, relativeFreqs ) => {
@@ -159,11 +164,10 @@ class ContingencyTable extends Component {
 
 	render() {
 		const { variables, defaultRowVar, defaultColVar, groupingVariables } = this.props;
-		const description = 'A contigency table displays either the raw absolute or relative frequencies of two categorical variable\'s values alongside their row and column totals.';
 		return (
 			<Dashboard
 				autoStart={false}
-				title={<span>Contingency Table<QuestionButton title="Contingency Table" content={description} /></span>}
+				title={<span>Contingency Table<QuestionButton title="Contingency Table" content={DESCRIPTION} /></span>}
 				onGenerate={this.generateContingencyTable.bind( this )}
 			>
 				<SelectInput

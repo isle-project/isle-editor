@@ -12,6 +12,11 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import QuestionButton from './question_button.js';
 
 
+// VARIABLES //
+
+const DESCRIPTION = 'A mosaic plot can be used to visualize two or more categorical variables. The areas of the boxes in the plot are proportional to the cell frequencies of a contingency table of the selected variables.';
+
+
 // FUNCTIONS //
 
 export function generateMosaicPlotCode({ data, vars, showColors }) {
@@ -102,11 +107,10 @@ class MosaicPlot extends Component {
 
 	render() {
 		const { variables } = this.props;
-		const description = 'A mosaic plot can be used to visualize two or more categorical variables. The areas of the boxes in the plot are proportional to the cell frequencies of a contingency table of the selected variables.';
 		return (
 			<Dashboard
 				autoStart={false}
-				title={<span>Mosaic Plot<QuestionButton title="Mosaic Plot" content={description} /></span>}
+				title={<span>Mosaic Plot<QuestionButton title="Mosaic Plot" content={DESCRIPTION} /></span>}
 				onGenerate={this.generateMosaicPlot.bind( this )}
 			>
 				<SelectInput

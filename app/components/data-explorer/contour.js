@@ -12,6 +12,11 @@ import { generate } from 'randomstring';
 import QuestionButton from './question_button.js';
 
 
+// VARIABLES //
+
+const DESCRIPTION = 'A contour plot can be used to display the joint distribution of two quantitative variables. It plots a three-dimensional surface by plotting constant slices, called contours, on a two-dimensional grid.';
+
+
 // FUNCTIONS //
 
 function calculateOpacity(nobs) {
@@ -106,9 +111,8 @@ class ContourChart extends Component {
 
 	render() {
 		const { variables, defaultX, defaultY } = this.props;
-		const description = 'A contour plot can be used to display the joint distribution of two quantitative variables. It plots a three-dimensional surface by plotting constant slices, called contours, on a two-dimensional grid.';
 		return (
-			<Dashboard autoStart={false} title={<span>Contour Chart<QuestionButton title="Contour Chart" content={description} /></span>} onGenerate={this.generateContourChart.bind( this )}>
+			<Dashboard autoStart={false} title={<span>Contour Chart<QuestionButton title="Contour Chart" content={DESCRIPTION} /></span>} onGenerate={this.generateContourChart.bind( this )}>
 				<SelectInput
 					legend="Variable on x-axis:"
 					defaultValue={defaultX || variables[ 0 ]}

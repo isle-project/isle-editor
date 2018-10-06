@@ -11,6 +11,11 @@ import QuestionButton from './question_button.js';
 import by from './by.js';
 
 
+// VARIABLES //
+
+const DESCRIPTION = 'A box plot (full name: box and whisker plot, coined by famous statistician John Tukey) is a display for quantitative data. For any variable, the boxplot displays its 25% quantile (a value that is greater than 25% of the data), its median, and its 75% quantile as a box. Whiskers extend from this box up to +-1.5*IQR or the minimum/maximum.';
+
+
 // FUNCTIONS //
 
 export function generateBoxplotConfig({ data, variable, group }) {
@@ -85,11 +90,10 @@ class Boxplot extends Component {
 
 	render() {
 		const { variables, defaultValue, groupingVariables } = this.props;
-		const description = 'A box plot (full name: box and whisker plot, coined by famous statistician John Tukey) is a display for quantitative data. For any variable, the boxplot displays its 25% quantile (a value that is greater than 25% of the data), its median, and its 75% quantile as a box. Whiskers extend from this box up to +-1.5*IQR or the minimum/maximum.';
 		return (
 			<Dashboard
 				autoStart={false}
-				title={<span>Box Plot<QuestionButton title="Box Plot" content={description} /></span>}
+				title={<span>Box Plot<QuestionButton title="Box Plot" content={DESCRIPTION} /></span>}
 				onGenerate={this.generateBoxplot.bind( this )}
 			>
 				<SelectInput
