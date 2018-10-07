@@ -1,8 +1,9 @@
 {
-	"Accordion": "components/Accordion",
+	"Accordion": "components/accordion",
 	"BeaconTooltip": "components/beacon-tooltip",
 	"Button": "react-bootstrap/lib/Button",
 	"CheckboxInput": "components/input/checkbox",
+	"Clock": "components/clock",
 	"ColorPicker": "components/color-picker",
 	"Col": "react-bootstrap/lib/Col",
 	"Joyride": "components/joyride",
@@ -86,6 +87,7 @@
 	"SliderInput": "components/input/slider",
 	"StatusBar": "components/statusbar",
 	"SurveyGenerator": "components/survey-generator",
+	"Unveil": "components/unveil",
 	"VoiceInput": "components/input/voice",
 	"VoiceControl": "components/voice-control",
 	"Weather": "components/weather",

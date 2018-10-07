@@ -148,6 +148,7 @@ const createScope = ( session ) => {
 		Timer: Loadable( () => import( 'components/timer' ) ),
 		Tooltip: Loadable( () => import( 'components/tooltip' ) ),
 		Tree: Loadable( () => import( 'components/d3/tree' ) ),
+		Unveil: Loadable( () => import( 'components/unveil' ) ),
 		VideoPlayer: Loadable( () => import( 'components/video-player' ) ),
 		VoiceInput,
 		VoiceControl: Loadable( () => import( 'components/voice-control' ) ),

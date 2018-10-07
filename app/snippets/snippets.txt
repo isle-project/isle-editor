@@ -385,6 +385,11 @@ snippet Timer
 		onTimeUp={${4:() => {} }}
 	/>
 
+snippet Unveil
+	<Unveil active={true} delay={${1:1000}} >
+		${2:Component to Display}
+	</Unveil>
+
 snippet VideoPlayer
 	<VideoPlayer url="${1:url}" />
 
@@ -473,8 +478,8 @@ snippet Col
 	</Col>
 
 snippet Appear
-	<Appear>
-		${1:}
+	<Appear active={true} delay={${1:1000}}>
+		${2:}
 	</Appear>
 
 snippet BlockQuote
