@@ -114,7 +114,7 @@ class NumberQuestion extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'NUMBER_QUESTION_SUBMIT_ANSWER',
+				type: 'NUMBER_QUESTION_SUBMISSION',
 				value: this.state.value
 			});
 		}
