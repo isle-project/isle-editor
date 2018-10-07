@@ -97,7 +97,7 @@ class CheckboxInput extends Input {
 			);
 		}
 		return (
-			<div style={{
+			<div className={this.props.className} style={{
 				marginTop: '8px',
 				marginLeft: '8px',
 				marginBottom: '8px',

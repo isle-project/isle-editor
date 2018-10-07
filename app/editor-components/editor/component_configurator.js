@@ -17,6 +17,7 @@ import replace from '@stdlib/string/replace';
 import removeLast from '@stdlib/string/remove-last';
 import contains from '@stdlib/assert/contains';
 import COMPONENT_DOCS from './components_documentation.json';
+import './component_configurator.css';
 
 
 // VARIABLES //
@@ -184,8 +185,8 @@ class ComponentConfigurator extends Component {
 			const elem = <tr className={className} style={{ marginBottom: 5 }} key={i}>
 					<td>
 						{ !isRequired ?
-							<Checkbox id={prop.name} defaultValue={isActive} onChange={this.checkboxClickFactory( prop.name, defaultValue )} style={{ marginTop: 0, marginBottom: 0 }} legend={prop.name} /> :
-							<Checkbox id={prop.name} defaultValue={true} disabled legend={prop.name} />
+							<Checkbox className="configurator-checkbox" id={prop.name} defaultValue={isActive} onChange={this.checkboxClickFactory( prop.name, defaultValue )} legend={prop.name} /> :
+							<Checkbox className="configurator-checkbox" id={prop.name} defaultValue={true} disabled legend={prop.name} />
 						}
 					</td>
 					<td>{description}</td>
