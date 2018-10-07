@@ -8,7 +8,7 @@ A button to be displayed at the end of a lesson for students to click on. By def
 <LessonSubmit />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/js-shell/)
+[Open interactive preview](https://isle.heinz.cmu.edu/components/lesson-submit/)
 
 #### Options:
 
