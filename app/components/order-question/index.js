@@ -102,6 +102,13 @@ class OrderQuestion extends Component {
 		this.setState({
 			submitted: true
 		});
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'ORDER_QUESTION_SUBMISSION',
+				value: this.state.correct
+			});
+		}
 	}
 
 	render() {
