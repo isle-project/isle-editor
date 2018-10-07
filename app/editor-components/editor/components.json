@@ -99,6 +99,7 @@
 	"PLOTS": [
 		"Plotly",
 		"DensityPlot",
+		"NetworkPlot",
 		"WordCloud"
 	],
 	"VICTORY": [

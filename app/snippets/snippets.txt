@@ -251,6 +251,23 @@ snippet Metrics
 		}}
 	/>
 
+snippet NetworkPlot
+	<NetworkPlot
+		width={${1:500}}
+		height={${2:350}}
+		data={{
+			nodes: [
+				{ 'id': 0 },
+				{ 'id': 1 },
+				${3:}
+			],
+			links: [
+				{ 'source': 0, 'target': 1 },
+				${4:}
+			]
+		}}
+	/>
+
 snippet RangeQuestion
 	<RangeQuestion
 		question="${1:Enter question}"
