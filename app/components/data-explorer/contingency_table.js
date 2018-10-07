@@ -112,7 +112,7 @@ const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFre
 	const output = {
 		variable: `${rowVar} by ${colVar}`,
 		type: 'Contingency Table',
-		value: <div>
+		value: <div style={{ overflowX: 'auto', width: '100%' }}>
 			<label>{`Grouped by ${group}:`}</label>
 			{table.map( ( x, i ) => {
 				return ( <div key={i}>
@@ -148,10 +148,7 @@ class ContingencyTable extends Component {
 			output = {
 				variable: `${rowVar} by ${colVar}`,
 				type: 'Contingency Table',
-				value: <div>
-					<label>{`${rowVar} by ${colVar}`}: </label>
-					<pre>{table}</pre>
-				</div>
+				value: table
 			};
 		} else {
 			output = createGroupedContingencyTable( this.props.data, rowVar, colVar, group, relativeFreqs );

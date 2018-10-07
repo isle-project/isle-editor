@@ -60,7 +60,7 @@ const frequencyTable = ( variable, freqs, relative ) => {
 
 const groupedFrequencyTable = ( variable, freqs, relative ) => {
 	return (
-		<div style={{ overflowX: 'auto' }}>
+		<div style={{ overflowX: 'auto', width: '100%' }}>
 			<label>{variable}: </label>
 			{entries( freqs ).map( ( arr, i ) => {
 				const categories = arr[ 1 ].map(
@@ -71,7 +71,7 @@ const groupedFrequencyTable = ( variable, freqs, relative ) => {
 						{ relative ? x.count.toFixed( 3 ) : x.count }
 					</td> )
 				);
-				return ( <pre key={i} >
+				return ( <div key={i} >
 					<label>{arr[ 0 ]}: </label>
 					<Table bordered size="sm">
 						<thead>
@@ -85,7 +85,7 @@ const groupedFrequencyTable = ( variable, freqs, relative ) => {
 							{counts}
 						</tbody>
 					</Table>
-				</pre> );
+				</div> );
 			})}
 		</div>
 	);
