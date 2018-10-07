@@ -37,7 +37,7 @@ function range( arr ) {
 			max = x;
 		}
 	}
-	return [ min, max ];
+	return [ max-min, min, max ];
 }
 
 
