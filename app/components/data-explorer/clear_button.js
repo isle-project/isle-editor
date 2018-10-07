@@ -17,16 +17,24 @@ const ClearButton = ( props ) => (
 		<Button
 			variant="outline-danger"
 			size="sm"
-			style={{ float: 'right', padding: '0rem .4rem' }}
 			onClick={props.onClick}
+			style={props.style}
 		>
-			<span>&times;</span>
+			<div className="fa fa-times" />
 		</Button>
 	</Tooltip>
 );
 
+
+// PROPERTIES //
+
 ClearButton.propTypes = {
-	'onClick': PropTypes.func.isRequired
+	onClick: PropTypes.func.isRequired,
+	style: PropTypes.object
+};
+
+ClearButton.defaultProps = {
+	style: {}
 };
 
 
