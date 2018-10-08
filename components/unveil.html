@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Dashboard · ISLE Editor Documentation</title>
+        <title>Unveil · ISLE Editor Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -61,10 +61,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="input/checkbox.html" />
+    <link rel="next" href="../chapters/surveys.html" />
     
     
-    <link rel="prev" href="../chapters/input.html" />
+    <link rel="prev" href="switch.html" />
     
 
     </head>
@@ -477,7 +477,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.4.8.1" data-path="dashboard.html">
+        <li class="chapter " data-level="1.4.8.1" data-path="dashboard.html">
             
                 <a href="dashboard.html">
             
@@ -743,7 +743,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.9.11" data-path="unveil.html">
+        <li class="chapter active" data-level="1.4.9.11" data-path="unveil.html">
             
                 <a href="unveil.html">
             
@@ -1327,7 +1327,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Dashboard</a>
+        <a href=".." >Unveil</a>
     </h1>
 </div>
 
@@ -1342,26 +1342,18 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="dashboard">Dashboard</h1>
-<p>A dashboard for combining the handling of multiple child input fields.</p>
+                                <h1 id="unveil">Unveil</h1>
+<p>The appear component will cause all of its children to become visible after a specified amount of time.</p>
 <h4 id="example">Example:</h4>
-<pre class="language-"><code class="lang-js"><span class="token operator">&lt;</span>Dashboard title<span class="token operator">=</span><span class="token string">&quot;Alerter&quot;</span> onGenerate<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span> <span class="token function">alert</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>SliderInput
-        legend<span class="token operator">=</span><span class="token string">&quot;Input value&quot;</span>
-    <span class="token operator">/</span><span class="token operator">&gt;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>Dashboard<span class="token operator">&gt;</span>
+<pre class="language-"><code class="lang-js"><span class="token operator">&lt;</span>Unveil duration<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">5000</span><span class="token punctuation">}</span> <span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>span<span class="token operator">&gt;</span> <span class="token constant">I</span> will appear<span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>Unveil<span class="token operator">&gt;</span>
 </code></pre>
-<p><a href="https://isle.heinz.cmu.edu/components/dashboard/" target="_blank">Open interactive preview</a></p>
+<p><a href="https://isle.heinz.cmu.edu/components/unveil/" target="_blank">Open interactive preview</a></p>
 <h4 id="options">Options:</h4>
 <ul>
-<li><strong>autoStart</strong> | <code>boolean</code>: if set to <code>true</code>, the <code>onGenerate</code> function is executed at startup with the default input values. Default: <code>true</code>.</li>
-<li><strong>autoUpdate</strong> | <code>boolean</code>: controls whether the <code>onGenerate</code> function should be invoked automatically when one of the child input fields changes. Default: <code>false</code>.</li>
-<li><strong>description</strong> | <code>string</code>: dashboard description. Default: <code>&apos;&apos;</code>.</li>
-<li><strong>disabled</strong> | <code>boolean</code>: controls whether the dashboard shall be disabled. Default: <code>false</code>.</li>
-<li><strong>label</strong> | <code>string</code>: button label. Default: <code>&apos;Generate&apos;</code>.</li>
-<li><strong>maxWidth</strong> | <code>number</code>: maximum width of dashboard. Default: <code>600</code>.</li>
-<li><strong>onGenerate</strong> | <code>function</code>: function invoked when the button is clicked or one of the dashboard input values changes (if <code>autoUpdate</code> is set to <code>true</code>). The function is called with the values of the input fields, in the order in which they are placed in the dashboard. Default: <code>onGenerate() {}</code>.</li>
-<li><strong>title</strong> | <code>(string|node)</code>: card title. Default: <code>&apos;&apos;</code>.</li>
+<li><strong>active</strong> | <code>boolean</code>: controls whether the counter should be active. Default: <code>false</code>.</li>
+<li><strong>delay</strong> | <code>number</code>: number of milliseconds before component appears. Default: <code>1000</code>.</li>
 </ul>
 
                                 
@@ -1390,12 +1382,12 @@
 
             
                 
-                <a href="../chapters/input.html" class="navigation navigation-prev " aria-label="Previous page: Input">
+                <a href="switch.html" class="navigation navigation-prev " aria-label="Previous page: Switch">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="input/checkbox.html" class="navigation navigation-next " aria-label="Next page: Checkbox Input">
+                <a href="../chapters/surveys.html" class="navigation navigation-next " aria-label="Next page: Surveys">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1406,7 +1398,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Dashboard","level":"1.4.8.1","depth":3,"next":{"title":"Checkbox Input","level":"1.4.8.2","depth":3,"path":"components/input/checkbox.md","ref":"components/input/checkbox.md","articles":[]},"previous":{"title":"Input","level":"1.4.8","depth":2,"path":"chapters/input.md","ref":"chapters/input.md","articles":[{"title":"Dashboard","level":"1.4.8.1","depth":3,"path":"components/dashboard.md","ref":"components/dashboard.md","articles":[]},{"title":"Checkbox Input","level":"1.4.8.2","depth":3,"path":"components/input/checkbox.md","ref":"components/input/checkbox.md","articles":[]},{"title":"Number Input","level":"1.4.8.3","depth":3,"path":"components/input/number.md","ref":"components/input/number.md","articles":[]},{"title":"Proportions Input","level":"1.4.8.4","depth":3,"path":"components/input/proportions.md","ref":"components/input/proportions.md","articles":[]},{"title":"Select Input","level":"1.4.8.5","depth":3,"path":"components/input/select.md","ref":"components/input/select.md","articles":[]},{"title":"Slider Input","level":"1.4.8.6","depth":3,"path":"components/input/slider.md","ref":"components/input/slider.md","articles":[]},{"title":"Text Area","level":"1.4.8.7","depth":3,"path":"components/input/text-area.md","ref":"components/input/text-area.md","articles":[]},{"title":"Text Input","level":"1.4.8.8","depth":3,"path":"components/input/text.md","ref":"components/input/text.md","articles":[]},{"title":"Voice Input","level":"1.4.8.9","depth":3,"path":"components/input/voice.md","ref":"components/input/voice.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/dashboard.md","mtime":"2018-10-08T01:25:42.024Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-10-08T01:25:47.314Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Unveil","level":"1.4.9.11","depth":3,"next":{"title":"Surveys","level":"1.4.10","depth":2,"path":"chapters/surveys.md","ref":"chapters/surveys.md","articles":[{"title":"Free Text Survey","level":"1.4.10.1","depth":3,"path":"components/free-text-survey.md","ref":"components/free-text-survey.md","articles":[]},{"title":"Number Survey","level":"1.4.10.2","depth":3,"path":"components/number-survey.md","ref":"components/number-survey.md","articles":[]},{"title":"Muliple Choice Survey","level":"1.4.10.3","depth":3,"path":"components/multiple-choice-survey.md","ref":"components/multiple-choice-survey.md","articles":[]},{"title":"Proportions Survey","level":"1.4.10.4","depth":3,"path":"components/proportions-survey.md","ref":"components/proportions-survey.md","articles":[]},{"title":"Survey Generator","level":"1.4.10.5","depth":3,"path":"components/survey-generator.md","ref":"components/survey-generator.md","articles":[]}]},"previous":{"title":"Switch","level":"1.4.9.10","depth":3,"path":"components/switch.md","ref":"components/switch.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/unveil.md","mtime":"2018-10-08T01:25:42.112Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-10-08T01:25:47.314Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
