@@ -1,25 +1,28 @@
 # Learning Module Components
 
+ISLE ships with the following interactive applets:
+
 * Central Limit Theorem
-	* Continuous
-	* Discrete
-	* Sample
-* Conditional Probability
+	* [Continuous](https://isle.heinz.cmu.edu/components/continuous-clt/)
+	* [Discrete](https://isle.heinz.cmu.edu/components/discrete-clt/)
+	* [Sample](https://isle.heinz.cmu.edu/components/sample-clt/)
+* [Conditional Probability](https://isle.heinz.cmu.edu/conditional-probability/)
 * Confidence Intervals
-	* Binomial
-	* Normal
-* Cross-Validation
-* Dice Throwing
+	* [Binomial](https://isle.heinz.cmu.edu/confidence-coverage-binomial)
+	* [Normal](https://isle.heinz.cmu.edu/confidence-coverage-normal)
+* [Cross-Validation](https://isle.heinz.cmu.edu/components/cross-validation/)
+* [Dice Throwing](https://isle.heinz.cmu.edu/components/dice-throwing/)
 * Distribution
-	* Exponential
-	* Normal
-	* T
-	* Uniform
+	* [Exponential](https://isle.heinz.cmu.edu/components/exponential-distribution/)
+	* [Normal](https://isle.heinz.cmu.edu/components/normal-distribution/)
+	* [T](https://isle.heinz.cmu.edu/components/t-distribution/)
+	* [Uniform](https://isle.heinz.cmu.edu/components/uniform-distribution/)
 * Hypothesis Testing 
-	* Mean
-	* Proportion
-* Image Pixel Picker
-* Mean vs. Median
-* Standardize
-* Venn Diagram Builder
-* Word Venn Diagram
+	* [Mean](https://isle.heinz.cmu.edu/components/mean-test/)
+	* [Proportion](https://isle.heinz.cmu.edu/components/proportion-test/)
+* [Image Pixel Picker](https://isle.heinz.cmu.edu/components/image-pixel-picker/)
+* [Mean vs. Median](https://isle.heinz.cmu.edu/components/mean-vs-median/)
+* [Standardize](https://isle.heinz.cmu.edu/components/standardize/)
+* [Venn Diagram Builder](https://isle.heinz.cmu.edu/components/venn-diagram/)
+* [Word Venn Diagram](https://isle.heinz.cmu.edu/components/word-venn-diagram/)
+
