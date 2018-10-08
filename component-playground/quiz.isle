@@ -1,0 +1,90 @@
+---
+title: "Quiz"
+author: Philipp Burckhardt
+date: Oct 7, 2018
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+---
+
+ # Quiz
+
+<br />
+
+<Playground
+    style={{
+        marginLeft: 0,
+        width: '1000px'
+    }}
+    code={`
+<Quiz
+    count={4}
+    questions={[
+        <RangeQuestion
+            question="Approximately in which range lie 99% of observations drawn from a standard normal distribution?"
+            solution={[-3,3]}
+        />,
+        <NumberQuestion
+            question="What is the number PI - three digits after the period"
+            solution={Math.PI}
+            digits={3}
+        />,
+        <MultipleChoiceQuestion
+            solution={1}
+            answers={[
+                {content:"There's a 0.7% chance that average birthweights are the same among smoking and non-smoking mothers", explanation:""},
+                {content:"If the null were true, the probability of observing this large a difference in average birthweights in our data is 0.7%", explanation:""},
+                {content:"The probability that the confidence interval does not contain the true mean difference is 0.7%", explanation:""},
+                {content:"Average birthweights are 0.7% higher among babies born to non-smoking mothers", explanation:""}
+            ]}
+            question="4. Which of the following is an accurate interpretation of the p-value?"
+        />,
+        <OrderQuestion
+            question="Order the letters alphabetically"
+            options={[
+                { id: 0, text: "A" },
+                { id: 1, text: "G" },
+                { id: 2, text: "V" },
+                { id: 3, text: "W" },
+                { id: 4, text: "Y" },
+                { id: 5, text: "Z" }
+            ]}
+        />,
+        <SelectQuestion
+            question="The usual t-test is"
+            solution="two-sided"
+            options={[
+                'left-sided',
+                'right-sided',
+                'two-sided'
+            ]}
+        />,
+        <FreeTextQuestion 
+            question="What is the p-value your obtained for this test?" 
+            rows={1} 
+            solution="1.476303e-05" 
+        />
+    ]}
+/>`}
+    scope={{
+        Quiz,
+        RangeQuestion,
+        NumberQuestion,
+        MultipleChoiceQuestion,
+        OrderQuestion,
+        SelectQuestion,
+        FreeTextQuestion
+    }}
+/>
+
+
+#### Options:
+
+* __confidence__ | `boolean`: whether to display a Likert scale asking for the confidence of the user's answer. Default: `false`.
+* __forceConfidence__ | `boolean`: controls whether a user has to supply a confidence level before moving to the next question. Default: `false`.
+* __count__ | `number (required)`: number of questions to include in the quiz. Default: `none`.
+* __questions__ | `array (required)`: array of questions from which questions will be randomly selected. Default: `none`.
+* __active__ | `boolean`: controls whether the timer for the quiz is active. Default: `true`.
+* __duration__ | `number`: duration of the quiz; once time is up, the summary page will be displayed. Default: `none`.
+* __skippable__ | `boolean`: controls whether questions in  the quiz are skippable. Default: `true`.
+* __onFinished__ | `function`: callback invoked when the quiz is finished and the results page is displayed. Default: `onFinished() {}`.

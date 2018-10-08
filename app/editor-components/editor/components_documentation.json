@@ -1,6 +1,17 @@
 {
-  "undefined": {
-    "props": [],
+  "Accordion": {
+    "props": [
+      {
+        "name": "active",
+        "type": "number",
+        "default": 0
+      },
+      {
+        "name": "nodes",
+        "type": "object",
+        "default": {}
+      }
+    ],
     "description": "Description is missing."
   },
   "BeaconTooltip": {
@@ -48,6 +59,21 @@
       }
     ],
     "description": "Component placeing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed."
+  },
+  "undefined": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "Clock": {
+    "props": [
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "Clock component displaying the current time."
   },
   "ColorPicker": {
     "props": [
@@ -621,6 +647,12 @@
         "type": "string",
         "description": "notification displayed for all submissions after the first one",
         "default": "You have successfully re-submitted your answer."
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
+        "default": true
       },
       {
         "name": "maxlength",
@@ -1868,6 +1900,12 @@
         "default": null
       },
       {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
+        "default": true
+      },
+      {
         "name": "chat",
         "type": "boolean",
         "description": "controls whether the element should have an integrated chat",
@@ -2260,11 +2298,13 @@
       {
         "name": "active",
         "type": "boolean",
+        "description": "controls whether the timer for the quiz is active",
         "default": true
       },
       {
         "name": "duration",
         "type": "number",
+        "description": "duration of the quiz; once time is up, the summary page will be displayed",
         "default": null
       },
       {
@@ -2558,6 +2598,12 @@
         "default": null
       },
       {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
+        "default": true
+      },
+      {
         "name": "onChangeLower",
         "type": "function",
         "description": "callback triggered after the lower bound is changed by the user"
@@ -2718,6 +2764,12 @@
         "type": "boolean",
         "description": "controls whether the element should have an integrated chat",
         "default": false
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
+        "default": true
       },
       {
         "name": "failureMsg",
@@ -3252,6 +3304,23 @@
       }
     ],
     "description": "A tooltip overlay."
+  },
+  "Unveil": {
+    "props": [
+      {
+        "name": "active",
+        "type": "boolean",
+        "description": "controls whether the counter should be active",
+        "default": false
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "description": "number of milliseconds before component appears",
+        "default": 1000
+      }
+    ],
+    "description": "The appear component will cause all of its children to become visible after a specified amount of time."
   },
   "VictoryAnimation": {
     "props": [],

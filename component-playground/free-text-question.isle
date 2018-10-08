@@ -48,6 +48,7 @@ hideToolbar: true
 * __placeholder__ | `string`: placeholder text displayed before user has entered any text. Default: `'Enter your answer here...'`.
 * __submissionMsg__ | `string`: notification displayed when the learner first submits his answer. Default: `''`.
 * __resubmissionMsg__ | `string`: notification displayed for all submissions after the first one. Default: `'You have successfully re-submitted your answer.'`.
+* __provideFeedback__ | `boolean`: indicates whether feedback including the correct answer should be displayed after learners submit their answers. Default: `true`.
 * __maxlength__ | `number`: maximum allowed number of characters. Default: `2500`.
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __onChange__ | `function`: callback invoked every time the text area value changes; receives the current text as its sole argument. Default: `onChange() {}`.

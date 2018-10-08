@@ -10,7 +10,7 @@ An order question component that asks student to bring a collection of elements 
     options={[
         { id: 0, text: "A" },
         { id: 1, text: "G" },
-        { id: 2, text: "V" }
+        { id: 2, text: "V" },
         { id: 3, text: "W" },
         { id: 4, text: "Y" },
         { id: 5, text: "Z" }

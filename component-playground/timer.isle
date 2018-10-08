@@ -15,15 +15,17 @@ hideToolbar: true
         width: '900px'
     }}
     code={`
-<Timer 
-    id='test-quiz'
-    active={true} 
-    duration={50} 
-    onTimeUp={() => {
-      alert( 'done' );
-    }}
-/>
-`}
+<div>
+    <span>Timer is displayed in the upper-right corner</span>
+    <Timer 
+        id='test-quiz'
+        active={true} 
+        duration={50} 
+        onTimeUp={() => {
+          alert( 'done' );
+        }}
+    />
+</div>`}
     scope={{
         Timer
     }}
