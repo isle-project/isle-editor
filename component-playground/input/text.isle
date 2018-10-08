@@ -1,0 +1,38 @@
+---
+title: "Text Input"
+author: Francis R. Kovacs
+date: Jan 1st, 2018
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Text Input
+
+<br />
+
+<Playground 
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+    <TextInput
+        legend="Enter description"
+        defaultValue="value"
+        inline={false}
+    />
+
+`}
+    scope={{
+        TextInput 
+    }}
+/>
+
+#### Options:
+
+* __defaultValue__ | `string`: A value indicating the default value of the input at start. Default: `''`.
+* __legend__ | `string`: A string indicating the text displayed next to the number input. Default: `''`.
+* __inline__ | `boolean`: Indicates whether the input is displayed inline. Default: `false`.
+* __onChange__ | `function`: A function to be called when a text value is changed. Default: `onChange(){}`.
+* __placeholder__ | `string`: A string indicating the value to be displayed before an initial choice is made. Default: `'Enter text'`.
+* __width__ | `number`: A number indicating the width of the input in pixels. Default: `80`.

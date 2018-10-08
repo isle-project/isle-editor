@@ -1043,46 +1043,55 @@
       {
         "name": "defaultValue",
         "type": "number",
+        "description": "The starting value of the slider",
         "default": 10
       },
       {
         "name": "disabled",
         "type": "boolean",
+        "description": "controls whether the slider input is active or not. If set to true, the slider will be present on the screen, albeit greyed-out",
         "default": false
       },
       {
         "name": "inline",
         "type": "boolean",
+        "description": "controls whether to place the slider inline with text or outside",
         "default": false
       },
       {
         "name": "max",
         "type": "number",
+        "description": "The maximum value of the slider",
         "default": 100
       },
       {
         "name": "min",
         "type": "number",
+        "description": "The minimum value of the slider",
         "default": 0
       },
       {
         "name": "onChange",
         "type": "function",
+        "description": "callback invoked with the new value when the slider value changes",
         "default": "onChange() {}"
       },
       {
         "name": "precision",
         "type": "number",
+        "description": "rounding of the input. The value will be rounded to have no more significant digits than the precision. For example, if one wishes to only use integers, a precision of 10 would be used, while if one wishes to round to the hundreds place, one would use a precision of 0.001",
         "default": 10
       },
       {
         "name": "step",
         "type": "(number|string)",
+        "description": "step size of the slider",
         "default": 1
       },
       {
         "name": "style",
         "type": "object",
+        "description": "CSS inline styles",
         "default": {}
       }
     ],

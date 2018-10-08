@@ -15,6 +15,17 @@ import './slider.css';
 
 /**
 * A slider input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute.
+*
+* @property {string} legend - caption of the input
+* @property {number} defaultValue - The starting value of the slider
+* @property {number} min - The minimum value of the slider
+* @property {number} max - The maximum value of the slider
+* @property {(number|string)} step - step size of the slider
+* @property {boolean} inline - controls whether to place the slider inline with text or outside
+* @property {number} precision - rounding of the input. The value will be rounded to have no more significant digits than the precision. For example, if one wishes to only use integers, a precision of 10 would be used, while if one wishes to round to the hundreds place, one would use a precision of 0.001
+* @property {boolean} disabled - controls whether the slider input is active or not. If set to true, the slider will be present on the screen, albeit greyed-out
+* @property {Object} style - CSS inline styles
+* @property {Function} onChange - callback invoked with the new value when the slider value changes
 */
 class SliderInput extends Input {
 	createTooltip( props ) {
