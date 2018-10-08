@@ -83,7 +83,7 @@ class UniformProbs extends Component {
 	}
 
 	render() {
-		return ( <Card>
+		return ( <Card style={{ maxWidth: 600, ...this.props.style }} >
 			<Card.Header as="h3">
 				Uniform Distribution
 			</Card.Header>
@@ -250,14 +250,16 @@ UniformProbs.propTypes = {
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
-	])
+	]),
+	style: PropTypes.object
 };
 
 
 // DEFAULT PROPERTIES //
 
 UniformProbs.defaultProps = {
-	step: 0.01
+	step: 0.01,
+	style: {}
 };
 
 

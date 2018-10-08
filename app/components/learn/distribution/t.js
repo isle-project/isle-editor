@@ -93,7 +93,7 @@ class TProbs extends Component {
 	}
 
 	render() {
-		return ( <Card>
+		return ( <Card style={{ maxWidth: 600, ...this.props.style }}>
 			<Card.Header as="h3">
 				T Distribution
 			</Card.Header>
@@ -241,20 +241,19 @@ class TProbs extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 TProbs.propTypes = {
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
-	])
+	]),
+	style: PropTypes.object
 };
 
-
-// DEFAULT PROPERTIES //
-
 TProbs.defaultProps = {
-	step: 0.01
+	step: 0.01,
+	style: {}
 };
 
 

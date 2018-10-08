@@ -91,7 +91,7 @@ class NormalProbs extends Component {
 	}
 
 	render() {
-		return ( <Card>
+		return ( <Card style={{ maxWidth: 600, ...this.props.style }}>
 			<Card.Header as="h3">
 				Normal Distribution
 			</Card.Header>
@@ -246,14 +246,16 @@ NormalProbs.propTypes = {
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
-	])
+	]),
+	style: PropTypes.object
 };
 
 
 // DEFAULT PROPERTIES //
 
 NormalProbs.defaultProps = {
-	step: 0.01
+	step: 0.01,
+	style: {}
 };
 
 
