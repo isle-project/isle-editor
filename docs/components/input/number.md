@@ -16,7 +16,7 @@ A number input component. Can be used as part of an ISLE dashboard or standalone
 
 #### Options:
 
-* __bind__ | `string`: : name of global variable for the number to be assigned to. Default: `''`.
+* __bind__ | `string`: name of global variable for the number to be assigned to. Default: `''`.
 * __defaultValue__ | `number`: value indicating the default value of the input at startup. Default: `0`.
 * __disabled__ | `boolean`: boolean indicating whether the input is active or not. Default: `false`.
 * __inline__ | `boolean`: indicates whether the input is displayed inline. Default: `false`.

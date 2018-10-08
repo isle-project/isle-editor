@@ -55,7 +55,8 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback invoked upon state change of the tooltip. Receives two arguments: the `action` (`open` or `close`) and the passed `props`"
+        "description": "callback invoked upon state change of the tooltip. Receives two arguments: the `action` (`open` or `close`) and the passed `props`",
+        "default": "onChange() {}"
       }
     ],
     "description": "Component placeing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed."
@@ -120,12 +121,14 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback invoked every time color is changed"
+        "description": "callback invoked every time color is changed",
+        "default": "onChange() {}"
       },
       {
         "name": "onChangeComplete",
         "type": "function",
-        "description": "callback invoked once a color change is complete"
+        "description": "callback invoked once a color change is complete",
+        "default": "onChangeComplete() {}"
       }
     ],
     "description": "A wrapper for the [react-color](https://casesandberg.github.io/react-color/) colorpicker."
@@ -251,7 +254,8 @@
       {
         "name": "onGenerate",
         "type": "function",
-        "description": "function invoked when the button is clicked or one of the dashboard input values changes (if `autoUpdate` is set to `true`). The function is called with the values of the input fields, in the order in which they are placed in the dashboard"
+        "description": "function invoked when the button is clicked or one of the dashboard input values changes (if `autoUpdate` is set to `true`). The function is called with the values of the input fields, in the order in which they are placed in the dashboard",
+        "default": "onGenerate() {}"
       },
       {
         "name": "title",
@@ -447,7 +451,8 @@
       {
         "name": "onClickRemove",
         "type": "function",
-        "description": "A function specifying an action to take for rows removed from the data. Defaults to an empty function"
+        "description": "A function specifying an action to take for rows removed from the data. Defaults to an empty function",
+        "default": "onClickRemove() {}"
       },
       {
         "name": "showRemove",
@@ -501,12 +506,14 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback invoked with newly ordered data array on each change"
+        "description": "callback invoked with newly ordered data array on each change",
+        "default": "onChange(){}"
       },
       {
         "name": "onInit",
         "type": "function",
-        "description": "callback function invoked after mounting of component"
+        "description": "callback function invoked after mounting of component",
+        "default": "onInit(){}"
       },
       {
         "name": "shuffle",
@@ -679,12 +686,14 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback invoked every time the text area value changes; receives the current text as its sole argument"
+        "description": "callback invoked every time the text area value changes; receives the current text as its sole argument",
+        "default": "onChange() {}"
       },
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "callback invoked when user submits an answer; receives the submitted text as its sole argument"
+        "description": "callback invoked when user submits an answer; receives the submitted text as its sole argument",
+        "default": "onSubmit() {}"
       }
     ],
     "description": "An ISLE component for questions where answers by students should be supplied in the form of free text."
@@ -710,7 +719,8 @@
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "callback function called when an answer is submitted"
+        "description": "callback function called when an answer is submitted",
+        "default": "onSubmit() {}"
       },
       {
         "name": "question",
@@ -807,7 +817,8 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback function to be invoked when checkbox is clicked. The function is called with the current checkbox value"
+        "description": "callback function to be invoked when checkbox is clicked. The function is called with the current checkbox value",
+        "default": "onChange() {}"
       },
       {
         "name": "legend",
@@ -827,7 +838,7 @@
       {
         "name": "bind",
         "type": "string",
-        "description": ": name of global variable for the number to be assigned to",
+        "description": "name of global variable for the number to be assigned to",
         "default": ""
       },
       {
@@ -875,12 +886,14 @@
       {
         "name": "onBlur",
         "type": "function",
-        "description": "callback function to be invoked when using a blur method"
+        "description": "callback function to be invoked when using a blur method",
+        "default": "onBlur() {}"
       },
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback function to be invoked when number input is changed"
+        "description": "callback function to be invoked when number input is changed",
+        "default": "onChange() {}"
       },
       {
         "name": "step",
@@ -943,7 +956,8 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback function to be invoked when a choice is made"
+        "description": "callback function to be invoked when a choice is made",
+        "default": "onChange(){}"
       },
       {
         "name": "precision",
@@ -1006,7 +1020,8 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback function to be invoked when a choice is made"
+        "description": "callback function to be invoked when a choice is made",
+        "default": "onChange() {}"
       },
       {
         "name": "options",
@@ -1052,7 +1067,8 @@
       },
       {
         "name": "onChange",
-        "type": "function"
+        "type": "function",
+        "default": "onChange() {}"
       },
       {
         "name": "precision",
@@ -1095,7 +1111,8 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "A function to be called when a text value is changed"
+        "description": "A function to be called when a text value is changed",
+        "default": "onChange(){}"
       },
       {
         "name": "placeholder",
@@ -1153,37 +1170,44 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback function invoked when text input value is updated"
+        "description": "callback function invoked when text input value is updated",
+        "default": "onChange() {}"
       },
       {
         "name": "onClick",
         "type": "function",
-        "description": "callback function invoked when clicking on the microphone button"
+        "description": "callback function invoked when clicking on the microphone button",
+        "default": "onClick() {}"
       },
       {
         "name": "onFinalText",
         "type": "function",
-        "description": "callback function invoked once final text is received"
+        "description": "callback function invoked once final text is received",
+        "default": "onFinalText() {}"
       },
       {
         "name": "onRecordingStart",
         "type": "function",
-        "description": "callback function invoked when recording is started"
+        "description": "callback function invoked when recording is started",
+        "default": "onRecordingStart() {}"
       },
       {
         "name": "onRecordingStop",
         "type": "function",
-        "description": "callback function invoked once recording is stopped"
+        "description": "callback function invoked once recording is stopped",
+        "default": "onRecordingStop() {}"
       },
       {
         "name": "onSegment",
         "type": "function",
-        "description": "callback function invoked with text segments"
+        "description": "callback function invoked with text segments",
+        "default": "onSegment() {}"
       },
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "callback function when submitting text input value by hitting \"Enter\""
+        "description": "callback function when submitting text input value by hitting \"Enter\"",
+        "default": "onSubmit() {}"
       },
       {
         "name": "placeholder",
@@ -1315,7 +1339,8 @@
       {
         "name": "onEvaluate",
         "type": "function",
-        "description": "callback invoked whenever the `Evaluate` button is clicked"
+        "description": "callback invoked whenever the `Evaluate` button is clicked",
+        "default": "onEvaluate() {}"
       },
       {
         "name": "vars",
@@ -1442,7 +1467,8 @@
       },
       {
         "name": "onClick",
-        "type": "function"
+        "type": "function",
+        "default": "onClick() {}"
       },
       {
         "name": "tdm",
@@ -1489,7 +1515,8 @@
       {
         "name": "onClick",
         "type": "function",
-        "description": "callback invoked when clicking on the submission button"
+        "description": "callback invoked when clicking on the submission button",
+        "default": "onClick() {}"
       }
     ],
     "description": "A button to be displayed at the end of a lesson for students to click on. By default, a message confirming completion of the lesson is sent to their email address."
@@ -1583,7 +1610,8 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback invoked when editor text changes; receives the current text as its sole argument"
+        "description": "callback invoked when editor text changes; receives the current text as its sole argument",
+        "default": "onChange() {}"
       }
     ],
     "description": "A markdown editor for writing notes or reports. Supports exporting of notes as HTML or PDF files, as well as automatic submission to the ISLE server."
@@ -1653,7 +1681,8 @@
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "callback invoked when students submits an answer"
+        "description": "callback invoked when students submits an answer",
+        "default": "onSubmit() {}"
       }
     ],
     "description": "An ISLE component that renders a question in which the learner has to match elements from two lists with each other in the correct way."
@@ -1674,7 +1703,8 @@
       {
         "name": "onData",
         "type": "function",
-        "description": "callback function called with an array of all actions"
+        "description": "callback function called with an array of all actions",
+        "default": "onData() {}"
       }
     ],
     "description": "Component allowing retrieval of member actions corresponding to a specified component ID from the database."
@@ -1689,12 +1719,14 @@
       {
         "name": "onData",
         "type": "function",
-        "description": "callback function called with an array of all actions when a new member action arrives"
+        "description": "callback function called with an array of all actions when a new member action arrives",
+        "default": "onData() {}"
       },
       {
         "name": "onDatum",
         "type": "function",
-        "description": "callback function invoked with every individual incoming member action"
+        "description": "callback function invoked with every individual incoming member action",
+        "default": "onDatum() {}"
       },
       {
         "name": "returnFullObject",
@@ -1774,7 +1806,8 @@
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "callback invoked after an answer is submitted"
+        "description": "callback invoked after an answer is submitted",
+        "default": "onSubmit(){}"
       }
     ],
     "description": "An ISLE component that renders a multiple choice question. It supports the case where the learner has to select a single answer and when there might be multiple correct answers and all correct ones must be picked."
@@ -1818,7 +1851,8 @@
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "function to be called when an answer is submitted"
+        "description": "function to be called when an answer is submitted",
+        "default": "onSubmit() {}"
       },
       {
         "name": "question",
@@ -1858,7 +1892,8 @@
       {
         "name": "onArticles",
         "type": "function",
-        "description": "callback function invoked with an array of article objects once they are received"
+        "description": "callback function invoked with an array of article objects once they are received",
+        "default": "onArticles() {}"
       }
     ],
     "description": "The **News** component scans the public **News API** (consisting of 71 international  newspapers) and displays the latest 10 articles of the given newspaper. There are two ways to enter a source: one by typing into the search field and submitting via the ENTER button, the second via voice."
@@ -1928,12 +1963,14 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback  which is triggered after the value of the number field changes; receives the current value as its sole argument"
+        "description": "callback  which is triggered after the value of the number field changes; receives the current value as its sole argument",
+        "default": "onChange() {}"
       },
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter"
+        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
+        "default": "onSubmit() {}"
       }
     ],
     "description": "A number question component."
@@ -1971,7 +2008,8 @@
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "callback function invoked once students submits an answer"
+        "description": "callback function invoked once students submits an answer",
+        "default": "onSubmit() {}"
       }
     ],
     "description": "A survey component in which the instructor may collect numeric survey data from students in real-time."
@@ -2034,12 +2072,14 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering"
+        "description": "callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering",
+        "default": "onChange() {}"
       },
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order"
+        "description": "callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order",
+        "default": "onSubmit() {}"
       }
     ],
     "description": "An order question component that asks student to bring a collection of elements into the correct order."
@@ -2079,7 +2119,8 @@
       {
         "name": "onSelect",
         "type": "function",
-        "description": "Function invoked when active change is changed. Receives the new active page index as a sole parameter"
+        "description": "Function invoked when active change is changed. Receives the new active page index as a sole parameter",
+        "default": "onSelect() {}"
       }
     ],
     "description": "An ISLE pagination component that allows the user to step through a sequence of pages."
@@ -2250,7 +2291,8 @@
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "callback function invoked once students submits an answer"
+        "description": "callback function invoked once students submits an answer",
+        "default": "onSubmit() {}"
       },
       {
         "name": "personalHeight",
@@ -2330,7 +2372,8 @@
       {
         "name": "onFinished",
         "type": "function",
-        "description": "callback invoked when the quiz is finished and the results page is displayed"
+        "description": "callback invoked when the quiz is finished and the results page is displayed",
+        "default": "onFinished() {}"
       }
     ],
     "description": "A quiz component displaying a sequence of question components."
@@ -2422,7 +2465,8 @@
       {
         "name": "onDone",
         "type": "function",
-        "description": "callback invoked with `err`, `img` and `body` arguments once a plot is created"
+        "description": "callback invoked with `err`, `img` and `body` arguments once a plot is created",
+        "default": "onDone() {}"
       }
     ],
     "description": "Component for rendering an R plot inside an ISLE lesson."
@@ -2516,12 +2560,14 @@
       {
         "name": "onEvaluate",
         "type": "function",
-        "description": "callback invoked whenever the `Evaluate` button is clicked"
+        "description": "callback invoked whenever the `Evaluate` button is clicked",
+        "default": "onEvaluate(){}"
       },
       {
         "name": "onResult",
         "type": "function",
-        "description": "callback invoked whenever the result of a code execution is obtained from the cloud. The result `string` is passed as the only argument to the callback function"
+        "description": "callback invoked whenever the result of a code execution is obtained from the cloud. The result `string` is passed as the only argument to the callback function",
+        "default": "onResult() {}"
       }
     ],
     "description": "An interactive R Shell that can be used to execute R commands in the cloud using [OpenCPU](https://www.opencpu.org/)."
@@ -2620,17 +2666,20 @@
       {
         "name": "onChangeLower",
         "type": "function",
-        "description": "callback triggered after the lower bound is changed by the user"
+        "description": "callback triggered after the lower bound is changed by the user",
+        "default": "onChangeLower() {}"
       },
       {
         "name": "onChangeUpper",
         "type": "function",
-        "description": "callback triggered after the upper bound is changed by the user"
+        "description": "callback triggered after the upper bound is changed by the user",
+        "default": "onChangeUpper() {}"
       },
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter"
+        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
+        "default": "onSubmit() {}"
       }
     ],
     "description": "A range question component that asks students to supply a lower and upper end point."
@@ -2720,7 +2769,8 @@
       {
         "name": "onEvaluate",
         "type": "function",
-        "description": "function to be invoked"
+        "description": "function to be invoked",
+        "default": "onEvaluate() {}"
       }
     ],
     "description": "The runner component will execute a supplied function either once or at a given interval."
@@ -2800,12 +2850,14 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback  which is triggered after the submit action"
+        "description": "callback  which is triggered after the submit action",
+        "default": "onChange() {}"
       },
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter"
+        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
+        "default": "onSubmit() {}"
       }
     ],
     "description": "A select question component."
@@ -2941,7 +2993,8 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback invoked whenever a new line element is drawn"
+        "description": "callback invoked whenever a new line element is drawn",
+        "default": "onChange() {}"
       }
     ],
     "description": "A drawing sketchpad for note taking on lecture slides or empty pages."
@@ -2993,7 +3046,8 @@
       {
         "name": "onClick",
         "type": "function",
-        "description": "callback invoked when clicking on the next/previous buttons"
+        "description": "callback invoked when clicking on the next/previous buttons",
+        "default": "onClick() {}"
       },
       {
         "name": "style",
@@ -3137,7 +3191,8 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback invoked when elements are switched. Receives as its first argument the index of the currently displayed child"
+        "description": "callback invoked when elements are switched. Receives as its first argument the index of the currently displayed child",
+        "default": "onChange() {}"
       }
     ],
     "description": "The Switch component allows the display of one element out of a list of several elements. Users can cycle through the different children of the Switch tag by clicking on the currently displayed one."
@@ -3182,7 +3237,8 @@
       {
         "name": "onClick",
         "type": "function",
-        "description": "callback `function` invoked whenever a user clicks on the equation"
+        "description": "callback `function` invoked whenever a user clicks on the equation",
+        "default": "onClick() {}"
       }
     ],
     "description": "`TeX` is an ISLE element that can be used to display LaTeX equations. Under the hood, the component uses [KaTeX](https://github.com/Khan/KaTeX) for blazingly fast rendering."
@@ -3210,7 +3266,8 @@
       {
         "name": "onChange",
         "type": "function",
-        "description": "callback function invoked with the new text when the area text changes"
+        "description": "callback function invoked with the new text when the area text changes",
+        "default": "onChange() {}"
       },
       {
         "name": "placeholder",
@@ -3293,7 +3350,8 @@
       {
         "name": "onTimeUp",
         "type": "function",
-        "description": "callback invoked when the timer runs out"
+        "description": "callback invoked when the timer runs out",
+        "default": "onTimeUp() {}"
       }
     ],
     "description": "Displays a timer that will trigger a predefined callback when the time is up. An example use case is the timing of quizzes."
@@ -3496,17 +3554,20 @@
       {
         "name": "onEnded",
         "type": "function",
-        "description": "callback invoked once the video ends"
+        "description": "callback invoked once the video ends",
+        "default": "onEnded() {}"
       },
       {
         "name": "onPause",
         "type": "function",
-        "description": "callback invoked once the video pauses"
+        "description": "callback invoked once the video pauses",
+        "default": "onPause() {}"
       },
       {
         "name": "onPlay",
         "type": "function",
-        "description": "callback invoked once the video starts or resumes playing after pausing"
+        "description": "callback invoked once the video starts or resumes playing after pausing",
+        "default": "onPlay() {}"
       }
     ],
     "description": "A component for playing media files and content from YouTube, SoundCloud and Vimeo."
@@ -3637,7 +3698,8 @@
       {
         "name": "onClick",
         "type": "function",
-        "description": "callback function invoked when a word on the word cloud is clicked"
+        "description": "callback function invoked when a word on the word cloud is clicked",
+        "default": "onClick() {}"
       },
       {
         "name": "padding",
@@ -3654,7 +3716,8 @@
       {
         "name": "rotate",
         "type": "(function|number)",
-        "description": "accessor function indicating the rotation angle (in degrees) for each word. Also accepts a constant instead of a function"
+        "description": "accessor function indicating the rotation angle (in degrees) for each word. Also accepts a constant instead of a function",
+        "default": "word => word.value % 360"
       },
       {
         "name": "width",

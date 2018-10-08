@@ -115,6 +115,9 @@ for ( let i = 0; i < files.length; i++ ) {
 		const defaultStr = generateDefaultString( defaults[ key ] );
 		str += `* __${key}__ | \`${types[ key ] }\`: ${description[ key ]}. ${defaultStr}`;
 		str += '\n';
+		if ( isFunction( defaults[ key ] ) ) {
+			defaults[ key ] = defaults[ key ].toString();
+		}
 		DOCS[ tagName ].props.push({
 			name: key,
 			type: types[ key ],

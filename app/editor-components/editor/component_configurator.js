@@ -11,7 +11,6 @@ import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Modal from 'react-bootstrap/lib/Modal';
 import Checkbox from 'components/input/checkbox';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
-import isFunction from '@stdlib/assert/is-function';
 import typeOf from '@stdlib/utils/type-of';
 import replace from '@stdlib/string/replace';
 import removeLast from '@stdlib/string/remove-last';
@@ -22,6 +21,7 @@ import './component_configurator.css';
 
 // VARIABLES //
 
+const RE_FUNCTION = /^[a-z0-9]*\(([^)]*)\)/i;
 const RE_SNIPPET_PLACEHOLDER = /\${[0-9]:([^}]+)}/g;
 const RE_SNIPPET_EMPTY_PLACEHOLDER = /\t*\${[0-9]:}\n?/g;
 const md = markdownIt({
@@ -35,12 +35,16 @@ const md = markdownIt({
 // FUNCTIONS //
 
 function generateReplacement( defaultValue ) {
+	const match = RE_FUNCTION.exec( defaultValue );
+	if ( match ) {
+		// Convert to arrow function:
+		defaultValue = replace( defaultValue, match[ 0 ], '('+match[1]+') => ' );
+		return '{'+defaultValue+'}';
+	}
 	const type = typeOf( defaultValue );
 	switch ( type ) {
 		case 'boolean':
 			return '{'+!defaultValue+'}';
-		case 'function':
-			return '{() => {\n\n}}';
 		case 'object':
 		case 'array':
 			return '{'+JSON.stringify( defaultValue )+'}';
@@ -56,12 +60,12 @@ function generateReplacement( defaultValue ) {
 	}
 }
 
-function generateDefaultString( defaultValue ) {
+function generateDefaultString( defaultValue, isFunc ) {
+	if ( isFunc ) {
+		return defaultValue;
+	}
 	if ( defaultValue === null || defaultValue === void 0 ) {
 		return 'none';
-	}
-	if ( isFunction( defaultValue ) ) {
-		return defaultValue.toString();
 	}
 	return JSON.stringify( defaultValue, null, 2 );
 }
@@ -194,7 +198,7 @@ class ComponentConfigurator extends Component {
 						{ type ? `${type}` : '' }
 					</td>
 					<td>
-						{generateDefaultString( defaultValue )}
+						{generateDefaultString( defaultValue, contains( type, 'function' ) )}
 					</td>
 				</tr>;
 			controls.push( elem );
