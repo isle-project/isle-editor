@@ -19,7 +19,7 @@ A survey component in which the instructor may collect numeric survey data from 
 
 #### Options:
 
-* __id__ | `string (required)`: undefined. Default: `none`.
+* __id__ | `string (required)`: component identifier. Default: `none`.
 * __question__ | `string`: the question to be displayed. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: controls whether the same user (or session if anonymous) may submit multiple answers). Default: `false`.
 * __anonymous__ | `boolean`: Allows for the students to submit data anonymously. Note that if this option is set to "true", then the instructors will be unable to see the ID of the submitting student. Default: `false`.

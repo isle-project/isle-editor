@@ -23,7 +23,7 @@ Component that allows a group of people to vote on the weights and importance of
 
 #### Options:
 
-* __id__ | `string (required)`: undefined. Default: `none`.
+* __id__ | `string (required)`: component identifier. Default: `none`.
 * __allowMultipleAnswers__ | `boolean`: contols whether one wishes to allow students to answer the survey multiple times. Default: `false`.
 * __anonymous__ | `boolean`: contols whether student answers are anonymized. Default: `false`.
 * __colors__ | `array`: array of colors for the pie chart components. If not defined, a custom color scale will be used. Default: `[

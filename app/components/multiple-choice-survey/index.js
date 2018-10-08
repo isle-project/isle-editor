@@ -28,6 +28,7 @@ const debug = logger( 'isle:multiple-choice-survey' );
 /**
 * A survey component in which the instructor may collect multiple-choice survey data from students in real-time.
 *
+* @property {string} id - component identifier
 * @property {boolean} allowMultipleAnswers - contols whether one wishes to allow students to answer the survey multiple times
 * @property {boolean} anonymous - contols whether student answers are anonymized
 * @property {Array} answers - array indicating answer choices for the students

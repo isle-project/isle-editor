@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Input from 'components/input/base';
 import contains from '@stdlib/assert/contains';
 import isString from '@stdlib/assert/is-string';
@@ -12,18 +13,23 @@ import Tooltip from 'components/tooltip';
 import './number.css';
 
 
+// VARIABLES //
+
+const debug = logger( 'isle:number-input' );
+
+
 // MAIN //
 
 /**
 * A number input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute.
 *
-* @property {string} bind: name of global variable for the number to be assigned to
+* @property {string} bind - name of global variable for the number to be assigned to
 * @property {number} value - number value (for controlled component)
 * @property {number} defaultValue - value indicating the default value of the input at startup
 * @property {boolean} disabled - boolean indicating whether the input is active or not
 * @property {number} min - number indicating the smallest possible value that may be inserted
 * @property {number} max - number indicating the maximum value that may be inserted
-* @property {number} step - number indicating the incremental changes when using the increment arrows
+* @property {(number|string)} step - number indicating the incremental changes when using the increment arrows
 * @property {number} width - number indicating the width of the input bar in pixels
 * @property {boolean} inline - indicates whether the input is displayed inline
 * @property {string} legend - string indicating the text displayed next to the number input
@@ -85,6 +91,7 @@ class NumberInput extends Input {
 			const { max, min, step } = this.props;
 			let value = event.target.value;
 			if ( contains( value, '/' ) ) {
+				debug( 'Encountered a fraction...' );
 				let vals = value.split( '/' );
 				if ( vals[ 0 ] !== '' && vals[ 1 ] !== '' ) {
 					value = parseFloat( vals[ 0 ]) / parseFloat( vals[ 1 ]);

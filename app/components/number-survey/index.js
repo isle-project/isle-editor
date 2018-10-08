@@ -64,6 +64,7 @@ function getBins( data ) {
 /**
 * A survey component in which the instructor may collect numeric survey data from students in real-time.
 *
+* @property {string} id - component identifier
 * @property {string} question - the question to be displayed
 * @property {boolean} allowMultipleAnswers - controls whether the same user (or session if anonymous) may submit multiple answers)
 * @property {boolean} anonymous - Allows for the students to submit data anonymously. Note that if this option is set to "true", then the instructors will be unable to see the ID of the submitting student

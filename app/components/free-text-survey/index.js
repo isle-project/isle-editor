@@ -31,6 +31,7 @@ const debug = logger( 'isle:free-text-survey' );
 /**
 * An ISLE component for questions where the answers by the students should be supplied in the form of free text. What differentiates this component from the **FreeTextQuestion** is the fact that the aggregated group data is displayed to everyone in real-time.
 *
+* @property {string} id - component identifier
 * @property {string} question - the question to ask the students
 * @property {boolean} allowMultipleAnswers - controls whether one wishes to allow students to answer the survey multiple times
 * @property {boolean} anonymous - controls whether student answers are anonymized

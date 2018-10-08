@@ -702,7 +702,8 @@
     "props": [
       {
         "name": "id",
-        "type": "string (required)"
+        "type": "string (required)",
+        "description": "component identifier"
       },
       {
         "name": "allowMultipleAnswers",
@@ -1935,7 +1936,8 @@
     "props": [
       {
         "name": "id",
-        "type": "string (required)"
+        "type": "string (required)",
+        "description": "component identifier"
       },
       {
         "name": "allowMultipleAnswers",
@@ -2098,7 +2100,8 @@
     "props": [
       {
         "name": "id",
-        "type": "string (required)"
+        "type": "string (required)",
+        "description": "component identifier"
       },
       {
         "name": "question",
@@ -2334,7 +2337,8 @@
     "props": [
       {
         "name": "id",
-        "type": "string (required)"
+        "type": "string (required)",
+        "description": "component identifier"
       },
       {
         "name": "allowMultipleAnswers",
