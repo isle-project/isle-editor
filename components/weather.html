@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Switch · ISLE Editor Documentation</title>
+        <title>Weather · ISLE Editor Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -61,10 +61,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="unveil.md" />
+    <link rel="next" href="wikipedia.html" />
     
     
-    <link rel="prev" href="slider.html" />
+    <link rel="prev" href="video-player.html" />
     
 
     </head>
@@ -730,7 +730,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.9.10" data-path="switch.html">
+        <li class="chapter " data-level="1.4.9.10" data-path="switch.html">
             
                 <a href="switch.html">
             
@@ -1112,7 +1112,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.12.13" data-path="weather.html">
+        <li class="chapter active" data-level="1.4.12.13" data-path="weather.html">
             
                 <a href="weather.html">
             
@@ -1327,7 +1327,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Switch</a>
+        <a href=".." >Weather</a>
     </h1>
 </div>
 
@@ -1342,22 +1342,21 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="switch-components">Switch Components</h1>
-<p>The Switch component allows the display of one element out of a list of several elements. Users can cycle through the different children of the Switch tag by clicking on the currently displayed one.</p>
+                                <h1 id="weather">Weather</h1>
+<p>A component for displaying the current weather at a designated location.</p>
 <h4 id="example">Example:</h4>
-<pre class="language-"><code class="lang-js"><span class="token operator">&lt;</span>Switch<span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>span<span class="token operator">&gt;</span>Option <span class="token number">1</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>span<span class="token operator">&gt;</span>Option <span class="token number">2</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>Switch<span class="token operator">&gt;</span>
+<pre class="language-"><code class="lang-js"><span class="token operator">&lt;</span>Weather
+    location<span class="token operator">=</span><span class="token string">&quot;Pittsburgh&quot;</span>
+<span class="token operator">/</span><span class="token operator">&gt;</span>
 </code></pre>
-<p><a href="https://isle.heinz.cmu.edu/components/switch/" target="_blank">Open interactive preview</a></p>
+<p><a href="https://isle.heinz.cmu.edu/components/weather/" target="_blank">Open interactive preview</a></p>
 <h4 id="options">Options:</h4>
 <ul>
-<li><strong>tooltip</strong> | <code>string</code>: tooltip displayed when hovering over the switch element. Default: <code>&apos;Click to cycle through available options.&apos;</code>.</li>
-<li><strong>tooltipPos</strong> | <code>string</code>: placement of the tooltip (either <code>top</code>, <code>left</code>, <code>right</code>, or <code>bottom</code>). Default: <code>&apos;top&apos;</code>.</li>
-<li><strong>className</strong> | <code>string</code>: class name for the enclosing span element. Default: <code>&apos;&apos;</code>.</li>
+<li><strong>key</strong> | <code>string</code>: APIXU key. Default: <code>&apos;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>number</span><span class="token punctuation">&gt;</span></span>&apos;</code>.</li>
+<li><strong>language</strong> | <code>string</code>: language identifier. Default: <code>&apos;en-US&apos;</code>.</li>
+<li><strong>location</strong> | <code>string</code>: location name. Default: <code>none</code>.</li>
+<li><strong>voiceID</strong> | <code>string</code>: voice control identifier. Default: <code>none</code>.</li>
 <li><strong>style</strong> | <code>object</code>: CSS inline styles. Default: <code>{}</code>.</li>
-<li><strong>onChange</strong> | <code>function</code>: callback invoked when elements are switched. Receives as its first argument the index of the currently displayed child. Default: <code>onChange() {}</code>.</li>
 </ul>
 
                                 
@@ -1386,12 +1385,12 @@
 
             
                 
-                <a href="slider.html" class="navigation navigation-prev " aria-label="Previous page: Slider">
+                <a href="video-player.html" class="navigation navigation-prev " aria-label="Previous page: Video Player">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="unveil.md" class="navigation navigation-next " aria-label="Next page: Unveil">
+                <a href="wikipedia.html" class="navigation navigation-next " aria-label="Next page: Wikipedia">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1402,7 +1401,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Switch","level":"1.4.9.10","depth":3,"next":{"title":"Unveil","level":"1.4.9.11","depth":3,"path":"components/unveil.md","ref":"components/unveil.md","articles":[]},"previous":{"title":"Slider","level":"1.4.9.9","depth":3,"path":"components/slider.md","ref":"components/slider.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/switch.md","mtime":"2018-10-08T01:19:58.766Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-10-08T01:20:52.730Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Weather","level":"1.4.12.13","depth":3,"next":{"title":"Wikipedia","level":"1.4.12.14","depth":3,"path":"components/wikipedia.md","ref":"components/wikipedia.md","articles":[]},"previous":{"title":"Video Player","level":"1.4.12.12","depth":3,"path":"components/video-player.md","ref":"components/video-player.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/weather.md","mtime":"2018-10-08T01:19:58.774Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-10-08T01:20:52.730Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
