@@ -10,25 +10,22 @@ hideToolbar: true
 
 # Weather
 
-This component triggers the [Apixu](https://www.apixu.com/) API and downloads the weather of the given location. The component may also be triggered by voice input, just say: "What's the weather in New York" ... etc
+This component triggers the [Apixu](https://www.apixu.com/) API and downloads the weather of the given location.
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
     }}
     code={`
-<div>
 <Weather
-    speechInterface
-    location="Pittsburgh"></Weather>
-    <VoiceInput />
-</div>
+    location="Pittsburgh"
+/>
 `}
     scope={{
-        Weather, VoiceInput
+        Weather
     }}
 />
 

@@ -1,24 +1,8 @@
 ---
 title: "Number Survey"
-author: Francis R. Kovacs 
+author: Francis R. Kovacs
 date: Jan 2nd, 2018
 state:
-    propSurvey: []
-    xbar: 0
-    mu0: 0
-    sigma: 1
-    zStat: 0
-    pStat: 0
-    areaData: null
-    areaData2: null
-    surveyData: []
-    surveyDomain: { y: [0,1] }
-    type: 0
-    surveySD: 1
-    n: 5
-    np: 5
-    phat: 0
-    p0: 0.5
 server: https://isle.heinz.cmu.edu
 ---
 
@@ -26,7 +10,7 @@ server: https://isle.heinz.cmu.edu
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
@@ -39,7 +23,7 @@ server: https://isle.heinz.cmu.edu
         legend="Submit a number"
         defaultValue={0}
         step="any"
-    />                    
+    />
 `}
     scope={{
         NumberSurvey

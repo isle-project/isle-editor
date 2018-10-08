@@ -1,0 +1,43 @@
+---
+title: "Multiple Choice Survey"
+author: Philipp Burckhardt
+date: Oct 7th, 2018
+state:
+server: https://isle.heinz.cmu.edu
+hideToolbar: true
+---
+
+# Multiple Choice Survey
+
+<br />
+
+<Playground
+    style={{
+        top: 0,
+        left: 0,
+        width: '1200px'
+    }}
+    code={`
+<MultipleChoiceSurvey
+    anonymous
+    question="Are you left- or right-handed"
+    answers={[ 'Left-handed', 'Right-handed' ]}
+/>
+    `}
+    scope={{
+        MultipleChoiceSurvey
+    }}
+/>
+
+<br />
+
+#### Options:
+
+* __id__ | `string (required)`: undefined. Default: `none`.
+* __allowMultipleAnswers__ | `boolean`: contols whether one wishes to allow students to answer the survey multiple times. Default: `false`.
+* __anonymous__ | `boolean`: contols whether student answers are anonymized. Default: `false`.
+* __answers__ | `array`: array indicating answer choices for the students. Default: `[]`.
+* __multipleAnswers__ | `boolean`: indicates whether students may select more than one answer. Note that this differs from allowMultipleAnswers in that allow makes students able to submit the question multiple times. Default: `false`.
+* __title__ | `string`: panel title. Default: `'Survey'`.
+* __onSubmit__ | `function`: function to be called when an answer is submitted. Default: `onSubmit() {}`.
+* __question__ | `string`: string indicating the question to ask the students. Default: `''`.
