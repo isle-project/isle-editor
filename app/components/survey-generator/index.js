@@ -10,7 +10,7 @@ import Card from 'react-bootstrap/lib/Card';
 import logger from 'debug';
 import Gate from 'components/gate';
 import { CheckboxInput, SelectInput, TextInput } from 'components/input';
-import TextArea from 'components/text-area';
+import TextArea from 'components/input/text-area';
 import MultipleChoiceSurvey from 'components/multiple-choice-survey';
 import NumberSurvey from 'components/number-survey';
 import FreeTextSurvey from 'components/free-text-survey';

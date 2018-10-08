@@ -9,7 +9,7 @@ import Popover from 'react-bootstrap/lib/Popover';
 import logger from 'debug';
 import scrollTo from 'utils/scroll-to';
 import OverlayTrigger from 'components/overlay-trigger';
-import TextArea from 'components/text-area';
+import TextArea from 'components/input/text-area';
 import PropTypes from 'prop-types';
 import isElectron from 'utils/is-electron';
 import './chat.css';

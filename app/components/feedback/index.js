@@ -7,7 +7,7 @@ import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Modal from 'react-bootstrap/lib/Modal';
 import Tooltip from 'components/tooltip';
-import TextArea from 'components/text-area';
+import TextArea from 'components/input/text-area';
 import CheckboxInput from 'components/input/checkbox';
 import InstructorBar from 'components/instructor-bar';
 import Confused from '-!svg-react-loader!./../../img/confused.svg';

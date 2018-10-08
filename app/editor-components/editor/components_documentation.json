@@ -1098,6 +1098,59 @@
     ],
     "description": "A slider input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute."
   },
+  "TextArea": {
+    "props": [
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "description": "default value of the text area",
+        "default": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "controls whether the text area shall be disabled",
+        "default": false
+      },
+      {
+        "name": "legend",
+        "type": "string",
+        "description": "legend text",
+        "default": ""
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback function invoked with the new text when the area text changes",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "description": "placeholder text",
+        "default": "Enter text"
+      },
+      {
+        "name": "resizable",
+        "type": "boolean",
+        "description": "controls whether the text area shall be resizable",
+        "default": false
+      },
+      {
+        "name": "rows",
+        "type": "number",
+        "description": "number of rows",
+        "default": 5
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A text area component. Used as a stand-alone component, changes should be handled via the `onChange` attribute."
+  },
   "TextInput": {
     "props": [
       {
@@ -3365,59 +3418,6 @@
       }
     ],
     "description": "`TeX` is an ISLE element that can be used to display LaTeX equations. Under the hood, the component uses [KaTeX](https://github.com/Khan/KaTeX) for blazingly fast rendering."
-  },
-  "TextArea": {
-    "props": [
-      {
-        "name": "defaultValue",
-        "type": "string",
-        "description": "default value of the text area,",
-        "default": ""
-      },
-      {
-        "name": "disabled",
-        "type": "boolean",
-        "description": "controls whether the text area shall be disabled",
-        "default": false
-      },
-      {
-        "name": "legend",
-        "type": "string",
-        "description": "legend text",
-        "default": ""
-      },
-      {
-        "name": "onChange",
-        "type": "function",
-        "description": "callback function invoked with the new text when the area text changes",
-        "default": "onChange() {}"
-      },
-      {
-        "name": "placeholder",
-        "type": "string",
-        "description": "placeholder text",
-        "default": "Enter text"
-      },
-      {
-        "name": "resizable",
-        "type": "boolean",
-        "description": "controls whether the text area shall be resizable",
-        "default": false
-      },
-      {
-        "name": "rows",
-        "type": "number",
-        "description": "number of rows",
-        "default": 5
-      },
-      {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "default": {}
-      }
-    ],
-    "description": "A text area component. Used as a stand-alone component, changes should be handled via the `onChange` attribute."
   },
   "Text": {
     "props": [

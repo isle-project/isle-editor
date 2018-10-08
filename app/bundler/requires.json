@@ -119,7 +119,7 @@
 	"Tabs": "react-bootstrap/lib/Tabs",
 	"TeX": "components/tex",
 	"Text": "components/text",
-	"TextArea": "components/text-area",
+	"TextArea": "components/input/text-area",
 	"TextInput": "components/input/text",
 	"Timer": "components/timer",
 	"Tooltip": "components/tooltip",

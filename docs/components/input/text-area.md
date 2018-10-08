@@ -1,38 +1,21 @@
----
-title: "Text Area"
-author: Philipp Burckhardt
-date: Dec 27th, 2017
-state:
-server: https://isle.heinz.cmu.edu
-hideToolbar: true
+# Text Area
 
----
+A text area component. Used as a stand-alone component, changes should be handled via the `onChange` attribute.
 
- # Text Area
+#### Example:
 
-
-<br />
-
-<Playground 
-    style={{
-        marginLeft: 0,
-        width: '1000px'
-    }}
-    code={`
+``` js
 <TextArea
     legend="Please enter a few sentences"
     placeholder="Enter text"
 />
-`}
-    scope={{
-        TextArea
-    }}
-/>
+```
 
+[Open interactive preview](https://isle.heinz.cmu.edu/components/text-area/)
 
 #### Options:
 
-* __defaultValue__ | `string`: default value of the text area,. Default: `''`.
+* __defaultValue__ | `string`: default value of the text area. Default: `''`.
 * __disabled__ | `boolean`: controls whether the text area shall be disabled. Default: `false`.
 * __legend__ | `string`: legend text. Default: `''`.
 * __onChange__ | `function`: callback function invoked with the new text when the area text changes. Default: `onChange() {}`.

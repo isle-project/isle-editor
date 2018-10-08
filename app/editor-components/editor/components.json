@@ -28,6 +28,7 @@
 		"ProportionsInput",
 		"SelectInput",
 		"SliderInput",
+		"TextArea",
 		"TextInput",
 		"VoiceInput"
 	],

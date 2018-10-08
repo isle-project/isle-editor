@@ -142,7 +142,7 @@ const createScope = ( session ) => {
 		Switch: Loadable( () => import( 'components/switch' ) ),
 
 		TeX,
-		TextArea: Loadable( () => import( 'components/text-area' ) ),
+		TextArea: Loadable( () => import( 'components/input/text-area' ) ),
 		TextInput,
 		Text: Loadable( () => import( 'components/text' ) ),
 		Timer: Loadable( () => import( 'components/timer' ) ),
