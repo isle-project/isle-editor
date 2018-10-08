@@ -31,4 +31,4 @@ server: https://isle.heinz.cmu.edu
 #### Options:
 
 * __showProbabilities__ | `boolean`: controls whether to display the probabilities. Default: `false`.
-* __step__ | `number`: step size of the scroll input. Default: `'0.05'`.
+* __step__ | `object`: step size of the scroll input. Default: `'any'`.

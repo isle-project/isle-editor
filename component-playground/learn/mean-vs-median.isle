@@ -30,5 +30,5 @@ server: https://isle.heinz.cmu.edu
 
 #### Options:
 
-* __header__: A `string` of the title of the panel in which the mean and the median will be generated. Default: `Measures of Location: Mean vs. Median`
-* __intro__: A `node` of `html` code for any introductory material that may be needed. Default: `<div></div>`.
+* __header__ | `string`: title of the panel in which the mean and the median will be generated. Default: `'Measures of Location: Mean vs. Median'`.
+* __intro__ | `node`: any introductory material that may be needed. Default: `none`.

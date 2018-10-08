@@ -29,8 +29,14 @@ const colors = [
 const X = linspace( -30, 30, 200 );
 
 
-// MAIN
+// MAIN //
 
+/**
+* Learning component explaining the process of standardizing data.
+*
+* @property {boolean} showProbabilities - controls whether to display the probabilities
+* @property {number} step - step size of the scroll input
+*/
 class Standardize extends Component {
 	constructor( props ) {
 		super( props );

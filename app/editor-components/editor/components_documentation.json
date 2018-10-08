@@ -1385,30 +1385,34 @@
       {
         "name": "header",
         "type": "string",
+        "description": "title of the panel in which the mean and the median will be generated",
         "default": "Measures of Location: Mean vs. Median"
       },
       {
         "name": "intro",
         "type": "node",
+        "description": "any introductory material that may be needed",
         "default": null
       }
     ],
-    "description": "Description is missing."
+    "description": "An interactive game testing student's ability in detecting the median and mean of a given distribution."
   },
   "LearnStandardize": {
     "props": [
       {
         "name": "showProbabilities",
         "type": "boolean",
+        "description": "controls whether to display the probabilities",
         "default": false
       },
       {
         "name": "step",
         "type": "object",
+        "description": "step size of the scroll input",
         "default": "any"
       }
     ],
-    "description": "Description is missing."
+    "description": "Learning component explaining the process of standardizing data."
   },
   "LearnVennDiagramBuilder": {
     "props": [

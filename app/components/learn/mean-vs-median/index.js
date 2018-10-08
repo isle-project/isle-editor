@@ -23,6 +23,12 @@ const debug = logger( 'isle:mean-vs-median' );
 
 // MAIN //
 
+/**
+* An interactive game testing student's ability in detecting the median and mean of a given distribution.
+*
+* @property {string} header - title of the panel in which the mean and the median will be generated
+* @property {node} intro - any introductory material that may be needed
+*/
 class MeanVSMedian extends Component {
 	constructor( props ) {
 		super( props );
