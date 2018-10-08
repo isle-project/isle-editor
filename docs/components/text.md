@@ -1,11 +1,17 @@
 # Text
 
-By default, only Markdown at the top-level will be processed. In case you wish to use Markdown syntax inside a component attribute or nested inside HTML tags, you have to wrap it inside this component. The component expects no other child elements besides text.
+Text component, which allows rendering of raw text as Markdown and enables voice control.
 
-### Example:
+#### Example:
 
 ``` js
 <Text>*Markdown* formatted text comes here...</Text>
 ```
 
-[Open Formatting Guide](http://isle.heinz.cmu.edu/components/text-input/)
+[Open interactive preview](https://isle.heinz.cmu.edu/components/text/)
+
+#### Options:
+
+* __raw__ | `string`: text to be rendered. Default: `''`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
+* __voiceID__ | `string`: voice control identifier. Default: `none`.
