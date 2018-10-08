@@ -29,6 +29,7 @@ import './select-question.css';
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {boolean} chat - controls whether the element should have an integrated chat
+* @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {string} failureMsg - message to be displayed when student selects a wrong answer
 * @property {string} successMsg - message to be displayed when student selects the correct answer
 * @property {Function} onChange - callback  which is triggered after the submit action
@@ -62,25 +63,34 @@ class SelectQuestion extends Component {
 
 	handleSubmit = () => {
 		const { session } = this.context;
-		let correct;
-		if ( this.props.solution === this.state.value ) {
-			session.addNotification({
-				title: 'Correct',
-				message: this.props.successMsg,
-				level: 'success',
-				position: 'tr'
-			});
-			correct = true;
+		let correct = this.props.solution === this.state.value;
+		if ( this.props.provideFeedback ) {
+			if ( correct ) {
+				session.addNotification({
+					title: 'Correct',
+					message: this.props.successMsg,
+					level: 'success',
+					position: 'tr'
+				});
+			} else {
+				session.addNotification({
+					title: 'Incorrect',
+					message: this.props.failureMsg,
+					level: 'error',
+					position: 'tr'
+				});
+			}
 		} else {
 			session.addNotification({
-				title: 'Incorrect',
-				message: this.props.failureMsg,
-				level: 'error',
+				title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
+				message: this.state.submitted ?
+					'You have successfully re-submitted your answer.' :
+					'Your answer has been submitted.',
+				level: 'info',
 				position: 'tr'
 			});
-			correct = false;
 		}
-		this.props.onSubmit( correct, this.state.value );
+		this.props.onSubmit( this.state.value, correct );
 		this.setState({
 			answerState: correct ? 'success' : 'error',
 			submitted: true
@@ -176,6 +186,7 @@ SelectQuestion.defaultProps = {
 	hintPlacement: 'bottom',
 	feedback: false,
 	chat: false,
+	provideFeedback: true,
 	failureMsg: 'Not quite, try again!',
 	successMsg: 'That\'s the correct answer!',
 	onChange() {},
@@ -192,6 +203,7 @@ SelectQuestion.propTypes = {
 	hints: PropTypes.arrayOf( PropTypes.string ),
 	feedback: PropTypes.bool,
 	chat: PropTypes.bool,
+	provideFeedback: PropTypes.bool,
 	failureMsg: PropTypes.string,
 	successMsg: PropTypes.string,
 	onChange: PropTypes.func,

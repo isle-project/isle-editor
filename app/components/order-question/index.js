@@ -41,6 +41,7 @@ class OrderQuestion extends Component {
 
 		// Initialize state variables...
 		this.state = {
+			cards: null,
 			correct: false,
 			submitted: false
 		};
@@ -54,8 +55,9 @@ class OrderQuestion extends Component {
 				break;
 			}
 		}
-		this.props.onChange( correct, cards );
+		this.props.onChange( cards, correct );
 		this.setState({
+			cards,
 			correct
 		});
 	}
@@ -98,7 +100,7 @@ class OrderQuestion extends Component {
 				position: 'tr'
 			});
 		}
-		this.props.onSubmit( this.state.correct );
+		this.props.onSubmit( this.state.cards, this.state.correct );
 		this.setState({
 			submitted: true
 		});
@@ -106,7 +108,7 @@ class OrderQuestion extends Component {
 			session.log({
 				id: this.props.id,
 				type: 'ORDER_QUESTION_SUBMISSION',
-				value: this.state.correct
+				value: this.state.cards
 			});
 		}
 	}

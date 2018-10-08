@@ -35,6 +35,7 @@ const debug = logger( 'isle:number-question' );
 * @property {number} digits - number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.
 * @property {number} max - maximum allowed input value
 * @property {number} min - minimum allowed input value
+* @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {Function} onChange - callback  which is triggered after the value of the number field changes; receives the current value as its sole argument
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter
@@ -90,15 +91,26 @@ class NumberQuestion extends Component {
 			} else {
 				correct = roundn( val, -digits ) === roundn( solution, -digits );
 			}
-			this.props.onSubmit( correct, this.state.value );
-			session.addNotification({
-				title: 'Answer submitted.',
-				message: correct ? 'Congratulations, that is correct!' : 'Not quite. Compare your answer with the solution.',
-				level: correct ? 'success' : 'error',
-				position: 'tr'
-			});
+			this.props.onSubmit( this.state.value, correct );
+			if ( this.props.provideFeedback ) {
+				session.addNotification({
+					title: 'Answer submitted.',
+					message: correct ? 'Congratulations, that is correct!' : 'Not quite. Compare your answer with the solution.',
+					level: correct ? 'success' : 'error',
+					position: 'tr'
+				});
+			} else {
+				session.addNotification({
+					title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
+					message: this.state.submitted ?
+						'You have successfully re-submitted your answer.' :
+						'Your answer has been submitted.',
+					level: 'info',
+					position: 'tr'
+				});
+			}
 		} else {
-			this.props.onSubmit( null, this.state.value );
+			this.props.onSubmit( this.state.value );
 			session.addNotification({
 				title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
 				message: this.state.submitted ?
@@ -155,7 +167,7 @@ class NumberQuestion extends Component {
 							max={this.props.max}
 							numbersOnly={false}
 						/>
-						{ this.state.submitted && this.props.solution ?
+						{ this.state.submitted && this.props.solution && this.props.provideFeedback ?
 							<span>
 								<span> | </span>
 								<NumberInput
@@ -212,6 +224,7 @@ NumberQuestion.defaultProps = {
 	digits: 3,
 	max: PINF,
 	min: NINF,
+	provideFeedback: true,
 	chat: false,
 	onChange() {},
 	onSubmit() {}
@@ -226,6 +239,7 @@ NumberQuestion.propTypes = {
 	digits: PropTypes.number,
 	max: PropTypes.number,
 	min: PropTypes.number,
+	provideFeedback: PropTypes.bool,
 	chat: PropTypes.bool,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func

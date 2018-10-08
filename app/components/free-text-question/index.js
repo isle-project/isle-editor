@@ -44,6 +44,7 @@ const debug = logger( 'isle:free-text-question' );
 * @property {string} placeholder - placeholder text displayed before user has entered any text
 * @property {string} submissionMsg - notification displayed when the learner first submits his answer
 * @property {string} resubmissionMsg - notification displayed for all submissions after the first one
+* @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {number} maxlength - maximum allowed number of characters
 * @property {string} voiceID - voice control identifier
 * @property {Function} onChange - callback invoked every time the text area value changes; receives the current text as its sole argument
@@ -129,7 +130,7 @@ class FreeTextQuestion extends Component {
 		} else {
 			let submissionMsg = this.props.submissionMsg;
 			if ( submissionMsg === '' ) {
-				submissionMsg = this.props.solution ?
+				submissionMsg = this.props.solution && this.props.provideFeedback ?
 					'Compare your answer with solution using the "Show Solution" button. You can then change your answer and re-submit if necessary.' :
 					'You can change your answer and re-submit if you want to.';
 			}
@@ -338,7 +339,7 @@ class FreeTextQuestion extends Component {
 							null
 						}
 						{
-							this.renderSolutionButton()
+							this.props.provideFeedback ? this.renderSolutionButton() : null
 						}
 						{
 							this.props.chat && this.props.id ?
@@ -373,6 +374,7 @@ FreeTextQuestion.defaultProps = {
 	resizable: false,
 	submissionMsg: '',
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
+	provideFeedback: true,
 	maxlength: 2500,
 	voiceID: null,
 	onChange() {},
@@ -394,6 +396,7 @@ FreeTextQuestion.propTypes = {
 	placeholder: PropTypes.string,
 	submissionMsg: PropTypes.string,
 	resubmissionMsg: PropTypes.string,
+	provideFeedback: PropTypes.bool,
 	maxlength: PropTypes.number,
 	voiceID: PropTypes.string,
 	onChange: PropTypes.func,

@@ -38,6 +38,7 @@ const debug = logger( 'isle:range-question' );
 * @property {number} digits - number of digits that have to match between solution and user-supplied answer. If not given or set to null, the component checks for strict equality. If set to 0, checks for integer equality.
 * @property {number} max - maximum input value
 * @property {number} min - minimum input value
+* @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {Function} onChangeUpper - callback triggered after the upper bound is changed by the user
 * @property {Function} onChangeLower - callback triggered after the lower bound is changed by the user
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter
@@ -101,15 +102,28 @@ class RangeQuestion extends Component {
 				correct = (roundn( lowerVal, -digits ) === roundn( lowerVal, -digits ) &&
 					(roundn(upperVal, -digits) === roundn(upperSol, -digits)));
 			}
-			this.props.onSubmit( correct, this.state.value );
-			session.addNotification({
-				title: 'Answer submitted.',
-				message: correct ? 'Congratulations, that is correct!' : 'Not quite. Compare your answer with the solution.',
-				level: correct ? 'success' : 'error',
-				position: 'tr'
-			});
+			this.props.onSubmit( [ lowerVal, upperVal ], correct );
+			if ( this.props.provideFeedback ) {
+				session.addNotification({
+					title: 'Answer submitted.',
+					message: correct ? 'Congratulations, that is correct!' : 'Not quite. Compare your answer with the solution.',
+					level: correct ? 'success' : 'error',
+					position: 'tr'
+				});
+			} else {
+				session.addNotification({
+					title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
+					message: this.state.submitted ?
+						'You have successfully re-submitted your answer.' :
+						'Your answer has been submitted.',
+					level: 'info',
+					position: 'tr'
+				});
+			}
 		} else {
-			this.props.onSubmit( null, this.state.value );
+			const lowerVal = parseFloat( this.state.lower );
+			const upperVal = parseFloat( this.state.upper );
+			this.props.onSubmit( [ lowerVal, upperVal ] );
 			session.addNotification({
 				title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
 				message: this.state.submitted ?
@@ -126,7 +140,7 @@ class RangeQuestion extends Component {
 			session.log({
 				id: this.props.id,
 				type: 'RANGE_QUESTION_SUBMIT_ANSWER',
-				value: `${this.state.lower} , ${this.state.upper}`
+				value: JSON.stringify( [ this.state.lower, this.state.upper ] )
 			});
 		}
 	}
@@ -192,7 +206,7 @@ class RangeQuestion extends Component {
 							numbersOnly={false}
 							onBlur={this.onNoClickUpper}
 						/>
-						{ this.state.submitted && this.props.solution ?
+						{ this.state.submitted && this.props.solution && this.props.provideFeedback ?
 							<span>
 								<br />
 								<label>Solution:</label>
@@ -245,6 +259,7 @@ RangeQuestion.defaultProps = {
 	digits: 3,
 	max: PINF,
 	min: NINF,
+	provideFeedback: true,
 	onChangeUpper() {},
 	onChangeLower() {},
 	onSubmit() {}
@@ -260,6 +275,7 @@ RangeQuestion.propTypes = {
 	digits: PropTypes.number,
 	max: PropTypes.number,
 	min: PropTypes.number,
+	provideFeedback: PropTypes.bool,
 	onChangeLower: PropTypes.func,
 	onChangeUpper: PropTypes.func,
 	onSubmit: PropTypes.func
