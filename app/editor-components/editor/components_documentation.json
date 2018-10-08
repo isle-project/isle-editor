@@ -1368,6 +1368,32 @@
     ],
     "description": "Keyboard controls."
   },
+  "LearnContinuousCLT": {
+    "props": [],
+    "description": "A learning component illustrating the Central Limit Theorem (CLT) for a chosen continuous distribution."
+  },
+  "LearnDiscreteCLT": {
+    "props": [],
+    "description": "A learning component illustrating the Central Limit Theorem (CLT) for a canonical discrete distribution, the binomial distribution."
+  },
+  "LearnSampleCLT": {
+    "props": [
+      {
+        "name": "data",
+        "type": "array (required)"
+      },
+      {
+        "name": "populationProbabilities",
+        "type": "boolean",
+        "default": null
+      },
+      {
+        "name": "variables",
+        "type": "array (required)"
+      }
+    ],
+    "description": "A learning component illustrating the Central Limit Theorem (CLT) when sampling from a supplied data set."
+  },
   "LearnConditionalProbability": {
     "props": [
       {
@@ -1396,6 +1422,82 @@
   "LearnDiceThrowing": {
     "props": [],
     "description": "A learning component illustrating the law of large numbers using dice throwing."
+  },
+  "LearnExponentialDistribution": {
+    "props": [
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a exponential distribution."
+  },
+  "LearnNormalDistribution": {
+    "props": [
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a normal distribution."
+  },
+  "LearnTDistribution": {
+    "props": [
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a Student's t distribution."
+  },
+  "LearnUniformDistribution": {
+    "props": [
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a uniform distribution."
+  },
+  "LearnMeanTest": {
+    "props": [],
+    "description": "A learning component on hypothesis tests for a population mean."
+  },
+  "LearnProportionTest": {
+    "props": [],
+    "description": "A learning component on hypothesis tests for a population proportion."
   },
   "LearnImagePixelPicker": {
     "props": [],

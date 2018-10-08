@@ -246,7 +246,7 @@ class NormalProbs extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 NormalProbs.propTypes = {
 	step: PropTypes.oneOfType([
@@ -255,9 +255,6 @@ NormalProbs.propTypes = {
 	]),
 	style: PropTypes.object
 };
-
-
-// DEFAULT PROPERTIES //
 
 NormalProbs.defaultProps = {
 	step: 0.01,

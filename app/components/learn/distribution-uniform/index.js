@@ -250,7 +250,7 @@ class UniformProbs extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 UniformProbs.propTypes = {
 	step: PropTypes.oneOfType([
@@ -259,9 +259,6 @@ UniformProbs.propTypes = {
 	]),
 	style: PropTypes.object
 };
-
-
-// DEFAULT PROPERTIES //
 
 UniformProbs.defaultProps = {
 	step: 0.01,

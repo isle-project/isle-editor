@@ -222,7 +222,7 @@ class ExponentialProbs extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 ExponentialProbs.propTypes = {
 	step: PropTypes.oneOfType([
@@ -231,9 +231,6 @@ ExponentialProbs.propTypes = {
 	]),
 	style: PropTypes.object
 };
-
-
-// DEFAULT PROPERTIES //
 
 ExponentialProbs.defaultProps = {
 	step: 0.01,
