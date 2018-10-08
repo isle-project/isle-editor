@@ -34,6 +34,9 @@ class Playground extends Component {
 						</Provider> );
 					}
 				};
+				Object.defineProperty( wrappedScope[ key ], 'name', {
+					value: Comp.name
+				});
 			}
 		}
 		this.wrappedScope = wrappedScope;
