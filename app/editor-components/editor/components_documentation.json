@@ -146,40 +146,48 @@
       {
         "name": "bandwidth",
         "type": "number",
+        "description": " smoothing parameter for the kernel density estimator",
         "default": 4
       },
       {
         "name": "histogram",
         "type": "boolean",
+        "description": "show a histogram alongside the density plot",
         "default": true
       },
       {
         "name": "nBins",
         "type": "number",
+        "description": "number of bins for the overlaid histogram.",
         "default": 8
       },
       {
         "name": "vline",
-        "type": "object"
+        "type": "object",
+        "description": "if supplied, will display a vertical line at the supplied `value` with a given `label`"
       },
       {
         "name": "xlab",
         "type": "string",
+        "description": "x-axis label",
         "default": "value"
       },
       {
         "name": "xmax",
         "type": "number",
+        "description": "maximum value displayed on the x-axis",
         "default": 1
       },
       {
         "name": "xmin",
         "type": "number",
+        "description": "minimum value displayed on the x-axis",
         "default": 0
       },
       {
         "name": "ymax",
         "type": "number",
+        "description": "maximum value displayed on the y-axis",
         "default": 0.15
       }
     ],
@@ -190,11 +198,13 @@
       {
         "name": "width",
         "type": "number",
+        "description": "width of the plot (in px)",
         "default": 900
       },
       {
         "name": "height",
         "type": "number",
+        "description": "height of the plot (in px)",
         "default": 600
       }
     ],

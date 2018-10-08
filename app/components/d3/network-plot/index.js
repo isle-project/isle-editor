@@ -11,6 +11,10 @@ import './style.css';
 
 /**
 * A d3-based network plot.
+*
+* @property {number} width - width of the plot (in px)
+* @property {number} height - height of the plot (in px)
+* @property {Object} data - object with `nodes` and `links`; `nodes` should be an object array of elements with an `id` property, `links` an object array with elements having a `source` and `target` id
 */
 class NetworkPlot extends D3Plot {
 	constructor( props ) {

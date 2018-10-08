@@ -1,0 +1,45 @@
+---
+title: "Network Plot"
+author: Philipp Burckhardt
+date: Oct 7th, 2018
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Density Plot
+
+<br />
+
+<Playground
+    style={{
+        marginLeft: 0,
+        width: '1200px'
+    }}
+    code={`
+<NetworkPlot
+    width={400}
+    height={400}
+    data={{
+        nodes: [
+            { 'id': 0 },
+            { 'id': 1 },
+            { 'id': 2 },
+            { 'id': 3 },
+        ],
+        links: [
+            { 'source': 0, 'target': 1 },
+            { 'source': 0, 'target': 2 },
+            { 'source': 2, 'target': 3 }
+        ]
+    }}
+/>
+`}
+    scope={{
+        NetworkPlot
+    }}
+/>
+
+#### Options:
+
+* __width__ | `number`: width of the plot (in px). Default: `900`.
+* __height__ | `number`: height of the plot (in px). Default: `600`.

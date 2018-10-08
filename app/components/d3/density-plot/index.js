@@ -44,6 +44,18 @@ function epanechnikovKernel( bandwidth ) {
 
 /**
 * A d3-based density plot component.
+*
+* @property {Array} data - an `array` or `array of arrays` holding the data for which the density plot should be created
+* @property {boolean} histogram - show a histogram alongside the density plot
+* @property {Object} vline - if supplied, will display a vertical line at the supplied `value` with a given `label`
+* @property {string} xlab - x-axis label
+* @property {number} xmin - minimum value displayed on the x-axis
+* @property {number} xmax - maximum value displayed on the x-axis
+* @property {number} ymax - maximum value displayed on the y-axis
+* @property {number} width - width of the created plot (in px)
+* @property {number} height - height of the created plot (in px)
+* @property {number} nBins - number of bins for the overlaid histogram.
+* @property {number} bandwidth -  smoothing parameter for the kernel density estimator
 */
 class DensityPlot extends D3Plot {
 	constructor( props ) {
