@@ -1,6 +1,6 @@
 ---
 title: "Uniform Distribution"
-author: Francis R. Kovacs 
+author: Francis R. Kovacs
 date: May 27th, 2018
 state:
 server: https://isle.heinz.cmu.edu
@@ -10,16 +10,13 @@ server: https://isle.heinz.cmu.edu
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
     }}
     code={`
-    <LearnUniformDistribution>
-        step={0.05}
-    </LearnUniformDistribution>
-    
+    <LearnUniformDistribution step={0.05} />
 `}
     scope={{
        LearnUniformDistribution
@@ -29,4 +26,4 @@ server: https://isle.heinz.cmu.edu
 
 #### Options:
 
-* __step__: `float` indicating the stpes taking in using the scroll input. Default: `0.01`. 
+* __step__: `float` indicating the step size of the scroll input. Default: `0.01`.

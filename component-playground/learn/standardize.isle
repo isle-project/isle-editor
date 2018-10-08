@@ -1,6 +1,6 @@
 ---
 title: "Standardization"
-author: Francis R. Kovacs 
+author: Francis R. Kovacs
 date: May 27th, 2018
 require:
 state:
@@ -11,7 +11,7 @@ server: https://isle.heinz.cmu.edu
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
@@ -30,5 +30,5 @@ server: https://isle.heinz.cmu.edu
 
 #### Options:
 
-* __showProbabilities__ | `boolean`: undefined. Default: `false`.
-* __step__ | `object`: undefined. Default: `'any'`.
+* __showProbabilities__ | `boolean`: controls whether to display the probabilities. Default: `false`.
+* __step__ | `number`: step size of the scroll input. Default: `'0.05'`.

@@ -1,6 +1,6 @@
 ---
 title: "Venn Diagram Builder"
-author: Francis R. Kovacs 
+author: Francis R. Kovacs
 date: May 27th, 2018
 state:
 server: https://isle.heinz.cmu.edu
@@ -10,17 +10,16 @@ server: https://isle.heinz.cmu.edu
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
     }}
     code={`
-    <LearnVennDiagramBuilder>
+    <LearnVennDiagramBuilder
         nobs={1354}
         three={false}
-    </LearnVennDiagramBuilder>
-    
+    />
 `}
     scope={{
         LearnVennDiagramBuilder
@@ -29,10 +28,3 @@ server: https://isle.heinz.cmu.edu
 
 
 #### Options:
-
-* __height__: PropTypes.number,
-* __nTexts__: PropTypes.number.isRequired,
-* __onClick__: PropTypes.func,
-* __tdm__: PropTypes.array.isRequired,
-* __vocabulary__: PropTypes.array.isRequired,
-* __width: PropTypes.number

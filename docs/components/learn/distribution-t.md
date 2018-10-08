@@ -1,1 +1,0 @@
-# Student's T Distribution

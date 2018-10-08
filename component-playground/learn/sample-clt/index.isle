@@ -1,9 +1,9 @@
 ---
 title: "Sample CLT"
-author: Francis R. Kovacs 
+author: Francis R. Kovacs
 date: May 27th, 2018
-require: 
-    integrity: './college.json'   
+require:
+    integrity: './college.json'
 state:
 server: https://isle.heinz.cmu.edu
 ---
@@ -12,18 +12,18 @@ server: https://isle.heinz.cmu.edu
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
     }}
     code={`
     <LearnSampleCLT
-        data={college} 
-        variables={["Gender","Drinks","Height","Cheating"]}  
+        data={college}
+        variables={["Gender","Drinks","Height","Cheating"]}
         populationProbabilities
     />
-    
+
 `}
     scope={{
         LearnSampleCLT
@@ -34,4 +34,4 @@ server: https://isle.heinz.cmu.edu
 
 * __data__: The name of the .json dataset that will be used in the explorer. If you wish to allow students to enter in a `.csv` file, set to `{false}`. Required.
 * __variables__: An `array` of `string`s indicating which variables to include for consideration. Required.
-* __populationProbabilities__: A `bool` indicating whether the probabilities of values appearing mirror their frequency in the data. 
+* __populationProbabilities__: A `bool` indicating whether the probabilities of values appearing mirror their frequency in the data.

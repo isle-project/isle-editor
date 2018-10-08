@@ -1,6 +1,6 @@
 ---
 title: "Image Pixel Picker"
-author: Francis R. Kovacs 
+author: Francis R. Kovacs
 date: May 27th, 2018
 require:
 state:
@@ -11,14 +11,13 @@ server: https://isle.heinz.cmu.edu
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
     }}
     code={`
-    <LearnImagePixelPicker>
-    </LearnImagePixelPicker>
+    <LearnImagePixelPicker />
 `}
     scope={{
         LearnImagePixelPicker

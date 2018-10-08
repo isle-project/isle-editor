@@ -1,25 +1,24 @@
 ---
-title: "Mean Test"
-author: Francis R. Kovacs 
+title: "Proportion Test"
+author: Francis R. Kovacs
 date: May 27th, 2018
 state:
 server: https://isle.heinz.cmu.edu
 ---
 
-# Mean Test
+# Proportion Test
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
     }}
     code={`
-    <LearnMeanTest />
-    
+    <LearnProportionTest />
 `}
     scope={{
-        LearnMeanTest
+        LearnProportionTest
     }}
 />
