@@ -103,8 +103,8 @@ class ConfidenceCoverageBinomial extends Component {
 				style={{
 					data: {
 						stroke: ( data ) => (
-							( data.y - data.err > this.state.p ) ||
-							( data.y + data.err < this.state.p )
+							( data.yval - data.err > this.state.p ) ||
+							( data.yval + data.err < this.state.p )
 						) ? 'darkred' : 'steelblue'
 					}
 				}}
@@ -169,6 +169,9 @@ class ConfidenceCoverageBinomial extends Component {
 										fractionDigits={2}
 									/>
 								</Dashboard>
+								<FeedbackButtons
+									id="coverageModuleBinomial"
+								/>
 							</Col>
 							<Col md={8}>
 								<Card>
@@ -180,9 +183,6 @@ class ConfidenceCoverageBinomial extends Component {
 										<p>Of the 20 confidence intervals, {this.state.nTrapped} capture the true proportion <b>(coverage: {this.state.nTrapped/20}).</b></p>
 									</Card.Body>
 								</Card>
-								<FeedbackButtons
-									id="coverageModuleBinomial"
-								/>
 							</Col>
 						</Row>
 					</Container>

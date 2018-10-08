@@ -98,10 +98,12 @@ class ConfidenceCoverageNormal extends Component {
 				labelComponent={<VictoryTooltip />}
 				style={{
 					data: {
-						stroke: ( data ) => (
-							( data.y - data.err > this.state.mu ) ||
-							( data.y + data.err < this.state.mu )
-						) ? 'darkred' : 'steelblue'
+						stroke: ( data ) => {
+							return (
+								( data.yval - data.err > this.state.mu ) ||
+								( data.yval + data.err < this.state.mu )
+							) ? 'darkred' : 'steelblue';
+						}
 					}
 				}}
 				data={this.state.errorBars}
@@ -169,6 +171,9 @@ class ConfidenceCoverageNormal extends Component {
 										fractionDigits={2}
 									/>
 								</Dashboard>
+								<FeedbackButtons
+									id="coverageModuleNormal"
+								/>
 							</Col>
 							<Col md={8}>
 								<Card>
@@ -180,9 +185,6 @@ class ConfidenceCoverageNormal extends Component {
 										<p>Of the 20 confidence intervals, {this.state.nTrapped} capture the true mean <b>(coverage:  {this.state.nTrapped/20}).</b></p>
 									</Card.Body>
 								</Card>
-								<FeedbackButtons
-									id="coverageModuleNormal"
-								/>
 							</Col>
 						</Row>
 					</Container>

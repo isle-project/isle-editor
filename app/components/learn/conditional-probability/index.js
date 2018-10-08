@@ -309,14 +309,11 @@ class ConditionalProbability extends Component {
 								</Card> :
 								<Container>
 									<Row>
-										<Col md={4}>
+										<Col md={12}>
 											<VictoryChart
 												theme={VictoryTheme.material}
 												domainPadding={{ x: 50, y: [ 10, 20 ]}}
-												style={{
-													height: 100,
-													width: 250
-												}}
+												height={350}
 											>
 												<VictoryAxis dependentAxis tickFormat={( x ) => x/100} />
 												<VictoryAxis />

@@ -1,7 +1,9 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import Container from 'react-bootstrap/lib/Container';
 import Col from 'react-bootstrap/lib/Col';
+import Row from 'react-bootstrap/lib/Row';
 import landscape from '@stdlib/datasets/img-french-alpine-landscape';
 import boats from '@stdlib/datasets/img-nagasaki-boats';
 import airplane from '@stdlib/datasets/img-airplane-from-above';
@@ -121,26 +123,30 @@ class ImagePixelPicker extends Component {
 						</span> : null
 					}
 				</div>
-				<Col md={8}>
-					<canvas
-						width="600" height="400"
-						id="picker"
-					/>
-				</Col>
-				<Col md={3}>
-					<div
-						id="color"
-						style={{
-							width: '250px',
-							height: '50px',
-							color: 'red'
-						}}
-					/>
-					<canvas
-						id="zoom"
-						width="250" height="200"
-					/>
-				</Col>
+				<Container>
+					<Row>
+						<Col md={8}>
+							<canvas
+								width="600" height="400"
+								id="picker"
+							/>
+						</Col>
+						<Col md={3}>
+							<div
+								id="color"
+								style={{
+									width: '250px',
+									height: '50px',
+									color: 'red'
+								}}
+							/>
+							<canvas
+								id="zoom"
+								width="250" height="200"
+							/>
+						</Col>
+					</Row>
+				</Container>
 			</div>
 		);
 	}
