@@ -18,6 +18,12 @@ import TeX from 'components/tex';
 
 // MAIN //
 
+/**
+* A learning component for calculating probabilities of a normal distribution.
+*
+* @property {number} step - step size of the scroll input
+* @property {Object} style - CSS inline styles
+*/
 class NormalProbs extends Component {
 	constructor( props ) {
 		super( props );

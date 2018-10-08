@@ -86,6 +86,9 @@ function getBins( data ) {
 
 // MAIN //
 
+/**
+* A learning component illustrating the Central Limit Theorem (CLT) when sampling from a supplied data set.
+*/
 class SampleCLT extends Component {
 	constructor( props ) {
 		super( props );

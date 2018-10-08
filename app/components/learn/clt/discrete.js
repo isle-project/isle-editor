@@ -34,6 +34,9 @@ const GridLayout = WidthProvider( ReactGridLayout );
 
 // MAIN //
 
+/**
+* A learning component illustrating the Central Limit Theorem (CLT) for a canonical discrete distribution, the binomial distribution.
+*/
 class DiscreteCLT extends Component {
 	constructor( props ) {
 		super( props );

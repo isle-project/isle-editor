@@ -19,6 +19,12 @@ import TeX from 'components/tex';
 
 // MAIN //
 
+/**
+* A venn diagram builder.
+*
+* @property {number} nobs - total number of observations
+* @property {boolean} three - controls whether to display three circles
+*/
 class VennDiagramBuilder extends Component {
 	constructor( props ) {
 		super( props );

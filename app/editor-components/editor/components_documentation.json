@@ -1379,27 +1379,27 @@
         "type": "string (required)"
       }
     ],
-    "description": "Description is missing."
+    "description": "A learning component illustrating conditional probability for two dependent binary variables."
   },
   "LearnConfidenceCoverageBinomial": {
     "props": [],
-    "description": "Description is missing."
+    "description": "A learning component illustrating coverage of confidence intervals for the mean of a binomial distribution."
   },
   "LearnConfidenceCoverageNormal": {
     "props": [],
-    "description": "Description is missing."
+    "description": "A learning component illustrating coverage of confidence intervals for the mean of a normal distribution."
   },
   "LearnCrossValidation": {
     "props": [],
-    "description": "Description is missing."
+    "description": "A visualization explaining cross-validation."
   },
   "LearnDiceThrowing": {
     "props": [],
-    "description": "Description is missing."
+    "description": "A learning component illustrating the law of large numbers using dice throwing."
   },
   "LearnImagePixelPicker": {
     "props": [],
-    "description": "Description is missing."
+    "description": "A pixel color picker explaining RGB colors using example images."
   },
   "Learn": {
     "props": [],
@@ -1444,47 +1444,55 @@
       {
         "name": "nobs",
         "type": "number",
+        "description": "total number of observations",
         "default": null
       },
       {
         "name": "three",
         "type": "boolean",
+        "description": "controls whether to display three circles",
         "default": false
       }
     ],
-    "description": "Description is missing."
+    "description": "A venn diagram builder."
   },
   "LearnWordVennDiagram": {
     "props": [
       {
         "name": "height",
         "type": "number",
+        "description": "height of the Venn diagram in pixels",
         "default": 350
       },
       {
         "name": "nTexts",
-        "type": "number (required)"
+        "type": "number (required)",
+        "description": "number of sources from which text was gathered"
       },
       {
         "name": "onClick",
         "type": "function",
+        "description": "callback for what is to be done when \"Draw Venn Diagram\" is clicked",
         "default": "onClick() {}"
       },
       {
         "name": "tdm",
-        "type": "array (required)"
+        "type": "array (required)",
+        "description": "`array` that is to represent a [term document matrix](https://en.wikipedia.org/wiki/Document-term_matrix)"
       },
       {
         "name": "vocabulary",
-        "type": "array (required)"
+        "type": "array (required)",
+        "description": "`array` in the order of the `tdm` array passed so that the indices may be matches to their words"
       },
       {
         "name": "width",
         "type": "number",
+        "description": "width of the Venn diagram in pixels",
         "default": 600
       }
     ],
-    "description": "Description is missing."
+    "description": "A venn diagram visualizing co-occurrence of words in documents of a supplied term-document matrix."
   },
   "LessonSubmit": {
     "props": [

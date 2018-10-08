@@ -8,6 +8,9 @@ import floor from '@stdlib/math/base/special/floor';
 
 // MAIN //
 
+/**
+* A visualization explaining cross-validation.
+*/
 class CrossValidation extends Component {
 	constructor( props ) {
 		super( props );

@@ -98,6 +98,9 @@ function getBins( data ) {
 
 // MAIN //
 
+/**
+* A learning component illustrating the Central Limit Theorem (CLT) for a chosen continuous distribution.
+*/
 class ContinuousCLT extends Component {
 	constructor( props ) {
 		super( props );

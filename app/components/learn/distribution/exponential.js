@@ -23,6 +23,12 @@ var NEAR_ONE = 0.999999;
 
 // MAIN //
 
+/**
+* A learning component for calculating probabilities of a exponential distribution.
+*
+* @property {number} step - step size of the scroll input
+* @property {Object} style - CSS inline styles
+*/
 class ExponentialProbs extends Component {
 	constructor( props ) {
 		super( props );

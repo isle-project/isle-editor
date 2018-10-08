@@ -14,6 +14,9 @@ import SelectInput from 'components/input/select';
 
 // MAIN //
 
+/**
+* A pixel color picker explaining RGB colors using example images.
+*/
 class ImagePixelPicker extends Component {
 	constructor( props ) {
 		super( props );

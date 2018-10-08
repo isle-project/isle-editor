@@ -17,6 +17,12 @@ import TeX from 'components/tex';
 
 // MAIN //
 
+/**
+* A learning component for calculating probabilities of a Student's t distribution.
+*
+* @property {number} step - step size of the scroll input
+* @property {Object} style - CSS inline styles
+*/
 class TProbs extends Component {
 	constructor( props ) {
 		super( props );

@@ -18,6 +18,9 @@ import FeedbackButtons from 'components/feedback';
 
 // MAIN //
 
+/**
+* A learning component illustrating the law of large numbers using dice throwing.
+*/
 class DiceThrowing extends Component {
 	constructor( props ) {
 		super( props );

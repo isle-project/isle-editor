@@ -30,6 +30,9 @@ const ELEM_TOOLTIPS = {
 
 // MAIN //
 
+/**
+* A learning component illustrating coverage of confidence intervals for the mean of a normal distribution.
+*/
 class ConfidenceCoverageNormal extends Component {
 	constructor( props ) {
 		super( props );

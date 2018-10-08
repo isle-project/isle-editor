@@ -34,6 +34,9 @@ const debug = logger( 'isle:learn:hypothesis-testing-proportion' );
 
 // MAIN //
 
+/**
+* A learning component on hypothesis tests for a population proportion.
+*/
 class ProportionTest extends Component {
 	constructor( props ) {
 		super( props );

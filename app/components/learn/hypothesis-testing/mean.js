@@ -32,6 +32,9 @@ const debug = logger( 'isle:learn:hypothesis-testing-mean' );
 
 // MAIN //
 
+/**
+* A learning component on hypothesis tests for a population mean.
+*/
 class MeanTest extends Component {
 	constructor( props ) {
 		super( props );

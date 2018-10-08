@@ -54,6 +54,9 @@ probabilityTableLabels.propTypes = {
 
 // MAIN //
 
+/**
+* A learning component illustrating conditional probability for two dependent binary variables.
+*/
 class ConditionalProbability extends Component {
 	constructor( props ) {
 		super( props );

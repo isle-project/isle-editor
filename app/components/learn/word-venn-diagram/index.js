@@ -20,6 +20,16 @@ import './venn_diagram.css';
 
 // MAIN //
 
+/**
+* A venn diagram visualizing co-occurrence of words in documents of a supplied term-document matrix.
+*
+* @property {Array} tdm - `array` that is to represent a [term document matrix](https://en.wikipedia.org/wiki/Document-term_matrix)
+* @property {number} nTexts - number of sources from which text was gathered
+* @property {number} vocabulary - `array` in the order of the `tdm` array passed so that the indices may be matches to their words
+* @property {number} height - height of the Venn diagram in pixels
+* @property {number} width - width of the Venn diagram in pixels
+* @property {Function} onClick - callback for what is to be done when "Draw Venn Diagram" is clicked
+*/
 class WordVennDiagram extends Component {
 	constructor( props ) {
 		super( props );
