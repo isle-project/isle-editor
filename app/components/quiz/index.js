@@ -49,6 +49,8 @@ function isHTMLConfig( elem ) {
 * @property {boolean} confidence - whether to display a Likert scale asking for the confidence of the user's answer
 * @property {boolean} forceConfidence - controls whether a user has to supply a confidence level before moving to the next question
 * @property {boolean} skippable - controls whether questions in  the quiz are skippable
+* @property {boolean} active - controls whether the timer for the quiz is active
+* @property {number} duration - duration of the quiz; once time is up, the summary page will be displayed
 * @property {Function} onFinished - callback invoked when the quiz is finished and the results page is displayed
 */
 class Quiz extends Component {
@@ -118,7 +120,11 @@ class Quiz extends Component {
 			const answers = this.state.answers.slice();
 			if ( elem.props ) {
 				let solution;
-				if ( elem.component === 'MultipleChoiceQuestion' ) {
+				if (
+					elem.component === 'MultipleChoiceQuestion' ||
+					elem.type === MultipleChoiceQuestion ||
+					elem.type.name === 'MultipleChoiceQuestion'
+				) {
 					const correct = elem.props.solution;
 					if ( isArray( correct ) ) {
 						solution = '';
@@ -130,15 +136,33 @@ class Quiz extends Component {
 						solution = elem.props.answers[ correct ].content;
 					}
 				}
-				else if ( elem.component === 'MatchListQuestion' ) {
+				else if (
+					elem.component === 'MatchListQuestion' ||
+					elem.type === MatchListQuestion ||
+					elem.type.name === 'MatchListQuestion'
+				) {
 					solution = '';
 					for ( let i = 0; i < elem.props.elements.length; i++ ) {
 						const val = elem.props.elements[ i ];
 						solution += `${val.a}:${val.b}; `;
 					}
 				}
+				else if (
+					elem.component === 'OrderQuestion' ||
+					elem.type === OrderQuestion ||
+					elem.type.name === 'OrderQuestion'
+				) {
+					solution = '';
+					for ( let i = 0; i < elem.props.options.length; i++ ) {
+						const val = elem.props.options[ i ];
+						solution += `${val.text}; `;
+					}
+				}
 				else {
 					solution = elem.props.solution;
+					if ( isArray( solution ) ) {
+						solution = solution.join( ', ' );
+					}
 				}
 				answers[ this.state.current ] = {
 					question: elem.props ? elem.props.question : null,
@@ -162,7 +186,11 @@ class Quiz extends Component {
 		let answer;
 		let solution;
 		if ( elem.props ) {
-			if ( elem.component === 'MultipleChoiceQuestion' ) {
+			if (
+				elem.component === 'MultipleChoiceQuestion' ||
+				elem.type === MultipleChoiceQuestion ||
+				elem.type.name === 'MultipleChoiceQuestion'
+			) {
 				answer = elem.props.answers[ val ].content;
 				const correct = elem.props.solution;
 				if ( isArray( correct ) ) {
@@ -175,7 +203,11 @@ class Quiz extends Component {
 					solution = elem.props.answers[ correct ].content;
 				}
 			}
-			else if ( elem.component === 'MatchListQuestion' ) {
+			else if (
+				elem.component === 'MatchListQuestion' ||
+				elem.type === MatchListQuestion ||
+				elem.type.name === 'MatchListQuestion'
+			) {
 				answer = '';
 				solution = '';
 				for ( let i = 0; i < elem.props.elements.length; i++ ) {
@@ -185,9 +217,27 @@ class Quiz extends Component {
 					answer += `${userElem.a}:${userElem.b}; `;
 				}
 			}
+			else if (
+				elem.component === 'OrderQuestion' ||
+				elem.type === OrderQuestion ||
+				elem.type.name === 'OrderQuestion'
+			) {
+				answer = '';
+				solution = '';
+				for ( let i = 0; i < elem.props.options.length; i++ ) {
+					const e = elem.props.options[ i ];
+					const userElem = val[ i ];
+					solution += `${e.text}; `;
+					answer += `${userElem.text}; `;
+				}
+			}
 			else {
 				answer = val;
 				solution = elem.props.solution;
+				if ( isArray( solution ) ) {
+					answer = answer.join( ', ' );
+					solution = solution.join( ', ' );
+				}
 			}
 			answers[ this.state.current ] = {
 				question: elem.props ? elem.props.question : null,
@@ -259,7 +309,7 @@ class Quiz extends Component {
 
 	renderCurrentQuestion() {
 		const config = this.props.questions[ this.state.current ];
-		let props = config.props || {};
+		const props = config.props || {};
 		if ( isHTMLConfig( props.question ) ) {
 			debug( 'Question property is an object, convert to JSX...' );
 			props.question = convertJSONtoJSX( props.question );
@@ -281,6 +331,9 @@ class Quiz extends Component {
 				return <RangeQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
 			case 'SelectQuestion':
 				return <SelectQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
+			default:
+				// Case: `config` already is a React component, clone it to pass in submit handler:
+				return <config.type {...config.props} {...props} provideFeedback={false} onSubmit={this.handleSubmission} />;
 		}
 	}
 
