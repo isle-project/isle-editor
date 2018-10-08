@@ -5,8 +5,6 @@ For various to-do items related to the `ISLE` project.
 
 Fall
 =====
-~~* Scaffolding for the labs. This would involve notes for the TAs about when to interject, what to teach, etc.~~
-* Instructor notes within the instructor panel. Start out with the skeleton for the lab and have them fill it in.
 * Dashboard: Have a repository with old TA notes
 * Insert equation menu similar to table select
 * **Calculator parser**
@@ -20,13 +18,10 @@ Fall
 * Include "Text to TeX" equation parser 
 * Add React component for toggling between Text source / intermediate TeX representation / rendered equation. 
 * Add option to display a line grid instead of a white page as sketchpad background
-* Quiz component
-  -   Multiple-Choice-Question: capture answer selections
 * Update logging
   -   Log data table filtering and sorting operations
 * Add "Request Help" button for TA to come (to feedback buttons)?
 * Add save reminders in data explorer 
-* Update labs to move question components instead of markdown editor for easier analyses
 * Log actions in instructor bar
 
 
@@ -59,8 +54,6 @@ LONG-TERM
    - For barcharts, instead of counts, add an option to display percentages (also conditional %)
    - Display additional information when hovering over bars of barcharts (percentage, description, other variables?)
    - We have been deliberately loose with respect to terminology: z-test vs. t-test
-* Gate
-    This shall contain a **timed** parameter allowing scheduled gating
 * Surveys
     - Handle ordered categories
     - Don't show invalid axis labels before answers are submitted
