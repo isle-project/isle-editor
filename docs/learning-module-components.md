@@ -6,10 +6,10 @@ ISLE ships with the following interactive applets:
 	* [Continuous](https://isle.heinz.cmu.edu/components/continuous-clt/)
 	* [Discrete](https://isle.heinz.cmu.edu/components/discrete-clt/)
 	* [Sample](https://isle.heinz.cmu.edu/components/sample-clt/)
-* [Conditional Probability](https://isle.heinz.cmu.edu/conditional-probability/)
+* [Conditional Probability](https://isle.heinz.cmu.edu/components/conditional-probability/)
 * Confidence Intervals
-	* [Binomial](https://isle.heinz.cmu.edu/confidence-coverage-binomial)
-	* [Normal](https://isle.heinz.cmu.edu/confidence-coverage-normal)
+	* [Binomial](https://isle.heinz.cmu.edu/components/confidence-coverage-binomial)
+	* [Normal](https://isle.heinz.cmu.edu/components/confidence-coverage-normal)
 * [Cross-Validation](https://isle.heinz.cmu.edu/components/cross-validation/)
 * [Dice Throwing](https://isle.heinz.cmu.edu/components/dice-throwing/)
 * Distribution
