@@ -9,7 +9,7 @@ import Modal from 'react-bootstrap/lib/Modal';
 import Tooltip from 'components/tooltip';
 import TextArea from 'components/input/text-area';
 import CheckboxInput from 'components/input/checkbox';
-import InstructorBar from 'components/instructor-bar';
+import ResponseVisualizer from 'components/response-visualizer';
 import Confused from '-!svg-react-loader!./../../img/confused.svg';
 import Understood from '-!svg-react-loader!./../../img/lightbulb.svg';
 import Feedback from '-!svg-react-loader!./../../img/feedback.svg';
@@ -158,7 +158,7 @@ class FeedbackButtons extends Component {
 							<Feedback className="icon" />
 						</Button>
 					</Tooltip>
-					<InstructorBar
+					<ResponseVisualizer
 						variant="light"
 						buttonLabel={this.props.vertical ? '' : 'Responses'}
 						buttonStyle={{

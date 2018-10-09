@@ -10,7 +10,7 @@ import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import roundn from '@stdlib/math/base/special/roundn';
 import ChatButton from 'components/chat-button';
-import InstructorBar from 'components/instructor-bar';
+import ResponseVisualizer from 'components/response-visualizer';
 import NumberInput from 'components/input/number';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
@@ -201,7 +201,7 @@ class NumberQuestion extends Component {
 								</div> : null
 						}
 					</ButtonToolbar>
-					<InstructorBar buttonLabel="Answers" id={this.props.id} dataType="number" />
+					<ResponseVisualizer buttonLabel="Answers" id={this.props.id} dataType="number" info="NUMBER_QUESTION_SUBMISSION" />
 				</Card.Body>
 				{ this.props.id && this.props.feedback ? <FeedbackButtons
 					vertical

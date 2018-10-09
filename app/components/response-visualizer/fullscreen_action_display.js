@@ -18,9 +18,9 @@ import Modal from 'react-bootstrap/lib/Modal';
 import ReactList from 'react-list';
 import Highlighter from 'react-highlight-words';
 import RangePicker from 'components/range-picker';
-import Search from 'components/instructor-bar/search';
 import Plotly from 'components/plotly';
 import WordCloud from 'components/word-cloud';
+import Search from './search.js';
 
 
 // MAIN //

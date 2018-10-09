@@ -16,7 +16,7 @@ import lowercase from '@stdlib/string/lowercase';
 import tokenize from '@stdlib/nlp/tokenize';
 import TextArea from 'components/input/text-area';
 import Gate from 'components/gate';
-import InstructorBar from 'components/instructor-bar';
+import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
 import './free-text-survey.css';
 
@@ -188,7 +188,7 @@ class FreeTextSurvey extends Component {
 								{this.state.freqTable}
 							</Col>
 						</Container>
-						<InstructorBar buttonLabel="Responses" id={props.id} />
+						<ResponseVisualizer buttonLabel="Responses" id={props.id} />
 					</Card.Body>
 				</Card>
 			</Gate>

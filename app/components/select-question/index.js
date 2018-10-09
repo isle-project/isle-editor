@@ -9,7 +9,7 @@ import InputGroup from 'react-bootstrap/lib/InputGroup';
 import Button from 'react-bootstrap/lib/Button';
 import Card from 'react-bootstrap/lib/Card';
 import HintButton from 'components/hint-button';
-import InstructorBar from 'components/instructor-bar';
+import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
 import FeedbackButtons from 'components/feedback';
 import './select-question.css';
@@ -90,6 +90,13 @@ class SelectQuestion extends Component {
 				position: 'tr'
 			});
 		}
+		if ( this.props.id ) {
+			this.context.session.log({
+				id: this.props.id,
+				type: 'SELECT_QUESTION_SUBMISSION',
+				value: this.state.value
+			});
+		}
 		this.props.onSubmit( this.state.value, correct );
 		this.setState({
 			answerState: correct ? 'success' : 'error',
@@ -166,7 +173,11 @@ class SelectQuestion extends Component {
 							<ChatButton for={this.props.id} /> : null
 					}
 				</div>
-				<InstructorBar id={this.props.id} dataType="text" />
+				<ResponseVisualizer
+					id={this.props.id}
+					dataType="text"
+					info="SELECT_QUESTION_SUBMISSION"
+				/>
 				{ this.props.id && this.props.feedback ? <FeedbackButtons
 					id={this.props.id+'_feedback'}
 				/> : null }

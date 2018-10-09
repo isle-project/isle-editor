@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 import Image from 'components/image';
-import InstructorBar from 'components/instructor-bar';
+import ResponseVisualizer from 'components/response-visualizer';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import Modal from 'react-bootstrap/lib/Modal';
@@ -546,7 +546,7 @@ class RShell extends React.Component {
 					{ showResult( this.state.result ) }
 					{ insertImages( this.state.plots ) }
 				</div>
-				<InstructorBar id={this.props.id} />
+				<ResponseVisualizer id={this.props.id} info="RSHELL_EVALUATION" />
 				{this.renderHelpModal()}
 			</div>
 		);

@@ -8,7 +8,7 @@ import Card from 'react-bootstrap/lib/Card';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
-import InstructorBar from 'components/instructor-bar';
+import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
@@ -280,7 +280,7 @@ class MultipleChoiceQuestion extends Component {
 						}
 					</div>
 					{ id ? <div>
-						<InstructorBar
+						<ResponseVisualizer
 							buttonLabel="Answers"
 							id={id}
 							dataType="factor"

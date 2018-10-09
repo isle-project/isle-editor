@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/lib/Col';
 import logger from 'debug';
 import ProportionsInput from 'components/input/proportions';
 import Gate from 'components/gate';
-import InstructorBar from 'components/instructor-bar';
+import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
 
 
@@ -173,7 +173,7 @@ class ProportionsSurvey extends Component {
 						</Card>
 					</Col>
 				</Container>
-				<InstructorBar buttonLabel="Responses" id={this.props.id} />
+				<ResponseVisualizer buttonLabel="Responses" id={this.props.id} />
 			</Gate>
 		);
 	}

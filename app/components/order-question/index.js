@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Card from 'react-bootstrap/lib/Card';
 import DraggableList from 'components/draggable-list';
 import HintButton from 'components/hint-button';
-import InstructorBar from 'components/instructor-bar';
+import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
 import FeedbackButtons from 'components/feedback';
 import './order-question.css';
@@ -133,7 +133,11 @@ class OrderQuestion extends Component {
 								<ChatButton for={this.props.id} /> : null
 						}
 					</div>
-					<InstructorBar id={this.props.id} dataType="text" />
+					<ResponseVisualizer
+						id={this.props.id}
+						dataType="text"
+						info="ORDER_QUESTION_SUBMISSION"
+					/>
 				</Card.Body>
 				{ this.props.id && this.props.feedback ? <FeedbackButtons
 					vertical

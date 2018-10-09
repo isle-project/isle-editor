@@ -23,7 +23,7 @@ import extractValue from './extract_value.js';
 // MAIN //
 
 /**
-* Instructor bar for accessing component actions.
+* Instructor panel for visualizing component responses.
 *
 * @property {string} buttonLabel - label of button to pull of action display
 * @property {Object} buttonStyle - button CSS styles
@@ -33,7 +33,7 @@ import extractValue from './extract_value.js';
 * @property {string} success - action identifier for success
 * @property {string} danger - action identifier for danger
 */
-class InstructorBar extends Component {
+class ResponseVisualizer extends Component {
 	constructor( props, context ) {
 		super( props );
 
@@ -357,7 +357,7 @@ class InstructorBar extends Component {
 
 // PROPERTIES //
 
-InstructorBar.propTypes = {
+ResponseVisualizer.propTypes = {
 	buttonLabel: PropTypes.string,
 	buttonStyle: PropTypes.object,
 	dataType: PropTypes.oneOf([
@@ -373,7 +373,7 @@ InstructorBar.propTypes = {
 	])
 };
 
-InstructorBar.defaultProps = {
+ResponseVisualizer.defaultProps = {
 	buttonLabel: 'Actions',
 	buttonStyle: {},
 	dataType: 'text',
@@ -385,11 +385,11 @@ InstructorBar.defaultProps = {
 	variant: 'secondary'
 };
 
-InstructorBar.contextTypes = {
+ResponseVisualizer.contextTypes = {
 	session: PropTypes.object
 };
 
 
 // EXPORTS //
 
-export default InstructorBar;
+export default ResponseVisualizer;

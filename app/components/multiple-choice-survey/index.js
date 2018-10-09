@@ -12,7 +12,7 @@ import logger from 'debug';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import tabulate from '@stdlib/utils/tabulate';
 import Gate from 'components/gate';
-import InstructorBar from 'components/instructor-bar';
+import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
 import AnswerOption from './answer_option';
 import './multiple-choice-survey.css';
@@ -215,7 +215,7 @@ class MultipleChoiceSurvey extends Component {
 								</p>
 							</Col>
 						</Container>
-						<InstructorBar buttonLabel="Responses" id={id} dataType="factor" />
+						<ResponseVisualizer buttonLabel="Responses" id={id} dataType="factor" />
 					</Card.Body>
 				</Card>
 			</Gate>

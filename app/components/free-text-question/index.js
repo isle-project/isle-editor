@@ -14,7 +14,7 @@ import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import isString from '@stdlib/assert/is-string';
 import ChatButton from 'components/chat-button';
-import InstructorBar from 'components/instructor-bar';
+import ResponseVisualizer from 'components/response-visualizer';
 import HintButton from 'components/hint-button';
 import VoiceControl from 'components/voice-control';
 import OverlayTrigger from 'components/overlay-trigger';
@@ -348,7 +348,7 @@ class FreeTextQuestion extends Component {
 								</div> : null
 						}
 					</ButtonToolbar>
-					<InstructorBar
+					<ResponseVisualizer
 						buttonLabel="Answers" id={this.props.id}
 						info="FREE_TEXT_QUESTION_SUBMIT_ANSWER"
 					/>

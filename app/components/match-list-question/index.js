@@ -9,7 +9,7 @@ import shuffle from '@stdlib/random/shuffle';
 import * as d3 from 'd3';
 import ChatButton from 'components/chat-button';
 import HintButton from 'components/hint-button';
-import InstructorBar from 'components/instructor-bar';
+import ResponseVisualizer from 'components/response-visualizer';
 import OverlayTrigger from 'components/overlay-trigger';
 import FeedbackButtons from 'components/feedback';
 import OptionsList from './options_list.js';
@@ -242,7 +242,7 @@ class MatchListQuestion extends Component {
 								<ChatButton for={this.props.id} />
 							</div> : null
 					}
-					<InstructorBar buttonLabel="Answers" id={this.props.id} />
+					<ResponseVisualizer buttonLabel="Answers" id={this.props.id} />
 				</div>
 				{ this.props.id && this.props.feedback ? <FeedbackButtons
 					style={{ marginTop: '10px', marginRight: '8px' }}
