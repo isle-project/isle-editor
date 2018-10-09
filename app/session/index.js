@@ -629,7 +629,7 @@ class Session {
 			data = JSON.parse( data );
 			this.userList.push( data );
 			const isUser = data.email === this.user.email;
-			if ( this.config.joinNotifications && isUser ) {
+			if ( this.config.joinNotifications && !isUser ) {
 				this.addNotification({
 					title: 'User has joined',
 					message: `User ${data.name} (${data.email}) has joined us.`,
@@ -661,7 +661,7 @@ class Session {
 						position: 'tl'
 					});
 				} else if ( isUser ) {
-					// Case: Oneself has logged on another browser tab
+					// Case: Oneself has logged off on another browser tab
 					this.forcedLogout();
 				}
 			}
