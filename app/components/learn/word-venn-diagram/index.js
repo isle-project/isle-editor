@@ -237,25 +237,27 @@ class WordVennDiagram extends Component {
 	render() {
 		const inputs = [];
 		for ( let i = 0; i < this.state.nWords; i++ ) {
-			inputs[ i ] = <Fragment><TextInput
-				legend={`Word ${i+1}`}
-				defaultValue={this.state.words[ i ]}
-				width={120}
-				onChange={this.wordChangeFactory( i )}
-			/><NumberInput
-				legend="Min # of times "
-				defaultValue={1}
-				max={50}
-				min={1}
-				step={1}
-				onChange={( value ) => {
-					const newMinCount = copy( this.state.minCount );
-					newMinCount[ i ] = value;
-					this.setState({
-						minCount: newMinCount
-					});
-				}}
-			/></Fragment>;
+			inputs[ i ] = <Fragment>
+				<TextInput
+					legend={`Word ${i+1}`}
+					defaultValue={this.state.words[ i ]}
+					width={120}
+					onChange={this.wordChangeFactory( i )}
+				/><NumberInput
+					legend="Min # of times "
+					defaultValue={1}
+					max={50}
+					min={1}
+					step={1}
+					onChange={( value ) => {
+						const newMinCount = copy( this.state.minCount );
+						newMinCount[ i ] = value;
+						this.setState({
+							minCount: newMinCount
+						});
+					}}
+				/>
+			</Fragment>;
 		}
 		return (
 			<Fragment>
@@ -274,10 +276,11 @@ class WordVennDiagram extends Component {
 				</Card>
 				<Card>
 					<Card.Header>Venn Diagram</Card.Header>
-					<Card.Body>
+					<Card.Body style={{ minHeight: 200 }}>
 						<span style={{
 							position: 'absolute',
-							right: 40
+							right: 40,
+							top: 50
 						}}>Total # of Texts: {this.props.nTexts}</span>
 						<div id={this.state.id}></div>
 					</Card.Body>
