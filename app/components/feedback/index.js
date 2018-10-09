@@ -160,7 +160,7 @@ class FeedbackButtons extends Component {
 					</Tooltip>
 					<InstructorBar
 						variant="light"
-						buttonLabel=""
+						buttonLabel={this.props.vertical ? '' : 'Responses'}
 						buttonStyle={{
 							fontSize: '10px',
 							lineHeight: this.props.vertical ? '2em' : '37px'
@@ -170,6 +170,8 @@ class FeedbackButtons extends Component {
 						}}
 						showID={false}
 						id={this.props.id}
+						success="USER_FEEDBACK_UNDERSTOOD"
+						danger="USER_FEEDBACK_CONFUSED"
 					/>
 				</ButtonGroup>
 				<Modal

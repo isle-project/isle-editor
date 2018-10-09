@@ -348,7 +348,10 @@ class FreeTextQuestion extends Component {
 								</div> : null
 						}
 					</ButtonToolbar>
-					<InstructorBar buttonLabel="Answers" id={this.props.id} />
+					<InstructorBar
+						buttonLabel="Answers" id={this.props.id}
+						info="FREE_TEXT_QUESTION_SUBMIT_ANSWER"
+					/>
 				</Card.Body>
 				{ this.props.id && this.props.feedback ? <FeedbackButtons
 					vertical

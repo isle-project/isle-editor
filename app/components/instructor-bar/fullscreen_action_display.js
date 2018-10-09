@@ -216,7 +216,7 @@ class FullscreenActionDisplay extends Component {
 			dialogClassName="modal-100w"
 		>
 			<Modal.Header style={{ paddingBottom: '5px' }} closeButton >
-				<h4 style={{ float: 'left', margin: '2px 14px 2px 2px' }} >{this.props.actionLabel}</h4>
+				<h4 style={{ float: 'left', margin: '2px 14px 2px 2px' }} >{this.props.actionLabel} for {this.props.componentID}</h4>
 				<RangePicker
 					style={{ float: 'left' }}
 					size="sm"
@@ -269,8 +269,9 @@ class FullscreenActionDisplay extends Component {
 
 FullscreenActionDisplay.propTypes = {
 	actions: PropTypes.array.isRequired,
-	actionLabel: PropTypes.string.isRequired,
+	actionLabel: PropTypes.string,
 	categories: PropTypes.array.isRequired,
+	componentID: PropTypes.string.isRequired,
 	counts: PropTypes.array.isRequired,
 	dataType: PropTypes.string.isRequired,
 	deleteFactory: PropTypes.func.isRequired,
@@ -279,6 +280,10 @@ FullscreenActionDisplay.propTypes = {
 	showExtended: PropTypes.bool.isRequired,
 	toggleActions: PropTypes.func.isRequired,
 	toggleExtended: PropTypes.func.isRequired
+};
+
+FullscreenActionDisplay.defaultProps = {
+	actionLabel: 'Responses'
 };
 
 

@@ -11,6 +11,7 @@ import hasOwnProperty from '@stdlib/assert/has-own-property';
 import isString from '@stdlib/assert/is-string';
 import tabulate from '@stdlib/utils/tabulate';
 import trim from '@stdlib/string/trim';
+import round from '@stdlib/math/base/special/round';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import Gate from 'components/gate';
@@ -29,6 +30,8 @@ import extractValue from './extract_value.js';
 * @property {string} dataType - type of data to visualize
 * @property {string} showID - whether to display the component ID
 * @property {string} variant - button style variant
+* @property {string} success - action identifier for success
+* @property {string} danger - action identifier for danger
 */
 class InstructorBar extends Component {
 	constructor( props, context ) {
@@ -37,7 +40,9 @@ class InstructorBar extends Component {
 		this.state = {
 			actions: [],
 			nActions: 0,
-			completionPercentage: 0,
+			nSuccess: 0,
+			nDanger: 0,
+			nInfo: 0,
 			counts: [],
 			categories: [],
 			showActions: false,
@@ -73,12 +78,15 @@ class InstructorBar extends Component {
 	}
 
 	toggleActions = () => {
-		if ( !this.state.showActions ) {
-			this.addSessionActions();
-		}
-		this.setState({
+		const newState = {
 			showActions: !this.state.showActions
-		});
+		};
+		if ( newState.showActions ) {
+			this.addSessionActions();
+		} else {
+			newState.period = null;
+		}
+		this.setState( newState );
 	}
 
 	toggleExtended = () => {
@@ -104,26 +112,31 @@ class InstructorBar extends Component {
 		} else {
 			filtered.unshift( action );
 		}
+		const newState = {
+			actions: filtered,
+			nActions: this.state.nActions + 1
+		};
+		if ( !this.emailHash[ action.email ] ) {
+			this.emailHash[ action.email ] = action.type;
+			if ( this.props.success && action.type === this.props.success ) {
+				newState.nSuccess = this.state.nSuccess + 1;
+			} else if ( this.props.danger && action.type === this.props.danger ) {
+				newState.nDanger = this.state.nDanger + 1;
+			} else if ( this.props.info && action.type === this.props.info ){
+				newState.nInfo = this.state.nInfo + 1;
+			}
+		}
 		if ( this.props.dataType === 'text' ) {
-			this.setState({
-				actions: filtered,
-				nActions: this.state.nActions + 1
-			});
+			this.setState( newState );
 		}
 		else if ( this.props.dataType === 'factor' ) {
 			const { categories, counts } = this.tabulateValues( filtered );
-			this.setState({
-				actions: filtered,
-				counts: counts,
-				categories: categories,
-				nActions: this.state.nActions + 1
-			});
+			newState.categories = categories;
+			newState.counts = counts;
+			this.setState( newState );
 		} else {
 			// Case: props.dataType === 'number':
-			this.setState({
-				actions: filtered,
-				nActions: this.state.nActions + 1
-			});
+			this.setState( newState );
 		}
 	}
 
@@ -131,12 +144,12 @@ class InstructorBar extends Component {
 		const { session } = this.context;
 		const actions = session.socketActions;
 		const filtered = [];
-		const emailHash = {};
+		this.emailHash = {};
 		for ( let i = 0; i < actions.length; i++ ) {
 			let action = actions[ i ];
 			if ( action.id === this.props.id ) {
 				action = extractValue( action );
-				emailHash[ action.email ] = true;
+				this.emailHash[ action.email ] = action.type;
 				if ( this.state.period ) {
 					const { from, to } = this.state.period;
 					if ( action.absoluteTime > from && action.absoluteTime < to ) {
@@ -147,42 +160,43 @@ class InstructorBar extends Component {
 				}
 			}
 		}
-
-		const users = session.userList;
-		let completionPercentage = 0;
-		for ( let i = 0; i < users.length; i++ ) {
-			if ( hasOwnProperty( emailHash, users[ i ].email ) ) {
-				completionPercentage += 1;
-			}
-		}
-		completionPercentage /= session.userList.length;
-		completionPercentage *= 100.0;
-
-		let newState;
+		let newState = {
+			nSuccess: 0,
+			nDanger: 0,
+			nInfo: 0
+		};
 		if ( this.props.dataType === 'text' ) {
-			newState = {
-				actions: filtered,
-				completionPercentage
-			};
+			newState.actions = filtered;
 		}
 		else if ( this.props.dataType === 'factor' ) {
 			const { categories, counts } = this.tabulateValues( filtered );
 			newState = {
+				...newState,
 				actions: filtered,
 				counts: counts,
-				categories: categories,
-				completionPercentage
+				categories: categories
 			};
 		} else {
 			// Case: props.dataType === 'number':
-			newState = {
-				actions: filtered,
-				completionPercentage
-			};
+			newState.actions = filtered;
 		}
 		if ( !this.state.period ) {
 			// Attach total number of actions on initial call:
 			newState.nActions = filtered.length;
+		}
+
+		const users = session.userList;
+		for ( let i = 0; i < users.length; i++ ) {
+			if ( hasOwnProperty( this.emailHash, users[ i ].email ) ) {
+				const type = this.emailHash[ users[ i ].email ];
+				if ( this.props.success && type === this.props.success ) {
+					newState.nSuccess += 1;
+				} else if ( this.props.danger && type === this.props.danger ) {
+					newState.nDanger += 1;
+				} else if ( this.props.info && type === this.props.info ) {
+					newState.nInfo += 1;
+				}
+			}
 		}
 		this.setState( newState );
 	}
@@ -267,9 +281,13 @@ class InstructorBar extends Component {
 	}
 
 	renderFullscreenModal() {
+		const optionalProps = {};
+		if ( this.props.buttonLabel ) {
+			optionalProps.actionLabel = this.props.buttonLabel;
+		}
 		return ( <FullscreenActionDisplay
+			componentID={this.props.id}
 			actions={this.state.actions}
-			actionLabel={this.props.buttonLabel}
 			showExtended={this.state.showExtended}
 			show={this.state.showActions}
 			deleteFactory={this.deleteFactory}
@@ -279,12 +297,29 @@ class InstructorBar extends Component {
 			dataType={this.props.dataType}
 			counts={this.state.counts}
 			categories={this.state.categories}
+			{...optionalProps}
 		/> );
 	}
 
 	render() {
 		if ( !this.props.id ) {
 			return <Gate owner><label style={{ marginLeft: 5 }}>No ID supplied.</label></Gate>;
+		}
+		let successRate = this.state.nSuccess / this.context.session.userList.length;
+		successRate *= 100.0;
+		let dangerRate = this.state.nDanger / this.context.session.userList.length;
+		dangerRate *= 100.0;
+		let infoRate = this.state.nInfo / this.context.session.userList.length;
+		infoRate *= 100.0;
+		let tooltip = 'Interaction rate for currently active students:\n\n';
+		if ( this.props.success ) {
+			tooltip += `${this.props.success}: ${round(successRate)}% (green)\n`;
+		}
+		if ( this.props.danger ) {
+			tooltip += `${this.props.danger}: ${round(dangerRate)}% (red)\n`;
+		}
+		if ( this.props.info ) {
+			tooltip += `${this.props.info}: ${round(infoRate)}% (blue)\n`;
 		}
 		return (
 			<Gate owner>
@@ -305,8 +340,12 @@ class InstructorBar extends Component {
 							<Badge variant="dark" style={{ fontSize: '10px' }}>{this.state.nActions}</Badge>
 						</Button>
 					</Tooltip>
-					<Tooltip placement="top" tooltip={`Interaction rate for currently active students: ${this.state.completionPercentage}%`}>
-						<ProgressBar style={{ width: '100%' }} variant="success" now={this.state.completionPercentage} max={100} min={0} />
+					<Tooltip placement="top" tooltip={tooltip}>
+						<ProgressBar style={{ width: '100%' }}>
+							<ProgressBar variant="info" now={infoRate} max={100} min={0} />
+							<ProgressBar variant="success" now={successRate} max={100} min={0} />
+							<ProgressBar variant="danger" now={dangerRate} max={100} min={0} />
+						</ProgressBar>
 					</Tooltip>
 				</ButtonGroup>
 				{this.renderDeleteModal()}
@@ -325,6 +364,9 @@ InstructorBar.propTypes = {
 		'factor', 'text', 'number'
 	]),
 	showID: PropTypes.bool,
+	success: PropTypes.string,
+	danger: PropTypes.string,
+	info: PropTypes.string,
 	style: PropTypes.object,
 	variant: PropTypes.oneOf([
 		'primary', 'secondary', 'light', 'dark'
@@ -336,6 +378,9 @@ InstructorBar.defaultProps = {
 	buttonStyle: {},
 	dataType: 'text',
 	showID: true,
+	success: null,
+	danger: null,
+	info: null,
 	style: {},
 	variant: 'secondary'
 };

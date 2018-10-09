@@ -279,12 +279,18 @@ class MultipleChoiceQuestion extends Component {
 							</div> : null
 						}
 					</div>
-					{id ? <InstructorBar buttonLabel="Answers" id={id} dataType="factor" /> : null }
+					{ id ? <div>
+						<InstructorBar
+							buttonLabel="Answers"
+							id={id}
+							dataType="factor"
+							info="MULTIPLE_CHOICE_SUBMISSION"
+						/>
+						{ this.props.feedback ? <FeedbackButtons
+							id={this.props.id+'_feedback'}
+						/> : null }
+					</div> : null }
 				</Card.Body>
-				{ this.props.id && this.props.feedback ? <FeedbackButtons
-					vertical
-					id={this.props.id+'_feedback'}
-				/> : null }
 			</Card>
 		);
 	}
