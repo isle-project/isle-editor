@@ -77,48 +77,50 @@ class SummaryStatistics extends Component {
 
 	generateStatistics = ( statName, variable, secondVariable, group, omit ) => {
 		let { data } = this.props;
+		let groupData;
 		let fun;
 		let res;
 		let x;
 		let y;
 
-		if ( omit ) {
-			x = [];
-			y = [];
-			if ( variable && secondVariable ) {
-				let first = data[ variable ];
-				let second = data[ secondVariable ];
-				for ( let i = 0; i < first.length; i++ ) {
-					if ( isNumber( first[ i ] ) && isNumber( second[ i ] ) ) {
-						x.push( first[ i ] );
-						y.push( second[ i ] );
+		if ( group ) {
+			if ( omit ) {
+				// Case: grouping variable selected, omit missing values
+				x = [];
+				y = [];
+				groupData = [];
+				if ( variable && secondVariable ) {
+					let first = data[ variable ];
+					let second = data[ secondVariable ];
+					for ( let i = 0; i < first.length; i++ ) {
+						if (
+							( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) &&
+							( isNumber( second[ i ] ) && !isnan( second[ i ] ) )
+						) {
+							x.push( first[ i ] );
+							y.push( second[ i ] );
+							groupData.push( data[ group ][ i ] );
+						}
+					}
+				} else {
+					let first = data[ variable ];
+					for ( let i = 0; i < first.length; i++ ) {
+						if ( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) {
+							x.push( first[ i ] );
+							groupData.push( data[ group ][ i ] );
+						}
 					}
 				}
 			} else {
-				let first = data[ variable ];
-				for ( let i = 0; i < first.length; i++ ) {
-					if ( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) {
-						x.push( first[ i ] );
-					}
-				}
+				// Case: grouping variable selected, do not omit missing values
+				x = data[ variable ];
+				y = data[ secondVariable ];
+				groupData = data[ group ];
 			}
-		} else {
-			x = data[ variable ];
-			y = data[ secondVariable ];
-		}
-
-		fun = statistic( statName );
-		if ( statName === 'Correlation' ) {
-			if ( !group ) {
-				res = fun( x, y );
-				// Extract correlation coefficient from correlation matrix:
-				res = {
-					value: res[ 0 ][ 1 ],
-					size: x.length
-				};
-			} else {
+			fun = statistic( statName );
+			if ( statName === 'Correlation' ) {
 				const groups = group.categories;
-				res = by2WithCount( x, y, data[ group ], fun, groups );
+				res = by2WithCount( x, y, groupData, fun, groups );
 				const keys = groups || objectKeys( res );
 				for ( let i = 0; i < keys.length; i++ ) {
 					const key = keys[ i ];
@@ -126,26 +128,63 @@ class SummaryStatistics extends Component {
 					// Extract correlation coefficient from correlation matrix:
 					res[ key ].value = res[ key ].value[ 0 ][ 1 ];
 				}
+				variable = `${variable} vs. ${secondVariable}`;
 			}
-			variable = `${variable} vs. ${secondVariable}`;
-		}
-		else if ( !group ) {
-			res = {
-				value: fun( x ),
-				size: x.length
-			};
-		} else {
 			const groups = group.categories;
-			res = byWithCount( x, data[ group ], fun, groups );
-		}
+			res = byWithCount( x, groupData, fun, groups );
+		} else {
+			// Case: no grouping variable selected
+			if ( omit ) {
+				x = [];
+				y = [];
+				if ( variable && secondVariable ) {
+					let first = data[ variable ];
+					let second = data[ secondVariable ];
+					for ( let i = 0; i < first.length; i++ ) {
+						if (
+							( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) &&
+							( isNumber( second[ i ] ) && !isnan( second[ i ] ) )
+						) {
+							x.push( first[ i ] );
+							y.push( second[ i ] );
+						}
+					}
+				} else {
+					let first = data[ variable ];
+					for ( let i = 0; i < first.length; i++ ) {
+						if ( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) {
+							x.push( first[ i ] );
+						}
+					}
+				}
+			} else {
+				x = data[ variable ];
+				y = data[ secondVariable ];
+			}
 
+			fun = statistic( statName );
+			if ( statName === 'Correlation' ) {
+				res = fun( x, y );
+				// Extract correlation coefficient from correlation matrix:
+				res = {
+					value: res[ 0 ][ 1 ],
+					size: x.length
+				};
+				variable = `${variable} vs. ${secondVariable}`;
+			}
+			else {
+				res = {
+					value: fun( x ),
+					size: x.length
+				};
+			}
+		}
 		const output = {
 			variable: variable,
 			type: statName,
 			result: res,
 			group
 		};
-
 		this.props.logAction( 'DATA_EXPLORER:SUMMARY_STATISTICS', {
 			statistic: statName,
 			variable,
