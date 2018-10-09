@@ -4,7 +4,7 @@ const cp = require( 'child_process' );
 const fs = require( 'fs-extra' );
 const basename = require( 'path' ).basename;
 const dirname = require( 'path' ).dirname;
-const extname = require( 'path' ).dirname;
+const extname = require( 'path' ).extname;
 const resolve = require( 'path' ).resolve;
 const join = require( 'path' ).join;
 const yaml = require( 'js-yaml' );
@@ -181,10 +181,12 @@ const getISLEcode = ( yamlStr, filePath ) => {
 	let config = yaml.load( yamlStr );
 	if ( config.instructorNotes && extname( config.instructorNotes ) === '.md' ) {
 		if ( isRelativePath( config.instructorNotes ) ) {
+			debug( 'Loading instructor notes from the supplied relative path...' );
 			const fPath = resolve( dirname(filePath), config.instructorNotes );
 			config.instructorNotes = fs.readFileSync( fPath );
 			config.instructorNotes = config.instructorNotes.toString();
 		} else if ( isAbsolutePath( config.instructorNotes ) ) {
+			debug( 'Loading instructor notes from the supplied absolute path...' );
 			config.instructorNotes = fs.readFileSync( config.instructorNotes );
 			config.instructorNotes = config.instructorNotes.toString();
 		}
