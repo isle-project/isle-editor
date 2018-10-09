@@ -766,6 +766,14 @@ class DataExplorer extends Component {
 											<NavDropdown.Item key={i} eventKey={`distributions.${i+1}`}>{e}</NavDropdown.Item> )}
 									</NavDropdown> : null
 								}
+								{ this.props.transformer ?
+									<Nav.Item className="explorer-transformer-nav">
+										<Nav.Link
+											active={this.state.openedNav === 'transformer'}
+											eventKey="transformer"
+										>Transformer</Nav.Link>
+									</Nav.Item> : null
+								}
 								{ this.props.showEditor ?
 									<Nav.Item className="explorer-editor-nav">
 										<Nav.Link
@@ -774,15 +782,15 @@ class DataExplorer extends Component {
 										>{this.props.editorTitle}</Nav.Link>
 									</Nav.Item> : null
 								}
-								{ this.props.transformer ?
-									<Nav.Item eventKey="transform" active={this.state.openedNav === 'transform'}>
-										Transform
-									</Nav.Item> : null
-								}
 								{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
-									return ( <Nav.Item key={i} eventKey={`${6+i}`}>
-										{e.title}
-									</Nav.Item> );
+									return (
+										<Nav.Item key={i} className="explorer-tabs-nav">
+											<Nav.Link
+												active={this.state.openedNav === e.title}
+												eventKey={e.title}
+											>{e.title}</Nav.Link>
+										</Nav.Item>
+									);
 								}) : null }
 							</Nav>
 							<Button variant="secondary" size="sm" style={{ position: 'absolute', right: '20px' }} onClick={this.toggleToolbox} >{this.state.showToolbox ? 'Hide Toolbox' : 'Show Toolbox' }</Button>
@@ -821,7 +829,7 @@ class DataExplorer extends Component {
 									content : null );
 							})}
 							<MarkdownEditor {...this.props.editorProps} plots={this.state.output} id={this.props.id ? this.props.id + '_editor' : null} style={{ display: this.state.openedNav !== 'editor' ? 'none' : null }} submitButton />
-							{ this.state.openedNav === 'transform' ?
+							{ this.state.openedNav === 'transformer' ?
 								<VariableTransformer
 									data={this.state.data}
 									logAction={this.logAction}
@@ -831,7 +839,7 @@ class DataExplorer extends Component {
 								/> : null
 							}
 							{this.props.tabs.map( ( e, i ) => {
-								return ( this.state.openedNav === `6.${i+1}` ?
+								return ( this.state.openedNav === e.title ?
 									e.content : null );
 							})}
 						</Card.Body>
