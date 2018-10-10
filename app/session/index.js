@@ -11,6 +11,7 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import copy from '@stdlib/utils/copy';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 import isElectron from 'utils/is-electron';
+import randomstring from 'utils/randomstring';
 import io from 'socket.io-client';
 import SpeechInterface from 'speech-interface';
 import 'whatwg-fetch';
@@ -69,6 +70,9 @@ class Session {
 
 		// Boolean indicating whether user is logged in or not:
 		this.anonymous = isEmptyObject( this.user );
+		if ( this.anonymous ) {
+			this.anonymousIdentifier = 'anonymous_'+randomstring( 8 );
+		}
 
 		// Boolean whether lesson is finished:
 		this.finished = false;
@@ -1204,8 +1208,8 @@ class Session {
 	logToDatabase( type, data ) {
 		debug( `Logging ${type} to database...` );
 		if ( this.anonymous ) {
-			data.email = 'anonymous';
-			data.name = 'anonymous';
+			data.email = this.anonymousIdentifier;
+			data.name = this.anonymousIdentifier;
 		} else {
 			data.email = this.user.email;
 			data.name = this.user.name;
