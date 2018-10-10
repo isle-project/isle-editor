@@ -2,12 +2,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ace from '@planeshifter/brace';
+import ace from 'brace';
 import { ContextMenu, MenuItem, ContextMenuTrigger, SubMenu } from 'react-contextmenu';
-import '@planeshifter/brace/mode/html';
-import '@planeshifter/brace/theme/github';
-import '@planeshifter/brace/ext/searchbox';
-import '@planeshifter/brace/ext/language_tools';
+import 'brace/mode/html';
+import 'brace/theme/github';
+import 'brace/ext/searchbox';
+import 'brace/ext/language_tools';
 import noop from '@stdlib/utils/noop';
 import groupBy from '@stdlib/utils/group-by';
 import contains from '@stdlib/assert/contains';
@@ -108,6 +108,7 @@ class Editor extends Component {
 		const session = this.editor.getSession();
 		session.setMode( 'ace/mode/html' );
 		session.setUseWrapMode( true );
+		session.setUseWorker( false );
 		this.editor.setTheme( 'ace/theme/github' );
 
 		const currentFontSize = parseFloat( localStorage.getItem( 'fontSize' ) ) || 14;
@@ -124,7 +125,8 @@ class Editor extends Component {
 			enableBasicAutocompletion: true,
 			enableSnippets: true,
 			enableLiveAutocompletion: true,
-			highlightActiveLine: true
+			highlightActiveLine: true,
+			showFoldWidgets: false
 		});
 
 		this.editor.setShowPrintMargin( false );
