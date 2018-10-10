@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import Plot from 'react-plotly.js';
 import Plotly from 'plotly.js';
-import { generate } from 'randomstring';
+import randomstring from 'utils/randomstring';
 import isUndefined from '@stdlib/assert/is-undefined';
 import copy from '@stdlib/utils/copy';
 import PlotlyIcons from './icons.js';
@@ -142,7 +142,7 @@ class Wrapper extends Component {
 		Plotly.toImage( this.figure, opts )
 			.then( ( data ) => {
 				this.plotData = {
-					key: `<!--IMAGE_LOG:${this.props.id}_${generate( 6 )}-->`,
+					key: `<!--IMAGE_LOG:${this.props.id}_${randomstring( 6 )}-->`,
 					value: `<img src="${data}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%" />`
 				};
 			});

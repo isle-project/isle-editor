@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
-import { generate } from 'randomstring';
 import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
+import randomstring from 'utils/randomstring';
 import QuestionButton from './question_button.js';
 import by from './by.js';
 
@@ -80,7 +80,7 @@ class Barchart extends Component {
 
 	generateBarchart( variable, group ) {
 		const config = generateBarchartConfig({ data: this.props.data, variable, group });
-		const plotId = generate( 6 );
+		const plotId = randomstring( 6 );
 		const output = {
 			variable: variable,
 			type: 'Chart',

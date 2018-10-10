@@ -6,7 +6,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
-import { generate } from 'randomstring';
+import randomstring from 'utils/randomstring';
 import max from '@stdlib/math/base/special/max';
 import floor from '@stdlib/math/base/special/floor';
 import kde2d from '@stdlib/stats/kde2d';
@@ -95,7 +95,7 @@ class HeatMap extends Component {
 
 	generateHeatmap( xval, yval, overlayPoints ) {
 		const config = generateHeatmapConfig({ data: this.props.data, xval, yval, overlayPoints });
-		const plotId = generate( 6 );
+		const plotId = randomstring( 6 );
 		const output ={
 			variable: `${xval} against ${yval}`,
 			type: 'Chart',

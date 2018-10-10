@@ -11,7 +11,7 @@ import FormData from 'form-data';
 import https from 'https';
 import http from 'http';
 import archiver from 'archiver';
-import randomstring from 'randomstring';
+import randomstring from 'utils/randomstring';
 import { join } from 'path';
 import { createReadStream, createWriteStream } from 'fs';
 import os from 'os';
@@ -48,7 +48,7 @@ class UploadLesson extends Component {
 			namespaces: [],
 			minify: true,
 			lessonName,
-			dirname: randomstring.generate(),
+			dirname: randomstring(),
 			server: localStorage.getItem( 'server' ),
 			token: localStorage.getItem( 'token' ),
 			showResponseModal: false,
@@ -176,7 +176,7 @@ class UploadLesson extends Component {
 					spinning: false,
 					showResponseModal: true,
 					modalMessage: msg,
-					dirname: randomstring.generate()
+					dirname: randomstring()
 				});
 			}
 		});

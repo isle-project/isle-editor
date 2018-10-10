@@ -6,7 +6,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import RPlot from 'components/r/plot';
-import { generate } from 'randomstring';
+import randomstring from 'utils/randomstring';
 import objectValues from '@stdlib/utils/values';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import QuestionButton from './question_button.js';
@@ -75,7 +75,7 @@ class MosaicPlot extends Component {
 			});
 		}
 		const code = generateMosaicPlotCode({ data: this.props.data, vars, showColors });
-		const plotId = generate( 6 );
+		const plotId = randomstring( 6 );
 		const output ={
 			variable: 'Mosaic Plot',
 			type: 'Chart',

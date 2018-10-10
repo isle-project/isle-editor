@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
-import { generate } from 'randomstring';
+import randomstring from 'utils/randomstring';
 import objectKeys from '@stdlib/utils/keys';
 import QuestionButton from './question_button.js';
 import by from './by.js';
@@ -64,7 +64,7 @@ class Boxplot extends Component {
 
 	generateBoxplot( variable, group ) {
 		const config = generateBoxplotConfig({ data: this.props.data, variable, group });
-		const plotId = generate( 6 );
+		const plotId = randomstring( 6 );
 		const output = {
 			variable: variable,
 			type: 'Chart',

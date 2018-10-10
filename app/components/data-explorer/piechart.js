@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
-import { generate } from 'randomstring';
+import randomstring from 'utils/randomstring';
 import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
@@ -99,7 +99,7 @@ class PieChart extends Component {
 
 	generatePiechart( variable, group ) {
 		const config = generatePiechartConfig({ data: this.props.data, variable, group });
-		const plotId = generate( 6 );
+		const plotId = randomstring( 6 );
 		const output = {
 			variable: variable,
 			type: 'Chart',

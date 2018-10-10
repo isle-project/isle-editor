@@ -9,7 +9,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import Plotly from 'components/plotly';
-import { generate } from 'randomstring';
+import randomstring from 'utils/randomstring';
 import objectKeys from '@stdlib/utils/keys';
 import kernelSmooth from 'kernel-smooth';
 import linspace from '@stdlib/math/utils/linspace';
@@ -198,7 +198,7 @@ class Histogram extends Component {
 			data: this.props.data, ...this.state
 		});
 		debug( `Generate a histogram with ${this.state.nBins} bins` );
-		const plotId = generate( 6 );
+		const plotId = randomstring( 6 );
 		const stateNew = { ...this.state };
 		stateNew.plotId = plotId;
 		const output = {

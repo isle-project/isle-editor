@@ -8,7 +8,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import Plotly from 'components/plotly';
-import { generate } from 'randomstring';
+import randomstring from 'utils/randomstring';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import lowess from '@stdlib/stats/lowess';
@@ -372,7 +372,7 @@ class Scatterplot extends Component {
 
 	generateScatterplot = () => {
 		const config = generateScatterplotConfig({ data: this.props.data, ...this.state });
-		const plotId = generate( 6 );
+		const plotId = randomstring( 6 );
 		const stateNew = { ...this.state };
 		stateNew.plotId = plotId;
 		const output = {

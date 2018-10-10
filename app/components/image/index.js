@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { generate } from 'randomstring';
+import randomstring from 'utils/randomstring';
 import Dimensions from 'components/dimensions';
 
 
@@ -95,7 +95,7 @@ class Image extends Component {
 					}}
 					onDragStart={( ev ) => {
 						const plotData = {
-							key: `<!--IMAGE_LOG:${this.props.id}_${generate( 6 )}-->`,
+							key: `<!--IMAGE_LOG:${this.props.id}_${randomstring( 6 )}-->`,
 							value: `<img src="${this.props.body}" width="400" height="300" style="display: block; margin: 0 auto;" />`
 						};
 						ev.dataTransfer.setData( 'text', `<img src="${this.props.src}" width="400" height="300" />` );
