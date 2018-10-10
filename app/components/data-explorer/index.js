@@ -67,15 +67,6 @@ import PropTest2 from 'components/data-explorer/proptest2';
 import Anova from 'components/data-explorer/anova';
 
 
-// FUNCTIONS //
-
-const generateTransformationCode = ( variable ) => `if ( datum.${variable} > 0 ) {
-	return 'Yes'
-} else {
-	return 'No'
-}`;
-
-
 // VARIABLES //
 
 const debug = logger( 'isle:data-explorer' );
@@ -836,7 +827,6 @@ class DataExplorer extends Component {
 									categorical={this.state.categorical}
 									logAction={this.logAction}
 									session={this.context.session}
-									defaultCode={generateTransformationCode( this.state.continuous[ 0 ])}
 									onGenerate={this.onGenerateTransformedVariable}
 								/> : null
 							}

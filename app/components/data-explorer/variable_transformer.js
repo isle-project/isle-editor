@@ -2,30 +2,60 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/lib/Card';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Dropdown from 'react-bootstrap/lib/Dropdown';
-import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import TextArea from 'components/input/text-area';
 import TextInput from 'components/input/text';
 import isObject from '@stdlib/assert/is-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import round from '@stdlib/math/base/special/round';
+import sqrt from '@stdlib/math/base/special/sqrt';
+import exp from '@stdlib/math/base/special/exp';
+import pow from '@stdlib/math/base/special/pow';
+import ln from '@stdlib/math/base/special/ln';
+import incrspace from '@stdlib/math/utils/incrspace';
 
+
+// VARIABLES //
+
+const FUNCTION_KEYS = [
+	'exp',
+	'ln',
+	'pow',
+	'round',
+	'sqrt'
+];
+const FUNCTIONS = [
+	exp,
+	ln,
+	pow,
+	round,
+	sqrt
+];
+const IF_ELSE = `if (  ) {
+	return
+} else {
+	return
+}`;
+const DIGITS = incrspace( 0, 10, 1 );
+
+
+// FUNCTIONS //
 
 class CustomMenu extends Component {
 	constructor( props, context ) {
 		super( props, context );
-
-		this.handleChange = this.handleChange.bind(this);
 
 		this.state = {
 			value: ''
 		};
 	}
 
-	handleChange(e) {
+	handleChange = ( e ) => {
 		this.setState({ value: e.target.value.toLowerCase().trim() });
 	}
 
@@ -36,9 +66,7 @@ class CustomMenu extends Component {
 			className,
 			'aria-labelledby': labeledBy
 		} = this.props;
-
 		const { value } = this.state;
-
 		return (
 		<div style={style} className={className} aria-labelledby={labeledBy}>
 			<FormControl
@@ -60,6 +88,7 @@ class CustomMenu extends Component {
 		);
 	}
 }
+
 
 // MAIN //
 
@@ -85,48 +114,48 @@ class Transformer extends Component {
 			data: data,
 			name: ''
 		};
+	}
 
-		this.handleNameChange = ( value ) => {
-			this.setState({
-				name: value
+	handleNameChange = ( value ) => {
+		this.setState({
+			name: value
+		});
+	}
+
+	handleCodeChange = ( value ) => {
+		this.setState({
+			code: value
+		});
+	}
+
+	handleGenerate = () => {
+		const { data, code, name } = this.state;
+		if ( name.length < 2 ) {
+			return this.props.session.addNotification({
+				title: 'Name is too short',
+				message: 'Please select a variable name with at least two characters',
+				level: 'error',
+				position: 'tr'
 			});
-		};
-
-		this.handleCodeChange = ( value ) => {
-			this.setState({
-				code: value
-			});
-		};
-
-		this.handleGenerate = () => {
-			const { data, code, name } = this.state;
-			if ( name.length < 2 ) {
-				return this.props.session.addNotification({
-					title: 'Name is too short',
-					message: 'Please select a variable name with at least two characters',
-					level: 'error',
-					position: 'tr'
-				});
+		}
+		const fun = new Function( 'datum', ...FUNCTION_KEYS, code ); // eslint-disable-line no-new-func
+		const values = new Array( data.length );
+		try {
+			for ( let i = 0; i < data.length; i++ ) {
+				values[ i ] = fun( data[ i ], ...FUNCTIONS );
 			}
-			const fun = new Function( 'datum', code ); // eslint-disable-line no-new-func
-			const values = new Array( data.length );
-			try {
-				for ( let i = 0; i < data.length; i++ ) {
-					values[ i ] = fun( data[ i ]);
-				}
-			} catch ( err ) {
-				return this.props.session.addNotification({
-					title: 'Errored',
-					message: 'Encountered the following error: '+err.message,
-					level: 'error',
-					position: 'tr'
-				});
-			}
-			this.props.logAction( 'DATA_EXPLORER:VARIABLE_TRANSFORMER', {
-				code, name
+		} catch ( err ) {
+			return this.props.session.addNotification({
+				title: 'Errored',
+				message: 'Encountered the following error: '+err.message,
+				level: 'error',
+				position: 'tr'
 			});
-			this.props.onGenerate( name, values );
-		};
+		}
+		this.props.logAction( 'DATA_EXPLORER:VARIABLE_TRANSFORMER', {
+			code, name
+		});
+		this.props.onGenerate( name, values );
 	}
 
 	insertVarFactory = ( name ) => {
@@ -142,10 +171,10 @@ class Transformer extends Component {
 		};
 	}
 
-	insertOperatorFactory = ( operator ) => {
+	insertLiteralFactory = ( operator ) => {
 		return () => {
 			let newCode = this.state.code.substring( 0, this.state.selection );
-			const replacement = ' '+operator+' ';
+			const replacement = operator;
 			newCode += replacement;
 			newCode += this.state.code.substring( this.state.selection );
 			this.setState({
@@ -155,60 +184,120 @@ class Transformer extends Component {
 		};
 	}
 
+	insertFuncFactory = ( funcName ) => {
+		return () => {
+			let newCode = this.state.code.substring( 0, this.state.selection );
+			const replacement = ' '+funcName+'()';
+			newCode += replacement;
+			newCode += this.state.code.substring( this.state.selection );
+			this.setState({
+				code: newCode,
+				selection: this.state.selection + replacement.length - 1
+			});
+		};
+	}
+
+	insertIfElse = () => {
+		let newCode = this.state.code.substring( 0, this.state.selection );
+			newCode += IF_ELSE;
+			newCode += this.state.code.substring( this.state.selection );
+			this.setState({
+				code: newCode,
+				selection: this.state.selection + 5
+			});
+	}
+
 	render() {
 		return ( <div>
-			<TextInput legend="New Variable Name" onChange={this.handleNameChange} width={160} />
-			<ButtonToolbar>
-				<Dropdown className="mr-2">
-					<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
-						Continuous
-					</Dropdown.Toggle>
-					<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
-						{this.props.continuous.map( ( v, i ) => {
-							return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
-						})}
-					</Dropdown.Menu>
-				</Dropdown>
-				<Dropdown className="mr-2">
-					<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
-						Categorical
-					</Dropdown.Toggle>
-					<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
-						{this.props.categorical.map( ( v, i ) => {
-							return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
-						})}
-					</Dropdown.Menu>
-				</Dropdown>
-				<ButtonGroup size="sm" className="mr-2" >
-					<Button variant="light" onClick={this.insertOperatorFactory('<')} >{'<'}</Button>
-					<Button variant="light" onClick={this.insertOperatorFactory('>')} >{'>'}</Button>
-					<Button variant="light" onClick={this.insertOperatorFactory('<=')} >{'<='}</Button>
-					<Button variant="light" onClick={this.insertOperatorFactory('>=')} >{'>='}</Button>
-				</ButtonGroup>
-				<ButtonGroup size="sm" className="mr-2" >
-					<Button variant="light" onClick={this.insertOperatorFactory('(')} >(</Button>
-					<Button variant="light" onClick={this.insertOperatorFactory(')')} >)</Button>
-				</ButtonGroup>
-				<ButtonGroup size="sm" className="mr-2" >
-					<Button variant="light" onClick={this.insertOperatorFactory('+')} >+</Button>
-					<Button variant="light" onClick={this.insertOperatorFactory('-')} >-</Button>
-					<Button variant="light" onClick={this.insertOperatorFactory('*')} >*</Button>
-					<Button variant="light" onClick={this.insertOperatorFactory('/')} >/</Button>
-				</ButtonGroup>
-			</ButtonToolbar>
-			<TextArea ref={div => { this.textarea = div; }} legend="Code" value={this.state.code} onChange={this.handleCodeChange} onBlur={( event ) => {
-				const selectionStart = event.target.selectionStart;
-				this.setState({
-					selection: selectionStart
-				});
-			}} />
+			<Card className="mb-2" >
+				<Card.Header>Generate new variables:</Card.Header>
+				<Card.Body>
+					<TextInput legend="Variable Name" placeholder="Select name..." onChange={this.handleNameChange} width={160} />
+				</Card.Body>
+			</Card>
+			<Card className="mb-2" >
+				<Card.Body>
+					<ButtonToolbar style={{ marginBottom: 5 }} >
+						<Dropdown className="mr-2">
+							<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
+								Continuous
+							</Dropdown.Toggle>
+							<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
+								{this.props.continuous.map( ( v, i ) => {
+									return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
+								})}
+							</Dropdown.Menu>
+						</Dropdown>
+						<Dropdown className="mr-2">
+							<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
+								Categorical
+							</Dropdown.Toggle>
+							<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
+								{this.props.categorical.map( ( v, i ) => {
+									return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
+								})}
+							</Dropdown.Menu>
+						</Dropdown>
+						<ButtonGroup size="sm" className="mr-2" >
+							<Button variant="light" onClick={this.insertLiteralFactory(' < ')} >{'<'}</Button>
+							<Button variant="light" onClick={this.insertLiteralFactory(' > ')} >{'>'}</Button>
+							<Button variant="light" onClick={this.insertLiteralFactory(' <= ')} >{'<='}</Button>
+							<Button variant="light" onClick={this.insertLiteralFactory(' >= ')} >{'>='}</Button>
+						</ButtonGroup>
+						<ButtonGroup size="sm" className="mr-2" >
+							<Button variant="light" onClick={this.insertLiteralFactory(' ( ')} >(</Button>
+							<Button variant="light" onClick={this.insertLiteralFactory(' ) ')} >)</Button>
+						</ButtonGroup>
+						<ButtonGroup size="sm" className="mr-2" >
+							<Button variant="light" onClick={this.insertLiteralFactory(' + ')} >+</Button>
+							<Button variant="light" onClick={this.insertLiteralFactory(' - ')} >-</Button>
+							<Button variant="light" onClick={this.insertLiteralFactory(' * ')} >*</Button>
+							<Button variant="light" onClick={this.insertLiteralFactory(' / ')} >/</Button>
+						</ButtonGroup>
+					</ButtonToolbar>
+					<ButtonToolbar style={{ marginBottom: 5 }} >
+						<ButtonGroup size="sm" className="mr-2" >
+							<Button variant="light" onClick={this.insertIfElse} >ifelse</Button>
+							<Button variant="light" onClick={this.insertLiteralFactory(' && ')} >and</Button>
+							<Button variant="light" onClick={this.insertLiteralFactory(' || ')} >or</Button>
+							<Button variant="light" onClick={this.insertLiteralFactory(' !')} >not</Button>
+						</ButtonGroup>
+						<ButtonGroup size="sm" className="mr-2" >
+							{DIGITS.map( ( d, i ) => {
+								return <Button key={i} variant="light" onClick={this.insertLiteralFactory( `${d}`)} >{d}</Button>;
+							})}
+							<Button variant="light" onClick={this.insertLiteralFactory('.')} >.</Button>
+						</ButtonGroup>
+						<Dropdown className="mr-2">
+							<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
+								Functions
+							</Dropdown.Toggle>
+							<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
+								{FUNCTION_KEYS.map( ( v, i ) => {
+									return <Dropdown.Item key={i} onClick={this.insertFuncFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
+								})}
+							</Dropdown.Menu>
+						</Dropdown>
+					</ButtonToolbar>
+				</Card.Body>
+			</Card>
+			<Card className="mb-2" >
+				<Card.Body>
+					<TextArea ref={div => { this.textarea = div; }} legend="Expression:" value={this.state.code} onChange={this.handleCodeChange} onBlur={( event ) => {
+						const selectionStart = event.target.selectionStart;
+						this.setState({
+							selection: selectionStart
+						});
+					}} />
+				</Card.Body>
+			</Card>
 			<Button onClick={this.handleGenerate} >Generate</Button>
 		</div> );
 	}
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 Transformer.defaultProps = {
 	logAction() {},
@@ -216,9 +305,6 @@ Transformer.defaultProps = {
 	defaultCode: '',
 	session: {}
 };
-
-
-// PROPERTY TYPES //
 
 Transformer.propTypes = {
 	categorical: PropTypes.array.isRequired,
