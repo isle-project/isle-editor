@@ -32,7 +32,7 @@ class TextArea extends Component {
 
 		// Initialize state variables...
 		this.state = {
-			value: props.defaultValue,
+			value: props.value || props.defaultValue,
 			...props
 		};
 	}
@@ -69,19 +69,25 @@ class TextArea extends Component {
 	* React component render method.
 	*/
 	render() {
+		let { value } = this.state;
+		if ( this.props.value ) {
+			value = this.props.value;
+		}
 		return (
 			<FormGroup controlId="formControlsTextarea">
 				{this.renderLegend()}
 				<FormControl
 					as="textarea"
 					placeholder={this.props.placeholder}
+					ref={div => { this.textarea = div; }}
+					onBlur={this.props.onBlur}
 					onChange={this.handleChange}
 					style={{
 						resize: this.props.resizable ? 'both' : 'none',
 						...this.props.style
 					}}
 					rows={this.props.rows}
-					value={this.state.value}
+					value={value}
 					disabled={this.props.disabled}
 				/>
 			</FormGroup>
@@ -94,8 +100,10 @@ class TextArea extends Component {
 
 TextArea.defaultProps = {
 	defaultValue: '',
+	value: null,
 	disabled: false,
 	legend: '',
+	onBlur() {},
 	onChange() {},
 	placeholder: 'Enter text',
 	resizable: false,
@@ -105,8 +113,10 @@ TextArea.defaultProps = {
 
 TextArea.propTypes = {
 	defaultValue: PropTypes.string,
+	value: PropTypes.string,
 	disabled: PropTypes.bool,
 	legend: PropTypes.string,
+	onBlur: PropTypes.func,
 	onChange: PropTypes.func,
 	placeholder: PropTypes.string,
 	resizable: PropTypes.bool,

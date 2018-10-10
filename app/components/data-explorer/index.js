@@ -832,6 +832,8 @@ class DataExplorer extends Component {
 							{ this.state.openedNav === 'transformer' ?
 								<VariableTransformer
 									data={this.state.data}
+									continuous={this.state.continuous}
+									categorical={this.state.categorical}
 									logAction={this.logAction}
 									session={this.context.session}
 									defaultCode={generateTransformationCode( this.state.continuous[ 0 ])}
