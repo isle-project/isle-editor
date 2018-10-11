@@ -13,7 +13,7 @@ import VOICE_COMMANDS from './voice_commands.json';
 * Spectacle slide deck. Wraps `<Slide>` tags.
 */
 class CustomDeck extends Component {
-	nextSlide() {
+	nextSlide = () => {
 		const e = new KeyboardEvent( 'keydown', {
 			'bubbles': true,
 			'key': 'ArrowRight',
@@ -26,7 +26,7 @@ class CustomDeck extends Component {
 		document.dispatchEvent( e );
 	}
 
-	previousSlide() {
+	previousSlide = () => {
 		const e = new KeyboardEvent( 'keydown', {
 			'bubbles': true,
 			'key': 'ArrowLeft',
@@ -43,8 +43,8 @@ class CustomDeck extends Component {
 		return ( <Fragment>
 			<VoiceControl commands={VOICE_COMMANDS} hide reference={this} id="slide" />
 			<KeyControls actions={{
-				'ArrowUp': this.nextSlide,
-				'ArrowDown': this.previousSlide
+				'PageUp': this.nextSlide,
+				'PageDown': this.previousSlide
 			}} />
 			<Deck {...this.props} >{this.props.children}</Deck>
 		</Fragment> );

@@ -66,9 +66,7 @@ function transformToPresentation( code, preamble ) {
 	const lastPos = pres.lastIndexOf( '</Slide>' );
 	const replacement = '</Slide></Deck>';
 	pres = pres.substring( 0, lastPos ) + replacement + pres.substring( lastPos+'</Slide>'.length );
-	return `<div>
-		${pres}
-	</div>`;
+	return pres;
 }
 
 
