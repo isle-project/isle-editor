@@ -49,6 +49,12 @@ function curve( ctx, points, width, height, tension, numOfSeg, close ) {
 	tension = typeof tension === 'number' ? tension : 0.5;
 	numOfSeg = typeof numOfSeg === 'number' ? numOfSeg : 25;
 
+	points = points.slice( 0 );
+	for ( let i = 0; i < points.length; i += 2 ) {
+		points[ i ] = points[ i ] * width;
+		points[ i + 1 ] = points[ i + 1 ] * height;
+	}
+
 	let pts; // for cloning point array
 	let i = 1;
 	let l = points.length;
@@ -132,7 +138,7 @@ function curve( ctx, points, width, height, tension, numOfSeg, close ) {
 
 	// Add lines to path:
 	for ( i = 0, l = res.length; i < l; i += 2 ) {
-		ctx.lineTo( res[i]*width, res[i+1]*height );
+		ctx.lineTo( res[i], res[i+1] );
 	}
 	return res;
 }

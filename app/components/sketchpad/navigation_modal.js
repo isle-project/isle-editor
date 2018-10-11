@@ -74,7 +74,6 @@ class NavigationModal extends Component {
 						>
 							{cells.map( ( e, i ) => {
 								const page = i + perRow*row;
-								console.log( 'Page: '+page );
 								return (
 								<Nav.Item
 									key={page}
