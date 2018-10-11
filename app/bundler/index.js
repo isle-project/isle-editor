@@ -64,7 +64,8 @@ const generateIndexHTML = ( title, minify, stats ) => `
 			link = asset.name;
 		}
 		else {
-			link = basename( asset.name, '.js' ) + '.min.js';
+			const newExt = !contains( asset.name, '.worker.' ) ? '.min.js' : '.js'; // Do not rename worker files to make `pdfjs` work
+			link = basename( asset.name, '.js' ) + newExt;
 		}
 		return `<script src="${link}"></script>`;
 	}).join( '\n' )}
@@ -458,9 +459,14 @@ function writeIndexFile({
 				debug( 'Encountered an error during minification: ' + minified.error );
 				throw minified.error;
 			}
-			const minifiedPath = join( appDir, basename( name, '.js' )+'.min.js' );
-			fs.writeFileSync( minifiedPath, minified.code );
-			fs.unlinkSync( bundlePath );
+			if ( contains( name, '.worker.' ) ) {
+				// Avoid renaming worker files to make `pdfjs` work:
+				fs.writeFileSync( bundlePath, minified.code );
+			} else {
+				const minifiedPath = join( appDir, basename( name, '.js' )+'.min.js' );
+				fs.writeFileSync( minifiedPath, minified.code );
+				fs.unlinkSync( bundlePath );
+			}
 			done += 1;
 			if ( done === stats.assets.length ) {
 				return clbk( err, meta );
