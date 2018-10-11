@@ -95,6 +95,8 @@
 	"Appear": "components/spectacle/appear",
 	"BlockQuote": "components/spectacle/block-quote",
 	"Cite": "components/spectacle/cite",
+	"Code": "components/spectacle/code",
+	"CodeSlide": "components/spectacle/code-slide",
 	"Deck": "components/spectacle/deck",
 	"Fill": "components/spectacle/fill",
 	"Fit": "components/spectacle/fit",

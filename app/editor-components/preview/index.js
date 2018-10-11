@@ -197,6 +197,7 @@ const createScope = ( session ) => {
 		BlockQuote: Loadable( () => import( 'components/spectacle/block-quote' ) ),
 		Cite: Loadable( () => import( 'components/spectacle/cite' ) ),
 		Code: Loadable( () => import( 'components/spectacle/code' ) ),
+		CodeSlide: Loadable( () => import( 'components/spectacle/code-slide' ) ),
 		Deck: Loadable( () => import( 'components/spectacle/deck' ) ),
 		Fill: Loadable( () => import( 'components/spectacle/fill' ) ),
 		Fit: Loadable( () => import( 'components/spectacle/fit' ) ),
