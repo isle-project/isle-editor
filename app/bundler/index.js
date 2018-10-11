@@ -1,25 +1,26 @@
 // MODULES //
 
-const cp = require( 'child_process' );
-const fs = require( 'fs-extra' );
-const basename = require( 'path' ).basename;
-const dirname = require( 'path' ).dirname;
-const extname = require( 'path' ).extname;
-const resolve = require( 'path' ).resolve;
-const join = require( 'path' ).join;
-const yaml = require( 'js-yaml' );
-const webpack = require( 'webpack' );
-const debug = require( 'debug' )( 'bundler' );
-const contains = require( '@stdlib/assert/contains' );
-const isObject = require( '@stdlib/assert/is-object' );
-const isRelativePath = require( '@stdlib/assert/is-relative-path' );
-const hasOwnProp = require( '@stdlib/assert/has-own-property' );
-const replace = require( '@stdlib/string/replace' );
-const papplyRight = require( '@stdlib/utils/papply-right' );
-const isAbsolutePath = require( '@stdlib/assert/is-absolute-path' );
-const markdownToHTML = require( './../utils/markdown-to-html' );
-const transformToPresentation = require( './../utils/transform-to-presentation' );
-const REQUIRES = require( './requires.json' );
+import cp from 'child_process';
+import fs from 'fs-extra';
+import { basename, dirname, extname, resolve, join } from 'path';
+import yaml from 'js-yaml';
+import webpack from 'webpack';
+import logger from 'debug';
+import contains from '@stdlib/assert/contains';
+import isObject from '@stdlib/assert/is-object';
+import isRelativePath from '@stdlib/assert/is-relative-path';
+import hasOwnProp from '@stdlib/assert/has-own-property';
+import replace from '@stdlib/string/replace';
+import papplyRight from '@stdlib/utils/papply-right';
+import isAbsolutePath from '@stdlib/assert/is-absolute-path';
+import markdownToHTML from 'utils/markdown-to-html';
+import transformToPresentation from 'utils/transform-to-presentation';
+import REQUIRES from './requires.json';
+
+
+// VARIABLES //
+
+const debug = logger( 'bundler' );
 
 
 // FUNCTIONS //
@@ -106,7 +107,7 @@ const loadRequires = ( libs, filePath ) => {
 const getMainImports = () => `
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { render } from 'react-dom';
 import NotificationSystem from 'react-notification-system';
 import Provider from 'components/provider';
@@ -142,7 +143,7 @@ class Lesson extends Component {
 	render() {
 		return (
 			<div id="Lesson" className="${className}" >
-				<div>${lessonContent}</div>
+				<Fragment>${lessonContent}</Fragment>
 				<NotificationSystem ref={ ( div ) => this.notificationSystem = div } allowHTML={true} />
 			</div>
 		);
@@ -296,7 +297,11 @@ function writeIndexFile({
 				'plotly.js': resolve(
 					basePath,
 					'./node_modules/plotly.js/dist/plotly-cartesian.min.js'
-				)
+				),
+				'react-transition-group/TransitionGroup': resolve(
+					basePath,
+					'./node_modules/spectacle/node_modules/react-transition-group/TransitionGroup.js'
+				) // ensure slide transitions work in Spectacle presentations
 			},
 			mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
 		},
@@ -391,6 +396,7 @@ function writeIndexFile({
 	const usedComponents = getComponentList( content );
 	const str = generateIndexJS( content, usedComponents, yamlStr, basePath, filePath );
 	debug( `Create JS file: ${str}` );
+	console.log( str );
 
 	fs.writeFileSync( indexPath, str );
 
@@ -466,4 +472,4 @@ function writeIndexFile({
 
 // EXPORTS //
 
-module.exports = writeIndexFile;
+export default writeIndexFile;
