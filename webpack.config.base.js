@@ -77,7 +77,8 @@ export default {
 	output: {
 		path: join( __dirname, 'dist' ),
 		filename: 'bundle.js',
-		libraryTarget: 'commonjs2'
+		libraryTarget: 'commonjs2',
+		globalObject: '(typeof self !== "undefined" ? self : this)'
 	},
 	resolve: {
 		alias: {
