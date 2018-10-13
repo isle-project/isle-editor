@@ -10,6 +10,8 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import Dropdown from 'react-bootstrap/lib/Dropdown';
 import TextArea from 'components/input/text-area';
 import TextInput from 'components/input/text';
+import contains from '@stdlib/assert/contains';
+import replace from '@stdlib/string/replace';
 import isObject from '@stdlib/assert/is-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import round from '@stdlib/math/base/special/round';
@@ -42,6 +44,7 @@ const IF_ELSE = `if (  ) {
 	return
 }`;
 const DIGITS = incrspace( 0, 10, 1 );
+const RE_LAST_EXPRESSION = /(?:^|\n)([^\n]*)$/;
 
 
 // FUNCTIONS //
@@ -129,7 +132,7 @@ class Transformer extends Component {
 	}
 
 	handleGenerate = () => {
-		const { data, code, name } = this.state;
+		let { data, code, name } = this.state;
 		if ( name.length < 2 ) {
 			return this.props.session.addNotification({
 				title: 'Name is too short',
@@ -137,6 +140,9 @@ class Transformer extends Component {
 				level: 'error',
 				position: 'tr'
 			});
+		}
+		if ( !contains( code, 'return ' ) ) {
+			code = replace( code, RE_LAST_EXPRESSION, '\nreturn $1' );
 		}
 		const fun = new Function( 'datum', ...FUNCTION_KEYS, code ); // eslint-disable-line no-new-func
 		const values = new Array( data.length );
