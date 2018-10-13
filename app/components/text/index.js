@@ -3,11 +3,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import markdownIt from 'markdown-it';
+import logger from 'debug';
 import VoiceControl from 'components/voice-control';
 
 
 // VARIABLES //
 
+const debug = logger( 'isle:text' );
 const VOICE_COMMANDS = [
 	{
 		command: 'textToSpeech',
@@ -34,6 +36,7 @@ const md = markdownIt({
 */
 class Text extends Component {
 	textToSpeech() {
+		debug( 'Read out text: '+this.props.raw );
 		var ssu = new SpeechSynthesisUtterance( this.props.raw );
 		ssu.lang = 'en-US';
 		window.speechSynthesis.speak( ssu );
