@@ -244,11 +244,10 @@
 			"link":{
 				"textDecoration":"none"
 			},
-			"listItem":{
-				"fontSize":"2rem"
-			},
+			"listItem":{},
 			"list":{
 				"textAlign":"left",
+				"fontSize": "2rem",
 				"listStylePosition":"inside",
 				"padding":0
 			},
@@ -517,13 +516,12 @@
 			"link":{
 				"textDecoration":"none"
 			},
-			"listItem":{
-				"fontSize":"2.0rem"
-			},
+			"listItem":{},
 			"list":{
 				"textAlign":"left",
 				"listStylePosition":"inside",
-				"padding":0
+				"padding":0,
+				"fontSize":"2.0rem"
 			},
 			"s":{
 				"strikethrough":{
