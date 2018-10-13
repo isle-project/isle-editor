@@ -104,8 +104,8 @@ class VoiceInput extends Input {
 	}
 
 	onResult = ( event ) => {
+		debug( 'Processing result...' );
 		if ( typeof ( event.results ) === 'undefined' ) {
-			this.recognizer.stop();
 			debug( 'Something went wrong...' );
 			return;
 		}
@@ -140,10 +140,27 @@ class VoiceInput extends Input {
 			this.recognizer = recognizer;
 			this.recognizer.grammars = this.createGrammarList();
 
-			this.recognizer.onerror = () => {
-				this.setState({
-					isRecording: false
-				});
+			this.recognizer.onerror = ( event ) => {
+				debug( 'Encountered an error...' );
+				if (
+					event.error === 'not-allowed' ||
+					event.error === 'service-not-allowed'
+				) {
+					this.setState({
+						isRecording: false
+					});
+					return this.context.session.addNotification({
+						title: 'Not allowed',
+						message: 'No permission to use the speech recognition service',
+						level: 'error',
+						position: 'tr'
+					});
+				}
+				try {
+					this.recognizer.start();
+				} catch ( err ) {
+					debug( err );
+				}
 			};
 
 			this.recognizer.onend = () => {
@@ -171,6 +188,7 @@ class VoiceInput extends Input {
 
 
 	stop = () => {
+		debug( 'Set `isRecording` to false...' );
 		this.setState({
 			isRecording: false
 		}, () => {
@@ -230,7 +248,7 @@ class VoiceInput extends Input {
 		if ( !recognizable ) {
 			text = 'Your browser does not support voice recognition. You may use the Chrome Browser instead';
 		}
-		else if ( this.state.isRecording === true) {
+		else if ( this.state.isRecording === true ) {
 			text = this.props.stopTooltip;
 		}
 		else {
@@ -337,9 +355,6 @@ VoiceInput.defaultProps = {
 	height: 36
 };
 
-
-// PROPERTY TYPES //
-
 VoiceInput.propTypes = {
 	autorecord: PropTypes.bool,
 	defaultValue: PropTypes.string,
@@ -363,9 +378,6 @@ VoiceInput.propTypes = {
 	width: PropTypes.number,
 	height: PropTypes.number
 };
-
-
-// CONTEXT TYPES //
 
 VoiceInput.contextTypes = {
 	session: PropTypes.object
