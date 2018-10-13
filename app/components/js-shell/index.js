@@ -1,10 +1,12 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import max from '@stdlib/math/base/special/max';
 import PINF from '@stdlib/constants/math/float64-pinf';
+import isArray from '@stdlib/assert/is-array';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
@@ -125,7 +127,7 @@ class JSShell extends Component {
 		if ( this.props.precompute ) {
 			this.handleEvaluationClick();
 		}
-		this.register();  // registers the component for the speech interface
+		this.register(); // registers the component for the speech interface
 	}
 
 	componentDidUpdate( prevProps ) {
@@ -151,6 +153,20 @@ class JSShell extends Component {
 				};
 			}
 			this.editor.setOptions( opts );
+		} else {
+			this.editor.resize();
+			const node = ReactDom.findDOMNode( this );
+			// Undo Spectacle scaling as it messes up the rendering of the ACE editor:
+			let slide = node.closest( '.spectacle-content' );
+			if ( slide ) {
+				let computedStyle = window.getComputedStyle( slide );
+				let transform = computedStyle.getPropertyValue( 'transform' );
+				let match = /matrix\(([0-9.]*)/.exec( transform );
+				if ( isArray( match ) && match.length > 1 ) {
+					let scaleFactor = match[ 1 ];
+					node.style.transform = `scale(${1/scaleFactor})`;
+				}
+			}
 		}
 		this.scrollToBottom();
 	}

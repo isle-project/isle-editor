@@ -390,7 +390,7 @@ class RShell extends React.Component {
 				let transform = computedStyle.getPropertyValue( 'transform' );
 				let match = /matrix\(([0-9.]*)/.exec( transform );
 				if ( isArray( match ) && match.length > 1 ) {
-					let scaleFactor = [ 1 ];
+					let scaleFactor = match[ 1 ];
 					node.style.transform = `scale(${1/scaleFactor})`;
 				}
 			}
