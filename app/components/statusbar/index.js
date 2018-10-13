@@ -227,7 +227,6 @@ class StatusBar extends Component {
 								stopTooltip="Disable voice control (F9)"
 								startTooltip="Enable voice control (F9)"
 								onFinalText={this.handleVoiceInput}
-								timeout={20000}
 								remote={{
 									toggle: 120 // F9
 								}}
