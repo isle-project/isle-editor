@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import pdfjs from 'pdfjs-dist/webpack';
 import pdfMake from 'pdfmake-lite/build/pdfmake.min.js';
@@ -1832,14 +1832,14 @@ class Sketchpad extends Component {
 					if ( keys[ i ] === String( page+1 ) ) {
 						className = 'sketch-node-container-basic';
 					}
-					divs.push( <div style={node.style} className={className} >{node.component}</div> );
+					divs.push( <div key={i} style={node.style} className={className} >{node.component}</div> );
 				} else {
-					divs.push( <div className={className} >
+					divs.push( <div key={i} className={className} >
 						{node.component}
 					</div> );
 				}
 			} else {
-				divs.push( <div className={className} >{node}</div> );
+				divs.push( <div key={i} className={className} >{node}</div> );
 			}
 		}
 		return divs;
@@ -1881,83 +1881,87 @@ class Sketchpad extends Component {
 			onTouchStart={this.drawStart}
 		/>;
 		return (
-			<Card
-				ref={( div ) => { this.sketchpadPanel = div; }}
-				className="modal-container"
-				style={{
-					width: this.state.canvasWidth+2,
-					position: 'relative',
-					marginBottom: this.props.fullscreen ? '0px' : '20px'
-				}}
-				tabIndex="0"
-			>
-				<div className="sketch-panel-heading clearfix unselectable">
-					{this.renderPagination()}
-					<ButtonGroup size="sm" className="sketch-drag-delete-modes sketch-button-group" >
-						<Tooltip placement="bottom" tooltip="Drag Mode" >
-							<Button size="sm" variant={this.state.mode === 'drag' ? 'success' : 'secondary'} onClick={this.toggleDragMode} ><div className="fa fa-arrows-alt" /></Button>
-						</Tooltip>
-						<Tooltip placement="bottom" tooltip="Delete Mode" >
-							<Button size="sm" variant={this.state.mode === 'delete' ? 'success' : 'secondary'} onClick={this.toggleDeleteMode} ><div className="fa fa-times" /></Button>
-						</Tooltip>
-					</ButtonGroup>
-					{this.renderDrawingButtons()}
-					{this.renderTextButtons()}
-					<ButtonGroup size="sm" className="sketch-button-group" >
-						<Tooltip placement="right" tooltip="Change brush color" >
-							<Button size="sm" onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Color</Button>
-						</Tooltip>
-					</ButtonGroup>
-					{this.renderRemoveButtons()}
-					{this.renderRecordingButtons()}
-					{this.renderTransmitButtons()}
-					{this.renderSaveButtons()}
-				</div>
-				<div className="sketch-colorpicker" style={{ display: this.state.showColorPicker ? 'initial' : 'none' }} >
-					<TwitterPicker
-						color={this.state.color}
-						colors={COLORPICKER_COLORS}
-						onChangeComplete={this.handleColorChange}
-						triangle="top-right"
-					/>
-				</div>
-				<div style={{ width: this.state.canvasWidth, height: this.state.canvasHeight, overflow: 'auto', position: 'relative' }}>
-					{this.renderHTMLOverlays()}
-					{canvas}
-				</div>
-				<input type="text" className="sketch-text-input" style={{
-					display: this.state.mode === 'text' ? 'inline-block' : 'none',
-					fontSize: this.state.fontSize,
-					fontFamily: this.state.fontFamily,
-					color: this.state.color,
-					width: this.state.canvasWidth
-				}} onKeyDown={this.handleEnter} ref={( div ) => {
-					this.textInput = div;
-				}} />
-				{this.renderUploadModal()}
-				<NavigationModal
-					container={this}
-					show={this.state.showNavigationModal}
-					onSelect={this.gotoPage}
-					noPages={this.state.noPages}
-					onHide={this.toggleNavigationModal}
-				/>
-				{this.renderProgressModal()}
-				<ResetModal
-					container={this}
-					show={this.state.showResetModal}
-					onSubmit={this.clearAll}
-					onHide={() => {
-						this.setState({ showResetModal: false });
+			<Fragment>
+				<Card
+					ref={( div ) => {
+						this.sketchpadPanel = div;
 					}}
-				/>
-				{ this.props.showTutorial ?
-					<Joyride
-						steps={guide}
-						showProgress
-						run={true}
-					/> : null
-				}
+					className="modal-container"
+					style={{
+						width: this.state.canvasWidth+2,
+						position: 'relative',
+						marginBottom: this.props.fullscreen ? '0px' : '20px'
+					}}
+					tabIndex="0"
+				>
+					<div className="sketch-panel-heading clearfix unselectable">
+						{this.renderPagination()}
+						<ButtonGroup size="sm" className="sketch-drag-delete-modes sketch-button-group" >
+							<Tooltip placement="bottom" tooltip="Drag Mode" >
+								<Button size="sm" variant={this.state.mode === 'drag' ? 'success' : 'secondary'} onClick={this.toggleDragMode} ><div className="fa fa-arrows-alt" /></Button>
+							</Tooltip>
+							<Tooltip placement="bottom" tooltip="Delete Mode" >
+								<Button size="sm" variant={this.state.mode === 'delete' ? 'success' : 'secondary'} onClick={this.toggleDeleteMode} ><div className="fa fa-times" /></Button>
+							</Tooltip>
+						</ButtonGroup>
+						{this.renderDrawingButtons()}
+						{this.renderTextButtons()}
+						<ButtonGroup size="sm" className="sketch-button-group" >
+							<Tooltip placement="right" tooltip="Change brush color" >
+								<Button size="sm" onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Color</Button>
+							</Tooltip>
+						</ButtonGroup>
+						{this.renderRemoveButtons()}
+						{this.renderRecordingButtons()}
+						{this.renderTransmitButtons()}
+						{this.renderSaveButtons()}
+					</div>
+					<div className="sketch-colorpicker" style={{ display: this.state.showColorPicker ? 'initial' : 'none' }} >
+						<TwitterPicker
+							color={this.state.color}
+							colors={COLORPICKER_COLORS}
+							onChangeComplete={this.handleColorChange}
+							triangle="top-right"
+						/>
+					</div>
+					<div style={{ width: this.state.canvasWidth, height: this.state.canvasHeight, overflow: 'auto', position: 'relative' }}>
+						{this.renderHTMLOverlays()}
+						{canvas}
+					</div>
+					<input type="text" className="sketch-text-input" style={{
+						display: this.state.mode === 'text' ? 'inline-block' : 'none',
+						fontSize: this.state.fontSize,
+						fontFamily: this.state.fontFamily,
+						color: this.state.color,
+						width: this.state.canvasWidth
+					}} onKeyDown={this.handleEnter} ref={( div ) => {
+						this.textInput = div;
+					}} />
+					{this.renderUploadModal()}
+					<NavigationModal
+						container={this}
+						show={this.state.showNavigationModal}
+						onSelect={this.gotoPage}
+						noPages={this.state.noPages}
+						onHide={this.toggleNavigationModal}
+					/>
+					{this.renderProgressModal()}
+					<ResetModal
+						container={this}
+						show={this.state.showResetModal}
+						onSubmit={this.clearAll}
+						onHide={() => {
+							this.setState({ showResetModal: false });
+						}}
+					/>
+					{ this.props.showTutorial ?
+						<Joyride
+							steps={guide}
+							showProgress
+							run={true}
+						/> : null
+					}
+				</Card>
 				<KeyControls
 					container={this.sketchpadPanel}
 					actions={{
@@ -1965,7 +1969,7 @@ class Sketchpad extends Component {
 						'ArrowUp': this.previousPage
 					}}
 				/>
-			</Card>
+			</Fragment>
 		);
 	}
 }
