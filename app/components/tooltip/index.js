@@ -37,13 +37,14 @@ Wrapper.propTypes = {
 	tooltip: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.node
-	]).isRequired,
+	]),
 	placement: PropTypes.oneOf([ 'top', 'right', 'bottom', 'left' ])
 };
 
 Wrapper.defaultProps = {
 	id: 'tooltip',
-	placement: 'right'
+	placement: 'right',
+	tooltip: null
 };
 
 
