@@ -4,12 +4,26 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { APIXU_BASE_URL, APIXU_AUTH_KEY } from 'constants/apixu';
+import VoiceControl from 'components/voice-control';
 import './weather.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:weather' );
+const VOICE_COMMANDS = [
+	{
+		command: 'trigger',
+		trigger: [ 'in' ],
+		description: 'Location name',
+		text: true
+	},
+	{
+		command: 'reset',
+		trigger: [ 'close' ],
+		description: 'Close weather modal window'
+	}
+];
 
 
 // MAIN //
@@ -44,17 +58,7 @@ class Weather extends Component {
 		this.context.session.speechInterface.register({
 			name: this.props.voiceID,
 			ref: this,
-			commands: [
-				{
-					command: 'trigger',
-					trigger: [ 'in' ],
-					text: true
-				},
-				{
-					command: 'reset',
-					trigger: [ 'close' ]
-				}
-		]
+			commands: VOICE_COMMANDS
 		});
 	}
 
@@ -207,12 +211,21 @@ class Weather extends Component {
 	}
 
 	render() {
+		let voice = null;
+		if ( this.props.voiceID ) {
+			voice = <VoiceControl
+				id={this.props.voiceID}
+				reference={this}
+				commands={VOICE_COMMANDS}
+			/>;
+		}
 		if ( !this.state.data ) {
-			return null;
+			return voice;
 		}
 		let current = this.state.data.current;
 		return (
 			<div className="weather" style={this.props.style} >
+				{voice}
 				{this.renderLocation(current)}
 				{this.renderDescription(current)}
 				<br />
