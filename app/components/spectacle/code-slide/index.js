@@ -15,6 +15,7 @@ import CodeSlideNote from './code_slide_note.js';
 import CodeSlideImage from './code_slide_image.js';
 import calculateScrollCenter from './calculate_scroll_center.js';
 import scrollToElement from './scroll_to_element.js';
+import 'highlight.js/styles/grayscale.css';
 
 
 // FUNCTIONS //
@@ -39,7 +40,7 @@ const style = {
 	color: defaultColor,
 	height: '646px',
 	margin: 0,
-	fontSize: '2em',
+	fontSize: '1.5em',
 	padding: '40% 0',
 	whiteSpace: 'pre-wrap',
 	wordBreak: 'break-word'

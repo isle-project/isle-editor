@@ -368,7 +368,7 @@ class FreeTextQuestion extends Component {
 FreeTextQuestion.defaultProps = {
 	question: '',
 	hints: [],
-	hintPlacement: 'bottom',
+	hintPlacement: 'top',
 	feedback: false,
 	solution: '',
 	rows: 5,

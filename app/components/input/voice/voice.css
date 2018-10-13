@@ -18,7 +18,7 @@
 
 .voice-input-text {
 	float: left;
-	width: 90% !important;
+	width: calc(100% - 30px);
 	height: 100%;
 	border: none;
 	padding-left: 8px;
