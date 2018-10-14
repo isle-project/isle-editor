@@ -511,6 +511,17 @@ snippet Slide
 		${1:}
 	</Slide>
 
+snippet CodeSlide
+	<CodeSlide
+		lang="${1:javascript}"
+		code={`
+		${2:}
+		`}
+		ranges={[
+			${3:{ loc: [0, 1], note: 'Attach notes or title' }}
+		]}
+	/>
+
 snippet VictoryBar
 	<VictoryBar />
 
