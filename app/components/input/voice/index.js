@@ -26,6 +26,7 @@ const debug = logger( 'isle:voice-input' );
 * @property {string} language - language identifier
 * @property {string} legend - legend displayed in front of input field
 * @property {string} mode - set to `full` to display a text input field alongside the microphone, `status` to only display a statusbar with the transcribed texts, `microphone` to show just a button to toggle recording, or `none` when the voice input should be invisible and purely controlled via hotkeys / voice commands
+* @property {number} maxAlternatives - maximum number of alternatives provided per speech recognition result
 * @property {Function} onChange - callback function invoked when text input value is updated
 * @property {Function} onClick - callback function invoked when clicking on the microphone button
 * @property {Function} onFinalText - callback function invoked once final text is received
@@ -38,6 +39,7 @@ const debug = logger( 'isle:voice-input' );
 * @property {Function} timeout - number of milliseconds after which to timeout the recording
 * @property {Function} stopTooltip - tooltip message desplayed while recording
 * @property {Function} startTooltip - tooltip message desplayed while not recording
+* @property {string} placement - direction of the tooltip
 * @property {number} width - voice input width (in px)
 * @property {number} height - voice input height (in px)
 * @property {Object} style - CSS inline styles
@@ -82,9 +84,18 @@ class VoiceInput extends Input {
 		this.timer = setTimeout( this.stop, this.props.timeout );
 	}
 
-	segment( text ) {
+	segment( results ) {
 		if ( this.timer ) {
 			clearTimeout( this.timer );
+		}
+		let text;
+		if ( this.props.maxAlternatives > 1 ) {
+			text = new Array( results.length );
+			for ( let i = 0; i < results.length; i++ ) {
+				text[ i ] = results[ i ].transcript;
+			}
+		} else {
+			text = results[ 0 ].transcript;
 		}
 		this.setState({
 			value: text
@@ -92,11 +103,20 @@ class VoiceInput extends Input {
 		this.props.onSegment( text );
 	}
 
-	finalText( text ) {
+	finalText( results ) {
 		if ( this.props.timeout ) {
 			this.setTimeout();
 		}
 		debug( 'Received final text' );
+		let text;
+		if ( this.props.maxAlternatives > 1 ) {
+			text = new Array( results.length );
+			for ( let i = 0; i < results.length; i++ ) {
+				text[ i ] = results[ i ].transcript;
+			}
+		} else {
+			text = results[ 0 ].transcript;
+		}
 		this.setState({
 			value: text
 		});
@@ -111,10 +131,10 @@ class VoiceInput extends Input {
 		}
 		for ( let i = event.resultIndex; i < event.results.length; ++i ) {
 			if ( event.results[ i ].isFinal ) {
-				this.finalText( event.results[ i ][ 0 ].transcript );
+				this.finalText( event.results[ i ] );
 			}
 			else {
-				this.segment( event.results[ i ][ 0 ].transcript );
+				this.segment( event.results[ i ] );
 			}
 		}
 	}
@@ -137,6 +157,7 @@ class VoiceInput extends Input {
 			recognizer.lang = this.props.language;
 			recognizer.continuous = true;
 			recognizer.interimResults = true;
+			recognizer.maxAlternatives = this.props.maxAlternatives;
 			this.recognizer = recognizer;
 			this.recognizer.grammars = this.createGrammarList();
 
@@ -165,6 +186,7 @@ class VoiceInput extends Input {
 
 			this.recognizer.onend = () => {
 				debug('onend: %s', this.props.id );
+				console.log( this.recognizer );
 				if ( this.state.isRecording ) {
 					// Restart recording after it stopped due to no voice input for a few seconds:
 					this.recognizer.start();
@@ -173,6 +195,7 @@ class VoiceInput extends Input {
 
 			this.recognizer.onstart = () => {
 				debug('onstart: %s', this.props.id );
+				console.log( this.recognizer );
 				this.props.onRecordingStart();
 			};
 
@@ -289,7 +312,7 @@ class VoiceInput extends Input {
 								this.textInput = input;
 							}}
 						/>
-						<OverlayTrigger placement="bottom" overlay={this.renderTooltip()}>
+						<OverlayTrigger placement={this.props.tooltipPlacement}  overlay={this.renderTooltip()}>
 							<Microphone onClick={this.handleClick} className={mike} />
 						</OverlayTrigger>
 					</div>
@@ -338,6 +361,7 @@ VoiceInput.defaultProps = {
 	language: 'en-US',
 	legend: '',
 	mode: 'full',
+	maxAlternatives: 1,
 	onChange() {},
 	onClick() {},
 	onFinalText() {},
@@ -351,6 +375,7 @@ VoiceInput.defaultProps = {
 	timeout: null,
 	stopTooltip: 'Click to stop recording',
 	startTooltip: 'Click to start recording',
+	tooltipPlacement: 'left',
 	width: 500,
 	height: 36
 };
@@ -362,6 +387,7 @@ VoiceInput.propTypes = {
 	language: PropTypes.string,
 	legend: PropTypes.string,
 	mode: PropTypes.string,
+	maxAlternatives: PropTypes.number,
 	onChange: PropTypes.func,
 	onClick: PropTypes.func,
 	onFinalText: PropTypes.func,
@@ -375,6 +401,7 @@ VoiceInput.propTypes = {
 	timeout: PropTypes.number,
 	stopTooltip: PropTypes.string,
 	startTooltip: PropTypes.string,
+	tooltipPlacement: PropTypes.oneOf([ 'top', 'right', 'bottom', 'left' ]),
 	width: PropTypes.number,
 	height: PropTypes.number
 };
