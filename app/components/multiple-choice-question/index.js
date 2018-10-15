@@ -12,6 +12,9 @@ import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
+import VoiceControl from 'components/voice-control';
+import toNumber from 'utils/to-number';
+import VOICE_COMMANDS from './voice_commands.json';
 import AnswerOption from './answer_option.js';
 import Question from './question.js';
 
@@ -36,6 +39,7 @@ const debug = logger( 'isle:multiple-choice-question' );
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {boolean} displaySolution - controls whether the solution is displayed upfront
+* @property {strings} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
 * @property {Function} onSubmit - callback invoked after an answer is submitted
 */
@@ -126,6 +130,16 @@ class MultipleChoiceQuestion extends Component {
 				value: idx
 			});
 		}
+	}
+
+	selectAnswer( no ) {
+		console.log( `Parse input: ${no}` );
+		no = toNumber( no ) - 1;
+		console.log( `Select answer at position ${no}` );
+		this.setState({
+			active: no,
+			answerSelected: true
+		});
 	}
 
 	submitQuestion = () => {
@@ -278,6 +292,7 @@ class MultipleChoiceQuestion extends Component {
 								<ChatButton for={id} />
 							</div> : null
 						}
+						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</div>
 					{ id ? <div>
 						<ResponseVisualizer
@@ -308,6 +323,7 @@ MultipleChoiceQuestion.defaultProps = {
 	displaySolution: false,
 	chat: false,
 	provideFeedback: true,
+	voiceID: null,
 	style: {},
 	onSubmit(){}
 };
@@ -326,6 +342,7 @@ MultipleChoiceQuestion.propTypes = {
 	chat: PropTypes.bool,
 	provideFeedback: PropTypes.bool,
 	displaySolution: PropTypes.bool,
+	voiceID: PropTypes.string,
 	style: PropTypes.object,
 	onSubmit: PropTypes.func
 };

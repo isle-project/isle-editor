@@ -1,0 +1,17 @@
+[
+	{
+		"command": "selectAnswer",
+		"trigger": [ "choose", "pick", "take" ],
+		"description": "Select an answer",
+		"params": [ "no" ],
+		"regexp": [
+			"/(?:choose|pick|take) (?:the )?(?<no>[\\s\\S]*) answer/i",
+			"/(?:choose|pick|take) (?:[\\s\\S]*?)?answer (?:number )?(?<no>[\\s\\S]*)/i"
+		]
+	},
+	{
+		"command": "submitQuestion",
+		"trigger": [ "submit" ],
+		"description": "Submit answer"
+	}
+]
