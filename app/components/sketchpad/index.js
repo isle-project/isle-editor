@@ -35,6 +35,8 @@ import { TwitterPicker } from 'react-color';
 import Gate from 'components/gate';
 import KeyControls from 'components/key-controls';
 import SelectInput from 'react-select';
+import VoiceControl from 'components/voice-control';
+import VOICE_COMMANDS from './voice_commands.json';
 import ResetModal from './reset_modal.js';
 import NavigationModal from './navigation_modal.js';
 import TooltipButton from './tooltip_button.js';
@@ -83,6 +85,7 @@ const RE_DIGITS = /^[0-9]+$/;
 * @property {boolean} showTutorial - show a tutorial for the sketchpad
 * @property {boolean} transmitOwner - whether owner actions should be transmitted to other users in real-time
 * @property {boolean} groupMode - controls whether all user's actions are transmitted to everyone else
+* @property {strings} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked whenever a new line element is drawn
 */
@@ -1915,6 +1918,7 @@ class Sketchpad extends Component {
 						{this.renderRecordingButtons()}
 						{this.renderTransmitButtons()}
 						{this.renderSaveButtons()}
+						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</div>
 					<div className="sketch-colorpicker" style={{ display: this.state.showColorPicker ? 'initial' : 'none' }} >
 						<TwitterPicker
@@ -1998,6 +2002,7 @@ Sketchpad.defaultProps = {
 	showTutorial: false,
 	transmitOwner: true,
 	groupMode: false,
+	voiceID: null,
 	style: {},
 	onChange() {}
 };
@@ -2023,6 +2028,7 @@ Sketchpad.propTypes = {
 	showTutorial: PropTypes.bool,
 	transmitOwner: PropTypes.bool,
 	groupMode: PropTypes.bool,
+	voiceID: PropTypes.string,
 	style: PropTypes.object,
 	onChange: PropTypes.func
 };

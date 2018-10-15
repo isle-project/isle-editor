@@ -1,0 +1,22 @@
+[
+	{
+		"command": "nextPage",
+		"trigger": "next",
+		"description": "Go to next page"
+	},
+	{
+		"command": "prevPage",
+		"trigger": "previous",
+		"description": "Go to the previous next page"
+	},
+	{
+		"command": "firstPage",
+		"trigger": [ "first", "First" ],
+		"description": "Jump to the first page"
+	},
+	{
+		"command": "lastPage",
+		"trigger": "last",
+		"description": "Jump to the last page"
+	}
+]
