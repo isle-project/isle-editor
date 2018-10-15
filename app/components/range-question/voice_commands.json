@@ -1,0 +1,17 @@
+[
+	{
+		"command": "setValue",
+		"trigger": [ "assign", "set", "change" ],
+		"description": "Set a value",
+		"params": [ "type", "value" ],
+		"regexp": [
+			"/(?:set|change) [\\s\\S]*?(?<type>lower|upper|minimum|maximum)[\\s\\S]*? to? ?(?<value>[\\d.,]+)/i",
+			"/(?:assign) [\\s\\S]*?(?<value>[\\d.,]+)[\\s\\S]*? to? ?(?<type>lower|upper|minimum|maximum)/i"
+		]
+	},
+	{
+		"command": "submitHandler",
+		"trigger": [ "submit" ],
+		"description": "Submit answer"
+	}
+]

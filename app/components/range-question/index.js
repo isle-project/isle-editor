@@ -16,6 +16,8 @@ import ResponseVisualizer from 'components/response-visualizer';
 import NumberInput from 'components/input/number';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
+import VoiceControl from 'components/voice-control';
+import VOICE_COMMANDS from './voice_commands.json';
 import './range-question.css';
 
 
@@ -39,6 +41,7 @@ const debug = logger( 'isle:range-question' );
 * @property {number} max - maximum input value
 * @property {number} min - minimum input value
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
+* @property {strings} voiceID - voice control identifier
 * @property {Function} onChangeUpper - callback triggered after the upper bound is changed by the user
 * @property {Function} onChangeLower - callback triggered after the lower bound is changed by the user
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter
@@ -63,8 +66,13 @@ class RangeQuestion extends Component {
 	componentDidUpdate( prevProps ) {
 		if (
 			this.props.question !== prevProps.question ||
-			this.props.solution[1] !== prevProps.solution[1] ||
-			this.props.solution[0] !== prevProps.solution[0]
+			(
+				this.props.solution && prevProps.solution &&
+				(
+					this.props.solution[1] !== prevProps.solution[1] ||
+					this.props.solution[0] !== prevProps.solution[0]
+				)
+			)
 		) {
 			this.setState({
 				lower: void 0,
@@ -85,6 +93,14 @@ class RangeQuestion extends Component {
 	handleChangeLower = ( newValue ) => {
 		this.setState({ lower: newValue });
 		this.props.onChangeLower( min(newValue, this.state.upper) );
+	}
+
+	setValue = ( type, value ) => {
+		if ( type === 'lower' || type === 'minimum' ) {
+			this.handleChangeLower( parseFloat( value ) );
+		} else if ( type === 'upper' || type === 'maximum' ) {
+			this.handleChangeUpper( parseFloat( value ) );
+		}
 	}
 
 	submitHandler = () => {
@@ -234,6 +250,7 @@ class RangeQuestion extends Component {
 									<ChatButton for={this.props.id} />
 								</div> : null
 						}
+						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</ButtonToolbar>
 					<ResponseVisualizer
 						buttonLabel="Answers"
@@ -265,6 +282,7 @@ RangeQuestion.defaultProps = {
 	max: PINF,
 	min: NINF,
 	provideFeedback: true,
+	voiceID: null,
 	onChangeUpper() {},
 	onChangeLower() {},
 	onSubmit() {}
@@ -281,6 +299,7 @@ RangeQuestion.propTypes = {
 	max: PropTypes.number,
 	min: PropTypes.number,
 	provideFeedback: PropTypes.bool,
+	voiceID: PropTypes.string,
 	onChangeLower: PropTypes.func,
 	onChangeUpper: PropTypes.func,
 	onSubmit: PropTypes.func
