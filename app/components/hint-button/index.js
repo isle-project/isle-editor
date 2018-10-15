@@ -22,7 +22,7 @@ const displayHint = ( id, hints ) => {
 			{ hints
 				.filter( ( e, i ) => i <= id )
 				.map( ( hintText, i ) => ( <span key={i}>
-					<label>Hint {i+1}:</label>
+					<label style={{ marginBottom: 0 }}>Hint {i+1}:</label>
 					<br />
 					<span>{hintText}</span>
 					<br />

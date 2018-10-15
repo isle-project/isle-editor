@@ -19,7 +19,9 @@ const createTooltip = ( commands ) => {
 			</tr> );
 		});
 		return ( <Tooltip style={{ fontSize: 10 }} id="voice_control_tooltip">
-			<label>Available voice commands:</label>
+			<p>
+				<b>Available voice commands:</b>
+			</p>
 			<table className="table table-bordered table-condensed" >
 				<thead>
 					<tr>
