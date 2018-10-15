@@ -1,0 +1,12 @@
+[
+	{
+		"command": "handleEvaluationClick",
+		"trigger": [ "run", "evaluate", "execute" ],
+		"description": "Run the code"
+	},
+	{
+		"command": "resetConsole",
+		"trigger": "reset",
+		"description": "Reset the console text"
+	}
+]

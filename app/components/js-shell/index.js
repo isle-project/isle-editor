@@ -19,6 +19,8 @@ import 'brace/theme/monokai';
 import 'brace/theme/solarized_light';
 import scrollTo from 'utils/scroll-to';
 import OverlayTrigger from 'components/overlay-trigger';
+import VoiceControl from 'components/voice-control';
+import VOICE_COMMANDS from './voice_commands.json';
 import CONSOLE_STYLES from './console_styles.json';
 import './js-shell.css';
 
@@ -78,6 +80,7 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 * @property {boolean} disabled - controls whether to disable all user inputs and make the code block static
 * @property {number} lines - number of lines to display
 * @property {Object} vars - scope object with variables that should be made available to evaluated `code`
+* @property {strings} voiceID - voice control identifier
 * @property {Function} onEvaluate - callback invoked whenever the `Evaluate` button is clicked
 */
 class JSShell extends Component {
@@ -91,7 +94,6 @@ class JSShell extends Component {
 		};
 
 		this.isActive = false;
-		this.jslog = [];
 
 		if ( this.props.vars ) {
 			for ( var key in this.props.vars ) {
@@ -114,6 +116,10 @@ class JSShell extends Component {
 			fontFamily: this.props.fontFamily,
 			fontSize: this.props.fontSize
 		});
+
+		// Add event listener:
+		this.editor.on( 'change', this.onChange );
+
 		if ( this.props.disabled ) {
 			this.editor.setOptions({
 				readOnly: true,
@@ -127,7 +133,6 @@ class JSShell extends Component {
 		if ( this.props.precompute ) {
 			this.handleEvaluationClick();
 		}
-		this.register(); // registers the component for the speech interface
 	}
 
 	componentDidUpdate( prevProps ) {
@@ -171,25 +176,15 @@ class JSShell extends Component {
 		this.scrollToBottom();
 	}
 
-	register() {
-		this.context.session.speechInterface.register({
-			name: [ 'shell', 'console' ],
-			ref: this,
-			commands: [{
-				command: 'resetConsole',
-				trigger: 'reset'
-			}]
-		});
+	componentWillUnmount() {
+		this.isActive = false;
 	}
 
-	getLogs = () => {
-		this.setState({
-			log: this.jslog
-		});
+	onChange() {
+		this.isActive = false;
 	}
 
 	resetConsole = () => {
-		this.jslog = [];
 		this.setState({
 			log: []
 		});
@@ -260,11 +255,13 @@ class JSShell extends Component {
 				type: 'error',
 				msg: err.message
 			};
-			this.jslog.push( x );
+			const log = this.state.log;
+			log.push( x );
+			this.setState({
+				log
+			});
 		}
 		this.props.onEvaluate( currentCode );
-		this.isActive = false;
-		this.getLogs();
 	}
 
 	stringifyObject( arg ) {
@@ -280,7 +277,7 @@ class JSShell extends Component {
 		for ( let i = 0; i < lg.length; i++ ) {
 			let verb = lg[ i ];
 			// eslint-disable-next-line no-console
-			console[ verb ] = ( ( method, verb ) => {
+			global.console[ verb ] = ( ( method, verb ) => {
 				return function logger() {
 					method.apply( console, arguments );
 
@@ -301,10 +298,14 @@ class JSShell extends Component {
 							type: verb,
 							msg: msg
 						};
-						self.jslog.push( x );
+						const log = self.state.log;
+						log.push( x );
+						self.setState({
+							log
+						});
 					}
 				};
-			})( console[ verb ], verb ); // eslint-disable-line no-console
+			})( global.console[ verb ], verb ); // eslint-disable-line no-console
 		}
 	}
 
@@ -387,6 +388,7 @@ class JSShell extends Component {
 					</span> :
 					null
 			}
+			<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 		</ButtonToolbar>;
 
 		const editor = <div className="jsedit" ref={( div ) => {
@@ -440,6 +442,7 @@ JSShell.defaultProps = {
 	fontFamily: 'Courier New',
 	fontSize: 16,
 	vars: null,
+	voiceID: null,
 	onEvaluate() {}
 };
 
@@ -455,7 +458,8 @@ JSShell.propTypes = {
 	fontFamily: PropTypes.string,
 	fontSize: PropTypes.number,
 	onEvaluate: PropTypes.func,
-	vars: PropTypes.object
+	vars: PropTypes.object,
+	voiceID: PropTypes.string
 };
 
 JSShell.contextTypes = {
