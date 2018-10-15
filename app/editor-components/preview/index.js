@@ -17,7 +17,9 @@ import pluginTransformJSX from 'babel-plugin-transform-react-jsx';
 import Provider from 'components/provider';
 import Loadable from 'editor-components/loadable';
 import Session from 'session';
+import Alert from 'react-bootstrap/lib/Alert';
 import Button from 'react-bootstrap/lib/Button';
+import Card from 'react-bootstrap/lib/Card';
 import Col from 'react-bootstrap/lib/Col';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
@@ -157,7 +159,9 @@ const createScope = ( session ) => {
 		WordCloud: Loadable( () => import( 'components/word-cloud' ) ),
 
 		// REACT BOOTSTRAP //
+		Alert,
 		Button,
+		Card,
 		Col,
 		ListGroup,
 		ListGroupItem,
