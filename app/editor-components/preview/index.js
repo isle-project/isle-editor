@@ -11,7 +11,9 @@ import { render } from 'react-dom';
 import { transform } from 'babel-core';
 import PropTypes from 'prop-types';
 import NotificationSystem from 'react-notification-system';
+import Ansi from 'ansi-to-react';
 import logger from 'debug';
+import repeat from '@stdlib/string/repeat';
 import markdownToHTML from 'utils/markdown-to-html';
 import pluginTransformJSX from 'babel-plugin-transform-react-jsx';
 import Provider from 'components/provider';
@@ -43,6 +45,7 @@ import VoiceInput from 'components/input/voice';
 import transformToPresentation from 'utils/transform-to-presentation';
 import SPECTACLE_THEME from 'components/spectacle/theme.json';
 import factor from 'utils/factor-variable';
+import './preview.css';
 
 
 // VARIABLES //
@@ -51,6 +54,10 @@ const OPTS = {
 	plugins: [ pluginTransformJSX ]
 };
 const debug = logger( 'isle-editor' );
+const RE_LINES = /\r?\n/g;
+const RE_EMPTY_LINES = /\r?\n(?=\r?\n)/g;
+const RE_ANSI = /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)?\u0007)|(?:(?:\d{1,4}(?:;\d{0,4})*)?[\dA-PR-TZcf-ntqry=><~]))/g; // eslint-disable-line no-control-regex
+const RE_OFFENDING_LINE = /> \d+ \| ([^\n{]*)/;
 
 const createScope = ( session ) => {
 	const SCOPE = {
@@ -292,8 +299,13 @@ class Preview extends Component {
 		let { code, preamble } = this.props;
 
 		// Remove preamble and comments:
-		code = code.replace( /---([\S\s]*)---/, '' );
-		code = code.replace( /<!--([\S\s]*)-->/, '' );
+		let noEmptyLines = 0;
+		const replacer = ( match, p1 ) => {
+			noEmptyLines += ( p1.match( RE_LINES ) || '').length;
+			return '';
+		};
+		code = code.replace( /---([\S\s]*)---/, replacer );
+		code = code.replace( /<!--([\S\s]*)-->/, replacer );
 
 		// Replace Markdown by HTML...
 		code = markdownToHTML( code );
@@ -303,8 +315,11 @@ class Preview extends Component {
 			code = transformToPresentation( code, preamble );
 		}
 		if ( !preamble.hideToolbar ) {
+			noEmptyLines += 1;
 			code = '<StatusBar className="fixedPos" />\n' + code;
 		}
+		// Prepend empty lines so line numbers in error stack traces match:
+		code = repeat( '\n', noEmptyLines ) + code;
 		debug( 'Transpile code to ES5...' );
 		try {
 			es5code = transform( `var out = <React.Fragment>${code}</React.Fragment>`, OPTS );
@@ -322,10 +337,28 @@ class Preview extends Component {
 	}
 
 	renderErrorMessage( err ) {
-		return ( <div className="error-message">
-			<h3>Encountered an error:</h3>
-			<span>{err}</span>
-		</div> );
+		const bare = err.replace( RE_ANSI, '' );
+		const match = bare.match( RE_OFFENDING_LINE );
+		if ( match ) {
+			let { code } = this.props;
+			code = code.replace( /---([\S\s]*)---/, '' );
+			code = code.substring( 0, code.indexOf( match[ 1 ] ) );
+			const lineAdjustment = ( code.match( RE_EMPTY_LINES ) || '').length - 1;
+			err = err.replace( /\((\d+):/, ( match, p1 ) => {
+				return '('+String( parseInt( p1, 10 )+lineAdjustment ) + ':';
+			});
+			err = err.replace( /(\d+) \|/g, ( match, p1 ) => {
+				return String( parseInt( p1, 10 )+lineAdjustment ) + ' |';
+			});
+		}
+		return ( <Card className="error-message">
+			<Card.Body>
+				<h3>Encountered an error:</h3>
+				<pre>
+					<Ansi>{err}</Ansi>
+				</pre>
+			</Card.Body>
+		</Card> );
 	}
 
 	render() {
