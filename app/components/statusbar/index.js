@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import ceil from '@stdlib/math/base/special/ceil';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
+import sample from '@stdlib/random/sample';
 import logger from 'debug';
 import Signup from 'components/signup';
 import Login from 'components/login';
@@ -79,10 +80,15 @@ class StatusBar extends Component {
 		});
 		this.getStatusbarInfo = this.getStatusbarInfo.bind( this );
 		window.addEventListener( 'resize', this.getStatusbarInfo );
+
+		this.renderTextInterval = setInterval( this.renderRecordedText, 1000 );
 	}
 
 	componentWillUnmount() {
 		this.unsubscribe();
+		if ( this.renderTextInterval ) {
+			clearInterval( this.renderTextInterval );
+		}
 		window.removeEventListener( 'resize', this.getStatusbarInfo );
 	}
 
@@ -179,6 +185,14 @@ class StatusBar extends Component {
 		event.stopPropagation();
 	}
 
+	renderRecordedText = () => {
+		if ( this.state.recordedText ) {
+			this.displayedText.innerHTML = sample( this.state.recordedText, {
+				'size': 1
+			});
+		}
+	}
+
 	getChatPosition( idx ) {
 		const { session } = this.context;
 		const margin = 10;
@@ -227,11 +241,12 @@ class StatusBar extends Component {
 								stopTooltip="Disable voice control (F9)"
 								startTooltip="Enable voice control (F9)"
 								onFinalText={this.handleVoiceInput}
+								maxAlternatives={5}
 								remote={{
 									toggle: 120 // F9
 								}}
 							/>
-							<span className="statusbar-voice-text" >{this.state.recordedText}</span>
+							<span ref={( span ) => { this.displayedText = span; }} className="statusbar-voice-text" ></span>
 						</div>
 						<div className="statusbar-presence" style={{
 							backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR

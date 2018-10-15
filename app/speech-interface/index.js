@@ -1,6 +1,8 @@
 // MODULES //
 
 import ReactDOM from 'react-dom';
+import isRegExpString from '@stdlib/assert/is-regexp-string';
+import reFromString from '@stdlib/utils/regexp-from-string';
 import isObject from '@stdlib/assert/is-object';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
@@ -12,7 +14,7 @@ import camelcase from 'utils/camelcase';
 // VARIABLES //
 
 const RE_SELECT = /select (?:the|or|a|) ?([\S]*)/i;
-const RE_STYLE_SETTER = /(?:set|change|modify|alter) (?:the|or|a|) ?([\s\S]*) to ([\s\S]*)/i;
+const RE_STYLE_SETTER = /CSS (?:set|change|modify|alter) (?:the|a)? ?([\s\S]*) to ([\s\S]*)/i;
 const debug = logger( 'isle-editor:speech-interface' );
 
 
@@ -133,11 +135,15 @@ class SpeechInterface {
 			if ( value === 'small caps' ) value = 'small-caps';
 		}
 		else {
-			var resp = 'Sorry, I didn\'t get that.';
-			var ssu = new SpeechSynthesisUtterance( resp );
-			ssu.lang = 'en-US';
-			window.speechSynthesis.speak( ssu );
+			this.sendNotUnderstoodMsg();
 		}
+	}
+
+	sendNotUnderstoodMsg = () => {
+		var resp = 'Sorry, I didn\'t get that.';
+		var ssu = new SpeechSynthesisUtterance( resp );
+		ssu.lang = 'en-US';
+		window.speechSynthesis.speak( ssu );
 	}
 
 	setActive = ( name ) => {
@@ -170,43 +176,55 @@ class SpeechInterface {
 	/**
 	* Checks whether the text contains a valid name.
 	*/
-	check( text ) {
-		debug( 'Checking text: `'+ text + '`' );
-		if ( this.active ) {
-			debug( 'Active component is: '+ this.active.name );
-		} else {
-			debug( 'No active component...' );
-		}
-		if ( contains( text, 'select' ) ) {
-			debug( 'Received a selection command: '+text );
-			const match = text.match( RE_SELECT );
-			if ( match ) {
-				const name = match[ 1 ];
-				return this.setActive( name );
+	check( arr ) {
+		console.log( arr );
+		for ( let i = 0; i < arr.length; i++ ) {
+			const text = arr[ i ];
+			debug( 'Checking text: `'+ text + '`' );
+			if ( this.active ) {
+				debug( 'Active component is: '+ this.active.name );
+			} else {
+				debug( 'No active component...' );
 			}
-		}
-		if ( this.active ) {
-			this.checkCommands( text, this.active );
-			if ( RE_STYLE_SETTER.test( text ) ) {
-				debug( 'Found style setting command...' );
-				return this.updateStyle( text );
+			if ( contains( text, 'select' ) ) {
+				debug( 'Received a selection command: '+text );
+				const match = text.match( RE_SELECT );
+				if ( match ) {
+					const name = match[ 1 ];
+					return this.setActive( name );
+				}
 			}
-			if ( contains( text, 'reset' ) ) {
-				this.resetStyle();
+			if ( this.active ) {
+				const found = this.checkCommands( text, this.active );
+				if ( found ) {
+					return;
+				}
+				if ( RE_STYLE_SETTER.test( text ) ) {
+					debug( 'Found style setting command...' );
+					return this.updateStyle( text );
+				}
+				if ( contains( text, 'reset' ) ) {
+					return this.resetStyle();
+				}
 			}
-		}
-		for ( let i = 0; i < this.components.length; i++ ) {
-			const comp = this.components[ i ];
-			const name = comp.name;
-			if ( text.search( name ) !== -1 ) {
-				debug( 'Checking triggers for '+name+ ' component...' );
-				this.checkCommands( text, comp );
+			for ( let j = 0; j < this.components.length; j++ ) {
+				const comp = this.components[ j ];
+				const name = comp.name;
+				if ( text.search( name ) !== -1 ) {
+					debug( 'Checking triggers for '+name+ ' component...' );
+					const found = this.checkCommands( text, comp );
+					if ( found ) {
+						return;
+					}
+				}
 			}
 		}
 	}
 
 	/**
 	* Checks whether text contains a command keyword.
+	*
+	* @returns {boolean} returns true if text matches a command, false otherwise
 	*/
 	checkCommands( text, comp ) {
 		for ( let n = 0; n < comp.commands.length; n++ ) {
@@ -215,22 +233,75 @@ class SpeechInterface {
 			if ( isArray( trigger ) === true ) {
 				for ( let x = 0; x < trigger.length; x++ ) {
 					if ( text.search( trigger[x] ) !== -1 ) {
-						this.execute( comp.reference, command, text );
-						break;
+						return this.execute( comp.reference, command, text );
 					}
 				}
 			} else if ( text.search( trigger) !== -1 ) {
-				this.execute( comp.reference, command, text );
+				return this.execute( comp.reference, command, text );
 			}
 		}
+		return false;
 	}
 
+	/**
+	*
+	* @param {*} ref
+	* @param {*} command
+	* @param {*} text
+	* @returns {boolean} returns true if text matches a command, false otherwise
+	*/
 	execute( ref, command, text ) {
-		if ( command.text ) {
-			command.text = text;
+		debug( `Executing ${command.command} command with input: `+text );
+		if ( command.regexp ) {
+			if ( isArray( command.regexp ) ) {
+				for ( let i = 0; i < command.regexp.length; i++ ) {
+					let regexp = command.regexp[ i ];
+					if ( isRegExpString( regexp ) ) {
+						regexp = reFromString( regexp );
+						command.regexp[ i ] = regexp;
+					}
+					const match = text.match( regexp );
+					if ( match ) {
+						const matches = [];
+						if ( command.params ) {
+							for ( let i = 0; i < command.params.length; i++ ) {
+								matches.push( match.groups[ command.params[ i ] ] );
+							}
+						} else {
+							for ( let j = 1; j < match.length; j++ ) {
+								matches.push( match[ j ] );
+							}
+						}
+						console.log( matches );
+						ref[ command.command ]( ...matches );
+						return true;
+					}
+				}
+			}
+			else {
+				if ( isRegExpString( command.regexp ) ) {
+					command.regexp = reFromString( command.regexp );
+				}
+				const match = text.match( command.regexp );
+				if ( match ) {
+					const matches = [];
+					if ( command.params ) {
+						for ( let i = 0; i < command.params.length; i++ ) {
+							matches.push( match.groups[ command.params[ i ] ] );
+						}
+					} else {
+						for ( let i = 1; i < match.length; i++ ) {
+							matches.push( match[ i ] );
+						}
+					}
+					ref[ command.command ]( ...matches );
+					return true;
+				}
+			}
+			return false;
 		}
-		debug( `Executing ${command.command} command with input: `+command.text );
-		ref[ command.command ]( command.text );
+		ref[ command.command ]();
+		return true;
 	}
 
 	register( component ) {
