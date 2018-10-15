@@ -1,9 +1,11 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import ReactDom from 'react-dom';
 import ComponentPlayground from 'component-playground';
 import PropTypes from 'prop-types';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import isArray from '@stdlib/assert/is-array';
 import Provider from 'components/provider';
 import './codemirror.css';
 import './syntax.css';
@@ -44,6 +46,21 @@ class Playground extends Component {
 
 	componentDidMount() {
 		this.forceUpdate();
+	}
+
+	componentDidUpdate() {
+		const node = ReactDom.findDOMNode( this );
+		// Undo Spectacle scaling as it messes up the rendering of the ACE editor:
+		let slide = node.closest( '.spectacle-content' );
+		if ( slide ) {
+			let computedStyle = window.getComputedStyle( slide );
+			let transform = computedStyle.getPropertyValue( 'transform' );
+			let match = /matrix\(([0-9.]*)/.exec( transform );
+			if ( isArray( match ) && match.length > 1 ) {
+				let scaleFactor = match[ 1 ];
+				node.style.transform = `scale(${1/scaleFactor})`;
+			}
+		}
 	}
 
 	render() {
