@@ -10,6 +10,14 @@ import OverlayTrigger from 'components/overlay-trigger';
 
 // FUNCTIONS //
 
+/**
+* Returns a popover displaying the unlocked hints.
+*
+* @private
+* @param {integer} id - current hint index
+* @param {Array} hints - array of hints
+* @returns {Node} popover with hints
+*/
 const displayHint = ( id, hints ) => {
 	return (
 		<Popover
@@ -32,6 +40,15 @@ const displayHint = ( id, hints ) => {
 	);
 };
 
+/**
+* Returns a hint button label.
+*
+* @private
+* @param {integer} id - current hint index
+* @param {integer} noHints - total number of hints
+* @param {boolean} hintOpen - indicates whether hint popover is opened
+* @returns {string} hint button label
+*/
 const getHintLabel = ( id, noHints, hintOpen ) => {
 	if ( hintOpen ) {
 		return id <= 1 ? 'Close Hint' : 'Close Hints';
@@ -99,6 +116,7 @@ class HintButton extends Component {
 		);
 	}
 }
+
 
 // TYPES //
 
