@@ -1,10 +1,9 @@
 // MODULES //
 
 import React from 'react';
-import { hot } from 'react-hot-loader';
 import createHashHistory from 'history/createHashHistory';
-import configureStore from 'store/configureStore';
 import Root from 'containers/root';
+import configureStore from 'store/configure_store.js';
 import configureIpcRenderer from './configure_ipc_renderer.js';
 import './app.global.css';
 
@@ -20,4 +19,7 @@ configureIpcRenderer( store );
 
 const App = () => <Root store={store} history={history} />;
 
-export default hot( module )( App );
+
+// EXPORTS //
+
+export default App;

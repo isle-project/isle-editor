@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
+import { hot } from 'react-hot-loader';
 import Editor from 'containers/editor.js';
 import Documentation from 'containers/documentation.js';
 import Settings from 'containers/settings.js';
@@ -43,4 +44,4 @@ class Root extends Component {
 
 // EXPORTS //
 
-export default Root;
+export default hot( module )( Root );
