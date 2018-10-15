@@ -1,9 +1,9 @@
 // MODULES //
 
-const markdownIT = require( 'markdown-it' );
-const hasOwnProp = require( '@stdlib/assert/has-own-property' );
-const replace = require( '@stdlib/string/replace' );
-const Tokenizer = require( './tokenizer.js' );
+import markdownIT from 'markdown-it';
+import hasOwnProp from '@stdlib/assert/has-own-property';
+import replace from '@stdlib/string/replace';
+import Tokenizer from './tokenizer.js';
 
 
 // VARIABLES //
@@ -66,4 +66,4 @@ function toMarkdown( str ) {
 
 // EXPORTS //
 
-module.exports = toMarkdown;
+export default toMarkdown;

@@ -1,7 +1,7 @@
 // MODULES //
 
-const isObject = require( '@stdlib/assert/is-object' );
-const isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+import isObject from '@stdlib/assert/is-object';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 
 
 // MAIN //
@@ -19,4 +19,4 @@ const isElectron =
 
 // EXPORTS //
 
-module.exports = isElectron;
+export default isElectron;
