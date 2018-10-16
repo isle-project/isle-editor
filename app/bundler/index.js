@@ -98,6 +98,7 @@ const loadRequires = ( libs, filePath ) => {
 				}
 				else {
 					str += `import ${key} from '${lib}';\n`;
+					str += `global[ '${key}' ] = ${key};\n`;
 				}
 			}
 		}
