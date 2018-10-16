@@ -312,7 +312,7 @@ class VoiceInput extends Input {
 								this.textInput = input;
 							}}
 						/>
-						<OverlayTrigger placement={this.props.tooltipPlacement}  overlay={this.renderTooltip()}>
+						<OverlayTrigger placement={this.props.tooltipPlacement} overlay={this.renderTooltip()}>
 							<Microphone onClick={this.handleClick} className={mike} />
 						</OverlayTrigger>
 					</div>
