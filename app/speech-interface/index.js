@@ -18,6 +18,115 @@ const RE_STYLE_SETTER = /CSS (?:set|change|modify|alter) (?:the|a)? ?([\s\S]*) t
 const debug = logger( 'isle-editor:speech-interface' );
 
 
+// FUNCTIONS //
+
+/**
+* Checks whether text contains a command keyword.
+*
+* @returns {boolean} returns true if text matches a command, false otherwise
+*/
+function checkCommands( text, comp ) {
+	for ( let n = 0; n < comp.commands.length; n++ ) {
+		const command = comp.commands[ n ];
+		const trigger = command.trigger;
+		if ( isArray( trigger ) === true ) {
+			for ( let x = 0; x < trigger.length; x++ ) {
+				if ( text.search( trigger[x] ) !== -1 ) {
+					return execute( comp.reference, command, text );
+				}
+			}
+		} else if ( text.search( trigger) !== -1 ) {
+			return execute( comp.reference, command, text );
+		}
+	}
+	return false;
+}
+
+/**
+* Executes a detected voice command if found.
+*
+* @param {Node} ref - component reference
+* @param {Object} command - command options
+* @param {string} text - parsed voice command
+* @returns {boolean} returns true if text matches a command, false otherwise
+*/
+function execute( ref, command, text ) {
+	debug( `Executing ${command.command} command with input: `+text );
+	if ( command.regexp ) {
+		if ( isArray( command.regexp ) ) {
+			return processMultipleRegExps( ref, command, text );
+		}
+		return processSingleRegExp( ref, command, text );
+	}
+	ref[ command.command ]();
+	return true;
+}
+
+/**
+* Finds and executes a detected voice command with multiple regular expressions for extracting parameters.
+*
+* @param {Node} ref - component reference
+* @param {Object} command - command options
+* @param {string} text - parsed voice command
+* @returns {boolean} returns true if text matches a command, false otherwise
+*/
+function processMultipleRegExps( ref, command, text ) {
+	for ( let i = 0; i < command.regexp.length; i++ ) {
+		let regexp = command.regexp[ i ];
+		if ( isRegExpString( regexp ) ) {
+			regexp = reFromString( regexp );
+			command.regexp[ i ] = regexp;
+		}
+		const match = text.match( regexp );
+		if ( match ) {
+			const matches = [];
+			if ( command.params ) {
+				for ( let i = 0; i < command.params.length; i++ ) {
+					matches.push( match.groups[ command.params[ i ] ] );
+				}
+			} else {
+				for ( let j = 1; j < match.length; j++ ) {
+					matches.push( match[ j ] );
+				}
+			}
+			ref[ command.command ]( ...matches );
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
+* Finds and executes a detected voice command with a single regular expression for extracting parameters.
+*
+* @param {Node} ref - component reference
+* @param {Object} command - command options
+* @param {string} text - parsed voice command
+* @returns {boolean} returns true if text matches a command, false otherwise
+*/
+function processSingleRegExp( ref, command, text ) {
+	if ( isRegExpString( command.regexp ) ) {
+		command.regexp = reFromString( command.regexp );
+	}
+	const match = text.match( command.regexp );
+	if ( match ) {
+		const matches = [];
+		if ( command.params ) {
+			for ( let i = 0; i < command.params.length; i++ ) {
+				matches.push( match.groups[ command.params[ i ] ] );
+			}
+		} else {
+			for ( let i = 1; i < match.length; i++ ) {
+				matches.push( match[ i ] );
+			}
+		}
+		ref[ command.command ]( ...matches );
+		return true;
+	}
+	return false;
+}
+
+
 // MAIN //
 
 class SpeechInterface {
@@ -177,7 +286,6 @@ class SpeechInterface {
 	* Checks whether the text contains a valid name.
 	*/
 	check( arr ) {
-		console.log( arr );
 		for ( let i = 0; i < arr.length; i++ ) {
 			const text = arr[ i ];
 			debug( 'Checking text: `'+ text + '`' );
@@ -195,7 +303,7 @@ class SpeechInterface {
 				}
 			}
 			if ( this.active ) {
-				const found = this.checkCommands( text, this.active );
+				const found = checkCommands( text, this.active );
 				if ( found ) {
 					return;
 				}
@@ -212,96 +320,13 @@ class SpeechInterface {
 				const name = comp.name;
 				if ( text.search( name ) !== -1 ) {
 					debug( 'Checking triggers for '+name+ ' component...' );
-					const found = this.checkCommands( text, comp );
+					const found = checkCommands( text, comp );
 					if ( found ) {
 						return;
 					}
 				}
 			}
 		}
-	}
-
-	/**
-	* Checks whether text contains a command keyword.
-	*
-	* @returns {boolean} returns true if text matches a command, false otherwise
-	*/
-	checkCommands( text, comp ) {
-		for ( let n = 0; n < comp.commands.length; n++ ) {
-			const command = comp.commands[ n ];
-			const trigger = command.trigger;
-			if ( isArray( trigger ) === true ) {
-				for ( let x = 0; x < trigger.length; x++ ) {
-					if ( text.search( trigger[x] ) !== -1 ) {
-						return this.execute( comp.reference, command, text );
-					}
-				}
-			} else if ( text.search( trigger) !== -1 ) {
-				return this.execute( comp.reference, command, text );
-			}
-		}
-		return false;
-	}
-
-	/**
-	*
-	* @param {*} ref
-	* @param {*} command
-	* @param {*} text
-	* @returns {boolean} returns true if text matches a command, false otherwise
-	*/
-	execute( ref, command, text ) {
-		debug( `Executing ${command.command} command with input: `+text );
-		if ( command.regexp ) {
-			if ( isArray( command.regexp ) ) {
-				for ( let i = 0; i < command.regexp.length; i++ ) {
-					let regexp = command.regexp[ i ];
-					if ( isRegExpString( regexp ) ) {
-						regexp = reFromString( regexp );
-						command.regexp[ i ] = regexp;
-					}
-					const match = text.match( regexp );
-					if ( match ) {
-						const matches = [];
-						if ( command.params ) {
-							for ( let i = 0; i < command.params.length; i++ ) {
-								matches.push( match.groups[ command.params[ i ] ] );
-							}
-						} else {
-							for ( let j = 1; j < match.length; j++ ) {
-								matches.push( match[ j ] );
-							}
-						}
-						console.log( matches );
-						ref[ command.command ]( ...matches );
-						return true;
-					}
-				}
-			}
-			else {
-				if ( isRegExpString( command.regexp ) ) {
-					command.regexp = reFromString( command.regexp );
-				}
-				const match = text.match( command.regexp );
-				if ( match ) {
-					const matches = [];
-					if ( command.params ) {
-						for ( let i = 0; i < command.params.length; i++ ) {
-							matches.push( match.groups[ command.params[ i ] ] );
-						}
-					} else {
-						for ( let i = 1; i < match.length; i++ ) {
-							matches.push( match[ i ] );
-						}
-					}
-					ref[ command.command ]( ...matches );
-					return true;
-				}
-			}
-			return false;
-		}
-		ref[ command.command ]();
-		return true;
 	}
 
 	register( component ) {
