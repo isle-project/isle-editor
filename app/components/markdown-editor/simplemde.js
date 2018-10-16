@@ -25,10 +25,10 @@ import SpellChecker from './spell_checker.js';
 
 // VARIABLES //
 
-var isMac = /Mac/.test( navigator.platform );
+const isMac = /Mac/.test( navigator.platform );
 
 // Mapping of actions that can be bound to keyboard shortcuts or toolbar buttons:
-var bindings = {
+const bindings = {
 	'toggleBold': toggleBold,
 	'toggleItalic': toggleItalic,
 	'drawLink': drawLink,
@@ -53,7 +53,7 @@ var bindings = {
 	'toggleFullScreen': toggleFullScreen
 };
 
-var shortcuts = {
+const shortcuts = {
 	'toggleBold': 'Cmd-B',
 	'toggleItalic': 'Cmd-I',
 	'drawLink': 'Cmd-K',
