@@ -107,6 +107,7 @@
 	"Layout": "components/spectacle/layout",
 	"ListItem": "components/spectacle/list-item",
 	"List": "components/spectacle/list",
+	"Notes": "components/spectacle/notes",
 	"Quiz": "components/quiz",
 	"Quote": "components/spectacle/quote",
 	"Spectacle": "components/spectacle",

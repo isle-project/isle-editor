@@ -217,6 +217,7 @@ const createScope = ( session ) => {
 		Layout: Loadable( () => import( 'components/spectacle/layout' ) ),
 		ListItem: Loadable( () => import( 'components/spectacle/list-item' ) ),
 		List: Loadable( () => import( 'components/spectacle/list' ) ),
+		Notes: Loadable( () => import( 'components/spectacle/notes' ) ),
 		Quote: Loadable( () => import( 'components/spectacle/quote' ) ),
 		Slide: Loadable( () => import( 'components/spectacle/slide' ) ),
 		Table: Loadable( () => import( 'components/spectacle/table' ) ),
