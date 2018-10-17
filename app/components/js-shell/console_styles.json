@@ -1,12 +1,14 @@
 {
 	"log": {
 		"marginLeft": "8px",
+		"marginBottom": "0px",
 		"fontFamily": "monospace",
 		"color": "darkgreen",
 		"whiteSpace": "pre-wrap"
 	},
 	"error": {
 		"marginLeft": "8px",
+		"marginBottom": "0px",
 		"fontFamily": "monospace",
 		"color": "red",
 		"fontWeight": 800,
@@ -14,18 +16,21 @@
 	},
 	"info": {
 		"marginLeft": "8px",
+		"marginBottom": "0px",
 		"fontFamily": "monospace",
 		"color": "darkcyan",
 		"whiteSpace": "pre-wrap"
 	},
 	"warn": {
 		"marginLeft": "8px",
+		"marginBottom": "0px",
 		"fontFamily": "monospace",
 		"color": "darkorange",
 		"whiteSpace": "pre-wrap"
 	},
 	"default": {
 		"marginLeft": "8px",
+		"marginBottom": "0px",
 		"fontFamily": "monospace",
 		"color": "darkslategrey"
 	}

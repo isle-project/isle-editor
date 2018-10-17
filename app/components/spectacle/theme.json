@@ -193,7 +193,7 @@
 					"fontFamily":"Open Sans, sans-serif",
 					"lineHeight": "1",
 					"fontWeight":"bold",
-					"margin":0,
+					"margin":"0.5rem auto",
 					"zoom":1
 				},
 				"h2":{
@@ -202,7 +202,7 @@
 					"fontFamily":"Open Sans, sans-serif",
 					"lineHeight": "1",
 					"fontWeight":"bold",
-					"margin":0
+					"margin":"0.5rem auto"
 				},
 				"h3":{
 					"color":"#2e4468",
@@ -257,11 +257,9 @@
 				}
 			},
 			"tableHeaderItem":{
-				"fontSize":"2.66rem !important",
 				"fontWeight":"bold !important"
 			},
 			"tableItem":{
-				"fontSize":"2.66rem !important"
 			},
 			"table":{
 				"width":"100% !important",
@@ -466,7 +464,7 @@
 					"fontFamily":"Open Sans Condensed",
 					"lineHeight":1,
 					"fontWeight":"bold",
-					"margin":0
+					"margin":"0.5rem auto"
 				},
 				"h2":{
 					"color":"black",
@@ -474,7 +472,7 @@
 					"fontFamily":"Open Sans Condensed",
 					"lineHeight":1,
 					"fontWeight":"bold",
-					"margin":0
+					"margin":"0.5rem auto"
 				},
 				"h3":{
 					"color":"black",
@@ -529,11 +527,9 @@
 				}
 			},
 			"tableHeaderItem":{
-				"fontSize":"2.66rem",
 				"fontWeight":"bold"
 			},
 			"tableItem":{
-				"fontSize":"2.66rem"
 			},
 			"table":{
 				"width":"100%",
