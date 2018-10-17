@@ -3,10 +3,13 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
+import JSONTree from 'react-json-tree';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import max from '@stdlib/math/base/special/max';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import isArray from '@stdlib/assert/is-array';
+import isRegExp from '@stdlib/assert/is-regexp';
+import isObjectLike from '@stdlib/assert/is-object-like';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
@@ -23,6 +26,30 @@ import VoiceControl from 'components/voice-control';
 import VOICE_COMMANDS from './voice_commands.json';
 import CONSOLE_STYLES from './console_styles.json';
 import './js-shell.css';
+
+
+// VARIABLES //
+
+const THEME = {
+	scheme: 'bright',
+	author: 'chris kempson (http://chriskempson.com)',
+	base00: '#000000',
+	base01: '#303030',
+	base02: '#505050',
+	base03: '#b0b0b0',
+	base04: '#d0d0d0',
+	base05: '#e0e0e0',
+	base06: '#f5f5f5',
+	base07: '#ffffff',
+	base08: '#fb0120',
+	base09: '#fc6d24',
+	base0A: '#fda331',
+	base0B: '#a1c659',
+	base0C: '#76c7b7',
+	base0D: '#6fb3d2',
+	base0E: '#d381c3',
+	base0F: '#be643c'
+};
 
 
 // FUNCTIONS //
@@ -119,6 +146,8 @@ class JSShell extends Component {
 
 		// Add event listener:
 		this.editor.on( 'change', this.onChange );
+
+		global.log = this.state.log;
 
 		if ( this.props.disabled ) {
 			this.editor.setOptions({
@@ -264,16 +293,9 @@ class JSShell extends Component {
 		this.props.onEvaluate( currentCode );
 	}
 
-	stringifyObject( arg ) {
-		if ( typeof arg === 'object' ) {
-			return ( JSON.stringify( arg, null, 2 ) );
-		}
-		return arg;
-	}
-
 	innerConsole() {
-		var self = this;
-		var lg = [ 'log', 'debug', 'info', 'warn', 'error' ];
+		const self = this;
+		const lg = [ 'log', 'debug', 'info', 'warn', 'error' ];
 		for ( let i = 0; i < lg.length; i++ ) {
 			let verb = lg[ i ];
 			// eslint-disable-next-line no-console
@@ -282,19 +304,27 @@ class JSShell extends Component {
 					method.apply( console, arguments );
 
 					if ( self.isActive ) {
-						var msg = '';
-						if ( verb === 'log' ) {
-							for ( var i = 0; i < arguments.length; i++) {
-								if ( i > 0 ) {
-									msg += ' ';
-								}
-								msg += self.stringifyObject( arguments[i] );
+						const msg = [];
+						for ( let i = 0; i < arguments.length; i++) {
+							const arg = arguments[ i ];
+							if ( isRegExp( arg ) ) {
+								msg.push( <span className="js-shell-console-output" >{arg.toString()}</span> );
+							}
+							else if ( isObjectLike( arg ) ) {
+								msg.push(
+									<JSONTree key={i} data={arg} theme={{
+										extend: THEME,
+										tree: {
+											padding: '0.2em',
+											backgroundColor: '#f3f2f3'
+										}
+									}} />
+								);
+							} else {
+								msg.push( <span className="js-shell-console-output" >{arg}</span> );
 							}
 						}
-						if ( msg === '' ) {
-							msg = Array.prototype.slice.call( arguments ).join( ' ' );
-						}
-						var x = {
+						const x = {
 							type: verb,
 							msg: msg
 						};
@@ -314,7 +344,7 @@ class JSShell extends Component {
 		const style = CONSOLE_STYLES[ type ];
 		return (
 			<p key={i} style={style} >
-				{ e.msg }
+				{e.msg}
 			</p>
 		);
 	}
@@ -364,7 +394,7 @@ class JSShell extends Component {
 
 	renderResetButton() {
 		return (
-			<div className="reset" onClick={this.resetConsole} >☒</div>
+			<div className="js-shell-reset" onClick={this.resetConsole} >☒</div>
 		);
 	}
 
@@ -391,14 +421,14 @@ class JSShell extends Component {
 			<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 		</ButtonToolbar>;
 
-		const editor = <div className="jsedit" ref={( div ) => {
+		const editor = <div className="js-shell-edit" ref={( div ) => {
 			this.editorDiv = div;
 		}} ></div>;
 		return (
 			<div>
-				<div className="JSShell">
+				<div className="js-shell">
 					{editor}
-					<div className="toolbar">
+					<div className="js-shell-toolbar">
 						{ !this.props.disabled ?
 							<Button
 								variant="primary"
@@ -417,7 +447,7 @@ class JSShell extends Component {
 					{ !this.props.disabled ? this.renderResetButton() : null }
 					<div
 						ref={( div ) => { this.consoleOutput = div; }}
-						className="console"
+						className="js-shell-console"
 					>
 						{this.renderLogs()}
 					</div>
