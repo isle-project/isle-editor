@@ -15,7 +15,7 @@ import CodeSlideNote from './code_slide_note.js';
 import CodeSlideImage from './code_slide_image.js';
 import calculateScrollCenter from './calculate_scroll_center.js';
 import scrollToElement from './scroll_to_element.js';
-import 'highlight.js/styles/grayscale.css';
+import 'highlight.js/styles/googlecode.css';
 
 
 // FUNCTIONS //
@@ -205,7 +205,7 @@ class CodeSlide extends React.Component {
 						getLineNumber(index) + line :
 						line
 				}}
-				style={{ opacity: calculateOpacity( index, loc ) }}
+				style={{ opacity: calculateOpacity( index, loc ), padding: '0.1em' }}
 			/> );
 		});
 
