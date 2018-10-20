@@ -90,7 +90,7 @@
     "concurrently": "^4.0.0",
     "del": "^3.0.0",
     "doctrine": "^2.1.0",
-    "electron": "3.0.4",
+    "electron": "3.0.5",
     "electron-packager": "12.2.0",
     "enzyme": "3.7.0",
     "eslint": "^5.0.1",
@@ -217,7 +217,7 @@
     "react-router": "4.3.1",
     "react-router-dom": "^4.3.1",
     "react-select": "^2.0.0",
-    "react-slick": "0.23.1",
+    "react-slick": "0.23.2",
     "react-split-pane": "0.1.84",
     "react-table": "^6.8.5",
     "react-transition-group": "^2.5.0",
@@ -237,8 +237,8 @@
     "uniq": "^1.0.1",
     "uuid": "^3.3.2",
     "venn.js": "0.2.20",
-    "victory": "30.5.0",
-    "webpack": "4.20.2",
+    "victory": "30.5.1",
+    "webpack": "4.21.0",
     "whatwg-fetch": "^3.0.0"
   },
   "devEngines": {
