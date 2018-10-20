@@ -4,13 +4,16 @@
 
 // MODULES //
 
-import { BrowserWindow } from 'electron';
+import { app, BrowserWindow } from 'electron';
 
 
 // VARIABLES //
 
 // Retain global references, if not, window will be closed automatically when garbage collected...
 const _windows = {};
+
+// Prevent GPU acceleration as it causes electront to crash on drag & drop:
+app.disableHardwareAcceleration();
 
 
 // FUNCTIONS //
