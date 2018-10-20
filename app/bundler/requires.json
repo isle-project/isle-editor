@@ -98,6 +98,7 @@
 	"BlockQuote": "components/spectacle/block-quote",
 	"Cite": "components/spectacle/cite",
 	"Code": "components/spectacle/code",
+	"CodePane": "components/spectacle/code-pane",
 	"CodeSlide": "components/spectacle/code-slide",
 	"Deck": "components/spectacle/deck",
 	"Fill": "components/spectacle/fill",
