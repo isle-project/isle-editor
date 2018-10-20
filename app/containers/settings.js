@@ -172,6 +172,7 @@ class Settings extends Component {
 			>
 				<Link
 					to="/"
+					className="unselectable"
 					style={{
 						float: 'right',
 						color: 'silver',

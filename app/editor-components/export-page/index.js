@@ -21,7 +21,7 @@ class ExportPage extends Component {
 			<div className="export-page">
 				<Link
 					to="/"
-					className="export-page-link"
+					className="export-page-link unselectable"
 				>Back to Editor</Link>
 				<br />
 				<br />

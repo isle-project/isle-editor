@@ -342,7 +342,7 @@ class UploadLesson extends Component {
 		}
 		return (
 			<Card border="primary">
-				<Card.Header as="h5">
+				<Card.Header as="h5" className="unselectable" >
 					Upload Lesson
 				</Card.Header>
 				<Card.Body>

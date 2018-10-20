@@ -133,8 +133,8 @@ class ExportLesson extends Component {
 	render() {
 		return (
 			<Card border="primary">
-				<Card.Header as="h5">
-						Export Lesson
+				<Card.Header as="h5" className="unselectable" >
+					Export Lesson
 				</Card.Header>
 				<Card.Body>
 					<p>Package and export the currently opened lesson into a single-page application viewable in any web-browser.</p>
