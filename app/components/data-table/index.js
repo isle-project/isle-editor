@@ -44,10 +44,10 @@ const md = markdownIt({
 * A component rendering data in a tabular display. Built on top of [react-table](https://react-table.js.org/).
 *
 * @property {(Object|Array)} data - A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column
-* @property {Object} dataInfo - hints providing guidance on how to answer the question
-* @property {boolean} showRemove - A boolean value indicating whether to allow for rows to be removed
+* @property {Object} dataInfo - object with `info` string array describing the data set, the `name` of the dataset, an `object` of `variables` with keys corresponding to variable names and values to variable descriptions, an a `showOnStartup` boolean controlling whether to display the info modal on startup
+* @property {boolean} showRemove - indicates whether to display checkboxes for rows to be removed
 * @property {Object} style - An object allowing for custom css styling. Defaults to an empty object
-* @property {Function} onClickRemove - A function specifying an action to take for rows removed from the data. Defaults to an empty function
+* @property {Function} onClickRemove - A function specifying an action to take for rows removed from the data (defaults to an empty function)
 */
 class DataTable extends Component {
 	constructor( props ) {
@@ -56,6 +56,7 @@ class DataTable extends Component {
 		props.dataInfo.info = props.dataInfo.info || [];
 		props.dataInfo.name = props.dataInfo.name || '';
 		props.dataInfo.variables = props.dataInfo.variables || null;
+		props.dataInfo.showOnStartup = props.dataInfo.showOnStartup || null;
 
 		this.state = this.generateInitialState( props );
 	}
@@ -193,6 +194,7 @@ class DataTable extends Component {
 				filterable: false
 			});
 		}
+		newState.showInfo = props.dataInfo.showOnStartup;
 		newState.rows = rows;
 		newState.columns = columns;
 		return newState;
@@ -394,7 +396,8 @@ DataTable.defaultProps = {
 	dataInfo: {
 		'info': [],
 		'name': '',
-		'variables': null
+		'variables': null,
+		'showInfo': false
 	},
 	onClickRemove() {},
 	showRemove: false,
