@@ -347,16 +347,15 @@ class FreeTextQuestion extends Component {
 									<ChatButton for={this.props.id} />
 								</div> : null
 						}
+						<ResponseVisualizer
+							buttonLabel="Answers" id={this.props.id}
+							info="FREE_TEXT_QUESTION_SUBMIT_ANSWER"
+						/>
+						{ this.props.id && this.props.feedback ? <FeedbackButtons
+							id={this.props.id+'_feedback'}
+						/> : null }
 					</ButtonToolbar>
-					<ResponseVisualizer
-						buttonLabel="Answers" id={this.props.id}
-						info="FREE_TEXT_QUESTION_SUBMIT_ANSWER"
-					/>
 				</Card.Body>
-				{ this.props.id && this.props.feedback ? <FeedbackButtons
-					vertical
-					id={this.props.id+'_feedback'}
-				/> : null }
 			</Card>
 		);
 	}
