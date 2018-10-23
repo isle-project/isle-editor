@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/lib/Card';
+import './panel.css';
 
 
 // MAIN //
@@ -14,7 +15,7 @@ import Card from 'react-bootstrap/lib/Card';
 */
 class Wrapper extends Component {
 	render() {
-		return ( <Card {...this.props} >
+		return ( <Card {...this.props} className="panel" >
 			{ this.props.header ? <Card.Header as="h3">
 				{this.props.header}
 			</Card.Header> : null }
