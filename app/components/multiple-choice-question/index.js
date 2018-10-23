@@ -15,7 +15,9 @@ import FeedbackButtons from 'components/feedback';
 import VoiceControl from 'components/voice-control';
 import toNumber from 'utils/to-number';
 import VOICE_COMMANDS from './voice_commands.json';
-import AnswerOption from './answer_option.js';
+import AnswerOptionWithFeedback from './answer_option_feedback.js';
+import AnswerOptionIncrFeedback from './answer_option_incr_feedback.js';
+import AnswerOption from './answer_option';
 import Question from './question.js';
 
 
@@ -37,7 +39,7 @@ const debug = logger( 'isle:multiple-choice-question' );
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {boolean} disabled - controls whether the question is disabled
 * @property {boolean} chat - controls whether the element should have an integrated chat
-* @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
+* @property {string} provideFeedback - if `full`, feedback including the correct answer is displayed after learners submit their answers; if `incremental`, feedback is only displayed for the selected answer; if `none`, no feedback is returned
 * @property {boolean} displaySolution - controls whether the solution is displayed upfront
 * @property {strings} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
@@ -144,13 +146,35 @@ class MultipleChoiceQuestion extends Component {
 
 	submitQuestion = () => {
 		let sol = this.props.solution;
-		let newCorrect = new Array( this.props.answers.length );
+		const session = this.context.session;
+		let newCorrect = this.props.provideFeedback === 'incremental' ?
+			this.state.correct.slice() :
+			new Array( this.props.answers.length );
 		if ( this.props.id ) {
 			const { session } = this.context;
 			session.log({
 				id: this.props.id,
 				type: 'MULTIPLE_CHOICE_SUBMISSION',
 				value: this.state.active
+			});
+		}
+		if ( this.state.submitted ) {
+			session.addNotification({
+				title: 'Answer re-submitted.',
+				message: 'You have successfully re-submitted your answer.',
+				level: 'success',
+				position: 'tr'
+			});
+		} else {
+			let msg = 'You have successfully submitted your answer.';
+			if ( this.provideFeedback === 'none' ) {
+				msg += ' You can change your answer and re-submit if you want to.';
+			}
+			session.addNotification({
+				title: 'Answer submitted.',
+				message: msg,
+				level: 'success',
+				position: 'tr'
 			});
 		}
 		if ( isArray( sol ) ) {
@@ -190,69 +214,126 @@ class MultipleChoiceQuestion extends Component {
 		this.props.onSubmit( this.state.active );
 	}
 
+	checkDisabledStatus = () => {
+		const allowMultipleAnswers = isArray( this.props.solution ) && isArray( this.state.active );
+		if ( this.props.disabled ) {
+			return true;
+		}
+		switch ( this.props.provideFeedback ) {
+			case 'full':
+				if ( allowMultipleAnswers ) {
+					return this.state.submitted;
+				}
+				return this.state.submitted || !this.state.answerSelected;
+			case 'incremental':
+				if ( !this.state.submitted ) {
+					return false;
+				}
+				for ( let i = 0; i < this.state.correct.length; i++ ) {
+					if ( this.state.correct[ i ] === false ) {
+						return false;
+					}
+				}
+				return true;
+		}
+		return false;
+	}
+
+	renderAnswerOptionsMultiple = ( key, id ) => {
+		if ( this.props.provideFeedback === 'none' ) {
+			return (
+				<AnswerOption
+					key={key.content}
+					answerContent={key.content}
+					active={this.state.active[ id ]}
+					correct={this.state.correct[ id ]}
+					disabled={this.props.disabled}
+					onAnswerSelected={() => {
+						let newActive = this.state.active.slice();
+						newActive[ id ] = !newActive[ id ];
+						this.setState({
+							active: newActive
+						});
+					}}
+				/>
+			);
+		}
+		const isSolution = contains( this.props.solution, id );
+		const props = {
+			key: key.content,
+			no: id,
+			answerContent: key.content,
+			answerExplanation: key.explanation,
+			active: this.state.active[ id ],
+			correct: this.state.correct[ id ],
+			disabled: this.props.disabled,
+			submitted: this.state.submitted,
+			solution: isSolution,
+			onAnswerSelected: () => {
+				if ( !this.state.submitted || this.props.provideFeedback === 'incremental' ) {
+					let newActive = this.state.active.slice();
+					newActive[ id ] = !newActive[ id ];
+					this.setState({
+						active: newActive
+					});
+				}
+			}
+		};
+		return ( <AnswerOptionWithFeedback
+			{...props}
+		/> );
+	}
+
+	renderAnswerOptionsSingle = ( key, id ) => {
+		if ( this.props.provideFeedback === 'none' ) {
+			return ( <AnswerOption
+				key={id}
+				answerContent={key.content}
+				active={this.state.active === id}
+				correct={this.state.correct[ id ]}
+				disabled={this.props.disabled}
+				onAnswerSelected={() => {
+					this.setState({
+						active: id,
+						answerSelected: true
+					});
+				}}
+			/> );
+		}
+		const isSolution = this.props.solution === id;
+		const props = {
+			key: id,
+			no: id,
+			answerContent: key.content,
+			answerExplanation: key.explanation,
+			active: this.state.active === id,
+			correct: this.state.correct[ id ],
+			provideFeedback: this.props.provideFeedback,
+			disabled: this.props.disabled,
+			submitted: this.state.submitted,
+			solution: isSolution,
+			onAnswerSelected: () => {
+				if ( !this.state.submitted || this.props.provideFeedback === 'incremental' ) {
+					this.setState({
+						active: id,
+						answerSelected: true
+					});
+				}
+			}
+		};
+		return this.props.provideFeedback === 'full' ?
+			<AnswerOptionWithFeedback
+				{...props}
+			/> :
+			<AnswerOptionIncrFeedback
+				{...props}
+			/>;
+	}
+
 	render() {
 		const { answers, hints, chat, hintPlacement, id, question } = this.props;
 		const allowMultipleAnswers = isArray( this.props.solution ) && isArray( this.state.active );
 		const nHints = hints.length;
-		const renderAnswerOptionsMultiple = ( key, id ) => {
-			let isSolution = contains( this.props.solution, id );
-			return (
-				<AnswerOption
-					key={key.content}
-					no={id}
-					answerContent={key.content}
-					answerExplanation={key.explanation}
-					active={this.state.active[ id ]}
-					correct={this.state.correct[ id ]}
-					disabled={this.props.disabled}
-					provideFeedback={this.props.provideFeedback}
-					submitted={this.state.submitted}
-					solution={isSolution}
-					onAnswerSelected={() => {
-						if ( !this.state.submitted ) {
-							let newActive = this.state.active.slice();
-							newActive[ id ] = !newActive[ id ];
-							this.setState({
-								active: newActive
-							});
-						}
-					}}
-				/>
-			);
-		};
-
-		const renderAnswerOptionsSingle = ( key, id ) => {
-			let isSolution = this.props.solution === id;
-			return (
-				<AnswerOption
-					key={id}
-					no={id}
-					answerContent={key.content}
-					answerExplanation={key.explanation}
-					active={this.state.active === id}
-					correct={this.state.correct[ id ]}
-					disabled={this.props.disabled}
-					provideFeedback={this.props.provideFeedback}
-					submitted={this.state.submitted}
-					solution={isSolution}
-					onAnswerSelected={() => {
-						if ( !this.state.submitted ) {
-							this.setState({
-								active: id,
-								answerSelected: true
-							});
-						}
-					}}
-				/>
-			);
-		};
-
-		let disabled;
-		if ( allowMultipleAnswers ) {
-			disabled = this.props.disabled || this.state.submitted;
-		} else {
-			disabled = this.props.disabled || this.state.submitted || !this.state.answerSelected;
-		}
 		let bodyStyle = {};
 		if ( this.props.feedback ) {
 			bodyStyle.width = 'calc(100%-60px)';
@@ -260,7 +341,22 @@ class MultipleChoiceQuestion extends Component {
 		} else {
 			bodyStyle.width = '100%';
 		}
-
+		let submitLabel;
+		if ( this.state.submitted ) {
+			switch ( this.props.provideFeedback ) {
+				case 'none':
+					submitLabel = 'Resubmit';
+					break;
+				case 'full':
+					submitLabel = 'Submitted';
+					break;
+				case 'incremental':
+					submitLabel = 'Submit';
+					break;
+			}
+		} else {
+			submitLabel = 'Submit';
+		}
 		return (
 			<Card className="multiple-choice-question-container" style={{ ...this.props.style }} >
 				<Card.Body style={bodyStyle} >
@@ -270,8 +366,8 @@ class MultipleChoiceQuestion extends Component {
 					/>
 					<ListGroup>
 						{ allowMultipleAnswers ?
-							answers.map( renderAnswerOptionsMultiple ) :
-							answers.map( renderAnswerOptionsSingle )
+							answers.map( this.renderAnswerOptionsMultiple ) :
+							answers.map( this.renderAnswerOptionsSingle )
 						}
 					</ListGroup>
 					<div className="multiple-choice-question-toolbar">
@@ -279,9 +375,9 @@ class MultipleChoiceQuestion extends Component {
 							size="small"
 							variant="success"
 							onClick={this.submitQuestion}
-							disabled={disabled}
+							disabled={this.checkDisabledStatus()}
 							block
-						>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
+						>{submitLabel}</Button>
 						{ nHints > 0 ?
 							<HintButton onClick={this.logHint} hints={hints} placement={hintPlacement} /> :
 							null
@@ -316,13 +412,14 @@ class MultipleChoiceQuestion extends Component {
 
 MultipleChoiceQuestion.defaultProps = {
 	question: '',
+	solution: null,
 	hints: [],
 	hintPlacement: 'bottom',
 	feedback: false,
 	disabled: false,
 	displaySolution: false,
 	chat: false,
-	provideFeedback: true,
+	provideFeedback: 'incremental',
 	voiceID: null,
 	style: {},
 	onSubmit(){}
@@ -333,14 +430,14 @@ MultipleChoiceQuestion.propTypes = {
 	solution: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.array
-	]).isRequired,
+	]),
 	answers: PropTypes.array.isRequired,
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
 	feedback: PropTypes.bool,
 	disabled: PropTypes.bool,
 	chat: PropTypes.bool,
-	provideFeedback: PropTypes.bool,
+	provideFeedback: PropTypes.oneOf([ 'none', 'incremental', 'full' ]),
 	displaySolution: PropTypes.bool,
 	voiceID: PropTypes.string,
 	style: PropTypes.object,
