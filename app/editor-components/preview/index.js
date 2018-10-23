@@ -23,6 +23,7 @@ import Alert from 'react-bootstrap/lib/Alert';
 import Button from 'react-bootstrap/lib/Button';
 import Card from 'react-bootstrap/lib/Card';
 import Col from 'react-bootstrap/lib/Col';
+import Form from 'react-bootstrap/lib/Form';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import Modal from 'react-bootstrap/lib/Modal';
@@ -114,6 +115,7 @@ const createScope = ( session ) => {
 		MarkdownEditor: Loadable( () => import( 'components/markdown-editor' ) ),
 		MatchListQuestion: Loadable( () => import( 'components/match-list-question' ) ),
 		Metrics: Loadable( () => import( 'components/metrics/db' ) ),
+		MultipleChoiceMatrix: Loadable( () => import( 'components/multiple-choice-matrix' ) ),
 		MultipleChoiceQuestion: Loadable( () => import( 'components/multiple-choice-question' ) ),
 		MultipleChoiceSurvey: Loadable( () => import( 'components/multiple-choice-survey' ) ),
 		NetworkPlot: Loadable( () => import( 'components/d3/network-plot' ) ),
@@ -170,6 +172,7 @@ const createScope = ( session ) => {
 		Button,
 		Card,
 		Col,
+		Form,
 		ListGroup,
 		ListGroupItem,
 		Modal,
