@@ -163,7 +163,7 @@ class FeedbackButtons extends Component {
 						buttonLabel={this.props.vertical ? '' : 'Responses'}
 						buttonStyle={{
 							fontSize: '10px',
-							lineHeight: this.props.vertical ? '2em' : '37px'
+							lineHeight: this.props.vertical ? '2em' : 'inherit'
 						}}
 						style={{
 							width: '100%'
