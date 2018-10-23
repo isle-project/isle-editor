@@ -1945,24 +1945,39 @@
     "props": [
       {
         "name": "questions",
-        "type": "array (required)"
+        "type": "array (required)",
+        "description": "an array of questions"
       },
       {
         "name": "answers",
-        "type": "array (required)"
+        "type": "array (required)",
+        "description": "an array of answers"
       },
       {
         "name": "title",
         "type": "(string|node)",
+        "description": "title to be displayed on top of the question matrix",
         "default": null
       },
       {
         "name": "type",
         "type": "string",
+        "description": "question type (`radio` corresponds to \"Select one\", `checkbox` to \"Select all that apply\")",
         "default": "radio"
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked when the value of a checkbox / radio button changes; invoked with the two-dimensional boolean array of the active status for each answer option",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "default": "onSubmit() {}"
       }
     ],
-    "description": "Description is missing."
+    "description": "An ISLE component that renders a matrix of multiple choice questions with the same answers."
   },
   "MultipleChoiceQuestion": {
     "props": [
@@ -2634,9 +2649,10 @@
         "default": "onFinished() {}"
       },
       {
-        "name": "onNext",
+        "name": "onSubmit",
         "type": "function",
-        "default": "onNext() {}"
+        "description": "callback invoked when user submits an answer",
+        "default": "onSubmit() {}"
       }
     ],
     "description": "A quiz component displaying a sequence of question components."

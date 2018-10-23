@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
 import Form from 'react-bootstrap/lib/Form';
 import Card from 'react-bootstrap/lib/Card';
@@ -52,6 +53,7 @@ function isHTMLConfig( elem ) {
 * @property {boolean} active - controls whether the timer for the quiz is active
 * @property {number} duration - duration of the quiz; once time is up, the summary page will be displayed
 * @property {Function} onFinished - callback invoked when the quiz is finished and the results page is displayed
+* @property {Function} onSubmit - callback invoked when user submits an answer
 */
 class Quiz extends Component {
 	constructor( props ) {
@@ -68,6 +70,7 @@ class Quiz extends Component {
 			answered: false,
 			confidences: new Array( props.questions.length ),
 			current: this.sample()[ 0 ],
+			count: props.count || props.questions.length,
 			counter: 0,
 			finished: false,
 			last: false,
@@ -86,7 +89,18 @@ class Quiz extends Component {
 				size: 1,
 				mutate: true
 			});
+			this.setState({
+				count: this.props.count || this.prop.questions.length
+			});
 		}
+	}
+
+	handleFinishClick = () => {
+		this.setState({
+			counter: this.state.count
+		}, () => {
+			this.handleNextClick();
+		});
 	}
 
 	handleNextClick = () => {
@@ -105,16 +119,17 @@ class Quiz extends Component {
 		const newState = {};
 		let counter = this.state.counter;
 		counter += 1;
-		if ( counter >= this.props.count ) {
+		if ( counter >= this.state.count ) {
 			debug( 'No further questions should be shown...' );
 			newState.finished = true;
 			this.props.onFinished();
 		} else {
-			if ( counter === this.props.count-1 ) {
+			if ( counter === this.state.count-1 ) {
 				newState.last = true;
 			}
 			newState.current = this.sample()[ 0 ];
 			debug( 'Selected question at index '+newState.current );
+			this.props.onSubmit();
 		}
 		if ( !this.state.answered ) {
 			const answers = this.state.answers.slice();
@@ -123,7 +138,7 @@ class Quiz extends Component {
 				if (
 					elem.component === 'MultipleChoiceQuestion' ||
 					elem.type === MultipleChoiceQuestion ||
-					elem.type.name === 'MultipleChoiceQuestion'
+					( elem.type && elem.type.name === 'MultipleChoiceQuestion' )
 				) {
 					const correct = elem.props.solution;
 					if ( isArray( correct ) ) {
@@ -139,7 +154,7 @@ class Quiz extends Component {
 				else if (
 					elem.component === 'MatchListQuestion' ||
 					elem.type === MatchListQuestion ||
-					elem.type.name === 'MatchListQuestion'
+					( elem.type && elem.type.name === 'MatchListQuestion' )
 				) {
 					solution = '';
 					for ( let i = 0; i < elem.props.elements.length; i++ ) {
@@ -150,7 +165,7 @@ class Quiz extends Component {
 				else if (
 					elem.component === 'OrderQuestion' ||
 					elem.type === OrderQuestion ||
-					elem.type.name === 'OrderQuestion'
+					( elem.type && elem.type.name === 'OrderQuestion' )
 				) {
 					solution = '';
 					for ( let i = 0; i < elem.props.options.length; i++ ) {
@@ -189,7 +204,7 @@ class Quiz extends Component {
 			if (
 				elem.component === 'MultipleChoiceQuestion' ||
 				elem.type === MultipleChoiceQuestion ||
-				elem.type.name === 'MultipleChoiceQuestion'
+				( elem.type && elem.type.name === 'MultipleChoiceQuestion' )
 			) {
 				answer = elem.props.answers[ val ].content;
 				const correct = elem.props.solution;
@@ -206,7 +221,7 @@ class Quiz extends Component {
 			else if (
 				elem.component === 'MatchListQuestion' ||
 				elem.type === MatchListQuestion ||
-				elem.type.name === 'MatchListQuestion'
+				( elem.type && elem.type.name === 'MatchListQuestion' )
 			) {
 				answer = '';
 				solution = '';
@@ -220,7 +235,7 @@ class Quiz extends Component {
 			else if (
 				elem.component === 'OrderQuestion' ||
 				elem.type === OrderQuestion ||
-				elem.type.name === 'OrderQuestion'
+				( elem.type && elem.type.name === 'OrderQuestion' )
 			) {
 				answer = '';
 				solution = '';
@@ -388,6 +403,17 @@ class Quiz extends Component {
 		);
 	}
 
+	renderFooterNodes() {
+		const elem = this.props.questions[ this.state.current ];
+		const id = elem.props.id;
+		return React.Children.map( this.props.footerNodes, ( child, idx ) => {
+			return React.cloneElement( child, {
+				id: `${child.props.id}-${id}`,
+				key: idx
+			});
+		});
+	}
+
 	render() {
 		let showButton;
 		if ( this.state.finished ) {
@@ -418,7 +444,7 @@ class Quiz extends Component {
 					<Card.Header>
 						{ this.state.finished ?
 							<span>Answer Summary</span> :
-							<span>Question {this.state.counter+1}/{this.props.count}</span>
+							<span>Question {this.state.counter+1}/{this.state.count}</span>
 						}
 					</Card.Header>
 					<Card.Body>
@@ -427,16 +453,28 @@ class Quiz extends Component {
 							<span key={this.state.current}>{this.renderCurrentQuestion()}</span>
 						}
 						{ !this.state.finished ? this.renderConfidenceSurvey() : null }
-						{ showButton ?
-							<Button
-								className="quiz-button"
-								onClick={this.handleNextClick}
-								disabled={this.props.forceConfidence && this.state.answered && !this.state.selectedConfidence}
-							>
-								{this.state.last ? 'Finish Quiz' : 'Next Question' }
-							</Button> :
-							null
-						}
+						{this.renderFooterNodes()}
+						<ButtonGroup style={{ float: 'right' }}>
+							{ showButton && !this.state.last ?
+								<Button
+									className="quiz-button"
+									onClick={this.handleNextClick}
+									disabled={this.props.forceConfidence && this.state.answered && !this.state.selectedConfidence}
+								>
+									{this.props.nextLabel}
+								</Button> :
+								null
+							}
+							{
+								this.props.showFinishButton || this.state.last ?
+									<Button
+										className="quiz-button"
+										onClick={this.handleFinishClick}
+									>
+										{this.props.finishLabel}
+									</Button> : null
+							}
+						</ButtonGroup>
 					</Card.Body>
 				</Card>
 			</Fragment>
@@ -450,21 +488,32 @@ class Quiz extends Component {
 Quiz.propTypes = {
 	confidence: PropTypes.bool,
 	forceConfidence: PropTypes.bool,
-	count: PropTypes.number.isRequired,
+	count: PropTypes.number,
 	questions: PropTypes.array.isRequired,
 	active: PropTypes.bool,
 	duration: PropTypes.number,
 	skippable: PropTypes.bool,
-	onFinished: PropTypes.func
+	footerNodes: PropTypes.array,
+	nextLabel: PropTypes.string,
+	showFinishButton: PropTypes.bool,
+	finishLabel: PropTypes.string,
+	onFinished: PropTypes.func,
+	onSubmit: PropTypes.func
 };
 
 Quiz.defaultProps = {
 	confidence: false,
 	forceConfidence: false,
+	count: null,
 	active: true,
 	duration: null,
 	skippable: true,
-	onFinished() {}
+	footerNodes: [],
+	nextLabel: 'Next Question',
+	showFinishButton: false,
+	finishLabel: 'Finish Quiz',
+	onFinished() {},
+	onSubmit() {}
 };
 
 Quiz.contextTypes = {
