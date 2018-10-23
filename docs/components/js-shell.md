@@ -26,3 +26,4 @@ An interactive Javascript shell that can be used to execute JavaScript commands.
 * __fontSize__ | `number`: undefined. Default: `16`.
 * __onEvaluate__ | `function`: callback invoked whenever the `Evaluate` button is clicked. Default: `onEvaluate() {}`.
 * __vars__ | `object`: scope object with variables that should be made available to evaluated `code`. Default: `none`.
+* __voiceID__ | `string`: voice control identifier. Default: `none`.

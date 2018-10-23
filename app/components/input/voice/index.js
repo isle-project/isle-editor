@@ -39,7 +39,7 @@ const debug = logger( 'isle:voice-input' );
 * @property {Function} timeout - number of milliseconds after which to timeout the recording
 * @property {Function} stopTooltip - tooltip message desplayed while recording
 * @property {Function} startTooltip - tooltip message desplayed while not recording
-* @property {string} placement - direction of the tooltip
+* @property {string} tooltipPlacement - direction of the tooltip
 * @property {number} width - voice input width (in px)
 * @property {number} height - voice input height (in px)
 * @property {Object} style - CSS inline styles

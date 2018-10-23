@@ -21,6 +21,7 @@ A voice input component.
 * __language__ | `string`: language identifier. Default: `'en-US'`.
 * __legend__ | `string`: legend displayed in front of input field. Default: `''`.
 * __mode__ | `string`: set to `full` to display a text input field alongside the microphone, `status` to only display a statusbar with the transcribed texts, `microphone` to show just a button to toggle recording, or `none` when the voice input should be invisible and purely controlled via hotkeys / voice commands. Default: `'full'`.
+* __maxAlternatives__ | `number`: maximum number of alternatives provided per speech recognition result. Default: `1`.
 * __onChange__ | `function`: callback function invoked when text input value is updated. Default: `onChange() {}`.
 * __onClick__ | `function`: callback function invoked when clicking on the microphone button. Default: `onClick() {}`.
 * __onFinalText__ | `function`: callback function invoked once final text is received. Default: `onFinalText() {}`.
@@ -34,5 +35,6 @@ A voice input component.
 * __timeout__ | `number`: number of milliseconds after which to timeout the recording. Default: `none`.
 * __stopTooltip__ | `string`: tooltip message desplayed while recording. Default: `'Click to stop recording'`.
 * __startTooltip__ | `string`: tooltip message desplayed while not recording. Default: `'Click to start recording'`.
+* __tooltipPlacement__ | `string`: direction of the tooltip. Default: `'left'`.
 * __width__ | `number`: voice input width (in px). Default: `500`.
 * __height__ | `number`: voice input height (in px). Default: `36`.

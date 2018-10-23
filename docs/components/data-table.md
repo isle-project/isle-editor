@@ -21,11 +21,12 @@ A component rendering data in a tabular display. Built on top of [react-table](h
 #### Options:
 
 * __data__ | `(array|object) (required)`: A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column. Default: `none`.
-* __dataInfo__ | `object`: hints providing guidance on how to answer the question. Default: `{
+* __dataInfo__ | `object`: object with `info` string array describing the data set, the `name` of the dataset, an `object` of `variables` with keys corresponding to variable names and values to variable descriptions, an a `showOnStartup` boolean controlling whether to display the info modal on startup. Default: `{
   'info': [],
   'name': '',
-  'variables': null
+  'variables': null,
+  'showInfo': false
 }`.
-* __onClickRemove__ | `function`: A function specifying an action to take for rows removed from the data. Defaults to an empty function. Default: `onClickRemove() {}`.
-* __showRemove__ | `boolean`: A boolean value indicating whether to allow for rows to be removed. Default: `false`.
+* __onClickRemove__ | `function`: A function specifying an action to take for rows removed from the data (defaults to an empty function). Default: `onClickRemove() {}`.
+* __showRemove__ | `boolean`: indicates whether to display checkboxes for rows to be removed. Default: `false`.
 * __style__ | `object`: An object allowing for custom css styling. Defaults to an empty object. Default: `{}`.

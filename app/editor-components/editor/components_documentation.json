@@ -441,23 +441,24 @@
       {
         "name": "dataInfo",
         "type": "object",
-        "description": "hints providing guidance on how to answer the question",
+        "description": "object with `info` string array describing the data set, the `name` of the dataset, an `object` of `variables` with keys corresponding to variable names and values to variable descriptions, an a `showOnStartup` boolean controlling whether to display the info modal on startup",
         "default": {
           "info": [],
           "name": "",
-          "variables": null
+          "variables": null,
+          "showInfo": false
         }
       },
       {
         "name": "onClickRemove",
         "type": "function",
-        "description": "A function specifying an action to take for rows removed from the data. Defaults to an empty function",
+        "description": "A function specifying an action to take for rows removed from the data (defaults to an empty function)",
         "default": "onClickRemove() {}"
       },
       {
         "name": "showRemove",
         "type": "boolean",
-        "description": "A boolean value indicating whether to allow for rows to be removed",
+        "description": "indicates whether to display checkboxes for rows to be removed",
         "default": false
       },
       {
@@ -615,7 +616,7 @@
         "name": "hintPlacement",
         "type": "string",
         "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
-        "default": "bottom"
+        "default": "top"
       },
       {
         "name": "feedback",
@@ -1107,6 +1108,12 @@
         "default": ""
       },
       {
+        "name": "value",
+        "type": "string",
+        "description": "text value (for controlled component)",
+        "default": null
+      },
+      {
         "name": "disabled",
         "type": "boolean",
         "description": "controls whether the text area shall be disabled",
@@ -1117,6 +1124,12 @@
         "type": "string",
         "description": "legend text",
         "default": ""
+      },
+      {
+        "name": "onBlur",
+        "type": "function",
+        "description": "callback function invoked when the text area loses focus",
+        "default": "onBlur() {}"
       },
       {
         "name": "onChange",
@@ -1231,6 +1244,12 @@
         "default": "full"
       },
       {
+        "name": "maxAlternatives",
+        "type": "number",
+        "description": "maximum number of alternatives provided per speech recognition result",
+        "default": 1
+      },
+      {
         "name": "onChange",
         "type": "function",
         "description": "callback function invoked when text input value is updated",
@@ -1307,6 +1326,12 @@
         "type": "string",
         "description": "tooltip message desplayed while not recording",
         "default": "Click to start recording"
+      },
+      {
+        "name": "tooltipPlacement",
+        "type": "string",
+        "description": "direction of the tooltip",
+        "default": "left"
       },
       {
         "name": "width",
@@ -1409,6 +1434,12 @@
         "name": "vars",
         "type": "object",
         "description": "scope object with variables that should be made available to evaluated `code`",
+        "default": null
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
         "default": null
       }
     ],
@@ -1910,6 +1941,29 @@
     ],
     "description": "Invisible component listening to incoming member actions and invoking a given callback."
   },
+  "MultipleChoiceMatrix": {
+    "props": [
+      {
+        "name": "questions",
+        "type": "array (required)"
+      },
+      {
+        "name": "answers",
+        "type": "array (required)"
+      },
+      {
+        "name": "title",
+        "type": "(string|node)",
+        "default": null
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "default": "radio"
+      }
+    ],
+    "description": "Description is missing."
+  },
   "MultipleChoiceQuestion": {
     "props": [
       {
@@ -1920,8 +1974,9 @@
       },
       {
         "name": "solution",
-        "type": "(number|array) (required)",
-        "description": "number denoting which answer is correct or an `array` of the correct answer numbers in case the learner should be able to select multiple answers"
+        "type": "(number|array)",
+        "description": "number denoting which answer is correct or an `array` of the correct answer numbers in case the learner should be able to select multiple answers",
+        "default": null
       },
       {
         "name": "answers",
@@ -1960,15 +2015,21 @@
       },
       {
         "name": "provideFeedback",
-        "type": "boolean",
-        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
-        "default": true
+        "type": "string",
+        "description": "if `full`, feedback including the correct answer is displayed after learners submit their answers; if `incremental`, feedback is only displayed for the selected answer; if `none`, no feedback is returned",
+        "default": "incremental"
       },
       {
         "name": "displaySolution",
         "type": "boolean",
         "description": "controls whether the solution is displayed upfront",
         "default": false
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "default": null
       },
       {
         "name": "style",
@@ -2519,8 +2580,9 @@
       },
       {
         "name": "count",
-        "type": "number (required)",
-        "description": "number of questions to include in the quiz"
+        "type": "number",
+        "description": "number of questions to include in the quiz",
+        "default": null
       },
       {
         "name": "questions",
@@ -2546,10 +2608,35 @@
         "default": true
       },
       {
+        "name": "footerNodes",
+        "type": "array",
+        "default": []
+      },
+      {
+        "name": "nextLabel",
+        "type": "string",
+        "default": "Next Question"
+      },
+      {
+        "name": "showFinishButton",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "finishLabel",
+        "type": "string",
+        "default": "Finish Quiz"
+      },
+      {
         "name": "onFinished",
         "type": "function",
         "description": "callback invoked when the quiz is finished and the results page is displayed",
         "default": "onFinished() {}"
+      },
+      {
+        "name": "onNext",
+        "type": "function",
+        "default": "onNext() {}"
       }
     ],
     "description": "A quiz component displaying a sequence of question components."
@@ -2838,6 +2925,12 @@
         "type": "boolean",
         "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
         "default": true
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "default": null
       },
       {
         "name": "onChangeLower",
@@ -3161,6 +3254,12 @@
         "default": false
       },
       {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "default": null
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -3252,6 +3351,36 @@
     "props": [],
     "description": "Component wrapping the citation source. Should be used in conjunction with the Spectacle `BlockQuote` and `Quote` tags."
   },
+  "CodePane": {
+    "props": [],
+    "description": "Component displaying a styled, highlighted code preview."
+  },
+  "CodeSlide": {
+    "props": [
+      {
+        "name": "lang",
+        "type": "string (required)"
+      },
+      {
+        "name": "code",
+        "type": "string (required)"
+      },
+      {
+        "name": "ranges",
+        "type": "array<{loc,title,note}> (required)"
+      },
+      {
+        "name": "showLineNumbers",
+        "type": "boolean",
+        "default": true
+      }
+    ],
+    "description": "Description is missing."
+  },
+  "Code": {
+    "props": [],
+    "description": "Component displaying inline text in a monospace font."
+  },
   "Deck": {
     "props": [],
     "description": "Spectacle slide deck. Wraps `<Slide>` tags."
@@ -3287,6 +3416,10 @@
   "List": {
     "props": [],
     "description": "Spectacle list component."
+  },
+  "Notes": {
+    "props": [],
+    "description": "Spectacle presentation slide notes."
   },
   "Quote": {
     "props": [],
@@ -3488,8 +3621,9 @@
       },
       {
         "name": "tooltip",
-        "type": "(string|node) (required)",
-        "description": "tooltip content"
+        "type": "(string|node)",
+        "description": "tooltip content",
+        "default": null
       },
       {
         "name": "placement",
