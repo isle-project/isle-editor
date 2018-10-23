@@ -167,7 +167,7 @@ class MultipleChoiceQuestion extends Component {
 			});
 		} else {
 			let msg = 'You have successfully submitted your answer.';
-			if ( this.provideFeedback === 'none' ) {
+			if ( this.props.provideFeedback === 'none' ) {
 				msg += ' You can change your answer and re-submit if you want to.';
 			}
 			session.addNotification({
