@@ -8,6 +8,7 @@ import copy from '@stdlib/utils/copy';
 import TeX from 'components/tex';
 import FreeTextQuestion from 'components/free-text-question';
 import MultipleChoiceQuestion from 'components/multiple-choice-question';
+import MultipleChoiceMatrix from 'components/multiple-choice-matrix';
 import MatchListQuestion from 'components/match-list-question';
 import NumberQuestion from 'components/number-question';
 import OrderQuestion from 'components/order-question';
@@ -55,6 +56,9 @@ function convertJSONtoJSX( config ) {
 		break;
 		case 'FreeTextQuestion':
 			component = FreeTextQuestion;
+		break;
+		case 'MultipleChoiceMatrix':
+			component = MultipleChoiceMatrix;
 		break;
 		case 'MultipleChoiceQuestion':
 			component = MultipleChoiceQuestion;
