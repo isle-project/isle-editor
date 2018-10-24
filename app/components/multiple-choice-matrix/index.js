@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Card from 'react-bootstrap/lib/Card';
 import Form from 'react-bootstrap/lib/Form';
 import Col from 'react-bootstrap/lib/Col';
+import SolutionButton from 'components/solution-button';
 import './multiple_choice_matrix.css';
 
 
@@ -114,6 +115,10 @@ class MultipleChoiceMatrix extends Component {
 		this.props.onSubmit( this.state.active );
 	}
 
+	toggleSolution = () => {
+
+	}
+
 	renderAnswerButtons( row ) {
 		const len = this.props.answers.length;
 		const buttons = new Array( len );
@@ -143,6 +148,7 @@ class MultipleChoiceMatrix extends Component {
 	}
 
 	render() {
+		const solutionButton = this.props.solution ? <SolutionButton onClick={this.toggleSolution} disabled={!this.state.submitted} /> : null;
 		return (
 			<Card className="multiple-choice-matrix" >
 				{ this.props.title ?
@@ -157,15 +163,17 @@ class MultipleChoiceMatrix extends Component {
 						{this.renderAnswerHeader()}
 						{this.renderQuestionRows()}
 					</Form>
-					<Button
-						size="small"
-						variant="success"
-						onClick={this.handleSubmit}
-						block
-						style={{
-							marginTop: '10px'
-						}}
-					>{ this.state.submitted ? 'Resubmit' : 'Submit'}</Button>
+					<div className="multiple-choice-matrix-controls">
+						{solutionButton}
+						<Button
+							variant="primary"
+							size="sm"
+							onClick={this.handleSubmit}
+							style={{
+								marginTop: '10px'
+							}}
+						>{ this.state.submitted ? 'Resubmit' : 'Submit'}</Button>
+					</div>
 				</Card.Body>
 			</Card>
 		);
@@ -182,6 +190,7 @@ MultipleChoiceMatrix.propTypes = {
 		PropTypes.string,
 		PropTypes.node
 	]),
+	solution: PropTypes.arrayOf([ PropTypes.array ]),
 	type: PropTypes.oneOf([ 'radio', 'checkbox' ]),
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func
@@ -189,6 +198,7 @@ MultipleChoiceMatrix.propTypes = {
 
 MultipleChoiceMatrix.defaultProps = {
 	title: null,
+	solution: null,
 	type: 'radio',
 	onChange() {},
 	onSubmit() {}

@@ -4,13 +4,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
 import shuffle from '@stdlib/random/shuffle';
 import * as d3 from 'd3';
+import SolutionButton from 'components/solution-button';
 import ChatButton from 'components/chat-button';
 import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
-import OverlayTrigger from 'components/overlay-trigger';
 import FeedbackButtons from 'components/feedback';
 import OptionsList from './options_list.js';
 import './match_list_question.css';
@@ -175,36 +174,8 @@ class MatchListQuestion extends Component {
 		const nHints = hints.length;
 		const onSelectA = this.onSelect.bind( this, 'selectedA' );
 		const onSelectB = this.onSelect.bind( this, 'selectedB' );
-		const tooltip = (
-			<Tooltip
-				id="tooltip"
-			>
-				Solution becomes available after answer is submitted.
-			</Tooltip>
-		);
-		const solutionButton = this.state.submitted ?
-			<Button
-				variant="warning"
-				size="sm"
-				onClick={this.toggleSolution}
-			>{ !this.state.userAnswers ? 'Show Solution' : 'Hide Solution' }</Button> :
-			<OverlayTrigger
-				placement="top"
-				positionLeft={100}
-				overlay={tooltip}
-				rootClose={true}
-			>
-				<div style={{ display: 'inline-block' }}>
-					<Button
-						variant="warning"
-						size="sm"
-						disabled
-						style={{
-							pointerEvents: 'none'
-						}}
-					>Show Solution</Button>
-				</div>
-			</OverlayTrigger>;
+
+		const solutionButton = <SolutionButton onClick={this.toggleSolution} disabled={!this.state.submitted} />;
 		return (
 			<div className="match-list-question-container" >
 				<span className="question">{question}</span>

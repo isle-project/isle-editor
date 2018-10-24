@@ -15,6 +15,7 @@ import isObject from '@stdlib/assert/is-object';
 import isString from '@stdlib/assert/is-string';
 import ChatButton from 'components/chat-button';
 import ResponseVisualizer from 'components/response-visualizer';
+import SolutionButton from 'components/solution-button';
 import HintButton from 'components/hint-button';
 import VoiceControl from 'components/voice-control';
 import OverlayTrigger from 'components/overlay-trigger';
@@ -210,43 +211,6 @@ class FreeTextQuestion extends Component {
 		}
 	}
 
-	renderSolutionButton() {
-		if ( !this.props.solution ) {
-			return null;
-		}
-		const tooltip = (
-			<Tooltip
-				id="tooltip"
-			>
-				Solution becomes available after answer is submitted and all hints have been required.
-			</Tooltip>
-		);
-		if ( this.state.submitted && this.state.exhaustedHints ) {
-			return ( <Button
-				variant="warning"
-				size="sm"
-				onClick={this.handleSolutionClick}
-			>{ !this.state.solutionDisplayed ? 'Show Solution' : 'Hide Solution' }</Button> );
-		}
-		return ( <OverlayTrigger
-			placement="top"
-			positionLeft={100}
-			overlay={tooltip}
-			rootClose={true}
-		>
-			<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-				<Button
-					variant="warning"
-					size="sm"
-					disabled
-					style={{
-						pointerEvents: 'none'
-					}}
-				>{ !this.state.solutionDisplayed ? 'Show Solution' : 'Hide Solution' }</Button>
-			</div>
-		</OverlayTrigger> );
-	}
-
 	triggerHint() {
 		const node = ReactDOM.findDOMNode( this.hintButton );
 		node.click();
@@ -269,6 +233,11 @@ class FreeTextQuestion extends Component {
 	*/
 	render() {
 		const nHints = this.props.hints.length;
+
+		const solutionButton = <SolutionButton
+			disabled={!this.state.submitted || !this.state.exhaustedHints}
+			onClick={this.handleSolutionClick}
+		/>;
 		return (
 			<Card id={this.props.id} className="free-text-question">
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}>
@@ -339,7 +308,7 @@ class FreeTextQuestion extends Component {
 							null
 						}
 						{
-							this.props.provideFeedback ? this.renderSolutionButton() : null
+							this.props.provideFeedback && this.props.solution ? solutionButton : null
 						}
 						{
 							this.props.chat && this.props.id ?

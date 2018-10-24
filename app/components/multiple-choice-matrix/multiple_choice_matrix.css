@@ -6,3 +6,11 @@
 	margin-top: 8px;
 	max-width: 900px;
 }
+
+.multiple-choice-matrix-controls {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding-left: 10px;
+	padding-right: 10px;
+}
