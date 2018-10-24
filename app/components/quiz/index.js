@@ -335,7 +335,7 @@ class Quiz extends Component {
 			case 'FreeTextQuestion':
 				return <FreeTextQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
 			case 'MultipleChoiceQuestion':
-				return <MultipleChoiceQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
+				return <MultipleChoiceQuestion provideFeedback="none" {...props} onSubmit={this.handleSubmission} />;
 			case 'MatchListQuestion':
 				return <MatchListQuestion showSolution={false} {...props} onSubmit={this.handleSubmission} />;
 			case 'NumberQuestion':

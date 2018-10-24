@@ -135,9 +135,9 @@ class MultipleChoiceQuestion extends Component {
 	}
 
 	selectAnswer( no ) {
-		console.log( `Parse input: ${no}` );
+		debug( `Parse input: ${no}` );
 		no = toNumber( no ) - 1;
-		console.log( `Select answer at position ${no}` );
+		debug( `Select answer at position ${no}` );
 		this.setState({
 			active: no,
 			answerSelected: true
@@ -348,6 +348,7 @@ class MultipleChoiceQuestion extends Component {
 					submitLabel = 'Resubmit';
 					break;
 				case 'full':
+				default:
 					submitLabel = 'Submitted';
 					break;
 				case 'incremental':
