@@ -331,6 +331,7 @@ class Quiz extends Component {
 		}
 		switch ( config.component ) {
 			case 'Fragment':
+			case 'div':
 				return convertJSONtoJSX( config );
 			case 'FreeTextQuestion':
 				return <FreeTextQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
@@ -415,6 +416,7 @@ class Quiz extends Component {
 	}
 
 	render() {
+		console.log( this.props.questions[ this.state.current ] );
 		let showButton;
 		if ( this.state.finished ) {
 			showButton = false;

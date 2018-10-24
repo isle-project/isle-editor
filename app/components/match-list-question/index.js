@@ -242,7 +242,10 @@ MatchListQuestion.defaultProps = {
 };
 
 MatchListQuestion.propTypes = {
-	question: PropTypes.string,
+	question: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	elements: PropTypes.arrayOf( PropTypes.shape({
 		a: PropTypes.string.isRequired,
 		b: PropTypes.string.isRequired
