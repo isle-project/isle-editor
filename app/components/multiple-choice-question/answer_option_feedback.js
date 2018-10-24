@@ -97,7 +97,6 @@ AnswerOption.propTypes = {
 	disabled: PropTypes.bool.isRequired,
 	no: PropTypes.number.isRequired,
 	onAnswerSelected: PropTypes.func.isRequired,
-	provideFeedback: PropTypes.string.isRequired,
 	solution: PropTypes.bool.isRequired,
 	submitted: PropTypes.bool.isRequired
 };

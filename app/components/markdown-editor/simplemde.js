@@ -18,6 +18,7 @@ import 'codemirror/addon/display/placeholder.js';
 import 'codemirror/addon/selection/mark-selection.js';
 import 'codemirror/mode/gfm/gfm.js';
 import 'codemirror/mode/xml/xml.js';
+import logger from 'debug';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
 import './codemirror_tablist.js';
 import SpellChecker from './spell_checker.js';
@@ -25,6 +26,7 @@ import SpellChecker from './spell_checker.js';
 
 // VARIABLES //
 
+const debug = logger( 'isle:simplemde' );
 const isMac = /Mac/.test( navigator.platform );
 
 // Mapping of actions that can be bound to keyboard shortcuts or toolbar buttons:
@@ -630,7 +632,7 @@ function drawLink(editor) {
 	var options = editor.options;
 	var url = 'http://';
 	if (options.promptURLs) {
-		url = prompt( options.promptTexts.link );
+		url = prompt( options.promptTexts.link ); // eslint-disable-line no-alert
 		if ( !url ) {
 			return false;
 		}
@@ -647,7 +649,7 @@ function drawImage(editor) {
 	var options = editor.options;
 	var url = 'http://';
 	if ( options.promptURLs ) {
-		url = prompt( options.promptTexts.image );
+		url = prompt( options.promptTexts.image ); // eslint-disable-line no-alert
 		if ( !url ) {
 			return false;
 		}
@@ -1298,7 +1300,7 @@ function SimpleMDE( options ) {
 		this.element = options.element;
 	} else if ( options.element === null ) {
 		// This means that the element option was specified, but no element was found
-		console.log('SimpleMDE: Error. No element was found.');
+		debug( 'No element was found' );
 		return;
 	}
 

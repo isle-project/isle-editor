@@ -48,7 +48,7 @@ const AnswerOption = ( props ) => {
 	else if ( isBoolean( props.correct ) ) {
 		const popover =
 		<Popover id={props.no}>
-			<strong>{ props.solution ? 'Correct answer' : 'Incorrect answer' }{props.answerExplanation ? ': ' : ''}</strong>
+			<strong>{props.solution ? 'Correct answer' : 'Incorrect answer'}{props.answerExplanation ? ': ' : ''}</strong>
 			{props.answerExplanation}
 		</Popover>;
 		return (
@@ -91,6 +91,7 @@ AnswerOption.propTypes = {
 		PropTypes.string
 	]).isRequired,
 	correct: PropTypes.bool,
+	solution: PropTypes.bool.isRequired,
 	disabled: PropTypes.bool.isRequired,
 	no: PropTypes.number.isRequired,
 	onAnswerSelected: PropTypes.func.isRequired

@@ -186,7 +186,6 @@ class VoiceInput extends Input {
 
 			this.recognizer.onend = () => {
 				debug('onend: %s', this.props.id );
-				console.log( this.recognizer );
 				if ( this.state.isRecording ) {
 					// Restart recording after it stopped due to no voice input for a few seconds:
 					this.recognizer.start();
@@ -195,7 +194,6 @@ class VoiceInput extends Input {
 
 			this.recognizer.onstart = () => {
 				debug('onstart: %s', this.props.id );
-				console.log( this.recognizer );
 				this.props.onRecordingStart();
 			};
 

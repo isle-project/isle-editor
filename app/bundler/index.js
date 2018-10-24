@@ -398,7 +398,6 @@ function writeIndexFile({
 	const usedComponents = getComponentList( content );
 	const str = generateIndexJS( content, usedComponents, yamlStr, basePath, filePath );
 	debug( `Create JS file: ${str}` );
-	console.log( str );
 
 	fs.writeFileSync( indexPath, str );
 
