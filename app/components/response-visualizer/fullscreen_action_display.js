@@ -23,6 +23,13 @@ import WordCloud from 'components/word-cloud';
 import Search from './search.js';
 
 
+// VARIABLES //
+
+const LINE_HEIGHT = 20;
+const TEXT_LINE_HEIGHT = 16;
+const RE_NEWLINE = /\r?\n/g;
+
+
 // MAIN //
 
 class FullscreenActionDisplay extends Component {
@@ -81,6 +88,16 @@ class FullscreenActionDisplay extends Component {
 				searchwords: [ value ]
 			});
 		}
+	}
+
+	itemSizeGetter = ( index ) => {
+		let lines = 2 * LINE_HEIGHT;
+		const action = this.state.actions[ index ];
+		const noLines = ( String( action.value ).match( RE_NEWLINE ) || '' ).length + 1;
+		lines += noLines * TEXT_LINE_HEIGHT;
+		lines += LINE_HEIGHT; // first "Value" line
+		console.log( `Element at position ${index} is estimated to have ${lines} lines` );
+		return lines;
 	}
 
 	handleBox = ( event ) => {
@@ -162,7 +179,9 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	renderListGroupItem = ( index, key ) => {
+		console.log( `Render item at position ${index}` );
 		const elem = this.state.filtered[ index ];
+		console.log( elem );
 		const higlighter = <Highlighter
 			searchWords={this.state.searchwords}
 			autoEscape={true}
@@ -210,6 +229,7 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	render() {
+		console.log( 'LENGTH:' + this.state.filtered.length);
 		return ( <Modal
 			show={this.props.show}
 			onHide={this.props.toggleActions}
@@ -230,10 +250,12 @@ class FullscreenActionDisplay extends Component {
 							{ this.state.filtered.length > 0 ?
 								<div style={{ marginLeft: 0, overflowY: 'scroll', height: 0.73 * window.innerHeight }}>
 									<ReactList
+										initialIndex={0}
 										itemRenderer={this.renderListGroupItem}
 										length={this.state.filtered.length}
 										type="variable"
 										pageSize={50}
+										itemSizeGetter={this.itemSizeGetter}
 									/>
 								</div> :
 								<Card body className="bg-light">
