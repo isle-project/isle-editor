@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
@@ -25,6 +26,7 @@ import Search from './search.js';
 
 // VARIABLES //
 
+const debug = logger( 'isle:response-visualizer' );
 const LINE_HEIGHT = 20;
 const TEXT_LINE_HEIGHT = 16;
 const RE_NEWLINE = /\r?\n/g;
@@ -96,7 +98,7 @@ class FullscreenActionDisplay extends Component {
 		const noLines = ( String( action.value ).match( RE_NEWLINE ) || '' ).length + 1;
 		lines += noLines * TEXT_LINE_HEIGHT;
 		lines += LINE_HEIGHT; // first "Value" line
-		console.log( `Element at position ${index} is estimated to have ${lines} lines` );
+		debug( `Element at position ${index} is estimated to have ${lines} lines.` );
 		return lines;
 	}
 
@@ -179,9 +181,8 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	renderListGroupItem = ( index, key ) => {
-		console.log( `Render item at position ${index}` );
+		debug( `Rendering item at position ${index}...` );
 		const elem = this.state.filtered[ index ];
-		console.log( elem );
 		const higlighter = <Highlighter
 			searchWords={this.state.searchwords}
 			autoEscape={true}
@@ -229,7 +230,6 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	render() {
-		console.log( 'LENGTH:' + this.state.filtered.length);
 		return ( <Modal
 			show={this.props.show}
 			onHide={this.props.toggleActions}
