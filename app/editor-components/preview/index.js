@@ -130,6 +130,7 @@ const createScope = ( session ) => {
 		Plotly: Loadable( () => import( 'components/plotly' ) ),
 		ProportionsInput,
 		ProportionsSurvey: Loadable( () => import( 'components/proportions-survey' ) ),
+		QuestionForm: Loadable( () => import( 'components/question-form' ) ),
 		Quiz: Loadable( () => import( 'components/quiz' ) ),
 		RangeQuestion: Loadable( () => import('components/range-question' ) ),
 		RealtimeMetrics: Loadable( () => import( 'components/metrics/realtime' ) ),

@@ -111,6 +111,7 @@
 	"ListItem": "components/spectacle/list-item",
 	"List": "components/spectacle/list",
 	"Notes": "components/spectacle/notes",
+	"QuestionForm": "components/question-form",
 	"Quiz": "components/quiz",
 	"Quote": "components/spectacle/quote",
 	"Spectacle": "components/spectacle",
