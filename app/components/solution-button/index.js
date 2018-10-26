@@ -34,6 +34,7 @@ class SolutionButton extends Component {
 		);
 		return ( !this.props.disabled ?
 		<Button
+			className="solution-button"
 			variant="warning"
 			size="sm"
 			onClick={this.handleClick}
@@ -46,6 +47,7 @@ class SolutionButton extends Component {
 		>
 			<div style={{ display: 'inline-block' }}>
 				<Button
+					className="solution-button"
 					variant="warning"
 					size="sm"
 					disabled

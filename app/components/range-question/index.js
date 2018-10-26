@@ -145,7 +145,7 @@ class RangeQuestion extends Component {
 				message: this.state.submitted ?
 					'You have successfully re-submitted your answer.' :
 					'Your answer has been submitted.',
-				level: 'info',
+				level: 'success',
 				position: 'tr'
 			});
 		}
@@ -232,6 +232,7 @@ class RangeQuestion extends Component {
 						}
 					</div>
 					<Button
+						className="submit-button"
 						variant="primary"
 						size="sm"
 						disabled={this.state.submitted && solutionPresent}

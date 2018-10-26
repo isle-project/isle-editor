@@ -119,7 +119,7 @@ class FreeTextQuestion extends Component {
 		this.props.onChange( newValue );
 	};
 
-	submitHandler = ( event ) => {
+	sendSubmitNotification = () => {
 		const { session } = this.context;
 		if ( this.state.submitted ) {
 			session.addNotification({
@@ -141,6 +141,13 @@ class FreeTextQuestion extends Component {
 				level: 'success',
 				position: 'tr'
 			});
+		}
+	}
+
+	submitHandler = ( event ) => {
+		const { session } = this.context;
+		if ( !this.props.disableSubmitNotification ) {
+			this.sendSubmitNotification();
 		}
 		this.props.onSubmit( this.state.value );
 		this.setState({
@@ -264,6 +271,7 @@ class FreeTextQuestion extends Component {
 					{
 						this.state.value.length >= 1 ?
 							<Button
+								className="submit-button"
 								variant="primary"
 								size="sm"
 								style={{
@@ -282,6 +290,7 @@ class FreeTextQuestion extends Component {
 							>
 								<div style={{ display: 'inline-block' }}>
 									<Button
+										className="submit-button"
 										variant="primary"
 										size="sm"
 										style={{
@@ -343,6 +352,7 @@ FreeTextQuestion.defaultProps = {
 	chat: false,
 	placeholder: 'Enter your answer here...',
 	resizable: false,
+	disableSubmitNotification: false,
 	submissionMsg: '',
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
 	provideFeedback: true,
@@ -365,6 +375,7 @@ FreeTextQuestion.propTypes = {
 	chat: PropTypes.bool,
 	resizable: PropTypes.bool,
 	placeholder: PropTypes.string,
+	disableSubmitNotification: PropTypes.bool,
 	submissionMsg: PropTypes.string,
 	resubmissionMsg: PropTypes.string,
 	provideFeedback: PropTypes.bool,

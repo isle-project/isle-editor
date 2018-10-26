@@ -144,20 +144,8 @@ class MultipleChoiceQuestion extends Component {
 		});
 	}
 
-	submitQuestion = () => {
-		let sol = this.props.solution;
+	sendSubmitNotification = () => {
 		const session = this.context.session;
-		let newCorrect = this.props.provideFeedback === 'incremental' ?
-			this.state.correct.slice() :
-			new Array( this.props.answers.length );
-		if ( this.props.id ) {
-			const { session } = this.context;
-			session.log({
-				id: this.props.id,
-				type: 'MULTIPLE_CHOICE_SUBMISSION',
-				value: this.state.active
-			});
-		}
 		if ( this.state.submitted ) {
 			session.addNotification({
 				title: 'Answer re-submitted.',
@@ -176,6 +164,24 @@ class MultipleChoiceQuestion extends Component {
 				level: 'success',
 				position: 'tr'
 			});
+		}
+	}
+
+	submitQuestion = () => {
+		const sol = this.props.solution;
+		const session = this.context.session;
+		let newCorrect = this.props.provideFeedback === 'incremental' ?
+			this.state.correct.slice() :
+			new Array( this.props.answers.length );
+		if ( this.props.id ) {
+			session.log({
+				id: this.props.id,
+				type: 'MULTIPLE_CHOICE_SUBMISSION',
+				value: this.state.active
+			});
+		}
+		if ( !this.props.disableSubmitNotification ) {
+			this.sendSubmitNotification();
 		}
 		if ( isArray( sol ) ) {
 			for ( let i = 0; i < this.state.active.length; i++ ) {
@@ -373,6 +379,7 @@ class MultipleChoiceQuestion extends Component {
 					</ListGroup>
 					<div className="multiple-choice-question-toolbar">
 						<Button
+							className="submit-button"
 							size="small"
 							variant="success"
 							onClick={this.submitQuestion}
@@ -421,6 +428,7 @@ MultipleChoiceQuestion.defaultProps = {
 	displaySolution: false,
 	chat: false,
 	provideFeedback: 'incremental',
+	disableSubmitNotification: false,
 	voiceID: null,
 	style: {},
 	onSubmit(){}
@@ -439,6 +447,7 @@ MultipleChoiceQuestion.propTypes = {
 	disabled: PropTypes.bool,
 	chat: PropTypes.bool,
 	provideFeedback: PropTypes.oneOf([ 'none', 'incremental', 'full' ]),
+	disableSubmitNotification: PropTypes.bool,
 	displaySolution: PropTypes.bool,
 	voiceID: PropTypes.string,
 	style: PropTypes.object,

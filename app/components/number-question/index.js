@@ -80,9 +80,9 @@ class NumberQuestion extends Component {
 		this.props.onChange( newValue );
 	}
 
-	submitHandler = ( event ) => {
-		const { digits, solution } = this.props;
+	sendSubmitNotification = () => {
 		const { session } = this.context;
+		const { digits, solution } = this.props;
 		if ( solution ) {
 			const val = parseFloat( this.state.value );
 			let correct;
@@ -119,6 +119,13 @@ class NumberQuestion extends Component {
 				level: 'info',
 				position: 'tr'
 			});
+		}
+	}
+
+	submitHandler = ( event ) => {
+		const { session } = this.context;
+		if ( !this.props.disableSubmitNotification ) {
+			this.sendSubmitNotification();
 		}
 		this.setState({
 			submitted: true
@@ -182,6 +189,7 @@ class NumberQuestion extends Component {
 						}
 					</div>
 					<Button
+						className="submit-button"
 						variant="primary"
 						size="sm"
 						disabled={this.state.submitted && solutionPresent}
@@ -225,6 +233,7 @@ NumberQuestion.defaultProps = {
 	max: PINF,
 	min: NINF,
 	provideFeedback: true,
+	disableSubmitNotification: false,
 	chat: false,
 	onChange() {},
 	onSubmit() {}
@@ -240,6 +249,7 @@ NumberQuestion.propTypes = {
 	max: PropTypes.number,
 	min: PropTypes.number,
 	provideFeedback: PropTypes.bool,
+	disableSubmitNotification: PropTypes.bool,
 	chat: PropTypes.bool,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func

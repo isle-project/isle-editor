@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/lib/Card';
 import Form from 'react-bootstrap/lib/Form';
 import Col from 'react-bootstrap/lib/Col';
 import SolutionButton from 'components/solution-button';
+import ResponseVisualizer from 'components/response-visualizer';
 import './multiple_choice_matrix.css';
 
 
@@ -83,9 +84,8 @@ class MultipleChoiceMatrix extends Component {
 		}
 	}
 
-	handleSubmit = () => {
+	sendSubmitNotification = () => {
 		const session = this.context.session;
-		debug( 'Submit answer...' );
 		if ( this.state.submitted ) {
 			session.addNotification({
 				title: 'Answer re-submitted.',
@@ -101,6 +101,14 @@ class MultipleChoiceMatrix extends Component {
 				level: 'success',
 				position: 'tr'
 			});
+		}
+	}
+
+	handleSubmit = () => {
+		const session = this.context.session;
+		debug( 'Submit answer...' );
+		if ( !this.props.disableSubmitNotification ) {
+			this.sendSubmitNotification();
 		}
 		if ( this.props.id ) {
 			session.log({
@@ -166,6 +174,7 @@ class MultipleChoiceMatrix extends Component {
 					<div className="multiple-choice-matrix-controls">
 						{solutionButton}
 						<Button
+							className="submit-button"
 							variant="primary"
 							size="sm"
 							onClick={this.handleSubmit}
@@ -173,6 +182,11 @@ class MultipleChoiceMatrix extends Component {
 								marginTop: '10px'
 							}}
 						>{ this.state.submitted ? 'Resubmit' : 'Submit'}</Button>
+						<ResponseVisualizer
+							id={this.props.id}
+							dataType="text"
+							info="MULTIPLE_CHOICE_MATRIX_SUBMISSION"
+						/>
 					</div>
 				</Card.Body>
 			</Card>
@@ -192,6 +206,7 @@ MultipleChoiceMatrix.propTypes = {
 	]),
 	solution: PropTypes.arrayOf([ PropTypes.array ]),
 	type: PropTypes.oneOf([ 'radio', 'checkbox' ]),
+	disableSubmitNotification: PropTypes.bool,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func
 };
@@ -200,6 +215,7 @@ MultipleChoiceMatrix.defaultProps = {
 	title: null,
 	solution: null,
 	type: 'radio',
+	disableSubmitNotification: false,
 	onChange() {},
 	onSubmit() {}
 };

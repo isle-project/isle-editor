@@ -99,7 +99,7 @@ class MatchListQuestion extends Component {
 		this.setState({ [ list ]: option, answers, colorScale });
 	}
 
-	handleSubmit = () => {
+	sendSubmitNotification = () => {
 		const session = this.context.session;
 		if ( this.state.submitted ) {
 			session.addNotification({
@@ -115,6 +115,13 @@ class MatchListQuestion extends Component {
 				level: 'success',
 				position: 'tr'
 			});
+		}
+	}
+
+	handleSubmit = () => {
+		const session = this.context.session;
+		if ( !this.props.disableSubmitNotification ) {
+			this.sendSubmitNotification();
 		}
 		this.setState({
 			submitted: true
@@ -196,6 +203,7 @@ class MatchListQuestion extends Component {
 				</div>
 				<div className="match-list-question-controls">
 					<Button
+						className="submit-button"
 						variant="primary"
 						size="sm"
 						onClick={this.handleSubmit}
@@ -236,6 +244,7 @@ MatchListQuestion.defaultProps = {
 	feedback: false,
 	chat: false,
 	colorScale: null,
+	disableSubmitNotification: false,
 	submissionMsg: 'You have successfully submitted your answer.',
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
 	onSubmit() {}
@@ -256,6 +265,7 @@ MatchListQuestion.propTypes = {
 	feedback: PropTypes.object,
 	chat: PropTypes.bool,
 	colorScale: PropTypes.array,
+	disableSubmitNotification: PropTypes.bool,
 	submissionMsg: PropTypes.string,
 	resubmissionMsg: PropTypes.string,
 	onSubmit: PropTypes.func
