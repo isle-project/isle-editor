@@ -104,6 +104,11 @@ class Quiz extends Component {
 	}
 
 	handleNextClick = () => {
+		// Submit all questions on the current page:
+		const elems = this.quizBody.getElementsByClassName( 'submit-button' );
+		for ( let i = 0; i < elems.length; i++ ) {
+			elems[ i ].click();
+		}
 		debug( 'Display next question...' );
 		const elem = this.props.questions[ this.state.current ];
 
@@ -116,6 +121,7 @@ class Quiz extends Component {
 				value: this.state.selectedConfidence
 			});
 		}
+		this.props.onSubmit();
 		const newState = {};
 		let counter = this.state.counter;
 		counter += 1;
@@ -129,7 +135,6 @@ class Quiz extends Component {
 			}
 			newState.current = this.sample()[ 0 ];
 			debug( 'Selected question at index '+newState.current );
-			this.props.onSubmit();
 		}
 		if ( !this.state.answered ) {
 			const answers = this.state.answers.slice();
@@ -334,22 +339,22 @@ class Quiz extends Component {
 			case 'div':
 				return convertJSONtoJSX( config );
 			case 'FreeTextQuestion':
-				return <FreeTextQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
+				return <FreeTextQuestion disableSubmitNotification provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
 			case 'MultipleChoiceQuestion':
-				return <MultipleChoiceQuestion provideFeedback="none" {...props} onSubmit={this.handleSubmission} />;
+				return <MultipleChoiceQuestion disableSubmitNotification provideFeedback="none" {...props} onSubmit={this.handleSubmission} />;
 			case 'MatchListQuestion':
-				return <MatchListQuestion showSolution={false} {...props} onSubmit={this.handleSubmission} />;
+				return <MatchListQuestion disableSubmitNotification showSolution={false} {...props} onSubmit={this.handleSubmission} />;
 			case 'NumberQuestion':
-				return <NumberQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
+				return <NumberQuestion disableSubmitNotification provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
 			case 'OrderQuestion':
-				return <OrderQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
+				return <OrderQuestion disableSubmitNotification provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
 			case 'RangeQuestion':
-				return <RangeQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
+				return <RangeQuestion disableSubmitNotification provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
 			case 'SelectQuestion':
-				return <SelectQuestion provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
+				return <SelectQuestion disableSubmitNotification provideFeedback={false} {...props} onSubmit={this.handleSubmission} />;
 			default:
 				// Case: `config` already is a React component, clone it to pass in submit handler:
-				return <config.type {...config.props} {...props} provideFeedback={false} onSubmit={this.handleSubmission} />;
+				return <config.type {...config.props} {...props} disableSubmitNotification provideFeedback={false} onSubmit={this.handleSubmission} />;
 		}
 	}
 
@@ -410,13 +415,12 @@ class Quiz extends Component {
 		return React.Children.map( this.props.footerNodes, ( child, idx ) => {
 			return React.cloneElement( child, {
 				id: `${child.props.id}-${id}`,
-				key: idx
+				key: `${this.state.current}-${idx}`
 			});
 		});
 	}
 
 	render() {
-		console.log( this.props.questions[ this.state.current ] );
 		let showButton;
 		if ( this.state.finished ) {
 			showButton = false;
@@ -442,7 +446,7 @@ class Quiz extends Component {
 					/> :
 					null
 				}
-				<Card>
+				<Card className="quiz" >
 					<Card.Header>
 						{ this.state.finished ?
 							<span>Answer Summary</span> :
@@ -450,33 +454,37 @@ class Quiz extends Component {
 						}
 					</Card.Header>
 					<Card.Body>
-						{ this.state.finished ?
-							this.renderScoreboard() :
-							<span key={this.state.current}>{this.renderCurrentQuestion()}</span>
-						}
-						{ !this.state.finished ? this.renderConfidenceSurvey() : null }
-						{this.renderFooterNodes()}
-						<ButtonGroup style={{ float: 'right' }}>
-							{ showButton && !this.state.last ?
-								<Button
-									className="quiz-button"
-									onClick={this.handleNextClick}
-									disabled={this.props.forceConfidence && this.state.answered && !this.state.selectedConfidence}
-								>
-									{this.props.nextLabel}
-								</Button> :
-								null
+						<div ref={( card ) => {
+							this.quizBody = card;
+						}} >
+							{ this.state.finished ?
+								this.renderScoreboard() :
+								<span key={this.state.current}>{this.renderCurrentQuestion()}</span>
 							}
-							{
-								this.props.showFinishButton || this.state.last ?
+							{ !this.state.finished ? this.renderConfidenceSurvey() : null }
+							{this.renderFooterNodes()}
+							<ButtonGroup style={{ float: 'right' }}>
+								{ showButton && !this.state.last ?
 									<Button
 										className="quiz-button"
-										onClick={this.handleFinishClick}
+										onClick={this.handleNextClick}
+										disabled={this.props.forceConfidence && this.state.answered && !this.state.selectedConfidence}
 									>
-										{this.props.finishLabel}
-									</Button> : null
-							}
-						</ButtonGroup>
+										{this.props.nextLabel}
+									</Button> :
+									null
+								}
+								{
+									this.props.showFinishButton || this.state.last ?
+										<Button
+											className="quiz-button"
+											onClick={this.handleFinishClick}
+										>
+											{this.props.finishLabel}
+										</Button> : null
+								}
+							</ButtonGroup>
+						</div>
 					</Card.Body>
 				</Card>
 			</Fragment>

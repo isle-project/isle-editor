@@ -12,3 +12,7 @@
 	float: right;
 	margin-top: 20px;
 }
+
+.quiz .submit-button {
+	display: none;
+}
