@@ -25,6 +25,7 @@ An ISLE component for questions where answers by students should be supplied in 
 * __chat__ | `boolean`: controls whether to enable group chat should for the question. Default: `false`.
 * __resizable__ | `boolean`: controls whether the text area should be resizable. Default: `false`.
 * __placeholder__ | `string`: placeholder text displayed before user has entered any text. Default: `'Enter your answer here...'`.
+* __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
 * __submissionMsg__ | `string`: notification displayed when the learner first submits his answer. Default: `''`.
 * __resubmissionMsg__ | `string`: notification displayed for all submissions after the first one. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: indicates whether feedback including the correct answer should be displayed after learners submit their answers. Default: `true`.

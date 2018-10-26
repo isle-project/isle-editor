@@ -30,6 +30,7 @@ An ISLE component that renders a multiple choice question. It supports the case 
 * __disabled__ | `boolean`: controls whether the question is disabled. Default: `false`.
 * __chat__ | `boolean`: controls whether the element should have an integrated chat. Default: `false`.
 * __provideFeedback__ | `string`: if `full`, feedback including the correct answer is displayed after learners submit their answers; if `incremental`, feedback is only displayed for the selected answer; if `none`, no feedback is returned. Default: `'incremental'`.
+* __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
 * __displaySolution__ | `boolean`: controls whether the solution is displayed upfront. Default: `false`.
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.

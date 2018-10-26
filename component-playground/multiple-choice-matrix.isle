@@ -51,6 +51,8 @@ hideToolbar: true
 * __questions__ | `array (required)`: an array of questions. Default: `none`.
 * __answers__ | `array (required)`: an array of answers. Default: `none`.
 * __title__ | `(string|node)`: title to be displayed on top of the question matrix. Default: `none`.
+* __solution__ | `array<array>`: boolean matrix the element of which indicate whether the respective radio button or checkbox should be ticked. Default: `none`.
 * __type__ | `string`: question type (`radio` corresponds to "Select one", `checkbox` to "Select all that apply"). Default: `'radio'`.
+* __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
 * __onChange__ | `function`: callback invoked when the value of a checkbox / radio button changes; invoked with the two-dimensional boolean array of the active status for each answer option. Default: `onChange() {}`.
 * __onSubmit__ | `function`: undefined. Default: `onSubmit() {}`.

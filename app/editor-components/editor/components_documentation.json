@@ -655,6 +655,12 @@
         "default": "Enter your answer here..."
       },
       {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "default": false
+      },
+      {
         "name": "submissionMsg",
         "type": "string",
         "description": "notification displayed when the learner first submits his answer",
@@ -1824,7 +1830,7 @@
     "props": [
       {
         "name": "question",
-        "type": "string",
+        "type": "(string|node)",
         "description": "question to be displayed at the top of the match list question component",
         "default": ""
       },
@@ -1869,6 +1875,12 @@
         "type": "array",
         "description": "if set, the supplied colors are used for the tiles",
         "default": null
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "default": false
       },
       {
         "name": "submissionMsg",
@@ -1960,10 +1972,22 @@
         "default": null
       },
       {
+        "name": "solution",
+        "type": "array<array>",
+        "description": "boolean matrix the element of which indicate whether the respective radio button or checkbox should be ticked",
+        "default": null
+      },
+      {
         "name": "type",
         "type": "string",
         "description": "question type (`radio` corresponds to \"Select one\", `checkbox` to \"Select all that apply\")",
         "default": "radio"
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "default": false
       },
       {
         "name": "onChange",
@@ -2033,6 +2057,12 @@
         "type": "string",
         "description": "if `full`, feedback including the correct answer is displayed after learners submit their answers; if `incremental`, feedback is only displayed for the selected answer; if `none`, no feedback is returned",
         "default": "incremental"
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "default": false
       },
       {
         "name": "displaySolution",
@@ -2205,6 +2235,12 @@
         "default": true
       },
       {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "default": false
+      },
+      {
         "name": "chat",
         "type": "boolean",
         "description": "controls whether the element should have an integrated chat",
@@ -2319,6 +2355,12 @@
         "type": "string",
         "description": "message to be displayed when student submits the correct answer",
         "default": "That's the correct ordering!"
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "default": false
       },
       {
         "name": "onChange",
@@ -2578,6 +2620,23 @@
       }
     ],
     "description": "Component that allows a group of people to vote on the weights and importance of given options."
+  },
+  "QuestionForm": {
+    "props": [
+      {
+        "name": "buttonLabel",
+        "type": "string",
+        "description": "label of the submit button",
+        "default": "Submit"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when the submit button is clicked",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "A form component combining different question components together with a single submission button."
   },
   "Quiz": {
     "props": [
