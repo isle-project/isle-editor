@@ -48,7 +48,7 @@ class UploadLesson extends Component {
 			namespaces: [],
 			minify: true,
 			lessonName,
-			dirname: randomstring(),
+			dirname: randomstring(16, 65, 90),
 			server: localStorage.getItem( 'server' ),
 			token: localStorage.getItem( 'token' ),
 			showResponseModal: false,
