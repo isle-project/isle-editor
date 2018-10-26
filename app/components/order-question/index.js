@@ -30,6 +30,7 @@ const debug = logger( 'isle:order-question' );
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {boolean} chat - controls whether the element should have an integrated chat
+* @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {string} failureMsg - message to be displayed when student submits a wrong answer
 * @property {string} successMsg - message to be displayed when student submits the correct answer
 * @property {Function} onChange - callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering
@@ -74,7 +75,7 @@ class OrderQuestion extends Component {
 		}
 	}
 
-	handleSubmit = () => {
+	sendSubmitNotification = () => {
 		const { session } = this.context;
 		if ( this.props.provideFeedback ) {
 			if ( this.state.correct ) {
@@ -99,6 +100,13 @@ class OrderQuestion extends Component {
 				level: 'info',
 				position: 'tr'
 			});
+		}
+	}
+
+	handleSubmit = () => {
+		const { session } = this.context;
+		if ( !this.props.disableSubmitNotification ) {
+			this.sendSubmitNotification();
 		}
 		this.props.onSubmit( this.state.cards, this.state.correct );
 		this.setState({
@@ -160,6 +168,7 @@ OrderQuestion.defaultProps = {
 	chat: false,
 	failureMsg: 'Not quite, try again!',
 	successMsg: 'That\'s the correct ordering!',
+	disableSubmitNotification: false,
 	onChange() {},
 	onSubmit() {}
 };
@@ -174,6 +183,7 @@ OrderQuestion.propTypes = {
 	chat: PropTypes.bool,
 	failureMsg: PropTypes.string,
 	successMsg: PropTypes.string,
+	disableSubmitNotification: PropTypes.bool,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func
 };

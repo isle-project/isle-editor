@@ -40,6 +40,7 @@ const debug = logger( 'isle:multiple-choice-question' );
 * @property {boolean} disabled - controls whether the question is disabled
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {string} provideFeedback - if `full`, feedback including the correct answer is displayed after learners submit their answers; if `incremental`, feedback is only displayed for the selected answer; if `none`, no feedback is returned
+* @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {boolean} displaySolution - controls whether the solution is displayed upfront
 * @property {strings} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles

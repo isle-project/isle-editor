@@ -43,6 +43,7 @@ const debug = logger( 'isle:free-text-question' );
 * @property {boolean} chat - controls whether to enable group chat should for the question
 * @property {boolean} resizable - controls whether the text area should be resizable
 * @property {string} placeholder - placeholder text displayed before user has entered any text
+* @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {string} submissionMsg - notification displayed when the learner first submits his answer
 * @property {string} resubmissionMsg - notification displayed for all submissions after the first one
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers

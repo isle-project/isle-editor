@@ -48,6 +48,7 @@ function createColorScale( length ) {
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {Array} colorScale - if set, the supplied colors are used for the tiles
+* @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {string} submissionMsg - notification displayed when the learner first submits his answer
 * @property {string} resubmissionMsg - notification displayed for all submissions after the first one
 * @property {number} maxlength - maximum allowed number of characters

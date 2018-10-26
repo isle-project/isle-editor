@@ -27,6 +27,8 @@ const debug = logger( 'isle:multiple-choice-matrix' );
 * @property {Array} answers - an array of answers
 * @property {(Node|string)} title - title to be displayed on top of the question matrix
 * @property {string} type - question type (`radio` corresponds to "Select one", `checkbox` to "Select all that apply")
+* @property {Array<Array>} solution - boolean matrix the element of which indicate whether the respective radio button or checkbox should be ticked
+* @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {Function} onChange - callback invoked when the value of a checkbox / radio button changes; invoked with the two-dimensional boolean array of the active status for each answer option
 * @property {Function} onSubmit- callback invoked when user clicks the "Submit" button; invoked with the two-dimensional boolean array of the active status for each answer option
 */

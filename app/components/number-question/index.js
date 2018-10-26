@@ -37,6 +37,7 @@ const debug = logger( 'isle:number-question' );
 * @property {number} min - minimum allowed input value
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {boolean} chat - controls whether the element should have an integrated chat
+* @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {Function} onChange - callback  which is triggered after the value of the number field changes; receives the current value as its sole argument
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter
 */
