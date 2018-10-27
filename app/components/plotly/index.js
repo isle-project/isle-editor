@@ -10,6 +10,7 @@ import Plotly from 'plotly.js';
 import randomstring from 'utils/randomstring';
 import isUndefined from '@stdlib/assert/is-undefined';
 import copy from '@stdlib/utils/copy';
+import SessionContext from 'session/context.js';
 import PlotlyIcons from './icons.js';
 import calculateChanges from './calculate_changes.js';
 
@@ -111,7 +112,7 @@ class Wrapper extends Component {
 	handleUpdate = () => {
 		this.drawPlot();
 		if ( this.props.id ) {
-			const { session } = this.context;
+			const session = this.context;
 			const changes = calculateChanges( this.figure.layout, this.state.oldLayout );
 			if ( changes.length > 0 ) {
 				session.log({
@@ -259,9 +260,7 @@ Wrapper.propTypes = {
 	toggleFullscreen: PropTypes.bool
 };
 
-Wrapper.contextTypes = {
-	session: PropTypes.object
-};
+Wrapper.contextType = SessionContext;
 
 
 // EXPORTS //

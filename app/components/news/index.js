@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
 import capitalize from '@stdlib/string/capitalize';
 import VoiceInput from 'components/input/voice';
+import SessionContext from 'session/context.js';
 import newslist from './list.json';
 import EXCEPTIONS from './exceptions.json';
 import './styles.css';
@@ -46,7 +47,8 @@ class News extends Component {
 	}
 
 	register = () => {
-		this.context.session.speechInterface.register({
+		const session = this.context;
+		session.speechInterface.register({
 			name: this.props.voiceID,
 			ref: this,
 			commands: [
@@ -240,9 +242,7 @@ News.propTypes = {
 	onArticles: PropTypes.func
 };
 
-News.contextTypes = {
-	session: PropTypes.object
-};
+News.contextType = SessionContext;
 
 
 // EXPORTS //

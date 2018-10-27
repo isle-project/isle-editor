@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import DOMPurify from 'dompurify';
 import Spinner from 'components/spinner';
 import createPrependCode from 'components/r/utils/create-prepend-code';
+import SessionContext from 'session/context.js';
 
 
 // FUNCTIONS //
@@ -62,7 +63,7 @@ class ROutput extends Component {
 				running: true
 			});
 
-			const { session } = this.context;
+			const session = this.context;
 			const prependCode = createPrependCode( this.props.libraries, this.props.prependCode, session );
 			const fullCode = prependCode + code;
 			session.executeRCode({
@@ -128,18 +129,13 @@ ROutput.propTypes = {
 	])
 };
 
-ROutput.contextTypes = {
-	session: PropTypes.object
-};
-
-
-// DEFAULT PROPERTIES //
-
 ROutput.defaultProps = {
 	code: '',
 	libraries: [],
 	prependCode: ''
 };
+
+ROutput.contextType = SessionContext;
 
 
 // EXPORTS //

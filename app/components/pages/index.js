@@ -174,10 +174,6 @@ Pages.defaultProps = {
 	onSelect() {}
 };
 
-Pages.contextTypes = {
-	session: PropTypes.object
-};
-
 
 // EXPORTS //
 

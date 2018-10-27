@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
+import SessionContext from 'session/context.js';
 import './rhelp.css';
 
 
@@ -34,7 +35,7 @@ class RHelp extends Component {
 	showModal = () => {
 		const functionName = this.props.func || this.props.children;
 		if ( this.state.body === '' ) {
-			const { session } = this.context;
+			const session = this.context;
 			session.getRHelp( this.props.library, functionName, ( error, response, body ) => {
 				if ( !error ) {
 					this.setState({
@@ -92,18 +93,13 @@ RHelp.propTypes = {
 	visible: PropTypes.bool
 };
 
-RHelp.contextTypes = {
-	session: PropTypes.object
-};
-
-
-// DEFAULT PROPERTIES //
-
 RHelp.defaultProps = {
 	func: '',
 	library: 'base',
 	visible: false
 };
+
+RHelp.contextType = SessionContext;
 
 
 // EXPORTS //

@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isArray from '@stdlib/assert/is-array';
 import Provider from 'components/provider';
+import SessionContext from 'session/context.js';
 import './codemirror.css';
 import './syntax.css';
 import './playground.css';
@@ -31,7 +32,7 @@ class Playground extends Component {
 				let Comp = props.scope[ key ];
 				wrappedScope[ key ] = class Wrapper extends Component {
 					render() {
-						return ( <Provider session={context.session} >
+						return ( <Provider session={context} >
 							<Comp {...this.props} />
 						</Provider> );
 					}
@@ -95,9 +96,7 @@ Playground.propTypes = {
 	style: PropTypes.object
 };
 
-Playground.contextTypes = {
-	session: PropTypes.object
-};
+Playground.contextType = SessionContext;
 
 
 // EXPORTS //

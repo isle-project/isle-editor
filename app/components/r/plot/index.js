@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import createPrependCode from 'components/r/utils/create-prepend-code';
 import Spinner from 'components/spinner';
 import Image from 'components/image';
+import SessionContext from 'session/context.js';
 
 
 // MAIN //
@@ -59,7 +60,7 @@ class RPlot extends Component {
 				waiting: true,
 				last: this.props.code
 			});
-			const { session } = this.context;
+			const session = this.context;
 			const prependCode = createPrependCode( this.props.libraries, this.props.prependCode, session );
 			const fullCode = prependCode + this.props.code;
 			session.getRPlot( fullCode, this.props.fileType, this.savePlot );
@@ -116,9 +117,7 @@ RPlot.defaultProps = {
 	onDone() {}
 };
 
-RPlot.contextTypes = {
-	session: PropTypes.object
-};
+RPlot.contextType = SessionContext;
 
 
 // EXPORTS //

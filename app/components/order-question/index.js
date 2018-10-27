@@ -10,6 +10,7 @@ import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
 import FeedbackButtons from 'components/feedback';
+import SessionContext from 'session/context.js';
 import './order-question.css';
 
 
@@ -65,7 +66,7 @@ class OrderQuestion extends Component {
 
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
@@ -76,7 +77,7 @@ class OrderQuestion extends Component {
 	}
 
 	sendSubmitNotification = () => {
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.props.provideFeedback ) {
 			if ( this.state.correct ) {
 				session.addNotification({
@@ -104,7 +105,7 @@ class OrderQuestion extends Component {
 	}
 
 	handleSubmit = () => {
-		const { session } = this.context;
+		const session = this.context;
 		if ( !this.props.disableSubmitNotification ) {
 			this.sendSubmitNotification();
 		}
@@ -188,9 +189,7 @@ OrderQuestion.propTypes = {
 	onSubmit: PropTypes.func
 };
 
-OrderQuestion.contextTypes = {
-	session: PropTypes.object
-};
+OrderQuestion.contextType = SessionContext;
 
 
 // EXPORTS //

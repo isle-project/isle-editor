@@ -27,6 +27,7 @@ import 'brace/theme/solarized_light';
 import Spinner from 'components/spinner';
 import HintButton from 'components/hint-button';
 import OverlayTrigger from 'components/overlay-trigger';
+import SessionContext from 'session/context.js';
 import './rshell.css';
 
 
@@ -189,7 +190,7 @@ class RShell extends React.Component {
 			}
 			if ( val !== solutionUnescaped ) {
 				if ( this.props.id ) {
-					const { session } = this.context;
+					const session = this.context;
 					session.log({
 						id: this.props.id,
 						type: 'RSHELL_DISPLAY_SOLUTION',
@@ -226,7 +227,7 @@ class RShell extends React.Component {
 				});
 			}
 			else {
-				const { session } = this.context;
+				const session = this.context;
 				let helpCommand = currentCode.match( HELP_REGEX );
 				if ( helpCommand ) {
 					session.getRHelpPage( helpCommand[ 0 ], ( err, res, html ) => {
@@ -327,7 +328,7 @@ class RShell extends React.Component {
 			this.handleEvaluationClick();
 		}
 
-		const { session } = this.context;
+		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, val ) => {
 				if ( type === 'retrieved_current_user_actions' ) {
@@ -412,7 +413,7 @@ class RShell extends React.Component {
 	}
 
 	logHint = ( idx ) => {
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
@@ -597,9 +598,7 @@ RShell.defaultProps = {
 	onResult() {}
 };
 
-RShell.contextTypes = {
-	session: PropTypes.object
-};
+RShell.contextType = SessionContext;
 
 
 // EXPORTS //

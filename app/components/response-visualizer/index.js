@@ -16,6 +16,7 @@ import uncapitalize from '@stdlib/string/uncapitalize';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import Gate from 'components/gate';
 import Tooltip from 'components/tooltip';
+import SessionContext from 'session/context.js';
 import FullscreenActionDisplay from './fullscreen_action_display.js';
 import extractValue from './extract_value.js';
 
@@ -54,7 +55,7 @@ class ResponseVisualizer extends Component {
 	}
 
 	componentDidMount() {
-		const { session } = this.context;
+		const session = this.context;
 		this.addSessionActions();
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
@@ -141,7 +142,7 @@ class ResponseVisualizer extends Component {
 	}
 
 	addSessionActions = () => {
-		const { session } = this.context;
+		const session = this.context;
 		const actions = session.socketActions;
 		const filtered = [];
 		this.emailHash = {};
@@ -251,7 +252,7 @@ class ResponseVisualizer extends Component {
 	}
 
 	deleteSelectedAction = () => {
-		const { session } = this.context;
+		const session = this.context;
 		session.removeSessionElementFromDB( this.state.selectedAction.sessiondataID, ( err ) => {
 			if ( !err ) {
 				this.addSessionActions();
@@ -302,14 +303,15 @@ class ResponseVisualizer extends Component {
 	}
 
 	render() {
+		const session = this.context;
 		if ( !this.props.id ) {
 			return <Gate owner><label style={{ marginLeft: 5 }}>No ID supplied.</label></Gate>;
 		}
-		let successRate = this.state.nSuccess / this.context.session.userList.length;
+		let successRate = this.state.nSuccess / session.userList.length;
 		successRate *= 100.0;
-		let dangerRate = this.state.nDanger / this.context.session.userList.length;
+		let dangerRate = this.state.nDanger / session.userList.length;
 		dangerRate *= 100.0;
-		let infoRate = this.state.nInfo / this.context.session.userList.length;
+		let infoRate = this.state.nInfo / session.userList.length;
 		infoRate *= 100.0;
 		let tooltip = 'Interaction rate for currently active students:\n\n';
 		if ( this.props.success ) {
@@ -385,9 +387,7 @@ ResponseVisualizer.defaultProps = {
 	variant: 'secondary'
 };
 
-ResponseVisualizer.contextTypes = {
-	session: PropTypes.object
-};
+ResponseVisualizer.contextType = SessionContext;
 
 
 // EXPORTS //

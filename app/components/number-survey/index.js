@@ -24,6 +24,7 @@ import NumberInput from 'components/input/number';
 import Gate from 'components/gate';
 import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
+import SessionContext from 'session/context.js';
 import './number-survey.css';
 
 
@@ -82,7 +83,7 @@ class NumberSurvey extends Component {
 	}
 
 	submitQuestion = () => {
-		const { session } = this.context;
+		const session = this.context;
 		session.log({
 			id: this.props.id,
 			type: 'NUMBER_SURVEY_SUBMISSION',
@@ -206,9 +207,7 @@ NumberSurvey.propTypes = {
 	onSubmit: PropTypes.func
 };
 
-NumberSurvey.contextTypes = {
-	session: PropTypes.object
-};
+NumberSurvey.contextType = SessionContext;
 
 
 // EXPORTS //

@@ -17,6 +17,7 @@ import NumberInput from 'components/input/number';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
 import VoiceControl from 'components/voice-control';
+import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import './range-question.css';
 
@@ -105,7 +106,7 @@ class RangeQuestion extends Component {
 
 	submitHandler = () => {
 		const { digits, solution } = this.props;
-		const { session } = this.context;
+		const session = this.context;
 		if ( solution ) {
 			const lowerVal = parseFloat( this.state.lower );
 			const upperVal = parseFloat( this.state.upper );
@@ -175,7 +176,7 @@ class RangeQuestion extends Component {
 
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
@@ -306,9 +307,7 @@ RangeQuestion.propTypes = {
 	onSubmit: PropTypes.func
 };
 
-RangeQuestion.contextTypes = {
-	session: PropTypes.object
-};
+RangeQuestion.contextType = SessionContext;
 
 
 // EXPORTS //

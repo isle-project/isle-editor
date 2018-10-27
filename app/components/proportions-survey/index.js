@@ -12,6 +12,7 @@ import ProportionsInput from 'components/input/proportions';
 import Gate from 'components/gate';
 import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
+import SessionContext from 'session/context.js';
 
 
 // VARIABLES //
@@ -57,7 +58,7 @@ class ProportionsSurvey extends Component {
 
 	submitQuestion = () => {
 		debug( 'Sending the data: ' + this.state.value );
-		const { session } = this.context;
+		const session = this.context;
 		session.log({
 			id: this.props.id,
 			type: 'PROPORTIONS_SURVEY_SUBMISSION',
@@ -232,9 +233,7 @@ ProportionsSurvey.propTypes = {
 	step: PropTypes.number
 };
 
-ProportionsSurvey.contextTypes = {
-	session: PropTypes.object
-};
+ProportionsSurvey.contextType = SessionContext;
 
 
 // EXPORTS //

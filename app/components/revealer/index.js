@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Gate from 'components/gate';
+import SessionContext from 'session/context.js';
 
 
 // MAIN //
@@ -23,7 +24,7 @@ class Revealer extends Component {
 	}
 
 	componentDidMount() {
-		const { session } = this.context;
+		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
 					if ( type === 'member_action' ) {
@@ -41,7 +42,8 @@ class Revealer extends Component {
 					} else if ( type === 'user_joined' ) {
 						// When new users join, make sure they can see the component when it was already revealed:
 						if ( this.state.showChildren ) {
-							this.context.session.log({
+							const session = this.context;
+							session.log({
 								id: this.props.id,
 								type: 'REVEAL_CONTENT',
 								value: this.state.showChildren,
@@ -64,14 +66,15 @@ class Revealer extends Component {
 			showChildren: !this.state.showChildren
 		}, () => {
 			// Send message to other users:
+			const session = this.context;
 			if ( this.state.showChildren ) {
-				this.context.session.log({
+				session.log({
 					id: this.props.id,
 					type: 'REVEAL_CONTENT',
 					value: this.state.showChildren
 				}, 'members' );
 			} else {
-				this.context.session.log({
+				session.log({
 					id: this.props.id,
 					type: 'HIDE_CONTENT',
 					value: this.state.showChildren
@@ -111,9 +114,7 @@ Revealer.propTypes = {
 	message: PropTypes.string
 };
 
-Revealer.contextTypes = {
-	session: PropTypes.object
-};
+Revealer.contextType = SessionContext;
 
 
 // EXPORTS //

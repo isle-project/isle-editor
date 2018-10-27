@@ -10,15 +10,16 @@ import ToggleButton from 'react-bootstrap/lib/ToggleButton';
 import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder, WhammyRecorder } from 'recordrtc';
 import VoiceControl from 'components/voice-control';
 import inEditor from 'utils/is-electron';
-import getScreenId from './get_screen_id.js';
 import isElectron from 'utils/is-electron';
+import SessionContext from 'session/context.js';
+import getScreenId from './get_screen_id.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import './recorder.css';
 
 
 // VARIABLES //
 
-var debug = logger( 'isle:recorder' );
+const debug = logger( 'isle:recorder' );
 navigator.getUserMedia = navigator.getUserMedia || navigator.mediaDevices.getUserMedia || navigator.webkitGetUserMedia;
 
 
@@ -175,7 +176,7 @@ class Recorder extends Component {
 	}
 
 	handleError( msg ) {
-		const { session } = this.context;
+		const session = this.context;
 		session.addNotification({
 			title: 'Encountered Error',
 			message: msg,
@@ -239,7 +240,7 @@ class Recorder extends Component {
 	}
 
 	uploadFile = () => {
-		const { session } = this.context;
+		const session = this.context;
 		const { audio, camera, screen } = this.getActiveSources();
 		let mimeType;
 		if ( audio && !camera && !screen ) {
@@ -539,9 +540,7 @@ Recorder.defaultProps = {
 	voiceID: null
 };
 
-Recorder.contextTypes = {
-	session: PropTypes.object
-};
+Recorder.contextType = SessionContext;
 
 
 // EXPORTS //

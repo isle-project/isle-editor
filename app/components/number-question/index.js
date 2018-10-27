@@ -14,6 +14,7 @@ import ResponseVisualizer from 'components/response-visualizer';
 import NumberInput from 'components/input/number';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
+import SessionContext from 'session/context.js';
 import './number-question.css';
 
 
@@ -82,7 +83,7 @@ class NumberQuestion extends Component {
 	}
 
 	sendSubmitNotification = () => {
-		const { session } = this.context;
+		const session = this.context;
 		const { digits, solution } = this.props;
 		if ( solution ) {
 			const val = parseFloat( this.state.value );
@@ -124,7 +125,7 @@ class NumberQuestion extends Component {
 	}
 
 	submitHandler = ( event ) => {
-		const { session } = this.context;
+		const session = this.context;
 		if ( !this.props.disableSubmitNotification ) {
 			this.sendSubmitNotification();
 		}
@@ -142,7 +143,7 @@ class NumberQuestion extends Component {
 
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
@@ -256,9 +257,7 @@ NumberQuestion.propTypes = {
 	onSubmit: PropTypes.func
 };
 
-NumberQuestion.contextTypes = {
-	session: PropTypes.object
-};
+NumberQuestion.contextType = SessionContext;
 
 
 // EXPORTS //

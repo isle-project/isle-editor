@@ -21,6 +21,7 @@ import NumberQuestion from 'components/number-question';
 import OrderQuestion from 'components/order-question';
 import RangeQuestion from 'components/range-question';
 import SelectQuestion from 'components/select-question';
+import SessionContext from 'session/context.js';
 import convertJSONtoJSX from 'utils/json-to-jsx';
 import './quiz.css';
 
@@ -114,7 +115,7 @@ class Quiz extends Component {
 
 		// Save chosen confidence level:
 		if ( elem.props && elem.props.id && this.state.selectedConfidence ) {
-			const session = this.context.session;
+			const session = this.context;
 			session.log({
 				id: elem.props.id+'_confidence',
 				type: 'QUESTION_CONFIDENCE',
@@ -464,24 +465,26 @@ class Quiz extends Component {
 							{ !this.state.finished ? this.renderConfidenceSurvey() : null }
 							{this.renderFooterNodes()}
 							<ButtonGroup style={{ float: 'right' }}>
+							{
+									this.props.showFinishButton || this.state.last ?
+										<Button
+											className="quiz-button"
+											variant="primary"
+											onClick={this.handleFinishClick}
+										>
+											{this.props.finishLabel}
+										</Button> : null
+								}
 								{ showButton && !this.state.last ?
 									<Button
 										className="quiz-button"
+										variant="secondary"
 										onClick={this.handleNextClick}
 										disabled={this.props.forceConfidence && this.state.answered && !this.state.selectedConfidence}
 									>
 										{this.props.nextLabel}
 									</Button> :
 									null
-								}
-								{
-									this.props.showFinishButton || this.state.last ?
-										<Button
-											className="quiz-button"
-											onClick={this.handleFinishClick}
-										>
-											{this.props.finishLabel}
-										</Button> : null
 								}
 							</ButtonGroup>
 						</div>
@@ -526,9 +529,7 @@ Quiz.defaultProps = {
 	onSubmit() {}
 };
 
-Quiz.contextTypes = {
-	session: PropTypes.object
-};
+Quiz.contextType = SessionContext;
 
 
 // EXPORTS //

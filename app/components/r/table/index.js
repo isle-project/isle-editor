@@ -6,6 +6,7 @@ import Dimensions from 'components/dimensions';
 import DataTable from 'components/data-table';
 import Spinner from 'components/spinner';
 import createPrependCode from 'components/r/utils/create-prepend-code';
+import SessionContext from 'session/context.js';
 
 
 // MAIN //
@@ -48,7 +49,7 @@ class RTable extends Component {
 				waiting: true,
 				last: this.props.code
 			});
-			const { session } = this.context;
+			const session = this.context;
 			let { libraries, prependCode } = this.props;
 			let jsonCode = 'library( jsonlite );\n';
 			prependCode = createPrependCode( libraries, prependCode, session );
@@ -115,9 +116,7 @@ RTable.defaultProps = {
 	prependCode: ''
 };
 
-RTable.contextTypes = {
-	session: PropTypes.object
-};
+RTable.contextType = SessionContext;
 
 
 // EXPORTS //
