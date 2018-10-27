@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import isArray from '@stdlib/assert/is-array';
 import OverlayTrigger from 'components/overlay-trigger';
+import SessionContext from 'session/context.js';
 
 
 // FUNCTIONS //
@@ -61,7 +62,8 @@ class VoiceControl extends Component {
 
 	componentDidMount() {
 		if ( this.props.id ) {
-			this.context.session.speechInterface.register({
+			const session = this.context;
+			session.speechInterface.register({
 				name: this.props.id,
 				reference: this.props.reference,
 				commands: this.props.commands,
@@ -86,7 +88,7 @@ class VoiceControl extends Component {
 		if ( this.state.active ) {
 			this.setInactive();
 		} else {
-			const { session } = this.context;
+			const session = this.context;
 			session.speechInterface.setActive( this.props.id );
 		}
 	}
@@ -125,9 +127,7 @@ VoiceControl.defaultProps = {
 	hide: false
 };
 
-VoiceControl.contextTypes = {
-	session: PropTypes.object
-};
+VoiceControl.contextType = SessionContext;
 
 
 // EXPORTS //

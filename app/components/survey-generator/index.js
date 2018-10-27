@@ -14,6 +14,7 @@ import TextArea from 'components/input/text-area';
 import MultipleChoiceSurvey from 'components/multiple-choice-survey';
 import NumberSurvey from 'components/number-survey';
 import FreeTextSurvey from 'components/free-text-survey';
+import SessionContext from 'session/context.js';
 
 
 // VARIABLES //
@@ -42,7 +43,7 @@ class MCSgenerator extends Component {
 	}
 
 	componentDidMount() {
-		const { session } = this.context;
+		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			debug( 'Received member action...' );
 			if ( type === 'member_action' ) {
@@ -99,7 +100,7 @@ class MCSgenerator extends Component {
 	}
 
 	startSurvey = () => {
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.state.showSurvey ) {
 			session.log({
 				id: this.props.id,
@@ -226,9 +227,7 @@ MCSgenerator.propTypes = {
 	id: PropTypes.string.isRequired
 };
 
-MCSgenerator.contextTypes = {
-	session: PropTypes.object
-};
+MCSgenerator.contextType = SessionContext;
 
 
 // EXPORTS //

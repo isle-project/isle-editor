@@ -15,6 +15,7 @@ import moment from 'moment';
 import logger from 'debug';
 import copy from '@stdlib/utils/copy';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import SessionContext from 'session/context.js';
 import ActionList from './list.js';
 
 
@@ -41,7 +42,7 @@ class ActionLog extends Component {
 	}
 
 	componentDidMount() {
-		const { session } = this.context;
+		const session = this.context;
 		if ( session.socketActions && session.socketActions.length > 0 ) {
 			debug( 'Initial construction of actions array...' );
 			this.setState({ // eslint-disable-line react/no-did-mount-set-state
@@ -97,7 +98,7 @@ class ActionLog extends Component {
 		if ( from && to ) {
 			from = from.toDate();
 			to = to.toDate();
-			const { session } = this.context;
+			const session = this.context;
 			let actions = [];
 			for ( let i = 0; i < session.socketActions.length; i++ ) {
 				let action = session.socketActions[ i ];
@@ -139,7 +140,7 @@ class ActionLog extends Component {
 	}
 
 	saveJSON = () => {
-		const { session } = this.context;
+		const session = this.context;
 		session.getFakeUsers( ( err, hash ) => {
 			if ( err ) {
 				return session.addNotification({
@@ -169,7 +170,7 @@ class ActionLog extends Component {
 	}
 
 	saveCSV = () => {
-		const { session } = this.context;
+		const session = this.context;
 		session.getFakeUsers( ( err, hash ) => {
 			if ( err ) {
 				return session.addNotification({
@@ -276,9 +277,7 @@ class ActionLog extends Component {
 
 // CONTEXT TYPES //
 
-ActionLog.contextTypes = {
-	session: PropTypes.object
-};
+ActionLog.contextType = SessionContext;
 
 
 // EXPORTS //

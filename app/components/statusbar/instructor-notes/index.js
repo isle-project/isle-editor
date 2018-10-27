@@ -3,10 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MarkdownEditor from 'components/markdown-editor';
+import SessionContext from 'session/context.js';
 import './instructor_notes.css';
 
-
-// VARIABLES //
 
 // MAIN //
 
@@ -16,10 +15,11 @@ class InstructorNotes extends Component {
 	}
 
 	render() {
+		const session = this.context;
 		return (
 			<MarkdownEditor
 				className="instructor-notes"
-				defaultValue={this.context.session.config.instructorNotes || ''}
+				defaultValue={session.config.instructorNotes || ''}
 				id={this.props.id}
 				toolbarConfig={[
 					'bold',
@@ -36,9 +36,11 @@ class InstructorNotes extends Component {
 	}
 }
 
-InstructorNotes.contextTypes = {
-	session: PropTypes.object
-};
+
+// TYPES //
+
+InstructorNotes.contextType = SessionContext;
+
 
 // EXPORTS //
 

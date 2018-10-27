@@ -34,15 +34,12 @@ class NextArrow extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 NextArrow.defaultProps = {
 	className: '',
 	onClick() {}
 };
-
-
-// PROPERTY TYPES //
 
 NextArrow.propTypes = {
 	className: PropTypes.string,

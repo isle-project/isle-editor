@@ -1,17 +1,18 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import Popover from 'react-bootstrap/lib/Popover';
 import logger from 'debug';
-import scrollTo from 'utils/scroll-to';
 import OverlayTrigger from 'components/overlay-trigger';
 import TextArea from 'components/input/text-area';
-import PropTypes from 'prop-types';
+import scrollTo from 'utils/scroll-to';
 import isElectron from 'utils/is-electron';
+import SessionContext from 'session/context.js';
 import './chat.css';
 
 
@@ -34,7 +35,7 @@ class Chat extends Component {
 
 	componentDidMount() {
 		debug( 'Component has mounted. Subscribe to session: ' );
-		const { session } = this.context;
+		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type ) => {
 			if (
 				type === 'chat_message' ||
@@ -61,13 +62,13 @@ class Chat extends Component {
 		if (
 			this.chatbody.scrollTop + this.chatbody.clientHeight >= this.chatbody.scrollHeight
 		) {
-			const { session } = this.context;
+			const session = this.context;
 			session.markChatMessagesAsRead( this.props.chat.name );
 		}
 	}
 
 	sendMessage = () => {
-		const { session } = this.context;
+		const session = this.context;
 		session.sendChatMessage( this.props.chat.name, this.state.value );
 		scrollTo( this.chatbody, this.chatbody.scrollHeight, 1000 );
 
@@ -84,7 +85,7 @@ class Chat extends Component {
 	}
 
 	closeChat = () => {
-		const { session } = this.context;
+		const session = this.context;
 		session.leaveChat( this.props.chat.name );
 	}
 
@@ -233,10 +234,6 @@ class Chat extends Component {
 
 // TYPES //
 
-Chat.contextTypes = {
-	session: PropTypes.object
-};
-
 Chat.defaultProps = {
 	left: 400,
 	width: 600
@@ -247,6 +244,9 @@ Chat.propTypes = {
 	left: PropTypes.number,
 	width: PropTypes.number
 };
+
+Chat.contextType = SessionContext;
+
 
 // EXPORTS //
 

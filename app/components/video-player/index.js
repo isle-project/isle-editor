@@ -6,6 +6,7 @@ import ReactPlayer from 'react-player';
 import Dimensions from 'components/dimensions';
 import omit from '@stdlib/utils/omit';
 import VoiceControl from 'components/voice-control';
+import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 
 
@@ -51,7 +52,7 @@ class Video extends Component {
 	}
 
 	handlePlay = () => {
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
@@ -63,7 +64,7 @@ class Video extends Component {
 	}
 
 	handlePause = () => {
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
@@ -75,7 +76,7 @@ class Video extends Component {
 	}
 
 	handleEnded = () => {
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
@@ -180,9 +181,7 @@ Video.defaultProps = {
 	onPlay() {}
 };
 
-Video.contextTypes = {
-	session: PropTypes.object
-};
+Video.contextType = SessionContext;
 
 
 // EXPORTS //

@@ -13,6 +13,7 @@ import Modal from 'react-bootstrap/lib/Modal';
 import Overlay from 'react-bootstrap/lib/Overlay';
 import Popover from 'react-bootstrap/lib/Popover';
 import Tooltip from 'components/tooltip';
+import SessionContext from 'session/context.js';
 
 
 // VARIABLES //
@@ -42,7 +43,7 @@ class Signup extends Component {
 
 	handleSubmit = ( event ) => {
 		event.preventDefault();
-		const { session } = this.context;
+		const session = this.context;
 		if (
 			this.getEmailValidationState() === 'success' &&
 			this.getNameValidationState() === 'success' &&
@@ -222,11 +223,7 @@ class Signup extends Component {
 }
 
 
-// TYPES //
-
-Signup.contextTypes = {
-	session: PropTypes.object
-};
+// PROPERTIES //
 
 Signup.defaultProps = {
 	onClose() {},
@@ -237,6 +234,8 @@ Signup.propTypes = {
 	onClose: PropTypes.func,
 	show: PropTypes.bool
 };
+
+Signup.contextType = SessionContext;
 
 
 // EXPORTS //

@@ -16,6 +16,7 @@ import InstructorView from 'components/statusbar/instructor-view';
 import Chat from 'components/statusbar/chat';
 import isElectron from 'utils/is-electron';
 import animatePosition from 'utils/animate-position';
+import SessionContext from 'session/context.js';
 import ConfirmModal from './confirm_modal.js';
 import './statusbar.css';
 
@@ -54,7 +55,7 @@ class StatusBar extends Component {
 
 		let sentNotification = false;
 		const promptLogin = () => {
-			const { session } = this.context;
+			const session = this.context;
 			if ( !isElectron ) {
 				session.addNotification({
 					title: 'Login',
@@ -70,7 +71,7 @@ class StatusBar extends Component {
 			}
 		};
 
-		const { session } = this.context;
+		const session = this.context;
 		this.unsubscribe = session.subscribe( () => {
 			if ( !sentNotification && session.anonymous && session.live ) {
 				setTimeout( promptLogin, 2000 );
@@ -156,7 +157,7 @@ class StatusBar extends Component {
 	}
 
 	handleLogout() {
-		const { session } = this.context;
+		const session = this.context;
 		session.logout();
 		this.closeLogout();
 	}
@@ -178,7 +179,8 @@ class StatusBar extends Component {
 		setTimeout(() => {
 			this.setState({ recordedText: null });
 		}, 3000 );
-		this.context.session.speechInterface.check( text );
+		const session = this.context;
+		session.speechInterface.check( text );
 	}
 
 	handleVoiceInputChange = ( event ) => {
@@ -194,7 +196,7 @@ class StatusBar extends Component {
 	}
 
 	getChatPosition( idx ) {
-		const { session } = this.context;
+		const session = this.context;
 		const margin = 10;
 		const nChatsPerSide = ceil( session.chats.length / 2 );
 		const maxWidth = this.state.side * 0.6;
@@ -215,7 +217,7 @@ class StatusBar extends Component {
 	}
 
 	render() {
-		const { session } = this.context;
+		const session = this.context;
 		return (
 			<div>
 				{session.chats.map( ( chat, idx ) => {
@@ -295,11 +297,10 @@ class StatusBar extends Component {
 	}
 }
 
+
 // TYPES //
 
-StatusBar.contextTypes = {
-	session: PropTypes.object
-};
+StatusBar.contextType = SessionContext;
 
 
 // EXPORTS //

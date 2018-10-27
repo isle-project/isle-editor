@@ -12,6 +12,7 @@ import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
 import FeedbackButtons from 'components/feedback';
+import SessionContext from 'session/context.js';
 import './select-question.css';
 
 
@@ -62,7 +63,7 @@ class SelectQuestion extends Component {
 	}
 
 	handleSubmit = () => {
-		const { session } = this.context;
+		const session = this.context;
 		let correct = this.props.solution === this.state.value;
 		if ( this.props.provideFeedback ) {
 			if ( correct ) {
@@ -91,7 +92,7 @@ class SelectQuestion extends Component {
 			});
 		}
 		if ( this.props.id ) {
-			this.context.session.log({
+			session.log({
 				id: this.props.id,
 				type: 'SELECT_QUESTION_SUBMISSION',
 				value: this.state.value
@@ -221,9 +222,7 @@ SelectQuestion.propTypes = {
 	onSubmit: PropTypes.func
 };
 
-SelectQuestion.contextTypes = {
-	session: PropTypes.object
-};
+SelectQuestion.contextType = SessionContext;
 
 
 // EXPORTS //

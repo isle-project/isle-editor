@@ -7,6 +7,7 @@ import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import parse from 'csv-parse';
 import detect from 'detect-csv';
 import round from '@stdlib/math/base/special/round';
+import SessionContext from 'session/context.js';
 
 
 // MAIN //
@@ -61,7 +62,7 @@ class SpreadsheetUpload extends Component {
 		});
 		parse( text, { delimiter: csv.delimiter, columns: true, auto_parse: true }, ( err, output ) => {
 			if ( err ) {
-				const { session } = this.context;
+				const session = this.context;
 				session.addNotification({
 					title: 'Could not read file.',
 					message: `The following error was encountered while trying to read the file:${err.message}`,
@@ -101,7 +102,7 @@ class SpreadsheetUpload extends Component {
 		if ( file ) {
 			const mimeType = file.type;
 			if ( mimeType !== 'text/csv' ) {
-				const { session } = this.context;
+				const session = this.context;
 				return session.addNotification({
 					title: 'No CSV file.',
 					message: 'The supplied file is not a CSV file.',
@@ -155,6 +156,7 @@ class SpreadsheetUpload extends Component {
 	}
 }
 
+
 // TYPES //
 
 SpreadsheetUpload.defaultProps = {
@@ -167,9 +169,7 @@ SpreadsheetUpload.propTypes = {
 	title: PropTypes.string
 };
 
-SpreadsheetUpload.contextTypes = {
-	session: PropTypes.object
-};
+SpreadsheetUpload.contextType = SessionContext;
 
 
 // EXPORTS //

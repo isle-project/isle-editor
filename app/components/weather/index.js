@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import { APIXU_BASE_URL, APIXU_AUTH_KEY } from 'constants/apixu';
 import VoiceControl from 'components/voice-control';
+import SessionContext from 'session/context.js';
 import './weather.css';
 
 
@@ -55,7 +56,8 @@ class Weather extends Component {
 	}
 
 	register = () => {
-		this.context.session.speechInterface.register({
+		const session = this.context;
+		session.speechInterface.register({
 			name: this.props.voiceID,
 			ref: this,
 			commands: VOICE_COMMANDS
@@ -255,9 +257,7 @@ Weather.defaultProps = {
 	style: {}
 };
 
-Weather.contextTypes = {
-	session: PropTypes.object
-};
+Weather.contextType = SessionContext;
 
 
 // EXPORTS //

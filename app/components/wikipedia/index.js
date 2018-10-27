@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import VoiceInput from 'components/input/voice';
 import logger from 'debug';
+import SessionContext from 'session/context.js';
 import './wikipedia.css';
 
 
@@ -166,9 +167,7 @@ Wikipedia.propTypes = {
 	language: PropTypes.string
 };
 
-Wikipedia.contextTypes = {
-	session: PropTypes.object
-};
+Wikipedia.contextType = SessionContext;
 
 
 // EXPORTS //

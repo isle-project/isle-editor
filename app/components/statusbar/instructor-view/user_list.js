@@ -20,7 +20,7 @@ class UserList extends Component {
 	}
 
 	componentDidMount() {
-		const { session } = this.props;
+		const session = this.props.session;
 		this.unsubscribe = session.subscribe( ( type ) => {
 			if (
 				type === 'received_users' ||
@@ -38,7 +38,7 @@ class UserList extends Component {
 	}
 
 	render() {
-		const { session } = this.props;
+		const session = this.props.session;
 		return (
 			<ListGroup style={{ overflowY: 'scroll', height: window.innerHeight / 2, marginLeft: 0, fontSize: 15, fontFamily: 'Open Sans' }}>
 				{session.userList.map( ( user, idx ) => {

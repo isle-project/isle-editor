@@ -16,6 +16,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
+import SelectInput from 'react-select';
 import Checkbox from 'components/input/checkbox';
 import contains from '@stdlib/assert/contains';
 import isNumber from '@stdlib/assert/is-number';
@@ -34,8 +35,8 @@ import Tooltip from 'components/tooltip';
 import { TwitterPicker } from 'react-color';
 import Gate from 'components/gate';
 import KeyControls from 'components/key-controls';
-import SelectInput from 'react-select';
 import VoiceControl from 'components/voice-control';
+import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import ResetModal from './reset_modal.js';
 import NavigationModal from './navigation_modal.js';
@@ -153,7 +154,7 @@ class Sketchpad extends Component {
 	}
 
 	componentDidMount() {
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.props.fullscreen ) {
 			this.windowResize = window.addEventListener( 'resize', () => {
 				this.setState({
@@ -536,7 +537,7 @@ class Sketchpad extends Component {
 							value: JSON.stringify( elems[ idx ]),
 							noSave: true
 						};
-						const session = this.context.session;
+						const session = this.context;
 						if ( session.isOwner() && this.state.transmitOwner ) {
 							session.log( action, 'members' );
 						} else {
@@ -622,7 +623,7 @@ class Sketchpad extends Component {
 			type: 'SKETCHPAD_CLEAR_PAGE',
 			value: currentPage
 		};
-		const session = this.context.session;
+		const session = this.context;
 		if (
 			session.isOwner() && this.state.transmitOwner
 		) {
@@ -633,12 +634,13 @@ class Sketchpad extends Component {
 	}
 
 	clearAll = () => {
+		const session = this.context;
 		const canvas = this.canvas;
 		const ctx = this.ctx;
 		if ( ctx ) {
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
-		this.context.session.store.removeItem( this.props.id + '_sketchpad' );
+		session.store.removeItem( this.props.id + '_sketchpad' );
 		if ( this.props.pdf ) {
 			this.initializePDF().then( () => {
 				this.redraw();
@@ -671,7 +673,6 @@ class Sketchpad extends Component {
 			type: 'SKETCHPAD_CLEAR_ALL_PAGES',
 			value: null
 		};
-		const session = this.context.session;
 		if (
 			session.isOwner() && this.state.transmitOwner
 		) {
@@ -836,7 +837,7 @@ class Sketchpad extends Component {
 
 			const elems = this.elements[ this.state.currentPage ];
 
-			const { session } = this.context;
+			const session = this.context;
 			const username = session.user.email || '';
 
 			// Convert to relative coordinates:
@@ -901,7 +902,8 @@ class Sketchpad extends Component {
 					e.x += ( dx / this.canvas.width );
 					e.y += ( dy / this.canvas.height );
 				}
-				const username = this.context.session.user.email || '';
+				const session = this.context;
+				const username = session.user.email || '';
 				const action = {
 					id: this.props.id,
 					type: 'SKETCHPAD_DRAG_ELEMENT',
@@ -914,7 +916,6 @@ class Sketchpad extends Component {
 					}),
 					noSave: true
 				};
-				const session = this.context.session;
 				if ( session.isOwner() || this.state.groupMode ) {
 					session.log( action, 'members' );
 				} else {
@@ -988,7 +989,7 @@ class Sketchpad extends Component {
 								modalMessage: err.message
 							});
 						} else {
-							const session = this.context.session;
+							const session = this.context;
 							const filename = res.filename;
 							const link = session.server + '/' + filename;
 							this.setState({
@@ -1005,7 +1006,8 @@ class Sketchpad extends Component {
 							session.sendMail( msg, session.user.email );
 						}
 					};
-					this.context.session.uploadFile( pdfForm, onUpload );
+					const session = this.context;
+					session.uploadFile( pdfForm, onUpload );
 				});
 			});
 		});
@@ -1101,7 +1103,8 @@ class Sketchpad extends Component {
 
 			this.redraw();
 			if ( logging ) {
-				this.context.session.log({
+				const session = this.context;
+				session.log({
 					id: this.props.id,
 					type: 'SKETCHPAD_INSERT_PAGE',
 					value: idx
@@ -1119,7 +1122,8 @@ class Sketchpad extends Component {
 			const value = this.textInput.value;
 			this.textInput.value = '';
 			this.textInput.style.top = String( parseInt( this.textInput.style.top, 10 ) + this.state.fontSize ) + 'px';
-			const username = this.context.session.user.email || '';
+			const session = this.context;
+			const username = session.user.email || '';
 			const text = {
 				value: value,
 				x: x / this.canvas.width,
@@ -1159,7 +1163,7 @@ class Sketchpad extends Component {
 		const yval = round( y*this.canvas.height ) + fontSize;
 		debug( `Draw text at x: ${xval} and y: ${yval}` );
 		ctx.fillText( value, xval, yval );
-		const { session } = this.context;
+		const session = this.context;
 		if ( shouldLog ) {
 			const logAction = {
 				id: this.props.id,
@@ -1250,7 +1254,8 @@ class Sketchpad extends Component {
 				const id = elems[ found ].drawID;
 				this.deleteElement( id, found, elems );
 				if ( this.state.mode === 'delete' ) {
-					const username = this.context.session.user.email || '';
+					const session = this.context;
+					const username = session.user.email || '';
 					const action = {
 						id: this.props.id,
 						type: 'SKETCHPAD_DELETE_ELEMENT',
@@ -1260,7 +1265,6 @@ class Sketchpad extends Component {
 							user: username
 						})
 					};
-					const session = this.context.session;
 					if (
 						( session.isOwner() && this.state.transmitOwner ) ||
 						this.state.groupMode
@@ -1308,7 +1312,8 @@ class Sketchpad extends Component {
 			// Update hash of URL:
 			this.updateURL( this.state.currentPage );
 			this.redraw();
-			this.context.session.log({
+			const session = this.context;
+			session.log({
 				id: this.props.id,
 				type: 'SKETCHPAD_FIRST_PAGE',
 				value: this.state.currentPage
@@ -1324,7 +1329,8 @@ class Sketchpad extends Component {
 			// Update hash of URL:
 			this.updateURL( this.state.currentPage );
 			this.redraw();
-			this.context.session.log({
+			const session = this.context;
+			session.log({
 				id: this.props.id,
 				type: 'SKETCHPAD_LAST_PAGE',
 				value: this.state.currentPage
@@ -1356,7 +1362,8 @@ class Sketchpad extends Component {
 				this.updateURL( this.state.currentPage );
 
 				this.redraw();
-				this.context.session.log({
+				const session = this.context;
+				session.log({
 					id: this.props.id,
 					type: 'SKETCHPAD_NEXT_PAGE',
 					value: this.state.currentPage
@@ -1375,7 +1382,8 @@ class Sketchpad extends Component {
 				this.updateURL( this.state.currentPage );
 
 				this.redraw();
-				this.context.session.log({
+				const session = this.context;
+				session.log({
 					id: this.props.id,
 					type: 'SKETCHPAD_PREVIOUS_PAGE',
 					value: this.state.currentPage
@@ -1397,7 +1405,8 @@ class Sketchpad extends Component {
 				this.updateURL( this.state.currentPage );
 
 				this.redraw();
-				this.context.session.log({
+				const session = this.context;
+				session.log({
 					id: this.props.id,
 					type: 'SKETCHPAD_GOTO_PAGE',
 					value: idx
@@ -1482,7 +1491,7 @@ class Sketchpad extends Component {
 
 	saveInBrowser = ( clbk = noop ) => {
 		if ( this.props.id ) {
-			const session = this.context.session;
+			const session = this.context;
 			const state = omit( this.state, OMITTED_KEYS );
 			const data = {
 				elements: this.elements,
@@ -1743,6 +1752,7 @@ class Sketchpad extends Component {
 		if ( this.props.hideSaveButtons ) {
 			return null;
 		}
+		const session = this.context;
 		return (
 			<ButtonGroup size="sm" className="sketch-save-buttons sketch-button-group">
 				{ !this.props.pdf ? <TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} size="sm" glyph="file" /> : null }
@@ -1751,14 +1761,14 @@ class Sketchpad extends Component {
 				{ this.props.id ? <TooltipButton tooltip="Save in browser" onClick={() => {
 					this.saveInBrowser( ( err ) => {
 						if ( err ) {
-							this.context.session.addNotification({
+							session.addNotification({
 								title: 'Encountered an error',
 								message: err.message,
 								level: 'error',
 								position: 'tr'
 							});
 						}
-						this.context.session.addNotification({
+						session.addNotification({
 							title: 'Saved',
 							message: 'Notes saved in browser',
 							level: 'success',
@@ -1775,7 +1785,8 @@ class Sketchpad extends Component {
 		if ( this.props.hideTransmitButtons ) {
 			return null;
 		}
-		const users = this.context.session.userList
+		const session = this.context;
+		const users = session.userList
 			.filter( user => isNull( user.exitTime ) )
 			.map( user => {
 				return { value: user.name, label: user.name };
@@ -2033,9 +2044,7 @@ Sketchpad.propTypes = {
 	onChange: PropTypes.func
 };
 
-Sketchpad.contextTypes = {
-	session: PropTypes.object
-};
+Sketchpad.contextType = SessionContext;
 
 
 // EXPORTS //

@@ -10,6 +10,7 @@ import isElectron from 'utils/is-electron';
 import ActionLog from 'components/statusbar/action-log';
 import InstructorNotes from 'components/statusbar/instructor-notes';
 import animatePosition from 'utils/animate-position';
+import SessionContext from 'session/context.js';
 import UserList from './user_list.js';
 import './instructor_view.css';
 
@@ -77,7 +78,7 @@ class InstructorView extends Component {
 
 	renderTabs = () => {
 		// This is the button that toggles it
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.state.hidden ) {
 			return null;
 		}
@@ -135,9 +136,7 @@ class InstructorView extends Component {
 
 // TYPES //
 
-InstructorView.contextTypes = {
-	session: PropTypes.object
-};
+InstructorView.contextType = SessionContext;
 
 
 // EXPORTS //
