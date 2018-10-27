@@ -5,10 +5,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isArray from '@stdlib/assert/is-array';
+import noop from '@stdlib/utils/noop';
 
 
 // VARIABLES //
 
+const LoadableContext = React.createContext({
+	report: noop
+});
 const ALL_INITIALIZERS = [];
 const READY_INITIALIZERS = [];
 
@@ -96,11 +100,7 @@ function createLoadableComponent( loadFn, options ) {
 			return init();
 		}
 
-		static contextTypes = {
-			loadable: PropTypes.shape({
-				report: PropTypes.func.isRequired
-			})
-		};
+		static contextType = LoadableContext;
 
 		constructor( props ) {
 			super( props );
@@ -126,9 +126,10 @@ function createLoadableComponent( loadFn, options ) {
 		}
 
 		_loadModule() {
-			if ( this.context.loadable && isArray( opts.modules ) ) {
+			const loadable = this.context;
+			if ( loadable && isArray( opts.modules ) ) {
 				opts.modules.forEach( moduleName => {
-					this.context.loadable.report( moduleName );
+					loadable.report( moduleName );
 				});
 			}
 
