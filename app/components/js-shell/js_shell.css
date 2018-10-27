@@ -1,0 +1,62 @@
+.js-shell {
+	position: relative;
+	width: 99.9%;
+	height: auto;
+	margin-left: 0%;
+	font-family: monospace;
+	font-size: 18px;
+	text-align: left;
+	background: ivory;
+	margin-bottom: 20px;
+	border: 1px solid  rgba(92,92,92, 0.6);
+	border-radius: 6px;
+	box-shadow: 0 0 8px rgba(92,92,92, 0.5);
+}
+
+.js-shell-edit {
+	width: 98%;
+	margin-top: 1%;
+	margin-left: 1%;
+	height: 400px;
+	font-family: monospace;
+	font-size: 20px;
+	line-height: 28px;
+	margin-bottom: 10px;
+}
+
+.js-shell-reset {
+	position: absolute;
+	font-family: monospace;
+	right: 34px;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	font-size: 24px;
+	text-align: center;
+	color: black;
+	z-index: 2;
+}
+
+.js-shell-console {
+	position: relative;
+	width: 98%;
+	height: 160px;
+	background: #f3f2f3;
+	margin-left: 1%;
+	margin-bottom: 20px;
+	border: solid 1px black;
+	overflow: auto;
+	display: block;
+	overflow-y: scroll;
+}
+
+.js-shell-console-output {
+	padding-left: 0.2em;
+	padding-right: 0.2em;
+}
+
+.js-shell-toolbar {
+	margin-left: 1%;
+	margin-right: 1%;
+	margin-bottom: 10px;
+}

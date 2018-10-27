@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import SessionContext from 'session/context.js';
+import RoleContext from 'session/role_context.js';
 
 
 // MAIN //
@@ -13,15 +15,14 @@ import PropTypes from 'prop-types';
 * @property {Object} session - active session
 */
 class Provider extends Component {
-	getChildContext() {
-		return {
-			session: this.props.session,
-			currentRole: this.props.currentRole
-		};
-	}
-
 	render() {
-		return this.props.children;
+		return (
+			<SessionContext.Provider value={this.props.session} >
+				<RoleContext.Provider value={this.props.currentRole} >
+					{this.props.children}
+				</RoleContext.Provider>
+			</SessionContext.Provider>
+		);
 	}
 }
 
