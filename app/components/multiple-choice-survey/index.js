@@ -14,6 +14,7 @@ import tabulate from '@stdlib/utils/tabulate';
 import Gate from 'components/gate';
 import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
+import SessionContext from 'session/context.js';
 import AnswerOption from './answer_option';
 import './multiple-choice-survey.css';
 
@@ -53,7 +54,7 @@ class MultipleChoiceSurvey extends Component {
 	}
 
 	submitQuestion = () => {
-		const { session } = this.context;
+		const session = this.context;
 		session.log({
 			id: this.props.id,
 			type: 'MULTIPLE_CHOICE_SURVEY_SUBMISSION',
@@ -247,9 +248,7 @@ MultipleChoiceSurvey.propTypes = {
 	question: PropTypes.string
 };
 
-MultipleChoiceSurvey.contextTypes = {
-	session: PropTypes.object
-};
+MultipleChoiceSurvey.contextType = SessionContext;
 
 
 // EXPORTS //

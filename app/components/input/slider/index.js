@@ -8,6 +8,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
+import SessionContext from 'session/context.js';
 import './slider.css';
 
 
@@ -45,7 +46,7 @@ class SliderInput extends Input {
 	constructor( props, context ) {
 		super( props );
 
-		const { session } = context;
+		const session = context;
 		this.state = {
 			tooltip: this.createTooltip( props ),
 			value: props.bind && session.state ?
@@ -243,9 +244,7 @@ SliderInput.propTypes = {
 	style: PropTypes.object
 };
 
-SliderInput.contextTypes = {
-	session: PropTypes.object
-};
+SliderInput.contextType = SessionContext;
 
 
 // EXPORTS //

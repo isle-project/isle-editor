@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/lib/Modal';
 import beforeUnload from 'utils/before-unload';
 import Signup from 'components/signup';
 import Login from 'components/login';
+import SessionContext from 'session/context.js';
 
 
 // VARIABLES //
@@ -43,7 +44,7 @@ class LessonSubmit extends Component {
 	}
 
 	componentDidMount() {
-		const { session } = this.context;
+		const session = this.context;
 		this.unsubsribe = session.subscribe( () => {
 			this.forceUpdate();
 		});
@@ -92,7 +93,7 @@ class LessonSubmit extends Component {
 	};
 
 	finalizeSession = ( item ) => {
-		const { session } = this.context;
+		const session = this.context;
 		session.finalize();
 		let notificationMesage = 'Lesson successfully completed.';
 		if ( this.props.sendConfirmationEmail ) {
@@ -119,7 +120,7 @@ class LessonSubmit extends Component {
 
 	handleClick = () => {
 		this.props.onClick();
-		const { session } = this.context;
+		const session = this.context;
 		const str = 'ISLE_USER_' + session.server;
 		let item = localStorage.getItem( str );
 		if ( !item ) {
@@ -133,7 +134,7 @@ class LessonSubmit extends Component {
 	}
 
 	render() {
-		const { session } = this.context;
+		const session = this.context;
 		const disabled = !session.live || this.state.disabled;
 		return (
 			<div className="bg-light" style={{
@@ -185,9 +186,7 @@ LessonSubmit.propTypes = {
 	onClick: PropTypes.func
 };
 
-LessonSubmit.contextTypes = {
-	session: PropTypes.object
-};
+LessonSubmit.contextType = SessionContext;
 
 
 // EXPORTS //

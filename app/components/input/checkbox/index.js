@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Input from 'components/input/base';
+import SessionContext from 'session/context.js';
 
 
 // MAIN //
@@ -22,7 +23,7 @@ class CheckboxInput extends Input {
 	constructor( props, context ) {
 		super( props );
 
-		const { session } = context;
+		const session = context;
 		this.state = {
 			value: props.bind && session.state ?
 				session.state[ props.bind ]:
@@ -135,9 +136,7 @@ CheckboxInput.propTypes = {
 	legend: PropTypes.string
 };
 
-CheckboxInput.contextTypes = {
-	session: PropTypes.object
-};
+CheckboxInput.contextType = SessionContext;
 
 
 // EXPORTS //

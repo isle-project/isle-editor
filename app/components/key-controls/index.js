@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import isFunction from '@stdlib/assert/is-function';
+import SessionContext from 'session/context.js';
 
 
 // VARIABLES //
@@ -89,9 +90,7 @@ KeyControls.propTypes = {
 	container: PropTypes.node
 };
 
-KeyControls.contextTypes = {
-	session: PropTypes.object
-};
+KeyControls.contextType = SessionContext;
 
 
 // EXPORTS //

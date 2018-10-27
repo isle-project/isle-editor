@@ -20,6 +20,7 @@ import HintButton from 'components/hint-button';
 import VoiceControl from 'components/voice-control';
 import OverlayTrigger from 'components/overlay-trigger';
 import FeedbackButtons from 'components/feedback';
+import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import './free-text-question.css';
 
@@ -62,7 +63,7 @@ class FreeTextQuestion extends Component {
 		super( props );
 		debug( 'Invoking constructor of FreeTextQuestion...' );
 
-		const actions = context.session.currentUserActions;
+		const actions = context.currentUserActions;
 		const value = this.getLastAction( actions, props.id );
 
 		// Initialize state variables...
@@ -96,7 +97,7 @@ class FreeTextQuestion extends Component {
 	}
 
 	componentDidMount() {
-		const { session } = this.context;
+		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type ) => {
 			if ( type === 'retrieved_current_user_actions' ) {
 				this.setToLastAction();
@@ -121,7 +122,7 @@ class FreeTextQuestion extends Component {
 	};
 
 	sendSubmitNotification = () => {
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.state.submitted ) {
 			session.addNotification({
 				title: 'Answer re-submitted.',
@@ -146,7 +147,7 @@ class FreeTextQuestion extends Component {
 	}
 
 	submitHandler = ( event ) => {
-		const { session } = this.context;
+		const session = this.context;
 		if ( !this.props.disableSubmitNotification ) {
 			this.sendSubmitNotification();
 		}
@@ -164,7 +165,7 @@ class FreeTextQuestion extends Component {
 	};
 
 	handleSolutionClick = () => {
-		const { session } = this.context;
+		const session = this.context;
 		if ( !this.state.submitted || !this.state.exhaustedHints ) {
 			return session.addNotification({
 				title: 'Not allowed',
@@ -208,7 +209,7 @@ class FreeTextQuestion extends Component {
 	}
 
 	setToLastAction() {
-		const { session } = this.context;
+		const session = this.context;
 		const actions = session.currentUserActions;
 		const value = this.getLastAction( actions, this.props.id );
 		if ( isString( value ) && value !== this.state.value ) {
@@ -226,7 +227,7 @@ class FreeTextQuestion extends Component {
 
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
@@ -386,9 +387,7 @@ FreeTextQuestion.propTypes = {
 	onSubmit: PropTypes.func
 };
 
-FreeTextQuestion.contextTypes = {
-	session: PropTypes.object
-};
+FreeTextQuestion.contextType = SessionContext;
 
 
 // EXPORTS //

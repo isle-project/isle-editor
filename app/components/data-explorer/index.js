@@ -40,6 +40,7 @@ import LearnExponentialDistribution from 'components/learn/distribution-exponent
 import LearnUniformDistribution from 'components/learn/distribution-uniform';
 import SpreadsheetUpload from 'components/spreadsheet-upload';
 import DataTable from 'components/data-table';
+import SessionContext from 'session/context.js';
 import OutputPanel from './output_panel.js';
 import './data_explorer.css';
 
@@ -144,7 +145,7 @@ class DataExplorer extends Component {
 		};
 
 		this.logAction = ( type, value ) => {
-			const { session } = this.context;
+			const session = this.context;
 			if ( this.props.id ) {
 				session.log({
 					id: this.props.id,
@@ -180,7 +181,7 @@ class DataExplorer extends Component {
 	}
 
 	componentDidMount() {
-		const session = this.context.session;
+		const session = this.context;
 		if ( !this.props.data && this.props.id ) {
 			const promiseData = session.store.getItem( this.props.id+'_data' );
 			const promiseContinuous = session.store.getItem( this.props.id+'_continuous' );
@@ -209,7 +210,7 @@ class DataExplorer extends Component {
 	}
 
 	resetStorage = () => {
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.props.id ) {
 			session.store.removeItem( this.props.id+'_data' );
 			session.store.removeItem( this.props.id+'_continuous' );
@@ -369,7 +370,7 @@ class DataExplorer extends Component {
 				newState[ 'groupVars' ] = groupVars;
 			}
 			this.setState( newState );
-			const { session } = this.context;
+			const session = this.context;
 			session.addNotification({
 				title: 'Variable created',
 				message: `The variable with the name ${name} has been successfully ${ previous > 0 ? 'overwritten' : 'created' }`,
@@ -377,7 +378,7 @@ class DataExplorer extends Component {
 				position: 'tr'
 			});
 		} else {
-			const { session } = this.context;
+			const session = this.context;
 			session.addNotification({
 				title: 'Variable exists',
 				message: 'The original variables of the data set cannot be overwritten.',
@@ -388,7 +389,7 @@ class DataExplorer extends Component {
 	}
 
 	onFileUpload = ( err, output ) => {
-		const { session } = this.context;
+		const session = this.context;
 		if ( !err ) {
 			const data = {};
 			const columnNames = Object.keys( output[ 0 ]);
@@ -469,7 +470,7 @@ class DataExplorer extends Component {
 							ready
 						}, () => {
 							if ( this.props.id ) {
-								const { session } = this.context;
+								const session = this.context;
 								session.store.setItem( this.props.id+'_continuous', this.state.continuous, debug );
 								session.store.setItem( this.props.id+'_categorical', this.state.categorical, debug );
 							}
@@ -567,7 +568,7 @@ class DataExplorer extends Component {
 					content = <ContingencyTable
 						{...categoricalProps}
 						logAction={this.logAction}
-						session={this.context.session}
+						session={this.context}
 					/>;
 					break;
 				}
@@ -582,21 +583,21 @@ class DataExplorer extends Component {
 					content = <Barchart
 						{...categoricalProps}
 						logAction={this.logAction}
-						session={this.context.session}
+						session={this.context}
 					/>;
 					break;
 				case 'Pie Chart':
 					content = <Piechart
 						{...categoricalProps}
 						logAction={this.logAction}
-						session={this.context.session}
+						session={this.context}
 					/>;
 					break;
 				case 'Histogram':
 					content = <Histogram
 						{...continuousProps}
 						logAction={this.logAction}
-						session={this.context.session}
+						session={this.context}
 						showDensityOption={this.props.histogramDensities}
 					/>;
 					break;
@@ -604,35 +605,35 @@ class DataExplorer extends Component {
 					content = <Boxplot
 						{...continuousProps}
 						logAction={this.logAction}
-						session={this.context.session}
+						session={this.context}
 					/>;
 					break;
 				case 'Scatterplot':
 					content = <Scatterplot
 						{...continuousProps}
 						logAction={this.logAction}
-						session={this.context.session}
+						session={this.context}
 					/>;
 					break;
 				case 'Heat Map':
 					content = <Heatmap
 						{...continuousProps}
 						logAction={this.logAction}
-						session={this.context.session}
+						session={this.context}
 					/>;
 					break;
 				case 'Mosaic Plot':
 					content = <MosaicPlot
 						{...categoricalProps}
 						logAction={this.logAction}
-						session={this.context.session}
+						session={this.context}
 					/>;
 					break;
 				case 'Contour Chart':
 					content = <ContourChart
 						{...continuousProps}
 						logAction={this.logAction}
-						session={this.context.session}
+						session={this.context}
 					/>;
 					break;
 				}
@@ -659,7 +660,7 @@ class DataExplorer extends Component {
 						continuous={this.state.continuous}
 						categorical={this.state.categorical}
 						logAction={this.logAction}
-						session={this.context.session}
+						session={this.context}
 						showDecision={this.props.showTestDecisions}
 					/>;
 					break;
@@ -678,7 +679,7 @@ class DataExplorer extends Component {
 						data={this.state.data}
 						categorical={this.state.categorical}
 						logAction={this.logAction}
-						session={this.context.session}
+						session={this.context}
 						showDecision={this.props.showTestDecisions}
 					/>;
 					break;
@@ -725,7 +726,7 @@ class DataExplorer extends Component {
 						onCreated={this.addToOutputs}
 						data={this.state.data}
 						logAction={this.logAction}
-						session={this.context.session}
+						session={this.context}
 					/>;
 					break;
 				}
@@ -826,7 +827,7 @@ class DataExplorer extends Component {
 									continuous={this.state.continuous}
 									categorical={this.state.categorical}
 									logAction={this.logAction}
-									session={this.context.session}
+									session={this.context}
 									onGenerate={this.onGenerateTransformedVariable}
 								/> : null
 							}
@@ -1000,9 +1001,7 @@ DataExplorer.propTypes = {
 	transformer: PropTypes.bool
 };
 
-DataExplorer.contextTypes = {
-	session: PropTypes.object
-};
+DataExplorer.contextType = SessionContext;
 
 
 // EXPORTS //

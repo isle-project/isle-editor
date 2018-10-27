@@ -11,6 +11,7 @@ import ChatButton from 'components/chat-button';
 import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import FeedbackButtons from 'components/feedback';
+import SessionContext from 'session/context.js';
 import OptionsList from './options_list.js';
 import './match_list_question.css';
 
@@ -101,7 +102,7 @@ class MatchListQuestion extends Component {
 	}
 
 	sendSubmitNotification = () => {
-		const session = this.context.session;
+		const session = this.context;
 		if ( this.state.submitted ) {
 			session.addNotification({
 				title: 'Answer re-submitted.',
@@ -120,7 +121,7 @@ class MatchListQuestion extends Component {
 	}
 
 	handleSubmit = () => {
-		const session = this.context.session;
+		const session = this.context;
 		if ( !this.props.disableSubmitNotification ) {
 			this.sendSubmitNotification();
 		}
@@ -144,7 +145,8 @@ class MatchListQuestion extends Component {
 			colorScale = createColorScale( 2 * elements.length );
 		}
 		if ( this.props.id ) {
-			this.context.session.log({
+			const session = this.context;
+			session.log({
 				id: this.props.id,
 				type: 'MATCH_LIST_TOGGLE_SOLUTION',
 				value: null
@@ -166,7 +168,7 @@ class MatchListQuestion extends Component {
 
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
@@ -272,9 +274,7 @@ MatchListQuestion.propTypes = {
 	onSubmit: PropTypes.func
 };
 
-MatchListQuestion.contextTypes = {
-	session: PropTypes.object
-};
+MatchListQuestion.contextType = SessionContext;
 
 
 // EXPORTS //

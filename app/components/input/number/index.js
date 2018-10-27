@@ -10,6 +10,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import Tooltip from 'components/tooltip';
+import SessionContext from 'session/context.js';
 import './number.css';
 
 
@@ -55,7 +56,7 @@ class NumberInput extends Input {
 	constructor( props, context ) {
 		super( props );
 
-		const { session } = context;
+		const session = context;
 		this.state = {
 			value: props.value || (props.bind && session.state ?
 				session.state[ props.bind ]:
@@ -286,12 +287,7 @@ NumberInput.propTypes = {
 	width: PropTypes.number
 };
 
-
-// CONTEXT TYPES //
-
-NumberInput.contextTypes = {
-	session: PropTypes.object
-};
+NumberInput.contextType = SessionContext;
 
 
 // EXPORTS //

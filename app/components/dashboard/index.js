@@ -12,6 +12,7 @@ import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import TextInput from 'components/input/text';
+import SessionContext from 'session/context.js';
 import './dashboard.css';
 
 
@@ -75,7 +76,7 @@ class Dashboard extends Component {
 			args[ i ] = this.state[ i ];
 		}
 		if ( this.props.id ) {
-			const { session } = this.context;
+			const session = this.context;
 			session.log({
 				id: this.props.id,
 				type: 'DASHBOARD_CLICK_GENERATE',
@@ -204,9 +205,7 @@ Dashboard.propTypes = {
 	])
 };
 
-Dashboard.contextTypes = {
-	session: PropTypes.object
-};
+Dashboard.contextType = SessionContext;
 
 
 // EXPORTS //

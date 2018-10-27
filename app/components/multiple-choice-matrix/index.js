@@ -10,6 +10,7 @@ import Form from 'react-bootstrap/lib/Form';
 import Col from 'react-bootstrap/lib/Col';
 import SolutionButton from 'components/solution-button';
 import ResponseVisualizer from 'components/response-visualizer';
+import SessionContext from 'session/context.js';
 import './multiple_choice_matrix.css';
 
 
@@ -87,7 +88,7 @@ class MultipleChoiceMatrix extends Component {
 	}
 
 	sendSubmitNotification = () => {
-		const session = this.context.session;
+		const session = this.context;
 		if ( this.state.submitted ) {
 			session.addNotification({
 				title: 'Answer re-submitted.',
@@ -107,7 +108,7 @@ class MultipleChoiceMatrix extends Component {
 	}
 
 	handleSubmit = () => {
-		const session = this.context.session;
+		const session = this.context;
 		debug( 'Submit answer...' );
 		if ( !this.props.disableSubmitNotification ) {
 			this.sendSubmitNotification();
@@ -222,9 +223,7 @@ MultipleChoiceMatrix.defaultProps = {
 	onSubmit() {}
 };
 
-MultipleChoiceMatrix.contextTypes = {
-	session: PropTypes.object
-};
+MultipleChoiceMatrix.contextType = SessionContext;
 
 
 // EXPORTS //

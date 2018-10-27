@@ -6,6 +6,7 @@ import Tooltip from 'react-bootstrap/lib/Tooltip';
 import logger from 'debug';
 import Input from 'components/input/base';
 import OverlayTrigger from 'components/overlay-trigger';
+import SessionContext from 'session/context.js';
 import Microphone from './microphone.js';
 import './voice.css';
 
@@ -47,7 +48,7 @@ const debug = logger( 'isle:voice-input' );
 class VoiceInput extends Input {
 	constructor( props, context ) {
 		super( props );
-		const { session } = context;
+		const session = context;
 		this.state = {
 			value: props.bind && session.state ?
 				session.state[ props.bind ]:
@@ -170,7 +171,7 @@ class VoiceInput extends Input {
 					this.setState({
 						isRecording: false
 					});
-					return this.context.session.addNotification({
+					return this.context.addNotification({
 						title: 'Not allowed',
 						message: 'No permission to use the speech recognition service',
 						level: 'error',
@@ -404,9 +405,7 @@ VoiceInput.propTypes = {
 	height: PropTypes.number
 };
 
-VoiceInput.contextTypes = {
-	session: PropTypes.object
-};
+VoiceInput.contextType = SessionContext;
 
 
 // EXPORTS //

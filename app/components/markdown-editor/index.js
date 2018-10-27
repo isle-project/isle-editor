@@ -27,6 +27,7 @@ import noop from '@stdlib/utils/noop';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import VoiceInput from 'components/input/voice';
 import base64toBlob from 'utils/base64-to-blob';
+import SessionContext from 'session/context.js';
 import SimpleMDE from './simplemde.js';
 import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
@@ -588,7 +589,7 @@ class MarkdownEditor extends Component {
 				origin = removeFirst( origin );
 			}
 			if ( this.props.id ) {
-				const { session } = this.context;
+				const session = this.context;
 				session.log({
 					id: this.props.id,
 					type: 'MARKDOWN_EDITOR_'+uppercase( origin ),
@@ -942,7 +943,7 @@ class MarkdownEditor extends Component {
 		localStorage.removeItem( this.props.id );
 		this.simplemde.codemirror.execCommand( 'selectAll' );
 		this.simplemde.codemirror.replaceSelection( this.props.defaultValue );
-		this.context.session.addNotification({
+		this.context.addNotification({
 			title: 'Reset',
 			message: 'Your report has been successfully deleted and the editor reset to its default value',
 			level: 'success',
@@ -989,7 +990,8 @@ class MarkdownEditor extends Component {
 				pdfMake.createPdf( doc ).download( title );
 			});
 		} catch ( err ) {
-			this.context.session.addNotification({
+			const session = this.context;
+			session.addNotification({
 				title: 'Encountered an error while generating PDF',
 				message: `${err.message}. Please check the syntax of your Markdown content to make sure that it is correct.`,
 				level: 'error',
@@ -999,7 +1001,7 @@ class MarkdownEditor extends Component {
 	}
 
 	submitReport = () => {
-		const { session } = this.context;
+		const session = this.context;
 		if ( session.anonymous ) {
 			return session.addNotification({
 				title: 'Sign in',
@@ -1099,6 +1101,7 @@ class MarkdownEditor extends Component {
 	}
 
 	render() {
+		const session = this.context;
 		return (
 			<Fragment>
 				<div id={this.props.id} ref={( div ) => { this.wrapper = div; }} className="markdown-editor" style={this.props.style} >
@@ -1112,7 +1115,7 @@ class MarkdownEditor extends Component {
 					saveMarkdown={this.saveMarkdown}
 					handleSave={() => {
 						this.toggleSaveModal();
-						this.context.session.addNotification({
+						session.addNotification({
 							title: 'Report saved',
 							message: 'The report has been saved in the local storage of the current browser.',
 							level: 'success',
@@ -1225,9 +1228,7 @@ MarkdownEditor.propTypes = {
 	onChange: PropTypes.func
 };
 
-MarkdownEditor.contextTypes = {
-	session: PropTypes.object
-};
+MarkdownEditor.contextType = SessionContext;
 
 
 // EXPORTS //

@@ -144,7 +144,7 @@ class Image extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 Image.propTypes = {
 	body: PropTypes.string,
@@ -163,9 +163,6 @@ Image.propTypes = {
 	src: PropTypes.string.isRequired,
 	title: PropTypes.string
 };
-
-
-// DEFAULT PROPERTIES //
 
 Image.defaultProps = {
 	body: null,

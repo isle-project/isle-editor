@@ -14,6 +14,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import randu from '@stdlib/random/base/randu';
 import linspace from '@stdlib/math/utils/linspace';
 import lognormal from '@stdlib/stats/base/dists/lognormal';
+import SessionContext from 'session/context.js';
 
 
 // VARIABLES //
@@ -65,7 +66,7 @@ class MeanVSMedian extends Component {
 				if ( distance < xmax/20 ) {
 					msg = 'Very Good!';
 				}
-				const { session } = this.context;
+				const session = this.context;
 				session.addNotification({
 					title: 'Score',
 					message: msg,
@@ -89,7 +90,7 @@ class MeanVSMedian extends Component {
 				if ( distance < xmax/20 ) {
 					msg = 'Very Good!';
 				}
-				const { session } = this.context;
+				const session = this.context;
 				session.addNotification({
 					title: 'Score',
 					message: msg,
@@ -239,9 +240,7 @@ MeanVSMedian.propTypes = {
 	intro: PropTypes.node
 };
 
-MeanVSMedian.contextTypes = {
-	session: PropTypes.object
-};
+MeanVSMedian.contextType = SessionContext;
 
 
 // EXPORTS //

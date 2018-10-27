@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Input from 'components/input/base';
+import SessionContext from 'session/context.js';
 import './text.css';
 
 
@@ -25,7 +26,7 @@ class TextInput extends Input {
 	constructor( props, context ) {
 		super( props );
 
-		const { session } = context;
+		const session = context;
 		this.state = {
 			value: props.bind && session.state ?
 				session.state[ props.bind ]:
@@ -151,9 +152,7 @@ TextInput.propTypes = {
 	width: PropTypes.number
 };
 
-TextInput.contextTypes = {
-	session: PropTypes.object
-};
+TextInput.contextType = SessionContext;
 
 
 // EXPORTS //

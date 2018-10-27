@@ -13,6 +13,7 @@ import ChatButton from 'components/chat-button';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
 import VoiceControl from 'components/voice-control';
+import SessionContext from 'session/context.js';
 import toNumber from 'utils/to-number';
 import VOICE_COMMANDS from './voice_commands.json';
 import AnswerOptionWithFeedback from './answer_option_feedback.js';
@@ -85,7 +86,7 @@ class MultipleChoiceQuestion extends Component {
 		if ( this.props.displaySolution ) {
 			this.submitQuestion();
 		}
-		const { session } = this.context;
+		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, val ) => {
 				if ( type === 'retrieved_current_user_actions' ) {
@@ -125,7 +126,7 @@ class MultipleChoiceQuestion extends Component {
 
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
@@ -146,7 +147,7 @@ class MultipleChoiceQuestion extends Component {
 	}
 
 	sendSubmitNotification = () => {
-		const session = this.context.session;
+		const session = this.context;
 		if ( this.state.submitted ) {
 			session.addNotification({
 				title: 'Answer re-submitted.',
@@ -170,7 +171,7 @@ class MultipleChoiceQuestion extends Component {
 
 	submitQuestion = () => {
 		const sol = this.props.solution;
-		const session = this.context.session;
+		const session = this.context;
 		let newCorrect = this.props.provideFeedback === 'incremental' ?
 			this.state.correct.slice() :
 			new Array( this.props.answers.length );
@@ -455,9 +456,7 @@ MultipleChoiceQuestion.propTypes = {
 	onSubmit: PropTypes.func
 };
 
-MultipleChoiceQuestion.contextTypes = {
-	session: PropTypes.object
-};
+MultipleChoiceQuestion.contextType = SessionContext;
 
 
 // EXPORTS //

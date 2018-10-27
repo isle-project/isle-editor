@@ -23,9 +23,10 @@ import 'brace/theme/solarized_light';
 import scrollTo from 'utils/scroll-to';
 import OverlayTrigger from 'components/overlay-trigger';
 import VoiceControl from 'components/voice-control';
+import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import CONSOLE_STYLES from './console_styles.json';
-import './js-shell.css';
+import './js_shell.css';
 
 
 // VARIABLES //
@@ -240,7 +241,7 @@ class JSShell extends Component {
 
 		if ( val !== solutionUnescaped ) {
 			if ( this.props.id ) {
-				const { session } = this.context;
+				const session = this.context;
 				session.log({
 					id: this.props.id,
 					type: 'JSSHELL_DISPLAY_SOLUTION',
@@ -264,7 +265,7 @@ class JSShell extends Component {
 		this.isActive = true;
 		let currentCode = this.editor.getValue();
 		if ( this.props.id ) {
-			const { session } = this.context;
+			const session = this.context;
 			session.log({
 				id: this.props.id,
 				type: 'JSSHELL_EVALUATION',
@@ -350,7 +351,7 @@ class JSShell extends Component {
 	}
 
 	logHint = ( idx ) => {
-		const { session } = this.context;
+		const session = this.context;
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
@@ -492,9 +493,7 @@ JSShell.propTypes = {
 	voiceID: PropTypes.string
 };
 
-JSShell.contextTypes = {
-	session: PropTypes.object
-};
+JSShell.contextType = SessionContext;
 
 
 // EXPORTS //

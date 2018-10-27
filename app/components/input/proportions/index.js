@@ -228,12 +228,6 @@ ProportionInput.propTypes = {
 	step: PropTypes.number
 };
 
-ProportionInput.contextTypes = {
-	triggerDashboardClick: PropTypes.func,
-	autoUpdate: PropTypes.bool,
-	session: PropTypes.object
-};
-
 
 // EXPORTS //
 

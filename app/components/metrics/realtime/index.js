@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
+import SessionContext from 'session/context.js';
 
 
 // VARIABLES //
@@ -32,7 +33,7 @@ class RealTimeMetrics extends Component {
 
 	componentDidMount() {
 		this._isMounted = true;
-		const { session } = this.context;
+		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
 				if ( type === 'member_action' ) {
@@ -83,9 +84,7 @@ RealTimeMetrics.propTypes = {
 	returnFullObject: PropTypes.bool
 };
 
-RealTimeMetrics.contextTypes = {
-	session: PropTypes.object
-};
+RealTimeMetrics.contextType = SessionContext;
 
 
 // EXPORTS //

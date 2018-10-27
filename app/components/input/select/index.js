@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Select from 'react-select';
 import Form from 'react-bootstrap/lib/Form';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import logger from 'debug';
@@ -9,7 +10,6 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import Input from 'components/input/base';
-import Select from 'react-select';
 import './select.css';
 
 

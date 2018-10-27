@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
+import SessionContext from 'session/context.js';
 
 
 // MAIN //
@@ -30,7 +31,7 @@ class Metrics extends Component {
 	}
 
 	getData = () => {
-		const { session } = this.context;
+		const session = this.context;
 		session.retrieveData({
 			componentID: this.props.for
 		}, this.props.onData );
@@ -84,9 +85,7 @@ Metrics.propTypes = {
 	onData: PropTypes.func
 };
 
-Metrics.contextTypes = {
-	session: PropTypes.object
-};
+Metrics.contextType = SessionContext;
 
 
 // EXPORTS //

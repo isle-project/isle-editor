@@ -2,6 +2,8 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import SessionContext from 'session/context.js';
+import RoleContext from 'session/role_context.js';
 
 
 // MAIN //
@@ -28,7 +30,7 @@ class Gate extends Component {
 
 	componentDidMount() {
 		this._isMounted = true;
-		const { session } = this.context;
+		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type ) => {
 				if ( type === 'RECEIVED_USER_RIGHTS' ) {
@@ -50,7 +52,7 @@ class Gate extends Component {
 	}
 
 	checkAuthorization() {
-		const { session } = this.context;
+		const session = this.context;
 		let newState = {
 			isEnrolled: session.isEnrolled(),
 			isOwner: session.isOwner()
@@ -64,31 +66,35 @@ class Gate extends Component {
 	}
 
 	render() {
-		let { currentRole, session } = this.context;
-		const { anonymous, disabled, user, enrolled, owner } = this.props;
-		let authenticated = false;
-		if ( !currentRole ) {
-			currentRole = 'anonymous';
-		}
-		if ( disabled ) {
-			return this.props.banner;
-		}
-		if ( anonymous ) {
-			authenticated = true;
-		}
-		else if ( user && ( currentRole !== 'anonymous' || ( session && !session.anonymous)) ) {
-			authenticated = true;
-		}
-		else if ( enrolled && ( this.state.isEnrolled || currentRole === 'enrolled' ) ) {
-			authenticated = true;
-		}
-		else if ( owner && ( this.state.isOwner || currentRole === 'owner' ) ) {
-			authenticated = true;
-		}
-		if ( authenticated ) {
-			return <Fragment>{this.props.children}</Fragment>;
-		}
-		return this.props.banner;
+		const session = this.context;
+		return ( <RoleContext.Consumer>
+			{ currentRole => {
+				const { anonymous, disabled, user, enrolled, owner } = this.props;
+				let authenticated = false;
+				if ( !currentRole ) {
+					currentRole = 'anonymous';
+				}
+				if ( disabled ) {
+					return this.props.banner;
+				}
+				if ( anonymous ) {
+					authenticated = true;
+				}
+				else if ( user && ( currentRole !== 'anonymous' || ( session && !session.anonymous)) ) {
+					authenticated = true;
+				}
+				else if ( enrolled && ( this.state.isEnrolled || currentRole === 'enrolled' ) ) {
+					authenticated = true;
+				}
+				else if ( owner && ( this.state.isOwner || currentRole === 'owner' ) ) {
+					authenticated = true;
+				}
+				if ( authenticated ) {
+					return <Fragment>{this.props.children}</Fragment>;
+				}
+				return this.props.banner;
+			}}
+		</RoleContext.Consumer> );
 	}
 }
 
@@ -113,10 +119,7 @@ Gate.propTypes = {
 	disabled: PropTypes.bool
 };
 
-Gate.contextTypes = {
-	session: PropTypes.object,
-	currentRole: PropTypes.string
-};
+Gate.contextType = SessionContext;
 
 
 // EXPORTS //

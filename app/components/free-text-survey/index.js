@@ -18,6 +18,7 @@ import TextArea from 'components/input/text-area';
 import Gate from 'components/gate';
 import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
+import SessionContext from 'session/context.js';
 import './free-text-survey.css';
 
 
@@ -51,7 +52,7 @@ class FreeTextSurvey extends Component {
 	}
 
 	submitQuestion = () => {
-		const { session } = this.context;
+		const session = this.context;
 		const val = this.containsProfanity( this.state.value );
 		if ( val ) {
 			session.addNotification({
@@ -216,9 +217,7 @@ FreeTextSurvey.propTypes = {
 	rows: PropTypes.number
 };
 
-FreeTextSurvey.contextTypes = {
-	session: PropTypes.object
-};
+FreeTextSurvey.contextType = SessionContext;
 
 
 // EXPORTS //

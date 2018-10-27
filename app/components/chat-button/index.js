@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/lib/Button';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Gate from 'components/gate';
+import SessionContext from 'session/context.js';
 
 
 // VARIABLES //
@@ -28,7 +29,7 @@ class ChatButton extends Component {
 		};
 
 		this.onClick = () => {
-			const { session } = this.context;
+			const session = this.context;
 			let opened = this.state.opened;
 			this.setState({
 				opened: !opened
@@ -45,7 +46,7 @@ class ChatButton extends Component {
 	}
 
 	componentDidMount() {
-		const { session } = this.context;
+		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, name ) => {
 			if ( name === this.props.for ) {
 				let chat = session.getChat( this.props.for );
@@ -94,9 +95,7 @@ ChatButton.propTypes = {
 	for: PropTypes.string.isRequired
 };
 
-ChatButton.contextTypes = {
-	session: PropTypes.object
-};
+ChatButton.contextType = SessionContext;
 
 
 // EXPORTS //

@@ -11,14 +11,13 @@ import PropTypes from 'prop-types';
 /**
 * Container wrapper.
 *
-* @property {boolean} fluid - turn any fixed-width Ccntainer layout into a full-width layout
+* @property {boolean} fluid - turn any fixed-width container layout into a full-width layout
 */
 class myContainer extends Component {
 	render() {
-		let { fluid, ...other } = this.props;
-		fluid = true;
+		const { fluid, ...other } = this.props;
 		return (
-			<Container fluid={fluid} {...other}></Container>
+			<Container fluid={fluid} {...other} ></Container>
 		);
 	}
 }
@@ -26,7 +25,7 @@ class myContainer extends Component {
 // TYPES //
 
 myContainer.defaultProps = {
-	fluid: false
+	fluid: true
 };
 
 myContainer.propTypes = {
