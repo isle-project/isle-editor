@@ -1238,7 +1238,7 @@ class Session {
 		}
 	}
 
-	removeSessionElementFromDatabase( sessionElementID, clbk ) {
+	removeSessionElementFromDB( sessionElementID, clbk ) {
 		fetch( this.server+'/delete_session_element?' + qs.stringify({
 			_id: sessionElementID
 		}), {

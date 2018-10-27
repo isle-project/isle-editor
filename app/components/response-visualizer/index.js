@@ -252,7 +252,7 @@ class ResponseVisualizer extends Component {
 
 	deleteSelectedAction = () => {
 		const { session } = this.context;
-		session.removeSessionElementFromDatabase( this.state.selectedAction.sessiondataID, ( err ) => {
+		session.removeSessionElementFromDB( this.state.selectedAction.sessiondataID, ( err ) => {
 			if ( !err ) {
 				this.addSessionActions();
 			}
