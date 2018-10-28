@@ -343,7 +343,7 @@ class ResponseVisualizer extends Component {
 						</Button>
 					</Tooltip>
 					<Tooltip placement="top" tooltip={tooltip}>
-						<ProgressBar style={{ width: '100%' }}>
+						<ProgressBar style={{ width: '100%', marginTop: '3px', height: '0.7rem', boxShadow: '0 0 2px black' }}>
 							<ProgressBar variant="info" now={infoRate} max={100} min={0} />
 							<ProgressBar variant="success" now={successRate} max={100} min={0} />
 							<ProgressBar variant="danger" now={dangerRate} max={100} min={0} />
