@@ -262,7 +262,11 @@ class ResponseVisualizer extends Component {
 	}
 
 	renderDeleteModal() {
-		return ( <Modal show={this.state.showDeleteModal}>
+		return ( <Modal
+			show={this.state.showDeleteModal}
+			style={{ zIndex: 2000 }}
+			backdropClassName="modal-backdrop-second-order"
+		>
 			<Modal.Header>
 				<Modal.Title>Delete user action?</Modal.Title>
 			</Modal.Header>
