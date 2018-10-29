@@ -133,7 +133,10 @@ CheckboxInput.propTypes = {
 	disabled: PropTypes.bool,
 	inline: PropTypes.bool,
 	onChange: PropTypes.func,
-	legend: PropTypes.string
+	legend: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	])
 };
 
 CheckboxInput.contextType = SessionContext;

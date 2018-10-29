@@ -228,7 +228,10 @@ SelectInput.propTypes = {
 	]),
 	disabled: PropTypes.bool,
 	inline: PropTypes.bool,
-	legend: PropTypes.string,
+	legend: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	multi: PropTypes.bool,
 	onChange: PropTypes.func,
 	options: PropTypes.array,

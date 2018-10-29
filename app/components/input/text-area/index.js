@@ -117,7 +117,10 @@ TextArea.propTypes = {
 	defaultValue: PropTypes.string,
 	value: PropTypes.string,
 	disabled: PropTypes.bool,
-	legend: PropTypes.string,
+	legend: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	onBlur: PropTypes.func,
 	onChange: PropTypes.func,
 	placeholder: PropTypes.string,

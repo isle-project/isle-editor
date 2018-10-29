@@ -145,7 +145,10 @@ TextInput.defaultProps = {
 
 TextInput.propTypes = {
 	defaultValue: PropTypes.string,
-	legend: PropTypes.string,
+	legend: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	inline: PropTypes.bool,
 	onChange: PropTypes.func,
 	placeholder: PropTypes.string,

@@ -233,6 +233,10 @@ SliderInput.propTypes = {
 	defaultValue: PropTypes.number,
 	disabled: PropTypes.bool,
 	inline: PropTypes.bool,
+	legend: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	max: PropTypes.number,
 	min: PropTypes.number,
 	onChange: PropTypes.func,

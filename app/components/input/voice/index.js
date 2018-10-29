@@ -384,7 +384,10 @@ VoiceInput.propTypes = {
 	defaultValue: PropTypes.string,
 	grammars: PropTypes.array,
 	language: PropTypes.string,
-	legend: PropTypes.string,
+	legend: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	mode: PropTypes.string,
 	maxAlternatives: PropTypes.number,
 	onChange: PropTypes.func,
