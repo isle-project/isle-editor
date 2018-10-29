@@ -5,6 +5,12 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import ROutput from 'components/r/output';
+import QuestionButton from './question_button.js';
+
+
+// VARIABLES //
+
+const DESCRIPTION = 'A test determing if there is a significant association between two categorical variables.';
 
 
 // MAIN //
@@ -41,7 +47,12 @@ class Chi2Test extends Component {
 		const { categorical } = this.props;
 		return (
 			<Dashboard
-				title="Chi-squared Independence Test"
+				title={
+					<span>
+						Chi-squared Independence Test
+						<QuestionButton title="Chi-squared Independence Test" content={DESCRIPTION} />
+					</span>
+				}
 				label="Calculate"
 				autoStart={false}
 				onGenerate={this.calculateChisquareTest}

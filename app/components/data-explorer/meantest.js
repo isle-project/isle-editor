@@ -2,20 +2,22 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import NumberInput from 'components/input/number';
-import SelectInput from 'components/input/select';
-import Dashboard from 'components/dashboard';
-import TeX from 'components/tex';
 import ztest from '@stdlib/stats/ztest';
 import ttest from '@stdlib/stats/ttest';
 import replace from '@stdlib/string/replace';
 import stdev from 'utils/statistic/stdev';
+import NumberInput from 'components/input/number';
+import SelectInput from 'components/input/select';
+import Dashboard from 'components/dashboard';
+import TeX from 'components/tex';
+import QuestionButton from './question_button.js';
 
 
 // VARIABLES //
 
 var RE_ONESIDED_SMALLER = /95% confidence interval: \[-Infinity,[\d.]+\]/;
 var RE_ONESIDED_GREATER = /95% confidence interval: \[[\d.]+,Infinity\]/;
+const DESCRIPTION = 'A test for the mean of a quantitative variable.';
 
 
 // MAIN //
@@ -58,7 +60,7 @@ class MeanTest extends Component {
 				value: <div>
 					<label>Hypothesis test for {variable}:</label>
 					<TeX displayMode raw={`H_0: \\mu = ${mu0} \\; vs. \\; H_1: \\mu ${arrow} ${mu0}`} tag="" />
-					<pre style={{ fontSize: '11px' }}>
+					<pre>
 						{printout}
 					</pre>
 				</div>
@@ -74,7 +76,12 @@ class MeanTest extends Component {
 		const { continuous } = this.props;
 		return (
 			<Dashboard
-				title="One-Sample Mean Test"
+				title={
+					<span>
+						One-Sample Mean Test
+						<QuestionButton title="One-Sample Mean Test" content={DESCRIPTION} />
+					</span>
+				}
 				label="Calculate"
 				autoStart={false}
 				onGenerate={this.calculateMeanTest}

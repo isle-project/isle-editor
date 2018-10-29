@@ -6,9 +6,6 @@ import Button from 'react-bootstrap/lib/Button';
 import Card from 'react-bootstrap/lib/Card';
 import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
-import NumberInput from 'components/input/number';
-import SelectInput from 'components/input/select';
-import TeX from 'components/tex';
 import ttest2 from '@stdlib/stats/ttest2';
 import ztest2 from '@stdlib/stats/ztest2';
 import copy from '@stdlib/utils/copy';
@@ -16,12 +13,17 @@ import replace from '@stdlib/string/replace';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
 import unique from 'uniq';
 import stdev from 'utils/statistic/stdev';
+import NumberInput from 'components/input/number';
+import SelectInput from 'components/input/select';
+import TeX from 'components/tex';
+import QuestionButton from './question_button.js';
 
 
 // VARIABLES //
 
-var RE_ONESIDED_SMALLER = /95% confidence interval: \[-Infinity,[\d.]+\]/;
-var RE_ONESIDED_GREATER = /95% confidence interval: \[[\d.]+,Infinity\]/;
+const RE_ONESIDED_SMALLER = /95% confidence interval: \[-Infinity,[\d.]+\]/;
+const RE_ONESIDED_GREATER = /95% confidence interval: \[[\d.]+,Infinity\]/;
+const DESCRIPTION = 'A test for equality of means across two groups.';
 
 
 // MAIN //
@@ -146,7 +148,7 @@ class MeanTest2 extends Component {
 					raw={`\\; H_1: \\mu_{${var1}} - \\mu_{${var2}} ${arrow} ${diff}`}
 					tag=""
 				/>
-				<pre style={{ fontSize: '11px' }}>
+				<pre>
 					{printout}
 				</pre>
 			</div>;
@@ -282,6 +284,7 @@ class MeanTest2 extends Component {
 			>
 				<Card.Header as="h4">
 					Two-Sample Mean Test
+					<QuestionButton title="Two-Sample Mean Test" content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					{this.renderInputs()}

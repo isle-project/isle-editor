@@ -7,6 +7,12 @@ import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
 import pcorrtest from '@stdlib/stats/pcorrtest';
+import QuestionButton from './question_button.js';
+
+
+// VARIABLES //
+
+const DESCRIPTION = 'A test used to evaluate the Pearson correlation between two variables, which measures the linear association between them.';
 
 
 // MAIN //
@@ -36,7 +42,7 @@ class CorrTest extends Component {
 				value: <div>
 					<label>Hypothesis test for correlation between {var1} and {var2}:</label>
 					<TeX displayMode raw={`H_0: \\rho = ${rho0} \\; vs. \\; H_1: \\rho ${arrow} ${rho0}`} tag="" />
-					<pre style={{ fontSize: '11px' }}>
+					<pre>
 						{result.print({
 							decision: showDecision
 						})}
@@ -54,7 +60,12 @@ class CorrTest extends Component {
 		const { continuous } = this.props;
 		return (
 			<Dashboard
-				title="Correlation Test"
+				title={
+					<span>
+						Correlation Test
+						<QuestionButton title="Correlation Test" content={DESCRIPTION} />
+					</span>
+				}
 				label="Calculate"
 				autoStart={false}
 				onGenerate={this.calculateCorrTest}

@@ -2,9 +2,15 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import anova1 from '@stdlib/stats/anova1';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
-import anova1 from '@stdlib/stats/anova1';
+import QuestionButton from './question_button.js';
+
+
+// VARIABLES //
+
+const DESCRIPTION = 'A one-way analysis of variance tests for equality of means across several groups.';
 
 
 // MAIN //
@@ -19,7 +25,7 @@ class Anova extends Component {
 			const groups = data[ grouping ].map( x => `"${x}"` );
 			const value = <div>
 				<label>ANOVA for {variable} between {grouping}</label><br />
-				<span style={{ fontSize: '10px' }}>{anova1( vals, groups ).print({
+				<span>{anova1( vals, groups ).print({
 					decision: showDecision
 				})}</span>
 			</div>;
@@ -40,7 +46,10 @@ class Anova extends Component {
 		return (
 			<Dashboard
 				autoStart={false}
-				title="One-way ANOVA"
+				title={<span>
+					One-way ANOVA
+					<QuestionButton title="One-way ANOVA" content={DESCRIPTION} />
+				</span>}
 				label="Calculate"
 				onGenerate={this.calculateANOVA}
 			>

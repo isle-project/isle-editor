@@ -13,6 +13,12 @@ import copy from '@stdlib/utils/copy';
 import roundn from '@stdlib/math/base/special/roundn';
 import unique from 'uniq';
 import mean from 'utils/statistic/mean';
+import QuestionButton from './question_button.js';
+
+
+// VARIABLES //
+
+const DESCRIPTION = 'A test for the proportion of a selected category of a qualitative variable.';
 
 
 // MAIN //
@@ -56,11 +62,14 @@ class PropTest extends Component {
 				value: <div>
 					<label>Hypothesis test for {variable}:</label><br />
 					<span>
-						Let p be the population probability of <code>{variable}</code> being <code>{success}</code>. We test
+						Let p be the population probability of <code>{variable}</code> being <code>{success}</code>.
+					</span>
+					<span>
+						We test
 					</span>
 					<TeX displayMode raw={`H_0: p = ${p0} \\; vs. \\; H_1: p ${arrow} ${p0}`} tag="" />
 					<label>Sample proportion: {roundn( mean( binary ), -3 )}</label>
-					<pre style={{ fontSize: '11px' }}>
+					<pre>
 						{printout}
 					</pre>
 				</div>
@@ -76,7 +85,12 @@ class PropTest extends Component {
 		const { categorical } = this.props;
 		return (
 			<Dashboard
-				title="One-Sample Proportion Test"
+				title={
+					<span>
+						One-Sample Proportion Test
+						<QuestionButton title="One-Sample Proportion Test" content={DESCRIPTION} />
+					</span>
+				}
 				label="Calculate"
 				autoStart={false}
 				onGenerate={this.calculatePropTest}

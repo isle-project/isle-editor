@@ -18,6 +18,12 @@ import bifurcateBy from '@stdlib/utils/bifurcate-by';
 import unique from 'uniq';
 import mean from 'utils/statistic/mean';
 import stdev from 'utils/statistic/stdev';
+import QuestionButton from './question_button.js';
+
+
+// VARIABLES //
+
+const DESCRIPTION = 'A test for equality of proportions for a selected category of a qualitative variable across two groups.';
 
 
 // MAIN //
@@ -106,7 +112,7 @@ class PropTest2 extends Component {
 				/>
 				<label>Sample proportion in group {firstCategory}: {roundn( mean( x ), -3 )}</label>
 				<label>Sample proportion in group {secondCategory}: {roundn( mean( y ), -3 )}</label>
-				<pre style={{ fontSize: '11px' }}>
+				<pre>
 					{result.print({
 						decision: showDecision
 					})}
@@ -188,6 +194,7 @@ class PropTest2 extends Component {
 			>
 				<Card.Header as="h4">
 					Two-Sample Proportion Test
+					<QuestionButton title="Two-Sample Proportion Test" content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<Row>
