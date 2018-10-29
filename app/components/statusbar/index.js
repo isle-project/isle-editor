@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/lib/Button';
-import PropTypes from 'prop-types';
 import ceil from '@stdlib/math/base/special/ceil';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';

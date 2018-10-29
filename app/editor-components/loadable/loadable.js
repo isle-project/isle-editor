@@ -3,7 +3,6 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import isArray from '@stdlib/assert/is-array';
 import noop from '@stdlib/utils/noop';
 

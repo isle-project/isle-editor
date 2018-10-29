@@ -1,7 +1,6 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import logger from 'debug';
 import Tabs from 'react-bootstrap/lib/Tabs';
 import Tab from 'react-bootstrap/lib/Tab';

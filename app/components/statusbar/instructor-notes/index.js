@@ -1,7 +1,6 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import MarkdownEditor from 'components/markdown-editor';
 import SessionContext from 'session/context.js';
 import './instructor_notes.css';
