@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Input from 'components/input/base';
 import Tooltip from 'components/tooltip';
 import roundn from '@stdlib/math/base/special/roundn';
@@ -10,6 +11,28 @@ import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import SessionContext from 'session/context.js';
 import './slider.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:slider-input' );
+
+
+// FUNCTIONS //
+
+function createTooltip( props ) {
+	let tooltip = `Enter a${ props.step === 1 ? 'n integer' : ' number'} `;
+	if ( props.max !== PINF && props.min !== NINF ) {
+		tooltip += `between ${props.min} and ${props.max}:`;
+	} else if ( props.min !== NINF ) {
+		tooltip += `larger or equal to ${props.min}:`;
+	} else if ( props.max !== PINF ) {
+		tooltip += `smaller or equal to ${props.max}:`;
+	} else {
+		tooltip += ':';
+	}
+	return tooltip;
+}
 
 
 // MAIN //
@@ -29,80 +52,15 @@ import './slider.css';
 * @property {Function} onChange - callback invoked with the new value when the slider value changes
 */
 class SliderInput extends Input {
-	createTooltip( props ) {
-		let tooltip = `Enter a${ props.step === 1 ? 'n integer' : ' number'} `;
-		if ( props.max !== PINF && props.min !== NINF ) {
-			tooltip += `between ${props.min} and ${props.max}:`;
-		} else if ( props.min !== NINF ) {
-			tooltip += `larger or equal to ${props.min}:`;
-		} else if ( props.max !== PINF ) {
-			tooltip += `smaller or equal to ${props.max}:`;
-		} else {
-			tooltip += ':';
-		}
-		return tooltip;
-	}
-
 	constructor( props, context ) {
 		super( props );
 
 		const session = context;
 		this.state = {
-			tooltip: this.createTooltip( props ),
+			tooltip: createTooltip( props ),
 			value: props.bind && session.state ?
 				session.state[ props.bind ]:
 				props.defaultValue
-		};
-
-		this.handleInputChange = ( event ) => {
-			const valid = event.target.validity.valid;
-			let value = event.target.value;
-			this.setState({
-				value
-			}, () => {
-				if ( valid && value !== '' ) {
-					value = parseFloat( value );
-					this.props.onChange( value );
-					if ( this.props.bind ) {
-						global.lesson.setState({
-							[ this.props.bind ]: value
-						});
-					}
-				} else if ( this.props.bind ) {
-					global.lesson.setState({
-						[ this.props.bind ]: value
-					});
-				}
-			});
-		};
-
-		this.finishChange = ( event ) => {
-			const { max, min, step } = this.props;
-			let value = event.target.value;
-			if ( value !== '' ) {
-				value = parseFloat( value );
-			}
-			if ( value > max ) {
-				value = max;
-			}
-			else if ( value < min ) {
-				value = min;
-			}
-			else if ( step === 1.0 && value !== '' ) {
-				value = value - value % this.props.step;
-			}
-			if ( value !== this.state.value ) {
-				this.setState({
-					value
-				}, () => {
-					this.props.onChange( value );
-					if ( this.props.bind ) {
-						global.lesson.setState({
-							[ this.props.bind ]: value
-						});
-					}
-				});
-			}
 		};
 	}
 
@@ -125,11 +83,65 @@ class SliderInput extends Input {
 			newState.value = global.lesson.state[ nextProps.bind ];
 		}
 		if ( nextProps.min !== this.props.min || nextProps.max !== this.props.max ) {
-			newState.tooltip = this.createTooltip( nextProps );
+			newState.tooltip = createTooltip( nextProps );
 		}
 		if ( !isEmptyObject( newState ) ) {
 			this.setState( newState );
 		}
+	}
+
+	finishChange = ( event ) => {
+		debug( 'Finalizing change...' );
+		const { max, min, step } = this.props;
+		let value = event.target.value;
+		if ( value !== '' ) {
+			value = parseFloat( value );
+		}
+		if ( value > max ) {
+			value = max;
+		}
+		else if ( value < min ) {
+			value = min;
+		}
+		else if ( step === 1.0 && value !== '' ) {
+			value = value - value % this.props.step;
+		}
+		debug( `Setting state value to: ${value}...` );
+		if ( value !== this.state.value ) {
+			this.setState({
+				value
+			}, () => {
+				this.props.onChange( value );
+				if ( this.props.bind ) {
+					global.lesson.setState({
+						[ this.props.bind ]: value
+					});
+				}
+			});
+		}
+	}
+
+	handleInputChange = ( event ) => {
+		const valid = event.target.validity.valid;
+		let value = event.target.value;
+		debug( `Input value changed to ${value}` );
+		this.setState({
+			value
+		}, () => {
+			if ( valid && value !== '' ) {
+				value = parseFloat( value );
+				this.props.onChange( value );
+				if ( this.props.bind ) {
+					global.lesson.setState({
+						[ this.props.bind ]: value
+					});
+				}
+			} else if ( this.props.bind ) {
+				global.lesson.setState({
+					[ this.props.bind ]: value
+				});
+			}
+		});
 	}
 
 	render() {
@@ -152,27 +164,21 @@ class SliderInput extends Input {
 				display: this.props.inline ? 'inline' : 'block'
 			}}
 		/>;
-		const numberInput = <Tooltip
-			id="inlineTooltip"
-			placement="top"
-			tooltip={this.props.disabled ? 'The slider input is disabled right now.' : this.state.tooltip}
-		>
-			<input
-				type="number"
-				name="input"
-				className="slider-number-input"
-				disabled={this.props.disabled}
-				min={this.props.min}
-				max={this.props.max}
-				step={this.props.step}
-				value={value}
-				onChange={this.handleInputChange}
-				onBlur={this.finishChange}
-				style={{
-					float: this.props.inline ? 'none' : 'right'
-				}}
-			/>
-		</Tooltip>;
+		const numberInput = <input
+			type="number"
+			name="input"
+			className="slider-number-input"
+			disabled={this.props.disabled}
+			min={this.props.min}
+			max={this.props.max}
+			step={this.props.step}
+			value={value}
+			onChange={this.handleInputChange}
+			onBlur={this.finishChange}
+			style={{
+				float: this.props.inline ? 'none' : 'right'
+			}}
+		/>;
 
 		if ( this.props.inline ) {
 			return (
@@ -191,24 +197,30 @@ class SliderInput extends Input {
 			);
 		}
 		return (
-			<div
-				className="slider-outer-div"
-				style={{
-					opacity: this.props.disabled ? 0.2 : 1.0,
-					...this.props.style
-				}}
+			<Tooltip
+				id="inlineTooltip"
+				placement="top"
+				tooltip={this.props.disabled ? 'The slider input is disabled right now.' : this.state.tooltip}
 			>
-				{ this.props.legend ?
-					<label style={{
-						marginLeft: '8px'
-					}}>{this.props.legend}:</label> :
-					null
-				}
-				<br />
-				{rangeInput}
-				{numberInput}
-				<br />
-			</div>
+				<div
+					className="slider-outer-div"
+					style={{
+						opacity: this.props.disabled ? 0.2 : 1.0,
+						...this.props.style
+					}}
+				>
+					{ this.props.legend ?
+						<label style={{
+							marginLeft: '8px'
+						}}>{this.props.legend}:</label> :
+						null
+					}
+					<br />
+					{rangeInput}
+					{numberInput}
+					<br />
+				</div>
+			</Tooltip>
 		);
 	}
 }
