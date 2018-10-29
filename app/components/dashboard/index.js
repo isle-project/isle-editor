@@ -122,6 +122,11 @@ class Dashboard extends Component {
 						child.type === SelectInput ||
 						child.type === SliderInput ||
 						child.type === TextInput ||
+						child.type.name === 'CheckboxInput' ||
+						child.type.name === 'NumberInput' ||
+						child.type.name === 'SelectInput' ||
+						child.type.name === 'SliderInput' ||
+						child.type.name === 'TextInput' ||
 						child.type.name === 'Input'
 					) {
 						debug( 'Encountering an input element...' );
