@@ -42,6 +42,7 @@ import SpreadsheetUpload from 'components/spreadsheet-upload';
 import DataTable from 'components/data-table';
 import SessionContext from 'session/context.js';
 import OutputPanel from './output_panel.js';
+import createOutputElement from './create_output_element.js';
 import './data_explorer.css';
 
 
@@ -327,7 +328,8 @@ class DataExplorer extends Component {
 	* Adds the supplied element to the array of outputs.
 	*/
 	addToOutputs = ( element ) => {
-		let newOutput = this.state.output.slice();
+		const newOutput = this.state.output.slice();
+		element = createOutputElement( element, newOutput.length, this.clearOutput );
 		newOutput.push( element );
 		this.setState({
 			output: newOutput
@@ -891,7 +893,7 @@ class DataExplorer extends Component {
 								<RealtimeMetrics returnFullObject for={this.props.id} onDatum={this.onUserAction} />
 							</Gate>
 						</div>
-						{OutputPanel( this.state.output, this.clearOutput )}
+						{OutputPanel( this.state.output )}
 						<Button size="sm" variant="outline-danger" block onClick={() => {
 							this.setState({ output: []});
 						}}>Clear All</Button>
