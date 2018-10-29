@@ -122,6 +122,8 @@ class NormalProbs extends Component {
 								legend="x0"
 								defaultValue={0}
 								step={this.props.step}
+								min={this.state.mean1-this.state.sd1*4}
+								max={this.state.mean1+this.state.sd1*4}
 							/>
 							<TeX raw={this.state.eqn1} displayMode tag="" />
 						</Dashboard>
@@ -164,6 +166,8 @@ class NormalProbs extends Component {
 							<SliderInput
 								legend="x0"
 								defaultValue={0}
+								min={this.state.mean2-this.state.sd2*4}
+								max={this.state.mean2+this.state.sd2*4}
 								step={this.props.step}
 							/>
 							<TeX raw={this.state.eqn2} displayMode tag="" />
