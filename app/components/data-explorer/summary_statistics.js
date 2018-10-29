@@ -208,7 +208,7 @@ class SummaryStatistics extends Component {
 				autoStart={false}
 				title={<span>Summary Statistics<QuestionButton title="Summary Statistics" content={DESCRIPTION} /></span>}
 				label="Calculate"
-				onGenerate={this.generateStatistics.bind( this )}
+				onGenerate={this.generateStatistics}
 			>
 				<SelectInput
 					legend="Statistic:"
