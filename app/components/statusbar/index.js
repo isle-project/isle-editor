@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import ceil from '@stdlib/math/base/special/ceil';
 import max from '@stdlib/math/base/special/max';
@@ -11,13 +11,13 @@ import Signup from 'components/signup';
 import Login from 'components/login';
 import Gate from 'components/gate';
 import VoiceInput from 'components/input/voice';
-import InstructorView from 'components/statusbar/instructor-view';
 import Chat from 'components/statusbar/chat';
 import isElectron from 'utils/is-electron';
 import animatePosition from 'utils/animate-position';
 import SessionContext from 'session/context.js';
 import ConfirmModal from './confirm_modal.js';
 import './statusbar.css';
+const InstructorView = lazy( () => import( 'components/statusbar/instructor-view' ) );
 
 
 // VARIABLES //
@@ -289,7 +289,9 @@ class StatusBar extends Component {
 					/>
 				</div>
 				<Gate owner>
-					<InstructorView />
+					<Suspense fallback={<div>Loading...</div>} >
+						<InstructorView />
+					</Suspense>
 				</Gate>
 			</div>
 		);
