@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Draggable from 'react-draggable';
@@ -22,28 +22,28 @@ import hasProp from '@stdlib/assert/has-property';
 import startsWith from '@stdlib/string/starts-with';
 import copy from '@stdlib/utils/copy';
 import scrollTo from 'utils/scroll-to';
-import MarkdownEditor from 'components/markdown-editor';
 import SelectInput from 'components/input/select';
 import ContingencyTable from 'components/data-explorer/contingency_table';
 import FrequencyTable from 'components/data-explorer/frequency_table';
 import SummaryStatistics from 'components/data-explorer/summary_statistics';
 import SimpleLinearRegression from 'components/data-explorer/linear_regression';
 import VariableTransformer from 'components/data-explorer/variable_transformer';
+import MarkdownEditor from 'components/markdown-editor';
 import GridLayout from './grid_layout.js';
 import Pages from 'components/pages';
 import Gate from 'components/gate';
 import RealtimeMetrics from 'components/metrics/realtime';
 import Plotly from 'components/plotly';
 import RPlot from 'components/r/plot';
-import LearnNormalDistribution from 'components/learn/distribution-normal';
-import LearnExponentialDistribution from 'components/learn/distribution-exponential';
-import LearnUniformDistribution from 'components/learn/distribution-uniform';
-import SpreadsheetUpload from 'components/spreadsheet-upload';
 import DataTable from 'components/data-table';
 import SessionContext from 'session/context.js';
 import OutputPanel from './output_panel.js';
 import createOutputElement from './create_output_element.js';
 import './data_explorer.css';
+const SpreadsheetUpload = lazy( () => import( 'components/spreadsheet-upload' ) );
+const LearnNormalDistribution = lazy( () => import( 'components/learn/distribution-normal' ) );
+const LearnExponentialDistribution = lazy( () => import( 'components/learn/distribution-exponential' ) );
+const LearnUniformDistribution = lazy( () => import( 'components/learn/distribution-uniform' ) );
 
 
 // PLOT COMPONENTS //
@@ -432,10 +432,12 @@ class DataExplorer extends Component {
 	render() {
 		if ( !this.state.data ) {
 			return (
-				<SpreadsheetUpload
-					title="Data Explorer"
-					onUpload={this.onFileUpload}
-				/>
+				<Suspense fallback={<div>Loading...</div>} >
+					<SpreadsheetUpload
+						title="Data Explorer"
+						onUpload={this.onFileUpload}
+					/>
+				</Suspense>
 			);
 		}
 		if ( !this.state.ready ) {
@@ -820,7 +822,7 @@ class DataExplorer extends Component {
 									break;
 								}
 								return ( this.state.openedNav === `distributions.${i+1}` ?
-									content : null );
+									<Suspense fallback={<div>Loading...</div>} >{content}</Suspense> : null );
 							})}
 							<MarkdownEditor {...this.props.editorProps} plots={this.state.output} id={this.props.id ? this.props.id + '_editor' : null} style={{ display: this.state.openedNav !== 'editor' ? 'none' : null }} submitButton />
 							{ this.state.openedNav === 'transformer' ?
@@ -1009,4 +1011,3 @@ DataExplorer.contextType = SessionContext;
 // EXPORTS //
 
 export default DataExplorer;
-
