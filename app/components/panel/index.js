@@ -12,6 +12,7 @@ import './panel.css';
 * Card component.
 *
 * @property {string} header - panel heading (h3)
+* @property {Object} style - CSS inline styles
 */
 class Wrapper extends Component {
 	render() {
@@ -19,7 +20,7 @@ class Wrapper extends Component {
 			{ this.props.header ? <Card.Header as="h3">
 				{this.props.header}
 			</Card.Header> : null }
-			<Card.Body>
+			<Card.Body style={this.props.style} >
 				{this.props.children}
 			</Card.Body>
 		</Card> );
@@ -30,11 +31,13 @@ class Wrapper extends Component {
 // PROPERTIES //
 
 Wrapper.propTypes = {
-	'header': PropTypes.string
+	header: PropTypes.string,
+	style: PropTypes.object
 };
 
 Wrapper.defaultProps = {
-	'header': null
+	header: null,
+	style: {}
 };
 
 
