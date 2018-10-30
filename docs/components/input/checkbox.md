@@ -22,4 +22,4 @@ Note: To see a prior version of the demonstration, visit [the old link](https://
 * __disabled__ | `boolean`: indicates whether the input is active or not. Default: `false`.
 * __inline__ | `boolean`: indicates whether the checkbox is displayed inline. Default: `false`.
 * __onChange__ | `function`: callback function to be invoked when checkbox is clicked. The function is called with the current checkbox value. Default: `onChange() {}`.
-* __legend__ | `string`: text displayed next to the checkbox'. Default: `''`.
+* __legend__ | `(string|node)`: text displayed next to the checkbox'. Default: `''`.

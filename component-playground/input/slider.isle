@@ -38,6 +38,7 @@ server: https://isle.heinz.cmu.edu
 * __defaultValue__ | `number`: The starting value of the slider. Default: `10`.
 * __disabled__ | `boolean`: controls whether the slider input is active or not. If set to true, the slider will be present on the screen, albeit greyed-out. Default: `false`.
 * __inline__ | `boolean`: controls whether to place the slider inline with text or outside. Default: `false`.
+* __legend__ | `(string|node)`: caption of the input. Default: `none`.
 * __max__ | `number`: The maximum value of the slider. Default: `100`.
 * __min__ | `number`: The minimum value of the slider. Default: `0`.
 * __onChange__ | `function`: callback invoked with the new value when the slider value changes. Default: `onChange() {}`.

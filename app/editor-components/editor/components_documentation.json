@@ -138,8 +138,8 @@
       {
         "name": "fluid",
         "type": "boolean",
-        "description": "turn any fixed-width Ccntainer layout into a full-width layout",
-        "default": false
+        "description": "turn any fixed-width container layout into a full-width layout",
+        "default": true
       }
     ],
     "description": "Container wrapper."
@@ -830,7 +830,7 @@
       },
       {
         "name": "legend",
-        "type": "string",
+        "type": "(string|node)",
         "description": "text displayed next to the checkbox'",
         "default": ""
       }
@@ -869,7 +869,7 @@
       },
       {
         "name": "legend",
-        "type": "string",
+        "type": "(string|node)",
         "description": "string indicating the text displayed next to the number input",
         "default": ""
       },
@@ -1015,7 +1015,7 @@
       },
       {
         "name": "legend",
-        "type": "string",
+        "type": "(string|node)",
         "description": "text displayed next to the input",
         "default": ""
       },
@@ -1065,6 +1065,12 @@
         "type": "boolean",
         "description": "controls whether to place the slider inline with text or outside",
         "default": false
+      },
+      {
+        "name": "legend",
+        "type": "(string|node)",
+        "description": "caption of the input",
+        "default": null
       },
       {
         "name": "max",
@@ -1127,7 +1133,7 @@
       },
       {
         "name": "legend",
-        "type": "string",
+        "type": "(string|node)",
         "description": "legend text",
         "default": ""
       },
@@ -1180,7 +1186,7 @@
       },
       {
         "name": "legend",
-        "type": "string",
+        "type": "(string|node)",
         "description": "A string indicating the text displayed next to the number input",
         "default": ""
       },
@@ -1239,7 +1245,7 @@
       },
       {
         "name": "legend",
-        "type": "string",
+        "type": "(string|node)",
         "description": "legend displayed in front of input field",
         "default": ""
       },
@@ -2425,6 +2431,12 @@
         "type": "string",
         "description": "panel heading (h3)",
         "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       }
     ],
     "description": "Card component."

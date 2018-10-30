@@ -33,7 +33,7 @@ hideToolbar: true
 * __defaultValue__ | `string`: default text value. Default: `''`.
 * __grammars__ | `array`: speech grammar list (unsupported). Default: `[]`.
 * __language__ | `string`: language identifier. Default: `'en-US'`.
-* __legend__ | `string`: legend displayed in front of input field. Default: `''`.
+* __legend__ | `(string|node)`: legend displayed in front of input field. Default: `''`.
 * __mode__ | `string`: set to `full` to display a text input field alongside the microphone, `status` to only display a statusbar with the transcribed texts, `microphone` to show just a button to toggle recording, or `none` when the voice input should be invisible and purely controlled via hotkeys / voice commands. Default: `'full'`.
 * __maxAlternatives__ | `number`: maximum number of alternatives provided per speech recognition result. Default: `1`.
 * __onChange__ | `function`: callback function invoked when text input value is updated. Default: `onChange() {}`.
