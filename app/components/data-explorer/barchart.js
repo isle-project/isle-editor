@@ -84,17 +84,24 @@ class Barchart extends Component {
 		const output = {
 			variable: variable,
 			type: 'Chart',
-			value: <Plotly editable id={plotId} fit data={config.data} layout={config.layout} onShare={() => {
-				this.props.session.addNotification({
-					title: 'Plot shared.',
-					message: 'You have successfully shared your plot.',
-					level: 'success',
-					position: 'tr'
-				});
-				this.props.logAction( 'DATA_EXPLORER_SHARE:BARCHART', {
-					variable, group, plotId
-				});
-			}} />
+			value: <Plotly
+				editable id={plotId} fit data={config.data}
+				layout={config.layout}
+				onShare={() => {
+					this.props.session.addNotification({
+						title: 'Plot shared.',
+						message: 'You have successfully shared your plot.',
+						level: 'success',
+						position: 'tr'
+					});
+					this.props.logAction( 'DATA_EXPLORER_SHARE:BARCHART', {
+						variable, group, plotId
+					});
+				}}
+				onSelected={( selected ) => {
+					this.props.onSelected( variable, selected );
+				}}
+			/>
 		};
 		this.props.logAction( 'DATA_EXPLORER:BARCHART', {
 			variable,
@@ -128,18 +135,16 @@ class Barchart extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 Barchart.defaultProps = {
 	defaultValue: null,
 	groupingVariables: null,
 	logAction() {},
 	onCreated() {},
+	onSelected() {},
 	session: {}
 };
-
-
-// PROPERTY TYPES //
 
 Barchart.propTypes = {
 	data: PropTypes.object.isRequired,
@@ -147,6 +152,7 @@ Barchart.propTypes = {
 	groupingVariables: PropTypes.array,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func,
+	onSelected: PropTypes.func,
 	session: PropTypes.object,
 	variables: PropTypes.array.isRequired
 };

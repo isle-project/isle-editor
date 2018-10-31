@@ -106,7 +106,10 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 		}
 		layout = {
 			xaxis: { title: variable },
-			yaxis: { title: overlayDensity ? 'Density' : 'Count' },
+			yaxis: {
+				title: overlayDensity ? 'Density' : 'Count',
+				fixedrange: true
+			},
 			reversescale: true,
 			title: variable,
 			...SETTINGS
@@ -164,7 +167,10 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 		}
 		layout = {
 			xaxis: { title: variable },
-			yaxis: { title: overlayDensity ? 'Density' : 'Count' },
+			yaxis: {
+				title: overlayDensity ? 'Density' : 'Count',
+				fixedrange: true
+			},
 			title: `${variable} given ${group}`,
 			...SETTINGS
 		};
@@ -212,6 +218,8 @@ class Histogram extends Component {
 					position: 'tr'
 				});
 				this.props.logAction( 'DATA_EXPLORER_SHARE:HISTOGRAM', stateNew );
+			}} onSelected={( selected ) => {
+				this.props.onSelected( this.state.variable, selected );
 			}} />
 		};
 		this.props.logAction( 'DATA_EXPLORER:HISTOGRAM', stateNew );
@@ -310,7 +318,8 @@ Histogram.defaultProps = {
 	groupingVariables: null,
 	logAction() {},
 	session: {},
-	showDensityOption: true
+	showDensityOption: true,
+	onSelected() {}
 };
 
 
@@ -321,6 +330,7 @@ Histogram.propTypes = {
 	defaultValue: PropTypes.string,
 	groupingVariables: PropTypes.array,
 	logAction: PropTypes.func,
+	onSelected: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
 	session: PropTypes.object,
 	showDensityOption: PropTypes.bool,

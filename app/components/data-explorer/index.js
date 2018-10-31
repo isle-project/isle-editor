@@ -142,7 +142,8 @@ class DataExplorer extends Component {
 				data: props.data,
 				continuous: props.continuous,
 				categorical: props.categorical
-			}
+			},
+			filters: []
 		};
 
 		this.logAction = ( type, value ) => {
@@ -426,6 +427,27 @@ class DataExplorer extends Component {
 		}
 	}
 
+	on2dSelection = ( names, selected ) => {
+		const newFilters = [];
+		newFilters.push({
+			id: names.x,
+			value: {
+				min: selected.range.x[ 0 ],
+				max: selected.range.x[ 1 ]
+			}
+		});
+		newFilters.push({
+			id: names.y,
+			value: {
+				min: selected.range.y[ 0 ],
+				max: selected.range.y[ 1 ]
+			}
+		});
+		this.setState({
+			filters: newFilters
+		});
+	}
+
 	/**
 	* React component render method.
 	*/
@@ -588,6 +610,16 @@ class DataExplorer extends Component {
 						{...categoricalProps}
 						logAction={this.logAction}
 						session={this.context}
+						onSelected={( name, selected ) => {
+							const newFilters = [];
+							newFilters.push({
+								id: name,
+								value: selected.range.x
+							});
+							this.setState({
+								filters: newFilters
+							});
+						}}
 					/>;
 					break;
 				case 'Pie Chart':
@@ -603,6 +635,19 @@ class DataExplorer extends Component {
 						logAction={this.logAction}
 						session={this.context}
 						showDensityOption={this.props.histogramDensities}
+						onSelected={( name, selected ) => {
+							const newFilters = [];
+							newFilters.push({
+								id: name,
+								value: {
+									min: selected.range.x[ 0 ],
+									max: selected.range.x[ 1 ]
+								}
+							});
+							this.setState({
+								filters: newFilters
+							});
+						}}
 					/>;
 					break;
 				case 'Box Plot':
@@ -617,6 +662,7 @@ class DataExplorer extends Component {
 						{...continuousProps}
 						logAction={this.logAction}
 						session={this.context}
+						onSelected={this.on2dSelection}
 					/>;
 					break;
 				case 'Heat Map':
@@ -624,6 +670,7 @@ class DataExplorer extends Component {
 						{...continuousProps}
 						logAction={this.logAction}
 						session={this.context}
+						onSelected={this.on2dSelection}
 					/>;
 					break;
 				case 'Mosaic Plot':
@@ -638,6 +685,7 @@ class DataExplorer extends Component {
 						{...continuousProps}
 						logAction={this.logAction}
 						session={this.context}
+						onSelected={this.on2dSelection}
 					/>;
 					break;
 				}
@@ -806,7 +854,7 @@ class DataExplorer extends Component {
 								}}
 							>
 									{ !this.props.data ? <Button size="small" onClick={this.resetStorage} style={{ position: 'absolute' }}>Clear Data</Button> : null }
-									<DataTable data={this.state.data} dataInfo={this.props.dataInfo} />
+									<DataTable data={this.state.data} dataInfo={this.props.dataInfo} filters={this.state.filters} />
 							</div>
 							{this.props.distributions.map( ( e, i ) => {
 								let content = null;
@@ -901,7 +949,7 @@ class DataExplorer extends Component {
 						}}>Clear All</Button>
 					</div>
 				</Col>
-				<Draggable cancel=".slider-range-input" >
+				<Draggable cancel=".input" >
 					<Card border="secondary" style={{ display: this.state.showToolbox ? 'inline' : 'none', zIndex: 1002, position: 'absolute', minWidth: '500px' }}>
 						<Card.Header style={{ height: '55px' }}>
 							<Card.Title as="h3" style={{ position: 'absolute', left: '20px' }}>Toolbox</Card.Title>

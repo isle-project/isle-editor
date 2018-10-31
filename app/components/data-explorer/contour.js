@@ -101,6 +101,9 @@ class ContourChart extends Component {
 						xval, yval, overlayPoints, plotId
 					});
 				}}
+				onSelected={( selected ) => {
+					this.props.onSelected({ x: xval, y: yval }, selected );
+				}}
 			/>
 		};
 		this.props.logAction( 'DATA_EXPLORER:CONTOURPLOT', {
@@ -139,6 +142,7 @@ ContourChart.defaultProps = {
 	defaultX: null,
 	defaultY: null,
 	logAction() {},
+	onSelected() {},
 	session: {}
 };
 
@@ -151,6 +155,7 @@ ContourChart.propTypes = {
 	defaultY: PropTypes.string,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
+	onSelected: PropTypes.func,
 	session: PropTypes.object,
 	variables: PropTypes.array.isRequired
 };

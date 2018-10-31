@@ -393,6 +393,9 @@ class Scatterplot extends Component {
 					});
 					this.props.logAction( 'DATA_EXPLORER_SHARE:SCATTERPLOT', stateNew );
 				}}
+				onSelected={( selected ) => {
+					this.props.onSelected({ x: this.state.xval, y: this.state.yval }, selected );
+				}}
 			/>
 		};
 		this.props.logAction( 'DATA_EXPLORER:SCATTERPLOT', stateNew );
@@ -561,6 +564,7 @@ Scatterplot.defaultProps = {
 	defaultY: null,
 	groupingVariables: null,
 	logAction() {},
+	onSelected() {},
 	session: {},
 	showRegressionOption: true
 };
@@ -574,6 +578,7 @@ Scatterplot.propTypes = {
 	defaultY: PropTypes.string,
 	groupingVariables: PropTypes.array,
 	logAction: PropTypes.func,
+	onSelected: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
 	session: PropTypes.object,
 	showRegressionOption: PropTypes.bool,

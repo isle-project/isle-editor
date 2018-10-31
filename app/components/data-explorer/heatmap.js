@@ -116,6 +116,9 @@ class HeatMap extends Component {
 						xval, yval, overlayPoints, plotId
 					});
 				}}
+				onSelected={( selected ) => {
+					this.props.onSelected({ x: xval, y: yval }, selected );
+				}}
 			/>
 		};
 		this.props.logAction( 'DATA_EXPLORER:HEATMAP', {
@@ -158,6 +161,7 @@ HeatMap.defaultProps = {
 	defaultX: null,
 	defaultY: null,
 	logAction() {},
+	onSelected() {},
 	session: {}
 };
 
@@ -170,6 +174,7 @@ HeatMap.propTypes = {
 	defaultY: PropTypes.string,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
+	onSelected: PropTypes.func,
 	session: PropTypes.object,
 	variables: PropTypes.array.isRequired
 };
