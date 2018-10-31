@@ -129,7 +129,7 @@ class App extends Component {
 					}
 				}
 			} catch ( err ) {
-				props.encounteredError( new Error( 'Ensure that instructor notes path is correct' ) );
+				props.encounteredError( new Error( 'Ensure that instructor notes path is correct.' ) );
 			}
 			try {
 				applyStyles( props.preamble, props.filePath || '' );
