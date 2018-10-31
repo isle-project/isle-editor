@@ -15,6 +15,7 @@ import contains from '@stdlib/assert/contains';
 import lowercase from '@stdlib/string/lowercase';
 import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
+import round from '@stdlib/math/base/special/round';
 import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
 import isNumberArray from '@stdlib/assert/is-number-array';
@@ -73,9 +74,19 @@ class DataTable extends Component {
 	}
 
 	componentDidUpdate( prevProps ) {
+		let newState = {};
 		if ( this.props.data !== prevProps.data ) {
-			const newState = this.generateInitialState( this.props );
-			this.setState( newState );
+			newState = this.generateInitialState( this.props );
+		}
+		if ( this.props.filters && this.props.filters !== prevProps.filters ) {
+			newState.filtered = this.props.filters;
+		}
+		if ( !isEmptyObject( newState ) ) {
+			this.setState( newState, () => {
+				this.setState({
+					selectedRows: this.table.getResolvedState().sortedData.length
+				});
+			});
 		}
 	}
 
@@ -150,6 +161,9 @@ class DataTable extends Component {
 								onChange={( newValue ) => {
 									onChange( newValue );
 								}}
+								formatLabel={( val ) => {
+									return round( val );
+								}}
 							/>
 						</div>
 					);
@@ -157,6 +171,14 @@ class DataTable extends Component {
 			} else if ( uniqueValues.length <= 8 ) {
 				out[ 'filterMethod' ] = this.filterMethodCategories;
 				out[ 'Filter' ] = ({ filter, onChange }) => {
+					let value;
+					if ( !filter ) {
+						value = 'all';
+					} else if ( isArray( filter.value ) ) {
+						value = filter.value.join( ', ' );
+					} else {
+						value = filter.value;
+					}
 					return (
 						<select
 							onChange={( event ) => {
@@ -164,7 +186,7 @@ class DataTable extends Component {
 								onChange( newValue );
 							}}
 							style={{ width: '100%', backgroundColor: 'ghostwhite' }}
-							value={filter ? filter.value : 'all'}
+							value={value}
 						>
 							<option value="all">Show All</option>
 							{uniqueValues.map( ( v, key ) => ( <option
@@ -176,6 +198,10 @@ class DataTable extends Component {
 				};
 			} else {
 				out[ 'filterMethod' ] = ( filter, row ) => {
+					if ( isArray( filter.value ) ) {
+						return contains( filter.value, row[ filter.id ] );
+					}
+					// Check whether string contains search phrase:
 					return contains( lowercase( row[ filter.id ] ), lowercase( filter.value ) );
 				};
 			}
@@ -197,6 +223,7 @@ class DataTable extends Component {
 		newState.showInfo = props.dataInfo.showOnStartup;
 		newState.rows = rows;
 		newState.columns = columns;
+		newState.filtered = props.filters;
 		return newState;
 	}
 
@@ -224,6 +251,9 @@ class DataTable extends Component {
 		const id = filter.pivotId || filter.id;
 		if ( row[ id ] === void 0 ) {
 			return true;
+		}
+		if ( isArray( filter.value ) ) {
+			return contains( filter.value, String( row[ id ] ) );
 		}
 		return String( row[ id ] ) === filter.value;
 	}
@@ -255,10 +285,11 @@ class DataTable extends Component {
 		);
 	}
 
-	handleFilterChange = () => {
+	handleFilterChange = ( filtered ) => {
 		const selectedRows = this.table.getResolvedState().sortedData.length;
 		this.setState({
-			selectedRows
+			selectedRows,
+			filtered
 		});
 	}
 
@@ -267,7 +298,16 @@ class DataTable extends Component {
 			showVarModal: true
 		});
 	}
-	// Add in the function to format it with key-value pairs
+
+	resetFilters = () => {
+		this.setState({
+			filtered: []
+		}, () => {
+			this.setState({
+				selectedRows: this.table.getResolvedState().sortedData.length
+			});
+		});
+	}
 
 	createDescriptions = ( descriptions ) => {
 		var strTable;
@@ -298,7 +338,8 @@ class DataTable extends Component {
 	}
 
 	render() {
-		const { selectedRows } = this.state;
+		console.log( this.state.filtered );
+		const { selectedRows, rows } = this.state;
 		let modal = null;
 		if ( this.state.showVarModal ) {
 			modal = <Modal
@@ -362,23 +403,32 @@ class DataTable extends Component {
 					}
 					<ReactTable
 						ref={( table ) => { this.table = table; }}
-						data={this.state.rows}
+						data={rows}
 						columns={this.state.columns}
 						showPagination={true}
 						sortable={true}
 						resizable={true}
 						filterable={true}
+						filtered={this.state.filtered}
 						showPageSizeOptions={false}
 						defaultPageSize={50}
 						onFilteredChange={this.handleFilterChange}
 						style={this.props.style}
 					/>
 					<label><i>Number of rows: {selectedRows} (total: {this.state.rows.length})</i></label>
+					<Button
+						onClick={this.resetFilters}
+						variant="primary"
+						size="xsmall"
+						className="data-table-footer-button"
+					>
+						Reset Filters
+					</Button>
 					{ this.props.dataInfo.variables ? <Button
 						onClick={this.showDescriptions}
 						variant="primary"
-						size="small"
-						className="variable-description-button"
+						size="xsmall"
+						className="data-table-footer-button"
 					>
 						Variable Descriptions
 					</Button> : null }
@@ -400,6 +450,7 @@ DataTable.defaultProps = {
 		'showInfo': false
 	},
 	onClickRemove() {},
+	filters: [],
 	showRemove: false,
 	style: {}
 };
@@ -411,6 +462,7 @@ DataTable.propTypes = {
 	]).isRequired,
 	dataInfo: PropTypes.object,
 	onClickRemove: PropTypes.func,
+	filters: PropTypes.array,
 	showRemove: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
 	style: PropTypes.object
 };
