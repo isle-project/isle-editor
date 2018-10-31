@@ -468,8 +468,9 @@ class Quiz extends Component {
 							{
 									this.props.showFinishButton || this.state.last ?
 										<Button
+											style={{ marginRight: 10 }}
 											className="quiz-button"
-											variant="primary"
+											variant="secondary"
 											onClick={this.handleFinishClick}
 										>
 											{this.props.finishLabel}
@@ -478,7 +479,7 @@ class Quiz extends Component {
 								{ showButton && !this.state.last ?
 									<Button
 										className="quiz-button"
-										variant="secondary"
+										variant="primary"
 										onClick={this.handleNextClick}
 										disabled={this.props.forceConfidence && this.state.answered && !this.state.selectedConfidence}
 									>
