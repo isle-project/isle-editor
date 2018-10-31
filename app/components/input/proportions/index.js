@@ -191,7 +191,7 @@ class ProportionInput extends Input {
 			marginLeft: this.props.margin
 		};
 		return (
-			<div>
+			<div className="input" >
 				{ this.renderPie() }
 				<div style={pos}>
 					{ this.renderInputs() }

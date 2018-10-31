@@ -179,7 +179,7 @@ class SelectInput extends Input {
 			clearable = this.props.clearable;
 		}
 		return (
-			<Form style={{ ...style }} >
+			<Form className="input" style={{ ...style }} >
 				<FormGroup controlId="form-controls-select">
 					{ this.props.legend ?
 						<label>{this.props.legend}</label> :

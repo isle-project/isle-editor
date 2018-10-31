@@ -80,7 +80,7 @@ class TextInput extends Input {
 	render() {
 		if ( this.props.inline ) {
 			return (
-				<span>
+				<span className="input">
 					{ this.props.legend ? <label>{this.props.legend}:</label> : <span /> }
 					<input
 						className="text-inline-input"
@@ -104,7 +104,7 @@ class TextInput extends Input {
 			);
 		}
 		return (
-			<div className="text-container-div" >
+			<div className="input text-container-div" >
 				<span>
 					<label>{this.props.legend}:</label>
 					{ this.props.description ?

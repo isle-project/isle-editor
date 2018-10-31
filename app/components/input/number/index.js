@@ -169,7 +169,7 @@ class NumberInput extends Input {
 		}
 		if ( this.props.inline === true ) {
 			const input =
-				<span style={{ padding: '5px' }}>
+				<span className="input" style={{ padding: '5px' }}>
 					{ this.props.legend ? <label> {this.props.legend} =  </label> : null }
 					<input
 						type={this.props.numbersOnly ? 'number' : 'text'}
@@ -219,7 +219,7 @@ class NumberInput extends Input {
 			onChange={this.handleChange}
 			onBlur={this.finishChange}
 		/>;
-		const output = <div style={{
+		const output = <div className="input" style={{
 			marginBottom: '4px',
 			marginTop: '4px'
 		}}>

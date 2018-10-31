@@ -299,7 +299,7 @@ class VoiceInput extends Input {
 			return (
 				<Fragment>
 					{ this.props.legend ? <label>{this.props.legend}</label> : null }
-					<div className="voice-input" style={{ height: this.props.height, width: this.props.width, ...this.props.style }} >
+					<div className="input voice-input" style={{ height: this.props.height, width: this.props.width, ...this.props.style }} >
 						<input
 							className="voice-input-text"
 							type="text"

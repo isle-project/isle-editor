@@ -182,7 +182,7 @@ class SliderInput extends Input {
 
 		if ( this.props.inline ) {
 			return (
-				<span style={{
+				<span className="input" style={{
 					padding: '5px',
 					opacity: this.props.disabled ? 0.2 : 1.0,
 					...this.props.style
