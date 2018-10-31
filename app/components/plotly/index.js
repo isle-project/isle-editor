@@ -48,6 +48,7 @@ const BUTTONS = [
 * @property {boolean} legendButtons - controls whether to display buttons for changing the legend
 * @property {boolean} toggleFullscreen - controls whether to display the plot in fullscreen mode
 * @property {boolean} removeButtons - controls whether to remove all buttons
+* @property {Function} onSelected - callback function invoked when elements are selected
 * @property {Function} onShare - callback function invoked when clicking on the "Share" button
 */
 class Wrapper extends Component {
@@ -205,6 +206,7 @@ class Wrapper extends Component {
 			onInitialized={this.onInitialized}
 			onUpdate={this.onUpdate}
 			useResizeHandler
+			onSelected={this.props.onSelected}
 			style={{
 				width: '100%',
 				height: '100%'
@@ -244,6 +246,7 @@ Wrapper.defaultProps = {
 	id: null,
 	layout: {},
 	legendButtons: true,
+	onSelected() {},
 	onShare: null,
 	removeButtons: false,
 	toggleFullscreen: true
@@ -255,6 +258,7 @@ Wrapper.propTypes = {
 	id: PropTypes.string,
 	layout: PropTypes.object,
 	legendButtons: PropTypes.bool,
+	onSelected: PropTypes.func,
 	onShare: PropTypes.func,
 	removeButtons: PropTypes.bool,
 	toggleFullscreen: PropTypes.bool
