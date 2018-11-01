@@ -33,6 +33,14 @@ class InstructorView extends Component {
 	}
 
 	componentDidMount() {
+		this.addResizeListener();
+	}
+
+	componentWillUnmount() {
+		this.removeResizeListener();
+	}
+
+	addResizeListener = () => {
 		this.windowResize = window.addEventListener( 'resize', () => {
 			debug( 'Process a `window.resize` event...' );
 			this.setState({
@@ -41,7 +49,7 @@ class InstructorView extends Component {
 		});
 	}
 
-	componentWillUnmount() {
+	removeResizeListener = () => {
 		if ( this.windowResize ) {
 			window.removeEventListener( 'resize', this.windowResize );
 		}
@@ -54,12 +62,14 @@ class InstructorView extends Component {
 			this.setState({
 				hidden: false
 			});
+			this.addResizeListener();
 		} else {
 			animatePosition( this.instructorView, 'right', this.state.rightPos, 400 );
 			this.handler.style.opacity = 0.7;
 			this.setState({
 				hidden: true
 			});
+			this.removeResizeListener();
 		}
 	}
 

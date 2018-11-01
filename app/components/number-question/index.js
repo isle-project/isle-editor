@@ -242,7 +242,10 @@ NumberQuestion.defaultProps = {
 };
 
 NumberQuestion.propTypes = {
-	question: PropTypes.string,
+	question: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
 	feedback: PropTypes.bool,

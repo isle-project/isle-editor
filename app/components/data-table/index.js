@@ -338,7 +338,6 @@ class DataTable extends Component {
 	}
 
 	render() {
-		console.log( this.state.filtered );
 		const { selectedRows, rows } = this.state;
 		let modal = null;
 		if ( this.state.showVarModal ) {
