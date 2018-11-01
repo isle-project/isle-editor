@@ -11,7 +11,6 @@ import hasOwnProperty from '@stdlib/assert/has-own-property';
 import isString from '@stdlib/assert/is-string';
 import tabulate from '@stdlib/utils/tabulate';
 import trim from '@stdlib/string/trim';
-import round from '@stdlib/math/base/special/round';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import Gate from 'components/gate';
