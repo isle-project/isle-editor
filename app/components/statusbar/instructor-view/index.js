@@ -47,7 +47,7 @@ class InstructorView extends Component {
 		}
 	}
 
-	toggleBar() {
+	toggleBar = () => {
 		if ( this.state.hidden ) {
 			animatePosition( this.instructorView, 'right', EDITOR_OFFSET, 400 );
 			this.handler.style.opacity = 0.7;
@@ -63,13 +63,13 @@ class InstructorView extends Component {
 		}
 	}
 
-	onMouseOver() {
+	onMouseOver = () => {
 		if ( this.state.hidden ) {
 			this.handler.style.opacity = 1.0;
 		}
 	}
 
-	onMouseOut() {
+	onMouseOut = () => {
 		if ( this.state.hidden ) {
 			this.handler.style.opacity = 0.7;
 		}
@@ -82,14 +82,14 @@ class InstructorView extends Component {
 			return null;
 		}
 		return (
-			<Tabs defaultActiveKey="active_users" id="instructor-view-tabs">
-				<Tab eventKey="active_users" title="Active Users">
+			<Tabs defaultActiveKey="active_users" id="instructor-view-tabs" >
+				<Tab eventKey="active_users" title="Active Users" >
 					<UserList session={session} />
 				</Tab>
-				<Tab eventKey="action_log" title="Action Log">
+				<Tab eventKey="action_log" title="Action Log" >
 					<ActionLog />
 				</Tab>
-				<Tab eventKey="instructor_notes" title="Instructor Notes">
+				<Tab eventKey="instructor_notes" title="Instructor Notes" >
 					<InstructorNotes
 						id={session.lessonID+'instructor_notebook'}
 						className="instructor_notebook"
@@ -117,9 +117,9 @@ class InstructorView extends Component {
 				</div>
 				<div className="instructor-view-bottom"></div>
 				<div className="instructor-view-handler"
-					onClick={this.toggleBar.bind( this )}
-					onMouseOver={this.onMouseOver.bind( this )}
-					onMouseOut={this.onMouseOut.bind( this )}
+					onClick={this.toggleBar}
+					onMouseOver={this.onMouseOver}
+					onMouseOut={this.onMouseOut}
 					ref={( handler ) => { this.handler = handler; }}
 					style={{
 						right: this.state.hidden ? '105%' : '102%',
