@@ -311,21 +311,22 @@ class ResponseVisualizer extends Component {
 		if ( !this.props.id ) {
 			return <Gate owner><label style={{ marginLeft: 5 }}>No ID supplied.</label></Gate>;
 		}
-		let successRate = this.state.nSuccess / session.userList.length;
+		const nUsers = session.userList.length;
+		let successRate = this.state.nSuccess / nUsers;
 		successRate *= 100.0;
-		let dangerRate = this.state.nDanger / session.userList.length;
+		let dangerRate = this.state.nDanger / nUsers;
 		dangerRate *= 100.0;
-		let infoRate = this.state.nInfo / session.userList.length;
+		let infoRate = this.state.nInfo / nUsers;
 		infoRate *= 100.0;
 		let tooltip = 'Interaction rate for currently active students:\n\n';
 		if ( this.props.success ) {
-			tooltip += `${this.props.success}: ${round(successRate)}% (green)\n`;
+			tooltip += `${this.props.success}: ${this.state.nSuccess} / ${nUsers} (green)\n`;
 		}
 		if ( this.props.danger ) {
-			tooltip += `${this.props.danger}: ${round(dangerRate)}% (red)\n`;
+			tooltip += `${this.props.danger}: ${this.state.nDanger} / ${nUsers} (red)\n`;
 		}
 		if ( this.props.info ) {
-			tooltip += `${this.props.info}: ${round(infoRate)}% (blue)\n`;
+			tooltip += `${this.props.info}: ${this.state.nInfo} / ${nUsers} (blue)\n`;
 		}
 		return (
 			<Gate owner>
