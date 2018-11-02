@@ -438,7 +438,7 @@ class Quiz extends Component {
 			return ( <Card className="quiz">
 				<Card.Header>
 					<span>
-						Instructor View
+						<h3 style={{ display: 'inline-block' }}>Instructor View</h3>
 						<Button
 							variant="secondary"
 							style={{ float: 'right' }}
@@ -489,8 +489,8 @@ class Quiz extends Component {
 				<Card className="quiz" >
 					<Card.Header>
 						{ this.state.finished ?
-							<span>Answer Summary</span> :
-							<span>Question {this.state.counter+1}/{this.state.count}</span>
+							<h3>Answer Summary</h3> :
+							<h3>Question {this.state.counter+1}/{this.state.count}</h3>
 						}
 					</Card.Header>
 					<Card.Body>
