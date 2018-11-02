@@ -10,8 +10,6 @@ import Panel from 'components/panel';
 import Revealer from 'components/revealer';
 import SessionContext from 'session/context.js';
 
-import DataTable from 'components/data-table';
-
 
 // VARIABLES //
 
@@ -35,7 +33,7 @@ class Queue extends Component {
 			questionText: '',
 			isOwner: false
 		};
-		// type can be Homework, Conceptual, Exam, Other 
+		// type can be Homework, Conceptual, Exam, Other
 	}
 
 	componentDidMount() {
@@ -135,7 +133,7 @@ class Queue extends Component {
 		// first render by owner or not
 		if ( this.state.isOwner ) {
 			debug( 'I am an owner' );
-			return ( <Revealer id="queue_revealer">
+			return ( <Revealer id={`${this.props.id}_revealer`} >
 				{ this.state.arr.length === 0 ? <h3 className="center">There are no users in the queue</h3> :
 				<ReactTable
 					data={this.state.arr}
@@ -177,45 +175,36 @@ class Queue extends Component {
 			);
 		}
 		return (
-				<Revealer id=`${his.props.id} +`\_REVEALE`);
-			<Panel>
-				<h3 className="center">There are {this.state.queueSize} individuals in the queue. Add yourself below!</h3>
-				<div>
-					<TextInput
-						onChange={this.handleText}
-						legend='What is your question?'
-						inline={false}
-						width={500}
-						>
-					</TextInput>
-					<Button onClick={this.enterQueue}>
-						Add to Queue
-					</Button>
-				</div>
-			</Panel>);
+			<Revealer id={`${this.props.id}_revealer`} >
+				<Panel>
+					<h3 className="center">There are {this.state.queueSize} individuals in the queue. Add yourself below!</h3>
+					<div>
+						<TextInput
+							onChange={this.handleText}
+							legend='What is your question?'
+							inline={false}
+							width={500}
+							>
+						</TextInput>
+						<Button onClick={this.enterQueue}>
+							Add to Queue
+						</Button>
+					</div>
+				</Panel>
+			</Revealer>
+		);
 	}
 }
 
-// DEFAULT PROPERTIES //
+
+// PROPERTIES //
 
 Queue.defaultProps = {
-	
-};
 
-
-// PROPERTY TYPES //
-
-Queue.propDescriptions = {
-	
 };
 
 Queue.propTypes = {
-	
-};
 
-Queue.contextTypes = {
-	session: PropTypes.object,
-	currentRole: PropTypes.string
 };
 
 Queue.contextType = SessionContext;
