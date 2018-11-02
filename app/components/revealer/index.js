@@ -27,31 +27,31 @@ class Revealer extends Component {
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
-					if ( type === 'member_action' ) {
-						if ( action.id === this.props.id ) {
-							if ( action.type === 'REVEAL_CONTENT' ) {
-								this.setState({
-									showChildren: true
-								});
-							} else if ( action.type === 'HIDE_CONTENT' ) {
-								this.setState({
-									showChildren: false
-								});
-							}
-						}
-					} else if ( type === 'user_joined' ) {
-						// When new users join, make sure they can see the component when it was already revealed:
-						if ( this.state.showChildren ) {
-							const session = this.context;
-							session.log({
-								id: this.props.id,
-								type: 'REVEAL_CONTENT',
-								value: this.state.showChildren,
-								noSave: true
-							}, 'members' );
+				if ( type === 'member_action' ) {
+					if ( action.id === this.props.id ) {
+						if ( action.type === 'REVEAL_CONTENT' ) {
+							this.setState({
+								showChildren: true
+							});
+						} else if ( action.type === 'HIDE_CONTENT' ) {
+							this.setState({
+								showChildren: false
+							});
 						}
 					}
-				});
+				} else if ( type === 'user_joined' ) {
+					// When new users join, make sure they can see the component when it was already revealed:
+					if ( this.state.showChildren ) {
+						const session = this.context;
+						session.log({
+							id: this.props.id,
+							type: 'REVEAL_CONTENT',
+							value: this.state.showChildren,
+							noSave: true
+						}, 'members' );
+					}
+				}
+			});
 		}
 	}
 

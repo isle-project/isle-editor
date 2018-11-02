@@ -73,6 +73,7 @@
 	"Plotly": "components/plotly",
 	"ProportionsInput": "components/input/proportions",
 	"ProportionsSurvey": "components/proportions-survey",
+	"Queue": "components/queue",
 	"RangeQuestion": "components/range-question",
 	"RealtimeMetrics": "components/metrics/realtime",
 	"Recorder": "components/recorder",

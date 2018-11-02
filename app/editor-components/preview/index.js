@@ -131,6 +131,7 @@ const createScope = ( session ) => {
 		ProportionsInput,
 		ProportionsSurvey: Loadable( () => import( 'components/proportions-survey' ) ),
 		QuestionForm: Loadable( () => import( 'components/question-form' ) ),
+		Queue: Loadable( () => import( 'components/queue' ) ),
 		Quiz: Loadable( () => import( 'components/quiz' ) ),
 		RangeQuestion: Loadable( () => import('components/range-question' ) ),
 		RealtimeMetrics: Loadable( () => import( 'components/metrics/realtime' ) ),
