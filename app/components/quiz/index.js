@@ -21,6 +21,7 @@ import NumberQuestion from 'components/number-question';
 import OrderQuestion from 'components/order-question';
 import RangeQuestion from 'components/range-question';
 import SelectQuestion from 'components/select-question';
+import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
 import convertJSONtoJSX from 'utils/json-to-jsx';
 import './quiz.css';
@@ -75,7 +76,8 @@ class Quiz extends Component {
 			counter: 0,
 			finished: false,
 			last: false,
-			selectedConfidence: null
+			selectedConfidence: null,
+			showInstructorView: false
 		};
 	}
 
@@ -328,8 +330,7 @@ class Quiz extends Component {
 		</div> );
 	}
 
-	renderCurrentQuestion() {
-		const config = this.props.questions[ this.state.current ];
+	renderQuestion( config ) {
 		const props = config.props || {};
 		if ( isHTMLConfig( props.question ) ) {
 			debug( 'Question property is an object, convert to JSX...' );
@@ -367,6 +368,12 @@ class Quiz extends Component {
 		this.setState({
 			selectedConfidence: confidence,
 			confidences: confidences
+		});
+	}
+
+	toggleInstructorView =() => {
+		this.setState({
+			showInstructorView: !this.state.showInstructorView
 		});
 	}
 
@@ -410,8 +417,7 @@ class Quiz extends Component {
 		);
 	}
 
-	renderFooterNodes() {
-		const elem = this.props.questions[ this.state.current ];
+	renderFooterNodes( elem ) {
 		const id = elem.props.id;
 		return React.Children.map( this.props.footerNodes, ( child, idx ) => {
 			return React.cloneElement( child, {
@@ -428,6 +434,39 @@ class Quiz extends Component {
 		} else {
 			showButton = this.state.answered || this.props.skippable;
 		}
+		if ( this.state.showInstructorView ) {
+			return ( <Card className="quiz">
+				<Card.Header>
+					<span>
+						Instructor View
+						<Button
+							variant="secondary"
+							style={{ float: 'right' }}
+							onClick={this.toggleInstructorView}
+						>
+							Close Instructor View
+						</Button>
+					</span>
+				</Card.Header>
+				<Card.Body>
+					{this.props.questions.map( ( elem, idx ) => {
+						return ( <div key={idx}>
+							<h3>Question {idx+1}:</h3>
+							{this.renderQuestion( elem )}
+							{this.renderFooterNodes( elem )}
+						</div> );
+					})}
+				</Card.Body>
+				<Button
+					className="quiz-button"
+					variant="secondary"
+					onClick={this.toggleInstructorView}
+				>
+					Close Instructor View
+				</Button>
+			</Card> );
+		}
+		const currentConfig = this.props.questions[ this.state.current ];
 		return (
 			<Fragment>
 				{this.props.duration ?
@@ -460,11 +499,21 @@ class Quiz extends Component {
 						}} >
 							{ this.state.finished ?
 								this.renderScoreboard() :
-								<span key={this.state.current}>{this.renderCurrentQuestion()}</span>
+								<span key={this.state.current}>{this.renderQuestion( currentConfig )}</span>
 							}
 							{ !this.state.finished ? this.renderConfidenceSurvey() : null }
-							{this.renderFooterNodes()}
+							{this.renderFooterNodes( currentConfig )}
 							<ButtonGroup style={{ float: 'right' }}>
+								<Gate owner>
+										<Button
+											className="quiz-button"
+											variant="secondary"
+											onClick={this.toggleInstructorView}
+											style={{ marginRight: 10 }}
+										>
+											Open Instructor View
+										</Button>
+								</Gate>
 							{
 									this.props.showFinishButton || this.state.last ?
 										<Button

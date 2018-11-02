@@ -110,7 +110,6 @@ class FullscreenActionDisplay extends Component {
 		const action = this.state.actions[ index ];
 		const noLines = ( String( action.value ).match( RE_NEWLINE ) || '' ).length + 1;
 		lines += noLines * TEXT_LINE_HEIGHT;
-		lines += LINE_HEIGHT; // first "Value" line
 		debug( `Element at position ${index} is estimated to have ${lines} lines.` );
 		return lines;
 	}
