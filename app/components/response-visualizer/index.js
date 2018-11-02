@@ -332,6 +332,7 @@ class ResponseVisualizer extends Component {
 				{this.renderFullscreenModal()}
 				<ButtonGroup size="sm" vertical style={{ verticalAlign: 'inherit', ...this.props.style }} >
 					<Tooltip
+						placement='top'
 						tooltip={this.props.showID ? <span>
 							Open {uncapitalize( this.props.buttonLabel )} for component with ID {this.props.id}
 						</span> : null}
