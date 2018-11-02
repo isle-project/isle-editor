@@ -130,7 +130,6 @@ class Queue extends Component {
 	* React component render method.
 	*/
 	render() {
-		// first render by owner or not
 		if ( this.state.isOwner ) {
 			debug( 'I am an owner' );
 			return ( <Revealer id={`${this.props.id}_revealer`} >
@@ -167,9 +166,8 @@ class Queue extends Component {
 				/> }
 			</Revealer> );
 		}
-		// we are not an owner
+		// Case: We are not an owner
 		if ( this.state.inQueue ) {
-			debug('inQueue ')
 			return (
 				<h3 className="center">You are currently {this.state.spot} on the queue. There are {this.state.queueSize} individuals in the queue.</h3>
 			);

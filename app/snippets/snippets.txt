@@ -242,6 +242,11 @@ snippet Quiz
 		count={${2:0}}
 	/>
 
+snippet Queue
+	<Queue
+		id="${1:ID comes here...}"
+	/>
+
 snippet Metrics
 	<Metrics
 		for="${1:ID}"
