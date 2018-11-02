@@ -4,12 +4,14 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import uppercase from '@stdlib/string/uppercase';
+import isString from '@stdlib/assert/is-string';
 import Button from 'react-bootstrap/lib/Button';
 import Card from 'react-bootstrap/lib/Card';
 import Form from 'react-bootstrap/lib/Form';
 import Col from 'react-bootstrap/lib/Col';
 import SolutionButton from 'components/solution-button';
 import ResponseVisualizer from 'components/response-visualizer';
+import Text from 'components/text';
 import SessionContext from 'session/context.js';
 import './multiple_choice_matrix.css';
 
@@ -53,7 +55,9 @@ class MultipleChoiceMatrix extends Component {
 				<Col sm={6}></Col>
 				{this.props.answers.map( ( elem, idx ) => {
 					return ( <Col key={idx}>
-						<Form.Label>{elem}</Form.Label>
+						<Form.Label>
+							{ isString( elem ) ? <Text raw={elem} /> : elem }
+						</Form.Label>
 					</Col> );
 				})}
 			</Form.Row>
@@ -149,7 +153,7 @@ class MultipleChoiceMatrix extends Component {
 				<Form.Row key={idx} >
 					<Col sm={6}>
 						<Form.Label column >
-							{question}
+							{ isString( question ) ? <Text raw={question} /> : question }
 						</Form.Label>
 					</Col>
 					{this.renderAnswerButtons( idx )}
