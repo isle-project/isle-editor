@@ -21,7 +21,7 @@ const debug = logger( 'isle:queue' );
 class Queue extends Component {
 	constructor( props, context ) {
 		super( props );
-		debug( 'Invoking constructor of Queue...' );
+		debug( 'Invoking constructor...' );
 
 		// hide the actual seeing of things in the revealer component
 		this.state = {
@@ -39,7 +39,7 @@ class Queue extends Component {
 	componentDidMount() {
 		const session = this.context;
 		if ( session ) {
-			debug('we have a session');
+			debug( 'We have a session, subscribe the component...' );
 			this.unsubscribe = session.subscribe( ( type, action ) => {
 				debug( type );
 
@@ -49,7 +49,7 @@ class Queue extends Component {
 				}
 				if ( action && action.id === this.props.id ) {
 					if ( action.type === 'ENTER_QUEUE' ) {
-						debug('we have someone entering the queue');
+						debug( 'Someone is entering the queue' );
 						this.state.arr.push({
 							user: action.name,
 							question: action.value
@@ -59,8 +59,7 @@ class Queue extends Component {
 							queueSize: this.state.queueSize + 1
 						});
 					} else if ( type === 'user_joined' ) {
-						debug('user joined!');
-						// when new user joins make sure they have everything
+						debug( 'A user has joined the queue...' );
 						if ( this.state.active ) {
 							this.setState({
 								queueSize: this.state.queueSize,
@@ -99,8 +98,7 @@ class Queue extends Component {
 	}
 
 	enterQueue = () => {
-		debug( 'Entering queue' );
-		// send the signal to enter the queue
+		debug( 'Send the signal to enter the queue...' );
 		this.setState({
 			inQueue: true,
 			spot: this.state.arr.length + 1 // increment at add
@@ -173,7 +171,7 @@ class Queue extends Component {
 			);
 		}
 		return (
-			<Revealer id={`${this.props.id}_revealer`} >
+			<Revealer id={`${this.props.id}_revealer`} message={this.props.message} >
 				<Panel>
 					<h3 className="center">There are {this.state.queueSize} individuals in the queue. Add yourself below!</h3>
 					<div>
@@ -198,11 +196,11 @@ class Queue extends Component {
 // PROPERTIES //
 
 Queue.defaultProps = {
-
+	message: 'Queue is currently closed.'
 };
 
 Queue.propTypes = {
-
+	message: PropTypes.string
 };
 
 Queue.contextType = SessionContext;
