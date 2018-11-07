@@ -412,6 +412,7 @@ class Sketchpad extends Component {
 			} else {
 				data.state.currentPage = 0;
 			}
+			data.state.noPages = this.backgrounds.length;
 			data.state = omit( data.state, OMITTED_KEYS );
 			this.setState( data.state, () => {
 				this.redraw();
