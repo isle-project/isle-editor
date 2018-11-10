@@ -55,5 +55,3 @@ public/
 # Ignore pdf
 *.pdf
 
-# Ignore calculator files
-app/components/calculator/*
