@@ -380,7 +380,8 @@ class DataTable extends Component {
 			<Fragment>
 				<div style={{
 					fontSize: '12px',
-					...this.props.style
+					...this.props.style,
+					marginBottom: '17px'
 				}}>
 					{ this.props.dataInfo.info.length > 0 ?
 					<div className='data_button_wrapper'>

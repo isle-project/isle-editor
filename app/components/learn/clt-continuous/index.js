@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import JSONTree from 'react-json-tree';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Container from 'react-bootstrap/lib/Container';
@@ -112,6 +113,20 @@ function initHandleSelect(dist) {
 		return <TeX raw={'\\text{Exponential}(1)'} />;
 	}
 	return <TeX raw={'\\text{Normal}(0,1)'} />;
+}
+
+// Function to round an element to 2 places
+function fixAtTwo(elem) {
+	return elem.toFixed(2);
+}
+
+// Function to ensure tha all data is rounded to 3 decimal places
+function makeVisibleData(arr, display = 100) {
+	var dispStr = arr.map(fixAtTwo).slice(0, display).join(', ');
+	if ( arr.length <= display ) {
+		return dispStr;
+	}
+	return dispStr + ', ...';
 }
 
 
@@ -464,7 +479,7 @@ class ContinuousCLT extends Component {
 						}
 					]
 				}} removeButtons toggleFullscreen={false} /> :
-				<span>Please draw at least two samples.</span>
+				<p>Please draw at least two samples.</p>
 			}
 			<CheckboxInput legend="Overlay normal density" onChange={( value ) => {
 				this.setState({
@@ -483,6 +498,10 @@ class ContinuousCLT extends Component {
 					&nbsp;{this.state.stdevXBars.toFixed( 3 )}
 				</p> : null
 			}
+			<p>
+				<label><TeX raw="\bar{x}" /> Values </label>
+				{ this.state.xbars.length > 0 ? <pre style={{ 'fontFamily': 'monospace' }}>{makeVisibleData(this.state.xbars)}</pre> : null }
+			</p>
 		</Card> );
 	}
 
@@ -515,6 +534,9 @@ class ContinuousCLT extends Component {
 						<Col md={6}>
 							{this.renderXbarHistogram()}
 						</Col>
+					</Row>
+					<Row>
+						<h3 className="center">Probability Calculations</h3>
 					</Row>
 					<Row>
 						<Col md={6}>

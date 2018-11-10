@@ -31,6 +31,12 @@ class Calculator extends Component {
 		};
 	}
 
+	clearEquation = () => {
+		this.setState({
+			visible: '0'
+		});
+	}
+
 	onClickFactory = (val) => {
 		return () => {
 			const vis = this.state.visible;
@@ -53,6 +59,12 @@ class Calculator extends Component {
 		return (
 			<Panel id="calc_panel">
 				<div float="left">
+					<ButtonToolbar>
+						<ButtonGroup className="button_row">
+							<Button variant="primary" onClick={noop} >=</Button>
+							<Button onClick={this.clearEquation} >C</Button>
+						</ButtonGroup>
+					</ButtonToolbar>
 					<ButtonToolbar>
 						<ButtonGroup className="button_row">
 							<Button onClick={this.onClickFactory('7')} >7</Button>
@@ -79,9 +91,9 @@ class Calculator extends Component {
 
 					<ButtonToolbar>
 						<ButtonGroup className="button_row">
-							<Button onClick={noop} > </Button>
-							<Button onClick={this.onClickFactory('0')} >2</Button>
-							<Button onClick={this.onClickFactory('.')} >3</Button>
+							<Button onClick={noop} >-</Button>
+							<Button onClick={this.onClickFactory('0')} >0</Button>
+							<Button onClick={this.onClickFactory('.')} >.</Button>
 						</ButtonGroup>
 					</ButtonToolbar>
 				</div>
