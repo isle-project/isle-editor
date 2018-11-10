@@ -2,11 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import InputGroup from 'react-bootstrap/lib/InputGroup';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import Popover from 'react-bootstrap/lib/Popover';
+import Button from 'react-bootstrap/lib/Button';
 import logger from 'debug';
 import OverlayTrigger from 'components/overlay-trigger';
 import TextArea from 'components/input/text-area';
@@ -89,28 +88,27 @@ class Chat extends Component {
 		session.leaveChat( this.props.chat.name );
 	}
 
-	onMouseOver() {
+	onMouseOver = () => {
 		if ( !this.opened ) {
 			this.chat.style.opacity = this.state.opened ? 0.7 : 1.0;
 		}
 	}
 
-	onMouseOut() {
+	onMouseOut = () => {
 		if ( !this.opened ) {
 			this.chat.style.opacity = this.state.opened ? 1.0 : 0.7;
 		}
 	}
 
-	toggleChat() {
+	toggleChat = () => {
 		this.setState({
 			opened: !this.state.opened,
 			hasNews: false
 		});
 	}
 
-	render() {
-		const { chat, left, width } = this.props;
-
+	renderMembers() {
+		const { chat } = this.props;
 		const userlistPopover = <Popover id="userlistPopover" title={`Members of ${chat.name} chat:`}>
 			<ListGroup>
 				{chat.members.map( ( member, idx ) => {
@@ -118,114 +116,74 @@ class Chat extends Component {
 				})}
 			</ListGroup>
 		</Popover>;
+		return ( <OverlayTrigger trigger={[ 'hover', 'focus' ]} placement="bottom" overlay={userlistPopover}>
+			<div
+				className="chat-members"
+				style={{
+					display: this.state.opened ? 'block' : 'none'
+				}}
+			>
+				{chat.members.map( ( member, idx ) => {
+					return <span key={idx}>{member.name}{ idx !== chat.members.length-1 ? ', ' : null }</span>;
+				})}
+			</div>
+		</OverlayTrigger> );
+	}
 
+	renderChatBody() {
+		const { chat } = this.props;
 		return (
-			<div style={{
+			<div
+				className="chat-body-outer"
+				style={{
+					display: this.state.opened ? 'block' : 'none'
+				}}
+			>
+				<div
+					className="chat-body"
+					ref={( chatbody ) => { this.chatbody = chatbody; }}
+					onScroll={this.onScroll}
+				>
+					{chat.messages.map( ( msg, idx ) => (<div className={msg.unread ? 'chatmessage unread' : 'chatmessage'} key={idx}>
+						<span className="chattime">{msg.time}</span> - <span className="chatuser">{msg.user}:&nbsp;</span>
+						<span>{msg.content}</span>
+						<hr style={{ marginTop: 3, marginBottom: 3 }} />
+					</div>) )}
+				</div>
+				<TextArea rows={2} onChange={this.changedText} defaultValue={this.state.value} />
+				{ this.state.value === '' ?
+					<Button variant="outline-secondary">Send</Button> :
+					<Button onClick={this.sendMessage} variant="outline-secondary">Send</Button>
+				}
+			</div>
+		);
+	}
+
+	render() {
+		const { chat, left, width } = this.props;
+		return (
+			<div className="chat-outer-div" style={{
 				position: isElectron ? 'absolute' : 'fixed',
-				top: 0,
-				zIndex: 5,
-				fontSize: '12px',
-				fontFamily: 'monospace',
 				left: left,
-				width: width,
-				boxShadow: '1px 1px darkgrey'
+				width: width
 			}}>
 				<div
+					className="chat-div"
 					style={{
-						position: 'absolute',
-						height: '16px',
-						width: '100%',
-						top: 0,
-						backgroundColor: 'rgb(232, 232, 232)',
-						borderLeft: 'solid 1px darkgrey',
-						borderBottom: 'solid 1px darkgrey',
-						borderRight: 'solid 1px darkgrey',
-						paddingLeft: '5px',
-						cursor: 'pointer',
 						opacity: this.state.opened ? 1.0 : 0.7
 					}}
 					ref={( chat ) => { this.chat = chat; }}
-					onMouseOver={this.onMouseOver.bind( this )}
-					onMouseOut={this.onMouseOut.bind( this )}
-					onClick={this.toggleChat.bind( this )}
+					onMouseOver={this.onMouseOver}
+					onMouseOut={this.onMouseOut}
+					onClick={this.toggleChat}
 				>{chat.name}
-					<span className="presence" style={{
-						width: '10px',
-						marginLeft: '6px',
-						height: '10px',
-						bottom: '4px',
-						backgroundColor: 'darkorange',
-						position: 'absolute',
-						borderRadius: '50%',
-						boxShadow: '0px 0px 3px darkgrey',
+					<span className="chat-presence" style={{
 						display: this.state.hasNews ? 'inline' : 'none'
 					}} />
 					<span className="chatexit" onClick={this.closeChat}>X</span>
 				</div>
-				<OverlayTrigger trigger={[ 'hover', 'focus' ]} placement="bottom" overlay={userlistPopover}>
-					<div
-						style={{
-							position: 'relative',
-							height: '16px',
-							marginTop: '16px',
-							width: '100%',
-							backgroundColor: 'whitesmoke',
-							borderLeft: 'solid 1px darkgrey',
-							borderBottom: 'solid 1px darkgrey',
-							borderRight: 'solid 1px darkgrey',
-							paddingLeft: '5px',
-							overflow: 'hidden',
-							display: this.state.opened ? 'block' : 'none'
-						}}
-					>
-						{chat.members.map( ( member, idx ) => {
-							return <span key={idx}>{member.name}{ idx !== chat.members.length-1 ? ', ' : null }</span>;
-						})}
-					</div>
-				</OverlayTrigger>
-				<div
-					style={{
-						backgroundColor: 'white',
-						top: '32px',
-						borderLeft: 'solid 1px darkgrey',
-						borderBottom: 'solid 1px darkgrey',
-						borderRight: 'solid 1px darkgrey',
-						height: '250px',
-						display: this.state.opened ? 'block' : 'none'
-					}}
-				>
-					<div
-						ref={( chatbody ) => { this.chatbody = chatbody; }}
-						style={{
-							height: 196,
-							overflowY: 'scroll',
-							paddingLeft: '3px',
-							paddingRight: '3px',
-							paddingTop: '3px'
-						}}
-						onScroll={this.onScroll}
-					>
-						{chat.messages.map( ( msg, idx ) => (<div className={msg.unread ? 'chatmessage unread' : 'chatmessage'} key={idx}>
-							<span className="chattime">{msg.time}</span> - <span className="chatuser">{msg.user}:&nbsp;</span>
-							<span>{msg.content}</span>
-							<hr style={{ marginTop: 3, marginBottom: 3 }} />
-						</div>) )}
-					</div>
-					<FormGroup>
-						<InputGroup>
-							<TextArea rows={2} onChange={this.changedText} defaultValue={this.state.value} />
-							{ this.state.value === '' ?
-								<InputGroup.Addon
-									className="sendbutton"
-								>Send</InputGroup.Addon> :
-								<InputGroup.Addon
-									className="sendbutton"
-									onClick={this.sendMessage}
-								>Send</InputGroup.Addon>
-							}
-						</InputGroup>
-					</FormGroup>
-				</div>
+				{this.renderMembers()}
+				{this.renderChatBody()}
 			</div>
 		);
 	}

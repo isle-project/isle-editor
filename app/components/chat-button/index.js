@@ -27,22 +27,6 @@ class ChatButton extends Component {
 		this.state = {
 			opened: false
 		};
-
-		this.onClick = () => {
-			const session = this.context;
-			let opened = this.state.opened;
-			this.setState({
-				opened: !opened
-			}, () => {
-				if ( !opened ) {
-					debug( 'Should join chat...' );
-					session.joinChat( this.props.for );
-				} else {
-					debug( 'Should leave chat...' );
-					session.leaveChat( this.props.for );
-				}
-			});
-		};
 	}
 
 	componentDidMount() {
@@ -74,13 +58,29 @@ class ChatButton extends Component {
 		this.unsubscribe();
 	}
 
+	handleClick = () => {
+		const session = this.context;
+		let opened = this.state.opened;
+		this.setState({
+			opened: !opened
+		}, () => {
+			if ( !opened ) {
+				debug( `Should join chat for component with id '${this.props.for}'...` );
+				session.joinChat( this.props.for );
+			} else {
+				debug( `Should leave chat for component with id '${this.props.for}'...` );
+				session.leaveChat( this.props.for );
+			}
+		});
+	}
+
 	render() {
 		return (
 			<Gate user>
 				<Button
 					variant="primary"
 					size="sm"
-					onClick={this.onClick}
+					onClick={this.handleClick}
 				>{this.state.opened ? 'Leave Chat' : 'Join Chat' }
 				</Button>
 			</Gate>

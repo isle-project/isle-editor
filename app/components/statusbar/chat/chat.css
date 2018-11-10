@@ -1,3 +1,65 @@
+.chat-outer-div {
+	top: 0;
+	z-index: 5;
+	font-size: 12px;
+	font-family: monospace;
+	box-shadow: 1px 1px darkgrey
+}
+
+.chat-div {
+	position: absolute;
+	height: 16px;
+	width: 100%;
+	top: 0;
+	background-color: rgb(232, 232, 232);
+	border-left: solid 1px darkgrey;
+	border-bottom: solid 1px darkgrey;
+	border-right: solid 1px darkgrey;
+	padding-left: 5px;
+	cursor: pointer;
+}
+
+.chat-presence {
+	width: 10px;
+	margin-left: 6px;
+	height: 10px;
+	bottom: 4px;
+	background-color: darkorange;
+	position: absolute;
+	border-radius: 50%;
+	box-shadow: 0px 0px 3px darkgrey;
+}
+
+.chat-members {
+	position: relative;
+	height: 16px;
+	margin-top: 16px;
+	width: 100%;
+	background-color: whitesmoke;
+	border-left: solid 1px darkgrey;
+	border-bottom: solid 1px darkgrey;
+	border-right: solid 1px darkgrey;
+	padding-left: 5px;
+	overflow: hidden;
+}
+
+.chat-body {
+	height: 196;
+	overflow-y: scroll;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 3px;
+}
+
+.chat-body-outer {
+	background-color: white;
+	top: 32px;
+	border-left: solid 1px darkgrey;
+	border-bottom: solid 1px darkgrey;
+	border-right: solid 1px darkgrey;
+	height: 250px;
+}
+
 #Lesson .chatmessage {
 	white-space: pre-wrap;
 	font-family: Arial, Helvetica, sans-serif;
@@ -23,13 +85,4 @@
 
 #Lesson .chatexit:hover {
 	background: lightcoral;
-}
-
-#Lesson .sendbutton {
-	background: gainsboro;
-	cursor: pointer;
-}
-
-#Lesson .sendbutton:hover {
-	background: rgb(130, 224, 160);
 }
