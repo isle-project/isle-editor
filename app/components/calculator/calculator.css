@@ -1,0 +1,11 @@
+#calc_panel {
+	display: flex;
+}
+
+.calc_div {
+	float: right;
+}
+
+.button_row {
+	size: md;
+}

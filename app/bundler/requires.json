@@ -4,6 +4,7 @@
 	"BeaconTooltip": "components/beacon-tooltip",
 	"Button": "react-bootstrap/lib/Button",
 	"Card": "react-bootstrap/lib/Card",
+	"Calculator": "components/calculator",
 	"CheckboxInput": "components/input/checkbox",
 	"Clock": "components/clock",
 	"ColorPicker": "components/color-picker",
