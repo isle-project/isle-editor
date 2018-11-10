@@ -72,6 +72,7 @@ const createScope = ( session ) => {
 		Accordion: Loadable( () => import( 'components/accordion' ) ),
 		BeaconTooltip: Loadable( () => import( 'components/beacon-tooltip' ) ),
 		CheckboxInput: CheckboxInput,
+		Calculator: Loadable( () => import( 'components/calculator' ) ),
 		Clock: Loadable( () => import( 'components/clock' ) ),
 		ColorPicker: Loadable( () => import( 'components/color-picker' ) ),
 		Dashboard,
