@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Container from 'react-bootstrap/lib/Container';
@@ -95,6 +96,24 @@ function getBins( data ) {
 	return out;
 }
 
+function getDistributionKey(dist) {
+	if ( dist === 'uniform' ) {
+		return 1;
+	} else if ( dist === 'exponential' ) {
+		return 2;
+	}
+	return 3;
+}
+
+function initHandleSelect(dist) {
+	if ( dist === 'uniform' ) {
+		return <TeX raw={'\\text{Uniform}(0,1)'} />;
+	} else if ( dist === 'exponential' ) {
+		return <TeX raw={'\\text{Exponential}(1)'} />;
+	}
+	return <TeX raw={'\\text{Normal}(0,1)'} />;
+}
+
 
 // MAIN //
 
@@ -117,8 +136,8 @@ class ContinuousCLT extends Component {
 			stdevXBars: null,
 			layout: [],
 			enlarged: [],
-			activeDistribution: 1,
-			distFormula: <TeX raw="\text{Uniform}(0,1)" />,
+			activeDistribution: getDistributionKey(props.distributions[0]),
+			distFormula: initHandleSelect(props.distributions[0]),
 			overlayNormal: false
 		};
 	}
@@ -368,9 +387,9 @@ class ContinuousCLT extends Component {
 				<Row>
 					<Col md={6}>
 						<Tabs activeKey={this.state.activeDistribution} id="distribution-tabs" onSelect={this.handleSelect} >
-							<Tab eventKey={1} title="Uniform">{uniform}</Tab>
-							<Tab eventKey={2} title="Exponential">{exponential}</Tab>
-							<Tab eventKey={3} title="Normal">{normal}</Tab>
+							{this.props.distributions.includes('uniform') ? <Tab eventKey={1} title="Uniform">{uniform}</Tab> : null}
+							{this.props.distributions.includes('exponential') ? <Tab eventKey={2} title="Exponential">{exponential}</Tab> : null}
+							{this.props.distributions.includes('normal') ? <Tab eventKey={3} title="Normal">{normal}</Tab>: null}
 						</Tabs>
 					</Col>
 					<Col md={6}>
@@ -515,6 +534,15 @@ class ContinuousCLT extends Component {
 	}
 }
 
+// PROPERTIES //
+
+ContinuousCLT.defaultProps = {
+	distributions: ['uniform', 'exponential', 'normal']
+};
+
+ContinuousCLT.propTypes = {
+	distributions: PropTypes.arrayOf(PropTypes.string)
+};
 
 // EXPORTS //
 

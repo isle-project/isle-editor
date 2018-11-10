@@ -61,7 +61,7 @@ class Standardize extends Component {
 		let eqn2 = '';
 		let current = newMarked[ newMarked.length-1 ];
 		let res = roundn( ( current - this.state.mean ) / this.state.sd, -4 );
-		eqn2 = `z = \\frac{${current}-${roundn( this.state.mean, -2 )}}{${roundn( this.state.sd, -2 )}} = ${res}`;
+		eqn2 = `z = (${current}-${roundn( this.state.mean, -2 )}) / (${roundn( this.state.sd, -2 )}) = ${res}`;
 
 		let unstandardizedLines = newMarked.map( ( x, id ) => {
 			return ( <VictoryLine
@@ -93,7 +93,7 @@ class Standardize extends Component {
 	}
 
 	generateState( mean, sd ) {
-		const eqn = `Z = \\frac{X-${roundn( mean, -2 )}}{${roundn( sd, -2 )}}`;
+		const eqn = `Z = (X-${roundn( mean, -2 )}) / ${roundn( sd, -2 )}`;
 		const data = X.map( x => {
 			return {
 				x: x,
