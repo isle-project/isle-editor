@@ -121,7 +121,7 @@ function fixAtTwo(elem) {
 }
 
 // Function to ensure tha all data is rounded to 3 decimal places
-function makeVisibleData(arr, display = 7) {
+function makeVisibleData(arr, display = 100) {
 	var dispStr = arr.map(fixAtTwo).slice(0, display).join(', ');
 	if ( arr.length <= display ) {
 		return dispStr;
@@ -479,7 +479,7 @@ class ContinuousCLT extends Component {
 						}
 					]
 				}} removeButtons toggleFullscreen={false} /> :
-				<span>Please draw at least two samples.</span>
+				<p>Please draw at least two samples.</p>
 			}
 			<CheckboxInput legend="Overlay normal density" onChange={( value ) => {
 				this.setState({
@@ -498,7 +498,10 @@ class ContinuousCLT extends Component {
 					&nbsp;{this.state.stdevXBars.toFixed( 3 )}
 				</p> : null
 			}
-			<span style={{ 'fontFamily': 'monospace' }}>{makeVisibleData(this.state.xbars)}</span>
+			<p>
+				<label><TeX raw="\bar{x}" /> Values </label>
+				{ this.state.xbars.length > 0 ? <pre style={{ 'fontFamily': 'monospace' }}>{makeVisibleData(this.state.xbars)}</pre> : null }
+			</p>
 		</Card> );
 	}
 
@@ -533,7 +536,7 @@ class ContinuousCLT extends Component {
 						</Col>
 					</Row>
 					<Row>
-						<h1>Probability Calculations</h1>
+						<h3 className="center">Probability Calculations</h3>
 					</Row>
 					<Row>
 						<Col md={6}>
