@@ -1,8 +1,8 @@
 .js-shell {
 	position: relative;
-	width: 99.9%;
+	width: 95%;
 	height: auto;
-	margin-left: 0%;
+	margin: 0 auto;
 	font-family: monospace;
 	font-size: 18px;
 	text-align: left;

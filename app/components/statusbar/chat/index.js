@@ -8,9 +8,10 @@ import Popover from 'react-bootstrap/lib/Popover';
 import Button from 'react-bootstrap/lib/Button';
 import logger from 'debug';
 import OverlayTrigger from 'components/overlay-trigger';
-import TextArea from 'components/input/text-area';
+import FormControl from 'react-bootstrap/lib/FormControl';
 import scrollTo from 'utils/scroll-to';
 import isElectron from 'utils/is-electron';
+import noop from '@stdlib/utils/noop';
 import SessionContext from 'session/context.js';
 import './chat.css';
 
@@ -76,9 +77,9 @@ class Chat extends Component {
 		});
 	}
 
-	changedText = ( value ) => {
+	changedText = ( event ) => {
 		this.setState({
-			value,
+			value: event.target.value,
 			hasNews: false
 		});
 	}
@@ -89,13 +90,13 @@ class Chat extends Component {
 	}
 
 	onMouseOver = () => {
-		if ( !this.opened ) {
+		if ( !this.state.opened ) {
 			this.chat.style.opacity = this.state.opened ? 0.7 : 1.0;
 		}
 	}
 
 	onMouseOut = () => {
-		if ( !this.opened ) {
+		if ( !this.state.opened ) {
 			this.chat.style.opacity = this.state.opened ? 1.0 : 0.7;
 		}
 	}
@@ -146,15 +147,19 @@ class Chat extends Component {
 				>
 					{chat.messages.map( ( msg, idx ) => (<div className={msg.unread ? 'chatmessage unread' : 'chatmessage'} key={idx}>
 						<span className="chattime">{msg.time}</span> - <span className="chatuser">{msg.user}:&nbsp;</span>
-						<span>{msg.content}</span>
+						<span className="chatmessage-content">{msg.content}</span>
 						<hr style={{ marginTop: 3, marginBottom: 3 }} />
 					</div>) )}
 				</div>
-				<TextArea rows={2} onChange={this.changedText} defaultValue={this.state.value} />
-				{ this.state.value === '' ?
-					<Button variant="outline-secondary">Send</Button> :
-					<Button onClick={this.sendMessage} variant="outline-secondary">Send</Button>
-				}
+				<FormControl
+					as="textarea"
+					className="chat-textarea" rows={2} onChange={this.changedText} value={this.state.value}
+				/>
+				<Button
+					className="center" size="sm" variant="secondary"
+					style={{ marginTop: '4px', marginBottom: '4px' }}
+					onClick={this.state.value === '' ? noop : this.sendMessage}
+				>Send Message</Button>
 			</div>
 		);
 	}

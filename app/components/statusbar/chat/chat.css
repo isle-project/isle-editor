@@ -1,21 +1,22 @@
 .chat-outer-div {
 	top: 0;
 	z-index: 5;
-	font-size: 12px;
-	font-family: monospace;
-	box-shadow: 1px 1px darkgrey
+	font-size: 13px;
+	font-family: Open Sans;
+	box-shadow: 2px 2px 10px darkslategrey;
 }
 
 .chat-div {
 	position: absolute;
-	height: 16px;
+	height: 20px;
 	width: 100%;
 	top: 0;
-	background-color: rgb(232, 232, 232);
+	background-color:rgb(108, 117, 125);
 	border-left: solid 1px darkgrey;
 	border-bottom: solid 1px darkgrey;
 	border-right: solid 1px darkgrey;
 	padding-left: 5px;
+	color: white;
 	cursor: pointer;
 }
 
@@ -32,8 +33,8 @@
 
 .chat-members {
 	position: relative;
-	height: 16px;
-	margin-top: 16px;
+	height: 20px;
+	margin-top: 20px;
 	width: 100%;
 	background-color: whitesmoke;
 	border-left: solid 1px darkgrey;
@@ -44,7 +45,7 @@
 }
 
 .chat-body {
-	height: 196;
+	height: 196px;
 	overflow-y: scroll;
 	padding-left: 3px;
 	padding-right: 3px;
@@ -57,32 +58,45 @@
 	border-left: solid 1px darkgrey;
 	border-bottom: solid 1px darkgrey;
 	border-right: solid 1px darkgrey;
-	height: 250px;
 }
 
-#Lesson .chatmessage {
+.chatmessage {
 	white-space: pre-wrap;
-	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-family: Open Sans;
 }
 
-#Lesson .unread {
+.chatmessage-content {
+	word-wrap:break-word;
+}
+
+.unread {
 	background: linen;
 }
 
-#Lesson .chatuser {
+.chatuser {
 	color: steelblue;
 	font-weight: 600;
 }
 
-#Lesson .chatexit {
+.chatexit {
 	float: right;
 	width: 16px;
-	height: 16px;
+	height: 20px;
 	background: darkgrey;
 	text-align: center;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-#Lesson .chatexit:hover {
+.chat-textarea {
+	font-size: 13px;
+	line-height: 16px;
+}
+
+.chat-textarea:focus {
+	background-color: ghostwhite;
+}
+
+.chatexit:hover {
 	background: lightcoral;
 }
