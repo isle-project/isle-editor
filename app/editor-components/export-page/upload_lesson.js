@@ -176,7 +176,7 @@ class UploadLesson extends Component {
 					spinning: false,
 					showResponseModal: true,
 					modalMessage: msg,
-					dirname: randomstring()
+					dirname: randomstring(16, 65, 90)
 				});
 			}
 		});
