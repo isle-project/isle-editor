@@ -27,6 +27,7 @@ const DEFAULT_DISP_MATH_DELIMITERS = [
 	/\$\$([\s\S]*?)\$\$/g,
 	/\\\[([\s\S]*?)\\\]/g
 ];
+const RE_RAW_ATTRIBUTE = /raw *= *("[^"]*"|{`[^`]*`})/g;
 
 
 // MAIN //
@@ -39,8 +40,13 @@ function toMarkdown( str ) {
 		str = str.replace( regexp, '<TeX raw="$1" />' );
 	});
 	DEFAULT_DISP_MATH_DELIMITERS.forEach( regexp => {
-		str = str.replace( regexp, '<TeX raw="$1" displayMode />' );
+		str = replace( str, regexp, '<TeX raw="$1" displayMode />' );
 	});
+	// Escape backslashes in raw attributes tags:
+	const escaper = ( match, p1 ) => {
+		return 'raw='+replace( p1, '\\', '\\\\' );
+	};
+	str = replace( str, RE_RAW_ATTRIBUTE, escaper );
 
 	const arr = tokenizer.parse( str );
 	for ( let i = 0; i < arr.length; i++ ) {

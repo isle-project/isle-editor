@@ -46,7 +46,6 @@ import VoiceInput from 'components/input/voice';
 import transformToPresentation from 'utils/transform-to-presentation';
 import SPECTACLE_THEME from 'components/spectacle/theme.json';
 import factor from 'utils/factor-variable';
-import replace from '@stdlib/string/replace';
 import './preview.css';
 
 
@@ -60,7 +59,6 @@ const RE_LINES = /\r?\n/g;
 const RE_EMPTY_LINES = /\r?\n(?=\r?\n)/g;
 const RE_ANSI = /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)?\u0007)|(?:(?:\d{1,4}(?:;\d{0,4})*)?[\dA-PR-TZcf-ntqry=><~]))/g; // eslint-disable-line no-control-regex
 const RE_OFFENDING_LINE = /> \d+ \| ([^\n{]*)/;
-const RE_RAW_ATTRIBUTE = /raw *= *("[^"]*"|{`[^`]*`})/g;
 
 const createScope = ( session ) => {
 	const SCOPE = {
@@ -328,11 +326,6 @@ class Preview extends Component {
 			noEmptyLines += 1;
 			code = '<StatusBar className="fixedPos" />\n' + code;
 		}
-		// Escape backslashes in raw attributes tags:
-		const escaper = ( match, p1 ) => {
-			return 'raw='+replace( p1, '\\', '\\\\' );
-		};
-		code = replace( code, RE_RAW_ATTRIBUTE, escaper );
 
 		// Prepend empty lines so line numbers in error stack traces match:
 		code = repeat( '\n', noEmptyLines ) + code;
