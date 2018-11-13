@@ -30,10 +30,15 @@ const DEFAULT_DISP_MATH_DELIMITERS = [
 const RE_RAW_ATTRIBUTE = /raw *= *("[^"]*"|{`[^`]*`})/g;
 const RE_BACKSLASH = /(^|[^\\])\\($|[^\\])/g;
 
+// Escape backslashes in raw attributes tags:
+const escaper = ( match, p1 ) => {
+	return 'raw='+replace( p1, RE_BACKSLASH, '$1\\\\$2' );
+};
+
 
 // MAIN //
 
-function toMarkdown( str ) {
+function toMarkdown( str, escapeBackslash ) {
 	const tokenizer = new Tokenizer();
 
 	// Replace math delimiters by ISLE component
@@ -43,11 +48,9 @@ function toMarkdown( str ) {
 	DEFAULT_DISP_MATH_DELIMITERS.forEach( regexp => {
 		str = replace( str, regexp, '<TeX raw="$1" displayMode />' );
 	});
-	// Escape backslashes in raw attributes tags:
-	const escaper = ( match, p1 ) => {
-		return 'raw='+replace( p1, RE_BACKSLASH, '$1\\\\$2' );
-	};
-	str = replace( str, RE_RAW_ATTRIBUTE, escaper );
+	if ( escapeBackslash ) {
+		str = replace( str, RE_RAW_ATTRIBUTE, escaper );
+	}
 
 	const arr = tokenizer.parse( str );
 	for ( let i = 0; i < arr.length; i++ ) {
