@@ -10,7 +10,6 @@ Fall
 * **Calculator parser**
 * Build mosiac plot
 * LaTeX Equation in the explorer for the pdf
-* Data transformation: generate a new column of transformed variables. 
 * Minification and bundling times
 * Ability to select multiple smoothing values / change them in real-time (similarly, for histogram ability to choose binwidth)
 * Ability to set font family for reports
@@ -27,16 +26,12 @@ Fall
 
 Priority
 ====
-~~1. Instructor Notes~~
-    A. Changed props to take array of what is needed
-        Still have VoiceControl as a prop because we dont have it working
 2. Parser for Calculator.
 3. Instructor view
 
 General
 ====
 * Make dynamic titling for data-explorer
-* When loading .txt files in the pre-amble, automatically convert it to a string
 
 LONG-TERM
 ===
