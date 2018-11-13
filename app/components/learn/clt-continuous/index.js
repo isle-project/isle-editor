@@ -96,12 +96,13 @@ function getBins( data ) {
 	return out;
 }
 
-function getDistributionKey(dist) {
+function getDistributionKey( dist ) {
 	if ( dist === 'uniform' ) {
 		return 1;
 	} else if ( dist === 'exponential' ) {
 		return 2;
 	}
+	// Case: Normal distribution
 	return 3;
 }
 
@@ -115,13 +116,15 @@ function initHandleSelect(dist) {
 }
 
 // Function to round an element to 2 places
-function fixAtTwo(elem) {
-	return elem.toFixed(2);
+function fixAtTwo( elem ) {
+	return elem.toFixed( 2 );
 }
 
 // Function to ensure tha all data is rounded to 3 decimal places
 function makeVisibleData(arr, display = 100) {
-	var dispStr = arr.map(fixAtTwo).slice(0, display).join(', ');
+	var dispStr = arr.map( fixAtTwo )
+		.slice(0, display)
+		.join( ', ' );
 	if ( arr.length <= display ) {
 		return dispStr;
 	}
@@ -150,8 +153,8 @@ class ContinuousCLT extends Component {
 			stdevXBars: null,
 			layout: [],
 			enlarged: [],
-			activeDistribution: getDistributionKey(props.distributions[0]),
-			distFormula: initHandleSelect(props.distributions[0]),
+			activeDistribution: getDistributionKey( props.distributions[0] ),
+			distFormula: initHandleSelect( props.distributions[0] ),
 			overlayNormal: false
 		};
 	}
@@ -171,7 +174,7 @@ class ContinuousCLT extends Component {
 			break;
 		}
 		this.setState({
-			activeDistribution: key,
+			activeDistribution: Number( key ),
 			distFormula: formula
 		});
 	}
@@ -245,7 +248,7 @@ class ContinuousCLT extends Component {
 		return enlargePlot;
 	}
 
-	generateSamples( times ) {
+	generateSamples = ( times ) => {
 		const histogram = this.state.histogram.slice();
 		const enlarged = this.state.enlarged.slice();
 		const xbars = this.state.xbars.slice();
@@ -324,7 +327,7 @@ class ContinuousCLT extends Component {
 	renderDistSelectionPanel() {
 		const exponential = <div>
 			<NumberInput legend="Rate parameter"
-				max={100} min={0.01} step={1} defaultValue={this.state.lambda}
+				max={100} min={0.01} step="any" defaultValue={this.state.lambda}
 				onChange={( lambda ) => {
 					let formula = <TeX raw={`\\text{Exponential}(${lambda})`} />;
 					this.setState({ 'lambda': lambda, 'distFormula': formula });
@@ -407,7 +410,7 @@ class ContinuousCLT extends Component {
 						</Tabs>
 					</Col>
 					<Col md={6}>
-						<label>Distribution: {this.state.distFormula}</label>
+						<label>Active Distribution: {this.state.distFormula}</label>
 						{populationParams}
 						<NumberInput
 							legend="Sample Size"
@@ -497,10 +500,10 @@ class ContinuousCLT extends Component {
 					&nbsp;{this.state.stdevXBars.toFixed( 3 )}
 				</p> : null
 			}
-			<p>
+			<div>
 				<label><TeX raw="\bar{x}" /> Values </label>
 				{ this.state.xbars.length > 0 ? <pre style={{ 'fontFamily': 'monospace' }}>{makeVisibleData(this.state.xbars)}</pre> : null }
-			</p>
+			</div>
 		</Card> );
 	}
 
@@ -562,7 +565,7 @@ ContinuousCLT.defaultProps = {
 };
 
 ContinuousCLT.propTypes = {
-	distributions: PropTypes.arrayOf(PropTypes.string)
+	distributions: PropTypes.arrayOf( PropTypes.string )
 };
 
 // EXPORTS //
