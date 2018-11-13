@@ -28,6 +28,7 @@ const DEFAULT_DISP_MATH_DELIMITERS = [
 	/\\\[([\s\S]*?)\\\]/g
 ];
 const RE_RAW_ATTRIBUTE = /raw *= *("[^"]*"|{`[^`]*`})/g;
+const RE_BACKSLASH = /(?:^|[^\\])\\(?:$|[^\\])/g;
 
 
 // MAIN //
@@ -44,7 +45,7 @@ function toMarkdown( str ) {
 	});
 	// Escape backslashes in raw attributes tags:
 	const escaper = ( match, p1 ) => {
-		return 'raw='+replace( p1, '\\', '\\\\' );
+		return 'raw='+replace( p1, RE_BACKSLASH, '\\\\' );
 	};
 	str = replace( str, RE_RAW_ATTRIBUTE, escaper );
 
