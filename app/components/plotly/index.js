@@ -9,6 +9,8 @@ import Plot from 'react-plotly.js';
 import Plotly from 'plotly.js';
 import randomstring from 'utils/randomstring';
 import isUndefined from '@stdlib/assert/is-undefined';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
+import deepEqual from '@stdlib/assert/deep-equal';
 import copy from '@stdlib/utils/copy';
 import SessionContext from 'session/context.js';
 import PlotlyIcons from './icons.js';
@@ -103,6 +105,18 @@ class Wrapper extends Component {
 			modeBarButtonsToRemove: this.props.removeButtons ? BUTTONS : [ 'sendDataToCloud', 'hoverClosestCartesian', 'hoverCompareCartesian' ],
 			modeBarButtonsToAdd: buttonsToAdd
 		};
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		const newState = {};
+		if ( !deepEqual( nextProps.layout, prevState.layout ) ) {
+			newState.oldLayout = copy( prevState.layout );
+			newState.layout = nextProps.layout;
+		}
+		if ( !isEmptyObject( newState ) ) {
+			return newState;
+		}
+		return null;
 	}
 
 	onInitialized = ( figure ) => {
