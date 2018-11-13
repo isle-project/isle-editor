@@ -97,6 +97,10 @@
 	background-color: ghostwhite;
 }
 
+.chat-textarea:hover:not(:focus) {
+	background-color: #f3f2f3;
+}
+
 .chatexit:hover {
 	background: lightcoral;
 }
