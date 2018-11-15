@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import Button from 'react-bootstrap/lib/Button';
 import shuffle from '@stdlib/random/shuffle';
+import isString from '@stdlib/assert/is-string';
 import * as d3 from 'd3';
 import SolutionButton from 'components/solution-button';
 import ChatButton from 'components/chat-button';
@@ -12,6 +13,7 @@ import HintButton from 'components/hint-button';
 import Tooltip from 'components/tooltip';
 import ResponseVisualizer from 'components/response-visualizer';
 import FeedbackButtons from 'components/feedback';
+import Text from 'components/text';
 import SessionContext from 'session/context.js';
 import OptionsList from './options_list.js';
 import './match_list_question.css';
@@ -50,6 +52,7 @@ function createColorScale( length ) {
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {Array} colorScale - if set, the supplied colors are used for the tiles
+* @property {string} shuffle - specifies whether to shuffle the `left`, `right`, or `both` columns whose elements have to be matched
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {string} submissionMsg - notification displayed when the learner first submits his answer
 * @property {string} resubmissionMsg - notification displayed for all submissions after the first one
@@ -189,7 +192,7 @@ class MatchListQuestion extends Component {
 		const solutionButton = <SolutionButton onClick={this.toggleSolution} disabled={!this.state.submitted} />;
 		return (
 			<div className="match-list-question-container" >
-				<span className="question">{question}</span>
+				{ isString( question ) ? <Text inline className="question" raw={question} /> : <span className="question">{question}</span> }
 				<i style={{ fontSize: '0.8rem' }}>Match the elements from the left-hand side with those on the right-hand side by clicking on them.</i>
 				<div className="match-list-question-lists">
 					<OptionsList
@@ -197,6 +200,7 @@ class MatchListQuestion extends Component {
 						onSelect={onSelectA}
 						answers={answers}
 						active={this.state.selectedA}
+						shuffle={this.props.shuffle === 'left' || this.props.shuffle === 'both'}
 					/>
 					<OptionsList
 						options={elements.map( q => q.b )}
@@ -204,6 +208,7 @@ class MatchListQuestion extends Component {
 						answers={answers}
 						active={this.state.selectedB}
 						baseColor="rgb(250,250,255)"
+						shuffle={this.props.shuffle === 'right' || this.props.shuffle === 'both'}
 					/>
 				</div>
 				<div className="match-list-question-controls">
@@ -257,6 +262,7 @@ MatchListQuestion.defaultProps = {
 	feedback: false,
 	chat: false,
 	colorScale: null,
+	shuffle: 'both',
 	disableSubmitNotification: false,
 	submissionMsg: 'You have successfully submitted your answer.',
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
@@ -278,6 +284,7 @@ MatchListQuestion.propTypes = {
 	feedback: PropTypes.object,
 	chat: PropTypes.bool,
 	colorScale: PropTypes.array,
+	shuffle: PropTypes.oneOf([ 'left', 'right', 'both' ]),
 	disableSubmitNotification: PropTypes.bool,
 	submissionMsg: PropTypes.string,
 	resubmissionMsg: PropTypes.string,

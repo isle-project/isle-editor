@@ -46,7 +46,8 @@ class OptionsList extends Component {
 		const selected = Object.assign({}, optionStyle, {
 			backgroundColor: 'gainsboro'
 		});
-		this.options = this.options || this.shuffle( this.props.options );
+		const options = this.props.shuffle ? this.shuffle( this.props.options ) : this.props.options;
+		this.options = this.options || options;
 		const { active, onSelect, answers } = this.props;
 		return (
 			<ul style={{ flex: 1, listStyleType: 'none', padding: 0 }}>
@@ -85,7 +86,8 @@ OptionsList.propTypes = {
 	answers: PropTypes.array.isRequired,
 	baseColor: PropTypes.string,
 	onSelect: PropTypes.func.isRequired,
-	options: PropTypes.array.isRequired
+	options: PropTypes.array.isRequired,
+	shuffle: PropTypes.bool.isRequired
 };
 
 OptionsList.defaultProps = {
