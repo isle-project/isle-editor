@@ -31,6 +31,8 @@ const md = markdownIt({
 * Text component, which allows rendering of raw text as Markdown and enables voice control.
 *
 * @property {string} raw - text to be rendered
+* @property {boolean} inline - controls whether to render the Markdown as inline text
+* @property {string} className - class names
 * @property {Object} style - CSS inline styles
 * @property {string} voiceID - voice control identifier
 */
@@ -43,14 +45,14 @@ class Text extends Component {
 	}
 	render() {
 		const node = {
-			'__html': md.render( this.props.raw )
+			'__html': this.props.inline ? md.renderInline( this.props.raw ) : md.render( this.props.raw )
 		};
 		/* eslint-disable react/no-danger */
 		return (
-			<span style={this.props.style}>
+			<div className={this.props.className} style={this.props.style}>
 				<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
-				<span dangerouslySetInnerHTML={node}></span>
-			</span>
+				<div dangerouslySetInnerHTML={node}></div>
+			</div>
 		);
 		/* eslint-enable react/no-danger */
 	}
@@ -61,12 +63,16 @@ class Text extends Component {
 
 Text.defaultProps = {
 	raw: '',
+	className: '',
+	inline: false,
 	style: {},
 	voiceID: null
 };
 
 Text.propTypes = {
 	raw: PropTypes.string,
+	className: PropTypes.string,
+	inline: PropTypes.bool,
 	style: PropTypes.object,
 	voiceID: PropTypes.string
 };
