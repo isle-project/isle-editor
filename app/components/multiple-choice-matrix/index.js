@@ -52,7 +52,7 @@ class MultipleChoiceMatrix extends Component {
 	renderAnswerHeader() {
 		return (
 			<Form.Row>
-				<Col sm={6}></Col>
+				<Col sm={this.props.answers.length > 4 ? 4 : 6}></Col>
 				{this.props.answers.map( ( elem, idx ) => {
 					return ( <Col key={idx}>
 						<Form.Label>
@@ -151,7 +151,7 @@ class MultipleChoiceMatrix extends Component {
 		return this.props.questions.map( ( question, idx ) => {
 			return (
 				<Form.Row key={idx} >
-					<Col sm={6}>
+					<Col sm={this.props.answers.length > 4 ? 4 : 6}>
 						<Form.Label column >
 							{ isString( question ) ? <Text raw={question} /> : question }
 						</Form.Label>
@@ -174,7 +174,8 @@ class MultipleChoiceMatrix extends Component {
 					</Card.Header> : null
 				}
 				<Card.Body>
-					<Form onClick={this.props.type === 'checkbox' ? this.handleCheckboxClick : this.handleRadioClick}>
+					<i style={{ fontSize: '0.8rem' }}>For each row, {this.props.type === 'checkbox' ? 'click on all check boxes which apply' : 'pick an answer by clicking on the respective radio button'}.</i>
+					<Form style={{ marginTop: '12px' }} onClick={this.props.type === 'checkbox' ? this.handleCheckboxClick : this.handleRadioClick}>
 						{this.renderAnswerHeader()}
 						{this.renderQuestionRows()}
 					</Form>
