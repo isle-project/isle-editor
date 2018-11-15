@@ -13,11 +13,12 @@ import OverlayTrigger from 'components/overlay-trigger';
 *
 * @property {string} tooltip - tooltip content
 * @property {string} placement - direction of the tooltip
+* @property {boolean} show - controls whether the tooltip shall be displayed
 */
 class Wrapper extends Component {
 	render() {
 		const id = this.props.id;
-		if ( !this.props.tooltip ) {
+		if ( !this.props.tooltip || !this.props.show ) {
 			return this.props.children;
 		}
 		const tooltip = <Tooltip id={id} >{this.props.tooltip}</Tooltip>;
@@ -34,6 +35,7 @@ class Wrapper extends Component {
 
 Wrapper.propTypes = {
 	id: PropTypes.string,
+	show: PropTypes.bool,
 	tooltip: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.node
@@ -44,6 +46,7 @@ Wrapper.propTypes = {
 Wrapper.defaultProps = {
 	id: 'tooltip',
 	placement: 'right',
+	show: true,
 	tooltip: null
 };
 

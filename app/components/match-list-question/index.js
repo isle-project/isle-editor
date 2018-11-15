@@ -9,6 +9,7 @@ import * as d3 from 'd3';
 import SolutionButton from 'components/solution-button';
 import ChatButton from 'components/chat-button';
 import HintButton from 'components/hint-button';
+import Tooltip from 'components/tooltip';
 import ResponseVisualizer from 'components/response-visualizer';
 import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
@@ -189,6 +190,7 @@ class MatchListQuestion extends Component {
 		return (
 			<div className="match-list-question-container" >
 				<span className="question">{question}</span>
+				<i style={{ fontSize: '0.8rem' }}>Match the elements from the left-hand side with those on the right-hand side by clicking on them.</i>
 				<div className="match-list-question-lists">
 					<OptionsList
 						options={elements.map( q => q.a )}
@@ -205,14 +207,22 @@ class MatchListQuestion extends Component {
 					/>
 				</div>
 				<div className="match-list-question-controls">
-					<Button
-						className="submit-button"
-						variant="primary"
-						size="sm"
-						onClick={this.handleSubmit}
-						disabled={answers.length !== elements.length}>
-						{ !this.state.submitted ? 'Submit' : 'Resubmit' }
-					</Button>
+					<Tooltip id={`${this.props.id}_tooltip`} tooltip="You may submit after you have matched all elements from the left-hand side with the corresponding elements from the right-hand side" >
+						<div style={{ display: 'inline-block' }}>
+							<Button
+								className="submit-button"
+								variant="primary"
+								size="sm"
+								onClick={this.handleSubmit}
+								style={{
+									pointerEvents: 'none'
+								}}
+								disabled={answers.length !== elements.length}
+							>
+								{ !this.state.submitted ? 'Submit' : 'Resubmit' }
+							</Button>
+						</div>
+					</Tooltip>
 					{ this.props.showSolution ? solutionButton : null }
 					{ nHints > 0 ?
 						<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
