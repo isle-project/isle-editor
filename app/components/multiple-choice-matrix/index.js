@@ -192,7 +192,9 @@ class MultipleChoiceMatrix extends Component {
 						>{ this.state.submitted ? 'Resubmit' : 'Submit'}</Button>
 						<ResponseVisualizer
 							id={this.props.id}
-							dataType="text"
+							data={{
+								type: 'matrix'
+							}}
 							info="MULTIPLE_CHOICE_MATRIX_SUBMISSION"
 						/>
 					</div>

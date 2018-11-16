@@ -6,6 +6,7 @@ import logger from 'debug';
 import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
+import isArray from '@stdlib/assert/is-array';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import lowercase from '@stdlib/string/lowercase';
 import removeLast from '@stdlib/string/remove-last';
@@ -159,7 +160,7 @@ class FullscreenActionDisplay extends Component {
 				<Plotly
 					data={[
 						{
-							y: this.props.categories,
+							y: this.props.data.levels,
 							x: this.props.counts,
 							type: 'bar',
 							orientation: 'h'
@@ -171,7 +172,9 @@ class FullscreenActionDisplay extends Component {
 							title: 'Count'
 						},
 						yaxis: {
-							title: 'Value'
+							title: 'Value',
+							categoryorder: 'array',
+							categoryarray: this.props.data.levels
 						},
 						margin: {
 							l: 250
@@ -207,13 +210,39 @@ class FullscreenActionDisplay extends Component {
 		);
 	}
 
+	renderMatrix() {
+		const table = [];
+		return (
+			<div style={{ height: 0.75 * window.innerHeight }} >
+				{this.props.actions}
+			</div>
+		);
+	}
+
 	renderListGroupItem = ( index, key ) => {
 		debug( `Rendering item at position ${index}...` );
 		const elem = this.state.filtered[ index ];
+		let value = elem.value;
+		if ( this.props.data.levels ) {
+			if ( isArray( value ) ) {
+				let str = '';
+				value.forEach( ( v, idx ) => {
+					if ( v ) {
+						if ( str ) {
+							str += ', ';
+						}
+						str += this.props.data.levels[ idx ];
+					}
+				});
+				value = str || 'None';
+			} else {
+				value = this.props.data.levels[ value ] || 'None';
+			}
+		}
 		const higlighter = <Highlighter
 			searchWords={this.state.searchwords}
 			autoEscape={true}
-			textToHighlight={String( elem.value )}
+			textToHighlight={String( value )}
 		/>;
 		return ( <ListGroupItem key={key}>
 			{ this.props.showExtended ?
@@ -247,16 +276,20 @@ class FullscreenActionDisplay extends Component {
 	renderPlot() {
 		let plot;
 		if ( this.props.actions.length > 0 ) {
-			switch ( this.props.dataType ) {
+			switch ( this.props.data.type ) {
 				case 'text':
 				default:
 					plot = this.renderWordCloud();
-				break;
+					break;
 				case 'factor':
 					plot = this.renderBarchart();
-				break;
+					break;
 				case 'number':
 					plot = this.renderHistogram();
+					break;
+				case 'matrix':
+					plot = this.renderMatrix();
+					break;
 			}
 		}
 		return plot;
@@ -351,10 +384,9 @@ class FullscreenActionDisplay extends Component {
 FullscreenActionDisplay.propTypes = {
 	actions: PropTypes.array.isRequired,
 	actionLabel: PropTypes.string,
-	categories: PropTypes.array.isRequired,
+	data: PropTypes.object.isRequired,
 	componentID: PropTypes.string.isRequired,
 	counts: PropTypes.array.isRequired,
-	dataType: PropTypes.string.isRequired,
 	deleteFactory: PropTypes.func.isRequired,
 	onPeriodChange: PropTypes.func.isRequired,
 	show: PropTypes.bool.isRequired,

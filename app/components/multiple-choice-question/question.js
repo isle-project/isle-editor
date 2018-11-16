@@ -15,7 +15,9 @@ const Question = ( props ) => {
 	return ( <span className="question">
 		{content}
 		<br />
-		<span style={{ fontSize: '18px' }}>{props.task}:</span>
+		<i style={{ fontSize: '0.8rem' }} >
+			{props.task}:
+		</i>
 	</span> );
 };
 

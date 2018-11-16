@@ -404,7 +404,10 @@ class MultipleChoiceQuestion extends Component {
 						<ResponseVisualizer
 							buttonLabel="Answers"
 							id={id}
-							dataType="factor"
+							data={{
+								type: 'factor',
+								levels: this.props.answers.map( x => x.content )
+							}}
 							info="MULTIPLE_CHOICE_SUBMISSION"
 						/>
 						{ this.props.feedback ? <FeedbackButtons

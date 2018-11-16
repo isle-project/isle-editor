@@ -144,7 +144,9 @@ class OrderQuestion extends Component {
 					</div>
 					<ResponseVisualizer
 						id={this.props.id}
-						dataType="text"
+						data={{
+							type: 'text'
+						}}
 						info="ORDER_QUESTION_SUBMISSION"
 					/>
 				</Card.Body>

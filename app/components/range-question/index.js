@@ -257,7 +257,9 @@ class RangeQuestion extends Component {
 					<ResponseVisualizer
 						buttonLabel="Answers"
 						id={this.props.id}
-						dataType="number"
+						data={{
+							type: 'number'
+						}}
 						info="RANGE_QUESTION_SUBMIT_ANSWER"
 					/>
 				</Card.Body>

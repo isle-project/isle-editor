@@ -8,9 +8,7 @@ import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import Modal from 'react-bootstrap/lib/Modal';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
-import isString from '@stdlib/assert/is-string';
-import tabulate from '@stdlib/utils/tabulate';
-import trim from '@stdlib/string/trim';
+import isArray from '@stdlib/assert/is-array';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import Gate from 'components/gate';
@@ -27,7 +25,7 @@ import extractValue from './extract_value.js';
 *
 * @property {string} buttonLabel - label of button to pull of action display
 * @property {Object} buttonStyle - button CSS styles
-* @property {string} dataType - type of data to visualize
+* @property {Object} data - data type information to visualize
 * @property {string} showID - whether to display the component ID
 * @property {string} variant - button style variant
 * @property {string} success - action identifier for success
@@ -44,7 +42,6 @@ class ResponseVisualizer extends Component {
 			nDanger: 0,
 			nInfo: 0,
 			counts: [],
-			categories: [],
 			showActions: false,
 			showExtended: false,
 			showDeleteModal: false,
@@ -126,16 +123,15 @@ class ResponseVisualizer extends Component {
 				newState.nInfo = this.state.nInfo + 1;
 			}
 		}
-		if ( this.props.dataType === 'text' ) {
+		if ( this.props.data.type === 'text' ) {
 			this.setState( newState );
 		}
-		else if ( this.props.dataType === 'factor' ) {
-			const { categories, counts } = this.tabulateValues( filtered );
-			newState.categories = categories;
+		else if ( this.props.data.type === 'factor' ) {
+			const counts = this.tabulateValues( filtered );
 			newState.counts = counts;
 			this.setState( newState );
 		} else {
-			// Case: props.dataType === 'number':
+			// Case: props.data.type === 'number':
 			this.setState( newState );
 		}
 	}
@@ -165,19 +161,18 @@ class ResponseVisualizer extends Component {
 			nDanger: 0,
 			nInfo: 0
 		};
-		if ( this.props.dataType === 'text' ) {
+		if ( this.props.data.type === 'text' ) {
 			newState.actions = filtered;
 		}
-		else if ( this.props.dataType === 'factor' ) {
-			const { categories, counts } = this.tabulateValues( filtered );
+		else if ( this.props.data.type === 'factor' ) {
+			const counts = this.tabulateValues( filtered );
 			newState = {
 				...newState,
 				actions: filtered,
-				counts: counts,
-				categories: categories
+				counts: counts
 			};
 		} else {
-			// Case: props.dataType === 'number':
+			// Case: props.data.type === 'number':
 			newState.actions = filtered;
 		}
 		if ( !this.state.period ) {
@@ -202,36 +197,40 @@ class ResponseVisualizer extends Component {
 	}
 
 	tabulateValues = ( actions ) => {
-		const values = actions.map( x => x.value );
-		const tabulated = tabulate( values );
+		const levels = this.props.data.levels;
+		const table = {};
+		for ( let i = 0; i < actions.length; i++ ) {
+			const v = actions[ i ];
+			if ( isArray( v.value ) ) {
+				for ( let j = 0; j < v.value.length; j++ ) {
+					const bool = v.value[ j ];
+					if ( bool ) {
+						const key = levels[ j ];
+						if ( !table[ key ] ) {
+							table[ key ] = 1;
+						} else {
+							table[ key ] += 1;
+						}
+					}
+				}
+			} else {
+				const key = levels[ v.value ];
+				if ( !table[ key ] ) {
+					table[ key ] = 1;
+				} else {
+					table[ key ] += 1;
+				}
+			}
+		}
 		let maxVal = NINF;
-		const counts = tabulated.map( d => {
-			if ( d[ 1 ] > maxVal ) {
-				maxVal = d[ 1 ];
+		const counts = new Array( levels.length );
+		for ( let i = 0; i < levels.length; i++ ) {
+			if ( table[ levels[ i ] ] > maxVal ) {
+				maxVal = table[ levels[ i ] ];
 			}
-			return d[ 1 ];
-		});
-		const categories = tabulated.map( d => {
-			if ( !isString( d[ 0 ]) ) {
-				return d[ 0 ];
-			}
-			// Trim whitespace from beginning and end:
-			let out = trim( d[ 0 ]);
-
-			// Remove extra whitespace:
-			out = out.replace( /\s+/g, ' ' );
-
-			// Cut off end if string is too long:
-			out = out.substring( 0, 50 );
-			if ( d[ 0 ].length > 50 ) {
-				out += '...';
-			}
-			return out;
-		});
-		return {
-			counts: counts,
-			categories: categories
-		};
+			counts[ i ] = table[ levels[ i ] ];
+		}
+		return counts;
 	}
 
 	closeDeleteModal = () => {
@@ -298,9 +297,8 @@ class ResponseVisualizer extends Component {
 			onPeriodChange={this.onPeriodChange}
 			toggleExtended={this.toggleExtended}
 			toggleActions={this.toggleActions}
-			dataType={this.props.dataType}
+			data={this.props.data}
 			counts={this.state.counts}
-			categories={this.state.categories}
 			{...optionalProps}
 		/> );
 	}
@@ -367,9 +365,12 @@ class ResponseVisualizer extends Component {
 ResponseVisualizer.propTypes = {
 	buttonLabel: PropTypes.string,
 	buttonStyle: PropTypes.object,
-	dataType: PropTypes.oneOf([
-		'factor', 'text', 'number'
-	]),
+	data: PropTypes.shape({
+		type: PropTypes.oneOf([
+			'factor', 'text', 'number', 'matrix'
+		]),
+		levels: PropTypes.array
+	}),
 	showID: PropTypes.bool,
 	success: PropTypes.string,
 	danger: PropTypes.string,
@@ -383,7 +384,9 @@ ResponseVisualizer.propTypes = {
 ResponseVisualizer.defaultProps = {
 	buttonLabel: 'Actions',
 	buttonStyle: {},
-	dataType: 'text',
+	data: {
+		type: 'text'
+	},
 	showID: true,
 	success: null,
 	danger: null,

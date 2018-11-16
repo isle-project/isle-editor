@@ -216,7 +216,7 @@ class MultipleChoiceSurvey extends Component {
 								</p>
 							</Col>
 						</Container>
-						<ResponseVisualizer buttonLabel="Responses" id={id} dataType="factor" />
+						<ResponseVisualizer buttonLabel="Responses" id={id} data={{ type: 'factor' }} />
 					</Card.Body>
 				</Card>
 			</Gate>

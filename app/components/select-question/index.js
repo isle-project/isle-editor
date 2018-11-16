@@ -176,7 +176,9 @@ class SelectQuestion extends Component {
 				</div>
 				<ResponseVisualizer
 					id={this.props.id}
-					dataType="text"
+					data={{
+						type: 'text'
+					}}
 					info="SELECT_QUESTION_SUBMISSION"
 				/>
 				{ this.props.id && this.props.feedback ? <FeedbackButtons
