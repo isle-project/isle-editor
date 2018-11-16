@@ -161,6 +161,7 @@ class ContinuousCLT extends Component {
 
 	handleSelect = ( key ) => {
 		let formula;
+		key = parseInt( key, 10 );
 		switch ( key ) {
 		default:
 		case 1:
