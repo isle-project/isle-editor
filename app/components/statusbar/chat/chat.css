@@ -91,6 +91,7 @@
 .chat-textarea {
 	font-size: 13px;
 	line-height: 16px;
+	background-color: #f3f2f3;
 }
 
 .chat-textarea:focus {
@@ -98,7 +99,8 @@
 }
 
 .chat-textarea:hover:not(:focus) {
-	background-color: #f3f2f3;
+	background-color:gainsboro;
+	cursor: text;
 }
 
 .chatexit:hover {
