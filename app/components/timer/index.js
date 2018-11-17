@@ -14,7 +14,8 @@ import './timer.css';
 *
 * @property {boolean} active - flag that can be toggled to start or pause the timer
 * @property {number} duration - duration in seconds for the timer
-* @property {string} id - the unique `string` ID for the timer. The timer component is persistent over page refreshes
+* @property {boolean} invisible - controls whether the timer should be hidden
+* @property {string} id - the unique `string` ID for the timer. If an ID is set, the timer component is persistent over page refreshes
 * @property {Object} style - CSS inline styles
 * @property {Function} onTimeUp - callback invoked when the timer runs out
 */
@@ -52,6 +53,9 @@ class Timer extends Component {
 
 	getTimerId() {
 		const { id } = this.props;
+		if ( !id ) {
+			return null;
+		}
 		return `timer::${id}`;
 	}
 
@@ -71,7 +75,10 @@ class Timer extends Component {
 			this.setState({
 				timeLeft: max( 0, this.state.timeLeft - 1 )
 			});
-			localStorage.setItem( this.getTimerId(), this.state.timeLeft );
+			const id = this.getTimerId();
+			if ( id ) {
+				localStorage.setItem( id, this.state.timeLeft );
+			}
 
 			// Call the callback when the time left is 0:
 			if ( this.state.timeLeft <= 0 ) {
