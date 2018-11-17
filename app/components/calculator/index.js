@@ -37,9 +37,15 @@ class Calculator extends Component {
 	}
 
 	clearEquation = () => {
-		this.setState({
-			visible: '0'
-		});
+		if ( this.state.visisble === '0' ) {
+			this.setState({
+				answer: 0
+			});
+		} else {
+			this.setState({
+				visible: '0'
+			});
+		}
 	}
 
 	toggleFullDisplay = () => {
