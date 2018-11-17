@@ -1,19 +1,25 @@
 #calc-panel {
-	display: flex;
+	position: absolute;
+	background: rgba(240,240,240,0.9);
 	width: 50%;
+	min-width: 400px;
 }
 
 #calc-panel-full {
-	display: flex;
+	position: absolute;
+	background: rgba(240,240,240,0.9);
 	width: 75%;
+	min-width: 600px;
 }
 
 .input-button-small {
-	width: 25%;
+	width: calc(25% - 4px);
+	margin: 2px;
 }
 
 .half-button {
-	width: 50%;
+	width: calc(50% - 4px);
+	margin: 2px;
 }
 
 .input-button-full {
@@ -26,4 +32,8 @@
 
 .three-half-sevenths {
 	width: calc(350% / 7);
+}
+
+.desaturated {
+	filter: saturate(30%);
 }

@@ -259,9 +259,9 @@ class StatusBar extends Component {
 							/>
 							<span ref={( span ) => { this.displayedText = span; }} className="statusbar-voice-text" ></span>
 						</div>
-						<Tooltip tooltip="Toggle calculator" placement="bottom" >
+						<Tooltip tooltip={`${this.state.showCalculator ? 'Close' : 'Open'} calculator`} placement="bottom" >
 							<div className="statusbar-calculator" onClick={this.toggleCalculator}>
-									<span className="fa fa-xs fa-calculator" />
+									<span className="fa fa-xs fa-calculator statusbar-calc-icon" />
 							</div>
 						</Tooltip>
 						<div className="statusbar-presence" style={{

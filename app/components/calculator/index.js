@@ -31,7 +31,6 @@ class Calculator extends Component {
 		this.state = {
 			visible: '0',
 			showFull: false,
-			result: 0,
 			answer: 0
 		};
 	}
@@ -114,24 +113,22 @@ class Calculator extends Component {
 					<Panel id="calc-panel-full">
 						<Container>
 							<Row>
-								<Col md={8}>
+								<Col md={8} className="desaturated" >
 									<Row>
 										<Button variant="light" className="two-sevenths" onClick={this.onClickFactory('(')} >(</Button>
 										<Button variant="light" className="two-sevenths" onClick={this.onClickFactory(')')} >)</Button>
 										<Button variant="danger" className="two-sevenths" onClick={this.clearEquation} >C</Button>
 										<Button variant="warning" className="input-button-full" onClick={this.toggleFullDisplay} >&#x26F6;</Button>
 									</Row>
-
 									<Row>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('sin')} >sin(x)</Button>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('exp')} >e<sup>x</sup></Button>
-										<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('sqrt')} block>&radic;</Button>
+										<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('sqrt')}>&radic;</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('7')} >7</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('8')} >8</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('9')} >9</Button>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('+')} >+</Button>
 									</Row>
-
 									<Row>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('cos')} >cos(x)</Button>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('ln')} >ln(x)</Button>
@@ -141,7 +138,6 @@ class Calculator extends Component {
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('6')} >6</Button>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('-')} >-</Button>
 									</Row>
-
 									<Row>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('tan')} >tan(x)</Button>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('log')} >log(x)</Button>
@@ -151,7 +147,6 @@ class Calculator extends Component {
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('3')} >3</Button>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('*')} >*</Button>
 									</Row>
-
 									<Row>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('pi')} >&pi;</Button>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('log_b')} >log<sub>b</sub>(x)</Button>
@@ -161,15 +156,13 @@ class Calculator extends Component {
 										<Button variant="dark" className="input-button-full" onClick={this.onClickFactory('.')} >.</Button>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('/')} >&#xF7;</Button>
 									</Row>
-
 									<Row>
-										<CopyToClipboard text={this.state.result}>
+										<CopyToClipboard text={this.state.answer}>
 											<Button variant="warning" className="three-half-sevenths" onClick={noop} >Copy</Button>
 										</CopyToClipboard>
 										<Button variant="success" className="three-half-sevenths" onClick={this.solveEq} >=</Button>
 									</Row>
 								</Col>
-
 								<Col md={4}>
 									<TextArea value={String(this.state.visible)} />
 									<p>Answer = {this.state.answer}</p>
@@ -195,49 +188,43 @@ class Calculator extends Component {
 					<Panel id="calc-panel">
 						<Container>
 							<Row>
-								<Col md={7}>
+								<Col className="desaturated" md={7}>
 									<Row>
 										<Button variant="danger" className="half-button" onClick={this.clearEquation} >C</Button>
 										<Button variant="warning" disabled={!this.props.expandable} className="input-button-small" onClick={this.toggleFullDisplay} >&#x26F6;</Button>
-										<Button variant="info" disabled className="input-button-small" onClick={this.onClickWrapFactory('sqrt')} block>&radic;</Button>
+										<Button variant="info" disabled className="input-button-small" onClick={this.onClickWrapFactory('sqrt')}>&radic;</Button>
 									</Row>
-
 									<Row>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('7')} >7</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('8')} >8</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('9')} >9</Button>
 										<Button variant="info" className="input-button-small" onClick={this.onClickFactory('+')} >+</Button>
 									</Row>
-
 									<Row>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('4')} >4</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('5')} >5</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('6')} >6</Button>
 										<Button variant="info" className="input-button-small" onClick={this.onClickFactory('-')} >-</Button>
 									</Row>
-
 									<Row>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('1')} >1</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('2')} >2</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('3')} >3</Button>
 										<Button variant="info" className="input-button-small" onClick={this.onClickFactory('*')} >*</Button>
 									</Row>
-
 									<Row>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory(String(this.state.answer))} >Ans</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('0')} >0</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickFactory('.')} >.</Button>
 										<Button variant="info" className="input-button-small" onClick={this.onClickFactory('/')} >&#xF7;</Button>
 									</Row>
-
 									<Row>
-										<CopyToClipboard text={this.state.result}>
+										<CopyToClipboard text={this.state.answer}>
 											<Button variant="warning" className="half-button" onClick={noop} >Copy</Button>
 										</CopyToClipboard>
 										<Button variant="success" className="half-button" onClick={this.solveEq} >=</Button>
 									</Row>
 								</Col>
-
 								<Col md={5}>
 									<TextArea value={String(this.state.visible)} onChange={this.handleTypeChange} />
 									<p>Answer = {this.state.answer}</p>
