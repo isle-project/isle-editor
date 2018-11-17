@@ -109,7 +109,7 @@ class Calculator extends Component {
 	renderFull = () => {
 		return (
 			<Draggable>
-				<div>
+				<div className="outer-calc">
 					<Panel id="calc-panel-full">
 						<Container>
 							<Row>
@@ -184,7 +184,7 @@ class Calculator extends Component {
 		}
 		return (
 			<Draggable>
-				<div>
+				<div className="outer-calc">
 					<Panel id="calc-panel">
 						<Container>
 							<Row>

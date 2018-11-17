@@ -1,3 +1,8 @@
+.outer-calc {
+	position: relative;
+	z-index: 1002;
+}
+
 #calc-panel {
 	position: absolute;
 	background: rgba(240,240,240,0.9);
