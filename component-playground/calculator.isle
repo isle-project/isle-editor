@@ -6,4 +6,4 @@ state:
 server: https://isle.heinz.cmu.edu
 ---
 
-<Calculator></Calculator>
+<Calculator expanded></Calculator>
