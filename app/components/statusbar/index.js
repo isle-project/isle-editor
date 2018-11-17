@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, lazy, Suspense } from 'react';
+import React, { Component, Fragment, lazy, Suspense } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import ceil from '@stdlib/math/base/special/ceil';
 import max from '@stdlib/math/base/special/max';
@@ -228,91 +228,93 @@ class StatusBar extends Component {
 	render() {
 		const session = this.context;
 		return (
-			<div>
-				{session.chats.map( ( chat, idx ) => {
-					const pos = this.getChatPosition( idx );
-					return <Chat chat={chat} idx={idx} key={idx} left={pos.left} width={pos.width} />;
-				})}
-				<div
-					className="statusbar unselectable"
-					ref={( statusbar ) => { this.statusbar = statusbar; }}
-					onClick={this.toggleBar.bind( this )}
-					onMouseOver={this.onMouseOver.bind( this )}
-					onMouseOut={this.onMouseOut.bind( this )}
-					style={{
-						top: '-32px'
-					}}
-				>
-					<div className="statusbar-left"></div>
-					<div className="statusbar-middle">
-						<div className="statusbar-voice">
-							<VoiceInput
-								onClick={this.handleVoiceInputChange}
-								mode="microphone" width={18} height={18}
-								stopTooltip="Disable voice control (F9)"
-								startTooltip="Enable voice control (F9)"
-								onFinalText={this.handleVoiceInput}
-								maxAlternatives={5}
-								remote={{
-									toggle: 120 // F9
-								}}
-							/>
-							<span ref={( span ) => { this.displayedText = span; }} className="statusbar-voice-text" ></span>
-						</div>
-						<Tooltip tooltip={`${this.state.showCalculator ? 'Close' : 'Open'} calculator`} placement="bottom" >
-							<div className="statusbar-calculator" onClick={this.toggleCalculator}>
-									<span className="fa fa-xs fa-calculator statusbar-calc-icon" />
+			<Fragment>
+				<div>
+					{session.chats.map( ( chat, idx ) => {
+						const pos = this.getChatPosition( idx );
+						return <Chat chat={chat} idx={idx} key={idx} left={pos.left} width={pos.width} />;
+					})}
+					<div
+						className="statusbar unselectable"
+						ref={( statusbar ) => { this.statusbar = statusbar; }}
+						onClick={this.toggleBar.bind( this )}
+						onMouseOver={this.onMouseOver.bind( this )}
+						onMouseOut={this.onMouseOut.bind( this )}
+						style={{
+							top: '-32px'
+						}}
+					>
+						<div className="statusbar-left"></div>
+						<div className="statusbar-middle">
+							<div className="statusbar-voice">
+								<VoiceInput
+									onClick={this.handleVoiceInputChange}
+									mode="microphone" width={18} height={18}
+									stopTooltip="Disable voice control (F9)"
+									startTooltip="Enable voice control (F9)"
+									onFinalText={this.handleVoiceInput}
+									maxAlternatives={5}
+									remote={{
+										toggle: 120 // F9
+									}}
+								/>
+								<span ref={( span ) => { this.displayedText = span; }} className="statusbar-voice-text" ></span>
 							</div>
-						</Tooltip>
-						<div className="statusbar-presence" style={{
-							backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR
-						}}>
+							<Tooltip tooltip={`${this.state.showCalculator ? 'Close' : 'Open'} calculator`} placement="bottom" >
+								<div className="statusbar-calculator" onClick={this.toggleCalculator}>
+										<span className="fa fa-xs fa-calculator statusbar-calc-icon" />
+								</div>
+							</Tooltip>
+							<div className="statusbar-presence" style={{
+								backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR
+							}}>
+							</div>
+							<div className="statusbar-username">
+								{ session.anonymous ? 'Anonymous' : session.user.name }
+							</div>
+							{ session.anonymous ?
+								<div>
+									<Button
+										size="sm"
+										style={{ float: 'right', marginRight: '-20px' }}
+										onClick={this.signup.bind( this )}
+										disabled={!session.live}
+									>Sign up</Button>
+									<Button
+										size="sm"
+										variant="primary"
+										style={{ float: 'right', marginRight: '10px' }}
+										onClick={this.login.bind( this )}
+										disabled={!session.live}
+									>Login</Button>
+								</div> :
+								<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout.bind( this )}>Log Out</Button> }
+							<div className="statusbar-text">
+								ISLE
+							</div>
 						</div>
-						<div className="statusbar-username">
-							{ session.anonymous ? 'Anonymous' : session.user.name }
-						</div>
-						{ session.anonymous ?
-							<div>
-								<Button
-									size="sm"
-									style={{ float: 'right', marginRight: '-20px' }}
-									onClick={this.signup.bind( this )}
-									disabled={!session.live}
-								>Sign up</Button>
-								<Button
-									size="sm"
-									variant="primary"
-									style={{ float: 'right', marginRight: '10px' }}
-									onClick={this.login.bind( this )}
-									disabled={!session.live}
-								>Login</Button>
-							</div> :
-							<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout.bind( this )}>Log Out</Button> }
-						<div className="statusbar-text">
-							ISLE
-						</div>
+						<div className="statusbar-right"></div>
+						<Login show={this.state.visibleLogin} onClose={this.closeLogin} />
+						<Signup show={this.state.visibleSignup} onClose={this.closeSignup} />
+						<ConfirmModal
+							show={this.state.visibleLogout}
+							close={this.closeLogout}
+							title="Logout"
+							message="Do you really want to log out? To log in again, you will need your password."
+							onConfirm={this.handleLogout}
+						/>
 					</div>
-					<div className="statusbar-right"></div>
-					<Login show={this.state.visibleLogin} onClose={this.closeLogin} />
-					<Signup show={this.state.visibleSignup} onClose={this.closeSignup} />
-					<ConfirmModal
-						show={this.state.visibleLogout}
-						close={this.closeLogout}
-						title="Logout"
-						message="Do you really want to log out? To log in again, you will need your password."
-						onConfirm={this.handleLogout}
-					/>
+					<Gate owner>
+						<Suspense fallback={<div>Loading...</div>} >
+							<InstructorView />
+						</Suspense>
+					</Gate>
 				</div>
-				<Gate owner>
-					<Suspense fallback={<div>Loading...</div>} >
-						<InstructorView />
-					</Suspense>
-				</Gate>
 				{ this.state.showCalculator ?
 					<Calculator /> :
 					null
 				}
-			</div>
+			</Fragment>
 		);
 	}
 }
