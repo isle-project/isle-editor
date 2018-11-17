@@ -1,11 +1,29 @@
-#calc_panel {
+#calc-panel {
 	display: flex;
+	width: 50%;
 }
 
-.calc_div {
-	float: right;
+#calc-panel-full {
+	display: flex;
+	width: 75%;
 }
 
-.button_row {
-	size: md;
+.input-button-small {
+	width: 25%;
+}
+
+.half-button {
+	width: 50%;
+}
+
+.input-button-full {
+	width: calc(100% / 7);
+}
+
+.two-sevenths {
+	width: calc(200% / 7);
+}
+
+.three-half-sevenths {
+	width: calc(350% / 7);
 }
