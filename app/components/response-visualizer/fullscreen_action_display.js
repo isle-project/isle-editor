@@ -9,7 +9,6 @@ import isStrictEqual from '@stdlib/assert/is-strict-equal';
 import isArray from '@stdlib/assert/is-array';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import lowercase from '@stdlib/string/lowercase';
-import removeLast from '@stdlib/string/remove-last';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
 import Badge from 'react-bootstrap/lib/Badge';
@@ -21,10 +20,11 @@ import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import Modal from 'react-bootstrap/lib/Modal';
 import ReactList from 'react-list';
 import Highlighter from 'react-highlight-words';
-import RangePicker from 'components/range-picker';
 import Plotly from 'components/plotly';
 import WordCloud from 'components/word-cloud';
 import Search from './search.js';
+import SingleActionModal from './single_action_modal.js';
+import FullscreenHeader from './fullscreen_header';
 import './response_visualizer.css';
 
 
@@ -34,14 +34,6 @@ const debug = logger( 'isle:response-visualizer' );
 const LINE_HEIGHT = 20;
 const TEXT_LINE_HEIGHT = 16;
 const RE_NEWLINE = /\r?\n/g;
-
-
-// FUNCTIONS //
-
-function toTimeString( absoluteTime ) {
-	const date = new Date( absoluteTime );
-	return `${date.toLocaleDateString()}, ${date.toLocaleTimeString()}`;
-}
 
 
 // MAIN //
@@ -302,14 +294,7 @@ class FullscreenActionDisplay extends Component {
 				onHide={this.props.toggleActions}
 				dialogClassName="modal-100w"
 			>
-				<Modal.Header style={{ paddingBottom: '5px' }} closeButton >
-					<h4 style={{ float: 'left', margin: '2px 14px 2px 2px' }} >{this.props.actionLabel} for {this.props.componentID}</h4>
-					<RangePicker
-						style={{ float: 'left' }}
-						size="sm"
-						onChange={this.props.onPeriodChange}
-					/>
-				</Modal.Header>
+				<FullscreenHeader componentID={this.props.componentID} actionLabel={this.props.actionLabel} onPeriodChange={this.props.onPeriodChange} />
 				<Modal.Body style={{ height: 0.75 * window.innerHeight, width: 0.90 * window.innerWidth }} >
 					<Container>
 						<Row>
@@ -350,30 +335,7 @@ class FullscreenActionDisplay extends Component {
 					<Button onClick={this.props.toggleActions}>Close</Button>
 				</Modal.Footer>
 			</Modal>
-			<Modal
-				show={this.state.showModal}
-				onHide={this.hideModal}
-				dialogClassName="modal-75w"
-				backdropClassName="modal-backdrop-second-order"
-				style={{
-					minHeight: '300px',
-					boxShadow: '0 0 10px black',
-					fontSize: '2em',
-					zIndex: 2000
-				}}
-			>
-				<Modal.Header closeButton>
-					<Modal.Title as="h3">
-						{removeLast( this.props.actionLabel) }
-						{ this.props.showExtended ? ` from ${this.state.modalContent.name}`: ''}
-						{' on '}
-						{toTimeString( this.state.modalContent.absoluteTime )}
-					</Modal.Title>
-				</Modal.Header>
-				<Modal.Body style={{ color: 'darkred' }}>
-					{this.state.modalContent.value}
-				</Modal.Body>
-			</Modal>
+			<SingleActionModal show={this.state.showModal} onHide={this.hideModal} modalContent={this.state.modalContent} actionLabel={this.props.actionLabel} showExtended={this.state.showExtended} />
 		</Fragment> );
 	}
 }
