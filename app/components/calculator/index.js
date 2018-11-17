@@ -193,7 +193,7 @@ class Calculator extends Component {
 									<Row>
 										<Button variant="danger" className="half-button" onClick={this.clearEquation} >C</Button>
 										<Button variant="warning" disabled={!this.props.expandable} className="input-button-small" onClick={this.toggleFullDisplay} >&#x26F6;</Button>
-										<Button variant="info" className="input-button-small" onClick={this.onClickWrapFactory('sqrt')} block>&radic;</Button>
+										<Button variant="info" disabled className="input-button-small" onClick={this.onClickWrapFactory('sqrt')} block>&radic;</Button>
 									</Row>
 
 									<Row>
