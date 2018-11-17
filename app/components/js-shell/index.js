@@ -10,6 +10,7 @@ import PINF from '@stdlib/constants/math/float64-pinf';
 import isArray from '@stdlib/assert/is-array';
 import isRegExp from '@stdlib/assert/is-regexp';
 import isObjectLike from '@stdlib/assert/is-object-like';
+import replace from '@stdlib/string/replace';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
@@ -18,7 +19,6 @@ import HintButton from 'components/hint-button';
 import ace from 'brace';
 import 'brace/mode/javascript';
 import 'brace/theme/katzenmilch';
-import 'brace/theme/monokai';
 import 'brace/theme/solarized_light';
 import scrollTo from 'utils/scroll-to';
 import OverlayTrigger from 'components/overlay-trigger';
@@ -31,6 +31,7 @@ import './js_shell.css';
 
 // VARIABLES //
 
+const RE_CONSOLE = /console\.(error|warn|debug|log|info)/g;
 const THEME = {
 	scheme: 'bright',
 	author: 'chris kempson (http://chriskempson.com)',
@@ -121,8 +122,6 @@ class JSShell extends Component {
 			solutionOpen: false
 		};
 
-		this.isActive = false;
-
 		if ( this.props.vars ) {
 			for ( var key in this.props.vars ) {
 				if ( hasOwnProp( this.props.vars, key ) ) {
@@ -147,8 +146,6 @@ class JSShell extends Component {
 
 		// Add event listener:
 		this.editor.on( 'change', this.onChange );
-
-		global.log = this.state.log;
 
 		if ( this.props.disabled ) {
 			this.editor.setOptions({
@@ -207,11 +204,10 @@ class JSShell extends Component {
 	}
 
 	componentWillUnmount() {
-		this.isActive = false;
+		global.print = null;
 	}
 
 	onChange() {
-		this.isActive = false;
 	}
 
 	resetConsole = () => {
@@ -231,7 +227,7 @@ class JSShell extends Component {
 				readOnly: true
 			});
 		} else {
-			this.editor.setTheme( 'ace/theme/monokai' );
+			this.editor.setTheme( 'ace/theme/katzenmilch' );
 			this.editor.setOptions({
 				highlightActiveLine: true,
 				highlightGutterLine: true,
@@ -262,8 +258,8 @@ class JSShell extends Component {
 	}
 
 	handleEvaluationClick = () => {
-		this.isActive = true;
 		let currentCode = this.editor.getValue();
+		currentCode = replace( currentCode, RE_CONSOLE, 'print.$1' );
 		if ( this.props.id ) {
 			const session = this.context;
 			session.log({
@@ -281,12 +277,12 @@ class JSShell extends Component {
 			}
 		}
 		catch ( err ) {
-			var x = {
+			const errObj = {
 				type: 'error',
 				msg: err.message
 			};
 			const log = this.state.log;
-			log.push( x );
+			log.push( errObj );
 			this.setState({
 				log
 			});
@@ -294,49 +290,50 @@ class JSShell extends Component {
 		this.props.onEvaluate( currentCode );
 	}
 
-	innerConsole() {
-		const self = this;
-		const lg = [ 'log', 'debug', 'info', 'warn', 'error' ];
-		for ( let i = 0; i < lg.length; i++ ) {
-			let verb = lg[ i ];
-			// eslint-disable-next-line no-console
-			global.console[ verb ] = ( ( method, verb ) => {
-				return function logger() {
-					method.apply( console, arguments );
+	innerConsole = () => {
+		global.print = {
+			'error': this.printFactory( 'error' ),
+			'warn': this.printFactory( 'warn' ),
+			'info': this.printFactory( 'info' ),
+			'log': this.printFactory( 'log' ),
+			'debug': this.printFactory( 'debug' )
+		};
+	}
 
-					if ( self.isActive ) {
-						const msg = [];
-						for ( let i = 0; i < arguments.length; i++) {
-							const arg = arguments[ i ];
-							if ( isRegExp( arg ) ) {
-								msg.push( <span className="js-shell-console-output" >{arg.toString()}</span> );
+	printFactory = ( type ) => {
+		const self = this;
+		return print;
+
+		function print() {
+			const msg = [];
+			for ( let i = 0; i < arguments.length; i++) {
+				const arg = arguments[ i ];
+				if ( isRegExp( arg ) ) {
+					msg.push( <span key={i} className="js-shell-console-output" >{arg.toString()}</span> );
+				}
+				else if ( isObjectLike( arg ) ) {
+					msg.push(
+						<JSONTree key={i} data={arg} theme={{
+							extend: THEME,
+							tree: {
+								padding: '0.2em',
+								backgroundColor: '#f3f2f3'
 							}
-							else if ( isObjectLike( arg ) ) {
-								msg.push(
-									<JSONTree key={i} data={arg} theme={{
-										extend: THEME,
-										tree: {
-											padding: '0.2em',
-											backgroundColor: '#f3f2f3'
-										}
-									}} />
-								);
-							} else {
-								msg.push( <span className="js-shell-console-output" >{arg}</span> );
-							}
-						}
-						const x = {
-							type: verb,
-							msg: msg
-						};
-						const log = self.state.log;
-						log.push( x );
-						self.setState({
-							log
-						});
-					}
-				};
-			})( global.console[ verb ], verb ); // eslint-disable-line no-console
+						}} />
+					);
+				} else {
+					msg.push( <span key={i} className="js-shell-console-output" >{arg}</span> );
+				}
+			}
+			const messageObj = {
+				type: type,
+				msg: msg
+			};
+			const log = self.state.log;
+			log.push( messageObj );
+			self.setState({
+				log
+			});
 		}
 	}
 
