@@ -15,7 +15,7 @@ A number question component.
 
 #### Options:
 
-* __question__ | `string`: number question. Default: `''`.
+* __question__ | `(string|node)`: number question. Default: `''`.
 * __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'top'`.
 * __hints__ | `array<string>`: hints providing guidance on how to answer the question. Default: `[]`.
 * __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `false`.

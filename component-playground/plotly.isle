@@ -38,6 +38,7 @@ server: https://isle.heinz.cmu.edu
 * __id__ | `string`: component identifier. Default: `none`.
 * __layout__ | `object`: Plotly layout object. Default: `{}`.
 * __legendButtons__ | `boolean`: controls whether to display buttons for changing the legend. Default: `true`.
+* __onSelected__ | `function`: callback function invoked when elements are selected. Default: `onSelected() {}`.
 * __onShare__ | `function`: callback function invoked when clicking on the "Share" button. Default: `none`.
 * __removeButtons__ | `boolean`: controls whether to remove all buttons. Default: `false`.
 * __toggleFullscreen__ | `boolean`: controls whether to display the plot in fullscreen mode. Default: `true`.

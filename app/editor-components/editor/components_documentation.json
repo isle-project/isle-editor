@@ -61,6 +61,16 @@
     ],
     "description": "Component placeing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed."
   },
+  "Calculator": {
+    "props": [
+      {
+        "name": "expandable",
+        "type": "boolean",
+        "default": false
+      }
+    ],
+    "description": "Description is missing."
+  },
   "undefined": {
     "props": [],
     "description": "Description is missing."
@@ -454,6 +464,11 @@
         "type": "function",
         "description": "A function specifying an action to take for rows removed from the data (defaults to an empty function)",
         "default": "onClickRemove() {}"
+      },
+      {
+        "name": "filters",
+        "type": "array",
+        "default": []
       },
       {
         "name": "showRemove",
@@ -1475,7 +1490,17 @@
     "description": "Keyboard controls."
   },
   "LearnContinuousCLT": {
-    "props": [],
+    "props": [
+      {
+        "name": "distributions",
+        "type": "array<string>",
+        "default": [
+          "uniform",
+          "exponential",
+          "normal"
+        ]
+      }
+    ],
     "description": "A learning component illustrating the Central Limit Theorem (CLT) for a chosen continuous distribution."
   },
   "LearnDiscreteCLT": {
@@ -1883,6 +1908,12 @@
         "default": null
       },
       {
+        "name": "shuffle",
+        "type": "string",
+        "description": "specifies whether to shuffle the `left`, `right`, or `both` columns whose elements have to be matched",
+        "default": "both"
+      },
+      {
         "name": "disableSubmitNotification",
         "type": "boolean",
         "description": "controls whether to disable submission notifications",
@@ -2188,7 +2219,7 @@
     "props": [
       {
         "name": "question",
-        "type": "string",
+        "type": "(string|node)",
         "description": "number question",
         "default": ""
       },
@@ -2496,6 +2527,12 @@
         "default": true
       },
       {
+        "name": "onSelected",
+        "type": "function",
+        "description": "callback function invoked when elements are selected",
+        "default": "onSelected() {}"
+      },
+      {
         "name": "onShare",
         "type": "function",
         "description": "callback function invoked when clicking on the \"Share\" button",
@@ -2649,6 +2686,16 @@
       }
     ],
     "description": "A form component combining different question components together with a single submission button."
+  },
+  "Queue": {
+    "props": [
+      {
+        "name": "message",
+        "type": "string",
+        "default": "Queue is currently closed."
+      }
+    ],
+    "description": "Description is missing."
   },
   "Quiz": {
     "props": [
@@ -3648,6 +3695,18 @@
         "default": ""
       },
       {
+        "name": "className",
+        "type": "string",
+        "description": "class names",
+        "default": ""
+      },
+      {
+        "name": "inline",
+        "type": "boolean",
+        "description": "controls whether to render the Markdown as inline text",
+        "default": false
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -3667,7 +3726,7 @@
       {
         "name": "id",
         "type": "string (required)",
-        "description": "the unique `string` ID for the timer. The timer component is persistent over page refreshes"
+        "description": "the unique `string` ID for the timer. If an ID is set, the timer component is persistent over page refreshes"
       },
       {
         "name": "active",
@@ -3682,6 +3741,7 @@
       {
         "name": "invisible",
         "type": "boolean",
+        "description": "controls whether the timer should be hidden",
         "default": false
       },
       {
@@ -3705,6 +3765,12 @@
         "name": "id",
         "type": "string",
         "default": "tooltip"
+      },
+      {
+        "name": "show",
+        "type": "boolean",
+        "description": "controls whether the tooltip shall be displayed",
+        "default": true
       },
       {
         "name": "tooltip",
