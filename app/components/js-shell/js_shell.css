@@ -33,8 +33,13 @@
 	cursor: pointer;
 	font-size: 24px;
 	text-align: center;
-	color: black;
+	color: darkgray;
 	z-index: 2;
+}
+
+
+.js-shell-reset:hover {
+	color: black;
 }
 
 .js-shell-console {
@@ -44,7 +49,7 @@
 	background: #f3f2f3;
 	margin-left: 1%;
 	margin-bottom: 20px;
-	border: solid 1px black;
+	border: solid 1px darkgray;
 	overflow: auto;
 	display: block;
 	overflow-y: scroll;
