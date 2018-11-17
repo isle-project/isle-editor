@@ -64,6 +64,15 @@
 	z-index: 2;
 }
 
+#Lesson .statusbar-calculator {
+	left: 28px;
+	bottom: 3px;
+	position: absolute;
+	z-index: 2;
+	width: 18px;
+	height: 18px;
+}
+
 #Lesson .statusbar-voice-text {
 	position: absolute;
 	font-size: 12px;

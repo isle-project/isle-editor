@@ -11,7 +11,9 @@ import Signup from 'components/signup';
 import Login from 'components/login';
 import Gate from 'components/gate';
 import VoiceInput from 'components/input/voice';
+import Calculator from 'components/calculator';
 import Chat from 'components/statusbar/chat';
+import Tooltip from 'components/tooltip';
 import isElectron from 'utils/is-electron';
 import animatePosition from 'utils/animate-position';
 import SessionContext from 'session/context.js';
@@ -41,7 +43,8 @@ class StatusBar extends Component {
 			visibleLogout: false,
 			statusbarWidth,
 			side,
-			recordedText: null
+			recordedText: null,
+			showCalculator: false
 		};
 		this.hidden = true;
 	}
@@ -194,6 +197,13 @@ class StatusBar extends Component {
 		}
 	}
 
+	toggleCalculator = ( e ) => {
+		e.stopPropagation();
+		this.setState({
+			showCalculator: !this.state.showCalculator
+		});
+	}
+
 	getChatPosition( idx ) {
 		const session = this.context;
 		const margin = 10;
@@ -249,6 +259,11 @@ class StatusBar extends Component {
 							/>
 							<span ref={( span ) => { this.displayedText = span; }} className="statusbar-voice-text" ></span>
 						</div>
+						<Tooltip tooltip="Toggle calculator" placement="bottom" >
+							<div className="statusbar-calculator" onClick={this.toggleCalculator}>
+									<span className="fa fa-xs fa-calculator" />
+							</div>
+						</Tooltip>
 						<div className="statusbar-presence" style={{
 							backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR
 						}}>
@@ -293,6 +308,10 @@ class StatusBar extends Component {
 						<InstructorView />
 					</Suspense>
 				</Gate>
+				{ this.state.showCalculator ?
+					<Calculator /> :
+					null
+				}
 			</div>
 		);
 	}
