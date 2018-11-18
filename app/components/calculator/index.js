@@ -200,6 +200,9 @@ class Calculator extends Component {
 	* React component render method
 	*/
 	render() {
+		if ( !this.props.show ) {
+			return null;
+		}
 		if ( this.state.showFull ) {
 			return this.renderFull();
 		}
@@ -210,7 +213,7 @@ class Calculator extends Component {
 			bottom: window.innerHeight
 		};
 		return (
-			<Draggable bounds={bounds} >
+			<Draggable bounds={bounds} enableUserSelectHack={false} >
 				<div className="outer-calc" style={this.props.style} >
 					<Panel
 						id="calc-panel"
@@ -273,12 +276,14 @@ class Calculator extends Component {
 
 Calculator.defaultProps = {
 	expandable: false,
+	show: true,
 	style: {},
 	onHide: null
 };
 
 Calculator.propTypes = {
 	expandable: PropTypes.bool,
+	show: PropTypes.bool,
 	style: PropTypes.object,
 	onHide: PropTypes.func
 };

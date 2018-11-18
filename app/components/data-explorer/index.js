@@ -949,7 +949,7 @@ class DataExplorer extends Component {
 						}}>Clear All</Button>
 					</div>
 				</Col>
-				<Draggable cancel=".input" >
+				<Draggable cancel=".input" enableUserSelectHack={false} >
 					<Card border="secondary" style={{ display: this.state.showToolbox ? 'inline' : 'none', zIndex: 1002, position: 'absolute', minWidth: '500px' }}>
 						<Card.Header style={{ height: '55px' }}>
 							<Card.Title as="h3" style={{ position: 'absolute', left: '20px' }}>Toolbox</Card.Title>
