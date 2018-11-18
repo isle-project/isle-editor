@@ -11,7 +11,6 @@ import { render } from 'react-dom';
 import { transform } from 'babel-core';
 import PropTypes from 'prop-types';
 import NotificationSystem from 'react-notification-system';
-import Ansi from 'ansi-to-react';
 import logger from 'debug';
 import repeat from '@stdlib/string/repeat';
 import markdownToHTML from 'utils/markdown-to-html';
@@ -56,9 +55,6 @@ const OPTS = {
 };
 const debug = logger( 'isle-editor' );
 const RE_LINES = /\r?\n/g;
-const RE_EMPTY_LINES = /\r?\n(?=\r?\n)/g;
-const RE_ANSI = /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)?\u0007)|(?:(?:\d{1,4}(?:;\d{0,4})*)?[\dA-PR-TZcf-ntqry=><~]))/g; // eslint-disable-line no-control-regex
-const RE_OFFENDING_LINE = /> \d+ \| ([^\n{]*)/;
 
 const createScope = ( session ) => {
 	const SCOPE = {
@@ -246,35 +242,16 @@ class Preview extends Component {
 	constructor( props ) {
 		super( props );
 
-		let lessonState = {};
-		const preambleIsValid = !props.errorMsg;
-		if ( preambleIsValid ) {
-			const offline = props.currentMode === 'offline';
-			const session = new Session( props.preamble, offline );
-			this.session = session;
-			this.scope = createScope( session );
-			this.props.onScope( this.scope );
-			lessonState = session.config.state;
-		}
+		const offline = props.currentMode === 'offline';
+		const session = new Session( props.preamble, offline );
+		this.session = session;
+		this.scope = createScope( session );
+		this.props.onScope( this.scope );
+		const lessonState = session.config.state;
 		this.state = {
-			preambleIsValid,
 			...lessonState
 		};
 		this.shouldRenderPreview = true;
-	}
-
-	static getDerivedStateFromProps( nextProps, prevState ) {
-		debug( 'Preview will receive props.' );
-		if ( nextProps.errorMsg ) {
-			return {
-				preambleIsValid: false
-			};
-		} else if ( !prevState.preambleIsValid ) {
-			return {
-				preambleIsValid: true
-			};
-		}
-		return null;
 	}
 
 	componentDidMount() {
@@ -330,50 +307,18 @@ class Preview extends Component {
 		// Prepend empty lines so line numbers in error stack traces match:
 		code = repeat( '\n', noEmptyLines ) + code;
 		debug( 'Transpile code to ES5...' );
-		try {
-			es5code = transform( `var out = <React.Fragment>${code}</React.Fragment>`, OPTS );
-			es5code.code += '\n\n return out;';
-			if ( es5code && es5code.code ) {
-				const SCOPE_KEYS = Object.keys( this.scope );
-				const SCOPE_VALUES = SCOPE_KEYS.map( key => this.scope[key] );
-				const f = new Function( '_poly', ...SCOPE_KEYS, es5code.code ).bind( this );
-				const out = f( '_poly', ...SCOPE_VALUES );
-				return out;
-			}
-		} catch ( err ) {
-			return this.renderErrorMessage( err.message );
+		es5code = transform( `var out = <React.Fragment>${code}</React.Fragment>`, OPTS );
+		es5code.code += '\n\n return out;';
+		if ( es5code && es5code.code ) {
+			const SCOPE_KEYS = Object.keys( this.scope );
+			const SCOPE_VALUES = SCOPE_KEYS.map( key => this.scope[key] );
+			const f = new Function( '_poly', ...SCOPE_KEYS, es5code.code ).bind( this );
+			const out = f( '_poly', ...SCOPE_VALUES );
+			return out;
 		}
-	}
-
-	renderErrorMessage( err ) {
-		const bare = err.replace( RE_ANSI, '' );
-		const match = bare.match( RE_OFFENDING_LINE );
-		if ( match ) {
-			let { code } = this.props;
-			code = code.replace( /---([\S\s]*)---/, '' );
-			code = code.substring( 0, code.indexOf( match[ 1 ] ) );
-			const lineAdjustment = ( code.match( RE_EMPTY_LINES ) || '').length - 1;
-			err = err.replace( /\((\d+):/, ( match, p1 ) => {
-				return '('+String( parseInt( p1, 10 )+lineAdjustment ) + ':';
-			});
-			err = err.replace( /(\d+) \|/g, ( match, p1 ) => {
-				return String( parseInt( p1, 10 )+lineAdjustment ) + ' |';
-			});
-		}
-		return ( <Card className="error-message">
-			<Card.Body>
-				<h3>Encountered an error:</h3>
-				<pre>
-					<Ansi>{err}</Ansi>
-				</pre>
-			</Card.Body>
-		</Card> );
 	}
 
 	render() {
-		if ( !this.state.preambleIsValid ) {
-			return this.renderErrorMessage( 'The preamble cannot be parsed. ' + this.props.errorMsg );
-		}
 		const className = this.props.preamble.type === 'presentation' ? 'Presentation' : 'Lesson';
 		return ( <div id="Lesson" className={className} >
 			<Provider session={this.session} currentRole={this.props.currentRole}>
@@ -394,7 +339,6 @@ class Preview extends Component {
 
 Preview.defaultProps = {
 	code: '',
-	errorMsg: '',
 	onScope() {}
 };
 
@@ -405,7 +349,6 @@ Preview.propTypes = {
 	code: PropTypes.string,
 	currentMode: PropTypes.string.isRequired,
 	currentRole: PropTypes.string.isRequired,
-	errorMsg: PropTypes.string,
 	onScope: PropTypes.func,
 	preamble: PropTypes.object.isRequired
 };

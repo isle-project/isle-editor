@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ErrorMessage from 'editor-components/error-message';
 
 
 // MAIN //
@@ -35,12 +36,7 @@ class ErrorBoundary extends Component {
 
 	render() {
 		if ( this.state.hasError ) {
-			return (
-				<div className="error-message">
-					<h3>Encountered an error:</h3>
-					<span>{this.state.msg}</span>
-				</div>
-			);
+			return <ErrorMessage msg={this.state.msg} code={this.props.code} />;
 		}
 		return this.props.children;
 	}

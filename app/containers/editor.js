@@ -23,6 +23,7 @@ import SplitPanel from 'editor-components/split-panel';
 import Header from 'editor-components/header';
 import Editor from 'editor-components/editor';
 import Preview from 'editor-components/preview';
+import ErrorMessage from 'editor-components/error-message';
 import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError } from 'actions';
 import DevTools from './dev_tools.js';
 
@@ -318,17 +319,19 @@ class App extends Component {
 						/>
 					</SplitPanel>
 					<SplitPanel ref={( elem ) => { this.preview = elem; }} onScroll={this.onPreviewScroll}>
-						<ErrorBoundary code={markdown}>
-							<Preview
-								errorMsg={error ? error.message : null}
-								code={markdown}
-								filePath={filePath}
-								preamble={preamble}
-								currentRole={currentRole}
-								currentMode={currentMode}
-								onScope={this.saveScope}
-							/>
-						</ErrorBoundary>
+						{ error ?
+							<ErrorMessage msg={error.message} code={markdown} /> :
+							<ErrorBoundary code={markdown}>
+								<Preview
+									code={markdown}
+									filePath={filePath}
+									preamble={preamble}
+									currentRole={currentRole}
+									currentMode={currentMode}
+									onScope={this.saveScope}
+								/>
+							</ErrorBoundary>
+						}
 					</SplitPanel>
 				</SplitPane>
 				{
