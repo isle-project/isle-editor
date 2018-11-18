@@ -50,11 +50,6 @@ class StatusBar extends Component {
 	}
 
 	componentDidMount() {
-		this.closeLogin = this.closeLogin.bind( this );
-		this.closeLogout = this.closeLogout.bind( this );
-		this.closeSignup = this.closeSignup.bind( this );
-		this.handleLogout = this.handleLogout.bind( this );
-
 		let sentNotification = false;
 		const promptLogin = () => {
 			const session = this.context;
@@ -66,8 +61,8 @@ class StatusBar extends Component {
 					autoDismiss: 15,
 					position: 'tl',
 					children: <div style={{ marginBottom: '30px' }}>
-						<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.signup.bind( this )}>Sign up</Button>
-						<Button size="sm" variant="primary" style={{ float: 'right', marginRight: '10px' }} onClick={this.login.bind( this )}>Login</Button>
+						<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.signup}>Sign up</Button>
+						<Button size="sm" variant="primary" style={{ float: 'right', marginRight: '10px' }} onClick={this.login}>Login</Button>
 					</div>
 				});
 			}
@@ -81,13 +76,13 @@ class StatusBar extends Component {
 			}
 			this.forceUpdate();
 		});
-		this.getStatusbarInfo = this.getStatusbarInfo.bind( this );
 		window.addEventListener( 'resize', this.getStatusbarInfo );
 
 		this.renderTextInterval = setInterval( this.renderRecordedText, 1000 );
 	}
 
 	componentWillUnmount() {
+		console.log( "UNMOUNT STATUSBAR COMPONENT" );
 		this.unsubscribe();
 		if ( this.renderTextInterval ) {
 			clearInterval( this.renderTextInterval );
@@ -95,25 +90,25 @@ class StatusBar extends Component {
 		window.removeEventListener( 'resize', this.getStatusbarInfo );
 	}
 
-	closeSignup() {
+	closeSignup = () => {
 		this.setState({
 			visibleSignup: false
 		});
 	}
 
-	closeLogin() {
+	closeLogin = () => {
 		this.setState({
 			visibleLogin: false
 		});
 	}
 
-	closeLogout() {
+	closeLogout = () => {
 		this.setState({
 			visibleLogout: false
 		});
 	}
 
-	toggleBar() {
+	toggleBar = () => {
 		if ( this.hidden ) {
 			animatePosition( this.statusbar, 'top', 0, 300 );
 			this.statusbar.style.opacity = 1.0;
@@ -125,13 +120,13 @@ class StatusBar extends Component {
 		}
 	}
 
-	onMouseOver() {
+	onMouseOver = () => {
 		if ( this.hidden ) {
 			this.statusbar.style.opacity = 1.0;
 		}
 	}
 
-	onMouseOut() {
+	onMouseOut = () => {
 		if ( this.hidden ) {
 			this.statusbar.style.opacity = 0.7;
 		}
@@ -144,27 +139,27 @@ class StatusBar extends Component {
 		});
 	}
 
-	signup( e ) {
+	signup = ( e ) => {
 		e.stopPropagation();
 		this.setState({
 			visibleSignup: true
 		});
 	}
 
-	logout( e ) {
+	logout = ( e ) => {
 		e.stopPropagation();
 		this.setState({
 			visibleLogout: true
 		});
 	}
 
-	handleLogout() {
+	handleLogout = () => {
 		const session = this.context;
 		session.logout();
 		this.closeLogout();
 	}
 
-	getStatusbarInfo() {
+	getStatusbarInfo = () => {
 		const statusbarWidth = max( 0.34 * window.innerWidth, 300 );
 		const side = ( window.innerWidth - statusbarWidth ) / 2.0;
 		this.setState({
@@ -197,8 +192,7 @@ class StatusBar extends Component {
 		}
 	}
 
-	toggleCalculator = ( e ) => {
-		e.stopPropagation();
+	toggleCalculator = () => {
 		this.setState({
 			showCalculator: !this.state.showCalculator
 		});
@@ -237,9 +231,9 @@ class StatusBar extends Component {
 					<div
 						className="statusbar unselectable"
 						ref={( statusbar ) => { this.statusbar = statusbar; }}
-						onClick={this.toggleBar.bind( this )}
-						onMouseOver={this.onMouseOver.bind( this )}
-						onMouseOut={this.onMouseOut.bind( this )}
+						onClick={this.toggleBar}
+						onMouseOver={this.onMouseOver}
+						onMouseOut={this.onMouseOut}
 						style={{
 							top: '-32px'
 						}}
@@ -277,18 +271,18 @@ class StatusBar extends Component {
 									<Button
 										size="sm"
 										style={{ float: 'right', marginRight: '-20px' }}
-										onClick={this.signup.bind( this )}
+										onClick={this.signup}
 										disabled={!session.live}
 									>Sign up</Button>
 									<Button
 										size="sm"
 										variant="primary"
 										style={{ float: 'right', marginRight: '10px' }}
-										onClick={this.login.bind( this )}
+										onClick={this.login}
 										disabled={!session.live}
 									>Login</Button>
 								</div> :
-								<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout.bind( this )}>Log Out</Button> }
+								<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout}>Log Out</Button> }
 							<div className="statusbar-text">
 								ISLE
 							</div>
@@ -310,7 +304,7 @@ class StatusBar extends Component {
 						</Suspense>
 					</Gate>
 				</div>
-				<Calculator style={{ display: this.state.showCalculator ? 'inherit' : 'none' }} onHide={this.toggleCalculator} />
+				<Calculator show={this.state.showCalculator} onHide={this.toggleCalculator} />
 			</Fragment>
 		);
 	}
