@@ -315,11 +315,6 @@ class App extends Component {
 							onChange={this.onChange}
 							name="ace_editor"
 							fontSize={14}
-							setOptions={{
-								highlightActiveLine: true,
-								showGutter: true,
-								showPrintMargin: false
-							}}
 						/>
 					</SplitPanel>
 					<SplitPanel ref={( elem ) => { this.preview = elem; }} onScroll={this.onPreviewScroll}>
