@@ -31,7 +31,7 @@ You can include a variety of *ISLE components*, for example plotting widgets and
 ### Plotting & Feedback
 
 <FeedbackButtons
-    for="plot1"
+    id="plot1"
 />
 <VictoryChart id="plot1">
     <VictoryLine/>

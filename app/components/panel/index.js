@@ -31,7 +31,10 @@ class Wrapper extends Component {
 // PROPERTIES //
 
 Wrapper.propTypes = {
-	header: PropTypes.string,
+	header: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	style: PropTypes.object
 };
 
