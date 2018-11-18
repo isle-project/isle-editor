@@ -224,7 +224,6 @@ class Editor extends Component {
 						ref={( div ) => {
 							this.editorWindow = div;
 						}}
-						onChange={this.onChange}
 						style={{
 							'height': '100%',
 							'width': '100%',
