@@ -14,14 +14,15 @@
 #calc-panel {
 	background: rgba(240,240,240,0.9);
 	width: 50%;
-	min-width: 400px;
+	min-width: 450px;
 	max-width: 560px;
 }
 
 #calc-panel-full {
 	background: rgba(240,240,240,0.9);
 	width: 75%;
-	min-width: 600px;
+	min-width: 675px;
+	max-width: 840px;
 }
 
 .input-button-small {
