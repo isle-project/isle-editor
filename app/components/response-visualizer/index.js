@@ -18,6 +18,22 @@ import FullscreenActionDisplay from './fullscreen_action_display.js';
 import extractValue from './extract_value.js';
 
 
+// FUNCTIONS //
+
+const usersWithFocus = ( userFocuses, id ) => {
+	const out = [];
+	for ( let key in userFocuses ) {
+		if ( hasOwnProperty( userFocuses, key ) ) {
+			const elemID = userFocuses[ key ];
+			if ( elemID === id ) {
+				out.push( key );
+			}
+		}
+	}
+	return out;
+};
+
+
 // MAIN //
 
 /**
@@ -28,6 +44,7 @@ import extractValue from './extract_value.js';
 * @property {Object} data - data type information to visualize
 * @property {string} showID - whether to display the component ID
 * @property {string} variant - button style variant
+* @property {string} info - action identifier for info
 * @property {string} success - action identifier for success
 * @property {string} danger - action identifier for danger
 */
@@ -62,7 +79,18 @@ class ResponseVisualizer extends Component {
 					type === 'member_action' &&
 					action.id === this.props.id
 				) {
-					this.pushSessionAction( action );
+					if (
+						action.type === 'FOCUS_ELEMENT' ||
+						action.type === 'LOSE_FOCUS_ELEMENT'
+					) {
+						this.forceUpdate();
+					} else if (
+						action.type === this.props.info ||
+						action.type === this.props.success ||
+						action.type === this.props.danger
+					) {
+						this.pushSessionAction( action );
+					}
 				}
 			});
 		}
@@ -309,12 +337,15 @@ class ResponseVisualizer extends Component {
 			return <Gate owner><label style={{ marginLeft: 5 }}>No ID supplied.</label></Gate>;
 		}
 		const nUsers = session.userList.length;
+		const focusUsers = usersWithFocus( session.userFocuses, this.props.id );
 		let successRate = this.state.nSuccess / nUsers;
 		successRate *= 100.0;
 		let dangerRate = this.state.nDanger / nUsers;
 		dangerRate *= 100.0;
 		let infoRate = this.state.nInfo / nUsers;
 		infoRate *= 100.0;
+		let focusRate = ( focusUsers.length - this.state.nInfo ) / nUsers;
+		focusRate *= 100.0;
 		let tooltip = 'Interaction rate for currently active students:\n\n';
 		if ( this.props.success ) {
 			tooltip += `${this.props.success}: ${this.state.nSuccess} / ${nUsers} (green)\n`;
@@ -325,6 +356,8 @@ class ResponseVisualizer extends Component {
 		if ( this.props.info ) {
 			tooltip += `${this.props.info}: ${this.state.nInfo} / ${nUsers} (blue)\n`;
 		}
+		tooltip += 'Users currently engaging with component: ';
+		tooltip += `${focusUsers.join( ', ')}`;
 		return (
 			<Gate owner>
 				{this.renderFullscreenModal()}
@@ -348,6 +381,7 @@ class ResponseVisualizer extends Component {
 					<Tooltip placement="top" tooltip={tooltip}>
 						<ProgressBar style={{ width: '100%', marginTop: '3px', height: '0.7rem', boxShadow: '0 0 2px black' }}>
 							<ProgressBar variant="info" now={infoRate} max={100} min={0} />
+							<ProgressBar variant="warning" now={focusRate} max={100} min={0} />
 							<ProgressBar variant="success" now={successRate} max={100} min={0} />
 							<ProgressBar variant="danger" now={dangerRate} max={100} min={0} />
 						</ProgressBar>
