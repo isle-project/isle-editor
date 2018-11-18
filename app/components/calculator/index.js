@@ -17,7 +17,10 @@ import logger from 'debug';
 import './calculator.css';
 
 
+// VARIABLES //
+
 const debug = logger( 'isle:calculator' );
+
 
 // MAIN //
 
@@ -109,7 +112,7 @@ class Calculator extends Component {
 	renderFull = () => {
 		return (
 			<Draggable>
-				<div className="outer-calc">
+				<div className="outer-calc" style={this.props.style}>
 					<Panel id="calc-panel-full">
 						<Container>
 							<Row>
@@ -184,7 +187,7 @@ class Calculator extends Component {
 		}
 		return (
 			<Draggable>
-				<div className="outer-calc">
+				<div className="outer-calc" style={this.props.style}>
 					<Panel id="calc-panel">
 						<Container>
 							<Row>
@@ -242,11 +245,13 @@ class Calculator extends Component {
 // PROPERTIES //
 
 Calculator.defaultProps = {
-	expandable: false
+	expandable: false,
+	style: {}
 };
 
 Calculator.propTypes = {
-	expandable: PropTypes.bool
+	expandable: PropTypes.bool,
+	style: PropTypes.object
 };
 
 Calculator.contextType = SessionContext;

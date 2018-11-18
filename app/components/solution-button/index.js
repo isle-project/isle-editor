@@ -33,30 +33,35 @@ class SolutionButton extends Component {
 			</Tooltip>
 		);
 		return ( !this.props.disabled ?
-		<Button
-			className="solution-button"
-			variant="warning"
-			size="sm"
-			onClick={this.handleClick}
-		>{ !this.state.showSolution ? 'Show Solution' : 'Hide Solution' }</Button> :
-		<OverlayTrigger
-			placement="top"
-			positionLeft={100}
-			overlay={tooltip}
-			rootClose={true}
-		>
 			<div style={{ display: 'inline-block' }}>
 				<Button
 					className="solution-button"
 					variant="warning"
 					size="sm"
-					disabled
-					style={{
-						pointerEvents: 'none'
-					}}
-				>Show Solution</Button>
-			</div>
-		</OverlayTrigger> );
+					onClick={this.handleClick}
+				>
+					{ !this.state.showSolution ? 'Show Solution' : 'Hide Solution' }
+				</Button>
+			</div> :
+			<OverlayTrigger
+				placement="top"
+				positionLeft={100}
+				overlay={tooltip}
+				rootClose={true}
+			>
+				<div style={{ display: 'inline-block' }}>
+					<Button
+						className="solution-button"
+						variant="warning"
+						size="sm"
+						disabled
+						style={{
+							pointerEvents: 'none'
+						}}
+					>Show Solution</Button>
+				</div>
+			</OverlayTrigger>
+		);
 	}
 }
 

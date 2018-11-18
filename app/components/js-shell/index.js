@@ -423,8 +423,8 @@ class JSShell extends Component {
 			this.editorDiv = div;
 		}} ></div>;
 		return (
-			<div>
-				<div className="js-shell">
+			<div id={this.props.id} >
+				<div className="js-shell" >
 					{editor}
 					<div className="js-shell-toolbar">
 						{ !this.props.disabled ?
