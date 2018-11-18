@@ -238,13 +238,23 @@ class MultipleChoiceQuestion extends Component {
 					return false;
 				}
 				for ( let i = 0; i < this.state.correct.length; i++ ) {
-					if ( this.state.correct[ i ] === false ) {
-						return false;
+					if ( this.state.correct[ i ] === true ) {
+						return true;
 					}
 				}
-				return true;
+				return false;
 		}
 		return false;
+	}
+
+	triggerFocusEvent = () => {
+		const session = this.context;
+		session.log({
+			type: 'FOCUS_ELEMENT',
+			value: session.user.email,
+			id: this.props.id,
+			noSave: true
+		}, 'owners' );
 	}
 
 	renderAnswerOptionsMultiple = ( key, id ) => {
@@ -257,6 +267,7 @@ class MultipleChoiceQuestion extends Component {
 					correct={this.state.correct[ id ]}
 					disabled={this.props.disabled}
 					onAnswerSelected={() => {
+						this.triggerFocusEvent();
 						let newActive = this.state.active.slice();
 						newActive[ id ] = !newActive[ id ];
 						this.setState({
@@ -278,6 +289,7 @@ class MultipleChoiceQuestion extends Component {
 			submitted: this.state.submitted,
 			solution: isSolution,
 			onAnswerSelected: () => {
+				this.triggerFocusEvent();
 				if ( !this.state.submitted || this.props.provideFeedback === 'incremental' ) {
 					let newActive = this.state.active.slice();
 					newActive[ id ] = !newActive[ id ];
@@ -301,6 +313,7 @@ class MultipleChoiceQuestion extends Component {
 				correct={this.state.correct[ id ]}
 				disabled={this.props.disabled}
 				onAnswerSelected={() => {
+					this.triggerFocusEvent();
 					this.setState({
 						active: id,
 						answerSelected: true
@@ -321,6 +334,7 @@ class MultipleChoiceQuestion extends Component {
 			submitted: this.state.submitted,
 			solution: isSolution,
 			onAnswerSelected: () => {
+				this.triggerFocusEvent();
 				if ( !this.state.submitted || this.props.provideFeedback === 'incremental' ) {
 					this.setState({
 						active: id,
@@ -367,7 +381,7 @@ class MultipleChoiceQuestion extends Component {
 			submitLabel = 'Submit';
 		}
 		return (
-			<Card className="multiple-choice-question-container" style={{ ...this.props.style }} >
+			<Card id={this.props.id} className="multiple-choice-question-container" style={{ ...this.props.style }} >
 				<Card.Body style={bodyStyle} >
 					<Question
 						content={question}
