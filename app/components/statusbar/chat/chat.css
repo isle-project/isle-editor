@@ -88,6 +88,10 @@
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+.chattime {
+	font-size: 10px;
+}
+
 .chat-textarea {
 	font-size: 13px;
 	line-height: 16px;

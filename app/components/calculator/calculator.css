@@ -1,17 +1,16 @@
 .outer-calc {
-	position: relative;
+	position: fixed;
 	z-index: 1002;
 }
 
 #calc-panel {
-	position: absolute;
 	background: rgba(240,240,240,0.9);
 	width: 50%;
 	min-width: 400px;
+	max-width: 560px;
 }
 
 #calc-panel-full {
-	position: absolute;
 	background: rgba(240,240,240,0.9);
 	width: 75%;
 	min-width: 600px;
