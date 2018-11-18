@@ -144,11 +144,13 @@ class Session {
 			this.getLessonInfo();
 		}
 
-		document.addEventListener( 'focusin', this.focusInListener );
-		document.addEventListener( 'focusout', this.focusOutListener );
+		if ( !isElectron ) {
+			document.addEventListener( 'focusin', this.focusInListener );
+			document.addEventListener( 'focusout', this.focusOutListener );
 
-		// Log session data to database in regular interval:
-		setInterval( this.logSession, 5*60000 );
+			// Log session data to database in regular interval:
+			setInterval( this.logSession, 5*60000 );
+		}
 	}
 
 	focusInListener = ( event ) => {
