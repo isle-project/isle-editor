@@ -1,0 +1,14 @@
+.user-list-group {
+	overflow-y: scroll;
+	margin-left: 0;
+	font-size: 15px;
+	font-family: Open Sans;
+}
+
+.user-list-item {
+	cursor: pointer
+}
+
+.user-list-item:hover {
+	background: #d39e00 !important;
+}
