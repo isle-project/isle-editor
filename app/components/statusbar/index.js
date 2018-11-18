@@ -310,7 +310,7 @@ class StatusBar extends Component {
 						</Suspense>
 					</Gate>
 				</div>
-				<Calculator style={{ display: this.state.showCalculator ? 'inherit' : 'none' }} />
+				<Calculator style={{ display: this.state.showCalculator ? 'inherit' : 'none' }} onHide={this.toggleCalculator} />
 			</Fragment>
 		);
 	}

@@ -109,11 +109,29 @@ class Calculator extends Component {
 		});
 	}
 
-	renderFull = () => {
+	renderHeader() {
 		return (
-			<Draggable bounds="#App" >
+			<span>
+				Calculator
+				{ this.props.onHide ?
+					<span className="calc-hide-button fa fa-times" onClick={this.props.onHide} /> :
+					null
+				}
+			</span>
+		);
+	}
+
+	renderFull = () => {
+		const bounds = {
+			top: 0,
+			left: 0,
+			right: window.innerWidth,
+			bottom: window.innerHeight
+		};
+		return (
+			<Draggable bounds={bounds} >
 				<div className="outer-calc" style={this.props.style}>
-					<Panel id="calc-panel-full">
+					<Panel id="calc-panel-full" header={this.renderHeader()}>
 						<Container>
 							<Row>
 								<Col md={8} className="desaturated" >
@@ -185,10 +203,19 @@ class Calculator extends Component {
 		if ( this.state.showFull ) {
 			return this.renderFull();
 		}
+		const bounds = {
+			top: 0,
+			left: 0,
+			right: window.innerWidth,
+			bottom: window.innerHeight
+		};
 		return (
-			<Draggable bounds="#App" >
+			<Draggable bounds={bounds} >
 				<div className="outer-calc" style={this.props.style} >
-					<Panel id="calc-panel">
+					<Panel
+						id="calc-panel"
+						header={this.renderHeader()}
+					>
 						<Container>
 							<Row>
 								<Col className="desaturated" md={7}>
@@ -246,12 +273,14 @@ class Calculator extends Component {
 
 Calculator.defaultProps = {
 	expandable: false,
-	style: {}
+	style: {},
+	onHide: null
 };
 
 Calculator.propTypes = {
 	expandable: PropTypes.bool,
-	style: PropTypes.object
+	style: PropTypes.object,
+	onHide: PropTypes.func
 };
 
 Calculator.contextType = SessionContext;
