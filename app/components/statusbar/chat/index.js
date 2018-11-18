@@ -131,6 +131,15 @@ class Chat extends Component {
 		</OverlayTrigger> );
 	}
 
+	renderTime( time ) {
+		return new Date( time ).toLocaleTimeString( [], {
+			hour: '2-digit',
+			minute: '2-digit',
+			month: 'short',
+			day: 'numeric'
+		});
+	}
+
 	renderChatBody() {
 		const { chat } = this.props;
 		return (
@@ -146,7 +155,7 @@ class Chat extends Component {
 					onScroll={this.onScroll}
 				>
 					{chat.messages.map( ( msg, idx ) => (<div className={msg.unread ? 'chatmessage unread' : 'chatmessage'} key={idx}>
-						<span className="chattime">{msg.time}</span> - <span className="chatuser">{msg.user}:&nbsp;</span>
+						<span className="chattime">{this.renderTime( msg.time )}</span> - <span className="chatuser">{msg.user}:&nbsp;</span>
 						<span className="chatmessage-content">{msg.content}</span>
 						<hr style={{ marginTop: 3, marginBottom: 3 }} />
 					</div>) )}
@@ -154,6 +163,7 @@ class Chat extends Component {
 				<FormControl
 					as="textarea"
 					className="chat-textarea" rows={2} onChange={this.changedText} value={this.state.value}
+					placeholder="Type your message..."
 				/>
 				<Button
 					className="center" size="sm" variant="secondary"
