@@ -88,6 +88,7 @@ class Session {
 
 		// List of currently logged-in users:
 		this.userList = [];
+		this.userFocuses = {};
 
 		// Array of open chats:
 		this.chats = [];
@@ -143,8 +144,42 @@ class Session {
 			this.getLessonInfo();
 		}
 
+		document.addEventListener( 'focusin', this.focusInListener );
+		document.addEventListener( 'focusout', this.focusOutListener );
+
 		// Log session data to database in regular interval:
 		setInterval( this.logSession, 5*60000 );
+	}
+
+	focusInListener = ( event ) => {
+		let activeElement = document.activeElement;
+		let id;
+		if ( activeElement ) {
+			id = activeElement.id;
+			while ( !id && activeElement ) {
+				activeElement = activeElement.parentElement;
+				if ( activeElement ) {
+					id = activeElement.id;
+				}
+			}
+		}
+		debug( `Focused element with id ${id}` );
+		this.log({
+			type: 'FOCUS_ELEMENT',
+			value: this.user.email,
+			id: id,
+			noSave: true
+		}, 'owners' );
+	}
+
+	focusOutListener = ( event ) => {
+		debug( `Users ${this.user.email} lost focus...` );
+		this.log({
+			type: 'LOSE_FOCUS_ELEMENT',
+			id: this.userFocuses[ this.user.email ],
+			value: this.user.email,
+			noSave: true
+		}, 'owners' );
 	}
 
 	/**
@@ -528,7 +563,7 @@ class Session {
 	sendChatMessage( name, msg ) {
 		if ( this.socket ) {
 			const msgObj = {
-				time: new Date().toLocaleTimeString(),
+				time: new Date().getTime(),
 				user: this.user.name,
 				content: msg
 			};
@@ -631,6 +666,7 @@ class Session {
 		socket.on( 'user_joins', ( data ) => {
 			debug( 'A user has joined and should be added to the user list: ' + data );
 			data = JSON.parse( data );
+			this.userList = this.userList.filter( user => user.email !== data.email );
 			this.userList.push( data );
 			const isUser = data.email === this.user.email;
 			if ( this.config.joinNotifications && !isUser ) {
@@ -824,6 +860,14 @@ class Session {
 			newArray.unshift( action );
 			this.socketActions = newArray;
 			debug( 'Number of actions: ' + this.socketActions.length );
+		}
+		if ( action.type === 'FOCUS_ELEMENT' ) {
+			debug( `Received focus for element with ID ${action.id} by ${action.email}` );
+			this.userFocuses[ action.email ] = action.id;
+		}
+		else if ( action.type === 'LOSE_FOCUS_ELEMENT' ) {
+			debug( `Remove focus for user ${action.email}` );
+			delete this.userFocuses[ action.email ];
 		}
 		this.update( 'member_action', action );
 	}
