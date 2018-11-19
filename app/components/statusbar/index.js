@@ -191,7 +191,8 @@ class StatusBar extends Component {
 		}
 	}
 
-	toggleCalculator = () => {
+	toggleCalculator = ( event ) => {
+		event.stopPropagation();
 		this.setState({
 			showCalculator: !this.state.showCalculator
 		});
