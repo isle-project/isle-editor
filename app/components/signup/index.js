@@ -110,7 +110,7 @@ class Signup extends Component {
 			<Modal show={this.props.show}
 				dialogClassName="modal-75w"
 			>
-				<Modal.Header>
+				<Modal.Header closeButton onHide={this.props.onClose} >
 					<Modal.Title as="h5">Create User</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
