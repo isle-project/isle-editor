@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Badge from 'react-bootstrap/lib/Badge';
 import Button from 'react-bootstrap/lib/Button';
+import Popover from 'react-bootstrap/lib/Popover';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import Modal from 'react-bootstrap/lib/Modal';
@@ -12,6 +13,7 @@ import isArray from '@stdlib/assert/is-array';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import Gate from 'components/gate';
+import OverlayTrigger from 'components/overlay-trigger';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
 import FullscreenActionDisplay from './fullscreen_action_display.js';
@@ -19,6 +21,17 @@ import extractValue from './extract_value.js';
 
 
 // FUNCTIONS //
+
+/**
+* Extracts the second to last word of an action type, as these should be most informative about the nature of the action (recall that project convention is to use `_` to separate words in action types)
+*
+* @private
+* @param {string} str - action type
+* @param {string} substring of action type
+*/
+const extractSubstr = ( str ) => {
+	return str.substr( str.lastIndexOf( '_', str.lastIndexOf( '_' ) - 1 ) + 1 );
+};
 
 const usersWithFocus = ( userFocuses, usersWithActions, id ) => {
 	const out = [];
@@ -290,6 +303,57 @@ class ResponseVisualizer extends Component {
 		});
 	}
 
+	renderTooltip() {
+		const session = this.context;
+		const nUsers = session.userList.length;
+		const focusUsers = usersWithFocus( session.userFocuses, this.emailHash, this.props.id );
+		let tooltip = 'Interaction rate for currently active students:\n\n';
+		const table = <table className="table table-bordered table-condensed" >
+			<thead>
+				<tr>
+					<th>Action Type</th>
+					<th>Rate</th>
+					<th>Color</th>
+				</tr>
+			</thead>
+			<tbody>
+				{ this.props.success ?
+					<tr>
+						<td>{extractSubstr( this.props.success )}</td>
+						<td>{this.state.nSuccess} / {nUsers}</td>
+						<td>Green</td>
+					</tr> : null
+				}
+				{ this.props.danger ?
+					<tr>
+						<td>{extractSubstr( this.props.danger)}</td>
+						<td>{this.state.nDanger} / {nUsers}</td>
+						<td>Red</td>
+					</tr> : null
+				}
+				{ this.props.info ?
+					<tr>
+						<td>{extractSubstr( this.props.info )}</td>
+						<td>{this.state.nInfo} / {nUsers}</td>
+						<td>Blue</td>
+					</tr> : null
+				}
+				<tr>
+					<td>Component in focus</td>
+					<td>{focusUsers.length} / {nUsers}</td>
+					<td>Orange</td>
+				</tr>
+			</tbody>
+		</table>;
+
+		tooltip = <Popover title={tooltip} style={{ fontSize: 10, textAlign: 'left' }} >
+			{table}
+			<p>The following users currently have the component in focus:</p>
+			<p>{focusUsers.join( ', ')}</p>
+		</Popover>;
+		return tooltip;
+	}
+
 	renderDeleteModal() {
 		return ( <Modal
 			show={this.state.showDeleteModal}
@@ -335,10 +399,10 @@ class ResponseVisualizer extends Component {
 	}
 
 	render() {
-		const session = this.context;
 		if ( !this.props.id ) {
 			return <Gate owner><label style={{ marginLeft: 5 }}>No ID supplied.</label></Gate>;
 		}
+		const session = this.context;
 		const nUsers = session.userList.length;
 		const focusUsers = usersWithFocus( session.userFocuses, this.emailHash, this.props.id );
 		let successRate = this.state.nSuccess / nUsers;
@@ -347,20 +411,8 @@ class ResponseVisualizer extends Component {
 		dangerRate *= 100.0;
 		let infoRate = this.state.nInfo / nUsers;
 		infoRate *= 100.0;
-		let focusRate = ( focusUsers.length - this.state.nInfo ) / nUsers;
+		let focusRate = focusUsers.length / nUsers;
 		focusRate *= 100.0;
-		let tooltip = 'Interaction rate for currently active students:\n\n';
-		if ( this.props.success ) {
-			tooltip += `${this.props.success}: ${this.state.nSuccess} / ${nUsers} (green)\n`;
-		}
-		if ( this.props.danger ) {
-			tooltip += `${this.props.danger}: ${this.state.nDanger} / ${nUsers} (red)\n`;
-		}
-		if ( this.props.info ) {
-			tooltip += `${this.props.info}: ${this.state.nInfo} / ${nUsers} (blue)\n`;
-		}
-		tooltip += `${focusUsers.length} / ${nUsers} users currently engaging with component (orange):\n`;
-		tooltip += `${focusUsers.join( ', ')}`;
 		return (
 			<Gate owner>
 				{this.renderFullscreenModal()}
@@ -381,14 +433,18 @@ class ResponseVisualizer extends Component {
 							<Badge variant="dark" style={{ fontSize: '10px' }}>{this.state.nActions}</Badge>
 						</Button>
 					</Tooltip>
-					<Tooltip placement="top" tooltip={tooltip}>
+					<OverlayTrigger
+						trigger="click"
+						placement="top"
+						overlay={this.renderTooltip()}
+					>
 						<ProgressBar style={{ width: '100%', marginTop: '3px', height: '0.7rem', boxShadow: '0 0 2px black' }}>
 							<ProgressBar variant="info" now={infoRate} max={100} min={0} />
 							<ProgressBar variant="warning" now={focusRate} max={100} min={0} />
 							<ProgressBar variant="success" now={successRate} max={100} min={0} />
 							<ProgressBar variant="danger" now={dangerRate} max={100} min={0} />
 						</ProgressBar>
-					</Tooltip>
+					</OverlayTrigger>
 				</ButtonGroup>
 				{this.renderDeleteModal()}
 			</Gate>
