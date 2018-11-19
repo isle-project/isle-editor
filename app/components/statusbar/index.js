@@ -132,7 +132,7 @@ class StatusBar extends Component {
 		}
 	}
 
-	login( e ) {
+	login = ( e ) => {
 		e.stopPropagation();
 		this.setState({
 			visibleLogin: true
