@@ -122,6 +122,7 @@ class Calculator extends Component {
 	}
 
 	renderFull = () => {
+		debug( 'Rendering expanded calculator...' );
 		const bounds = {
 			top: 0,
 			left: 0,

@@ -97,7 +97,7 @@ class UserList extends Component {
 					if ( this.state.selected === user.email ) {
 						background = '#e0a800';
 					} else {
-						background = user.inactive ? 'lightgrey' : 'transparent'
+						background = user.inactive ? 'lightgrey' : 'transparent';
 					}
 					return (
 						<ListGroupItem

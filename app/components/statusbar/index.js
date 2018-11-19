@@ -82,7 +82,6 @@ class StatusBar extends Component {
 	}
 
 	componentWillUnmount() {
-		console.log( "UNMOUNT STATUSBAR COMPONENT" );
 		this.unsubscribe();
 		if ( this.renderTextInterval ) {
 			clearInterval( this.renderTextInterval );

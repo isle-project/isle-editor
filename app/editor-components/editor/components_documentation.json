@@ -67,6 +67,21 @@
         "name": "expandable",
         "type": "boolean",
         "default": false
+      },
+      {
+        "name": "show",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "onHide",
+        "type": "function",
+        "default": null
       }
     ],
     "description": "Description is missing."
@@ -2459,7 +2474,7 @@
     "props": [
       {
         "name": "header",
-        "type": "string",
+        "type": "(string|node)",
         "description": "panel heading (h3)",
         "default": null
       },
