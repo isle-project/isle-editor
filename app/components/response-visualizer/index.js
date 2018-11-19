@@ -346,10 +346,10 @@ class ResponseVisualizer extends Component {
 			</tbody>
 		</table>;
 
-		tooltip = <Popover title={tooltip} style={{ fontSize: 10, textAlign: 'left' }} >
+		tooltip = <Popover title={tooltip} style={{ fontSize: 12, textAlign: 'left' }} >
 			{table}
 			<p>The following users currently have the component in focus:</p>
-			<p>{focusUsers.join( ', ')}</p>
+			<p style={{ wordWrap: 'break-word' }} >{focusUsers.join( ', ')}</p>
 		</Popover>;
 		return tooltip;
 	}
@@ -434,7 +434,7 @@ class ResponseVisualizer extends Component {
 						</Button>
 					</Tooltip>
 					<OverlayTrigger
-						trigger="click"
+						trigger="hover"
 						placement="top"
 						overlay={this.renderTooltip()}
 					>
