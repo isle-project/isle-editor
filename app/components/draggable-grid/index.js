@@ -2,7 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/lib/Alert';
 import { Responsive, WidthProvider } from 'react-grid-layout';
+import isArray from '@stdlib/assert/is-array';
 import pluck from '@stdlib/utils/pluck';
 import floor from '@stdlib/math/base/special/floor';
 
@@ -15,6 +17,9 @@ const ResponsiveReactGridLayout = WidthProvider( Responsive );
 // FUNCTIONS //
 
 const createLayout = ( props ) => {
+	if ( !isArray( props.children ) ) {
+		return null;
+	}
 	let layouts = props.children.map( ( e, i ) => {
 		return {
 			lg: { i: `cell-${i}`, x: i*6 % 18, y: floor( i / 3 ) * 4, w: 6, h: 4 },
@@ -59,6 +64,9 @@ class DraggableGrid extends Component {
 	}
 
 	render() {
+		if ( !isArray( this.props.children ) ) {
+			return <Alert variant="danger" >The draggable grid requires at least two child elements for it to be rendered.</Alert>;
+		}
 		return ( <ResponsiveReactGridLayout
 			layouts={this.state.layouts}
 			breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
