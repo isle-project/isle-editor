@@ -129,7 +129,7 @@ class Calculator extends Component {
 			bottom: window.innerHeight
 		};
 		return (
-			<Draggable bounds={bounds} >
+			<Draggable bounds={bounds} cancel="#calc-text-area" >
 				<div className="outer-calc" style={this.props.style}>
 					<Panel id="calc-panel-full" header={this.renderHeader()}>
 						<Container>
@@ -185,7 +185,7 @@ class Calculator extends Component {
 									</Row>
 								</Col>
 								<Col md={4}>
-									<TextArea value={String(this.state.visible)} />
+									<TextArea id="calc-text-area" value={String(this.state.visible)} />
 									<p>Answer = {this.state.answer}</p>
 								</Col>
 							</Row>
@@ -213,7 +213,7 @@ class Calculator extends Component {
 			bottom: window.innerHeight
 		};
 		return (
-			<Draggable bounds={bounds} enableUserSelectHack={false} >
+			<Draggable bounds={bounds} enableUserSelectHack={false} cancel="#calc-text-area" >
 				<div className="outer-calc" style={this.props.style} >
 					<Panel
 						id="calc-panel"
@@ -259,7 +259,7 @@ class Calculator extends Component {
 									</Row>
 								</Col>
 								<Col md={5}>
-									<TextArea value={String(this.state.visible)} onChange={this.handleTypeChange} />
+									<TextArea id="calc-text-area" value={String(this.state.visible)} onChange={this.handleTypeChange} />
 									<p>Answer = {this.state.answer}</p>
 								</Col>
 							</Row>
