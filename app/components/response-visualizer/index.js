@@ -346,7 +346,7 @@ class ResponseVisualizer extends Component {
 			</tbody>
 		</table>;
 
-		tooltip = <Popover title={tooltip} style={{ fontSize: 12, textAlign: 'left' }} >
+		tooltip = <Popover title={tooltip} style={{ fontSize: 12, textAlign: 'left', maxWidth: 1200 }} >
 			{table}
 			<p>The following users currently have the component in focus:</p>
 			<p style={{ wordWrap: 'break-word' }} >{focusUsers.join( ', ')}</p>

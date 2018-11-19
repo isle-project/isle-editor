@@ -18,8 +18,8 @@ function toTimeString( absoluteTime ) {
 const SingleActionModal = ( props ) => {
 	return (
 		<Modal
-			show={props.showModal}
-			onHide={props.hideModal}
+			show={props.show}
+			onHide={props.onHide}
 			dialogClassName="modal-75w"
 			backdropClassName="modal-backdrop-second-order"
 			style={{

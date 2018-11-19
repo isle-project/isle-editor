@@ -117,6 +117,7 @@ class FullscreenActionDisplay extends Component {
 
 	showModalFactory = ( elem ) => {
 		return () => {
+			debug( 'Show model for prominently displaying a single answer...' );
 			this.setState({
 				modalContent: elem,
 				showModal: true
