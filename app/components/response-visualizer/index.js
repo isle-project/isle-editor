@@ -20,10 +20,13 @@ import extractValue from './extract_value.js';
 
 // FUNCTIONS //
 
-const usersWithFocus = ( userFocuses, id ) => {
+const usersWithFocus = ( userFocuses, usersWithActions, id ) => {
 	const out = [];
 	for ( let key in userFocuses ) {
-		if ( hasOwnProperty( userFocuses, key ) ) {
+		if (
+			hasOwnProperty( userFocuses, key ) && // user has component in focus
+			!hasOwnProperty( usersWithActions, key ) // user has not already submitted an action
+		) {
 			const elemID = userFocuses[ key ];
 			if ( elemID === id ) {
 				out.push( key );
@@ -337,7 +340,7 @@ class ResponseVisualizer extends Component {
 			return <Gate owner><label style={{ marginLeft: 5 }}>No ID supplied.</label></Gate>;
 		}
 		const nUsers = session.userList.length;
-		const focusUsers = usersWithFocus( session.userFocuses, this.props.id );
+		const focusUsers = usersWithFocus( session.userFocuses, this.emailHash, this.props.id );
 		let successRate = this.state.nSuccess / nUsers;
 		successRate *= 100.0;
 		let dangerRate = this.state.nDanger / nUsers;
@@ -356,7 +359,7 @@ class ResponseVisualizer extends Component {
 		if ( this.props.info ) {
 			tooltip += `${this.props.info}: ${this.state.nInfo} / ${nUsers} (blue)\n`;
 		}
-		tooltip += 'Users currently engaging with component: ';
+		tooltip += `${focusUsers.length} / ${nUsers} users currently engaging with component (orange):\n`;
 		tooltip += `${focusUsers.join( ', ')}`;
 		return (
 			<Gate owner>
