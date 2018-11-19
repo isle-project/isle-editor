@@ -48,7 +48,6 @@
         * [Draggable List](components/draggable-list.md)
         * [Expire](components/expire.md)
         * [Gate](components/gate.md)
-        * [Grid](components/grid.md)
         * [Pages](components/pages.md)
         * [Revealer](components/revealer.md)
         * [Slider](components/slider.md)
