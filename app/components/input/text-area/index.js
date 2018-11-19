@@ -76,7 +76,7 @@ class TextArea extends Component {
 			value = this.props.value;
 		}
 		return (
-			<FormGroup className="input" controlId="formControlsTextarea">
+			<FormGroup id={this.props.id} className="input" controlId="formControlsTextarea" >
 				{this.renderLegend()}
 				<FormControl
 					as="textarea"
