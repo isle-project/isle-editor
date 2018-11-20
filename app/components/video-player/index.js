@@ -60,6 +60,7 @@ class Video extends Component {
 				value: this.state.progress.playedSeconds
 			});
 		}
+
 		this.props.onPlay();
 	}
 
@@ -73,6 +74,13 @@ class Video extends Component {
 			});
 		}
 		this.props.onPause();
+	}
+
+	handleStartTime = () => {
+		if (this.props.startTime) {
+			const player = this.player.getInternalPlayer();
+			player.seekTo( this.props.startTime);
+		}
 	}
 
 	handleEnded = () => {
@@ -132,6 +140,7 @@ class Video extends Component {
 					onPause={this.handlePause}
 					onEnded={this.handleEnded}
 					onProgress={this.handleProgress}
+					onReady={this.handleStartTime}
 					progressInterval={1000}
 					ref={( div ) => { this.player = div; }}
 				/>
@@ -159,6 +168,7 @@ Video.propTypes = {
 	]),
 	loop: PropTypes.bool,
 	voiceID: PropTypes.string,
+	startTime: PropTypes.number,
 	style: PropTypes.object,
 	onEnded: PropTypes.func,
 	onPause: PropTypes.func,
@@ -175,6 +185,7 @@ Video.defaultProps = {
 	width: 640,
 	loop: false,
 	voiceID: null,
+	startTime: null,
 	style: {},
 	onEnded() {},
 	onPause() {},
