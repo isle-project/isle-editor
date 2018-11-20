@@ -141,7 +141,7 @@ class MCSgenerator extends Component {
 	}
 
 	render() {
-		return ( <Card body>
+		return ( <Card body id={this.props.id} >
 			<Gate owner {...this.props} >
 				<Card body className="bg-light" style={{
 					maxWidth: '800px',

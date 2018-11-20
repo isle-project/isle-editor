@@ -38,6 +38,7 @@ const debug = logger( 'isle:free-text-survey' );
 * @property {boolean} anonymous - controls whether student answers are anonymized
 * @property {boolean} multipleAnswers - controls whether students may select more than one answer. Note that this differs from `allowMultipleAnswers`, which allows students able to submit an answer multiple times
 * @property {number} rows - number of text rows in the input field
+* @property {Object} style - CSS inline styles
 * @property {Function} onSubmit - callback function called when an answer is submitted
 */
 class FreeTextSurvey extends Component {
@@ -153,7 +154,7 @@ class FreeTextSurvey extends Component {
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
 			<Gate user banner={<h2>Please sign in...</h2>} >
-				<Card>
+				<Card id={this.props.id} style={this.props.style} >
 					<Card.Header as="h3">
 						Survey
 					</Card.Header>
@@ -201,20 +202,22 @@ class FreeTextSurvey extends Component {
 // PROPERTIES //
 
 FreeTextSurvey.defaultProps = {
-	onSubmit() {},
-	allowMultipleAnswers: false,
 	question: '',
+	allowMultipleAnswers: false,
 	anonymous: false,
-	rows: 4
+	rows: 4,
+	style: {},
+	onSubmit() {}
 };
 
 FreeTextSurvey.propTypes = {
 	id: PropTypes.string.isRequired,
+	question: PropTypes.string,
 	allowMultipleAnswers: PropTypes.bool,
 	anonymous: PropTypes.bool,
-	onSubmit: PropTypes.func,
-	question: PropTypes.string,
-	rows: PropTypes.number
+	rows: PropTypes.number,
+	style: PropTypes.object,
+	onSubmit: PropTypes.func
 };
 
 FreeTextSurvey.contextType = SessionContext;

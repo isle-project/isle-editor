@@ -10,7 +10,7 @@ import SessionContext from 'session/context.js';
 // MAIN //
 
 /**
-* An ISLE component that instructors to selectively reveal or hide children content.
+* An ISLE component that instructors may use to selectively reveal or hide children content to all users.
 *
 * @property {string} message - message to be displayed when content is hidden
 */

@@ -33,6 +33,7 @@ import './select-question.css';
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {string} failureMsg - message to be displayed when student selects a wrong answer
 * @property {string} successMsg - message to be displayed when student selects the correct answer
+* @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after the submit action
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter
  */
@@ -117,7 +118,8 @@ class SelectQuestion extends Component {
 					validationState={this.state.answerState}
 					style={{
 						width: 'min-content',
-						display: 'inline'
+						display: 'inline',
+						...this.props.style
 					}}
 				>
 					<InputGroup>
@@ -140,7 +142,7 @@ class SelectQuestion extends Component {
 			);
 		}
 		return (
-			<Card className="select-question" body>
+			<Card className="select-question" style={this.props.style} body >
 				<Form>
 					<FormGroup controlId="formControlsSelect" validationState={this.state.answerState}>
 						{ this.props.question ?
@@ -203,6 +205,7 @@ SelectQuestion.defaultProps = {
 	provideFeedback: true,
 	failureMsg: 'Not quite, try again!',
 	successMsg: 'That\'s the correct answer!',
+	style: {},
 	onChange() {},
 	onSubmit() {}
 };
@@ -220,6 +223,7 @@ SelectQuestion.propTypes = {
 	provideFeedback: PropTypes.bool,
 	failureMsg: PropTypes.string,
 	successMsg: PropTypes.string,
+	style: PropTypes.object,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func
 };

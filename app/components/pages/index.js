@@ -113,6 +113,7 @@ class Pages extends Component {
 		}
 		return (
 			<Card
+				id={this.props.id}
 				style={this.props.style}
 			>
 				{ this.props.title ? header : null }

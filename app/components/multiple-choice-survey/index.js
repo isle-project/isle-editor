@@ -30,13 +30,14 @@ const debug = logger( 'isle:multiple-choice-survey' );
 * A survey component in which the instructor may collect multiple-choice survey data from students in real-time.
 *
 * @property {string} id - component identifier
-* @property {boolean} allowMultipleAnswers - contols whether one wishes to allow students to answer the survey multiple times
-* @property {boolean} anonymous - contols whether student answers are anonymized
+* @property {string} question - string indicating the question to ask the students
+* @property {boolean} allowMultipleAnswers - controls whether one wishes to allow students to answer the survey multiple times
+* @property {boolean} anonymous - controls whether student answers are anonymized
 * @property {Array} answers - array indicating answer choices for the students
 * @property {boolean} multipleAnswers - indicates whether students may select more than one answer. Note that this differs from allowMultipleAnswers in that allow makes students able to submit the question multiple times
 * @property {string} title - panel title
+* @property {Object} style - CSS inline styles
 * @property {Function} onSubmit - function to be called when an answer is submitted
-* @property {string} question - string indicating the question to ask the students
 */
 class MultipleChoiceSurvey extends Component {
 	constructor( props ) {
@@ -183,7 +184,7 @@ class MultipleChoiceSurvey extends Component {
 		}
 		return (
 			<Gate user banner={<h2>Please sign in...</h2>} >
-				<Card>
+				<Card id={this.props.id} style={this.props.style} >
 					<Card.Header as="h3">
 						{title}
 					</Card.Header>
@@ -228,24 +229,26 @@ class MultipleChoiceSurvey extends Component {
 // PROPERTIES //
 
 MultipleChoiceSurvey.defaultProps = {
+	question: '',
 	allowMultipleAnswers: false,
 	anonymous: false,
 	answers: [],
 	multipleAnswers: false,
 	title: 'Survey',
-	onSubmit() {},
-	question: ''
+	style: {},
+	onSubmit() {}
 };
 
 MultipleChoiceSurvey.propTypes = {
 	id: PropTypes.string.isRequired,
+	question: PropTypes.string,
 	allowMultipleAnswers: PropTypes.bool,
 	anonymous: PropTypes.bool,
 	answers: PropTypes.array,
 	multipleAnswers: PropTypes.bool,
 	title: PropTypes.string,
-	onSubmit: PropTypes.func,
-	question: PropTypes.string
+	style: PropTypes.object,
+	onSubmit: PropTypes.func
 };
 
 MultipleChoiceSurvey.contextType = SessionContext;

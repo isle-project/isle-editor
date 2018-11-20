@@ -277,6 +277,12 @@
         "default": 600
       },
       {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
         "name": "onGenerate",
         "type": "function",
         "description": "function invoked when the button is clicked or one of the dashboard input values changes (if `autoUpdate` is set to `true`). The function is called with the values of the input fields, in the order in which they are placed in the dashboard",
@@ -721,6 +727,12 @@
         "default": null
       },
       {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
         "name": "onChange",
         "type": "function",
         "description": "callback invoked every time the text area value changes; receives the current text as its sole argument",
@@ -743,6 +755,12 @@
         "description": "component identifier"
       },
       {
+        "name": "question",
+        "type": "string",
+        "description": "the question to ask the students",
+        "default": ""
+      },
+      {
         "name": "allowMultipleAnswers",
         "type": "boolean",
         "description": "controls whether one wishes to allow students to answer the survey multiple times",
@@ -755,22 +773,22 @@
         "default": false
       },
       {
-        "name": "onSubmit",
-        "type": "function",
-        "description": "callback function called when an answer is submitted",
-        "default": "onSubmit() {}"
-      },
-      {
-        "name": "question",
-        "type": "string",
-        "description": "the question to ask the students",
-        "default": ""
-      },
-      {
         "name": "rows",
         "type": "number",
         "description": "number of text rows in the input field",
         "default": 4
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback function called when an answer is submitted",
+        "default": "onSubmit() {}"
       }
     ],
     "description": "An ISLE component for questions where the answers by the students should be supplied in the form of free text. What differentiates this component from the **FreeTextQuestion** is the fact that the aggregated group data is displayed to everyone in real-time."
@@ -1947,6 +1965,12 @@
         "default": "You have successfully re-submitted your answer."
       },
       {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
         "name": "onSubmit",
         "type": "function",
         "description": "callback invoked when students submits an answer",
@@ -2151,15 +2175,21 @@
         "description": "component identifier"
       },
       {
+        "name": "question",
+        "type": "string",
+        "description": "string indicating the question to ask the students",
+        "default": ""
+      },
+      {
         "name": "allowMultipleAnswers",
         "type": "boolean",
-        "description": "contols whether one wishes to allow students to answer the survey multiple times",
+        "description": "controls whether one wishes to allow students to answer the survey multiple times",
         "default": false
       },
       {
         "name": "anonymous",
         "type": "boolean",
-        "description": "contols whether student answers are anonymized",
+        "description": "controls whether student answers are anonymized",
         "default": false
       },
       {
@@ -2181,16 +2211,16 @@
         "default": "Survey"
       },
       {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
         "name": "onSubmit",
         "type": "function",
         "description": "function to be called when an answer is submitted",
         "default": "onSubmit() {}"
-      },
-      {
-        "name": "question",
-        "type": "string",
-        "description": "string indicating the question to ask the students",
-        "default": ""
       }
     ],
     "description": "A survey component in which the instructor may collect multiple-choice survey data from students in real-time."
@@ -2299,6 +2329,12 @@
         "default": false
       },
       {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
         "name": "onChange",
         "type": "function",
         "description": "callback  which is triggered after the value of the number field changes; receives the current value as its sole argument",
@@ -2343,6 +2379,12 @@
         "type": "(number|string)",
         "description": "A `string` or `numeric` value indicating the step of the arrows seen when hovering the cursor above the input box. If `'any'`, the step will be set to `1`",
         "default": "any"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       },
       {
         "name": "onSubmit",
@@ -2413,6 +2455,12 @@
         "type": "boolean",
         "description": "controls whether to disable submission notifications",
         "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       },
       {
         "name": "onChange",
@@ -3082,6 +3130,11 @@
         "default": null
       },
       {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      },
+      {
         "name": "onChangeLower",
         "type": "function",
         "description": "callback triggered after the lower bound is changed by the user",
@@ -3168,7 +3221,7 @@
         "default": "Content hidden by instructor"
       }
     ],
-    "description": "An ISLE component that instructors to selectively reveal or hide children content."
+    "description": "An ISLE component that instructors may use to selectively reveal or hide children content to all users."
   },
   "Runner": {
     "props": [
@@ -3264,6 +3317,12 @@
         "type": "string",
         "description": "message to be displayed when student selects the correct answer",
         "default": "That's the correct answer!"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       },
       {
         "name": "onChange",

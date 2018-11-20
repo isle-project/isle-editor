@@ -128,9 +128,9 @@ class FeedbackButtons extends Component {
 	* React component render method.
 	*/
 	render() {
-		const tpos = (this.props.vertical ? 'left' : 'bottom');
+		const tpos = this.props.vertical ? 'left' : 'bottom';
 		return (
-			<div className="feedback-buttons" style={{ ...this.props.style }}>
+			<div id={this.props.id} lassName="feedback-buttons" style={{ ...this.props.style }}>
 				<ButtonGroup style={{ float: 'right' }} vertical={this.props.vertical} >
 					{ this.state.submittedBinaryChoice ?
 						<Fragment>
