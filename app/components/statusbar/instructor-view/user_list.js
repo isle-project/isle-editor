@@ -13,6 +13,13 @@ import './user_list.css';
 const debug = logger( 'isle:statusbar:instructor-view' );
 
 
+// FUNCTIONS //
+
+function isHidden( el ) {
+	return el.offsetParent === null;
+}
+
+
 // MAIN //
 
 class UserList extends Component {
@@ -47,14 +54,18 @@ class UserList extends Component {
 
 	componentWillUnmount() {
 		this.unsubscribe();
-		this.removeAllGlowEffects();
+		this.removeGlowElems();
 	}
 
-	removeAllGlowEffects() {
+	removeGlowElems() {
 		// Remove glow effect from previously highlighted elements:
 		const focused = document.getElementsByClassName( 'focus-glow' );
 		while ( focused.length ) {
 			focused[0].classList.remove( 'focus-glow' );
+		}
+		const element = document.getElementById( 'duplicated-container' );
+		if ( element ) {
+			element.parentNode.removeChild( element );
 		}
 	}
 
@@ -64,12 +75,22 @@ class UserList extends Component {
 		const id = userFocuses[ email ];
 		debug( 'ID of element to be focused is: '+id );
 
-		this.removeAllGlowEffects();
+		this.removeGlowElems();
 		const elem = document.getElementById( id );
 		if ( elem ) {
 			debug( 'Found element, should add glow effect...' );
-			elem.classList.add( 'focus-glow' );
-			elem.scrollIntoView();
+			if ( isHidden( elem ) ) {
+				const clone = elem.cloneNode( true );
+				const newDiv = document.createElement( 'div' );
+				newDiv.id = 'duplicated-container';
+				clone.id = 'duplicated-elem';
+				clone.classList.add( 'focus-glow' );
+				newDiv.append( clone );
+				document.body.appendChild( newDiv );
+			} else {
+				elem.classList.add( 'focus-glow' );
+				elem.scrollIntoView();
+			}
 		}
 	}
 
