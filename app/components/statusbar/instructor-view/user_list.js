@@ -1,16 +1,21 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
+import ProgressBar from 'react-bootstrap/lib/ProgressBar';
+import indexOf from '@stdlib/utils/index-of';
+import keys from '@stdlib/utils/keys';
+import { CAT20 } from 'constants/colors';
 import './user_list.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:statusbar:instructor-view' );
+const IDs = []; // array of IDs for lesson elements
 
 
 // FUNCTIONS //
@@ -44,10 +49,13 @@ class UserList extends Component {
 			}
 			else if (
 				type === 'member_action' &&
-				( action.type === 'FOCUS_ELEMENT' || action.type === 'LOSE_FOCUS_ELEMENT' ) &&
-				action.email === this.state.selected
+				( action.type === 'FOCUS_ELEMENT' || action.type === 'LOSE_FOCUS_ELEMENT' )
 			) {
-				this.highlightElement( action.email );
+				if ( action.email === this.state.selected ) {
+					this.highlightElement( action.email );
+				} else {
+					this.forceUpdate();
+				}
 			}
 		});
 	}
@@ -110,31 +118,65 @@ class UserList extends Component {
 
 	render() {
 		const session = this.props.session;
-		return (
-			<ListGroup className="user-list-group" style={{ height: window.innerHeight / 2 }}>
-				{session.userList.map( ( user, idx ) => {
-					const color = user.owner ? '#3c763d' : 'black';
-					let background;
-					if ( this.state.selected === user.email ) {
-						background = '#e0a800';
-					} else {
-						background = user.inactive ? 'lightgrey' : 'transparent';
+		const userFocuses = session.userFocuses;
+		const ID_COUNTS = {};
+		let ID_COUNT_SUM = 0;
+		const list = <ListGroup className="user-list-group" style={{ height: window.innerHeight / 2 }}>
+			{session.userList.map( ( user, idx ) => {
+				let focusedID = null;
+				const id = userFocuses[ user.email ];
+				if ( id ) {
+					let pos = indexOf( IDs, id );
+					if ( pos === -1 ) {
+						pos = IDs.length;
+						IDs.push( id );
 					}
-					return (
-						<ListGroupItem
-							className="user-list-item"
-							key={idx}
-							onClick={this.handleClickFactory( user.email )}
-							style={{
-								background,
-								color
-							}}
-						>
-							{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}
-						</ListGroupItem>
+					ID_COUNTS[ id ] = ( ID_COUNTS[ id ] || 0 ) + 1;
+					ID_COUNT_SUM += 1;
+					focusedID = (
+						<span style={{
+							float: 'right',
+							color: CAT20[ pos % CAT20.length ]
+						}}>
+							{id}
+						</span>
 					);
-				})}
-			</ListGroup>
+				}
+				const color = user.owner ? '#3c763d' : 'black';
+				let background;
+				if ( this.state.selected === user.email ) {
+					background = '#e0a800';
+				} else {
+					background = user.inactive ? 'lightgrey' : 'transparent';
+				}
+				return (
+					<ListGroupItem
+						className="user-list-item"
+						key={idx}
+						onClick={this.handleClickFactory( user.email )}
+						style={{
+							background,
+							color
+						}}
+					>
+						{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}
+						{focusedID}
+					</ListGroupItem>
+				);
+			})}
+		</ListGroup>;
+		const activeIDs = keys( ID_COUNTS );
+		return (
+			<Fragment>
+				<ProgressBar>
+					{activeIDs.map( ( id, key ) => {
+						const pos = indexOf( IDs, id );
+						const color = CAT20[ pos % CAT20.length ];
+						return <ProgressBar style={{ background: color }} key={key} now={( ID_COUNTS[ id ] / ID_COUNT_SUM ) * 100.0} label={id} />;
+					})}
+				</ProgressBar>
+				{list}
+			</Fragment>
 		);
 	}
 }
