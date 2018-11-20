@@ -755,6 +755,12 @@
         "description": "component identifier"
       },
       {
+        "name": "question",
+        "type": "string",
+        "description": "the question to ask the students",
+        "default": ""
+      },
+      {
         "name": "allowMultipleAnswers",
         "type": "boolean",
         "description": "controls whether one wishes to allow students to answer the survey multiple times",
@@ -767,22 +773,22 @@
         "default": false
       },
       {
-        "name": "onSubmit",
-        "type": "function",
-        "description": "callback function called when an answer is submitted",
-        "default": "onSubmit() {}"
-      },
-      {
-        "name": "question",
-        "type": "string",
-        "description": "the question to ask the students",
-        "default": ""
-      },
-      {
         "name": "rows",
         "type": "number",
         "description": "number of text rows in the input field",
         "default": 4
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback function called when an answer is submitted",
+        "default": "onSubmit() {}"
       }
     ],
     "description": "An ISLE component for questions where the answers by the students should be supplied in the form of free text. What differentiates this component from the **FreeTextQuestion** is the fact that the aggregated group data is displayed to everyone in real-time."
@@ -2169,15 +2175,21 @@
         "description": "component identifier"
       },
       {
+        "name": "question",
+        "type": "string",
+        "description": "string indicating the question to ask the students",
+        "default": ""
+      },
+      {
         "name": "allowMultipleAnswers",
         "type": "boolean",
-        "description": "contols whether one wishes to allow students to answer the survey multiple times",
+        "description": "controls whether one wishes to allow students to answer the survey multiple times",
         "default": false
       },
       {
         "name": "anonymous",
         "type": "boolean",
-        "description": "contols whether student answers are anonymized",
+        "description": "controls whether student answers are anonymized",
         "default": false
       },
       {
@@ -2199,16 +2211,16 @@
         "default": "Survey"
       },
       {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
         "name": "onSubmit",
         "type": "function",
         "description": "function to be called when an answer is submitted",
         "default": "onSubmit() {}"
-      },
-      {
-        "name": "question",
-        "type": "string",
-        "description": "string indicating the question to ask the students",
-        "default": ""
       }
     ],
     "description": "A survey component in which the instructor may collect multiple-choice survey data from students in real-time."
@@ -2367,6 +2379,12 @@
         "type": "(number|string)",
         "description": "A `string` or `numeric` value indicating the step of the arrows seen when hovering the cursor above the input box. If `'any'`, the step will be set to `1`",
         "default": "any"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       },
       {
         "name": "onSubmit",

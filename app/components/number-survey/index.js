@@ -70,6 +70,7 @@ function getBins( data ) {
 * @property {boolean} allowMultipleAnswers - controls whether the same user (or session if anonymous) may submit multiple answers)
 * @property {boolean} anonymous - Allows for the students to submit data anonymously. Note that if this option is set to "true", then the instructors will be unable to see the ID of the submitting student
 * @property {(number|string)} step - A `string` or `numeric` value indicating the step of the arrows seen when hovering the cursor above the input box. If `'any'`, the step will be set to `1`
+* @property {Object} style - CSS inline styles
 * @property {Function} onSubmit - callback function invoked once students submits an answer
 */
 class NumberSurvey extends Component {
@@ -138,7 +139,7 @@ class NumberSurvey extends Component {
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
 			<Gate user banner={<h2>Please sign in...</h2>} >
-				<Card>
+				<Card id={this.props.id} style={this.props.style} >
 					<Card.Header as="h3">
 						Survey
 					</Card.Header>
@@ -192,6 +193,7 @@ NumberSurvey.defaultProps = {
 	allowMultipleAnswers: false,
 	anonymous: false,
 	step: 'any',
+	style: {},
 	onSubmit() {}
 };
 
@@ -204,6 +206,7 @@ NumberSurvey.propTypes = {
 		PropTypes.number,
 		PropTypes.string
 	]),
+	style: PropTypes.object,
 	onSubmit: PropTypes.func
 };
 
