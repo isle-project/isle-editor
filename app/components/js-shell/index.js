@@ -322,7 +322,7 @@ class JSShell extends Component {
 						}} />
 					);
 				} else {
-					msg.push( <span key={i} className="js-shell-console-output" >{arg}</span> );
+					msg.push( <span key={i} className="js-shell-console-output" >{String( arg )}</span> );
 				}
 			}
 			const messageObj = {
