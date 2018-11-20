@@ -74,6 +74,7 @@ class ProbMean extends Component {
 				...nextProps
 			};
 		}
+		return {};
 	}
 
 	render() {
