@@ -176,8 +176,9 @@ class Chat extends Component {
 
 	render() {
 		const { chat, left, width } = this.props;
+		const ident = 'chat_' + chat.name;
 		return (
-			<div className="chat-outer-div" style={{
+			<div id={ident} className="chat-outer-div" style={{
 				position: isElectron ? 'absolute' : 'fixed',
 				left: left,
 				width: width
