@@ -21,34 +21,13 @@ import unique from 'uniq';
 import mean from 'utils/statistic/mean';
 import max from 'utils/statistic/max';
 import min from 'utils/statistic/min';
+import { CAT20 } from 'constants/colors';
 import QuestionButton from './question_button.js';
 
 
 // VARIABLES //
 
 const DESCRIPTION = 'A scatterplot is used to display the values of two quantitative variables inside a Cartesian coordinate system. Three additional variables can be displayed on the plot in this implementation: The color and type of the dots corresponding to each observation can represent categorical variables, and a quantitative variable can be chosen to govern the size of the dots. In cases where there is a textual identifier for each observation, it can be displayed as a label next to the dots. It is also possible to overlay a linear and/or smoothed regression line.';
-const COLORS = [
-	'#1f77b4',
-	'#ff7f0e',
-	'#2ca02c',
-	'#d62728',
-	'#9467bd',
-	'#8c564b',
-	'#c49c94',
-	'#e377c2',
-	'#17becf',
-	'#aec7e8',
-	'#ffbb78',
-	'#ff9896',
-	'#98df8a',
-	'#7f7f7f',
-	'#c5b0d5',
-	'#f7b6d2',
-	'#bcbd22',
-	'#c7c7c7',
-	'#dbdb8d',
-	'#9edae5'
-];
 const SYMBOLS = [
 	'circle',
 	'square-open',
@@ -153,7 +132,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 						symbol: SYMBOLS[ j ],
 						size: size ? sizegrouped[ grouping ] : 5.0,
 						autocolorscale: false,
-						color: COLORS[ i ]
+						color: CAT20[ i ]
 					}
 				};
 				if ( text ) {
@@ -216,7 +195,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 					symbol: 'circle',
 					size: size ? scale( group( data[ size ], data[ color ])[ groups[ i ] ], 5.0, 10.0 ) : 5.0,
 					autocolorscale: false,
-					color: COLORS[ i ]
+					color: CAT20[ i ]
 				}
 			};
 			if ( text ) {
@@ -269,7 +248,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 						name: groups[ i ],
 						type: 'line',
 						line: {
-							color: COLORS[ colorOffset+i ],
+							color: CAT20[ colorOffset+i ],
 							width: 1.5
 						}
 					});
@@ -285,7 +264,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 						name: groups[ i ],
 						type: 'line',
 						line: {
-							color: COLORS[ colorOffset+i ],
+							color: CAT20[ colorOffset+i ],
 							width: 1.5
 						}
 					});
