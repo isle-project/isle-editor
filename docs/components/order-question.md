@@ -32,5 +32,6 @@ An order question component that asks student to bring a collection of elements 
 * __failureMsg__ | `string`: message to be displayed when student submits a wrong answer. Default: `'Not quite, try again!'`.
 * __successMsg__ | `string`: message to be displayed when student submits the correct answer. Default: `'That's the correct ordering!'`.
 * __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order. Default: `onSubmit() {}`.

@@ -57,6 +57,7 @@ function createColorScale( length ) {
 * @property {string} submissionMsg - notification displayed when the learner first submits his answer
 * @property {string} resubmissionMsg - notification displayed for all submissions after the first one
 * @property {number} maxlength - maximum allowed number of characters
+* @property {Object} style - CSS inline styles
 * @property {Function} onSubmit - callback invoked when students submits an answer
 */
 class MatchListQuestion extends Component {
@@ -266,6 +267,7 @@ MatchListQuestion.defaultProps = {
 	disableSubmitNotification: false,
 	submissionMsg: 'You have successfully submitted your answer.',
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
+	style: {},
 	onSubmit() {}
 };
 
@@ -288,6 +290,7 @@ MatchListQuestion.propTypes = {
 	disableSubmitNotification: PropTypes.bool,
 	submissionMsg: PropTypes.string,
 	resubmissionMsg: PropTypes.string,
+	style: PropTypes.object,
 	onSubmit: PropTypes.func
 };
 

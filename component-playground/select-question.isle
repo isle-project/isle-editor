@@ -47,5 +47,6 @@ hideToolbar: true
 * __provideFeedback__ | `boolean`: indicates whether feedback including the correct answer should be displayed after learners submit their answers. Default: `true`.
 * __failureMsg__ | `string`: message to be displayed when student selects a wrong answer. Default: `'Not quite, try again!'`.
 * __successMsg__ | `string`: message to be displayed when student selects the correct answer. Default: `'That's the correct answer!'`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback  which is triggered after the submit action. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter. Default: `onSubmit() {}`.

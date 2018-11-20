@@ -1898,6 +1898,7 @@ class Sketchpad extends Component {
 		return (
 			<Fragment>
 				<Card
+					id={this.props.id}
 					ref={( div ) => {
 						this.sketchpadPanel = div;
 					}}

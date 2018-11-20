@@ -1,6 +1,6 @@
 # Revealer
 
-An ISLE component that instructors to selectively reveal or hide children content.
+An ISLE component that instructors may use to selectively reveal or hide children content to all users.
 
 #### Example:
 

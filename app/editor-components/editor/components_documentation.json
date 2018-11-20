@@ -277,6 +277,12 @@
         "default": 600
       },
       {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
         "name": "onGenerate",
         "type": "function",
         "description": "function invoked when the button is clicked or one of the dashboard input values changes (if `autoUpdate` is set to `true`). The function is called with the values of the input fields, in the order in which they are placed in the dashboard",
@@ -719,6 +725,12 @@
         "type": "string",
         "description": "voice control identifier",
         "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       },
       {
         "name": "onChange",
@@ -1947,6 +1959,12 @@
         "default": "You have successfully re-submitted your answer."
       },
       {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
         "name": "onSubmit",
         "type": "function",
         "description": "callback invoked when students submits an answer",
@@ -2299,6 +2317,12 @@
         "default": false
       },
       {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
         "name": "onChange",
         "type": "function",
         "description": "callback  which is triggered after the value of the number field changes; receives the current value as its sole argument",
@@ -2413,6 +2437,12 @@
         "type": "boolean",
         "description": "controls whether to disable submission notifications",
         "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       },
       {
         "name": "onChange",
@@ -3082,6 +3112,11 @@
         "default": null
       },
       {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      },
+      {
         "name": "onChangeLower",
         "type": "function",
         "description": "callback triggered after the lower bound is changed by the user",
@@ -3168,7 +3203,7 @@
         "default": "Content hidden by instructor"
       }
     ],
-    "description": "An ISLE component that instructors to selectively reveal or hide children content."
+    "description": "An ISLE component that instructors may use to selectively reveal or hide children content to all users."
   },
   "Runner": {
     "props": [
@@ -3264,6 +3299,12 @@
         "type": "string",
         "description": "message to be displayed when student selects the correct answer",
         "default": "That's the correct answer!"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       },
       {
         "name": "onChange",

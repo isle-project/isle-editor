@@ -126,7 +126,7 @@ class OrderQuestion extends Component {
 	render() {
 		const nHints = this.props.hints.length;
 		return (
-			<Card className="order-question" style={this.props.style} >
+			<Card id={this.props.id} className="order-question" style={this.props.style} >
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
 					<DraggableList shuffle data={this.props.options} onChange={this.handleChange} />

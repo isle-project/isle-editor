@@ -123,6 +123,7 @@ class Video extends Component {
 		props = omit( props, OMITTED_PROPS );
 		return (
 			<div
+				id={this.props.id}
 				style={style}
 				className="video"
 			>

@@ -33,6 +33,7 @@ const debug = logger( 'isle:dashboard' );
 * @property {boolean} disabled - controls whether the dashboard shall be disabled
 * @property {string} label - button label
 * @property {number} maxWidth - maximum width of dashboard
+* @property {Object} style - CSS inline styles
 * @property {Function} onGenerate - function invoked when the button is clicked or one of the dashboard input values changes (if `autoUpdate` is set to `true`). The function is called with the values of the input fields, in the order in which they are placed in the dashboard
 */
 class Dashboard extends Component {
@@ -154,7 +155,8 @@ class Dashboard extends Component {
 			<Card
 				className="dashboard"
 				style={{
-					maxWidth: this.props.maxWidth
+					maxWidth: this.props.maxWidth,
+					...this.props.style
 				}}
 			>
 				{ this.props.title ?
@@ -192,6 +194,7 @@ Dashboard.defaultProps = {
 	disabled: false,
 	label: 'Generate',
 	maxWidth: 600,
+	style: {},
 	onGenerate() {},
 	title: ''
 };
@@ -203,6 +206,7 @@ Dashboard.propTypes = {
 	disabled: PropTypes.bool,
 	label: PropTypes.string,
 	maxWidth: PropTypes.number,
+	style: PropTypes.object,
 	onGenerate: PropTypes.func,
 	title: PropTypes.oneOfType([
 		PropTypes.string,

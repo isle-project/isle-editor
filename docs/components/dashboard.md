@@ -22,5 +22,6 @@ A dashboard for combining the handling of multiple child input fields.
 * __disabled__ | `boolean`: controls whether the dashboard shall be disabled. Default: `false`.
 * __label__ | `string`: button label. Default: `'Generate'`.
 * __maxWidth__ | `number`: maximum width of dashboard. Default: `600`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onGenerate__ | `function`: function invoked when the button is clicked or one of the dashboard input values changes (if `autoUpdate` is set to `true`). The function is called with the values of the input fields, in the order in which they are placed in the dashboard. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: card title. Default: `''`.

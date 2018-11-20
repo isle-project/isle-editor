@@ -31,5 +31,6 @@ An ISLE component for questions where answers by students should be supplied in 
 * __provideFeedback__ | `boolean`: indicates whether feedback including the correct answer should be displayed after learners submit their answers. Default: `true`.
 * __maxlength__ | `number`: maximum allowed number of characters. Default: `2500`.
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked every time the text area value changes; receives the current text as its sole argument. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback invoked when user submits an answer; receives the submitted text as its sole argument. Default: `onSubmit() {}`.
