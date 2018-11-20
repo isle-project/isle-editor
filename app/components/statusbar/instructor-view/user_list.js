@@ -53,9 +53,8 @@ class UserList extends Component {
 			) {
 				if ( action.email === this.state.selected ) {
 					this.highlightElement( action.email );
-				} else {
-					this.forceUpdate();
 				}
+				this.forceUpdate();
 			}
 		});
 	}
