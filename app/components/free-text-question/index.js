@@ -50,6 +50,7 @@ const debug = logger( 'isle:free-text-question' );
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {number} maxlength - maximum allowed number of characters
 * @property {string} voiceID - voice control identifier
+* @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked every time the text area value changes; receives the current text as its sole argument
 * @property {Function} onSubmit - callback invoked when user submits an answer; receives the submitted text as its sole argument
 */
@@ -248,8 +249,8 @@ class FreeTextQuestion extends Component {
 			onClick={this.handleSolutionClick}
 		/>;
 		return (
-			<Card id={this.props.id} className="free-text-question">
-				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}>
+			<Card id={this.props.id} className="free-text-question" style={this.props.style} >
+				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<VoiceControl id={this.props.voiceID} reference={this}
 						commands={VOICE_COMMANDS}
 					/>
@@ -359,6 +360,7 @@ FreeTextQuestion.defaultProps = {
 	provideFeedback: true,
 	maxlength: 2500,
 	voiceID: null,
+	style: {},
 	onChange() {},
 	onSubmit() {}
 };
@@ -382,6 +384,7 @@ FreeTextQuestion.propTypes = {
 	provideFeedback: PropTypes.bool,
 	maxlength: PropTypes.number,
 	voiceID: PropTypes.string,
+	style: PropTypes.object,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func
 };

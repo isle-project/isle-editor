@@ -34,6 +34,7 @@ const debug = logger( 'isle:order-question' );
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {string} failureMsg - message to be displayed when student submits a wrong answer
 * @property {string} successMsg - message to be displayed when student submits the correct answer
+* @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order
 */
@@ -125,7 +126,7 @@ class OrderQuestion extends Component {
 	render() {
 		const nHints = this.props.hints.length;
 		return (
-			<Card className="order-question">
+			<Card className="order-question" style={this.props.style} >
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
 					<DraggableList shuffle data={this.props.options} onChange={this.handleChange} />
@@ -172,6 +173,7 @@ OrderQuestion.defaultProps = {
 	failureMsg: 'Not quite, try again!',
 	successMsg: 'That\'s the correct ordering!',
 	disableSubmitNotification: false,
+	style: {},
 	onChange() {},
 	onSubmit() {}
 };
@@ -187,6 +189,7 @@ OrderQuestion.propTypes = {
 	failureMsg: PropTypes.string,
 	successMsg: PropTypes.string,
 	disableSubmitNotification: PropTypes.bool,
+	style: PropTypes.object,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func
 };

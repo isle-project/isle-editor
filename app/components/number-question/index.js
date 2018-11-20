@@ -39,6 +39,7 @@ const debug = logger( 'isle:number-question' );
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
+* @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after the value of the number field changes; receives the current value as its sole argument
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter
 */
@@ -160,7 +161,7 @@ class NumberQuestion extends Component {
 		const nHints = this.props.hints.length;
 		const solutionPresent = this.props.solution !== null;
 		return (
-			<Card id={this.props.id} className="number-question">
+			<Card id={this.props.id} className="number-question" style={this.props.style} >
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
 					<div className="number-question-input-wrapper">
@@ -237,6 +238,7 @@ NumberQuestion.defaultProps = {
 	provideFeedback: true,
 	disableSubmitNotification: false,
 	chat: false,
+	style: {},
 	onChange() {},
 	onSubmit() {}
 };
@@ -256,6 +258,7 @@ NumberQuestion.propTypes = {
 	provideFeedback: PropTypes.bool,
 	disableSubmitNotification: PropTypes.bool,
 	chat: PropTypes.bool,
+	style: PropTypes.object,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func
 };
