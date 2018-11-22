@@ -13,20 +13,23 @@
 }
 
 .sketch-button-group {
-	margin-left: 5px;
+	margin-left: 3px;
+}
+
+.sketch-input-group {
+	width: 50px;
 }
 
 .sketch-drawing-buttons {
-	margin-left: 5px;
+	margin-left: 3px;
 }
 
 .sketch-text-buttons {
-	margin-left: 5px;
+	margin-left: 3px;
 }
 
 .sketch-pages {
 	cursor: default;
-	margin-left: 5px;
 	margin-top: 1px;
 }
 
@@ -34,6 +37,9 @@
 	position: fixed;
 	background: transparent;
 	border: none;
+	left: 50%;
+	top: 50%;
+	pointer-events: none;
 }
 
 .sketch-delete-button {
@@ -68,4 +74,8 @@
 
 .invisible-page {
 	display: none;
+}
+
+.sketch-font-dropdown {
+	text-align: left;
 }
