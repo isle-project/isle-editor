@@ -59,6 +59,8 @@ const OMITTED_KEYS = [
 ];
 const RECORD_TIME_INCREMENT = 100;
 const RE_DIGITS = /^[0-9]+$/;
+const MIN_SWIPE_X = 30;
+const MAX_SWIPE_Y = 60;
 
 
 // MAIN //
@@ -812,6 +814,11 @@ class Sketchpad extends Component {
 	drawStart = ( event ) => {
 		event.stopPropagation();
 		debug( '`onMouseDown` or `onTouchStart` event fired...' );
+		if ( event.touches && event.touches.length > 1 ) {
+			this.swipeStartX = event.touches[ 0 ].screenX;
+			this.swipeStartY = event.touches[ 0 ].screenY;
+			return;
+		}
 		const { x, y } = this.mousePosition( event );
 		this.currentPoints = [];
 		this.x = x;
@@ -833,6 +840,30 @@ class Sketchpad extends Component {
 	drawEnd = ( event ) => {
 		// Mouse is not clicked anymore...
 		event.stopPropagation();
+		if (
+			(
+				this.swipeEndX - MIN_SWIPE_X > this.swipeStartX ||
+				this.swipeEndX + MIN_SWIPE_X < this.swipeStartX
+			) &&
+			(
+				this.swipeEndY < this.swipeStartY + MAX_SWIPE_Y &&
+				this.swipeStartY > this.swipeEndY - MAX_SWIPE_Y &&
+				this.swipeEndX > 0
+			)
+		) {
+			if ( this.swipeEndX > this.swipeStartX ) {
+				this.previousPage();
+			} else {
+				this.nextPage();
+			}
+			this.swipeEndX = 0;
+			this.swipeEndY = 0;
+			this.swipeStartX = 0;
+			this.swipeStartY = 0;
+			this.isMouseDown = false;
+			return;
+		}
+
 		if ( this.isMouseDown ) {
 			this.isMouseDown = false;
 
@@ -884,6 +915,12 @@ class Sketchpad extends Component {
 
 	draw = ( evt ) => {
 		evt.stopPropagation();
+		if ( evt.touches && evt.touches.length > 1 ) {
+			this.swipeEndX = evt.touches[ 0 ].screenX;
+			this.swipeEndY = evt.touches[ 0 ].screenY;
+			this.isMouseDown = false;
+			return;
+		}
 		let { x, y } = this.mousePosition( evt );
 		if ( this.selectedElement ) {
 			if ( this.state.mode === 'drag' ) {
@@ -1656,9 +1693,6 @@ class Sketchpad extends Component {
 					</Button>
 				</Tooltip>
 				<InputGroup size="sm" className="sketch-input-group" >
-					<InputGroup.Prepend>
-						<InputGroup.Text>Size</InputGroup.Text>
-					</InputGroup.Prepend>
 					<FormControl
 						type="number"
 						min={1}
@@ -1669,7 +1703,6 @@ class Sketchpad extends Component {
 								mode: 'drawing'
 							});
 						}}
-						aria-describedby="btnGroupAddon"
 						defaultValue={this.state.brushSize}
 					/>
 				</InputGroup>
@@ -1690,7 +1723,6 @@ class Sketchpad extends Component {
 					size="sm"
 					variant={this.state.mode === 'text' ? 'success' : 'secondary'}
 					title={this.state.fontFamily}
-					style={{ width: 90, textAlign: 'left' }}
 					onSelect={(val) => {
 						this.setState({
 							fontFamily: val,
@@ -1705,10 +1737,7 @@ class Sketchpad extends Component {
 					<DropdownItem eventKey="Verdana">Verdana</DropdownItem>
 					<DropdownItem eventKey="Palatino">Palatino</DropdownItem>
 				</DropdownButton>
-				<InputGroup size="sm" >
-					<InputGroup.Prepend>
-						<InputGroup.Text>Size</InputGroup.Text>
-					</InputGroup.Prepend>
+				<InputGroup size="sm" className="sketch-input-group" >
 					<FormControl
 						type="number"
 						min={12}
@@ -1739,12 +1768,12 @@ class Sketchpad extends Component {
 					size="sm"
 				/>
 				<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} size="sm" />
-				<TooltipButton tooltip="Clear current page" onClick={this.clear} label="Clear" disabled={this.state.playing || this.state.recording} size="sm" />
+				<TooltipButton tooltip="Clear current page" onClick={this.clear} glyph="eraser" disabled={this.state.playing || this.state.recording} size="sm" />
 				<TooltipButton tooltip="Reset all pages" onClick={() => {
 					this.setState({
 						showResetModal: !this.state.showResetModal
 					});
-				}} label="Reset" disabled={this.state.playing || this.state.recording} size="sm" />
+				}} glyph="power-off" disabled={this.state.playing || this.state.recording} size="sm" />
 			</ButtonGroup>
 		);
 	}
@@ -1922,9 +1951,9 @@ class Sketchpad extends Component {
 						</ButtonGroup>
 						{this.renderDrawingButtons()}
 						{this.renderTextButtons()}
-						<ButtonGroup size="sm" className="sketch-button-group" >
+						<ButtonGroup size="sm" >
 							<Tooltip placement="right" tooltip="Change brush color" >
-								<Button size="sm" onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Color</Button>
+								<Button size="sm" onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Col</Button>
 							</Tooltip>
 						</ButtonGroup>
 						{this.renderRemoveButtons()}
