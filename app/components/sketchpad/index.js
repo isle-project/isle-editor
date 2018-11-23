@@ -823,8 +823,8 @@ class Sketchpad extends Component {
 		this.currentPoints = [];
 		this.x = x;
 		this.y = y;
+		this.isMouseDown = true;
 		if ( this.state.mode === 'drawing' ) {
-			this.isMouseDown = true;
 			if ( this.state.nUndos > 0 ) {
 				const elems = this.elements[ this.state.currentPage ];
 				elems.splice( elems.length-this.state.nUndos );
@@ -863,10 +863,7 @@ class Sketchpad extends Component {
 			this.isMouseDown = false;
 			return;
 		}
-
-		if ( this.isMouseDown ) {
-			this.isMouseDown = false;
-
+		if ( this.state.mode === 'drawing' && this.isMouseDown ) {
 			const elems = this.elements[ this.state.currentPage ];
 
 			const session = this.context;
@@ -876,7 +873,6 @@ class Sketchpad extends Component {
 			for ( let i = 0; i < this.currentPoints.length; i++ ) {
 				this.currentPoints[ i ] /= ( i % 2 === 0 ) ? this.canvas.width : this.canvas.height;
 			}
-
 			const line = {
 				points: this.currentPoints,
 				color: this.state.color,
@@ -891,7 +887,6 @@ class Sketchpad extends Component {
 			this.props.onChange( elems );
 
 			this.redraw();
-
 			const logAction = {
 				id: this.props.id,
 				type: 'SKETCHPAD_DRAW_CURVE',
@@ -911,6 +906,7 @@ class Sketchpad extends Component {
 				currentDrawing: this.state.currentDrawing + 1
 			});
 		}
+		this.isMouseDown = false;
 	}
 
 	draw = ( evt ) => {
@@ -965,6 +961,10 @@ class Sketchpad extends Component {
 			}
 		}
 		if ( this.isMouseDown && !this.props.disabled ) {
+			if ( this.state.mode === 'delete' ) {
+				console.log( 'Check whether to delete element...' );
+				return this.checkDeletion( evt );
+			}
 			this.currentPoints.push( x );
 			this.currentPoints.push( y );
 			const line = {
@@ -1251,66 +1251,70 @@ class Sketchpad extends Component {
 			this.redraw();
 		} else {
 			debug( 'Checking whether a shape has been selected...' );
-			const { x, y } = this.mousePosition( event );
-			const elems = this.elements[ this.state.currentPage ];
-			let found = null;
-			for ( let i = 0; i < elems.length; i++ ) {
-				const elem = elems[ i ];
-				if ( elem.type === 'curve' ) {
-					const points = elem.points;
-					this.ctx.beginPath();
-					this.ctx.lineCap = 'round';
+			this.checkDeletion( event );
+		}
+	}
 
-					// Use a minimum line width to make selecting easier:
-					this.ctx.lineWidth = max( elem.lineWidth, 16.0 );
-					curve( this.ctx, points, this.canvas.width, this.canvas.height, 0.4, 25 );
-					this.ctx.closePath();
-					if ( this.ctx.isPointInStroke( x, y ) ) {
-						debug( `Point (${x}, ${y}) is in path of element with ID ${elem.drawID}` );
-						found = i;
-						this.selectedElement = elem;
-						break;
-					}
-				}
-				else if ( elem.type === 'text' ) {
-					const width = this.ctx.measureText( elem.value ).width;
-					const xabs = round( elem.x * this.canvas.width );
-					const yabs = round( elem.y * this.canvas.height );
-					if (
-						xabs <= x &&
-						x <= xabs + width &&
-						yabs <= y &&
-						y <= yabs + elem.fontSize
-					) {
-						found = i;
-						this.selectedElement = elem;
-						break;
-					}
+	checkDeletion = ( event ) => {
+		const { x, y } = this.mousePosition( event );
+		const elems = this.elements[ this.state.currentPage ];
+		let found = null;
+		for ( let i = 0; i < elems.length; i++ ) {
+			const elem = elems[ i ];
+			if ( elem.type === 'curve' ) {
+				const points = elem.points;
+				this.ctx.beginPath();
+				this.ctx.lineCap = 'round';
+
+				// Use a minimum line width to make selecting easier:
+				this.ctx.lineWidth = max( elem.lineWidth, 16.0 );
+				curve( this.ctx, points, this.canvas.width, this.canvas.height, 0.4, 25 );
+				this.ctx.closePath();
+				if ( this.ctx.isPointInStroke( x, y ) ) {
+					debug( `Point (${x}, ${y}) is in path of element with ID ${elem.drawID}` );
+					found = i;
+					this.selectedElement = elem;
+					break;
 				}
 			}
-			if ( !isNull( found ) ) {
-				const id = elems[ found ].drawID;
-				this.deleteElement( id, found, elems );
-				if ( this.state.mode === 'delete' ) {
-					const session = this.context;
-					const username = session.user.email || '';
-					const action = {
-						id: this.props.id,
-						type: 'SKETCHPAD_DELETE_ELEMENT',
-						value: JSON.stringify({
-							drawID: id,
-							page: this.state.currentPage,
-							user: username
-						})
-					};
-					if (
-						( session.isOwner() && this.state.transmitOwner ) ||
-						this.state.groupMode
-					) {
-						session.log( action, 'members' );
-					} else {
-						session.log( action, 'owners' );
-					}
+			else if ( elem.type === 'text' ) {
+				const width = this.ctx.measureText( elem.value ).width;
+				const xabs = round( elem.x * this.canvas.width );
+				const yabs = round( elem.y * this.canvas.height );
+				if (
+					xabs <= x &&
+					x <= xabs + width &&
+					yabs <= y &&
+					y <= yabs + elem.fontSize
+				) {
+					found = i;
+					this.selectedElement = elem;
+					break;
+				}
+			}
+		}
+		if ( !isNull( found ) ) {
+			const id = elems[ found ].drawID;
+			this.deleteElement( id, found, elems );
+			if ( this.state.mode === 'delete' ) {
+				const session = this.context;
+				const username = session.user.email || '';
+				const action = {
+					id: this.props.id,
+					type: 'SKETCHPAD_DELETE_ELEMENT',
+					value: JSON.stringify({
+						drawID: id,
+						page: this.state.currentPage,
+						user: username
+					})
+				};
+				if (
+					( session.isOwner() && this.state.transmitOwner ) ||
+					this.state.groupMode
+				) {
+					session.log( action, 'members' );
+				} else {
+					session.log( action, 'owners' );
 				}
 			}
 		}
@@ -1890,13 +1894,22 @@ class Sketchpad extends Component {
 	}
 
 	render() {
-		let cursor = 'default';
-		if ( this.state.mode === 'drawing' ) {
+		let cursor;
+		switch ( this.state.mode ) {
+		case 'drawing':
 			cursor = 'crosshair';
-		} else if ( this.state.mode === 'text' ) {
+		break;
+		case 'text':
 			cursor = 'text';
-		} else if ( this.state.mode === 'drag' ) {
+		break;
+		case 'drag':
 			cursor = 'move';
+		break;
+		case 'delete':
+			cursor = 'not-allowed';
+		break;
+		default:
+			cursor = 'default';
 		}
 		const canvas = <canvas
 			className="sketch-canvas"
