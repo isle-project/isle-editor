@@ -1714,7 +1714,7 @@ class Sketchpad extends Component {
 								mode: 'drawing'
 							});
 						}}
-						defaultValue={this.state.brushSize}
+						value={this.state.brushSize}
 					/>
 				</InputGroup>
 			</ButtonGroup>
@@ -1759,7 +1759,7 @@ class Sketchpad extends Component {
 								mode: 'text'
 							});
 						}}
-						defaultValue={this.state.fontSize}
+						value={this.state.fontSize}
 					/>
 				</InputGroup>
 			</ButtonGroup>
