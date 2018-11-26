@@ -273,6 +273,7 @@ class MultipleChoiceQuestion extends Component {
 						this.setState({
 							active: newActive
 						});
+						this.props.onChange( newActive );
 					}}
 				/>
 			);
@@ -296,6 +297,7 @@ class MultipleChoiceQuestion extends Component {
 					this.setState({
 						active: newActive
 					});
+					this.props.onChange( newActive );
 				}
 			}
 		};
@@ -318,6 +320,7 @@ class MultipleChoiceQuestion extends Component {
 						active: id,
 						answerSelected: true
 					});
+					this.props.onChange( id );
 				}}
 			/> );
 		}
@@ -340,6 +343,7 @@ class MultipleChoiceQuestion extends Component {
 						active: id,
 						answerSelected: true
 					});
+					this.props.onChange( id );
 				}
 			}
 		};
@@ -450,6 +454,7 @@ MultipleChoiceQuestion.defaultProps = {
 	disableSubmitNotification: false,
 	voiceID: null,
 	style: {},
+	onChange(){},
 	onSubmit(){}
 };
 
@@ -470,6 +475,7 @@ MultipleChoiceQuestion.propTypes = {
 	displaySolution: PropTypes.bool,
 	voiceID: PropTypes.string,
 	style: PropTypes.object,
+	onChange: PropTypes.func,
 	onSubmit: PropTypes.func
 };
 
