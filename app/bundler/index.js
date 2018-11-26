@@ -34,7 +34,7 @@ const generateISLE = ( outputDir, code ) => {
 	fs.writeFileSync( islePath, code );
 };
 
-const generateIndexHTML = ( title, minify, stats ) => `
+const generateIndexHTML = ( title, minify, stats, head ) => `
 <!DOCTYPE html>
 <html>
 	<head>
@@ -46,7 +46,7 @@ const generateIndexHTML = ( title, minify, stats ) => `
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Inconsolata" rel="stylesheet" >
 		<link rel="stylesheet" href="css/lesson.css" />
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/codemirror.min.css"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/codemirror.min.css"/>${head ? '\n\t\t'+head.split( '\n' ).join( '\n\t\t' ) : ''}
 	</head>
 	<body>
 	<div id="loading">
@@ -438,7 +438,7 @@ function writeIndexFile({
 			fs.writeFileSync( statsFile, JSON.stringify( stats ) );
 		}
 		fs.unlinkSync( indexPath );
-		fs.writeFileSync( htmlPath, generateIndexHTML( meta.title, minify, stats ) );
+		fs.writeFileSync( htmlPath, generateIndexHTML( meta.title, minify, stats, meta.head ) );
 
 		if ( !minify ) {
 			return clbk( err, meta );
