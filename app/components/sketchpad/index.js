@@ -432,8 +432,13 @@ class Sketchpad extends Component {
 
 	preventDefaultTouch = ( e ) => {
 		if (
-			this.state.mode === 'drawing' &&
-			this.canvas === e.target
+			this.canvas === e.target &&
+			(
+				this.state.mode === 'drawing' ||
+				this.state.mode === 'drag' ||
+				this.state.mode === 'delete' ||
+				this.props.fullscreen
+			)
 		) {
 			e.preventDefault();
 		}
