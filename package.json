@@ -240,7 +240,7 @@
     "uuid": "^3.3.2",
     "venn.js": "0.2.20",
     "victory": "31.0.1",
-    "webpack": "4.26.0",
+    "webpack": "4.26.1",
     "whatwg-fetch": "^3.0.0"
   },
   "devEngines": {
