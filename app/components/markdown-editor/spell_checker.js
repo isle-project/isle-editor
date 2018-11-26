@@ -19,8 +19,18 @@ import logger from 'debug';
 
 const debug = logger( 'isle:markdown-editor:spell-checker' );
 const RX_WORD = '!\'"#$%&()*+,-./:;<=>?@[\\]^_`{|}~ ';
-const AFF_URL = 'https://cdn.jsdelivr.net/codemirror.spell-checker/latest/en_US.aff';
-const DIC_URL = 'https://cdn.jsdelivr.net/codemirror.spell-checker/latest/en_US.dic';
+const AFF_URL_EN = 'https://cdn.jsdelivr.net/codemirror.spell-checker/latest/en_US.aff';
+const DIC_URL_EN = 'https://cdn.jsdelivr.net/codemirror.spell-checker/latest/en_US.dic';
+const AFF_URL_DE = 'https://unpkg.com/dictionary-de@2.0.0/index.aff';
+const DIC_URL_DE = 'https://unpkg.com/dictionary-de@2.0.0/index.dic';
+const AFF_URL_FR = 'https://unpkg.com/dictionary-fr@2.0.0/index.aff';
+const DIC_URL_FR = 'https://unpkg.com/dictionary-fr@2.0.0/index.dic';
+const AFF_URL_IT = 'https://unpkg.com/dictionary-it@2.0.0/index.aff';
+const DIC_URL_IT = 'https://unpkg.com/dictionary-it@2.0.0/index.dic';
+const AFF_URL_PT = 'https://unpkg.com/dictionary-pt@2.0.0/index.aff';
+const DIC_URL_PT = 'https://unpkg.com/dictionary-pt@2.0.0/index.dic';
+const AFF_URL_SV = 'https://unpkg.com/dictionary-sv@2.0.0/index.aff';
+const DIC_URL_SV = 'https://unpkg.com/dictionary-sv@2.0.0/index.dic';
 
 
 // MAIN //
@@ -28,7 +38,36 @@ const DIC_URL = 'https://cdn.jsdelivr.net/codemirror.spell-checker/latest/en_US.
 function SpellChecker( options ) {
 	// Initialize
 	options = options || {};
+	const language = options.language;
 
+	let AFF_URL;
+	let DIC_URL;
+	switch ( language ) {
+	case 'en-US':
+		AFF_URL = AFF_URL_EN;
+		DIC_URL = DIC_URL_EN;
+	break;
+	case 'de':
+		AFF_URL = AFF_URL_DE;
+		DIC_URL = DIC_URL_DE;
+	break;
+	case 'fr':
+		AFF_URL = AFF_URL_FR;
+		DIC_URL = DIC_URL_FR;
+	break;
+	case 'it':
+		AFF_URL = AFF_URL_IT;
+		DIC_URL = DIC_URL_IT;
+	break;
+	case 'pt':
+		AFF_URL = AFF_URL_PT;
+		DIC_URL = DIC_URL_PT;
+	break;
+	case 'sv':
+		AFF_URL = AFF_URL_SV;
+		DIC_URL = DIC_URL_SV;
+	break;
+	}
 
 	if ( !isFunction( options.codeMirrorInstance )|| !isFunction( options.codeMirrorInstance.defineMode ) ) {
 		throw new TypeError( 'You must provide an instance of CodeMirror via the option `codeMirrorInstance`' );

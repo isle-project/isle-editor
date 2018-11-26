@@ -1414,7 +1414,8 @@ SimpleMDE.prototype.render = function render( el ) {
 		backdrop.gitHubSpice = false;
 
 		SpellChecker({
-			codeMirrorInstance: CodeMirror
+			codeMirrorInstance: CodeMirror,
+			language: options.language
 		});
 	} else {
 		mode = options.parsingConfig;

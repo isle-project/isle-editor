@@ -478,6 +478,7 @@ class MarkdownEditor extends Component {
 			indentWithTabs: false,
 			promptURLs: true,
 			tabSize: 2,
+			language: this.props.language,
 			...this.props.options
 		});
 
