@@ -962,22 +962,24 @@ class Sketchpad extends Component {
 		}
 		if ( this.isMouseDown && !this.props.disabled ) {
 			if ( this.state.mode === 'delete' ) {
-				console.log( 'Check whether to delete element...' );
+				debug( 'Check whether to delete element...' );
 				return this.checkDeletion( evt );
 			}
-			this.currentPoints.push( x );
-			this.currentPoints.push( y );
-			const line = {
-				color: this.state.color,
-				lineWidth: this.state.brushSize * ( 1.0 + this.force ) * 0.5,
-				startX: this.x,
-				startY: this.y,
-				endX: x,
-				endY: y,
-				shadow: 0,
-				type: 'line'
-			};
-			this.drawElement( line );
+			else if ( this.state.mode === 'drawing' ) {
+				this.currentPoints.push( x );
+				this.currentPoints.push( y );
+				const line = {
+					color: this.state.color,
+					lineWidth: this.state.brushSize * ( 1.0 + this.force ) * 0.5,
+					startX: this.x,
+					startY: this.y,
+					endX: x,
+					endY: y,
+					shadow: 0,
+					type: 'line'
+				};
+				this.drawElement( line );
+			}
 
 			// Set to current coordinates:
 			this.x = x;
