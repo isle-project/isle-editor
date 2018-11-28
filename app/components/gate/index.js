@@ -33,7 +33,11 @@ class Gate extends Component {
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type ) => {
-				if ( type === 'RECEIVED_USER_RIGHTS' ) {
+				if (
+					type === 'RECEIVED_USER_RIGHTS' ||
+					type === 'LOGGED_IN' ||
+					type === 'LOGGED_OUT'
+				) {
 					this.checkAuthorization();
 				}
 				if ( this._isMounted ) {

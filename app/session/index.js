@@ -937,7 +937,7 @@ class Session {
 			level: 'success',
 			position: 'tl'
 		});
-		this.update( 'logout' );
+		this.update( 'LOGGED_OUT' );
 	}
 
 	/**
@@ -1012,6 +1012,7 @@ class Session {
 			response.json().then( body => {
 				const { token, id, message } = body;
 				if ( message === 'ok' ) {
+					this.update( 'LOGGED_IN' );
 					this.handleLogin({ token, id });
 				}
 				clbk( null, response, body );
@@ -1138,11 +1139,13 @@ class Session {
 				...obj,
 				...json
 			};
-
 			this.user = user;
 			this.anonymous = false;
 			this.storeUser( user );
 			this.socketConnect();
+			if ( !userRights ) {
+				this.getUserRights();
+			}
 			this.update();
 		})
 		.catch( ( err ) => {
