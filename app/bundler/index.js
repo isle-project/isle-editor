@@ -391,7 +391,7 @@ function writeIndexFile({
 	if ( meta.type === 'presentation' ) {
 		content = transformToPresentation( content, meta );
 	}
-	if ( !meta.hideToolbar ) {
+	if ( !meta.removeStatusBar ) {
 		content = '<StatusBar className="fixedPos" />\n' + content;
 	}
 	const usedComponents = getComponentList( content );

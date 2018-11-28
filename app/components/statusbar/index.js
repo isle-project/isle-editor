@@ -14,6 +14,7 @@ import VoiceInput from 'components/input/voice';
 import Calculator from 'components/calculator';
 import Chat from 'components/statusbar/chat';
 import Tooltip from 'components/tooltip';
+import KeyControls from 'components/key-controls';
 import isElectron from 'utils/is-electron';
 import animatePosition from 'utils/animate-position';
 import SessionContext from 'session/context.js';
@@ -32,7 +33,7 @@ const LOGGED_OUT_COLOR = 'rgb(209, 107, 71)';
 // MAIN //
 
 class StatusBar extends Component {
-	constructor( props ) {
+	constructor( props, context ) {
 		super( props );
 		const statusbarWidth = max( 0.34 * window.innerWidth, 300 );
 		const side = ( window.innerWidth - statusbarWidth ) / 2.0;
@@ -44,7 +45,8 @@ class StatusBar extends Component {
 			statusbarWidth,
 			side,
 			recordedText: null,
-			showCalculator: false
+			showCalculator: false,
+			showStatusBar: !context.config.hideStatusBar
 		};
 		this.hidden = true;
 	}
@@ -53,7 +55,7 @@ class StatusBar extends Component {
 		let sentNotification = false;
 		const promptLogin = () => {
 			const session = this.context;
-			if ( !isElectron ) {
+			if ( !isElectron && this.state.showStatusBar ) {
 				session.addNotification({
 					title: 'Login',
 					message: 'Please connect with your ISLE account or create a new one.',
@@ -104,6 +106,13 @@ class StatusBar extends Component {
 	closeLogout = () => {
 		this.setState({
 			visibleLogout: false
+		});
+	}
+
+	toggleBarVisibility = () => {
+		console.log( 'Toggle visibility of statusbar...' );
+		this.setState({
+			showStatusBar: !this.state.showStatusBar
 		});
 	}
 
@@ -235,7 +244,8 @@ class StatusBar extends Component {
 						onMouseOver={this.onMouseOver}
 						onMouseOut={this.onMouseOut}
 						style={{
-							top: '-32px'
+							top: '-32px',
+							display: !this.state.showStatusBar ? 'none' : null
 						}}
 					>
 						<div className="statusbar-left"></div>
@@ -298,13 +308,18 @@ class StatusBar extends Component {
 							onConfirm={this.handleLogout}
 						/>
 					</div>
-					<Gate owner>
-						<Suspense fallback={<div>Loading...</div>} >
+					<Suspense fallback={null} >
+						<Gate owner>
 							<InstructorView />
-						</Suspense>
-					</Gate>
+						</Gate>
+					</Suspense>
 				</div>
 				<Calculator show={this.state.showCalculator} onHide={this.toggleCalculator} />
+				<KeyControls
+					actions={{
+						'F7': this.toggleBarVisibility
+					}}
+				/>
 			</Fragment>
 		);
 	}
