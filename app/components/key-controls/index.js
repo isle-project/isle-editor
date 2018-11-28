@@ -65,6 +65,7 @@ class KeyControls extends Component {
 
 	triggerEvent = ( event ) => {
 		const keyName = event.key;
+		debug( `Received key press: ${keyName}` );
 		const fn = this.props.actions[ keyName ];
 		if ( isFunction( fn ) ) {
 			event.preventDefault();
