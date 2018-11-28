@@ -7,9 +7,9 @@ import Tooltip from 'components/tooltip';
 
 // MAIN //
 
-const TooltipButton = ({ tooltip, onClick, glyph, label, disabled, size }) => {
+const TooltipButton = ({ tooltip, onClick, glyph, label, disabled, size, variant = 'light' }) => {
 	return ( <Tooltip placement="bottom" tooltip={tooltip} >
-		<Button variant="light" size={size} onClick={onClick} disabled={disabled} >
+		<Button variant={variant} size={size} onClick={onClick} disabled={disabled} >
 			{ glyph ? <div className={`fa fa-${glyph}`} /> : null }
 			{label}
 		</Button>

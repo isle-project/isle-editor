@@ -17,6 +17,7 @@ import Modal from 'react-bootstrap/lib/Modal';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import SelectInput from 'react-select';
+import isTouchDevice from 'is-touch-device';
 import Checkbox from 'components/input/checkbox';
 import contains from '@stdlib/assert/contains';
 import isNumber from '@stdlib/assert/is-number';
@@ -61,6 +62,7 @@ const RECORD_TIME_INCREMENT = 100;
 const RE_DIGITS = /^[0-9]+$/;
 const MIN_SWIPE_X = 30;
 const MAX_SWIPE_Y = 60;
+const hasTouch = isTouchDevice();
 
 
 // MAIN //
@@ -131,7 +133,8 @@ class Sketchpad extends Component {
 			showNavigationModal: false,
 			transmitOwner: props.transmitOwner,
 			receiveFrom: {},
-			showResetModal: false
+			showResetModal: false,
+			swiping: true
 		};
 		this.isMouseDown = false;
 	}
@@ -916,7 +919,7 @@ class Sketchpad extends Component {
 
 	draw = ( evt ) => {
 		evt.stopPropagation();
-		if ( evt.touches && evt.touches.length > 1 ) {
+		if ( this.state.swiping && evt.touches && evt.touches.length > 1 ) {
 			this.swipeEndX = evt.touches[ 0 ].screenX;
 			this.swipeEndY = evt.touches[ 0 ].screenY;
 			this.isMouseDown = false;
@@ -1680,16 +1683,8 @@ class Sketchpad extends Component {
 			this.state.playing;
 		return (
 			<ButtonGroup size="sm" className="sketch-button-group">
-				<Tooltip placement="bottom" tooltip={!this.state.recording ? 'Record drawing' : 'Pause recording'} >
-					<Button variant="light" size="sm" disabled={this.state.playing} onClick={this.record} >
-						<div className={!this.state.recording ? 'fa fa-camera' : 'fa fa-stop'} />
-					</Button>
-				</Tooltip>
-				<Tooltip placement="bottom" tooltip="Play recording" >
-					<Button size="sm" variant={this.state.playing ? 'success' : 'light'} disabled={!this.state.finishedRecording} onClick={this.replay} >
-						<div className="fa fa-play" />
-					</Button>
-				</Tooltip>
+				<TooltipButton tooltip={!this.state.recording ? 'Record drawing' : 'Pause recording'} variant="light" size="sm" disabled={this.state.playing} glyph={!this.state.recording ? 'camera' : 'stop'} onClick={this.record} />
+				<TooltipButton tooltip="Play recording" size="sm" variant={this.state.playing ? 'success' : 'light'} glyph="play" disabled={!this.state.finishedRecording} onClick={this.replay} />
 				<TooltipButton tooltip="Delete recording" onClick={this.delete} glyph="trash" disabled={deleteIsDisabled} size="sm" />
 			</ButtonGroup>
 		);
@@ -1698,11 +1693,7 @@ class Sketchpad extends Component {
 	renderDrawingButtons() {
 		return (
 			<ButtonGroup size="sm" className="sketch-drawing-buttons" >
-				<Tooltip placement="bottom" tooltip="Drawing Mode" >
-					<Button size="sm" variant={this.state.mode === 'drawing' ? 'success' : 'secondary'} onClick={this.toggleDrawingMode} >
-						<div className="fa fa-pencil-alt" />
-					</Button>
-				</Tooltip>
+				<TooltipButton tooltip="Drawing Mode" glyph="pencil-alt" size="sm" variant={this.state.mode === 'drawing' ? 'success' : 'secondary'} onClick={this.toggleDrawingMode} />
 				<InputGroup size="sm" className="sketch-input-group" >
 					<FormControl
 						type="number"
@@ -1724,11 +1715,7 @@ class Sketchpad extends Component {
 	renderTextButtons() {
 		return (
 			<ButtonGroup size="sm" >
-				<Tooltip placement="bottom" tooltip="Text Mode" >
-					<Button size="sm" variant={this.state.mode === 'text' ? 'success' : 'secondary'} onClick={this.toggleTextMode} >
-						<div className="fa fa-font" />
-					</Button>
-				</Tooltip>
+				<TooltipButton size="sm" variant={this.state.mode === 'text' ? 'success' : 'secondary'} onClick={this.toggleTextMode} tooltip="Text Mode" glyph="font" />
 				<DropdownButton
 					id="sketch-font-dropdown"
 					size="sm"
@@ -1818,8 +1805,15 @@ class Sketchpad extends Component {
 					});
 				}} glyph="save" size="sm" /> : null }
 				{ this.props.id ? <TooltipButton tooltip="Upload to the server" onClick={this.uploadSketches} glyph="upload" size="sm" /> : null }
+				{ hasTouch ? <TooltipButton tooltip={`${this.state.swiping ? 'Disable' : 'Enable'} two-finger swiping gestures for changing slides`} variant={this.state.swiping ? 'success' : 'secondary'} onClick={this.toggleSwiping} glyph="fingerprint" size="sm" /> : null }
 			</ButtonGroup>
 		);
+	}
+
+	toggleSwiping = () => {
+		this.setState({
+			swiping: !this.state.swiping
+		});
 	}
 
 	renderTransmitButtons() {
@@ -1843,9 +1837,7 @@ class Sketchpad extends Component {
 		return (
 			<Gate owner>
 				<ButtonGroup size="sm" className="sketch-button-group" >
-					<Tooltip placement="bottom" tooltip="Transmit Actions" >
-						<Button size="sm" variant={this.state.transmitOwner ? 'success' : 'light'} onClick={this.toggleTransmit} ><div className="fa fa-bullhorn" /></Button>
-					</Tooltip>
+					<TooltipButton size="sm" variant={this.state.transmitOwner ? 'success' : 'light'} onClick={this.toggleTransmit} glyph="bullhorn" />
 					<OverlayTrigger trigger="click" placement="bottom" rootClose overlay={popover}>
 						<Button size="sm" variant="light" >
 							<div className="fa fa-eye" />
@@ -1962,12 +1954,8 @@ class Sketchpad extends Component {
 					<div className="sketch-panel-heading clearfix unselectable">
 						{this.renderPagination()}
 						<ButtonGroup size="sm" className="sketch-drag-delete-modes sketch-button-group" >
-							<Tooltip placement="bottom" tooltip="Drag Mode" >
-								<Button size="sm" variant={this.state.mode === 'drag' ? 'success' : 'secondary'} onClick={this.toggleDragMode} ><div className="fa fa-arrows-alt" /></Button>
-							</Tooltip>
-							<Tooltip placement="bottom" tooltip="Delete Mode" >
-								<Button size="sm" variant={this.state.mode === 'delete' ? 'success' : 'secondary'} onClick={this.toggleDeleteMode} ><div className="fa fa-times" /></Button>
-							</Tooltip>
+							<TooltipButton tooltip="Drag Mode" size="sm" variant={this.state.mode === 'drag' ? 'success' : 'secondary'} onClick={this.toggleDragMode} glyph="arrows-alt" />
+							<TooltipButton tooltip="Delete Mode" size="sm" variant={this.state.mode === 'delete' ? 'success' : 'secondary'} onClick={this.toggleDeleteMode} glyph="times" />
 						</ButtonGroup>
 						{this.renderDrawingButtons()}
 						{this.renderTextButtons()}
