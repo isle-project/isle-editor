@@ -18,6 +18,10 @@ import './question_form.css';
 class QuestionForm extends Component {
 	constructor( props ) {
 		super( props );
+
+		this.state = {
+			answered: {}
+		};
 	}
 
 	handleClick = () => {
@@ -33,11 +37,25 @@ class QuestionForm extends Component {
 			if ( isNull( child ) ) {
 				return child;
 			}
+			if ( !child.props.requireAnswer ) {
+				this.state.answered[ idx ] = true; // eslint-disable-line react/no-direct-mutation-state
+			}
 			return React.cloneElement( child, {
 				disableSubmitNotification: true,
+				onChange: () => {
+					const answered = this.state.answered;
+					answered[ idx ] = true;
+					this.setState( answered );
+				},
 				key: idx
 			});
 		});
+		let finished = 0;
+		for ( let key in this.state.answered ) {
+			if ( this.state.answered[ key ] ) {
+				finished += 1;
+			}
+		}
 		return ( <div
 			ref={( div ) => {
 				this.questionForm = div;
@@ -45,7 +63,7 @@ class QuestionForm extends Component {
 			className="question-form"
 		>
 			{children}
-			<Button onClick={this.handleClick}>{this.props.buttonLabel}</Button>
+			<Button disabled={finished !== children.length} onClick={this.handleClick}>{this.props.buttonLabel}</Button>
 		</div> );
 	}
 }
