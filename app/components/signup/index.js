@@ -131,6 +131,7 @@ class Signup extends Component {
 										name="email"
 										type="email"
 										placeholder="Enter Email"
+										autocomplete="username"
 										onChange={this.handleInputChange}
 									/>
 									<FormControl.Feedback />
@@ -171,6 +172,7 @@ class Signup extends Component {
 										name="password"
 										type="password"
 										placeholder="Choose Password"
+										autocomplete="new-password"
 										onChange={this.handleInputChange}
 										maxLength={30}
 										minLength={6}
@@ -189,6 +191,7 @@ class Signup extends Component {
 									name="passwordRepeat"
 									type="password"
 									placeholder="Confirm Password"
+									autocomplete="new-password"
 									onChange={this.handleInputChange}
 									maxLength={30}
 									minLength={6}
