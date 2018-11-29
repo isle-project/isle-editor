@@ -11,7 +11,6 @@ import logger from 'debug';
 import sample from '@stdlib/random/sample';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-plain-object';
-import isInteger from '@stdlib/assert/is-integer';
 import incrspace from '@stdlib/math/utils/incrspace';
 import Timer from 'components/timer';
 import FreeTextQuestion from 'components/free-text-question';
