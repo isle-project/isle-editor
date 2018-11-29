@@ -135,28 +135,28 @@ class FeedbackButtons extends Component {
 					{ this.state.submittedBinaryChoice ?
 						<Fragment>
 							<Button variant="light" disabled className="feedback-button-disabled" size="small" >
-								<Confused className="icon" />
+								<Confused className="feedback-icon" />
 							</Button>
 							<Button variant="light" disabled className="feedback-button-disabled" size="small" >
-								<Understood className="icon" />
+								<Understood className="feedback-icon" />
 							</Button>
 						</Fragment> :
 						<Fragment>
 							<Tooltip id="tooltip_confused" placement={tpos} tooltip={<strong> I am confused.</strong>}>
 								<Button variant="light" className="feedback-button" size="small" onClick={this.submitConfused}>
-									<Confused className="icon" />
+									<Confused className="feedback-icon" />
 								</Button>
 							</Tooltip>
 							<Tooltip id="tooltip_understood" placement={tpos} tooltip={<strong> Makes sense.</strong>} >
 								<Button variant="light" className="feedback-button" size="small" onClick={this.submitUnderstood}>
-									<Understood className="icon" />
+									<Understood className="feedback-icon" />
 								</Button>
 							</Tooltip>
 						</Fragment>
 					}
 					<Tooltip placement={tpos} id="tooltip_feedback" tooltip={<strong> I have feedback. </strong>} >
 						<Button variant="light" className="feedback-button" size="small" onClick={this.openModal}>
-							<Feedback className="icon" />
+							<Feedback className="feedback-icon" />
 						</Button>
 					</Tooltip>
 					<ResponseVisualizer
