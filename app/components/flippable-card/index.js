@@ -24,7 +24,7 @@ class FlippableCard extends React.Component {
 getButton() {
 	if (this.props.button !== null) return (
 		<Button onClick={() => this.handleToggle()} >{ this.props.button }</Button>
-	)
+	);
 	return null;
 }
 
@@ -133,8 +133,8 @@ FlippableCard.propTypes = {
 		back: {}
 	},
 	children: null,
-	flipSpeedBackToFront: 3.6,
-	flipSpeedFrontToBack: 3.6,
+	flipSpeedBackToFront: 1.6,
+	flipSpeedFrontToBack: 1.6,
 	infinite: false,
 	isFlipped: false,
 	perspective: 1000
