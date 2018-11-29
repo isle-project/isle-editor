@@ -2,9 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 
+// MAIN //
+
+/**
+* The **FlippableCard** allows to render two-sides
+*
+*/
 class FlippableCard extends React.Component {
   state = { isFlipped: false }
-
 
   componentDidUpdate(nextProps) {
     if (nextProps.isFlipped !== this.props.isFlipped) {
@@ -14,25 +19,30 @@ class FlippableCard extends React.Component {
   }
 
 
-  handleToggle() {
-    this.setState(({ isFlipped }) => ({
+	handleToggle() {
+		this.setState(({ isFlipped }) => ({
 		isFlipped: !isFlipped
-    }));
-  }
+		}));
+	}
 
 
-getButton() {
-	if (this.props.button !== null) return (
-		<Button onClick={() => this.handleToggle()} >{ this.props.button }</Button>
-	);
-	return null;
-}
+	getButton() {
+		if (this.props.button !== null) return (
+			<Button onClick={() => this.handleToggle()} >{ this.props.button }</Button>
+		);
+		return null;
+	}
 
-getComponent( key ) {
-    return this.props.children.filter(component => {
-		return component.key === key;
-	});
-  }
+	getComponent( key ) {
+			return this.props.children.filter(component => {
+			return component.key === key;
+		});
+		}
+
+	interaction() {
+		if (this.props.button === null) this.handleToggle();
+	}
+
 
   render() {
     const styles = {
@@ -82,10 +92,12 @@ getComponent( key ) {
 			transition: `${this.props.flipSpeedFrontToBack}s`,
 			...this.props.cardStyles.back
 			}
-    };
+		};
+
 
     return (
-			<div className="react-card-flip" style={styles.container}>
+
+			<div onClick={() => this.interaction()} className="react-card-flip" style={styles.container}>
 			<div className="react-card-flipper"
 				style={styles.flipper}
             >
@@ -104,6 +116,8 @@ getComponent( key ) {
     );
   }
 }
+
+// PROPERTIES //
 
 FlippableCard.propTypes = {
 	button: PropTypes.string,
@@ -140,5 +154,6 @@ FlippableCard.propTypes = {
 	perspective: 1000
   };
 
+// EXPORTS //
 
 export default FlippableCard;
