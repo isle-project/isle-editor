@@ -152,6 +152,7 @@ const createBagOfWords = ({ texts, stopwords, minCount }) => {
 * @property {number} minCount - if set, only include words that appear more than `minCount` times in the given data
 * @property {boolean} saveButton - controls whether to display a button for saving the word cloud as an image
 * @property {(Function|number)} padding - accessor function or constant indicating the numerical padding for each word
+* @property {Object} style - CSS inline styles
 * @property {Function} onClick - callback function invoked when a word on the word cloud is clicked
 */
 class Wrapper extends Component {
@@ -280,7 +281,7 @@ class Wrapper extends Component {
 	}
 
 	render() {
-		return ( <div style={{ width: this.props.width, position: 'relative' }}>
+		return ( <div style={{ width: this.props.width, position: 'relative', ...this.props.style }}>
 			{ this.props.saveButton && this.state.wordCounts.length > 0 ? <Tooltip placement="left" tooltip="Save Word Cloud" >
 				<Button size="sm" variant="light" onClick={this.saveToPNG} style={{
 					position: 'absolute',
@@ -310,6 +311,7 @@ Wrapper.defaultProps = {
 	minCount: null,
 	saveButton: true,
 	onClick() {},
+	style: {},
 	padding: 5
 };
 
@@ -336,6 +338,7 @@ Wrapper.propTypes = {
 		PropTypes.func,
 		PropTypes.number
 	]),
+	style: PropTypes.object,
 	width: PropTypes.number
 };
 
