@@ -174,7 +174,8 @@ class ResponseVisualizer extends Component {
 			const counts = this.tabulateValues( filtered );
 			newState.counts = counts;
 			this.setState( newState );
-		} else {
+		}
+		else {
 			// Case: props.data.type === 'number':
 			this.setState( newState );
 		}

@@ -193,7 +193,9 @@ class MultipleChoiceMatrix extends Component {
 						<ResponseVisualizer
 							id={this.props.id}
 							data={{
-								type: 'matrix'
+								type: 'matrix',
+								rows: this.props.questions,
+								cols: this.props.answers
 							}}
 							info="MULTIPLE_CHOICE_MATRIX_SUBMISSION"
 						/>

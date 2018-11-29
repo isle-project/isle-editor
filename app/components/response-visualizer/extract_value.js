@@ -2,7 +2,7 @@
 
 import copy from '@stdlib/utils/copy';
 import logger from 'debug';
-import isObject from '@stdlib/assert/is-object';
+import isObjectLike from '@stdlib/assert/is-object-like';
 
 
 // VARIABLES //
@@ -17,7 +17,7 @@ function extractValue( action ) {
 		action = copy( action );
 		debug( 'Received a feedback action...' );
 		let json;
-		if ( isObject( action.value ) ) {
+		if ( isObjectLike( action.value ) ) {
 			json = action.value;
 		} else {
 			json = JSON.parse( action.value );
@@ -34,6 +34,11 @@ function extractValue( action ) {
 		}
 		if ( json.noLogic ) {
 			action.value += 'I can\'t follow the logic. ';
+		}
+	}
+	else if ( action.type === 'MULTIPLE_CHOICE_MATRIX_SUBMISSION' ) {
+		if ( !isObjectLike( action.value ) ) {
+			action.value = JSON.parse( action.value );
 		}
 	}
 	return action;

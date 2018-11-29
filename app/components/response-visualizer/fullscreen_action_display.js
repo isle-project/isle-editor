@@ -9,11 +9,11 @@ import isStrictEqual from '@stdlib/assert/is-strict-equal';
 import isArray from '@stdlib/assert/is-array';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import lowercase from '@stdlib/string/lowercase';
+import ndarray from '@stdlib/ndarray/array';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
 import Badge from 'react-bootstrap/lib/Badge';
 import Col from 'react-bootstrap/lib/Col';
-import Container from 'react-bootstrap/lib/Container';
 import Card from 'react-bootstrap/lib/Card';
 import Row from 'react-bootstrap/lib/Row';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
@@ -133,17 +133,18 @@ class FullscreenActionDisplay extends Component {
 
 	renderWordCloud() {
 		return (
-			<div style={{ height: 0.75 * window.innerHeight }}>
-				<WordCloud
-					data={this.props.actions.map( x => x.value )}
-					height={0.70 * window.innerHeight}
-					width={0.5*window.innerWidth}
-					rotate={0}
-					onClick={( d ) => {
-						this.searchFilter( d.text );
-					}}
-				/>
-			</div>
+			<WordCloud
+				data={this.props.actions.map( x => x.value )}
+				height={0.65 * window.innerHeight}
+				width={0.45*window.innerWidth}
+				rotate={0}
+				onClick={( d ) => {
+					this.searchFilter( d.text );
+				}}
+				style={{
+					marginTop: 20
+				}}
+			/>
 		);
 	}
 
@@ -203,11 +204,42 @@ class FullscreenActionDisplay extends Component {
 		);
 	}
 
-	renderMatrix() {
-		const table = [];
+	renderTable() {
+		const nRows = this.props.data.rows.length;
+		const nCols = this.props.data.cols.length;
+		const counts = ndarray({
+			'shape': [ nRows, nCols ],
+			'dtype': 'int32'
+		});
+		for ( let i = 0; i < this.props.actions.length; i++ ) {
+			const elem = this.props.actions[ i ].value;
+			for ( let j = 0; j < nRows; j++ ) {
+				for ( let k = 0; k < nCols; k++ ) {
+					if ( elem[ j ][ k ] === true ) {
+						counts.set( j, k, Number( counts.get( j, k ) ) + 1 );
+					}
+				}
+			}
+		}
+		const table = <table className="table table-bordered" >
+			<thead>
+				<th></th>
+				{this.props.data.cols.map( ( c, i ) => <th key={i} >{c}</th> )}
+			</thead>
+			<tbody>
+				{this.props.data.rows.map( ( r, idx ) => {
+					const row = new Array( nCols+1 );
+					row[ 0 ] = <th>{r}</th>;
+					for ( let i = 0; i < nCols; i++ ) {
+						row.push( <td>{counts.get( idx, i )}</td> );
+					}
+					return <tr key={idx}>{row}</tr>;
+				})}
+			</tbody>
+		</table>;
 		return (
 			<div style={{ height: 0.75 * window.innerHeight }} >
-				{this.props.actions}
+				{table}
 			</div>
 		);
 	}
@@ -215,8 +247,9 @@ class FullscreenActionDisplay extends Component {
 	renderListGroupItem = ( index, key ) => {
 		debug( `Rendering item at position ${index}...` );
 		const elem = this.state.filtered[ index ];
+		const { data } = this.props;
 		let value = elem.value;
-		if ( this.props.data.levels ) {
+		if ( data.levels ) {
 			if ( isArray( value ) ) {
 				let str = '';
 				value.forEach( ( v, idx ) => {
@@ -231,6 +264,17 @@ class FullscreenActionDisplay extends Component {
 			} else {
 				value = this.props.data.levels[ value ] || 'None';
 			}
+		}
+		else if ( data.cols && data.rows ) {
+			let str = '';
+			for ( let i = 0; i < data.rows.length; i++ ) {
+				for ( let j = 0; j < data.cols.length; j++ ) {
+					if ( value[ i ][ j ] ) {
+						str += data.rows[ i ] + ' - '+data.cols[ j ]+'; ';
+					}
+				}
+			}
+			value = str || 'None';
 		}
 		const higlighter = <Highlighter
 			searchWords={this.state.searchwords}
@@ -248,7 +292,7 @@ class FullscreenActionDisplay extends Component {
 				<Button
 					variant="outline-secondary"
 					size="sm"
-					onClick={this.showModalFactory( elem )}
+					onClick={this.showModalFactory({ ...elem, value: value })}
 				>
 					<span className="fa fa-search-plus" />
 				</Button>
@@ -281,7 +325,7 @@ class FullscreenActionDisplay extends Component {
 					plot = this.renderHistogram();
 					break;
 				case 'matrix':
-					plot = this.renderMatrix();
+					plot = this.renderTable();
 					break;
 			}
 		}
@@ -289,6 +333,9 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	render() {
+		if ( !this.props.show ) {
+			return null;
+		}
 		return ( <Fragment>
 			<Modal
 				show={this.props.show}
@@ -296,31 +343,29 @@ class FullscreenActionDisplay extends Component {
 				dialogClassName="modal-100w"
 			>
 				<FullscreenHeader componentID={this.props.componentID} actionLabel={this.props.actionLabel} onPeriodChange={this.props.onPeriodChange} />
-				<Modal.Body style={{ height: 0.75 * window.innerHeight, width: 0.90 * window.innerWidth }} >
-					<Container>
-						<Row>
-							<Col md={6}>
-								{ this.state.filtered.length > 0 ?
-									<div style={{ marginLeft: 0, overflowY: 'scroll', height: 0.73 * window.innerHeight }}>
-										<ReactList
-											initialIndex={0}
-											itemRenderer={this.renderListGroupItem}
-											length={this.state.filtered.length}
-											type="variable"
-											pageSize={50}
-											itemSizeGetter={this.itemSizeGetter}
-										/>
-									</div> :
-									<Card body className="bg-light">
-										<h2>There are no data matching the selected parameters.</h2>
-									</Card>
-								}
-							</Col>
-							<Col md={6}>
-								{this.renderPlot()}
-							</Col>
-						</Row>
-					</Container>
+				<Modal.Body style={{ height: 0.75 * window.innerHeight, padding: 0 }} >
+					<Row>
+						<Col md={6}>
+							{ this.state.filtered.length > 0 ?
+								<div style={{ marginLeft: 0, overflowY: 'scroll', height: 0.75 * window.innerHeight }}>
+									<ReactList
+										initialIndex={0}
+										itemRenderer={this.renderListGroupItem}
+										length={this.state.filtered.length}
+										type="variable"
+										pageSize={50}
+										itemSizeGetter={this.itemSizeGetter}
+									/>
+								</div> :
+								<Card body className="bg-light">
+									<h2>There are no data matching the selected parameters.</h2>
+								</Card>
+							}
+						</Col>
+						<Col md={6} style={{ overflowY: 'auto', maxWidth: '49.2%' }}>
+							{this.renderPlot()}
+						</Col>
+					</Row>
 				</Modal.Body>
 				<Modal.Footer>
 					<h4>
