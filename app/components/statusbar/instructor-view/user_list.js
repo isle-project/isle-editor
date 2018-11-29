@@ -32,6 +32,7 @@ class UserList extends Component {
 		super( props );
 
 		this.state = {
+			filter: null,
 			selected: null
 		};
 	}
@@ -104,6 +105,7 @@ class UserList extends Component {
 	handleClickFactory = ( email ) => {
 		return () => {
 			if ( this.state.selected === email ) {
+				this.removeGlowElems();
 				return this.setState({
 					selected: null
 				});
@@ -115,13 +117,33 @@ class UserList extends Component {
 		};
 	}
 
+	filter = ( evt ) => {
+		debug( 'Clicked on progressbar...' );
+		const id = evt.target.innerText;
+		let newFilter;
+		if ( this.state.filter === id ) {
+			newFilter = null;
+		} else {
+			newFilter = id;
+		}
+		this.setState({
+			filter: newFilter
+		});
+	}
+
 	render() {
 		const session = this.props.session;
 		const userFocuses = session.userFocuses;
 		const ID_COUNTS = {};
 		let ID_COUNT_SUM = 0;
 		const list = <ListGroup className="user-list-group" style={{ height: window.innerHeight / 2 }}>
-			{session.userList.map( ( user, idx ) => {
+			{session.userList.filter( user => {
+				if ( !this.state.filter ) {
+					return true;
+				}
+				const id = userFocuses[ user.email ];
+				return id === this.state.filter;
+			}).map( ( user, idx ) => {
 				let focusedID = null;
 				const id = userFocuses[ user.email ];
 				if ( id ) {
@@ -167,11 +189,17 @@ class UserList extends Component {
 		const activeIDs = keys( ID_COUNTS );
 		return (
 			<Fragment>
-				<ProgressBar>
+				<ProgressBar style={{ cursor: 'pointer' }} onClick={this.filter} >
 					{activeIDs.map( ( id, key ) => {
 						const pos = indexOf( IDs, id );
 						const color = CAT20[ pos % CAT20.length ];
-						return <ProgressBar style={{ background: color }} key={key} now={( ID_COUNTS[ id ] / ID_COUNT_SUM ) * 100.0} label={id} />;
+						return ( <ProgressBar
+							style={{
+								background: this.state.filter !== id ? color : 'gold'
+							}}
+							key={key}
+							now={( ID_COUNTS[ id ] / ID_COUNT_SUM ) * 100.0} label={id}
+						/> );
 					})}
 				</ProgressBar>
 				{list}
