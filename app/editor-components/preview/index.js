@@ -81,6 +81,7 @@ const createScope = ( session ) => {
 		EnlargeableGrid,
 		Expire: Loadable( () => import( 'components/expire' ) ),
 		FeedbackButtons: Loadable( () => import( 'components/feedback' ) ),
+		FlippableCard: Loadable( () => import( 'components/flippable-card' ) ),
 		FreeTextSurvey: Loadable( () => import( 'components/free-text-survey' ) ),
 		FreeTextQuestion: Loadable( () => import( 'components/free-text-question' ) ),
 		Gate: Loadable( () => import( 'components/gate' ) ),

@@ -45,6 +45,7 @@
 	"EnlargeableGrid": "components/enlargeable-grid",
 	"Expire": "components/expire",
 	"FeedbackButtons": "components/feedback",
+	"FlippableCard": "components/flippable-card",
 	"FreeTextQuestion": "components/free-text-question",
 	"FreeTextSurvey": "components/free-text-survey",
 	"Gate": "components/gate",
