@@ -140,65 +140,9 @@ class Quiz extends Component {
 			newState.current = this.sample()[ 0 ];
 			debug( 'Selected question at index '+newState.current );
 		}
-		if ( !this.state.answered ) {
-			const answers = this.state.answers.slice();
-			if ( elem.props ) {
-				let solution;
-				if (
-					elem.component === 'MultipleChoiceQuestion' ||
-					elem.type === MultipleChoiceQuestion ||
-					( elem.type && elem.type.name === 'MultipleChoiceQuestion' )
-				) {
-					const correct = elem.props.solution;
-					if ( isArray( correct ) ) {
-						solution = '';
-						for ( let i = 0; i < correct.length; i++ ) {
-							solution += elem.props.answers[ correct[ i ] ];
-							solution += '; ';
-						}
-					} else if ( isInteger( correct ) ) {
-						solution = elem.props.answers[ correct ].content;
-					}
-				}
-				else if (
-					elem.component === 'MatchListQuestion' ||
-					elem.type === MatchListQuestion ||
-					( elem.type && elem.type.name === 'MatchListQuestion' )
-				) {
-					solution = '';
-					for ( let i = 0; i < elem.props.elements.length; i++ ) {
-						const val = elem.props.elements[ i ];
-						solution += `${val.a}:${val.b}; `;
-					}
-				}
-				else if (
-					elem.component === 'OrderQuestion' ||
-					elem.type === OrderQuestion ||
-					( elem.type && elem.type.name === 'OrderQuestion' )
-				) {
-					solution = '';
-					for ( let i = 0; i < elem.props.options.length; i++ ) {
-						const val = elem.props.options[ i ];
-						solution += `${val.text}; `;
-					}
-				}
-				else {
-					solution = elem.props.solution;
-					if ( isArray( solution ) ) {
-						solution = solution.join( ', ' );
-					}
-				}
-				answers[ this.state.current ] = {
-					question: elem.props ? elem.props.question : null,
-					answer: null,
-					counter,
-					solution
-				};
-				newState.answers = answers;
-			}
-		}
 		newState.answered = false;
 		newState.selectedConfidence = null;
+		newState.answerSelected = false;
 		newState.counter = counter;
 		this.setState( newState);
 	}
@@ -521,16 +465,17 @@ class Quiz extends Component {
 											Open Instructor View
 										</Button>
 								</Gate>
-							{
-									this.props.showFinishButton || this.state.last ?
-										<Button
-											style={{ marginRight: 10 }}
-											className="quiz-button"
-											variant="secondary"
-											onClick={this.handleFinishClick}
-										>
-											{this.props.finishLabel}
-										</Button> : null
+								{
+								( this.props.showFinishButton || this.state.last ) &&
+								!this.state.finished ?
+									<Button
+										style={{ marginRight: 10 }}
+										className="quiz-button"
+										variant="secondary"
+										onClick={this.handleFinishClick}
+									>
+										{this.props.finishLabel}
+									</Button> : null
 								}
 								{ showButton && !this.state.last ?
 									<Button
