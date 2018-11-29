@@ -10,6 +10,8 @@ import isArray from '@stdlib/assert/is-array';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import lowercase from '@stdlib/string/lowercase';
 import ndarray from '@stdlib/ndarray/array';
+import objectKeys from '@stdlib/utils/keys';
+import indexOf from '@stdlib/utils/index-of';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
 import Badge from 'react-bootstrap/lib/Badge';
@@ -179,6 +181,69 @@ class FullscreenActionDisplay extends Component {
 		);
 	}
 
+	renderSankeyDiagram() {
+		const { left, right } = this.props.data;
+		const labels = left.concat( right );
+		const actions = this.props.actions;
+		const paths = {};
+		for ( let i = 0; i < actions.length; i++ ) {
+			const arr = actions[ i ].value;
+			if ( isArray( arr ) ) {
+				for ( let j = 0; j < arr.length; j++ ) {
+					const { a, b } = arr[ j ];
+					if ( paths[ a+'-'+b ] ) {
+						paths[ a+'-'+b ] += 1;
+					} else {
+						paths[ a+'-'+b ] = 1;
+					}
+				}
+			}
+		}
+		const keys = objectKeys( paths );
+		const source = new Array( keys.length );
+		const target = new Array( keys.length );
+		const value = new Array( keys.length );
+		for ( let i = 0; i < keys.length; i++ ) {
+			const elems = keys[ i ].split( '-' );
+			source[ i ] = indexOf( left, elems[ 0 ] );
+			target[ i ] = left.length + indexOf( right, elems[ 1 ] );
+			value[ i ] = paths[ keys[ i ] ];
+		}
+		console.log( source );
+		console.log( target );
+		console.log( value );
+		console.log( labels );
+		return (
+			<div style={{ height: 0.75 * window.innerHeight }}>
+				<Plotly
+					data={[{
+						type: 'sankey',
+						orientation: 'h',
+						node: {
+							pad: 15,
+							thickness: 30,
+							line: {
+								color: 'black',
+								width: 0.5
+							},
+							label: labels,
+							color: 'blue'
+						},
+						link: {
+							source,
+							target,
+							value
+						}
+					}]}
+					fit
+					layout={{
+						fontSize: 10
+					}}
+				/>
+			</div>
+		);
+	}
+
 	renderHistogram() {
 		return (
 			<div style={{ height: 0.75 * window.innerHeight }}>
@@ -249,7 +314,7 @@ class FullscreenActionDisplay extends Component {
 		const elem = this.state.filtered[ index ];
 		const { data } = this.props;
 		let value = elem.value;
-		if ( data.levels ) {
+		if ( data.type === 'factor' ) {
 			if ( isArray( value ) ) {
 				let str = '';
 				value.forEach( ( v, idx ) => {
@@ -265,7 +330,16 @@ class FullscreenActionDisplay extends Component {
 				value = this.props.data.levels[ value ] || 'None';
 			}
 		}
-		else if ( data.cols && data.rows ) {
+		else if ( data.type === 'matches' ) {
+			let str = '';
+			if ( isArray( value ) ) {
+				for ( let i = 0; i < value.length; i++ ) {
+					str += value[ i ].a + ' - '+value[ i ].b+'; ';
+				}
+			}
+			value = str || 'None';
+		}
+		else if ( data.type === 'matrix' ) {
 			let str = '';
 			for ( let i = 0; i < data.rows.length; i++ ) {
 				for ( let j = 0; j < data.cols.length; j++ ) {
@@ -326,6 +400,9 @@ class FullscreenActionDisplay extends Component {
 					break;
 				case 'matrix':
 					plot = this.renderTable();
+					break;
+				case 'matches':
+					plot = this.renderSankeyDiagram();
 					break;
 			}
 		}

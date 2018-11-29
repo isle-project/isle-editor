@@ -6,8 +6,6 @@ import floor from '@stdlib/math/base/special/floor';
 import randu from '@stdlib/random/base/randu';
 
 
-// VARIABLES //
-
 // MAIN //
 
 class OptionsList extends Component {
@@ -42,7 +40,6 @@ class OptionsList extends Component {
 			cursor: 'pointer',
 			backgroundColor: this.props.baseColor
 		};
-
 		const selected = Object.assign({}, optionStyle, {
 			backgroundColor: 'gainsboro'
 		});

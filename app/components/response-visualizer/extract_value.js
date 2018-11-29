@@ -36,7 +36,10 @@ function extractValue( action ) {
 			action.value += 'I can\'t follow the logic. ';
 		}
 	}
-	else if ( action.type === 'MULTIPLE_CHOICE_MATRIX_SUBMISSION' ) {
+	else if (
+		action.type === 'MULTIPLE_CHOICE_MATRIX_SUBMISSION' ||
+		action.type === 'MATCH_LIST_SUBMISSION'
+	) {
 		if ( !isObjectLike( action.value ) ) {
 			action.value = JSON.parse( action.value );
 		}
