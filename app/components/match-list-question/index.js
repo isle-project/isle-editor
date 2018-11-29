@@ -189,8 +189,8 @@ class MatchListQuestion extends Component {
 		const nHints = hints.length;
 		const onSelectA = this.onSelect.bind( this, 'selectedA' );
 		const onSelectB = this.onSelect.bind( this, 'selectedB' );
-
 		const solutionButton = <SolutionButton onClick={this.toggleSolution} disabled={!this.state.submitted} />;
+		const unfinished = answers.length !== elements.length;
 		return (
 			<div className="match-list-question-container" style={this.props.style} >
 				{ isString( question ) ? <Text inline className="question" raw={question} /> : <span className="question">{question}</span> }
@@ -221,9 +221,9 @@ class MatchListQuestion extends Component {
 								size="sm"
 								onClick={this.handleSubmit}
 								style={{
-									pointerEvents: 'none'
+									pointerEvents: unfinished ? 'none' : null
 								}}
-								disabled={answers.length !== elements.length}
+								disabled={unfinished}
 							>
 								{ !this.state.submitted ? 'Submit' : 'Resubmit' }
 							</Button>
@@ -240,7 +240,15 @@ class MatchListQuestion extends Component {
 								<ChatButton for={this.props.id} />
 							</div> : null
 					}
-					<ResponseVisualizer buttonLabel="Answers" id={this.props.id} />
+					<ResponseVisualizer
+						buttonLabel="Answers"
+						id={this.props.id}
+						data={{
+							type: 'matches',
+							left: this.props.elements.map( x => x.a ),
+							right: this.props.elements.map( x => x.b )
+						}}
+					/>
 				</div>
 				{ this.props.id && this.props.feedback ? <FeedbackButtons
 					style={{ marginTop: '10px', marginRight: '8px' }}
