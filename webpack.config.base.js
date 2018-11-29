@@ -14,7 +14,6 @@ var EXTERNALS = [
 	'react',
 	'react-dom',
 	'victory',
-	'plotly.js',
 	'camelcase',
 	'compute-mean',
 	'compute-stdev',
@@ -40,13 +39,15 @@ export default {
 	module: {
 		rules: [ {
 			test: /\.js?$/,
-			use: {
-				loader: 'babel-loader',
-				options: {
-					plugins: [],
-					cacheDirectory: true
+			use: [
+				{
+					loader: 'babel-loader',
+					options: {
+						plugins: [],
+						cacheDirectory: true
+					}
 				}
-			},
+			],
 			include: [
 				join( __dirname, 'main.development.js' ),
 				join( __dirname, 'app' )

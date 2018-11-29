@@ -291,14 +291,6 @@ function writeIndexFile({
 					basePath,
 					'./node_modules/katex/dist/katex.min.js'
 				),
-				'plotly.js/dist/plotly': resolve(
-					basePath,
-					'./node_modules/plotly.js/dist/plotly-cartesian.min.js'
-				),
-				'plotly.js': resolve(
-					basePath,
-					'./node_modules/plotly.js/dist/plotly-cartesian.min.js'
-				),
 				'react-transition-group/TransitionGroup': resolve(
 					basePath,
 					'./node_modules/spectacle/node_modules/react-transition-group/TransitionGroup.js'
