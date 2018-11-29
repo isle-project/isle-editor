@@ -190,7 +190,7 @@
     "normalize.css": "^8.0.0",
     "pdfjs-dist": "^2.0.489",
     "pdfmake-lite": "^0.1.36",
-    "plotly.js": "^1.38.1",
+    "plotly.js": "^1.42.5",
     "pressure": "^2.1.2",
     "prismjs": "^1.6.0",
     "profanities": "^2.5.0",
