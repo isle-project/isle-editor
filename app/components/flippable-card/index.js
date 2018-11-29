@@ -2,9 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 
+// MAIN //
+
+/**
+* The **FlippableCard** allows to render two-sides
+*
+*/
 class FlippableCard extends React.Component {
   state = { isFlipped: false }
-
 
   componentDidUpdate(nextProps) {
     if (nextProps.isFlipped !== this.props.isFlipped) {
@@ -112,6 +117,8 @@ class FlippableCard extends React.Component {
   }
 }
 
+// PROPERTIES //
+
 FlippableCard.propTypes = {
 	button: PropTypes.string,
 	cardStyles: PropTypes.shape({
@@ -147,5 +154,6 @@ FlippableCard.propTypes = {
 	perspective: 1000
   };
 
+// EXPORTS //
 
 export default FlippableCard;
