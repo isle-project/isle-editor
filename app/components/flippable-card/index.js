@@ -8,7 +8,12 @@ import Button from 'react-bootstrap/lib/Button';
 // MAIN //
 
 /**
-* The **FlippableCard** allows to render two-sides.
+* An ISLE component that allows two render two-sides.
+*
+* @property {(string|node)} button - button label
+* @property {Array<Object>} cardStyles - allows to override the given styles. Handles an object with `container`, `front` and `back` keys.
+* @property {number} flipSpeedBackToFront - the speed by which the card turns from background to foreground, in seconds
+* @property {number} flipSpeedFrontToBack {number} the speed by which the card turns from foreground to background, in seconds
 */
 class FlippableCard extends Component {
 	constructor( props ) {
@@ -29,9 +34,9 @@ class FlippableCard extends Component {
 	}
 
 	handleToggle = () => {
-		this.setState(({ isFlipped }) => ({
-			isFlipped: !isFlipped
-		}));
+		this.setState({
+			isFlipped: !this.state.isFlipped
+		});
 	}
 
 	renderButton() {
@@ -43,12 +48,6 @@ class FlippableCard extends Component {
 			);
 		}
 		return null;
-	}
-
-	renderComponent( key ) {
-		return this.props.children.filter( component => {
-			return component.key === key;
-		});
 	}
 
 	interaction = () => {
@@ -109,11 +108,11 @@ class FlippableCard extends Component {
 			<div id={this.props.id} onClick={this.interaction} className="react-card-flip" style={styles.container}>
 				<div className="react-card-flipper" style={styles.flipper}>
 					<div className="react-card-front" style={styles.front}>
-						{this.renderComponent( 'front' )}
+						{this.props.children[ 0 ]}
 						{this.renderButton()}
 					</div>
 					<div className="react-card-back" style={styles.back}>
-						{this.renderComponent( 'back' )}
+						{this.props.children[ 1 ]}
 						{this.renderButton()}
 					</div>
 				</div>

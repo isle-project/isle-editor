@@ -42,7 +42,7 @@ An ISLE component that allows a two-fold usage.
 </FlippableCard>
 ``` 
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/free-text-question/)
+[Open interactive preview](https://isle.heinz.cmu.edu/components/flippable-card/)
 
 #### Options:
 

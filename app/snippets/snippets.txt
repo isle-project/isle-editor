@@ -90,8 +90,8 @@ snippet FeedbackButtons
 
 snippet FlippableCard
 	<FlippableCard>
-		<div key="front">${1:}</div>
-		<div key="back">${2:}</div>
+		${1:}
+		${2:}
 	</FlippableCard>
 
 snippet FreeTextQuestion
@@ -147,21 +147,12 @@ snippet MatchListQuestion
 
 snippet MultiCards
 	<MultiCards
-		cardStyles={{
-			container:{
-			},
-			front:{
-			},
-			back: {
-			}
-		}}
-		number={2}
 		values={[
-			{ front: 'element 1', back: 'back side'},
-			{ front: 'element 2', back: 'Back'}
+			{ front: ${1:<div>First front</div>}, back: ${2:<div>First back</div>}},
+			{ front: ${3:<div>Second front</div>}, back: ${4:<div>Second back</div>}}
+			${5:}
 		]}
-		>
-	</MultiCards>
+	/>
 
 
 snippet MultipleChoiceQuestion
