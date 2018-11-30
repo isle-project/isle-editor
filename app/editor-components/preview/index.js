@@ -113,6 +113,7 @@ const createScope = ( session ) => {
 		MarkdownEditor: Loadable( () => import( 'components/markdown-editor' ) ),
 		MatchListQuestion: Loadable( () => import( 'components/match-list-question' ) ),
 		Metrics: Loadable( () => import( 'components/metrics/db' ) ),
+		MultiCards: Loadable( () => import( 'components/multi-cards' ) ),
 		MultipleChoiceMatrix: Loadable( () => import( 'components/multiple-choice-matrix' ) ),
 		MultipleChoiceQuestion: Loadable( () => import( 'components/multiple-choice-question' ) ),
 		MultipleChoiceSurvey: Loadable( () => import( 'components/multiple-choice-survey' ) ),

@@ -57,6 +57,7 @@
 	"MatchListQuestion": "components/match-list-question",
 	"Metrics": "components/metrics/db",
 	"Modal": "react-bootstrap/lib/Modal",
+	"MultiCards": "components/multi-cards",
 	"MultipleChoiceMatrix": "components/multiple-choice-matrix",
 	"MultipleChoiceQuestion": "components/multiple-choice-question",
 	"MultipleChoiceSurvey": "components/multiple-choice-survey",
