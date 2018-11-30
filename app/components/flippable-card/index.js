@@ -64,14 +64,16 @@ class FlippableCard extends Component {
 				transformStyle: 'preserve-3d',
 				width: 400,
 				height: 400,
+				cursor: 'pointer',
 				float: 'left',
 				marginRight: '20px',
-				zIndex: 10,
 				...this.props.cardStyles.container
 			},
 			flipper: {
 				position: 'relative',
-				transformStyle: 'preserve-3d'
+				transformStyle: 'preserve-3d',
+				width: '100%',
+				height: '100%'
 			},
 			front: {
 				WebkitBackfaceVisibility: 'hidden',
@@ -82,8 +84,8 @@ class FlippableCard extends Component {
 				transform: `rotateY(${this.props.infinite ? this.state.rotation : this.state.isFlipped ? 180 : 0 }deg)`, // eslint-disable-line no-nested-ternary
 				transformStyle: 'preserve-3d',
 				width: '100%',
-				zIndex: '2',
 				height: '100%',
+				zIndex: '2',
 				transition: `${this.props.flipSpeedBackToFront}s`,
 				...this.props.cardStyles.front
 			},
@@ -97,14 +99,14 @@ class FlippableCard extends Component {
 				top: '0',
 				width: '100%',
 				height: '100%',
-				background: 'pink',
+				zIndex: 2,
 				transition: `${this.props.flipSpeedFrontToBack}s`,
 				...this.props.cardStyles.back
 			}
 		};
 
 		return (
-			<div onClick={this.interaction} className="react-card-flip" style={styles.container}>
+			<div id={this.props.id} onClick={this.interaction} className="react-card-flip" style={styles.container}>
 				<div className="react-card-flipper" style={styles.flipper}>
 					<div className="react-card-front" style={styles.front}>
 						{this.renderComponent( 'front' )}
@@ -137,6 +139,7 @@ FlippableCard.propTypes = {
 	},
 	flipSpeedBackToFront: PropTypes.number,
 	flipSpeedFrontToBack: PropTypes.number,
+	id: PropTypes.string,
 	infinite: PropTypes.bool,
 	isFlipped: PropTypes.bool,
 	perspective: PropTypes.number
@@ -150,8 +153,9 @@ FlippableCard.defaultProps = {
 		back: {}
 	},
 	children: null,
-	flipSpeedBackToFront: 1.6,
-	flipSpeedFrontToBack: 1.6,
+	flipSpeedBackToFront: 1,
+	flipSpeedFrontToBack: 1,
+	id: null,
 	infinite: false,
 	isFlipped: false,
 	perspective: 1000
