@@ -88,6 +88,12 @@ snippet FeedbackButtons
 		id="${1:Enter ID}"
 	/>
 
+snippet FlippableCard
+	<FlippableCard>
+		<div key="front">${1:}</div>
+		<div key="back">${2:}</div>
+	</FlippableCard>
+
 snippet FreeTextQuestion
 	<FreeTextQuestion
 		question="${1:Enter question}"
