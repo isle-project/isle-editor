@@ -11,9 +11,11 @@ import Button from 'react-bootstrap/lib/Button';
 * An ISLE component that allows two render two-sides.
 *
 * @property {(string|node)} button - button label
-* @property {Array<Object>} cardStyles - allows to override the given styles. Handles an object with `container`, `front` and `back` keys.
+* @property {Array<Object>} cardStyles - allows to override the given styles
 * @property {number} flipSpeedBackToFront - the speed by which the card turns from background to foreground, in seconds
 * @property {number} flipSpeedFrontToBack {number} the speed by which the card turns from foreground to background, in seconds
+* @property {boolean} isFlipped - initial flip state of the card
+* @property {number} perspective - CSS property value to give 3d-positioned element a perspective
 */
 class FlippableCard extends Component {
 	constructor( props ) {
@@ -27,8 +29,7 @@ class FlippableCard extends Component {
 	componentDidUpdate( nextProps ) {
 		if ( nextProps.isFlipped !== this.props.isFlipped ) {
 			this.setState({
-				isFlipped: nextProps.isFlipped,
-				rotation: this.state.rotation + 180
+				isFlipped: nextProps.isFlipped
 			});
 		}
 	}
@@ -80,7 +81,7 @@ class FlippableCard extends Component {
 				left: '0',
 				position: 'absolute',
 				top: '0',
-				transform: `rotateY(${this.props.infinite ? this.state.rotation : this.state.isFlipped ? 180 : 0 }deg)`, // eslint-disable-line no-nested-ternary
+				transform: `rotateY(${this.state.isFlipped ? 180 : 0 }deg)`,
 				transformStyle: 'preserve-3d',
 				width: '100%',
 				height: '100%',
@@ -93,7 +94,7 @@ class FlippableCard extends Component {
 				backfaceVisibility: 'hidden',
 				left: '0',
 				position: 'absolute',
-				transform: `rotateY(${this.props.infinite ? this.state.rotation + 180 : this.state.isFlipped ? 0 : -180 }deg)`,  // eslint-disable-line no-nested-ternary
+				transform: `rotateY(${this.state.isFlipped ? 0 : -180 }deg)`,
 				transformStyle: 'preserve-3d',
 				top: '0',
 				width: '100%',
@@ -138,8 +139,6 @@ FlippableCard.propTypes = {
 	},
 	flipSpeedBackToFront: PropTypes.number,
 	flipSpeedFrontToBack: PropTypes.number,
-	id: PropTypes.string,
-	infinite: PropTypes.bool,
 	isFlipped: PropTypes.bool,
 	perspective: PropTypes.number
 };
@@ -154,8 +153,6 @@ FlippableCard.defaultProps = {
 	children: null,
 	flipSpeedBackToFront: 1,
 	flipSpeedFrontToBack: 1,
-	id: null,
-	infinite: false,
 	isFlipped: false,
 	perspective: 1000
 };

@@ -34,4 +34,5 @@ An ISLE component that renders a multiple choice question. It supports the case 
 * __displaySolution__ | `boolean`: controls whether the solution is displayed upfront. Default: `false`.
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
+* __onChange__ | `function`: callback invoked every time the selected answer changes; receives the index of the selected question as its sole argument (or an array in case the question is of type "Choose all that apply"). Default: `onChange(){}`.
 * __onSubmit__ | `function`: callback invoked after an answer is submitted. Default: `onSubmit(){}`.

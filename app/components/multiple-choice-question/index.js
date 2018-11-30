@@ -45,6 +45,7 @@ const debug = logger( 'isle:multiple-choice-question' );
 * @property {boolean} displaySolution - controls whether the solution is displayed upfront
 * @property {strings} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
+* @property {Function} onChange - callback invoked every time the selected answer changes; receives the index of the selected question as its sole argument (or an array in case the question is of type "Choose all that apply")
 * @property {Function} onSubmit - callback invoked after an answer is submitted
 */
 class MultipleChoiceQuestion extends Component {

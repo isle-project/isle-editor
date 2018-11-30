@@ -27,12 +27,13 @@ function calculateMargin( containerWidth, targetWidth ) {
 // VIDEO //
 
 /**
-* A component for playing media files and content from YouTube, SoundCloud and Vimeo.
+* A component for playing media files and content from YouTube, SoundCloud, and Vimeo.
 *
 * @property {string} url - URL of the video
 * @property {boolean} controls - indicates whether to display control elements of the video player
-* @property {boolean} playing - indictes whether to automatically start playing the video
+* @property {boolean} playing - indicates whether to automatically start playing the video
 * @property {number} volume - volume of the player
+* @property {number} startTime - number of seconds at which to start the video, or fraction if value is between 0 and 1
 * @property {boolean} center - controls whether to center the video player
 * @property {(string|number)} height - height of the player
 * @property {(string|number)} width - width of the player
@@ -77,9 +78,9 @@ class Video extends Component {
 	}
 
 	handleStartTime = () => {
-		if (this.props.startTime) {
+		if ( this.props.startTime ) {
 			const player = this.player.getInternalPlayer();
-			player.seekTo( this.props.startTime);
+			player.seekTo( this.props.startTime );
 		}
 	}
 

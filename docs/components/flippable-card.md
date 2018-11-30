@@ -1,43 +1,39 @@
 # Flippable Card
 
-An ISLE component that allows a two-fold usage.
+An ISLE component that allows two render two-sides.
 
 #### Example:
 
 ``` js
 <FlippableCard
-        button="Click me!"
-        perspective= {1400}
-        cardStyles={{
-            container: {
-                width: "70%",
-                height: 500,
-                marginBottom: 50
-            },
-            front: {
-                textAlign: 'center',
-                fontSize: '30px',
-                color: 'orange',
-                textDecoration: 'overline',
-            },
-            back: {
-            }
-        }}
-
-        flipSpeedBackToFront={1.2}
-        flipSpeedFrontToBack={0.9}      
-        >
-    
-    <div key="front">
+    button="Click me!"
+    perspective={1400}
+    cardStyles={{
+        container: {
+            width: "70%",
+            height: 500,
+            marginBottom: 50
+        },
+        front: {
+            textAlign: 'center',
+            fontSize: '30px',
+            color: 'orange',
+            textDecoration: 'overline',
+        },
+        back: {}
+    }}
+    flipSpeedBackToFront={1.2}
+    flipSpeedFrontToBack={0.9}      
+>
+    <div>
         <img src="https://www.catster.com/wp-content/uploads/2018/07/Savannah-cat-long-body-shot.jpg" />
         <br/>
     </div>
-    
-    <div key="back">
-    <FreeTextQuestion
-        question="Backside"
-        solution="Enter solution"
-    />
+    <div>
+        <FreeTextQuestion
+            question="Backside"
+            solution="Enter solution"
+        />
     </div>
 </FlippableCard>
 ``` 
@@ -46,9 +42,13 @@ An ISLE component that allows a two-fold usage.
 
 #### Options:
 
-* __button__ | `(string|node)`: indicates the button string. Default: `null`.
-* __cardStyles__ | `array<Objects>`: allows to override the given styles. Default: `{}`. Available styles are  `container`,  `front` and  `back`.
-* __children__ | `boolean`: represents the child elements. There have to be at least to divs with the keys  `front` and  `back`. 
-* __flipSpeedBackToFront__ | `number`: the speed by which the card turns from background to foreground, in seconds. Default: `1.6`.
-* __flipSpeeddFrontToBack__ | `number`: the speed by which the card turns from foreground to background, in seconds. Default: `1.6`.
-
+* __button__ | `string`: button label. Default: `none`.
+* __cardStyles__ | `{container,front,back}`: allows to override the given styles. Default: `{
+  'container': {},
+  'front': {},
+  'back': {}
+}`.
+* __flipSpeedBackToFront__ | `number`: the speed by which the card turns from background to foreground, in seconds. Default: `1`.
+* __flipSpeedFrontToBack__ | `number`: {number} the speed by which the card turns from foreground to background, in seconds. Default: `1`.
+* __isFlipped__ | `boolean`: initial flip state of the card. Default: `false`.
+* __perspective__ | `number`: CSS property value to give 3d-positioned element a perspective. Default: `1000`.

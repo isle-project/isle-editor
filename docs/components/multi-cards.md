@@ -1,6 +1,6 @@
 # MultiCard
 
-An ISLE component that allows you to create and control multiple flippable cards (comparable to a Memory game).
+An ISLE component that allows you to create and control multiple flippable cards (e.g. in a game of Memory).
 
 #### Example:
 
@@ -33,22 +33,22 @@ An ISLE component that allows you to create and control multiple flippable cards
             boxShadow: '1px 1px 10px black',
         }
     }}
-    number={4}
     values={[
         { front: "number 1", back: 'back side of #1'},
         { front: "number 2", back: 'back side of #2'},
         { front: "number 3", back: 'back side of #3'},
         { front: "number 4", back: 'back side of #4'},
     ]}
-    >
-</MultiCards>
+/>
 ``` 
 
 [Open interactive preview](https://isle.heinz.cmu.edu/components/multi-cards/)
 
 #### Options:
 
-* __cardStyles__ | `array<Objects>`: allows to override the given styles. Default: `{}`. Available styles are  `container`,  `front` and  `back`.
-* __id__ | `string`: the id of the component. Each cards inherits the id, followed by an underscore and an index number. Default: `null`.
-* __number__ | `number`: the number of flippable cards. Default: `2`.
-* __values__ | `arrayOf(objects)`: The values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component. Default: `{}`.
+* __cardStyles__ | `{container,front,back}`: allows to override the given styles. Handles objects with  `container`, `front` and `back` keys.. Default: `{
+  'container': {},
+  'front': {},
+  'back': {}
+}`.
+* __values__ | `array<object>`: the values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component.. Default: `[]`.

@@ -634,6 +634,55 @@
     ],
     "description": "Buttons to collect user feedback."
   },
+  "FlippableCard": {
+    "props": [
+      {
+        "name": "button",
+        "type": "string",
+        "description": "button label",
+        "default": null
+      },
+      {
+        "name": "cardStyles",
+        "type": "{container,front,back}",
+        "description": "allows to override the given styles",
+        "default": {
+          "container": {},
+          "front": {},
+          "back": {}
+        }
+      },
+      {
+        "name": "children",
+        "default": null
+      },
+      {
+        "name": "flipSpeedBackToFront",
+        "type": "number",
+        "description": "the speed by which the card turns from background to foreground, in seconds",
+        "default": 1
+      },
+      {
+        "name": "flipSpeedFrontToBack",
+        "type": "number",
+        "description": "{number} the speed by which the card turns from foreground to background, in seconds",
+        "default": 1
+      },
+      {
+        "name": "isFlipped",
+        "type": "boolean",
+        "description": "initial flip state of the card",
+        "default": false
+      },
+      {
+        "name": "perspective",
+        "type": "number",
+        "description": "CSS property value to give 3d-positioned element a perspective",
+        "default": 1000
+      }
+    ],
+    "description": "An ISLE component that allows two render two-sides."
+  },
   "FreeTextQuestion": {
     "props": [
       {
@@ -2029,6 +2078,27 @@
     ],
     "description": "Invisible component listening to incoming member actions and invoking a given callback."
   },
+  "MultiCards": {
+    "props": [
+      {
+        "name": "cardStyles",
+        "type": "{container,front,back}",
+        "description": "allows to override the given styles. Handles objects with  `container`, `front` and `back` keys.",
+        "default": {
+          "container": {},
+          "front": {},
+          "back": {}
+        }
+      },
+      {
+        "name": "values",
+        "type": "array<object>",
+        "description": "the values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component.",
+        "default": []
+      }
+    ],
+    "description": "An ISLE component that allows you to create and control multiple flippable cards (e.g. in a game of Memory)."
+  },
   "MultipleChoiceMatrix": {
     "props": [
       {
@@ -2157,6 +2227,12 @@
         "type": "object",
         "description": "CSS inline styles",
         "default": {}
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked every time the selected answer changes; receives the index of the selected question as its sole argument (or an array in case the question is of type \"Choose all that apply\")",
+        "default": "onChange(){}"
       },
       {
         "name": "onSubmit",
@@ -3990,7 +4066,7 @@
       {
         "name": "playing",
         "type": "boolean",
-        "description": "indictes whether to automatically start playing the video",
+        "description": "indicates whether to automatically start playing the video",
         "default": false
       },
       {
@@ -4030,6 +4106,12 @@
         "default": null
       },
       {
+        "name": "startTime",
+        "type": "number",
+        "description": "number of seconds at which to start the video, or fraction if value is between 0 and 1",
+        "default": null
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -4054,7 +4136,7 @@
         "default": "onPlay() {}"
       }
     ],
-    "description": "A component for playing media files and content from YouTube, SoundCloud and Vimeo."
+    "description": "A component for playing media files and content from YouTube, SoundCloud, and Vimeo."
   },
   "VoiceControl": {
     "props": [
@@ -4202,6 +4284,12 @@
         "type": "(function|number)",
         "description": "accessor function indicating the rotation angle (in degrees) for each word. Also accepts a constant instead of a function",
         "default": "word => word.value % 360"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       },
       {
         "name": "width",
