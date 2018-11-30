@@ -7,6 +7,10 @@ An ISLE component that allows you to create and control multiple flippable cards
 ``` js
 <MultiCards
     id="Memory"
+
+    onChange= {(data) => {
+        console.log(data);
+    }}
     
     cardStyles={{
         container:{
@@ -51,4 +55,5 @@ An ISLE component that allows you to create and control multiple flippable cards
 * __cardStyles__ | `array<Objects>`: allows to override the given styles. Default: `{}`. Available styles are  `container`,  `front` and  `back`.
 * __id__ | `string`: the id of the component. Each cards inherits the id, followed by an underscore and an index number. Default: `null`.
 * __number__ | `number`: the number of flippable cards. Default: `2`.
+* __onChange__ | `function`: a function that receives the matrix of the flippable cards. Default: `() {}`.
 * __values__ | `arrayOf(objects)`: The values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component. Default: `{}`.
