@@ -144,6 +144,26 @@ snippet MatchListQuestion
 		}}
 	/>
 
+
+snippet MultiCards
+	<MultiCards
+		cardStyles={{
+			container:{
+			},
+			front:{
+			},
+			back: {
+			}
+		}}
+		number={2}
+		values={[
+			{ front: 'element 1', back: 'back side'},
+			{ front: 'element 2', back: 'Back'}
+		]}
+		>
+	</MultiCards>
+
+
 snippet MultipleChoiceQuestion
 	<MultipleChoiceQuestion
 		solution={${1:0}}
