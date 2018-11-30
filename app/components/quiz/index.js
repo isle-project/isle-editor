@@ -23,6 +23,7 @@ import SelectQuestion from 'components/select-question';
 import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
 import convertJSONtoJSX from 'utils/json-to-jsx';
+import FinishModal from './finish_modal.js';
 import './quiz.css';
 
 
@@ -77,7 +78,8 @@ class Quiz extends Component {
 			answerSelected: false,
 			last: false,
 			selectedConfidence: null,
-			showInstructorView: false
+			showInstructorView: false,
+			showFinishModal: false
 		};
 	}
 
@@ -96,6 +98,12 @@ class Quiz extends Component {
 				count: this.props.count || this.prop.questions.length
 			});
 		}
+	}
+
+	toggleFinishModal = () => {
+		this.setState({
+			showFinishModal: !this.state.showFinishModal
+		});
 	}
 
 	handleFinishClick = () => {
@@ -471,7 +479,7 @@ class Quiz extends Component {
 										style={{ marginRight: 10 }}
 										className="quiz-button"
 										variant="secondary"
-										onClick={this.handleFinishClick}
+										onClick={this.state.last ? this.handleFinishClick : this.toggleFinishModal}
 									>
 										{this.props.finishLabel}
 									</Button> : null
@@ -491,6 +499,12 @@ class Quiz extends Component {
 						</div>
 					</Card.Body>
 				</Card>
+				<FinishModal
+					show={this.state.showFinishModal}
+					container={this.quizBody}
+					onSubmit={this.handleFinishClick}
+					onHide={this.toggleFinishModal}
+				/>
 			</Fragment>
 		);
 	}
