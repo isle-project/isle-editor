@@ -12,14 +12,23 @@ import FlippableCard from 'components/flippable-card';
 *
 * @property {Array<Object>} values - the values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component.
 * @property {Array<Object>} cardStyles - allows to override the given styles. Handles objects with  `container`, `front` and `back` keys.
+* @property {Function} onChange - a function that receives the matrix of the flippable cards.
 */
 class MultiCards extends Component {
 	constructor( props ) {
 		super( props );
 
 		this.state = {
-			cardState: []
+			cardMatrix: this.setMatrix()
 		};
+	}
+
+	setMatrix() {
+		var matrix = [];
+		for (var i = 0; i < this.props.values.length; i++) {
+			matrix.push( false );
+			}
+		return matrix;
 	}
 
 	getCard( ndx ) {
@@ -37,15 +46,29 @@ class MultiCards extends Component {
 			}
 		}
 		return (
-			<FlippableCard cardStyles={this.props.cardStyles} id={id}>
+			<FlippableCard
+				parent={this}
+				cardStyles={this.props.cardStyles}
+				onChange={this.change}
+				ndx={ndx}
+				id={id}
+			>
 				<div>{front}</div>
 				<div>{back}</div>
 			</FlippableCard>
 		);
 	}
 
+	change = ( ndx, value ) => {
+		let matrix = this.state.cardMatrix.slice(0);
+		matrix[ ndx ] = value;
+		this.setState({
+			cardMatrix: matrix
+		});
+	}
+
 	renderCards() {
-		let list = [];
+		const list = [];
 		for ( let i = 0; i < this.props.values.length; i++ ) {
 			list.push( this.getCard( i ) );
 		}
@@ -70,6 +93,7 @@ MultiCards.propTypes = {
 		front: PropTypes.object,
 		back: PropTypes.object
 	}),
+	onChange: PropTypes.function,
 	values: PropTypes.arrayOf(PropTypes.object)
 };
 
@@ -79,6 +103,7 @@ MultiCards.defaultProps = {
 		front: {},
 		back: {}
 	},
+	onChange() {},
 	values: []
 };
 

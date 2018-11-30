@@ -140,6 +140,8 @@ FlippableCard.propTypes = {
 	flipSpeedBackToFront: PropTypes.number,
 	flipSpeedFrontToBack: PropTypes.number,
 	isFlipped: PropTypes.bool,
+	ndx: PropTypes.number,
+	onChange: PropTypes.func,
 	perspective: PropTypes.number
 };
 
@@ -154,6 +156,8 @@ FlippableCard.defaultProps = {
 	flipSpeedBackToFront: 1,
 	flipSpeedFrontToBack: 1,
 	isFlipped: false,
+	ndx: null,
+	onChange() {},
 	perspective: 1000
 };
 
