@@ -13,9 +13,18 @@ class MultiCards extends React.Component {
 			super( props );
 
 			this.state = {
-				cardState: []
+				cardMatrix: this.setMatrix()
 			};
 		}
+
+		setMatrix() {
+			var matrix = [];
+			for (var i = 0; i< this.props.values.length; i++) {
+				matrix.push( false );
+				}
+			return matrix;
+		}
+
 		getCard( ndx ) {
 			var id = this.props.id + '_' + ndx;
 			var values = this.props.values;
@@ -29,12 +38,24 @@ class MultiCards extends React.Component {
 
 			return (
 				<FlippableCard
+					parent={this}
 					cardStyles={this.props.cardStyles}
+					onChange={this.change}
+					ndx={ndx}
 					id={id}>
 					<div key="front">{front}</div>
 					<div key="back">{back}</div>
 			</FlippableCard>
 			);
+		}
+
+		change = (ndx, value) => {
+			let matrix = this.state.cardMatrix.slice(0);
+			matrix[ndx] = value;
+
+			this.setState({
+				cardMatrix: matrix
+			});
 		}
 
 		renderCards() {
@@ -64,6 +85,7 @@ class MultiCards extends React.Component {
 		}),
 		id: PropTypes.string,
 		number: PropTypes.number,
+		onChange: PropTypes.function,
 		values: PropTypes.arrayOf(PropTypes.object)
     };
 
@@ -75,6 +97,7 @@ class MultiCards extends React.Component {
 		},
 		id: null,
 		number: 2,
+		onChange() {},
 		values: []
     };
 

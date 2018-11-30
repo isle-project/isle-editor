@@ -32,6 +32,8 @@ class FlippableCard extends Component {
 		this.setState(({ isFlipped }) => ({
 			isFlipped: !isFlipped
 		}));
+
+		if (this.props.ndx !== null) this.props.onChange( this.props.ndx, !this.state.isFlipped);
 	}
 
 	renderButton() {
@@ -142,6 +144,8 @@ FlippableCard.propTypes = {
 	id: PropTypes.string,
 	infinite: PropTypes.bool,
 	isFlipped: PropTypes.bool,
+	ndx: PropTypes.number,
+	onChange: PropTypes.func,
 	perspective: PropTypes.number
 };
 
@@ -158,6 +162,8 @@ FlippableCard.defaultProps = {
 	id: null,
 	infinite: false,
 	isFlipped: false,
+	ndx: null,
+	onChange() {},
 	perspective: 1000
 };
 
