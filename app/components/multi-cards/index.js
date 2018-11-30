@@ -74,7 +74,7 @@ class MultiCards extends React.Component {
 			back: {}
 		},
 		id: null,
-		number: 16,
+		number: 2,
 		values: []
     };
 
