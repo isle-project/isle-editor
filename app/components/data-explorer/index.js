@@ -55,6 +55,7 @@ import Histogram, { generateHistogramConfig } from 'components/data-explorer/his
 import MosaicPlot, { generateMosaicPlotCode } from 'components/data-explorer/mosaicplot';
 import Piechart, { generatePiechartConfig } from 'components/data-explorer/piechart';
 import Scatterplot, { generateScatterplotConfig } from 'components/data-explorer/scatterplot';
+import Violinplot, { generateViolinplotConfig } from 'components/data-explorer/violinplot';
 import ContourChart, { generateContourChart } from 'components/data-explorer/contour.js';
 
 
@@ -270,29 +271,33 @@ class DataExplorer extends Component {
 		if ( isString( value ) ) {
 			value = JSON.parse( value );
 		}
-		if ( action.type === 'DATA_EXPLORER_SHARE:HISTOGRAM' ) {
-			config = generateHistogramConfig({ data: this.state.data, ...value });
-		}
-		else if ( action.type === 'DATA_EXPLORER_SHARE:BARCHART' ) {
+		switch ( action.type ) {
+		case 'DATA_EXPLORER_SHARE:BARCHART':
 			config = generateBarchartConfig({ data: this.state.data, ...value });
-		}
-		else if ( action.type === 'DATA_EXPLORER_SHARE:BOXPLOT' ) {
+			break;
+		case 'DATA_EXPLORER_SHARE:BOXPLOT':
 			config = generateBoxplotConfig({ data: this.state.data, ...value });
-		}
-		else if ( action.type === 'DATA_EXPLORER_SHARE:PIECHART' ) {
-			config = generatePiechartConfig({ data: this.state.data, ...value });
-		}
-		else if ( action.type === 'DATA_EXPLORER_SHARE:SCATTERPLOT' ) {
-			config = generateScatterplotConfig({ data: this.state.data, ...value });
-		}
-		else if ( action.type === 'DATA_EXPLORER_SHARE:MOSAIC' ) {
-			config = generateMosaicPlotCode({ data: this.state.data, ...value });
-		}
-		else if ( action.type === 'DATA_EXPLORER_SHARE:HEATMAP' ) {
-			config = generateHeatmapConfig({ data: this.state.data, ...value });
-		}
-		else if ( action.type === 'DATA_EXPLORER_SHARE:CONTOURCHART' ) {
+			break;
+		case 'DATA_EXPLORER_SHARE:CONTOURCHART':
 			config = generateContourChart({ data: this.state.data, ...value });
+			break;
+		case 'DATA_EXPLORER_SHARE:HEATMAP':
+			config = generateHeatmapConfig({ data: this.state.data, ...value });
+			break;
+		case 'DATA_EXPLORER_SHARE:HISTOGRAM':
+			config = generateHistogramConfig({ data: this.state.data, ...value });
+			break;
+		case 'DATA_EXPLORER_SHARE:MOSAIC':
+			config = generateMosaicPlotCode({ data: this.state.data, ...value });
+			break;
+		case 'DATA_EXPLORER_SHARE:PIECHART':
+			config = generatePiechartConfig({ data: this.state.data, ...value });
+			break;
+		case 'DATA_EXPLORER_SHARE:SCATTERPLOT':
+			config = generateScatterplotConfig({ data: this.state.data, ...value });
+			break;
+		case 'DATA_EXPLORER_SHARE:VIOLINPLOT':
+			config = generateViolinplotConfig({ data: this.state.data, ...value });
 		}
 		if ( config ) {
 			const newStudentPlots = copy( this.state.studentPlots );
@@ -622,11 +627,27 @@ class DataExplorer extends Component {
 						}}
 					/>;
 					break;
-				case 'Pie Chart':
-					content = <Piechart
-						{...categoricalProps}
+				case 'Box Plot':
+					content = <Boxplot
+						{...continuousProps}
 						logAction={this.logAction}
 						session={this.context}
+					/>;
+					break;
+				case 'Contour Chart':
+					content = <ContourChart
+						{...continuousProps}
+						logAction={this.logAction}
+						session={this.context}
+						onSelected={this.on2dSelection}
+					/>;
+					break;
+				case 'Heat Map':
+					content = <Heatmap
+						{...continuousProps}
+						logAction={this.logAction}
+						session={this.context}
+						onSelected={this.on2dSelection}
 					/>;
 					break;
 				case 'Histogram':
@@ -650,9 +671,16 @@ class DataExplorer extends Component {
 						}}
 					/>;
 					break;
-				case 'Box Plot':
-					content = <Boxplot
-						{...continuousProps}
+				case 'Mosaic Plot':
+					content = <MosaicPlot
+						{...categoricalProps}
+						logAction={this.logAction}
+						session={this.context}
+					/>;
+					break;
+				case 'Pie Chart':
+					content = <Piechart
+						{...categoricalProps}
 						logAction={this.logAction}
 						session={this.context}
 					/>;
@@ -665,27 +693,11 @@ class DataExplorer extends Component {
 						onSelected={this.on2dSelection}
 					/>;
 					break;
-				case 'Heat Map':
-					content = <Heatmap
+				case 'Violin Plot':
+					content = <Violinplot
 						{...continuousProps}
 						logAction={this.logAction}
 						session={this.context}
-						onSelected={this.on2dSelection}
-					/>;
-					break;
-				case 'Mosaic Plot':
-					content = <MosaicPlot
-						{...categoricalProps}
-						logAction={this.logAction}
-						session={this.context}
-					/>;
-					break;
-				case 'Contour Chart':
-					content = <ContourChart
-						{...continuousProps}
-						logAction={this.logAction}
-						session={this.context}
-						onSelected={this.on2dSelection}
 					/>;
 					break;
 				}
