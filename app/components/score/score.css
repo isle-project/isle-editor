@@ -2,6 +2,7 @@
     --bg: rgba(15, 112, 91, 0.9);
     --bgopac:  rgba(15,112,91, 0.66);
     --bgdark: rgba(6, 41, 33, 0.9);
+    --bgopachover:rgba(235, 185, 20, 0.9);
   }
 
 @-webkit-keyframes rotating {
@@ -35,8 +36,8 @@
 
 .score {
     position: fixed;
-    bottom: 30px;
-    right: 60px;
+    bottom: 20px;
+    right: 20px;
     width: 160px;
     height: 160px;
     z-index: 100;
@@ -44,6 +45,15 @@
     border-radius: 50%;
     box-shadow: 1px 1px 5px var(--bgdark);
     overflow: hidden;
+    transform-origin:bottom right;
+    transform: scale(0.62); /* Equal to scaleX(2) scaleY(0.5) */
+    transition: all .4s ease-in-out;
+}
+
+.score:hover {
+    transform: scale(1); /* Equal to scaleX(2) scaleY(0.5) */
+    background: orange;
+    
 }
 
 .score-header {
