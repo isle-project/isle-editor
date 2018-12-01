@@ -17,13 +17,15 @@ import Button from 'react-bootstrap/lib/Button';
 * @property {boolean} isFlipped - initial flip state of the card
 * @property {number} perspective - CSS property value to give 3d-positioned element a perspective
 * @property {Function} onChange - callback invoked once the card is flipped; receives the current flipped status as its sole argument
+* @property {boolean} oneTime - indicates whether the flip process may be executed just once
 */
 class FlippableCard extends Component {
 	constructor( props ) {
 		super( props );
 
 		this.state = {
-			isFlipped: false
+			isFlipped: false,
+			fired: false
 		};
 	}
 
@@ -35,12 +37,28 @@ class FlippableCard extends Component {
 		}
 	}
 
+	oneShot = () => {
+		if (this.state.fired === false) {
+			this.setState({
+				fired: true,
+				isFlipped: !this.state.isFlipped
+			}, () => {
+				this.props.onChange( this.props.ndx, this.state.isFlipped );
+			});
+		}
+	}
+
 	handleToggle = () => {
-		this.setState({
-			isFlipped: !this.state.isFlipped
-		}, () => {
-			this.props.onChange( this.state.isFlipped );
-		});
+		if ( this.props.oneTime === false)
+			{
+			this.setState({
+				isFlipped: !this.state.isFlipped
+			}, () => {
+				this.props.onChange( this.props.ndx, this.state.isFlipped );
+			});
+		} else {
+			this.oneShot();
+		}
 	}
 
 	renderButton() {
@@ -143,7 +161,9 @@ FlippableCard.propTypes = {
 	flipSpeedBackToFront: PropTypes.number,
 	flipSpeedFrontToBack: PropTypes.number,
 	isFlipped: PropTypes.bool,
+	ndx: PropTypes.number,
 	onChange: PropTypes.func,
+	oneTime: PropTypes.bool,
 	perspective: PropTypes.number
 };
 
@@ -158,7 +178,9 @@ FlippableCard.defaultProps = {
 	flipSpeedBackToFront: 1,
 	flipSpeedFrontToBack: 1,
 	isFlipped: false,
+	ndx: 0,
 	onChange() {},
+	oneTime: false,
 	perspective: 1000
 };
 

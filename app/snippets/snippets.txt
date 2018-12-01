@@ -341,6 +341,12 @@ snippet Runner
 		}}}
 	/>
 
+snippet Score
+	<Score
+		format={'${1:First option}'}
+	/>
+
+
 snippet SelectInput
 	<SelectInput
 		options={['${1:First option}','${2:Second Option}']}

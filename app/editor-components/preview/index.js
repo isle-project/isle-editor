@@ -142,6 +142,7 @@ const createScope = ( session ) => {
 		RTable: Loadable( () => import( 'components/r/table' ) ),
 		ROutput: Loadable( () => import( 'components/r/output' ) ),
 		Runner: Loadable( () => import( 'components/runner' ) ),
+		Score: Loadable( () => import( 'components/score' ) ),
 		SelectInput,
 		SelectQuestion: Loadable( () => import( 'components/select-question' ) ),
 		Sketchpad: Loadable( () => import( 'components/sketchpad' ) ),
