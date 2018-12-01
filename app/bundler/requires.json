@@ -88,6 +88,7 @@
 	"RTable": "components/r/table",
 	"Row": "react-bootstrap/lib/Row",
 	"Runner": "components/runner",
+	"Score": "components/score",
 	"SelectInput": "components/input/select",
 	"SelectQuestion": "components/select-question",
 	"Sketchpad": "components/sketchpad",
