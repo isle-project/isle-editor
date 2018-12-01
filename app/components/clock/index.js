@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 * Clock component displaying the current time.
 *
 * @property {Object} style - CSS inline styles
+* @property {boolean} duration - if set the duration of the session is display (not the actual time)
 */
 class Clock extends Component {
 	constructor( props ) {
@@ -19,7 +20,9 @@ class Clock extends Component {
 			time: new Date().toLocaleTimeString([], {
 				hour: '2-digit',
 				minute: '2-digit'
-			})
+			}),
+			startTime: new Date().getTime()
+
 		};
 	}
 
@@ -31,11 +34,61 @@ class Clock extends Component {
 		clearInterval( this.interval );
 	}
 
+
 	updateTime = () => {
-		const currentTime = new Date().toLocaleTimeString([], {
+		if (this.props.duration) this.updateDuration();
+		else this.updateDate();
+	}
+
+	updateDuration = () => {
+		var date = new Date().getTime() - this.state.startTime;
+		var currentTime = new Date(date).toLocaleTimeString([], {
+			hour: '2-digit',
+			minute: '2-digit',
+			second: '2-digit'
+
+		});
+
+		this.setState({
+			time: currentTime
+		});
+	}
+
+	updateDate = () => {
+		var currentTime = new Date().toLocaleTimeString([], {
 			hour: '2-digit',
 			minute: '2-digit'
 		});
+
+		if (this.props.format) {
+			switch ( this.props.format ) {
+				case 'HH:MM':
+					currentTime = new Date().toLocaleTimeString([], {
+						hour: '2-digit',
+						minute: '2-digit'
+				});
+				break;
+
+				case 'HH:MM:SS':
+					currentTime = new Date().toLocaleTimeString([], {
+						hour: '2-digit',
+						minute: '2-digit',
+						second: '2-digit'
+					});
+				break;
+
+				case 'HH:MM:SSS':
+				console.log('Hier gibt es ein Zeitformat für Millisekunden');
+				currentTime = new Date().toLocaleTimeString([], {
+					hour: '2-digit',
+					minute: '2-digit',
+					second: '3-digit'
+				});
+			break;
+			}
+		}
+
+
 		if ( this.state.time !== currentTime ) {
 			this.setState({
 				time: currentTime
@@ -61,11 +114,16 @@ class Clock extends Component {
 // PROPERTIES //
 
 Clock.propTypes = {
-	'style': PropTypes.object
+	'style': PropTypes.object,
+	duration: PropTypes.bool,
+	format: PropTypes.string
 };
 
 Clock.defaultProps = {
-	'style': {}
+	'style': {},
+	duration: false,
+	format: ''
+
 };
 
 
