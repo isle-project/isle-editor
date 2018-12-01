@@ -285,7 +285,7 @@ class Histogram extends Component {
 						<CheckboxInput
 							legend="Overlay Density"
 							defaultValue={this.state.overlayDensity}
-							onChange={( value )=>{
+							onChange={()=>{
 								this.setState({
 									overlayDensity: !this.state.overlayDensity
 								});
