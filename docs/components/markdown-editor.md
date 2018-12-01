@@ -45,6 +45,7 @@ A markdown editor for writing notes or reports. Supports exporting of notes as H
 * __voiceControl__ | `boolean`: controls whether voice input is enabled. Default: `false`.
 * __voiceTimeout__ | `number`: time in milliseconds after a chunk of recorded voice input is inserted. Default: `5000`.
 * __language__ | `string`: language identifier. Default: `'en-US'`.
+* __peerReview__ | `boolean`: enables peer review mode in which each submission is sent to another randomly chosen student and vice versa. Default: `false`.
 * __plots__ | `array`: undefined. Default: `[]`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked when editor text changes; receives the current text as its sole argument. Default: `onChange() {}`.

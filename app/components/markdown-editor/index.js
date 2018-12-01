@@ -26,6 +26,7 @@ import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import VoiceInput from 'components/input/voice';
+import UserPairer from 'components/user-pairer';
 import base64toBlob from 'utils/base64-to-blob';
 import SessionContext from 'session/context.js';
 import SimpleMDE from './simplemde.js';
@@ -100,6 +101,7 @@ function replacer( key, value ) {
 * @property {Array} toolbarConfig - array of toolbar element identifiers to be displayed
 * @property {Object} options - options passed to the SimpleMDE constructor, the package on which this component is based; see their documentation for available options
 * @property {boolean} autoSave - controls whether the editor should save the current text to the local storage of the browser at a given time interval
+* @property {boolean} peerReview - enables peer review mode in which each submission is sent to another randomly chosen student and vice versa
 * @property {number} intervalTime - time between auto saves
 * @property {boolean} voiceControl - controls whether voice input is enabled
 * @property {number} voiceTimeout - time in milliseconds after a chunk of recorded voice input is inserted
@@ -957,6 +959,10 @@ class MarkdownEditor extends Component {
 		});
 	}
 
+	handlePeerAssignments = ( assignments ) => {
+		alert( JSON.stringify( assignments, null, 2 ) );
+	}
+
 	render() {
 		const session = this.context;
 		return (
@@ -964,6 +970,10 @@ class MarkdownEditor extends Component {
 				<div id={this.props.id} ref={( div ) => { this.wrapper = div; }} className="markdown-editor" style={this.props.style} >
 					<textarea ref={( area ) => { this.simplemdeRef = area; }} autoComplete="off" {...this.props.options} />
 				</div>
+				{ this.props.peerReview ? <UserPairer
+					id={this.props.id+'_pairer'}
+					onAssignments={this.handlePeerAssignments}
+				/> : null }
 				<SaveModal
 					show={this.state.showSaveModal}
 					onHide={this.toggleSaveModal}
@@ -1063,6 +1073,7 @@ MarkdownEditor.defaultProps = {
 	],
 	autoSave: true,
 	intervalTime: 60000,
+	peerReview: false,
 	plots: [],
 	voiceControl: false,
 	voiceTimeout: 5000,
@@ -1080,6 +1091,7 @@ MarkdownEditor.propTypes = {
 	voiceControl: PropTypes.bool,
 	voiceTimeout: PropTypes.number,
 	language: PropTypes.string,
+	peerReview: PropTypes.bool,
 	plots: PropTypes.array,
 	style: PropTypes.object,
 	onChange: PropTypes.func
