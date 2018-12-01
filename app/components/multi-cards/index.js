@@ -13,6 +13,7 @@ import FlippableCard from 'components/flippable-card';
 * @property {Array<Object>} values - the values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component
 * @property {Array<Object>} cardStyles - allows to override the given styles. Handles objects with  `container`, `front` and `back` keys
 * @property {Function} onChange - a function that receives the matrix of the flippable cards
+* @property {boolean} oneTime - indicates whether the flip process may be executed just once
 */
 class MultiCards extends Component {
 	constructor( props ) {
@@ -50,6 +51,7 @@ class MultiCards extends Component {
 				parent={this}
 				cardStyles={this.props.cardStyles}
 				onChange={this.change}
+				oneTime={this.props.oneTime}
 				ndx={ndx}
 				id={id}
 			>
@@ -96,6 +98,7 @@ MultiCards.propTypes = {
 		back: PropTypes.object
 	}),
 	onChange: PropTypes.func,
+	oneTime: PropTypes.bool,
 	values: PropTypes.arrayOf(PropTypes.object)
 };
 
@@ -106,6 +109,7 @@ MultiCards.defaultProps = {
 		back: {}
 	},
 	onChange() {},
+	oneTime: false,
 	values: []
 };
 
