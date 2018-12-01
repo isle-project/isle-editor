@@ -13,6 +13,7 @@ import './score.css';
 *
 * @property {boolean} duration - indicates whether the time is displayed as a duration - beginning with session start
 * @property {string} format - sets the format of the time string
+* @property {string} type - sets the type of the score UI - available options: 'default', 'bottom'
 */
 
 class Score extends Component {
@@ -24,15 +25,21 @@ class Score extends Component {
 		};
 	}
 
-	render() {
+    renderTypes() {
+
+    }
+
+
+    renderType() {
         const clock={
-            fontWeight: 800,
+            fontWeight: 600,
             fontFamily: 'Open Sans',
             padding: 0
         };
 
-		return (
-            <div className="score">
+        if (this.props.type === 'default') {
+            return (
+                <div className="score">
                 <div className="score-header">SCORE</div>
                 <div className="score-timer">
                     <Clock duration={this.props.duration} style={clock} format={this.props.format}></Clock>
@@ -45,8 +52,35 @@ class Score extends Component {
                 <div className="score-points">
                     { this.state.score }
                 </div>
+			</div>
+            );
+        }
+
+        if (this.props.type === 'bottom'){
+            const clockStyle = {
+                fontSize: 18,
+                fontFamily: 'Open Sans'
+            };
+
+            return (
+                <div className="score-bottom">
+                    <div className="score-bottom-time">
+                        <Clock style={clockStyle} duration={this.props.duration} format={this.props.format}></Clock>
+                    </div>
+                    <div className="score-bottom-content"></div>
+                    <div className="score-bottom-legend">SCORE</div>
+                    <div className="score-bottom-text">299</div>
+                    <div className="score-bottom-line moving"></div>
+                </div>
+            );
+        }
+    }
 
 
+	render() {
+		return (
+			<div>
+				{this.renderType()}
 			</div>
 		);
 	}
@@ -57,12 +91,14 @@ class Score extends Component {
 
 Score.propTypes = {
     duration: PropTypes.bool,
-	format: PropTypes.string
+    format: PropTypes.string,
+    type: PropTypes.string
 };
 
 Score.defaultProps = {
     duration: false,
-    format: 'HH:MM'
+    format: 'HH:MM',
+    type: 'default'
 };
 
 
