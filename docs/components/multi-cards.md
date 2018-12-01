@@ -50,10 +50,10 @@ An ISLE component that allows you to create and control multiple flippable cards
 
 #### Options:
 
-* __cardStyles__ | `{container,front,back}`: allows to override the given styles. Handles objects with  `container`, `front` and `back` keys.. Default: `{
+* __cardStyles__ | `{container,front,back}`: allows to override the given styles. Handles objects with  `container`, `front` and `back` keys. Default: `{
   'container': {},
   'front': {},
   'back': {}
 }`.
-* __values__ | `array<object>`: the values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component.. Default: `[]`.
-* __onChange__ | `function`: a function that receives the matrix of the flippable cards. Default: `() {}`.
+* __onChange__ | `function`: a function that receives the matrix of the flippable cards. Default: `onChange() {}`.
+* __values__ | `array<object>`: the values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component. Default: `[]`.

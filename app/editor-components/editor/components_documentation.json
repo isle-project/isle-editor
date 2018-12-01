@@ -675,6 +675,12 @@
         "default": false
       },
       {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked once the card is flipped; receives the current flipped status as its sole argument",
+        "default": "onChange() {}"
+      },
+      {
         "name": "perspective",
         "type": "number",
         "description": "CSS property value to give 3d-positioned element a perspective",
@@ -1920,6 +1926,12 @@
         "default": "en-US"
       },
       {
+        "name": "peerReview",
+        "type": "boolean",
+        "description": "enables peer review mode in which each submission is sent to another randomly chosen student and vice versa",
+        "default": false
+      },
+      {
         "name": "plots",
         "type": "array",
         "default": []
@@ -2083,7 +2095,7 @@
       {
         "name": "cardStyles",
         "type": "{container,front,back}",
-        "description": "allows to override the given styles. Handles objects with  `container`, `front` and `back` keys.",
+        "description": "allows to override the given styles. Handles objects with  `container`, `front` and `back` keys",
         "default": {
           "container": {},
           "front": {},
@@ -2091,9 +2103,15 @@
         }
       },
       {
+        "name": "onChange",
+        "type": "function",
+        "description": "a function that receives the matrix of the flippable cards",
+        "default": "onChange() {}"
+      },
+      {
         "name": "values",
         "type": "array<object>",
-        "description": "the values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component.",
+        "description": "the values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component",
         "default": []
       }
     ],

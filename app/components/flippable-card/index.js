@@ -16,6 +16,7 @@ import Button from 'react-bootstrap/lib/Button';
 * @property {number} flipSpeedFrontToBack {number} the speed by which the card turns from foreground to background, in seconds
 * @property {boolean} isFlipped - initial flip state of the card
 * @property {number} perspective - CSS property value to give 3d-positioned element a perspective
+* @property {Function} onChange - callback invoked once the card is flipped; receives the current flipped status as its sole argument
 */
 class FlippableCard extends Component {
 	constructor( props ) {
@@ -37,6 +38,8 @@ class FlippableCard extends Component {
 	handleToggle = () => {
 		this.setState({
 			isFlipped: !this.state.isFlipped
+		}, () => {
+			this.props.onChange( this.state.isFlipped );
 		});
 	}
 
@@ -140,7 +143,6 @@ FlippableCard.propTypes = {
 	flipSpeedBackToFront: PropTypes.number,
 	flipSpeedFrontToBack: PropTypes.number,
 	isFlipped: PropTypes.bool,
-	ndx: PropTypes.number,
 	onChange: PropTypes.func,
 	perspective: PropTypes.number
 };
@@ -156,7 +158,6 @@ FlippableCard.defaultProps = {
 	flipSpeedBackToFront: 1,
 	flipSpeedFrontToBack: 1,
 	isFlipped: false,
-	ndx: null,
 	onChange() {},
 	perspective: 1000
 };
