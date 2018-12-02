@@ -6,6 +6,7 @@ import FlippableCard from 'components/flippable-card';
 import SessionContext from 'session/context.js';
 import VoiceInput from 'components/input/voice';
 
+
 // MAIN //
 
 /**
@@ -25,12 +26,10 @@ class MultiCards extends Component {
 		};
 	}
 
-
 	componentDidMount() {
 		if ( this.props.voiceID ) {
 			this.register();
 		}
-		global.multicards = this;
 	}
 
 	register() {
@@ -60,31 +59,27 @@ class MultiCards extends Component {
 		return matrix;
 	}
 
-
 	getCard( ndx ) {
 		const id = this.props.id + '_' + ndx;
 		const values = this.props.values;
 		let front = 'front value not defined';
 		let back = 'back value not defined';
-
-		if ( values[ndx] ) {
-			if ( values[ndx].front ) {
-				front = values[ndx].front;
+		if ( values[ ndx ] ) {
+			if ( values[ ndx ].front ) {
+				front = values[ ndx ].front;
 			}
-			if ( values[ndx].back ) {
-				back = values[ndx].back;
+			if ( values[ ndx ].back ) {
+				back = values[ ndx ].back;
 			}
 		}
-
 		return (
 			<FlippableCard
-				value={this.state.cardMatrix[ndx]}
-				parent={this}
+				value={this.state.cardMatrix[ ndx ]}
 				cardStyles={this.props.cardStyles}
-				onChange={this.change}
+				onChange={this.changeFactory( ndx )}
 				oneTime={this.props.oneTime}
-				ndx={ndx}
 				id={id}
+				key={ndx}
 			>
 				<div>{front}</div>
 				<div>{back}</div>
@@ -92,14 +87,16 @@ class MultiCards extends Component {
 		);
 	}
 
-	change = ( ndx, value ) => {
-		let matrix = this.state.cardMatrix.slice( 0 );
-		matrix[ ndx ] = value;
-		this.setState({
-			cardMatrix: matrix
-		}, () => {
-			this.props.onChange( this.state.cardMatrix );
-		});
+	changeFactory = ( ndx ) => {
+		return ( value ) => {
+			let matrix = this.state.cardMatrix.slice( 0 );
+			matrix[ ndx ] = value;
+			this.setState({
+				cardMatrix: matrix
+			}, () => {
+				this.props.onChange( this.state.cardMatrix );
+			});
+		};
 	}
 
 	getVoice() {
@@ -111,7 +108,7 @@ class MultiCards extends Component {
 				language={this.props.language}
 				onSubmit={this.find}
 				onFinalText={this.trigger}
-				/>
+			/>
 		);
 	}
 
@@ -119,12 +116,11 @@ class MultiCards extends Component {
 	trigger = ( value ) => {
 		for (var i = 0; i < this.props.values.length; i++) {
 			var item = this.props.values[i];
-			if (item.voiceKey) {
+			if ( item.voiceKey ) {
 				var marker = item.voiceKey;
 				var x = value.search( marker );
 				if ( x !== -1 ){
 					console.log(marker + ' - this should flip card number ' + i);
-					// this.flip(i);
 					this.change(i, !this.state.cardMatrix[i] );
 				}
 			}
@@ -133,8 +129,9 @@ class MultiCards extends Component {
 
 	renderCards() {
 		const list = [];
-		if (this.props.voiceID) list.push( this.getVoice() );
-
+		if ( this.props.voiceID ) {
+			list.push( this.getVoice() );
+		}
 		for ( let i = 0; i < this.props.values.length; i++ ) {
 			list.push( this.getCard( i ) );
 		}
@@ -143,7 +140,7 @@ class MultiCards extends Component {
 
 	render() {
 		return (
-			<div style={{ overflow: 'auto'}}>
+			<div style={{ overflow: 'auto' }} >
 				{this.renderCards()}
 			</div>
 		);

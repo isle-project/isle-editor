@@ -24,7 +24,7 @@ class FlippableCard extends Component {
 		super( props );
 
 		this.state = {
-			isFlipped: props.value || props.defaultValue,
+			isFlipped: props.defaultValue,
 			fired: false
 		};
 	}
@@ -43,21 +43,21 @@ class FlippableCard extends Component {
 				fired: true,
 				isFlipped: !this.state.isFlipped
 			}, () => {
-				this.props.onChange( this.props.ndx, this.state.isFlipped );
+				this.props.onChange( this.state.isFlipped );
 			});
 		}
 	}
 
 	handleToggle = () => {
 		if (this.props.value !== void 0) {
-			return this.props.onChange( this.props.ndx, !this.props.value );
+			return this.props.onChange( !this.props.value );
 		}
 		if ( this.props.oneTime === false)
 			{
 			this.setState({
 				isFlipped: !this.state.isFlipped
 			}, () => {
-				this.props.onChange( this.props.ndx, this.state.isFlipped );
+				this.props.onChange( this.state.isFlipped );
 			});
 		} else {
 			this.oneShot();
@@ -163,12 +163,11 @@ FlippableCard.propTypes = {
 	flipSpeedBackToFront: PropTypes.number,
 	flipSpeedFrontToBack: PropTypes.number,
 	isFlipped: PropTypes.bool,
-	ndx: PropTypes.number,
 	onChange: PropTypes.func,
 	oneTime: PropTypes.bool,
 	perspective: PropTypes.number,
 	value: PropTypes.bool,
-	defaultValue: PropTypes.bool,
+	defaultValue: PropTypes.bool
 };
 
 FlippableCard.defaultProps = {
@@ -182,7 +181,6 @@ FlippableCard.defaultProps = {
 	flipSpeedBackToFront: 1,
 	flipSpeedFrontToBack: 1,
 	isFlipped: false,
-	ndx: 0,
 	onChange() {},
 	oneTime: false,
 	perspective: 1000,
