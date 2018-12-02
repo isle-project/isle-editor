@@ -54,6 +54,7 @@
 	"JSShell": "components/js-shell",
 	"KeyControls": "components/key-controls",
 	"LessonSubmit": "components/lesson-submit",
+	"LikertScale": "components/likert-scale",
 	"MatchListQuestion": "components/match-list-question",
 	"Metrics": "components/metrics/db",
 	"Modal": "react-bootstrap/lib/Modal",

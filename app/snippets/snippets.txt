@@ -132,6 +132,9 @@ snippet JSShell
 snippet LessonSubmit
 	<LessonSubmit />
 
+snippet LikertScale
+	<LikertScale question="${1:}" />
+
 snippet MatchListQuestion
 	<MatchListQuestion
 		question="Enter question"
@@ -144,7 +147,6 @@ snippet MatchListQuestion
 		}}
 	/>
 
-
 snippet MultiCards
 	<MultiCards
 		values={[
@@ -153,7 +155,6 @@ snippet MultiCards
 			${5:}
 		]}
 	/>
-
 
 snippet MultipleChoiceQuestion
 	<MultipleChoiceQuestion

@@ -176,8 +176,8 @@ MultiCards.defaultProps = {
 	voiceID: null
 };
 
-
 MultiCards.contextType = SessionContext;
+
 
 // EXPORTS //
 
