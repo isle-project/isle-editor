@@ -45,15 +45,13 @@
     border-radius: 50%;
     box-shadow: 1px 1px 5px var(--bgdark);
     overflow: hidden;
-    transform-origin:bottom right;
-    transform: scale(0.62); /* Equal to scaleX(2) scaleY(0.5) */
+    transform-origin:bottom center;
+    transform: scale(0.72); /* Equal to scaleX(2) scaleY(0.5) */
     transition: all .4s ease-in-out;
 }
 
 .score:hover {
-    transform: scale(1); /* Equal to scaleX(2) scaleY(0.5) */
-    background: orange;
-    
+    transform: scale(1); /* Equal to scaleX(2) scaleY(0.5) */    
 }
 
 .score-header {
@@ -157,7 +155,7 @@
     border-radius: 50%;
     text-align: center;
     font-family: Georgia;
-    text-shadow: 0 0 10px white;
+    text-shadow: 0 0 2px white;
     color: white;
     background: var(--bg);
     font-size: 40px;
@@ -166,4 +164,101 @@
 
 .score-points:hover {
     opacity: 1;
+}
+
+
+/*****************************/
+
+.score-bottom {
+    position: fixed;
+    bottom: 6px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 300px;
+    max-width: 300px;
+    height: 70px;
+    z-index: 100;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    border:solid 1px var(--bgdark);
+    box-shadow: 0 0 9px var(--bgdark);
+    overflow: hidden;
+    transform-origin:bottom center;
+    transform: scale(0.72); /* Equal to scaleX(2) scaleY(0.5) */
+    transition: all .4s ease-in-out;
+    background-image: url(https://isle.heinz.cmu.edu/sublime01_1543690264803.png);
+    background: var(--bg);
+}
+
+.score-bottom-time {
+    position: absolute;
+    color: black;
+    left: 6px;
+    top: 7px;
+    font-size: 18px;
+    font-family: Open Sans;
+    font-weight: 600;
+    z-index: 10;
+}
+
+.score-bottom-legend {
+    position: absolute;
+    left: 146px;
+    font-weight: 600;
+    top: 9px;
+    color: black;
+    font-size: 18px;
+}
+
+
+.score-bottom-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image:linear-gradient(0deg,rgba(0,200, 166, 0.7), darkgray );
+    opacity: 0.3;
+}
+
+.score-bottom-text {
+    position: absolute;
+    right: 15px;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    text-align: right;
+    font-family: Open Sans;
+    font-weight: 800;
+    font-size: 40px;
+    color: white;
+    position: absolute;
+}
+
+
+@-webkit-keyframes moving {
+    from{
+        -webkit-transform: translate(-400px, 0px);
+    }
+    to{
+        -webkit-transform: translate(400px, 0px);
+    }
+}
+
+.moving {
+    -webkit-animation: moving 3s linear infinite;
+}
+
+
+.score-bottom-line {
+    position: absolute;
+    width: 200%;
+    height: 3px;
+    background-image:linear-gradient(to right,transparent, black,white, transparent  );
+    left: -50%;
+    bottom: 7px;
+    transform-origin:bottom left;
 }
