@@ -3,7 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FlippableCard from 'components/flippable-card';
-
+import SessionContext from 'session/context.js';
+import VoiceInput from 'components/input/voice';
 
 // MAIN //
 
@@ -22,6 +23,31 @@ class MultiCards extends Component {
 		this.state = {
 			cardMatrix: this.setMatrix()
 		};
+	}
+
+	componentDidMount() {
+		if ( this.props.voiceID ) {
+			this.register();
+		}
+	}
+
+	register() {
+		const session = this.context;
+		session.speechInterface.register({
+			name: this.props.voiceID,
+			ref: this,
+			commands: [
+				{
+					command: 'flip',
+					trigger: [ 'number'],
+					text: true
+				},
+				{
+					command: 'hide',
+					trigger: [ 'close' ]
+				}
+			]
+		});
 	}
 
 	setMatrix() {
@@ -71,8 +97,52 @@ class MultiCards extends Component {
 		});
 	}
 
+	getVoice() {
+		return (
+			<div>
+			<VoiceInput
+				placeholder="Start voice control"
+				style={{ float: 'left', width: '45%', marginTop: 10 }}
+				language={this.props.language}
+				onSubmit={this.find}
+				onFinalText={this.trigger}
+				/>
+			<hr></hr>
+			</div>
+		);
+	}
+
+	find = ( phrase ) => {
+		console.log(phrase);
+	}
+
+
+	flip( ndx ) {
+		console.log('should flip the card with the ndx' + ndx);
+	}
+
+	trigger = ( value ) => {
+		console.log('Should trigger something, length ' + this.props.values.length);
+
+		for (var i = 0; i < this.props.values.length; i++) {
+			var item = this.props.values[i];
+			console.log( item);
+
+			if (item.voiceKey) {
+				console.log('VOICEKEY ' + item.voiceKey);
+				var marker = item.voiceKey;
+				var x = value.search( marker );
+				if ( x !== -1 ){
+					this.flip(i);
+				}
+			}
+		}
+	}
+
 	renderCards() {
 		const list = [];
+		if (this.props.voiceID) list.push( this.getVoice() );
+
 		for ( let i = 0; i < this.props.values.length; i++ ) {
 			list.push( this.getCard( i ) );
 		}
@@ -97,9 +167,11 @@ MultiCards.propTypes = {
 		front: PropTypes.object,
 		back: PropTypes.object
 	}),
+	language: PropTypes.string,
 	onChange: PropTypes.func,
 	oneTime: PropTypes.bool,
-	values: PropTypes.arrayOf(PropTypes.object)
+	values: PropTypes.arrayOf(PropTypes.object),
+	voiceID: PropTypes.string
 };
 
 MultiCards.defaultProps = {
@@ -109,10 +181,14 @@ MultiCards.defaultProps = {
 		back: {}
 	},
 	onChange() {},
+	language: 'en-US',
 	oneTime: false,
-	values: []
+	values: [],
+	voiceID: null
 };
 
+
+MultiCards.contextType = SessionContext;
 
 // EXPORTS //
 
