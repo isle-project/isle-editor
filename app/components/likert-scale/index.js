@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import SessionContext from 'session/context.js';
+import ResponseVisualizer from 'components/response-visualizer';
 
 
 // MAIN //
@@ -44,14 +45,16 @@ class LikertScale extends Component {
 	}
 
 	handleChange = ( event ) => {
+		const value = event.target.key;
+		console.log( 'Changed value: '+value );
 		this.setState({
-			value: event.target.value
+			value
 		});
 	}
 
 	render() {
 		return (
-			<Card style={{ width: '75%' }} >
+			<Card className="center" style={{ width: '75%' }} >
 				<Card.Body>
 					<FormGroup className="center" >
 						<label>{this.props.question}</label>
@@ -61,7 +64,7 @@ class LikertScale extends Component {
 								<Form.Check
 									type="radio"
 									label={elem}
-									checked={this.state.value === elem}
+									checked={this.state.value === idx}
 									value={elem}
 									key={idx}
 									inline
@@ -74,10 +77,23 @@ class LikertScale extends Component {
 					<Button
 						className="submit-button"
 						variant="primary"
+						size="sm"
 						onClick={this.submitHandler}
+						style={{
+							marginRight: '5px'
+						}}
 					>
 						{ ( this.state.submitted ) ? 'Resubmit' : 'Submit' }
 					</Button>
+					<ResponseVisualizer
+						buttonLabel="Responses"
+						id={this.props.id}
+						data={{
+							type: 'factor',
+							levels: this.props.options
+						}}
+						info="LIKERT_SCALE_SUBMISSION"
+					/>
 				</Card.Body>
 			</Card>
 		);
@@ -96,7 +112,7 @@ LikertScale.propTypes = {
 
 LikertScale.defaultProps = {
 	question: '',
-	defaultValue: 'Neither agree nor disagree',
+	defaultValue: 2,
 	options: [
 		'Strongly disagree',
 		'Disagree',

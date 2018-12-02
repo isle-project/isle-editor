@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
+import Alert from 'react-bootstrap/lib/Alert';
 import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
 
@@ -84,6 +85,9 @@ class Revealer extends Component {
 	}
 
 	render() {
+		if ( !this.props.id ) {
+			return <Alert variant="danger">No ID assigned to component.</Alert>;
+		}
 		const header = <h3 className="center" >{this.props.message}</h3>;
 		return (<div>
 			<Gate owner >
@@ -94,7 +98,7 @@ class Revealer extends Component {
 						marginBottom: '10px'
 					}}
 				>
-					Click to {this.state.showChildren ? 'hide from' : 'reveal to'} users
+					Click to {this.state.showChildren ? 'hide' : 'reveal'} <i>{this.props.id}</i> {this.state.showChildren ? 'from' : 'to'}  users
 				</Button>
 			</Gate>
 				{this.state.showChildren ? this.props.children : header}
