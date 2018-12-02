@@ -33,6 +33,7 @@ import SimpleMDE from './simplemde.js';
 import generatePDF from './generate_pdf.js';
 import SaveModal from './save_modal.js';
 import SubmitModal from './submit_modal.js';
+import PeerSubmitModal from './peer_submit_modal.js';
 import ResetModal from './reset_modal.js';
 import TableSelect from './table_select.js';
 import ColumnSelect from './column_select.js';
@@ -141,7 +142,8 @@ class MarkdownEditor extends Component {
 			fontSize: 12,
 			showFigureInsert: false,
 			showTitleInsert: false,
-			showGuides: false
+			showGuides: false,
+			peer: null
 		};
 
 		this.toolbarOpts = {
@@ -859,7 +861,7 @@ class MarkdownEditor extends Component {
 		}
 	}
 
-	submitReport = () => {
+	submitReport = (additionalRecipientObj = null, message = null) => {
 		const session = this.context;
 		if ( session.anonymous ) {
 			return session.addNotification({
@@ -915,6 +917,11 @@ class MarkdownEditor extends Component {
 				]
 			};
 			session.sendMail( msg, session.user.email );
+			if ( additionalRecipientObj ) {
+				// force the message
+				msg.text = message;
+				session.sendMail( msg, additionalRecipientObj.email );
+			}
 
 			// Upload report:
 			const htmlForm = new FormData();
@@ -959,8 +966,10 @@ class MarkdownEditor extends Component {
 		});
 	}
 
-	handlePeerAssignments = ( assignments ) => {
-		alert( JSON.stringify( assignments, null, 2 ) );
+	handlePeerAssignment = ( assignment ) => {
+		this.setState({
+			peer: assignment
+		}, () => { alert( 'You have been paired!' ); } );
 	}
 
 	render() {
@@ -972,7 +981,7 @@ class MarkdownEditor extends Component {
 				</div>
 				{ this.props.peerReview ? <UserPairer
 					id={this.props.id+'_pairer'}
-					onAssignments={this.handlePeerAssignments}
+					onAssignmentStudent={this.handlePeerAssignment}
 				/> : null }
 				<SaveModal
 					show={this.state.showSaveModal}
@@ -992,9 +1001,17 @@ class MarkdownEditor extends Component {
 					}}
 				/>
 				<SubmitModal
-					show={this.state.showSubmitModal}
+					show={this.state.showSubmitModal && !this.state.peer}
 					onHide={this.toggleSubmitModal}
 					onSubmit={this.submitReport}
+				/>
+				<PeerSubmitModal
+					show={this.state.showSubmitModal && this.state.peer}
+					onHide={this.toggleSubmitModal}
+					onSubmitToReviewer={() => { this.submitReport(this.state.peer.to,
+						`Dear ${this.state.peer.to.name}, You have been sent a report for peer review! Please upload the attached .md file to the editor in ISLE. After uploading, insert your comments and submit using the 'Send Review Comments' button.`); }}
+					onSubmitComments={() => { this.submitReport(this.state.peer.from,
+						`Dear ${this.state.peer.from.name}, This email contains comments from your peer reviewer! Please upload the attached .md file to the editor in ISLE. After uploading, make any necessary changes and re-submit to your reviewer using the 'Submit to Reviewer' button.`); }}
 				/>
 				<ResetModal
 					show={this.state.showResetModal}

@@ -6,9 +6,9 @@ import Card from 'react-bootstrap/lib/Card';
 import Alert from 'react-bootstrap/lib/Alert';
 import Button from 'react-bootstrap/lib/Button';
 import Gate from 'components/gate';
-import isOdd from '@stdlib/assert/is-odd';
 import shuffle from '@stdlib/random/shuffle';
 import identity from '@stdlib/utils/identity-function';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 import SessionContext from 'session/context.js';
 
 
@@ -52,8 +52,10 @@ class UserPairer extends Component {
 			}
 			else if ( type === 'member_action' ) {
 				if ( action.id === this.props.id ) {
-					if ( action.type === 'USERS_PAIRED' ) {
-						this.props.onAssignments( JSON.parse( action.value ) );
+					if ( action.type === 'USERS_ASSIGNED' ) {
+						this.props.onAssignmentOwner( JSON.parse( action.value ) );
+					} else if ( action.type === 'INDIVIDUAL_ASSIGNED' ) {
+						this.props.onAssignmentStudent( JSON.parse( action.value ) );
 					}
 				}
 			}
@@ -71,44 +73,54 @@ class UserPairer extends Component {
 			users
 				.filter( x => x.exitTime === null )
 				.filter( this.props.filterOwners ? filterOwners : identity )
-				.map( x => x.email )
+				.map( x => { return {
+					email: x.email,
+					name: x.name
+				}; } )
 		);
-		if ( emails.length === 0 || isOdd( emails.length ) ) {
+		if ( emails.length < 2 ) {
 			return this.setState({
 				message: {
 					variant: 'warning',
-					value: 'There needs to be an even number of users for the pairing to work'
+					value: 'There needs to be at least 2 users for the assignment to work'
 				}
 			});
 		}
 		const assignments = {};
-		let count = 0;
-		while ( emails.length > 0 ) {
-			count += 2;
-			const current = emails.shift();
-			const next = emails.shift();
-			assignments[ current ] = next;
-			assignments[ next ] = current;
+		for ( let i = 0; i < emails.length; i++ ) {
+			let emailAddress = emails[i].email;
+			assignments[emailAddress] = {
+				'to': emails[i === emails.length - 1 ? 0 : i + 1],
+				'from': emails[i === 0 ? emails.length - 1 : i - 1]
+			};
 		}
 		this.setState({
 			assignments,
 			message: {
 				variant: 'success',
-				value: `${count} users were successfully paired with each other.`
+				value: `${emails.length} users were successfully assigned with one another.`
 			}
 		}, () => {
 			const logAction = {
 				id: this.props.id,
-				type: 'USERS_PAIRED',
-				value: JSON.stringify( this.state.assignments )
+				type: 'USERS_ASSIGNED',
+				value: JSON.stringify( this.state.assignments ),
+				noSave: false
 			};
-			if (
-				this.state.groupMode ||
-				session.isOwner() && this.state.transmitOwner
-			) {
-				session.log( logAction, 'members' );
+			session.log( logAction, 'owners' );
+			if ( session.isOwner() ) {
+				for ( let key in assignments ) {
+					if ( hasOwnProp(assignments, key) ) {
+						session.log( {
+							id: this.props.id,
+							type: 'INDIVIDUAL_ASSIGNED',
+							value: JSON.stringify( this.state.assignments[key] ),
+							noSave: true
+						}, key );
+					}
+				}
 			}
-			this.props.onAssignments( this.state.assignments );
+			this.props.onAssignmentOwner( this.state.assignments );
 		});
 	}
 
@@ -138,12 +150,14 @@ class UserPairer extends Component {
 
 UserPairer.defaultProps = {
 	filterOwners: true,
-	onAssignments() {}
+	onAssignmentOwner() {},
+	onAssignmentStudent() {}
 };
 
 UserPairer.propTypes = {
 	filterOwners: PropTypes.bool,
-	onAssignments: PropTypes.func
+	onAssignmentOwner: PropTypes.func,
+	onAssignmentStudent: PropTypes.func
 };
 
 UserPairer.contextType = SessionContext;
