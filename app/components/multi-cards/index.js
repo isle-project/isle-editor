@@ -112,10 +112,6 @@ class MultiCards extends Component {
 		);
 	}
 
-	find = ( phrase ) => {
-		console.log(phrase);
-	}
-
 
 	flip( ndx ) {
 		console.log('should flip the card with the ndx' + ndx);
