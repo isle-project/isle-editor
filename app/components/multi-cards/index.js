@@ -19,17 +19,31 @@ import VoiceInput from 'components/input/voice';
 class MultiCards extends Component {
 	constructor( props ) {
 		super( props );
+		this.flippableCards = [];
 
 		this.state = {
 			cardMatrix: this.setMatrix()
 		};
 	}
 
+	UNSAFE_componentWillMount() {
+		this.createRefs();
+	}
+
 	componentDidMount() {
 		if ( this.props.voiceID ) {
 			this.register();
 		}
+		global.multicards = this;
 	}
+
+	createRefs() {
+		for (var i = 0; i < this.props.values.length; i++) {
+			var item = React.createRef();
+			this.flippableCards.push( item );
+		}
+	}
+
 
 	register() {
 		const session = this.context;
@@ -58,11 +72,13 @@ class MultiCards extends Component {
 		return matrix;
 	}
 
+
 	getCard( ndx ) {
 		const id = this.props.id + '_' + ndx;
 		const values = this.props.values;
 		let front = 'front value not defined';
 		let back = 'back value not defined';
+		let fc = this.flippableCards[ndx];
 
 		if ( values[ndx] ) {
 			if ( values[ndx].front ) {
@@ -72,8 +88,10 @@ class MultiCards extends Component {
 				back = values[ndx].back;
 			}
 		}
+
 		return (
 			<FlippableCard
+				ref={fc}
 				parent={this}
 				cardStyles={this.props.cardStyles}
 				onChange={this.change}
@@ -114,21 +132,22 @@ class MultiCards extends Component {
 
 
 	flip( ndx ) {
-		console.log('should flip the card with the ndx' + ndx);
+		let matrix = this.state.cardMatrix.slice( 0 );
+		var actual = matrix[ ndx ];
+		actual = !actual;
+		console.log('should flip the card with the ndx' + ndx + ' - actual value ' + actual);
+		var card = this.flippableCards[ndx].current;
+		card.externalTrigger();
 	}
 
 	trigger = ( value ) => {
-		console.log('Should trigger something, length ' + this.props.values.length);
-
 		for (var i = 0; i < this.props.values.length; i++) {
 			var item = this.props.values[i];
-			console.log( item);
-
 			if (item.voiceKey) {
-				console.log('VOICEKEY ' + item.voiceKey);
 				var marker = item.voiceKey;
 				var x = value.search( marker );
 				if ( x !== -1 ){
+					console.log(marker + ' - this should flip card number ' + i);
 					this.flip(i);
 				}
 			}
