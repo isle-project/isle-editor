@@ -24,7 +24,7 @@ class FlippableCard extends Component {
 		super( props );
 
 		this.state = {
-			isFlipped: false,
+			isFlipped: props.value || props.defaultValue,
 			fired: false
 		};
 	}
@@ -49,6 +49,9 @@ class FlippableCard extends Component {
 	}
 
 	handleToggle = () => {
+		if (this.props.value !== void 0) {
+			return this.props.onChange( this.props.ndx, !this.props.value );
+		}
 		if ( this.props.oneTime === false)
 			{
 			this.setState({
@@ -79,6 +82,7 @@ class FlippableCard extends Component {
 	}
 
 	render() {
+		const isFlipped = this.props.value !== void 0? this.props.value : this.state.isFlipped;
 		const styles = {
 			container: {
 				perspective: this.props.perspective,
@@ -86,8 +90,6 @@ class FlippableCard extends Component {
 				width: 400,
 				height: 400,
 				cursor: 'pointer',
-				float: 'left',
-				marginRight: '20px',
 				...this.props.cardStyles.container
 			},
 			flipper: {
@@ -102,7 +104,7 @@ class FlippableCard extends Component {
 				left: '0',
 				position: 'absolute',
 				top: '0',
-				transform: `rotateY(${this.state.isFlipped ? 180 : 0 }deg)`,
+				transform: `rotateY(${isFlipped ? 180 : 0 }deg)`,
 				transformStyle: 'preserve-3d',
 				width: '100%',
 				height: '100%',
@@ -115,7 +117,7 @@ class FlippableCard extends Component {
 				backfaceVisibility: 'hidden',
 				left: '0',
 				position: 'absolute',
-				transform: `rotateY(${this.state.isFlipped ? 0 : -180 }deg)`,
+				transform: `rotateY(${isFlipped ? 0 : -180 }deg)`,
 				transformStyle: 'preserve-3d',
 				top: '0',
 				width: '100%',
@@ -164,7 +166,9 @@ FlippableCard.propTypes = {
 	ndx: PropTypes.number,
 	onChange: PropTypes.func,
 	oneTime: PropTypes.bool,
-	perspective: PropTypes.number
+	perspective: PropTypes.number,
+	value: PropTypes.bool,
+	defaultValue: PropTypes.bool,
 };
 
 FlippableCard.defaultProps = {
@@ -181,7 +185,9 @@ FlippableCard.defaultProps = {
 	ndx: 0,
 	onChange() {},
 	oneTime: false,
-	perspective: 1000
+	perspective: 1000,
+	value: void 0,
+	defaultValue: false
 };
 
 
