@@ -19,7 +19,7 @@ class Revealer extends Component {
 		super( props );
 
 		this.state = {
-			showChildren: false
+			showChildren: props.show
 		};
 	}
 
@@ -106,12 +106,14 @@ class Revealer extends Component {
 // PROPERTIES //
 
 Revealer.defaultProps = {
-	message: 'Content hidden by instructor'
+	message: 'Content hidden by instructor',
+	show: false
 };
 
 Revealer.propTypes = {
 	id: PropTypes.string.isRequired,
-	message: PropTypes.string
+	message: PropTypes.string,
+	show: PropTypes.bool
 };
 
 Revealer.contextType = SessionContext;
