@@ -9,7 +9,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import Plotly from 'components/plotly';
-import randomstring from 'utils/randomstring';
+import randomstring from 'utils/randomstring/alphanumeric';
 import objectKeys from '@stdlib/utils/keys';
 import kernelSmooth from 'kernel-smooth';
 import linspace from '@stdlib/math/utils/linspace';

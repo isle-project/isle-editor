@@ -8,7 +8,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import Plotly from 'components/plotly';
-import randomstring from 'utils/randomstring';
+import randomstring from 'utils/randomstring/alphanumeric';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import lowess from '@stdlib/stats/lowess';

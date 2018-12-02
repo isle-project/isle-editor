@@ -14,7 +14,7 @@ import discreteUniform from '@stdlib/random/base/discrete-uniform';
 * @param {integer} [upper=126] - upper ASCII char point
 * @returns {string} random string with `len` characters
 */
-function randomstring( len=32, lower=48, upper=126 ) {
+function randomstring( len = 32, lower = 48, upper = 126 ) {
 	const codePoints = new Array( len );
 	for ( let i = 0; i < len; i++ ) {
 		codePoints[ i ] = discreteUniform(lower, upper);
@@ -26,3 +26,4 @@ function randomstring( len=32, lower=48, upper=126 ) {
 // EXPORTS //
 
 export default randomstring;
+

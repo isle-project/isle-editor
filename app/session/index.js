@@ -11,7 +11,7 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import copy from '@stdlib/utils/copy';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 import isElectron from 'utils/is-electron';
-import randomstring from 'utils/randomstring';
+import randomstring from 'utils/randomstring/alphanumeric';
 import io from 'socket.io-client';
 import SpeechInterface from 'speech-interface';
 import 'whatwg-fetch';

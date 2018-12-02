@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
-import randomstring from 'utils/randomstring';
+import randomstring from 'utils/randomstring/alphanumeric';
 import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';

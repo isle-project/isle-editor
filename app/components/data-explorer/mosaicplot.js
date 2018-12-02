@@ -6,7 +6,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import RPlot from 'components/r/plot';
-import randomstring from 'utils/randomstring';
+import randomstring from 'utils/randomstring/alphanumeric';
 import objectValues from '@stdlib/utils/values';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import QuestionButton from './question_button.js';

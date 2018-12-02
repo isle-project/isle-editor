@@ -11,7 +11,7 @@ import FormData from 'form-data';
 import https from 'https';
 import http from 'http';
 import archiver from 'archiver';
-import randomstring from 'utils/randomstring';
+import randomstring from 'utils/randomstring/ascii';
 import { join } from 'path';
 import { createReadStream, createWriteStream } from 'fs';
 import os from 'os';

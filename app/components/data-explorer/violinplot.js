@@ -6,7 +6,7 @@ import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
-import randomstring from 'utils/randomstring';
+import randomstring from 'utils/randomstring/alphanumeric';
 import objectKeys from '@stdlib/utils/keys';
 import QuestionButton from './question_button.js';
 import by from './by.js';

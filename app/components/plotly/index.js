@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import Plot from 'react-plotly.js';
 import Plotly from 'plotly.js';
-import randomstring from 'utils/randomstring';
+import randomstring from 'utils/randomstring/alphanumeric';
 import isUndefined from '@stdlib/assert/is-undefined';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import deepEqual from '@stdlib/assert/deep-equal';

@@ -8,7 +8,7 @@ import Plotly from 'components/plotly';
 import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
-import randomstring from 'utils/randomstring';
+import randomstring from 'utils/randomstring/alphanumeric';
 import QuestionButton from './question_button.js';
 import by from './by.js';
 

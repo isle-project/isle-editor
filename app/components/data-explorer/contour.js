@@ -8,7 +8,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
-import randomstring from 'utils/randomstring';
+import randomstring from 'utils/randomstring/alphanumeric';
 import QuestionButton from './question_button.js';
 
 

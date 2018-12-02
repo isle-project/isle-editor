@@ -6,7 +6,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
-import randomstring from 'utils/randomstring';
+import randomstring from 'utils/randomstring/alphanumeric';
 import max from '@stdlib/math/base/special/max';
 import floor from '@stdlib/math/base/special/floor';
 import kde2d from '@stdlib/stats/kde2d';
