@@ -34,10 +34,12 @@
 	background-color: rgb(232, 232, 232);
 }
 
-#Lesson .statusbar-smooth {
-	background-color: purple;
+#Lesson .statusbar-button {
 }
 
+#Lesson .statusbar-button:hover {
+	background:  #c49978;
+}
 
 #Lesson .statusbar-left {
 	position: absolute;
