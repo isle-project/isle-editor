@@ -208,6 +208,7 @@ class App extends Component {
 		}
 		// Extract the capture group:
 		preamble = preamble[ 1 ];
+		preamble = replace( preamble, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
 		let preambleHasChanged = this.checkPreambleChange( preamble );
 		debug( 'Check whether preamble has changed: '+preambleHasChanged );
 		if ( preambleHasChanged ) {

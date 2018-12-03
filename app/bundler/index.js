@@ -179,8 +179,7 @@ const getComponentList = ( code ) => {
 	return ret;
 };
 
-const getISLEcode = ( yamlStr, filePath ) => {
-	let config = yaml.load( yamlStr );
+const getISLEcode = ( config, filePath ) => {
 	if ( config.instructorNotes && extname( config.instructorNotes ) === '.md' ) {
 		if ( isRelativePath( config.instructorNotes ) ) {
 			debug( 'Loading instructor notes from the supplied relative path...' );
@@ -213,19 +212,16 @@ const getSessionCode = ( basePath ) => {
 *
 * @param {string} lessonContent - ISLE lesson file
 * @param {Array} components - array of component names
-* @param {string} yamlStr - lesson meta data in YAML format
+* @param {Object} meta - lesson meta object
 * @param {string} basePath - file path of ISLE editor
 * @param {string} filePath - file path of source file
 * @returns {string} index.js content
 */
-function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath ) {
+function generateIndexJS( lessonContent, components, meta, basePath, filePath ) {
 	let res = getMainImports();
-
-	const meta = yaml.load( yamlStr );
 	if ( meta.require ) {
 		res += loadRequires( meta.require, filePath );
 	}
-
 	let className = 'Lesson';
 	if ( contains( components, 'Deck' ) ) {
 		className = 'Presentation';
@@ -233,7 +229,7 @@ function generateIndexJS( lessonContent, components, yamlStr, basePath, filePath
 		res += 'import SPECTACLE_THEME from \'components/spectacle/theme.json\';';
 	}
 	res += '\n';
-	res += getISLEcode( yamlStr, filePath );
+	res += getISLEcode( meta, filePath );
 
 	res += getSessionCode( basePath );
 
@@ -363,7 +359,8 @@ function writeIndexFile({
 		]
 	};
 
-	const yamlStr = content.match( /---([\S\s]*)---/ )[ 1 ];
+	let yamlStr = content.match( /---([\S\s]*)---/ )[ 1 ];
+	yamlStr = replace( yamlStr, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
 	const meta = yaml.load( yamlStr );
 	const appDir = join( outputPath, outputDir );
 	const indexPath = resolve( './public/index.js' );
@@ -387,7 +384,7 @@ function writeIndexFile({
 		content = '<StatusBar className="fixedPos" />\n' + content;
 	}
 	const usedComponents = getComponentList( content );
-	const str = generateIndexJS( content, usedComponents, yamlStr, basePath, filePath );
+	const str = generateIndexJS( content, usedComponents, meta, basePath, filePath );
 	debug( `Create JS file: ${str}` );
 
 	fs.writeFileSync( indexPath, str );
