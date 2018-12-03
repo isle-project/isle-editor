@@ -33,7 +33,7 @@ class PeerSubmitModal extends Component {
 				<Modal.Title>Peer Review Submission</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				To send your report to the individual review it, click the left-hand button that reads "Submit to Reviewer". If you are sending comments to an indivudal, click the right-hand button entitled "Send Review Comments".
+				To send your report to the individual review it, click the left-hand button that reads &ldquo;Submit to Reviewer&rdquo;. If you are sending comments to an individual, click the right-hand button entitled &ldquo;Send Review Comments&rdquo;.
 			</Modal.Body>
 			<Modal.Footer>
 				<Button variant="success" onClick={this.handleSubmissionToReviewer}>Submit to Reviewer</Button>
