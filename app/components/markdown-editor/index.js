@@ -580,7 +580,7 @@ class MarkdownEditor extends Component {
 		}
 	}
 
-	replacePlaceholders( plainText, skipCommens ) {
+	replacePlaceholders( plainText, skipComments ) {
 		let replacementHash;
 		const { hash } = this.state;
 		for ( let key in hash ) {
@@ -588,7 +588,7 @@ class MarkdownEditor extends Component {
 				var matchInPipeRegExp = new RegExp('\\|\\s*' + key + '\\s*\\|');
 				let id = replace( key, '<!--', '' );
 				id = replace( id, '-->', '' );
-				if ( !skipCommens || matchInPipeRegExp.test(plainText) ) {
+				if ( !skipComments || matchInPipeRegExp.test(plainText) ) {
 					// will have an issue if insert one figure in table and same figure outside table
 					replacementHash = `<!-- START:${id} -->${hash[ key ]}<!-- END -->`;
 				} else {
@@ -905,7 +905,7 @@ class MarkdownEditor extends Component {
 					},
 					{
 						filename: 'report.md',
-						content: text,
+						content: this.replacePlaceholders( this.simplemde.value() ),
 						contentType: 'text/plain'
 					},
 					{
