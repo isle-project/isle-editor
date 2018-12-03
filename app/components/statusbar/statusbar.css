@@ -35,10 +35,24 @@
 }
 
 #Lesson .statusbar-button {
+	margin-top: 2px;
+	font-family: Open Sans Condensed;
+	font-weight: 700;
+	font-variant-caps: all-petite-caps;
+	font-size: 20px;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	line-height: 1;
+	padding-top: 0;
+	padding-bottom: 0.15rem;
+	box-shadow: 0 0 2px grey inset;
+	border-radius: 0;
+	border:solid 1px darkgray;
 }
 
 #Lesson .statusbar-button:hover {
-	background:  #c49978;
+	background:  #c49978;	
+	box-shadow: 0 0 4px white inset;
 }
 
 #Lesson .statusbar-left {
@@ -51,7 +65,7 @@
 	border-left: solid 1px darkgrey;
 	border-bottom: solid 1px darkgrey;
 	overflow: hidden;
-	border-bottom-left-radius: 20px; 
+	border-bottom-left-radius: 10px; 
 }
 
 #Lesson .statusbar-middle {
@@ -74,7 +88,7 @@
 	border-bottom: solid 1px darkgrey;
 	border-right: solid 1px darkgrey;
 
-	border-bottom-right-radius: 20px; 
+	border-bottom-right-radius: 10px; 
 }
 
 #Lesson .statusbar-text {

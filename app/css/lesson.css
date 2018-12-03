@@ -439,3 +439,26 @@ label {
 	}
 }
 
+
+
+.sublime_01 {
+	width: 80%;
+	height: auto;
+	left: 0;
+	right: 0;
+	top: 50px;
+	background-image: url(https://isle.heinz.cmu.edu/micro_carbon_big_1543861751440.png);
+	height: 500px;
+	margin: auto;
+	padding: 10px;
+}
+
+
+.sublime_02 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+	background-image: url(https://isle.heinz.cmu.edu/white_carbonfiber_1543854970404.png);
+}

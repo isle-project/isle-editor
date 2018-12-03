@@ -281,19 +281,22 @@ class StatusBar extends Component {
 								<div>
 									<Button
 										size="sm"
+										className="statusbar-button"
+										variant="outline-secondary"
 										style={{ float: 'right', marginRight: '-20px' }}
 										onClick={this.signup}
 										disabled={!session.live}
 									>Sign up</Button>
 									<Button
 										size="sm"
-										variant="secondary"
+										className="statusbar-button"
+										variant="outline-secondary"
 										style={{ float: 'right', marginRight: '10px' }}
 										onClick={this.login}
 										disabled={!session.live}
 									>Login</Button>
 								</div> :
-								<Button size="sm" variant="secondary" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout}>Log Out</Button> }
+								<Button size="sm" className="statusbar-button" variant="outline-secondary" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout}>Log Out</Button> }
 							<div className="statusbar-text">
 								ISLE
 							</div>
