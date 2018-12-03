@@ -272,6 +272,7 @@ class StatusBar extends Component {
 							<div className="statusbar-presence" style={{
 								backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR
 							}}>
+								<div className="statusbar-inner-presence"></div>
 							</div>
 							<div className="statusbar-username">
 								{ session.anonymous ? 'Anonymous' : session.user.name }
@@ -286,13 +287,13 @@ class StatusBar extends Component {
 									>Sign up</Button>
 									<Button
 										size="sm"
-										variant="primary"
+										variant="secondary"
 										style={{ float: 'right', marginRight: '10px' }}
 										onClick={this.login}
 										disabled={!session.live}
 									>Login</Button>
 								</div> :
-								<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout}>Log Out</Button> }
+								<Button size="sm" variant="secondary" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout}>Log Out</Button> }
 							<div className="statusbar-text">
 								ISLE
 							</div>

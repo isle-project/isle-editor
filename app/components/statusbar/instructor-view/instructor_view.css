@@ -13,10 +13,13 @@
 	height: 10%;
 	width: 100%;
 	background-color: rgb(232, 232, 232);
-	border-left: solid 2px darkgrey;
-	border-top-left-radius: 50%;
+	border-left: solid 1px darkslategrey;
+	border-top: solid 1px darkslategrey;
+    background-image:linear-gradient(0deg,  rgb(232, 232, 232), ghostwhite );
+	border-top-left-radius: 60px;
 	text-align: center;
 	margin-right: 30px;
+	border-bottom:solid 1px silver;
 }
 
 .instructor-view-bottom {
@@ -25,8 +28,9 @@
 	height: 5%;
 	width: 100%;
 	background-color: rgb(232, 232, 232);
-	border-left: solid 2px darkgrey;
-	border-bottom-left-radius: 50%;
+	border-left: solid 1px darkslategrey;
+	border-bottom: solid 1px darkslategrey;
+	border-bottom-left-radius: 60px;
 }
 
 .instructor-view-middle {
@@ -35,7 +39,7 @@
 	height: 85%;
 	width: 100%;
 	background-color: rgb(250, 250, 250);
-	border-left: solid 2px darkgrey;
+	border-left: solid 1px darkslategrey;
 }
 
 .instructor-view-handler {

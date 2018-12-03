@@ -1,3 +1,24 @@
+/* Color definitions */
+:root {
+	--primary: #2e4468;
+	--primarydark: #4a618691;
+	--primaryhalf: #526c96;
+	--primarylight:  #2e4468af;
+	--primarysuperlight:  #2e4468;
+	--secondary: #3c763d;
+	--secondarymedium: #2b552c;
+	--secondarydark: #162c17;
+	--secondarylight:#77df79;
+	--secondaryhalf: #54a857;
+	--tertiary:  #2e4468;
+	--tertiarylight:  #7285a3;
+	--quartary: #ca5800;
+	--quartarydark: #351802;
+	--quartarylight:  #c49978;
+	
+  }
+
+/* MAIN */
 body {
 	background-color: #fffff8;
 	font-family: 'Open Sans', sans-serif;
@@ -110,14 +131,24 @@ pre {
 	border-color: #01549b;
 }
 
+.btn-secondary {
+	transition: all .4s ease-in-out;
+}
+
+.btn-secondary:hover {
+	box-shadow: inset 1px 1px 5px white;
+}
+
 .btn-success {
 	background: #3c763d;
+	background-image: url(https://isle.heinz.cmu.edu/sublime01_1543690264803.png);
 	border-color: black;
+	box-shadow: inset 0 0 0 transparent;
+	transition: all .4s ease-in-out;
 }
 
 .btn-success:hover {
 	box-shadow: inset 1px 1px 5px white;
-	transition: 0.3s;
 }
 
 .btn-success:focus, .btn-success.focus {
@@ -175,30 +206,100 @@ pre {
 	background: lightcoral;
 }
 
+
+@-webkit-keyframes shine {
+	0%, 10% {
+		background-position: -1000px;
+	}
+	20% {
+		background-position: top left;
+	}
+	66% {
+		background-position: 1000px;
+	}
+	100% {
+		background-position: -1000px;
+	}
+}
+
+
 .Lesson h1 {
 	color: #2e4468;
 	font-size: 40px;
-	font-weight: bold;
-	letter-spacing: 1px;
+	font-weight: 700;
+	font-family: Open Sans Condensed;
+	/*
+	animation-delay: 5s;
+	-webkit-animation-name: shine;
+	-webkit-animation-duration: 17s;
+	-webkit-animation-iteration-count: 5;
+	
+	background-image: linear-gradient(to right, var(--primary), var(--primarydark) 7%, var(--primarysuperlight) );
+	
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	*/
 }
 
+/*
+.Lesson h1:after {
+	content:"|";
+	color: var(--quartary);
+	width: 1px;
+	height: 32px;
+	font-weight: 100;
+	font-family: Open Sans Condensed;
+	font-size: 48px;
+}
+*/
+
+.Lesson hr {
+	height: 1px;
+	background: red; /* For browsers that do not support gradients */ 
+	background: linear-gradient(to right, transparent, var(--primarylight) 12%, var(--quartarylight) 48%, var(--primarylight) 52%, transparent 92%); /* Standard syntax */ 
+}
+
+
+
+
 .Lesson h2 {
-	font-size: 32px;
+	font-size: 36px;
 	color: #3c763d;
-	font-weight: 600;
+	font-weight: 700;
+	font-family: Open Sans Condensed;
+
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+ 
+	background-image:  linear-gradient(to right, var(--secondaryhalf), var(--secondary) 4% ) ,
+					   linear-gradient(to bottom, transparent, var(--quartary));
 }
 
 .Lesson h3 {
 	font-size: 24px;
 	color: #2e4468;
-	font-weight: 600;
+	font-weight: 700;
+	font-family: Open Sans Condensed;
+	transition: color 1.4s ease-in-out;
+}
+
+.Lesson h3:hover {
+	color: var(--tertiarylight);
+
 }
 
 .Lesson h4 {
-	font-size: 20px;
+	font-size: 24px;
 	color: #ca5800;
 	font-weight: 600;
+	font-family: Open Sans Condensed;
+	transition: color 1.4s ease-in-out;
 }
+
+.Lesson h4:hover {
+	color: var(--quartarylight);
+}
+
 
 .Lesson th, .Lesson td {
 	padding: 5px;
