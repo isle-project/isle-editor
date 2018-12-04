@@ -6,18 +6,26 @@ import Card from 'react-bootstrap/lib/Card';
 import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
+import indexOf from '@stdlib/utils/index-of';
 import SessionContext from 'session/context.js';
 import ResponseVisualizer from 'components/response-visualizer';
 
 
 // MAIN //
 
+/**
+* A component showing a question and a five-point scale for students to answer.
+*
+* @property {string} question - question to be printed
+* @property {Array} options - an array of five elements holding the labels for the different scale levels
+* @property {bool} disableSubmitNotification - controls whether to disable submission notifications
+*/
 class LikertScale extends Component {
 	constructor( props ) {
 		super( props );
 
 		this.state = {
-			value: props.defaultValue,
+			value: null,
 			submitted: false
 		};
 	}
@@ -39,14 +47,13 @@ class LikertScale extends Component {
 			session.log({
 				id: this.props.id,
 				type: 'LIKERT_SCALE_SUBMISSION',
-				value: this.state.value
+				value: indexOf( this.props.options, this.state.value )
 			});
 		}
 	}
 
 	handleChange = ( event ) => {
-		const value = event.target.key;
-		console.log( 'Changed value: '+value );
+		const value = event.target.value;
 		this.setState({
 			value
 		});
@@ -64,7 +71,7 @@ class LikertScale extends Component {
 								<Form.Check
 									type="radio"
 									label={elem}
-									checked={this.state.value === idx}
+									checked={this.state.value === elem}
 									value={elem}
 									key={idx}
 									inline
@@ -78,6 +85,7 @@ class LikertScale extends Component {
 						className="submit-button"
 						variant="primary"
 						size="sm"
+						disabled={!this.state.value}
 						onClick={this.submitHandler}
 						style={{
 							marginRight: '5px'
@@ -105,14 +113,12 @@ class LikertScale extends Component {
 
 LikertScale.propTypes = {
 	question: PropTypes.string,
-	defaultValue: PropTypes.string,
 	options: PropTypes.array,
 	disableSubmitNotification: PropTypes.bool
 };
 
 LikertScale.defaultProps = {
 	question: '',
-	defaultValue: 2,
 	options: [
 		'Strongly disagree',
 		'Disagree',
