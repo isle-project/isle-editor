@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Clock from 'components/clock';
+import Portrait from './portrait.js';
+import SessionContext from 'session/context.js';
 import './score.css';
 
 
@@ -13,7 +15,7 @@ import './score.css';
 *
 * @property {boolean} duration - indicates whether the time is displayed as a duration - beginning with session start
 * @property {string} format - sets the format of the time string
-* @property {string} type - sets the type of the score UI - available options: 'default', 'bottom'
+* @property {string} type - sets the type of the score UI - available options: 'default', 'bottom', 'full'
 */
 
 class Score extends Component {
@@ -21,12 +23,61 @@ class Score extends Component {
 		super( props );
 
 		this.state = {
-			score: 72
+            score: 72,
+            hidden: false
 		};
 	}
 
     renderTypes() {
 
+    }
+
+    renderUser() {
+        const session = this.context;
+        var name = session.anonymous ? 'Anonymous' : session.user.name;
+
+        return (
+            <div className="score-user-info">
+            <Portrait name={name}></Portrait>
+                <div className="portrait-username">{ name}</div>
+            </div>
+        );
+    }
+
+    renderDate() {
+        const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+        var d = new Date();
+        var month = months[d.getMonth()];
+        var year = d.getFullYear();
+        var day = d.getUTCDate();
+
+        const dateDefaultClock = {
+            position: 'absolute',
+            width: '100%',
+            height: 12,
+            textAlign: 'left',
+            color: 'white',
+            top: 0,
+            left: 16,
+            fontSize: 14,
+            fontFamily: 'Open Sans Condensed'
+        };
+
+        return (
+            <div className="date-default">
+                <div className='date-default-month'>{month}</div>
+                <div className='date-default-day'>{day}</div>
+                <div className='date-default-year'>{year}</div>
+                <Clock format={this.props.format} style={dateDefaultClock}></Clock>
+            </div>
+        );
+    }
+
+    toggle = () => {
+        let hidden = !this.state.hidden;
+        this.setState({
+			hidden: hidden
+		});
     }
 
 
@@ -36,6 +87,7 @@ class Score extends Component {
             fontFamily: 'Open Sans',
             padding: 0
         };
+
 
         if (this.props.type === 'default') {
             return (
@@ -74,6 +126,32 @@ class Score extends Component {
                 </div>
             );
         }
+
+
+        if (this.props.type === 'full') {
+            let toggled = 'score-full';
+            if (this.state.hidden === true) toggled = 'score-full score-full-hidden';
+
+            return (
+                <div className={toggled} >
+                    <div className="score-full-handler" onClick={this.toggle}></div>
+                    { this.renderUser() }
+                    { this.renderDate() }
+
+                    <div className="score-full-score">
+                        <div className="score-full-header">SCORE</div>
+
+                        <div className="score-full-outer-circle i-rotating" />
+                        <div className="score-full-circle" />
+                        <div className="score-full-half-circle rotating" />
+
+                        <div className="score-full-score-points">
+                            { this.state.score }
+                        </div>
+                    </div>
+                </div>
+            );
+        }
     }
 
 
@@ -101,6 +179,8 @@ Score.defaultProps = {
     type: 'default'
 };
 
+
+Score.contextType = SessionContext;
 
 // EXPORTS //
 

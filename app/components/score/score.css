@@ -3,7 +3,28 @@
     --bgopac:  rgba(15,112,91, 0.66);
     --bgdark: rgba(6, 41, 33, 0.9);
     --bgopachover:rgba(235, 185, 20, 0.9);
+    --primary: #2e4468;
+	--primarydark: #4a618691;
+	--primaryhalf: #526c96;
+	--primarylight:  #2e4468af;
+	--primarysuperlight:  #2e4468;
+	--secondary: #3c763d;
+	--secondarymedium: #2b552c;
+	--secondarydark: #162c17;
+	--secondarylight:#77df79;
+	--secondaryhalf: #54a857;
+	--tertiary:  #2e4468;
+	--tertiarylight:  #7285a3;
+	--quartary: #ca5800;
+	--quartarydark: #351802;
+	--quartarylight:  #c49978;
   }
+  
+
+
+
+
+
 
 @-webkit-keyframes rotating {
     from{
@@ -261,4 +282,228 @@
     left: -50%;
     bottom: 7px;
     transform-origin:bottom left;
+}
+
+/*****************************/
+
+.score-full {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    height: 100px;
+    background: var(--primarylight);
+    z-index: 100;
+    transition: all .8s ease-in-out;
+    border:solid 1px darkslategray;
+}
+
+
+.score-full:hover{
+    background: var(--primaryhalf);
+}
+
+.score-full-hidden {
+    right: -400px;
+    transition: right .8s ease-in-out;
+}
+
+.score-full-handler {
+    position: absolute;
+    left: -30px;
+    top: 30px;
+    width: 0; 
+    height: 0; 
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent; 
+    
+    border-right:20px solid orange;
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+    transform-origin:center center;
+}
+
+.score-full-handler:hover {
+    border-right:20px solid red;
+}
+
+.score-full-score {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: 10px;
+    left: 100px;
+}
+
+.score-full-header {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    left: 0;
+    right: 0;
+    top: 0px;
+    font-size: 22px;
+    font-weight: 300;
+    font-variant-caps: all-petite-caps;
+    margin: auto;
+    color: white;
+    font-family: Open Sans Condensed;
+    text-align: center;
+}
+
+
+.score-full-score-points {
+    position: absolute;
+    top: 0;
+    bottom: 4px;
+    left: 2px;
+    right: 0;
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    text-align: center;
+    font-family: Open Sans Condensed;
+    text-shadow: 0 0 2px white;
+    color: white;
+    font-size: 40px;
+}
+
+
+.score-full-circle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+    border:solid 1px white;
+    width: 82px;
+    height: 82px;
+}
+
+.score-full-outer-circle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+    border-left:solid 2px white;
+    width: 90%;
+    height: 90%;
+}
+
+
+.score-full-half-circle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+    border-right:solid 3px white;
+    width: 80px;
+    height: 80px;
+    border-bottom-right-radius: 50%;
+    border-top-right-radius: 50%;
+}
+
+/******************************/
+.score-user-info {
+    position: absolute;
+    width: 130px;
+    height: 100px;
+}
+
+.portrait-default {
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 76px;
+    height: 76px;
+    background: grey;
+}
+
+.portrait-default img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.85;
+    border:solid 2px white;
+    -webkit-filter: contrast(150%) saturate(40%); /* Safari */
+    filter: contrast(150%) saturate(40%);
+    transition: all 1.4s ease-in-out;
+}
+
+.portrait-default img:hover {
+    opacity: 1;
+    -webkit-filter: contrast(100%) saturate(100%); /* Safari */
+    filter: contrast(100%) saturate(100%);
+}
+
+.portrait-username {
+    position: absolute;
+    left: 2px;
+    font-family: Open Sans Condensed;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    bottom: 1px;
+    color: white;
+    font-variant-caps: petite-caps;
+}
+
+/***************************************/
+.date-default {
+    position: absolute;
+    left: 270px;
+    top: 0;
+    width: 110px;
+    height: 100px;
+    font-family: Open Sans Condensed;
+}
+
+.date-default-clock {
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    bottom: 2px;
+    background: purple;
+}
+
+.date-default-month {
+    position: absolute;
+    color: black;
+    top: 14px;
+    left: 16px;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.date-default-day {
+    position: absolute;
+    color: black;
+    top: 44px;
+    left: 20px;
+    font-size: 38px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.date-default-year {
+    position: absolute;
+    left: 48px;
+    top: 24px;
+    text-align: center;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg); 
+    color: white;
+    font-size: 40px;
+
 }
