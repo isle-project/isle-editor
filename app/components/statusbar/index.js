@@ -201,7 +201,9 @@ class StatusBar extends Component {
 	}
 
 	toggleCalculator = ( event ) => {
-		event.stopPropagation();
+		if ( event ) {
+			event.stopPropagation();
+		}
 		this.setState({
 			showCalculator: !this.state.showCalculator
 		});
@@ -264,7 +266,7 @@ class StatusBar extends Component {
 								/>
 								<span ref={( span ) => { this.displayedText = span; }} className="statusbar-voice-text" ></span>
 							</div>
-							<Tooltip tooltip={`${this.state.showCalculator ? 'Close' : 'Open'} calculator`} placement="bottom" >
+							<Tooltip tooltip={`${this.state.showCalculator ? 'Close' : 'Open'} calculator (F2)`} placement="bottom" >
 								<div className="statusbar-calculator" onClick={this.toggleCalculator}>
 										<span className="fa fa-xs fa-calculator statusbar-calc-icon" />
 								</div>
@@ -321,6 +323,7 @@ class StatusBar extends Component {
 				<Calculator show={this.state.showCalculator} onHide={this.toggleCalculator} />
 				<KeyControls
 					actions={{
+						'F2': this.toggleCalculator,
 						'F7': this.toggleBarVisibility
 					}}
 				/>

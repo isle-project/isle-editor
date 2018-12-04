@@ -102,8 +102,8 @@ function getVideoConfig({ bitsPerSecond }) {
 * @property {boolean} camera - indicates whether webcam should be recorded
 * @property {boolean} screen - indicates whether the screen should be captured
 * @property {boolean} autostart - indicates whether recording should start immediately
-* @property {boolean} downloadable - indicates whether users should be able to download the recoding
-* @property {boolean} uploadable - indicates whether users should be able to upload the recoding to the server
+* @property {boolean} downloadable - indicates whether users should be able to download the recording
+* @property {boolean} uploadable - indicates whether users should be able to upload the recording to the server
 * @property {number} bitsPerSecond - bits per second
 * @property {string} voiceID - voice control identifier
 */
