@@ -63,7 +63,7 @@ class SplitPanel extends Component {
 		return (
 			<div ref={( div ) => { this.panel = div; }} onScroll={this.handleScroll} style={{
 				height: 'calc(100vh - 90px)',
-				overflow: 'scroll'
+				overflow: this.props.overflow
 			}}>
 				{this.props.children}
 			</div>
@@ -75,6 +75,7 @@ class SplitPanel extends Component {
 // DEFAULT PROPERTIES //
 
 SplitPanel.defaultProps = {
+	overflow: 'scroll',
 	onScroll() {}
 };
 
@@ -82,6 +83,7 @@ SplitPanel.defaultProps = {
 // PROPERTY TYPES //
 
 SplitPanel.propTypes = {
+	overflow: PropTypes.string,
 	onScroll: PropTypes.func
 };
 
