@@ -476,3 +476,107 @@ label {
 	height: auto;
 	background-image: url(https://isle.heinz.cmu.edu/white_carbonfiber_1543854970404.png);
 }
+
+
+
+/*********************************************************************/
+@keyframes anim-fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes anim-rotate-in {
+    0% {
+		-webkit-transform: scale(0) rotate(-120deg);
+    }
+    100% {
+		-webkit-transform: scale(1) rotate(360deg);
+    }
+}
+
+@keyframes anim-rotate-out {
+    0% {
+		transform: rotate(0deg) scale(1);
+    }
+    100% {
+		transform: rotate(720deg) scale(0);
+    }
+}
+
+@keyframes anim-fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+@keyframes anim-scale-up {
+    0% {
+        transform: scale(0.01);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.anim-scale-up {
+    animation-name: anim-scale-up;
+    animation-duration: 0.3s;
+}
+
+
+@keyframes anim-scale-down {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+.anim-scale-down {
+    animation-name: anim-scale-down;
+    animation-duration: 0.3s;
+}
+
+@keyframes anim-explosion {
+    0% {
+        transform: scale(0);
+	}
+    20% {
+        transform: scale(1.1);
+	}
+    28% {
+        transform: scale(0.7);
+	}
+    37% {
+        transform: scale(1.05);
+	}
+    47% {
+        transform: scale(0.8);
+	}
+    58% {
+        transform: scale(1.02);
+	}
+    69% {
+        transform: scale(0.82);
+	}
+    80% {
+        transform: scale(1.01);
+	}
+    93% {
+        transform: scale(0.97);
+	}
+    100% {
+        transform: scale(1);
+	}
+
+}
+
