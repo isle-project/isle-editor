@@ -133,6 +133,16 @@ class Score extends Component {
             );
         }
 
+        if (this.props.type === 'experiment') {
+            return (
+                <div className="score-grid-container">
+                    <div className="score-grid-header">HEADER</div>
+                    <div className="score-grid-footer">
+                    </div>
+                </div>
+            );
+        }
+
 
         if (this.props.type === 'full') {
             let toggled = 'score-full';

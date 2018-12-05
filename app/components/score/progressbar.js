@@ -20,7 +20,7 @@ class Progressbar extends Component {
 		super( props );
 
 		this.state = {
-            progress: 83
+            progress: 63
 		};
 	}
 
@@ -46,7 +46,7 @@ class Progressbar extends Component {
 		return (
 			<div onClick={this.test} className="progressbar">
                 <div className="progressbar-range">
-                    <div style={progress} className="progress"></div>
+                    <div style={progress} className="progressbar-progress"></div>
 
                     <div className="progressbar-marker"></div>
                     <div className="progressbar-marker"></div>
@@ -68,14 +68,9 @@ class Progressbar extends Component {
 // PROPERTIES //
 
 Progressbar.propTypes = {
-    avatar: PropTypes.string,
-    type: PropTypes.string
-
 };
 
 Progressbar.defaultProps = {
-    avatar: 'https://avatars2.githubusercontent.com/u/1913638?s=460&v=4',
-    type: 'default'
 };
 
 

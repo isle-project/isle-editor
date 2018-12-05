@@ -535,3 +535,31 @@
     font-size: 40px;
 
 }
+
+/********************************************/
+.score-grid-container {
+    color: red;
+    display: grid;
+    width: 400px;
+    height: 140px;
+    background: black;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 10px auto 30px;
+
+    grid-template-areas:
+        "header header header"
+        "user score date"
+        "footer footer footer" 
+}
+
+.score-grid-header {
+    grid-area: user;
+    background: yellow;
+}
+
+.score-grid-footer {
+    grid-area: footer;
+    background: brown;
+    width: 100%;
+    height: 100%;
+}
