@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Clock from 'components/clock';
 import Portrait from './portrait.js';
+import Progressbar from './progressbar.js';
 import SessionContext from 'session/context.js';
 import './score.css';
 
@@ -24,7 +25,8 @@ class Score extends Component {
 
 		this.state = {
             score: 72,
-            hidden: false
+            hidden: false,
+            handlerClass: 'score-full-handler circle'
 		};
 	}
 
@@ -75,8 +77,12 @@ class Score extends Component {
 
     toggle = () => {
         let hidden = !this.state.hidden;
+        var style = 'score-full-handler';
+        if (this.state.handlerClass === 'score-full-handler') style = 'score-full-handler circle';
+
         this.setState({
-			hidden: hidden
+            hidden: hidden,
+            handlerClass: style
 		});
     }
 
@@ -134,7 +140,7 @@ class Score extends Component {
 
             return (
                 <div className={toggled} >
-                    <div className="score-full-handler" onClick={this.toggle}></div>
+                    <div className={this.state.handlerClass} onClick={this.toggle}></div>
                     { this.renderUser() }
                     { this.renderDate() }
 
@@ -148,6 +154,9 @@ class Score extends Component {
                         <div className="score-full-score-points">
                             { this.state.score }
                         </div>
+                    </div>
+                    <div className="score-full-progressbar">
+                        <Progressbar></Progressbar>
                     </div>
                 </div>
             );

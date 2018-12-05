@@ -288,7 +288,7 @@
 
 .score-full {
     position: fixed;
-    bottom: 0;
+    bottom: 21px;
     right: 0;
     width: 400px;
     height: 100px;
@@ -316,7 +316,6 @@
     height: 0; 
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent; 
-    
     border-right:20px solid orange;
     cursor: pointer;
     transition: all .4s ease-in-out;
@@ -325,6 +324,26 @@
 
 .score-full-handler:hover {
     border-right:20px solid red;
+}
+
+
+.circle {
+    position: absolute;
+    left: -30px;
+    top: 30px;
+    width: 0; 
+    height: 0; 
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent; 
+    border-right:20px solid transparent;
+    border-left:20px solid orange;
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+    transform-origin:center center;
+}
+.circle:hover {
+    border-right:20px solid transparent;
+    border-left:20px solid red;
 }
 
 .score-full-score {
@@ -410,6 +429,15 @@
     height: 80px;
     border-bottom-right-radius: 50%;
     border-top-right-radius: 50%;
+}
+
+.score-full-progressbar {
+    position: absolute;
+    left: 0px;
+    top: 99px;
+    height: 22px;
+    width: calc(100% + 2px);
+    background: black;
 }
 
 /******************************/
