@@ -10,7 +10,7 @@ import QuestionButton from './question_button.js';
 
 // VARIABLES //
 
-const DESCRIPTION = 'A test determing if there is a significant association between two categorical variables.';
+const DESCRIPTION = 'A test determining if there is a significant association between two categorical variables.';
 
 
 // MAIN //
@@ -24,7 +24,7 @@ class Chi2Test extends Component {
 			const x = data[ var1 ].map( x => `"${x}"` );
 			const y = data[ var2 ].map( x => `"${x}"` );
 			const value = <div>
-				<label>Hypothesis test for independence between {var1} and {var2}:</label><br />
+				<label>Hypothesis test for independence between {var1} and {var2}:</label>
 				<ROutput code={`
 					${var1} = c(${x})
 					${var2} = c(${y})

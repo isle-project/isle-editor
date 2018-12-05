@@ -103,7 +103,7 @@ class MeanTest2 extends Component {
 					displayMode
 					raw={`H_1: \\mu_{\\text{${grouping}:${firstCategory}}} - \\mu_{\\text{${grouping}:${secondCategory}}} ${arrow} ${diff}`}
 					tag="" />
-				<pre style={{ fontSize: '11px' }}>
+				<pre>
 					{printout}
 				</pre>
 			</div>;

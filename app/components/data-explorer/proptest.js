@@ -60,10 +60,10 @@ class PropTest extends Component {
 				variable: `One-Sample Proportion Test for ${variable}`,
 				type: 'Test',
 				value: <div>
-					<label>Hypothesis test for {variable}:</label><br />
-					<span>
+					<label>Hypothesis test for {variable}:</label>
+					<p>
 						Let p be the population probability of <code>{variable}</code> being <code>{success}</code>.
-					</span>
+					</p>
 					<span>
 						We test
 					</span>

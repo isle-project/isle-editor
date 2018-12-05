@@ -24,10 +24,10 @@ class Anova extends Component {
 			const vals = data[ variable ];
 			const groups = data[ grouping ].map( x => `"${x}"` );
 			const value = <div>
-				<label>ANOVA for {variable} between {grouping}</label><br />
-				<span>{anova1( vals, groups ).print({
+				<label>ANOVA for {variable} between {grouping}</label>
+				<pre style={{ marginTop: 10 }}>{anova1( vals, groups ).print({
 					decision: showDecision
-				})}</span>
+				})}</pre>
 			</div>;
 			const output = {
 				variable: 'One-way ANOVA',
