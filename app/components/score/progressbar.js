@@ -20,7 +20,7 @@ class Progressbar extends Component {
 		super( props );
 
 		this.state = {
-            progress: 63
+            progress: 10
 		};
 	}
 

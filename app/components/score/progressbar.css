@@ -38,7 +38,7 @@
     position: absolute;
     width: calc(100% - 20px);
     height: calc(100% - 16px);
-    background-image:linear-gradient(to right, red, orange 25%, gold 50%, lightgreen 70%, green 99% );
+    background-image:linear-gradient(to right, red, orange 25%, gold 50%, greenyellow 70%, green 99% );
     background-repeat: no-repeat;
     opacity: 0.7;
     transition: all .8s ease-in-out;
