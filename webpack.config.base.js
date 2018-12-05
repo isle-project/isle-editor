@@ -2,6 +2,7 @@
 
 import webpack from 'webpack';
 import { join, resolve } from 'path';
+import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 
 
 // VARIABLES //
@@ -98,7 +99,10 @@ export default {
 	},
 	plugins: [
 		new webpack.IgnorePlugin( /vertx/ ),
-		new webpack.IgnorePlugin( /^(xor|props)$/ )
+		new webpack.IgnorePlugin( /^(xor|props)$/ ),
+		new MonacoWebpackPlugin({
+			features: []
+		})
 	],
 	externals: EXTERNALS
 };

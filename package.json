@@ -2,7 +2,7 @@
   "name": "isle-editor",
   "productName": "ISLE Editor",
   "version": "0.19.1",
-  "description": "Editor for Interactive Statistics Learning Environment (ISLE) lessons.",
+  "description": "Editor for Integrated Statistics Learning Environment (ISLE) lessons.",
   "main": "main.js",
   "bin": {
     "isle-editor": "./bin/cli.js",
@@ -103,6 +103,7 @@
     "happypack": "^5.0.0",
     "hard-source-webpack-plugin": "^0.12.0",
     "modclean": "^2.0.0",
+    "monaco-editor-webpack-plugin": "^1.7.0",
     "null-loader": "^0.1.1",
     "react-hot-loader": "^4.3.1",
     "react-test-renderer": "16.6.3",
@@ -213,10 +214,11 @@
     "react-joyride": "^2.0.0-11",
     "react-json-tree": "^0.11.0",
     "react-list": "^0.8.8",
+    "react-monaco-editor": "^0.22.0",
     "react-notification-system": "^0.2.7",
     "react-player": "^1.6.4",
     "react-plotly.js": "^2.2.0",
-    "react-redux": "^5.0.1",
+    "react-redux": "^6.0.0",
     "react-router": "4.3.1",
     "react-router-dom": "^4.3.1",
     "react-select": "^2.0.0",
@@ -241,7 +243,7 @@
     "uuid": "^3.3.2",
     "venn.js": "0.2.20",
     "victory": "31.0.1",
-    "webpack": "4.26.1",
+    "webpack": "4.27.0",
     "whatwg-fetch": "^3.0.0"
   },
   "devEngines": {
