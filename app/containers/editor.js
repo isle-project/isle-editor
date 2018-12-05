@@ -138,6 +138,10 @@ class App extends Component {
 				props.encounteredError( err );
 			}
 		}
+
+		this.state = {
+			splitPos: parseInt( localStorage.getItem( 'splitPos' ), 10 )
+		};
 	}
 
 	componentDidMount() {
@@ -145,6 +149,10 @@ class App extends Component {
 		const preview = this.preview;
 		this.onEditorScroll = this.sync( editor, preview );
 		this.onPreviewScroll = this.sync( preview, editor );
+	}
+
+	componentWillUnmount() {
+		localStorage.setItem( 'splitPos', this.state.splitPos );
 	}
 
 	/*
@@ -249,10 +257,6 @@ class App extends Component {
 				return this.props.encounteredError( new Error( 'Couldn\'t parse the preamble. Make sure it is valid YAML.' ) );
 			}
 		}
-		if ( this.code ) {
-			const pos = this.code.editor.getCursorPosition();
-			this.code.editor.moveCursorTo( pos.row, pos.column );
-		}
 	}
 
 	checkPreambleChange( preamble ) {
@@ -302,21 +306,26 @@ class App extends Component {
 					className="splitpane"
 					split="vertical"
 					primary="second"
-					defaultSize={parseInt( localStorage.getItem( 'splitPos' ), 10 )}
-					onChange={size => localStorage.setItem( 'splitPos', size )}
+					defaultSize={this.state.splitPos}
+					onChange={size => {
+						this.setState({
+							splitPos: size
+						});
+					}}
 					style={{
 						'position': 'absolute',
 						'top': !hideToolbar ? 88 : 0,
 						'bottom': '0'
 					}}
 				>
-					<SplitPanel ref={( elem ) => { this.editor = elem; }} onScroll={this.onEditorScroll}>
+					<SplitPanel overflow="none" ref={( elem ) => { this.editor = elem; }} onScroll={this.onEditorScroll}>
 						<Editor
 							ref={( elem ) => { this.code = elem; }}
 							value={markdown}
 							onChange={this.onChange}
 							name="ace_editor"
 							fontSize={14}
+							splitPos={this.state.splitPos}
 						/>
 					</SplitPanel>
 					<SplitPanel ref={( elem ) => { this.preview = elem; }} onScroll={this.onPreviewScroll}>

@@ -1,0 +1,430 @@
+[
+	{
+		"name":"AddNotification",
+		"value":"this.addNotification({\n\ttitle: '${1:title}',\n\tmessage: '${2:msg}',\n\tposition: 'tr',\n\tlevel: 'success'\n});\n"
+	},
+	{
+		"name":"BeaconTooltip",
+		"value":"<BeaconTooltip\n\tcontent=\"${1:Enter content}\"\n\ttitle=\"${2:}\"\n\ttarget=\"${3:}\"\n/>\n"
+	},
+	{
+		"name":"ChatButton",
+		"value":"<ChatButton\n\tfor=\"${1:id}\"\n/>\n"
+	},
+	{
+		"name":"CheckboxInput",
+		"value":"<CheckboxInput\n\tlegend=\"${1:}\"\n\tdefaultValue={${2:false}}\n/>\n"
+	},
+	{
+		"name":"Clock",
+		"value":"<Clock />\n"
+	},
+	{
+		"name":"ColorPicker",
+		"value":"<ColorPicker />\n"
+	},
+	{
+		"name":"Dashboard",
+		"value":"<Dashboard onGenerate={(${1:})=>{\n\t${2:}\n}}>\n\t${3:}\n</Dashboard>\n"
+	},
+	{
+		"name":"DataExplorer",
+		"value":"<DataExplorer\n\tdata={${1:}}\n\tcategorical={${2:[]}}\n\tcontinuous={${3:[]}}\n/>\n"
+	},
+	{
+		"name":"DataTable",
+		"value":"<DataTable\n\tdata={${1:}}\n/>\n"
+	},
+	{
+		"name":"DensityPlot",
+		"value":"<DensityPlot\n\tdata={${1:}}\n\txmin={0}\n\txmax={1}\n\tymax={0.15}\n\tnBins={2}\n/>\n"
+	},
+	{
+		"name":"DraggableGrid",
+		"value":"<DraggableGrid ${1:isDraggable} ${2:isResizable} >\n\t${3:}\n</DraggableGrid>\n"
+	},
+	{
+		"name":"DraggableList",
+		"value":"<DraggableList\n\tdata={[\n\t\t{ id: 0, text: \"${1:First Choice}\" },\n\t\t{ id: 1, text: \"${2:Second Choice}\" },\n\t\t{ id: 2, text: \"${3:Third Choice}\" }\n\t]}\n\tonChange={ ( newData ) => {\n\t\t${4:}\n\t}}\n/>\n"
+	},
+	{
+		"name":"MarkdownEditor",
+		"value":"<MarkdownEditor ${1:voiceControl} />\n"
+	},
+	{
+		"name":"Expire",
+		"value":"<Expire delay={${1:1000}}>\n\t${2:}\n</Expire>\n"
+	},
+	{
+		"name":"FeedbackButtons",
+		"value":"<FeedbackButtons\n\tid=\"${1:Enter ID}\"\n/>\n"
+	},
+	{
+		"name":"FlippableCard",
+		"value":"<FlippableCard>\n\t${1:}\n\t${2:}\n</FlippableCard>\n"
+	},
+	{
+		"name":"FreeTextQuestion",
+		"value":"<FreeTextQuestion\n\tquestion=\"${1:Enter question}\"\n\tsolution=\"${2:Enter solution}\"\n/>\n"
+	},
+	{
+		"name":"FreeTextSurvey",
+		"value":"<FreeTextSurvey anonymous question=\"${1:Enter question}\" />\n"
+	},
+	{
+		"name":"Gate",
+		"value":"<Gate banner={${1:null}} ${2:user} ${3:owner} >\n\t${4:}\n</Gate>\n"
+	},
+	{
+		"name":"Container",
+		"value":"<Container>\n\t<Row>\n\t\t<Col md={12}></Col>\n\t</Row>\n</Container>\n"
+	},
+	{
+		"name":"IFrame",
+		"value":"<IFrame src={${1:http://www.wikipedia.org}} />\n"
+	},
+	{
+		"name":"Joyride",
+		"value":"<Joyride\n\trun={${1:true}}\n\tsteps={${2:[]}}\n/>\n"
+	},
+	{
+		"name":"JSShell",
+		"value":"<JSShell\n\tcode=\"${1:}\"\n/>\n"
+	},
+	{
+		"name":"LessonSubmit",
+		"value":"<LessonSubmit />\n"
+	},
+	{
+		"name":"LikertScale",
+		"value":"<LikertScale question=\"${1:}\" />\n"
+	},
+	{
+		"name":"MatchListQuestion",
+		"value":"<MatchListQuestion\n\tquestion=\"Enter question\"\n\telements={[\n\t\t{ a: '${1:Element A}', b: '${2:Element B}' },\n\t\t{ a: '${3:Element C}', b: '${4:Element D}' }\n\t]}\n\tonSubmit={ ( answers ) => {\n\t\t${5:}\n\t}}\n/>\n"
+	},
+	{
+		"name":"MultiCards",
+		"value":"<MultiCards\n\tvalues={[\n\t\t{ front: ${1:<div>First front</div>}, back: ${2:<div>First back</div>}},\n\t\t{ front: ${3:<div>Second front</div>}, back: ${4:<div>Second back</div>}}\n\t\t${5:}\n\t]}\n/>\n"
+	},
+	{
+		"name":"MultipleChoiceQuestion",
+		"value":"<MultipleChoiceQuestion\n\tsolution={${1:0}}\n\tanswers={[\n\t\t{content:\"${2:}\", explanation:\"${3:}\"}\n\t]}\n\tquestion=\"${4:}\"\n/>\n"
+	},
+	{
+		"name":"MultipleChoiceSurvey",
+		"value":"<MultipleChoiceSurvey\n\tanonymous\n\tquestion=\"${1:Enter question\"\"\n\tanswers={[ '${2:First}', '${3:Second}' ]}/>\n/>\n"
+	},
+	{
+		"name":"Nav justified",
+		"value":"<Nav defaultActiveKey={${1:1}} >\n\t<NavItem eventKey={1} >${2:NavItem 1 content}</NavItem>\n\t<NavItem eventKey={2} >${3:NavItem 2 content}</NavItem>\n\t${4:}\n</Nav>\n"
+	},
+	{
+		"name":"News",
+		"value":"<News />\n"
+	},
+	{
+		"name":"NumberInput",
+		"value":"<NumberInput\n\tlegend=\"${1:}\"\n\tdefaultValue={${2:0}}\n\tstep={${3:1}}\n/>\n"
+	},
+	{
+		"name":"NumberQuestion",
+		"value":"<NumberQuestion\n\tquestion=\"${1:Enter question}\"\n\t${2:}\n/>\n"
+	},
+	{
+		"name":"NumberSurvey",
+		"value":"<NumberSurvey anonymous question=\"${1:Enter question}\" />\n"
+	},
+	{
+		"name":"OrderQuestion",
+		"value":"<OrderQuestion\n\tquestion=\"${1:Enter question}\"\n\toptions={[\n\t\t{ id: 0, text: \"${2:First}\" },\n\t\t{ id: 1, text: \"${3:Second}\" },\n\t\t{ id: 2, text: \"${4:Third}\" }\n\t]}\n/>\n"
+	},
+	{
+		"name":"Pages",
+		"value":"<Pages>\n\t${1:}\n\t${2:}\n</Pages>\n"
+	},
+	{
+		"name":"Panel",
+		"value":"<Panel>\n\t${1:}\n</Panel>\n"
+	},
+	{
+		"name":"Playground",
+		"value":"<Playground\n\tcode={`${1:}`}\n\tscope={{\n\t\t${2:}\n\t}}\n/>\n"
+	},
+	{
+		"name":"Plotly",
+		"value":"<Plotly\n\tdata={${1:data array}}\n\tlayout={${2:{}}}\n/>\n"
+	},
+	{
+		"name":"ProportionsInput",
+		"value":"<ProportionsInput\n\tlegends = {${1:[ 'Robotics', 'Bitcoin', 'Gold', 'Diamonds', 'Vegetables', 'Fruits' ]}}\n\tprecision={${2:2}}\n\tstep={${3:0.25}}\n\tnElements={${4:6}}\n/>\n"
+	},
+	{
+		"name":"ProportionsSurvey",
+		"value":"<ProportionsSurvey\n\tuser\n\tquestion=\"${1:Invest now!}\"\n\tgroup=\"${2:Group Decision}\"\n\tnElements ={${3:3}}\n\tpersonalHeight={${4:300}}\n\tcolors = {${5:['red', 'blue', 'gold']}}\n\tlegends = {${6:['Robotics', 'Bitcoin', 'Gold']}}\n/>\n"
+	},
+	{
+		"name":"Quiz",
+		"value":"<Quiz\n\tquestions={[${1:\n\t\t{ 'type': 'FreeTextQuestion', 'question': 'Enter questions here...' }\n\t}]}\n\tcount={${2:0}}\n/>\n"
+	},
+	{
+		"name":"Queue",
+		"value":"<Queue\n\tid=\"${1:ID comes here...}\"\n/>\n"
+	},
+	{
+		"name":"Metrics",
+		"value":"<Metrics\n\tfor=\"${1:ID}\"\n\tinterval={false}\n\tonData={( data ) => {\n\t\t${3:}\n\t}}\n/>\n"
+	},
+	{
+		"name":"NetworkPlot",
+		"value":"<NetworkPlot\n\twidth={${1:500}}\n\theight={${2:350}}\n\tdata={{\n\t\tnodes: [\n\t\t\t{ 'id': 0 },\n\t\t\t{ 'id': 1 },\n\t\t\t${3:}\n\t\t],\n\t\tlinks: [\n\t\t\t{ 'source': 0, 'target': 1 },\n\t\t\t${4:}\n\t\t]\n\t}}\n/>\n"
+	},
+	{
+		"name":"RangeQuestion",
+		"value":"<RangeQuestion\n\tquestion=\"${1:Enter question}\"\n\tsolution={[${2:0},${3:1}]}\n/>\n"
+	},
+	{
+		"name":"RealTimeMetrics",
+		"value":"<RealTimeMetrics\n\tfor=\"${1:ID}\"\n\tonDatum={( datum ) => {\n\t\t${2:}\n\t}}\n\tonData={( data ) => {\n\t\t${3:}\n\t}}\n/>\n"
+	},
+	{
+		"name":"Recorder",
+		"value":"<Recorder\n\taudio={${1:true}}\n\tscreen={${2:true}}\n/>\n"
+	},
+	{
+		"name":"Revealer",
+		"value":"<Revealer id=\"${1:Enter ID}\">\n\t${2:Component to Display}\n</Revealer>\n"
+	},
+	{
+		"name":"RHelp",
+		"value":"<RHelp library=\"${1:}\" >${2:}</RHelp>\n"
+	},
+	{
+		"name":"ROutput",
+		"value":"<ROutput code=\"${1:}\" />\n"
+	},
+	{
+		"name":"RPlot",
+		"value":"<RPlot code=\"${1:}\" />\n"
+	},
+	{
+		"name":"RShell",
+		"value":"<RShell code=\"${1:}\" lines={${2:5}} />\n"
+	},
+	{
+		"name":"RTable",
+		"value":"<RTable code=\"${1:}\" />\n"
+	},
+	{
+		"name":"Runner",
+		"value":"<Runner\n\tinterval={${1:null}}\n\tonEvaluate={${2:() => {\n\n\t}}}\n/>\n"
+	},
+	{
+		"name":"Score",
+		"value":"<Score\n\tformat={'${1:First option}'}\n/>\n\n"
+	},
+	{
+		"name":"SelectInput",
+		"value":"<SelectInput\n\toptions={['${1:First option}','${2:Second Option}']}\n/>\n"
+	},
+	{
+		"name":"SelectQuestion",
+		"value":"<SelectQuestion\n\tquestion=\"${1:}\"\n\tsolution=\"${2:}\"\n\toptions={[\n\t\t${3:}\n\t]}\n/>\n"
+	},
+	{
+		"name":"Sketchpad",
+		"value":"<Sketchpad />\n"
+	},
+	{
+		"name":"Slider",
+		"value":"<Slider>\n\t${1:}\n</Slider>\n"
+	},
+	{
+		"name":"SliderInput",
+		"value":"<SliderInput\n\tlegend=\"${1:}\"\n\tdefaultValue={${2:10}}\n\tmin={${3:0}}\n\tmax={${4:100}}\n\tstep={${5:1}}\n/>\n"
+	},
+	{
+		"name":"SurveyGenerator",
+		"value":"<SurveyGenerator />\n"
+	},
+	{
+		"name":"Switch",
+		"value":"<Switch>\n\t${1:}\n</Switch>\n"
+	},
+	{
+		"name":"Tabs",
+		"value":" <Tabs defaultActiveKey={0} id=\"need-an-id\">\n\t<Tab eventKey={1} title=\"Tab 1\">Tab 1 content</Tab>\n\t<Tab eventKey={2} title=\"Tab 2\">Tab 2 content</Tab>\n\t<Tab eventKey={3} title=\"Tab 3\"\t>Tab 3 content</Tab>\n  </Tabs>\n"
+	},
+	{
+		"name":"TeX",
+		"value":"<TeX raw=\"${1:}\" />\n"
+	},
+	{
+		"name":"Text",
+		"value":"<Text raw=\"${1:}\" />\n"
+	},
+	{
+		"name":"TextInput",
+		"value":"<TextInput\n\tlegend=\"${1:Enter description}\"\n\tdefaultValue=\"${2:value}\"\n/>\n"
+	},
+	{
+		"name":"Timer",
+		"value":"<Timer\n\tid=\"${1:id}\"\n\tduration={${2:100}}\n\tactive={${3:true}}\n\tonTimeUp={${4:() => {} }}\n/>\n"
+	},
+	{
+		"name":"Unveil",
+		"value":"<Unveil active={true} delay={${1:1000}} >\n\t${2:Component to Display}\n</Unveil>\n"
+	},
+	{
+		"name":"VideoPlayer",
+		"value":"<VideoPlayer url=\"${1:url}\" />\n"
+	},
+	{
+		"name":"VoiceInput",
+		"value":"<VoiceInput />\n"
+	},
+	{
+		"name":"Weather",
+		"value":"<Weather location=\"${1:location}\" />\n"
+	},
+	{
+		"name":"Well",
+		"value":"<Well>\n\t${1:}\n</Well>\n"
+	},
+	{
+		"name":"Wikipedia",
+		"value":"<Wikipedia\n\tspeech={${1:true}}\n\tlanguage = \"en-US\"\n/>\n"
+	},
+	{
+		"name":"LearnConditionalProbability",
+		"value":"<LearnConditionalProbability />\n"
+	},
+	{
+		"name":"LearnCrossValidation",
+		"value":"<LearnCrossValidation />\n"
+	},
+	{
+		"name":"LearnDiceThrowing",
+		"value":"<LearnDiceThrowing />\n"
+	},
+	{
+		"name":"LearnMeanVSMedian",
+		"value":"<LearnMeanVSMedian />\n"
+	},
+	{
+		"name":"LearnExponentialDistribution",
+		"value":"<LearnExponentialDistribution />\n"
+	},
+	{
+		"name":"LearnNormalDistribution",
+		"value":"<LearnNormalDistribution />\n"
+	},
+	{
+		"name":"LearnTDistribution",
+		"value":"<LearnTDistribution />\n"
+	},
+	{
+		"name":"LearnUniformDistribution",
+		"value":"<LearnUniformDistribution />\n"
+	},
+	{
+		"name":"LearnStandardize",
+		"value":"<LearnStandardize />\n"
+	},
+	{
+		"name":"LearnContinuousCLT",
+		"value":"<LearnContinuousCLT />\n"
+	},
+	{
+		"name":"LearnDiscreteCLT",
+		"value":"<LearnDiscreteCLT />\n"
+	},
+	{
+		"name":"LearnSampleCLT",
+		"value":"<LearnSampleCLT />\n"
+	},
+	{
+		"name":"LearnConfidenceCoverageBinomial",
+		"value":"<LearnConfidenceCoverageBinomial />\n"
+	},
+	{
+		"name":"LearnConfidenceCoverageNormal",
+		"value":"<LearnConfidenceCoverageNormal />\n"
+	},
+	{
+		"name":"LearnMeanTest",
+		"value":"<LearnMeanTest />\n"
+	},
+	{
+		"name":"LearnProportionTest",
+		"value":"<LearnProportionTest />\n"
+	},
+	{
+		"name":"LearnVennDiagramBuilder",
+		"value":"<LearnVennDiagramBuilder />\n"
+	},
+	{
+		"name":"LearnWordVennDiagram",
+		"value":"<LearnWordVennDiagram />\n"
+	},
+	{
+		"name":"LearnImagePixelPicker",
+		"value":"<LearnImagePixelPicker />\n"
+	},
+	{
+		"name":"Row",
+		"value":"<Row>\n\t${1:}\n</Row>\n"
+	},
+	{
+		"name":"Col",
+		"value":"<Col md={${1:12}}>\n\t${2:}\n</Col>\n"
+	},
+	{
+		"name":"Appear",
+		"value":"<Appear active={true} delay={${1:1000}}>\n\t${2:}\n</Appear>\n"
+	},
+	{
+		"name":"BlockQuote",
+		"value":"<BlockQuote>\n\t<Quote>${1:}</Quote>\n\t<Cite>${2:}</Cite>\n</BlockQuote>\n"
+	},
+	{
+		"name":"Code",
+		"value":"<Code>${1:}</Code>\n"
+	},
+	{
+		"name":"Cite",
+		"value":"<Cite>${1:}</Cite>\n"
+	},
+	{
+		"name":"Fill",
+		"value":"<Fill>${1:}</Fill>\n"
+	},
+	{
+		"name":"Fit",
+		"value":"<Fit>${1:}</Fit>\n"
+	},
+	{
+		"name":"Layout",
+		"value":"<Layout>${1:}</Layout>\n"
+	},
+	{
+		"name":"Quote",
+		"value":"<Quote>${1:}</Quote>\n"
+	},
+	{
+		"name":"Slide",
+		"value":"<Slide>\n\t${1:}\n</Slide>\n"
+	},
+	{
+		"name":"CodeSlide",
+		"value":"<CodeSlide\n\tlang=\"${1:javascript}\"\n\tcode={`\n\t${2:}\n\t`}\n\tranges={[\n\t\t${3:{ loc: [0, 1], note: 'Attach notes or title' }}\n\t]}\n/>\n"
+	},
+	{
+		"name":"VictoryBar",
+		"value":"<VictoryBar />\n"
+	},
+	{
+		"name":"WordCloud",
+		"value":"<WordCloud data={[${1:'First document','Second document'}]} />"
+	}
+]
