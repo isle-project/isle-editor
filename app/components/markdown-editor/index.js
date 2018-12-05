@@ -969,7 +969,14 @@ class MarkdownEditor extends Component {
 	handlePeerAssignment = ( assignment ) => {
 		this.setState({
 			peer: assignment
-		}, () => { alert( 'You have been paired!' ); } );
+		}, () => {
+			this.context.addNotification({
+				title: 'Pairing',
+				message: 'You have been successfully paired!',
+				level: 'success',
+				position: 'tr'
+			});
+		});
 	}
 
 	render() {

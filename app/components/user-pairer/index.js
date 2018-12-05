@@ -4,10 +4,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/lib/Card';
 import Alert from 'react-bootstrap/lib/Alert';
+import Table from 'react-bootstrap/lib/Table';
 import Button from 'react-bootstrap/lib/Button';
+import FlippableCard from 'components/flippable-card';
 import Gate from 'components/gate';
 import shuffle from '@stdlib/random/shuffle';
 import identity from '@stdlib/utils/identity-function';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import SessionContext from 'session/context.js';
 
@@ -31,8 +34,19 @@ class UserPairer extends Component {
 	constructor( props ) {
 		super( props );
 
+		let assignments = localStorage.getItem( props.id );
+		if ( assignments ) {
+			assignments = JSON.parse( assignments );
+		} else {
+			assignments = {};
+		}
+		let individual = localStorage.getItem( this.props.id+'_individual' );
+		if ( individual ) {
+			props.onAssignmentStudent( JSON.parse( individual ) );
+		}
 		this.state = {
-			assignments: {},
+			showAssignments: !isEmptyObject( assignments ),
+			assignments,
 			message: props.id ? null : {
 				variant: 'danger',
 				value: 'Component expects an ID to work.'
@@ -53,8 +67,10 @@ class UserPairer extends Component {
 			else if ( type === 'member_action' ) {
 				if ( action.id === this.props.id ) {
 					if ( action.type === 'USERS_ASSIGNED' ) {
+						localStorage.setItem( this.props.id, action.value );
 						this.props.onAssignmentOwner( JSON.parse( action.value ) );
 					} else if ( action.type === 'INDIVIDUAL_ASSIGNED' ) {
+						localStorage.setItem( this.props.id+'_individual', action.value );
 						this.props.onAssignmentStudent( JSON.parse( action.value ) );
 					}
 				}
@@ -99,22 +115,25 @@ class UserPairer extends Component {
 			message: {
 				variant: 'success',
 				value: `${emails.length} users were successfully assigned with one another.`
-			}
+			},
+			showAssignments: true
 		}, () => {
+			const stringified = JSON.stringify( this.state.assignments );
+			localStorage.setItem( this.props.id, stringified );
 			const logAction = {
 				id: this.props.id,
 				type: 'USERS_ASSIGNED',
-				value: JSON.stringify( this.state.assignments ),
+				value: stringified,
 				noSave: false
 			};
 			session.log( logAction, 'owners' );
 			if ( session.isOwner() ) {
 				for ( let key in assignments ) {
-					if ( hasOwnProp(assignments, key) ) {
+					if ( hasOwnProp( assignments, key ) ) {
 						session.log( {
 							id: this.props.id,
 							type: 'INDIVIDUAL_ASSIGNED',
-							value: JSON.stringify( this.state.assignments[key] ),
+							value: JSON.stringify( this.state.assignments[ key ] ),
 							noSave: true
 						}, key );
 					}
@@ -122,6 +141,32 @@ class UserPairer extends Component {
 			}
 			this.props.onAssignmentOwner( this.state.assignments );
 		});
+	}
+
+	renderTable( assignments ) {
+		const rows = [];
+		for ( let key in assignments ) {
+			if ( hasOwnProp( assignments, key ) ) {
+				const val = assignments[ key ];
+				rows.push( <tr>
+					<td>{key}</td>
+					<td>{`${val.from.name} (${val.from.email})`}</td>
+					<td>{`${val.to.name} (${val.to.email})`}</td>
+				</tr> );
+			}
+		}
+		return ( <Table bordered size="sm">
+			<thead>
+				<tr>
+					<th>Email</th>
+					<th>Receive From</th>
+					<th>Send To</th>
+				</tr>
+			</thead>
+			<tbody>
+				{rows}
+			</tbody>
+		</Table> );
 	}
 
 	render() {
@@ -137,7 +182,30 @@ class UserPairer extends Component {
 					<Card.Body>
 						<p>There are currently <b>{users.length}</b> users ({this.props.filterOwners ? 'excluding' : 'including'} course owners) online.</p>
 						{msg ? <Alert variant={msg.variant}>{msg.value}</Alert> : null }
-						<Button onClick={this.createAssignments}>Pair users</Button>
+						<p>
+							<Button onClick={this.createAssignments}>
+								{ this.state.showAssignments ? 'Repair users' : 'Pair users' }
+							</Button>
+						</p>
+						{ this.state.showAssignments ? <FlippableCard
+							cardStyles={{
+								container: {
+									width: '100%',
+									height: '300px'
+								}
+							}}
+						>
+							<Card bg="light">
+								<Card.Body style={{ height: '300px', lineHeight: '300px', textAlign: 'center' }}>
+									<h4 style={{ display: 'inline-block', verticalAlign: 'middle', lineHeight: 'normal' }}>Click to reveal assignments</h4>
+								</Card.Body>
+							</Card>
+							<Card bg="light" style={{ height: 300, overflowY: 'scroll' }}>
+								<Card.Body>
+								{this.renderTable( this.state.assignments )}
+								</Card.Body>
+							</Card>
+						</FlippableCard> : null }
 					</Card.Body>
 				</Card>
 			</Gate>
