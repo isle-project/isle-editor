@@ -31,7 +31,6 @@ class DateDisplay extends Component {
                 <div className='date-default-month'>DEC</div>
                 <div className='date-default-day'>22</div>
                 <div className='date-default-year'>2018</div>
-                <Clock></Clock>
             </div>
             );
         }

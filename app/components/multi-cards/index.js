@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import FlippableCard from 'components/flippable-card';
 import SessionContext from 'session/context.js';
 import VoiceInput from 'components/input/voice';
+import Memory from './memory.js';
 
 
 // MAIN //
@@ -30,7 +31,13 @@ class MultiCards extends Component {
 		if ( this.props.voiceID ) {
 			this.register();
 		}
+
+		if (this.props.game !== void 0) {
+			this.Memory = Memory.init( this.props.values, this);
+			console.log("MEMORY initialisiert");
+		}
 	}
+
 
 	register() {
 		const session = this.context;
@@ -87,6 +94,30 @@ class MultiCards extends Component {
 		);
 	}
 
+
+	gameDraw(ndx) {
+		let item = this.props.values[ndx];
+		if (this.props.game === 'memory') {
+			this.Memory.draw( item, ndx, this.resetCards);
+		}
+	}
+
+	resetCards =(list) => {
+		let matrix = this.state.cardMatrix.slice( 0 );
+		for (var i = 0; i < list.length; i++) {
+			var n = list[i];
+			matrix[n] = !matrix[n];
+		}
+
+		var self = this;
+
+		setTimeout(function timeout(){
+			self.setState({
+				cardMatrix: matrix
+			});
+		}, 1500);
+	}
+
 	changeFactory = ( ndx ) => {
 		return ( value ) => {
 			let matrix = this.state.cardMatrix.slice( 0 );
@@ -94,6 +125,7 @@ class MultiCards extends Component {
 			this.setState({
 				cardMatrix: matrix
 			}, () => {
+				if (this.props.game !== void 0) this.gameDraw( ndx );
 				this.props.onChange( this.state.cardMatrix );
 			});
 		};
@@ -156,6 +188,7 @@ MultiCards.propTypes = {
 		front: PropTypes.object,
 		back: PropTypes.object
 	}),
+	game: PropTypes.string,
 	language: PropTypes.string,
 	onChange: PropTypes.func,
 	oneTime: PropTypes.bool,
@@ -169,6 +202,7 @@ MultiCards.defaultProps = {
 		front: {},
 		back: {}
 	},
+	game: null,
 	onChange() {},
 	language: 'en-US',
 	oneTime: false,
