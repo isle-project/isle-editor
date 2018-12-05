@@ -78,7 +78,7 @@ class Editor extends Component {
 			noSyntaxValidation: true
 		});
 		this.monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
-			noLib: true,
+			noLib: false,
 			allowNonTsExtensions: true
 		});
 

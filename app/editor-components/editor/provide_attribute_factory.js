@@ -80,6 +80,11 @@ function factory( monaco ) {
 					let insertText;
 					if ( x.type === 'string' ) {
 						insertText = x.name+'="${1:'+x.default+'}"'; // eslint-disable-line
+					} else if ( x.type === 'boolean' ) {
+						insertText = x.name;
+						if ( x.default ) {
+							insertText += '={false}$1';
+						}
 					} else {
 						insertText = x.name+'={${1:'+x.default+'}}';  // eslint-disable-line
 					}
