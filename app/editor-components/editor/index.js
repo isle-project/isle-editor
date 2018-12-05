@@ -71,7 +71,6 @@ class Editor extends Component {
 	}
 
 	componentDidMount() {
-		// this.monaco.editor.setPosition( this.props.cursorStart );
 		window.addEventListener( 'resize', this.updateDimensions );
 
 		this.monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
