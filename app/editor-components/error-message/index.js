@@ -9,6 +9,8 @@ import Card from 'react-bootstrap/lib/Card';
 
 const RE_DIGIT_COLON = /\((\d+):/;
 const RE_LINE_DIGIT = /(\d+) \|/g;
+const RE_EMPTY_SPANS = /<span \/>/g;
+const RE_FRAGMENT = /<\/?React.Fragment>/g;
 
 
 // MAIN //
@@ -21,6 +23,8 @@ const ErrorMessage = ( props ) => {
 	msg = msg.replace( RE_LINE_DIGIT, ( match, p1 ) => {
 		return String( parseInt( p1, 10 )-1 ) + ' |';
 	});
+	msg = msg.replace( RE_EMPTY_SPANS, '' );
+	msg = msg.replace( RE_FRAGMENT, '' );
 	return ( <Card className="error-message">
 		<Card.Body>
 			<h3>Encountered an error:</h3>

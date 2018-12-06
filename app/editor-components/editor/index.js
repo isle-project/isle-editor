@@ -18,6 +18,8 @@ import './editor.css';
 // VARIABLES //
 
 const RE_ANSI = /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)?\u0007)|(?:(?:\d{1,4}(?:;\d{0,4})*)?[\dA-PR-TZcf-ntqry=><~]))/g; // eslint-disable-line no-control-regex
+const RE_EMPTY_SPANS = /<span \/>/g;
+const RE_FRAGMENT = /<\/?React.Fragment>/g;
 const snippets = groupBy( allSnippets, groupIndicator );
 
 
@@ -102,6 +104,8 @@ class Editor extends Component {
 		) {
 			const errs = this.props.lintErrors.map( e => {
 				const bare = e.message.replace( RE_ANSI, '' );
+				bare = bare.replace( RE_EMPTY_SPANS, '' );
+				bare = bare.replace( RE_FRAGMENT, '' );
 				return {
 					startLineNumber: e.line - 1,
 					startColumn: 1,
