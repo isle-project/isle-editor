@@ -93,11 +93,6 @@ class Editor extends Component {
 	}
 
 	componentDidUpdate( prevProps ) {
-		if ( this.editor && this.editor.getValue() !== this.props.value ) {
-			const pos = this.editor.getPosition();
-			this.editor.setValue( this.props.value, this.props.cursorStart );
-			this.editor.moveCursorToPosition( pos );
-		}
 		if (
 			this.monaco &&
 			this.props.lintErrors.length !== prevProps.lintErrors.length

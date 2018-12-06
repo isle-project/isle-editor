@@ -192,7 +192,6 @@ class SummaryStatistics extends Component {
 			secondVariable: statName === 'Correlation' ? secondVariable : null,
 			group
 		});
-		console.log( output );
 		this.props.onCreated( output );
 	}
 

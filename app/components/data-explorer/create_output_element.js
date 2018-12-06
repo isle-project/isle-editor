@@ -5,6 +5,7 @@ import { renderToString } from 'react-dom/server';
 import TurndownService from 'turndown';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Table from 'react-bootstrap/lib/Table';
+import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import isNumber from '@stdlib/assert/is-number';
@@ -16,6 +17,7 @@ import FullscreenButton from './fullscreen_button.js';
 
 // VARIABLES //
 
+const debug = logger( 'isle:data-explorer' );
 const RE_CLEAR_BUTTON = /<button[\s\S]*<\/button>/;
 const turndownService = new TurndownService();
 const turndownPluginGfm = require( 'turndown-plugin-gfm' );
@@ -27,7 +29,10 @@ turndownService.use( turndownPluginGfm.gfm );
 const createButtons = ( header, table, clearOutput, idx ) => {
 	return ( <ButtonGroup style={{ float: 'right' }}>
 		<FullscreenButton header={header} table={table} />
-		<ClearButton onClick={() => { clearOutput( idx ); }} />
+		<ClearButton onClick={() => {
+			debug( `Clear element with ID ${idx}` );
+			clearOutput( idx );
+		}} />
 	</ButtonGroup> );
 };
 
