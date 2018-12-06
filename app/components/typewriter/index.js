@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 // MAIN //
 
 /**
-* An ISLE component that allows you display the user's score
+* An ISLE component that allows you to create a typewriter effect
 *
 * @property {number} deviation - allows you to specify the randomness
 * @property {number} interval - the interval of the typewriter

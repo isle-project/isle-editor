@@ -272,6 +272,11 @@
 		"value":"<Timer\n\tid=\"${1:id}\"\n\tduration={${2:100}}\n\tactive={${3:true}}\n\tonTimeUp={${4:() => {} }}\n/>\n"
 	},
 	{
+		"name":"Typewriter",
+		"value":"<Typewriter text=\"${1:}\" />\n"
+	},
+
+	{
 		"name":"Unveil",
 		"value":"<Unveil active={true} delay={${1:1000}} >\n\t${2:Component to Display}\n</Unveil>\n"
 	},
