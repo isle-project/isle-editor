@@ -129,9 +129,10 @@ class SummaryStatistics extends Component {
 					res[ key ].value = res[ key ].value[ 0 ][ 1 ];
 				}
 				variable = `${variable} vs. ${secondVariable}`;
+			} else {
+				const groups = group.categories;
+				res = byWithCount( x, groupData, fun, groups );
 			}
-			const groups = group.categories;
-			res = byWithCount( x, groupData, fun, groups );
 		} else {
 			// Case: no grouping variable selected
 			if ( omit ) {
@@ -191,6 +192,7 @@ class SummaryStatistics extends Component {
 			secondVariable: statName === 'Correlation' ? secondVariable : null,
 			group
 		});
+		console.log( output );
 		this.props.onCreated( output );
 	}
 
