@@ -17,6 +17,7 @@ import './editor.css';
 
 // VARIABLES //
 
+const RE_ANSI = /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)?\u0007)|(?:(?:\d{1,4}(?:;\d{0,4})*)?[\dA-PR-TZcf-ntqry=><~]))/g; // eslint-disable-line no-control-regex
 const snippets = groupBy( allSnippets, groupIndicator );
 
 
@@ -79,7 +80,8 @@ class Editor extends Component {
 		});
 		this.monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
 			noLib: false,
-			allowNonTsExtensions: true
+			allowNonTsExtensions: true,
+			jsx: 2
 		});
 
 		this._completionProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
@@ -88,17 +90,34 @@ class Editor extends Component {
 		});
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate( prevProps ) {
 		if ( this.editor && this.editor.getValue() !== this.props.value ) {
-			const pos = this.editor.getCursorPosition();
+			const pos = this.editor.getPosition();
 			this.editor.setValue( this.props.value, this.props.cursorStart );
 			this.editor.moveCursorToPosition( pos );
+		}
+		if (
+			this.monaco &&
+			this.props.lintErrors.length !== prevProps.lintErrors.length
+		) {
+			const errs = this.props.lintErrors.map( e => {
+				const bare = e.message.replace( RE_ANSI, '' );
+				return {
+					startLineNumber: e.line - 1,
+					startColumn: 1,
+					endLineNumber: e.line - 1,
+					endColumn: e.column,
+					message: bare,
+					severity: e.severity
+				};
+			});
+			const model = this.editor.getModel();
+			this.monaco.editor.setModelMarkers( model, 'test', errs );
 		}
 	}
 
 	componentWillUnmount() {
 		window.removeEventListener( 'resize', this.updateDimensions );
-
 		this._completionProvider.dispose();
 	}
 
@@ -253,6 +272,7 @@ Editor.propTypes = {
 	cursorStart: PropTypes.number,
 	onChange: PropTypes.func,
 	value: PropTypes.string,
+	lintErrors: PropTypes.array.isRequired,
 	splitPos: PropTypes.number.isRequired
 };
 
