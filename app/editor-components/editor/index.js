@@ -194,7 +194,7 @@ class Editor extends Component {
 			<div>
 				<ContextMenuTrigger id="editorWindow" holdToDisplay={-1} style={{ height: '100%', width: '100%' }} >
 					<MonacoEditor
-						height={window.innerHeight}
+						height={window.innerHeight - 90}
 						width={window.innerWidth - this.props.splitPos}
 						language="javascript"
 						defaultValue={this.props.value}
@@ -206,7 +206,16 @@ class Editor extends Component {
 							},
 							tabCompletion: 'on',
 							wordWrap: 'on',
-							snippetSuggestions: 'top'
+							snippetSuggestions: 'top',
+							scrollbar: {
+								useShadows: true,
+								verticalHasArrows: true,
+								horizontalHasArrows: true,
+								vertical: 'visible',
+								verticalScrollbarSize: 12,
+								horizontalScrollbarSize: 12,
+								arrowSize: 15
+							}
 						}}
 						onChange={this.handleChange}
 						editorDidMount={( editor, monaco ) => {

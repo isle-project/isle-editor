@@ -8,6 +8,7 @@ import path from 'path';
 import css from 'css';
 import fs from 'fs';
 import debounce from 'lodash.debounce';
+import { Linter } from 'eslint';
 import SplitPane from 'react-split-pane';
 import logger from 'debug';
 import yaml from 'js-yaml';
@@ -24,13 +25,15 @@ import Header from 'editor-components/header';
 import Editor from 'editor-components/editor';
 import Preview from 'editor-components/preview';
 import ErrorMessage from 'editor-components/error-message';
-import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError } from 'actions';
+import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError, saveLintErrors } from 'actions';
 import DevTools from './dev_tools.js';
+import eslintConfig from './eslintrc.json';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle-editor' );
+const linter = new Linter();
 let cssHash = {};
 let lastCSS = null;
 
@@ -94,22 +97,6 @@ class App extends Component {
 
 		this.lastPreamble = null;
 
-		this.onChange = ( value ) => {
-			debug( 'Editor text changed...' );
-			const handleChange = ( value ) => {
-				debug( 'Should handle change...' );
-				this.props.convertMarkdown( value );
-				this.handlePreambleChange( value );
-			};
-
-			if ( this.debouncedChange ) {
-				this.debouncedChange( value );
-			} else {
-				this.debouncedChange = debounce( handleChange, 1000 );
-				this.debouncedChange( value );
-			}
-		};
-
 		if ( isObject( props.preamble ) ) {
 			try {
 				this.loadRequires( props.preamble.require, props.filePath || '' );
@@ -144,15 +131,31 @@ class App extends Component {
 		};
 	}
 
-	componentDidMount() {
-		const editor = this.editor;
-		const preview = this.preview;
-		this.onEditorScroll = this.sync( editor, preview );
-		this.onPreviewScroll = this.sync( preview, editor );
-	}
-
 	componentWillUnmount() {
 		localStorage.setItem( 'splitPos', this.state.splitPos );
+	}
+
+	onChange = ( value ) => {
+		debug( 'Editor text changed...' );
+		const handleChange = ( value ) => {
+			debug( 'Should handle change...' );
+			this.props.convertMarkdown( value );
+			this.handlePreambleChange( value );
+		};
+
+		if ( this.debouncedChange ) {
+			this.debouncedChange( value );
+		} else {
+			this.debouncedChange = debounce( handleChange, 1000 );
+			this.debouncedChange( value );
+		}
+	}
+
+	lintCode = ( code ) => {
+		const errs = linter.verify( code, eslintConfig );
+		if ( errs.length !== this.props.lintErrors.length ) {
+			this.props.saveLintErrors( errs );
+		}
 	}
 
 	/*
@@ -269,14 +272,6 @@ class App extends Component {
 		return false;
 	}
 
-	sync( main, other ) {
-		return ( scrollTop, scrollHeight, offsetHeight ) => {
-			const percentage = ( scrollTop * 100 ) / ( scrollHeight - offsetHeight );
-			main.setScrollTop( percentage );
-			other.setScrollTop( percentage );
-		};
-	}
-
 	render() {
 		let {
 			error,
@@ -318,17 +313,18 @@ class App extends Component {
 						'bottom': '0'
 					}}
 				>
-					<SplitPanel overflow="none" ref={( elem ) => { this.editor = elem; }} onScroll={this.onEditorScroll}>
+					<SplitPanel overflow="none" >
 						<Editor
-							ref={( elem ) => { this.code = elem; }}
+							ref={( elem ) => { this.editor = elem; }}
 							value={markdown}
 							onChange={this.onChange}
-							name="ace_editor"
+							name="monaco_editor"
 							fontSize={14}
 							splitPos={this.state.splitPos}
+							lintErrors={this.props.lintErrors}
 						/>
 					</SplitPanel>
-					<SplitPanel ref={( elem ) => { this.preview = elem; }} onScroll={this.onPreviewScroll}>
+					<SplitPanel ref={( elem ) => { this.preview = elem; }} style={{ overflowY: 'scroll' }}>
 						{ error ?
 							<ErrorMessage msg={error.message} code={markdown} /> :
 							<ErrorBoundary code={markdown}>
@@ -338,7 +334,7 @@ class App extends Component {
 									preamble={preamble}
 									currentRole={currentRole}
 									currentMode={currentMode}
-									onScope={this.saveScope}
+									onCode={this.lintCode}
 								/>
 							</ErrorBoundary>
 						}
@@ -374,9 +370,11 @@ App.propTypes = {
 	fileName: PropTypes.string,
 	filePath: PropTypes.string,
 	hideToolbar: PropTypes.bool.isRequired,
+	lintErrors: PropTypes.array.isRequired,
 	markdown: PropTypes.string.isRequired,
 	preamble: PropTypes.object.isRequired,
 	resetError: PropTypes.func.isRequired,
+	saveLintErrors: PropTypes.func.isRequired,
 	updatePreamble: PropTypes.func.isRequired
 };
 
@@ -385,6 +383,7 @@ App.propTypes = {
 
 export default connect( mapStateToProps, {
 	convertMarkdown,
+	saveLintErrors,
 	encounteredError,
 	resetError,
 	changeView,
@@ -394,6 +393,9 @@ export default connect( mapStateToProps, {
 	updatePreamble
 })( App );
 
-function mapStateToProps({ markdown }) {
-	return markdown;
+function mapStateToProps({ markdown, linting }) {
+	return {
+		...markdown,
+		...linting
+	};
 }

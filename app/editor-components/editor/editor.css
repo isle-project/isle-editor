@@ -91,9 +91,6 @@
 	display: block;
 }
 
-.ace_search.right {
-	top: 10px;
-	left: 175px;
-	position: fixed;
-	width: 400px;
+.monaco-scrollable-element > .visible {
+	background: lightgray !important;
 }
