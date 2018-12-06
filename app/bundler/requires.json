@@ -97,6 +97,7 @@
 	"SliderInput": "components/input/slider",
 	"StatusBar": "components/statusbar",
 	"SurveyGenerator": "components/survey-generator",
+	"Typewriter": "components/typewriter",
 	"Unveil": "components/unveil",
 	"VoiceInput": "components/input/voice",
 	"VoiceControl": "components/voice-control",

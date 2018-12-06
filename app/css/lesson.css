@@ -476,50 +476,51 @@ label {
 
 
 
+/********************** ANIMATION CLASSES **************************/
 /*********************************************************************/
 @keyframes anim-fade-in {
 	0% {
-		opacity: 0;
+			opacity: 0;
 	}
 	100% {
-		opacity: 1;
+			opacity: 1;
 	}
 }
 
 @keyframes anim-rotate-in {
 	0% {
-		-webkit-transform: scale(0) rotate(-120deg);
+	-webkit-transform: scale(0) rotate(-120deg);
 	}
 	100% {
-		-webkit-transform: scale(1) rotate(360deg);
+	-webkit-transform: scale(1) rotate(360deg);
 	}
 }
 
 @keyframes anim-rotate-out {
 	0% {
-		transform: rotate(0deg) scale(1);
+	transform: rotate(0deg) scale(1);
 	}
 	100% {
-		transform: rotate(720deg) scale(0);
+	transform: rotate(720deg) scale(0);
 	}
 }
 
 @keyframes anim-fade-out {
 	0% {
-		opacity: 1;
+			opacity: 1;
 	}
 	100% {
-		opacity: 0;
+			opacity: 0;
 	}
 }
 
 
 @keyframes anim-scale-up {
 	0% {
-		transform: scale(0.01);
+			transform: scale(0.01);
 	}
 	100% {
-		transform: scale(1);
+			transform: scale(1);
 	}
 }
 
@@ -531,10 +532,10 @@ label {
 
 @keyframes anim-scale-down {
 	0% {
-		transform: scale(1);
+			transform: scale(1);
 	}
 	100% {
-		transform: scale(0);
+			transform: scale(0);
 	}
 }
 
@@ -543,37 +544,561 @@ label {
 	animation-duration: 0.3s;
 }
 
-@keyframes anim-explosion {
-	0% {
-		transform: scale(0);
-	}
-	20% {
-		transform: scale(1.1);
-	}
-	28% {
-		transform: scale(0.7);
-	}
-	37% {
-		transform: scale(1.05);
-	}
-	47% {
-		transform: scale(0.8);
-	}
-	58% {
-		transform: scale(1.02);
-	}
-	69% {
-		transform: scale(0.82);
-	}
-	80% {
-		transform: scale(1.01);
-	}
-	93% {
-		transform: scale(0.97);
-	}
-	100% {
-		transform: scale(1);
-	}
 
+@-webkit-keyframes tracking-in {
+0% {
+	letter-spacing: 1em;
+	-webkit-transform: translateZ(400px) translateY(-300px);
+			transform: translateZ(400px) translateY(-300px);
+	opacity: 0;
+}
+40% {
+	opacity: 0.6;
+}
+100% {
+	-webkit-transform: translateZ(0) translateY(0);
+			transform: translateZ(0) translateY(0);
+	opacity: 1;
+}
+}
+
+
+
+/**
+* ----------------------------------------
+* animation text-focus-in
+* ----------------------------------------
+*/
+@-webkit-keyframes text-focus-in {
+0% {
+	-webkit-filter: blur(12px);
+			filter: blur(12px);
+	opacity: 0;
+}
+100% {
+	-webkit-filter: blur(0px);
+			filter: blur(0px);
+	opacity: 1;
+}
+}
+
+
+.text-focus-in {
+-webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+				animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+
+
+
+@keyframes text-pop-up-top {
+0% {
+	-webkit-transform: translateY(0);
+			transform: translateY(0);
+	-webkit-transform-origin: 50% 50%;
+			transform-origin: 50% 50%;
+	text-shadow: none;
+}
+100% {
+	-webkit-transform: translateY(-50px);
+			transform: translateY(-50px);
+	-webkit-transform-origin: 50% 50%;
+			transform-origin: 50% 50%;
+	text-shadow: 0 1px 0 #cccccc, 0 2px 0 #cccccc, 0 3px 0 #cccccc, 0 4px 0 #cccccc, 0 5px 0 #cccccc, 0 6px 0 #cccccc, 0 7px 0 #cccccc, 0 8px 0 #cccccc, 0 9px 0 #cccccc, 0 50px 30px rgba(0, 0, 0, 0.3);
+}
+}
+
+
+.text-pop-up-top {
+-webkit-animation: text-pop-up-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+				animation: text-pop-up-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+
+
+/**
+* ----------------------------------------
+* animation bounce-top
+* ----------------------------------------
+*/
+
+@keyframes bounce-in-top {
+0% {
+	-webkit-transform: translateY(-45px);
+			transform: translateY(-45px);
+	-webkit-animation-timing-function: ease-in;
+			animation-timing-function: ease-in;
+	opacity: 1;
+}
+24% {
+	opacity: 1;
+}
+40% {
+	-webkit-transform: translateY(-24px);
+			transform: translateY(-24px);
+	-webkit-animation-timing-function: ease-in;
+			animation-timing-function: ease-in;
+}
+65% {
+	-webkit-transform: translateY(-12px);
+			transform: translateY(-12px);
+	-webkit-animation-timing-function: ease-in;
+			animation-timing-function: ease-in;
+}
+82% {
+	-webkit-transform: translateY(-6px);
+			transform: translateY(-6px);
+	-webkit-animation-timing-function: ease-in;
+			animation-timing-function: ease-in;
+}
+93% {
+	-webkit-transform: translateY(-4px);
+			transform: translateY(-4px);
+	-webkit-animation-timing-function: ease-in;
+			animation-timing-function: ease-in;
+}
+25%,
+55%,
+75%,
+87% {
+	-webkit-transform: translateY(0px);
+			transform: translateY(0px);
+	-webkit-animation-timing-function: ease-out;
+			animation-timing-function: ease-out;
+}
+100% {
+	-webkit-transform: translateY(0px);
+			transform: translateY(0px);
+	-webkit-animation-timing-function: ease-out;
+			animation-timing-function: ease-out;
+	opacity: 1;
+}
+}
+
+
+.bounce-top {
+-webkit-animation: bounce-in-top 0.9s both;
+				animation: bounce-in-top 0.9s both;
+}
+
+
+/* ----------------------------------------
+* animation jello-horizontal
+* ----------------------------------------
+*/
+@-webkit-keyframes jello-horizontal {
+0% {
+	-webkit-transform: scale3d(1, 1, 1);
+			transform: scale3d(1, 1, 1);
+}
+30% {
+	-webkit-transform: scale3d(1.25, 0.75, 1);
+			transform: scale3d(1.25, 0.75, 1);
+}
+40% {
+	-webkit-transform: scale3d(0.75, 1.25, 1);
+			transform: scale3d(0.75, 1.25, 1);
+}
+50% {
+	-webkit-transform: scale3d(1.15, 0.85, 1);
+			transform: scale3d(1.15, 0.85, 1);
+}
+65% {
+	-webkit-transform: scale3d(0.95, 1.05, 1);
+			transform: scale3d(0.95, 1.05, 1);
+}
+75% {
+	-webkit-transform: scale3d(1.05, 0.95, 1);
+			transform: scale3d(1.05, 0.95, 1);
+}
+100% {
+	-webkit-transform: scale3d(1, 1, 1);
+			transform: scale3d(1, 1, 1);
+}
+}
+@keyframes jello-horizontal {
+0% {
+	-webkit-transform: scale3d(1, 1, 1);
+			transform: scale3d(1, 1, 1);
+}
+30% {
+	-webkit-transform: scale3d(1.25, 0.75, 1);
+			transform: scale3d(1.25, 0.75, 1);
+}
+40% {
+	-webkit-transform: scale3d(0.75, 1.25, 1);
+			transform: scale3d(0.75, 1.25, 1);
+}
+50% {
+	-webkit-transform: scale3d(1.15, 0.85, 1);
+			transform: scale3d(1.15, 0.85, 1);
+}
+65% {
+	-webkit-transform: scale3d(0.95, 1.05, 1);
+			transform: scale3d(0.95, 1.05, 1);
+}
+75% {
+	-webkit-transform: scale3d(1.05, 0.95, 1);
+			transform: scale3d(1.05, 0.95, 1);
+}
+100% {
+	-webkit-transform: scale3d(1, 1, 1);
+			transform: scale3d(1, 1, 1);
+}
+}
+
+
+
+.jello-horizontal {
+-webkit-animation: jello-horizontal 0.9s both;
+				animation: jello-horizontal 0.9s both;
+}
+
+
+/**
+* ----------------------------------------
+* animation wobble-hor-top
+* ----------------------------------------
+*/
+@-webkit-keyframes wobble-top {
+0%,
+100% {
+	-webkit-transform: translateX(0%);
+			transform: translateX(0%);
+	-webkit-transform-origin: 50% 50%;
+			transform-origin: 50% 50%;
+}
+15% {
+	-webkit-transform: translateX(-30px) rotate(6deg);
+			transform: translateX(-30px) rotate(6deg);
+}
+30% {
+	-webkit-transform: translateX(15px) rotate(-6deg);
+			transform: translateX(15px) rotate(-6deg);
+}
+45% {
+	-webkit-transform: translateX(-15px) rotate(3.6deg);
+			transform: translateX(-15px) rotate(3.6deg);
+}
+60% {
+	-webkit-transform: translateX(9px) rotate(-2.4deg);
+			transform: translateX(9px) rotate(-2.4deg);
+}
+75% {
+	-webkit-transform: translateX(-6px) rotate(1.2deg);
+			transform: translateX(-6px) rotate(1.2deg);
+}
+}
+
+
+.wobble-top {
+-webkit-animation: wobble-hor-top 0.8s both;
+				animation: wobble-hor-top 0.8s both;
+}
+
+
+/**
+* ----------------------------------------
+* animation rotate-in-center
+* ----------------------------------------
+*/
+@-webkit-keyframes rotate-in-center {
+0% {
+	-webkit-transform: rotate(-360deg);
+			transform: rotate(-360deg);
+	opacity: 0;
+}
+100% {
+	-webkit-transform: rotate(0);
+			transform: rotate(0);
+	opacity: 1;
+}
+}
+
+/**
+* ----------------------------------------
+* animation rotate-in-hor
+* ----------------------------------------
+*/
+@-webkit-keyframes rotate-in-hor {
+0% {
+	-webkit-transform: rotateX(360deg);
+			transform: rotateX(360deg);
+	opacity: 0;
+}
+100% {
+	-webkit-transform: rotateX(0deg);
+			transform: rotateX(0deg);
+	opacity: 1;
+}
+}
+
+/**
+* ----------------------------------------
+* animation rotate-in-ver
+* ----------------------------------------
+*/
+@-webkit-keyframes rotate-in-ver {
+0% {
+	-webkit-transform: rotateY(-360deg);
+			transform: rotateY(-360deg);
+	opacity: 0;
+}
+100% {
+	-webkit-transform: rotateY(0deg);
+			transform: rotateY(0deg);
+	opacity: 1;
+}
+}
+
+/**
+* ----------------------------------------
+* animation swirl-in-fwd
+* ----------------------------------------
+*/
+@-webkit-keyframes swirl-in-fwd {
+0% {
+	-webkit-transform: rotate(-540deg) scale(0);
+			transform: rotate(-540deg) scale(0);
+	opacity: 0;
+}
+100% {
+	-webkit-transform: rotate(0) scale(1);
+			transform: rotate(0) scale(1);
+	opacity: 1;
+}
+}
+
+
+/**
+* ----------------------------------------
+* animation roll-in-left
+* ----------------------------------------
+*/
+@-webkit-keyframes roll-in-left {
+0% {
+	-webkit-transform: translateX(-800px) rotate(-540deg);
+			transform: translateX(-800px) rotate(-540deg);
+	opacity: 0;
+}
+100% {
+	-webkit-transform: translateX(0) rotate(0deg);
+			transform: translateX(0) rotate(0deg);
+	opacity: 1;
+}
+}
+
+
+/**
+* ----------------------------------------
+* animation roll-in-right
+* ----------------------------------------
+*/
+@-webkit-keyframes roll-in-right {
+0% {
+	-webkit-transform: translateX(800px) rotate(540deg);
+			transform: translateX(800px) rotate(540deg);
+	opacity: 0;
+}
+100% {
+	-webkit-transform: translateX(0) rotate(0deg);
+			transform: translateX(0) rotate(0deg);
+	opacity: 1;
+}
+}
+
+
+/* ----------------------------------------------
+* Generated by Animista on 2018-12-5 22:4:45
+* w: http://animista.net, t: @cssanimista
+* ---------------------------------------------- */
+
+/**
+* ----------------------------------------
+* animation swing-in-top-fwd
+* ----------------------------------------
+*/
+@-webkit-keyframes swing-in-top-fwd {
+0% {
+	-webkit-transform: rotateX(-100deg);
+			transform: rotateX(-100deg);
+	-webkit-transform-origin: top;
+			transform-origin: top;
+	opacity: 0;
+}
+100% {
+	-webkit-transform: rotateX(0deg);
+			transform: rotateX(0deg);
+	-webkit-transform-origin: top;
+			transform-origin: top;
+	opacity: 1;
+}
+}
+
+
+/* ----------------------------------------------
+* Generated by Animista on 2018-12-6 16:33:22
+* w: http://animista.net, t: @cssanimista
+* ---------------------------------------------- */
+
+/**
+* ----------------------------------------
+* animation swing-in-right-fwd
+* ----------------------------------------
+*/
+@-webkit-keyframes swing-in-right-fwd {
+0% {
+	-webkit-transform: rotateY(-100deg);
+					transform: rotateY(-100deg);
+	-webkit-transform-origin: right;
+					transform-origin: right;
+	opacity: 0;
+}
+100% {
+	-webkit-transform: rotateY(0);
+					transform: rotateY(0);
+	-webkit-transform-origin: right;
+					transform-origin: right;
+	opacity: 1;
+}
+}
+
+/* ----------------------------------------------
+* Generated by Animista on 2018-12-6 16:33:57
+* w: http://animista.net, t: @cssanimista
+* ---------------------------------------------- */
+
+/**
+* ----------------------------------------
+* animation swing-in-bottom-fwd
+* ----------------------------------------
+*/
+@-webkit-keyframes swing-in-bottom-fwd {
+0% {
+	-webkit-transform: rotateX(100deg);
+					transform: rotateX(100deg);
+	-webkit-transform-origin: bottom;
+					transform-origin: bottom;
+	opacity: 0;
+}
+100% {
+	-webkit-transform: rotateX(0);
+					transform: rotateX(0);
+	-webkit-transform-origin: bottom;
+					transform-origin: bottom;
+	opacity: 1;
+}
+}
+
+
+
+/**
+* ----------------------------------------
+* animation flip-scale-up-hor
+* ----------------------------------------
+*/
+@-webkit-keyframes flip-scale-up-hor {
+0% {
+	-webkit-transform: scale(1) rotateX(0);
+					transform: scale(1) rotateX(0);
+}
+50% {
+	-webkit-transform: scale(2.5) rotateX(-90deg);
+					transform: scale(2.5) rotateX(-90deg);
+}
+100% {
+	-webkit-transform: scale(1) rotateX(-180deg);
+					transform: scale(1) rotateX(-180deg);
+}
+}
+
+
+.flip-scale-up-hor {
+-webkit-animation: flip-scale-up-hor 0.5s linear both;
+				animation: flip-scale-up-hor 0.5s linear both;
+}
+
+
+/* ----------------------------------------------
+* Generated by Animista on 2018-12-6 16:35:16
+* w: http://animista.net, t: @cssanimista
+* ---------------------------------------------- */
+
+/**
+* ----------------------------------------
+* animation shake-top
+* ----------------------------------------
+*/
+@-webkit-keyframes shake-top {
+0%,
+100% {
+	-webkit-transform: rotate(0deg);
+					transform: rotate(0deg);
+	-webkit-transform-origin: 50% 0;
+					transform-origin: 50% 0;
+}
+10% {
+	-webkit-transform: rotate(2deg);
+					transform: rotate(2deg);
+}
+20%,
+40%,
+60% {
+	-webkit-transform: rotate(-4deg);
+					transform: rotate(-4deg);
+}
+30%,
+50%,
+70% {
+	-webkit-transform: rotate(4deg);
+					transform: rotate(4deg);
+}
+80% {
+	-webkit-transform: rotate(-2deg);
+					transform: rotate(-2deg);
+}
+90% {
+	-webkit-transform: rotate(2deg);
+					transform: rotate(2deg);
+}
+}
+
+/* ----------------------------------------------
+* Generated by Animista on 2018-12-6 16:36:51
+* w: http://animista.net, t: @cssanimista
+* ---------------------------------------------- */
+
+/**
+* ----------------------------------------
+* animation shake-horizontal
+* ----------------------------------------
+*/
+@-webkit-keyframes shake-horizontal {
+0%,
+100% {
+	-webkit-transform: translateX(0);
+					transform: translateX(0);
+}
+10%,
+30%,
+50%,
+70% {
+	-webkit-transform: translateX(-10px);
+					transform: translateX(-10px);
+}
+20%,
+40%,
+60% {
+	-webkit-transform: translateX(10px);
+					transform: translateX(10px);
+}
+80% {
+	-webkit-transform: translateX(8px);
+					transform: translateX(8px);
+}
+90% {
+	-webkit-transform: translateX(-8px);
+					transform: translateX(-8px);
+}
 }
 

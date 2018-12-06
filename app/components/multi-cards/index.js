@@ -17,6 +17,7 @@ import Memory from './memory.js';
 * @property {Array<Object>} cardStyles - allows to override the given styles. Handles objects with  `container`, `front` and `back` keys
 * @property {Function} onChange - a function that receives the matrix of the flippable cards
 * @property {boolean} oneTime - indicates whether the flip process may be executed just once
+* @property {objet} animation - if set the component uses an entry animation; the object contains a name (like `anim-scale-up`) and a duration (like `1.7s` = 1.7 seconds)
 */
 class MultiCards extends Component {
 	constructor( props ) {
@@ -34,7 +35,6 @@ class MultiCards extends Component {
 
 		if (this.props.game !== void 0) {
 			this.Memory = Memory.init( this.props.values, this);
-			console.log("MEMORY initialisiert");
 		}
 	}
 
@@ -170,9 +170,26 @@ class MultiCards extends Component {
 		return list;
 	}
 
+	getAnimation() {
+		if (this.props.animation !== null) {
+			var style = {
+				animationName: this.props.animation.name,
+				animationDuration: this.props.animation.duration
+			};
+			return style;
+		}
+	return null;
+	}
+
 	render() {
+		var anim = this.getAnimation();
+		const style = {
+			overflow: 'auto',
+			... anim
+		};
+
 		return (
-			<div style={{ overflow: 'auto' }} >
+			<div style={style} >
 				{this.renderCards()}
 			</div>
 		);
@@ -183,6 +200,7 @@ class MultiCards extends Component {
 // PROPERTIES //
 
 MultiCards.propTypes = {
+	animation: PropTypes.object,
 	cardStyles: PropTypes.shape({
 		container: PropTypes.object,
 		front: PropTypes.object,
@@ -197,6 +215,7 @@ MultiCards.propTypes = {
 };
 
 MultiCards.defaultProps = {
+	animation: null,
 	cardStyles: {
 		container: {},
 		front: {},
