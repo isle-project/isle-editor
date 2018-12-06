@@ -32,6 +32,15 @@ export function fileLoaded({ fileName, filePath }) {
 	};
 }
 
+export function saveLintErrors( errors ) {
+	return {
+		type: types.LINT_ERRORS,
+		payload: {
+			errors
+		}
+	};
+}
+
 export function encounteredError( error ) {
 	return {
 		type: types.ENCOUNTERED_ERROR,
