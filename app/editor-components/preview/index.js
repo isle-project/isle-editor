@@ -366,7 +366,6 @@ Preview.propTypes = {
 	currentMode: PropTypes.string.isRequired,
 	currentRole: PropTypes.string.isRequired,
 	onCode: PropTypes.func,
-	onScroll: PropTypes.func.isRequired,
 	preamble: PropTypes.object.isRequired
 };
 
