@@ -15,7 +15,7 @@
 	--quartary: #ca5800;
 	--quartarydark: #351802;
 	--quartarylight:  #c49978;
-	
+
   }
 
 /* MAIN */
@@ -228,14 +228,15 @@ pre {
 	font-size: 40px;
 	font-weight: 700;
 	font-family: Open Sans Condensed;
+	margin: 0.3em 0;
 	/*
 	animation-delay: 5s;
 	-webkit-animation-name: shine;
 	-webkit-animation-duration: 17s;
 	-webkit-animation-iteration-count: 5;
-	
+
 	background-image: linear-gradient(to right, var(--primary), var(--primarydark) 7%, var(--primarysuperlight) );
-	
+
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	*/
@@ -255,12 +256,9 @@ pre {
 
 .Lesson hr {
 	height: 1px;
-	background: red; /* For browsers that do not support gradients */ 
-	background: linear-gradient(to right, transparent, var(--primarylight) 12%, var(--quartarylight) 48%, var(--primarylight) 52%, transparent 92%); /* Standard syntax */ 
+	background: red; /* For browsers that do not support gradients */
+	background: linear-gradient(to right, transparent, var(--primarylight) 12%, var(--quartarylight) 48%, var(--primarylight) 52%, transparent 92%); /* Standard syntax */
 }
-
-
-
 
 .Lesson h2 {
 	font-size: 36px;
@@ -270,7 +268,7 @@ pre {
 
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
- 
+
 	background-image:  linear-gradient(to right, var(--secondaryhalf), var(--secondary) 4% ) ,
 					   linear-gradient(to bottom, transparent, var(--quartary));
 }
@@ -299,7 +297,6 @@ pre {
 .Lesson h4:hover {
 	color: var(--quartarylight);
 }
-
 
 .Lesson th, .Lesson td {
 	padding: 5px;
@@ -481,101 +478,101 @@ label {
 
 /*********************************************************************/
 @keyframes anim-fade-in {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 @keyframes anim-rotate-in {
-    0% {
+	0% {
 		-webkit-transform: scale(0) rotate(-120deg);
-    }
-    100% {
+	}
+	100% {
 		-webkit-transform: scale(1) rotate(360deg);
-    }
+	}
 }
 
 @keyframes anim-rotate-out {
-    0% {
+	0% {
 		transform: rotate(0deg) scale(1);
-    }
-    100% {
+	}
+	100% {
 		transform: rotate(720deg) scale(0);
-    }
+	}
 }
 
 @keyframes anim-fade-out {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
 }
 
 
 @keyframes anim-scale-up {
-    0% {
-        transform: scale(0.01);
-    }
-    100% {
-        transform: scale(1);
-    }
+	0% {
+		transform: scale(0.01);
+	}
+	100% {
+		transform: scale(1);
+	}
 }
 
 .anim-scale-up {
-    animation-name: anim-scale-up;
-    animation-duration: 0.3s;
+	animation-name: anim-scale-up;
+	animation-duration: 0.3s;
 }
 
 
 @keyframes anim-scale-down {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(0);
-    }
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(0);
+	}
 }
 
 .anim-scale-down {
-    animation-name: anim-scale-down;
-    animation-duration: 0.3s;
+	animation-name: anim-scale-down;
+	animation-duration: 0.3s;
 }
 
 @keyframes anim-explosion {
-    0% {
-        transform: scale(0);
+	0% {
+		transform: scale(0);
 	}
-    20% {
-        transform: scale(1.1);
+	20% {
+		transform: scale(1.1);
 	}
-    28% {
-        transform: scale(0.7);
+	28% {
+		transform: scale(0.7);
 	}
-    37% {
-        transform: scale(1.05);
+	37% {
+		transform: scale(1.05);
 	}
-    47% {
-        transform: scale(0.8);
+	47% {
+		transform: scale(0.8);
 	}
-    58% {
-        transform: scale(1.02);
+	58% {
+		transform: scale(1.02);
 	}
-    69% {
-        transform: scale(0.82);
+	69% {
+		transform: scale(0.82);
 	}
-    80% {
-        transform: scale(1.01);
+	80% {
+		transform: scale(1.01);
 	}
-    93% {
-        transform: scale(0.97);
+	93% {
+		transform: scale(0.97);
 	}
-    100% {
-        transform: scale(1);
+	100% {
+		transform: scale(1);
 	}
 
 }
