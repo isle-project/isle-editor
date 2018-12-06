@@ -10,6 +10,7 @@ import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 var EXTERNALS = [
 	'archiver',
 	'child_process',
+	'eslint',
 	'webpack',
 	'uglify-es',
 	'react',
