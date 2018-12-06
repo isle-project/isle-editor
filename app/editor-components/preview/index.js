@@ -266,7 +266,8 @@ class Preview extends Component {
 			this.props.code !== nextProps.code ||
 			this.props.preamble.server !== nextProps.preamble.server ||
 			this.props.preamble.state !== nextProps.preamble.state ||
-			this.props.currentMode !== nextProps.currentMode
+			this.props.currentMode !== nextProps.currentMode ||
+			this.props.currentRole !== nextProps.currentRole
 		) {
 			return true;
 		}
@@ -278,7 +279,8 @@ class Preview extends Component {
 		if (
 			this.props.preamble.server !== prevProps.preamble.server ||
 			this.props.preamble.state !== prevProps.preamble.state ||
-			this.props.currentMode !== prevProps.currentMode
+			this.props.currentMode !== prevProps.currentMode ||
+			this.props.currentRole !== prevProps.currentRole
 		) {
 			const offline = this.props.currentMode === 'offline';
 			const session = new Session( this.props.preamble, offline );
