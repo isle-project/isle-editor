@@ -55,7 +55,6 @@ const OPTS = {
 };
 const debug = logger( 'isle-editor' );
 const RE_LINES = /\r?\n/g;
-
 const createScope = ( session ) => {
 	const SCOPE = {
 		React,
@@ -250,7 +249,6 @@ class Preview extends Component {
 		const session = new Session( props.preamble, offline );
 		this.session = session;
 		this.scope = createScope( session );
-		this.props.onScope( this.scope );
 		const lessonState = session.config.state;
 		this.state = {
 			...lessonState
@@ -261,6 +259,18 @@ class Preview extends Component {
 	componentDidMount() {
 		debug( 'Preview did mount.' );
 		global.lesson = this;
+	}
+
+	shouldComponentUpdate( nextProps, nextState ) {
+		if (
+			this.props.code !== nextProps.code ||
+			this.props.preamble.server !== nextProps.preamble.server ||
+			this.props.preamble.state !== nextProps.preamble.state ||
+			this.props.currentMode !== nextProps.currentMode
+		) {
+			return true;
+		}
+		return false;
 	}
 
 	componentDidUpdate( prevProps ) {
@@ -274,7 +284,6 @@ class Preview extends Component {
 			const session = new Session( this.props.preamble, offline );
 			this.session = session;
 			this.scope = createScope( session );
-			this.props.onScope( this.scope );
 			let lessonState = session.config.state;
 			this.setState({
 				...lessonState
@@ -305,13 +314,16 @@ class Preview extends Component {
 		}
 		if ( !preamble.hideToolbar ) {
 			noEmptyLines += 1;
-			code = '<StatusBar className="fixedPos" />\n' + code;
+			code = '<StatusBar className="fixedPos" />' + code;
 		}
 
 		// Prepend empty lines so line numbers in error stack traces match:
 		code = repeat( '\n', noEmptyLines ) + code;
+		code = `var out = <React.Fragment>${code}</React.Fragment>`;
+		this.props.onCode( code );
+
 		debug( 'Transpile code to ES5...' );
-		es5code = transform( `var out = <React.Fragment>${code}</React.Fragment>`, OPTS );
+		es5code = transform( code, OPTS );
 		es5code.code += '\n\n return out;';
 		if ( es5code && es5code.code ) {
 			const SCOPE_KEYS = Object.keys( this.scope );
@@ -343,7 +355,7 @@ class Preview extends Component {
 
 Preview.defaultProps = {
 	code: '',
-	onScope() {}
+	onCode() {}
 };
 
 
@@ -353,7 +365,8 @@ Preview.propTypes = {
 	code: PropTypes.string,
 	currentMode: PropTypes.string.isRequired,
 	currentRole: PropTypes.string.isRequired,
-	onScope: PropTypes.func,
+	onCode: PropTypes.func,
+	onScroll: PropTypes.func.isRequired,
 	preamble: PropTypes.object.isRequired
 };
 
