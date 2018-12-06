@@ -11,6 +11,7 @@ import ztest from '@stdlib/stats/ztest';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import copy from '@stdlib/utils/copy';
 import roundn from '@stdlib/math/base/special/roundn';
+import replace from '@stdlib/string/replace';
 import unique from 'uniq';
 import mean from 'utils/statistic/mean';
 import QuestionButton from './question_button.js';
@@ -19,6 +20,8 @@ import QuestionButton from './question_button.js';
 // VARIABLES //
 
 const DESCRIPTION = 'A test for the proportion of a selected category of a qualitative variable.';
+const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,[\d.]+\]/;
+const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[[\d.]+,Infinity\]/;
 
 
 // MAIN //
@@ -53,9 +56,11 @@ class PropTest extends Component {
 			} else if ( direction === 'greater' ){
 				arrow = '>';
 			}
-			const printout = result.print({
+			let printout = result.print({
 				decision: this.props.showDecision
 			});
+			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
+			printout = replace( printout, RE_ONESIDED_GREATER, '' );
 			const output = {
 				variable: `One-Sample Proportion Test for ${variable}`,
 				type: 'Test',

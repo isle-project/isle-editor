@@ -14,6 +14,7 @@ import isArray from '@stdlib/assert/is-array';
 import ztest2 from '@stdlib/stats/ztest2';
 import copy from '@stdlib/utils/copy';
 import roundn from '@stdlib/math/base/special/roundn';
+import replace from '@stdlib/string/replace';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
 import unique from 'uniq';
 import mean from 'utils/statistic/mean';
@@ -24,6 +25,8 @@ import QuestionButton from './question_button.js';
 // VARIABLES //
 
 const DESCRIPTION = 'A test for equality of proportions for a selected category of a qualitative variable across two groups.';
+const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,[\d.]+\]/;
+const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[[\d.]+,Infinity\]/;
 
 
 // MAIN //
@@ -94,6 +97,11 @@ class PropTest2 extends Component {
 			} else if ( direction === 'greater' ){
 				arrow = '>';
 			}
+			let printout = result.print({
+				decision: showDecision
+			});
+			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
+			printout = replace( printout, RE_ONESIDED_GREATER, '' );
 			const title = `Hypothesis test for equality of mean ${var1} by ${grouping}`;
 			value = <div>
 				<label>{title}</label><br />
@@ -113,9 +121,7 @@ class PropTest2 extends Component {
 				<label>Sample proportion in group {firstCategory}: {roundn( mean( x ), -3 )}</label>
 				<label>Sample proportion in group {secondCategory}: {roundn( mean( y ), -3 )}</label>
 				<pre>
-					{result.print({
-						decision: showDecision
-					})}
+					{printout}
 				</pre>
 			</div>;
 		} else if ( var2 ) {
