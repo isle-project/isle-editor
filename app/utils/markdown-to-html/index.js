@@ -17,7 +17,7 @@ const md = markdownIT({
 const mdInline = markdownIT({
 	html: true,
 	xhtmlOut: true,
-	breaks: false,
+	breaks: true,
 	typographer: false
 });
 const DEFAULT_INLINE_MATH_DELIMITERS = [
@@ -51,12 +51,12 @@ function toMarkdown( str, escapeBackslash ) {
 	if ( escapeBackslash ) {
 		str = replace( str, RE_RAW_ATTRIBUTE, escaper );
 	}
-
 	const arr = tokenizer.parse( str );
 	for ( let i = 0; i < arr.length; i++ ) {
-		arr[ i ] = mdInline.renderInline( arr[ i ]);
+		arr[ i ] = mdInline.renderInline( arr[ i ] );
 	}
 	str = arr.join( '' );
+	str = replace( str, '<br />', '<br />\n' );
 	str = md.render( str );
 
 	str = replace( str, '{', 'OPEN_CURLY_BRACE' );
