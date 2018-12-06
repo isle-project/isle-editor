@@ -247,7 +247,7 @@ class DataExplorer extends Component {
 	*/
 	clearOutput = ( idx ) => {
 		let newOutputs = copy( this.state.output );
-		newOutputs.splice( idx, 1 );
+		newOutputs[ idx ] = null;
 		this.setState({
 			output: newOutputs
 		});
