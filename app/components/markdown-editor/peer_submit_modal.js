@@ -27,7 +27,7 @@ class PeerSubmitModal extends Component {
 		return ( <Modal
 			onHide={this.clickHide}
 			show={this.props.show}
-			size="small"
+			dialogClassName="modal-75w"
 		>
 			<Modal.Header closeButton>
 				<Modal.Title>Peer Review Submission</Modal.Title>
@@ -36,8 +36,8 @@ class PeerSubmitModal extends Component {
 				To send your report to the individual review it, click the left-hand button that reads &ldquo;Submit to Reviewer&rdquo;. If you are sending comments to an individual, click the right-hand button entitled &ldquo;Send Review Comments&rdquo;.
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="success" onClick={this.handleSubmissionToReviewer}>Submit to Reviewer</Button>
-				<Button variant="success" onClick={this.handleSubmissionComments}>Send Review Comments</Button>
+				<Button variant="success" onClick={this.handleSubmissionToReviewer}>{this.props.submitButtonLabel}</Button>
+				<Button variant="success" onClick={this.handleSubmissionComments}>{this.props.reviewButtonLabel}</Button>
 			</Modal.Footer>
 		</Modal> );
 	}
@@ -50,10 +50,14 @@ PeerSubmitModal.propTypes = {
 	onHide: PropTypes.func,
 	onSubmitToReviewer: PropTypes.func,
 	onSubmitComments: PropTypes.func,
+	submitButtonLabel: PropTypes.string,
+	reviewButtonLabel: PropTypes.string,
 	show: PropTypes.bool.isRequired
 };
 
 PeerSubmitModal.defaultProps = {
+	submitButtonLabel: 'Submit to Reviewer',
+	reviewButtonLabel: 'Send Review Comments',
 	onHide() {},
 	onSubmitToReviewer() {},
 	onSubmitComments() {}

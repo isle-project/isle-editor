@@ -102,7 +102,7 @@ function replacer( key, value ) {
 * @property {Array} toolbarConfig - array of toolbar element identifiers to be displayed
 * @property {Object} options - options passed to the SimpleMDE constructor, the package on which this component is based; see their documentation for available options
 * @property {boolean} autoSave - controls whether the editor should save the current text to the local storage of the browser at a given time interval
-* @property {boolean} peerReview - enables peer review mode in which each submission is sent to another randomly chosen student and vice versa
+* @property {Object} peerReview - if not null, enables peer review mode in which each submission is sent to another randomly chosen student and vice versa
 * @property {number} intervalTime - time between auto saves
 * @property {boolean} voiceControl - controls whether voice input is enabled
 * @property {number} voiceTimeout - time in milliseconds after a chunk of recorded voice input is inserted
@@ -971,9 +971,22 @@ class MarkdownEditor extends Component {
 			peer: assignment
 		}, () => {
 			this.context.addNotification({
-				title: 'Pairing',
-				message: 'You have been successfully paired!',
+				title: 'Pairing established',
+				message: 'You have been successfully paired with other students!',
 				level: 'success',
+				position: 'tr'
+			});
+		});
+	}
+
+	handlePeerCleanup = () => {
+		this.setState({
+			peer: null
+		}, () => {
+			this.context.addNotification({
+				title: 'Pairing ended',
+				message: 'The peer review pairings were ended.',
+				level: 'info',
 				position: 'tr'
 			});
 		});
@@ -989,6 +1002,7 @@ class MarkdownEditor extends Component {
 				{ this.props.peerReview ? <UserPairer
 					id={this.props.id+'_pairer'}
 					onAssignmentStudent={this.handlePeerAssignment}
+					onClearStudent={this.handlePeerCleanup}
 				/> : null }
 				<SaveModal
 					show={this.state.showSaveModal}
@@ -1012,14 +1026,16 @@ class MarkdownEditor extends Component {
 					onHide={this.toggleSubmitModal}
 					onSubmit={this.submitReport}
 				/>
-				<PeerSubmitModal
+				{ this.props.peerReview ? <PeerSubmitModal
 					show={this.state.showSubmitModal && this.state.peer}
 					onHide={this.toggleSubmitModal}
-					onSubmitToReviewer={() => { this.submitReport(this.state.peer.to,
+					onSubmitToReviewer={() => { this.submitReport( this.state.peer.to,
 						`Dear ${this.state.peer.to.name}, You have been sent a report for peer review! Please upload the attached .md file to the editor in ISLE. After uploading, insert your comments and submit using the 'Send Review Comments' button.`); }}
 					onSubmitComments={() => { this.submitReport(this.state.peer.from,
 						`Dear ${this.state.peer.from.name}, This email contains comments from your peer reviewer! Please upload the attached .md file to the editor in ISLE. After uploading, make any necessary changes and re-submit to your reviewer using the 'Submit to Reviewer' button.`); }}
-				/>
+					submitButtonLabel={this.props.peerReview.submitButtonLabel}
+					reviewButtonLabel={this.props.peerReview.reviewButtonLabel}
+				/> : null }
 				<ResetModal
 					show={this.state.showResetModal}
 					onHide={this.toggleResetModal}
@@ -1097,7 +1113,7 @@ MarkdownEditor.defaultProps = {
 	],
 	autoSave: true,
 	intervalTime: 60000,
-	peerReview: false,
+	peerReview: null,
 	plots: [],
 	voiceControl: false,
 	voiceTimeout: 5000,
@@ -1115,7 +1131,10 @@ MarkdownEditor.propTypes = {
 	voiceControl: PropTypes.bool,
 	voiceTimeout: PropTypes.number,
 	language: PropTypes.string,
-	peerReview: PropTypes.bool,
+	peerReview: PropTypes.shape({
+		submitButtonLabel: PropTypes.string,
+		reviewButtonLabel: PropTypes.string
+	}),
 	plots: PropTypes.array,
 	style: PropTypes.object,
 	onChange: PropTypes.func

@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/lib/Card';
 import Alert from 'react-bootstrap/lib/Alert';
 import Table from 'react-bootstrap/lib/Table';
 import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import FlippableCard from 'components/flippable-card';
 import Gate from 'components/gate';
 import shuffle from '@stdlib/random/shuffle';
@@ -69,9 +70,18 @@ class UserPairer extends Component {
 					if ( action.type === 'USERS_ASSIGNED' ) {
 						localStorage.setItem( this.props.id, action.value );
 						this.props.onAssignmentOwner( JSON.parse( action.value ) );
-					} else if ( action.type === 'INDIVIDUAL_ASSIGNED' ) {
+					}
+					else if ( action.type === 'ASSIGNMENT_CLEARED' ) {
+						localStorage.removeItem( this.props.id );
+						this.props.onClearOwner();
+					}
+					else if ( action.type === 'INDIVIDUAL_ASSIGNED' ) {
 						localStorage.setItem( this.props.id+'_individual', action.value );
 						this.props.onAssignmentStudent( JSON.parse( action.value ) );
+					}
+					else if ( action.type === 'REMOVE_ASSIGNMENT' ) {
+						localStorage.removeItem( this.props.id+'_individual' );
+						this.props.onClearStudent( action.value );
 					}
 				}
 			}
@@ -143,6 +153,35 @@ class UserPairer extends Component {
 		});
 	}
 
+	clearAssignments = () => {
+		const session = this.context;
+		if ( session.isOwner() ) {
+			const assignments = this.state.assignments;
+			const logAction = {
+				id: this.props.id,
+				type: 'ASSIGNMENT_CLEARED',
+				value: true
+			};
+			session.log( logAction, 'owners' );
+			for ( let key in assignments ) {
+				if ( hasOwnProp( assignments, key ) ) {
+					session.log( {
+						id: this.props.id,
+						type: 'REMOVE_ASSIGNMENT',
+						value: key,
+						noSave: true
+					}, key );
+				}
+			}
+			this.setState({
+				showAssignments: false,
+				assignments: {},
+				message: null
+			});
+			localStorage.removeItem( this.props.id );
+		}
+	}
+
 	renderTable( assignments ) {
 		const rows = [];
 		for ( let key in assignments ) {
@@ -182,11 +221,14 @@ class UserPairer extends Component {
 					<Card.Body>
 						<p>There are currently <b>{users.length}</b> users ({this.props.filterOwners ? 'excluding' : 'including'} course owners) online.</p>
 						{msg ? <Alert variant={msg.variant}>{msg.value}</Alert> : null }
-						<p>
-							<Button onClick={this.createAssignments}>
+						<ButtonGroup>
+							<Button variant="secondary" onClick={this.createAssignments}>
 								{ this.state.showAssignments ? 'Repair users' : 'Pair users' }
 							</Button>
-						</p>
+							{ this.state.showAssignments ? <Button variant="warning" onClick={this.clearAssignments}>
+								Clear Assignments
+							</Button> : null }
+						</ButtonGroup>
 						{ this.state.showAssignments ? <FlippableCard
 							cardStyles={{
 								container: {
@@ -219,13 +261,17 @@ class UserPairer extends Component {
 UserPairer.defaultProps = {
 	filterOwners: true,
 	onAssignmentOwner() {},
-	onAssignmentStudent() {}
+	onAssignmentStudent() {},
+	onClearOwner() {},
+	onClearStudent() {}
 };
 
 UserPairer.propTypes = {
 	filterOwners: PropTypes.bool,
 	onAssignmentOwner: PropTypes.func,
-	onAssignmentStudent: PropTypes.func
+	onAssignmentStudent: PropTypes.func,
+	onClearOwner: PropTypes.func,
+	onClearStudent: PropTypes.func
 };
 
 UserPairer.contextType = SessionContext;
