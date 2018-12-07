@@ -2,6 +2,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import randu from '@stdlib/random/base/randu';
+
+
+// VARIABLES //
+
+const SOUND_FILE = 'https://isle.heinz.cmu.edu/keystroke2_1544120411143.ogg';
 
 
 // MAIN //
@@ -11,69 +17,70 @@ import PropTypes from 'prop-types';
 *
 * @property {number} deviation - allows you to specify the randomness
 * @property {number} interval - the interval of the typewriter
-* @property {bool} random -if random is set, the keyforms will be performed with a certain, "humane" randomness
-* @property {bool} interval - the typed keystroke will be also heard
-* @property {object} style - the css style to be applied
+* @property {boolean} random -if random is set, the keystrokes will be performed with a certain, "humane" randomness
+* @property {boolean} sound - the typed keystroke will be also heard
 * @property {string} text - the full text to be displayed
+* @property {Object} style - CSS inline styles
 */
-
 class Typewriter extends Component {
 	constructor( props ) {
 		super( props );
 
 		this.state = {
-            actualText: '',
-            ct: 0
+			actualText: '',
+			ct: 0
 		};
 	}
 
-    playAudio = (key) => {
-        var randomVolume = Math.random() * 0.7;
-        randomVolume += 0.3;
-        if (!this.audio) this.audio = new Audio('https://isle.heinz.cmu.edu/keystroke2_1544120411143.ogg');
-        this.audio.volume = randomVolume;
-        console.log( randomVolume );
-        this.audio.play();
-    }
+	playAudio = () => {
+		if ( !this.audio ) {
+			this.audio = new Audio( SOUND_FILE );
+		}
+		this.audio.volume = 0.3 + ( randu() * 0.7 );
+		this.audio.play();
+	}
 
-    setText = () => {
-        if (this.state.ct < this.props.text.length) {
-            var n = this.state.ct + 1;
-            var text = this.props.text.slice(0, n);
-            if (this.props.sound) this.playAudio();
+	setText = () => {
+		if ( this.state.ct < this.props.text.length ) {
+			const n = this.state.ct + 1;
+			const text = this.props.text.slice( 0, n );
+			if ( this.props.sound ) {
+				this.playAudio();
+			}
+			this.setState({
+				ct: n,
+				actualText: text
+			});
+		}
+	}
 
-            this.setState({
-                ct: n,
-                actualText: text
-            });
-        }
-    }
+	next() {
+		let next = this.props.interval;
+		if ( this.props.random ) {
+			next = ( randu() * this.props.deviation ) - (this.props.deviation*0.5);
+			next = parseInt(next, 10);
+			next += this.props.interval;
+		}
+		setTimeout( this.setText, next );
+	}
 
-    next() {
-        var next = this.props.interval;
-        if (this.props.random === true) {
-            next = (Math.random() * this.props.deviation) - (this.props.deviation*0.5);
-            next = parseInt(next, 10);
-            next += this.props.interval;
-        }
-    setTimeout( this.setText, next);
-    }
+	process() {
+		if ( !this.state.started ) {
+			this.init();
+		}
+		else {
+			this.next();
+		}
+	}
 
-    process() {
-        if (this.state.started === false ) {
-            this.init();
-        }
-        else this.next();
-    }
-
-    type( ) {
-        this.process();
-        return (
-            <div style={this.props.style}>
-                {this.state.actualText}
-            </div>
-        );
-    }
+	type( ) {
+		this.process();
+		return (
+			<div style={this.props.style}>
+				{this.state.actualText}
+			</div>
+		);
+	}
 
 	render() {
 		return (
@@ -88,21 +95,21 @@ class Typewriter extends Component {
 // PROPERTIES //
 
 Typewriter.propTypes = {
-    deviation: PropTypes.number,
-    interval: PropTypes.number,
-    random: PropTypes.bool,
-    sound: PropTypes.bool,
-    style: PropTypes.object,
-    text: PropTypes.string
+	deviation: PropTypes.number,
+	interval: PropTypes.number,
+	random: PropTypes.bool,
+	sound: PropTypes.bool,
+	style: PropTypes.object,
+	text: PropTypes.string
 };
 
 Typewriter.defaultProps = {
-    deviation: 30,
-    interval: 100,
-    random: false,
-    sound: false,
-    style: null,
-    text: ''
+	deviation: 30,
+	interval: 100,
+	random: false,
+	sound: false,
+	style: {},
+	text: ''
 };
 
 
