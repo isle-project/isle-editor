@@ -120,7 +120,7 @@ class Typewriter extends Component {
 			next = parseInt(next, 10);
 			next += this.props.interval;
 		}
-		if (isArray(this.props.text)) this.tmeout = setTimeout( this.setArrayText, next );
+		if (isArray(this.props.text)) this.timeout = setTimeout( this.setArrayText, next );
 		else this.timeout=setTimeout( this.setText, next );
 	}
 
