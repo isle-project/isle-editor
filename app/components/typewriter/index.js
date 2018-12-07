@@ -37,9 +37,7 @@ class Typewriter extends Component {
 	}
 
 	componentWillUnmount() {
-		console.log('SHOULD CLEAR TIMEOUT');
 		if (this.timeout) {
-			console.log("TIMOUT EXISTIERT");
 			console.log( this.timeout );
 			clearTimeout(this.timeout);
 			this.timeout = 0;
