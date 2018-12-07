@@ -36,16 +36,25 @@ class Typewriter extends Component {
 		};
 	}
 
+	componentWillUnmount() {
+		console.log('SHOULD CLEAR TIMEOUT');
+		if (this.timeout) {
+			console.log("TIMOUT EXISTIERT");
+			console.log( this.timeout );
+			clearTimeout(this.timeout);
+			this.timeout = 0;
+		}
+	}
+
 	init() {
 		if ( !this.audio ) {
 			this.audio = new Audio( SOUND_FILE );
-			var self = this;
 		}
 
 		if ( this.props.delay !== null) {
-			setTimeout( function wait() {
-				self.started = true;
-				self.next();
+			this.timeout = setTimeout(() => {
+				this.started = true;
+				this.next();
 			}, this.props.delay);
 		}
 		else {
@@ -96,9 +105,8 @@ class Typewriter extends Component {
 			else {
 				let ct = this.state.textCt + 1;
 
-				var self = this;
-				setTimeout(function wait() {
-					self.setState({
+				this.timeout = setTimeout(() => {
+					this.setState({
 						ct: 0,
 						textCt: ct
 					});
@@ -114,8 +122,8 @@ class Typewriter extends Component {
 			next = parseInt(next, 10);
 			next += this.props.interval;
 		}
-		if (isArray(this.props.text)) setTimeout( this.setArrayText, next );
-		else setTimeout( this.setText, next );
+		if (isArray(this.props.text)) this.tmeout = setTimeout( this.setArrayText, next );
+		else this.timeout=setTimeout( this.setText, next );
 	}
 
 	process = () => {
