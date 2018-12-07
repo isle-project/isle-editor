@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import randu from '@stdlib/random/base/randu';
+import isArray from '@stdlib/assert/is-array';
 
 
 // VARIABLES //
@@ -16,6 +17,7 @@ const SOUND_FILE = 'https://isle.heinz.cmu.edu/keystroke2_1544120411143.ogg';
 * An ISLE component that allows you to create a typewriter effect
 *
 * @property {number} deviation - allows you to specify the randomness
+* @property {number} hold - if text is an array of strings, hold specified the duration the full will be displayed before it passes over to the next item in the array
 * @property {number} interval - the interval of the typewriter
 * @property {boolean} random -if random is set, the keystrokes will be performed with a certain, "humane" randomness
 * @property {boolean} sound - the typed keystroke will be also heard
@@ -25,32 +27,83 @@ const SOUND_FILE = 'https://isle.heinz.cmu.edu/keystroke2_1544120411143.ogg';
 class Typewriter extends Component {
 	constructor( props ) {
 		super( props );
+		this.started = false;
 
 		this.state = {
 			actualText: '',
-			ct: 0
+			ct: 0,
+			textCt: 0
 		};
 	}
 
-	playAudio = () => {
+	init() {
 		if ( !this.audio ) {
 			this.audio = new Audio( SOUND_FILE );
+			var self = this;
 		}
+
+		if ( this.props.delay !== null) {
+			setTimeout( function wait() {
+				self.started = true;
+				self.next();
+			}, this.props.delay);
+		}
+		else {
+			this.started = true;
+			this.next();
+		}
+	}
+
+	playAudio = (char) => {
 		this.audio.volume = 0.3 + ( randu() * 0.7 );
-		this.audio.play();
+		if (char !== ' ') this.audio.play();
 	}
 
 	setText = () => {
 		if ( this.state.ct < this.props.text.length ) {
 			const n = this.state.ct + 1;
 			const text = this.props.text.slice( 0, n );
+
 			if ( this.props.sound ) {
-				this.playAudio();
+				const actualChar = text[text.length-1];
+				this.playAudio( actualChar );
 			}
 			this.setState({
 				ct: n,
 				actualText: text
 			});
+		}
+	}
+
+	setArrayText = () => {
+		if ( this.state.textCt < this.props.text.length) {
+			let current = this.props.text[this.state.textCt];
+			// check if the text is fullay displayed
+			if ( this.state.ct < current.length ) {
+				const n = this.state.ct + 1;
+				const text = current.slice( 0, n );
+
+				if ( this.props.sound ) {
+					const actualChar = text[text.length-1];
+					this.playAudio( actualChar );
+				}
+
+				this.setState({
+					ct: n,
+					actualText: text
+				});
+			}
+			else {
+				let ct = this.state.textCt + 1;
+
+				var self = this;
+				setTimeout(function wait() {
+					self.setState({
+						ct: 0,
+						textCt: ct
+					});
+				}, this.props.hold);
+			}
 		}
 	}
 
@@ -61,11 +114,12 @@ class Typewriter extends Component {
 			next = parseInt(next, 10);
 			next += this.props.interval;
 		}
-		setTimeout( this.setText, next );
+		if (isArray(this.props.text)) setTimeout( this.setArrayText, next );
+		else setTimeout( this.setText, next );
 	}
 
-	process() {
-		if ( !this.state.started ) {
+	process = () => {
+		if ( this.started === false ) {
 			this.init();
 		}
 		else {
@@ -96,6 +150,8 @@ class Typewriter extends Component {
 
 Typewriter.propTypes = {
 	deviation: PropTypes.number,
+	delay: PropTypes.number,
+	hold: PropTypes.number,
 	interval: PropTypes.number,
 	random: PropTypes.bool,
 	sound: PropTypes.bool,
@@ -105,6 +161,8 @@ Typewriter.propTypes = {
 
 Typewriter.defaultProps = {
 	deviation: 30,
+	delay: null,
+	hold: 2000,
 	interval: 100,
 	random: false,
 	sound: false,
