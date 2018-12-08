@@ -1458,6 +1458,18 @@ class Session {
 			global.lesson.notificationSystem.addNotification( config );
 		}
 	}
+
+	/**
+	* Removes a notification.
+	*
+	* @param {(Object|string)} notification - notification or `uid`
+	* @returns {void}
+	*/
+	removeNotification( notification ) {
+		if ( global.lesson.notificationSystem ) {
+			global.lesson.notificationSystem.removeNotification( notification );
+		}
+	}
 }
 
 
