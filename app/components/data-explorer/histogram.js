@@ -17,6 +17,7 @@ import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
 import mean from 'utils/statistic/mean';
 import stdev from 'utils/statistic/stdev';
+import isNumber from '@stdlib/assert/is-number';
 import pow from '@stdlib/math/base/special/pow';
 import gaussian from '@stdlib/stats/base/dists/normal/pdf';
 import dexp from '@stdlib/stats/base/dists/exponential/pdf';
@@ -77,7 +78,15 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 	let layout;
 
 	if ( !group ) {
-		const vals = data[ variable ];
+		let vals = data[ variable ];
+		let nonmissing = [];
+		for ( let i = 0; i < vals.length; i++ ) {
+			let x = vals[ i ];
+			if ( isNumber( x ) ) {
+				nonmissing.push( x );
+			}
+		}
+		vals = nonmissing;
 		traces = [ {
 			x: vals,
 			type: 'histogram',
@@ -116,7 +125,14 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 		};
 	} else {
 		let freqs = by( data[ variable ], data[ group ], arr => {
-			return arr;
+			let nonmissing = [];
+			for ( let i = 0; i < arr.length; i++ ) {
+				let x = arr[ i ];
+				if ( isNumber( x ) ) {
+					nonmissing.push( x );
+				}
+			}
+			return nonmissing;
 		});
 		traces = [];
 		const keys = group.categories || objectKeys( freqs );

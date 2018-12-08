@@ -9,6 +9,7 @@ import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
+import isNumber from '@stdlib/assert/is-number';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import lowess from '@stdlib/stats/lowess';
@@ -232,8 +233,20 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 				colorOffset += nColors;
 			}
 			for ( let i = 0; i < groups.length; i++ ) {
-				const xvals = xgrouped[ groups[ i ] ];
-				const yvals = ygrouped[ groups[ i ] ];
+				let xvals = xgrouped[ groups[ i ] ];
+				let yvals = ygrouped[ groups[ i ] ];
+				let xc = [];
+				let yc = [];
+				for ( let j = 0; j < xvals.length; j++ ) {
+					let x = xvals[ j ];
+					let y = yvals[ j ];
+					if ( isNumber( x ) && isNumber( y ) ) {
+						xc.push( x );
+						yc.push( y );
+					}
+				}
+				xvals = xc;
+				yvals = yc;
 				let predictedLinear;
 				let predictedSmooth;
 				let values;
@@ -273,6 +286,18 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 		} else {
 			let xvals = data[ xval ];
 			let yvals = data[ yval ];
+			let xc = [];
+			let yc = [];
+			for ( let j = 0; j < xvals.length; j++ ) {
+				let x = xvals[ j ];
+				let y = yvals[ j ];
+				if ( isNumber( x ) && isNumber( y ) ) {
+					xc.push( x );
+					yc.push( y );
+				}
+			}
+			xvals = xc;
+			yvals = yc;
 			let predictedLinear;
 			let predictedSmooth;
 			let values;
@@ -288,7 +313,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 					type: 'line'
 				});
 			}
-			if ( contains(regressionMethod, 'smooth') ) {
+			if ( contains( regressionMethod, 'smooth' ) ) {
 				const out = lowess( xvals, yvals, { 'f': smoothSpan } );
 				values = out.x;
 				predictedSmooth = out.y;
