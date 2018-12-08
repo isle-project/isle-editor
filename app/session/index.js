@@ -1451,12 +1451,13 @@ class Session {
 	* Displays a notification.
 	*
 	* @param {Object} notification configuration
-	* @returns {void}
+	* @returns {(null|Notification)}
 	*/
 	addNotification( config ) {
 		if ( global.lesson.notificationSystem ) {
-			global.lesson.notificationSystem.addNotification( config );
+			return global.lesson.notificationSystem.addNotification( config );
 		}
+		return null;
 	}
 
 	/**

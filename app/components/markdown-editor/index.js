@@ -9,6 +9,7 @@ import katex from 'markdown-it-katex';
 import markdownSub from 'markdown-it-sub';
 import markdownIns from 'markdown-it-ins';
 import markdownContainer from 'markdown-it-container';
+import Button from 'react-bootstrap/lib/Button';
 import saveAs from 'utils/file-saver';
 import logger from 'debug';
 import replace from '@stdlib/string/replace';
@@ -143,7 +144,9 @@ class MarkdownEditor extends Component {
 			showFigureInsert: false,
 			showTitleInsert: false,
 			showGuides: false,
-			peer: null
+			peer: null,
+			submittedToPeer: false,
+			submittedPeerComments: false
 		};
 
 		this.toolbarOpts = {
@@ -420,6 +423,59 @@ class MarkdownEditor extends Component {
 				/>, voiceToRemove[ 0 ] );
 			}
 		}
+		const session = this.context;
+		this.unsubscribe = session.subscribe( ( type, action ) => {
+			if ( action && action.id === this.props.id ) {
+				if ( action.type === 'MARKDOWN_EDITOR_PEER_REPORT' ) {
+					const notification = session.addNotification({
+						title: 'Report received',
+						message: 'You have been sent a report for peer review! Please confirm to load it into the Markdown editor',
+						level: 'success',
+						position: 'tr',
+						dismissible: 'none',
+						autoDismiss: 0,
+						children: <div style={{ marginBottom: '30px' }}>
+							<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={() => {
+								if ( !this.state.submittedToPeer ) {
+									return session.addNotification({
+										title: 'Submit first',
+										message: 'Submit your report first before opening the report you got sent for review',
+										level: 'warning',
+										position: 'tr'
+									});
+								}
+								session.removeNotification( notification );
+								this.setEditorValue( action.value );
+							}}>Open Report</Button>
+						</div>
+					});
+				}
+				else if ( action.type === 'MARKDOWN_EDITOR_PEER_COMMENTS' ) {
+					const notification = session.addNotification({
+						title: 'Comments received',
+						message: 'You have received comments from your peer reviewer! Please confirm to load it into the Markdown editor',
+						level: 'success',
+						position: 'tr',
+						dismissible: 'none',
+						autoDismiss: 0,
+						children: <div style={{ marginBottom: '30px' }}>
+							<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={() => {
+								if ( !this.state.submittedPeerComments ) {
+									return session.addNotification({
+										title: 'Submit first',
+										message: 'First send back the comments you wrote before opening your annotated report',
+										level: 'warning',
+										position: 'tr'
+									});
+								}
+								session.removeNotification( notification );
+								this.setEditorValue( action.value );
+							}}>Open Comments</Button>
+						</div>
+					});
+				}
+			}
+		});
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
@@ -439,6 +495,16 @@ class MarkdownEditor extends Component {
 		if ( this.interval ) {
 			clearInterval( this.interval );
 		}
+		this.unsubscribe();
+	}
+
+	setEditorValue = ( text ) => {
+		const out = this.reMakeText( text );
+		this.setState({
+			'hash': out.hash
+		});
+		this.simplemde.codemirror.execCommand( 'selectAll' );
+		this.simplemde.codemirror.replaceSelection( out.text );
 	}
 
 	logChange() {
@@ -642,13 +708,7 @@ class MarkdownEditor extends Component {
 		const files = evt.target.files;
 		const reader = new FileReader();
 		reader.onload = () => {
-			let text = reader.result;
-			var out = this.reMakeText(text);
-			this.setState({
-				'hash': out.hash
-			});
-			this.simplemde.codemirror.execCommand( 'selectAll' );
-			this.simplemde.codemirror.replaceSelection( out.text );
+			this.setEditorValue( reader.result );
 		};
 		reader.readAsText( files[ 0 ] );
 	}
@@ -1029,12 +1089,36 @@ class MarkdownEditor extends Component {
 				{ this.props.peerReview ? <PeerSubmitModal
 					show={this.state.showSubmitModal && this.state.peer}
 					onHide={this.toggleSubmitModal}
-					onSubmitToReviewer={() => { this.submitReport( this.state.peer.to,
-						`Dear ${this.state.peer.to.name}, You have been sent a report for peer review! Please upload the attached .md file to the editor in ISLE. After uploading, insert your comments and submit using the 'Send Review Comments' button.`); }}
-					onSubmitComments={() => { this.submitReport(this.state.peer.from,
-						`Dear ${this.state.peer.from.name}, This email contains comments from your peer reviewer! Please upload the attached .md file to the editor in ISLE. After uploading, make any necessary changes and re-submit to your reviewer using the 'Submit to Reviewer' button.`); }}
+					onSubmitToReviewer={() => {
+						const md = this.replacePlaceholders( this.simplemde.value() );
+						session.log({
+							id: this.props.id,
+							type: 'MARKDOWN_EDITOR_PEER_REPORT',
+							value: md,
+							noSave: true
+						}, this.state.peer.to.email );
+						this.setState({
+							submittedToPeer: true
+						});
+						this.submitReport();
+					}}
+					onSubmitComments={() => {
+						const md = this.replacePlaceholders( this.simplemde.value() );
+						session.log({
+							id: this.props.id,
+							type: 'MARKDOWN_EDITOR_PEER_COMMENTS',
+							value: md,
+							noSave: true
+						}, this.state.peer.from.email );
+						this.setState({
+							submittedPeerComments: true
+						});
+						this.submitReport();
+					}}
 					submitButtonLabel={this.props.peerReview.submitButtonLabel}
 					reviewButtonLabel={this.props.peerReview.reviewButtonLabel}
+					disabledSubmitButton={this.state.submittedToPeer}
+					disabledReviewButton={!this.state.submittedToPeer}
 				/> : null }
 				<ResetModal
 					show={this.state.showResetModal}
