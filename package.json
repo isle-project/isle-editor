@@ -148,7 +148,7 @@
     "configstore": "^4.0.0",
     "cross-env": "^5.1.5",
     "css": "^2.2.3",
-    "css-loader": "^1.0.0",
+    "css-loader": "^2.0.0",
     "css-modules-require-hook": "^4.2.3",
     "csv-parse": "^4.0.0",
     "csv-stringify": "^5.0.0",
