@@ -60,7 +60,7 @@ class SpreadsheetUpload extends Component {
 			percentCompleted: 0,
 			uploading: false
 		});
-		parse( text, { delimiter: csv.delimiter, columns: true, auto_parse: true }, ( err, output ) => {
+		parse( text, { delimiter: csv.delimiter, columns: true, cast: true }, ( err, output ) => {
 			if ( err ) {
 				const session = this.context;
 				session.addNotification({
