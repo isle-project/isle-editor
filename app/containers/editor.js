@@ -105,15 +105,17 @@ class App extends Component {
 			}
 			try {
 				if ( props.preamble.instructorNotes ) {
-					if ( extname( props.preamble.instructorNotes === '.md' ) ) {
-						if ( isRelativePath( props.preamble.instructorNotes ) ) {
-							const fPath = resolve( dirname(props.filePath), props.preamble.instructorNotes );
-							props.preamble.instructorNotes = fs.readFileSync( fPath );
-							props.preamble.instructorNotes = props.preamble.instructorNotes.toString();
-						} else if ( isAbsolutePath( props.preamble.instructorNotes ) ) {
-							props.preamble.instructorNotes = fs.readFileSync( props.preamble.instructorNotes );
-							props.preamble.instructorNotes = props.preamble.instructorNotes.toString();
+					let instructorNotes = props.preamble.instructorNotes;
+					if ( extname( instructorNotes ) === '.md' ) {
+						if ( isRelativePath( instructorNotes ) ) {
+							const fPath = resolve( dirname( props.filePath ), instructorNotes );
+							instructorNotes = fs.readFileSync( fPath );
+							instructorNotes = instructorNotes.toString();
+						} else if ( isAbsolutePath( instructorNotes ) ) {
+							instructorNotes = fs.readFileSync( instructorNotes );
+							instructorNotes = instructorNotes.toString();
 						}
+						props.preamble.instructorNotes = instructorNotes;
 					}
 				}
 			} catch ( err ) {
@@ -234,15 +236,17 @@ class App extends Component {
 					return this.props.encounteredError( err );
 				}
 				try {
-					if ( newPreamble.instructorNotes && extname( newPreamble.instructorNotes ) === '.md' ) {
-						if ( isRelativePath( newPreamble.instructorNotes ) ) {
-							const fPath = resolve( dirname(this.props.filePath), newPreamble.instructorNotes );
-							newPreamble.instructorNotes = fs.readFileSync( fPath );
-							newPreamble.instructorNotes = newPreamble.instructorNotes.toString();
-						} else if ( isAbsolutePath( newPreamble.instructorNotes ) ) {
-							newPreamble.instructorNotes = fs.readFileSync( newPreamble.instructorNotes );
-							newPreamble.instructorNotes = newPreamble.instructorNotes.toString();
+					let instructorNotes = newPreamble.instructorNotes;
+					if ( instructorNotes && extname( instructorNotes ) === '.md' ) {
+						if ( isRelativePath( instructorNotes ) ) {
+							const fPath = resolve( dirname(this.props.filePath), instructorNotes );
+							instructorNotes = fs.readFileSync( fPath );
+							instructorNotes = instructorNotes.toString();
+						} else if ( isAbsolutePath( instructorNotes ) ) {
+							instructorNotes = fs.readFileSync( instructorNotes );
+							instructorNotes = instructorNotes.toString();
 						}
+						newPreamble.instructorNotes = instructorNotes;
 					}
 				} catch ( err ) {
 					return this.props.encounteredError( new Error( 'Ensure that instructor notes path is correct' ) );
