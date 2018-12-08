@@ -65,6 +65,7 @@ const createScope = ( session ) => {
 		NotificationSystem,
 
 		Accordion: Loadable( () => import( 'components/accordion' ) ),
+		Animated: Loadable( () => import( 'components/animated' ) ),
 		BeaconTooltip: Loadable( () => import( 'components/beacon-tooltip' ) ),
 		CheckboxInput: CheckboxInput,
 		Calculator: Loadable( () => import( 'components/calculator' ) ),

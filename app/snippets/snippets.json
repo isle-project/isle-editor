@@ -1,7 +1,11 @@
 [
 	{
 		"name":"AddNotification",
-		"value":"this.addNotification({\n\ttitle: '${1:title}',\n\tmessage: '${2:msg}',\n\tposition: 'tr',\n\tlevel: 'success'\n});\n"
+		"value":"this.addNotification({\n\tin: '${1:title}',\n\tmessage: '${2:msg}',\n\tposition: 'tr',\n\tlevel: 'success'\n});\n"
+	},
+	{
+		"name":"Animated",
+		"value":"<Animated\n\tpreset=\"${1:Enter preset}\"\n>\n</Animated>\n"
 	},
 	{
 		"name":"BeaconTooltip",
