@@ -9,7 +9,10 @@ import PropTypes from 'prop-types';
 /**
 * An ISLE component that allows to apply animation on components and child elements.
 *
-* @property {object} in - when set the gated content is displayed to anybody
+* @property {object} in - the style which is applied at the beginning
+* @property {object} over - mouseOver style
+* @property {object} out - mouseOut style
+* @property {string} preset - name of the preset
 */
 class Animated extends Component {
 	constructor( props ) {
