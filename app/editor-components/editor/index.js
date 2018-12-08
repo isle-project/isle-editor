@@ -98,7 +98,7 @@ class Editor extends Component {
 			this.props.lintErrors.length !== prevProps.lintErrors.length
 		) {
 			const errs = this.props.lintErrors.map( e => {
-				const bare = e.message.replace( RE_ANSI, '' );
+				let bare = e.message.replace( RE_ANSI, '' );
 				bare = bare.replace( RE_EMPTY_SPANS, '' );
 				bare = bare.replace( RE_FRAGMENT, '' );
 				return {
