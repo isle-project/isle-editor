@@ -246,7 +246,7 @@ class FullscreenActionDisplay extends Component {
 		const values = this.props.actions.map( x => x.value );
 		let freqs = tabulate( values );
 		freqs = freqs.sort( ( a, b ) => {
-			return a[ 2 ] - b[ 2 ];
+			return b[ 2 ] - a[ 2 ];
 		});
 		freqs = freqs.filter( ( x, i ) => {
 			return i <= 5;
@@ -266,7 +266,7 @@ class FullscreenActionDisplay extends Component {
 							return ( <tr key={idx} >
 								<td>{val[ 0 ]}</td>
 								<td>{val[ 1 ]}</td>
-								<td>{val[ 2 ]}</td>
+								<td>{val[ 2 ].toFixed( 3 )}</td>
 							</tr> );
 						})}
 					</tbody>
