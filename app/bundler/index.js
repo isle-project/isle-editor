@@ -376,7 +376,9 @@ function writeIndexFile({
 	content = content.replace( /---([\S\s]*)---/, '' );
 
 	// Replace Markdown by HTML...
-	content = markdownToHTML( content );
+	content = markdownToHTML( content, {
+		addEmptySpans: false
+	});
 	if ( meta.type === 'presentation' ) {
 		content = transformToPresentation( content, meta );
 	}
