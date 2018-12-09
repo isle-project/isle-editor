@@ -1150,7 +1150,7 @@ export const lastName = [
 	'Downs',
 	'Rasmussen',
 	'Bird',
-	'Hewitt',
+	'Hewitt'
 ];
 export const firstFemale = [
 	'Mary',

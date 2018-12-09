@@ -13,7 +13,7 @@ import discreteUniform from '@stdlib/random/base/discrete-uniform';
 * @returns {string} random name (first and last name)
 */
 function randomstring() {
-	const idx = discreteUniform( 0 , lastName.length - 1 );
+	const idx = discreteUniform( 0, lastName.length - 1 );
 	let first;
 	if ( idx % 2 === 1 ) {
 		first = firstMale;
@@ -21,7 +21,7 @@ function randomstring() {
 		first = firstFemale;
 	}
 	const name = lastName[ idx ];
-	return first[ discreteUniform( 0 , first.length - 1 ) ] + ' ' + name;
+	return first[ discreteUniform( 0, first.length - 1 ) ] + ' ' + name;
 }
 
 
