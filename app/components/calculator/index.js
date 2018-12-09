@@ -122,11 +122,11 @@ class Calculator extends Component {
 			return;
 		}
 		// Handle unary operators:
-		visible = replace( visible, /\( *\+/, '(0+' );
-		visible = replace( visible, /\( *-/, '(0-' );
+		visible = replace( visible, /(^|[(*/:^!+]) *-/g, '$1 m ' );
+		visible = replace( visible, /(^|[(*/:^!+]) *\+/g, '$1 p ' );
 		let keys = visible.split( RE_SPLIT_KEY );
 		keys = keys.filter( e => e !== '' );
-		const val = evaluate( keys );
+		const val = String( evaluate( keys ) );
 		this.setState({
 			visible: val,
 			answer: val
