@@ -11,7 +11,9 @@ import uncapitalize from '@stdlib/string/uncapitalize';
 import lowercase from '@stdlib/string/lowercase';
 import ndarray from '@stdlib/ndarray/array';
 import objectKeys from '@stdlib/utils/keys';
+import tabulate from '@stdlib/utils/tabulate';
 import indexOf from '@stdlib/utils/index-of';
+import Table from 'react-bootstrap/lib/Table';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
 import Badge from 'react-bootstrap/lib/Badge';
@@ -209,10 +211,6 @@ class FullscreenActionDisplay extends Component {
 			target[ i ] = left.length + indexOf( right, elems[ 1 ] );
 			value[ i ] = paths[ keys[ i ] ];
 		}
-		console.log( source );
-		console.log( target );
-		console.log( value );
-		console.log( labels );
 		return (
 			<div style={{ height: 0.75 * window.innerHeight }}>
 				<Plotly
@@ -245,12 +243,38 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	renderHistogram() {
+		const values = this.props.actions.map( x => x.value );
+		let freqs = tabulate( values );
+		freqs = freqs.sort( ( a, b ) => {
+			return a[ 2 ] - b[ 2 ];
+		});
+		freqs = freqs.filter( ( x, i ) => {
+			return i <= 5;
+		});
 		return (
 			<div style={{ height: 0.75 * window.innerHeight }}>
+				<Table>
+					<thead>
+						<tr>
+							<th>Value</th>
+							<th>Absolute</th>
+							<th>Relative</th>
+						</tr>
+					</thead>
+					<tbody>
+						{freqs.map( ( val, idx ) => {
+							return ( <tr key={idx} >
+								<td>{val[ 0 ]}</td>
+								<td>{val[ 1 ]}</td>
+								<td>{val[ 2 ]}</td>
+							</tr> );
+						})}
+					</tbody>
+				</Table>
 				<Plotly
 					data={[
 						{
-							x: this.props.actions.map( x => x.value ),
+							x: values,
 							type: 'histogram',
 							name: 'histogram'
 						}
