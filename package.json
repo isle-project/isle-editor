@@ -101,7 +101,7 @@
     "gh-pages": "^2.0.0",
     "gitbook-cli": "^2.3.0",
     "happypack": "^5.0.0",
-    "hard-source-webpack-plugin": "^0.12.0",
+    "hard-source-webpack-plugin": "^0.13.0",
     "modclean": "^2.0.0",
     "monaco-editor-webpack-plugin": "^1.7.0",
     "null-loader": "^0.1.1",
