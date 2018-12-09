@@ -13,16 +13,16 @@
 
 #calc-panel {
 	background: rgba(240,240,240,0.9);
-	width: 50%;
-	min-width: 520px;
-	max-width: 600px;
+	width: 40%;
+	min-width: 380px;
+	max-width: 450px;
 }
 
 #calc-panel-full {
 	background: rgba(240,240,240,0.9);
-	width: 75%;
-	min-width: 780px;
-	max-width: 900px;
+	width: 50%;
+	min-width: 580px;
+	max-width: 700px;
 }
 
 .input-button-small {
@@ -36,7 +36,8 @@
 }
 
 .input-button-full {
-	width: calc(100% / 7);
+	width: calc(100% / 7 - 4px);
+	margin: 2px;
 }
 
 .two-sevenths {
