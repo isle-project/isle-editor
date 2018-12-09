@@ -2,7 +2,6 @@
 	"Accordion": "components/accordion",
 	"Alert": "react-bootstrap/lib/Alert",
 	"Animated": "components/animated",
-	"AnimationHelp": "components/animation-help",
 	"BeaconTooltip": "components/beacon-tooltip",
 	"Button": "react-bootstrap/lib/Button",
 	"Card": "react-bootstrap/lib/Card",
