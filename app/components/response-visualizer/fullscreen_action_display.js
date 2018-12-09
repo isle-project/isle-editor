@@ -3,7 +3,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import faker from 'faker';
 import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
@@ -27,6 +26,7 @@ import ReactList from 'react-list';
 import Highlighter from 'react-highlight-words';
 import Plotly from 'components/plotly';
 import WordCloud from 'components/word-cloud';
+import randomname from 'utils/randomname';
 import Search from './search.js';
 import SingleActionModal from './single_action_modal.js';
 import FullscreenHeader from './fullscreen_header';
@@ -380,7 +380,7 @@ class FullscreenActionDisplay extends Component {
 			autoEscape={true}
 			textToHighlight={String( value )}
 		/>;
-		const name = faker.name.firstName() + ' ' + faker.name.lastName() || elem.name;
+		const name = randomname() || elem.name;
 		return ( <ListGroupItem key={key}>
 			{ this.props.showExtended ?
 				<span style={{ textAlign: 'left' }}>
@@ -402,7 +402,7 @@ class FullscreenActionDisplay extends Component {
 						size="sm"
 						onClick={this.props.deleteFactory( index )}
 					>
-						<span className="fa fa-trash-alt" />
+						<span className="fa fa-trash" />
 					</Button> :
 				null
 			}
