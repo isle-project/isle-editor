@@ -161,6 +161,7 @@
     "electron-window-state": "^5.0.0",
     "element-resize-event": "^3.0.1",
     "enzyme-adapter-react-16": "^1.1.1",
+    "faker": "^4.1.0",
     "file-loader": "^2.0.0",
     "form-data": "^2.2.0",
     "fs-extra": "^7.0.0",

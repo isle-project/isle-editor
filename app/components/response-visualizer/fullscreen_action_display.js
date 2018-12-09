@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import faker from 'faker';
 import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
@@ -379,10 +380,11 @@ class FullscreenActionDisplay extends Component {
 			autoEscape={true}
 			textToHighlight={String( value )}
 		/>;
+		const name = faker.name.firstName() + ' ' + faker.name.lastName() || elem.name;
 		return ( <ListGroupItem key={key}>
 			{ this.props.showExtended ?
 				<span style={{ textAlign: 'left' }}>
-					<b>{elem.name}:</b> {higlighter}
+					<b>{name}:</b> {higlighter}
 				</span> :
 				higlighter
 			}
