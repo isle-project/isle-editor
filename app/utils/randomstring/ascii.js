@@ -17,7 +17,7 @@ import discreteUniform from '@stdlib/random/base/discrete-uniform';
 function randomstring( len = 32, lower = 48, upper = 126 ) {
 	const codePoints = new Array( len );
 	for ( let i = 0; i < len; i++ ) {
-		codePoints[ i ] = discreteUniform(lower, upper);
+		codePoints[ i ] = discreteUniform( lower, upper );
 	}
 	return fromCodePoint.apply( null, codePoints );
 }
