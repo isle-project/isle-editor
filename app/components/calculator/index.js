@@ -14,6 +14,7 @@ import Row from 'react-bootstrap/lib/Row';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import isDigitString from '@stdlib/assert/is-digit-string';
 import PI from '@stdlib/constants/math/float64-pi';
+import replace from '@stdlib/string/replace';
 import evaluate from './shunting_yard';
 import logger from 'debug';
 import './calculator.css';
@@ -116,10 +117,14 @@ class Calculator extends Component {
 	}
 
 	solveEq = () => {
-		if ( !this.state.visible || isDigitString( this.state.visible ) ) {
+		let visible = this.state.visible;
+		if ( !visible || isDigitString( visible ) ) {
 			return;
 		}
-		let keys = this.state.visible.split( RE_SPLIT_KEY );
+		// Handle unary operators:
+		visible = replace( visible, /\( *\+/, '(0+' );
+		visible = replace( visible, /\( *-/, '(0-' );
+		let keys = visible.split( RE_SPLIT_KEY );
 		keys = keys.filter( e => e !== '' );
 		const val = evaluate( keys );
 		this.setState({
@@ -164,8 +169,8 @@ class Calculator extends Component {
 										<Button variant="warning" className="input-button-full" onClick={this.toggleFullDisplay} >&#x26F6;</Button>
 									</Row>
 									<Row>
-										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('sin')} >sin(x)</Button>
-										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('exp')} >e<sup>x</sup></Button>
+										<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('sin')} >sin(x)</Button>
+										<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('exp')} >e<sup>x</sup></Button>
 										<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('sqrt')}>&radic;</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('7')} >7</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('8')} >8</Button>
