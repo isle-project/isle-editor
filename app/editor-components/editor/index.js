@@ -8,6 +8,7 @@ import noop from '@stdlib/utils/noop';
 import groupBy from '@stdlib/utils/group-by';
 import contains from '@stdlib/assert/contains';
 import trim from '@stdlib/string/trim';
+import AnimationHelp from 'editor-components/animation-help';
 import allSnippets from 'snippets';
 import ComponentConfigurator from './component_configurator.js';
 import COMPONENTS from './components.json';
@@ -136,6 +137,13 @@ class Editor extends Component {
 		});
 	}
 
+
+	toggleAnimationHelp = () => {
+		this.setState({
+			showAnimationHelp: !this.state.showAnimationHelp
+		});
+	}
+
 	handleContextMenuClick = ( evt, data ) => {
 		if ( !this.customClick ) {
 			const controller = this.editor.getContribution( 'snippetController2' );
@@ -255,6 +263,8 @@ class Editor extends Component {
 							{snippets.victory.map( this.renderMenuItem )}
 						</SubMenu>
 					</SubMenu>
+					<MenuItem onClick={this.toggleAnimationHelp}>Animation Help
+					</MenuItem>
 				</ContextMenu>
 				<ComponentConfigurator
 					show={this.state.showComponentConfigurator}
@@ -262,6 +272,7 @@ class Editor extends Component {
 					onInsert={this.handleComponentInsertion}
 					component={this.state.selectedComponent}
 				/>
+				{ this.state.showAnimationHelp ? <AnimationHelp onHide={this.toggleAnimationHelp} /> : null }
 			</div>
 		);
 	}

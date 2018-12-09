@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import PropTypes from 'prop-types';
 import './animation-help.css';
 
 const commands= [
@@ -199,7 +200,7 @@ class AnimationHelp extends Component {
 
 		return (
             <div className="animation-helper" style={style}>
-                <div className="exit">x</div>
+                <div onClick={this.props.onHide} className="exit">x</div>
                 <h1>AnimationHelp</h1>
                 <hr />
                 { this.renderMenu() }
@@ -217,9 +218,11 @@ class AnimationHelp extends Component {
 // PROPERTIES //
 
 AnimationHelp.propTypes = {
+    onHide: PropTypes.func.isRequired
 };
 
 AnimationHelp.defaultProps = {
+
 };
 
 // EXPORTS //
