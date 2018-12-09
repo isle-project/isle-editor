@@ -32,12 +32,12 @@ const operator = ( name, precedence, associativity, numParams, method ) => {
 	};
 };
 const OPERATORS = {
-	'+': operator('+', 2, 'left', 2, ( a, b ) => { return a + b; }),
-	'-': operator('-', 2, 'left', 2, ( a, b ) => { return a - b; }),
-	'*': operator('*', 3, 'left', 2, ( a, b ) => { return a * b; }),
-	'/': operator('/', 3, 'left', 2, ( a, b ) => { return a / b; }),
-	'^': operator('^', 4, 'right', 2, pow ),
-	'!': operator('!', 5, 'right', 1, factorial )
+	'+': operator('+', 1, 'left', 2, ( a, b ) => { return a + b; }),
+	'-': operator('-', 1, 'left', 2, ( a, b ) => { return a - b; }),
+	'*': operator('*', 2, 'left', 2, ( a, b ) => { return a * b; }),
+	'/': operator('/', 2, 'left', 2, ( a, b ) => { return a / b; }),
+	'^': operator('^', 3, 'right', 2, pow ),
+	'!': operator('!', 4, 'right', 1, factorial )
 };
 const FUNCTIONS = {
 	'sqrt': { params: 1, method: sqrt },
@@ -119,7 +119,6 @@ function toRPN( arr ) {
 // MAIN //
 
 function evaluate( arr ) {
-	console.log( arr );
 	arr = toRPN( arr );
 	if ( isString( arr ) ) {
 		return arr;
