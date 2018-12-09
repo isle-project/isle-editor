@@ -15,10 +15,14 @@ import sqrt from '@stdlib/math/base/special/sqrt';
 import log10 from '@stdlib/math/base/special/log10';
 import choose from '@stdlib/math/base/special/binomcoef';
 import factorial from '@stdlib/math/base/special/factorial';
+import isString from '@stdlib/assert/is-string';
 import stack from '@stdlib/utils/stack';
 
 
-function Operator( name, precedence, associativity, numParams, method ) {
+// VARIABLES //
+
+const RE_DIGIT = /\d/;
+const operator = ( name, precedence, associativity, numParams, method ) => {
 	return {
 		name: name,
 		precedence: precedence,
@@ -26,19 +30,14 @@ function Operator( name, precedence, associativity, numParams, method ) {
 		method: method,
 		associativity: associativity
 	};
-}
-
-
-// VARIABLES //
-
-const RE_DIGIT = /\d/;
+};
 const OPERATORS = {
-	'+': new Operator('+', 2, 'left', 2, ( a, b ) => { return a + b; }),
-	'-': new Operator('-', 2, 'left', 2, ( a, b ) => { return a - b; }),
-	'*': new Operator('*', 3, 'left', 2, ( a, b ) => { return a * b; }),
-	'/': new Operator('/', 3, 'left', 2, ( a, b ) => { return a / b; }),
-	'^': new Operator('^', 4, 'right', 2, pow ),
-	'!': new Operator('!', 5, 'right', 1, factorial )
+	'+': operator('+', 2, 'left', 2, ( a, b ) => { return a + b; }),
+	'-': operator('-', 2, 'left', 2, ( a, b ) => { return a - b; }),
+	'*': operator('*', 3, 'left', 2, ( a, b ) => { return a * b; }),
+	'/': operator('/', 3, 'left', 2, ( a, b ) => { return a / b; }),
+	'^': operator('^', 4, 'right', 2, pow ),
+	'!': operator('!', 5, 'right', 1, factorial )
 };
 const FUNCTIONS = {
 	'sqrt': { params: 1, method: sqrt },
@@ -98,6 +97,9 @@ function toRPN( arr ) {
 		}
 		else if ( token === ')' ) {
 			while ( s.first() !== '(' ) {
+				if ( s.first() === void 0 ) {
+					return 'Too many closing parentheses';
+				}
 				output.push( s.pop() );
 			}
 			s.pop();
@@ -105,6 +107,9 @@ function toRPN( arr ) {
 	}
 	while ( s.length ) {
 		let token = s.pop();
+		if ( token === '(' ) {
+			return 'Too many opening parentheses';
+		}
 		output.push( token );
 	}
 	return output;
@@ -116,7 +121,9 @@ function toRPN( arr ) {
 function evaluate( arr ) {
 	console.log( arr );
 	arr = toRPN( arr );
-	console.log( arr )
+	if ( isString( arr ) ) {
+		return arr;
+	}
 	let s = [];
 	for ( let i = 0, l = arr.length; i < l; i++ ) {
 		const op = OPERATORS[ arr[i] ] || FUNCTIONS[ arr[i] ];
