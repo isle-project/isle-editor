@@ -32,7 +32,7 @@ const escaper = ( match, p1 ) => {
 
 // MAIN //
 
-function toMarkdown( str, escapeBackslash ) {
+function toMarkdown( str, { escapeBackslash = false, addEmptySpans = true } ) {
 	const tokenizer = new Tokenizer();
 
 	// Replace math delimiters by ISLE component
@@ -50,7 +50,7 @@ function toMarkdown( str, escapeBackslash ) {
 		arr[ i ] = md.renderInline( arr[ i ] );
 	}
 	str = arr.join( '' );
-	str = replace( str, '<br />', '<span />\n' );
+	str = replace( str, '<br />', addEmptySpans ? '<span />\n' : '\n' );
 	str = md.render( str );
 
 	str = replace( str, '{', 'OPEN_CURLY_BRACE' );
