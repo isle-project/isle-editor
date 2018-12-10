@@ -465,6 +465,17 @@ label {
 	}
 }
 
+
+@keyframes anim-slide-up {
+	0% {
+			height: 400px
+	}
+	100% {
+			height: 0
+	}
+}
+
+
 @keyframes minimal-scale-in {
 	0% {
 		-webkit-transform: scale(1);
@@ -921,6 +932,45 @@ animation: focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
 }
 
+
+/**
+ * ----------------------------------------
+ * animation swing-out-top-fwd
+ * ----------------------------------------
+ */
+ @-webkit-keyframes swing-out-top-fwd {
+	0% {
+	  -webkit-transform: rotateX(0deg);
+			  transform: rotateX(0deg);
+	  -webkit-transform-origin: top;
+			  transform-origin: top;
+	  opacity: 1;
+	}
+	100% {
+	  -webkit-transform: rotateX(70deg);
+			  transform: rotateX(70deg);
+	  -webkit-transform-origin: top;
+			  transform-origin: top;
+	  opacity: 0;
+	}
+  }
+  @keyframes swing-out-top-fwd {
+	0% {
+	  -webkit-transform: rotateX(0deg);
+			  transform: rotateX(0deg);
+	  -webkit-transform-origin: top;
+			  transform-origin: top;
+	  opacity: 1;
+	}
+	100% {
+	  -webkit-transform: rotateX(70deg);
+			  transform: rotateX(70deg);
+	  -webkit-transform-origin: top;
+			  transform-origin: top;
+	  opacity: 0;
+	}
+  }
+  
 
 /**
 * ----------------------------------------
