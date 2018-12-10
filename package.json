@@ -202,7 +202,7 @@
     "react-color": "^2.14.1",
     "react-contextmenu": "^2.6.5",
     "react-copy-to-clipboard": "^5.0.0",
-    "react-dates": "18.2.2",
+    "react-dates": "18.3.0",
     "react-dnd": "^7.0.0",
     "react-dnd-html5-backend": "^7.0.0",
     "react-dom": "16.6.3",
