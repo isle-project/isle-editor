@@ -60,7 +60,7 @@ class Clock extends Component {
 			minute: '2-digit'
 		});
 
-		if (this.props.format) {
+		if ( this.props.format ) {
 			switch ( this.props.format ) {
 				case 'HH:MM':
 					currentTime = new Date().toLocaleTimeString([], {
@@ -68,7 +68,6 @@ class Clock extends Component {
 						minute: '2-digit'
 				});
 				break;
-
 				case 'HH:MM:SS':
 					currentTime = new Date().toLocaleTimeString([], {
 						hour: '2-digit',
@@ -76,9 +75,7 @@ class Clock extends Component {
 						second: '2-digit'
 					});
 				break;
-
 				case 'HH:MM:SSS':
-				console.log('Hier gibt es ein Zeitformat für Millisekunden');
 				currentTime = new Date().toLocaleTimeString([], {
 					hour: '2-digit',
 					minute: '2-digit',
