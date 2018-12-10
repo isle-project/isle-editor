@@ -307,7 +307,6 @@ function evaluateStr(expression) {
 			}
 
 			fun = expression.substring(i, j + 2);
-			console.log(fun);
 
 			if ( hasOwnProp(funs, fun) ) {
 				// We know it is a function
@@ -329,5 +328,3 @@ function evaluateStr(expression) {
 	return ans;
 }
 
-var a = 'sin(5)';
-console.log(evaluateStr(a));

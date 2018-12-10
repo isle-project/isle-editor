@@ -44,4 +44,4 @@ function subtract(x, y) {
 	return x - y;
 }
 
-export default subtract;
+// export default subtract;
