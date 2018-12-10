@@ -140,6 +140,7 @@
 	"TextInput": "components/input/text",
 	"Timer": "components/timer",
 	"Tooltip": "components/tooltip",
+	"VerticalSlider": "components/vertical-slider",
 	"VictoryAnimation": "components/victory/animation",
 	"VictoryArea": "components/victory/area",
 	"VictoryBar": "components/victory/bar",

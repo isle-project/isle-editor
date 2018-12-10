@@ -164,6 +164,8 @@ const createScope = ( session ) => {
 		Tree: Loadable( () => import( 'components/d3/tree' ) ),
 		Typewriter: Loadable( () => import( 'components/typewriter' ) ),
 		Unveil: Loadable( () => import( 'components/unveil' ) ),
+		
+		VerticalSlider: Loadable( () => import( 'components/vertical-slider' ) ),
 		VideoPlayer: Loadable( () => import( 'components/video-player' ) ),
 		VoiceInput,
 		VoiceControl: Loadable( () => import( 'components/voice-control' ) ),
