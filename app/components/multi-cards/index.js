@@ -6,6 +6,7 @@ import FlippableCard from 'components/flippable-card';
 import SessionContext from 'session/context.js';
 import VoiceInput from 'components/input/voice';
 import Memory from './memory.js';
+import Bingo from './bingo.js';
 
 
 // MAIN //
@@ -24,7 +25,8 @@ class MultiCards extends Component {
 		super( props );
 
 		this.state = {
-			cardMatrix: this.setMatrix()
+			cardMatrix: this.setMatrix(),
+			shaking: []
 		};
 	}
 
@@ -34,7 +36,8 @@ class MultiCards extends Component {
 		}
 
 		if (this.props.game !== void 0) {
-			this.Memory = Memory.init( this.props.values, this);
+			if (this.props.game === 'memory') this.Memory = Memory.init( this.props.values, this);
+			if (this.props.game === 'bingo') this.Bingo = Bingo.init( this.props.values, this);
 		}
 	}
 
@@ -79,10 +82,19 @@ class MultiCards extends Component {
 				back = values[ ndx ].back;
 			}
 		}
+
+		var styles = JSON.parse(JSON.stringify(this.props.cardStyles));
+		if (this.state.shaking.length > 0) {
+			if (this.state.shaking.includes(ndx) === true) {
+				console.log( styles.container);
+				styles.container.animation = 'shake-top 1.2s';
+			}
+		}
+
 		return (
 			<FlippableCard
 				value={this.state.cardMatrix[ ndx ]}
-				cardStyles={this.props.cardStyles}
+				cardStyles={styles}
 				onChange={this.changeFactory( ndx )}
 				oneTime={this.props.oneTime}
 				id={id}
@@ -100,6 +112,24 @@ class MultiCards extends Component {
 		if (this.props.game === 'memory') {
 			this.Memory.draw( item, ndx, this.resetCards);
 		}
+
+		if (this.props.game === 'bingo') {
+			this.Bingo.draw( item, ndx, this.shake);
+		}
+	}
+
+	shake = (list ) => {
+		this.setState({
+			shaking: list
+		});
+
+		var self = this;
+
+		setTimeout(function stopShaking(){
+			self.setState({
+				shaking: []
+			});
+		}, 3000);
 	}
 
 	resetCards =(list) => {
@@ -164,6 +194,10 @@ class MultiCards extends Component {
 		if ( this.props.voiceID ) {
 			list.push( this.getVoice() );
 		}
+		if (this.state.shaking.length > 0) {
+			console.log("IM SHAKER-MODUS");
+		}
+
 		for ( let i = 0; i < this.props.values.length; i++ ) {
 			list.push( this.getCard( i ) );
 		}
