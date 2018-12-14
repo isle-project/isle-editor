@@ -12,13 +12,12 @@ import './score.css';
 // MAIN //
 
 /**
-* An ISLE component that allows you display the user's score
+* An ISLE component that allows you display the user's score.
 *
 * @property {boolean} duration - indicates whether the time is displayed as a duration - beginning with session start
 * @property {string} format - sets the format of the time string
 * @property {string} type - sets the type of the score UI - available options: 'default', 'bottom', 'full'
 */
-
 class Score extends Component {
 	constructor( props ) {
 		super( props );
@@ -200,6 +199,7 @@ Score.defaultProps = {
 
 
 Score.contextType = SessionContext;
+
 
 // EXPORTS //
 
