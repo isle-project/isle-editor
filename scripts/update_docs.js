@@ -22,10 +22,10 @@ const PropTypes = require( './prop_types.js' );
 // VARIABLES //
 
 const debug = logger( 'isle-editor:update-docs' );
-const files = glob( '**/index.js', {
+const files = glob( path.join( '**', 'index.js' ), {
 	'cwd': path.join( __dirname, '..', 'app', 'components' )
 });
-const RE_JSDOC = /(\/\*\*[\s\S]*?\*\/)\n(?:class|export)/;
+const RE_JSDOC = /(\/\*\*[\s\S]*?\*\/)\r?\n(?:class|export)/;
 const RE_TYPES = /\.(propTypes ?= ?{[\s\S]*?};)/;
 const RE_DEFAULTS = /\.(defaultProps ?= ?{[\s\S]*?};)/;
 const SCOPE_KEYS = [
