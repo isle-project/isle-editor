@@ -34,12 +34,12 @@ const generateISLE = ( outputDir, code ) => {
 	fs.writeFileSync( islePath, code );
 };
 
-const generateIndexHTML = ( title, minify, stats, head ) => `
+const generateIndexHTML = ( meta, minify, stats, head ) => `
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>${title}</title>
+		<title>${meta.title}</title>
 		<link rel="shortcut icon" href="favicon.ico" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -50,7 +50,11 @@ const generateIndexHTML = ( title, minify, stats, head ) => `
 	</head>
 	<body>
 	<div id="loading">
-		<h1 id="loading-title">${title}</h1>
+		<div id="loading-author">${meta.author}</div>
+		<div id="loading-titling">${meta.title}</div>
+		${ meta.description ? '<div id="loading-description">'+meta.description+'</div>' : '' }
+		<div id="date">${meta.date}</div>
+		${ meta.logo ? '<img id="logo" src="'+meta.logo+'" />' : '' }
 	</div>
 	<div id="App"></div>
 	<script>
@@ -429,7 +433,7 @@ function writeIndexFile({
 			fs.writeFileSync( statsFile, JSON.stringify( stats ) );
 		}
 		fs.unlinkSync( indexPath );
-		fs.writeFileSync( htmlPath, generateIndexHTML( meta.title, minify, stats, meta.head ) );
+		fs.writeFileSync( htmlPath, generateIndexHTML( meta, minify, stats, meta.head ) );
 
 		if ( !minify ) {
 			return clbk( err, meta );
