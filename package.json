@@ -11,7 +11,7 @@
   "scripts": {
     "analyze": "source-map-explorer dist/renderer.prod.js dist/renderer.prod.js.map",
     "clean": "rm -rf node_modules",
-    "update-docs": "node ./scripts/update_docs.js",
+    "update-docs": "cross-env NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./scripts/update_docs.js",
     "test": "jest",
     "coverage": "jest && codecov",
     "lint": "eslint app test *.js",
