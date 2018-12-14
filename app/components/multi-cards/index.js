@@ -2,11 +2,29 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
+import copy from '@stdlib/utils/copy';
 import FlippableCard from 'components/flippable-card';
 import SessionContext from 'session/context.js';
 import VoiceInput from 'components/input/voice';
 import Memory from './memory.js';
 import Bingo from './bingo.js';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:multi-cards' );
+
+
+// FUNCTIONS //
+
+function falseArray( n ) {
+	const arr = [];
+	for ( let i = 0; i < n; i++ ) {
+		arr.push( false );
+	}
+	return arr;
+}
 
 
 // MAIN //
@@ -16,57 +34,29 @@ import Bingo from './bingo.js';
 *
 * @property {Array<Object>} values - the values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component
 * @property {Array<Object>} cardStyles - allows to override the given styles. Handles objects with  `container`, `front` and `back` keys
+* @property {string} game - multi-card games. Can be either `memory` or `bingo`.
+* @property {string} language - voice recognition language identifier
 * @property {Function} onChange - a function that receives the matrix of the flippable cards
 * @property {boolean} oneTime - indicates whether the flip process may be executed just once
-* @property {objet} animation - if set the component uses an entry animation; the object contains a name (like `anim-scale-up`) and a duration (like `1.7s` = 1.7 seconds)
+* @property {Object} animation - if set the component uses an entry animation; the object contains a name (like `anim-scale-up`) and a duration (like `1.7s` = 1.7 seconds)
 */
 class MultiCards extends Component {
 	constructor( props ) {
 		super( props );
 
 		this.state = {
-			cardMatrix: this.setMatrix(),
+			cardList: falseArray( this.props.values.length ),
 			shaking: []
 		};
 	}
 
 	componentDidMount() {
-		if ( this.props.voiceID ) {
-			this.register();
+		if ( this.props.game === 'memory' ) {
+			this.Memory = new Memory( this.props.values, this.flipCard );
 		}
-
-		if (this.props.game !== void 0) {
-			if (this.props.game === 'memory') this.Memory = Memory.init( this.props.values, this);
-			if (this.props.game === 'bingo') this.Bingo = Bingo.init( this.props.values, this);
+		else if ( this.props.game === 'bingo' ) {
+			this.Bingo = new Bingo( this.flipCard, this.shake );
 		}
-	}
-
-
-	register() {
-		const session = this.context;
-		session.speechInterface.register({
-			name: this.props.voiceID,
-			ref: this,
-			commands: [
-				{
-					command: 'flip',
-					trigger: [ 'number'],
-					text: true
-				},
-				{
-					command: 'hide',
-					trigger: [ 'close' ]
-				}
-			]
-		});
-	}
-
-	setMatrix() {
-		const matrix = [];
-		for ( let i = 0; i < this.props.values.length; i++ ) {
-			matrix.push( false );
-		}
-		return matrix;
 	}
 
 	getCard( ndx ) {
@@ -82,18 +72,13 @@ class MultiCards extends Component {
 				back = values[ ndx ].back;
 			}
 		}
-
-		var styles = JSON.parse(JSON.stringify(this.props.cardStyles));
-		if (this.state.shaking.length > 0) {
-			if (this.state.shaking.includes(ndx) === true) {
-				console.log( styles.container);
-				styles.container.animation = 'shake-top 1.2s';
-			}
+		const styles = copy( this.props.cardStyles );
+		if ( this.state.shaking.includes( ndx ) ) {
+			styles.container.animation = 'shake-top 1.2s';
 		}
-
 		return (
 			<FlippableCard
-				value={this.state.cardMatrix[ ndx ]}
+				value={this.state.cardList[ ndx ]}
 				cardStyles={styles}
 				onChange={this.changeFactory( ndx )}
 				oneTime={this.props.oneTime}
@@ -106,84 +91,75 @@ class MultiCards extends Component {
 		);
 	}
 
-
-	gameDraw(ndx) {
-		let item = this.props.values[ndx];
-		if (this.props.game === 'memory') {
-			this.Memory.draw( item, ndx, this.resetCards);
+	gameDraw( ndx ) {
+		const item = this.props.values[ ndx ];
+		if ( this.props.game === 'memory' ) {
+			this.Memory.draw( item, ndx, this.resetCards );
 		}
-
-		if (this.props.game === 'bingo') {
-			this.Bingo.draw( item, ndx, this.shake);
+		else if ( this.props.game === 'bingo' ) {
+			this.Bingo.draw( item, ndx, this.state.cardList );
 		}
 	}
 
-	shake = (list ) => {
+	shake = ( list ) => {
 		this.setState({
 			shaking: list
 		});
-
-		var self = this;
-
-		setTimeout(function stopShaking(){
-			self.setState({
+		setTimeout( () => {
+			this.setState({
 				shaking: []
 			});
-		}, 3000);
+		}, 1300 );
 	}
 
-	resetCards =(list) => {
-		let matrix = this.state.cardMatrix.slice( 0 );
-		for (var i = 0; i < list.length; i++) {
-			var n = list[i];
-			matrix[n] = !matrix[n];
-		}
+	flipCard = (ndx) => {
+		debug( 'Flip card at index: ' + ndx );
+		let matrix = this.state.cardList.slice( 0 );
+		matrix[ndx] = !matrix[ndx];
+		this.setState({
+			cardList: matrix
+		}, () => {
+			this.props.onChange( matrix );
+		});
+	}
 
-		var self = this;
-
-		setTimeout(function timeout(){
-			self.setState({
-				cardMatrix: matrix
+	resetCards = ( list ) => {
+		setTimeout( () => {
+			const arr = this.state.cardList.slice( 0 );
+			for ( let i = 0; i < list.length; i++ ) {
+				const n = list[i];
+				arr[ n ] = !arr[ n ];
+			}
+			this.props.onChange( arr );
+			this.setState({
+				cardList: arr
 			});
-		}, 1500);
+		}, 1500 );
 	}
 
 	changeFactory = ( ndx ) => {
 		return ( value ) => {
-			let matrix = this.state.cardMatrix.slice( 0 );
+			const matrix = this.state.cardList.slice( 0 );
 			matrix[ ndx ] = value;
 			this.setState({
-				cardMatrix: matrix
+				cardList: matrix
 			}, () => {
 				if (this.props.game !== void 0) this.gameDraw( ndx );
-				this.props.onChange( this.state.cardMatrix );
+				this.props.onChange( this.state.cardList );
 			});
 		};
 	}
 
-	getVoice() {
-		return (
-			<VoiceInput
-				mode="status"
-				autorecord={true}
-				placeholder="Start voice control"
-				language={this.props.language}
-				onSubmit={this.find}
-				onFinalText={this.trigger}
-			/>
-		);
-	}
-
-
 	trigger = ( value ) => {
-		for (var i = 0; i < this.props.values.length; i++) {
-			var item = this.props.values[i];
+		debug( `Received text: ${value}:` );
+		for ( let i = 0; i < this.props.values.length; i++ ) {
+			const item = this.props.values[i];
 			if ( item.voiceKey ) {
-				var marker = item.voiceKey;
-				var x = value.search( marker );
+				const marker = item.voiceKey;
+				const x = value.search( marker );
 				if ( x !== -1 ){
-					console.log(marker + ' - this should flip card number ' + i);
-					this.change(i, !this.state.cardMatrix[i] );
+					debug( `Received ${marker}. This should flip card number ${i}.` );
+					this.changeFactory( i )( true );
 				}
 			}
 		}
@@ -191,35 +167,29 @@ class MultiCards extends Component {
 
 	renderCards() {
 		const list = [];
-		if ( this.props.voiceID ) {
-			list.push( this.getVoice() );
-		}
-		if (this.state.shaking.length > 0) {
-			console.log("IM SHAKER-MODUS");
-		}
-
+		let needVoice = false;
 		for ( let i = 0; i < this.props.values.length; i++ ) {
 			list.push( this.getCard( i ) );
+			if ( this.props.values[ i ].voiceKey ) {
+				needVoice = true;
+			}
+		}
+		if ( needVoice ) {
+			list.push( <VoiceInput
+				mode="none" autorecord language={this.props.language}
+				onSegment={this.trigger}
+			/> );
 		}
 		return list;
 	}
 
-	getAnimation() {
-		if (this.props.animation !== null) {
-			var style = {
-				animationName: this.props.animation.name,
-				animationDuration: this.props.animation.duration
-			};
-			return style;
-		}
-	return null;
-	}
-
 	render() {
-		var anim = this.getAnimation();
 		const style = {
 			overflow: 'auto',
-			... anim
+			...{
+				animationName: this.props.animation.name,
+				animationDuration: this.props.animation.duration
+			}
 		};
 
 		return (
@@ -244,12 +214,11 @@ MultiCards.propTypes = {
 	language: PropTypes.string,
 	onChange: PropTypes.func,
 	oneTime: PropTypes.bool,
-	values: PropTypes.arrayOf(PropTypes.object),
-	voiceID: PropTypes.string
+	values: PropTypes.arrayOf( PropTypes.object )
 };
 
 MultiCards.defaultProps = {
-	animation: null,
+	animation: {},
 	cardStyles: {
 		container: {},
 		front: {},
@@ -259,8 +228,7 @@ MultiCards.defaultProps = {
 	onChange() {},
 	language: 'en-US',
 	oneTime: false,
-	values: [],
-	voiceID: null
+	values: []
 };
 
 MultiCards.contextType = SessionContext;
