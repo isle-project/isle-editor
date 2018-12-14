@@ -60,7 +60,7 @@ class VoiceInput extends Input {
 			window.onkeydown = this.remoteControl;
 		}
 		if ( props.autorecord ) {
-			console.log( 'Should record voice...' );
+			debug( 'Should record voice...' );
 			this.start();
 		}
 	}
