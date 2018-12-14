@@ -9,7 +9,7 @@
 #### Tests
 
 [![Build Status](https://travis-ci.org/Planeshifter/isle-editor.svg?branch=master)](https://travis-ci.org/Planeshifter/isle-editor)
-[![codecov](https://codecov.io/gh/Planeshifter/isle-editor/branch/master/graph/badge.svg)](https://codecov.io/gh/Planeshifter/isle-editor)
+[![codecov](https://codecov.io/gh/Planeshifter/isle-editor/branch/master/graph/badge.svg)](https://codecov.io/gh/Planeshifter/isle-editor) [![Greenkeeper badge](https://badges.greenkeeper.io/Planeshifter/isle-editor.svg)](https://greenkeeper.io/)
 
 ## Introduction
 
