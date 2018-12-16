@@ -22,6 +22,7 @@
 body {
 	background-color: #fffff8;
 	font-family: 'Open Sans', sans-serif;
+	overflow-y: hidden;
 }
 
 pre {
@@ -38,7 +39,7 @@ pre {
 }
 
 #loading {
-	position: absolute;
+	position: fixed;
 	background: white;
 	left: 0px;
 	top: 0px;
@@ -47,6 +48,7 @@ pre {
 	color: silver;
 	overflow: hidden;
 	font-family: Open Sans Condensed;
+	z-index: 9999;
 
 }
 
@@ -55,104 +57,95 @@ pre {
 #loading-author {
 	position: relative;
 	width: 100%;
-	margin-top: 10%;
+	margin-top: calc(40px + 2.2vw);
 	margin-bottom: 0;
 	text-align: center;
-	font-size: 20px;
-	font-weight: 800;
-	animation: anim-fade-in 1.2s,anim-scale-up 1.2s;
+	font-size: calc(16px + 0.83vw);
+	font-weight: 400;
+	animation: anim-fade-in 1.2s forwards,anim-scale-up 1.2s forwards;
+	color: rgba(47, 79, 79, 0.767);
+	opacity: 0;
 }
 
 
 #loading-titling {
 	position: relative;
-	margin-top: 2%;
+	margin-top: 1.5%;
 	width: 100%;
 	text-align: center;
-	font-size: 100px;
-	font-weight: 800;
-	animation: anim-fade-in 3s,anim-scale-up 3s;
+	font-size: calc(55px + 2.85vw);
+	font-weight: 400;
+	font-family: Open Sans Condensed;
+	text-shadow: 1px 1px 4px darkslategray;
+	animation: anim-fade-in 1.3s forwards,anim-scale-up 2s forwards;
 }
 
 
 #loading-description {
 	position: relative;
-	margin-top: 2%;
+	margin-top: 1.5%;
 	width: 100%;
-	height: 100px;
+	height: auto;
 	text-align: center;
-	font-size: 40px;
+	font-size: calc(26px + 1.35vw);
 	animation: anim-fade-in 2s,anim-scale-up 2s;
 }
 
 
 
-#loading #topline {
-	position: absolute;
-	left: 0;
-	top: 10%;
-	width: 100%;
-	height: 1px;
-	background: black; /* For browsers that do not support gradients */
-	background: linear-gradient(to right, transparent, var(--primarylight) 12%, var(--quartarylight) 48%, var(--primarylight) 52%, transparent 92%); /* Standard syntax */
+#loading-bar {
+	position: relative;
+	margin-left: calc((100% - 400px) / 2);
+	margin-top: calc(16px + 0.8vw);
+	width: 400px;
+	height: 8px;
+	border-radius: 4px;
+	border-top: 1px black;
+	border-bottom: 1px black;
+	background-image:linear-gradient(to right, darkslategray, darkgrey, ghostwhite  );
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) inset, 1px 1px 2px darkslategray;
+	border:solid px black;
+	animation: anim-fade-in 1s forwards;
+}
 
+#loading-bar::after {
+	position: absolute;
+	content:' ';
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 8px;
+	border-radius: 5px;
+	border-top: 1px white;
+	border-bottom: 1px white;
+	background: white;
+	z-index: 2;
+	animation: shrink 6s forwards, anim-fade-in 1s;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }
 
 
-
-#loading #topline2 {
+#loading-date {
 	position: absolute;
-	left: 0;
-	top: 20%;
-	width: 100%;
-	height: 1px;
-	background: black; /* For browsers that do not support gradients */
-	background: linear-gradient(to right, transparent, var(--primarylight) 12%, var(--quartarylight) 48%, var(--primarylight) 52%, transparent 92%); /* Standard syntax */
-}
-
-
-#loading #middleline {
-	position: absolute;
-	left: 0;
-	top: 60%;
-	width: 100%;
-	height: 1px;
-	background: black; /* For browsers that do not support gradients */
-	background: linear-gradient(to right, transparent, var(--primarylight) 12%, var(--quartarylight) 48%, var(--primarylight) 52%, transparent 92%); /* Standard syntax */
-}
-
-
-#loading #lowerline {
-	position: absolute;
-	left: 0;
-	top: 80%;
-	width: 100%;
-	height: 1px;
-	background: black; /* For browsers that do not support gradients */
-	background: linear-gradient(to right, transparent, var(--primarylight) 12%, var(--quartarylight) 48%, var(--primarylight) 52%, transparent 92%); /* Standard syntax */
-}
-
-
-#loading #date {
-	position: absolute;
-	bottom: 30px;
+	bottom: calc(15px + 0.8vw);
 	left: 50px;
 	width: 300px;
 	height: auto;
-	font-size: 2vw;
+	font-size: calc(16px + 0.83vw);
 	font-family: Open Sans Condensed;
-	font-weight: 800;
+	font-weight: 400;
 	color: silver;
+	text-shadow: 1px 1px 2px black;
 	animation: focus-in 1.2s, anim-fade-in 1.2s;
 }
 
 
 
-#loading #logo {
+#loading-logo {
 	position: absolute;
-	bottom: 30px;
+	bottom: calc(15px + 0.8vw);
 	right: 50px;
-	width: 300px;
+	width: calc(150px + 7.7vw);
 	height: auto;
 	animation: focus-in 1.2s, anim-fade-in 1.2s;
 }
@@ -673,6 +666,23 @@ label {
 			transform: translateZ(0) translateY(0);
 	opacity: 1;
 }
+}
+
+
+
+/**
+ * ----------------------------------------
+ * animation shrink
+ * ----------------------------------------
+ */
+
+@keyframes shrink {
+	0% {
+			width: 100%
+	}
+	100% {
+			width: 0%
+	}
 }
 
 
@@ -1333,6 +1343,8 @@ animation: focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 	}
   }
 
+
+
   /**
   * ----------------------------------------
   * animation flash
@@ -1855,3 +1867,37 @@ animation: focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 	-28px 56px 1px #e4e3e2;
 	}
 	
+
+
+/**
+ * ----------------------------------------
+ * animation flip-out-ver-left
+ * ----------------------------------------
+ */
+@-webkit-keyframes flip-out-ver-left {
+	0% {
+	  -webkit-transform: rotateY(0);
+			  transform: rotateY(0);
+	  opacity: 1;
+	}
+	100% {
+	  -webkit-transform: rotateY(-70deg);
+			  transform: rotateY(-70deg);
+	  opacity: 0;
+	}
+  }
+
+
+  @keyframes flip-out-ver-left {
+	0% {
+	  -webkit-transform: rotateY(0);
+			  transform: rotateY(0);
+	  opacity: 1;
+	}
+	100% {
+	  -webkit-transform: rotateY(-70deg);
+			  transform: rotateY(-70deg);
+	  opacity: 0;
+	}
+  }
+  

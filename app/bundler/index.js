@@ -53,8 +53,9 @@ const generateIndexHTML = ( meta, minify, stats, head ) => `
 		<div id="loading-author">${meta.author}</div>
 		<div id="loading-titling">${meta.title}</div>
 		${ meta.description ? '<div id="loading-description">'+meta.description+'</div>' : '' }
-		<div id="date">${meta.date}</div>
-		${ meta.logo ? '<img id="logo" src="'+meta.logo+'" />' : '' }
+		<div id ="loading-bar"></div>
+		<div id="loading-date">${meta.date}</div>
+		${ meta.logo ? '<img id="loading-logo" src="'+meta.logo+'" />' : '' }
 	</div>
 	<div id="App"></div>
 	<script>
@@ -137,7 +138,11 @@ class Lesson extends Component {
 		global.lesson = this;
 		const loader = document.getElementById( 'loading' );
 		if ( loader ) {
-			loader.remove();
+			loader.style.animation = 'anim-fade-out 3s forwards';
+			setTimeout(function onRemove() {
+				loader.remove();
+				document.body.style['overflow-y'] = 'auto';
+			}, 3000 );
 		}
 	}
 
