@@ -50,5 +50,11 @@
 }
 
 .desaturated {
-	filter: saturate(30%);
+	filter: saturate(20%);
+	transition: all 1.2s;
+}
+
+
+.desaturated:hover {
+	filter: saturate(50%);
 }
