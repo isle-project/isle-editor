@@ -1,7 +1,6 @@
 .outer-calc {
 	position: fixed;
 	z-index: 1002;
-	animation: anim-scale-up .6s forwards;
 }
 
 .calc-hide-button {
@@ -17,6 +16,7 @@
 	width: 40%;
 	min-width: 380px;
 	max-width: 450px;
+	animation: anim-scale-up .6s forwards;
 }
 
 #calc-panel-full {
