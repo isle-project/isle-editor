@@ -52,4 +52,7 @@ An ISLE component that allows two render two-sides.
 * __flipSpeedFrontToBack__ | `number`: {number} the speed by which the card turns from foreground to background, in seconds. Default: `1`.
 * __isFlipped__ | `boolean`: initial flip state of the card. Default: `false`.
 * __onChange__ | `function`: callback invoked once the card is flipped; receives the current flipped status as its sole argument. Default: `onChange() {}`.
+* __oneTime__ | `boolean`: indicates whether the flip process may be executed just once. Default: `false`.
 * __perspective__ | `number`: CSS property value to give 3d-positioned element a perspective. Default: `1000`.
+* __value__ | `boolean`: undefined. Default: `none`.
+* __defaultValue__ | `boolean`: undefined. Default: `false`.
