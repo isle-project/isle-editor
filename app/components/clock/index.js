@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 *
 * @property {Object} style - CSS inline styles
 * @property {boolean} duration - if set the duration of the session is display (not the actual time)
+* @property {string} format - time format (either `HH:MM`, `HH:MM:SS`, or `HH:MM:SSS`)
 */
 class Clock extends Component {
 	constructor( props ) {
@@ -111,16 +112,15 @@ class Clock extends Component {
 // PROPERTIES //
 
 Clock.propTypes = {
-	'style': PropTypes.object,
+	style: PropTypes.object,
 	duration: PropTypes.bool,
 	format: PropTypes.string
 };
 
 Clock.defaultProps = {
-	'style': {},
+	style: {},
 	duration: false,
 	format: ''
-
 };
 
 

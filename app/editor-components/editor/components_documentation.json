@@ -14,6 +14,35 @@
     ],
     "description": "Description is missing."
   },
+  "Animated": {
+    "props": [
+      {
+        "name": "in",
+        "type": "object",
+        "description": "the style which is applied at the beginning",
+        "default": {}
+      },
+      {
+        "name": "over",
+        "type": "object",
+        "description": "mouseOver style",
+        "default": {}
+      },
+      {
+        "name": "out",
+        "type": "object",
+        "description": "mouseOut style",
+        "default": {}
+      },
+      {
+        "name": "preset",
+        "type": "string",
+        "description": "name of the preset",
+        "default": ""
+      }
+    ],
+    "description": "An ISLE component that allows to apply animation on components and child elements."
+  },
   "BeaconTooltip": {
     "props": [
       {
@@ -66,7 +95,7 @@
       {
         "name": "expandable",
         "type": "boolean",
-        "default": false
+        "default": true
       },
       {
         "name": "show",
@@ -97,6 +126,18 @@
         "type": "object",
         "description": "CSS inline styles",
         "default": {}
+      },
+      {
+        "name": "duration",
+        "type": "boolean",
+        "description": "if set the duration of the session is display (not the actual time)",
+        "default": false
+      },
+      {
+        "name": "format",
+        "type": "string",
+        "description": "time format (either `HH:MM`, `HH:MM:SS`, or `HH:MM:SSS`)",
+        "default": ""
       }
     ],
     "description": "Clock component displaying the current time."
@@ -681,10 +722,25 @@
         "default": "onChange() {}"
       },
       {
+        "name": "oneTime",
+        "type": "boolean",
+        "description": "indicates whether the flip process may be executed just once",
+        "default": false
+      },
+      {
         "name": "perspective",
         "type": "number",
         "description": "CSS property value to give 3d-positioned element a perspective",
         "default": 1000
+      },
+      {
+        "name": "value",
+        "type": "boolean"
+      },
+      {
+        "name": "defaultValue",
+        "type": "boolean",
+        "default": false
       }
     ],
     "description": "An ISLE component that allows two render two-sides."
@@ -1850,6 +1906,35 @@
     ],
     "description": "A button to be displayed at the end of a lesson for students to click on. By default, a message confirming completion of the lesson is sent to their email address."
   },
+  "LikertScale": {
+    "props": [
+      {
+        "name": "question",
+        "type": "string",
+        "description": "question to be printed",
+        "default": ""
+      },
+      {
+        "name": "options",
+        "type": "array",
+        "description": "an array of five elements holding the labels for the different scale levels",
+        "default": [
+          "Strongly disagree",
+          "Disagree",
+          "Neither agree nor disagree",
+          "Agree",
+          "Strongly agree"
+        ]
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "default": false
+      }
+    ],
+    "description": "A component showing a question and a five-point scale for students to answer."
+  },
   "MarkdownEditor": {
     "props": [
       {
@@ -1927,9 +2012,9 @@
       },
       {
         "name": "peerReview",
-        "type": "boolean",
-        "description": "enables peer review mode in which each submission is sent to another randomly chosen student and vice versa",
-        "default": false
+        "type": "{submitButtonLabel,reviewButtonLabel}",
+        "description": "if not null, enables peer review mode in which each submission is sent to another randomly chosen student and vice versa",
+        "default": null
       },
       {
         "name": "plots",
@@ -2093,6 +2178,12 @@
   "MultiCards": {
     "props": [
       {
+        "name": "animation",
+        "type": "object",
+        "description": "if set the component uses an entry animation; the object contains a name (like `anim-scale-up`) and a duration (like `1.7s` = 1.7 seconds)",
+        "default": {}
+      },
+      {
         "name": "cardStyles",
         "type": "{container,front,back}",
         "description": "allows to override the given styles. Handles objects with  `container`, `front` and `back` keys",
@@ -2103,10 +2194,28 @@
         }
       },
       {
+        "name": "game",
+        "type": "string",
+        "description": "multi-card games. Can be either `memory` or `bingo`.",
+        "default": null
+      },
+      {
+        "name": "language",
+        "type": "string",
+        "description": "voice recognition language identifier",
+        "default": "en-US"
+      },
+      {
         "name": "onChange",
         "type": "function",
         "description": "a function that receives the matrix of the flippable cards",
         "default": "onChange() {}"
+      },
+      {
+        "name": "oneTime",
+        "type": "boolean",
+        "description": "indicates whether the flip process may be executed just once",
+        "default": false
       },
       {
         "name": "values",
@@ -3278,13 +3387,13 @@
       {
         "name": "downloadable",
         "type": "boolean",
-        "description": "indicates whether users should be able to download the recoding",
+        "description": "indicates whether users should be able to download the recording",
         "default": false
       },
       {
         "name": "uploadable",
         "type": "boolean",
-        "description": "indicates whether users should be able to upload the recoding to the server",
+        "description": "indicates whether users should be able to upload the recording to the server",
         "default": false
       },
       {
@@ -3313,6 +3422,12 @@
         "type": "string",
         "description": "message to be displayed when content is hidden",
         "default": "Content hidden by instructor"
+      },
+      {
+        "name": "show",
+        "type": "boolean",
+        "description": "controls whether to initially display child elements",
+        "default": false
       }
     ],
     "description": "An ISLE component that instructors may use to selectively reveal or hide children content to all users."
@@ -3339,6 +3454,29 @@
       }
     ],
     "description": "The runner component will execute a supplied function either once or at a given interval."
+  },
+  "Score": {
+    "props": [
+      {
+        "name": "duration",
+        "type": "boolean",
+        "description": "indicates whether the time is displayed as a duration - beginning with session start",
+        "default": false
+      },
+      {
+        "name": "format",
+        "type": "string",
+        "description": "sets the format of the time string",
+        "default": "HH:MM"
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "sets the type of the score UI - available options: 'default', 'bottom', 'full'",
+        "default": "default"
+      }
+    ],
+    "description": "An ISLE component that allows you display the user's score."
   },
   "SelectQuestion": {
     "props": [
@@ -3955,6 +4093,58 @@
     ],
     "description": "A tooltip overlay."
   },
+  "Typewriter": {
+    "props": [
+      {
+        "name": "deviation",
+        "type": "number",
+        "description": "allows you to specify the randomness",
+        "default": 30
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "default": null
+      },
+      {
+        "name": "hold",
+        "type": "number",
+        "description": "if text is an array of strings, hold specified the duration the full will be displayed before it passes over to the next item in the array",
+        "default": 2000
+      },
+      {
+        "name": "interval",
+        "type": "number",
+        "description": "the interval of the typewriter",
+        "default": 100
+      },
+      {
+        "name": "random",
+        "type": "boolean",
+        "description": "-if random is set, the keystrokes will be performed with a certain, \"humane\" randomness",
+        "default": false
+      },
+      {
+        "name": "sound",
+        "type": "boolean",
+        "description": "the typed keystroke will be also heard",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "text",
+        "type": "string",
+        "description": "the full text to be displayed",
+        "default": ""
+      }
+    ],
+    "description": "An ISLE component that allows you to create a typewriter effect."
+  },
   "Unveil": {
     "props": [
       {
@@ -3971,6 +4161,36 @@
       }
     ],
     "description": "The appear component will cause all of its children to become visible after a specified amount of time."
+  },
+  "VerticalSlider": {
+    "props": [
+      {
+        "name": "groupID",
+        "type": "string",
+        "default": null
+      },
+      {
+        "name": "header",
+        "type": "string",
+        "default": "Header"
+      },
+      {
+        "name": "headerStyle",
+        "type": "object",
+        "default": null
+      },
+      {
+        "name": "headerClassName",
+        "type": "string",
+        "default": null
+      },
+      {
+        "name": "visible",
+        "type": "boolean",
+        "default": false
+      }
+    ],
+    "description": "Description is missing."
   },
   "VictoryAnimation": {
     "props": [],
