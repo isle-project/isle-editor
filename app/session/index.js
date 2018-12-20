@@ -8,6 +8,7 @@ import isFunction from '@stdlib/assert/is-function';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import objectKeys from '@stdlib/utils/keys';
 import copy from '@stdlib/utils/copy';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 import isElectron from 'utils/is-electron';
@@ -85,6 +86,9 @@ class Session {
 
 		// Actions received from other users via socket communication:
 		this.socketActions = [];
+
+		// Registered response visualizers:
+		this.responseVisualizers = {};
 
 		// List of currently logged-in users:
 		this.userList = [];
@@ -842,6 +846,7 @@ class Session {
 			if ( response.status === 200 ) {
 				response.json().then( body => {
 					this.currentUserActions = body.actions;
+					this.setProgress();
 					this.update( 'retrieved_current_user_actions', this.currentUserActions );
 				});
 			}
@@ -1192,7 +1197,6 @@ class Session {
 	*/
 	set( name, val ) {
 		this.vars[ name ] = val;
-		this.logToDatabase( 'vars', this.vars );
 	}
 
 	/**
@@ -1218,6 +1222,50 @@ class Session {
 
 		if ( this.anonymous === false ) {
 			this.updateDatabase();
+		}
+	}
+
+	/**
+	* Sets the user's progress for the lesson.
+	*
+	* @param {string} id - action id
+	*/
+	setProgress( id ) {
+		if ( this.anonymous ) {
+			return;
+		}
+		const ids = objectKeys( this.responseVisualizers );
+		if ( !id ) {
+			let progress = 0;
+			for ( let i = 0; i < ids.length; i++ ) {
+				const key = ids[ i ];
+				const actions = this.currentUserActions[ key ];
+				const type = this.responseVisualizers[ key ];
+				if ( actions ) {
+					for ( let j = 0; j < actions.length; j++ ) {
+						if ( actions[ j ].type === type ) {
+							progress += 1.0 / ids.length;
+							break;
+						}
+					}
+				}
+			}
+			this.set( 'progress', progress );
+		}
+		else {
+			const actions = this.currentUserActions[ id ];
+			const type = this.responseVisualizers[ id ];
+			for ( let j = 0; j < actions.length; j++ ) {
+				if ( actions[ j ].type === type ) {
+					if ( j < actions.length - 1 ) {
+						break;
+					}
+					else if ( j === actions.length - 1 ) {
+						this.set( 'progress', this.get( 'progress' ) + 1.0 / ids.length );
+						this.update( 'self_updated_progress', this.get( 'progress' ) );
+					}
+				}
+			}
 		}
 	}
 
@@ -1348,6 +1396,7 @@ class Session {
 						actions[ action.id ].push( action );
 					}
 				}
+				this.setProgress( action.id );
 
 				// If first action, create session on server:
 				if ( this.actions.length === 1 ) {

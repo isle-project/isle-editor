@@ -85,6 +85,10 @@ class ResponseVisualizer extends Component {
 
 	componentDidMount() {
 		const session = this.context;
+		if ( this.props.info ) {
+			// Register response visualizer in session:
+			session.responseVisualizers[ this.props.id ] = this.props.info;
+		}
 		this.addSessionActions();
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
