@@ -15,8 +15,7 @@
 	--quartary: #ca5800;
 	--quartarydark: #351802;
 	--quartarylight:  #c49978;
-
-  }
+}
 
 /* MAIN */
 body {
@@ -570,6 +569,16 @@ label {
 			opacity: 1;
 	}
 }
+
+@keyframes anim-fade-out {
+	0% {
+			opacity: 1;
+	}
+	100% {
+			opacity: 0;
+	}
+}
+
 
 
 @keyframes anim-slide-up {
