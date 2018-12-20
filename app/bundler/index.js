@@ -160,6 +160,8 @@ class Lesson extends Component {
 	}
 }
 
+document.body.style['overflow-y'] = 'hidden';
+
 render(
 	<Provider session={session} >
 		<Lesson />
