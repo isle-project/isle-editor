@@ -7,6 +7,8 @@ import './animation-help.css';
 
 const commands= [
     {name: 'anim-fade-in', command: 'anim-fade-in 3s'},
+    {name: 'slide-in-left', command: 'slide-in-left 1.2s'},
+    {name: 'slide-out-right', command: 'slide-out-right 1.2s'},
     {name: 'anim-rotate-in', command: 'anim-rotate-in 3s'},
     {name: 'anim-rotate-out', command: 'anim-rotate-out 3s'},
     {name: 'anim-scale-up', command: 'anim-scale-up 3s'},
@@ -24,6 +26,7 @@ const commands= [
     {name: 'roll-in-left', command: 'roll-in-left 1.5s'},
     {name: 'roll-in-right', command: 'roll-in-right 1.5s'},
     {name: 'swing-in-top-fwd', command: 'swing-in-top-fwd 1.2s'},
+    {name: 'swing-out-top-fwd', command: 'swing-out-top-fwd 1.2s'},
     {name: 'swing-in-right-fwd', command: 'swing-in-right-fwd 1.2s'},
     {name: 'swing-in-bottom-fwd', command: 'swing-in-bottom-fwd 1.2s'},
     {name: 'flip-scale-up-hor', command: 'flip-scale-up-hor 1.2s'},
@@ -40,6 +43,17 @@ const commands= [
     {name: 'roll-out-right', command: 'roll-out-right 3s'},
     {name: 'minmal-scale-in', command: 'minimal-scale-in 3s'},
     {name: 'minmal-scale-out', command: 'minimal-scale-out 3s'}
+];
+
+
+const textCommands= [
+    {name: 'focus-in', command: 'focus-in 3s'},
+    {name: 'focus-in-expand', command: 'focus-in-expand 3s'},
+    {name: 'focus-in-contract-bck', command: 'focus-in-contract-bck 3s'},
+    {name: 'text-blur-out', command: 'text-blur-out 2.5s'},
+    {name: 'text-shadow-drop-center', command: 'text-shadow-drop-center 2s'},
+    {name: 'text-color-change', command: 'text-color-change 3s'},
+
 ];
 
 // MAIN //
@@ -95,6 +109,35 @@ class AnimationHelp extends Component {
 		}
 		return list;
     }
+
+    getTextCommand(ndx) {
+        const item = textCommands[ndx];
+        const infinite = item.command + ' infinite';
+        const style = {
+            animation: infinite
+        };
+		return (
+            <div onMouseOver={()=>this.passCommand(item.command)} style={{ width: '100%'}}>
+                <h4>{item.name}</h4>
+                    <div style={style} className="textCommand">Text Command</div>
+                    <div className="codeBlock"><code>animation: {item.command}</code></div>
+                    <CopyToClipboard text={this.state.code}>
+                    <span title="copy to clipboard" className="copy"></span>
+                    </CopyToClipboard>
+                    <br />
+                </div>
+		);
+    }
+
+    renderTextAnimations() {
+        const list = [];
+		for ( let i = 0; i < textCommands.length; i++ ) {
+			list.push( this.getTextCommand( i ) );
+		}
+
+        return list;
+    }
+
 
     renderShorthand() {
         return (
@@ -161,12 +204,17 @@ class AnimationHelp extends Component {
         if (this.state.explanation === 'principles') {
             return this.renderPrinciples();
         }
+
+        if (this.state.explanation === 'text') {
+            return this.renderTextAnimations();
+        }
     }
 
     setPage = (value) => {
         let page = 'list';
         if (value === 2) page = 'shorthand';
         if (value === 3) page = 'principles';
+        if (value === 4) page = 'text';
 
         this.setState({
             explanation: page
@@ -178,6 +226,7 @@ class AnimationHelp extends Component {
         return (
             <div className="menu">
                 <div onClick={()=>this.setPage(1)} className="menu-item">ANIMATIONS</div>
+                <div onClick={()=>this.setPage(4)} className="menu-item">TEXT ANIMATIONS</div>
                 <div onClick={()=>this.setPage(2)} className="menu-item">SHORTHAND</div>
                 <div onClick={()=>this.setPage(3)} className="menu-item">PRINCIPLES</div>
             </div>
