@@ -164,7 +164,7 @@ const createScope = ( session ) => {
 		Tree: Loadable( () => import( 'components/d3/tree' ) ),
 		Typewriter: Loadable( () => import( 'components/typewriter' ) ),
 		Unveil: Loadable( () => import( 'components/unveil' ) ),
-		
+
 		VerticalSlider: Loadable( () => import( 'components/vertical-slider' ) ),
 		VideoPlayer: Loadable( () => import( 'components/video-player' ) ),
 		VoiceInput,
@@ -270,6 +270,7 @@ class Preview extends Component {
 			this.props.code !== nextProps.code ||
 			this.props.preamble.server !== nextProps.preamble.server ||
 			this.props.preamble.state !== nextProps.preamble.state ||
+			this.props.preamble.require !== nextProps.preamble.require ||
 			this.props.currentMode !== nextProps.currentMode ||
 			this.props.currentRole !== nextProps.currentRole
 		) {
@@ -283,6 +284,7 @@ class Preview extends Component {
 		if (
 			this.props.preamble.server !== prevProps.preamble.server ||
 			this.props.preamble.state !== prevProps.preamble.state ||
+			this.props.preamble.require !== prevProps.preamble.require ||
 			this.props.currentMode !== prevProps.currentMode ||
 			this.props.currentRole !== prevProps.currentRole
 		) {

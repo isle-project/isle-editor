@@ -13,12 +13,18 @@ class ErrorBoundary extends Component {
 		this.state = {
 			hasError: false,
 			msg: null,
-			code: props.code
+			code: props.code,
+			preamble: props.preamble
 		};
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
-		if ( nextProps.code !== prevState.code ) {
+		if (
+			nextProps.code !== prevState.code ||
+			nextProps.preamble.server !== prevState.preamble.server ||
+			nextProps.preamble.state !== prevState.preamble.state ||
+			nextProps.preamble.require !== prevState.preamble.require
+		) {
 			return {
 				hasError: false,
 				code: nextProps.code
@@ -46,7 +52,8 @@ class ErrorBoundary extends Component {
 // TYPES //
 
 ErrorBoundary.propTypes = {
-	code: PropTypes.string.isRequired
+	code: PropTypes.string.isRequired,
+	preamble: PropTypes.object.isRequired
 };
 
 

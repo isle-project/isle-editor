@@ -282,12 +282,10 @@ class Editor extends Component {
 
 Editor.defaultProps = {
 	onChange: noop,
-	value: '',
-	cursorStart: 1
+	value: ''
 };
 
 Editor.propTypes = {
-	cursorStart: PropTypes.number,
 	onChange: PropTypes.func,
 	value: PropTypes.string,
 	lintErrors: PropTypes.array.isRequired,

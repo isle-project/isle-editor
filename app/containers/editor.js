@@ -89,17 +89,63 @@ const applyStyles = ( preamble, filePath ) => {
 	}
 };
 
+const loadRequires = ( libs, filePath ) => {
+	/* eslint-disable no-eval */
+	debug( 'Should require files or modules...' );
+	let dirname = path.dirname( filePath );
+	debug( 'Directory: '+dirname );
+	if ( isObject( libs ) ) {
+		for ( let key in libs ) {
+			if ( hasOwnProp( libs, key ) ) {
+				let lib = libs[ key ];
+				if ( isAbsolutePath( lib ) || /\.(\/|\\)/.test( lib ) ) {
+					lib = path.join( dirname, libs[ key ]);
+					if ( process.platform === 'win32' ) {
+						lib = replace( lib, '\\', '\\\\' );
+					}
+				} else if ( /@stdlib/.test( lib ) ) {
+					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
+				}
+				const ext = extname( lib );
+				if ( ext === '.svg' ) {
+					debug( 'Read SVG from disk: '+lib );
+					let content = fs.readFileSync( lib ).toString( 'base64' );
+					eval( `global[ '${key}' ] = 'data:image/svg+xml;base64,${content}';` );
+				}
+				else if ( ext === '.jpg' || ext === '.png' || ext === '.jpeg' ) {
+					debug( 'Read image from disk: '+lib );
+					let buffer = fs.readFileSync( lib );
+					eval( `global[ '${key}' ] = 'data:image/jpeg;base64,${buffer.toString( 'base64' )}'` );
+				}
+				else if ( ext === '.json' ) {
+					const json = readJSON.sync( lib );
+					if ( isError( json ) ) {
+						throw new Error(`\n Error encountered while reading ${lib}: ` + json.message);
+						// global[key] = {};
+					} else {
+						global[key] = json;
+					}
+				}
+				else {
+					debug( `Load '${lib}' library...` );
+					eval( `global[ '${key}' ] = require( '${lib}' );` );
+				}
+			}
+		}
+	}
+	/* eslint-enable no-eval */
+};
+
+
 // MAIN //
 
 class App extends Component {
 	constructor( props ) {
 		super( props );
 
-		this.lastPreamble = null;
-
 		if ( isObject( props.preamble ) ) {
 			try {
-				this.loadRequires( props.preamble.require, props.filePath || '' );
+				loadRequires( props.preamble.require, props.filePath || '' );
 			} catch ( err ) {
 				props.encounteredError( err );
 			}
@@ -127,10 +173,17 @@ class App extends Component {
 				props.encounteredError( err );
 			}
 		}
-
 		this.state = {
-			splitPos: parseInt( localStorage.getItem( 'splitPos' ), 10 )
+			splitPos: parseInt( localStorage.getItem( 'splitPos' ), 10 ),
+			preamble: props.preamble
 		};
+	}
+
+	componentDidUpdate = ( prevProps ) => {
+		if ( this.props.markdown !== prevProps.markdown ) {
+			debug( 'Check preamble change' );
+			this.handlePreambleChange( this.props.markdown );
+		}
 	}
 
 	componentWillUnmount() {
@@ -142,7 +195,6 @@ class App extends Component {
 		const handleChange = ( value ) => {
 			debug( 'Should handle change...' );
 			this.props.convertMarkdown( value );
-			this.handlePreambleChange( value );
 		};
 
 		if ( this.debouncedChange ) {
@@ -167,54 +219,7 @@ class App extends Component {
 	}
 	*/
 
-	loadRequires = ( libs, filePath ) => {
-		/* eslint-disable no-eval */
-		debug( 'Should require files or modules...' );
-		let dirname = path.dirname( filePath );
-		debug( 'Directory: '+dirname );
-		if ( isObject( libs ) ) {
-			for ( let key in libs ) {
-				if ( hasOwnProp( libs, key ) ) {
-					let lib = libs[ key ];
-					if ( isAbsolutePath( lib ) || /\.(\/|\\)/.test( lib ) ) {
-						lib = path.join( dirname, libs[ key ]);
-						if ( process.platform === 'win32' ) {
-							lib = replace( lib, '\\', '\\\\' );
-						}
-					} else if ( /@stdlib/.test( lib ) ) {
-						lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
-					}
-					const ext = extname( lib );
-					if ( ext === '.svg' ) {
-						debug( 'Read SVG from disk: '+lib );
-						let content = fs.readFileSync( lib ).toString( 'base64' );
-						eval( `global[ '${key}' ] = 'data:image/svg+xml;base64,${content}';` );
-					}
-					else if ( ext === '.jpg' || ext === '.png' || ext === '.jpeg' ) {
-						debug( 'Read image from disk: '+lib );
-						let buffer = fs.readFileSync( lib );
-						eval( `global[ '${key}' ] = 'data:image/jpeg;base64,${buffer.toString( 'base64' )}'` );
-					}
-					else if ( ext === '.json' ) {
-						const json = readJSON.sync( lib );
-						if ( isError( json ) ) {
-							throw new Error(`\n Error encountered while reading ${lib}: ` + json.message);
-							// global[key] = {};
-						} else {
-							global[key] = json;
-						}
-					}
-					else {
-						debug( `Load '${lib}' library...` );
-						eval( `global[ '${key}' ] = require( '${lib}' );` );
-					}
-				}
-			}
-		}
-		/* eslint-enable no-eval */
-	}
-
-	handlePreambleChange( text ) {
+	handlePreambleChange = ( text ) => {
 		let preamble = text.match( /---([\S\s]*)---/ );
 		if ( !preamble ) {
 			return this.props.encounteredError( new Error( 'Make sure the file contains a YAML preamble enclosed in <b>---</b> tags.' ) );
@@ -231,7 +236,7 @@ class App extends Component {
 					return this.props.encounteredError( new Error( 'Make sure the preamble is valid YAML code.' ) );
 				}
 				try {
-					this.loadRequires( newPreamble.require, this.props.filePath || '' );
+					loadRequires( newPreamble.require, this.props.filePath || '' );
 				} catch ( err ) {
 					return this.props.encounteredError( err );
 				}
@@ -260,6 +265,12 @@ class App extends Component {
 				if ( this.props.error ) {
 					this.props.resetError();
 				}
+				if ( preambleHasChanged ) {
+					debug( 'Update preamble...' );
+					this.setState({
+						preamble: newPreamble
+					});
+				}
 			} catch ( err ) {
 				return this.props.encounteredError( new Error( 'Couldn\'t parse the preamble. Make sure it is valid YAML.' ) );
 			}
@@ -267,9 +278,8 @@ class App extends Component {
 	}
 
 	checkPreambleChange( preamble ) {
-		if ( preamble !== this.lastPreamble ) {
+		if ( preamble !== this.state.preamble ) {
 			debug( 'Preamble has changed.' );
-			this.lastPreamble = preamble;
 			return true;
 		}
 		debug( 'Preamble has not changed.' );
@@ -283,7 +293,6 @@ class App extends Component {
 			filePath,
 			markdown,
 			hideToolbar,
-			preamble,
 			changeView,
 			changeMode,
 			currentRole,
@@ -328,14 +337,14 @@ class App extends Component {
 							lintErrors={this.props.lintErrors}
 						/>
 					</SplitPanel>
-					<SplitPanel ref={( elem ) => { this.preview = elem; }} style={{ overflowY: 'scroll' }}>
+					<SplitPanel ref={( elem ) => { this.preview = elem; }} overflow="none" >
 						{ error ?
 							<ErrorMessage msg={error.message} code={markdown} /> :
-							<ErrorBoundary code={markdown}>
+							<ErrorBoundary code={markdown} preamble={this.state.preamble} >
 								<Preview
 									code={markdown}
 									filePath={filePath}
-									preamble={preamble}
+									preamble={this.state.preamble}
 									currentRole={currentRole}
 									currentMode={currentMode}
 									onCode={this.lintCode}
