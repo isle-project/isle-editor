@@ -137,7 +137,6 @@ class Editor extends Component {
 		});
 	}
 
-
 	toggleAnimationHelp = () => {
 		this.setState({
 			showAnimationHelp: !this.state.showAnimationHelp
@@ -204,7 +203,7 @@ class Editor extends Component {
 						height={window.innerHeight - 90}
 						width={window.innerWidth - this.props.splitPos}
 						language="javascript"
-						defaultValue={this.props.value}
+						value={this.props.value}
 						options={{
 							fontSize: currentFontSize,
 							contextmenu: false,
