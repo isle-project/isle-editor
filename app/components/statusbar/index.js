@@ -21,6 +21,7 @@ import isElectron from 'utils/is-electron';
 import animatePosition from 'utils/animate-position';
 import SessionContext from 'session/context.js';
 import ConfirmModal from './confirm_modal.js';
+import Score from './score';
 import './statusbar.css';
 const InstructorView = lazy( () => import( 'components/statusbar/instructor-view' ) );
 
@@ -91,18 +92,38 @@ class StatusBar extends Component {
 				setTimeout( promptLogin, 2000 );
 				sentNotification = true;
 			}
-			if ( type === 'self_updated_progress' ) {
+
+			if ( type === 'self_initial_progress' ) {
 				this.setState({
-					progress: round( Number( data ) * 100 ),
+					progress: round( Number( data ) * 100 )
+				});
+			}
+			else if (
+				type === 'self_updated_progress' ||
+				type === 'self_updated_score'
+			) {
+				console.log( 'Updated variable: '+type );
+				const newState = {
 					showProgressBar: true,
 					isProgressLeaving: true
-				});
-				setTimeout(() => {
+				};
+				if ( type === 'self_updated_progress' ) {
+					newState.progress = round( Number( data ) * 100 );
+				}
+				console.log( this.state );
+				this.setState( newState );
+				if ( this.progressTimeout ) {
+					console.log( 'CLEARE DEN TIMEOUT');
+					clearTimeout( this.progressTimeout );
+					this.progressTimeout = null;
+				}
+				this.progressTimeout = setTimeout(() => {
 					this.setState({
 						showProgressBar: false,
 						isProgressLeaving: false,
 						duration: getDuration( session )
 					});
+					this.progressTimeout = null;
 				}, 4000 );
 			}
 			this.forceUpdate();
@@ -315,9 +336,11 @@ class StatusBar extends Component {
 							}}>
 								<div className="statusbar-inner-presence"></div>
 							</div>
-							<div
+							<div style={{ cursor: this.context.anonymous ? 'pointer' : 'help' }}
 								className="statusbar-username" onClick={( evt ) => {
-									evt.stopPropagation();
+									if ( !this.context.anonymous ) {
+										evt.stopPropagation();
+									}
 								}}
 								onMouseEnter={this.toggleProgress}
 								onMouseOut={this.toggleProgress}
@@ -358,10 +381,15 @@ class StatusBar extends Component {
 							message="Do you really want to log out? To log in again, you will need your password."
 							onConfirm={this.handleLogout}
 						/>
-						{ this.state.showProgressBar ?
-							<div className={`statusbar-progress ${this.state.isProgressLeaving ? 'progress-fade-out' : ''} `}>
-								<Gate user>
-									<div className="progress-time">DUR: {this.state.duration} MIN</div>
+						<div
+							className={`statusbar-progress ${this.state.isProgressLeaving ? 'progress-fade-out' : ''} `}
+							style={{
+								display: this.state.showProgressBar ? 'inherit' : 'none'
+							}}
+						>
+							<Gate user>
+								<div className="progress-time">DUR: {this.state.duration} MIN</div>
+								<div className="outer-statusbar-progress-bar">
 									<ProgressBar
 										label={`COMPLETION RATE: ${this.state.progress}%`}
 										variant="success"
@@ -371,9 +399,10 @@ class StatusBar extends Component {
 											border: 'solid 1px darkgrey'
 										}}
 									/>
-								</Gate>
-							</div> : null
-						}
+								</div>
+								<Score />
+							</Gate>
+						</div>
 					</div>
 					<Suspense fallback={null} >
 						<Gate owner>
