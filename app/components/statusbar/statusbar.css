@@ -16,6 +16,43 @@
 	transition: opacity .4s ease-in-out;
 }
 
+#Lesson .statusbar-progress {
+	position: absolute;
+	height: 12px;
+	top: 50px;
+	width: 85%;
+	margin: auto;
+	left: 0;
+	right: 0;
+}
+
+#Lesson .statusbar-progress .progress-bar {
+	font-variant: small-caps;
+	color: darkslategray;
+	font-size: 10px;
+	font-weight: 600;
+}
+
+#Lesson .statusbar-progress .progress-time {
+	animation: anim-fade-in 0.7s;
+	float: left;
+	color: darkslategray;
+	padding-left: 2px;
+	padding-right: 2px;	
+	margin-right: 2px;
+	font-weight: 600;
+	background-color:#e9ecef;
+	width: auto;
+	height: 16px;
+	font-size: 10px;
+	border: solid 1px darkgray;
+	border-radius: 0.25rem;
+}
+
+#Lesson .progress-fade-out {
+	animation: anim-fade-out 2s 2s forwards;
+}
+
 #Lesson .statusbar:hover {
 	opacity: 1;
 }

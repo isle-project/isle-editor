@@ -15,14 +15,12 @@
 	--quartary: #ca5800;
 	--quartarydark: #351802;
 	--quartarylight:  #c49978;
-
-  }
+}
 
 /* MAIN */
 body {
 	background-color: #fffff8;
 	font-family: 'Open Sans', sans-serif;
-	overflow-y: hidden;
 }
 
 pre {
@@ -571,6 +569,16 @@ label {
 			opacity: 1;
 	}
 }
+
+@keyframes anim-fade-out {
+	0% {
+			opacity: 1;
+	}
+	100% {
+			opacity: 0;
+	}
+}
+
 
 
 @keyframes anim-slide-up {

@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment, lazy, Suspense } from 'react';
 import Button from 'react-bootstrap/lib/Button';
+import round from '@stdlib/math/base/special/round';
 import ceil from '@stdlib/math/base/special/ceil';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
@@ -15,6 +16,7 @@ import Calculator from 'components/calculator';
 import Chat from 'components/statusbar/chat';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
+import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import isElectron from 'utils/is-electron';
 import animatePosition from 'utils/animate-position';
 import SessionContext from 'session/context.js';
@@ -28,6 +30,15 @@ const InstructorView = lazy( () => import( 'components/statusbar/instructor-view
 const debug = logger( 'isle:statusbar' );
 const LOGGED_IN_COLOR = 'rgb(130, 224, 160)';
 const LOGGED_OUT_COLOR = 'rgb(209, 107, 71)';
+
+
+// FUNCTIONS //
+
+function getDuration( session ) {
+	let dur = new Date().getTime() - session.startTime;
+	dur = round( dur / (1000 * 60) );
+	return dur;
+}
 
 
 // MAIN //
@@ -46,7 +57,11 @@ class StatusBar extends Component {
 			side,
 			recordedText: null,
 			showCalculator: false,
-			showStatusBar: !context.config.hideStatusBar
+			showStatusBar: !context.config.hideStatusBar,
+			showProgressBar: false,
+			isProgressLeaving: false,
+			progress: 0,
+			duration: '0'
 		};
 		this.hidden = true;
 	}
@@ -71,10 +86,24 @@ class StatusBar extends Component {
 		};
 
 		const session = this.context;
-		this.unsubscribe = session.subscribe( () => {
+		this.unsubscribe = session.subscribe( ( type, data ) => {
 			if ( !sentNotification && session.anonymous && session.live ) {
 				setTimeout( promptLogin, 2000 );
 				sentNotification = true;
+			}
+			if ( type === 'self_updated_progress' ) {
+				this.setState({
+					progress: round( Number( data ) * 100 ),
+					showProgressBar: true,
+					isProgressLeaving: true
+				});
+				setTimeout(() => {
+					this.setState({
+						showProgressBar: false,
+						isProgressLeaving: false,
+						duration: getDuration( session )
+					});
+				}, 4000 );
 			}
 			this.forceUpdate();
 		});
@@ -209,6 +238,16 @@ class StatusBar extends Component {
 		});
 	}
 
+	toggleProgress = () => {
+		if ( this.state.isProgressLeaving ) {
+			return;
+		}
+		this.setState({
+			showProgressBar: !this.state.showProgressBar,
+			duration: getDuration( this.context )
+		});
+	}
+
 	getChatPosition( idx ) {
 		const session = this.context;
 		const margin = 10;
@@ -276,7 +315,13 @@ class StatusBar extends Component {
 							}}>
 								<div className="statusbar-inner-presence"></div>
 							</div>
-							<div className="statusbar-username">
+							<div
+								className="statusbar-username" onClick={( evt ) => {
+									evt.stopPropagation();
+								}}
+								onMouseEnter={this.toggleProgress}
+								onMouseOut={this.toggleProgress}
+							>
 								{ session.anonymous ? 'Anonymous' : session.user.name }
 							</div>
 							{ session.anonymous ?
@@ -313,6 +358,22 @@ class StatusBar extends Component {
 							message="Do you really want to log out? To log in again, you will need your password."
 							onConfirm={this.handleLogout}
 						/>
+						{ this.state.showProgressBar ?
+							<div className={`statusbar-progress ${this.state.isProgressLeaving ? 'progress-fade-out' : ''} `}>
+								<Gate user>
+									<div className="progress-time">DUR: {this.state.duration} MIN</div>
+									<ProgressBar
+										label={`COMPLETION RATE: ${this.state.progress}%`}
+										variant="success"
+										now={this.state.progress} style={{
+											height: 16,
+											animation: 'anim-fade-in 0.7s',
+											border: 'solid 1px darkgrey'
+										}}
+									/>
+								</Gate>
+							</div> : null
+						}
 					</div>
 					<Suspense fallback={null} >
 						<Gate owner>

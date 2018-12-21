@@ -138,7 +138,7 @@ class Lesson extends Component {
 		global.lesson = this;
 		const loader = document.getElementById( 'loading' );
 		if ( loader ) {
-			loader.style.animation = 'anim-fade-out 3s forwards';
+			loader.style.animation = 'anim-fade-out 1.7s forwards';
 			setTimeout(function onRemove() {
 				loader.remove();
 				document.body.style['overflow-y'] = 'auto';
@@ -159,6 +159,8 @@ class Lesson extends Component {
 		);
 	}
 }
+
+document.body.style['overflow-y'] = 'hidden';
 
 render(
 	<Provider session={session} >

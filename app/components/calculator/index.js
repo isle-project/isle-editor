@@ -7,7 +7,7 @@ import Draggable from 'react-draggable';
 import Button from 'react-bootstrap/lib/Button';
 import Container from 'react-bootstrap/lib/Container';
 import Panel from 'components/panel';
-import TextArea from 'components/input/text-area';
+import FormControl from 'react-bootstrap/lib/FormControl';
 import SessionContext from 'session/context.js';
 import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
@@ -24,7 +24,7 @@ import './calculator.css';
 
 const debug = logger( 'isle:calculator' );
 const RE_SPLIT_KEY = /([() +\-/*^!])/;
-const RE_OPERATOR = /[+-/*^!]/;
+const RE_OPERATOR = /[+\-/*^!]/;
 
 
 // MAIN //
@@ -110,9 +110,9 @@ class Calculator extends Component {
 		};
 	}
 
-	handleTypeChange = ( value ) => {
+	handleTypeChange = ( event ) => {
 		this.setState({
-			visible: value
+			visible: event.target.value
 		});
 	}
 
@@ -158,7 +158,7 @@ class Calculator extends Component {
 				<div className="outer-calc" style={this.props.style}>
 					<Panel id="calc-panel-full" header={this.renderHeader()}>
 						<Container className="desaturated" >
-							<TextArea rows={1} id="calc-text-area" value={String(this.state.visible)} onChange={this.handleTypeChange} />
+							<FormControl type="text" id="calc-text-area" value={String(this.state.visible)} onChange={this.handleTypeChange} />
 							<p>Answer = {this.state.answer}</p>
 							<Row>
 								<Col>
@@ -189,7 +189,7 @@ class Calculator extends Component {
 									<Row>
 										<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('tan')} >tan(x)</Button>
 										<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('log10')} >log10(x)</Button>
-										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('^x')} >x<sup>y</sup></Button>
+										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('^')} >x<sup>y</sup></Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('1')} >1</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('2')} >2</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('3')} >3</Button>
@@ -243,7 +243,7 @@ class Calculator extends Component {
 						header={this.renderHeader()}
 					>
 						<Container className="desaturated" >
-							<TextArea rows={1} id="calc-text-area" value={String(this.state.visible)} onChange={this.handleTypeChange} />
+							<FormControl type="text" id="calc-text-area" value={String(this.state.visible)} onChange={this.handleTypeChange} />
 							<p>Answer = {this.state.answer}</p>
 							<Row>
 								<Col>

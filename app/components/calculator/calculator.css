@@ -26,6 +26,32 @@
 	max-width: 700px;
 }
 
+
+#calc-panel input {
+	background: white;
+	transition: all 0.6s;
+	font-weight: 600;
+}
+
+#calc-panel input:focus {
+	background: floralwhite;
+	box-shadow: inset 0 0 2px darkslategrey;
+}
+
+
+#calc-panel-full input {
+	background: white;
+	transition: all 0.6s;
+	font-weight: 600;
+}
+
+#calc-panel-full input:focus {
+	background: floralwhite;
+	box-shadow: inset 0 0 2px darkslategrey;
+}
+
+
+
 .input-button-small {
 	width: calc(25% - 4px);
 	margin: 2px;
