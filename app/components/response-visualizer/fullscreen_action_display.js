@@ -26,7 +26,6 @@ import ReactList from 'react-list';
 import Highlighter from 'react-highlight-words';
 import Plotly from 'components/plotly';
 import WordCloud from 'components/word-cloud';
-import randomname from 'utils/randomname';
 import Search from './search.js';
 import SingleActionModal from './single_action_modal.js';
 import FullscreenHeader from './fullscreen_header';
@@ -380,7 +379,7 @@ class FullscreenActionDisplay extends Component {
 			autoEscape={true}
 			textToHighlight={String( value )}
 		/>;
-		const name = randomname() || elem.name;
+		const name = elem.name;
 		return ( <ListGroupItem key={key}>
 			{ this.props.showExtended ?
 				<span style={{ textAlign: 'left' }}>
