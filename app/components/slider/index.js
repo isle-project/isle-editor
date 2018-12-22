@@ -2,8 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/lib/Card';
 import Slider from 'react-slick';
+import Card from 'react-bootstrap/lib/Card';
+import Alert from 'react-bootstrap/lib/Alert';
+import isArray from '@stdlib/assert/is-array';
 import NextArrow from './next_arrow';
 import PrevArrow from './previous_arrow';
 import './slick-theme.min.css';
@@ -54,7 +56,9 @@ class DefaultSlider extends Component {
 	}
 
 	componentDidMount() {
-		this.slider.slickGoTo( this.props.goto );
+		if ( this.slider ) {
+			this.slider.slickGoTo( this.props.goto );
+		}
 	}
 
 	componentDidUpdate( prevProps ) {
@@ -66,13 +70,15 @@ class DefaultSlider extends Component {
 				childDivs
 			});
 		}
-		if ( this.props.goto !== prevProps.goto ) {
+		if ( this.props.goto !== prevProps.goto && this.slider ) {
 			this.slider.slickGoTo( this.props.goto );
 		}
 	}
 
 	renderTitle() {
-		if (this.props.title === '') return null;
+		if ( this.props.title === '' ) {
+			return null;
+		}
 		return (
 			<Card.Header as="h3">
 				{this.props.title}
@@ -81,6 +87,9 @@ class DefaultSlider extends Component {
 	}
 
 	render() {
+		if ( !isArray( this.props.children ) ) {
+			return <Alert variant="danger" >The slider requires at least two child elements for it to be rendered.</Alert>;
+		}
 		return (
 			<Card
 				size="large"
