@@ -3,9 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Card from 'react-bootstrap/lib/Card';
-import Collapse from 'react-bootstrap/lib/Collapse';
-import objectKeys from '@stdlib/utils/keys';
+import isArray from '@stdlib/assert/is-array';
+import Alert from 'react-bootstrap/lib/Alert';
+import VerticalSlider from 'components/vertical-slider';
 
 
 // VARIABLES //
@@ -15,6 +15,14 @@ const debug = logger( 'isle:accordion' );
 
 // MAIN //
 
+/**
+* An accordion component controlling vertical sliders.
+*
+* @property {number} active - index of slider to be opened at the beginning
+* @property {Array} headers - array of header names
+* @property {string} headerClassName - this overrules the given className of the headers
+* @property {object} headerStyle - one may also assign a style to the header bars
+*/
 class Accordion extends Component {
 	/**
 	* Constructor function
@@ -23,8 +31,20 @@ class Accordion extends Component {
 		super( props );
 
 		this.state = {
-			active: props.active
+			active: props.active,
+			prevActive: props.active
 		};
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if ( nextProps.active !== prevState.prevActive ) {
+			const newState = {
+				active: nextProps.active,
+				prevActive: nextProps.active
+			};
+			return newState;
+		}
+		return null;
 	}
 
 	clickFactory = ( len, idx ) => {
@@ -41,22 +61,24 @@ class Accordion extends Component {
 	* React component render method
 	*/
 	render() {
-		const keys = objectKeys( this.props.nodes );
+		if ( !isArray( this.props.children ) ) {
+			return <Alert variant="danger" >The accordion requires at least two child elements for it to be rendered.</Alert>;
+		}
 		const out = [];
-		for ( let i = 0; i < keys.length; i++ ) {
-			const key = keys[ i ];
+		const headers = this.props.headers || [];
+		for ( let i = 0; i < this.props.children.length; i++ ) {
+			const child = this.props.children[ i ];
 			const elem = (
-				<Card>
-					<Card.Header onClick={this.clickFactory( keys.length, i )}>
-						{key}
-					</Card.Header>
-					<Collapse
-						key={i}
-						in={i === this.state.active}
-					>
-						{this.props.nodes[ key ]}
-					</Collapse>
-				</Card>
+				<VerticalSlider
+					key={i}
+					visible={i === this.state.active}
+					header={headers[ i ] || `Header ${i+1}`}
+					headerClassName={this.props.headerClassName}
+					headerStyle={this.props.headerStyle}
+					onClick={this.clickFactory( this.props.children.length, i )}
+				>
+					{child}
+				</VerticalSlider>
 			);
 			out.push( elem );
 		}
@@ -69,12 +91,16 @@ class Accordion extends Component {
 
 Accordion.defaultProps = {
 	active: 0,
-	nodes: {}
+	headers: null,
+	headerClassName: null,
+	headerStyle: null
 };
 
 Accordion.propTypes = {
 	active: PropTypes.number,
-	nodes: PropTypes.object
+	headers: PropTypes.arrayOf( PropTypes.string ),
+	headerStyle: PropTypes.object,
+	headerClassName: PropTypes.string
 };
 
 
