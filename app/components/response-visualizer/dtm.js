@@ -1,8 +1,5 @@
-'use strict';
-
 // MODULES //
 
-import ndarray from '@stdlib/ndarray/array';
 import tokenize from '@stdlib/nlp/tokenize';
 
 
@@ -153,7 +150,7 @@ DocumentTermMatrix.prototype.findFreqTerms = function findFreqTerms( n ) {
 		}
 	}
 
-	sortedWordArray = _.sortBy( wordArray, function by( obj ) {
+	sortedWordArray = wordArray.sort( function by( obj ) {
 		return obj.word;
 	});
 	return sortedWordArray;

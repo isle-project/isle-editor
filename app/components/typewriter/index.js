@@ -37,8 +37,7 @@ class Typewriter extends Component {
 	}
 
 	componentWillUnmount() {
-		if (this.timeout) {
-			console.log( this.timeout );
+		if ( this.timeout ) {
 			clearTimeout(this.timeout);
 			this.timeout = 0;
 		}
@@ -48,12 +47,11 @@ class Typewriter extends Component {
 		if ( !this.audio ) {
 			this.audio = new Audio( SOUND_FILE );
 		}
-
-		if ( this.props.delay !== null) {
-			this.timeout = setTimeout(() => {
+		if ( this.props.delay !== null ) {
+			this.timeout = setTimeout( () => {
 				this.started = true;
 				this.next();
-			}, this.props.delay);
+			}, this.props.delay );
 		}
 		else {
 			this.started = true;
@@ -61,9 +59,11 @@ class Typewriter extends Component {
 		}
 	}
 
-	playAudio = (char) => {
+	playAudio = ( char ) => {
 		this.audio.volume = 0.3 + ( randu() * 0.7 );
-		if (char !== ' ') this.audio.play();
+		if ( char !== ' ' ) {
+			this.audio.play();
+		}
 	}
 
 	setText = () => {
@@ -72,7 +72,7 @@ class Typewriter extends Component {
 			const text = this.props.text.slice( 0, n );
 
 			if ( this.props.sound ) {
-				const actualChar = text[text.length-1];
+				const actualChar = text[ text.length - 1 ];
 				this.playAudio( actualChar );
 			}
 			this.setState({
@@ -84,14 +84,15 @@ class Typewriter extends Component {
 
 	setArrayText = () => {
 		if ( this.state.textCt < this.props.text.length) {
-			let current = this.props.text[this.state.textCt];
-			// check if the text is fullay displayed
+			let current = this.props.text[ this.state.textCt ];
+
+			// Check if the text is fully displayed:
 			if ( this.state.ct < current.length ) {
 				const n = this.state.ct + 1;
 				const text = current.slice( 0, n );
 
 				if ( this.props.sound ) {
-					const actualChar = text[text.length-1];
+					const actualChar = text[ text.length - 1 ];
 					this.playAudio( actualChar );
 				}
 
@@ -103,12 +104,12 @@ class Typewriter extends Component {
 			else {
 				let ct = this.state.textCt + 1;
 
-				this.timeout = setTimeout(() => {
+				this.timeout = setTimeout( () => {
 					this.setState({
 						ct: 0,
 						textCt: ct
 					});
-				}, this.props.hold);
+				}, this.props.hold );
 			}
 		}
 	}
@@ -116,12 +117,16 @@ class Typewriter extends Component {
 	next() {
 		let next = this.props.interval;
 		if ( this.props.random ) {
-			next = ( randu() * this.props.deviation ) - (this.props.deviation*0.5);
-			next = parseInt(next, 10);
+			next = randu() * this.props.deviation;
+			next -= this.props.deviation * 0.5;
+			next = parseInt( next, 10 );
 			next += this.props.interval;
 		}
-		if (isArray(this.props.text)) this.timeout = setTimeout( this.setArrayText, next );
-		else this.timeout=setTimeout( this.setText, next );
+		if ( isArray(this.props.text) ) {
+			this.timeout = setTimeout( this.setArrayText, next );
+		} else {
+			this.timeout = setTimeout( this.setText, next );
+		}
 	}
 
 	process = () => {
