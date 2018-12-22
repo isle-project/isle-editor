@@ -81,6 +81,12 @@ class Login extends Component {
 		}, 2000 );
 	}
 
+	handleKeyPress = ( event ) => {
+		if ( event.charCode === 13 ) {
+			this.handleSubmit( event );
+		}
+	}
+
 	handleSubmit = ( event ) => {
 		event.preventDefault();
 		const form = {
@@ -156,6 +162,7 @@ class Login extends Component {
 									placeholder="Password"
 									autocomplete="current-password"
 									onChange={this.handleInputChange}
+									onKeyPress={this.handleKeyPress}
 									ref={( input ) => { this.passwordInput = input; }}
 								/>
 							</Col>

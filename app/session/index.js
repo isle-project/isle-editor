@@ -3,6 +3,7 @@
 import qs from 'querystring';
 import logger from 'debug';
 import localforage from 'localforage';
+import contains from '@stdlib/assert/contains';
 import isString from '@stdlib/assert/is-string';
 import isFunction from '@stdlib/assert/is-function';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
@@ -99,6 +100,7 @@ class Session {
 
 		// Hash table for session variables:
 		this.vars = {};
+		this.set( 'score', 0 );
 
 		// State variables of the given lesson:
 		this.state = config.state;
@@ -1251,6 +1253,7 @@ class Session {
 				}
 			}
 			this.set( 'progress', progress );
+			this.update( 'self_initial_progress', progress );
 		}
 		else {
 			const actions = this.currentUserActions[ id ];
@@ -1264,6 +1267,24 @@ class Session {
 						this.set( 'progress', this.get( 'progress' ) + 1.0 / ids.length );
 						this.update( 'self_updated_progress', this.get( 'progress' ) );
 					}
+				}
+			}
+		}
+	}
+
+	setScore( action ) {
+		const actions = this.currentUserActions;
+		if ( actions ) {
+			const arr = actions[ action.id ];
+			if ( !arr ) {
+				this.set( 'score', this.get( 'score' ) + 4 );
+				this.update( 'self_updated_score', 4 );
+			}
+			else {
+				const types = arr.map( x => x.type );
+				if ( !contains( types, action.type ) ) {
+					this.set( 'score', this.get( 'score' ) + 4 );
+					this.update( 'self_updated_score', 4 );
 				}
 			}
 		}
@@ -1389,6 +1410,7 @@ class Session {
 
 				// Push to respective array of currentUserActions hash table:
 				const actions = this.currentUserActions;
+				this.setScore( action );
 				if ( actions ) {
 					if ( !actions[ action.id ]) {
 						actions[ action.id ] = [ action ];

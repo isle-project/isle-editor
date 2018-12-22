@@ -1,0 +1,85 @@
+#Lesson .statusbar-score {
+	position: relative;
+	float: left;
+	width: 44px;
+	animation: anim-fade-in 0.7s;
+	color: darkslategray;
+	font-weight: 600;
+	background-color:#e9ecef;
+	height: 16px;
+	font-size: 10px;
+	border: solid 1px darkgray;
+	text-align: center;
+	border-radius: 0.25rem;
+}
+
+@keyframes anim-scale-down-rotate {
+	0% {
+		transform: scale(1) rotate(20deg);
+	}
+	100% {
+		transform: scale(0) rotate(-20deg);
+	}
+}
+
+#Lesson .receiving-score {
+	position: fixed;
+	width: 100px;
+	height: 100px;
+	background-color: rgb(130, 224, 160) !important;
+	border-radius: 50%;
+	z-index: 100;
+	font-size: 70px;
+	text-align: center;
+	font-family: Open Sans Condensed;
+	animation: focus-in 0.6s, anim-scale-down-rotate 2s 0.3s forwards;
+	transform: rotate(20deg);
+}
+
+.receiving-score-outer-circle {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	border-radius: 50%;
+	border-right:solid 3px white;
+	width: 90%;
+	height: 90%;
+	animation: rotating 4s infinite;
+}
+
+
+.receiving-score-outer-circle2 {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	border-radius: 50%;
+	border-left:solid 2px var( --bg);
+	width: 90%;
+	height: 90%;
+	animation: rotating-reverse 2.3s infinite;
+}
+
+@-webkit-keyframes rotating {
+	from{
+		-webkit-transform: rotate(0deg);
+	}
+	to{
+		-webkit-transform: rotate(720deg);
+	}
+}
+
+
+@-webkit-keyframes rotating-reverse {
+	from{
+		-webkit-transform: rotate(720deg);
+	}
+	to{
+		-webkit-transform: rotate(0deg);
+	}
+}
