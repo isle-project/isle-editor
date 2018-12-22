@@ -4167,6 +4167,7 @@
       {
         "name": "groupID",
         "type": "string",
+        "description": "if set, the slider will refer to a group of sliders. This will allow to control a multitude of sliders",
         "default": null
       },
       {
@@ -4177,20 +4178,23 @@
       {
         "name": "headerStyle",
         "type": "object",
+        "description": "one may also assign a style to the header bar",
         "default": null
       },
       {
         "name": "headerClassName",
         "type": "string",
+        "description": "this overrules the given className of the header",
         "default": null
       },
       {
         "name": "visible",
         "type": "boolean",
+        "description": "if set, the body is visible right from the start",
         "default": false
       }
     ],
-    "description": "Description is missing."
+    "description": "An ISLE component that allows to slideDown and slideUp - JQuery stale."
   },
   "VictoryAnimation": {
     "props": [],
