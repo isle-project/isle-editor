@@ -28,7 +28,7 @@ function getClassName( val ) {
 // MAIN //
 
 /**
-* An ISLE component that allows to slideDown and slideUp - JQuery stale
+* An ISLE component that allows to slideDown and slideUp - JQuery style.
 *
 * @property {boolean} defaultVisible - if set, the body is visible right from the start
 * @property {boolean} visible - controls whether slider is visible; turns it into a controlled component where state needs to be handled externally
@@ -36,7 +36,7 @@ function getClassName( val ) {
 * @property {string} headerClassName - this overrules the given className of the header
 * @property {object} headerStyle - one may also assign a style to the header bar
 */
-class VerticalSlider extends Component {
+class Collapse extends Component {
 	constructor( props ) {
 		super( props );
 		const visible = props.visible || props.defaultVisible;
@@ -105,7 +105,7 @@ class VerticalSlider extends Component {
 
 // PROPERTIES //
 
-VerticalSlider.propTypes = {
+Collapse.propTypes = {
 	header: PropTypes.string,
 	headerStyle: PropTypes.object,
 	headerClassName: PropTypes.string,
@@ -114,7 +114,7 @@ VerticalSlider.propTypes = {
 	onClick: PropTypes.func
 };
 
-VerticalSlider.defaultProps = {
+Collapse.defaultProps = {
 	header: 'Header',
 	headerClassName: null,
 	headerStyle: null,
@@ -126,4 +126,4 @@ VerticalSlider.defaultProps = {
 
 // EXPORTS //
 
-export default VerticalSlider;
+export default Collapse;

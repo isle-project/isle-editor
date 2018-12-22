@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import Alert from 'react-bootstrap/lib/Alert';
-import VerticalSlider from 'components/vertical-slider';
+import Collapse from 'components/collapse';
 
 
 // VARIABLES //
@@ -69,7 +69,7 @@ class Accordion extends Component {
 		for ( let i = 0; i < this.props.children.length; i++ ) {
 			const child = this.props.children[ i ];
 			const elem = (
-				<VerticalSlider
+				<Collapse
 					key={i}
 					visible={i === this.state.active}
 					header={headers[ i ] || `Header ${i+1}`}
@@ -78,7 +78,7 @@ class Accordion extends Component {
 					onClick={this.clickFactory( this.props.children.length, i )}
 				>
 					{child}
-				</VerticalSlider>
+				</Collapse>
 			);
 			out.push( elem );
 		}
