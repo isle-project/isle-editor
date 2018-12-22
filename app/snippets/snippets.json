@@ -279,7 +279,6 @@
 		"name":"Typewriter",
 		"value":"<Typewriter text=\"${1:}\" />\n"
 	},
-
 	{
 		"name":"Unveil",
 		"value":"<Unveil active={true} delay={${1:1000}} >\n\t${2:Component to Display}\n</Unveil>\n"
@@ -427,6 +426,10 @@
 	{
 		"name":"CodeSlide",
 		"value":"<CodeSlide\n\tlang=\"${1:javascript}\"\n\tcode={`\n\t${2:}\n\t`}\n\tranges={[\n\t\t${3:{ loc: [0, 1], note: 'Attach notes or title' }}\n\t]}\n/>\n"
+	},
+	{
+		"name":"VerticalSlider",
+		"value":"<VerticalSlider>\n\t${1:}\n</VerticalSlider>\n"
 	},
 	{
 		"name":"VictoryBar",
