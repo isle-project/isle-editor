@@ -77,7 +77,11 @@ function openFile( filePath, browserWindow ) {
 }
 
 ipcMain.on( 'save-file-as', ( e, { data }) => {
-	dialog.showSaveDialog({}, ( filePath ) => {
+	dialog.showSaveDialog({
+		filters: [
+			{ name: 'isle', extensions: [ 'isle' ]}
+		]
+	}, ( filePath ) => {
 		if ( filePath ) {
 			fs.writeFile( filePath, data, 'utf-8', ( err ) => {
 				if ( err ) {
