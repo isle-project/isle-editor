@@ -4,6 +4,7 @@ import qs from 'querystring';
 import logger from 'debug';
 import localforage from 'localforage';
 import contains from '@stdlib/assert/contains';
+import isNull from '@stdlib/assert/is-null';
 import isString from '@stdlib/assert/is-string';
 import isFunction from '@stdlib/assert/is-function';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
@@ -84,6 +85,7 @@ class Session {
 
 		// Actions for the current user:
 		this.actions = [];
+		this.currentUserActions = null;
 
 		// Actions received from other users via socket communication:
 		this.socketActions = [];
@@ -1233,7 +1235,7 @@ class Session {
 	* @param {string} id - action id
 	*/
 	setProgress( id ) {
-		if ( this.anonymous ) {
+		if ( this.anonymous || isNull( this.currentUserActions ) ) {
 			return;
 		}
 		const ids = objectKeys( this.responseVisualizers );
@@ -1273,6 +1275,9 @@ class Session {
 	}
 
 	setScore( action ) {
+		if ( this.anonymous || isNull( this.currentUserActions ) ) {
+			return;
+		}
 		const actions = this.currentUserActions;
 		if ( actions ) {
 			const arr = actions[ action.id ];
