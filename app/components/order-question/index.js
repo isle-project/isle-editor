@@ -152,7 +152,6 @@ class OrderQuestion extends Component {
 					/>
 				</Card.Body>
 				{ this.props.id && this.props.feedback ? <FeedbackButtons
-					vertical
 					id={this.props.id+'_feedback'}
 				/> : null }
 			</Card>
