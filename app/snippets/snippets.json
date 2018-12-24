@@ -1,5 +1,9 @@
 [
 	{
+		"name":"Accordion",
+		"value":"<Accordion>\n\t${1:}\n</Accordion>\n"
+	},
+	{
 		"name":"AddNotification",
 		"value":"this.addNotification({\n\tin: '${1:title}',\n\tmessage: '${2:msg}',\n\tposition: 'tr',\n\tlevel: 'success'\n});\n"
 	},
@@ -428,8 +432,8 @@
 		"value":"<CodeSlide\n\tlang=\"${1:javascript}\"\n\tcode={`\n\t${2:}\n\t`}\n\tranges={[\n\t\t${3:{ loc: [0, 1], note: 'Attach notes or title' }}\n\t]}\n/>\n"
 	},
 	{
-		"name":"VerticalSlider",
-		"value":"<VerticalSlider>\n\t${1:}\n</VerticalSlider>\n"
+		"name":"Collapse",
+		"value":"<Collapse>\n\t${1:}\n</Collapse>\n"
 	},
 	{
 		"name":"VictoryBar",

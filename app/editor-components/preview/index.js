@@ -70,6 +70,7 @@ const createScope = ( session ) => {
 		CheckboxInput: CheckboxInput,
 		Calculator: Loadable( () => import( 'components/calculator' ) ),
 		Clock: Loadable( () => import( 'components/clock' ) ),
+		Collapse: Loadable( () => import( 'components/collapse' ) ),
 		ColorPicker: Loadable( () => import( 'components/color-picker' ) ),
 		Dashboard,
 		DataExplorer: Loadable( () => import( 'components/data-explorer' ) ),
@@ -165,7 +166,6 @@ const createScope = ( session ) => {
 		Typewriter: Loadable( () => import( 'components/typewriter' ) ),
 		Unveil: Loadable( () => import( 'components/unveil' ) ),
 
-		VerticalSlider: Loadable( () => import( 'components/vertical-slider' ) ),
 		VideoPlayer: Loadable( () => import( 'components/video-player' ) ),
 		VoiceInput,
 		VoiceControl: Loadable( () => import( 'components/voice-control' ) ),

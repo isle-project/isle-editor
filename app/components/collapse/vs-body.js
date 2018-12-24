@@ -32,7 +32,7 @@ class VSBody extends Component {
 	getHeight = () => {
 		if ( this.props.className === 'vs-body vs-display' ) {
 			const values = this.myRef.current.getBoundingClientRect();
-			if ( this.state.set === false ) {
+            if ( this.state.set === false || values.height > this.state.height ) {
 				this.setState({
 					height: values.height,
 					set: true
