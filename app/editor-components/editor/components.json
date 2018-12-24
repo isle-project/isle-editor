@@ -70,7 +70,8 @@
 		"OrderQuestion",
 		"RangeQuestion",
 		"SelectQuestion",
-		"Quiz"
+		"Quiz",
+		"QuestionForm"
 	],
 	"SURVEY": [
 		"FreeTextSurvey",

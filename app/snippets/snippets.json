@@ -172,6 +172,10 @@
 		"value":"<ProportionsSurvey\n\tuser\n\tquestion=\"${1:Invest now!}\"\n\tgroup=\"${2:Group Decision}\"\n\tnElements ={${3:3}}\n\tpersonalHeight={${4:300}}\n\tcolors = {${5:['red', 'blue', 'gold']}}\n\tlegends = {${6:['Robotics', 'Bitcoin', 'Gold']}}\n/>\n"
 	},
 	{
+		"name":"QuestionForm",
+		"value":"<QuestionForm>\n\t${1:}\n</QuestionForm>\n"
+	},
+	{
 		"name":"Quiz",
 		"value":"<Quiz\n\tquestions={[${1:\n\t\t{ 'type': 'FreeTextQuestion', 'question': 'Enter questions here...' }\n\t}]}\n\tcount={${2:0}}\n/>\n"
 	},
