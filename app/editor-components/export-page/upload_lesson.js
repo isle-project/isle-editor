@@ -71,7 +71,7 @@ class UploadLesson extends Component {
 				});
 			})
 			.catch( error => {
-				debug( 'Ecountered an error: '+error.message );
+				debug( 'Encountered an error: '+error.message );
 				return this.setState({
 					error
 				});
