@@ -1,0 +1,40 @@
+#header-upper-bar {
+	color: white;
+	background-color: #373D49;
+	height: 48px;
+	min-height: 48px;
+	display: flex;
+	align-items: center;
+	padding: 5px;
+	justify-content: space-between;
+}
+
+#link-back-to-editor {
+	color: silver;
+	font-size: 18px;
+	font-weight: 800;
+	margin-right: 15px;
+}
+
+#link-export {
+	color: silver;
+	font-size: 18px;
+	margin-right: 15px;
+}
+
+#link-settings {
+	color: silver;
+	font-size: 18px;
+	margin-right: 15px;
+}
+
+#link-dashboard {
+	color: silver;
+	font-size: 18px;
+	margin-right: 15px;
+}
+
+#link-docs {
+	color: silver;
+	font-size: 18px;
+}

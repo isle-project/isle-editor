@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import { exec } from 'child_process';
-import { ISLE_DOCS_LINK } from 'constants/links';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
 
 
@@ -26,6 +25,7 @@ class Documentation extends Component {
 
 	componentDidMount() {
 		this.resize();
+		this.server = localStorage.getItem( 'server' );
 		this.webview.addEventListener( 'new-window', ( e ) => {
 			try {
 				openBrowser( e.url );
@@ -50,10 +50,10 @@ class Documentation extends Component {
 	render() {
 		return (
 			<div>
-				<HeaderUpperBar backToEditor title="Documentation" />
+				<HeaderUpperBar backToEditor title="Dashboard" />
 				<webview
-					id="DocumentationView"
-					src={ISLE_DOCS_LINK}
+					id="DashboardView"
+					src={this.server}
 					style={{
 						display: 'flex',
 						height: this.state.height,

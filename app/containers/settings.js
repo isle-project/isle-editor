@@ -1,13 +1,13 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import NumberInput from 'components/input/number';
 import Button from 'react-bootstrap/lib/Button';
 import Form from 'react-bootstrap/lib/Form';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Card from 'react-bootstrap/lib/Card';
-import { Link } from 'react-router-dom';
+import HeaderUpperBar from 'editor-components/header-upper-bar';
 
 
 // FUNCTIONS //
@@ -163,46 +163,32 @@ class Login extends Component {
 class Settings extends Component {
 	render() {
 		return (
-			<div
-				style={{
+			<Fragment>
+				<HeaderUpperBar backToEditor title="Settings" />
+				<div style={{
 					marginLeft: '20px',
 					marginTop: '20px',
 					marginRight: '20px'
-				}}
-			>
-				<Link
-					to="/"
-					className="unselectable"
-					style={{
-						float: 'right',
-						color: 'silver',
-						position: 'absolute',
-						top: '12px',
-						right: '12px',
-						fontSize: '26px',
-						zIndex: 2
-					}}
-				>Back to Editor</Link>
-				<br />
-				<br />
-				<Login />
-				<Card>
-					<Card.Header as="h5">
-						Settings
-					</Card.Header>
-					<Card.Body>
-						<NumberInput
-							description="Editor text height in pixels"
-							legend="Font Size"
-							onChange={handleFontSizeChange}
-							min={8}
-							max={56}
-							step={1}
-							defaultValue={parseInt( localStorage.getItem( 'fontSize' ), 10 ) || 14}
-						/>
-					</Card.Body>
-				</Card>
-			</div>
+				}}>
+					<Login />
+					<Card>
+						<Card.Header as="h5">
+							Settings
+						</Card.Header>
+						<Card.Body>
+							<NumberInput
+								description="Editor text height in pixels"
+								legend="Font Size"
+								onChange={handleFontSizeChange}
+								min={8}
+								max={56}
+								step={1}
+								defaultValue={parseInt( localStorage.getItem( 'fontSize' ), 10 ) || 14}
+							/>
+						</Card.Body>
+					</Card>
+				</div>
+			</Fragment>
 		);
 	}
 }

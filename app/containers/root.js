@@ -6,6 +6,7 @@ import { Router, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 import Editor from 'containers/editor.js';
 import Documentation from 'containers/documentation.js';
+import Dashboard from 'containers/dashboard.js';
 import Settings from 'containers/settings.js';
 import Export from 'containers/export.js';
 
@@ -31,6 +32,7 @@ class Root extends Component {
 							}
 							return null;
 						}} />
+						<Route path="/dashboard" component={Dashboard} />
 						<Route path="/docs" component={Documentation} />
 						<Route path="/settings" component={Settings} />
 						<Route path="/export" component={Export} />

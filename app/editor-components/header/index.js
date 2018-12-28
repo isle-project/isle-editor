@@ -1,12 +1,12 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import DropdownItem from 'react-bootstrap/lib/DropdownItem';
 import './header.css';
+import HeaderUpperBar from 'editor-components/header-upper-bar';
 
 
 // MAIN //
@@ -53,29 +53,7 @@ class Header extends Component {
 	render() {
 		return (
 			<div>
-				<div
-					id="header-upper-bar"
-					className="unselectable"
-				>
-					<h3>ISLE Editor</h3>
-					<div>
-						<Link
-							id="link-export"
-							className="unselectable"
-							to="/export"
-						>Export</Link>
-						<Link
-							id="link-settings"
-							className="unselectable"
-							to="/settings"
-						>Settings</Link>
-						<Link
-							id="link-docs"
-							className="unselectable"
-							to="/docs"
-						>Documentation</Link>
-					</div>
-				</div>
+				<HeaderUpperBar />
 				<div
 					id="header-lower-bar"
 					className="unselectable"

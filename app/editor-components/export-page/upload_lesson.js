@@ -346,7 +346,7 @@ class UploadLesson extends Component {
 					Upload Lesson
 				</Card.Header>
 				<Card.Body>
-					<p>Upload and deploy lessons directly to ISLE server.</p>
+					<p>Upload and deploy currently opened lesson directly to connected ISLE server.</p>
 					{ this.state.token ?
 						<Fragment>
 							{formGroups}
