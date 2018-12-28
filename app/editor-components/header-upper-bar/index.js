@@ -33,11 +33,6 @@ const HeaderUpperBar = ( props ) => {
 				to="/settings"
 			>Settings</Link>
 			<Link
-				id="link-dashboard"
-				className="unselectable"
-				to="/dashboard"
-			>Dashboard</Link>
-			<Link
 				id="link-docs"
 				className="unselectable"
 				to="/docs"

@@ -32,7 +32,6 @@ class Root extends Component {
 							}
 							return null;
 						}} />
-						<Route path="/dashboard" component={Dashboard} />
 						<Route path="/docs" component={Documentation} />
 						<Route path="/settings" component={Settings} />
 						<Route path="/export" component={Export} />
