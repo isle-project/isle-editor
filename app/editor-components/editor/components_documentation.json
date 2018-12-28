@@ -4,15 +4,29 @@
       {
         "name": "active",
         "type": "number",
+        "description": "index of slider to be opened at the beginning",
         "default": 0
       },
       {
-        "name": "nodes",
+        "name": "headers",
+        "type": "array<string>",
+        "description": "array of header names",
+        "default": null
+      },
+      {
+        "name": "headerStyle",
         "type": "object",
-        "default": {}
+        "description": "one may also assign a style to the header bars",
+        "default": null
+      },
+      {
+        "name": "headerClassName",
+        "type": "string",
+        "description": "this overrules the given className of the headers",
+        "default": null
       }
     ],
-    "description": "Description is missing."
+    "description": "An accordion component controlling vertical sliders."
   },
   "Animated": {
     "props": [
@@ -141,6 +155,46 @@
       }
     ],
     "description": "Clock component displaying the current time."
+  },
+  "Collapse": {
+    "props": [
+      {
+        "name": "header",
+        "type": "string",
+        "description": "header string",
+        "default": "Header"
+      },
+      {
+        "name": "headerStyle",
+        "type": "object",
+        "description": "one may also assign a style to the header bar",
+        "default": null
+      },
+      {
+        "name": "headerClassName",
+        "type": "string",
+        "description": "this overrules the given className of the header",
+        "default": null
+      },
+      {
+        "name": "defaultVisible",
+        "type": "boolean",
+        "description": "if set, the body is visible right from the start",
+        "default": false
+      },
+      {
+        "name": "visible",
+        "type": "boolean",
+        "description": "controls whether slider is visible; turns it into a controlled component where state needs to be handled externally",
+        "default": null
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "default": "onClick() {}"
+      }
+    ],
+    "description": "An ISLE component that allows to slideDown and slideUp - JQuery style."
   },
   "ColorPicker": {
     "props": [
@@ -4161,40 +4215,6 @@
       }
     ],
     "description": "The appear component will cause all of its children to become visible after a specified amount of time."
-  },
-  "VerticalSlider": {
-    "props": [
-      {
-        "name": "groupID",
-        "type": "string",
-        "description": "if set, the slider will refer to a group of sliders. This will allow to control a multitude of sliders",
-        "default": null
-      },
-      {
-        "name": "header",
-        "type": "string",
-        "default": "Header"
-      },
-      {
-        "name": "headerStyle",
-        "type": "object",
-        "description": "one may also assign a style to the header bar",
-        "default": null
-      },
-      {
-        "name": "headerClassName",
-        "type": "string",
-        "description": "this overrules the given className of the header",
-        "default": null
-      },
-      {
-        "name": "visible",
-        "type": "boolean",
-        "description": "if set, the body is visible right from the start",
-        "default": false
-      }
-    ],
-    "description": "An ISLE component that allows to slideDown and slideUp - JQuery stale."
   },
   "VictoryAnimation": {
     "props": [],
