@@ -18,22 +18,22 @@ const SQRT12_INV = 1.0 / sqrt( 12.0 );
 
 // FUNCTIONS //
 
-const generateProbs = ( lower, upper, props ) => {
+const generateProbs = ( { lower, upper, activeDistribution, a, b, n, lambda, mu, sigma } ) => {
 	let mean;
 	let se;
-	switch ( props.activeDistribution ) {
+	switch ( activeDistribution ) {
 		default:
 		case 1:
-			mean = ( props.b + props.a ) / 2.0;
-			se = SQRT12_INV * abs( props.b - props.a ) / sqrt( props.n );
+			mean = ( b + a ) / 2.0;
+			se = SQRT12_INV * abs( b - a ) / sqrt( n );
 			break;
 		case 2:
-			mean = 1.0 / props.lambda;
-			se = ( 1.0 / props.lambda ) / sqrt( props.n );
+			mean = 1.0 / lambda;
+			se = ( 1.0 / lambda ) / sqrt( n );
 			break;
 		case 3:
-			mean = props.mu;
-			se = props.sigma / sqrt( props.n );
+			mean = mu;
+			se = sigma / sqrt( n );
 			break;
 	}
 	let rangeProb = pnorm( upper, mean, se ) - pnorm( lower, mean, se );
@@ -70,7 +70,11 @@ class ProbMeanRange extends Component {
 			nextProps.n !== prevState.n
 		) {
 			const newState = {
-				...generateProbs( prevState.lower, prevState.upper, nextProps ),
+				...generateProbs({
+					lower: prevState.lower,
+					upper: prevState.upper,
+					...nextProps
+				}),
 				...nextProps
 			};
 			return newState;
@@ -85,7 +89,17 @@ class ProbMeanRange extends Component {
 					L: {
 						variable: 'L',
 						onChange: ( lower ) => {
-							const newState = generateProbs( lower, this.state.upper, this.props );
+							const newState = generateProbs({
+								lower: lower,
+								upper: this.state.upper,
+								activeDistribution: this.props.activeDistribution,
+								a: this.props.a,
+								b: this.props.b,
+								n: this.props.n,
+								lambda: this.props.lambda,
+								mu: this.props.mu,
+								sigma: this.props.sigma
+							});
 							this.setState( newState );
 						},
 						defaultValue: this.state.lower
@@ -105,7 +119,7 @@ class ProbMeanRange extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 ProbMeanRange.propTypes = {
 	a: PropTypes.number.isRequired,

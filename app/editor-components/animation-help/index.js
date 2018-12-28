@@ -72,25 +72,20 @@ class AnimationHelp extends Component {
 		};
 	}
 
-	show() {
-		// alert("Die Show-Funktion");
-	}
-
 	passCommand = ( value ) => {
 		this.setState({
 			code: value
 		});
 	}
 
-	getCommand(ndx) {
+	getCommand( ndx ) {
 		const item = commands[ndx];
 		const infinite = item.command + ' infinite';
 		const style = {
 			animation: infinite
 		};
-
 		return (
-			<div onMouseOver={()=>this.passCommand(item.command)} style={{ width: '100%'}}>
+			<div onMouseOver={() => this.passCommand(item.command)} style={{ width: '100%' }}>
 				<h4>{item.name}</h4>
 				<div style={style} className="cube"></div>
 				<div className="codeBlock"><code>animation: {item.command}</code></div>
@@ -117,7 +112,7 @@ class AnimationHelp extends Component {
 			animation: infinite
 		};
 		return (
-			<div onMouseOver={()=>this.passCommand(item.command)} style={{ width: '100%'}}>
+			<div onMouseOver={()=>this.passCommand(item.command)} style={{ width: '100%' }}>
 				<h4>{item.name}</h4>
 				<div style={style} className="textCommand">Text Command</div>
 				<div className="codeBlock">
@@ -190,24 +185,21 @@ class AnimationHelp extends Component {
 
 
 	renderContent() {
-		if (this.state.explanation === 'list') {
+		if ( this.state.explanation === 'list' ) {
 			return this.renderCommands();
 		}
-
-		if (this.state.explanation === 'shorthand') {
+		if ( this.state.explanation === 'shorthand' ) {
 			return this.renderShorthand();
 		}
-
-		if (this.state.explanation === 'principles') {
+		if ( this.state.explanation === 'principles' ) {
 			return this.renderPrinciples();
 		}
-
-		if (this.state.explanation === 'text') {
+		if ( this.state.explanation === 'text' ) {
 			return this.renderTextAnimations();
 		}
 	}
 
-	setPage = (value) => {
+	setPage = ( value ) => {
 		let page;
 		switch ( value ) {
 		case 2:

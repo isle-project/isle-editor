@@ -12,18 +12,18 @@ import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 
 // FUNCTIONS //
 
-const generatePopProbs = ( value, props ) => {
+const generatePopProbs = ( value, { a, b, activeDistribution, mu, lambda, sigma } ) => {
 	let popLeftProb;
-	switch ( props.activeDistribution ) {
+	switch ( activeDistribution ) {
 		default:
 		case 1:
-			popLeftProb = punif( value, props.a, props.b );
+			popLeftProb = punif( value, a, b );
 			break;
 		case 2:
-			popLeftProb = pexp( value, props.lambda );
+			popLeftProb = pexp( value, lambda );
 			break;
 		case 3:
-			popLeftProb = pnorm( value, props.mu, props.sigma );
+			popLeftProb = pnorm( value, mu, sigma );
 			break;
 	}
 	const popRightProb = 1.0 - popLeftProb;
@@ -49,16 +49,19 @@ class ProbMean extends Component {
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
+		const { a, b, activeDistribution, mu, lambda, sigma } = nextProps;
 		if (
-			nextProps.activeDistribution !== prevState.activeDistribution ||
-			nextProps.a !== prevState.a ||
-			nextProps.b !== prevState.b ||
-			nextProps.lambda !== prevState.lambda ||
-			nextProps.mu !== prevState.mu ||
-			nextProps.sigma !== prevState.sigma
+			activeDistribution !== prevState.activeDistribution ||
+			a !== prevState.a ||
+			b !== prevState.b ||
+			lambda !== prevState.lambda ||
+			mu !== prevState.mu ||
+			sigma !== prevState.sigma
 		) {
 			return {
-				...generatePopProbs( prevState.popCutoff, nextProps ),
+				...generatePopProbs(
+					prevState.popCutoff, { a, b, activeDistribution, mu, lambda, sigma }
+				),
 				...nextProps
 			};
 		}
@@ -66,13 +69,14 @@ class ProbMean extends Component {
 	}
 
 	render() {
+		const { a, b, activeDistribution, mu, lambda, sigma } = this.props;
 		return (
 			<Card body>
 				<NumberInput
 					step="any"
 					legend={<TeX raw="x" />}
 					onChange={( value ) => {
-						const newState = generatePopProbs( value, this.props );
+						const newState = generatePopProbs( value, { a, b, activeDistribution, mu, lambda, sigma } );
 						this.setState( newState );
 					}}
 				/>
@@ -86,7 +90,7 @@ class ProbMean extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
 
 ProbMean.propTypes = {
 	a: PropTypes.number.isRequired,

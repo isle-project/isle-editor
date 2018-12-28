@@ -17,22 +17,22 @@ const SQRT12_INV = 1.0 / sqrt( 12.0 );
 
 // FUNCTIONS //
 
-const calculateProb = ( value, props ) => {
+const calculateProb = ({ value, activeDistribution, a, b, n, lambda, mu, sigma }) => {
 	let mean;
 	let se;
-	switch ( props.activeDistribution ) {
+	switch ( activeDistribution ) {
 		default:
 		case 1:
-			mean = ( props.b + props.a ) / 2.0;
-			se = SQRT12_INV * abs( props.b - props.a ) / sqrt( props.n );
+			mean = ( b + a ) / 2.0;
+			se = SQRT12_INV * abs( b - a ) / sqrt( n );
 			break;
 		case 2:
-			mean = 1.0 / props.lambda;
-			se = ( 1.0 / props.lambda ) / sqrt( props.n );
+			mean = 1.0 / lambda;
+			se = ( 1.0 / lambda ) / sqrt( n );
 			break;
 		case 3:
-			mean = props.mu;
-			se = props.sigma / sqrt( props.n );
+			mean = mu;
+			se = sigma / sqrt( n );
 			break;
 	}
 	const leftProb = pnorm( value, mean, se );
@@ -68,7 +68,16 @@ class ProbMean extends Component {
 			nextProps.n !== prevState.n ||
 			nextProps.sigma !== prevState.sigma
 		) {
-			const newState = calculateProb( prevState.cutoff, nextProps );
+			const newState = calculateProb({
+				value: prevState.cutoff,
+				activeDistribution: nextProps.activeDistribution,
+				a: nextProps.a,
+				b: nextProps.b,
+				n: nextProps.n,
+				lambda: nextProps.lambda,
+				mu: nextProps.mu,
+				sigma: nextProps.sigma
+			});
 			return {
 				...newState,
 				...nextProps
@@ -84,7 +93,16 @@ class ProbMean extends Component {
 					step="any"
 					legend={<TeX raw="x" />}
 					onChange={( value ) => {
-						const newState = calculateProb( value, this.props );
+						const newState = calculateProb({
+							value: value,
+							activeDistribution: this.props.activeDistribution,
+							a: this.props.a,
+							b: this.props.b,
+							n: this.props.n,
+							lambda: this.props.lambda,
+							mu: this.props.mu,
+							sigma: this.props.sigma
+						});
 						this.setState( newState );
 					}}
 				/>
@@ -97,7 +115,7 @@ class ProbMean extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
 
 ProbMean.propTypes = {
 	a: PropTypes.number.isRequired,
