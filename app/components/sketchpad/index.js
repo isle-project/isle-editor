@@ -1893,7 +1893,7 @@ class Sketchpad extends Component {
 	}
 
 	render() {
-		debug( `Render sketchpad with height ${this.props..canvasHeight} and width ${this.props.canvasWidth}` );
+		debug( `Render sketchpad with height ${this.props.canvasHeight} and width ${this.props.canvasWidth}` );
 		let cursor;
 		switch ( this.state.mode ) {
 		case 'drawing':

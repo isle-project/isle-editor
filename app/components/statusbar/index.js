@@ -102,7 +102,6 @@ class StatusBar extends Component {
 				type === 'self_updated_progress' ||
 				type === 'self_updated_score'
 			) {
-				console.log( 'Updated variable: '+type );
 				const newState = {
 					showProgressBar: true,
 					isProgressLeaving: true
@@ -110,10 +109,8 @@ class StatusBar extends Component {
 				if ( type === 'self_updated_progress' ) {
 					newState.progress = round( Number( data ) * 100 );
 				}
-				console.log( this.state );
 				this.setState( newState );
 				if ( this.progressTimeout ) {
-					console.log( 'CLEARE DEN TIMEOUT');
 					clearTimeout( this.progressTimeout );
 					this.progressTimeout = null;
 				}
@@ -160,7 +157,7 @@ class StatusBar extends Component {
 	}
 
 	toggleBarVisibility = () => {
-		console.log( 'Toggle visibility of statusbar...' );
+		debug( 'Toggle visibility of statusbar...' );
 		this.setState({
 			showStatusBar: !this.state.showStatusBar
 		});
