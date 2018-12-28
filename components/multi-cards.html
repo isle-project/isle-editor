@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Slider · ISLE Editor Documentation</title>
+        <title>MultiCard · ISLE Editor Documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -61,10 +61,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="switch.html" />
+    <link rel="next" href="realtime-metrics.md" />
     
     
-    <link rel="prev" href="revealer.html" />
+    <link rel="prev" href="db-metrics.md" />
     
 
     </head>
@@ -775,7 +775,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.11.6" data-path="slider.html">
+        <li class="chapter " data-level="1.4.11.6" data-path="slider.html">
             
                 <a href="slider.html">
             
@@ -1034,7 +1034,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.13.9" data-path="multi-cards.html">
+        <li class="chapter active" data-level="1.4.13.9" data-path="multi-cards.html">
             
                 <a href="multi-cards.html">
             
@@ -1314,7 +1314,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Slider</a>
+        <a href=".." >MultiCard</a>
     </h1>
 </div>
 
@@ -1329,29 +1329,63 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="slider">Slider</h1>
-<p>A component which displays its children in a slideshow or carousel.</p>
+                                <h1 id="multicard">MultiCard</h1>
+<p>An ISLE component that allows you to create and control multiple flippable cards (e.g. in a game of Memory).</p>
 <h4 id="example">Example:</h4>
-<pre class="language-"><code class="lang-js"><span class="token operator">&lt;</span>Slider title<span class="token operator">=</span><span class="token string">&quot;Questions to explore:&quot;</span> <span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>Try generating <span class="token keyword">new</span> <span class="token class-name">samples</span> <span class="token keyword">of</span> the Normal data<span class="token punctuation">.</span> You<span class="token string">&apos;ll notice that the points don&apos;</span>t always lie exactly on the line<span class="token punctuation">.</span> This is typical variation<span class="token punctuation">.</span> As you generate more random realizations <span class="token keyword">of</span> <span class="token keyword">this</span> plot you&apos;ll <span class="token keyword">get</span> better calibrated to the kind <span class="token keyword">of</span> deviation you can expect to see <span class="token keyword">from</span> <span class="token keyword">this</span> large a sample <span class="token keyword">of</span> Normal data<span class="token punctuation">.</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>How <span class="token keyword">do</span> the normal qq plots change <span class="token keyword">as</span> you vary the df parameter <span class="token keyword">for</span> the t<span class="token operator">-</span>distributed data<span class="token operator">?</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>Can you tell just by looking at the t<span class="token punctuation">.</span>data histograms that the data aren&apos;t normally distributed<span class="token operator">?</span> Is it easier to tell <span class="token keyword">from</span> the <span class="token constant">QQ</span> plots<span class="token operator">?</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>How <span class="token keyword">do</span> the normal qq plots change <span class="token keyword">as</span> you vary the shape parameter <span class="token keyword">in</span> the gamma<span class="token operator">-</span>distributed data<span class="token operator">?</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>Slider<span class="token operator">&gt;</span>
+<pre class="language-"><code class="lang-js"><span class="token operator">&lt;</span>MultiCards
+    id<span class="token operator">=</span><span class="token string">&quot;Memory&quot;</span>
+
+    onChange<span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">}</span>
+
+    cardStyles<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>
+        container<span class="token punctuation">:</span><span class="token punctuation">{</span>
+            width<span class="token punctuation">:</span> <span class="token number">250</span><span class="token punctuation">,</span>
+            height<span class="token punctuation">:</span> <span class="token number">250</span><span class="token punctuation">,</span>
+            marginBottom<span class="token punctuation">:</span> <span class="token number">10</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        front<span class="token punctuation">:</span><span class="token punctuation">{</span>
+            color<span class="token punctuation">:</span><span class="token string">&apos;gainsboro&apos;</span><span class="token punctuation">,</span>
+            cursor<span class="token punctuation">:</span> <span class="token string">&apos;pointer&apos;</span><span class="token punctuation">,</span>
+            textAlign<span class="token punctuation">:</span> <span class="token string">&apos;center&apos;</span><span class="token punctuation">,</span>
+            boxShadow<span class="token punctuation">:</span> <span class="token string">&apos;1px 1px 10px black&apos;</span><span class="token punctuation">,</span>
+            backgroundImage<span class="token punctuation">:</span> <span class="token string">&apos;url(https://isle.heinz.cmu.edu/seamless_1543575455035.png)&apos;</span><span class="token punctuation">,</span>
+            backgroundSize<span class="token punctuation">:</span> <span class="token string">&apos;100% auto&apos;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        back<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            color<span class="token punctuation">:</span> <span class="token string">&apos;blue&apos;</span><span class="token punctuation">,</span>
+            fontSize<span class="token punctuation">:</span> <span class="token number">20</span><span class="token punctuation">,</span>
+            fontWeight<span class="token punctuation">:</span> <span class="token number">800</span><span class="token punctuation">,</span>
+            fontFamily<span class="token punctuation">:</span> <span class="token string">&apos;Oswald&apos;</span><span class="token punctuation">,</span>
+            textAlign<span class="token punctuation">:</span> <span class="token string">&apos;left&apos;</span><span class="token punctuation">,</span>
+            paddingLeft<span class="token punctuation">:</span> <span class="token string">&apos;10px&apos;</span><span class="token punctuation">,</span>
+            background<span class="token punctuation">:</span> <span class="token string">&apos;ghostwhite&apos;</span><span class="token punctuation">,</span>
+            boxShadow<span class="token punctuation">:</span> <span class="token string">&apos;1px 1px 10px black&apos;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">}</span>
+    values<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">[</span>
+        <span class="token punctuation">{</span> front<span class="token punctuation">:</span> <span class="token string">&quot;number 1&quot;</span><span class="token punctuation">,</span> back<span class="token punctuation">:</span> <span class="token string">&apos;back side of #1&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> front<span class="token punctuation">:</span> <span class="token string">&quot;number 2&quot;</span><span class="token punctuation">,</span> back<span class="token punctuation">:</span> <span class="token string">&apos;back side of #2&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> front<span class="token punctuation">:</span> <span class="token string">&quot;number 3&quot;</span><span class="token punctuation">,</span> back<span class="token punctuation">:</span> <span class="token string">&apos;back side of #3&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> front<span class="token punctuation">:</span> <span class="token string">&quot;number 4&quot;</span><span class="token punctuation">,</span> back<span class="token punctuation">:</span> <span class="token string">&apos;back side of #4&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">}</span>
+<span class="token operator">/</span><span class="token operator">&gt;</span>
 </code></pre>
-<p><a href="https://isle.heinz.cmu.edu/components/slider/" target="_blank">Open interactive preview</a></p>
+<p><a href="https://isle.heinz.cmu.edu/components/multi-cards/" target="_blank">Open interactive preview</a></p>
 <h4 id="options">Options:</h4>
 <ul>
-<li><strong>title</strong> | <code>string</code>: title for the slideshow / carousel to be displayed at its top. Default: <code>&apos;&apos;</code>.</li>
-<li><strong>dots</strong> | <code>boolean</code>: display dots at the bottom for quickly navigating to any slide. Default: <code>true</code>.</li>
-<li><strong>fade</strong> | <code>boolean</code>: controls whether fading is used for transitioning between the slides. Default: <code>false</code>.</li>
-<li><strong>draggable</strong> | <code>boolean</code>: controls whether users can drag the slides to navigate between them. Default: <code>true</code>.</li>
-<li><strong>goto</strong> | <code>number</code>: If property is changed, the component jumps to the slide with the selected index. Default: <code>0</code>.</li>
-<li><strong>infinite</strong> | <code>boolean</code>: controls whether the slideshow wraps around it&apos;s contents. Default: <code>false</code>.</li>
-<li><strong>interval</strong> | <code>number</code>: sets a time interval for an automatic slide change. Default: <code>none</code>.</li>
-<li><strong>onClick</strong> | <code>function</code>: callback invoked when clicking on the next/previous buttons. Default: <code>onClick() {}</code>.</li>
-<li><strong>style</strong> | <code>object</code>: CSS inline styles. Default: <code>{}</code>.</li>
-<li><strong>swipeToSlide</strong> | <code>boolean</code>: enables drag/swipe behavior. Default: <code>true</code>.</li>
+<li><strong>animation</strong> | <code>object</code>: if set the component uses an entry animation; the object contains a name (like <code>anim-scale-up</code>) and a duration (like <code>1.7s</code> = 1.7 seconds). Default: <code>{}</code>.</li>
+<li><strong>cardStyles</strong> | <code>{container,front,back}</code>: allows to override the given styles. Handles objects with  <code>container</code>, <code>front</code> and <code>back</code> keys. Default: <code>{
+&apos;container&apos;: {},
+&apos;front&apos;: {},
+&apos;back&apos;: {}
+}</code>.</li>
+<li><strong>game</strong> | <code>string</code>: multi-card games. Can be either <code>memory</code> or <code>bingo</code>.. Default: <code>none</code>.</li>
+<li><strong>language</strong> | <code>string</code>: voice recognition language identifier. Default: <code>&apos;en-US&apos;</code>.</li>
+<li><strong>onChange</strong> | <code>function</code>: a function that receives the matrix of the flippable cards. Default: <code>onChange() {}</code>.</li>
+<li><strong>oneTime</strong> | <code>boolean</code>: indicates whether the flip process may be executed just once. Default: <code>false</code>.</li>
+<li><strong>values</strong> | <code>array<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>object</span><span class="token punctuation">&gt;</span></span></code>: the values for the respective cards, input in an array that has entry fields for a <code>front</code> and <code>back</code> value. Such a value could be a string, but also a full fledged ISLE component. Default: <code>[]</code>.</li>
 </ul>
 
                                 
@@ -1380,12 +1414,12 @@
 
             
                 
-                <a href="revealer.html" class="navigation navigation-prev " aria-label="Previous page: Revealer">
+                <a href="db-metrics.md" class="navigation navigation-prev " aria-label="Previous page: Metric">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="switch.html" class="navigation navigation-next " aria-label="Next page: Switch">
+                <a href="realtime-metrics.md" class="navigation navigation-next " aria-label="Next page: RealTimeMetrics">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1396,7 +1430,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Slider","level":"1.4.11.6","depth":3,"next":{"title":"Switch","level":"1.4.11.7","depth":3,"path":"components/switch.md","ref":"components/switch.md","articles":[]},"previous":{"title":"Revealer","level":"1.4.11.5","depth":3,"path":"components/revealer.md","ref":"components/revealer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/slider.md","mtime":"2018-12-28T10:15:56.025Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-12-28T10:16:51.076Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"MultiCard","level":"1.4.13.9","depth":3,"next":{"title":"RealTimeMetrics","level":"1.4.13.10","depth":3,"path":"components/realtime-metrics.md","ref":"components/realtime-metrics.md","articles":[]},"previous":{"title":"Metric","level":"1.4.13.8","depth":3,"path":"components/db-metrics.md","ref":"components/db-metrics.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","prism","-highlight"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"white","family":"sans","size":2},"expandable-chapters":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Philipp Burckhardt","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ISLE Editor Documentation","gitbook":"*","description":"Documentation of the ISLE editor, a desktop application for authoring lessons for the Interactive Statistics Learning Environment (ISLE)"},"file":{"path":"components/multi-cards.md","mtime":"2018-12-28T10:15:55.937Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-12-28T10:16:51.076Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
