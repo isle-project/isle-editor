@@ -283,10 +283,6 @@
     "react/no-unused-state": 2,
     "react/prefer-es6-class": [ 2, "always" ],
     "react/prefer-stateless-function": 0,
-    "react/prop-types": [ 2, {
-      "ignore": [ "children", "id" ],
-      "skipUndeclared": true
-    }],
     "react/require-default-props": 2,
     "react/require-render-return": 2,
     "react/sort-comp": 1,
@@ -325,6 +321,9 @@
     "jest"
   ],
   "settings": {
+    "react": {
+      "version": "16"
+    },
     "import/external-module-folders": [ "node_modules" ],
     "import/core-modules": [ "electron", "@stdlib" ],
     "import/resolver": {
