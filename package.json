@@ -126,7 +126,7 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
-    "@stdlib/stdlib": "0.0.55",
+    "@stdlib/stdlib": "0.0.56",
     "ansi-to-react": "^3.3.3",
     "archiver": "^3.0.0",
     "autobind-decorator": "^2.2.1",
