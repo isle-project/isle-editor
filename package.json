@@ -243,7 +243,7 @@
     "uuid": "^3.3.2",
     "venn.js": "0.2.20",
     "victory": "31.0.2",
-    "webpack": "4.28.2",
+    "webpack": "4.28.3",
     "whatwg-fetch": "^3.0.0"
   },
   "greenkeeper": {
