@@ -130,9 +130,13 @@ class Login extends Component {
 
 	render() {
 		return (
-			<Modal show={this.props.show} className="login-modal" >
-				<Modal.Header closeButton onHide={this.props.onClose} >
-					<Modal.Title as="h4">Login</Modal.Title>
+			<Modal
+				show={this.props.show}
+				className="login-modal"
+				onHide={this.props.onClose}
+			>
+				<Modal.Header closeButton >
+					<Modal.Title as="h3">Login</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<Form horizontal>

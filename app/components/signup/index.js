@@ -107,11 +107,13 @@ class Signup extends Component {
 
 	render() {
 		return (
-			<Modal show={this.props.show}
+			<Modal
+				show={this.props.show}
+				onHide={this.props.onClose}
 				dialogClassName="modal-75w"
 			>
-				<Modal.Header closeButton onHide={this.props.onClose} >
-					<Modal.Title as="h5">Create User</Modal.Title>
+				<Modal.Header closeButton >
+					<Modal.Title as="h3">Create User</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<p>Please fill in the required information to set up an ISLE user account.
