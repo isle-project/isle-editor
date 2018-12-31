@@ -11,6 +11,8 @@ import isEmptyArray from '@stdlib/assert/is-empty-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import objectKeys from '@stdlib/utils/keys';
+import countBy from '@stdlib/utils/count-by';
+import identity from '@stdlib/utils/identity-function';
 import copy from '@stdlib/utils/copy';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 import isElectron from 'utils/is-electron';
@@ -30,6 +32,17 @@ const ERR_REGEX = /\nIn call:[\s\S]*$/gm;
 const HELP_PATH_REGEX = /\/(?:site-)?library\/([^/]*)\/help\/([^/"]*)/;
 let userRights = null;
 
+let updateTime = new Date().getTime();
+let addedScore = 0;
+
+const PRIVATE_VARS = {
+	progress: null,
+	score: null,
+	elapsed: 0,
+	feedbacks: 0,
+	addedChatMessages: 0,
+	addedActionTypes: []
+};
 
 // FUNCTIONS //
 
@@ -100,10 +113,6 @@ class Session {
 		// Array of open chats:
 		this.chats = [];
 
-		// Hash table for session variables:
-		this.vars = {};
-		this.set( 'score', 0 );
-
 		// State variables of the given lesson:
 		this.state = config.state;
 
@@ -155,11 +164,28 @@ class Session {
 		if ( !isElectron ) {
 			document.addEventListener( 'focusin', this.focusInListener );
 			document.addEventListener( 'focusout', this.focusOutListener );
+			document.addEventListener('beforeunload', this.beforeUnloadListener );
+			document.addEventListener('visibilitychange', this.visibilityChangeListener );
 
 			// Log session data to database in regular interval:
 			setInterval( this.logSession, 5*60000 );
 		}
 	}
+
+	beforeUnloadListener = () => {
+		this.logSession();
+	}
+
+	visibilityChangeListener = () => {
+		if (document.hidden) {
+			this.stopPingServer();
+		} else {
+			this.startPingServer();
+		}
+
+		this.logSession();
+	}
+
 
 	focusInListener = ( event ) => {
 		let activeElement = document.activeElement;
@@ -571,6 +597,7 @@ class Session {
 	* @param {string} msg - chat message
 	*/
 	sendChatMessage( name, msg ) {
+		PRIVATE_VARS['addedChatMessages'] += 1;
 		if ( this.socket ) {
 			const msgObj = {
 				time: new Date().getTime(),
@@ -1149,6 +1176,10 @@ class Session {
 				...json
 			};
 			this.user = user;
+			if (this.user.picture) {
+				this.user.picture = this.server + '/avatar/' + this.user.picture;
+			}
+			PRIVATE_VARS['score'] = user.score;
 			this.anonymous = false;
 			this.storeUser( user );
 			this.socketConnect();
@@ -1192,16 +1223,6 @@ class Session {
 		this.anonymous = item ? false : true;
 	}
 
-	/**
-	* Sets a session variable to a given value.
-	*
-	* @param {string} name - variable name
-	* @param {*} val - value to set
-	* @returns {void}
-	*/
-	set( name, val ) {
-		this.vars[ name ] = val;
-	}
 
 	/**
 	* Retrieves the value of a session variable.
@@ -1210,7 +1231,7 @@ class Session {
 	* @returns {*} variable value
 	*/
 	get( name ) {
-		return this.vars[ name ];
+		return PRIVATE_VARS[ name ];
 	}
 
 	/**
@@ -1254,7 +1275,7 @@ class Session {
 					}
 				}
 			}
-			this.set( 'progress', progress );
+			PRIVATE_VARS['progress'] = progress;
 			this.update( 'self_initial_progress', progress );
 		}
 		else {
@@ -1266,7 +1287,7 @@ class Session {
 						break;
 					}
 					else if ( j === actions.length - 1 ) {
-						this.set( 'progress', this.get( 'progress' ) + 1.0 / ids.length );
+						PRIVATE_VARS['progress'] = this.get( 'progress' ) + 1.0 / ids.length;
 						this.update( 'self_updated_progress', this.get( 'progress' ) );
 					}
 				}
@@ -1282,13 +1303,15 @@ class Session {
 		if ( actions ) {
 			const arr = actions[ action.id ];
 			if ( !arr ) {
-				this.set( 'score', this.get( 'score' ) + 4 );
+				addedScore += 4;
+				PRIVATE_VARS['score'] = this.get( 'score' ) + 4;
 				this.update( 'self_updated_score', 4 );
 			}
 			else {
 				const types = arr.map( x => x.type );
 				if ( !contains( types, action.type ) ) {
-					this.set( 'score', this.get( 'score' ) + 4 );
+					addedScore += 4;
+					PRIVATE_VARS['score'] = this.get( 'score' ) + 4;
 					this.update( 'self_updated_score', 4 );
 				}
 			}
@@ -1301,23 +1324,42 @@ class Session {
 	* @returns {void}
 	*/
 	updateDatabase() {
+		let now = new Date().getTime();
+		let timeDiff = now - updateTime;
+		updateTime = now;
+
 		const currentSession = {
-			startTime: this.startTime,
-			endTime: this.endTime,
-			duration: this.duration,
-			actions: this.actions,
-			finished: this.finished,
+			elapsed: timeDiff,
+			addedScore: addedScore,
+			addedChatMessages: this.get('addedChatMessages'),
 			vars: this.vars,
 			lessonID: this.lessonID,
-			userID: this.user.id
+			progress: this.get('progress'),
+			addedActionTypes: countBy( this.get('addedActionTypes'), identity)
 		};
+
+		console.log(currentSession);
+		addedScore = 0;
+		PRIVATE_VARS['addedChatMessages'] = 0;
+		PRIVATE_VARS['addedActionTypes'] = [];
+
 		if ( !this._offline ) {
-			fetch( this.server+'/updateSession', {
+			fetch( this.server+'/update_user_session', {
 				method: 'POST',
-				body: JSON.stringify({
-					stringified: currentSession
-				})
-			}).catch( err => debug( 'Encountered an error: '+err.message ) );
+				body: JSON.stringify(currentSession),
+				headers: {
+					'Authorization': 'JWT ' + this.user.token,
+					'Content-Type': 'application/json'
+				}
+			})
+			.catch( err => debug( 'Encountered an error: '+err.message ) )
+			.then( ( res ) => {
+				debug( '/update_user_session returns: '+res.status );
+				return res.json();
+			})
+			.then( json => {
+				console.log( json );
+			});
 		}
 	}
 
@@ -1345,6 +1387,7 @@ class Session {
 			data
 		};
 		if ( !this._offline ) {
+			PRIVATE_VARS['addedActionTypes'].push( data.type );
 			const body = JSON.stringify( obj );
 			debug( 'Storing session element: '+body );
 			fetch( this.server+'/store_session_element', {
