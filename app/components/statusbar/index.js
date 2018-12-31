@@ -364,7 +364,10 @@ class StatusBar extends Component {
 										disabled={!session.live}
 									>Login</Button>
 								</div> :
-								<Button size="sm" className="statusbar-button" variant="outline-secondary" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout}>Log Out</Button> }
+								<Fragment>
+									<Button size="sm" className="statusbar-button" variant="outline-secondary" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout}>Log Out</Button>
+									<a href={session.server} target="_blank"><Button size="sm" className="statusbar-button" variant="outline-secondary" style={{ float: 'right', marginRight: '10px' }}>Go to Dashboard</Button></a>
+								</Fragment> }
 							<div className="statusbar-text">
 								ISLE
 							</div>
@@ -386,6 +389,7 @@ class StatusBar extends Component {
 							}}
 						>
 							<Gate user>
+								<img className="statusbar-profile" src={session.user.picture} />
 								<div className="progress-time">DUR: {this.state.duration} MIN</div>
 								<div className="outer-statusbar-progress-bar">
 									<ProgressBar

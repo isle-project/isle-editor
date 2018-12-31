@@ -97,7 +97,7 @@
 }
 
 #Lesson .statusbar-button:hover {
-	background:  #c49978;	
+	background:  #c49978;
 	box-shadow: 0 0 4px white inset;
 }
 
@@ -111,7 +111,7 @@
 	border-left: solid 1px darkgrey;
 	border-bottom: solid 1px darkgrey;
 	overflow: hidden;
-	border-bottom-left-radius: 10px; 
+	border-bottom-left-radius: 10px;
 }
 
 #Lesson .statusbar-middle {
@@ -134,7 +134,7 @@
 	border-bottom: solid 1px darkgrey;
 	border-right: solid 1px darkgrey;
 
-	border-bottom-right-radius: 10px; 
+	border-bottom-right-radius: 10px;
 }
 
 #Lesson .statusbar-text {
@@ -204,7 +204,7 @@
 	border-radius: 50%;
 	border:solid 1px black;
 	z-index: 2;
-	
+
 }
 
 #Lesson .statusbar-inner-presence {
@@ -228,3 +228,16 @@
 #Lesson .statusbar-calc-icon:hover {
 	opacity: 1.0;
 }
+
+
+#Lesson .statusbar-profile {
+	width: 33px;
+	height: 33px;
+	border:solid 1px darkgray;
+	border-radius: 0.25rem;
+	margin-left: -35px;
+	margin-top: -18px;
+	float: left;
+}
+
+
