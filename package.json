@@ -14,7 +14,7 @@
     "update-docs": "cross-env NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./scripts/update_docs.js",
     "test": "jest",
     "coverage": "jest && codecov",
-    "lint": "eslint app test *.js",
+    "lint": "eslint app test *.js && stylelint \"app/**/*.css\"",
     "build-main": "cross-env NODE_ENV=production node --max_old_space_size=4096 -r @babel/register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.electron.js --progress --colors",
     "build-renderer": "cross-env NODE_ENV=production node --max_old_space_size=4096 -r @babel/register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.production.js --progress --colors",
     "build": "npm run build-main && npm run build-renderer",
@@ -112,6 +112,7 @@
     "redux-devtools-log-monitor": "^1.0.11",
     "redux-logger": "^3.0.0",
     "source-map-explorer": "^1.5.0",
+    "stylelint": "^9.9.0",
     "uglifyjs-webpack-plugin": "^2.0.0",
     "webpack-cli": "^3.0.3",
     "webpack-dev-server": "^3.1.11"
