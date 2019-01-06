@@ -77,9 +77,8 @@
 }
 
 .animation-help h4:hover {
-   color: red;
+	color: red;
 }
-
 
 .animation-help .param {
 	background: pink;

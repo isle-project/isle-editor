@@ -11,7 +11,7 @@
 	height: 20px;
 	width: 100%;
 	top: 0;
-	background-color:rgb(108, 117, 125);
+	background-color: rgb(108, 117, 125);
 	border-left: solid 1px darkgrey;
 	border-bottom: solid 1px darkgrey;
 	border-right: solid 1px darkgrey;
@@ -67,7 +67,7 @@
 }
 
 .chatmessage-content {
-	word-wrap:break-word;
+	word-wrap: break-word;
 }
 
 .unread {
@@ -103,7 +103,7 @@
 }
 
 .chat-textarea:hover:not(:focus) {
-	background-color:gainsboro;
+	background-color: gainsboro;
 	cursor: text;
 }
 

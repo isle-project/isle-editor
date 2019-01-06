@@ -54,16 +54,15 @@
 	min-width: 120px;
 	text-align: left;
 	float: right;
-	
+
 }
 
 .text-inline-input:focus {
-    background: rgba(204,88,0, 0.16);
-    box-shadow: none
+	background: rgba(204,88,0, 0.16);
+	box-shadow: none
 }
 
-
 .text-input:focus {
-    background: rgba(204,88,0, 0.16);
-    box-shadow: none
+	background: rgba(204,88,0, 0.16);
+	box-shadow: none
 }
