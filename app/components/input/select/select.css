@@ -1,8 +1,7 @@
-
 .select-field {
 	font-weight: 600;
 }
 
 .select-field:hover {
-	box-shadow: 0 0 4px rgb(60,60,60);
+	box-shadow: 0 0 4px rgb(60, 60, 60);
 }

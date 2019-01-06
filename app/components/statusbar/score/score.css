@@ -17,6 +17,7 @@
 	0% {
 		transform: scale(1) rotate(20deg);
 	}
+
 	100% {
 		transform: scale(0) rotate(-20deg);
 	}
@@ -44,7 +45,7 @@
 	right: 0;
 	margin: auto;
 	border-radius: 50%;
-	border-right:solid 3px white;
+	border-right: solid 3px white;
 	width: 90%;
 	height: 90%;
 	animation: rotating 4s infinite;
@@ -59,27 +60,28 @@
 	right: 0;
 	margin: auto;
 	border-radius: 50%;
-	border-left:solid 2px var( --bg);
+	border-left: solid 2px var(--bg);
 	width: 90%;
 	height: 90%;
 	animation: rotating-reverse 2.3s infinite;
 }
 
 @-webkit-keyframes rotating {
-	from{
+	from {
 		-webkit-transform: rotate(0deg);
 	}
-	to{
+
+	to {
 		-webkit-transform: rotate(720deg);
 	}
 }
 
-
 @-webkit-keyframes rotating-reverse {
-	from{
+	from {
 		-webkit-transform: rotate(720deg);
 	}
-	to{
+
+	to {
 		-webkit-transform: rotate(0deg);
 	}
 }
