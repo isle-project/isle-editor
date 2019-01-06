@@ -10,7 +10,7 @@
 }
 
 .CodeMirror-scroll {
-	min-height: 300px
+	min-height: 300px;
 }
 
 .CodeMirror-fullscreen {
@@ -52,17 +52,17 @@
 }
 
 .editor-toolbar:before {
-	margin-bottom: 8px
+	margin-bottom: 8px;
 }
 
 .editor-toolbar:after {
-	margin-top: 8px
+	margin-top: 8px;
 }
 
 .editor-toolbar:hover,
 .editor-wrapper input.title:focus,
 .editor-wrapper input.title:hover {
-	opacity: .8
+	opacity: 0.8;
 }
 
 .editor-toolbar.fullscreen {
@@ -135,7 +135,7 @@
 }
 
 .editor-toolbar a:before {
-	line-height: 30px
+	line-height: 30px;
 }
 
 .editor-toolbar i.separator {
@@ -203,15 +203,15 @@
 }
 
 .editor-statusbar .lines:before {
-	content: 'lines: '
+	content: 'lines: ';
 }
 
 .editor-statusbar .words:before {
-	content: 'words: '
+	content: 'words: ';
 }
 
 .editor-statusbar .characters:before {
-	content: 'characters: '
+	content: 'characters: ';
 }
 
 .editor-preview {
@@ -244,16 +244,16 @@
 }
 
 .editor-preview-active-side {
-	display: block
+	display: block;
 }
 
 .editor-preview-active {
-	display: block
+	display: block;
 }
 
 .editor-preview>p,
 .editor-preview-side>p {
-	margin-top: 0
+	margin-top: 0;
 }
 
 .editor-preview pre,

@@ -1,24 +1,10 @@
-.vertical-slider {
-}
-
-.vertical-slider-header {
-}
-
-.vertical-slider-header {
-
-}
-
 .vertical-slider-header:hover {
 	cursor: pointer;
 	color: red;
 	transition: all 0.3;
 }
 
-.vs-body {
-}
-
 .vs-display {
-	/* transform: scale(1); */
 	transition: all .5s ease-out;
 	height: auto;
 	transform-origin: left top;
@@ -26,7 +12,6 @@
 }
 
 .vs-hidden {
-	/* transform-origin: left top; */
 	transform: scale(0);
 	height: 0;
 	transition: all .5s ease-out;
@@ -43,5 +28,5 @@
 }
 
 .vs-titling:hover {
-	color:  orange;
+	color: orange;
 }

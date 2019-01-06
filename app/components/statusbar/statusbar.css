@@ -50,7 +50,7 @@
 	color: darkslategray;
 	text-align: center;
 	font-weight: 600;
-	background-color:#e9ecef;
+	background-color: #e9ecef;
 	width: 70px;
 	height: 16px;
 	font-size: 10px;
@@ -93,11 +93,11 @@
 	padding-bottom: 0.15rem;
 	box-shadow: 0 0 2px grey inset;
 	border-radius: 0;
-	border:solid 1px darkgray;
+	border: solid 1px darkgray;
 }
 
 #Lesson .statusbar-button:hover {
-	background:  #c49978;
+	background: #c49978;
 	box-shadow: 0 0 4px white inset;
 }
 
@@ -189,7 +189,8 @@
 	from{
 		-webkit-transform: rotate(0deg);
 	}
-	to{
+
+	to {
 		-webkit-transform: rotate(360deg);
 	}
 }
@@ -202,7 +203,7 @@
 	position: absolute;
 
 	border-radius: 50%;
-	border:solid 1px black;
+	border: solid 1px black;
 	z-index: 2;
 
 }
@@ -213,7 +214,7 @@
 	left: -3px;
 	width: 14px;
 	height: 14px;
-	border-left:solid 1px darkslategray;
+	border-left: solid 1px darkslategray;
 	border-radius: 50%;
 	z-index: 1;
 	-webkit-animation: turn 5s linear infinite;
@@ -229,15 +230,12 @@
 	opacity: 1.0;
 }
 
-
 #Lesson .statusbar-profile {
 	width: 33px;
 	height: 33px;
-	border:solid 1px darkgray;
+	border: solid 1px darkgray;
 	border-radius: 0.25rem;
 	margin-left: -35px;
 	margin-top: -18px;
 	float: left;
 }
-
-

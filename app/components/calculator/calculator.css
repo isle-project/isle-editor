@@ -27,7 +27,6 @@
 	animation: anim-scale-up .6s forwards;
 }
 
-
 #calc-panel input {
 	background: white;
 	transition: all 0.6s;
@@ -39,7 +38,6 @@
 	box-shadow: inset 0 0 2px darkslategrey;
 }
 
-
 #calc-panel-full input {
 	background: white;
 	transition: all 0.6s;
@@ -50,8 +48,6 @@
 	background: floralwhite;
 	box-shadow: inset 0 0 2px darkslategrey;
 }
-
-
 
 .input-button-small {
 	width: calc(25% - 4px);

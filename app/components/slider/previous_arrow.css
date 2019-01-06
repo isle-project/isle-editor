@@ -3,7 +3,7 @@
 	padding-top: 3px;
 	margin-right: 6px;
 	text-align: center;
-	border:none;
+	border: none;
 	width: 80px;
 	border-radius: 5px;
 	outline: none;
@@ -13,7 +13,6 @@
 	box-shadow: 1px 1px 1px rgba(60, 60, 120, 1), inset 0px 0px 0px rgba(0, 0, 0, 1);
 }
 
-
 .slider-previous-button:hover {
 	background: rgba(175,192,222,1);
 	transition: 0.5s;
@@ -21,7 +20,6 @@
 	text-shadow: none;
 	color: black;
 }
-
 
 .slider-previous-button:focus {
 	outline: none;
