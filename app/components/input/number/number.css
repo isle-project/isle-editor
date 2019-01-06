@@ -11,15 +11,15 @@
 	font-weight: 600;
 	font-size: 16px;
 	padding-top: 4px;
-	color: rgb(92,92,92);
+	color: rgb(92, 92, 92);
 	box-shadow: inset 1px 1px 4px  rgba(186, 204, 234, 1);
 }
 
-.number-number-input:hover{
+.number-number-input:hover {
 	background: rgba(186, 204, 234, 0.65);
 }
 
 .number-number-input:focus {
-	background: rgba(204,88,0, 0.16);
-	box-shadow: none
+	background: rgba(204, 88, 0, 0.16);
+	box-shadow: none;
 }

@@ -1,15 +1,15 @@
 .voice-input {
-	border: solid 1px rgb(150,150,150);
+	border: solid 1px rgb(150, 150, 150);
 	margin-bottom: 20px;
 	background: white;
 }
 
 .voice-input:hover {
-	box-shadow: 0 0 4px rgb(60,60,60);
+	box-shadow: 0 0 4px rgb(60, 60, 60);
 }
 
 .voice-input-text .recording {
-	background: rgba(204,88,0, 0.16);
+	background: rgba(204, 88, 0, 0.16);
 }
 
 .voice-input svg {
@@ -22,7 +22,7 @@
 	height: 100%;
 	border: none;
 	padding-left: 8px;
-	color: rgb(60,60,60);
+	color: rgb(60, 60, 60);
 	font-family: Open Sans;
 }
 
@@ -30,13 +30,12 @@
 	outline-width: 0;
 }
 
-
 .voice-input-status-text {
 	float: left;
 	border: solid 1px gainsboro !important;
 	border: none;
 	padding-left: 8px;
-	color: rgb(60,60,60);
+	color: rgb(60, 60, 60);
 	font-family: Open Sans;
 }
 
@@ -46,7 +45,7 @@
 	border: none;
 	font-size: 14px;
 	padding-left: 8px;
-	color: rgb(128,128,128);
+	color: rgb(128, 128, 128);
 	font-family: Open Sans;
 }
 

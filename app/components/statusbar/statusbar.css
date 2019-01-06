@@ -13,7 +13,7 @@
 	z-index: 1003;
 	opacity: 0.78;
 	cursor: pointer;
-	transition: opacity .4s ease-in-out;
+	transition: opacity 0.4s ease-in-out;
 }
 
 #Lesson .statusbar-progress {
@@ -133,7 +133,6 @@
 	transform: skewX(-45deg);
 	border-bottom: solid 1px darkgrey;
 	border-right: solid 1px darkgrey;
-
 	border-bottom-right-radius: 10px;
 }
 
@@ -186,7 +185,7 @@
 }
 
 @-webkit-keyframes turn {
-	from{
+	from {
 		-webkit-transform: rotate(0deg);
 	}
 
@@ -201,11 +200,9 @@
 	height: 10px;
 	bottom: 3px;
 	position: absolute;
-
 	border-radius: 50%;
 	border: solid 1px black;
 	z-index: 2;
-
 }
 
 #Lesson .statusbar-inner-presence {
@@ -219,7 +216,6 @@
 	z-index: 1;
 	-webkit-animation: turn 5s linear infinite;
 	-webkit-animation-duration: 2s;
-
 }
 
 #Lesson .statusbar-calc-icon {
@@ -227,7 +223,7 @@
 }
 
 #Lesson .statusbar-calc-icon:hover {
-	opacity: 1.0;
+	opacity: 1;
 }
 
 #Lesson .statusbar-profile {

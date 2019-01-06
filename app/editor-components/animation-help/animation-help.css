@@ -1,5 +1,4 @@
 .animation-helper {
-	background: #ffffff;
 	z-index: 100;
 	position: fixed;
 	padding: 10px;
@@ -11,7 +10,7 @@
 	top: 14%;
 }
 
-.animation-helper h1  {
+.animation-helper h1 {
 	font-family: Open Sans Condensed;
 	font-weight: 800;
 }
@@ -39,7 +38,6 @@
 	margin-right: 3px;
 	font-size: 20px;
 	font-weight: 600;
-
 }
 
 .animation-helper .menu {
@@ -138,7 +136,6 @@
 	background-size: 100% auto;
 	background-repeat: no-repeat;
 	opacity: 0.5;
-
 }
 
 .animation-help .copy:hover {

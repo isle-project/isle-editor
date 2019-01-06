@@ -9,7 +9,7 @@
 
 .sketch-canvas {
 	position: fixed;
-	overflow: hidden
+	overflow: hidden;
 }
 
 .sketch-button-group {
@@ -48,7 +48,7 @@
 	border: 2px;
 }
 
-.sketch-text-input:focus{
+.sketch-text-input:focus {
 	outline: none;
 }
 
