@@ -14,7 +14,7 @@
 }
 
 .cm-s-monokai .CodeMirror ::-moz-selection {
-	background: rgba(73, 72, 62, .99);
+	background: rgba(73, 72, 62, 0.99);
 }
 
 .cm-s-monokai .CodeMirror-gutters {

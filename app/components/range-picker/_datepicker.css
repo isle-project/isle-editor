@@ -871,7 +871,7 @@
 	border-bottom-color: rgba(0, 0, 0, 0.1);
 }
 
-.DateInput__openDown:after {
+.DateInput__openDown::after {
 	border-top: 0;
 	top: 63px;
 	border-bottom-color: #fff;
