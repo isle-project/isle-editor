@@ -59,7 +59,7 @@
 
 .SingleDatePicker_closeButton:focus,
 .SingleDatePicker_closeButton:hover {
-	color: darken(#cacccd,10%);
+	color: darken(#cacccd, 10%);
 	text-decoration: none;
 }
 
@@ -195,7 +195,7 @@
 
 .DateRangePicker_closeButton:focus,
 .DateRangePicker_closeButton:hover {
-	color: darken(#cacccd,10%);
+	color: darken(#cacccd, 10%);
 	text-decoration: none;
 }
 
@@ -868,7 +868,7 @@
 .DateInput__openDown::before {
 	border-top: 0;
 	top: 62px;
-	border-bottom-color: rgba(0,0,0,.1);
+	border-bottom-color: rgba(0, 0, 0, 0.1);
 }
 
 .DateInput__openDown:after {

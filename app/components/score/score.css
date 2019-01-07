@@ -21,10 +21,11 @@
 }
 
 @-webkit-keyframes rotating {
-	from{
+	from {
 		-webkit-transform: rotate(0deg);
 	}
-	to{
+
+	to {
 		-webkit-transform: rotate(360deg);
 	}
 }
@@ -35,10 +36,11 @@
 
 
 @-webkit-keyframes i-rotating {
-	from{
+	from {
 		-webkit-transform: rotate(360deg);
 	}
-	to{
+
+	to {
 		-webkit-transform: rotate(0deg);
 	}
 }
@@ -46,8 +48,6 @@
 .i-rotating {
 	-webkit-animation: i-rotating 5s linear infinite;
 }
-
-
 
 .score {
 	position: fixed;
@@ -62,7 +62,7 @@
 	overflow: hidden;
 	transform-origin:bottom center;
 	transform: scale(0.72); /* Equal to scaleX(2) scaleY(0.5) */
-	transition: all .4s ease-in-out;
+	transition: all 0.4s ease-in-out;
 }
 
 .score:hover {
@@ -100,7 +100,6 @@
 	z-index: 2;
 }
 
-
 .score-outer-circle2 {
 	position: absolute;
 	top: 0;
@@ -109,12 +108,10 @@
 	right: 0;
 	margin: auto;
 	border-radius: 50%;
-	border-left:solid 2px var( --bg);
+	border-left: solid 2px var(--bg);
 	width: 90%;
 	height: 90%;
 }
-
-
 
 .score-outer-circle {
 	position: absolute;
@@ -176,13 +173,9 @@
 	font-size: 40px;
 }
 
-
 .score-points:hover {
 	opacity: 1;
 }
-
-
-/*****************************/
 
 .score-bottom {
 	position: fixed;
@@ -198,14 +191,14 @@
 	border-top-right-radius: 16px;
 	border-bottom-left-radius: 24px;
 	border-bottom-right-radius: 24px;
-	border:solid 1px var(--bgdark);
+	border: solid 1px var(--bgdark);
 	box-shadow: 0 0 9px var(--bgdark);
 	overflow: hidden;
-	transform-origin:bottom center;
+	transform-origin: bottom center;
 	transform: scale(0.72); /* Equal to scaleX(2) scaleY(0.5) */
-	transition: all .4s ease-in-out;
-	background-image: url(https://isle.heinz.cmu.edu/sublime01_1543690264803.png);
+	transition: all 0.4s ease-in-out;
 	background: var(--bg);
+	background-image: url(https://isle.heinz.cmu.edu/sublime01_1543690264803.png);
 }
 
 .score-bottom-time {
@@ -228,14 +221,13 @@
 	font-size: 18px;
 }
 
-
 .score-bottom-content {
 	position: absolute;
 	left: 0;
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background-image:linear-gradient(0deg,rgba(0,200, 166, 0.7), darkgray );
+	background-image:linear-gradient(0deg, rgba(0,200, 166, 0.7), darkgray);
 	opacity: 0.3;
 }
 
@@ -250,15 +242,15 @@
 	font-weight: 800;
 	font-size: 40px;
 	color: white;
-	position: absolute;
 }
 
 
 @-webkit-keyframes moving {
-	from{
+	from {
 		-webkit-transform: translate(-400px, 0px);
 	}
-	to{
+
+	to {
 		-webkit-transform: translate(400px, 0px);
 	}
 }
@@ -267,18 +259,15 @@
 	-webkit-animation: moving 3s linear infinite;
 }
 
-
 .score-bottom-line {
 	position: absolute;
 	width: 200%;
 	height: 3px;
-	background-image:linear-gradient(to right,transparent, black,white, transparent  );
+	background-image: linear-gradient(to right, transparent, black, white, transparent);
 	left: -50%;
 	bottom: 7px;
-	transform-origin:bottom left;
+	transform-origin: bottom left;
 }
-
-/*****************************/
 
 .score-full {
 	position: fixed;
@@ -288,18 +277,17 @@
 	height: 100px;
 	background: var(--primarylight);
 	z-index: 100;
-	transition: all .8s ease-in-out;
+	transition: all 0.8s ease-in-out;
 	border:solid 1px darkslategray;
 }
 
-
-.score-full:hover{
+.score-full:hover {
 	background: var(--primaryhalf);
 }
 
 .score-full-hidden {
 	right: -400px;
-	transition: right .8s ease-in-out;
+	transition: right 0.8s ease-in-out;
 }
 
 .score-full-handler {
@@ -312,14 +300,13 @@
 	border-bottom: 20px solid transparent;
 	border-right:20px solid orange;
 	cursor: pointer;
-	transition: all .4s ease-in-out;
+	transition: all 0.4s ease-in-out;
 	transform-origin:center center;
 }
 
 .score-full-handler:hover {
 	border-right:20px solid red;
 }
-
 
 .circle {
 	position: absolute;
@@ -332,9 +319,10 @@
 	border-right:20px solid transparent;
 	border-left:20px solid orange;
 	cursor: pointer;
-	transition: all .4s ease-in-out;
+	transition: all 0.4s ease-in-out;
 	transform-origin:center center;
 }
+
 .circle:hover {
 	border-right:20px solid transparent;
 	border-left:20px solid red;
@@ -434,7 +422,6 @@
 	background: black;
 }
 
-/******************************/
 .score-user-info {
 	position: absolute;
 	width: 130px;
@@ -478,7 +465,6 @@
 	font-variant-caps: petite-caps;
 }
 
-/***************************************/
 .date-default {
 	position: absolute;
 	left: 270px;
@@ -527,10 +513,8 @@
 	transform: rotate(-90deg);
 	color: white;
 	font-size: 40px;
-
 }
 
-/********************************************/
 .score-grid-container {
 	color: red;
 	display: grid;
@@ -539,11 +523,10 @@
 	background: black;
 	grid-template-columns: 25% 50% 25%;
 	grid-template-rows: 10px auto 30px;
-
 	grid-template-areas:
 		"header header header"
 		"user score date"
-		"footer footer footer"
+		"footer footer footer";
 }
 
 .score-grid-header {

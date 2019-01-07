@@ -95,7 +95,8 @@
 }
 
 .cm-s-monokai span.cm-error {
-	background: #f92672; color: #f8f8f0;
+	background: #f92672;
+	color: #f8f8f0;
 }
 
 .cm-s-monokai .CodeMirror-activeline-background {

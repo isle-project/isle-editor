@@ -1,7 +1,8 @@
 /* BASICS */
 
+/* Set height, width, borders, and global font properties here */
+
 .component-documentation .CodeMirror {
-	/* Set height, width, borders, and global font properties here */
 	height: auto !important;
 	min-height: 0;
 	max-height: 300px;
@@ -9,8 +10,9 @@
 	padding-left: 8px;
 }
 
+/* Set scrolling behaviour here */
+
 .component-documentation .CodeMirror-scroll {
-	/* Set scrolling behaviour here */
 	min-height: 0;
 	max-height: 300px;
 	overflow: auto;
