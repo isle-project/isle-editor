@@ -8,9 +8,9 @@
 	text-align: left;
 	background: ivory;
 	margin-bottom: 20px;
-	border: 1px solid  rgba(92,92,92, 0.6);
+	border: 1px solid  rgba(92, 92, 92, 0.6);
 	border-radius: 6px;
-	box-shadow: 0 0 8px rgba(92,92,92, 0.5);
+	box-shadow: 0 0 8px rgba(92, 92, 92, 0.5);
 }
 
 .js-shell-edit {
@@ -36,7 +36,6 @@
 	color: darkgray;
 	z-index: 2;
 }
-
 
 .js-shell-reset:hover {
 	color: black;

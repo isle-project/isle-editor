@@ -66,6 +66,7 @@
 	left: -50%;
 	position: relative;
 }
+
 .input-range__label--max .input-range__label-container {
 	left: 50%;
 }

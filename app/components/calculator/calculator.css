@@ -8,23 +8,23 @@
 }
 
 .calc-hide-button:hover {
-	color: rgba( 220, 53, 69, 0.6 );
+	color: rgba(220, 53, 69, 0.6);
 }
 
 #calc-panel {
-	background: rgba(240,240,240,0.9);
+	background: rgba(240, 240, 240, 0.9);
 	width: 40%;
 	min-width: 380px;
 	max-width: 450px;
-	animation: anim-scale-up .6s forwards;
+	animation: anim-scale-up 0.6s forwards;
 }
 
 #calc-panel-full {
-	background: rgba(240,240,240,0.9);
+	background: rgba(240, 240, 240, 0.9);
 	width: 50%;
 	min-width: 580px;
 	max-width: 700px;
-	animation: anim-scale-up .6s forwards;
+	animation: anim-scale-up 0.6s forwards;
 }
 
 #calc-panel input {
@@ -76,7 +76,6 @@
 	filter: saturate(20%);
 	transition: all 1.2s;
 }
-
 
 .desaturated:hover {
 	filter: saturate(50%);
