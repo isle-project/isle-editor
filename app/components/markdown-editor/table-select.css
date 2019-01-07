@@ -11,10 +11,6 @@ table.tableSelect tr td.cell {
 	cursor: pointer;
 }
 
-table.tableSelect tr td.grid_select {
-	border: 1px solid;
-}
-
 table.tableSelect tr td.cell:hover {
 	background-color: yellow;
 }
@@ -27,7 +23,7 @@ table.tableSelect tr td.grid_select {
 
 table.tableSelect tr td.grid_select:hover {
 	background-color: yellow;
-	cursor: pointer
+	cursor: pointer;
 }
 
 .selected_cols {

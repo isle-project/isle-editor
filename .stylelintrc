@@ -3,6 +3,8 @@
   "rules": {
     "block-closing-brace-empty-line-before": "never",
     "block-no-empty": true,
+    "color-hex-case": null,
+    "color-hex-length": null,
     "color-no-invalid-hex": true,
     "comment-empty-line-before": [ "always", {
       "ignore": ["stylelint-commands", "after-comment"]

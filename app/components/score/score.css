@@ -1,23 +1,23 @@
 :root {
 	--bg: rgba(15, 112, 91, 0.9);
-	--bgopac:  rgba(15,112,91, 0.66);
+	--bgopac: rgba(15,112,91, 0.66);
 	--bgdark: rgba(6, 41, 33, 0.9);
 	--bgopachover:rgba(235, 185, 20, 0.9);
 	--primary: #2e4468;
 	--primarydark: #4a618691;
 	--primaryhalf: #526c96;
-	--primarylight:  #2e4468af;
-	--primarysuperlight:  #2e4468;
+	--primarylight: #2e4468af;
+	--primarysuperlight: #2e4468;
 	--secondary: #3c763d;
 	--secondarymedium: #2b552c;
 	--secondarydark: #162c17;
 	--secondarylight:#77df79;
 	--secondaryhalf: #54a857;
-	--tertiary:  #2e4468;
-	--tertiarylight:  #7285a3;
+	--tertiary: #2e4468;
+	--tertiarylight: #7285a3;
 	--quartary: #ca5800;
 	--quartarydark: #351802;
-	--quartarylight:  #c49978;
+	--quartarylight: #c49978;
 }
 
 @-webkit-keyframes rotating {
@@ -60,7 +60,7 @@
 	border-radius: 50%;
 	box-shadow: 1px 1px 5px var(--bgdark);
 	overflow: hidden;
-	transform-origin:bottom center;
+	transform-origin: bottom center;
 	transform: scale(0.72); /* Equal to scaleX(2) scaleY(0.5) */
 	transition: all 0.4s ease-in-out;
 }
@@ -121,11 +121,10 @@
 	right: 0;
 	margin: auto;
 	border-radius: 50%;
-	border-right:solid 3px white;
+	border-right: solid 3px white;
 	width: 90%;
 	height: 90%;
 }
-
 
 .score-circle {
 	position: absolute;
@@ -135,7 +134,7 @@
 	right: 0;
 	margin: auto;
 	border-radius: 50%;
-	border:solid 1px white;
+	border: solid 1px white;
 	width: 90px;
 	height: 90px;
 }
@@ -148,7 +147,7 @@
 	right: 0;
 	margin: auto;
 	border-radius: 50%;
-	border-right:solid 3px white;
+	border-right: solid 3px white;
 	width: 96px;
 	height: 96px;
 	border-bottom-right-radius: 50%;
@@ -227,7 +226,7 @@
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background-image:linear-gradient(0deg, rgba(0,200, 166, 0.7), darkgray);
+	background-image: linear-gradient(0deg, rgba(0, 200, 166, 0.7), darkgray);
 	opacity: 0.3;
 }
 
@@ -243,7 +242,6 @@
 	font-size: 40px;
 	color: white;
 }
-
 
 @-webkit-keyframes moving {
 	from {
@@ -278,7 +276,7 @@
 	background: var(--primarylight);
 	z-index: 100;
 	transition: all 0.8s ease-in-out;
-	border:solid 1px darkslategray;
+	border: solid 1px darkslategray;
 }
 
 .score-full:hover {
@@ -298,14 +296,14 @@
 	height: 0;
 	border-top: 20px solid transparent;
 	border-bottom: 20px solid transparent;
-	border-right:20px solid orange;
+	border-right: 20px solid orange;
 	cursor: pointer;
 	transition: all 0.4s ease-in-out;
-	transform-origin:center center;
+	transform-origin: center center;
 }
 
 .score-full-handler:hover {
-	border-right:20px solid red;
+	border-right: 20px solid red;
 }
 
 .circle {
@@ -316,16 +314,16 @@
 	height: 0;
 	border-top: 20px solid transparent;
 	border-bottom: 20px solid transparent;
-	border-right:20px solid transparent;
-	border-left:20px solid orange;
+	border-right: 20px solid transparent;
+	border-left: 20px solid orange;
 	cursor: pointer;
 	transition: all 0.4s ease-in-out;
-	transform-origin:center center;
+	transform-origin: center center;
 }
 
 .circle:hover {
-	border-right:20px solid transparent;
-	border-left:20px solid red;
+	border-right: 20px solid transparent;
+	border-left: 20px solid red;
 }
 
 .score-full-score {
@@ -379,7 +377,7 @@
 	right: 0;
 	margin: auto;
 	border-radius: 50%;
-	border:solid 1px white;
+	border: solid 1px white;
 	width: 82px;
 	height: 82px;
 }
@@ -392,7 +390,7 @@
 	right: 0;
 	margin: auto;
 	border-radius: 50%;
-	border-left:solid 2px white;
+	border-left: solid 2px white;
 	width: 90%;
 	height: 90%;
 }
@@ -406,7 +404,7 @@
 	right: 0;
 	margin: auto;
 	border-radius: 50%;
-	border-right:solid 3px white;
+	border-right: solid 3px white;
 	width: 80px;
 	height: 80px;
 	border-bottom-right-radius: 50%;
@@ -441,7 +439,7 @@
 	width: 100%;
 	height: 100%;
 	opacity: 0.85;
-	border:solid 2px white;
+	border: solid 2px white;
 	-webkit-filter: contrast(150%) saturate(40%); /* Safari */
 	filter: contrast(150%) saturate(40%);
 	transition: all 1.4s ease-in-out;
