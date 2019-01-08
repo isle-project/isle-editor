@@ -39,7 +39,7 @@ const generateIndexHTML = ( meta, minify, stats, head ) => `
 <html lang="${meta.language || 'en'}">
 	<head>
 		<meta charset="utf-8">
-		<meta name="${meta.title}" content="${meta.description}">
+		<meta name="Description" content="${meta.description || meta.title}">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>${meta.title}</title>
 		<link rel="shortcut icon" href="favicon.ico" />
