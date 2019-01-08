@@ -81,13 +81,18 @@ class Session {
 		// Address in local storage for user information:
 		this.userVal = 'ISLE_USER_' + config.server;
 
-		// Retrieve user object from localStorage:
-		this.user = this.loadUser();
-
 		// Boolean indicating whether user is logged in or not:
-		this.anonymous = isEmptyObject( this.user );
-		if ( this.anonymous ) {
-			this.anonymousIdentifier = 'anonymous_'+randomstring( 8 );
+		this.anonymous = true;
+		this.anonymousIdentifier = 'anonymous_'+randomstring( 8 );
+
+		// User object container:
+		this.user = {};
+
+		// If user token is available in local storage, login to server:
+		let item = localStorage.getItem( this.userVal );
+		if ( item ) {
+			item = JSON.parse( item );
+			this.handleLogin( item );
 		}
 
 		// Boolean whether lesson is finished:
@@ -1047,6 +1052,12 @@ class Session {
 			}
 			response.json().then( body => {
 				const { token, id, message } = body;
+
+				// Save user token to local storage:
+				localStorage.setItem( this.userVal, JSON.stringify({
+					token,
+					id
+				}) );
 				if ( message === 'ok' ) {
 					this.update( 'LOGGED_IN' );
 					this.handleLogin({ token, id });
@@ -1176,12 +1187,11 @@ class Session {
 				...json
 			};
 			this.user = user;
-			if (this.user.picture) {
+			if ( this.user && this.user.picture ) {
 				this.user.picture = this.server + '/avatar/' + this.user.picture;
 			}
 			PRIVATE_VARS['score'] = user.score;
 			this.anonymous = false;
-			this.storeUser( user );
 			this.socketConnect();
 			if ( !userRights ) {
 				this.getUserRights();
@@ -1192,37 +1202,6 @@ class Session {
 			debug( 'Encountered an error: '+err.message );
 		});
 	}
-
-	/**
-	* Stores a user object in localStorage.
-	*
-	* @returns {void}
-	*/
-	storeUser( user ) {
-		localStorage.setItem( this.userVal, JSON.stringify( user ) );
-	}
-
-	/**
-	* Loads a user object from localStorage.
-	*
-	* @returns {Object} user object
-	*/
-	loadUser() {
-		const item = localStorage.getItem( this.userVal );
-		return item ? JSON.parse( item ) : {};
-	}
-
-	/**
-	* Updates session user object from localStorage.
-	*
-	* @returns {void}
-	*/
-	updateUser() {
-		const item = localStorage.getItem( this.userVal );
-		this.user = item ? JSON.parse( item ) : null;
-		this.anonymous = item ? false : true;
-	}
-
 
 	/**
 	* Retrieves the value of a session variable.
@@ -1240,11 +1219,9 @@ class Session {
 	* @returns {void}
 	*/
 	finalize() {
-		this.updateUser();
 		this.endTime = new Date().getTime();
 		this.duration = this.endTime - this.startTime;
 		this.finished = true;
-
 		if ( this.anonymous === false ) {
 			this.updateDatabase();
 		}
