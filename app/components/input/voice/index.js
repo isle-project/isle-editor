@@ -287,7 +287,7 @@ class VoiceInput extends Input {
 		let x = this.getSpeechRecognition();
 		let text = this.tooltipMessage( x );
 		return (
-			<Tooltip id="VoiceInputTooltip">
+			<Tooltip id={`${this.props.id}-voice-input-tooltip`} >
 				{text}
 			</Tooltip>
 		);

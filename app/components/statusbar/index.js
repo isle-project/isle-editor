@@ -312,6 +312,7 @@ class StatusBar extends Component {
 						<div className="statusbar-middle">
 							<div className="statusbar-voice">
 								<VoiceInput
+									id="statusbar-voice"
 									onClick={this.handleVoiceInputChange}
 									mode="microphone" width={18} height={18}
 									stopTooltip="Disable voice control (F9)"
