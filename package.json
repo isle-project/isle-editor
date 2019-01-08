@@ -244,7 +244,7 @@
     "uniq": "^1.0.1",
     "uuid": "^3.3.2",
     "venn.js": "0.2.20",
-    "victory": "31.0.2",
+    "victory": "31.1.0",
     "webpack": "4.28.3",
     "whatwg-fetch": "^3.0.0"
   },
