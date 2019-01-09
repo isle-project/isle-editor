@@ -225,6 +225,7 @@ class Sketchpad extends Component {
 								type === 'SKETCHPAD_FIRST_PAGE' ||
 								type === 'SKETCHPAD_LAST_PAGE'
 							) {
+								debug( `Go to page ${action.value}...` );
 								this.goToPage( action.value, false );
 							}
 						}
