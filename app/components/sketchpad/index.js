@@ -218,20 +218,14 @@ class Sketchpad extends Component {
 						}
 						if ( action.email === session.user.email ) {
 							const type = action.type;
-							if ( type === 'SKETCHPAD_NEXT_PAGE' ) {
-								this.nextPage( false );
-							}
-							else if ( type === 'SKETCHPAD_PREVIOUS_PAGE' ) {
-								this.previousPage( false );
-							}
-							else if ( type === 'SKETCHPAD_GOTO_PAGE' ) {
+							if (
+								type === 'SKETCHPAD_NEXT_PAGE' ||
+								type === 'SKETCHPAD_PREVIOUS_PAGE' ||
+								type === 'SKETCHPAD_GOTO_PAGE' ||
+								type === 'SKETCHPAD_FIRST_PAGE' ||
+								type === 'SKETCHPAD_LAST_PAGE'
+							) {
 								this.goToPage( action.value, false );
-							}
-							else if ( type === 'SKETCHPAD_FIRST_PAGE' ) {
-								this.firstPage( false );
-							}
-							else if ( type === 'SKETCHPAD_LAST_PAGE' ) {
-								this.lastPage( false );
 							}
 						}
 					}
@@ -1364,7 +1358,7 @@ class Sketchpad extends Component {
 		this.redraw();
 	}
 
-	firstPage = ( shouldLog = true ) => {
+	firstPage = () => {
 		this.setState({
 			currentPage: 0,
 			nUndos: 0
@@ -1372,18 +1366,16 @@ class Sketchpad extends Component {
 			// Update hash of URL:
 			this.updateURL( this.state.currentPage );
 			this.redraw();
-			if ( shouldLog ) {
-				const session = this.context;
-				session.log({
-					id: this.props.id,
-					type: 'SKETCHPAD_FIRST_PAGE',
-					value: this.state.currentPage
-				}, 'members' );
-			}
+			const session = this.context;
+			session.log({
+				id: this.props.id,
+				type: 'SKETCHPAD_FIRST_PAGE',
+				value: this.state.currentPage
+			}, 'members' );
 		});
 	}
 
-	lastPage = ( shouldLog = true ) => {
+	lastPage = () => {
 		this.setState({
 			currentPage: this.state.noPages - 1,
 			nUndos: 0
@@ -1391,14 +1383,12 @@ class Sketchpad extends Component {
 			// Update hash of URL:
 			this.updateURL( this.state.currentPage );
 			this.redraw();
-			if ( shouldLog ) {
-				const session = this.context;
-				session.log({
-					id: this.props.id,
-					type: 'SKETCHPAD_LAST_PAGE',
-					value: this.state.currentPage
-				}, 'members' );
-			}
+			const session = this.context;
+			session.log({
+				id: this.props.id,
+				type: 'SKETCHPAD_LAST_PAGE',
+				value: this.state.currentPage
+			}, 'members' );
 		});
 	}
 
@@ -1415,7 +1405,7 @@ class Sketchpad extends Component {
 		window.location.hash = '#/'+(pageNo+1);
 	}
 
-	nextPage = ( shouldLog = true ) => {
+	nextPage = () => {
 		if ( this.state.currentPage < this.state.noPages-1 ) {
 			debug( 'Should go to next page...' );
 			this.setState({
@@ -1425,19 +1415,17 @@ class Sketchpad extends Component {
 				// Update hash of URL:
 				this.updateURL( this.state.currentPage );
 				this.redraw();
-				if ( shouldLog ) {
-					const session = this.context;
-					session.log({
-						id: this.props.id,
-						type: 'SKETCHPAD_NEXT_PAGE',
-						value: this.state.currentPage
-					}, 'members' );
-				}
+				const session = this.context;
+				session.log({
+					id: this.props.id,
+					type: 'SKETCHPAD_NEXT_PAGE',
+					value: this.state.currentPage
+				}, 'members' );
 			});
 		}
 	}
 
-	previousPage = ( shouldLog = true ) => {
+	previousPage = () => {
 		if ( this.state.currentPage > 0 ) {
 			this.setState({
 				currentPage: this.state.currentPage - 1,
@@ -1445,16 +1433,13 @@ class Sketchpad extends Component {
 			}, () => {
 				// Update hash of URL:
 				this.updateURL( this.state.currentPage );
-
 				this.redraw();
-				if ( shouldLog ) {
-					const session = this.context;
-					session.log({
-						id: this.props.id,
-						type: 'SKETCHPAD_PREVIOUS_PAGE',
-						value: this.state.currentPage
-					}, 'members' );
-				}
+				const session = this.context;
+				session.log({
+					id: this.props.id,
+					type: 'SKETCHPAD_PREVIOUS_PAGE',
+					value: this.state.currentPage
+				}, 'members' );
 			});
 		}
 	}
