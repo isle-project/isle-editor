@@ -234,7 +234,7 @@
     "semver": "^5.5.0",
     "socket.io-client": "^2.1.0",
     "source-map-support": "^0.5.4",
-    "spectacle": "5.2.2",
+    "spectacle": "5.3.0",
     "style-loader": "^0.23.0",
     "svg-react-loader": "^0.4.5",
     "terser": "^3.8.2",
