@@ -88,10 +88,12 @@ class StatusBar extends Component {
 
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, data ) => {
-			if ( !sentNotification && session.anonymous && session.live ) {
-				setTimeout( promptLogin, 2000 );
-				sentNotification = true;
-			}
+			setTimeout( () => {
+				if ( !sentNotification && session.anonymous && session.live ) {
+					promptLogin();
+					sentNotification = true;
+				}
+			}, 3000);
 
 			if ( type === 'self_initial_progress' ) {
 				this.setState({
