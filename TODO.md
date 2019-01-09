@@ -7,8 +7,7 @@ Fall
 =====
 * Dashboard: Have a repository with old TA notes
 * Insert equation menu similar to table select
-* **Calculator parser**
-* Build mosiac plot
+* Build mosaic plot
 * LaTeX Equation in the explorer for the pdf
 * Minification and bundling times
 * Ability to select multiple smoothing values / change them in real-time (similarly, for histogram ability to choose binwidth)
@@ -26,7 +25,6 @@ Fall
 
 Priority
 ====
-2. Parser for Calculator.
 3. Instructor view
 
 General
@@ -42,7 +40,6 @@ LONG-TERM
 * Landing page before start of lesson showing the title, brief overview of content, learning objectives. Should include a way for users to clear the ISLE variables in localStorage.
 * Many of the react components need properties for event handlers (onClick, onChange)...
 * Data Explorer
-   - how to handle missing data?
    - remove any R dependencies for mosaic
    - Boxplots categorized by more than one group (+ ability to reorder)
    - need a simple way to subset data, e.g. running an ANOVA only on a subset (say a few groups instead of all of them)
