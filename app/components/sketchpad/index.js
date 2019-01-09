@@ -216,6 +216,18 @@ class Sketchpad extends Component {
 						) {
 							return;
 						}
+						if ( action.email === session.user.email ) {
+							const type = action.type;
+							if ( type === 'SKETCHPAD_NEXT_PAGE' ) {
+								this.nextPage( false );
+							}
+							else if ( type === 'SKETCHPAD_PREVIOUS_PAGE' ) {
+								this.previousPage( false );
+							}
+							else if ( type === 'SKETCHPAD_GOTO_PAGE' ) {
+								this.goToPage( action.value, false );
+							}
+						}
 					}
 					const type = action.type;
 					if (
@@ -1393,7 +1405,7 @@ class Sketchpad extends Component {
 		window.location.hash = '#/'+(pageNo+1);
 	}
 
-	nextPage = () => {
+	nextPage = ( shouldLog = true ) => {
 		if ( this.state.currentPage < this.state.noPages-1 ) {
 			debug( 'Should go to next page...' );
 			this.setState({
@@ -1402,19 +1414,20 @@ class Sketchpad extends Component {
 			}, () => {
 				// Update hash of URL:
 				this.updateURL( this.state.currentPage );
-
 				this.redraw();
-				const session = this.context;
-				session.log({
-					id: this.props.id,
-					type: 'SKETCHPAD_NEXT_PAGE',
-					value: this.state.currentPage
-				});
+				if ( shouldLog ) {
+					const session = this.context;
+					session.log({
+						id: this.props.id,
+						type: 'SKETCHPAD_NEXT_PAGE',
+						value: this.state.currentPage
+					});
+				}
 			});
 		}
 	}
 
-	previousPage = () => {
+	previousPage = ( shouldLog = true ) => {
 		if ( this.state.currentPage > 0 ) {
 			this.setState({
 				currentPage: this.state.currentPage - 1,
@@ -1424,17 +1437,19 @@ class Sketchpad extends Component {
 				this.updateURL( this.state.currentPage );
 
 				this.redraw();
-				const session = this.context;
-				session.log({
-					id: this.props.id,
-					type: 'SKETCHPAD_PREVIOUS_PAGE',
-					value: this.state.currentPage
-				});
+				if ( shouldLog ) {
+					const session = this.context;
+					session.log({
+						id: this.props.id,
+						type: 'SKETCHPAD_PREVIOUS_PAGE',
+						value: this.state.currentPage
+					});
+				}
 			});
 		}
 	}
 
-	gotoPage = ( idx ) => {
+	gotoPage = ( idx, shouldLog = true ) => {
 		debug( `Should go to page ${idx}...` );
 		idx = parseInt( idx, 10 );
 		if ( idx !== this.state.currentPage ) {
@@ -1447,12 +1462,14 @@ class Sketchpad extends Component {
 				this.updateURL( this.state.currentPage );
 
 				this.redraw();
-				const session = this.context;
-				session.log({
-					id: this.props.id,
-					type: 'SKETCHPAD_GOTO_PAGE',
-					value: idx
-				});
+				if ( shouldLog ) {
+					const session = this.context;
+					session.log({
+						id: this.props.id,
+						type: 'SKETCHPAD_GOTO_PAGE',
+						value: idx
+					});
+				}
 			});
 		} else {
 			this.setState({
