@@ -1378,7 +1378,7 @@ class Sketchpad extends Component {
 					id: this.props.id,
 					type: 'SKETCHPAD_FIRST_PAGE',
 					value: this.state.currentPage
-				});
+				}, 'members' );
 			}
 		});
 	}
@@ -1397,7 +1397,7 @@ class Sketchpad extends Component {
 					id: this.props.id,
 					type: 'SKETCHPAD_LAST_PAGE',
 					value: this.state.currentPage
-				});
+				}, 'members' );
 			}
 		});
 	}
@@ -1431,7 +1431,7 @@ class Sketchpad extends Component {
 						id: this.props.id,
 						type: 'SKETCHPAD_NEXT_PAGE',
 						value: this.state.currentPage
-					});
+					}, 'members' );
 				}
 			});
 		}
@@ -1453,7 +1453,7 @@ class Sketchpad extends Component {
 						id: this.props.id,
 						type: 'SKETCHPAD_PREVIOUS_PAGE',
 						value: this.state.currentPage
-					});
+					}, 'members' );
 				}
 			});
 		}
@@ -1478,7 +1478,7 @@ class Sketchpad extends Component {
 						id: this.props.id,
 						type: 'SKETCHPAD_GOTO_PAGE',
 						value: idx
-					});
+					}, 'members' );
 				}
 			});
 		} else {
