@@ -220,7 +220,7 @@
     "react-notification-system": "^0.2.7",
     "react-player": "^1.6.4",
     "react-plotly.js": "^2.2.0",
-    "react-redux": "6.0.0",
+    "react-redux": "5.1.1",
     "react-router": "4.3.1",
     "react-router-dom": "^4.3.1",
     "react-select": "^2.0.0",
