@@ -37,6 +37,7 @@ import { TwitterPicker } from 'react-color';
 import Gate from 'components/gate';
 import KeyControls from 'components/key-controls';
 import VoiceControl from 'components/voice-control';
+import randomstring from 'utils/randomstring/ascii';
 import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import ResetModal from './reset_modal.js';
@@ -114,7 +115,6 @@ class Sketchpad extends Component {
 		const loc = this.readURL();
 		this.state = {
 			color: props.color,
-			currentDrawing: 0,
 			brushSize: props.brushSize,
 			showColorPicker: false,
 			currentPage: loc ? loc - 1 : 0,
@@ -186,7 +186,7 @@ class Sketchpad extends Component {
 		});
 		Pressure.set( '.sketch-canvas', {
 			change: ( force, event ) => {
-				debug( 'Changed pen pressue: '+force );
+				debug( 'Changed pen pressure: '+force );
 				this.force = force;
 			}
 		});
@@ -206,11 +206,7 @@ class Sketchpad extends Component {
 				}
 				else if ( type === 'member_action' ) {
 					debug( 'Received member action...' );
-					if (
-						action.email === session.user.email // 'Early return since own action...'
-					) {
-						return;
-					}
+
 					// Owners should only process actions from selected users:
 					if ( session.isOwner() ) {
 						if (
@@ -888,7 +884,7 @@ class Sketchpad extends Component {
 				page: this.state.currentPage,
 				time: this.time,
 				type: 'curve',
-				drawID: this.state.currentDrawing,
+				drawID: randomstring( 6 ),
 				user: username
 			};
 			elems.push( line );
@@ -910,9 +906,6 @@ class Sketchpad extends Component {
 				session.log( logAction, 'owners' );
 			}
 			this.currentPoints = [];
-			this.setState({
-				currentDrawing: this.state.currentDrawing + 1
-			});
 		}
 		this.isMouseDown = false;
 	}
@@ -1183,7 +1176,7 @@ class Sketchpad extends Component {
 				type: 'text',
 				page: this.state.currentPage,
 				user: username,
-				drawID: this.state.currentDrawing
+				drawID: randomstring( 6 )
 			};
 			this.drawText( text );
 			const elems = this.elements[ this.state.currentPage ];
@@ -1234,9 +1227,6 @@ class Sketchpad extends Component {
 			} else {
 				session.log( logAction );
 			}
-			this.setState({
-				currentDrawing: this.state.currentDrawing + 1
-			});
 		}
 	}
 
