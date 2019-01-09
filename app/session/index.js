@@ -111,6 +111,9 @@ class Session {
 		// Registered response visualizers:
 		this.responseVisualizers = {};
 
+		// Presentation mode for the owners (hiding owner elements)
+		this.presentationMode = false;
+
 		// List of currently logged-in users:
 		this.userList = [];
 		this.userFocuses = {};
@@ -1292,6 +1295,29 @@ class Session {
 					this.update( 'self_updated_score', 4 );
 				}
 			}
+		}
+	}
+
+
+	togglePresentationView() {
+		this.presentationMode = !this.presentationMode;
+		if (this.isOwner() ) {
+			this.update( 'TOGGLE_PRESENTATION_MODE' );
+
+			let msg = 'You have started the presentation mode which hides the status bar, the instructorView and all owner elements.';
+			let title = 'Started presentation mode';
+
+			if ( this.presentationMode === false) {
+				msg = 'You have finished the presentation mode. Type F7 to start it again.';
+				title = 'Finished presentation mode';
+			}
+
+			this.addNotification({
+				title: title,
+				message: msg,
+				level: 'success',
+				position: 'tl'
+			});
 		}
 	}
 

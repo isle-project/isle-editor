@@ -157,6 +157,8 @@ class StatusBar extends Component {
 	}
 
 	toggleBarVisibility = () => {
+		const session = this.context;
+		session.togglePresentationView();
 		debug( 'Toggle visibility of statusbar...' );
 		this.setState({
 			showStatusBar: !this.state.showStatusBar

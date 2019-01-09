@@ -36,7 +36,8 @@ class Gate extends Component {
 				if (
 					type === 'RECEIVED_USER_RIGHTS' ||
 					type === 'LOGGED_IN' ||
-					type === 'LOGGED_OUT'
+					type === 'LOGGED_OUT' ||
+					type === 'TOGGLE_PRESENTATION_MODE'
 				) {
 					this.checkAuthorization();
 				}
@@ -59,11 +60,13 @@ class Gate extends Component {
 		const session = this.context;
 		let newState = {
 			isEnrolled: session.isEnrolled(),
-			isOwner: session.isOwner()
+			isOwner: session.isOwner(),
+			presentationMode: session.presentationMode
 		};
 		if (
 			newState.isEnrolled !== this.state.isEnrolled ||
-			newState.isOwner !== this.state.isOwner
+			newState.isOwner !== this.state.isOwner ||
+			newState.presentationMode !== this.state.presentationMode
 		) {
 			this.setState( newState );
 		}
@@ -90,7 +93,7 @@ class Gate extends Component {
 				else if ( enrolled && ( this.state.isEnrolled || currentRole === 'enrolled' ) ) {
 					authenticated = true;
 				}
-				else if ( owner && ( this.state.isOwner || currentRole === 'owner' ) ) {
+				else if ( owner && !this.state.presentationMode && ( this.state.isOwner || currentRole === 'owner' ) ) {
 					authenticated = true;
 				}
 				if ( authenticated ) {
