@@ -3,7 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import pdfjs from 'pdfjs-dist/webpack';
-import pdfMake from 'pdfmake';
+import pdfMake from 'pdfmake-lite/build/pdfmake.min.js';
 import logger from 'debug';
 import Pressure from 'pressure';
 import Card from 'react-bootstrap/lib/Card';
