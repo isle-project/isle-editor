@@ -13,6 +13,7 @@ import isObject from '@stdlib/assert/is-object';
 import isRelativePath from '@stdlib/assert/is-relative-path';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import replace from '@stdlib/string/replace';
+import startsWith from '@stdlib/string/starts-with';
 import papplyRight from '@stdlib/utils/papply-right';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import markdownToHTML from 'utils/markdown-to-html';
@@ -138,14 +139,20 @@ const getComponentList = ( code ) => {
 	const ret = [];
 	const availableComponents = Object.keys( REQUIRES );
 
+	let needVictoryTheme = false;
 	for ( let i = 0; i < availableComponents.length; i++ ) {
 		const regexp = new RegExp( `<${availableComponents[ i ]}[^>]*>`, 'g' );
 		if ( regexp.test( code ) === true ) {
-			ret.push( availableComponents[ i ]);
+			ret.push( availableComponents[ i ] );
+			if ( startsWith( availableComponents[ i ], 'Victory' ) ) {
+				needVictoryTheme = true;
+			}
 		}
 	}
 	// Components that will always be required:
-	ret.push( 'VictoryTheme' );
+	if ( needVictoryTheme ) {
+		ret.push( 'VictoryTheme' );
+	}
 	return ret;
 };
 
@@ -249,7 +256,9 @@ function writeIndexFile({
 		resolve( basePath, './node_modules/@stdlib/stdlib/node_modules' ),
 		resolve( basePath, './app/' )
 	];
+	console.log( 'RESOLVED: '+resolve( basePath ) );
 	const config = {
+		context: resolve( basePath ),
 		resolve: {
 			modules: modulePaths,
 			alias: {
@@ -264,10 +273,6 @@ function writeIndexFile({
 				'victory': resolve(
 					basePath,
 					'./node_modules/victory/dist/victory.min.js'
-				),
-				'katex': resolve(
-					basePath,
-					'./node_modules/katex/dist/katex.min.js'
 				),
 				'react-transition-group/TransitionGroup': resolve(
 					basePath,
@@ -349,16 +354,16 @@ function writeIndexFile({
 						path: 'plotly.min.js'
 					},
 					{
+						name: 'katex',
+						alias: 'KaTeX',
+						var: 'katex',
+						path: 'katex.min.js'
+					},
+					{
 						name: 'moment',
 						alias: 'moment.js',
 						var: 'moment',
 						path: 'moment.min.js'
-					},
-					{
-						name: 'pdfmake',
-						alias: 'pdfmake',
-						var: 'pdfmake',
-						path: 'pdfmake.min.js'
 					}
 				]
 			}),
