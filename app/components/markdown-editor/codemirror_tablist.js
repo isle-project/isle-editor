@@ -3,7 +3,7 @@
 
 // MODULES //
 
-var CodeMirror = require( 'codemirror' );
+import CodeMirror from 'codemirror';
 
 
 // MAIN //
