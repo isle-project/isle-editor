@@ -2,7 +2,7 @@
 
 import cp from 'child_process';
 import fs from 'fs-extra';
-import { basename, dirname, extname, resolve, join } from 'path';
+import { dirname, extname, resolve, join } from 'path';
 import yaml from 'js-yaml';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
