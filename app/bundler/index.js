@@ -5,6 +5,8 @@ import fs from 'fs-extra';
 import { basename, dirname, extname, resolve, join } from 'path';
 import yaml from 'js-yaml';
 import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import WebpackCdnPlugin from './webpack_cdn_plugin.js';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
 import isObject from '@stdlib/assert/is-object';
@@ -33,51 +35,6 @@ const generateISLE = ( outputDir, code ) => {
 	const islePath = join( outputDir, 'index.isle' );
 	fs.writeFileSync( islePath, code );
 };
-
-const generateIndexHTML = ( meta, minify, stats, head ) => `
-<!DOCTYPE html>
-<html lang="${meta.language || 'en'}">
-	<head>
-		<meta charset="utf-8">
-		<meta name="Description" content="${meta.description || meta.title}">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>${meta.title}</title>
-		<link rel="shortcut icon" href="favicon.ico" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans+Condensed:300,300i,700|Open+Sans:400,400i,700,800" rel="stylesheet">
-		<link rel="stylesheet" href="css/lesson.css" />
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/codemirror.min.css"/>${head ? '\n\t\t'+head.split( '\n' ).join( '\n\t\t' ) : ''}
-	</head>
-	<body>
-	<div id="loading">
-		<div id="loading-author">${meta.author}</div>
-		<div id="loading-titling">${meta.title}</div>
-		${ meta.description ? '<div id="loading-description">'+meta.description+'</div>' : '' }
-		<div id ="loading-bar"></div>
-		<div id="loading-date">${meta.date}</div>
-		${ meta.logo ? '<img id="loading-logo" src="'+meta.logo+'" />' : '' }
-	</div>
-	<div id="App"></div>
-	<script>
-		// Handle bug occurring when crypto-browserify is used with Webpack...
-		window._crypto = {};
-	</script>
-	${stats.assets.map( ( asset ) => {
-		let link;
-		if ( !minify ) {
-			link = asset.name;
-		}
-		else {
-			const newExt = !contains( asset.name, '.worker.' ) ? '.min.js' : '.js'; // Do not rename worker files to make `pdfjs` work
-			link = basename( asset.name, '.js' ) + newExt;
-		}
-		return `<script src="${link}"></script>`;
-	}).join( '\n' )}
-	</body>
-</html>
-`;
 
 const loadRequires = ( libs, filePath ) => {
 	let str = '';
@@ -274,6 +231,18 @@ function writeIndexFile({
 	minify,
 	writeStats
 }, clbk ) {
+	let yamlStr = content.match( /---([\S\s]*)---/ )[ 1 ];
+	yamlStr = replace( yamlStr, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
+	const meta = yaml.load( yamlStr );
+	const appDir = join( outputPath, outputDir );
+	const indexPath = resolve( './public/index.js' );
+	const statsFile = join( appDir, 'stats.json' );
+	const getCSSPath = () => {
+		return join( basePath, 'app', 'css' );
+	};
+	makeOutputDir( appDir );
+	generateISLE( appDir, content );
+
 	const modulePaths = [
 		resolve( basePath, './node_modules' ),
 		resolve( basePath, './node_modules/@stdlib/stdlib/lib/node_modules' ),
@@ -361,29 +330,46 @@ function writeIndexFile({
 			tls: 'mock'
 		},
 		plugins: [
+			new HtmlWebpackPlugin({
+				filename: 'index.html',
+				title: meta.title,
+				template: resolve( basePath, './app/bundler/index.html' ),
+				templateParameters: {
+					meta
+				},
+				minify: false
+			}),
+			new WebpackCdnPlugin({
+				prodUrl: 'https://cdnjs.cloudflare.com/ajax/libs/:alias/:version/:path',
+				modules: [
+					{
+						name: 'plotly.js',
+						alias: 'plotly.js',
+						var: 'Plotly',
+						path: 'plotly.min.js'
+					},
+					{
+						name: 'moment',
+						alias: 'moment.js',
+						var: 'moment',
+						path: 'moment.min.js'
+					},
+					{
+						name: 'pdfmake',
+						alias: 'pdfmake',
+						var: 'pdfmake',
+						path: 'pdfmake.min.js'
+					}
+				]
+			}),
 			new webpack.DefinePlugin({
 				'process.env': {
 					NODE_ENV: '"production"'
 				}
 			}),
-			new webpack.IgnorePlugin( /^\.\/locale$/, /moment$/ ),
-			new webpack.ContextReplacementPlugin( /moment[/\\]locale$/, /us/ ),
 			new webpack.IgnorePlugin( /vertx/ )
 		]
 	};
-
-	let yamlStr = content.match( /---([\S\s]*)---/ )[ 1 ];
-	yamlStr = replace( yamlStr, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
-	const meta = yaml.load( yamlStr );
-	const appDir = join( outputPath, outputDir );
-	const indexPath = resolve( './public/index.js' );
-	const htmlPath = join( appDir, 'index.html' );
-	const statsFile = join( appDir, 'stats.json' );
-	const getCSSPath = () => {
-		return join( basePath, 'app', 'css' );
-	};
-	makeOutputDir( appDir );
-	generateISLE( appDir, content );
 
 	// Remove YAML preamble...
 	content = content.replace( /---([\S\s]*)---/, '' );
@@ -425,14 +411,18 @@ function writeIndexFile({
 	config.entry = indexPath;
 	config.output = {
 		path: appDir,
+		publicPath: './',
 		filename: 'bundle.js'
 	};
 	const compiler = webpack( config );
 	compiler.run( ( err, stats ) => {
 		if ( err ) {
+			console.log( 'Encountered error...' );
 			debug( 'Encountered an error during bundling: ' + err );
+			console.log( err );
 			throw err;
 		}
+		console.log( stats );
 		if ( stats.errors ) {
 			stats.errors.forEach( debug );
 		}
@@ -442,8 +432,6 @@ function writeIndexFile({
 			fs.writeFileSync( statsFile, JSON.stringify( stats ) );
 		}
 		fs.unlinkSync( indexPath );
-		fs.writeFileSync( htmlPath, generateIndexHTML( meta, minify, stats, meta.head ) );
-
 		if ( !minify ) {
 			return clbk( err, meta );
 		}
