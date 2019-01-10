@@ -1298,27 +1298,24 @@ class Session {
 		}
 	}
 
-
 	togglePresentationView() {
 		this.presentationMode = !this.presentationMode;
-		if (this.isOwner() ) {
-			this.update( 'TOGGLE_PRESENTATION_MODE' );
+		this.update( 'TOGGLE_PRESENTATION_MODE' );
 
-			let msg = 'You have started the presentation mode which hides the status bar, the instructorView and all owner elements.';
-			let title = 'Started presentation mode';
+		let msg = 'You have started the presentation mode which hides the status bar, the instructorView and all owner elements.';
+		let title = 'Started presentation mode';
 
-			if ( this.presentationMode === false) {
-				msg = 'You have finished the presentation mode. Type F7 to start it again.';
-				title = 'Finished presentation mode';
-			}
-
-			this.addNotification({
-				title: title,
-				message: msg,
-				level: 'success',
-				position: 'tl'
-			});
+		if ( this.presentationMode === false) {
+			msg = 'You have finished the presentation mode. Type F7 to start it again.';
+			title = 'Finished presentation mode';
 		}
+
+		this.addNotification({
+			title: title,
+			message: msg,
+			level: 'success',
+			position: 'tl'
+		});
 	}
 
 	/**
