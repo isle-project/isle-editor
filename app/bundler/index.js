@@ -14,6 +14,7 @@ import isRelativePath from '@stdlib/assert/is-relative-path';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import replace from '@stdlib/string/replace';
 import startsWith from '@stdlib/string/starts-with';
+import endsWith from '@stdlib/string/ends-with';
 import papplyRight from '@stdlib/utils/papply-right';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import markdownToHTML from 'utils/markdown-to-html';
@@ -256,7 +257,6 @@ function writeIndexFile({
 		resolve( basePath, './node_modules/@stdlib/stdlib/node_modules' ),
 		resolve( basePath, './app/' )
 	];
-	console.log( 'RESOLVED: '+resolve( basePath ) );
 	const config = {
 		context: resolve( basePath ),
 		resolve: {
@@ -417,14 +417,12 @@ function writeIndexFile({
 	config.output = {
 		path: appDir,
 		publicPath: './',
-		filename: 'bundle.js'
+		filename: minify ? 'bundle.min.js' : 'bundle.js'
 	};
 	const compiler = webpack( config );
 	compiler.run( ( err, stats ) => {
 		if ( err ) {
-			console.log( 'Encountered error...' );
 			debug( 'Encountered an error during bundling: ' + err );
-			console.log( err );
 			throw err;
 		}
 		console.log( stats );
@@ -445,26 +443,22 @@ function writeIndexFile({
 		for ( let i = 0; i < stats.assets.length; i++ ) {
 			const child = cp.fork( resolve( basePath, './app/bundler/minify.js' ) );
 			const { name } = stats.assets[ i ];
-			const bundlePath = join( appDir, name );
-			const code = fs.readFileSync( bundlePath ).toString();
-			child.on( 'message', papplyRight( onMessage, name, bundlePath ));
-			child.send( code );
+			if ( endsWith( name, '.js' ) ) {
+				const bundlePath = join( appDir, name );
+				const code = fs.readFileSync( bundlePath ).toString();
+				child.on( 'message', papplyRight( onMessage, name, bundlePath ));
+				child.send( code );
+			}
 		}
 		function onMessage( minified, sendHandle, name, bundlePath ) {
 			if ( minified.error ) {
 				debug( 'Encountered an error during minification: ' + minified.error );
 				throw minified.error;
 			}
-			if ( contains( name, '.worker.' ) ) {
-				// Avoid renaming worker files to make `pdfjs` work:
-				fs.writeFileSync( bundlePath, minified.code );
-			} else {
-				const minifiedPath = join( appDir, basename( name, '.js' )+'.min.js' );
-				fs.writeFileSync( minifiedPath, minified.code );
-				fs.unlinkSync( bundlePath );
-			}
+			const minifiedPath = join( appDir, name );
+			fs.writeFileSync( minifiedPath, minified.code );
 			done += 1;
-			if ( done === stats.assets.length ) {
+			if ( done === stats.assets.length-1 ) {
 				return clbk( err, meta );
 			}
 		}
