@@ -82,7 +82,7 @@ const hasTouch = isTouchDevice();
 * @property {number} canvasHeight - height of the canvas element (in px)
 * @property {boolean} fullscreen - controls whether to automatically resize the canvas to the width and height of the browser window
 * @property {string} fill - if `horizontal`, fill all available horizontal space when drawing a PDF; if `vertical`, all vertical space is used to prevent y-axis overflow
-* @property {boolean} disabled - whether to make the component read-only and forbid drawing on the sketchboard
+* @property {boolean} disabled - whether to make the component read-only and forbid drawing on the sketchpad
 * @property {string} fontFamily - font family
 * @property {number} fontSize - font size
 * @property {Object} nodes - components to be rendered on top of specified slides; `keys` should correspond to page numbers, `values` to the components
@@ -121,6 +121,11 @@ class Sketchpad extends Component {
 			fontFamily: props.fontFamily,
 			fontSize: props.fontSize,
 			groupMode: props.groupMode,
+			hideInputButtons: props.hideInputButtons,
+			hideNavigationButtons: props.hideNavigationButtons,
+			hideRecordingButtons: props.hideRecordingButtons,
+			hideSaveButtons: props.hideSaveButtons,
+			hideTransmitButtons: props.hideTransmitButtons,
 			recording: false,
 			isExporting: false,
 			finishedRecording: false,
@@ -203,6 +208,16 @@ class Sketchpad extends Component {
 					if ( session.isOwner() ) {
 						session.log( insertAction, action.email );
 					}
+				}
+				else if ( type === 'TOGGLE_PRESENTATION_MODE' ) {
+					debug( 'Hide control buttons in presentation mode...' );
+					this.setState({
+						hideInputButtons: session.presentationMode,
+						hideNavigationButtons: session.presentationMode,
+						hideRecordingButtons: session.presentationMode,
+						hideSaveButtons: session.presentationMode,
+						hideTransmitButtons: session.presentationMode
+					});
 				}
 				else if ( type === 'member_action' ) {
 					debug( 'Received member action...' );
@@ -1661,6 +1676,9 @@ class Sketchpad extends Component {
 	}
 
 	renderPagination() {
+		if ( this.state.hideNavigationButtons ) {
+			return null;
+		}
 		const currentPage = this.state.currentPage;
 		return ( <ButtonGroup size="sm" className="sketch-pages" >
 			<Button variant="light" onClick={this.toggleNavigationModal}>{currentPage+1}/{this.state.noPages}</Button>
@@ -1676,7 +1694,7 @@ class Sketchpad extends Component {
 	}
 
 	renderRecordingButtons() {
-		if ( this.props.hideRecordingButtons ) {
+		if ( this.state.hideRecordingButtons ) {
 			return null;
 		}
 		const elems = this.elements[ this.state.currentPage ] || [];
@@ -1693,70 +1711,82 @@ class Sketchpad extends Component {
 		);
 	}
 
-	renderDrawingButtons() {
+	renderInputButtons() {
+		if ( this.state.hideInputButtons ) {
+			return null;
+		}
 		return (
-			<ButtonGroup size="sm" className="sketch-drawing-buttons" >
-				<TooltipButton tooltip="Drawing Mode" glyph="pencil-alt" size="sm" variant={this.state.mode === 'drawing' ? 'success' : 'secondary'} onClick={this.toggleDrawingMode} />
-				<InputGroup size="sm" className="sketch-input-group" >
-					<FormControl
-						type="number"
-						min={1}
-						max={42}
-						onChange={( event ) => {
+			<Fragment>
+				<ButtonGroup size="sm" className="sketch-drag-delete-modes sketch-button-group" >
+					<TooltipButton tooltip="Drag Mode" size="sm" variant={this.state.mode === 'drag' ? 'success' : 'secondary'} onClick={this.toggleDragMode} glyph="arrows-alt" />
+					<TooltipButton tooltip="Delete Mode" size="sm" variant={this.state.mode === 'delete' ? 'success' : 'secondary'} onClick={this.toggleDeleteMode} glyph="times" />
+				</ButtonGroup>
+				<ButtonGroup size="sm" className="sketch-drawing-buttons" >
+					<TooltipButton tooltip="Drawing Mode" glyph="pencil-alt" size="sm" variant={this.state.mode === 'drawing' ? 'success' : 'secondary'} onClick={this.toggleDrawingMode} />
+					<InputGroup size="sm" className="sketch-input-group" >
+						<FormControl
+							type="number"
+							min={1}
+							max={42}
+							onChange={( event ) => {
+								this.setState({
+									brushSize: event.target.value,
+									mode: 'drawing'
+								});
+							}}
+							value={this.state.brushSize}
+						/>
+					</InputGroup>
+				</ButtonGroup>
+				<ButtonGroup size="sm" >
+					<TooltipButton size="sm" variant={this.state.mode === 'text' ? 'success' : 'secondary'} onClick={this.toggleTextMode} tooltip="Text Mode" glyph="font" />
+					<DropdownButton
+						id="sketch-font-dropdown"
+						size="sm"
+						variant={this.state.mode === 'text' ? 'success' : 'secondary'}
+						title={this.state.fontFamily}
+						onSelect={(val) => {
 							this.setState({
-								brushSize: event.target.value,
-								mode: 'drawing'
-							});
-						}}
-						value={this.state.brushSize}
-					/>
-				</InputGroup>
-			</ButtonGroup>
-		);
-	}
-
-	renderTextButtons() {
-		return (
-			<ButtonGroup size="sm" >
-				<TooltipButton size="sm" variant={this.state.mode === 'text' ? 'success' : 'secondary'} onClick={this.toggleTextMode} tooltip="Text Mode" glyph="font" />
-				<DropdownButton
-					id="sketch-font-dropdown"
-					size="sm"
-					variant={this.state.mode === 'text' ? 'success' : 'secondary'}
-					title={this.state.fontFamily}
-					onSelect={(val) => {
-						this.setState({
-							fontFamily: val,
-							mode: 'text'
-						});
-					}}
-				>
-					<DropdownItem eventKey="Arial">Arial</DropdownItem>
-					<DropdownItem eventKey="Helvetica">Helvetica</DropdownItem>
-					<DropdownItem eventKey="Times">Times</DropdownItem>
-					<DropdownItem eventKey="Courier">Courier</DropdownItem>
-					<DropdownItem eventKey="Verdana">Verdana</DropdownItem>
-					<DropdownItem eventKey="Palatino">Palatino</DropdownItem>
-				</DropdownButton>
-				<InputGroup size="sm" className="sketch-input-group" >
-					<FormControl
-						type="number"
-						min={12}
-						max={60}
-						onChange={( event ) => {
-							this.setState({
-								fontSize: Number( event.target.value ),
+								fontFamily: val,
 								mode: 'text'
 							});
 						}}
-						value={this.state.fontSize}
-					/>
-				</InputGroup>
-			</ButtonGroup>
+					>
+						<DropdownItem eventKey="Arial">Arial</DropdownItem>
+						<DropdownItem eventKey="Helvetica">Helvetica</DropdownItem>
+						<DropdownItem eventKey="Times">Times</DropdownItem>
+						<DropdownItem eventKey="Courier">Courier</DropdownItem>
+						<DropdownItem eventKey="Verdana">Verdana</DropdownItem>
+						<DropdownItem eventKey="Palatino">Palatino</DropdownItem>
+					</DropdownButton>
+					<InputGroup size="sm" className="sketch-input-group" >
+						<FormControl
+							type="number"
+							min={12}
+							max={60}
+							onChange={( event ) => {
+								this.setState({
+									fontSize: Number( event.target.value ),
+									mode: 'text'
+								});
+							}}
+							value={this.state.fontSize}
+						/>
+					</InputGroup>
+				</ButtonGroup>
+				<ButtonGroup size="sm" >
+					<Tooltip placement="right" tooltip="Change brush color" >
+						<Button size="sm" onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Col</Button>
+					</Tooltip>
+				</ButtonGroup>
+			</Fragment>
 		);
 	}
 
 	renderRemoveButtons() {
+		if ( this.state.hideInputButtons ) {
+			return null;
+		}
 		const page = this.state.currentPage;
 		const showUndo = this.elements[ page ] && this.elements[ page ].length > this.state.nUndos;
 		return (
@@ -1780,7 +1810,7 @@ class Sketchpad extends Component {
 	}
 
 	renderSaveButtons() {
-		if ( this.props.hideSaveButtons ) {
+		if ( this.state.hideSaveButtons ) {
 			return null;
 		}
 		const session = this.context;
@@ -1820,7 +1850,7 @@ class Sketchpad extends Component {
 	}
 
 	renderTransmitButtons() {
-		if ( this.props.hideTransmitButtons ) {
+		if ( this.state.hideTransmitButtons ) {
 			return null;
 		}
 		const session = this.context;
@@ -1957,17 +1987,7 @@ class Sketchpad extends Component {
 				>
 					<div className="sketch-panel-heading clearfix unselectable">
 						{this.renderPagination()}
-						<ButtonGroup size="sm" className="sketch-drag-delete-modes sketch-button-group" >
-							<TooltipButton tooltip="Drag Mode" size="sm" variant={this.state.mode === 'drag' ? 'success' : 'secondary'} onClick={this.toggleDragMode} glyph="arrows-alt" />
-							<TooltipButton tooltip="Delete Mode" size="sm" variant={this.state.mode === 'delete' ? 'success' : 'secondary'} onClick={this.toggleDeleteMode} glyph="times" />
-						</ButtonGroup>
-						{this.renderDrawingButtons()}
-						{this.renderTextButtons()}
-						<ButtonGroup size="sm" >
-							<Tooltip placement="right" tooltip="Change brush color" >
-								<Button size="sm" onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Col</Button>
-							</Tooltip>
-						</ButtonGroup>
+						{this.renderInputButtons()}
 						{this.renderRemoveButtons()}
 						{this.renderRecordingButtons()}
 						{this.renderTransmitButtons()}
@@ -2033,11 +2053,13 @@ class Sketchpad extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
 
 Sketchpad.defaultProps = {
 	autoSave: true,
 	intervalTime: 30000,
+	hideInputButtons: false,
+	hideNavigationButtons: false,
 	hideRecordingButtons: false,
 	hideSaveButtons: false,
 	hideTransmitButtons: false,
@@ -2064,6 +2086,8 @@ Sketchpad.defaultProps = {
 Sketchpad.propTypes = {
 	autoSave: PropTypes.bool,
 	intervalTime: PropTypes.number,
+	hideInputButtons: PropTypes.bool,
+	hideNavigationButtons: PropTypes.bool,
 	hideRecordingButtons: PropTypes.bool,
 	hideSaveButtons: PropTypes.bool,
 	hideTransmitButtons: PropTypes.bool,
