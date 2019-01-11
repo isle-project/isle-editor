@@ -9,13 +9,9 @@ import Pressure from 'pressure';
 import Card from 'react-bootstrap/lib/Card';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
-import DropdownButton from 'react-bootstrap/lib/DropdownButton';
-import DropdownItem from 'react-bootstrap/lib/DropdownItem';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
-import InputGroup from 'react-bootstrap/lib/InputGroup';
-import FormControl from 'react-bootstrap/lib/FormControl';
 import SelectInput from 'react-select';
 import isTouchDevice from 'is-touch-device';
 import Checkbox from 'components/input/checkbox';
@@ -32,8 +28,6 @@ import objectKeys from '@stdlib/utils/keys';
 import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
 import Joyride from 'components/joyride';
-import Tooltip from 'components/tooltip';
-import { TwitterPicker } from 'react-color';
 import Gate from 'components/gate';
 import KeyControls from 'components/key-controls';
 import VoiceControl from 'components/voice-control';
@@ -43,6 +37,7 @@ import VOICE_COMMANDS from './voice_commands.json';
 import ResetModal from './reset_modal.js';
 import NavigationModal from './navigation_modal.js';
 import TooltipButton from './tooltip_button.js';
+import InputButtons from './input_buttons.js';
 import curve from './curve.js';
 import guide from './guide.json';
 import './sketchpad.css';
@@ -51,11 +46,6 @@ import './sketchpad.css';
 // VARIABLES //
 
 const debug = logger( 'isle:sketchpad' );
-const COLORPICKER_COLORS = [
-	'#000000', '#FF6900', '#FCB900',
-	'#00D084', '#8ED1FC', '#0693E3',
-	'#ABB8C3', '#EB144C', '#9900EF'
-];
 const OMITTED_KEYS = [
 	'isExporting', 'showColorPicker', 'showUploadModal', 'showNavigationModal', 'showResetModal'
 ];
@@ -116,7 +106,6 @@ class Sketchpad extends Component {
 		this.state = {
 			color: props.color,
 			brushSize: props.brushSize,
-			showColorPicker: false,
 			currentPage: loc ? loc - 1 : 0,
 			fontFamily: props.fontFamily,
 			fontSize: props.fontSize,
@@ -1016,22 +1005,9 @@ class Sketchpad extends Component {
 		}
 	}
 
-	toggleColorPicker = () => {
-		this.setState({
-			showColorPicker: !this.state.showColorPicker
-		});
-	}
-
 	toggleTransmit = () => {
 		this.setState({
 			transmitOwner: !this.state.transmitOwner
-		});
-	}
-
-	handleColorChange = ( color ) => {
-		this.setState({
-			color: color.hex,
-			showColorPicker: !this.state.showColorPicker
 		});
 	}
 
@@ -1605,24 +1581,6 @@ class Sketchpad extends Component {
 		});
 	}
 
-	toggleDrawingMode = () => {
-		this.setState({
-			mode: this.state.mode === 'drawing' ? 'none' : 'drawing'
-		});
-	}
-
-	toggleDragMode = () => {
-		this.setState({
-			mode: this.state.mode === 'drag' ? 'none' : 'drag'
-		});
-	}
-
-	toggleDeleteMode = () => {
-		this.setState({
-			mode: this.state.mode === 'delete' ? 'none' : 'delete'
-		});
-	}
-
 	closeResponseModal = () => {
 		this.setState({
 			showUploadModal: false,
@@ -1715,72 +1673,33 @@ class Sketchpad extends Component {
 		if ( this.state.hideInputButtons ) {
 			return null;
 		}
-		return (
-			<Fragment>
-				<ButtonGroup size="sm" className="sketch-drag-delete-modes sketch-button-group" >
-					<TooltipButton tooltip="Drag Mode" size="sm" variant={this.state.mode === 'drag' ? 'success' : 'secondary'} onClick={this.toggleDragMode} glyph="arrows-alt" />
-					<TooltipButton tooltip="Delete Mode" size="sm" variant={this.state.mode === 'delete' ? 'success' : 'secondary'} onClick={this.toggleDeleteMode} glyph="times" />
-				</ButtonGroup>
-				<ButtonGroup size="sm" className="sketch-drawing-buttons" >
-					<TooltipButton tooltip="Drawing Mode" glyph="pencil-alt" size="sm" variant={this.state.mode === 'drawing' ? 'success' : 'secondary'} onClick={this.toggleDrawingMode} />
-					<InputGroup size="sm" className="sketch-input-group" >
-						<FormControl
-							type="number"
-							min={1}
-							max={42}
-							onChange={( event ) => {
-								this.setState({
-									brushSize: event.target.value,
-									mode: 'drawing'
-								});
-							}}
-							value={this.state.brushSize}
-						/>
-					</InputGroup>
-				</ButtonGroup>
-				<ButtonGroup size="sm" >
-					<TooltipButton size="sm" variant={this.state.mode === 'text' ? 'success' : 'secondary'} onClick={this.toggleTextMode} tooltip="Text Mode" glyph="font" />
-					<DropdownButton
-						id="sketch-font-dropdown"
-						size="sm"
-						variant={this.state.mode === 'text' ? 'success' : 'secondary'}
-						title={this.state.fontFamily}
-						onSelect={(val) => {
-							this.setState({
-								fontFamily: val,
-								mode: 'text'
-							});
-						}}
-					>
-						<DropdownItem eventKey="Arial">Arial</DropdownItem>
-						<DropdownItem eventKey="Helvetica">Helvetica</DropdownItem>
-						<DropdownItem eventKey="Times">Times</DropdownItem>
-						<DropdownItem eventKey="Courier">Courier</DropdownItem>
-						<DropdownItem eventKey="Verdana">Verdana</DropdownItem>
-						<DropdownItem eventKey="Palatino">Palatino</DropdownItem>
-					</DropdownButton>
-					<InputGroup size="sm" className="sketch-input-group" >
-						<FormControl
-							type="number"
-							min={12}
-							max={60}
-							onChange={( event ) => {
-								this.setState({
-									fontSize: Number( event.target.value ),
-									mode: 'text'
-								});
-							}}
-							value={this.state.fontSize}
-						/>
-					</InputGroup>
-				</ButtonGroup>
-				<ButtonGroup size="sm" >
-					<Tooltip placement="right" tooltip="Change brush color" >
-						<Button size="sm" onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Col</Button>
-					</Tooltip>
-				</ButtonGroup>
-			</Fragment>
-		);
+		return ( <InputButtons
+			brushSize={this.state.brushSize}
+			color={this.state.color}
+			mode={this.state.mode}
+			fontFamily={this.state.fontFamily}
+			fontSize={this.state.fontSize}
+			onModeChange={( mode ) => { this.setState({ mode }); }}
+			onColorChange={( color ) => { this.setState({ color }); }}
+			onBrushSelect={( event ) => {
+				this.setState({
+					brushSize: event.target.value,
+					mode: 'drawing'
+				});
+			}}
+			onFontFamilySelect={(val) => {
+				this.setState({
+					fontFamily: val,
+					mode: 'text'
+				});
+			}}
+			onFontSizeSelect={( event ) => {
+				this.setState({
+					fontSize: Number( event.target.value ),
+					mode: 'text'
+				});
+			}}
+		/> );
 	}
 
 	renderRemoveButtons() {
@@ -1993,14 +1912,6 @@ class Sketchpad extends Component {
 						{this.renderTransmitButtons()}
 						{this.renderSaveButtons()}
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
-					</div>
-					<div className="sketch-colorpicker" style={{ display: this.state.showColorPicker ? 'initial' : 'none' }} >
-						<TwitterPicker
-							color={this.state.color}
-							colors={COLORPICKER_COLORS}
-							onChangeComplete={this.handleColorChange}
-							triangle="top-right"
-						/>
 					</div>
 					<div style={{ width: this.state.canvasWidth, height: this.state.canvasHeight, overflow: 'auto', position: 'relative' }}>
 						{this.renderHTMLOverlays()}
