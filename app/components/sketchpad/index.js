@@ -63,6 +63,8 @@ const hasTouch = isTouchDevice();
 *
 * @property {boolean} autoSave - controls whether the editor should save the current text to the local storage of the browser at a given time interval
 * @property {number} intervalTime - time between auto saves
+* @property {boolean} hideInputButtons - controls whether to hide drawing and text input buttons
+* @property {boolean} hideNavigationButtons - controls whether to hide buttons for navigating between pages
 * @property {boolean} hideRecordingButtons - controls whether to hide the recording buttons
 * @property {boolean} hideSaveButtons - controls whether to hide the save buttons
 * @property {boolean} hideTransmitButtons - controls whether to hide buttons for transmitting user actions

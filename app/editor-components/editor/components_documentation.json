@@ -3063,21 +3063,25 @@
       {
         "name": "footerNodes",
         "type": "array",
+        "description": "array of nodes to be displayed in the footer of each question",
         "default": []
       },
       {
         "name": "nextLabel",
         "type": "string",
+        "description": "label of button to advance to next question",
         "default": "Next Question"
       },
       {
         "name": "showFinishButton",
         "type": "boolean",
+        "description": "controls whether to display button to finish quiz and jump directly to results page",
         "default": false
       },
       {
         "name": "finishLabel",
         "type": "string",
+        "description": "label of button to finish quiz",
         "default": "Finish Quiz"
       },
       {
@@ -3640,6 +3644,18 @@
         "default": 30000
       },
       {
+        "name": "hideInputButtons",
+        "type": "boolean",
+        "description": "controls whether to hide drawing and text input buttons",
+        "default": false
+      },
+      {
+        "name": "hideNavigationButtons",
+        "type": "boolean",
+        "description": "controls whether to hide buttons for navigating between pages",
+        "default": false
+      },
+      {
         "name": "hideRecordingButtons",
         "type": "boolean",
         "description": "controls whether to hide the recording buttons",
@@ -3696,7 +3712,7 @@
       {
         "name": "disabled",
         "type": "boolean",
-        "description": "whether to make the component read-only and forbid drawing on the sketchboard",
+        "description": "whether to make the component read-only and forbid drawing on the sketchpad",
         "default": false
       },
       {

@@ -1337,8 +1337,6 @@ class Session {
 			progress: this.get('progress'),
 			addedActionTypes: countBy( this.get('addedActionTypes'), identity)
 		};
-
-		console.log(currentSession);
 		addedScore = 0;
 		PRIVATE_VARS['addedChatMessages'] = 0;
 		PRIVATE_VARS['addedActionTypes'] = [];
