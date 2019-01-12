@@ -130,7 +130,8 @@ class Sketchpad extends Component {
 			transmitOwner: props.transmitOwner,
 			receiveFrom: {},
 			showResetModal: false,
-			swiping: true
+			swiping: true,
+			verticalOffset: 60
 		};
 		this.isMouseDown = false;
 	}
@@ -138,7 +139,7 @@ class Sketchpad extends Component {
 	static getDerivedStateFromProps( props, state ) {
 		if ( props.fullscreen ) {
 			return {
-				canvasHeight: window.innerHeight - 85,
+				canvasHeight: window.innerHeight - state.verticalOffset,
 				canvasWidth: window.innerWidth - 40
 			};
 		}
@@ -159,7 +160,7 @@ class Sketchpad extends Component {
 		if ( this.props.fullscreen ) {
 			this.windowResize = window.addEventListener( 'resize', () => {
 				this.setState({
-					canvasHeight: window.innerHeight - 60,
+					canvasHeight: window.innerHeight - this.state.verticalOffset,
 					canvasWidth: window.innerWidth - 40
 				}, () => {
 					this.redraw();
@@ -202,13 +203,20 @@ class Sketchpad extends Component {
 				}
 				else if ( type === 'TOGGLE_PRESENTATION_MODE' ) {
 					debug( 'Hide control buttons in presentation mode...' );
-					this.setState({
+					const newState = {
 						hideInputButtons: session.presentationMode,
 						hideNavigationButtons: session.presentationMode,
 						hideRecordingButtons: session.presentationMode,
 						hideSaveButtons: session.presentationMode,
 						hideTransmitButtons: session.presentationMode
-					});
+					};
+					if ( this.props.fullscreen ) {
+						newState.verticalOffset = session.presentationMode ? 30 : 60;
+						newState.canvasHeight = window.innerHeight -
+						newState.verticalOffset;
+						newState.canvasWidth = window.innerWidth - 40;
+					}
+					this.setState( newState );
 				}
 				else if ( type === 'member_action' ) {
 					debug( 'Received member action...' );
