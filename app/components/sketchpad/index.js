@@ -474,24 +474,15 @@ class Sketchpad extends Component {
 			const viewport = page.getViewport( ratio );
 			if ( this.props.fill === 'vertical' ) {
 				this.canvas.height = viewport.height;
-				this.canvas.width = this.state.canvasWidth;
+				this.canvas.width = viewport.width;
+				this.canvas.style.left = `${( this.state.canvasWidth - viewport.width ) / 2.0}px`;
+				this.canvas.style[ 'border-style' ] = 'solid';
+				this.canvas.style[ 'border-color' ] = 'black';
+				this.canvas.style[ 'border-width' ] = '0px 1px 0px 1px';
 			} else {
 				this.canvas.height = viewport.height;
 				this.canvas.width = viewport.width - 15; // account for vertical scrollbar
 			}
-
-			// Move page to the center:
-			viewport.transform[ 4 ] = max( ( this.state.canvasWidth - viewport.width ) / 2.0, 0.0 );
-			/*
-				`transform: [ a, b, c, d, e, f ]`
-
-				a: Horizontal scaling.
-				b: Horizontal skewing.
-				c: Vertical skewing.
-				d: Vertical scaling.
-				e: Horizontal moving.
-				f: Vertical moving.
-			*/
 
 			// Render PDF page into canvas context
 			const renderContext = {
@@ -1871,7 +1862,7 @@ class Sketchpad extends Component {
 			height={this.state.canvasHeight}
 			style={{
 				position: 'absolute',
-				left: '0px',
+				margin: 'auto',
 				cursor: cursor,
 				...this.props.style
 			}}
