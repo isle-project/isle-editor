@@ -390,7 +390,7 @@ class StatusBar extends Component {
 						<div
 							className={`statusbar-progress ${this.state.isProgressLeaving ? 'progress-fade-out' : ''} `}
 							style={{
-								display: this.state.showProgressBar ? 'inherit' : 'none'
+								display: !session.config.hideProgressBar &&this.state.showProgressBar ? 'inherit' : 'none'
 							}}
 						>
 							<Gate user>
