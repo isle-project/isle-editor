@@ -3,6 +3,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ErrorMessage from 'editor-components/error-message';
+import logger from 'debug';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:error-boundary' );
 
 
 // MAIN //
@@ -34,6 +40,7 @@ class ErrorBoundary extends Component {
 	}
 
 	componentDidCatch( error ) {
+		debug( 'Caught error...' );
 		this.setState({
 			hasError: true,
 			msg: error.message
@@ -41,6 +48,7 @@ class ErrorBoundary extends Component {
 	}
 
 	render() {
+		debug( 'Check whether error has been encountered...' );
 		if ( this.state.hasError ) {
 			return <ErrorMessage msg={this.state.msg} code={this.props.code} />;
 		}
