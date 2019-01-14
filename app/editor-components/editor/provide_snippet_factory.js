@@ -11,6 +11,12 @@ function factory( monaco ) {
 	return provideCompletionItems;
 
 	function provideCompletionItems( model, position ) {
+		const lastChar = model.getValueInRange({
+			startLineNumber: position.lineNumber,
+			startColumn: position.column - 1,
+			endLineNumber: position.lineNumber,
+			endColumn: position.column
+		});
 		const suggestions = componentSnippets.map( x => {
 			const docs = COMPONENT_DOCS[ x.name ];
 			let description = 'No documentation available';
@@ -22,7 +28,7 @@ function factory( monaco ) {
 				kind: monaco.languages.CompletionItemKind.Snippet,
 				documentation: description,
 				insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-				insertText: removeFirst( x.value ),
+				insertText: lastChar === '<' ? removeFirst( x.value ) : x.value,
 				sortText: 'a'+x.value
 			};
 		});
