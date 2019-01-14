@@ -157,17 +157,16 @@ class WebpackCdnPlugin {
 		modules.forEach(p => {
 			p.version = WebpackCdnPlugin.getVersion(p.name);
 
-			if (!p.paths) {
+			if ( !p.paths ) {
 				p.paths = [];
 			}
-			if (p.path) {
-				p.paths.unshift(p.path);
+			if ( p.path ) {
+				p.paths.unshift( p.path );
 				p.path = void 0;
 			}
-			if (p.paths.length === 0 && !p.cssOnly) {
+			if ( p.paths.length === 0 && !p.cssOnly ) {
 				p.paths.push(require.resolve(p.name).match(/[\\/]node_modules[\\/].+?[\\/](.*)/)[1].replace(/\\/g, '/'));
 			}
-
 			if ( !p.styles ) {
 				p.styles = [];
 			}
@@ -209,12 +208,11 @@ class WebpackCdnPlugin {
 		modules.filter(p => p[pathsKey].length > 0)
 			.forEach(p => {
 				p[pathsKey].forEach(s => files.push(
-					prefix + url.replace(paramsRegex, (m, p1) => {
-					if (prod && p.cdn && p1 === 'alias') {
-						return p.cdn;
-					}
-
-					return p1 === 'path' ? s : p[p1];
+					prefix + url.replace(paramsRegex, ( m, p1 ) => {
+						if ( prod && p.cdn && p1 === 'alias' ) {
+							return p.cdn;
+						}
+						return p1 === 'path' ? s : p[p1];
 					})
 				));
 			});
