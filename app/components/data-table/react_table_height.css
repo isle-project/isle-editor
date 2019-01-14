@@ -17,7 +17,11 @@
 
 .rt-thead {
 	min-width: 0px !important;
-	overflow: hidden !important;
+	overflow-y: scroll;
+}
+
+.rt-thead::-webkit-scrollbar {
+	background: transparent;
 }
 
 .rt-tr {
