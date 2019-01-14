@@ -12,7 +12,7 @@ import AnimationHelp from 'editor-components/animation-help';
 import { componentSnippets } from 'snippets';
 import ComponentConfigurator from './component_configurator.js';
 import COMPONENTS from './components.json';
-import provideCompletionItemsFactory from './provide_attribute_factory.js';
+import provideAttributeFactory from './provide_attribute_factory.js';
 import providePreambleFactory from './provide_preamble_factory.js';
 import provideSnippetFactory from './provide_snippet_factory.js';
 import './editor.css';
@@ -91,7 +91,7 @@ class Editor extends Component {
 
 		this._completionProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
 			triggerCharacters: [ ' ', '\n' ],
-			provideCompletionItems: provideCompletionItemsFactory( this.monaco )
+			provideCompletionItems: provideAttributeFactory( this.monaco )
 		});
 		this.monaco.languages.registerCompletionItemProvider( 'javascript', {
 			triggerCharacters: [ '<' ],
