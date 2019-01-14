@@ -1,0 +1,92 @@
+[
+	{
+		"name": "title",
+		"value": "title: ${1:}",
+		"description": "Lesson title"
+	},
+	{
+		"name": "description",
+		"value": "description: ${1:}",
+		"description": "Short lesson description"
+	},
+	{
+		"name": "author",
+		"value": "author: ${1:}",
+		"description": "Comma-separated list of authors"
+	},
+	{
+		"name": "date",
+		"value": "date: ${1:}",
+		"description": "Created at / last updated"
+	},
+	{
+		"name": "language",
+		"value": "language: ${1:en}",
+		"description": "Language identifier"
+	},
+	{
+		"name": "require",
+		"value": "require: ${1:}",
+		"description": "Array of JavaScript libraries or JSON files to load"
+	},
+	{
+		"name": "type",
+		"value": "type: ${1:presentation}",
+		"description": "Either `presentation` or `page` (default)"
+	},
+	{
+		"name": "lesson",
+		"value": "lesson: ${1:}",
+		"description": "Lesson name on server"
+	},
+	{
+		"name": "namespace",
+		"value": "namespace: ${1:}",
+		"description": "Lesson namespace on server"
+	},
+	{
+		"name": "logo",
+		"value": "logo: ${1:}",
+		"description": "URL for logo to be displayed on landing page"
+	},
+	{
+		"name": "server",
+		"value": "server: ${1:https://isle.heinz.cmu.edu}",
+		"description": "ISLE server address"
+	},
+	{
+		"name": "state",
+		"value": "state: ${1:}",
+		"description": "Lesson state variables"
+	},
+	{
+		"name": "hideStatusBar",
+		"value": "hideStatusBar: ${1:true}",
+		"description": "Hide the statusbar (e.g., for lessons where users should not login)"
+	},
+	{
+		"name": "removeStatusBar",
+		"value": "removeStatusBar: ${1:true}",
+		"description": "Completely remove statusbar (reduces bundle size)"
+	},
+	{
+		"name": "hideProgressBar",
+		"value": "hideProgressBar: ${1:true}",
+		"description": "Hide the progressbar, which shows a user's score, time spent, and avatar image (e.g., when using ISLE for a one-time lesson outside of a course)"
+	},
+	{
+		"name": "instructorNotes",
+		"value": "instructorNotes: ${1:}",
+		"description": "Absolute or relative path to Markdown file with notes for the instructor or the teaching assistants"
+	},
+	{
+		"name": "css",
+		"value": "css: ${1:}",
+		"description": "Absolute or relative path to CSS file to be loaded"
+	},
+	{
+		"name": "style",
+		"value": "style: ${1:}",
+		"description": "Inline CSS rules to be appended to the head of the HTML document"
+	}
+]
