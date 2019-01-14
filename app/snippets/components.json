@@ -4,10 +4,6 @@
 		"value":"<Accordion>\n\t${1:}\n</Accordion>\n"
 	},
 	{
-		"name":"AddNotification",
-		"value":"this.addNotification({\n\tin: '${1:title}',\n\tmessage: '${2:msg}',\n\tposition: 'tr',\n\tlevel: 'success'\n});\n"
-	},
-	{
 		"name":"Animated",
 		"value":"<Animated\n\tpreset=\"${1:Enter preset}\"\n>\n</Animated>\n"
 	},
@@ -73,7 +69,7 @@
 	},
 	{
 		"name":"FreeTextQuestion",
-		"value":"<FreeTextQuestion\n\tquestion=\"${1:Enter question}\"\n\tsolution=\"${2:Enter solution}\"\n/>\n"
+		"value":"<FreeTextQuestion\n\tquestion=\"${1:Enter question}\"\n\tsolution=\"${2:Enter solution}\n/>\n"
 	},
 	{
 		"name":"FreeTextSurvey",
