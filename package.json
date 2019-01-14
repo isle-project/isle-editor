@@ -129,7 +129,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@stdlib/stdlib": "0.0.58",
-    "ansi-to-react": "^3.3.3",
+    "ansi-to-react": "^4.0.4",
     "archiver": "^3.0.0",
     "autobind-decorator": "^2.2.1",
     "babel-core": "^7.0.0-bridge.0",
