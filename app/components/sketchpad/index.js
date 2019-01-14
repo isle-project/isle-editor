@@ -216,7 +216,9 @@ class Sketchpad extends Component {
 						newState.verticalOffset;
 						newState.canvasWidth = window.innerWidth - 40;
 					}
-					this.setState( newState );
+					this.setState( newState, () => {
+						this.redraw();
+					});
 				}
 				else if ( type === 'member_action' ) {
 					debug( 'Received member action...' );
