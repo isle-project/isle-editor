@@ -217,7 +217,13 @@ class MultipleChoiceSurvey extends Component {
 								</p>
 							</Col>
 						</Container>
-						<ResponseVisualizer buttonLabel="Responses" id={id} data={{ type: 'factor' }} />
+						<ResponseVisualizer
+							buttonLabel="Responses" id={id}
+							data={{
+								type: 'factor',
+								levels: this.props.answers.map( x => x.content )
+							}}
+						/>
 					</Card.Body>
 				</Card>
 			</Gate>

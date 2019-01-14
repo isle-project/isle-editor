@@ -162,7 +162,7 @@ class FreeTextSurvey extends Component {
 						<Container>
 							<Col md={6}>
 								<Card className="free-text-survey" body>
-									<Card.Title as="h5">{props.question}</Card.Title>
+									<label>{props.question}</label>
 									<label>Your answer:</label>
 									<TextArea
 										{...props}

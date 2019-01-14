@@ -14,7 +14,7 @@ const WAIT_TIME = 1000;
 // MAIN //
 
 /**
-* Component placeing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed.
+* Component placing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed.
 *
 * @property {(string|node)} title - title to be displayed at the top of the tooltip
 * @property {(string|node)} content - tooltip content
