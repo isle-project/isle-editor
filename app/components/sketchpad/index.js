@@ -266,8 +266,11 @@ class Sketchpad extends Component {
 						this.props.onChange( elements );
 					}
 					else if ( type === 'SKETCHPAD_INSERT_PAGE' ) {
-						debug( `Should insert page at ${action.value}...` );
-						this.insertPage( action.value, false );
+						const { pos, noPages } = JSON.parse( action.value );
+						if ( noPages === this.state.noPages + 1 ) {
+							debug( `Should insert page at ${pos}...` );
+							this.insertPage( pos, false );
+						}
 					}
 					else if ( type === 'SKETCHPAD_INIT_PAGES' ) {
 						const pagesToInsert = action.value;
@@ -1155,7 +1158,10 @@ class Sketchpad extends Component {
 				session.log({
 					id: this.props.id,
 					type: 'SKETCHPAD_INSERT_PAGE',
-					value: idx
+					value: JSON.stringify({
+						pos: idx,
+						noPages: this.state.noPages
+					})
 				}, 'members' );
 			}
 		});
