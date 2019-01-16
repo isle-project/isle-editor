@@ -7,13 +7,13 @@ import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import ToggleButtonGroup from 'react-bootstrap/lib/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/lib/ToggleButton';
-import RangePicker from 'components/range-picker';
-import saveAs from 'utils/file-saver';
 import stringify from 'csv-stringify';
 import moment from 'moment';
 import logger from 'debug';
 import copy from '@stdlib/utils/copy';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import RangePicker from 'components/range-picker';
+import saveAs from 'utils/file-saver';
 import SessionContext from 'session/context.js';
 import ActionList from './list.js';
 

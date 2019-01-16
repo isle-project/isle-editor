@@ -88,10 +88,12 @@ class StatusBar extends Component {
 
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, data ) => {
-			if ( !sentNotification && session.anonymous && session.live ) {
-				setTimeout( promptLogin, 2000 );
-				sentNotification = true;
-			}
+			setTimeout( () => {
+				if ( !sentNotification && session.anonymous && session.live ) {
+					promptLogin();
+					sentNotification = true;
+				}
+			}, 3000);
 
 			if ( type === 'self_initial_progress' ) {
 				this.setState({
@@ -157,6 +159,8 @@ class StatusBar extends Component {
 	}
 
 	toggleBarVisibility = () => {
+		const session = this.context;
+		session.togglePresentationView();
 		debug( 'Toggle visibility of statusbar...' );
 		this.setState({
 			showStatusBar: !this.state.showStatusBar
@@ -386,7 +390,7 @@ class StatusBar extends Component {
 						<div
 							className={`statusbar-progress ${this.state.isProgressLeaving ? 'progress-fade-out' : ''} `}
 							style={{
-								display: this.state.showProgressBar ? 'inherit' : 'none'
+								display: !session.config.hideProgressBar &&this.state.showProgressBar ? 'inherit' : 'none'
 							}}
 						>
 							<Gate user>

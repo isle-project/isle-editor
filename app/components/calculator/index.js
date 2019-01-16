@@ -124,6 +124,14 @@ class Calculator extends Component {
 		// Handle unary operators:
 		visible = replace( visible, /(^|[(*/:^!+]) *-([^+\-/*^!]+)/g, '$1 (0-$2) ' );
 		visible = replace( visible, /(^|[(*/:^!+]) *\+/g, '$1 ' );
+
+		// Log equation:
+		const session = this.context;
+		session.log({
+			id: this.props.id,
+			type: 'CALCULATOR_SOLVE',
+			value: visible
+		});
 		let keys = visible.split( RE_SPLIT_KEY );
 		keys = keys.filter( e => e !== '' );
 		const val = String( evaluate( keys ) );

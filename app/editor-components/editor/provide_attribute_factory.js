@@ -1,7 +1,6 @@
 // MODULES //
 
 import COMPONENT_DOCS from './components_documentation.json';
-import snippets from 'snippets';
 
 
 // FUNCTIONS //
@@ -90,6 +89,10 @@ function factory( monaco ) {
 					}
 					return {
 						label: x.name,
+						command: {
+							title: 'Trigger new suggestion',
+							id: 'editor.action.triggerSuggest'
+						},
 						documentation: x.description,
 						kind: monaco.languages.CompletionItemKind.Snippet,
 						detail: x.type,
@@ -99,23 +102,6 @@ function factory( monaco ) {
 					};
 				});
 			}
-		}
-		else {
-			suggestions = snippets.map( x => {
-				const docs = COMPONENT_DOCS[ x.name ];
-				let description = 'No documentation available';
-				if ( docs ) {
-					description = docs.description;
-				}
-				return {
-					label: x.name,
-					kind: monaco.languages.CompletionItemKind.Snippet,
-					documentation: description,
-					insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-					insertText: x.value,
-					sortText: 'a'+x.value
-				};
-			});
 		}
 		return {
 			suggestions: suggestions,

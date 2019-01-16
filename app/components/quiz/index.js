@@ -52,6 +52,10 @@ function isHTMLConfig( elem ) {
 * @property {boolean} confidence - whether to display a Likert scale asking for the confidence of the user's answer
 * @property {boolean} forceConfidence - controls whether a user has to supply a confidence level before moving to the next question
 * @property {boolean} skippable - controls whether questions in  the quiz are skippable
+* @property {Array} footerNodes - array of nodes to be displayed in the footer of each question
+* @property {string} nextLabel - label of button to advance to next question
+* @property {boolean} showFinishButton - controls whether to display button to finish quiz and jump directly to results page
+* @property {string} finishLabel - label of button to finish quiz
 * @property {boolean} active - controls whether the timer for the quiz is active
 * @property {number} duration - duration of the quiz; once time is up, the summary page will be displayed
 * @property {Function} onFinished - callback invoked when the quiz is finished and the results page is displayed

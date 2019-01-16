@@ -174,7 +174,7 @@ class ResponseVisualizer extends Component {
 		if ( this.props.data.type === 'text' ) {
 			this.setState( newState );
 		}
-		else if ( this.props.data.type === 'factor' ) {
+		else if ( this.props.data.type === 'factor' && filtered ) {
 			const counts = this.tabulateValues( filtered );
 			newState.counts = counts;
 			this.setState( newState );
@@ -213,7 +213,7 @@ class ResponseVisualizer extends Component {
 		if ( this.props.data.type === 'text' ) {
 			newState.actions = filtered;
 		}
-		else if ( this.props.data.type === 'factor' ) {
+		else if ( this.props.data.type === 'factor' && filtered ) {
 			const counts = this.tabulateValues( filtered );
 			newState = {
 				...newState,
@@ -246,6 +246,9 @@ class ResponseVisualizer extends Component {
 	}
 
 	tabulateValues = ( actions ) => {
+		if ( !actions ) {
+			return [];
+		}
 		const levels = this.props.data.levels;
 		const table = {};
 		for ( let i = 0; i < actions.length; i++ ) {

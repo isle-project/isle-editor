@@ -14,6 +14,8 @@ A drawing sketchpad for note taking on lecture slides or empty pages.
 
 * __autoSave__ | `boolean`: controls whether the editor should save the current text to the local storage of the browser at a given time interval. Default: `true`.
 * __intervalTime__ | `number`: time between auto saves. Default: `30000`.
+* __hideInputButtons__ | `boolean`: controls whether to hide drawing and text input buttons. Default: `false`.
+* __hideNavigationButtons__ | `boolean`: controls whether to hide buttons for navigating between pages. Default: `false`.
 * __hideRecordingButtons__ | `boolean`: controls whether to hide the recording buttons. Default: `false`.
 * __hideSaveButtons__ | `boolean`: controls whether to hide the save buttons. Default: `false`.
 * __hideTransmitButtons__ | `boolean`: controls whether to hide buttons for transmitting user actions. Default: `false`.
@@ -23,7 +25,7 @@ A drawing sketchpad for note taking on lecture slides or empty pages.
 * __canvasHeight__ | `number`: height of the canvas element (in px). Default: `700`.
 * __fullscreen__ | `boolean`: controls whether to automatically resize the canvas to the width and height of the browser window. Default: `false`.
 * __fill__ | `string`: if `horizontal`, fill all available horizontal space when drawing a PDF; if `vertical`, all vertical space is used to prevent y-axis overflow. Default: `'vertical'`.
-* __disabled__ | `boolean`: whether to make the component read-only and forbid drawing on the sketchboard. Default: `false`.
+* __disabled__ | `boolean`: whether to make the component read-only and forbid drawing on the sketchpad. Default: `false`.
 * __fontFamily__ | `string`: font family. Default: `'Arial'`.
 * __fontSize__ | `number`: font size. Default: `24`.
 * __nodes__ | `object`: components to be rendered on top of specified slides; `keys` should correspond to page numbers, `values` to the components. Default: `{}`.

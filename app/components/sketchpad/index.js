@@ -9,13 +9,9 @@ import Pressure from 'pressure';
 import Card from 'react-bootstrap/lib/Card';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
-import DropdownButton from 'react-bootstrap/lib/DropdownButton';
-import DropdownItem from 'react-bootstrap/lib/DropdownItem';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
-import InputGroup from 'react-bootstrap/lib/InputGroup';
-import FormControl from 'react-bootstrap/lib/FormControl';
 import SelectInput from 'react-select';
 import isTouchDevice from 'is-touch-device';
 import Checkbox from 'components/input/checkbox';
@@ -32,29 +28,25 @@ import objectKeys from '@stdlib/utils/keys';
 import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
 import Joyride from 'components/joyride';
-import Tooltip from 'components/tooltip';
-import { TwitterPicker } from 'react-color';
 import Gate from 'components/gate';
 import KeyControls from 'components/key-controls';
 import VoiceControl from 'components/voice-control';
+import randomstring from 'utils/randomstring/ascii';
 import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import ResetModal from './reset_modal.js';
 import NavigationModal from './navigation_modal.js';
 import TooltipButton from './tooltip_button.js';
+import InputButtons from './input_buttons.js';
 import curve from './curve.js';
 import guide from './guide.json';
 import './sketchpad.css';
+import './pdf_viewer.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:sketchpad' );
-const COLORPICKER_COLORS = [
-	'#000000', '#FF6900', '#FCB900',
-	'#00D084', '#8ED1FC', '#0693E3',
-	'#ABB8C3', '#EB144C', '#9900EF'
-];
 const OMITTED_KEYS = [
 	'isExporting', 'showColorPicker', 'showUploadModal', 'showNavigationModal', 'showResetModal'
 ];
@@ -72,6 +64,8 @@ const hasTouch = isTouchDevice();
 *
 * @property {boolean} autoSave - controls whether the editor should save the current text to the local storage of the browser at a given time interval
 * @property {number} intervalTime - time between auto saves
+* @property {boolean} hideInputButtons - controls whether to hide drawing and text input buttons
+* @property {boolean} hideNavigationButtons - controls whether to hide buttons for navigating between pages
 * @property {boolean} hideRecordingButtons - controls whether to hide the recording buttons
 * @property {boolean} hideSaveButtons - controls whether to hide the save buttons
 * @property {boolean} hideTransmitButtons - controls whether to hide buttons for transmitting user actions
@@ -81,7 +75,7 @@ const hasTouch = isTouchDevice();
 * @property {number} canvasHeight - height of the canvas element (in px)
 * @property {boolean} fullscreen - controls whether to automatically resize the canvas to the width and height of the browser window
 * @property {string} fill - if `horizontal`, fill all available horizontal space when drawing a PDF; if `vertical`, all vertical space is used to prevent y-axis overflow
-* @property {boolean} disabled - whether to make the component read-only and forbid drawing on the sketchboard
+* @property {boolean} disabled - whether to make the component read-only and forbid drawing on the sketchpad
 * @property {string} fontFamily - font family
 * @property {number} fontSize - font size
 * @property {Object} nodes - components to be rendered on top of specified slides; `keys` should correspond to page numbers, `values` to the components
@@ -114,13 +108,16 @@ class Sketchpad extends Component {
 		const loc = this.readURL();
 		this.state = {
 			color: props.color,
-			currentDrawing: 0,
 			brushSize: props.brushSize,
-			showColorPicker: false,
 			currentPage: loc ? loc - 1 : 0,
 			fontFamily: props.fontFamily,
 			fontSize: props.fontSize,
 			groupMode: props.groupMode,
+			hideInputButtons: props.hideInputButtons,
+			hideNavigationButtons: props.hideNavigationButtons,
+			hideRecordingButtons: props.hideRecordingButtons,
+			hideSaveButtons: props.hideSaveButtons,
+			hideTransmitButtons: props.hideTransmitButtons,
 			recording: false,
 			isExporting: false,
 			finishedRecording: false,
@@ -134,7 +131,8 @@ class Sketchpad extends Component {
 			transmitOwner: props.transmitOwner,
 			receiveFrom: {},
 			showResetModal: false,
-			swiping: true
+			swiping: true,
+			verticalOffset: 60
 		};
 		this.isMouseDown = false;
 	}
@@ -142,7 +140,7 @@ class Sketchpad extends Component {
 	static getDerivedStateFromProps( props, state ) {
 		if ( props.fullscreen ) {
 			return {
-				canvasHeight: window.innerHeight - 85,
+				canvasHeight: window.innerHeight - state.verticalOffset,
 				canvasWidth: window.innerWidth - 40
 			};
 		}
@@ -163,7 +161,7 @@ class Sketchpad extends Component {
 		if ( this.props.fullscreen ) {
 			this.windowResize = window.addEventListener( 'resize', () => {
 				this.setState({
-					canvasHeight: window.innerHeight - 60,
+					canvasHeight: window.innerHeight - this.state.verticalOffset,
 					canvasWidth: window.innerWidth - 40
 				}, () => {
 					this.redraw();
@@ -186,7 +184,7 @@ class Sketchpad extends Component {
 		});
 		Pressure.set( '.sketch-canvas', {
 			change: ( force, event ) => {
-				debug( 'Changed pen pressue: '+force );
+				debug( 'Changed pen pressure: '+force );
 				this.force = force;
 			}
 		});
@@ -204,13 +202,28 @@ class Sketchpad extends Component {
 						session.log( insertAction, action.email );
 					}
 				}
+				else if ( type === 'TOGGLE_PRESENTATION_MODE' ) {
+					debug( 'Hide control buttons in presentation mode...' );
+					const newState = {
+						hideInputButtons: session.presentationMode,
+						hideNavigationButtons: session.presentationMode,
+						hideRecordingButtons: session.presentationMode,
+						hideSaveButtons: session.presentationMode,
+						hideTransmitButtons: session.presentationMode
+					};
+					if ( this.props.fullscreen ) {
+						newState.verticalOffset = session.presentationMode ? 30 : 60;
+						newState.canvasHeight = window.innerHeight -
+						newState.verticalOffset;
+						newState.canvasWidth = window.innerWidth - 40;
+					}
+					this.setState( newState, () => {
+						this.redraw();
+					});
+				}
 				else if ( type === 'member_action' ) {
 					debug( 'Received member action...' );
-					if (
-						action.email === session.user.email // 'Early return since own action...'
-					) {
-						return;
-					}
+
 					// Owners should only process actions from selected users:
 					if ( session.isOwner() ) {
 						if (
@@ -219,6 +232,19 @@ class Sketchpad extends Component {
 							!this.state.groupMode
 						) {
 							return;
+						}
+						if ( action.email === session.user.email ) {
+							const type = action.type;
+							if (
+								type === 'SKETCHPAD_NEXT_PAGE' ||
+								type === 'SKETCHPAD_PREVIOUS_PAGE' ||
+								type === 'SKETCHPAD_GOTO_PAGE' ||
+								type === 'SKETCHPAD_FIRST_PAGE' ||
+								type === 'SKETCHPAD_LAST_PAGE'
+							) {
+								debug( `Go to page ${action.value}...` );
+								this.gotoPage( action.value, false );
+							}
 						}
 					}
 					const type = action.type;
@@ -241,8 +267,11 @@ class Sketchpad extends Component {
 						this.props.onChange( elements );
 					}
 					else if ( type === 'SKETCHPAD_INSERT_PAGE' ) {
-						debug( `Should insert page at ${action.value}...` );
-						this.insertPage( action.value, false );
+						const { pos, noPages } = JSON.parse( action.value );
+						if ( noPages === this.state.noPages + 1 ) {
+							debug( `Should insert page at ${pos}...` );
+							this.insertPage( pos, false );
+						}
 					}
 					else if ( type === 'SKETCHPAD_INIT_PAGES' ) {
 						const pagesToInsert = action.value;
@@ -457,36 +486,43 @@ class Sketchpad extends Component {
 				ratio = this.state.canvasWidth / page.getViewport(1.0).width;
 			}
 			const viewport = page.getViewport( ratio );
+			const textLayer = document.querySelector( '.textLayer' );
 			if ( this.props.fill === 'vertical' ) {
 				this.canvas.height = viewport.height;
-				this.canvas.width = this.state.canvasWidth;
+				this.canvas.width = viewport.width;
+				this.canvas.style.left = `${( this.state.canvasWidth - viewport.width ) / 2.0}px`;
+				this.canvas.style[ 'border-style' ] = 'solid';
+				this.canvas.style[ 'border-color' ] = 'black';
+				this.canvas.style[ 'border-width' ] = '0px 1px 0px 1px';
+
+				textLayer.style.width = `${viewport.width}px`;
+				textLayer.style.height = `${viewport.height}px`;
+				textLayer.style.left = `${( this.state.canvasWidth - viewport.width ) / 2.0}px`;
 			} else {
 				this.canvas.height = viewport.height;
 				this.canvas.width = viewport.width - 15; // account for vertical scrollbar
+
+				textLayer.style.width = `${viewport.width-15}px`;
+				textLayer.style.height = `${viewport.height}px`;
 			}
-
-			// Move page to the center:
-			viewport.transform[ 4 ] = max( ( this.state.canvasWidth - viewport.width ) / 2.0, 0.0 );
-			/*
-				`transform: [ a, b, c, d, e, f ]`
-
-				a: Horizontal scaling.
-				b: Horizontal skewing.
-				c: Vertical skewing.
-				d: Vertical scaling.
-				e: Horizontal moving.
-				f: Vertical moving.
-			*/
 
 			// Render PDF page into canvas context
 			const renderContext = {
 				canvasContext: this.ctx,
 				viewport: viewport
 			};
-			return page.render( renderContext )
-				.then( () => {
-					debug( `Background rendered for page ${pageNumber}` );
+			page.getTextContent().then( textContent => {
+				pdfjs.renderTextLayer({
+					textContent,
+					container: textLayer,
+					viewport,
+					textDivs: []
 				});
+			});
+			return page.render( renderContext )
+			.then( () => {
+				debug( `Background rendered for page ${pageNumber}` );
+			});
 		}
 		const canvas = this.canvas;
 		const ctx = this.ctx;
@@ -888,7 +924,7 @@ class Sketchpad extends Component {
 				page: this.state.currentPage,
 				time: this.time,
 				type: 'curve',
-				drawID: this.state.currentDrawing,
+				drawID: randomstring( 6 ),
 				user: username
 			};
 			elems.push( line );
@@ -910,9 +946,6 @@ class Sketchpad extends Component {
 				session.log( logAction, 'owners' );
 			}
 			this.currentPoints = [];
-			this.setState({
-				currentDrawing: this.state.currentDrawing + 1
-			});
 		}
 		this.isMouseDown = false;
 	}
@@ -995,22 +1028,9 @@ class Sketchpad extends Component {
 		}
 	}
 
-	toggleColorPicker = () => {
-		this.setState({
-			showColorPicker: !this.state.showColorPicker
-		});
-	}
-
 	toggleTransmit = () => {
 		this.setState({
 			transmitOwner: !this.state.transmitOwner
-		});
-	}
-
-	handleColorChange = ( color ) => {
-		this.setState({
-			color: color.hex,
-			showColorPicker: !this.state.showColorPicker
 		});
 	}
 
@@ -1155,7 +1175,10 @@ class Sketchpad extends Component {
 				session.log({
 					id: this.props.id,
 					type: 'SKETCHPAD_INSERT_PAGE',
-					value: idx
+					value: JSON.stringify({
+						pos: idx,
+						noPages: this.state.noPages
+					})
 				}, 'members' );
 			}
 		});
@@ -1183,7 +1206,7 @@ class Sketchpad extends Component {
 				type: 'text',
 				page: this.state.currentPage,
 				user: username,
-				drawID: this.state.currentDrawing
+				drawID: randomstring( 6 )
 			};
 			this.drawText( text );
 			const elems = this.elements[ this.state.currentPage ];
@@ -1234,9 +1257,6 @@ class Sketchpad extends Component {
 			} else {
 				session.log( logAction );
 			}
-			this.setState({
-				currentDrawing: this.state.currentDrawing + 1
-			});
 		}
 	}
 
@@ -1412,7 +1432,6 @@ class Sketchpad extends Component {
 			}, () => {
 				// Update hash of URL:
 				this.updateURL( this.state.currentPage );
-
 				this.redraw();
 				const session = this.context;
 				session.log({
@@ -1432,7 +1451,6 @@ class Sketchpad extends Component {
 			}, () => {
 				// Update hash of URL:
 				this.updateURL( this.state.currentPage );
-
 				this.redraw();
 				const session = this.context;
 				session.log({
@@ -1444,7 +1462,7 @@ class Sketchpad extends Component {
 		}
 	}
 
-	gotoPage = ( idx ) => {
+	gotoPage = ( idx, shouldLog = true ) => {
 		debug( `Should go to page ${idx}...` );
 		idx = parseInt( idx, 10 );
 		if ( idx !== this.state.currentPage ) {
@@ -1457,12 +1475,14 @@ class Sketchpad extends Component {
 				this.updateURL( this.state.currentPage );
 
 				this.redraw();
-				const session = this.context;
-				session.log({
-					id: this.props.id,
-					type: 'SKETCHPAD_GOTO_PAGE',
-					value: idx
-				});
+				if ( shouldLog ) {
+					const session = this.context;
+					session.log({
+						id: this.props.id,
+						type: 'SKETCHPAD_GOTO_PAGE',
+						value: idx
+					});
+				}
 			});
 		} else {
 			this.setState({
@@ -1581,30 +1601,6 @@ class Sketchpad extends Component {
 		});
 	}
 
-	toggleTextMode = () => {
-		this.setState({
-			mode: this.state.mode === 'text' ? 'none' : 'text'
-		});
-	}
-
-	toggleDrawingMode = () => {
-		this.setState({
-			mode: this.state.mode === 'drawing' ? 'none' : 'drawing'
-		});
-	}
-
-	toggleDragMode = () => {
-		this.setState({
-			mode: this.state.mode === 'drag' ? 'none' : 'drag'
-		});
-	}
-
-	toggleDeleteMode = () => {
-		this.setState({
-			mode: this.state.mode === 'delete' ? 'none' : 'delete'
-		});
-	}
-
 	closeResponseModal = () => {
 		this.setState({
 			showUploadModal: false,
@@ -1658,6 +1654,9 @@ class Sketchpad extends Component {
 	}
 
 	renderPagination() {
+		if ( this.state.hideNavigationButtons ) {
+			return null;
+		}
 		const currentPage = this.state.currentPage;
 		return ( <ButtonGroup size="sm" className="sketch-pages" >
 			<Button variant="light" onClick={this.toggleNavigationModal}>{currentPage+1}/{this.state.noPages}</Button>
@@ -1673,7 +1672,7 @@ class Sketchpad extends Component {
 	}
 
 	renderRecordingButtons() {
-		if ( this.props.hideRecordingButtons ) {
+		if ( this.state.hideRecordingButtons ) {
 			return null;
 		}
 		const elems = this.elements[ this.state.currentPage ] || [];
@@ -1690,70 +1689,43 @@ class Sketchpad extends Component {
 		);
 	}
 
-	renderDrawingButtons() {
-		return (
-			<ButtonGroup size="sm" className="sketch-drawing-buttons" >
-				<TooltipButton tooltip="Drawing Mode" glyph="pencil-alt" size="sm" variant={this.state.mode === 'drawing' ? 'success' : 'secondary'} onClick={this.toggleDrawingMode} />
-				<InputGroup size="sm" className="sketch-input-group" >
-					<FormControl
-						type="number"
-						min={1}
-						max={42}
-						onChange={( event ) => {
-							this.setState({
-								brushSize: event.target.value,
-								mode: 'drawing'
-							});
-						}}
-						value={this.state.brushSize}
-					/>
-				</InputGroup>
-			</ButtonGroup>
-		);
-	}
-
-	renderTextButtons() {
-		return (
-			<ButtonGroup size="sm" >
-				<TooltipButton size="sm" variant={this.state.mode === 'text' ? 'success' : 'secondary'} onClick={this.toggleTextMode} tooltip="Text Mode" glyph="font" />
-				<DropdownButton
-					id="sketch-font-dropdown"
-					size="sm"
-					variant={this.state.mode === 'text' ? 'success' : 'secondary'}
-					title={this.state.fontFamily}
-					onSelect={(val) => {
-						this.setState({
-							fontFamily: val,
-							mode: 'text'
-						});
-					}}
-				>
-					<DropdownItem eventKey="Arial">Arial</DropdownItem>
-					<DropdownItem eventKey="Helvetica">Helvetica</DropdownItem>
-					<DropdownItem eventKey="Times">Times</DropdownItem>
-					<DropdownItem eventKey="Courier">Courier</DropdownItem>
-					<DropdownItem eventKey="Verdana">Verdana</DropdownItem>
-					<DropdownItem eventKey="Palatino">Palatino</DropdownItem>
-				</DropdownButton>
-				<InputGroup size="sm" className="sketch-input-group" >
-					<FormControl
-						type="number"
-						min={12}
-						max={60}
-						onChange={( event ) => {
-							this.setState({
-								fontSize: Number( event.target.value ),
-								mode: 'text'
-							});
-						}}
-						value={this.state.fontSize}
-					/>
-				</InputGroup>
-			</ButtonGroup>
-		);
+	renderInputButtons() {
+		if ( this.state.hideInputButtons ) {
+			return null;
+		}
+		return ( <InputButtons
+			brushSize={this.state.brushSize}
+			color={this.state.color}
+			mode={this.state.mode}
+			fontFamily={this.state.fontFamily}
+			fontSize={this.state.fontSize}
+			onModeChange={( mode ) => { this.setState({ mode }); }}
+			onColorChange={( color ) => { this.setState({ color }); }}
+			onBrushSelect={( event ) => {
+				this.setState({
+					brushSize: event.target.value,
+					mode: 'drawing'
+				});
+			}}
+			onFontFamilySelect={(val) => {
+				this.setState({
+					fontFamily: val,
+					mode: 'text'
+				});
+			}}
+			onFontSizeSelect={( event ) => {
+				this.setState({
+					fontSize: Number( event.target.value ),
+					mode: 'text'
+				});
+			}}
+		/> );
 	}
 
 	renderRemoveButtons() {
+		if ( this.state.hideInputButtons ) {
+			return null;
+		}
 		const page = this.state.currentPage;
 		const showUndo = this.elements[ page ] && this.elements[ page ].length > this.state.nUndos;
 		return (
@@ -1777,7 +1749,7 @@ class Sketchpad extends Component {
 	}
 
 	renderSaveButtons() {
-		if ( this.props.hideSaveButtons ) {
+		if ( this.state.hideSaveButtons ) {
 			return null;
 		}
 		const session = this.context;
@@ -1817,7 +1789,7 @@ class Sketchpad extends Component {
 	}
 
 	renderTransmitButtons() {
-		if ( this.props.hideTransmitButtons ) {
+		if ( this.state.hideTransmitButtons ) {
 			return null;
 		}
 		const session = this.context;
@@ -1917,7 +1889,7 @@ class Sketchpad extends Component {
 			height={this.state.canvasHeight}
 			style={{
 				position: 'absolute',
-				left: '0px',
+				margin: 'auto',
 				cursor: cursor,
 				...this.props.style
 			}}
@@ -1954,34 +1926,19 @@ class Sketchpad extends Component {
 				>
 					<div className="sketch-panel-heading clearfix unselectable">
 						{this.renderPagination()}
-						<ButtonGroup size="sm" className="sketch-drag-delete-modes sketch-button-group" >
-							<TooltipButton tooltip="Drag Mode" size="sm" variant={this.state.mode === 'drag' ? 'success' : 'secondary'} onClick={this.toggleDragMode} glyph="arrows-alt" />
-							<TooltipButton tooltip="Delete Mode" size="sm" variant={this.state.mode === 'delete' ? 'success' : 'secondary'} onClick={this.toggleDeleteMode} glyph="times" />
-						</ButtonGroup>
-						{this.renderDrawingButtons()}
-						{this.renderTextButtons()}
-						<ButtonGroup size="sm" >
-							<Tooltip placement="right" tooltip="Change brush color" >
-								<Button size="sm" onClick={this.toggleColorPicker} style={{ background: this.state.color, color: 'white' }} >Col</Button>
-							</Tooltip>
-						</ButtonGroup>
+						{this.renderInputButtons()}
 						{this.renderRemoveButtons()}
 						{this.renderRecordingButtons()}
 						{this.renderTransmitButtons()}
 						{this.renderSaveButtons()}
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</div>
-					<div className="sketch-colorpicker" style={{ display: this.state.showColorPicker ? 'initial' : 'none' }} >
-						<TwitterPicker
-							color={this.state.color}
-							colors={COLORPICKER_COLORS}
-							onChangeComplete={this.handleColorChange}
-							triangle="top-right"
-						/>
-					</div>
-					<div style={{ width: this.state.canvasWidth, height: this.state.canvasHeight, overflow: 'auto', position: 'relative' }}>
+					<div id="canvas-wrapper" style={{ width: this.state.canvasWidth, height: this.state.canvasHeight, overflow: 'auto', position: 'relative' }}>
 						{this.renderHTMLOverlays()}
 						{canvas}
+						<div className="textLayer" style={{
+							pointerEvents: this.state.mode !== 'none' ? 'none' : 'visible'
+						}}></div>
 					</div>
 					<input type="text" className="sketch-text-input" style={{
 						display: this.state.mode === 'text' ? 'inline-block' : 'none',
@@ -2030,11 +1987,13 @@ class Sketchpad extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
 
 Sketchpad.defaultProps = {
 	autoSave: true,
 	intervalTime: 30000,
+	hideInputButtons: false,
+	hideNavigationButtons: false,
 	hideRecordingButtons: false,
 	hideSaveButtons: false,
 	hideTransmitButtons: false,
@@ -2061,6 +2020,8 @@ Sketchpad.defaultProps = {
 Sketchpad.propTypes = {
 	autoSave: PropTypes.bool,
 	intervalTime: PropTypes.number,
+	hideInputButtons: PropTypes.bool,
+	hideNavigationButtons: PropTypes.bool,
 	hideRecordingButtons: PropTypes.bool,
 	hideSaveButtons: PropTypes.bool,
 	hideTransmitButtons: PropTypes.bool,

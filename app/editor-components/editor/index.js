@@ -9,10 +9,12 @@ import groupBy from '@stdlib/utils/group-by';
 import contains from '@stdlib/assert/contains';
 import trim from '@stdlib/string/trim';
 import AnimationHelp from 'editor-components/animation-help';
-import allSnippets from 'snippets';
+import { componentSnippets } from 'snippets';
 import ComponentConfigurator from './component_configurator.js';
 import COMPONENTS from './components.json';
-import provideCompletionItemsFactory from './provide_attribute_factory.js';
+import provideAttributeFactory from './provide_attribute_factory.js';
+import providePreambleFactory from './provide_preamble_factory.js';
+import provideSnippetFactory from './provide_snippet_factory.js';
 import './editor.css';
 
 
@@ -21,7 +23,7 @@ import './editor.css';
 const RE_ANSI = /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)?\u0007)|(?:(?:\d{1,4}(?:;\d{0,4})*)?[\dA-PR-TZcf-ntqry=><~]))/g; // eslint-disable-line no-control-regex
 const RE_EMPTY_SPANS = /<span \/>/g;
 const RE_FRAGMENT = /<\/?React.Fragment>/g;
-const snippets = groupBy( allSnippets, groupIndicator );
+const snippets = groupBy( componentSnippets, groupIndicator );
 
 
 // FUNCTIONS //
@@ -88,8 +90,16 @@ class Editor extends Component {
 		});
 
 		this._completionProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
+			triggerCharacters: [ ' ', '\n' ],
+			provideCompletionItems: provideAttributeFactory( this.monaco )
+		});
+		this.monaco.languages.registerCompletionItemProvider( 'javascript', {
 			triggerCharacters: [ '<' ],
-			provideCompletionItems: provideCompletionItemsFactory( this.monaco )
+			provideCompletionItems: provideSnippetFactory( this.monaco )
+		});
+		this.monaco.languages.registerCompletionItemProvider( 'javascript', {
+			triggerCharacters: [ '\n' ],
+			provideCompletionItems: providePreambleFactory( this.monaco )
 		});
 	}
 
@@ -213,6 +223,9 @@ class Editor extends Component {
 							tabCompletion: 'on',
 							wordWrap: 'on',
 							snippetSuggestions: 'top',
+							suggestOnTriggerCharacters: true,
+							quickSuggestions: true,
+							quickSuggestionsDelay: 500,
 							scrollbar: {
 								useShadows: true,
 								verticalHasArrows: true,

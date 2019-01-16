@@ -2,16 +2,16 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
+import FormControl from 'react-bootstrap/lib/FormControl';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import Popover from 'react-bootstrap/lib/Popover';
 import Button from 'react-bootstrap/lib/Button';
-import logger from 'debug';
+import noop from '@stdlib/utils/noop';
 import OverlayTrigger from 'components/overlay-trigger';
-import FormControl from 'react-bootstrap/lib/FormControl';
 import scrollTo from 'utils/scroll-to';
 import isElectron from 'utils/is-electron';
-import noop from '@stdlib/utils/noop';
 import SessionContext from 'session/context.js';
 import './chat.css';
 

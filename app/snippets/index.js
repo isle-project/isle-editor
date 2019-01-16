@@ -1,8 +1,10 @@
 // MODULES //
 
-import snippets from './snippets.json';
+import components from './components.json';
+import commands from './commands.json';
 
 
 // EXPORTS //
 
-export default snippets;
+export const componentSnippets = components;
+export const commandSnippets = commands;
