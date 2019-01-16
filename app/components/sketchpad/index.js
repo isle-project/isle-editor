@@ -40,7 +40,6 @@ import TooltipButton from './tooltip_button.js';
 import InputButtons from './input_buttons.js';
 import curve from './curve.js';
 import guide from './guide.json';
-import buildSVG from './build_svg.js';
 import './sketchpad.css';
 import './pdf_viewer.css';
 
