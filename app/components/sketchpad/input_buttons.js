@@ -52,9 +52,7 @@ class InputButtons extends Component {
 	}
 
 	toggleTextMode = () => {
-		this.setState({
-			mode: this.state.mode === 'text' ? 'none' : 'text'
-		});
+		this.props.onModeChange( this.props.mode === 'text' ? 'none' : 'text' );
 	}
 
 	handleColorChange = ( color ) => {
