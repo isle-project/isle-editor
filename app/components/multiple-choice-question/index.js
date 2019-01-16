@@ -460,7 +460,10 @@ MultipleChoiceQuestion.defaultProps = {
 };
 
 MultipleChoiceQuestion.propTypes = {
-	question: PropTypes.string,
+	question: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	solution: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.array
