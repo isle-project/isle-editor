@@ -133,7 +133,8 @@ class ComponentConfigurator extends Component {
 	checkboxClickFactory = ( key, defaultValue ) => {
 		const replacement = generateReplacement( defaultValue );
 		let RE_FULL_KEY;
-		if ( this.props.component.selfClosing ) {
+		const selfClosing = contains( this.props.component.value, '/>' );
+		if ( selfClosing ) {
 			RE_FULL_KEY = new RegExp( '\\s*'+key+'=[\\s\\S]*?( |\t|\r?\n)(?=[a-z]+=|\\/>)', 'i' );
 		} else {
 			RE_FULL_KEY = new RegExp( '\\s*'+key+'=[\\s\\S]*?( |\t|\r?\n)(?=[a-z]+=|>)', 'i' );
@@ -142,7 +143,7 @@ class ComponentConfigurator extends Component {
 		return () => {
 			let { value } = this.state;
 			if ( !RE_KEY_AROUND_WHITESPACE.test( this.state.value ) ) {
-				if ( this.props.component.selfClosing ) {
+				if ( selfClosing ) {
 					value = value.substring( 0, value.length - 3 );
 					value += ` ${key}=${replacement}\n/>`;
 				} else {
@@ -205,7 +206,7 @@ class ComponentConfigurator extends Component {
 		}
 		return (
 			<Fragment>
-				<Card.Subtitle className="mb-2 text-muted">Click on the box to add the respective options:</Card.Subtitle>
+				<Card.Subtitle style={{ fontSize: '12px' }}className="mb-2 text-muted">Click on the box to add the respective options:</Card.Subtitle>
 				<div style={{ height: '300px', overflowY: 'scroll' }}>
 					<Table striped bordered size="sm" style={{ fontSize: '14px' }}>
 						<thead>
@@ -233,7 +234,7 @@ class ComponentConfigurator extends Component {
 		};
 		/* eslint-disable react/no-danger */
 		const componentDescription = <div>
-			<label dangerouslySetInnerHTML={innerHTML}></label>
+			<label style={{ marginBottom: 0 }}dangerouslySetInnerHTML={innerHTML}></label>
 		</div>;
 		/* eslint-enable react/no-danger */
 		return (
@@ -248,7 +249,7 @@ class ComponentConfigurator extends Component {
 				<Modal.Body>
 					{componentDescription}
 					{this.renderPropertyControls()}
-					<FormGroup style={{ marginTop: '15px' }}>
+					<FormGroup style={{ marginTop: '10px' }}>
 						<Card.Subtitle className="mb-2 text-muted" >Code:</Card.Subtitle>
 						<FormControl
 							as="textarea"
