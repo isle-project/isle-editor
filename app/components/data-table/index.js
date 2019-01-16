@@ -122,7 +122,7 @@ class DataTable extends Component {
 				const tooltip = <Tooltip id={key}>
 					{this.props.dataInfo.variables[ key ]}
 				</Tooltip>;
-				header = <OverlayTrigger placement="top" overlay={tooltip}>
+				header = <OverlayTrigger placement="right" overlay={tooltip}>
 					<span>{key}</span>
 				</OverlayTrigger>;
 			}
