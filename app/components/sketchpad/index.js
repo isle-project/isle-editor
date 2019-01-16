@@ -513,11 +513,12 @@ class Sketchpad extends Component {
 				viewport: viewport
 			};
 			page.getTextContent().then( textContent => {
-				while ( textLayer.firstChild ) {
-					textLayer.removeChild( textLayer.firstChild );
-				}
-				const svg = buildSVG( viewport, textContent );
-				textLayer.appendChild(svg);
+				pdfjs.renderTextLayer({
+					textContent,
+					container: textLayer,
+					viewport,
+					textDivs: []
+				});
 			});
 			return page.render( renderContext )
 			.then( () => {
@@ -1937,7 +1938,7 @@ class Sketchpad extends Component {
 						{this.renderHTMLOverlays()}
 						{canvas}
 						<div className="textLayer" style={{
-							pointerEvents: this.state.mode !== 'none' ? 'none' : 'all'
+							pointerEvents: this.state.mode !== 'none' ? 'none' : 'visible'
 						}}></div>
 					</div>
 					<input type="text" className="sketch-text-input" style={{
