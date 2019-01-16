@@ -40,7 +40,9 @@ import TooltipButton from './tooltip_button.js';
 import InputButtons from './input_buttons.js';
 import curve from './curve.js';
 import guide from './guide.json';
+import buildSVG from './build_svg.js';
 import './sketchpad.css';
+import './pdf_viewer.css';
 
 
 // VARIABLES //
@@ -485,6 +487,7 @@ class Sketchpad extends Component {
 				ratio = this.state.canvasWidth / page.getViewport(1.0).width;
 			}
 			const viewport = page.getViewport( ratio );
+			const textLayer = document.querySelector( '.textLayer' );
 			if ( this.props.fill === 'vertical' ) {
 				this.canvas.height = viewport.height;
 				this.canvas.width = viewport.width;
@@ -492,9 +495,16 @@ class Sketchpad extends Component {
 				this.canvas.style[ 'border-style' ] = 'solid';
 				this.canvas.style[ 'border-color' ] = 'black';
 				this.canvas.style[ 'border-width' ] = '0px 1px 0px 1px';
+
+				textLayer.style.width = `${viewport.width}px`;
+				textLayer.style.height = `${viewport.height}px`;
+				textLayer.style.left = `${( this.state.canvasWidth - viewport.width ) / 2.0}px`;
 			} else {
 				this.canvas.height = viewport.height;
 				this.canvas.width = viewport.width - 15; // account for vertical scrollbar
+
+				textLayer.style.width = `${viewport.width-15}px`;
+				textLayer.style.height = `${viewport.height}px`;
 			}
 
 			// Render PDF page into canvas context
@@ -502,10 +512,17 @@ class Sketchpad extends Component {
 				canvasContext: this.ctx,
 				viewport: viewport
 			};
+			page.getTextContent().then( textContent => {
+				while ( textLayer.firstChild ) {
+					textLayer.removeChild( textLayer.firstChild );
+				}
+				const svg = buildSVG( viewport, textContent );
+				textLayer.appendChild(svg);
+			});
 			return page.render( renderContext )
-				.then( () => {
-					debug( `Background rendered for page ${pageNumber}` );
-				});
+			.then( () => {
+				debug( `Background rendered for page ${pageNumber}` );
+			});
 		}
 		const canvas = this.canvas;
 		const ctx = this.ctx;
@@ -1584,12 +1601,6 @@ class Sketchpad extends Component {
 		});
 	}
 
-	toggleTextMode = () => {
-		this.setState({
-			mode: this.state.mode === 'text' ? 'none' : 'text'
-		});
-	}
-
 	closeResponseModal = () => {
 		this.setState({
 			showUploadModal: false,
@@ -1922,9 +1933,12 @@ class Sketchpad extends Component {
 						{this.renderSaveButtons()}
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</div>
-					<div style={{ width: this.state.canvasWidth, height: this.state.canvasHeight, overflow: 'auto', position: 'relative' }}>
+					<div id="canvas-wrapper" style={{ width: this.state.canvasWidth, height: this.state.canvasHeight, overflow: 'auto', position: 'relative' }}>
 						{this.renderHTMLOverlays()}
 						{canvas}
+						<div className="textLayer" style={{
+							pointerEvents: this.state.mode !== 'none' ? 'none' : 'all'
+						}}></div>
 					</div>
 					<input type="text" className="sketch-text-input" style={{
 						display: this.state.mode === 'text' ? 'inline-block' : 'none',
