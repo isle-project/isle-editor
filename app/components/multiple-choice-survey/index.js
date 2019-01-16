@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
+import Row from 'react-bootstrap/lib/Row';
 import Container from 'react-bootstrap/lib/Container';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 import Card from 'react-bootstrap/lib/Card';
@@ -59,9 +60,7 @@ class MultipleChoiceSurvey extends Component {
 		session.log({
 			id: this.props.id,
 			type: 'MULTIPLE_CHOICE_SURVEY_SUBMISSION',
-			value: this.props.multipleAnswers ?
-				this.state.active.map( idx => this.props.answers[ idx ]) :
-				this.props.answers[ this.state.active ],
+			value: this.state.active,
 			anonymous: this.props.anonymous
 		}, 'members' );
 		if ( !this.props.allowMultipleAnswers ) {
@@ -84,7 +83,7 @@ class MultipleChoiceSurvey extends Component {
 		let freqTable;
 		let counts = tabulated.map( d => {
 			return {
-				x: d[ 0 ],
+				x: this.props.answers[ d[ 0 ] ],
 				y: d[ 1 ]
 			};
 		});
@@ -97,7 +96,10 @@ class MultipleChoiceSurvey extends Component {
 			{tabulated.map( ( elem, row ) => {
 				return ( <tr key={row}>
 					{elem.map( ( x, col ) => {
-						if ( col === 2 ) {
+						if ( col === 0 ) {
+							x = this.props.answers[ x ];
+						}
+						else if ( col === 2 ) {
 							x = x.toFixed( 3 );
 						}
 						return <td key={`${row}:${col}`}>{x}</td>;
@@ -190,38 +192,40 @@ class MultipleChoiceSurvey extends Component {
 					</Card.Header>
 					<Card.Body>
 						<Container>
-							<Col md={6}>
-								<Card body className="multiple-choice-survey">
-									<p><label>{question}</label></p>
-									{ multipleAnswers ? <span>You may select multiple answers</span> : null }
-									<ListGroup fill >
-										{ multipleAnswers ?
-											answers.map( this.renderAnswerOptionsMultiple ) :
-											answers.map( this.renderAnswerOptionsSingle )
-										}
-									</ListGroup>
-									<Button
-										size="small"
-										variant="success"
-										block fill
-										onClick={this.submitQuestion}
-										disabled={disabled}
-									>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
-								</Card>
-							</Col>
-							<Col md={6}>
-								<RealtimeMetrics for={id} onData={this.onData} />
-								{this.renderChart()}
-								<p>
-									{this.state.freqTable}
-								</p>
-							</Col>
+							<Row>
+								<Col md={6}>
+									<Card body className="multiple-choice-survey">
+										<p><label>{question}</label></p>
+										{ multipleAnswers ? <span>You may select multiple answers</span> : null }
+										<ListGroup fill >
+											{ multipleAnswers ?
+												answers.map( this.renderAnswerOptionsMultiple ) :
+												answers.map( this.renderAnswerOptionsSingle )
+											}
+										</ListGroup>
+										<Button
+											size="small"
+											variant="success"
+											block fill
+											onClick={this.submitQuestion}
+											disabled={disabled}
+										>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
+									</Card>
+								</Col>
+								<Col md={6}>
+									<RealtimeMetrics for={id} onData={this.onData} />
+									{this.renderChart()}
+									<p>
+										{this.state.freqTable}
+									</p>
+								</Col>
+							</Row>
 						</Container>
 						<ResponseVisualizer
 							buttonLabel="Responses" id={id}
 							data={{
 								type: 'factor',
-								levels: this.props.answers.map( x => x.content )
+								levels: this.props.answers
 							}}
 						/>
 					</Card.Body>

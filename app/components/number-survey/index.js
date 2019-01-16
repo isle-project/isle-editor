@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
+import Row from 'react-bootstrap/lib/Row';
 import Container from 'react-bootstrap/lib/Container';
 import Card from 'react-bootstrap/lib/Card';
 import { VictoryAxis, VictoryArea, VictoryChart } from 'victory';
@@ -145,37 +146,39 @@ class NumberSurvey extends Component {
 					</Card.Header>
 					<Card.Body>
 						<Container>
-							<Col md={6}>
-								<Card className="number-survey" body>
-									<Card.Title as="h5">{props.question}</Card.Title>
-									<label>Your answer:</label>
-									<NumberInput
-										{...props}
-										inline
-										disabled={disabled}
-										onChange={( value ) => {
-											this.setState({
-												value
-											});
-										}}
-									/>
-									<Button
-										size="small"
-										variant="success"
-										block fill
-										onClick={this.submitQuestion}
-										disabled={disabled}
-									>{ disabled ? 'Submitted' : 'Submit'}</Button>
-								</Card>
-							</Col>
-							<Col md={6}>
-								<RealtimeMetrics for={this.props.id} onData={this.onData} />
-								{this.renderChart()}
-								{ isNumber( this.state.avg ) && isNumber( this.state.sd ) ?
-									<p>The average is {this.state.avg.toFixed( 3 )} (SD: {this.state.sd.toFixed( 3 )}).
-									</p> : null
-								}
-							</Col>
+							<Row>
+								<Col md={6}>
+									<Card className="number-survey" body>
+										<Card.Title as="h5">{props.question}</Card.Title>
+										<label>Your answer:</label>
+										<NumberInput
+											{...props}
+											inline
+											disabled={disabled}
+											onChange={( value ) => {
+												this.setState({
+													value
+												});
+											}}
+										/>
+										<Button
+											size="small"
+											variant="success"
+											block fill
+											onClick={this.submitQuestion}
+											disabled={disabled}
+										>{ disabled ? 'Submitted' : 'Submit'}</Button>
+									</Card>
+								</Col>
+								<Col md={6}>
+									<RealtimeMetrics for={this.props.id} onData={this.onData} />
+									{this.renderChart()}
+									{ isNumber( this.state.avg ) && isNumber( this.state.sd ) ?
+										<p>The average is {this.state.avg.toFixed( 3 )} (SD: {this.state.sd.toFixed( 3 )}).
+										</p> : null
+									}
+								</Col>
+							</Row>
 						</Container>
 						<ResponseVisualizer buttonLabel="Responses" id={props.id} />
 					</Card.Body>

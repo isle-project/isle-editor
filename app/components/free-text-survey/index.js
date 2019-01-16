@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Card from 'react-bootstrap/lib/Card';
 import Container from 'react-bootstrap/lib/Container';
 import Col from 'react-bootstrap/lib/Col';
+import Row from 'react-bootstrap/lib/Row';
 import profanities from 'profanities';
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryLabel } from 'victory';
 import logger from 'debug';
@@ -160,35 +161,36 @@ class FreeTextSurvey extends Component {
 					</Card.Header>
 					<Card.Body>
 						<Container>
-							<Col md={6}>
-								<Card className="free-text-survey" body>
-									<label>{props.question}</label>
-									<label>Your answer:</label>
-									<TextArea
-										{...props}
-										inline
-										disabled={disabled}
-										onChange={( value ) => {
-											this.setState({
-												value
-											});
-										}}
-										rows={this.props.rows}
-									/>
-									<Button
-										size="small"
-										variant="success"
-										block fill
-										onClick={this.submitQuestion}
-										disabled={disabled}
-									>{ disabled ? 'Submitted' : 'Submit'}</Button>
-								</Card>
-							</Col>
-							<Col md={6}>
-								<RealtimeMetrics for={this.props.id} onData={this.onData} />
-								{this.renderChart()}
-								{this.state.freqTable}
-							</Col>
+							<Row>
+								<Col md={6}>
+									<Card className="free-text-survey" body>
+										<label>{props.question}</label>
+										<TextArea
+											{...props}
+											inline
+											disabled={disabled}
+											onChange={( value ) => {
+												this.setState({
+													value
+												});
+											}}
+											rows={this.props.rows}
+										/>
+										<Button
+											size="small"
+											variant="success"
+											block fill
+											onClick={this.submitQuestion}
+											disabled={disabled}
+										>{ disabled ? 'Submitted' : 'Submit'}</Button>
+									</Card>
+								</Col>
+								<Col md={6}>
+									<RealtimeMetrics for={this.props.id} onData={this.onData} />
+									{this.renderChart()}
+									{this.state.freqTable}
+								</Col>
+							</Row>
 						</Container>
 						<ResponseVisualizer buttonLabel="Responses" id={props.id} />
 					</Card.Body>
