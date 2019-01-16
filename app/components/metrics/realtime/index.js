@@ -37,6 +37,9 @@ class RealTimeMetrics extends Component {
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
 				if ( type === 'member_action' ) {
+					if ( action.type === 'FOCUS_ELEMENT' || action.type === 'LOSE_FOCUS_ELEMENT' ) {
+						return null;
+					}
 					if ( contains( this.props.for, action.id ) ) {
 						let actions = copy( this.state.actions );
 						actions.push( this.props.returnFullObject ? action : action.value );
