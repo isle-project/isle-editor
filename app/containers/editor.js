@@ -200,7 +200,7 @@ class App extends Component {
 		if ( this.debouncedChange ) {
 			this.debouncedChange( value );
 		} else {
-			this.debouncedChange = debounce( handleChange, 1000 );
+			this.debouncedChange = debounce( handleChange, 3000 );
 			this.debouncedChange( value );
 		}
 	}
