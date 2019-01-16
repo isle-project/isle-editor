@@ -8,7 +8,7 @@ import './beacon_tooltip.css';
 
 // VARIABLES //
 
-const WAIT_TIME = 1000;
+const WAIT_TIME = 5000;
 
 
 // MAIN //
