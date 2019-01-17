@@ -487,6 +487,9 @@ class Sketchpad extends Component {
 			}
 			const viewport = page.getViewport( ratio );
 			const textLayer = document.querySelector( '.textLayer' );
+			while ( textLayer.firstChild ) {
+				textLayer.removeChild( textLayer.firstChild );
+			}
 			if ( this.props.fill === 'vertical' ) {
 				this.canvas.height = viewport.height;
 				this.canvas.width = viewport.width;
