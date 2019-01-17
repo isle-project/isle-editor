@@ -6,15 +6,15 @@ import contains from '@stdlib/assert/contains';
 // VARIABLES //
 
 const RE_HEADING = /<h([0-5])([^>]*)>(.*?)<\/h[0-5]>/g;
-const RE_PARAGRAPH = /<p([^>]*)>([\s\S]+?)<\/p>/g;
-const RE_TABLE = /<table([^>]*)>([\s\S]+?)<\/table>/g;
-const RE_LIST = /<ul([^>]*)>([\s\S]+?)<\/ul>/g;
-const RE_LIST_ITEM = /<li([^>]*)>([\s\S]+?)<\/li>/g;
-const RE_THEAD = /<thead([^>]*)>([\s\S]+?)<\/thead>/g;
-const RE_TBODY = /<tbody([^>]*)>([\s\S]+?)<\/tbody>/g;
-const RE_TABLE_ROW = /<tr([^>]*)>([\s\S]+?)<\/tr>/g;
-const RE_TABLE_HEADER_ITEM = /<th([^>]*)>([\s\S]+?)<\/th>/g;
-const RE_TABLE_ITEM = /<td([^>]*)>([\s\S]+?)<\/td>/g;
+const RE_PARAGRAPH = /<p([^>]*)>([\s\S]*?)<\/p>/g;
+const RE_TABLE = /<table([^>]*)>([\s\S]*?)<\/table>/g;
+const RE_LIST = /<ul([^>]*)>([\s\S]*?)<\/ul>/g;
+const RE_LIST_ITEM = /<li([^>]*)>([\s\S]*?)<\/li>/g;
+const RE_THEAD = /<thead([^>]*)>([\s\S]*?)<\/thead>/g;
+const RE_TBODY = /<tbody([^>]*)>([\s\S]*?)<\/tbody>/g;
+const RE_TABLE_ROW = /<tr([^>]*)>([\s\S]*?)<\/tr>/g;
+const RE_TABLE_HEADER_ITEM = /<th([^>]*)>([\s\S]*?)<\/th>/g;
+const RE_TABLE_ITEM = /<td([^>]*)>([\s\S]*?)<\/td>/g;
 
 
 // MAIN
