@@ -190,7 +190,7 @@ class MultipleChoiceSurvey extends Component {
 					<Card.Header as="h3">
 						{title}
 					</Card.Header>
-					<Card.Body>
+					<Card.Body style={{ overflowY: 'auto' }}>
 						<Container>
 							<Row>
 								<Col md={6}>

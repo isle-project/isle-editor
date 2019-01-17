@@ -144,7 +144,7 @@ class NumberSurvey extends Component {
 					<Card.Header as="h3">
 						Survey
 					</Card.Header>
-					<Card.Body>
+					<Card.Body style={{ overflowY: 'auto' }}>
 						<Container>
 							<Row>
 								<Col md={6}>
