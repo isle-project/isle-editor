@@ -3,11 +3,13 @@
 import React, { Component, Fragment } from 'react';
 import Floater from 'react-floater';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import './beacon_tooltip.css';
 
 
 // VARIABLES //
 
+const debug = logger( 'isle:beacon-tooltip' );
 const WAIT_TIME = 5000;
 
 
@@ -29,7 +31,7 @@ class BeaconTooltip extends Component {
 		super( props );
 
 		this.state = {
-			ready: false
+			show: false
 		};
 	}
 
@@ -41,19 +43,24 @@ class BeaconTooltip extends Component {
 
 	show() {
 		this.setState({
-			ready: true
+			show: true
 		});
 	}
 
+	handleChange = ( action, props ) => {
+		debug( 'Received action: '+action );
+		this.props.onChange( action, props );
+	}
+
 	render() {
-		if ( !this.state.ready ) {
-			return null;
+		if ( !this.state.show ) {
+			null;
 		}
 		return (
 			<Fragment>
 				{this.props.children}
 				<Floater
-					callback={this.props.onChange}
+					callback={this.handleChange}
 					content={this.props.content}
 					event={this.props.event}
 					placement={this.props.placement}
@@ -73,7 +80,6 @@ class BeaconTooltip extends Component {
 						<span className="beacon-inner" />
 						<span className="beacon-outer" />
 					</button>
-
 				</Floater>
 			</Fragment>
 		);
