@@ -54,7 +54,7 @@ class BeaconTooltip extends Component {
 
 	render() {
 		if ( !this.state.show ) {
-			null;
+			return null;
 		}
 		return (
 			<Fragment>
