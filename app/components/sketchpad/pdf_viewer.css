@@ -15,8 +15,10 @@
 
 .textLayer {
 	position: absolute;
-	right: 0;
+	left: 0;
 	bottom: 0;
+	height: 100%;
+	width: 100%;
 	overflow: hidden;
 	fill: rgba(255, 0, 0, 0);
 	line-height: 1;

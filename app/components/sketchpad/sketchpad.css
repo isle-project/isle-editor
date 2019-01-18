@@ -79,3 +79,13 @@
 .sketch-font-dropdown {
 	text-align: left;
 }
+
+.sketch-pointer {
+	background-color: #ca5800;
+	border-radius: 50%;
+	display: block;
+	height: 8px;
+	opacity: 0;
+	position: absolute;
+	width: 8px;
+}
