@@ -92,7 +92,7 @@ class Session {
 		let item = localStorage.getItem( this.userVal );
 		if ( item ) {
 			item = JSON.parse( item );
-			this.handleLogin( item );
+			this.handleLogin( item, true );
 		}
 
 		// Boolean whether lesson is finished:
@@ -985,24 +985,18 @@ class Session {
 	}
 
 	/**
-	* Logs out user in current session if user has logged out in another tab.
+	* Re-establish connection if user has logged out in another tab.
 	*
 	* @returns {void}
 	*/
 	forcedLogout() {
-		debug( `Forced logout of user ${this.user.name} by server` );
-		localStorage.removeItem( this.userVal );
-		this.user = {};
-		this.anonymous = true;
-		this.userRightsQuestionPosed = false;
+		debug( `Forced logout of user ${this.user.name} by server, connect again` );
+		let item = localStorage.getItem( this.userVal );
 		this.reset();
-		this.addNotification({
-			title: 'Logged out',
-			message: 'You have been logged out by a server command.',
-			level: 'success',
-			position: 'tl'
-		});
-		this.update( 'logout' );
+		if ( item ) {
+			item = JSON.parse( item );
+			this.handleLogin( item, true );
+		}
 	}
 
 	/**
@@ -1162,9 +1156,10 @@ class Session {
 	* Verifies user credentials via JSON Web Token to finish login process.
 	*
 	* @param {Object} obj - user object with `token` and `id` fields
+	* @param silent - controls whether to display notification or not
 	* @returns {void}
 	*/
-	handleLogin = ( obj ) => {
+	handleLogin = ( obj, silent = false ) => {
 		fetch( this.server+'/credentials', {
 			method: 'POST',
 			headers: {
@@ -1179,12 +1174,14 @@ class Session {
 			return response.json();
 		})
 		.then( ( json ) => {
-			this.addNotification({
-				title: 'Logged in',
-				message: 'You have successfully logged in.',
-				level: 'success',
-				position: 'tl'
-			});
+			if ( !silent ) {
+				this.addNotification({
+					title: 'Logged in',
+					message: 'You have successfully logged in.',
+					level: 'success',
+					position: 'tl'
+				});
+			}
 			const user = {
 				...obj,
 				...json
