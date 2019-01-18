@@ -135,6 +135,7 @@ class Sketchpad extends Component {
 			verticalOffset: 60
 		};
 		this.isMouseDown = false;
+		this.leftMargin = 0;
 	}
 
 	static getDerivedStateFromProps( props, state ) {
@@ -223,6 +224,25 @@ class Sketchpad extends Component {
 				}
 				else if ( type === 'member_action' ) {
 					debug( 'Received member action...' );
+					if ( action.id !== this.props.id ) {
+						return;
+					}
+					const type = action.type;
+					if ( type === 'SKETCHPAD_MOVE_POINTER' ) {
+						let { x, y } = JSON.parse( action.value );
+						x = `${x+this.leftMargin}px`;
+						y = `${y}px`;
+						if (
+							this.pointer.style.left !== x &&
+							this.pointer.style.top !== y
+						) {
+							this.pointer.style.left = x;
+							this.pointer.style.top = y;
+							this.pointer.style.opacity = 0.7;
+						}
+					} else {
+						this.pointer.style.opacity = 0;
+					}
 
 					// Owners should only process actions from selected users:
 					if ( session.isOwner() ) {
@@ -234,7 +254,6 @@ class Sketchpad extends Component {
 							return;
 						}
 						if ( action.email === session.user.email ) {
-							const type = action.type;
 							if (
 								type === 'SKETCHPAD_NEXT_PAGE' ||
 								type === 'SKETCHPAD_PREVIOUS_PAGE' ||
@@ -247,7 +266,6 @@ class Sketchpad extends Component {
 							}
 						}
 					}
-					const type = action.type;
 					if (
 						type === 'SKETCHPAD_DRAW_TEXT' ||
 						type === 'SKETCHPAD_DRAW_CURVE' ||
@@ -464,13 +482,8 @@ class Sketchpad extends Component {
 
 	preventDefaultTouch = ( e ) => {
 		if (
-			this.canvas === e.target &&
-			(
-				this.state.mode === 'drawing' ||
-				this.state.mode === 'drag' ||
-				this.state.mode === 'delete' ||
-				this.props.fullscreen
-			)
+			this.props.fullscreen &&
+			( e.target === this.canvas || e.target === this.textLayer )
 		) {
 			e.preventDefault();
 		}
@@ -486,7 +499,7 @@ class Sketchpad extends Component {
 				ratio = this.state.canvasWidth / page.getViewport(1.0).width;
 			}
 			const viewport = page.getViewport( ratio );
-			const textLayer = document.querySelector( '.textLayer' );
+			const textLayer = this.textLayer;
 			while ( textLayer.firstChild ) {
 				textLayer.removeChild( textLayer.firstChild );
 			}
@@ -500,7 +513,8 @@ class Sketchpad extends Component {
 
 				textLayer.style.width = `${viewport.width}px`;
 				textLayer.style.height = `${viewport.height}px`;
-				textLayer.style.left = `${( this.state.canvasWidth - viewport.width ) / 2.0}px`;
+				this.leftMargin = ( this.state.canvasWidth - viewport.width ) / 2.0;
+				textLayer.style.left = `${this.leftMargin}px`;
 			} else {
 				this.canvas.height = viewport.height;
 				this.canvas.width = viewport.width - 15; // account for vertical scrollbar
@@ -961,6 +975,7 @@ class Sketchpad extends Component {
 			this.isMouseDown = false;
 			return;
 		}
+		const session = this.context;
 		let { x, y } = this.mousePosition( evt );
 		if ( this.selectedElement ) {
 			if ( this.state.mode === 'drag' ) {
@@ -980,7 +995,6 @@ class Sketchpad extends Component {
 					e.x += ( dx / this.canvas.width );
 					e.y += ( dy / this.canvas.height );
 				}
-				const session = this.context;
 				const username = session.user.email || '';
 				const action = {
 					id: this.props.id,
@@ -1001,7 +1015,7 @@ class Sketchpad extends Component {
 				}
 				this.x = x;
 				this.y = y;
-				this.redraw();
+				return this.redraw();
 			}
 		}
 		if ( this.isMouseDown && !this.props.disabled ) {
@@ -1009,7 +1023,7 @@ class Sketchpad extends Component {
 				debug( 'Check whether to delete element...' );
 				return this.checkDeletion( evt );
 			}
-			else if ( this.state.mode === 'drawing' ) {
+			if ( this.state.mode === 'drawing' ) {
 				this.currentPoints.push( x );
 				this.currentPoints.push( y );
 				const line = {
@@ -1024,7 +1038,6 @@ class Sketchpad extends Component {
 				};
 				this.drawElement( line );
 			}
-
 			// Set to current coordinates:
 			this.x = x;
 			this.y = y;
@@ -1160,7 +1173,10 @@ class Sketchpad extends Component {
 		this.elements.splice( idx, 0, []);
 		this.backgrounds.splice( idx, 0, null );
 		this.recordingEndPositions.splice( idx, 0, 0 );
-
+		const textLayer = document.querySelector( '.textLayer' );
+		while ( textLayer.firstChild ) {
+			textLayer.removeChild( textLayer.firstChild );
+		}
 		const newInsertedPages = this.state.insertedPages;
 		newInsertedPages.push( idx );
 		this.setState({
@@ -1791,6 +1807,66 @@ class Sketchpad extends Component {
 		});
 	}
 
+	movePointerStart = ( event ) => {
+		event.stopPropagation();
+		debug( '`onMouseDown` or `onTouchStart` event fired...' );
+		if ( event.touches && event.touches.length > 1 ) {
+			this.swipeStartX = event.touches[ 0 ].screenX;
+			this.swipeStartY = event.touches[ 0 ].screenY;
+		}
+	}
+
+	movePointerEnd = ( event ) => {
+		// Mouse is not clicked anymore...
+		event.stopPropagation();
+		if (
+			(
+				this.swipeEndX - MIN_SWIPE_X > this.swipeStartX ||
+				this.swipeEndX + MIN_SWIPE_X < this.swipeStartX
+			) &&
+			(
+				this.swipeEndY < this.swipeStartY + MAX_SWIPE_Y &&
+				this.swipeStartY > this.swipeEndY - MAX_SWIPE_Y &&
+				this.swipeEndX > 0
+			)
+		) {
+			if ( this.swipeEndX > this.swipeStartX ) {
+				this.previousPage();
+			} else {
+				this.nextPage();
+			}
+			this.swipeEndX = 0;
+			this.swipeEndY = 0;
+			this.swipeStartX = 0;
+			this.swipeStartY = 0;
+		}
+	}
+
+	movePointer = ( event ) => {
+		event.stopPropagation();
+		if ( this.state.swiping && event.touches && event.touches.length > 1 ) {
+			this.swipeEndX = event.touches[ 0 ].screenX;
+			this.swipeEndY = event.touches[ 0 ].screenY;
+			this.isMouseDown = false;
+			return;
+		}
+		const session = this.context;
+		let { x, y } = this.mousePosition( event );
+		const action = {
+			id: this.props.id,
+			type: 'SKETCHPAD_MOVE_POINTER',
+			value: JSON.stringify({
+				x,
+				y
+			}),
+			noSave: true
+		};
+		this.pointer.style.opacity = 0;
+		this.pointer.style.left = `${x+this.leftMargin}px`;
+		this.pointer.style.top = `${y}px`;
+		session.log( action, 'members' );
+	}
+
 	renderTransmitButtons() {
 		if ( this.state.hideTransmitButtons ) {
 			return null;
@@ -1939,9 +2015,25 @@ class Sketchpad extends Component {
 					<div id="canvas-wrapper" style={{ width: this.state.canvasWidth, height: this.state.canvasHeight, overflow: 'auto', position: 'relative' }}>
 						{this.renderHTMLOverlays()}
 						{canvas}
-						<div className="textLayer" style={{
-							pointerEvents: this.state.mode !== 'none' ? 'none' : 'visible'
-						}}></div>
+						<div
+							className="textLayer"
+							ref={( div ) => { this.textLayer = div; }}
+							style={{
+								pointerEvents: this.state.mode !== 'none' ? 'none' : 'visible'
+							}}
+							onMouseDown={this.movePointerStart}
+							onMouseMove={this.movePointer}
+							onMouseOut={this.movePointerEnd}
+							onMouseUp={this.movePointerEnd}
+							onTouchCancel={this.movePointerEnd}
+							onTouchEnd={this.movePointerEnd}
+							onTouchMove={this.movePointer}
+							onTouchStart={this.movePointerStart}
+						/>
+						<div
+							ref={(div) => { this.pointer = div; }}
+							className="sketch-pointer"
+						/>
 					</div>
 					<input type="text" className="sketch-text-input" style={{
 						display: this.state.mode === 'text' ? 'inline-block' : 'none',
