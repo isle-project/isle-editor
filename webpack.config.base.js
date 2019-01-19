@@ -33,7 +33,6 @@ var EXTERNALS = [
 	'markdown-it-sub',
 	'moment',
 	'fsevents',
-	'codemirror',
 	'plotly.js'
 ];
 
