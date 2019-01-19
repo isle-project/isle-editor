@@ -32,7 +32,9 @@ var EXTERNALS = [
 	'markdown-it-katex',
 	'markdown-it-sub',
 	'moment',
-  'fsevents'
+	'fsevents',
+	'codemirror',
+	'plotly.js'
 ];
 
 
