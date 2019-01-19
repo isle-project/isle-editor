@@ -31,7 +31,8 @@ var EXTERNALS = [
 	'markdown-it-ins',
 	'markdown-it-katex',
 	'markdown-it-sub',
-	'moment'
+	'moment',
+  'fsevents'
 ];
 
 
