@@ -161,10 +161,12 @@ class Session {
 			this.socketConnect();
 		}
 
-		// Ping server to check status:
-		this.startPingServer();
+		if ( !this._offline ) {
+			// Ping server to check status:
+			this.startPingServer();
+		}
 
-		if ( !this.lessonID && !this.namespaceID ) {
+		if ( !this.lessonID && !this.namespaceID && !this._offline ) {
 			debug( '[1] Retrieve lesson information:' );
 			this.getLessonInfo();
 		}
@@ -172,8 +174,8 @@ class Session {
 		if ( !isElectron ) {
 			document.addEventListener( 'focusin', this.focusInListener );
 			document.addEventListener( 'focusout', this.focusOutListener );
-			document.addEventListener('beforeunload', this.beforeUnloadListener );
-			document.addEventListener('visibilitychange', this.visibilityChangeListener );
+			document.addEventListener( 'beforeunload', this.beforeUnloadListener );
+			document.addEventListener( 'visibilitychange', this.visibilityChangeListener );
 
 			// Log session data to database in regular interval:
 			setInterval( this.logSession, 5*60000 );
@@ -185,15 +187,13 @@ class Session {
 	}
 
 	visibilityChangeListener = () => {
-		if (document.hidden) {
+		if ( document.hidden ) {
 			this.stopPingServer();
 		} else {
 			this.startPingServer();
 		}
-
 		this.logSession();
 	}
-
 
 	focusInListener = ( event ) => {
 		let activeElement = document.activeElement;
@@ -280,9 +280,7 @@ class Session {
 	*/
 	startPingServer = () => {
 		this.pingServer();
-		if ( !this._offline ) {
-			this.pingInterval = setInterval( this.pingServer, 10000 );
-		}
+		this.pingInterval = setInterval( this.pingServer, 10000 );
 	}
 
 	/**
@@ -292,9 +290,7 @@ class Session {
 	*/
 	stopPingServer = () => {
 		debug( 'Should clear the interval pinging the server' );
-		if ( !this._offline ) {
-			clearInterval( this.pingInterval );
-		}
+		clearInterval( this.pingInterval );
 	}
 
 	/**
