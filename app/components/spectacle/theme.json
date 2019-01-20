@@ -129,10 +129,11 @@
 			"number":{
 				"container":{
 					"position":"absolute",
-					"bottom":10,
-					"right":10,
+					"bottom":15,
+					"right":70,
 					"zIndex":1000,
-					"color":"black"
+					"color":"black",
+					"transition": "all 0.3s ease-out"
 				}
 			}
 		},
@@ -401,10 +402,11 @@
 			"number":{
 				"container":{
 					"position":"absolute",
-					"bottom":10,
-					"right":10,
+					"bottom":15,
+					"right":70,
 					"zIndex":1000,
-					"color":"black"
+					"color":"black",
+					"transition": "all 0.3s ease-out"
 				}
 			}
 		},
