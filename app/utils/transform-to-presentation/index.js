@@ -54,13 +54,13 @@ function transformToPresentation( code, preamble ) {
 	pres = pres.replace( RE_TABLE_ITEM, '<TableItem$1>$2</TableItem>' );
 
 	// Add opening <Deck> tag in front of first slide:
-	pres = pres.replace( '<Slide>', `<Deck
+	pres = pres.replace( '<Slide', `<Deck
 		globalStyles={false}
 		controls={true}
 		progress="${progress}"
 		transition={[]}
 		theme={SPECTACLE_THEME}
-	><Slide>` );
+	><Slide` );
 
 	// Append closing </Deck> after last slide:
 	const lastPos = pres.lastIndexOf( '</Slide>' );
