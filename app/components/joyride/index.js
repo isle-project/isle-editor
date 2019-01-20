@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Joyride from 'react-joyride';
-import { ACTIONS, EVENTS } from 'react-joyride/es/constants';
+import { ACTIONS, EVENTS } from 'react-joyride/src/constants';
 
 
 // VARIABLES //

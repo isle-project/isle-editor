@@ -214,7 +214,7 @@
     "react-grid-layout": "^0.16.6",
     "react-highlight-words": "^0.16.0",
     "react-input-range": "^1.2.1",
-    "react-joyride": "2.0.0",
+    "react-joyride": "2.0.2",
     "react-json-tree": "^0.11.2",
     "react-list": "^0.8.11",
     "react-monaco-editor": "^0.22.0",
@@ -246,7 +246,7 @@
     "uuid": "^3.3.2",
     "venn.js": "0.2.20",
     "victory": "31.1.0",
-    "webpack": "4.29.0",
+    "webpack": "4.28.4",
     "whatwg-fetch": "^3.0.0"
   },
   "greenkeeper": {
