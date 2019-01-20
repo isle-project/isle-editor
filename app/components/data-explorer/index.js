@@ -21,6 +21,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasProp from '@stdlib/assert/has-property';
 import startsWith from '@stdlib/string/starts-with';
 import copy from '@stdlib/utils/copy';
+import keys from '@stdlib/utils/keys';
 import scrollTo from 'utils/scroll-to';
 import SelectInput from 'components/input/select';
 import ContingencyTable from 'components/data-explorer/contingency_table';
@@ -400,7 +401,7 @@ class DataExplorer extends Component {
 		const session = this.context;
 		if ( !err ) {
 			const data = {};
-			const columnNames = Object.keys( output[ 0 ]);
+			const columnNames = keys( output[ 0 ] ).filter( x => x !== '' );
 			for ( let j = 0; j < columnNames.length; j++ ) {
 				let col = columnNames[ j ];
 				data[ col ] = new Array( output.length );
