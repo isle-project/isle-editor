@@ -190,7 +190,7 @@
 				"h1":{
 					"color":"#2e4468",
 					"fontSize":"5rem !important",
-					"fontFamily":"Open Sans, sans-serif",
+					"fontFamily":"Open Sans Condensed, sans-serif",
 					"lineHeight": "1",
 					"fontWeight":"bold",
 					"margin":"0.5rem auto",
@@ -199,7 +199,7 @@
 				"h2":{
 					"color":"#3c763d",
 					"fontSize":"4rem",
-					"fontFamily":"Open Sans, sans-serif",
+					"fontFamily":"Open Sans Condensed, sans-serif",
 					"lineHeight": "1",
 					"fontWeight":"bold",
 					"margin":"0.5rem auto"
@@ -207,7 +207,7 @@
 				"h3":{
 					"color":"#2e4468",
 					"fontSize":"3.5rem",
-					"fontFamily":"Open Sans, sans-serif",
+					"fontFamily":"Open Sans Condensed, sans-serif",
 					"lineHeight":"1",
 					"fontWeight":"bold",
 					"margin":"0.5rem auto"
@@ -215,7 +215,7 @@
 				"h4":{
 					"color":"#ca5800",
 					"fontSize":"3rem",
-					"fontFamily":"Open Sans, sans-serif",
+					"fontFamily":"Open Sans Condensed, sans-serif",
 					"lineHeight":"1",
 					"fontWeight":"bold",
 					"margin":"0.5rem auto"
@@ -223,7 +223,7 @@
 				"h5":{
 					"color":"black",
 					"fontSize":"2.5rem",
-					"fontFamily":"Open Sans, sans-serif",
+					"fontFamily":"Open Sans Condensed, sans-serif",
 					"lineHeight":"1",
 					"fontWeight":"bold",
 					"margin":"0.5rem auto"
@@ -231,7 +231,7 @@
 				"h6":{
 					"color":"black",
 					"fontSize":"2rem",
-					"fontFamily":"Open Sans, sans-serif",
+					"fontFamily":"Open Sans Condensed, sans-serif",
 					"lineHeight":"1",
 					"fontWeight":"bold",
 					"margin":"0.5rem auto"
