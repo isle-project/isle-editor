@@ -194,6 +194,7 @@
 					"lineHeight": "1",
 					"fontWeight":"bold",
 					"margin":"0.5rem auto",
+					"textShadow": "0 1px 2px darkslategrey",
 					"zoom":1
 				},
 				"h2":{
@@ -202,6 +203,7 @@
 					"fontFamily":"Open Sans Condensed, sans-serif",
 					"lineHeight": "1",
 					"fontWeight":"bold",
+					"textShadow": "0 2px 2px darkslategrey",
 					"margin":"0.5rem auto"
 				},
 				"h3":{
@@ -249,7 +251,8 @@
 				"textAlign":"left",
 				"fontSize": "2rem",
 				"listStylePosition":"inside",
-				"padding":0
+				"padding":0,
+				"marginTop": "20px"
 			},
 			"s":{
 				"strikethrough":{
