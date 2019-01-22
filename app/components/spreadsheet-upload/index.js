@@ -6,8 +6,10 @@ import Card from 'react-bootstrap/lib/Card';
 import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import parse from 'csv-parse';
 import detect from 'detect-csv';
+import isNull from '@stdlib/assert/is-null';
 import round from '@stdlib/math/base/special/round';
 import SessionContext from 'session/context.js';
+import CheckboxInput from 'components/input/checkbox';
 
 
 // MAIN //
@@ -24,7 +26,8 @@ class SpreadsheetUpload extends Component {
 
 		this.state = {
 			percentCompleted: 0,
-			uploading: false
+			uploading: false,
+			header: true
 		};
 	}
 
@@ -56,11 +59,26 @@ class SpreadsheetUpload extends Component {
 	onFileRead = ( event ) => {
 		const text = event.target.result;
 		const csv = detect( text );
+		let delimiter;
+		if ( !isNull( csv ) ) {
+			delimiter = csv.delimiter;
+		} else {
+			delimiter = ',';
+		}
+		let columns;
+		let firstLine = text.substr( 0, text.indexOf( '\n' ) ).split( delimiter );
+		if ( this.state.header ) {
+			columns = firstLine;
+		} else {
+			columns = firstLine.map( ( x, i ) => {
+				return 'VAR_'+(i+1);
+			});
+		}
 		this.setState({
 			percentCompleted: 0,
 			uploading: false
 		});
-		parse( text, { delimiter: csv.delimiter, columns: true, cast: true }, ( err, output ) => {
+		parse( text, { delimiter, columns, cast: true }, ( err, output ) => {
 			if ( err ) {
 				const session = this.context;
 				session.addNotification({
@@ -117,7 +135,7 @@ class SpreadsheetUpload extends Component {
 
 	render() {
 		const completed = round( this.state.percentCompleted * 100.0 );
-		return ( <Card style={{ textAlign: 'center' }} >
+		return ( <Card>
 			<Card.Header as="h2">
 				{this.props.title}
 			</Card.Header>
@@ -141,12 +159,20 @@ class SpreadsheetUpload extends Component {
 						minHeight: '150px',
 						width: '250px',
 						border: '1px solid blue',
-						margin: 'auto',
 						padding: '10px'
 					}}
 				>
 					<span>Drop file here</span>
 				</div>
+				<CheckboxInput
+					legend="First row contains variable names"
+					defaultValue={true}
+					onChange={( value ) => {
+						this.setState({
+							header: value
+						});
+					}}
+				/>
 				{ this.state.uploading ?
 					<ProgressBar now={completed} label={`${completed}%`} /> :
 					null
