@@ -82,34 +82,51 @@ class Pages extends Component {
 		if ( !this.props.children ) {
 			return null;
 		}
+		const nChildren = this.props.children.length;
 		const header = <Card.Header>
 			<h3>{this.props.title}</h3>
 		</Card.Header>;
 		const items = [];
-		let cutoff = 3;
-		if ( this.state.activePage < 3 ) {
-			cutoff += 3 - this.state.activePage;
-		}
-		else if ( this.state.activePage > this.props.children.length - 3 ) {
-			cutoff += 2 - ( this.props.children.length - this.state.activePage );
-		}
-		for ( let i = 1; i <= this.props.children.length; i++) {
-			if ( absdiff( i, this.state.activePage ) > cutoff ) {
-				continue;
+		if ( nChildren <= 6 ) {
+			for ( let i = 1; i <= nChildren; i++) {
+				items.push(
+					<Pagination.Item
+						key={i}
+						active={i === this.state.activePage}
+						onClick={papply( this.jumpTo, i )}
+					>
+						{i}
+					</Pagination.Item>
+				);
 			}
-			if ( absdiff( i, this.state.activePage ) === cutoff ) {
-				items.push( <Pagination.Ellipsis /> );
-				continue;
+		} else {
+			let cutoff = 2;
+			if ( this.state.activePage < 3 ) {
+				cutoff += 3 - this.state.activePage;
 			}
-			items.push(
-				<Pagination.Item
-					key={i}
-					active={i === this.state.activePage}
-					onClick={papply( this.jumpTo, i )}
-				>
-					{i}
-				</Pagination.Item>
-			);
+			else if ( this.state.activePage > nChildren - 2 ) {
+				cutoff += 2 - ( nChildren - this.state.activePage );
+			}
+			for ( let i = 1; i <= nChildren; i++) {
+				if ( i !== 1 && i !== nChildren ) {
+					if ( absdiff( i, this.state.activePage ) > cutoff ) {
+						continue;
+					}
+					if ( absdiff( i, this.state.activePage ) === cutoff ) {
+						items.push( <Pagination.Ellipsis /> );
+						continue;
+					}
+				}
+				items.push(
+					<Pagination.Item
+						key={i}
+						active={i === this.state.activePage}
+						onClick={papply( this.jumpTo, i )}
+					>
+						{i}
+					</Pagination.Item>
+				);
+			}
 		}
 		return (
 			<Card
@@ -122,11 +139,9 @@ class Pages extends Component {
 					size={this.props.size}
 					items={this.props.children.length || 1}
 				>
-					<Pagination.First key="first" onClick={this.firstPage} />
 					<Pagination.Prev key="prev" onClick={this.prevPage} />
 					{items}
 					<Pagination.Next key="next" onClick={this.nextPage} />
-					<Pagination.Last key="last" onClick={this.lastPage} />
 				</Pagination>
 				<div className="page-children-wrapper" style={{
 					height: this.props.height
