@@ -105,6 +105,12 @@ class Session {
 		this.actions = [];
 		this.currentUserActions = null;
 
+		// Cohort of logged-in user:
+		this.cohort = null;
+
+		// Array of available cohorts (only filled for owners):
+		this.cohorts = null;
+
 		// Actions received from other users via socket communication:
 		this.socketActions = [];
 
@@ -504,6 +510,7 @@ class Session {
 			.then( res => res.json() )
 			.then( json => {
 				userRights = json;
+				this.cohort = userRights.cohort;
 				if ( userRights.owner && isEmptyArray( this.socketActions ) ) {
 					debug( '[3a] Retrieve all user actions for owners:' );
 					this.getUserActions();
@@ -511,7 +518,7 @@ class Session {
 					debug( '[3b] Retrieve only own actions otherwise:' );
 					this.getCurrentUserActions();
 				}
-				// Send message to subscribed compoonents:
+				// Send message to subscribed components:
 				this.update( 'RECEIVED_USER_RIGHTS', userRights );
 			})
 			.catch( err => {
@@ -855,6 +862,27 @@ class Session {
 					debug( `Received ${json.actions.length} actions for lesson ${this.lessonName} (id: ${this.lessonID})...` );
 					this.socketActions = json.actions;
 					this.update( 'retrieved_user_actions', json.actions );
+					debug( '[4] Retrieve cohort information...' );
+					this.getCohorts();
+				});
+			}
+		})
+		.catch( error => debug( 'Encountered an error: '+error.message ) );
+	}
+
+	/**
+	* Retrieves cohort information for course owners.
+	*/
+	getCohorts = () => {
+		fetch( this.server+'/get_cohorts?'+qs.stringify({ namespaceID: this.namespaceID }), {
+			headers: {
+				'Authorization': 'JWT ' + this.user.token
+			}
+		})
+		.then( response => {
+			if ( response.status === 200 ) {
+				response.json().then( body => {
+					this.cohorts = body.cohorts;
 				});
 			}
 		})
