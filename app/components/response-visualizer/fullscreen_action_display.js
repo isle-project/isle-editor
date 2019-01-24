@@ -445,7 +445,7 @@ class FullscreenActionDisplay extends Component {
 				dialogClassName="modal-100w"
 			>
 				<FullscreenHeader componentID={this.props.componentID} actionLabel={this.props.actionLabel} onPeriodChange={this.props.onPeriodChange} />
-				<Modal.Body style={{ height: 0.75 * window.innerHeight, padding: 0 }} >
+				<Modal.Body style={{ minHeight: 0.75 * window.innerHeight, padding: 0 }} >
 					<Row>
 						<Col md={6}>
 							{ this.state.filtered.length > 0 ?
@@ -489,7 +489,7 @@ class FullscreenActionDisplay extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 FullscreenActionDisplay.propTypes = {
 	actions: PropTypes.array.isRequired,
