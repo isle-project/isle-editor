@@ -156,22 +156,14 @@ describe( '<Pages />', function test() {
 		const pagination = wrapper.find( '.my-pagination' ).first();
 		const listItems = pagination.find( 'li' );
 
-		const lastPageButton = listItems.last();
 		const nextPageButton = listItems.at( listItems.length - 1 );
-		const firstPageButton = listItems.first();
-		const previousPageButton = listItems.at( 1 );
-
-		lastPageButton.find( 'a' ).simulate( 'click' );
-		expect( wrapper.instance().state.activePage ).toBe( 3 );
+		const previousPageButton = listItems.at( 0 );
 
 		previousPageButton.find( 'a' ).simulate( 'click' );
-		expect( wrapper.instance().state.activePage ).toBe( 2 );
+		expect( wrapper.instance().state.activePage ).toBe( 1 );
 
 		nextPageButton.find( 'a' ).simulate( 'click' );
-		expect( wrapper.instance().state.activePage ).toBe( 3 );
-
-		firstPageButton.find( 'a' ).simulate( 'click' );
-		expect( wrapper.instance().state.activePage ).toBe( 1 );
+		expect( wrapper.instance().state.activePage ).toBe( 2 );
 
 		done();
 	});
