@@ -32,6 +32,9 @@ const ORIGINAL_STATE = {
 /**
 * Buttons to collect user feedback.
 *
+* @property {string} confusedMsg - message to be displayed in tooltip for confused button
+* @property {string} feedbackMsg - message to be displayed in tooltip for detailed feedback button
+* @property {string} understoodMsg - message to be displayed in tooltip for understood button
 * @property {boolean} vertical - buttons are displayed vertically if set to `true`
 * @property {Object} style - CSS inline styles
 */
@@ -142,19 +145,19 @@ class FeedbackButtons extends Component {
 							</Button>
 						</Fragment> :
 						<Fragment>
-							<Tooltip id="tooltip_confused" placement={tpos} tooltip={<strong> I am confused.</strong>}>
+							<Tooltip id="tooltip_confused" placement={tpos} tooltip={<strong>{this.props.confusedMsg}</strong>}>
 								<Button variant="light" className="feedback-button" size="small" onClick={this.submitConfused}>
 									<Confused className="feedback-icon" />
 								</Button>
 							</Tooltip>
-							<Tooltip id="tooltip_understood" placement={tpos} tooltip={<strong> Makes sense.</strong>} >
+							<Tooltip id="tooltip_understood" placement={tpos} tooltip={<strong>{this.props.understoodMsg}</strong>} >
 								<Button variant="light" className="feedback-button" size="small" onClick={this.submitUnderstood}>
 									<Understood className="feedback-icon" />
 								</Button>
 							</Tooltip>
 						</Fragment>
 					}
-					<Tooltip placement={tpos} id="tooltip_feedback" tooltip={<strong> I have feedback. </strong>} >
+					<Tooltip placement={tpos} id="tooltip_feedback" tooltip={<strong>{this.props.feedbackMsg}</strong>} >
 						<Button variant="light" className="feedback-button" size="small" onClick={this.openModal}>
 							<Feedback className="feedback-icon" />
 						</Button>
@@ -240,6 +243,9 @@ class FeedbackButtons extends Component {
 
 FeedbackButtons.propTypes = {
 	id: PropTypes.string.isRequired,
+	confusedMsg: PropTypes.string,
+	feedbackMsg: PropTypes.string,
+	understoodMsg: PropTypes.string,
 	vertical: PropTypes.bool,
 	style: PropTypes.object
 };
@@ -247,6 +253,9 @@ FeedbackButtons.propTypes = {
 FeedbackButtons.contextType = SessionContext;
 
 FeedbackButtons.defaultProps = {
+	confusedMsg: 'I am confused.',
+	feedbackMsg: 'I have feedback.',
+	understoodMsg: 'Makes sense.',
 	vertical: false,
 	style: {}
 };

@@ -102,7 +102,7 @@
         "default": "onChange() {}"
       }
     ],
-    "description": "Component placeing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed."
+    "description": "Component placing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed."
   },
   "Calculator": {
     "props": [
@@ -713,6 +713,24 @@
       {
         "name": "id",
         "type": "string (required)"
+      },
+      {
+        "name": "confusedMsg",
+        "type": "string",
+        "description": "message to be displayed in tooltip for confused button",
+        "default": "I am confused."
+      },
+      {
+        "name": "feedbackMsg",
+        "type": "string",
+        "description": "message to be displayed in tooltip for detailed feedback button",
+        "default": "I have feedback."
+      },
+      {
+        "name": "understoodMsg",
+        "type": "string",
+        "description": "message to be displayed in tooltip for understood button",
+        "default": "Makes sense."
       },
       {
         "name": "vertical",
@@ -2334,7 +2352,7 @@
     "props": [
       {
         "name": "question",
-        "type": "string",
+        "type": "(string|node)",
         "description": "the question displayed at the top of the multiple choice component",
         "default": ""
       },

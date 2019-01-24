@@ -47,7 +47,7 @@ hideToolbar: true
 
 #### Options:
 
-* __question__ | `string`: the question displayed at the top of the multiple choice component. Default: `''`.
+* __question__ | `(string|node)`: the question displayed at the top of the multiple choice component. Default: `''`.
 * __solution__ | `(number|array)`: number denoting which answer is correct or an `array` of the correct answer numbers in case the learner should be able to select multiple answers. Default: `none`.
 * __answers__ | `array (required)`: an `array` of answer objects. Each answer should be an object with `content` and `explanation` fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect. Default: `none`.
 * __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'bottom'`.
