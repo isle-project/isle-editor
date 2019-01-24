@@ -1,7 +1,7 @@
 // MODULES //
 
 import cp from 'child_process';
-import fs from 'fs-extra';
+import { appendFileSync, copyFileSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'fs';
 import { dirname, extname, resolve, join } from 'path';
 import yaml from 'js-yaml';
 import webpack from 'webpack';
@@ -30,12 +30,12 @@ const debug = logger( 'bundler' );
 // FUNCTIONS //
 
 const makeOutputDir = ( outputDir ) => {
-	fs.mkdirSync( outputDir );
+	mkdirSync( outputDir );
 };
 
 const generateISLE = ( outputDir, code ) => {
 	const islePath = join( outputDir, 'index.isle' );
-	fs.writeFileSync( islePath, code );
+	writeFileSync( islePath, code );
 };
 
 const loadRequires = ( libs, filePath ) => {
@@ -54,11 +54,11 @@ const loadRequires = ( libs, filePath ) => {
 					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
 				}
 				if ( /\.svg$/.test( lib ) ) {
-					let content = fs.readFileSync( lib ).toString( 'base64' );
+					let content = readFileSync( lib ).toString( 'base64' );
 					str += `global[ '${key}' ] = 'data:image/svg+xml;base64,${content}';\n`;
 				}
 				else if ( /\.(?:jpg|png)$/.test( lib ) ) {
-					let buffer = fs.readFileSync( lib );
+					let buffer = readFileSync( lib );
 					str += `global[ '${key}' ] = 'data:image/jpeg;base64,${buffer.toString( 'base64' )}';\n`;
 				}
 				else {
@@ -162,11 +162,11 @@ const getISLEcode = ( config, filePath ) => {
 		if ( isRelativePath( config.instructorNotes ) ) {
 			debug( 'Loading instructor notes from the supplied relative path...' );
 			const fPath = resolve( dirname(filePath), config.instructorNotes );
-			config.instructorNotes = fs.readFileSync( fPath );
+			config.instructorNotes = readFileSync( fPath );
 			config.instructorNotes = config.instructorNotes.toString();
 		} else if ( isAbsolutePath( config.instructorNotes ) ) {
 			debug( 'Loading instructor notes from the supplied absolute path...' );
-			config.instructorNotes = fs.readFileSync( config.instructorNotes );
+			config.instructorNotes = readFileSync( config.instructorNotes );
 			config.instructorNotes = config.instructorNotes.toString();
 		}
 	}
@@ -245,9 +245,6 @@ function writeIndexFile({
 	const appDir = join( outputPath, outputDir );
 	const indexPath = resolve( './public/index.js' );
 	const statsFile = join( appDir, 'stats.json' );
-	const getCSSPath = () => {
-		return join( basePath, 'app', 'css' );
-	};
 	makeOutputDir( appDir );
 	generateISLE( appDir, content );
 
@@ -393,25 +390,26 @@ function writeIndexFile({
 	const str = generateIndexJS( content, usedComponents, meta, basePath, filePath );
 	debug( `Create JS file: ${str}` );
 
-	fs.writeFileSync( indexPath, str );
+	writeFileSync( indexPath, str );
 
-	// Copy CSS files:
-	fs.copySync( getCSSPath(), join( appDir, 'css' ) );
+	// Copy CSS file:
+	mkdirSync( join( appDir, 'css' ) );
+	copyFileSync( join( basePath, 'app', 'css', 'lesson.css' ), join( appDir, 'css', 'lesson.css' ) );
 	if ( meta.css ) {
 		// Append custom CSS file to `lesson.css` file:
 		let fpath = meta.css;
 		if ( !isAbsolutePath( meta.css ) ) {
 			fpath = join( dirname( filePath ), meta.css );
 		}
-		const css = fs.readFileSync( fpath ).toString();
-		fs.appendFileSync( join( appDir, 'css', 'lesson.css' ), css );
+		const css = readFileSync( fpath ).toString();
+		appendFileSync( join( appDir, 'css', 'lesson.css' ), css );
 	}
 	if ( meta.style ) {
-		fs.appendFileSync( join( appDir, 'css', 'lesson.css' ), meta.style );
+		appendFileSync( join( appDir, 'css', 'lesson.css' ), meta.style );
 	}
 
 	let imgPath = join( basePath, 'app', 'img' );
-	fs.copySync( join( imgPath, 'favicon.ico' ), join( appDir, 'favicon.ico' ) );
+	copyFileSync( join( imgPath, 'favicon.ico' ), join( appDir, 'favicon.ico' ) );
 
 	config.entry = indexPath;
 	config.output = {
@@ -432,9 +430,9 @@ function writeIndexFile({
 		stats = stats.toJson();
 		if ( writeStats ) {
 			debug( 'Write statistics to file...' );
-			fs.writeFileSync( statsFile, JSON.stringify( stats ) );
+			writeFileSync( statsFile, JSON.stringify( stats ) );
 		}
-		fs.unlinkSync( indexPath );
+		unlinkSync( indexPath );
 		if ( !minify ) {
 			return clbk( err, meta );
 		}
@@ -445,7 +443,7 @@ function writeIndexFile({
 			const { name } = stats.assets[ i ];
 			if ( endsWith( name, '.js' ) ) {
 				const bundlePath = join( appDir, name );
-				const code = fs.readFileSync( bundlePath ).toString();
+				const code = readFileSync( bundlePath ).toString();
 				child.on( 'message', papplyRight( onMessage, name, bundlePath ));
 				child.send( code );
 			}
@@ -456,7 +454,7 @@ function writeIndexFile({
 				throw minified.error;
 			}
 			const minifiedPath = join( appDir, name );
-			fs.writeFileSync( minifiedPath, minified.code );
+			writeFileSync( minifiedPath, minified.code );
 			done += 1;
 			if ( done === stats.assets.length-1 ) {
 				return clbk( err, meta );

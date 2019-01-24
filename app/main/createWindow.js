@@ -1,7 +1,7 @@
 // MODULES //
 
 import path from 'path';
-import fs from 'fs-extra';
+import fs from 'fs';
 import windowStateKeeper from 'electron-window-state';
 import { shell } from 'electron';
 import logger from 'debug';

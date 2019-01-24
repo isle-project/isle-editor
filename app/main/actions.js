@@ -1,7 +1,7 @@
 // MODULES //
 
 import { app, dialog, ipcMain, BrowserWindow } from 'electron';
-import fs from 'fs-extra';
+import fs from 'fs';
 import { extname, basename } from 'path';
 import logger from 'debug';
 import { EXTENSIONS } from './globals.js';
