@@ -113,7 +113,7 @@ class Pages extends Component {
 						continue;
 					}
 					if ( absdiff( i, this.state.activePage ) === cutoff ) {
-						items.push( <Pagination.Ellipsis /> );
+						items.push( <Pagination.Ellipsis key={i} /> );
 						continue;
 					}
 				}
