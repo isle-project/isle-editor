@@ -19,14 +19,15 @@ import isObject from '@stdlib/assert/is-object';
 import isError from '@stdlib/assert/is-error';
 import replace from '@stdlib/string/replace';
 import readJSON from '@stdlib/fs/read-json';
-import ErrorBoundary from 'editor-components/error-boundary';
 import SplitPanel from 'editor-components/split-panel';
+import Loadable from 'editor-components/loadable';
 import Header from 'editor-components/header';
-import Editor from 'editor-components/editor';
-import Preview from 'editor-components/preview';
-import ErrorMessage from 'editor-components/error-message';
 import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError, saveLintErrors } from 'actions';
-import DevTools from './dev_tools.js';
+const ErrorBoundary = Loadable( () => import( 'editor-components/error-boundary' ) );
+const Preview = Loadable( () => import( 'editor-components/preview' ) );
+const Editor = Loadable( () => import( 'editor-components/editor' ) );
+const ErrorMessage = Loadable( () => import( 'editor-components/error-message' ) );
+const DevTools = Loadable( () => import( './dev_tools.js' ) );
 import eslintConfig from './eslintrc.json';
 
 

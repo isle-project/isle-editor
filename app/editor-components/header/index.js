@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import DropdownItem from 'react-bootstrap/lib/DropdownItem';
-import './header.css';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
+import './header.css';
 
 
 // MAIN //
@@ -94,7 +94,8 @@ class Header extends Component {
 	}
 }
 
-// TYPES //
+
+// PROPERTIES //
 
 Header.defaultProps = {
 	fileName: ''

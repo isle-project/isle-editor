@@ -3,7 +3,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import ExportPage from 'editor-components/export-page';
+import Loadable from 'editor-components/loadable';
+const ExportPage = Loadable( () => import( 'editor-components/export-page' ) );
 import { convertMarkdown, toggleScrolling, changeNamespace } from 'actions';
 
 
@@ -23,7 +24,8 @@ class Export extends Component {
 	}
 }
 
-// TYPES //
+
+// PROPERTIES //
 
 Export.propTypes = {
 	changeNamespace: PropTypes.func,
