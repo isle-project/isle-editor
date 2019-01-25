@@ -47,6 +47,10 @@ const PRIVATE_VARS = {
 
 // FUNCTIONS //
 
+function titleCompare( a, b ) {
+	return ( '' + a.title ).localeCompare( b.title );
+}
+
 function arrayBufferToBase64(buffer) {
 	let binary = '';
 	const bytes = [].slice.call( new Uint8Array( buffer ) );
@@ -887,7 +891,7 @@ class Session {
 					cohorts.forEach( cohort => {
 						cohort.members = pluck( cohort.members, 'email' );
 					});
-					this.cohorts = cohorts;
+					this.cohorts = cohorts.sort( titleCompare );
 				});
 			}
 		})
