@@ -1275,7 +1275,11 @@ class Session {
 			for ( let i = 0; i < ids.length; i++ ) {
 				const key = ids[ i ];
 				const actions = this.currentUserActions[ key ];
-				const { type } = this.responseVisualizers[ key ];
+				const ref =  this.responseVisualizers[ key ];
+				if ( !ref ) {
+					continue;
+				}
+				const type = ref.type;
 				if ( actions ) {
 					for ( let j = 0; j < actions.length; j++ ) {
 						if ( actions[ j ].type === type ) {
@@ -1290,7 +1294,11 @@ class Session {
 		}
 		else {
 			const actions = this.currentUserActions[ id ];
-			const { type } = this.responseVisualizers[ id ];
+			const ref = this.responseVisualizers[ id ];
+			if ( !ref ) {
+				continue;
+			}
+			const type = ref.type;
 			for ( let j = 0; j < actions.length; j++ ) {
 				if ( actions[ j ].type === type ) {
 					if ( j < actions.length - 1 ) {
