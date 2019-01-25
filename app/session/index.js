@@ -1295,18 +1295,17 @@ class Session {
 		else {
 			const actions = this.currentUserActions[ id ];
 			const ref = this.responseVisualizers[ id ];
-			if ( !ref ) {
-				continue;
-			}
-			const type = ref.type;
-			for ( let j = 0; j < actions.length; j++ ) {
-				if ( actions[ j ].type === type ) {
-					if ( j < actions.length - 1 ) {
-						break;
-					}
-					else if ( j === actions.length - 1 ) {
-						PRIVATE_VARS['progress'] = this.get( 'progress' ) + 1.0 / ids.length;
-						this.update( 'self_updated_progress', this.get( 'progress' ) );
+			if ( ref ) {
+				const type = ref.type;
+				for ( let j = 0; j < actions.length; j++ ) {
+					if ( actions[ j ].type === type ) {
+						if ( j < actions.length - 1 ) {
+							break;
+						}
+						else if ( j === actions.length - 1 ) {
+							PRIVATE_VARS['progress'] = this.get( 'progress' ) + 1.0 / ids.length;
+							this.update( 'self_updated_progress', this.get( 'progress' ) );
+						}
 					}
 				}
 			}
