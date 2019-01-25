@@ -6,7 +6,7 @@ import { TransitionGroup } from 'react-transition-group';
 import * as d3 from 'd3';
 import { select, zoom, event } from 'd3';
 import copy from '@stdlib/utils/copy';
-import deepEqual from 'deep-equal';
+import deepEqual from '@stdlib/assert/deep-equal';
 import uuid from 'uuid';
 import Node from '../node';
 import Link from '../link';

@@ -2,11 +2,11 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import update from 'immutability-helper';
 import shuffle from '@stdlib/random/shuffle';
-import Card from './card';
+import copy from '@stdlib/utils/copy';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import Card from './card.js';
 
 
 // MAIN //
@@ -35,17 +35,13 @@ class Container extends Component {
 	}
 
 	moveCard = ( dragIndex, hoverIndex ) => {
-		const { cards } = this.state;
+		const cards = copy( this.state.cards );
 		const dragCard = cards[ dragIndex ];
-
-		this.setState( update( this.state, {
-			cards: {
-				$splice: [
-					[ dragIndex, 1 ],
-					[ hoverIndex, 0, dragCard ]
-				]
-			}
-		}), () => {
+		cards.splice( dragIndex, 1 );
+		cards.splice( hoverIndex, 0, dragCard );
+		this.setState({
+			cards
+		}, () => {
 			this.props.onChange( this.state.cards );
 		});
 	}

@@ -20,7 +20,6 @@ import isElectron from 'utils/is-electron';
 import randomstring from 'utils/randomstring/alphanumeric';
 import io from 'socket.io-client';
 import SpeechInterface from 'speech-interface';
-import 'whatwg-fetch';
 
 
 // VARIABLES //
