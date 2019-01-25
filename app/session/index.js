@@ -1275,7 +1275,7 @@ class Session {
 			for ( let i = 0; i < ids.length; i++ ) {
 				const key = ids[ i ];
 				const actions = this.currentUserActions[ key ];
-				const ref =  this.responseVisualizers[ key ];
+				const ref = this.responseVisualizers[ key ];
 				if ( !ref ) {
 					continue;
 				}
