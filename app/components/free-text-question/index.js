@@ -270,43 +270,14 @@ class FreeTextQuestion extends Component {
 							disabled={this.state.solutionDisplayed}
 						/>
 					</FormGroup>
-					{
-						this.state.value.length >= 1 ?
-							<Button
-								className="submit-button"
-								variant="primary"
-								size="sm"
-								style={{
-									marginTop: '8px',
-									marginBottom: '8px'
-								}}
-								onClick={this.submitHandler}
-							>{ !this.state.submitted ? 'Submit' : 'Resubmit' }</Button> :
-							<OverlayTrigger
-								placement="top"
-								positionLeft={100}
-								overlay={<Tooltip id="submitTooltip">
-									Click submit after you have typed your answer.
-								</Tooltip>}
-								rootClose={true}
-							>
-								<div style={{ display: 'inline-block' }}>
-									<Button
-										className="submit-button"
-										variant="primary"
-										size="sm"
-										style={{
-											marginTop: '8px',
-											marginBottom: '8px',
-											pointerEvents: 'none'
-										}}
-										disabled
-									>Submit</Button>
-								</div>
-							</OverlayTrigger>
-					}
-
+					<ResponseVisualizer
+						buttonLabel="Answers" id={this.props.id}
+						info="FREE_TEXT_QUESTION_SUBMIT_ANSWER"
+					/>
 					<ButtonToolbar className="free-text-question-toolbar" >
+						{ this.props.id && this.props.feedback ? <FeedbackButtons
+							id={this.props.id+'_feedback'}
+						/> : null }
 						{ nHints > 0 ?
 							<HintButton
 								onClick={this.logHint}
@@ -327,13 +298,35 @@ class FreeTextQuestion extends Component {
 									<ChatButton for={this.props.id} />
 								</div> : null
 						}
-						<ResponseVisualizer
-							buttonLabel="Answers" id={this.props.id}
-							info="FREE_TEXT_QUESTION_SUBMIT_ANSWER"
-						/>
-						{ this.props.id && this.props.feedback ? <FeedbackButtons
-							id={this.props.id+'_feedback'}
-						/> : null }
+						{
+							this.state.value.length >= 1 ?
+								<Button
+									className="submit-button"
+									variant="primary"
+									size="sm"
+									onClick={this.submitHandler}
+								>{ !this.state.submitted ? 'Submit' : 'Resubmit' }</Button> :
+								<OverlayTrigger
+									placement="top"
+									positionLeft={100}
+									overlay={<Tooltip id="submitTooltip">
+										Click submit after you have typed your answer.
+									</Tooltip>}
+									rootClose={true}
+								>
+									<div style={{ display: 'inline-block' }}>
+										<Button
+											className="submit-button"
+											variant="primary"
+											size="sm"
+											style={{
+												pointerEvents: 'none'
+											}}
+											disabled
+										>Submit</Button>
+									</div>
+								</OverlayTrigger>
+						}
 					</ButtonToolbar>
 				</Card.Body>
 			</Card>
