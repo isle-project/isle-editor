@@ -8,6 +8,7 @@ import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import keys from '@stdlib/utils/keys';
+import contains from '@stdlib/assert/contains';
 
 
 // VARIABLES //
@@ -45,8 +46,20 @@ class ResponseVisualizers extends Component {
 		};
 	}
 
+	componentDidMount() {
+		const session = this.props.session;
+		const visualizers = session.responseVisualizers;
+		const ids = keys( visualizers );
+		this.unsubscribe = session.subscribe( ( type, value ) => {
+			if ( type === 'member_action' && contains( ids, value.id ) ) {
+				this.forceUpdate();
+			}
+		});
+	}
+
 	componentWillUnmount() {
 		removeGlowElems();
+		this.unsubscribe();
 	}
 
 	highlightFactory = ( id ) => {
@@ -98,14 +111,18 @@ class ResponseVisualizers extends Component {
 				onClick={this.highlightFactory( id )}
 			>
 				<label style={{ margin: 0 }}>{id}</label>
+				<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{nActions}</Badge>
 				<ProgressBar
 					variant="info"
 					now={infoRate}
 					max={100} min={0}
 					label={`${nInfo} / ${nUsers}`}
-					style={{ width: '180px', float: 'right', marginTop: '4px' }}
+					style={{
+						width: '180px',
+						float: 'right',
+						height: '1.25rem'
+					}}
 				/>
-				<Badge variant="light" style={{ float: 'right' }}>{nActions}</Badge>
 			</ListGroupItem> );
 		}
 		return ( <div>
