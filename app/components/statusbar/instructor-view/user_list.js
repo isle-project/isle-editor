@@ -7,6 +7,8 @@ import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import indexOf from '@stdlib/utils/index-of';
+import contains from '@stdlib/assert/contains';
+import isArray from '@stdlib/assert/is-array';
 import keys from '@stdlib/utils/keys';
 import { CAT20 } from 'constants/colors';
 import './user_list.css';
@@ -33,7 +35,8 @@ class UserList extends Component {
 
 		this.state = {
 			filter: null,
-			selected: null
+			selected: null,
+			selectedCohort: null
 		};
 	}
 
@@ -61,6 +64,7 @@ class UserList extends Component {
 	}
 
 	componentWillUnmount() {
+		console.log( 'Unmounting user list...' );
 		this.unsubscribe();
 		this.removeGlowElems();
 	}
@@ -131,13 +135,61 @@ class UserList extends Component {
 		});
 	}
 
+	onCohortChange = ( event ) => {
+		const session = this.props.session;
+		const cohorts = session.cohorts;
+		let cohort;
+		for ( let i = 0; i < cohorts.length; i++ ) {
+			if ( cohorts[ i ].title === event.target.value ) {
+				cohort = cohorts[ i ];
+				break;
+			}
+		}
+		this.setState({
+			selectedCohort: cohort
+		});
+	}
+
+	renderCohortSelection() {
+		const session = this.props.session;
+		const cohorts = session.cohorts;
+		if ( !isArray( cohorts ) ) {
+			return null;
+		}
+		const select = ( <select
+			style={{ width: '150px', backgroundColor: 'ghostwhite', padding: '2px' }}
+			onChange={this.onCohortChange}
+			value={this.state.selectedCohort ? this.state.selectedCohort.title : 'all'}
+		>
+			<option value="all">All Cohorts</option>
+			{cohorts.map( ( v, key ) => {
+				return (
+					<option
+						key={key}
+						value={v.title}
+					>{v.title}</option>
+				);
+			})}
+		</select> );
+		return ( <div style={{ padding: '5px' }}>
+			<label>Only show users from: </label>
+			{select}
+		</div> );
+	}
+
 	render() {
 		const session = this.props.session;
 		const userFocuses = session.userFocuses;
 		const ID_COUNTS = {};
 		let ID_COUNT_SUM = 0;
-		const list = <ListGroup className="user-list-group" style={{ height: window.innerHeight / 2 }}>
+		const list = <ListGroup className="user-list-group" style={{ height: window.innerHeight / 1.5 }}>
 			{session.userList.filter( user => {
+				if (
+					this.state.selectedCohort &&
+					!contains( this.state.selectedCohort.members, user.email )
+				) {
+					return false;
+				}
 				if ( !this.state.filter ) {
 					return true;
 				}
@@ -203,13 +255,14 @@ class UserList extends Component {
 					})}
 				</ProgressBar>
 				{list}
+				{this.renderCohortSelection()}
 			</Fragment>
 		);
 	}
 }
 
 
-// TYPES //
+// PROPERTIES //
 
 UserList.propTypes = {
 	session: PropTypes.object.isRequired

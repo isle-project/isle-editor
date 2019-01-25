@@ -11,6 +11,7 @@ import InstructorNotes from 'components/statusbar/instructor-notes';
 import animatePosition from 'utils/animate-position';
 import SessionContext from 'session/context.js';
 import UserList from './user_list.js';
+import ResponseVisualizers from './response_visualizers.js';
 import './instructor_view.css';
 
 
@@ -95,6 +96,9 @@ class InstructorView extends Component {
 			<Tabs defaultActiveKey="active_users" id="instructor-view-tabs" >
 				<Tab eventKey="active_users" title="Active Users" >
 					<UserList session={session} />
+				</Tab>
+				<Tab eventKey="response_visualizers" title="Responses" >
+					<ResponseVisualizers session={session} />
 				</Tab>
 				<Tab eventKey="action_log" title="Action Log" >
 					<ActionLog />
