@@ -26,6 +26,18 @@ function isHidden( el ) {
 	return el.offsetParent === null;
 }
 
+function removeGlowElems() {
+	// Remove glow effect from previously highlighted elements:
+	const focused = document.getElementsByClassName( 'focus-glow' );
+	while ( focused.length ) {
+		focused[0].classList.remove( 'focus-glow' );
+	}
+	const element = document.getElementById( 'duplicated-container' );
+	if ( element ) {
+		element.parentNode.removeChild( element );
+	}
+}
+
 
 // MAIN //
 
@@ -66,19 +78,7 @@ class UserList extends Component {
 	componentWillUnmount() {
 		console.log( 'Unmounting user list...' );
 		this.unsubscribe();
-		this.removeGlowElems();
-	}
-
-	removeGlowElems() {
-		// Remove glow effect from previously highlighted elements:
-		const focused = document.getElementsByClassName( 'focus-glow' );
-		while ( focused.length ) {
-			focused[0].classList.remove( 'focus-glow' );
-		}
-		const element = document.getElementById( 'duplicated-container' );
-		if ( element ) {
-			element.parentNode.removeChild( element );
-		}
+		removeGlowElems();
 	}
 
 	highlightElement = ( email ) => {
@@ -87,7 +87,7 @@ class UserList extends Component {
 		const id = userFocuses[ email ];
 		debug( 'ID of element to be focused is: '+id );
 
-		this.removeGlowElems();
+		removeGlowElems();
 		const elem = document.getElementById( id );
 		if ( elem ) {
 			debug( 'Found element, should add glow effect...' );
@@ -109,7 +109,7 @@ class UserList extends Component {
 	handleClickFactory = ( email ) => {
 		return () => {
 			if ( this.state.selected === email ) {
-				this.removeGlowElems();
+				removeGlowElems();
 				return this.setState({
 					selected: null
 				});
