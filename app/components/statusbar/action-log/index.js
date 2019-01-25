@@ -1,12 +1,12 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import Card from 'react-bootstrap/lib/Card';
-import Button from 'react-bootstrap/lib/Button';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
-import ToggleButtonGroup from 'react-bootstrap/lib/ToggleButtonGroup';
-import ToggleButton from 'react-bootstrap/lib/ToggleButton';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 import stringify from 'csv-stringify';
 import moment from 'moment';
 import logger from 'debug';

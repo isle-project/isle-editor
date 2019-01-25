@@ -1,12 +1,12 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/lib/Button';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Col from 'react-bootstrap/lib/Col';
-import Row from 'react-bootstrap/lib/Row';
-import Container from 'react-bootstrap/lib/Container';
-import Card from 'react-bootstrap/lib/Card';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
 import inmap from '@stdlib/utils/inmap';
 import roundn from '@stdlib/math/base/special/roundn';
 import sample from '@stdlib/random/sample';

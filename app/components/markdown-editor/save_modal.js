@@ -2,12 +2,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Col from 'react-bootstrap/lib/Col';
-import Row from 'react-bootstrap/lib/Row';
-import Card from 'react-bootstrap/lib/Card';
-import Button from 'react-bootstrap/lib/Button';
-import Modal from 'react-bootstrap/lib/Modal';
-import Collapse from 'react-bootstrap/lib/Collapse';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Collapse from 'react-bootstrap/Collapse';
 import SelectInput from 'components/input/select';
 import NumberInput from 'components/input/number';
 import pageSizes from './page_sizes.json';

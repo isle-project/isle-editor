@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment, lazy, Suspense } from 'react';
-import Button from 'react-bootstrap/lib/Button';
+import Button from 'react-bootstrap/Button';
 import round from '@stdlib/math/base/special/round';
 import ceil from '@stdlib/math/base/special/ceil';
 import max from '@stdlib/math/base/special/max';
@@ -16,7 +16,7 @@ import Calculator from 'components/calculator';
 import Chat from 'components/statusbar/chat';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
-import ProgressBar from 'react-bootstrap/lib/ProgressBar';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 import isElectron from 'utils/is-electron';
 import animatePosition from 'utils/animate-position';
 import SessionContext from 'session/context.js';

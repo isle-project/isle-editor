@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
-import Card from 'react-bootstrap/lib/Card';
-import Alert from 'react-bootstrap/lib/Alert';
+import Card from 'react-bootstrap/Card';
+import Alert from 'react-bootstrap/Alert';
 import isArray from '@stdlib/assert/is-array';
 import NextArrow from './next_arrow';
 import PrevArrow from './previous_arrow';

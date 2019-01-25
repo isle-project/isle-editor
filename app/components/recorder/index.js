@@ -3,10 +3,10 @@
 import React, { Component } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Button from 'react-bootstrap/lib/Button';
-import ToggleButtonGroup from 'react-bootstrap/lib/ToggleButtonGroup';
-import ToggleButton from 'react-bootstrap/lib/ToggleButton';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Button from 'react-bootstrap/Button';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder, WhammyRecorder } from 'recordrtc';
 import VoiceControl from 'components/voice-control';
 import inEditor from 'utils/is-electron';

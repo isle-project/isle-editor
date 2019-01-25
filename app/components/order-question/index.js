@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Button from 'react-bootstrap/lib/Button';
-import Card from 'react-bootstrap/lib/Card';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import DraggableList from 'components/draggable-list';
 import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';

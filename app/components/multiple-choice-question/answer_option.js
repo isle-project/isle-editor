@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
+import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import isObject from '@stdlib/assert/is-plain-object';
 import isBoolean from '@stdlib/assert/is-boolean';
 import convertJSONtoJSX from 'utils/json-to-jsx';

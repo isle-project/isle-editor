@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/lib/Button';
-import Alert from 'react-bootstrap/lib/Alert';
+import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
 

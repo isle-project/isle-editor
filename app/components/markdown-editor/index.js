@@ -9,7 +9,7 @@ import katex from 'markdown-it-katex';
 import markdownSub from 'markdown-it-sub';
 import markdownIns from 'markdown-it-ins';
 import markdownContainer from 'markdown-it-container';
-import Button from 'react-bootstrap/lib/Button';
+import Button from 'react-bootstrap/Button';
 import saveAs from 'utils/file-saver';
 import logger from 'debug';
 import replace from '@stdlib/string/replace';

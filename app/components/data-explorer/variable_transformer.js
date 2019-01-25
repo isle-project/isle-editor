@@ -2,12 +2,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/lib/Card';
-import Button from 'react-bootstrap/lib/Button';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
-import FormControl from 'react-bootstrap/lib/FormControl';
-import Dropdown from 'react-bootstrap/lib/Dropdown';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import FormControl from 'react-bootstrap/FormControl';
+import Dropdown from 'react-bootstrap/Dropdown';
 import TextArea from 'components/input/text-area';
 import TextInput from 'components/input/text';
 import contains from '@stdlib/assert/contains';

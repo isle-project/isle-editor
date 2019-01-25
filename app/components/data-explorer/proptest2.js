@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/lib/Button';
-import Card from 'react-bootstrap/lib/Card';
-import Col from 'react-bootstrap/lib/Col';
-import Row from 'react-bootstrap/lib/Row';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import TeX from 'components/tex';

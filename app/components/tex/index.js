@@ -3,9 +3,9 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
-import Overlay from 'react-bootstrap/lib/Overlay';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
-import Popover from 'react-bootstrap/lib/Popover';
+import Overlay from 'react-bootstrap/Overlay';
+import Tooltip from 'react-bootstrap/Tooltip';
+import Popover from 'react-bootstrap/Popover';
 import { select } from 'd3';
 import katex from 'katex';
 import NINF from '@stdlib/constants/math/float64-ninf';

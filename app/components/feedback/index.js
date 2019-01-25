@@ -2,10 +2,10 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/lib/Button';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import Modal from 'react-bootstrap/lib/Modal';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import FormGroup from 'react-bootstrap/FormGroup';
+import Modal from 'react-bootstrap/Modal';
 import Tooltip from 'components/tooltip';
 import TextArea from 'components/input/text-area';
 import CheckboxInput from 'components/input/checkbox';

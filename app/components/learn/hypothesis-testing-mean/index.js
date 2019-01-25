@@ -1,11 +1,11 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/lib/Container';
-import Row from 'react-bootstrap/lib/Row';
-import Col from 'react-bootstrap/lib/Col';
-import Badge from 'react-bootstrap/lib/Badge';
-import Card from 'react-bootstrap/lib/Card';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Badge from 'react-bootstrap/Badge';
+import Card from 'react-bootstrap/Card';
 import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
 import logger from 'debug';
 import abs from '@stdlib/math/base/special/abs';

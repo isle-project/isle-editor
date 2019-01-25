@@ -3,8 +3,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/lib/Button';
-import Popover from 'react-bootstrap/lib/Popover';
+import Button from 'react-bootstrap/Button';
+import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'components/overlay-trigger';
 
 

@@ -1,12 +1,12 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/lib/Button';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Container from 'react-bootstrap/lib/Container';
-import Col from 'react-bootstrap/lib/Col';
-import Card from 'react-bootstrap/lib/Card';
-import Row from 'react-bootstrap/lib/Row';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
 import rBinomial from '@stdlib/random/base/binomial';
 import copy from '@stdlib/utils/copy';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';

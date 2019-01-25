@@ -2,9 +2,9 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/lib/Button';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Card from 'react-bootstrap/lib/Card';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Card from 'react-bootstrap/Card';
 import * as venn from 'venn.js';
 import * as d3 from 'd3';
 import isStringArray from '@stdlib/assert/is-string-array';

@@ -2,12 +2,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Form from 'react-bootstrap/lib/Form';
-import FormControl from 'react-bootstrap/lib/FormControl';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import InputGroup from 'react-bootstrap/lib/InputGroup';
-import Button from 'react-bootstrap/lib/Button';
-import Card from 'react-bootstrap/lib/Card';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
+import FormGroup from 'react-bootstrap/FormGroup';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';

@@ -1,11 +1,11 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/lib/Button';
-import Form from 'react-bootstrap/lib/Form';
-import FormControl from 'react-bootstrap/lib/FormControl';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import Card from 'react-bootstrap/lib/Card';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
+import FormGroup from 'react-bootstrap/FormGroup';
+import Card from 'react-bootstrap/Card';
 
 
 // MAIN //

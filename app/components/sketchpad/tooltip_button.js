@@ -1,7 +1,7 @@
 // MODULES //
 
 import React from 'react';
-import Button from 'react-bootstrap/lib/Button';
+import Button from 'react-bootstrap/Button';
 import Tooltip from 'components/tooltip';
 
 

@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/lib/Button';
-import Modal from 'react-bootstrap/lib/Modal';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import randomstring from 'utils/randomstring/alphanumeric';
 import Dimensions from 'components/dimensions';

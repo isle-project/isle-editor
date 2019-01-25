@@ -2,8 +2,8 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/lib/Button';
-import Card from 'react-bootstrap/lib/Card';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';

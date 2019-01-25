@@ -3,10 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Badge from 'react-bootstrap/lib/Badge';
-import ListGroup from 'react-bootstrap/lib/ListGroup';
-import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
-import ProgressBar from 'react-bootstrap/lib/ProgressBar';
+import Badge from 'react-bootstrap/Badge';
+import ListGroup from 'react-bootstrap/ListGroup';
+import ListGroupItem from 'react-bootstrap/ListGroupItem';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 import keys from '@stdlib/utils/keys';
 import contains from '@stdlib/assert/contains';
 

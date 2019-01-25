@@ -2,9 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/lib/Button';
-import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
-import Card from 'react-bootstrap/lib/Card';
+import Button from 'react-bootstrap/Button';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import Card from 'react-bootstrap/Card';
 import logger from 'debug';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';

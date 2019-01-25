@@ -2,7 +2,7 @@
 
 import React from 'react';
 import RangePicker from 'components/range-picker';
-import Modal from 'react-bootstrap/lib/Modal';
+import Modal from 'react-bootstrap/Modal';
 import isArray from '@stdlib/assert/is-array';
 
 

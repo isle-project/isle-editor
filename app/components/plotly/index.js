@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
-import Button from 'react-bootstrap/lib/Button';
-import Modal from 'react-bootstrap/lib/Modal';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import Plotly from 'plotly.js';
 const Plot = createPlotlyComponent( Plotly );

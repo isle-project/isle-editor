@@ -3,9 +3,9 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import ListGroup from 'react-bootstrap/lib/ListGroup';
-import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
-import ProgressBar from 'react-bootstrap/lib/ProgressBar';
+import ListGroup from 'react-bootstrap/ListGroup';
+import ListGroupItem from 'react-bootstrap/ListGroupItem';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 import indexOf from '@stdlib/utils/index-of';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';

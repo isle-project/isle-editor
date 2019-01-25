@@ -2,12 +2,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Badge from 'react-bootstrap/lib/Badge';
-import Button from 'react-bootstrap/lib/Button';
-import Popover from 'react-bootstrap/lib/Popover';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import ProgressBar from 'react-bootstrap/lib/ProgressBar';
-import Modal from 'react-bootstrap/lib/Modal';
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
+import Popover from 'react-bootstrap/Popover';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import Modal from 'react-bootstrap/Modal';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';

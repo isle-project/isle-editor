@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Button from 'react-bootstrap/lib/Button';
+import Button from 'react-bootstrap/Button';
 import Tooltip from 'components/tooltip';
 import Gate from 'components/gate';
 import SessionContext from 'session/context.js';

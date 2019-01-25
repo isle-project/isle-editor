@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Button from 'react-bootstrap/lib/Button';
+import Button from 'react-bootstrap/Button';
 import shuffle from '@stdlib/random/shuffle';
 import isString from '@stdlib/assert/is-string';
 import * as d3 from 'd3';

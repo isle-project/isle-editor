@@ -2,8 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
-import Popover from 'react-bootstrap/lib/Popover';
+import ListGroupItem from 'react-bootstrap/ListGroupItem';
+import Popover from 'react-bootstrap/Popover';
 import isObject from '@stdlib/assert/is-plain-object';
 import OverlayTrigger from 'components/overlay-trigger';
 import convertJSONtoJSX from 'utils/json-to-jsx';

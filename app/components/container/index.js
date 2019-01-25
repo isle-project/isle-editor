@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/lib/Container';
+import Container from 'react-bootstrap/Container';
 import PropTypes from 'prop-types';
 
 

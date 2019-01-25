@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import FormControl from 'react-bootstrap/lib/FormControl';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
+import FormControl from 'react-bootstrap/FormControl';
+import FormGroup from 'react-bootstrap/FormGroup';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 
 
