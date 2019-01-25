@@ -26,6 +26,7 @@ import ReactList from 'react-list';
 import Highlighter from 'react-highlight-words';
 import Plotly from 'components/plotly';
 import WordCloud from 'components/word-cloud';
+import SessionContext from 'session/context.js';
 import Search from './search.js';
 import SingleActionModal from './single_action_modal.js';
 import FullscreenHeader from './fullscreen_header';
@@ -444,7 +445,14 @@ class FullscreenActionDisplay extends Component {
 				onHide={this.props.toggleActions}
 				dialogClassName="modal-100w"
 			>
-				<FullscreenHeader componentID={this.props.componentID} actionLabel={this.props.actionLabel} onPeriodChange={this.props.onPeriodChange} />
+				<FullscreenHeader
+					componentID={this.props.componentID}
+					actionLabel={this.props.actionLabel}
+					onPeriodChange={this.props.onPeriodChange}
+					cohorts={this.context.cohorts}
+					selectedCohort={this.props.selectedCohort}
+					onCohortChange={this.props.onCohortChange}
+				/>
 				<Modal.Body style={{ minHeight: 0.75 * window.innerHeight, padding: 0 }} >
 					<Row>
 						<Col md={6}>
@@ -508,6 +516,8 @@ FullscreenActionDisplay.propTypes = {
 FullscreenActionDisplay.defaultProps = {
 	actionLabel: 'Responses'
 };
+
+FullscreenActionDisplay.contextType = SessionContext;
 
 
 // EXPORTS //

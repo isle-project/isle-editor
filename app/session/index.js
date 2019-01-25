@@ -12,6 +12,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
+import pluck from '@stdlib/utils/pluck';
 import identity from '@stdlib/utils/identity-function';
 import copy from '@stdlib/utils/copy';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
@@ -874,7 +875,7 @@ class Session {
 	* Retrieves cohort information for course owners.
 	*/
 	getCohorts = () => {
-		fetch( this.server+'/get_cohorts?'+qs.stringify({ namespaceID: this.namespaceID }), {
+		fetch( this.server+'/get_cohorts?'+qs.stringify({ namespaceID: this.namespaceID, memberFields: 'email' }), {
 			headers: {
 				'Authorization': 'JWT ' + this.user.token
 			}
@@ -882,7 +883,11 @@ class Session {
 		.then( response => {
 			if ( response.status === 200 ) {
 				response.json().then( body => {
-					this.cohorts = body.cohorts;
+					const cohorts = body.cohorts;
+					cohorts.forEach( cohort => {
+						cohort.members = pluck( cohort.members, 'email' );
+					});
+					this.cohorts = cohorts;
 				});
 			}
 		})

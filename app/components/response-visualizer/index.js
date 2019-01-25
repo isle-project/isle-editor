@@ -10,6 +10,7 @@ import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import Modal from 'react-bootstrap/lib/Modal';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
 import isArray from '@stdlib/assert/is-array';
+import contains from '@stdlib/assert/contains';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import Gate from 'components/gate';
@@ -79,7 +80,8 @@ class ResponseVisualizer extends Component {
 			showExtended: false,
 			showDeleteModal: false,
 			selectedAction: null,
-			period: null
+			period: null,
+			selectedCohort: null
 		};
 	}
 
@@ -109,6 +111,12 @@ class ResponseVisualizer extends Component {
 						action.type === this.props.success ||
 						action.type === this.props.danger
 					) {
+						if (
+							this.state.selectedCohort &&
+							!contains( this.state.selectedCohort.members, action.email )
+						) {
+							return;
+						}
 						this.pushSessionAction( action );
 					}
 				}
@@ -143,6 +151,20 @@ class ResponseVisualizer extends Component {
 	onPeriodChange = ( newPeriod ) => {
 		this.setState({
 			period: newPeriod
+		}, this.addSessionActions );
+	}
+
+	onCohortChange = ( event ) => {
+		const cohorts = this.context.cohorts;
+		let cohort;
+		for ( let i = 0; i < cohorts.length; i++ ) {
+			if ( cohorts[ i ].title === event.target.value ) {
+				cohort = cohorts[ i ];
+				break;
+			}
+		}
+		this.setState({
+			selectedCohort: cohort
 		}, this.addSessionActions );
 	}
 
@@ -195,6 +217,12 @@ class ResponseVisualizer extends Component {
 			if ( action.id === this.props.id ) {
 				action = extractValue( action );
 				this.emailHash[ action.email ] = action.type;
+				if (
+					this.state.selectedCohort &&
+					!contains( this.state.selectedCohort.members, action.email )
+				) {
+					continue;
+				}
 				if ( this.state.period ) {
 					const { from, to } = this.state.period;
 					if ( action.absoluteTime > from && action.absoluteTime < to ) {
@@ -402,6 +430,8 @@ class ResponseVisualizer extends Component {
 			toggleActions={this.toggleActions}
 			data={this.props.data}
 			counts={this.state.counts}
+			selectedCohort={this.state.selectedCohort}
+			onCohortChange={this.onCohortChange}
 			{...optionalProps}
 		/> );
 	}
