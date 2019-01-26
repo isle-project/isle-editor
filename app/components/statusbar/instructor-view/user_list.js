@@ -10,6 +10,7 @@ import indexOf from '@stdlib/utils/index-of';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
 import keys from '@stdlib/utils/keys';
+import Tooltip from 'components/tooltip';
 import { CAT20 } from 'constants/colors';
 import './user_list.css';
 
@@ -118,6 +119,12 @@ class UserList extends Component {
 			this.setState({
 				selected: email
 			});
+		};
+	}
+
+	thumbnailClickFactory = ( email ) => {
+		return () => {
+			this.props.onThumbnailClick( email );
 		};
 	}
 
@@ -233,7 +240,13 @@ class UserList extends Component {
 							color
 						}}
 					>
-						<img className="user-thumbnail" src={src} />
+						<Tooltip placement="right" tooltip="Open user actions" >
+							<img
+								onClick={this.thumbnailClickFactory( user.email )}
+								className="user-thumbnail"
+								src={src}
+							/>
+						</Tooltip>
 						{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}
 						{focusedID}
 					</ListGroupItem>
@@ -267,6 +280,7 @@ class UserList extends Component {
 // PROPERTIES //
 
 UserList.propTypes = {
+	onThumbnailClick: PropTypes.func.isRequired,
 	session: PropTypes.object.isRequired
 };
 

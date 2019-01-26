@@ -39,4 +39,5 @@
 	border: solid 1px darkgray;
 	border-radius: 0.25rem;
 	margin-right: 5px;
+	cursor: pointer;
 }

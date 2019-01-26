@@ -28,6 +28,7 @@ class InstructorView extends Component {
 		super( props );
 
 		this.state = {
+			activeTab: 'active_users',
 			hidden: true,
 			rightPos: -max( window.innerWidth * 0.45, 400 )
 		};
@@ -93,9 +94,25 @@ class InstructorView extends Component {
 			return null;
 		}
 		return (
-			<Tabs defaultActiveKey="active_users" id="instructor-view-tabs" >
+			<Tabs
+				activeKey={this.state.activeTab}
+				id="instructor-view-tabs"
+				onSelect={( eventKey ) => {
+					this.setState({
+						activeTab: eventKey
+					});
+				}}
+			>
 				<Tab eventKey="active_users" title="Active Users" >
-					<UserList session={session} />
+					<UserList
+						session={session}
+						onThumbnailClick={( email ) => {
+							console.log( 'Go to actions from user '+email );
+							this.setState({
+								activeTab: 'action_log'
+							});
+						}}
+					/>
 				</Tab>
 				<Tab eventKey="response_visualizers" title="Responses" >
 					<ResponseVisualizers session={session} />
