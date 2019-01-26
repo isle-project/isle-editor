@@ -128,6 +128,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@stdlib/stdlib": "0.0.58",
+    "acorn": "^6.0.5",
     "ansi-to-react": "^4.0.4",
     "archiver": "^3.0.0",
     "autobind-decorator": "^2.2.1",
@@ -206,14 +207,14 @@
     "react-grid-layout": "^0.16.6",
     "react-highlight-words": "^0.16.0",
     "react-input-range": "^1.2.1",
-    "react-joyride": "2.0.2",
+    "react-joyride": "2.0.3",
     "react-json-tree": "^0.11.2",
     "react-list": "^0.8.11",
     "react-monaco-editor": "^0.22.0",
     "react-notification-system": "^0.2.7",
     "react-player": "^1.8.0",
     "react-plotly.js": "^2.2.0",
-    "react-redux": "5.1.1",
+    "react-redux": "6.0.0",
     "react-router": "4.3.1",
     "react-router-dom": "^4.3.1",
     "react-select": "^2.3.0",
@@ -238,7 +239,7 @@
     "uuid": "^3.3.2",
     "venn.js": "0.2.20",
     "victory": "31.1.0",
-    "webpack": "4.28.4"
+    "webpack": "4.29.0"
   },
   "greenkeeper": {
     "ignore": [
