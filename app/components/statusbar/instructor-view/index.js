@@ -30,7 +30,8 @@ class InstructorView extends Component {
 		this.state = {
 			activeTab: 'active_users',
 			hidden: true,
-			rightPos: -max( window.innerWidth * 0.45, 400 )
+			rightPos: -max( window.innerWidth * 0.45, 400 ),
+			selectedEmail: null
 		};
 	}
 
@@ -109,7 +110,8 @@ class InstructorView extends Component {
 						onThumbnailClick={( email ) => {
 							console.log( 'Go to actions from user '+email );
 							this.setState({
-								activeTab: 'action_log'
+								activeTab: 'action_log',
+								selectedEmail: email
 							});
 						}}
 					/>
@@ -118,7 +120,7 @@ class InstructorView extends Component {
 					<ResponseVisualizers session={session} />
 				</Tab>
 				<Tab eventKey="action_log" title="Action Log" >
-					<ActionLog />
+					<ActionLog selectedEmail={this.state.selectedEmail} />
 				</Tab>
 				<Tab eventKey="instructor_notes" title="Instructor Notes" >
 					<InstructorNotes
