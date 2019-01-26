@@ -222,6 +222,7 @@ class UserList extends Component {
 				} else {
 					background = user.inactive ? 'lightgrey' : 'transparent';
 				}
+				const src = session.server + '/thumbnail/' + user.picture;
 				return (
 					<ListGroupItem
 						className="user-list-item"
@@ -232,6 +233,7 @@ class UserList extends Component {
 							color
 						}}
 					>
+						<img className="user-thumbnail" src={src} />
 						{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}
 						{focusedID}
 					</ListGroupItem>
