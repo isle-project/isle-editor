@@ -1,6 +1,11 @@
+// MODULES //
+
+import Victory from 'victory';
+
+
 // MAIN //
 
-import { VictoryScatter } from 'victory';
+const { VictoryScatter } = Victory;
 
 
 // EXPORTS //

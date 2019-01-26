@@ -1,6 +1,11 @@
+// MODULES //
+
+import Victory from 'victory';
+
+
 // MAIN //
 
-import { VictoryAxis } from 'victory';
+const { VictoryAxis } = Victory;
 
 
 // EXPORTS //

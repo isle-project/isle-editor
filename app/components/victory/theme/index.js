@@ -1,6 +1,11 @@
+// MODULES //
+
+import Victory from 'victory';
+
+
 // MAIN //
 
-import { VictoryTheme } from 'victory';
+const { VictoryTheme } = Victory;
 
 
 // EXPORTS //

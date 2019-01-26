@@ -1,6 +1,11 @@
+// MODULES //
+
+import Victory from 'victory';
+
+
 // MAIN //
 
-import { VictoryTooltip } from 'victory';
+const { VictoryTooltip } = Victory;
 
 
 // EXPORTS //
