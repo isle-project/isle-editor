@@ -160,6 +160,10 @@
 		"value":"<Plotly\n\tdata={${1:data array}}\n\tlayout={${2:{}}}\n/>\n"
 	},
 	{
+		"name":"Preload",
+		"value":"<Preload\n\timage={${1:}} />\n"
+	},
+	{
 		"name":"ProportionsInput",
 		"value":"<ProportionsInput\n\tlegends = {${1:[ 'Robotics', 'Bitcoin', 'Gold', 'Diamonds', 'Vegetables', 'Fruits' ]}}\n\tprecision={${2:2}}\n\tstep={${3:0.25}}\n\tnElements={${4:6}}\n/>\n"
 	},

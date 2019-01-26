@@ -76,6 +76,7 @@
 	"Panel": "components/panel",
 	"Playground": "components/playground",
 	"Plotly": "components/plotly",
+	"Preload": "components/preload",
 	"ProportionsInput": "components/input/proportions",
 	"ProportionsSurvey": "components/proportions-survey",
 	"Queue": "components/queue",

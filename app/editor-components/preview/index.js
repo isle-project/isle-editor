@@ -127,6 +127,7 @@ const SCOPE = {
 	Panel: Loadable( () => import( 'components/panel' ) ),
 	Playground: Loadable( () => import( 'components/playground' ) ),
 	Plotly: Loadable( () => import( 'components/plotly' ) ),
+	Preload: Loadable( () => import( 'components/preload' ) ),
 	ProportionsInput,
 	ProportionsSurvey: Loadable( () => import( 'components/proportions-survey' ) ),
 	QuestionForm: Loadable( () => import( 'components/question-form' ) ),
