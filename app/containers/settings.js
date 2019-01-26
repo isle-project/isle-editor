@@ -2,7 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import NumberInput from 'components/input/number';
-import Card from 'react-bootstrap/lib/Card';
+import Card from 'react-bootstrap/Card';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
 import SettingsLogin from 'editor-components/settings-login';
 

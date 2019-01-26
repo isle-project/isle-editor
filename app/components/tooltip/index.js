@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
+import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'components/overlay-trigger';
 
 

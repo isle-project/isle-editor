@@ -20,7 +20,6 @@ import isElectron from 'utils/is-electron';
 import randomstring from 'utils/randomstring/alphanumeric';
 import io from 'socket.io-client';
 import SpeechInterface from 'speech-interface';
-import 'whatwg-fetch';
 
 
 // VARIABLES //
@@ -1275,7 +1274,11 @@ class Session {
 			for ( let i = 0; i < ids.length; i++ ) {
 				const key = ids[ i ];
 				const actions = this.currentUserActions[ key ];
-				const { type } = this.responseVisualizers[ key ];
+				const ref = this.responseVisualizers[ key ];
+				if ( !ref ) {
+					continue;
+				}
+				const type = ref.type;
 				if ( actions ) {
 					for ( let j = 0; j < actions.length; j++ ) {
 						if ( actions[ j ].type === type ) {
@@ -1290,15 +1293,18 @@ class Session {
 		}
 		else {
 			const actions = this.currentUserActions[ id ];
-			const { type } = this.responseVisualizers[ id ];
-			for ( let j = 0; j < actions.length; j++ ) {
-				if ( actions[ j ].type === type ) {
-					if ( j < actions.length - 1 ) {
-						break;
-					}
-					else if ( j === actions.length - 1 ) {
-						PRIVATE_VARS['progress'] = this.get( 'progress' ) + 1.0 / ids.length;
-						this.update( 'self_updated_progress', this.get( 'progress' ) );
+			const ref = this.responseVisualizers[ id ];
+			if ( ref ) {
+				const type = ref.type;
+				for ( let j = 0; j < actions.length; j++ ) {
+					if ( actions[ j ].type === type ) {
+						if ( j < actions.length - 1 ) {
+							break;
+						}
+						else if ( j === actions.length - 1 ) {
+							PRIVATE_VARS['progress'] = this.get( 'progress' ) + 1.0 / ids.length;
+							this.update( 'self_updated_progress', this.get( 'progress' ) );
+						}
 					}
 				}
 			}

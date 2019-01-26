@@ -1,9 +1,9 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
-import Container from 'react-bootstrap/lib/Container';
-import Col from 'react-bootstrap/lib/Col';
-import Row from 'react-bootstrap/lib/Row';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import ExportLesson from './export_lesson.js';
 import UploadLesson from './upload_lesson.js';
 import HeaderUpperBar from 'editor-components/header-upper-bar';

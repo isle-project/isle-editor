@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/lib/Card';
+import Card from 'react-bootstrap/Card';
 import TeX from 'components/tex';
 import NumberInput from 'components/input/number';
 import sqrt from '@stdlib/math/base/special/sqrt';

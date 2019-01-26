@@ -2,11 +2,11 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Button from 'react-bootstrap/lib/Button';
-import Form from 'react-bootstrap/lib/Form';
-import Card from 'react-bootstrap/lib/Card';
+import FormGroup from 'react-bootstrap/FormGroup';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
 import logger from 'debug';
 import sample from '@stdlib/random/sample';
 import isArray from '@stdlib/assert/is-array';

@@ -6,10 +6,10 @@ import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
 import InputRange from 'react-input-range';
 import unique from 'uniq';
-import Button from 'react-bootstrap/lib/Button';
-import Modal from 'react-bootstrap/lib/Modal';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
-import markdownIt from 'markdown-it';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Tooltip from 'react-bootstrap/Tooltip';
+import markdownit from 'markdown-it';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import contains from '@stdlib/assert/contains';
 import lowercase from '@stdlib/string/lowercase';
@@ -31,7 +31,7 @@ import './data_table.css';
 
 // VARIABLES //
 
-const md = markdownIt({
+const md = markdownit({
 	html: true,
 	xhtmlOut: true,
 	breaks: true,

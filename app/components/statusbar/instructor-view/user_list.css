@@ -7,6 +7,7 @@
 
 .user-list-item {
 	cursor: pointer;
+	padding: 5px;
 }
 
 .user-list-item:hover {
@@ -30,4 +31,12 @@
 	bottom: 0;
 	background-color: rgba(0, 0, 0, 0.5);
 	z-index: 2;
+}
+
+.user-thumbnail {
+	width: 32px;
+	height: 32px;
+	border: solid 1px darkgray;
+	border-radius: 0.25rem;
+	margin-right: 5px;
 }

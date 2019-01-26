@@ -1,9 +1,9 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/lib/Container';
-import Col from 'react-bootstrap/lib/Col';
-import Row from 'react-bootstrap/lib/Row';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import landscape from '@stdlib/datasets/img-french-alpine-landscape';
 import boats from '@stdlib/datasets/img-nagasaki-boats';
 import airplane from '@stdlib/datasets/img-airplane-from-above';

@@ -2,13 +2,13 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import markdownIt from 'markdown-it';
-import Button from 'react-bootstrap/lib/Button';
-import Card from 'react-bootstrap/lib/Card';
-import Table from 'react-bootstrap/lib/Table';
-import FormControl from 'react-bootstrap/lib/FormControl';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import Modal from 'react-bootstrap/lib/Modal';
+import markdownit from 'markdown-it';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Table from 'react-bootstrap/Table';
+import FormControl from 'react-bootstrap/FormControl';
+import FormGroup from 'react-bootstrap/FormGroup';
+import Modal from 'react-bootstrap/Modal';
 import Checkbox from 'components/input/checkbox';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import typeOf from '@stdlib/utils/type-of';
@@ -24,7 +24,7 @@ import './component_configurator.css';
 const RE_FUNCTION = /^[a-z0-9]*\(([^)]*)\)/i;
 const RE_SNIPPET_PLACEHOLDER = /\${[0-9]:([^}]+)}/g;
 const RE_SNIPPET_EMPTY_PLACEHOLDER = /\t*\${[0-9]:}\n?/g;
-const md = markdownIt({
+const md = markdownit({
 	html: true,
 	xhtmlOut: true,
 	breaks: true,

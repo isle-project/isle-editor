@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import logger from 'debug';
-import Button from 'react-bootstrap/lib/Button';
-import Card from 'react-bootstrap/lib/Card';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
@@ -11,7 +11,6 @@ import SliderInput from 'components/input/slider';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
 import objectKeys from '@stdlib/utils/keys';
-import kernelSmooth from 'kernel-smooth';
 import linspace from '@stdlib/math/utils/linspace';
 import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
@@ -23,6 +22,7 @@ import gaussian from '@stdlib/stats/base/dists/normal/pdf';
 import dexp from '@stdlib/stats/base/dists/exponential/pdf';
 import dunif from '@stdlib/stats/base/dists/uniform/pdf';
 import iqr from 'utils/statistic/iqr';
+import kernelSmoothDensity from './kernel_smooth_density.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
 
@@ -54,7 +54,7 @@ function calculateDensityValues( vals, densityType ) {
 		// Chose appropriate bandwidth via rule-of-thumb:
 		const h = 2.0 * iqr( vals ) * pow( vals.length, -1/3 ) || 0.1;
 		const phi = gaussian.factory( 0.0, 1.0 );
-		const kde = kernelSmooth.density( vals, phi, h );
+		const kde = kernelSmoothDensity( vals, phi, h );
 		y = x.map( x => kde( x ) );
 		break;
 	case 'Uniform':

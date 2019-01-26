@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import markdownIt from 'markdown-it';
+import markdownit from 'markdown-it';
 import logger from 'debug';
 import VoiceControl from 'components/voice-control';
 
@@ -17,7 +17,7 @@ const VOICE_COMMANDS = [
 		description: 'Read out the text'
 	}
 ];
-const md = markdownIt({
+const md = markdownit({
 	html: true,
 	xhtmlOut: true,
 	breaks: true,

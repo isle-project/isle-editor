@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Ansi from 'ansi-to-react';
-import Card from 'react-bootstrap/lib/Card';
+import Card from 'react-bootstrap/Card';
 
 
 // VARIABLES //

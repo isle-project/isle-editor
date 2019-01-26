@@ -2,9 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/lib/Button';
-import ListGroup from 'react-bootstrap/lib/ListGroup';
-import Card from 'react-bootstrap/lib/Card';
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Card from 'react-bootstrap/Card';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';

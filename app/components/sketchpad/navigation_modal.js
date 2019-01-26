@@ -1,8 +1,8 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import Nav from 'react-bootstrap/lib/Nav';
-import Modal from 'react-bootstrap/lib/Modal';
+import Nav from 'react-bootstrap/Nav';
+import Modal from 'react-bootstrap/Modal';
 import PropTypes from 'prop-types';
 import incrspace from '@stdlib/math/utils/incrspace';
 import ceil from '@stdlib/math/base/special/ceil';

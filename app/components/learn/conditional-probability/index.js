@@ -2,10 +2,10 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Col from 'react-bootstrap/lib/Col';
-import Container from 'react-bootstrap/lib/Container';
-import Card from 'react-bootstrap/lib/Card';
-import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryLine, VictoryTheme } from 'victory';
 import roundn from '@stdlib/math/base/special/roundn';
 import max from '@stdlib/math/base/special/max';

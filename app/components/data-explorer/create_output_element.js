@@ -3,8 +3,8 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import TurndownService from 'turndown';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Table from 'react-bootstrap/lib/Table';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Table from 'react-bootstrap/Table';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';

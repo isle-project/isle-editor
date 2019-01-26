@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/lib/Card';
-import ProgressBar from 'react-bootstrap/lib/ProgressBar';
+import Card from 'react-bootstrap/Card';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 import parse from 'csv-parse';
 import detect from 'detect-csv';
 import isNull from '@stdlib/assert/is-null';

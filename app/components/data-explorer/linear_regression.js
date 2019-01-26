@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Table from 'react-bootstrap/lib/Table';
+import Table from 'react-bootstrap/Table';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import objectValues from '@stdlib/utils/values';

@@ -3,12 +3,12 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { TwitterPicker } from 'react-color';
-import DropdownButton from 'react-bootstrap/lib/DropdownButton';
-import DropdownItem from 'react-bootstrap/lib/DropdownItem';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Button from 'react-bootstrap/lib/Button';
-import InputGroup from 'react-bootstrap/lib/InputGroup';
-import FormControl from 'react-bootstrap/lib/FormControl';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import DropdownItem from 'react-bootstrap/DropdownItem';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 import Tooltip from 'components/tooltip';
 import TooltipButton from './tooltip_button.js';
 

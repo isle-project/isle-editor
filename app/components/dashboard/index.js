@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Button from 'react-bootstrap/lib/Button';
-import Card from 'react-bootstrap/lib/Card';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import isNull from '@stdlib/assert/is-null';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
 import CheckboxInput from 'components/input/checkbox';

@@ -155,7 +155,7 @@ class WebpackCdnPlugin {
 	*/
 	static _cleanModules(modules) {
 		modules.forEach(p => {
-			p.version = WebpackCdnPlugin.getVersion(p.name);
+			p.version = p.version || WebpackCdnPlugin.getVersion(p.name);
 
 			if ( !p.paths ) {
 				p.paths = [];

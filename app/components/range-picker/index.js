@@ -1,9 +1,9 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Button from 'react-bootstrap/lib/Button';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Button from 'react-bootstrap/Button';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import DateRangePicker from 'react-dates/esm/components/DateRangePicker';

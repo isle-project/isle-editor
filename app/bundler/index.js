@@ -267,10 +267,6 @@ function writeIndexFile({
 					basePath,
 					'./node_modules/csv-stringify/lib/es5/index.js'
 				),
-				'victory': resolve(
-					basePath,
-					'./node_modules/victory/dist/victory.min.js'
-				),
 				'react-transition-group/TransitionGroup': resolve(
 					basePath,
 					'./node_modules/spectacle/node_modules/react-transition-group/TransitionGroup.js'
@@ -361,6 +357,55 @@ function writeIndexFile({
 						alias: 'moment.js',
 						var: 'moment',
 						path: 'moment.min.js'
+					},
+					{
+						name: 'react',
+						alias: 'react',
+						var: 'React',
+						path: 'umd/react.production.min.js'
+					},
+					{
+						name: 'react-dom',
+						alias: 'react-dom',
+						var: 'ReactDOM',
+						path: 'umd/react-dom.production.min.js'
+					},
+					{
+						name: 'prop-types',
+						alias: 'prop-types',
+						var: 'PropTypes',
+						path: 'prop-types.min.js'
+					},
+					{
+						name: 'react-table',
+						alias: 'react-table',
+						var: 'ReactTable',
+						path: 'react-table.js'
+					},
+					{
+						name: 'markdown-it',
+						alias: 'markdown-it',
+						var: 'markdownit',
+						path: 'markdown-it.min.js'
+					},
+					{
+						name: 'pdfmake/build/pdfmake',
+						alias: 'pdfmake',
+						var: 'pdfMake',
+						path: 'pdfmake.min.js',
+						version: '0.1.40'
+					},
+					{
+						name: 'localforage',
+						alias: 'localforage',
+						var: 'localforage',
+						path: 'localforage.min.js'
+					},
+					{
+						name: 'victory',
+						alias: 'victory',
+						var: 'Victory',
+						path: 'victory.min.js'
 					}
 				]
 			}),

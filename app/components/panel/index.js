@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/lib/Card';
+import Card from 'react-bootstrap/Card';
 import './panel.css';
 
 

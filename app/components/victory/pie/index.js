@@ -1,6 +1,11 @@
+// MODULES //
+
+import Victory from 'victory';
+
+
 // MAIN //
 
-import { VictoryPie } from 'victory';
+const { VictoryPie } = Victory;
 
 
 // EXPORTS //
