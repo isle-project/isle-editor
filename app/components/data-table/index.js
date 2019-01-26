@@ -9,7 +9,7 @@ import unique from 'uniq';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Tooltip from 'react-bootstrap/Tooltip';
-import markdownIt from 'markdown-it';
+import markdownit from 'markdown-it';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import contains from '@stdlib/assert/contains';
 import lowercase from '@stdlib/string/lowercase';
@@ -31,7 +31,7 @@ import './data_table.css';
 
 // VARIABLES //
 
-const md = markdownIt({
+const md = markdownit({
 	html: true,
 	xhtmlOut: true,
 	breaks: true,

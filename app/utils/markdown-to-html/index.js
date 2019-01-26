@@ -1,6 +1,6 @@
 // MODULES //
 
-import markdownIT from 'markdown-it';
+import markdownit from 'markdown-it';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import replace from '@stdlib/string/replace';
 import Tokenizer from './tokenizer.js';
@@ -8,7 +8,7 @@ import Tokenizer from './tokenizer.js';
 
 // VARIABLES //
 
-const md = markdownIT({
+const md = markdownit({
 	html: true,
 	xhtmlOut: true,
 	breaks: true,
