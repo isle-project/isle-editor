@@ -3,7 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import pdfjs from 'pdfjs-dist/webpack';
-import pdfMake from 'pdfmake-lite/build/pdfmake.min.js';
+import pdfMake from 'pdfmake/build/pdfmake';
 import logger from 'debug';
 import Pressure from 'pressure';
 import Card from 'react-bootstrap/Card';
@@ -12,7 +12,7 @@ import Popover from 'react-bootstrap/Popover';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import SelectInput from 'react-select';
+import Select from 'react-select';
 import isTouchDevice from 'is-touch-device';
 import Checkbox from 'components/input/checkbox';
 import contains from '@stdlib/assert/contains';
@@ -1878,7 +1878,7 @@ class Sketchpad extends Component {
 				return { value: user.name, label: user.name };
 			});
 		const popover = <Popover id="popover-positioned-right" title="Receive actions from...">
-			<SelectInput isClearable inline options={users} onChange={( newValue ) => {
+			<Select isClearable inline options={users} onChange={( newValue ) => {
 				this.setState({
 					receiveFrom: newValue
 				});

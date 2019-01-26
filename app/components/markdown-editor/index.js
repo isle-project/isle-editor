@@ -3,8 +3,8 @@
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import markdownIt from 'markdown-it';
-import pdfMake from 'pdfmake-lite/build/pdfmake.min.js';
+import markdownit from 'markdown-it';
+import pdfMake from 'pdfmake/build/pdfmake';
 import katex from 'markdown-it-katex';
 import markdownSub from 'markdown-it-sub';
 import markdownIns from 'markdown-it-ins';
@@ -51,7 +51,7 @@ import './markdown_editor.css';
 // VARIABLES //
 
 const debug = logger( 'isle:markdown-editor' );
-const md = markdownIt({
+const md = markdownit({
 	html: true,
 	xhtmlOut: true,
 	breaks: true,
