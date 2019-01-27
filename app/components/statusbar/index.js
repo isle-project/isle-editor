@@ -345,7 +345,7 @@ class StatusBar extends Component {
 										<span className="fa fa-xs fa-calculator statusbar-calc-icon" />
 								</div>
 							</Tooltip>
-							{ session.hasOwner ? <Tooltip tooltip={`${this.state.showQueue ? 'Close' : 'Open'} help queue`} placement="bottom" >
+							{( session.hasOwner || isElectron ) ? <Tooltip tooltip={`${this.state.showQueue ? 'Close' : 'Open'} help queue`} placement="bottom" >
 								<div className="statusbar-queue" onClick={this.toggleQueue}>
 										<span className="fa fa-xs fa-question-circle statusbar-calc-icon" />
 								</div>
