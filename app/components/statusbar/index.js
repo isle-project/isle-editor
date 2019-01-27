@@ -64,7 +64,8 @@ class StatusBar extends Component {
 			showQueue: false,
 			isProgressLeaving: false,
 			progress: 0,
-			duration: '0'
+			duration: '0',
+			queueSize: 0
 		};
 		this.hidden = true;
 	}
@@ -348,6 +349,7 @@ class StatusBar extends Component {
 							{( session.hasOwner || isElectron ) ? <Tooltip tooltip={`${this.state.showQueue ? 'Close' : 'Open'} help queue`} placement="bottom" >
 								<div className="statusbar-queue" onClick={this.toggleQueue}>
 										<span className="fa fa-xs fa-question-circle statusbar-calc-icon" />
+										<span className="statusbar-text" >{this.state.queueSize}</span>
 								</div>
 							</Tooltip> : null }
 							<div className="statusbar-presence" style={{
@@ -434,7 +436,16 @@ class StatusBar extends Component {
 					</Suspense>
 				</div>
 				<Calculator show={this.state.showCalculator} onHide={this.toggleCalculator} />
-				<Queue id="main_queue" show={this.state.showQueue} onHide={this.toggleQueue} />
+				<Queue
+					id="main_queue"
+					show={this.state.showQueue}
+					onHide={this.toggleQueue}
+					onQueueSize={( queueSize ) => {
+						this.setState({
+							queueSize
+						});
+					}}
+				/>
 				<KeyControls
 					actions={{
 						'F2': this.toggleCalculator,

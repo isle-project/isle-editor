@@ -78,6 +78,12 @@ class Queue extends Component {
 									value: this.state.queueSize,
 									noSave: true
 								}, 'members' );
+								session.addNotification({
+									title: 'Queue',
+									message: 'Someone posted a question on the queue',
+									level: 'success',
+									position: 'tr'
+								});
 							});
 						}
 					}
@@ -116,6 +122,7 @@ class Queue extends Component {
 					else if ( action.type === 'SEND_QUEUE_SIZE' ) {
 						// Update the internal queue size state for each user:
 						const queueSize = Number( action.value );
+						this.props.onQueueSize( queueSize );
 						this.setState({
 							queueSize
 						});
@@ -297,12 +304,14 @@ class Queue extends Component {
 
 Queue.defaultProps = {
 	show: true,
-	onHide: noop
+	onHide: noop,
+	onQueueSize: noop
 };
 
 Queue.propTypes = {
 	show: PropTypes.bool,
 	onHide: PropTypes.func
+	onQueueSize: PropTypes.func
 };
 
 Queue.contextType = SessionContext;
