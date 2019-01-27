@@ -445,6 +445,22 @@ class StatusBar extends Component {
 							queueSize
 						});
 					}}
+					onNewQuestion={() => {
+						session.addNotification({
+							title: 'Queue',
+							message: 'Someone posted a question on the queue',
+							level: 'success',
+							position: 'tr',
+							action: {
+								label: 'Open queue',
+								callback: () => {
+									this.setState({
+										showQueue: true
+									});
+								}
+							}
+						});
+					}}
 				/>
 				<KeyControls
 					actions={{

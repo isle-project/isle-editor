@@ -78,12 +78,7 @@ class Queue extends Component {
 									value: this.state.queueSize,
 									noSave: true
 								}, 'members' );
-								session.addNotification({
-									title: 'Queue',
-									message: 'Someone posted a question on the queue',
-									level: 'success',
-									position: 'tr'
-								});
+								this.props.onNewQuestion();
 							});
 						}
 					}
@@ -305,13 +300,15 @@ class Queue extends Component {
 Queue.defaultProps = {
 	show: true,
 	onHide: noop,
-	onQueueSize: noop
+	onQueueSize: noop,
+	onNewQuestion: noop
 };
 
 Queue.propTypes = {
 	show: PropTypes.bool,
 	onHide: PropTypes.func,
-	onQueueSize: PropTypes.func
+	onQueueSize: PropTypes.func,
+	onNewQuestion: PropTypes.func
 };
 
 Queue.contextType = SessionContext;
