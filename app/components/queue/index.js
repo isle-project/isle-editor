@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import Button from 'react-bootstrap/Button';
 import ReactTable from 'react-table';
@@ -9,7 +10,6 @@ import Draggable from 'react-draggable';
 import FormControl from 'react-bootstrap/FormControl';
 import 'react-table/react-table.css';
 import logger from 'debug';
-import TextInput from 'components/input/text';
 import Panel from 'components/panel';
 import SessionContext from 'session/context.js';
 import './queue.css';
@@ -48,7 +48,7 @@ class Queue extends Component {
 				debug( type );
 
 				if ( type === 'RECEIVED_USER_RIGHTS' ) {
-					// we need to check who the user is
+					// We need to check whether the user is an owner:
 					this.checkAuthorization();
 				} else if ( type === 'user_joined' && this.state.isOwner ) {
 					session.log({
@@ -61,16 +61,16 @@ class Queue extends Component {
 				if ( action && action.id === this.props.id ) {
 					if ( action.type === 'ENTER_QUEUE' ) {
 						debug( 'Someone is entering the queue' );
-						var tmpSize = this.state.queueSize + 1;
+						const newSize = this.state.queueSize + 1;
 						if ( this.state.isOwner ) {
 							this.state.arr.push({
 								user: action.name,
 								question: action.value,
-								spot: tmpSize
+								spot: newSize
 							});
 							this.setState({
 								arr: this.state.arr,
-								queueSize: tmpSize
+								queueSize: newSize
 							}, () => {
 								session.log({
 									id: this.props.id,
@@ -98,7 +98,10 @@ class Queue extends Component {
 								});
 							}
 						} else if ( this.state.isOwner ) {
+							const newArr = copy( this.state.arr );
+							newArr.splice( val - 1, 1 );
 							this.setState({
+								arr: newArr,
 								queueSize: newSize
 							}, () => {
 								session.log({
@@ -111,11 +114,10 @@ class Queue extends Component {
 						}
 					}
 					else if ( action.type === 'SEND_QUEUE_SIZE' ) {
-						// to send the queue size to the users
-						const queueNum = Number( action.value );
-						// console.log('Updated queue size to ' + queueNum);
+						// Update the internal queue size state for each user:
+						const queueSize = Number( action.value );
 						this.setState({
-							queueSize: queueNum
+							queueSize
 						});
 					}
 				}
@@ -154,33 +156,33 @@ class Queue extends Component {
 			spot: this.state.queueSize + 1 // increment at add
 		}, () => {
 			const session = this.context;
-			if ( session ) {
-				session.log({
-					id: this.props.id,
-					type: 'ENTER_QUEUE',
-					value: this.state.questionText,
-					noSave: false
-				}, 'members' );
-			}
+			session.log({
+				id: this.props.id,
+				type: 'ENTER_QUEUE',
+				value: this.state.questionText,
+				noSave: false
+			}, 'members' );
 		});
+	}
+
+	leaveQueue = () => {
+		const session = this.context;
+		session.log({
+			id: this.props.id,
+			type: 'LEFT_QUEUE',
+			value: this.state.spot
+		}, 'members' );
 	}
 
 	renderButtonRemovable = ( cellInfo ) => {
 		return (
 			<Button onClick={() => {
-				this.state.arr.splice(cellInfo.index, 1);
-				this.setState({
-					arr: this.state.arr
-				}, () => {
-					const session = this.context;
-					if ( session ) {
-						session.log({
-							id: this.props.id,
-							type: 'LEFT_QUEUE',
-							value: cellInfo.index + 1,
-						}, 'members' );
-					}
-				});
+				const session = this.context;
+				session.log({
+					id: this.props.id,
+					type: 'LEFT_QUEUE',
+					value: cellInfo.index + 1
+				}, 'members' );
 			}}>
 			X</Button>
 		);
@@ -197,13 +199,14 @@ class Queue extends Component {
 			</span>
 		);
 	}
+
 	/*
 	* React component render method.
 	*/
 	render() {
 		if ( this.props.show ) {
 			if ( this.state.isOwner ) {
-				debug( 'I am an owner' );
+				debug( 'User is an owner...' );
 				return ( <Draggable>
 					<div className="outer-queue">
 						<Panel header={this.renderHeader()}>
@@ -253,7 +256,12 @@ class Queue extends Component {
 					<Draggable>
 						<div className="outer-queue">
 							<Panel header={this.renderHeader()}>
-								<h3 className="center">You are currently {this.state.spot} on the queue. There are {this.state.queueSize} individual(s) in the queue.</h3>
+								<h3>Your question: {this.state.questionText}</h3>
+								<h3>You are currently {this.state.spot} on the queue.</h3>
+								<h3>There are {this.state.queueSize} individual(s) in the queue.</h3>
+								<Button onClick={this.leaveQueue}>
+									Remove yourself from queue
+								</Button>
 							</Panel>
 						</div>
 					</Draggable>
