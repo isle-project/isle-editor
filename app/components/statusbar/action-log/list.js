@@ -1,14 +1,13 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import ReactList from 'react-list';
-import isEmptyObject from '@stdlib/assert/is-empty-object';
-import objectEntries from '@stdlib/utils/entries';
 import copy from '@stdlib/utils/copy';
 import isObjectLike from '@stdlib/assert/is-object-like';
 import Action from './action.js';
+import createFilters from './create_filters';
 
 
 // VARIABLES //
@@ -47,43 +46,13 @@ class ActionList extends Component {
 		return null;
 	}
 
-	removeFactory = ( type ) => {
-		const onRemoveClick = ( event ) => {
-			event.stopPropagation();
-			let newFilter = copy( this.props.filter );
-			delete newFilter[ type ];
-			if ( isEmptyObject( newFilter ) ) {
-				newFilter = null;
-			}
-			const newFilters = this.createFilters( newFilter );
-			this.props.onFilterChange( newFilter, newFilters );
-		};
-		return onRemoveClick;
-	}
-
-	createFilters = ( filter ) => {
-		let entries = filter ? objectEntries( filter ) : [];
-		let newFilters = <Fragment>
-			<label>Filters:</label>
-			<span style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
-				{entries.map( ( arr, idx ) => {
-					return ( <span
-						style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }}
-						onClick={this.removeFactory( arr[ 0 ])}
-						key={idx}
-					>{arr[ 0 ]}: {arr[ 1 ]}</span> );
-				})}
-			</span>
-		</Fragment>;
-		return newFilters;
-	}
 
 	clickFactory = ( type, value ) => {
 		const onClick = () => {
 			const newFilter = this.props.filter ? copy( this.props.filter ) : {};
 			newFilter[ type ] = value;
 			debug( 'The filter was successfully changed: ' + JSON.stringify( newFilter ) );
-			const newFilters = this.createFilters( newFilter );
+			const newFilters = createFilters( newFilter, this.props.onFilterChange );
 			this.props.onFilterChange( newFilter, newFilters );
 		};
 		return onClick;

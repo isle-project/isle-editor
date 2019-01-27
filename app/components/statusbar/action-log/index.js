@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -16,6 +17,8 @@ import RangePicker from 'components/range-picker';
 import saveAs from 'utils/file-saver';
 import SessionContext from 'session/context.js';
 import ActionList from './list.js';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
+import createFilters from './create_filters';
 
 
 // VARIABLES //
@@ -75,7 +78,42 @@ class ActionLog extends Component {
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
-		if ( this.state.filter !== prevState.filter ) {
+		if (this.props.selectedEmail !== prevProps.selectedEmail) {
+			this.setState({
+				filter: { email: this.props.selectedEmail },
+				filters: <Fragment>
+				<label>Filters:</label>
+				<span style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
+					<span
+						onClick={
+							( event ) => {
+								event.stopPropagation();
+								let newFilter = copy( this.state.filter );
+								delete newFilter[ 'email' ];
+								if ( isEmptyObject( newFilter ) ) {
+									newFilter = null;
+								}
+								const newFilters = createFilters( newFilter, (newFilter, newFilters) =>{
+									this.setState({
+										filter: newFilter,
+										filters: newFilters
+									});
+								});
+
+								this.setState({
+									filter: newFilter,
+									filters: newFilters
+								});
+							}
+						}
+						style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }}
+						>{'email'}: {this.props.selectedEmail}</span>
+				</span>
+			</Fragment>
+			});
+		}
+		else if ( this.state.filter !== prevState.filter ) {
+			console.log('Hier gibt es eine State-Veränderung durch EMAIL');
 			debug( 'Should filter out actions...' );
 			this.setState({ actions: this.buildActionsArray() });
 		}
@@ -278,6 +316,14 @@ class ActionLog extends Component {
 
 ActionLog.contextType = SessionContext;
 
+
+ActionLog.propTypes = {
+	selectedEmail: PropTypes.string
+};
+
+ActionLog.defaultProps = {
+	selectedEmail: null
+};
 
 // EXPORTS //
 
