@@ -6,6 +6,7 @@ import noop from '@stdlib/utils/noop';
 import Button from 'react-bootstrap/Button';
 import ReactTable from 'react-table';
 import Draggable from 'react-draggable';
+import FormControl from 'react-bootstrap/FormControl';
 import 'react-table/react-table.css';
 import logger from 'debug';
 import TextInput from 'components/input/text';
@@ -70,36 +71,47 @@ class Queue extends Component {
 							this.setState({
 								arr: this.state.arr,
 								queueSize: tmpSize
-							});
-						} else {
-							this.setState({
-								queueSize: tmpSize
+							}, () => {
+								session.log({
+									id: this.props.id,
+									type: 'SEND_QUEUE_SIZE',
+									value: this.state.queueSize,
+									noSave: true
+								}, 'members' );
 							});
 						}
 					}
-					else if ( action.type === 'LEFT_QUEUE' && this.state.spot ) {
+					else if ( action.type === 'LEFT_QUEUE' ) {
 						debug( 'Someone has been removed from the queue' );
 						const val = Number( action.value );
 						const newSize = this.state.queueSize - 1;
-						if ( val < this.state.spot ) {
+						if ( this.state.spot ) {
+							if ( val < this.state.spot ) {
+								this.setState({
+									spot: this.state.spot - 1
+								});
+							} else if ( val === this.state.spot ) {
+								this.setState({
+									spot: null,
+									inQueue: false,
+									questionText: ''
+								});
+							}
+						} else if ( this.state.isOwner ) {
 							this.setState({
-								spot: this.state.spot - 1,
 								queueSize: newSize
-							});
-						} else if ( val === this.state.spot ) {
-							this.setState({
-								spot: null,
-								inQueue: false,
-								questionText: '',
-								queueSize: newSize
-							});
-						} else {
-							this.setState({
-								queueSize: newSize
+							}, () => {
+								session.log({
+									id: this.props.id,
+									type: 'SEND_QUEUE_SIZE',
+									value: newSize,
+									noSave: true
+								}, 'members' );
 							});
 						}
 					}
 					else if ( action.type === 'SEND_QUEUE_SIZE' ) {
+						// to send the queue size to the users
 						const queueNum = Number( action.value );
 						// console.log('Updated queue size to ' + queueNum);
 						this.setState({
@@ -129,9 +141,9 @@ class Queue extends Component {
 		}
 	}
 
-	handleText = ( value ) => {
+	handleText = ( event ) => {
 		this.setState({
-			questionText: value
+			questionText: event.target.value
 		});
 	}
 
@@ -169,8 +181,8 @@ class Queue extends Component {
 						}, 'members' );
 					}
 				});
-			}}block>
-			Remove from queue</Button>
+			}}>
+			X</Button>
 		);
 	}
 
@@ -197,31 +209,40 @@ class Queue extends Component {
 						<Panel header={this.renderHeader()}>
 						{ this.state.arr.length === 0 ? <h3 className="center">There are no users in the queue</h3> :
 						<ReactTable
+							showPageSizeOptions={false}
 							data={this.state.arr}
+							resizable={false}
+							sortable={false}
 							columns={[
 								{
-									'Header': 'Place on Queue',
+									'Header': ' # ',
 									'id': 'queueSpot',
-									'accessor': 'spot'
+									'accessor': 'spot',
+									'width': 36
 								},
 								{
 									'Header': 'Name',
 									'id': 'nameCol',
-									'accessor': 'user'
+									'accessor': 'user',
+									'width': 100
 								},
 								{
 									'Header': 'Question',
 									'id': 'qCol',
-									'accessor': 'question'
+									'accessor': 'question',
+									width: 350,
+									style: { 'white-space': 'unset' }
 								},
 								{
-									Header: 'Remove',
+									Header: ' X ',
 									accessor: 'remove',
 									Cell: this.renderButtonRemovable,
-									filterable: false
+									filterable: false,
+									width: 45
 								}
 							]}
-						/> } 
+							pageSize={8}
+						/> }
 						</Panel>
 					</div>
 				</Draggable> );
@@ -239,18 +260,17 @@ class Queue extends Component {
 				);
 			}
 			return (
-				<Draggable>
+				<Draggable cancel="#queue_form">
 					<div className="outer-queue">
 						<Panel header={this.renderHeader()}>
 							<h3 className="center">There are {this.state.queueSize} individual(s) in the queue. Add yourself below!</h3>
 							<div>
-								<TextInput
+								<FormControl type="text" id="queue_form"
+									value={this.state.questionText}
 									onChange={this.handleText}
-									legend='What is your question?'
 									inline={false}
 									width={500}
-									>
-								</TextInput>
+								/>
 								<Button onClick={this.enterQueue}>
 									Add to Queue
 								</Button>
