@@ -16,6 +16,7 @@ import Calculator from 'components/calculator';
 import Chat from 'components/statusbar/chat';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
+import Queue from 'components/queue';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import isElectron from 'utils/is-electron';
 import animatePosition from 'utils/animate-position';
@@ -433,6 +434,7 @@ class StatusBar extends Component {
 					</Suspense>
 				</div>
 				<Calculator show={this.state.showCalculator} onHide={this.toggleCalculator} />
+				<Queue show={this.state.showQueue} onHide={this.toggleQueue} />
 				<KeyControls
 					actions={{
 						'F2': this.toggleCalculator,

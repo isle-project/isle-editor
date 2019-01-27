@@ -1,0 +1,12 @@
+.outer-queue {
+	position: fixed;
+	z-index: 1002;
+}
+
+.queue-hide-button {
+	float: right;
+}
+
+.queue-hide-button:hover {
+	color: rgba(220, 53, 69, 0.6);
+}
