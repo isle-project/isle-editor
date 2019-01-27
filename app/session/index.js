@@ -128,6 +128,9 @@ class Session {
 		this.userList = [];
 		this.userFocuses = {};
 
+		// Keep track of whether an owner is present in the session:
+		this.hasOwner = false;
+
 		// Array of open chats:
 		this.chats = [];
 
@@ -712,12 +715,22 @@ class Session {
 		socket.on( 'userlist', ( data ) => {
 			debug( 'Received list of users currently in the lesson: ' + data );
 			this.userList = JSON.parse( data );
+			for ( let i = 0; i < this.userList.length; i++ ) {
+				const user = this.userList[ i ];
+				if ( user.owner ) {
+					this.hasOwner = true;
+					break;
+				}
+			}
 			this.update( 'received_users' );
 		});
 
 		socket.on( 'user_joins', ( data ) => {
 			debug( 'A user has joined and should be added to the user list: ' + data );
 			data = JSON.parse( data );
+			if ( data.owner ) {
+				this.hasOwner = true;
+			}
 			this.userList = this.userList.filter( user => user.email !== data.email );
 			this.userList.push( data );
 			const isUser = data.email === this.user.email;
