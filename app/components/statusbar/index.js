@@ -60,6 +60,7 @@ class StatusBar extends Component {
 			showCalculator: false,
 			showStatusBar: !context.config.hideStatusBar,
 			showProgressBar: false,
+			showQueue: false,
 			isProgressLeaving: false,
 			progress: 0,
 			duration: '0'
@@ -260,6 +261,15 @@ class StatusBar extends Component {
 		});
 	}
 
+	toggleQueue = ( event ) => {
+		if ( event ) {
+			event.stopPropagation();
+		}
+		this.setState({
+			showQueue: !this.state.showQueue
+		});
+	}
+
 	toggleProgress = () => {
 		const session = this.context;
 		if ( this.state.isProgressLeaving || session.isOwner() ) {
@@ -332,6 +342,11 @@ class StatusBar extends Component {
 							<Tooltip tooltip={`${this.state.showCalculator ? 'Close' : 'Open'} calculator (F2)`} placement="bottom" >
 								<div className="statusbar-calculator" onClick={this.toggleCalculator}>
 										<span className="fa fa-xs fa-calculator statusbar-calc-icon" />
+								</div>
+							</Tooltip>
+							<Tooltip tooltip={`${this.state.showQueue ? 'Close' : 'Open'} help queue`} placement="bottom" >
+								<div className="statusbar-queue" onClick={this.toggleQueue}>
+										<span className="fa fa-xs fa-question-circle statusbar-calc-icon" />
 								</div>
 							</Tooltip>
 							<div className="statusbar-presence" style={{
