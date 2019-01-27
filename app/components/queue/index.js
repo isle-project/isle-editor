@@ -310,7 +310,7 @@ Queue.defaultProps = {
 
 Queue.propTypes = {
 	show: PropTypes.bool,
-	onHide: PropTypes.func
+	onHide: PropTypes.func,
 	onQueueSize: PropTypes.func
 };
 
