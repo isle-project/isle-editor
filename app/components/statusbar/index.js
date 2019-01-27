@@ -434,7 +434,7 @@ class StatusBar extends Component {
 					</Suspense>
 				</div>
 				<Calculator show={this.state.showCalculator} onHide={this.toggleCalculator} />
-				<Queue show={this.state.showQueue} onHide={this.toggleQueue} />
+				<Queue id="main_queue" show={this.state.showQueue} onHide={this.toggleQueue} />
 				<KeyControls
 					actions={{
 						'F2': this.toggleCalculator,
