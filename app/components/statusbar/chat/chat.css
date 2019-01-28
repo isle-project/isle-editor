@@ -1,6 +1,6 @@
 .chat-outer-div {
 	top: 0;
-	z-index: 5;
+	z-index: 1005;
 	font-size: 13px;
 	font-family: Open Sans;
 	box-shadow: 2px 2px 10px darkslategrey;
