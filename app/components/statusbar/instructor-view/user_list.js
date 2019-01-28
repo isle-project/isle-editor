@@ -248,7 +248,9 @@ class UserList extends Component {
 							/>
 						</Tooltip>
 						{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}
-						{focusedID}
+						<Tooltip placement="left" tooltip="Element user is interacting with" >
+							<span>{focusedID}</span>
+						</Tooltip>
 					</ListGroupItem>
 				);
 			})}

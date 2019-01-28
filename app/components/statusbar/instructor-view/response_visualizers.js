@@ -7,6 +7,7 @@ import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import Tooltip from 'components/tooltip';
 import keys from '@stdlib/utils/keys';
 import contains from '@stdlib/assert/contains';
 
@@ -102,28 +103,37 @@ class ResponseVisualizers extends Component {
 			const nActions = visualizers[ ids[ i ] ].ref.state.nActions;
 			const infoRate = ( nInfo / nUsers ) * 100.0;
 			const id = ids[ i ];
-			list[ i ] = ( <ListGroupItem
-				key={i}
-				style={{
-					background: this.state.selected === id ? '#e0a800' : 'lightgrey',
-					padding: '0.4rem 1rem'
-				}}
-				onClick={this.highlightFactory( id )}
-			>
-				<label style={{ margin: 0 }}>{id}</label>
-				<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{nActions}</Badge>
-				<ProgressBar
-					variant="info"
-					now={infoRate}
-					max={100} min={0}
-					label={`${nInfo} / ${nUsers}`}
+			list[ i ] = (
+				<ListGroupItem
+					key={i}
 					style={{
-						width: '180px',
-						float: 'right',
-						height: '1.25rem'
+						background: this.state.selected === id ? '#e0a800' : 'lightgrey',
+						padding: '0.4rem 1rem',
+						cursor: 'pointer'
 					}}
-				/>
-			</ListGroupItem> );
+					onClick={this.highlightFactory( id )}
+				>
+					<Tooltip placement="right" tooltip="Question ID (click on row to show question">
+						<label style={{ margin: 0 }}>{id}</label>
+					</Tooltip>
+					<Tooltip placement="left" tooltip="# of Actions">
+						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{nActions}</Badge>
+					</Tooltip>
+					<Tooltip placement="left" tooltip="Completion rate for currently active students">
+						<ProgressBar
+							variant="info"
+							now={infoRate}
+							max={100} min={0}
+							label={`${nInfo} / ${nUsers}`}
+							style={{
+								width: '180px',
+								float: 'right',
+								height: '1.25rem'
+							}}
+						/>
+					</Tooltip>
+				</ListGroupItem>
+			);
 		}
 		return ( <div>
 			<ListGroup style={{
