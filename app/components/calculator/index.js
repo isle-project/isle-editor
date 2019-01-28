@@ -155,14 +155,8 @@ class Calculator extends Component {
 
 	renderFull = () => {
 		debug( 'Rendering expanded calculator...' );
-		const bounds = {
-			top: 0,
-			left: 0,
-			right: window.innerWidth,
-			bottom: window.innerHeight
-		};
 		return (
-			<Draggable bounds={bounds} cancel="#calc-text-area" >
+			<Draggable bounds="#Lesson" cancel="#calc-text-area" >
 				<div className="outer-calc" style={this.props.style}>
 					<Panel id="calc-panel-full" header={this.renderHeader()}>
 						<Container className="desaturated" >
@@ -237,14 +231,8 @@ class Calculator extends Component {
 		if ( this.state.showFull ) {
 			return this.renderFull();
 		}
-		const bounds = {
-			top: 0,
-			left: 0,
-			right: window.innerWidth,
-			bottom: window.innerHeight
-		};
 		return (
-			<Draggable bounds={bounds} enableUserSelectHack={false} cancel="#calc-text-area" >
+			<Draggable bounds="#Lesson" enableUserSelectHack={false} cancel="#calc-text-area" >
 				<div className="outer-calc" style={this.props.style} >
 					<Panel
 						id="calc-panel"

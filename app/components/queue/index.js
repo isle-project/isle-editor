@@ -191,7 +191,7 @@ class Queue extends Component {
 	renderHeader() {
 		return (
 			<span>
-				Queue
+				Question Queue
 				{ this.props.onHide ?
 					<span className="queue-hide-button fa fa-times" onClick={this.props.onHide} /> :
 					null
@@ -208,7 +208,7 @@ class Queue extends Component {
 		if ( this.props.show ) {
 			if ( this.state.isOwner ) {
 				debug( 'User is an owner...' );
-				return ( <Draggable cancel=".queue_table" enableUserSelectHack={false} >
+				return ( <Draggable bounds="#Lesson" cancel=".queue_table" enableUserSelectHack={false} >
 					<div className="outer-queue">
 						<Panel className="queue-panel" header={this.renderHeader()}>
 						{ this.state.arr.length === 0 ? <p>There are currently no questions in the queue.</p> :
@@ -274,7 +274,7 @@ class Queue extends Component {
 			// Case: We are not an owner
 			if ( this.state.inQueue ) {
 				return (
-					<Draggable enableUserSelectHack={false} >
+					<Draggable bounds="#Lesson" enableUserSelectHack={false} >
 						<div className="outer-queue">
 							<Panel className="queue-panel" header={this.renderHeader()}>
 								<p>Your question: <i>{this.state.questionText}</i></p>
@@ -289,7 +289,7 @@ class Queue extends Component {
 				);
 			}
 			return (
-				<Draggable cancel="#queue_form" enableUserSelectHack={false} >
+				<Draggable bounds="#Lesson" cancel="#queue_form" enableUserSelectHack={false} >
 					<div className="outer-queue">
 						<Panel className="queue-panel" header={this.renderHeader()}>
 							<p>You can submit a question below and someone will be with you shortly!</p>
