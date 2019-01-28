@@ -86,7 +86,7 @@ export default {
 	},
 	resolve: {
 		alias: {
-			'victory': require.resolve( 'victory/dist/victory' ),
+			'victory': resolve( './node_modules/victory/dist/victory.min.js' ),
 			'form-data': resolve( './node_modules/form-data/lib/form_data.js' ),
 			'react-transition-group/TransitionGroup': resolve( './node_modules/spectacle/node_modules/react-transition-group/TransitionGroup.js' ) // ensure slide transitions work in Spectacle presentations
 		},
