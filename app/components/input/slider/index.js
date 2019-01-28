@@ -203,7 +203,7 @@ class SliderInput extends Input {
 				tooltip={this.props.disabled ? 'The slider input is disabled right now.' : this.state.tooltip}
 			>
 				<div
-					className="slider-outer-div"
+					className="slider-outer-div input"
 					style={{
 						opacity: this.props.disabled ? 0.2 : 1.0,
 						...this.props.style
