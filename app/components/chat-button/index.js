@@ -20,6 +20,7 @@ const debug = logger( 'isle:chat-button' );
 * A button for joining and leaving chat rooms.
 *
 * @property {string} for - chat room identifier
+* @property {boolean} showTooltip - controls whether to show tooltip
 */
 class ChatButton extends Component {
 	constructor( props ) {
@@ -76,19 +77,24 @@ class ChatButton extends Component {
 	}
 
 	render() {
+		let button = <Button
+			variant="secondary"
+			size="sm"
+			onClick={this.handleClick}
+		>
+			{this.state.opened ? 'Leave Chat' : 'Join Chat' }
+		</Button>;
+		if ( this.props.showTooltip ) {
+			button = <Tooltip
+				tooltip={`${this.state.opened ? 'Leave' : 'Join'} chat with ID ${this.props.for}`}
+				placement="top"
+			>
+				{button}
+			</Tooltip>;
+		}
 		return (
 			<Gate user>
-				<Tooltip
-					tooltip={`${this.state.opened ? 'Leave' : 'Join'} chat with ID ${this.props.for}`}
-					placement="top"
-				>
-					<Button
-						variant="secondary"
-						size="sm"
-						onClick={this.handleClick}
-					>{this.state.opened ? 'Leave Chat' : 'Join Chat' }
-					</Button>
-				</Tooltip>
+				{button}
 			</Gate>
 		);
 	}
@@ -98,7 +104,12 @@ class ChatButton extends Component {
 // PROPERTIES //
 
 ChatButton.propTypes = {
-	for: PropTypes.string.isRequired
+	for: PropTypes.string.isRequired,
+	showTooltip: PropTypes.bool
+};
+
+ChatButton.defaultProps = {
+	showTooltip: true
 };
 
 ChatButton.contextType = SessionContext;

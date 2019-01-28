@@ -11,6 +11,7 @@ import Draggable from 'react-draggable';
 import ReactTable from 'react-table';
 import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
+import ChatButton from 'components/chat-button';
 import Panel from 'components/panel';
 import SessionContext from 'session/context.js';
 import 'react-table/react-table.css';
@@ -226,9 +227,9 @@ class Queue extends Component {
 									width: 36
 								},
 								{
-									'Header': 'Pic',
-									'id': 'pic',
-									'accessor': ( d ) => {
+									Header: 'Pic',
+									id: 'pic',
+									accessor: ( d ) => {
 										const { userList } = session;
 										for ( let i = 0; i < userList.length; i++ ) {
 											if ( userList[ i ].name === d.user ) {
@@ -251,11 +252,18 @@ class Queue extends Component {
 									width: 100
 								},
 								{
-									'Header': 'Question',
-									'id': 'qCol',
-									'accessor': 'question',
+									Header: 'Question',
+									id: 'qCol',
+									accessor: 'question',
 									width: 350,
 									style: { 'white-space': 'unset' }
+								},
+								{
+									Header: 'Chat',
+									Cell: ( row ) => {
+										const chatID = 'Queue_'+row.original.user+'_'+row.original.spot;
+										return <ChatButton showTooltip={false} for={chatID} />;
+									}
 								},
 								{
 									Header: ' X ',
@@ -273,6 +281,7 @@ class Queue extends Component {
 			}
 			// Case: We are not an owner
 			if ( this.state.inQueue ) {
+				const chatID = 'Queue_'+session.user.name+'_'+this.state.spot;
 				return (
 					<Draggable bounds="#Lesson" enableUserSelectHack={false} >
 						<div className="outer-queue">
@@ -280,7 +289,8 @@ class Queue extends Component {
 								<p>Your question: <i>{this.state.questionText}</i></p>
 								<p>You are currently at position <b>{this.state.spot}</b> on the queue.</p>
 								<p>There are {this.state.queueSize} individual(s) in the queue.</p>
-								<Button onClick={this.leaveQueue}>
+								<ChatButton for={chatID} showTooltip={false} />
+								<Button style={{ marginLeft: 10 }} size="sm" onClick={this.leaveQueue}>
 									Remove me from queue
 								</Button>
 							</Panel>
