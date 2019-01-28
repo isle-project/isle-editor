@@ -346,12 +346,14 @@ class StatusBar extends Component {
 										<span className="fa fa-xs fa-calculator statusbar-calc-icon" />
 								</div>
 							</Tooltip>
-							{( session.hasOwner || isElectron ) ? <Tooltip tooltip={`${this.state.showQueue ? 'Close' : 'Open'} help queue`} placement="bottom" >
-								<div className="statusbar-queue" onClick={this.toggleQueue}>
-										<span className="fa fa-xs fa-question-circle statusbar-calc-icon" />
-										<span className="statusbar-text" >{this.state.queueSize}</span>
-								</div>
-							</Tooltip> : null }
+							{( session.hasOwner || isElectron ) ? <div className="statusbar-queue" onClick={this.toggleQueue} >
+								<Tooltip tooltip={`${this.state.showQueue ? 'Close' : 'Open'} help queue`} placement="bottom" >
+									<span className="fa fa-xs fa-question-circle statusbar-calc-icon" />
+								</Tooltip>
+								<Tooltip placement="bottom" tooltip="# of open questions" >
+									<span className="statusbar-queue-counter" >{`   ${this.state.queueSize}`}</span>
+								</Tooltip>
+							</div> : null }
 							<div className="statusbar-presence" style={{
 								backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR
 							}}>

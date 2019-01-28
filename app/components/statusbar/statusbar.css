@@ -169,8 +169,16 @@
 	bottom: 3px;
 	position: absolute;
 	z-index: 2;
-	width: 18px;
+	width: 32px;
 	height: 18px;
+}
+
+#Lesson .statusbar-queue-counter {
+	color: #2e4468;
+	font-size: 12px;
+	font-family: Open Sans Condensed;
+	font-weight: 700;
+	z-index: 2;
 }
 
 #Lesson .statusbar-voice-text {
