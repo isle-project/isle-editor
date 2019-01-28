@@ -396,6 +396,7 @@ class Sketchpad extends Component {
 		};
 		document.body.addEventListener( 'touchstart', this.preventDefaultTouch, opts );
 		document.body.addEventListener( 'touchend', this.preventDefaultTouch, opts );
+		document.body.addEventListener( 'touchend', this.hidePointer, opts );
 		document.body.addEventListener( 'touchmove', this.preventDefaultTouch, opts );
 		window.addEventListener( 'hashchange', () => {
 			const page = this.readURL();
@@ -445,6 +446,7 @@ class Sketchpad extends Component {
 		};
 		document.body.removeEventListener( 'touchstart', this.preventDefaultTouch, opts );
 		document.body.removeEventListener( 'touchend', this.preventDefaultTouch, opts );
+		document.body.removeEventListener( 'touchend', this.hidePointer, opts );
 		document.body.removeEventListener( 'touchmove', this.preventDefaultTouch, opts );
 	}
 
@@ -478,6 +480,10 @@ class Sketchpad extends Component {
 		this.setState({
 			groupMode: !this.state.groupMode
 		});
+	}
+
+	hidePointer = () => {
+		this.pointer.style.opacity = 0;
 	}
 
 	preventDefaultTouch = ( e ) => {
