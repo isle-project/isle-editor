@@ -14,3 +14,17 @@
 .queue-hide-button:hover {
 	color: rgba(220, 53, 69, 0.6);
 }
+
+.queue-table-pic {
+	width: 36px;
+	height: 36px;
+	transition: transform 0.2s;
+	border: solid 1px darkgray;
+	border-radius: 0.25rem;
+	cursor: zoom-in;
+}
+
+.queue-table-pic:hover {
+	position: fixed;
+	transform: scale(2.5);
+}

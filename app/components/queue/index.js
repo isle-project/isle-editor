@@ -175,7 +175,7 @@ class Queue extends Component {
 
 	renderButtonRemovable = ( cellInfo ) => {
 		return (
-			<Button onClick={() => {
+			<Button variant="secondary" size="sm" onClick={() => {
 				const session = this.context;
 				session.log({
 					id: this.props.id,
@@ -183,7 +183,8 @@ class Queue extends Component {
 					value: cellInfo.index + 1
 				}, 'members' );
 			}}>
-			X</Button>
+				<i className="fas fa-check" />
+			</Button>
 		);
 	}
 
@@ -203,30 +204,51 @@ class Queue extends Component {
 	* React component render method.
 	*/
 	render() {
+		const session = this.context;
 		if ( this.props.show ) {
 			if ( this.state.isOwner ) {
 				debug( 'User is an owner...' );
-				return ( <Draggable enableUserSelectHack={false} >
+				return ( <Draggable cancel=".queue_table" enableUserSelectHack={false} >
 					<div className="outer-queue">
 						<Panel className="queue-panel" header={this.renderHeader()}>
-						{ this.state.arr.length === 0 ? <h3 className="center">There are no users in the queue</h3> :
+						{ this.state.arr.length === 0 ? <p>There are currently no questions in the queue.</p> :
 						<ReactTable
+							className="queue_table"
 							showPageSizeOptions={false}
 							data={this.state.arr}
 							resizable={false}
 							sortable={false}
 							columns={[
 								{
-									'Header': ' # ',
-									'id': 'queueSpot',
-									'accessor': 'spot',
-									'width': 36
+									Header: ' # ',
+									id: 'queueSpot',
+									accessor: 'spot',
+									width: 36
 								},
 								{
-									'Header': 'Name',
-									'id': 'nameCol',
-									'accessor': 'user',
-									'width': 100
+									'Header': 'Pic',
+									'id': 'pic',
+									'accessor': ( d ) => {
+										const { userList } = session;
+										for ( let i = 0; i < userList.length; i++ ) {
+											if ( userList[ i ].name === d.user ) {
+												return userList[ i ].picture;
+											}
+										}
+										return '';
+									},
+									Cell: row => {
+										return <img className="queue-table-pic" src={`${session.server}/thumbnail/${row.value}`} />;
+									},
+									maxWidth: 46,
+									minWidth: 46,
+									style: { color: 'darkslategrey' }
+								},
+								{
+									Header: 'Name',
+									id: 'nameCol',
+									accessor: 'user',
+									width: 100
 								},
 								{
 									'Header': 'Question',
@@ -255,11 +277,11 @@ class Queue extends Component {
 					<Draggable enableUserSelectHack={false} >
 						<div className="outer-queue">
 							<Panel className="queue-panel" header={this.renderHeader()}>
-								<p>Your question: {this.state.questionText}</p>
-								<p>You are currently {this.state.spot} on the queue.</p>
+								<p>Your question: <i>{this.state.questionText}</i></p>
+								<p>You are currently at position <b>{this.state.spot}</b> on the queue.</p>
 								<p>There are {this.state.queueSize} individual(s) in the queue.</p>
 								<Button onClick={this.leaveQueue}>
-									Remove yourself from queue
+									Remove me from queue
 								</Button>
 							</Panel>
 						</div>
@@ -270,7 +292,7 @@ class Queue extends Component {
 				<Draggable cancel="#queue_form" enableUserSelectHack={false} >
 					<div className="outer-queue">
 						<Panel className="queue-panel" header={this.renderHeader()}>
-							<p className="center">There are {this.state.queueSize} individual(s) in the queue. Add yourself below!</p>
+							<p>You can submit a question below and someone will be with you shortly!</p>
 							<FormGroup>
 								<FormLabel>Question</FormLabel>
 								<FormControl type="text" id="queue_form"
@@ -284,8 +306,9 @@ class Queue extends Component {
 								disabled={this.state.questionText.length === 0}
 								onClick={this.enterQueue}
 							>
-								Add to Queue
+								Submit question
 							</Button>
+							<span style={{ marginLeft: 8 }}>(there are currently {this.state.queueSize} individual(s) in the queue)</span>
 						</Panel>
 					</div>
 				</Draggable>
