@@ -2,33 +2,33 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
+import Button from 'react-bootstrap/Button';
+import FormControl from 'react-bootstrap/FormControl';
+import FormGroup from 'react-bootstrap/FormGroup';
+import FormLabel from 'react-bootstrap/FormLabel';
+import Draggable from 'react-draggable';
+import ReactTable from 'react-table';
 import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
-import Button from 'react-bootstrap/Button';
-import ReactTable from 'react-table';
-import Draggable from 'react-draggable';
-import FormControl from 'react-bootstrap/FormControl';
-import 'react-table/react-table.css';
-import logger from 'debug';
 import Panel from 'components/panel';
 import SessionContext from 'session/context.js';
+import 'react-table/react-table.css';
 import './queue.css';
 
 
 // VARIABLES //
 
-// localStorage.setItem("debug", "isle:queue");
 const debug = logger( 'isle:queue' );
 
 
 // MAIN //
 
 class Queue extends Component {
-	constructor( props, context ) {
+	constructor( props ) {
 		super( props );
 		debug( 'Invoking constructor...' );
 
-		// hide the actual seeing of things in the revealer component
 		this.state = {
 			arr: [],
 			inQueue: false, // if a user is already in the queue
@@ -37,7 +37,6 @@ class Queue extends Component {
 			isOwner: false,
 			queueSize: 0
 		};
-		// type can be Homework, Conceptual, Exam, Other
 	}
 
 	componentDidMount() {
@@ -138,9 +137,7 @@ class Queue extends Component {
 		let newState = {
 			isOwner: session.isOwner()
 		};
-		if (
-			newState.isOwner !== this.state.isOwner
-		) {
+		if ( newState.isOwner !== this.state.isOwner ) {
 			this.setState( newState );
 		}
 	}
@@ -209,9 +206,9 @@ class Queue extends Component {
 		if ( this.props.show ) {
 			if ( this.state.isOwner ) {
 				debug( 'User is an owner...' );
-				return ( <Draggable>
+				return ( <Draggable enableUserSelectHack={false} >
 					<div className="outer-queue">
-						<Panel header={this.renderHeader()}>
+						<Panel className="queue-panel" header={this.renderHeader()}>
 						{ this.state.arr.length === 0 ? <h3 className="center">There are no users in the queue</h3> :
 						<ReactTable
 							showPageSizeOptions={false}
@@ -255,12 +252,12 @@ class Queue extends Component {
 			// Case: We are not an owner
 			if ( this.state.inQueue ) {
 				return (
-					<Draggable>
+					<Draggable enableUserSelectHack={false} >
 						<div className="outer-queue">
-							<Panel header={this.renderHeader()}>
-								<h3>Your question: {this.state.questionText}</h3>
-								<h3>You are currently {this.state.spot} on the queue.</h3>
-								<h3>There are {this.state.queueSize} individual(s) in the queue.</h3>
+							<Panel className="queue-panel" header={this.renderHeader()}>
+								<p>Your question: {this.state.questionText}</p>
+								<p>You are currently {this.state.spot} on the queue.</p>
+								<p>There are {this.state.queueSize} individual(s) in the queue.</p>
 								<Button onClick={this.leaveQueue}>
 									Remove yourself from queue
 								</Button>
@@ -270,21 +267,25 @@ class Queue extends Component {
 				);
 			}
 			return (
-				<Draggable cancel="#queue_form">
+				<Draggable cancel="#queue_form" enableUserSelectHack={false} >
 					<div className="outer-queue">
-						<Panel header={this.renderHeader()}>
-							<h3 className="center">There are {this.state.queueSize} individual(s) in the queue. Add yourself below!</h3>
-							<div>
+						<Panel className="queue-panel" header={this.renderHeader()}>
+							<p className="center">There are {this.state.queueSize} individual(s) in the queue. Add yourself below!</p>
+							<FormGroup>
+								<FormLabel>Question</FormLabel>
 								<FormControl type="text" id="queue_form"
 									value={this.state.questionText}
 									onChange={this.handleText}
 									inline={false}
 									width={500}
 								/>
-								<Button onClick={this.enterQueue}>
-									Add to Queue
-								</Button>
-							</div>
+							</FormGroup>
+							<Button
+								disabled={this.state.questionText.length === 0}
+								onClick={this.enterQueue}
+							>
+								Add to Queue
+							</Button>
 						</Panel>
 					</div>
 				</Draggable>
