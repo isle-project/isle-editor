@@ -23,3 +23,10 @@
 	margin-top: 0;
 	margin-bottom: 0;
 }
+
+.data-explorer-toolbox {
+	z-index: 1004;
+	position: fixed;
+	top: 10%;
+	min-width: 500px;
+}

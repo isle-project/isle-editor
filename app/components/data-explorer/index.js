@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, lazy, Suspense } from 'react';
+import React, { Component, Fragment, lazy, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Draggable from 'react-draggable';
@@ -800,170 +800,177 @@ class DataExplorer extends Component {
 				</Tab.Pane> );
 			})}
 		</Tab.Content>;
+		const mainContainer = <Row className="no-gutter data-explorer">
+			<Col xs={6} md={6}>
+				<Card>
+					<Navbar className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
+						<Nav>
+							{ this.props.questions ? <Nav.Item className="explorer-data-nav">
+								<Nav.Link eventKey="questions" active={this.state.openedNav === 'questions'}>Questions</Nav.Link>
+							</Nav.Item> : null }
+							{ !this.props.hideDataTable ? <Nav.Item className="explorer-data-nav" >
+								<Nav.Link eventKey="data" active={this.state.openedNav === 'data'}>Data</Nav.Link>
+							</Nav.Item> : null }
+							{ this.props.distributions.length > 0 ?
+								<NavDropdown
+									eventKey="distributions"
+									title="Distributions"
+									active={startsWith( this.state.openedNav, 'distributions' )}
+								>
+									{this.props.distributions.map( ( e, i ) =>
+										<NavDropdown.Item key={i} eventKey={`distributions.${i+1}`}>{e}</NavDropdown.Item> )}
+								</NavDropdown> : null
+							}
+							{ this.props.transformer ?
+								<Nav.Item className="explorer-transformer-nav">
+									<Nav.Link
+										active={this.state.openedNav === 'transformer'}
+										eventKey="transformer"
+									>Transformer</Nav.Link>
+								</Nav.Item> : null
+							}
+							{ this.props.showEditor ?
+								<Nav.Item className="explorer-editor-nav">
+									<Nav.Link
+										active={this.state.openedNav === 'editor'}
+										eventKey="editor"
+									>{this.props.editorTitle}</Nav.Link>
+								</Nav.Item> : null
+							}
+							{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
+								return (
+									<Nav.Item key={i} className="explorer-tabs-nav">
+										<Nav.Link
+											active={this.state.openedNav === e.title}
+											eventKey={e.title}
+										>{e.title}</Nav.Link>
+									</Nav.Item>
+								);
+							}) : null }
+						</Nav>
+						<Button variant="secondary" size="sm" style={{ position: 'absolute', right: '20px' }} onClick={this.toggleToolbox} >{this.state.showToolbox ? 'Hide Toolbox' : 'Show Toolbox' }</Button>
+					</Navbar>
+					<Card.Body>
+						<Pages
+							height={470}
+							size="small"
+							className="data-explorer-questions"
+							style={{
+								display: this.state.openedNav !== 'questions' ? 'none' : null
+							}}
+						>{this.props.questions}</Pages>
+						<div
+							style={{
+								display: this.state.openedNav !== 'data' ? 'none' : null
+							}}
+						>
+								{ !this.props.data ? <Button size="small" onClick={this.resetStorage} style={{ position: 'absolute' }}>Clear Data</Button> : null }
+								<DataTable data={this.state.data} dataInfo={this.props.dataInfo} filters={this.state.filters} />
+						</div>
+						{this.props.distributions.map( ( e, i ) => {
+							let content = null;
+							switch ( e ) {
+							case 'Normal':
+								content = <LearnNormalDistribution step="any" />;
+								break;
+							case 'Uniform':
+								content = <LearnUniformDistribution step="any" />;
+								break;
+							case 'Exponential':
+								content = <LearnExponentialDistribution step="any" />;
+								break;
+							}
+							return ( this.state.openedNav === `distributions.${i+1}` ?
+								<Suspense fallback={<div>Loading...</div>} >{content}</Suspense> : null );
+						})}
+						<MarkdownEditor {...this.props.editorProps} plots={this.state.output} id={this.props.id ? this.props.id + '_editor' : null} style={{ display: this.state.openedNav !== 'editor' ? 'none' : null }} submitButton />
+						{ this.state.openedNav === 'transformer' ?
+							<VariableTransformer
+								data={this.state.data}
+								continuous={this.state.continuous}
+								categorical={this.state.categorical}
+								logAction={this.logAction}
+								session={this.context}
+								onGenerate={this.onGenerateTransformedVariable}
+							/> : null
+						}
+						{this.props.tabs.map( ( e, i ) => {
+							return ( this.state.openedNav === e.title ?
+								e.content : null );
+						})}
+					</Card.Body>
+				</Card>
+			</Col>
+			<Col xs={6} md={6}>
+				<div className="card card-default" style={{ minHeight: window.innerHeight*0.9, padding: 0 }}>
+					<div className="card-header clearfix">
+						<h3 className="data-explorer-output-header">Output</h3>
+						<Gate owner>
+							<Modal
+								show={this.state.showStudentPlots}
+								onHide={this.toggleStudentPlots}
+								dialogClassName="modal-100w"
+							>
+								<Modal.Header closeButton>
+									<Modal.Title>Plots</Modal.Title>
+								</Modal.Header>
+								<Modal.Body style={{ height: 0.80 * window.innerHeight, overflowY: 'scroll' }}>
+									{ this.state.studentPlots.length > 0 ?
+										<GridLayout>
+											{this.state.studentPlots.map( ( elem, idx ) => {
+												const config = JSON.parse( elem.config );
+												return (
+													<div key={idx} style={{ height: '450px' }}>
+														{
+															isString( config ) ?
+																<RPlot
+																	code={config}
+																	libraries={[ 'MASS' ]}
+																/>:
+																<Plotly
+																	data={config.data}
+																	layout={config.layout}
+																	removeButtons
+																/>
+														}
+														<span>
+															<b>Count: </b>{elem.count}
+														</span>
+													</div>
+												);
+											})}
+										</GridLayout> :
+										<Card body className="bg-light">
+											No plots have been created yet...
+										</Card>
+									}
+								</Modal.Body>
+								<Modal.Footer>
+									<Button variant="danger" onClick={this.clearPlots}>Clear Plots</Button>
+									<Button onClick={this.toggleStudentPlots}>Close</Button>
+								</Modal.Footer>
+							</Modal>
+							<Button variant="secondary" size="sm" style={{ float: 'right' }} onClick={this.toggleStudentPlots} >Open Shared Plots</Button>
+							<RealtimeMetrics returnFullObject for={this.props.id} onDatum={this.onUserAction} />
+						</Gate>
+					</div>
+					{OutputPanel( this.state.output )}
+					<Button size="sm" variant="outline-danger" block onClick={() => {
+						this.setState({ output: []});
+					}}>Clear All</Button>
+				</div>
+			</Col>
+		</Row>;
 
 		return (
-			<Row className="no-gutter data-explorer">
-				<Col xs={6} md={6}>
-					<Card>
-						<Navbar className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
-							<Nav>
-								{ this.props.questions ? <Nav.Item className="explorer-data-nav">
-									<Nav.Link eventKey="questions" active={this.state.openedNav === 'questions'}>Questions</Nav.Link>
-								</Nav.Item> : null }
-								{ !this.props.hideDataTable ? <Nav.Item className="explorer-data-nav" >
-									<Nav.Link eventKey="data" active={this.state.openedNav === 'data'}>Data</Nav.Link>
-								</Nav.Item> : null }
-								{ this.props.distributions.length > 0 ?
-									<NavDropdown
-										eventKey="distributions"
-										title="Distributions"
-										active={startsWith( this.state.openedNav, 'distributions' )}
-									>
-										{this.props.distributions.map( ( e, i ) =>
-											<NavDropdown.Item key={i} eventKey={`distributions.${i+1}`}>{e}</NavDropdown.Item> )}
-									</NavDropdown> : null
-								}
-								{ this.props.transformer ?
-									<Nav.Item className="explorer-transformer-nav">
-										<Nav.Link
-											active={this.state.openedNav === 'transformer'}
-											eventKey="transformer"
-										>Transformer</Nav.Link>
-									</Nav.Item> : null
-								}
-								{ this.props.showEditor ?
-									<Nav.Item className="explorer-editor-nav">
-										<Nav.Link
-											active={this.state.openedNav === 'editor'}
-											eventKey="editor"
-										>{this.props.editorTitle}</Nav.Link>
-									</Nav.Item> : null
-								}
-								{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
-									return (
-										<Nav.Item key={i} className="explorer-tabs-nav">
-											<Nav.Link
-												active={this.state.openedNav === e.title}
-												eventKey={e.title}
-											>{e.title}</Nav.Link>
-										</Nav.Item>
-									);
-								}) : null }
-							</Nav>
-							<Button variant="secondary" size="sm" style={{ position: 'absolute', right: '20px' }} onClick={this.toggleToolbox} >{this.state.showToolbox ? 'Hide Toolbox' : 'Show Toolbox' }</Button>
-						</Navbar>
-						<Card.Body>
-							<Pages
-								height={470}
-								size="small"
-								className="data-explorer-questions"
-								style={{
-									display: this.state.openedNav !== 'questions' ? 'none' : null
-								}}
-							>{this.props.questions}</Pages>
-							<div
-								style={{
-									display: this.state.openedNav !== 'data' ? 'none' : null
-								}}
-							>
-									{ !this.props.data ? <Button size="small" onClick={this.resetStorage} style={{ position: 'absolute' }}>Clear Data</Button> : null }
-									<DataTable data={this.state.data} dataInfo={this.props.dataInfo} filters={this.state.filters} />
-							</div>
-							{this.props.distributions.map( ( e, i ) => {
-								let content = null;
-								switch ( e ) {
-								case 'Normal':
-									content = <LearnNormalDistribution step="any" />;
-									break;
-								case 'Uniform':
-									content = <LearnUniformDistribution step="any" />;
-									break;
-								case 'Exponential':
-									content = <LearnExponentialDistribution step="any" />;
-									break;
-								}
-								return ( this.state.openedNav === `distributions.${i+1}` ?
-									<Suspense fallback={<div>Loading...</div>} >{content}</Suspense> : null );
-							})}
-							<MarkdownEditor {...this.props.editorProps} plots={this.state.output} id={this.props.id ? this.props.id + '_editor' : null} style={{ display: this.state.openedNav !== 'editor' ? 'none' : null }} submitButton />
-							{ this.state.openedNav === 'transformer' ?
-								<VariableTransformer
-									data={this.state.data}
-									continuous={this.state.continuous}
-									categorical={this.state.categorical}
-									logAction={this.logAction}
-									session={this.context}
-									onGenerate={this.onGenerateTransformedVariable}
-								/> : null
-							}
-							{this.props.tabs.map( ( e, i ) => {
-								return ( this.state.openedNav === e.title ?
-									e.content : null );
-							})}
-						</Card.Body>
-					</Card>
-				</Col>
-				<Col xs={6} md={6}>
-					<div className="card card-default" style={{ minHeight: window.innerHeight*0.9, padding: 0 }}>
-						<div className="card-header clearfix">
-							<h3 className="data-explorer-output-header">Output</h3>
-							<Gate owner>
-								<Modal
-									show={this.state.showStudentPlots}
-									onHide={this.toggleStudentPlots}
-									dialogClassName="modal-100w"
-								>
-									<Modal.Header closeButton>
-										<Modal.Title>Plots</Modal.Title>
-									</Modal.Header>
-									<Modal.Body style={{ height: 0.80 * window.innerHeight, overflowY: 'scroll' }}>
-										{ this.state.studentPlots.length > 0 ?
-											<GridLayout>
-												{this.state.studentPlots.map( ( elem, idx ) => {
-													const config = JSON.parse( elem.config );
-													return (
-														<div key={idx} style={{ height: '450px' }}>
-															{
-																isString( config ) ?
-																	<RPlot
-																		code={config}
-																		libraries={[ 'MASS' ]}
-																	/>:
-																	<Plotly
-																		data={config.data}
-																		layout={config.layout}
-																		removeButtons
-																	/>
-															}
-															<span>
-																<b>Count: </b>{elem.count}
-															</span>
-														</div>
-													);
-												})}
-											</GridLayout> :
-											<Card body className="bg-light">
-												No plots have been created yet...
-											</Card>
-										}
-									</Modal.Body>
-									<Modal.Footer>
-										<Button variant="danger" onClick={this.clearPlots}>Clear Plots</Button>
-										<Button onClick={this.toggleStudentPlots}>Close</Button>
-									</Modal.Footer>
-								</Modal>
-								<Button variant="secondary" size="sm" style={{ float: 'right' }} onClick={this.toggleStudentPlots} >Open Shared Plots</Button>
-								<RealtimeMetrics returnFullObject for={this.props.id} onDatum={this.onUserAction} />
-							</Gate>
-						</div>
-						{OutputPanel( this.state.output )}
-						<Button size="sm" variant="outline-danger" block onClick={() => {
-							this.setState({ output: []});
-						}}>Clear All</Button>
-					</div>
-				</Col>
+			<Fragment>
+				{mainContainer}
 				<Draggable cancel=".input" enableUserSelectHack={false} >
-					<Card border="secondary" style={{ display: this.state.showToolbox ? 'inline' : 'none', zIndex: 1002, position: 'absolute', minWidth: '500px' }}>
+					<Card
+						border="secondary"
+						className="data-explorer-toolbox"
+						style={{ display: this.state.showToolbox ? 'inline' : 'none' }}
+					>
 						<Card.Header style={{ height: '55px' }}>
 							<Card.Title as="h3" style={{ position: 'absolute', left: '20px' }}>Toolbox</Card.Title>
 							<Button variant="secondary" size="sm" style={{ position: 'absolute', right: '20px' }}onClick={this.toggleToolbox} >Hide Toolbox</Button>
@@ -976,7 +983,7 @@ class DataExplorer extends Component {
 						</Card.Body>
 					</Card>
 				</Draggable>
-			</Row>
+			</Fragment>
 		);
 	}
 }
