@@ -327,9 +327,6 @@
     "import/external-module-folders": [ "node_modules" ],
     "import/core-modules": [ "electron", "@stdlib" ],
     "import/resolver": {
-      "webpack": {
-        "config": "webpack.config.base.js"
-      },
       "node": {
         "moduleDirectory": [
           "app",
