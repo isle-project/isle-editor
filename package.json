@@ -187,7 +187,7 @@
     "moment": "2.23.0",
     "node-libs-browser": "^2.2.0",
     "pdfjs-dist": "^2.0.489",
-    "pdfmake": "^0.1.40",
+    "pdfmake": "^0.1.41",
     "plotly.js": "^1.43.2",
     "pressure": "^2.1.2",
     "profanities": "^2.9.0",
@@ -212,7 +212,7 @@
     "react-list": "^0.8.11",
     "react-monaco-editor": "^0.22.0",
     "react-notification-system": "^0.2.7",
-    "react-player": "^1.8.0",
+    "react-player": "^1.9.3",
     "react-plotly.js": "^2.2.0",
     "react-redux": "5.1.1",
     "react-router": "4.3.1",
@@ -238,7 +238,7 @@
     "uniq": "^1.0.1",
     "uuid": "^3.3.2",
     "venn.js": "0.2.20",
-    "victory": "31.1.0",
+    "victory": "31.2.0",
     "webpack": "4.29.0"
   },
   "greenkeeper": {
