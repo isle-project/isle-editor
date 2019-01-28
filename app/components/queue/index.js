@@ -45,8 +45,6 @@ class Queue extends Component {
 		if ( session ) {
 			debug( 'We have a session, subscribe the component...' );
 			this.unsubscribe = session.subscribe( ( type, action ) => {
-				debug( type );
-
 				if ( type === 'RECEIVED_USER_RIGHTS' ) {
 					// We need to check whether the user is an owner:
 					this.checkAuthorization();
