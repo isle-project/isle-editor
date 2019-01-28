@@ -8,7 +8,7 @@ import isArray from '@stdlib/assert/is-array';
 // MAIN //
 
 /**
-* Preload resources to avoid stutterring loading times.
+* Preload resources to avoid stuttering loading times.
 *
 * @property {(Array|string)} image - the image or the array of images that should be preloaded
 */
@@ -18,19 +18,18 @@ class Preload extends Component {
 	}
 
 	componentDidMount() {
-        if (this.props.image !== null) {
-			if (isArray(this.props.image)) {
-				for (let i = 0; i < this.props.image.length; i++) {
+		if ( this.props.image !== null ) {
+			if ( isArray( this.props.image ) ) {
+				for ( let i = 0; i < this.props.image.length; i++ ) {
 					const img = new Image();
-					img.src = this.props.image[i];
+					img.src = this.props.image[ i ];
 				}
 			}
 			else {
 				const img = new Image();
 				img.src = this.props.image;
 			}
-
-        }
+		}
 	}
 
 	/*
@@ -49,7 +48,9 @@ Preload.defaultProps = {
 };
 
 Preload.propTypes = {
-    image: PropTypes.oneOf([PropTypes.string, PropTypes.array])
+	image: PropTypes.oneOf([
+		PropTypes.string, PropTypes.array
+	])
 };
 
 
