@@ -1,11 +1,6 @@
 // MAIN //
 
-import Victory from 'victory';
-
-
-// MAIN //
-
-const { VictoryAnimation } = Victory;
+import { VictoryAnimation } from 'victory';
 
 
 // EXPORTS //
