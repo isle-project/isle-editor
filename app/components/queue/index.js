@@ -266,7 +266,7 @@ class Queue extends Component {
 									}
 								},
 								{
-									Header: ' X ',
+									Header: 'Done',
 									accessor: 'remove',
 									Cell: this.renderButtonRemovable,
 									filterable: false,
