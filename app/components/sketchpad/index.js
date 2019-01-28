@@ -230,6 +230,8 @@ class Sketchpad extends Component {
 					const type = action.type;
 					if ( type === 'SKETCHPAD_MOVE_POINTER' ) {
 						let { x, y } = JSON.parse( action.value );
+						x *= this.canvas.width;
+						y *= this.canvas.height;
 						x = `${x+this.leftMargin}px`;
 						y = `${y}px`;
 						if (
@@ -240,7 +242,7 @@ class Sketchpad extends Component {
 							this.pointer.style.top = y;
 							this.pointer.style.opacity = 0.7;
 						}
-					} else {
+					} else if ( type === 'SKETCHPAD_HIDE_POINTER' ) {
 						this.pointer.style.opacity = 0;
 					}
 
@@ -483,6 +485,13 @@ class Sketchpad extends Component {
 	}
 
 	hidePointer = () => {
+		const action = {
+			id: this.props.id,
+			type: 'SKETCHPAD_HIDE_POINTER',
+			value: true,
+			noSave: true
+		};
+		session.log( action, 'members' );
 		this.pointer.style.opacity = 0;
 	}
 
@@ -1862,8 +1871,8 @@ class Sketchpad extends Component {
 			id: this.props.id,
 			type: 'SKETCHPAD_MOVE_POINTER',
 			value: JSON.stringify({
-				x,
-				y
+				x: x / this.canvas.width,
+				y: y / this.canvas.height
 			}),
 			noSave: true
 		};
