@@ -76,6 +76,13 @@ class ResponseVisualizers extends Component {
 				debug( 'Found element, should add glow effect...' );
 				if ( isHidden( elem ) ) {
 					const clone = elem.cloneNode( true );
+					clone.addEventListener( 'click', ( event ) => {
+						debug( `Clicked on element with ID ${event.target.id}` );
+
+						// Returns original element with the given ID since it was first inserted into the DOM:
+						const button = document.getElementById( event.target.id );
+						button.click();
+					});
 					const newDiv = document.createElement( 'div' );
 					newDiv.id = 'duplicated-container';
 					clone.id = 'duplicated-elem';

@@ -469,9 +469,10 @@ class ResponseVisualizer extends Component {
 							style={{ ...this.props.buttonStyle }}
 							variant={this.props.variant}
 							size="sm"
+							id={`${this.props.id}_answers_button`}
 						>
-							<span style={{ marginRight: '5px' }} >{this.props.buttonLabel}</span>
-							<Badge variant="dark" style={{ fontSize: '10px' }}>{this.state.nActions}</Badge>
+							<span style={{ marginRight: '5px', pointerEvents: 'none' }} >{this.props.buttonLabel}</span>
+							<Badge variant="dark" style={{ fontSize: '10px', pointerEvents: 'none' }}>{this.state.nActions}</Badge>
 						</Button>
 					</Tooltip>
 					<OverlayTrigger
