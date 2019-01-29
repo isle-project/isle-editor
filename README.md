@@ -39,7 +39,7 @@ Current version: v0.19.1.
 Developing and running the ISLE Editor has the following prerequisites:
 
 * [git][git]: version control
-* [Node.js][node-js]: JavaScript runtime (version `>= 7.0`)
+* [Node.js][node-js]: JavaScript runtime (version `>= 9.0`)
 
 
 #### Download
