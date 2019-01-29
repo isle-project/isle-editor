@@ -766,10 +766,6 @@
         }
       },
       {
-        "name": "children",
-        "default": null
-      },
-      {
         "name": "flipSpeedBackToFront",
         "type": "number",
         "description": "the speed by which the card turns from background to foreground, in seconds",
@@ -2796,6 +2792,12 @@
   "Panel": {
     "props": [
       {
+        "name": "className",
+        "type": "string",
+        "description": "CSS class name",
+        "default": ""
+      },
+      {
         "name": "header",
         "type": "(string|node)",
         "description": "panel heading (h3)",
@@ -2890,6 +2892,17 @@
       }
     ],
     "description": "Plotly visualization."
+  },
+  "Preload": {
+    "props": [
+      {
+        "name": "image",
+        "type": "object",
+        "description": "the image or the array of images that should be preloaded",
+        "default": null
+      }
+    ],
+    "description": "Preload resources to avoid stuttering loading times."
   },
   "ProportionsSurvey": {
     "props": [
@@ -3028,9 +3041,24 @@
   "Queue": {
     "props": [
       {
-        "name": "message",
-        "type": "string",
-        "default": "Queue is currently closed."
+        "name": "show",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "onHide",
+        "type": "function",
+        "default": "function noop() {\n\t// Empty function...\n}"
+      },
+      {
+        "name": "onQueueSize",
+        "type": "function",
+        "default": "function noop() {\n\t// Empty function...\n}"
+      },
+      {
+        "name": "onNewQuestion",
+        "type": "function",
+        "default": "function noop() {\n\t// Empty function...\n}"
       }
     ],
     "description": "Description is missing."

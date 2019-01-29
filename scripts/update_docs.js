@@ -13,6 +13,7 @@ const objectKeys = require( '@stdlib/utils/keys' );
 const replace = require( '@stdlib/string/replace' );
 const repeat = require( '@stdlib/string/repeat' );
 const endsWith = require( '@stdlib/string/ends-with' );
+const noop = require( '@stdlib/utils/noop' );
 const isFunction = require( '@stdlib/assert/is-function' );
 const invert = require( '@stdlib/utils/object-inverse' );
 const REQUIRES = invert( require( './../app/bundler/requires.json' ) );
@@ -30,12 +31,14 @@ const RE_TYPES = /\.(propTypes ?= ?{[\s\S]*?};)/;
 const RE_DEFAULTS = /\.(defaultProps ?= ?{[\s\S]*?};)/;
 const SCOPE_KEYS = [
 	'PropTypes',
+	'noop',
 	'repeat',
 	'DEFAULT_VALUE',
 	'APIXU_AUTH_KEY'
 ];
 const SCOPE_VALUES = [
 	PropTypes,
+	noop,
 	repeat,
 	repeat( '\n', 15 ),
 	'<number>'
@@ -100,6 +103,9 @@ for ( let i = 0; i < files.length; i++ ) {
 		}
 		for ( let i = 0; i < ast.tags.length; i++ ) {
 			const tag = ast.tags[ i ];
+			if ( tag.name === 'children' ) {
+				continue;
+			}
 			description[ tag.name ] = tag.description;
 		}
 	}
@@ -112,6 +118,9 @@ for ( let i = 0; i < files.length; i++ ) {
 	const keys = objectKeys( types );
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
+		if ( key === 'children' ) {
+			continue;
+		}
 		const defaultStr = generateDefaultString( defaults[ key ] );
 		str += `* __${key}__ | \`${types[ key ] }\`: ${description[ key ]}. ${defaultStr}`;
 		str += '\n';
