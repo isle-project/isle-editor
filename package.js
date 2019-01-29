@@ -4,22 +4,23 @@
 // MODULES //
 
 require( 'babel-polyfill' );
-const modclean = require( 'modclean' );
-const packager = require( 'electron-packager' );
-const webpack = require( 'webpack' );
-const path = require( 'path' );
-const spawn = require( 'child_process' ).spawn;
-const exec = require( 'child_process' ).exec;
-const logger = require( 'debug' );
-const argv = require( 'minimist' )( process.argv.slice( 2 ) );
-const del = require( 'del' );
-const os = require( 'os' );
-const electronCfg = require( './webpack.config.electron.js' );
-const cfg = require( './webpack.config.production.js' );
+import modclean from 'modclean';
+import packager from 'electron-packager';
+import webpack from 'webpack';
+import path from 'path';
+import { spawn } from 'child_process';
+import { exec } from 'child_process';
+import logger from 'debug';
+import minimist from 'minimist';
+import del from 'del';
+import os from 'os';
+import electronCfg from './webpack.config.electron.js';
+import cfg from './webpack.config.production.js';
 
 
 // VARIABLES //
 
+const argv = minimist( process.argv.slice( 2 ) );
 const debug = logger( 'isle-editor:package' );
 const pkg = require( './package.json' );
 const deps = Object.keys( pkg.dependencies );
@@ -86,6 +87,7 @@ if ( version ) {
 
 function build( cfg ) {
 	return new Promise( ( resolve, reject ) => {
+		console.log( cfg );
 		webpack( cfg, ( err, stats ) => {
 			if ( err ) {
 				return reject( err );
@@ -144,7 +146,7 @@ function pack( plat, arch ) {
 		arch,
 		prune: true,
 		appVersion: pkg.version || DEFAULT_OPTS.electronVersion,
-		appCopyright: 'Copyright © 2016 Philipp Burckhardt. All rights reserved.',
+		appCopyright: 'Copyright © 2016-2019 Philipp Burckhardt. All rights reserved.',
 		win32metadata: {
 			CompanyName: 'Carnegie Mellon University',
 			FileDescription: 'Interactive Statistics Learning Environment (ISLE) Editor',
