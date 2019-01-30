@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import shuffle from '@stdlib/random/shuffle';
-import copy from '@stdlib/utils/copy';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Card from './card.js';
@@ -35,7 +34,7 @@ class Container extends Component {
 	}
 
 	moveCard = ( dragIndex, hoverIndex ) => {
-		const cards = copy( this.state.cards );
+		const cards = this.state.cards.slice();
 		const dragCard = cards[ dragIndex ];
 		cards.splice( dragIndex, 1 );
 		cards.splice( hoverIndex, 0, dragCard );

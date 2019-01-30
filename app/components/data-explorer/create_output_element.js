@@ -8,7 +8,7 @@ import Table from 'react-bootstrap/Table';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
-import isNumber from '@stdlib/assert/is-number';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import entries from '@stdlib/utils/entries';
 import replace from '@stdlib/string/replace';
 import ClearButton from './clear_button.js';

@@ -38,7 +38,7 @@ class Tree extends Component {
 		// Clone new data & assign internal properties
 		if (!deepEqual(this.props.data, prevProps.data)) {
 			this.setState({
-				data: this.assignInternalProperties(copy(this.props.data))
+				data: this.assignInternalProperties( copy( this.props.data ) )
 			});
 		}
 

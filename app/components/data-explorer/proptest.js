@@ -9,7 +9,6 @@ import TeX from 'components/tex';
 import isArray from '@stdlib/assert/is-array';
 import ztest from '@stdlib/stats/ztest';
 import sqrt from '@stdlib/math/base/special/sqrt';
-import copy from '@stdlib/utils/copy';
 import roundn from '@stdlib/math/base/special/roundn';
 import replace from '@stdlib/string/replace';
 import unique from 'uniq';
@@ -32,7 +31,7 @@ class PropTest extends Component {
 
 		let categories;
 		if ( isArray( props.categorical ) && props.categorical.length > 0 ) {
-			categories = copy( props.data[ props.categorical[ 0 ] ]);
+			categories = props.data[ props.categorical[ 0 ] ].slice();
 			unique( categories );
 		} else {
 			categories = [];
@@ -105,7 +104,7 @@ class PropTest extends Component {
 					defaultValue={categorical[ 0 ]}
 					options={categorical}
 					onChange={( val ) => {
-						let categories = copy( this.props.data[ val ]);
+						let categories = this.props.data[ val ].slice();
 						unique( categories );
 						this.setState({
 							categories

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import isString from '@stdlib/assert/is-string';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 
 
 // MAIN //

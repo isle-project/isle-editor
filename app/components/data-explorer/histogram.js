@@ -16,7 +16,7 @@ import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
 import mean from 'utils/statistic/mean';
 import stdev from 'utils/statistic/stdev';
-import isNumber from '@stdlib/assert/is-number';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import pow from '@stdlib/math/base/special/pow';
 import gaussian from '@stdlib/stats/base/dists/normal/pdf';
 import dexp from '@stdlib/stats/base/dists/exponential/pdf';

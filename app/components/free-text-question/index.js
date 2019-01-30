@@ -12,7 +12,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
-import isString from '@stdlib/assert/is-string';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import ChatButton from 'components/chat-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import SolutionButton from 'components/solution-button';

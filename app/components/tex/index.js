@@ -11,7 +11,7 @@ import katex from 'katex';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NumberInput from 'components/input/number';
-import isNumber from '@stdlib/assert/is-number';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 
 
 // VARIABLES //

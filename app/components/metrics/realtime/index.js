@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
-import copy from '@stdlib/utils/copy';
 import SessionContext from 'session/context.js';
 
 
@@ -41,7 +40,7 @@ class RealTimeMetrics extends Component {
 						return null;
 					}
 					if ( contains( this.props.for, action.id ) ) {
-						let actions = copy( this.state.actions );
+						let actions = this.state.actions.slice();
 						actions.push( this.props.returnFullObject ? action : action.value );
 						this.setState({
 							actions

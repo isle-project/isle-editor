@@ -16,7 +16,7 @@ import beforeUnload from 'utils/before-unload';
 import isElectron from 'utils/is-electron';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
-import isString from '@stdlib/assert/is-string';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import max from '@stdlib/math/base/special/max';
 import logger from 'debug';
 import PINF from '@stdlib/constants/math/float64-pinf';

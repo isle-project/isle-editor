@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import shuffle from '@stdlib/random/shuffle';
-import isString from '@stdlib/assert/is-string';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import * as d3 from 'd3';
 import SolutionButton from 'components/solution-button';
 import ChatButton from 'components/chat-button';

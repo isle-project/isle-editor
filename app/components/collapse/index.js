@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import isBoolean from '@stdlib/assert/is-boolean';
+import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
 import isNull from '@stdlib/assert/is-null';
 import VSHeader from './vs-header.js';
 import VSBody from './vs-body.js';

@@ -5,7 +5,7 @@ import logger from 'debug';
 import localforage from 'localforage';
 import contains from '@stdlib/assert/contains';
 import isNull from '@stdlib/assert/is-null';
-import isString from '@stdlib/assert/is-string';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isFunction from '@stdlib/assert/is-function';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';

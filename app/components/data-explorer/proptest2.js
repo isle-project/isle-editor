@@ -12,7 +12,6 @@ import TeX from 'components/tex';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
 import ztest2 from '@stdlib/stats/ztest2';
-import copy from '@stdlib/utils/copy';
 import roundn from '@stdlib/math/base/special/roundn';
 import replace from '@stdlib/string/replace';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
@@ -37,7 +36,7 @@ class PropTest2 extends Component {
 
 		let categories;
 		if ( isArray( props.categorical ) && props.categorical.length > 0 ) {
-			categories = copy( props.data[ props.categorical[ 0 ] ]);
+			categories = props.data[ props.categorical[ 0 ] ].slice();
 			unique( categories );
 		} else {
 			categories = [];
@@ -181,7 +180,7 @@ class PropTest2 extends Component {
 	getBinaryVars( vars ) {
 		const out = [];
 		for ( let i = 0; i < vars.length; i++ ) {
-			let data = copy( this.props.data[ vars[ i ] ]);
+			let data = this.props.data[ vars[ i ] ].slice();
 			unique( data );
 			if ( data.length === 2 ) {
 				out.push( vars[ i ]);
@@ -210,7 +209,7 @@ class PropTest2 extends Component {
 								defaultValue={categorical[ 0 ]}
 								options={categorical}
 								onChange={( val ) => {
-									let categories = copy( this.props.data[ val ]);
+									let categories = this.props.data[ val ].slice();
 									unique( categories );
 									this.setState({
 										categories,

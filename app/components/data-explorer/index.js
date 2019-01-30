@@ -14,7 +14,7 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Card from 'react-bootstrap/Card';
 import Tab from 'react-bootstrap/Tab';
-import isString from '@stdlib/assert/is-string';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import isObject from '@stdlib/assert/is-object';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
@@ -247,7 +247,7 @@ class DataExplorer extends Component {
 	* Remove output element at the specified index.
 	*/
 	clearOutput = ( idx ) => {
-		let newOutputs = copy( this.state.output );
+		let newOutputs = this.state.output.slice();
 		newOutputs[ idx ] = null;
 		this.setState({
 			output: newOutputs
@@ -301,7 +301,7 @@ class DataExplorer extends Component {
 			config = generateViolinplotConfig({ data: this.state.data, ...value });
 		}
 		if ( config ) {
-			const newStudentPlots = copy( this.state.studentPlots );
+			const newStudentPlots = this.state.studentPlots.slice();
 			const configString = JSON.stringify( config );
 			let found = false;
 			for ( let i = 0; i < newStudentPlots.length; i++ ) {
@@ -349,8 +349,8 @@ class DataExplorer extends Component {
 			newData[ name ] = values;
 			let groupVars;
 			let previous;
-			let newContinuous = copy( this.state.continuous );
-			let newCategorical = copy( this.state.categorical );
+			let newContinuous = this.state.continuous.slice();
+			let newCategorical = this.state.categorical.slice();
 			if ( isNumberArray( values ) ) {
 				if ( !( name in newContinuous ) ) {
 					newContinuous.push( name );

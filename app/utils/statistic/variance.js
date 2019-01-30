@@ -8,7 +8,7 @@
 
 // MODULES //
 
-import isNumber from '@stdlib/assert/is-number';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 
 
 // MAIN //

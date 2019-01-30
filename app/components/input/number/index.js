@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import Input from 'components/input/base';
 import contains from '@stdlib/assert/contains';
-import isString from '@stdlib/assert/is-string';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';

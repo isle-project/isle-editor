@@ -16,7 +16,7 @@ import Select from 'react-select';
 import isTouchDevice from 'is-touch-device';
 import Checkbox from 'components/input/checkbox';
 import contains from '@stdlib/assert/contains';
-import isNumber from '@stdlib/assert/is-number';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isObject from '@stdlib/assert/is-object';
 import isNull from '@stdlib/assert/is-null';
 import round from '@stdlib/math/base/special/round';

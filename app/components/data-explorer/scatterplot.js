@@ -9,7 +9,7 @@ import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
-import isNumber from '@stdlib/assert/is-number';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import lowess from '@stdlib/stats/lowess';
@@ -17,7 +17,6 @@ import linspace from '@stdlib/math/utils/linspace';
 import mapValues from '@stdlib/utils/map-values';
 import groupBy from '@stdlib/utils/group-by';
 import group from '@stdlib/utils/group';
-import copy from '@stdlib/utils/copy';
 import unique from 'uniq';
 import mean from 'utils/statistic/mean';
 import max from 'utils/statistic/max';
@@ -92,10 +91,10 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 	if ( color && type ) {
 		const colors = data[ color ];
 		const types = data[ type ];
-		const uniqueColors = copy( colors );
+		const uniqueColors = colors.slice();
 		unique( uniqueColors );
 		nColors = uniqueColors.length;
-		const uniqueTypes = copy( types );
+		const uniqueTypes = types.slice();
 		unique( uniqueTypes );
 
 		traces = [];
@@ -145,7 +144,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 		}
 	}
 	else if ( type ) {
-		const groups = copy( data[ type ]);
+		const groups = data[ type ].slice();
 		unique( groups );
 		const xgrouped = group( data[ xval ], data[ type ]);
 		const ygrouped = group( data[ yval ], data[ type ]);
@@ -175,7 +174,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 		}
 	}
 	else if ( color ) {
-		const groups = copy( data[ color ]);
+		const groups = data[ color ].slice();
 		unique( groups );
 		nColors = groups.length;
 		const xgrouped = group( data[ xval ], data[ color ]);
@@ -224,7 +223,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 
 	if ( regressionLine ) {
 		if ( lineBy ) {
-			const groups = copy( data[ lineBy ]);
+			const groups = data[ lineBy ].slice();
 			unique( groups );
 			const xgrouped = group( data[ xval ], data[ lineBy ]);
 			const ygrouped = group( data[ yval ], data[ lineBy ]);

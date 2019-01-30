@@ -9,7 +9,6 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
 import Draggable from 'react-draggable';
 import ReactTable from 'react-table';
-import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import ChatButton from 'components/chat-button';
 import Panel from 'components/panel';
@@ -97,7 +96,7 @@ class Queue extends Component {
 								});
 							}
 						} else if ( this.state.isOwner ) {
-							const newArr = copy( this.state.arr );
+							const newArr = this.state.arr.slice();
 							newArr.splice( val - 1, 1 );
 							this.setState({
 								arr: newArr,

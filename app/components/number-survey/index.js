@@ -11,7 +11,7 @@ import Card from 'react-bootstrap/Card';
 import { VictoryAxis, VictoryArea, VictoryChart } from 'victory';
 import logger from 'debug';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
-import isNumber from '@stdlib/assert/is-number';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import inmap from '@stdlib/utils/inmap';
 import abs from '@stdlib/math/base/special/abs';
 import pow from '@stdlib/math/base/special/pow';

@@ -3,7 +3,7 @@
 import React from 'react';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import PropTypes from 'prop-types';
-import isBoolean from '@stdlib/assert/is-boolean';
+import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
 
 
 // MAIN //

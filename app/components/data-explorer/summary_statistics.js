@@ -9,7 +9,7 @@ import objectKeys from '@stdlib/utils/keys';
 import isArray from '@stdlib/assert/is-array';
 import CheckboxInput from 'components/input/checkbox';
 import QuestionButton from './question_button.js';
-import isNumber from '@stdlib/assert/is-number';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 
 

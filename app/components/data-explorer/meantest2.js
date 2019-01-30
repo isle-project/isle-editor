@@ -8,7 +8,6 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ttest2 from '@stdlib/stats/ttest2';
 import ztest2 from '@stdlib/stats/ztest2';
-import copy from '@stdlib/utils/copy';
 import replace from '@stdlib/string/replace';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
 import unique from 'uniq';
@@ -176,7 +175,7 @@ class MeanTest2 extends Component {
 	getBinaryVars( vars ) {
 		const out = [];
 		for ( let i = 0; i < vars.length; i++ ) {
-			let data = copy( this.props.data[ vars[ i ] ]);
+			let data = this.props.data[ vars[ i ] ].slice();
 			unique( data );
 			if ( data.length === 2 ) {
 				out.push( vars[ i ]);

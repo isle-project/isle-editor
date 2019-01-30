@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import isObject from '@stdlib/assert/is-plain-object';
-import isBoolean from '@stdlib/assert/is-boolean';
+import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
 import convertJSONtoJSX from 'utils/json-to-jsx';
 import './multiple-choice-styles.css';
 

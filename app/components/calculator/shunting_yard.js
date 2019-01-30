@@ -15,7 +15,7 @@ import sqrt from '@stdlib/math/base/special/sqrt';
 import log10 from '@stdlib/math/base/special/log10';
 import choose from '@stdlib/math/base/special/binomcoef';
 import factorial from '@stdlib/math/base/special/factorial';
-import isString from '@stdlib/assert/is-string';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import stack from '@stdlib/utils/stack';
 
 

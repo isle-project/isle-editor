@@ -12,11 +12,10 @@ import min from '@stdlib/math/base/special/min';
 import removePunctuation from '@stdlib/string/remove-punctuation';
 import tokenize from '@stdlib/nlp/tokenize';
 import contains from '@stdlib/assert/contains';
-import isString from '@stdlib/assert/is-string';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import lowercase from '@stdlib/string/lowercase';
 import objectEntries from '@stdlib/utils/entries';
 import isArray from '@stdlib/assert/is-array';
-import copy from '@stdlib/utils/copy';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import STOPWORDS_EN from '@stdlib/datasets/stopwords-en';
@@ -174,7 +173,7 @@ class Wrapper extends Component {
 			};
 		} else {
 			this.state = {
-				wordCounts: copy( props.data ),
+				wordCounts: props.data.slice(),
 				stopwords
 			};
 		}
@@ -190,7 +189,7 @@ class Wrapper extends Component {
 			});
 		} else {
 			newState = {
-				wordCounts: copy( nextProps.data )
+				wordCounts: nextProps.data.slice()
 			};
 		}
 		return newState;
