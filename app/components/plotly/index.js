@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
+import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import createPlotlyComponent from 'react-plotly.js/factory';
@@ -20,6 +21,7 @@ import calculateChanges from './calculate_changes.js';
 
 // VARIABLES //
 
+const debug = logger( 'isle:plotly' );
 const BUTTONS = [
 	'toImage',
 	'sendDataToCloud',
@@ -64,7 +66,8 @@ class Wrapper extends Component {
 		this.state = {
 			fullscreen: false,
 			oldLayout: copy( layout ),
-			layout
+			layout,
+			oldPropLayout: layout
 		};
 		this.plotData = {
 			key: null,
@@ -109,8 +112,10 @@ class Wrapper extends Component {
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
+		debug( 'Get derived state from props...' );
 		const newState = {};
-		if ( !deepEqual( nextProps.layout, prevState.layout ) ) {
+		if ( !deepEqual( nextProps.layout, prevState.oldPropLayout ) ) {
+			newState.oldPropLayout = nextProps.layout;
 			newState.oldLayout = copy( prevState.layout );
 			newState.layout = nextProps.layout;
 		}
