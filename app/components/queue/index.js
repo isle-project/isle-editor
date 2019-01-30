@@ -9,7 +9,9 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
 import Draggable from 'react-draggable';
 import ReactTable from 'react-table';
+import contains from '@stdlib/assert/contains';
 import noop from '@stdlib/utils/noop';
+import Tooltip from 'components/tooltip';
 import ChatButton from 'components/chat-button';
 import Panel from 'components/panel';
 import SessionContext from 'session/context.js';
@@ -61,7 +63,8 @@ class Queue extends Component {
 						const newSize = this.state.queueSize + 1;
 						if ( this.state.isOwner ) {
 							this.state.arr.push({
-								user: action.name,
+								name: action.name,
+								email: action.email,
 								question: action.value,
 								spot: newSize
 							});
@@ -173,16 +176,18 @@ class Queue extends Component {
 
 	renderButtonRemovable = ( cellInfo ) => {
 		return (
-			<Button variant="secondary" size="sm" onClick={() => {
-				const session = this.context;
-				session.log({
-					id: this.props.id,
-					type: 'LEFT_QUEUE',
-					value: cellInfo.index + 1
-				}, 'members' );
-			}}>
-				<i className="fas fa-check" />
-			</Button>
+			<Tooltip placement="left" tooltip="Mark question as answered and remove">
+				<Button variant="secondary" size="sm" onClick={() => {
+					const session = this.context;
+					session.log({
+						id: this.props.id,
+						type: 'LEFT_QUEUE',
+						value: cellInfo.index + 1
+					}, 'members' );
+				}}>
+					<i className="fas fa-check" />
+				</Button>
+			</Tooltip>
 		);
 	}
 
@@ -206,12 +211,12 @@ class Queue extends Component {
 		if ( this.props.show ) {
 			if ( this.state.isOwner ) {
 				debug( 'User is an owner...' );
-				return ( <Draggable bounds="#Lesson" cancel=".queue_table" enableUserSelectHack={false} >
+				return ( <Draggable bounds="#Lesson" cancel=".queue-table" enableUserSelectHack={false} >
 					<div className="outer-queue">
 						<Panel className="queue-panel" header={this.renderHeader()}>
 						{ this.state.arr.length === 0 ? <p>There are currently no questions in the queue.</p> :
 						<ReactTable
-							className="queue_table"
+							className="queue-table"
 							showPageSizeOptions={false}
 							data={this.state.arr}
 							resizable={false}
@@ -229,7 +234,7 @@ class Queue extends Component {
 									accessor: ( d ) => {
 										const { userList } = session;
 										for ( let i = 0; i < userList.length; i++ ) {
-											if ( userList[ i ].name === d.user ) {
+											if ( userList[ i ].name === d.name ) {
 												return userList[ i ].picture;
 											}
 										}
@@ -245,8 +250,26 @@ class Queue extends Component {
 								{
 									Header: 'Name',
 									id: 'nameCol',
-									accessor: 'user',
-									width: 100
+									accessor: 'name',
+									width: 150,
+									Cell: ( row ) => {
+										return ( <Tooltip tooltip={`${row.value} (${row.original.email})`} >
+											<span>{row.value}</span>
+										</Tooltip> );
+									}
+								},
+								{
+									Header: 'Cohort',
+									id: 'cohortCol',
+									accessor: ( d ) => {
+										const { cohorts } = session;
+										for ( let i = 0; i < cohorts.length; i++ ) {
+											if ( contains( cohorts[ i ].members, d.email ) ) {
+												return cohorts[ i ].title;
+											}
+										}
+										return '';
+									}
 								},
 								{
 									Header: 'Question',
@@ -258,12 +281,16 @@ class Queue extends Component {
 								{
 									Header: 'Chat',
 									Cell: ( row ) => {
-										const chatID = 'Queue_'+row.original.user+'_'+row.original.spot;
-										return <ChatButton showTooltip={false} for={chatID} />;
+										const chatID = 'Queue_'+row.original.name+'_'+row.original.spot;
+										return ( <Tooltip placement="left" tooltip="Start chat with student" >
+											<div>
+												<ChatButton showTooltip={false} for={chatID} />
+											</div>
+										</Tooltip> );
 									}
 								},
 								{
-									Header: 'Done',
+									Header: '',
 									accessor: 'remove',
 									Cell: this.renderButtonRemovable,
 									filterable: false,

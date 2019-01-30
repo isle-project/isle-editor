@@ -6,6 +6,7 @@
 
 .queue-panel {
 	animation: anim-scale-up 0.6s forwards;
+	max-width: none;
 }
 
 .queue-hide-button {
@@ -14,6 +15,10 @@
 
 .queue-hide-button:hover {
 	color: rgba(220, 53, 69, 0.6);
+}
+
+.queue-table {
+	font-family: Open Sans Condensed;
 }
 
 .queue-table-pic {
