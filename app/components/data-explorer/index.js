@@ -864,7 +864,7 @@ class DataExplorer extends Component {
 								display: this.state.openedNav !== 'data' ? 'none' : null
 							}}
 						>
-								{ !this.props.data ? <Button size="small" onClick={this.resetStorage} style={{ position: 'absolute' }}>Clear Data</Button> : null }
+								{ !this.props.data ? <Button size="small" onClick={this.resetStorage} style={{ position: 'absolute', top: '70px' }}>Clear Data</Button> : null }
 								<DataTable data={this.state.data} dataInfo={this.props.dataInfo} filters={this.state.filters} />
 						</div>
 						{this.props.distributions.map( ( e, i ) => {

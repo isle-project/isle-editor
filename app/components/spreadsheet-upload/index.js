@@ -57,7 +57,7 @@ class SpreadsheetUpload extends Component {
 	* Event handler invoked once student-supplied CSV file has been uploaded. Parses the file and extracts its categorical and continuous variables.
 	*/
 	onFileRead = ( event ) => {
-		const text = event.target.result;
+		let text = event.target.result;
 		const csv = detect( text );
 		let delimiter;
 		if ( !isNull( csv ) ) {
@@ -66,9 +66,11 @@ class SpreadsheetUpload extends Component {
 			delimiter = ',';
 		}
 		let columns;
-		let firstLine = text.substr( 0, text.indexOf( '\n' ) ).split( delimiter );
+		const idx = text.indexOf( '\n' );
+		let firstLine = text.substring( 0, idx ).split( delimiter );
 		if ( this.state.header ) {
 			columns = firstLine;
+			text = text.substring( idx+1 );
 		} else {
 			columns = firstLine.map( ( x, i ) => {
 				return 'VAR_'+(i+1);
