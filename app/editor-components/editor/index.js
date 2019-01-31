@@ -2,12 +2,18 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { resolve, join } from 'path';
+import logger from 'debug';
 import MonacoEditor from 'react-monaco-editor';
 import { ContextMenu, MenuItem, ContextMenuTrigger, SubMenu } from 'react-contextmenu';
 import noop from '@stdlib/utils/noop';
 import groupBy from '@stdlib/utils/group-by';
+import objectKeys from '@stdlib/utils/keys';
 import contains from '@stdlib/assert/contains';
+import startsWith from '@stdlib/string/starts-with';
+import replace from '@stdlib/string/replace';
 import trim from '@stdlib/string/trim';
+import readFile from '@stdlib/fs/read-file';
 import AnimationHelp from 'editor-components/animation-help';
 import { componentSnippets } from 'snippets';
 import ComponentConfigurator from './component_configurator.js';
@@ -20,8 +26,13 @@ import './editor.css';
 
 // VARIABLES //
 
+const debug = logger( 'isle:editor' );
+const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
+const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
+const BASE_PATH = IS_PACKAGED ? join( process.resourcesPath, 'app' ) : '.';
 const RE_ANSI = /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)?\u0007)|(?:(?:\d{1,4}(?:;\d{0,4})*)?[\dA-PR-TZcf-ntqry=><~]))/g; // eslint-disable-line no-control-regex
 const RE_EMPTY_SPANS = /<span \/>/g;
+const RE_EXPORT = /export = [a-z0-9]+/;
 const RE_FRAGMENT = /<\/?React.Fragment>/g;
 const snippets = groupBy( componentSnippets, groupIndicator );
 
@@ -72,7 +83,8 @@ class Editor extends Component {
 
 		this.state = {
 			selectedComponent: {},
-			showComponentConfigurator: false
+			showComponentConfigurator: false,
+			sourceFiles: {}
 		};
 	}
 
@@ -81,13 +93,16 @@ class Editor extends Component {
 
 		this.monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
 			noSemanticValidation: true,
-			noSyntaxValidation: true
+			noSyntaxValidation: true,
+			lib: [ 'es6' ]
 		});
 		this.monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
 			noLib: false,
 			allowNonTsExtensions: true,
 			jsx: 2
 		});
+
+		this.checkRequires( this.props.preamble );
 
 		this._completionProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
 			triggerCharacters: [ ' ', '\n' ],
@@ -104,10 +119,10 @@ class Editor extends Component {
 	}
 
 	componentDidUpdate( prevProps ) {
-		if (
-			this.monaco &&
-			this.props.lintErrors.length !== prevProps.lintErrors.length
-		) {
+		if ( !this.monaco ) {
+			return;
+		}
+		if ( this.props.lintErrors.length !== prevProps.lintErrors.length ) {
 			const errs = this.props.lintErrors.map( e => {
 				let bare = e.message.replace( RE_ANSI, '' );
 				bare = bare.replace( RE_EMPTY_SPANS, '' );
@@ -124,11 +139,48 @@ class Editor extends Component {
 			const model = this.editor.getModel();
 			this.monaco.editor.setModelMarkers( model, 'test', errs );
 		}
+		else if ( this.props.preamble !== prevProps.preamble ) {
+			this.checkRequires( this.props.preamble );
+		}
 	}
 
 	componentWillUnmount() {
 		window.removeEventListener( 'resize', this.updateDimensions );
 		this._completionProvider.dispose();
+	}
+
+	checkRequires = ( preamble ) => {
+		const requires = preamble.require;
+			const names = objectKeys( requires );
+			for ( let i = 0; i < names.length; i++ ) {
+				const name = names[ i ];
+				let path = requires[ name ];
+				if ( startsWith( path, '@stdlib' ) ) {
+					path = replace( path, '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
+					path = resolve( join( BASE_PATH, 'node_modules' ), path, 'docs', 'types', 'index.d.ts' );
+					this.readTypeDefinition( path );
+				}
+			}
+	}
+
+	readTypeDefinition = ( path ) => {
+		if ( this.state.sourceFiles[ path ] ) {
+			return;
+		}
+		readFile( path, {
+			'encoding': 'utf8'
+		}, ( err, res ) => {
+			if ( err ) {
+				return debug( err );
+			}
+			res = replace( res, RE_EXPORT, '' );
+			const disposable = this.monaco.languages.typescript.javascriptDefaults.addExtraLib( res, path );
+			const sourceFiles = this.state.sourceFiles;
+			sourceFiles[ path ] = disposable;
+			this.setState({
+				sourceFiles
+			});
+		});
 	}
 
 	updateDimensions = () => {
@@ -300,6 +352,7 @@ Editor.defaultProps = {
 
 Editor.propTypes = {
 	onChange: PropTypes.func,
+	preamble: PropTypes.object.isRequired,
 	value: PropTypes.string,
 	lintErrors: PropTypes.array.isRequired,
 	splitPos: PropTypes.number.isRequired

@@ -334,6 +334,7 @@ class App extends Component {
 							onChange={this.onChange}
 							name="monaco_editor"
 							fontSize={14}
+							preamble={this.state.preamble}
 							splitPos={this.state.splitPos}
 							lintErrors={this.props.lintErrors}
 						/>
