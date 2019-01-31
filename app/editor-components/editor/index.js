@@ -35,6 +35,27 @@ const RE_EMPTY_SPANS = /<span \/>/g;
 const RE_EXPORT = /export = [a-z0-9]+/;
 const RE_FRAGMENT = /<\/?React.Fragment>/g;
 const snippets = groupBy( componentSnippets, groupIndicator );
+const MONACO_OPTIONS = {
+	contextmenu: false,
+	minimap: {
+		enabled: false
+	},
+	tabCompletion: 'on',
+	wordWrap: 'on',
+	snippetSuggestions: 'top',
+	suggestOnTriggerCharacters: true,
+	quickSuggestions: true,
+	quickSuggestionsDelay: 500,
+	scrollbar: {
+		useShadows: true,
+		verticalHasArrows: true,
+		horizontalHasArrows: true,
+		vertical: 'visible',
+		verticalScrollbarSize: 12,
+		horizontalScrollbarSize: 12,
+		arrowSize: 15
+	}
+};
 
 
 // FUNCTIONS //
@@ -256,8 +277,13 @@ class Editor extends Component {
 		);
 	}
 
+	onEditorMount = ( editor, monaco ) => {
+		this.editor = editor;
+		this.monaco = monaco;
+	}
+
 	render() {
-		const currentFontSize = parseFloat( localStorage.getItem( 'fontSize' ) ) || 14;
+		MONACO_OPTIONS.fontSize = parseFloat( localStorage.getItem( 'fontSize' ) ) || 14;
 		return (
 			<div>
 				<ContextMenuTrigger id="editorWindow" holdToDisplay={-1} style={{ height: '100%', width: '100%' }} >
@@ -266,33 +292,9 @@ class Editor extends Component {
 						width={window.innerWidth - this.props.splitPos}
 						language="javascript"
 						value={this.props.value}
-						options={{
-							fontSize: currentFontSize,
-							contextmenu: false,
-							minimap: {
-								enabled: false
-							},
-							tabCompletion: 'on',
-							wordWrap: 'on',
-							snippetSuggestions: 'top',
-							suggestOnTriggerCharacters: true,
-							quickSuggestions: true,
-							quickSuggestionsDelay: 500,
-							scrollbar: {
-								useShadows: true,
-								verticalHasArrows: true,
-								horizontalHasArrows: true,
-								vertical: 'visible',
-								verticalScrollbarSize: 12,
-								horizontalScrollbarSize: 12,
-								arrowSize: 15
-							}
-						}}
+						options={MONACO_OPTIONS}
 						onChange={this.handleChange}
-						editorDidMount={( editor, monaco ) => {
-							this.editor = editor;
-							this.monaco = monaco;
-						}}
+						editorDidMount={this.onEditorMount}
 					/>
 				</ContextMenuTrigger>
 				<ContextMenu id="editorWindow">
