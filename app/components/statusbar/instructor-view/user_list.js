@@ -123,7 +123,8 @@ class UserList extends Component {
 	}
 
 	thumbnailClickFactory = ( email ) => {
-		return () => {
+		return ( event ) => {
+			event.stopPropagation();
 			this.props.onThumbnailClick( email );
 		};
 	}
