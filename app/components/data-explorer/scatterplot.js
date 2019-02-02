@@ -14,6 +14,7 @@ import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import lowess from '@stdlib/stats/lowess';
 import linspace from '@stdlib/math/utils/linspace';
+import roundn from '@stdlib/math/base/special/roundn';
 import mapValues from '@stdlib/utils/map-values';
 import groupBy from '@stdlib/utils/group-by';
 import group from '@stdlib/utils/group';
@@ -307,6 +308,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 				traces.push({
 					x: values,
 					y: predictedLinear,
+					text: `${roundn( coefs[ 0 ], -6 )} + x * ${roundn( coefs[ 1 ], -6 )}`,
 					mode: 'lines',
 					name: 'Linear Fit',
 					type: 'line'
