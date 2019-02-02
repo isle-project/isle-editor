@@ -293,15 +293,24 @@ class DataTable extends Component {
 		});
 	}
 
+	handleSortedChange = ( sorted ) => {
+		const selectedRows = this.table.getResolvedState().sortedData.length;
+		this.setState({
+			selectedRows,
+			sorted
+		});
+	}
+
 	showDescriptions = () => {
 		this.setState({
 			showVarModal: true
 		});
 	}
 
-	resetFilters = () => {
+	reset = () => {
 		this.setState({
-			filtered: []
+			filtered: [],
+			sorted: []
 		}, () => {
 			this.setState({
 				selectedRows: this.table.getResolvedState().sortedData.length
@@ -410,19 +419,21 @@ class DataTable extends Component {
 						resizable={true}
 						filterable={true}
 						filtered={this.state.filtered}
+						sorted={this.state.sorted}
 						showPageSizeOptions={false}
 						defaultPageSize={50}
 						onFilteredChange={this.handleFilterChange}
+						onSortedChange={this.handleSortedChange}
 						style={this.props.style}
 					/>
 					<label><i>Number of rows: {selectedRows} (total: {this.state.rows.length})</i></label>
 					<Button
-						onClick={this.resetFilters}
+						onClick={this.reset}
 						variant="primary"
 						size="xsmall"
 						className="data-table-footer-button"
 					>
-						Reset Filters
+						Reset
 					</Button>
 					{ this.props.dataInfo.variables ? <Button
 						onClick={this.showDescriptions}
