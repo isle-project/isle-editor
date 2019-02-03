@@ -231,7 +231,7 @@
     "spectacle": "5.4.0",
     "style-loader": "^0.23.0",
     "svg-react-loader": "^0.4.5",
-    "terser": "^3.16.0",
+    "terser": "^3.14.1",
     "turndown": "^5.0.0",
     "turndown-plugin-gfm": "^1.0.2",
     "typo-js": "^1.0.3",
