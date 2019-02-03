@@ -130,19 +130,19 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, group, 
 					yaxis: yAxisID
 				}
 			);
-			subplots[row][col] = xAxisID + yAxisID;
+			subplots[ row ][ col ] = xAxisID + yAxisID;
 
-			annotations[i] = {
+			annotations[ i ] = {
 				xref: 'paper',
 				yref: 'paper',
-				x: (1 + (2 * col)) / (2 * nCols),
-				y: 1 - ( (2 + (2 * row)) / (2 * nRows) ),
+				x: ( 1 + ( 2*col) ) / ( 2*nCols ),
+				y: 1 - ( (row*1.12) / nRows ),
 				text: key,
 				xanchor: 'center',
 				yanchor: 'bottom',
 				showarrow: false,
 				font: {
-					size: 18
+					size: 14
 				}
 			};
 		}
@@ -240,11 +240,11 @@ class HeatMap extends Component {
 					defaultValue={false}
 				/>
 				<CheckboxInput
-					legend="Use common X-Axis"
+					legend="Use common x-Axis"
 					defaultValue={false}
 				/>
 				<CheckboxInput
-					legend="Use common Y-Axis"
+					legend="Use common y-Axis"
 					defaultValue={false}
 				/>
 			</Dashboard>
