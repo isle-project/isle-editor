@@ -9,8 +9,11 @@ import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
 import max from '@stdlib/math/base/special/max';
 import floor from '@stdlib/math/base/special/floor';
+import ceil from '@stdlib/math/base/special/ceil';
 import kde2d from '@stdlib/stats/kde2d';
+import objectKeys from '@stdlib/utils/keys';
 import QuestionButton from './question_button.js';
+import by2 from './by2.js';
 
 
 // VARIABLES //
@@ -38,47 +41,119 @@ function toArrayArray( arr ) {
 	return out;
 }
 
-export function generateHeatmapConfig({ data, xval, yval, overlayPoints }) {
+export function generateHeatmapConfig({ data, xval, yval, overlayPoints, group, commonXAxis, commonYAxis }) {
+	let annotations;
+	let traces;
+	let layout;
 	var x = data[ xval ];
 	var y = data[ yval ];
-	var out = kde2d( x, y );
-	var traces = [
-		{
-			x: out.x,
-			y: out.y,
-			z: toArrayArray( out.z ),
-			type: 'heatmap',
-			showscale: false,
-			transpose: true
+	if ( !group ) {
+		var out = kde2d( x, y );
+		traces = [
+			{
+				x: out.x,
+				y: out.y,
+				z: toArrayArray( out.z ),
+				type: 'heatmap',
+				showscale: false,
+				transpose: true
+			}
+		];
+		if ( overlayPoints ) {
+			const points = {
+				x: x,
+				y: y,
+				mode: 'markers',
+				name: 'points',
+				marker: {
+					color: 'white',
+					opacity: calculateOpacity(x.length)
+				},
+				type: 'scatter'
+			};
+			traces.push( points );
 		}
-	];
-	if ( overlayPoints ) {
-		const points = {
-			x: x,
-			y: y,
-			mode: 'markers',
-			name: 'points',
-			marker: {
-				color: 'white',
-				opacity: calculateOpacity(x.length)
+		layout = {
+			title: `${xval} vs. ${yval}`,
+			xaxis: {
+				showgrid: true,
+				zeroline: true,
+				title: xval
 			},
-			type: 'scatter'
+			yaxis: {
+				showgrid: true,
+				zeroline: true,
+				title: yval
+			}
 		};
-		traces.push( points );
-	}
-	let layout = {
-		title: `${xval} vs. ${yval}`,
-		xaxis: {
-			showgrid: true,
-			zeroline: true,
-			title: xval
-		},
-		yaxis: {
-			showgrid: true,
-			zeroline: true,
-			title: yval
+	} else {
+		const densities = by2( x, y, data[ group ], kde2d );
+		const keys = group.categories || objectKeys( densities );
+		const nPlots = keys.length;
+		const nRows = ceil( nPlots / 2 );
+		const nCols = 2;
+		traces = [];
+		annotations = new Array(nPlots);
+		let subplots = new Array(nRows);
+		for ( let j = 0; j < nRows; j++ ) {
+			subplots[j] = new Array(nCols);
 		}
-	};
+
+		for ( let i = 0; i < keys.length; i++ ) {
+			const key = keys[ i ];
+			const row = floor( i / nCols );
+			const col = i - ( row*nCols );
+			const val = densities[ key ];
+			let xAxisID;
+			let yAxisID;
+			if ( commonXAxis ) {
+				xAxisID = `x${col === 0 ? '' : col+1}`;
+			} else {
+				xAxisID = `x${i === 0 ? '' : i+1}`;
+			}
+
+			if ( commonYAxis ) {
+				yAxisID = `y${row === 0 ? '' : row+1}`;
+			} else {
+				yAxisID = `y${i === 0 ? '' : i+1}`;
+			}
+
+			traces.push(
+				{
+					x: val.x,
+					y: val.y,
+					z: toArrayArray( val.z ),
+					type: 'heatmap',
+					showscale: false,
+					transpose: true,
+					xaxis: xAxisID,
+					yaxis: yAxisID
+				}
+			);
+			subplots[row][col] = xAxisID + yAxisID;
+
+			annotations[i] = {
+				xref: 'paper',
+				yref: 'paper',
+				x: (1 + (2 * col)) / (2 * nCols),
+				y: 1 - ( (2 + (2 * row)) / (2 * nRows) ),
+				text: key,
+				xanchor: 'center',
+				yanchor: 'bottom',
+				showarrow: false,
+				font: {
+					size: 18
+				}
+			};
+		}
+		layout = {
+			grid: {
+				subplots: subplots
+			},
+			annotations: annotations,
+			title: `${xval} vs. ${yval} given ${group}`
+		};
+	}
 	return {
 		layout,
 		data: traces
@@ -93,8 +168,18 @@ class HeatMap extends Component {
 		super( props );
 	}
 
-	generateHeatmap( xval, yval, overlayPoints ) {
-		const config = generateHeatmapConfig({ data: this.props.data, xval, yval, overlayPoints });
+	generateHeatmap( xval, yval, group, overlayPoints, commonXAxis, commonYAxis ) {
+		const config = generateHeatmapConfig(
+			{
+				data: this.props.data,
+				xval,
+				yval,
+				overlayPoints,
+				group: group,
+				commonXAxis: commonXAxis,
+				commonYAxis: commonYAxis
+			}
+		);
 		const plotId = randomstring( 6 );
 		const output ={
 			variable: `${xval} against ${yval}`,
@@ -128,7 +213,7 @@ class HeatMap extends Component {
 	}
 
 	render() {
-		const { variables, defaultX, defaultY } = this.props;
+		const { variables, defaultX, defaultY, groupingVariables } = this.props;
 		return (
 			<Dashboard
 				autoStart={false}
@@ -145,8 +230,21 @@ class HeatMap extends Component {
 					defaultValue={defaultY || variables[ 1 ]}
 					options={variables}
 				/>
+				<SelectInput
+					legend="Group By:"
+					options={groupingVariables}
+					clearable={true}
+				/>
 				<CheckboxInput
 					legend="Overlay observations"
+					defaultValue={false}
+				/>
+				<CheckboxInput
+					legend="Use common X-Axis"
+					defaultValue={false}
+				/>
+				<CheckboxInput
+					legend="Use common Y-Axis"
 					defaultValue={false}
 				/>
 			</Dashboard>
@@ -160,6 +258,7 @@ class HeatMap extends Component {
 HeatMap.defaultProps = {
 	defaultX: null,
 	defaultY: null,
+	groupingVariables: null,
 	logAction() {},
 	onSelected() {},
 	session: {}
@@ -172,6 +271,7 @@ HeatMap.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultX: PropTypes.string,
 	defaultY: PropTypes.string,
+	groupingVariables: PropTypes.array,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
 	onSelected: PropTypes.func,
