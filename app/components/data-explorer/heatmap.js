@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
-import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
 import max from '@stdlib/math/base/special/max';
@@ -166,20 +167,24 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, group, 
 class HeatMap extends Component {
 	constructor( props ) {
 		super( props );
+
+		const { variables, defaultX, defaultY } = props;
+		this.state = {
+			xval: defaultX || variables[ 0 ],
+			yval: defaultY || variables[ 1 ],
+			group: null,
+			overlayPoints: false,
+			commonXAxis: false,
+			commonYAxis: false
+		};
 	}
 
-	generateHeatmap( xval, yval, group, overlayPoints, commonXAxis, commonYAxis ) {
-		const config = generateHeatmapConfig(
-			{
-				data: this.props.data,
-				xval,
-				yval,
-				overlayPoints,
-				group: group,
-				commonXAxis: commonXAxis,
-				commonYAxis: commonYAxis
-			}
-		);
+	generateHeatmap() {
+		const { xval, yval, overlayPoints } = this.state;
+		const config = generateHeatmapConfig({
+			data: this.props.data,
+			...this.state
+		});
 		const plotId = randomstring( 6 );
 		const output ={
 			variable: `${xval} against ${yval}`,
@@ -213,41 +218,82 @@ class HeatMap extends Component {
 	}
 
 	render() {
-		const { variables, defaultX, defaultY, groupingVariables } = this.props;
+		const { variables, groupingVariables } = this.props;
 		return (
-			<Dashboard
-				autoStart={false}
-				title={<span>Heat Map<QuestionButton title="Heat Map" content={DESCRIPTION} /></span>}
-				onGenerate={this.generateHeatmap.bind( this )}
-			>
-				<SelectInput
-					legend="Variable on x-axis:"
-					defaultValue={defaultX || variables[ 0 ]}
-					options={variables}
-				/>
-				<SelectInput
-					legend="Variable on y-axis:"
-					defaultValue={defaultY || variables[ 1 ]}
-					options={variables}
-				/>
-				<SelectInput
-					legend="Group By:"
-					options={groupingVariables}
-					clearable={true}
-				/>
-				<CheckboxInput
-					legend="Overlay observations"
-					defaultValue={false}
-				/>
-				<CheckboxInput
-					legend="Use common x-Axis"
-					defaultValue={false}
-				/>
-				<CheckboxInput
-					legend="Use common y-Axis"
-					defaultValue={false}
-				/>
-			</Dashboard>
+			<Card>
+				<Card.Header as="h4">
+					Heat Map
+					<QuestionButton title="Heat Map" content={DESCRIPTION} />
+				</Card.Header>
+				<Card.Body>
+					<SelectInput
+						legend="Variable on x-axis:"
+						defaultValue={this.state.xval}
+						options={variables}
+						onChange={( value )=>{
+							this.setState({
+								xval: value
+							});
+						}}
+					/>
+					<SelectInput
+						legend="Variable on y-axis:"
+						defaultValue={this.state.yval}
+						options={variables}
+						onChange={( value )=>{
+							this.setState({
+								yval: value
+							});
+						}}
+					/>
+					<CheckboxInput
+						legend="Overlay observations"
+						defaultValue={this.state.overlayPoints}
+						onChange={( value )=>{
+							this.setState({
+								overlayPoints: value
+							});
+						}}
+					/>
+					<SelectInput
+						legend="Group By:"
+						options={groupingVariables}
+						clearable={true}
+						onChange={( value )=>{
+							this.setState({
+								group: value
+							});
+						}}
+					/>
+					<CheckboxInput
+						legend="Use common x-axis"
+						defaultValue={this.state.commonXAxis}
+						onChange={( value )=>{
+							this.setState({
+								commonXAxis: value
+							});
+						}}
+						disabled={!this.state.group}
+						style={{
+							opacity: this.state.group ? 1.0 : 0.0
+						}}
+					/>
+					<CheckboxInput
+						legend="Use common y-axis"
+						defaultValue={this.state.commonYAxis}
+						onChange={( value )=>{
+							this.setState({
+								commonYAxis: value
+							});
+						}}
+						disabled={!this.state.group}
+						style={{
+							opacity: this.state.group ? 1.0 : 0.0
+						}}
+					/>
+					<Button variant="primary" block onClick={this.generateHeatmap.bind( this )}>Generate</Button>
+				</Card.Body>
+			</Card>
 		);
 	}
 }

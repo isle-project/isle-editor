@@ -16,7 +16,8 @@ import SessionContext from 'session/context.js';
 * @property {boolean} defaultValue - A boolean value indicating the default value of the checkbox
 * @property {boolean} disabled - indicates whether the input is active or not
 * @property {boolean} inline - indicates whether the checkbox is displayed inline
-* @property {string} legend - text displayed next to the checkbox'
+* @property {string} legend - text displayed next to the checkbox
+* @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback function to be invoked when checkbox is clicked. The function is called with the current checkbox value
 */
 class CheckboxInput extends Input {
@@ -124,7 +125,8 @@ CheckboxInput.defaultProps = {
 	defaultValue: false,
 	disabled: false,
 	inline: false,
-	legend: ''
+	legend: '',
+	style: {}
 };
 
 CheckboxInput.propTypes = {
@@ -136,7 +138,8 @@ CheckboxInput.propTypes = {
 	legend: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.node
-	])
+	]),
+	style: PropTypes.object
 };
 
 CheckboxInput.contextType = SessionContext;
