@@ -14,7 +14,7 @@ import QuestionButton from './question_button.js';
 
 // VARIABLES //
 
-const DESCRIPTION = 'A mosaic plot can be used to visualize two or more categorical variables. The areas of the boxes in the plot are proportional to the cell frequencies of a contingency table of the selected variables. You may select as many variables as you wish. In the two-variable case the first variable selected will be the columns and the second variable will the rows conditioned on the columns.';
+const DESCRIPTION = 'A mosaic plot can be used to visualize two or more categorical variables. The areas of the boxes in the plot are proportional to the cell frequencies of a contingency table of the selected variables. You may select as many variables as you wish. In the two-variable case the first variable selected will be the columns and the second variable will the rows conditioned on the columns. If colors are shown, blue means there are more observations than we would expect if no relationship is present and red indicates that there are less observations than we would expect if no relationship is present.';
 
 
 // FUNCTIONS //
