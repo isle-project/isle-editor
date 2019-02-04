@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import isNull from '@stdlib/assert/is-null';
+import SessionContext from 'session/context.js';
 import './question_form.css';
 
 
@@ -56,6 +57,8 @@ class QuestionForm extends Component {
 				finished += 1;
 			}
 		}
+		const session = this.context;
+		const disabled = ( finished !== children.length ) && !session.isOwner();
 		return ( <div
 			ref={( div ) => {
 				this.questionForm = div;
@@ -63,7 +66,7 @@ class QuestionForm extends Component {
 			className="question-form"
 		>
 			{children}
-			<Button disabled={finished !== children.length} onClick={this.handleClick}>{this.props.buttonLabel}</Button>
+			<Button disabled={disabled} onClick={this.handleClick}>{this.props.buttonLabel}</Button>
 		</div> );
 	}
 }
@@ -80,6 +83,8 @@ QuestionForm.defaultProps = {
 	buttonLabel: 'Submit',
 	onSubmit() {}
 };
+
+QuestionForm.contextType = SessionContext;
 
 
 // EXPORTS //
