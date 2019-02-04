@@ -152,7 +152,7 @@
     "css-modules-require-hook": "^4.2.3",
     "csv-parse": "^4.3.0",
     "csv-stringify": "^5.2.0",
-    "d3": "5.8.0",
+    "d3": "5.8.2",
     "d3-cloud": "1.2.5",
     "debug": "^4.1.1",
     "detect-csv": "^1.1.0",
@@ -210,7 +210,7 @@
     "react-joyride": "2.0.3",
     "react-json-tree": "^0.11.2",
     "react-list": "^0.8.11",
-    "react-monaco-editor": "^0.22.0",
+    "react-monaco-editor": "^0.23.0",
     "react-notification-system": "^0.2.7",
     "react-player": "^1.9.3",
     "react-plotly.js": "^2.2.0",
@@ -239,7 +239,7 @@
     "uuid": "^3.3.2",
     "venn.js": "0.2.20",
     "victory": "31.2.0",
-    "webpack": "4.29.0"
+    "webpack": "4.29.1"
   },
   "greenkeeper": {
     "ignore": [
