@@ -206,12 +206,20 @@ class Wrapper extends Component {
 	}
 
 	makeDraggable = ( div ) => {
+		const session = this.context;
 		return ( <div
 			draggable="true"
 			style={{ height: '100%', width: '100%', cursor: 'move' }}
 			onDragStart={( ev ) => {
 				ev.dataTransfer.setData( 'text/html', this.plotData.value );
 				ev.dataTransfer.setData( 'text/plain', this.plotData.key );
+			}}
+			onDragEnd={( ev ) => {
+				session.log({
+					id: this.props.id,
+					type: 'PLOT_DRAGGED',
+					value: ev.target.id
+				});
 			}}
 		>
 			{div}
