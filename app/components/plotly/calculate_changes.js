@@ -1,12 +1,27 @@
+// FUNCTIONS //
+
+function getText( layout, prop ) {
+	let out;
+	if ( layout[ prop ].text ) {
+		out = layout[ prop ].text;
+	} else {
+		out = layout[ prop ];
+	}
+	return out;
+}
+
+
 // MAIN //
 
 function calculateChanges( newLayout, oldLayout ) {
 	const changes = [];
-	if ( newLayout.title !== oldLayout.title ) {
+	const newTitle = getText( newLayout, 'title' );
+	const oldTitle = getText( oldLayout, 'title' );
+	if ( newTitle !== oldTitle ) {
 		changes.push({
 			name: 'title',
-			old: oldLayout.title,
-			new: newLayout.title
+			old: oldTitle,
+			new: newTitle
 		});
 	}
 	if ( newLayout.showlegend !== oldLayout.showlegend ) {
@@ -36,11 +51,13 @@ function calculateChanges( newLayout, oldLayout ) {
 		}
 	}
 	if ( newLayout.xaxis && oldLayout.xaxis ) {
-		if ( newLayout.xaxis.title !== oldLayout.xaxis.title ) {
+		const newTitle = getText( newLayout.xaxis, 'title' );
+		const oldTitle = getText( oldLayout.xaxis, 'title' );
+		if ( newTitle !== oldTitle ) {
 			changes.push({
 				name: 'xaxis.title',
-				old: oldLayout.xaxis.title,
-				new: newLayout.xaxis.title
+				old: oldTitle,
+				new: newTitle
 			});
 		}
 		if (
@@ -58,11 +75,13 @@ function calculateChanges( newLayout, oldLayout ) {
 		}
 	}
 	if ( newLayout.yaxis && oldLayout.yaxis ) {
-		if ( newLayout.yaxis.title !== oldLayout.yaxis.title ) {
+		const newTitle = getText( newLayout.yaxis, 'title' );
+		const oldTitle = getText( oldLayout.yaxis, 'title' );
+		if ( newTitle !== oldTitle ) {
 			changes.push({
 				name: 'yaxis.title',
-				old: oldLayout.yaxis.title,
-				new: newLayout.yaxis.title
+				old: oldTitle,
+				new: newTitle
 			});
 		}
 		if (
