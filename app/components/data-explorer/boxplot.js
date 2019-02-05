@@ -105,6 +105,7 @@ class Boxplot extends Component {
 					legend="Group By:"
 					options={groupingVariables}
 					clearable={true}
+					menuPlacement="top"
 				/>
 			</Dashboard>
 		);

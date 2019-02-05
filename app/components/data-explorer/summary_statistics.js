@@ -240,6 +240,7 @@ class SummaryStatistics extends Component {
 						legend="Group By:"
 						options={groupingVariables}
 						clearable={true}
+						menuPlacement="top"
 					/> : null
 				}
 				<CheckboxInput

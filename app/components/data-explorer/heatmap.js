@@ -264,6 +264,7 @@ class HeatMap extends Component {
 								group: value
 							});
 						}}
+						menuPlacement="top"
 					/>
 					<CheckboxInput
 						legend="Use common x-axis"
