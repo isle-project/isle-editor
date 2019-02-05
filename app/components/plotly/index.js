@@ -215,10 +215,11 @@ class Wrapper extends Component {
 				ev.dataTransfer.setData( 'text/plain', this.plotData.key );
 			}}
 			onDragEnd={( ev ) => {
+				const target = ev.target.closest('[id]');
 				session.log({
 					id: this.props.id,
 					type: 'PLOT_DRAGGED',
-					value: ev.target.id
+					value: target ? target.id : null
 				});
 			}}
 		>
