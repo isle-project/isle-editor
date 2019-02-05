@@ -77,7 +77,7 @@ class UserList extends Component {
 	}
 
 	componentWillUnmount() {
-		console.log( 'Unmounting user list...' );
+		debug( 'Unmount user list...' );
 		this.unsubscribe();
 		removeGlowElems();
 	}

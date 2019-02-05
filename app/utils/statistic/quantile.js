@@ -115,7 +115,7 @@ function quantile( arr, p, method ) {
 			}
 			break;
 		case 7:
-			/* falls through */
+			/* Falls through... */
 		default:
 			if ( p === 1.0 ) {
 				ret = d[ len - 1 ];

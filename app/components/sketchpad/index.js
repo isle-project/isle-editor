@@ -491,6 +491,7 @@ class Sketchpad extends Component {
 			value: true,
 			noSave: true
 		};
+		const session = this.context;
 		session.log( action, 'members' );
 		this.pointer.style.opacity = 0;
 	}

@@ -14,12 +14,14 @@
 // MODULES //
 
 import path, { resolve, join } from 'path';
+import logger from 'debug';
 import readJSON from '@stdlib/fs/read-json';
 import isArray from '@stdlib/assert/is-array';
 
 
 // VARIABLES //
 
+const debug = logger( 'bundler:webpack-cdn-plugin' );
 const empty = '';
 const slash = '/';
 const packageJson = 'package.json';
@@ -127,7 +129,7 @@ class WebpackCdnPlugin {
 		try {
 			return readJSON.sync( path.join( NODE_MODULES_DIR, name, packageJson ) ).version;
 		} catch ( e ) {
-			console.log( e.message );
+			debug( 'Encountered an error: '+e.message );
 		}
 	}
 

@@ -108,7 +108,7 @@ class InstructorView extends Component {
 					<UserList
 						session={session}
 						onThumbnailClick={( email ) => {
-							console.log( 'Go to actions from user '+email );
+							debug( 'Go to actions from user '+email+'...' );
 							this.setState({
 								activeTab: 'action_log',
 								selectedEmail: email

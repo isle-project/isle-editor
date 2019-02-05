@@ -113,7 +113,6 @@ class ActionLog extends Component {
 			});
 		}
 		else if ( this.state.filter !== prevState.filter ) {
-			console.log('Hier gibt es eine State-Veränderung durch EMAIL');
 			debug( 'Should filter out actions...' );
 			this.setState({ actions: this.buildActionsArray() });
 		}

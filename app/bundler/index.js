@@ -468,7 +468,7 @@ function writeIndexFile({
 			debug( 'Encountered an error during bundling: ' + err );
 			throw err;
 		}
-		console.log( stats );
+		console.dir( stats ); // eslint-disable-line no-console
 		if ( stats.errors ) {
 			stats.errors.forEach( debug );
 		}
