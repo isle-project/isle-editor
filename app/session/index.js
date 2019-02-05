@@ -1402,10 +1402,6 @@ class Session {
 			.catch( err => debug( 'Encountered an error: '+err.message ) )
 			.then( ( res ) => {
 				debug( '/update_user_session returns: '+res.status );
-				return res.json();
-			})
-			.then( json => {
-				console.log( json );
 			});
 		}
 	}
