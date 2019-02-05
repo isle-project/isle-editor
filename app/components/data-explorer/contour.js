@@ -125,6 +125,7 @@ class ContourChart extends Component {
 					legend="Variable on y-axis:"
 					defaultValue={defaultY || variables[ 1 ]}
 					options={variables}
+					menuPlacement="top"
 				/>
 				<CheckboxInput
 					legend="Overlay observations"

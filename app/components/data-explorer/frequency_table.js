@@ -151,6 +151,7 @@ class FrequencyTable extends Component {
 					legend="Group By:"
 					options={groupingVariables}
 					clearable={true}
+					menuPlacement="top"
 				/>
 				<CheckboxInput
 					legend="Relative Frequency"

@@ -196,6 +196,7 @@ class SelectInput extends Input {
 						styles={customStyles}
 						isClearable={clearable}
 						isDisabled={this.props.disabled}
+						menuPlacement={this.props.menuPlacement}
 					/>
 				</FormGroup>
 			</Form>
@@ -213,6 +214,7 @@ SelectInput.defaultProps = {
 	disabled: false,
 	inline: false,
 	legend: '',
+	menuPlacement: 'auto',
 	options: [],
 	multi: false,
 	placeholder: 'Select...'
@@ -232,6 +234,7 @@ SelectInput.propTypes = {
 		PropTypes.string,
 		PropTypes.node
 	]),
+	menuPlacement: PropTypes.string,
 	multi: PropTypes.bool,
 	onChange: PropTypes.func,
 	options: PropTypes.array,
