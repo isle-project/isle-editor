@@ -42,7 +42,7 @@ function toArrayArray( arr ) {
 	return out;
 }
 
-export function generateHeatmapConfig({ data, xval, yval, overlayPoints, group, commonXAxis, commonYAxis }) {
+export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alternateColor, group, commonXAxis, commonYAxis }) {
 	let annotations;
 	let traces;
 	let layout;
@@ -57,7 +57,8 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, group, 
 				z: toArrayArray( out.z ),
 				type: 'heatmap',
 				showscale: false,
-				transpose: true
+				transpose: true,
+				colorscale: alternateColor ? 'YIGnBu' : 'RdBu'
 			}
 		];
 		if ( overlayPoints ) {
@@ -128,7 +129,8 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, group, 
 					showscale: false,
 					transpose: true,
 					xaxis: xAxisID,
-					yaxis: yAxisID
+					yaxis: yAxisID,
+					colorscale: alternateColor ? 'YIGnBu' : 'RdBu'
 				}
 			);
 			subplots[ row ][ col ] = xAxisID + yAxisID;
@@ -155,6 +157,7 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, group, 
 			title: `${xval} vs. ${yval} given ${group}`
 		};
 	}
+	// traces.push( { colorscale: 'YIGnBu' } );
 	return {
 		layout,
 		data: traces
@@ -175,7 +178,8 @@ class HeatMap extends Component {
 			group: null,
 			overlayPoints: false,
 			commonXAxis: false,
-			commonYAxis: false
+			commonYAxis: false,
+			alternateColor: false
 		};
 	}
 
@@ -252,6 +256,15 @@ class HeatMap extends Component {
 						onChange={( value )=>{
 							this.setState({
 								overlayPoints: value
+							});
+						}}
+					/>
+					<CheckboxInput
+						legend="Alternate Color Scheme"
+						defaultValue={this.state.alternateColor}
+						onChange={( value )=>{
+							this.setState({
+								alternateColor: value
 							});
 						}}
 					/>
