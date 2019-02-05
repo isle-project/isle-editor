@@ -614,6 +614,13 @@ class MarkdownEditor extends Component {
 				top: event.y + window.pageYOffset
 			});
 			if ( key && html ) {
+				if ( startsWith( key, '<!--IMAGE_LOG' ) ) {
+					this.context.log({
+						id: this.props.id,
+						type: 'PLOT_DRAGGED',
+						value: key.substring( 14, 20 )
+					});
+				}
 				const { hash } = this.state;
 				hash[ key ] = html;
 				instance.replaceRange( key, coords );
