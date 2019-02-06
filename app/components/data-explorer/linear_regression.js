@@ -137,6 +137,7 @@ class SimpleLinearRegression extends Component {
 					legend="Group By:"
 					options={categorical}
 					clearable={true}
+					menuPlacement="top"
 				/>
 			</Dashboard>
 		);
@@ -144,14 +145,11 @@ class SimpleLinearRegression extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 SimpleLinearRegression.defaultProps = {
 	categorical: []
 };
-
-
-// PROPERTY TYPES //
 
 SimpleLinearRegression.propTypes = {
 	categorical: PropTypes.array,

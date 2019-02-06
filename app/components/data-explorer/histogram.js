@@ -312,6 +312,7 @@ class Histogram extends Component {
 							options={[ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ]}
 							disabled={!this.state.overlayDensity}
 							defaultValue={this.state.densityType}
+							menuPlacement="top"
 							onChange={( value )=>{
 								this.setState({
 									densityType: value
