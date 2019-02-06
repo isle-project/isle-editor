@@ -98,6 +98,7 @@
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jest": "^22.2.2",
     "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.0.0",
     "gh-pages": "^2.0.0",
     "gitbook-cli": "^2.3.0",
     "happypack": "^5.0.1",

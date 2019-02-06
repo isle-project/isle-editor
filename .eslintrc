@@ -313,12 +313,14 @@
       "condition": "ignore",
       "logical": "ignore",
       "prop": "ignore"
-    } ]
+    } ],
+    "react-hooks/rules-of-hooks": 2
   },
   "plugins": [
     "import",
     "react",
-    "jest"
+    "jest",
+    "react-hooks"
   ],
   "settings": {
     "react": {
