@@ -239,7 +239,7 @@
     "uuid": "^3.3.2",
     "venn.js": "0.2.20",
     "victory": "31.2.0",
-    "webpack": "4.29.1"
+    "webpack": "4.29.2"
   },
   "greenkeeper": {
     "ignore": [
