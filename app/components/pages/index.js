@@ -34,6 +34,7 @@ class Pages extends Component {
 
 	firstPage = () => {
 		this.props.onSelect( 1 );
+		this.wrapper.scrollTop = 0;
 		this.setState({
 			activePage: 1
 		});
@@ -45,6 +46,7 @@ class Pages extends Component {
 			return this.props.onSelect( this.state.activePage );
 		}
 		this.props.onSelect( this.state.activePage + 1 );
+		this.wrapper.scrollTop = 0;
 		this.setState({
 			activePage: this.state.activePage + 1
 		});
@@ -55,6 +57,7 @@ class Pages extends Component {
 			return this.props.onSelect( this.state.activePage );
 		}
 		this.props.onSelect( this.state.activePage - 1 );
+		this.wrapper.scrollTop = 0;
 		this.setState({
 			activePage: this.state.activePage - 1
 		});
@@ -62,6 +65,7 @@ class Pages extends Component {
 
 	lastPage = () => {
 		this.props.onSelect( this.props.children.length );
+		this.wrapper.scrollTop = 0;
 		this.setState({
 			activePage: this.props.children.length
 		});
@@ -73,6 +77,7 @@ class Pages extends Component {
 			return this.props.onSelect( this.state.activePage );
 		}
 		this.props.onSelect( page );
+		this.wrapper.scrollTop = 0;
 		this.setState({
 			activePage: page
 		});
@@ -143,9 +148,14 @@ class Pages extends Component {
 					{items}
 					<Pagination.Next key="next" onClick={this.nextPage} />
 				</Pagination>
-				<div className="page-children-wrapper" style={{
-					height: this.props.height
-				}}>
+				<div className="page-children-wrapper"
+					ref={( div ) => {
+						this.wrapper = div;
+					}}
+					style={{
+						height: this.props.height
+					}}
+				>
 					{ isArray( this.props.children ) ? this.props.children.map( ( elem, idx ) => {
 						return ( <span
 							className={this.state.activePage-1 !== idx ? 'invisible-page' : 'visible-page'}
