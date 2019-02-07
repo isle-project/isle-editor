@@ -61,7 +61,7 @@ class Calculator extends Component {
 		});
 	}
 
-	onClickFactory = (val) => {
+	onClickFactory = ( val ) => {
 		return () => {
 			const vis = this.state.visible;
 			if ( vis === '0' ) {
@@ -73,6 +73,7 @@ class Calculator extends Component {
 					visible: vis + val
 				});
 			}
+			this.textInput.focus();
 		};
 	}
 
@@ -88,6 +89,7 @@ class Calculator extends Component {
 					visible: vis + val
 				});
 			}
+			this.textInput.focus();
 		};
 	}
 
@@ -107,6 +109,7 @@ class Calculator extends Component {
 					visible: val + '(' + vis + ')'
 				});
 			}
+			this.textInput.focus();
 		};
 	}
 
@@ -114,6 +117,12 @@ class Calculator extends Component {
 		this.setState({
 			visible: event.target.value
 		});
+	}
+
+	handleKeyPress = ( event ) => {
+		if ( event.charCode === 13 ) {
+			this.solveEq( event );
+		}
 	}
 
 	solveEq = () => {
@@ -139,6 +148,7 @@ class Calculator extends Component {
 			visible: val,
 			answer: val
 		});
+		this.textInput.focus();
 	}
 
 	renderHeader() {
@@ -160,7 +170,13 @@ class Calculator extends Component {
 				<div className="outer-calc" style={this.props.style}>
 					<Panel id="calc-panel-full" header={this.renderHeader()}>
 						<Container className="desaturated" >
-							<FormControl type="text" id="calc-text-area" value={String(this.state.visible)} onChange={this.handleTypeChange} />
+							<FormControl
+								type="text" id="calc-text-area"
+								value={String(this.state.visible)}
+								onChange={this.handleTypeChange}
+								ref={( div ) => { this.textInput = div; }}
+								onKeyPress={this.handleKeyPress}
+							/>
 							<p>Answer = {this.state.answer}</p>
 							<Row>
 								<Col>
@@ -239,7 +255,13 @@ class Calculator extends Component {
 						header={this.renderHeader()}
 					>
 						<Container className="desaturated" >
-							<FormControl type="text" id="calc-text-area" value={String(this.state.visible)} onChange={this.handleTypeChange} />
+							<FormControl
+								type="text" id="calc-text-area"
+								value={String(this.state.visible)}
+								onChange={this.handleTypeChange}
+								ref={( div ) => { this.textInput = div; }}
+								onKeyPress={this.handleKeyPress}
+							/>
 							<p>Answer = {this.state.answer}</p>
 							<Row>
 								<Col>
