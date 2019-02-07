@@ -18,10 +18,8 @@ Fall
 * Add option to display a line grid instead of a white page as sketchpad background
 * Update logging
   -   Log data table filtering and sorting operations
-* Add "Request Help" button for TA to come (to feedback buttons)?
 * Add save reminders in data explorer 
 * Log actions in instructor bar
-
 
 Priority
 ====
@@ -35,7 +33,7 @@ LONG-TERM
 ===
 * Data Explorer Output Behavior 
 * Mobile. `isle-app`. Mobile responsiveness
-* Needed learning components:
+* Needed learning components:   
     - ...
 * Landing page before start of lesson showing the title, brief overview of content, learning objectives. Should include a way for users to clear the ISLE variables in localStorage.
 * Many of the react components need properties for event handlers (onClick, onChange)...
@@ -46,6 +44,8 @@ LONG-TERM
    - For barcharts, instead of counts, add an option to display percentages (also conditional %)
    - Display additional information when hovering over bars of barcharts (percentage, description, other variables?)
    - We have been deliberately loose with respect to terminology: z-test vs. t-test
+   - Refactor two-way contingency tables? 
+   - Show we display both relative and absolute frequencies in tables?
 * Surveys
     - Handle ordered categories
     - Don't show invalid axis labels before answers are submitted
