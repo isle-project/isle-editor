@@ -69,7 +69,7 @@
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/Planeshifter/isle-editor/issues"
+    "url": "https://github.com/isle-project/isle-editor/issues"
   },
   "keywords": [
     "statistcs",
@@ -81,7 +81,7 @@
     "electron",
     "react"
   ],
-  "homepage": "https://github.com/Planeshifter/isle-editor#readme",
+  "homepage": "https://github.com/isle-project/isle-editor#readme",
   "devDependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.2.0",
     "babel": "^6.5.2",
