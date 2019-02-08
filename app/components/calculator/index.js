@@ -115,15 +115,21 @@ class Calculator extends Component {
 			const vis = this.state.visible;
 			if ( vis === '0' ) {
 				this.setState({
-					visible: val + '('
+					visible: val + '()'
+				}, () => {
+					this.textInput.setSelectionRange(this.state.visible.length - 1, this.state.visible.length - 1);
 				});
 			} else if ( RE_OPERATOR.test( vis ) && !startsWith( vis, '-' ) ) {
 				this.setState({
-					visible: vis + ' ' + val + '('
+					visible: vis + ' ' + val + '()'
+				}, () => {
+					this.textInput.setSelectionRange(this.state.visible.length - 1, this.state.visible.length - 1);
 				});
 			} else {
 				this.setState({
 					visible: val + '(' + vis + ')'
+				}, () => {
+					this.textInput.setSelectionRange(this.state.visible.length, this.state.visible.length);
 				});
 			}
 			this.textInput.focus();
