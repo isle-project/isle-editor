@@ -34,7 +34,9 @@ class Pages extends Component {
 
 	firstPage = () => {
 		this.props.onSelect( 1 );
-		this.wrapper.scrollTop = 0;
+		if ( this.wrapper ) {
+			this.wrapper.scrollTop = 0;
+		}
 		this.setState({
 			activePage: 1
 		});
@@ -46,7 +48,9 @@ class Pages extends Component {
 			return this.props.onSelect( this.state.activePage );
 		}
 		this.props.onSelect( this.state.activePage + 1 );
-		this.wrapper.scrollTop = 0;
+		if ( this.wrapper ) {
+			this.wrapper.scrollTop = 0;
+		}
 		this.setState({
 			activePage: this.state.activePage + 1
 		});
@@ -57,7 +61,9 @@ class Pages extends Component {
 			return this.props.onSelect( this.state.activePage );
 		}
 		this.props.onSelect( this.state.activePage - 1 );
-		this.wrapper.scrollTop = 0;
+		if ( this.wrapper ) {
+			this.wrapper.scrollTop = 0;
+		}
 		this.setState({
 			activePage: this.state.activePage - 1
 		});
@@ -65,7 +71,9 @@ class Pages extends Component {
 
 	lastPage = () => {
 		this.props.onSelect( this.props.children.length );
-		this.wrapper.scrollTop = 0;
+		if ( this.wrapper ) {
+			this.wrapper.scrollTop = 0;
+		}
 		this.setState({
 			activePage: this.props.children.length
 		});
@@ -77,7 +85,9 @@ class Pages extends Component {
 			return this.props.onSelect( this.state.activePage );
 		}
 		this.props.onSelect( page );
-		this.wrapper.scrollTop = 0;
+		if ( this.wrapper ) {
+			this.wrapper.scrollTop = 0;
+		}
 		this.setState({
 			activePage: page
 		});
