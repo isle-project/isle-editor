@@ -191,7 +191,7 @@
     "pdfmake": "^0.1.50",
     "plotly.js": "^1.44.3",
     "pressure": "^2.1.2",
-    "profanities": "^2.9.0",
+    "profanities": "^2.10.0",
     "prop-types": "^15.5.10",
     "raw-loader": "^1.0.0",
     "react": "16.8.1",
