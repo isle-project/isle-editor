@@ -8,8 +8,8 @@
 
 #### Tests
 
-[![Build Status](https://travis-ci.org/Planeshifter/isle-editor.svg?branch=master)](https://travis-ci.org/Planeshifter/isle-editor)
-[![codecov](https://codecov.io/gh/Planeshifter/isle-editor/branch/master/graph/badge.svg)](https://codecov.io/gh/Planeshifter/isle-editor) [![Greenkeeper badge](https://badges.greenkeeper.io/Planeshifter/isle-editor.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.com/isle-project/isle-editor.svg?branch=master)](https://travis-ci.com/isle-project/isle-editor)
+[![codecov](https://codecov.io/gh/isle-project/isle-editor/branch/master/graph/badge.svg)](https://codecov.io/gh/isle-project/isle-editor) [![Greenkeeper badge](https://badges.greenkeeper.io/isle-project/isle-editor.svg)](https://greenkeeper.io/)
 
 ## Introduction
 
@@ -47,7 +47,7 @@ Developing and running the ISLE Editor has the following prerequisites:
 To acquire the source code, clone the git repository.
 
 ``` bash
-$ git clone https://github.com/planeshifter/isle-editor
+$ git clone https://github.com/isle-project/isle-editor
 ```
 
 #### Installation
@@ -97,23 +97,23 @@ The following icons are used under a Creative Commons CCBY license.
 - "bar chart" by Barracuda
 - "Scatterplot" by JeraOcean
 
-[isle-dashboard]: https://github.com/Planeshifter/isle-dashboard
-[isle-server]: https://github.com/Planeshifter/isle-server
+[isle-dashboard]: https://github.com/isle-project/isle-dashboard
+[isle-server]: https://github.com/isle-project/isle-server
 
 [electron]: http://electron.atom.io/
 [git]: http://git-scm.com/
-[license]: https://raw.githubusercontent.com/Planeshifter/isle-editor/master/LICENSE.md
+[license]: https://raw.githubusercontent.com/isle-project/isle-editor/master/LICENSE.md
 [node-js]: https://nodejs.org/en/
-[darwin-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.20.0/ISLE.Editor-darwin-x64.zip
-[linux-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.20.0/ISLE.Editor-linux-x64.zip
-[linux-ia32]: https://github.com/Planeshifter/isle-editor/releases/download/v0.20.0/ISLE.Editor-linux-ia32.zip
-[win32-ia32]: https://github.com/Planeshifter/isle-editor/releases/download/v0.20.0/ISLE.Editor-win32-ia32.zip
-[win32-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.20.0/ISLE.Editor-win32-x64.zip
+[darwin-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-darwin-x64.zip
+[linux-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-linux-x64.zip
+[linux-ia32]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-linux-ia32.zip
+[win32-ia32]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-win32-ia32.zip
+[win32-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-win32-x64.zip
 
-[dependencies-image]: https://img.shields.io/david/planeshifter/isle-editor/master.svg
-[dependencies-url]: https://david-dm.org/planeshifter/isle-editor/master
+[dependencies-image]: https://img.shields.io/david/isle-project/isle-editor/master.svg
+[dependencies-url]: https://david-dm.org/isle-project/isle-editor/master
 
-[dev-dependencies-image]: https://img.shields.io/david/dev/planeshifter/isle-editor/master.svg
-[dev-dependencies-url]: https://david-dm.org/planeshifter/isle-editor/master#info=devDependencies
+[dev-dependencies-image]: https://img.shields.io/david/dev/isle-project/isle-editor/master.svg
+[dev-dependencies-url]: https://david-dm.org/isle-project/isle-editor/master#info=devDependencies
 
 [docs]: http://isledocs.com/
