@@ -39,7 +39,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Planeshifter/isle-editor.git"
+    "url": "git+https://github.com/isle-project/isle-editor.git"
   },
   "author": {
     "name": "Philipp Burckhardt",
@@ -67,7 +67,7 @@
       "url": "https://github.com/Phalanstere"
     }
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/Planeshifter/isle-editor/issues"
   },
