@@ -65,12 +65,9 @@
 	margin: 2px;
 }
 
-.two-sevenths {
-	width: calc(200% / 7);
-}
-
-.three-half-sevenths {
-	width: calc(350% / 7);
+.solve-button {
+	width: calc(56%);
+	margin: 3px;
 }
 
 .desaturated {

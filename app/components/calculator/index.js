@@ -7,13 +7,16 @@ import Draggable from 'react-draggable';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Panel from 'components/panel';
+import TeX from 'components/tex';
 import FormControl from 'react-bootstrap/FormControl';
 import SessionContext from 'session/context.js';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import isDigitString from '@stdlib/assert/is-digit-string';
+import startsWith from '@stdlib/string/starts-with';
 import PI from '@stdlib/constants/math/float64-pi';
+import E from '@stdlib/constants/math/float64-e';
 import replace from '@stdlib/string/replace';
 import evaluate from './shunting_yard';
 import logger from 'debug';
@@ -34,7 +37,7 @@ class Calculator extends Component {
 	* Constructor function
 	*/
 	constructor( props ) {
-		super(props);
+		super( props );
 
 		this.state = {
 			visible: '0',
@@ -44,13 +47,27 @@ class Calculator extends Component {
 	}
 
 	clearEquation = () => {
-		if ( this.state.visisble === '0' ) {
+		if ( this.state.visible === '0' ) {
 			this.setState({
 				answer: 0
 			});
 		} else {
 			this.setState({
 				visible: '0'
+			});
+		}
+	}
+
+	clearLast = () => {
+		let visible = this.state.visible;
+		if ( visible.length === 1 ) {
+			this.setState({
+				visible: '0'
+			});
+		} else {
+			visible = visible.substring( 0, visible.length - 1 );
+			this.setState({
+				visible
 			});
 		}
 	}
@@ -100,7 +117,7 @@ class Calculator extends Component {
 				this.setState({
 					visible: val + '('
 				});
-			} else if ( RE_OPERATOR.test( vis ) ) {
+			} else if ( RE_OPERATOR.test( vis ) && !startsWith( vis, '-' ) ) {
 				this.setState({
 					visible: vis + ' ' + val + '('
 				});
@@ -127,8 +144,13 @@ class Calculator extends Component {
 
 	solveEq = () => {
 		let visible = this.state.visible;
-		if ( !visible || isDigitString( visible ) ) {
+		if ( !visible ) {
 			return;
+		}
+		if ( isDigitString( visible ) ) {
+			this.setState({
+				answer: visible
+			});
 		}
 		// Handle unary operators:
 		visible = replace( visible, /(^|[(*/:^!+]) *-([^+\-/*^!]+)/g, '$1 (0-$2) ' );
@@ -181,10 +203,15 @@ class Calculator extends Component {
 							<Row>
 								<Col>
 									<Row>
-										<Button variant="light" className="two-sevenths" onClick={this.onClickFactory('(')} >(</Button>
-										<Button variant="light" className="two-sevenths" onClick={this.onClickFactory(')')} >)</Button>
-										<Button variant="danger" className="two-sevenths" onClick={this.clearEquation} >C</Button>
-										<Button variant="warning" className="input-button-full" onClick={this.toggleFullDisplay} >&#x26F6;</Button>
+										<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('inv')} >x<sup>-1</sup></Button>
+										<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('abs')} >&#124;x&#124;</Button>
+										<Button variant="info" className="input-button-full" onClick={this.onClickFactory(' choose ')} ><TeX style={{ color: 'white' }} raw="\tbinom{n}{k}" /></Button>
+										<Button variant="light" className="input-button-full" onClick={this.onClickFactory('(')} >(</Button>
+										<Button variant="light" className="input-button-full" onClick={this.onClickFactory(')')} >)</Button>
+										<CopyToClipboard text={this.state.answer}>
+											<Button variant="warning" className="input-button-full" onClick={noop} >Copy</Button>
+										</CopyToClipboard>
+										<Button variant="warning" className="input-button-full" onClick={this.toggleFullDisplay} >Basic</Button>
 									</Row>
 									<Row>
 										<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('sin')} >sin(x)</Button>
@@ -215,7 +242,7 @@ class Calculator extends Component {
 									</Row>
 									<Row>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory( PI )} >&pi;</Button>
-										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('log_b')} >log<sub>b</sub>(x)</Button>
+										<Button variant="info" className="input-button-full" onClick={this.onClickFactory(' log ')} >log<sub>b</sub>(x)</Button>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('!')} >x!</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory(String(this.state.answer))} >Ans</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('0')} >0</Button>
@@ -223,10 +250,10 @@ class Calculator extends Component {
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('/')} >&#xF7;</Button>
 									</Row>
 									<Row>
-										<CopyToClipboard text={this.state.answer}>
-											<Button variant="warning" className="three-half-sevenths" onClick={noop} >Copy</Button>
-										</CopyToClipboard>
-										<Button variant="success" className="three-half-sevenths" onClick={this.solveEq} >=</Button>
+										<Button variant="info" className="input-button-full" onClick={this.onClickFactory( E )} >e</Button>
+										<Button variant="danger" className="input-button-full" onClick={this.clearLast} >CE</Button>
+										<Button variant="danger" className="input-button-full" onClick={this.clearEquation} >AC</Button>
+										<Button variant="success" className="solve-button" onClick={this.solveEq} >=</Button>
 									</Row>
 								</Col>
 							</Row>
@@ -266,9 +293,12 @@ class Calculator extends Component {
 							<Row>
 								<Col>
 									<Row>
-										<Button variant="danger" className="half-button" onClick={this.clearEquation} >C</Button>
-										<Button variant="warning" disabled={!this.props.expandable} className="input-button-small" onClick={this.toggleFullDisplay} >&#x26F6;</Button>
-										<Button variant="info" className="input-button-small" onClick={this.onClickWrapFactory('sqrt')}>&radic;</Button>
+										<Button variant="light" className="input-button-small" onClick={this.onClickFactory('(')} >(</Button>
+										<Button variant="light" className="input-button-small" onClick={this.onClickFactory(')')} >)</Button>
+										<CopyToClipboard text={this.state.answer}>
+											<Button variant="warning" className="input-button-small" onClick={noop} >Copy</Button>
+										</CopyToClipboard>
+										<Button variant="warning" disabled={!this.props.expandable} className="input-button-small" onClick={this.toggleFullDisplay} >Expand</Button>
 									</Row>
 									<Row>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('7')} >7</Button>
@@ -295,9 +325,8 @@ class Calculator extends Component {
 										<Button variant="info" className="input-button-small" onClick={this.onClickFactory('/')} >&#xF7;</Button>
 									</Row>
 									<Row>
-										<CopyToClipboard text={this.state.answer}>
-											<Button variant="warning" className="half-button" onClick={noop} >Copy</Button>
-										</CopyToClipboard>
+										<Button variant="danger" className="input-button-small" onClick={this.clearLast} >CE</Button>
+										<Button variant="danger" className="input-button-small" onClick={this.clearEquation} >AC</Button>
 										<Button variant="success" className="half-button" onClick={this.solveEq} >=</Button>
 									</Row>
 								</Col>
