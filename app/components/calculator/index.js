@@ -80,14 +80,16 @@ class Calculator extends Component {
 
 	onClickFactory = ( val ) => {
 		return () => {
-			const vis = this.state.visible;
+			let vis = this.state.visible;
 			if ( vis === '0' ) {
 				this.setState({
 					visible: val
 				});
 			} else {
+				const pos = this.textInput.selectionStart;
+				vis = vis.substring( 0, pos ) + val + vis.substring( pos );
 				this.setState({
-					visible: vis + val
+					visible: vis
 				});
 			}
 			this.textInput.focus();
@@ -96,17 +98,24 @@ class Calculator extends Component {
 
 	onClickNumberFactory = (val) => {
 		return () => {
-			const vis = this.state.visible;
+			let vis = this.state.visible;
 			if ( vis === '0' || this.state.answer === this.state.visible ) {
 				this.setState({
 					visible: val
+				}, () => {
+					this.textInput.focus();
 				});
 			} else {
+				let pos = this.textInput.selectionStart;
+				vis = vis.substring( 0, pos ) + val + vis.substring( pos );
 				this.setState({
-					visible: vis + val
+					visible: vis
+				}, () => {
+					pos += 1;
+					this.textInput.setSelectionRange( pos, pos );
+					this.textInput.focus();
 				});
 			}
-			this.textInput.focus();
 		};
 	}
 
@@ -117,19 +126,22 @@ class Calculator extends Component {
 				this.setState({
 					visible: val + '()'
 				}, () => {
-					this.textInput.setSelectionRange(this.state.visible.length - 1, this.state.visible.length - 1);
+					const pos = this.state.visible.length - 1;
+					this.textInput.setSelectionRange( pos, pos );
 				});
 			} else if ( RE_OPERATOR.test( vis ) && !startsWith( vis, '-' ) ) {
 				this.setState({
 					visible: vis + ' ' + val + '()'
 				}, () => {
-					this.textInput.setSelectionRange(this.state.visible.length - 1, this.state.visible.length - 1);
+					const pos = this.state.visible.length - 1;
+					this.textInput.setSelectionRange( pos, pos );
 				});
 			} else {
 				this.setState({
 					visible: val + '(' + vis + ')'
 				}, () => {
-					this.textInput.setSelectionRange(this.state.visible.length, this.state.visible.length);
+					const pos = this.state.visible.length;
+					this.textInput.setSelectionRange( pos, pos );
 				});
 			}
 			this.textInput.focus();
