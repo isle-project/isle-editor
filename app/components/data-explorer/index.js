@@ -852,6 +852,7 @@ class DataExplorer extends Component {
 					</Navbar>
 					<Card.Body>
 						<Pages
+							id={this.props.id ? this.props.id + '_questions' : null}
 							height={470}
 							size="small"
 							className="data-explorer-questions"

@@ -8,6 +8,7 @@ import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import isArray from '@stdlib/assert/is-array';
 import VoiceControl from 'components/voice-control';
+import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import './pages.css';
 
@@ -37,6 +38,14 @@ class Pages extends Component {
 		if ( this.wrapper ) {
 			this.wrapper.scrollTop = 0;
 		}
+		if ( this.props.id ) {
+		const session = this.context;
+			session.log({
+				id: this.props.id,
+				type: 'SKETCHPAD_FIRST_PAGE',
+				value: 0
+			});
+		}
 		this.setState({
 			activePage: 1
 		});
@@ -51,6 +60,14 @@ class Pages extends Component {
 		if ( this.wrapper ) {
 			this.wrapper.scrollTop = 0;
 		}
+		if ( this.props.id ) {
+			const session = this.context;
+			session.log({
+				id: this.props.id,
+				type: 'SKETCHPAD_NEXT_PAGE',
+				value: this.state.activePage + 1
+			});
+		}
 		this.setState({
 			activePage: this.state.activePage + 1
 		});
@@ -64,6 +81,14 @@ class Pages extends Component {
 		if ( this.wrapper ) {
 			this.wrapper.scrollTop = 0;
 		}
+		if ( this.props.id ) {
+			const session = this.context;
+			session.log({
+				id: this.props.id,
+				type: 'SKETCHPAD_PREVIOUS_PAGE',
+				value: this.state.activePage - 1
+			});
+		}
 		this.setState({
 			activePage: this.state.activePage - 1
 		});
@@ -73,6 +98,14 @@ class Pages extends Component {
 		this.props.onSelect( this.props.children.length );
 		if ( this.wrapper ) {
 			this.wrapper.scrollTop = 0;
+		}
+		if ( this.props.id ) {
+			const session = this.context;
+			session.log({
+				id: this.props.id,
+				type: 'SKETCHPAD_LAST_PAGE',
+				value: this.props.children.length
+			});
 		}
 		this.setState({
 			activePage: this.props.children.length
@@ -87,6 +120,14 @@ class Pages extends Component {
 		this.props.onSelect( page );
 		if ( this.wrapper ) {
 			this.wrapper.scrollTop = 0;
+		}
+		if ( this.props.id ) {
+			const session = this.context;
+			session.log({
+				id: this.props.id,
+				type: 'SKETCHPAD_JUMP_PAGE',
+				value: page
+			});
 		}
 		this.setState({
 			activePage: page
@@ -209,6 +250,8 @@ Pages.defaultProps = {
 	style: {},
 	onSelect() {}
 };
+
+Pages.contextType = SessionContext;
 
 
 // EXPORTS //
