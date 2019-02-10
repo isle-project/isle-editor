@@ -23,6 +23,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isObject from '@stdlib/assert/is-object';
 import isArray from '@stdlib/assert/is-array';
 import OverlayTrigger from 'components/overlay-trigger';
+import SessionContext from 'session/context.js';
 import 'react-table/react-table.css';
 import './input_range.css';
 import './react_table_height.css';
@@ -285,16 +286,32 @@ class DataTable extends Component {
 		);
 	}
 
-	handleFilterChange = ( filtered ) => {
+	handleFilterChange = ( filtered, column ) => {
 		const selectedRows = this.table.getResolvedState().sortedData.length;
+		if ( this.props.id ) {
+			const session = this.context;
+			session.log({
+				id: this.props.id,
+				type: 'TABLE_FILTER',
+				value: column.id
+			});
+		}
 		this.setState({
 			selectedRows,
 			filtered
 		});
 	}
 
-	handleSortedChange = ( sorted ) => {
+	handleSortedChange = ( sorted, column ) => {
 		const selectedRows = this.table.getResolvedState().sortedData.length;
+		if ( this.props.id ) {
+			const session = this.context;
+			session.log({
+				id: this.props.id,
+				type: 'TABLE_SORT',
+				value: column.id
+			});
+		}
 		this.setState({
 			selectedRows,
 			sorted
@@ -308,6 +325,14 @@ class DataTable extends Component {
 	}
 
 	reset = () => {
+		if ( this.props.id ) {
+			const session = this.context;
+			session.log({
+				id: this.props.id,
+				type: 'TABLE_RESET',
+				value: ''
+			});
+		}
 		this.setState({
 			filtered: [],
 			sorted: []
@@ -411,6 +436,7 @@ class DataTable extends Component {
 						</h4>: null
 					}
 					<ReactTable
+						id={this.props.id}
 						ref={( table ) => { this.table = table; }}
 						data={rows}
 						columns={this.state.columns}
@@ -477,6 +503,8 @@ DataTable.propTypes = {
 	showRemove: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
 	style: PropTypes.object
 };
+
+DataTable.contextType = SessionContext;
 
 
 // EXPORTS //

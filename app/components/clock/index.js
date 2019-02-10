@@ -85,8 +85,6 @@ class Clock extends Component {
 			break;
 			}
 		}
-
-
 		if ( this.state.time !== currentTime ) {
 			this.setState({
 				time: currentTime
