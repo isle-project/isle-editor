@@ -245,9 +245,8 @@ class Sketchpad extends Component {
 					} else if ( type === 'SKETCHPAD_HIDE_POINTER' ) {
 						this.pointer.style.opacity = 0;
 					}
-
 					// Owners should only process actions from selected users:
-					if ( session.isOwner() ) {
+					else if ( session.isOwner() ) {
 						if (
 							this.state.receiveFrom.name !== action.name &&
 							!action.owner &&
@@ -274,17 +273,28 @@ class Sketchpad extends Component {
 						type === 'SKETCHPAD_REPLAY'
 					) {
 						let elem = JSON.parse( action.value );
-						elem.shouldLog = false;
-						if ( elem.page === this.state.currentPage ) {
-							if ( elem.type === 'text' ) {
-								this.drawText( elem );
-							} else {
-								this.drawCurve( elem );
+						const elements = this.elements[ elem.page ];
+						let present = false;
+						if ( elem.user === session.user.email ) {
+							for ( let i = 0; i < elements.length; i++ ) {
+								if ( elements[ i ].drawID === elem.drawID ) {
+									present = true;
+									break;
+								}
 							}
 						}
-						const elements = this.elements[ elem.page ];
-						elements.push( elem );
-						this.props.onChange( elements );
+						if ( !present ) {
+							elem.shouldLog = false;
+							if ( elem.page === this.state.currentPage ) {
+								if ( elem.type === 'text' ) {
+									this.drawText( elem );
+								} else {
+									this.drawCurve( elem );
+								}
+							}
+							elements.push( elem );
+							this.props.onChange( elements );
+						}
 					}
 					else if ( type === 'SKETCHPAD_INSERT_PAGE' ) {
 						const { pos, noPages } = JSON.parse( action.value );
@@ -333,27 +343,34 @@ class Sketchpad extends Component {
 					else if ( type === 'SKETCHPAD_DRAG_ELEMENT' ) {
 						const { drawID, user, page, dx, dy } = JSON.parse( action.value );
 						debug( `Should drag element with id ${drawID} by dx: ${dx} and dy: ${dy}...` );
-						const elems = this.elements[ page ];
-						for ( let i = 0; i < elems.length; i++ ) {
-							const e = elems[ i ];
-							if ( e.drawID === drawID && e.user === user ) {
-								if ( e.type === 'curve' ) {
-									const points = e.points;
+						let ownAction = false;
+						if (
+							this.selectedElement &&
+							this.selectedElement.drawID === drawID
+						) {
+							ownAction = true;
+						}
+						if ( !ownAction ) {
+							const elems = this.elements[ page ];
+							for ( let i = 0; i < elems.length; i++ ) {
+								const e = elems[ i ];
+								if ( e.drawID === drawID && e.user === user ) {
+									if ( e.type === 'curve' ) {
+										const points = e.points;
 
-									// eslint-disable-next-line max-depth
-									for ( let i = 0; i < points.length; i++ ) {
-										points[ i ] += i % 2 === 0 ?
-											( dx / this.canvas.width ) :
-											( dy / this.canvas.height );
+										// eslint-disable-next-line max-depth
+										for ( let i = 0; i < points.length; i++ ) {
+											points[ i ] += i % 2 === 0 ? dx : dy;
+										}
+									}
+									else if ( e.type === 'text' ) {
+										e.x += dx;
+										e.y += dy;
 									}
 								}
-								else if ( e.type === 'text' ) {
-									e.x += ( dx / this.canvas.width );
-									e.y += ( dy / this.canvas.height );
-								}
 							}
+							this.redraw();
 						}
-						this.redraw();
 					}
 					else if ( type === 'SKETCHPAD_CLEAR_PAGE' ) {
 						const page = action.value;
@@ -510,11 +527,11 @@ class Sketchpad extends Component {
 		if ( page ) {
 			let ratio;
 			if ( this.props.fill === 'vertical' ) {
-				ratio = this.state.canvasHeight / page.getViewport(1.0).height;
+				ratio = this.state.canvasHeight / page.getViewport({ scale: 1.0 }).height;
 			} else {
-				ratio = this.state.canvasWidth / page.getViewport(1.0).width;
+				ratio = this.state.canvasWidth / page.getViewport({ scale: 1.0 }).width;
 			}
-			const viewport = page.getViewport( ratio );
+			const viewport = page.getViewport({ scale: ratio });
 			const textLayer = this.textLayer;
 			while ( textLayer.firstChild ) {
 				textLayer.removeChild( textLayer.firstChild );
@@ -648,9 +665,7 @@ class Sketchpad extends Component {
 		}
 	}
 
-	mousePosition = ( evt ) => {
-		const canvas = this.canvas;
-		const rect = canvas.getBoundingClientRect();
+	mousePosition = ( evt, adjust = true ) => {
 		let clientX = evt.clientX;
 		let clientY = evt.clientY;
 
@@ -659,8 +674,14 @@ class Sketchpad extends Component {
 			clientX = evt.touches[ 0 ].clientX;
 			clientY = evt.touches[ 0 ].clientY;
 		}
-
+		if ( adjust === false ) {
+			return {
+				x: clientX,
+				y: clientY
+			};
+		}
 		// Return position inside of the canvas element:
+		const rect = this.canvas.getBoundingClientRect();
 		return {
 			x: clientX - rect.left,
 			y: clientY - rect.top
@@ -996,20 +1017,18 @@ class Sketchpad extends Component {
 		if ( this.selectedElement ) {
 			if ( this.state.mode === 'drag' ) {
 				debug( 'Drag elements around...' );
-				const dx = x - this.x;
-				const dy = y - this.y;
+				const dx = ( x - this.x ) / this.canvas.width;
+				const dy = ( y - this.y ) / this.canvas.height;
 				const e = this.selectedElement;
 				if ( e.type === 'curve' ) {
 					const points = e.points;
 					for ( let i = 0; i < points.length; i++ ) {
-						points[ i ] += i % 2 === 0 ?
-							( dx / this.canvas.width ) :
-							( dy / this.canvas.height );
+						points[ i ] += i % 2 === 0 ? dx : dy;
 					}
 				}
 				else if ( e.type === 'text' ) {
-					e.x += ( dx / this.canvas.width );
-					e.y += ( dy / this.canvas.height );
+					e.x += dx;
+					e.y += dy;
 				}
 				const username = session.user.email || '';
 				const action = {
@@ -1298,8 +1317,7 @@ class Sketchpad extends Component {
 	handleClick = ( event ) => {
 		debug( 'Handle click event...' );
 		if ( this.state.mode === 'text' ) {
-			const x = event.clientX;
-			const y = event.clientY;
+			const { x, y } = this.mousePosition( event, false );
 			const input = this.textInput;
 			input.style.left = x + 'px';
 			input.style.top = y + 'px';
@@ -1718,8 +1736,19 @@ class Sketchpad extends Component {
 		return (
 			<ButtonGroup size="sm" className="sketch-button-group">
 				<TooltipButton tooltip={!this.state.recording ? 'Record drawing' : 'Pause recording'} variant="light" size="sm" disabled={this.state.playing} glyph={!this.state.recording ? 'camera' : 'stop'} onClick={this.record} />
-				<TooltipButton tooltip="Play recording" size="sm" variant={this.state.playing ? 'success' : 'light'} glyph="play" disabled={!this.state.finishedRecording} onClick={this.replay} />
-				<TooltipButton tooltip="Delete recording" onClick={this.delete} glyph="trash" disabled={deleteIsDisabled} size="sm" />
+				{ this.recordingEndPositions[ this.state.currentPage ] !== 0 ?
+					<Fragment>
+						<TooltipButton
+							tooltip="Play recording" size="sm"
+							variant={this.state.playing ? 'success' : 'light'} glyph="play" disabled={!this.state.finishedRecording}
+							onClick={this.replay}
+						/>
+						<TooltipButton
+							tooltip="Delete recording" onClick={this.delete}
+							glyph="trash" disabled={deleteIsDisabled} size="sm"
+						/>
+					</Fragment> : null
+				}
 			</ButtonGroup>
 		);
 	}
@@ -1734,7 +1763,14 @@ class Sketchpad extends Component {
 			mode={this.state.mode}
 			fontFamily={this.state.fontFamily}
 			fontSize={this.state.fontSize}
-			onModeChange={( mode ) => { this.setState({ mode }); }}
+			onModeChange={( mode ) => {
+				this.setState({ mode });
+				if ( mode !== 'pointer' ) {
+					this.pointer.style.opacity = 0.0;
+				} else if ( mode === 'pointer' ) {
+					this.pointer.style.opacity = 0.7;
+				}
+			}}
 			onColorChange={( color ) => { this.setState({ color }); }}
 			onBrushSelect={( event ) => {
 				this.setState({
@@ -1866,6 +1902,9 @@ class Sketchpad extends Component {
 			this.isMouseDown = false;
 			return;
 		}
+		if ( this.state.mode !== 'pointer' ) {
+			return;
+		}
 		const session = this.context;
 		let { x, y } = this.mousePosition( event );
 		const action = {
@@ -1877,7 +1916,7 @@ class Sketchpad extends Component {
 			}),
 			noSave: true
 		};
-		this.pointer.style.opacity = 0;
+		this.pointer.style.opacity = 0.7;
 		this.pointer.style.left = `${x+this.leftMargin}px`;
 		this.pointer.style.top = `${y}px`;
 		session.log( action, 'members' );
@@ -2035,7 +2074,7 @@ class Sketchpad extends Component {
 							className="textLayer"
 							ref={( div ) => { this.textLayer = div; }}
 							style={{
-								pointerEvents: this.state.mode !== 'none' ? 'none' : 'visible'
+								pointerEvents: ( this.state.mode !== 'none' && this.state.mode !== 'pointer' ) ? 'none' : 'visible'
 							}}
 							onMouseDown={this.movePointerStart}
 							onMouseMove={this.movePointer}
