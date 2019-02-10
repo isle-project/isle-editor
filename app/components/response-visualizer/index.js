@@ -134,6 +134,12 @@ class ResponseVisualizer extends Component {
 	}
 
 	toggleActions = () => {
+		const session = this.context;
+		session.log({
+			id: this.props.id,
+			type: 'RESPONSE_VISUALIZER_TOGGLE',
+			value: !this.state.showActions
+		});
 		const newState = {
 			showActions: !this.state.showActions
 		};
@@ -148,6 +154,13 @@ class ResponseVisualizer extends Component {
 	toggleExtended = () => {
 		this.setState({
 			showExtended: !this.state.showExtended
+		}, () => {
+			const session = this.context;
+			session.log({
+				id: this.props.id,
+				type: 'RESPONSE_VISUALIZER_EXTENDED',
+				value: this.state.showExtended
+			});
 		});
 	}
 
