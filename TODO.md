@@ -9,15 +9,12 @@ Fall
 * Insert equation menu similar to table select
 * Build mosaic plot
 * LaTeX Equation in the explorer for the pdf
-* Minification and bundling times
 * Ability to select multiple smoothing values / change them in real-time (similarly, for histogram ability to choose binwidth)
 * Ability to set font family for reports
 * "Undo" button for plots (investigate Plotly's capabilities in this regard)
 * Include "Text to TeX" equation parser 
 * Add React component for toggling between Text source / intermediate TeX representation / rendered equation. 
 * Add option to display a line grid instead of a white page as sketchpad background
-* Update logging
-  -   Log data table filtering and sorting operations
 * Add save reminders in data explorer 
 * Log actions in instructor bar
 
