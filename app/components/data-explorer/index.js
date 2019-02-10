@@ -508,7 +508,7 @@ class DataExplorer extends Component {
 							}
 						});
 					}}>Submit</Button>
-					<DataTable data={this.state.data} />
+					<DataTable data={this.state.data} id={this.props.id ? this.props.id + '_table' : null} />
 				</Card.Body>
 			</Card> );
 		}
@@ -865,7 +865,7 @@ class DataExplorer extends Component {
 							}}
 						>
 								{ !this.props.data ? <Button size="small" onClick={this.resetStorage} style={{ position: 'absolute', top: '70px' }}>Clear Data</Button> : null }
-								<DataTable data={this.state.data} dataInfo={this.props.dataInfo} filters={this.state.filters} />
+								<DataTable data={this.state.data} dataInfo={this.props.dataInfo} filters={this.state.filters} id={this.props.id ? this.props.id + '_table' : null} />
 						</div>
 						{this.props.distributions.map( ( e, i ) => {
 							let content = null;
