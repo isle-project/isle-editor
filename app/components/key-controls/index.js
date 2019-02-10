@@ -62,7 +62,6 @@ class KeyControls extends Component {
 		}
 	}
 
-
 	triggerEvent = ( event ) => {
 		const keyName = event.key;
 		debug( `Received key press: ${keyName}` );

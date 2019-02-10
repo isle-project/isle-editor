@@ -49,7 +49,7 @@ class Wrapper extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
 
 Wrapper.propTypes = {
 	run: PropTypes.bool,
