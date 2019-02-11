@@ -470,7 +470,7 @@ class ResponseVisualizer extends Component {
 		return (
 			<Gate owner>
 				{this.renderFullscreenModal()}
-				<ButtonGroup size="sm" vertical style={{ verticalAlign: 'inherit', ...this.props.style }} >
+				<ButtonGroup id={`${this.props.id}_response_visualizer`} size="sm" vertical style={{ verticalAlign: 'inherit', ...this.props.style }} >
 					<Tooltip
 						placement='top'
 						tooltip={this.props.showID ? <span>
