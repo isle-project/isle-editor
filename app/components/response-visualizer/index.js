@@ -136,7 +136,7 @@ class ResponseVisualizer extends Component {
 	toggleActions = () => {
 		const session = this.context;
 		session.log({
-			id: this.props.id,
+			id: this.props.id+'_response_visualizer',
 			type: 'RESPONSE_VISUALIZER_TOGGLE',
 			value: !this.state.showActions
 		});
@@ -157,7 +157,7 @@ class ResponseVisualizer extends Component {
 		}, () => {
 			const session = this.context;
 			session.log({
-				id: this.props.id,
+				id: this.props.id+'_response_visualizer',
 				type: 'RESPONSE_VISUALIZER_EXTENDED',
 				value: this.state.showExtended
 			});
