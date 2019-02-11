@@ -36,6 +36,11 @@ pre {
 	border-radius: 4px;
 }
 
+mark {
+	padding: .2em;
+	background-color: yellow;
+}
+
 #loading {
 	position: fixed;
 	background: white;
