@@ -152,7 +152,7 @@
     "node-libs-browser": "^2.2.0",
     "pdfjs-dist": "^2.2.2",
     "pdfmake": "^0.1.50",
-    "plotly.js": "^1.44.3",
+    "plotly.js": "^1.44.4",
     "pressure": "^2.1.2",
     "profanities": "^2.10.0",
     "prop-types": "^15.5.10",
