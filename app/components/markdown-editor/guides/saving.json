@@ -1,12 +1,12 @@
 [
 	{
-		"target": ".fa-save",
+		"target": "div.editor-toolbar .fa-save",
 		"content": "When writing a document, we want to regularly save our work and then eventually create a final document. Clicking this button allows you to save a copy of your document as a Markdown file or to export it as an HTML or PDF document. When exporting as a PDF document, you can choose among several standard page sizes or even supply your custom width and height (in inches).",
 		"placement": "right",
 		"placementBeacon": "center"
 	},
 	{
-		"target": ".fa-save",
+		"target": "div.editor-toolbar .fa.fa-save",
 		"content": "Saving your document in the browser stores its contents locally, which means that they will be restored once you open the editor in the same browser on the same computer. Warning: Should you clear the browser cache, you will lose your progress. It is thus advisable to also from time to time download the document as a Markdown file.",
 		"placement": "right"
 	},
