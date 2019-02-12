@@ -3,9 +3,10 @@
 import COMPONENT_DOCS from './components_documentation.json';
 
 
-// FUNCTIONS //
+// VARIABLES //
 
 var RE_TAG = /<\/*(?=\S*)([a-zA-Z-]+)/g;
+var RE_BRACES_QUOTES = /[{"}]/g;
 
 
 // FUNCTIONS //
@@ -20,7 +21,7 @@ var RE_TAG = /<\/*(?=\S*)([a-zA-Z-]+)/g;
 * @author {Ivana Šimić}
 * @license {MIT}
 * @param {string} text - input text
-* @returns {Object} object with `tagName` holding the name of the last opened tag and boolean `isAttributeSearch` indicating whether we are inside the tag attributes or its children
+* @returns {Object} object with `tagName` holding the name of the last opened tag and boolean `inTagAttributes` indicating whether we are inside the tag attributes or its children
 */
 function getLastOpenedTag( text ) {
 	const tags = text.match( RE_TAG );
@@ -45,7 +46,8 @@ function getLastOpenedTag( text ) {
 					text = text.substring( tagPosition );
 					return {
 						tagName: tag,
-						isAttributeSearch: text.indexOf( '<' ) > text.indexOf( '>' )
+						inTagAttributes: text.indexOf( '<' ) > text.indexOf( '>' ),
+						inAttribute: ( text.match( RE_BRACES_QUOTES ) || [] ).length % 2 === 1
 					};
 				}
 				// Remove the last closed tag:
@@ -72,7 +74,7 @@ function factory( monaco ) {
 		});
 		let suggestions = [];
 		const tag = getLastOpenedTag( textUntilPosition );
-		if ( tag && tag.tagName && tag.isAttributeSearch ) {
+		if ( tag && tag.tagName && tag.inTagAttributes && !tag.inAttribute ) {
 			const docs = COMPONENT_DOCS[ tag.tagName ];
 			if ( docs ) {
 				suggestions = docs.props.map( x => {
