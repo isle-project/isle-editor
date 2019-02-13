@@ -2017,6 +2017,31 @@ class Sketchpad extends Component {
 		default:
 			cursor = 'default';
 		}
+		let eventListeners;
+		if ( this.state.mode === 'pointer' ) {
+			eventListeners = {
+				onMouseDown: this.movePointerStart,
+				onMouseMove: this.movePointer,
+				onMouseOut: this.movePointerEnd,
+				onMouseUp: this.movePointerEnd,
+				onTouchCancel: this.movePointerEnd,
+				onTouchEnd: this.movePointerEnd,
+				onTouchMove: this.movePointer,
+				onTouchStart: this.movePointerStart
+			};
+		} else {
+			eventListeners = {
+				onClick: this.handleClick,
+				onMouseDown: this.drawStart,
+				onMouseMove: this.draw,
+				onMouseOut: this.drawEnd,
+				onMouseUp: this.drawEnd,
+				onTouchCancel: this.drawEnd,
+				onTouchEnd: this.drawEnd,
+				onTouchMove: this.draw,
+				onTouchStart: this.drawStart
+			};
+		}
 		const canvas = <canvas
 			className="sketch-canvas"
 			width={this.state.canvasWidth}
@@ -2033,15 +2058,7 @@ class Sketchpad extends Component {
 					this.ctx = canvas.getContext( '2d' );
 				}
 			}}
-			onClick={this.handleClick}
-			onMouseDown={this.drawStart}
-			onMouseMove={this.draw}
-			onMouseOut={this.drawEnd}
-			onMouseUp={this.drawEnd}
-			onTouchCancel={this.drawEnd}
-			onTouchEnd={this.drawEnd}
-			onTouchMove={this.draw}
-			onTouchStart={this.drawStart}
+			{...eventListeners}
 		/>;
 		return (
 			<Fragment>
@@ -2074,16 +2091,8 @@ class Sketchpad extends Component {
 							className="textLayer"
 							ref={( div ) => { this.textLayer = div; }}
 							style={{
-								pointerEvents: ( this.state.mode !== 'none' && this.state.mode !== 'pointer' ) ? 'none' : 'visible'
+								pointerEvents: ( this.state.mode !== 'none' ) ? 'none' : 'visible'
 							}}
-							onMouseDown={this.movePointerStart}
-							onMouseMove={this.movePointer}
-							onMouseOut={this.movePointerEnd}
-							onMouseUp={this.movePointerEnd}
-							onTouchCancel={this.movePointerEnd}
-							onTouchEnd={this.movePointerEnd}
-							onTouchMove={this.movePointer}
-							onTouchStart={this.movePointerStart}
 						/>
 						<div
 							ref={(div) => { this.pointer = div; }}
