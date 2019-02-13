@@ -33,7 +33,8 @@ const initialState = {
 	currentRole: 'anonymous',
 	currentMode: 'offline',
 	namespaceName: null,
-	error
+	error,
+	fontSize: config.get( 'fontSize' ) || 14
 };
 
 
@@ -83,6 +84,11 @@ export default function markdown( state = initialState, action ) {
 	case types.TOGGLE_TOOLBAR:
 		return Object.assign({}, state, {
 			hideToolbar: !state.hideToolbar
+		});
+	case types.FONT_SIZE_CHANGED:
+		config.set( 'fontSize', action.payload.fontSize );
+		return Object.assign({}, state, {
+			fontSize: action.payload.fontSize
 		});
 	default:
 		return state;

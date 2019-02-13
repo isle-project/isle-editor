@@ -1,15 +1,17 @@
 // MODULES //
 
 import { combineReducers } from 'redux';
-import markdown from './markdown.js';
 import linting from './linting.js';
+import markdown from './markdown.js';
+import preview from './preview.js';
 
 
 // MAIN //
 
 const rootReducer = combineReducers({
+	linting,
 	markdown,
-	linting
+	preview
 });
 
 
