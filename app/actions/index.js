@@ -103,3 +103,21 @@ export function changeNamespace( namespaceName ) {
 		}
 	};
 }
+
+export function changeRenderInterval( renderInterval ) {
+	return {
+		type: types.RENDER_INTERVAL_CHANGED,
+		payload: {
+			renderInterval
+		}
+	};
+}
+
+export function changeFontSize( fontSize ) {
+	return {
+		type: types.FONT_SIZE_CHANGED,
+		payload: {
+			fontSize
+		}
+	};
+}
