@@ -125,15 +125,15 @@ class Editor extends Component {
 
 		this.checkRequires( this.props.preamble );
 
-		this._completionProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
+		this._attributeProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
 			triggerCharacters: [ ' ', '\n' ],
 			provideCompletionItems: provideAttributeFactory( this.monaco )
 		});
-		this.monaco.languages.registerCompletionItemProvider( 'javascript', {
+		this._snippetProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
 			triggerCharacters: [ '<' ],
 			provideCompletionItems: provideSnippetFactory( this.monaco )
 		});
-		this.monaco.languages.registerCompletionItemProvider( 'javascript', {
+		this._preambleProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
 			triggerCharacters: [ '\n' ],
 			provideCompletionItems: providePreambleFactory( this.monaco )
 		});
@@ -167,7 +167,9 @@ class Editor extends Component {
 
 	componentWillUnmount() {
 		window.removeEventListener( 'resize', this.updateDimensions );
-		this._completionProvider.dispose();
+		this._attributeProvider.dispose();
+		this._snippetProvider.dispose();
+		this._preambleProvider.dispose();
 	}
 
 	checkRequires = ( preamble ) => {
@@ -283,7 +285,7 @@ class Editor extends Component {
 	}
 
 	render() {
-		MONACO_OPTIONS.fontSize = parseFloat( localStorage.getItem( 'fontSize' ) ) || 14;
+		MONACO_OPTIONS.fontSize = this.props.fontSize;
 		return (
 			<div>
 				<ContextMenuTrigger id="editorWindow" holdToDisplay={-1} style={{ height: '100%', width: '100%' }} >
@@ -348,11 +350,13 @@ class Editor extends Component {
 // PROPERTIES //
 
 Editor.defaultProps = {
+	fontSize: 14,
 	onChange: noop,
 	value: ''
 };
 
 Editor.propTypes = {
+	fontSize: PropTypes.number,
 	onChange: PropTypes.func,
 	preamble: PropTypes.object.isRequired,
 	value: PropTypes.string,
