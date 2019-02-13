@@ -201,7 +201,7 @@ class App extends Component {
 		if ( this.debouncedChange ) {
 			this.debouncedChange( value );
 		} else {
-			this.debouncedChange = debounce( handleChange, 3000 );
+			this.debouncedChange = debounce( handleChange, this.props.renderInterval );
 			this.debouncedChange( value );
 		}
 	}
@@ -333,7 +333,7 @@ class App extends Component {
 							value={markdown}
 							onChange={this.onChange}
 							name="monaco_editor"
-							fontSize={14}
+							fontSize={this.props.fontSize}
 							preamble={this.state.preamble}
 							splitPos={this.state.splitPos}
 							lintErrors={this.props.lintErrors}
@@ -408,9 +408,10 @@ export default connect( mapStateToProps, {
 	updatePreamble
 })( App );
 
-function mapStateToProps({ markdown, linting }) {
+function mapStateToProps({ markdown, linting, preview }) {
 	return {
 		...markdown,
-		...linting
+		...linting,
+		...preview
 	};
 }

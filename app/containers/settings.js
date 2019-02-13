@@ -1,23 +1,25 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { changeRenderInterval, changeFontSize } from 'actions';
 import NumberInput from 'components/input/number';
 import Card from 'react-bootstrap/Card';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
 import SettingsLogin from 'editor-components/settings-login';
 
 
-// FUNCTIONS //
-
-const handleFontSizeChange = ( number ) => {
-	localStorage.setItem( 'fontSize', number );
-	return number;
-};
-
-
 // MAIN //
 
 class Settings extends Component {
+	handleFontSizeChange = ( number ) => {
+		this.props.changeFontSize( number );
+	}
+
+	handleRenderIntervalChange = ( number ) => {
+		this.props.changeRenderInterval( number * 1000 );
+	}
+
 	render() {
 		return (
 			<Fragment>
@@ -36,11 +38,20 @@ class Settings extends Component {
 							<NumberInput
 								description="Editor text height in pixels"
 								legend="Font Size"
-								onChange={handleFontSizeChange}
+								onChange={this.handleFontSizeChange}
 								min={8}
 								max={56}
 								step={1}
-								defaultValue={parseInt( localStorage.getItem( 'fontSize' ), 10 ) || 14}
+								defaultValue={this.props.fontSize}
+							/>
+							<NumberInput
+								description="Interval between preview renders"
+								legend="Rendering interval (in seconds)"
+								onChange={this.handleRenderIntervalChange}
+								min={1}
+								max={100}
+								step={1}
+								defaultValue={parseInt( this.props.renderInterval / 1000, 10 )}
 							/>
 						</Card.Body>
 					</Card>
@@ -53,4 +64,14 @@ class Settings extends Component {
 
 // EXPORTS //
 
-export default Settings;
+export default connect( mapStateToProps, {
+	changeFontSize,
+	changeRenderInterval
+})( Settings );
+
+function mapStateToProps({ markdown, preview }) {
+	return {
+		...markdown,
+		...preview
+	};
+}
