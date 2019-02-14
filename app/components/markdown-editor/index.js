@@ -100,6 +100,7 @@ function replacer( key, value ) {
 * A markdown editor for writing notes or reports. Supports exporting of notes as HTML or PDF files, as well as automatic submission to the ISLE server.
 *
 * @property {string} defaultValue - default text of the editor
+* @property {boolean} sendSubmissionEmails - controls whether to send confirmation emails with PDF/HTML output upon submission
 * @property {Array} toolbarConfig - array of toolbar element identifiers to be displayed
 * @property {Object} options - options passed to the SimpleMDE constructor, the package on which this component is based; see their documentation for available options
 * @property {boolean} autoSave - controls whether the editor should save the current text to the local storage of the browser at a given time interval
@@ -961,33 +962,34 @@ class MarkdownEditor extends Component {
 		const doc = generatePDF( ast, config, this.state.fontSize );
 		const pdfDocGenerator = pdfMake.createPdf( doc );
 		pdfDocGenerator.getBase64( ( pdf ) => {
-			const msg = {
-				text: `Dear ${session.user.name}, your report has been successfully recorded. For your convenience, your report and the generated HTML file are attached to this email.`,
-				subject: 'Report submitted',
-				attachments: [
-					{
-						filename: 'report.html',
-						content: html,
-						contentType: 'text/html'
-					},
-					{
-						filename: 'report.md',
-						content: this.replacePlaceholders( this.simplemde.value() ),
-						contentType: 'text/plain'
-					},
-					{
-						filename: 'report.pdf',
-						content: pdf,
-						contentType: 'application/pdf',
-						encoding: 'base64'
-					}
-				]
-			};
-			session.sendMail( msg, session.user.email );
-			if ( additionalRecipientObj ) {
-				// force the message
-				msg.text = message;
-				session.sendMail( msg, additionalRecipientObj.email );
+			if ( this.props.sendSubmissionEmails ) {
+				const msg = {
+					text: `Dear ${session.user.name}, your report has been successfully recorded. For your convenience, your report and the generated HTML file are attached to this email.`,
+					subject: 'Report submitted',
+					attachments: [
+						{
+							filename: 'report.html',
+							content: html,
+							contentType: 'text/html'
+						},
+						{
+							filename: 'report.md',
+							content: this.replacePlaceholders( this.simplemde.value() ),
+							contentType: 'text/plain'
+						},
+						{
+							filename: 'report.pdf',
+							content: pdf,
+							contentType: 'application/pdf',
+							encoding: 'base64'
+						}
+					]
+				};
+				session.sendMail( msg, session.user.email );
+				if ( additionalRecipientObj ) {
+					msg.text = message;
+					session.sendMail( msg, additionalRecipientObj.email );
+				}
 			}
 
 			// Upload report:
@@ -1194,6 +1196,7 @@ class MarkdownEditor extends Component {
 
 MarkdownEditor.defaultProps = {
 	defaultValue: DEFAULT_VALUE,
+	sendSubmissionEmails: true,
 	options: {},
 	toolbarConfig: [
 		'bold', 'italic', 'underline', 'font_size', 'new_line', 'center', '|',
@@ -1215,6 +1218,7 @@ MarkdownEditor.defaultProps = {
 
 MarkdownEditor.propTypes = {
 	defaultValue: PropTypes.string,
+	sendSubmissionEmails: PropTypes.bool,
 	toolbarConfig: PropTypes.array,
 	options: PropTypes.object,
 	autoSave: PropTypes.bool,

@@ -13,6 +13,7 @@ A markdown editor for writing notes or reports. Supports exporting of notes as H
 #### Options:
 
 * __defaultValue__ | `string`: default text of the editor. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __sendSubmissionEmails__ | `boolean`: controls whether to send confirmation emails with PDF/HTML output upon submission. Default: `true`.
 * __toolbarConfig__ | `array`: array of toolbar element identifiers to be displayed. Default: `[
   'bold',
   'italic',
