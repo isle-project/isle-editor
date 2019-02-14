@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import markdownit from 'markdown-it';
 import pdfMake from 'pdfmake/build/pdfmake';
 import katex from 'markdown-it-katex';
@@ -11,7 +12,6 @@ import markdownIns from 'markdown-it-ins';
 import markdownContainer from 'markdown-it-container';
 import Button from 'react-bootstrap/Button';
 import saveAs from 'utils/file-saver';
-import logger from 'debug';
 import replace from '@stdlib/string/replace';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import startsWith from '@stdlib/string/starts-with';
@@ -26,6 +26,7 @@ import trim from '@stdlib/string/trim';
 import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
+import ResponseVisualizer from 'components/response-visualizer';
 import VoiceInput from 'components/input/voice';
 import UserPairer from 'components/user-pairer';
 import base64toBlob from 'utils/base64-to-blob';
@@ -1067,6 +1068,15 @@ class MarkdownEditor extends Component {
 			<Fragment>
 				<div id={this.props.id} ref={( div ) => { this.wrapper = div; }} className="markdown-editor" style={this.props.style} >
 					<textarea ref={( area ) => { this.simplemdeRef = area; }} autoComplete="off" {...this.props.options} />
+					{ contains( this.props.toolbarConfig, 'submit' ) ?
+					<ResponseVisualizer
+						id={this.props.id}
+						data={{
+							type: 'text'
+						}}
+						info="MARKDOWN_EDITOR_SUBMIT"
+						style={{ padding: 5 }}
+					/> : null }
 				</div>
 				{ this.props.peerReview ? <UserPairer
 					id={this.props.id+'_pairer'}
