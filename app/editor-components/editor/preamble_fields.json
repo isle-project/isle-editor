@@ -26,7 +26,7 @@
 	},
 	{
 		"name": "require",
-		"value": "require: ${1:}",
+		"value": "require:\n${1:}",
 		"description": "Array of JavaScript libraries or JSON files to load"
 	},
 	{

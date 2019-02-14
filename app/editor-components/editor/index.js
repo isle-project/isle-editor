@@ -20,6 +20,7 @@ import ComponentConfigurator from './component_configurator.js';
 import COMPONENTS from './components.json';
 import provideAttributeFactory from './provide_attribute_factory.js';
 import providePreambleFactory from './provide_preamble_factory.js';
+import provideRequireFactory from './provide_require_factory.js';
 import provideSnippetFactory from './provide_snippet_factory.js';
 import './editor.css';
 
@@ -134,8 +135,12 @@ class Editor extends Component {
 			provideCompletionItems: provideSnippetFactory( this.monaco )
 		});
 		this._preambleProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
-			triggerCharacters: [ '\n' ],
+			triggerCharacters: [ '\n', ' ' ],
 			provideCompletionItems: providePreambleFactory( this.monaco )
+		});
+		this._requireProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
+			triggerCharacters: [ '(' ],
+			provideCompletionItems: provideRequireFactory( this.monaco )
 		});
 	}
 
@@ -170,6 +175,7 @@ class Editor extends Component {
 		this._attributeProvider.dispose();
 		this._snippetProvider.dispose();
 		this._preambleProvider.dispose();
+		this._requireProvider.dispose();
 	}
 
 	checkRequires = ( preamble ) => {
