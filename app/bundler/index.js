@@ -299,6 +299,10 @@ function writeIndexFile({
 					}
 				},
 				{
+					test: /\.worker\.js$/,
+					use: { loader: 'worker-loader' }
+				},
+				{
 					test: /\.svg$/i,
 					use: {
 						loader: 'svg-react-loader'

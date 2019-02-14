@@ -57,6 +57,10 @@ export default {
 			]
 		},
 		{
+			test: /\.worker\.js$/,
+			use: { loader: 'worker-loader' }
+		},
+		{
 			test: /\.txt$/,
 			use: 'raw-loader'
 		},
