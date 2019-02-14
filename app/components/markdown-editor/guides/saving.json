@@ -11,12 +11,12 @@
 		"placement": "right"
 	},
 	{
-		"target": ".fa-folder-open",
+		"target": "div.editor-toolbar .fa-folder-open",
 		"content": "When you return to working on your report, you can load your .md file back into the report editor using this icon.",
 		"placement": "right"
 	},
 	{
-		"target": ".fa-share-square",
+		"target": "div.editor-toolbar .fa-share-square",
 		"content": "Once you are satisfied with your work, submit it on the platform by clicking this button. You will receive an email with your report shortly afer submission. Alternatively, you can manually export the report to see what it looks like.",
 		"placement": "right"
 	}
