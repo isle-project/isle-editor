@@ -37,8 +37,10 @@ const SingleActionModal = ( props ) => {
 					{toTimeString( props.modalContent.absoluteTime )}
 				</Modal.Title>
 			</Modal.Header>
-			<Modal.Body style={{ color: 'darkred' }}>
-				{props.modalContent.value}
+			<Modal.Body>
+				<span className="response-visualizer-action-model-text">
+					{props.modalContent.value}
+				</span>
 			</Modal.Body>
 		</Modal>
 	);

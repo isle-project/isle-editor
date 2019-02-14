@@ -7,3 +7,9 @@
 	z-index: 1990;
 	background-color: #000;
 }
+
+.response-visualizer-action-model-text {
+	color: darkred;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}

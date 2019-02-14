@@ -106,7 +106,8 @@ class FullscreenActionDisplay extends Component {
 	itemSizeGetter = ( index ) => {
 		let lines = 2 * LINE_HEIGHT;
 		const action = this.state.actions[ index ];
-		const noLines = ( String( action.value ).match( RE_NEWLINE ) || '' ).length + 1;
+		const value = String( action.value );
+		const noLines = ( value.match( RE_NEWLINE ) || '' ).length + 1;
 		lines += noLines * TEXT_LINE_HEIGHT;
 		debug( `Element at position ${index} is estimated to have ${lines} lines.` );
 		return lines;
@@ -376,6 +377,7 @@ class FullscreenActionDisplay extends Component {
 			value = str || 'None';
 		}
 		const higlighter = <Highlighter
+			className="response-visualizer-text"
 			searchWords={this.state.searchwords}
 			autoEscape={true}
 			textToHighlight={String( value )}

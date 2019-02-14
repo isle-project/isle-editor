@@ -230,7 +230,10 @@ class ResponseVisualizer extends Component {
 		this.emailHash = {};
 		for ( let i = 0; i < actions.length; i++ ) {
 			let action = actions[ i ];
-			if ( action.id === this.props.id ) {
+			if (
+				action.id === this.props.id &&
+				( action.type === this.props.info || action.type === this.props.success || action.type === this.props.danger )
+			) {
 				action = extractValue( action );
 				this.emailHash[ action.email ] = action.type;
 				if (
