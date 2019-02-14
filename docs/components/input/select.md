@@ -26,6 +26,7 @@ A select input component. Can be used as part of an ISLE dashboard or standalone
 * __disabled__ | `boolean`: controls whether the input is active or not. Default: `false`.
 * __inline__ | `boolean`: indicates whether the input is displayed inline. Default: `false`.
 * __legend__ | `(string|node)`: text displayed next to the input. Default: `''`.
+* __menuPlacement__ | `string`: placement of the menu in relation to the control (either `auto`, `top`, or `bottom`). Default: `'auto'`.
 * __multi__ | `boolean`: controls whether one may select multiple answers. Default: `false`.
 * __onChange__ | `function`: callback function to be invoked when a choice is made. Default: `onChange() {}`.
 * __options__ | `array`: array of indicating the choices available the user. Default: `[]`.

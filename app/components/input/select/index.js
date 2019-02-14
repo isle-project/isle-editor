@@ -71,6 +71,7 @@ const customStyles = {
 * @property {boolean} inline - indicates whether the input is displayed inline
 * @property {string} legend - text displayed next to the input
 * @property {boolean} multi - controls whether one may select multiple answers
+* @property {string} menuPlacement - placement of the menu in relation to the control (either `auto`, `top`, or `bottom`)
 * @property {string} placeholder - value to be displayed before an initial choice is made
 */
 class SelectInput extends Input {
@@ -234,7 +235,11 @@ SelectInput.propTypes = {
 		PropTypes.string,
 		PropTypes.node
 	]),
-	menuPlacement: PropTypes.string,
+	menuPlacement: PropTypes.oneOf([
+		'auto',
+		'top',
+		'bottom'
+	]),
 	multi: PropTypes.bool,
 	onChange: PropTypes.func,
 	options: PropTypes.array,

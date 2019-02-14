@@ -1058,8 +1058,14 @@
       {
         "name": "legend",
         "type": "(string|node)",
-        "description": "text displayed next to the checkbox'",
+        "description": "text displayed next to the checkbox",
         "default": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       }
     ],
     "description": "A checkbox input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute."
@@ -1245,6 +1251,12 @@
         "type": "(string|node)",
         "description": "text displayed next to the input",
         "default": ""
+      },
+      {
+        "name": "menuPlacement",
+        "type": "string",
+        "description": "placement of the menu in relation to the control (either `auto`, `top`, or `bottom`)",
+        "default": "auto"
       },
       {
         "name": "multi",
@@ -2010,6 +2022,12 @@
         "type": "string",
         "description": "default text of the editor",
         "default": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+      },
+      {
+        "name": "sendSubmissionEmails",
+        "type": "boolean",
+        "description": "controls whether to send confirmation emails with PDF/HTML output upon submission",
+        "default": true
       },
       {
         "name": "toolbarConfig",
