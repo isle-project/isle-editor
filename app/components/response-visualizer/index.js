@@ -438,11 +438,13 @@ class ResponseVisualizer extends Component {
 		if ( this.props.buttonLabel ) {
 			optionalProps.actionLabel = this.props.buttonLabel;
 		}
+		if ( !this.state.showActions ) {
+			return null;
+		}
 		return ( <FullscreenActionDisplay
 			componentID={this.props.id}
 			actions={this.state.actions}
 			showExtended={this.state.showExtended}
-			show={this.state.showActions}
 			deleteFactory={this.deleteFactory}
 			onPeriodChange={this.onPeriodChange}
 			toggleExtended={this.toggleExtended}

@@ -13,6 +13,7 @@ import ndarray from '@stdlib/ndarray/array';
 import objectKeys from '@stdlib/utils/keys';
 import tabulate from '@stdlib/utils/tabulate';
 import indexOf from '@stdlib/utils/index-of';
+import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import Table from 'react-bootstrap/Table';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
@@ -39,6 +40,7 @@ const debug = logger( 'isle:response-visualizer' );
 const LINE_HEIGHT = 20;
 const TEXT_LINE_HEIGHT = 16;
 const RE_NEWLINE = /\r?\n/g;
+const UPDATE_THRESHOLD = 5;
 
 
 // MAIN //
@@ -48,10 +50,10 @@ class FullscreenActionDisplay extends Component {
 		super( props );
 
 		this.state = {
-			filtered: props.actions,
+			filtered: props.actions.slice( 0 ),
 			searchwords: [],
 			exact: false,
-			actions: props.actions,
+			actions: props.actions.slice( 0 ),
 			showModal: false,
 			modalContent: {}
 		};
@@ -59,11 +61,12 @@ class FullscreenActionDisplay extends Component {
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
 		let newState = {};
-		if ( nextProps.actions !== prevState.actions ) {
-			newState.filtered = nextProps.actions;
+		const diff = absdiff( nextProps.actions.length, prevState.actions.length );
+		if ( diff >= UPDATE_THRESHOLD ) {
+			newState.filtered = nextProps.actions.slice();
 		}
 		if ( !isEmptyObject( newState ) ) {
-			newState.actions = nextProps.actions;
+			newState.actions = nextProps.actions.slice();
 			return newState;
 		}
 		return null;
@@ -144,8 +147,13 @@ class FullscreenActionDisplay extends Component {
 				height={0.65 * window.innerHeight}
 				width={0.45*window.innerWidth}
 				rotate={0}
+				triggerRender={false}
 				onClick={( d ) => {
-					this.searchFilter( d.text );
+					if ( contains( this.state.searchwords, d.text ) ) {
+						this.searchFilter( '' );
+					} else {
+						this.searchFilter( d.text );
+					}
 				}}
 				style={{
 					marginTop: 20
@@ -438,12 +446,9 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	render() {
-		if ( !this.props.show ) {
-			return null;
-		}
 		return ( <Fragment>
 			<Modal
-				show={this.props.show}
+				show={true}
 				onHide={this.props.toggleActions}
 				dialogClassName="modal-100w"
 			>
@@ -509,7 +514,6 @@ FullscreenActionDisplay.propTypes = {
 	counts: PropTypes.array.isRequired,
 	deleteFactory: PropTypes.func.isRequired,
 	onPeriodChange: PropTypes.func.isRequired,
-	show: PropTypes.bool.isRequired,
 	showExtended: PropTypes.bool.isRequired,
 	toggleActions: PropTypes.func.isRequired,
 	toggleExtended: PropTypes.func.isRequired
