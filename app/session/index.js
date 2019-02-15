@@ -1522,11 +1522,13 @@ class Session {
 	/**
 	* Uploads a file.
 	*
-	* @param {Object} formData - form data object
-	* @param {Function} clbk - callback function
+	* @param {Object} options - options object
+	* @param {Object} options.formData - form data object
+	* @param {Function} [options.callback] - callback function
+	* @param {boolean} [options.showNotification] - controls whether to show upload notification
 	* @returns {void}
 	*/
-	uploadFile( formData, clbk = () => {} ) {
+	uploadFile({ formData, callback = () => {}, showNotification = true }) {
 		if ( this.lessonName ) {
 			formData.append( 'lessonName', this.lessonName );
 		}
@@ -1561,13 +1563,15 @@ class Session {
 					level = 'error';
 					err = new Error( xhr.responseText );
 				}
-				this.addNotification({
-					title: 'File Upload',
-					message,
-					level,
-					position: 'tl'
-				});
-				return clbk( err, body );
+				if ( showNotification ) {
+					this.addNotification({
+						title: 'File Upload',
+						message,
+						level,
+						position: 'tl'
+					});
+				}
+				return callback( err, body );
 			}
 		};
 		xhr.send( formData );

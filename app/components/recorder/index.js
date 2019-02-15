@@ -259,11 +259,14 @@ class Recorder extends Component {
 		});
 		const formData = new FormData();
 		formData.append( 'file', file );
-		session.uploadFile( formData, ( err ) => {
-			if ( !err ) {
-				this.setState({
-					uploaded: true
-				});
+		session.uploadFile({
+			formData,
+			callback: ( err ) => {
+				if ( !err ) {
+					this.setState({
+						uploaded: true
+					});
+				}
 			}
 		});
 	}

@@ -1016,8 +1016,8 @@ class MarkdownEditor extends Component {
 			});
 			pdfForm.append( 'file', pdfFile );
 
-			session.uploadFile( htmlForm );
-			session.uploadFile( pdfForm );
+			session.uploadFile({ formData: htmlForm, showNotification: false });
+			session.uploadFile({ formData: pdfForm, showNotification: false });
 
 			session.addNotification({
 				title: 'Submitted',

@@ -1126,7 +1126,10 @@ class Sketchpad extends Component {
 						}
 					};
 					const session = this.context;
-					session.uploadFile( pdfForm, onUpload );
+					session.uploadFile({
+						formData: pdfForm,
+						callback: onUpload
+					});
 				});
 			});
 		});
