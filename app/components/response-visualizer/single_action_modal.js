@@ -37,7 +37,7 @@ const SingleActionModal = ( props ) => {
 					{toTimeString( props.modalContent.absoluteTime )}
 				</Modal.Title>
 			</Modal.Header>
-			<Modal.Body>
+			<Modal.Body style={{ overflowY: 'scroll', maxHeight: 0.8 * window.innerHeight }} >
 				<span className="response-visualizer-action-model-text">
 					{props.modalContent.value}
 				</span>

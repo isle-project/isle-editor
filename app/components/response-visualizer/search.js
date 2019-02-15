@@ -53,8 +53,8 @@ class Search extends Component {
 					</InputGroup>
 				</FormGroup>
 				<FormGroup style={{ float: 'left', margin: '4px' }} >
-					<Checkbox size="small" inline onChange={this.props.onExact} legend="Whole Word" />
-					<Checkbox size="small" inline legend="Case-sensitive" />
+					<Checkbox size="small" inline onChange={this.props.onExact} legend="Whole Word" style={{ fontSize: '0.9rem' }} />
+					<Checkbox size="small" inline legend="Case-sensitive" style={{ fontSize: '0.9rem' }} />
 				</FormGroup>
 				<Button style={{ float: 'left' }} size="small" onClick={this.handleReset} >
 					Reset Search

@@ -13,3 +13,16 @@
 	white-space: pre-wrap;
 	word-wrap: break-word;
 }
+
+.response-visualizer-text {
+	word-break: break-all;
+	word-wrap: break-word;
+	white-space: pre;
+}
+
+.action-display-button-group {
+	padding: 0rem 0rem;
+	right: 5px;
+	bottom: 5px;
+	position: absolute;
+}

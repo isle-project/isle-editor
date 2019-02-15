@@ -13,6 +13,7 @@ import ndarray from '@stdlib/ndarray/array';
 import objectKeys from '@stdlib/utils/keys';
 import tabulate from '@stdlib/utils/tabulate';
 import indexOf from '@stdlib/utils/index-of';
+import floor from '@stdlib/math/base/special/floor';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import Table from 'react-bootstrap/Table';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -37,10 +38,19 @@ import './response_visualizer.css';
 // VARIABLES //
 
 const debug = logger( 'isle:response-visualizer' );
-const LINE_HEIGHT = 20;
-const TEXT_LINE_HEIGHT = 16;
+const LINE_HEIGHT = 15;
+const TEXT_LINE_HEIGHT = 23;
 const RE_NEWLINE = /\r?\n/g;
 const UPDATE_THRESHOLD = 5;
+
+
+// FUNCTIONS //
+
+const wordWrap = ( str ) => {
+	const n = floor( ( window.innerWidth * 0.5 ) / ( 16*0.575 ) );
+	const RE_LINE_BREAKS = new RegExp(`(?![^\\n]{1,${n}}$)([^\\n]{1,${n}})\\s`, 'g' );
+	return str.replace( RE_LINE_BREAKS, '$1\n' );
+};
 
 
 // MAIN //
@@ -109,10 +119,12 @@ class FullscreenActionDisplay extends Component {
 	itemSizeGetter = ( index ) => {
 		let lines = 2 * LINE_HEIGHT;
 		const action = this.state.actions[ index ];
-		const value = String( action.value );
+		const value = wordWrap( String( action.value ) );
 		const noLines = ( value.match( RE_NEWLINE ) || '' ).length + 1;
+		console.log( noLines );
 		lines += noLines * TEXT_LINE_HEIGHT;
 		debug( `Element at position ${index} is estimated to have ${lines} lines.` );
+		console.log( lines );
 		return lines;
 	}
 
@@ -388,17 +400,20 @@ class FullscreenActionDisplay extends Component {
 			className="response-visualizer-text"
 			searchWords={this.state.searchwords}
 			autoEscape={true}
-			textToHighlight={String( value )}
+			textToHighlight={wordWrap( String( value ) )}
 		/>;
 		const name = elem.name;
-		return ( <ListGroupItem key={key}>
+		return ( <ListGroupItem key={key} style={{ padding: '0.75rem'
+		}}>
 			{ this.props.showExtended ?
 				<span style={{ textAlign: 'left' }}>
-					<b>{name}:</b> {higlighter}
+					<b>{name} ({new Date( elem.absoluteTime ).toLocaleTimeString()}):</b>
+					<br />
+					{higlighter}
 				</span> :
 				higlighter
 			}
-			<ButtonGroup style={{ float: 'right', padding: '0rem 0rem' }}>
+			<ButtonGroup className="action-display-button-group">
 				<Button
 					variant="outline-secondary"
 					size="sm"
