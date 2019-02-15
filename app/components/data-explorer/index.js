@@ -22,7 +22,7 @@ import hasProp from '@stdlib/assert/has-property';
 import startsWith from '@stdlib/string/starts-with';
 import copy from '@stdlib/utils/copy';
 import keys from '@stdlib/utils/keys';
-import scrollTo from 'utils/scroll-to';
+import noop from '@stdlib/utils/noop';
 import SelectInput from 'components/input/select';
 import ContingencyTable from 'components/data-explorer/contingency_table';
 import FrequencyTable from 'components/data-explorer/frequency_table';
@@ -207,9 +207,8 @@ class DataExplorer extends Component {
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
-		if ( this.state.output !== prevState.output ) {
-			const outputPanel = document.getElementById( 'outputPanel' );
-			scrollTo( outputPanel, outputPanel.scrollHeight, 1000 );
+		if ( this.state.output !== prevState.output && this.outputPanel ) {
+			this.outputPanel.scrollToBottom();
 		}
 	}
 
@@ -321,14 +320,6 @@ class DataExplorer extends Component {
 				studentPlots: newStudentPlots
 			});
 		}
-	}
-
-	/**
-	* Scrolls to the bottom of the output panel after result has been inserted.
-	*/
-	scrollToBottom() {
-		const outputPanel = document.getElementById( 'outputPanel' );
-		scrollTo( outputPanel, outputPanel.scrollHeight, 1000 );
 	}
 
 	/**
@@ -522,14 +513,14 @@ class DataExplorer extends Component {
 			variables: this.state.categorical,
 			groupingVariables: this.state.groupVars,
 			onCreated: this.addToOutputs,
-			onPlotDone: this.scrollToBottom
+			onPlotDone: this.outputPanel ? this.outputPanel.scrollToBottom : noop
 		};
 		const continuousProps = {
 			data: this.state.data,
 			variables: this.state.continuous,
 			groupingVariables: this.state.groupVars,
 			onCreated: this.addToOutputs,
-			onPlotDone: this.scrollToBottom
+			onPlotDone: this.outputPanel ? this.outputPanel.scrollToBottom : noop
 		};
 
 		const navbar = <Nav variant="tabs">
@@ -955,7 +946,9 @@ class DataExplorer extends Component {
 							<RealtimeMetrics returnFullObject for={this.props.id} onDatum={this.onUserAction} />
 						</Gate>
 					</div>
-					{OutputPanel( this.state.output )}
+					<OutputPanel output={this.state.output} ref={( div ) => {
+						this.outputPanel = div;
+					}} />
 					<Button size="sm" variant="outline-danger" block onClick={() => {
 						this.setState({ output: []});
 					}}>Clear All</Button>

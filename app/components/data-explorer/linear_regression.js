@@ -91,7 +91,7 @@ class SimpleLinearRegression extends Component {
 			let output = {
 				variable: `Regression of ${yval} on ${xval}`,
 				type: 'Simple Linear Regression',
-				value: <div>
+				value: <div style={{ overflowX: 'auto', width: '100%' }}>
 					<label>Regression of {yval} on {xval}:</label>
 					<Table bordered size="sm" >
 						<tbody>

@@ -60,7 +60,7 @@ class FigureInsert extends Component {
 					</Col>
 					<Col xs={5} md={5}>
 						<h3 id="plot_side_insert">Plots</h3>
-						{OutputPanel( this.props.studentPlots, noop )}
+						<OutputPanel output={this.props.studentPlots} />
 					</Col>
 				</Row>
 			</Modal.Body>
