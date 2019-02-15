@@ -2,7 +2,10 @@
 
 function getText( layout, prop ) {
 	let out;
-	if ( layout[ prop ].text ) {
+	if ( !layout ) {
+		return out;
+	}
+	if ( layout[ prop ] && layout[ prop ].text ) {
 		out = layout[ prop ].text;
 	} else {
 		out = layout[ prop ];

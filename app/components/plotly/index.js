@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import logger from 'debug';
@@ -17,6 +17,7 @@ import copy from '@stdlib/utils/copy';
 import SessionContext from 'session/context.js';
 import PlotlyIcons from './icons.js';
 import calculateChanges from './calculate_changes.js';
+import './plotly.css';
 
 
 // VARIABLES //
@@ -48,6 +49,7 @@ const BUTTONS = [
 *
 * @property {Array} data - data array
 * @property {boolean} editable - controls whether labels of the created plot are editable
+* @property {boolean} draggable - controls whether the plot should be draggable
 * @property {string} id - component identifier
 * @property {Object} layout - Plotly layout object
 * @property {boolean} legendButtons - controls whether to display buttons for changing the legend
@@ -205,33 +207,35 @@ class Wrapper extends Component {
 		});
 	}
 
-	makeDraggable = ( div ) => {
-		return ( <div
-			draggable="true"
-			style={{ height: '100%', width: '100%', cursor: 'move' }}
-			onDragStart={( ev ) => {
-				ev.dataTransfer.setData( 'text/html', this.plotData.value );
-				ev.dataTransfer.setData( 'text/plain', this.plotData.key );
-			}}
-		>
-			{div}
-		</div> );
-	}
-
 	render() {
-		const plot = this.makeDraggable( <Plot
-			data={this.props.data}
-			layout={this.state.layout}
-			config={this.config}
-			onInitialized={this.onInitialized}
-			onUpdate={this.onUpdate}
-			useResizeHandler
-			onSelected={this.props.onSelected}
-			style={{
-				width: '100%',
-				height: '100%'
-			}}
-		/> );
+		let draggableBar;
+		if ( this.props.draggable && !this.state.fullscreen ) {
+			draggableBar = <div
+				className="plotly-draggable-bar"
+				draggable="true"
+				onDragStart={( ev ) => {
+					ev.dataTransfer.setData( 'text/html', this.plotData.value );
+					ev.dataTransfer.setData( 'text/plain', this.plotData.key );
+				}}
+			>Drag Plot</div>;
+		}
+		let plot = <Fragment>
+			{draggableBar}
+			<Plot
+				data={this.props.data}
+				layout={this.state.layout}
+				config={this.config}
+				onInitialized={this.onInitialized}
+				onUpdate={this.onUpdate}
+				useResizeHandler
+				onSelected={this.props.onSelected}
+				style={{
+					width: '100%',
+					height: '100%',
+					zIndex: 1
+				}}
+			/>
+		</Fragment>;
 		if ( this.state.fullscreen ) {
 			return (
 				<Modal
@@ -262,6 +266,7 @@ class Wrapper extends Component {
 // PROPERTIES //
 
 Wrapper.defaultProps = {
+	draggable: true,
 	editable: false,
 	id: null,
 	layout: {},
@@ -274,6 +279,7 @@ Wrapper.defaultProps = {
 
 Wrapper.propTypes = {
 	data: PropTypes.array.isRequired,
+	draggable: PropTypes.bool,
 	editable: PropTypes.bool,
 	id: PropTypes.string,
 	layout: PropTypes.object,
