@@ -196,7 +196,7 @@ class Wrapper extends Component {
 				wordCounts,
 				min,
 				max,
-				stopwords: prevState.stopwords,
+				stopwords: prevState.stopwords
 			};
 		} else {
 			newState = {
