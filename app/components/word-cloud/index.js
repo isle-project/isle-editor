@@ -153,6 +153,7 @@ const createBagOfWords = ({ texts, stopwords, minCount }) => {
 * @property {boolean} saveButton - controls whether to display a button for saving the word cloud as an image
 * @property {(Function|number)} padding - accessor function or constant indicating the numerical padding for each word
 * @property {number} updateThreshold - batch size of new documents in `data` before the word cloud is re-rendered
+* @property {boolean} triggerRender - rerender when the data set is exchanged
 * @property {Object} style - CSS inline styles
 * @property {Function} onClick - callback function invoked when a word on the word cloud is clicked
 */
@@ -172,12 +173,13 @@ class Wrapper extends Component {
 				min,
 				max,
 				stopwords,
-				nDocs: process.data.length
+				nRecords: props.data.length
 			};
 		} else {
 			this.state = {
 				wordCounts: props.data.slice(),
-				stopwords
+				stopwords,
+				nRecords: props.data.length
 			};
 		}
 	}
@@ -195,12 +197,10 @@ class Wrapper extends Component {
 				min,
 				max,
 				stopwords: prevState.stopwords,
-				nDocs: nextProps.data.length
 			};
 		} else {
 			newState = {
-				wordCounts: nextProps.data.slice(),
-				nDocs: nextProps.data.length
+				wordCounts: nextProps.data.slice()
 			};
 		}
 		return newState;
@@ -213,9 +213,10 @@ class Wrapper extends Component {
 	}
 
 	shouldComponentUpdate( nextProps ) {
+		const diff = absdiff( nextProps.data.length, this.state.nRecords );
 		if (
-			absdiff( nextProps.data.length, this.state.nDocs ) >= this.props.updateThreshold ||
-			!guessEquality( nextProps.data, this.props.data )
+			diff >= this.props.updateThreshold ||
+			( this.props.triggerRender && !guessEquality( nextProps.data, this.props.data ) )
 		) {
 			return true;
 		}
@@ -225,6 +226,11 @@ class Wrapper extends Component {
 	componentDidUpdate() {
 		if ( this.state.wordCounts.length > 0 ) {
 			this.updateWordCloud();
+		}
+		if ( this.state.nRecords !== this.props.data.length ) {
+			this.setState({
+				nRecords: this.props.data.length
+			});
 		}
 	}
 
@@ -310,7 +316,7 @@ class Wrapper extends Component {
 		} else {
 			name = 'wordcloud.png';
 		}
-		function save( dataBlob, filesize ) {
+		function save( dataBlob ) {
 			saveAs( dataBlob, name );
 		}
 	}
@@ -346,6 +352,7 @@ Wrapper.defaultProps = {
 	minCount: null,
 	saveButton: true,
 	updateThreshold: 5,
+	triggerRender: true,
 	padding: 5,
 	onClick() {},
 	style: {}
@@ -375,6 +382,7 @@ Wrapper.propTypes = {
 		PropTypes.number
 	]),
 	updateThreshold: PropTypes.number,
+	triggerRender: PropTypes.bool,
 	style: PropTypes.object,
 	width: PropTypes.number
 };
