@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
 import TurndownService from 'turndown';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -45,18 +45,21 @@ const makeDraggable = ( div, asMarkdown = true ) => {
 	if ( asMarkdown ) {
 		markup = turndownService.turndown( markup );
 	}
-	return ( <div
-		draggable="true"
-		style={{
-			cursor: 'move'
-		}}
-		onDragStart={( ev ) => {
-			ev.dataTransfer.setData( 'text/plain', markup );
-			ev.dataTransfer.setData( 'text/html', '' );
-		}}
-	>
-		{div}
-	</div> );
+	return (
+		<Fragment>
+			<div
+				draggable={true}
+				className="data-explorer-draggable-bar"
+				onDragStart={( ev ) => {
+					ev.dataTransfer.setData( 'text/plain', markup );
+					ev.dataTransfer.setData( 'text/html', '' );
+				}}
+			>
+				Drag Element
+			</div>
+			{div}
+		</Fragment>
+	);
 };
 
 const renderIQRTable = ( e, idx, clearOutput ) => {
@@ -116,8 +119,9 @@ function createOutputElement( e, idx, clearOutput ) {
 				style={{ float: 'right', padding: '0.1rem 0.3rem' }}
 			/>
 			<div style={{
+				position: 'relative',
 				height: 300,
-				marinTop: 0,
+				marginTop: 0,
 				marginBottom: 40,
 				marginRight: 25
 			}} >

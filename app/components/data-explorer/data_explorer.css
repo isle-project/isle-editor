@@ -30,3 +30,29 @@
 	top: 10%;
 	min-width: 500px;
 }
+
+.data-explorer-draggable-bar {
+	position: absolute;
+	top: 6px;
+	left: 6px;
+	z-index: 2;
+	width: 200px;
+	height: 26px;
+	background-color: rgba(200, 200, 200, 0.5);
+	opacity: 0.3;
+	color: white;
+	letter-spacing: 5px;
+	text-align: center;
+	cursor: move;
+	padding: 0.1rem 0.3rem;
+}
+
+.data-explorer-draggable-bar:hover {
+	background-color: rgba(22, 8, 8, 0.8);
+	color: white;
+	opacity: 1;
+}
+
+.outputPanel pre {
+	position: relative;
+}
