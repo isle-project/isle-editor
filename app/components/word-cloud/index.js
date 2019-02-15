@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import { scaleOrdinal, schemeCategory10, select } from 'd3';
 import cloud from 'd3-cloud';
 import saveAs from 'utils/file-saver';
+import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import min from '@stdlib/math/base/special/min';
 import removePunctuation from '@stdlib/string/remove-punctuation';
 import tokenize from '@stdlib/nlp/tokenize';
@@ -151,6 +152,7 @@ const createBagOfWords = ({ texts, stopwords, minCount }) => {
 * @property {number} minCount - if set, only include words that appear more than `minCount` times in the given data
 * @property {boolean} saveButton - controls whether to display a button for saving the word cloud as an image
 * @property {(Function|number)} padding - accessor function or constant indicating the numerical padding for each word
+* @property {number} updateThreshold - batch size of new documents in `data` before the word cloud is re-rendered
 * @property {Object} style - CSS inline styles
 * @property {Function} onClick - callback function invoked when a word on the word cloud is clicked
 */
@@ -169,7 +171,8 @@ class Wrapper extends Component {
 				wordCounts,
 				min,
 				max,
-				stopwords
+				stopwords,
+				nDocs: process.data.length
 			};
 		} else {
 			this.state = {
@@ -182,14 +185,22 @@ class Wrapper extends Component {
 	static getDerivedStateFromProps( nextProps, prevState ) {
 		let newState;
 		if ( !nextProps.precalculated ) {
-			newState = createBagOfWords({
+			const { min, max, wordCounts } = createBagOfWords({
 				texts: nextProps.data,
 				stopwords: prevState.stopwords,
 				minCount: nextProps.minCount
 			});
+			newState = {
+				wordCounts,
+				min,
+				max,
+				stopwords: prevState.stopwords,
+				nDocs: nextProps.data.length
+			};
 		} else {
 			newState = {
-				wordCounts: nextProps.data.slice()
+				wordCounts: nextProps.data.slice(),
+				nDocs: nextProps.data.length
 			};
 		}
 		return newState;
@@ -203,7 +214,7 @@ class Wrapper extends Component {
 
 	shouldComponentUpdate( nextProps ) {
 		if (
-			nextProps.data.length !== this.props.data.length ||
+			absdiff( nextProps.data.length, this.state.nDocs ) >= this.props.updateThreshold ||
 			!guessEquality( nextProps.data, this.props.data )
 		) {
 			return true;
@@ -213,7 +224,7 @@ class Wrapper extends Component {
 
 	componentDidUpdate() {
 		if ( this.state.wordCounts.length > 0 ) {
-			this.addWordCloud();
+			this.updateWordCloud();
 		}
 	}
 
@@ -230,7 +241,14 @@ class Wrapper extends Component {
 		select( findDOMNode( this ) )
 			.selectAll( 'svg' )
 			.remove();
-		const layout = cloud()
+		this.svg = select( findDOMNode( this ) )
+			.append( 'svg' )
+				.attr( 'width', this.props.width )
+				.attr( 'height', this.props.height )
+				.style( 'background', '#ffffff' );
+		this.svg.append( 'g' )
+			.attr( 'transform', `translate(${this.props.width / 2},${this.props.height / 2})` );
+		this.cloudLayout = cloud()
 			.size([ this.props.width, this.props.height ])
 			.font( this.props.font )
 			.words( this.state.wordCounts )
@@ -238,16 +256,18 @@ class Wrapper extends Component {
 			.rotate( this.props.rotate )
 			.fontSize( fontSizeMapper )
 			.on( 'end', words => {
-				this.svg = select( findDOMNode( this ) )
-				.append( 'svg' )
-					.attr( 'width', layout.size()[0] )
-					.attr( 'height', layout.size()[1] )
-					.style( 'background', '#ffffff' );
-				this.svg.append( 'g' )
-					.attr( 'transform', `translate(${layout.size()[0] / 2},${layout.size()[1] / 2})` )
+				const text = this.svg.select( 'g' )
 					.selectAll( 'text' )
-					.data( words )
-					.enter()
+					.data( words, d => d.text );
+
+				text.transition()
+					.duration(750)
+					.style( 'font-size', d => `${d.size}px` )
+					.attr( 'transform',
+						d => `translate(${[d.x, d.y]})rotate(${d.rotate})`
+					);
+
+				text.enter()
 					.append( 'text' )
 					.style( 'font-size', d => `${d.size}px` )
 					.style( 'font-family', this.props.font )
@@ -259,8 +279,24 @@ class Wrapper extends Component {
 					)
 					.text( d => d.text )
 					.on( 'click', this.props.onClick );
-			});
-		layout.start();
+
+				text.exit()
+					.transition()
+					.duration( 750 )
+					.style( 'fill-opacity', 1.0e-6 )
+					.remove();
+			})
+			.start();
+	}
+
+	updateWordCloud( ){
+		const wordCounts = this.state.wordCounts;
+		this.cloudLayout
+			.stop()
+			.words( wordCounts.map( d => {
+				return { text: d.text, value: d.value };
+			}))
+			.start();
 	}
 
 	saveToPNG = () => {
@@ -309,9 +345,10 @@ Wrapper.defaultProps = {
 	language: 'en',
 	minCount: null,
 	saveButton: true,
+	updateThreshold: 5,
+	padding: 5,
 	onClick() {},
-	style: {},
-	padding: 5
+	style: {}
 };
 
 Wrapper.propTypes = {
@@ -337,6 +374,7 @@ Wrapper.propTypes = {
 		PropTypes.func,
 		PropTypes.number
 	]),
+	updateThreshold: PropTypes.number,
 	style: PropTypes.object,
 	width: PropTypes.number
 };
