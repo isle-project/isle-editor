@@ -27,7 +27,7 @@ turndownService.use( turndownPluginGfm.gfm );
 // FUNCTIONS //
 
 const createButtons = ( header, table, clearOutput, idx ) => {
-	return ( <ButtonGroup style={{ float: 'right' }}>
+	return ( <ButtonGroup style={{ float: 'right', top: '-4px' }}>
 		<FullscreenButton header={header} table={table} />
 		<ClearButton onClick={() => {
 			debug( `Clear element with ID ${idx}` );
@@ -55,7 +55,7 @@ const makeDraggable = ( div, asMarkdown = true ) => {
 					ev.dataTransfer.setData( 'text/html', '' );
 				}}
 			>
-				Drag Element
+				Drag Table
 			</div>
 			{div}
 		</Fragment>
