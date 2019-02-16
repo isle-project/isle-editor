@@ -21,7 +21,7 @@ const DESCRIPTION = 'A bar chart is a graph that displays categorical data as re
 
 // FUNCTIONS //
 
-export function generateBarchartConfig({ data, variable, group, stackBars }) {
+export function generateBarchartConfig({ data, variable, group, horiz, stackBars }) {
 	let traces;
 	if ( !group ) {
 		let freqs = countBy( data[ variable ], identity );
@@ -30,11 +30,20 @@ export function generateBarchartConfig({ data, variable, group, stackBars }) {
 		for ( let i = 0; i < categories.length; i++ ) {
 			counts[ i ] = freqs[ categories[ i ] ];
 		}
-		traces = [ {
-			y: counts,
-			x: categories,
-			type: 'bar'
-		} ];
+		if ( horiz ) {
+			traces = [ {
+				y: categories,
+				x: counts,
+				type: 'bar',
+				orientation: 'h'
+			} ];
+		} else {
+			traces = [ {
+				y: counts,
+				x: categories,
+				type: 'bar'
+			} ];
+		}
 	} else {
 		let freqs = by( data[ variable ], data[ group ], arr => {
 			return countBy( arr, identity );
@@ -49,12 +58,22 @@ export function generateBarchartConfig({ data, variable, group, stackBars }) {
 			for ( let i = 0; i < categories.length; i++ ) {
 				counts[ i ] = val[ categories[ i ] ];
 			}
-			traces.push({
-				y: counts,
-				x: categories,
-				type: 'bar',
-				name: key
-			});
+			if ( horiz ) {
+				traces.push({
+					y: categories,
+					x: counts,
+					type: 'bar',
+					name: key,
+					orientation: 'h'
+				});
+			} else {
+				traces.push({
+					y: counts,
+					x: categories,
+					type: 'bar',
+					name: key
+				});
+			}
 		}
 	}
 	return {
@@ -80,8 +99,8 @@ class Barchart extends Component {
 		super( props );
 	}
 
-	generateBarchart( variable, group, stackBars ) {
-		const config = generateBarchartConfig({ data: this.props.data, variable, group, stackBars });
+	generateBarchart( variable, group, horiz, stackBars ) {
+		const config = generateBarchartConfig({ data: this.props.data, variable, group, horiz, stackBars });
 		const plotId = randomstring( 6 );
 		const output = {
 			variable: variable,
@@ -131,6 +150,10 @@ class Barchart extends Component {
 					options={groupingVariables}
 					clearable={true}
 					menuPlacement="top"
+				/>
+				<CheckboxInput
+					legend="Horizontal Alignment"
+					defaultValue={false}
 				/>
 				<CheckboxInput
 					legend="Stack bars"
