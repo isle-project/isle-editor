@@ -13,7 +13,6 @@ import markdownContainer from 'markdown-it-container';
 import Button from 'react-bootstrap/Button';
 import saveAs from 'utils/file-saver';
 import replace from '@stdlib/string/replace';
-import hasOwnProp from '@stdlib/assert/has-own-property';
 import startsWith from '@stdlib/string/starts-with';
 import endsWith from '@stdlib/string/ends-with';
 import uppercase from '@stdlib/string/uppercase';
@@ -22,7 +21,6 @@ import removeFirst from '@stdlib/string/remove-first';
 import repeat from '@stdlib/string/repeat';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import contains from '@stdlib/assert/contains';
-import trim from '@stdlib/string/trim';
 import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
@@ -42,10 +40,12 @@ import ColumnSelect from './column_select.js';
 import Guides from './guides';
 import FigureInsert from './figure_insert.js';
 import TitleInsert from './title_insert.js';
-import extractTitles from './extract_titles.js';
+import titleTagConvert from './title_tag_convert.js';
 import createHTML from './create_html.js';
 import createPreviewStyles from './create_preview_styles.js';
 import columnTagConvert from './column_tag_convert.js';
+import replacePlaceholders from './replace_placeholders.js';
+import remakeText from './remake_text.js';
 import './simplemde.css';
 import './markdown_editor.css';
 
@@ -74,16 +74,6 @@ const RE_MARKDOWN_NONLINK = /\[[^\]]*\](?=[^[(:])/g;
 
 
 // FUNCTIONS //
-
-function replacerHTML( str, match ) {
-	var ids = extractTitles( match );
-	debug(' The object of the ids in replacerHTML is ' + JSON.stringify(ids) );
-	var html = `${ids.title ? `<h1 class='center' style="font-size: 48px; width: 100%">${ids.title}</h1>` : null}
-		${ids.name ? `<h2 class='center' style="font-size: 44px; width: 100%">${ids.name}` : null}`;
-	html += `<br />${ids.advisor ? `Advisor(s): ${ids.advisor}` : null}</h2>`;
-	debug(' the HTML in replacerHTML is ' + html );
-	return html;
-}
 
 function replacer( key, value ) {
 	if ( key === 'origin' ) {
@@ -124,7 +114,7 @@ class MarkdownEditor extends Component {
 		if ( props.id && props.autoSave ) {
 			var previous = localStorage.getItem( props.id );
 			if ( previous ) {
-				out = this.reMakeText( previous );
+				out = remakeText( previous );
 				value = out.text;
 				hash = out.hash;
 			}
@@ -502,7 +492,7 @@ class MarkdownEditor extends Component {
 	}
 
 	setEditorValue = ( text ) => {
-		const out = this.reMakeText( text );
+		const out = remakeText( text );
 		this.setState({
 			'hash': out.hash
 		});
@@ -643,7 +633,7 @@ class MarkdownEditor extends Component {
 	handleAutosave = () => {
 		if ( this.props.id ) {
 			let text = this.state.value;
-			text = this.replacePlaceholders( text );
+			text = replacePlaceholders( text, this.state.hash );
 			localStorage.setItem( this.props.id, text );
 			const logged = this.logChange();
 			if ( logged ) {
@@ -654,64 +644,6 @@ class MarkdownEditor extends Component {
 				});
 			}
 		}
-	}
-
-	replacePlaceholders( plainText, skipComments ) {
-		let replacementHash;
-		const { hash } = this.state;
-		for ( let key in hash ) {
-			if ( hasOwnProp( hash, key ) ) {
-				var matchInPipeRegExp = new RegExp('\\|\\s*' + key + '\\s*\\|');
-				let id = replace( key, '<!--', '' );
-				id = replace( id, '-->', '' );
-				if ( !skipComments || matchInPipeRegExp.test(plainText) ) {
-					// will have an issue if insert one figure in table and same figure outside table
-					replacementHash = `<!-- START:${id} -->${hash[ key ]}<!-- END -->`;
-				} else {
-					replacementHash = `\n\n${hash[ key ]}\n\n`;
-				}
-				var re = new RegExp( '\\s*'+key+'\\s*', 'g' );
-				plainText = plainText.replace( re, replacementHash );
-			}
-		}
-		debug('this is the plaintext ' + plainText);
-		return plainText;
-	}
-
-	reMakeText = ( text ) => {
-		const hash = {};
-		const START_TAG = '<!-- START:';
-		const START_TAG_LEN = START_TAG.length;
-		const CLOSING_TAG = '-->';
-		const CLOSING_TAG_LEN = CLOSING_TAG.length;
-		const END_TAG = '<!-- END -->';
-		let startIndex;
-		let newText;
-		let section;
-		let startS;
-		let endE;
-		let bigE;
-		let data;
-		let key;
-
-		newText = text;
-		startIndex = 0;
-		while ( text.indexOf( START_TAG, startIndex ) !== -1 ) {
-			// We start on the first match:
-			startS = text.indexOf( START_TAG, startIndex );
-			endE = text.indexOf( CLOSING_TAG, startS );
-			bigE = text.indexOf( END_TAG, startS );
-
-			key = text.substr( startS + START_TAG_LEN, endE - startS - (START_TAG_LEN+1) );
-			data = text.substr( endE + CLOSING_TAG_LEN, bigE - endE - CLOSING_TAG_LEN );
-			section = text.substr( startS, bigE + (START_TAG_LEN+1) - startS );
-			hash[ `<!--${key}-->` ] = trim( data );
-			newText = newText.replace( section, `<!--${key}-->` );
-
-			// Update the startIndex:
-			startIndex = bigE + CLOSING_TAG_LEN;
-		}
-		return { 'text': newText, 'hash': hash };
 	}
 
 	handleFileSelect = ( evt ) => {
@@ -759,21 +691,14 @@ class MarkdownEditor extends Component {
 		}
 	}
 
-	titleTagConvert = ( plainText ) => {
-		// Use a regular expression to match the contents of the title comment:
-		const regTitle = /<!--TitleText([\s\S]*?)-->/;
-		plainText = plainText.replace(regTitle, replacerHTML);
-		return plainText;
-	}
-
 	previewRender = ( plainText ) => {
 		// Add columns:
 		plainText = columnTagConvert( plainText );
 
 		// Take the plaintext and insert the images via hash:
-		plainText = this.replacePlaceholders( plainText, true );
+		plainText = replacePlaceholders( plainText, this.state.hash, true );
 
-		plainText = this.titleTagConvert( plainText );
+		plainText = titleTagConvert( plainText );
 
 		// Cycle through and remove old stylings:
 		var allStyles = document.getElementsByTagName('style');
@@ -864,7 +789,7 @@ class MarkdownEditor extends Component {
 	saveMarkdown = () => {
 		const title = document.title || 'provisoric';
 		let text = this.simplemde.value();
-		text = this.replacePlaceholders( text );
+		text = replacePlaceholders( text, this.state.hash );
 		const blob = new Blob([ text ], {
 			type: 'text/html'
 		});
@@ -889,7 +814,7 @@ class MarkdownEditor extends Component {
 	exportPDF = ( config ) => {
 		const title = document.title || 'provisoric';
 		let text = this.simplemde.value();
-		text = this.replacePlaceholders( text, true ); // replace all new line characters in tables for parsing to work
+		text = replacePlaceholders( text, this.state.hash, true ); // replace all new line characters in tables for parsing to work
 
 		// Replace accidentally unescaped square brackets:
 		text = replace( text, RE_MARKDOWN_NONLINK, '\\[$1\\]' );
@@ -921,7 +846,7 @@ class MarkdownEditor extends Component {
 			});
 		}
 		let text = this.simplemde.value();
-		text = this.replacePlaceholders( text, true );
+		text = replacePlaceholders( text, this.state.hash, true );
 
 		// Replace accidentally unescaped square brackets:
 		text = replace( text, RE_MARKDOWN_NONLINK, '\\[$1\\]' );
@@ -955,7 +880,7 @@ class MarkdownEditor extends Component {
 						},
 						{
 							filename: 'report.md',
-							content: this.replacePlaceholders( this.simplemde.value() ),
+							content: replacePlaceholders( this.simplemde.value(), this.state.hash ),
 							contentType: 'text/plain'
 						},
 						{
@@ -1089,7 +1014,7 @@ class MarkdownEditor extends Component {
 					show={this.state.showSubmitModal && this.state.peer}
 					onHide={this.toggleSubmitModal}
 					onSubmitToReviewer={() => {
-						const md = this.replacePlaceholders( this.simplemde.value() );
+						const md = replacePlaceholders( this.simplemde.value(), this.state.hash );
 						session.log({
 							id: this.props.id,
 							type: 'MARKDOWN_EDITOR_PEER_REPORT',
@@ -1102,7 +1027,7 @@ class MarkdownEditor extends Component {
 						this.submitReport();
 					}}
 					onSubmitComments={() => {
-						const md = this.replacePlaceholders( this.simplemde.value() );
+						const md = replacePlaceholders( this.simplemde.value(), this.state.hash );
 						session.log({
 							id: this.props.id,
 							type: 'MARKDOWN_EDITOR_PEER_COMMENTS',
