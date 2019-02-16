@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import PropTypes from 'prop-types';
+import Principles from './principles.js';
+import Shorthand from './shorthand.js';
 import './animation-help.css';
 
 
@@ -134,56 +136,6 @@ class AnimationHelp extends Component {
 		return list;
 	}
 
-	renderShorthand() {
-		return (
-			<div>
-				<p>Setting 8 parameters is a cumbersome task that may me overcome by the shorthand property.</p>
-				<div className="sample">
-				<code>animation: <span className="green">crazy 4s ease-in-out 0.5s 12 backwards</span></code>
-				</div>
-				<br />
-				<p>In this sample the animation with the name <span className="green">crazy</span> is evoked</p>
-				<p>The value <span className="green">4s</span> specifies a duration of 4 seconds</p>
-				<p><span className="green">ease-in-out</span> specifies the animation curve</p>
-				<p><span className="green">0.5s</span> specifies the delay</p>
-				<p>The value <span className="green">12</span> specifies the number of iterations</p>
-				<p>The following <span className="green">backwards</span> specifies the fill mode</p>
-				<div>The sequence of the various items does not matter. The only thing you have to keep in mind is that the first time-value always represents the duration, the latter the delay of the animation</div>
-			</div>
-		);
-	}
-
-	renderPrinciples() {
-		return (
-			<div>
-				<h4>Animation Principles</h4>
-				<p>
-					There animation parameters you can specify in the style are the following
-				</p>
-
-				<li>animationName: <span className="param">'anim-rotate-in'</span></li>
-				<li>animationDelay:  <span className="param">'.5s'</span></li>
-				<li>animationDuration:  <span className="param">'3s'</span></li>
-				<li>animationDirection:  <span className="param">'alternate'</span></li>
-				<li>animationIterationCount:  <span className="param">3</span></li>
-				<li>animationTimingFunction:  <span className="param">'ease'</span></li>
-				<li>animationFillMode:  <span className="param">'forwards'</span></li>
-				<li>animationPlayState:  <span className="param">'paused'</span></li>
-				<br />
-
-				<p>The <a hef="https://www.w3schools.com/cssref/css3_pr_animation-name.asp">animation-name</a> CSS property specifies a name for the @keyframes animation.</p>
-				<p>The <a hef="https://www.w3schools.com/cssref/css3_pr_animation-delay.asp" target="_blank">animation-delay</a> CSS property specifies a delay for the start of an animation.</p>
-				<p>The <a hef="https://www.w3schools.com/cssref/css3_pr_animation-direction.asp" target="_blank">animation-diretion</a> CSS property defines whether an animation should be played forwards, backwards or in alternate cycles.</p>
-				<p>The <a hef="https://www.w3schools.com/cssref/css3_pr_animation-duration.asp" target="_blank">animation-duration</a> CSS property defines how long an animation should take to complete one cycle.</p>
-				<p>The <a hef="https://www.w3schools.com/cssref/css3_pr_animation-iteration-count.asp" target="_blank">animation-iteration-count</a> CSS property  specifies the number of times an animation should be played.</p>
-				<p>The <a hef="https://www.w3schools.com/cssref/css3_pr_animation-fill-mode.asp" target="_blank">animation-fill-mode</a> CSS property sets how a CSS animation applies styles to its target before and after its execution.</p>
-				<p>The <a hef="https://www.w3schools.com/cssref/css3_pr_animation-play-state.asp" target="_blank">animation-play-state</a> CSS property specifies whether the animation is running or paused.</p>
-				<p>The <a hef="https://www.w3schools.com/cssref/css3_pr_animation-timing-function.asp" target="_blank">animation-timing-function</a> CSS property specifies the speed curve of an animation .</p>
-			</div>
-		);
-	}
-
-
 	renderContent() {
 		if ( this.state.explanation === 'list' ) {
 			return this.renderCommands();
@@ -192,7 +144,7 @@ class AnimationHelp extends Component {
 			return this.renderShorthand();
 		}
 		if ( this.state.explanation === 'principles' ) {
-			return this.renderPrinciples();
+			return <Principles />;
 		}
 		if ( this.state.explanation === 'text' ) {
 			return this.renderTextAnimations();

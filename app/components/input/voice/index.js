@@ -16,6 +16,19 @@ import './voice.css';
 const debug = logger( 'isle:voice-input' );
 
 
+// FUNCTIONS //
+
+function getSpeechRecognition() {
+	try {
+		var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition; //eslint-disable-line
+		if ( SpeechRecognition) return true;
+		return false;
+	} catch ( error) {
+		return false;
+	}
+}
+
+
 // MAIN //
 
 /**
@@ -259,16 +272,6 @@ class VoiceInput extends Input {
 		}
 	}
 
-	getSpeechRecognition() {
-		try {
-			var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition; //eslint-disable-line
-			if ( SpeechRecognition) return true;
-			return false;
-		} catch ( error) {
-			return false;
-		}
-	}
-
 	tooltipMessage( recognizable ) {
 		let text = '';
 		if ( !recognizable ) {
@@ -284,7 +287,7 @@ class VoiceInput extends Input {
 	}
 
 	renderTooltip() {
-		let x = this.getSpeechRecognition();
+		let x = getSpeechRecognition();
 		let text = this.tooltipMessage( x );
 		return (
 			<Tooltip id={`${this.props.id}-voice-input-tooltip`} >

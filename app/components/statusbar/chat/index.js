@@ -13,6 +13,7 @@ import OverlayTrigger from 'components/overlay-trigger';
 import scrollTo from 'utils/scroll-to';
 import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
+import renderTime from './render_time.js';
 import './chat.css';
 
 
@@ -131,15 +132,6 @@ class Chat extends Component {
 		</OverlayTrigger> );
 	}
 
-	renderTime( time ) {
-		return new Date( time ).toLocaleTimeString( [], {
-			hour: '2-digit',
-			minute: '2-digit',
-			month: 'short',
-			day: 'numeric'
-		});
-	}
-
 	renderChatBody() {
 		const { chat } = this.props;
 		return (
@@ -155,7 +147,7 @@ class Chat extends Component {
 					onScroll={this.onScroll}
 				>
 					{chat.messages.map( ( msg, idx ) => (<div className={msg.unread ? 'chatmessage unread' : 'chatmessage'} key={idx}>
-						<span className="chattime">{this.renderTime( msg.time )}</span> - <span className="chatuser">{msg.user}:&nbsp;</span>
+						<span className="chattime">{renderTime( msg.time )}</span> - <span className="chatuser">{msg.user}:&nbsp;</span>
 						<span className="chatmessage-content">{msg.content}</span>
 						<hr style={{ marginTop: 3, marginBottom: 3 }} />
 					</div>) )}

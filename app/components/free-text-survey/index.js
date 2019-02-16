@@ -28,6 +28,22 @@ import './free-text-survey.css';
 const debug = logger( 'isle:free-text-survey' );
 
 
+// FUNCTIONS //
+
+function containsProfanity( text ) {
+	text = lowercase( text );
+	const tokens = tokenize( text );
+	for ( let i = 0; i < profanities.length; i++ ) {
+		for ( let j = 0; j < tokens.length; j++ ) {
+			if ( tokens[ j ] === profanities[ i ]) {
+				return profanities[ i ];
+			}
+		}
+	}
+	return null;
+}
+
+
 // MAIN //
 
 /**
@@ -55,7 +71,7 @@ class FreeTextSurvey extends Component {
 
 	submitQuestion = () => {
 		const session = this.context;
-		const val = this.containsProfanity( this.state.value );
+		const val = containsProfanity( this.state.value );
 		if ( val ) {
 			session.addNotification({
 				title: 'Action required',
@@ -114,19 +130,6 @@ class FreeTextSurvey extends Component {
 			data: counts,
 			freqTable
 		});
-	}
-
-	containsProfanity( text ) {
-		text = lowercase( text );
-		const tokens = tokenize( text );
-		for ( let i = 0; i < profanities.length; i++ ) {
-			for ( let j = 0; j < tokens.length; j++ ) {
-				if ( tokens[ j ] === profanities[ i ]) {
-					return profanities[ i ];
-				}
-			}
-		}
-		return null;
 	}
 
 	renderChart() {
