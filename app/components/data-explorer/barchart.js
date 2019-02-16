@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
+import CheckboxInput from 'components/input/checkbox';
 import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
@@ -20,7 +21,7 @@ const DESCRIPTION = 'A bar chart is a graph that displays categorical data as re
 
 // FUNCTIONS //
 
-export function generateBarchartConfig({ data, variable, group }) {
+export function generateBarchartConfig({ data, variable, group, stackBars }) {
 	let traces;
 	if ( !group ) {
 		let freqs = countBy( data[ variable ], identity );
@@ -59,6 +60,7 @@ export function generateBarchartConfig({ data, variable, group }) {
 	return {
 		data: traces,
 		layout: {
+			barmode: stackBars ? 'stack' : null,
 			xaxis: {
 				title: variable
 			},
@@ -78,8 +80,8 @@ class Barchart extends Component {
 		super( props );
 	}
 
-	generateBarchart( variable, group ) {
-		const config = generateBarchartConfig({ data: this.props.data, variable, group });
+	generateBarchart( variable, group, stackBars ) {
+		const config = generateBarchartConfig({ data: this.props.data, variable, group, stackBars });
 		const plotId = randomstring( 6 );
 		const output = {
 			variable: variable,
@@ -129,6 +131,10 @@ class Barchart extends Component {
 					options={groupingVariables}
 					clearable={true}
 					menuPlacement="top"
+				/>
+				<CheckboxInput
+					legend="Stack bars"
+					defaultValue={false}
 				/>
 			</Dashboard>
 		);
