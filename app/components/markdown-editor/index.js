@@ -45,6 +45,7 @@ import TitleInsert from './title_insert.js';
 import extractTitles from './extract_titles.js';
 import createHTML from './create_html.js';
 import createPreviewStyles from './create_preview_styles.js';
+import columnTagConvert from './column_tag_convert.js';
 import './simplemde.css';
 import './markdown_editor.css';
 
@@ -758,26 +759,6 @@ class MarkdownEditor extends Component {
 		}
 	}
 
-	columnTagConvert = ( plainText ) => {
-		let firstIndex;
-		let colCount = 1;
-		const RANDOMSTR = '3hiueronenrklnwfkln';
-		plainText = plainText.replace( '<!--ColGroupStart-->', `<div style="display: table"><div style="width: ${RANDOMSTR}%; float: left;">` );
-		while ( plainText.includes( '<!--Column' ) ) {
-			firstIndex = plainText.indexOf( '<!--Column' );
-			if ( plainText.charAt(firstIndex + '<!--Column'.length) === '-' ) {
-				break;
-			}
-			colCount += 1;
-			plainText = plainText.replace( `<!--Column${colCount}-->`, `</div>\n<div style="width: ${RANDOMSTR}%; float: left;">` );
-		}
-
-		plainText = plainText.replace( '<!--ColGroupEnd-->', '</div></div>' );
-		const colWidth = 100 / colCount;
-		plainText = replace( plainText, RANDOMSTR, colWidth.toString() );
-		return plainText;
-	}
-
 	titleTagConvert = ( plainText ) => {
 		// Use a regular expression to match the contents of the title comment:
 		const regTitle = /<!--TitleText([\s\S]*?)-->/;
@@ -787,7 +768,7 @@ class MarkdownEditor extends Component {
 
 	previewRender = ( plainText ) => {
 		// Add columns:
-		plainText = this.columnTagConvert( plainText );
+		plainText = columnTagConvert( plainText );
 
 		// Take the plaintext and insert the images via hash:
 		plainText = this.replacePlaceholders( plainText, true );
