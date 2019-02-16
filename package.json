@@ -150,7 +150,7 @@
     "minimist": "^1.2.0",
     "moment": "2.24.0",
     "node-libs-browser": "^2.2.0",
-    "pdfjs-dist": "^2.2.2",
+    "pdfjs-dist": "^2.1.266",
     "pdfmake": "^0.1.50",
     "plotly.js": "^1.44.4",
     "pressure": "^2.1.2",
