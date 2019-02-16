@@ -82,6 +82,20 @@ The bundled version can be started with
 $ npm start
 ```
 
+#### Tests
+
+The ISLE editor uses [Jest][jest] for unit tests. To run the tests, execute the following command in the top-level application directory:
+
+``` bash
+$ npm test
+```
+
+To only run the tests for a single component or function, use
+
+```bash
+$ npm run test -- -t "name-of-spec"
+```
+
 ## License
 
 See [LICENSE][license].
@@ -102,6 +116,7 @@ The following icons are used under a Creative Commons CCBY license.
 
 [electron]: http://electron.atom.io/
 [git]: http://git-scm.com/
+[jest]: https://jestjs.io
 [license]: https://raw.githubusercontent.com/isle-project/isle-editor/master/LICENSE.md
 [node-js]: https://nodejs.org/en/
 [darwin-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-darwin-x64.zip
