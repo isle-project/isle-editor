@@ -759,23 +759,22 @@ class MarkdownEditor extends Component {
 	}
 
 	columnTagConvert = ( plainText ) => {
-		var firstIndex;
-		var colCount = 1;
+		let firstIndex;
+		let colCount = 1;
 		const RANDOMSTR = '3hiueronenrklnwfkln';
-		plainText = plainText.replace('<!--ColGroupStart-->', `<div style="display: table"><div style="width: ${RANDOMSTR}%; float: left;">`);
-		while ( plainText.includes('<!--Column') ) {
-			firstIndex = plainText.indexOf('<!--Column');
+		plainText = plainText.replace( '<!--ColGroupStart-->', `<div style="display: table"><div style="width: ${RANDOMSTR}%; float: left;">` );
+		while ( plainText.includes( '<!--Column' ) ) {
+			firstIndex = plainText.indexOf( '<!--Column' );
 			if ( plainText.charAt(firstIndex + '<!--Column'.length) === '-' ) {
 				break;
 			}
 			colCount += 1;
-			plainText = plainText.replace(`<!--Column${colCount}-->`, `</div>\n<div style="width: ${RANDOMSTR}%; float: left;">`);
+			plainText = plainText.replace( `<!--Column${colCount}-->`, `</div>\n<div style="width: ${RANDOMSTR}%; float: left;">` );
 		}
 
-		plainText = plainText.replace('<!--ColGroupEnd-->', '</div></div>');
-		var colWidth = 100 / colCount;
-		plainText = replace(plainText, RANDOMSTR, colWidth.toString());
-
+		plainText = plainText.replace( '<!--ColGroupEnd-->', '</div></div>' );
+		const colWidth = 100 / colCount;
+		plainText = replace( plainText, RANDOMSTR, colWidth.toString() );
 		return plainText;
 	}
 

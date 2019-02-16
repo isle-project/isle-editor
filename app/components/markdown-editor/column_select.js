@@ -21,20 +21,21 @@ class ColumnSelect extends Component {
 	}
 
 	insertColumn = () => {
-		var lines = 1;
-		var colText = '<!--ColGroupStart-->';
-		for ( var i = 1; i < this.state.columns; i++ ) {
+		const lines = 1;
+		const colText = '<!--ColGroupStart-->';
+		for ( let i = 1; i < this.state.columns; i++ ) {
 			colText += '\n\n<!--Column' + (i + 1) + '-->';
 			lines += 2;
 		}
 		colText += '\n\n<!--ColGroupEnd-->\n';
 		lines += 3;
-		this.props.onClick(colText, lines);
+		this.props.onClick( colText, lines );
+		this.props.onHide();
+
 		// Reset the state
 		this.setState({
 			columns: 2
 		});
-		this.props.onHide();
 	}
 
 	render() {
@@ -48,7 +49,7 @@ class ColumnSelect extends Component {
 				</Modal.Header>
 				<Modal.Body>
 					<NumberInput
-						legend="Select Number of Columns"
+						legend="Number of Columns"
 						defaultValue={2}
 						min={2}
 						max={10}
@@ -66,7 +67,7 @@ class ColumnSelect extends Component {
 							variant="primary"
 							align="center"
 							onClick={this.insertColumn}
-							>
+						>
 							Insert {this.state.columns} Columns
 						</Button>
 					</div>
