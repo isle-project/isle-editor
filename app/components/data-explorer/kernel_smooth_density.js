@@ -7,16 +7,26 @@ import isArray from '@stdlib/assert/is-array';
 
 // FUNCTIONS //
 
-/*
-* Calculates weight for i-th obs.
+/**
+* Calculates a weight for the i-th observation.
+*
+* @param {Function} kernel - kernel function
+* @param {number} bandwidth - kernel bandwidth
+* @param {number} x0 - point for which to calculate density
+* @param {number} xi - observation for which to calculate weight
+* @returns {number} i-th weight
 */
 function weight( kernel, bandwidth, x0, xi ) {
 	var arg = ( xi - x0 ) / bandwidth;
 	return kernel( arg );
 }
 
-/*
-* Sum elements of an array.
+/**
+* Sums elements of an array.
+*
+* @private
+* @param {Array} arr - input array
+* @returns {number} array sum
 */
 function sum( arr ) {
 	let ret = 0;
@@ -26,8 +36,12 @@ function sum( arr ) {
 	return ret;
 }
 
-/*
-* Allow sa function to be called with a vector instead of a single number
+/**
+* Allows a function to be called with a vector instead of a single number.
+*
+* @private
+* @param {Function} fun - input function
+* @returns {Function} vectorized function
 */
 function vectorize( fun ) {
 	return function vectorized( x ) {
@@ -41,6 +55,14 @@ function vectorize( fun ) {
 
 // MAIN //
 
+/**
+* Returns a kernel density smoothing function.
+*
+* @param {Array} xs - input data
+* @param {Function} kernel - kernel function
+* @param {number} bandwidth - kernel bandwidth
+* @returns {Function} kernel smoother
+*/
 function kernelSmoothDensity( xs, kernel, bandwidth ) {
 	if ( !isPositiveNumber( bandwidth ) ) {
 		throw new RangeError( 'Bandwidth has to be a positive number.' );
@@ -52,6 +74,12 @@ function kernelSmoothDensity( xs, kernel, bandwidth ) {
 	const n = xs.length;
 	const weightFun = weight.bind( null, kernel, bandwidth );
 
+	/**
+	* Kernel smoother which returns a kernel density estimate at the supplied location.
+	*
+	* @param {number} x - input value
+	* @returns {number} density estimate
+	*/
 	function kernelSmoother( x ) {
 		const weights = _xs.map( ( xi ) => {
 			return weightFun( x, xi );
