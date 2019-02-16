@@ -21,8 +21,8 @@ class ColumnSelect extends Component {
 	}
 
 	insertColumn = () => {
-		const lines = 1;
-		const colText = '<!--ColGroupStart-->';
+		let lines = 1;
+		let colText = '<!--ColGroupStart-->';
 		for ( let i = 1; i < this.state.columns; i++ ) {
 			colText += '\n\n<!--Column' + (i + 1) + '-->';
 			lines += 2;
