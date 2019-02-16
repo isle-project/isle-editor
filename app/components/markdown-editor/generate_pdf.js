@@ -4,7 +4,7 @@ import logger from 'debug';
 import omit from '@stdlib/utils/omit';
 import contains from '@stdlib/assert/contains';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
-import extractTitles from './extract_titles';
+import extractTitles from './extract_titles.js';
 
 
 // VARIABLES //
