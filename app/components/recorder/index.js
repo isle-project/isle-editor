@@ -190,7 +190,7 @@ class Recorder extends Component {
 	}
 
 	captureScreen( clbk ) {
-		getScreenId( function getUserMedia( error, sourceId, screenConstraints ) {
+		getScreenId( ( error, sourceId, screenConstraints ) => {
 			navigator.getUserMedia( screenConstraints, clbk, ( error ) => {
 				this.handleError( 'Failed to capture your screen' );
 			});
@@ -204,7 +204,7 @@ class Recorder extends Component {
 	}
 
 	captureAudio( cb ) {
-		navigator.getUserMedia({ audio: true, video: false }, cb, function onMedia( error ) {
+		navigator.getUserMedia({ audio: true, video: false }, cb, ( error ) => {
 			this.handleError( 'Failed to capture your microphone.' );
 		});
 	}
