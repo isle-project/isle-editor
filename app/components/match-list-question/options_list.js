@@ -2,8 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import floor from '@stdlib/math/base/special/floor';
-import randu from '@stdlib/random/base/randu';
+import shuffle from '@stdlib/random/shuffle';
 
 
 // MAIN //
@@ -11,22 +10,6 @@ import randu from '@stdlib/random/base/randu';
 class OptionsList extends Component {
 	constructor( props ) {
 		super( props );
-	}
-
-	shuffle( array ) {
-		let currentIndex = array.length;
-		let temporaryValue;
-		let randomIndex;
-		while ( currentIndex !== 0 ) {
-			// Pick a remaining element...
-			randomIndex = floor( randu() * currentIndex );
-			currentIndex -= 1;
-			// And swap it with the current element...
-			temporaryValue = array[ currentIndex ];
-			array[ currentIndex ] = array[ randomIndex ];
-			array[ randomIndex ] = temporaryValue;
-		}
-		return array;
 	}
 
 	render() {
@@ -43,7 +26,7 @@ class OptionsList extends Component {
 		const selected = Object.assign({}, optionStyle, {
 			backgroundColor: 'gainsboro'
 		});
-		const options = this.props.shuffle ? this.shuffle( this.props.options ) : this.props.options;
+		const options = this.props.shuffle ? shuffle( this.props.options ) : this.props.options;
 		this.options = this.options || options;
 		const { active, onSelect, answers } = this.props;
 		return (
