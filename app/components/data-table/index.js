@@ -40,6 +40,26 @@ const md = markdownit({
 });
 
 
+// FUNCTIONS //
+
+function createRows( data ) {
+	if ( isEmptyObject( data ) ) {
+		return [];
+	}
+	const keys = Object.keys( data );
+	const nRows = data[ keys[ 0 ] ].length;
+	const rows = new Array( nRows );
+	for ( let i = 0; i < nRows; i++ ) {
+		rows[ i ] = {};
+		for ( let j = 0; j < keys.length; j++ ) {
+			let key = keys[ j ];
+			rows[ i ][ key ] = data[ key ][ i ];
+		}
+	}
+	return rows;
+}
+
+
 // MAIN //
 
 /**
@@ -104,7 +124,7 @@ class DataTable extends Component {
 			keys = Object.keys( rows[ 0 ]);
 		} else {
 			// Case: `data` is an object with keys for the various variables
-			rows = this.createRows( props.data );
+			rows = createRows( props.data );
 			keys = Object.keys( props.data );
 		}
 		for ( let i = 0; i < rows.length; i++ ) {
@@ -226,23 +246,6 @@ class DataTable extends Component {
 		newState.columns = columns;
 		newState.filtered = props.filters;
 		return newState;
-	}
-
-	createRows( data ) {
-		if ( isEmptyObject( data ) ) {
-			return [];
-		}
-		const keys = Object.keys( data );
-		const nRows = data[ keys[ 0 ] ].length;
-		const rows = new Array( nRows );
-		for ( let i = 0; i < nRows; i++ ) {
-			rows[ i ] = {};
-			for ( let j = 0; j < keys.length; j++ ) {
-				let key = keys[ j ];
-				rows[ i ][ key ] = data[ key ][ i ];
-			}
-		}
-		return rows;
 	}
 
 	filterMethodCategories = ( filter, row, column ) => {
