@@ -22,6 +22,41 @@ function linkHorizontal(d) {
 		' ' + d.target.y + ',' + d.target.x;
 }
 
+function diagonalPath( linkData, orientation ) {
+	if ( orientation === 'horizontal' ) {
+		return linkHorizontal( linkData );
+	}
+	return linkVertical( linkData );
+}
+
+function straightPath(linkData, orientation) {
+	const straight = svg
+		.line()
+		.interpolate('basis')
+		.x(d => d.x)
+		.y(d => d.y);
+
+	let data = [
+		{ x: linkData.source.x, y: linkData.source.y },
+		{ x: linkData.target.x, y: linkData.target.y }
+	];
+
+	if (orientation === 'horizontal') {
+		data = [
+			{ x: linkData.source.y, y: linkData.source.x },
+			{ x: linkData.target.y, y: linkData.target.x }
+		];
+	}
+
+	return straight( data );
+}
+
+function elbowPath( d, orientation ) {
+	return orientation === 'horizontal' ?
+		`M${d.source.y},${d.source.x}V${d.target.x}H${d.target.y}` :
+		`M${d.source.x},${d.source.y}V${d.target.y}H${d.target.x}`;
+}
+
 
 // MAIN //
 
@@ -53,53 +88,18 @@ class Link extends PureComponent {
 			.on( 'end', done );
 	}
 
-	diagonalPath( linkData, orientation ) {
-		if ( orientation === 'horizontal' ) {
-			return linkHorizontal( linkData );
-		}
-		return linkVertical( linkData );
-	}
-
-	straightPath(linkData, orientation) {
-		const straight = svg
-			.line()
-			.interpolate('basis')
-			.x(d => d.x)
-			.y(d => d.y);
-
-		let data = [
-			{ x: linkData.source.x, y: linkData.source.y },
-			{ x: linkData.target.x, y: linkData.target.y }
-		];
-
-		if (orientation === 'horizontal') {
-			data = [
-				{ x: linkData.source.y, y: linkData.source.x },
-				{ x: linkData.target.y, y: linkData.target.x }
-			];
-		}
-
-		return straight( data );
-	}
-
-	elbowPath( d, orientation ) {
-		return orientation === 'horizontal' ?
-			`M${d.source.y},${d.source.x}V${d.target.x}H${d.target.y}` :
-			`M${d.source.x},${d.source.y}V${d.target.y}H${d.target.x}`;
-	}
-
 	drawPath() {
 		const { linkData, orientation, pathFunc } = this.props;
 		if ( typeof pathFunc === 'function' ) {
 			return pathFunc(linkData, orientation);
 		}
 		if ( pathFunc === 'elbow' ) {
-			return this.elbowPath( linkData, orientation );
+			return elbowPath( linkData, orientation );
 		}
 		if ( pathFunc === 'straight' ) {
-			return this.straightPath( linkData, orientation );
+			return straightPath( linkData, orientation );
 		}
-		return this.diagonalPath( linkData, orientation );
+		return diagonalPath( linkData, orientation );
 	}
 
 	render() {
@@ -118,7 +118,7 @@ class Link extends PureComponent {
 }
 
 
-// TYPES //
+// PROPERTIES //
 
 Link.defaultProps = {
 	styles: {}

@@ -6,12 +6,30 @@ import { findDOMNode } from 'react-dom';
 import * as d3 from 'd3';
 
 
+// FUNCTIONS //
+
+function getOptions( propOps ) {
+	const options = ( typeof propOps === 'undefined' ) ? {} : propOps;
+	return {
+		margin: {
+			top: 20,
+			bottom: 30,
+			left: 50,
+			right: 50
+		},
+		xaxis: { orientation: 'bottom' },
+		yaxis: { orientation: 'left' },
+		...options
+	};
+}
+
+
 // MAIN //
 
 class D3Plot extends Component {
 	constructor( props ) {
 		super( props );
-		this.opts = this._getOptions( props.options );
+		this.opts = getOptions( props.options );
 	}
 
 	componentDidMount() {
@@ -38,33 +56,13 @@ class D3Plot extends Component {
 		this.destroy();
 	}
 
-	initialize( chart, data, options ) {}
-	update( chart, data, options ) {}
-	destroy() {}
-
-	_getOptions( propOps ) {
-		const options = ( typeof propOps === 'undefined' ) ? {} : propOps;
-		return {
-			margin: {
-				top: 20,
-				bottom: 30,
-				left: 50,
-				right: 50
-			},
-			xaxis: { orientation: 'bottom' },
-			yaxis: { orientation: 'left' },
-			...options
-		};
-	}
-
 	render() {
 		const { className, width, height, options } = this.props;
-		const opts = this._getOptions( options );
+		const opts = getOptions( options );
 		let classes = 'd3-plot';
 		if ( className ) {
 			classes = classes.concat( ' ', this.props.className );
 		}
-
 		return (
 			<svg
 				className={classes}
