@@ -501,7 +501,7 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 		'pageSize': config.pageSize,
 		'pageOrientation': config.pageOrientation,
 		'defaultStyle': {
-			fontSize: standardFontSize
+			fontSize: standardFontSize - 4
 		},
 		'pageMargins': [40, 60, 40, 60] // left top right bottom
 	};
