@@ -141,7 +141,7 @@ class AnimationHelp extends Component {
 			return this.renderCommands();
 		}
 		if ( this.state.explanation === 'shorthand' ) {
-			return this.renderShorthand();
+			return <Shorthand />;
 		}
 		if ( this.state.explanation === 'principles' ) {
 			return <Principles />;
