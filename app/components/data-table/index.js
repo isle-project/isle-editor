@@ -9,6 +9,7 @@ import unique from 'uniq';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Tooltip from 'react-bootstrap/Tooltip';
+import Overlay from 'react-bootstrap/Overlay';
 import markdownit from 'markdown-it';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import contains from '@stdlib/assert/contains';
@@ -137,15 +138,23 @@ class DataTable extends Component {
 			values: {},
 			selectedRows: rows.length
 		};
-		const columns = keys.map( key => {
+		const columns = keys.map( ( key, idx ) => {
 			let header = key;
 			if ( this.props.dataInfo.variables && this.props.dataInfo.variables[ key ]) {
-				const tooltip = <Tooltip id={key}>
-					{this.props.dataInfo.variables[ key ]}
-				</Tooltip>;
-				header = <OverlayTrigger placement="right" overlay={tooltip}>
-					<span>{key}</span>
-				</OverlayTrigger>;
+				header = <span
+					onMouseOver={() => {
+						this.setState({
+							showTooltip: true,
+							tooltip: this.props.dataInfo.variables[ key ]
+						});
+					}}
+					onMouseOut={() => {
+						this.setState({
+							showTooltip: false,
+							tooltip: null
+						});
+					}}
+				>{key}</span>;
 			}
 			const out = {
 				Header: header,
@@ -245,6 +254,7 @@ class DataTable extends Component {
 		newState.rows = rows;
 		newState.columns = columns;
 		newState.filtered = props.filters;
+		newState.showTooltip = false;
 		return newState;
 	}
 
@@ -415,11 +425,7 @@ class DataTable extends Component {
 		}
 		return (
 			<Fragment>
-				<div style={{
-					fontSize: '12px',
-					...this.props.style,
-					marginBottom: '17px'
-				}}>
+				<div className="data-table-wrapper" style={this.props.style} >
 					{ this.props.dataInfo.info.length > 0 ?
 					<div className='data_button_wrapper'>
 						<Button
@@ -438,6 +444,25 @@ class DataTable extends Component {
 							{this.props.dataInfo.name} Data
 						</h4>: null
 					}
+					<Overlay
+						target={this.table}
+						show={this.state.showTooltip}
+					>
+						{({ placement, scheduleUpdate, arrowProps, ...props }) => (
+							<div
+								{...props}
+								style={{
+									backgroundColor: 'rgba(10, 10, 10,0.9)',
+									padding: '2px 10px',
+									color: 'white',
+									borderRadius: 3,
+									...props.style
+								}}
+							>
+								{this.state.tooltip}
+							</div>
+						)}
+					</Overlay>
 					<ReactTable
 						id={this.props.id}
 						ref={( table ) => { this.table = table; }}
