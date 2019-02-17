@@ -6,6 +6,8 @@ import logger from 'debug';
 import { APIXU_BASE_URL, APIXU_AUTH_KEY } from 'constants/apixu';
 import VoiceControl from 'components/voice-control';
 import SessionContext from 'session/context.js';
+import Description from './description.js';
+import Location from './location.js';
 import './weather.css';
 
 
@@ -164,31 +166,6 @@ class Weather extends Component {
 		return <div className="weather-wind">{content}</div>;
 	}
 
-	renderDescription( current ) {
-		let icon = 'http:' + current.condition.icon;
-		return (
-			<div className="weather-description">{ current.condition.text }
-				<img className="weather-icon" src={icon} />
-			</div>
-		);
-	}
-
-	renderLocation() {
-		return (
-			<div className="weather-location">
-				<div className="weather-place">
-					{this.state.data.location.name}
-				</div>
-				<div className="weather-location-region">
-					{this.state.data.location.region},
-				</div>
-				<div className="weather-location-country">
-					{this.state.data.location.country}
-				</div>
-			</div>
-		);
-	}
-
 	renderPrecipitation( current ) {
 		return (
 			<div className="weather-wind">
@@ -228,8 +205,8 @@ class Weather extends Component {
 		return (
 			<div className="weather" style={this.props.style} >
 				{voice}
-				{this.renderLocation(current)}
-				{this.renderDescription(current)}
+				<Location {...this.state.data.location} />
+				<Description {...current} />
 				<br />
 				{this.renderTemperature(current)}
 				{this.renderDetails(current)}

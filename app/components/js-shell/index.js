@@ -94,6 +94,16 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 	);
 };
 
+function makeLog( e, i ) {
+	const type = e.type || 'default';
+	const style = CONSOLE_STYLES[ type ];
+	return (
+		<p key={i} style={style} >
+			{e.msg}
+		</p>
+	);
+}
+
 
 // MAIN //
 
@@ -205,9 +215,6 @@ class JSShell extends Component {
 
 	componentWillUnmount() {
 		global.print = null;
-	}
-
-	onChange() {
 	}
 
 	resetConsole = () => {
@@ -337,16 +344,6 @@ class JSShell extends Component {
 		}
 	}
 
-	getLog( e, i ) {
-		const type = e.type || 'default';
-		const style = CONSOLE_STYLES[ type ];
-		return (
-			<p key={i} style={style} >
-				{e.msg}
-			</p>
-		);
-	}
-
 	logHint = ( idx ) => {
 		const session = this.context;
 		if ( this.props.id ) {
@@ -383,9 +380,7 @@ class JSShell extends Component {
 		let res = [];
 		for ( var i = 0; i < list.length; i++ ) {
 			let e = list[ i ];
-			res.push(
-				this.getLog( e, i )
-			);
+			res.push( makeLog( e, i ) );
 		}
 		return res;
 	}

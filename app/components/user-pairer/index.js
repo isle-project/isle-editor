@@ -22,6 +22,32 @@ function filterOwners( elem ) {
 	return !elem.owner;
 }
 
+function renderTable( assignments ) {
+	const rows = [];
+	for ( let key in assignments ) {
+		if ( hasOwnProp( assignments, key ) ) {
+			const val = assignments[ key ];
+			rows.push( <tr>
+				<td>{key}</td>
+				<td>{`${val.from.name} (${val.from.email})`}</td>
+				<td>{`${val.to.name} (${val.to.email})`}</td>
+			</tr> );
+		}
+	}
+	return ( <Table bordered size="sm">
+		<thead>
+			<tr>
+				<th>Email</th>
+				<th>Receive From</th>
+				<th>Send To</th>
+			</tr>
+		</thead>
+		<tbody>
+			{rows}
+		</tbody>
+	</Table> );
+}
+
 
 // MAIN //
 
@@ -182,32 +208,6 @@ class UserPairer extends Component {
 		}
 	}
 
-	renderTable( assignments ) {
-		const rows = [];
-		for ( let key in assignments ) {
-			if ( hasOwnProp( assignments, key ) ) {
-				const val = assignments[ key ];
-				rows.push( <tr>
-					<td>{key}</td>
-					<td>{`${val.from.name} (${val.from.email})`}</td>
-					<td>{`${val.to.name} (${val.to.email})`}</td>
-				</tr> );
-			}
-		}
-		return ( <Table bordered size="sm">
-			<thead>
-				<tr>
-					<th>Email</th>
-					<th>Receive From</th>
-					<th>Send To</th>
-				</tr>
-			</thead>
-			<tbody>
-				{rows}
-			</tbody>
-		</Table> );
-	}
-
 	render() {
 		const session = this.context;
 		let users = session.userList;
@@ -244,7 +244,7 @@ class UserPairer extends Component {
 							</Card>
 							<Card bg="light" style={{ height: 300, overflowY: 'scroll' }}>
 								<Card.Body>
-								{this.renderTable( this.state.assignments )}
+								{renderTable( this.state.assignments )}
 								</Card.Body>
 							</Card>
 						</FlippableCard> : null }

@@ -29,10 +29,6 @@ class Score extends Component {
 		};
 	}
 
-	renderTypes() {
-
-	}
-
 	renderUser() {
 		const session = this.context;
 		var name = session.anonymous ? 'Anonymous' : session.user.name;

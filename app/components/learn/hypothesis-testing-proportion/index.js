@@ -32,6 +32,13 @@ const areaStyle = {
 const debug = logger( 'isle:learn:hypothesis-testing-proportion' );
 
 
+// FUNCTIONS //
+
+function normalPDF( d ) {
+	return { x: d, y: dnorm( d, 0, 1 ) };
+}
+
+
 // MAIN //
 
 /**
@@ -61,10 +68,6 @@ class ProportionTest extends Component {
 		this.onGenerate();
 	}
 
-	normalPDF( d ) {
-		return { x: d, y: dnorm( d, 0, 1 ) };
-	}
-
 	onGenerate = () => {
 		debug( 'Should generate new values...' );
 		const { p0, phat, phat2, n, n2, samples, type } = this.state;
@@ -90,27 +93,27 @@ class ProportionTest extends Component {
 		switch ( type ) {
 		case 2:
 			if ( !isInfinite( pStat ) && !isnan( pStat ) ) {
-				areaData = linspace( -3, pStat, 200 ).map( this.normalPDF );
+				areaData = linspace( -3, pStat, 200 ).map( normalPDF );
 			} else {
-				areaData = linspace( -3, 3, 200 ).map( this.normalPDF );
+				areaData = linspace( -3, 3, 200 ).map( normalPDF );
 			}
 			probFormula = `P( Z < ${pStat}) = ${roundn( pnorm( pStat, 0, 1 ), -3 )}`;
 			break;
 		case 1:
 			if ( !isInfinite( pStat ) && !isnan( pStat ) ) {
-				areaData = linspace( pStat, 3, 200 ).map( this.normalPDF );
+				areaData = linspace( pStat, 3, 200 ).map( normalPDF );
 			} else {
-				areaData = linspace( -3, 3, 200 ).map( this.normalPDF );
+				areaData = linspace( -3, 3, 200 ).map( normalPDF );
 			}
 			probFormula = `P( Z > ${pStat}) = ${roundn( 1-pnorm( pStat, 0, 1 ), -3 )}`;
 			break;
 		case 0:
 			if ( !isInfinite( pStat ) && !isnan( pStat ) ) {
-				areaData = linspace( abs( pStat ), 3, 200 ).map( this.normalPDF );
-				areaData2 = linspace( -3, -abs( pStat ), 200 ).map( this.normalPDF );
+				areaData = linspace( abs( pStat ), 3, 200 ).map( normalPDF );
+				areaData2 = linspace( -3, -abs( pStat ), 200 ).map( normalPDF );
 			} else {
-				areaData = linspace( 0, 3, 200 ).map( this.normalPDF );
-				areaData2 = linspace( -3, 0, 200 ).map( this.normalPDF );
+				areaData = linspace( 0, 3, 200 ).map( normalPDF );
+				areaData2 = linspace( -3, 0, 200 ).map( normalPDF );
 			}
 			probFormula = `P( |Z| > ${abs( pStat )}) = ${roundn( ( 1-pnorm( abs( pStat ), 0, 1 ) )+pnorm( -abs( pStat ), 0, 1 ), -3 )}`;
 			break;

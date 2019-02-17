@@ -7,6 +7,19 @@ import max from '@stdlib/math/base/special/max';
 import './timer.css';
 
 
+// FUNCTIONS //
+
+function fmtTime( time ) {
+	let minutes = floor( time / 60 );
+	let seconds = time - minutes * 60;
+
+	// Pad minutes and seconds with zeroes:
+	minutes = minutes < 10 ? `0${minutes}` : minutes;
+	seconds = seconds < 10 ? `0${seconds}` : seconds;
+	return `${minutes}:${seconds}`;
+}
+
+
 // MAIN //
 
 /**
@@ -59,16 +72,6 @@ class Timer extends Component {
 		return `timer::${id}`;
 	}
 
-	fmtTime( time ) {
-		let minutes = floor( time / 60 );
-		let seconds = time - minutes * 60;
-
-		// Pad minutes and seconds with zeroes:
-		minutes = minutes < 10 ? `0${minutes}` : minutes;
-		seconds = seconds < 10 ? `0${seconds}` : seconds;
-		return `${minutes}:${seconds}`;
-	}
-
 	startCountdown() {
 		const countdown = setInterval( () => {
 			// Decrement the time by 1:
@@ -98,7 +101,7 @@ class Timer extends Component {
 		}
 		return (
 			<div style={this.props.style} className="timer-div">
-				{this.fmtTime( this.state.timeLeft )}
+				{fmtTime( this.state.timeLeft )}
 			</div>
 		);
 	}

@@ -18,6 +18,17 @@ import './styles.css';
 const debug = logger( 'isle:news' );
 
 
+// FUNCTIONS //
+
+function exceptions( name ) {
+	var x = EXCEPTIONS[ name ];
+	if ( x ) {
+		return x;
+	}
+	return capitalize( name );
+}
+
+
 // MAIN //
 
 /**
@@ -93,17 +104,9 @@ class News extends Component {
 			});
 	}
 
-	exceptions( name ) {
-		var x = EXCEPTIONS[ name ];
-		if ( x ) {
-			return x;
-		}
-		return capitalize( name );
-	}
-
 	find = ( name ) => {
 		name = name.replace( 'the ', '' );
-		name = this.exceptions( name );
+		name = exceptions( name );
 
 		var result = null;
 		for ( var i = 0; i < newslist.length; i++ ) {

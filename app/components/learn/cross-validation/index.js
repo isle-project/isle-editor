@@ -6,6 +6,17 @@ import runif from '@stdlib/random/base/uniform';
 import floor from '@stdlib/math/base/special/floor';
 
 
+// FUNCTIONS //
+
+function generatePoints() {
+	let points = new Array( 100 );
+	for ( let i = 0; i < points.length; i++ ) {
+		points[ i ] = runif( 0.0, 1.0 );
+	}
+	return points;
+}
+
+
 // MAIN //
 
 /**
@@ -15,7 +26,7 @@ class CrossValidation extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			points: this.generatePoints(),
+			points: generatePoints(),
 			data: []
 		};
 	}
@@ -30,14 +41,6 @@ class CrossValidation extends Component {
 
 	componentWillUnmount() {
 		window.clearInterval( this.setStateInterval );
-	}
-
-	generatePoints() {
-		let points = new Array( 100 );
-		for ( let i = 0; i < points.length; i++ ) {
-			points[ i ] = runif( 0.0, 1.0 );
-		}
-		return points;
 	}
 
 	getData() {

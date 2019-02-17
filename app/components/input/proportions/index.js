@@ -8,6 +8,17 @@ import { VictoryPie } from 'victory';
 import isArray from '@stdlib/assert/is-array';
 
 
+// FUNCTIONS //
+
+function sum( arr ) {
+	let out = 0;
+	for ( let n = 0; n < arr.length; n++ ) {
+		out += arr[ n ];
+	}
+	return out;
+}
+
+
 // MAIN //
 
 /**
@@ -87,24 +98,6 @@ class ProportionInput extends Input {
 		return list;
 	}
 
-	total( arr ) {
-		let sum = 0;
-		for ( let n = 0; n < arr.length; n++ ) {
-			sum += arr[ n ];
-		}
-		return sum;
-	}
-
-	rest( arr, ndx ) {
-		let sum = 0;
-		for ( let i = 0; i < arr.length; i++ ) {
-			if ( i !== ndx ) {
-				sum += arr[ i ];
-			}
-		}
-		return sum;
-	}
-
 	checkPercentage( ndx, value ) {
 		const copy = this.state.values.slice();
 		copy[ ndx ] = value;
@@ -122,7 +115,7 @@ class ProportionInput extends Input {
 			width: '120px',
 			textAlign: 'center'
 		};
-		const free = 100.0 - this.total( this.state.values );
+		const free = 100.0 - sum( this.state.values );
 		let maxValue = this.state.values[ ndx ] + free;
 		maxValue = Number( maxValue.toFixed( this.props.precision ) );
 		return (
@@ -163,7 +156,7 @@ class ProportionInput extends Input {
 
 	pieData( arr ) {
 		var list = [];
-		var total = this.total( arr );
+		var total = sum( arr );
 		var no = this.props.nElements + 1;
 		for ( let i = 0; i < no; i++ ) {
 			if ( i < no -1 ) {
@@ -176,7 +169,7 @@ class ProportionInput extends Input {
 			else {
 				let o = {
 					x: ' ',
-					y: 100 - this.total( arr )
+					y: 100 - sum( arr )
 				};
 				if ( total !== 100 ) {
 					list.push( o );

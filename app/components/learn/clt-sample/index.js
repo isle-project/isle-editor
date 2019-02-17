@@ -83,6 +83,33 @@ function getBins( data ) {
 	return out;
 }
 
+function renderHistogram( values ) {
+	return ( <VictoryChart domainPadding={20} padding={60} >
+		<VictoryAxis style={{
+			axisLabel: {
+				fontSize: 22
+			},
+			tickLabels: {
+				fontSize: 15, padding: 5
+			}
+		}}
+		/>
+		<VictoryAxis dependentAxis style={{
+			axisLabel: {
+				fontSize: 22
+			},
+			tickLabels: {
+				fontSize: 15, padding: 5
+			}
+		}}
+		/>
+		<VictoryArea
+			data={getBins( values )}
+			interpolation="step"
+		/>
+	</VictoryChart> );
+}
+
 
 // MAIN //
 
@@ -189,7 +216,7 @@ class SampleCLT extends Component {
 				const xbar = mean( vals );
 				const plot = <div style={{ cursor: 'zoom-in' }}>
 					<TeX raw={`\\bar x = ${xbar.toFixed( 2 )}`} />
-					{this.renderHistogram( vals )}
+					{renderHistogram( vals )}
 				</div>;
 				plots.push( plot );
 				enlarged.push( false );
@@ -329,33 +356,6 @@ class SampleCLT extends Component {
 			rightProb,
 			cutoffPop: value
 		});
-	}
-
-	renderHistogram( values ) {
-		return ( <VictoryChart domainPadding={20} padding={60} >
-			<VictoryAxis style={{
-				axisLabel: {
-					fontSize: 22
-				},
-				tickLabels: {
-					fontSize: 15, padding: 5
-				}
-			}}
-			/>
-			<VictoryAxis dependentAxis style={{
-				axisLabel: {
-					fontSize: 22
-				},
-				tickLabels: {
-					fontSize: 15, padding: 5
-				}
-			}}
-			/>
-			<VictoryArea
-				data={getBins( values )}
-				interpolation="step"
-			/>
-		</VictoryChart> );
 	}
 
 	renderMeanHistogram() {

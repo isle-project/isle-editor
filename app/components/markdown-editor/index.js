@@ -85,6 +85,17 @@ function replacer( key, value ) {
 	return value;
 }
 
+function loadFonts() {
+	import( /* webpackChunkName: "fonts" */ './fonts.js' )
+		.then( fonts => {
+			debug( 'Successfully loaded fonts...' );
+			pdfMake.vfs = fonts.default;
+		})
+		.catch( err => {
+			debug( 'Encountered an error while loading fonts: '+err.message );
+		});
+}
+
 
 // MAIN //
 
@@ -372,7 +383,7 @@ class MarkdownEditor extends Component {
 				title: 'Reset'
 			}
 		};
-		this.loadFonts();
+		loadFonts();
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -518,17 +529,6 @@ class MarkdownEditor extends Component {
 			return true;
 		}
 		return false;
-	}
-
-	loadFonts() {
-		import( /* webpackChunkName: "fonts" */ './fonts.js' )
-			.then( fonts => {
-				debug( 'Successfully loaded fonts...' );
-				pdfMake.vfs = fonts.default;
-			})
-			.catch( err => {
-				debug( 'Encountered an error while loading fonts: '+err.message );
-			});
 	}
 
 	initializeEditor() {
@@ -720,10 +720,6 @@ class MarkdownEditor extends Component {
 
 		// Render the markdown:
 		return md.render( plainText );
-	}
-
-	allowDrop( event ) {
-		event.preventDefault();
 	}
 
 	toggleColumnSelect = () => {
