@@ -58,7 +58,8 @@ export default {
 		},
 		{
 			test: /\.worker\.js$/,
-			use: { loader: 'worker-loader' }
+			use: { loader: 'worker-loader' },
+			exclude: /node_modules/
 		},
 		{
 			test: /\.txt$/,
