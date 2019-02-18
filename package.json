@@ -181,7 +181,7 @@
     "react-redux": "5.1.1",
     "react-router": "4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-select": "^2.3.0",
+    "react-select": "^2.4.1",
     "react-slick": "0.23.2",
     "react-split-pane": "0.1.85",
     "react-table": "^6.9.0",
