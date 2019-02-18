@@ -57,6 +57,13 @@ const MAX_SWIPE_Y = 60;
 const hasTouch = isTouchDevice();
 
 
+// FUNCTIONS //
+
+function preventGesture( e ) {
+	e.preventDefault();
+}
+
+
 // MAIN //
 
 /**
@@ -417,6 +424,10 @@ class Sketchpad extends Component {
 		document.body.addEventListener( 'touchend', this.preventDefaultTouch, opts );
 		document.body.addEventListener( 'touchend', this.hidePointer, opts );
 		document.body.addEventListener( 'touchmove', this.preventDefaultTouch, opts );
+
+		if ( this.props.fullscreen ) {
+			document.body.addEventListener( 'gesturestart', preventGesture );
+		}
 		window.addEventListener( 'hashchange', () => {
 			const page = this.readURL();
 			if ( page > 0 ) {
@@ -467,6 +478,9 @@ class Sketchpad extends Component {
 		document.body.removeEventListener( 'touchend', this.preventDefaultTouch, opts );
 		document.body.removeEventListener( 'touchend', this.hidePointer, opts );
 		document.body.removeEventListener( 'touchmove', this.preventDefaultTouch, opts );
+		if ( this.props.fullscreen ) {
+			document.removeEventListener( 'gesturestart', preventGesture );
+		}
 	}
 
 	retrieveData = ( data ) => {
@@ -570,6 +584,7 @@ class Sketchpad extends Component {
 				});
 			});
 			return page.render( renderContext )
+			.promise
 			.then( () => {
 				debug( `Background rendered for page ${pageNumber}` );
 			});
@@ -932,6 +947,8 @@ class Sketchpad extends Component {
 				});
 			}
 			this.draw( event );
+		} else if ( hasTouch ) {
+			this.handleClick( event );
 		}
 	}
 
@@ -1561,7 +1578,10 @@ class Sketchpad extends Component {
 		reader.onload = () => {
 			let pdfData = reader.result;
 			pdfData = new Uint8Array( pdfData );
-			pdfjs.getDocument( pdfData )
+			const loadingTask = pdfjs.getDocument({
+				data: pdfData
+			});
+			loadingTask.promise
 				.then( this.processPDF )
 				.catch(function onError( err ) {
 					debug( err );
@@ -1571,9 +1591,14 @@ class Sketchpad extends Component {
 	}
 
 	initializePDF = () => {
+		debug( 'Initialize PDF document...' );
 		return new Promise( ( resolve, reject ) => {
-			pdfjs.getDocument( this.props.pdf )
+			const loadingTask = pdfjs.getDocument({
+				url: this.props.pdf
+			});
+			loadingTask.promise
 				.then( ( pdf ) => {
+					debug( 'Retrieved PDF document... ' );
 					this.processPDF( pdf, ( err ) => {
 						if ( err ) {
 							reject( err );
@@ -1808,7 +1833,7 @@ class Sketchpad extends Component {
 					tooltip="Undo"
 					onClick={this.undo}
 					glyph="step-backward"
-					disabled={!showUndo ||this.state.playing}
+					disabled={!showUndo || this.state.playing}
 					size="sm"
 				/>
 				<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} size="sm" />
