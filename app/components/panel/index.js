@@ -21,7 +21,7 @@ class Wrapper extends Component {
 			{ this.props.header ? <Card.Header as="h3">
 				{this.props.header}
 			</Card.Header> : null }
-			<Card.Body style={this.props.style} >
+			<Card.Body style={this.props.bodyStyle} >
 				{this.props.children}
 			</Card.Body>
 		</Card> );
@@ -37,12 +37,14 @@ Wrapper.propTypes = {
 		PropTypes.string,
 		PropTypes.node
 	]),
+	bodyStyle: PropTypes.object,
 	style: PropTypes.object
 };
 
 Wrapper.defaultProps = {
 	className: '',
 	header: null,
+	bodyStyle: {},
 	style: {}
 };
 
