@@ -91,6 +91,9 @@ class Session {
 		this.anonymous = true;
 		this.anonymousIdentifier = 'anonymous_'+randomstring( 8 );
 
+		// String for distinguishing multiple browser windows from each other:
+		this.sessionID = randomstring( 3 );
+
 		// User object container:
 		this.user = {};
 

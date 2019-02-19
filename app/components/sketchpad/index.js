@@ -236,15 +236,12 @@ class Sketchpad extends Component {
 					}
 					const type = action.type;
 					if ( type === 'SKETCHPAD_MOVE_POINTER' ) {
-						let { x, y } = JSON.parse( action.value );
+						let { x, y, sessionID } = JSON.parse( action.value );
 						x *= this.canvas.width;
 						y *= this.canvas.height;
 						x = `${x+this.leftMargin}px`;
 						y = `${y}px`;
-						if (
-							this.pointer.style.left !== x &&
-							this.pointer.style.top !== y
-						) {
+						if ( sessionID !== session.sessionID ) {
 							this.pointer.style.left = x;
 							this.pointer.style.top = y;
 							this.pointer.style.opacity = 0.7;
@@ -253,15 +250,12 @@ class Sketchpad extends Component {
 						this.pointer.style.opacity = 0;
 					}
 					else if ( type === 'SKETCHPAD_MOVE_ZOOM' ) {
-						let { x, y } = JSON.parse( action.value );
+						let { x, y, sessionID } = JSON.parse( action.value );
 						x *= this.canvas.width;
 						y *= this.canvas.height;
 						const xPos = `${x+this.leftMargin}px`;
 						const yPos = `${y}px`;
-						if (
-							this.zoom.style.left !== xPos &&
-							this.zoom.style.top !== yPos
-						) {
+						if ( sessionID !== session.sessionID ) {
 							this.zoomCtx.drawImage( this.canvas, x, y, 133, 67, 0, 0, 400, 200 );
 							this.zoom.style.top = yPos;
 							this.zoom.style.left = xPos;
@@ -1978,7 +1972,8 @@ class Sketchpad extends Component {
 			type: this.state.mode === 'pointer' ? 'SKETCHPAD_MOVE_POINTER' : 'SKETCHPAD_MOVE_ZOOM',
 			value: JSON.stringify({
 				x: x / this.canvas.width,
-				y: y / this.canvas.height
+				y: y / this.canvas.height,
+				sessionID: session.sessionID
 			}),
 			noSave: true
 		};
