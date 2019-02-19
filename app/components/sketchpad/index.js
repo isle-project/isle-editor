@@ -252,6 +252,24 @@ class Sketchpad extends Component {
 					} else if ( type === 'SKETCHPAD_HIDE_POINTER' ) {
 						this.pointer.style.opacity = 0;
 					}
+					else if ( type === 'SKETCHPAD_MOVE_ZOOM' ) {
+						let { x, y } = JSON.parse( action.value );
+						x *= this.canvas.width;
+						y *= this.canvas.height;
+						const xPos = `${x+this.leftMargin}px`;
+						const yPos = `${y}px`;
+						if (
+							this.zoom.style.left !== xPos &&
+							this.zoom.style.top !== yPos
+						) {
+							this.zoomCtx.drawImage( this.canvas, x, y, 133, 67, 0, 0, 400, 200 );
+							this.zoom.style.top = yPos;
+							this.zoom.style.left = xPos;
+							this.zoom.style.display = 'block';
+						}
+					} else if ( type === 'SKETCHPAD_HIDE_ZOOM' ) {
+						this.zoom.style.display = 'none';
+					}
 					// Owners should only process actions from selected users:
 					else if ( session.isOwner() ) {
 						if (
@@ -422,7 +440,6 @@ class Sketchpad extends Component {
 		};
 		document.body.addEventListener( 'touchstart', this.preventDefaultTouch, opts );
 		document.body.addEventListener( 'touchend', this.preventDefaultTouch, opts );
-		document.body.addEventListener( 'touchend', this.hidePointer, opts );
 		document.body.addEventListener( 'touchmove', this.preventDefaultTouch, opts );
 
 		if ( this.props.fullscreen ) {
@@ -476,7 +493,6 @@ class Sketchpad extends Component {
 		};
 		document.body.removeEventListener( 'touchstart', this.preventDefaultTouch, opts );
 		document.body.removeEventListener( 'touchend', this.preventDefaultTouch, opts );
-		document.body.removeEventListener( 'touchend', this.hidePointer, opts );
 		document.body.removeEventListener( 'touchmove', this.preventDefaultTouch, opts );
 		if ( this.props.fullscreen ) {
 			document.removeEventListener( 'gesturestart', preventGesture );
@@ -525,6 +541,18 @@ class Sketchpad extends Component {
 		const session = this.context;
 		session.log( action, 'members' );
 		this.pointer.style.opacity = 0;
+	}
+
+	hideZoom = () => {
+		const action = {
+			id: this.props.id,
+			type: 'SKETCHPAD_HIDE_ZOOM',
+			value: true,
+			noSave: true
+		};
+		const session = this.context;
+		session.log( action, 'members' );
+		this.zoom.style.display = 'none';
 	}
 
 	preventDefaultTouch = ( e ) => {
@@ -1920,9 +1948,8 @@ class Sketchpad extends Component {
 			this.swipeStartX = 0;
 			this.swipeStartY = 0;
 		}
-		if ( this.state.mode === 'zoom' ) {
-			this.zoom.style.display = 'none';
-		}
+		this.hideZoom();
+		this.hidePointer();
 	}
 
 	movePointer = ( event ) => {
@@ -1936,26 +1963,26 @@ class Sketchpad extends Component {
 		const session = this.context;
 		let { x, y } = this.mousePosition( event );
 		if ( this.state.mode === 'pointer' ) {
-			const action = {
-				id: this.props.id,
-				type: 'SKETCHPAD_MOVE_POINTER',
-				value: JSON.stringify({
-					x: x / this.canvas.width,
-					y: y / this.canvas.height
-				}),
-				noSave: true
-			};
 			this.pointer.style.opacity = 0.7;
 			this.pointer.style.left = `${x+this.leftMargin}px`;
 			this.pointer.style.top = `${y}px`;
-			session.log( action, 'members' );
 		}
 		else if ( this.state.mode === 'zoom' ) {
 			this.zoomCtx.drawImage( this.canvas, x, y, 133, 67, 0, 0, 400, 200 );
-			this.zoom.style.top = `${y+5}px`;
-			this.zoom.style.left = `${x+5+this.leftMargin}px`;
 			this.zoom.style.display = 'block';
+			this.zoom.style.left = `${x+this.leftMargin}px`;
+			this.zoom.style.top = `${y}px`;
 		}
+		const action = {
+			id: this.props.id,
+			type: this.state.mode === 'pointer' ? 'SKETCHPAD_MOVE_POINTER' : 'SKETCHPAD_MOVE_ZOOM',
+			value: JSON.stringify({
+				x: x / this.canvas.width,
+				y: y / this.canvas.height
+			}),
+			noSave: true
+		};
+		session.log( action, 'members' );
 	}
 
 	renderTransmitButtons() {
