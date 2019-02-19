@@ -336,6 +336,21 @@ mark {
 	margin: 0.3em 0;
 }
 
+.Lesson > h1, 
+.Lesson > h2,
+.Lesson > h3,
+.Lesson > h4 {
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.Lesson > p {
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .Lesson hr {
 	height: 1px;
 	background: red; /* For browsers that do not support gradients */
