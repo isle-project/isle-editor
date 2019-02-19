@@ -55,6 +55,10 @@ class InputButtons extends Component {
 		this.props.onModeChange( this.props.mode === 'pointer' ? 'none' : 'pointer' );
 	}
 
+	toggleZoomMode = () => {
+		this.props.onModeChange( this.props.mode === 'zoom' ? 'none' : 'zoom' );
+	}
+
 	toggleTextMode = () => {
 		this.props.onModeChange( this.props.mode === 'text' ? 'none' : 'text' );
 	}
@@ -71,6 +75,7 @@ class InputButtons extends Component {
 			<Fragment>
 				<ButtonGroup size="sm" className="sketch-drag-delete-modes sketch-button-group" >
 					<TooltipButton tooltip="Pointer Mode" size="sm" variant={this.props.mode === 'pointer' ? 'success' : 'secondary'} onClick={this.togglePointerMode} glyph="circle" />
+					<TooltipButton tooltip="Magnifying Glass" size="sm" variant={this.props.mode === 'zoom' ? 'success' : 'secondary'} onClick={this.toggleZoomMode} glyph="search-plus" />
 					<TooltipButton tooltip="Drag Mode" size="sm" variant={this.props.mode === 'drag' ? 'success' : 'secondary'} onClick={this.toggleDragMode} glyph="arrows-alt" />
 					<TooltipButton tooltip="Delete Mode" size="sm" variant={this.props.mode === 'delete' ? 'success' : 'secondary'} onClick={this.toggleDeleteMode} glyph="times" />
 				</ButtonGroup>

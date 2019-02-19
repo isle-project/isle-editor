@@ -90,3 +90,12 @@
 	width: 10px;
 	pointer-events: none;
 }
+
+.sketchpad-magnifying-glass {
+	pointer-events: none;
+	position: absolute;
+	border: 1px solid black;
+	width: 400px;
+	height: 200px;
+	border-radius: 3%;
+}

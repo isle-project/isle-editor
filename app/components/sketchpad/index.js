@@ -1920,6 +1920,9 @@ class Sketchpad extends Component {
 			this.swipeStartX = 0;
 			this.swipeStartY = 0;
 		}
+		if ( this.state.mode === 'zoom' ) {
+			this.zoom.style.display = 'none';
+		}
 	}
 
 	movePointer = ( event ) => {
@@ -1930,24 +1933,29 @@ class Sketchpad extends Component {
 			this.isMouseDown = false;
 			return;
 		}
-		if ( this.state.mode !== 'pointer' ) {
-			return;
-		}
 		const session = this.context;
 		let { x, y } = this.mousePosition( event );
-		const action = {
-			id: this.props.id,
-			type: 'SKETCHPAD_MOVE_POINTER',
-			value: JSON.stringify({
-				x: x / this.canvas.width,
-				y: y / this.canvas.height
-			}),
-			noSave: true
-		};
-		this.pointer.style.opacity = 0.7;
-		this.pointer.style.left = `${x+this.leftMargin}px`;
-		this.pointer.style.top = `${y}px`;
-		session.log( action, 'members' );
+		if ( this.state.mode === 'pointer' ) {
+			const action = {
+				id: this.props.id,
+				type: 'SKETCHPAD_MOVE_POINTER',
+				value: JSON.stringify({
+					x: x / this.canvas.width,
+					y: y / this.canvas.height
+				}),
+				noSave: true
+			};
+			this.pointer.style.opacity = 0.7;
+			this.pointer.style.left = `${x+this.leftMargin}px`;
+			this.pointer.style.top = `${y}px`;
+			session.log( action, 'members' );
+		}
+		else if ( this.state.mode === 'zoom' ) {
+			this.zoomCtx.drawImage( this.canvas, x, y, 133, 67, 0, 0, 400, 200 );
+			this.zoom.style.top = `${y+5}px`;
+			this.zoom.style.left = `${x+5+this.leftMargin}px`;
+			this.zoom.style.display = 'block';
+		}
 	}
 
 	renderTransmitButtons() {
@@ -2046,7 +2054,7 @@ class Sketchpad extends Component {
 			cursor = 'default';
 		}
 		let eventListeners;
-		if ( this.state.mode === 'pointer' ) {
+		if ( this.state.mode === 'pointer' || this.state.mode === 'zoom' ) {
 			eventListeners = {
 				onMouseDown: this.movePointerStart,
 				onMouseMove: this.movePointer,
@@ -2088,6 +2096,15 @@ class Sketchpad extends Component {
 			}}
 			{...eventListeners}
 		/>;
+		const mangnifyingGlass = <canvas
+			className="sketchpad-magnifying-glass"
+			ref={( canvas ) => {
+				if ( canvas ) {
+					this.zoom = canvas;
+					this.zoomCtx = canvas.getContext( '2d' );
+				}
+			}}
+		/>;
 		return (
 			<Fragment>
 				<Card
@@ -2115,6 +2132,7 @@ class Sketchpad extends Component {
 					<div id="canvas-wrapper" style={{ width: this.state.canvasWidth, height: this.state.canvasHeight, overflow: 'auto', position: 'relative' }}>
 						{this.renderHTMLOverlays()}
 						{canvas}
+						{mangnifyingGlass}
 						<div
 							className="textLayer"
 							ref={( div ) => { this.textLayer = div; }}
