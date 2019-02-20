@@ -240,7 +240,7 @@
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.2.0",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.1.11"
+    "webpack-dev-server": "^3.2.0"
   },
   "devEngines": {
     "node": "9.x || 10.x || 11.x"
