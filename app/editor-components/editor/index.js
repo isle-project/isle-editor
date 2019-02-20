@@ -10,6 +10,7 @@ import noop from '@stdlib/utils/noop';
 import groupBy from '@stdlib/utils/group-by';
 import objectKeys from '@stdlib/utils/keys';
 import contains from '@stdlib/assert/contains';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import startsWith from '@stdlib/string/starts-with';
 import replace from '@stdlib/string/replace';
 import trim from '@stdlib/string/trim';
@@ -184,7 +185,7 @@ class Editor extends Component {
 			for ( let i = 0; i < names.length; i++ ) {
 				const name = names[ i ];
 				let path = requires[ name ];
-				if ( startsWith( path, '@stdlib' ) ) {
+				if ( isString( path ) && startsWith( path, '@stdlib' ) ) {
 					path = replace( path, '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
 					path = resolve( join( BASE_PATH, 'node_modules' ), path, 'docs', 'types', 'index.d.ts' );
 					this.readTypeDefinition( path );
