@@ -39,5 +39,7 @@ A word cloud component built on top of [d3-cloud](https://github.com/jasondavies
 * __padding__ | `(function|number)`: accessor function or constant indicating the numerical padding for each word. Default: `5`.
 * __precalculated__ | `boolean`: controls whether the word cloud expects an array of precalculated word counts or will generate them for given texts. Default: `false`.
 * __rotate__ | `(function|number)`: accessor function indicating the rotation angle (in degrees) for each word. Also accepts a constant instead of a function. Default: `word => word.value % 360`.
+* __updateThreshold__ | `number`: batch size of new documents in `data` before the word cloud is re-rendered. Default: `5`.
+* __triggerRender__ | `boolean`: rerender when the data set is exchanged. Default: `true`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __width__ | `number`: width of the word cloud (in px). Default: `700`.

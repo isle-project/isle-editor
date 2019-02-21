@@ -2822,6 +2822,11 @@
         "default": null
       },
       {
+        "name": "bodyStyle",
+        "type": "object",
+        "default": {}
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -2859,6 +2864,12 @@
         "name": "data",
         "type": "array (required)",
         "description": "data array"
+      },
+      {
+        "name": "draggable",
+        "type": "boolean",
+        "description": "controls whether the plot should be draggable",
+        "default": true
       },
       {
         "name": "editable",
@@ -4626,6 +4637,18 @@
         "type": "(function|number)",
         "description": "accessor function indicating the rotation angle (in degrees) for each word. Also accepts a constant instead of a function",
         "default": "word => word.value % 360"
+      },
+      {
+        "name": "updateThreshold",
+        "type": "number",
+        "description": "batch size of new documents in `data` before the word cloud is re-rendered",
+        "default": 5
+      },
+      {
+        "name": "triggerRender",
+        "type": "boolean",
+        "description": "rerender when the data set is exchanged",
+        "default": true
       },
       {
         "name": "style",
