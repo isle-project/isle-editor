@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import Input from 'components/input/base';
 import contains from '@stdlib/assert/contains';
+import isnan from '@stdlib/math/base/assert/is-nan';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/constants/math/float64-pinf';
@@ -101,10 +102,14 @@ class NumberInput extends Input {
 		this.setState({
 			value
 		}, () => {
-			if ( this.props.value || (valid && value !== '' &&
+			if ( this.props.value ||
+				(valid && value !== '' &&
 				value !== '-' && value !== '.' && value !== '-.' )
 			) {
 				value = parseFloat( value );
+				if ( isnan( value ) ) {
+					value = '';
+				}
 				this.props.onChange( value );
 				if ( this.props.bind ) {
 					global.lesson.setState({
@@ -129,7 +134,10 @@ class NumberInput extends Input {
 				value = parseFloat( vals[ 0 ]) / parseFloat( vals[ 1 ]);
 			}
 		}
-		if (
+		if ( isnan( value ) ) {
+			value = '';
+		}
+		else if (
 			value !== '' && value !== '-' &&
 			value !== '.' && value !== '-.'
 		) {
