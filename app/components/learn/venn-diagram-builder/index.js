@@ -15,6 +15,7 @@ import NumberInput from 'components/input/number';
 import TextInput from 'components/input/text';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
+import './venn_diagram_builder.css';
 
 
 // MAIN //
@@ -43,7 +44,7 @@ class VennDiagramBuilder extends Component {
 		var tooltip;
 		if ( !this.state.tooltip ) {
 			tooltip = d3.select( 'body' ).append( 'div' )
-				.attr( 'class', 'venntooltip' );
+				.attr( 'class', 'venn-builder-tooltip' );
 		} else {
 			tooltip = this.state.tooltip;
 		}
@@ -106,7 +107,7 @@ class VennDiagramBuilder extends Component {
 		var tooltip;
 		if ( !this.state.tooltip ) {
 			tooltip = d3.select( 'body' ).append( 'div' )
-				.attr( 'class', 'venntooltip' );
+				.attr( 'class', 'venn-builder-tooltip' );
 		} else {
 			tooltip = this.state.tooltip;
 		}
