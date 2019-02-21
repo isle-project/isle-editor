@@ -184,7 +184,7 @@
     "react-select": "^2.4.1",
     "react-slick": "0.23.2",
     "react-split-pane": "0.1.85",
-    "react-table": "^6.9.0",
+    "react-table": "6.9.0",
     "react-transition-group": "^2.5.3",
     "recordrtc": "^5.5.4",
     "redux": "4.0.1",
