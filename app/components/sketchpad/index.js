@@ -254,9 +254,9 @@ class Sketchpad extends Component {
 						x *= this.canvas.width;
 						y *= this.canvas.height;
 						const xPos = `${x+this.leftMargin}px`;
-						const yPos = `${y}px`;
+						const yPos = `${y-100}px`;
 						if ( sessionID !== session.sessionID ) {
-							this.zoomCtx.drawImage( this.canvas, x, y, 133, 67, 0, 0, 400, 200 );
+							this.zoomCtx.drawImage( this.canvas, x, y, 200, 100, 0, 0, 400, 200 );
 							this.zoom.style.top = yPos;
 							this.zoom.style.left = xPos;
 							this.zoom.style.display = 'block';
@@ -1962,10 +1962,11 @@ class Sketchpad extends Component {
 			this.pointer.style.top = `${y}px`;
 		}
 		else if ( this.state.mode === 'zoom' ) {
-			this.zoomCtx.drawImage( this.canvas, x, y, 133, 67, 0, 0, 400, 200 );
+			this.zoomCtx.clearRect( 0, 0, this.zoom.width, this.zoom.height );
+			this.zoomCtx.drawImage( this.canvas, x, y-50, 200, 100, 0, 0, 400, 200 );
 			this.zoom.style.display = 'block';
 			this.zoom.style.left = `${x+this.leftMargin}px`;
-			this.zoom.style.top = `${y}px`;
+			this.zoom.style.top = `${y - 100}px`;
 		}
 		const action = {
 			id: this.props.id,
