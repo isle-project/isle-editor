@@ -79,7 +79,7 @@ class Violinplot extends Component {
 		const output = {
 			variable: variable,
 			type: 'Chart',
-			value: <Plotly editable id={plotId} fit data={config.data} layout={config.layout} onShare={() => {
+			value: <Plotly editable id={plotId} fit draggable data={config.data} layout={config.layout} onShare={() => {
 				this.props.session.addNotification({
 					title: 'Plot shared.',
 					message: 'You have successfully shared your plot.',

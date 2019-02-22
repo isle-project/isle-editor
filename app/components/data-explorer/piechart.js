@@ -105,6 +105,7 @@ class PieChart extends Component {
 			type: 'Chart',
 			value: <Plotly
 				editable
+				draggable
 				id={plotId}
 				fit
 				data={config.data}

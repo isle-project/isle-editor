@@ -106,7 +106,7 @@ class Barchart extends Component {
 			variable: variable,
 			type: 'Chart',
 			value: <Plotly
-				editable id={plotId} fit data={config.data}
+				editable draggable id={plotId} fit data={config.data}
 				layout={config.layout}
 				onShare={() => {
 					this.props.session.addNotification({

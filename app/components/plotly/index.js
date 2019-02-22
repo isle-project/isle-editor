@@ -266,7 +266,7 @@ class Wrapper extends Component {
 // PROPERTIES //
 
 Wrapper.defaultProps = {
-	draggable: true,
+	draggable: false,
 	editable: false,
 	id: null,
 	layout: {},

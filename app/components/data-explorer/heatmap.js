@@ -195,6 +195,7 @@ class HeatMap extends Component {
 			type: 'Chart',
 			value: <Plotly
 				editable
+				draggable
 				fit
 				id={plotId}
 				data={config.data}
