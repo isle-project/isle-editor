@@ -78,7 +78,7 @@ class ActionLog extends Component {
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
-		if (this.props.selectedEmail !== prevProps.selectedEmail) {
+		if ( this.props.selectedEmail !== prevProps.selectedEmail ) {
 			this.setState({
 				filter: { email: this.props.selectedEmail },
 				filters: <Fragment>
@@ -108,6 +108,40 @@ class ActionLog extends Component {
 						}
 						style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }}
 						>{'email'}: {this.props.selectedEmail}</span>
+				</span>
+			</Fragment>
+			});
+		}
+		else if ( this.props.selectedID !== prevProps.selectedID ) {
+			this.setState({
+				filter: { id: this.props.selectedID },
+				filters: <Fragment>
+				<label>Filters:</label>
+				<span style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
+					<span
+						onClick={
+							( event ) => {
+								event.stopPropagation();
+								let newFilter = copy( this.state.filter );
+								delete newFilter[ 'id' ];
+								if ( isEmptyObject( newFilter ) ) {
+									newFilter = null;
+								}
+								const newFilters = createFilters( newFilter, (newFilter, newFilters) =>{
+									this.setState({
+										filter: newFilter,
+										filters: newFilters
+									});
+								});
+
+								this.setState({
+									filter: newFilter,
+									filters: newFilters
+								});
+							}
+						}
+						style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }}
+						>{'id'}: {this.props.selectedID}</span>
 				</span>
 			</Fragment>
 			});
@@ -317,11 +351,13 @@ ActionLog.contextType = SessionContext;
 
 
 ActionLog.propTypes = {
-	selectedEmail: PropTypes.string
+	selectedEmail: PropTypes.string,
+	selectedID: PropTypes.string
 };
 
 ActionLog.defaultProps = {
-	selectedEmail: null
+	selectedEmail: null,
+	selectedID: null
 };
 
 // EXPORTS //

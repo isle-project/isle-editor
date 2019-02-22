@@ -31,7 +31,8 @@ class InstructorView extends Component {
 			activeTab: 'active_users',
 			hidden: true,
 			rightPos: -max( window.innerWidth * 0.45, 400 ),
-			selectedEmail: null
+			selectedEmail: null,
+			selectedID: null
 		};
 	}
 
@@ -117,10 +118,22 @@ class InstructorView extends Component {
 					/>
 				</Tab>
 				<Tab eventKey="response_visualizers" title="Responses" >
-					<ResponseVisualizers session={session} />
+					<ResponseVisualizers
+						session={session}
+						onThumbnailClick={( id ) => {
+							debug( 'Go to actions with id '+id+'...' );
+							this.setState({
+								activeTab: 'action_log',
+								selectedID: id
+							});
+						}}
+					/>
 				</Tab>
 				<Tab eventKey="action_log" title="Action Log" >
-					<ActionLog selectedEmail={this.state.selectedEmail} />
+					<ActionLog
+						selectedEmail={this.state.selectedEmail}
+						selectedID={this.state.selectedID}
+					/>
 				</Tab>
 				<Tab eventKey="instructor_notes" title="Instructor Notes" >
 					<InstructorNotes

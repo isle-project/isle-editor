@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import ProgressBar from 'react-bootstrap/ProgressBar';
@@ -61,6 +62,13 @@ class ResponseVisualizers extends Component {
 	componentWillUnmount() {
 		removeGlowElems();
 		this.unsubscribe();
+	}
+
+	thumbnailClickFactory = ( id ) => {
+		return ( event ) => {
+			event.stopPropagation();
+			this.props.onThumbnailClick( id );
+		};
 	}
 
 	highlightFactory = ( id ) => {
@@ -123,6 +131,11 @@ class ResponseVisualizers extends Component {
 					<Tooltip placement="right" tooltip="Question ID (click on row to show question">
 						<label style={{ margin: 0 }}>{id}</label>
 					</Tooltip>
+					<Tooltip placement="left" tooltip="Open actions">
+						<Badge variant="light" style={{ float: 'right', margin: '2px' }} onClick={this.thumbnailClickFactory( id )}>
+							Open
+						</Badge>
+					</Tooltip>
 					<Tooltip placement="left" tooltip="# of Actions">
 						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{nActions}</Badge>
 					</Tooltip>
@@ -157,6 +170,7 @@ class ResponseVisualizers extends Component {
 // PROPERTIES //
 
 ResponseVisualizers.propTypes = {
+	onThumbnailClick: PropTypes.func.isRequired,
 	session: PropTypes.object.isRequired
 };
 
