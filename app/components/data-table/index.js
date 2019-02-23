@@ -16,13 +16,14 @@ import lowercase from '@stdlib/string/lowercase';
 import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
 import round from '@stdlib/math/base/special/round';
-import min from 'utils/statistic/min';
-import max from 'utils/statistic/max';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isObject from '@stdlib/assert/is-object';
 import isArray from '@stdlib/assert/is-array';
+import min from 'utils/statistic/min';
+import max from 'utils/statistic/max';
 import SessionContext from 'session/context.js';
+import TutorialButton from './tutorial-button/index.js';
 import 'react-table/react-table.css';
 import './input_range.css';
 import './react_table_height.css';
@@ -429,13 +430,13 @@ class DataTable extends Component {
 						<Button
 							variant="light"
 							onClick={this.showInfo}
-							block
 							className='title-button'>
 								<h4 className='title-button-h4'
 									onClick={this.showInfo}>
 									{this.props.dataInfo.name} Data
 								</h4>
 							</Button>
+							<TutorialButton />
 						</div> : null}
 					{ this.props.dataInfo.info.length === 0 ?
 						<h4 className="title-nobutton-h4">
@@ -478,12 +479,12 @@ class DataTable extends Component {
 						onSortedChange={this.handleSortedChange}
 						style={this.props.style}
 					/>
-					<label><i>Number of rows: {selectedRows} (total: {this.state.rows.length})</i></label>
+					<label className="label-number-rows"><i>Number of rows: {selectedRows} (total: {this.state.rows.length})</i></label>
 					<Button
 						onClick={this.reset}
 						variant="primary"
 						size="xsmall"
-						className="data-table-footer-button"
+						className="data-table-footer-button reset-button"
 					>
 						Reset
 					</Button>
@@ -491,7 +492,7 @@ class DataTable extends Component {
 						onClick={this.showDescriptions}
 						variant="primary"
 						size="xsmall"
-						className="data-table-footer-button"
+						className="data-table-footer-button variable-descriptions-button"
 					>
 						Variable Descriptions
 					</Button> : null }
