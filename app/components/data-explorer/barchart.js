@@ -23,8 +23,22 @@ const DESCRIPTION = 'A bar chart is a graph that displays categorical data as re
 // FUNCTIONS //
 
 
-export function generateBarchartConfig({ data, variable, group, horiz, stackBars, relative, totalPercent }) {
+export function generateBarchartConfig({ data, variable, group, horiz, stackBars, relative, totalPercent, xOrder }) {
 	let traces;
+	let transforms;
+	if ( xOrder ) {
+		let order;
+		if ( xOrder === 'Ascending Y' ) {
+			order = 'ascending';
+		} else {
+			order = 'descending';
+		}
+		transforms = [{
+			type: 'sort',
+			target: horiz ? 'x' : 'y',
+			order: order
+		}];
+	}
 	const nObs = data[ variable ].length;
 	if ( !group ) {
 		let freqs = countBy( data[ variable ], identity );
@@ -44,13 +58,15 @@ export function generateBarchartConfig({ data, variable, group, horiz, stackBars
 				y: categories,
 				x: counts,
 				type: 'bar',
-				orientation: 'h'
+				orientation: 'h',
+				transforms: transforms
 			} ];
 		} else {
 			traces = [ {
 				y: counts,
 				x: categories,
-				type: 'bar'
+				type: 'bar',
+				transforms: transforms
 			} ];
 		}
 	} else {
@@ -155,7 +171,8 @@ class Barchart extends Component {
 			horiz: false,
 			stackBars: false,
 			relative: false,
-			totalPercent: false
+			totalPercent: false,
+			xOrder: null
 		};
 	}
 
@@ -226,6 +243,19 @@ class Barchart extends Component {
 						onChange={( value )=>{
 							this.setState({
 								groupVar: value
+							});
+						}}
+					/>
+					<SelectInput
+						legend="Order X Axis:"
+						defaultValue={this.state.xOrder}
+						disabled={this.state.groupVar}
+						options={['Ascending Y', 'Descending Y']}
+						clearable={true}
+						menuPlacement="top"
+						onChange={( value )=>{
+							this.setState({
+								xOrder: value
 							});
 						}}
 					/>
