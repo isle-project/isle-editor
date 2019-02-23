@@ -2,7 +2,22 @@
 	float: center;
 	background: rgba(0, 0, 0, 0.045);
 	box-shadow: none;
-	border-color: rgba(0, 0, 0, 0.3);
+	border-color: #0000004d;
+	width: calc(100% - 42px);
+}
+
+.help-button {
+	float: right;
+	color: var(--quartary);
+	box-shadow: none;
+	background: rgba(0, 0, 0, 0.045);
+	border-color: #0000004d;
+	font-size: 19px;
+	letter-spacing: 2.5px;
+}
+
+.help-button:hover {
+	color: var(--quartary);
 }
 
 .title-button-h4 {
