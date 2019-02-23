@@ -21,7 +21,8 @@ const DESCRIPTION = 'A bar chart is a graph that displays categorical data as re
 
 // FUNCTIONS //
 
-export function generateBarchartConfig({ data, variable, group, horiz, stackBars }) {
+
+export function generateBarchartConfig({ data, variable, group, horiz, stackBars, relative }) {
 	let traces;
 	if ( !group ) {
 		let freqs = countBy( data[ variable ], identity );
@@ -50,29 +51,58 @@ export function generateBarchartConfig({ data, variable, group, horiz, stackBars
 		});
 		traces = [];
 		const keys = group.categories || objectKeys( freqs );
-		for ( let i = 0; i < keys.length; i++ ) {
-			const key = keys[ i ];
-			const val = freqs[ key ];
-			const categories = variable.categories || objectKeys( val );
-			const counts = new Array( categories.length );
-			for ( let i = 0; i < categories.length; i++ ) {
-				counts[ i ] = val[ categories[ i ] ];
+		if ( relative ) {
+			var catCounts = countBy( data[ variable ], identity );
+			for ( let i = 0; i < keys.length; i++ ) {
+				const key = keys[ i ];
+				const val = freqs[ key ];
+				const categories = variable.categories || objectKeys( val );
+				const counts = new Array( categories.length );
+				for ( let i = 0; i < categories.length; i++ ) {
+					counts[ i ] = val[ categories[ i ] ] / catCounts[ categories[ i ] ];
+				}
+				if ( horiz ) {
+					traces.push({
+						y: categories,
+						x: counts,
+						type: 'bar',
+						name: key,
+						orientation: 'h'
+					});
+				} else {
+					traces.push({
+						y: counts,
+						x: categories,
+						type: 'bar',
+						name: key
+					});
+				}
 			}
-			if ( horiz ) {
-				traces.push({
-					y: categories,
-					x: counts,
-					type: 'bar',
-					name: key,
-					orientation: 'h'
-				});
-			} else {
-				traces.push({
-					y: counts,
-					x: categories,
-					type: 'bar',
-					name: key
-				});
+		} else {
+			for ( let i = 0; i < keys.length; i++ ) {
+				const key = keys[ i ];
+				const val = freqs[ key ];
+				const categories = variable.categories || objectKeys( val );
+				const counts = new Array( categories.length );
+				for ( let i = 0; i < categories.length; i++ ) {
+					counts[ i ] = val[ categories[ i ] ];
+				}
+				if ( horiz ) {
+					traces.push({
+						y: categories,
+						x: counts,
+						type: 'bar',
+						name: key,
+						orientation: 'h'
+					});
+				} else {
+					traces.push({
+						y: counts,
+						x: categories,
+						type: 'bar',
+						name: key
+					});
+				}
 			}
 		}
 	}
@@ -99,8 +129,8 @@ class Barchart extends Component {
 		super( props );
 	}
 
-	generateBarchart( variable, group, horiz, stackBars ) {
-		const config = generateBarchartConfig({ data: this.props.data, variable, group, horiz, stackBars });
+	generateBarchart( variable, group, horiz, stackBars, relative ) {
+		const config = generateBarchartConfig({ data: this.props.data, variable, group, horiz, stackBars, relative });
 		const plotId = randomstring( 6 );
 		const output = {
 			variable: variable,
@@ -157,6 +187,10 @@ class Barchart extends Component {
 				/>
 				<CheckboxInput
 					legend="Stack bars"
+					defaultValue={false}
+				/>
+				<CheckboxInput
+					legend="Relative frequencies for each bar"
 					defaultValue={false}
 				/>
 			</Dashboard>
