@@ -23,14 +23,21 @@ const DESCRIPTION = 'A bar chart is a graph that displays categorical data as re
 // FUNCTIONS //
 
 
-export function generateBarchartConfig({ data, variable, group, horiz, stackBars, relative }) {
+export function generateBarchartConfig({ data, variable, group, horiz, stackBars, relative, totalPercent }) {
 	let traces;
+	const nObs = data[ variable ].length;
 	if ( !group ) {
 		let freqs = countBy( data[ variable ], identity );
 		const categories = variable.categories || objectKeys( freqs );
 		const counts = new Array( categories.length );
 		for ( let i = 0; i < categories.length; i++ ) {
 			counts[ i ] = freqs[ categories[ i ] ];
+		}
+		if ( totalPercent ) {
+			// faster than map
+			for ( let i = 0; i < counts.length; i++ ) {
+				counts[ i ] = counts[ i ] / nObs;
+			}
 		}
 		if ( horiz ) {
 			traces = [ {
@@ -62,6 +69,12 @@ export function generateBarchartConfig({ data, variable, group, horiz, stackBars
 				for ( let i = 0; i < categories.length; i++ ) {
 					counts[ i ] = val[ categories[ i ] ] / catCounts[ categories[ i ] ];
 				}
+				if ( totalPercent ) {
+					// faster than map
+					for ( let i = 0; i < counts.length; i++ ) {
+						counts[ i ] = counts[ i ] / nObs;
+					}
+				}
 				if ( horiz ) {
 					traces.push({
 						y: categories,
@@ -87,6 +100,12 @@ export function generateBarchartConfig({ data, variable, group, horiz, stackBars
 				const counts = new Array( categories.length );
 				for ( let i = 0; i < categories.length; i++ ) {
 					counts[ i ] = val[ categories[ i ] ];
+				}
+				if ( totalPercent ) {
+					// faster than map
+					for ( let i = 0; i < counts.length; i++ ) {
+						counts[ i ] = counts[ i ] / nObs;
+					}
 				}
 				if ( horiz ) {
 					traces.push({
@@ -115,7 +134,7 @@ export function generateBarchartConfig({ data, variable, group, horiz, stackBars
 				title: variable
 			},
 			yaxis: {
-				title: 'Count'
+				title: totalPercent ? 'Percentage' : 'Count'
 			},
 			title: group ? `${variable} given ${group}` : variable
 		}
@@ -135,20 +154,19 @@ class Barchart extends Component {
 			groupVar: null,
 			horiz: false,
 			stackBars: false,
-			relative: false
+			relative: false,
+			totalPercent: false
 		};
 	}
 
 	generateBarchart() {
-		const { xVar, groupVar, horiz, stackBars, relative } = this.state;
+		const { xVar, groupVar } = this.state;
 		const config = generateBarchartConfig(
 			{
 				data: this.props.data,
 				variable: xVar,
 				group: groupVar,
-				horiz: horiz,
-				stackBars: stackBars,
-				relative: relative
+				...this.state
 			});
 		const plotId = randomstring( 6 );
 		const output = {
@@ -212,6 +230,19 @@ class Barchart extends Component {
 						}}
 					/>
 					<CheckboxInput
+						legend="Display Percentages"
+						defaultValue={this.state.totalPercent}
+						onChange={( value )=>{
+							this.setState({
+								totalPercent: value
+							});
+						}}
+						disabled={this.state.stackBars & this.state.relative}
+						style={{
+							opacity: this.state.stackBars & this.state.relative ? 0.2 : 1
+						}}
+					/>
+					<CheckboxInput
 						legend="Horizontal Alignment"
 						defaultValue={this.state.horiz}
 						onChange={( value )=>{
@@ -230,7 +261,7 @@ class Barchart extends Component {
 						}}
 						disabled={!this.state.groupVar}
 						style={{
-							opacity: this.state.groupVar ? 1.0 : 0.0
+							opacity: this.state.groupVar ? 1.0 : 0.2
 						}}
 
 					/>
@@ -242,9 +273,9 @@ class Barchart extends Component {
 								relative: value
 							});
 						}}
-						disabled={!this.state.stackBars}
+						disabled={(!this.state.stackBars) || (this.state.stackBars & this.state.totalPercent)}
 						style={{
-							opacity: this.state.stackBars ? 1.0 : 0.0
+							opacity: (!this.state.stackBars) || (this.state.stackBars & this.state.totalPercent) ? 0.2 : 1
 						}}
 					/>
 					<Button variant="primary" block onClick={this.generateBarchart.bind( this )}>Generate</Button>
