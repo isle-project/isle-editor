@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Badge from 'react-bootstrap/Badge';
-import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import ProgressBar from 'react-bootstrap/ProgressBar';
