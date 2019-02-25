@@ -29,9 +29,11 @@ import Highlighter from 'react-highlight-words';
 import Plotly from 'components/plotly';
 import WordCloud from 'components/word-cloud';
 import SessionContext from 'session/context.js';
+import { CAT20 as COLORS } from 'constants/colors';
 import Search from './search.js';
 import SingleActionModal from './single_action_modal.js';
 import FullscreenHeader from './fullscreen_header';
+import TextClustering from './text-clustering';
 import './response_visualizer.css';
 
 
@@ -65,7 +67,8 @@ class FullscreenActionDisplay extends Component {
 			exact: false,
 			actions: props.actions.slice( 0 ),
 			showModal: false,
-			modalContent: {}
+			modalContent: {},
+			clusters: []
 		};
 	}
 
@@ -77,6 +80,7 @@ class FullscreenActionDisplay extends Component {
 		}
 		if ( !isEmptyObject( newState ) ) {
 			newState.actions = nextProps.actions.slice();
+			newState.clusters = [];
 			return newState;
 		}
 		return null;
@@ -86,7 +90,8 @@ class FullscreenActionDisplay extends Component {
 		if ( isStrictEqual( value, '' ) ) {
 			this.setState({
 				filtered: this.props.actions,
-				searchwords: []
+				searchwords: [],
+				clusters: []
 			});
 		} else {
 			const newFilter = [];
@@ -111,7 +116,8 @@ class FullscreenActionDisplay extends Component {
 			}
 			this.setState({
 				filtered: newFilter,
-				searchwords: [ value ]
+				searchwords: [ value ],
+				clusters: []
 			});
 		}
 	}
@@ -121,10 +127,8 @@ class FullscreenActionDisplay extends Component {
 		const action = this.state.actions[ index ];
 		const value = wordWrap( String( action.value ) );
 		const noLines = ( value.match( RE_NEWLINE ) || '' ).length + 1;
-		console.log( noLines );
 		lines += noLines * TEXT_LINE_HEIGHT;
 		debug( `Element at position ${index} is estimated to have ${lines} lines.` );
-		console.log( lines );
 		return lines;
 	}
 
@@ -153,24 +157,33 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	renderWordCloud() {
+		const texts = this.props.actions.map( x => x.value );
 		return (
-			<WordCloud
-				data={this.props.actions.map( x => x.value )}
-				height={0.65 * window.innerHeight}
-				width={0.45*window.innerWidth}
-				rotate={0}
-				triggerRender={false}
-				onClick={( d ) => {
-					if ( contains( this.state.searchwords, d.text ) ) {
-						this.searchFilter( '' );
-					} else {
-						this.searchFilter( d.text );
-					}
-				}}
-				style={{
-					marginTop: 20
-				}}
-			/>
+			<Fragment>
+				<WordCloud
+					data={texts}
+					height={0.65 * window.innerHeight}
+					width={0.45*window.innerWidth}
+					rotate={0}
+					triggerRender={false}
+					onClick={( d ) => {
+						if ( contains( this.state.searchwords, d.text ) ) {
+							this.searchFilter( '' );
+						} else {
+							this.searchFilter( d.text );
+						}
+					}}
+					style={{
+						marginTop: 20
+					}}
+				/>
+				<TextClustering texts={texts} onClusters={( data ) => {
+					debug( 'Received clusters...' );
+					this.setState({
+						clusters: data
+					});
+				}} />
+			</Fragment>
 		);
 	}
 
@@ -403,8 +416,18 @@ class FullscreenActionDisplay extends Component {
 			textToHighlight={wordWrap( String( value ) )}
 		/>;
 		const name = elem.name;
-		return ( <ListGroupItem key={key} style={{ padding: '0.75rem'
-		}}>
+		const style = {
+			padding: '0.75rem'
+		};
+		if ( this.state.clusters.length > 0 ) {
+			const opacity = 0.1;
+			const col = COLORS[ this.state.clusters[ index ] % 20 ];
+			let rgba = 'rgba(' + parseInt( col.substring( 1, 3 ), 16 ) + ','+ parseInt( col.substring( 3, 5 ), 16 );
+			rgba += ',' + parseInt( col.substring( 5, 7 ), 16 ) + ',' + opacity + ')';
+			style.background = rgba;
+			style.border = '1px solid '+col;
+		}
+		return ( <ListGroupItem key={key} style={style}>
 			{ this.props.showExtended ?
 				<span style={{ textAlign: 'left' }}>
 					<b>{name} ({new Date( elem.absoluteTime ).toLocaleTimeString()}):</b>
