@@ -205,7 +205,7 @@
     "uniq": "^1.0.1",
     "uuid": "^3.3.2",
     "venn.js": "0.2.20",
-    "victory": "31.2.0",
+    "victory": "31.3.0",
     "webpack": "4.29.5",
     "worker-loader": "^2.0.0"
   },
