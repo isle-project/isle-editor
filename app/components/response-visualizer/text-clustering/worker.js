@@ -6,7 +6,7 @@ import Corpus from './corpus.js';
 
 // VARIABLES //
 
-const DIM = 400;
+const DIM = 500;
 const vocab = new Vocabulary( DIM );
 const corpus = new Corpus( vocab, [ 5, 7, 9 ] );
 
