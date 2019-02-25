@@ -1,0 +1,41 @@
+.cluster-wrapper {
+	border: '1px solid black';
+}
+
+.cluster-select {
+	width: 50px;
+	background-color: ghostwhite;
+	padding: 2px;
+	margin-left: 10px;
+}
+
+.cluster-select-wrapper {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.cluster-modal-select-wrapper {
+	position: absolute;
+	right: 5%;
+}
+
+.cluster-list-item {
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+.cluster-list:hover > .cluster-list-item {
+	opacity: 0.5;
+}
+
+.cluster-list:hover > .cluster-list-item:hover {
+	opacity: 1;
+	font-size: 1.5em;
+}
+
+.cluster-directive {
+	margin-left: auto;
+	margin-right: auto;
+	width: 75%;
+	padding-top: 20%;
+}
