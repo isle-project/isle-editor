@@ -177,12 +177,16 @@ class FullscreenActionDisplay extends Component {
 						marginTop: 20
 					}}
 				/>
-				<TextClustering texts={texts} onClusters={( data ) => {
-					debug( 'Received clusters...' );
-					this.setState({
-						clusters: data
-					});
-				}} />
+				<TextClustering
+					texts={texts}
+					actionLabel={this.props.actionLabel}
+					onClusters={( data ) => {
+						debug( 'Received clusters...' );
+						this.setState({
+							clusters: data
+						});
+					}}
+				/>
 			</Fragment>
 		);
 	}

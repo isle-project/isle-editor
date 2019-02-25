@@ -13,6 +13,11 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import { CAT20 as COLORS } from 'constants/colors';
 
 
+// VARIABLES //
+
+const CLUSTER_LABELS = [ 'Few clusters', 'Some clusters', 'Many clusters' ];
+
+
 // MAIN //
 
 class ClusterModal extends Component {
@@ -115,13 +120,12 @@ class ClusterModal extends Component {
 					Clustering Results
 				</Modal.Title>
 				<span className="cluster-modal-select-wrapper">
-					<span>Number of Clusters:</span>
 					<select
 						className="cluster-select"
 						onChange={this.handleClusterCountChange}
 						value={this.state.modelIndex}
 					>
-						{this.props.clusterSizes.map( ( v, key ) => {
+						{CLUSTER_LABELS.map( ( v, key ) => {
 							return (
 								<option
 									key={key}

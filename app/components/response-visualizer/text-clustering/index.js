@@ -12,6 +12,7 @@ import './text_clustering.css';
 // VARIABLES //
 
 const CLUSTER_SIZES = [ 5, 7, 9 ];
+const CLUSTER_LABELS = [ 'Few clusters', 'Some clusters', 'Many clusters' ];
 
 
 // MAIN //
@@ -108,15 +109,14 @@ class TextClustering extends Component {
 	render() {
 		return (
 			<div className="cluster-wrapper">
-				<label>Clustering</label>
+				<label>Cluster {this.props.actionLabel}</label>
 				<span className="cluster-select-wrapper">
-					<span>Number of Clusters:</span>
 					<select
 						className="cluster-select"
 						onChange={this.handleClusterCountChange}
 						value={this.state.modelIndex}
 					>
-						{CLUSTER_SIZES.map( ( v, key ) => {
+						{CLUSTER_LABELS.map( ( v, key ) => {
 							return (
 								<option
 									key={key}
@@ -158,6 +158,7 @@ class TextClustering extends Component {
 // PROPERTIES //
 
 TextClustering.propTypes = {
+	actionLabel: PropTypes.string.isRequired,
 	texts: PropTypes.array.isRequired,
 	onClusters: PropTypes.func.isRequired
 };
