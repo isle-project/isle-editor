@@ -2088,6 +2088,49 @@ class Sketchpad extends Component {
 				onTouchMove: this.movePointer,
 				onTouchStart: this.movePointerStart
 			};
+		} else if ( this.state.mode === 'none' ) {
+			const onTouchStart = ( event ) => {
+				if ( event.touches && event.touches.length > 1 ) {
+					this.swipeStartX = event.touches[ 0 ].screenX;
+					this.swipeStartY = event.touches[ 0 ].screenY;
+				}
+			};
+			const onTouchMove = ( event ) => {
+				if ( this.state.swiping && event.touches && event.touches.length > 1 ) {
+					this.swipeEndX = event.touches[ 0 ].screenX;
+					this.swipeEndY = event.touches[ 0 ].screenY;
+					this.isMouseDown = false;
+				}
+			};
+			const onTouchEnd = () => {
+				if (
+					(
+						this.swipeEndX - MIN_SWIPE_X > this.swipeStartX ||
+						this.swipeEndX + MIN_SWIPE_X < this.swipeStartX
+					) &&
+					(
+						this.swipeEndY < this.swipeStartY + MAX_SWIPE_Y &&
+						this.swipeStartY > this.swipeEndY - MAX_SWIPE_Y &&
+						this.swipeEndX > 0
+					)
+				) {
+					if ( this.swipeEndX > this.swipeStartX ) {
+						this.previousPage();
+					} else {
+						this.nextPage();
+					}
+					this.swipeEndX = 0;
+					this.swipeEndY = 0;
+					this.swipeStartX = 0;
+					this.swipeStartY = 0;
+				}
+			};
+			eventListeners = {
+				onTouchCancel: onTouchEnd,
+				onTouchEnd: onTouchEnd,
+				onTouchMove: onTouchMove,
+				onTouchStart: onTouchStart
+			};
 		} else {
 			eventListeners = {
 				onClick: this.handleClick,
@@ -2162,6 +2205,7 @@ class Sketchpad extends Component {
 							style={{
 								pointerEvents: ( this.state.mode !== 'none' ) ? 'none' : 'visible'
 							}}
+							{...eventListeners}
 						/>
 						<div
 							ref={(div) => { this.pointer = div; }}
