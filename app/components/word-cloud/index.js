@@ -207,9 +207,7 @@ class Wrapper extends Component {
 	}
 
 	componentDidMount() {
-		if ( this.state.wordCounts.length > 0 ) {
-			this.addWordCloud();
-		}
+		this.addWordCloud();
 	}
 
 	shouldComponentUpdate( nextProps ) {
