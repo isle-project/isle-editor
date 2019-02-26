@@ -14,3 +14,19 @@
 	padding-left: 10px;
 	padding-right: 10px;
 }
+
+@media (max-width: 576px) {
+	.multiple-choice-matrix-question-header {
+		display: none;
+	}
+}
+
+.multiple-choice-matrix-answer-text {
+	display: none;
+}
+
+@media (max-width: 576px) {
+	.multiple-choice-matrix-answer-text {
+		display: inherit;
+	}
+}

@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import uppercase from '@stdlib/string/uppercase';
+import floor from '@stdlib/math/base/special/floor';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -51,7 +52,7 @@ class MultipleChoiceMatrix extends Component {
 
 	renderAnswerHeader() {
 		return (
-			<Form.Row>
+			<Form.Row className="multiple-choice-matrix-question-header" >
 				<Col sm={this.props.answers.length > 4 ? 4 : 6}></Col>
 				{this.props.answers.map( ( elem, idx ) => {
 					return ( <Col key={idx}>
@@ -137,9 +138,21 @@ class MultipleChoiceMatrix extends Component {
 	renderAnswerButtons( row ) {
 		const len = this.props.answers.length;
 		const buttons = new Array( len );
+		const width = len > 4 ? floor( 8 / len ) : floor( 6 / len );
 		for ( let i = 0; i < len; i++ ) {
-			buttons[ i ] = <Col key={i} >
-				<Form.Check name={`radios-${row}`} data-pos={`${row}-${i}`} type={this.props.type} id={`${row}-${i}`} />
+			const elem = this.props.answers[ i ];
+			buttons[ i ] = <Col key={i} sm={width} >
+				<Form.Check
+					name={`radios-${row}`}
+					data-pos={`${row}-${i}`}
+					type={this.props.type}
+					id={`${row}-${i}`}
+					label={
+						<span className="multiple-choice-matrix-answer-text">
+							{ isString( elem ) ? <Text raw={elem} /> : elem }
+						</span>
+					}
+				/>
 			</Col>;
 		}
 		return ( <Fragment>
