@@ -9,6 +9,13 @@ import './timer.css';
 
 // FUNCTIONS //
 
+/**
+* Formats time in the format `minutes:seconds`.
+*
+* @private
+* @param {number} time - time in minutes
+* @returns {string} formatted time string of the format `minutes:seconds`
+*/
 function fmtTime( time ) {
 	let minutes = floor( time / 60 );
 	let seconds = time - minutes * 60;
