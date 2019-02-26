@@ -2090,19 +2090,22 @@ class Sketchpad extends Component {
 			};
 		} else if ( this.state.mode === 'none' ) {
 			const onTouchStart = ( event ) => {
+				event.stopPropagation();
 				if ( event.touches && event.touches.length > 1 ) {
 					this.swipeStartX = event.touches[ 0 ].screenX;
 					this.swipeStartY = event.touches[ 0 ].screenY;
 				}
 			};
 			const onTouchMove = ( event ) => {
+				event.stopPropagation();
 				if ( this.state.swiping && event.touches && event.touches.length > 1 ) {
 					this.swipeEndX = event.touches[ 0 ].screenX;
 					this.swipeEndY = event.touches[ 0 ].screenY;
 					this.isMouseDown = false;
 				}
 			};
-			const onTouchEnd = () => {
+			const onTouchEnd = ( event ) => {
+				event.stopPropagation();
 				if (
 					(
 						this.swipeEndX - MIN_SWIPE_X > this.swipeStartX ||
