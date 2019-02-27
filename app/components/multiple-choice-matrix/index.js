@@ -4,7 +4,6 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import uppercase from '@stdlib/string/uppercase';
-import floor from '@stdlib/math/base/special/floor';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -51,9 +50,18 @@ class MultipleChoiceMatrix extends Component {
 	}
 
 	renderAnswerHeader() {
+		const len = this.props.answers.length;
+		let offset;
+		if ( len > 7 ) {
+			offset = 3;
+		} else if ( len > 4 ) {
+			offset = 4;
+		} else {
+			offset = 6;
+		}
 		return (
 			<Form.Row className="multiple-choice-matrix-question-header" >
-				<Col sm={this.props.answers.length > 4 ? 4 : 6}></Col>
+				<Col sm={offset}></Col>
 				{this.props.answers.map( ( elem, idx ) => {
 					return ( <Col key={idx}>
 						<Form.Label>
@@ -138,10 +146,9 @@ class MultipleChoiceMatrix extends Component {
 	renderAnswerButtons( row ) {
 		const len = this.props.answers.length;
 		const buttons = new Array( len );
-		const width = len > 4 ? floor( 8 / len ) : floor( 6 / len );
 		for ( let i = 0; i < len; i++ ) {
 			const elem = this.props.answers[ i ];
-			buttons[ i ] = <Col key={i} sm={width} >
+			buttons[ i ] = <Col key={i} >
 				<Form.Check
 					name={`radios-${row}`}
 					data-pos={`${row}-${i}`}
@@ -161,10 +168,19 @@ class MultipleChoiceMatrix extends Component {
 	}
 
 	renderQuestionRows() {
+		const len = this.props.answers.length;
+		let offset;
+		if ( len > 7 ) {
+			offset = 3;
+		} else if ( len > 4 ) {
+			offset = 4;
+		} else {
+			offset = 6;
+		}
 		return this.props.questions.map( ( question, idx ) => {
 			return (
 				<Form.Row key={idx} >
-					<Col sm={this.props.answers.length > 4 ? 4 : 6}>
+					<Col sm={offset}>
 						<Form.Label column >
 							{ isString( question ) ? <Text raw={question} /> : question }
 						</Form.Label>
