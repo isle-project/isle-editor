@@ -207,7 +207,7 @@ class NumberInput extends Input {
 					{input}
 				</Tooltip>;
 		}
-		const input = <input
+		let input = <input
 			type={this.props.numbersOnly ? 'number' : 'text'}
 			name="input"
 			className="number-number-input"
@@ -227,6 +227,9 @@ class NumberInput extends Input {
 			onChange={this.handleChange}
 			onBlur={this.finishChange}
 		/>;
+		if ( !this.props.disabled ) {
+			input = <Tooltip id="numberInputTooltip" placement="left" tooltip={this.state.tooltip} >{input}</Tooltip>;
+		}
 		const output = <div className="input" style={{
 			marginBottom: '4px',
 			marginTop: '4px'
@@ -247,13 +250,7 @@ class NumberInput extends Input {
 			</span>
 			{input}
 		</div>;
-		return (
-			this.props.disabled ?
-				output :
-				<Tooltip id="numberInputTooltip" placement="top" tooltip={this.state.tooltip} >
-					{output}
-				</Tooltip>
-		);
+		return output;
 	}
 }
 

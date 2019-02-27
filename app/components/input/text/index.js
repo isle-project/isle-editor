@@ -20,6 +20,7 @@ import './text.css';
 * @property {boolean} inline - Indicates whether the input is displayed inline
 * @property {string} legend - A string indicating the text displayed next to the number input
 * @property {string} value - text value (for controlled component)
+* @property {string} bind - name of global variable for the number to be assigned to
 * @property {string} placeholder - A string indicating the value to be displayed before an initial choice is made
 */
 class TextInput extends Input {
@@ -135,6 +136,7 @@ class TextInput extends Input {
 // PROPERTIES //
 
 TextInput.defaultProps = {
+	bind: null,
 	defaultValue: '',
 	legend: '',
 	width: 80,
@@ -144,6 +146,7 @@ TextInput.defaultProps = {
 };
 
 TextInput.propTypes = {
+	bind: PropTypes.string,
 	defaultValue: PropTypes.string,
 	legend: PropTypes.oneOfType([
 		PropTypes.string,

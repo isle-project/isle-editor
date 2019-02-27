@@ -9,7 +9,6 @@
 	text-align: left;
 	display: inline;
 	background: rgba(186, 204, 234, 0.3);
-	font-size: 16px;
 	font-weight: 600;
 	color: rgb(92, 92, 92);
 	box-shadow: inset 1px 1px 4px  rgba(186, 204, 234, 1);
@@ -29,7 +28,6 @@
 	border: solid 1px darkgrey;
 	background: rgba(186, 204, 234, 0.3);
 	font-weight: 600;
-	font-size: 14px;
 	padding-top: 4px;
 	padding-bottom: 4px;
 	color: rgb(92, 92, 92);
