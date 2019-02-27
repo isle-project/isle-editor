@@ -2,7 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
+import isArray from '@stdlib/assert/is-array';
 
 
 // MAIN //
@@ -82,6 +84,9 @@ class FlippableCard extends Component {
 	}
 
 	render() {
+		if ( !isArray( this.props.children ) ) {
+			return <Alert variant="danger" >The flippable card requires two child elements.</Alert>;
+		}
 		const isFlipped = this.props.value !== void 0? this.props.value : this.state.isFlipped;
 		const styles = {
 			container: {
@@ -127,7 +132,6 @@ class FlippableCard extends Component {
 				...this.props.cardStyles.back
 			}
 		};
-
 		return (
 			<div id={this.props.id} onClick={this.interaction} className="react-card-flip" style={styles.container}>
 				<div className="react-card-flipper" style={styles.flipper}>

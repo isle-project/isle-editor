@@ -141,17 +141,17 @@ class Typewriter extends Component {
 	type( ) {
 		this.process();
 		return (
-			<div style={this.props.style}>
+			<span style={this.props.style}>
 				{this.state.actualText}
-			</div>
+			</span>
 		);
 	}
 
 	render() {
 		return (
-			<div>
+			<span>
 				{this.type()}
-			</div>
+			</span>
 		);
 	}
 }
