@@ -71,17 +71,25 @@ class Vocabulary {
 		// Tokenize document after pre-processing...
 		doc = processDocument( doc );
 		const words = tokenize( doc );
+		for ( let i = 0; i < words.length; i++ ) {
+			words[ i ] = stemmer( words[ i ] );
+		}
+		const len = words.length;
+		// Add bigrams:
+		for ( let i = 0; i < len - 1; i++ ) {
+			words.push( words[ i ] + ' ' + words[ i+1 ] );
+		}
 
 		// Create and return sparse word vector...
 		const out = new Uint8ClampedArray( this.dim );
 		for ( let i = 0; i < words.length; i++ ) {
-			const word = stemmer( words[ i ] );
+			const gram = words[ i ];
 			let idx;
-			if ( this.hashTable.has( word ) ) {
-				idx = this.hashTable.get( word );
+			if ( this.hashTable.has( gram ) ) {
+				idx = this.hashTable.get( gram );
 			}
 			else {
-				idx = this.addWord( word );
+				idx = this.addWord( gram );
 			}
 			out[ idx ] += 1;
 		}

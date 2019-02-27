@@ -6,9 +6,9 @@ import Corpus from './corpus.js';
 
 // VARIABLES //
 
-const DIM = 500;
+const DIM = 300;
 const vocab = new Vocabulary( DIM );
-const corpus = new Corpus( vocab, [ 5, 7, 9 ] );
+const corpus = new Corpus( vocab, [ 3, 5, 7 ] );
 
 
 // MAIN //
@@ -34,10 +34,11 @@ self.onmessage = function onMessage( e ) {
 			break;
 		}
 		case 'ADD_DOCUMENTS': {
-			for ( let i = 0; i < data.value.length; i++ ) {
-				const doc = data.value[ i ];
-				corpus.addDocument( doc );
-			}
+			corpus.addDocuments( data.value );
+			break;
+		}
+		case 'ITERATE': {
+			corpus.iterate( data.value );
 			break;
 		}
 		case 'GET_CLUSTERS': {

@@ -4,6 +4,7 @@ import expandContractions from '@stdlib/nlp/expand-contractions';
 import removePunctuation from '@stdlib/string/remove-punctuation';
 import removeWords from '@stdlib/string/remove-words';
 import toLowercase from '@stdlib/string/lowercase';
+import trim from '@stdlib/string/trim';
 import stopwords from '@stdlib/datasets/stopwords-en';
 
 
@@ -21,6 +22,7 @@ const STOPWORDS = stopwords();
 * -   expand contractions such as don't => do not
 * -   remove all punctuation characters
 * -   remove a list of very common English words ("stopwords") that do not add much value for clustering and selecting documents
+* -   trims whitespace from the beginning and end of the string
 *
 * @param {string} doc - input document
 * @returns {string} pre-processed document
@@ -30,6 +32,7 @@ function processDocument( doc ) {
 	doc = expandContractions( doc );
 	doc = removePunctuation( doc );
 	doc = removeWords( doc, STOPWORDS );
+	doc = trim( doc );
 	return doc;
 }
 

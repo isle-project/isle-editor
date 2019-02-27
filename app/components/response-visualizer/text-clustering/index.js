@@ -11,7 +11,7 @@ import './text_clustering.css';
 
 // VARIABLES //
 
-const CLUSTER_SIZES = [ 5, 7, 9 ];
+const CLUSTER_SIZES = [ 3, 5, 7 ];
 const CLUSTER_LABELS = [ 'Few clusters', 'Some clusters', 'Many clusters' ];
 
 
@@ -65,6 +65,10 @@ class TextClustering extends Component {
 		this.worker.postMessage({
 			type: 'ADD_DOCUMENTS',
 			value: this.props.texts
+		});
+		this.worker.postMessage({
+			type: 'ITERATE',
+			value: 1
 		});
 		this.worker.postMessage({
 			type: 'GET_CLUSTERS',

@@ -40,6 +40,7 @@ class Corpus {
 		});
 		this.buffer = new Uint8ClampedArray();
 		this.nDocs = 0;
+		this.vecs = [];
 		this.dim = vocabulary.dim;
 		this.vocabulary = vocabulary;
 	}
@@ -114,6 +115,7 @@ class Corpus {
 	*/
 	addDocument( doc ) {
 		const vec = this.vocabulary.toVector( doc );
+		this.vecs.push( vec );
 		this.centroids = this.models.map( acc => {
 			const out = acc( vec );
 			return out ? out.centroids : null;
@@ -124,6 +126,48 @@ class Corpus {
 		buffer.set( this.buffer );
 		buffer.set( vec._buffer, this.buffer.length );
 		this.buffer = buffer;
+	}
+
+	/**
+	* Adds new documents to the corpus and repeatedly updates the k-means model.
+	*
+	* @param {Array} docs - input documents
+	*/
+	addDocuments( docs ) {
+		this.nDocs += docs.length;
+		const buffer = new Uint8ClampedArray( this.dim * this.nDocs );
+		buffer.set( this.buffer );
+		let length = this.buffer.length;
+		for ( let i = 0; i < docs.length; i++ ) {
+			const doc = docs[ i ];
+			const vec = this.vocabulary.toVector( doc );
+			this.vecs.push( vec );
+			this.centroids = this.models.map( acc => {
+				const out = acc( vec );
+				return out ? out.centroids : null;
+			});
+			buffer.set( vec._buffer, length );
+			length += vec._buffer.length;
+		}
+		this.buffer = buffer;
+		debug( `The corpus now contains ${this.nDocs} documents...` );
+	}
+
+	/**
+	* Iterate over the current documents and update the cluster centroids.
+	*
+	* @param {integer} iter - number of times
+	*/
+	iterate( iter ) {
+		this.centroids = this.models.map( acc => {
+			let out;
+			for ( let j = 0; j < iter; j++ ) {
+				for ( let i = 0; i < this.nDocs; i++ ) {
+					out = acc( this.vecs[ i ] );
+				}
+			}
+			return out ? out.centroids : null;
+		});
 	}
 }
 
