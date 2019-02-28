@@ -9,6 +9,8 @@ import unique from 'uniq';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Overlay from 'react-bootstrap/Overlay';
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'components/overlay-trigger';
 import markdownit from 'markdown-it';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import contains from '@stdlib/assert/contains';
@@ -427,17 +429,21 @@ class DataTable extends Component {
 				<div className="data-table-wrapper" style={this.props.style} >
 					{ this.props.dataInfo.info.length > 0 ?
 					<div className='data_button_wrapper'>
-						<Button
-							variant="light"
-							onClick={this.showInfo}
-							className='title-button'>
+						<OverlayTrigger placement="bottom" overlay={<Tooltip>Open dataset description</Tooltip>} >
+							<Button
+								variant="light"
+								onClick={this.showInfo}
+								className='title-button'
+							>
 								<h4 className='title-button-h4'
-									onClick={this.showInfo}>
+									onClick={this.showInfo}
+								>
 									{this.props.dataInfo.name} Data
 								</h4>
 							</Button>
-							<TutorialButton />
-						</div> : null}
+						</OverlayTrigger>
+						<TutorialButton />
+					</div> : null}
 					{ this.props.dataInfo.info.length === 0 ?
 						<h4 className="title-nobutton-h4">
 							{this.props.dataInfo.name} Data
@@ -455,6 +461,7 @@ class DataTable extends Component {
 									padding: '2px 10px',
 									color: 'white',
 									borderRadius: 3,
+									maxWidth: '300px',
 									...props.style
 								}}
 							>
@@ -480,22 +487,24 @@ class DataTable extends Component {
 						style={this.props.style}
 					/>
 					<label className="label-number-rows"><i>Number of rows: {selectedRows} (total: {this.state.rows.length})</i></label>
-					<Button
-						onClick={this.reset}
-						variant="primary"
-						size="xsmall"
-						className="data-table-footer-button reset-button"
-					>
-						Reset
-					</Button>
-					{ this.props.dataInfo.variables ? <Button
+					<OverlayTrigger placement="top" overlay={<Tooltip>Reset filters and sorting</Tooltip>} >
+						<Button
+							onClick={this.reset}
+							variant="primary"
+							size="xsmall"
+							className="data-table-footer-button reset-button"
+						>
+							Reset
+						</Button>
+					</OverlayTrigger>
+					{ this.props.dataInfo.variables ? <OverlayTrigger placement="top" overlay={<Tooltip>Open variable descriptions</Tooltip>} ><Button
 						onClick={this.showDescriptions}
 						variant="primary"
 						size="xsmall"
 						className="data-table-footer-button variable-descriptions-button"
 					>
 						Variable Descriptions
-					</Button> : null }
+					</Button></OverlayTrigger> : null }
 				</div>
 				{modal}
 			</Fragment>

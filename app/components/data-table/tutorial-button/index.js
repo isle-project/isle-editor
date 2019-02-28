@@ -2,6 +2,8 @@
 
 import React, { Component, Fragment } from 'react';
 import Button from 'react-bootstrap/Button';
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'components/overlay-trigger';
 import Joyride, { EVENTS } from 'components/joyride';
 import steps from './steps.json';
 
@@ -26,13 +28,18 @@ class Tutorial extends Component {
 	render() {
 		return (
 			<Fragment>
-				<Button
-					className="help-button"
-					variant="light"
-					onClick={this.startTour}
+				<OverlayTrigger
+					placement="left"
+					overlay={<Tooltip>{this.state.running ? 'Close Tutorial' : 'Show Tutorial' }</Tooltip>}
 				>
-					<div className="fa fa-question" />
-				</Button>
+					<Button
+						className="help-button"
+						variant="light"
+						onClick={this.startTour}
+					>
+						<div className="fa fa-question" />
+					</Button>
+				</OverlayTrigger>
 				<Joyride
 					steps={steps}
 					showProgress
