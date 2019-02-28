@@ -165,7 +165,7 @@
     "react-color": "^2.17.0",
     "react-contextmenu": "^2.6.5",
     "react-copy-to-clipboard": "^5.0.0",
-    "react-dates": "19.0.4",
+    "react-dates": "20.0.0",
     "react-dnd": "^7.0.0",
     "react-dnd-html5-backend": "^7.0.0",
     "react-dom": "16.8.3",
@@ -206,7 +206,7 @@
     "uniq": "^1.0.1",
     "uuid": "^3.3.2",
     "venn.js": "0.2.20",
-    "victory": "31.3.0",
+    "victory": "32.0.0",
     "webpack": "4.29.5",
     "worker-loader": "^2.0.0"
   },
