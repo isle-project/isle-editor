@@ -7,6 +7,7 @@ import CrossValidation from 'components/learn/cross-validation';
 import DiceThrowing from 'components/learn/dice-throwing';
 import MeanTest from 'components/learn/hypothesis-testing-mean';
 import ProportionTest from 'components/learn/hypothesis-testing-proportion';
+import BinomialDistribution from 'components/learn/distribution-binomial';
 import ExponentialDistribution from 'components/learn/distribution-exponential';
 import NormalDistribution from 'components/learn/distribution-normal';
 import TDistribution from 'components/learn/distribution-t';
@@ -32,6 +33,7 @@ export default {
 	CrossValidation,
 	ProportionTest,
 	MeanTest,
+	BinomialDistribution,
 	ExponentialDistribution,
 	NormalDistribution,
 	TDistribution,
