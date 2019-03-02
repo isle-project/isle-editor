@@ -326,7 +326,12 @@ class StatusBar extends Component {
 					>
 						<div className="statusbar-left"></div>
 						<div className="statusbar-middle">
-							<div className="statusbar-voice">
+							<div
+								className="statusbar-voice"
+								style={{
+									display: !session.config.hideVoiceControl ? 'inherit' : 'none'
+								}}
+							>
 								<VoiceInput
 									id="statusbar-voice"
 									onClick={this.handleVoiceInputChange}
@@ -342,11 +347,22 @@ class StatusBar extends Component {
 								<span ref={( span ) => { this.displayedText = span; }} className="statusbar-voice-text" ></span>
 							</div>
 							<Tooltip tooltip={`${this.state.showCalculator ? 'Close' : 'Open'} calculator (F2)`} placement="bottom" >
-								<div className="statusbar-calculator" onClick={this.toggleCalculator}>
+								<div
+									className="statusbar-calculator"
+									onClick={this.toggleCalculator}
+									style={{
+										display: !session.config.hideCalculator ? 'inherit' : 'none'
+									}}
+								>
 										<span className="fa fa-xs fa-calculator statusbar-calc-icon" />
 								</div>
 							</Tooltip>
-							{( session.hasOwner || isElectron ) ? <div className="statusbar-queue" onClick={this.toggleQueue} >
+							{( session.hasOwner || isElectron ) ?
+								<div className="statusbar-queue" onClick={this.toggleQueue}
+									style={{
+										display: !session.config.hideQueue ? 'inherit' : 'none'
+									}}
+								>
 								<Tooltip tooltip={`${this.state.showQueue ? 'Close' : 'Open'} help queue`} placement="bottom" >
 									<span className="fa fa-xs fa-question-circle statusbar-calc-icon" />
 								</Tooltip>
@@ -410,7 +426,7 @@ class StatusBar extends Component {
 						<div
 							className={`statusbar-progress ${this.state.isProgressLeaving ? 'progress-fade-out' : ''} `}
 							style={{
-								display: !session.config.hideProgressBar &&this.state.showProgressBar ? 'inherit' : 'none'
+								display: !session.config.hideProgressBar && this.state.showProgressBar ? 'inherit' : 'none'
 							}}
 						>
 							<Gate user>
