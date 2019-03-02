@@ -1,3 +1,8 @@
+// MODULES //
+
+import React from 'react';
+
+
 // MAIN //
 
 const AnimationPrinciples = () => {
