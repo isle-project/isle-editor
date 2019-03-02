@@ -79,6 +79,18 @@ import Anova from 'components/data-explorer/anova';
 const debug = logger( 'isle:data-explorer' );
 
 
+// FUNCTIONS //
+
+function formatFilters( filters ) {
+	let out = '';
+	for ( let i = 0; i < filters.length; i++ ) {
+		const filter = filters[ i ];
+		out += filter.id+': '+ JSON.stringify( filter.value ) + ' ';
+	}
+	return out;
+}
+
+
 // MAIN //
 
 /**
@@ -154,14 +166,14 @@ class DataExplorer extends Component {
 
 		this.logAction = ( type, value ) => {
 			if ( this.state.subsetFilters ) {
-				value = {...value, filters: this.state.subsetFilters};
+				value = { ...value, filters: this.state.subsetFilters };
 			}
 			const session = this.context;
 			if ( this.props.id ) {
 				session.log({
 					id: this.props.id,
 					type,
-					value: value
+					value
 				});
 			}
 		};
@@ -950,6 +962,9 @@ class DataExplorer extends Component {
 										Restore Data
 									</Button>
 								</OverlayTrigger>
+								<span>
+									{formatFilters( this.state.filters )}
+								</span>
 						</div>
 						{this.props.distributions.map( ( e, i ) => {
 							let content = null;
