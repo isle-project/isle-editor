@@ -238,7 +238,7 @@ class Calculator extends Component {
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('7')} >7</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('8')} >8</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('9')} >9</Button>
-										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('+')} >+</Button>
+										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('/')} >&#xF7;</Button>
 									</Row>
 									<Row>
 										<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('cos')} >cos(x)</Button>
@@ -247,7 +247,7 @@ class Calculator extends Component {
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('4')} >4</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('5')} >5</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('6')} >6</Button>
-										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('-')} >-</Button>
+										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('*')} >&#215;</Button>
 									</Row>
 									<Row>
 										<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('tan')} >tan(x)</Button>
@@ -256,7 +256,7 @@ class Calculator extends Component {
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('1')} >1</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('2')} >2</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('3')} >3</Button>
-										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('*')} >*</Button>
+										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('-')} >-</Button>
 									</Row>
 									<Row>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory( PI )} >&pi;</Button>
@@ -265,7 +265,7 @@ class Calculator extends Component {
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory(String(this.state.answer))} >Ans</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('0')} >0</Button>
 										<Button variant="dark" className="input-button-full" onClick={this.onClickFactory('.')} >.</Button>
-										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('/')} >&#xF7;</Button>
+										<Button variant="info" className="input-button-full" onClick={this.onClickFactory('+')} >+</Button>
 									</Row>
 									<Row>
 										<Button variant="info" className="input-button-full" onClick={this.onClickFactory( E )} >e</Button>
@@ -322,25 +322,25 @@ class Calculator extends Component {
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('7')} >7</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('8')} >8</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('9')} >9</Button>
-										<Button variant="info" className="input-button-small" onClick={this.onClickFactory('+')} >+</Button>
+										<Button variant="info" className="input-button-small" onClick={this.onClickFactory('/')} >&#xF7;</Button>
 									</Row>
 									<Row>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('4')} >4</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('5')} >5</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('6')} >6</Button>
-										<Button variant="info" className="input-button-small" onClick={this.onClickFactory('-')} >-</Button>
+										<Button variant="info" className="input-button-small" onClick={this.onClickFactory('*')} >&#215;</Button>
 									</Row>
 									<Row>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('1')} >1</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('2')} >2</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('3')} >3</Button>
-										<Button variant="info" className="input-button-small" onClick={this.onClickFactory('*')} >*</Button>
+										<Button variant="info" className="input-button-small" onClick={this.onClickFactory('-')} >-</Button>
 									</Row>
 									<Row>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory(String(this.state.answer))} >Ans</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('0')} >0</Button>
 										<Button variant="dark" className="input-button-small" onClick={this.onClickFactory('.')} >.</Button>
-										<Button variant="info" className="input-button-small" onClick={this.onClickFactory('/')} >&#xF7;</Button>
+										<Button variant="info" className="input-button-small" onClick={this.onClickFactory('+')} >+</Button>
 									</Row>
 									<Row>
 										<Button variant="danger" className="input-button-small" onClick={this.clearLast} >CE</Button>
