@@ -208,145 +208,148 @@ class Queue extends Component {
 	*/
 	render() {
 		const session = this.context;
+		let out;
 		if ( this.props.show ) {
 			if ( this.state.isOwner ) {
 				debug( 'User is an owner...' );
-				return ( <Draggable bounds="#Lesson" cancel=".queue-table" enableUserSelectHack={false} >
-					<div className="outer-queue">
-						<Panel className="queue-panel" header={this.renderHeader()}>
-						{ this.state.arr.length === 0 ? <p>There are currently no questions in the queue.</p> :
-						<ReactTable
-							className="queue-table"
-							showPageSizeOptions={false}
-							data={this.state.arr}
-							resizable={false}
-							sortable={false}
-							columns={[
-								{
-									Header: ' # ',
-									id: 'queueSpot',
-									accessor: 'spot',
-									width: 36
-								},
-								{
-									Header: 'Pic',
-									id: 'pic',
-									accessor: ( d ) => {
-										const { userList } = session;
-										for ( let i = 0; i < userList.length; i++ ) {
-											if ( userList[ i ].name === d.name ) {
-												return userList[ i ].picture;
-											}
+				out = <Panel className="queue-panel" header={this.renderHeader()}>
+					{ this.state.arr.length === 0 ? <p>There are currently no questions in the queue.</p> :
+					<ReactTable
+						className="queue-table"
+						showPageSizeOptions={false}
+						data={this.state.arr}
+						resizable={false}
+						sortable={false}
+						columns={[
+							{
+								Header: ' # ',
+								id: 'queueSpot',
+								accessor: 'spot',
+								width: 36
+							},
+							{
+								Header: 'Pic',
+								id: 'pic',
+								accessor: ( d ) => {
+									const { userList } = session;
+									for ( let i = 0; i < userList.length; i++ ) {
+										if ( userList[ i ].name === d.name ) {
+											return userList[ i ].picture;
 										}
-										return '';
-									},
-									Cell: row => {
-										return <img className="queue-table-pic" src={`${session.server}/thumbnail/${row.value}`} />;
-									},
-									maxWidth: 46,
-									minWidth: 46,
-									style: { color: 'darkslategrey' }
-								},
-								{
-									Header: 'Name',
-									id: 'nameCol',
-									accessor: 'name',
-									width: 150,
-									Cell: ( row ) => {
-										return ( <Tooltip tooltip={`${row.value} (${row.original.email})`} >
-											<span>{row.value}</span>
-										</Tooltip> );
 									}
+									return '';
 								},
-								{
-									Header: 'Cohort',
-									id: 'cohortCol',
-									accessor: ( d ) => {
-										const { cohorts } = session;
-										for ( let i = 0; i < cohorts.length; i++ ) {
-											if ( contains( cohorts[ i ].members, d.email ) ) {
-												return cohorts[ i ].title;
-											}
-										}
-										return '';
-									}
+								Cell: row => {
+									return <img className="queue-table-pic" src={`${session.server}/thumbnail/${row.value}`} />;
 								},
-								{
-									Header: 'Question',
-									id: 'qCol',
-									accessor: 'question',
-									width: 350,
-									style: { 'white-space': 'unset' }
-								},
-								{
-									Header: 'Chat',
-									Cell: ( row ) => {
-										const chatID = 'Queue_'+row.original.name+'_'+row.original.spot;
-										return ( <Tooltip placement="left" tooltip="Start chat with student" >
-											<div>
-												<ChatButton showTooltip={false} for={chatID} />
-											</div>
-										</Tooltip> );
-									}
-								},
-								{
-									Header: '',
-									accessor: 'remove',
-									Cell: this.renderButtonRemovable,
-									filterable: false,
-									width: 45
+								maxWidth: 46,
+								minWidth: 46,
+								style: { color: 'darkslategrey' }
+							},
+							{
+								Header: 'Name',
+								id: 'nameCol',
+								accessor: 'name',
+								width: 150,
+								Cell: ( row ) => {
+									return ( <Tooltip tooltip={`${row.value} (${row.original.email})`} >
+										<span>{row.value}</span>
+									</Tooltip> );
 								}
-							]}
-							pageSize={8}
-						/> }
-						</Panel>
-					</div>
-				</Draggable> );
+							},
+							{
+								Header: 'Cohort',
+								id: 'cohortCol',
+								accessor: ( d ) => {
+									const { cohorts } = session;
+									for ( let i = 0; i < cohorts.length; i++ ) {
+										if ( contains( cohorts[ i ].members, d.email ) ) {
+											return cohorts[ i ].title;
+										}
+									}
+									return '';
+								}
+							},
+							{
+								Header: 'Question',
+								id: 'qCol',
+								accessor: 'question',
+								width: 350,
+								style: { 'white-space': 'unset' }
+							},
+							{
+								Header: 'Chat',
+								Cell: ( row ) => {
+									const chatID = 'Queue_'+row.original.name+'_'+row.original.spot;
+									return ( <Tooltip placement="left" tooltip="Start chat with student" >
+										<div>
+											<ChatButton showTooltip={false} for={chatID} />
+										</div>
+									</Tooltip> );
+								}
+							},
+							{
+								Header: '',
+								accessor: 'remove',
+								Cell: this.renderButtonRemovable,
+								filterable: false,
+								width: 45
+							}
+						]}
+						pageSize={8}
+					/> }
+				</Panel>;
+				if ( this.props.draggable ) {
+					out = <Draggable bounds="#Lesson" cancel=".queue-table" enableUserSelectHack={false} >
+						<div className="outer-queue">{out}</div>
+					</Draggable>;
+				}
+				return out;
 			}
 			// Case: We are not an owner
 			if ( this.state.inQueue ) {
 				const chatID = 'Queue_'+session.user.name+'_'+this.state.spot;
-				return (
-					<Draggable bounds="#Lesson" enableUserSelectHack={false} >
-						<div className="outer-queue">
-							<Panel className="queue-panel" header={this.renderHeader()}>
-								<p>Your question: <i>{this.state.questionText}</i></p>
-								<p>You are currently at position <b>{this.state.spot}</b> on the queue.</p>
-								<p>There are {this.state.queueSize} individual(s) in the queue.</p>
-								<ChatButton for={chatID} showTooltip={false} />
-								<Button style={{ marginLeft: 10 }} size="sm" onClick={this.leaveQueue}>
-									Remove me from queue
-								</Button>
-							</Panel>
-						</div>
-					</Draggable>
-				);
+				out = <Panel className="queue-panel" header={this.renderHeader()}>
+					<p>Your question: <i>{this.state.questionText}</i></p>
+					<p>You are currently at position <b>{this.state.spot}</b> on the queue.</p>
+					<p>There are {this.state.queueSize} individual(s) in the queue.</p>
+					<ChatButton for={chatID} showTooltip={false} />
+					<Button style={{ marginLeft: 10 }} size="sm" onClick={this.leaveQueue}>
+						Remove me from queue
+					</Button>
+				</Panel>;
+				if ( this.props.draggable ) {
+					out = <Draggable bounds="#Lesson" enableUserSelectHack={false} >
+						<div className="outer-queue">{out}</div>
+					</Draggable>;
+				}
+				return out;
 			}
-			return (
-				<Draggable bounds="#Lesson" cancel="#queue_form" enableUserSelectHack={false} >
-					<div className="outer-queue">
-						<Panel className="queue-panel" header={this.renderHeader()}>
-							<p>You can submit a question below and someone will be with you shortly!</p>
-							<FormGroup>
-								<FormLabel>Question</FormLabel>
-								<FormControl type="text" id="queue_form"
-									value={this.state.questionText}
-									onChange={this.handleText}
-									inline={false}
-									width={500}
-								/>
-							</FormGroup>
-							<Button
-								disabled={this.state.questionText.length === 0}
-								onClick={this.enterQueue}
-							>
-								Submit question
-							</Button>
-							<span style={{ marginLeft: 8 }}>(there are currently {this.state.queueSize} individual(s) in the queue)</span>
-						</Panel>
-					</div>
-				</Draggable>
-			);
+			out = <Panel className="queue-panel" header={this.renderHeader()}>
+				<p>You can submit a question below and someone will be with you shortly!</p>
+				<FormGroup>
+					<FormLabel>Question</FormLabel>
+					<FormControl type="text" id="queue_form"
+						value={this.state.questionText}
+						onChange={this.handleText}
+						inline={false}
+						width={500}
+					/>
+				</FormGroup>
+				<Button
+					disabled={this.state.questionText.length === 0}
+					onClick={this.enterQueue}
+				>
+					Submit question
+				</Button>
+				<span style={{ marginLeft: 8 }}>(there are currently {this.state.queueSize} individual(s) in the queue)</span>
+			</Panel>;
+			if ( this.props.draggable ) {
+				out = <Draggable bounds="#Lesson" cancel="#queue_form" enableUserSelectHack={false} >
+					<div className="outer-queue">{out}</div>
+				</Draggable>;
+			}
+			return out;
 		}
 		return null;
 	}
@@ -356,13 +359,15 @@ class Queue extends Component {
 // PROPERTIES //
 
 Queue.defaultProps = {
+	draggable: true,
 	show: true,
-	onHide: noop,
+	onHide: null,
 	onQueueSize: noop,
 	onNewQuestion: noop
 };
 
 Queue.propTypes = {
+	draggable: PropTypes.bool,
 	show: PropTypes.bool,
 	onHide: PropTypes.func,
 	onQueueSize: PropTypes.func,
