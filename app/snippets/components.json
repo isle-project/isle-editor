@@ -328,6 +328,10 @@
 		"value":"<LearnMeanVSMedian />\n"
 	},
 	{
+		"name":"LearnBinomialDistribution",
+		"value":"<LearnBinomialDistribution />\n"
+	},
+	{
 		"name":"LearnExponentialDistribution",
 		"value":"<LearnExponentialDistribution />\n"
 	},
