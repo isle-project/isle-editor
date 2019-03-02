@@ -161,7 +161,7 @@ class DataExplorer extends Component {
 				session.log({
 					id: this.props.id,
 					type,
-					value : value
+					value: value
 				});
 			}
 		};
@@ -475,7 +475,7 @@ class DataExplorer extends Component {
 		}
 		this.setState({
 			data: newData,
-			subsetFilters: filters
+			subsetFilters: this.state.filters
 		});
 	}
 
