@@ -876,8 +876,12 @@ class DataExplorer extends Component {
 								<Suspense fallback={<div>Loading...</div>} >{content}</Suspense> : null );
 						})}
 						{ this.props.showEditor ?
-						<MarkdownEditor {...this.props.editorProps} plots={this.state.output} id={this.props.id ? this.props.id + '_editor' : null} style={{ display: this.state.openedNav !== 'editor' ? 'none' : null }} submitButton />
-						: null }
+						<MarkdownEditor {...this.props.editorProps}
+							plots={this.state.output}
+							id={this.props.id ? this.props.id + '_editor' : null}
+							style={{ display: this.state.openedNav !== 'editor' ? 'none' : null }}
+							submitButton /> : null
+						}
 						{ this.state.openedNav === 'transformer' ?
 							<VariableTransformer
 								data={this.state.data}
