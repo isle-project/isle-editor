@@ -14,9 +14,11 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Card from 'react-bootstrap/Card';
 import Tab from 'react-bootstrap/Tab';
+import Tooltip from 'react-bootstrap/Tooltip';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import isObject from '@stdlib/assert/is-object';
+import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasProp from '@stdlib/assert/has-property';
 import startsWith from '@stdlib/string/starts-with';
@@ -35,6 +37,7 @@ import Pages from 'components/pages';
 import Gate from 'components/gate';
 import RealtimeMetrics from 'components/metrics/realtime';
 import Plotly from 'components/plotly';
+import OverlayTrigger from 'components/overlay-trigger';
 import RPlot from 'components/r/plot';
 import DataTable from 'components/data-table';
 import SessionContext from 'session/context.js';
@@ -140,6 +143,7 @@ class DataExplorer extends Component {
 			showToolbox: false,
 			openedNav: props.opened || ( props.questions ? 'questions' : 'data' ),
 			studentPlots: [],
+			subsetFilters: null,
 			unaltered: {
 				data: props.data,
 				continuous: props.continuous,
@@ -149,12 +153,15 @@ class DataExplorer extends Component {
 		};
 
 		this.logAction = ( type, value ) => {
+			if ( this.state.subsetFilters ) {
+				value = {...value, filters: this.state.subsetFilters};
+			}
 			const session = this.context;
 			if ( this.props.id ) {
 				session.log({
 					id: this.props.id,
 					type,
-					value
+					value : value
 				});
 			}
 		};
@@ -422,6 +429,61 @@ class DataExplorer extends Component {
 				}
 			});
 		}
+	}
+
+	onFilterCreate = () => {
+		let inds = new Set();
+		for ( let i = 0; i < this.state.filters.length; i++ ) {
+			// we know what the var is by props categorical etc.
+			const filter = this.state.filters[i];
+			// object with id and value
+			// id is a string
+			const col = this.state.data[filter.id];
+			if ( contains(this.state.continuous, filter.id) ) {
+				// we have a continuous varaible, value has min and max
+				for ( let z = 0; z < col.length; z++ ) {
+					if ( col[z] < filter.value.min || col[z] > filter.value.max ) {
+						inds.add(z);
+					}
+				}
+			} else {
+				// we have a categorical
+				// ASSUME val is a string for now
+				for ( let z = 0; z < col.length; z++ ) {
+					if ( col[z] !== filter.value ) {
+						inds.add(z);
+					}
+				}
+			}
+		}
+		// loop through the keys
+		const vars = keys( this.state.data );
+		var newData = {};
+		const nOriginal = this.state.data[vars[0]].length; // new size
+		for ( let c = 0; c < vars.length; c++ ) {
+			let varName = vars[c];
+			newData[varName] = new Array();
+		}
+
+		for ( let j = 0; j < nOriginal; j++ ) {
+			if ( !inds.has(j) ) {
+				for ( let colInd = 0; colInd < vars.length; colInd++ ) {
+					let varName = vars[colInd];
+					newData[varName].push(this.state.data[varName][j]);
+				}
+			}
+		}
+		this.setState({
+			data: newData,
+			subsetFilters: filters
+		});
+	}
+
+	onRestoreData = () => {
+		this.setState({
+			data: this.props.data,
+			subsetFilters: null
+		});
 	}
 
 	on2dSelection = ( names, selected ) => {
@@ -857,7 +919,37 @@ class DataExplorer extends Component {
 							}}
 						>
 								{ !this.props.data ? <Button size="small" onClick={this.resetStorage} style={{ position: 'absolute', top: '70px' }}>Clear Data</Button> : null }
-								<DataTable data={this.state.data} dataInfo={this.props.dataInfo} filters={this.state.filters} id={this.props.id ? this.props.id + '_table' : null} />
+								<DataTable
+									data={this.state.data}
+									dataInfo={this.props.dataInfo}
+									filters={this.state.filters}
+									onFilteredChange={(filtered) => {
+										this.setState({
+											filters: filtered
+										}, () => {
+											console.log(this.state.filters);
+										});
+									}}
+									id={this.props.id ? this.props.id + '_table' : null}
+								/>
+								<OverlayTrigger placement="top" overlay={<Tooltip>Create Filtered Dataset</Tooltip>} >
+									<Button
+										onClick={this.onFilterCreate}
+										variant="primary"
+										size="xsmall"
+									>
+										Subset Data
+									</Button>
+								</OverlayTrigger>
+								<OverlayTrigger placement="top" overlay={<Tooltip>Restore Initially Supplied Data</Tooltip>} >
+									<Button
+										onClick={this.onRestoreData}
+										variant="primary"
+										size="xsmall"
+									>
+										Restore Data
+									</Button>
+								</OverlayTrigger>
 						</div>
 						{this.props.distributions.map( ( e, i ) => {
 							let content = null;

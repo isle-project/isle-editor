@@ -301,6 +301,7 @@ class DataTable extends Component {
 	}
 
 	handleFilterChange = ( filtered, column ) => {
+		const sortData = this.table.getResolvedState().sortedData;
 		const selectedRows = this.table.getResolvedState().sortedData.length;
 		if ( this.props.id ) {
 			const session = this.context;
@@ -313,7 +314,10 @@ class DataTable extends Component {
 		this.setState({
 			selectedRows,
 			filtered
+		}, () => {
+			this.props.onFilteredChange(this.state.filtered);
 		});
+		
 	}
 
 	handleSortedChange = ( sorted, column ) => {
@@ -523,6 +527,7 @@ DataTable.defaultProps = {
 		'showInfo': false
 	},
 	onClickRemove() {},
+	onFilteredChange() {},
 	filters: [],
 	showRemove: false,
 	style: {}
@@ -536,6 +541,7 @@ DataTable.propTypes = {
 	dataInfo: PropTypes.object,
 	onClickRemove: PropTypes.func,
 	filters: PropTypes.array,
+	onFilteredChange: PropTypes.func,
 	showRemove: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
 	style: PropTypes.object
 };
