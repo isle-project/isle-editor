@@ -24,6 +24,13 @@
 	margin-bottom: 0;
 }
 
+.data-explorer-subset-filter-display {
+	margin-top: 10px;
+	margin-left: 10px;
+	background: lightcoral;
+	width: max-content;
+}
+
 .data-explorer-toolbox {
 	z-index: 1004;
 	position: fixed;

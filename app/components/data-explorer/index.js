@@ -81,8 +81,17 @@ const debug = logger( 'isle:data-explorer' );
 
 // FUNCTIONS //
 
+/**
+* Generates a string displaying the filters for the current active data subset.
+*
+* @private
+* @param {Array} filters - data subset filters
+*/
 function formatFilters( filters ) {
-	let out = '';
+	if ( !filters ) {
+		return '';
+	}
+	let out = 'Restricted Dataset: ';
 	for ( let i = 0; i < filters.length; i++ ) {
 		const filter = filters[ i ];
 		out += filter.id+': '+ JSON.stringify( filter.value ) + ' ';
@@ -938,27 +947,29 @@ class DataExplorer extends Component {
 									}}
 									id={this.props.id ? this.props.id + '_table' : null}
 								/>
-								<OverlayTrigger placement="top" overlay={<Tooltip>Create Filtered Dataset</Tooltip>} >
-									<Button
-										onClick={this.onFilterCreate}
-										variant="primary"
-										size="xsmall"
-									>
-										Subset Data
-									</Button>
-								</OverlayTrigger>
-								<OverlayTrigger placement="top" overlay={<Tooltip>Restore Initially Supplied Data</Tooltip>} >
+								{ this.state.filters.length > 0 ?
+									<OverlayTrigger placement="top" overlay={<Tooltip>Create new dataset from currently active filters</Tooltip>} >
+										<Button
+											onClick={this.onFilterCreate}
+											variant="secondary"
+											size="xsmall"
+										>
+											Create filtered dataset
+										</Button>
+									</OverlayTrigger> : null
+								}
+								{ this.state.subsetFilters ? <OverlayTrigger placement="top" overlay={<Tooltip>Restore original dataset with all observations</Tooltip>} >
 									<Button
 										onClick={this.onRestoreData}
-										variant="primary"
+										variant="secondary"
 										size="xsmall"
 									>
-										Restore Data
+										Restore original dataset
 									</Button>
-								</OverlayTrigger>
-								<span>
-									{formatFilters( this.state.filters )}
-								</span>
+								</OverlayTrigger> : null }
+								<p className="data-explorer-subset-filter-display">
+									{formatFilters( this.state.subsetFilters )}
+								</p>
 						</div>
 						{this.props.distributions.map( ( e, i ) => {
 							let content = null;
