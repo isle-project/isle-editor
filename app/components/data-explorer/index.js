@@ -444,44 +444,38 @@ class DataExplorer extends Component {
 	}
 
 	onFilterCreate = () => {
-		let inds = new Set();
+		let indices = new Set();
 		for ( let i = 0; i < this.state.filters.length; i++ ) {
-			// we know what the var is by props categorical etc.
-			const filter = this.state.filters[i];
-			// object with id and value
-			// id is a string
-			const col = this.state.data[filter.id];
-			if ( contains(this.state.continuous, filter.id) ) {
-				// we have a continuous varaible, value has min and max
+			const filter = this.state.filters[ i ];
+			const col = this.state.data[ filter.id ];
+			if ( contains( this.state.continuous, filter.id ) ) {
+				// Case: We have a filter for a continuous variable, which has a min and max value
 				for ( let z = 0; z < col.length; z++ ) {
-					if ( col[z] < filter.value.min || col[z] > filter.value.max ) {
-						inds.add(z);
+					if ( col[ z ] < filter.value.min || col[ z ] > filter.value.max ) {
+						indices.add( z );
 					}
 				}
 			} else {
-				// we have a categorical
-				// ASSUME val is a string for now
+				// Case: We have a categorical variable
 				for ( let z = 0; z < col.length; z++ ) {
-					if ( col[z] !== filter.value ) {
-						inds.add(z);
+					if ( col[ z ] !== filter.value ) {
+						indices.add( z );
 					}
 				}
 			}
 		}
-		// loop through the keys
 		const vars = keys( this.state.data );
-		var newData = {};
-		const nOriginal = this.state.data[vars[0]].length; // new size
+		const newData = {};
+		const nOriginal = this.state.data[ vars[0] ].length;
 		for ( let c = 0; c < vars.length; c++ ) {
-			let varName = vars[c];
-			newData[varName] = new Array();
+			const varName = vars[ c ];
+			newData[ varName ] = [];
 		}
-
 		for ( let j = 0; j < nOriginal; j++ ) {
-			if ( !inds.has(j) ) {
+			if ( !indices.has(j) ) {
 				for ( let colInd = 0; colInd < vars.length; colInd++ ) {
 					let varName = vars[colInd];
-					newData[varName].push(this.state.data[varName][j]);
+					newData[ varName ].push( this.state.data[ varName ][ j ] );
 				}
 			}
 		}
