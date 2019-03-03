@@ -186,6 +186,7 @@ class DataTable extends Component {
 							paddingBottom: '4px'
 						}}>
 							<InputRange
+								allowSameValues
 								maxValue={ceil( max( uniqueValues ) )}
 								minValue={floor( min( uniqueValues ) )}
 								value={filter ? filter.value : defaultVal}
