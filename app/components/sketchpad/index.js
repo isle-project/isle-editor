@@ -235,34 +235,57 @@ class Sketchpad extends Component {
 						return;
 					}
 					const type = action.type;
-					if ( type === 'SKETCHPAD_MOVE_POINTER' ) {
-						let { x, y, sessionID } = JSON.parse( action.value );
-						x *= this.canvas.width;
-						y *= this.canvas.height;
-						x = `${x+this.leftMargin}px`;
-						y = `${y}px`;
-						if ( sessionID !== session.sessionID ) {
-							this.pointer.style.left = x;
-							this.pointer.style.top = y;
-							this.pointer.style.opacity = 0.7;
+					if ( action.email === session.user.email ) {
+						if ( type === 'SKETCHPAD_MOVE_POINTER' ) {
+							let { x, y, sessionID } = JSON.parse( action.value );
+							if ( sessionID !== session.sessionID ) {
+								x *= this.canvas.width;
+								y *= this.canvas.height;
+								x = `${x+this.leftMargin}px`;
+								y = `${y}px`;
+								this.pointer.style.left = x;
+								this.pointer.style.top = y;
+								this.pointer.style.opacity = 0.7;
+							}
+						} else if ( type === 'SKETCHPAD_HIDE_POINTER' ) {
+							this.pointer.style.opacity = 0;
 						}
-					} else if ( type === 'SKETCHPAD_HIDE_POINTER' ) {
-						this.pointer.style.opacity = 0;
-					}
-					else if ( type === 'SKETCHPAD_MOVE_ZOOM' ) {
-						let { x, y, sessionID } = JSON.parse( action.value );
-						x *= this.canvas.width;
-						y *= this.canvas.height;
-						const xPos = `${x+this.leftMargin}px`;
-						const yPos = `${y-100}px`;
-						if ( sessionID !== session.sessionID ) {
-							this.zoomCtx.drawImage( this.canvas, x, y, 200, 100, 0, 0, 400, 200 );
-							this.zoom.style.top = yPos;
-							this.zoom.style.left = xPos;
-							this.zoom.style.display = 'block';
+						else if ( type === 'SKETCHPAD_MOVE_ZOOM' ) {
+							let { x, y, sessionID } = JSON.parse( action.value );
+							if ( sessionID !== session.sessionID ) {
+								x *= this.canvas.width;
+								y *= this.canvas.height;
+								const { width, height } = this.zoom;
+								let sw = width / 2.0;
+								let sh = height / 2.0;
+								const xPos = `${x-sw+this.leftMargin}px`;
+								const yPos = `${y-sh}px`;
+								let dw = width;
+								let dh = height;
+								let sx = x - (sw/2);
+								let sy = y - (sh/2);
+								let dx = 0;
+								let dy = 0;
+								if ( sx < 0 ) {
+									dx -= sx;
+									sx = 0;
+									dw += ( dw / sw ) * sx;
+									sw += sx;
+								}
+								if ( sy < 0 ) {
+									dy -= sy;
+									sy = 0;
+									dh += ( dh / sh ) * sy;
+									sh += sy;
+								}
+								this.zoomCtx.drawImage( this.canvas, sx, sy, sw, sh, dx, dy, dw, dh );
+								this.zoom.style.top = yPos;
+								this.zoom.style.left = xPos;
+								this.zoom.style.display = 'block';
+							}
+						} else if ( type === 'SKETCHPAD_HIDE_ZOOM' ) {
+							this.zoom.style.display = 'none';
 						}
-					} else if ( type === 'SKETCHPAD_HIDE_ZOOM' ) {
-						this.zoom.style.display = 'none';
 					}
 					// Owners should only process actions from selected users:
 					else if ( session.isOwner() ) {
@@ -552,7 +575,7 @@ class Sketchpad extends Component {
 	preventDefaultTouch = ( e ) => {
 		if (
 			this.props.fullscreen &&
-			( e.target === this.canvas || e.target === this.textLayer )
+			( e.target === this.canvas || e.target === this.textLayer || e.target === this.canvasWrapper )
 		) {
 			e.preventDefault();
 		}
@@ -1962,11 +1985,33 @@ class Sketchpad extends Component {
 			this.pointer.style.top = `${y}px`;
 		}
 		else if ( this.state.mode === 'zoom' ) {
-			this.zoomCtx.clearRect( 0, 0, this.zoom.width, this.zoom.height );
-			this.zoomCtx.drawImage( this.canvas, x, y-50, 200, 100, 0, 0, 400, 200 );
+			const { width, height } = this.zoom;
+			let sw = width / 2.0;
+			let sh = height / 2.0;
+			this.zoomCtx.clearRect( 0, 0, width, height );
+
+			let dw = width;
+			let dh = height;
+			let sx = x - (sw/2);
+			let sy = y - (sh/2);
+			let dx = 0;
+			let dy = 0;
+			if ( sx < 0 ) {
+				dx -= sx;
+				sx = 0;
+				dw += ( dw / sw ) * sx;
+				sw += sx;
+			}
+			if ( sy < 0 ) {
+				dy -= sy;
+				sy = 0;
+				dh += ( dh / sh ) * sy;
+				sh += sy;
+			}
+			this.zoomCtx.drawImage( this.canvas, sx, sy, sw, sh, dx, dy, dw, dh );
 			this.zoom.style.display = 'block';
-			this.zoom.style.left = `${x+this.leftMargin}px`;
-			this.zoom.style.top = `${y - 100}px`;
+			this.zoom.style.left = `${x-sw+this.leftMargin}px`;
+			this.zoom.style.top = `${y-sh}px`;
 		}
 		const action = {
 			id: this.props.id,
@@ -2167,10 +2212,13 @@ class Sketchpad extends Component {
 		/>;
 		const mangnifyingGlass = <canvas
 			className="sketchpad-magnifying-glass"
+			width={this.state.canvasWidth/4.0}
+			height={this.state.canvasHeight/4.0}
 			ref={( canvas ) => {
 				if ( canvas ) {
 					this.zoom = canvas;
 					this.zoomCtx = canvas.getContext( '2d' );
+					this.zoomCtx.imageSmoothingQuality = 'high';
 				}
 			}}
 		/>;
@@ -2198,7 +2246,10 @@ class Sketchpad extends Component {
 						{this.renderSaveButtons()}
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</div>
-					<div id="canvas-wrapper" style={{ width: this.state.canvasWidth, height: this.state.canvasHeight, overflow: 'auto', position: 'relative' }}>
+					<div id="canvas-wrapper"
+						style={{ width: this.state.canvasWidth, height: this.state.canvasHeight, overflow: 'auto', position: 'relative' }}
+						ref={( div ) => { this.canvasWrapper = div; }}
+					>
 						{this.renderHTMLOverlays()}
 						{canvas}
 						{mangnifyingGlass}

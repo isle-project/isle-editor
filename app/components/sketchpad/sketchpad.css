@@ -95,8 +95,6 @@
 	pointer-events: none;
 	position: absolute;
 	border: 1px solid black;
-	width: 400px;
-	height: 200px;
 	border-radius: 3%;
 	display: none;
 	background: white;
