@@ -86,15 +86,13 @@ const debug = logger( 'isle:data-explorer' );
 *
 * @private
 * @param {Array} filters - data subset filters
+* @returns {string} filter display string
 */
 function formatFilters( filters ) {
-	if ( !filters ) {
-		return '';
-	}
-	let out = 'Restricted Dataset: ';
+	let out = 'Restricted Dataset:\n';
 	for ( let i = 0; i < filters.length; i++ ) {
 		const filter = filters[ i ];
-		out += filter.id+': '+ JSON.stringify( filter.value ) + ' ';
+		out += filter.id+': '+ JSON.stringify( filter.value ) + '\n';
 	}
 	return out;
 }
@@ -967,9 +965,9 @@ class DataExplorer extends Component {
 										Restore original dataset
 									</Button>
 								</OverlayTrigger> : null }
-								<p className="data-explorer-subset-filter-display">
+								{ this.state.subsetFilters ? <pre className="data-explorer-subset-filter-display">
 									{formatFilters( this.state.subsetFilters )}
-								</p>
+								</pre> : null }
 						</div>
 						{this.props.distributions.map( ( e, i ) => {
 							let content = null;
