@@ -217,7 +217,7 @@
     "babel-polyfill": "^6.26.0",
     "codecov": "^3.0.2",
     "concurrently": "^4.0.0",
-    "del": "^3.0.0",
+    "del": "^4.0.0",
     "doctrine": "^3.0.0",
     "electron": "4.0.6",
     "electron-packager": "13.1.0",
