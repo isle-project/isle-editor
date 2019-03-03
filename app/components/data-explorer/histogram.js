@@ -226,7 +226,7 @@ class Histogram extends Component {
 		const output = {
 			variable: this.state.variable,
 			type: 'Chart',
-			value: <Plotly editable id={plotId} fit data={config.data} layout={config.layout} onShare={() => {
+			value: <Plotly editable draggable id={plotId} fit data={config.data} layout={config.layout} onShare={() => {
 				this.props.session.addNotification({
 					title: 'Plot shared.',
 					message: 'You have successfully shared your plot.',
