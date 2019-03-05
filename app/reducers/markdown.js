@@ -26,6 +26,7 @@ if ( isArray( preamble ) ) {
 const initialState = {
 	markdown: config.get( 'mostRecentFileData' ) || template,
 	preamble: preambleObject,
+	preambleText: preamble,
 	isScrolling: true,
 	hideToolbar: false,
 	filePath: config.get( 'mostRecentFilePath' ),
@@ -63,7 +64,8 @@ export default function markdown( state = initialState, action ) {
 		});
 	case types.PREAMBLE_CHANGED:
 		return Object.assign({}, state, {
-			preamble: action.payload.preamble
+			preamble: action.payload.preamble,
+			preambleText: action.payload.preambleText
 		});
 	case types.ROLE_CHANGED:
 		return Object.assign({}, state, {

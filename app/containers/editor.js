@@ -175,8 +175,7 @@ class App extends Component {
 			}
 		}
 		this.state = {
-			splitPos: parseInt( localStorage.getItem( 'splitPos' ), 10 ),
-			preamble: props.preamble
+			splitPos: parseInt( localStorage.getItem( 'splitPos' ), 10 )
 		};
 	}
 
@@ -231,6 +230,7 @@ class App extends Component {
 		let preambleHasChanged = this.checkPreambleChange( preamble );
 		debug( 'Check whether preamble has changed: '+preambleHasChanged );
 		if ( preambleHasChanged ) {
+			console.log( preambleHasChanged );
 			try {
 				const newPreamble = yaml.load( preamble );
 				if ( !isObject( newPreamble ) ) {
@@ -262,14 +262,15 @@ class App extends Component {
 				} catch ( err ) {
 					return this.props.encounteredError( err );
 				}
-				this.props.updatePreamble( newPreamble );
+
 				if ( this.props.error ) {
 					this.props.resetError();
 				}
 				if ( preambleHasChanged ) {
 					debug( 'Update preamble...' );
-					this.setState({
-						preamble: newPreamble
+					this.props.updatePreamble({
+						preamble: newPreamble,
+						preambleText: preamble
 					});
 				}
 			} catch ( err ) {
@@ -279,7 +280,7 @@ class App extends Component {
 	}
 
 	checkPreambleChange( preamble ) {
-		if ( preamble !== this.state.preamble ) {
+		if ( preamble !== this.props.preambleText ) {
 			debug( 'Preamble has changed.' );
 			return true;
 		}
@@ -334,7 +335,7 @@ class App extends Component {
 							onChange={this.onChange}
 							name="monaco_editor"
 							fontSize={this.props.fontSize}
-							preamble={this.state.preamble}
+							preamble={this.props.preamble}
 							splitPos={this.state.splitPos}
 							lintErrors={this.props.lintErrors}
 						/>
@@ -342,11 +343,11 @@ class App extends Component {
 					<SplitPanel ref={( elem ) => { this.preview = elem; }} overflow="none" >
 						{ error ?
 							<ErrorMessage msg={error.message} code={markdown} /> :
-							<ErrorBoundary code={markdown} preamble={this.state.preamble} >
+							<ErrorBoundary code={markdown} preamble={this.props.preamble} >
 								<Preview
 									code={markdown}
 									filePath={filePath}
-									preamble={this.state.preamble}
+									preamble={this.props.preamble}
 									currentRole={currentRole}
 									currentMode={currentMode}
 									onCode={this.lintCode}
@@ -388,6 +389,7 @@ App.propTypes = {
 	lintErrors: PropTypes.array.isRequired,
 	markdown: PropTypes.string.isRequired,
 	preamble: PropTypes.object.isRequired,
+	preambleText: PropTypes.string.isRequired,
 	resetError: PropTypes.func.isRequired,
 	saveLintErrors: PropTypes.func.isRequired,
 	updatePreamble: PropTypes.func.isRequired

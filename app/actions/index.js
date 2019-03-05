@@ -68,11 +68,12 @@ export function toggleToolbar() {
 	};
 }
 
-export function updatePreamble( preamble ) {
+export function updatePreamble({ preamble, preambleText }) {
 	return {
 		type: types.PREAMBLE_CHANGED,
 		payload: {
-			preamble
+			preamble,
+			preambleText
 		}
 	};
 }
