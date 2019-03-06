@@ -41,6 +41,7 @@
 		"LearnCrossValidation",
 		"LearnProportionTest",
 		"LearnMeanTest",
+		"LearnBinomialDistribution",
 		"LearnExponentialDistribution",
 		"LearnNormalDistribution",
 		"LearnTDistribution",
