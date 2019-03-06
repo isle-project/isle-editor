@@ -231,11 +231,11 @@ class Sketchpad extends Component {
 					});
 				}
 				else if ( type === 'member_action' ) {
-					debug( 'Received member action...' );
 					if ( action.id !== this.props.id ) {
 						return;
 					}
 					const type = action.type;
+					debug( 'Received member action of type: '+type );
 					if ( action.email === session.user.email ) {
 						if ( type === 'SKETCHPAD_MOVE_POINTER' ) {
 							let { x, y, sessionID } = JSON.parse( action.value );
@@ -289,7 +289,7 @@ class Sketchpad extends Component {
 						}
 					}
 					// Owners should only process actions from selected users:
-					else if ( session.isOwner() ) {
+					if ( session.isOwner() ) {
 						if (
 							this.state.receiveFrom.name !== action.name &&
 							!action.owner &&

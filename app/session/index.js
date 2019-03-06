@@ -545,6 +545,7 @@ class Session {
 	*/
 	removeUserRights = () => {
 		userRights = null;
+		this.userRightsQuestionPosed = false;
 	}
 
 	/**
