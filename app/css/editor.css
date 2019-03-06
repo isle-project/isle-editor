@@ -6,6 +6,12 @@
 	height: 100% !important;
 }
 
+.welcome-screen {
+	background: white;
+	height: 100%;
+	width: 100%;
+}
+
 .sk-cube-grid {
 	position: absolute;
 	left: 0;
