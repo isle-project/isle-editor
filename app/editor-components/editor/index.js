@@ -3,26 +3,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { resolve, join } from 'path';
+import { ContextMenuTrigger } from 'react-contextmenu';
 import logger from 'debug';
 import MonacoEditor from 'react-monaco-editor';
-import { ContextMenu, MenuItem, ContextMenuTrigger, SubMenu } from 'react-contextmenu';
 import noop from '@stdlib/utils/noop';
-import groupBy from '@stdlib/utils/group-by';
 import objectKeys from '@stdlib/utils/keys';
-import contains from '@stdlib/assert/contains';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import startsWith from '@stdlib/string/starts-with';
 import replace from '@stdlib/string/replace';
-import trim from '@stdlib/string/trim';
 import readFile from '@stdlib/fs/read-file';
-import AnimationHelp from 'editor-components/animation-help';
-import { componentSnippets } from 'snippets';
-import ComponentConfigurator from './component_configurator.js';
-import COMPONENTS from './components.json';
-import provideAttributeFactory from './provide_attribute_factory.js';
-import providePreambleFactory from './provide_preamble_factory.js';
-import provideRequireFactory from './provide_require_factory.js';
-import provideSnippetFactory from './provide_snippet_factory.js';
+import Loadable from 'components/loadable';
+const ComponentConfigurator = Loadable( () => import( './component_configurator.js' ) );
+const EditorContextMenu = Loadable( () => import( './context_menu.js' ) );
 import './editor.css';
 
 
@@ -36,7 +28,6 @@ const RE_ANSI = /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)
 const RE_EMPTY_SPANS = /<span \/>/g;
 const RE_EXPORT = /export = [a-z0-9]+/;
 const RE_FRAGMENT = /<\/?React.Fragment>/g;
-const snippets = groupBy( componentSnippets, groupIndicator );
 const MONACO_OPTIONS = {
 	contextmenu: false,
 	minimap: {
@@ -60,44 +51,6 @@ const MONACO_OPTIONS = {
 };
 
 
-// FUNCTIONS //
-
-function groupIndicator( v ) {
-	v.name = trim( v.name );
-	if ( contains( COMPONENTS.R, v.name ) ) {
-		return 'rComponents';
-	}
-	if ( contains( COMPONENTS.PRESENTATION, v.name ) ) {
-		return 'presentation';
-	}
-	if ( contains( COMPONENTS.PLOTS, v.name ) ) {
-		return 'plots';
-	}
-	if ( contains( COMPONENTS.VICTORY, v.name ) ) {
-		return 'victory';
-	}
-	if ( contains( COMPONENTS.LEARNING, v.name ) ) {
-		return 'learning';
-	}
-	if ( contains( COMPONENTS.SURVEY, v.name ) ) {
-		return 'surveys';
-	}
-	if ( contains( COMPONENTS.INPUT, v.name ) ) {
-		return 'inputs';
-	}
-	if ( contains( COMPONENTS.QUESTION, v.name ) ) {
-		return 'questions';
-	}
-	if ( contains( COMPONENTS.DISPLAY, v.name ) ) {
-		return 'displayComponents';
-	}
-	if ( contains( COMPONENTS.MAIN, v.name ) ) {
-		return 'main';
-	}
-	return 'general';
-}
-
-
 // MAIN //
 
 class Editor extends Component {
@@ -111,8 +64,13 @@ class Editor extends Component {
 		};
 	}
 
-	componentDidMount() {
+	async componentDidMount() {
 		window.addEventListener( 'resize', this.updateDimensions );
+
+		const { default: provideAttributeFactory } = await import( './provide_attribute_factory.js' );
+		const { default: providePreambleFactory } = await import( './provide_preamble_factory.js' );
+		const { default: provideRequireFactory } = await import( './provide_require_factory.js' );
+		const { default: provideSnippetFactory } = await import( './provide_snippet_factory.js' );
 
 		this.monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
 			noSemanticValidation: true,
@@ -222,21 +180,14 @@ class Editor extends Component {
 	}
 
 	toggleComponentConfigurator = ( data ) => {
-		this.customClick = false;
 		this.setState({
 			selectedComponent: data,
 			showComponentConfigurator: !this.state.showComponentConfigurator
 		});
 	}
 
-	toggleAnimationHelp = () => {
-		this.setState({
-			showAnimationHelp: !this.state.showAnimationHelp
-		});
-	}
-
-	handleContextMenuClick = ( evt, data ) => {
-		if ( !this.customClick ) {
+	handleContextMenuClick = ( customClick, data ) => {
+		if ( !customClick ) {
 			const controller = this.editor.getContribution( 'snippetController2' );
 			controller.insert( data.value );
 			this.editor.focus();
@@ -263,29 +214,6 @@ class Editor extends Component {
 		});
 	}
 
-	handleCustomInsertClick = ( evt, data ) => {
-		this.customClick = true;
-		// Propagate to `handleContextMenuClick`...
-	}
-
-	renderMenuItem = ( obj, idx ) => {
-		return ( <MenuItem
-			key={idx}
-			data={obj}
-			onClick={this.handleContextMenuClick}
-		>
-			{obj.name}
-			<div
-				className="fa fa-cogs"
-				style={{
-					float: 'right'
-				}}
-				onClick={this.handleCustomInsertClick}
-			/>
-		</MenuItem>
-		);
-	}
-
 	onEditorMount = ( editor, monaco ) => {
 		this.editor = editor;
 		this.monaco = monaco;
@@ -306,48 +234,15 @@ class Editor extends Component {
 						editorDidMount={this.onEditorMount}
 					/>
 				</ContextMenuTrigger>
-				<ContextMenu id="editorWindow">
-					{snippets.main.map( this.renderMenuItem )}
-					<SubMenu title="Display">
-						{snippets.displayComponents.map( this.renderMenuItem )}
-					</SubMenu>
-					<SubMenu title="Inputs">
-						{snippets.inputs.map( this.renderMenuItem )}
-					</SubMenu>
-					<SubMenu title="Questions">
-						{snippets.questions.map( this.renderMenuItem )}
-					</SubMenu>
-					<SubMenu title="Surveys">
-						{snippets.surveys.map( this.renderMenuItem )}
-					</SubMenu>
-					<SubMenu title="R Components">
-						{snippets.rComponents.map( this.renderMenuItem )}
-					</SubMenu>
-					<SubMenu title="Learning Components">
-						{snippets.learning.map( this.renderMenuItem )}
-					</SubMenu>
-					<SubMenu title="General">
-						{snippets.general.map( this.renderMenuItem )}
-					</SubMenu>
-					<SubMenu title="Presentation">
-						{snippets.presentation.map( this.renderMenuItem )}
-					</SubMenu>
-					<SubMenu title="Plots">
-						{snippets.plots.map( this.renderMenuItem )}
-						<SubMenu title="Victory Charts">
-							{snippets.victory.map( this.renderMenuItem )}
-						</SubMenu>
-					</SubMenu>
-					<MenuItem onClick={this.toggleAnimationHelp}>Animation Help
-					</MenuItem>
-				</ContextMenu>
-				<ComponentConfigurator
+				<EditorContextMenu
+					onContextMenuClick={this.handleContextMenuClick}
+				/>
+				{ this.state.showComponentConfigurator ? <ComponentConfigurator
 					show={this.state.showComponentConfigurator}
 					onHide={this.toggleComponentConfigurator}
 					onInsert={this.handleComponentInsertion}
 					component={this.state.selectedComponent}
-				/>
-				{ this.state.showAnimationHelp ? <AnimationHelp onHide={this.toggleAnimationHelp} /> : null }
+				/> : null }
 			</div>
 		);
 	}
