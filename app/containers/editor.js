@@ -8,7 +8,7 @@ import { Linter } from 'eslint';
 import SplitPane from 'react-split-pane';
 import logger from 'debug';
 import SplitPanel from 'editor-components/split-panel';
-import Loadable from 'editor-components/loadable';
+import Loadable from 'components/loadable';
 import Header from 'editor-components/header';
 import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError, saveLintErrors } from 'actions';
 const ErrorBoundary = Loadable( () => import( 'editor-components/error-boundary' ) );

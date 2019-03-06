@@ -3,21 +3,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import NotificationSystem from 'react-notification-system';
-import Loadable from 'editor-components/loadable';
-import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import ListGroup from 'react-bootstrap/ListGroup';
-import ListGroupItem from 'react-bootstrap/ListGroupItem';
-import Modal from 'react-bootstrap/Modal';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavItem from 'react-bootstrap/NavItem';
-import Row from 'react-bootstrap/Row';
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
+import Loadable from 'components/loadable';
 import EnlargeableGrid from 'components/enlargeable-grid';
 import TeX from 'components/tex';
 import Dashboard from 'components/dashboard';
@@ -153,20 +139,20 @@ const SCOPE = {
 	WordCloud: Loadable( () => import( 'components/word-cloud' ) ),
 
 	// REACT BOOTSTRAP //
-	Alert,
-	Button,
-	Card,
-	Col,
-	Form,
-	ListGroup,
-	ListGroupItem,
-	Modal,
-	Nav,
-	Navbar,
-	NavItem,
-	Row,
-	Tab,
-	Tabs,
+	Alert: Loadable( () => import( 'react-bootstrap/Alert' ) ),
+	Button: Loadable( () => import( 'react-bootstrap/Button' ) ),
+	Card: Loadable( () => import( 'react-bootstrap/Card' ) ),
+	Col: Loadable( () => import( 'react-bootstrap/Col' ) ),
+	Form: Loadable( () => import( 'react-bootstrap/Form' ) ),
+	ListGroup: Loadable( () => import( 'react-bootstrap/ListGroup' ) ),
+	ListGroupItem: Loadable( () => import( 'react-bootstrap/ListGroupItem' ) ),
+	Modal: Loadable( () => import( 'react-bootstrap/Modal' ) ),
+	Nav: Loadable( () => import( 'react-bootstrap/Nav' ) ),
+	Navbar: Loadable( () => import( 'react-bootstrap/Navbar' ) ),
+	NavItem: Loadable( () => import( 'react-bootstrap/NavItem' ) ),
+	Row: Loadable( () => import( 'react-bootstrap/Row' ) ),
+	Tab: Loadable( () => import( 'react-bootstrap/Tab' ) ),
+	Tabs: Loadable( () => import( 'react-bootstrap/Tabs' ) ),
 
 	// VICTORY //
 	VictoryAnimation: Loadable( () => import( 'components/victory/animation' ) ),
