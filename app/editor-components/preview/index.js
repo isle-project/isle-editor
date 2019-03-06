@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import NotificationSystem from 'react-notification-system';
 import logger from 'debug';
 import { dirname, resolve, extname } from 'path';
-import fs from 'fs';
+import { readFileSync } from 'fs';
 import yaml from 'js-yaml';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import isRelativePath from '@stdlib/assert/is-relative-path';
@@ -67,10 +67,10 @@ class Preview extends Component {
 					if ( extname( instructorNotes ) === '.md' ) {
 						if ( isRelativePath( instructorNotes ) ) {
 							const fPath = resolve( dirname( props.filePath ), instructorNotes );
-							instructorNotes = fs.readFileSync( fPath );
+							instructorNotes = readFileSync( fPath );
 							instructorNotes = instructorNotes.toString();
 						} else if ( isAbsolutePath( instructorNotes ) ) {
-							instructorNotes = fs.readFileSync( instructorNotes );
+							instructorNotes = readFileSync( instructorNotes );
 							instructorNotes = instructorNotes.toString();
 						}
 						props.preamble.instructorNotes = instructorNotes;
@@ -162,10 +162,10 @@ class Preview extends Component {
 					if ( instructorNotes && extname( instructorNotes ) === '.md' ) {
 						if ( isRelativePath( instructorNotes ) ) {
 							const fPath = resolve( dirname(this.props.filePath), instructorNotes );
-							instructorNotes = fs.readFileSync( fPath );
+							instructorNotes = readFileSync( fPath );
 							instructorNotes = instructorNotes.toString();
 						} else if ( isAbsolutePath( instructorNotes ) ) {
-							instructorNotes = fs.readFileSync( instructorNotes );
+							instructorNotes = readFileSync( instructorNotes );
 							instructorNotes = instructorNotes.toString();
 						}
 						newPreamble.instructorNotes = instructorNotes;
@@ -259,15 +259,12 @@ class Preview extends Component {
 }
 
 
-// DEFAULT PROPS //
+// PROPERTIES //
 
 Preview.defaultProps = {
 	code: '',
 	onCode() {}
 };
-
-
-// PROPERTY TYPES //
 
 Preview.propTypes = {
 	code: PropTypes.string,

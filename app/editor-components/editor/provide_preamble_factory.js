@@ -1,7 +1,7 @@
 // MODULES //
 
-import PREAMBLE_FIELDS from './preamble_fields.json';
 import contains from '@stdlib/assert/contains';
+import PREAMBLE_FIELDS from './preamble_fields.json';
 import NAMESPACE from './stdlib/namespace.json';
 
 
