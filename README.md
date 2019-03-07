@@ -125,10 +125,10 @@ The following icons are used under a Creative Commons CCBY license.
 [win32-ia32]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-win32-ia32.zip
 [win32-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-win32-x64.zip
 
-[dependencies-image]: https://img.shields.io/david/isle-project/isle-editor/master.svg
+[dependencies-image]: https://img.shields.io/david/isle-project/isle-editor.svg
 [dependencies-url]: https://david-dm.org/isle-project/isle-editor/master
 
-[dev-dependencies-image]: https://img.shields.io/david/dev/isle-project/isle-editor/master.svg
+[dev-dependencies-image]: https://img.shields.io/david/dev/isle-project/isle-editor.svg
 [dev-dependencies-url]: https://david-dm.org/isle-project/isle-editor/master?type=dev
 
 [docs]: http://isledocs.com/
