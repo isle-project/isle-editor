@@ -26,6 +26,12 @@ class Search extends Component {
 		});
 	}
 
+	handleKeyPress = ( event ) => {
+		if ( event.charCode === 13 ) {
+			this.handleSubmit( event );
+		}
+	}
+
 	handleSubmit = ( event ) => {
 		// Need to get it back to the parent
 		this.props.onClick( this.state.search );
@@ -44,6 +50,7 @@ class Search extends Component {
 							type="text"
 							placeholder="Enter text..."
 							onChange={this.handleSearch}
+							onKeyPress={this.handleKeyPress}
 						/>
 						<Button
 							onClick={this.handleSubmit}
