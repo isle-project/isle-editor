@@ -97,20 +97,27 @@ class FullscreenActionDisplay extends Component {
 			const newFilter = [];
 			if ( !this.state.exact ) {
 				for ( let i = 0; i < this.props.actions.length; i++ ) {
-					let actionVal = String( this.props.actions[i].value );
-					actionVal = lowercase( actionVal );
-					let comparisonValue = String( value );
-					comparisonValue = lowercase( comparisonValue );
-					if ( contains( actionVal, comparisonValue ) ) {
-						newFilter.push( this.props.actions[i] );
+					const action = this.props.actions[ i ];
+					const actionVal = lowercase( String( action.value ) );
+					const comparisonValue = lowercase( String( value ) );
+					if (
+						contains( actionVal, comparisonValue ) ||
+						contains( action.email, comparisonValue ) ||
+						contains( action.name, comparisonValue )
+					) {
+						newFilter.push( this.props.actions[ i ] );
 					}
 				}
 			} else {
-				const expr = new RegExp( '[^\\w]' + value + '[^\\w]', 'i' );
+				const expr = new RegExp( '(?:^|[^\\w])' + value + '(?:$|[^\\w])', 'i' );
 				for ( let i = 0; i < this.props.actions.length; i++ ) {
-					let padded = ' ' + this.props.actions[i].value + ' '; // For padding the string with whitespace
-					if ( expr.test( padded ) ) {
-						newFilter.push( this.props.actions[i] );
+					const action = this.props.actions[ i ];
+					if (
+						expr.test( action.value ) ||
+						expr.test( action.email ) ||
+						expr.test( action.name )
+					) {
+						newFilter.push( action );
 					}
 				}
 			}
@@ -431,10 +438,11 @@ class FullscreenActionDisplay extends Component {
 			style.background = rgba;
 			style.border = '1px solid '+col;
 		}
+		const date = new Date( elem.absoluteTime );
 		return ( <ListGroupItem key={key} style={style}>
 			{ this.props.showExtended ?
 				<span style={{ textAlign: 'left' }}>
-					<b>{name} ({new Date( elem.absoluteTime ).toLocaleTimeString()}):</b>
+					<b>{name} ({elem.email}) ({date.toLocaleTimeString() + ' ' + date.toLocaleDateString()}):</b>
 					<br />
 					{higlighter}
 				</span> :
