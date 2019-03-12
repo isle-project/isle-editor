@@ -49,6 +49,7 @@ const SCOPE = {
 	FreeTextSurvey: Loadable( () => import( 'components/free-text-survey' ) ),
 	FreeTextQuestion: Loadable( () => import( 'components/free-text-question' ) ),
 	Gate: Loadable( () => import( 'components/gate' ) ),
+	Generator: Loadable( () => import( 'components/generator' ) ),
 	Container: Loadable( () => import( 'components/container' ) ),
 	IFrame: Loadable( () => import( 'components/iframe' ) ),
 	Joyride: Loadable( () => import( 'components/joyride' ) ),

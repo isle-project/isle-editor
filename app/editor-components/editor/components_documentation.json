@@ -555,7 +555,7 @@
         "default": false
       }
     ],
-    "description": "This component is used by students to briefly summarize data as it is presented and perform various statistical tests."
+    "description": "Generates a string displaying the filters for the current active data subset."
   },
   "DataTable": {
     "props": [
@@ -585,6 +585,11 @@
         "name": "filters",
         "type": "array",
         "default": []
+      },
+      {
+        "name": "onFilteredChange",
+        "type": "function",
+        "default": "onFilteredChange() {}"
       },
       {
         "name": "showRemove",
@@ -1013,6 +1018,20 @@
     ],
     "description": "An ISLE component that allows to display its children only to reserved audiences."
   },
+  "Generator": {
+    "props": [
+      {
+        "name": "buttonLabel",
+        "type": "string",
+        "default": "Generate"
+      },
+      {
+        "name": "onGenerate",
+        "type": "function (required)"
+      }
+    ],
+    "description": "A component for generating other components (e.g., automatically generated questions)."
+  },
   "IFrame": {
     "props": [
       {
@@ -1135,6 +1154,24 @@
         "type": "function",
         "description": "callback function to be invoked when number input is changed",
         "default": "onChange() {}"
+      },
+      {
+        "name": "onKeyDown",
+        "type": "function",
+        "description": "callback function to be invoked when any key is pressed down",
+        "default": "onKeyDown() {}"
+      },
+      {
+        "name": "onKeyPress",
+        "type": "function",
+        "description": "callback function to be invoked when any key is entered",
+        "default": "onKeyPress() {}"
+      },
+      {
+        "name": "onKeyUp",
+        "type": "function",
+        "description": "callback function to be invoked when key is released",
+        "default": "onKeyUp() {}"
       },
       {
         "name": "step",
@@ -1418,6 +1455,12 @@
   "TextInput": {
     "props": [
       {
+        "name": "bind",
+        "type": "string",
+        "description": "name of global variable for the number to be assigned to",
+        "default": null
+      },
+      {
         "name": "defaultValue",
         "type": "string",
         "description": "A value indicating the default value of the input at start",
@@ -1440,6 +1483,24 @@
         "type": "function",
         "description": "A function to be called when a text value is changed",
         "default": "onChange(){}"
+      },
+      {
+        "name": "onKeyDown",
+        "type": "function",
+        "description": "callback function to be invoked when any key is pressed down",
+        "default": "onKeyDown() {}"
+      },
+      {
+        "name": "onKeyPress",
+        "type": "function",
+        "description": "callback function to be invoked when any key is entered",
+        "default": "onKeyPress() {}"
+      },
+      {
+        "name": "onKeyUp",
+        "type": "function",
+        "description": "callback function to be invoked when key is released",
+        "default": "onKeyUp() {}"
       },
       {
         "name": "placeholder",
@@ -1777,6 +1838,23 @@
   "LearnDiceThrowing": {
     "props": [],
     "description": "A learning component illustrating the law of large numbers using dice throwing."
+  },
+  "LearnBinomialDistribution": {
+    "props": [
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a binomial distribution."
   },
   "LearnExponentialDistribution": {
     "props": [
@@ -2869,7 +2947,7 @@
         "name": "draggable",
         "type": "boolean",
         "description": "controls whether the plot should be draggable",
-        "default": true
+        "default": false
       },
       {
         "name": "editable",
@@ -3070,6 +3148,11 @@
   "Queue": {
     "props": [
       {
+        "name": "draggable",
+        "type": "boolean",
+        "default": true
+      },
+      {
         "name": "show",
         "type": "boolean",
         "default": true
@@ -3077,7 +3160,7 @@
       {
         "name": "onHide",
         "type": "function",
-        "default": "function noop() {\n\t// Empty function...\n}"
+        "default": null
       },
       {
         "name": "onQueueSize",
@@ -4208,7 +4291,7 @@
         "default": "onTimeUp() {}"
       }
     ],
-    "description": "Displays a timer that will trigger a predefined callback when the time is up. An example use case is the timing of quizzes."
+    "description": "Formats time in the format `minutes:seconds`."
   },
   "Tooltip": {
     "props": [

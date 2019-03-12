@@ -51,6 +51,7 @@
 	"FreeTextQuestion": "components/free-text-question",
 	"FreeTextSurvey": "components/free-text-survey",
 	"Gate": "components/gate",
+	"Generator": "components/generator",
 	"Input": "components/input",
 	"IFrame": "components/iframe",
 	"JSShell": "components/js-shell",
