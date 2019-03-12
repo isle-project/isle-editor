@@ -129,9 +129,8 @@ class NumberInput extends Input {
 
 	finishChange = ( event ) => {
 		const { max, min, step } = this.props;
-		console.log( 'Finished change...' );
+		debug( 'Finished change...' );
 		let value = event.target.value;
-		console.log( value );
 		if ( contains( value, '/' ) ) {
 			debug( 'Encountered a fraction...' );
 			let vals = value.split( '/' );
@@ -160,7 +159,6 @@ class NumberInput extends Input {
 		) {
 			value = value - value % this.props.step;
 		}
-		console.log( "VALUE" );
 		this.props.onChange( value );
 		this.props.onBlur( value );
 		if ( value !== this.state.value ) {
