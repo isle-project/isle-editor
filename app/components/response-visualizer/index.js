@@ -83,17 +83,18 @@ class ResponseVisualizer extends Component {
 			period: null,
 			selectedCohort: null
 		};
+
+		if ( props.info && props.id ) {
+			// Register response visualizer in session:
+			context.responseVisualizers[ props.id ] = {
+				type: props.info,
+				ref: this
+			};
+		}
 	}
 
 	componentDidMount() {
 		const session = this.context;
-		if ( this.props.info && this.props.id ) {
-			// Register response visualizer in session:
-			session.responseVisualizers[ this.props.id ] = {
-				type: this.props.info,
-				ref: this
-			};
-		}
 		this.addSessionActions();
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
