@@ -9,6 +9,7 @@ import logger from 'debug';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import roundn from '@stdlib/math/base/special/roundn';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import ChatButton from 'components/chat-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import NumberInput from 'components/input/number';
@@ -76,17 +77,29 @@ class NumberQuestion extends Component {
 	}
 
 	/*
-	* Event handler invoked when text area value changes. Updates `value` and invokes `onChange` callback with the new value as its first argument
+	* Event handler invoked when input field value changes. Updates `value` and invokes `onChange` callback with the new value as its first argument
 	*/
 	handleChange = ( newValue ) => {
+		debug( 'Handle change of input field...' );
 		this.setState({ value: newValue });
 		this.props.onChange( newValue );
+	}
+
+	handleKeyPress = ( event ) => {
+		if ( event.charCode === 13 ) {
+			// Manually trigger blur event since not happening when pressing ENTER:
+			if ( document && document.activeElement ) {
+				debug( 'Trigger blur event...' );
+				document.activeElement.blur();
+			}
+			setTimeout( this.submitHandler, 50 );
+		}
 	}
 
 	sendSubmitNotification = () => {
 		const session = this.context;
 		const { digits, solution } = this.props;
-		if ( solution ) {
+		if ( !isUndefinedOrNull( solution ) ) {
 			const val = parseFloat( this.state.value );
 			let correct;
 			if ( digits === null ) {
@@ -125,7 +138,7 @@ class NumberQuestion extends Component {
 		}
 	}
 
-	submitHandler = ( event ) => {
+	submitHandler = () => {
 		const session = this.context;
 		if ( !this.props.disableSubmitNotification ) {
 			this.sendSubmitNotification();
@@ -176,8 +189,9 @@ class NumberQuestion extends Component {
 							min={this.props.min}
 							max={this.props.max}
 							numbersOnly={false}
+							onKeyPress={this.handleKeyPress}
 						/>
-						{ this.state.submitted && this.props.solution && this.props.provideFeedback ?
+						{ this.state.submitted && solutionPresent && this.props.provideFeedback ?
 							<span>
 								<span> | </span>
 								<NumberInput

@@ -22,6 +22,9 @@ import './text.css';
 * @property {string} value - text value (for controlled component)
 * @property {string} bind - name of global variable for the number to be assigned to
 * @property {string} placeholder - A string indicating the value to be displayed before an initial choice is made
+* @property {Function} onKeyPress - callback function to be invoked when any key is entered
+* @property {Function} onKeyDown - callback function to be invoked when any key is pressed down
+* @property {Function} onKeyUp - callback function to be invoked when key is released
 */
 class TextInput extends Input {
 	constructor( props, context ) {
@@ -96,6 +99,9 @@ class TextInput extends Input {
 							width: this.props.width
 						}}
 						onChange={this.handleChange}
+						onKeyPress={this.props.onKeyPress}
+						onKeyDown={this.props.onKeyDown}
+						onKeyUp={this.props.onKeyUp}
 					/>
 					{ this.props.description ?
 						<span> ({this.props.description}) </span> :
@@ -126,6 +132,9 @@ class TextInput extends Input {
 						width: this.props.width
 					}}
 					onChange={this.handleChange}
+					onKeyPress={this.props.onKeyPress}
+					onKeyDown={this.props.onKeyDown}
+					onKeyUp={this.props.onKeyUp}
 				/>
 			</div>
 		);
@@ -141,6 +150,9 @@ TextInput.defaultProps = {
 	legend: '',
 	width: 80,
 	onChange(){},
+	onKeyDown() {},
+	onKeyPress() {},
+	onKeyUp() {},
 	inline: false,
 	placeholder: 'Enter text'
 };
@@ -154,6 +166,9 @@ TextInput.propTypes = {
 	]),
 	inline: PropTypes.bool,
 	onChange: PropTypes.func,
+	onKeyDown: PropTypes.func,
+	onKeyPress: PropTypes.func,
+	onKeyUp: PropTypes.func,
 	placeholder: PropTypes.string,
 	width: PropTypes.number
 };

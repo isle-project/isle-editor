@@ -55,6 +55,9 @@ function createTooltip( props ) {
 * @property {boolean} numbersOnly - controls whether only numbers are accepted
 * @property {Function} onBlur - callback function to be invoked when using a blur method
 * @property {Function} onChange - callback function to be invoked when number input is changed
+* @property {Function} onKeyPress - callback function to be invoked when any key is entered
+* @property {Function} onKeyDown - callback function to be invoked when any key is pressed down
+* @property {Function} onKeyUp - callback function to be invoked when key is released
 */
 class NumberInput extends Input {
 	constructor( props, context ) {
@@ -126,7 +129,9 @@ class NumberInput extends Input {
 
 	finishChange = ( event ) => {
 		const { max, min, step } = this.props;
+		console.log( 'Finished change...' );
 		let value = event.target.value;
+		console.log( value );
 		if ( contains( value, '/' ) ) {
 			debug( 'Encountered a fraction...' );
 			let vals = value.split( '/' );
@@ -155,12 +160,13 @@ class NumberInput extends Input {
 		) {
 			value = value - value % this.props.step;
 		}
+		console.log( "VALUE" );
+		this.props.onChange( value );
+		this.props.onBlur( value );
 		if ( value !== this.state.value ) {
 			this.setState({
 				value
 			}, () => {
-				this.props.onChange( value );
-				this.props.onBlur( value );
 				if ( this.props.bind ) {
 					global.lesson.setState({
 						[ this.props.bind ]: value
@@ -195,6 +201,9 @@ class NumberInput extends Input {
 						}}
 						onChange={this.handleChange}
 						onBlur={this.finishChange}
+						onKeyPress={this.props.onKeyPress}
+						onKeyDown={this.props.onKeyDown}
+						onKeyUp={this.props.onKeyUp}
 					/>
 					{ this.props.description ?
 						<span>({this.props.description})</span> :
@@ -268,6 +277,9 @@ NumberInput.defaultProps = {
 	defaultValue: 0,
 	onBlur() {},
 	onChange() {},
+	onKeyDown() {},
+	onKeyPress() {},
+	onKeyUp() {},
 	inline: false,
 	numbersOnly: true,
 	value: null
@@ -287,6 +299,9 @@ NumberInput.propTypes = {
 	numbersOnly: PropTypes.bool,
 	onBlur: PropTypes.func,
 	onChange: PropTypes.func,
+	onKeyDown: PropTypes.func,
+	onKeyPress: PropTypes.func,
+	onKeyUp: PropTypes.func,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string

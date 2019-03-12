@@ -11,6 +11,7 @@ import NINF from '@stdlib/constants/math/float64-ninf';
 import min from '@stdlib/math/base/special/min';
 import max from '@stdlib/math/base/special/max';
 import roundn from '@stdlib/math/base/special/roundn';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import ChatButton from 'components/chat-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import NumberInput from 'components/input/number';
@@ -96,6 +97,17 @@ class RangeQuestion extends Component {
 		this.props.onChangeLower( min(newValue, this.state.upper) );
 	}
 
+	handleKeyPress = ( event ) => {
+		if ( event.charCode === 13 ) {
+			// Manually trigger blur event since not happening when pressing ENTER:
+			if ( document && document.activeElement ) {
+				debug( 'Trigger blur event...' );
+				document.activeElement.blur();
+			}
+			setTimeout( this.submitHandler, 50 );
+		}
+	}
+
 	setValue = ( type, value ) => {
 		if ( type === 'lower' || type === 'minimum' ) {
 			this.handleChangeLower( parseFloat( value ) );
@@ -107,7 +119,7 @@ class RangeQuestion extends Component {
 	submitHandler = () => {
 		const { digits, solution } = this.props;
 		const session = this.context;
-		if ( solution ) {
+		if ( !isUndefinedOrNull( solution ) ) {
 			const lowerVal = parseFloat( this.state.lower );
 			const upperVal = parseFloat( this.state.upper );
 			const upperSol = solution[1];
@@ -209,6 +221,7 @@ class RangeQuestion extends Component {
 							max={this.props.max}
 							numbersOnly={false}
 							onBlur={this.onNoClickLower}
+							onKeyPress={this.handleKeyPress}
 						/>
 						<NumberInput
 							step="any"
@@ -222,8 +235,9 @@ class RangeQuestion extends Component {
 							max={this.props.max}
 							numbersOnly={false}
 							onBlur={this.onNoClickUpper}
+							onKeyPress={this.handleKeyPress}
 						/>
-						{ this.state.submitted && this.props.solution && this.props.provideFeedback ?
+						{ this.state.submitted && solutionPresent && this.props.provideFeedback ?
 							<span>
 								<br />
 								<label>Solution:</label>
