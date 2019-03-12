@@ -42,6 +42,10 @@ function getDuration( session ) {
 	return dur;
 }
 
+function isHidden( el ) {
+	return el.offsetParent === null;
+}
+
 
 // MAIN //
 
@@ -161,7 +165,10 @@ class StatusBar extends Component {
 		});
 	}
 
-	toggleBarVisibility = () => {
+	toggleBarVisibility = ( event ) => {
+		if ( event ) {
+			event.stopPropagation();
+		}
 		const session = this.context;
 		session.togglePresentationView();
 		debug( 'Toggle visibility of statusbar...' );
@@ -277,10 +284,51 @@ class StatusBar extends Component {
 		if ( this.state.isProgressLeaving || session.isOwner() ) {
 			return;
 		}
-		this.setState({
-			showProgressBar: !this.state.showProgressBar,
-			duration: getDuration( this.context )
-		});
+		if ( !this.state.showProgressBar ) {
+			this.setState({
+				showProgressBar: true,
+				duration: getDuration( this.context )
+			});
+		} else {
+			this.progressTimeout = setTimeout(() => {
+				this.setState({
+					showProgressBar: false,
+					isProgressLeaving: false,
+					duration: getDuration( this.context )
+				});
+				this.progressTimeout = null;
+			}, 12000 );
+		}
+	}
+
+	jumpToUnfinished = ( event ) => {
+		event.stopPropagation();
+		const session = this.context;
+		const first = session.unfinished[ 0 ];
+		if ( first ) {
+			const elem = document.getElementById( first );
+			if ( isHidden( elem ) ) {
+				const clone = elem.cloneNode( true );
+				const newDiv = document.createElement( 'div' );
+				newDiv.id = 'unfinished-container';
+				clone.id = 'unfinished-elem';
+				clone.classList.add( 'focus-glow' );
+				newDiv.append( clone );
+				document.body.appendChild( newDiv );
+				setTimeout( () => {
+					const element = document.getElementById( 'unfinished-container' );
+					if ( element ) {
+						element.parentNode.removeChild( element );
+					}
+				}, 4000 );
+			} else {
+				elem.classList.add( 'focus-glow' );
+				elem.scrollIntoView();
+				setTimeout( () => {
+					elem.classList.remove( 'focus-glow' );
+				}, 4000 );
+			}
+		}
 	}
 
 	getChatPosition( idx ) {
@@ -358,18 +406,25 @@ class StatusBar extends Component {
 								</div>
 							</Tooltip>
 							{( session.hasOwner || isElectron ) ?
-								<div className="statusbar-queue" onClick={this.toggleQueue}
-									style={{
-										display: !session.config.hideQueue ? 'inherit' : 'none'
-									}}
-								>
-								<Tooltip tooltip={`${this.state.showQueue ? 'Close' : 'Open'} help queue`} placement="bottom" >
-									<span className="fa fa-xs fa-question-circle statusbar-calc-icon" />
-								</Tooltip>
-								<Tooltip placement="bottom" tooltip="# of open questions" >
-									<span className="statusbar-queue-counter" >{`   ${this.state.queueSize}`}</span>
-								</Tooltip>
-							</div> : null }
+								<Fragment>
+									<div className="statusbar-queue" onClick={this.toggleQueue}
+										style={{
+											display: !session.config.hideQueue ? 'inherit' : 'none'
+										}}
+									>
+										<Tooltip tooltip={`${this.state.showQueue ? 'Close' : 'Open'} help queue`} placement="bottom" >
+											<span className="fa fa-xs fa-question-circle statusbar-calc-icon" />
+										</Tooltip>
+										<Tooltip placement="bottom" tooltip="# of open questions" >
+											<span className="statusbar-queue-counter" >{`   ${this.state.queueSize}`}</span>
+										</Tooltip>
+									</div>
+									<Tooltip placement="bottom" tooltip="Enter presentation mode (F7)" >
+										<div onClick={this.toggleBarVisibility} className="statusbar-presentation-mode">
+											<span className="fa fa-xs fa-eye-slash statusbar-calc-icon" />
+										</div>
+									</Tooltip>
+								</Fragment>: null }
 							<div className="statusbar-presence" style={{
 								backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR
 							}}>
@@ -431,18 +486,23 @@ class StatusBar extends Component {
 						>
 							<Gate user>
 								<img className="statusbar-profile" src={session.user.picture} />
-								<div className="progress-time">DUR: {this.state.duration} MIN</div>
-								<div className="outer-statusbar-progress-bar">
-									<ProgressBar
-										label={`COMPLETION RATE: ${this.state.progress}%`}
-										variant="success"
-										now={this.state.progress} style={{
-											height: 16,
-											animation: 'anim-fade-in 0.7s',
-											border: 'solid 1px darkgrey'
-										}}
-									/>
-								</div>
+								<Tooltip placement="bottom" tooltip="Time spent in lesson (in min)">
+									<div className="progress-time">DUR: {this.state.duration} MIN</div>
+								</Tooltip>
+								<Tooltip placement="bottom" tooltip="Click to show unfinished">
+									<div className="outer-statusbar-progress-bar">
+										<ProgressBar
+											label={`COMPLETION RATE: ${this.state.progress}%`}
+											variant="success"
+											now={this.state.progress} style={{
+												height: 16,
+												animation: 'anim-fade-in 0.7s',
+												border: 'solid 1px darkgrey'
+											}}
+											onClick={this.jumpToUnfinished}
+										/>
+									</div>
+								</Tooltip>
 								<Score />
 							</Gate>
 						</div>

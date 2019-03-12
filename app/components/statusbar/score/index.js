@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import logger from 'debug';
+import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
 import './score.css';
 
@@ -79,20 +80,22 @@ class Score extends Component {
 	render() {
 		return (
 			<Fragment>
-				<div
-					className="statusbar-score"
-					ref={( div ) => {
-						if ( div ) {
-							const rect = div.getBoundingClientRect();
-							if ( rect && rect.x > 0 && rect.y > 0 ) {
-								this.rect = rect;
+				<Tooltip placement="bottom" tooltip="Points" >
+					<div
+						className="statusbar-score"
+						ref={( div ) => {
+							if ( div ) {
+								const rect = div.getBoundingClientRect();
+								if ( rect && rect.x > 0 && rect.y > 0 ) {
+									this.rect = rect;
+								}
 							}
-						}
-					}}
-					onClick={this.handleClick}
-				>
-					{this.state.score}
-				</div>
+						}}
+						onClick={this.handleClick}
+					>
+						{this.state.score}
+					</div>
+				</Tooltip>
 				{this.getAnimation()}
 			</Fragment>
 

@@ -1288,9 +1288,13 @@ class Session {
 			return;
 		}
 		const ids = objectKeys( this.responseVisualizers );
+		if ( !this.unfinished ) {
+			this.unfinished = ids.slice();
+		}
 		if ( !id ) {
+			// Set initial progress when loading the page...
 			let progress = 0;
-			for ( let i = 0; i < ids.length; i++ ) {
+			for ( let i = ids.length - 1; i >= 0; i-- ) {
 				const key = ids[ i ];
 				const actions = this.currentUserActions[ key ];
 				const ref = this.responseVisualizers[ key ];
@@ -1301,16 +1305,18 @@ class Session {
 				if ( actions ) {
 					for ( let j = 0; j < actions.length; j++ ) {
 						if ( actions[ j ].type === type ) {
+							this.unfinished.splice( i, 1 );
 							progress += 1.0 / ids.length;
 							break;
 						}
 					}
 				}
 			}
-			PRIVATE_VARS['progress'] = progress;
+			PRIVATE_VARS[ 'progress' ] = progress;
 			this.update( 'self_initial_progress', progress );
 		}
 		else {
+			// Received a new action, check whether we need to increment progress...
 			const actions = this.currentUserActions[ id ];
 			const ref = this.responseVisualizers[ id ];
 			if ( ref ) {
@@ -1321,8 +1327,9 @@ class Session {
 							break;
 						}
 						else if ( j === actions.length - 1 ) {
-							PRIVATE_VARS['progress'] = this.get( 'progress' ) + 1.0 / ids.length;
+							PRIVATE_VARS[ 'progress' ] = this.get( 'progress' ) + 1.0 / ids.length;
 							this.update( 'self_updated_progress', this.get( 'progress' ) );
+							this.unfinished = this.unfinished.filter( x => x !== id );
 						}
 					}
 				}
@@ -1357,11 +1364,11 @@ class Session {
 		this.presentationMode = !this.presentationMode;
 		this.update( 'TOGGLE_PRESENTATION_MODE' );
 
-		let msg = 'You have started the presentation mode which hides the status bar, the instructorView and all owner elements.';
+		let msg = 'You have started the presentation mode which hides the status bar, the instructorView and all owner elements. Hit F7 to leave the it.';
 		let title = 'Started presentation mode';
 
 		if ( this.presentationMode === false) {
-			msg = 'You have finished the presentation mode. Type F7 to start it again.';
+			msg = 'You have finished the presentation mode. Hit F7 to start it again.';
 			title = 'Finished presentation mode';
 		}
 
