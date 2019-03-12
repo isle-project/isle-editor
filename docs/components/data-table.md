@@ -29,5 +29,6 @@ A component rendering data in a tabular display. Built on top of [react-table](h
 }`.
 * __onClickRemove__ | `function`: A function specifying an action to take for rows removed from the data (defaults to an empty function). Default: `onClickRemove() {}`.
 * __filters__ | `array`: undefined. Default: `[]`.
+* __onFilteredChange__ | `function`: undefined. Default: `onFilteredChange() {}`.
 * __showRemove__ | `boolean`: indicates whether to display checkboxes for rows to be removed. Default: `false`.
 * __style__ | `object`: An object allowing for custom css styling. Defaults to an empty object. Default: `{}`.

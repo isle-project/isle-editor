@@ -26,6 +26,9 @@ A number input component. Can be used as part of an ISLE dashboard or standalone
 * __numbersOnly__ | `boolean`: controls whether only numbers are accepted. Default: `true`.
 * __onBlur__ | `function`: callback function to be invoked when using a blur method. Default: `onBlur() {}`.
 * __onChange__ | `function`: callback function to be invoked when number input is changed. Default: `onChange() {}`.
+* __onKeyDown__ | `function`: callback function to be invoked when any key is pressed down. Default: `onKeyDown() {}`.
+* __onKeyPress__ | `function`: callback function to be invoked when any key is entered. Default: `onKeyPress() {}`.
+* __onKeyUp__ | `function`: callback function to be invoked when key is released. Default: `onKeyUp() {}`.
 * __step__ | `(number|string)`: number indicating the incremental changes when using the increment arrows. Default: `1`.
 * __value__ | `number`: number value (for controlled component). Default: `none`.
 * __width__ | `number`: number indicating the width of the input bar in pixels. Default: `80`.

@@ -18,7 +18,7 @@ The `plotly` function is a generic plotting function used to handle multiple typ
 #### Options:
 
 * __data__ | `array (required)`: data array. Default: `none`.
-* __draggable__ | `boolean`: controls whether the plot should be draggable. Default: `true`.
+* __draggable__ | `boolean`: controls whether the plot should be draggable. Default: `false`.
 * __editable__ | `boolean`: controls whether labels of the created plot are editable. Default: `false`.
 * __id__ | `string`: component identifier. Default: `none`.
 * __layout__ | `object`: Plotly layout object. Default: `{}`.

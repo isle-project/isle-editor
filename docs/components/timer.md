@@ -1,6 +1,6 @@
 # Timer
 
-Displays a timer that will trigger a predefined callback when the time is up. An example use case is the timing of quizzes.
+Formats time in the format `minutes:seconds`.
 
 #### Example:
 
