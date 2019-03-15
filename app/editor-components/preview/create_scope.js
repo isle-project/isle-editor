@@ -29,6 +29,7 @@ const SCOPE = {
 
 	Accordion: Loadable( () => import( 'components/accordion' ) ),
 	Animated: Loadable( () => import( 'components/animated' ) ),
+	Background: Loadable( () => import( 'components/background' ) ),
 	BeaconTooltip: Loadable( () => import( 'components/beacon-tooltip' ) ),
 	CheckboxInput: CheckboxInput,
 	Calculator: Loadable( () => import( 'components/calculator' ) ),
