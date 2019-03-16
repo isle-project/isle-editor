@@ -184,7 +184,7 @@
     "react-plotly.js": "^2.2.0",
     "react-redux": "5.1.1",
     "react-router": "4.4.0",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^4.4.0",
     "react-select": "^2.4.2",
     "react-slick": "0.23.2",
     "react-split-pane": "0.1.85",
