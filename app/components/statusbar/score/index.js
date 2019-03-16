@@ -80,7 +80,7 @@ class Score extends Component {
 	render() {
 		return (
 			<Fragment>
-				<Tooltip placement="bottom" tooltip="Points" >
+				<Tooltip placement="bottom" tooltip="Achievement points" >
 					<div
 						className="statusbar-score"
 						ref={( div ) => {
