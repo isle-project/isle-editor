@@ -32,7 +32,8 @@ class Background extends Component {
       counter: 0,
       in: props.in,
       inTime: props.inTime,
-      out: 'fade-out'
+      outTime: props.outTime,
+      out: props.out
     };
  }
 
@@ -128,9 +129,9 @@ class Background extends Component {
     return style;
   }
 
-  fading() {
-    console.log('FADING');
-    const ani = this.state.out + ' ' + this.state.inTime + 's forwards';
+  exit() {
+    console.log('ENTER');
+    const ani = this.state.out + ' ' + this.state.outTime + 's forwards';
 
     const foreground = {
         position: 'absolute',
@@ -176,8 +177,7 @@ class Background extends Component {
   }
 
 
-  transition() {
-    console.log('TRANSITION');
+  enter() {
     const ani = this.state.in + ' ' + this.state.inTime + 's forwards';
 
     const foreground = {
@@ -224,12 +224,12 @@ class Background extends Component {
   render() {
     if (this.state.fading === false) {
         return (
-            <div>{ this.transition() }</div>
+            <div>{ this.enter() }</div>
         );
     }
 
     return (
-        <div>{ this.fading() }</div>
+        <div>{ this.exit() }</div>
     );
   }
 }
@@ -238,14 +238,18 @@ Background.propTypes = {
     imageList: PropTypes.arrayOf(PropTypes.string),
 	time: PropTypes.number,
     in: PropTypes.string,
-    inTime: PropTypes.number
+    out: PropTypes.string,
+    inTime: PropTypes.number,
+    outTime: PropTypes.number
 };
 
 Background.defaultProps = {
     imageList: [],
     time: 3000,
     in: 'fade-in',
-    inTime: 1
+    out: 'fade-out',
+    inTime: 1,
+    outTime: 1
 };
 
 export default Background;
