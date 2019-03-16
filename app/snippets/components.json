@@ -9,7 +9,7 @@
 	},
 	{
 		"name":"Background",
-		"value":"<Background\n\tid=\"${1:id}\"\n\ttime={${2:8000}}\n\timageList={[${3:}]}\n\tinTime={${4:3}}\n/>\n"
+		"value":"<Background\n\ttime={${2:8000}}\n\timageList={[${3:}]}\n\tinTime={${4:3}}\n/>\n"
 	},
 	{
 		"name":"BeaconTooltip",
