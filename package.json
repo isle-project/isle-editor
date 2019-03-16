@@ -132,7 +132,7 @@
     "gitbook-plugin-expandable-chapters": "^0.2.0",
     "gitbook-plugin-prism": "^2.3.0",
     "highlight.js": "^9.15.6",
-    "history": "^4.7.2",
+    "history": "^4.9.0",
     "html-webpack-plugin": "^3.2.0",
     "is-touch-device": "^1.0.1",
     "jest": "^24.3.0",
