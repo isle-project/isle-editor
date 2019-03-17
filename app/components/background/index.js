@@ -16,10 +16,12 @@ import './background.css';
 * @property {string} out - exit effect name (either `fade-out`, `slide-right-out`, and `flip-hor-bottom-out`)
 * @property {number} inTime - length of the enter effect (in seconds)
 * @property {number} outTime - length of the exit effect (in seconds)
+* @property {bool} parent - sets the parent divs backgroundColor to transparent, overflow to hidden
 */
 class Background extends Component {
 	constructor( props ) {
 		super( props );
+		this.myRef = React.createRef();
 
 		this.imageList = [];
 		this.state = {
@@ -36,6 +38,9 @@ class Background extends Component {
 	componentDidMount() {
 		this.getRatio();
 		this.preload();
+		if (this.props.parent === true) {
+			this.modifyParent();
+		}
 		this.changeBackground();
 		window.addEventListener( 'resize', this.getRatio );
 	}
@@ -59,6 +64,14 @@ class Background extends Component {
 			const img = new Image();
 			img.src = this.props.images[ i ];
 			this.imageList.push( img );
+		}
+	}
+
+	modifyParent = () => {
+		let parent = this.myRef.current.parentElement;
+		if (parent.attributes.class !== 'lesson') {
+			parent.style.backgroundColor = 'transparent';
+			parent.style.overflow = 'hidden';
 		}
 	}
 
@@ -161,11 +174,11 @@ class Background extends Component {
 	render() {
 		if ( this.state.fading === false ) {
 			return (
-				<div>{ this.enter() }</div>
+				<div ref={this.myRef}>{ this.enter() }</div>
 			);
 		}
 		return (
-			<div>{ this.exit() }</div>
+			<div ref={this.myRef}>{ this.exit() }</div>
 		);
 	}
 }
@@ -178,6 +191,7 @@ Background.propTypes = {
 	time: PropTypes.number,
 	in: PropTypes.string,
 	out: PropTypes.string,
+	parent: PropTypes.bool,
 	inTime: PropTypes.number,
 	outTime: PropTypes.number
 };
@@ -187,6 +201,7 @@ Background.defaultProps = {
 	time: 3,
 	in: 'fade-in',
 	out: 'fade-out',
+	parent: false,
 	inTime: 1,
 	outTime: 1
 };
