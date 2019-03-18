@@ -50,9 +50,10 @@ class Background extends Component {
 	}
 
 	getRatio = () => {
-		var w = window.innerWidth;
-		var h = window.innerHeight;
-		let ratio = parseFloat(w/h).toFixed(4);
+		const parent = this.myRef.current.parentElement;
+		const w = parent.clientWidth;
+		const h = parent.clientHeight;
+		const ratio = parseFloat( w / h ).toFixed( 4 );
 
 		this.setState({
 			ratio: ratio
@@ -68,8 +69,8 @@ class Background extends Component {
 	}
 
 	modifyParent = () => {
-		let parent = this.myRef.current.parentElement;
-		if (parent.attributes.class !== 'lesson') {
+		const parent = this.myRef.current.parentElement;
+		if ( parent.attributes.class !== 'lesson' ) {
 			parent.style.backgroundColor = 'transparent';
 			parent.style.overflow = 'hidden';
 		}
