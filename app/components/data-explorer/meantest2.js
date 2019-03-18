@@ -15,6 +15,7 @@ import stdev from 'utils/statistic/stdev';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import TeX from 'components/tex';
+import { DATA_EXPLORER_TESTS_TWO_SAMPLE_ZTEST } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
 
@@ -165,7 +166,7 @@ class MeanTest2 extends Component {
 				type: 'Test',
 				value: value
 			};
-			this.props.logAction( 'DATA_EXPLORER:TESTS:TWO_SAMPLE_ZTEST', {
+			this.props.logAction( DATA_EXPLORER_TESTS_TWO_SAMPLE_ZTEST, {
 				var1, grouping, var2, diff, direction, alpha
 			});
 			this.props.onCreated( output );

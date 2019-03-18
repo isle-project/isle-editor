@@ -26,6 +26,7 @@ import VoiceControl from 'components/voice-control';
 import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import CONSOLE_STYLES from './console_styles.json';
+import { JSSHELL_DISPLAY_SOLUTION, JSSHELL_EVALUATION, JSSHELL_OPEN_HINT } from 'constants/actions.js';
 import './js_shell.css';
 
 
@@ -247,7 +248,7 @@ class JSShell extends Component {
 				const session = this.context;
 				session.log({
 					id: this.props.id,
-					type: 'JSSHELL_DISPLAY_SOLUTION',
+					type: JSSHELL_DISPLAY_SOLUTION,
 					value: val
 				});
 			}
@@ -271,7 +272,7 @@ class JSShell extends Component {
 			const session = this.context;
 			session.log({
 				id: this.props.id,
-				type: 'JSSHELL_EVALUATION',
+				type: JSSHELL_EVALUATION,
 				value: currentCode
 			});
 		}
@@ -349,7 +350,7 @@ class JSShell extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'JSSHELL_OPEN_HINT',
+				type: JSSHELL_OPEN_HINT,
 				value: idx
 			});
 		}

@@ -13,6 +13,7 @@ import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
 import kde2d from '@stdlib/stats/kde2d';
 import objectKeys from '@stdlib/utils/keys';
+import { DATA_EXPLORER_SHARE_HEATMAP, DATA_EXPLORER_HEATMAP } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import by2 from './by2.js';
 
@@ -207,7 +208,7 @@ class HeatMap extends Component {
 						level: 'success',
 						position: 'tr'
 					});
-					this.props.logAction( 'DATA_EXPLORER_SHARE:HEATMAP', {
+					this.props.logAction( DATA_EXPLORER_SHARE_HEATMAP, {
 						xval, yval, overlayPoints, plotId
 					});
 				}}
@@ -216,7 +217,7 @@ class HeatMap extends Component {
 				}}
 			/>
 		};
-		this.props.logAction( 'DATA_EXPLORER:HEATMAP', {
+		this.props.logAction( DATA_EXPLORER_HEATMAP, {
 			xval, yval, overlayPoints, plotId
 		});
 		this.props.onCreated( output );

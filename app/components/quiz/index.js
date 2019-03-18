@@ -23,6 +23,7 @@ import SelectQuestion from 'components/select-question';
 import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
 import convertJSONtoJSX from 'utils/json-to-jsx';
+import { QUESTION_CONFIDENCE } from 'constants/actions.js';
 import FinishModal from './finish_modal.js';
 import './quiz.css';
 
@@ -132,7 +133,7 @@ class Quiz extends Component {
 			const session = this.context;
 			session.log({
 				id: elem.props.id+'_confidence',
-				type: 'QUESTION_CONFIDENCE',
+				type: QUESTION_CONFIDENCE,
 				value: this.state.selectedConfidence
 			});
 		}

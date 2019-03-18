@@ -17,6 +17,7 @@ import Gate from 'components/gate';
 import OverlayTrigger from 'components/overlay-trigger';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
+import { RESPONSE_VISUALIZER_TOGGLE, RESPONSE_VISUALIZER_EXTENDED } from 'constants/actions.js';
 import FullscreenActionDisplay from './fullscreen_action_display.js';
 import extractValue from './extract_value.js';
 
@@ -138,7 +139,7 @@ class ResponseVisualizer extends Component {
 		const session = this.context;
 		session.log({
 			id: this.props.id+'_response_visualizer',
-			type: 'RESPONSE_VISUALIZER_TOGGLE',
+			type: RESPONSE_VISUALIZER_TOGGLE,
 			value: !this.state.showActions
 		});
 		const newState = {
@@ -159,7 +160,7 @@ class ResponseVisualizer extends Component {
 			const session = this.context;
 			session.log({
 				id: this.props.id+'_response_visualizer',
-				type: 'RESPONSE_VISUALIZER_EXTENDED',
+				type: RESPONSE_VISUALIZER_EXTENDED,
 				value: this.state.showExtended
 			});
 		});

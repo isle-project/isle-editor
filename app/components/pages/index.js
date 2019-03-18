@@ -9,6 +9,7 @@ import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import isArray from '@stdlib/assert/is-array';
 import VoiceControl from 'components/voice-control';
 import SessionContext from 'session/context.js';
+import { PAGES_FIRST_PAGE, PAGES_NEXT_PAGE, PAGES_PREVIOUS_PAGE, PAGES_LAST_PAGE, PAGES_JUMP_PAGE } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import './pages.css';
 
@@ -42,7 +43,7 @@ class Pages extends Component {
 		const session = this.context;
 			session.log({
 				id: this.props.id,
-				type: 'SKETCHPAD_FIRST_PAGE',
+				type: PAGES_FIRST_PAGE,
 				value: 0
 			});
 		}
@@ -64,7 +65,7 @@ class Pages extends Component {
 			const session = this.context;
 			session.log({
 				id: this.props.id,
-				type: 'SKETCHPAD_NEXT_PAGE',
+				type: PAGES_NEXT_PAGE,
 				value: this.state.activePage + 1
 			});
 		}
@@ -85,7 +86,7 @@ class Pages extends Component {
 			const session = this.context;
 			session.log({
 				id: this.props.id,
-				type: 'SKETCHPAD_PREVIOUS_PAGE',
+				type: PAGES_PREVIOUS_PAGE,
 				value: this.state.activePage - 1
 			});
 		}
@@ -103,7 +104,7 @@ class Pages extends Component {
 			const session = this.context;
 			session.log({
 				id: this.props.id,
-				type: 'SKETCHPAD_LAST_PAGE',
+				type: PAGES_LAST_PAGE,
 				value: this.props.children.length
 			});
 		}
@@ -125,7 +126,7 @@ class Pages extends Component {
 			const session = this.context;
 			session.log({
 				id: this.props.id,
-				type: 'SKETCHPAD_JUMP_PAGE',
+				type: PAGES_JUMP_PAGE,
 				value: page
 			});
 		}

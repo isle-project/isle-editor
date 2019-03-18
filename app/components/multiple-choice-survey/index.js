@@ -16,6 +16,7 @@ import Gate from 'components/gate';
 import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
 import SessionContext from 'session/context.js';
+import { MULTIPLE_CHOICE_SURVEY_SUBMISSION } from 'constants/actions.js';
 import AnswerOption from './answer_option';
 import './multiple-choice-survey.css';
 
@@ -59,7 +60,7 @@ class MultipleChoiceSurvey extends Component {
 		const session = this.context;
 		session.log({
 			id: this.props.id,
-			type: 'MULTIPLE_CHOICE_SURVEY_SUBMISSION',
+			type: MULTIPLE_CHOICE_SURVEY_SUBMISSION,
 			value: this.state.active,
 			anonymous: this.props.anonymous
 		}, 'members' );

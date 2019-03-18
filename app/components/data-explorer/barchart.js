@@ -11,6 +11,7 @@ import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import randomstring from 'utils/randomstring/alphanumeric';
+import { DATA_EXPLORER_SHARE_BARCHART, DATA_EXPLORER_BARCHART } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
 
@@ -199,7 +200,7 @@ class Barchart extends Component {
 						level: 'success',
 						position: 'tr'
 					});
-					this.props.logAction( 'DATA_EXPLORER_SHARE:BARCHART', {
+					this.props.logAction( DATA_EXPLORER_SHARE_BARCHART, {
 						xVar, groupVar, plotId
 					});
 				}}
@@ -208,7 +209,7 @@ class Barchart extends Component {
 				}}
 			/>
 		};
-		this.props.logAction( 'DATA_EXPLORER:BARCHART', {
+		this.props.logAction( DATA_EXPLORER_BARCHART, {
 			xVar,
 			groupVar,
 			plotId

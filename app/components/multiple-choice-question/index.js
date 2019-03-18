@@ -15,6 +15,7 @@ import FeedbackButtons from 'components/feedback';
 import VoiceControl from 'components/voice-control';
 import SessionContext from 'session/context.js';
 import toNumber from 'utils/to-number';
+import { MULTIPLE_CHOICE_OPEN_HINT, MULTIPLE_CHOICE_SUBMISSION, FOCUS_ELEMENT } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import AnswerOptionWithFeedback from './answer_option_feedback.js';
 import AnswerOptionIncrFeedback from './answer_option_incr_feedback.js';
@@ -131,7 +132,7 @@ class MultipleChoiceQuestion extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'MULTIPLE_CHOICE_OPEN_HINT',
+				type: MULTIPLE_CHOICE_OPEN_HINT,
 				value: idx
 			});
 		}
@@ -179,7 +180,7 @@ class MultipleChoiceQuestion extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'MULTIPLE_CHOICE_SUBMISSION',
+				type: MULTIPLE_CHOICE_SUBMISSION,
 				value: this.state.active
 			});
 		}
@@ -251,7 +252,7 @@ class MultipleChoiceQuestion extends Component {
 	triggerFocusEvent = () => {
 		const session = this.context;
 		session.log({
-			type: 'FOCUS_ELEMENT',
+			type: FOCUS_ELEMENT,
 			value: session.user.email,
 			id: this.props.id,
 			noSave: true

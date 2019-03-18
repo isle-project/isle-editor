@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import ROutput from 'components/r/output';
+import { DATA_EXPLORER_TESTS_CHISQUARE } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
 
@@ -36,7 +37,7 @@ class Chi2Test extends Component {
 				type: 'Test',
 				value: value
 			};
-			this.props.logAction( 'DATA_EXPLORER:TESTS:CHISQUARE', {
+			this.props.logAction( DATA_EXPLORER_TESTS_CHISQUARE, {
 				var1, var2
 			});
 			this.props.onCreated( output );

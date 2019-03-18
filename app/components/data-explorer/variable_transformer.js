@@ -20,6 +20,7 @@ import exp from '@stdlib/math/base/special/exp';
 import pow from '@stdlib/math/base/special/pow';
 import ln from '@stdlib/math/base/special/ln';
 import incrspace from '@stdlib/math/utils/incrspace';
+import { DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
 
 
 // VARIABLES //
@@ -158,7 +159,7 @@ class Transformer extends Component {
 				position: 'tr'
 			});
 		}
-		this.props.logAction( 'DATA_EXPLORER:VARIABLE_TRANSFORMER', {
+		this.props.logAction( DATA_EXPLORER_VARIABLE_TRANSFORMER, {
 			code, name
 		});
 		this.props.onGenerate( name, values );

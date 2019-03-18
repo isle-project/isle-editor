@@ -25,6 +25,7 @@ import isArray from '@stdlib/assert/is-array';
 import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
 import SessionContext from 'session/context.js';
+import { TABLE_SORT, TABLE_FILTER, TABLE_RESET } from 'constants/actions.js';
 import TutorialButton from './tutorial-button/index.js';
 import 'react-table/react-table.css';
 import './input_range.css';
@@ -307,7 +308,7 @@ class DataTable extends Component {
 			const session = this.context;
 			session.log({
 				id: this.props.id,
-				type: 'TABLE_FILTER',
+				type: TABLE_FILTER,
 				value: column.id
 			});
 		}
@@ -325,7 +326,7 @@ class DataTable extends Component {
 			const session = this.context;
 			session.log({
 				id: this.props.id,
-				type: 'TABLE_SORT',
+				type: TABLE_SORT,
 				value: column.id
 			});
 		}
@@ -346,7 +347,7 @@ class DataTable extends Component {
 			const session = this.context;
 			session.log({
 				id: this.props.id,
-				type: 'TABLE_RESET',
+				type: TABLE_RESET,
 				value: ''
 			});
 		}

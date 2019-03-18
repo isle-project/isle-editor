@@ -15,6 +15,7 @@ import Tooltip from 'components/tooltip';
 import ChatButton from 'components/chat-button';
 import Panel from 'components/panel';
 import SessionContext from 'session/context.js';
+import { SEND_QUEUE_SIZE, ENTER_QUEUE, LEFT_QUEUE } from 'constants/actions.js';
 import 'react-table/react-table.css';
 import './queue.css';
 
@@ -52,7 +53,7 @@ class Queue extends Component {
 				} else if ( type === 'user_joined' && this.state.isOwner ) {
 					session.log({
 						id: this.props.id,
-						type: 'SEND_QUEUE_SIZE',
+						type: SEND_QUEUE_SIZE,
 						value: this.state.queueSize,
 						noSave: true
 					}, 'members' );
@@ -74,7 +75,7 @@ class Queue extends Component {
 							}, () => {
 								session.log({
 									id: this.props.id,
-									type: 'SEND_QUEUE_SIZE',
+									type: SEND_QUEUE_SIZE,
 									value: this.state.queueSize,
 									noSave: true
 								}, 'members' );
@@ -107,14 +108,14 @@ class Queue extends Component {
 							}, () => {
 								session.log({
 									id: this.props.id,
-									type: 'SEND_QUEUE_SIZE',
+									type: SEND_QUEUE_SIZE,
 									value: newSize,
 									noSave: true
 								}, 'members' );
 							});
 						}
 					}
-					else if ( action.type === 'SEND_QUEUE_SIZE' ) {
+					else if ( action.type === SEND_QUEUE_SIZE ) {
 						// Update the internal queue size state for each user:
 						const queueSize = Number( action.value );
 						this.props.onQueueSize( queueSize );
@@ -158,7 +159,7 @@ class Queue extends Component {
 			const session = this.context;
 			session.log({
 				id: this.props.id,
-				type: 'ENTER_QUEUE',
+				type: ENTER_QUEUE,
 				value: this.state.questionText,
 				noSave: false
 			}, 'members' );
@@ -169,7 +170,7 @@ class Queue extends Component {
 		const session = this.context;
 		session.log({
 			id: this.props.id,
-			type: 'LEFT_QUEUE',
+			type: LEFT_QUEUE,
 			value: this.state.spot
 		}, 'members' );
 	}
@@ -181,7 +182,7 @@ class Queue extends Component {
 					const session = this.context;
 					session.log({
 						id: this.props.id,
-						type: 'LEFT_QUEUE',
+						type: LEFT_QUEUE,
 						value: cellInfo.index + 1
 					}, 'members' );
 				}}>

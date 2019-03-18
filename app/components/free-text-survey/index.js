@@ -20,6 +20,7 @@ import Gate from 'components/gate';
 import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
 import SessionContext from 'session/context.js';
+import { TEXT_SURVEY_SUBMISSION } from 'constants/actions.js';
 import './free-text-survey.css';
 
 
@@ -82,7 +83,7 @@ class FreeTextSurvey extends Component {
 		} else {
 			session.log({
 				id: this.props.id,
-				type: 'TEXT_SURVEY_SUBMISSION',
+				type: TEXT_SURVEY_SUBMISSION,
 				value: this.state.value,
 				anonymous: this.props.anonymous
 			}, 'members' );

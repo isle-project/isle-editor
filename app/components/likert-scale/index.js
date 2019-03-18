@@ -9,6 +9,7 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import indexOf from '@stdlib/utils/index-of';
 import SessionContext from 'session/context.js';
 import ResponseVisualizer from 'components/response-visualizer';
+import { LIKERT_SCALE_SUBMISSION } from 'constants/actions.js';
 
 
 // MAIN //
@@ -46,7 +47,7 @@ class LikertScale extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'LIKERT_SCALE_SUBMISSION',
+				type: LIKERT_SCALE_SUBMISSION,
 				value: indexOf( this.props.options, this.state.value )
 			});
 		}
@@ -100,7 +101,7 @@ class LikertScale extends Component {
 							type: 'factor',
 							levels: this.props.options
 						}}
-						info="LIKERT_SCALE_SUBMISSION"
+						info={LIKERT_SCALE_SUBMISSION}
 					/>
 				</Card.Body>
 			</Card>

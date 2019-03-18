@@ -22,6 +22,7 @@ import gaussian from '@stdlib/stats/base/dists/normal/pdf';
 import dexp from '@stdlib/stats/base/dists/exponential/pdf';
 import dunif from '@stdlib/stats/base/dists/uniform/pdf';
 import iqr from 'utils/statistic/iqr';
+import { DATA_EXPLORER_SHARE_HISTOGRAM, DATA_EXPLORER_HISTOGRAM } from 'constants/actions.js';
 import kernelSmoothDensity from './kernel_smooth_density.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
@@ -233,12 +234,12 @@ class Histogram extends Component {
 					level: 'success',
 					position: 'tr'
 				});
-				this.props.logAction( 'DATA_EXPLORER_SHARE:HISTOGRAM', stateNew );
+				this.props.logAction( DATA_EXPLORER_SHARE_HISTOGRAM, stateNew );
 			}} onSelected={( selected ) => {
 				this.props.onSelected( this.state.variable, selected );
 			}} />
 		};
-		this.props.logAction( 'DATA_EXPLORER:HISTOGRAM', stateNew );
+		this.props.logAction( DATA_EXPLORER_HISTOGRAM, stateNew );
 		this.props.onCreated( output );
 	}
 

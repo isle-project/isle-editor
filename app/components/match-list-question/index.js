@@ -15,6 +15,7 @@ import ResponseVisualizer from 'components/response-visualizer';
 import FeedbackButtons from 'components/feedback';
 import Text from 'components/text';
 import SessionContext from 'session/context.js';
+import { MATCH_LIST_TOGGLE_SOLUTION, MATCH_LIST_OPEN_HINT, MATCH_LIST_SUBMISSION } from 'constants/actions.js';
 import OptionsList from './options_list.js';
 import './match_list_question.css';
 
@@ -137,7 +138,7 @@ class MatchListQuestion extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'MATCH_LIST_SUBMISSION',
+				type: MATCH_LIST_SUBMISSION,
 				value: JSON.stringify( answers )
 			});
 		}
@@ -153,7 +154,7 @@ class MatchListQuestion extends Component {
 			const session = this.context;
 			session.log({
 				id: this.props.id,
-				type: 'MATCH_LIST_TOGGLE_SOLUTION',
+				type: MATCH_LIST_TOGGLE_SOLUTION,
 				value: null
 			});
 		}
@@ -177,7 +178,7 @@ class MatchListQuestion extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'MATCH_LIST_OPEN_HINT',
+				type: MATCH_LIST_OPEN_HINT,
 				value: idx
 			});
 		}

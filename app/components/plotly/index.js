@@ -15,6 +15,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import deepEqual from '@stdlib/assert/deep-equal';
 import copy from '@stdlib/utils/copy';
 import SessionContext from 'session/context.js';
+import { PLOT_UPDATE } from 'constants/actions.js';
 import PlotlyIcons from './icons.js';
 import calculateChanges from './calculate_changes.js';
 import './plotly.css';
@@ -140,7 +141,7 @@ class Wrapper extends Component {
 			if ( changes.length > 0 ) {
 				session.log({
 					id: this.props.id,
-					type: 'PLOT_UPDATE',
+					type: PLOT_UPDATE,
 					value: changes
 				});
 			}

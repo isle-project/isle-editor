@@ -38,6 +38,14 @@ import curve from './curve.js';
 import TooltipButton from './tooltip_button.js';
 import InputButtons from './input_buttons.js';
 import Loadable from 'components/loadable';
+import {
+	SKETCHPAD_INIT_PAGES, SKETCHPAD_HIDE_POINTER, SKETCHPAD_HIDE_ZOOM,
+	SKETCHPAD_REPLAY, SKETCHPAD_CLEAR_PAGE, SKETCHPAD_CLEAR_ALL_PAGES,
+	SKETCHPAD_DRAW_CURVE, SKETCHPAD_DRAW_TEXT, SKETCHPAD_DRAG_ELEMENT,
+	SKETCHPAD_INSERT_PAGE, SKETCHPAD_DELETE_ELEMENT, SKETCHPAD_FIRST_PAGE,
+	SKETCHPAD_LAST_PAGE, SKETCHPAD_NEXT_PAGE, SKETCHPAD_PREVIOUS_PAGE,
+	SKETCHPAD_GOTO_PAGE
+} from 'constants/actions.js';
 const ResetModal = Loadable( () => import( './reset_modal.js' ) );
 const NavigationModal = Loadable( () => import( './navigation_modal.js' ) );
 import guide from './guide.json';
@@ -203,7 +211,7 @@ class Sketchpad extends Component {
 					debug( `User "${action.email}" joined...` );
 					const insertAction = {
 						id: this.props.id,
-						type: 'SKETCHPAD_INIT_PAGES',
+						type: SKETCHPAD_INIT_PAGES,
 						value: this.state.insertedPages,
 						noSave: true
 					};
@@ -552,7 +560,7 @@ class Sketchpad extends Component {
 	hidePointer = () => {
 		const action = {
 			id: this.props.id,
-			type: 'SKETCHPAD_HIDE_POINTER',
+			type: SKETCHPAD_HIDE_POINTER,
 			value: true,
 			noSave: true
 		};
@@ -564,7 +572,7 @@ class Sketchpad extends Component {
 	hideZoom = () => {
 		const action = {
 			id: this.props.id,
-			type: 'SKETCHPAD_HIDE_ZOOM',
+			type: SKETCHPAD_HIDE_ZOOM,
 			value: true,
 			noSave: true
 		};
@@ -691,7 +699,7 @@ class Sketchpad extends Component {
 						// Save replay actions and transmit to others:
 						const action = {
 							id: this.props.id,
-							type: 'SKETCHPAD_REPLAY',
+							type: SKETCHPAD_REPLAY,
 							value: JSON.stringify( elems[ idx ]),
 							noSave: true
 						};
@@ -782,7 +790,7 @@ class Sketchpad extends Component {
 		}
 		const logAction = {
 			id: this.props.id,
-			type: 'SKETCHPAD_CLEAR_PAGE',
+			type: SKETCHPAD_CLEAR_PAGE,
 			value: currentPage
 		};
 		const session = this.context;
@@ -832,7 +840,7 @@ class Sketchpad extends Component {
 		}
 		const logAction = {
 			id: this.props.id,
-			type: 'SKETCHPAD_CLEAR_ALL_PAGES',
+			type: SKETCHPAD_CLEAR_ALL_PAGES,
 			value: null
 		};
 		if (
@@ -1050,7 +1058,7 @@ class Sketchpad extends Component {
 			this.redraw();
 			const logAction = {
 				id: this.props.id,
-				type: 'SKETCHPAD_DRAW_CURVE',
+				type: SKETCHPAD_DRAW_CURVE,
 				value: JSON.stringify( line ),
 				noSave: true
 			};
@@ -1096,7 +1104,7 @@ class Sketchpad extends Component {
 				const username = session.user.email || '';
 				const action = {
 					id: this.props.id,
-					type: 'SKETCHPAD_DRAG_ELEMENT',
+					type: SKETCHPAD_DRAG_ELEMENT,
 					value: JSON.stringify({
 						dx: dx,
 						dy: dy,
@@ -1294,7 +1302,7 @@ class Sketchpad extends Component {
 				const session = this.context;
 				session.log({
 					id: this.props.id,
-					type: 'SKETCHPAD_INSERT_PAGE',
+					type: SKETCHPAD_INSERT_PAGE,
 					value: JSON.stringify({
 						pos: idx,
 						noPages: this.state.noPages
@@ -1358,7 +1366,7 @@ class Sketchpad extends Component {
 		if ( shouldLog ) {
 			const logAction = {
 				id: this.props.id,
-				type: 'SKETCHPAD_DRAW_TEXT',
+				type: SKETCHPAD_DRAW_TEXT,
 				value: JSON.stringify({
 					x: x,
 					y: y,
@@ -1450,7 +1458,7 @@ class Sketchpad extends Component {
 				const username = session.user.email || '';
 				const action = {
 					id: this.props.id,
-					type: 'SKETCHPAD_DELETE_ELEMENT',
+					type: SKETCHPAD_DELETE_ELEMENT,
 					value: JSON.stringify({
 						drawID: id,
 						page: this.state.currentPage,
@@ -1506,7 +1514,7 @@ class Sketchpad extends Component {
 			const session = this.context;
 			session.log({
 				id: this.props.id,
-				type: 'SKETCHPAD_FIRST_PAGE',
+				type: SKETCHPAD_FIRST_PAGE,
 				value: this.state.currentPage
 			});
 		});
@@ -1523,7 +1531,7 @@ class Sketchpad extends Component {
 			const session = this.context;
 			session.log({
 				id: this.props.id,
-				type: 'SKETCHPAD_LAST_PAGE',
+				type: SKETCHPAD_LAST_PAGE,
 				value: this.state.currentPage
 			});
 		});
@@ -1555,7 +1563,7 @@ class Sketchpad extends Component {
 				const session = this.context;
 				session.log({
 					id: this.props.id,
-					type: 'SKETCHPAD_NEXT_PAGE',
+					type: SKETCHPAD_NEXT_PAGE,
 					value: this.state.currentPage
 				});
 			});
@@ -1574,7 +1582,7 @@ class Sketchpad extends Component {
 				const session = this.context;
 				session.log({
 					id: this.props.id,
-					type: 'SKETCHPAD_PREVIOUS_PAGE',
+					type: SKETCHPAD_PREVIOUS_PAGE,
 					value: this.state.currentPage
 				});
 			});
@@ -1598,7 +1606,7 @@ class Sketchpad extends Component {
 					const session = this.context;
 					session.log({
 						id: this.props.id,
-						type: 'SKETCHPAD_GOTO_PAGE',
+						type: SKETCHPAD_GOTO_PAGE,
 						value: idx
 					});
 				}

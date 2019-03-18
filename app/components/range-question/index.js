@@ -19,6 +19,7 @@ import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
 import VoiceControl from 'components/voice-control';
 import SessionContext from 'session/context.js';
+import { RANGE_QUESTION_SUBMIT_ANSWER, RANGE_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import './range-question.css';
 
@@ -168,7 +169,7 @@ class RangeQuestion extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'RANGE_QUESTION_SUBMIT_ANSWER',
+				type: RANGE_QUESTION_SUBMIT_ANSWER,
 				value: JSON.stringify( [ this.state.lower, this.state.upper ] )
 			});
 		}
@@ -192,7 +193,7 @@ class RangeQuestion extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'RANGE_QUESTION_OPEN_HINT',
+				type: RANGE_QUESTION_OPEN_HINT,
 				value: idx
 			});
 		}
@@ -274,7 +275,7 @@ class RangeQuestion extends Component {
 						data={{
 							type: 'number'
 						}}
-						info="RANGE_QUESTION_SUBMIT_ANSWER"
+						info={RANGE_QUESTION_SUBMIT_ANSWER}
 					/>
 				</Card.Body>
 				{ this.props.id && this.props.feedback ? <FeedbackButtons

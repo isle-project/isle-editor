@@ -11,6 +11,7 @@ import TextArea from 'components/input/text-area';
 import CheckboxInput from 'components/input/checkbox';
 import ResponseVisualizer from 'components/response-visualizer';
 import SessionContext from 'session/context.js';
+import { USER_FEEDBACK_CONFUSED, USER_FEEDBACK_UNDERSTOOD, USER_FEEDBACK_FORM } from 'constants/actions.js';
 import Confused from '-!svg-react-loader!./../../img/confused.svg';
 import Understood from '-!svg-react-loader!./../../img/lightbulb.svg';
 import Feedback from '-!svg-react-loader!./../../img/feedback.svg';
@@ -56,7 +57,7 @@ class FeedbackButtons extends Component {
 		const session = this.context;
 		session.log({
 			id: this.props.id,
-			type: 'USER_FEEDBACK_CONFUSED',
+			type: USER_FEEDBACK_CONFUSED,
 			value: 'confused'
 		}, 'members' );
 		session.addNotification({
@@ -78,7 +79,7 @@ class FeedbackButtons extends Component {
 		const session = this.context;
 		session.log({
 			id: this.props.id,
-			type: 'USER_FEEDBACK_UNDERSTOOD',
+			type: USER_FEEDBACK_UNDERSTOOD,
 			value: 'understood'
 		}, 'members' );
 		session.addNotification({
@@ -104,7 +105,7 @@ class FeedbackButtons extends Component {
 		};
 		session.log({
 			id: this.props.id,
-			type: 'USER_FEEDBACK_FORM',
+			type: USER_FEEDBACK_FORM,
 			value: formData
 		}, 'members' );
 

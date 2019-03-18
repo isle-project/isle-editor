@@ -13,6 +13,7 @@ import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
 import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
+import { SELECT_QUESTION_SUBMISSION } from 'constants/actions.js';
 import './select-question.css';
 
 
@@ -95,7 +96,7 @@ class SelectQuestion extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'SELECT_QUESTION_SUBMISSION',
+				type: SELECT_QUESTION_SUBMISSION,
 				value: this.state.value
 			});
 		}

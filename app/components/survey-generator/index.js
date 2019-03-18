@@ -15,6 +15,7 @@ import MultipleChoiceSurvey from 'components/multiple-choice-survey';
 import NumberSurvey from 'components/number-survey';
 import FreeTextSurvey from 'components/free-text-survey';
 import SessionContext from 'session/context.js';
+import { STOP_SURVEY, START_SURVEY } from 'constants/actions.js';
 
 
 // VARIABLES //
@@ -47,7 +48,7 @@ class MCSgenerator extends Component {
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			debug( 'Received member action...' );
 			if ( type === 'member_action' ) {
-				if ( action.type === 'START_SURVEY' ) {
+				if ( action.type === START_SURVEY ) {
 					debug( 'Should start the survey...' );
 					if ( this.props.id === action.id ) {
 						this.setState({
@@ -58,7 +59,7 @@ class MCSgenerator extends Component {
 						});
 					}
 				}
-				else if ( action.type === 'STOP_SURVEY' ) {
+				else if ( action.type === STOP_SURVEY ) {
 					debug( 'Should stop the survey...' );
 					if ( this.props.id === action.id ) {
 						this.setState({
@@ -104,13 +105,13 @@ class MCSgenerator extends Component {
 		if ( this.state.showSurvey ) {
 			session.log({
 				id: this.props.id,
-				type: 'STOP_SURVEY',
+				type: STOP_SURVEY,
 				value: null
 			}, 'members' );
 		} else {
 			session.log({
 				id: this.props.id,
-				type: 'START_SURVEY',
+				type: START_SURVEY,
 				value: {
 					answers: this.state.answers,
 					type: this.state.type,

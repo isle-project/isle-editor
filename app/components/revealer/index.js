@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
+import { REVEAL_CONTENT, HIDE_CONTENT } from 'constants/actions.js';
 
 
 // MAIN //
@@ -47,7 +48,7 @@ class Revealer extends Component {
 						const session = this.context;
 						session.log({
 							id: this.props.id,
-							type: 'REVEAL_CONTENT',
+							type: REVEAL_CONTENT,
 							value: this.state.showChildren,
 							noSave: true
 						}, 'members' );
@@ -72,13 +73,13 @@ class Revealer extends Component {
 			if ( this.state.showChildren ) {
 				session.log({
 					id: this.props.id,
-					type: 'REVEAL_CONTENT',
+					type: REVEAL_CONTENT,
 					value: this.state.showChildren
 				}, 'members' );
 			} else {
 				session.log({
 					id: this.props.id,
-					type: 'HIDE_CONTENT',
+					type: HIDE_CONTENT,
 					value: this.state.showChildren
 				}, 'members' );
 			}

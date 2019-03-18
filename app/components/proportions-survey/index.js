@@ -13,6 +13,7 @@ import Gate from 'components/gate';
 import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
 import SessionContext from 'session/context.js';
+import { PROPORTIONS_SURVEY_SUBMISSION } from 'constants/actions.js';
 
 
 // VARIABLES //
@@ -61,7 +62,7 @@ class ProportionsSurvey extends Component {
 		const session = this.context;
 		session.log({
 			id: this.props.id,
-			type: 'PROPORTIONS_SURVEY_SUBMISSION',
+			type: PROPORTIONS_SURVEY_SUBMISSION,
 			value: JSON.stringify( this.state.value ),
 			anonymous: this.props.anonymous
 		}, 'members' );

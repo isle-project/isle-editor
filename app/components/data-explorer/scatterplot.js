@@ -23,6 +23,7 @@ import mean from 'utils/statistic/mean';
 import max from 'utils/statistic/max';
 import min from 'utils/statistic/min';
 import { CAT20 } from 'constants/colors';
+import { DATA_EXPLORER_SHARE_SCATTERPLOT, DATA_EXPLORER_SCATTERPLOT } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
 
@@ -397,14 +398,14 @@ class Scatterplot extends Component {
 						level: 'success',
 						position: 'tr'
 					});
-					this.props.logAction( 'DATA_EXPLORER_SHARE:SCATTERPLOT', stateNew );
+					this.props.logAction( DATA_EXPLORER_SHARE_SCATTERPLOT, stateNew );
 				}}
 				onSelected={( selected ) => {
 					this.props.onSelected({ x: this.state.xval, y: this.state.yval }, selected );
 				}}
 			/>
 		};
-		this.props.logAction( 'DATA_EXPLORER:SCATTERPLOT', stateNew );
+		this.props.logAction( DATA_EXPLORER_SCATTERPLOT, stateNew );
 		this.props.onCreated( output );
 	}
 

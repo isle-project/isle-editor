@@ -7,6 +7,7 @@ import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
 import pcorrtest from '@stdlib/stats/pcorrtest';
+import { DATA_EXPLORER_TESTS_CORRTEST } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
 
@@ -49,7 +50,7 @@ class CorrTest extends Component {
 					</pre>
 				</div>
 			};
-			this.props.logAction( 'DATA_EXPLORER:TESTS:CORRTEST', {
+			this.props.logAction( DATA_EXPLORER_TESTS_CORRTEST, {
 				var1, var2, rho0, direction, alpha
 			});
 			this.props.onCreated( output );

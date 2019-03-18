@@ -11,6 +11,7 @@ import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import isObject from '@stdlib/assert/is-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import { DATA_EXPLORER_CONTINGENCY_TABLE } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
 
@@ -153,7 +154,7 @@ class ContingencyTable extends Component {
 		} else {
 			output = createGroupedContingencyTable( this.props.data, rowVar, colVar, group, relativeFreqs );
 		}
-		this.props.logAction( 'DATA_EXPLORER:CONTINGENCY_TABLE', {
+		this.props.logAction( DATA_EXPLORER_CONTINGENCY_TABLE, {
 			rowVar, colVar, group, relativeFreqs
 		});
 		this.props.onCreated( output );

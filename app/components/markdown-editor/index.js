@@ -47,6 +47,7 @@ import createPreviewStyles from './create_preview_styles.js';
 import columnTagConvert from './column_tag_convert.js';
 import replacePlaceholders from './replace_placeholders.js';
 import remakeText from './remake_text.js';
+import { MARKDOWN_EDITOR_PEER_COMMENTS, MARKDOWN_EDITOR_PEER_REPORT, PLOT_DRAGGED, MARKDOWN_EDITOR_SUBMIT } from 'constants/actions.js';
 import './simplemde.css';
 import './markdown_editor.css';
 
@@ -611,7 +612,7 @@ class MarkdownEditor extends Component {
 				if ( startsWith( key, '<!--IMAGE_LOG' ) ) {
 					this.context.log({
 						id: this.props.id,
-						type: 'PLOT_DRAGGED',
+						type: PLOT_DRAGGED,
 						value: key.substring( 14, 20 )
 					});
 				}
@@ -931,7 +932,7 @@ class MarkdownEditor extends Component {
 			if ( this.props.id ) {
 				session.log({
 					id: this.props.id,
-					type: 'MARKDOWN_EDITOR_SUBMIT',
+					type: MARKDOWN_EDITOR_SUBMIT,
 					value: this.state.value
 				});
 			}
@@ -976,7 +977,7 @@ class MarkdownEditor extends Component {
 						data={{
 							type: 'text'
 						}}
-						info="MARKDOWN_EDITOR_SUBMIT"
+						info={MARKDOWN_EDITOR_SUBMIT}
 						style={{ padding: 5 }}
 					/> : null }
 				</div>
@@ -1014,7 +1015,7 @@ class MarkdownEditor extends Component {
 						const md = replacePlaceholders( this.simplemde.value(), this.state.hash );
 						session.log({
 							id: this.props.id,
-							type: 'MARKDOWN_EDITOR_PEER_REPORT',
+							type: MARKDOWN_EDITOR_PEER_REPORT,
 							value: md,
 							noSave: true
 						}, this.state.peer.to.email );
@@ -1027,7 +1028,7 @@ class MarkdownEditor extends Component {
 						const md = replacePlaceholders( this.simplemde.value(), this.state.hash );
 						session.log({
 							id: this.props.id,
-							type: 'MARKDOWN_EDITOR_PEER_COMMENTS',
+							type: MARKDOWN_EDITOR_PEER_COMMENTS,
 							value: md,
 							noSave: true
 						}, this.state.peer.from.email );

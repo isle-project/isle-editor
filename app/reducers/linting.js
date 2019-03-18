@@ -1,6 +1,6 @@
 // MODULES //
 
-import * as types from 'constants/actionTypes';
+import * as types from 'constants/editor_actions.js';
 
 
 // VARIABLES //

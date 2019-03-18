@@ -13,6 +13,7 @@ import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import TextInput from 'components/input/text';
 import SessionContext from 'session/context.js';
+import { DASHBOARD_CLICK_GENERATE } from 'constants/actions.js';
 import './dashboard.css';
 
 
@@ -80,7 +81,7 @@ class Dashboard extends Component {
 			const session = this.context;
 			session.log({
 				id: this.props.id,
-				type: 'DASHBOARD_CLICK_GENERATE',
+				type: DASHBOARD_CLICK_GENERATE,
 				value: args
 			});
 		}

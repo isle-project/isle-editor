@@ -11,6 +11,7 @@ import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
+import { DATA_EXPLORER_SHARE_PIECHART, DATA_EXPLORER_PIECHART } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
 
@@ -117,13 +118,13 @@ class PieChart extends Component {
 						level: 'success',
 						position: 'tr'
 					});
-					this.props.logAction( 'DATA_EXPLORER_SHARE:PIECHART', {
+					this.props.logAction( DATA_EXPLORER_SHARE_PIECHART, {
 						variable, group, plotId
 					});
 				}}
 			/>
 		};
-		this.props.logAction( 'DATA_EXPLORER:PIECHART', {
+		this.props.logAction( DATA_EXPLORER_PIECHART, {
 			variable,
 			group,
 			plotId

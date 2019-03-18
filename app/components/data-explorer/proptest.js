@@ -13,6 +13,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import replace from '@stdlib/string/replace';
 import unique from 'uniq';
 import mean from 'utils/statistic/mean';
+import { DATA_EXPLORER_TESTS_PROPTEST } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
 
@@ -78,7 +79,7 @@ class PropTest extends Component {
 					</pre>
 				</div>
 			};
-			this.props.logAction( 'DATA_EXPLORER:TESTS:PROPTEST', {
+			this.props.logAction( DATA_EXPLORER_TESTS_PROPTEST, {
 				variable, success, p0, direction, alpha
 			});
 			this.props.onCreated( output );

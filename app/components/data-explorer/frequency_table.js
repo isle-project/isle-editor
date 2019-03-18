@@ -10,6 +10,7 @@ import objectKeys from '@stdlib/utils/keys';
 import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
+import { DATA_EXPLORER_FREQUENCY_TABLE } from 'constants/actions.js';
 import by from './by.js';
 import QuestionButton from './question_button.js';
 
@@ -127,7 +128,7 @@ class FrequencyTable extends Component {
 		} else {
 			output.value = groupedFrequencyTable( output.variable, freqs, relativeFreqs );
 		}
-		this.props.logAction( 'DATA_EXPLORER:FREQUENCY_TABLE', {
+		this.props.logAction( DATA_EXPLORER_FREQUENCY_TABLE, {
 			variable, group, relativeFreqs
 		});
 		this.props.onCreated( output );

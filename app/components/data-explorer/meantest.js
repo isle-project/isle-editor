@@ -10,6 +10,7 @@ import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
+import { DATA_EXPLORER_TESTS_ZTEST } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
 
@@ -65,7 +66,7 @@ class MeanTest extends Component {
 					</pre>
 				</div>
 			};
-			this.props.logAction( 'DATA_EXPLORER:TESTS:ZTEST', {
+			this.props.logAction( DATA_EXPLORER_TESTS_ZTEST, {
 				variable, mu0, direction, alpha
 			});
 			this.props.onCreated( output );

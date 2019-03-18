@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import anova1 from '@stdlib/stats/anova1';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
+import { DATA_EXPLORER_TESTS_ANOVA} from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
 
@@ -34,7 +35,7 @@ class Anova extends Component {
 				type: 'Test',
 				value: value
 			};
-			this.props.logAction( 'DATA_EXPLORER:TESTS:ANOVA', {
+			this.props.logAction( DATA_EXPLORER_TESTS_ANOVA, {
 				variable, grouping
 			});
 			this.props.onCreated( output );

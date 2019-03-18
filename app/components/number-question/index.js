@@ -16,6 +16,7 @@ import NumberInput from 'components/input/number';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
+import { NUMBER_QUESTION_SUBMISSION, NUMBER_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import './number-question.css';
 
 
@@ -149,7 +150,7 @@ class NumberQuestion extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'NUMBER_QUESTION_SUBMISSION',
+				type: NUMBER_QUESTION_SUBMISSION,
 				value: this.state.value
 			});
 		}
@@ -161,7 +162,7 @@ class NumberQuestion extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'NUMBER_QUESTION_OPEN_HINT',
+				type: NUMBER_QUESTION_OPEN_HINT,
 				value: idx
 			});
 		}

@@ -14,6 +14,7 @@ import identity from '@stdlib/utils/identity-function';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import SessionContext from 'session/context.js';
+import { ASSIGNMENT_CLEARED, USERS_ASSIGNED, INDIVIDUAL_ASSIGNED, REMOVE_ASSIGNMENT } from 'constants/actions.js';
 
 
 // FUNCTIONS //
@@ -158,7 +159,7 @@ class UserPairer extends Component {
 			localStorage.setItem( this.props.id, stringified );
 			const logAction = {
 				id: this.props.id,
-				type: 'USERS_ASSIGNED',
+				type: USERS_ASSIGNED,
 				value: stringified,
 				noSave: false
 			};
@@ -168,7 +169,7 @@ class UserPairer extends Component {
 					if ( hasOwnProp( assignments, key ) ) {
 						session.log( {
 							id: this.props.id,
-							type: 'INDIVIDUAL_ASSIGNED',
+							type: INDIVIDUAL_ASSIGNED,
 							value: JSON.stringify( this.state.assignments[ key ] ),
 							noSave: true
 						}, key );
@@ -185,7 +186,7 @@ class UserPairer extends Component {
 			const assignments = this.state.assignments;
 			const logAction = {
 				id: this.props.id,
-				type: 'ASSIGNMENT_CLEARED',
+				type: ASSIGNMENT_CLEARED,
 				value: true
 			};
 			session.log( logAction, 'owners' );
@@ -193,7 +194,7 @@ class UserPairer extends Component {
 				if ( hasOwnProp( assignments, key ) ) {
 					session.log( {
 						id: this.props.id,
-						type: 'REMOVE_ASSIGNMENT',
+						type: REMOVE_ASSIGNMENT,
 						value: key,
 						noSave: true
 					}, key );

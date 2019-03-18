@@ -18,6 +18,7 @@ import bifurcateBy from '@stdlib/utils/bifurcate-by';
 import unique from 'uniq';
 import mean from 'utils/statistic/mean';
 import stdev from 'utils/statistic/stdev';
+import { DATA_EXPLORER_TESTS_TWO_SAMPLE_PROPTEST } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
 
@@ -170,7 +171,7 @@ class PropTest2 extends Component {
 				type: 'Test',
 				value: value
 			};
-			this.props.logAction( 'DATA_EXPLORER:TESTS:TWO_SAMPLE_PROPTEST', {
+			this.props.logAction( DATA_EXPLORER_TESTS_TWO_SAMPLE_PROPTEST, {
 				var1, grouping, var2, success, diff, direction, alpha
 			});
 			this.props.onCreated( output );

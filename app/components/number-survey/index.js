@@ -26,6 +26,7 @@ import Gate from 'components/gate';
 import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
 import SessionContext from 'session/context.js';
+import { NUMBER_SURVEY_SUBMISSION } from 'constants/actions.js';
 import './number-survey.css';
 
 
@@ -88,7 +89,7 @@ class NumberSurvey extends Component {
 		const session = this.context;
 		session.log({
 			id: this.props.id,
-			type: 'NUMBER_SURVEY_SUBMISSION',
+			type: NUMBER_SURVEY_SUBMISSION,
 			value: this.state.value,
 			anonymous: this.props.anonymous
 		}, 'members' );

@@ -22,6 +22,8 @@ import isElectron from 'utils/is-electron';
 import randomstring from 'utils/randomstring/alphanumeric';
 import io from 'socket.io-client';
 import SpeechInterface from 'speech-interface';
+import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT } from 'constants/actions.js';
+import POINTS from 'constants/points.js';
 
 
 // VARIABLES //
@@ -227,7 +229,7 @@ class Session {
 		}
 		debug( `Focused element with id ${id}` );
 		this.log({
-			type: 'FOCUS_ELEMENT',
+			type: FOCUS_ELEMENT,
 			value: this.user.email,
 			id: id,
 			noSave: true
@@ -237,7 +239,7 @@ class Session {
 	focusOutListener = ( event ) => {
 		debug( `Users ${this.user.email} lost focus...` );
 		this.log({
-			type: 'LOSE_FOCUS_ELEMENT',
+			type: LOSE_FOCUS_ELEMENT,
 			id: this.userFocuses[ this.user.email ],
 			value: this.user.email,
 			noSave: true
@@ -1344,17 +1346,18 @@ class Session {
 		const actions = this.currentUserActions;
 		if ( actions ) {
 			const arr = actions[ action.id ];
+			const pts = POINTS[ action.type ] || 1;
 			if ( !arr ) {
-				addedScore += 4;
-				PRIVATE_VARS['score'] = this.get( 'score' ) + 4;
-				this.update( 'self_updated_score', 4 );
+				addedScore += pts;
+				PRIVATE_VARS['score'] = this.get( 'score' ) + pts;
+				this.update( 'self_updated_score', pts );
 			}
 			else {
 				const types = arr.map( x => x.type );
 				if ( !contains( types, action.type ) ) {
-					addedScore += 4;
-					PRIVATE_VARS['score'] = this.get( 'score' ) + 4;
-					this.update( 'self_updated_score', 4 );
+					addedScore += pts;
+					PRIVATE_VARS['score'] = this.get( 'score' ) + pts;
+					this.update( 'self_updated_score', pts );
 				}
 			}
 		}

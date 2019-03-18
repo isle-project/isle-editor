@@ -7,6 +7,7 @@ import Dimensions from 'components/dimensions';
 import omit from '@stdlib/utils/omit';
 import VoiceControl from 'components/voice-control';
 import SessionContext from 'session/context.js';
+import { VIDEO_END, VIDEO_PLAY, VIDEO_PAUSE } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
 
 
@@ -57,7 +58,7 @@ class Video extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'VIDEO_PLAY',
+				type: VIDEO_PLAY,
 				value: this.state.progress.playedSeconds
 			});
 		}
@@ -70,7 +71,7 @@ class Video extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'VIDEO_PAUSE',
+				type: VIDEO_PAUSE,
 				value: this.state.progress.playedSeconds
 			});
 		}
@@ -89,7 +90,7 @@ class Video extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'VIDEO_END',
+				type: VIDEO_END,
 				value: this.state.progress.playedSeconds
 			});
 		}

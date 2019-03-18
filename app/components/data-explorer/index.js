@@ -298,31 +298,31 @@ class DataExplorer extends Component {
 			value = JSON.parse( value );
 		}
 		switch ( action.type ) {
-		case 'DATA_EXPLORER_SHARE:BARCHART':
+		case 'DATA_EXPLORER_SHARE_BARCHART':
 			config = generateBarchartConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE:BOXPLOT':
+		case 'DATA_EXPLORER_SHARE_BOXPLOT':
 			config = generateBoxplotConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE:CONTOURCHART':
+		case 'DATA_EXPLORER_SHARE_CONTOURCHART':
 			config = generateContourChart({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE:HEATMAP':
+		case 'DATA_EXPLORER_SHARE_HEATMAP':
 			config = generateHeatmapConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE:HISTOGRAM':
+		case 'DATA_EXPLORER_SHARE_HISTOGRAM':
 			config = generateHistogramConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE:MOSAIC':
+		case 'DATA_EXPLORER_SHARE_MOSAIC':
 			config = generateMosaicPlotCode({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE:PIECHART':
+		case 'DATA_EXPLORER_SHARE_PIECHART':
 			config = generatePiechartConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE:SCATTERPLOT':
+		case 'DATA_EXPLORER_SHARE_SCATTERPLOT':
 			config = generateScatterplotConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE:VIOLINPLOT':
+		case 'DATA_EXPLORER_SHARE_VIOLINPLOT':
 			config = generateViolinplotConfig({ data: this.state.data, ...value });
 		}
 		if ( config ) {

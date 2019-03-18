@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Panel from 'components/panel';
 import TeX from 'components/tex';
+import { CALCULATOR_SOLVE } from 'constants/actions.js';
 import FormControl from 'react-bootstrap/FormControl';
 import SessionContext from 'session/context.js';
 import Col from 'react-bootstrap/Col';
@@ -178,7 +179,7 @@ class Calculator extends Component {
 		const session = this.context;
 		session.log({
 			id: this.props.id,
-			type: 'CALCULATOR_SOLVE',
+			type: CALCULATOR_SOLVE,
 			value: visible
 		});
 		let keys = visible.split( RE_SPLIT_KEY );

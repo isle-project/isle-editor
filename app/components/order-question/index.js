@@ -11,6 +11,7 @@ import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
 import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
+import { ORDER_QUESTION_SUBMISSION, ORDER_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import './order-question.css';
 
 
@@ -71,7 +72,7 @@ class OrderQuestion extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'ORDER_QUESTION_OPEN_HINT',
+				type: ORDER_QUESTION_OPEN_HINT,
 				value: idx
 			});
 		}
@@ -117,7 +118,7 @@ class OrderQuestion extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'ORDER_QUESTION_SUBMISSION',
+				type: ORDER_QUESTION_SUBMISSION,
 				value: this.state.cards
 			});
 		}

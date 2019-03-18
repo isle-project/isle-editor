@@ -11,6 +11,7 @@ import CheckboxInput from 'components/input/checkbox';
 import QuestionButton from './question_button.js';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
+import { DATA_EXPLORER_SUMMARY_STATISTICS } from 'constants/actions.js';
 
 
 // VARIABLES //
@@ -186,7 +187,7 @@ class SummaryStatistics extends Component {
 			result: res,
 			group
 		};
-		this.props.logAction( 'DATA_EXPLORER:SUMMARY_STATISTICS', {
+		this.props.logAction( DATA_EXPLORER_SUMMARY_STATISTICS, {
 			statistic: statName,
 			variable,
 			secondVariable: statName === 'Correlation' ? secondVariable : null,

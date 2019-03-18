@@ -7,6 +7,7 @@ import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
 import objectKeys from '@stdlib/utils/keys';
+import { DATA_EXPLORER_SHARE_BOXPLOT, DATA_EXPLORER_BOXPLOT } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
 
@@ -75,12 +76,12 @@ class Boxplot extends Component {
 					level: 'success',
 					position: 'tr'
 				});
-				this.props.logAction( 'DATA_EXPLORER_SHARE:BOXPLOT', {
+				this.props.logAction( DATA_EXPLORER_SHARE_BOXPLOT, {
 					variable, group, plotId
 				});
 			}} />
 		};
-		this.props.logAction( 'DATA_EXPLORER:BOXPLOT', {
+		this.props.logAction( DATA_EXPLORER_BOXPLOT, {
 			variable,
 			group,
 			plotId

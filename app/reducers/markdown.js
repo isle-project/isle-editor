@@ -1,7 +1,7 @@
 // MODULES //
 
 import isArray from '@stdlib/assert/is-array';
-import * as types from 'constants/actionTypes';
+import * as types from 'constants/editor_actions.js';
 import Configstore from 'configstore';
 import template from 'constants/template.js';
 import yaml from 'js-yaml';

@@ -1,7 +1,7 @@
 // MODULES //
 
 import Configstore from 'configstore';
-import * as types from 'constants/actionTypes';
+import * as types from 'constants/editor_actions.js';
 
 
 // VARIABLES //

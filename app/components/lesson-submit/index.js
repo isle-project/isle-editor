@@ -8,6 +8,7 @@ import beforeUnload from 'utils/before-unload';
 import Signup from 'components/signup';
 import Login from 'components/login';
 import SessionContext from 'session/context.js';
+import { LESSON_SUBMIT } from 'constants/actions.js';
 
 
 // VARIABLES //
@@ -109,7 +110,7 @@ class LessonSubmit extends Component {
 		});
 		session.log({
 			id: session.lessonName,
-			type: 'LESSON_SUBMIT',
+			type: LESSON_SUBMIT,
 			value: 'Lesson submitted!'
 		});
 		this.setState({

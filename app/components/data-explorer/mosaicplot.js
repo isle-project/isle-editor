@@ -9,6 +9,7 @@ import RPlot from 'components/r/plot';
 import randomstring from 'utils/randomstring/alphanumeric';
 import objectValues from '@stdlib/utils/values';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import { DATA_EXPLORER_SHARE_MOSAIC, DATA_EXPLORER_MOSAIC } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
 
@@ -93,13 +94,13 @@ class MosaicPlot extends Component {
 						level: 'success',
 						position: 'tr'
 					});
-					this.props.logAction( 'DATA_EXPLORER_SHARE:MOSAIC', {
+					this.props.logAction( DATA_EXPLORER_SHARE_MOSAIC, {
 						vars, showColors, plotId
 					});
 				}}
 			/>
 		};
-		this.props.logAction( 'DATA_EXPLORER:MOSAIC', {
+		this.props.logAction( DATA_EXPLORER_MOSAIC, {
 			vars, showColors, plotId
 		});
 		this.props.onCreated( output );

@@ -9,6 +9,7 @@ import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
+import { DATA_EXPLORER_SHARE_CONTOURPLOT, DATA_EXPLORER_CONTOURPLOT } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
 
@@ -98,7 +99,7 @@ class ContourChart extends Component {
 						level: 'success',
 						position: 'tr'
 					});
-					this.props.logAction( 'DATA_EXPLORER_SHARE:CONTOURPLOT', {
+					this.props.logAction( DATA_EXPLORER_SHARE_CONTOURPLOT, {
 						xval, yval, overlayPoints, plotId
 					});
 				}}
@@ -107,7 +108,7 @@ class ContourChart extends Component {
 				}}
 			/>
 		};
-		this.props.logAction( 'DATA_EXPLORER:CONTOURPLOT', {
+		this.props.logAction( DATA_EXPLORER_CONTOURPLOT, {
 			xval, yval, overlayPoints, plotId
 		});
 		this.props.onCreated( output );

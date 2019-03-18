@@ -28,6 +28,7 @@ import Spinner from 'components/spinner';
 import HintButton from 'components/hint-button';
 import OverlayTrigger from 'components/overlay-trigger';
 import SessionContext from 'session/context.js';
+import { RSHELL_DISPLAY_SOLUTION, RSHELL_EVALUATION, RSHELL_OPEN_HINT } from 'constants/actions.js';
 import './rshell.css';
 
 
@@ -193,7 +194,7 @@ class RShell extends React.Component {
 					const session = this.context;
 					session.log({
 						id: this.props.id,
-						type: 'RSHELL_DISPLAY_SOLUTION',
+						type: RSHELL_DISPLAY_SOLUTION,
 						value: val
 					});
 				}
@@ -241,7 +242,7 @@ class RShell extends React.Component {
 				if ( this.props.id ) {
 					session.log({
 						id: this.props.id,
-						type: 'RSHELL_EVALUATION',
+						type: RSHELL_EVALUATION,
 						value: currentCode
 					});
 				}
@@ -417,7 +418,7 @@ class RShell extends React.Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'RSHELL_OPEN_HINT',
+				type: RSHELL_OPEN_HINT,
 				value: idx
 			});
 		}

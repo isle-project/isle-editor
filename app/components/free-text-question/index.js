@@ -21,6 +21,7 @@ import VoiceControl from 'components/voice-control';
 import OverlayTrigger from 'components/overlay-trigger';
 import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
+import { FREE_TEXT_QUESTION_SUBMIT_ANSWER, FREE_TEXT_QUESTION_DISPLAY_SOLUTION, FREE_TEXT_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import './free-text-question.css';
 
@@ -159,7 +160,7 @@ class FreeTextQuestion extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'FREE_TEXT_QUESTION_SUBMIT_ANSWER',
+				type: FREE_TEXT_QUESTION_SUBMIT_ANSWER,
 				value: this.state.value
 			});
 		}
@@ -183,7 +184,7 @@ class FreeTextQuestion extends Component {
 		} else {
 			session.log({
 				id: this.props.id,
-				type: 'FREE_TEXT_QUESTION_DISPLAY_SOLUTION',
+				type: FREE_TEXT_QUESTION_DISPLAY_SOLUTION,
 				value: null
 			});
 			this.setState({
@@ -232,7 +233,7 @@ class FreeTextQuestion extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'FREE_TEXT_QUESTION_OPEN_HINT',
+				type: FREE_TEXT_QUESTION_OPEN_HINT,
 				value: idx
 			});
 		}

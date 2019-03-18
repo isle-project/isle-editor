@@ -13,6 +13,7 @@ import SolutionButton from 'components/solution-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import Text from 'components/text';
 import SessionContext from 'session/context.js';
+import { MULTIPLE_CHOICE_MATRIX_SUBMISSION } from 'constants/actions.js';
 import './multiple_choice_matrix.css';
 
 
@@ -129,7 +130,7 @@ class MultipleChoiceMatrix extends Component {
 		if ( this.props.id ) {
 			session.log({
 				id: this.props.id,
-				type: 'MULTIPLE_CHOICE_MATRIX_SUBMISSION',
+				type: MULTIPLE_CHOICE_MATRIX_SUBMISSION,
 				value: JSON.stringify( this.state.active )
 			});
 		}

@@ -8,6 +8,7 @@ import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
 import objectKeys from '@stdlib/utils/keys';
+import { DATA_EXPLORER_SHARE_VIOLINPLOT, DATA_EXPLORER_VIOLINPLOT } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
 
@@ -86,12 +87,12 @@ class Violinplot extends Component {
 					level: 'success',
 					position: 'tr'
 				});
-				this.props.logAction( 'DATA_EXPLORER_SHARE:VIOLINPLOT', {
+				this.props.logAction( DATA_EXPLORER_SHARE_VIOLINPLOT, {
 					variable, group, plotId
 				});
 			}} />
 		};
-		this.props.logAction( 'DATA_EXPLORER:VIOLINPLOT', {
+		this.props.logAction( DATA_EXPLORER_VIOLINPLOT, {
 			variable,
 			group,
 			plotId
