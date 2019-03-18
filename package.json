@@ -160,7 +160,7 @@
     "pressure": "^2.1.2",
     "profanities": "^2.10.0",
     "prop-types": "^15.5.10",
-    "raw-loader": "^1.0.0",
+    "raw-loader": "^2.0.0",
     "react": "16.8.4",
     "react-bootstrap": "^1.0.0-beta.4",
     "react-color": "^2.17.0",
