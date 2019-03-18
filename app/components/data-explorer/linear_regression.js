@@ -8,6 +8,7 @@ import Dashboard from 'components/dashboard';
 import objectValues from '@stdlib/utils/values';
 import mapValues from '@stdlib/utils/map-values';
 import mean from 'utils/statistic/mean';
+import { DATA_EXPLORER_LINEAR_REGRESSION } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import by2 from './by2.js';
 
@@ -111,6 +112,9 @@ class SimpleLinearRegression extends Component {
 					</Table>
 				</div>
 			};
+			this.props.logAction( DATA_EXPLORER_LINEAR_REGRESSION, {
+				yval, xval, group
+			});
 			this.props.onCreated( output );
 		}
 	}
@@ -148,13 +152,15 @@ class SimpleLinearRegression extends Component {
 // PROPERTIES //
 
 SimpleLinearRegression.defaultProps = {
-	categorical: []
+	categorical: [],
+	logAction() {}
 };
 
 SimpleLinearRegression.propTypes = {
 	categorical: PropTypes.array,
 	continuous: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
+	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired
 };
 
