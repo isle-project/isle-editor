@@ -13,11 +13,9 @@ import NotificationSystem from 'react-notification-system';
 import logger from 'debug';
 import { dirname, resolve, extname } from 'path';
 import { readFileSync } from 'fs';
-import yaml from 'js-yaml';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import isRelativePath from '@stdlib/assert/is-relative-path';
 import isObject from '@stdlib/assert/is-object';
-import replace from '@stdlib/string/replace';
 import repeat from '@stdlib/string/repeat';
 import markdownToHTML from 'utils/markdown-to-html';
 import pluginTransformJSX from 'babel-plugin-transform-react-jsx';
@@ -95,9 +93,7 @@ class Preview extends Component {
 	shouldComponentUpdate( nextProps, nextState ) {
 		if (
 			this.props.code !== nextProps.code ||
-			this.props.preamble.server !== nextProps.preamble.server ||
-			this.props.preamble.state !== nextProps.preamble.state ||
-			this.props.preamble.require !== nextProps.preamble.require ||
+			this.props.preambleText !== nextProps.preambleText ||
 			this.props.currentMode !== nextProps.currentMode ||
 			this.props.currentRole !== nextProps.currentRole
 		) {
@@ -109,12 +105,11 @@ class Preview extends Component {
 	componentDidUpdate( prevProps ) {
 		debug( 'Preview will update.' );
 		if (
-			this.props.preamble.server !== prevProps.preamble.server ||
-			this.props.preamble.state !== prevProps.preamble.state ||
-			this.props.preamble.require !== prevProps.preamble.require ||
+			this.props.preambleText !== prevProps.preambleText ||
 			this.props.currentMode !== prevProps.currentMode ||
 			this.props.currentRole !== prevProps.currentRole
 		) {
+			this.handlePreambleChange( this.props.preamble );
 			const offline = this.props.currentMode === 'offline';
 			const session = new Session( this.props.preamble, offline );
 			this.session = session;
@@ -123,75 +118,35 @@ class Preview extends Component {
 			this.setState({
 				...lessonState
 			});
-			this.handlePreambleChange( this.props.code );
 		}
 	}
 
-	checkPreambleChange( preamble ) {
-		if ( preamble !== this.props.preambleText ) {
-			debug( 'Preamble has changed.' );
-			return true;
+	handlePreambleChange = ( newPreamble ) => {
+		try {
+			loadRequires( newPreamble.require, this.props.filePath || '' );
+		} catch ( err ) {
+			return this.props.encounteredError( err );
 		}
-		debug( 'Preamble has not changed.' );
-		return false;
-	}
-
-	handlePreambleChange = ( text ) => {
-		let preamble = text.match( /---([\S\s]*)---/ );
-		if ( !preamble ) {
-			return this.props.encounteredError( new Error( 'Make sure the file contains a YAML preamble enclosed in <b>---</b> tags.' ) );
-		}
-		// Extract the capture group:
-		preamble = preamble[ 1 ];
-		preamble = replace( preamble, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
-		let preambleHasChanged = this.checkPreambleChange( preamble );
-		debug( 'Check whether preamble has changed: '+preambleHasChanged );
-		if ( preambleHasChanged ) {
-			try {
-				const newPreamble = yaml.load( preamble );
-				if ( !isObject( newPreamble ) ) {
-					return this.props.encounteredError( new Error( 'Make sure the preamble is valid YAML code.' ) );
+		try {
+			let instructorNotes = newPreamble.instructorNotes;
+			if ( instructorNotes && extname( instructorNotes ) === '.md' ) {
+				if ( isRelativePath( instructorNotes ) ) {
+					const fPath = resolve( dirname(this.props.filePath), instructorNotes );
+					instructorNotes = readFileSync( fPath );
+					instructorNotes = instructorNotes.toString();
+				} else if ( isAbsolutePath( instructorNotes ) ) {
+					instructorNotes = readFileSync( instructorNotes );
+					instructorNotes = instructorNotes.toString();
 				}
-				try {
-					loadRequires( newPreamble.require, this.props.filePath || '' );
-				} catch ( err ) {
-					return this.props.encounteredError( err );
-				}
-				try {
-					let instructorNotes = newPreamble.instructorNotes;
-					if ( instructorNotes && extname( instructorNotes ) === '.md' ) {
-						if ( isRelativePath( instructorNotes ) ) {
-							const fPath = resolve( dirname(this.props.filePath), instructorNotes );
-							instructorNotes = readFileSync( fPath );
-							instructorNotes = instructorNotes.toString();
-						} else if ( isAbsolutePath( instructorNotes ) ) {
-							instructorNotes = readFileSync( instructorNotes );
-							instructorNotes = instructorNotes.toString();
-						}
-						newPreamble.instructorNotes = instructorNotes;
-					}
-				} catch ( err ) {
-					return this.props.encounteredError( new Error( 'Ensure that instructor notes path is correct' ) );
-				}
-				try {
-					applyStyles( newPreamble, this.props.filePath || '' );
-				} catch ( err ) {
-					return this.props.encounteredError( err );
-				}
-
-				if ( this.props.error ) {
-					this.props.resetError();
-				}
-				if ( preambleHasChanged ) {
-					debug( 'Update preamble...' );
-					this.props.updatePreamble({
-						preamble: newPreamble,
-						preambleText: preamble
-					});
-				}
-			} catch ( err ) {
-				return this.props.encounteredError( new Error( 'Couldn\'t parse the preamble. Make sure it is valid YAML.' ) );
+				newPreamble.instructorNotes = instructorNotes;
 			}
+		} catch ( err ) {
+			return this.props.encounteredError( new Error( 'Ensure that instructor notes path is correct' ) );
+		}
+		try {
+			applyStyles( newPreamble, this.props.filePath || '' );
+		} catch ( err ) {
+			return this.props.encounteredError( err );
 		}
 	}
 
@@ -271,7 +226,8 @@ Preview.propTypes = {
 	currentMode: PropTypes.string.isRequired,
 	currentRole: PropTypes.string.isRequired,
 	onCode: PropTypes.func,
-	preamble: PropTypes.object.isRequired
+	preamble: PropTypes.object.isRequired,
+	preambleText: PropTypes.string.isRequired
 };
 
 

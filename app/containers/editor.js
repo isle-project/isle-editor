@@ -6,11 +6,14 @@ import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
 import { Linter } from 'eslint';
 import SplitPane from 'react-split-pane';
+import yaml from 'js-yaml';
 import logger from 'debug';
+import replace from '@stdlib/string/replace';
+import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
 import Loadable from 'components/loadable';
 import Header from 'editor-components/header';
-import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError, saveLintErrors } from 'actions';
+import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, saveLintErrors } from 'actions';
 const ErrorBoundary = Loadable( () => import( 'editor-components/error-boundary' ) );
 const Preview = Loadable( () => import( 'editor-components/preview' ) );
 const Editor = Loadable( () => import( 'editor-components/editor' ) );
@@ -45,6 +48,7 @@ class App extends Component {
 		const handleChange = ( value ) => {
 			debug( 'Should handle change...' );
 			this.props.convertMarkdown( value );
+			this.handlePreambleChange( value );
 		};
 
 		if ( this.debouncedChange ) {
@@ -52,6 +56,28 @@ class App extends Component {
 		} else {
 			this.debouncedChange = debounce( handleChange, this.props.renderInterval );
 			this.debouncedChange( value );
+		}
+	}
+
+	handlePreambleChange = ( text ) => {
+		let preamble = text.match( /---([\S\s]*)---/ );
+		if ( preamble ) {
+			// Extract the capture group:
+			preamble = preamble[ 1 ];
+			preamble = replace( preamble, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
+			let preambleHasChanged = preamble !== this.props.preambleText;
+			debug( 'Check whether preamble has changed: '+preambleHasChanged );
+			if ( preambleHasChanged ) {
+				debug( 'Update preamble...' );
+				const newPreamble = yaml.load( preamble );
+				if ( !isObject( newPreamble ) ) {
+					return this.props.encounteredError( new Error( 'Make sure the preamble is valid YAML code.' ) );
+				}
+				this.props.updatePreamble({
+					preamble: newPreamble,
+					preambleText: preamble
+				});
+			}
 		}
 	}
 
@@ -125,7 +151,6 @@ class App extends Component {
 									currentRole={currentRole}
 									currentMode={currentMode}
 									onCode={this.lintCode}
-									resetError={this.props.resetError}
 									encounteredError={this.props.encounteredError}
 									preambleText={this.props.preambleText}
 									updatePreamble={this.props.updatePreamble}
@@ -171,7 +196,6 @@ App.propTypes = {
 	markdown: PropTypes.string.isRequired,
 	preamble: PropTypes.object.isRequired,
 	preambleText: PropTypes.string.isRequired,
-	resetError: PropTypes.func.isRequired,
 	saveLintErrors: PropTypes.func.isRequired,
 	updatePreamble: PropTypes.func.isRequired
 };
@@ -183,7 +207,6 @@ export default connect( mapStateToProps, {
 	convertMarkdown,
 	saveLintErrors,
 	encounteredError,
-	resetError,
 	changeView,
 	changeMode,
 	toggleScrolling,
