@@ -241,7 +241,7 @@ class UserList extends Component {
 							color
 						}}
 					>
-						<Tooltip placement="right" tooltip="Open user actions" >
+						<Tooltip placement="right" tooltip="Click to open user actions" >
 							<img
 								onClick={this.thumbnailClickFactory( user.email )}
 								className="user-thumbnail"

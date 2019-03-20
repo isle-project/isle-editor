@@ -41,3 +41,8 @@
 	margin-right: 5px;
 	cursor: pointer;
 }
+
+.user-thumbnail:hover {
+	position: fixed;
+	transform: scale(3);
+}
