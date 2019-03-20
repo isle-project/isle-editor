@@ -16,6 +16,7 @@ import TextInput from 'components/input/text';
 import VoiceInput from 'components/input/voice';
 import SPECTACLE_THEME from 'components/spectacle/theme.json';
 import factor from 'utils/factor-variable';
+import Repetition from 'utils/repetition';
 
 
 // VARIABLES //
@@ -25,6 +26,7 @@ const SCOPE = {
 	Component,
 	render,
 	factor,
+	Repetition,
 	NotificationSystem,
 
 	Accordion: Loadable( () => import( 'components/accordion' ) ),
