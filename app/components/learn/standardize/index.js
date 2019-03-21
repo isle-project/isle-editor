@@ -59,7 +59,8 @@ class Standardize extends Component {
 		this.setState({
 			marked: [],
 			unstandardizedLines: [],
-			standardizedLines: []
+			standardizedLines: [],
+			eqn2: ''
 		});
 	}
 
