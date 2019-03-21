@@ -65,6 +65,7 @@ class Repetition extends Array {
 				id: i,
 				done: false
 			});
+		this.remaining.push(i);
 		}
 		if ( this.props.start > 0 ) {
 			if ( this.props.start + this.props.noDisplayed < this.props.noElements ) {
@@ -72,13 +73,23 @@ class Repetition extends Array {
 					const no = i + this.props.start;
 					this[ i ] = this.list[ no ].id;
 				}
-				for ( let i = this.props.noDisplayed; i < this.props.noElements; i++ ) {
-					const no = i + this.props.start;
-					this.remaining.push( no );
+
+				let left = this.remaining.slice(0, this.props.start);
+				var m = this.props.start + this.props.noDisplayed;
+				let right = this.remaining.slice(m);
+				this.remaining = right.concat(left);
+			} else {
+				for ( let i = 0; i < this.props.noDisplayed; i++ ) {
+					let no = i + this.props.start;
+					if (no >= this.props.noElements ) {
+						no -= this.props.noElements;
+					}
+
+					this[ i ] = this.list[ no ].id;
 				}
-				for ( let i = 0; i < this.props.start; i++ ) {
-					this.remaining.push( i );
-				}
+
+				var x = this.props.start + this.props.noDisplayed - this.props.noElements;
+				this.remaining = this.remaining.slice(x, this.props.start);
 			}
 		} else {
 			for ( let i = 0; i < this.props.noDisplayed; i++) {
