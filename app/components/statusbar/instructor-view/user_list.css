@@ -43,6 +43,6 @@
 }
 
 .user-thumbnail:hover {
-	position: fixed;
 	transform: scale(3);
+	margin-left: 25px;
 }
