@@ -1,10 +1,11 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import { VictoryChart, VictoryLine, VictoryAxis, VictoryArea } from 'victory';
 import PropTypes from 'prop-types';
 import roundn from '@stdlib/math/base/special/roundn';
@@ -52,6 +53,14 @@ class Standardize extends Component {
 
 	componentDidMount() {
 		this.generateState( this.state.mean, this.state.sd );
+	}
+
+	reset = () => {
+		this.setState({
+			marked: [],
+			unstandardizedLines: [],
+			standardizedLines: []
+		});
 	}
 
 	onStandardize = ( x ) => {
@@ -113,7 +122,7 @@ class Standardize extends Component {
 	}
 
 	renderNumberInputPanel() {
-		return ( <Card>
+		return ( <Card style={{ marginBottom: 10 }}>
 			<Card.Header as="h4">
 				From Normal to Standard Normal
 			</Card.Header>
@@ -159,6 +168,7 @@ class Standardize extends Component {
 					<VictoryAxis label="x" />
 					{this.state.unstandardizedLines}
 				</VictoryChart>
+				<Button variant="secondary" onClick={this.reset}>Reset</Button>
 			</Card.Body>
 		</Card> );
 	}
@@ -193,54 +203,57 @@ class Standardize extends Component {
 					}
 					{this.state.standardizedLines}
 				</VictoryChart>
-				{ this.props.showProbabilities ? <TeX
-					raw={`P( L = ${this.state.lower} < X < U = ${this.state.upper}) = ${this.state.rangeProb.toFixed( 3 )}`}
-					elems={{
-						L: {
-							variable: 'L',
-							onChange: ( lower ) => {
-								const len = 200;
-								let x = linspace( lower, this.state.upper, len );
-								let area = new Array( len );
-								for ( let i = 0; i < x.length; i++ ) {
-									area[ i ] = {
-										x: x[ i ],
-										y: dnorm( x[ i ], 0.0, 1.0 )
-									};
-								}
-								const rangeProb = pnorm( this.state.upper, 0.0, 1.0 ) - pnorm( lower, 0.0, 1.0 );
-								this.setState({
-									area,
-									rangeProb,
-									lower
-								});
+				{ this.props.showProbabilities ? <Fragment>
+					<span>Evaluate probabilities:</span>
+					<TeX
+						raw={`P( L = ${this.state.lower} < Z < U = ${this.state.upper}) = ${this.state.rangeProb.toFixed( 3 )}`}
+						elems={{
+							L: {
+								variable: 'L',
+								onChange: ( lower ) => {
+									const len = 200;
+									let x = linspace( lower, this.state.upper, len );
+									let area = new Array( len );
+									for ( let i = 0; i < x.length; i++ ) {
+										area[ i ] = {
+											x: x[ i ],
+											y: dnorm( x[ i ], 0.0, 1.0 )
+										};
+									}
+									const rangeProb = pnorm( this.state.upper, 0.0, 1.0 ) - pnorm( lower, 0.0, 1.0 );
+									this.setState({
+										area,
+										rangeProb,
+										lower
+									});
+								},
+								defaultValue: this.state.lower
 							},
-							defaultValue: this.state.lower
-						},
-						U: {
-							variable: 'U',
-							onChange: ( upper ) => {
-								const len = 200;
-								let x = linspace( this.state.lower, upper, len );
-								let area = new Array( len );
-								for ( let i = 0; i < x.length; i++ ) {
-									area[ i ] = {
-										x: x[ i ],
-										y: dnorm( x[ i ], 0.0, 1.0 )
-									};
-								}
-								const rangeProb = pnorm( upper, 0.0, 1.0 ) - pnorm( this.state.lower, 0.0, 1.0 );
-								this.setState({
-									area,
-									rangeProb,
-									upper
-								});
-							},
-							defaultValue: this.state.upper
-						}
-					}}
-					popoverPlacement="bottom"
-					displayMode /> : null
+							U: {
+								variable: 'U',
+								onChange: ( upper ) => {
+									const len = 200;
+									let x = linspace( this.state.lower, upper, len );
+									let area = new Array( len );
+									for ( let i = 0; i < x.length; i++ ) {
+										area[ i ] = {
+											x: x[ i ],
+											y: dnorm( x[ i ], 0.0, 1.0 )
+										};
+									}
+									const rangeProb = pnorm( upper, 0.0, 1.0 ) - pnorm( this.state.lower, 0.0, 1.0 );
+									this.setState({
+										area,
+										rangeProb,
+										upper
+									});
+								},
+								defaultValue: this.state.upper
+							}
+						}}
+						popoverPlacement="bottom"
+						displayMode />
+					</Fragment>: null
 				}
 			</Card.Body>
 		</Card> );
@@ -259,8 +272,8 @@ class Standardize extends Component {
 						{this.renderUnstandardizedPlot()}
 					</Col>
 					<Col md={4}>
-						<TeX raw={this.state.eqn} displayMode tag="" />
 						<Dashboard autoStart={false} title="Standardize values" label="Compute" onGenerate={this.onStandardize}>
+							<TeX raw={this.state.eqn} displayMode tag="" />
 							<NumberInput
 								legend="X value"
 								defaultValue={0}
