@@ -90,7 +90,7 @@
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
-    "@babel/register": "^7.0.0",
+    "@babel/register": "^7.4.0",
     "@babel/runtime": "^7.3.4",
     "@stdlib/stdlib": "0.0.60",
     "acorn": "^6.1.0",
