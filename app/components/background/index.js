@@ -103,14 +103,11 @@ class Background extends Component {
 		} else {
 			let newCt = ct+2;
 			if ( newCt > this.props.images.length-1 ) {
-				console.log('newCt wird gleich auf NULL gesetzt ' + newCt);
-				console.log('Länge des Arrays ' + this.props.images.length);
 				newCt = 0;
 			}
 
 			let fgCt = ct + 1;
 			if (fgCt === this.props.images.length) {
-				console.log('Das Vordergrund-Image gibt es nicht');
 				fgCt = this.props.images.length -1;
 			}
 
