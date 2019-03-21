@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import { VictoryChart, VictoryLine, VictoryArea } from 'victory';
+import { VictoryChart, VictoryLine, VictoryAxis, VictoryArea } from 'victory';
 import PropTypes from 'prop-types';
 import roundn from '@stdlib/math/base/special/roundn';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';
@@ -155,6 +155,8 @@ class Standardize extends Component {
 					<VictoryLine
 						data={this.state.data}
 					/>
+					<VictoryAxis dependentAxis />
+					<VictoryAxis label="x" />
 					{this.state.unstandardizedLines}
 				</VictoryChart>
 			</Card.Body>
@@ -171,6 +173,8 @@ class Standardize extends Component {
 					x: [ -5, 5 ],
 					y: [ 0, 0.4 ]
 				}}>
+					<VictoryAxis dependentAxis />
+					<VictoryAxis label="z" />
 					<VictoryLine
 						samples={200}
 						y={( data ) => {
