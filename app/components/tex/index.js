@@ -30,6 +30,7 @@ let counter = 1;
 * @property {Object} style - `object` with CSS key-value pairs to be applied to the equation container
 * @property {string} tag - Custom characters displayed for display equations at the right side. Defaults to the number of the equation inside the lesson
 * @property {Object} elems - `object` with `keys` denoting LaTeX characters and their corresponding values being configuration `objects` to make them interactive. Setting a `tooltip` option will show a tooltip when hovering over the LaTeX characters. Setting a `variable` property will display an input slider to change the respective state variable; in this case, additional properties `legend`, `min`, `max`, and `step` are supported
+* @property {string} popoverPlacement - popover position for the specified `elems`
 * @property {Function} onClick - callback `function` invoked whenever a user clicks on the equation
 */
 class TeX extends Component {
@@ -79,6 +80,7 @@ class TeX extends Component {
 				if ( $this.text() === prop ) {
 					if ( elem.variable ) {
 						$this.style( 'cursor', 'pointer' );
+						$this.style( 'color', 'blue' );
 					}
 					$this.on( 'mouseover', () => {
 						$this.style( 'color', 'red' );
@@ -91,7 +93,7 @@ class TeX extends Component {
 						}
 					}).on( 'mouseout', () => {
 						if ( !self.state.showPopover ) {
-							$this.style( 'color', 'black' );
+							$this.style( 'color', 'blue' );
 						}
 						if ( elem.tooltip ) {
 							self.setState({
@@ -153,7 +155,7 @@ class TeX extends Component {
 				show={this.state.showPopover}
 				container={document.body}
 				target={this.state.popoverTarget}
-				placement="top"
+				placement={this.props.popoverPlacement}
 			>
 				<Popover id="popover-top">
 					<NumberInput
@@ -231,6 +233,7 @@ TeX.propTypes = {
 	style: PropTypes.object,
 	tag: PropTypes.string,
 	elems: PropTypes.object,
+	popoverPlacement: PropTypes.string,
 	onClick: PropTypes.func
 };
 
@@ -240,6 +243,7 @@ TeX.defaultProps = {
 	style: {},
 	tag: null,
 	elems: {},
+	popoverPlacement: 'top',
 	onClick() {}
 };
 
