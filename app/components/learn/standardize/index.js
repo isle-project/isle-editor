@@ -189,50 +189,55 @@ class Standardize extends Component {
 					}
 					{this.state.standardizedLines}
 				</VictoryChart>
-				{ this.props.showProbabilities ? <TeX raw={`P( L = ${this.state.lower} < X < U = ${this.state.upper}) = ${this.state.rangeProb.toFixed( 3 )}`} elems={{
-					L: {
-						variable: 'L',
-						onChange: ( lower ) => {
-							const len = 200;
-							let x = linspace( lower, this.state.upper, len );
-							let area = new Array( len );
-							for ( let i = 0; i < x.length; i++ ) {
-								area[ i ] = {
-									x: x[ i ],
-									y: dnorm( x[ i ], 0.0, 1.0 )
-								};
-							}
-							const rangeProb = pnorm( this.state.upper, 0.0, 1.0 ) - pnorm( lower, 0.0, 1.0 );
-							this.setState({
-								area,
-								rangeProb,
-								lower
-							});
+				{ this.props.showProbabilities ? <TeX
+					raw={`P( L = ${this.state.lower} < X < U = ${this.state.upper}) = ${this.state.rangeProb.toFixed( 3 )}`}
+					elems={{
+						L: {
+							variable: 'L',
+							onChange: ( lower ) => {
+								const len = 200;
+								let x = linspace( lower, this.state.upper, len );
+								let area = new Array( len );
+								for ( let i = 0; i < x.length; i++ ) {
+									area[ i ] = {
+										x: x[ i ],
+										y: dnorm( x[ i ], 0.0, 1.0 )
+									};
+								}
+								const rangeProb = pnorm( this.state.upper, 0.0, 1.0 ) - pnorm( lower, 0.0, 1.0 );
+								this.setState({
+									area,
+									rangeProb,
+									lower
+								});
+							},
+							defaultValue: this.state.lower
 						},
-						defaultValue: this.state.lower
-					},
-					U: {
-						variable: 'U',
-						onChange: ( upper ) => {
-							const len = 200;
-							let x = linspace( this.state.lower, upper, len );
-							let area = new Array( len );
-							for ( let i = 0; i < x.length; i++ ) {
-								area[ i ] = {
-									x: x[ i ],
-									y: dnorm( x[ i ], 0.0, 1.0 )
-								};
-							}
-							const rangeProb = pnorm( upper, 0.0, 1.0 ) - pnorm( this.state.lower, 0.0, 1.0 );
-							this.setState({
-								area,
-								rangeProb,
-								upper
-							});
-						},
-						defaultValue: this.state.upper
-					}
-				}} displayMode /> : null }
+						U: {
+							variable: 'U',
+							onChange: ( upper ) => {
+								const len = 200;
+								let x = linspace( this.state.lower, upper, len );
+								let area = new Array( len );
+								for ( let i = 0; i < x.length; i++ ) {
+									area[ i ] = {
+										x: x[ i ],
+										y: dnorm( x[ i ], 0.0, 1.0 )
+									};
+								}
+								const rangeProb = pnorm( upper, 0.0, 1.0 ) - pnorm( this.state.lower, 0.0, 1.0 );
+								this.setState({
+									area,
+									rangeProb,
+									upper
+								});
+							},
+							defaultValue: this.state.upper
+						}
+					}}
+					popoverPlacement="bottom"
+					displayMode /> : null
+				}
 			</Card.Body>
 		</Card> );
 	}
