@@ -91,7 +91,8 @@ class ProbMean extends Component {
 			<Card body>
 				<NumberInput
 					step="any"
-					legend={<TeX raw="x" />}
+					inline
+					legend={<TeX raw="\bar x" />}
 					onChange={( value ) => {
 						const newState = calculateProb({
 							value: value,
@@ -107,7 +108,7 @@ class ProbMean extends Component {
 					}}
 				/>
 				<TeX raw={`P( \\bar X < ${this.state.cutoff} ) = ${this.state.leftProb.toFixed( 3 )}`} />
-				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<span>&nbsp;&nbsp;&nbsp;</span>
 				<TeX raw={`P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightProb.toFixed( 3 )}`} />
 			</Card>
 		);

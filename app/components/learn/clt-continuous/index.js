@@ -14,6 +14,9 @@ import rExponential from '@stdlib/random/base/exponential';
 import rUniform from '@stdlib/random/base/uniform';
 import rNormal from '@stdlib/random/base/normal';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';
+import dexp from '@stdlib/stats/base/dists/exponential/pdf';
+import qexp from '@stdlib/stats/base/dists/exponential/quantile';
+import dunif from '@stdlib/stats/base/dists/uniform/pdf';
 import copy from '@stdlib/utils/copy';
 import inmap from '@stdlib/utils/inmap';
 import abs from '@stdlib/math/base/special/abs';
@@ -31,7 +34,7 @@ import max from 'utils/statistic/max';
 import Plotly from 'components/plotly';
 import NumberInput from 'components/input/number';
 import CheckboxInput from 'components/input/checkbox';
-import { VictoryArea, VictoryAxis, VictoryChart } from 'victory';
+import { VictoryArea, VictoryAxis, VictoryChart, VictoryLine } from 'victory';
 import TeX from 'components/tex';
 import ProbabilityRange from './probability_range.js';
 import ProbMeanRange from './prob_mean_range.js';
@@ -43,6 +46,7 @@ import 'react-resizable/css/styles.css';
 
 // VARIABLES //
 
+const NEAR_ONE = 0.999999;
 const GridLayout = WidthProvider( ReactGridLayout );
 
 
@@ -328,7 +332,7 @@ class ContinuousCLT extends Component {
 	renderDistSelectionPanel() {
 		const exponential = <div>
 			<NumberInput legend="Rate parameter"
-				max={100} min={0.01} step="any" defaultValue={this.state.lambda}
+				max={100} min={0.01} step={0.01} defaultValue={this.state.lambda}
 				onChange={( lambda ) => {
 					let formula = <TeX raw={`\\text{Exponential}(${lambda})`} />;
 					this.setState({ 'lambda': lambda, 'distFormula': formula });
@@ -400,17 +404,47 @@ class ContinuousCLT extends Component {
 			</div>;
 			break;
 		}
+		let pdf;
+		let domain;
+		switch ( this.state.activeDistribution ) {
+			default:
+			case 1: {
+				const { a, b } = this.state;
+				pdf = dunif.factory( a, b );
+				domain = {
+					x: [ a - 1.0, b + 1.0 ],
+					y: [ 0, dunif( a, a, b ) + 0.1 ]
+				};
+				break;
+			}
+			case 2:
+				pdf = dexp.factory( this.state.lambda );
+				domain = {
+					x: [ 0, qexp( NEAR_ONE, this.state.lambda ) + 2 ],
+					y: [ 0, pdf( 0.02 ) ]
+				};
+				break;
+			case 3: {
+				const { mu, sigma } = this.state;
+				pdf = dnorm.factory( mu, sigma );
+				domain = {
+					x: [ mu-sigma*4, mu+sigma*4 ],
+					y: [ 0, dnorm( mu, mu, sigma ) ]
+				};
+				break;
+			}
+		}
 		return ( <Card body>
 			<Container>
 				<Row>
-					<Col md={6}>
+					<Col md={4}>
 						<Tabs activeKey={this.state.activeDistribution} id="distribution-tabs" onSelect={this.handleSelect} >
 							{this.props.distributions.includes('uniform') ? <Tab eventKey={1} title="Uniform">{uniform}</Tab> : null}
 							{this.props.distributions.includes('exponential') ? <Tab eventKey={2} title="Exponential">{exponential}</Tab> : null}
 							{this.props.distributions.includes('normal') ? <Tab eventKey={3} title="Normal">{normal}</Tab>: null}
 						</Tabs>
 					</Col>
-					<Col md={6}>
+					<Col md={4}>
 						<label>Active Distribution: {this.state.distFormula}</label>
 						{populationParams}
 						<NumberInput
@@ -420,6 +454,15 @@ class ContinuousCLT extends Component {
 								this.setState({ 'n': n });
 							}}
 						/>
+					</Col>
+					<Col>
+						<VictoryChart domain={domain} title="Population Density" >
+							<VictoryAxis label="x" />
+							<VictoryAxis dependentAxis />
+							<VictoryLine samples={600} y={( data ) => {
+								return pdf( data.x );
+							}} />
+						</VictoryChart>
 					</Col>
 				</Row>
 				<Card body>

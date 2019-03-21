@@ -73,6 +73,7 @@ class ProbMean extends Component {
 		return (
 			<Card body>
 				<NumberInput
+					inline
 					step="any"
 					legend={<TeX raw="x" />}
 					onChange={( value ) => {
@@ -81,7 +82,7 @@ class ProbMean extends Component {
 					}}
 				/>
 				<TeX raw={`P( X < ${this.state.popCutoff} ) = ${this.state.popLeftProb.toFixed( 3 )}`} />
-				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<span>&nbsp;&nbsp;&nbsp;</span>
 				<TeX raw={`P( X \\ge ${this.state.popCutoff} ) = ${this.state.popRightProb.toFixed( 3 )}`}
 				/>
 			</Card>

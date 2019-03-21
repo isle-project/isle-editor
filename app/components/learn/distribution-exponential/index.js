@@ -18,7 +18,7 @@ import TeX from 'components/tex';
 
 // VARIABLES //
 
-var NEAR_ONE = 0.999999;
+const NEAR_ONE = 0.999999;
 
 
 // MAIN //
