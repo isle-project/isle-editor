@@ -22,6 +22,7 @@ class Background extends Component {
 	constructor( props ) {
 		super( props );
 		this.myRef = React.createRef();
+		this.start = true;
 
 		this.imageList = [];
 		this.state = {
@@ -101,13 +102,22 @@ class Background extends Component {
 			});
 		} else {
 			let newCt = ct+2;
-			if ( newCt >= this.props.images.length-1 ) {
+			if ( newCt > this.props.images.length-1 ) {
+				console.log('newCt wird gleich auf NULL gesetzt ' + newCt);
+				console.log('Länge des Arrays ' + this.props.images.length);
 				newCt = 0;
 			}
+
+			let fgCt = ct + 1;
+			if (fgCt === this.props.images.length) {
+				console.log('Das Vordergrund-Image gibt es nicht');
+				fgCt = this.props.images.length -1;
+			}
+
 			const fgRatio = this.getImageRatio(ct);
-			const bgRatio = this.getImageRatio(ct+1);
+			const bgRatio = this.getImageRatio(fgCt);
 			this.setState({
-				foregroundImage: this.props.images[ct+1],
+				foregroundImage: this.props.images[fgCt],
 				backgroundImage: this.props.images[ct],
 				foregroundRatio: fgRatio,
 				backgroundRatio: bgRatio,
@@ -132,6 +142,21 @@ class Background extends Component {
 			};
 		}
 		return style;
+	}
+
+	startProcess() {
+		const ani = this.props.in + ' ' + this.props.inTime + 's forwards';
+		const foreground = {
+			animation: ani
+		};
+		const low = this.resizeImage( this.state.foregroundRatio );
+		return (
+			<div>
+				<div className="enter-foreground" style={foreground} >
+					<img style={low} src={this.state.foregroundImage} />
+				</div>
+			</div>
+		);
 	}
 
 	exit() {
@@ -173,7 +198,14 @@ class Background extends Component {
 	}
 
 	render() {
-		if ( this.state.fading === false ) {
+		if ( this.state.fading === false) {
+			if (this.start === true) {
+				this.start = false;
+				return (
+					<div ref={this.myRef}>{ this.startProcess() }</div>
+				);
+			}
+
 			return (
 				<div ref={this.myRef}>{ this.enter() }</div>
 			);
