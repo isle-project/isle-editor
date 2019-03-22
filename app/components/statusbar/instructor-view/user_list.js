@@ -198,13 +198,6 @@ class UserList extends Component {
 				) {
 					return false;
 				}
-				if ( !this.state.filter ) {
-					return true;
-				}
-				const id = userFocuses[ user.email ];
-				return id === this.state.filter;
-			}).map( ( user, idx ) => {
-				let focusedID = null;
 				const id = userFocuses[ user.email ];
 				if ( id ) {
 					let pos = indexOf( IDs, id );
@@ -214,6 +207,16 @@ class UserList extends Component {
 					}
 					ID_COUNTS[ id ] = ( ID_COUNTS[ id ] || 0 ) + 1;
 					ID_COUNT_SUM += 1;
+				}
+				if ( !this.state.filter ) {
+					return true;
+				}
+				return id === this.state.filter;
+			}).map( ( user, idx ) => {
+				let focusedID = null;
+				const id = userFocuses[ user.email ];
+				if ( id ) {
+					let pos = indexOf( IDs, id );
 					focusedID = (
 						<span style={{
 							float: 'right',
@@ -268,7 +271,8 @@ class UserList extends Component {
 								background: this.state.filter !== id ? color : 'gold'
 							}}
 							key={key}
-							now={( ID_COUNTS[ id ] / ID_COUNT_SUM ) * 100.0} label={id}
+							now={( ID_COUNTS[ id ] / ID_COUNT_SUM ) * 100.0}
+							label={id}
 						/> );
 					})}
 				</ProgressBar>
