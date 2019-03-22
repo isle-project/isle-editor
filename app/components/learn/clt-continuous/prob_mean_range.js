@@ -107,7 +107,11 @@ class ProbMeanRange extends Component {
 					U: {
 						variable: 'U',
 						onChange: ( upper ) => {
-							const newState = generateProbs( this.state.lower, upper, this.props );
+							const newState = generateProbs({
+								lower: this.state.lower,
+								upper,
+								...this.props
+							});
 							this.setState( newState );
 						},
 						defaultValue: this.state.upper
