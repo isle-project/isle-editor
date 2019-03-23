@@ -56,6 +56,7 @@ const BUTTONS = [
 * @property {boolean} legendButtons - controls whether to display buttons for changing the legend
 * @property {boolean} toggleFullscreen - controls whether to display the plot in fullscreen mode
 * @property {boolean} removeButtons - controls whether to remove all buttons
+* @property {Function} onAfterPlot - callback function invoked each time a chart is plotted
 * @property {Function} onSelected - callback function invoked when elements are selected
 * @property {Function} onShare - callback function invoked when clicking on the "Share" button
 */
@@ -110,7 +111,8 @@ class Wrapper extends Component {
 			displayModeBar: true,
 			displaylogo: false,
 			modeBarButtonsToRemove: this.props.removeButtons ? BUTTONS : [ 'sendDataToCloud', 'hoverClosestCartesian', 'hoverCompareCartesian' ],
-			modeBarButtonsToAdd: buttonsToAdd
+			modeBarButtonsToAdd: buttonsToAdd,
+			...this.props.config
 		};
 	}
 
@@ -230,6 +232,8 @@ class Wrapper extends Component {
 				onUpdate={this.onUpdate}
 				useResizeHandler
 				onSelected={this.props.onSelected}
+				onAfterPlot={this.props.onAfterPlot}
+				onRelayout={this.props.onRelayout}
 				style={{
 					width: '100%',
 					height: '100%',
@@ -271,7 +275,10 @@ Wrapper.defaultProps = {
 	editable: false,
 	id: null,
 	layout: {},
+	config: {},
 	legendButtons: true,
+	onAfterPlot() {},
+	onRelayout() {},
 	onSelected() {},
 	onShare: null,
 	removeButtons: false,
@@ -284,7 +291,10 @@ Wrapper.propTypes = {
 	editable: PropTypes.bool,
 	id: PropTypes.string,
 	layout: PropTypes.object,
+	config: PropTypes.object,
 	legendButtons: PropTypes.bool,
+	onAfterPlot: PropTypes.func,
+	onRelayout: PropTypes.func,
 	onSelected: PropTypes.func,
 	onShare: PropTypes.func,
 	removeButtons: PropTypes.bool,

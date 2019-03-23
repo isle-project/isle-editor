@@ -12,7 +12,9 @@ import Accordion from 'components/accordion';
 import Plotly from 'components/plotly';
 import TextArea from 'components/input/text-area';
 import TextInput from 'components/input/text';
-import iqr from 'utils/statistic/iqr';
+import mean from 'utils/statistic/mean.js';
+import min from 'utils/statistic/min.js';
+import max from 'utils/statistic/max.js';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import isObject from '@stdlib/assert/is-object';
@@ -22,12 +24,9 @@ import sqrt from '@stdlib/math/base/special/sqrt';
 import exp from '@stdlib/math/base/special/exp';
 import pow from '@stdlib/math/base/special/pow';
 import ln from '@stdlib/math/base/special/ln';
-import gaussian from '@stdlib/stats/base/dists/normal/pdf';
 import incrspace from '@stdlib/math/utils/incrspace';
 import { DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
-import kernelSmoothDensity from './kernel_smooth_density.js';
 import { generateHistogramConfig } from './histogram.js';
-
 
 
 // VARIABLES //
@@ -222,7 +221,7 @@ class Transformer extends Component {
 	}
 
 	renderContinuous = () => {
-		return( <div>
+		return ( <div>
 			<Card className="mb-2" >
 				<Card.Header>Generate new variables:</Card.Header>
 				<Card.Body>
@@ -319,10 +318,29 @@ class Transformer extends Component {
 			'chooseBins': false,
 			'nBins': null
 		};
-
+		const vals = this.props.data[ this.props.continuous[ 0 ] ];
+		const avg = mean( vals );
 		const configHist = generateHistogramConfig( histConfigSettings );
-		console.log(histConfigSettings);
-		return(
+		configHist.layout.shapes = [
+			{
+				type: 'line',
+				x0: avg,
+				y0: -100,
+				x1: avg,
+				y1: 100,
+				line: {
+					color: 'red',
+					width: 3
+				}
+			}
+		];
+		configHist.layout.yaxis = {
+			range: [
+				min( configHist.data[ 1 ].y ),
+				max( configHist.data[ 1 ].y )
+			]
+		};
+		return (
 			<div>
 				<h5>Categorical Transformation</h5>
 				<Plotly
@@ -330,15 +348,19 @@ class Transformer extends Component {
 					layout={configHist.layout}
 					editable
 					fit
-				>
-				</Plotly>
+					removeButtons
+					legendButtons={false}
+					onRelayout={( data ) => {
+						console.log( data );
+					}}
+				/>
 			</div>
-		)
+		);
 	}
 
 	render() {
 		return (
-			<Accordion 
+			<Accordion
 				headers={['Continuous Transformation', 'Categorical Transformation']}
 				headerStyle={{
 					'fontSize': 20
