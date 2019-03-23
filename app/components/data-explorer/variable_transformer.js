@@ -8,13 +8,8 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import FormControl from 'react-bootstrap/FormControl';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Accordion from 'components/accordion';
-import Plotly from 'components/plotly';
 import TextArea from 'components/input/text-area';
 import TextInput from 'components/input/text';
-import mean from 'utils/statistic/mean.js';
-import min from 'utils/statistic/min.js';
-import max from 'utils/statistic/max.js';
 import Modal from 'react-bootstrap/Modal';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
@@ -27,7 +22,7 @@ import pow from '@stdlib/math/base/special/pow';
 import ln from '@stdlib/math/base/special/ln';
 import incrspace from '@stdlib/math/utils/incrspace';
 import { DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
-import { generateHistogramConfig } from './histogram.js';
+import BinTransformer from './bin_transformer.js';
 
 
 // VARIABLES //
@@ -124,8 +119,8 @@ class Transformer extends Component {
 			selection: null,
 			data: data,
 			name: '',
-			continuousModalActive: false,
-			categoricalModalActive: false
+			formulaModalActive: false,
+			binModalActive: false
 		};
 	}
 
@@ -223,9 +218,9 @@ class Transformer extends Component {
 			});
 	}
 
-	renderContinuous = () => {
-		return ( <Modal show={this.state.continuousModalActive}
-			onHide={this.toggleContinuousModal}>
+	renderFormulaModal = () => {
+		return ( <Modal show={this.state.formulaModalActive}
+			onHide={this.toggleFormulaModal}>
 			<Modal.Header closeButton>
 				<Modal.Title>Formula Transformation</Modal.Title>
 			</Modal.Header>
@@ -319,73 +314,26 @@ class Transformer extends Component {
 		</Modal> );
 	}
 
-	renderCategorical = () => {
-		const histConfigSettings = {
-			'data': this.props.data,
-			'variable': this.props.continuous[ 0 ],
-			'group': null,
-			'overlayDensity': true,
-			'densityType': 'Data-driven',
-			'chooseBins': false,
-			'nBins': null
-		};
-		const vals = this.props.data[ this.props.continuous[ 0 ] ];
-		const avg = mean( vals );
-		const configHist = generateHistogramConfig( histConfigSettings );
-		configHist.layout.shapes = [{
-			type: 'line',
-			x0: avg,
-			y0: -100,
-			x1: avg,
-			y1: 100,
-			line: {
-				color: 'red',
-				width: 3
-			}
-		}];
-		configHist.layout.yaxis = {
-			range: [
-				min( configHist.data[ 1 ].y ),
-				max( configHist.data[ 1 ].y )
-			]
-		};
-		return (
-			<Modal
-				onHide={this.toggleCategoricalModal}
-				show={this.state.categoricalModalActive}
-			>
-				<Modal.Header closeButton>
-					<Modal.Title>Categorical Binning</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<div>
-						<h5>Categorical Transformation</h5>
-						<Plotly
-							data={configHist.data}
-							layout={configHist.layout}
-							editable
-							fit
-							removeButtons
-							legendButtons={false}
-							onRelayout={( data ) => {
-								console.log( data );
-							}}
-						/>
-					</div>
-				</Modal.Body>
-			</Modal>
+	renderBinModal = () => {
+		return( 
+			<BinTransformer
+				show={this.state.binModalActive}
+				onHide={this.toggleBinModal}
+				continuous={this.props.continuous}
+				data={this.props.data}
+			/>
 		);
 	}
 
-	toggleContinuousModal = () => {
+	toggleFormulaModal = () => {
 		this.setState({
-			continuousModalActive: !this.state.continuousModalActive
+			formulaModalActive: !this.state.formulaModalActive
 		});
 	}
 
-	toggleCategoricalModal = () => {
+	toggleBinModal = () => {
 		this.setState({
-			categoricalModalActive: !this.state.categoricalModalActive
+			binModalActive: !this.state.binModalActive
 		});
 	}
 
@@ -393,17 +341,17 @@ class Transformer extends Component {
 		return (
 			<div>
 				<Button
-					onClick={this.toggleContinuousModal}
+					onClick={this.formulaModalActive}
 				>
-					Continuous Transformation
+					Formula Transformation
 				</Button>
 				<Button
-					onClick={this.toggleCategoricalModal}
+					onClick={this.toggleBinModal}
 				>
-					Categorical Transformation
+					Bin Transformation
 				</Button>
-				{this.renderContinuous()}
-				{this.renderCategorical()}
+				{this.renderBinModal()}
+				{this.renderFormulaModal()}
 			</div>
 		);
 	}
