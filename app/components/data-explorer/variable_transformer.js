@@ -8,8 +8,11 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import FormControl from 'react-bootstrap/FormControl';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Accordion from 'components/accordion';
+import Plotly from 'components/plotly';
 import TextArea from 'components/input/text-area';
 import TextInput from 'components/input/text';
+import iqr from 'utils/statistic/iqr';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import isObject from '@stdlib/assert/is-object';
@@ -19,8 +22,12 @@ import sqrt from '@stdlib/math/base/special/sqrt';
 import exp from '@stdlib/math/base/special/exp';
 import pow from '@stdlib/math/base/special/pow';
 import ln from '@stdlib/math/base/special/ln';
+import gaussian from '@stdlib/stats/base/dists/normal/pdf';
 import incrspace from '@stdlib/math/utils/incrspace';
 import { DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
+import kernelSmoothDensity from './kernel_smooth_density.js';
+import { generateHistogramConfig } from './histogram.js';
+
 
 
 // VARIABLES //
@@ -214,8 +221,8 @@ class Transformer extends Component {
 			});
 	}
 
-	render() {
-		return ( <div>
+	renderContinuous = () => {
+		return( <div>
 			<Card className="mb-2" >
 				<Card.Header>Generate new variables:</Card.Header>
 				<Card.Body>
@@ -300,6 +307,48 @@ class Transformer extends Component {
 			</Card>
 			<Button onClick={this.handleGenerate} >Generate</Button>
 		</div> );
+	}
+
+	renderCategoricalTransform = () => {
+		const histConfigSettings = {
+			'data': this.props.data,
+			'variable': this.props.continuous[ 0 ],
+			'group': null,
+			'overlayDensity': true,
+			'densityType': 'Data-driven',
+			'chooseBins': false,
+			'nBins': null
+		};
+
+		const configHist = generateHistogramConfig( histConfigSettings );
+		console.log(histConfigSettings);
+		return(
+			<div>
+				<h5>Categorical Transformation</h5>
+				<Plotly
+					data={configHist.data}
+					layout={configHist.layout}
+					editable
+					fit
+				>
+				</Plotly>
+			</div>
+		)
+	}
+
+	render() {
+		return (
+			<Accordion 
+				headers={['Continuous Transformation', 'Categorical Transformation']}
+				headerStyle={{
+					'fontSize': 20
+				}}
+				active={null}
+			>
+				{this.renderContinuous()}
+				{this.renderCategoricalTransform()}
+			</Accordion>
+		);
 	}
 }
 
