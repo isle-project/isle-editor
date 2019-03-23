@@ -15,6 +15,7 @@ import TextInput from 'components/input/text';
 import mean from 'utils/statistic/mean.js';
 import min from 'utils/statistic/min.js';
 import max from 'utils/statistic/max.js';
+import Modal from 'react-bootstrap/Modal';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import isObject from '@stdlib/assert/is-object';
@@ -122,7 +123,9 @@ class Transformer extends Component {
 			code: props.defaultCode,
 			selection: null,
 			data: data,
-			name: ''
+			name: '',
+			continuousModalActive: false,
+			categoricalModalActive: false
 		};
 	}
 
@@ -221,94 +224,102 @@ class Transformer extends Component {
 	}
 
 	renderContinuous = () => {
-		return ( <div>
-			<Card className="mb-2" >
-				<Card.Header>Generate new variables:</Card.Header>
-				<Card.Body>
-					<TextInput legend="Variable Name" placeholder="Select name..." onChange={this.handleNameChange} width={160} />
-				</Card.Body>
-			</Card>
-			<Card className="mb-2" >
-				<Card.Body>
-					<ButtonToolbar style={{ marginBottom: 5 }} >
-						<Dropdown className="mr-2">
-							<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
-								Continuous
-							</Dropdown.Toggle>
-							<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
-								{this.props.continuous.map( ( v, i ) => {
-									return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
-								})}
-							</Dropdown.Menu>
-						</Dropdown>
-						<Dropdown className="mr-2">
-							<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
-								Categorical
-							</Dropdown.Toggle>
-							<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
-								{this.props.categorical.map( ( v, i ) => {
-									return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
-								})}
-							</Dropdown.Menu>
-						</Dropdown>
-						<ButtonGroup size="sm" className="mr-2" >
-							<Button variant="light" onClick={this.insertLiteralFactory(' < ')} >{'<'}</Button>
-							<Button variant="light" onClick={this.insertLiteralFactory(' > ')} >{'>'}</Button>
-							<Button variant="light" onClick={this.insertLiteralFactory(' <= ')} >{'<='}</Button>
-							<Button variant="light" onClick={this.insertLiteralFactory(' >= ')} >{'>='}</Button>
-						</ButtonGroup>
-						<ButtonGroup size="sm" className="mr-2" >
-							<Button variant="light" onClick={this.insertLiteralFactory(' ( ')} >(</Button>
-							<Button variant="light" onClick={this.insertLiteralFactory(' ) ')} >)</Button>
-						</ButtonGroup>
-						<ButtonGroup size="sm" className="mr-2" >
-							<Button variant="light" onClick={this.insertLiteralFactory(' + ')} >+</Button>
-							<Button variant="light" onClick={this.insertLiteralFactory(' - ')} >-</Button>
-							<Button variant="light" onClick={this.insertLiteralFactory(' * ')} >*</Button>
-							<Button variant="light" onClick={this.insertLiteralFactory(' / ')} >/</Button>
-						</ButtonGroup>
-					</ButtonToolbar>
-					<ButtonToolbar style={{ marginBottom: 5 }} >
-						<ButtonGroup size="sm" className="mr-2" >
-							<Button variant="light" onClick={this.insertIfElse} >ifelse</Button>
-							<Button variant="light" onClick={this.insertLiteralFactory(' && ')} >and</Button>
-							<Button variant="light" onClick={this.insertLiteralFactory(' || ')} >or</Button>
-							<Button variant="light" onClick={this.insertLiteralFactory(' !')} >not</Button>
-						</ButtonGroup>
-						<ButtonGroup size="sm" className="mr-2" >
-							{DIGITS.map( ( d, i ) => {
-								return <Button key={i} variant="light" onClick={this.insertLiteralFactory( `${d}`)} >{d}</Button>;
-							})}
-							<Button variant="light" onClick={this.insertLiteralFactory('.')} >.</Button>
-						</ButtonGroup>
-						<Dropdown className="mr-2">
-							<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
-								Functions
-							</Dropdown.Toggle>
-							<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
-								{FUNCTION_KEYS.map( ( v, i ) => {
-									return <Dropdown.Item key={i} onClick={this.insertFuncFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
-								})}
-							</Dropdown.Menu>
-						</Dropdown>
-					</ButtonToolbar>
-				</Card.Body>
-			</Card>
-			<Card className="mb-2" >
-				<Card.Body>
-					<TextArea ref={div => { this.textarea = div; }} legend="Expression:" value={this.state.code} onChange={this.handleCodeChange} onBlur={( event ) => {
-						const selectionStart = event.target.selectionStart;
-						this.setState({
-							selection: selectionStart
-						});
-					}} />
-				</Card.Body>
-			</Card>
-			<Button onClick={this.handleGenerate} >Generate</Button>
-		</div> );
+		return ( <Modal show={this.state.continuousModalActive}
+			onHide={this.toggleContinuousModal}>
+			<Modal.Header closeButton>
+				<Modal.Title>Formula Transformation</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>
+				<div>
+					<Card className="mb-2" >
+						<Card.Header>Generate new variables:</Card.Header>
+						<Card.Body>
+							<TextInput legend="Variable Name" placeholder="Select name..." onChange={this.handleNameChange} width={160} />
+						</Card.Body>
+					</Card>
+					<Card className="mb-2" >
+						<Card.Body>
+							<ButtonToolbar style={{ marginBottom: 5 }} >
+								<Dropdown className="mr-2">
+									<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
+										Continuous
+									</Dropdown.Toggle>
+									<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
+										{this.props.continuous.map( ( v, i ) => {
+											return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
+										})}
+									</Dropdown.Menu>
+								</Dropdown>
+								<Dropdown className="mr-2">
+									<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
+										Categorical
+									</Dropdown.Toggle>
+									<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
+										{this.props.categorical.map( ( v, i ) => {
+											return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
+										})}
+									</Dropdown.Menu>
+								</Dropdown>
+								<ButtonGroup size="sm" className="mr-2" >
+									<Button variant="light" onClick={this.insertLiteralFactory(' < ')} >{'<'}</Button>
+									<Button variant="light" onClick={this.insertLiteralFactory(' > ')} >{'>'}</Button>
+									<Button variant="light" onClick={this.insertLiteralFactory(' <= ')} >{'<='}</Button>
+									<Button variant="light" onClick={this.insertLiteralFactory(' >= ')} >{'>='}</Button>
+								</ButtonGroup>
+								<ButtonGroup size="sm" className="mr-2" >
+									<Button variant="light" onClick={this.insertLiteralFactory(' ( ')} >(</Button>
+									<Button variant="light" onClick={this.insertLiteralFactory(' ) ')} >)</Button>
+								</ButtonGroup>
+								<ButtonGroup size="sm" className="mr-2" >
+									<Button variant="light" onClick={this.insertLiteralFactory(' + ')} >+</Button>
+									<Button variant="light" onClick={this.insertLiteralFactory(' - ')} >-</Button>
+									<Button variant="light" onClick={this.insertLiteralFactory(' * ')} >*</Button>
+									<Button variant="light" onClick={this.insertLiteralFactory(' / ')} >/</Button>
+								</ButtonGroup>
+							</ButtonToolbar>
+							<ButtonToolbar style={{ marginBottom: 5 }} >
+								<ButtonGroup size="sm" className="mr-2" >
+									<Button variant="light" onClick={this.insertIfElse} >ifelse</Button>
+									<Button variant="light" onClick={this.insertLiteralFactory(' && ')} >and</Button>
+									<Button variant="light" onClick={this.insertLiteralFactory(' || ')} >or</Button>
+									<Button variant="light" onClick={this.insertLiteralFactory(' !')} >not</Button>
+								</ButtonGroup>
+								<ButtonGroup size="sm" className="mr-2" >
+									{DIGITS.map( ( d, i ) => {
+										return <Button key={i} variant="light" onClick={this.insertLiteralFactory( `${d}`)} >{d}</Button>;
+									})}
+									<Button variant="light" onClick={this.insertLiteralFactory('.')} >.</Button>
+								</ButtonGroup>
+								<Dropdown className="mr-2">
+									<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
+										Functions
+									</Dropdown.Toggle>
+									<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
+										{FUNCTION_KEYS.map( ( v, i ) => {
+											return <Dropdown.Item key={i} onClick={this.insertFuncFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
+										})}
+									</Dropdown.Menu>
+								</Dropdown>
+							</ButtonToolbar>
+						</Card.Body>
+					</Card>
+					<Card className="mb-2" >
+						<Card.Body>
+							<TextArea ref={div => { this.textarea = div; }} legend="Expression:" value={this.state.code} onChange={this.handleCodeChange} onBlur={( event ) => {
+								const selectionStart = event.target.selectionStart;
+								this.setState({
+									selection: selectionStart
+								});
+							}} />
+						</Card.Body>
+					</Card>
+					<Button onClick={this.handleGenerate} >Generate</Button>
+				</div>
+			</Modal.Body>
+		</Modal> );
 	}
 
-	renderCategoricalTransform = () => {
+	renderCategorical = () => {
 		const histConfigSettings = {
 			'data': this.props.data,
 			'variable': this.props.continuous[ 0 ],
@@ -321,19 +332,17 @@ class Transformer extends Component {
 		const vals = this.props.data[ this.props.continuous[ 0 ] ];
 		const avg = mean( vals );
 		const configHist = generateHistogramConfig( histConfigSettings );
-		configHist.layout.shapes = [
-			{
-				type: 'line',
-				x0: avg,
-				y0: -100,
-				x1: avg,
-				y1: 100,
-				line: {
-					color: 'red',
-					width: 3
-				}
+		configHist.layout.shapes = [{
+			type: 'line',
+			x0: avg,
+			y0: -100,
+			x1: avg,
+			y1: 100,
+			line: {
+				color: 'red',
+				width: 3
 			}
-		];
+		}];
 		configHist.layout.yaxis = {
 			range: [
 				min( configHist.data[ 1 ].y ),
@@ -341,35 +350,61 @@ class Transformer extends Component {
 			]
 		};
 		return (
-			<div>
-				<h5>Categorical Transformation</h5>
-				<Plotly
-					data={configHist.data}
-					layout={configHist.layout}
-					editable
-					fit
-					removeButtons
-					legendButtons={false}
-					onRelayout={( data ) => {
-						console.log( data );
-					}}
-				/>
-			</div>
+			<Modal
+				onHide={this.toggleCategoricalModal}
+				show={this.state.categoricalModalActive}
+			>
+				<Modal.Header closeButton>
+					<Modal.Title>Categorical Binning</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					<div>
+						<h5>Categorical Transformation</h5>
+						<Plotly
+							data={configHist.data}
+							layout={configHist.layout}
+							editable
+							fit
+							removeButtons
+							legendButtons={false}
+							onRelayout={( data ) => {
+								console.log( data );
+							}}
+						/>
+					</div>
+				</Modal.Body>
+			</Modal>
 		);
+	}
+
+	toggleContinuousModal = () => {
+		this.setState({
+			continuousModalActive: !this.state.continuousModalActive
+		});
+	}
+
+	toggleCategoricalModal = () => {
+		this.setState({
+			categoricalModalActive: !this.state.categoricalModalActive
+		});
 	}
 
 	render() {
 		return (
-			<Accordion
-				headers={['Continuous Transformation', 'Categorical Transformation']}
-				headerStyle={{
-					'fontSize': 20
-				}}
-				active={null}
-			>
+			<div>
+				<Button
+					onClick={this.toggleContinuousModal}
+				>
+					Continuous Transformation
+				</Button>
+				<Button
+					onClick={this.toggleCategoricalModal}
+				>
+					Categorical Transformation
+				</Button>
 				{this.renderContinuous()}
-				{this.renderCategoricalTransform()}
-			</Accordion>
+				{this.renderCategorical()}
+			</div>
 		);
 	}
 }
