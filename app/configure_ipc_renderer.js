@@ -81,6 +81,8 @@ function configureIpcRenderer( store ) {
 		config.set( 'mostRecentFilePath', null );
 		config.set( 'mostRecentFileName', null );
 		config.set( 'mostRecentFileData', '' );
+		config.set( 'mostRecentPreamble', {} );
+		config.set( 'mostRecentPreambleText', '' );
 	});
 
 	window.document.addEventListener( 'dragover', ( e ) => {
