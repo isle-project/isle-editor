@@ -30,7 +30,7 @@ import ContingencyTable from 'components/data-explorer/contingency_table';
 import FrequencyTable from 'components/data-explorer/frequency_table';
 import SummaryStatistics from 'components/data-explorer/summary_statistics';
 import SimpleLinearRegression from 'components/data-explorer/linear_regression';
-import VariableTransformer from 'components/data-explorer/variable_transformer';
+import VariableTransformer from 'components/data-explorer/variable-transformer';
 import MarkdownEditor from 'components/markdown-editor';
 import GridLayout from './grid_layout.js';
 import Pages from 'components/pages';

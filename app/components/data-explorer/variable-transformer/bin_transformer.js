@@ -2,43 +2,28 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import FormControl from 'react-bootstrap/FormControl';
-import Dropdown from 'react-bootstrap/Dropdown';
 import Plotly from 'components/plotly';
 import SelectInput from 'components/input/select';
-import TextArea from 'components/input/text-area';
-import TextInput from 'components/input/text';
 import mean from 'utils/statistic/mean.js';
 import min from 'utils/statistic/min.js';
 import max from 'utils/statistic/max.js';
 import Modal from 'react-bootstrap/Modal';
-import contains from '@stdlib/assert/contains';
-import replace from '@stdlib/string/replace';
-import isObject from '@stdlib/assert/is-object';
-import hasOwnProp from '@stdlib/assert/has-own-property';
-import round from '@stdlib/math/base/special/round';
-import pow from '@stdlib/math/base/special/pow';
-import incrspace from '@stdlib/math/utils/incrspace';
-import { DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
-import { generateHistogramConfig } from './histogram.js';
+import { generateHistogramConfig } from '../histogram.js';
 
+
+// MAIN //
 
 class BinTransformer extends Component {
-    constructor( props ) {
-        super( props );
+	constructor( props ) {
+		super( props );
 
-        this.state = {
-            breakPoints: [],
-            activeVar: props.continuous[ 0 ]
-        };
-    }
+		this.state = {
+			activeVar: props.continuous[ 0 ]
+		};
+	}
 
-    render() {
-        const histConfigSettings = {
+	render() {
+		const histConfigSettings = {
 			'data': this.props.data,
 			'variable': this.state.activeVar,
 			'group': null,
@@ -69,7 +54,7 @@ class BinTransformer extends Component {
 		};
 		return (
 			<Modal
-                dialogClassName='modal-50w'
+				dialogClassName='modal-50w'
 				onHide={this.props.onHide}
 				show={this.props.show}
 			>
@@ -77,7 +62,7 @@ class BinTransformer extends Component {
 					<Modal.Title>Categorical Binning</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-                    <SelectInput
+					<SelectInput
 						legend="Variable:"
 						defaultValue={this.state.activeVar}
 						options={this.props.continuous}
@@ -103,20 +88,24 @@ class BinTransformer extends Component {
 					</div>
 				</Modal.Body>
 			</Modal>
-        );
-
-    }
+		);
+	}
 }
+
+
+// PROPERTIES //
 
 BinTransformer.defaultProps = {
-    onHide() {}
-}
+};
 
 BinTransformer.propTypes = {
-    show: PropTypes.bool.isRequired,
-    data: PropTypes.object.isRequired,
-    continuous: PropTypes.array.isRequired,
-    onHide: PropTypes.func
-}
+	show: PropTypes.bool.isRequired,
+	data: PropTypes.object.isRequired,
+	continuous: PropTypes.array.isRequired,
+	onHide: PropTypes.func.isRequired
+};
+
+
+// EXPORTS //
 
 export default BinTransformer;
