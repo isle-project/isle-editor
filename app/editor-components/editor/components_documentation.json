@@ -84,6 +84,12 @@
         "default": "fade-out"
       },
       {
+        "name": "parent",
+        "type": "boolean",
+        "description": "sets the parent divs backgroundColor to transparent, overflow to hidden",
+        "default": false
+      },
+      {
         "name": "inTime",
         "type": "number",
         "description": "length of the enter effect (in seconds)",
@@ -3009,10 +3015,26 @@
         "default": {}
       },
       {
+        "name": "config",
+        "type": "object",
+        "default": {}
+      },
+      {
         "name": "legendButtons",
         "type": "boolean",
         "description": "controls whether to display buttons for changing the legend",
         "default": true
+      },
+      {
+        "name": "onAfterPlot",
+        "type": "function",
+        "description": "callback function invoked each time a chart is plotted",
+        "default": "onAfterPlot() {}"
+      },
+      {
+        "name": "onRelayout",
+        "type": "function",
+        "default": "onRelayout() {}"
       },
       {
         "name": "onSelected",
@@ -3735,6 +3757,59 @@
     ],
     "description": "An ISLE component that allows you display the user's score."
   },
+  "ScrollingText": {
+    "props": [
+      {
+        "name": "list",
+        "type": "array<string>",
+        "description": "list of texts to be displayed",
+        "default": []
+      },
+      {
+        "name": "loop",
+        "type": "boolean",
+        "description": "indicates whether the process shall be displayed infinitely",
+        "default": false
+      },
+      {
+        "name": "direction",
+        "type": "string",
+        "description": "the direction of the text flow, available values are left, right, up, down, treacking, focus and swirl",
+        "default": "right"
+      },
+      {
+        "name": "still",
+        "type": "number",
+        "description": "the time the text remains still (in seconds)",
+        "default": 3
+      },
+      {
+        "name": "interval",
+        "type": "number",
+        "description": "the interval between the calls (in seconds)",
+        "default": 15
+      },
+      {
+        "name": "inTime",
+        "type": "number",
+        "description": "time of the entrance effect (in seconds)",
+        "default": 0.6
+      },
+      {
+        "name": "outTime",
+        "type": "number",
+        "description": " time of the exit effect (in seconds)",
+        "default": 1
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "style definition of the text",
+        "default": {}
+      }
+    ],
+    "description": "A component for displaying titling effects."
+  },
   "SelectQuestion": {
     "props": [
       {
@@ -4251,6 +4326,12 @@
         "type": "object",
         "description": "`object` with `keys` denoting LaTeX characters and their corresponding values being configuration `objects` to make them interactive. Setting a `tooltip` option will show a tooltip when hovering over the LaTeX characters. Setting a `variable` property will display an input slider to change the respective state variable; in this case, additional properties `legend`, `min`, `max`, and `step` are supported",
         "default": {}
+      },
+      {
+        "name": "popoverPlacement",
+        "type": "string",
+        "description": "popover position for the specified `elems`",
+        "default": "top"
       },
       {
         "name": "onClick",

@@ -21,4 +21,5 @@
 * __style__ | `object`: `object` with CSS key-value pairs to be applied to the equation container. Default: `{}`.
 * __tag__ | `string`: Custom characters displayed for display equations at the right side. Defaults to the number of the equation inside the lesson. Default: `none`.
 * __elems__ | `object`: `object` with `keys` denoting LaTeX characters and their corresponding values being configuration `objects` to make them interactive. Setting a `tooltip` option will show a tooltip when hovering over the LaTeX characters. Setting a `variable` property will display an input slider to change the respective state variable; in this case, additional properties `legend`, `min`, `max`, and `step` are supported. Default: `{}`.
+* __popoverPlacement__ | `string`: popover position for the specified `elems`. Default: `'top'`.
 * __onClick__ | `function`: callback `function` invoked whenever a user clicks on the equation. Default: `onClick() {}`.
