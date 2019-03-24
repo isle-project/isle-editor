@@ -11,7 +11,7 @@ const config = new Store( 'ISLE' );
 const initialState = {
 	markdown: config.get( 'mostRecentFileData' ) || template,
 	preamble: config.get( 'mostRecentPreamble' ) || {},
-	preambleText: config.get( 'mostRecentPreambleText' ),
+	preambleText: config.get( 'mostRecentPreambleText' ) || '',
 	isScrolling: true,
 	hideToolbar: false,
 	filePath: config.get( 'mostRecentFilePath' ),
