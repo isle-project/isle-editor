@@ -9,7 +9,7 @@ import baseConfig from './webpack.config.base';
 export default {
 	...baseConfig,
 
-	devtool: 'source-map',
+	devtool: 'cheap-source-map',
 
 	entry: './main.development',
 

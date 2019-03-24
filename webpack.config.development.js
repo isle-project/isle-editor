@@ -18,7 +18,7 @@ const publicPath = `http://localhost:${port}/dist`;
 
 const config = {
 	...baseConfig,
-	devtool: 'cheap-module-eval-source-map',
+	devtool: 'eval',
 
 	entry: [
 		`webpack-dev-server/client?http://localhost:${port}/`,
@@ -29,6 +29,7 @@ const config = {
 	output: {
 		...baseConfig.output,
 		publicPath: `http://localhost:${port}/dist/`,
+		pathinfo: false,
 		filename: 'renderer.dev.js'
 	},
 
@@ -43,6 +44,12 @@ const config = {
 				}
 			}
 		]
+	},
+
+	optimization: {
+		removeAvailableModules: false,
+		removeEmptyChunks: false,
+		splitChunks: false
 	},
 
 	plugins: [

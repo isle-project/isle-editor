@@ -47,7 +47,8 @@ export default {
 					loader: 'babel-loader',
 					options: {
 						plugins: [],
-						cacheDirectory: true
+						cacheDirectory: true,
+						cacheCompression: false
 					}
 				}
 			],
