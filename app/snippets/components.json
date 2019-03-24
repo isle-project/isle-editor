@@ -240,6 +240,10 @@
 		"value":"<Score\n\tformat={'${1:First option}'}\n/>\n\n"
 	},
 	{
+		"name":"ScrollingText",
+		"value": "<ScrollingText list={[${1:'Enter strings'}]} interval={${2:5}} inTime={${3:1.2}} outTime={${4:1.2}} still={${5:2}} />"
+	},
+	{
 		"name":"SelectInput",
 		"value":"<SelectInput\n\toptions={['${1:First option}','${2:Second Option}']}\n/>\n"
 	},
