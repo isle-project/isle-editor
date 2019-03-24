@@ -95,6 +95,7 @@
 	"Row": "react-bootstrap/Row",
 	"Runner": "components/runner",
 	"Score": "components/score",
+	"ScrollingText": "components/scrolling-text",
 	"SelectInput": "components/input/select",
 	"SelectQuestion": "components/select-question",
 	"Sketchpad": "components/sketchpad",
