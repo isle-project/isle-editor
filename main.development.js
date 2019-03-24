@@ -1,7 +1,7 @@
 // MODULES //
 
 import { app, dialog, Menu, shell } from 'electron';
-import Configstore from 'configstore';
+import Store from 'electron-store';
 import configureMenu from './app/main/configureMenu';
 import createWindow from './app/main/createWindow';
 import window from './app/main/windowManager';
@@ -10,7 +10,7 @@ import autoUpdater from './app/main/autoUpdater';
 
 // VARIABLES //
 
-const config = new Configstore( 'ISLE' );
+const config = new Store( 'ISLE' );
 
 let isReady = false;
 let pathToOpen;

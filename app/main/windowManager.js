@@ -12,7 +12,7 @@ import { app, BrowserWindow } from 'electron';
 // Retain global references, if not, window will be closed automatically when garbage collected...
 const _windows = {};
 
-// Prevent GPU acceleration as it causes electront to crash on drag & drop:
+// Prevent GPU acceleration as it causes electron to crash on drag & drop:
 app.disableHardwareAcceleration();
 
 

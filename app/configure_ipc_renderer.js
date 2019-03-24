@@ -2,14 +2,15 @@
 
 import * as actions from 'actions';
 import { ipcRenderer } from 'electron';
-import Configstore from 'configstore';
+import Store from 'electron-store';
+import replace from '@stdlib/string/replace';
 import logger from 'debug';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle-editor' );
-const config = new Configstore( 'ISLE' );
+const config = new Store( 'ISLE' );
 
 
 // MAIN //
@@ -19,6 +20,22 @@ function configureIpcRenderer( store ) {
 		debug( 'Loaded file: '+ filePath );
 		store.dispatch( actions.fileLoaded({ fileName, filePath }) );
 		store.dispatch( actions.convertMarkdown( file ) );
+
+		let preambleText = file.match( /---([\S\s]*)---/ );
+		if ( preambleText ) {
+			// Extract the capture group:
+			preambleText = preambleText[ 1 ];
+			preambleText = replace( preambleText, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
+			import( 'js-yaml' ).then( yaml => {
+				const preamble = yaml.load( preambleText );
+				store.dispatch( actions.updatePreamble({
+					preamble,
+					preambleText
+				}) );
+				config.set( 'mostRecentPreamble', preamble );
+				config.set( 'mostRecentPreambleText', preambleText );
+			});
+		}
 		config.set( 'mostRecentFilePath', filePath );
 		config.set( 'mostRecentFileName', fileName );
 		config.set( 'mostRecentFileData', file );
@@ -30,10 +47,12 @@ function configureIpcRenderer( store ) {
 
 	ipcRenderer.on( 'prepare-reload', () => {
 		const state = store.getState().markdown;
-		const { markdown, filePath, fileName } = state;
+		const { markdown, filePath, fileName, preamble, preambleText } = state;
 		config.set( 'mostRecentFilePath', filePath );
 		config.set( 'mostRecentFileName', fileName );
 		config.set( 'mostRecentFileData', markdown );
+		config.set( 'mostRecentPreamble', preamble );
+		config.set( 'mostRecentPreambleText', preambleText );
 	});
 
 	ipcRenderer.on( 'save-file', () => {

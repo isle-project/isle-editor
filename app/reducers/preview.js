@@ -1,12 +1,12 @@
 // MODULES //
 
-import Configstore from 'configstore';
+import Store from 'electron-store';
 import * as types from 'constants/editor_actions.js';
 
 
 // VARIABLES //
 
-const config = new Configstore( 'ISLE' );
+const config = new Store( 'ISLE' );
 const initialState = {
 	renderInterval: config.get( 'renderInterval' ) || 2000
 };

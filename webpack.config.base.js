@@ -21,7 +21,6 @@ var EXTERNALS = [
 	'compute-chunkify',
 	'compute-mean',
 	'compute-stdev',
-	'configstore',
 	'csv-parse',
 	'csv-stringify',
 	'd3-cloud',

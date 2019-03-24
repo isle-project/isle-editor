@@ -6,24 +6,24 @@ import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
 import { Linter } from 'eslint';
 import SplitPane from 'react-split-pane';
-import yaml from 'js-yaml';
 import logger from 'debug';
 import replace from '@stdlib/string/replace';
 import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
 import Loadable from 'components/loadable';
-import Header from 'editor-components/header';
 import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, saveLintErrors } from 'actions';
+const Header = Loadable( () => import( 'editor-components/header' ) );
 const ErrorBoundary = Loadable( () => import( 'editor-components/error-boundary' ) );
 const Preview = Loadable( () => import( 'editor-components/preview' ) );
 const Editor = Loadable( () => import( 'editor-components/editor' ) );
 const ErrorMessage = Loadable( () => import( 'editor-components/error-message' ) );
 const DevTools = Loadable( () => import( './dev_tools.js' ) );
-import eslintConfig from './eslintrc.json';
 
 
 // VARIABLES //
 
+let eslintConfig = {};
+let yaml;
 const debug = logger( 'isle-editor' );
 const linter = new Linter();
 
@@ -37,6 +37,14 @@ class App extends Component {
 		this.state = {
 			splitPos: parseInt( localStorage.getItem( 'splitPos' ), 10 )
 		};
+	}
+
+	async componentDidMount() {
+		const eslintrc = await import( './eslintrc.json' );
+		eslintConfig = eslintrc.default;
+
+		const jsYAML = await import( 'js-yaml' );
+		yaml = jsYAML.default;
 	}
 
 	componentWillUnmount() {
@@ -67,7 +75,7 @@ class App extends Component {
 			preamble = replace( preamble, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
 			let preambleHasChanged = preamble !== this.props.preambleText;
 			debug( 'Check whether preamble has changed: '+preambleHasChanged );
-			if ( preambleHasChanged ) {
+			if ( preambleHasChanged && yaml ) {
 				debug( 'Update preamble...' );
 				const newPreamble = yaml.load( preamble );
 				if ( !isObject( newPreamble ) ) {

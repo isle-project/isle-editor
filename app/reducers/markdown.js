@@ -1,32 +1,17 @@
 // MODULES //
 
-import isArray from '@stdlib/assert/is-array';
 import * as types from 'constants/editor_actions.js';
-import Configstore from 'configstore';
+import Store from 'electron-store';
 import template from 'constants/template.js';
-import yaml from 'js-yaml';
 
 
 // VARIABLES //
 
-const config = new Configstore( 'ISLE' );
-
-const data = config.get( 'mostRecentFileData' ) || template;
-let preamble = data.match( /---([\S\s]*)---/ );
-let preambleObject = {};
-let error = null;
-if ( isArray( preamble ) ) {
-	preamble = preamble[ 1 ];
-	try {
-		preambleObject = yaml.load( preamble );
-	} catch ( err ) {
-		error = err;
-	}
-}
+const config = new Store( 'ISLE' );
 const initialState = {
 	markdown: config.get( 'mostRecentFileData' ) || template,
-	preamble: preambleObject,
-	preambleText: preamble,
+	preamble: config.get( 'mostRecentPreamble' ) || {},
+	preambleText: config.get( 'mostRecentPreambleText' ),
 	isScrolling: true,
 	hideToolbar: false,
 	filePath: config.get( 'mostRecentFilePath' ),
@@ -34,7 +19,7 @@ const initialState = {
 	currentRole: 'anonymous',
 	currentMode: 'offline',
 	namespaceName: null,
-	error,
+	error: null,
 	fontSize: config.get( 'fontSize' ) || 14
 };
 
