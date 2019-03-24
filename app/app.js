@@ -1,7 +1,7 @@
 // MODULES //
 
 import React from 'react';
-import createHashHistory from 'history/createHashHistory';
+import { createHashHistory } from 'history';
 import Root from 'containers/root';
 import configureStore from 'store/configure_store.js';
 import configureIpcRenderer from './configure_ipc_renderer.js';
