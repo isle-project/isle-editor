@@ -14,7 +14,6 @@ var EXTERNALS = [
 	'brace',
 	'camelcase',
 	'child_process',
-	'codemirror',
 	'component-playground',
 	'component-raf',
 	'component-tween',

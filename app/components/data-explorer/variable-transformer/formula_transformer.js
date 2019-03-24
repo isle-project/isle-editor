@@ -148,6 +148,7 @@ class FormulaTransformer extends Component {
 				position: 'tr'
 			});
 		}
+		this.props.onHide();
 		this.props.logAction( DATA_EXPLORER_VARIABLE_TRANSFORMER, {
 			code, name
 		});
