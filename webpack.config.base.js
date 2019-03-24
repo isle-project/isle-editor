@@ -16,6 +16,8 @@ var EXTERNALS = [
 	'child_process',
 	'codemirror',
 	'component-playground',
+	'component-raf',
+	'component-tween',
 	'compute-chunkify',
 	'compute-mean',
 	'compute-stdev',
@@ -31,6 +33,7 @@ var EXTERNALS = [
 	'html-webpack-plugin',
 	'js-yaml',
 	'katex',
+	'localforage',
 	'markdown-it-container',
 	'markdown-it-ins',
 	'markdown-it-katex',
@@ -149,7 +152,7 @@ export default {
 			resolve( './node_modules/@stdlib/stdlib/lib/node_modules' ),
 			resolve( './node_modules/@stdlib/stdlib/node_modules' )
 		],
-		extensions: [ '.js', '.jsx', '.json' ],
+		extensions: [ '.js', '.json' ],
 		mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
 	},
 	plugins: [
