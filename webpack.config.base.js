@@ -9,6 +9,7 @@ import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 
 const EXTERNALS = [
 	'@stdlib/stdlib',
+	'ajv',
 	'ansi-to-react',
 	'archiver',
 	'brace',
@@ -24,6 +25,7 @@ const EXTERNALS = [
 	'csv-stringify',
 	'd3-cloud',
 	'd3',
+	'detect-csv',
 	'eslint',
 	'form-data',
 	'fsevents',
@@ -37,12 +39,15 @@ const EXTERNALS = [
 	'markdown-it-katex',
 	'markdown-it-sub',
 	'markdown-it',
+	'minimist',
 	'ml-pca',
 	'moment',
 	'murmurhash3js',
 	'pdfjs-dist',
 	'pdfmake',
 	'plotly.js',
+	'profanities',
+	'pressure',
 	'react-dom',
 	'react',
 	'react-bootstrap',
@@ -103,12 +108,13 @@ export default {
 			include: [
 				join( __dirname, 'main.development.js' ),
 				join( __dirname, 'app' )
-			]
+			],
+			exclude: /\.fonts\.js$/
 		},
 		{
 			test: /\.worker\.js$/,
 			use: { loader: 'worker-loader' },
-			include: join( __dirname, 'app' )
+			include: join( __dirname, 'app', 'components', 'response-visualizer' )
 		},
 		{
 			test: /\.txt$/,
