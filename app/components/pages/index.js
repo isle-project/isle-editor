@@ -196,9 +196,9 @@ class Pages extends Component {
 					size={this.props.size}
 					items={this.props.children.length || 1}
 				>
-					<Pagination.Prev key="prev" onClick={this.prevPage} />
+					<Pagination.Prev disabled={this.state.activePage === 1} key="prev" onClick={this.prevPage} />
 					{items}
-					<Pagination.Next key="next" onClick={this.nextPage} />
+					<Pagination.Next disabled={this.state.activePage === this.props.children.length} key="next" onClick={this.nextPage} />
 				</Pagination>
 				<div className="page-children-wrapper"
 					ref={( div ) => {
