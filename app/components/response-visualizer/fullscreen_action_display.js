@@ -470,6 +470,45 @@ class FullscreenActionDisplay extends Component {
 		</ListGroupItem> );
 	}
 
+	renderRanges = () => {
+		// value is an array of length 2
+		const values = this.props.actions.map( x => x.value );
+		const mids = values.map( x => 0.5 * ( x[0] + x[1] ) );
+		const halfWidth = values.map( x => 0.5 * ( x[1] - x[0] ) )
+		const inds = values.map( ( x, index ) =>  index );
+		return (
+			<div style={{ height: 0.75 * window.innerHeight }}>
+				<Plotly
+					data={[
+						{
+							y: mids,
+							x: inds,
+							erroy_y: {
+								type: 'data',
+								array: halfWidth,
+								visible: true
+							},
+							type: 'point',
+							orientation: 'h'
+						}
+					]}
+					fit
+					layout={{
+						xaxis: {
+							title: 'Count'
+						},
+						yaxis: {
+							title: 'Value',
+						},
+						margin: {
+							l: 250
+						}
+					}}
+				/>
+			</div>
+		);
+	}
+
 	renderPlot() {
 		let plot;
 		if ( this.props.actions.length > 0 ) {
@@ -489,6 +528,9 @@ class FullscreenActionDisplay extends Component {
 					break;
 				case 'matches':
 					plot = this.renderSankeyDiagram();
+					break;
+				case 'range':
+					plot = this.renderRanges();
 					break;
 			}
 		}
