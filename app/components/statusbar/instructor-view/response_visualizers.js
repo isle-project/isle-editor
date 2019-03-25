@@ -10,6 +10,9 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import Tooltip from 'components/tooltip';
 import keys from '@stdlib/utils/keys';
 import contains from '@stdlib/assert/contains';
+import roundn from '@stdlib/math/base/special/roundn';
+import incrmean from '@stdlib/stats/incr/mean';
+import formatTime from 'utils/format-time';
 
 
 // VARIABLES //
@@ -43,7 +46,8 @@ class ResponseVisualizers extends Component {
 		super( props );
 
 		this.state = {
-			selected: null
+			selected: null,
+			means: {}
 		};
 	}
 
@@ -51,9 +55,27 @@ class ResponseVisualizers extends Component {
 		const session = this.props.session;
 		const visualizers = session.responseVisualizers;
 		const ids = keys( visualizers );
+
+		const means = {};
+		for ( let i = 0; i < ids.length; i++ ) {
+			const viz = visualizers[ ids[ i ] ];
+			const acc = incrmean();
+			viz.ref.state.actions.forEach( x => {
+				acc( x.time );
+			});
+			means[ ids[ i ] ] = acc;
+		}
+		this.setState({
+			means
+		});
+
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if ( type === 'member_action' && contains( ids, value.id ) ) {
-				this.forceUpdate();
+				const newMeans = this.state.means.slice();
+				newMeans[ value.id ]( value.time );
+				this.setState({
+					means: newMeans
+				});
 			}
 		});
 	}
@@ -112,11 +134,15 @@ class ResponseVisualizers extends Component {
 		const visualizers = this.props.session.responseVisualizers;
 		const ids = keys( visualizers );
 		const list = new Array( ids.length );
+		let overallProgress = 0;
 		for ( let i = 0; i < ids.length; i++ ) {
-			const nInfo = visualizers[ ids[ i ] ].ref.state.nInfo;
-			const nActions = visualizers[ ids[ i ] ].ref.state.nActions;
+			const viz = visualizers[ ids[ i ] ];
+			const nInfo = viz.ref.state.nInfo;
+			const nActions = viz.ref.state.nActions;
 			const infoRate = ( nInfo / nUsers ) * 100.0;
+			overallProgress += infoRate;
 			const id = ids[ i ];
+			const time = `time: ${this.state.means[ id ] ? formatTime( this.state.means[ id ]() ) : ''}`;
 			list[ i ] = (
 				<ListGroupItem
 					key={i}
@@ -136,7 +162,10 @@ class ResponseVisualizers extends Component {
 						</Badge>
 					</Tooltip>
 					<Tooltip placement="left" tooltip="# of Actions">
-						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{nActions}</Badge>
+						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`n: ${nActions}`}</Badge>
+					</Tooltip>
+					<Tooltip placement="left" tooltip="Average elapsed time until answer">
+						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{time}</Badge>
 					</Tooltip>
 					<Tooltip placement="left" tooltip="Completion rate for currently active students">
 						<ProgressBar
@@ -154,7 +183,14 @@ class ResponseVisualizers extends Component {
 				</ListGroupItem>
 			);
 		}
+		overallProgress /= ids.length;
 		return ( <div>
+			<ProgressBar
+				striped
+				variant="success"
+				label={`Current class progress: ${roundn( overallProgress, -3 )}%`}
+				now={overallProgress}
+			/>
 			<ListGroup style={{
 				height: window.innerHeight / 1.5,
 				overflowY: 'scroll'
