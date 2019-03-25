@@ -7,7 +7,7 @@ import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 
 // VARIABLES //
 
-var EXTERNALS = [
+const EXTERNALS = [
 	'@stdlib/stdlib',
 	'ansi-to-react',
 	'archiver',
