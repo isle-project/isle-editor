@@ -4,7 +4,16 @@ import webpack from 'webpack';
 import path from 'path';
 import HappyPack from 'happypack';
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
+import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
 import baseConfig from './webpack.config.base';
+
+
+// VARIABLES //
+
+const smp = new SpeedMeasurePlugin({
+	granularLoaderData: false,
+	disable: !process.env.MEASURE // eslint-disable-line no-process-env
+});
 
 
 // MAIN //
@@ -80,4 +89,4 @@ const config = {
 
 // EXPORTS //
 
-export default config;
+export default smp.wrap( config );

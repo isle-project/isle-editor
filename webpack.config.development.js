@@ -5,18 +5,24 @@
 import path from 'path';
 import { spawn } from 'child_process';
 import webpack from 'webpack';
+import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
+import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
 import baseConfig from './webpack.config.base';
 
 
 // VARIABLES //
 
+const smp = new SpeedMeasurePlugin({
+	granularLoaderData: false,
+	disable: !process.env.MEASURE // eslint-disable-line no-process-env
+});
 const port = process.env.PORT || 1212; // eslint-disable-line no-process-env
 const publicPath = `http://localhost:${port}/dist`;
 
 
 // MAIN //
 
-const config = {
+const config = smp.wrap({
 	...baseConfig,
 	devtool: 'eval',
 
@@ -25,6 +31,8 @@ const config = {
 		'webpack/hot/only-dev-server',
 		path.join( __dirname, './app/index.js' )
 	],
+
+	mode: 'development',
 
 	output: {
 		...baseConfig.output,
@@ -57,10 +65,10 @@ const config = {
 		new webpack.HotModuleReplacementPlugin({
 			multiStep: true
 		}),
-		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.LoaderOptionsPlugin({
 			debug: true
-		})
+		}),
+		new HardSourceWebpackPlugin()
 	],
 
 	target: 'electron-renderer',
@@ -79,7 +87,7 @@ const config = {
 		watchOptions: {
 			aggregateTimeout: 300,
 			ignored: /node_modules/,
-			poll: 100
+			poll: 1000 // Check for changes every second
 		},
 		historyApiFallback: {
 			verbose: true,
@@ -102,7 +110,7 @@ const config = {
 			}
 		}
 	}
-};
+});
 
 
 // EXPORTS //

@@ -108,7 +108,7 @@ export default {
 		{
 			test: /\.worker\.js$/,
 			use: { loader: 'worker-loader' },
-			exclude: /node_modules/
+			include: join( __dirname, 'app' )
 		},
 		{
 			test: /\.txt$/,
@@ -147,18 +147,55 @@ export default {
 		modules: [
 			resolve( './app' ),
 			resolve( './node_modules' ),
-			resolve( './node_modules/@stdlib/stdlib/lib/node_modules' ),
-			resolve( './node_modules/@stdlib/stdlib/node_modules' )
+			resolve( './node_modules/@stdlib/stdlib/lib/node_modules' )
 		],
 		extensions: [ '.js', '.json' ],
 		mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
 	},
 	plugins: [
-		new webpack.IgnorePlugin( /vertx/ ),
-		new webpack.IgnorePlugin( /^(xor|props)$/ ),
 		new MonacoWebpackPlugin({
-			features: []
-		})
+			features: [
+				'accessibilityHelp',
+				'bracketMatching',
+				'caretOperations',
+				'clipboard',
+				'codeAction',
+				'codelens',
+				'colorDetector',
+				'comment',
+				'contextmenu',
+				'coreCommands',
+				'cursorUndo',
+				'dnd',
+				'find',
+				'folding',
+				'fontZoom',
+				'format',
+				'gotoLine',
+				'hover',
+				'inPlaceReplace',
+				'inspectTokens',
+				'linesOperations',
+				'links',
+				'multicursor',
+				'parameterHints',
+				'quickCommand',
+				'quickOutline',
+				'referenceSearch',
+				'rename',
+				'smartSelect',
+				'snippets',
+				'suggest',
+				'toggleHighContrast',
+				'toggleTabFocusMode',
+				'transpose',
+				'wordHighlighter',
+				'wordOperations',
+				'wordPartOperations'
+			],
+			languages: [ 'javascript', 'typescript' ]
+		}),
+		new webpack.IgnorePlugin( /vertx/ )
 	],
 	externals: EXTERNALS
 };

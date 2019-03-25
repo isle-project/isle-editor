@@ -1,12 +1,21 @@
 // MODULES //
 
 import webpack from 'webpack';
+import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
 import baseConfig from './webpack.config.base';
+
+
+// VARIABLES //
+
+const smp = new SpeedMeasurePlugin({
+	granularLoaderData: false,
+	disable: !process.env.MEASURE // eslint-disable-line no-process-env
+});
 
 
 // MAIN //
 
-export default {
+const config = smp.wrap({
 	...baseConfig,
 
 	devtool: 'cheap-source-map',
@@ -40,4 +49,9 @@ export default {
 		'react',
 		'react-dom'
 	]
-};
+});
+
+
+// EXPORTS //
+
+export default config;
