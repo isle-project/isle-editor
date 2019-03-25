@@ -471,11 +471,18 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	renderRanges = () => {
-		// value is an array of length 2
-		const values = this.props.actions.map( x => x.value );
-		const mids = values.map( x => 0.5 * ( x[0] + x[1] ) );
-		const halfWidth = values.map( x => 0.5 * ( x[1] - x[0] ) )
-		const inds = values.map( ( x, index ) =>  index );
+		const halfWidth = [];
+		const values = [];
+		const mids = [];
+		const inds = [];
+		for ( let i = 0; i < this.props.actions.length; i++ ) {
+			values.push( JSON.parse( this.props.actions[ i ].value ) );
+
+			// Value is an array of length 2:
+			mids.push( 0.5 * ( values[ i ][ 0 ] + values[ i ][ 1 ] ) );
+			halfWidth.push( 0.5 * ( values[ i ][ 1 ] - values[ i ][ 0 ] ) );
+			inds.push( i );
+		}
 		return (
 			<div style={{ height: 0.75 * window.innerHeight }}>
 				<Plotly
@@ -483,25 +490,27 @@ class FullscreenActionDisplay extends Component {
 						{
 							y: mids,
 							x: inds,
-							erroy_y: {
+							text: inds.map( i => {
+								return `[${values[ i ][ 0 ]}, ${values[ i ][ 1 ]}]`;
+							}),
+							error_y: {
 								type: 'data',
 								array: halfWidth,
 								visible: true
 							},
-							type: 'point',
+							type: 'scatter',
+							mode: 'markers',
 							orientation: 'h'
 						}
 					]}
 					fit
 					layout={{
 						xaxis: {
-							title: 'Count'
+							showticklabels: false,
+							showline: false
 						},
 						yaxis: {
-							title: 'Value',
-						},
-						margin: {
-							l: 250
+							title: 'Value'
 						}
 					}}
 				/>
