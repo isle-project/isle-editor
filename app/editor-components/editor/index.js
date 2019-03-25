@@ -12,7 +12,7 @@ import startsWith from '@stdlib/string/starts-with';
 import replace from '@stdlib/string/replace';
 import readFile from '@stdlib/fs/read-file';
 import Loadable from 'components/loadable';
-const MonacoEditor = Loadable( () => import( 'react-monaco-editor' ) );
+import MonacoEditor from 'react-monaco-editor';
 const ComponentConfigurator = Loadable( () => import( './component_configurator.js' ) );
 const EditorContextMenu = Loadable( () => import( './context_menu.js' ) );
 import './editor.css';

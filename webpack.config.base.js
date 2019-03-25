@@ -123,9 +123,11 @@ export default {
 		},
 		{
 			test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
-			loader: 'file-loader',
-			query: {
-				name: 'static/media/[name].[hash:8].[ext]'
+			use: {
+				loader: 'file-loader',
+				options: {
+					name: 'static/media/[name].[hash:8].[ext]'
+				}
 			}
 		}],
 		noParse: [
@@ -172,22 +174,18 @@ export default {
 				'fontZoom',
 				'format',
 				'gotoLine',
-				'hover',
 				'inPlaceReplace',
 				'inspectTokens',
 				'linesOperations',
 				'links',
 				'multicursor',
 				'parameterHints',
-				'quickCommand',
-				'quickOutline',
 				'referenceSearch',
 				'rename',
 				'smartSelect',
 				'snippets',
 				'suggest',
 				'toggleHighContrast',
-				'toggleTabFocusMode',
 				'transpose',
 				'wordHighlighter',
 				'wordOperations',

@@ -5,7 +5,6 @@
 import path from 'path';
 import { spawn } from 'child_process';
 import webpack from 'webpack';
-import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
 import baseConfig from './webpack.config.base';
 
@@ -67,8 +66,7 @@ const config = smp.wrap({
 		}),
 		new webpack.LoaderOptionsPlugin({
 			debug: true
-		}),
-		new HardSourceWebpackPlugin()
+		})
 	],
 
 	target: 'electron-renderer',

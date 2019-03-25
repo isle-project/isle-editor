@@ -27,7 +27,8 @@ module.exports = ( distRoot, optimize ) => ({
 				use: {
 					loader: 'babel-loader',
 					options: {
-						cacheDirectory: true
+						cacheDirectory: true,
+						cacheCompression: false
 					}
 				},
 				include: [
