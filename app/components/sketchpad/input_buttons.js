@@ -74,10 +74,10 @@ class InputButtons extends Component {
 		return (
 			<Fragment>
 				<ButtonGroup size="sm" className="sketch-drag-delete-modes sketch-button-group" >
-					<TooltipButton tooltip="Pointer Mode" size="sm" variant={this.props.mode === 'pointer' ? 'success' : 'secondary'} onClick={this.togglePointerMode} glyph="circle" />
-					<TooltipButton tooltip="Magnifying Glass" size="sm" variant={this.props.mode === 'zoom' ? 'success' : 'secondary'} onClick={this.toggleZoomMode} glyph="search-plus" />
 					<TooltipButton tooltip="Drag Mode" size="sm" variant={this.props.mode === 'drag' ? 'success' : 'secondary'} onClick={this.toggleDragMode} glyph="arrows-alt" />
 					<TooltipButton tooltip="Delete Mode" size="sm" variant={this.props.mode === 'delete' ? 'success' : 'secondary'} onClick={this.toggleDeleteMode} glyph="times" />
+					<TooltipButton tooltip="Magnifying Glass" size="sm" variant={this.props.mode === 'zoom' ? 'success' : 'secondary'} onClick={this.toggleZoomMode} glyph="search-plus" />
+					<TooltipButton tooltip="Pointer Mode" size="sm" variant={this.props.mode === 'pointer' ? 'success' : 'secondary'} onClick={this.togglePointerMode} glyph="circle" />
 				</ButtonGroup>
 				<ButtonGroup size="sm" className="sketch-drawing-buttons" >
 					<TooltipButton tooltip="Drawing Mode" glyph="pencil-alt" size="sm" variant={this.props.mode === 'drawing' ? 'success' : 'secondary'} onClick={this.toggleDrawingMode} />
