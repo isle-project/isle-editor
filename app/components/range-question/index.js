@@ -273,7 +273,7 @@ class RangeQuestion extends Component {
 						buttonLabel="Answers"
 						id={this.props.id}
 						data={{
-							type: 'number'
+							type: 'range'
 						}}
 						info={RANGE_QUESTION_SUBMIT_ANSWER}
 					/>
