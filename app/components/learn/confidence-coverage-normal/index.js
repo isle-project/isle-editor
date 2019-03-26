@@ -58,7 +58,7 @@ class ConfidenceCoverageNormal extends Component {
 				'alpha': alpha
 			});
 			let o = {
-				'num': i,
+				'num': i+1,
 				'yval': res.statistic * res.sd,
 				'err': abs( res.sd * qt( 1 - alpha/ 2.0, n - 1 ) )
 			};
@@ -90,7 +90,12 @@ class ConfidenceCoverageNormal extends Component {
 			<VictoryAxis
 				padding={20}
 				standalone={false}
-				tickCount={10}
+				tickCount={20}
+				style={{
+					tickLabels: {
+						fontSize: '9px'
+					}
+				}}
 			/>
 			<VictoryAxis
 				dependentAxis
@@ -119,7 +124,7 @@ class ConfidenceCoverageNormal extends Component {
 			/>
 			<VictoryLine
 				data={[
-					{ x: 0, y: this.state.mu },
+					{ x: 1, y: this.state.mu },
 					{ x: 20, y: this.state.mu }
 				]}
 			/>
