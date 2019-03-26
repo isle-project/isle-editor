@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
-import { VictoryAxis, VictoryChart, VictoryErrorBar, VictoryLine, VictoryTheme, VictoryTooltip } from 'victory';
+import { VictoryAxis, VictoryChart, VictoryErrorBar, VictoryLine, VictoryTheme, VictoryScatter, VictoryTooltip } from 'victory';
 import abs from '@stdlib/math/base/special/abs';
 import qt from '@stdlib/stats/base/dists/t/quantile';
 import normal from '@stdlib/random/base/normal';
@@ -102,6 +102,21 @@ class ConfidenceCoverageNormal extends Component {
 				padding={20}
 				standalone={false}
 			/>
+			<VictoryScatter
+				animate={{ duration: 500 }}
+				data={this.state.errorBars}
+				labelComponent={<span />}
+				style={{
+					data: {
+						fill: ( data ) => (
+							( data.yval - data.err > this.state.mu ) ||
+							( data.yval + data.err < this.state.mu )
+						) ? 'darkred' : 'steelblue'
+					}
+				}}
+				x="num"
+				y="yval"
+			/>
 			<VictoryErrorBar
 				animate={{ duration: 500 }}
 				labelComponent={<VictoryTooltip />}
@@ -119,7 +134,6 @@ class ConfidenceCoverageNormal extends Component {
 				x="num"
 				y="yval"
 				errorY={( d ) => d.err}
-				errorX={( d ) => 0.2}
 				labels={( d ) => d.label}
 			/>
 			<VictoryLine

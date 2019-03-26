@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
-import { VictoryAxis, VictoryChart, VictoryErrorBar, VictoryLine, VictoryTheme, VictoryTooltip } from 'victory';
+import { VictoryAxis, VictoryChart, VictoryErrorBar, VictoryLine, VictoryTheme, VictoryScatter, VictoryTooltip } from 'victory';
 import abs from '@stdlib/math/base/special/abs';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import randu from '@stdlib/random/base/randu';
@@ -105,6 +105,21 @@ class ConfidenceCoverageBinomial extends Component {
 				padding={20}
 				standalone={false}
 			/>
+			<VictoryScatter
+				animate={{ duration: 500 }}
+				data={this.state.errorBars}
+				labelComponent={<span />}
+				style={{
+					data: {
+						fill: ( data ) => (
+							( data.yval - data.err > this.state.p ) ||
+							( data.yval + data.err < this.state.p )
+						) ? 'darkred' : 'steelblue'
+					}
+				}}
+				x="num"
+				y="yval"
+			/>
 			<VictoryErrorBar
 				animate={{ duration: 500 }}
 				labelComponent={<VictoryTooltip />}
@@ -120,7 +135,6 @@ class ConfidenceCoverageBinomial extends Component {
 				x="num"
 				y="yval"
 				errorY={( d ) => d.err}
-				errorX={( d ) => 0.2}
 				labels={( d ) => d.label}
 			/>
 			<VictoryLine
