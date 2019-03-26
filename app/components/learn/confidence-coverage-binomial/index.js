@@ -11,6 +11,7 @@ import sqrt from '@stdlib/math/base/special/sqrt';
 import randu from '@stdlib/random/base/randu';
 import qnorm from '@stdlib/stats/base/dists/normal/quantile';
 import ztest from '@stdlib/stats/ztest';
+import roundn from '@stdlib/math/base/special/roundn';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
 import FeedbackButtons from 'components/feedback';
@@ -62,10 +63,10 @@ class ConfidenceCoverageBinomial extends Component {
 				'yval': res.statistic * res.sd,
 				'err': abs( res.sd * qnorm( 1.0 - alpha/ 2.0, 0.0, 1.0 ) )
 			};
-			o.label = ( o.yval - o.err > p ) ||
+			o.text = ( o.yval - o.err > p ) ||
 				( o.yval + o.err < p ) ? 'does not contain p' :
 				'contains p';
-			if ( o.label === 'contains p' ) {
+			if ( o.text === 'contains p' ) {
 				nTrapped += 1;
 			}
 			errorBars[ i ] = o;
@@ -108,7 +109,7 @@ class ConfidenceCoverageBinomial extends Component {
 			<VictoryScatter
 				animate={{ duration: 500 }}
 				data={this.state.errorBars}
-				labelComponent={<span />}
+				labelComponent={<VictoryTooltip />}
 				style={{
 					data: {
 						fill: ( data ) => (
@@ -119,6 +120,7 @@ class ConfidenceCoverageBinomial extends Component {
 				}}
 				x="num"
 				y="yval"
+				labels={( d ) => `Sample proportion ${roundn( d.yval, -3 )}`}
 			/>
 			<VictoryErrorBar
 				animate={{ duration: 500 }}
@@ -135,7 +137,7 @@ class ConfidenceCoverageBinomial extends Component {
 				x="num"
 				y="yval"
 				errorY={( d ) => d.err}
-				labels={( d ) => d.label}
+				labels={( d ) => d.text}
 			/>
 			<VictoryLine
 				data={[

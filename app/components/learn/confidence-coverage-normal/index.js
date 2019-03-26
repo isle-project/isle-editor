@@ -10,6 +10,7 @@ import abs from '@stdlib/math/base/special/abs';
 import qt from '@stdlib/stats/base/dists/t/quantile';
 import normal from '@stdlib/random/base/normal';
 import ttest from '@stdlib/stats/ttest';
+import roundn from '@stdlib/math/base/special/roundn';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
 import FeedbackButtons from 'components/feedback';
@@ -62,10 +63,10 @@ class ConfidenceCoverageNormal extends Component {
 				'yval': res.statistic * res.sd,
 				'err': abs( res.sd * qt( 1 - alpha/ 2.0, n - 1 ) )
 			};
-			o.label = ( o.yval - o.err > mu ) ||
+			o.text = ( o.yval - o.err > mu ) ||
 				( o.yval + o.err < mu ) ? 'does not contain mu' :
 				'contains mu';
-			if ( o.label === 'contains mu' ) {
+			if ( o.text === 'contains mu' ) {
 				nTrapped += 1;
 			}
 			errorBars[ i ] = o;
@@ -105,7 +106,7 @@ class ConfidenceCoverageNormal extends Component {
 			<VictoryScatter
 				animate={{ duration: 500 }}
 				data={this.state.errorBars}
-				labelComponent={<span />}
+				labelComponent={<VictoryTooltip />}
 				style={{
 					data: {
 						fill: ( data ) => (
@@ -116,6 +117,7 @@ class ConfidenceCoverageNormal extends Component {
 				}}
 				x="num"
 				y="yval"
+				labels={( d ) => `Sample mean: ${roundn( d.yval, -3)}`}
 			/>
 			<VictoryErrorBar
 				animate={{ duration: 500 }}
@@ -134,7 +136,7 @@ class ConfidenceCoverageNormal extends Component {
 				x="num"
 				y="yval"
 				errorY={( d ) => d.err}
-				labels={( d ) => d.label}
+				labels={( d ) => d.text}
 			/>
 			<VictoryLine
 				data={[
