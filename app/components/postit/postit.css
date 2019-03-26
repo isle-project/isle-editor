@@ -1,0 +1,58 @@
+.Postit {
+	position: absolute;
+	left: 300px;
+	top: 200px;
+	width: 300px;
+	height: 300px;
+	z-index: 2;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_postit.png);
+}
+
+
+.PostitContent {
+	position: inherit;
+	left: 30px;
+	top: 35px;
+	height: 250px;
+	width: 250px;
+	transform: rotate(-3deg);
+	overflow: hidden;
+}
+
+
+.PostitTitle {
+	position: inherit;
+	top: 10px;
+	padding-left: 10px;
+	font-family: Sacramento;
+	font-size: 24px;
+	font-weight: 800;
+}
+
+
+.PostitDate {
+	position: inherit;
+	top: 14px;
+	right: 5px;
+}
+
+
+.PostitBody {
+	position: inherit;
+	top: 40px;
+	padding: 10px;
+	padding-left: 15px;
+	font-family: Sacramento;
+	font-size: 20px;
+}
+
+.PostitStain {
+	position: inherit;
+	left: 50%;
+	top: 60%;
+	opacity: 0.5;
+	width: 200px;
+	height: 120px;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_kaffee2.png);
+	background-size: 200px 120px;
+}

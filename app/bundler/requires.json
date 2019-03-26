@@ -79,6 +79,8 @@
 	"Panel": "components/panel",
 	"Playground": "components/playground",
 	"Plotly": "components/plotly",
+	"Polaroid": "components/polaroid",
+	"Postit": "components/postit",
 	"Preload": "components/preload",
 	"ProportionsInput": "components/input/proportions",
 	"ProportionsSurvey": "components/proportions-survey",

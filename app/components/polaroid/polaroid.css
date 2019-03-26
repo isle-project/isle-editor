@@ -1,0 +1,56 @@
+.Polaroid {
+	position: absolute;
+	left: 710px;
+	top: 10px;
+	width: 327px;
+	height: 360px;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_PolaroidFrame.png);
+	background-size: 100% auto;
+	transform: rotate(1.7deg);
+	z-index: 10;
+	overflow: hidden;
+}
+
+.PolaroidImage {
+	position: inherit;
+	left: 5.7%;
+	top: 4.5%;
+	width: 88.6%;
+	height: 79%;
+	box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.5);
+	overflow: hidden;
+}
+
+
+.Polaroid img {
+	filter: sepia(80%);
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.PolaroidPin {
+	position: inherit;
+	left: 46%;
+	top: -8px;
+	width: 48px;
+	height: 48px;
+	background-size: 100% 100%;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_postit_pin.png);
+}
+
+
+.PolaroidStain {
+	position: inherit;
+	left: 45%;
+	top: 16%;
+	opacity: 0.5;
+	width: 160px;
+	height: 160px;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_kaffee3.png);
+	background-size: 100% auto;
+	z-index: 5;
+	filter: saturate(20%);
+	transform: rotate(20deg);
+}
