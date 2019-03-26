@@ -148,7 +148,7 @@ class ConfidenceCoverageNormal extends Component {
 	}
 
 	render() {
-		const intro = <p><TeX raw="X \sim \text{Normal}\left( \mu, \sigma \right)" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\bar X \sim \text{Normal}\left( \mu, \tfrac{\sigma}{\sqrt{n}} \right)" elems={ELEM_TOOLTIPS} />.  Our confidence interval is then <TeX raw="\bar X \pm Z_{\alpha/2} \cdot \frac{S}{\sqrt{n}}" elems={ELEM_TOOLTIPS} />. For our choice of sample size (n), <TeX raw="\mu" />, <TeX raw="\sigma" />, and confidence level, we will simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.</p>;
+		const intro = <p><TeX raw="X \sim \text{Normal}\left( \mu, \sigma \right)" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\bar X \sim \text{Normal}\left( \mu, \tfrac{\sigma}{\sqrt{n}} \right)" elems={ELEM_TOOLTIPS} />.  Our confidence interval is then <TeX raw="\bar X \pm Z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}" elems={ELEM_TOOLTIPS} />. For our choice of sample size (n), <TeX raw="\mu" />, <TeX raw="\sigma" />, and confidence level, we will simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.</p>;
 		return (
 			<Card id="coverageModuleNormal">
 				<Card.Header as="h4">
