@@ -10,6 +10,7 @@ import { select } from 'd3';
 import katex from 'katex';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import PINF from '@stdlib/constants/math/float64-pinf';
+import keys from '@stdlib/utils/keys';
 import NumberInput from 'components/input/number';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 
@@ -75,7 +76,7 @@ class TeX extends Component {
 			if ( self.state.popoverTarget !== this ) {
 				$this.style( 'color', 'black' );
 			}
-			Object.keys( self.props.elems ).forEach( ( prop ) => {
+			keys( self.props.elems ).forEach( ( prop ) => {
 				let elem = self.props.elems[ prop ];
 				if ( $this.text() === prop ) {
 					if ( elem.variable ) {
