@@ -129,10 +129,9 @@ class ConfidenceCoverageBinomial extends Component {
 
 	render() {
 		const intro = <div>
-			<p>Now we will switch to asking a Yes/No question about a population. We are interested in estimating the true population proportion <TeX raw="p" /> of "Yes" answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size <TeX raw="n" />, find how many observations in our sample are a "Yes" (X), and then estimate the true proportion <TeX raw="p" /> with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ p(1-p)/n } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <TeX raw="\hat p \pm Z_{\alpha/2} \cdot \sqrt{p(1-p)/n}" elems={ELEM_TOOLTIPS} />.</p>
+			<p>Now we will switch to asking a Yes/No question about a population. We are interested in estimating the true population proportion <TeX raw="p" /> of "Yes" answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size <TeX raw="n" />, find how many observations in our sample are a "Yes" (X), and then estimate the true proportion <TeX raw="p" /> with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ \tfrac{p(1-p)}{n} } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <TeX raw="\hat p \pm Z_{\alpha/2} \cdot \sqrt{ \tfrac{\hat p(1-\hat p)}{n}}" elems={ELEM_TOOLTIPS} />.</p>
 			<p>For our choice of sample size (n), true proportion  <TeX raw="p" />, and confidence level, we will simulate <TeX raw="20" /> different samples from our normal distribution and calculate the corresponding sample proportions and confidence intervals.</p>
 		</div>;
-
 		return (
 			<Card id="coverageModuleBinomial">
 				<Card.Header as="h4">
