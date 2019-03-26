@@ -180,7 +180,7 @@
     "react-slick": "0.23.2",
     "react-split-pane": "0.1.87",
     "react-table": "6.8.6",
-    "react-transition-group": "^2.7.0",
+    "react-transition-group": "^2.7.1",
     "recordrtc": "^5.5.4",
     "redux": "4.0.1",
     "redux-thunk": "^2.3.0",
