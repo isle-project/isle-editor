@@ -146,11 +146,12 @@ describe( '<Pages />', function test() {
 		expect( state.activePage ).toBe( 3 );
 	});
 
-	it( 'when clicked, the component jumps to the chosen page', done => {
-		const wrapper = mount(<Pages>
+	it( 'when clicked, the component moves to the next or previous page', done => {
+		const wrapper = mount(<Pages activePage={3}>
 			<div>ONE</div>
 			<div>TWO</div>
 			<div>THREE</div>
+			<div>FOUR</div>
 		</Pages>
 		);
 		const pagination = wrapper.find( '.my-pagination' ).first();
@@ -159,11 +160,11 @@ describe( '<Pages />', function test() {
 		const nextPageButton = listItems.at( listItems.length - 1 );
 		const previousPageButton = listItems.at( 0 );
 
-		previousPageButton.find( 'a' ).simulate( 'click' );
-		expect( wrapper.instance().state.activePage ).toBe( 1 );
-
 		nextPageButton.find( 'a' ).simulate( 'click' );
-		expect( wrapper.instance().state.activePage ).toBe( 2 );
+		expect( wrapper.instance().state.activePage ).toBe( 4 );
+
+		previousPageButton.find( 'a' ).simulate( 'click' );
+		expect( wrapper.instance().state.activePage ).toBe( 3 );
 
 		done();
 	});

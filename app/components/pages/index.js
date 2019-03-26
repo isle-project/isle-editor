@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import isArray from '@stdlib/assert/is-array';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import VoiceControl from 'components/voice-control';
 import SessionContext from 'session/context.js';
 import { PAGES_FIRST_PAGE, PAGES_NEXT_PAGE, PAGES_PREVIOUS_PAGE, PAGES_LAST_PAGE, PAGES_JUMP_PAGE } from 'constants/actions.js';
@@ -22,6 +23,7 @@ import './pages.css';
 * @property {string} title - displayed title of the pages container
 * @property {string} size - size of the pagination buttons (one of `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`)
 * @property {number} height - the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added
+* @property {number} activePage - active page
 * @property {strings} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
 * @property {Function} onSelect - Function invoked when active change is changed. Receives the new active page index as a sole parameter
@@ -30,8 +32,19 @@ class Pages extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			activePage: 1
+			activePage: props.activePage
 		};
+	}
+
+
+	componentWillReceiveProps( nextProps ) {
+		let newState = {};
+		if ( nextProps.activePage !== this.props.activePage ) {
+			newState.activePage = nextProps.activePage;
+		}
+		if ( !isEmptyObject( newState ) ) {
+			this.setState( newState );
+		}
 	}
 
 	firstPage = () => {
@@ -226,6 +239,7 @@ class Pages extends Component {
 // PROPERTIES //
 
 Pages.propTypes = {
+	activePage: PropTypes.number,
 	title: PropTypes.string,
 	size: PropTypes.oneOf([
 		'default',
@@ -244,6 +258,7 @@ Pages.propTypes = {
 };
 
 Pages.defaultProps = {
+	activePage: 1,
 	title: '',
 	size: 'default',
 	height: null,
