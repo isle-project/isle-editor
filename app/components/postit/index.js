@@ -2,9 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-
 import './postit.css';
+
 
 // MAIN //
 
@@ -13,55 +12,46 @@ import './postit.css';
 *
 * @property {Array} images - list of image URLs to be displayed
 */
-
 class Postit extends Component {
 	constructor( props ) {
-	super( props );
-    }
-
-	componentDidMount() {
+		super( props );
 	}
 
-
-    render() {
-        return (
-            <div style={this.props.style} className="Postit">
-               <div className="PostitContent">
-                  <div className="PostitTitle">
-                      { this.props.title }
-                  </div>
-
-                  <div className="PostitDate">
-                       { this.props.date }
-                  </div>
-
-                  <div className="PostitBody">
-                      { this.props.body }
+	render() {
+		return (
+			<div style={this.props.style} className="Postit">
+				<div className="PostitContent">
+					<div className="PostitTitle">
+						{ this.props.title }
+					</div>
+					<div className="PostitDate">
+						{ this.props.date }
+					</div>
+					<div className="PostitBody">
+						{ this.props.body }
+					</div>
+					{this.props.stain ? <div className={'PostitStain'} /> : null }
 				</div>
-
-				{ this.props.stain ? <div className={'PostitStain'} /> : null }
-
-                </div>
-            </div>
-        );
-    }
+			</div>
+		);
+	}
 }
+
 
 // PROPERTIES //
 
 Postit.propTypes = {
-    title: PropTypes.string,
-    body: PropTypes.string,
-    style: PropTypes.object,
+	title: PropTypes.string,
+	body: PropTypes.string,
+	style: PropTypes.object,
 	date: PropTypes.string,
 	stain: PropTypes.bool
-
 };
 
 Postit.defaultProps = {
-    title: 'The postit-title',
-    body: 'Here comes the body',
-    date: '',
+	title: 'The postit-title',
+	body: 'Here comes the body',
+	date: '',
 	style: {},
 	stain: null
 };
