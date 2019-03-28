@@ -214,7 +214,7 @@ class RangeQuestion extends Component {
 							step="any"
 							legend="Lower"
 							onChange={this.handleChangeLower}
-							value={this.state.lower}
+							defaultValue={this.state.lower}
 							disabled={this.state.submitted && solutionPresent}
 							inline
 							width={90}
@@ -228,7 +228,7 @@ class RangeQuestion extends Component {
 							step="any"
 							legend="Upper"
 							onChange={this.handleChangeUpper}
-							value={this.state.upper}
+							defaultValue={this.state.upper}
 							disabled={this.state.submitted && solutionPresent}
 							inline
 							width={90}
