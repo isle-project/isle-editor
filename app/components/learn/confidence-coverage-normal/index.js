@@ -248,7 +248,7 @@ ConfidenceCoverageNormal.defaultProps = {
 };
 
 ConfidenceCoverageNormal.propTypes = {
-	sampleStats: PropTypes.string
+	sampleStats: PropTypes.bool
 };
 
 

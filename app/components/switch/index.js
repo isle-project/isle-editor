@@ -87,6 +87,7 @@ class Switch extends Component {
 // PROPERTIES //
 
 Switch.propTypes = {
+	active: PropTypes.bool,
 	tooltip: PropTypes.string,
 	tooltipPos: PropTypes.string,
 	className: PropTypes.string,
@@ -95,6 +96,7 @@ Switch.propTypes = {
 };
 
 Switch.defaultProps = {
+	active: true,
 	tooltip: 'Click to cycle through available options.',
 	tooltipPos: 'top',
 	className: '',

@@ -159,7 +159,7 @@ class ConfidenceCoverageBinomial extends Component {
 
 	render() {
 		const intro = <div>
-			<p>Now we will switch to asking a Yes/No question about a population. We are interested in estimating the true population proportion <TeX raw="p" /> of "Yes" answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size <TeX raw="n" />, find how many observations in our sample are a "Yes" (X), and then estimate the true proportion <TeX raw="p" /> with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ \tfrac{p(1-p)}{n} } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <Switch tooltip={`${this.state.useSampleProp ? 'Click to use population proportion' : 'Click to use sample proportion'}`} onChange={( pos ) => {
+			<p>Now we will switch to asking a Yes/No question about a population. We are interested in estimating the true population proportion <TeX raw="p" /> of "Yes" answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size <TeX raw="n" />, find how many observations in our sample are a "Yes" (X), and then estimate the true proportion <TeX raw="p" /> with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ \tfrac{p(1-p)}{n} } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <Switch tooltip={`${this.state.useSampleProp ? 'Click to use population proportion' : 'Click to use sample proportion'}`} active={this.props.sampleStats} onChange={( pos ) => {
 				this.setState({
 					useSampleProp: pos === 1
 				});
@@ -239,7 +239,7 @@ ConfidenceCoverageBinomial.defaultProps = {
 };
 
 ConfidenceCoverageBinomial.propTypes = {
-	sampleStats: PropTypes.string
+	sampleStats: PropTypes.bool
 };
 
 
