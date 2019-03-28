@@ -13,3 +13,7 @@
 .rshell-editor {
 	width: 100%;
 }
+
+.rshell-editor > .CodeMirror {
+	height: 100%;
+}

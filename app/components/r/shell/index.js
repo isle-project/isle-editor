@@ -12,23 +12,20 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import DOMPurify from 'dompurify';
 import createPrependCode from 'components/r/utils/create-prepend-code';
 import ChatButton from 'components/chat-button';
-import beforeUnload from 'utils/before-unload';
-import isElectron from 'utils/is-electron';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import max from '@stdlib/math/base/special/max';
 import logger from 'debug';
-import PINF from '@stdlib/constants/math/float64-pinf';
-import ace from 'brace';
-import 'brace/mode/r';
-import 'brace/theme/katzenmilch';
-import 'brace/theme/solarized_light';
+import CodeMirror from 'codemirror';
 import Spinner from 'components/spinner';
 import HintButton from 'components/hint-button';
 import OverlayTrigger from 'components/overlay-trigger';
 import SessionContext from 'session/context.js';
 import { RSHELL_DISPLAY_SOLUTION, RSHELL_EVALUATION, RSHELL_OPEN_HINT } from 'constants/actions.js';
+import 'codemirror/mode/r/r.js';
+import 'codemirror/theme/elegant.css';
+import 'codemirror/theme/paraiso-light.css';
 import './rshell.css';
 
 
@@ -146,6 +143,7 @@ const showResetButton = ( clickHandler ) => {
 * @property {number} lines - number of lines to display
 * @property {boolean} resettable - controls whether to display a reset button for restoring the default code input
 * @property {Object} style - CSS inline styles
+* @property {Function} onChange - callback invoked whenever the text field input changes
 * @property {Function} onEvaluate - callback invoked whenever the `Evaluate` button is clicked
 * @property {Function} onResult - callback invoked whenever the result of a code execution is obtained from the cloud. The result `string` is passed as the only argument to the callback function
 */
@@ -175,19 +173,11 @@ class RShell extends React.Component {
 			const val = this.editor.getValue();
 			const solutionUnescaped = this.props.solution.replace( /\\n/g, '\n' );
 			if ( this.state.solutionOpen === false ) {
-				this.editor.setTheme( 'ace/theme/solarized_light' );
-				this.editor.setOptions({
-					highlightActiveLine: false,
-					highlightGutterLine: false,
-					readOnly: true
-				});
+				this.editor.setOption( 'theme', 'paraiso-light' );
+				this.editor.setOption( 'readOnly', true );
 			} else {
-				this.editor.setTheme( 'ace/theme/katzenmilch' );
-				this.editor.setOptions({
-					highlightActiveLine: true,
-					highlightGutterLine: true,
-					readOnly: false
-				});
+				this.editor.setOption( 'theme', 'elegant' );
+				this.editor.setOption( 'readOnly', false );
 			}
 			if ( val !== solutionUnescaped ) {
 				if ( this.props.id ) {
@@ -292,38 +282,20 @@ class RShell extends React.Component {
 	}
 
 	componentDidMount() {
-		this.editor = ace.edit( this.editorDiv );
-		this.aceSession = this.editor.getSession();
-		this.aceSession.setMode( 'ace/mode/r' );
-		this.aceSession.getDocument().setNewLineMode( 'unix' );
-		this.editor.setTheme( 'ace/theme/katzenmilch' );
-		this.editor.$blockScrolling = PINF;
-		this.editor.setOptions({
-			maxLines: max( 5, this.props.lines ),
-			minLines: this.props.lines,
-			fontFamily: this.props.fontFamily,
-			fontSize: this.props.fontSize
+		this.editor = CodeMirror( this.editorDiv, {
+			mode: 'r',
+			theme: 'elegant',
+			lineNumbers: true,
+			lineWrapping: true
 		});
-		this.aceSession.setUseWrapMode( true );
 		this.editor.setValue( this.props.code, -1 );
-		this.editor.resize();
 		if ( this.props.disabled ) {
-			this.editor.setOptions({
-				readOnly: true,
-				highlightActiveLine: false,
-				highlightGutterLine: false
-			});
-			this.editor.renderer.$cursorLayer.element.style.opacity = 0;
+			this.editor.setOption( 'readOnly', true );
 			this.editor.textInput.getElement().disabled = true;
 		}
 
-		if ( !isElectron ) {
-			const onChange = () => {
-				window.addEventListener( 'beforeunload', beforeUnload );
-				this.aceSession.off( 'change', onChange );
-			};
-			this.aceSession.on( 'change', onChange );
-		}
+		// Add event listener:
+		this.editor.on( 'change', this.props.onChange );
 
 		if ( this.props.precompute ) {
 			this.handleEvaluationClick();
@@ -366,24 +338,13 @@ class RShell extends React.Component {
 			}
 		}
 		else if ( this.props.disabled !== prevProps.disabled ) {
-			let opts;
 			if ( this.props.disabled ) {
-				opts = {
-					readOnly: true,
-					highlightActiveLine: false,
-					highlightGutterLine: false
-				};
+				this.editor.setOption( 'readOnly', true );
 			} else {
-				opts = {
-					readOnly: false,
-					highlightActiveLine: true,
-					highlightGutterLine: true
-				};
+				this.editor.setOption( 'readOnly', false );
 			}
-			this.editor.setOptions( opts );
 		}
 		else {
-			this.editor.resize();
 			const node = ReactDom.findDOMNode( this );
 			// Undo Spectacle scaling as it messes up the rendering of the ACE editor:
 			let slide = node.closest( '.spectacle-content' );
@@ -481,11 +442,17 @@ class RShell extends React.Component {
 
 	render() {
 		const nHints = this.props.hints.length;
+		const style = {
+			lineHeight: '1.2em',
+			maxHeight: `${max( 5, this.props.lines )*1.2}em`,
+			height: `${this.props.lines*1.2}em`,
+			...this.props.style
+		};
 		return (
 			<div className="rshell"
 				style={this.props.style}
 			>
-				<div className="rshell-editor" ref={( div ) => { this.editorDiv = div; }}></div>
+				<div className="rshell-editor" style={style} ref={( div ) => { this.editorDiv = div; }}></div>
 				{ !this.props.disabled ?
 					<Button
 						variant="primary"
@@ -576,6 +543,7 @@ RShell.propTypes = {
 	lines: PropTypes.number,
 	resettable: PropTypes.bool,
 	style: PropTypes.object,
+	onChange: PropTypes.func,
 	onEvaluate: PropTypes.func,
 	onResult: PropTypes.func
 };
@@ -595,6 +563,7 @@ RShell.defaultProps = {
 	lines: 5,
 	resettable: false,
 	style: {},
+	onChange() {},
 	onEvaluate(){},
 	onResult() {}
 };
