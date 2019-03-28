@@ -1871,11 +1871,25 @@
     "description": "A learning component illustrating conditional probability for two dependent binary variables."
   },
   "LearnConfidenceCoverageBinomial": {
-    "props": [],
+    "props": [
+      {
+        "name": "sampleStats",
+        "type": "boolean",
+        "description": "controls whether one should be able to switch between using the sample proportion or the known population success probability when calculating the standard error",
+        "default": true
+      }
+    ],
     "description": "A learning component illustrating coverage of confidence intervals for the mean of a binomial distribution."
   },
   "LearnConfidenceCoverageNormal": {
-    "props": [],
+    "props": [
+      {
+        "name": "sampleStats",
+        "type": "boolean",
+        "description": "controls whether one should be able to switch between using the sample standard deviation or the known population standard deviation when calculating the standard error",
+        "default": true
+      }
+    ],
     "description": "A learning component illustrating coverage of confidence intervals for the mean of a normal distribution."
   },
   "LearnCrossValidation": {
@@ -2894,6 +2908,12 @@
   "Pages": {
     "props": [
       {
+        "name": "activePage",
+        "type": "number",
+        "description": "active page",
+        "default": 1
+      },
+      {
         "name": "title",
         "type": "string",
         "description": "displayed title of the pages container",
@@ -3062,6 +3082,57 @@
       }
     ],
     "description": "Plotly visualization."
+  },
+  "Polaroid": {
+    "props": [
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "image",
+        "type": "string",
+        "description": "the image which is displayed in the polaroid frame",
+        "default": null
+      },
+      {
+        "name": "showPin",
+        "type": "boolean",
+        "default": false
+      }
+    ],
+    "description": "A dynamic background component that changes a background image at a specified interval."
+  },
+  "Postit": {
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "default": "The postit-title"
+      },
+      {
+        "name": "body",
+        "type": "string",
+        "default": "Here comes the body"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "date",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "name": "stain",
+        "type": "boolean",
+        "default": null
+      }
+    ],
+    "description": "A dynamic background component that changes a background image at a specified interval."
   },
   "Preload": {
     "props": [
@@ -3762,7 +3833,7 @@
       {
         "name": "list",
         "type": "array<string>",
-        "description": "list of texts to be displayed",
+        "description": "list of image URLs to be displayed",
         "default": []
       },
       {
@@ -3774,41 +3845,41 @@
       {
         "name": "direction",
         "type": "string",
-        "description": "the direction of the text flow, available values are left, right, up, down, treacking, focus and swirl",
+        "description": ": the direction of the text flow, available values are left, right, up, down, tracking, focus and swirl",
         "default": "right"
       },
       {
         "name": "still",
         "type": "number",
-        "description": "the time the text remains still (in seconds)",
+        "description": ": the time the text remains still (in seconds)",
         "default": 3
       },
       {
         "name": "interval",
         "type": "number",
-        "description": "the interval between the calls (in seconds)",
+        "description": ": the interval between the calls (in seconds)",
         "default": 15
       },
       {
         "name": "inTime",
         "type": "number",
-        "description": "time of the entrance effect (in seconds)",
+        "description": ": time of the entrance effect (in seconds)",
         "default": 0.6
       },
       {
         "name": "outTime",
         "type": "number",
-        "description": " time of the exit effect (in seconds)",
+        "description": ":  time of the exit effect (in seconds)",
         "default": 1
       },
       {
         "name": "style",
         "type": "object",
-        "description": "style definition of the text",
+        "description": ": style definition of the text",
         "default": {}
       }
     ],
-    "description": "A component for displaying titling effects."
+    "description": "A dynamic background component that changes a background image at a specified interval."
   },
   "SelectQuestion": {
     "props": [
@@ -4257,6 +4328,12 @@
   },
   "Switch": {
     "props": [
+      {
+        "name": "active",
+        "type": "boolean",
+        "description": "controls whether the switch is active or not",
+        "default": true
+      },
       {
         "name": "tooltip",
         "type": "string",
