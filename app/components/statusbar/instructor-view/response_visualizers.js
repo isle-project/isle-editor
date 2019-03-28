@@ -8,6 +8,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Tooltip from 'components/tooltip';
+import copy from '@stdlib/utils/copy';
 import keys from '@stdlib/utils/keys';
 import contains from '@stdlib/assert/contains';
 import roundn from '@stdlib/math/base/special/roundn';
@@ -71,7 +72,7 @@ class ResponseVisualizers extends Component {
 
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if ( type === 'member_action' && contains( ids, value.id ) ) {
-				const newMeans = this.state.means.slice();
+				const newMeans = copy( this.state.means );
 				newMeans[ value.id ]( value.time );
 				this.setState({
 					means: newMeans
