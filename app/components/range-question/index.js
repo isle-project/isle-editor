@@ -44,6 +44,7 @@ const debug = logger( 'isle:range-question' );
 * @property {number} max - maximum input value
 * @property {number} min - minimum input value
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
+* @property {boolean} allowMultipleAnswers - controls whether one can submit multiple answers
 * @property {strings} voiceID - voice control identifier
 * @property {Function} onChangeUpper - callback triggered after the upper bound is changed by the user
 * @property {Function} onChangeLower - callback triggered after the lower bound is changed by the user
@@ -215,7 +216,7 @@ class RangeQuestion extends Component {
 							legend="Lower"
 							onChange={this.handleChangeLower}
 							defaultValue={this.state.lower}
-							disabled={this.state.submitted && solutionPresent}
+							disabled={this.state.submitted && !this.props.allowMultipleAnswers}
 							inline
 							width={90}
 							min={this.props.min}
@@ -229,7 +230,7 @@ class RangeQuestion extends Component {
 							legend="Upper"
 							onChange={this.handleChangeUpper}
 							defaultValue={this.state.upper}
-							disabled={this.state.submitted && solutionPresent}
+							disabled={this.state.submitted && !this.props.allowMultipleAnswers}
 							inline
 							width={90}
 							min={this.props.min}
@@ -251,7 +252,7 @@ class RangeQuestion extends Component {
 						className="submit-button"
 						variant="primary"
 						size="sm"
-						disabled={this.state.submitted && solutionPresent}
+						disabled={this.state.submitted && !this.props.allowMultipleAnswers}
 						onClick={this.submitHandler}
 					>
 						{ this.state.submitted ? 'Resubmit' : 'Submit' }
@@ -301,6 +302,7 @@ RangeQuestion.defaultProps = {
 	max: PINF,
 	min: NINF,
 	provideFeedback: true,
+	allowMultipleAnswers: false,
 	voiceID: null,
 	style: {},
 	onChangeUpper() {},
@@ -319,6 +321,7 @@ RangeQuestion.propTypes = {
 	max: PropTypes.number,
 	min: PropTypes.number,
 	provideFeedback: PropTypes.bool,
+	allowMultipleAnswers: PropTypes.bool,
 	voiceID: PropTypes.string,
 	style: PropTypes.object,
 	onChangeLower: PropTypes.func,
