@@ -28,5 +28,6 @@ An interactive R Shell that can be used to execute R commands in the cloud using
 * __lines__ | `number`: number of lines to display. Default: `5`.
 * __resettable__ | `boolean`: controls whether to display a reset button for restoring the default code input. Default: `false`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
+* __onChange__ | `function`: callback invoked whenever the text field input changes. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: callback invoked whenever the `Evaluate` button is clicked. Default: `onEvaluate(){}`.
 * __onResult__ | `function`: callback invoked whenever the result of a code execution is obtained from the cloud. The result `string` is passed as the only argument to the callback function. Default: `onResult() {}`.

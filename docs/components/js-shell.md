@@ -22,8 +22,8 @@ An interactive Javascript shell that can be used to execute JavaScript commands.
 * __check__ | `string`: appended JavaScript code to check the `code` to be evaluated. Default: `none`.
 * __disabled__ | `boolean`: controls whether to disable all user inputs and make the code block static. Default: `false`.
 * __lines__ | `number`: number of lines to display. Default: `5`.
-* __fontFamily__ | `string`: undefined. Default: `'Courier New'`.
-* __fontSize__ | `number`: undefined. Default: `16`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
+* __onChange__ | `function`: callback invoked whenever the text field input changes. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: callback invoked whenever the `Evaluate` button is clicked. Default: `onEvaluate() {}`.
 * __vars__ | `object`: scope object with variables that should be made available to evaluated `code`. Default: `none`.
 * __voiceID__ | `string`: voice control identifier. Default: `none`.

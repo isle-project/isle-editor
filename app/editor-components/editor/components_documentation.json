@@ -1774,14 +1774,16 @@
         "default": 5
       },
       {
-        "name": "fontFamily",
-        "type": "string",
-        "default": "Courier New"
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       },
       {
-        "name": "fontSize",
-        "type": "number",
-        "default": 16
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked whenever the text field input changes",
+        "default": "onChange() {}"
       },
       {
         "name": "onEvaluate",
@@ -3086,19 +3088,39 @@
   "Polaroid": {
     "props": [
       {
+        "name": "id",
+        "type": "string",
+        "description": "this will allow a parent component to identify the image",
+        "default": ""
+      },
+      {
         "name": "style",
         "type": "object",
+        "description": "css definitions, override the style of the component",
         "default": {}
       },
       {
         "name": "image",
         "type": "string",
-        "description": "the image which is displayed in the polaroid frame",
+        "description": "image url",
         "default": null
+      },
+      {
+        "name": "callback",
+        "type": "function",
+        "description": "callback function (receives the id of the Polaroid as parameter)",
+        "default": null
+      },
+      {
+        "name": "removable",
+        "type": "boolean",
+        "description": "indicates whether the image is removable when clicking on the pin, default: false",
+        "default": false
       },
       {
         "name": "showPin",
         "type": "boolean",
+        "description": "shows a pin, default: false",
         "default": false
       }
     ],
@@ -3130,6 +3152,16 @@
         "name": "stain",
         "type": "boolean",
         "default": null
+      },
+      {
+        "name": "callback",
+        "type": "function",
+        "default": null
+      },
+      {
+        "name": "removable",
+        "type": "boolean",
+        "default": false
       }
     ],
     "description": "A dynamic background component that changes a background image at a specified interval."
@@ -3571,6 +3603,12 @@
         "default": {}
       },
       {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked whenever the text field input changes",
+        "default": "onChange() {}"
+      },
+      {
         "name": "onEvaluate",
         "type": "function",
         "description": "callback invoked whenever the `Evaluate` button is clicked",
@@ -3675,6 +3713,12 @@
         "type": "boolean",
         "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
         "default": true
+      },
+      {
+        "name": "allowMultipleAnswers",
+        "type": "boolean",
+        "description": "controls whether one can submit multiple answers",
+        "default": false
       },
       {
         "name": "voiceID",
