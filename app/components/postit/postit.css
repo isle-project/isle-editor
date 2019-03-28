@@ -26,7 +26,6 @@
 	overflow: hidden;
 }
 
-
 .PostitTitle {
 	position: inherit;
 	top: 10px;
@@ -35,7 +34,6 @@
 	font-size: 24px;
 	font-weight: 800;
 }
-
 
 .PostitDate {
 	position: inherit;
@@ -75,10 +73,10 @@
 }
 
 /**
- * ----------------------------------------
- * animation swirl-out-bck
- * ----------------------------------------
-	*/
+* ----------------------------------------
+* animation swirl-out-bck
+* ----------------------------------------
+*/
 @-webkit-keyframes postit-swirl-out-bck {
 	0% {
 		-webkit-transform: rotate(0) scale(1);

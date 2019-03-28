@@ -16,7 +16,6 @@
 	animation: swirl-out-bck 0.8s ease-in forwards;
 }
 
-
 .PolaroidImage {
 	position: inherit;
 	left: 5.7%;
@@ -33,19 +32,16 @@
 	filter: sepia(0);
 }
 
-
 .Polaroid img {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-
 .clickablePolaroid {
 	filter: sepia(0);
 	cursor: pointer;
 }
-
 
 .PolaroidPin {
 	position: inherit;
@@ -67,7 +63,6 @@
 	z-index: 2;
 }
 
-
 .PolaroidStain {
 	position: inherit;
 	left: 45%;
@@ -82,12 +77,11 @@
 	transform: rotate(20deg);
 }
 
-
 /**
- * ----------------------------------------
- * animation swirl-out-bck
- * ----------------------------------------
-	*/
+* ----------------------------------------
+* animation swirl-out-bck
+* ----------------------------------------
+*/
 @-webkit-keyframes swirl-out-bck {
 	0% {
 		-webkit-transform: rotate(0) scale(1);
