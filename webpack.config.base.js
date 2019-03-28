@@ -12,7 +12,6 @@ const EXTERNALS = [
 	'ajv',
 	'ansi-to-react',
 	'archiver',
-	'brace',
 	'camelcase',
 	'child_process',
 	'component-playground',
