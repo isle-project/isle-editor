@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -8,14 +9,18 @@ import Row from 'react-bootstrap/Row';
 import { VictoryAxis, VictoryChart, VictoryErrorBar, VictoryLine, VictoryTheme, VictoryScatter, VictoryTooltip } from 'victory';
 import abs from '@stdlib/math/base/special/abs';
 import qt from '@stdlib/stats/base/dists/t/quantile';
+import qnorm from '@stdlib/stats/base/dists/normal/quantile';
 import normal from '@stdlib/random/base/normal';
-import ttest from '@stdlib/stats/ttest';
 import roundn from '@stdlib/math/base/special/roundn';
+import sqrt from '@stdlib/math/base/special/sqrt';
 import Dashboard from 'components/dashboard';
+import Switch from 'components/switch';
 import TeX from 'components/tex';
 import FeedbackButtons from 'components/feedback';
 import SliderInput from 'components/input/slider';
 import NumberInput from 'components/input/number';
+import mean from 'utils/statistic/mean.js';
+import stdev from 'utils/statistic/stdev.js';
 
 
 // VARIABLES //
@@ -34,6 +39,8 @@ const ELEM_TOOLTIPS = {
 
 /**
 * A learning component illustrating coverage of confidence intervals for the mean of a normal distribution.
+*
+* @property {boolean} sampleStats - controls whether one should be able to switch between using the sample standard deviation or the known population standard deviation when calculating the standard error
 */
 class ConfidenceCoverageNormal extends Component {
 	constructor( props ) {
@@ -42,7 +49,8 @@ class ConfidenceCoverageNormal extends Component {
 		this.state = {
 			errorBars: [],
 			mu: null,
-			nTrapped: null
+			nTrapped: null,
+			useSampleSD: false
 		};
 	}
 
@@ -55,13 +63,19 @@ class ConfidenceCoverageNormal extends Component {
 			for ( let j = 0; j < data.length; j++ ) {
 				data[ j ] = normal( mu, sigma );
 			}
-			let res = ttest( data, {
-				'alpha': alpha
-			});
+			let avg = mean( data );
+			let err;
+			if ( !this.state.useSampleSD ) {
+				const stderr = sigma / sqrt( n );
+				err = abs( stderr * qnorm( 1.0 - alpha/ 2.0, 0.0, 1.0 ) );
+			} else {
+				const stderr = stdev( data ) / sqrt( n );
+				err = abs( stderr * qt( 1.0 - alpha/ 2.0, n - 1 ) );
+			}
 			let o = {
 				'num': i+1,
-				'yval': res.statistic * res.sd,
-				'err': abs( res.sd * qt( 1 - alpha/ 2.0, n - 1 ) )
+				'yval': avg,
+				'err': err
 			};
 			o.text = ( o.yval - o.err > mu ) ||
 				( o.yval + o.err < mu ) ? 'does not contain mu' :
@@ -69,6 +83,7 @@ class ConfidenceCoverageNormal extends Component {
 			if ( o.text === 'contains mu' ) {
 				nTrapped += 1;
 			}
+			o.text = `[${roundn( o.yval - o.err, -2 )}, ${roundn( o.yval + o.err, -2 )}] ` + o.text;
 			errorBars[ i ] = o;
 		}
 		this.setState({
@@ -148,7 +163,14 @@ class ConfidenceCoverageNormal extends Component {
 	}
 
 	render() {
-		const intro = <p><TeX raw="X \sim \text{Normal}\left( \mu, \sigma \right)" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\bar X \sim \text{Normal}\left( \mu, \tfrac{\sigma}{\sqrt{n}} \right)" elems={ELEM_TOOLTIPS} />.  Our confidence interval is then <TeX raw="\bar X \pm Z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}" elems={ELEM_TOOLTIPS} />. For our choice of sample size (n), <TeX raw="\mu" />, <TeX raw="\sigma" />, and confidence level, we will simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.</p>;
+		const intro = <p><TeX raw="X \sim \text{Normal}\left( \mu, \sigma \right)" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\bar X \sim \text{Normal}\left( \mu, \tfrac{\sigma}{\sqrt{n}} \right)" elems={ELEM_TOOLTIPS} />.  Our confidence interval is then <Switch tooltip={`${this.state.useSampleSD ? 'Click to use population standard deviation' : 'Click to use sample standard deviation'}`} active={this.props.sampleStats} onChange={( pos ) => {
+			this.setState({
+				useSampleSD: pos === 1
+			});
+		}}>
+			<TeX raw="\bar X \pm Z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}" elems={ELEM_TOOLTIPS} />
+			<TeX raw="\bar X \pm t_{\alpha/2} \cdot \frac{S}{\sqrt{n}}" elems={ELEM_TOOLTIPS} />
+		</Switch>. For our choice of sample size (n), <TeX raw="\mu" />, <TeX raw="\sigma" />, and confidence level, we will simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.</p>;
 		return (
 			<Card id="coverageModuleNormal">
 				<Card.Header as="h4">
@@ -217,6 +239,17 @@ class ConfidenceCoverageNormal extends Component {
 		);
 	}
 }
+
+
+// PROPERTIES //
+
+ConfidenceCoverageNormal.defaultProps = {
+	sampleStats: true
+};
+
+ConfidenceCoverageNormal.propTypes = {
+	sampleStats: PropTypes.string
+};
 
 
 // EXPORTS //

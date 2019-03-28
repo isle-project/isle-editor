@@ -602,6 +602,7 @@ class ContinuousCLT extends Component {
 	}
 }
 
+
 // PROPERTIES //
 
 ContinuousCLT.defaultProps = {
@@ -611,6 +612,7 @@ ContinuousCLT.defaultProps = {
 ContinuousCLT.propTypes = {
 	distributions: PropTypes.arrayOf( PropTypes.string )
 };
+
 
 // EXPORTS //
 

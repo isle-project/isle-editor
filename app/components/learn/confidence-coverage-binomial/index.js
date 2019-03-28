@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -10,10 +11,11 @@ import abs from '@stdlib/math/base/special/abs';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import randu from '@stdlib/random/base/randu';
 import qnorm from '@stdlib/stats/base/dists/normal/quantile';
-import ztest from '@stdlib/stats/ztest';
 import roundn from '@stdlib/math/base/special/roundn';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
+import Switch from 'components/switch';
+import mean from 'utils/statistic/mean.js';
 import FeedbackButtons from 'components/feedback';
 import SliderInput from 'components/input/slider';
 import NumberInput from 'components/input/number';
@@ -33,6 +35,8 @@ const ELEM_TOOLTIPS = {
 
 /**
 * A learning component illustrating coverage of confidence intervals for the mean of a binomial distribution.
+*
+* @property {boolean} sampleStats - controls whether one should be able to switch between using the sample proportion or the known population success probability when calculating the standard error
 */
 class ConfidenceCoverageBinomial extends Component {
 	constructor( props ) {
@@ -41,7 +45,8 @@ class ConfidenceCoverageBinomial extends Component {
 		this.state = {
 			errorBars: [],
 			p: null,
-			nTrapped: null
+			nTrapped: null,
+			useSampleProp: false
 		};
 	}
 
@@ -54,14 +59,17 @@ class ConfidenceCoverageBinomial extends Component {
 			for ( let j = 0; j < data.length; j++ ) {
 				data[ j ] = randu() <= p ? 1.0 : 0.0;
 			}
-			let sd = sqrt( p * ( 1.0-p ) );
-			let res = ztest( data, sd, {
-				'alpha': alpha
-			});
+			let phat = mean( data );
+			let sd;
+			if ( !this.state.useSampleProp ) {
+				sd = sqrt( p * ( 1.0-p ) / n );
+			} else {
+				sd = sqrt( phat * ( 1.0-phat ) / n );
+			}
 			let o = {
 				'num': i+1,
-				'yval': res.statistic * res.sd,
-				'err': abs( res.sd * qnorm( 1.0 - alpha/ 2.0, 0.0, 1.0 ) )
+				'yval': phat,
+				'err': abs( sd * qnorm( 1.0 - alpha/ 2.0, 0.0, 1.0 ) )
 			};
 			o.text = ( o.yval - o.err > p ) ||
 				( o.yval + o.err < p ) ? 'does not contain p' :
@@ -69,6 +77,7 @@ class ConfidenceCoverageBinomial extends Component {
 			if ( o.text === 'contains p' ) {
 				nTrapped += 1;
 			}
+			o.text = `[${roundn( o.yval - o.err, -2 )}, ${roundn( o.yval + o.err, -2 )}] ` + o.text;
 			errorBars[ i ] = o;
 		}
 		this.setState({
@@ -150,7 +159,14 @@ class ConfidenceCoverageBinomial extends Component {
 
 	render() {
 		const intro = <div>
-			<p>Now we will switch to asking a Yes/No question about a population. We are interested in estimating the true population proportion <TeX raw="p" /> of "Yes" answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size <TeX raw="n" />, find how many observations in our sample are a "Yes" (X), and then estimate the true proportion <TeX raw="p" /> with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ \tfrac{p(1-p)}{n} } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <TeX raw="\hat p \pm Z_{\alpha/2} \cdot \sqrt{ \tfrac{\hat p(1-\hat p)}{n}}" elems={ELEM_TOOLTIPS} />.</p>
+			<p>Now we will switch to asking a Yes/No question about a population. We are interested in estimating the true population proportion <TeX raw="p" /> of "Yes" answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size <TeX raw="n" />, find how many observations in our sample are a "Yes" (X), and then estimate the true proportion <TeX raw="p" /> with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ \tfrac{p(1-p)}{n} } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <Switch tooltip={`${this.state.useSampleProp ? 'Click to use population proportion' : 'Click to use sample proportion'}`} onChange={( pos ) => {
+				this.setState({
+					useSampleProp: pos === 1
+				});
+			}}>
+				<TeX raw="\hat p \pm Z_{\alpha/2} \cdot \sqrt{ \frac{p(1-p)}{n}}" elems={ELEM_TOOLTIPS} />
+				<TeX raw="\hat p \pm Z_{\alpha/2} \cdot \sqrt{ \frac{\hat p(1-\hat p)}{n}}" elems={ELEM_TOOLTIPS} />
+			</Switch>.</p>
 			<p>For our choice of sample size (n), true proportion  <TeX raw="p" />, and confidence level, we will simulate <TeX raw="20" /> different samples from our normal distribution and calculate the corresponding sample proportions and confidence intervals.</p>
 		</div>;
 		return (
@@ -214,6 +230,17 @@ class ConfidenceCoverageBinomial extends Component {
 		);
 	}
 }
+
+
+// PROPERTIES //
+
+ConfidenceCoverageBinomial.defaultProps = {
+	sampleStats: true
+};
+
+ConfidenceCoverageBinomial.propTypes = {
+	sampleStats: PropTypes.string
+};
 
 
 // EXPORTS //

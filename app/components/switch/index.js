@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import copy from '@stdlib/utils/copy';
+import noop from '@stdlib/utils/noop';
 import isArray from '@stdlib/assert/is-array';
 import Tooltip from 'components/tooltip';
 import './switch.css';
@@ -13,6 +14,7 @@ import './switch.css';
 /**
 * The Switch component allows the display of one element out of a list of several elements. Users can cycle through the different children of the Switch tag by clicking on the currently displayed one.
 *
+* @property {boolean} active - controls whether the switch is active or not
 * @property {string} tooltip - tooltip displayed when hovering over the switch element
 * @property {string} tooltipPos - placement of the tooltip (either `top`, `left`, `right`, or `bottom`)
 * @property {string} className - class name for the enclosing span element
@@ -60,14 +62,14 @@ class Switch extends Component {
 		}
 		const content =
 			<span
-				className={className}
-				onClick={this.handleClick}
+				className={this.props.active ? className : this.props.className}
+				onClick={this.props.active ? this.handleClick : noop}
 				style={this.props.style}
 			>
 				{children}
 			</span>;
 
-		if ( this.props.tooltip === '' ) {
+		if ( this.props.tooltip === '' || !this.props.active ) {
 			return content;
 		}
 		return (
