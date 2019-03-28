@@ -15,11 +15,40 @@ import './postit.css';
 class Postit extends Component {
 	constructor( props ) {
 		super( props );
+
+		this.state = {
+			exit: false
+		};
+	}
+
+	triggerClick = () => {
+		if (this.props.callback) {
+			this.props.callback(this.props.id);
+		}
+	}
+
+	remove = (evt) => {
+		evt.stopPropagation();
+		this.setState({
+			exit: true
+		});
 	}
 
 	render() {
+		let postitClass = 'Postit';
+
+		if (this.props.callback) {
+			postitClass = 'Postit postit-callback';
+		}
+
+		if (this.state.exit === true) {
+			postitClass = 'Postit postit-exit';
+		}
+
+
 		return (
-			<div style={this.props.style} className="Postit">
+			<div onClick={this.triggerClick} style={this.props.style} className={postitClass}>
+				{ this.props.removable ? <div onClick={this.remove} title="remove PostIt" className={'PostitPinImageMap'} /> : null }
 				<div className="PostitContent">
 					<div className="PostitTitle">
 						{ this.props.title }
@@ -45,7 +74,9 @@ Postit.propTypes = {
 	body: PropTypes.string,
 	style: PropTypes.object,
 	date: PropTypes.string,
-	stain: PropTypes.bool
+	stain: PropTypes.bool,
+	callback: PropTypes.func,
+	removable: PropTypes.bool
 };
 
 Postit.defaultProps = {
@@ -53,7 +84,9 @@ Postit.defaultProps = {
 	body: 'Here comes the body',
 	date: '',
 	style: {},
-	stain: null
+	stain: null,
+	callback: null,
+	removable: false
 };
 
 

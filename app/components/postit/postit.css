@@ -8,6 +8,13 @@
 	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_postit.png);
 }
 
+.postit-exit {
+	animation: postit-swirl-out-bck 1s ease-in forwards;
+}
+
+.postit-callback {
+	cursor: pointer;
+}
 
 .PostitContent {
 	position: inherit;
@@ -55,4 +62,47 @@
 	height: 120px;
 	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_kaffee2.png);
 	background-size: 200px 120px;
+}
+
+.PostitPinImageMap {
+	position: inherit;
+	left: 45%;
+	width: 52px;
+	height: 52px;
+	top: 0;
+	cursor: crosshair;
+	z-index: 2;
+}
+
+/**
+ * ----------------------------------------
+ * animation swirl-out-bck
+ * ----------------------------------------
+	*/
+@-webkit-keyframes postit-swirl-out-bck {
+	0% {
+		-webkit-transform: rotate(0) scale(1);
+		transform: rotate(0) scale(1);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: rotate(-540deg) scale(0);
+		transform: rotate(-540deg) scale(0);
+		opacity: 0;
+	}
+}
+
+@keyframes postit-swirl-out-bck {
+	0% {
+		-webkit-transform: rotate(0) scale(1);
+		transform: rotate(0) scale(1);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: rotate(-540deg) scale(0);
+		transform: rotate(-540deg) scale(0);
+		opacity: 0;
+	}
 }
