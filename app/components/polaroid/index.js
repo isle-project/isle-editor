@@ -11,11 +11,11 @@ import './polaroid.css';
 * A dynamic background component that changes a background image at a specified interval.
 *
 * @property {Array} image - the image which is displayed in the polaroid frame
-* @property {Bool} removable - indicates whether the image is removable when clicking on the pin, default: false
-* @property {Bool} id - this will allow a parent component to identify the image
-* @property {Bool} image - image url
+* @property {boolean} removable - indicates whether the image is removable when clicking on the pin, default: false
+* @property {boolean} id - this will allow a parent component to identify the image
+* @property {boolean} image - image url
 * @property {Function} callback - callback function (receives the id of the Polaroid as parameter)
-* @property {Bool} showPin - shows a pin, default: false
+* @property {boolean} showPin - shows a pin, default: false
 * @property {Object} style - css definitions, override the style of the component
 */
 class Polaroid extends Component {
