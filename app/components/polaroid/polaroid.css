@@ -11,6 +11,12 @@
 	overflow: hidden;
 }
 
+.PolaroidExit {
+	opacity: 0.5;
+	animation: swirl-out-bck 0.8s ease-in forwards;
+}
+
+
 .PolaroidImage {
 	position: inherit;
 	left: 5.7%;
@@ -19,14 +25,20 @@
 	height: 79%;
 	box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.5);
 	overflow: hidden;
+	filter: sepia(80%);
 }
 
 
 .Polaroid img {
-	filter: sepia(80%);
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+
+.clickablePolaroid {
+	filter: sepia(0);
+	cursor: pointer;
 }
 
 
@@ -38,6 +50,16 @@
 	height: 48px;
 	background-size: 100% 100%;
 	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_postit_pin.png);
+}
+
+.PinImageMap {
+	position: inherit;
+	left: 46%;
+	top: 4px;
+	width: 48px;
+	height: 48px;
+	cursor: crosshair;
+	z-index: 2;
 }
 
 
@@ -53,4 +75,38 @@
 	z-index: 5;
 	filter: saturate(20%);
 	transform: rotate(20deg);
+}
+
+
+/**
+ * ----------------------------------------
+ * animation swirl-out-bck
+ * ----------------------------------------
+	*/
+@-webkit-keyframes swirl-out-bck {
+	0% {
+		-webkit-transform: rotate(0) scale(1);
+		transform: rotate(0) scale(1);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: rotate(-540deg) scale(0);
+		transform: rotate(-540deg) scale(0);
+		opacity: 0;
+	}
+}
+
+@keyframes swirl-out-bck {
+	0% {
+		-webkit-transform: rotate(0) scale(1);
+		transform: rotate(0) scale(1);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: rotate(-540deg) scale(0);
+		transform: rotate(-540deg) scale(0);
+		opacity: 0;
+	}
 }
