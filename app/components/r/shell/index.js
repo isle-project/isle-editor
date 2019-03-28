@@ -138,8 +138,6 @@ const showResetButton = ( clickHandler ) => {
 * @property {(string|Array<string>)} prependCode - R code `string` (or `array` of R code blocks) to be prepended to the code stored in `code` when evaluating
 * @property {boolean} chat - controls whether group chat functionality should be enabled
 * @property {boolean} disabled - controls whether to disable all user inputs and make the code block static
-* @property {number} fontSize - used font size in the shell window
-* @property {string} fontFamily - font-family used in the shell window
 * @property {number} lines - number of lines to display
 * @property {boolean} resettable - controls whether to display a reset button for restoring the default code input
 * @property {Object} style - CSS inline styles
@@ -538,8 +536,6 @@ RShell.propTypes = {
 	]),
 	chat: PropTypes.bool,
 	disabled: PropTypes.bool,
-	fontFamily: PropTypes.string,
-	fontSize: PropTypes.number,
 	lines: PropTypes.number,
 	resettable: PropTypes.bool,
 	style: PropTypes.object,
@@ -558,8 +554,6 @@ RShell.defaultProps = {
 	prependCode: '',
 	chat: false,
 	disabled: false,
-	fontFamily: 'Courier New',
-	fontSize: 16,
 	lines: 5,
 	resettable: false,
 	style: {},
