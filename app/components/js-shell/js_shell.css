@@ -17,11 +17,14 @@
 	width: 98%;
 	margin-top: 1%;
 	margin-left: 1%;
-	height: 400px;
 	font-family: monospace;
 	font-size: 20px;
 	line-height: 28px;
 	margin-bottom: 10px;
+}
+
+.js-shell-edit > .CodeMirror {
+	height: 100%;
 }
 
 .js-shell-reset {

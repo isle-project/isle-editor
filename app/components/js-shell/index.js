@@ -5,21 +5,17 @@ import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 import JSONTree from 'react-json-tree';
 import hasOwnProp from '@stdlib/assert/has-own-property';
-import max from '@stdlib/math/base/special/max';
-import PINF from '@stdlib/constants/math/float64-pinf';
 import isArray from '@stdlib/assert/is-array';
 import isRegExp from '@stdlib/assert/is-regexp';
 import isObjectLike from '@stdlib/assert/is-object-like';
+import max from '@stdlib/math/base/special/max';
 import replace from '@stdlib/string/replace';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Tooltip from 'react-bootstrap/Tooltip';
 import ChatButton from 'components/chat-button';
 import HintButton from 'components/hint-button';
-import ace from 'brace';
-import 'brace/mode/javascript';
-import 'brace/theme/katzenmilch';
-import 'brace/theme/solarized_light';
+import CodeMirror from 'codemirror';
 import scrollTo from 'utils/scroll-to';
 import OverlayTrigger from 'components/overlay-trigger';
 import VoiceControl from 'components/voice-control';
@@ -27,6 +23,9 @@ import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import CONSOLE_STYLES from './console_styles.json';
 import { JSSHELL_DISPLAY_SOLUTION, JSSHELL_EVALUATION, JSSHELL_OPEN_HINT } from 'constants/actions.js';
+import 'codemirror/mode/javascript/javascript.js';
+import 'codemirror/theme/elegant.css';
+import 'codemirror/theme/paraiso-light.css';
 import './js_shell.css';
 
 
@@ -120,7 +119,9 @@ function makeLog( e, i ) {
 * @property {boolean} disabled - controls whether to disable all user inputs and make the code block static
 * @property {number} lines - number of lines to display
 * @property {Object} vars - scope object with variables that should be made available to evaluated `code`
-* @property {strings} voiceID - voice control identifier
+* @property {string} voiceID - voice control identifier
+* @property {Object} style - CSS inline styles
+* @property {Function} onChange - callback invoked whenever the text field input changes
 * @property {Function} onEvaluate - callback invoked whenever the `Evaluate` button is clicked
 */
 class JSShell extends Component {
@@ -143,27 +144,19 @@ class JSShell extends Component {
 	}
 
 	componentDidMount() {
-		this.editor = ace.edit( this.editorDiv );
-		this.editor.getSession().setMode( 'ace/mode/javascript' );
-		this.editor.setTheme( 'ace/theme/katzenmilch' );
-		this.editor.setValue( this.props.code, -1 );
-		this.editor.$blockScrolling = PINF;
-		this.editor.setOptions({
-			maxLines: max( 5, this.props.lines ),
-			minLines: this.props.lines,
-			fontFamily: this.props.fontFamily,
-			fontSize: this.props.fontSize
+		this.editor = CodeMirror( this.editorDiv, {
+			mode: 'javascript',
+			theme: 'elegant',
+			lineNumbers: true,
+			lineWrapping: true
 		});
+		this.editor.setValue( this.props.code, -1 );
 
 		// Add event listener:
-		this.editor.on( 'change', this.onChange );
+		this.editor.on( 'change', this.props.onChange );
 
 		if ( this.props.disabled ) {
-			this.editor.setOptions({
-				readOnly: true,
-				highlightActiveLine: false,
-				highlightGutterLine: false
-			});
+			this.editor.setOption( 'readOnly', true );
 			this.editor.renderer.$cursorLayer.element.style.opacity = 0;
 			this.editor.textInput.getElement().disabled = true;
 		}
@@ -181,23 +174,12 @@ class JSShell extends Component {
 			}
 		}
 		else if ( this.props.disabled !== prevProps.disabled ) {
-			let opts;
 			if ( this.props.disabled ) {
-				opts = {
-					readOnly: true,
-					highlightActiveLine: false,
-					highlightGutterLine: false
-				};
+				this.editor.setOption( 'readOnly', true );
 			} else {
-				opts = {
-					readOnly: false,
-					highlightActiveLine: true,
-					highlightGutterLine: true
-				};
+				this.editor.setOption( 'readOnly', false );
 			}
-			this.editor.setOptions( opts );
 		} else {
-			this.editor.resize();
 			const node = ReactDom.findDOMNode( this );
 			// Undo Spectacle scaling as it messes up the rendering of the ACE editor:
 			let slide = node.closest( '.spectacle-content' );
@@ -228,19 +210,11 @@ class JSShell extends Component {
 		const val = this.editor.getValue();
 		const solutionUnescaped = this.props.solution.replace( /\\n/g, '\n' );
 		if ( this.state.solutionOpen === false ) {
-			this.editor.setTheme( 'ace/theme/solarized_light' );
-			this.editor.setOptions({
-				highlightActiveLine: false,
-				highlightGutterLine: false,
-				readOnly: true
-			});
+			this.editor.setOption( 'theme', 'paraiso-light' );
+			this.editor.setOption( 'readOnly', true );
 		} else {
-			this.editor.setTheme( 'ace/theme/katzenmilch' );
-			this.editor.setOptions({
-				highlightActiveLine: true,
-				highlightGutterLine: true,
-				readOnly: false
-			});
+			this.editor.setOption( 'theme', 'elegant' );
+			this.editor.setOption( 'readOnly', false );
 		}
 
 		if ( val !== solutionUnescaped ) {
@@ -414,8 +388,13 @@ class JSShell extends Component {
 			}
 			<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 		</ButtonToolbar>;
-
-		const editor = <div className="js-shell-edit" ref={( div ) => {
+		const style = {
+			lineHeight: '1.2em',
+			maxHeight: `${max( 5, this.props.lines )*1.2}em`,
+			height: `${this.props.lines*1.2}em`,
+			...this.props.style
+		};
+		const editor = <div className="js-shell-edit" style={style} ref={( div ) => {
 			this.editorDiv = div;
 		}} ></div>;
 		return (
@@ -463,10 +442,10 @@ JSShell.defaultProps = {
 	check: null,
 	disabled: false,
 	lines: 5,
-	fontFamily: 'Courier New',
-	fontSize: 16,
+	style: {},
 	vars: null,
 	voiceID: null,
+	onChange() {},
 	onEvaluate() {}
 };
 
@@ -479,8 +458,8 @@ JSShell.propTypes = {
 	check: PropTypes.string,
 	disabled: PropTypes.bool,
 	lines: PropTypes.number,
-	fontFamily: PropTypes.string,
-	fontSize: PropTypes.number,
+	style: PropTypes.object,
+	onChange: PropTypes.func,
 	onEvaluate: PropTypes.func,
 	vars: PropTypes.object,
 	voiceID: PropTypes.string
