@@ -26,6 +26,11 @@
 	box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.5);
 	overflow: hidden;
 	filter: sepia(80%);
+	transition: filter 0.5s;
+}
+
+.polaroid-touched {
+	filter: sepia(0);
 }
 
 

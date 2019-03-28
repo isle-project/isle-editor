@@ -25,6 +25,7 @@ class Polaroid extends Component {
 		this.state = {
 			height: '100%',
 			width: 'auto',
+			touched: false,
 			exit: false
 		};
 	}
@@ -70,14 +71,24 @@ class Polaroid extends Component {
 		}
 	}
 
+	touch = () => {
+		this.setState({
+			touched: true
+		});
+	}
+
+	untouch = () => {
+		this.setState({
+			touched: false
+		});
+	}
 
 	render() {
 		const format = this.state.width + ' ' + this.state.height;
 		const background = {
 			backgroundImage: 'url(' + this.props.image + ')',
 			backgroundSize: format,
-			backgroundPosition: 'center',
-			filter: 'sepia(50%)'
+			backgroundPosition: 'center'
 		};
 
 		let imageClass = 'Polaroid';
@@ -89,10 +100,16 @@ class Polaroid extends Component {
 			imageClass = 'Polaroid PolaroidExit';
 		}
 
+		let innerImage = 'PolaroidImage';
+
+		if (this.state.touched === true) {
+			innerImage = 'PolaroidImage polaroid-touched';
+		}
+
 		return (
-			<div id={this.props.id} onClick={this.trigger} style={this.props.style} className={imageClass}>
+			<div id={this.props.id} onMouseOver={this.touch} onMouseOut={this.untouch} onClick={this.trigger} style={this.props.style} className={imageClass}>
 				{ this.props.stain ? <div className={'PolaroidStain'} /> : null }
-				<div style={background} className="PolaroidImage">
+				<div style={background} className={innerImage}>
 				</div>
 				{ this.props.showPin ? <div className={'PolaroidPin'} /> : null }
 				{ this.props.removable ? <div onClick={this.remove} className={'PinImageMap'} /> : null }
