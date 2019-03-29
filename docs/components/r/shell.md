@@ -23,8 +23,6 @@ An interactive R Shell that can be used to execute R commands in the cloud using
 * __prependCode__ | `(string|array)`: R code `string` (or `array` of R code blocks) to be prepended to the code stored in `code` when evaluating. Default: `''`.
 * __chat__ | `boolean`: controls whether group chat functionality should be enabled. Default: `false`.
 * __disabled__ | `boolean`: controls whether to disable all user inputs and make the code block static. Default: `false`.
-* __fontFamily__ | `string`: font-family used in the shell window. Default: `'Courier New'`.
-* __fontSize__ | `number`: used font size in the shell window. Default: `16`.
 * __lines__ | `number`: number of lines to display. Default: `5`.
 * __resettable__ | `boolean`: controls whether to display a reset button for restoring the default code input. Default: `false`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.

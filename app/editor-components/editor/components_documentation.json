@@ -3088,83 +3088,37 @@
   "Polaroid": {
     "props": [
       {
-        "name": "id",
-        "type": "string",
-        "description": "this will allow a parent component to identify the image",
-        "default": ""
-      },
-      {
-        "name": "style",
-        "type": "object",
-        "description": "css definitions, override the style of the component",
-        "default": {}
-      },
-      {
         "name": "image",
         "type": "string",
-        "description": "image url",
-        "default": null
-      },
-      {
-        "name": "callback",
-        "type": "function",
-        "description": "callback function (receives the id of the Polaroid as parameter)",
+        "description": "image URL",
         "default": null
       },
       {
         "name": "removable",
         "type": "boolean",
-        "description": "indicates whether the image is removable when clicking on the pin, default: false",
+        "description": "indicates whether the image is removable when clicking on the pin",
         "default": false
       },
       {
         "name": "showPin",
         "type": "boolean",
-        "description": "shows a pin, default: false",
+        "description": "shows a pin",
         "default": false
-      }
-    ],
-    "description": "A dynamic background component that changes a background image at a specified interval."
-  },
-  "Postit": {
-    "props": [
-      {
-        "name": "title",
-        "type": "string",
-        "default": "The postit-title"
-      },
-      {
-        "name": "body",
-        "type": "string",
-        "default": "Here comes the body"
       },
       {
         "name": "style",
         "type": "object",
+        "description": "CSS inline styles",
         "default": {}
       },
       {
-        "name": "date",
-        "type": "string",
-        "default": ""
-      },
-      {
-        "name": "stain",
-        "type": "boolean",
-        "default": null
-      },
-      {
-        "name": "callback",
+        "name": "onClick",
         "type": "function",
-        "default": null
-      },
-      {
-        "name": "removable",
-        "type": "boolean",
-        "default": false
+        "description": "event handler invoked when image is clicked (receives the id of the Polaroid as parameter)",
+        "default": "onClick() {}"
       }
     ],
-    "description": "A dynamic background component that changes a background image at a specified interval."
+    "description": "A component displaying an image in the style of a polaroid."
   },
   "Preload": {
     "props": [
@@ -3571,18 +3525,6 @@
         "type": "boolean",
         "description": "controls whether to disable all user inputs and make the code block static",
         "default": false
-      },
-      {
-        "name": "fontFamily",
-        "type": "string",
-        "description": "font-family used in the shell window",
-        "default": "Courier New"
-      },
-      {
-        "name": "fontSize",
-        "type": "number",
-        "description": "used font size in the shell window",
-        "default": 16
       },
       {
         "name": "lines",
@@ -4359,6 +4301,53 @@
   "StatusBar": {
     "props": [],
     "description": "Description is missing."
+  },
+  "StickyNote": {
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "description": "note title",
+        "default": "Enter a title"
+      },
+      {
+        "name": "body",
+        "type": "string",
+        "description": "text of the note",
+        "default": "Body of the note"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "date",
+        "type": "string",
+        "description": "a date displayed for the note",
+        "default": ""
+      },
+      {
+        "name": "stain",
+        "type": "boolean",
+        "description": "controls whether to show a coffee stain",
+        "default": null
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "callback function invoked when the note is clicked",
+        "default": "onClick() {}"
+      },
+      {
+        "name": "removable",
+        "type": "boolean",
+        "description": "controls whether the note is removed when clicked",
+        "default": false
+      }
+    ],
+    "description": "A sticky note rendering some text."
   },
   "SurveyGenerator": {
     "props": [
