@@ -135,6 +135,7 @@ class ResponseVisualizers extends Component {
 		const visualizers = this.props.session.responseVisualizers;
 		const ids = keys( visualizers );
 		const list = new Array( ids.length );
+		const currentTime = new Date() - this.props.session.startTime;
 		let overallProgress = 0;
 		for ( let i = 0; i < ids.length; i++ ) {
 			const viz = visualizers[ ids[ i ] ];
@@ -144,6 +145,16 @@ class ResponseVisualizers extends Component {
 			overallProgress += infoRate;
 			const id = ids[ i ];
 			const time = `time: ${this.state.means[ id ] ? formatTime( this.state.means[ id ]() ) : ''}`;
+			let timeBadgeVariant;
+			if ( currentTime > this.state.means[ i ] ) {
+				if ( infoRate < 10 ) {
+					timeBadgeVariant = 'danger';
+				} else if ( infoRate > 75 ) {
+					timeBadgeVariant = 'success';
+				}
+			} else {
+				timeBadgeVariant = 'light';
+			}
 			list[ i ] = (
 				<ListGroupItem
 					key={i}
@@ -166,7 +177,10 @@ class ResponseVisualizers extends Component {
 						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`n: ${nActions}`}</Badge>
 					</Tooltip>
 					<Tooltip placement="left" tooltip="Average elapsed time until answer">
-						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{time}</Badge>
+						<Badge
+							variant={timeBadgeVariant}
+							style={{ float: 'right', margin: '2px' }}
+						>{time}</Badge>
 					</Tooltip>
 					<Tooltip placement="left" tooltip="Completion rate for currently active students">
 						<ProgressBar
