@@ -2,9 +2,15 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import max from '@stdlib/math/base/special/max';
 import './timed_button.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:timed-button' );
 
 
 // MAIN //
@@ -18,7 +24,6 @@ import './timed_button.css';
 * @property {boolean} disabled - if disabled the button will be inactive, but the countdown starts
 * @property {string} size - font size, passed to the native React button
 * @property {string} type - button type, passed to the native React button
-* @property {string} title - the button title
 * @property {string} variant - passed to the button
 */
 class TimedButton extends Component {
@@ -45,7 +50,7 @@ class TimedButton extends Component {
 
 	refDimensions = (element) => {
 		if ( element ) {
-			console.log('Anzeige der Dimension');
+			debug( 'Show dimensions...' );
 			let x = element.getBoundingClientRect();
 			let width = x.width;
 			this.setState({
@@ -74,11 +79,14 @@ class TimedButton extends Component {
 	}
 
 	trigger = () => {
-		this.props.onClick( this.props.id );
-		this.setState({
-			waiting: true
+		this.props.onClick(( bool ) => {
+			if ( bool !== false ) {
+				this.setState({
+					waiting: true
+				});
+				this.start();
+			}
 		});
-		this.start();
 	}
 
 	render() {
@@ -109,7 +117,7 @@ class TimedButton extends Component {
 						onClick={this.trigger}
 						variant={this.props.variant}
 					>
-						{this.props.title}
+						{this.props.children}
 					</Button>
 				</div>
 			</div>
@@ -127,7 +135,6 @@ TimedButton.propTypes = {
 	href: PropTypes.string,
 	onClick: PropTypes.func,
 	size: PropTypes.string,
-	title: PropTypes.string,
 	type: PropTypes.string,
 	variant: PropTypes.string
 };
@@ -139,7 +146,6 @@ TimedButton.defaultProps = {
 	href: null,
 	onClick() {},
 	size: 'sm',
-	title: 'Button',
 	type: 'submit',
 	variant: 'info'
 };
