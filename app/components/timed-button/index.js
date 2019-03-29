@@ -12,8 +12,12 @@ import './timed-button.css';
 * A component displaying an image in the style of a polaroid.
 *
 * @property {number} duration - the time (in seconds) it takes until the button gets reactivated, default 3000 ms
+* @property {function} block - display bottom in full width - dysfuntional still!
 * @property {function} onClick - the click function
 * @property {boolean} disabled - if disabled the button will be inactive, but the countdown starts
+* @property {string} id - the timed button id
+* @property {string} size - font size, passed to the native React button
+* @property {string} type - button type, passed to the native React button
 * @property {string} title - the button title
 * @property {string} varfiant - passed to the button
 */
@@ -76,7 +80,7 @@ class TimedButton extends Component {
 	}
 
 	trigger = () => {
-		this.props.onClick();
+		this.props.onClick( this.props.id );
 		this.setState({
 			waiting: true
 		});
@@ -94,16 +98,22 @@ class TimedButton extends Component {
 
 		const percentage = (1 - (this.state.timeLeft / this.props.duration)) * this.state.width;
 		const barStyle = {
-			width: percentage
+			marginLeft: percentage
 		};
 
 		return (
 			<div>
-				<div style={style} className="timed-button-remaining">
-					<div style={barStyle} className="timed-button-bar"></div>
+				<div id={this.props.id} style={style} className="timed-button-remaining">
+					<div className="timed-button-bar">
+						<div style={barStyle} className="timed-button-bar-overlay" />
+					</div>
 				</div>
 				<div id={this.id} className="timed-button-container">
-					<Button ref={this.refDimensions} disabled={disabled} onClick={this.trigger} variant={this.props.variant} className="input-button-full">
+					<Button href={this.props.href}
+						size={this.props.size}
+						block={this.props.block}
+						type={this.props.type}
+						ref={this.refDimensions} disabled={disabled} onClick={this.trigger} variant={this.props.variant} className="input-button-full">
 						{this.props.title}
 					</Button>
 				</div>
@@ -116,18 +126,28 @@ class TimedButton extends Component {
 // PROPERTIES //
 
 TimedButton.propTypes = {
+	block: PropTypes.bool,
 	duration: PropTypes.number,
 	disabled: PropTypes.bool,
+	href: PropTypes.string,
+	id: PropTypes.string,
 	onClick: PropTypes.func,
+	size: PropTypes.string,
 	title: PropTypes.string,
+	type: PropTypes.string,
 	variant: PropTypes.string
 };
 
 TimedButton.defaultProps = {
+	block: false,
 	disabled: false,
 	duration: 3,
+	href: null,
+	id: null,
 	onClick() {},
+	size: 'sm',
 	title: 'Button',
+	type: 'submit',
 	variant: 'info'
 };
 
