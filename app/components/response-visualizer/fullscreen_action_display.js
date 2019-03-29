@@ -3,18 +3,21 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import uniq from 'uniq';
 import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
 import isArray from '@stdlib/assert/is-array';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import lowercase from '@stdlib/string/lowercase';
+import removeLast from '@stdlib/string/remove-last';
 import ndarray from '@stdlib/ndarray/array';
 import objectKeys from '@stdlib/utils/keys';
 import tabulate from '@stdlib/utils/tabulate';
 import indexOf from '@stdlib/utils/index-of';
 import floor from '@stdlib/math/base/special/floor';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
+import NINF from '@stdlib/constants/math/float64-ninf';
 import Table from 'react-bootstrap/Table';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
@@ -27,6 +30,7 @@ import Modal from 'react-bootstrap/Modal';
 import ReactList from 'react-list';
 import Highlighter from 'react-highlight-words';
 import Plotly from 'components/plotly';
+import Switch from 'components/switch';
 import WordCloud from 'components/word-cloud';
 import SessionContext from 'session/context.js';
 import { CAT20 as COLORS } from 'constants/colors';
@@ -54,6 +58,52 @@ const wordWrap = ( str ) => {
 	return str.replace( RE_LINE_BREAKS, '$1\n' );
 };
 
+const emailComparison = ( a, b ) => {
+	if ( a.email === b.email ) {
+		return 0;
+	}
+	return 1;
+};
+
+const tabulateValues = ( actions, levels ) => {
+	if ( !actions ) {
+		return [];
+	}
+	const table = {};
+	for ( let i = 0; i < actions.length; i++ ) {
+		const v = actions[ i ];
+		if ( isArray( v.value ) ) {
+			for ( let j = 0; j < v.value.length; j++ ) {
+				const bool = v.value[ j ];
+				if ( bool ) {
+					const key = levels[ j ];
+					if ( !table[ key ] ) {
+						table[ key ] = 1;
+					} else {
+						table[ key ] += 1;
+					}
+				}
+			}
+		} else {
+			const key = levels[ v.value ];
+			if ( !table[ key ] ) {
+				table[ key ] = 1;
+			} else {
+				table[ key ] += 1;
+			}
+		}
+	}
+	let maxVal = NINF;
+	const counts = new Array( levels.length );
+	for ( let i = 0; i < levels.length; i++ ) {
+		if ( table[ levels[ i ] ] > maxVal ) {
+			maxVal = table[ levels[ i ] ];
+		}
+		counts[ i ] = table[ levels[ i ] ];
+	}
+	return counts;
+};
+
 
 // MAIN //
 
@@ -68,14 +118,15 @@ class FullscreenActionDisplay extends Component {
 			actions: props.actions.slice( 0 ),
 			showModal: false,
 			modalContent: {},
-			clusters: []
+			clusters: [],
+			showOnlyLatest: true
 		};
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
 		let newState = {};
 		const diff = absdiff( nextProps.actions.length, prevState.actions.length );
-		if ( diff >= UPDATE_THRESHOLD ) {
+		if ( diff >= UPDATE_THRESHOLD || nextProps.actions.length === prevState.actions.length - 1 ) {
 			newState.filtered = nextProps.actions.slice();
 		}
 		if ( !isEmptyObject( newState ) ) {
@@ -163,8 +214,21 @@ class FullscreenActionDisplay extends Component {
 		});
 	}
 
+	getActions = () => {
+		let actions;
+		if ( this.state.showOnlyLatest ) {
+			actions = this.props.actions.slice();
+			uniq( actions, emailComparison );
+		}
+		else {
+			actions = this.props.actions;
+		}
+		return actions;
+	}
+
 	renderWordCloud() {
-		const texts = this.props.actions.map( x => x.value );
+		const actions = this.getActions();
+		const texts = actions.map( x => x.value );
 		return (
 			<Fragment>
 				<WordCloud
@@ -199,13 +263,16 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	renderBarchart() {
+		const actions = this.getActions();
+		const levels = this.props.data.levels;
+		const counts = tabulateValues( actions, levels );
 		return (
 			<div style={{ height: 0.75 * window.innerHeight }}>
 				<Plotly
 					data={[
 						{
-							y: this.props.data.levels,
-							x: this.props.counts,
+							y: levels,
+							x: counts,
 							type: 'bar',
 							orientation: 'h'
 						}
@@ -218,7 +285,7 @@ class FullscreenActionDisplay extends Component {
 						yaxis: {
 							title: 'Value',
 							categoryorder: 'array',
-							categoryarray: this.props.data.levels
+							categoryarray: levels
 						},
 						margin: {
 							l: 250
@@ -232,7 +299,7 @@ class FullscreenActionDisplay extends Component {
 	renderSankeyDiagram() {
 		const { left, right } = this.props.data;
 		const labels = left.concat( right );
-		const actions = this.props.actions;
+		const actions = this.getActions();
 		const paths = {};
 		for ( let i = 0; i < actions.length; i++ ) {
 			const arr = actions[ i ].value;
@@ -289,7 +356,8 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	renderHistogram() {
-		const values = this.props.actions.map( x => x.value );
+		const actions = this.getActions();
+		const values = actions.map( x => x.value );
 		let freqs = tabulate( values );
 		freqs = freqs.sort( ( a, b ) => {
 			return b[ 2 ] - a[ 2 ];
@@ -346,8 +414,9 @@ class FullscreenActionDisplay extends Component {
 			'shape': [ nRows, nCols ],
 			'dtype': 'int32'
 		});
-		for ( let i = 0; i < this.props.actions.length; i++ ) {
-			const elem = this.props.actions[ i ].value;
+		const actions = this.getActions();
+		for ( let i = 0; i < actions.length; i++ ) {
+			const elem = actions[ i ].value;
 			for ( let j = 0; j < nRows; j++ ) {
 				for ( let k = 0; k < nCols; k++ ) {
 					if ( elem[ j ][ k ] === true ) {
@@ -475,8 +544,9 @@ class FullscreenActionDisplay extends Component {
 		const values = [];
 		const mids = [];
 		const inds = [];
-		for ( let i = 0; i < this.props.actions.length; i++ ) {
-			values.push( JSON.parse( this.props.actions[ i ].value ) );
+		const actions = this.getActions();
+		for ( let i = 0; i < actions.length; i++ ) {
+			values.push( JSON.parse( actions[ i ].value ) );
 
 			// Value is an array of length 2:
 			mids.push( 0.5 * ( values[ i ][ 0 ] + values[ i ][ 1 ] ) );
@@ -543,7 +613,15 @@ class FullscreenActionDisplay extends Component {
 					break;
 			}
 		}
-		return plot;
+		return ( <div>
+			{plot}
+			<Switch onChange={() => {
+				this.setState({ showOnlyLatest: !this.state.showOnlyLatest });
+			}}>
+				<i><b>Only</b> include latest {removeLast( lowercase( this.props.actionLabel ) )} for any student.</i>
+				<i>Include <b>all</b> {removeLast( lowercase( this.props.actionLabel ) )} for any student.</i>
+			</Switch>
+		</div> );
 	}
 
 	render() {
@@ -612,7 +690,6 @@ FullscreenActionDisplay.propTypes = {
 	actionLabel: PropTypes.string,
 	data: PropTypes.object.isRequired,
 	componentID: PropTypes.string.isRequired,
-	counts: PropTypes.array.isRequired,
 	deleteFactory: PropTypes.func.isRequired,
 	onPeriodChange: PropTypes.func.isRequired,
 	showExtended: PropTypes.bool.isRequired,

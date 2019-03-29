@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Popover from 'react-bootstrap/Popover';
@@ -9,10 +10,8 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Modal from 'react-bootstrap/Modal';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
-import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import uncapitalize from '@stdlib/string/uncapitalize';
-import NINF from '@stdlib/constants/math/float64-ninf';
 import Gate from 'components/gate';
 import OverlayTrigger from 'components/overlay-trigger';
 import Tooltip from 'components/tooltip';
@@ -20,6 +19,11 @@ import SessionContext from 'session/context.js';
 import { RESPONSE_VISUALIZER_TOGGLE, RESPONSE_VISUALIZER_EXTENDED } from 'constants/actions.js';
 import FullscreenActionDisplay from './fullscreen_action_display.js';
 import extractValue from './extract_value.js';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:response-visualizer' );
 
 
 // FUNCTIONS //
@@ -76,7 +80,6 @@ class ResponseVisualizer extends Component {
 			nSuccess: 0,
 			nDanger: 0,
 			nInfo: 0,
-			counts: [],
 			showActions: false,
 			showExtended: false,
 			showDeleteModal: false,
@@ -211,21 +214,11 @@ class ResponseVisualizer extends Component {
 				newState.nInfo = this.state.nInfo + 1;
 			}
 		}
-		if ( this.props.data.type === 'text' ) {
-			this.setState( newState );
-		}
-		else if ( this.props.data.type === 'factor' && filtered ) {
-			const counts = this.tabulateValues( filtered );
-			newState.counts = counts;
-			this.setState( newState );
-		}
-		else {
-			// Case: props.data.type === 'number':
-			this.setState( newState );
-		}
+		this.setState( newState );
 	}
 
 	addSessionActions = () => {
+		debug( 'Add session actions...' );
 		const session = this.context;
 		const actions = session.socketActions;
 		const filtered = [];
@@ -257,27 +250,13 @@ class ResponseVisualizer extends Component {
 		let newState = {
 			nSuccess: 0,
 			nDanger: 0,
-			nInfo: 0
+			nInfo: 0,
+			actions: filtered
 		};
-		if ( this.props.data.type === 'text' ) {
-			newState.actions = filtered;
-		}
-		else if ( this.props.data.type === 'factor' && filtered ) {
-			const counts = this.tabulateValues( filtered );
-			newState = {
-				...newState,
-				actions: filtered,
-				counts: counts
-			};
-		} else {
-			// Case: props.data.type === 'number':
-			newState.actions = filtered;
-		}
 		if ( !this.state.period ) {
 			// Attach total number of actions on initial call:
 			newState.nActions = filtered.length;
 		}
-
 		const users = session.userList;
 		for ( let i = 0; i < users.length; i++ ) {
 			if ( hasOwnProperty( this.emailHash, users[ i ].email ) ) {
@@ -292,46 +271,6 @@ class ResponseVisualizer extends Component {
 			}
 		}
 		this.setState( newState );
-	}
-
-	tabulateValues = ( actions ) => {
-		if ( !actions ) {
-			return [];
-		}
-		const levels = this.props.data.levels;
-		const table = {};
-		for ( let i = 0; i < actions.length; i++ ) {
-			const v = actions[ i ];
-			if ( isArray( v.value ) ) {
-				for ( let j = 0; j < v.value.length; j++ ) {
-					const bool = v.value[ j ];
-					if ( bool ) {
-						const key = levels[ j ];
-						if ( !table[ key ] ) {
-							table[ key ] = 1;
-						} else {
-							table[ key ] += 1;
-						}
-					}
-				}
-			} else {
-				const key = levels[ v.value ];
-				if ( !table[ key ] ) {
-					table[ key ] = 1;
-				} else {
-					table[ key ] += 1;
-				}
-			}
-		}
-		let maxVal = NINF;
-		const counts = new Array( levels.length );
-		for ( let i = 0; i < levels.length; i++ ) {
-			if ( table[ levels[ i ] ] > maxVal ) {
-				maxVal = table[ levels[ i ] ];
-			}
-			counts[ i ] = table[ levels[ i ] ];
-		}
-		return counts;
 	}
 
 	closeDeleteModal = () => {
@@ -452,7 +391,6 @@ class ResponseVisualizer extends Component {
 			toggleExtended={this.toggleExtended}
 			toggleActions={this.toggleActions}
 			data={this.props.data}
-			counts={this.state.counts}
 			selectedCohort={this.state.selectedCohort}
 			onCohortChange={this.onCohortChange}
 			{...optionalProps}
