@@ -146,7 +146,11 @@ class ResponseVisualizers extends Component {
 			const id = ids[ i ];
 			const time = `time: ${this.state.means[ id ] ? formatTime( this.state.means[ id ]() ) : ''}`;
 			let timeBadgeVariant;
-			if ( currentTime > this.state.means[ i ] ) {
+			if (
+				nInfo > 0 &&
+				this.state.means[ id ] &&
+				currentTime > this.state.means[ id ]()
+			) {
 				if ( infoRate < 10 ) {
 					timeBadgeVariant = 'danger';
 				} else if ( infoRate > 75 ) {
