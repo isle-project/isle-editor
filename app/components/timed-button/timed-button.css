@@ -7,7 +7,7 @@
 .timed-button-bar {
 	width: auto;
 	height: 2px;
-	background: linear-gradient(45deg, red, lightgreen);
+	background: linear-gradient(45deg, tomato, gold, lightgreen);
 }
 
 .timed-button-container {

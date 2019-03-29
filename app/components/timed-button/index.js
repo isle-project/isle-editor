@@ -11,9 +11,11 @@ import './timed-button.css';
 /**
 * A component displaying an image in the style of a polaroid.
 *
-* @property {number} duration - the time it takes until the button gets reactivated, default 3000 ms
+* @property {number} duration - the time (in seconds) it takes until the button gets reactivated, default 3000 ms
 * @property {function} onClick - the click function
-* @property {function} title - the button title
+* @property {boolean} disabled - if disabled the button will be inactive, but the countdown starts
+* @property {string} title - the button title
+* @property {string} varfiant - passed to the button
 */
 class TimedButton extends Component {
 	constructor( props ) {
@@ -123,7 +125,7 @@ TimedButton.propTypes = {
 
 TimedButton.defaultProps = {
 	disabled: false,
-	duration: 3000,
+	duration: 3,
 	onClick() {},
 	title: 'Button',
 	variant: 'info'
