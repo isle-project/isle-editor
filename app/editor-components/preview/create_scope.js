@@ -98,7 +98,7 @@ const SCOPE = {
 	Playground: Loadable( () => import( 'components/playground' ) ),
 	Plotly: Loadable( () => import( 'components/plotly' ) ),
 	Polaroid: Loadable( () => import( 'components/polaroid' ) ),
-	Postit: Loadable( () => import( 'components/postit' ) ),
+	StickyNote: Loadable( () => import( 'components/sticky-note' ) ),
 	Preload: Loadable( () => import( 'components/preload' ) ),
 	ProportionsInput,
 	ProportionsSurvey: Loadable( () => import( 'components/proportions-survey' ) ),
