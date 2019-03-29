@@ -296,6 +296,10 @@
 		"value":"<Timer\n\tid=\"${1:id}\"\n\tduration={${2:100}}\n\tactive={${3:true}}\n\tonTimeUp={${4:() => {} }}\n/>\n"
 	},
 	{
+		"name":"TimedButton",
+		"value":"<TimedButton ${1:}>${2:Label}</TimedButton>"
+	},
+	{
 		"name":"Typewriter",
 		"value":"<Typewriter text=\"${1:}\" />\n"
 	},
