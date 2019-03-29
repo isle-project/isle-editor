@@ -108,7 +108,6 @@ class TimedButton extends Component {
 						disabled={disabled}
 						onClick={this.trigger}
 						variant={this.props.variant}
-						className="input-button-full"
 					>
 						{this.props.title}
 					</Button>
@@ -126,7 +125,6 @@ TimedButton.propTypes = {
 	duration: PropTypes.number,
 	disabled: PropTypes.bool,
 	href: PropTypes.string,
-	id: PropTypes.string,
 	onClick: PropTypes.func,
 	size: PropTypes.string,
 	title: PropTypes.string,
@@ -139,7 +137,6 @@ TimedButton.defaultProps = {
 	disabled: false,
 	duration: 3,
 	href: null,
-	id: null,
 	onClick() {},
 	size: 'sm',
 	title: 'Button',
