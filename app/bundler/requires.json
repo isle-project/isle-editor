@@ -106,6 +106,7 @@
 	"StickyNote": "components/sticky-note",
 	"SurveyGenerator": "components/survey-generator",
 	"Typewriter": "components/typewriter",
+	"TimedButton": "components/timed-button",
 	"Unveil": "components/unveil",
 	"VoiceInput": "components/input/voice",
 	"VoiceControl": "components/voice-control",

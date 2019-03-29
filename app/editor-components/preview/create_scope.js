@@ -132,6 +132,7 @@ const SCOPE = {
 	TextArea: Loadable( () => import( 'components/input/text-area' ) ),
 	TextInput,
 	Text: Loadable( () => import( 'components/text' ) ),
+	TimedButton: Loadable( () => import( 'components/timed-button' ) ),
 	Timer: Loadable( () => import( 'components/timer' ) ),
 	Tooltip: Loadable( () => import( 'components/tooltip' ) ),
 	Tree: Loadable( () => import( 'components/d3/tree' ) ),

@@ -1,0 +1,16 @@
+.timed-button-remaining {
+	width: 100px;
+	height: 2px;
+	margin-bottom: 2px;
+}
+
+.timed-button-bar {
+	width: auto;
+	height: 2px;
+	background: linear-gradient(45deg, red, lightgreen);
+}
+
+.timed-button-container {
+	width: auto;
+	height: auto;
+}
