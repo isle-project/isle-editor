@@ -1,4 +1,4 @@
-.Polaroid {
+.polaroid {
 	position: absolute;
 	left: 710px;
 	top: 10px;
@@ -11,12 +11,12 @@
 	overflow: hidden;
 }
 
-.PolaroidExit {
+.polaroid-exit {
 	opacity: 0.5;
 	animation: swirl-out-bck 0.8s ease-in forwards;
 }
 
-.PolaroidImage {
+.polaroid-image {
 	position: inherit;
 	left: 5.7%;
 	top: 4.5%;
@@ -32,18 +32,18 @@
 	filter: sepia(0);
 }
 
-.Polaroid img {
+.polaroid img {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.clickablePolaroid {
+.clickable-polaroid {
 	filter: sepia(0);
 	cursor: pointer;
 }
 
-.PolaroidPin {
+.polaroid-pin {
 	position: inherit;
 	left: 46%;
 	top: 4px;
@@ -53,7 +53,7 @@
 	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_postit_pin.png);
 }
 
-.PinImageMap {
+.pin-image-map {
 	position: inherit;
 	left: 46%;
 	top: 4px;
@@ -63,7 +63,7 @@
 	z-index: 2;
 }
 
-.PolaroidStain {
+.polaroid-stain {
 	position: inherit;
 	left: 45%;
 	top: 16%;

@@ -8,15 +8,14 @@ import './polaroid.css';
 // MAIN //
 
 /**
-* A dynamic background component that changes a background image at a specified interval.
+* A component displaying an image in the style of a polaroid.
 *
 * @property {Array} image - the image which is displayed in the polaroid frame
-* @property {boolean} removable - indicates whether the image is removable when clicking on the pin, default: false
-* @property {boolean} id - this will allow a parent component to identify the image
-* @property {boolean} image - image url
-* @property {Function} callback - callback function (receives the id of the Polaroid as parameter)
-* @property {boolean} showPin - shows a pin, default: false
-* @property {Object} style - css definitions, override the style of the component
+* @property {boolean} removable - indicates whether the image is removable when clicking on the pin
+* @property {string} image - image URL
+* @property {Function} onClick - event handler invoked when image is clicked (receives the id of the Polaroid as parameter)
+* @property {boolean} showPin - shows a pin
+* @property {Object} style - CSS inline styles
 */
 class Polaroid extends Component {
 	constructor( props ) {
@@ -37,14 +36,14 @@ class Polaroid extends Component {
 			image.src = this.props.image;
 			image.onload = function loadImage() {
 				if ( this.height > this.width ) {
-					self.setFormat('high');
+					self.setFormat( 'high' );
 				}
-				else self.setFormat('wide');
+				else self.setFormat( 'wide' );
 			};
 		}
 	}
 
-	setFormat(type) {
+	setFormat( type ) {
 		let width = '100%';
 		let height = 'auto';
 		if ( type === 'wide' ) {
@@ -57,18 +56,15 @@ class Polaroid extends Component {
 		});
 	}
 
-	remove = (evt) => {
+	remove = ( evt ) => {
 		evt.stopPropagation();
 		this.setState({
 			exit: true
 		});
 	}
 
-
-	trigger = (event) => {
-		if (this.props.callback) {
-			this.props.callback(this.props.id);
-		}
+	trigger = () => {
+		this.props.onClick( this.props.id );
 	}
 
 	touch = () => {
@@ -90,29 +86,23 @@ class Polaroid extends Component {
 			backgroundSize: format,
 			backgroundPosition: 'center'
 		};
-
-		let imageClass = 'Polaroid';
+		let imageClass = 'polaroid';
 		if ( this.props.id !== '') {
-			imageClass = 'Polaroid clickablePolaroid';
+			imageClass = 'polaroid clickable-polaroid';
 		}
-
-		if (this.state.exit === true) {
-			imageClass = 'Polaroid PolaroidExit';
+		if ( this.state.exit === true ) {
+			imageClass = 'polaroid polaroid-exit';
 		}
-
-		let innerImage = 'PolaroidImage';
-
-		if (this.state.touched === true) {
-			innerImage = 'PolaroidImage polaroid-touched';
+		let innerImage = 'polaroid-image';
+		if ( this.state.touched === true ) {
+			innerImage = 'polaroid-image polaroid-touched';
 		}
-
 		return (
-			<div id={this.props.id} onMouseOver={this.touch} onMouseOut={this.untouch} onClick={this.trigger} style={this.props.style} className={imageClass}>
-				{ this.props.stain ? <div className={'PolaroidStain'} /> : null }
-				<div style={background} className={innerImage}>
-				</div>
-				{ this.props.showPin ? <div className={'PolaroidPin'} /> : null }
-				{ this.props.removable ? <div onClick={this.remove} className={'PinImageMap'} /> : null }
+			<div id={this.props.id} onMouseOver={this.touch} onMouseOut={this.untouch} onClick={this.trigger} style={this.props.style} className={imageClass} >
+				{this.props.stain ? <div className="polaroid-stain" /> : null}
+				<div style={background} className={innerImage} />
+				{this.props.showPin ? <div className="polaroid-pin" /> : null}
+				{this.props.removable ? <div onClick={this.remove} className="pin-image-map" /> : null }
 			</div>
 		);
 	}
@@ -122,22 +112,19 @@ class Polaroid extends Component {
 // PROPERTIES //
 
 Polaroid.propTypes = {
-	id: PropTypes.string,
-	style: PropTypes.object,
 	image: PropTypes.string,
-	callback: PropTypes.func,
 	removable: PropTypes.bool,
-	showPin: PropTypes.bool
-
+	showPin: PropTypes.bool,
+	style: PropTypes.object,
+	onClick: PropTypes.func
 };
 
 Polaroid.defaultProps = {
-	id: '',
 	image: null,
-	callback: null,
 	removable: false,
 	showPin: false,
-	style: {}
+	style: {},
+	onClick() {}
 };
 
 
