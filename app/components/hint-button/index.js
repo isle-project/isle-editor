@@ -3,9 +3,15 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
+import logger from 'debug';
+import TimedButton from 'components/timed-button';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'components/overlay-trigger';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:hint-button' );
 
 
 // FUNCTIONS //
@@ -78,7 +84,8 @@ class HintButton extends Component {
 		};
 	}
 
-	handleHintClick = () => {
+	handleHintClick = ( callback ) => {
+		debug( 'Clicked on a hint button...' );
 		const { currentHint, hintOpen } = this.state;
 		const { hints } = this.props;
 		if ( currentHint < hints.length && hintOpen === false ) {
@@ -90,11 +97,13 @@ class HintButton extends Component {
 				if ( this.state.currentHint === hints.length ) {
 					this.props.onFinished();
 				}
+				callback( false );
 			});
 		} else {
 			this.setState({
 				hintOpen: !this.state.hintOpen
 			});
+			return callback( true );
 		}
 	};
 
@@ -106,12 +115,12 @@ class HintButton extends Component {
 				placement={this.props.placement}
 				overlay={displayHint( this.state.currentHint - 1, this.props.hints )}
 			>
-				<Button
+				<TimedButton
 					variant="success"
 					size="sm"
 					onClick={this.handleHintClick}
 					disabled={this.props.disabled}
-				>{label}</Button>
+				>{label}</TimedButton>
 			</OverlayTrigger>
 		);
 	}
