@@ -25,12 +25,12 @@ const debug = logger( 'isle:timed-button' );
 * @property {string} size - font size, passed to the native React button
 * @property {string} type - button type, passed to the native React button
 * @property {string} variant - passed to the button
+* @property {object} style - CSS inline styles
 */
 class TimedButton extends Component {
 	constructor( props ) {
 		super( props );
 
-		this.id = 'ButtonIdentifier' + parseInt( Math.random() *1000, 10);
 		this.state = {
 			timeLeft: props.duration,
 			waiting: !props.disabled,
@@ -100,13 +100,13 @@ class TimedButton extends Component {
 			marginLeft: percentage
 		};
 		return (
-			<div>
-				<div id={this.props.id} style={style} className="timed-button-remaining">
+			<div id={this.props.id} >
+				<div style={style} className="timed-button-remaining">
 					<div className="timed-button-bar">
 						<div style={barStyle} className="timed-button-bar-overlay" />
 					</div>
 				</div>
-				<div id={this.id} className="timed-button-container">
+				<div lassName="timed-button-container">
 					<Button
 						href={this.props.href}
 						size={this.props.size}
@@ -116,6 +116,7 @@ class TimedButton extends Component {
 						disabled={disabled}
 						onClick={this.trigger}
 						variant={this.props.variant}
+						style={this.props.style}
 					>
 						{this.props.children}
 					</Button>
@@ -136,7 +137,8 @@ TimedButton.propTypes = {
 	onClick: PropTypes.func,
 	size: PropTypes.string,
 	type: PropTypes.string,
-	variant: PropTypes.string
+	variant: PropTypes.string,
+	style: PropTypes.object
 };
 
 TimedButton.defaultProps = {
@@ -147,7 +149,8 @@ TimedButton.defaultProps = {
 	onClick() {},
 	size: 'sm',
 	type: 'submit',
-	variant: 'info'
+	variant: 'info',
+	style: {}
 };
 
 
