@@ -264,6 +264,10 @@
 		"value":"<SliderInput\n\tlegend=\"${1:}\"\n\tdefaultValue={${2:10}}\n\tmin={${3:0}}\n\tmax={${4:100}}\n\tstep={${5:1}}\n/>\n"
 	},
 	{
+		"name":"StickyNote",
+		"value":"<StickyNote title=\"${1:Enter title}\" body=\"${2:Enter body}\" />\n"
+	},
+	{
 		"name":"SurveyGenerator",
 		"value":"<SurveyGenerator />\n"
 	},
