@@ -1,0 +1,60 @@
+.handwritten-note {
+	font-family: Bradley Hand ITC;
+	color: darkblue;
+}
+
+
+.handwritten-form-egg {
+	display: block;
+	width: 256px;
+	height: 300px;
+	border:solid 1px darkblue;
+	overflow: hidden;
+	padding: 32px;
+	padding-right: 20px;
+	padding-top: 70px;
+	border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+.handwritten-form-tv {
+	position: relative;
+	width: 250px;
+	height: auto;
+	margin: 20px 0;
+	border:solid 1px darkblue;
+	border-radius: 50% / 10%;
+	text-align: center;
+	text-indent: 0.1em;
+	z-index: -1;
+	padding: 10px;
+}
+
+.handwritten-form-tv::before {
+	content: '';
+	position: absolute;
+	top: 10%;
+	bottom: 10%;
+	right: -5%;
+	left: -5%;
+	background: inherit;
+	border-radius: 5% / 50%;
+	z-index: -1;
+}
+
+
+.handwritten-form-oval {
+	width: 320px;
+	height: 160px;
+	padding: 28px;
+	padding-top: 36px;
+	padding-right: 20px;
+	border:solid 1px darkblue;
+	border-radius: 50%;
+}
+
+.handwritten-crayon {
+	color: transparent;
+	background: url(https://isle.heinz.cmu.edu/Summertime_pencil.jpg);
+	background-size: auto 160px;
+	-webkit-background-clip: text;
+}

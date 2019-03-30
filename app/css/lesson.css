@@ -2203,11 +2203,31 @@ label {
 }
 
 
-/********************** LIST OF BRUSHES **************************/
-.tv_screen01 {
-	color: transparent;
-	background-image: url(https://isle.heinz.cmu.edu/Summertime_TVScreen01.jpg);
-	background-size: 800px auto;
-	-webkit-background-clip: text;
-	animation: anim-scale-up 3s alternate infinite;
+/********************** LIST OF FORMS **************************/
+
+.form-effect-bird {
+	font-family: Helvetica, sans-serif;
+	color: white;
+	font-size: 31.5em;
+	margin: 0;
+	-webkit-mask-image: url('https://isle.heinz.cmu.edu/Summertime_bird3.png');
+	-webkit-mask-repeat: repeat;
+	-webkit-mask-size: inherit;
+	-webkit-filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 1.5));
+}
+
+.multiply {
+	color: white;
+	mix-blend-mode: multiply;
+	background-color: rgb(59, 2, 6);
+}
+
+
+/**************************** SHAPES ****************************/
+
+.shape-wrap-around-image {
+	float: left;
+	shape-outside: url(https://isle.heinz.cmu.edu/Summertime_bird3.png);
+	shape-image-threshold: 0;
+	shape-margin: 30px;
 }
