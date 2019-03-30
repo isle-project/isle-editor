@@ -2012,3 +2012,202 @@ label {
 		opacity: 0;
 	}
 }
+
+/********************** LIST OF ANIMATED FONT EFFECTS **************************/
+@keyframes moving-background {
+	0% {
+		background-position: 0px 0px;
+	}
+
+	100% {
+		background-position: 1080px 0px;
+	}
+}
+
+@keyframes moving-background-right {
+	0% {
+		background-position: 0px 0px;
+	}
+
+	100% {
+		background-position: 1920px 0px;
+	}
+}
+
+@keyframes moving-background-down {
+	0% {
+		background-position: 0px 0px;
+	}
+
+	100% {
+		background-position: 0 1080px;
+	}
+}
+
+@keyframes grunge-background-right {
+	0% {
+		background-position-y: 0px;
+	}
+
+	100% {
+		background-position-x: 500px;
+	}
+}
+
+
+@keyframes moving-background-down-loop {
+	0% {
+		background-position-y: 0px;
+	}
+
+	25% {
+		background-position-y: 100%;
+	}
+
+	27% {
+		background-position-y: 99%;
+	}
+
+	28% {
+		background-position-y: 99.5%;
+	}
+
+	99% {
+		background-position-y: 10px;
+	}
+
+	100% {
+		background-position-y: 0px;
+	}
+}
+
+@keyframes blurring-background {
+	0% {
+		-webkit-filter: blur(0px);
+		background-position-y: 0px;
+	}
+
+	50% {
+		-webkit-filter: blur(5px);
+		background-position-y: 350px;
+	}
+
+	99% {
+		-webkit-filter: blur(1px);
+		background-position-y: 700px;
+	}
+
+	100% {
+		-webkit-filter: blur(7px);
+		background-position-y: 0px;
+	}
+}
+
+
+@keyframes moving-colors {
+	0% {
+		-webkit-filter: hue-rotate(0deg);
+	}
+
+	100% {
+		-webkit-filter: hue-rotate(360deg);
+	}
+}
+
+@keyframes rotate-background {
+	0% {
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(1.2);
+	}
+}
+
+
+.tv-screen-effect {
+	color: transparent;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_TVScreen01.jpg);
+	background-size: 800px auto;
+	-webkit-background-clip: text;
+	animation: moving-background 15s alternate infinite;
+}
+
+
+.tv-screen-effect2 {
+	color: transparent;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_tv2.jpg);
+	background-size: 800px auto;
+	-webkit-background-clip: text;
+	animation: moving-background 7.3s linear infinite;
+	text-shadow: 0 0 2px rgba(100, 0, 0, 0.2);
+}
+
+
+.tv-screen-effect3 {
+	color: transparent;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_tv3.jpg);
+	background-size: 100% 100%;
+	-webkit-background-clip: text;
+	animation: moving-background-right 7.3s linear infinite;
+}
+
+.tv-screen-effect4 {
+	color: transparent;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_tv3.jpg);
+	background-size: 1920px 1080px;
+	-webkit-background-clip: text;
+	animation: moving-background-down 25.3s linear infinite alternate;
+}
+
+.tv-screen-effect5 {
+	color: transparent;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_tv3.jpg);
+	background-size: 1920px 1080px;
+	-webkit-background-clip: text;
+	animation: moving-background-down-loop 5.3s linear infinite;
+}
+
+
+.tv-screen-effect6 {
+	color: transparent;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_tv3.jpg);
+	background-size: 1920px 1080px;
+	-webkit-background-clip: text;
+	animation: blurring-background  5.3s linear infinite;
+}
+
+
+.cloud-effect1 {
+	color: transparent;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_cloud01.jpg);
+	background-size: 1920px 1080px;
+	-webkit-background-clip: text;
+	animation: moving-background-down-loop 15.3s linear infinite;
+}
+
+.moving-colors {
+	color: transparent;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_cloud01.jpg);
+	background-size: 1920px 1080px;
+	-webkit-background-clip: text;
+	animation: moving-colors 8.3s linear infinite;
+}
+
+.grunge-effect1 {
+	color: transparent;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_grunge01.jpg);
+	background-size: 500px auto;
+	-webkit-background-clip: text;
+	animation: grunge-background-right 5.3s linear infinite;
+}
+
+
+/********************** LIST OF BRUSHES **************************/
+.tv_screen01 {
+	color: transparent;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_TVScreen01.jpg);
+	background-size: 800px auto;
+	-webkit-background-clip: text;
+	animation: anim-scale-up 3s alternate infinite;
+}

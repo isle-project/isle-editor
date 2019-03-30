@@ -5,6 +5,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import PropTypes from 'prop-types';
 import Principles from './principles.js';
 import Shorthand from './shorthand.js';
+import TextEffects from './text-effects.js';
 import './animation-help.css';
 
 
@@ -149,6 +150,10 @@ class AnimationHelp extends Component {
 		if ( this.state.explanation === 'text' ) {
 			return this.renderTextAnimations();
 		}
+
+		if (this.state.explanation === 'text-effects') {
+			return <TextEffects />;
+		}
 	}
 
 	setPage = ( value ) => {
@@ -163,6 +168,10 @@ class AnimationHelp extends Component {
 		case 4:
 			page = 'text';
 			break;
+
+		case 5:
+			page = 'text-effects';
+			break;
 		default:
 			page = 'list';
 		}
@@ -176,6 +185,7 @@ class AnimationHelp extends Component {
 			<div className="menu">
 				<div onClick={()=>this.setPage(1)} className="menu-item">ANIMATIONS</div>
 				<div onClick={()=>this.setPage(4)} className="menu-item">TEXT ANIMATIONS</div>
+				<div onClick={()=>this.setPage(5)} className="menu-item">TEXT EFFECTS</div>
 				<div onClick={()=>this.setPage(2)} className="menu-item">SHORTHAND</div>
 				<div onClick={()=>this.setPage(3)} className="menu-item">PRINCIPLES</div>
 			</div>
