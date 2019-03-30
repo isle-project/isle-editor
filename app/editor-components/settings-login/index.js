@@ -131,7 +131,7 @@ class SettingsLogin extends Component {
 						</Form> :
 						<Card border="success">
 							<Card.Body>
-								<p>You are linked to the ISLE server at {this.state.server}.</p>
+								<p>You are linked to the ISLE server at {this.state.server} with user ${this.state.email}.</p>
 								<Button
 									variant="danger"
 									size="sm"
