@@ -252,6 +252,14 @@
 		"value":"<SelectQuestion\n\tquestion=\"${1:}\"\n\tsolution=\"${2:}\"\n\toptions={[\n\t\t${3:}\n\t]}\n/>\n"
 	},
 	{
+		"name": "SelectQuestionMatrix",
+		"value": "<SelectQuestionMatrix\n\t rows={[${1:'Row label'}]} cols={[${2:'Column label'}]} options={{ '0:0': [${3:'Option'}] }} />"
+	},
+	{
+		"name": "HypothesisTestingQuestion",
+		"value": "<SelectQuestionMatrix\n\tquestion=\"${1:}\" \n\trows={[ 'H0', 'H1' ]} cols={[ '', '', '' ]}\n\toptions={{\n\t\t'0:0': [ <TeX raw=\"\\mu\" />, <TeX raw=\"\\bar x\" />, <TeX raw=\"p\" />, <TeX raw=\"\\hat p\" /> ],\n\t\t'0:1': [ <TeX raw=\"=\" />, <TeX raw=\"\\le\" />, <TeX raw=\"<\" />, <TeX raw=\">\" />, <TeX raw=\"\\ge\" />, <TeX raw=\"\\ne\" /> ],\n\t\t'1:0': [  <TeX raw=\"\\mu\" />, <TeX raw=\"\\bar x\" />, <TeX raw=\"p\" />, <TeX raw=\"\\hat p\" /> ],\n\t\t'1:1': [ <TeX raw=\"=\" />, <TeX raw=\"\\le\" />, <TeX raw=\"<\" />, <TeX raw=\">\" />, <TeX raw=\"\\ge\" />, <TeX raw=\"\\ne\" /> ],\n\t\t'0:2': [ <TeX raw=\"\\mu_0\" />, <TeX raw=\"\\bar x\" />, <TeX raw=\"p_0\" />, <TeX raw=\"\\hat p\" /> ],\n\t\t'1:2': [ <TeX raw=\"\\mu_0\" />, <TeX raw=\"\\bar x\" />, <TeX raw=\"p_0\" />, <TeX raw=\"\\hat p\" /> ]\n\t}}\n\tsolution={{ '0:0': 0, '0:1': 0, '0:2': 0, '1:0': 0, '1:1': 0, '1:2': 0 }}\n/>"
+	},
+	{
 		"name":"Sketchpad",
 		"value":"<Sketchpad />\n"
 	},
