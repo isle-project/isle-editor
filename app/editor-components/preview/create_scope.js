@@ -120,6 +120,7 @@ const SCOPE = {
 	ScrollingText: Loadable( () => import( 'components/scrolling-text' ) ),
 	SelectInput,
 	SelectQuestion: Loadable( () => import( 'components/select-question' ) ),
+	ShapedImage: Loadable( () => import( 'components/shaped-image' ) ),
 	Sketchpad: Loadable( () => import( 'components/sketchpad' ) ),
 	SliderInput,
 	Slider: Loadable( () => import( 'components/slider' ) ),
