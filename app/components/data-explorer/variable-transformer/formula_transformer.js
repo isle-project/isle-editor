@@ -322,6 +322,7 @@ class FormulaTransformer extends Component {
 
 FormulaTransformer.defaultProps = {
 	logAction() {},
+	onGenerate() {},
 	defaultCode: '',
 	session: {}
 };
@@ -333,7 +334,7 @@ FormulaTransformer.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultCode: PropTypes.string,
 	logAction: PropTypes.func,
-	onGenerate: PropTypes.func.isRequired,
+	onGenerate: PropTypes.func,
 	onHide: PropTypes.func.isRequired,
 	session: PropTypes.object
 };
