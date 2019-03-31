@@ -20,13 +20,6 @@ class ShapedImage extends Component {
 		super( props );
 	}
 
-	componentDidMount() {
-	}
-
-	componentWillUnmount() {
-	}
-
-
 	render() {
 		let url = 'url(' + this.props.src + ')';
 		let cursor = null;
