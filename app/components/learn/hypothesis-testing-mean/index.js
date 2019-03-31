@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -53,7 +54,7 @@ class MeanTest extends Component {
 			areaData2: null,
 			probFormula: '',
 			type: 0,
-			samples: 'One-Sample'
+			samples: this.props.types[ 0 ]
 		};
 	}
 
@@ -238,7 +239,7 @@ class MeanTest extends Component {
 			<Card.Body>
 				<Card body className="bg-light">
 					<SelectInput
-						options={[ 'One-Sample', 'Two-Sample' ]}
+						options={this.props.types}
 						defaultValue={samples}
 						onChange={( value ) => {
 							this.setState({
@@ -375,6 +376,17 @@ class MeanTest extends Component {
 		</Container> );
 	}
 }
+
+
+// PROPERTIES //
+
+MeanTest.defaultProps = {
+	types: [ 'One-Sample', 'Two-Sample' ]
+};
+
+MeanTest.propTypes = {
+	types: PropTypes.arrayOf( PropTypes.string )
+};
 
 
 // EXPORTS //

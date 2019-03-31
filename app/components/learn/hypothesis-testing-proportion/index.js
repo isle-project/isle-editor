@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -60,7 +61,7 @@ class ProportionTest extends Component {
 			areaData: null,
 			areaData2: null,
 			type: 0,
-			samples: 'One-Sample'
+			samples: this.props.types[ 0 ]
 		};
 	}
 
@@ -214,7 +215,7 @@ class ProportionTest extends Component {
 			/>
 		</div>;
 		const { p0, samples } = this.state;
-		const testStat= samples === 'Two-Sample' ? 'p_1 - p_2' : 'p';
+		const testStat = samples === 'Two-Sample' ? 'p_1 - p_2' : 'p';
 		return ( <Card maxWidth={1600}>
 			<Card.Header as="h4">
 				Parameters
@@ -222,7 +223,7 @@ class ProportionTest extends Component {
 			<Card.Body>
 				<Card body className="bg-light">
 					<SelectInput
-						options={[ 'One-Sample', 'Two-Sample' ]}
+						options={this.props.types}
 						defaultValue={samples}
 						onChange={( value ) => {
 							this.setState({
@@ -348,6 +349,17 @@ class ProportionTest extends Component {
 		);
 	}
 }
+
+
+// PROPERTIES //
+
+ProportionTest.defaultProps = {
+	types: [ 'One-Sample', 'Two-Sample' ]
+};
+
+ProportionTest.propTypes = {
+	types: PropTypes.arrayOf( PropTypes.string )
+};
 
 
 // EXPORTS //
