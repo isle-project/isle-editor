@@ -23,7 +23,7 @@ import './select-question-matrix.css';
 // MAIN //
 
 /**
-*
+* A question with an answer consisting of multiple select boxes.
 */
 class SelectQuestionMatrix extends Component {
 	constructor( props ) {
