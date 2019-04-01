@@ -121,6 +121,7 @@ const SCOPE = {
 	SelectInput,
 	SelectQuestion: Loadable( () => import( 'components/select-question' ) ),
 	SelectQuestionMatrix: Loadable( () => import( 'components/select-question-matrix' ) ),
+	ShapedForm: Loadable( () => import( 'components/shaped-form' ) ),
 	ShapedImage: Loadable( () => import( 'components/shaped-image' ) ),
 	Sketchpad: Loadable( () => import( 'components/sketchpad' ) ),
 	SliderInput,

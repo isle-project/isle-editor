@@ -101,6 +101,7 @@
 	"SelectInput": "components/input/select",
 	"SelectQuestion": "components/select-question",
 	"SelectQuestionMatrix": "components/select-question-matrix",
+	"ShapedForm": "components/shaped-form",
 	"ShapedImage": "components/shaped-image",
 	"Sketchpad": "components/sketchpad",
 	"Slider": "components/slider",

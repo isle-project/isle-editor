@@ -1,0 +1,10 @@
+.shaped-form {
+	height: 400px;
+	width: 400px;
+	float: left;
+	background: gainsboro;
+	-webkit-clip-path: var(--cp-parallelogram);
+	shape-outside: var(--cp-parallelogram);
+	shape-margin: 5px;
+	padding: 10px;
+}
