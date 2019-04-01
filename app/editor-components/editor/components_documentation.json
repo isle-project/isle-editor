@@ -1079,6 +1079,32 @@
     ],
     "description": "A component for generating other components (e.g., automatically generated questions)."
   },
+  "HandwrittenNote": {
+    "props": [
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "formStyle",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "text",
+        "type": "string",
+        "default": "handwritten Note"
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "button type, passed to the native React button",
+        "default": "handwritten-form-egg"
+      }
+    ],
+    "description": "A component displaying an image in the style of a polaroid."
+  },
   "IFrame": {
     "props": [
       {
@@ -1988,11 +2014,29 @@
     "description": "A learning component for calculating probabilities of a uniform distribution."
   },
   "LearnMeanTest": {
-    "props": [],
+    "props": [
+      {
+        "name": "types",
+        "type": "array<string>",
+        "default": [
+          "One-Sample",
+          "Two-Sample"
+        ]
+      }
+    ],
     "description": "A learning component on hypothesis tests for a population mean."
   },
   "LearnProportionTest": {
-    "props": [],
+    "props": [
+      {
+        "name": "types",
+        "type": "array<string>",
+        "default": [
+          "One-Sample",
+          "Two-Sample"
+        ]
+      }
+    ],
     "description": "A learning component on hypothesis tests for a population proportion."
   },
   "LearnImagePixelPicker": {
@@ -3867,6 +3911,81 @@
     ],
     "description": "A dynamic background component that changes a background image at a specified interval."
   },
+  "SelectQuestionMatrix": {
+    "props": [
+      {
+        "name": "question",
+        "type": "(string|node)",
+        "default": ""
+      },
+      {
+        "name": "rows",
+        "type": "array",
+        "default": []
+      },
+      {
+        "name": "cols",
+        "type": "array",
+        "default": []
+      },
+      {
+        "name": "options",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "solution",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "hints",
+        "type": "array",
+        "default": []
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "default": "bottom"
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "failureMsg",
+        "type": "string",
+        "default": "Not quite, try again!"
+      },
+      {
+        "name": "successMsg",
+        "type": "string",
+        "default": "That's the correct answer!"
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "A question with an answer consisting of multiple select boxes."
+  },
   "SelectQuestion": {
     "props": [
       {
@@ -3959,6 +4078,82 @@
       }
     ],
     "description": "A select question component."
+  },
+  "ShapedForm": {
+    "props": [
+      {
+        "name": "margin",
+        "type": "number",
+        "description": "the margin in regards to the floating text, in pixels. Default: 10",
+        "default": 10
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "event handler invoked when image is clicked",
+        "default": null
+      },
+      {
+        "name": "image",
+        "type": "string",
+        "description": "the background image url",
+        "default": null
+      },
+      {
+        "name": "svg",
+        "type": "string",
+        "description": "the svg background image url",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "the style of the object, it can hold any css including animations",
+        "default": {}
+      }
+    ],
+    "description": "A component that allows the display of shapes, triggered by images with alpha channel."
+  },
+  "ShapedImage": {
+    "props": [
+      {
+        "name": "background",
+        "type": "boolean",
+        "description": "if set the component can hold and display child elements",
+        "default": false
+      },
+      {
+        "name": "margin",
+        "type": "number",
+        "description": "the margin in regards to the floating text, in pixels. Default: 10",
+        "default": 10
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "event handler invoked when image is clicked",
+        "default": null
+      },
+      {
+        "name": "src",
+        "type": "string",
+        "description": "the image url",
+        "default": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "the style of the object, it can hold any css including animations",
+        "default": {}
+      },
+      {
+        "name": "threshold",
+        "type": "number",
+        "description": "alpha threshold, number between 0 and 1",
+        "default": 1
+      }
+    ],
+    "description": "A component that allows the display of shapes, triggered by images with alpha channel."
   },
   "Sketchpad": {
     "props": [
@@ -4486,6 +4681,64 @@
       }
     ],
     "description": "Text component, which allows rendering of raw text as Markdown and enables voice control."
+  },
+  "TimedButton": {
+    "props": [
+      {
+        "name": "block",
+        "type": "boolean",
+        "description": "display bottom in full width",
+        "default": false
+      },
+      {
+        "name": "duration",
+        "type": "number",
+        "description": "the time (in seconds) it takes until the button gets reactivated",
+        "default": 3
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "if disabled the button will be inactive, but the countdown starts",
+        "default": false
+      },
+      {
+        "name": "href",
+        "type": "string",
+        "default": null
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "callback invoked when clicking the button",
+        "default": "onClick() {}"
+      },
+      {
+        "name": "size",
+        "type": "string",
+        "description": "font size, passed to the native React button",
+        "default": "sm"
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "button type, passed to the native React button",
+        "default": "submit"
+      },
+      {
+        "name": "variant",
+        "type": "string",
+        "description": "passed to the button",
+        "default": "info"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A button component that becomes deactivated for a specified duration upon clicking."
   },
   "Timer": {
     "props": [
