@@ -1,25 +1,27 @@
 ---
 title: "Sketchpad"
-author: Philipp Burckhardt
-date: Jul 22nd, 2018
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
+removeStatusBar: true
 ---
 
 # Sketchpad
 
-<Playground
-    style={{
-        marginLeft: 0,
-        width: '1200px'
-    }}
-    code={`
-<Sketchpad showTutorial />
-`}
-    scope={{
-        Sketchpad
-    }}
-/>
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
+        <Sketchpad showTutorial />
+        `}
+            scope={{
+                Sketchpad
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 
 #### Options:
 
@@ -48,3 +50,7 @@ server: https://isle.heinz.cmu.edu
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked whenever a new line element is drawn. Default: `onChange() {}`.
+
+        </Text>
+    </Col>
+</Row>

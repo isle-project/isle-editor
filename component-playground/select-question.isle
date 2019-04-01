@@ -1,37 +1,35 @@
 ---
 title: "Select Question"
-author: Francis R. Kovacs, Philipp Burckhardt
-date: Jan 4th, 2018
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
 # Select Question
 
-<br />
-
-<Playground 
-    style={{
-        marginLeft: 0,
-        width: '1200px'
-    }}
-    code={`
-<SelectQuestion
-    question="The usual t-test is"
-    solution="two-sided"
-    options={[
-        'left-sided',
-        'right-sided',
-        'two-sided'
-    ]}
-/>
-`}
-    scope={{
-        SelectQuestion
-    }}
-/>
-
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
+        <SelectQuestion
+            question="The usual t-test is"
+            solution="two-sided"
+            options={[
+                'left-sided',
+                'right-sided',
+                'two-sided'
+            ]}
+        />
+        `}
+            scope={{
+                SelectQuestion
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 
 #### Options:
 
@@ -50,3 +48,7 @@ hideToolbar: true
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback  which is triggered after the submit action. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter. Default: `onSubmit() {}`.
+
+        </Text>
+    </Col>
+</Row>
