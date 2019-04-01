@@ -218,7 +218,6 @@ class BinTransformer extends Component {
 					<Row>
 						<Col md={6}>
 							<SelectInput
-								id="varSelect"
 								legend="Variable to bin:"
 								defaultValue={this.state.activeVar}
 								options={this.props.continuous}
@@ -235,12 +234,7 @@ class BinTransformer extends Component {
 						</Col>
 					</Row>
 					<div>
-						<Button style={{
-							position: 'absolute',
-							right: '2%',
-							top: '45%',
-							zIndex: 2
-						}} onClick={this.addNewBreakPoint}>
+						<Button className="insert-line-button" onClick={this.addNewBreakPoint}>
 							Insert break line
 						</Button>
 						<Plotly
