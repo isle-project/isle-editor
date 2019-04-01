@@ -23,6 +23,7 @@ const DEFAULT_DISP_MATH_DELIMITERS = [
 ];
 const RE_RAW_ATTRIBUTE = /raw *= *("[^"]*"|{`[^`]*`})/g;
 const RE_BACKSLASH = /(^|[^\\])\\($|[^\\])/g;
+const RE_TEXT_TAG = /<Text([^>]*)>([\s\S]*)<\/Text>/g;
 
 // Escape backslashes in raw attributes tags:
 const escaper = ( match, p1 ) => {
@@ -45,6 +46,13 @@ function toMarkdown( str, { escapeBackslash = false, addEmptySpans = true } ) {
 	if ( escapeBackslash ) {
 		str = replace( str, RE_RAW_ATTRIBUTE, escaper );
 	}
+	// Replace <Text> component children, see related issue: https://github.com/babel/babel/issues/2219
+	str = replace( str, RE_TEXT_TAG, ( match, p1, p2 ) => {
+		const escaped = replace( p2, '`', '\\`' );
+		return `<Text ${p1} raw={\`
+			${escaped}\`}
+		/>`;
+	});
 	const arr = tokenizer.parse( str );
 	for ( let i = 0; i < arr.length; i++ ) {
 		arr[ i ] = md.renderInline( arr[ i ] );

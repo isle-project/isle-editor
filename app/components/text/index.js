@@ -43,18 +43,33 @@ class Text extends Component {
 		ssu.lang = 'en-US';
 		window.speechSynthesis.speak( ssu );
 	}
+
 	render() {
-		const node = {
-			'__html': this.props.inline ? md.renderInline( this.props.raw ) : md.render( this.props.raw )
-		};
-		/* eslint-disable react/no-danger */
+		if ( this.props.raw ) {
+			const node = {
+				'__html': this.props.inline ? md.renderInline( this.props.raw ) : md.render( this.props.raw )
+			};
+			/* eslint-disable react/no-danger */
+			return (
+				<div className={this.props.className} style={this.props.style}>
+					<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
+					<div dangerouslySetInnerHTML={node}></div>
+				</div>
+			);
+			/* eslint-enable react/no-danger */
+		}
+		const nodes = React.Children.map( this.props.children, child => {
+			if ( typeof child === 'string' ) {
+				/* eslint-disable-next-line react/no-danger */
+				return <span dangerouslySetInnerHTML={{ __html: md.render( child ) }} />;
+			}
+			return child;
+		});
 		return (
 			<div className={this.props.className} style={this.props.style}>
-				<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
-				<div dangerouslySetInnerHTML={node}></div>
+				{nodes}
 			</div>
 		);
-		/* eslint-enable react/no-danger */
 	}
 }
 
