@@ -152,7 +152,7 @@ for ( let i = 0; i < files.length; i++ ) {
 
 	try {
 		let isle = fs.readFileSync( islepath ).toString();
-		isle = replace( isle, /#### Options[\s\S]*$/, str );
+		isle = replace( isle, /#### Options[\s\S]*?($| *<\/Text>)/, str+'$1' );
 		fs.writeFileSync( islepath, isle );
 	}
 	catch ( err ) {
