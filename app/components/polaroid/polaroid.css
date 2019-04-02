@@ -1,7 +1,4 @@
 .polaroid {
-	position: absolute;
-	left: 710px;
-	top: 10px;
 	width: 327px;
 	height: 360px;
 	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_PolaroidFrame.png);
@@ -9,6 +6,10 @@
 	transform: rotate(1.7deg);
 	z-index: 10;
 	overflow: hidden;
+}
+
+.polaroid-wrapper {
+	position: relative;
 }
 
 .polaroid-exit {

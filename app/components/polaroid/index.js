@@ -99,10 +99,12 @@ class Polaroid extends Component {
 		}
 		return (
 			<div id={this.props.id} onMouseOver={this.touch} onMouseOut={this.untouch} onClick={this.trigger} style={this.props.style} className={imageClass} >
-				{this.props.stain ? <div className="polaroid-stain" /> : null}
-				<div style={background} className={innerImage} />
-				{this.props.showPin ? <div className="polaroid-pin" /> : null}
-				{this.props.removable ? <div onClick={this.remove} className="pin-image-map" /> : null }
+				<div className="polaroid-wrapper">
+					{this.props.stain ? <div className="polaroid-stain" /> : null}
+					<div style={background} className={innerImage} />
+					{this.props.showPin ? <div className="polaroid-pin" /> : null}
+					{this.props.removable ? <div onClick={this.remove} className="pin-image-map" /> : null }
+				</div>
 			</div>
 		);
 	}
