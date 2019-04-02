@@ -151,6 +151,7 @@ class Login extends Component {
 									placeholder="Email"
 									autocomplete="username"
 									onChange={this.handleInputChange}
+									onKeyPress={this.handleKeyPress}
 									ref={( input ) => { this.emailInput = input; }}
 								/>
 							</Col>
