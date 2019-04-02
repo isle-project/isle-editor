@@ -120,6 +120,7 @@ class HintButton extends Component {
 					size="sm"
 					onClick={this.handleHintClick}
 					disabled={this.props.disabled}
+					autoActivate={false}
 				>{label}</TimedButton>
 			</OverlayTrigger>
 		);

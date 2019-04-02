@@ -22,9 +22,9 @@ const debug = logger( 'isle:timed-button' );
 * @property {Function} block - display bottom in full width
 * @property {Function} onClick - callback invoked when clicking the button
 * @property {boolean} disabled - if disabled the button will be inactive, but the countdown starts
-* @property {string} size - font size, passed to the native React button
-* @property {string} type - button type, passed to the native React button
-* @property {string} variant - passed to the button
+* @property {string} size - font size, passed to the regular button component
+* @property {string} type - HTML button type attribute
+* @property {string} variant - button variant, passed to the regular button component
 * @property {object} style - CSS inline styles
 */
 class TimedButton extends Component {
@@ -79,14 +79,22 @@ class TimedButton extends Component {
 	}
 
 	trigger = () => {
-		this.props.onClick(( bool ) => {
-			if ( bool !== false ) {
-				this.setState({
-					waiting: true
-				});
-				this.start();
-			}
-		});
+		if ( !this.props.autoActivate ) {
+			this.props.onClick(( bool ) => {
+				if ( bool !== false ) {
+					this.setState({
+						waiting: true
+					});
+					this.start();
+				}
+			});
+		} else {
+			this.props.onClick();
+			this.setState({
+				waiting: true
+			});
+			this.start();
+		}
 	}
 
 	render() {
@@ -100,27 +108,25 @@ class TimedButton extends Component {
 			marginLeft: percentage
 		};
 		return (
-			<div id={this.props.id} >
+			<div className="timed-button-container" id={this.props.id} >
 				<div style={style} className="timed-button-remaining">
 					<div className="timed-button-bar">
 						<div style={barStyle} className="timed-button-bar-overlay" />
 					</div>
 				</div>
-				<div lassName="timed-button-container">
-					<Button
-						href={this.props.href}
-						size={this.props.size}
-						block={this.props.block}
-						type={this.props.type}
-						ref={this.refDimensions}
-						disabled={disabled}
-						onClick={this.trigger}
-						variant={this.props.variant}
-						style={this.props.style}
-					>
-						{this.props.children}
-					</Button>
-				</div>
+				<Button
+					href={this.props.href}
+					size={this.props.size}
+					block={this.props.block}
+					type={this.props.type}
+					ref={this.refDimensions}
+					disabled={disabled}
+					onClick={this.trigger}
+					variant={this.props.variant}
+					style={this.props.style}
+				>
+					{this.props.children}
+				</Button>
 			</div>
 		);
 	}
@@ -138,6 +144,7 @@ TimedButton.propTypes = {
 	size: PropTypes.string,
 	type: PropTypes.string,
 	variant: PropTypes.string,
+	autoActivate: PropTypes.bool,
 	style: PropTypes.object
 };
 
@@ -147,9 +154,10 @@ TimedButton.defaultProps = {
 	duration: 3,
 	href: null,
 	onClick() {},
-	size: 'sm',
-	type: 'submit',
-	variant: 'info',
+	size: null,
+	type: null,
+	variant: null,
+	autoActivate: true,
 	style: {}
 };
 

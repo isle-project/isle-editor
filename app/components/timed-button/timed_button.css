@@ -1,7 +1,8 @@
 .timed-button-remaining {
+	position: absolute;
+	top: -5px;
 	width: 100px;
 	height: 2px;
-	margin-bottom: 2px;
 }
 
 .timed-button-bar {
@@ -21,4 +22,5 @@
 .timed-button-container {
 	width: auto;
 	height: auto;
+	position: relative;
 }

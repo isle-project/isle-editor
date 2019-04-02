@@ -14,6 +14,7 @@ import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import ChatButton from 'components/chat-button';
+import TimedButton from 'components/timed-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import SolutionButton from 'components/solution-button';
 import HintButton from 'components/hint-button';
@@ -244,7 +245,6 @@ class FreeTextQuestion extends Component {
 	*/
 	render() {
 		const nHints = this.props.hints.length;
-
 		const solutionButton = <SolutionButton
 			disabled={!this.state.submitted || !this.state.exhaustedHints}
 			onClick={this.handleSolutionClick}
@@ -301,12 +301,13 @@ class FreeTextQuestion extends Component {
 						}
 						{
 							this.state.value.length >= 1 ?
-								<Button
+								<TimedButton
 									className="submit-button"
 									variant="primary"
 									size="sm"
 									onClick={this.submitHandler}
-								>{ !this.state.submitted ? 'Submit' : 'Resubmit' }</Button> :
+									duration={5}
+								>{ !this.state.submitted ? 'Submit' : 'Resubmit' }</TimedButton> :
 								<OverlayTrigger
 									placement="top"
 									positionLeft={100}
