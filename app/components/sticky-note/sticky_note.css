@@ -18,7 +18,7 @@
 }
 
 .sticky-note-content {
-	position: inherit;
+	position: absolute;
 	left: 30px;
 	top: 35px;
 	height: 250px;
@@ -28,7 +28,7 @@
 }
 
 .sticky-note-title {
-	position: inherit;
+	position: absolute;
 	top: 10px;
 	padding-left: 10px;
 	font-family: Sacramento;
@@ -37,13 +37,13 @@
 }
 
 .sticky-note-date {
-	position: inherit;
-	top: 14px;
+	position: absolute;
+	top: -5px;
 	right: 5px;
 }
 
 .sticky-note-body {
-	position: inherit;
+	position: absolute;
 	top: 40px;
 	padding: 10px;
 	padding-left: 15px;
@@ -52,7 +52,7 @@
 }
 
 .sticky-note-stain {
-	position: inherit;
+	position: absolute;
 	left: 50%;
 	top: 60%;
 	opacity: 0.5;
@@ -63,7 +63,7 @@
 }
 
 .sticky-note-pin-image-map {
-	position: inherit;
+	position: absolute;
 	left: 45%;
 	width: 52px;
 	height: 52px;
