@@ -156,25 +156,29 @@
       {
         "name": "expandable",
         "type": "boolean",
+        "description": "controls whether calculator is expandable",
         "default": true
       },
       {
         "name": "show",
         "type": "boolean",
+        "description": "controls whether calculator is shown",
         "default": true
       },
       {
         "name": "style",
         "type": "object",
+        "description": "CSS inline styles",
         "default": {}
       },
       {
         "name": "onHide",
         "type": "function",
+        "description": "callback invoked when the close button is clicked",
         "default": null
       }
     ],
-    "description": "Description is missing."
+    "description": "A calculator with a base and expanded (scientific) mode."
   },
   "undefined": {
     "props": [],
@@ -3679,7 +3683,7 @@
       {
         "name": "digits",
         "type": "number",
-        "description": "number of digits that have to match between solution and user-supplied answer. If not given or set to null, the component checks for strict equality. If set to 0, checks for integer equality.",
+        "description": "number of digits that have to match between solution and user-supplied answer. If not given or set to null, the component checks for strict equality. If set to 0, checks for integer equality",
         "default": 3
       },
       {
@@ -3715,6 +3719,7 @@
       {
         "name": "style",
         "type": "object",
+        "description": "CSS inline styles",
         "default": {}
       },
       {
@@ -3732,7 +3737,7 @@
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
+        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
         "default": "onSubmit() {}"
       }
     ],
@@ -3793,10 +3798,6 @@
   },
   "Revealer": {
     "props": [
-      {
-        "name": "id",
-        "type": "string (required)"
-      },
       {
         "name": "message",
         "type": "string",
@@ -3875,37 +3876,37 @@
       {
         "name": "direction",
         "type": "string",
-        "description": ": the direction of the text flow, available values are left, right, up, down, tracking, focus and swirl",
+        "description": "the direction of the text flow, available values are left, right, up, down, tracking, focus and swirl",
         "default": "right"
       },
       {
         "name": "still",
         "type": "number",
-        "description": ": the time the text remains still (in seconds)",
+        "description": "the time the text remains still (in seconds)",
         "default": 3
       },
       {
         "name": "interval",
         "type": "number",
-        "description": ": the interval between the calls (in seconds)",
+        "description": "the interval between the calls (in seconds)",
         "default": 15
       },
       {
         "name": "inTime",
         "type": "number",
-        "description": ": time of the entrance effect (in seconds)",
+        "description": "time of the entrance effect (in seconds)",
         "default": 0.6
       },
       {
         "name": "outTime",
         "type": "number",
-        "description": ":  time of the exit effect (in seconds)",
+        "description": " time of the exit effect (in seconds)",
         "default": 1
       },
       {
         "name": "style",
         "type": "object",
-        "description": ": style definition of the text",
+        "description": "style definition of the text",
         "default": {}
       }
     ],
@@ -4550,6 +4551,24 @@
         "name": "id",
         "type": "string (required)",
         "description": "component identifier"
+      },
+      {
+        "name": "owner",
+        "type": "boolean",
+        "description": "controls whether owners can see the survey generator; the default should not be changed for most use-cases",
+        "default": true
+      },
+      {
+        "name": "user",
+        "type": "boolean",
+        "description": "controls whether users can see the survey generator; the default should not be changed for most use-cases",
+        "default": false
+      },
+      {
+        "name": "anonymous",
+        "type": "boolean",
+        "description": "controls whether owners can see the survey generator; the default should not be changed for most use-cases",
+        "default": false
       }
     ],
     "description": "Component allowing instructors to create multiple-choice surveys, free text surveys and number surveys on the fly in real-time through an easy-to-use interface."

@@ -33,6 +33,14 @@ const RE_OPERATOR = /[+\-/*^!]/;
 
 // MAIN //
 
+/**
+* A calculator with a base and expanded (scientific) mode.
+*
+* @property {boolean} expandable - controls whether calculator is expandable
+* @property {boolean} show - controls whether calculator is shown
+* @property {Object} style - CSS inline styles
+* @property {Function} onHide - callback invoked when the close button is clicked
+*/
 class Calculator extends Component {
 	/**
 	* Constructor function

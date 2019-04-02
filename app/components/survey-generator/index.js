@@ -29,8 +29,11 @@ const debug = logger( 'isle:survey-generator' );
 * Component allowing instructors to create multiple-choice surveys, free text surveys and number surveys on the fly in real-time through an easy-to-use interface.
 *
 * @property {string} id - component identifier
+* @property {boolean} owner - controls whether owners can see the survey generator; the default should not be changed for most use-cases
+* @property {boolean} user - controls whether users can see the survey generator; the default should not be changed for most use-cases
+* @property {boolean} anonymous - controls whether owners can see the survey generator; the default should not be changed for most use-cases
 */
-class MCSgenerator extends Component {
+class SurveyGenerator extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
@@ -143,7 +146,7 @@ class MCSgenerator extends Component {
 
 	render() {
 		return ( <Card body id={this.props.id} >
-			<Gate owner {...this.props} >
+			<Gate {...this.props} >
 				<Card body className="bg-light" style={{
 					maxWidth: '800px',
 					border: 'solid 2px rgb(186, 204, 234)'
@@ -220,17 +223,22 @@ class MCSgenerator extends Component {
 
 // PROPERTIES //
 
-MCSgenerator.defaultProps = {
-
+SurveyGenerator.defaultProps = {
+	owner: true,
+	user: false,
+	anonymous: false
 };
 
-MCSgenerator.propTypes = {
-	id: PropTypes.string.isRequired
+SurveyGenerator.propTypes = {
+	id: PropTypes.string.isRequired,
+	owner: PropTypes.bool,
+	user: PropTypes.bool,
+	anonymous: PropTypes.bool
 };
 
-MCSgenerator.contextType = SessionContext;
+SurveyGenerator.contextType = SessionContext;
 
 
 // EXPORTS //
 
-export default MCSgenerator;
+export default SurveyGenerator;

@@ -40,15 +40,16 @@ const debug = logger( 'isle:range-question' );
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {boolean} chat - controls whether the element should have an integrated chat
-* @property {number} digits - number of digits that have to match between solution and user-supplied answer. If not given or set to null, the component checks for strict equality. If set to 0, checks for integer equality.
+* @property {number} digits - number of digits that have to match between solution and user-supplied answer. If not given or set to null, the component checks for strict equality. If set to 0, checks for integer equality
 * @property {number} max - maximum input value
 * @property {number} min - minimum input value
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {boolean} allowMultipleAnswers - controls whether one can submit multiple answers
 * @property {strings} voiceID - voice control identifier
+* @property {Object} style - CSS inline styles
 * @property {Function} onChangeUpper - callback triggered after the upper bound is changed by the user
 * @property {Function} onChangeLower - callback triggered after the lower bound is changed by the user
-* @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter
+* @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter
  */
 class RangeQuestion extends Component {
 	/**
