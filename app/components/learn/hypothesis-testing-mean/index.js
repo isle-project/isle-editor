@@ -15,6 +15,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import linspace from '@stdlib/math/utils/linspace';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
+import FeedbackButtons from 'components/feedback';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import Switch from 'components/switch';
@@ -35,6 +36,9 @@ const debug = logger( 'isle:learn:hypothesis-testing-mean' );
 
 /**
 * A learning component on hypothesis tests for a population mean.
+*
+* @property {Array} types - the type(s) of test (`One-Sample`, `Two-Sample`) the widget should expose
+* @property {boolean} feedback - controls whether to display feedback buttons
 */
 class MeanTest extends Component {
 	constructor( props ) {
@@ -371,6 +375,11 @@ class MeanTest extends Component {
 				</Col>
 				<Col md={6}>
 					{this.renderResultPanel()}
+					<br />
+					{this.props.feedback ?
+						<FeedbackButtons id="hypothesisTestingMean" /> :
+						null
+					}
 				</Col>
 			</Row>
 		</Container> );
@@ -381,11 +390,13 @@ class MeanTest extends Component {
 // PROPERTIES //
 
 MeanTest.defaultProps = {
-	types: [ 'One-Sample', 'Two-Sample' ]
+	types: [ 'One-Sample', 'Two-Sample' ],
+	feedback: false
 };
 
 MeanTest.propTypes = {
-	types: PropTypes.arrayOf( PropTypes.string )
+	types: PropTypes.arrayOf( PropTypes.string ),
+	feedback: PropTypes.bool
 };
 
 

@@ -17,6 +17,7 @@ import isInfinite from '@stdlib/assert/is-infinite';
 import isnan from '@stdlib/assert/is-nan';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
+import FeedbackButtons from 'components/feedback';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import Switch from 'components/switch';
@@ -44,6 +45,9 @@ function normalPDF( d ) {
 
 /**
 * A learning component on hypothesis tests for a population proportion.
+*
+* @property {Array} types - the type(s) of test (`One-Sample`, `Two-Sample`) the widget should expose
+* @property {boolean} feedback - controls whether to display feedback buttons
 */
 class ProportionTest extends Component {
 	constructor( props ) {
@@ -343,6 +347,11 @@ class ProportionTest extends Component {
 					</Col>
 					<Col md={6}>
 						{this.renderResultPanel()}
+						<br />
+						{this.props.feedback ?
+							<FeedbackButtons id="hypothesisTestingProportion" /> :
+							null
+						}
 					</Col>
 				</Row>
 			</Container>
@@ -354,11 +363,13 @@ class ProportionTest extends Component {
 // PROPERTIES //
 
 ProportionTest.defaultProps = {
-	types: [ 'One-Sample', 'Two-Sample' ]
+	types: [ 'One-Sample', 'Two-Sample' ],
+	feedback: false
 };
 
 ProportionTest.propTypes = {
-	types: PropTypes.arrayOf( PropTypes.string )
+	types: PropTypes.arrayOf( PropTypes.string ),
+	feedback: PropTypes.bool
 };
 
 
