@@ -157,7 +157,7 @@ class SelectQuestionMatrix extends Component {
 		const len = this.props.cols.length;
 		const buttons = new Array( len );
 		for ( let i = 0; i < len; i++ ) {
-			buttons[ i ] = <Col key={i} >
+			buttons[ i ] = <Col key={i}>
 				{this.renderSelectInput( row, i )}
 			</Col>;
 		}
@@ -178,9 +178,9 @@ class SelectQuestionMatrix extends Component {
 		}
 		return this.props.rows.map( ( rowLabel, idx ) => {
 			return (
-				<Form.Row key={idx} >
+				<Form.Row key={idx} style={{ marginBottom: 15, marginTop: 15 }} >
 					<Col sm={offset}>
-						<Form.Label column >
+						<Form.Label column style={{ textAlign: 'right' }}>
 							{ isString( rowLabel ) ? <Text raw={rowLabel} /> : rowLabel }
 						</Form.Label>
 					</Col>
