@@ -10,6 +10,8 @@ import Col from 'react-bootstrap/Col';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import copy from '@stdlib/utils/copy';
 import keys from '@stdlib/utils/keys';
+import contains from '@stdlib/assert/contains';
+import isArray from '@stdlib/assert/is-array';
 import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
@@ -76,7 +78,14 @@ class SelectQuestionMatrix extends Component {
 		const labels = keys( this.props.solution );
 		for ( let i = 0; i < labels.length; i++ ) {
 			const key = labels[ i ];
-			if ( this.props.solution[ key ] !== this.state.answers[ key ] ) {
+			const sol = this.props.solution[ key ];
+			const answer = this.state.answers[ key ];
+			if ( isArray( sol ) ) {
+				if ( !contains( sol, answer ) ) {
+					correct = false;
+				}
+			}
+			else if ( sol !== answer ) {
 				correct = false;
 			}
 		}
@@ -139,6 +148,7 @@ class SelectQuestionMatrix extends Component {
 				isSearchable={false}
 				options={options}
 				onChange={this.handleChangeFactory( label )}
+				menuPlacement="top"
 			/>
 		);
 	}
