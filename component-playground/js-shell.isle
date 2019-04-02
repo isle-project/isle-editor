@@ -1,35 +1,33 @@
 ---
 title: "JS Shell"
-author: Philipp Burckhardt
-date: Dec 27th, 2017
+author: The ISLE Authors
+date: April 2nd, 2019
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
 # JS Shell
 
-<br />
-
-<Playground 
-    style={{
-        marginLeft: '0%',
-        width: '1000px'
-    }}  
-    code={
-    `<JSShell
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
+<JSShell
     hints = {['first', 'second']}
     solution = "The solution is 22"
     code = {\`var x = 22;
 console.log(x);\`}
-/>`}
-    scope={{
-        JSShell
-    }}
+    lines={3}
 />
-
-<br />
-
+            `}
+            scope={{
+                JSShell
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 
 #### Options:
 
@@ -46,3 +44,8 @@ console.log(x);\`}
 * __onEvaluate__ | `function`: callback invoked whenever the `Evaluate` button is clicked. Default: `onEvaluate() {}`.
 * __vars__ | `object`: scope object with variables that should be made available to evaluated `code`. Default: `none`.
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
+
+        </Text>
+    </Col>
+</Row>
+

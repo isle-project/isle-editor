@@ -1,32 +1,32 @@
 ---
 title: "Beacon Tooltip"
-author: Philipp Burckhardt
-date: Jul 22nd, 2018
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
 # Beacon Tooltip
 
-<Playground 
-    style={{
-        marginLeft: 0,
-        width: '900px'
-    }}
-    code={`
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
 <BeaconTooltip
     content="Body of the tooltip..."
     title="Title comes here..."
     event="hover"
     placement="right"
 />
-`}
-    scope={{
-        BeaconTooltip
-    }}
-/>
-
+        `}
+            scope={{
+                BeaconTooltip
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 
 #### Options:
 
@@ -37,3 +37,7 @@ hideToolbar: true
 * __target__ | `string`: class or ID selector for element to attach tooltip to. Default: `''`.
 * __offset__ | `number`: distance between the tooltip and `target` in pixels. Default: `15`.
 * __onChange__ | `function`: callback invoked upon state change of the tooltip. Receives two arguments: the `action` (`open` or `close`) and the passed `props`. Default: `onChange() {}`.
+
+        </Text>
+    </Col>
+</Row>
