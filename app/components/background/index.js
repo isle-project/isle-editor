@@ -32,7 +32,8 @@ class Background extends Component {
 			foregroundImage: props.images[1],
 			foregroundRatio: 1.777,
 			backgroundRatio: 1.777,
-			counter: 0
+			counter: 0,
+			initialized: false
 		};
 	}
 
@@ -52,13 +53,36 @@ class Background extends Component {
 
 	getRatio = () => {
 		const parent = this.myRef.current.parentElement;
-		const w = parent.clientWidth;
-		const h = parent.clientHeight;
+		let w = parent.clientWidth;
+		let h = parent.clientHeight;
+
+		global.parent = parent;
+
+		if (h === 0) {
+			w = 600;
+			h = 320;
+			parent.style.width = '600px';
+			parent.style.height = '320px';
+			console.log('You have to define witdh and height for the parent element of the background');
+		}
+
 		const ratio = parseFloat( w / h ).toFixed( 4 );
+
+		console.log('Die Ratio ist ' + ratio + " Höhe des Elternt-Elements " + h);
 
 		this.setState({
 			ratio: ratio
 		});
+	}
+
+	initialize(image) {
+		console.log('Initialisierung');
+		var self = this;
+		image.onload = function loadImage() {
+			self.setState({
+				initialized: true
+			});
+		};
 	}
 
 	preload() {
@@ -66,6 +90,9 @@ class Background extends Component {
 			const img = new Image();
 			img.src = this.props.images[ i ];
 			this.imageList.push( img );
+			if (i === 0) {
+				this.initialize(img);
+			}
 		}
 	}
 
@@ -197,7 +224,11 @@ class Background extends Component {
 	render() {
 		if ( this.state.fading === false) {
 			if (this.start === true) {
+				if (this.state.initialized === false) {
+					return null;
+				}
 				this.start = false;
+
 				return (
 					<div ref={this.myRef}>{ this.startProcess() }</div>
 				);
