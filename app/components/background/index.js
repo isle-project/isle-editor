@@ -68,15 +68,12 @@ class Background extends Component {
 
 		const ratio = parseFloat( w / h ).toFixed( 4 );
 
-		console.log('Die Ratio ist ' + ratio + " Höhe des Elternt-Elements " + h);
-
 		this.setState({
 			ratio: ratio
 		});
 	}
 
 	initialize(image) {
-		console.log('Initialisierung');
 		var self = this;
 		image.onload = function loadImage() {
 			self.setState({
