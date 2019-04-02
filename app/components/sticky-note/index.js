@@ -49,18 +49,20 @@ class StickyNote extends Component {
 		}
 		return (
 			<div onClick={this.triggerClick} style={this.props.style} className={className}>
-				{ this.props.removable ? <div onClick={this.remove} title="Click to remove note" className="sticky-note-pin-image-map" /> : null }
-				<div className="sticky-note-content">
-					<div className="sticky-note-title">
-						{this.props.title}
+				<div className="sticky-note-wrapper">
+					{ this.props.removable ? <div onClick={this.remove} title="Click to remove note" className="sticky-note-pin-image-map" /> : null }
+					<div className="sticky-note-content">
+						<div className="sticky-note-title">
+							{this.props.title}
+						</div>
+						<div className="sticky-note-date">
+							{this.props.date}
+						</div>
+						<div className="sticky-note-body">
+							{this.props.body}
+						</div>
+						{this.props.stain ? <div className="sticky-note-stain" /> : null }
 					</div>
-					<div className="sticky-note-date">
-						{this.props.date}
-					</div>
-					<div className="sticky-note-body">
-						{this.props.body}
-					</div>
-					{this.props.stain ? <div className="sticky-note-stain" /> : null }
 				</div>
 			</div>
 		);

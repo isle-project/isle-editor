@@ -1,11 +1,12 @@
 .sticky-note {
-	position: absolute;
-	left: 300px;
-	top: 200px;
 	width: 300px;
 	height: 300px;
 	z-index: 2;
 	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_postit.png);
+}
+
+.sticky-note-wrapper {
+	position: relative;
 }
 
 .sticky-note-exit {
