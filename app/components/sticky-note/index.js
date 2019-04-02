@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import noop from '@stdlib/utils/noop';
 import './sticky_note.css';
 
 
@@ -43,7 +44,7 @@ class StickyNote extends Component {
 		if ( this.state.exit === true ) {
 			className += ' sticky-note-exit';
 		}
-		if ( this.props.onClick ) {
+		if ( this.props.onClick !== noop ) {
 			className += ' sticky-note-callback';
 		}
 		return (
@@ -85,7 +86,7 @@ StickyNote.defaultProps = {
 	date: '',
 	style: {},
 	stain: null,
-	onClick() {},
+	onClick: noop,
 	removable: false
 };
 
