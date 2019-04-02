@@ -1,5 +1,6 @@
 // MODULES //
 
+import { readFileSync } from 'fs';
 import * as types from 'constants/editor_actions.js';
 import Store from 'electron-store';
 import template from 'constants/template.js';
@@ -8,13 +9,21 @@ import template from 'constants/template.js';
 // VARIABLES //
 
 const config = new Store( 'ISLE' );
+const filePath = config.get( 'mostRecentFilePath' );
+let md;
+if ( filePath ) {
+	md = readFileSync( filePath, 'utf-8' );
+}
+else {
+	md = template;
+}
 const initialState = {
-	markdown: config.get( 'mostRecentFileData' ) || template,
+	markdown: md,
 	preamble: config.get( 'mostRecentPreamble' ) || {},
 	preambleText: config.get( 'mostRecentPreambleText' ) || '',
 	isScrolling: true,
 	hideToolbar: false,
-	filePath: config.get( 'mostRecentFilePath' ),
+	filePath,
 	fileName: config.get( 'mostRecentFileName' ),
 	currentRole: 'anonymous',
 	currentMode: 'offline',
