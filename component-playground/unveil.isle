@@ -1,41 +1,37 @@
 ---
 title: "Unveil"
-author: Philipp Burckhardt
-date: Oct 7th, 2018
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
 # Unveil
 
-<br />
-
-
-<Playground
-    style={{
-        marginLeft: 0,
-        width: '1200px'
-    }}
-    code={`
-    <Unveil
-        active = { false }
-        delay = { 5000 }
-    >
-        <h3>When setting active to true this voice input will appear in 5 secs</h3>
-        <VoiceInput />
-    </Unveil>
-
-`}
-    scope={{
-        Unveil, VoiceInput
-    }}
-/>
-
-
-<br />
-
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
+<Unveil
+    active = { false }
+    delay = { 5000 }
+>
+    <h3>When setting active to true this voice input will appear in 5 secs</h3>
+    <VoiceInput />
+</Unveil>
+        `}
+            scope={{
+                Unveil, VoiceInput
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 #### Options:
 
 * __active__ | `boolean`: controls whether the counter should be active. Default: `false`.
 * __delay__ | `number`: number of milliseconds before component appears. Default: `1000`.
+        </Text>
+    </Col>
+</Row>

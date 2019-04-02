@@ -1,32 +1,32 @@
 ---
 title: "Video Player"
-author: Philipp Burckhardt
-date: Dec 27th, 2017
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
 # Video Player
 
-<Playground 
-    style={{
-        marginLeft: 0,
-        width: '1200px'
-    }}
-    code={`
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
 <VideoPlayer
     controls
     width= { 800 }
     height = { 450 }
     url="https://www.youtube.com/watch?v=wPqtzj5VZus"
 />
-`}
-    scope={{
-        VideoPlayer
-    }}
-/>
-
+        `}
+            scope={{
+                VideoPlayer
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 #### Options:
 
 * __url__ | `string`: URL of the video. Default: `''`.
@@ -43,3 +43,6 @@ hideToolbar: true
 * __onEnded__ | `function`: callback invoked once the video ends. Default: `onEnded() {}`.
 * __onPause__ | `function`: callback invoked once the video pauses. Default: `onPause() {}`.
 * __onPlay__ | `function`: callback invoked once the video starts or resumes playing after pausing. Default: `onPlay() {}`.
+        </Text>
+    </Col>
+</Row>

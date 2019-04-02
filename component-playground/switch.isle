@@ -1,38 +1,38 @@
 ---
 title: "Switch"
-author: Francis R. Kovacs, Philipp Burckhardt
-date: Jan 4th, 2018
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
+removeStatusBar: true
 ---
 
 # Switch Components
 
-<br />
-
-<Playground
-    style={{
-        marginLeft: 0,
-        width: '1200px'
-    }}
-    code={`<Switch>
-  <span>
-    <SliderInput
-      legend="Option 1 is a SliderInput"
-      defaultValue={10} min={0} max={100} step={1}
-      />
-  </span>
-  <span>
-    <TextInput
-      legend="Option 2 is a TextInput" defaultValue="value"
-      />
-  </span>
-</Switch>`}
-    scope={{
-        Switch, SliderInput, TextInput
-    }}
-/>
-
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
+<Card body>
+    <Switch>
+        <span>
+            <SliderInput
+                legend="Option 1 is a SliderInput"
+                defaultValue={10} min={0} max={100} step={1}
+            />
+        </span>
+        <span>
+            <TextInput legend="Option 2 is a TextInput" defaultValue="value" />
+        </span>
+    </Switch>
+</Card>`}
+            scope={{
+                Card, Switch, SliderInput, TextInput
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 #### Options:
 
 * __active__ | `boolean`: controls whether the switch is active or not. Default: `true`.
@@ -41,3 +41,7 @@ server: https://isle.heinz.cmu.edu
 * __className__ | `string`: class name for the enclosing span element. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked when elements are switched. Receives as its first argument the index of the currently displayed child. Default: `onChange() {}`.
+        </Text>
+    </Col>
+</Row>
+

@@ -1,20 +1,29 @@
 ---
 title: "Wikipedia"
-author: Philipp Burckhardt
-date: Dec 27th, 2017
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
-<Playground 
-    style={{
-        top: 0,
-        left: 0,
-        position: 'absolute'
-    }}
-    code={`<Wikipedia />`}
-    scope={{
-        Wikipedia
-    }}
-/>
+# Wikipedia
+
+<Row>
+    <Col md={6}>
+        <Playground 
+            code={`<Wikipedia />`}
+            scope={{
+                Wikipedia
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
+#### Options:
+
+* __invisible__ | `boolean`: controls whether to display a text input field to search for Wikipedia articles. Default: `false`.
+* __language__ | `string`: language identifier. Default: `'en-US'`.
+        </Text>
+    </Col>
+</Row>

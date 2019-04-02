@@ -1,34 +1,35 @@
 ---
 title: "Slider"
-author: Philipp Burckhardt
-date: Dec 27th, 2017
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
 # Slider
 
-<Playground 
-    style={{
-        marginLeft: 0,
-        width: '1000px'
-    }}
-    code={`
-<Slider 
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
+<Slider
     adaptiveHeight
     interval = { 6000 }
-    title="Questions to explore:" >
+    title="Questions to explore:" 
+>
     <p>Try generating new samples of the Normal data.</p>
     <p>How do the normal qq plots change as you vary the df parameter for the t-distributed data?</p>
     <p>How do the normal qq plots change as you vary the shape parameter in the gamma-distributed data?</p>
-    <img src = "http://www.gearcontact.com/images/super/_iFootageShark-SliderS1_-4_4.png" />
 </Slider>
-`}
-    scope={{
-        Slider
-    }}
-/>
+        `}
+            scope={{
+                Slider
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 
 #### Options:
 
@@ -42,3 +43,7 @@ hideToolbar: true
 * __onClick__ | `function`: callback invoked when clicking on the next/previous buttons. Default: `onClick() {}`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __swipeToSlide__ | `boolean`: enables drag/swipe behavior. Default: `true`.
+        </Text>
+    </Col>
+</Row>
+

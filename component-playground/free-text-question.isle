@@ -1,39 +1,31 @@
 ---
 title: "Free Text Question"
-author: Philipp Burckhardt
-date: Dec 27th, 2017
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
 ---
 
 # Free Text Question
 
-<br />
-
-
-
-
-<Playground
-    style={{
-        marginLeft: 0,
-        width: '1100px'
-    }}
-    code={`
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
 <FreeTextQuestion
     question="What is the p-value you obtained for this test?"
     rows={1}
     hints={['just at the standard cutoff point']}
     solution="0.05"
 />
-`}
-    scope={{
-        FreeTextQuestion
-    }}
-/>
-
-
-<br />
+        `}
+            scope={{
+                FreeTextQuestion
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 
 #### Options:
 
@@ -55,3 +47,6 @@ hideToolbar: true
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked every time the text area value changes; receives the current text as its sole argument. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback invoked when user submits an answer; receives the submitted text as its sole argument. Default: `onSubmit() {}`.
+        </Text>
+    </Col>
+</Row>

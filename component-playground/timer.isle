@@ -1,36 +1,36 @@
 ---
 title: "Timer"
-author: Philipp Burckhardt
-date: Jul 22nd, 2018
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
 # Timer
 
-<Playground 
-    style={{
-        marginLeft: 0,
-        width: '900px'
-    }}
-    code={`
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
 <div>
     <span>Timer is displayed in the upper-right corner</span>
-    <Timer 
-        id='test-quiz'
-        active={true} 
-        duration={50} 
+    <Timer
+        active={true}
+        duration={60}
         onTimeUp={() => {
-          alert( 'done' );
+            alert( 'done' );
         }}
     />
-</div>`}
-    scope={{
-        Timer
-    }}
-/>
-
+</div>
+        `}
+            scope={{
+                Timer
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 
 #### Options:
 
@@ -40,3 +40,7 @@ hideToolbar: true
 * __invisible__ | `boolean`: controls whether the timer should be hidden. Default: `false`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onTimeUp__ | `function`: callback invoked when the timer runs out. Default: `onTimeUp() {}`.
+        </Text>
+    </Col>
+</Row>
+

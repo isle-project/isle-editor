@@ -1,29 +1,33 @@
 ---
 title: "Survey Generator"
-author: Francis R. Kovacs 
-date: Jan 4th, 2018
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
 ---
 
 # Survey Generator
 
-<br />
-
-<Playground 
-    style={{
-        marginLeft: 0,
-        width: '1200px'
-    }}
-    code={`
-<SurveyGenerator id="survey01" />
-
-`}
-    scope={{
-        SurveyGenerator
-    }}
-/>
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
+<SurveyGenerator id="survey01" anonymous />
+        `}
+            scope={{
+                SurveyGenerator
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 
 #### Options:
 
 * __id__ | `string (required)`: component identifier. Default: `none`.
+* __owner__ | `boolean`: controls whether owners can see the survey generator; the default should not be changed for most use-cases. Default: `true`.
+* __user__ | `boolean`: controls whether users can see the survey generator; the default should not be changed for most use-cases. Default: `false`.
+* __anonymous__ | `boolean`: controls whether owners can see the survey generator; the default should not be changed for most use-cases. Default: `false`.
+        </Text>
+    </Col>
+</Row>

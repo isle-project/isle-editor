@@ -38,7 +38,10 @@ server: https://isle.heinz.cmu.edu
 * __editable__ | `boolean`: controls whether labels of the created plot are editable. Default: `false`.
 * __id__ | `string`: component identifier. Default: `none`.
 * __layout__ | `object`: Plotly layout object. Default: `{}`.
+* __config__ | `object`: undefined. Default: `{}`.
 * __legendButtons__ | `boolean`: controls whether to display buttons for changing the legend. Default: `true`.
+* __onAfterPlot__ | `function`: callback function invoked each time a chart is plotted. Default: `onAfterPlot() {}`.
+* __onRelayout__ | `function`: undefined. Default: `onRelayout() {}`.
 * __onSelected__ | `function`: callback function invoked when elements are selected. Default: `onSelected() {}`.
 * __onShare__ | `function`: callback function invoked when clicking on the "Share" button. Default: `none`.
 * __removeButtons__ | `boolean`: controls whether to remove all buttons. Default: `false`.

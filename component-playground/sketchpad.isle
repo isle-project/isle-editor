@@ -50,7 +50,6 @@ removeStatusBar: true
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked whenever a new line element is drawn. Default: `onChange() {}`.
-
         </Text>
     </Col>
 </Row>

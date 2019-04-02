@@ -1,40 +1,30 @@
 ---
 title: "Recorder"
-author: Philipp Burckhardt
-date: Dec 27th, 2017
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: false
-
 ---
 
 # Recorder
 
-<br />
-
-
-
-
-
-<Playground 
-    style={{
-        marginLeft: 0,
-        width: '1000px'
-    }}
-    code={`
-<Recorder 
-    audio 
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
+<Recorder
+    audio
     screen
     downloadable
 />
-`}
-    scope={{
-        Recorder
-    }}
-/>
-
-
-<br />
+        `}
+            scope={{
+                Recorder
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 
 #### Options:
 
@@ -46,3 +36,7 @@ hideToolbar: false
 * __uploadable__ | `boolean`: indicates whether users should be able to upload the recording to the server. Default: `false`.
 * __bitsPerSecond__ | `number`: bits per second. Default: `128000`.
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
+        </Text>
+    </Col>
+</Row>
+

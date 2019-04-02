@@ -1,9 +1,36 @@
 ---
-title: "Lesson"
-author: John Doe
-date: Nov 4th, 2018
+title: "Calculator"
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
+removeStatusBar: true
 ---
 
-<Calculator expanded></Calculator>
+# Calculator
+
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
+<Calculator />
+            `}
+            scope={{
+                Calculator
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text style={{ height: '75vh' }}>
+
+#### Options:
+
+* __expandable__ | `boolean`: controls whether calculator is expandable. Default: `true`.
+* __show__ | `boolean`: controls whether calculator is shown. Default: `true`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
+* __onHide__ | `function`: callback invoked when the close button is clicked. Default: `none`.
+
+        </Text>
+    </Col>
+</Row>
+

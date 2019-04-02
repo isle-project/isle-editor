@@ -1,38 +1,31 @@
 ---
 title: "Weather"
-author: Philipp Burckhardt
-date: Dec 27th, 2017
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
-
+removeStatusBar: true
 ---
 
 # Weather
 
 This component triggers the [Apixu](https://www.apixu.com/) API and downloads the weather of the given location.
 
-<br />
-
-<Playground
-    style={{
-        marginLeft: 0,
-        width: '1200px'
-    }}
-    code={`
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
 <Weather
     location="Pittsburgh"
 />
-`}
-    scope={{
-        Weather
-    }}
-/>
-
-
-<br />
-
-
+        `}
+            scope={{
+                Weather
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 
 #### Options:
 
@@ -41,3 +34,6 @@ This component triggers the [Apixu](https://www.apixu.com/) API and downloads th
 * __location__ | `string`: location name. Default: `none`.
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
+        </Text>
+    </Col>
+</Row>
