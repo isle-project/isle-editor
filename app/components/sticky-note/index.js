@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Draggable from 'react-draggable';
 import noop from '@stdlib/utils/noop';
 import './sticky_note.css';
 
@@ -47,25 +48,27 @@ class StickyNote extends Component {
 		if ( this.props.onClick !== noop ) {
 			className += ' sticky-note-callback';
 		}
-		return (
-			<div onClick={this.triggerClick} style={this.props.style} className={className}>
-				<div className="sticky-note-wrapper">
-					{ this.props.removable ? <div onClick={this.remove} title="Click to remove note" className="sticky-note-pin-image-map" /> : null }
-					<div className="sticky-note-content">
-						<div className="sticky-note-title">
-							{this.props.title}
-						</div>
-						<div className="sticky-note-date">
-							{this.props.date}
-						</div>
-						<div className="sticky-note-body">
-							{this.props.body}
-						</div>
-						{this.props.stain ? <div className="sticky-note-stain" /> : null }
+		const out = <div onClick={this.triggerClick} style={this.props.style} className={className}>
+			<div className="sticky-note-wrapper">
+				{ this.props.removable ? <div onClick={this.remove} title="Click to remove note" className="sticky-note-pin-image-map" /> : null }
+				<div className="sticky-note-content">
+					<div className="sticky-note-title">
+						{this.props.title}
 					</div>
+					<div className="sticky-note-date">
+						{this.props.date}
+					</div>
+					<div className="sticky-note-body">
+						{this.props.body}
+					</div>
+					{this.props.stain ? <div className="sticky-note-stain" /> : null }
 				</div>
 			</div>
-		);
+		</div>;
+		if ( this.props.draggable ) {
+			return <Draggable>{out}</Draggable>;
+		}
+		return out;
 	}
 }
 
@@ -73,10 +76,17 @@ class StickyNote extends Component {
 // PROPERTIES //
 
 StickyNote.propTypes = {
-	title: PropTypes.string,
-	body: PropTypes.string,
+	title: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
+	body: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	style: PropTypes.object,
 	date: PropTypes.string,
+	draggable: PropTypes.bool,
 	stain: PropTypes.bool,
 	onClick: PropTypes.func,
 	removable: PropTypes.bool
@@ -86,6 +96,7 @@ StickyNote.defaultProps = {
 	title: 'Enter a title',
 	body: 'Body of the note',
 	date: '',
+	draggable: false,
 	style: {},
 	stain: null,
 	onClick: noop,
