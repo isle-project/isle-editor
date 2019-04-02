@@ -195,7 +195,7 @@ class SelectQuestionMatrix extends Component {
 		const nAnswers = keys( this.state.answers ).length;
 		const nInputs = keys( this.props.options ).length;
 		return (
-			<Card border={this.state.answerState} className="select-question-matrix" style={this.props.style} body >
+			<Card id={this.props.id} border={this.state.answerState} className="select-question-matrix" style={this.props.style} body >
 				{ this.props.question ? <label>{this.props.question}</label> : null }
 				{this.renderColumnNames()}
 				{this.renderRows()}
