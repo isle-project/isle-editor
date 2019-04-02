@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Draggable from 'react-draggable';
 import noop from '@stdlib/utils/noop';
 import './polaroid.css';
 
@@ -100,16 +101,18 @@ class Polaroid extends Component {
 		if ( this.state.touched === true ) {
 			innerImage = 'polaroid-image polaroid-touched';
 		}
-		return (
-			<div id={this.props.id} onMouseOver={this.touch} onMouseOut={this.untouch} onClick={this.trigger} style={this.props.style} className={imageClass} >
-				<div className="polaroid-wrapper">
-					{this.props.stain ? <div className="polaroid-stain" /> : null}
-					<div style={background} className={innerImage} />
-					{this.props.showPin ? <div className="polaroid-pin" /> : null}
-					{this.props.removable ? <div onClick={this.remove} className="pin-image-map" /> : null }
-				</div>
+		const out = <div id={this.props.id} onMouseOver={this.touch} onMouseOut={this.untouch} onClick={this.trigger} style={this.props.style} className={imageClass} >
+			<div className="polaroid-wrapper">
+				{this.props.stain ? <div className="polaroid-stain" /> : null}
+				<div style={background} className={innerImage} />
+				{this.props.showPin ? <div className="polaroid-pin" /> : null}
+				{this.props.removable ? <div onClick={this.remove} className="pin-image-map" /> : null }
 			</div>
-		);
+		</div>;
+		if ( this.props.draggable ) {
+			return <Draggable>{out}</Draggable>;
+		}
+		return out;
 	}
 }
 
@@ -119,6 +122,7 @@ class Polaroid extends Component {
 Polaroid.propTypes = {
 	image: PropTypes.string,
 	removable: PropTypes.bool,
+	draggable: PropTypes.bool,
 	showPin: PropTypes.bool,
 	style: PropTypes.object,
 	onClick: PropTypes.func
@@ -127,6 +131,7 @@ Polaroid.propTypes = {
 Polaroid.defaultProps = {
 	image: null,
 	removable: false,
+	draggable: false,
 	showPin: false,
 	style: {},
 	onClick: noop
