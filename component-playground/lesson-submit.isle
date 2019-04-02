@@ -1,27 +1,26 @@
 ---
 title: "Lesson Submit"
-author: Philipp Burckhardt
-date: Jul 22nd, 2018
+author: The ISLE Authors
+date: April 2nd, 2019
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
 ---
 
 # Lesson Submit
 
-<Playground 
-    style={{
-        marginLeft: 0,
-        width: '900px'
-    }}
-    code={`
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
 <LessonSubmit />
-`}
-    scope={{
-        LessonSubmit
-    }}
-/>
-
+        `}
+            scope={{
+                LessonSubmit
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 
 #### Options:
 
@@ -30,3 +29,7 @@ hideToolbar: true
 * __sendConfirmationEmail__ | `boolean`: controls whether to send confirmation email upon lesson submission. Default: `true`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onClick__ | `function`: callback invoked when clicking on the submission button. Default: `onClick() {}`.
+
+        </Text>
+    </Col>
+</Row>
