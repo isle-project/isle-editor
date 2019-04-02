@@ -164,6 +164,10 @@
 		"value":"<Plotly\n\tdata={${1:data array}}\n\tlayout={${2:{}}}\n/>\n"
 	},
 	{
+		"name":"Polaroid",
+		"value":"<Polaroid image=\"${1:Enter URL}\" />"
+	},
+	{
 		"name":"Preload",
 		"value":"<Preload\n\timage={${1:}} />\n"
 	},
