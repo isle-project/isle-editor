@@ -1,37 +1,32 @@
 ---
 title: "Feedback"
-author: Philipp Burckhardt
-date: Dec 27th, 2017
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
+removeStatusBar: true
 ---
 
 # Feedback
 
-<br />
-
-
-
-<Playground 
-    style={{
-        marginLeft: 0,
-        width: '1200px'
-    }}
-    code={`
-    <div>
-        <span>Collect student feedback...</span>
-            <FeedbackButtons
-                id="feedback_id"
-            />
-    </div>
-`}
-    scope={{
-        FeedbackButtons
-    }}
-/>
-
-
-<br />
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
+<div style={{ margin: 120 }}>
+    <span>Collect student feedback...</span>
+    <FeedbackButtons
+        id="feedback_id"
+    />
+</div>
+        `}
+            scope={{
+                FeedbackButtons
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 
 #### Options:
 
@@ -41,3 +36,7 @@ server: https://isle.heinz.cmu.edu
 * __understoodMsg__ | `string`: message to be displayed in tooltip for understood button. Default: `'Makes sense.'`.
 * __vertical__ | `boolean`: buttons are displayed vertically if set to `true`. Default: `false`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
+
+        </Text>
+    </Col>
+</Row>
