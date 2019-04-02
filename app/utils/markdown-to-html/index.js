@@ -23,7 +23,7 @@ const DEFAULT_DISP_MATH_DELIMITERS = [
 ];
 const RE_RAW_ATTRIBUTE = /raw *= *("[^"]*"|{`[^`]*`})/g;
 const RE_BACKSLASH = /(^|[^\\])\\($|[^\\])/g;
-const RE_TEXT_TAG = /<Text(| [^>]*)>([\s\S]*)<\/Text>/g;
+const RE_TEXT_TAG = /<Text(| [^>]*)>([\s\S]*?)<\/Text>/g;
 
 // Escape backslashes in raw attributes tags:
 const escaper = ( match, p1 ) => {
