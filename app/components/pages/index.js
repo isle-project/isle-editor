@@ -218,7 +218,8 @@ class Pages extends Component {
 						this.wrapper = div;
 					}}
 					style={{
-						height: this.props.height
+						height: this.props.height,
+						...this.props.style
 					}}
 				>
 					{ isArray( this.props.children ) ? this.props.children.map( ( elem, idx ) => {
