@@ -8,6 +8,8 @@ import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
 import isArray from '@stdlib/assert/is-array';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import isEmptyString from '@stdlib/assert/is-empty-string';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import lowercase from '@stdlib/string/lowercase';
 import removeLast from '@stdlib/string/remove-last';
@@ -448,6 +450,10 @@ class FullscreenActionDisplay extends Component {
 		);
 	}
 
+	renderNestedTable = () => {
+		return null;
+	}
+
 	renderListGroupItem = ( index, key ) => {
 		debug( `Rendering item at position ${index}...` );
 		const elem = this.state.filtered[ index ];
@@ -485,6 +491,21 @@ class FullscreenActionDisplay extends Component {
 					if ( value[ i ][ j ] ) {
 						str += data.rows[ i ] + ' - '+data.cols[ j ]+'; ';
 					}
+				}
+			}
+			value = str || 'None';
+		}
+		else if ( data.type === 'tensor' ) {
+			let str = '';
+			for ( let i = 0; i < data.rows.length; i++ ) {
+				for ( let j = 0; j < data.cols.length; j++ ) {
+					const rv = data.rows[ i ];
+					const cv = data.cols[ j ];
+					str += isString( rv ) && !isEmptyString( rv ) ? rv : i;
+					str += '-';
+					str += isString( cv ) && !isEmptyString( cv ) ? cv : j;
+					str += ': ';
+					str += value[ i+':'+j ] + '; ';
 				}
 			}
 			value = str || 'None';
@@ -604,6 +625,9 @@ class FullscreenActionDisplay extends Component {
 					break;
 				case 'matrix':
 					plot = this.renderTable();
+					break;
+				case 'tensor':
+					plot = this.renderNestedTable();
 					break;
 				case 'matches':
 					plot = this.renderSankeyDiagram();

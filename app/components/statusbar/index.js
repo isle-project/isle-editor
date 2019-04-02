@@ -63,7 +63,7 @@ class StatusBar extends Component {
 			side,
 			recordedText: null,
 			showCalculator: false,
-			showStatusBar: !context.config.hideStatusBar,
+			showStatusBar: !context.config.hideStatusBar && !context.config.removeStatusBar,
 			showProgressBar: false,
 			showQueue: false,
 			isProgressLeaving: false,

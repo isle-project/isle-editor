@@ -199,7 +199,7 @@ class SelectQuestionMatrix extends Component {
 				{ this.props.question ? <label>{this.props.question}</label> : null }
 				{this.renderColumnNames()}
 				{this.renderRows()}
-				<div className="select-question-toolbar">
+				<div className="select-question-matrix-toolbar">
 					<Button className="submit-button"
 						variant="primary" size="sm" onClick={this.handleSubmit}
 						disabled={nAnswers < nInputs || this.state.submitted && this.state.answerState === 'success'}
@@ -213,17 +213,21 @@ class SelectQuestionMatrix extends Component {
 					{
 						this.props.chat && this.props.id ? <ChatButton for={this.props.id} /> : null
 					}
+				</div>
+				{ this.props.id ? <div>
 					<ResponseVisualizer
 						id={this.props.id}
 						data={{
-							type: 'matrix'
+							type: 'tensor',
+							rows: this.props.rows,
+							cols: this.props.cols
 						}}
 						info={SELECT_QUESTION_MATRIX_SUBMISSION}
 					/>
 					{ this.props.id && this.props.feedback ? <FeedbackButtons
 						id={this.props.id+'_feedback'}
 					/> : null }
-				</div>
+				</div> : null }
 			</Card>
 		);
 	}

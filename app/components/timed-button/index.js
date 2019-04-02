@@ -25,7 +25,8 @@ const debug = logger( 'isle:timed-button' );
 * @property {string} size - font size, passed to the regular button component
 * @property {string} type - HTML button type attribute
 * @property {string} variant - button variant, passed to the regular button component
-* @property {object} style - CSS inline styles
+* @property {Object} style - CSS inline styles
+* @property {boolean} autoActivate - controls whether to always timeout the button when clicked; if `false`, the timeout is only applied when the callback pased to the `onClick` event handler is invoked with `true`
 */
 class TimedButton extends Component {
 	constructor( props ) {

@@ -6,3 +6,10 @@
 	margin-top: 8px;
 	max-width: 900px;
 }
+
+.select-question-matrix-toolbar {
+	float: right;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
