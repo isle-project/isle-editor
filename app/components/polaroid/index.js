@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import noop from '@stdlib/utils/noop';
 import './polaroid.css';
 
 
@@ -64,7 +65,9 @@ class Polaroid extends Component {
 	}
 
 	trigger = () => {
-		this.props.onClick( this.props.id );
+		if ( this.props.onClick !== noop ) {
+			this.props.onClick( this.props.id );
+		}
 	}
 
 	touch = () => {
@@ -87,11 +90,11 @@ class Polaroid extends Component {
 			backgroundPosition: 'center'
 		};
 		let imageClass = 'polaroid';
-		if ( this.props.id !== '') {
-			imageClass = 'polaroid clickable-polaroid';
+		if ( this.props.onClick !== noop ) {
+			imageClass += ' clickable-polaroid';
 		}
 		if ( this.state.exit === true ) {
-			imageClass = 'polaroid polaroid-exit';
+			imageClass += ' polaroid-exit';
 		}
 		let innerImage = 'polaroid-image';
 		if ( this.state.touched === true ) {
@@ -126,7 +129,7 @@ Polaroid.defaultProps = {
 	removable: false,
 	showPin: false,
 	style: {},
-	onClick() {}
+	onClick: noop
 };
 
 
