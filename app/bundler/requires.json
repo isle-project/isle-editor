@@ -112,6 +112,7 @@
 	"SurveyGenerator": "components/survey-generator",
 	"Typewriter": "components/typewriter",
 	"TimedButton": "components/timed-button",
+	"Tree": "components/sortable-tree",
 	"Unveil": "components/unveil",
 	"VoiceInput": "components/input/voice",
 	"VoiceControl": "components/voice-control",

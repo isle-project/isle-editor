@@ -312,6 +312,10 @@
 		"value":"<TimedButton ${1:}>${2:Label}</TimedButton>"
 	},
 	{
+		"name": "Tree",
+		"value": "<Tree treeData={[\n\t{title: 'main', subtitle: 'sub'}, { title: 'value2', expanded: true, children: [{ title: 'value3' }] }]}\n/>"
+	},
+	{
 		"name":"Typewriter",
 		"value":"<Typewriter text=\"${1:}\" />\n"
 	},

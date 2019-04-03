@@ -25,6 +25,16 @@
 		<% if ( meta.logo ) { %>
 			<img id="loading-logo" src="<%= meta.logo %>" />
 		<% } %>
+		<% if ( meta.objectives ) { %>
+			<div id="loading-objectives">
+				<span id="loading-objectives-title">Learning Objectives</span>
+				<ul>
+					<% for( var tag in meta.objectives ) { %>
+						<li><%= meta.objectives[tag] %></li>
+					<% } %>
+				</ul>
+			</div>
+		<% } %>
 	</div>
 	<div id="App"></div>
 	</body>

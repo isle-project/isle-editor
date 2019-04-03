@@ -15,6 +15,7 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import replace from '@stdlib/string/replace';
 import startsWith from '@stdlib/string/starts-with';
 import endsWith from '@stdlib/string/ends-with';
+import max from '@stdlib/math/base/special/max';
 import papplyRight from '@stdlib/utils/papply-right';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import markdownToHTML from 'utils/markdown-to-html';
@@ -86,7 +87,7 @@ const getComponents = ( arr ) => {
 	return requireStatements.join( '\n' );
 };
 
-const getLessonComponent = ( lessonContent, className ) => `
+const getLessonComponent = ( lessonContent, className, loaderTimeout = 3000 ) => `
 global.session = new Session( preamble );
 
 class Lesson extends Component {
@@ -99,11 +100,13 @@ class Lesson extends Component {
 		global.lesson = this;
 		const loader = document.getElementById( 'loading' );
 		if ( loader ) {
-			loader.style.animation = 'anim-fade-out 1.7s forwards';
+			setTimeout(function onFadeOut() {
+				loader.style.animation = 'anim-fade-out 1.7s forwards';
+			}, ${max( loaderTimeout - 3000, 0 )});
 			setTimeout(function onRemove() {
 				loader.remove();
 				document.body.style['overflow-y'] = 'auto';
-			}, 3000 );
+			}, ${loaderTimeout} );
 		}
 	}
 
@@ -212,7 +215,13 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 	res += getSessionCode( basePath );
 
 	res += getComponents( components );
-	res += getLessonComponent( lessonContent, className );
+	let loaderTimeout;
+	if ( meta.objectives ) {
+		loaderTimeout = 3000 + ( 3000 * meta.objectives.length );
+	} else {
+		loaderTimeout = 3000;
+	}
+	res += getLessonComponent( lessonContent, className, loaderTimeout );
 	return res;
 }
 

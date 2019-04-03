@@ -112,6 +112,23 @@ mark {
 	animation: anim-fade-in 2s, anim-scale-up 2s;
 }
 
+#loading-objectives-title {
+	font-size: calc(22px + 0.75vw);
+	font-family: Open Sans Condensed;
+}
+
+#loading-objectives {
+	position: relative;
+	padding: 45px;
+	color: silver;
+	text-shadow: 1px 1px 2px black;
+	font-weight: 400;
+	width: 100%;
+	text-align: left;
+	font-size: calc(18px + 0.75vw);
+	animation: anim-fade-in 1.3s forwards, anim-scale-up 2s forwards;
+}
+
 #loading-bar {
 	position: relative;
 	margin-left: calc((100% - 400px) / 2);
