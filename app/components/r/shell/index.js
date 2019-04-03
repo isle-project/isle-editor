@@ -14,6 +14,7 @@ import createPrependCode from 'components/r/utils/create-prepend-code';
 import ChatButton from 'components/chat-button';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
+import isFunction from '@stdlib/assert/is-function';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import max from '@stdlib/math/base/special/max';
 import logger from 'debug';
@@ -364,7 +365,9 @@ class RShell extends React.Component {
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
 		}
-		this.editor.destroy();
+		if ( isFunction( this.editor.destroy ) ) {
+			this.editor.destroy();
+		}
 		this.editor = null;
 	}
 

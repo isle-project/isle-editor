@@ -70,6 +70,7 @@
 	"Nav": "react-bootstrap/Nav",
 	"Navbar": "react-bootstrap/Navbar",
 	"NavItem": "react-bootstrap/NavItem",
+	"NavLink": "react-bootstrap/NavLink",
 	"NetworkPlot": "components/d3/network-plot",
 	"News": "components/news",
 	"NumberInput": "components/input/number",

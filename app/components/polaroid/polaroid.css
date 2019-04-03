@@ -10,6 +10,8 @@
 
 .polaroid-wrapper {
 	position: relative;
+	width: 100%;
+	height: 100%;
 }
 
 .polaroid-exit {
@@ -18,7 +20,7 @@
 }
 
 .polaroid-image {
-	position: inherit;
+	position: absolute;
 	left: 5.7%;
 	top: 4.5%;
 	width: 88.6%;
@@ -45,7 +47,7 @@
 }
 
 .polaroid-pin {
-	position: inherit;
+	position: absolute;
 	left: 46%;
 	top: 4px;
 	width: 48px;
@@ -55,7 +57,7 @@
 }
 
 .pin-image-map {
-	position: inherit;
+	position: absolute;
 	left: 46%;
 	top: 4px;
 	width: 48px;
@@ -65,7 +67,7 @@
 }
 
 .polaroid-stain {
-	position: inherit;
+	position: absolute;
 	left: 45%;
 	top: 16%;
 	opacity: 0.5;

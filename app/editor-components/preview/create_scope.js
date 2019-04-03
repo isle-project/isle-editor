@@ -163,6 +163,7 @@ const SCOPE = {
 	Nav: Loadable( () => import( 'react-bootstrap/Nav' ) ),
 	Navbar: Loadable( () => import( 'react-bootstrap/Navbar' ) ),
 	NavItem: Loadable( () => import( 'react-bootstrap/NavItem' ) ),
+	NavLink: Loadable( () => import( 'react-bootstrap/NavLink' ) ),
 	Row: Loadable( () => import( 'react-bootstrap/Row' ) ),
 	Tab: Loadable( () => import( 'react-bootstrap/Tab' ) ),
 	Tabs: Loadable( () => import( 'react-bootstrap/Tabs' ) ),
