@@ -177,6 +177,7 @@
     "react-router-dom": "5.0.0",
     "react-select": "^2.4.2",
     "react-slick": "0.23.2",
+    "react-sortable-tree": "^2.6.2",
     "react-split-pane": "0.1.87",
     "react-table": "6.8.6",
     "react-transition-group": "^2.7.1",
