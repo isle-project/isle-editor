@@ -180,7 +180,7 @@ class ResponseVisualizers extends Component {
 							Open
 						</Badge>
 					</Tooltip>
-					<Tooltip placement="left" tooltip="# of Actions">
+					<Tooltip placement="left" tooltip="# of actions">
 						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`n: ${nActions}`}</Badge>
 					</Tooltip>
 					<Tooltip placement="left" tooltip="# of students who answered">
