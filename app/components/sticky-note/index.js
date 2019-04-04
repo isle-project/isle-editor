@@ -14,8 +14,10 @@ import './sticky_note.css';
 *
 * @property {string} title - note title
 * @property {string} body - text of the note
+* @property {string} color - available options: red, green, blue, pink, orange
 * @property {Object} style - CSS inline styles
 * @property {string} date - a date displayed for the note
+* @property {boolean} minimizable - controls whether the component is minimizable
 * @property {boolean} stain - controls whether to show a coffee stain
 * @property {Function} onClick - callback function invoked when the note is clicked
 * @property {boolean} removable - controls whether the note is removed when clicked
@@ -66,6 +68,37 @@ class StickyNote extends Component {
 				style.transform += ' scale(1)';
 			}
 		}
+
+		if (this.props.color) {
+			switch (this.props.color) {
+				case 'blue':
+					style.webkitFilter = 'hue-rotate(166deg)';
+					style.filter = 'hue-rotate(166deg)';
+				break;
+
+				case 'green':
+					style.webkitFilter = 'hue-rotate(88deg) saturate(70%)';
+					style.filter = 'hue-rotate(88deg) saturate(70%)';
+
+				break;
+
+				case 'pink':
+					style.webkitFilter = 'hue-rotate(220deg) saturate(70%)';
+					style.filter = 'hue-rotate(220deg) saturate(70%)';
+				break;
+
+				case 'red':
+					style.webkitFilter = 'hue-rotate(290deg) saturate(70%)';
+					style.filter = 'hue-rotate(290deg) saturate(70%)';
+				break;
+
+				case 'orange':
+					style.webkitFilter = 'hue-rotate(320deg) saturate(70%)';
+					style.filter = 'hue-rotate(320deg) saturate(70%)';
+				break;
+			}
+		}
+
 		return style;
 	}
 
@@ -121,6 +154,7 @@ StickyNote.propTypes = {
 		PropTypes.string,
 		PropTypes.node
 	]),
+	color: PropTypes.string,
 	style: PropTypes.object,
 	date: PropTypes.string,
 	draggable: PropTypes.bool,
@@ -133,6 +167,7 @@ StickyNote.propTypes = {
 StickyNote.defaultProps = {
 	title: 'Enter a title',
 	body: 'Body of the note',
+	color: null,
 	date: '',
 	draggable: false,
 	minimizable: false,
