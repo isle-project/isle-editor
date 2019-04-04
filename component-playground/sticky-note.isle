@@ -1,0 +1,45 @@
+---
+title: "Sticky Note"
+author: The ISLE Authors
+date: April 4th, 2019
+state:
+server: https://isle.heinz.cmu.edu
+removeStatusBar: true
+---
+
+# Sticky Note
+
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`
+<StickyNote minimizable title="+49301777512635!" body="You got a phone call. Please call back, it's urgent!"/>
+            `}
+            scope={{
+                StickyNote
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
+
+#### Options:
+
+* __title__ | `(string|node)`: note title. Default: `'Enter a title'`.
+* __body__ | `(string|node)`: text of the note. Default: `'Body of the note'`.
+* __color__ | `string`: available options: red, green, blue, pink, orange. Default: `none`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
+* __date__ | `string`: a date displayed for the note. Default: `''`.
+* __draggable__ | `boolean`: undefined. Default: `false`.
+* __minimizable__ | `boolean`: controls whether the component is minimizable. Default: `false`.
+* __minimized__ | `boolean`: if set, the component is minimized at the start. Default: `false`.
+* __stain__ | `boolean`: controls whether to show a coffee stain. Default: `none`.
+* __onClick__ | `function`: callback function invoked when the note is clicked. Default: `function noop() {
+	// Empty function...
+}`.
+* __removable__ | `boolean`: controls whether the note is removed when clicked. Default: `false`.
+        </Text>
+    </Col>
+</Row>
+
+

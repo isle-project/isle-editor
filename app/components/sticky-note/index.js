@@ -69,9 +69,8 @@ class StickyNote extends Component {
 				style.transform += ' scale(1)';
 			}
 		}
-
-		if (this.props.color) {
-			switch (this.props.color) {
+		if ( this.props.color ) {
+			switch ( this.props.color ) {
 				case 'blue':
 					style.webkitFilter = 'hue-rotate(166deg)';
 					style.filter = 'hue-rotate(166deg)';
@@ -80,7 +79,6 @@ class StickyNote extends Component {
 				case 'green':
 					style.webkitFilter = 'hue-rotate(88deg) saturate(70%)';
 					style.filter = 'hue-rotate(88deg) saturate(70%)';
-
 				break;
 
 				case 'pink':
@@ -105,16 +103,13 @@ class StickyNote extends Component {
 
 	render() {
 		let style = this.checkTransforms();
-
 		let className = 'sticky-note';
 		if ( this.state.exit === true ) {
 			className += ' sticky-note-exit';
 		}
-
-		if (this.state.minimized === true) {
+		if ( this.state.minimized === true ) {
 			className += ' sticky-note-minimized';
 		}
-
 		if ( this.props.onClick !== noop ) {
 			className += ' sticky-note-callback';
 		}
