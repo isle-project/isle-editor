@@ -69,9 +69,8 @@ class StickyNote extends Component {
 				style.transform += ' scale(1)';
 			}
 		}
-
-		if (this.props.color) {
-			switch (this.props.color) {
+		if ( this.props.color ) {
+			switch ( this.props.color ) {
 				case 'blue':
 					style.webkitFilter = 'hue-rotate(166deg)';
 					style.filter = 'hue-rotate(166deg)';
@@ -80,7 +79,6 @@ class StickyNote extends Component {
 				case 'green':
 					style.webkitFilter = 'hue-rotate(88deg) saturate(70%)';
 					style.filter = 'hue-rotate(88deg) saturate(70%)';
-
 				break;
 
 				case 'pink':
@@ -105,34 +103,33 @@ class StickyNote extends Component {
 
 	render() {
 		let style = this.checkTransforms();
-
 		let className = 'sticky-note';
 		if ( this.state.exit === true ) {
 			className += ' sticky-note-exit';
 		}
-
-		if (this.state.minimized === true) {
+		if ( this.state.minimized === true ) {
 			className += ' sticky-note-minimized';
 		}
-
 		if ( this.props.onClick !== noop ) {
 			className += ' sticky-note-callback';
 		}
-		const out = <div onClick={this.triggerClick} style={style} className={className}>
-			<div className="sticky-note-wrapper">
-				{this.props.minimizable ? <div onClick={this.minimize} className="sticky-note-minimizable">–</div> : null }
-				{ this.props.removable ? <div onClick={this.remove} title="Click to remove note" className="sticky-note-pin-image-map" /> : null }
-				<div className="sticky-note-content">
-					<div className="sticky-note-title">
-						{this.props.title}
+		const out = <div className="sticky-note-outer" style={style} >
+			<div onClick={this.triggerClick} className={className}>
+				<div className="sticky-note-wrapper">
+					{this.props.minimizable ? <div onClick={this.minimize} className="sticky-note-minimizable">–</div> : null }
+					{ this.props.removable ? <div onClick={this.remove} title="Click to remove note" className="sticky-note-pin-image-map" /> : null }
+					<div className="sticky-note-content">
+						<div className="sticky-note-title">
+							{this.props.title}
+						</div>
+						<div className="sticky-note-date">
+							{this.props.date}
+						</div>
+						<div className="sticky-note-body">
+							{this.props.body}
+						</div>
+						{this.props.stain ? <div className="sticky-note-stain" /> : null }
 					</div>
-					<div className="sticky-note-date">
-						{this.props.date}
-					</div>
-					<div className="sticky-note-body">
-						{this.props.body}
-					</div>
-					{this.props.stain ? <div className="sticky-note-stain" /> : null }
 				</div>
 			</div>
 		</div>;

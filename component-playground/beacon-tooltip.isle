@@ -37,7 +37,6 @@ removeStatusBar: true
 * __target__ | `string`: class or ID selector for element to attach tooltip to. Default: `''`.
 * __offset__ | `number`: distance between the tooltip and `target` in pixels. Default: `15`.
 * __onChange__ | `function`: callback invoked upon state change of the tooltip. Receives two arguments: the `action` (`open` or `close`) and the passed `props`. Default: `onChange() {}`.
-
         </Text>
     </Col>
 </Row>

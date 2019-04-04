@@ -29,7 +29,6 @@ server: https://isle.heinz.cmu.edu
 * __sendConfirmationEmail__ | `boolean`: controls whether to send confirmation email upon lesson submission. Default: `true`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onClick__ | `function`: callback invoked when clicking on the submission button. Default: `onClick() {}`.
-
         </Text>
     </Col>
 </Row>

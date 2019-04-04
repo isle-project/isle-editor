@@ -38,7 +38,6 @@ server: https://isle.heinz.cmu.edu
 * __owner__ | `boolean`: when set the gated content is displayed to the owner of the course (usually the instructor). Default: `false`.
 * __banner__ | `node`: a message which is visible to the visitors lacking the gate privilege. Default: `none`.
 * __disabled__ | `boolean`: if a gate is disabled, the banner will be displayed no matter what. Default: `false`.
-
         </Text>
     </Col>
 </Row>

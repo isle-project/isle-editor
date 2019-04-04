@@ -2022,10 +2022,22 @@
       {
         "name": "types",
         "type": "array<string>",
+        "description": "the type(s) of test (`One-Sample`, `Two-Sample`) the widget should expose",
         "default": [
           "One-Sample",
           "Two-Sample"
         ]
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
       }
     ],
     "description": "A learning component on hypothesis tests for a population mean."
@@ -2035,10 +2047,23 @@
       {
         "name": "types",
         "type": "array<string>",
+        "description": "the type(s) of test (`One-Sample`, `Two-Sample`) the widget should expose",
         "default": [
           "One-Sample",
           "Two-Sample"
         ]
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       }
     ],
     "description": "A learning component on hypothesis tests for a population proportion."
@@ -3148,6 +3173,11 @@
         "default": false
       },
       {
+        "name": "draggable",
+        "type": "boolean",
+        "default": false
+      },
+      {
         "name": "showPin",
         "type": "boolean",
         "description": "shows a pin",
@@ -3163,7 +3193,7 @@
         "name": "onClick",
         "type": "function",
         "description": "event handler invoked when image is clicked (receives the id of the Polaroid as parameter)",
-        "default": "onClick() {}"
+        "default": "function noop() {\n\t// Empty function...\n}"
       }
     ],
     "description": "A component displaying an image in the style of a polaroid."
@@ -4376,6 +4406,16 @@
     ],
     "description": "A component which displays its children in a slideshow or carousel."
   },
+  "Tree": {
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "default": null
+      }
+    ],
+    "description": "Description is missing."
+  },
   "Appear": {
     "props": [],
     "description": "Wrapped elements in the appear tag makes them appear/disappear in order in response to navigation."
@@ -4502,15 +4542,21 @@
     "props": [
       {
         "name": "title",
-        "type": "string",
+        "type": "(string|node)",
         "description": "note title",
         "default": "Enter a title"
       },
       {
         "name": "body",
-        "type": "string",
+        "type": "(string|node)",
         "description": "text of the note",
         "default": "Body of the note"
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "description": "available options: red, green, blue, pink, orange",
+        "default": null
       },
       {
         "name": "style",
@@ -4525,6 +4571,23 @@
         "default": ""
       },
       {
+        "name": "draggable",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "minimizable",
+        "type": "boolean",
+        "description": "controls whether the component is minimizable",
+        "default": false
+      },
+      {
+        "name": "minimized",
+        "type": "boolean",
+        "description": "if set, the component is minimized at the start",
+        "default": false
+      },
+      {
         "name": "stain",
         "type": "boolean",
         "description": "controls whether to show a coffee stain",
@@ -4534,7 +4597,7 @@
         "name": "onClick",
         "type": "function",
         "description": "callback function invoked when the note is clicked",
-        "default": "onClick() {}"
+        "default": "function noop() {\n\t// Empty function...\n}"
       },
       {
         "name": "removable",
@@ -4735,20 +4798,26 @@
       {
         "name": "size",
         "type": "string",
-        "description": "font size, passed to the native React button",
-        "default": "sm"
+        "description": "font size, passed to the regular button component",
+        "default": null
       },
       {
         "name": "type",
         "type": "string",
-        "description": "button type, passed to the native React button",
-        "default": "submit"
+        "description": "HTML button type attribute",
+        "default": null
       },
       {
         "name": "variant",
         "type": "string",
-        "description": "passed to the button",
-        "default": "info"
+        "description": "button variant, passed to the regular button component",
+        "default": null
+      },
+      {
+        "name": "autoActivate",
+        "type": "boolean",
+        "description": "controls whether to always timeout the button when clicked; if `false`, the timeout is only applied when the callback pased to the `onClick` event handler is invoked with `true`",
+        "default": true
       },
       {
         "name": "style",
