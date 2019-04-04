@@ -61,8 +61,8 @@ class StickyNote extends Component {
 	// if a transform is set, this functions sets the scale manually
 	checkTransforms() {
 		let style = Object.assign({}, this.props.style);
-		if (style.transform) {
-			if (this.state.minimized === true) {
+		if ( style.transform ) {
+			if ( this.state.minimized === true ) {
 				style.transform += ' scale(0.15)';
 			}
 			else {
@@ -113,7 +113,7 @@ class StickyNote extends Component {
 		if ( this.props.onClick !== noop ) {
 			className += ' sticky-note-callback';
 		}
-		const out = <div className="sticky-note-outer" style={style} >
+		const out = <div className="sticky-note-outer" style={style}>
 			<div onClick={this.triggerClick} className={className}>
 				<div className="sticky-note-wrapper">
 					{this.props.minimizable ? <div onClick={this.minimize} className="sticky-note-minimizable">–</div> : null }

@@ -9,6 +9,8 @@
 
 .sticky-note-outer {
 	z-index: 2;
+	width: 45px;
+	height: 45px;
 }
 
 .sticky-note-wrapper {
