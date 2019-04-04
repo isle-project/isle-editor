@@ -33,7 +33,7 @@ class Background extends Component {
 			foregroundRatio: 1.777,
 			backgroundRatio: 1.777,
 			counter: 0,
-			initialized: false
+			initialized: true
 		};
 	}
 
@@ -56,16 +56,6 @@ class Background extends Component {
 		let w = parent.clientWidth;
 		let h = parent.clientHeight;
 
-		global.parent = parent;
-
-		if (h === 0) {
-			w = 600;
-			h = 320;
-			parent.style.width = '600px';
-			parent.style.height = '320px';
-			console.log('You have to define witdh and height for the parent element of the background');
-		}
-
 		const ratio = parseFloat( w / h ).toFixed( 4 );
 
 		this.setState({
@@ -76,8 +66,11 @@ class Background extends Component {
 	initialize(image) {
 		var self = this;
 		image.onload = function loadImage() {
+			let ratio = image.width / image.height;
+
 			self.setState({
-				initialized: true
+				initialized: true,
+				foregroundRatio: ratio
 			});
 		};
 	}
@@ -98,6 +91,16 @@ class Background extends Component {
 		if ( parent.attributes.class !== 'lesson' ) {
 			parent.style.backgroundColor = 'transparent';
 			parent.style.overflow = 'hidden';
+
+			let h = parent.clientHeight;
+			global.parent = parent;
+
+			if (h === 0) {
+				alert('Please define the height of the div which contains the Background component');
+				parent.style.width = '600px';
+				parent.style.height = '320px';
+				console.log('You have to define width and height for the parent element of the background');
+			}
 		}
 	}
 
@@ -170,6 +173,7 @@ class Background extends Component {
 		const foreground = {
 			animation: ani
 		};
+
 		const low = this.resizeImage( this.state.foregroundRatio );
 		return (
 			<div>
