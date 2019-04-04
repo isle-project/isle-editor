@@ -141,6 +141,7 @@ class ResponseVisualizers extends Component {
 			const viz = visualizers[ ids[ i ] ];
 			const nInfo = viz.ref.state.nInfo;
 			const nActions = viz.ref.state.nActions;
+			const nUniqueActions = keys( viz.ref.emailHash ).length;
 			const infoRate = ( nInfo / nUsers ) * 100.0;
 			overallProgress += infoRate;
 			const id = ids[ i ];
@@ -181,6 +182,9 @@ class ResponseVisualizers extends Component {
 					</Tooltip>
 					<Tooltip placement="left" tooltip="# of Actions">
 						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`n: ${nActions}`}</Badge>
+					</Tooltip>
+					<Tooltip placement="left" tooltip="# of students who answered">
+						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`au: ${nUniqueActions})`}</Badge>
 					</Tooltip>
 					<Tooltip placement="left" tooltip="Average elapsed time until answer">
 						<Badge
