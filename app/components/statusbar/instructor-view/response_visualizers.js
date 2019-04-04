@@ -145,7 +145,7 @@ class ResponseVisualizers extends Component {
 			overallProgress += infoRate;
 			const id = ids[ i ];
 			const time = `time: ${this.state.means[ id ] ? formatTime( this.state.means[ id ]() ) : ''}`;
-			let timeBadgeVariant = 'light';
+			let timeBadgeVariant;
 			if (
 				nInfo > 0 &&
 				this.state.means[ id ] &&
@@ -155,7 +155,11 @@ class ResponseVisualizers extends Component {
 					timeBadgeVariant = 'danger';
 				} else if ( infoRate > 75 ) {
 					timeBadgeVariant = 'success';
+				} else {
+					timeBadgeVariant = 'info';
 				}
+			} else {
+				timeBadgeVariant = 'light';
 			}
 			list[ i ] = (
 				<ListGroupItem
