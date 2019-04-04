@@ -48,6 +48,7 @@ function normalPDF( d ) {
 *
 * @property {Array} types - the type(s) of test (`One-Sample`, `Two-Sample`) the widget should expose
 * @property {boolean} feedback - controls whether to display feedback buttons
+* @property {Object} style - CSS inline styles
 */
 class ProportionTest extends Component {
 	constructor( props ) {
@@ -340,7 +341,7 @@ class ProportionTest extends Component {
 
 	render() {
 		return (
-			<Container>
+			<Container style={{ paddingTop: 20, paddingBottom: 20, ...this.props.style }}>
 				<Row>
 					<Col md={6}>
 						{this.renderParametersPanel()}
@@ -364,12 +365,14 @@ class ProportionTest extends Component {
 
 ProportionTest.defaultProps = {
 	types: [ 'One-Sample', 'Two-Sample' ],
-	feedback: false
+	feedback: false,
+	style: {}
 };
 
 ProportionTest.propTypes = {
 	types: PropTypes.arrayOf( PropTypes.string ),
-	feedback: PropTypes.bool
+	feedback: PropTypes.bool,
+	style: PropTypes.object
 };
 
 

@@ -368,7 +368,7 @@ class MeanTest extends Component {
 	}
 
 	render() {
-		return ( <Container>
+		return ( <Container style={{ paddingTop: 20, paddingBottom: 20, ...this.props.style }}>
 			<Row>
 				<Col md={6}>
 					{this.renderParametersPanel()}
@@ -391,12 +391,14 @@ class MeanTest extends Component {
 
 MeanTest.defaultProps = {
 	types: [ 'One-Sample', 'Two-Sample' ],
-	feedback: false
+	feedback: false,
+	style: {}
 };
 
 MeanTest.propTypes = {
 	types: PropTypes.arrayOf( PropTypes.string ),
-	feedback: PropTypes.bool
+	feedback: PropTypes.bool,
+	style: PropTypes.object
 };
 
 
