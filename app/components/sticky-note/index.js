@@ -113,21 +113,23 @@ class StickyNote extends Component {
 		if ( this.props.onClick !== noop ) {
 			className += ' sticky-note-callback';
 		}
-		const out = <div onClick={this.triggerClick} style={style} className={className}>
-			<div className="sticky-note-wrapper">
-				{this.props.minimizable ? <div onClick={this.minimize} className="sticky-note-minimizable">–</div> : null }
-				{ this.props.removable ? <div onClick={this.remove} title="Click to remove note" className="sticky-note-pin-image-map" /> : null }
-				<div className="sticky-note-content">
-					<div className="sticky-note-title">
-						{this.props.title}
+		const out = <div className="sticky-note-outer" style={style} >
+			<div onClick={this.triggerClick} className={className}>
+				<div className="sticky-note-wrapper">
+					{this.props.minimizable ? <div onClick={this.minimize} className="sticky-note-minimizable">–</div> : null }
+					{ this.props.removable ? <div onClick={this.remove} title="Click to remove note" className="sticky-note-pin-image-map" /> : null }
+					<div className="sticky-note-content">
+						<div className="sticky-note-title">
+							{this.props.title}
+						</div>
+						<div className="sticky-note-date">
+							{this.props.date}
+						</div>
+						<div className="sticky-note-body">
+							{this.props.body}
+						</div>
+						{this.props.stain ? <div className="sticky-note-stain" /> : null }
 					</div>
-					<div className="sticky-note-date">
-						{this.props.date}
-					</div>
-					<div className="sticky-note-body">
-						{this.props.body}
-					</div>
-					{this.props.stain ? <div className="sticky-note-stain" /> : null }
 				</div>
 			</div>
 		</div>;
