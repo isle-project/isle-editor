@@ -11,7 +11,7 @@ import Tooltip from 'components/tooltip';
 import copy from '@stdlib/utils/copy';
 import keys from '@stdlib/utils/keys';
 import contains from '@stdlib/assert/contains';
-import roundn from '@stdlib/math/base/special/roundn';
+import round from '@stdlib/math/base/special/round';
 import incrmean from '@stdlib/stats/incr/mean';
 import formatTime from 'utils/format-time';
 
@@ -209,7 +209,7 @@ class ResponseVisualizers extends Component {
 			<ProgressBar
 				striped
 				variant="success"
-				label={`Current class progress: ${roundn( overallProgress, -3 )}%`}
+				label={`Current class progress: ${round( overallProgress )}%`}
 				now={overallProgress}
 			/>
 			<ListGroup style={{
