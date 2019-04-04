@@ -18,6 +18,7 @@ import './sticky_note.css';
 * @property {Object} style - CSS inline styles
 * @property {string} date - a date displayed for the note
 * @property {boolean} minimizable - controls whether the component is minimizable
+* @property {boolean} minimized - if set, the component is minimized at the start
 * @property {boolean} stain - controls whether to show a coffee stain
 * @property {Function} onClick - callback function invoked when the note is clicked
 * @property {boolean} removable - controls whether the note is removed when clicked
@@ -28,7 +29,7 @@ class StickyNote extends Component {
 
 		this.state = {
 			exit: false,
-			minimized: false
+			minimized: props.minimized
 		};
 	}
 
@@ -159,6 +160,7 @@ StickyNote.propTypes = {
 	date: PropTypes.string,
 	draggable: PropTypes.bool,
 	minimizable: PropTypes.bool,
+	minimized: PropTypes.bool,
 	stain: PropTypes.bool,
 	onClick: PropTypes.func,
 	removable: PropTypes.bool
@@ -171,6 +173,7 @@ StickyNote.defaultProps = {
 	date: '',
 	draggable: false,
 	minimizable: false,
+	minimized: false,
 	style: {},
 	stain: null,
 	onClick: noop,

@@ -57,6 +57,7 @@
 .sticky-note-minimized {
 	transform: scale(0.15);
 	transition: all 0.6s;
+	cursor: pointer;
 }
 
 .sticky-note-minimizable {
