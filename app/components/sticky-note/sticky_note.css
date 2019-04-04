@@ -5,6 +5,7 @@
 	height: 300px;
 	z-index: 2;
 	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_postit.png);
+	transition: all 0.6s;
 }
 
 .sticky-note-wrapper {
@@ -51,6 +52,26 @@
 	padding-left: 15px;
 	font-family: 'Indie Flower', cursive;
 	font-size: 1em;
+}
+
+.sticky-note-minimized {
+	transform: scale(0.15);
+	transition: all 0.6s;
+}
+
+.sticky-note-minimizable {
+	position: absolute;
+	right: 24px;
+	top: 9px;
+	width: 16px;
+	height: 16px;
+	font-size: 32px;
+	z-index: 2;
+}
+
+.sticky-note-minimizable:hover {
+	cursor: pointer;
+	color: red;
 }
 
 .sticky-note-stain {

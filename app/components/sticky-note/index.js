@@ -25,12 +25,20 @@ class StickyNote extends Component {
 		super( props );
 
 		this.state = {
-			exit: false
+			exit: false,
+			minimized: false
 		};
 	}
 
 	triggerClick = () => {
-		this.props.onClick( this.props.id );
+		if (this.state.minimized === true) {
+			this.setState({
+				minimized: false
+			});
+		}
+		else {
+			this.props.onClick( this.props.id );
+		}
 	}
 
 	remove = ( evt ) => {
@@ -40,16 +48,45 @@ class StickyNote extends Component {
 		});
 	}
 
+	minimize = (evt) => {
+		evt.stopPropagation();
+		this.setState({
+			minimized: true
+		});
+	}
+
+	// if a transform is set, this functions sets the scale manually
+	checkTransforms() {
+		let style = Object.assign({}, this.props.style);
+		if (style.transform) {
+			if (this.state.minimized === true) {
+				style.transform += ' scale(0.15)';
+			}
+			else {
+				style.transform += ' scale(1)';
+			}
+		}
+		return style;
+	}
+
 	render() {
+		let style = this.checkTransforms();
+
 		let className = 'sticky-note';
 		if ( this.state.exit === true ) {
 			className += ' sticky-note-exit';
 		}
+
+		if (this.state.minimized === true) {
+			className += ' sticky-note-minimized';
+		}
+
 		if ( this.props.onClick !== noop ) {
 			className += ' sticky-note-callback';
 		}
-		const out = <div onClick={this.triggerClick} style={this.props.style} className={className}>
+		const out = <div onClick={this.triggerClick} style={style} className={className}>
 			<div className="sticky-note-wrapper">
+				{this.props.minimizable ? <div onClick={this.minimize} className="sticky-note-minimizable">–</div> : null }
 				{ this.props.removable ? <div onClick={this.remove} title="Click to remove note" className="sticky-note-pin-image-map" /> : null }
 				<div className="sticky-note-content">
 					<div className="sticky-note-title">
@@ -87,6 +124,7 @@ StickyNote.propTypes = {
 	style: PropTypes.object,
 	date: PropTypes.string,
 	draggable: PropTypes.bool,
+	minimizable: PropTypes.bool,
 	stain: PropTypes.bool,
 	onClick: PropTypes.func,
 	removable: PropTypes.bool
@@ -97,6 +135,7 @@ StickyNote.defaultProps = {
 	body: 'Body of the note',
 	date: '',
 	draggable: false,
+	minimizable: false,
 	style: {},
 	stain: null,
 	onClick: noop,
