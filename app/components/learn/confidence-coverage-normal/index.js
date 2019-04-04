@@ -99,7 +99,7 @@ class ConfidenceCoverageNormal extends Component {
 			return null;
 		}
 		return ( <VictoryChart
-			padding={30}
+			padding={{ top: 20, bottom: 30, left: 40, right: 20 }}
 			height={180}
 			theme={VictoryTheme.material}
 		>
@@ -193,6 +193,7 @@ class ConfidenceCoverageNormal extends Component {
 										defaultValue={30}
 										max={100}
 										step={1}
+										min={1}
 									/>
 									<NumberInput
 										legend="Mean (mu)"
