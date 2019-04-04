@@ -5,7 +5,7 @@
 	height: 300px;
 	z-index: 2;
 	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_postit.png);
-	transition: all 0.6s;
+	transition: all 0.3s;
 }
 
 .sticky-note-wrapper {
