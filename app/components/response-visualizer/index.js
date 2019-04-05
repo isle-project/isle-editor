@@ -112,6 +112,11 @@ class ResponseVisualizer extends Component {
 							selectedCohort: action
 						}, this.addSessionActions );
 					}
+					else {
+						this.setState({
+							selectedCohort: null
+						}, this.addSessionActions );
+					}
 				}
 				else if (
 					type === 'member_action' &&
