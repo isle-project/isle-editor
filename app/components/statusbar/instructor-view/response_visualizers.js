@@ -141,7 +141,14 @@ class ResponseVisualizers extends Component {
 			const viz = visualizers[ ids[ i ] ];
 			const nInfo = viz.ref.state.nInfo;
 			const nActions = viz.ref.state.nActions;
-			const nUniqueActions = keys( viz.ref.emailHash ).length;
+			const emails = keys( viz.ref.emailHash );
+			let nUniqueActions;
+			if ( this.props.selectedCohort ) {
+				const members = this.props.selectedCohort.members;
+				nUniqueActions = emails.filter( x => contains( members, x ) ).length;
+			} else {
+				nUniqueActions = emails.length;
+			}
 			const infoRate = ( nInfo / nUsers ) * 100.0;
 			overallProgress += infoRate;
 			const id = ids[ i ];
@@ -230,8 +237,13 @@ class ResponseVisualizers extends Component {
 // PROPERTIES //
 
 ResponseVisualizers.propTypes = {
+	selectedCohort: PropTypes.object,
 	onThumbnailClick: PropTypes.func.isRequired,
 	session: PropTypes.object.isRequired
+};
+
+ResponseVisualizers.defaultProps = {
+	selectedCohort: null
 };
 
 

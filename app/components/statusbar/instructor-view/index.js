@@ -174,6 +174,7 @@ class InstructorView extends Component {
 								selectedID: id
 							});
 						}}
+						selectedCohort={this.state.selectedCohort}
 					/>
 				</Tab>
 				<Tab eventKey="action_log" title="Action Log" >
