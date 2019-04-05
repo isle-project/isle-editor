@@ -8,7 +8,7 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import indexOf from '@stdlib/utils/index-of';
 import contains from '@stdlib/assert/contains';
-import isArray from '@stdlib/assert/is-array';
+import isFunction from '@stdlib/assert/is-function';
 import keys from '@stdlib/utils/keys';
 import Tooltip from 'components/tooltip';
 import { CAT20 } from 'constants/colors';
@@ -48,8 +48,7 @@ class UserList extends Component {
 
 		this.state = {
 			filter: null,
-			selected: null,
-			selectedCohort: null
+			selected: null
 		};
 	}
 
@@ -78,7 +77,9 @@ class UserList extends Component {
 
 	componentWillUnmount() {
 		debug( 'Unmount user list...' );
-		this.unsubscribe();
+		if ( isFunction( this.unsubscribe ) ) {
+			this.unsubscribe();
+		}
 		removeGlowElems();
 	}
 
@@ -143,48 +144,6 @@ class UserList extends Component {
 		});
 	}
 
-	onCohortChange = ( event ) => {
-		const session = this.props.session;
-		const cohorts = session.cohorts;
-		let cohort;
-		for ( let i = 0; i < cohorts.length; i++ ) {
-			if ( cohorts[ i ].title === event.target.value ) {
-				cohort = cohorts[ i ];
-				break;
-			}
-		}
-		this.setState({
-			selectedCohort: cohort
-		});
-	}
-
-	renderCohortSelection() {
-		const session = this.props.session;
-		const cohorts = session.cohorts;
-		if ( !isArray( cohorts ) ) {
-			return null;
-		}
-		const select = ( <select
-			style={{ width: '150px', backgroundColor: 'ghostwhite', padding: '2px' }}
-			onChange={this.onCohortChange}
-			value={this.state.selectedCohort ? this.state.selectedCohort.title : 'all'}
-		>
-			<option value="all">All Cohorts</option>
-			{cohorts.map( ( v, key ) => {
-				return (
-					<option
-						key={key}
-						value={v.title}
-					>{v.title}</option>
-				);
-			})}
-		</select> );
-		return ( <div style={{ padding: '5px' }}>
-			<label>Only show users from: </label>
-			{select}
-		</div> );
-	}
-
 	render() {
 		const session = this.props.session;
 		const userFocuses = session.userFocuses;
@@ -193,8 +152,8 @@ class UserList extends Component {
 		const list = <ListGroup className="user-list-group" style={{ height: window.innerHeight / 1.5 }}>
 			{session.userList.filter( user => {
 				if (
-					this.state.selectedCohort &&
-					!contains( this.state.selectedCohort.members, user.email )
+					this.props.selectedCohort &&
+					!contains( this.props.selectedCohort.members, user.email )
 				) {
 					return false;
 				}
@@ -277,7 +236,6 @@ class UserList extends Component {
 					})}
 				</ProgressBar>
 				{list}
-				{this.renderCohortSelection()}
 			</Fragment>
 		);
 	}
@@ -288,7 +246,12 @@ class UserList extends Component {
 
 UserList.propTypes = {
 	onThumbnailClick: PropTypes.func.isRequired,
-	session: PropTypes.object.isRequired
+	session: PropTypes.object.isRequired,
+	selectedCohort: PropTypes.object
+};
+
+UserList.defaultProps = {
+	selectedCohort: null
 };
 
 

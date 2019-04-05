@@ -1,8 +1,13 @@
-import React, { Fragment } from 'react';
-import removeFactory from './remove_factory.js';
-import objectEntries from '@stdlib/utils/entries';
+// MODULES //
 
-function createFilters(filter, callback) {
+import React, { Fragment } from 'react';
+import objectEntries from '@stdlib/utils/entries';
+import removeFactory from './remove_factory.js';
+
+
+// MAIN //
+
+function createFilters( filter, callback ) {
 	let entries = filter ? objectEntries( filter ) : [];
 	let newFilters = <Fragment>
 		<label>Filters:</label>
@@ -19,5 +24,7 @@ function createFilters(filter, callback) {
 	return newFilters;
 }
 
+
+// EXPORTS //
 
 export default createFilters;

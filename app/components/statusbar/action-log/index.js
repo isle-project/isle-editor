@@ -12,6 +12,8 @@ import stringify from 'csv-stringify';
 import moment from 'moment';
 import logger from 'debug';
 import copy from '@stdlib/utils/copy';
+import contains from '@stdlib/assert/contains';
+import isFunction from '@stdlib/assert/is-function';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import RangePicker from 'components/range-picker';
 import saveAs from 'utils/file-saver';
@@ -159,7 +161,9 @@ class ActionLog extends Component {
 	}
 
 	componentWillUnmount() {
-		this.unsubscribe();
+		if ( isFunction( this.unsubscribe ) ) {
+			this.unsubscribe();
+		}
 	}
 
 	buildActionsArray() {
@@ -172,7 +176,15 @@ class ActionLog extends Component {
 			let actions = [];
 			for ( let i = 0; i < session.socketActions.length; i++ ) {
 				let action = session.socketActions[ i ];
-				if ( action.absoluteTime > from && action.absoluteTime < to ) {
+				if (
+					this.props.selectedCohort &&
+					!contains( this.props.selectedCohort.members, action.email )
+				) {
+					continue;
+				}
+				if (
+					action.absoluteTime > from && action.absoluteTime < to
+				) {
 					actions.push( action );
 				}
 			}
@@ -345,20 +357,22 @@ class ActionLog extends Component {
 }
 
 
-// CONTEXT TYPES //
+// PROPERTIES //
 
 ActionLog.contextType = SessionContext;
 
-
 ActionLog.propTypes = {
+	selectedCohort: PropTypes.object,
 	selectedEmail: PropTypes.string,
 	selectedID: PropTypes.string
 };
 
 ActionLog.defaultProps = {
+	selectedCohort: null,
 	selectedEmail: null,
 	selectedID: null
 };
+
 
 // EXPORTS //
 

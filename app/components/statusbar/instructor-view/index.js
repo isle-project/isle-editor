@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import logger from 'debug';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import isArray from '@stdlib/assert/is-array';
 import max from '@stdlib/math/base/special/max';
 import isElectron from 'utils/is-electron';
 import ActionLog from 'components/statusbar/action-log';
@@ -32,7 +33,8 @@ class InstructorView extends Component {
 			hidden: true,
 			rightPos: -max( window.innerWidth * 0.45, 400 ),
 			selectedEmail: null,
-			selectedID: null
+			selectedID: null,
+			selectedCohort: null
 		};
 	}
 
@@ -89,6 +91,48 @@ class InstructorView extends Component {
 		}
 	}
 
+	onCohortChange = ( event ) => {
+		const session = this.context;
+		const cohorts = session.cohorts;
+		let cohort;
+		for ( let i = 0; i < cohorts.length; i++ ) {
+			if ( cohorts[ i ].title === event.target.value ) {
+				cohort = cohorts[ i ];
+				break;
+			}
+		}
+		this.setState({
+			selectedCohort: cohort
+		});
+	}
+
+	renderCohortSelection() {
+		const session = this.context;
+		const cohorts = session.cohorts;
+		if ( !isArray( cohorts ) ) {
+			return null;
+		}
+		const select = ( <select
+			style={{ width: '150px', backgroundColor: 'ghostwhite', padding: '2px' }}
+			onChange={this.onCohortChange}
+			value={this.state.selectedCohort ? this.state.selectedCohort.title : 'all'}
+		>
+			<option value="all">All Cohorts</option>
+			{cohorts.map( ( v, key ) => {
+				return (
+					<option
+						key={key}
+						value={v.title}
+					>{v.title}</option>
+				);
+			})}
+		</select> );
+		return ( <div style={{ padding: '5px' }}>
+			<label style={{ marginRight: 5 }}>Only show users from:</label>
+			{select}
+		</div> );
+	}
+
 	renderTabs = () => {
 		// This is the button that toggles it
 		const session = this.context;
@@ -115,6 +159,7 @@ class InstructorView extends Component {
 								selectedEmail: email
 							});
 						}}
+						selectedCohort={this.state.selectedCohort}
 					/>
 				</Tab>
 				<Tab eventKey="response_visualizers" title="Responses" >
@@ -131,6 +176,7 @@ class InstructorView extends Component {
 				</Tab>
 				<Tab eventKey="action_log" title="Action Log" >
 					<ActionLog
+						selectedCohort={this.state.selectedCohort}
 						selectedEmail={this.state.selectedEmail}
 						selectedID={this.state.selectedID}
 					/>
@@ -160,6 +206,7 @@ class InstructorView extends Component {
 				</div>
 				<div className="instructor-view-middle">
 					{this.renderTabs()}
+					{this.renderCohortSelection()}
 				</div>
 				<div className="instructor-view-bottom"></div>
 				<div className="instructor-view-handler"
