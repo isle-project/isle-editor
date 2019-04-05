@@ -243,13 +243,13 @@ class ResponseVisualizer extends Component {
 				( action.type === this.props.info || action.type === this.props.success || action.type === this.props.danger )
 			) {
 				action = extractValue( action );
-				this.emailHash[ action.email ] = action.type;
 				if (
 					this.state.selectedCohort &&
 					!contains( this.state.selectedCohort.members, action.email )
 				) {
 					continue;
 				}
+				this.emailHash[ action.email ] = action.type;
 				if ( this.state.period ) {
 					const { from, to } = this.state.period;
 					if ( action.absoluteTime > from && action.absoluteTime < to ) {
@@ -272,8 +272,9 @@ class ResponseVisualizer extends Component {
 		}
 		const users = session.userList;
 		for ( let i = 0; i < users.length; i++ ) {
-			if ( hasOwnProperty( this.emailHash, users[ i ].email ) ) {
-				const type = this.emailHash[ users[ i ].email ];
+			const userEmail = users[ i ].email;
+			if ( hasOwnProperty( this.emailHash, userEmail ) ) {
+				const type = this.emailHash[ userEmail ];
 				if ( this.props.success && type === this.props.success ) {
 					newState.nSuccess += 1;
 				} else if ( this.props.danger && type === this.props.danger ) {

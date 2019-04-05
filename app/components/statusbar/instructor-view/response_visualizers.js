@@ -193,7 +193,7 @@ class ResponseVisualizers extends Component {
 					<Tooltip placement="left" tooltip="# of students who answered">
 						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`s: ${nUniqueActions}`}</Badge>
 					</Tooltip>
-					<Tooltip placement="left" tooltip="Average elapsed time until answer">
+					<Tooltip placement="left" tooltip="Average elapsed time until answer (all cohorts)">
 						<Badge
 							variant={timeBadgeVariant}
 							style={{ float: 'right', margin: '2px' }}
