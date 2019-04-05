@@ -103,6 +103,8 @@ class InstructorView extends Component {
 		}
 		this.setState({
 			selectedCohort: cohort
+		}, () =>{
+			session.update( 'selected_cohort', this.state.selectedCohort );
 		});
 	}
 

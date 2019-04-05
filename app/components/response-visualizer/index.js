@@ -11,6 +11,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import Modal from 'react-bootstrap/Modal';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
 import contains from '@stdlib/assert/contains';
+import isObject from '@stdlib/assert/is-object';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import Gate from 'components/gate';
 import OverlayTrigger from 'components/overlay-trigger';
@@ -104,6 +105,13 @@ class ResponseVisualizer extends Component {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
 				if ( type === 'retrieved_user_actions' ) {
 					this.addSessionActions();
+				}
+				else if ( type === 'selected_cohort' ) {
+					if ( isObject( action ) ) {
+						this.setState({
+							selectedCohort: action
+						}, this.addSessionActions );
+					}
 				}
 				else if (
 					type === 'member_action' &&
