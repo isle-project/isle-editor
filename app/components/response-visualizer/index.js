@@ -231,7 +231,7 @@ class ResponseVisualizer extends Component {
 	}
 
 	addSessionActions = () => {
-		debug( 'Add session actions...' );
+		debug( !this.state.selectedCohort ? 'Add session actions...' : 'Add session actions for cohort '+this.state.selectedCohort.title );
 		const session = this.context;
 		const actions = session.socketActions;
 		const filtered = [];
@@ -260,7 +260,7 @@ class ResponseVisualizer extends Component {
 				}
 			}
 		}
-		let newState = {
+		const newState = {
 			nSuccess: 0,
 			nDanger: 0,
 			nInfo: 0,
@@ -284,7 +284,9 @@ class ResponseVisualizer extends Component {
 				}
 			}
 		}
-		this.setState( newState );
+		this.setState( newState, () => {
+			session.update( 'updated_visualizer', this.props.id );
+		});
 	}
 
 	closeDeleteModal = () => {

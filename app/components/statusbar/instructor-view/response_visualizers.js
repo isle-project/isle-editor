@@ -78,6 +78,9 @@ class ResponseVisualizers extends Component {
 					means: newMeans
 				});
 			}
+			else if ( type === 'updated_visualizer' ) {
+				this.forceUpdate();
+			}
 		});
 	}
 
@@ -142,13 +145,7 @@ class ResponseVisualizers extends Component {
 			const nInfo = viz.ref.state.nInfo;
 			const nActions = viz.ref.state.nActions;
 			const emails = keys( viz.ref.emailHash );
-			let nUniqueActions;
-			if ( this.props.selectedCohort ) {
-				const members = this.props.selectedCohort.members;
-				nUniqueActions = emails.filter( x => contains( members, x ) ).length;
-			} else {
-				nUniqueActions = emails.length;
-			}
+			const nUniqueActions = emails.length;
 			const infoRate = ( nInfo / nUsers ) * 100.0;
 			overallProgress += infoRate;
 			const id = ids[ i ];
@@ -187,10 +184,10 @@ class ResponseVisualizers extends Component {
 							Open
 						</Badge>
 					</Tooltip>
-					<Tooltip placement="left" tooltip="# of actions">
+					<Tooltip placement="left" tooltip={`# of actions (${this.props.selectedCohort ? this.props.selectedCohort.title: 'all cohorts'})`}>
 						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`n: ${nActions}`}</Badge>
 					</Tooltip>
-					<Tooltip placement="left" tooltip="# of students who answered">
+					<Tooltip placement="left" tooltip={`# of students who answered (${this.props.selectedCohort ? this.props.selectedCohort.title: 'all cohorts'})`}>
 						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`s: ${nUniqueActions}`}</Badge>
 					</Tooltip>
 					<Tooltip placement="left" tooltip="Average elapsed time until answer (all cohorts)">
@@ -199,7 +196,7 @@ class ResponseVisualizers extends Component {
 							style={{ float: 'right', margin: '2px' }}
 						>{time}</Badge>
 					</Tooltip>
-					<Tooltip placement="left" tooltip="Completion rate for currently active students">
+					<Tooltip placement="left" tooltip={`Completion rate for currently active students (${this.props.selectedCohort ? this.props.selectedCohort.title: 'all cohorts'})`}>
 						<ProgressBar
 							variant="info"
 							now={infoRate}

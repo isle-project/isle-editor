@@ -166,6 +166,7 @@ class InstructorView extends Component {
 				</Tab>
 				<Tab eventKey="response_visualizers" title="Responses" >
 					<ResponseVisualizers
+						selectedCohort={this.state.selectedCohort}
 						session={session}
 						onThumbnailClick={( id ) => {
 							debug( 'Go to actions with id '+id+'...' );
@@ -174,7 +175,6 @@ class InstructorView extends Component {
 								selectedID: id
 							});
 						}}
-						selectedCohort={this.state.selectedCohort}
 					/>
 				</Tab>
 				<Tab eventKey="action_log" title="Action Log" >
