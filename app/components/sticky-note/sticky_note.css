@@ -25,6 +25,8 @@
 	animation: sticky-note-swirl-out-bck 1s ease-in forwards;
 }
 
+
+
 .sticky-note-callback {
 	cursor: pointer;
 }
@@ -81,10 +83,37 @@
 	cursor: pointer;
 }
 
-.sticky-note-minimizable {
+.sticky-note-controls {
 	position: absolute;
 	right: 24px;
 	top: 9px;
+	width: auto;
+	height: 16px;
+	font-size: 32px;
+	z-index: 2;
+}
+
+.sticky-note-remove-button {
+	position: relative;
+	float: left;
+	width: 16px;
+	height: 16px;
+	margin-top: 6px;
+	font-size: 26px;
+	margin-left: 6px;
+	z-index: 2;
+	font-family: Open Sans;
+}
+
+
+.sticky-note-remove-button:hover {
+	cursor: pointer;
+	color: red;
+}
+
+.sticky-note-minimizable {
+	position: relative;
+	float: left;
 	width: 16px;
 	height: 16px;
 	font-size: 32px;

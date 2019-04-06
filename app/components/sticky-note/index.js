@@ -17,6 +17,7 @@ import './sticky_note.css';
 * @property {string} color - available options: red, green, blue, pink, orange
 * @property {Object} style - CSS inline styles
 * @property {string} date - a date displayed for the note
+* @property {boolean} editable - controls whether the component is editable
 * @property {boolean} minimizable - controls whether the component is minimizable
 * @property {boolean} minimized - if set, the component is minimized at the start
 * @property {boolean} stain - controls whether to show a coffee stain
@@ -206,6 +207,11 @@ class StickyNote extends Component {
 		);
 	}
 
+	removeButton = () => {
+		return (
+			<div onClick={this.remove} className="sticky-note-remove-button">×</div>
+		);
+	}
 
 	render() {
 		let style = this.checkTransforms();
@@ -222,7 +228,10 @@ class StickyNote extends Component {
 		const out = <div className="sticky-note-outer" style={style}>
 			<div onClick={this.triggerClick} className={className}>
 				<div className="sticky-note-wrapper">
-					{this.props.minimizable ? <div onClick={this.minimize} className="sticky-note-minimizable">–</div> : null }
+					<div className="sticky-note-controls">
+						{this.props.minimizable ? <div onClick={this.minimize} className="sticky-note-minimizable">–</div> : null }
+						{ this.props.removable ? this.removeButton() : null }
+					</div>
 					{ this.props.removable ? <div onClick={this.remove} title="Click to remove note" className="sticky-note-pin-image-map" /> : null }
 					{ this.props.editable ? this.showEditableContent() : this.showContent() }
 				</div>
