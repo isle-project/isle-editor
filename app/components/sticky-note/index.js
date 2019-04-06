@@ -27,9 +27,23 @@ class StickyNote extends Component {
 	constructor( props ) {
 		super( props );
 
+		this.textareaRef = React.createRef();
+
+		let body = null;
+		let title = null;
+
+		if (props.editable) {
+			body = 'Type in the title';
+			title = 'Type in your notes';
+		}
+
 		this.state = {
 			exit: false,
-			minimized: props.minimized
+			minimized: props.minimized,
+			editBody: false,
+			editTitle: false,
+			body: body,
+			title: title
 		};
 	}
 
@@ -101,6 +115,98 @@ class StickyNote extends Component {
 		return style;
 	}
 
+
+	showContent() {
+		return (
+			<div className="sticky-note-content">
+			<div className="sticky-note-title">
+				{this.props.title}
+			</div>
+			<div className="sticky-note-date">
+				{this.props.date}
+			</div>
+			<div className="sticky-note-body">
+				{this.props.body}
+			</div>
+			{this.props.stain ? <div className="sticky-note-stain" /> : null }
+		</div>
+		);
+	}
+
+	editTitle = () => {
+		this.setState({
+			editTitle: true
+		});
+	}
+
+	editBody = () => {
+		this.setState({
+			editBody: true
+		});
+	}
+
+	showTitle = () => {
+		return (
+			<div onClick={this.editTitle} className="sticky-note-title editable">
+				{this.state.title}
+			</div>
+		);
+	}
+
+	checkTitle = (event) => {
+		if (event.keyCode === 13) {
+			this.setState({
+				title: event.target.value,
+				editTitle: false
+			});
+		}
+	}
+
+	showEditableTitle = () => {
+		return (
+			<div className="sticky-note-title">
+				<input className="sticky-note-editable-title" onKeyUp={this.checkTitle} type="text" name="fname"></input>
+			</div>
+		);
+	}
+
+
+	showBody = () => {
+		return (
+			<div onClick={this.editBody} className="sticky-note-body editable">
+				{this.state.body}
+			</div>
+		);
+	}
+
+
+	submitBody = () => {
+		this.setState({
+			body: this.textareaRef.current.value,
+			editBody: false
+		});
+	}
+
+	showEditableBody = () => {
+		return (
+			<div className="sticky-note-body">
+				<textarea ref={this.textareaRef} className="sticky-note-editable-body" rows="6" cols="28">{ this.state.body }</textarea>
+				<input onClick={this.submitBody} type="submit" value="send" />
+			</div>
+		);
+	}
+
+
+	showEditableContent = () => {
+		return (
+			<div className="sticky-note-content">
+				{ this.state.editTitle ? this.showEditableTitle() : this.showTitle() }
+				{ this.state.editBody ? this.showEditableBody() : this.showBody() }
+			</div>
+		);
+	}
+
+
 	render() {
 		let style = this.checkTransforms();
 		let className = 'sticky-note';
@@ -118,18 +224,7 @@ class StickyNote extends Component {
 				<div className="sticky-note-wrapper">
 					{this.props.minimizable ? <div onClick={this.minimize} className="sticky-note-minimizable">–</div> : null }
 					{ this.props.removable ? <div onClick={this.remove} title="Click to remove note" className="sticky-note-pin-image-map" /> : null }
-					<div className="sticky-note-content">
-						<div className="sticky-note-title">
-							{this.props.title}
-						</div>
-						<div className="sticky-note-date">
-							{this.props.date}
-						</div>
-						<div className="sticky-note-body">
-							{this.props.body}
-						</div>
-						{this.props.stain ? <div className="sticky-note-stain" /> : null }
-					</div>
+					{ this.props.editable ? this.showEditableContent() : this.showContent() }
 				</div>
 			</div>
 		</div>;
@@ -156,6 +251,7 @@ StickyNote.propTypes = {
 	style: PropTypes.object,
 	date: PropTypes.string,
 	draggable: PropTypes.bool,
+	editable: PropTypes.bool,
 	minimizable: PropTypes.bool,
 	minimized: PropTypes.bool,
 	stain: PropTypes.bool,
@@ -169,6 +265,7 @@ StickyNote.defaultProps = {
 	color: null,
 	date: '',
 	draggable: false,
+	editable: false,
 	minimizable: false,
 	minimized: false,
 	style: {},

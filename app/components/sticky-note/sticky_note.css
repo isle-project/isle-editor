@@ -7,6 +7,10 @@
 	transition: all 0.3s;
 }
 
+.sticky-note .editable {
+	cursor: pointer;
+}
+
 .sticky-note-outer {
 	z-index: 2;
 	width: 45px;
@@ -43,6 +47,18 @@
 	font-size: 1.4em;
 	font-weight: 800;
 }
+
+.sticky-note-editable-title {
+	border: none;
+	background: gold;
+	font-weight: 800;
+}
+
+.sticky-note-editable-body {
+	border: none;
+	background: gold;
+}
+
 
 .sticky-note-date {
 	position: absolute;
