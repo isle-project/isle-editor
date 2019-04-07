@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import FormControl from 'react-bootstrap/FormControl';
 import Plotly from 'components/plotly';
 import SelectInput from 'components/input/select';
 import TextInput from 'components/input/text';
@@ -62,6 +63,17 @@ const makeShapes = ( xBreaks ) => {
 	return breakShapes;
 };
 
+const createCategoryNames = ( xBreaks ) => {
+	const out = [
+		`(-\u221E,${roundn( xBreaks[0], -2 )})`
+	];
+	for ( let i = 0; i < xBreaks.length - 1; i++ ) {
+		out.push( `[${roundn( xBreaks[i], -2 )},${roundn( xBreaks[i+1], -2)})` );
+	}
+	out.push( `[${roundn( xBreaks[ xBreaks.length - 1 ], -2)},\u221E)` );
+	return out;
+};
+
 
 // MAIN //
 
@@ -86,14 +98,15 @@ class BinTransformer extends Component {
 				max( configHist.data[ 1 ].y )
 			]
 		};
+		const xBreaks = [ mean( props.data[ props.continuous[0] ] ) ];
 		this.state = {
 			activeVar,
 			configHist,
-			xBreaks: [ mean( props.data[ props.continuous[0] ] ) ],
+			xBreaks,
 			name: '',
-			catNames: [ 'x0', 'x1' ]
+			catNames: createCategoryNames( xBreaks )
 		};
-		configHist.layout.shapes = makeShapes( this.state.xBreaks );
+		configHist.layout.shapes = makeShapes( xBreaks );
 	}
 
 	onChangeHistLine = ( data ) => {
@@ -101,11 +114,12 @@ class BinTransformer extends Component {
 		const matches = RE_SHAPE.exec( keyUpdate[0] );
 		if ( matches ) {
 			const ind = matches[ 1 ];
-			const newBreaks = copy( this.state.xBreaks );
-			newBreaks[ ind ] = data[ keyUpdate[0] ];
-			newBreaks.sort( ascending );
+			const xBreaks = copy( this.state.xBreaks );
+			xBreaks[ ind ] = data[ keyUpdate[0] ];
+			xBreaks.sort( ascending );
 			this.setState({
-				xBreaks: newBreaks
+				xBreaks: xBreaks,
+				catNames: createCategoryNames( xBreaks )
 			});
 		}
 	}
@@ -134,13 +148,13 @@ class BinTransformer extends Component {
 			activeVar: value,
 			configHist,
 			xBreaks,
-			catNames: [ 'x0', 'x1' ]
+			catNames: createCategoryNames( xBreaks )
 		});
 	}
 
-	handleNameChange = ( value ) => {
+	handleNameChange = ( event ) => {
 		this.setState({
-			name: value
+			name: event.target.value
 		});
 	}
 
@@ -179,27 +193,28 @@ class BinTransformer extends Component {
 
 	makeTextInputs = () => {
 		const inputs = [];
-		const disableButton = this.state.xBreaks.length === 1;
+		const xBreaks = this.state.xBreaks;
+		const disableButton = xBreaks.length === 1;
 		inputs.push(
 			<div>
 				<TextInput
 					key={0}
-					legend={<TeX raw={`z < ${roundn(this.state.xBreaks[0], -3)}`} />}
-					defaultValue={`(-\u221E,${roundn(this.state.xBreaks[0], -2)})`}
-					onChange={this.handleCatNamesFactory(0)}
+					legend={<TeX raw={`z < ${roundn(xBreaks[0], -3)}`} />}
+					defaultValue={this.state.catNames[ 0 ]}
+					onChange={this.handleCatNamesFactory( 0 )}
 					style={{ width: '95%', float: 'left' }}
 				/>
 			</div>
 		);
-		if ( this.state.xBreaks.length > 1 ) {
-			for ( let i = 0; i < this.state.xBreaks.length - 1; i++ ) {
-				const changeFn = this.handleCatNamesFactory(i);
+		if ( xBreaks.length > 1 ) {
+			for ( let i = 0; i < xBreaks.length - 1; i++ ) {
+				const changeFn = this.handleCatNamesFactory( i+1 );
 				inputs.push(
 					<div>
 						<TextInput
 							key={1+i}
-							legend={<TeX raw={`${roundn(this.state.xBreaks[i], -3)} \\le z < ${roundn(this.state.xBreaks[i + 1], -3)}`} />}
-							defaultValue={`[${roundn(this.state.xBreaks[i], -2)}, ${roundn(this.state.xBreaks[i + 1], -2)})`}
+							legend={<TeX raw={`${roundn(xBreaks[i], -3)} \\le z < ${roundn(xBreaks[i + 1], -3)}`} />}
+							defaultValue={this.state.catNames[ i+1 ]}
 							onChange={changeFn}
 							style={{ width: '95%', float: 'left' }}
 						/>
@@ -216,14 +231,14 @@ class BinTransformer extends Component {
 		inputs.push(
 			<div>
 				<TextInput
-					legend={<TeX raw={`z > ${roundn(this.state.xBreaks[this.state.xBreaks.length - 1], -3)}`} />}
-					defaultValue={`[${roundn(this.state.xBreaks[this.state.xBreaks.length - 1], -2)},\u221E)`}
-					onChange={this.handleCatNamesFactory( this.state.xBreaks.length - 1 )}
+					legend={<TeX raw={`z > ${roundn(xBreaks[ xBreaks.length - 1 ], -3)}`} />}
+					defaultValue={this.state.catNames[ xBreaks.length ]}
+					onChange={this.handleCatNamesFactory( xBreaks.length )}
 					style={{ width: '95%', float: 'left' }}
-					key={this.state.xBreaks.length}
+					key={xBreaks.length}
 				/>
 				<ClearButton
-					onClick={this.deleteBreak(this.state.xBreaks.length - 1)}
+					onClick={this.deleteBreak( xBreaks.length - 1 )}
 					style={{ float: 'right', marginTop: '5px' }}
 					disabled={disableButton}
 				/>
@@ -267,7 +282,8 @@ class BinTransformer extends Component {
 		configHist.layout.shapes = makeShapes( xBreaks );
 		this.setState({
 			xBreaks,
-			configHist
+			configHist,
+			catNames: createCategoryNames( xBreaks )
 		});
 	}
 
@@ -294,8 +310,8 @@ class BinTransformer extends Component {
 						</Col>
 						<Col md={6}>
 							<label>Binned Variable</label>
-							<TextInput
-								legend="Variable Name"
+							<FormControl
+								type="text"
 								placeholder="Select name..."
 								onChange={this.handleNameChange}
 							/>
