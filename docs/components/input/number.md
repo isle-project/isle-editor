@@ -30,5 +30,6 @@ A number input component. Can be used as part of an ISLE dashboard or standalone
 * __onKeyPress__ | `function`: callback function to be invoked when any key is entered. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: callback function to be invoked when key is released. Default: `onKeyUp() {}`.
 * __step__ | `(number|string)`: number indicating the incremental changes when using the increment arrows. Default: `1`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
 * __value__ | `number`: number value (for controlled component). Default: `none`.
 * __width__ | `number`: number indicating the width of the input bar in pixels. Default: `80`.

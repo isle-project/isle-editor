@@ -40,3 +40,4 @@ server: https://isle.heinz.cmu.edu
 * __onKeyUp__ | `function`: callback function to be invoked when key is released. Default: `onKeyUp() {}`.
 * __placeholder__ | `string`: A string indicating the value to be displayed before an initial choice is made. Default: `'Enter text'`.
 * __width__ | `number`: A number indicating the width of the input in pixels. Default: `80`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.

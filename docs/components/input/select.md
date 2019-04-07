@@ -31,3 +31,4 @@ A select input component. Can be used as part of an ISLE dashboard or standalone
 * __onChange__ | `function`: callback function to be invoked when a choice is made. Default: `onChange() {}`.
 * __options__ | `array`: array of indicating the choices available the user. Default: `[]`.
 * __placeholder__ | `string`: value to be displayed before an initial choice is made. Default: `'Select...'`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.

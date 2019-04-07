@@ -712,6 +712,10 @@
     ],
     "description": "A list of draggable elements that can be re-ordered by the students."
   },
+  "EngagementMeter": {
+    "props": [],
+    "description": "An ISLE component that displays an engagement meter with which the students can indicate how well they are following the class."
+  },
   "EnlargeableGrid": {
     "props": [
       {
@@ -1257,6 +1261,12 @@
         "default": 1
       },
       {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
         "name": "value",
         "type": "number",
         "description": "number value (for controlled component)",
@@ -1395,6 +1405,12 @@
         "type": "string",
         "description": "value to be displayed before an initial choice is made",
         "default": "Select..."
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       }
     ],
     "description": "A select input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute."
@@ -1590,6 +1606,12 @@
         "type": "number",
         "description": "A number indicating the width of the input in pixels",
         "default": 80
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       }
     ],
     "description": "A text input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute."
@@ -3866,29 +3888,6 @@
     ],
     "description": "The runner component will execute a supplied function either once or at a given interval."
   },
-  "Score": {
-    "props": [
-      {
-        "name": "duration",
-        "type": "boolean",
-        "description": "indicates whether the time is displayed as a duration - beginning with session start",
-        "default": false
-      },
-      {
-        "name": "format",
-        "type": "string",
-        "description": "sets the format of the time string",
-        "default": "HH:MM"
-      },
-      {
-        "name": "type",
-        "type": "string",
-        "description": "sets the type of the score UI - available options: 'default', 'bottom', 'full'",
-        "default": "default"
-      }
-    ],
-    "description": "An ISLE component that allows you display the user's score."
-  },
   "ScrollingText": {
     "props": [
       {
@@ -4573,6 +4572,12 @@
       {
         "name": "draggable",
         "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "editable",
+        "type": "boolean",
+        "description": "controls whether the component is editable",
         "default": false
       },
       {

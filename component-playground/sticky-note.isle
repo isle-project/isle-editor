@@ -31,6 +31,7 @@ removeStatusBar: true
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __date__ | `string`: a date displayed for the note. Default: `''`.
 * __draggable__ | `boolean`: undefined. Default: `false`.
+* __editable__ | `boolean`: controls whether the component is editable. Default: `false`.
 * __minimizable__ | `boolean`: controls whether the component is minimizable. Default: `false`.
 * __minimized__ | `boolean`: if set, the component is minimized at the start. Default: `false`.
 * __stain__ | `boolean`: controls whether to show a coffee stain. Default: `none`.
