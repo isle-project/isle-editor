@@ -72,6 +72,7 @@ class BinTransformer extends Component {
 			name: null,
 			catNames: [ 'x0', 'x1' ]
 		};
+		configHist.layout.shapes = this.makeShapes();
 	}
 
 	onChangeHistLine = ( data ) => {
@@ -79,10 +80,9 @@ class BinTransformer extends Component {
 		const matches = RE_SHAPE.exec( keyUpdate[0] );
 		if ( matches ) {
 			const ind = matches[ 1 ];
-			var newBreaks = copy( this.state.xBreaks );
-			newBreaks[ind] = data[ keyUpdate[0] ];
+			const newBreaks = copy( this.state.xBreaks );
+			newBreaks[ ind ] = data[ keyUpdate[0] ];
 			newBreaks.sort( ascending );
-			console.log(newBreaks);
 			this.setState({
 				xBreaks: newBreaks
 			});
@@ -112,6 +112,8 @@ class BinTransformer extends Component {
 			configHist,
 			xBreaks: [ mean( this.props.data[ value ] ) ],
 			catNames: [ 'x0', 'x1' ]
+		}, () => {
+			configHist.layout.shapes = this.makeShapes();
 		});
 	}
 
@@ -131,82 +133,78 @@ class BinTransformer extends Component {
 				console.log(this.state.catNames);
 			});
 		};
-    }
-    
-    // factory method for an onClick for the clearButtons
-    deleteBreak = ( ind ) => {
-        return( 
-            () => {
-                var oldVals = this.state.xBreaks;
-                // remove the vars
-                oldVals.splice(ind, 1);
+	}
 
-                var oldNames = this.state.catNames;
-                oldNames.splice(ind, 1);
-                this.setState({
-                    catNames: oldNames,
-                    xBreaks: oldVals
-                }, () => {
-                    console.log(this.state.xBreaks);
-                });
-            }
-        );
-    }
+	// factory method for an onClick for the clearButtons
+	deleteBreak = ( ind ) => {
+		return () => {
+			var oldVals = this.state.xBreaks;
+			// remove the vars
+			oldVals.splice(ind, 1);
+
+			var oldNames = this.state.catNames;
+			oldNames.splice(ind, 1);
+			this.setState({
+				catNames: oldNames,
+				xBreaks: oldVals
+			}, () => {
+				console.log(this.state.xBreaks);
+			});
+		};
+	}
 
 	makeTextInputs = () => {
-        const inputs = [];
-        const disableButton = this.state.xBreaks.length === 1;
+		const inputs = [];
+		const disableButton = this.state.xBreaks.length === 1;
 		inputs.push(
-            <div>
-                <TextInput
-                    key={0}
-                    legend={<TeX raw={`z < ${roundn(this.state.xBreaks[0], -3)}`} />}
-                    defaultValue={`(-\u221E,${roundn(this.state.xBreaks[0], -2)})`}
-                    onChange={this.handleCatNamesFactory(0)}
-                    style={{width: '95%', float: 'left'}}
-                />
-            </div>
-			
+			<div>
+				<TextInput
+					key={0}
+					legend={<TeX raw={`z < ${roundn(this.state.xBreaks[0], -3)}`} />}
+					defaultValue={`(-\u221E,${roundn(this.state.xBreaks[0], -2)})`}
+					onChange={this.handleCatNamesFactory(0)}
+					style={{ width: '95%', float: 'left' }}
+				/>
+			</div>
 		);
 		if ( this.state.xBreaks.length > 1 ) {
 			for ( let i = 0; i < this.state.xBreaks.length - 1; i++ ) {
 				const changeFn = this.handleCatNamesFactory(i);
 				inputs.push(
-                    <div>
-                        <TextInput
-                            key={1+i}
-                            legend={<TeX raw={`${roundn(this.state.xBreaks[i], -3)} \\le z < ${roundn(this.state.xBreaks[i + 1], -3)}`} />}
-                            defaultValue={`[${roundn(this.state.xBreaks[i], -2)}, ${roundn(this.state.xBreaks[i + 1], -2)})`}
-                            onChange={changeFn}
-                            style={{width: '95%', float: 'left'}}
-                        />
-                        <ClearButton 
-                            onClick={this.deleteBreak(i)}
-                            style={{float: 'right', marginTop: '5px'}} 
-                            disabled={disableButton}
-                        />
-                    </div>
+					<div>
+						<TextInput
+							key={1+i}
+							legend={<TeX raw={`${roundn(this.state.xBreaks[i], -3)} \\le z < ${roundn(this.state.xBreaks[i + 1], -3)}`} />}
+							defaultValue={`[${roundn(this.state.xBreaks[i], -2)}, ${roundn(this.state.xBreaks[i + 1], -2)})`}
+							onChange={changeFn}
+							style={{ width: '95%', float: 'left' }}
+						/>
+						<ClearButton
+							onClick={this.deleteBreak(i)}
+							style={{ float: 'right', marginTop: '5px' }}
+							disabled={disableButton}
+						/>
+					</div>
 				);
 			}
 		}
 		// push the last
 		inputs.push(
-            <div>
-                <TextInput
-                    legend={<TeX raw={`z > ${roundn(this.state.xBreaks[this.state.xBreaks.length - 1], -3)}`} />}
-                    defaultValue={`[${roundn(this.state.xBreaks[this.state.xBreaks.length - 1], -2)},\u221E)`}
-                    onChange={this.handleCatNamesFactory( this.state.xBreaks.length - 1 )}
-                    style={{width: '95%', float: 'left'}}
-                    key={this.state.xBreaks.length}
-                />
-                <ClearButton 
-                    onClick={this.deleteBreak(this.state.xBreaks.length - 1)}
-                    style={{float: 'right', marginTop: '5px'}} 
-                    disabled={disableButton}
-                />
-            </div>
+			<div>
+				<TextInput
+					legend={<TeX raw={`z > ${roundn(this.state.xBreaks[this.state.xBreaks.length - 1], -3)}`} />}
+					defaultValue={`[${roundn(this.state.xBreaks[this.state.xBreaks.length - 1], -2)},\u221E)`}
+					onChange={this.handleCatNamesFactory( this.state.xBreaks.length - 1 )}
+					style={{ width: '95%', float: 'left' }}
+					key={this.state.xBreaks.length}
+				/>
+				<ClearButton
+					onClick={this.deleteBreak(this.state.xBreaks.length - 1)}
+					style={{ float: 'right', marginTop: '5px' }}
+					disabled={disableButton}
+				/>
+			</div>
 		);
-		console.log( inputs );
 		return inputs;
 	}
 
@@ -248,25 +246,28 @@ class BinTransformer extends Component {
 			}
 			newVar.push(newLabel);
 		}
-		this.props.onGenerate(this.state.name, newVar);
+		this.props.onGenerate( this.state.name, newVar );
 		this.props.onHide();
 	}
 
 	addNewBreakPoint = () => {
-		var newBreaks = copy( this.state.xBreaks );
+		var xBreaks = copy( this.state.xBreaks );
 		const vals = this.props.data[ this.state.activeVar ];
 		const avg = mean( vals );
-		newBreaks.push(avg);
-		// now to sort the data
-		newBreaks.sort( ascending );
+		xBreaks.push( avg );
+		xBreaks.sort( ascending );
+
+		const configHist = this.state.configHist;
 		this.setState({
-			xBreaks: newBreaks
+			xBreaks,
+			configHist
+		}, () => {
+			configHist.layout.shapes = this.makeShapes();
 		});
 	}
 
 	render() {
 		const configHist = this.state.configHist;
-		configHist.layout.shapes = this.makeShapes();
 		return (
 			<Modal
 				dialogClassName='modal-50w'
