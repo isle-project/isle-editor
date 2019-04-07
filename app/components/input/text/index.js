@@ -22,6 +22,7 @@ import './text.css';
 * @property {string} value - text value (for controlled component)
 * @property {string} bind - name of global variable for the number to be assigned to
 * @property {string} placeholder - A string indicating the value to be displayed before an initial choice is made
+* @property {Object} style - CSS inline styles
 * @property {Function} onKeyPress - callback function to be invoked when any key is entered
 * @property {Function} onKeyDown - callback function to be invoked when any key is pressed down
 * @property {Function} onKeyUp - callback function to be invoked when key is released
@@ -84,7 +85,7 @@ class TextInput extends Input {
 	render() {
 		if ( this.props.inline ) {
 			return (
-				<span className="input">
+				<span className="input" style={this.props.style} >
 					{ this.props.legend ? <label>{this.props.legend}:</label> : <span /> }
 					<input
 						className="text-inline-input"
@@ -111,7 +112,7 @@ class TextInput extends Input {
 			);
 		}
 		return (
-			<div className="input text-container-div" >
+			<div className="input text-container-div" style={this.props.style} >
 				<span>
 					<label>{this.props.legend}:</label>
 					{ this.props.description ?
@@ -154,7 +155,8 @@ TextInput.defaultProps = {
 	onKeyPress() {},
 	onKeyUp() {},
 	inline: false,
-	placeholder: 'Enter text'
+	placeholder: 'Enter text',
+	style: {}
 };
 
 TextInput.propTypes = {
@@ -170,7 +172,8 @@ TextInput.propTypes = {
 	onKeyPress: PropTypes.func,
 	onKeyUp: PropTypes.func,
 	placeholder: PropTypes.string,
-	width: PropTypes.number
+	width: PropTypes.number,
+	style: PropTypes.object
 };
 
 TextInput.contextType = SessionContext;

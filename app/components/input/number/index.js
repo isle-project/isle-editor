@@ -53,6 +53,7 @@ function createTooltip( props ) {
 * @property {boolean} inline - indicates whether the input is displayed inline
 * @property {string} legend - string indicating the text displayed next to the number input
 * @property {boolean} numbersOnly - controls whether only numbers are accepted
+* @property {Object} style - CSS inline styles
 * @property {Function} onBlur - callback function to be invoked when using a blur method
 * @property {Function} onChange - callback function to be invoked when number input is changed
 * @property {Function} onKeyPress - callback function to be invoked when any key is entered
@@ -181,7 +182,7 @@ class NumberInput extends Input {
 		}
 		if ( this.props.inline === true ) {
 			const input =
-				<span className="input" style={{ padding: '5px' }}>
+				<span className="input" style={{ padding: '5px', ...this.props.style }}>
 					{ this.props.legend ? <label> {this.props.legend} =  </label> : null }
 					<input
 						type={this.props.numbersOnly ? 'number' : 'text'}
@@ -239,7 +240,8 @@ class NumberInput extends Input {
 		}
 		const output = <div className="input" style={{
 			marginBottom: '4px',
-			marginTop: '4px'
+			marginTop: '4px',
+			...this.props.style
 		}}>
 			<span style={{
 				marginLeft: '8px'
@@ -280,6 +282,7 @@ NumberInput.defaultProps = {
 	onKeyUp() {},
 	inline: false,
 	numbersOnly: true,
+	style: {},
 	value: null
 };
 
@@ -304,6 +307,7 @@ NumberInput.propTypes = {
 		PropTypes.number,
 		PropTypes.string
 	]),
+	style: PropTypes.object,
 	value: PropTypes.number,
 	width: PropTypes.number
 };

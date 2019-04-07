@@ -73,6 +73,7 @@ const customStyles = {
 * @property {boolean} multi - controls whether one may select multiple answers
 * @property {string} menuPlacement - placement of the menu in relation to the control (either `auto`, `top`, or `bottom`)
 * @property {string} placeholder - value to be displayed before an initial choice is made
+* @property {Object} style - CSS inline styles
 */
 class SelectInput extends Input {
 	/**
@@ -218,7 +219,8 @@ SelectInput.defaultProps = {
 	menuPlacement: 'auto',
 	options: [],
 	multi: false,
-	placeholder: 'Select...'
+	placeholder: 'Select...',
+	style: {}
 };
 
 SelectInput.propTypes = {
@@ -243,7 +245,8 @@ SelectInput.propTypes = {
 	multi: PropTypes.bool,
 	onChange: PropTypes.func,
 	options: PropTypes.array,
-	placeholder: PropTypes.string
+	placeholder: PropTypes.string,
+	style: PropTypes.object
 };
 
 
