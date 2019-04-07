@@ -90,7 +90,7 @@ class BinTransformer extends Component {
 			activeVar,
 			configHist,
 			xBreaks: [ mean( props.data[ props.continuous[0] ] ) ],
-			name: null,
+			name: '',
 			catNames: [ 'x0', 'x1' ]
 		};
 		configHist.layout.shapes = makeShapes( this.state.xBreaks );
@@ -323,7 +323,7 @@ class BinTransformer extends Component {
 							</Card.Body>
 						</Card>
 					</div>
-					<Button onClick={this.makeNewVar}>
+					<Button onClick={this.makeNewVar} disabled={this.state.name.length < 2}>
 						Create new variable
 					</Button>
 				</Modal.Body>
