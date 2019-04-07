@@ -60,6 +60,10 @@
 		"value":"<MarkdownEditor ${1:voiceControl} />\n"
 	},
 	{
+		"name":"EngagementMeter",
+		"value":"<EngagementMeter />"
+	},
+	{
 		"name":"Expire",
 		"value":"<Expire delay={${1:1000}}>\n\t${2:}\n</Expire>\n"
 	},

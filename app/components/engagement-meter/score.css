@@ -1,0 +1,63 @@
+:root {
+	--bg: rgba(15, 112, 91, 0.9);
+	--bgdark: rgba(6, 41, 33, 0.9);
+}
+
+.score-bottom {
+	position: fixed;
+	bottom: 6px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 400px;
+	height: 40px;
+	z-index: 100;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 12px;
+	border-bottom-right-radius: 12px;
+	border: solid 1px var(--bgdark);
+	box-shadow: 0 0 9px var(--bgdark);
+	overflow: hidden;
+	transform-origin: bottom center;
+	transform: scale(0.72); /* Equal to scaleX(2) scaleY(0.5) */
+	transition: all 0.4s ease-in-out;
+	background: var(--bg);
+	background-image: url(https://isle.heinz.cmu.edu/sublime01_1543690264803.png);
+}
+
+.score-bottom-text {
+	position: absolute;
+	left: 15px;
+	top: -2px;
+	width: 50%;
+	height: 100%;
+	text-align: left;
+	font-family: Open Sans;
+	font-weight: 600;
+	font-size: 16px;
+	color: orange;
+}
+
+.score-bottom-stats {
+	position: absolute;
+	right: 0px;
+	top: -2px;
+	width: 50%;
+	height: 100%;
+	text-align: right;
+	font-family: Open Sans;
+	font-size: 16px;
+	color: orange;
+}
+
+.score-setter {
+	position: absolute;
+	top: -10px;
+	left: 194px;
+	background: orange;
+	width: 12px;
+	height: 50px;
+	z-index: 100;
+	cursor: grab;
+}

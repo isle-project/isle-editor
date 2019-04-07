@@ -97,7 +97,7 @@
 	"RTable": "components/r/table",
 	"Row": "react-bootstrap/Row",
 	"Runner": "components/runner",
-	"Score": "components/score",
+	"EngagementMeter": "components/engagement-meter",
 	"ScrollingText": "components/scrolling-text",
 	"SelectInput": "components/input/select",
 	"SelectQuestion": "components/select-question",
