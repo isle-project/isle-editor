@@ -41,6 +41,27 @@ function ascending( a, b ) {
 	return a - b;
 }
 
+/**
+* Function to make shapes from breakpoints.
+*/
+const makeShapes = ( xBreaks ) => {
+	const breakShapes = [];
+	for ( let i = 0; i < xBreaks.length; i++ ) {
+		breakShapes.push({
+			type: 'line',
+			x0: xBreaks[i],
+			y0: -100,
+			x1: xBreaks[i],
+			y1: 100,
+			line: {
+				color: 'red',
+				width: 3
+			}
+		});
+	}
+	return breakShapes;
+};
+
 
 // MAIN //
 
@@ -72,7 +93,7 @@ class BinTransformer extends Component {
 			name: null,
 			catNames: [ 'x0', 'x1' ]
 		};
-		configHist.layout.shapes = this.makeShapes();
+		configHist.layout.shapes = makeShapes( this.state.xBreaks );
 	}
 
 	onChangeHistLine = ( data ) => {
@@ -107,13 +128,13 @@ class BinTransformer extends Component {
 				max( configHist.data[ 1 ].y )
 			]
 		};
+		const xBreaks = [ mean( this.props.data[ value ] ) ];
+		configHist.layout.shapes = makeShapes( xBreaks );
 		this.setState({
 			activeVar: value,
 			configHist,
-			xBreaks: [ mean( this.props.data[ value ] ) ],
+			xBreaks,
 			catNames: [ 'x0', 'x1' ]
-		}, () => {
-			configHist.layout.shapes = this.makeShapes();
 		});
 	}
 
@@ -138,15 +159,19 @@ class BinTransformer extends Component {
 	// factory method for an onClick for the clearButtons
 	deleteBreak = ( ind ) => {
 		return () => {
-			var oldVals = this.state.xBreaks;
+			var xBreaks = this.state.xBreaks;
 			// remove the vars
-			oldVals.splice(ind, 1);
+			xBreaks.splice(ind, 1);
 
 			var oldNames = this.state.catNames;
 			oldNames.splice(ind, 1);
+
+			const configHist = this.state.configHist;
+			configHist.layout.shapes = makeShapes( xBreaks );
+
 			this.setState({
 				catNames: oldNames,
-				xBreaks: oldVals
+				xBreaks: xBreaks
 			}, () => {
 				console.log(this.state.xBreaks);
 			});
@@ -208,25 +233,6 @@ class BinTransformer extends Component {
 		return inputs;
 	}
 
-	// function to make shapes from the breakpoints
-	makeShapes = () => {
-		var breakShapes = [];
-		for ( let i = 0; i < this.state.xBreaks.length; i++ ) {
-			breakShapes.push({
-				type: 'line',
-				x0: this.state.xBreaks[i],
-				y0: -100,
-				x1: this.state.xBreaks[i],
-				y1: 100,
-				line: {
-					color: 'red',
-					width: 3
-				}
-			});
-		}
-		return breakShapes;
-	}
-
 	makeNewVar = () => {
 		// loop over the data and label
 		var newVar = [];
@@ -258,11 +264,10 @@ class BinTransformer extends Component {
 		xBreaks.sort( ascending );
 
 		const configHist = this.state.configHist;
+		configHist.layout.shapes = makeShapes( xBreaks );
 		this.setState({
 			xBreaks,
 			configHist
-		}, () => {
-			configHist.layout.shapes = this.makeShapes();
 		});
 	}
 
