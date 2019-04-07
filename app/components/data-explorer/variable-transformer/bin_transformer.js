@@ -146,7 +146,7 @@ class BinTransformer extends Component {
 
 	handleCatNamesFactory = ( ind ) => {
 		return ( value ) => {
-			var newNames = copy(this.state.catNames);
+			const newNames = copy( this.state.catNames );
 			newNames[ ind ] = value;
 			this.setState({
 				catNames: newNames
@@ -159,21 +159,20 @@ class BinTransformer extends Component {
 	// factory method for an onClick for the clearButtons
 	deleteBreak = ( ind ) => {
 		return () => {
-			var xBreaks = this.state.xBreaks;
+			const xBreaks = this.state.xBreaks;
 			// remove the vars
-			xBreaks.splice(ind, 1);
+			xBreaks.splice( ind, 1 );
 
-			var oldNames = this.state.catNames;
-			oldNames.splice(ind, 1);
+			const catNames = this.state.catNames;
+			catNames.splice( ind, 1 );
 
-			const configHist = this.state.configHist;
+			const configHist = copy( this.state.configHist );
 			configHist.layout.shapes = makeShapes( xBreaks );
 
 			this.setState({
-				catNames: oldNames,
-				xBreaks: xBreaks
-			}, () => {
-				console.log(this.state.xBreaks);
+				configHist,
+				catNames,
+				xBreaks
 			});
 		};
 	}
@@ -235,22 +234,23 @@ class BinTransformer extends Component {
 
 	makeNewVar = () => {
 		// loop over the data and label
-		var newVar = [];
-		var rawData = this.props.data[ this.state.activeVar ];
+		const newVar = [];
+		const rawData = this.props.data[ this.state.activeVar ];
+		const catNames = this.state.catNames;
 		for ( let i = 0; i < rawData.length; i++ ) {
 			let newLabel = null;
 			let breakInd = 0;
 			let val = rawData[i];
 			while ( isNull( newLabel) ) {
-				if ( breakInd >= this.state.catNames.length ) {
-					newLabel = this.state.catNames[this.state.catNames.length - 1];
-				} else if ( val < this.state.xBreaks[breakInd] ) {
-					newLabel = this.state.catNames[breakInd];
+				if ( breakInd >= catNames.length ) {
+					newLabel = catNames[ catNames.length - 1 ];
+				} else if ( val < this.state.xBreaks[ breakInd ] ) {
+					newLabel = catNames[ breakInd ];
 				} else {
 					breakInd++;
 				}
 			}
-			newVar.push(newLabel);
+			newVar.push( newLabel );
 		}
 		this.props.onGenerate( this.state.name, newVar );
 		this.props.onHide();
@@ -263,7 +263,7 @@ class BinTransformer extends Component {
 		xBreaks.push( avg );
 		xBreaks.sort( ascending );
 
-		const configHist = this.state.configHist;
+		const configHist = copy( this.state.configHist );
 		configHist.layout.shapes = makeShapes( xBreaks );
 		this.setState({
 			xBreaks,
