@@ -47,9 +47,27 @@ class BinTransformer extends Component {
 	constructor( props ) {
 		super( props );
 
+		const activeVar = props.continuous[ 0 ];
+		const histConfigSettings = {
+			'data': props.data,
+			'variable': activeVar,
+			'group': null,
+			'overlayDensity': true,
+			'densityType': 'Data-driven',
+			'chooseBins': false,
+			'nBins': null
+		};
+		const configHist = generateHistogramConfig( histConfigSettings );
+		configHist.layout.yaxis = {
+			range: [
+				min( configHist.data[ 1 ].y ),
+				max( configHist.data[ 1 ].y )
+			]
+		};
 		this.state = {
-			activeVar: props.continuous[ 0 ],
-			xBreaks: [ mean( props.data[props.continuous[0]] ) ],
+			activeVar,
+			configHist,
+			xBreaks: [ mean( props.data[ props.continuous[0] ] ) ],
 			name: null,
 			catNames: [ 'x0', 'x1' ]
 		};
@@ -72,8 +90,25 @@ class BinTransformer extends Component {
 
 	handleVariableChange = ( value ) => {
 		console.log( 'Change variable to bin...' );
+		const histConfigSettings = {
+			'data': this.props.data,
+			'variable': value,
+			'group': null,
+			'overlayDensity': true,
+			'densityType': 'Data-driven',
+			'chooseBins': false,
+			'nBins': null
+		};
+		const configHist = generateHistogramConfig( histConfigSettings );
+		configHist.layout.yaxis = {
+			range: [
+				min( configHist.data[ 1 ].y ),
+				max( configHist.data[ 1 ].y )
+			]
+		};
 		this.setState({
 			activeVar: value,
+			configHist,
 			xBreaks: [ mean( this.props.data[ value ] ) ],
 			catNames: [ 'x0', 'x1' ]
 		});
@@ -188,23 +223,8 @@ class BinTransformer extends Component {
 	}
 
 	render() {
-		const histConfigSettings = {
-			'data': this.props.data,
-			'variable': this.state.activeVar,
-			'group': null,
-			'overlayDensity': true,
-			'densityType': 'Data-driven',
-			'chooseBins': false,
-			'nBins': null
-		};
-		const configHist = generateHistogramConfig( histConfigSettings );
+		const configHist = this.state.configHist;
 		configHist.layout.shapes = this.makeShapes();
-		configHist.layout.yaxis = {
-			range: [
-				min( configHist.data[ 1 ].y ),
-				max( configHist.data[ 1 ].y )
-			]
-		};
 		return (
 			<Modal
 				dialogClassName='modal-50w'

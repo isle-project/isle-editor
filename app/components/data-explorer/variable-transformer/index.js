@@ -59,17 +59,27 @@ class Transformer extends Component {
 
 	render() {
 		return (
-			<div>
-				<Button
-					onClick={this.toggleFormulaModal}
-				>
-					Formula Transformation
-				</Button>
-				<Button
-					onClick={this.toggleBinModal}
-				>
-					Bin Transformation
-				</Button>
+			<div className="well" style={{ maxWidth: 600 }} >
+				<div>
+					<Button
+						onClick={this.toggleFormulaModal}
+						variant="primary"
+						size="large"
+						block
+					>
+						Formula Transformation
+					</Button>
+				</div>
+				<div>
+					<Button
+						onClick={this.toggleBinModal}
+						variant="primary"
+						size="large"
+						block
+					>
+						Bin Transformation
+					</Button>
+				</div>
 				{this.renderBinModal()}
 				{this.renderFormulaModal()}
 			</div>
