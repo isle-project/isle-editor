@@ -19,6 +19,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import copy from '@stdlib/utils/copy';
 import isNull from '@stdlib/assert/is-null';
 import { generateHistogramConfig } from '../histogram.js';
+import ClearButton from '../clear_button.js';
 
 
 // VARIABLES //
@@ -130,39 +131,80 @@ class BinTransformer extends Component {
 				console.log(this.state.catNames);
 			});
 		};
-	}
+    }
+    
+    // factory method for an onClick for the clearButtons
+    deleteBreak = ( ind ) => {
+        return( 
+            () => {
+                var oldVals = this.state.xBreaks;
+                // remove the vars
+                oldVals.splice(ind, 1);
+
+                var oldNames = this.state.catNames;
+                oldNames.splice(ind, 1);
+                this.setState({
+                    catNames: oldNames,
+                    xBreaks: oldVals
+                }, () => {
+                    console.log(this.state.xBreaks);
+                });
+            }
+        );
+    }
 
 	makeTextInputs = () => {
-		const inputs = [];
+        const inputs = [];
+        const disableButton = this.state.xBreaks.length === 1;
 		inputs.push(
-			<TextInput
-				key={0}
-				legend={<TeX raw={`z < ${roundn(this.state.xBreaks[0], -3)}`} />}
-				placeholder="Select label..."
-				onChange={this.handleCatNamesFactory(0)}
-			/>
+            <div>
+                <TextInput
+                    key={0}
+                    legend={<TeX raw={`z < ${roundn(this.state.xBreaks[0], -3)}`} />}
+                    defaultValue={`(-\u221E,${roundn(this.state.xBreaks[0], -2)})`}
+                    onChange={this.handleCatNamesFactory(0)}
+                    style={{width: '95%', float: 'left'}}
+                />
+            </div>
+			
 		);
 		if ( this.state.xBreaks.length > 1 ) {
 			for ( let i = 0; i < this.state.xBreaks.length - 1; i++ ) {
 				const changeFn = this.handleCatNamesFactory(i);
 				inputs.push(
-					<TextInput
-						key={1+i}
-						legend={<TeX raw={`${roundn(this.state.xBreaks[i], -3)} \\le z < ${roundn(this.state.xBreaks[i + 1], -3)}`} />}
-						placeholder="Select label..."
-						onChange={changeFn}
-					/>
+                    <div>
+                        <TextInput
+                            key={1+i}
+                            legend={<TeX raw={`${roundn(this.state.xBreaks[i], -3)} \\le z < ${roundn(this.state.xBreaks[i + 1], -3)}`} />}
+                            defaultValue={`[${roundn(this.state.xBreaks[i], -2)}, ${roundn(this.state.xBreaks[i + 1], -2)})`}
+                            onChange={changeFn}
+                            style={{width: '95%', float: 'left'}}
+                        />
+                        <ClearButton 
+                            onClick={this.deleteBreak(i)}
+                            style={{float: 'right', marginTop: '5px'}} 
+                            disabled={disableButton}
+                        />
+                    </div>
 				);
 			}
 		}
 		// push the last
 		inputs.push(
-			<TextInput
-				legend={<TeX raw={`z > ${roundn(this.state.xBreaks[this.state.xBreaks.length - 1], -3)}`} />}
-				placeholder="Select label..."
-				onChange={this.handleCatNamesFactory( this.state.xBreaks.length - 1 )}
-				key={this.state.xBreaks.length}
-			/>
+            <div>
+                <TextInput
+                    legend={<TeX raw={`z > ${roundn(this.state.xBreaks[this.state.xBreaks.length - 1], -3)}`} />}
+                    defaultValue={`[${roundn(this.state.xBreaks[this.state.xBreaks.length - 1], -2)},\u221E)`}
+                    onChange={this.handleCatNamesFactory( this.state.xBreaks.length - 1 )}
+                    style={{width: '95%', float: 'left'}}
+                    key={this.state.xBreaks.length}
+                />
+                <ClearButton 
+                    onClick={this.deleteBreak(this.state.xBreaks.length - 1)}
+                    style={{float: 'right', marginTop: '5px'}} 
+                    disabled={disableButton}
+                />
+            </div>
 		);
 		console.log( inputs );
 		return inputs;

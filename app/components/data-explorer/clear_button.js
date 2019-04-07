@@ -18,7 +18,8 @@ const ClearButton = ( props ) => (
 			variant="outline-danger"
 			size="sm"
 			onClick={props.onClick}
-			style={props.style}
+            style={props.style}
+            disabled={props.disabled}
 		>
 			<div className="fa fa-times" />
 		</Button>
@@ -30,11 +31,13 @@ const ClearButton = ( props ) => (
 
 ClearButton.propTypes = {
 	onClick: PropTypes.func.isRequired,
-	style: PropTypes.object
+    style: PropTypes.object,
+    disabled: PropTypes.bool
 };
 
 ClearButton.defaultProps = {
-	style: {}
+    style: {},
+    disabled: false
 };
 
 

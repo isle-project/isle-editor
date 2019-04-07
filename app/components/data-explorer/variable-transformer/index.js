@@ -40,6 +40,7 @@ class Transformer extends Component {
 				show={this.state.binModalActive}
 				onHide={this.toggleBinModal}
 				continuous={this.props.continuous}
+				onGenerate={this.props.onGenerate}
 				data={this.props.data}
 			/>
 		);
