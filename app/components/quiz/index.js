@@ -304,19 +304,19 @@ class Quiz extends Component {
 			case 'div':
 				return convertJSONtoJSX( config );
 			case 'FreeTextQuestion':
-				return <FreeTextQuestion disableSubmitNotification provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
+				return <FreeTextQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
 			case 'MultipleChoiceQuestion':
-				return <MultipleChoiceQuestion disableSubmitNotification provideFeedback="none" {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
+				return <MultipleChoiceQuestion disableSubmitNotification feedback={false} provideFeedback="none" {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
 			case 'MatchListQuestion':
-				return <MatchListQuestion disableSubmitNotification showSolution={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
+				return <MatchListQuestion disableSubmitNotification feedback={false} showSolution={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
 			case 'NumberQuestion':
-				return <NumberQuestion disableSubmitNotification provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
+				return <NumberQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
 			case 'OrderQuestion':
-				return <OrderQuestion disableSubmitNotification provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
+				return <OrderQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
 			case 'RangeQuestion':
-				return <RangeQuestion disableSubmitNotification provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
+				return <RangeQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
 			case 'SelectQuestion':
-				return <SelectQuestion disableSubmitNotification provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
+				return <SelectQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
 			default:
 				// Case: `config` already is a React component, clone it to pass in submit handler:
 				return <config.type {...config.props} {...props} disableSubmitNotification provideFeedback={false} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
