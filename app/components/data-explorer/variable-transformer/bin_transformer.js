@@ -63,14 +63,26 @@ const makeShapes = ( xBreaks ) => {
 	return breakShapes;
 };
 
-const createCategoryNames = ( xBreaks ) => {
-	const out = [
-		`(-\u221E,${roundn( xBreaks[0], -2 )})`
-	];
-	for ( let i = 0; i < xBreaks.length - 1; i++ ) {
-		out.push( `[${roundn( xBreaks[i], -2 )},${roundn( xBreaks[i+1], -2)})` );
+const createCategoryNames = ( xBreaks, customNames ) => {
+	const out = new Array( customNames.length );
+	if ( customNames[ 0 ] ) {
+		out[ 0 ] = customNames[ 0 ];
+	} else {
+		out[ 0 ] = `(-\u221E,${roundn( xBreaks[0], -2 )})`;
 	}
-	out.push( `[${roundn( xBreaks[ xBreaks.length - 1 ], -2)},\u221E)` );
+	for ( let i = 1; i < customNames.length; i++ ) {
+		if ( customNames[ i ] ) {
+			out[ i ] = customNames[ i ];
+		} else {
+			out[ i ] = `[${roundn( xBreaks[i-1], -2 )},${roundn( xBreaks[i], -2)})`;
+		}
+	}
+	const last = customNames.length - 1;
+	if ( customNames[ last ] ) {
+		out[ last ] = customNames[ last ];
+	} else {
+		out[ last ] = `[${roundn( xBreaks[ xBreaks.length - 1 ], -2)},\u221E)`;
+	}
 	return out;
 };
 
@@ -99,27 +111,33 @@ class BinTransformer extends Component {
 			]
 		};
 		const xBreaks = [ mean( props.data[ props.continuous[0] ] ) ];
+		const customNames = [ false, false ];
 		this.state = {
 			activeVar,
 			configHist,
 			xBreaks,
 			name: '',
-			catNames: createCategoryNames( xBreaks )
+			catNames: createCategoryNames( xBreaks, customNames ),
+			customNames: customNames
 		};
 		configHist.layout.shapes = makeShapes( xBreaks );
 	}
 
 	onChangeHistLine = ( data ) => {
+		console.log( data );
 		const keyUpdate = keys( data );
-		const matches = RE_SHAPE.exec( keyUpdate[0] );
+		const matches = RE_SHAPE.exec( keyUpdate[ 0 ] );
 		if ( matches ) {
 			const ind = matches[ 1 ];
 			const xBreaks = copy( this.state.xBreaks );
 			xBreaks[ ind ] = data[ keyUpdate[0] ];
 			xBreaks.sort( ascending );
+			const configHist = copy( this.state.configHist );
+			configHist.layout.shapes = makeShapes(xBreaks );
 			this.setState({
-				xBreaks: xBreaks,
-				catNames: createCategoryNames( xBreaks )
+				configHist,
+				xBreaks,
+				catNames: createCategoryNames( xBreaks, this.state.customNames )
 			});
 		}
 	}
@@ -144,11 +162,14 @@ class BinTransformer extends Component {
 		};
 		const xBreaks = [ mean( this.props.data[ value ] ) ];
 		configHist.layout.shapes = makeShapes( xBreaks );
+		const customNames = [ false, false ];
+		const catNames = createCategoryNames( xBreaks, customNames );
 		this.setState({
 			activeVar: value,
 			configHist,
 			xBreaks,
-			catNames: createCategoryNames( xBreaks )
+			catNames,
+			customNames
 		});
 	}
 
@@ -160,12 +181,13 @@ class BinTransformer extends Component {
 
 	handleCatNamesFactory = ( ind ) => {
 		return ( value ) => {
-			const newNames = copy( this.state.catNames );
-			newNames[ ind ] = value;
+			const catNames = copy( this.state.catNames );
+			catNames[ ind ] = value;
+			const customNames = copy( this.state.customNames );
+			customNames[ ind ] = value;
 			this.setState({
-				catNames: newNames
-			}, () => {
-				console.log(this.state.catNames);
+				catNames,
+				customNames
 			});
 		};
 	}
@@ -180,12 +202,16 @@ class BinTransformer extends Component {
 			const catNames = this.state.catNames;
 			catNames.splice( ind, 1 );
 
+			const customNames = this.state.customNames;
+			customNames.splice( ind, 1 );
+
 			const configHist = copy( this.state.configHist );
 			configHist.layout.shapes = makeShapes( xBreaks );
 
 			this.setState({
 				configHist,
 				catNames,
+				customNames,
 				xBreaks
 			});
 		};
@@ -280,10 +306,14 @@ class BinTransformer extends Component {
 
 		const configHist = copy( this.state.configHist );
 		configHist.layout.shapes = makeShapes( xBreaks );
+
+		const customNames = this.state.customNames;
+		customNames.push( false );
+
 		this.setState({
 			xBreaks,
 			configHist,
-			catNames: createCategoryNames( xBreaks )
+			catNames: createCategoryNames( xBreaks, customNames )
 		});
 	}
 
