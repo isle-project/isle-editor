@@ -204,7 +204,6 @@ mark {
 	min-height: 100vh;
 	height: 100%;
 	display: block;
-	overflow-x: hidden;
 }
 
 .focus-glow {
