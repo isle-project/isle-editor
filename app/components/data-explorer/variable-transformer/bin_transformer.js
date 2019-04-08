@@ -220,7 +220,7 @@ class BinTransformer extends Component {
 
 	changeFactory( ind ) {
 		return ( value ) => {
-			console.log( 'Change break...')
+			console.log( 'Change break point...' );
 			const xBreaks = copy( this.state.xBreaks );
 			xBreaks[ ind ] = value;
 			xBreaks.sort( ascending );
