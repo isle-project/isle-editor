@@ -166,7 +166,12 @@ class StickyNote extends Component {
 	showEditableTitle = () => {
 		return (
 			<div className="sticky-note-title">
-				<input className="sticky-note-editable-title noDrag" onKeyUp={this.checkTitle} type="text" name="fname"></input>
+				<input
+					className="sticky-note-editable-title noDrag"
+					onKeyUp={this.checkTitle} type="text"
+					name="fname"
+					defaultValue={this.state.title}
+				/>
 			</div>
 		);
 	}
@@ -192,7 +197,7 @@ class StickyNote extends Component {
 		return (
 			<div className="sticky-note-body">
 				<textarea ref={this.textareaRef} className="sticky-note-editable-body noDrag" rows="6" cols="28">{ this.state.body }</textarea>
-				<input onClick={this.submitBody} type="submit" value="send" />
+				<input onClick={this.submitBody} type="submit" value="save" />
 			</div>
 		);
 	}
