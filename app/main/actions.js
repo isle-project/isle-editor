@@ -150,5 +150,6 @@ export function newFile({ browserWindow }) {
 
 export function closeApp({ browserWindow }) {
 	console.log( 'Should close browser window...' ); // eslint-disable-line no-console
+	browserWindow.webContents.send( 'close-editor' );
 	browserWindow.close();
 }

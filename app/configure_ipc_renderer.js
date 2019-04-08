@@ -46,6 +46,7 @@ function configureIpcRenderer( store ) {
 	});
 
 	ipcRenderer.on( 'prepare-reload', () => {
+		debug( 'Prepare reload...' );
 		const state = store.getState().markdown;
 		const { markdown, filePath, fileName, preamble, preambleText } = state;
 		config.set( 'mostRecentFilePath', filePath );
@@ -83,6 +84,10 @@ function configureIpcRenderer( store ) {
 		config.set( 'mostRecentFileData', '' );
 		config.set( 'mostRecentPreamble', {} );
 		config.set( 'mostRecentPreambleText', '' );
+	});
+
+	ipcRenderer.on( 'close-editor', () => {
+		config.set( 'mostRecentFileData', null );
 	});
 
 	window.document.addEventListener( 'dragover', ( e ) => {

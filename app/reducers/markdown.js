@@ -10,12 +10,14 @@ import template from 'constants/template.js';
 
 const config = new Store( 'ISLE' );
 const filePath = config.get( 'mostRecentFilePath' );
-let md;
-if ( filePath ) {
-	md = readFileSync( filePath, 'utf-8' );
-}
-else {
-	md = template;
+let md = config.get( 'mostRecentFileData' );
+if ( !md ) {
+	if ( filePath ) {
+		md = readFileSync( filePath, 'utf-8' );
+	}
+	else {
+		md = template;
+	}
 }
 const initialState = {
 	markdown: md,
