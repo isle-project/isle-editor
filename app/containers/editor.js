@@ -136,7 +136,7 @@ class App extends Component {
 						'bottom': '0'
 					}}
 				>
-					<SplitPanel overflow="none" >
+					<SplitPanel style={{ overflow: 'none' }} >
 						<Editor
 							ref={( elem ) => { this.editor = elem; }}
 							value={markdown}
@@ -148,7 +148,7 @@ class App extends Component {
 							lintErrors={this.props.lintErrors}
 						/>
 					</SplitPanel>
-					<SplitPanel ref={( elem ) => { this.preview = elem; }} overflow="none" >
+					<SplitPanel ref={( elem ) => { this.preview = elem; }} style={{ overflowY: 'scroll' }} >
 						{ error ?
 							<ErrorMessage msg={error.message} code={markdown} /> :
 							<ErrorBoundary code={markdown} preamble={this.props.preamble} >

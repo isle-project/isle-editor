@@ -34,14 +34,9 @@ You can include LaTeX equations:
 ## Widgets
 You can include a variety of *ISLE components*, for example plotting widgets and feedback buttons:
 
-### Plotting & Feedback
+### Question & Feedback
 
-<FeedbackButtons
-    id="plot1"
-/>
-<VictoryChart id="plot1">
-    <VictoryLine/>
-</VictoryChart>
+<FreeTextQuestion id="q1" question="Where can I find help on ISLE?" solution="Browse the docs at https://isledocs.com or ask for help!" />
 
 ### Videos
 You can easily embed media content:
