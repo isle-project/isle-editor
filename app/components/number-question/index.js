@@ -245,7 +245,7 @@ NumberQuestion.defaultProps = {
 	question: '',
 	hints: [],
 	hintPlacement: 'top',
-	feedback: false,
+	feedback: true,
 	solution: null,
 	digits: 3,
 	max: PINF,

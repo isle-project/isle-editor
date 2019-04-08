@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+import FeedbackButtons from 'components/feedback';
 import SolutionButton from 'components/solution-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import Text from 'components/text';
@@ -229,6 +230,9 @@ class MultipleChoiceMatrix extends Component {
 							}}
 							info="MULTIPLE_CHOICE_MATRIX_SUBMISSION"
 						/>
+						{ this.props.id && this.props.feedback ? <FeedbackButtons
+							id={this.props.id+'_feedback'}
+						/> : null }
 					</div>
 				</Card.Body>
 			</Card>

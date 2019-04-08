@@ -448,7 +448,7 @@ MultipleChoiceQuestion.defaultProps = {
 	solution: null,
 	hints: [],
 	hintPlacement: 'bottom',
-	feedback: false,
+	feedback: true,
 	disabled: false,
 	displaySolution: false,
 	chat: false,

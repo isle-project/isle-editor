@@ -297,7 +297,7 @@ RangeQuestion.defaultProps = {
 	solution: null,
 	hints: [],
 	hintPlacement: 'top',
-	feedback: false,
+	feedback: true,
 	chat: false,
 	digits: 3,
 	max: PINF,

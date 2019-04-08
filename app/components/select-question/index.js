@@ -201,7 +201,7 @@ SelectQuestion.defaultProps = {
 	inline: false,
 	hints: [],
 	hintPlacement: 'bottom',
-	feedback: false,
+	feedback: true,
 	chat: false,
 	provideFeedback: true,
 	failureMsg: 'Not quite, try again!',

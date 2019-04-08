@@ -276,9 +276,6 @@ class FreeTextQuestion extends Component {
 						info="FREE_TEXT_QUESTION_SUBMIT_ANSWER"
 					/>
 					<ButtonToolbar className="free-text-question-toolbar" >
-						{ this.props.id && this.props.feedback ? <FeedbackButtons
-							id={this.props.id+'_feedback'}
-						/> : null }
 						{ nHints > 0 ?
 							<HintButton
 								onClick={this.logHint}
@@ -330,6 +327,10 @@ class FreeTextQuestion extends Component {
 								</OverlayTrigger>
 						}
 					</ButtonToolbar>
+					{ this.props.id && this.props.feedback ? <FeedbackButtons
+						id={this.props.id+'_feedback'}
+						style={{ marginRight: 5, marginTop: -5 }}
+					/> : null }
 				</Card.Body>
 			</Card>
 		);
@@ -343,7 +344,7 @@ FreeTextQuestion.defaultProps = {
 	question: '',
 	hints: [],
 	hintPlacement: 'top',
-	feedback: false,
+	feedback: true,
 	solution: '',
 	rows: 5,
 	chat: false,

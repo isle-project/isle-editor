@@ -226,6 +226,7 @@ class SelectQuestionMatrix extends Component {
 					/>
 					{ this.props.id && this.props.feedback ? <FeedbackButtons
 						id={this.props.id+'_feedback'}
+						style={{ float: 'left' }}
 					/> : null }
 				</div> : null }
 			</Card>
@@ -244,7 +245,7 @@ SelectQuestionMatrix.defaultProps = {
 	options: {},
 	hints: [],
 	hintPlacement: 'bottom',
-	feedback: false,
+	feedback: true,
 	provideFeedback: true,
 	failureMsg: 'Not quite, try again!',
 	successMsg: 'That\'s the correct answer!',

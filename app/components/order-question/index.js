@@ -168,7 +168,7 @@ OrderQuestion.defaultProps = {
 	provideFeedback: true,
 	hints: [],
 	hintPlacement: 'bottom',
-	feedback: false,
+	feedback: true,
 	chat: false,
 	failureMsg: 'Not quite, try again!',
 	successMsg: 'That\'s the correct ordering!',

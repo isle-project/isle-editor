@@ -269,7 +269,7 @@ MatchListQuestion.defaultProps = {
 	hints: [],
 	hintPlacement: 'bottom',
 	showSolution: true,
-	feedback: false,
+	feedback: true,
 	chat: false,
 	colorScale: null,
 	shuffle: 'both',
