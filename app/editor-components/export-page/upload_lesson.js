@@ -287,6 +287,15 @@ class UploadLesson extends Component {
 		</Fragment>);
 	}
 
+	handleKeyPress = ( event ) => {
+		if (
+			event.charCode === 13 && !this.state.spinning &&
+			this.state.token && this.state.lessonName
+		) {
+			this.checkLesson( event );
+		}
+	}
+
 	renderUploadPanel = () => {
 		let formGroups;
 		if ( this.state.namespaces.length > 0 ) {
@@ -314,6 +323,7 @@ class UploadLesson extends Component {
 						onChange={this.handleInputChange}
 						value={this.state.lessonName}
 						disabled={this.state.spinning}
+						onKeyPress={this.handleKeyPress}
 					/>
 				</FormGroup>
 				<FormGroup>
