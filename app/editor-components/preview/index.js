@@ -9,7 +9,6 @@
 import React, { Component } from 'react';
 import { transform } from 'babel-core';
 import PropTypes from 'prop-types';
-import NotificationSystem from 'react-notification-system';
 import logger from 'debug';
 import { dirname, resolve, extname } from 'path';
 import { readFileSync } from 'fs';
@@ -20,6 +19,7 @@ import repeat from '@stdlib/string/repeat';
 import markdownToHTML from 'utils/markdown-to-html';
 import pluginTransformJSX from 'babel-plugin-transform-react-jsx';
 import Provider from 'components/provider';
+import Lesson from 'components/lesson';
 import Session from 'session';
 import transformToPresentation from 'utils/transform-to-presentation';
 import createScope from './create_scope.js';
@@ -87,7 +87,6 @@ class Preview extends Component {
 
 	componentDidMount() {
 		debug( 'Preview did mount.' );
-		global.lesson = this;
 	}
 
 	shouldComponentUpdate( nextProps, nextState ) {
@@ -199,17 +198,11 @@ class Preview extends Component {
 	render() {
 		debug( 'Rendering preview...' );
 		const className = this.props.preamble.type === 'presentation' ? 'Presentation' : 'Lesson';
-		return ( <div id="Lesson" className={className} >
-			<Provider session={this.session} currentRole={this.props.currentRole}>
+		return ( <Provider session={this.session} currentRole={this.props.currentRole}>
+			<Lesson className={className} >
 				{this.renderPreview()}
-			</Provider>
-			<NotificationSystem
-				ref={( div ) => {
-					this.notificationSystem = div;
-				}}
-				allowHTML={true}
-			/>
-		</div> );
+			</Lesson>
+		</Provider> );
 	}
 }
 

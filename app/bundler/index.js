@@ -75,9 +75,9 @@ const loadRequires = ( libs, filePath ) => {
 const getMainImports = () => `
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
-import NotificationSystem from 'react-notification-system';
+import Lesson from 'components/lesson';
 import Provider from 'components/provider';
 import factor from 'utils/factor-variable';
 `;
@@ -90,14 +90,13 @@ const getComponents = ( arr ) => {
 const getLessonComponent = ( lessonContent, className, loaderTimeout = 3000 ) => `
 global.session = new Session( preamble );
 
-class Lesson extends Component {
+class LessonWrapper extends Component {
 	constructor() {
 		super();
 		this.state = preamble.state || {};
 	}
 
 	componentDidMount() {
-		global.lesson = this;
 		const loader = document.getElementById( 'loading' );
 		if ( loader ) {
 			setTimeout(function onFadeOut() {
@@ -116,19 +115,18 @@ class Lesson extends Component {
 
 	render() {
 		return (
-			<div id="Lesson" className="${className}" >
-				<Fragment>${lessonContent}</Fragment>
-				<NotificationSystem ref={ ( div ) => this.notificationSystem = div } allowHTML={true} />
-			</div>
+			<Lesson className="${className}" >
+				${lessonContent}
+			</Lesson>
 		);
 	}
 }
 
-document.body.style['overflow-y'] = 'hidden';
+document.body.style[ 'overflow-y' ] = 'hidden';
 
 render(
 	<Provider session={session} >
-		<Lesson />
+		<LessonWrapper />
 	</Provider>,
 	document.getElementById( 'App' )
 );`;

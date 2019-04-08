@@ -201,6 +201,7 @@ mark {
 	margin-right: auto;
 	padding: 20px 15px 5px 15px;
 	width: 100%;
+	min-height: 100vh;
 	height: 100%;
 	display: block;
 	overflow-x: hidden;
@@ -2270,4 +2271,90 @@ label {
 	shape-outside: url(https://isle.heinz.cmu.edu/Summertime_bird3.png);
 	shape-image-threshold: 0;
 	shape-margin: 30px;
+}
+
+.react-contextmenu {
+	min-width: 260px;
+	padding: 2px 0;
+	margin: 2px 0 0;
+	font-size: 14px;
+	color: #373a3c;
+	text-align: left;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 0.25rem;
+	outline: none;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 250ms ease !important;
+	z-index: 101;
+}
+
+.react-contextmenu.react-contextmenu--visible {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.react-contextmenu-item {
+	padding: 3px 5px;
+	font-weight: 400;
+	line-height: 1;
+	color: #373a3c;
+	text-align: inherit;
+	white-space: nowrap;
+	background: 0 0;
+	border: 0;
+	cursor: pointer;
+}
+
+.react-contextmenu-item:hover {
+	background-color: #ffffce;
+}
+
+.react-contextmenu-glyph {
+	float: right;
+}
+
+.react-contextmenu-glyph:hover {
+	background-color: #ca5800;
+}
+
+.react-contextmenu-item.react-contextmenu-item--active,
+.react-contextmenu-item.react-contextmenu-item--selected {
+	color: #373a3c;
+	background-color: #ffffce;
+	border-color: #ffffce;
+	text-decoration: none;
+}
+
+.react-contextmenu-item.react-contextmenu-item--disabled,
+.react-contextmenu-item.react-contextmenu-item--disabled:hover {
+	color: #878a8c;
+	background-color: transparent;
+	border-color: rgba(0, 0, 0, 0.15);
+}
+
+.react-contextmenu-item--divider {
+	margin-bottom: 3px;
+	padding: 2px 0;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+	cursor: inherit;
+}
+
+.react-contextmenu-item--divider:hover {
+	background-color: transparent;
+	border-color: rgba(0, 0, 0, 0.15);
+}
+
+.react-contextmenu-item.react-contextmenu-submenu {
+	padding: 0;
+	min-width: 250px;
+}
+
+.react-contextmenu-item.react-contextmenu-submenu > .react-contextmenu-item::after {
+	content: "▶";
+	display: inline-block;
+	position: absolute;
+	right: 7px;
 }
