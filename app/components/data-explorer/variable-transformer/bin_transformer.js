@@ -21,6 +21,7 @@ import copy from '@stdlib/utils/copy';
 import isNull from '@stdlib/assert/is-null';
 import { generateHistogramConfig } from '../histogram.js';
 import ClearButton from '../clear_button.js';
+import NumberInput from '../../input/number/index.js';
 
 
 // VARIABLES //
@@ -133,7 +134,7 @@ class BinTransformer extends Component {
 			xBreaks[ ind ] = data[ keyUpdate[0] ];
 			xBreaks.sort( ascending );
 			const configHist = copy( this.state.configHist );
-			configHist.layout.shapes = makeShapes(xBreaks );
+			configHist.layout.shapes = makeShapes( xBreaks );
 			this.setState({
 				configHist,
 				xBreaks,
@@ -217,6 +218,22 @@ class BinTransformer extends Component {
 		};
 	}
 
+	changeFactory( ind ) {
+		return ( value ) => {
+			console.log( 'Change break...')
+			const xBreaks = copy( this.state.xBreaks );
+			xBreaks[ ind ] = value;
+			xBreaks.sort( ascending );
+			const configHist = copy( this.state.configHist );
+			configHist.layout.shapes = makeShapes( xBreaks );
+			this.setState({
+				configHist,
+				xBreaks,
+				catNames: createCategoryNames( xBreaks, this.state.customNames )
+			});
+		};
+	}
+
 	makeTextInputs = () => {
 		const inputs = [];
 		const xBreaks = this.state.xBreaks;
@@ -225,7 +242,13 @@ class BinTransformer extends Component {
 			<div>
 				<TextInput
 					key={0}
-					legend={<TeX raw={`z < ${roundn(xBreaks[0], -3)}`} />}
+					legend={<span><TeX
+						raw="z < "
+					/><NumberInput
+						inline
+						onChange={this.changeFactory( 0 )}
+						defaultValue={roundn( xBreaks[0], -3 )}
+					/></span>}
 					defaultValue={this.state.catNames[ 0 ]}
 					onChange={this.handleCatNamesFactory( 0 )}
 					style={{ width: '95%', float: 'left' }}
@@ -239,7 +262,19 @@ class BinTransformer extends Component {
 					<div>
 						<TextInput
 							key={1+i}
-							legend={<TeX raw={`${roundn(xBreaks[i], -3)} \\le z < ${roundn(xBreaks[i + 1], -3)}`} />}
+							legend={<span>
+								<NumberInput
+									inline
+									onChange={this.changeFactory( i )}
+									defaultValue={roundn( xBreaks[i], -3 )}
+								/>
+								<TeX raw="\le z <" />
+								<NumberInput
+									inline
+									onChange={this.changeFactory( i+1 )}
+									defaultValue={roundn( xBreaks[i+1], -3 )}
+								/>
+							</span>}
 							defaultValue={this.state.catNames[ i+1 ]}
 							onChange={changeFn}
 							style={{ width: '95%', float: 'left' }}
@@ -253,18 +288,25 @@ class BinTransformer extends Component {
 				);
 			}
 		}
-		// push the last
+		const len = xBreaks.length;
 		inputs.push(
 			<div>
 				<TextInput
-					legend={<TeX raw={`z > ${roundn(xBreaks[ xBreaks.length - 1 ], -3)}`} />}
-					defaultValue={this.state.catNames[ xBreaks.length ]}
-					onChange={this.handleCatNamesFactory( xBreaks.length )}
+					legend={<span>
+						<TeX raw="z >" />
+						<NumberInput
+							inline
+							onChange={this.changeFactory( len-1 )}
+							defaultValue={roundn( xBreaks[ len-1 ], -3 )}
+						/>
+					</span>}
+					defaultValue={this.state.catNames[ len ]}
+					onChange={this.handleCatNamesFactory( len )}
 					style={{ width: '95%', float: 'left' }}
-					key={xBreaks.length}
+					key={len}
 				/>
 				<ClearButton
-					onClick={this.deleteBreak( xBreaks.length - 1 )}
+					onClick={this.deleteBreak( len - 1 )}
 					style={{ float: 'right', marginTop: '5px' }}
 					disabled={disableButton}
 				/>
@@ -363,7 +405,7 @@ class BinTransformer extends Component {
 					</div>
 					<div>
 						<Card className="mb-2" >
-							<Card.Header>Generate new variables:</Card.Header>
+							<Card.Header>Choose labels for interval bins:</Card.Header>
 							<Card.Body>
 								{this.makeTextInputs()}
 							</Card.Body>
