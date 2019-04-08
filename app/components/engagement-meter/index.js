@@ -88,7 +88,7 @@ class EngagementMeter extends Component {
 						>
 							<div className="score-setter" />
 						</Draggable>
-						<ProgressBar style={{ marginTop: 20 }}>
+						<ProgressBar style={{ marginTop: 23 }}>
 							<ProgressBar animated variant="success" now={this.state.progress} />
 							<ProgressBar animated variant="danger" now={100-this.state.progress} />
 						</ProgressBar>
@@ -99,7 +99,7 @@ class EngagementMeter extends Component {
 							<span className="score-bottom-stats">
 								{`mean: ${roundn( this.state.mean, -2 )} (range: ${roundn( this.state.range, -2 )})`}
 							</span>
-							<ProgressBar style={{ marginTop: 20 }}>
+							<ProgressBar style={{ marginTop: 23 }}>
 								<ProgressBar animated variant="success" now={this.state.mean} />
 								<ProgressBar animated variant="danger" now={100-this.state.mean} />
 							</ProgressBar>

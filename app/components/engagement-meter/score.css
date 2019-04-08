@@ -22,8 +22,7 @@
 	transform-origin: bottom center;
 	transform: scale(0.72); /* Equal to scaleX(2) scaleY(0.5) */
 	transition: all 0.4s ease-in-out;
-	background: var(--bg);
-	background-image: url(https://isle.heinz.cmu.edu/sublime01_1543690264803.png);
+	background: rgb(232, 232, 232);
 }
 
 .score-bottom-text {
@@ -34,9 +33,7 @@
 	height: 100%;
 	text-align: left;
 	font-family: Open Sans;
-	font-weight: 600;
-	font-size: 16px;
-	color: orange;
+	font-variant-caps: all-petite-caps;
 }
 
 .score-bottom-stats {
@@ -47,8 +44,7 @@
 	height: 100%;
 	text-align: right;
 	font-family: Open Sans;
-	font-size: 16px;
-	color: orange;
+	font-variant-caps: all-petite-caps;
 }
 
 .score-setter {
