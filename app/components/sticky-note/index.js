@@ -33,11 +33,10 @@ class StickyNote extends Component {
 		let body = null;
 		let title = null;
 
-		if (props.editable) {
-			body = 'Type in the title';
-			title = 'Type in your notes';
+		if ( props.editable ) {
+			title = 'Type in the title';
+			body = 'Type in your notes';
 		}
-
 		this.state = {
 			exit: false,
 			minimized: props.minimized,

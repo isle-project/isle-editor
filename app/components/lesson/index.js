@@ -27,7 +27,7 @@ class Lesson extends Component {
 	}
 
 	addNote = ( event ) => {
-		const note = <StickyNote editable draggable minimizable removable key={this.state.notes.length} style={{
+		const note = <StickyNote color="green" editable draggable minimizable removable key={this.state.notes.length} style={{
 			position: 'absolute',
 			top: event.pageY,
 			left: event.pageX
