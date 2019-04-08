@@ -45,6 +45,7 @@ class Lesson extends Component {
 				<ContextMenuTrigger id="lessonWindow" style={{ height: '100%', width: '100%' }} >
 					<div id="Lesson" className={this.props.className}>
 						{this.props.children}
+						{this.state.notes}
 					</div>
 				</ContextMenuTrigger>
 				<ContextMenu id="lessonWindow" >
@@ -58,7 +59,6 @@ class Lesson extends Component {
 					}}
 					allowHTML={true}
 				/>
-				{this.state.notes}
 			</Fragment>
 		);
 	}
