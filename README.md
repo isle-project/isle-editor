@@ -110,6 +110,16 @@ The following icons are used under a Creative Commons CCBY license.
 - "Positive Feedback Loop" by Richard Slater
 - "bar chart" by Barracuda
 - "Scatterplot" by JeraOcean
+- "K-Means" by Knut M. Synstad from the Noun Project
+- "SVM", "k nearest Neighbours", "Classification tree graph", "Naive Bayes", "Random Forest", "Neural Networks" by sachin modgekar from the Noun Project
+- "logistic regressions" by Christina Barysheva from the Noun Project
+- "Lasso" by Sam Neckles from the Noun Project
+- "net" by Lisa Oregioni from the Noun Project
+- "detail roof shed ridge" by kloeg architecture from the Noun Project
+- "linear regression" by Knut M. Synstad from the Noun Project
+- "dimension" by Andreav from the Noun Project
+- "bag" by Andrejs Kirma from the Noun Project
+- "boost" by Yo! Baba from the Noun Project
 
 [isle-dashboard]: https://github.com/isle-project/isle-dashboard
 [isle-server]: https://github.com/isle-project/isle-server
