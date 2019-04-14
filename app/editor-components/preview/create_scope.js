@@ -2,7 +2,10 @@
 
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import NotificationSystem from 'react-notification-system';
+import Draggable from 'react-draggable';
+import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 import Loadable from 'components/loadable';
 import EnlargeableGrid from 'components/enlargeable-grid';
 import TeX from 'components/tex';
@@ -27,7 +30,7 @@ const SCOPE = {
 	render,
 	factor,
 	Repetition,
-	NotificationSystem,
+	Draggable,
 
 	Accordion: Loadable( () => import( 'components/accordion' ) ),
 	Animated: Loadable( () => import( 'components/animated' ) ),
@@ -75,6 +78,7 @@ const SCOPE = {
 	LearnMeanTest: Loadable( () => import( 'components/learn/hypothesis-testing-mean' ) ),
 	LearnProportionTest: Loadable( () => import( 'components/learn/hypothesis-testing-proportion' ) ),
 	LearnMeanVSMedian: Loadable( () => import( 'components/learn/mean-vs-median' ) ),
+	LearnStatisticalModels: Loadable( () => import( 'components/learn/statistical-models' ) ),
 	LearnConditionalProbability: Loadable( () => import( 'components/learn/conditional-probability' ) ),
 	LearnVennDiagramBuilder: Loadable( () => import( 'components/learn/venn-diagram-builder' ) ),
 	LearnWordVennDiagram: Loadable( () => import( 'components/learn/word-venn-diagram' ) ),
@@ -153,13 +157,13 @@ const SCOPE = {
 	// REACT BOOTSTRAP //
 	Alert: Loadable( () => import( 'react-bootstrap/Alert' ) ),
 	Button: Loadable( () => import( 'react-bootstrap/Button' ) ),
-	Card: Loadable( () => import( 'react-bootstrap/Card' ) ),
+	Card,
 	Col: Loadable( () => import( 'react-bootstrap/Col' ) ),
-	Form: Loadable( () => import( 'react-bootstrap/Form' ) ),
+	Form,
 	FormControl: Loadable( () => import( 'react-bootstrap/FormControl' ) ),
 	ListGroup: Loadable( () => import( 'react-bootstrap/ListGroup' ) ),
 	ListGroupItem: Loadable( () => import( 'react-bootstrap/ListGroupItem' ) ),
-	Modal: Loadable( () => import( 'react-bootstrap/Modal' ) ),
+	Modal,
 	Nav: Loadable( () => import( 'react-bootstrap/Nav' ) ),
 	Navbar: Loadable( () => import( 'react-bootstrap/Navbar' ) ),
 	NavItem: Loadable( () => import( 'react-bootstrap/NavItem' ) ),

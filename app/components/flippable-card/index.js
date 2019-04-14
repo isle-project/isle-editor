@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Draggable from 'react-draggable';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import isArray from '@stdlib/assert/is-array';
@@ -51,7 +52,7 @@ class FlippableCard extends Component {
 	}
 
 	handleToggle = () => {
-		if (this.props.value !== void 0) {
+		if ( this.props.value !== void 0 ) {
 			return this.props.onChange( !this.props.value );
 		}
 		if ( this.props.oneTime === false)
@@ -69,7 +70,7 @@ class FlippableCard extends Component {
 	renderButton() {
 		if ( this.props.button !== null ) {
 			return (
-				<Button onClick={this.handleToggle} >
+				<Button onClick={this.handleToggle} block >
 					{this.props.button}
 				</Button>
 			);
@@ -132,20 +133,22 @@ class FlippableCard extends Component {
 				...this.props.cardStyles.back
 			}
 		};
-		return (
-			<div id={this.props.id} onClick={this.interaction} className="react-card-flip" style={styles.container}>
-				<div className="react-card-flipper" style={styles.flipper}>
-					<div className="react-card-front" style={styles.front}>
-						{this.props.children[ 0 ]}
-						{this.renderButton()}
-					</div>
-					<div className="react-card-back" style={styles.back}>
-						{this.props.children[ 1 ]}
-						{this.renderButton()}
-					</div>
+		const out = <div id={this.props.id} onClick={this.interaction} className="react-card-flip" style={styles.container}>
+			<div className="react-card-flipper" style={styles.flipper}>
+				<div className="react-card-front" style={styles.front}>
+					{this.props.children[ 0 ]}
+					{this.renderButton()}
+				</div>
+				<div className="react-card-back" style={styles.back}>
+					{this.props.children[ 1 ]}
+					{this.renderButton()}
 				</div>
 			</div>
-		);
+		</div>;
+		if ( this.props.draggable ) {
+			return ( <Draggable>{out}</Draggable> );
+		}
+		return out;
 	}
 }
 
@@ -164,6 +167,7 @@ FlippableCard.propTypes = {
 		}
 		return null;
 	},
+	draggable: PropTypes.bool,
 	flipSpeedBackToFront: PropTypes.number,
 	flipSpeedFrontToBack: PropTypes.number,
 	isFlipped: PropTypes.bool,
@@ -182,6 +186,7 @@ FlippableCard.defaultProps = {
 		back: {}
 	},
 	children: null,
+	draggable: false,
 	flipSpeedBackToFront: 1,
 	flipSpeedFrontToBack: 1,
 	isFlipped: false,
