@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import BinTransformer from './bin_transformer.js';
 import FormulaTransformer from './formula_transformer.js';
+import CategoricalModal from './categorical_transformer.js';
 
 
 // MAIN //
@@ -14,7 +15,8 @@ class Transformer extends Component {
 		super( props );
 		this.state = {
 			formulaModalActive: false,
-			binModalActive: false
+			binModalActive: false,
+			categoricalModalActive: false
 		};
 	}
 
@@ -46,6 +48,18 @@ class Transformer extends Component {
 		);
 	}
 
+	renderCategoricalModal = () => {
+		return (
+			<CategoricalModal
+				show={this.state.categoricalModalActive}
+				onHide={this.toggleCategoricalModal}
+				categorical={this.props.categorical}
+				onGenerate={this.props.onGenerate}
+				data={this.props.data}
+			/>
+		);
+	}
+
 	toggleFormulaModal = () => {
 		this.setState({
 			formulaModalActive: !this.state.formulaModalActive
@@ -55,6 +69,12 @@ class Transformer extends Component {
 	toggleBinModal = () => {
 		this.setState({
 			binModalActive: !this.state.binModalActive
+		});
+	}
+
+	toggleCategoricalModal = () => {
+		this.setState({
+			categoricalModalActive: !this.state.categoricalModalActive
 		});
 	}
 
@@ -81,8 +101,19 @@ class Transformer extends Component {
 						Bin Transformation
 					</Button>
 				</div>
+				<div>
+					<Button
+						onClick={this.toggleCategoricalModal}
+						variant="primary"
+						size="large"
+						block
+					>
+						Categorical Transformation
+					</Button>
+				</div>
 				{this.renderBinModal()}
 				{this.renderFormulaModal()}
+				{this.renderCategoricalModal()}
 			</div>
 		);
 	}

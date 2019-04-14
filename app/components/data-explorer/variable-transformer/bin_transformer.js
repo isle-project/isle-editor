@@ -368,7 +368,7 @@ class BinTransformer extends Component {
 				show={this.props.show}
 			>
 				<Modal.Header closeButton>
-					<Modal.Title>Categorical Binning</Modal.Title>
+					<Modal.Title>Binning of Quantitative Variables</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<Row>
