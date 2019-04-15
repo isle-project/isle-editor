@@ -11,6 +11,7 @@ import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import randomstring from 'utils/randomstring/alphanumeric';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import { DATA_EXPLORER_SHARE_BARCHART, DATA_EXPLORER_BARCHART } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
@@ -250,7 +251,7 @@ class Barchart extends Component {
 					<SelectInput
 						legend="Order X Axis:"
 						defaultValue={this.state.xOrder}
-						disabled={this.state.groupVar}
+						disabled={isUndefinedOrNull( this.state.groupVar )}
 						options={['Ascending Y', 'Descending Y']}
 						clearable={true}
 						menuPlacement="top"
