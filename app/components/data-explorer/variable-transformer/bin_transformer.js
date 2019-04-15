@@ -22,6 +22,7 @@ import isNull from '@stdlib/assert/is-null';
 import { generateHistogramConfig } from '../histogram.js';
 import ClearButton from '../clear_button.js';
 import NumberInput from '../../input/number/index.js';
+import './bin_transformer.css';
 
 
 // VARIABLES //
@@ -243,7 +244,7 @@ class BinTransformer extends Component {
 				<TextInput
 					key={0}
 					legend={<span><TeX
-						raw="z < "
+						raw="x < "
 					/><NumberInput
 						inline
 						onChange={this.changeFactory( 0 )}
@@ -268,7 +269,7 @@ class BinTransformer extends Component {
 									onChange={this.changeFactory( i )}
 									defaultValue={roundn( xBreaks[i], -3 )}
 								/>
-								<TeX raw="\le z <" />
+								<TeX raw="\le x <" />
 								<NumberInput
 									inline
 									onChange={this.changeFactory( i+1 )}
@@ -293,7 +294,7 @@ class BinTransformer extends Component {
 			<div>
 				<TextInput
 					legend={<span>
-						<TeX raw="z >" />
+						<TeX raw="x >" />
 						<NumberInput
 							inline
 							onChange={this.changeFactory( len-1 )}
@@ -363,7 +364,7 @@ class BinTransformer extends Component {
 		const configHist = this.state.configHist;
 		return (
 			<Modal
-				dialogClassName='modal-50w'
+				dialogClassName='modal-75w'
 				onHide={this.props.onHide}
 				show={this.props.show}
 			>
@@ -371,28 +372,17 @@ class BinTransformer extends Component {
 					<Modal.Title>Binning of Quantitative Variables</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<Row>
-						<Col md={6}>
-							<SelectInput
-								legend="Variable to bin:"
-								defaultValue={this.state.activeVar}
-								options={this.props.continuous}
-								onChange={this.handleVariableChange}
-							/>
-						</Col>
-						<Col md={6}>
-							<label>Binned Variable</label>
-							<FormControl
-								type="text"
-								placeholder="Select name..."
-								onChange={this.handleNameChange}
-							/>
-						</Col>
-					</Row>
+					<SelectInput
+						legend="Variable to bin:"
+						defaultValue={this.state.activeVar}
+						options={this.props.continuous}
+						onChange={this.handleVariableChange}
+						style={{ maxWidth: 400 }}
+					/>
+					<Button className="insert-line-button" onClick={this.addNewBreakPoint}>
+						Insert break line
+					</Button>
 					<div>
-						<Button className="insert-line-button" onClick={this.addNewBreakPoint}>
-							Insert break line
-						</Button>
 						<Plotly
 							data={configHist.data}
 							layout={configHist.layout}
@@ -411,10 +401,26 @@ class BinTransformer extends Component {
 							</Card.Body>
 						</Card>
 					</div>
-					<Button onClick={this.makeNewVar} disabled={this.state.name.length < 2}>
-						Create new variable
-					</Button>
 				</Modal.Body>
+				<Modal.Footer>
+					<Row>
+						<Col>
+							<label>Generated variable:</label>
+						</Col>
+						<Col>
+							<FormControl
+								type="text"
+								placeholder="Select name..."
+								onChange={this.handleNameChange}
+							/>
+						</Col>
+						<Col>
+							<Button onClick={this.makeNewVar} disabled={this.state.name.length < 2}>
+								Create new variable
+							</Button>
+						</Col>
+					</Row>
+				</Modal.Footer>
 			</Modal>
 		);
 	}

@@ -23,10 +23,13 @@ class CategoricalTransformer extends Component {
 	constructor( props ) {
 		super( props );
 
+		const firstVar = props.categorical[ 0 ];
+		const firstValues = props.data[ firstVar ];
+		const firstFreqs = countBy( firstValues, identity );
 		this.state = {
 			generatedName: '',
-			firstVar: null,
-			firstFreqs: null,
+			firstVar,
+			firstFreqs,
 			secondVar: null,
 			secondFreqs: null,
 			nameMappings: {}
@@ -167,8 +170,6 @@ class CategoricalTransformer extends Component {
 		const values = this.props.data[ variable ];
 		const varFreqs = countBy( values, identity );
 		const keys = variable.categories || objectKeys( varFreqs );
-		console.log( 'KEYS:');
-		console.log( keys );
 		return (
 			<Table bordered >
 				<tbody>
@@ -274,28 +275,31 @@ class CategoricalTransformer extends Component {
 					<Row style={{ overflowX: 'auto', width: '100%' }}>
 						{this.renderTable()}
 					</Row>
+				</Modal.Body>
+				<Modal.Footer>
 					<Row>
-						<Col md={2}>
-							<label>Generated variable name:</label>
+						<Col>
+							<label>Generated variable:</label>
 						</Col>
-						<Col md={2}>
+						<Col>
 							<FormControl
 								type="text"
 								placeholder="Select name..."
 								onChange={this.handleGeneratedNameChange}
 							/>
 						</Col>
-						<Col md={2}>
+						<Col>
 							<Button onClick={this.makeNewVar} disabled={this.state.generatedName.length < 2}>
 								Create new variable
 							</Button>
 						</Col>
 					</Row>
-				</Modal.Body>
+				</Modal.Footer>
 			</Modal>
 		);
 	}
 }
+
 
 // PROPERTIES //
 

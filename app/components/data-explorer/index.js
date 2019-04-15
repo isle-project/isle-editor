@@ -195,7 +195,7 @@ class DataExplorer extends Component {
 			if ( nextProps.continuous !== prevState.unaltered.continuous ) {
 				newState.continuous = nextProps.continuous;
 			}
-			if ( nextProps.continuous !== prevState.continuous ) {
+			if ( nextProps.categorical !== prevState.unaltered.categorical ) {
 				newState.categorical = nextProps.categorical;
 			}
 		}
@@ -396,6 +396,7 @@ class DataExplorer extends Component {
 				newState[ 'groupVars' ] = groupVars;
 			}
 			this.setState( newState );
+			console.log( newState );
 			const session = this.context;
 			session.addNotification({
 				title: 'Variable created',

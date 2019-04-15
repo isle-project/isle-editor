@@ -41,11 +41,6 @@ const FUNCTIONS = [
 	round,
 	sqrt
 ];
-const IF_ELSE = `if (  ) {
-	return
-} else {
-	return
-}`;
 const RE_LAST_EXPRESSION = /(?:^|\n)([^\n]*)$/;
 
 
@@ -155,16 +150,6 @@ class FormulaTransformer extends Component {
 		this.props.onGenerate( name, values );
 	}
 
-	insertIfElse = () => {
-		let newCode = this.state.code.substring( 0, this.state.selection );
-		newCode += IF_ELSE;
-		newCode += this.state.code.substring( this.state.selection );
-		this.setState({
-			code: newCode,
-			selection: this.state.selection + 5
-		});
-	}
-
 	handleNameChange = ( value ) => {
 		this.setState({
 			name: value
@@ -221,6 +206,7 @@ class FormulaTransformer extends Component {
 			<Modal
 				show={this.props.show}
 				onHide={this.props.onHide}
+				dialogClassName='modal-75w'
 			>
 				<Modal.Header closeButton>
 					<Modal.Title>Formula Transformation</Modal.Title>
@@ -275,7 +261,6 @@ class FormulaTransformer extends Component {
 								</ButtonToolbar>
 								<ButtonToolbar style={{ marginBottom: 5 }} >
 									<ButtonGroup size="sm" className="mr-2" >
-										<Button variant="light" onClick={this.insertIfElse} >ifelse</Button>
 										<Button variant="light" onClick={this.insertLiteralFactory(' && ')} >and</Button>
 										<Button variant="light" onClick={this.insertLiteralFactory(' || ')} >or</Button>
 										<Button variant="light" onClick={this.insertLiteralFactory(' !')} >not</Button>
