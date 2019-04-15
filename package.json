@@ -10,7 +10,7 @@
     "interactive",
     "machine learning",
     "react",
-    "statistcs"
+    "statistics"
   ],
   "homepage": "https://github.com/isle-project/isle-editor#readme",
   "bugs": {
@@ -172,7 +172,7 @@
     "react-notification-system": "^0.2.7",
     "react-player": "^1.10.0",
     "react-plotly.js": "^2.3.0",
-    "react-redux": "5.1.1",
+    "react-redux": "7.0.2",
     "react-router": "5.0.0",
     "react-router-dom": "5.0.0",
     "react-select": "^2.4.2",
