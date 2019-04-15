@@ -187,7 +187,7 @@
     "semver": "^6.0.0",
     "socket.io-client": "^2.1.0",
     "source-map-support": "^0.5.12",
-    "spectacle": "5.4.0",
+    "spectacle": "5.5.0",
     "stemmer": "^1.0.3",
     "style-loader": "^0.23.0",
     "svg-react-loader": "^0.4.5",
