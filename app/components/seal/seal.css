@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
-@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
+@import url('https://isle.heinz.cmu.edu/Summertime_old_stamper.ttf');
+
+
+@font-face {
+	font-family: 'Old Stamper';
+	src: url('https://isle.heinz.cmu.edu/Summertime_old_stamper.ttf');
+}
+
+@font-face {
+	font-family: 'Due Date';
+	src: url('https://isle.heinz.cmu.edu/Summertime_due-date.regular.ttf');
+}
 
 .seal-container {
 	position: relative;
@@ -9,7 +20,7 @@
 	font-size: 30px;
 	color: black;
 	border-radius: 50%;
-	box-shadow: 0 0 0 5px black, 0 0 4px darkgray, 0 0 10px black;
+	box-shadow: 0 0 0 5px black, 0 0 9px darkgray, 0 0 10px black;
 	font-family: Amatic SC;
 }
 
@@ -73,7 +84,7 @@
 	position: absolute;
 	left: 0;
 	right: 0;
-	bottom: 22%;
+	bottom: 28%;
 	margin: auto;
 	width: 20px;
 	height: 20px;
@@ -105,7 +116,7 @@
 	vertical-align: auto;
 	border-top: solid 1px darkslategrey;
 	border-bottom: solid 1px darkslategrey;
-	z-index: 4;
+	z-index: 2;
 }
 
 .seal-title::before {
