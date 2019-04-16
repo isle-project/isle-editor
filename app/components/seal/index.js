@@ -25,6 +25,7 @@ function cosDegrees(angleDegrees) {
 * @property {number} upperArc - the arc for the upper text
 * @property {object} style - the style for the element
 * @property {object} innerStyle - the style for the inner circle
+* @property {bool} noOrnaments - prevents rendering of the ornaments
 */
 
 class Seal extends Component {
@@ -115,7 +116,7 @@ class Seal extends Component {
 
 
 	getUpperLine = () => {
-		let curvedText = this.curvedNewText(this.props.upper, 210, this.props.upperArc, 65);
+		let curvedText = this.curvedNewText(this.props.upper, 195, this.props.upperArc, 65);
 		return (
 			<div>{curvedText}</div>
 		);
