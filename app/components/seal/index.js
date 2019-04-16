@@ -113,32 +113,8 @@ class Seal extends Component {
 		return lines;
 	}
 
-	curvedText = (txt, radius, arc, offset) => {
-		txt = txt.split('');
-		var deg = arc / txt.length; // war zuvor Radius
-		let origin = (arc/2)*-1;
-		origin += offset;
-		let lines = [];
 
-		txt.forEach((ea) => {
-			// let line = `<p style='height:${radius}px;position:absolute;transform:rotate(${origin}deg);transform-origin:0 100%'>${ea}</p>`;
-			let rotation = 'rotate(' + origin + 'deg)';
-			let style = {
-				position: 'absolute',
-				height: radius,
-				transformOrigin: '0 100%',
-				transform: rotation
-			};
-
-			let l = <p style={style}>{ea}</p>;
-			lines.push(l);
-			origin += deg;
-		});
-
-		return lines;
-	}
-
-	getUpper = () => {
+	getUpperLine = () => {
 		let curvedText = this.curvedNewText(this.props.upper, 210, this.props.upperArc, 65);
 		return (
 			<div>{curvedText}</div>
@@ -149,15 +125,6 @@ class Seal extends Component {
 		let curvedText = this.curvedInvertedText(this.props.lower, this.state.height, this.props.lowerArc, 0);
 		return (
 			<div>{curvedText}</div>
-		);
-	}
-
-	getUpperLine() {
-		let curvedText = this.curvedText(this.props.upper, 100, this.props.upperArc, 0);
-		return (
-			<div className='seal-line-wrapper'>
-				<div className="seal-upper-line">{curvedText}</div>
-			</div>
 		);
 	}
 
@@ -189,20 +156,18 @@ class Seal extends Component {
 				<div className="seal-outer-border" />
 				<div className="seal-fine-border" />
 				<div style={innerStyle} className="seal-inner-circle" />
-				<div className="seal-logo" />
-				<div className="seal-lower-logo" />
+				{ !this.props.noOrnaments ? <div className="seal-logo" /> : null }
+				{ !this.props.noOrnaments ? <div className="seal-lower-logo" /> : null }
 				<div className="seal-wrapper">
 					<div className="seal-title">{ this.props.title}</div>
 				</div>
 				<div ref={this.lowerRef} className="seal-lower-line">{ this.getLowerLine() }</div>
-				<div ref={this.upperRef} className="seal-upper">{ this.getUpper() }</div>
+				<div ref={this.upperRef} className="seal-upper">{ this.getUpperLine() }</div>
 			</div>
 		);
 	}
 }
 
-
-// { this.getUpperLine() }
 
 // PROPERTIES //
 
@@ -210,6 +175,7 @@ Seal.propTypes = {
 	innerStyle: PropTypes.object,
 	lower: PropTypes.string,
 	lowerArc: PropTypes.number,
+	noOrnaments: PropTypes.bool,
 	style: PropTypes.object,
 	title: PropTypes.string,
 	upper: PropTypes.string,
@@ -223,7 +189,8 @@ Seal.defaultProps = {
 	innerStyle: null,
 	upper: 'The upper text',
 	upperArc: 150,
-	title: 'Enter a title'
+	title: 'Enter a title',
+	noOrnaments: false
 };
 
 
