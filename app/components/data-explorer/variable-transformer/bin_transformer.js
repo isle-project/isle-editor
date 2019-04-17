@@ -19,6 +19,8 @@ import keys from '@stdlib/utils/keys';
 import roundn from '@stdlib/math/base/special/roundn';
 import copy from '@stdlib/utils/copy';
 import isNull from '@stdlib/assert/is-null';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isnan from '@stdlib/assert/is-nan';
 import { generateHistogramConfig } from '../histogram.js';
 import ClearButton from '../clear_button.js';
 import NumberInput from '../../input/number/index.js';
@@ -112,7 +114,9 @@ class BinTransformer extends Component {
 				max( configHist.data[ 1 ].y )
 			]
 		};
-		const xBreaks = [ mean( props.data[ props.continuous[0] ] ) ];
+		let values = props.data[ props.continuous[0] ];
+		values = values.filter( x => isNumber( x ) && !isnan( x ) );
+		const xBreaks = [ mean( values ) ];
 		const customNames = [ false, false ];
 		this.state = {
 			activeVar,
@@ -162,7 +166,9 @@ class BinTransformer extends Component {
 				max( configHist.data[ 1 ].y )
 			]
 		};
-		const xBreaks = [ mean( this.props.data[ value ] ) ];
+		let values = this.props.data[ value ];
+		values = values.filter( x => isNumber( x ) && !isnan( x ) );
+		const xBreaks = [ mean( values ) ];
 		configHist.layout.shapes = makeShapes( xBreaks );
 		const customNames = [ false, false ];
 		const catNames = createCategoryNames( xBreaks, customNames );
@@ -342,7 +348,8 @@ class BinTransformer extends Component {
 
 	addNewBreakPoint = () => {
 		var xBreaks = copy( this.state.xBreaks );
-		const vals = this.props.data[ this.state.activeVar ];
+		let vals = this.props.data[ this.state.activeVar ];
+		vals = vals.filter( x => isNumber( x ) && !isnan( x ) );
 		const avg = mean( vals );
 		xBreaks.push( avg );
 		xBreaks.sort( ascending );
