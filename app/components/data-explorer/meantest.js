@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import ztest from '@stdlib/stats/ztest';
 import ttest from '@stdlib/stats/ttest';
 import replace from '@stdlib/string/replace';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isnan from '@stdlib/assert/is-nan';
 import stdev from 'utils/statistic/stdev';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
@@ -31,14 +33,20 @@ class MeanTest extends Component {
 			const { data, showDecision } = this.props;
 			let result;
 			const x = data[ variable ];
+			const xFiltered = [];
+			for ( let i = 0; i < x.length; i++ ) {
+				if ( isNumber( x[i] ) && !isnan( x[i] ) ) {
+					xFiltered.push( x[i] );
+				}
+			}
 			if ( type === 'Z Test' ) {
-				result = ztest( x, stdev( x ), {
+				result = ztest( xFiltered, stdev( xFiltered ), {
 					'alpha': alpha,
 					'alternative': direction,
 					'mu': mu0
 				});
 			} else {
-				result = ttest( x, {
+				result = ttest( xFiltered, {
 					'alpha': alpha,
 					'alternative': direction,
 					'mu': mu0
