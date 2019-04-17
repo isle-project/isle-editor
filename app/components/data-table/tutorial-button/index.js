@@ -42,6 +42,7 @@ class Tutorial extends Component {
 				</OverlayTrigger>
 				<Joyride
 					steps={steps}
+					scrollToSteps={false}
 					showProgress
 					run={this.state.running}
 					callback={( tour ) => {

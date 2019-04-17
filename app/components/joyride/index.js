@@ -42,7 +42,6 @@ class Wrapper extends Component {
 			run={this.props.run}
 			steps={this.props.steps}
 			styles={STYLES}
-			scrollToFirstStep
 			{...this.props}
 		/> );
 	}
@@ -53,11 +52,13 @@ class Wrapper extends Component {
 
 Wrapper.propTypes = {
 	run: PropTypes.bool,
+	scrollToSteps: PropTypes.bool,
 	steps: PropTypes.array.isRequired
 };
 
 Wrapper.defaultProps = {
-	run: false
+	run: false,
+	scrollToSteps: true
 };
 
 

@@ -1,42 +1,42 @@
 [
 	{
-		"target": ".title-button",
+		"target": ".data-table-wrapper .title-button",
 		"content": "On top of the data table you find the name of the data set. Clicking on it will open a modal window with a detailed description.",
 		"placement": "bottom",
 		"placementBeacon": "bottom"
 	},
 	{
-		"target": ".ReactTable",
+		"target": ".data-table-wrapper .ReactTable",
 		"content": "Tabular display of the data set, with rows corresponding to individual records and columns to the different variables.",
 		"placement": "bottom",
 		"placementBeacon": "bottom"
 	},
 	{
-		"target": ".-header",
+		"target": ".data-table-wrapper .-header",
 		"content": "Variable names. Hovering over the names with your mouse opens a tooltip with the description of the respective variable. Clicking on any column orders the rows of the data table by the values of the chosen column. You can also select multiple columns by holding down the \"Shift\" key to sort by multiple columns",
 		"placement": "bottom",
 		"placementBeacon": "bottom"
 	},
 	{
-		"target": ".-filter",
+		"target": ".data-table-wrapper .-filter",
 		"content": "Filter out rows by adjusting the filters for any column.",
 		"placement": "top",
 		"placementBeacon": "top"
 	},
 	{
-		"target": ".label-number-rows",
+		"target": ".data-table-wrapper .label-number-rows",
 		"content": "The number of currently displayed rows, i.e. the rows matching the specified filters, and in parentheses the total number of rows in the table.",
 		"placement": "top",
 		"placementBeacon": "top"
 	},
 	{
-		"target": ".reset-button",
+		"target": ".data-table-wrapper .reset-button",
 		"content": "Clicking on the reset button will clear all currently active filters and return the ordering of the rows to its default.",
 		"placement": "top",
 		"placementBeacon": "top"
 	},
 	{
-		"target": ".variable-descriptions-button",
+		"target": ".data-table-wrapper .variable-descriptions-button",
 		"content": "The descriptions for each variable can also be accessed by clicking on this button.",
 		"placement": "top",
 		"placementBeacon": "top"
