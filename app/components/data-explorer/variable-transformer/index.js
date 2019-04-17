@@ -21,6 +21,9 @@ class Transformer extends Component {
 	}
 
 	renderFormulaModal = () => {
+		if ( !this.state.formulaModalActive ) {
+			return null;
+		}
 		return (
 			<FormulaTransformer
 				show={this.state.formulaModalActive}
