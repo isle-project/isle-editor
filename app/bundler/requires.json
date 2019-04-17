@@ -100,6 +100,7 @@
 	"Runner": "components/runner",
 	"EngagementMeter": "components/engagement-meter",
 	"ScrollingText": "components/scrolling-text",
+	"Seal": "components/seal",
 	"SelectInput": "components/input/select",
 	"SelectQuestion": "components/select-question",
 	"SelectQuestionMatrix": "components/select-question-matrix",

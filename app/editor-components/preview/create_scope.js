@@ -121,6 +121,7 @@ const SCOPE = {
 	ROutput: Loadable( () => import( 'components/r/output' ) ),
 	Runner: Loadable( () => import( 'components/runner' ) ),
 	EngagementMeter: Loadable( () => import( 'components/engagement-meter' ) ),
+	Seal: Loadable( () => import( 'components/seal' ) ),
 	ScrollingText: Loadable( () => import( 'components/scrolling-text' ) ),
 	SelectInput,
 	SelectQuestion: Loadable( () => import( 'components/select-question' ) ),

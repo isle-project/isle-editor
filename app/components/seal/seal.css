@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+@import url('https://isle.heinz.cmu.edu/Summertime_old_stamper.ttf');
+
+
+@font-face {
+	font-family: 'Old Stamper';
+	src: url('https://isle.heinz.cmu.edu/Summertime_old_stamper.ttf');
+}
+
+@font-face {
+	font-family: 'Due Date';
+	src: url('https://isle.heinz.cmu.edu/Summertime_due-date.regular.ttf');
+}
+
+.seal-container {
+	position: relative;
+	width: 220px;
+	height: 220px;
+	background: white;
+	font-size: 30px;
+	color: black;
+	border-radius: 50%;
+	box-shadow: 0 0 0 5px black, 0 0 9px darkgray, 0 0 10px black;
+	font-family: Amatic SC;
+}
+
+.seal-inner-circle {
+	position: absolute;
+	width: 70%;
+	height: 70%;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	box-shadow: inset 0 0 0 5px black;
+	background: white;
+	border-radius: 50%;
+	z-index: 2;
+}
+
+.seal-outer-border {
+	position: absolute;
+	border-radius: 50%;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	border:solid inset 5px black;
+	z-index: 2;
+}
+
+.seal-fine-border {
+	position: absolute;
+	border-radius: 50%;
+	width: 98%;
+	height: 98%;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	border:solid 2px black;
+	z-index: 2;
+}
+
+.seal-logo {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 18%;
+	margin: auto;
+	width: 30px;
+	height: 30px;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_crown.svg);
+	background-size: 100% 100%;
+	z-index: 2;
+}
+
+.seal-lower-logo {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 28%;
+	margin: auto;
+	width: 20px;
+	height: 20px;
+	background-image: url(https://isle.heinz.cmu.edu/Summertime_emblem.svg);
+	background-size: 100% 100%;
+	z-index: 2;
+}
+
+.seal-wrapper {
+	position: relative;
+	height: 100%;
+	background: inherit;
+	border-radius: 50%;
+	color: inherit;
+}
+
+.seal-title {
+	position: absolute;
+	top: 0;
+	bottom: 10px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	text-align: center;
+	background: inherit;
+	font-size: inherit;
+	width: 90%;
+	height: 50px;
+	vertical-align: auto;
+	border-top: solid 1px darkslategrey;
+	border-bottom: solid 1px darkslategrey;
+	z-index: 2;
+}
+
+.seal-title::before {
+	height: 1px;
+	width: 100%;
+	background: silver;
+	border-top:solid 2px linear-gradient(to right, silver, black, silver);
+}
+
+
+.seal-line-wrapper {
+	text-align: center;
+	font-weight: 800;
+}
+
+.seal-upper-line {
+	display: inline-block;
+	font-size: 20px;
+	margin-bottom: 128px;
+	z-index: 2;
+}
+
+.seal-upper {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 2%;
+	margin:auto;
+	width: 94%;
+	height: 94%;
+	font-size: 18px;
+	font-weight: 800;
+	z-index: 2;
+}
+
+
+.seal-lower-line {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin:auto;
+	width: 90%;
+	height: 90%;
+	font-size: 18px;
+	font-weight: 800;
+	z-index: 2;
+}
+
