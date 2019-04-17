@@ -135,7 +135,7 @@ class MeanTest2 extends Component {
 			});
 			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 			printout = replace( printout, RE_ONESIDED_GREATER, '' );
-			value = <div>
+			value = <div style={{ overflowX: 'auto', width: '100%' }}>
 				<label>Hypothesis test for {var1} against {var2}:</label>
 				<TeX
 					displayMode

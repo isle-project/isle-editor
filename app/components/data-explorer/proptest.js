@@ -64,7 +64,7 @@ class PropTest extends Component {
 			const output = {
 				variable: `One-Sample Proportion Test for ${variable}`,
 				type: 'Test',
-				value: <div>
+				value: <div style={{ overflowX: 'auto', width: '100%' }}>
 					<label>Hypothesis test for {variable}:</label>
 					<p>
 						Let p be the population probability of <code>{variable}</code> being <code>{success}</code>.

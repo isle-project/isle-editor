@@ -103,7 +103,7 @@ class PropTest2 extends Component {
 			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 			printout = replace( printout, RE_ONESIDED_GREATER, '' );
 			const title = `Hypothesis test for equality of mean ${var1} by ${grouping}`;
-			value = <div>
+			value = <div style={{ overflowX: 'auto', width: '100%' }}>
 				<label>{title}</label><br />
 				<span>
 					Let <TeX raw={`p_{${firstCategory}}`} /> be the population probability of <code>{var1}</code> being <code>{success}</code> in the first group, and <TeX raw={`p_{${secondCategory}}`} /> the probability in the second group, respectively. We test
@@ -141,7 +141,7 @@ class PropTest2 extends Component {
 				arrow = '>';
 			}
 			const title = `Hypothesis test for equality of mean ${var1} against mean ${var2}`;
-			value = <div>
+			value = <div style={{ overflowX: 'auto', width: '100%' }}>
 				<label>{title}</label><br />
 				<span>
 					Let <TeX raw={`p_{${var1}}`} /> be the population probability of <code>{var1}</code> being <code>{success}</code>, and <TeX raw={`p_{${var2}}`} /> the probability <code>{var2}</code> being <code>{success}</code>, respectively. We test

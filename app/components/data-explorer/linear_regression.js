@@ -54,7 +54,7 @@ class SimpleLinearRegression extends Component {
 			let output = {
 				variable: `Regression of ${yval} on ${xval} by ${group}`,
 				type: 'Simple Linear Regression',
-				value: <div>
+				value: <div style={{ overflowX: 'auto', width: '100%' }}>
 					<label>Regression of {yval} on {xval}</label>
 					<p>
 						<i>Grouped by {group}:</i>
