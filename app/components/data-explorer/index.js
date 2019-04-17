@@ -361,58 +361,56 @@ class DataExplorer extends Component {
 	}
 
 	onGenerateTransformedVariable = ( name, values ) => {
-		let newData = copy( this.state.data );
-		if ( !hasProp( this.props.data, name ) ) {
-			newData[ name ] = values;
-			let groupVars;
-			let previous;
-			let newContinuous = this.state.continuous.slice();
-			let newCategorical = this.state.categorical.slice();
-			if ( isNumberArray( values ) ) {
-				if ( !( name in newContinuous ) ) {
-					newContinuous.push( name );
-					previous = newCategorical.indexOf( name );
-					if ( previous > 0 ) {
-						newCategorical.splice( previous, 1 );
-						groupVars = newCategorical.slice();
-					}
-				}
-			} else {
-				if ( !( name in newCategorical ) ) {
-					newCategorical.push( name );
-					previous = newContinuous.indexOf( name );
-					if ( previous > 0 ) {
-						newContinuous.splice( previous, 1 );
-					}
-				}
-				groupVars = newCategorical.slice();
-			}
-			let newState = {
-				data: newData,
-				categorical: newCategorical,
-				continuous: newContinuous
-			};
-			if ( groupVars ) {
-				newState[ 'groupVars' ] = groupVars;
-			}
-			this.setState( newState );
-			console.log( newState );
+		if ( hasProp( this.props.data, name ) ) {
 			const session = this.context;
-			session.addNotification({
-				title: 'Variable created',
-				message: `The variable with the name ${name} has been successfully ${ previous > 0 ? 'overwritten' : 'created' }`,
-				level: 'success',
-				position: 'tr'
-			});
-		} else {
-			const session = this.context;
-			session.addNotification({
+			return session.addNotification({
 				title: 'Variable exists',
 				message: 'The original variables of the data set cannot be overwritten.',
 				level: 'error',
 				position: 'tr'
 			});
 		}
+		let newData = copy( this.state.data );
+		newData[ name ] = values;
+		let groupVars;
+		let previous;
+		let newContinuous = this.state.continuous.slice();
+		let newCategorical = this.state.categorical.slice();
+		if ( isNumberArray( values ) ) {
+			if ( !contains( newContinuous, name ) ) {
+				newContinuous.push( name );
+				previous = newCategorical.indexOf( name );
+				if ( previous > 0 ) {
+					newCategorical.splice( previous, 1 );
+					groupVars = newCategorical.slice();
+				}
+			}
+		} else {
+			if ( !contains( newCategorical, name ) ) {
+				newCategorical.push( name );
+				previous = newContinuous.indexOf( name );
+				if ( previous > 0 ) {
+					newContinuous.splice( previous, 1 );
+				}
+			}
+			groupVars = newCategorical.slice();
+		}
+		let newState = {
+			data: newData,
+			categorical: newCategorical,
+			continuous: newContinuous
+		};
+		if ( groupVars ) {
+			newState[ 'groupVars' ] = groupVars;
+		}
+		this.setState( newState );
+		const session = this.context;
+		session.addNotification({
+			title: 'Variable created',
+			message: `The variable with the name ${name} has been successfully ${ previous > 0 ? 'overwritten' : 'created' }`,
+			level: 'success',
+			position: 'tr'
+		});
 	}
 
 	onFileUpload = ( err, output ) => {

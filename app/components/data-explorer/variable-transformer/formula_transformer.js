@@ -22,6 +22,7 @@ import exp from '@stdlib/math/base/special/exp';
 import pow from '@stdlib/math/base/special/pow';
 import ln from '@stdlib/math/base/special/ln';
 import { DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
+import './formula_transformer.css';
 
 
 // VARIABLES //
@@ -81,7 +82,6 @@ class CustomMenu extends Component {
 				.filter( ( child, idx ) => {
 					return child.props.children.toLowerCase().startsWith( value );
 				})
-				.filter( ( child, idx ) => idx < 10 )
 			}
 			</ul>
 		</div>
@@ -100,7 +100,7 @@ class FormulaTransformer extends Component {
 		for ( let key in props.data ) {
 			if ( hasOwnProp( props.data, key ) ) {
 				for ( let i = 0; i < props.data[ key ].length; i++ ) {
-					if ( !isObject( data[ i ]) ) {
+					if ( !isObject( data[ i ] ) ) {
 						data[ i ] = {};
 					}
 					data[ i ][ key ] = props.data[ key ][ i ];
@@ -165,7 +165,8 @@ class FormulaTransformer extends Component {
 	insertVarFactory = ( name ) => {
 		return () => {
 			let newCode = this.state.code.substring( 0, this.state.selection );
-			const replacement = 'datum.'+name;
+			let replacement = 'datum';
+			replacement += contains( name, ' ' ) ? `['${name}']` : `.${name}`;
 			newCode += replacement;
 			newCode += this.state.code.substring( this.state.selection );
 			this.setState({
@@ -202,6 +203,9 @@ class FormulaTransformer extends Component {
 	}
 
 	render() {
+		const continousItems = this.props.continuous.map( ( v, i ) => {
+			return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
+		});
 		return (
 			<Modal
 				show={this.props.show}
@@ -212,7 +216,7 @@ class FormulaTransformer extends Component {
 					<Modal.Title>Formula Transformation</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<div>
+					<div className="formula-transformer-body">
 						<Card className="mb-2" >
 							<Card.Header>Generate new variables:</Card.Header>
 							<Card.Body>
@@ -227,9 +231,7 @@ class FormulaTransformer extends Component {
 											Continuous
 										</Dropdown.Toggle>
 										<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
-											{this.props.continuous.map( ( v, i ) => {
-												return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
-											})}
+											{continousItems}
 										</Dropdown.Menu>
 									</Dropdown>
 									<Dropdown className="mr-2">
@@ -286,7 +288,13 @@ class FormulaTransformer extends Component {
 						</Card>
 						<Card className="mb-2" >
 							<Card.Body>
-								<TextArea ref={div => { this.textarea = div; }} legend="Expression:" value={this.state.code} onChange={this.handleCodeChange} onBlur={( event ) => {
+								<TextArea
+									ref={div => { this.textarea = div; }}
+									legend="Expression:"
+									placeholder="Enter formula..."
+									value={this.state.code}
+									onChange={this.handleCodeChange}
+									onBlur={( event ) => {
 									const selectionStart = event.target.selectionStart;
 									this.setState({
 										selection: selectionStart
