@@ -22,6 +22,8 @@ import isNumberArray from '@stdlib/assert/is-number-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isObject from '@stdlib/assert/is-object';
 import isArray from '@stdlib/assert/is-array';
+import isNull from '@stdlib/assert/is-null';
+import objectKeys from '@stdlib/utils/keys';
 import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
 import SessionContext from 'session/context.js';
@@ -49,7 +51,7 @@ function createRows( data ) {
 	if ( isEmptyObject( data ) ) {
 		return [];
 	}
-	const keys = Object.keys( data );
+	const keys = objectKeys( data );
 	const nRows = data[ keys[ 0 ] ].length;
 	const rows = new Array( nRows );
 	for ( let i = 0; i < nRows; i++ ) {
@@ -124,11 +126,11 @@ class DataTable extends Component {
 		if ( isArr ) {
 			// Case: `data` is already an array of observations
 			rows = props.data;
-			keys = Object.keys( rows[ 0 ]);
+			keys = objectKeys( rows[ 0 ] );
 		} else {
 			// Case: `data` is an object with keys for the various variables
 			rows = createRows( props.data );
-			keys = Object.keys( props.data );
+			keys = objectKeys( props.data );
 		}
 		for ( let i = 0; i < rows.length; i++ ) {
 			if ( props.showRemove && !rows[ i ][ 'remove' ]) {
@@ -171,6 +173,7 @@ class DataTable extends Component {
 					vals[ i ] = props.data[ i ][ key ];
 				}
 			}
+			vals = vals.filter( x => !isNull( x ) && x !== '' );
 			const uniqueValues = unique( vals );
 			if ( isNumberArray( vals ) && uniqueValues.length > 2 ) {
 				out[ 'filterMethod' ] = this.filterMethodNumbers;
