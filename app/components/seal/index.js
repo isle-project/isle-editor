@@ -17,7 +17,8 @@ function cosDegrees(angleDegrees) {
 
 /**
 * An appoval seal
-*
+* @property {bool} activationMode - it set, the seal is visible but greyed out
+* @property {bool} activate - it set, the seal gets actvated
 * @property {string} title - seal title
 * @property {string} lower - the lower text
 * @property {number} lowerArc - the arc for the lower text
@@ -35,13 +36,29 @@ class Seal extends Component {
 		this.lowerRef = React.createRef();
 		this.upperRef = React.createRef();
 
+		let active = true;
+		if (props.activationMode) {
+			active = false;
+		}
+
 		this.state = {
 			height: 180,
-			diff: 4
+			diff: 4,
+			active: active
 		};
 	}
 
 	componentDidMount() {
+		if (this.props.activate && this.state.active === false) {
+			this.activate();
+			this.setState({
+				active: true
+			});
+		}
+	}
+
+	activate() {
+		this.props.onActivate();
 	}
 
 	curvedNewText = (txt, size, arc, offset) => {
@@ -137,6 +154,20 @@ class Seal extends Component {
 			style = this.props.style;
 		}
 
+		if (this.props.activationMode && this.props.style) {
+			if (this.state.active === false) {
+				style.webkitFilter = 'grayscale(100%)';
+				style.filter = 'grayscale(100%)';
+				style.opacity = 0.3;
+			}
+			else {
+				style = Object.assign({}, style);
+				style.opacity = 1;
+				style.filter = 'grayscale(0%)';
+				style.webkitFilter = 'grayscale(0%)';
+			}
+		}
+
 		return style;
 	}
 
@@ -173,6 +204,9 @@ class Seal extends Component {
 // PROPERTIES //
 
 Seal.propTypes = {
+	activationMode: PropTypes.bool,
+	activate: PropTypes.bool,
+	onActivate: PropTypes.func,
 	innerStyle: PropTypes.object,
 	lower: PropTypes.string,
 	lowerArc: PropTypes.number,
@@ -184,6 +218,9 @@ Seal.propTypes = {
 };
 
 Seal.defaultProps = {
+	activationMode: false,
+	activate: false,
+	onActivate() {},
 	lower: 'The lower text',
 	lowerArc: 150,
 	style: null,
