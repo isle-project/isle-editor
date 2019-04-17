@@ -1,5 +1,6 @@
 // MODULES //
 
+import { primitives as isStringArray } from '@stdlib/assert/is-string-array';
 import COMPONENT_DOCS from './components_documentation.json';
 
 
@@ -86,6 +87,19 @@ function factory( monaco ) {
 						if ( x.default ) {
 							insertText += '={false}$1';
 						}
+					} else if ( x.type === 'array' ) {
+						let val = '';
+						if ( isStringArray( x.default ) ) {
+							x.default.forEach( ( v, i ) => {
+								val += '\''+v+'\'';
+								if ( i !== x.default.length - 1 ) {
+									val += ', ';
+								}
+							});
+						} else {
+							val += x.default.join( ', ' );
+						}
+						insertText = x.name+'={['+val+']}';
 					} else {
 						insertText = x.name+'={${1:'+x.default+'}}';  // eslint-disable-line
 					}
