@@ -16,19 +16,18 @@ function cosDegrees(angleDegrees) {
 // MAIN //
 
 /**
-* An appoval seal
-* @property {bool} activationMode - it set, the seal is visible but greyed out
-* @property {bool} activate - it set, the seal gets actvated
+* An approval seal
+*
+* @property {bool} active - controls whether seal is active or greyed out
 * @property {string} title - seal title
 * @property {string} lower - the lower text
 * @property {number} lowerArc - the arc for the lower text
 * @property {string} upper - the upper text
 * @property {number} upperArc - the arc for the upper text
-* @property {object} style - the style for the element
-* @property {object} innerStyle - the style for the inner circle
+* @property {Object} style - the style for the element
+* @property {Object} innerStyle - the style for the inner circle
 * @property {bool} noOrnaments - prevents rendering of the ornaments
 */
-
 class Seal extends Component {
 	constructor( props ) {
 		super( props );
@@ -36,32 +35,19 @@ class Seal extends Component {
 		this.lowerRef = React.createRef();
 		this.upperRef = React.createRef();
 
-		let active = true;
-		if (props.activationMode) {
-			active = false;
-		}
-
 		this.state = {
 			height: 180,
-			diff: 4,
-			active: active
+			diff: 4
 		};
 	}
 
-	componentDidMount() {
-		if (this.props.activate && this.state.active === false) {
-			this.activate();
-			this.setState({
-				active: true
-			});
+	componentDidUpdate( prevProps ) {
+		if ( this.props.active === true && prevProps.active === false ) {
+			this.props.onActivate();
 		}
 	}
 
-	activate() {
-		this.props.onActivate();
-	}
-
-	curvedNewText = (txt, size, arc, offset) => {
+	curvedText = (txt, size, arc, offset) => {
 		txt = txt.split('');
 		var deg = arc / txt.length;
 		let origin = (arc/2)*-1;
@@ -133,7 +119,7 @@ class Seal extends Component {
 
 
 	getUpperLine = () => {
-		let curvedText = this.curvedNewText(this.props.upper, 195, this.props.upperArc, 65);
+		let curvedText = this.curvedText(this.props.upper, 195, this.props.upperArc, 65);
 		return (
 			<div>{curvedText}</div>
 		);
@@ -146,28 +132,18 @@ class Seal extends Component {
 		);
 	}
 
-
 	getStyle() {
-		let style = null;
-		if (this.props.style) {
-			style = Object.assign({}, this.props.style);
-			style = this.props.style;
+		let style = Object.assign( {}, this.props.style );
+		if ( this.props.active === false ) {
+			style.webkitFilter = 'grayscale(100%)';
+			style.filter = 'grayscale(100%)';
+			style.opacity = 0.3;
 		}
-
-		if (this.props.activationMode && this.props.style) {
-			if (this.state.active === false) {
-				style.webkitFilter = 'grayscale(100%)';
-				style.filter = 'grayscale(100%)';
-				style.opacity = 0.3;
-			}
-			else {
-				style = Object.assign({}, style);
-				style.opacity = 1;
-				style.filter = 'grayscale(0%)';
-				style.webkitFilter = 'grayscale(0%)';
-			}
+		else {
+			style.opacity = 1;
+			style.filter = 'grayscale(0%)';
+			style.webkitFilter = 'grayscale(0%)';
 		}
-
 		return style;
 	}
 
@@ -204,8 +180,7 @@ class Seal extends Component {
 // PROPERTIES //
 
 Seal.propTypes = {
-	activationMode: PropTypes.bool,
-	activate: PropTypes.bool,
+	active: PropTypes.bool,
 	onActivate: PropTypes.func,
 	innerStyle: PropTypes.object,
 	lower: PropTypes.string,
@@ -218,12 +193,11 @@ Seal.propTypes = {
 };
 
 Seal.defaultProps = {
-	activationMode: false,
-	activate: false,
+	active: true,
 	onActivate() {},
 	lower: 'The lower text',
 	lowerArc: 150,
-	style: null,
+	style: {},
 	innerStyle: null,
 	upper: 'The upper text',
 	upperArc: 150,
