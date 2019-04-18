@@ -13,6 +13,7 @@ import entries from '@stdlib/utils/entries';
 import replace from '@stdlib/string/replace';
 import ClearButton from './clear_button.js';
 import FullscreenButton from './fullscreen_button.js';
+import DatasetButton from './dataset_button.js';
 
 
 // VARIABLES //
@@ -26,8 +27,9 @@ turndownService.use( turndownPluginGfm.gfm );
 
 // FUNCTIONS //
 
-const createButtons = ( header, table, clearOutput, idx ) => {
+const createButtons = ( header, table, clearOutput, idx, subsetFilters, onFilters ) => {
 	return ( <ButtonGroup style={{ float: 'right', top: '-4px' }}>
+		<DatasetButton filters={subsetFilters} onActivateFilters={onFilters} />
 		<FullscreenButton header={header} table={table} />
 		<ClearButton onClick={() => {
 			debug( `Clear element with ID ${idx}` );
@@ -111,7 +113,7 @@ const renderRangeTable = ( e, idx, clearOutput ) => {
 
 // MAIN //
 
-function createOutputElement( e, idx, clearOutput ) {
+function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 	if ( e.type === 'Chart' ) {
 		return ( <div key={idx}>
 			<ClearButton
@@ -137,7 +139,7 @@ function createOutputElement( e, idx, clearOutput ) {
 		e.type === 'Simple Linear Regression'
 	) {
 		const elem = <pre key={idx} >
-			{createButtons( e.type, e.value, clearOutput, idx )}
+			{createButtons( e.type, e.value, clearOutput, idx, subsetFilters, onFilters )}
 			{makeDraggable( e.value )}
 		</pre>;
 		return elem;
@@ -159,7 +161,7 @@ function createOutputElement( e, idx, clearOutput ) {
 			</tbody>
 		</Table>;
 		const elem = <pre key={idx} >
-			{createButtons( e.type, table, clearOutput, idx )}
+			{createButtons( e.type, table, clearOutput, idx, subsetFilters, onFilters )}
 			{makeDraggable( table )}
 		</pre>;
 		return elem;
@@ -225,7 +227,7 @@ function createOutputElement( e, idx, clearOutput ) {
 			</tbody>
 		</Table>;
 		const elem = <pre key={idx} >
-			{createButtons( e.type, table, clearOutput, idx )}
+			{createButtons( e.type, table, clearOutput, idx, subsetFilters, onFilters )}
 			{makeDraggable( table )}
 		</pre>;
 		return elem;

@@ -43,6 +43,7 @@ import DataTable from 'components/data-table';
 import SessionContext from 'session/context.js';
 import OutputPanel from './output_panel.js';
 import createOutputElement from './create_output_element.js';
+import formatFilters from './format_filters.js';
 import './data_explorer.css';
 const SpreadsheetUpload = lazy( () => import( 'components/spreadsheet-upload' ) );
 const LearnNormalDistribution = lazy( () => import( 'components/learn/distribution-normal' ) );
@@ -77,25 +78,6 @@ import Anova from 'components/data-explorer/anova';
 // VARIABLES //
 
 const debug = logger( 'isle:data-explorer' );
-
-
-// FUNCTIONS //
-
-/**
-* Generates a string displaying the filters for the current active data subset.
-*
-* @private
-* @param {Array} filters - data subset filters
-* @returns {string} filter display string
-*/
-function formatFilters( filters ) {
-	let out = 'Restricted Dataset:\n';
-	for ( let i = 0; i < filters.length; i++ ) {
-		const filter = filters[ i ];
-		out += filter.id+': '+ JSON.stringify( filter.value ) + '\n';
-	}
-	return out;
-}
 
 
 // MAIN //
@@ -353,7 +335,14 @@ class DataExplorer extends Component {
 	*/
 	addToOutputs = ( element ) => {
 		const newOutput = this.state.output.slice();
-		element = createOutputElement( element, newOutput.length, this.clearOutput );
+		const onFilters = ( newFilters ) => {
+			this.setState({
+				filters: newFilters
+			}, () => {
+				this.onFilterCreate();
+			});
+		};
+		element = createOutputElement( element, newOutput.length, this.clearOutput, this.state.subsetFilters, onFilters );
 		newOutput.push( element );
 		this.setState({
 			output: newOutput
