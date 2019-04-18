@@ -15,6 +15,7 @@ import isObject from '@stdlib/assert/is-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import incrspace from '@stdlib/math/utils/incrspace';
 import contains from '@stdlib/assert/contains';
+import isNull from '@stdlib/assert/is-null';
 import replace from '@stdlib/string/replace';
 import round from '@stdlib/math/base/special/round';
 import sqrt from '@stdlib/math/base/special/sqrt';
@@ -103,7 +104,8 @@ class FormulaTransformer extends Component {
 					if ( !isObject( data[ i ] ) ) {
 						data[ i ] = {};
 					}
-					data[ i ][ key ] = props.data[ key ][ i ];
+					const val = props.data[ key ][ i ];
+					data[ i ][ key ] = isNull( val ) ? NaN : val;
 				}
 			}
 		}
