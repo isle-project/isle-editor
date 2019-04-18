@@ -83,7 +83,7 @@ class Transformer extends Component {
 
 	render() {
 		return (
-			<div className="well" style={{ maxWidth: 600 }} >
+			<div className="well" style={{ padding: 15, margin: 15 }} >
 				<div>
 					<Button
 						onClick={this.toggleFormulaModal}

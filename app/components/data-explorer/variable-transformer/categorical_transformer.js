@@ -245,7 +245,7 @@ class CategoricalTransformer extends Component {
 	render() {
 		return (
 			<Modal
-				dialogClassName='modal-75w'
+				dialogClassName='modal-75w input'
 				onHide={this.props.onHide}
 				show={this.props.show}
 			>

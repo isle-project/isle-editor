@@ -371,7 +371,7 @@ class BinTransformer extends Component {
 		const configHist = this.state.configHist;
 		return (
 			<Modal
-				dialogClassName='modal-75w'
+				dialogClassName='modal-75w input'
 				onHide={this.props.onHide}
 				show={this.props.show}
 			>

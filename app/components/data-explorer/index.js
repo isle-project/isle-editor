@@ -642,6 +642,11 @@ class DataExplorer extends Component {
 						<DropdownItem key={i} eventKey={`5.${i+1}`}>{e}</DropdownItem> )}
 				</NavDropdown> : null
 			}
+			{ this.props.transformer ?
+				<Nav.Item>
+					<Nav.Link eventKey="6">Transform</Nav.Link>
+				</Nav.Item> : null
+			}
 		</Nav>;
 
 		const tabs = <Tab.Content>
@@ -864,6 +869,18 @@ class DataExplorer extends Component {
 					{content}
 				</Tab.Pane> );
 			})}
+			{ this.props.transformer ?
+				<Tab.Pane eventKey="6" >
+					<VariableTransformer
+						data={this.state.data}
+						continuous={this.state.continuous}
+						categorical={this.state.categorical}
+						logAction={this.logAction}
+						session={this.context}
+						onGenerate={this.onGenerateTransformedVariable}
+					/>
+				</Tab.Pane> : null
+			}
 		</Tab.Content>;
 		const mainContainer = <Row className="no-gutter data-explorer">
 			<Col xs={6} md={6}>
@@ -885,14 +902,6 @@ class DataExplorer extends Component {
 									{this.props.distributions.map( ( e, i ) =>
 										<NavDropdown.Item key={i} eventKey={`distributions.${i+1}`}>{e}</NavDropdown.Item> )}
 								</NavDropdown> : null
-							}
-							{ this.props.transformer ?
-								<Nav.Item className="explorer-transformer-nav">
-									<Nav.Link
-										active={this.state.openedNav === 'transformer'}
-										eventKey="transformer"
-									>Transformer</Nav.Link>
-								</Nav.Item> : null
 							}
 							{ this.props.showEditor ?
 								<Nav.Item className="explorer-editor-nav">
@@ -990,16 +999,6 @@ class DataExplorer extends Component {
 							id={this.props.id ? this.props.id + '_editor' : null}
 							style={{ display: this.state.openedNav !== 'editor' ? 'none' : null }}
 							submitButton /> : null
-						}
-						{ this.state.openedNav === 'transformer' ?
-							<VariableTransformer
-								data={this.state.data}
-								continuous={this.state.continuous}
-								categorical={this.state.categorical}
-								logAction={this.logAction}
-								session={this.context}
-								onGenerate={this.onGenerateTransformedVariable}
-							/> : null
 						}
 						{this.props.tabs.map( ( e, i ) => {
 							return ( this.state.openedNav === e.title ?

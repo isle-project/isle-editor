@@ -210,7 +210,7 @@ class FormulaTransformer extends Component {
 			<Modal
 				show={this.props.show}
 				onHide={this.props.onHide}
-				dialogClassName='modal-75w'
+				dialogClassName='modal-75w input'
 			>
 				<Modal.Header closeButton>
 					<Modal.Title>Formula Transformation</Modal.Title>
