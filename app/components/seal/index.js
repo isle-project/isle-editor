@@ -28,6 +28,7 @@ function cosDegrees(angleDegrees) {
 * @property {Object} style - the style for the element
 * @property {Object} innerStyle - the style for the inner circle
 * @property {bool} noOrnaments - prevents rendering of the ornaments
+* @property {Function} onClick - callback function invoked when the note is clicked
 */
 class Seal extends Component {
 	constructor( props ) {
@@ -141,7 +142,8 @@ class Seal extends Component {
 			style.filter = 'grayscale(100%)';
 			style.opacity = 0.3;
 			if (this.props.scale) {
-				style.transform = 'scale(' + this.props.scale + ')';
+				if (style.transform) style.transform += 'scale(' + this.props.scale + ')';
+                else style.transform = 'scale(' + this.props.scale + ')';
 			}
 		}
 		else {
@@ -149,7 +151,8 @@ class Seal extends Component {
 			style.filter = 'grayscale(0%)';
 			style.webkitFilter = 'grayscale(0%)';
 			if (this.props.scale) {
-				style.transform = 'scale(' + this.props.scale + ')';
+				if (style.transform) style.transform += 'scale(' + this.props.scale + ')';
+                else style.transform = 'scale(' + this.props.scale + ')';
 			}
 		}
 		return style;
@@ -163,12 +166,18 @@ class Seal extends Component {
 		return style;
 	}
 
+	triggerClick = () => {
+		if (this.props.onClick) {
+			this.props.onClick();
+		}
+	}
+
 	render() {
 		let style = this.getStyle();
 		let innerStyle = this.getInnerStyle();
 
 		return (
-			<div ref={this.ref} style={style} className="seal-container">
+			<div onClick={this.triggerClick} ref={this.ref} style={style} className="seal-container">
 				<div className="seal-outer-border" />
 				<div className="seal-fine-border" />
 				<div style={innerStyle} className="seal-inner-circle" />
@@ -190,6 +199,7 @@ class Seal extends Component {
 Seal.propTypes = {
 	active: PropTypes.bool,
 	onActivate: PropTypes.func,
+	onClick: PropTypes.func,
 	scale: PropTypes.number,
 	innerStyle: PropTypes.object,
 	lower: PropTypes.string,
@@ -204,6 +214,7 @@ Seal.propTypes = {
 Seal.defaultProps = {
 	active: true,
 	onActivate() {},
+	onClick: null,
 	scale: null,
 	lower: 'The lower text',
 	lowerArc: 150,
