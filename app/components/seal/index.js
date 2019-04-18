@@ -138,11 +138,17 @@ class Seal extends Component {
 			style.webkitFilter = 'grayscale(100%)';
 			style.filter = 'grayscale(100%)';
 			style.opacity = 0.3;
+			if (this.props.scale) {
+				style.transform = 'scale(' + this.props.scale + ')';
+			}
 		}
 		else {
 			style.opacity = 1;
 			style.filter = 'grayscale(0%)';
 			style.webkitFilter = 'grayscale(0%)';
+			if (this.props.scale) {
+				style.transform = 'scale(' + this.props.scale + ')';
+			}
 		}
 		return style;
 	}
@@ -182,6 +188,7 @@ class Seal extends Component {
 Seal.propTypes = {
 	active: PropTypes.bool,
 	onActivate: PropTypes.func,
+	scale: PropTypes.number,
 	innerStyle: PropTypes.object,
 	lower: PropTypes.string,
 	lowerArc: PropTypes.number,
@@ -195,6 +202,7 @@ Seal.propTypes = {
 Seal.defaultProps = {
 	active: true,
 	onActivate() {},
+	scale: 1,
 	lower: 'The lower text',
 	lowerArc: 150,
 	style: {},
