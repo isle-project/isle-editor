@@ -19,6 +19,7 @@ function cosDegrees(angleDegrees) {
 * An approval seal
 *
 * @property {bool} active - controls whether seal is active or greyed out
+* @property {number} scale - the size of the object, default = 1
 * @property {string} title - seal title
 * @property {string} lower - the lower text
 * @property {number} lowerArc - the arc for the lower text
@@ -27,6 +28,7 @@ function cosDegrees(angleDegrees) {
 * @property {Object} style - the style for the element
 * @property {Object} innerStyle - the style for the inner circle
 * @property {bool} noOrnaments - prevents rendering of the ornaments
+* @property {Function} onClick - callback function invoked when the note is clicked
 */
 class Seal extends Component {
 	constructor( props ) {
@@ -49,10 +51,11 @@ class Seal extends Component {
 
 	curvedText = (txt, size, arc, offset) => {
 		txt = txt.split('');
-		var deg = arc / txt.length;
-		let origin = (arc/2)*-1;
+		var deg = arc / (txt.length-1);
+		let origin = 184 - (arc/2)*-1;
 		origin -= offset;
 		let lines = [];
+		console.log('origin steht bei ' + origin);
 
 		let radius = size/2;
 
@@ -85,7 +88,7 @@ class Seal extends Component {
 
 	curvedInvertedText = (txt, size, arc, offset) => {
 		txt = txt.split('');
-		var deg = arc / txt.length;
+		var deg = arc / (txt.length-1);
 		let origin = 0 - (arc/2);
 		let lines = [];
 
@@ -119,7 +122,7 @@ class Seal extends Component {
 
 
 	getUpperLine = () => {
-		let curvedText = this.curvedText(this.props.upper, 195, this.props.upperArc, 65);
+		let curvedText = this.curvedText(this.props.upper, 195, this.props.upperArc, 0);
 		return (
 			<div>{curvedText}</div>
 		);
@@ -138,11 +141,19 @@ class Seal extends Component {
 			style.webkitFilter = 'grayscale(100%)';
 			style.filter = 'grayscale(100%)';
 			style.opacity = 0.3;
+			if (this.props.scale) {
+				if (style.transform) style.transform += 'scale(' + this.props.scale + ')';
+                else style.transform = 'scale(' + this.props.scale + ')';
+			}
 		}
 		else {
 			style.opacity = 1;
 			style.filter = 'grayscale(0%)';
 			style.webkitFilter = 'grayscale(0%)';
+			if (this.props.scale) {
+				if (style.transform) style.transform += 'scale(' + this.props.scale + ')';
+                else style.transform = 'scale(' + this.props.scale + ')';
+			}
 		}
 		return style;
 	}
@@ -155,12 +166,18 @@ class Seal extends Component {
 		return style;
 	}
 
+	triggerClick = () => {
+		if (this.props.onClick) {
+			this.props.onClick();
+		}
+	}
+
 	render() {
 		let style = this.getStyle();
 		let innerStyle = this.getInnerStyle();
 
 		return (
-			<div ref={this.ref} style={style} className="seal-container">
+			<div onClick={this.triggerClick} ref={this.ref} style={style} className="seal-container">
 				<div className="seal-outer-border" />
 				<div className="seal-fine-border" />
 				<div style={innerStyle} className="seal-inner-circle" />
@@ -182,6 +199,8 @@ class Seal extends Component {
 Seal.propTypes = {
 	active: PropTypes.bool,
 	onActivate: PropTypes.func,
+	onClick: PropTypes.func,
+	scale: PropTypes.number,
 	innerStyle: PropTypes.object,
 	lower: PropTypes.string,
 	lowerArc: PropTypes.number,
@@ -195,6 +214,8 @@ Seal.propTypes = {
 Seal.defaultProps = {
 	active: true,
 	onActivate() {},
+	onClick: null,
+	scale: null,
 	lower: 'The lower text',
 	lowerArc: 150,
 	style: {},

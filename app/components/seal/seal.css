@@ -20,6 +20,7 @@
 	border-radius: 50%;
 	box-shadow: 0 0 0 5px black, 0 0 9px darkgray, 0 0 10px black;
 	font-family: Amatic SC;
+	transition: all 0.5s;
 }
 
 .seal-inner-circle {
