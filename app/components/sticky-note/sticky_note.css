@@ -12,7 +12,7 @@
 }
 
 .sticky-note-outer {
-	z-index: 2;
+	z-index: 1002;
 	width: 45px;
 	height: 45px;
 }
