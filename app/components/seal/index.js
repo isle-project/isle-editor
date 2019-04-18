@@ -51,7 +51,7 @@ class Seal extends Component {
 	curvedText = (txt, size, arc, offset) => {
 		txt = txt.split('');
 		var deg = arc / (txt.length-1);
-		let origin = 182 - (arc/2)*-1;
+		let origin = 184 - (arc/2)*-1;
 		origin -= offset;
 		let lines = [];
 		console.log('origin steht bei ' + origin);
@@ -88,7 +88,7 @@ class Seal extends Component {
 	curvedInvertedText = (txt, size, arc, offset) => {
 		txt = txt.split('');
 		var deg = arc / (txt.length-1);
-		let origin = 2 - (arc/2);
+		let origin = 0 - (arc/2);
 		let lines = [];
 
 		let radius = size/2;
