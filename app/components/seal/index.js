@@ -19,6 +19,7 @@ function cosDegrees(angleDegrees) {
 * An approval seal
 *
 * @property {bool} active - controls whether seal is active or greyed out
+* @property {number} scale - the size of the object, default = 1
 * @property {string} title - seal title
 * @property {string} lower - the lower text
 * @property {number} lowerArc - the arc for the lower text
@@ -49,10 +50,11 @@ class Seal extends Component {
 
 	curvedText = (txt, size, arc, offset) => {
 		txt = txt.split('');
-		var deg = arc / txt.length;
-		let origin = (arc/2)*-1;
+		var deg = arc / (txt.length-1);
+		let origin = 182 - (arc/2)*-1;
 		origin -= offset;
 		let lines = [];
+		console.log('origin steht bei ' + origin);
 
 		let radius = size/2;
 
@@ -85,8 +87,8 @@ class Seal extends Component {
 
 	curvedInvertedText = (txt, size, arc, offset) => {
 		txt = txt.split('');
-		var deg = arc / txt.length;
-		let origin = 0 - (arc/2);
+		var deg = arc / (txt.length-1);
+		let origin = 2 - (arc/2);
 		let lines = [];
 
 		let radius = size/2;
@@ -119,7 +121,7 @@ class Seal extends Component {
 
 
 	getUpperLine = () => {
-		let curvedText = this.curvedText(this.props.upper, 195, this.props.upperArc, 65);
+		let curvedText = this.curvedText(this.props.upper, 195, this.props.upperArc, 0);
 		return (
 			<div>{curvedText}</div>
 		);
@@ -202,7 +204,7 @@ Seal.propTypes = {
 Seal.defaultProps = {
 	active: true,
 	onActivate() {},
-	scale: 1,
+	scale: null,
 	lower: 'The lower text',
 	lowerArc: 150,
 	style: {},
