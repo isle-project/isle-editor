@@ -557,9 +557,10 @@ class StatusBar extends Component {
 						noOrnaments
 						style={{
 							position: 'fixed',
-							right: '20px',
-							bottom: '20px',
-							transform: 'rotate(-17deg) scale(0.85)',
+							right: '0px',
+							bottom: '5%',
+							transform: `rotate(-17deg) scale(${window.innerWidth / 1920})`,
+							transformOrigin: '100% 100%',
 							animation: 'anim-fade-in 1s forwards',
 							background: 'linear-gradient(to right, white, silver, white)',
 							fontFamily: 'Courier'
