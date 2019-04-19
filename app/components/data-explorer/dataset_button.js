@@ -43,11 +43,15 @@ class DatasetButton extends Component {
 						ref={( button ) => { this.button = button; }}
 						onClick={() => {
 							this.toggleOverlay(() => {
-								setTimeout( this.toggleOverlay, 5000 );
+								if ( this.state.show ) {
+									this.timeout = setTimeout( this.toggleOverlay, 5000 );
+								} else if ( this.timeout ) {
+									clearTimeout( this.timeout );
+								}
 							});
 						}}
 					>
-						<div className="fa fa-info" />
+						<div className="fa fa-table" />
 					</Button>
 				</Tooltip>
 				<Overlay target={this.button} show={this.state.show} placement="left">

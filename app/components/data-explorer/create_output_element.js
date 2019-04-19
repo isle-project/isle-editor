@@ -64,7 +64,7 @@ const makeDraggable = ( div, asMarkdown = true ) => {
 	);
 };
 
-const renderIQRTable = ( e, idx, clearOutput ) => {
+const renderIQRTable = ( e, idx, clearOutput, subsetFilters, onFilters ) => {
 	const table = <Table bordered size="sm">
 		<tbody>
 			<tr>
@@ -82,12 +82,12 @@ const renderIQRTable = ( e, idx, clearOutput ) => {
 		</tbody>
 	</Table>;
 	return ( <pre key={idx}>
-		{createButtons( 'Interquartile Range', table, clearOutput, idx )}
+		{createButtons( 'Interquartile Range', table, clearOutput, idx, subsetFilters, onFilters )}
 		{makeDraggable( table )}
 	</pre> );
 };
 
-const renderRangeTable = ( e, idx, clearOutput ) => {
+const renderRangeTable = ( e, idx, clearOutput, subsetFilters, onFilters ) => {
 	const table = <Table bordered size="sm">
 		<tbody>
 			<tr>
@@ -105,7 +105,7 @@ const renderRangeTable = ( e, idx, clearOutput ) => {
 		</tbody>
 	</Table>;
 	return ( <pre key={idx}>
-		{createButtons( 'Range', table, clearOutput, idx )}
+		{createButtons( 'Range', table, clearOutput, idx, subsetFilters, onFilters )}
 		{makeDraggable( table )}
 	</pre> );
 };
