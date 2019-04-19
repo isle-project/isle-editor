@@ -17,6 +17,7 @@ import Chat from 'components/statusbar/chat';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
 import Queue from 'components/queue';
+import Seal from 'components/seal';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import isElectron from 'utils/is-electron';
 import animatePosition from 'utils/animate-position';
@@ -546,6 +547,27 @@ class StatusBar extends Component {
 						'F7': this.toggleBarVisibility
 					}}
 				/>
+				{ this.state.progress === 100 ?
+					<Seal
+						title="100%"
+						upper="Congratulations!"
+						lower="Lesson Completed!"
+						upperArc={120}
+						lowerArc={120}
+						noOrnaments
+						style={{
+							position: 'fixed',
+							right: '20px',
+							bottom: '20px',
+							transform: 'rotate(-17deg) scale(0.85)',
+							animation: 'anim-fade-in 1s forwards',
+							background: 'linear-gradient(to right, white, silver, white)',
+							fontFamily: 'Courier'
+						}}
+						innerStyle={{
+							background: 'linear-gradient(to right, ghostwhite, #ffc107, ghostwhite, #ffc107, silver)'
+						}}
+					/> : null }
 			</Fragment>
 		);
 	}
