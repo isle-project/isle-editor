@@ -483,7 +483,8 @@ class DataExplorer extends Component {
 	onRestoreData = () => {
 		this.setState({
 			data: this.props.data,
-			subsetFilters: null
+			subsetFilters: null,
+			filters: []
 		});
 	}
 
