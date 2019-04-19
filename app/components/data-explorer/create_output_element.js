@@ -167,9 +167,9 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		return elem;
 	}
 	else if ( isArray( e.result.value ) && e.type === 'Range' ) {
-		return renderRangeTable( e, idx, clearOutput );
+		return renderRangeTable( e, idx, clearOutput, subsetFilters, onFilters );
 	} else if ( isArray( e.result.value ) && e.type === 'Interquartile Range' ) {
-		return renderIQRTable( e, idx, clearOutput );
+		return renderIQRTable( e, idx, clearOutput, subsetFilters, onFilters );
 	}
 	else if ( isObject( e.result ) ) {
 		const table = <Table bordered size="sm">
