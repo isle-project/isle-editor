@@ -2,21 +2,32 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import sin from '@stdlib/math/base/special/sin';
+import cos from '@stdlib/math/base/special/cos';
+import PI from '@stdlib/constants/math/float64-pi';
 import './seal.css';
 
 
-function sinDegrees(angleDegrees) {
-	return Math.sin(angleDegrees*Math.PI/180);
+// FUNCTIONS //
+
+function sinDegrees( angleDegrees ) {
+	return sin( angleDegrees * PI/180 );
 }
 
-function cosDegrees(angleDegrees) {
-	return Math.cos(angleDegrees*Math.PI/180);
+function cosDegrees( angleDegrees ) {
+	return cos( angleDegrees * PI/180 );
 }
+
+
+// VARIABLES //
+
+const DIFF = 4;
+
 
 // MAIN //
 
 /**
-* An approval seal
+* An approval seal.
 *
 * @property {bool} active - controls whether seal is active or greyed out
 * @property {number} scale - the size of the object, default = 1
@@ -28,6 +39,7 @@ function cosDegrees(angleDegrees) {
 * @property {Object} style - the style for the element
 * @property {Object} innerStyle - the style for the inner circle
 * @property {bool} noOrnaments - prevents rendering of the ornaments
+* @property {boolean} removable - controls whether the note is removed when clicked
 * @property {Function} onClick - callback function invoked when the note is clicked
 */
 class Seal extends Component {
@@ -38,8 +50,7 @@ class Seal extends Component {
 		this.upperRef = React.createRef();
 
 		this.state = {
-			height: 180,
-			diff: 4
+			exit: false
 		};
 	}
 
@@ -49,13 +60,12 @@ class Seal extends Component {
 		}
 	}
 
-	curvedText = (txt, size, arc, offset) => {
-		txt = txt.split('');
+	curvedText = ( txt, size, arc, offset ) => {
+		txt = txt.split( '' );
 		var deg = arc / (txt.length-1);
 		let origin = 184 - (arc/2)*-1;
 		origin -= offset;
 		let lines = [];
-		console.log('origin steht bei ' + origin);
 
 		let radius = size/2;
 
@@ -63,7 +73,7 @@ class Seal extends Component {
 			let sin = sinDegrees(origin);
 			let cos = cosDegrees(origin);
 
-			let left = (radius*sin) + radius + this.state.diff;
+			let left = (radius*sin) + radius + DIFF;
 			let top = (radius*cos) + radius;
 
 			let rotation = origin*-1 - 180;
@@ -81,12 +91,10 @@ class Seal extends Component {
 			lines.push(l);
 			origin -= deg;
 		});
-
 		return lines;
 	}
 
-
-	curvedInvertedText = (txt, size, arc, offset) => {
+	curvedInvertedText = ( txt, size, arc, offset ) => {
 		txt = txt.split('');
 		var deg = arc / (txt.length-1);
 		let origin = 0 - (arc/2);
@@ -98,7 +106,7 @@ class Seal extends Component {
 			let sin = sinDegrees(origin);
 			let cos = cosDegrees(origin);
 
-			let left = (radius*sin) + radius + this.state.diff;
+			let left = (radius*sin) + radius + DIFF;
 			let top = (radius*cos) + radius;
 
 			let rotation = origin*-1;
@@ -116,10 +124,8 @@ class Seal extends Component {
 			lines.push(l);
 			origin += deg;
 		});
-
 		return lines;
 	}
-
 
 	getUpperLine = () => {
 		let curvedText = this.curvedText(this.props.upper, 195, this.props.upperArc, 0);
@@ -129,7 +135,7 @@ class Seal extends Component {
 	}
 
 	getLowerLine = () => {
-		let curvedText = this.curvedInvertedText(this.props.lower, this.state.height, this.props.lowerArc, 0);
+		let curvedText = this.curvedInvertedText( this.props.lower, 180, this.props.lowerArc, 0);
 		return (
 			<div>{curvedText}</div>
 		);
@@ -137,22 +143,25 @@ class Seal extends Component {
 
 	getStyle() {
 		let style = Object.assign( {}, this.props.style );
+		if ( this.props.removable ) {
+			style.cursor = 'pointer';
+		}
 		if ( this.props.active === false ) {
 			style.webkitFilter = 'grayscale(100%)';
 			style.filter = 'grayscale(100%)';
 			style.opacity = 0.3;
-			if (this.props.scale) {
-				if (style.transform) style.transform += 'scale(' + this.props.scale + ')';
-                else style.transform = 'scale(' + this.props.scale + ')';
+			if ( this.props.scale ) {
+				if ( style.transform) style.transform += 'scale(' + this.props.scale + ')';
+				else style.transform = 'scale(' + this.props.scale + ')';
 			}
 		}
 		else {
 			style.opacity = 1;
 			style.filter = 'grayscale(0%)';
 			style.webkitFilter = 'grayscale(0%)';
-			if (this.props.scale) {
+			if ( this.props.scale ) {
 				if (style.transform) style.transform += 'scale(' + this.props.scale + ')';
-                else style.transform = 'scale(' + this.props.scale + ')';
+				else style.transform = 'scale(' + this.props.scale + ')';
 			}
 		}
 		return style;
@@ -160,24 +169,30 @@ class Seal extends Component {
 
 	getInnerStyle() {
 		let style = null;
-		if (this.props.innerStyle) {
+		if ( this.props.innerStyle ) {
 			style = Object.assign({}, this.props.innerStyle);
 		}
 		return style;
 	}
 
 	triggerClick = () => {
-		if (this.props.onClick) {
-			this.props.onClick();
+		this.props.onClick();
+		if ( this.props.removable ) {
+			this.setState({
+				exit: true
+			});
 		}
 	}
 
 	render() {
 		let style = this.getStyle();
 		let innerStyle = this.getInnerStyle();
-
+		let className = 'seal-container';
+		if ( this.state.exit ) {
+			className += ' seal-exit';
+		}
 		return (
-			<div onClick={this.triggerClick} ref={this.ref} style={style} className="seal-container">
+			<div onClick={this.triggerClick} ref={this.ref} style={style} className={className} >
 				<div className="seal-outer-border" />
 				<div className="seal-fine-border" />
 				<div style={innerStyle} className="seal-inner-circle" />
@@ -205,6 +220,7 @@ Seal.propTypes = {
 	lower: PropTypes.string,
 	lowerArc: PropTypes.number,
 	noOrnaments: PropTypes.bool,
+	removable: PropTypes.bool,
 	style: PropTypes.object,
 	title: PropTypes.string,
 	upper: PropTypes.string,
@@ -214,10 +230,11 @@ Seal.propTypes = {
 Seal.defaultProps = {
 	active: true,
 	onActivate() {},
-	onClick: null,
+	onClick() {},
 	scale: null,
 	lower: 'The lower text',
 	lowerArc: 150,
+	removable: false,
 	style: {},
 	innerStyle: null,
 	upper: 'The upper text',

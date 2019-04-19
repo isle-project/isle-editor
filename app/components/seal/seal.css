@@ -23,6 +23,10 @@
 	transition: all 0.5s;
 }
 
+.seal-exit {
+	animation: anim-fade-out 1s 1s forwards !important;
+}
+
 .seal-inner-circle {
 	position: absolute;
 	width: 70%;
