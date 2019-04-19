@@ -47,6 +47,10 @@ function isHidden( el ) {
 	return el.offsetParent === null;
 }
 
+function preventPropagation( event ) {
+	event.stopPropagation();
+}
+
 
 // MAIN //
 
@@ -355,6 +359,7 @@ class StatusBar extends Component {
 
 	render() {
 		const session = this.context;
+		const finishedLesson = this.state.progress === 100;
 		return (
 			<Fragment>
 				<div>
@@ -486,11 +491,13 @@ class StatusBar extends Component {
 							}}
 						>
 							<Gate user>
-								<img className="statusbar-profile" src={session.user.picture} />
+								<img className="statusbar-profile" src={session.user.picture} onClick={preventPropagation} />
 								<Tooltip placement="bottom" tooltip="Time spent in lesson (in min)">
-									<div className="progress-time">DUR: {this.state.duration} MIN</div>
+									<div className="progress-time" onClick={preventPropagation}>
+										DUR: {this.state.duration} MIN
+									</div>
 								</Tooltip>
-								<Tooltip placement="bottom" tooltip="Click to show unfinished">
+								<Tooltip placement="bottom" tooltip={!finishedLesson ? 'Click to show unfinished' : 'Completed!'} >
 									<div className="outer-statusbar-progress-bar">
 										<ProgressBar
 											label={`COMPLETION RATE: ${this.state.progress}%`}
@@ -547,7 +554,7 @@ class StatusBar extends Component {
 						'F7': this.toggleBarVisibility
 					}}
 				/>
-				{ this.state.progress === 100 ?
+				{ finishedLesson ?
 					<Seal
 						title="100%"
 						upper="Congratulations!"
@@ -555,6 +562,7 @@ class StatusBar extends Component {
 						upperArc={120}
 						lowerArc={120}
 						noOrnaments
+						removable
 						style={{
 							position: 'fixed',
 							right: '0px',
@@ -563,7 +571,8 @@ class StatusBar extends Component {
 							transformOrigin: '100% 100%',
 							animation: 'anim-fade-in 1s forwards',
 							background: 'linear-gradient(to right, white, silver, white)',
-							fontFamily: 'Courier'
+							fontFamily: 'Courier',
+							zIndex: 1002
 						}}
 						innerStyle={{
 							background: 'linear-gradient(to right, ghostwhite, #ffc107, ghostwhite, #ffc107, silver)'
