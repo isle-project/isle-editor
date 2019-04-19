@@ -144,7 +144,11 @@ class Seal extends Component {
 	getStyle() {
 		let style = Object.assign( {}, this.props.style );
 		if ( this.props.removable ) {
-			style.cursor = 'pointer';
+			if ( this.state.exit ) {
+				style.pointerEvents = 'none';
+			} else {
+				style.cursor = 'pointer';
+			}
 		}
 		if ( this.props.active === false ) {
 			style.webkitFilter = 'grayscale(100%)';
