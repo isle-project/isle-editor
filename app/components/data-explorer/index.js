@@ -57,6 +57,7 @@ import Barchart, { generateBarchartConfig } from 'components/data-explorer/barch
 import Boxplot, { generateBoxplotConfig } from 'components/data-explorer/boxplot';
 import Heatmap, { generateHeatmapConfig } from 'components/data-explorer/heatmap';
 import Histogram, { generateHistogramConfig } from 'components/data-explorer/histogram';
+import Map, { generateMapConfig } from 'components/data-explorer/map';
 import MosaicPlot, { generateMosaicPlotCode } from 'components/data-explorer/mosaicplot';
 import Piechart, { generatePiechartConfig } from 'components/data-explorer/piechart';
 import Scatterplot, { generateScatterplotConfig } from 'components/data-explorer/scatterplot';
@@ -756,6 +757,13 @@ class DataExplorer extends Component {
 					break;
 				case 'Violin Plot':
 					content = <Violinplot
+						{...continuousProps}
+						logAction={this.logAction}
+						session={this.context}
+					/>;
+					break;
+				case 'Map':
+					content = <Map
 						{...continuousProps}
 						logAction={this.logAction}
 						session={this.context}
