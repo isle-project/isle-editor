@@ -19,6 +19,7 @@ import { PLOT_UPDATE } from 'constants/actions.js';
 import PlotlyIcons from './icons.js';
 import calculateChanges from './calculate_changes.js';
 import './plotly.css';
+import { ACCESS_TOKEN } from 'constants/mapbox.js';
 
 
 // VARIABLES //
@@ -41,6 +42,10 @@ const BUTTONS = [
 	'resetViews',
 	'toggleSpikelines'
 ];
+
+Plotly.setPlotConfig({
+	mapboxAccessToken: ACCESS_TOKEN
+});
 
 
 // MAIN //

@@ -47,7 +47,7 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 	}
 	if ( longitude && latitude ) {
 		traces.push({
-			type: 'scattergeo',
+			type: 'scattermapbox',
 			mode: 'markers',
 			text: data[ variable],
 			lon: data[ longitude ],
