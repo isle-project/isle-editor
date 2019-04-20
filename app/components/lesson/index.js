@@ -42,7 +42,7 @@ class Lesson extends Component {
 	render() {
 		return (
 			<Fragment>
-				<ContextMenuTrigger id="lessonWindow" style={{ height: '100%', width: '100%' }} >
+				<ContextMenuTrigger holdToDisplay={-1} id="lessonWindow" style={{ height: '100%', width: '100%' }} >
 					<div id="Lesson" className={this.props.className}>
 						{this.props.children}
 						{this.state.notes}

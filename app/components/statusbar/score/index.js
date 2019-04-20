@@ -42,7 +42,7 @@ class Score extends Component {
 		this.unsubscribe();
 	}
 
-	handleClick= ( event ) => {
+	handleClick = ( event ) => {
 		event.stopPropagation();
 	}
 
