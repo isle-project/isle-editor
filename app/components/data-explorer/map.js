@@ -145,14 +145,14 @@ class Map extends Component {
 					<Col>
 						<SelectInput
 							legend="Longitude:"
-							options={groupingVariables}
+							options={variables}
 							clearable
 						/>
 					</Col>
 					<Col>
 						<SelectInput
 							legend="Latitude:"
-							options={groupingVariables}
+							options={variables}
 							clearable
 						/>
 					</Col>
