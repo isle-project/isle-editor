@@ -101,7 +101,7 @@ function factory( monaco ) {
 						}
 						insertText = x.name+'={['+val+']}';
 					} else {
-						insertText = x.name+'={${1:'+x.default+'}}';  // eslint-disable-line
+						insertText = x.name+'={${1:'+x.default+'}}'; // eslint-disable-line
 					}
 					return {
 						label: x.name,
@@ -119,6 +119,19 @@ function factory( monaco ) {
 				});
 			}
 		}
+		suggestions.push({
+			label: 'id',
+			command: {
+				title: 'Trigger new suggestion',
+				id: 'editor.action.triggerSuggest'
+			},
+			documentation: 'Component identifier',
+			kind: monaco.languages.CompletionItemKind.Snippet,
+			detail: 'string',
+			insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+			insertText: 'id="${1:}"', // eslint-disable-line
+			sortText: 'aid'
+		});
 		return {
 			suggestions: suggestions,
 			incomplete: false
