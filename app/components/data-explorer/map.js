@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import startcase from '@stdlib/string/startcase';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import CheckboxInput from 'components/input/checkbox';
@@ -97,7 +98,7 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 			title += ` of ${variable}`;
 		}
 		if ( scope ) {
-			title += ` ${variable ? 'in' : 'of'} ${scope}`;
+			title += ` ${variable ? 'in' : 'of'} ${startcase( scope )}`;
 		}
 		return {
 			data: traces,
@@ -187,16 +188,23 @@ class Map extends Component {
 						/>
 					</Col>
 				</Row>
-				<SelectInput
-					legend="Scope:"
-					defaultValue="world"
-					options={SCOPES}
-				/>
-				<CheckboxInput
-					legend="Show Land"
-					defaultValue={false}
-				/>
-				<p>or</p>
+				<Row>
+					<Col>
+						<SelectInput
+							legend="Scope:"
+							defaultValue="world"
+							options={SCOPES}
+						/>
+					</Col>
+					<Col>
+						<CheckboxInput
+							legend="Show Land"
+							defaultValue={false}
+							style={{ marginTop: 35 }}
+						/>
+					</Col>
+				</Row>
+				<h4 className="center">or</h4>
 				<Row>
 					<Col>
 						<SelectInput
@@ -213,6 +221,7 @@ class Map extends Component {
 						/>
 					</Col>
 				</Row>
+				<hr />
 				<SelectInput
 					legend="Variable:"
 					options={variables}
