@@ -9,6 +9,8 @@ import Dashboard from 'components/dashboard';
 import CheckboxInput from 'components/input/checkbox';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
+import mean from 'utils/statistic/mean';
+import range from 'utils/statistic/range';
 import { DATA_EXPLORER_SHARE_MAP, DATA_EXPLORER_MAP } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
@@ -30,30 +32,20 @@ const LOCATION_MODES = [
 	'USA-states',
 	'country names'
 ];
+const COLOR_SCALE = [
+	[0, 'rgb(5, 10, 172)'],
+	[0.35, 'rgb(40, 60, 190)'],
+	[0.5, 'rgb(70, 100, 245)'],
+	[0.6, 'rgb(90, 120, 245)'],
+	[0.7, 'rgb(106, 137, 247)'],
+	[1, 'rgb(220, 220, 220)']
+];
 
 
 // FUNCTIONS //
 
 export function generateMapConfig({ data, longitude, latitude, locations, locationmode, variable, scope, showLand }) {
 	let traces = [];
-	if ( variable || ( !latitude && !latitude ) ) {
-		traces.push({
-			type: 'choropleth',
-			locationmode,
-			locations: data[ locations ],
-			z: data[ variable ],
-			autocolorscale: true
-		});
-	}
-	if ( longitude && latitude ) {
-		traces.push({
-			type: 'scattermapbox',
-			mode: 'markers',
-			text: data[ variable],
-			lon: data[ longitude ],
-			lat: data[ latitude ]
-		});
-	}
 	let title = 'Map';
 	if ( variable ) {
 		title += ` of ${variable}`;
@@ -61,21 +53,62 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 	if ( scope ) {
 		title += ` ${variable ? 'in' : 'of'} ${scope}`;
 	}
-	return {
-		data: traces,
-		layout: {
-			title,
-			geo: {
-				scope,
-				resolution: showLand ? 50 : 110,
-				showrivers: showLand,
-				showlakes: showLand,
-				showland: showLand,
-				showocean: showLand,
-				showcoastlines: showLand
+	if ( longitude && latitude ) {
+		const lon = data[ longitude ];
+		const lat = data[ latitude ];
+		let zoom = range( lon )[ 0 ];
+		zoom = 1.0 / zoom;
+		traces.push({
+			type: 'scattermapbox',
+			mode: 'markers',
+			text: data[ variable],
+			marker: {
+				opacity: 0.4,
+				autocolorscale: false,
+				colorscale: COLOR_SCALE,
+				color: data[ variable]
+			},
+			lon,
+			lat
+		});
+		return {
+			data: traces,
+			layout: {
+				title,
+				mapbox: {
+					zoom,
+					center: {
+						lon: mean( lon ),
+						lat: mean( lat )
+					}
+				}
 			}
-		}
-	};
+		};
+	}
+	if ( variable ) {
+		traces.push({
+			type: 'choropleth',
+			locationmode,
+			locations: data[ locations ],
+			z: data[ variable ],
+			autocolorscale: true
+		});
+		return {
+			data: traces,
+			layout: {
+				title,
+				geo: {
+					scope,
+					resolution: showLand ? 50 : 110,
+					showrivers: showLand,
+					showlakes: showLand,
+					showland: showLand,
+					showocean: showLand,
+					showcoastlines: showLand
+				}
+			}
+		};
+	}
 }
 
 
@@ -86,7 +119,7 @@ class Map extends Component {
 		super( props );
 	}
 
-	generateMap( locations, locationmode, longitude, latitude, variable, scope, showLand ) {
+	generateMap( locations, locationmode, scope, showLand, longitude, latitude, variable ) {
 		const config = generateMapConfig({ data: this.props.data, locationmode, longitude, latitude, locations, variable, scope, showLand });
 		const plotId = randomstring( 6 );
 		const output = {
@@ -140,6 +173,15 @@ class Map extends Component {
 						/>
 					</Col>
 				</Row>
+				<SelectInput
+					legend="Scope:"
+					defaultValue="world"
+					options={SCOPES}
+				/>
+				<CheckboxInput
+					legend="Show Land"
+					defaultValue={false}
+				/>
 				<p>or</p>
 				<Row>
 					<Col>
@@ -161,15 +203,6 @@ class Map extends Component {
 					legend="Variable:"
 					options={variables}
 					clearable
-				/>
-				<SelectInput
-					legend="Scope:"
-					defaultValue="world"
-					options={SCOPES}
-				/>
-				<CheckboxInput
-					legend="Show Land"
-					defaultValue={false}
 				/>
 			</Dashboard>
 		);
