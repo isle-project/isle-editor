@@ -32,13 +32,13 @@ const LOCATION_MODES = [
 	'USA-states',
 	'country names'
 ];
-const COLOR_SCALE = [
-	[0, 'rgb(5, 10, 172)'],
-	[0.35, 'rgb(40, 60, 190)'],
-	[0.5, 'rgb(70, 100, 245)'],
-	[0.6, 'rgb(90, 120, 245)'],
-	[0.7, 'rgb(106, 137, 247)'],
-	[1, 'rgb(220, 220, 220)']
+const PURPLE_SCALE = [
+	[ 0, '#feebe2' ],
+	[ 0.2, '#fcc5c0' ],
+	[ 0.4, '#fa9fb5' ],
+	[ 0.6, '#f768a1' ],
+	[ 0.8, '#c51b8a' ],
+	[ 1, '#7a0177' ]
 ];
 
 
@@ -46,13 +46,6 @@ const COLOR_SCALE = [
 
 export function generateMapConfig({ data, longitude, latitude, locations, locationmode, variable, scope, showLand }) {
 	let traces = [];
-	let title = 'Map';
-	if ( variable ) {
-		title += ` of ${variable}`;
-	}
-	if ( scope ) {
-		title += ` ${variable ? 'in' : 'of'} ${scope}`;
-	}
 	if ( longitude && latitude ) {
 		const lon = data[ longitude ];
 		const lat = data[ latitude ];
@@ -63,9 +56,9 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 			mode: 'markers',
 			text: data[ variable],
 			marker: {
-				opacity: 0.4,
+				opacity: 0.6,
 				autocolorscale: false,
-				colorscale: COLOR_SCALE,
+				colorscale: PURPLE_SCALE,
 				color: data[ variable]
 			},
 			lon,
@@ -74,13 +67,19 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 		return {
 			data: traces,
 			layout: {
-				title,
 				mapbox: {
 					zoom,
 					center: {
 						lon: mean( lon ),
 						lat: mean( lat )
 					}
+				},
+				margin: {
+					l: 10,
+					r: 0,
+					b: 0,
+					t: 80,
+					pad: 2
 				}
 			}
 		};
@@ -93,6 +92,13 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 			z: data[ variable ],
 			autocolorscale: true
 		});
+		let title = 'Map';
+		if ( variable ) {
+			title += ` of ${variable}`;
+		}
+		if ( scope ) {
+			title += ` ${variable ? 'in' : 'of'} ${scope}`;
+		}
 		return {
 			data: traces,
 			layout: {
