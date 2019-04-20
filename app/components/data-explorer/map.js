@@ -100,11 +100,19 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 				geo: {
 					scope,
 					resolution: showLand ? 50 : 110,
+					showframe: false,
 					showrivers: showLand,
 					showlakes: showLand,
 					showland: showLand,
 					showocean: showLand,
 					showcoastlines: showLand
+				},
+				margin: {
+					l: 0,
+					r: 0,
+					b: 0,
+					t: 120,
+					pad: 2
 				}
 			}
 		};
