@@ -252,6 +252,11 @@
 		"value": "<ScrollingText list={[${1:'Enter strings'}]} interval={${2:5}} inTime={${3:1.2}} outTime={${4:1.2}} still={${5:2}} />"
 	},
 	{
+		"name":"Seal",
+		"value":"<Seal title=\"${1:Enter title}\" upper=\"${2:Enter upper}\"  upperArc=\"${3:120}\" lower=\"${4:Enter lower}\" lowerArc=\"${5:120}\" />\n"
+	},
+
+	{
 		"name":"SelectInput",
 		"value":"<SelectInput\n\toptions={['${1:First option}','${2:Second Option}']}\n/>\n"
 	},
