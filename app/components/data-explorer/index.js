@@ -296,6 +296,9 @@ class DataExplorer extends Component {
 		case 'DATA_EXPLORER_SHARE_HISTOGRAM':
 			config = generateHistogramConfig({ data: this.state.data, ...value });
 			break;
+		case 'DATA_EXPLORER_SHARE_MAP':
+			config = generateMapConfig({ data: this.state.data, ...value });
+			break;
 		case 'DATA_EXPLORER_SHARE_MOSAIC':
 			config = generateMosaicPlotCode({ data: this.state.data, ...value });
 			break;
