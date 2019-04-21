@@ -118,20 +118,20 @@ function factory( monaco ) {
 					};
 				});
 			}
+			suggestions.push({
+				label: 'id',
+				command: {
+					title: 'Trigger new suggestion',
+					id: 'editor.action.triggerSuggest'
+				},
+				documentation: 'Component identifier',
+				kind: monaco.languages.CompletionItemKind.Snippet,
+				detail: 'string',
+				insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+				insertText: 'id="${1:}"', // eslint-disable-line
+				sortText: 'aid'
+			});
 		}
-		suggestions.push({
-			label: 'id',
-			command: {
-				title: 'Trigger new suggestion',
-				id: 'editor.action.triggerSuggest'
-			},
-			documentation: 'Component identifier',
-			kind: monaco.languages.CompletionItemKind.Snippet,
-			detail: 'string',
-			insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-			insertText: 'id="${1:}"', // eslint-disable-line
-			sortText: 'aid'
-		});
 		return {
 			suggestions: suggestions,
 			incomplete: false
