@@ -104,7 +104,7 @@
     "babel-plugin-transform-modern-regexp": "0.0.6",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "codemirror": "^5.45.0",
+    "codemirror": "^5.46.0",
     "component-playground": "^3.1.2",
     "component-raf": "^1.2.0",
     "component-tween": "^1.2.0",
