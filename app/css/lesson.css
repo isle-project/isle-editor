@@ -1972,6 +1972,206 @@ label {
 	}
 }
 
+
+/**
+* ----------------------------------------
+* @animation breathing-scale
+* ----------------------------------------
+*/
+@keyframes breathing-scale {
+	0% {
+		transform: scale(1);
+	}
+
+	20% {
+		transform: scale(1.03);
+	}
+
+	40% {
+		transform: scale(1.015);
+	}
+
+	60% {
+		transform: scale(1.09) rotate(0.7deg);
+	}
+
+	75% {
+		transform: scale(1.01) rotate(0deg);
+	}
+
+	90% {
+		transform: scale(1.12);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+
+/**
+* ----------------------------------------
+* @animation slight-rotation
+* ----------------------------------------
+*/
+@keyframes slight-rotation {
+	0% {
+		transform: scale(1.5) rotate(0deg);
+	}
+
+	10% {
+		transform: scale(1.5) rotate(5deg);
+	}
+
+	20% {
+		transform: scale(1.5) rotate(-3deg);
+	}
+
+	21% {
+		transform: scale(1.5) rotate(-2.8deg);
+	}
+
+	24% {
+		transform: scale(1.5) rotate(-3.2deg);
+	}
+
+	30% {
+		transform: rotate(4deg);
+	}
+
+	40% {
+		transform: rotate(-9deg);
+	}
+
+	50% {
+		transform: rotate(12deg);
+	}
+
+	60% {
+		transform: rotate(-5deg);
+	}
+
+	70% {
+		transform: rotate(3deg);
+	}
+
+	80% {
+		transform:  rotate(-3deg);
+	}
+
+	90% {
+		transform: rotate(2deg);
+	}
+
+	100% {
+		transform: scale(1.5) rotate(0deg);
+	}
+}
+
+/**
+* ----------------------------------------
+* @animation breathing-opacity
+* ----------------------------------------
+*/
+@keyframes breathing-opacity {
+	0% {
+		opacity: 1;
+	}
+
+	7% {
+		opacity: 0.3;
+	}
+
+	20% {
+		opacity: 0.75;
+	}
+
+	30% {
+		opacity: 0.4;
+	}
+
+	30.5% {
+		opacity: 0.9;
+	}
+
+	33% {
+		opacity: 0.1;
+	}
+
+	50% {
+		opacity: 0.1;
+	}
+
+	60% {
+		opacity: 0.4;
+	}
+
+	70.5% {
+		opacity: 0.2;
+	}
+
+	83% {
+		opacity: 0.9;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+/**
+* ----------------------------------------
+* @animation minimal-blur
+* ----------------------------------------
+*/
+
+@keyframes full-circle-rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/**
+* ----------------------------------------
+* @animation minimal-blur
+* ----------------------------------------
+*/
+@keyframes minimal-blur {
+	0% {
+		filter: blur(0px);
+	}
+
+	50% {
+		filter: blur(2px);
+	}
+
+	100% {
+		filter: blur(0px);
+	}
+}
+
+
+/**
+* ----------------------------------------
+* @animation grey-to-color
+* ----------------------------------------
+*/
+@keyframes gray-to-color {
+	0% {
+		filter: grayscale(100%);
+		-webkit-filter: grayscale(100%);
+	}
+
+	100% {
+		filter: grayscale(0%);
+		-webkit-filter: grayscale(0%);
+	}
+}
+
 /**
 * ----------------------------------------
 * @animation text-color-change
