@@ -106,7 +106,8 @@ class PropTest2 extends Component {
 			value = <div style={{ overflowX: 'auto', width: '100%' }}>
 				<label>{title}</label><br />
 				<span>
-					Let <TeX raw={`p_{${firstCategory}}`} /> be the population probability of <code>{var1}</code> being <code>{success}</code> in the first group, and <TeX raw={`p_{${secondCategory}}`} /> the probability in the second group, respectively. We test
+					Let <TeX raw={`p_{${firstCategory}}`} /> be the population probability of <code>{var1}</code> being <code>{success}</code> in the first group, <br />
+					and <TeX raw={`p_{${secondCategory}}`} /> the probability in the second group, respectively. We test
 				</span>
 				<TeX
 					displayMode
@@ -119,6 +120,7 @@ class PropTest2 extends Component {
 					tag=""
 				/>
 				<label>Sample proportion in group {firstCategory}: {roundn( mean( x ), -3 )}</label>
+				<br />
 				<label>Sample proportion in group {secondCategory}: {roundn( mean( y ), -3 )}</label>
 				<pre>
 					{printout}
@@ -143,13 +145,15 @@ class PropTest2 extends Component {
 			const title = `Hypothesis test for equality of mean ${var1} against mean ${var2}`;
 			value = <div style={{ overflowX: 'auto', width: '100%' }}>
 				<label>{title}</label><br />
-				<span>
-					Let <TeX raw={`p_{${var1}}`} /> be the population probability of <code>{var1}</code> being <code>{success}</code>, and <TeX raw={`p_{${var2}}`} /> the probability <code>{var2}</code> being <code>{success}</code>, respectively. We test
-				</span>
+				<p>
+					Let <TeX raw={`p_{${var1}}`} /> be the population probability of <code>{var1}</code> being <code>{success}</code>, <br />
+					and <TeX raw={`p_{${var2}}`} /> the probability <code>{var2}</code> being <code>{success}</code>, respectively. We test
+				</p>
 				<TeX displayMode raw={`H_0: p_{${var1}} - p_{${var2}} = ${diff}`} tag="" />
 				<span> vs. </span>
 				<TeX displayMode raw={`H_1: p_{${var1}} - p_{${var2}} ${arrow} ${diff}`} tag="" />
 				<label>Sample proportion in group {var1}: {roundn( mean( x ), -3 )}</label>
+				<br />
 				<label>Sample proportion in group {var2}: {roundn( mean( y ), -3 )}</label>
 				<pre style={{ fontSize: '11px' }}>
 					{result.print({
