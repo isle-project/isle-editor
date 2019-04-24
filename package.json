@@ -232,7 +232,7 @@
     "jest-cli": "^24.5.0",
     "modclean": "^2.0.0",
     "monaco-editor-webpack-plugin": "^1.7.0",
-    "null-loader": "^0.1.1",
+    "null-loader": "^1.0.0",
     "react-hot-loader": "^4.8.0",
     "react-test-renderer": "16.8.6",
     "redux-devtools": "3.5.0",
