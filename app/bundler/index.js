@@ -6,6 +6,8 @@ import { dirname, extname, resolve, join } from 'path';
 import yaml from 'js-yaml';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import WebpackCdnPlugin from './webpack_cdn_plugin.js';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
@@ -327,7 +329,7 @@ function writeIndexFile({
 			noParse: /node_modules\/json-schema\/lib\/validate\.js/
 		},
 		optimization: {
-			minimize: false,
+			minimizer: [ new OptimizeCSSAssetsPlugin({}) ],
 			splitChunks: {
 				chunks: 'all'
 			}
@@ -420,6 +422,10 @@ function writeIndexFile({
 						path: 'victory.min.js'
 					}
 				]
+			}),
+			new MiniCssExtractPlugin({
+				filename: '[name].css',
+				chunkFilename: '[id].css'
 			}),
 			new webpack.DefinePlugin({
 				'process.env': {

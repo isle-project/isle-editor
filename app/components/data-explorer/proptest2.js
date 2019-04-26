@@ -259,7 +259,7 @@ class PropTest2 extends Component {
 								)}
 								clearable
 								onChange={( value ) => {
-									this.propTestgroupSelect.setState({
+									this.setState({
 										grouping: null,
 										var2: value
 									});
@@ -273,11 +273,21 @@ class PropTest2 extends Component {
 						min={0}
 						max={1}
 						step="any"
+						onChange={( value ) => {
+							this.setState({
+								diff: value
+							});
+						}}
 					/>
 					<SelectInput
 						legend="Direction:"
 						defaultValue={this.state.direction}
 						options={[ 'less', 'greater', 'two-sided' ]}
+						onChange={( value ) => {
+							this.setState({
+								direction: value
+							});
+						}}
 					/>
 					<NumberInput
 						legend={<span>Significance level <TeX raw="\alpha" /></span>}
@@ -285,6 +295,11 @@ class PropTest2 extends Component {
 						min={0.0}
 						max={1.0}
 						step="any"
+						onChange={( value ) => {
+							this.setState({
+								alpha: value
+							});
+						}}
 					/>
 					<Button variant="primary" block onClick={this.calculateTwoSamplePropTest}>Calculate</Button>
 				</Card.Body>
