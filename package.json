@@ -141,7 +141,7 @@
     "markdown-it-sub": "^1.0.0",
     "mini-css-extract-plugin": "^0.6.0",
     "minimist": "^1.2.0",
-    "ml-pca": "^2.1.0",
+    "ml-pca": "^3.0.0",
     "moment": "2.24.0",
     "murmurhash3js": "^3.0.1",
     "node-libs-browser": "^2.2.0",
