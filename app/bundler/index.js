@@ -317,7 +317,9 @@ function writeIndexFile({
 				{
 					test: /\.worker\.js$/,
 					exclude: /node_modules/,
-					use: { loader: 'worker-loader' }
+					use: {
+						loader: 'worker-loader'
+					}
 				},
 				{
 					test: /\.svg$/i,
@@ -332,14 +334,7 @@ function writeIndexFile({
 			minimizer: [ new OptimizeCSSAssetsPlugin({}) ],
 			splitChunks: {
 				cacheGroups: {
-					styles: {
-						name: 'styles',
-						test: /\.css$/,
-						chunks: 'all',
-						enforce: true
-					},
 					code: {
-						name: 'code',
 						test: /\.js$/,
 						chunks: 'all'
 					}
@@ -436,8 +431,8 @@ function writeIndexFile({
 				]
 			}),
 			new MiniCssExtractPlugin({
-				filename: '[name].css',
-				chunkFilename: '[id].css'
+				filename: 'css/[name].css',
+				chunkFilename: 'css/[id].css'
 			}),
 			new webpack.DefinePlugin({
 				'process.env': {
@@ -469,18 +464,18 @@ function writeIndexFile({
 
 	// Copy CSS file:
 	mkdirSync( join( appDir, 'css' ) );
-	copyFileSync( join( basePath, 'app', 'css', 'lesson.css' ), join( appDir, 'css', 'lesson.css' ) );
+	copyFileSync( join( basePath, 'app', 'css', 'custom.css' ), join( appDir, 'css', 'custom.css' ) );
 	if ( meta.css ) {
-		// Append custom CSS file to `lesson.css` file:
+		// Append custom CSS file to `custom.css` file:
 		let fpath = meta.css;
 		if ( !isAbsolutePath( meta.css ) ) {
 			fpath = join( dirname( filePath ), meta.css );
 		}
 		const css = readFileSync( fpath ).toString();
-		appendFileSync( join( appDir, 'css', 'lesson.css' ), css );
+		appendFileSync( join( appDir, 'css', 'custom.css' ), css );
 	}
 	if ( meta.style ) {
-		appendFileSync( join( appDir, 'css', 'lesson.css' ), meta.style );
+		appendFileSync( join( appDir, 'css', 'custom.css' ), meta.style );
 	}
 
 	let imgPath = join( basePath, 'app', 'img' );
@@ -490,7 +485,7 @@ function writeIndexFile({
 	config.output = {
 		path: appDir,
 		publicPath: './',
-		filename: minify ? 'bundle.min.js' : 'bundle.js'
+		filename: minify ? './js/bundle.min.js' : './js/bundle.js'
 	};
 	const compiler = webpack( config );
 	compiler.run( ( err, stats ) => {
