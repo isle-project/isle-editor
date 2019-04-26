@@ -308,6 +308,13 @@ function writeIndexFile({
 					}
 				},
 				{
+					test: /\.css$$/,
+					use: [
+						MiniCssExtractPlugin.loader,
+						'css-loader'
+					]
+				},
+				{
 					test: /\.worker\.js$/,
 					exclude: /node_modules/,
 					use: { loader: 'worker-loader' }
@@ -317,13 +324,6 @@ function writeIndexFile({
 					use: {
 						loader: 'svg-react-loader'
 					}
-				},
-				{
-					test: /\.css$$/,
-					use: [
-						'style-loader',
-						'css-loader?sourceMap'
-					]
 				}
 			],
 			noParse: /node_modules\/json-schema\/lib\/validate\.js/
@@ -331,7 +331,19 @@ function writeIndexFile({
 		optimization: {
 			minimizer: [ new OptimizeCSSAssetsPlugin({}) ],
 			splitChunks: {
-				chunks: 'all'
+				cacheGroups: {
+					styles: {
+						name: 'styles',
+						test: /\.css$/,
+						chunks: 'all',
+						enforce: true
+					},
+					code: {
+						name: 'code',
+						test: /\.js$/,
+						chunks: 'all'
+					}
+				}
 			}
 		},
 		node: {
@@ -501,10 +513,12 @@ function writeIndexFile({
 		}
 		let done = 0;
 		debug( 'Minifying bundle...' );
+		let numJSFiles = 0;
 		for ( let i = 0; i < stats.assets.length; i++ ) {
-			const child = cp.fork( resolve( basePath, './app/bundler/minify.js' ) );
 			const { name } = stats.assets[ i ];
 			if ( endsWith( name, '.js' ) ) {
+				numJSFiles += 1;
+				const child = cp.fork( resolve( basePath, './app/bundler/minify.js' ) );
 				const bundlePath = join( appDir, name );
 				const code = readFileSync( bundlePath ).toString();
 				child.on( 'message', papplyRight( onMessage, name, bundlePath ));
@@ -519,7 +533,7 @@ function writeIndexFile({
 			const minifiedPath = join( appDir, name );
 			writeFileSync( minifiedPath, minified.code );
 			done += 1;
-			if ( done === stats.assets.length-1 ) {
+			if ( done === numJSFiles ) {
 				return clbk( err, meta );
 			}
 		}

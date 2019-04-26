@@ -6,6 +6,7 @@ import NotificationSystem from 'react-notification-system';
 import { ContextMenuTrigger, ContextMenu, MenuItem } from 'react-contextmenu';
 import StickyNote from 'components/sticky-note';
 import SessionContext from 'session/context.js';
+import 'css/lesson.css';
 
 
 // MAIN //
