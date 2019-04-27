@@ -509,7 +509,9 @@ class Session {
 			!this.anonymous &&
 			!this.userRightsQuestionPosed &&
 			!this._offline &&
-			!userRights
+			!userRights &&
+			this.lessonID &&
+			this.namespaceID
 		) {
 			debug( 'Retrieve user rights...' );
 			this.userRightsQuestionPosed = true;
