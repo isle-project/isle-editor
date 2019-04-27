@@ -406,6 +406,28 @@ class DataExplorer extends Component {
 		});
 	}
 
+	deleteVariable = ( variable ) => {
+		debug( 'Should remove variable with name '+variable );
+		const session = this.context;
+		session.addNotification({
+			title: 'Variable removed',
+			message: `The variable with the name ${variable} has been successfully removed`,
+			level: 'success',
+			position: 'tr'
+		});
+		const newData = copy( this.state.data );
+		delete newData[ variable ];
+		let newContinuous = this.state.continuous.filter( x => x !== variable );
+		let newCategorical = this.state.categorical.filter( x => x !== variable );
+		let newGroupVars = this.state.groupVars.filter( x => x !== variable );
+		this.setState({
+			data: newData,
+			continuous: newContinuous,
+			categorical: newCategorical,
+			groupVars: newGroupVars
+		});
+	}
+
 	onFileUpload = ( err, output ) => {
 		const session = this.context;
 		if ( !err ) {
@@ -952,6 +974,8 @@ class DataExplorer extends Component {
 											console.log(this.state.filters);
 										});
 									}}
+									onColumnDelete={this.deleteVariable}
+									deletable
 									id={this.props.id ? this.props.id + '_table' : null}
 								/>
 								{ this.state.filters.length > 0 ?

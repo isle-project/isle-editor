@@ -6,6 +6,17 @@
 	width: calc(100% - 44px);
 }
 
+.delete-button {
+	color: #dc3545;
+	margin-left: 4px;
+	border: 1px solid #dc3545;
+}
+
+.delete-button:hover {
+	color: #ca5800;
+	border: 1px solid #ca5800;
+}
+
 .help-button {
 	float: right;
 	color: var(--quartary);

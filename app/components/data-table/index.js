@@ -72,9 +72,11 @@ function createRows( data ) {
 *
 * @property {(Object|Array)} data - A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column
 * @property {Object} dataInfo - object with `info` string array describing the data set, the `name` of the dataset, an `object` of `variables` with keys corresponding to variable names and values to variable descriptions, an a `showOnStartup` boolean controlling whether to display the info modal on startup
+* @property {boolean} deletable - controls whether columns for which no `info` exist have a button which when clicked calls the `onColumnDelete` callback function
 * @property {boolean} showRemove - indicates whether to display checkboxes for rows to be removed
 * @property {Object} style - An object allowing for custom css styling. Defaults to an empty object
 * @property {Function} onClickRemove - A function specifying an action to take for rows removed from the data (defaults to an empty function)
+* @property {Function} onColumnDelete - function invoked with the name of a column when the respective delete button for a column is clicked
 */
 class DataTable extends Component {
 	constructor( props ) {
@@ -159,6 +161,16 @@ class DataTable extends Component {
 						});
 					}}
 				>{key}</span>;
+			} else if ( this.props.deletable ) {
+				header = <div>
+					{key}
+					<OverlayTrigger placement="left" overlay={<Tooltip>Remove variable</Tooltip>} >
+						<div className="fa fa-times delete-button" onClick={( evt ) => {
+							evt.stopPropagation();
+							this.props.onColumnDelete( key );
+						}} />
+					</OverlayTrigger>
+				</div>;
 			}
 			const out = {
 				Header: header,
@@ -530,6 +542,8 @@ DataTable.defaultProps = {
 		'variables': null,
 		'showInfo': false
 	},
+	deletable: false,
+	onColumnDelete() {},
 	onClickRemove() {},
 	onFilteredChange() {},
 	filters: [],
@@ -543,6 +557,8 @@ DataTable.propTypes = {
 		PropTypes.object
 	]).isRequired,
 	dataInfo: PropTypes.object,
+	deletable: PropTypes.bool,
+	onColumnDelete: PropTypes.func,
 	onClickRemove: PropTypes.func,
 	filters: PropTypes.array,
 	onFilteredChange: PropTypes.func,
