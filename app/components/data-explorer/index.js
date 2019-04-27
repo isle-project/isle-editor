@@ -17,6 +17,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isNumberArray from '@stdlib/assert/is-number-array';
+import isObjectArray from '@stdlib/assert/is-object-array';
 import isObject from '@stdlib/assert/is-object';
 import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
@@ -44,6 +45,8 @@ import SessionContext from 'session/context.js';
 import OutputPanel from './output_panel.js';
 import createOutputElement from './create_output_element.js';
 import formatFilters from './format_filters.js';
+import valuesFromFormula from './variable-transformer/values_from_formula.js';
+import { DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
 import './data_explorer.css';
 const SpreadsheetUpload = lazy( () => import( 'components/spreadsheet-upload' ) );
 const LearnNormalDistribution = lazy( () => import( 'components/learn/distribution-normal' ) );
@@ -213,12 +216,44 @@ class DataExplorer extends Component {
 					debug( err );
 				});
 		}
+		this.unsubscribe = session.subscribe( ( type, value ) => {
+			if ( type === 'retrieved_current_user_actions' ) {
+				const currentUserActions = value;
+				const actions = currentUserActions[ this.props.id ];
+				if ( isObjectArray( actions ) ) {
+					this.restoreTransformations( actions );
+				}
+			}
+		});
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
 		if ( this.state.output !== prevState.output && this.outputPanel ) {
 			this.outputPanel.scrollToBottom();
 		}
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
+	}
+
+	restoreTransformations = ( actions ) => {
+		let state = this.state;
+		for ( let i = actions.length - 1; i >= 0; i-- ) {
+			const action = actions[ i ];
+			switch ( action.type ) {
+				case DATA_EXPLORER_VARIABLE_TRANSFORMER: {
+					const values = valuesFromFormula( action.value.code, state.data );
+					state = this.transformVariable( action.value.name, values, state );
+				}
+				break;
+				case DATA_EXPLORER_DELETE_VARIABLE:
+					state = this.deleteVariable( action.value, state );
+				break;
+			}
+		}
+		state.data = copy( state.data, 1 );
+		this.setState( state );
 	}
 
 	resetStorage = () => {
@@ -353,22 +388,24 @@ class DataExplorer extends Component {
 		});
 	}
 
-	onGenerateTransformedVariable = ( name, values ) => {
-		if ( hasProp( this.props.data, name ) ) {
-			const session = this.context;
-			return session.addNotification({
-				title: 'Variable exists',
-				message: 'The original variables of the data set cannot be overwritten.',
-				level: 'error',
-				position: 'tr'
-			});
-		}
-		let newData = copy( this.state.data );
-		newData[ name ] = values;
+	transformVariable = ( name, values, varState ) => {
+		let newData;
+		let newContinuous;
+		let newCategorical;
 		let groupVars;
+		if ( !varState ) {
+			newData = copy( this.state.data, 1 );
+			newContinuous = this.state.continuous.slice();
+			newCategorical = this.state.categorical.slice();
+			groupVars = this.state.groupVars.slice();
+		} else {
+			newData = varState.data;
+			newContinuous = varState.continuous.slice();
+			newCategorical = varState.categorical.slice();
+			groupVars = varState.groupVars.slice();
+		}
+		newData[ name ] = values;
 		let previous;
-		let newContinuous = this.state.continuous.slice();
-		let newCategorical = this.state.categorical.slice();
 		if ( isNumberArray( values ) ) {
 			if ( !contains( newContinuous, name ) ) {
 				newContinuous.push( name );
@@ -388,44 +425,68 @@ class DataExplorer extends Component {
 			}
 			groupVars = newCategorical.slice();
 		}
-		let newState = {
+		const newVarState = {
 			data: newData,
 			categorical: newCategorical,
-			continuous: newContinuous
+			continuous: newContinuous,
+			groupVars: groupVars
 		};
-		if ( groupVars ) {
-			newState[ 'groupVars' ] = groupVars;
-		}
-		this.setState( newState );
+		return newVarState;
+	}
+
+	onGenerateTransformedVariable = ( name, values ) => {
 		const session = this.context;
+		if ( hasProp( this.props.data, name ) ) {
+			return session.addNotification({
+				title: 'Variable exists',
+				message: 'The original variables of the data set cannot be overwritten.',
+				level: 'error',
+				position: 'tr'
+			});
+		}
 		session.addNotification({
 			title: 'Variable created',
-			message: `The variable with the name ${name} has been successfully ${ previous > 0 ? 'overwritten' : 'created' }`,
+			message: `The variable with the name ${name} has been successfully generated`,
 			level: 'success',
 			position: 'tr'
 		});
+		this.setState({ ...this.transformVariable( name, values ) });
 	}
 
-	deleteVariable = ( variable ) => {
+	onColumnDelete = ( variable ) => {
 		debug( 'Should remove variable with name '+variable );
 		const session = this.context;
+		this.logAction( DATA_EXPLORER_DELETE_VARIABLE, variable );
 		session.addNotification({
 			title: 'Variable removed',
 			message: `The variable with the name ${variable} has been successfully removed`,
 			level: 'success',
 			position: 'tr'
 		});
-		const newData = copy( this.state.data );
+		const varState = this.deleteVariable( variable );
+		varState.data = copy( varState.data, 1 );
+		this.setState( varState );
+	}
+
+	deleteVariable = ( variable, varState ) => {
+		console.log( varState );
+		let state = varState || this.state;
+		let newData;
+		if ( !varState ) {
+			newData = copy( this.state.data, 1 );
+		} else {
+			newData = varState.data;
+		}
 		delete newData[ variable ];
-		let newContinuous = this.state.continuous.filter( x => x !== variable );
-		let newCategorical = this.state.categorical.filter( x => x !== variable );
-		let newGroupVars = this.state.groupVars.filter( x => x !== variable );
-		this.setState({
+		let newContinuous = state.continuous.filter( x => x !== variable );
+		let newCategorical = state.categorical.filter( x => x !== variable );
+		let newGroupVars = state.groupVars.filter( x => x !== variable );
+		return {
 			data: newData,
 			continuous: newContinuous,
 			categorical: newCategorical,
 			groupVars: newGroupVars
-		});
+		};
 	}
 
 	onFileUpload = ( err, output ) => {
@@ -974,7 +1035,7 @@ class DataExplorer extends Component {
 											console.log(this.state.filters);
 										});
 									}}
-									onColumnDelete={this.deleteVariable}
+									onColumnDelete={this.onColumnDelete}
 									deletable
 									id={this.props.id ? this.props.id + '_table' : null}
 								/>

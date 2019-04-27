@@ -11,38 +11,18 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Modal from 'react-bootstrap/Modal';
 import TextArea from 'components/input/text-area';
 import TextInput from 'components/input/text';
-import isObject from '@stdlib/assert/is-object';
-import hasOwnProp from '@stdlib/assert/has-own-property';
 import incrspace from '@stdlib/math/utils/incrspace';
 import contains from '@stdlib/assert/contains';
-import isNull from '@stdlib/assert/is-null';
 import replace from '@stdlib/string/replace';
-import round from '@stdlib/math/base/special/round';
-import sqrt from '@stdlib/math/base/special/sqrt';
-import exp from '@stdlib/math/base/special/exp';
-import pow from '@stdlib/math/base/special/pow';
-import ln from '@stdlib/math/base/special/ln';
 import { DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
+import valuesFromFormula from './values_from_formula.js';
+import FUNCTION_KEYS from './function_keys.json';
 import './formula_transformer.css';
 
 
 // VARIABLES //
 
 const DIGITS = incrspace( 0, 10, 1 );
-const FUNCTION_KEYS = [
-	'exp',
-	'ln',
-	'pow',
-	'round',
-	'sqrt'
-];
-const FUNCTIONS = [
-	exp,
-	ln,
-	pow,
-	round,
-	sqrt
-];
 const RE_LAST_EXPRESSION = /(?:^|\n)([^\n]*)$/;
 
 
@@ -97,29 +77,15 @@ class FormulaTransformer extends Component {
 	constructor( props ) {
 		super( props );
 
-		let data = [];
-		for ( let key in props.data ) {
-			if ( hasOwnProp( props.data, key ) ) {
-				for ( let i = 0; i < props.data[ key ].length; i++ ) {
-					if ( !isObject( data[ i ] ) ) {
-						data[ i ] = {};
-					}
-					const val = props.data[ key ][ i ];
-					data[ i ][ key ] = isNull( val ) ? NaN : val;
-				}
-			}
-		}
-
 		this.state = {
 			code: props.defaultCode,
 			selection: null,
-			data: data,
 			name: ''
 		};
 	}
 
 	handleGenerate = () => {
-		let { data, code, name } = this.state;
+		let { code, name } = this.state;
 		if ( name.length < 2 ) {
 			return this.props.session.addNotification({
 				title: 'Name is too short',
@@ -131,12 +97,13 @@ class FormulaTransformer extends Component {
 		if ( !contains( code, 'return ' ) ) {
 			code = replace( code, RE_LAST_EXPRESSION, '\nreturn $1' );
 		}
-		const fun = new Function( 'datum', ...FUNCTION_KEYS, code ); // eslint-disable-line no-new-func
-		const values = new Array( data.length );
+		let values;
 		try {
-			for ( let i = 0; i < data.length; i++ ) {
-				values[ i ] = fun( data[ i ], ...FUNCTIONS );
-			}
+			values = valuesFromFormula( code, this.props.data );
+			this.props.logAction( DATA_EXPLORER_VARIABLE_TRANSFORMER, {
+				code, name
+			});
+			this.props.onGenerate( name, values );
 		} catch ( err ) {
 			return this.props.session.addNotification({
 				title: 'Errored',
@@ -146,10 +113,6 @@ class FormulaTransformer extends Component {
 			});
 		}
 		this.props.onHide();
-		this.props.logAction( DATA_EXPLORER_VARIABLE_TRANSFORMER, {
-			code, name
-		});
-		this.props.onGenerate( name, values );
 	}
 
 	handleNameChange = ( value ) => {
