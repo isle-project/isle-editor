@@ -21,6 +21,7 @@ import isObjectArray from '@stdlib/assert/is-object-array';
 import isObject from '@stdlib/assert/is-object';
 import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import isJSON from '@stdlib/assert/is-json';
 import hasProp from '@stdlib/assert/has-property';
 import startsWith from '@stdlib/string/starts-with';
 import copy from '@stdlib/utils/copy';
@@ -327,7 +328,7 @@ class DataExplorer extends Component {
 	onUserAction = ( action ) => {
 		let config;
 		let value = action.value;
-		if ( isString( value ) ) {
+		if ( isJSON( value ) ) {
 			value = JSON.parse( value );
 		}
 		switch ( action.type ) {
