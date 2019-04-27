@@ -12,9 +12,10 @@ import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import copy from '@stdlib/utils/copy';
-import isNull from '@stdlib/assert/is-null';
 import SelectInput from 'components/input/select';
+import { DATA_EXPLORER_CAT_TRANSFORMER } from 'constants/actions.js';
 import './categorical_transformer.css';
+import recodeCategorical from './recode_categorical';
 
 
 // MAIN //
@@ -138,30 +139,15 @@ class CategoricalTransformer extends Component {
 	}
 
 	makeNewVar = () => {
-		// Loop over the data and generate new labels:
-		const newVar = [];
-		const nameMappings = this.state.nameMappings;
-		console.log( this.state.nameMappings );
-		if ( isNull( this.state.secondVar ) ) {
-			const rawData = this.props.data[ this.state.firstVar ];
-			console.log( rawData );
-			for ( let i = 0; i < rawData.length; i++ ) {
-				const val = rawData[ i ];
-				const newLabel = nameMappings[ val ];
-				newVar.push( newLabel );
-			}
-		} else {
-			const firstValues = this.props.data[ this.state.firstVar ];
-			const secondValues = this.props.data[ this.state.secondVar ];
-			for ( let i = 0; i < firstValues.length; i++ ) {
-				const oldFirst = firstValues[ i ];
-				const oldSecond = secondValues[ i ];
-				const newLabel = nameMappings[ oldFirst + '-' + oldSecond ];
-				newVar.push( newLabel );
-			}
-		}
-		console.log(newVar);
+		const { firstVar, secondVar, nameMappings } = this.state;
+		const newVar = recodeCategorical( firstVar, secondVar, nameMappings, this.props.data );
 		this.props.onGenerate( this.state.generatedName, newVar );
+		this.props.logAction( DATA_EXPLORER_CAT_TRANSFORMER, {
+			name: this.state.generatedName,
+			firstVar: firstVar,
+			secondVar: secondVar,
+			nameMappings: nameMappings
+		});
 		this.props.onHide();
 	}
 
@@ -304,13 +290,14 @@ class CategoricalTransformer extends Component {
 // PROPERTIES //
 
 CategoricalTransformer.defaultProps = {
-
+	logAction() {}
 };
 
 CategoricalTransformer.propTypes = {
 	categorical: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	onGenerate: PropTypes.func.isRequired,
+	logAction: PropTypes.func,
 	onHide: PropTypes.func.isRequired,
 	show: PropTypes.bool.isRequired
 };
