@@ -1246,6 +1246,9 @@ class Session {
 			PRIVATE_VARS['score'] = user.score;
 			this.anonymous = false;
 			this.socketConnect();
+			if ( !userRights ) {
+				this.getUserRights();
+			}
 			this.update();
 		})
 		.catch( ( err ) => {
