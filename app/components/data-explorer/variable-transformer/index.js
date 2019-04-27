@@ -45,6 +45,7 @@ class Transformer extends Component {
 				show={this.state.binModalActive}
 				onHide={this.toggleBinModal}
 				continuous={this.props.continuous}
+				logAction={this.props.logAction}
 				onGenerate={this.props.onGenerate}
 				data={this.props.data}
 			/>
@@ -57,6 +58,7 @@ class Transformer extends Component {
 				show={this.state.categoricalModalActive}
 				onHide={this.toggleCategoricalModal}
 				categorical={this.props.categorical}
+				logAction={this.props.logAction}
 				onGenerate={this.props.onGenerate}
 				data={this.props.data}
 			/>

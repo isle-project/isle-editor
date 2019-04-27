@@ -18,10 +18,11 @@ import TeX from 'components/tex';
 import keys from '@stdlib/utils/keys';
 import roundn from '@stdlib/math/base/special/roundn';
 import copy from '@stdlib/utils/copy';
-import isNull from '@stdlib/assert/is-null';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
+import { DATA_EXPLORER_BIN_TRANSFORMER } from 'constants/actions.js';
 import { generateHistogramConfig } from '../histogram.js';
+import retrieveBinnedValues from './retrieve_binned_values.js';
 import ClearButton from '../clear_button.js';
 import NumberInput from '../../input/number/index.js';
 import './bin_transformer.css';
@@ -323,26 +324,16 @@ class BinTransformer extends Component {
 	}
 
 	makeNewVar = () => {
-		// loop over the data and label
-		const newVar = [];
-		const rawData = this.props.data[ this.state.activeVar ];
-		const catNames = this.state.catNames;
-		for ( let i = 0; i < rawData.length; i++ ) {
-			let newLabel = null;
-			let breakInd = 0;
-			let val = rawData[i];
-			while ( isNull( newLabel) ) {
-				if ( breakInd >= catNames.length ) {
-					newLabel = catNames[ catNames.length - 1 ];
-				} else if ( val < this.state.xBreaks[ breakInd ] ) {
-					newLabel = catNames[ breakInd ];
-				} else {
-					breakInd++;
-				}
-			}
-			newVar.push( newLabel );
-		}
-		this.props.onGenerate( this.state.name, newVar );
+		const { name, activeVar, catNames, xBreaks } = this.state;
+		const rawData = this.props.data[ activeVar ];
+		const values = retrieveBinnedValues( rawData, catNames, xBreaks );
+		this.props.logAction( DATA_EXPLORER_BIN_TRANSFORMER, {
+			name,
+			variable: activeVar,
+			breaks: xBreaks,
+			catNames: catNames
+		});
+		this.props.onGenerate( name, values );
 		this.props.onHide();
 	}
 
@@ -437,6 +428,7 @@ class BinTransformer extends Component {
 // PROPERTIES //
 
 BinTransformer.defaultProps = {
+	logAction() {},
 	onGenerate() {}
 };
 
@@ -444,6 +436,7 @@ BinTransformer.propTypes = {
 	show: PropTypes.bool.isRequired,
 	data: PropTypes.object.isRequired,
 	continuous: PropTypes.array.isRequired,
+	logAction: PropTypes.func,
 	onHide: PropTypes.func.isRequired,
 	onGenerate: PropTypes.func
 };

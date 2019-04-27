@@ -46,7 +46,7 @@ import OutputPanel from './output_panel.js';
 import createOutputElement from './create_output_element.js';
 import formatFilters from './format_filters.js';
 import valuesFromFormula from './variable-transformer/values_from_formula.js';
-import { DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
+import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
 import './data_explorer.css';
 const SpreadsheetUpload = lazy( () => import( 'components/spreadsheet-upload' ) );
 const LearnNormalDistribution = lazy( () => import( 'components/learn/distribution-normal' ) );
@@ -77,6 +77,7 @@ import Chi2Test from 'components/data-explorer/chi2';
 import PropTest from 'components/data-explorer/proptest';
 import PropTest2 from 'components/data-explorer/proptest2';
 import Anova from 'components/data-explorer/anova';
+import retrieveBinnedValues from './variable-transformer/retrieve_binned_values.js';
 
 
 // VARIABLES //
@@ -245,6 +246,13 @@ class DataExplorer extends Component {
 				case DATA_EXPLORER_VARIABLE_TRANSFORMER: {
 					const values = valuesFromFormula( action.value.code, state.data );
 					state = this.transformVariable( action.value.name, values, state );
+				}
+				break;
+				case DATA_EXPLORER_BIN_TRANSFORMER: {
+					const { name, variable, breaks, catNames } = action.value;
+					const rawData = state.data[ variable ];
+					const values = retrieveBinnedValues( rawData, catNames, breaks );
+					state = this.transformVariable( name, values, state );
 				}
 				break;
 				case DATA_EXPLORER_DELETE_VARIABLE:
