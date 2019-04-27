@@ -528,7 +528,7 @@ class Session {
 				if ( userRights.owner && isEmptyArray( this.socketActions ) ) {
 					debug( '[3a] Retrieve all user actions for owners:' );
 					this.getUserActions();
-				} else if ( !this.currentUserActions ) {
+				} else {
 					debug( '[3b] Retrieve only own actions otherwise:' );
 					this.getCurrentUserActions();
 				}
