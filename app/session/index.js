@@ -48,6 +48,7 @@ const PRIVATE_VARS = {
 	addedActionTypes: []
 };
 
+
 // FUNCTIONS //
 
 function titleCompare( a, b ) {
@@ -203,7 +204,9 @@ class Session {
 	}
 
 	beforeUnloadListener = () => {
+		console.log( 'Page is either closed or refreshed...' );
 		this.logSession();
+		this.reset();
 	}
 
 	visibilityChangeListener = () => {
@@ -558,8 +561,6 @@ class Session {
 	isEnrolled = () => {
 		debug( 'Check whether user is enrolled...' );
 		if ( !userRights ) {
-			debug( 'Need to retrieve user rights from server' );
-			this.getUserRights();
 			return false;
 		}
 		return userRights.enrolled;
@@ -573,8 +574,6 @@ class Session {
 	isOwner = () => {
 		debug( 'Check whether user is an owner...' );
 		if ( !userRights ) {
-			debug( 'Need to retrieve user rights from server...' );
-			this.getUserRights();
 			return false;
 		}
 		return userRights.owner;
@@ -935,6 +934,7 @@ class Session {
 			})
 		})
 		.then( ( response ) => {
+			console.log( 'Received current user actions...' );
 			if ( response.status === 200 ) {
 				response.json().then( body => {
 					this.currentUserActions = body.actions;
@@ -1246,9 +1246,6 @@ class Session {
 			PRIVATE_VARS['score'] = user.score;
 			this.anonymous = false;
 			this.socketConnect();
-			if ( !userRights ) {
-				this.getUserRights();
-			}
 			this.update();
 		})
 		.catch( ( err ) => {
