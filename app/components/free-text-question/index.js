@@ -304,6 +304,7 @@ class FreeTextQuestion extends Component {
 									size="sm"
 									onClick={this.submitHandler}
 									duration={5}
+									style={{ marginLeft: '4px' }}
 								>{ !this.state.submitted ? 'Submit' : 'Resubmit' }</TimedButton> :
 								<OverlayTrigger
 									placement="top"
@@ -319,7 +320,8 @@ class FreeTextQuestion extends Component {
 											variant="primary"
 											size="sm"
 											style={{
-												pointerEvents: 'none'
+												pointerEvents: 'none',
+												marginLeft: '4px'
 											}}
 											disabled
 										>Submit</Button>
