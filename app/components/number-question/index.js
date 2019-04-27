@@ -227,7 +227,11 @@ class NumberQuestion extends Component {
 								</div> : null
 						}
 					</ButtonToolbar>
-					<ResponseVisualizer buttonLabel="Answers" id={this.props.id} data={{ type: 'number' }} info="NUMBER_QUESTION_SUBMISSION" />
+					<ResponseVisualizer
+						buttonLabel="Answers" id={this.props.id}
+						data={{ type: 'number' }} info="NUMBER_QUESTION_SUBMISSION"
+						style={{ marginLeft: '6px' }}
+					/>
 				</Card.Body>
 				{ this.props.id && this.props.feedback ? <FeedbackButtons
 					vertical
