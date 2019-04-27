@@ -194,7 +194,7 @@ class NumberInput extends Input {
 						min={this.props.min}
 						max={this.props.max}
 						style={{
-							paddingLeft: '2px',
+							paddingLeft: '6px',
 							marginLeft: '3px',
 							width: this.props.width
 						}}
