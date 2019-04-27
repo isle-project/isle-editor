@@ -174,7 +174,8 @@ class DataTable extends Component {
 			}
 			const out = {
 				Header: header,
-				accessor: key
+				id: key,
+				accessor: ( d ) => d[ key ]
 			};
 			let vals;
 			if ( !isArr ) {

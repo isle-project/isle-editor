@@ -131,7 +131,8 @@ class FormulaTransformer extends Component {
 		return () => {
 			let newCode = this.state.code.substring( 0, this.state.selection );
 			let replacement = 'datum';
-			replacement += contains( name, ' ' ) ? `['${name}']` : `.${name}`;
+			const literal = !contains( name, ' ' ) && !contains( name, '.' );
+			replacement += literal ? `.${name}` : `['${name}']`;
 			newCode += replacement;
 			newCode += this.state.code.substring( this.state.selection );
 			this.setState({
