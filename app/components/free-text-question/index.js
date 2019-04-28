@@ -273,7 +273,7 @@ class FreeTextQuestion extends Component {
 					</FormGroup>
 					<ResponseVisualizer
 						buttonLabel="Answers" id={this.props.id}
-						info="FREE_TEXT_QUESTION_SUBMIT_ANSWER"
+						info={FREE_TEXT_QUESTION_SUBMIT_ANSWER}
 					/>
 					<ButtonToolbar className="free-text-question-toolbar" >
 						{ nHints > 0 ?

@@ -243,6 +243,7 @@ class MatchListQuestion extends Component {
 					}
 					<ResponseVisualizer
 						buttonLabel="Answers"
+						info={MATCH_LIST_SUBMISSION}
 						id={this.props.id}
 						data={{
 							type: 'matches',
