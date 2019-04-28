@@ -175,8 +175,9 @@ class FeedbackButtons extends Component {
 						}}
 						showID={false}
 						id={this.props.id}
-						success="USER_FEEDBACK_UNDERSTOOD"
-						danger="USER_FEEDBACK_CONFUSED"
+						success={USER_FEEDBACK_UNDERSTOOD}
+						danger={USER_FEEDBACK_CONFUSED}
+						info={USER_FEEDBACK_FORM}
 					/>
 				</ButtonGroup>
 				<Modal

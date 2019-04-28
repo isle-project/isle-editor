@@ -420,7 +420,7 @@ class MultipleChoiceQuestion extends Component {
 						}
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</div>
-					{ id ? <div>
+					{ id ? <div style={{ marginTop: '6px' }}>
 						<ResponseVisualizer
 							buttonLabel="Answers"
 							id={id}
