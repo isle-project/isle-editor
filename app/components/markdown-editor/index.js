@@ -433,55 +433,16 @@ class MarkdownEditor extends Component {
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if ( action && action.id === this.props.id ) {
 				if ( action.type === 'MARKDOWN_EDITOR_PEER_REPORT' ) {
-					const notification = session.addNotification({
-						title: 'Report received',
-						message: 'You have been sent a report for peer review! Please confirm to load it into the Markdown editor',
-						level: 'success',
-						position: 'tr',
-						dismissible: 'none',
-						autoDismiss: 0,
-						children: <div style={{ marginBottom: '30px' }}>
-							<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={() => {
-								if ( !this.state.submittedToPeer ) {
-									return session.addNotification({
-										title: 'Submit first',
-										message: 'Submit your report first before opening the report you got sent for review',
-										level: 'warning',
-										position: 'tr'
-									});
-								}
-								session.removeNotification( notification );
-								this.setEditorValue( action.value );
-							}}>Open Report</Button>
-						</div>
-					});
+					localStorage.setItem( this.props.id+'_peer_report', action.value );
+					this.addPeerReportNotification( action.value );
 				}
 				else if ( action.type === 'MARKDOWN_EDITOR_PEER_COMMENTS' ) {
-					const notification = session.addNotification({
-						title: 'Comments received',
-						message: 'You have received comments from your peer reviewer! Please confirm to load it into the Markdown editor',
-						level: 'success',
-						position: 'tr',
-						dismissible: 'none',
-						autoDismiss: 0,
-						children: <div style={{ marginBottom: '30px' }}>
-							<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={() => {
-								if ( !this.state.submittedPeerComments ) {
-									return session.addNotification({
-										title: 'Submit first',
-										message: 'First send back the comments you wrote before opening your annotated report',
-										level: 'warning',
-										position: 'tr'
-									});
-								}
-								session.removeNotification( notification );
-								this.setEditorValue( action.value );
-							}}>Open Comments</Button>
-						</div>
-					});
+					localStorage.setItem( this.props.id+'_peer_comments', action.value );
+					this.addPeerComments( action.value );
 				}
 			}
 		});
+		window.addEventListener( 'beforeunload', this.handleAutosave );
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
@@ -502,6 +463,61 @@ class MarkdownEditor extends Component {
 			clearInterval( this.interval );
 		}
 		this.unsubscribe();
+		window.removeEventListener( 'beforeunload', this.handleAutosave );
+	}
+
+	addPeerReportNotification = ( report ) => {
+		const session = this.context;
+		this.peerReportNotification = session.addNotification({
+			title: 'Report received',
+			message: 'You have been sent a report for peer review! Please confirm to load it into the Markdown editor',
+			level: 'success',
+			position: 'tr',
+			dismissible: 'none',
+			autoDismiss: 0,
+			children: <div style={{ marginBottom: '30px' }}>
+				<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={() => {
+					if ( !this.state.submittedToPeer ) {
+						return session.addNotification({
+							title: 'Submit first',
+							message: 'Submit your report first before opening the report you got sent for review',
+							level: 'warning',
+							position: 'tr'
+						});
+					}
+					localStorage.removeItem( this.props.id+'_peer_report' );
+					session.removeNotification( this.peerReportNotification );
+					this.setEditorValue( report );
+				}}>Open Report</Button>
+			</div>
+		});
+	}
+
+	addPeerComments = ( comments ) => {
+		const session = this.context;
+		this.peerCommentsNotification = session.addNotification({
+			title: 'Comments received',
+			message: 'You have received comments from your peer reviewer! Please confirm to load it into the Markdown editor',
+			level: 'success',
+			position: 'tr',
+			dismissible: 'none',
+			autoDismiss: 0,
+			children: <div style={{ marginBottom: '30px' }}>
+				<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={() => {
+					if ( !this.state.submittedPeerComments ) {
+						return session.addNotification({
+							title: 'Submit first',
+							message: 'First send back the comments you wrote before opening your annotated report',
+							level: 'warning',
+							position: 'tr'
+						});
+					}
+					localStorage.removeItem( this.props.id+'_peer_comments' );
+					session.removeNotification( this.peerCommentsNotification );
+					this.setEditorValue( comments );
+				}}>Open Comments</Button>
+			</div>
+		});
 	}
 
 	setEditorValue = ( text ) => {
@@ -940,6 +956,22 @@ class MarkdownEditor extends Component {
 	}
 
 	handlePeerAssignment = ( assignment ) => {
+		if ( this.props.peerReview ) {
+			const peerReport = localStorage.getItem( this.props.id+'_peer_report' );
+			if ( peerReport ) {
+				this.addPeerReportNotification( peerReport );
+			}
+			else {
+				const peerComments = localStorage.getItem( this.props.id+'_peer_comments' );
+				if ( peerComments ) {
+					this.addPeerComments( peerComments );
+				}
+			}
+			const newState = {};
+			newState.submittedToPeer = localStorage.getItem( this.props.id+'submitted_to_peer' ) || false;
+			newState.submittedPeerComments = localStorage.getItem( this.props.id+'submitted_comments' ) || false;
+			this.setState( newState );
+		}
 		this.setState({
 			peer: assignment
 		}, () => {
@@ -953,8 +985,19 @@ class MarkdownEditor extends Component {
 	}
 
 	handlePeerCleanup = () => {
+		const session = this.context;
+		if ( this.peerReportNotification ) {
+			session.removeNotification( this.peerReportNotification );
+		}
+		if ( this.peerCommentsNotification ) {
+			session.removeNotification( this.peerCommentsNotification );
+		}
+		localStorage.removeItem( this.props.id+'submitted_to_peer' );
+		localStorage.removeItem( this.props.id+'submitted_comments' );
 		this.setState({
-			peer: null
+			peer: null,
+			submittedToPeer: false,
+			submittedPeerComments: false
 		}, () => {
 			this.context.addNotification({
 				title: 'Pairing ended',
@@ -1022,6 +1065,7 @@ class MarkdownEditor extends Component {
 						this.setState({
 							submittedToPeer: true
 						});
+						localStorage.setItem( this.props.id+'submitted_to_peer', true );
 						this.submitReport();
 					}}
 					onSubmitComments={() => {
@@ -1035,12 +1079,16 @@ class MarkdownEditor extends Component {
 						this.setState({
 							submittedPeerComments: true
 						});
+						localStorage.setItem( this.props.id+'submitted_comments', true );
 						this.submitReport();
 					}}
+					onFinalSubmit={this.submitReport}
 					submitButtonLabel={this.props.peerReview.submitButtonLabel}
 					reviewButtonLabel={this.props.peerReview.reviewButtonLabel}
+					finalButtonLabel={this.props.peerReview.finalButtonLabel}
 					disabledSubmitButton={this.state.submittedToPeer}
-					disabledReviewButton={!this.state.submittedToPeer}
+					disabledReviewButton={!this.state.submittedToPeer || this.state.submittedPeerComments}
+					disabledFinalButton={!this.state.submittedPeerComments}
 				/> : null }
 				<ResetModal
 					show={this.state.showResetModal}
