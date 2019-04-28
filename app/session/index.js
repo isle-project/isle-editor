@@ -23,6 +23,7 @@ import randomstring from 'utils/randomstring/alphanumeric';
 import io from 'socket.io-client';
 import SpeechInterface from 'speech-interface';
 import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT } from 'constants/actions.js';
+import beforeUnload from 'utils/before-unload';
 import POINTS from 'constants/points.js';
 
 
@@ -214,6 +215,9 @@ class Session {
 			this.stopPingServer();
 		} else {
 			this.startPingServer();
+			if ( this.socket.disconnected ) {
+				this.socketConnect();
+			}
 		}
 		this.logSession();
 	}
@@ -710,13 +714,14 @@ class Session {
 			this.stopPingServer();
 		});
 
-		socket.emit( 'join', {
+		const config = {
 			namespaceName: this.namespaceName,
 			lessonName: this.lessonName,
 			userID: this.user.id,
 			userName: this.user.name,
 			userEmail: this.user.email
-		});
+		};
+		socket.emit( 'join', config );
 		socket.on( 'console', function onConsole( msg ) {
 			debug( msg );
 		});
@@ -1638,6 +1643,14 @@ class Session {
 	* @returns {(null|Notification)}
 	*/
 	addNotification( config ) {
+		if ( !config.onAdd && !config.onRemove ) {
+			config.onAdd = () => {
+				window.addEventListener( 'beforeunload', beforeUnload );
+			};
+			config.onRemove = () => {
+				window.removeEventListener( 'beforeunload', beforeUnload );
+			};
+		}
 		if ( global.lesson.notificationSystem ) {
 			return global.lesson.notificationSystem.addNotification( config );
 		}
