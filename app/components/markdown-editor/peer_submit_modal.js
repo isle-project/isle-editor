@@ -23,11 +23,16 @@ class PeerSubmitModal extends Component {
 		this.props.onHide();
 	}
 
+	handleFinalSubmission = () => {
+		this.props.onFinalSubmit();
+		this.props.onHide();
+	}
+
 	render() {
 		return ( <Modal
 			onHide={this.clickHide}
 			show={this.props.show}
-			dialogClassName="modal-60w"
+			dialogClassName="modal-75w"
 		>
 			<Modal.Header closeButton>
 				<Modal.Title>Peer Review Submission</Modal.Title>
@@ -38,6 +43,7 @@ class PeerSubmitModal extends Component {
 			<Modal.Footer>
 				<Button variant="success" disabled={this.props.disabledSubmitButton} onClick={this.handleSubmissionToReviewer}>{this.props.submitButtonLabel}</Button>
 				<Button variant="success" disabled={this.props.disabledReviewButton} onClick={this.handleSubmissionComments}>{this.props.reviewButtonLabel}</Button>
+				<Button variant="success" disabled={this.props.disabledFinalButton} onClick={this.handleFinalSubmission}>{this.props.finalButtonLabel}</Button>
 			</Modal.Footer>
 		</Modal> );
 	}
@@ -48,21 +54,27 @@ class PeerSubmitModal extends Component {
 
 PeerSubmitModal.propTypes = {
 	onHide: PropTypes.func,
+	disabledFinalButton: PropTypes.bool,
 	disabledSubmitButton: PropTypes.bool,
 	disabledReviewButton: PropTypes.bool,
+	onFinalSubmit: PropTypes.func,
 	onSubmitToReviewer: PropTypes.func,
 	onSubmitComments: PropTypes.func,
+	finalButtonLabel: PropTypes.string,
 	submitButtonLabel: PropTypes.string,
 	reviewButtonLabel: PropTypes.string,
 	show: PropTypes.bool.isRequired
 };
 
 PeerSubmitModal.defaultProps = {
+	finalButtonLabel: 'Submit Final Report',
 	submitButtonLabel: 'Submit to Reviewer',
 	reviewButtonLabel: 'Send Review Comments',
+	disabledFinalButton: false,
 	disabledSubmitButton: false,
 	disabledReviewButton: false,
 	onHide() {},
+	onFinalSubmit() {},
 	onSubmitToReviewer() {},
 	onSubmitComments() {}
 };
