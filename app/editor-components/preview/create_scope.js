@@ -134,6 +134,7 @@ const SCOPE = {
 	Spinner: Loadable( () => import( 'components/spinner' ) ),
 
 	StatusBar: Loadable( () => import( 'components/statusbar' ) ),
+	Sunburst: Loadable( () => import( 'components/d3/sunburst' ) ),
 	SurveyGenerator: Loadable( () => import( 'components/survey-generator' ) ),
 	Switch: Loadable( () => import( 'components/switch' ) ),
 

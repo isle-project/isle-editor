@@ -52,10 +52,6 @@ class D3Plot extends Component {
 		);
 	}
 
-	componentWillUnmount() {
-		this.destroy();
-	}
-
 	render() {
 		const { className, width, height, options } = this.props;
 		const opts = getOptions( options );

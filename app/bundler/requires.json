@@ -111,6 +111,7 @@
 	"SliderInput": "components/input/slider",
 	"StatusBar": "components/statusbar",
 	"StickyNote": "components/sticky-note",
+	"Sunburst": "components/d3/sunburst",
 	"SurveyGenerator": "components/survey-generator",
 	"Typewriter": "components/typewriter",
 	"TimedButton": "components/timed-button",
