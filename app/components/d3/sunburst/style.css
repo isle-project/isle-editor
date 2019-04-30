@@ -6,34 +6,35 @@
 	margin-top: 10px;
 }
 
-#sequence {
+.sunburst-sequence {
 	width: 100%;
 	height: 70px;
 }
 
-#sequence text {
+.sunburst-sequence text {
 	font-weight: 600;
 	fill: #fff;
 }
 
-#chart {
+.sunburst-chart {
 	position: relative;
 }
 
-#chart path {
+.sunburst-chart path {
 	stroke: #fff;
 }
 
-#explanation {
+.sunburst-explanation {
 	position: absolute;
-	top: 260px;
-	left: 305px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top: 40%;
 	width: 140px;
 	text-align: center;
 	color: #666;
-	z-index: -1;
 }
 
-#percentage {
+.sunburst-percentage {
 	font-size: 2.5em;
 }

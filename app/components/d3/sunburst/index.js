@@ -21,12 +21,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
+import logger from 'debug';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import min from '@stdlib/math/base/special/min';
 import PI from '@stdlib/constants/math/float64-pi';
 import { CAT20 as COLORS } from 'constants/colors';
+import randomstring from 'utils/randomstring/alphanumeric';
 import './style.css';
 
+
+// VARIABLES //
+
+const debug = logger( 'isle:sunburst' );
 
 // FUNCTIONS //
 
@@ -51,6 +57,8 @@ function createColorMapping( categories ) {
 class Sunburst extends Component {
 	constructor( props ) {
 		super( props );
+
+		this.id = props.id || randomstring( 6 );
 	}
 
 	componentDidMount() {
@@ -59,14 +67,14 @@ class Sunburst extends Component {
 
 	initializeBreadcrumbTrail = () => {
 		// Add the svg area.
-		const trail = d3.select( this.sequence ).append('svg:svg')
-			.attr('width', this.props.width)
-			.attr('height', 50)
-			.attr('id', 'trail');
+		const trail = d3.select( this.sequence ).append( 'svg:svg' )
+			.attr( 'width', this.props.width )
+			.attr( 'height', 50 )
+			.attr( 'id', `${this.id}_trail` );
 		// Add the label at the end, for the percentage.
-		trail.append('svg:text')
-			.attr('id', 'endlabel')
-			.style('fill', '#000');
+		trail.append( 'svg:text' )
+			.attr( 'id', `${this.id}_endlabel` )
+			.style( 'fill', '#000' );
 	}
 
 	initialize() {
@@ -84,100 +92,91 @@ class Sunburst extends Component {
 		// Total size of all segments; we set this later, after loading the data.
 		this.totalSize = 0;
 
-		this.vis = d3.select( this.chart ).append('svg:svg')
-			.attr('width', width)
-			.attr('height', height)
-			.append('svg:g')
-			.attr('id', 'container')
-			.attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
+		this.vis = d3.select( this.chart ).append( 'svg:svg' )
+			.attr( 'width', width )
+			.attr( 'height', height )
+			.append( 'svg:g' )
+			.attr( 'id', `${this.id}_container` )
+			.attr( 'transform', 'translate(' + width / 2 + ',' + height / 2 + ')' );
 
 		this.partition = d3.partition()
-			.size([2 * PI, radius * radius]);
+			.size([ 2.0 * PI, radius * radius ]);
 
 		this.arc = d3.arc()
 			.startAngle( d => d.x0 )
 			.endAngle( d => d.x1 )
-			.innerRadius( d => sqrt(d.y0) )
-			.outerRadius( d => sqrt(d.y1) );
+			.innerRadius( d => sqrt( d.y0 ) )
+			.outerRadius( d => sqrt( d.y1 ) );
 
 		this.initializeBreadcrumbTrail();
 		this.createVisualization( this.props.data );
 	}
 
+	// Basic setup of page elements.
 	createVisualization = ( json ) => {
-		// Basic setup of page elements.
-
 		// Bounding circle underneath the sunburst, to make it easier to detect
 		// when the mouse leaves the parent g.
 		this.vis.append( 'svg:circle' )
-			.attr('r', this.radius)
-			.style('opacity', 0);
+			.attr( 'r', this.radius )
+			.style( 'opacity', 0 );
 
 		// Turn the data into a d3 hierarchy and calculate the sums.
-		var root = d3.hierarchy(json)
+		const root = d3.hierarchy( json )
 			.sum( d => d.size )
 			.sort( ( a, b ) => b.value - a.value );
 
 		// For efficiency, filter nodes to keep only those large enough to see.
-		var nodes = this.partition(root).descendants()
+		const nodes = this.partition( root ).descendants()
 			.filter( ( d ) => {
 				return ( d.x1 - d.x0 > 0.005 ); // 0.005 radians = 0.29 degrees
 			});
 
-		var path = this.vis.data([json]).selectAll('path')
-			.data(nodes)
-			.enter().append('svg:path')
-			.attr('display', d => d.depth ? null : 'none' )
-			.attr('d', this.arc)
-			.attr('fill-rule', 'evenodd')
-			.style('fill', d => this.colors[ d.data.name ] )
-			.style('opacity', 1)
-			.on('mouseover', this.mouseover);
+		const path = this.vis.data([ json ]).selectAll( 'path' )
+			.data( nodes )
+			.enter().append( 'svg:path' )
+			.attr( 'display', d => d.depth ? null : 'none' )
+			.attr( 'd', this.arc )
+			.attr( 'fill-rule', 'evenodd' )
+			.style( 'fill', d => this.colors[ d.data.name ] )
+			.style( 'opacity', 1 )
+			.on( 'mouseover', this.mouseover );
 
 		// Add the mouseleave handler to the bounding circle.
-		d3.select( '#container' ).on( 'mouseleave', this.mouseleave );
+		d3.select( `#${this.id}_container` ).on( 'mouseleave', this.mouseleave );
 
 		// Get total size of the tree = value of root node from partition.
 		this.totalSize = path.datum().value;
 	}
 
-	// Restore everything to full opacity when moving off the visualization.
 	mouseleave = ( d ) => {
+		debug( 'Restore everything to full opacity when moving off the visualization...' );
 		// Hide the breadcrumb trail
-		d3.select('#trail').style('visibility', 'hidden');
-
-		// Deactivate all segments during transition.
-		d3.selectAll('path').on('mouseover', null);
+		d3.select( `#${this.id}_trail` ).style( 'visibility', 'hidden' );
 
 		// Transition each segment to full opacity and then reactivate it.
-		d3.selectAll('path')
+		d3.selectAll( 'path' )
 			.transition()
-			.duration(1000)
-			.style('opacity', 1)
-			.on( 'end', function onEnd() {
-				d3.select( this ).on( 'mouseover', this.mouseover );
-			});
+			.duration( 500 )
+			.style( 'opacity', 1 );
 
 		d3.select( this.explanation ).style( 'visibility', 'hidden' );
 	}
 
 	// Fade all but the current sequence, and show it in the breadcrumb trail.
-	mouseover = (d) => {
+	mouseover = ( d ) => {
+		console.log( 'Handle mouseover...' );
 		const percentage = ( 100 * d.value / this.totalSize ).toPrecision(3);
 		let percentageString = percentage + '%';
-		if (percentage < 0.1) {
+		if ( percentage < 0.1 ) {
 			percentageString = '< 0.1%';
 		}
+		d3.select( this.percentage ).text( percentageString );
 
-		d3.select( this.percentage )
-			.text(percentageString);
-
-		d3.select( this.explanation )
-			.style('visibility', '');
+		d3.select( this.explanation ).style( 'visibility', '' );
 
 		const sequenceArray = d.ancestors().reverse();
 		sequenceArray.shift(); // remove root node from the array
-		this.updateBreadcrumbs(sequenceArray, percentageString);
+		this.updateBreadcrumbs( sequenceArray, percentageString );
 
 		// Fade all the segments.
 		d3.selectAll( 'path' )
@@ -193,44 +192,43 @@ class Sunburst extends Component {
 	// Update the breadcrumb trail to show the current sequence and percentage.
 	updateBreadcrumbs = ( nodeArray, percentageString ) => {
 		// Data join; key function combines name and depth (= position in sequence).
-		var trail = d3.select('#trail')
-			.selectAll('g')
+		var trail = d3.select( `#${this.id}_trail` )
+			.selectAll( 'g' )
 			.data( nodeArray, d => d.data.name + d.depth );
 
 		// Remove exiting nodes.
 		trail.exit().remove();
 
 		// Add breadcrumb and label for entering nodes.
-		var entering = trail.enter().append('svg:g');
+		var entering = trail.enter().append( 'svg:g' );
 
-		entering.append('svg:polygon')
-			.attr('points', this.breadcrumbPoints)
-			.style('fill', d => this.colors[d.data.name] );
+		entering.append( 'svg:polygon' )
+			.attr( 'points', this.breadcrumbPoints )
+			.style( 'fill', d => this.colors[ d.data.name ] );
 
 		const b = this.b;
-		entering.append('svg:text')
-			.attr('x', (b.w + b.t) / 2)
-			.attr('y', b.h / 2)
-			.attr('dy', '0.35em')
-			.attr('text-anchor', 'middle')
+		entering.append( 'svg:text' )
+			.attr( 'x', ( b.w + b.t ) / 2 )
+			.attr( 'y', b.h / 2 )
+			.attr( 'dy', '0.35em' )
+			.attr( 'text-anchor', 'middle' )
 			.text( d => d.data.name );
 
 		// Merge enter and update selections; set position for all nodes.
-		entering.merge(trail).attr( 'transform', ( d, i ) => {
-			return 'translate(' + i * (b.w + b.s) + ', 0)';
+		entering.merge( trail ).attr( 'transform', ( d, i ) => {
+			return 'translate(' + i * ( b.w + b.s ) + ', 0)';
 		});
 
 		// Now move and update the percentage at the end.
-		d3.select('#trail').select('#endlabel')
-			.attr('x', (nodeArray.length + 0.5) * (b.w + b.s))
-			.attr('y', b.h / 2)
-			.attr('dy', '0.35em')
-			.attr('text-anchor', 'middle')
-			.text(percentageString);
+		d3.select( `#${this.id}_trail` ).select( `#${this.id}_endlabel` )
+			.attr( 'x', (nodeArray.length + 0.5) * (b.w + b.s) )
+			.attr( 'y', b.h / 2 )
+			.attr( 'dy', '0.35em' )
+			.attr( 'text-anchor', 'middle' )
+			.text( percentageString );
 
 		// Make the breadcrumb trail visible, if it's hidden.
-		d3.select('#trail')
-			.style('visibility', '');
+		d3.select( `#${this.id}_trail` ).style( 'visibility', '' );
 	}
 
 	// Generate a string that describes the points of a breadcrumb polygon.
