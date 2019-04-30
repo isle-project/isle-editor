@@ -15,6 +15,9 @@ function recodeCategorical( firstVar, secondVar, nameMappings, data ) {
 		for ( let i = 0; i < firstValues.length; i++ ) {
 			const val = firstValues[ i ];
 			const newLabel = nameMappings[ val ];
+			if ( newLabel === 'null' ) {
+				newLabel = null;
+			}
 			newVar.push( newLabel );
 		}
 	} else {

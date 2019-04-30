@@ -197,7 +197,6 @@ class CategoricalTransformer extends Component {
 		const colValues = this.props.data[ colVar ];
 		const rowFreqs = countBy( rowValues, identity );
 		const colFreqs = countBy( colValues, identity );
-		console.log( this.state.nameMappings );
 		const rowKeys = rowVar.categories || objectKeys( rowFreqs );
 		const colKeys = colVar.categories || objectKeys( colFreqs );
 		return (

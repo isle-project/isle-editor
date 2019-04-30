@@ -10,6 +10,8 @@ import ttest2 from '@stdlib/stats/ttest2';
 import ztest2 from '@stdlib/stats/ztest2';
 import replace from '@stdlib/string/replace';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
+import isnan from '@stdlib/assert/is-nan';
+import isNull from '@stdlib/assert/is-null';
 import unique from 'uniq';
 import stdev from 'utils/statistic/stdev';
 import NumberInput from 'components/input/number';
@@ -176,7 +178,7 @@ class MeanTest2 extends Component {
 	getBinaryVars( vars ) {
 		const out = [];
 		for ( let i = 0; i < vars.length; i++ ) {
-			let data = this.props.data[ vars[ i ] ].slice();
+			const data = this.props.data[ vars[ i ] ].filter( x => !isNull( x ) && !isnan( x ) );
 			unique( data );
 			if ( data.length === 2 ) {
 				out.push( vars[ i ]);
