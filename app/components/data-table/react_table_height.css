@@ -18,7 +18,7 @@
 
 .rt-thead {
 	min-width: 0px !important;
-	overflow-y: scroll;
+	overflow: hidden;
 }
 
 .rt-thead::-webkit-scrollbar {
