@@ -554,7 +554,7 @@ class StatusBar extends Component {
 						'F7': this.toggleBarVisibility
 					}}
 				/>
-				{ finishedLesson ?
+				{ finishedLesson && !session.config.hideProgressBar ?
 					<Seal
 						title="100%"
 						upper="Congratulations!"
