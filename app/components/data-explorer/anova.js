@@ -38,7 +38,7 @@ class Anova extends Component {
 					groupsFiltered.push( `"${groups[i]}"` );
 				}
 			}
-			const value = <div>
+			const value = <div style={{ overflowX: 'auto', width: '100%' }}>
 				<label>ANOVA for {variable} between {grouping}</label>
 				<pre style={{ marginTop: 10 }}>{anova1( valsFiltered, groupsFiltered ).print({
 					decision: showDecision
