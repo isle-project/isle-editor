@@ -20,7 +20,7 @@
 				"background":"white",
 				"fontFamily":"Open Sans Condensed",
 				"fontWeight":"normal",
-				"fontSize":"2em",
+				"fontSize":"2.5em",
 				"color":"black",
 				"overflow":"hidden"
 			},
@@ -252,8 +252,10 @@
 				"textAlign":"left",
 				"fontSize": "2rem",
 				"listStylePosition":"inside",
-				"padding":0,
-				"marginTop": "20px"
+				"paddingLeft": "1em",
+				"textIndent": "-1.42em",
+				"marginTop": "20px",
+				"marginLeft": "0.5em"
 			},
 			"s":{
 				"strikethrough":{
