@@ -26,15 +26,16 @@
 
 .sunburst-explanation {
 	position: absolute;
+	pointer-events: none;
 	left: 0;
 	right: 0;
 	margin: auto;
-	top: 40%;
+	top: 45%;
 	width: 140px;
 	text-align: center;
 	color: #666;
 }
 
 .sunburst-percentage {
-	font-size: 2.5em;
+	font-size: 1.5em;
 }

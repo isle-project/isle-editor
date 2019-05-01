@@ -82,9 +82,7 @@ class Sunburst extends Component {
 		const radius = min( width, height ) / 2;
 
 		// Breadcrumb dimensions: width, height, spacing, width of tip/tail.
-		this.b = {
-			w: 250, h: 50, s: 5, t: 15
-		};
+		this.b = this.props.breadcrumbs;
 
 		// Mapping of step names to colors.
 		this.colors = createColorMapping( this.props.categories );
@@ -247,7 +245,7 @@ class Sunburst extends Component {
 	}
 
 	render() {
-		return ( <div className="sunburst" style={this.props.style} >
+		return ( <div className="sunburst" style={{ width: this.props.width, ...this.props.style }} >
 			<div className="sunburst-sequence" ref={( div ) => {
 				this.sequence = div; }}></div>
 			<div className="sunburst-chart" ref={( div ) => {
@@ -269,7 +267,10 @@ class Sunburst extends Component {
 Sunburst.defaultProps = {
 	width: 750,
 	height: 600,
-	style: {}
+	style: {},
+	breadcrumbs: {
+		w: 250, h: 50, s: 5, t: 15
+	}
 };
 
 Sunburst.propTypes = {
@@ -277,7 +278,13 @@ Sunburst.propTypes = {
 	data: PropTypes.object.isRequired,
 	width: PropTypes.number,
 	height: PropTypes.number,
-	style: PropTypes.object
+	style: PropTypes.object,
+	breadcrumbs: PropTypes.shape({
+		w: PropTypes.number,
+		h: PropTypes.number,
+		s: PropTypes.number,
+		t: PropTypes.number
+	})
 };
 
 
