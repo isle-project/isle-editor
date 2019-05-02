@@ -258,8 +258,8 @@ class DataExplorer extends Component {
 				}
 				break;
 				case DATA_EXPLORER_CAT_TRANSFORMER: {
-					const { name, firstVar, secondVar, nameMappings } = action.value;
-					const values = recodeCategorical( firstVar, secondVar, nameMappings, state.data );
+					const { name, firstVar, secondVar, nameMappings, castNumeric } = action.value;
+					const values = recodeCategorical( firstVar, secondVar, nameMappings, state.data, castNumeric );
 					state = this.transformVariable( name, values, state );
 				}
 				break;

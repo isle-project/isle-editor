@@ -12,10 +12,27 @@ import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import copy from '@stdlib/utils/copy';
+import isDigitString from '@stdlib/assert/is-digit-string';
 import SelectInput from 'components/input/select';
+import CheckboxInput from 'components/input/checkbox';
+import Tooltip from 'components/tooltip';
 import { DATA_EXPLORER_CAT_TRANSFORMER } from 'constants/actions.js';
 import './categorical_transformer.css';
 import recodeCategorical from './recode_categorical';
+
+
+// FUNCTIONS //
+
+function checkNumericLabels( nameMappings ) {
+	const keys = objectKeys( nameMappings );
+	let allNumeric = true;
+	for ( let i = 0; i < keys.length; i++ ) {
+		if ( !isDigitString( nameMappings[ keys[ i ] ] ) ) {
+			allNumeric = false;
+		}
+	}
+	return allNumeric;
+}
 
 
 // MAIN //
@@ -33,7 +50,9 @@ class CategoricalTransformer extends Component {
 			firstFreqs,
 			secondVar: null,
 			secondFreqs: null,
-			nameMappings: {}
+			nameMappings: {},
+			castNumeric: false,
+			onlyNumbers: false
 		};
 	}
 
@@ -61,10 +80,12 @@ class CategoricalTransformer extends Component {
 				}
 			}
 		}
+		const onlyNumbers = checkNumericLabels( nameMappings );
 		this.setState({
 			firstVar: variable,
 			firstFreqs,
-			nameMappings
+			nameMappings,
+			onlyNumbers
 		});
 	}
 
@@ -95,10 +116,12 @@ class CategoricalTransformer extends Component {
 				nameMappings[ label ] = label;
 			}
 		}
+		const onlyNumbers = checkNumericLabels( nameMappings );
 		this.setState({
 			secondVar,
 			secondFreqs,
-			nameMappings
+			nameMappings,
+			onlyNumbers
 		});
 	}
 
@@ -116,8 +139,10 @@ class CategoricalTransformer extends Component {
 		return ( event ) => {
 			const nameMappings = copy( this.state.nameMappings );
 			nameMappings[ oldLabel ] = event.target.value;
+			const onlyNumbers = checkNumericLabels( nameMappings );
 			this.setState({
-				nameMappings
+				nameMappings,
+				onlyNumbers
 			});
 		};
 	}
@@ -139,14 +164,15 @@ class CategoricalTransformer extends Component {
 	}
 
 	makeNewVar = () => {
-		const { firstVar, secondVar, nameMappings } = this.state;
-		const newVar = recodeCategorical( firstVar, secondVar, nameMappings, this.props.data );
+		const { firstVar, secondVar, nameMappings, castNumeric } = this.state;
+		const newVar = recodeCategorical( firstVar, secondVar, nameMappings, this.props.data, castNumeric );
 		this.props.onGenerate( this.state.generatedName, newVar );
 		this.props.logAction( DATA_EXPLORER_CAT_TRANSFORMER, {
 			name: this.state.generatedName,
 			firstVar: firstVar,
 			secondVar: secondVar,
-			nameMappings: nameMappings
+			nameMappings: nameMappings,
+			castNumeric: castNumeric
 		});
 		this.props.onHide();
 	}
@@ -228,6 +254,7 @@ class CategoricalTransformer extends Component {
 	}
 
 	render() {
+		console.log( this.state );
 		return (
 			<Modal
 				dialogClassName='modal-75w input'
@@ -259,6 +286,20 @@ class CategoricalTransformer extends Component {
 					</Row>
 					<Row style={{ overflowX: 'auto', width: '100%' }}>
 						{this.renderTable()}
+					</Row>
+					<Row>
+						<Tooltip tooltip="If the new values for all categories are numeric, you may tick this box to create a quantitative variable instead of a categorical one">
+							<CheckboxInput
+								legend="Convert to numbers (all new labels need to be digits)"
+								defaultValue={false}
+								disabled={!this.state.onlyNumbers}
+								onChange={() => {
+									this.setState({
+										castNumeric: !this.state.castNumeric
+									});
+								}}
+							/>
+						</Tooltip>
 					</Row>
 				</Modal.Body>
 				<Modal.Footer>
