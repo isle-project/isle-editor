@@ -918,6 +918,7 @@ class Session {
 						cohort.members = pluck( cohort.members, 'email' );
 					});
 					this.cohorts = cohorts.sort( titleCompare );
+					this.update( 'retrieved_cohorts', this.cohorts );
 				});
 			}
 		})

@@ -7,10 +7,11 @@ import Alert from 'react-bootstrap/Alert';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import isArray from '@stdlib/assert/is-array';
+import contains from '@stdlib/assert/contains';
 import FlippableCard from 'components/flippable-card';
 import Gate from 'components/gate';
 import shuffle from '@stdlib/random/shuffle';
-import identity from '@stdlib/utils/identity-function';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import SessionContext from 'session/context.js';
@@ -18,10 +19,6 @@ import { ASSIGNMENT_CLEARED, USERS_ASSIGNED, INDIVIDUAL_ASSIGNED, REMOVE_ASSIGNM
 
 
 // FUNCTIONS //
-
-function filterOwners( elem ) {
-	return !elem.owner;
-}
 
 function renderTable( assignments ) {
 	const rows = [];
@@ -78,7 +75,8 @@ class UserPairer extends Component {
 			message: props.id ? null : {
 				variant: 'danger',
 				value: 'Component expects an ID to work.'
-			}
+			},
+			selectedCohort: null
 		};
 	}
 
@@ -88,7 +86,8 @@ class UserPairer extends Component {
 			if (
 				type === 'received_users' ||
 				type === 'user_joined' ||
-				type === 'user_left'
+				type === 'user_left' ||
+				type === 'retrieved_cohorts'
 			) {
 				this.forceUpdate();
 			}
@@ -119,13 +118,66 @@ class UserPairer extends Component {
 		this.unsubscribe();
 	}
 
+	onCohortChange = ( event ) => {
+		const session = this.context;
+		const cohorts = session.cohorts;
+		let cohort;
+		for ( let i = 0; i < cohorts.length; i++ ) {
+			if ( cohorts[ i ].title === event.target.value ) {
+				cohort = cohorts[ i ];
+				break;
+			}
+		}
+		this.setState({
+			selectedCohort: cohort
+		});
+	}
+
+	renderCohortSelection() {
+		const session = this.context;
+		const cohorts = session.cohorts;
+		console.log( cohorts );
+		if ( !isArray( cohorts ) ) {
+			return null;
+		}
+		const select = ( <select
+			style={{ width: '150px', backgroundColor: 'ghostwhite', padding: '2px' }}
+			onChange={this.onCohortChange}
+			value={this.state.selectedCohort ? this.state.selectedCohort.title : 'all'}
+		>
+			<option value="all">All Cohorts</option>
+			{cohorts.map( ( v, key ) => {
+				return (
+					<option
+						key={key}
+						value={v.title}
+					>{v.title}</option>
+				);
+			})}
+		</select> );
+		return ( <div style={{ padding: '5px' }}>
+			<label style={{ marginRight: 5 }}>Only pair users from:</label>
+			{select}
+		</div> );
+	}
+
 	createAssignments = () => {
 		const session = this.context;
 		const users = session.userList;
 		const emails = shuffle(
 			users
-				.filter( x => x.exitTime === null )
-				.filter( this.props.filterOwners ? filterOwners : identity )
+				.filter( user => {
+					if (
+						this.state.selectedCohort &&
+						!contains( this.state.selectedCohort.members, user.email )
+					) {
+						return false;
+					}
+					if ( this.props.filterOwners && user.owner ) {
+						return false;
+					}
+					return user.exitTime === null;
+				})
 				.map( x => { return {
 					email: x.email,
 					name: x.name
@@ -213,18 +265,29 @@ class UserPairer extends Component {
 		const session = this.context;
 		let users = session.userList;
 		users = users
-			.filter( x => x.exitTime === null )
-			.filter( this.props.filterOwners ? filterOwners : identity );
+			.filter( user => {
+				if (
+					this.state.selectedCohort &&
+					!contains( this.state.selectedCohort.members, user.email )
+				) {
+					return false;
+				}
+				if ( this.props.filterOwners && user.owner ) {
+					return false;
+				}
+				return user.exitTime === null;
+			});
 		const msg = this.state.message;
 		return (
 			<Gate owner>
 				<Card>
 					<Card.Body>
-						<p>There are currently <b>{users.length}</b> users ({this.props.filterOwners ? 'excluding' : 'including'} course owners) online.</p>
+						{this.renderCohortSelection()}
+						<p>There are currently <b>{users.length}</b> users ({this.props.filterOwners ? 'excluding' : 'including'} course owners) {this.state.selectedCohort ? `from cohort "${this.state.selectedCohort.title}"` : 'from all cohorts'} online.</p>
 						{msg ? <Alert variant={msg.variant}>{msg.value}</Alert> : null }
 						<ButtonGroup>
 							<Button variant="secondary" onClick={this.createAssignments}>
-								{ this.state.showAssignments ? 'Repair users' : 'Pair users' }
+								{ this.state.showAssignments ? 'Re-pair users' : 'Pair users' }
 							</Button>
 							{ this.state.showAssignments ? <Button variant="warning" onClick={this.clearAssignments}>
 								Clear Assignments
