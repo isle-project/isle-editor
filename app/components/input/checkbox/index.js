@@ -92,7 +92,8 @@ class CheckboxInput extends Input {
 					{input}
 					<span
 						style={{
-							marginLeft: '12px'
+							marginLeft: '12px',
+							color: this.props.disabled ? 'darkgray' : 'black'
 						}}
 					>{this.props.legend}</span>
 				</span>
@@ -108,7 +109,8 @@ class CheckboxInput extends Input {
 				{input}
 				<span
 					style={{
-						marginLeft: '12px'
+						marginLeft: '12px',
+						color: this.props.disabled ? 'darkgray' : 'black'
 					}}
 				>{this.props.legend}</span>
 			</div>
