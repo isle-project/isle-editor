@@ -44,13 +44,18 @@ class CategoricalTransformer extends Component {
 		const firstVar = props.categorical[ 0 ];
 		const firstValues = props.data[ firstVar ];
 		const firstFreqs = countBy( firstValues, identity );
+		const keys = firstVar.categories || objectKeys( firstFreqs );
+		const nameMappings = {};
+		for ( let i = 0; i < keys.length; i++ ) {
+			nameMappings[ keys[ i ] ] = keys[ i ];
+		}
 		this.state = {
 			generatedName: '',
 			firstVar,
 			firstFreqs,
+			nameMappings,
 			secondVar: null,
 			secondFreqs: null,
-			nameMappings: {},
 			castNumeric: false,
 			onlyNumbers: false
 		};
