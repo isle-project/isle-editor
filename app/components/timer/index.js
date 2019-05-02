@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import floor from '@stdlib/math/base/special/floor';
 import max from '@stdlib/math/base/special/max';
 import './timer.css';
@@ -50,6 +51,16 @@ class Timer extends Component {
 
 	componentDidMount() {
 		this.startCountdown();
+	}
+
+	componentWillReceiveProps( nextProps ) {
+		let newState = {};
+		if ( nextProps.duration !== this.props.duration ) {
+			newState.timeLeft = nextProps.duration;
+		}
+		if ( !isEmptyObject( newState ) ) {
+			this.setState( newState );
+		}
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
@@ -108,6 +119,7 @@ class Timer extends Component {
 		}
 		return (
 			<div style={this.props.style} className="timer-div">
+				{this.props.legend}
 				{fmtTime( this.state.timeLeft )}
 			</div>
 		);
@@ -122,6 +134,7 @@ Timer.propTypes = {
 	active: PropTypes.bool.isRequired,
 	duration: PropTypes.number.isRequired,
 	invisible: PropTypes.bool,
+	legend: PropTypes.string,
 	style: PropTypes.object,
 	onTimeUp: PropTypes.func
 };
@@ -129,6 +142,7 @@ Timer.propTypes = {
 Timer.defaultProps = {
 	id: null,
 	invisible: false,
+	legend: '',
 	style: {},
 	onTimeUp() {}
 };
