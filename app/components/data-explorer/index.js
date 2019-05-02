@@ -485,7 +485,6 @@ class DataExplorer extends Component {
 	}
 
 	deleteVariable = ( variable, varState ) => {
-		console.log( varState );
 		let state = varState || this.state;
 		let newData;
 		if ( !varState ) {

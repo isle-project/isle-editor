@@ -53,6 +53,9 @@ class Transformer extends Component {
 	}
 
 	renderCategoricalModal = () => {
+		if ( !this.state.categoricalModalActive ) {
+			return null;
+		}
 		return (
 			<CategoricalModal
 				show={this.state.categoricalModalActive}
