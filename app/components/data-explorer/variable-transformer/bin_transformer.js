@@ -247,7 +247,7 @@ class BinTransformer extends Component {
 		const xBreaks = this.state.xBreaks;
 		const disableButton = xBreaks.length === 1;
 		inputs.push(
-			<div>
+			<div key="div-0">
 				<TextInput
 					key={0}
 					legend={<span><TeX
@@ -267,7 +267,7 @@ class BinTransformer extends Component {
 			for ( let i = 0; i < xBreaks.length - 1; i++ ) {
 				const changeFn = this.handleCatNamesFactory( i+1 );
 				inputs.push(
-					<div>
+					<div key={`div-${i+1}`}>
 						<TextInput
 							key={1+i}
 							legend={<span>
@@ -298,7 +298,7 @@ class BinTransformer extends Component {
 		}
 		const len = xBreaks.length;
 		inputs.push(
-			<div>
+			<div key={`div-${len}`}>
 				<TextInput
 					legend={<span>
 						<TeX raw="x >" />
