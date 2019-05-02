@@ -118,7 +118,7 @@ class Timer extends Component {
 // PROPERTIES //
 
 Timer.propTypes = {
-	id: PropTypes.string.isRequired,
+	id: PropTypes.string,
 	active: PropTypes.bool.isRequired,
 	duration: PropTypes.number.isRequired,
 	invisible: PropTypes.bool,
@@ -127,6 +127,7 @@ Timer.propTypes = {
 };
 
 Timer.defaultProps = {
+	id: null,
 	invisible: false,
 	style: {},
 	onTimeUp() {}

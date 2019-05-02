@@ -1,9 +1,12 @@
 // MODULES //
 
+import React, { Component, Fragment } from 'react';
 import { Slide } from 'spectacle';
+import endsWith from '@stdlib/string/ends-with';
+import Timer from 'components/timer';
 
 
-// EXPORTS //
+// MAIN //
 
 /**
 * Spectacle presentation slide.
@@ -13,6 +16,23 @@ import { Slide } from 'spectacle';
 * @property {string} transitionDuration - slide transition duration in milliseconds
 * @property {string} notes - presenter mode notes
 * @property {string} className - class name
+* @property {number} duration - slide duration displayed in presenter mode
 * @property {Object} style - CSS inline styles
 */
-export default Slide;
+class Wrapper extends Component {
+	render() {
+		const presenterMode = endsWith( window.location.hash, '?presenter' );
+		return ( <Fragment>
+			{presenterMode && this.props.duration ? <Timer
+				duration={this.props.duration}
+				style={{ top: '40px' }}
+			/> : null}
+			<Slide {...this.props} />
+		</Fragment> );
+	}
+}
+
+
+// EXPORTS //
+
+export default Wrapper;
