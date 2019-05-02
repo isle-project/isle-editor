@@ -131,11 +131,17 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 			</div>
 		</div> );
 	}
+	else if ( e.type === 'Test' ) {
+		const elem = <pre key={idx} >
+			{createButtons( e.type, e.value, clearOutput, idx, subsetFilters, onFilters )}
+			{e.value}
+		</pre>;
+		return elem;
+	}
 	else if (
 		e.type === 'Contingency Table' ||
 		e.type === 'Frequency Table' ||
 		e.type === 'Grouped Frequency Table' ||
-		e.type === 'Test' ||
 		e.type === 'Simple Linear Regression'
 	) {
 		const elem = <pre key={idx} >
