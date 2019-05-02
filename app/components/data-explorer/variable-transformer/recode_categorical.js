@@ -11,6 +11,9 @@ import isNull from '@stdlib/assert/is-null';
 function recodeCategorical( firstVar, secondVar, nameMappings, data, castNumeric = false ) {
 	const newVar = [];
 	const firstValues = data[ firstVar ];
+	if ( !nameMappings ) {
+		return firstValues;
+	}
 	if ( castNumeric ) {
 		if ( isNull( secondVar ) ) {
 			for ( let i = 0; i < firstValues.length; i++ ) {
