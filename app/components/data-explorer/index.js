@@ -80,6 +80,7 @@ import Chi2Test from 'components/data-explorer/chi2';
 import PropTest from 'components/data-explorer/proptest';
 import PropTest2 from 'components/data-explorer/proptest2';
 import Anova from 'components/data-explorer/anova';
+import Kruskal from 'components/data-explorer/kruskal';
 
 
 // VARIABLES //
@@ -940,6 +941,16 @@ class DataExplorer extends Component {
 					content = <Chi2Test
 						onCreated={this.addToOutputs}
 						data={this.state.data}
+						categorical={this.state.categorical}
+						logAction={this.logAction}
+						showDecision={this.props.showTestDecisions}
+					/>;
+					break;
+				case 'Kruskal-Wallis Test':
+					content = <Kruskal
+						onCreated={this.addToOutputs}
+						data={this.state.data}
+						continuous={this.state.continuous}
 						categorical={this.state.categorical}
 						logAction={this.logAction}
 						showDecision={this.props.showTestDecisions}

@@ -2,28 +2,28 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import anova1 from '@stdlib/stats/anova1';
+import kruskalTest from '@stdlib/stats/kruskal-test';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import isNull from '@stdlib/assert/is-null';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
-import { DATA_EXPLORER_TESTS_ANOVA } from 'constants/actions.js';
+import { DATA_EXPLORER_TESTS_KRUSKAL } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
 
 // VARIABLES //
 
-const DESCRIPTION = 'A one-way analysis of variance tests for equality of means across several groups.';
+const DESCRIPTION = 'The Kruskal-Wallis rank sum test evaluates for multiple samples the null hypothesis that their medians are identical. The Kruskal-Wallis test is a nonparametric test which does not require the data to be normally distributed.';
 
 
 // MAIN //
 
-class Anova extends Component {
+class Kruskal extends Component {
 	constructor( props ) {
 		super( props );
 
-		this.calculateANOVA = ( variable, grouping ) => {
+		this.calculateTest = ( variable, grouping ) => {
 			const { data, showDecision } = this.props;
 			const vals = data[ variable ];
 			const groups = data[ grouping ];
@@ -39,17 +39,17 @@ class Anova extends Component {
 				}
 			}
 			const value = <div style={{ overflowX: 'auto', width: '100%' }}>
-				<label>ANOVA for {variable} between {grouping}</label>
-				<pre style={{ marginTop: 10 }}>{anova1( valsFiltered, groupsFiltered ).print({
+				<label>Kruskal Wallis Test of {variable} between {grouping}</label>
+				<pre style={{ marginTop: 10 }}>{kruskalTest( valsFiltered, { groups: groupsFiltered }).print({
 					decision: showDecision
 				})}</pre>
 			</div>;
 			const output = {
-				variable: 'One-way ANOVA',
+				variable: 'Kruskal-Wallis Test',
 				type: 'Test',
 				value: value
 			};
-			this.props.logAction( DATA_EXPLORER_TESTS_ANOVA, {
+			this.props.logAction( DATA_EXPLORER_TESTS_KRUSKAL, {
 				variable, grouping
 			});
 			this.props.onCreated( output );
@@ -62,11 +62,11 @@ class Anova extends Component {
 			<Dashboard
 				autoStart={false}
 				title={<span>
-					One-way ANOVA
-					<QuestionButton title="One-way ANOVA" content={DESCRIPTION} />
+					Kruskal-Wallis Test
+					<QuestionButton title="Kruskal-Wallis Test" content={DESCRIPTION} />
 				</span>}
 				label="Calculate"
-				onGenerate={this.calculateANOVA}
+				onGenerate={this.calculateTest}
 			>
 				<SelectInput
 					legend="Variable:"
@@ -86,7 +86,7 @@ class Anova extends Component {
 
 // PROPERTY TYPES //
 
-Anova.propTypes = {
+Kruskal.propTypes = {
 	categorical: PropTypes.array.isRequired,
 	continuous: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
@@ -95,7 +95,7 @@ Anova.propTypes = {
 	showDecision: PropTypes.bool
 };
 
-Anova.defaultProps = {
+Kruskal.defaultProps = {
 	logAction() {},
 	showDecision: true
 };
@@ -103,4 +103,4 @@ Anova.defaultProps = {
 
 // EXPORTS //
 
-export default Anova;
+export default Kruskal;
