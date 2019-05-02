@@ -27,9 +27,9 @@ class Chi2Test extends Component {
 			const value = <div style={{ overflowX: 'auto', width: '100%' }}>
 				<label>Hypothesis test for independence between {var1} and {var2}:</label>
 				<ROutput code={`
-					${var1} = c(${x})
-					${var2} = c(${y})
-					chisq.test( ${var1}, ${var2} )`}
+					\`${var1}\` = c(${x})
+					\`${var2}\` = c(${y})
+					chisq.test( \`${var1}\`, \`${var2}\` )`}
 				/>
 			</div>;
 			const output = {
@@ -50,8 +50,8 @@ class Chi2Test extends Component {
 			<Dashboard
 				title={
 					<span>
-						Chi-squared Independence Test
-						<QuestionButton title="Chi-squared Independence Test" content={DESCRIPTION} />
+						Chi-square Independence Test
+						<QuestionButton title="Chi-square Independence Test" content={DESCRIPTION} />
 					</span>
 				}
 				label="Calculate"
