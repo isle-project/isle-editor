@@ -4,47 +4,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
-import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
-import FlippableCard from 'components/flippable-card';
 import Gate from 'components/gate';
 import shuffle from '@stdlib/random/shuffle';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import SessionContext from 'session/context.js';
+import AssignmentModal from './assignment_modal.js';
 import { ASSIGNMENT_CLEARED, USERS_ASSIGNED, INDIVIDUAL_ASSIGNED, REMOVE_ASSIGNMENT } from 'constants/actions.js';
-
-
-// FUNCTIONS //
-
-function renderTable( assignments ) {
-	const rows = [];
-	for ( let key in assignments ) {
-		if ( hasOwnProp( assignments, key ) ) {
-			const val = assignments[ key ];
-			rows.push( <tr>
-				<td>{`${val.name} (${key})`}</td>
-				<td>{`${val.from.name} (${val.from.email})`}</td>
-				<td>{`${val.to.name} (${val.to.email})`}</td>
-			</tr> );
-		}
-	}
-	return ( <Table bordered size="sm">
-		<thead>
-			<tr>
-				<th>Email</th>
-				<th>Receive From</th>
-				<th>Send To</th>
-			</tr>
-		</thead>
-		<tbody>
-			{rows}
-		</tbody>
-	</Table> );
-}
 
 
 // MAIN //
@@ -71,6 +41,7 @@ class UserPairer extends Component {
 		}
 		this.state = {
 			showAssignments: !isEmptyObject( assignments ),
+			showAssignmentModal: false,
 			assignments,
 			message: props.id ? null : {
 				variant: 'danger',
@@ -261,6 +232,12 @@ class UserPairer extends Component {
 		}
 	}
 
+	toggleModal = () => {
+		this.setState({
+			showAssignmentModal: !this.state.showAssignmentModal
+		});
+	}
+
 	render() {
 		const session = this.context;
 		let users = session.userList;
@@ -292,26 +269,15 @@ class UserPairer extends Component {
 							{ this.state.showAssignments ? <Button variant="warning" onClick={this.clearAssignments}>
 								Clear Assignments
 							</Button> : null }
+							{ this.state.showAssignments ? <Button variant="info" onClick={this.toggleModal}>
+								Show Assignments
+							</Button> : null }
 						</ButtonGroup>
-						{ this.state.showAssignments ? <FlippableCard
-							cardStyles={{
-								container: {
-									width: '100%',
-									height: '300px'
-								}
-							}}
-						>
-							<Card bg="light">
-								<Card.Body style={{ height: '300px', lineHeight: '300px', textAlign: 'center' }}>
-									<h4 style={{ display: 'inline-block', verticalAlign: 'middle', lineHeight: 'normal' }}>Click to reveal assignments</h4>
-								</Card.Body>
-							</Card>
-							<Card bg="light" style={{ height: 300, overflowY: 'scroll' }}>
-								<Card.Body>
-								{renderTable( this.state.assignments )}
-								</Card.Body>
-							</Card>
-						</FlippableCard> : null }
+						{this.state.showAssignmentModal ? <AssignmentModal
+							assignments={this.state.assignments}
+							show={this.state.showAssignmentModal}
+							onHide={this.toggleModal}
+						/> : null}
 					</Card.Body>
 				</Card>
 			</Gate>
