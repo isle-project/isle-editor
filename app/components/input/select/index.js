@@ -190,6 +190,7 @@ class SelectInput extends Input {
 					<Select
 						name="form-field-name"
 						className="select-field"
+						{...this.props}
 						value={this.state.value}
 						options={this.options}
 						onChange={this.handleChange}

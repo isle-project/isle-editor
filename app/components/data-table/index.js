@@ -19,6 +19,7 @@ import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
 import round from '@stdlib/math/base/special/round';
 import isNumberArray from '@stdlib/assert/is-number-array';
+import isEmptyArray from '@stdlib/assert/is-empty-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isObject from '@stdlib/assert/is-object';
 import isArray from '@stdlib/assert/is-array';
@@ -28,6 +29,7 @@ import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
 import SessionContext from 'session/context.js';
 import { TABLE_SORT, TABLE_FILTER, TABLE_RESET } from 'constants/actions.js';
+import SelectInput from 'components/input/select';
 import TutorialButton from './tutorial-button/index.js';
 import 'react-table/react-table.css';
 import './input_range.css';
@@ -63,6 +65,10 @@ function createRows( data ) {
 	}
 	return rows;
 }
+
+const CustomIndicator = () => {
+	return <div />;
+};
 
 
 // MAIN //
@@ -220,29 +226,24 @@ class DataTable extends Component {
 			} else if ( uniqueValues.length <= 8 ) {
 				out[ 'filterMethod' ] = this.filterMethodCategories;
 				out[ 'Filter' ] = ({ filter, onChange }) => {
-					let value;
-					if ( !filter ) {
-						value = 'all';
-					} else if ( isArray( filter.value ) ) {
-						value = filter.value.join( ', ' );
-					} else {
-						value = filter.value;
-					}
 					return (
-						<select
-							onChange={( event ) => {
-								const newValue = event.target.value;
-								onChange( newValue );
+						<SelectInput
+							onChange={onChange}
+							style={{ width: '100%' }}
+							value={filter ? filter.value : null}
+							searchable={false}
+							options={uniqueValues}
+							menuPlacement="auto"
+							multi
+							placeholder="Show all"
+							components={{
+								IndicatorsContainer: CustomIndicator
 							}}
-							style={{ width: '100%', backgroundColor: 'ghostwhite' }}
-							value={value}
-						>
-							<option value="all">Show All</option>
-							{uniqueValues.map( ( v, key ) => ( <option
-								key={key}
-								value={`${v}`}
-							>{v}</option> ) )}
-						</select>
+							menuPortalTarget={document.body}
+							styles={{
+								menuPortal: base => ({ ...base, zIndex: 9999 })
+							}}
+						/>
 					);
 				};
 			} else {
@@ -278,7 +279,7 @@ class DataTable extends Component {
 	}
 
 	filterMethodCategories = ( filter, row, column ) => {
-		if ( filter.value === 'all' ) {
+		if ( !filter.value || isEmptyArray( filter.value ) ) {
 			return true;
 		}
 		const id = filter.pivotId || filter.id;
