@@ -121,7 +121,7 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 				border-left: 5px solid rgb(238, 238, 238);
 			}
 
-			.tooltip {
+			.img-tooltip {
 				top: 0%;
 				right: -10%;
 				background-color: lightgray;
@@ -141,7 +141,7 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 				position: relative;
 			}
 
-			.img-container:hover .tooltip {
+			.img-container:hover .img-tooltip {
 				opacity: 1;
 			}
 

@@ -175,7 +175,7 @@ class Wrapper extends Component {
 		const opts = { format: 'png', height: 400, width: 600 };
 		Plotly.toImage( this.figure, opts )
 			.then( ( data ) => {
-				const value = !this.props.meta ? `<img src="${data}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%" />` : `<div class="img-container"><img src="${data}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%"></img><div class="tooltip">${jsonMarkup(this.props.meta)}</div></div>`;
+				const value = !this.props.meta ? `<img src="${data}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%" />` : `<div class="img-container"><img src="${data}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%"></img><div class="img-tooltip">${jsonMarkup(this.props.meta)}</div></div>`;
 				this.plotData = {
 					key: `<!--IMAGE_LOG:${this.props.id}_${randomstring( 6 )}-->`,
 					value
