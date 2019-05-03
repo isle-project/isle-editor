@@ -26,7 +26,7 @@ function renderTable( assignments ) {
 		if ( hasOwnProp( assignments, key ) ) {
 			const val = assignments[ key ];
 			rows.push( <tr>
-				<td>{key}</td>
+				<td>{`${val.name} (${key})`}</td>
 				<td>{`${val.from.name} (${val.from.email})`}</td>
 				<td>{`${val.to.name} (${val.to.email})`}</td>
 			</tr> );
@@ -192,10 +192,11 @@ class UserPairer extends Component {
 		}
 		const assignments = {};
 		for ( let i = 0; i < emails.length; i++ ) {
-			let emailAddress = emails[i].email;
-			assignments[emailAddress] = {
-				'to': emails[i === emails.length - 1 ? 0 : i + 1],
-				'from': emails[i === 0 ? emails.length - 1 : i - 1]
+			let emailAddress = emails[ i ].email;
+			assignments[ emailAddress ] = {
+				'to': emails[ i === emails.length - 1 ? 0 : i + 1 ],
+				'from': emails[ i === 0 ? emails.length - 1 : i - 1 ],
+				'name': emails[ i ].name
 			};
 		}
 		this.setState({
