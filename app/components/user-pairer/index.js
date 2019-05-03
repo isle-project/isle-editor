@@ -136,7 +136,6 @@ class UserPairer extends Component {
 	renderCohortSelection() {
 		const session = this.context;
 		const cohorts = session.cohorts;
-		console.log( cohorts );
 		if ( !isArray( cohorts ) ) {
 			return null;
 		}

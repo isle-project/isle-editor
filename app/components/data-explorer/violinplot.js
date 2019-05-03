@@ -77,6 +77,11 @@ class Violinplot extends Component {
 	generateViolinplot( variable, group ) {
 		const config = generateViolinplotConfig({ data: this.props.data, variable, group, showBox: this.state.showBox });
 		const plotId = randomstring( 6 );
+		const action = {
+			variable,
+			group,
+			plotId
+		};
 		const output = {
 			variable: variable,
 			type: 'Chart',
@@ -87,16 +92,10 @@ class Violinplot extends Component {
 					level: 'success',
 					position: 'tr'
 				});
-				this.props.logAction( DATA_EXPLORER_SHARE_VIOLINPLOT, {
-					variable, group, plotId
-				});
+				this.props.logAction( DATA_EXPLORER_SHARE_VIOLINPLOT, action );
 			}} />
 		};
-		this.props.logAction( DATA_EXPLORER_VIOLINPLOT, {
-			variable,
-			group,
-			plotId
-		});
+		this.props.logAction( DATA_EXPLORER_VIOLINPLOT, action );
 		this.props.onCreated( output );
 	}
 

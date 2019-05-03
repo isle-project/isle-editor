@@ -115,6 +115,9 @@ const renderRangeTable = ( e, idx, clearOutput, subsetFilters, onFilters ) => {
 
 function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 	if ( e.type === 'Chart' ) {
+		if ( e.value.props.meta && !e.value.props.meta.filters ) {
+			e.value.props.meta.filters = subsetFilters;
+		}
 		return ( <div key={idx}>
 			<ClearButton
 				onClick={() => { clearOutput( idx ); }}

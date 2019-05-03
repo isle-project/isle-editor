@@ -82,6 +82,9 @@ class ContourChart extends Component {
 	generateContourChart( xval, yval, overlayPoints ) {
 		const config = generateContourChart({ data: this.props.data, xval, yval, overlayPoints });
 		const plotId = randomstring( 6 );
+		const action = {
+			xval, yval, overlayPoints, plotId
+		};
 		const output = {
 			variable: `${xval} against ${yval}`,
 			type: 'Chart',
@@ -90,6 +93,7 @@ class ContourChart extends Component {
 				draggable
 				fit
 				id={plotId}
+				meta={action}
 				data={config.data}
 				layout={config.layout}
 				onShare={() => {
@@ -99,18 +103,14 @@ class ContourChart extends Component {
 						level: 'success',
 						position: 'tr'
 					});
-					this.props.logAction( DATA_EXPLORER_SHARE_CONTOURPLOT, {
-						xval, yval, overlayPoints, plotId
-					});
+					this.props.logAction( DATA_EXPLORER_SHARE_CONTOURPLOT, action );
 				}}
 				onSelected={( selected ) => {
 					this.props.onSelected({ x: xval, y: yval }, selected );
 				}}
 			/>
 		};
-		this.props.logAction( DATA_EXPLORER_CONTOURPLOT, {
-			xval, yval, overlayPoints, plotId
-		});
+		this.props.logAction( DATA_EXPLORER_CONTOURPLOT, action );
 		this.props.onCreated( output );
 	}
 

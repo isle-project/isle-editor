@@ -101,6 +101,9 @@ class PieChart extends Component {
 	generatePiechart( variable, group ) {
 		const config = generatePiechartConfig({ data: this.props.data, variable, group });
 		const plotId = randomstring( 6 );
+		const action = {
+			variable, group, plotId
+		};
 		const output = {
 			variable: variable,
 			type: 'Chart',
@@ -109,6 +112,7 @@ class PieChart extends Component {
 				draggable
 				id={plotId}
 				fit
+				meta={action}
 				data={config.data}
 				layout={config.layout}
 				onShare={() => {
@@ -118,17 +122,11 @@ class PieChart extends Component {
 						level: 'success',
 						position: 'tr'
 					});
-					this.props.logAction( DATA_EXPLORER_SHARE_PIECHART, {
-						variable, group, plotId
-					});
+					this.props.logAction( DATA_EXPLORER_SHARE_PIECHART, action );
 				}}
 			/>
 		};
-		this.props.logAction( DATA_EXPLORER_PIECHART, {
-			variable,
-			group,
-			plotId
-		});
+		this.props.logAction( DATA_EXPLORER_PIECHART, action );
 		this.props.onCreated( output );
 	}
 

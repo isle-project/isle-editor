@@ -66,26 +66,29 @@ class Boxplot extends Component {
 	generateBoxplot( variable, group ) {
 		const config = generateBoxplotConfig({ data: this.props.data, variable, group });
 		const plotId = randomstring( 6 );
+		const action = {
+			variable,
+			group,
+			plotId
+		};
 		const output = {
 			variable: variable,
 			type: 'Chart',
-			value: <Plotly editable draggable id={plotId} fit data={config.data} layout={config.layout} onShare={() => {
+			value: <Plotly
+				editable draggable id={plotId} fit
+				data={config.data} layout={config.layout}
+				meta={action}
+				onShare={() => {
 				this.props.session.addNotification({
 					title: 'Plot shared.',
 					message: 'You have successfully shared your plot.',
 					level: 'success',
 					position: 'tr'
 				});
-				this.props.logAction( DATA_EXPLORER_SHARE_BOXPLOT, {
-					variable, group, plotId
-				});
+				this.props.logAction( DATA_EXPLORER_SHARE_BOXPLOT, action );
 			}} />
 		};
-		this.props.logAction( DATA_EXPLORER_BOXPLOT, {
-			variable,
-			group,
-			plotId
-		});
+		this.props.logAction( DATA_EXPLORER_BOXPLOT, action );
 		this.props.onCreated( output );
 	}
 

@@ -137,22 +137,7 @@ class Map extends Component {
 	generateMap( locations, locationmode, scope, showLand, longitude, latitude, variable ) {
 		const config = generateMapConfig({ data: this.props.data, locationmode, longitude, latitude, locations, variable, scope, showLand });
 		const plotId = randomstring( 6 );
-		const output = {
-			variable: variable,
-			type: 'Chart',
-			value: <Plotly editable id={plotId} fit draggable data={config.data} layout={config.layout} onShare={() => {
-				this.props.session.addNotification({
-					title: 'Plot shared.',
-					message: 'You have successfully shared your plot.',
-					level: 'success',
-					position: 'tr'
-				});
-				this.props.logAction( DATA_EXPLORER_SHARE_MAP, {
-					variable, locations, plotId
-				});
-			}} />
-		};
-		this.props.logAction( DATA_EXPLORER_MAP, {
+		const action = {
 			variable,
 			longitude,
 			latitude,
@@ -160,7 +145,26 @@ class Map extends Component {
 			scope,
 			showLand,
 			plotId
-		});
+		};
+		const output = {
+			variable: variable,
+			type: 'Chart',
+			value: <Plotly
+				editable id={plotId} fit draggable
+				data={config.data} layout={config.layout}
+				meta={action}
+				onShare={() => {
+					this.props.session.addNotification({
+						title: 'Plot shared.',
+						message: 'You have successfully shared your plot.',
+						level: 'success',
+						position: 'tr'
+					});
+					this.props.logAction( DATA_EXPLORER_SHARE_MAP, action );
+				}}
+			/>
+		};
+		this.props.logAction( DATA_EXPLORER_MAP, action );
 		this.props.onCreated( output );
 	}
 

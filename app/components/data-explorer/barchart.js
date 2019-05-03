@@ -188,12 +188,16 @@ class Barchart extends Component {
 				...this.state
 			});
 		const plotId = randomstring( 6 );
+		const action = {
+			xVar, groupVar, plotId
+		};
 		const output = {
 			variable: xVar,
 			type: 'Chart',
 			value: <Plotly
 				editable draggable id={plotId} fit data={config.data}
 				layout={config.layout}
+				meta={action}
 				onShare={() => {
 					this.props.session.addNotification({
 						title: 'Plot shared.',
@@ -201,20 +205,14 @@ class Barchart extends Component {
 						level: 'success',
 						position: 'tr'
 					});
-					this.props.logAction( DATA_EXPLORER_SHARE_BARCHART, {
-						xVar, groupVar, plotId
-					});
+					this.props.logAction( DATA_EXPLORER_SHARE_BARCHART, action );
 				}}
 				onSelected={( selected ) => {
 					this.props.onSelected( xVar, selected );
 				}}
 			/>
 		};
-		this.props.logAction( DATA_EXPLORER_BARCHART, {
-			xVar,
-			groupVar,
-			plotId
-		});
+		this.props.logAction( DATA_EXPLORER_BARCHART, action );
 		this.props.onCreated( output );
 	}
 

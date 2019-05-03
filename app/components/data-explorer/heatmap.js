@@ -191,6 +191,9 @@ class HeatMap extends Component {
 			...this.state
 		});
 		const plotId = randomstring( 6 );
+		const action = {
+			xval, yval, overlayPoints, plotId
+		};
 		const output ={
 			variable: `${xval} against ${yval}`,
 			type: 'Chart',
@@ -201,6 +204,7 @@ class HeatMap extends Component {
 				id={plotId}
 				data={config.data}
 				layout={config.layout}
+				meta={action}
 				onShare={() => {
 					this.props.session.addNotification({
 						title: 'Plot shared.',
@@ -208,18 +212,14 @@ class HeatMap extends Component {
 						level: 'success',
 						position: 'tr'
 					});
-					this.props.logAction( DATA_EXPLORER_SHARE_HEATMAP, {
-						xval, yval, overlayPoints, plotId
-					});
+					this.props.logAction( DATA_EXPLORER_SHARE_HEATMAP, action );
 				}}
 				onSelected={( selected ) => {
 					this.props.onSelected({ x: xval, y: yval }, selected );
 				}}
 			/>
 		};
-		this.props.logAction( DATA_EXPLORER_HEATMAP, {
-			xval, yval, overlayPoints, plotId
-		});
+		this.props.logAction( DATA_EXPLORER_HEATMAP, action );
 		this.props.onCreated( output );
 	}
 

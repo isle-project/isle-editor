@@ -396,6 +396,7 @@ class Scatterplot extends Component {
 				draggable
 				fit
 				id={plotId}
+				meta={stateNew}
 				data={config.data}
 				layout={config.layout}
 				onShare={() => {

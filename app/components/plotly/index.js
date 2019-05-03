@@ -9,6 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import Plotly from 'plotly.js';
 const Plot = createPlotlyComponent( Plotly );
+import jsonMarkup from 'json-markup';
 import randomstring from 'utils/randomstring/alphanumeric';
 import isUndefined from '@stdlib/assert/is-undefined';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
@@ -19,6 +20,7 @@ import { PLOT_UPDATE } from 'constants/actions.js';
 import PlotlyIcons from './icons.js';
 import calculateChanges from './calculate_changes.js';
 import './plotly.css';
+import './tooltip.css';
 import { ACCESS_TOKEN } from 'constants/mapbox.js';
 
 
@@ -173,9 +175,10 @@ class Wrapper extends Component {
 		const opts = { format: 'png', height: 400, width: 600 };
 		Plotly.toImage( this.figure, opts )
 			.then( ( data ) => {
+				const value = !this.props.meta ? `<img src="${data}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%" />` : `<div class="img-container"><img src="${data}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%"></img><div class="tooltip">${jsonMarkup(this.props.meta)}</div></div>`;
 				this.plotData = {
 					key: `<!--IMAGE_LOG:${this.props.id}_${randomstring( 6 )}-->`,
-					value: `<img src="${data}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%" />`
+					value
 				};
 			});
 	}
@@ -282,6 +285,7 @@ Wrapper.defaultProps = {
 	layout: {},
 	config: {},
 	legendButtons: true,
+	meta: null,
 	onAfterPlot() {},
 	onRelayout() {},
 	onSelected() {},
@@ -298,6 +302,7 @@ Wrapper.propTypes = {
 	layout: PropTypes.object,
 	config: PropTypes.object,
 	legendButtons: PropTypes.bool,
+	meta: PropTypes.object,
 	onAfterPlot: PropTypes.func,
 	onRelayout: PropTypes.func,
 	onSelected: PropTypes.func,
