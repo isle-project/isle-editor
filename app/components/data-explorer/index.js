@@ -224,7 +224,7 @@ class DataExplorer extends Component {
 			if ( type === 'retrieved_current_user_actions' ) {
 				const currentUserActions = value;
 				const actions = currentUserActions[ this.props.id ];
-				if ( isObjectArray( actions ) ) {
+				if ( this.props.data && isObjectArray( actions ) ) {
 					this.restoreTransformations( actions );
 				}
 			}

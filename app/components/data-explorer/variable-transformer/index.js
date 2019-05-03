@@ -21,7 +21,7 @@ class Transformer extends Component {
 	}
 
 	renderFormulaModal = () => {
-		if ( !this.state.formulaModalActive ) {
+		if ( !this.state.formulaModalActive || !this.props.data ) {
 			return null;
 		}
 		return (
@@ -40,6 +40,9 @@ class Transformer extends Component {
 	}
 
 	renderBinModal = () => {
+		if ( !this.state.binModalActive || !this.props.data ) {
+			return null;
+		}
 		return (
 			<BinTransformer
 				show={this.state.binModalActive}
@@ -53,7 +56,7 @@ class Transformer extends Component {
 	}
 
 	renderCategoricalModal = () => {
-		if ( !this.state.categoricalModalActive ) {
+		if ( !this.state.categoricalModalActive || !this.props.data ) {
 			return null;
 		}
 		return (
