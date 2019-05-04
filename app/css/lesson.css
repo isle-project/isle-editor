@@ -160,7 +160,6 @@ mark {
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }
 
-
 #loading-date {
 	position: absolute;
 	bottom: calc(15px + 0.8vw);
@@ -396,13 +395,15 @@ mark {
 	padding-left: 15px;
 }
 
-.Lesson hr {
+.Lesson hr,
+.Presentation hr {
 	height: 1px;
 	background: red; /* For browsers that do not support gradients */
 	background: linear-gradient(to right, transparent, var(--primarylight) 12%, var(--quartarylight) 48%, var(--primarylight) 52%, transparent 92%); /* Standard syntax */
 }
 
-.Lesson h2 {
+.Lesson h2,
+.Presentation h2 {
 	font-size: 36px;
 	color: #3c763d;
 	font-weight: 700;
@@ -412,7 +413,8 @@ mark {
 	background-image: linear-gradient(to right, var(--secondaryhalf), var(--secondary) 4%), linear-gradient(to bottom, transparent, var(--quartary));
 }
 
-.Lesson h3 {
+.Lesson h3,
+.Presentation h3 {
 	font-size: 24px;
 	color: #2e4468;
 	font-weight: 700;
@@ -420,11 +422,13 @@ mark {
 	transition: color 1.4s ease-in-out;
 }
 
-.Lesson h3:hover {
+.Lesson h3:hover,
+.Presentation h3:hover {
 	color: var(--tertiarylight);
 }
 
-.Lesson h4 {
+.Lesson h4,
+.Presentation h4 {
 	font-size: 24px;
 	color: #ca5800;
 	font-weight: 600;
@@ -432,7 +436,8 @@ mark {
 	transition: color 1.4s ease-in-out;
 }
 
-.Lesson h4:hover {
+.Lesson h4:hover,
+.Presentation h4:hover {
 	color: var(--quartarylight);
 }
 
@@ -441,11 +446,12 @@ mark {
 	padding: 5px;
 }
 
-.Lesson a {
+.Lesson a,
+.Presentation a {
 	color: #2e4468;
 }
 
-.Lesson .nav-tabs > li.active > a,
+.nav-tabs > li.active > a,
 .nav-tabs > li.active > a:focus,
 .nav-tabs > li.active > a:hover {
 	color: #ca5800;
