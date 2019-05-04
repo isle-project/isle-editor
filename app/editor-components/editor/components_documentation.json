@@ -4578,57 +4578,259 @@
     "description": "Description is missing."
   },
   "Appear": {
-    "props": [],
+    "props": [
+      {
+        "name": "easing",
+        "type": "string",
+        "description": "type of easing to use for an animation. Supported are: \"back\", \"backIn\", \"backOut\", \"backInOut\", \"bounce\", \"bounceIn\", \"bounceOut\", \"bounceInOut\", \"circle\", \"circleIn\", \"circleOut\", \"circleInOut\", \"linear\", \"linearIn\", \"linearOut\", \"linearInOut\", \"cubic\", \"cubicIn\", \"cubicOut\", \"cubicInOut\", \"elastic\", \"elasticIn\", \"elasticOut\", \"elasticInOut\", \"exp\", \"expIn\", \"expOut\", \"expInOut\", \"poly\", \"polyIn\", \"polyOut\", \"polyInOut\", \"quad\", \"quadIn\", \"quadOut\", \"quadInOut\", \"sin\", \"sinIn\", \"sinOut\", \"sinInOut\"",
+        "default": "quadInOut"
+      },
+      {
+        "name": "order",
+        "type": "number",
+        "description": "integer starting at 1 for the presentation order of the appear tags. If a slide contains ordered and unordered appear tags, unordered ones appear first",
+        "default": null
+      },
+      {
+        "name": "transitionDuration",
+        "type": "number",
+        "description": "duration of appearance animation in milliseconds",
+        "default": 300
+      },
+      {
+        "name": "startValue",
+        "type": "object",
+        "description": "style object for the starting, inactive state of the appear tag",
+        "default": {
+          "opacity": 0
+        }
+      },
+      {
+        "name": "endValue",
+        "type": "object",
+        "description": "style object for the ending, active state of the appear tag",
+        "default": {
+          "opacity": 1
+        }
+      }
+    ],
     "description": "Wrapped elements in the appear tag makes them appear/disappear in order in response to navigation."
   },
   "BlockQuote": {
-    "props": [],
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
     "description": "A styled blockquote. Should be used in conjunction with the Spectacle `Cite` and `Quote` tags."
   },
   "Cite": {
-    "props": [],
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
     "description": "Component wrapping the citation source. Should be used in conjunction with the Spectacle `BlockQuote` and `Quote` tags."
   },
   "CodePane": {
-    "props": [],
+    "props": [
+      {
+        "name": "lang",
+        "type": "string",
+        "description": "Prism compatible language name",
+        "default": null
+      },
+      {
+        "name": "source",
+        "type": "string",
+        "description": "code to be shown",
+        "default": ""
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "theme",
+        "type": "string",
+        "description": "`light`, `dark`, or `external` theme for the source editor's syntax highlighting",
+        "default": "dark"
+      }
+    ],
     "description": "Component displaying a styled, highlighted code preview."
   },
   "CodeSlide": {
     "props": [
       {
         "name": "lang",
-        "type": "string (required)"
+        "type": "string (required)",
+        "description": "language identifier"
       },
       {
         "name": "code",
-        "type": "string (required)"
+        "type": "string (required)",
+        "description": "program code"
       },
       {
         "name": "ranges",
-        "type": "array<{loc,title,note}> (required)"
+        "type": "array<{loc,title,note}> (required)",
+        "description": "array of objects with `loc` (for line of code), `title`, and `note` properties"
       },
       {
         "name": "showLineNumbers",
         "type": "boolean",
+        "description": "controls whether to display line numbers",
         "default": true
       }
     ],
-    "description": "Description is missing."
+    "description": "Adapted from spectacle-code-slide@0.5.2 (MIT Licensed) https://github.com/jamiebuilds/spectacle-code-slide\n/\n\n// MODULES //\n\nimport React, { Component } from 'react';\nimport PropTypes from 'prop-types';\nimport { Slide } from 'spectacle';\nimport hljs from 'highlight.js';\nimport clamp from '@stdlib/math/base/special/clamp';\nimport lpad from '@stdlib/string/left-pad';\nimport CodeSlideTitle from './code_slide_title.js';\nimport CodeSlideNote from './code_slide_note.js';\nimport CodeSlideImage from './code_slide_image.js';\nimport calculateScrollCenter from './calculate_scroll_center.js';\nimport scrollToElement from './scroll_to_element.js';\nimport 'highlight.js/styles/googlecode.css';\n\n\n// FUNCTIONS //\n\nfunction calculateOpacity(index, loc) {\nreturn ( loc[0] <= index && loc[1] > index ) ? 1 : 0.2;\n}\n\nfunction getLineNumber(index) {\nreturn '<span class=\"token comment\">' + lpad( String( index + 1 ), 3 ) + '.</span> ';\n}\n\n\n// VARIABLES //\n\nconst defaultBgColor = '#122b45';\nconst defaultColor = 'white';\nconst style = {\nposition: 'relative',\ntextAlign: 'center',\noverflow: 'hidden',\ncolor: defaultColor,\nheight: '646px',\nmargin: 0,\nfontSize: '1.5em',\npadding: '40% 0',\nwhiteSpace: 'pre-wrap',\nwordBreak: 'break-word'\n};\n\n\n// MAIN //\n\n/**\nA slide displaying code in an step-by-step manner."
   },
   "Code": {
-    "props": [],
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
     "description": "Component displaying inline text in a monospace font."
   },
   "Deck": {
-    "props": [],
+    "props": [
+      {
+        "name": "autoplay",
+        "type": "boolean",
+        "description": "automatically advance slides",
+        "default": false
+      },
+      {
+        "name": "autoplayDuration",
+        "type": "number",
+        "description": "global autoplay duration (in milliseconds)",
+        "default": 7000
+      },
+      {
+        "name": "autoplayLoop",
+        "type": "boolean",
+        "description": "keep slides in loop",
+        "default": true
+      },
+      {
+        "name": "autoplayOnStart",
+        "type": "boolean",
+        "description": "start presentation with autoplay on/not paused",
+        "default": true
+      },
+      {
+        "name": "controls",
+        "type": "boolean",
+        "description": "show control arrows when not in fullscreen",
+        "default": true
+      },
+      {
+        "name": "contentHeight",
+        "type": "number",
+        "description": "baseline content area height",
+        "default": 700
+      },
+      {
+        "name": "contentWidth",
+        "type": "number",
+        "description": "baseline content area width",
+        "default": 1000
+      },
+      {
+        "name": "disableKeyboardControls",
+        "type": "boolean",
+        "description": "toggle keyboard control",
+        "default": false
+      },
+      {
+        "name": "progress",
+        "type": "string",
+        "description": "progress indicator (accepts `pacman`, `bar`, `number` or `none`)",
+        "default": "pacman"
+      },
+      {
+        "name": "showFullscreenControl",
+        "type": "boolean",
+        "description": "show the fullscreen control button in bottom right of the screen",
+        "default": true
+      },
+      {
+        "name": "transition",
+        "type": "array",
+        "description": "global slide transitions (accepts `slide`, `zoom`, `fade` or `spin`, which can be combined)",
+        "default": null
+      },
+      {
+        "name": "transitionDuration",
+        "type": "number",
+        "description": "global transition duration (in milliseconds)",
+        "default": 500
+      }
+    ],
     "description": "Spectacle slide deck. Wraps `<Slide>` tags."
   },
   "Fill": {
-    "props": [],
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
     "description": "The fill tag takes up all the space available to it. Fill tags next to each other form an equidistant grid."
   },
   "Fit": {
-    "props": [],
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
     "description": "Component taking up as much space as its bounds provide, but not more."
   },
   "Heading": {
@@ -4669,11 +4871,11 @@
         "name": "align",
         "type": "string",
         "description": "Space delimited value for positioning interior content. The first value can be flex-start (left), center (middle), or flex-end (bottom). The second value can be flex-start (top) , center (middle), or flex-end (bottom)",
-        "default": null
+        "default": "center center"
       },
       {
         "name": "transition",
-        "type": "string",
+        "type": "array",
         "description": "slide transition. Can be either `slide`, `zoom`, `fade`, or `spin` (or a combination)",
         "default": null
       },

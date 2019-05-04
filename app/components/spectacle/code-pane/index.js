@@ -1,9 +1,11 @@
 // MODULES //
 
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { CodePane } from 'spectacle';
 
 
-// EXPORTS //
+// MAIN //
 
 /**
 * Component displaying a styled, highlighted code preview.
@@ -13,4 +15,31 @@ import { CodePane } from 'spectacle';
 * @property {string} className - class name
 * @property {string} theme - `light`, `dark`, or `external` theme for the source editor's syntax highlighting
 */
-export default CodePane;
+class Wrapper extends Component {
+	render(){
+		return <CodePane {...this.props}>{this.props.children}</CodePane>;
+	}
+}
+
+
+// PROPERTIES //
+
+Wrapper.defaultProps = {
+	lang: null,
+	source: '',
+	className: null,
+	theme: 'dark'
+};
+
+Wrapper.propTypes = {
+	lang: PropTypes.string,
+	source: PropTypes.string,
+	className: PropTypes.string,
+	theme: PropTypes.oneOf([ 'light', 'dark', 'external' ])
+};
+
+
+// EXPORTS //
+
+export default Wrapper;
+

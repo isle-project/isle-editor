@@ -1,9 +1,11 @@
 // MODULES //
 
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Appear } from 'spectacle';
 
 
-// EXPORTS //
+// MAIN //
 
 /**
 * Wrapped elements in the appear tag makes them appear/disappear in order in response to navigation.
@@ -15,4 +17,36 @@ import { Appear } from 'spectacle';
 * @property {Object} endValue - style object for the ending, active state of the appear tag
 * @property {string} style - CSS inline styles
 */
-export default Appear;
+class Wrapper extends Component {
+	render() {
+		return <Appear {...this.props}>{this.props.children}</Appear>;
+	}
+}
+
+
+// PROPERTIES //
+
+Wrapper.defaultProps = {
+	easing: 'quadInOut',
+	order: null,
+	transitionDuration: 300,
+	startValue: {
+		opacity: 0
+	},
+	endValue: {
+		opacity: 1
+	}
+};
+
+Wrapper.propTypes = {
+	easing: PropTypes.string,
+	order: PropTypes.number,
+	transitionDuration: PropTypes.number,
+	startValue: PropTypes.object,
+	endValue: PropTypes.object
+};
+
+
+// EXPORTS //
+
+export default Wrapper;

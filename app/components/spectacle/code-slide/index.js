@@ -4,7 +4,7 @@
 
 // MODULES //
 
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Slide } from 'spectacle';
 import hljs from 'highlight.js';
@@ -49,7 +49,15 @@ const style = {
 
 // MAIN //
 
-class CodeSlide extends React.Component {
+/**
+* A slide displaying code in an step-by-step manner.
+*
+* @property {string} lang - language identifier
+* @property {string} code - program code
+* @property {Array} ranges - array of objects with `loc` (for line of code), `title`, and `note` properties
+* @property {boolean} showLineNumbers - controls whether to display line numbers
+*/
+class CodeSlide extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -127,20 +135,20 @@ class CodeSlide extends React.Component {
 	};
 
 	onResize = () => {
-		this.scrollActiveIntoView(true);
+		this.scrollActiveIntoView( true );
 	};
 
 	onKeyDown = e => {
-		if (!this.isSlideActive()) {
+		if ( !this.isSlideActive() ) {
 			return;
 		}
 
 		let prev = this.state.active;
 		let active = null;
 
-		if (e.which === 38) {
+		if ( e.which === 38 ) {
 			active = prev - 1;
-		} else if (e.which === 40) {
+		} else if ( e.which === 40 ) {
 			active = prev + 1;
 		}
 
@@ -153,7 +161,7 @@ class CodeSlide extends React.Component {
 
 	onStorage = e => {
 		if (e.key === this.getStorageId()) {
-			this.goTo(+e.newValue, true);
+			this.goTo( +e.newValue, true );
 		}
 	};
 

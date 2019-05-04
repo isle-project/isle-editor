@@ -38,7 +38,7 @@ class Wrapper extends Component {
 // PROPERTIES//
 
 Wrapper.defaultProps = {
-	align: null,
+	align: 'center center',
 	transition: null,
 	transitionDuration: null,
 	notes: null,
@@ -49,7 +49,7 @@ Wrapper.defaultProps = {
 
 Wrapper.propTypes = {
 	align: PropTypes.string,
-	transition: PropTypes.string,
+	transition: PropTypes.array,
 	transitionDuration: PropTypes.number,
 	notes: PropTypes.string,
 	className: PropTypes.string,
