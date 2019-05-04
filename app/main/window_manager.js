@@ -21,7 +21,10 @@ app.disableHardwareAcceleration();
 function _createWindow( options ) {
 	const opts = {
 		... {
-			show: false
+			show: false,
+			webPreferences: {
+				nodeIntegration: true
+			}
 		},
 		...options
 	};
@@ -30,7 +33,6 @@ function _createWindow( options ) {
 
 	return window;
 }
-
 
 // Should not need to be called directly (just in case window.destroy() is ever called)
 function _unref() {

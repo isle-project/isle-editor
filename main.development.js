@@ -2,10 +2,10 @@
 
 import { app, dialog, Menu, shell } from 'electron';
 import Store from 'electron-store';
-import configureMenu from './app/main/configureMenu';
-import createWindow from './app/main/createWindow';
-import window from './app/main/windowManager';
-import autoUpdater from './app/main/autoUpdater';
+import configureMenu from './app/main/configure_menu.js';
+import createWindow from './app/main/create_window.js';
+import window from './app/main/window_manager.js';
+import autoUpdater from './app/main/auto_updater.js';
 
 
 // VARIABLES //

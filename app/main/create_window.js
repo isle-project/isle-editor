@@ -5,7 +5,7 @@ import fs from 'fs';
 import windowStateKeeper from 'electron-window-state';
 import { shell } from 'electron';
 import logger from 'debug';
-import window from './windowManager';
+import window from './window_manager.js';
 
 
 // VARIABLES //

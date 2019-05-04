@@ -5,7 +5,7 @@ import fs from 'fs';
 import { extname, basename } from 'path';
 import logger from 'debug';
 import { EXTENSIONS } from './globals.js';
-import createWindow from './createWindow';
+import createWindow from './create_window.js';
 import { exec } from 'child_process';
 
 
