@@ -4664,7 +4664,50 @@
     "description": "Component wrapping a quote. Should be used in conjunction with the Spectacle `BlockQuote` and `Cite` tags."
   },
   "Slide": {
-    "props": [],
+    "props": [
+      {
+        "name": "align",
+        "type": "string",
+        "description": "Space delimited value for positioning interior content. The first value can be flex-start (left), center (middle), or flex-end (bottom). The second value can be flex-start (top) , center (middle), or flex-end (bottom)",
+        "default": null
+      },
+      {
+        "name": "transition",
+        "type": "string",
+        "description": "slide transition. Can be either `slide`, `zoom`, `fade`, or `spin` (or a combination)",
+        "default": null
+      },
+      {
+        "name": "transitionDuration",
+        "type": "number",
+        "description": "slide transition duration in milliseconds",
+        "default": null
+      },
+      {
+        "name": "notes",
+        "type": "string",
+        "description": "presenter mode notes",
+        "default": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "duration",
+        "type": "number",
+        "description": "slide duration displayed in presenter mode",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
     "description": "Spectacle presentation slide."
   },
   "TableBody": {
