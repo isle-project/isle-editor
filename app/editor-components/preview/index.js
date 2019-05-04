@@ -41,6 +41,7 @@ const RE_LINES = /\r?\n/g;
 
 class Preview extends Component {
 	constructor( props ) {
+		debug( 'Create preview pane...' );
 		super( props );
 
 		const offline = props.currentMode === 'offline';
@@ -121,6 +122,7 @@ class Preview extends Component {
 	}
 
 	handlePreambleChange = ( newPreamble ) => {
+		debug( 'Handle preamble change...' );
 		try {
 			loadRequires( newPreamble.require, this.props.filePath || '' );
 		} catch ( err ) {
