@@ -27,7 +27,7 @@ An ISLE component that renders a question in which the learner has to match elem
 * __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'bottom'`.
 * __hints__ | `array<string>`: hints providing guidance on how to answer the question. Default: `[]`.
 * __showSolution__ | `boolean`: indicates whether the solution should be accessible after learners submit their answers. Default: `true`.
-* __feedback__ | `object`: controls whether to display feedback buttons. Default: `false`.
+* __feedback__ | `object`: controls whether to display feedback buttons. Default: `true`.
 * __chat__ | `boolean`: controls whether the element should have an integrated chat. Default: `false`.
 * __colorScale__ | `array`: if set, the supplied colors are used for the tiles. Default: `none`.
 * __shuffle__ | `string`: specifies whether to shuffle the `left`, `right`, or `both` columns whose elements have to be matched. Default: `'both'`.

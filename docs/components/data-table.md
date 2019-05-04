@@ -27,6 +27,8 @@ A component rendering data in a tabular display. Built on top of [react-table](h
   'variables': null,
   'showInfo': false
 }`.
+* __deletable__ | `boolean`: controls whether columns for which no `info` exist have a button which when clicked calls the `onColumnDelete` callback function. Default: `false`.
+* __onColumnDelete__ | `function`: function invoked with the name of a column when the respective delete button for a column is clicked. Default: `onColumnDelete() {}`.
 * __onClickRemove__ | `function`: A function specifying an action to take for rows removed from the data (defaults to an empty function). Default: `onClickRemove() {}`.
 * __filters__ | `array`: undefined. Default: `[]`.
 * __onFilteredChange__ | `function`: undefined. Default: `onFilteredChange() {}`.

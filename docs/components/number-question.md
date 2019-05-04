@@ -18,7 +18,7 @@ A number question component.
 * __question__ | `(string|node)`: number question. Default: `''`.
 * __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'top'`.
 * __hints__ | `array<string>`: hints providing guidance on how to answer the question. Default: `[]`.
-* __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `false`.
+* __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `true`.
 * __solution__ | `number`: a numeric answer to the problem. Default: `none`.
 * __digits__ | `number`: number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.. Default: `3`.
 * __max__ | `number`: maximum allowed input value. Default: `null`.
