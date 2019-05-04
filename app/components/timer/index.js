@@ -37,6 +37,7 @@ function fmtTime( time ) {
 * @property {number} duration - duration in seconds for the timer
 * @property {boolean} invisible - controls whether the timer should be hidden
 * @property {string} id - the unique `string` ID for the timer. If an ID is set, the timer component is persistent over page refreshes
+* @property {string} legend - text displayed in front of the timer
 * @property {Object} style - CSS inline styles
 * @property {Function} onTimeUp - callback invoked when the timer runs out
 */

@@ -15,6 +15,7 @@ import isArray from '@stdlib/assert/is-array';
 *
 * @property {(string|node)} button - button label
 * @property {Array<Object>} cardStyles - allows to override the given styles
+* @property {boolean} draggable - controls whether the card may be dragged around
 * @property {number} flipSpeedBackToFront - the speed by which the card turns from background to foreground, in seconds
 * @property {number} flipSpeedFrontToBack {number} the speed by which the card turns from foreground to background, in seconds
 * @property {boolean} isFlipped - initial flip state of the card

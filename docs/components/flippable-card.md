@@ -48,6 +48,7 @@ An ISLE component that allows two render two-sides.
   'front': {},
   'back': {}
 }`.
+* __draggable__ | `boolean`: controls whether the card may be dragged around. Default: `false`.
 * __flipSpeedBackToFront__ | `number`: the speed by which the card turns from background to foreground, in seconds. Default: `1`.
 * __flipSpeedFrontToBack__ | `number`: {number} the speed by which the card turns from foreground to background, in seconds. Default: `1`.
 * __isFlipped__ | `boolean`: initial flip state of the card. Default: `false`.

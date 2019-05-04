@@ -24,6 +24,7 @@ The `plotly` function is a generic plotting function used to handle multiple typ
 * __layout__ | `object`: Plotly layout object. Default: `{}`.
 * __config__ | `object`: undefined. Default: `{}`.
 * __legendButtons__ | `boolean`: controls whether to display buttons for changing the legend. Default: `true`.
+* __meta__ | `object`: plot meta-information. Default: `none`.
 * __onAfterPlot__ | `function`: callback function invoked each time a chart is plotted. Default: `onAfterPlot() {}`.
 * __onRelayout__ | `function`: undefined. Default: `onRelayout() {}`.
 * __onSelected__ | `function`: callback function invoked when elements are selected. Default: `onSelected() {}`.

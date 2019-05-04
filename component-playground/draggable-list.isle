@@ -1,53 +1,50 @@
 ---
 title: "Draggable List"
-author: Philipp Burckhardt
-date: Dec 27th, 2017
+author: The ISLE Authors
+date:  May 4th, 2019
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
 # Draggable List
 
-<br />
-
-
-<Playground 
-    style={{
-        marginLeft: 0,
-        width: '1200px',
-    }}
-    code={
-    `
-    <DraggableList
-        data={[
-            { id: 0, text: "Compact" },
-            { id: 1, text: "Large" },
-            { id: 2, text: "Midsize" },
-            { id: 3, text: "Small" }
-        ]}
-        onChange={ ( data ) => {
-            let str = data
-                .map( x => '"'+x.text+'"' )
-                .join( ', ');
-        		var ssu = new SpeechSynthesisUtterance("ok");
-			    ssu.lang = 'en-US';
-			    window.speechSynthesis.speak( ssu );
-        }}
-/>
-    `
-    }
-    scope={{
-        DraggableList
+<Row>
+    <Col md={6}>
+        <Playground
+            code={
+            `
+<DraggableList
+    data={[
+        { id: 0, text: "Compact" },
+        { id: 1, text: "Large" },
+        { id: 2, text: "Midsize" },
+        { id: 3, text: "Small" }
+    ]}
+    onChange={ ( data ) => {
+        let str = data
+            .map( x => '"'+x.text+'"' )
+            .join( ', ');
+            var ssu = new SpeechSynthesisUtterance("ok");
+            ssu.lang = 'en-US';
+            window.speechSynthesis.speak( ssu );
     }}
 />
-
-
-<br />
-
+            `
+            }
+            scope={{
+                DraggableList
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 #### Options:
 
 * __data__ | `array (required)`: array of objects with `id` and `text` keys. Default: `none`.
 * __onChange__ | `function`: callback invoked with newly ordered data array on each change. Default: `onChange(){}`.
 * __onInit__ | `function`: callback function invoked after mounting of component. Default: `onInit(){}`.
 * __shuffle__ | `boolean`: controls whether data elements should be shuffled in initial display. Default: `false`.
+        </Text>
+    </Col>
+</Row>

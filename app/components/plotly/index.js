@@ -63,6 +63,7 @@ Plotly.setPlotConfig({
 * @property {boolean} legendButtons - controls whether to display buttons for changing the legend
 * @property {boolean} toggleFullscreen - controls whether to display the plot in fullscreen mode
 * @property {boolean} removeButtons - controls whether to remove all buttons
+* @property {Object} meta - plot meta-information
 * @property {Function} onAfterPlot - callback function invoked each time a chart is plotted
 * @property {Function} onSelected - callback function invoked when elements are selected
 * @property {Function} onShare - callback function invoked when clicking on the "Share" button

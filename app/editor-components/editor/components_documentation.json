@@ -384,6 +384,47 @@
     ],
     "description": "A d3-based network plot."
   },
+  "Sunburst": {
+    "props": [
+      {
+        "name": "categories",
+        "type": "array (required)"
+      },
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "data object"
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "description": "width of the plot (in px)",
+        "default": 750
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "description": "height of the plot (in px)",
+        "default": 600
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "breadcrumbs",
+        "type": "{w,h,s,t}",
+        "default": {
+          "w": 250,
+          "h": 50,
+          "s": 5,
+          "t": 15
+        }
+      }
+    ],
+    "description": "Adapted from: https://bl.ocks.org/kerryrodden/766f8f6d31f645c39f488a0befa1e3c8\n\nCopyright 2013 Google Inc. All Rights Reserved.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n   http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n/\n\n// MODULES //\n\nimport React, { Component } from 'react';\nimport PropTypes from 'prop-types';\nimport * as d3 from 'd3';\nimport logger from 'debug';\nimport sqrt from '@stdlib/math/base/special/sqrt';\nimport min from '@stdlib/math/base/special/min';\nimport PI from '@stdlib/constants/math/float64-pi';\nimport { CAT20 as COLORS } from 'constants/colors';\nimport randomstring from 'utils/randomstring/alphanumeric';\nimport './style.css';\n\n\n// VARIABLES //\n\nconst debug = logger( 'isle:sunburst' );\n\n// FUNCTIONS //\n\nfunction createColorMapping( categories ) {\nconst out = {};\nfor ( let i = 0; i < categories.length; i++ ) {\nout[ categories[i] ] = COLORS[ i % 20 ];\n}\nreturn out;\n}\n\n\n// MAIN //\n\n/**\nA d3-based sunburst plot for displaying pathways."
+  },
   "Dashboard": {
     "props": [
       {
@@ -606,7 +647,7 @@
         "default": false
       }
     ],
-    "description": "Generates a string displaying the filters for the current active data subset."
+    "description": "This component is used by students to briefly summarize data as it is presented and perform various statistical tests."
   },
   "DataTable": {
     "props": [
@@ -625,6 +666,18 @@
           "variables": null,
           "showInfo": false
         }
+      },
+      {
+        "name": "deletable",
+        "type": "boolean",
+        "description": "controls whether columns for which no `info` exist have a button which when clicked calls the `onColumnDelete` callback function",
+        "default": false
+      },
+      {
+        "name": "onColumnDelete",
+        "type": "function",
+        "description": "function invoked with the name of a column when the respective delete button for a column is clicked",
+        "default": "onColumnDelete() {}"
       },
       {
         "name": "onClickRemove",
@@ -826,6 +879,12 @@
         }
       },
       {
+        "name": "draggable",
+        "type": "boolean",
+        "description": "controls whether the card may be dragged around",
+        "default": false
+      },
+      {
         "name": "flipSpeedBackToFront",
         "type": "number",
         "description": "the speed by which the card turns from background to foreground, in seconds",
@@ -897,7 +956,7 @@
         "name": "feedback",
         "type": "boolean",
         "description": "controls whether to display feedback buttons",
-        "default": false
+        "default": true
       },
       {
         "name": "solution",
@@ -1768,6 +1827,11 @@
         "default": false
       },
       {
+        "name": "scrollToSteps",
+        "type": "boolean",
+        "default": true
+      },
+      {
         "name": "steps",
         "type": "array (required)",
         "description": "array of step `objects`"
@@ -2132,6 +2196,16 @@
     ],
     "description": "Learning component explaining the process of standardizing data."
   },
+  "LearnStatisticalModels": {
+    "props": [
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      }
+    ],
+    "description": "Description is missing."
+  },
   "LearnVennDiagramBuilder": {
     "props": [
       {
@@ -2394,7 +2468,7 @@
         "name": "feedback",
         "type": "object",
         "description": "controls whether to display feedback buttons",
-        "default": false
+        "default": true
       },
       {
         "name": "chat",
@@ -2633,7 +2707,7 @@
         "name": "feedback",
         "type": "boolean",
         "description": "controls whether to display feedback buttons",
-        "default": false
+        "default": true
       },
       {
         "name": "disabled",
@@ -2809,7 +2883,7 @@
         "name": "feedback",
         "type": "boolean",
         "description": "controls whether to display feedback buttons",
-        "default": false
+        "default": true
       },
       {
         "name": "solution",
@@ -2955,7 +3029,7 @@
         "name": "feedback",
         "type": "boolean",
         "description": "controls whether to display feedback buttons",
-        "default": false
+        "default": true
       },
       {
         "name": "chat",
@@ -3141,6 +3215,12 @@
         "type": "boolean",
         "description": "controls whether to display buttons for changing the legend",
         "default": true
+      },
+      {
+        "name": "meta",
+        "type": "object",
+        "description": "plot meta-information",
+        "default": null
       },
       {
         "name": "onAfterPlot",
@@ -3724,7 +3804,7 @@
         "name": "feedback",
         "type": "boolean",
         "description": "controls whether to display feedback buttons",
-        "default": false
+        "default": true
       },
       {
         "name": "chat",
@@ -3941,6 +4021,88 @@
     ],
     "description": "A dynamic background component that changes a background image at a specified interval."
   },
+  "Seal": {
+    "props": [
+      {
+        "name": "active",
+        "type": "boolean",
+        "description": "controls whether seal is active or greyed out",
+        "default": true
+      },
+      {
+        "name": "onActivate",
+        "type": "function",
+        "default": "onActivate() {}"
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "callback function invoked when the note is clicked",
+        "default": "onClick() {}"
+      },
+      {
+        "name": "scale",
+        "type": "number",
+        "description": "the size of the object, default = 1",
+        "default": null
+      },
+      {
+        "name": "innerStyle",
+        "type": "object",
+        "description": "the style for the inner circle",
+        "default": null
+      },
+      {
+        "name": "lower",
+        "type": "string",
+        "description": "the lower text",
+        "default": "The lower text"
+      },
+      {
+        "name": "lowerArc",
+        "type": "number",
+        "description": "the arc for the lower text",
+        "default": 150
+      },
+      {
+        "name": "noOrnaments",
+        "type": "boolean",
+        "description": "prevents rendering of the ornaments",
+        "default": false
+      },
+      {
+        "name": "removable",
+        "type": "boolean",
+        "description": "controls whether the note is removed when clicked",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "the style for the element",
+        "default": {}
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "description": "seal title",
+        "default": "Enter a title"
+      },
+      {
+        "name": "upper",
+        "type": "string",
+        "description": "the upper text",
+        "default": "The upper text"
+      },
+      {
+        "name": "upperArc",
+        "type": "number",
+        "description": "the arc for the upper text",
+        "default": 150
+      }
+    ],
+    "description": "An approval seal."
+  },
   "SelectQuestionMatrix": {
     "props": [
       {
@@ -3981,7 +4143,7 @@
       {
         "name": "feedback",
         "type": "boolean",
-        "default": false
+        "default": true
       },
       {
         "name": "provideFeedback",
@@ -4062,7 +4224,7 @@
         "name": "feedback",
         "type": "boolean",
         "description": "controls whether to display feedback buttons",
-        "default": false
+        "default": true
       },
       {
         "name": "chat",
@@ -4837,8 +4999,9 @@
     "props": [
       {
         "name": "id",
-        "type": "string (required)",
-        "description": "the unique `string` ID for the timer. If an ID is set, the timer component is persistent over page refreshes"
+        "type": "string",
+        "description": "the unique `string` ID for the timer. If an ID is set, the timer component is persistent over page refreshes",
+        "default": null
       },
       {
         "name": "active",
@@ -4855,6 +5018,12 @@
         "type": "boolean",
         "description": "controls whether the timer should be hidden",
         "default": false
+      },
+      {
+        "name": "legend",
+        "type": "string",
+        "description": "text displayed in front of the timer",
+        "default": ""
       },
       {
         "name": "style",
