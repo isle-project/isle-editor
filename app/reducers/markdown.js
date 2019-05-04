@@ -56,7 +56,8 @@ export default function markdown( state = initialState, action ) {
 	case types.MARKDOWN_CHANGED:
 		return Object.assign({}, state, {
 			markdown: action.payload.markdown,
-			html: action.payload.html
+			html: action.payload.html,
+			error: null
 		});
 	case types.PREAMBLE_CHANGED:
 		return Object.assign({}, state, {

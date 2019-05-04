@@ -186,14 +186,26 @@ class Preview extends Component {
 		this.props.onCode( code );
 
 		debug( 'Transpile code to ES5...' );
-		es5code = transform( code, OPTS );
+		try {
+			es5code = transform( code, OPTS );
+		}
+		catch ( err ) {
+			this.props.encounteredError( err );
+			return null;
+		}
 		es5code.code += '\n\n return out;';
 		if ( es5code && es5code.code ) {
 			const SCOPE_KEYS = Object.keys( this.scope );
 			const SCOPE_VALUES = SCOPE_KEYS.map( key => this.scope[key] );
 			const f = new Function( '_poly', ...SCOPE_KEYS, es5code.code ).bind( this );
-			const out = f( '_poly', ...SCOPE_VALUES );
-			return out;
+			try {
+				const out = f( '_poly', ...SCOPE_VALUES );
+				return out;
+			}
+			catch ( err ) {
+				this.props.encounteredError( err );
+				return null;
+			}
 		}
 	}
 
