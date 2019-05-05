@@ -373,12 +373,16 @@ mark {
 	}
 }
 
-.Lesson h1 {
+.Lesson h1,
+.Presentation h1 {
 	color: #2e4468;
-	font-size: 40px;
 	font-weight: 700;
 	font-family: Open Sans Condensed;
 	margin: 0.3em 0;
+}
+
+.Lesson h1 {
+	font-size: 40px;
 }
 
 .Lesson > h1,
@@ -404,7 +408,6 @@ mark {
 
 .Lesson h2,
 .Presentation h2 {
-	font-size: 36px;
 	color: #3c763d;
 	font-weight: 700;
 	font-family: Open Sans Condensed;
@@ -413,13 +416,20 @@ mark {
 	background-image: linear-gradient(to right, var(--secondaryhalf), var(--secondary) 4%), linear-gradient(to bottom, transparent, var(--quartary));
 }
 
+.Lesson h2 {
+	font-size: 36px;
+}
+
 .Lesson h3,
 .Presentation h3 {
-	font-size: 24px;
 	color: #2e4468;
 	font-weight: 700;
 	font-family: Open Sans Condensed;
 	transition: color 1.4s ease-in-out;
+}
+
+.Lesson h3 {
+	font-size: 24px;
 }
 
 .Lesson h3:hover,
@@ -429,11 +439,14 @@ mark {
 
 .Lesson h4,
 .Presentation h4 {
-	font-size: 24px;
 	color: #ca5800;
 	font-weight: 600;
 	font-family: Open Sans Condensed;
 	transition: color 1.4s ease-in-out;
+}
+
+.Lesson h4 {
+	font-size: 24px;
 }
 
 .Lesson h4:hover,
