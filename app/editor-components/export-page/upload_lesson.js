@@ -315,7 +315,7 @@ class UploadLesson extends Component {
 					</FormControl>
 				</FormGroup>
 				<FormGroup>
-					<label>Lesson name</label>
+					<label>Lesson Name</label>
 					<FormControl
 						name="lessonName"
 						type="text"

@@ -160,7 +160,7 @@ class ExportLesson extends Component {
 						/>
 					</FormGroup>
 					<FormGroup>
-						<label>Directory name</label>
+						<label>Directory Name</label>
 						<FormControl
 							type="text"
 							placeholder="Enter text"
