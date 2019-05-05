@@ -556,7 +556,7 @@ class DataExplorer extends Component {
 			} else {
 				// Case: We have a categorical variable
 				for ( let z = 0; z < col.length; z++ ) {
-					if ( col[ z ] !== filter.value ) {
+					if ( !contains( filter.value, col[ z ] ) ) {
 						indices.add( z );
 					}
 				}
@@ -1057,8 +1057,6 @@ class DataExplorer extends Component {
 									onFilteredChange={(filtered) => {
 										this.setState({
 											filters: filtered
-										}, () => {
-											console.log(this.state.filters);
 										});
 									}}
 									onColumnDelete={this.onColumnDelete}
