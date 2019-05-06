@@ -1373,7 +1373,7 @@ class Session {
 
 	togglePresentationView() {
 		this.presentationMode = !this.presentationMode;
-		this.update( 'TOGGLE_PRESENTATION_MODE' );
+		this.update( 'TOGGLE_PRESENTATION_MODE', this.presentationMode );
 
 		let msg = 'You have started the presentation mode which hides the status bar, the instructorView and all owner elements. Hit F7 to leave the it.';
 		let title = 'Started presentation mode';

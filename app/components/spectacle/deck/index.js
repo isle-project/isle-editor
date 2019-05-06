@@ -7,6 +7,7 @@ import endsWith from '@stdlib/string/ends-with';
 import Timer from 'components/timer';
 import KeyControls from 'components/key-controls';
 import VoiceControl from 'components/voice-control';
+import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 
 
@@ -33,7 +34,8 @@ class CustomDeck extends Component {
 		super( props );
 
 		this.state = {
-			totalDuration: null
+			totalDuration: null,
+			showFullscreenControl: props.showFullscreenControl
 		};
 	}
 
@@ -42,9 +44,31 @@ class CustomDeck extends Component {
 		React.Children.forEach( this.props.children, ( child, i ) => {
 			totalDuration += ( child.props.duration ? child.props.duration : 0 );
 		});
+		const session = this.context;
+		this.unsubscribe = session.subscribe( ( type, value ) => {
+			if ( type === 'TOGGLE_PRESENTATION_MODE' ) {
+				this.setState({
+					showFullscreenControl: !value
+				});
+			}
+		});
 		this.setState({
 			totalDuration
 		});
+	}
+
+	componentWillReceiveProps( nextProps ) {
+		if ( nextProps.showFullscreenControl !== this.props.showFullscreenControl ) {
+			this.setState({
+				showFullscreenControl: nextProps.showFullscreenControl
+			});
+		}
+	}
+
+	componentWillUnmount() {
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 	}
 
 	nextSlide = () => {
@@ -86,7 +110,7 @@ class CustomDeck extends Component {
 				duration={this.state.totalDuration}
 				style={{ top: '40px' }}
 			/> : null}
-			<Deck {...this.props} >{this.props.children}</Deck>
+			<Deck {...this.props} showFullscreenControl={this.state.showFullscreenControl} >{this.props.children}</Deck>
 		</Fragment> );
 	}
 }
@@ -123,6 +147,8 @@ CustomDeck.propTypes = {
 	transition: PropTypes.array,
 	transitionDuration: PropTypes.number
 };
+
+CustomDeck.contextType = SessionContext;
 
 
 // EXPORTS //
