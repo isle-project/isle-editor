@@ -72,7 +72,9 @@
 		"RangeQuestion",
 		"SelectQuestion",
 		"Quiz",
-		"QuestionForm"
+		"QuestionForm",
+		"HypothesisTestingQuestion",
+		"SelectQuestionMatrix"
 	],
 	"SURVEY": [
 		"FreeTextSurvey",

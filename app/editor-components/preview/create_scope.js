@@ -158,6 +158,7 @@ const SCOPE = {
 
 	// REACT BOOTSTRAP //
 	Alert: Loadable( () => import( 'react-bootstrap/Alert' ) ),
+	Badge: Loadable( () => import( 'react-bootstrap/Badge' ) ),
 	Button: Loadable( () => import( 'react-bootstrap/Button' ) ),
 	Card,
 	Col: Loadable( () => import( 'react-bootstrap/Col' ) ),

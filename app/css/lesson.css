@@ -425,15 +425,14 @@ mark {
 	color: #2e4468;
 	font-weight: 700;
 	font-family: Open Sans Condensed;
-	transition: color 1.4s ease-in-out;
 }
 
 .Lesson h3 {
 	font-size: 24px;
+	transition: color 1.4s ease-in-out;
 }
 
-.Lesson h3:hover,
-.Presentation h3:hover {
+.Lesson h3:hover {
 	color: var(--tertiarylight);
 }
 
@@ -442,15 +441,14 @@ mark {
 	color: #ca5800;
 	font-weight: 600;
 	font-family: Open Sans Condensed;
-	transition: color 1.4s ease-in-out;
 }
 
 .Lesson h4 {
 	font-size: 24px;
+	transition: color 1.4s ease-in-out;
 }
 
-.Lesson h4:hover,
-.Presentation h4:hover {
+.Lesson h4:hover {
 	color: var(--quartarylight);
 }
 
@@ -2586,4 +2584,24 @@ label {
 	display: inline-block;
 	position: absolute;
 	right: 7px;
+}
+
+.check-list {
+	list-style: none;
+}
+
+.check-list li {
+	position: relative;
+	padding-left: 40px;
+	text-indent: 0;
+}
+
+.check-list li::before {
+	position: absolute;
+	top: 15px;
+	left: 0;
+	content: ' ';
+	width: 50px;
+	height: 50px;
+	background: url("data:image/svg+xml;utf8,<?xml version='1.0' encoding='utf-8'?><svg width='18' height='18' viewBox='0 0 1792 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z'/></svg>") no-repeat;
 }

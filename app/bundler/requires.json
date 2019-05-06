@@ -3,6 +3,7 @@
 	"Alert": "react-bootstrap/Alert",
 	"Animated": "components/animated",
 	"Background": "components/background",
+	"Badge": "react-bootstrap/Badge",
 	"BeaconTooltip": "components/beacon-tooltip",
 	"Button": "react-bootstrap/Button",
 	"Card": "react-bootstrap/Card",
