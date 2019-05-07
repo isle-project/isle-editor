@@ -23,6 +23,7 @@ import './component_configurator.css';
 
 const RE_FUNCTION = /^[a-z0-9]*\(([^)]*)\)/i;
 const RE_SNIPPET_PLACEHOLDER = /\${[0-9]:([^}]+)}/g;
+const RE_INDENTED_ATTRS = /\t[a-z]+=/i;
 const RE_SNIPPET_EMPTY_PLACEHOLDER = /\t*\${[0-9]:}\n?/g;
 const md = markdownit({
 	html: true,
@@ -142,10 +143,11 @@ class ComponentConfigurator extends Component {
 		const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${key}\\s*=` );
 		return () => {
 			let { value } = this.state;
-			if ( !RE_KEY_AROUND_WHITESPACE.test( this.state.value ) ) {
+			if ( !RE_KEY_AROUND_WHITESPACE.test( value ) ) {
+				const indentedAttrs = RE_INDENTED_ATTRS.test( value );
 				if ( selfClosing ) {
 					value = value.substring( 0, value.length - 3 );
-					value += ` ${key}=${replacement}\n/>`;
+					value += `${indentedAttrs ? '\t' : ' '}${key}=${replacement}\n/>`;
 				} else {
 					const idx = value.indexOf( '>' );
 					const rest = value.substring( idx+1 );
@@ -153,7 +155,7 @@ class ComponentConfigurator extends Component {
 					if ( value[ value.length-1 ] === ' ' ) {
 						value = removeLast( value );
 					}
-					value += ` ${key}=${replacement}\n>`;
+					value += `${indentedAttrs ? '\t' : ' '}${key}=${replacement}\n>`;
 					value = value + rest;
 				}
 			} else {
