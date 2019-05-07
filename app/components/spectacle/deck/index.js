@@ -24,6 +24,7 @@ import VOICE_COMMANDS from './voice_commands.json';
 * @property {number} contentHeight - baseline content area height
 * @property {number} contentWidth - baseline content area width
 * @property {boolean} disableKeyboardControls - toggle keyboard control
+* @property {boolean} pageControls - controls whether page-up and page-down can be used to switch between slides
 * @property {string} progress - progress indicator (accepts `pacman`, `bar`, `number` or `none`)
 * @property {boolean} showFullscreenControl - show the fullscreen control button in bottom right of the screen
 * @property {Array} transition - global slide transitions (accepts `slide`, `zoom`, `fade` or `spin`, which can be combined)
@@ -101,10 +102,10 @@ class CustomDeck extends Component {
 		const presenterMode = endsWith( window.location.hash, '?presenter' );
 		return ( <Fragment>
 			<VoiceControl commands={VOICE_COMMANDS} hide reference={this} id="slide" />
-			<KeyControls actions={{
+			{ this.props.pageControls ? <KeyControls actions={{
 				'PageUp': this.nextSlide,
 				'PageDown': this.previousSlide
-			}} />
+			}} /> : null }
 			{ presenterMode ? <Timer
 				legend="Total: "
 				duration={this.state.totalDuration}
@@ -127,6 +128,7 @@ CustomDeck.defaultProps = {
 	contentHeight: 700,
 	contentWidth: 1000,
 	disableKeyboardControls: false,
+	pageControls: true,
 	progress: 'pacman',
 	showFullscreenControl: true,
 	transition: null,
@@ -142,6 +144,7 @@ CustomDeck.propTypes = {
 	contentHeight: PropTypes.number,
 	contentWidth: PropTypes.number,
 	disableKeyboardControls: PropTypes.bool,
+	pageControls: PropTypes.bool,
 	progress: PropTypes.oneOf([ 'pacman', 'bar', 'number', 'none' ]),
 	showFullscreenControl: PropTypes.bool,
 	transition: PropTypes.array,
