@@ -48,7 +48,7 @@ Preload.defaultProps = {
 };
 
 Preload.propTypes = {
-	image: PropTypes.oneOf([
+	image: PropTypes.oneOfType([
 		PropTypes.string, PropTypes.array
 	])
 };
