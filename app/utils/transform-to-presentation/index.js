@@ -1,6 +1,8 @@
 // MODULES //
 
+import { isPrimitive as isString} from '@stdlib/assert/is-string';
 import contains from '@stdlib/assert/contains';
+import objectKeys from '@stdlib/utils/keys';
 
 
 // VARIABLES //
@@ -29,10 +31,16 @@ const RE_TABLE_ITEM = /<td([^>]*)>([\s\S]*?)<\/td>/g;
 * @returns {string} transformed lesson code
 */
 function transformToPresentation( code, preamble ) {
-	let progress = 'number';
+	let configString = '';
 	if ( preamble.presentation ) {
-		if ( preamble.presentation.progress ) {
-			progress = preamble.presentation.progress;
+		const keys = objectKeys( preamble.presentation );
+		for ( let i = 0; i < keys.length; i++ ) {
+			const attr = keys[ i ];
+			let val = preamble.presentation[ attr ];
+			if ( isString( val ) ) {
+				val = `"${val}"`;
+			}
+			configString += `${attr}={${val}}`;
 		}
 	}
 	let pres = code;
@@ -56,15 +64,15 @@ function transformToPresentation( code, preamble ) {
 	pres = pres.replace( RE_TABLE_ROW, '<TableRow$1>$2</TableRow>' );
 	pres = pres.replace( RE_TABLE_HEADER_ITEM, '<TableHeaderItem$1>$2</TableHeaderItem>' );
 	pres = pres.replace( RE_TABLE_ITEM, '<TableItem$1>$2</TableItem>' );
-	console.log( pres );
 
 	// Add opening <Deck> tag in front of first slide:
 	pres = pres.replace( '<Slide', `<Deck
 		globalStyles={false}
 		controls={true}
-		progress="${progress}"
 		transition={[]}
 		theme={SPECTACLE_THEME}
+		progress="number"
+		${configString}
 	><Slide` );
 
 	// Append closing </Deck> after last slide:
