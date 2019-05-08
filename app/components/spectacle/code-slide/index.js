@@ -40,7 +40,7 @@ const style = {
 	color: defaultColor,
 	height: '646px',
 	margin: 0,
-	fontSize: '1.5em',
+	fontSize: '1.1em',
 	padding: '40% 0',
 	whiteSpace: 'pre-wrap',
 	wordBreak: 'break-word'
@@ -68,9 +68,9 @@ class CodeSlide extends Component {
 
 	componentDidMount() {
 		this.updateNotes();
-		document.addEventListener('keydown', this.onKeyDown);
-		window.addEventListener('storage', this.onStorage);
-		window.addEventListener('resize', this.onResize);
+		document.addEventListener( 'keydown', this.onKeyDown );
+		window.addEventListener( 'storage', this.onStorage );
+		window.addEventListener( 'resize', this.onResize );
 		this.scrollActiveIntoView(true);
 
 		requestAnimationFrame(() => {
@@ -83,9 +83,9 @@ class CodeSlide extends Component {
 	}
 
 	componentWillUnmount() {
-		document.removeEventListener('keydown', this.onKeyDown);
-		window.removeEventListener('storage', this.onStorage);
-		window.removeEventListener('resize', this.onResize);
+		document.removeEventListener( 'keydown', this.onKeyDown );
+		window.removeEventListener( 'storage', this.onStorage );
+		window.removeEventListener( 'resize', this.onResize );
 	}
 
 	componentWillEnter(cb) {
@@ -140,19 +140,19 @@ class CodeSlide extends Component {
 
 	onKeyDown = e => {
 		if ( !this.isSlideActive() ) {
+			console.log( 'Slide is inactive...' );
 			return;
 		}
 
 		let prev = this.state.active;
 		let active = null;
 
-		if ( e.which === 38 ) {
+		if ( e.which === 38 || e.which === 37 ) {
 			active = prev - 1;
-		} else if ( e.which === 40 ) {
+		} else if ( e.which === 40 || e.which === 39 ) {
 			active = prev + 1;
 		}
-
-		if (active !== null) {
+		if ( active !== null ) {
 			e.preventDefault();
 			active = clamp(active, 0, this.props.ranges.length - 1);
 			this.goTo(active);
