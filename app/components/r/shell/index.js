@@ -289,8 +289,7 @@ class RShell extends React.Component {
 		});
 		this.editor.setValue( this.props.code, -1 );
 		if ( this.props.disabled ) {
-			this.editor.setOption( 'readOnly', true );
-			this.editor.textInput.getElement().disabled = true;
+			this.editor.setOption( 'readOnly', 'nocursor' );
 		}
 
 		// Add event listener:
