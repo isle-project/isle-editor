@@ -258,7 +258,7 @@ class UserPairer extends Component {
 		return (
 			<Gate owner>
 				<Card>
-					<Card.Body>
+					<Card.Body style={{ textAlign: 'left', fontSize: '18px' }}>
 						{this.renderCohortSelection()}
 						<p>There are currently <b>{users.length}</b> users ({this.props.filterOwners ? 'excluding' : 'including'} course owners) {this.state.selectedCohort ? `from cohort "${this.state.selectedCohort.title}"` : 'from all cohorts'} online.</p>
 						{msg ? <Alert variant={msg.variant}>{msg.value}</Alert> : null }
