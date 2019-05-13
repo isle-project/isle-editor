@@ -35,7 +35,7 @@ class App extends Component {
 		super( props );
 
 		this.state = {
-			splitPos: parseInt( localStorage.getItem( 'splitPos' ), 10 )
+			splitPos: parseInt( localStorage.getItem( 'splitPos' ), 10 ) || '50vw'
 		};
 	}
 
@@ -148,7 +148,7 @@ class App extends Component {
 							lintErrors={this.props.lintErrors}
 						/>
 					</SplitPanel>
-					<SplitPanel ref={( elem ) => { this.preview = elem; }} style={{ overflowY: 'scroll' }} >
+					<SplitPanel ref={( elem ) => { this.preview = elem; }} >
 						{ error ?
 							<ErrorMessage msg={error.message} code={markdown} /> :
 							<ErrorBoundary code={markdown} preamble={this.props.preamble} >
