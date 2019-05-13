@@ -46,7 +46,11 @@ class Lesson extends Component {
 				<ContextMenuTrigger attributes={{
 					className: 'contextmenu-fullscreen'
 				}} holdToDisplay={-1} id="lessonWindow" >
-					<div id="Lesson" className={this.props.className}>
+					<div
+						id="Lesson"
+						className={this.props.className}
+						style={this.props.style}
+					>
 						{this.props.children}
 						{this.state.notes}
 					</div>
@@ -71,11 +75,13 @@ class Lesson extends Component {
 // PROPERTIES //
 
 Lesson.propTypes = {
-	className: PropTypes.string
+	className: PropTypes.string,
+	style: PropTypes.object
 };
 
 Lesson.defaultProps = {
-	className: ''
+	className: '',
+	style: {}
 };
 
 Lesson.contextType = SessionContext;

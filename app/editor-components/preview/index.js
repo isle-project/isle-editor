@@ -213,7 +213,14 @@ class Preview extends Component {
 		debug( 'Rendering preview...' );
 		const className = this.props.preamble.type === 'presentation' ? 'Presentation' : 'Lesson';
 		return ( <Provider session={this.session} currentRole={this.props.currentRole}>
-			<Lesson className={className} >
+			<Lesson
+				className={className}
+				style={{
+					overflowY: 'scroll',
+					height: window.innerHeight - 90,
+					minHeight: window.innerHeight - 90
+				}}
+			>
 				{this.renderPreview()}
 			</Lesson>
 		</Provider> );
