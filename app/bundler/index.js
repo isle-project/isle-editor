@@ -6,7 +6,7 @@ import { dirname, extname, resolve, join } from 'path';
 import yaml from 'js-yaml';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import MiniCssExtractPlugin, { loader as MiniCSSLoader } from 'mini-css-extract-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import WebpackCdnPlugin from './webpack_cdn_plugin.js';
 import logger from 'debug';
@@ -310,7 +310,7 @@ function writeIndexFile({
 				{
 					test: /\.css$$/,
 					use: [
-						MiniCssExtractPlugin.loader,
+						MiniCSSLoader,
 						'css-loader'
 					]
 				},

@@ -39,6 +39,7 @@ const EXTERNALS = [
 	'markdown-it-sub',
 	'markdown-it',
 	'minimist',
+	'mini-css-extract-plugin',
 	'ml-pca',
 	'moment',
 	'murmurhash3js',
