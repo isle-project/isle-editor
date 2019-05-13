@@ -27,7 +27,7 @@ const initialState = {
 	hideToolbar: false,
 	filePath,
 	fileName: config.get( 'mostRecentFileName' ),
-	currentRole: 'anonymous',
+	currentRole: 'user',
 	currentMode: 'offline',
 	namespaceName: null,
 	error: null,
