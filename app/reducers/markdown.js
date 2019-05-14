@@ -62,7 +62,8 @@ export default function markdown( state = initialState, action ) {
 	case types.PREAMBLE_CHANGED:
 		return Object.assign({}, state, {
 			preamble: action.payload.preamble,
-			preambleText: action.payload.preambleText
+			preambleText: action.payload.preambleText,
+			error: null
 		});
 	case types.ROLE_CHANGED:
 		return Object.assign({}, state, {
