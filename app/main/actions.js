@@ -39,43 +39,6 @@ ipcMain.on( 'save-file', ( e, { data, filePath }) => {
 	});
 });
 
-function openFile( filePath, browserWindow ) {
-	if (
-		EXTENSIONS.indexOf( extname( filePath )
-			.slice( 1 )
-			.toLowerCase()
-		) !== -1 ||
-		!extname( filePath )
-	) {
-		const fileSize = fs.statSync( filePath )[ 'size' ];
-		if ( fileSize >= 1048576 ) { // 1MB
-			const confirm = dialog.showMessageBox( browserWindow, {
-				type: 'error',
-				title: 'Unsupported File',
-				message: 'You are trying to load a large file, ISLE Editor will be unresponsive',
-				detail: 'Do you still want to load this file?',
-				buttons: [ 'Proceed', 'Cancel' ]
-			});
-			if ( confirm === 1 ) return;
-		}
-
-		fs.readFile( filePath, 'utf-8', ( err ) => {
-			if ( err ) {
-				return err;
-			}
-			createWindow( filePath );
-		});
-		return;
-	}
-	dialog.showMessageBox( browserWindow, {
-		type: 'error',
-		title: 'Unsupported File',
-		message: 'You are trying to load a not supported file',
-		detail: 'The supported file extensions are \n\n' + EXTENSIONS.join( ' ,' ),
-		buttons: [ 'Ok' ]
-	});
-}
-
 ipcMain.on( 'save-file-as', ( e, { data }) => {
 	dialog.showSaveDialog({
 		filters: [
@@ -110,6 +73,44 @@ export function hideToolbar( browserWindow ) {
 export function openBrowser( url ) {
 	console.log( `Should open ${url} in the default browser...` ); // eslint-disable-line no-console
 	exec( 'xdg-open ' + url );
+}
+
+export function openFile( filePath, browserWindow ) {
+	console.log( 'Open file at path '+filePath );
+	if (
+		EXTENSIONS.indexOf( extname( filePath )
+			.slice( 1 )
+			.toLowerCase()
+		) !== -1 ||
+		!extname( filePath )
+	) {
+		const fileSize = fs.statSync( filePath )[ 'size' ];
+		if ( fileSize >= 1048576 ) { // 1MB
+			const confirm = dialog.showMessageBox( browserWindow, {
+				type: 'error',
+				title: 'Unsupported File',
+				message: 'You are trying to load a large file, ISLE Editor will be unresponsive',
+				detail: 'Do you still want to load this file?',
+				buttons: [ 'Proceed', 'Cancel' ]
+			});
+			if ( confirm === 1 ) return;
+		}
+
+		fs.readFile( filePath, 'utf-8', ( err ) => {
+			if ( err ) {
+				return err;
+			}
+			createWindow( filePath );
+		});
+		return;
+	}
+	dialog.showMessageBox( browserWindow, {
+		type: 'error',
+		title: 'Unsupported File',
+		message: 'You are trying to load a not supported file',
+		detail: 'The supported file extensions are \n\n' + EXTENSIONS.join( ' ,' ),
+		buttons: [ 'Ok' ]
+	});
 }
 
 export function open({ browserWindow }) {

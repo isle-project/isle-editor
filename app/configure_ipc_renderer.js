@@ -3,6 +3,7 @@
 import * as actions from 'actions';
 import { ipcRenderer } from 'electron';
 import Store from 'electron-store';
+import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import logger from 'debug';
 
@@ -37,6 +38,13 @@ function configureIpcRenderer( store ) {
 			});
 		}
 		config.set( 'mostRecentFilePath', filePath );
+
+		const fileList = config.get( 'recentFiles' ) || [];
+		if ( !contains( fileList, filePath ) ) {
+			fileList.unshift( filePath );
+		}
+		config.set( 'recentFiles', fileList );
+
 		config.set( 'mostRecentFileName', fileName );
 		config.set( 'mostRecentFileData', file );
 	});
@@ -84,6 +92,7 @@ function configureIpcRenderer( store ) {
 		config.set( 'mostRecentFileData', '' );
 		config.set( 'mostRecentPreamble', {} );
 		config.set( 'mostRecentPreambleText', '' );
+		config.set( 'recentFiles', [] );
 	});
 
 	ipcRenderer.on( 'close-editor', () => {

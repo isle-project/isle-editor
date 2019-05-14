@@ -1,7 +1,9 @@
 // MODULES //
 
-import { app, dialog, Menu, shell } from 'electron';
+import { app, dialog, Menu, MenuItem, shell } from 'electron';
+import { basename } from 'path';
 import Store from 'electron-store';
+import * as actions from './app/main/actions.js';
 import configureMenu from './app/main/configure_menu.js';
 import createWindow from './app/main/create_window.js';
 import window from './app/main/window_manager.js';
@@ -15,12 +17,14 @@ const config = new Store( 'ISLE' );
 let isReady = false;
 let pathToOpen;
 
-if ( process.argv[ 2 ]) {
+if ( process.argv[ 2 ] ) {
 	pathToOpen = process.argv[ 2 ];
 }
 else if ( config.has( 'mostRecentPath' ) ) {
 	pathToOpen = config.get( 'mostRecentPath' );
 }
+
+const recentFiles = config.get( 'recentFiles' );
 
 
 // FUNCTIONS //
@@ -47,6 +51,37 @@ function onReady() {
 		});
 	});
 	Menu.setApplicationMenu( Menu.buildFromTemplate( configureMenu({ app }) ) );
+	addRecentFilesMenu();
+}
+
+function openRecentFactory( path ) {
+	return ( menuItem, browserWindow ) => {
+		actions.openFile( path, browserWindow );
+	};
+}
+
+function addRecentFilesMenu() {
+	const currentMenu = Menu.getApplicationMenu();
+	const recents = currentMenu.items[ 0 ].submenu.items[ 6 ];
+
+	for ( let i = 0; i < recentFiles.length; i++ ) {
+		const path = recentFiles[ i ];
+		const item = new MenuItem({
+			label: basename( path ),
+			click: openRecentFactory( path )
+		});
+		recents.submenu.append( item );
+	}
+
+	const onClearRecent = () => {
+		recents.submenu.clear();
+		config.set( 'recentFiles', [] );
+	};
+	recents.submenu.append( new MenuItem({
+		label: 'Clear recently opened',
+		click: onClearRecent
+	}));
+	Menu.setApplicationMenu( currentMenu );
 }
 
 

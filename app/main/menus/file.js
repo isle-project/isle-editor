@@ -10,7 +10,7 @@ export default {
 		}
 	},
 	{
-		label: 'Open...',
+		label: 'Open File',
 		accelerator: 'CmdOrCtrl+O',
 		click: ( menuItem, browserWindow ) => {
 			actions.open({ browserWindow });
@@ -20,18 +20,25 @@ export default {
 		type: 'separator'
 	},
 	{
-		label: 'Save',
+		label: 'Save File',
 		accelerator: 'CmdOrCtrl+S',
 		click: ( menuItem, browserWindow ) => {
 			actions.save({ browserWindow });
 		}
 	},
 	{
-		label: 'Save As...',
+		label: 'Save File As',
 		accelerator: 'Shift+CmdOrCtrl+S',
 		click: ( menuItem, browserWindow ) => {
 			actions.saveAs({ browserWindow });
 		}
+	},
+	{
+		type: 'separator'
+	},
+	{
+		label: 'Open Recent',
+		submenu: []
 	},
 	{
 		type: 'separator'
