@@ -93,7 +93,16 @@ class Session {
 
 		// Boolean indicating whether user is logged in or not:
 		this.anonymous = true;
-		this.anonymousIdentifier = 'anonymous_'+randomstring( 8 );
+
+		// Assign unique ID to anonymous user:
+		const anonStorageID = 'ISLE_ANONYMOUS_' + config.server;
+		let item = localStorage.getItem( anonStorageID );
+		if ( item ) {
+			this.anonymousIdentifier = item;
+		} else {
+			this.anonymousIdentifier = 'anonymous_'+randomstring( 8 );
+			localStorage.setItem( anonStorageID, this.anonymousIdentifier );
+		}
 
 		// String for distinguishing multiple browser windows from each other:
 		this.sessionID = randomstring( 3 );
@@ -102,7 +111,7 @@ class Session {
 		this.user = {};
 
 		// If user token is available in local storage, login to server:
-		let item = localStorage.getItem( this.userVal );
+		item = localStorage.getItem( this.userVal );
 		if ( item ) {
 			item = JSON.parse( item );
 			this.handleLogin( item, true );
