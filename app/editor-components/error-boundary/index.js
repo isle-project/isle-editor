@@ -48,7 +48,7 @@ class ErrorBoundary extends Component {
 	}
 
 	render() {
-		console.log( 'Check whether error has been encountered...' );
+		debug( 'Check whether error has been encountered...' );
 		if ( this.state.hasError ) {
 			return <ErrorMessage msg={this.state.msg} code={this.props.code} />;
 		}
