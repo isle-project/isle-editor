@@ -56,6 +56,12 @@ export function resetError() {
 	};
 }
 
+export function resetToLastFile() {
+	return {
+		type: types.RESET_LAST_FILE
+	};
+}
+
 export function toggleScrolling() {
 	return {
 		type: types.TOGGLE_SCROLLING
