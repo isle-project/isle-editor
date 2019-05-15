@@ -31,7 +31,7 @@ ipcMain.on( 'save-file', ( e, { data, filePath }) => {
 		if ( err ) {
 			return;
 		}
-		e.sender.send( 'ISLE::file-loaded', {
+		e.sender.send( 'file-loaded', {
 			fileName: basename( filePath ),
 			filePath: filePath,
 			file: data
@@ -51,7 +51,7 @@ ipcMain.on( 'save-file-as', ( e, { data }) => {
 					return;
 				}
 				BrowserWindow.fromWebContents( e.sender ).setTitle( `ISLE -- ${filePath}` );
-				e.sender.send( 'ISLE::file-loaded', {
+				e.sender.send( 'file-loaded', {
 					fileName: basename( filePath ),
 					filePath: filePath,
 					file: data

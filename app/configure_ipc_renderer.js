@@ -3,6 +3,7 @@
 import * as actions from 'actions';
 import { ipcRenderer } from 'electron';
 import Store from 'electron-store';
+import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import logger from 'debug';
@@ -17,7 +18,7 @@ const config = new Store( 'ISLE' );
 // MAIN //
 
 function configureIpcRenderer( store ) {
-	ipcRenderer.on( 'ISLE::file-loaded', ( e, { file, fileName, filePath }) => {
+	ipcRenderer.on( 'file-loaded', ( e, { file, fileName, filePath }) => {
 		debug( 'Loaded file: '+ filePath );
 		store.dispatch( actions.fileLoaded({ fileName, filePath }) );
 		store.dispatch( actions.convertMarkdown( file ) );
@@ -39,7 +40,10 @@ function configureIpcRenderer( store ) {
 		}
 		config.set( 'mostRecentFilePath', filePath );
 
-		const fileList = config.get( 'recentFiles' ) || [];
+		let fileList = config.get( 'recentFiles' );
+		if ( !isArray( fileList ) ) {
+			fileList = [];
+		}
 		if ( !contains( fileList, filePath ) ) {
 			fileList.unshift( filePath );
 		}

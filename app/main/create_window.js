@@ -45,7 +45,7 @@ function createWindow( filePath, callback ) {
 				if ( err ) {
 					return debug( `Encountered an error: ${err.message}` );
 				}
-				mainWindow.webContents.send( 'ISLE::file-loaded', {
+				mainWindow.webContents.send( 'file-loaded', {
 					file,
 					fileName: path.basename( filePath ),
 					filePath
