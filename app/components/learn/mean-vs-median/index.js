@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import Table from 'react-bootstrap/Table';
 import { VictoryChart, VictoryCursorContainer, VictoryLine } from 'victory';
 import logger from 'debug';
 import abs from '@stdlib/math/base/special/abs';
@@ -14,6 +15,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import randu from '@stdlib/random/base/randu';
 import linspace from '@stdlib/math/utils/linspace';
 import lognormal from '@stdlib/stats/base/dists/lognormal';
+import incrmeanstdev from '@stdlib/stats/incr/meanstdev';
 import SessionContext from 'session/context.js';
 
 
@@ -45,59 +47,93 @@ class MeanVSMedian extends Component {
 			meanLognormalGuess: 1,
 			medianLognormalGuess: 1,
 			showLognormalMean: false,
-			showLognormalMedian: false
+			showLognormalMedian: false,
+			singleStats: new Float64Array( 2 ),
+			groupStats: new Float64Array( 2 )
 		};
+		this.singleAcc = incrmeanstdev( this.state.singleStats );
+		this.groupAcc = incrmeanstdev( this.state.groupStats );
 	}
 
 	componentDidMount() {
 		this.generateData();
+		const session = this.context;
+		this.unsubscribe = session.subscribe( ( type, action ) => {
+			if (
+				type === 'member_action' &&
+				(
+					action.type === 'MEDIAN_GUESS_DISTANCE' ||
+					action.type === 'MEAN_GUESS_DISTANCE'
+				)
+			) {
+				const value = action.value;
+				this.groupAcc( value );
+				this.setState({
+					groupStats: this.state.groupStats
+				});
+			}
+		});
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
 	}
 
 	medianEvaluation = ( evt ) => {
 		evt.stopPropagation();
 		if ( !this.state.showLognormalMedian ) {
-			this.setState({ showLognormalMedian: true }, () => {
-				let distance = abs( lognormal.median( this.state.mu, this.state.sigma ) - this.state.medianLognormalGuess );
-				let msg = 'A bit off... Try again!';
-				let xmax = this.state.lognormalDomain.x[ 1 ];
-				if ( distance < xmax/10 ) {
-					msg = 'Good!';
-				}
-				if ( distance < xmax/20 ) {
-					msg = 'Very Good!';
-				}
-				const session = this.context;
-				session.addNotification({
-					title: 'Score',
-					message: msg,
-					position: 'tc',
-					level: 'success'
-				});
+			let distance = abs( lognormal.median( this.state.mu, this.state.sigma ) - this.state.medianLognormalGuess );
+			let msg = 'A bit off... Try again!';
+			let xmax = this.state.lognormalDomain.x[ 1 ];
+			if ( distance < xmax/10 ) {
+				msg = 'Good!';
+			}
+			if ( distance < xmax/20 ) {
+				msg = 'Very Good!';
+			}
+			this.singleAcc( distance );
+			const session = this.context;
+			session.addNotification({
+				title: 'Score',
+				message: msg,
+				position: 'tc',
+				level: 'success'
 			});
+			session.log({
+				id: this.props.id,
+				type: 'MEDIAN_GUESS_DISTANCE',
+				value: distance
+			});
+			this.setState({ showLognormalMedian: true });
 		}
 	}
 
 	meanEvaluation = ( evt ) => {
 		evt.stopPropagation();
 		if ( !this.state.showLognormalMean ) {
-			this.setState({ showLognormalMean: true }, () => {
-				let distance = abs( lognormal.mean( this.state.mu, this.state.sigma ) - this.state.meanLognormalGuess );
-				let msg = 'A bit off... Try again!';
-				let xmax = this.state.lognormalDomain.x[ 1 ];
-				if ( distance < xmax/10 ) {
-					msg = 'Good!';
-				}
-				if ( distance < xmax/20 ) {
-					msg = 'Very Good!';
-				}
-				const session = this.context;
-				session.addNotification({
-					title: 'Score',
-					message: msg,
-					position: 'tc',
-					level: 'success'
-				});
+			let distance = abs( lognormal.mean( this.state.mu, this.state.sigma ) - this.state.meanLognormalGuess );
+			let msg = 'A bit off... Try again!';
+			let xmax = this.state.lognormalDomain.x[ 1 ];
+			if ( distance < xmax/10 ) {
+				msg = 'Good!';
+			}
+			if ( distance < xmax/20 ) {
+				msg = 'Very Good!';
+			}
+			this.singleAcc( distance );
+			const session = this.context;
+			session.addNotification({
+				title: 'Score',
+				message: msg,
+				position: 'tc',
+				level: 'success'
 			});
+			session.log({
+				id: this.props.id,
+				type: 'MEAN_GUESS_DISTANCE',
+				value: distance
+			});
+			this.setState({ showLognormalMean: true });
 		}
 	}
 
@@ -220,6 +256,34 @@ class MeanVSMedian extends Component {
 								<Button variant="primary" size="lg" onClick={this.generateData} >Generate new data</Button>
 							</div>
 						</Row>
+						<Row>
+						{this.props.showStatistics ?
+							<div>
+								<h1>Distance Statistics</h1>
+								<Table bordered>
+									<thead>
+										<tr>
+											<th></th>
+											<th>You</th>
+											<th>Group</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th>Average</th>
+											<td>{roundn( this.state.singleStats[0], -2 )}</td>
+											<td>{roundn( this.state.groupStats[0], -2 )}</td>
+										</tr>
+										<tr>
+											<th>SD</th>
+											<td>{roundn( this.state.singleStats[1], -2 )}</td>
+											<td>{roundn( this.state.groupStats[1], -2 )}</td>
+										</tr>
+									</tbody>
+								</Table>
+							</div> : null
+						}
+						</Row>
 					</Container>
 				</Card.Body>
 			</Card>
@@ -232,12 +296,16 @@ class MeanVSMedian extends Component {
 
 MeanVSMedian.defaultProps = {
 	header: 'Measures of Location: Mean vs. Median',
-	intro: null
+	id: 'mean_vs_median',
+	intro: null,
+	showStatistics: false
 };
 
 MeanVSMedian.propTypes = {
 	header: PropTypes.string,
-	intro: PropTypes.node
+	id: PropTypes.string,
+	intro: PropTypes.node,
+	showStatistics: PropTypes.bool
 };
 
 MeanVSMedian.contextType = SessionContext;
