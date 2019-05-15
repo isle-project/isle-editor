@@ -95,6 +95,11 @@
 		"description": "Absolute or relative path to Markdown file with notes for the instructor or the teaching assistants"
 	},
 	{
+		"name": "noLoginDismiss",
+		"value": "noLoginDismiss: ${1:true}",
+		"description": "Do not automatically dismiss the signup/login notification window"
+	},
+	{
 		"name": "css",
 		"value": "css: ${1:}",
 		"description": "Absolute or relative path to CSS file to be loaded"

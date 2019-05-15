@@ -88,7 +88,7 @@ class StatusBar extends Component {
 					title: 'Login',
 					message: 'Please connect with your ISLE account or create a new one.',
 					level: 'success',
-					autoDismiss: 15,
+					autoDismiss: session.config.noLoginDismiss ? 0 : 15,
 					position: 'tl',
 					children: <div style={{ marginBottom: '30px' }}>
 						<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.signup}>Sign up</Button>
