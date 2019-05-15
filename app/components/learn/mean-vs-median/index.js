@@ -31,6 +31,8 @@ const debug = logger( 'isle:mean-vs-median' );
 *
 * @property {string} header - title of the panel in which the mean and the median will be generated
 * @property {node} intro - any introductory material that may be needed
+* @property {boolean} showStatistics - controls whether to display student and group performance statistics
+* @property {Object} style - CSS inline styles
 */
 class MeanVSMedian extends Component {
 	constructor( props ) {
@@ -236,7 +238,7 @@ class MeanVSMedian extends Component {
 
 	render() {
 		return (
-			<Card>
+			<Card style={this.props.style} >
 				<Card.Header as="h3">
 					{this.props.header}
 				</Card.Header>
@@ -258,30 +260,27 @@ class MeanVSMedian extends Component {
 						</Row>
 						<Row>
 						{this.props.showStatistics ?
-							<div>
-								<h1>Distance Statistics</h1>
-								<Table bordered>
-									<thead>
-										<tr>
-											<th></th>
-											<th>You</th>
-											<th>Group</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<th>Average</th>
-											<td>{roundn( this.state.singleStats[0], -2 )}</td>
-											<td>{roundn( this.state.groupStats[0], -2 )}</td>
-										</tr>
-										<tr>
-											<th>SD</th>
-											<td>{roundn( this.state.singleStats[1], -2 )}</td>
-											<td>{roundn( this.state.groupStats[1], -2 )}</td>
-										</tr>
-									</tbody>
-								</Table>
-							</div> : null
+							<Table bordered>
+								<thead>
+									<tr>
+										<th></th>
+										<th>You</th>
+										<th>Group</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th>Average Distance</th>
+										<td>{roundn( this.state.singleStats[0], -2 )}</td>
+										<td>{roundn( this.state.groupStats[0], -2 )}</td>
+									</tr>
+									<tr>
+										<th>SD</th>
+										<td>{roundn( this.state.singleStats[1], -2 )}</td>
+										<td>{roundn( this.state.groupStats[1], -2 )}</td>
+									</tr>
+								</tbody>
+							</Table> : null
 						}
 						</Row>
 					</Container>
@@ -298,14 +297,16 @@ MeanVSMedian.defaultProps = {
 	header: 'Measures of Location: Mean vs. Median',
 	id: 'mean_vs_median',
 	intro: null,
-	showStatistics: false
+	showStatistics: false,
+	style: {}
 };
 
 MeanVSMedian.propTypes = {
 	header: PropTypes.string,
 	id: PropTypes.string,
 	intro: PropTypes.node,
-	showStatistics: PropTypes.bool
+	showStatistics: PropTypes.bool,
+	style: PropTypes.object
 };
 
 MeanVSMedian.contextType = SessionContext;
