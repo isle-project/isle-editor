@@ -22,11 +22,9 @@ class OutputPanel extends Component {
 	render() {
 		return (
 			<div
-				className="outputPanel"
+				className="data-explorer-output-panel"
 				style={{
-					height: (window.innerHeight*0.9) - 80,
-					overflowY: 'scroll',
-					padding: '5px'
+					height: ( window.innerHeight*0.9 ) - 80
 				}}
 				ref={( div ) => {
 					this.outputPanel = div;

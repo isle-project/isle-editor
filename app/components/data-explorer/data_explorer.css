@@ -16,7 +16,7 @@
 }
 
 .data-explorer-output-header {
-	font-size: 18px;
+	font-size: 1.75rem;
 	color: #2e4468;
 	font-weight: 600;
 	float: left;
@@ -36,6 +36,8 @@
 	position: fixed;
 	top: 10%;
 	min-width: 500px;
+	font-size: 1rem;
+	text-align: left;
 }
 
 .data-explorer-draggable-bar {
@@ -58,6 +60,13 @@
 	opacity: 0.9;
 }
 
-.outputPanel pre {
+.data-explorer-output-panel {
+	overflow-y: scroll;
+	padding: 5px;
+	text-align: left;
+	font-size: 1rem;
+}
+
+.data-explorer-output-panel pre {
 	position: relative;
 }

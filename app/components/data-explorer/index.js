@@ -109,6 +109,7 @@ const debug = logger( 'isle:data-explorer' );
 * @property {boolean} showEditor - boolean indicating whether to show the editor to the user
 * @property {boolean} showTestDecisions - boolean indicating whether to show the decisions made for each test based on the calculated p-values
 * @property {Array<string>} statistics - array of strings indicating which summary statistics may be calculated
+* @property {Object} style - CSS inline styles for main container
 * @property {Array<string>} tables - array of strings indicating which tables may be created from the data
 * @property {Array<Object>} tabs - array of objects and keys indicating any custom tabs to add
 * @property {Array<string>} tests - array of strings indicating which hypothesis tests to include
@@ -992,7 +993,7 @@ class DataExplorer extends Component {
 				</Tab.Pane> : null
 			}
 		</Tab.Content>;
-		const mainContainer = <Row className="no-gutter data-explorer">
+		const mainContainer = <Row className="no-gutter data-explorer" style={this.props.style} >
 			<Col xs={6} md={6}>
 				<Card>
 					<Navbar className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
@@ -1265,7 +1266,8 @@ DataExplorer.defaultProps = {
 	editorTitle: 'Report',
 	histogramDensities: true,
 	showEditor: false,
-	showTestDecisions: true
+	showTestDecisions: true,
+	style: {}
 };
 
 DataExplorer.propTypes = {
@@ -1285,6 +1287,7 @@ DataExplorer.propTypes = {
 	showEditor: PropTypes.bool,
 	showTestDecisions: PropTypes.bool,
 	statistics: PropTypes.array,
+	style: PropTypes.object,
 	tables: PropTypes.array,
 	tabs: PropTypes.array,
 	tests: PropTypes.array,
