@@ -80,7 +80,7 @@ RealTimeMetrics.defaultProps = {
 };
 
 RealTimeMetrics.propTypes = {
-	for: PropTypes.string.isRequired,
+	for: PropTypes.array.isRequired,
 	onData: PropTypes.func,
 	onDatum: PropTypes.func,
 	returnFullObject: PropTypes.bool

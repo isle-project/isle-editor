@@ -88,7 +88,7 @@
 	"ProportionsSurvey": "components/proportions-survey",
 	"Queue": "components/queue",
 	"RangeQuestion": "components/range-question",
-	"RealtimeMetrics": "components/metrics/realtime",
+	"RealTimeMetrics": "components/metrics/realtime",
 	"Recorder": "components/recorder",
 	"Revealer": "components/revealer",
 	"RHelp": "components/r/help",
