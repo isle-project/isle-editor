@@ -61,6 +61,7 @@ class LikertScale extends Component {
 	}
 
 	render() {
+		const disabled = this.props.noMultipleResponses && this.state.submitted;
 		return (
 			<Card className="center" style={{ width: '75%' }} >
 				<Card.Body>
@@ -75,6 +76,7 @@ class LikertScale extends Component {
 									checked={this.state.value === elem}
 									value={elem}
 									key={idx}
+									disabled={disabled}
 									inline
 									onClick={this.handleChange}
 								/>
@@ -86,13 +88,13 @@ class LikertScale extends Component {
 						className="submit-button"
 						variant="primary"
 						size="sm"
-						disabled={!this.state.value}
+						disabled={!this.state.value || disabled}
 						onClick={this.submitHandler}
 						style={{
 							marginRight: '5px'
 						}}
 					>
-						{ ( this.state.submitted ) ? 'Resubmit' : 'Submit' }
+						{ ( this.state.submitted && !this.props.noMultipleResponses ) ? 'Resubmit' : 'Submit' }
 					</Button>
 					<ResponseVisualizer
 						buttonLabel="Responses"
@@ -115,6 +117,7 @@ class LikertScale extends Component {
 LikertScale.propTypes = {
 	question: PropTypes.string,
 	options: PropTypes.array,
+	noMultipleResponses: PropTypes.bool,
 	disableSubmitNotification: PropTypes.bool
 };
 
@@ -127,6 +130,7 @@ LikertScale.defaultProps = {
 		'Agree',
 		'Strongly agree'
 	],
+	noMultipleResponses: false,
 	disableSubmitNotification: false
 };
 
