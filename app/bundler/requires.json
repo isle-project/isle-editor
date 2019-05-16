@@ -63,6 +63,7 @@
 	"LikertScale": "components/likert-scale",
 	"MatchListQuestion": "components/match-list-question",
 	"Metrics": "components/metrics/db",
+	"MetricsContingencyTable": "components/metrics/contingency-table",
 	"Modal": "react-bootstrap/Modal",
 	"MultiCards": "components/multi-cards",
 	"MultipleChoiceMatrix": "components/multiple-choice-matrix",

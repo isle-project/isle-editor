@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import contains from '@stdlib/assert/contains';
+import indexOf from '@stdlib/utils/index-of';
 import SessionContext from 'session/context.js';
 
 
@@ -39,15 +39,16 @@ class RealTimeMetrics extends Component {
 					if ( action.type === 'FOCUS_ELEMENT' || action.type === 'LOSE_FOCUS_ELEMENT' ) {
 						return null;
 					}
-					if ( contains( this.props.for, action.id ) ) {
+					const idx = indexOf( this.props.for, action.id );
+					if ( idx !== -1 ) {
 						let actions = this.state.actions.slice();
 						actions.push( this.props.returnFullObject ? action : action.value );
 						this.setState({
 							actions
 						}, () => {
 							debug( 'A new value for the given IDs was submitted: ' + JSON.stringify( this.state.actions 	) );
-							this.props.onData( this.state.actions );
-							this.props.onDatum( this.state.actions[ this.state.actions.length-1 ]);
+							this.props.onData( this.state.actions, idx );
+							this.props.onDatum( this.state.actions[ this.state.actions.length-1 ], idx );
 						});
 					}
 				}

@@ -88,6 +88,7 @@ const SCOPE = {
 	MarkdownEditor: Loadable( () => import( 'components/markdown-editor' ) ),
 	MatchListQuestion: Loadable( () => import( 'components/match-list-question' ) ),
 	Metrics: Loadable( () => import( 'components/metrics/db' ) ),
+	MetricsContingencyTable: Loadable( () => import( 'components/metrics/contingency-table' ) ),
 	MultiCards: Loadable( () => import( 'components/multi-cards' ) ),
 	MultipleChoiceMatrix: Loadable( () => import( 'components/multiple-choice-matrix' ) ),
 	MultipleChoiceQuestion: Loadable( () => import( 'components/multiple-choice-question' ) ),
