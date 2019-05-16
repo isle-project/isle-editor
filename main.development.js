@@ -24,7 +24,7 @@ else if ( config.has( 'mostRecentPath' ) ) {
 	pathToOpen = config.get( 'mostRecentPath' );
 }
 
-const recentFiles = config.get( 'recentFiles' );
+const recentFiles = config.get( 'recentFiles' ) || [];
 
 
 // FUNCTIONS //
