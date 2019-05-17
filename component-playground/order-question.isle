@@ -1,23 +1,18 @@
 ---
 title: "Order Question"
-author: Philipp Burckhardt
-date: Au 29th, 2018
+author: The ISLE Authors
+date: May 17th, 2019
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
  # Order Question
 
-<br />
-
-<Playground
-    style={{
-        marginLeft: 0,
-        width: '1000px'
-    }}
-    code={`
-<OrderQuestion
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`<OrderQuestion
     question="Order the letters alphabetically"
     options={[
         { id: 0, text: "A" },
@@ -28,11 +23,13 @@ hideToolbar: true
         { id: 5, text: "Z" }
     ]}
 />`}
-    scope={{
-        OrderQuestion
-    }}
-/>
-
+            scope={{
+                OrderQuestion
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 
 #### Options:
 
@@ -49,3 +46,7 @@ hideToolbar: true
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order. Default: `onSubmit() {}`.
+
+        </Text>
+    </Col>
+</Row>
