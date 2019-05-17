@@ -16,6 +16,7 @@ import randu from '@stdlib/random/base/randu';
 import linspace from '@stdlib/math/utils/linspace';
 import lognormal from '@stdlib/stats/base/dists/lognormal';
 import incrmeanstdev from '@stdlib/stats/incr/meanstdev';
+import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
 
 
@@ -284,6 +285,10 @@ class MeanVSMedian extends Component {
 						}
 						</Row>
 					</Container>
+					{this.props.feedback ?
+						<FeedbackButtons id="mean-vs-median" /> :
+						null
+					}
 				</Card.Body>
 			</Card>
 		);
@@ -294,6 +299,7 @@ class MeanVSMedian extends Component {
 // PROPERTIES //
 
 MeanVSMedian.defaultProps = {
+	feedback: false,
 	header: 'Measures of Location: Mean vs. Median',
 	id: 'mean_vs_median',
 	intro: null,
@@ -302,6 +308,7 @@ MeanVSMedian.defaultProps = {
 };
 
 MeanVSMedian.propTypes = {
+	feedback: PropTypes.bool,
 	header: PropTypes.string,
 	id: PropTypes.string,
 	intro: PropTypes.node,
