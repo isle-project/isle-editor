@@ -15,7 +15,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import randu from '@stdlib/random/base/randu';
 import linspace from '@stdlib/math/utils/linspace';
 import lognormal from '@stdlib/stats/base/dists/lognormal';
-import incrmeanstdev from '@stdlib/stats/incr/meanstdev';
+import incrmean from '@stdlib/stats/incr/mean';
 import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
 
@@ -50,12 +50,18 @@ class MeanVSMedian extends Component {
 			meanLognormalGuess: 1,
 			medianLognormalGuess: 1,
 			showLognormalMean: false,
-			showLognormalMedian: false,
-			singleStats: new Float64Array( 2 ),
-			groupStats: new Float64Array( 2 )
+			showLognormalMedian: false
 		};
-		this.singleAcc = incrmeanstdev( this.state.singleStats );
-		this.groupAcc = incrmeanstdev( this.state.groupStats );
+
+		const opts = {};
+		if ( props.seed ) {
+			opts.seed = props.seed;
+		}
+		this.rand = randu.factory( opts );
+		this.singleAccMean = incrmean();
+		this.groupAccMean = incrmean();
+		this.singleAccMedian = incrmean();
+		this.groupAccMedian = incrmean();
 	}
 
 	componentDidMount() {
@@ -63,17 +69,17 @@ class MeanVSMedian extends Component {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if (
-				type === 'member_action' &&
-				(
-					action.type === 'MEDIAN_GUESS_DISTANCE' ||
-					action.type === 'MEAN_GUESS_DISTANCE'
-				)
+				type === 'member_action'
 			) {
-				const value = action.value;
-				this.groupAcc( value );
-				this.setState({
-					groupStats: this.state.groupStats
-				});
+				if ( action.type === 'MEDIAN_GUESS_DISTANCE' ) {
+					const value = action.value;
+					this.groupAccMedian( value );
+					this.forceUpdate();
+				} else if ( action.type === 'MEAN_GUESS_DISTANCE' ) {
+					const value = action.value;
+					this.groupAccMean( value );
+					this.forceUpdate();
+				}
 			}
 		});
 	}
@@ -94,7 +100,7 @@ class MeanVSMedian extends Component {
 			if ( distance < xmax/20 ) {
 				msg = 'Very Good!';
 			}
-			this.singleAcc( distance );
+			this.singleAccMedian( distance );
 			const session = this.context;
 			session.addNotification({
 				title: 'Score',
@@ -123,7 +129,7 @@ class MeanVSMedian extends Component {
 			if ( distance < xmax/20 ) {
 				msg = 'Very Good!';
 			}
-			this.singleAcc( distance );
+			this.singleAccMean( distance );
 			const session = this.context;
 			session.addNotification({
 				title: 'Score',
@@ -141,8 +147,8 @@ class MeanVSMedian extends Component {
 	}
 
 	generateData = () => {
-		let mu = randu() * 1.0 - 0.5;
-		let sigma = randu() * 2.0 + 0.01;
+		let mu = this.rand() * 1.0 - 0.5;
+		let sigma = this.rand() * 2.0 + 0.01;
 		let xmax = 4 + lognormal.stdev( mu, sigma );
 		let x = linspace( 0, xmax, 80 );
 		let lognormalData = x.map( d => {
@@ -271,14 +277,14 @@ class MeanVSMedian extends Component {
 								</thead>
 								<tbody>
 									<tr>
-										<th>Average Distance</th>
-										<td>{roundn( this.state.singleStats[0], -2 )}</td>
-										<td>{roundn( this.state.groupStats[0], -2 )}</td>
+										<th>Average Distance from Mean:</th>
+										<td>{roundn( this.singleAccMean(), -2 )}</td>
+										<td>{roundn( this.groupAccMean(), -2 )}</td>
 									</tr>
 									<tr>
-										<th>SD</th>
-										<td>{roundn( this.state.singleStats[1], -2 )}</td>
-										<td>{roundn( this.state.groupStats[1], -2 )}</td>
+										<th>Average Distance from Median:</th>
+										<td>{roundn( this.singleAccMedian(), -2 )}</td>
+										<td>{roundn( this.groupAccMedian(), -2 )}</td>
 									</tr>
 								</tbody>
 							</Table> : null
@@ -303,6 +309,7 @@ MeanVSMedian.defaultProps = {
 	header: 'Measures of Location: Mean vs. Median',
 	id: 'mean_vs_median',
 	intro: null,
+	seed: null,
 	showStatistics: false,
 	style: {}
 };
@@ -312,6 +319,7 @@ MeanVSMedian.propTypes = {
 	header: PropTypes.string,
 	id: PropTypes.string,
 	intro: PropTypes.node,
+	seed: PropTypes.number,
 	showStatistics: PropTypes.bool,
 	style: PropTypes.object
 };
