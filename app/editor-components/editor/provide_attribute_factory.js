@@ -96,7 +96,7 @@ function factory( monaco ) {
 									val += ', ';
 								}
 							});
-						} else {
+						} else if ( x.default && x.default.length ) {
 							val += x.default.join( ', ' );
 						}
 						insertText = x.name+'={['+val+']}';
