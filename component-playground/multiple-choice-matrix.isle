@@ -9,17 +9,10 @@ hideToolbar: true
 
 # Multiple Choice Matrix
 
-<br />
-
-
-<Playground
-    style={{
-        top: 0,
-        left: 0,
-        width: '1200px'
-    }}
-    code={`
-<MultipleChoiceMatrix
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`<MultipleChoiceMatrix
     title="Do you think these concepts are important for an introductory statistics course, and do you (or your department) cover them in your introductory courses?" id="topics"
     questions={[
         'Data Visualizations',
@@ -29,7 +22,7 @@ hideToolbar: true
         'Calculus-based probability',
         'Sampling distributions',
         'Confidence intervals (traditional, formula-based)',
-        'Boostrapping',
+        'Bootstrapping',
         'Hypothesis testing (traditional, e.g. t-test or chi-square formulas and tables)',
         'Simple linear regression',
         'Bayesian statistics',
@@ -37,14 +30,14 @@ hideToolbar: true
     ]}
     type="checkbox"
     answers={[ 'I cover it', 'I think it\'s important' ]}
-/>
-    `}
-    scope={{
-        MultipleChoiceMatrix
-    }}
-/>
-
-<br />
+/>`}
+            scope={{
+                MultipleChoiceMatrix
+            }}
+        />
+    </Col>
+    <Col md={6}>
+        <Text>
 
 #### Options:
 
@@ -56,3 +49,7 @@ hideToolbar: true
 * __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
 * __onChange__ | `function`: callback invoked when the value of a checkbox / radio button changes; invoked with the two-dimensional boolean array of the active status for each answer option. Default: `onChange() {}`.
 * __onSubmit__ | `function`: undefined. Default: `onSubmit() {}`.
+
+        </Text>
+    </Col>
+</Row>

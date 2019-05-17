@@ -1,7 +1,7 @@
 ---
 title: "Dashboard"
-author: Philipp Burckhardt
-date: Dec 27th, 2017
+author: The ISLE Authors
+date: April 1st, 2019
 state:
 server: https://isle.heinz.cmu.edu
 hideToolbar: true
@@ -9,30 +9,21 @@ hideToolbar: true
 
 # Dashboard
 
-<br />
-
-
-<Playground 
-    style={{
-        marginLeft: 0,
-        width: '1200px',
-    }}
-    code={
-    `
-<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>
+<Row>
+    <Col md={6}>
+        <Playground
+            code={`<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>
     <SliderInput
         legend="Input value"
     />
-</Dashboard>
-    `
-    }
-    scope={{
-        Dashboard, SliderInput
-    }}
-/>
-
-
-<br />
+</Dashboard>`}
+            scope={{
+                Dashboard, SliderInput
+            }}
+        />
+    <Col>
+    <Col md={6}>
+        <Text>
 
 #### Options:
 
@@ -45,3 +36,7 @@ hideToolbar: true
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onGenerate__ | `function`: function invoked when the button is clicked or one of the dashboard input values changes (if `autoUpdate` is set to `true`). The function is called with the values of the input fields, in the order in which they are placed in the dashboard. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: card title. Default: `''`.
+
+        </Text>
+    </Col>
+</Row>
