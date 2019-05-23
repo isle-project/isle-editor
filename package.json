@@ -237,7 +237,7 @@
     "modclean": "^2.0.0",
     "monaco-editor-webpack-plugin": "^1.7.0",
     "null-loader": "^2.0.0",
-    "react-hot-loader": "^4.8.0",
+    "react-hot-loader": "^4.8.8",
     "react-test-renderer": "16.8.6",
     "redux-devtools": "3.5.0",
     "redux-devtools-dock-monitor": "^1.1.3",
