@@ -4,6 +4,7 @@ import { app, dialog, ipcMain, BrowserWindow } from 'electron';
 import fs from 'fs';
 import { extname, basename } from 'path';
 import logger from 'debug';
+import Store from 'electron-store';
 import { EXTENSIONS } from './globals.js';
 import createWindow from './create_window.js';
 import { exec } from 'child_process';
@@ -12,6 +13,7 @@ import { exec } from 'child_process';
 // VARIABLES //
 
 const debug = logger( 'isle-editor:main' );
+const config = new Store( 'ISLE' );
 
 
 // MAIN //
@@ -44,7 +46,7 @@ ipcMain.on( 'save-file-as', ( e, { data, filePath }) => {
 		filters: [
 			{ name: 'isle', extensions: [ 'isle' ]}
 		],
-		buttonLabel: 'Save lesson',
+		buttonLabel: 'Save file',
 		defaultPath: filePath
 	}, ( filePath ) => {
 		if ( filePath ) {
@@ -116,13 +118,16 @@ export function openFile( filePath, browserWindow ) {
 }
 
 export function open({ browserWindow }) {
+	const filePath = config.get( 'mostRecentFilePath' );
 	dialog.showOpenDialog( browserWindow, {
 		properties: [ 'openFile' ],
 		filters: [
 			{ name: 'isle', extensions: [ 'isle' ]},
 			{ name: 'markdown', extensions: [ 'markdown', 'md', 'mdown', 'mkd', 'mdwn' ]},
 			{ name: 'html', extensions: [ 'html' ]}
-		]
+		],
+		buttonLabel: 'Open file',
+		defaultPath: filePath
 	}, ( fileNames ) => {
 		if ( fileNames === void 0 ) {
 			return;
