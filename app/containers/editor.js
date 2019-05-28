@@ -28,6 +28,13 @@ const debug = logger( 'isle-editor' );
 const linter = new Linter();
 
 
+// FUNCTIONS //
+
+const updateSplitPos = ( size ) => {
+	localStorage.setItem( 'splitPos', size );
+};
+
+
 // MAIN //
 
 class App extends Component {
@@ -47,10 +54,6 @@ class App extends Component {
 		yaml = jsYAML.default;
 	}
 
-	componentWillUnmount() {
-		localStorage.setItem( 'splitPos', this.state.splitPos );
-	}
-
 	onChange = ( value ) => {
 		debug( 'Editor text changed...' );
 		const handleChange = ( value ) => {
@@ -65,6 +68,18 @@ class App extends Component {
 			this.debouncedChange = debounce( handleChange, this.props.renderInterval );
 			this.debouncedChange( value );
 		}
+	}
+
+	handleSplitChange = ( size ) => {
+		if ( this.debouncedSplitUpdate ) {
+			this.debouncedSplitUpdate( size );
+		} else {
+			this.debouncedSplitUpdate = debounce( updateSplitPos, 1000 );
+			this.debouncedSplitUpdate( size );
+		}
+		this.setState({
+			splitPos: size
+		});
 	}
 
 	handlePreambleChange = ( text ) => {
@@ -125,11 +140,7 @@ class App extends Component {
 					split="vertical"
 					primary="second"
 					defaultSize={this.state.splitPos}
-					onChange={size => {
-						this.setState({
-							splitPos: size
-						});
-					}}
+					onChange={this.handleSplitChange}
 					style={{
 						'position': 'absolute',
 						'top': !hideToolbar ? 88 : 0,
@@ -204,6 +215,7 @@ App.propTypes = {
 	markdown: PropTypes.string.isRequired,
 	preamble: PropTypes.object.isRequired,
 	preambleText: PropTypes.string.isRequired,
+	renderInterval: PropTypes.number.isRequired,
 	saveLintErrors: PropTypes.func.isRequired,
 	updatePreamble: PropTypes.func.isRequired
 };
