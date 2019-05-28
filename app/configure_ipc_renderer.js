@@ -69,8 +69,9 @@ function configureIpcRenderer( store ) {
 	});
 
 	ipcRenderer.on( 'save-file', () => {
-		const data = store.getState().markdown.markdown;
-		const filePath = store.getState().markdown.filePath;
+		const state = store.getState();
+		const data = state.markdown.markdown;
+		const filePath = state.markdown.filePath;
 		if ( !filePath ) {
 			ipcRenderer.send( 'save-file-as', {
 				data
@@ -84,9 +85,12 @@ function configureIpcRenderer( store ) {
 	});
 
 	ipcRenderer.on( 'save-file-as', () => {
-		const data = store.getState().markdown.markdown;
+		const state = store.getState();
+		const data = state.markdown.markdown;
+		const filePath = state.markdown.filePath;
 		ipcRenderer.send( 'save-file-as', {
-			data
+			data,
+			filePath
 		});
 	});
 

@@ -39,11 +39,13 @@ ipcMain.on( 'save-file', ( e, { data, filePath }) => {
 	});
 });
 
-ipcMain.on( 'save-file-as', ( e, { data }) => {
+ipcMain.on( 'save-file-as', ( e, { data, filePath }) => {
 	dialog.showSaveDialog({
 		filters: [
 			{ name: 'isle', extensions: [ 'isle' ]}
-		]
+		],
+		buttonLabel: 'Save lesson',
+		defaultPath: filePath
 	}, ( filePath ) => {
 		if ( filePath ) {
 			fs.writeFile( filePath, data, 'utf-8', ( err ) => {
