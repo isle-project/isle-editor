@@ -218,7 +218,7 @@
     "doctrine": "^3.0.0",
     "electron": "5.0.2",
     "electron-packager": "13.1.1",
-    "enzyme": "3.9.0",
+    "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "^1.13.0",
     "eslint": "^5.15.3",
     "eslint-plugin-import": "^2.11.0",
