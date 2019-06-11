@@ -9,10 +9,8 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder, WhammyRecorder } from 'recordrtc';
 import VoiceControl from 'components/voice-control';
-import inEditor from 'utils/is-electron';
 import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
-import getScreenId from './get_screen_id.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import './recorder.css';
 
@@ -20,7 +18,6 @@ import './recorder.css';
 // VARIABLES //
 
 const debug = logger( 'isle:recorder' );
-navigator.getUserMedia = navigator.getUserMedia || navigator.mediaDevices.getUserMedia || navigator.webkitGetUserMedia;
 
 
 // FUNCTIONS //
@@ -58,7 +55,7 @@ function getAudioConfig({ bitsPerSecond }) {
 	};
 }
 
-function getVideoConfig({ bitsPerSecond }) {
+function getVideoConfig({ bitsPerSecond, screen }) {
 	let mimeType = 'video/x-matroska;codecs=avc1'; // MKV
 	let recorderType = MediaStreamRecorder;
 
@@ -84,12 +81,23 @@ function getVideoConfig({ bitsPerSecond }) {
 			}
 		}
 	}
-	return {
+	const out = {
 		mimeType,
-		recorderType,
 		type: 'video',
 		bitsPerSecond: bitsPerSecond
 	};
+	if ( !screen ) {
+		out.recorderType = recorderType;
+	}
+	return out;
+}
+
+function keepStreamActive(stream) {
+	var video = document.createElement('video');
+	video.muted = true;
+	video.srcObject = stream;
+	video.style.display = 'none';
+	(document.body || document.documentElement).appendChild(video);
 }
 
 
@@ -124,21 +132,11 @@ class Recorder extends Component {
 
 		this.state = {
 			recording: false,
-			available: true,
 			finished: false,
 			uploaded: false,
 			hidden: false,
 			selectedSources: selectedSources
 		};
-
-		window.getChromeExtensionStatus( ( status ) => {
-			debug( 'Extension status: ' + status );
-			if ( status !== 'installed-enabled' ) {
-				this.setState({
-					available: false
-				});
-			}
-		});
 	}
 
 	componentDidMount() {
@@ -189,27 +187,30 @@ class Recorder extends Component {
 		});
 	}
 
-	captureScreen( clbk ) {
-		getScreenId( ( error, sourceId, screenConstraints ) => {
-			if ( error ) {
-				this.handleError( `Encountered an error: ${error.message}.` );
+	captureScreen( onSuccess ) {
+		const screenConstraints = {
+			video: {
+				displaySurface: 'monitor', // monitor, window, application, browser
+				logicalSurface: true,
+				cursor: 'always' // never, always, motion
 			}
-			navigator.getUserMedia( screenConstraints, clbk, ( error ) => {
-				const msg = `Failed to capture your screen (error: ${error.message})`;
-				this.handleError( msg );
-			});
-		});
+		};
+		const onError = ( error ) => {
+			const msg = `Failed to capture your screen (error: ${error.message})`;
+			this.handleError( msg );
+		};
+		navigator.mediaDevices.getDisplayMedia( screenConstraints ).then( onSuccess ).catch( onError );
 	}
 
 	captureCamera( cb, captureAudio ) {
-		navigator.getUserMedia({ audio: captureAudio, video: true }, cb, ( error ) => {
+		navigator.mediaDevices.getUserMedia({ audio: captureAudio, video: true }).then( cb ).catch( ( error ) => {
 			const msg = `Failed to capture your camera (error: ${error.message})`;
 			this.handleError( msg );
 		});
 	}
 
 	captureAudio( cb ) {
-		navigator.getUserMedia({ audio: true, video: false }, cb, ( error ) => {
+		navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then( cb ).catch( ( error ) => {
 			const msg = `Failed to capture your microphone (error: ${error.message})`;
 			this.handleError( msg );
 		});
@@ -342,7 +343,7 @@ class Recorder extends Component {
 		const { audio, camera, screen } = this.getActiveSources();
 
 		if ( screen || camera ) {
-			this.recorderVideoConfig = getVideoConfig({ bitsPerSecond: this.props.bitsPerSecond });
+			this.recorderVideoConfig = getVideoConfig({ bitsPerSecond: this.props.bitsPerSecond, screen });
 		} else if ( audio ) {
 			this.recorderAudioConfig = getAudioConfig({ bitsPerSecond: this.props.bitsPerSecond });
 		}
@@ -385,8 +386,11 @@ class Recorder extends Component {
 				this.recorder.startRecording();
 				return clbk();
 			}
+			console.log( this.recorderVideoConfig );
 			this.captureScreen( ( screen ) => {
+				keepStreamActive( screen );
 				this.captureAudio( ( audio ) => {
+					keepStreamActive( audio );
 					screen.width = window.screen.width;
 					screen.height = window.screen.height;
 					screen.fullcanvas = true;
@@ -423,7 +427,9 @@ class Recorder extends Component {
 		}
 		if ( screen && camera ) {
 			this.captureCamera( ( camera ) => {
+				keepStreamActive( camera );
 				this.captureScreen( ( screen ) => {
+					keepStreamActive( screen );
 					screen.width = window.screen.width;
 					screen.height = window.screen.height;
 					screen.fullcanvas = true;
@@ -462,7 +468,6 @@ class Recorder extends Component {
 	}
 
 	render() {
-		const isAvailable = this.state.available || inEditor;
 		const recordingColor = this.state.recording ? 'red' : 'rgb(100,100,100)';
 		const editorStyle = isElectron ? ' recorder-in-editor' : '';
 		if ( this.state.hidden ) {
@@ -474,7 +479,7 @@ class Recorder extends Component {
 					className="recorder-rec"
 					style={{ color: recordingColor }}
 				>{ !this.state.recording ? 'REC' : '' }</div>
-				{ this.state.selectedSources.length > 0 && isAvailable ?
+				{ this.state.selectedSources.length > 0 ?
 					<div className="recorder-button-container">
 						<div
 							className="recorder-button"
@@ -484,7 +489,7 @@ class Recorder extends Component {
 							}}
 						></div>
 					</div> : null }
-				{ !this.state.finished && isAvailable && !this.state.recording ?
+				{ !this.state.finished && !this.state.recording ?
 					<ToggleButtonGroup
 						className="recorder-buttongroup"
 						size="sm" type="checkbox"
@@ -498,11 +503,6 @@ class Recorder extends Component {
 					</ToggleButtonGroup> : null
 				}
 				{ this.state.finished ? this.renderAudioVideo() : null }
-				{ !isAvailable ? <button onClick={() => {
-					window.open( 'https://chrome.google.com/webstore/detail/screen-capturing/ajhifddimkapgcifgcodmmfdlknahffk', '_blank' );
-				}} id="install-button">
-					<img width="100px" height="32px" src="https://www.webrtc-experiment.com/images/btn-install-chrome-extension.png" alt="Add to Chrome" />
-				</button> : null }
 				<div style={{ background: 'rgba(0, 80,255,0.5)' }}>
 				{ this.state.finished ?
 					<ButtonGroup>
