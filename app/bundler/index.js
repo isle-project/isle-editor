@@ -308,7 +308,7 @@ function writeIndexFile({
 					}
 				},
 				{
-					test: /\.css$$/,
+					test: /\.css$/,
 					use: [
 						MiniCSSLoader,
 						'css-loader'
