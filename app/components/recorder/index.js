@@ -63,16 +63,16 @@ function getVideoConfig({ bitsPerSecond }) {
 	let recorderType = MediaStreamRecorder;
 
 	if ( !isMimeTypeSupported( mimeType ) ) {
-		debug(mimeType, 'is not supported.');
+		debug( mimeType, 'is not supported.' );
 		mimeType = 'video/webm;codecs=h264'; // H264
 		if ( !isMimeTypeSupported( mimeType ) ) {
-			debug(mimeType, 'is not supported.');
+			debug( mimeType, 'is not supported.' );
 			mimeType = 'video/webm;codecs=vp9'; // VP9
 			if ( !isMimeTypeSupported( mimeType ) ) {
-				debug(mimeType, 'is not supported.');
+				debug( mimeType, 'is not supported.' );
 				mimeType = 'video/webm;codecs=vp8'; // VP8
 				if ( !isMimeTypeSupported( mimeType ) ) {
-					debug(mimeType, 'is not supported.');
+					debug( mimeType, 'is not supported.' );
 					mimeType = 'video/webm';
 					if ( !isMimeTypeSupported( mimeType ) ) {
 						debug(mimeType, 'is not supported.');
@@ -191,21 +191,27 @@ class Recorder extends Component {
 
 	captureScreen( clbk ) {
 		getScreenId( ( error, sourceId, screenConstraints ) => {
+			if ( error ) {
+				this.handleError( `Encountered an error: ${error.message}.` );
+			}
 			navigator.getUserMedia( screenConstraints, clbk, ( error ) => {
-				this.handleError( 'Failed to capture your screen' );
+				const msg = `Failed to capture your screen (error: ${error.message})`;
+				this.handleError( msg );
 			});
 		});
 	}
 
 	captureCamera( cb, captureAudio ) {
 		navigator.getUserMedia({ audio: captureAudio, video: true }, cb, ( error ) => {
-			this.handleError( 'Failed to capture your camera.' );
+			const msg = `Failed to capture your camera (error: ${error.message})`;
+			this.handleError( msg );
 		});
 	}
 
 	captureAudio( cb ) {
 		navigator.getUserMedia({ audio: true, video: false }, cb, ( error ) => {
-			this.handleError( 'Failed to capture your microphone.' );
+			const msg = `Failed to capture your microphone (error: ${error.message})`;
+			this.handleError( msg );
 		});
 	}
 
