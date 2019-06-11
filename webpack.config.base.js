@@ -77,6 +77,7 @@ const EXTERNALS = [
 	'socket.io-client',
 	'spectacle',
 	'stemmer',
+	'svgo',
 	'terser',
 	'turndown',
 	'turndown-plugin-gfm',
