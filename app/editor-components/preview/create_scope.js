@@ -150,6 +150,7 @@ const SCOPE = {
 	Typewriter: Loadable( () => import( 'components/typewriter' ) ),
 	Unveil: Loadable( () => import( 'components/unveil' ) ),
 
+	VideoLecture: Loadable( () => import( 'components/video-lecture' ) ),
 	VideoPlayer: Loadable( () => import( 'components/video-player' ) ),
 	VoiceInput,
 	VoiceControl: Loadable( () => import( 'components/voice-control' ) ),

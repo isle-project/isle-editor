@@ -180,6 +180,7 @@
 	"VictoryVoronoi": "components/victory/voronoi",
 	"VictoryZoomContainer": "components/victory/zoom-container",
 	"VictoryWrapper": "components/victory/wrapper",
+	"VideoLecture": "components/video-lecture",
 	"VideoPlayer": "components/video-player",
 	"WordCloud": "components/word-cloud"
 }
