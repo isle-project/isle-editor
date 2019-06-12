@@ -15,6 +15,7 @@ import RangeQuestion from 'components/range-question';
 import SelectQuestion from 'components/select-question';
 import VideoPlayer from 'components/video-player';
 import Panel from 'components/panel';
+import './video_lecture.css';
 
 
 // VARIABLES //
@@ -101,13 +102,29 @@ class VideoLecture extends Component {
 			</Alert> );
 		}
 		if ( isString( elem ) ) {
-			return ( <VideoPlayer
-				url={elem}
-				onEnded={this.incrementStep}
-				controls={this.props.controls}
-				width="100%" height="98vh"
-				playing={this.state.active !== 0}
-			/> );
+			return (
+				<div style={{ position: 'relative' }}>
+					<VideoPlayer
+						url={elem}
+						onEnded={this.incrementStep}
+						controls={this.props.controls}
+						width="100%" height="98vh"
+						playing={this.state.active !== 0}
+					/>
+					{ this.state.active > 0 ? <div
+						onClick={this.decrementStep}
+						className="video-lecture-back-button"
+					>
+						<i className="fas fa-chevron-circle-left video-lecture-arrow"></i>
+					</div> : null }
+					<div
+						onClick={this.incrementStep}
+						className="video-lecture-next-button"
+					>
+						<i className="fas fa-chevron-circle-right video-lecture-arrow"></i>
+					</div>
+				</div>
+			);
 		}
 		return (
 			<div>
