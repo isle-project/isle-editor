@@ -1673,27 +1673,29 @@ class Sketchpad extends Component {
 		const elems = new Array( noPages );
 		const promises = new Array( noPages );
 		const recordingEndPositions = new Array( noPages );
-		this.setState({
-			noPages: noPages
-		}, () => {
-			for ( let i = 0; i < noPages; i++ ) {
-				elems[ i ] = [];
-				promises[ i ] = pdf.getPage( i + 1 );
-				recordingEndPositions[ i ] = 0;
-			}
-			return Promise.all( promises )
-				.then( values => {
-					debug( 'Retrieved all pages...' );
-					this.backgrounds = values;
-					this.elements = elems;
-					this.recordingEndPositions = recordingEndPositions;
-					clbk( null );
-				})
-				.catch( error => {
-					debug( error );
-					clbk( error );
+		for ( let i = 0; i < noPages; i++ ) {
+			elems[ i ] = [];
+			promises[ i ] = pdf.getPage( i + 1 );
+			recordingEndPositions[ i ] = 0;
+		}
+		return Promise.all( promises )
+			.then( values => {
+				debug( 'Retrieved all pages...' );
+				this.backgrounds = values;
+				this.elements = elems;
+				this.recordingEndPositions = recordingEndPositions;
+				this.setState({
+					currentPage: 0,
+					noPages
+				}, () => {
+					this.drawPage( this.state.currentPage );
 				});
-		});
+				clbk( null );
+			})
+			.catch( error => {
+				debug( error );
+				clbk( error );
+			});
 	}
 
 	saveInBrowser = ( clbk = noop ) => {
@@ -2084,8 +2086,11 @@ class Sketchpad extends Component {
 	}
 
 	renderHTMLOverlays() {
-		const page = this.toOriginalPage( this.state.currentPage );
 		const keys = objectKeys( this.props.nodes );
+		if ( keys.length === 0 ) {
+			return;
+		}
+		const page = this.toOriginalPage( this.state.currentPage );
 		const divs = [];
 		for ( let i = 0; i < keys.length; i++ ) {
 			const node = this.props.nodes[ keys[ i ] ];
