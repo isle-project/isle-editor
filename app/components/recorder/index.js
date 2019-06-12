@@ -268,12 +268,26 @@ class Recorder extends Component {
 		formData.append( 'file', file );
 		session.uploadFile({
 			formData,
-			callback: ( err ) => {
-				if ( !err ) {
-					this.setState({
-						uploaded: true
-					});
+			callback: ( err, res ) => {
+				if ( err ) {
+					return this.handleError( err.message );
 				}
+				const session = this.context;
+				const filename = res.filename;
+				const link = session.server + '/' + filename;
+				session.addNotification({
+					title: 'Recording uploaded',
+					message: 'Your recording has been successfully uploaded and may be accessed at:',
+					level: 'success',
+					position: 'rc',
+					autoDismiss: 0,
+					children: <span>
+						<a href={link} target="_blank" >Open Link</a>
+					</span>
+				});
+				this.setState({
+					uploaded: true
+				});
 			}
 		});
 	}
