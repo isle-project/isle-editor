@@ -612,6 +612,12 @@
         ]
       },
       {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles for main container",
+        "default": {}
+      },
+      {
         "name": "tables",
         "type": "array",
         "description": "array of strings indicating which tables may be created from the data",
@@ -2158,12 +2164,14 @@
     "props": [],
     "description": "A pixel color picker explaining RGB colors using example images."
   },
-  "Learn": {
-    "props": [],
-    "description": "Description is missing."
-  },
   "LearnMeanVSMedian": {
     "props": [
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "default": false
+      },
       {
         "name": "header",
         "type": "string",
@@ -2171,10 +2179,34 @@
         "default": "Measures of Location: Mean vs. Median"
       },
       {
+        "name": "id",
+        "type": "string",
+        "description": "component identifier",
+        "default": "mean_vs_median"
+      },
+      {
         "name": "intro",
         "type": "node",
         "description": "any introductory material that may be needed",
         "default": null
+      },
+      {
+        "name": "seed",
+        "type": "number",
+        "description": "seed to initialize pseudorandom number generator",
+        "default": null
+      },
+      {
+        "name": "showStatistics",
+        "type": "boolean",
+        "description": "controls whether to display student and group performance statistics",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       }
     ],
     "description": "An interactive game testing student's ability in detecting the median and mean of a given distribution."
@@ -2315,6 +2347,11 @@
           "Agree",
           "Strongly agree"
         ]
+      },
+      {
+        "name": "noMultipleResponses",
+        "type": "boolean",
+        "default": false
       },
       {
         "name": "disableSubmitNotification",
@@ -2521,6 +2558,42 @@
     ],
     "description": "An ISLE component that renders a question in which the learner has to match elements from two lists with each other in the correct way."
   },
+  "MetricsContingencyTable": {
+    "props": [
+      {
+        "name": "row",
+        "type": "string (required)"
+      },
+      {
+        "name": "rowValues",
+        "type": "array (required)"
+      },
+      {
+        "name": "rowAccessor",
+        "type": "function",
+        "default": "d => d.value"
+      },
+      {
+        "name": "col",
+        "type": "string (required)"
+      },
+      {
+        "name": "colAccessor",
+        "type": "function",
+        "default": "d => d.value"
+      },
+      {
+        "name": "colValues",
+        "type": "array (required)"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      }
+    ],
+    "description": "Description is missing."
+  },
   "Metrics": {
     "props": [
       {
@@ -2543,11 +2616,11 @@
     ],
     "description": "Component allowing retrieval of member actions corresponding to a specified component ID from the database."
   },
-  "RealtimeMetrics": {
+  "RealTimeMetrics": {
     "props": [
       {
         "name": "for",
-        "type": "string (required)",
+        "type": "array (required)",
         "description": "ID of component whose actions should trigger callback(s)"
       },
       {
@@ -3304,7 +3377,7 @@
     "props": [
       {
         "name": "image",
-        "type": "object",
+        "type": "(string|array)",
         "description": "the image or the array of images that should be preloaded",
         "default": null
       }
@@ -4703,7 +4776,7 @@
         "default": true
       }
     ],
-    "description": "Adapted from spectacle-code-slide@0.5.2 (MIT Licensed) https://github.com/jamiebuilds/spectacle-code-slide\n/\n\n// MODULES //\n\nimport React, { Component } from 'react';\nimport PropTypes from 'prop-types';\nimport { Slide } from 'spectacle';\nimport hljs from 'highlight.js';\nimport clamp from '@stdlib/math/base/special/clamp';\nimport lpad from '@stdlib/string/left-pad';\nimport CodeSlideTitle from './code_slide_title.js';\nimport CodeSlideNote from './code_slide_note.js';\nimport CodeSlideImage from './code_slide_image.js';\nimport calculateScrollCenter from './calculate_scroll_center.js';\nimport scrollToElement from './scroll_to_element.js';\nimport 'highlight.js/styles/googlecode.css';\n\n\n// FUNCTIONS //\n\nfunction calculateOpacity(index, loc) {\nreturn ( loc[0] <= index && loc[1] > index ) ? 1 : 0.2;\n}\n\nfunction getLineNumber(index) {\nreturn '<span class=\"token comment\">' + lpad( String( index + 1 ), 3 ) + '.</span> ';\n}\n\n\n// VARIABLES //\n\nconst defaultBgColor = '#122b45';\nconst defaultColor = 'white';\nconst style = {\nposition: 'relative',\ntextAlign: 'center',\noverflow: 'hidden',\ncolor: defaultColor,\nheight: '646px',\nmargin: 0,\nfontSize: '1.5em',\npadding: '40% 0',\nwhiteSpace: 'pre-wrap',\nwordBreak: 'break-word'\n};\n\n\n// MAIN //\n\n/**\nA slide displaying code in an step-by-step manner."
+    "description": "Adapted from spectacle-code-slide@0.5.2 (MIT Licensed) https://github.com/jamiebuilds/spectacle-code-slide\n/\n\n// MODULES //\n\nimport React, { Component } from 'react';\nimport PropTypes from 'prop-types';\nimport { Slide } from 'spectacle';\nimport hljs from 'highlight.js';\nimport clamp from '@stdlib/math/base/special/clamp';\nimport lpad from '@stdlib/string/left-pad';\nimport CodeSlideTitle from './code_slide_title.js';\nimport CodeSlideNote from './code_slide_note.js';\nimport CodeSlideImage from './code_slide_image.js';\nimport calculateScrollCenter from './calculate_scroll_center.js';\nimport scrollToElement from './scroll_to_element.js';\nimport 'highlight.js/styles/googlecode.css';\n\n\n// FUNCTIONS //\n\nfunction calculateOpacity(index, loc) {\nreturn ( loc[0] <= index && loc[1] > index ) ? 1 : 0.2;\n}\n\nfunction getLineNumber(index) {\nreturn '<span class=\"token comment\">' + lpad( String( index + 1 ), 3 ) + '.</span> ';\n}\n\n\n// VARIABLES //\n\nconst defaultBgColor = '#122b45';\nconst defaultColor = 'white';\nconst style = {\nposition: 'relative',\ntextAlign: 'center',\noverflow: 'hidden',\ncolor: defaultColor,\nheight: '646px',\nmargin: 0,\nfontSize: '1.1em',\npadding: '40% 0',\nwhiteSpace: 'pre-wrap',\nwordBreak: 'break-word'\n};\n\n\n// MAIN //\n\n/**\nA slide displaying code in an step-by-step manner."
   },
   "Code": {
     "props": [
@@ -4771,6 +4844,12 @@
         "type": "boolean",
         "description": "toggle keyboard control",
         "default": false
+      },
+      {
+        "name": "pageControls",
+        "type": "boolean",
+        "description": "controls whether page-up and page-down can be used to switch between slides",
+        "default": true
       },
       {
         "name": "progress",
@@ -5476,6 +5555,22 @@
   "VictoryZoomContainer": {
     "props": [],
     "description": "Description is missing."
+  },
+  "VideoLecture": {
+    "props": [
+      {
+        "name": "controls",
+        "type": "boolean",
+        "description": "indicates whether to display control elements of the video players",
+        "default": true
+      },
+      {
+        "name": "steps",
+        "type": "array (required)",
+        "description": "array of video URLs and components to be displayed in-between"
+      }
+    ],
+    "description": "A video lecture component that displays videos interspersed with interactive elements."
   },
   "VideoPlayer": {
     "props": [

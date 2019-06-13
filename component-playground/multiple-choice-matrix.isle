@@ -49,7 +49,6 @@ hideToolbar: true
 * __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
 * __onChange__ | `function`: callback invoked when the value of a checkbox / radio button changes; invoked with the two-dimensional boolean array of the active status for each answer option. Default: `onChange() {}`.
 * __onSubmit__ | `function`: undefined. Default: `onSubmit() {}`.
-
         </Text>
     </Col>
 </Row>

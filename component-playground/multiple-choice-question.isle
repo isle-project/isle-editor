@@ -55,7 +55,6 @@ removeStatusBar: true
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked every time the selected answer changes; receives the index of the selected question as its sole argument (or an array in case the question is of type "Choose all that apply"). Default: `onChange(){}`.
 * __onSubmit__ | `function`: callback invoked after an answer is submitted. Default: `onSubmit(){}`.
-
         </Text>
     </Col>
 </Row>
