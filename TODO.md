@@ -37,12 +37,10 @@ LONG-TERM
 * Data Explorer
    - remove any R dependencies for mosaic
    - Boxplots categorized by more than one group (+ ability to reorder)
-   - need a simple way to subset data, e.g. running an ANOVA only on a subset (say a few groups instead of all of them)
-   - For barcharts, instead of counts, add an option to display percentages (also conditional %)
    - Display additional information when hovering over bars of barcharts (percentage, description, other variables?)
    - We have been deliberately loose with respect to terminology: z-test vs. t-test
    - Refactor two-way contingency tables? 
-   - Show we display both relative and absolute frequencies in tables?
+   - Show wether we display both relative and absolute frequencies in tables?
 * Surveys
     - Handle ordered categories
     - Don't show invalid axis labels before answers are submitted
