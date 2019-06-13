@@ -333,6 +333,10 @@
 		"value":"<Unveil active={true} delay={${1:1000}} >\n\t${2:Component to Display}\n</Unveil>\n"
 	},
 	{
+		"name":"VideoLecture",
+		"value":"<VideoLecture steps={[${1:'Video URL'}]} />\n"
+	},
+	{
 		"name":"VideoPlayer",
 		"value":"<VideoPlayer url=\"${1:url}\" />\n"
 	},
