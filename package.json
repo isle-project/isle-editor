@@ -185,7 +185,7 @@
     "react-split-pane": "0.1.87",
     "react-table": "6.10.0",
     "react-transition-group": "^4.0.1",
-    "recordrtc": "^5.5.4",
+    "recordrtc": "^5.5.6",
     "redux": "4.0.1",
     "redux-thunk": "^2.3.0",
     "semver": "^6.1.0",
