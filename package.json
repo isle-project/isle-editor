@@ -150,7 +150,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "pdfjs-dist": "^2.1.266",
     "pdfmake": "^0.1.54",
-    "plotly.js": "^1.48.2",
+    "plotly.js": "^1.48.3",
     "pressure": "^2.1.2",
     "profanities": "^2.10.2",
     "prop-types": "^15.5.10",
