@@ -210,7 +210,7 @@
     "@babel/plugin-proposal-export-default-from": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.4.0",
     "babel": "^6.5.2",
-    "babel-eslint": "^10.0.0",
+    "babel-eslint": "^10.0.2",
     "babel-polyfill": "^6.26.0",
     "codecov": "^3.5.0",
     "concurrently": "^4.0.0",
