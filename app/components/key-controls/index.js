@@ -87,7 +87,7 @@ KeyControls.defaultProps = {
 
 KeyControls.propTypes = {
 	actions: PropTypes.objectOf( PropTypes.func ),
-	container: PropTypes.node
+	container: PropTypes.oneOfType([ PropTypes.object, PropTypes.element ])
 };
 
 KeyControls.contextType = SessionContext;
