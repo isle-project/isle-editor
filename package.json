@@ -203,7 +203,7 @@
     "uuid": "^3.3.2",
     "venn.js": "0.2.20",
     "victory": "32.2.3",
-    "webpack": "4.34.0",
+    "webpack": "4.35.0",
     "worker-loader": "^2.0.0"
   },
   "devDependencies": {
