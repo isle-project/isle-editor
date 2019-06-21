@@ -217,7 +217,7 @@
     "del": "^4.1.0",
     "doctrine": "^3.0.0",
     "electron": "5.0.4",
-    "electron-packager": "13.1.1",
+    "electron-packager": "14.0.0",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^5.15.3",
