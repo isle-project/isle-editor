@@ -12,6 +12,11 @@
 
 .recorder-togglebutton {
 	box-shadow: none !important;
+	color: gray;
+}
+
+.recorder-togglebutton.active {
+	color: black;
 }
 
 .recorder-in-editor {
