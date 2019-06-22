@@ -7,7 +7,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
-import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder, WhammyRecorder } from 'recordrtc';
+import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder } from 'recordrtc';
 import VoiceControl from 'components/voice-control';
 import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
@@ -56,38 +56,13 @@ function getAudioConfig({ bitsPerSecond }) {
 }
 
 function getVideoConfig({ bitsPerSecond, screen }) {
-	let mimeType = 'video/x-matroska;codecs=avc1'; // MKV
-	let recorderType = MediaStreamRecorder;
-
-	if ( !isMimeTypeSupported( mimeType ) ) {
-		debug( mimeType, 'is not supported.' );
-		mimeType = 'video/webm;codecs=h264'; // H264
-		if ( !isMimeTypeSupported( mimeType ) ) {
-			debug( mimeType, 'is not supported.' );
-			mimeType = 'video/webm;codecs=vp9'; // VP9
-			if ( !isMimeTypeSupported( mimeType ) ) {
-				debug( mimeType, 'is not supported.' );
-				mimeType = 'video/webm;codecs=vp8'; // VP8
-				if ( !isMimeTypeSupported( mimeType ) ) {
-					debug( mimeType, 'is not supported.' );
-					mimeType = 'video/webm';
-					if ( !isMimeTypeSupported( mimeType ) ) {
-						debug(mimeType, 'is not supported.');
-						// Fallback to Whammy (WebP+WebM) solution...
-						mimeType = 'video/webm';
-						recorderType = WhammyRecorder;
-					}
-				}
-			}
-		}
-	}
 	const out = {
-		mimeType,
+		mimeType: 'video/webm',
 		type: 'video',
 		bitsPerSecond: bitsPerSecond
 	};
 	if ( !screen ) {
-		out.recorderType = recorderType;
+		out.recorderType = MediaStreamRecorder;
 	}
 	return out;
 }
@@ -279,7 +254,7 @@ class Recorder extends Component {
 					title: 'Recording uploaded',
 					message: 'Your recording has been successfully uploaded and may be accessed at:',
 					level: 'success',
-					position: 'rc',
+					position: 'tl',
 					autoDismiss: 0,
 					children: <span>
 						<a href={link} target="_blank" >Open Link</a>
