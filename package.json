@@ -93,6 +93,7 @@
     "@babel/register": "^7.4.0",
     "@babel/runtime": "^7.4.2",
     "@stdlib/stdlib": "0.0.60",
+    "acorn": "^6.1.1",
     "ajv": "^6.10.0",
     "ansi-to-react": "^5.0.0",
     "archiver": "^3.0.0",
