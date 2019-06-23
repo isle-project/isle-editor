@@ -55,9 +55,10 @@ class Corpus {
 		let d = this.centroids[ modelIndex ];
 		d = ndarray2array( d._buffer, d._shape, d._strides, d._offset, d._order );
 		const pca = new PCA( d );
-		return pca.predict( d, {
+		const { data } = pca.predict( d, {
 			nComponents: 2
 		});
+		return data;
 	}
 
 	/**
@@ -67,7 +68,7 @@ class Corpus {
 	* @returns {ndarray} one-dimensional vector of class labels
 	*/
 	clusters( modelIndex ) {
-		debug( 'Retrieve clusters for model '+modelIndex );
+		debug( 'Retrieve clusters of model '+modelIndex+' for '+this.nDocs+' documents...' );
 		const matrix = ndarray( this.buffer, {
 			shape: [ this.nDocs, this.dim ]
 		});

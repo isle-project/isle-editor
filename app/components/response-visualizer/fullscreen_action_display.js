@@ -251,7 +251,7 @@ class FullscreenActionDisplay extends Component {
 					}}
 				/>
 				<TextClustering
-					texts={texts}
+					texts={this.state.filtered.map( x => x.value )}
 					actionLabel={this.props.actionLabel}
 					onClusters={( data ) => {
 						debug( 'Received clusters...' );
