@@ -178,6 +178,7 @@ class FeedbackButtons extends Component {
 						success={USER_FEEDBACK_UNDERSTOOD}
 						danger={USER_FEEDBACK_CONFUSED}
 						info={USER_FEEDBACK_FORM}
+						noSessionRegistration
 					/>
 				</ButtonGroup>
 				<Modal

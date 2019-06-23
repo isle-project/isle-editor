@@ -70,6 +70,7 @@ const usersWithFocus = ( userFocuses, usersWithActions, id ) => {
 * @property {string} info - action identifier for info
 * @property {string} success - action identifier for success
 * @property {string} danger - action identifier for danger
+* @property {boolean} noSessionRegistration - controls whether to register the component in the session (e.g., for progress calculations)
 */
 class ResponseVisualizer extends Component {
 	constructor( props, context ) {
@@ -89,7 +90,7 @@ class ResponseVisualizer extends Component {
 			selectedCohort: null
 		};
 
-		if ( props.info && props.id ) {
+		if ( props.info && props.id && !props.noSessionRegistration ) {
 			// Register response visualizer in session:
 			context.responseVisualizers[ props.id ] = {
 				type: props.info,
@@ -487,7 +488,8 @@ ResponseVisualizer.propTypes = {
 	style: PropTypes.object,
 	variant: PropTypes.oneOf([
 		'primary', 'secondary', 'light', 'dark'
-	])
+	]),
+	noSessionRegistration: PropTypes.bool
 };
 
 ResponseVisualizer.defaultProps = {
@@ -501,7 +503,8 @@ ResponseVisualizer.defaultProps = {
 	danger: null,
 	info: null,
 	style: {},
-	variant: 'secondary'
+	variant: 'secondary',
+	noSessionRegistration: false
 };
 
 ResponseVisualizer.contextType = SessionContext;
