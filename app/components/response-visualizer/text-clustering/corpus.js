@@ -1,7 +1,7 @@
 // MODULES //
 
 import logger from 'debug';
-import PCA from 'ml-pca';
+import { PCA } from 'ml-pca';
 import incrkmeans from '@stdlib/ml/incr/kmeans';
 import ndarray from '@stdlib/ndarray/array';
 import ndarray2array from '@stdlib/ndarray/base/to-array';
