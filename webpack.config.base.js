@@ -55,8 +55,6 @@ const EXTERNALS = [
 	'react-contextmenu',
 	'react-copy-to-clipboard',
 	'react-dates',
-	'react-dnd',
-	'react-dnd-html5-backend',
 	'react-dom',
 	'react-draggable',
 	'react-floater',
