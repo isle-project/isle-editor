@@ -42,16 +42,29 @@ class App extends Component {
 		super( props );
 
 		this.state = {
-			splitPos: parseInt( localStorage.getItem( 'splitPos' ), 10 ) || '50vw'
+			splitPos: parseFloat( localStorage.getItem( 'splitPos' ) ) || 0.5,
+			innerWidth: window.innerWidth
 		};
 	}
 
 	async componentDidMount() {
+		window.addEventListener( 'resize', this.updateDimensions );
+
 		const eslintrc = await import( './eslintrc.json' );
 		eslintConfig = eslintrc.default;
 
 		const jsYAML = await import( 'js-yaml' );
 		yaml = jsYAML.default;
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener( 'resize', this.updateDimensions );
+	}
+
+	updateDimensions = () => {
+		this.setState({
+			innerWidth: window.innerWidth
+		});
 	}
 
 	onChange = ( value ) => {
@@ -71,6 +84,7 @@ class App extends Component {
 	}
 
 	handleSplitChange = ( size ) => {
+		size /= this.state.innerWidth;
 		if ( this.debouncedSplitUpdate ) {
 			this.debouncedSplitUpdate( size );
 		} else {
@@ -139,8 +153,10 @@ class App extends Component {
 					className="splitpane"
 					split="vertical"
 					primary="second"
-					defaultSize={this.state.splitPos}
+					size={this.state.splitPos * this.state.innerWidth}
 					onChange={this.handleSplitChange}
+					maxSize={-300}
+					minSize={300}
 				>
 					<SplitPanel style={{ overflow: 'none' }} >
 						<Editor
