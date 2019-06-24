@@ -95,7 +95,8 @@ class Preview extends Component {
 			this.props.code !== nextProps.code ||
 			this.props.preambleText !== nextProps.preambleText ||
 			this.props.currentMode !== nextProps.currentMode ||
-			this.props.currentRole !== nextProps.currentRole
+			this.props.currentRole !== nextProps.currentRole ||
+			this.props.hideToolbar !== nextProps.hideToolbar
 		) {
 			return true;
 		}
@@ -217,8 +218,8 @@ class Preview extends Component {
 				className={className}
 				style={{
 					overflowY: 'scroll',
-					height: window.innerHeight - 90,
-					minHeight: window.innerHeight - 90
+					height: `calc(100vh - ${this.props.hideToolbar ? 2 : 90}px)`,
+					minHeight: `calc(100vh - ${this.props.hideToolbar ? 2 : 90}px)`
 				}}
 			>
 				{this.renderPreview()}
@@ -232,7 +233,8 @@ class Preview extends Component {
 
 Preview.defaultProps = {
 	code: '',
-	onCode() {}
+	onCode() {},
+	hideToolbar: {}
 };
 
 Preview.propTypes = {
@@ -241,7 +243,8 @@ Preview.propTypes = {
 	currentRole: PropTypes.string.isRequired,
 	onCode: PropTypes.func,
 	preamble: PropTypes.object.isRequired,
-	preambleText: PropTypes.string.isRequired
+	preambleText: PropTypes.string.isRequired,
+	hideToolbar: PropTypes.bool
 };
 
 

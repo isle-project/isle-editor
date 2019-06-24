@@ -141,11 +141,6 @@ class App extends Component {
 					primary="second"
 					defaultSize={this.state.splitPos}
 					onChange={this.handleSplitChange}
-					style={{
-						'position': 'absolute',
-						'top': !hideToolbar ? 88 : 0,
-						'bottom': '0'
-					}}
 				>
 					<SplitPanel style={{ overflow: 'none' }} >
 						<Editor
@@ -157,6 +152,7 @@ class App extends Component {
 							preamble={this.props.preamble}
 							splitPos={this.state.splitPos}
 							lintErrors={this.props.lintErrors}
+							hideToolbar={hideToolbar}
 						/>
 					</SplitPanel>
 					<SplitPanel ref={( elem ) => { this.preview = elem; }} >
@@ -173,6 +169,7 @@ class App extends Component {
 									encounteredError={this.props.encounteredError}
 									preambleText={this.props.preambleText}
 									updatePreamble={this.props.updatePreamble}
+									hideToolbar={hideToolbar}
 								/>
 							</ErrorBoundary>
 						}

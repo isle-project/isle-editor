@@ -61,10 +61,7 @@ class SplitPanel extends Component {
 
 	render() {
 		return (
-			<div ref={( div ) => { this.panel = div; }} onScroll={this.handleScroll} style={{
-				height: 'calc(100vh - 90px)',
-				...this.props.style
-			}}>
+			<div ref={( div ) => { this.panel = div; }} onScroll={this.handleScroll} style={this.props.style}>
 				{this.props.children}
 			</div>
 		);

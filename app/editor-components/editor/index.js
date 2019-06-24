@@ -172,7 +172,10 @@ class Editor extends Component {
 	}
 
 	updateDimensions = () => {
-		this.editor.layout();
+		this.editor.layout({
+			width: window.innerWidth - this.props.splitPos,
+			height: window.innerHeight - ( this.props.hideToolbar ? 2 : 90 )
+		});
 	}
 
 	handleChange = ( newValue ) => {
@@ -225,7 +228,7 @@ class Editor extends Component {
 			<div>
 				<ContextMenuTrigger id="editorWindow" holdToDisplay={-1} style={{ height: '100%', width: '100%' }} >
 					<MonacoEditor
-						height={window.innerHeight - 90}
+						height={window.innerHeight - ( this.props.hideToolbar ? 2 : 90 )}
 						width={window.innerWidth - this.props.splitPos}
 						language="javascript"
 						value={this.props.value}
@@ -263,7 +266,8 @@ Editor.propTypes = {
 	preamble: PropTypes.object.isRequired,
 	value: PropTypes.string,
 	lintErrors: PropTypes.array.isRequired,
-	splitPos: PropTypes.number.isRequired
+	splitPos: PropTypes.number.isRequired,
+	hideToolbar: PropTypes.bool.isRequired
 };
 
 
