@@ -97,9 +97,19 @@ class VideoLecture extends Component {
 	renderStep() {
 		const elem = this.props.steps[ this.state.active ];
 		if ( !elem ) {
-			return ( <Alert variant="success">
-				<h1 className="centered" >You have reached the end of this video lecture.</h1>
-			</Alert> );
+			return (
+				<div style={{ height: '98vh', position: 'relative' }}>
+					<Alert variant="success" style={{ top: '33%' }}>
+						<h1>You have reached the end of this video lecture.</h1>
+						<Button
+							variant="secondary"
+							size="lg"
+							onClick={this.decrementStep}
+							style={{ position: 'absolute', top: 3, right: 3 }}
+						>Back</Button>
+					</Alert>
+				</div>
+			);
 		}
 		if ( isString( elem ) ) {
 			return (
