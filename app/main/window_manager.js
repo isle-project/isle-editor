@@ -4,16 +4,13 @@
 
 // MODULES //
 
-import { app, BrowserWindow } from 'electron';
+import { BrowserWindow } from 'electron';
 
 
 // VARIABLES //
 
 // Retain global references, if not, window will be closed automatically when garbage collected...
 const _windows = {};
-
-// Prevent GPU acceleration as it causes electron to crash on drag & drop:
-app.disableHardwareAcceleration();
 
 
 // FUNCTIONS //
@@ -23,7 +20,8 @@ function _createWindow( options ) {
 		... {
 			show: false,
 			webPreferences: {
-				nodeIntegration: true
+				nodeIntegration: true,
+				webviewTag: true
 			}
 		},
 		...options
