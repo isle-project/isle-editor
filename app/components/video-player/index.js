@@ -138,7 +138,7 @@ class Video extends Component {
 				className="video"
 			>
 				<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
-				<ReactPlayer {...props}
+				<ReactPlayer
 					onPlay={this.handlePlay}
 					onPause={this.handlePause}
 					onEnded={this.handleEnded}
@@ -146,6 +146,16 @@ class Video extends Component {
 					onReady={this.handleStartTime}
 					progressInterval={1000}
 					ref={( div ) => { this.player = div; }}
+					config={{
+						youtube: {
+							playerVars: {
+								showinfo: 0,
+								rel: 0,
+								modestbranding: 1
+							}
+						}
+					}}
+					{...props}
 				/>
 			</div>
 		);
