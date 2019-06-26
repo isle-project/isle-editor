@@ -1,5 +1,7 @@
 // MODULES //
 
+import isAlphanumeric from '@stdlib/assert/is-alphanumeric';
+import isWhitespace from '@stdlib/assert/is-whitespace';
 import removeFirst from '@stdlib/string/remove-first';
 import COMPONENT_DOCS from './components_documentation.json';
 import { componentSnippets } from 'snippets';
@@ -17,21 +19,29 @@ function factory( monaco ) {
 			endLineNumber: position.lineNumber,
 			endColumn: position.column
 		});
-		const suggestions = componentSnippets.map( x => {
-			const docs = COMPONENT_DOCS[ x.name ];
-			let description = 'No documentation available';
-			if ( docs ) {
-				description = docs.description;
-			}
-			return {
-				label: x.name,
-				kind: monaco.languages.CompletionItemKind.Snippet,
-				documentation: description,
-				insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-				insertText: lastChar === '<' ? removeFirst( x.value ) : x.value,
-				sortText: 'a'+x.value
-			};
-		});
+		let suggestions = [];
+		if (
+			isWhitespace( lastChar ) ||
+			lastChar === '<' ||
+			!lastChar ||
+			isAlphanumeric( lastChar )
+		) {
+			suggestions = componentSnippets.map( x => {
+				const docs = COMPONENT_DOCS[ x.name ];
+				let description = 'No documentation available';
+				if ( docs ) {
+					description = docs.description;
+				}
+				return {
+					label: x.name,
+					kind: monaco.languages.CompletionItemKind.Snippet,
+					documentation: description,
+					insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+					insertText: lastChar === '<' ? removeFirst( x.value ) : x.value,
+					sortText: 'a'+x.value
+				};
+			});
+		}
 		return {
 			suggestions: suggestions,
 			incomplete: false
