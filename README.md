@@ -141,4 +141,4 @@ The following icons are used under a Creative Commons CCBY license.
 [dev-dependencies-image]: https://img.shields.io/david/dev/isle-project/isle-editor.svg
 [dev-dependencies-url]: https://david-dm.org/isle-project/isle-editor/master?type=dev
 
-[docs]: http://isledocs.com/
+[docs]: https://isledocs.com/

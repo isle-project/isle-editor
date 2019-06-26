@@ -1,1 +1,1 @@
-export const ISLE_DOCS_LINK = 'http://isledocs.com';
+export const ISLE_DOCS_LINK = 'https://isledocs.com';

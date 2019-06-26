@@ -5,7 +5,7 @@ An iFrame component.
 #### Example:
 
 ``` js
-<IFrame src="http://isledocs.com" />
+<IFrame src="https://isledocs.com" />
 ``` 
 
 [Open interactive preview](https://isle.heinz.cmu.edu/components/iframe/)
