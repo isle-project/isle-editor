@@ -1,0 +1,1097 @@
+[
+	{
+		"name": "animation",
+		"description": "",
+		"value": "'animation': ${1:},"
+	},
+	{
+		"name": "animationDelay",
+		"description": "",
+		"value": "'animationDelay': ${1:},"
+	},
+	{
+		"name": "animationDirection",
+		"description": "",
+		"value": "'animationDirection': ${1:},"
+	},
+	{
+		"name": "animationDuration",
+		"description": "",
+		"value": "'animationDuration': ${1:},"
+	},
+	{
+		"name": "animationFillMode",
+		"description": "",
+		"value": "'animationFillMode': ${1},"
+	},
+	{
+		"name": "animationIterationCount",
+		"description": "",
+		"value": "'animationIterationCount': ${1},"
+	},
+	{
+		"name": "backfaceVisibility",
+		"description": "",
+		"value": "'backfaceVisibility': ${1},"
+	},
+	{
+		"name": "background",
+		"description": "",
+		"value": "'background': ${1},"
+	},
+	{
+		"name": "backgroundAttachment",
+		"description": "",
+		"value": "'backgroundAttachment': ${1},"
+	},
+	{
+		"name": "backgroundBlendMode",
+		"description": "",
+		"value": "'backgroundBlendMode': ${1},"
+	},
+	{
+		"name": "backgroundClip",
+		"description": "",
+		"value": "'backgroundClip': ${1},"
+	},
+	{
+		"name": "backgroundColor",
+		"description": "",
+		"value": "'backgroundColor': ${1},"
+	},
+	{
+		"name": "backgroundImage",
+		"description": "",
+		"value": "'backgroundImage': ${1},"
+	},
+	{
+		"name": "backgroundOrigin",
+		"description": "",
+		"value": "'backgroundOrigin': ${1},"
+	},
+	{
+		"name": "backgroundPosition",
+		"description": "",
+		"value": "'backgroundPosition': ${1},"
+	},
+	{
+		"name": "backgroundRepeat",
+		"description": "",
+		"value": "'backgroundRepeat': ${1},"
+	},
+	{
+		"name": "backgroundSize",
+		"description": "",
+		"value": "'backgroundSize': ${1},"
+	},
+	{
+		"name": "border",
+		"description": "",
+		"value": "'border': ${1},"
+	},
+	{
+		"name": "borderBottom",
+		"description": "",
+		"value": "'borderBottom': ${1},"
+	},
+	{
+		"name": "borderBottomColor",
+		"description": "",
+		"value": "'borderBottomColor': ${1},"
+	},
+	{
+		"name": "borderBottomLeftRadius",
+		"description": "",
+		"value": "'borderBottomLeftRadius': ${1},"
+	},
+	{
+		"name": "borderBottomRightRadius",
+		"description": "",
+		"value": "'borderBottomRightRadius': ${1},"
+	},
+	{
+		"name": "borderBottomStyle",
+		"description": "",
+		"value": "'borderBottomStyle': ${1},"
+	},
+	{
+		"name": "borderBottomWidth",
+		"description": "",
+		"value": "'borderBottomWidth': ${1},"
+	},
+	{
+		"name": "borderBoundary",
+		"description": "",
+		"value": "'borderBoundary': ${1},"
+	},
+	{
+		"name": "borderColor",
+		"description": "",
+		"value": "'borderColor': ${1},"
+	},
+	{
+		"name": "borderImage",
+		"description": "",
+		"value": "'borderImage': ${1},"
+	},
+	{
+		"name": "borderImageOutset",
+		"description": "",
+		"value": "'borderImageOutset': ${1},"
+	},
+	{
+		"name": "borderImageRepeat",
+		"description": "",
+		"value": "'borderImageRepeat': ${1},"
+	},
+	{
+		"name": "borderImageSlice",
+		"description": "",
+		"value": "'borderImageSlice': ${1},"
+	},
+	{
+		"name": "borderImageSource",
+		"description": "",
+		"value": "'borderImageSource': ${1},"
+	},
+	{
+		"name": "borderImageWidth",
+		"description": "",
+		"value": "'borderImageWidth': ${1},"
+	},
+	{
+		"name": "borderLeft",
+		"description": "",
+		"value": "'borderLeft': ${1},"
+	},
+	{
+		"name": "borderLeftColor",
+		"description": "",
+		"value": "'borderLeftColor': ${1},"
+	},
+	{
+		"name": "borderLeftStyle",
+		"description": "",
+		"value": "'borderLeftStyle': ${1},"
+	},
+	{
+		"name": "borderLeftWidth",
+		"description": "",
+		"value": "'borderLeftWidth': ${1},"
+	},
+	{
+		"name": "borderRadius",
+		"description": "",
+		"value": "'borderRadius': ${1},"
+	},
+	{
+		"name": "borderRight",
+		"description": "",
+		"value": "'borderRight': ${1},"
+	},
+	{
+		"name": "borderRightColor",
+		"description": "",
+		"value": "'borderRightColor': ${1},"
+	},
+	{
+		"name": "borderRightStyle",
+		"description": "",
+		"value": "'borderRightStyle': ${1},"
+	},
+	{
+		"name": "borderRightWidth",
+		"description": "",
+		"value": "'borderRightWidth': ${1},"
+	},
+	{
+		"name": "borderSpacing",
+		"description": "",
+		"value": "'borderSpacing': ${1},"
+	},
+	{
+		"name": "borderStyle",
+		"description": "",
+		"value": "'borderStyle': ${1},"
+	},
+	{
+		"name": "borderTop",
+		"description": "",
+		"value": "'borderTop': ${1},"
+	},
+	{
+		"name": "borderTopColor",
+		"description": "",
+		"value": "'borderTopColor': ${1},"
+	},
+	{
+		"name": "borderTopLeftRadius",
+		"description": "",
+		"value": "'borderTopLeftRadius': ${1},"
+	},
+	{
+		"name": "borderTopRightRadius",
+		"description": "",
+		"value": "'borderTopRightRadius': ${1},"
+	},
+	{
+		"name": "borderTopStyle",
+		"description": "",
+		"value": "'borderTopStyle': ${1},"
+	},
+	{
+		"name": "borderTopWidth",
+		"description": "",
+		"value": "'borderTopWidth': ${1},"
+	},
+	{
+		"name": "borderWidth",
+		"description": "",
+		"value": "'borderWidth': ${1},"
+	},
+	{
+		"name": "bottom",
+		"description": "",
+		"value": "'bottom': ${1},"
+	},
+	{
+		"name": "boxShadow",
+		"description": "",
+		"value": "'boxShadow': ${1},"
+	},
+	{
+		"name": "clear",
+		"description": "",
+		"value": "'clear': ${1},"
+	},
+	{
+		"name": "clip",
+		"description": "",
+		"value": "'clip': ${1},"
+	},
+	{
+		"name": "clip-path",
+		"description": "",
+		"value": "'clip-path': ${1},"
+	},
+	{
+		"name": "clip-rule",
+		"description": "",
+		"value": "'clip-rule': ${1},"
+	},
+	{
+		"name": "color",
+		"description": "",
+		"value": "'color': ${1},"
+	},
+	{
+		"name": "columnWidth",
+		"description": "",
+		"value": "'columnWidth': ${1},"
+	},
+	{
+		"name": "columns",
+		"description": "",
+		"value": "'columns': ${1},"
+	},
+	{
+		"name": "contain",
+		"description": "",
+		"value": "'contain': ${1},"
+	},
+	{
+		"name": "content",
+		"description": "",
+		"value": "'content': ${1},"
+	},
+	{
+		"name": "continue",
+		"description": "",
+		"value": "'continue': ${1},"
+	},
+	{
+		"name": "cursor",
+		"description": "",
+		"value": "'cursor': ${1},"
+	},
+	{
+		"name": "direction",
+		"description": "",
+		"value": "'direction': ${1},"
+	},
+	{
+		"name": "display",
+		"description": "",
+		"value": "'display': ${1},"
+	},
+	{
+		"name": "filter",
+		"description": "",
+		"value": "'filter': ${1},"
+	},
+	{
+		"name": "flex",
+		"description": "",
+		"value": "'flex': ${1},"
+	},
+	{
+		"name": "flexBasis",
+		"description": "",
+		"value": "'flexBasis': ${1},"
+	},
+	{
+		"name": "flexDirection",
+		"description": "",
+		"value": "'flexDirection': ${1},"
+	},
+	{
+		"name": "flexFlow",
+		"description": "",
+		"value": "'flexFlow': ${1},"
+	},
+	{
+		"name": "flexGrow",
+		"description": "",
+		"value": "'flexGrow': ${1},"
+	},
+	{
+		"name": "flexShrink",
+		"description": "",
+		"value": "'flexShrink': ${1},"
+	},
+	{
+		"name": "flexWrap",
+		"description": "",
+		"value": "'flexWrap': ${1},"
+	},
+	{
+		"name": "float",
+		"description": "",
+		"value": "'float': ${1},"
+	},
+	{
+		"name": "flow",
+		"description": "",
+		"value": "'flow': ${1},"
+	},
+	{
+		"name": "font",
+		"description": "",
+		"value": "'font': ${1},"
+	},
+	{
+		"name": "fontFamily",
+		"description": "",
+		"value": "'fontFamily': ${1},"
+	},
+	{
+		"name": "fontKerning",
+		"description": "",
+		"value": "'fontKerning': ${1},"
+	},
+	{
+		"name": "fontSize",
+		"description": "",
+		"value": "'fontSize': ${1},"
+	},
+	{
+		"name": "fontStretch",
+		"description": "",
+		"value": "'fontStretch': ${1},"
+	},
+	{
+		"name": "fontStyle",
+		"description": "",
+		"value": "'fontStyle': ${1},"
+	},
+	{
+		"name": "fontVariant",
+		"description": "",
+		"value": "'fontVariant': ${1},"
+	},
+	{
+		"name": "fontVariantPosition",
+		"description": "",
+		"value": "'fontVariantPosition': ${1},"
+	},
+	{
+		"name": "fontWeight",
+		"description": "",
+		"value": "'fontWeight': ${1},"
+	},
+	{
+		"name": "grid",
+		"description": "",
+		"value": "'grid': ${1},"
+	},
+	{
+		"name": "gridArea",
+		"description": "",
+		"value": "'gridArea': ${1},"
+	},
+	{
+		"name": "gridAutoColumns",
+		"description": "",
+		"value": "'gridAutoColumns': ${1},"
+	},
+	{
+		"name": "gridAutoFlow",
+		"description": "",
+		"value": "'gridAutoFlow': ${1},"
+	},
+	{
+		"name": "gridAutoRows",
+		"description": "",
+		"value": "'gridAutoRows': ${1},"
+	},
+	{
+		"name": "gridColumn",
+		"description": "",
+		"value": "'gridColumn': ${1},"
+	},
+	{
+		"name": "gridColumnEnd",
+		"description": "",
+		"value": "'gridColumnEnd': ${1},"
+	},
+	{
+		"name": "gridColumnGap",
+		"description": "",
+		"value": "'gridColumnGap': ${1},"
+	},
+	{
+		"name": "gridColumnStart",
+		"description": "",
+		"value": "'gridColumnStart': ${1},"
+	},
+	{
+		"name": "gridGap",
+		"description": "",
+		"value": "'gridGap': ${1},"
+	},
+	{
+		"name": "gridRow",
+		"description": "",
+		"value": "'gridRow': ${1},"
+	},
+	{
+		"name": "gridRowEnd",
+		"description": "",
+		"value": "'gridRowEnd': ${1},"
+	},
+	{
+		"name": "gridRowGap",
+		"description": "",
+		"value": "'gridRowGap': ${1},"
+	},
+	{
+		"name": "gridRowStart",
+		"description": "",
+		"value": "'gridRowStart': ${1},"
+	},
+	{
+		"name": "gridTemplate",
+		"description": "",
+		"value": "'gridTemplate': ${1},"
+	},
+	{
+		"name": "gridTemplateAreas",
+		"description": "",
+		"value": "'gridTemplateAreas': ${1},"
+	},
+	{
+		"name": "gridTemplateColumns",
+		"description": "",
+		"value": "'gridTemplateColumns': ${1},"
+	},
+	{
+		"name": "gridTemplateRows",
+		"description": "",
+		"value": "'gridTemplateRows': ${1},"
+	},
+	{
+		"name": "hangingPunctuation",
+		"description": "",
+		"value": "'hangingPunctuation': ${1},"
+	},
+	{
+		"name": "height",
+		"description": "",
+		"value": "'height': ${1},"
+	},
+	{
+		"name": "hyphenateCharacter",
+		"description": "",
+		"value": "'hyphenateCharacter': ${1},"
+	},
+	{
+		"name": "hyphenateLimitChars",
+		"description": "",
+		"value": "'hyphenateLimitChars': ${1},"
+	},
+	{
+		"name": "hyphenateLimitLast",
+		"description": "",
+		"value": "'hyphenateLimitLast': ${1},"
+	},
+	{
+		"name": "hyphenateLimitLines",
+		"description": "",
+		"value": "'hyphenateLimitLines': ${1},"
+	},
+	{
+		"name": "hyphenateLimitZone",
+		"description": "",
+		"value": "'hyphenateLimitZone': ${1},"
+	},
+	{
+		"name": "hyphens",
+		"description": "",
+		"value": "'hyphens': ${1},"
+	},
+	{
+		"name": "imageOrientation",
+		"description": "",
+		"value": "'imageOrientation': ${1},"
+	},
+	{
+		"name": "initialLetter",
+		"description": "",
+		"value": "'initialLetter': ${1},"
+	},
+	{
+		"name": "initialLetterAlign",
+		"description": "",
+		"value": "'initialLetterAlign': ${1},"
+	},
+	{
+		"name": "initialLetterWrap",
+		"description": "",
+		"value": "'initialLetterWrap': ${1},"
+	},
+	{
+		"name": "isolation",
+		"description": "",
+		"value": "'isolation': ${1},"
+	},
+	{
+		"name": "justifyContent",
+		"description": "",
+		"value": "'justifyContent': ${1},"
+	},
+	{
+		"name": "justifyItems",
+		"description": "",
+		"value": "'justifyItems': ${1},"
+	},
+	{
+		"name": "justifySelf",
+		"description": "",
+		"value": "'justifySelf': ${1},"
+	},
+	{
+		"name": "left",
+		"description": "",
+		"value": "'left': ${1},"
+	},
+	{
+		"name": "letterSpacing",
+		"description": "",
+		"value": "'letterSpacing': ${1},"
+	},
+	{
+		"name": "lineBreak",
+		"description": "",
+		"value": "'lineBreak': ${1},"
+	},
+	{
+		"name": "lineGrid",
+		"description": "",
+		"value": "'lineGrid': ${1},"
+	},
+	{
+		"name": "lineHeight",
+		"description": "",
+		"value": "'lineHeight': ${1},"
+	},
+	{
+		"name": "listStyle",
+		"description": "",
+		"value": "'listStyle': ${1},"
+	},
+	{
+		"name": "listStyleImage",
+		"description": "",
+		"value": "'listStyleImage': ${1},"
+	},
+	{
+		"name": "listStylePosition",
+		"description": "",
+		"value": "'listStylePosition': ${1},"
+	},
+	{
+		"name": "listStyleType",
+		"description": "",
+		"value": "'listStyleType': ${1},"
+	},
+	{
+		"name": "margin",
+		"description": "",
+		"value": "'margin': ${1},"
+	},
+	{
+		"name": "marginBottom",
+		"description": "",
+		"value": "'marginBottom': ${1},"
+	},
+	{
+		"name": "marginLeft",
+		"description": "",
+		"value": "'marginLeft': ${1},"
+	},
+	{
+		"name": "marginRight",
+		"description": "",
+		"value": "'marginRight': ${1},"
+	},
+	{
+		"name": "marginTop",
+		"description": "",
+		"value": "'marginTop': ${1},"
+	},
+	{
+		"name": "mask",
+		"description": "",
+		"value": "'mask': ${1},"
+	},
+	{
+		"name": "maskBorder",
+		"description": "",
+		"value": "'maskBorder': ${1},"
+	},
+	{
+		"name": "maskBorderMode",
+		"description": "",
+		"value": "'maskBorderMode': ${1},"
+	},
+	{
+		"name": "maskBorderOutset",
+		"description": "",
+		"value": "'maskBorderOutset': ${1},"
+	},
+	{
+		"name": "maskBorderRepeat",
+		"description": "",
+		"value": "'maskBorderRepeat': ${1},"
+	},
+	{
+		"name": "maskBorderSlice",
+		"description": "",
+		"value": "'maskBorderSlice': ${1},"
+	},
+	{
+		"name": "maskBorderSource",
+		"description": "",
+		"value": "'maskBorderSource': ${1},"
+	},
+	{
+		"name": "maskBorderWidth",
+		"description": "",
+		"value": "'maskBorderWidth': ${1},"
+	},
+	{
+		"name": "maskClip",
+		"description": "",
+		"value": "'maskClip': ${1},"
+	},
+	{
+		"name": "maskComposite",
+		"description": "",
+		"value": "'maskComposite': ${1},"
+	},
+	{
+		"name": "maskImage",
+		"description": "",
+		"value": "'maskImage': ${1},"
+	},
+	{
+		"name": "maskMode",
+		"description": "",
+		"value": "'maskMode': ${1},"
+	},
+	{
+		"name": "maskOrigin",
+		"description": "",
+		"value": "'maskOrigin': ${1},"
+	},
+	{
+		"name": "maskPosition",
+		"description": "",
+		"value": "'maskPosition': ${1},"
+	},
+	{
+		"name": "maskRepeat",
+		"description": "",
+		"value": "'maskRepeat': ${1},"
+	},
+	{
+		"name": "maskSize",
+		"description": "",
+		"value": "'maskSize': ${1},"
+	},
+	{
+		"name": "maskType",
+		"description": "",
+		"value": "'maskType': ${1},"
+	},
+	{
+		"name": "maxHeight",
+		"description": "",
+		"value": "'maxHeight': ${1},"
+	},
+	{
+		"name": "maxLines",
+		"description": "",
+		"value": "'maxLines': ${1},"
+	},
+	{
+		"name": "maxWidth",
+		"description": "",
+		"value": "'maxWidth': ${1},"
+	},
+	{
+		"name": "minHeight",
+		"description": "",
+		"value": "'minHeight': ${1},"
+	},
+	{
+		"name": "minWidth",
+		"description": "",
+		"value": "'minWidth': ${1},"
+	},
+	{
+		"name": "mixBlendMode",
+		"description": "",
+		"value": "'mixBlendMode': ${1},"
+	},
+	{
+		"name": "objectFit",
+		"description": "",
+		"value": "'objectFit': ${1},"
+	},
+	{
+		"name": "objectPosition",
+		"description": "",
+		"value": "'objectPosition': ${1},"
+	},
+	{
+		"name": "offset",
+		"description": "",
+		"value": "'offset': ${1},"
+	},
+	{
+		"name": "opacity",
+		"description": "",
+		"value": "'opacity': ${1},"
+	},
+	{
+		"name": "order",
+		"description": "",
+		"value": "'order': ${1},"
+	},
+	{
+		"name": "orphans",
+		"description": "",
+		"value": "'orphans': ${1},"
+	},
+	{
+		"name": "outline",
+		"description": "",
+		"value": "'outline': ${1},"
+	},
+	{
+		"name": "outlineColor",
+		"description": "",
+		"value": "'outlineColor': ${1},"
+	},
+	{
+		"name": "outlineOffset",
+		"description": "",
+		"value": "'outlineOffset': ${1},"
+	},
+	{
+		"name": "outlineStyle",
+		"description": "",
+		"value": "'outlineStyle': ${1},"
+	},
+	{
+		"name": "outlineWidth",
+		"description": "",
+		"value": "'outlineWidth': ${1},"
+	},
+	{
+		"name": "overflow",
+		"description": "",
+		"value": "'overflow': ${1},"
+	},
+	{
+		"name": "overflowStyle",
+		"description": "",
+		"value": "'overflowStyle': ${1},"
+	},
+	{
+		"name": "overflowWrap",
+		"description": "",
+		"value": "'overflowWrap': ${1},"
+	},
+	{
+		"name": "overflowX",
+		"description": "",
+		"value": "'overflowX': ${1},"
+	},
+	{
+		"name": "overflowY",
+		"description": "",
+		"value": "'overflowY': ${1},"
+	},
+	{
+		"name": "padding",
+		"description": "",
+		"value": "'padding': ${1},"
+	},
+	{
+		"name": "paddingBottom",
+		"description": "",
+		"value": "'paddingBottom': ${1},"
+	},
+	{
+		"name": "paddingLeft",
+		"description": "",
+		"value": "'paddingLeft': ${1},"
+	},
+	{
+		"name": "paddingRight",
+		"description": "",
+		"value": "'paddingRight': ${1},"
+	},
+	{
+		"name": "paddingTop",
+		"description": "",
+		"value": "'paddingTop': ${1},"
+	},
+	{
+		"name": "position",
+		"description": "",
+		"value": "'position': ${1},"
+	},
+	{
+		"name": "resize",
+		"description": "",
+		"value": "'resize': ${1},"
+	},
+	{
+		"name": "right",
+		"description": "",
+		"value": "'right': ${1},"
+	},
+	{
+		"name": "rotation",
+		"description": "",
+		"value": "'rotation': ${1},"
+	},
+	{
+		"name": "rotationPoint",
+		"description": "",
+		"value": "'rotationPoint': ${1},"
+	},
+	{
+		"name": "size",
+		"description": "",
+		"value": "'size': ${1},"
+	},
+	{
+		"name": "stroke",
+		"description": "",
+		"value": "'stroke': ${1},"
+	},
+	{
+		"name": "strokeAlignment",
+		"description": "",
+		"value": "'strokeAlignment': ${1},"
+	},
+	{
+		"name": "strokeOpacity",
+		"description": "",
+		"value": "'strokeOpacity': ${1},"
+	},
+	{
+		"name": "strokeWidth",
+		"description": "",
+		"value": "'strokeWidth': ${1},"
+	},
+	{
+		"name": "tabSize",
+		"description": "",
+		"value": "'tabSize': ${1},"
+	},
+	{
+		"name": "tableLayout",
+		"description": "",
+		"value": "'tableLayout': ${1},"
+	},
+	{
+		"name": "textAlign",
+		"description": "",
+		"value": "'textAlign': ${1},"
+	},
+	{
+		"name": "textAlignAll",
+		"description": "",
+		"value": "'textAlignAll': ${1},"
+	},
+	{
+		"name": "textAlignLast",
+		"description": "",
+		"value": "'textAlignLast': ${1},"
+	},
+	{
+		"name": "textDecoration",
+		"description": "",
+		"value": "'textDecoration': ${1},"
+	},
+	{
+		"name": "textDecorationColor",
+		"description": "",
+		"value": "'textDecorationColor': ${1},"
+	},
+	{
+		"name": "textDecorationLine",
+		"description": "",
+		"value": "'textDecorationLine': ${1},"
+	},
+	{
+		"name": "textDecorationStyle",
+		"description": "",
+		"value": "'textDecorationStyle': ${1},"
+	},
+	{
+		"name": "textIndent",
+		"description": "",
+		"value": "'textIndent': ${1},"
+	},
+	{
+		"name": "textJustify",
+		"description": "",
+		"value": "'textJustify': ${1},"
+	},
+	{
+		"name": "textOrientation",
+		"description": "",
+		"value": "'textOrientation': ${1},"
+	},
+	{
+		"name": "textOverflow",
+		"description": "",
+		"value": "'textOverflow': ${1},"
+	},
+	{
+		"name": "textShadow",
+		"description": "",
+		"value": "'textShadow': ${1},"
+	},
+	{
+		"name": "textSpacing",
+		"description": "",
+		"value": "'textSpacing': ${1},"
+	},
+	{
+		"name": "textTransform",
+		"description": "",
+		"value": "'textTransform': ${1},"
+	},
+	{
+		"name": "textWrap",
+		"description": "",
+		"value": "'textWrap': ${1},"
+	},
+	{
+		"name": "top",
+		"description": "",
+		"value": "'top': ${1},"
+	},
+	{
+		"name": "transform",
+		"description": "",
+		"value": "'transform': ${1},"
+	},
+	{
+		"name": "transformBox",
+		"description": "",
+		"value": "'transformBox': ${1},"
+	},
+	{
+		"name": "transformOrigin",
+		"description": "",
+		"value": "'transformOrigin': ${1},"
+	},
+	{
+		"name": "transformStyle",
+		"description": "",
+		"value": "'transformStyle': ${1},"
+	},
+	{
+		"name": "transition",
+		"description": "",
+		"value": "'transition': ${1},"
+	},
+	{
+		"name": "transitionDelay",
+		"description": "",
+		"value": "'transitionDelay': ${1},"
+	},
+	{
+		"name": "transitionDuration",
+		"description": "",
+		"value": "'transitionDuration': ${1},"
+	},
+	{
+		"name": "transitionname",
+		"description": "",
+		"value": "'transitionname': ${1},"
+	},
+	{
+		"name": "verticalAlign",
+		"description": "",
+		"value": "'verticalAlign': ${1},"
+	},
+	{
+		"name": "visibility",
+		"description": "",
+		"value": "'visibility': ${1},"
+	},
+	{
+		"name": "whiteSpace",
+		"description": "",
+		"value": "'whiteSpace': ${1},"
+	},
+	{
+		"name": "width",
+		"description": "",
+		"value": "'width': ${1},"
+	},
+	{
+		"name": "wordBreak",
+		"description": "",
+		"value": "'wordBreak': ${1},"
+	},
+	{
+		"name": "wordWrap",
+		"description": "",
+		"value": "'wordWrap': ${1},"
+	},
+	{
+		"name": "zIndex",
+		"description": "",
+		"value": "'zIndex': ${1},"
+	}
+]

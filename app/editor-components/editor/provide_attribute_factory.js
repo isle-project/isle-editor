@@ -1,16 +1,58 @@
 // MODULES //
 
-import { primitives as isStringArray } from '@stdlib/assert/is-string-array';
+import typeOf from '@stdlib/utils/type-of';
+import replace from '@stdlib/string/replace';
+import contains from '@stdlib/assert/contains';
 import COMPONENT_DOCS from './components_documentation.json';
+import CSS_PROPERTIES from './css_properties.json';
 
 
 // VARIABLES //
 
-var RE_TAG = /<\/*(?=\S*)([a-zA-Z-]+)/g;
-var RE_BRACES_QUOTES = /[{"}]/g;
+const RE_FUNCTION = /^[a-z0-9]*\(([^)]*)\)/i;
+const RE_TAG = /<\/*(?=\S*)([a-zA-Z-]+)/g;
+const RE_QUOTES = /"/g;
+const RE_OPENING_BRACES = /{/g;
+const RE_CLOSING_BRACES = /}/g;
+const RE_LAST_ATTRIBUTE = /([a-z]+)=[^=]*?$/i;
+const RE_CLOSING_ANGLE = /[^=]>/;
 
 
 // FUNCTIONS //
+
+function generateReplacement( defaultValue ) {
+	const match = RE_FUNCTION.exec( defaultValue );
+	if ( match ) {
+		// Convert to arrow function:
+		defaultValue = replace( defaultValue, match[ 0 ], '('+match[1]+') => ' );
+		return '{'+defaultValue+'}';
+	}
+	const type = typeOf( defaultValue );
+	switch ( type ) {
+		case 'object':
+		case 'array': {
+			const str = JSON.stringify( defaultValue );
+			return '{'+str[0]+'${1:'+str.substr( 1 )+'}}';
+		}
+		case 'string':
+			if ( contains( defaultValue, '\n' ) ) {
+				return '{`${1:'+defaultValue+'}`}';
+			}
+			if ( !defaultValue ) {
+				defaultValue = '"${1:"';
+			}
+			return '"${1:'+defaultValue+'}"';
+		case 'number':
+			return '{${1:'+defaultValue+'}}';
+		default:
+			return '{${1:}}'; // eslint-disable-line
+	}
+}
+
+function indexOfClosingAngle( text ) {
+	return text.search( RE_CLOSING_ANGLE );
+}
+
 
 /**
 * Returns the last opened tag.
@@ -45,11 +87,21 @@ function getLastOpenedTag( text ) {
 				if (!closingTags.length || closingTags[closingTags.length - 1] !== tag) {
 					// We found our tag, but let's get the information if we are looking for a child element or an attribute:
 					text = text.substring( tagPosition );
-					return {
+					const nOpeningBraces = text.match( RE_OPENING_BRACES ) || [];
+					const nClosingBraces = text.match( RE_CLOSING_BRACES ) || [];
+					const out = {
 						tagName: tag,
-						inTagAttributes: text.indexOf( '<' ) > text.indexOf( '>' ),
-						inAttribute: ( text.match( RE_BRACES_QUOTES ) || [] ).length % 2 === 1
+						inTagAttributes: text.indexOf( '<' ) > indexOfClosingAngle( text ),
+						inAttribute: (
+							( text.match( RE_QUOTES ) || [] ).length % 2 === 1 ||
+							nOpeningBraces.length - nClosingBraces.length >= 1
+						)
 					};
+					if ( out.inAttribute ) {
+						const match = text.match( RE_LAST_ATTRIBUTE );
+						out.attributeName = match ? match[ 1 ] : null;
+					}
+					return out;
 				}
 				// Remove the last closed tag:
 				closingTags.splice( closingTags.length - 1, 1 );
@@ -73,67 +125,108 @@ function factory( monaco ) {
 			endLineNumber: position.lineNumber,
 			endColumn: position.column
 		});
-		let suggestions = [];
 		const tag = getLastOpenedTag( textUntilPosition );
-		if ( tag && tag.tagName && tag.inTagAttributes && !tag.inAttribute ) {
+		if ( tag && tag.tagName && tag.inTagAttributes ) {
 			const docs = COMPONENT_DOCS[ tag.tagName ];
 			if ( docs ) {
-				suggestions = docs.props.map( x => {
-					let insertText;
-					if ( x.type === 'string' ) {
-						insertText = x.name+'="${1:'+x.default+'}"'; // eslint-disable-line
-					} else if ( x.type === 'boolean' ) {
-						insertText = x.name;
-						if ( x.default ) {
-							insertText += '={false}$1';
-						}
-					} else if ( x.type === 'array' ) {
-						let val = '';
-						if ( isStringArray( x.default ) ) {
-							x.default.forEach( ( v, i ) => {
-								val += '\''+v+'\'';
-								if ( i !== x.default.length - 1 ) {
-									val += ', ';
+				if ( !tag.inAttribute ) {
+					let suggestions = [];
+					if ( docs ) {
+						suggestions = docs.props.map( x => {
+							let insertText;
+							const replacement = generateReplacement( x.default );
+							if ( x.type === 'boolean' ) {
+								insertText = x.name;
+								if ( x.default ) {
+									insertText += '={false}$1';
 								}
-							});
-						} else if ( x.default && x.default.length ) {
-							val += x.default.join( ', ' );
-						}
-						insertText = x.name+'={['+val+']}';
-					} else {
-						insertText = x.name+'={${1:'+x.default+'}}'; // eslint-disable-line
+							} else {
+								insertText = x.name+'='+replacement+'$2';
+							}
+							return {
+								label: x.name,
+								command: {
+									title: 'Trigger new suggestion',
+									id: 'editor.action.triggerSuggest'
+								},
+								documentation: x.description,
+								kind: monaco.languages.CompletionItemKind.Snippet,
+								detail: x.type,
+								insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+								insertText: insertText,
+								sortText: 'a'+x.value
+							};
+						});
 					}
-					return {
-						label: x.name,
+					suggestions.push({
+						label: 'id',
 						command: {
 							title: 'Trigger new suggestion',
 							id: 'editor.action.triggerSuggest'
 						},
-						documentation: x.description,
+						documentation: 'Component identifier',
 						kind: monaco.languages.CompletionItemKind.Snippet,
-						detail: x.type,
+						detail: 'string',
 						insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-						insertText: insertText,
-						sortText: 'a'+x.value
+						insertText: 'id="${1:}"', // eslint-disable-line
+						sortText: 'aid'
+					});
+					return {
+						suggestions: suggestions,
+						incomplete: false
 					};
-				});
+				}
+				// Case: in tag attribute
+				if ( tag.attributeName === 'style' ) {
+					return {
+						suggestions: CSS_PROPERTIES.map( x => {
+							return {
+								label: x.name,
+								documentation: x.description,
+								kind: monaco.languages.CompletionItemKind.Snippet,
+								insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+								insertText: x.value,
+								sortText: 'a'+x.value
+							};
+						}),
+						incomplete: false
+					};
+				}
+				let prop = null;
+				for ( let i = 0; i < docs.props.length; i++ ) {
+					if ( docs.props[ i ].name === tag.attributeName ) {
+						prop = docs.props[ i ];
+					}
+				}
+				if ( prop ) {
+					if ( prop.type === 'boolean' ) {
+						return {
+							suggestions: [
+								{
+									label: 'true',
+									documentation: 'A boolean true',
+									kind: monaco.languages.CompletionItemKind.Snippet,
+									insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+									insertText: 'true',
+									sortText: 'atrue'
+								},
+								{
+									label: 'false',
+									documentation: 'A boolean false',
+									kind: monaco.languages.CompletionItemKind.Snippet,
+									insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+									insertText: 'false',
+									sortText: 'afalse'
+								}
+							],
+							incomplete: false
+						};
+					}
+				}
 			}
-			suggestions.push({
-				label: 'id',
-				command: {
-					title: 'Trigger new suggestion',
-					id: 'editor.action.triggerSuggest'
-				},
-				documentation: 'Component identifier',
-				kind: monaco.languages.CompletionItemKind.Snippet,
-				detail: 'string',
-				insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-				insertText: 'id="${1:}"', // eslint-disable-line
-				sortText: 'aid'
-			});
 		}
 		return {
-			suggestions: suggestions,
+			suggestions: [],
 			incomplete: false
 		};
 	}
