@@ -39,7 +39,7 @@ function generateReplacement( defaultValue ) {
 				return '{`${1:'+defaultValue+'}`}';
 			}
 			if ( !defaultValue ) {
-				defaultValue = '"${1:"';
+				defaultValue = '';
 			}
 			return '"${1:'+defaultValue+'}"';
 		case 'number':
@@ -51,6 +51,22 @@ function generateReplacement( defaultValue ) {
 
 function indexOfClosingAngle( text ) {
 	return text.search( RE_CLOSING_ANGLE );
+}
+
+function extractOptions( description ) {
+	const listStart = description.indexOf( 'either ' );
+	if ( listStart === -1 ) {
+		return null;
+	}
+	description = description.substring( listStart );
+	const RE_BACKTICK_STRINGS = /`([^`]+)`/g;
+	let match = RE_BACKTICK_STRINGS.exec( description );
+	const values = [];
+	while ( match !== null ) {
+		values.push( match[ 1 ] );
+		match = RE_BACKTICK_STRINGS.exec( description );
+	}
+	return values;
 }
 
 
@@ -217,6 +233,37 @@ function factory( monaco ) {
 									insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
 									insertText: 'false',
 									sortText: 'afalse'
+								}
+							],
+							incomplete: false
+						};
+					}
+					if ( prop.type === 'string' ) {
+						const options = extractOptions( prop.description );
+						if ( options ) {
+							return {
+								suggestions: options.map( x => {
+									return {
+										label: x,
+										documentation: prop.description,
+										kind: monaco.languages.CompletionItemKind.Snippet,
+										insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+										insertText: x,
+										sortText: 'a'+x
+									};
+								}),
+								incomplete: false
+							};
+						}
+						return {
+							suggestions: [
+								{
+									label: prop.default,
+									documentation: prop.description,
+									kind: monaco.languages.CompletionItemKind.Snippet,
+									insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+									insertText: prop.default,
+									sortText: 'a'+prop.default
 								}
 							],
 							incomplete: false
