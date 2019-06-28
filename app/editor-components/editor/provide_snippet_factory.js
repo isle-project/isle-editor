@@ -38,7 +38,7 @@ function factory( monaco ) {
 					documentation: description,
 					insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
 					insertText: lastChar === '<' ? removeFirst( x.value ) : x.value,
-					sortText: 'a'+x.value
+					sortText: 'b'+x.value
 				};
 			});
 		}
