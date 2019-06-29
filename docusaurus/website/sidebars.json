@@ -36,7 +36,14 @@
       "r/r-table"
     ],
     "Input Components": [
-
+      "input/checkbox-input",
+      "input/number-input",
+      "input/proportions-input",
+      "input/select-input",
+      "input/slider-input",
+      "input/text-area",
+      "input/text-input",
+      "input/voice-input"
     ],
     "General Components": [
       "beacon-tooltip",
