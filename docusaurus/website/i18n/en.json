@@ -284,6 +284,10 @@
         "title": "Video Player",
         "sidebar_label": "Video Player"
       },
+      "video-tutorials": {
+        "title": "Video Tutorials",
+        "sidebar_label": "Video Tutorials"
+      },
       "weather": {
         "title": "Weather",
         "sidebar_label": "Weather"
@@ -299,7 +303,6 @@
     },
     "links": {
       "Docs": "Docs",
-      "Tutorials": "Tutorials",
       "Help": "Help",
       "Blog": "Blog",
       "GitHub": "GitHub"

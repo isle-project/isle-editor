@@ -11,7 +11,7 @@
 const siteConfig = {
 	title: 'ISLE Documentation', // Title for your website.
 	tagline: 'Author Lessons for the Integrated Statistics Learning Environment',
-	url: 'https://isle-project.github.io', // Your website URL
+	url: 'https://isledocs.com', // Your website URL
 	baseUrl: '/',
 	editUrl: 'https://github.com/isle-project/isle-editor/edit/master/docusaurus/docs/',
 	cname: 'isledocs.com',
@@ -26,7 +26,6 @@ const siteConfig = {
 	// For no header links in the top nav bar -> headerLinks: [],
 	headerLinks: [
 		{ doc: 'overview/first-lesson', label: 'Docs' },
-		{ page: 'tutorials', label: 'Tutorials' },
 		{ page: 'help', label: 'Help' },
 		{ blog: true, label: 'Blog' },
 		{ search: true },
@@ -47,7 +46,7 @@ const siteConfig = {
 	/* Colors for website */
 	colors: {
 		primaryColor: '#208089',
-		secondaryColor: '#bb0000',
+		secondaryColor: '#bb0000'
 	},
 
 	/* Custom fonts for website */
@@ -73,12 +72,19 @@ const siteConfig = {
 	},
 
 	// Add custom scripts here that would be placed in <script> tags.
-	scripts: ['https://buttons.github.io/buttons.js'],
+	scripts: [
+		'https://buttons.github.io/buttons.js',
+		'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
+		'/js/code_block_buttons.js'
+	],
 
-	// On page navigation for the current documentation page.
-	onPageNav: 'separate',
+	stylesheets: [
+		'/css/code_block_buttons.css'
+	],
+
 	// No .html extensions for paths.
 	cleanUrl: true,
+	scrollToTop: true,
 
 	// Open Graph and Twitter card images.
 	ogImage: 'img/undraw_online.svg',

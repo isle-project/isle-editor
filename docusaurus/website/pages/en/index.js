@@ -152,7 +152,7 @@ class Index extends React.Component {
 					<div className="inner">
 						<ProjectTitle siteConfig={siteConfig} />
 						<PromoSection>
-							<Button href={docUrl('tutorials', language)}>
+							<Button href={docUrl('video-tutorials', language)}>
 								Video Tutorials
 							</Button>
 							<Button href="http://stat.cmu.edu/isle">Project Website</Button>
