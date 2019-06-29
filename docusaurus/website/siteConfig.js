@@ -11,9 +11,10 @@
 const siteConfig = {
 	title: 'ISLE Documentation', // Title for your website.
 	tagline: 'Author Lessons for the Integrated Statistics Learning Environment',
-	url: 'https://isledocs.com', // Your website URL
-	baseUrl: '/isle-editor/',
+	url: 'https://isle-project.github.io', // Your website URL
+	baseUrl: '/',
 	editUrl: 'https://github.com/isle-project/isle-editor/edit/master/docusaurus/docs/',
+	cname: 'isledocs.com',
 
 	// Used for publishing and more
 	projectName: 'isle-editor',
