@@ -33,7 +33,7 @@ server: https://isle.heinz.cmu.edu
     }}
 />
 
-#### Options:
+#### Options
 
 * __defaultValue__ | `number`: The starting value of the slider. Default: `10`.
 * __disabled__ | `boolean`: controls whether the slider input is active or not. If set to true, the slider will be present on the screen, albeit greyed-out. Default: `false`.

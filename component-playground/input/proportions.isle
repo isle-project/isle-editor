@@ -40,7 +40,7 @@ hideToolbar: true
 <br />
 
 
-#### Options:
+#### Options
 
 * __disabled__ | `boolean`: controls whether the input field is deactivated. Default: `false`.
 * __height__ | `number`: proportions input height (in px). Default: `200`.

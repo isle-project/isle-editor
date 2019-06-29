@@ -22,6 +22,6 @@ hideToolbar: true
     }}
 />
 
-#### Options:
+#### Options
 
 * __src__ | `string (required)`: source URL. Default: `none`.

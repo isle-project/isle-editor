@@ -32,7 +32,7 @@ removeStatusBar: true
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __id__ | `string`: the unique `string` ID for the timer. If an ID is set, the timer component is persistent over page refreshes. Default: `none`.
 * __active__ | `boolean (required)`: flag that can be toggled to start or pause the timer. Default: `none`.

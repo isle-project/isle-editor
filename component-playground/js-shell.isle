@@ -29,7 +29,7 @@ console.log(x);\`}
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __code__ | `string`: JavaScript code to be evaluated. Default: `''`.
 * __solution__ | `string`: for programming questions, code `string` representing the official solution for the problem. Default: `''`.

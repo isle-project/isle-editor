@@ -28,7 +28,7 @@ hideToolbar: true
     }}
 />
 
-#### Options:
+#### Options
 
 * __activePage__ | `number`: active page. Default: `1`.
 * __title__ | `string`: displayed title of the pages container. Default: `''`.

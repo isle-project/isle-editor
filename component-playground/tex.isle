@@ -26,7 +26,7 @@ removeStatusBar: true
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __raw__ | `(string|number) (required)`: The literal LaTeX `string` to render. Also accepts `numbers`. Default: `none`.
 * __displayMode__ | `boolean`: `boolean` indicating whether to display the equation inline or in display mode. Default: `false`.

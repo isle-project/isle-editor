@@ -30,7 +30,7 @@ server: https://isle.heinz.cmu.edu
     }}
 />
 
-#### Options:
+#### Options
 
 * __bind__ | `string`: name of global variable for the checkbox value to be assigned to. Default: `''`.
 * __defaultValue__ | `boolean`: A boolean value indicating the default value of the checkbox. Default: `false`.

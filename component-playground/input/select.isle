@@ -31,7 +31,7 @@ hideToolbar: true
 
 
 
-#### Options:
+#### Options
 
 * __bind__ | `string`: name of global variable for the number to be assigned to. Default: `''`.
 * __clearable__ | `boolean`: boolean value indicating whether one may clear choice(s) made. Default: `none`.

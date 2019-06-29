@@ -30,7 +30,7 @@ server: https://isle.heinz.cmu.edu
     }}
 />
 
-#### Options:
+#### Options
 
 * __id__ | `string (required)`: component identifier. Default: `none`.
 * __question__ | `string`: the question to be displayed. Default: `''`.

@@ -22,7 +22,7 @@ server: https://isle.heinz.cmu.edu
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __id__ | `string (required)`: component identifier. Default: `none`.
 * __owner__ | `boolean`: controls whether owners can see the survey generator; the default should not be changed for most use-cases. Default: `true`.

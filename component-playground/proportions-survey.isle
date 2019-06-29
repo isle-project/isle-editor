@@ -37,7 +37,7 @@ hideToolbar: true
 
 <br />
 
-#### Options:
+#### Options
 
 * __id__ | `string (required)`: component identifier. Default: `none`.
 * __allowMultipleAnswers__ | `boolean`: contols whether one wishes to allow students to answer the survey multiple times. Default: `false`.

@@ -25,7 +25,7 @@ hideToolbar: true
     }}
 />
 
-#### Options:
+#### Options
 
 * __code__ | `string`: R code to be evaluated. Default: `''`.
 * __solution__ | `string`: for programming questions, R code `string` representing the official solution for the problem. Default: `''`.

@@ -38,7 +38,7 @@ removeStatusBar: true
     </Col>
     <Col md={6}>
         <Text>
-#### Options:
+#### Options
 
 * __data__ | `array`: either an array of texts from which to generate the word cloud or, if `precalculated` is set to `true`, and array of word count objects (with `text` and `value` keys). Default: `[]`.
 * __font__ | `(string|function)`: accessor function specifying the font face for each word. Also accepts a constant instead of a function. Default: `'serif'`.

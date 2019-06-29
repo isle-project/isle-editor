@@ -31,7 +31,7 @@ removeStatusBar: true
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __question__ | `string`: question for which the student has to bring the available `options` into the correct order. Default: `''`.
 * __options__ | `array (required)`: an array of objects with `id` and `text` keys which the student has to bring into the correct ordering, which is assumed to be the supplied order. Default: `none`.

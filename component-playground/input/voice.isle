@@ -27,7 +27,7 @@ hideToolbar: true
 
 <br />
 
-#### Options:
+#### Options
 
 * __autorecord__ | `boolean`: controls whether to automatically start recording. Default: `false`.
 * __defaultValue__ | `string`: default text value. Default: `''`.

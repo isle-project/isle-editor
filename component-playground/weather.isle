@@ -27,7 +27,7 @@ This component triggers the [Apixu](https://www.apixu.com/) API and downloads th
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __key__ | `string`: APIXU key. Default: `'<number>'`.
 * __language__ | `string`: language identifier. Default: `'en-US'`.

@@ -25,7 +25,7 @@ hideToolbar: false
     }}
 />
 
-#### Options:
+#### Options
 
 * __active__ | `boolean`: controls whether the runner should be active. Upon activation, the `onEvaluate` function is called in the given interval (or once). Default: `true`.
 * __interval__ | `number`: number of milliseconds between invocations of `onEvaluate`. If no interval is set, the function is only invoked once. Default: `none`.

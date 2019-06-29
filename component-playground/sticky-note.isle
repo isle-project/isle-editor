@@ -23,7 +23,7 @@ removeStatusBar: true
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __title__ | `(string|node)`: note title. Default: `'Enter a title'`.
 * __body__ | `(string|node)`: text of the note. Default: `'Body of the note'`.

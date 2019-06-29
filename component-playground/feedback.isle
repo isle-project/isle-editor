@@ -28,7 +28,7 @@ removeStatusBar: true
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __id__ | `string (required)`: undefined. Default: `none`.
 * __confusedMsg__ | `string`: message to be displayed in tooltip for confused button. Default: `'I am confused.'`.

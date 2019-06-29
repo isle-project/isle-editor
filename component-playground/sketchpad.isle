@@ -23,7 +23,7 @@ removeStatusBar: true
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __autoSave__ | `boolean`: controls whether the editor should save the current text to the local storage of the browser at a given time interval. Default: `true`.
 * __intervalTime__ | `number`: time between auto saves. Default: `30000`.

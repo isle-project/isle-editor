@@ -31,7 +31,7 @@ removeStatusBar: true
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __title__ | `string`: title for the slideshow / carousel to be displayed at its top. Default: `''`.
 * __dots__ | `boolean`: display dots at the bottom for quickly navigating to any slide. Default: `true`.

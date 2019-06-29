@@ -39,7 +39,7 @@ hideToolbar: true
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __questions__ | `array (required)`: an array of questions. Default: `none`.
 * __answers__ | `array (required)`: an array of answers. Default: `none`.

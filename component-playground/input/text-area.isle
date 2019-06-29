@@ -30,7 +30,7 @@ hideToolbar: true
 />
 
 
-#### Options:
+#### Options
 
 * __defaultValue__ | `string`: default value of the text area. Default: `''`.
 * __value__ | `string`: text value (for controlled component). Default: `none`.

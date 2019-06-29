@@ -32,7 +32,7 @@ hideToolbar: true
 
 <br />
 
-#### Options:
+#### Options
 
 * __id__ | `string (required)`: component identifier. Default: `none`.
 * __question__ | `string`: the question to ask the students. Default: `''`.

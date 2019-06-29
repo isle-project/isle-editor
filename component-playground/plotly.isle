@@ -31,7 +31,7 @@ server: https://isle.heinz.cmu.edu
     }}
 />
 
-#### Options:
+#### Options
 
 * __data__ | `array (required)`: data array. Default: `none`.
 * __draggable__ | `boolean`: controls whether the plot should be draggable. Default: `false`.

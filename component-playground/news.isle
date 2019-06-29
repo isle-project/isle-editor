@@ -30,7 +30,7 @@ hideToolbar: true
 
 <br />
 
-#### Options:
+#### Options
 
 * __invisible__ | `boolean`: indicates whether to show the input fields or rely solely on voice control to be triggered. Default: `false`.
 * __key__ | `string`: authentication key for the News API. Default: `'2987fd19bd374249979c4e38e40ef8b8'`.

@@ -22,7 +22,7 @@ server: https://isle.heinz.cmu.edu
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __label__ | `string`: label of submit button. Default: `'Finish lesson'`.
 * __message__ | `string`: message for confirmation email. Default: `''`.

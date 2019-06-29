@@ -23,7 +23,7 @@ removeStatusBar: true
     <Col md={6}>
         <Text style={{ height: '75vh' }}>
 
-#### Options:
+#### Options
 
 * __expandable__ | `boolean`: controls whether calculator is expandable. Default: `true`.
 * __show__ | `boolean`: controls whether calculator is shown. Default: `true`.

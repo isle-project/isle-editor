@@ -27,7 +27,7 @@ hideToolbar: true
 
 <br />
 
-#### Options:
+#### Options
 
 * __code__ | `string`: R code to generate the plot. Default: `''`.
 * __width__ | `(number|string)`: width of the plot (in px). Default: `600`.

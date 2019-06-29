@@ -25,7 +25,7 @@ data\`}
     }}
 />
 
-#### Options:
+#### Options
 
 * __code__ | `string`: R code returning a data.frame containing the data to be displayed in the table. Default: `''`.
 * __libraries__ | `array`: R libraries that should be loaded automatically when the input `code` is executed. Default: `[]`.

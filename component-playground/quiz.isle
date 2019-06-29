@@ -78,7 +78,7 @@ hideToolbar: true
 />
 
 
-#### Options:
+#### Options
 
 * __confidence__ | `boolean`: whether to display a Likert scale asking for the confidence of the user's answer. Default: `false`.
 * __forceConfidence__ | `boolean`: controls whether a user has to supply a confidence level before moving to the next question. Default: `false`.

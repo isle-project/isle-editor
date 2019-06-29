@@ -31,7 +31,7 @@ removeStatusBar: true
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __question__ | `string`: question for which the student has to select one of the available answer options. Default: `''`.
 * __options__ | `array (required)`: available answer options from which the student can select. Default: `none`.

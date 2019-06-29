@@ -28,7 +28,7 @@ server: https://isle.heinz.cmu.edu
 />
 
 
-#### Options:
+#### Options
 
 * __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `false`.
 * __header__ | `string`: title of the panel in which the mean and the median will be generated. Default: `'Measures of Location: Mean vs. Median'`.

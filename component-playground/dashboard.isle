@@ -25,7 +25,7 @@ hideToolbar: true
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __autoStart__ | `boolean`: if set to `true`, the `onGenerate` function is executed at startup with the default input values. Default: `true`.
 * __autoUpdate__ | `boolean`: controls whether the `onGenerate` function should be invoked automatically when one of the child input fields changes. Default: `false`.

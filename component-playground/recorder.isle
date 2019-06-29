@@ -26,7 +26,7 @@ server: https://isle.heinz.cmu.edu
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __audio__ | `boolean`: indicates whether audio should be recorded. Default: `false`.
 * __camera__ | `boolean`: indicates whether webcam should be recorded. Default: `false`.

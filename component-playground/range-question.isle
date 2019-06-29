@@ -25,7 +25,7 @@ server: https://isle.heinz.cmu.edu
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __question__ | `string`: displayed question. Default: `''`.
 * __solution__ | `array<number>`: two-element array containing the endpoints of the correct range. Default: `none`.

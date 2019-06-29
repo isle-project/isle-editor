@@ -31,7 +31,7 @@ removeStatusBar: true
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __list__ | `array<string>`: list of image URLs to be displayed. Default: `[]`.
 * __loop__ | `boolean`: indicates whether the process shall be displayed infinitely. Default: `false`.

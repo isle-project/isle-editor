@@ -21,7 +21,7 @@ server: https://isle.heinz.cmu.edu
     }}
 />
 
-#### Options:
+#### Options
 
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __duration__ | `boolean`: if set the duration of the session is display (not the actual time). Default: `false`.

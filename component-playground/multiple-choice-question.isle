@@ -38,7 +38,7 @@ removeStatusBar: true
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __question__ | `(string|node)`: the question displayed at the top of the multiple choice component. Default: `''`.
 * __solution__ | `(number|array)`: number denoting which answer is correct or an `array` of the correct answer numbers in case the learner should be able to select multiple answers. Default: `none`.

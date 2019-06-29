@@ -27,7 +27,7 @@ removeStatusBar: true
     </Col>
     <Col md={6}>
         <Text>
-#### Options:
+#### Options
 
 * __url__ | `string`: URL of the video. Default: `''`.
 * __controls__ | `boolean`: indicates whether to display control elements of the video player. Default: `false`.

@@ -22,7 +22,7 @@ hideToolbar: true
     }}
 />
 
-#### Options:
+#### Options
 
 * __code__ | `string`: R code used to evaluate. Default: `''`.
 * __libraries__ | `array`: R libraries that should be loaded automatically when the input `code` is executed. Default: `[]`.

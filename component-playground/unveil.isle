@@ -28,7 +28,7 @@ removeStatusBar: true
     </Col>
     <Col md={6}>
         <Text>
-#### Options:
+#### Options
 
 * __active__ | `boolean`: controls whether the counter should be active. Default: `false`.
 * __delay__ | `number`: number of milliseconds before component appears. Default: `1000`.

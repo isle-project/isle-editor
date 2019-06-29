@@ -20,7 +20,7 @@ removeStatusBar: true
     </Col>
     <Col md={6}>
         <Text>
-#### Options:
+#### Options
 
 * __invisible__ | `boolean`: controls whether to display a text input field to search for Wikipedia articles. Default: `false`.
 * __language__ | `string`: language identifier. Default: `'en-US'`.

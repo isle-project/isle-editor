@@ -28,7 +28,7 @@ removeStatusBar: true
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __title__ | `(string|node)`: title to be displayed at the top of the tooltip. Default: `none`.
 * __content__ | `(string|node)`: tooltip content. Default: `'`content` comes here...'`.

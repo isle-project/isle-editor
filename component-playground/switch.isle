@@ -33,7 +33,7 @@ removeStatusBar: true
     </Col>
     <Col md={6}>
         <Text>
-#### Options:
+#### Options
 
 * __active__ | `boolean`: controls whether the switch is active or not. Default: `true`.
 * __tooltip__ | `string`: tooltip displayed when hovering over the switch element. Default: `'Click to cycle through available options.'`.

@@ -30,7 +30,7 @@ server: https://isle.heinz.cmu.edu
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __anonymous__ | `boolean`: when set the gated content is displayed to anybody. Default: `false`.
 * __user__ | `boolean`: when set the gated content is displayed to subscribed users. Default: `false`.

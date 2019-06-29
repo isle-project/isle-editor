@@ -36,7 +36,7 @@ hideToolbar: true
 />
 
 
-#### Options:
+#### Options
 
 * __isDraggable__ | `boolean`: controls whether grid elements are draggable. Default: `false`.
 * __isResizable__ | `boolean`: controls whether grid elements are resizable. Default: `false`.

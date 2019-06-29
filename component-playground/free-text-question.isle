@@ -27,7 +27,7 @@ server: https://isle.heinz.cmu.edu
     <Col md={6}>
         <Text>
 
-#### Options:
+#### Options
 
 * __question__ | `(string|node)`: the question displayed at the top of the free text question component. Default: `''`.
 * __hints__ | `array<string>`: hints providing guidance on how to answer the question. Default: `[]`.

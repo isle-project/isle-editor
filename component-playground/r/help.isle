@@ -27,7 +27,7 @@ hideToolbar: true
 
 <br />
 
-#### Options:
+#### Options
 
 * __func__ | `string`: name of the `R function` for which to open the documentation. If not supplied, the content of the `RHelp` tag is assumed to be equal to the name of the function. Default: `''`.
 * __library__ | `string`: name of the R package in which the function resides. Default: `'base'`.

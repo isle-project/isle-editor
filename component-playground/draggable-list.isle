@@ -39,7 +39,7 @@ removeStatusBar: true
     </Col>
     <Col md={6}>
         <Text>
-#### Options:
+#### Options
 
 * __data__ | `array (required)`: array of objects with `id` and `text` keys. Default: `none`.
 * __onChange__ | `function`: callback invoked with newly ordered data array on each change. Default: `onChange(){}`.
