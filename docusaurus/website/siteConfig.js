@@ -78,10 +78,6 @@ const siteConfig = {
 		'/js/code_block_buttons.js'
 	],
 
-	stylesheets: [
-		'/css/code_block_buttons.css'
-	],
-
 	// No .html extensions for paths.
 	cleanUrl: true,
 	scrollToTop: true,
