@@ -1,0 +1,49 @@
+{
+  "docs": {
+    "Overview": [
+      "overview/intro",
+      "overview/install",
+      "overview/editor",
+      "overview/structure",
+      "overview/first-lesson",
+      "overview/packaging",
+      "overview/components"
+    ],
+    "Question Components": [
+      "free-text-question",
+      "match-list-question",
+      "multiple-choice-question",
+      "number-question",
+      "order-question",
+      "question-form",
+      "quiz",
+      "range-question",
+      "select-question",
+      "select-question-matrix"
+    ],
+    "Survey Components": [
+      "free-text-survey",
+      "multiple-choice-survey",
+      "number-survey",
+      "proportions-survey",
+      "survey-generator"
+    ],
+    "R Components": [
+      "r/r-help",
+      "r/r-output",
+      "r/r-plot",
+      "r/r-shell",
+      "r/r-table"
+    ],
+    "Input Components": [
+
+    ],
+    "General Components": [
+      "beacon-tooltip",
+      "clock"
+    ],
+    "Learning Components": [
+      "learning-components"
+    ]
+  }
+}
