@@ -70,11 +70,11 @@ for ( let i = 0; i < files.length; i++ ) {
 		props: []
 	};
 	const fpath = path.join( './app/components', component, 'index.js' );
-	const mdpath = path.join( './docs/components', component+'.md' );
+	const mdpath = path.join( './docusaurus/docs', component+'.md' );
 	const islepath = path.join( './component-playground', component+'.isle' );
 
 	const file = fs.readFileSync( fpath ).toString();
-	let str = `#### Options:
+	let str = `## Options
 
 `;
 
@@ -139,11 +139,11 @@ for ( let i = 0; i < files.length; i++ ) {
 		let md = fs.readFileSync( mdpath ).toString();
 		debug( 'Replacing component description...' );
 		if ( componentDescription ) {
-			const replacement = '#$1\n\n'+componentDescription+'\n\n#### Example:';
-			md = replace( md, /#([\s\S]+?)\n([\s\S]+?)#### Example:/, replacement );
+			const replacement = '\n---\n\n'+componentDescription+'\n\n## Example';
+			md = replace( md, /\n---\n\n([\s\S]+?)## Example/, replacement );
 		}
 		debug( 'Replacing parameter descriptions...' );
-		md = replace( md, /#### Options[\s\S]*$/, str );
+		md = replace( md, /## Options[\s\S]*$/, str );
 
 		fs.writeFileSync( mdpath, md );
 	} catch ( err ) {
@@ -152,7 +152,7 @@ for ( let i = 0; i < files.length; i++ ) {
 
 	try {
 		let isle = fs.readFileSync( islepath ).toString();
-		isle = replace( isle, /#### Options[\s\S]*?($| *<\/Text>)/, str+'$1' );
+		isle = replace( isle, /## Options[\s\S]*?($| *<\/Text>)/, str+'$1' );
 		fs.writeFileSync( islepath, isle );
 	}
 	catch ( err ) {

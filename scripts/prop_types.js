@@ -23,6 +23,7 @@ PropTypes.bool.isRequired = 'boolean (required)';
 PropTypes.func = new String( 'function' );
 PropTypes.func.isRequired = 'function (required)';
 PropTypes.node = new String( 'node' );
+PropTypes.element = new String( 'element' );
 PropTypes.node.isRequired = 'node (required)';
 PropTypes.arrayOf = function arrayOf( str ) {
 	const out = new String( `array<${str}>` );
