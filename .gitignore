@@ -30,6 +30,7 @@ node_modules/
 .DS_Store
 
 # App packaged
+build
 dist
 release
 main.js
