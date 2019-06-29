@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://isle-project.github.io/isle-editor/blog</id>
+    <title>ISLE Documentation Blog</title>
+    <updated>2019-07-01T06:00:00Z</updated>
+    <generator>Feed for Node.js</generator>
+    <link rel="alternate" href="https://isle-project.github.io/isle-editor/blog"/>
+    <subtitle>The best place to stay up-to-date with the latest ISLE Documentation news and events.</subtitle>
+    <logo>https://isle-project.github.io/isle-editor/img/isle_logo_bare.png</logo>
+    <rights>Copyright © 2019 The ISLE Authors</rights>
+    <entry>
+        <title type="html"><![CDATA[New Documentation]]></title>
+        <id>https://isle-project.github.io/isle-editor/blog/2019/07/01/new-documentation.html</id>
+        <link href="https://isle-project.github.io/isle-editor/blog/2019/07/01/new-documentation.html">
+        </link>
+        <updated>2019-07-01T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>We just updated the documentation for the ISLE editor. In the coming weeks, we will post additional materials including video tutorials, which should make it easier to get started with building ISLE lessons!</p> ]]></summary>
+        <author>
+            <name>Philipp Burckhardt</name>
+            <uri>http://twitter.com/burckhap</uri>
+        </author>
+    </entry>
+</feed>

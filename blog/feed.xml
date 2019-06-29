@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>ISLE Documentation Blog</title>
+        <link>https://isle-project.github.io/isle-editor/blog</link>
+        <description>The best place to stay up-to-date with the latest ISLE Documentation news and events.</description>
+        <lastBuildDate>Mon, 01 Jul 2019 06:00:00 GMT</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>Feed for Node.js</generator>
+        <image>
+            <title>ISLE Documentation Blog</title>
+            <url>https://isle-project.github.io/isle-editor/img/isle_logo_bare.png</url>
+            <link>https://isle-project.github.io/isle-editor/blog</link>
+        </image>
+        <copyright>Copyright © 2019 The ISLE Authors</copyright>
+        <item>
+            <title><![CDATA[New Documentation]]></title>
+            <link>https://isle-project.github.io/isle-editor/blog/2019/07/01/new-documentation.html</link>
+            <guid>https://isle-project.github.io/isle-editor/blog/2019/07/01/new-documentation.html</guid>
+            <pubDate>Mon, 01 Jul 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>We just updated the documentation for the ISLE editor. In the coming weeks, we will post additional materials including video tutorials, which should make it easier to get started with building ISLE lessons!</p> ]]></description>
+        </item>
+    </channel>
+</rss>
