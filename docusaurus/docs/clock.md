@@ -4,7 +4,7 @@ title: Clock
 sidebar_label: Clock
 ---
 
-This component allows the user to integrate a continuously updating clock in-line with text. This may be useful for allowing students to track themselves in timed assesments.
+Clock component displaying the current time.
 
 ## Example
 

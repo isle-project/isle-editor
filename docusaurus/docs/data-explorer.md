@@ -4,7 +4,7 @@ title: Data Explorer
 sidebar_label: Data Explorer
 ---
 
-This component is used by students to briefly summarize data as it is presented and perform various statistical tests. This component may be used as a standalone feature in a lesson.
+This component is used by students to briefly summarize data as it is presented and perform various statistical tests.
 
 ## Example
 
