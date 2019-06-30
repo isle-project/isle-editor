@@ -19,3 +19,7 @@
 .algolia-autocomplete .algolia-docsearch-suggestion--highlight {
 	color: #b00;
 }
+
+.aa-cursor .algolia-docsearch-suggestion--content {
+	color: #b00;
+}
