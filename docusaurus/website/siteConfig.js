@@ -33,8 +33,8 @@ const siteConfig = {
 	],
 
 	algolia: {
-		apiKey: 'my-api-key',
-		indexName: 'my-index-name',
+		apiKey: '79d8a88e3298cd96be31662732f18703',
+		indexName: 'isledocs',
 		algoliaOptions: {} // Optional, if provided by Algolia
 	},
 
