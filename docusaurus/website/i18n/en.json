@@ -309,11 +309,15 @@
     },
     "categories": {
       "Overview": "Overview",
+      "Main Components": "Main Components",
       "Question Components": "Question Components",
       "Survey Components": "Survey Components",
       "R Components": "R Components",
       "Input Components": "Input Components",
+      "Display Components": "Display Components",
+      "Plot Components": "Plot Components",
       "General Components": "General Components",
+      "Presentation Components": "Presentation Components",
       "Learning Components": "Learning Components"
     }
   },
