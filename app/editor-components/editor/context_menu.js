@@ -36,6 +36,9 @@ function groupIndicator( v ) {
 	if ( contains( COMPONENTS.LEARNING, v.name ) ) {
 		return 'learning';
 	}
+	if ( contains( COMPONENTS.PROGRAMMATIC, v.name ) ) {
+		return 'programmatic';
+	}
 	if ( contains( COMPONENTS.SURVEY, v.name ) ) {
 		return 'surveys';
 	}
@@ -119,6 +122,9 @@ class EditorContextMenu extends Component {
 					</SubMenu>
 					<SubMenu title="R Components">
 						{snippets.rComponents.map( this.renderMenuItem )}
+					</SubMenu>
+					<SubMenu title="Programmatic Components">
+						{snippets.programmatic.map( this.renderMenuItem )}
 					</SubMenu>
 					<SubMenu title="Learning Components">
 						{snippets.learning.map( this.renderMenuItem )}

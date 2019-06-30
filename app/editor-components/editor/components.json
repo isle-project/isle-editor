@@ -1,11 +1,12 @@
 {
 	"DISPLAY": [
 		"Accordion",
+		"Animated",
+		"Container",
 		"Row",
 		"Col",
+		"Background",
 		"DraggableGrid",
-		"Expire",
-		"Gate",
 		"Grid",
 		"IFrame",
 		"Modal",
@@ -14,11 +15,16 @@
 		"NavItem",
 		"Pages",
 		"Panel",
-		"Revealer",
+		"Polaroid",
+		"Seal",
+		"ScrollingText",
 		"Slider",
+		"StickyNote",
 		"Switch",
 		"Tab",
 		"Tabs",
+		"Text",
+		"Typewriter",
 		"Well"
 	],
 	"INPUT": [
@@ -58,10 +64,18 @@
 		"DataExplorer",
 		"DataTable",
 		"FeedbackButtons",
+		"Gate",
 		"MarkdownEditor",
 		"Sketchpad",
 		"TeX",
 		"LessonSubmit"
+	],
+	"PROGRAMMATIC": [
+		"Expire",
+		"Revealer",
+		"Runner",
+		"Timer",
+		"Unveil"
 	],
 	"QUESTION": [
 		"FreeTextQuestion",
@@ -93,6 +107,7 @@
 	"PRESENTATION": [
 		"Slide",
 		"Appear",
+		"CodeSlide",
 		"Layout",
 		"Fill",
 		"Fit",
@@ -105,6 +120,7 @@
 		"Plotly",
 		"DensityPlot",
 		"NetworkPlot",
+		"Sunburst",
 		"WordCloud"
 	],
 	"VICTORY": [

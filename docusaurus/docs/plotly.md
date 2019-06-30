@@ -4,7 +4,9 @@ title: Plotly
 sidebar_label: Plotly
 ---
 
-The `plotly` function is a generic plotting function used to handle multiple types of data; primarily count-based data. The function furthermore allows for swift integration of plotting functionality in js.
+Plotly visualization.
+
+## Example
 
 ``` js
 <Plotly

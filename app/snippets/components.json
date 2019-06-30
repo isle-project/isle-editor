@@ -16,10 +16,6 @@
 		"value":"<BeaconTooltip\n\tcontent=\"${1:Enter content}\"\n\ttitle=\"${2:}\"\n\ttarget=\"${3:}\"\n/>\n"
 	},
 	{
-		"name":"ChatButton",
-		"value":"<ChatButton\n\tfor=\"${1:id}\"\n/>\n"
-	},
-	{
 		"name":"CheckboxInput",
 		"value":"<CheckboxInput\n\tlegend=\"${1:}\"\n\tdefaultValue={${2:false}}\n/>\n"
 	},
@@ -242,10 +238,6 @@
 	{
 		"name":"Runner",
 		"value":"<Runner\n\tinterval={${1:null}}\n\tonEvaluate={${2:() => {\n\n\t}}}\n/>\n"
-	},
-	{
-		"name":"Score",
-		"value":"<Score\n\tformat={'${1:First option}'}\n/>\n\n"
 	},
 	{
 		"name":"ScrollingText",
