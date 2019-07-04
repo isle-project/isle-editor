@@ -3,9 +3,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import shuffle from '@stdlib/random/shuffle';
-import { DragDropContext } from 'react-dnd';
+import { DndProvider } from 'react-dnd';
+import isTouchDevice from 'is-touch-device';
 import HTML5Backend from 'react-dnd-html5-backend';
+import TouchBackend from 'react-dnd-touch-backend';
 import Card from './card.js';
+
+
+// VARIABLES //
+
+const hasTouch = isTouchDevice();
+const DnDBackend = hasTouch ? TouchBackend : HTML5Backend;
 
 
 // MAIN //
@@ -18,7 +26,7 @@ import Card from './card.js';
 * @property {Function} onInit - callback function invoked after mounting of component
 * @property {boolean} shuffle - controls whether data elements should be shuffled in initial display
 */
-class Container extends Component {
+class DraggableList extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -48,21 +56,23 @@ class Container extends Component {
 	render() {
 		const { cards } = this.state;
 		return (
-			<div style={{
-				maxWidth: '600px',
-				margin: '0 auto 10px'
-			}}>
-				{cards.map( ( card, i ) => {
-					return (
-						<Card key={card.id}
-							index={i}
-							id={card.id}
-							text={card.text}
-							moveCard={this.moveCard}
-						/>
-					);
-				})}
-			</div>
+			<DndProvider backend={DnDBackend} >
+				<div style={{
+					maxWidth: '600px',
+					margin: '0 auto 10px'
+				}}>
+					{cards.map( ( card, i ) => {
+						return (
+							<Card key={card.id}
+								index={i}
+								id={card.id}
+								text={card.text}
+								moveCard={this.moveCard}
+							/>
+						);
+					})}
+				</div>
+			</DndProvider>
 		);
 	}
 }
@@ -70,13 +80,13 @@ class Container extends Component {
 
 // PROPERTIES //
 
-Container.defaultProps = {
+DraggableList.defaultProps = {
 	onChange(){},
 	onInit(){},
 	shuffle: false
 };
 
-Container.propTypes = {
+DraggableList.propTypes = {
 	data: PropTypes.array.isRequired,
 	onChange: PropTypes.func,
 	onInit: PropTypes.func,
@@ -86,4 +96,4 @@ Container.propTypes = {
 
 // EXPORTS //
 
-export default DragDropContext( HTML5Backend )( Container );
+export default DraggableList;
