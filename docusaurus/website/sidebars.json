@@ -108,7 +108,7 @@
       "real-time-metrics",
       "recorder",
       "timed-button",
-      "tree",
+      "sortable-tree",
       "video-lecture",
       "video-player",
       "weather",

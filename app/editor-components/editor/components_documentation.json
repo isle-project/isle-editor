@@ -2351,6 +2351,7 @@
       {
         "name": "noMultipleResponses",
         "type": "boolean",
+        "description": "disallow multiple submissions from a single student",
         "default": false
       },
       {
@@ -3350,6 +3351,7 @@
       {
         "name": "draggable",
         "type": "boolean",
+        "description": "controls whether one can drag the polaroid around the screen",
         "default": false
       },
       {
@@ -5404,6 +5406,7 @@
       {
         "name": "delay",
         "type": "number",
+        "description": "initial delay before typewriter starts (in milliseconds)",
         "default": null
       },
       {
@@ -5415,13 +5418,13 @@
       {
         "name": "interval",
         "type": "number",
-        "description": "the interval of the typewriter",
+        "description": "the interval of the typewriter (in milliseconds)",
         "default": 100
       },
       {
         "name": "random",
         "type": "boolean",
-        "description": "-if random is set, the keystrokes will be performed with a certain, \"humane\" randomness",
+        "description": "if random is set, the keystrokes will be performed with a certain, \"humane\" randomness",
         "default": false
       },
       {

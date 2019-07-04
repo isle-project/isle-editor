@@ -18,8 +18,9 @@ const SOUND_FILE = 'https://isle.heinz.cmu.edu/keystroke2_1544120411143.ogg';
 *
 * @property {number} deviation - allows you to specify the randomness
 * @property {number} hold - if text is an array of strings, hold specified the duration the full will be displayed before it passes over to the next item in the array
-* @property {number} interval - the interval of the typewriter
-* @property {boolean} random -if random is set, the keystrokes will be performed with a certain, "humane" randomness
+* @property {number} interval - the interval of the typewriter (in milliseconds)
+* @property {number} delay - initial delay before typewriter starts (in milliseconds)
+* @property {boolean} random - if random is set, the keystrokes will be performed with a certain, "humane" randomness
 * @property {boolean} sound - the typed keystroke will be also heard
 * @property {string} text - the full text to be displayed
 * @property {Object} style - CSS inline styles
@@ -122,7 +123,7 @@ class Typewriter extends Component {
 			next = parseInt( next, 10 );
 			next += this.props.interval;
 		}
-		if ( isArray(this.props.text) ) {
+		if ( isArray( this.props.text ) ) {
 			this.timeout = setTimeout( this.setArrayText, next );
 		} else {
 			this.timeout = setTimeout( this.setText, next );

@@ -28,5 +28,5 @@ A component showing a question and a five-point scale for students to answer.
   'Agree',
   'Strongly agree'
 ]`.
-* __noMultipleResponses__ | `boolean`: undefined. Default: `false`.
+* __noMultipleResponses__ | `boolean`: disallow multiple submissions from a single student. Default: `false`.
 * __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
