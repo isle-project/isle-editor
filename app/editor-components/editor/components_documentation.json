@@ -4640,15 +4640,16 @@
     ],
     "description": "A component which displays its children in a slideshow or carousel."
   },
-  "Tree": {
+  "SortableTree": {
     "props": [
       {
         "name": "title",
         "type": "string",
+        "description": "header title",
         "default": null
       }
     ],
-    "description": "Description is missing."
+    "description": "A thin wrapper around [react-sortable-tree](https://www.npmjs.com/package/react-sortable-tree) that supports all properties of said component."
   },
   "Appear": {
     "props": [

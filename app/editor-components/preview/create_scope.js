@@ -146,7 +146,7 @@ const SCOPE = {
 	TimedButton: Loadable( () => import( 'components/timed-button' ) ),
 	Timer: Loadable( () => import( 'components/timer' ) ),
 	Tooltip: Loadable( () => import( 'components/tooltip' ) ),
-	Tree: Loadable( () => import( 'components/sortable-tree' ) ),
+	SortableTree: Loadable( () => import( 'components/sortable-tree' ) ),
 	Typewriter: Loadable( () => import( 'components/typewriter' ) ),
 	Unveil: Loadable( () => import( 'components/unveil' ) ),
 

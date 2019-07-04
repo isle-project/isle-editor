@@ -11,6 +11,11 @@ import 'react-sortable-tree/style.css'; // This only needs to be imported once i
 
 // MAIN //
 
+/**
+* A thin wrapper around [react-sortable-tree](https://www.npmjs.com/package/react-sortable-tree) that supports all properties of said component.
+*
+* @property {string} title - header title
+*/
 class Tree extends Component {
 	constructor( props ) {
 		super( props );
@@ -44,7 +49,6 @@ class Tree extends Component {
 							treeData={this.state.treeData}
 							searchQuery={this.state.searchString}
 							onChange={( treeData ) => {
-								console.log( treeData );
 								this.setState({ treeData });
 							}}
 							{...props}
