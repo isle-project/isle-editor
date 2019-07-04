@@ -7,18 +7,24 @@ import COMPONENT_DOCS from './components_documentation.json';
 import { componentSnippets } from 'snippets';
 
 
+// VARIABLES //
+
+const RE_TAG_START = /<[a-z]*$/i;
+
+
 // MAIN //
 
 function factory( monaco ) {
 	return provideCompletionItems;
 
 	function provideCompletionItems( model, position ) {
-		const lastChar = model.getValueInRange({
+		const lastLine = model.getValueInRange({
 			startLineNumber: position.lineNumber,
-			startColumn: position.column - 1,
+			startColumn: 0,
 			endLineNumber: position.lineNumber,
 			endColumn: position.column
 		});
+		const lastChar = lastLine[ lastLine.length-1 ];
 		let suggestions = [];
 		if (
 			isWhitespace( lastChar ) ||
@@ -37,7 +43,7 @@ function factory( monaco ) {
 					kind: monaco.languages.CompletionItemKind.Snippet,
 					documentation: description,
 					insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-					insertText: lastChar === '<' ? removeFirst( x.value ) : x.value,
+					insertText: RE_TAG_START.test( lastLine ) ? removeFirst( x.value ) : x.value,
 					sortText: 'b'+x.value
 				};
 			});
