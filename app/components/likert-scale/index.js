@@ -19,7 +19,8 @@ import { LIKERT_SCALE_SUBMISSION } from 'constants/actions.js';
 *
 * @property {string} question - question to be printed
 * @property {Array} options - an array of five elements holding the labels for the different scale levels
-* @property {bool} disableSubmitNotification - controls whether to disable submission notifications
+* @property {boolean} noMultipleResponses - disallow multiple submissions from a single student
+* @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 */
 class LikertScale extends Component {
 	constructor( props ) {

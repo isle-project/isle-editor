@@ -16,7 +16,7 @@ import './background.css';
 * @property {string} out - exit effect name (either `fade-out`, `slide-right-out`, and `flip-hor-bottom-out`)
 * @property {number} inTime - length of the enter effect (in seconds)
 * @property {number} outTime - length of the exit effect (in seconds)
-* @property {bool} parent - sets the parent divs backgroundColor to transparent, overflow to hidden
+* @property {boolean} parent - sets the parent divs backgroundColor to transparent, overflow to hidden
 */
 class Background extends Component {
 	constructor( props ) {

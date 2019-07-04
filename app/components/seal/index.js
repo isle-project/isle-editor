@@ -29,7 +29,7 @@ const DIFF = 4;
 /**
 * An approval seal.
 *
-* @property {bool} active - controls whether seal is active or greyed out
+* @property {boolean} active - controls whether seal is active or greyed out
 * @property {number} scale - the size of the object, default = 1
 * @property {string} title - seal title
 * @property {string} lower - the lower text
@@ -38,7 +38,7 @@ const DIFF = 4;
 * @property {number} upperArc - the arc for the upper text
 * @property {Object} style - the style for the element
 * @property {Object} innerStyle - the style for the inner circle
-* @property {bool} noOrnaments - prevents rendering of the ornaments
+* @property {boolean} noOrnaments - prevents rendering of the ornaments
 * @property {boolean} removable - controls whether the note is removed when clicked
 * @property {Function} onClick - callback function invoked when the note is clicked
 */

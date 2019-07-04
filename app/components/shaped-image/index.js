@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 /**
 * A component that allows the display of shapes, triggered by images with alpha channel
 *
-* @property {bool} background - if set the component can hold and display child elements
+* @property {boolean} background - if set the component can hold and display child elements
 * @property {string} src - the image url
 * @property {number} margin - the margin in regards to the floating text, in pixels. Default: 10
 * @property {Object} style - the style of the object, it can hold any css including animations
