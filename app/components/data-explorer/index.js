@@ -1033,7 +1033,7 @@ class DataExplorer extends Component {
 					<Card.Body>
 						<Pages
 							id={this.id + '_questions'}
-							height={470}
+							height={( window.innerHeight*0.9 ) - 165}
 							size="small"
 							className="data-explorer-questions"
 							style={{
