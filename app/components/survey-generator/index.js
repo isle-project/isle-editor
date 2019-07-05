@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import logger from 'debug';
+import generateUID from 'utils/uid/incremental';
 import Gate from 'components/gate';
 import { CheckboxInput, SelectInput, TextInput } from 'components/input';
 import TextArea from 'components/input/text-area';
@@ -21,6 +22,7 @@ import { STOP_SURVEY, START_SURVEY } from 'constants/actions.js';
 // VARIABLES //
 
 const debug = logger( 'isle:survey-generator' );
+const uid = generateUID( 'survey-generator' );
 
 
 // MAIN //
@@ -36,6 +38,7 @@ const debug = logger( 'isle:survey-generator' );
 class SurveyGenerator extends Component {
 	constructor( props ) {
 		super( props );
+		this.id = props.id || uid();
 		this.state = {
 			answers: [],
 			question: '',
@@ -53,7 +56,7 @@ class SurveyGenerator extends Component {
 			if ( type === 'member_action' ) {
 				if ( action.type === START_SURVEY ) {
 					debug( 'Should start the survey...' );
-					if ( this.props.id === action.id ) {
+					if ( this.id === action.id ) {
 						this.setState({
 							question: action.value.question,
 							type: action.value.type,
@@ -64,7 +67,7 @@ class SurveyGenerator extends Component {
 				}
 				else if ( action.type === STOP_SURVEY ) {
 					debug( 'Should stop the survey...' );
-					if ( this.props.id === action.id ) {
+					if ( this.id === action.id ) {
 						this.setState({
 							showSurvey: false
 						});
@@ -107,13 +110,13 @@ class SurveyGenerator extends Component {
 		const session = this.context;
 		if ( this.state.showSurvey ) {
 			session.log({
-				id: this.props.id,
+				id: this.id,
 				type: STOP_SURVEY,
 				value: null
 			}, 'members' );
 		} else {
 			session.log({
-				id: this.props.id,
+				id: this.id,
 				type: START_SURVEY,
 				value: {
 					answers: this.state.answers,
@@ -145,7 +148,7 @@ class SurveyGenerator extends Component {
 	}
 
 	render() {
-		return ( <Card body id={this.props.id} >
+		return ( <Card body id={this.id} >
 			<Gate {...this.props} >
 				<Card body className="bg-light" style={{
 					maxWidth: '800px',
@@ -192,7 +195,7 @@ class SurveyGenerator extends Component {
 							user
 							question={this.state.question}
 							answers={this.state.answers}
-							id={this.props.id+':question'}
+							id={this.id+':question'}
 							anonymous={this.state.anonymous}
 						/> : null
 					}
@@ -200,7 +203,7 @@ class SurveyGenerator extends Component {
 						<NumberSurvey
 							user
 							question={this.state.question}
-							id={this.props.id+':question'}
+							id={this.id+':question'}
 							anonymous={this.state.anonymous}
 						/> : null
 					}
@@ -209,7 +212,7 @@ class SurveyGenerator extends Component {
 							user
 							question={this.state.question}
 							answers={this.state.answers}
-							id={this.props.id+':question'}
+							id={this.id+':question'}
 							anonymous={this.state.anonymous}
 						/> : null
 					}

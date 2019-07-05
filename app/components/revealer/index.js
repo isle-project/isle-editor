@@ -3,10 +3,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
-import Alert from 'react-bootstrap/Alert';
 import Gate from 'components/gate';
+import generateUID from 'utils/uid';
 import SessionContext from 'session/context.js';
 import { REVEAL_CONTENT, HIDE_CONTENT } from 'constants/actions.js';
+
+
+// VARIABLES //
+
+const uid = generateUID( 'revealer' );
 
 
 // MAIN //
@@ -21,6 +26,8 @@ class Revealer extends Component {
 	constructor( props ) {
 		super( props );
 
+		this.id = props.id || uid();
+
 		this.state = {
 			showChildren: props.show
 		};
@@ -31,7 +38,7 @@ class Revealer extends Component {
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
 				if ( type === 'member_action' ) {
-					if ( action.id === this.props.id ) {
+					if ( action.id === this.id ) {
 						if ( action.type === 'REVEAL_CONTENT' ) {
 							this.setState({
 								showChildren: true
@@ -47,7 +54,7 @@ class Revealer extends Component {
 					if ( this.state.showChildren ) {
 						const session = this.context;
 						session.log({
-							id: this.props.id,
+							id: this.id,
 							type: REVEAL_CONTENT,
 							value: this.state.showChildren,
 							noSave: true
@@ -72,13 +79,13 @@ class Revealer extends Component {
 			const session = this.context;
 			if ( this.state.showChildren ) {
 				session.log({
-					id: this.props.id,
+					id: this.id,
 					type: REVEAL_CONTENT,
 					value: this.state.showChildren
 				}, 'members' );
 			} else {
 				session.log({
-					id: this.props.id,
+					id: this.id,
 					type: HIDE_CONTENT,
 					value: this.state.showChildren
 				}, 'members' );
@@ -87,9 +94,6 @@ class Revealer extends Component {
 	}
 
 	render() {
-		if ( !this.props.id ) {
-			return <Alert variant="danger">No ID assigned to component.</Alert>;
-		}
 		const header = <h3 className="center" >{this.props.message}</h3>;
 		return (<div>
 			<Gate owner >
@@ -100,7 +104,7 @@ class Revealer extends Component {
 						marginBottom: '10px'
 					}}
 				>
-					Click to {this.state.showChildren ? 'hide' : 'reveal'} <i>{this.props.id}</i> {this.state.showChildren ? 'from' : 'to'}  users
+					Click to {this.state.showChildren ? 'hide' : 'reveal'} <i>{this.id}</i> {this.state.showChildren ? 'from' : 'to'}  users
 				</Button>
 			</Gate>
 				{this.state.showChildren ? this.props.children : header}

@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import isNull from '@stdlib/assert/is-null';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
+import generateUID from 'utils/uid';
 import CheckboxInput from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
@@ -20,6 +21,7 @@ import './dashboard.css';
 // VARIABLES //
 
 const debug = logger( 'isle:dashboard' );
+const uid = generateUID( 'dashboard' );
 
 
 // MAIN //
@@ -63,6 +65,7 @@ class Dashboard extends Component {
 		};
 		walk( props.children );
 		debug( 'Initial state: %s', JSON.stringify( initialState ) );
+		this.id = props.id || uid( props );
 		this.state = initialState;
 	}
 
@@ -77,14 +80,12 @@ class Dashboard extends Component {
 		for ( let i = 0; i < this.nArgs; i++ ) {
 			args[ i ] = this.state[ i ];
 		}
-		if ( this.props.id ) {
-			const session = this.context;
-			session.log({
-				id: this.props.id,
-				type: DASHBOARD_CLICK_GENERATE,
-				value: args
-			});
-		}
+		const session = this.context;
+		session.log({
+			id: this.id,
+			type: DASHBOARD_CLICK_GENERATE,
+			value: args
+		});
 		this.props.onGenerate( ...args );
 	};
 

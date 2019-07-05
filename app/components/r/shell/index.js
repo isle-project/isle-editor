@@ -19,6 +19,7 @@ import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import max from '@stdlib/math/base/special/max';
 import logger from 'debug';
 import CodeMirror from 'codemirror';
+import generateUID from 'utils/uid';
 import Spinner from 'components/spinner';
 import HintButton from 'components/hint-button';
 import OverlayTrigger from 'components/overlay-trigger';
@@ -33,6 +34,7 @@ import './rshell.css';
 // VARIABLES //
 
 const debug = logger( 'isle:r-shell' );
+const uid = generateUID( 'r-shell' );
 const HELP_REGEX = /(help\([^)]*\)|\?[^\n]*)/;
 let counter = 0;
 let rCode = [];
@@ -161,6 +163,8 @@ class RShell extends React.Component {
 			help: ''
 		};
 
+		this.id = props.id || uid( props );
+
 		counter += 1;
 		rCode.push( props.code );
 
@@ -179,14 +183,12 @@ class RShell extends React.Component {
 				this.editor.setOption( 'readOnly', false );
 			}
 			if ( val !== solutionUnescaped ) {
-				if ( this.props.id ) {
-					const session = this.context;
-					session.log({
-						id: this.props.id,
-						type: RSHELL_DISPLAY_SOLUTION,
-						value: val
-					});
-				}
+				const session = this.context;
+				session.log({
+					id: this.id,
+					type: RSHELL_DISPLAY_SOLUTION,
+					value: val
+				});
 				this.setState({
 					lastSolution: val,
 					solutionOpen: !this.state.solutionOpen
@@ -228,14 +230,11 @@ class RShell extends React.Component {
 						}
 					});
 				}
-				if ( this.props.id ) {
-					session.log({
-						id: this.props.id,
-						type: RSHELL_EVALUATION,
-						value: currentCode
-					});
-				}
-
+				session.log({
+					id: this.id,
+					type: RSHELL_EVALUATION,
+					value: currentCode
+				});
 				let prependCode = createPrependCode( this.props.libraries, this.props.prependCode, session );
 				if ( this.props.addPreceding ) {
 					for ( let i = 0; i < this.state.id; i++ ) {
@@ -303,7 +302,7 @@ class RShell extends React.Component {
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, val ) => {
 				if ( type === 'retrieved_current_user_actions' ) {
-					let lastAction = this.getLastAction( val, this.props.id );
+					let lastAction = this.getLastAction( val, this.id );
 					if ( isString( lastAction ) ) {
 						this.setState({
 							lastSolution: lastAction,
@@ -316,7 +315,7 @@ class RShell extends React.Component {
 				}
 			});
 			const actions = session.currentUserActions;
-			const value = this.getLastAction( actions, this.props.id );
+			const value = this.getLastAction( actions, this.id );
 			if ( isString( value ) ) {
 				this.setState({
 					lastSolution: value,
@@ -376,13 +375,11 @@ class RShell extends React.Component {
 
 	logHint = ( idx ) => {
 		const session = this.context;
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: RSHELL_OPEN_HINT,
-				value: idx
-			});
-		}
+		session.log({
+			id: this.id,
+			type: RSHELL_OPEN_HINT,
+			value: idx
+		});
 	}
 
 	hideHelp = () => {
@@ -504,9 +501,9 @@ class RShell extends React.Component {
 						null
 					}
 					{
-						( this.props.chat && this.props.id ) ?
+						( this.props.chat ) ?
 							<span style={{ display: 'inline-block', marginLeft: '4px' }}>
-								<ChatButton for={this.props.id} />
+								<ChatButton for={this.id} />
 							</span> :
 							null
 					}
@@ -515,7 +512,7 @@ class RShell extends React.Component {
 					{ showResult( this.state.result ) }
 					{ insertImages( this.state.plots ) }
 				</div>
-				<ResponseVisualizer id={this.props.id} info="RSHELL_EVALUATION" />
+				<ResponseVisualizer id={this.id} info="RSHELL_EVALUATION" />
 				{this.renderHelpModal()}
 			</div>
 		);

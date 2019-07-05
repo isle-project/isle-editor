@@ -29,6 +29,7 @@ class EngagementMeter extends Component {
 			mean: null,
 			range: null
 		};
+		this.id = props.id || 'engagement-meter';
 		this.meanAcc = incrmmean( 6 );
 		this.rangeAcc = incrmrange( 6 );
 	}
@@ -38,7 +39,7 @@ class EngagementMeter extends Component {
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
 				if ( type === 'member_action' ) {
-					if ( action.id === this.props.id ) {
+					if ( action.id === this.id ) {
 						if ( action.type === SHARE_ENGAGEMENT ) {
 							const mean = this.meanAcc( action.value );
 							const range = this.rangeAcc( action.value );
@@ -67,7 +68,7 @@ class EngagementMeter extends Component {
 		}, () => {
 			const session = this.context;
 			session.log({
-				id: this.props.id,
+				id: this.id,
 				type: SHARE_ENGAGEMENT,
 				value: this.state.progress
 			});

@@ -24,6 +24,7 @@ import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
+import generateUID from 'utils/uid';
 import ResponseVisualizer from 'components/response-visualizer';
 import VoiceInput from 'components/input/voice';
 import UserPairer from 'components/user-pairer';
@@ -55,6 +56,7 @@ import './markdown_editor.css';
 // VARIABLES //
 
 const debug = logger( 'isle:markdown-editor' );
+const uid = generateUID( 'markdown-editor' );
 const md = markdownit({
 	html: true,
 	xhtmlOut: true,
@@ -124,8 +126,9 @@ class MarkdownEditor extends Component {
 		var value = props.defaultValue;
 		var hash = {};
 		var out;
-		if ( props.id && props.autoSave ) {
-			var previous = localStorage.getItem( props.id );
+		this.id = props.id || uid( props );
+		if ( props.autoSave ) {
+			var previous = localStorage.getItem( this.id );
 			if ( previous ) {
 				out = remakeText( previous );
 				value = out.text;
@@ -431,13 +434,13 @@ class MarkdownEditor extends Component {
 		}
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
-			if ( action && action.id === this.props.id ) {
+			if ( action && action.id === this.id ) {
 				if ( action.type === 'MARKDOWN_EDITOR_PEER_REPORT' ) {
-					localStorage.setItem( this.props.id+'_peer_report', action.value );
+					localStorage.setItem( this.id+'_peer_report', action.value );
 					this.addPeerReportNotification( action.value );
 				}
 				else if ( action.type === 'MARKDOWN_EDITOR_PEER_COMMENTS' ) {
-					localStorage.setItem( this.props.id+'_peer_comments', action.value );
+					localStorage.setItem( this.id+'_peer_comments', action.value );
 					this.addPeerComments( action.value );
 				}
 			}
@@ -485,7 +488,7 @@ class MarkdownEditor extends Component {
 							position: 'tr'
 						});
 					}
-					localStorage.removeItem( this.props.id+'_peer_report' );
+					localStorage.removeItem( this.id+'_peer_report' );
 					session.removeNotification( this.peerReportNotification );
 					this.setEditorValue( report );
 				}}>Open Report</Button>
@@ -512,7 +515,7 @@ class MarkdownEditor extends Component {
 							position: 'tr'
 						});
 					}
-					localStorage.removeItem( this.props.id+'_peer_comments' );
+					localStorage.removeItem( this.id+'_peer_comments' );
 					session.removeNotification( this.peerCommentsNotification );
 					this.setEditorValue( comments );
 				}}>Open Comments</Button>
@@ -536,14 +539,12 @@ class MarkdownEditor extends Component {
 			if ( startsWith( origin, '+' ) ) {
 				origin = removeFirst( origin );
 			}
-			if ( this.props.id ) {
-				const session = this.context;
-				session.log({
-					id: this.props.id,
-					type: 'MARKDOWN_EDITOR_'+uppercase( origin ),
-					value: JSON.stringify( change, replacer, 2 )
-				});
-			}
+			const session = this.context;
+			session.log({
+				id: this.id,
+				type: 'MARKDOWN_EDITOR_'+uppercase( origin ),
+				value: JSON.stringify( change, replacer, 2 )
+			});
 			return true;
 		}
 		return false;
@@ -627,7 +628,7 @@ class MarkdownEditor extends Component {
 			if ( key && html ) {
 				if ( startsWith( key, '<!--IMAGE_LOG' ) ) {
 					this.context.log({
-						id: this.props.id,
+						id: this.id,
 						type: PLOT_DRAGGED,
 						value: key.substring( 14, 20 )
 					});
@@ -649,18 +650,16 @@ class MarkdownEditor extends Component {
 	}
 
 	handleAutosave = () => {
-		if ( this.props.id ) {
-			let text = this.state.value;
-			text = replacePlaceholders( text, this.state.hash );
-			localStorage.setItem( this.props.id, text );
-			const logged = this.logChange();
-			if ( logged ) {
-				this.setState({
-					change: {
-						'text': []
-					}
-				});
-			}
+		let text = this.state.value;
+		text = replacePlaceholders( text, this.state.hash );
+		localStorage.setItem( this.id, text );
+		const logged = this.logChange();
+		if ( logged ) {
+			this.setState({
+				change: {
+					'text': []
+				}
+			});
 		}
 	}
 
@@ -789,7 +788,7 @@ class MarkdownEditor extends Component {
 	}
 
 	resetEditor = () => {
-		localStorage.removeItem( this.props.id );
+		localStorage.removeItem( this.id );
 		this.simplemde.codemirror.execCommand( 'selectAll' );
 		this.simplemde.codemirror.replaceSelection( this.props.defaultValue );
 		this.context.addNotification({
@@ -917,8 +916,8 @@ class MarkdownEditor extends Component {
 			const pdfForm = new FormData();
 
 			let filename = 'report.html';
-			if ( this.props.id ) {
-				filename = this.props.id+'_'+filename;
+			if ( this.id ) {
+				filename = this.id+'_'+filename;
 			}
 			const htmlFile = new File([ html ], filename, {
 				type: 'text/html'
@@ -926,9 +925,7 @@ class MarkdownEditor extends Component {
 			htmlForm.append( 'file', htmlFile );
 
 			filename = 'report.pdf';
-			if ( this.props.id ) {
-				filename = this.props.id+'_'+filename;
-			}
+			filename = this.id+'_'+filename;
 			const pdfBlob = base64toBlob( pdf, 'application/pdf' );
 			const pdfFile = new File([ pdfBlob ], filename, {
 				type: 'application/pdf'
@@ -944,32 +941,29 @@ class MarkdownEditor extends Component {
 				level: 'success',
 				position: 'tr'
 			});
-
-			if ( this.props.id ) {
-				session.log({
-					id: this.props.id,
-					type: MARKDOWN_EDITOR_SUBMIT,
-					value: this.state.value
-				});
-			}
+			session.log({
+				id: this.id,
+				type: MARKDOWN_EDITOR_SUBMIT,
+				value: this.state.value
+			});
 		});
 	}
 
 	handlePeerAssignment = ( assignment ) => {
 		if ( this.props.peerReview ) {
-			const peerReport = localStorage.getItem( this.props.id+'_peer_report' );
+			const peerReport = localStorage.getItem( this.id+'_peer_report' );
 			if ( peerReport ) {
 				this.addPeerReportNotification( peerReport );
 			}
 			else {
-				const peerComments = localStorage.getItem( this.props.id+'_peer_comments' );
+				const peerComments = localStorage.getItem( this.id+'_peer_comments' );
 				if ( peerComments ) {
 					this.addPeerComments( peerComments );
 				}
 			}
 			const newState = {};
-			newState.submittedToPeer = localStorage.getItem( this.props.id+'submitted_to_peer' ) || false;
-			newState.submittedPeerComments = localStorage.getItem( this.props.id+'submitted_comments' ) || false;
+			newState.submittedToPeer = localStorage.getItem( this.id+'submitted_to_peer' ) || false;
+			newState.submittedPeerComments = localStorage.getItem( this.id+'submitted_comments' ) || false;
 			this.setState( newState );
 		}
 		this.setState({
@@ -992,8 +986,8 @@ class MarkdownEditor extends Component {
 		if ( this.peerCommentsNotification ) {
 			session.removeNotification( this.peerCommentsNotification );
 		}
-		localStorage.removeItem( this.props.id+'submitted_to_peer' );
-		localStorage.removeItem( this.props.id+'submitted_comments' );
+		localStorage.removeItem( this.id+'submitted_to_peer' );
+		localStorage.removeItem( this.id+'submitted_comments' );
 		this.setState({
 			peer: null,
 			submittedToPeer: false,
@@ -1012,11 +1006,11 @@ class MarkdownEditor extends Component {
 		const session = this.context;
 		return (
 			<Fragment>
-				<div id={this.props.id} ref={( div ) => { this.wrapper = div; }} className="markdown-editor" style={this.props.style} >
+				<div id={this.id} ref={( div ) => { this.wrapper = div; }} className="markdown-editor" style={this.props.style} >
 					<textarea ref={( area ) => { this.simplemdeRef = area; }} autoComplete="off" {...this.props.options} />
 					{ contains( this.props.toolbarConfig, 'submit' ) ?
 					<ResponseVisualizer
-						id={this.props.id}
+						id={this.id}
 						data={{
 							type: 'text'
 						}}
@@ -1025,7 +1019,7 @@ class MarkdownEditor extends Component {
 					/> : null }
 				</div>
 				{ this.props.peerReview ? <UserPairer
-					id={this.props.id+'_pairer'}
+					id={this.id+'_pairer'}
 					onAssignmentStudent={this.handlePeerAssignment}
 					onClearStudent={this.handlePeerCleanup}
 				/> : null }
@@ -1057,7 +1051,7 @@ class MarkdownEditor extends Component {
 					onSubmitToReviewer={() => {
 						const md = replacePlaceholders( this.simplemde.value(), this.state.hash );
 						session.log({
-							id: this.props.id,
+							id: this.id,
 							type: MARKDOWN_EDITOR_PEER_REPORT,
 							value: md,
 							noSave: true
@@ -1065,13 +1059,13 @@ class MarkdownEditor extends Component {
 						this.setState({
 							submittedToPeer: true
 						});
-						localStorage.setItem( this.props.id+'submitted_to_peer', true );
+						localStorage.setItem( this.id+'submitted_to_peer', true );
 						this.submitReport();
 					}}
 					onSubmitComments={() => {
 						const md = replacePlaceholders( this.simplemde.value(), this.state.hash );
 						session.log({
-							id: this.props.id,
+							id: this.id,
 							type: MARKDOWN_EDITOR_PEER_COMMENTS,
 							value: md,
 							noSave: true
@@ -1079,7 +1073,7 @@ class MarkdownEditor extends Component {
 						this.setState({
 							submittedPeerComments: true
 						});
-						localStorage.setItem( this.props.id+'submitted_comments', true );
+						localStorage.setItem( this.id+'submitted_comments', true );
 						this.submitReport();
 					}}
 					onFinalSubmit={this.submitReport}

@@ -8,11 +8,17 @@ import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import isArray from '@stdlib/assert/is-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import generateUID from 'utils/uid';
 import VoiceControl from 'components/voice-control';
 import SessionContext from 'session/context.js';
 import { PAGES_FIRST_PAGE, PAGES_NEXT_PAGE, PAGES_PREVIOUS_PAGE, PAGES_LAST_PAGE, PAGES_JUMP_PAGE } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import './pages.css';
+
+
+// VARIABLES //
+
+const uid = generateUID( 'pages' );
 
 
 // MAIN //
@@ -31,6 +37,7 @@ import './pages.css';
 class Pages extends Component {
 	constructor( props ) {
 		super( props );
+		this.id = props.id || uid( props );
 		this.state = {
 			activePage: props.activePage
 		};
@@ -52,14 +59,12 @@ class Pages extends Component {
 		if ( this.wrapper ) {
 			this.wrapper.scrollTop = 0;
 		}
-		if ( this.props.id ) {
 		const session = this.context;
-			session.log({
-				id: this.props.id,
-				type: PAGES_FIRST_PAGE,
-				value: 0
-			});
-		}
+		session.log({
+			id: this.id,
+			type: PAGES_FIRST_PAGE,
+			value: 0
+		});
 		this.setState({
 			activePage: 1
 		});
@@ -74,14 +79,12 @@ class Pages extends Component {
 		if ( this.wrapper ) {
 			this.wrapper.scrollTop = 0;
 		}
-		if ( this.props.id ) {
-			const session = this.context;
-			session.log({
-				id: this.props.id,
-				type: PAGES_NEXT_PAGE,
-				value: this.state.activePage + 1
-			});
-		}
+		const session = this.context;
+		session.log({
+			id: this.id,
+			type: PAGES_NEXT_PAGE,
+			value: this.state.activePage + 1
+		});
 		this.setState({
 			activePage: this.state.activePage + 1
 		});
@@ -95,14 +98,12 @@ class Pages extends Component {
 		if ( this.wrapper ) {
 			this.wrapper.scrollTop = 0;
 		}
-		if ( this.props.id ) {
-			const session = this.context;
-			session.log({
-				id: this.props.id,
-				type: PAGES_PREVIOUS_PAGE,
-				value: this.state.activePage - 1
-			});
-		}
+		const session = this.context;
+		session.log({
+			id: this.id,
+			type: PAGES_PREVIOUS_PAGE,
+			value: this.state.activePage - 1
+		});
 		this.setState({
 			activePage: this.state.activePage - 1
 		});
@@ -113,14 +114,12 @@ class Pages extends Component {
 		if ( this.wrapper ) {
 			this.wrapper.scrollTop = 0;
 		}
-		if ( this.props.id ) {
-			const session = this.context;
-			session.log({
-				id: this.props.id,
-				type: PAGES_LAST_PAGE,
-				value: this.props.children.length
-			});
-		}
+		const session = this.context;
+		session.log({
+			id: this.id,
+			type: PAGES_LAST_PAGE,
+			value: this.props.children.length
+		});
 		this.setState({
 			activePage: this.props.children.length
 		});
@@ -135,14 +134,12 @@ class Pages extends Component {
 		if ( this.wrapper ) {
 			this.wrapper.scrollTop = 0;
 		}
-		if ( this.props.id ) {
-			const session = this.context;
-			session.log({
-				id: this.props.id,
-				type: PAGES_JUMP_PAGE,
-				value: page
-			});
-		}
+		const session = this.context;
+		session.log({
+			id: this.id,
+			type: PAGES_JUMP_PAGE,
+			value: page
+		});
 		this.setState({
 			activePage: page
 		});
@@ -200,7 +197,7 @@ class Pages extends Component {
 		}
 		return (
 			<Card
-				id={this.props.id}
+				id={this.id}
 				style={this.props.style}
 			>
 				{ this.props.title ? header : null }

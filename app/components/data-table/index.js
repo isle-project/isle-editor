@@ -27,6 +27,7 @@ import isNull from '@stdlib/assert/is-null';
 import objectKeys from '@stdlib/utils/keys';
 import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
+import generateUID from 'utils/uid';
 import SessionContext from 'session/context.js';
 import { TABLE_SORT, TABLE_FILTER, TABLE_RESET } from 'constants/actions.js';
 import SelectInput from 'components/input/select';
@@ -45,6 +46,7 @@ const md = markdownit({
 	breaks: true,
 	typographer: false
 });
+const uid = generateUID( 'data-table' );
 
 
 // FUNCTIONS //
@@ -93,6 +95,7 @@ class DataTable extends Component {
 		props.dataInfo.variables = props.dataInfo.variables || null;
 		props.dataInfo.showOnStartup = props.dataInfo.showOnStartup || null;
 
+		this.id = props.id || uid( props );
 		this.state = this.generateInitialState( props );
 	}
 
@@ -321,14 +324,12 @@ class DataTable extends Component {
 
 	handleFilterChange = ( filtered, column ) => {
 		const selectedRows = this.table.getResolvedState().sortedData.length;
-		if ( this.props.id ) {
-			const session = this.context;
-			session.log({
-				id: this.props.id,
-				type: TABLE_FILTER,
-				value: column.id
-			});
-		}
+		const session = this.context;
+		session.log({
+			id: this.id,
+			type: TABLE_FILTER,
+			value: column.id
+		});
 		this.setState({
 			selectedRows,
 			filtered
@@ -339,14 +340,12 @@ class DataTable extends Component {
 
 	handleSortedChange = ( sorted, column ) => {
 		const selectedRows = this.table.getResolvedState().sortedData.length;
-		if ( this.props.id ) {
-			const session = this.context;
-			session.log({
-				id: this.props.id,
-				type: TABLE_SORT,
-				value: column.id
-			});
-		}
+		const session = this.context;
+		session.log({
+			id: this.id,
+			type: TABLE_SORT,
+			value: column.id
+		});
 		this.setState({
 			selectedRows,
 			sorted
@@ -360,14 +359,12 @@ class DataTable extends Component {
 	}
 
 	reset = () => {
-		if ( this.props.id ) {
-			const session = this.context;
-			session.log({
-				id: this.props.id,
-				type: TABLE_RESET,
-				value: ''
-			});
-		}
+		const session = this.context;
+		session.log({
+			id: this.id,
+			type: TABLE_RESET,
+			value: ''
+		});
 		this.setState({
 			filtered: [],
 			sorted: []
@@ -492,7 +489,7 @@ class DataTable extends Component {
 						)}
 					</Overlay>
 					<ReactTable
-						id={this.props.id}
+						id={this.id}
 						ref={( table ) => { this.table = table; }}
 						data={rows}
 						columns={this.state.columns}

@@ -17,6 +17,7 @@ import ChatButton from 'components/chat-button';
 import HintButton from 'components/hint-button';
 import CodeMirror from 'codemirror';
 import scrollTo from 'utils/scroll-to';
+import generateUID from 'utils/uid';
 import OverlayTrigger from 'components/overlay-trigger';
 import VoiceControl from 'components/voice-control';
 import SessionContext from 'session/context.js';
@@ -32,6 +33,7 @@ import './js_shell.css';
 // VARIABLES //
 
 const RE_CONSOLE = /console\.(error|warn|debug|log|info)/g;
+const uid = generateUID( 'js-shell' );
 const THEME = {
 	scheme: 'bright',
 	author: 'chris kempson (http://chriskempson.com)',
@@ -133,7 +135,7 @@ class JSShell extends Component {
 			exhaustedHints: props.hints.length === 0,
 			solutionOpen: false
 		};
-
+		this.id = props.id || uid( props );
 		if ( this.props.vars ) {
 			for ( var key in this.props.vars ) {
 				if ( hasOwnProp( this.props.vars, key ) ) {
@@ -218,14 +220,12 @@ class JSShell extends Component {
 		}
 
 		if ( val !== solutionUnescaped ) {
-			if ( this.props.id ) {
-				const session = this.context;
-				session.log({
-					id: this.props.id,
-					type: JSSHELL_DISPLAY_SOLUTION,
-					value: val
-				});
-			}
+			const session = this.context;
+			session.log({
+				id: this.id,
+				type: JSSHELL_DISPLAY_SOLUTION,
+				value: val
+			});
 			this.setState({
 				lastSolution: val,
 				solutionOpen: !this.state.solutionOpen
@@ -242,14 +242,12 @@ class JSShell extends Component {
 	handleEvaluationClick = () => {
 		let currentCode = this.editor.getValue();
 		currentCode = replace( currentCode, RE_CONSOLE, 'print.$1' );
-		if ( this.props.id ) {
-			const session = this.context;
-			session.log({
-				id: this.props.id,
-				type: JSSHELL_EVALUATION,
-				value: currentCode
-			});
-		}
+		const session = this.context;
+		session.log({
+			id: this.id,
+			type: JSSHELL_EVALUATION,
+			value: currentCode
+		});
 		try {
 			if ( this.props.check ) {
 				currentCode += ';' + this.props.check;
@@ -321,13 +319,11 @@ class JSShell extends Component {
 
 	logHint = ( idx ) => {
 		const session = this.context;
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: JSSHELL_OPEN_HINT,
-				value: idx
-			});
-		}
+		session.log({
+			id: this.id,
+			type: JSSHELL_OPEN_HINT,
+			value: idx
+		});
 	}
 
 	showHints() {
@@ -380,9 +376,9 @@ class JSShell extends Component {
 				null
 			}
 			{
-				( this.props.chat && this.props.id ) ?
+				( this.props.chat ) ?
 					<span style={{ display: 'inline-block', marginLeft: '4px' }}>
-						<ChatButton for={this.props.id} />
+						<ChatButton for={this.id} />
 					</span> :
 					null
 			}
@@ -398,7 +394,7 @@ class JSShell extends Component {
 			this.editorDiv = div;
 		}} ></div>;
 		return (
-			<div id={this.props.id} >
+			<div id={this.id} >
 				<div className="js-shell" >
 					{editor}
 					<div className="js-shell-toolbar">

@@ -12,6 +12,7 @@ import { VictoryAxis, VictoryBar, VictoryChart, VictoryLabel } from 'victory';
 import logger from 'debug';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import tabulate from '@stdlib/utils/tabulate';
+import generateUID from 'utils/uid';
 import Gate from 'components/gate';
 import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
@@ -24,6 +25,7 @@ import './multiple-choice-survey.css';
 // VARIABLES //
 
 const debug = logger( 'isle:multiple-choice-survey' );
+const uid = generateUID( 'multiple-choice-survey' );
 
 
 // MAIN //
@@ -48,6 +50,7 @@ class MultipleChoiceSurvey extends Component {
 		let active = props.multipleAnswers ?
 			new Array( props.answers.length ) :
 			null;
+		this.id = props.id || uid( props );
 		this.state = {
 			data: [],
 			submitted: false,
@@ -59,7 +62,7 @@ class MultipleChoiceSurvey extends Component {
 	submitQuestion = () => {
 		const session = this.context;
 		session.log({
-			id: this.props.id,
+			id: this.id,
 			type: MULTIPLE_CHOICE_SURVEY_SUBMISSION,
 			value: this.state.active,
 			anonymous: this.props.anonymous
@@ -187,7 +190,7 @@ class MultipleChoiceSurvey extends Component {
 		}
 		return (
 			<Gate user banner={<h2>Please sign in...</h2>} >
-				<Card id={this.props.id} style={this.props.style} >
+				<Card id={this.id} style={this.props.style} >
 					<Card.Header as="h3">
 						{title}
 					</Card.Header>

@@ -15,6 +15,7 @@ import isEmptyArray from '@stdlib/assert/is-empty-array';
 import tabulate from '@stdlib/utils/tabulate';
 import lowercase from '@stdlib/string/lowercase';
 import tokenize from '@stdlib/nlp/tokenize';
+import generateUID from 'utils/uid';
 import TextArea from 'components/input/text-area';
 import Gate from 'components/gate';
 import ResponseVisualizer from 'components/response-visualizer';
@@ -27,6 +28,7 @@ import './free-text-survey.css';
 // VARIABLES //
 
 const debug = logger( 'isle:free-text-survey' );
+const uid = generateUID( 'free-text-survey' );
 
 
 // FUNCTIONS //
@@ -63,6 +65,7 @@ class FreeTextSurvey extends Component {
 	constructor( props ) {
 		super( props );
 
+		this.id = props.id || uid( props );
 		this.state = {
 			data: [],
 			submitted: false,
@@ -82,7 +85,7 @@ class FreeTextSurvey extends Component {
 			});
 		} else {
 			session.log({
-				id: this.props.id,
+				id: this.id,
 				type: TEXT_SURVEY_SUBMISSION,
 				value: this.state.value,
 				anonymous: this.props.anonymous
@@ -159,7 +162,7 @@ class FreeTextSurvey extends Component {
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
 			<Gate user banner={<h2>Please sign in...</h2>} >
-				<Card id={this.props.id} style={this.props.style} >
+				<Card id={this.id} style={this.props.style} >
 					<Card.Header as="h3">
 						Survey
 					</Card.Header>
@@ -190,13 +193,13 @@ class FreeTextSurvey extends Component {
 									</Card>
 								</Col>
 								<Col md={6}>
-									<RealtimeMetrics for={this.props.id} onData={this.onData} />
+									<RealtimeMetrics for={this.id} onData={this.onData} />
 									{this.renderChart()}
 									{this.state.freqTable}
 								</Col>
 							</Row>
 						</Container>
-						<ResponseVisualizer buttonLabel="Responses" id={props.id} />
+						<ResponseVisualizer buttonLabel="Responses" id={this.id} />
 					</Card.Body>
 				</Card>
 			</Gate>

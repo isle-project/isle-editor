@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import logger from 'debug';
+import generateUID from 'utils/uid';
 import ProportionsInput from 'components/input/proportions';
 import Gate from 'components/gate';
 import ResponseVisualizer from 'components/response-visualizer';
@@ -19,6 +20,7 @@ import { PROPORTIONS_SURVEY_SUBMISSION } from 'constants/actions.js';
 // VARIABLES //
 
 const debug = logger( 'isle:proportions-survey' );
+const uid = generateUID( 'proportions-survey' );
 
 
 // MAIN //
@@ -48,6 +50,7 @@ class ProportionsSurvey extends Component {
 	constructor( props ) {
 		super( props );
 
+		this.id = props.id || uid( props );
 		this.results = [];
 		this.state = {
 			submitted: false,
@@ -61,7 +64,7 @@ class ProportionsSurvey extends Component {
 		debug( 'Sending the data: ' + this.state.value );
 		const session = this.context;
 		session.log({
-			id: this.props.id,
+			id: this.id,
 			type: PROPORTIONS_SURVEY_SUBMISSION,
 			value: JSON.stringify( this.state.value ),
 			anonymous: this.props.anonymous
@@ -80,7 +83,7 @@ class ProportionsSurvey extends Component {
 
 	onData = ( data ) => {
 		debug( 'ProportionsSurvey is receiving data: ' + JSON.stringify( data ) );
-		data = data[ this.props.id ];
+		data = data[ this.id ];
 		this.getAverage( data );
 	}
 
@@ -158,7 +161,7 @@ class ProportionsSurvey extends Component {
 							marginTop: '8px'
 						}}>
 							<h3>{ this.props.group}</h3>
-							<RealtimeMetrics for={[ this.props.id ]} onData={this.onData} />
+							<RealtimeMetrics for={[ this.id ]} onData={this.onData} />
 							<h4>Number of votes: { this.state.nResults } </h4>
 							<ProportionsInput
 								legends={this.props.legends}
@@ -175,7 +178,7 @@ class ProportionsSurvey extends Component {
 						</Card>
 					</Col>
 				</Container>
-				<ResponseVisualizer buttonLabel="Responses" id={this.props.id} />
+				<ResponseVisualizer buttonLabel="Responses" id={this.id} />
 			</Gate>
 		);
 	}

@@ -11,6 +11,7 @@ import Draggable from 'react-draggable';
 import ReactTable from 'react-table';
 import contains from '@stdlib/assert/contains';
 import noop from '@stdlib/utils/noop';
+import generateUID from 'utils/uid/incremental';
 import Tooltip from 'components/tooltip';
 import ChatButton from 'components/chat-button';
 import Panel from 'components/panel';
@@ -23,6 +24,7 @@ import './queue.css';
 // VARIABLES //
 
 const debug = logger( 'isle:queue' );
+const uid = generateUID( 'queue' );
 
 
 // MAIN //
@@ -32,6 +34,7 @@ class Queue extends Component {
 		super( props );
 		debug( 'Invoking constructor...' );
 
+		this.id = props.id || uid();
 		this.state = {
 			arr: [],
 			inQueue: false, // if a user is already in the queue
@@ -52,13 +55,13 @@ class Queue extends Component {
 					this.checkAuthorization();
 				} else if ( type === 'user_joined' && this.state.isOwner ) {
 					session.log({
-						id: this.props.id,
+						id: this.id,
 						type: SEND_QUEUE_SIZE,
 						value: this.state.queueSize,
 						noSave: true
 					}, 'members' );
 				}
-				if ( action && action.id === this.props.id ) {
+				if ( action && action.id === this.id ) {
 					if ( action.type === 'ENTER_QUEUE' ) {
 						debug( 'Someone is entering the queue' );
 						const newSize = this.state.queueSize + 1;
@@ -74,7 +77,7 @@ class Queue extends Component {
 								queueSize: newSize
 							}, () => {
 								session.log({
-									id: this.props.id,
+									id: this.id,
 									type: SEND_QUEUE_SIZE,
 									value: this.state.queueSize,
 									noSave: true
@@ -107,7 +110,7 @@ class Queue extends Component {
 								queueSize: newSize
 							}, () => {
 								session.log({
-									id: this.props.id,
+									id: this.id,
 									type: SEND_QUEUE_SIZE,
 									value: newSize,
 									noSave: true
@@ -158,7 +161,7 @@ class Queue extends Component {
 		}, () => {
 			const session = this.context;
 			session.log({
-				id: this.props.id,
+				id: this.id,
 				type: ENTER_QUEUE,
 				value: this.state.questionText,
 				noSave: false
@@ -169,7 +172,7 @@ class Queue extends Component {
 	leaveQueue = () => {
 		const session = this.context;
 		session.log({
-			id: this.props.id,
+			id: this.id,
 			type: LEFT_QUEUE,
 			value: this.state.spot
 		}, 'members' );
@@ -181,7 +184,7 @@ class Queue extends Component {
 				<Button variant="secondary" size="sm" onClick={() => {
 					const session = this.context;
 					session.log({
-						id: this.props.id,
+						id: this.id,
 						type: LEFT_QUEUE,
 						value: cellInfo.index + 1
 					}, 'members' );

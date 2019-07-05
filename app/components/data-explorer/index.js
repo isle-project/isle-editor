@@ -27,6 +27,7 @@ import startsWith from '@stdlib/string/starts-with';
 import copy from '@stdlib/utils/copy';
 import keys from '@stdlib/utils/keys';
 import noop from '@stdlib/utils/noop';
+import generateUID from 'utils/uid';
 import SelectInput from 'components/input/select';
 import ContingencyTable from 'components/data-explorer/contingency_table';
 import FrequencyTable from 'components/data-explorer/frequency_table';
@@ -86,6 +87,7 @@ import Kruskal from 'components/data-explorer/kruskal';
 // VARIABLES //
 
 const debug = logger( 'isle:data-explorer' );
+const uid = generateUID( 'data-explorer' );
 
 
 // MAIN //
@@ -142,6 +144,7 @@ class DataExplorer extends Component {
 		) {
 			ready = true;
 		}
+		this.id = props.id || uid( props );
 		this.state = {
 			data: data,
 			continuous: continuous,
@@ -167,13 +170,11 @@ class DataExplorer extends Component {
 				value = { ...value, filters: this.state.subsetFilters };
 			}
 			const session = this.context;
-			if ( this.props.id ) {
-				session.log({
-					id: this.props.id,
-					type,
-					value
-				});
-			}
+			session.log({
+				id: this.id,
+				type,
+				value
+			});
 		};
 	}
 
@@ -203,10 +204,10 @@ class DataExplorer extends Component {
 
 	componentDidMount() {
 		const session = this.context;
-		if ( !this.props.data && this.props.id ) {
-			const promiseData = session.store.getItem( this.props.id+'_data' );
-			const promiseContinuous = session.store.getItem( this.props.id+'_continuous' );
-			const promiseCategorical = session.store.getItem( this.props.id+'_categorical' );
+		if ( !this.props.data ) {
+			const promiseData = session.store.getItem( this.id+'_data' );
+			const promiseContinuous = session.store.getItem( this.id+'_continuous' );
+			const promiseCategorical = session.store.getItem( this.id+'_categorical' );
 			Promise.all([ promiseData, promiseContinuous, promiseCategorical ])
 				.then( ( values ) => {
 					const data = values[ 0 ] || null;
@@ -224,7 +225,7 @@ class DataExplorer extends Component {
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if ( type === 'retrieved_current_user_actions' ) {
 				const currentUserActions = value;
-				const actions = currentUserActions[ this.props.id ];
+				const actions = currentUserActions[ this.id ];
 				if ( this.props.data && isObjectArray( actions ) ) {
 					this.restoreTransformations( actions );
 				}
@@ -276,11 +277,9 @@ class DataExplorer extends Component {
 
 	resetStorage = () => {
 		const session = this.context;
-		if ( this.props.id ) {
-			session.store.removeItem( this.props.id+'_data' );
-			session.store.removeItem( this.props.id+'_continuous' );
-			session.store.removeItem( this.props.id+'_categorical' );
-		}
+		session.store.removeItem( this.id+'_data' );
+		session.store.removeItem( this.id+'_continuous' );
+		session.store.removeItem( this.id+'_categorical' );
 		this.setState({
 			data: null,
 			categorical: [],
@@ -535,9 +534,7 @@ class DataExplorer extends Component {
 				categorical: categoricalGuesses,
 				data
 			}, () => {
-				if ( this.props.id ) {
-					session.store.setItem( this.props.id+'_data', this.state.data, debug );
-				}
+				session.store.setItem( this.id+'_data', this.state.data, debug );
 			});
 		}
 	}
@@ -660,14 +657,12 @@ class DataExplorer extends Component {
 							groupVars,
 							ready
 						}, () => {
-							if ( this.props.id ) {
-								const session = this.context;
-								session.store.setItem( this.props.id+'_continuous', this.state.continuous, debug );
-								session.store.setItem( this.props.id+'_categorical', this.state.categorical, debug );
-							}
+							const session = this.context;
+							session.store.setItem( this.id+'_continuous', this.state.continuous, debug );
+							session.store.setItem( this.id+'_categorical', this.state.categorical, debug );
 						});
 					}}>Submit</Button>
-					<DataTable data={this.state.data} id={this.props.id ? this.props.id + '_table' : null} />
+					<DataTable data={this.state.data} id={this.id + '_table'} />
 				</Card.Body>
 			</Card> );
 		}
@@ -1037,7 +1032,7 @@ class DataExplorer extends Component {
 					</Navbar>
 					<Card.Body>
 						<Pages
-							id={this.props.id ? this.props.id + '_questions' : null}
+							id={this.id + '_questions'}
 							height={470}
 							size="small"
 							className="data-explorer-questions"
@@ -1062,7 +1057,7 @@ class DataExplorer extends Component {
 									}}
 									onColumnDelete={this.onColumnDelete}
 									deletable
-									id={this.props.id ? this.props.id + '_table' : null}
+									id={this.id + '_table'}
 								/>
 								{ this.state.filters.length > 0 ?
 									<OverlayTrigger placement="top" overlay={<Tooltip>Create new dataset from currently active filters</Tooltip>} >
@@ -1107,7 +1102,7 @@ class DataExplorer extends Component {
 						{ this.props.showEditor ?
 						<MarkdownEditor {...this.props.editorProps}
 							plots={this.state.output}
-							id={this.props.id ? this.props.id + '_editor' : null}
+							id={this.id + '_editor'}
 							style={{ display: this.state.openedNav !== 'editor' ? 'none' : null }}
 							submitButton /> : null
 						}
@@ -1168,7 +1163,7 @@ class DataExplorer extends Component {
 								</Modal.Footer>
 							</Modal>
 							<Button variant="secondary" size="sm" style={{ float: 'right' }} onClick={this.toggleStudentPlots} >Open Shared Plots</Button>
-							<RealtimeMetrics returnFullObject for={this.props.id} onDatum={this.onUserAction} />
+							<RealtimeMetrics returnFullObject for={this.id} onDatum={this.onUserAction} />
 						</Gate>
 					</div>
 					<OutputPanel output={this.state.output} ref={( div ) => {

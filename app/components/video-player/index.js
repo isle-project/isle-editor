@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
 import Dimensions from 'components/dimensions';
 import omit from '@stdlib/utils/omit';
+import generateUID from 'utils/uid';
 import VoiceControl from 'components/voice-control';
 import SessionContext from 'session/context.js';
 import { VIDEO_END, VIDEO_PLAY, VIDEO_PAUSE } from 'constants/actions.js';
@@ -13,6 +14,7 @@ import VOICE_COMMANDS from './voice_commands.json';
 
 // VARIABLES //
 
+const uid = generateUID( 'video-player' );
 const OMITTED_PROPS = [ 'center', 'containerWidth', 'containerHeight',
 'updateDimensions', 'voiceID' ];
 
@@ -48,6 +50,7 @@ function calculateMargin( containerWidth, targetWidth ) {
 class Video extends Component {
 	constructor( props ) {
 		super( props );
+		this.id = props.id || uid( props );
 		this.state = {
 			progress: {}
 		};
@@ -55,26 +58,21 @@ class Video extends Component {
 
 	handlePlay = () => {
 		const session = this.context;
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: VIDEO_PLAY,
-				value: this.state.progress.playedSeconds
-			});
-		}
-
+		session.log({
+			id: this.id,
+			type: VIDEO_PLAY,
+			value: this.state.progress.playedSeconds
+		});
 		this.props.onPlay();
 	}
 
 	handlePause = () => {
 		const session = this.context;
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: VIDEO_PAUSE,
-				value: this.state.progress.playedSeconds
-			});
-		}
+		session.log({
+			id: this.id,
+			type: VIDEO_PAUSE,
+			value: this.state.progress.playedSeconds
+		});
 		this.props.onPause();
 	}
 
@@ -87,13 +85,11 @@ class Video extends Component {
 
 	handleEnded = () => {
 		const session = this.context;
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: VIDEO_END,
-				value: this.state.progress.playedSeconds
-			});
-		}
+		session.log({
+			id: this.id,
+			type: VIDEO_END,
+			value: this.state.progress.playedSeconds
+		});
 		this.props.onEnded();
 	}
 
@@ -133,7 +129,7 @@ class Video extends Component {
 		props = omit( props, OMITTED_PROPS );
 		return (
 			<div
-				id={this.props.id}
+				id={this.id}
 				style={style}
 				className="video"
 			>

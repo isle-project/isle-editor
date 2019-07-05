@@ -25,6 +25,7 @@ import min from '@stdlib/math/base/special/min';
 import noop from '@stdlib/utils/noop';
 import omit from '@stdlib/utils/omit';
 import objectKeys from '@stdlib/utils/keys';
+import generateUID from 'utils/uid';
 import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
 import Joyride from 'components/joyride';
@@ -56,6 +57,7 @@ import './pdf_viewer.css';
 // VARIABLES //
 
 const debug = logger( 'isle:sketchpad' );
+const uid = generateUID( 'sketchpad' );
 const OMITTED_KEYS = [
 	'isExporting', 'showColorPicker', 'showUploadModal', 'showNavigationModal', 'showResetModal'
 ];
@@ -120,6 +122,7 @@ class Sketchpad extends Component {
 
 		this.canvas = null;
 		this.ctx = null;
+		this.id = props.id || uid( props );
 
 		const loc = this.readURL();
 		this.state = {
@@ -192,7 +195,7 @@ class Sketchpad extends Component {
 			init = Promise.resolve();
 		}
 		init.then( () => {
-			const promise = session.store.getItem( this.props.id + '_sketchpad' );
+			const promise = session.store.getItem( this.id + '_sketchpad' );
 			promise
 			.then( this.retrieveData )
 			.catch( ( err ) => {
@@ -210,7 +213,7 @@ class Sketchpad extends Component {
 				if ( type === 'user_joined' ) {
 					debug( `User "${action.email}" joined...` );
 					const insertAction = {
-						id: this.props.id,
+						id: this.id,
 						type: SKETCHPAD_INIT_PAGES,
 						value: this.state.insertedPages,
 						noSave: true
@@ -239,7 +242,7 @@ class Sketchpad extends Component {
 					});
 				}
 				else if ( type === 'member_action' ) {
-					if ( action.id !== this.props.id ) {
+					if ( action.id !== this.id ) {
 						return;
 					}
 					const type = action.type;
@@ -559,7 +562,7 @@ class Sketchpad extends Component {
 
 	hidePointer = () => {
 		const action = {
-			id: this.props.id,
+			id: this.id,
 			type: SKETCHPAD_HIDE_POINTER,
 			value: true,
 			noSave: true
@@ -571,7 +574,7 @@ class Sketchpad extends Component {
 
 	hideZoom = () => {
 		const action = {
-			id: this.props.id,
+			id: this.id,
 			type: SKETCHPAD_HIDE_ZOOM,
 			value: true,
 			noSave: true
@@ -698,7 +701,7 @@ class Sketchpad extends Component {
 					if ( idx < endPos ) {
 						// Save replay actions and transmit to others:
 						const action = {
-							id: this.props.id,
+							id: this.id,
 							type: SKETCHPAD_REPLAY,
 							value: JSON.stringify( elems[ idx ]),
 							noSave: true
@@ -789,7 +792,7 @@ class Sketchpad extends Component {
 			this.redraw();
 		}
 		const logAction = {
-			id: this.props.id,
+			id: this.id,
 			type: SKETCHPAD_CLEAR_PAGE,
 			value: currentPage
 		};
@@ -810,7 +813,7 @@ class Sketchpad extends Component {
 		if ( ctx ) {
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
-		session.store.removeItem( this.props.id + '_sketchpad' );
+		session.store.removeItem( this.id + '_sketchpad' );
 		if ( this.props.pdf ) {
 			this.initializePDF().then( () => {
 				this.redraw();
@@ -839,7 +842,7 @@ class Sketchpad extends Component {
 			});
 		}
 		const logAction = {
-			id: this.props.id,
+			id: this.id,
 			type: SKETCHPAD_CLEAR_ALL_PAGES,
 			value: null
 		};
@@ -1057,7 +1060,7 @@ class Sketchpad extends Component {
 
 			this.redraw();
 			const logAction = {
-				id: this.props.id,
+				id: this.id,
 				type: SKETCHPAD_DRAW_CURVE,
 				value: JSON.stringify( line ),
 				noSave: true
@@ -1103,7 +1106,7 @@ class Sketchpad extends Component {
 				}
 				const username = session.user.email || '';
 				const action = {
-					id: this.props.id,
+					id: this.id,
 					type: SKETCHPAD_DRAG_ELEMENT,
 					value: JSON.stringify({
 						dx: dx,
@@ -1164,7 +1167,7 @@ class Sketchpad extends Component {
 				doc.getBase64( ( pdf ) => {
 					debug( 'Processing base64 string of PDF document' );
 					const pdfForm = new FormData();
-					const name = this.props.id ? this.props.id : 'sketches';
+					const name = this.id;
 					const filename = name + '.pdf';
 					const pdfBlob = base64toBlob( pdf, 'application/pdf' );
 					const pdfFile = new File([ pdfBlob ], filename, {
@@ -1207,12 +1210,7 @@ class Sketchpad extends Component {
 	}
 
 	saveToPNG = () => {
-		let name;
-		if ( this.props.id ) {
-			name = this.props.id+'.png';
-		} else {
-			name = 'sketches.png';
-		}
+		const name = this.id+'.png';
 		const current = this.state.currentPage;
 		const canvas = this.canvas;
 		if ( !this.backgrounds[ current ]) {
@@ -1268,7 +1266,7 @@ class Sketchpad extends Component {
 			isExporting: true
 		}, () => {
 			this.preparePDF( ( err, doc ) => {
-				const name = this.props.id ? this.props.id : 'sketches';
+				const name = this.id;
 				doc.download( name+'.pdf', () => {
 					this.setState({
 						isExporting: false
@@ -1301,7 +1299,7 @@ class Sketchpad extends Component {
 			if ( logging ) {
 				const session = this.context;
 				session.log({
-					id: this.props.id,
+					id: this.id,
 					type: SKETCHPAD_INSERT_PAGE,
 					value: JSON.stringify({
 						pos: idx,
@@ -1365,7 +1363,7 @@ class Sketchpad extends Component {
 		const session = this.context;
 		if ( shouldLog ) {
 			const logAction = {
-				id: this.props.id,
+				id: this.id,
 				type: SKETCHPAD_DRAW_TEXT,
 				value: JSON.stringify({
 					x: x,
@@ -1457,7 +1455,7 @@ class Sketchpad extends Component {
 				const session = this.context;
 				const username = session.user.email || '';
 				const action = {
-					id: this.props.id,
+					id: this.id,
 					type: SKETCHPAD_DELETE_ELEMENT,
 					value: JSON.stringify({
 						drawID: id,
@@ -1513,7 +1511,7 @@ class Sketchpad extends Component {
 			this.redraw();
 			const session = this.context;
 			session.log({
-				id: this.props.id,
+				id: this.id,
 				type: SKETCHPAD_FIRST_PAGE,
 				value: this.state.currentPage
 			});
@@ -1530,7 +1528,7 @@ class Sketchpad extends Component {
 			this.redraw();
 			const session = this.context;
 			session.log({
-				id: this.props.id,
+				id: this.id,
 				type: SKETCHPAD_LAST_PAGE,
 				value: this.state.currentPage
 			});
@@ -1562,7 +1560,7 @@ class Sketchpad extends Component {
 				this.redraw();
 				const session = this.context;
 				session.log({
-					id: this.props.id,
+					id: this.id,
 					type: SKETCHPAD_NEXT_PAGE,
 					value: this.state.currentPage
 				});
@@ -1581,7 +1579,7 @@ class Sketchpad extends Component {
 				this.redraw();
 				const session = this.context;
 				session.log({
-					id: this.props.id,
+					id: this.id,
 					type: SKETCHPAD_PREVIOUS_PAGE,
 					value: this.state.currentPage
 				});
@@ -1605,7 +1603,7 @@ class Sketchpad extends Component {
 				if ( shouldLog ) {
 					const session = this.context;
 					session.log({
-						id: this.props.id,
+						id: this.id,
 						type: SKETCHPAD_GOTO_PAGE,
 						value: idx
 					});
@@ -1699,16 +1697,14 @@ class Sketchpad extends Component {
 	}
 
 	saveInBrowser = ( clbk = noop ) => {
-		if ( this.props.id ) {
-			const session = this.context;
-			const state = omit( this.state, OMITTED_KEYS );
-			const data = {
-				elements: this.elements,
-				recordingEndPositions: this.recordingEndPositions,
-				state: state
-			};
-			session.store.setItem( this.props.id+'_sketchpad', data, clbk );
-		}
+		const session = this.context;
+		const state = omit( this.state, OMITTED_KEYS );
+		const data = {
+			elements: this.elements,
+			recordingEndPositions: this.recordingEndPositions,
+			state: state
+		};
+		session.store.setItem( this.id, data, clbk );
 	}
 
 	record = () => {
@@ -1913,7 +1909,7 @@ class Sketchpad extends Component {
 				{ !this.props.pdf ? <TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} size="sm" glyph="file" /> : null }
 				<TooltipButton tooltip="Export current page (PNG)" onClick={this.saveToPNG} glyph="file-image" size="sm" />
 				<TooltipButton tooltip="Export pages as PDF" onClick={this.saveAsPDF} glyph="file-pdf" size="sm" />
-				{ this.props.id ? <TooltipButton tooltip="Save in browser" onClick={() => {
+				<TooltipButton tooltip="Save in browser" onClick={() => {
 					this.saveInBrowser( ( err ) => {
 						if ( err ) {
 							session.addNotification({
@@ -1930,8 +1926,8 @@ class Sketchpad extends Component {
 							position: 'tr'
 						});
 					});
-				}} glyph="save" size="sm" /> : null }
-				{ this.props.id ? <TooltipButton tooltip="Upload to the server" onClick={this.uploadSketches} glyph="upload" size="sm" /> : null }
+				}} glyph="save" size="sm" />
+				<TooltipButton tooltip="Upload to the server" onClick={this.uploadSketches} glyph="upload" size="sm" />
 				{ hasTouch ? <TooltipButton tooltip={`${this.state.swiping ? 'Disable' : 'Enable'} two-finger swiping gestures for changing slides`} variant={this.state.swiping ? 'success' : 'secondary'} onClick={this.toggleSwiping} glyph="fingerprint" size="sm" /> : null }
 			</ButtonGroup>
 		);
@@ -2025,7 +2021,7 @@ class Sketchpad extends Component {
 			this.zoom.style.top = `${y-sh}px`;
 		}
 		const action = {
-			id: this.props.id,
+			id: this.id,
 			type: this.state.mode === 'pointer' ? 'SKETCHPAD_MOVE_POINTER' : 'SKETCHPAD_MOVE_ZOOM',
 			value: JSON.stringify({
 				x: x / this.canvas.width,
@@ -2239,7 +2235,7 @@ class Sketchpad extends Component {
 		return (
 			<Fragment>
 				<Card
-					id={this.props.id}
+					id={this.id}
 					ref={( div ) => {
 						this.sketchpadPanel = div;
 					}}

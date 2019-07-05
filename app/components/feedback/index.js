@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Modal from 'react-bootstrap/Modal';
+import generateUID from 'utils/uid/incremental';
 import Tooltip from 'components/tooltip';
 import TextArea from 'components/input/text-area';
 import CheckboxInput from 'components/input/checkbox';
@@ -26,6 +27,7 @@ const ORIGINAL_STATE = {
 	noUnderstanding: false,
 	noLogic: false
 };
+const uid = generateUID( 'feedback' );
 
 
 // MAIN //
@@ -40,9 +42,10 @@ const ORIGINAL_STATE = {
 * @property {Object} style - CSS inline styles
 */
 class FeedbackButtons extends Component {
-	constructor() {
-		super();
+	constructor( props ) {
+		super( props );
 
+		this.id = props.id || uid();
 		this.state = {
 			submittedBinaryChoice: false,
 			...ORIGINAL_STATE
@@ -56,7 +59,7 @@ class FeedbackButtons extends Component {
 	submitConfused = () => {
 		const session = this.context;
 		session.log({
-			id: this.props.id,
+			id: this.id,
 			type: USER_FEEDBACK_CONFUSED,
 			value: 'confused'
 		}, 'members' );
@@ -78,7 +81,7 @@ class FeedbackButtons extends Component {
 	submitUnderstood = () => {
 		const session = this.context;
 		session.log({
-			id: this.props.id,
+			id: this.id,
 			type: USER_FEEDBACK_UNDERSTOOD,
 			value: 'understood'
 		}, 'members' );
@@ -104,7 +107,7 @@ class FeedbackButtons extends Component {
 			comments: this.textarea.state.value
 		};
 		session.log({
-			id: this.props.id,
+			id: this.id,
 			type: USER_FEEDBACK_FORM,
 			value: formData
 		}, 'members' );
@@ -134,7 +137,7 @@ class FeedbackButtons extends Component {
 	render() {
 		const tpos = this.props.vertical ? 'left' : 'bottom';
 		return (
-			<div id={this.props.id} className="feedback-buttons" style={{ ...this.props.style }}>
+			<div id={this.id} className="feedback-buttons" style={{ ...this.props.style }}>
 				<ButtonGroup style={{ float: 'right' }} vertical={this.props.vertical} >
 					{ this.state.submittedBinaryChoice ?
 						<Fragment>
@@ -174,7 +177,7 @@ class FeedbackButtons extends Component {
 							width: '100%'
 						}}
 						showID={false}
-						id={this.props.id}
+						id={this.id}
 						success={USER_FEEDBACK_UNDERSTOOD}
 						danger={USER_FEEDBACK_CONFUSED}
 						info={USER_FEEDBACK_FORM}
