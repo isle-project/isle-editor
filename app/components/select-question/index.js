@@ -12,9 +12,15 @@ import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
 import FeedbackButtons from 'components/feedback';
+import generateUID from 'utils/uid';
 import SessionContext from 'session/context.js';
 import { SELECT_QUESTION_SUBMISSION } from 'constants/actions.js';
 import './select-question.css';
+
+
+// VARIABLES //
+
+const uid = generateUID( 'select-question' );
 
 
 // MAIN //
@@ -46,6 +52,8 @@ class SelectQuestion extends Component {
 	*/
 	constructor( props ) {
 		super( props );
+
+		this.id = props.id || uid( props );
 
 		// Initialize state variables...
 		this.state = {
@@ -93,13 +101,11 @@ class SelectQuestion extends Component {
 				position: 'tr'
 			});
 		}
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: SELECT_QUESTION_SUBMISSION,
-				value: this.state.value
-			});
-		}
+		session.log({
+			id: this.id,
+			type: SELECT_QUESTION_SUBMISSION,
+			value: this.state.value
+		});
 		this.props.onSubmit( this.state.value, correct );
 		this.setState({
 			answerState: correct ? 'success' : 'error',
@@ -173,19 +179,19 @@ class SelectQuestion extends Component {
 						null
 					}
 					{
-						this.props.chat && this.props.id ?
-							<ChatButton for={this.props.id} /> : null
+						this.props.chat ?
+							<ChatButton for={this.id} /> : null
 					}
 				</div>
 				<ResponseVisualizer
-					id={this.props.id}
+					id={this.id}
 					data={{
 						type: 'text'
 					}}
 					info="SELECT_QUESTION_SUBMISSION"
 				/>
-				{ this.props.id && this.props.feedback ? <FeedbackButtons
-					id={this.props.id+'_feedback'}
+				{ this.props.feedback ? <FeedbackButtons
+					id={this.id+'_feedback'}
 				/> : null }
 			</Card>
 		);

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import generateUID from 'utils/uid';
 import DraggableList from 'components/draggable-list';
 import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
@@ -17,6 +18,7 @@ import './order-question.css';
 
 // VARIABLES //
 
+const uid = generateUID( 'order-question' );
 const debug = logger( 'isle:order-question' );
 
 
@@ -42,6 +44,8 @@ const debug = logger( 'isle:order-question' );
 class OrderQuestion extends Component {
 	constructor( props ) {
 		super( props );
+
+		this.id = props.id || uid( props );
 
 		// Initialize state variables...
 		this.state = {
@@ -69,13 +73,11 @@ class OrderQuestion extends Component {
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
 		const session = this.context;
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: ORDER_QUESTION_OPEN_HINT,
-				value: idx
-			});
-		}
+		session.log({
+			id: this.id,
+			type: ORDER_QUESTION_OPEN_HINT,
+			value: idx
+		});
 	}
 
 	sendSubmitNotification = () => {
@@ -115,19 +117,17 @@ class OrderQuestion extends Component {
 		this.setState({
 			submitted: true
 		});
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: ORDER_QUESTION_SUBMISSION,
-				value: this.state.cards
-			});
-		}
+		session.log({
+			id: this.id,
+			type: ORDER_QUESTION_SUBMISSION,
+			value: this.state.cards
+		});
 	}
 
 	render() {
 		const nHints = this.props.hints.length;
 		return (
-			<Card id={this.props.id} className="order-question" style={this.props.style} >
+			<Card id={this.id} className="order-question" style={this.props.style} >
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
 					<DraggableList shuffle data={this.props.options} onChange={this.handleChange} />
@@ -140,20 +140,20 @@ class OrderQuestion extends Component {
 							{ this.state.submitted ? 'Resubmit' : 'Submit' }
 						</Button>
 						{
-							this.props.chat && this.props.id ?
-								<ChatButton for={this.props.id} /> : null
+							this.props.chat ?
+								<ChatButton for={this.id} /> : null
 						}
 					</div>
 					<ResponseVisualizer
-						id={this.props.id}
+						id={this.id}
 						data={{
 							type: 'text'
 						}}
 						info="ORDER_QUESTION_SUBMISSION"
 					/>
 				</Card.Body>
-				{ this.props.id && this.props.feedback ? <FeedbackButtons
-					id={this.props.id+'_feedback'}
+				{ this.props.feedback ? <FeedbackButtons
+					id={this.id+'_feedback'}
 				/> : null }
 			</Card>
 		);

@@ -15,6 +15,7 @@ import FeedbackButtons from 'components/feedback';
 import VoiceControl from 'components/voice-control';
 import SessionContext from 'session/context.js';
 import toNumber from 'utils/to-number';
+import generateUID from 'utils/uid';
 import { MULTIPLE_CHOICE_OPEN_HINT, MULTIPLE_CHOICE_SUBMISSION, FOCUS_ELEMENT } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import AnswerOptionWithFeedback from './answer_option_feedback.js';
@@ -26,6 +27,7 @@ import Question from './question.js';
 // VARIABLES //
 
 const debug = logger( 'isle:multiple-choice-question' );
+const uid = generateUID( 'multiple-choice-question' );
 
 
 // MAIN //
@@ -52,6 +54,8 @@ const debug = logger( 'isle:multiple-choice-question' );
 class MultipleChoiceQuestion extends Component {
 	constructor( props ) {
 		super( props );
+
+		this.id = props.id || uid( props );
 
 		if ( props.displaySolution ) {
 			this.state = {
@@ -92,7 +96,7 @@ class MultipleChoiceQuestion extends Component {
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, val ) => {
 				if ( type === 'retrieved_current_user_actions' ) {
-					let actions = val[ this.props.id ];
+					let actions = val[ this.id ];
 					if ( isArray( actions ) ) {
 						actions = actions.filter( action => {
 							return action.type === 'MULTIPLE_CHOICE_SUBMISSION';
@@ -129,13 +133,11 @@ class MultipleChoiceQuestion extends Component {
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
 		const session = this.context;
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: MULTIPLE_CHOICE_OPEN_HINT,
-				value: idx
-			});
-		}
+		session.log({
+			id: this.id,
+			type: MULTIPLE_CHOICE_OPEN_HINT,
+			value: idx
+		});
 	}
 
 	selectAnswer( no ) {
@@ -177,13 +179,11 @@ class MultipleChoiceQuestion extends Component {
 		let newCorrect = this.props.provideFeedback === 'incremental' ?
 			this.state.correct.slice() :
 			new Array( this.props.answers.length );
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: MULTIPLE_CHOICE_SUBMISSION,
-				value: this.state.active
-			});
-		}
+		session.log({
+			id: this.id,
+			type: MULTIPLE_CHOICE_SUBMISSION,
+			value: this.state.active
+		});
 		if ( !this.props.disableSubmitNotification ) {
 			this.sendSubmitNotification();
 		}
@@ -254,7 +254,7 @@ class MultipleChoiceQuestion extends Component {
 		session.log({
 			type: FOCUS_ELEMENT,
 			value: session.user.email,
-			id: this.props.id,
+			id: this.id,
 			noSave: true
 		}, 'owners' );
 	}
@@ -387,7 +387,7 @@ class MultipleChoiceQuestion extends Component {
 			submitLabel = 'Submit';
 		}
 		return (
-			<Card id={this.props.id} className="multiple-choice-question-container" style={{ ...this.props.style }} >
+			<Card id={this.id} className="multiple-choice-question-container" style={{ ...this.props.style }} >
 				<Card.Body style={bodyStyle} >
 					<Question
 						content={question}
@@ -431,7 +431,7 @@ class MultipleChoiceQuestion extends Component {
 							info="MULTIPLE_CHOICE_SUBMISSION"
 						/>
 						{ this.props.feedback ? <FeedbackButtons
-							id={this.props.id+'_feedback'}
+							id={this.id+'_feedback'}
 						/> : null }
 					</div> : null }
 				</Card.Body>

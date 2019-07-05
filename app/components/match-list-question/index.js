@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import shuffle from '@stdlib/random/shuffle';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import * as d3 from 'd3';
+import generateUID from 'utils/uid';
 import SolutionButton from 'components/solution-button';
 import ChatButton from 'components/chat-button';
 import HintButton from 'components/hint-button';
@@ -23,6 +24,7 @@ import './match_list_question.css';
 // VARIABLES //
 
 const debug = logger( 'isle:match-list-question' );
+const uid = generateUID( 'match-list-question' );
 
 
 // FUNCTIONS //
@@ -68,6 +70,7 @@ class MatchListQuestion extends Component {
 		if ( !colorScale ) {
 			colorScale = createColorScale( 2 * elements.length );
 		}
+		this.id = props.id || uid();
 		this.state = {
 			selectedA: null,
 			selectedB: null,
@@ -135,13 +138,11 @@ class MatchListQuestion extends Component {
 			submitted: true
 		});
 		const answers = this.state.answers.map( ans => ({ a: ans.a, b: ans.b }) );
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: MATCH_LIST_SUBMISSION,
-				value: JSON.stringify( answers )
-			});
-		}
+		session.log({
+			id: this.id,
+			type: MATCH_LIST_SUBMISSION,
+			value: JSON.stringify( answers )
+		});
 		this.props.onSubmit( answers );
 	}
 
@@ -150,14 +151,12 @@ class MatchListQuestion extends Component {
 		if ( !colorScale ) {
 			colorScale = createColorScale( 2 * elements.length );
 		}
-		if ( this.props.id ) {
-			const session = this.context;
-			session.log({
-				id: this.props.id,
-				type: MATCH_LIST_TOGGLE_SOLUTION,
-				value: null
-			});
-		}
+		const session = this.context;
+		session.log({
+			id: this.id,
+			type: MATCH_LIST_TOGGLE_SOLUTION,
+			value: null
+		});
 		if ( !this.state.userAnswers ) {
 			const userAnswers = this.state.answers;
 			const answers = elements.map( ( q, i ) => {
@@ -175,13 +174,11 @@ class MatchListQuestion extends Component {
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
 		const session = this.context;
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: MATCH_LIST_OPEN_HINT,
-				value: idx
-			});
-		}
+		session.log({
+			id: this.id,
+			type: MATCH_LIST_OPEN_HINT,
+			value: idx
+		});
 	}
 
 	render() {
@@ -214,7 +211,7 @@ class MatchListQuestion extends Component {
 					/>
 				</div>
 				<div className="match-list-question-controls">
-					<Tooltip id={`${this.props.id}_tooltip`} tooltip="You may submit after you have matched all elements from the left-hand side with the corresponding elements from the right-hand side" >
+					<Tooltip id={`${this.id}_tooltip`} tooltip="You may submit after you have matched all elements from the left-hand side with the corresponding elements from the right-hand side" >
 						<div style={{ display: 'inline-block' }}>
 							<Button
 								className="submit-button"
@@ -236,15 +233,15 @@ class MatchListQuestion extends Component {
 						null
 					}
 					{
-						this.props.chat && this.props.id ?
+						this.props.chat ?
 							<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-								<ChatButton for={this.props.id} />
+								<ChatButton for={this.id} />
 							</div> : null
 					}
 					<ResponseVisualizer
 						buttonLabel="Answers"
 						info={MATCH_LIST_SUBMISSION}
-						id={this.props.id}
+						id={this.id}
 						data={{
 							type: 'matches',
 							left: this.props.elements.map( x => x.a ),
@@ -252,9 +249,9 @@ class MatchListQuestion extends Component {
 						}}
 					/>
 				</div>
-				{ this.props.id && this.props.feedback ? <FeedbackButtons
+				{ this.props.feedback ? <FeedbackButtons
 					style={{ marginTop: '10px', marginRight: '8px' }}
-					id={this.props.id+'_feedback'}
+					id={this.id+'_feedback'}
 				/> : null }
 			</div>
 		);

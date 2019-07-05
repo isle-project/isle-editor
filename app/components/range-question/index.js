@@ -12,6 +12,7 @@ import min from '@stdlib/math/base/special/min';
 import max from '@stdlib/math/base/special/max';
 import roundn from '@stdlib/math/base/special/roundn';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
+import generateUID from 'utils/uid';
 import ChatButton from 'components/chat-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import NumberInput from 'components/input/number';
@@ -27,6 +28,7 @@ import './range-question.css';
 // VARIABLES //
 
 const debug = logger( 'isle:range-question' );
+const uid = generateUID( 'range-question' );
 
 
 // MAIN //
@@ -59,6 +61,8 @@ class RangeQuestion extends Component {
 	*/
 	constructor( props ) {
 		super( props );
+
+		this.id = props.id || uid( props );
 
 		// Initialize state variables...
 		this.state = {
@@ -168,13 +172,11 @@ class RangeQuestion extends Component {
 		this.setState({
 			submitted: true
 		});
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: RANGE_QUESTION_SUBMIT_ANSWER,
-				value: JSON.stringify( [ this.state.lower, this.state.upper ] )
-			});
-		}
+		session.log({
+			id: this.id,
+			type: RANGE_QUESTION_SUBMIT_ANSWER,
+			value: JSON.stringify( [ this.state.lower, this.state.upper ] )
+		});
 	}
 
 	onNoClickUpper = (val) => {
@@ -192,13 +194,11 @@ class RangeQuestion extends Component {
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
 		const session = this.context;
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: RANGE_QUESTION_OPEN_HINT,
-				value: idx
-			});
-		}
+		session.log({
+			id: this.id,
+			type: RANGE_QUESTION_OPEN_HINT,
+			value: idx
+		});
 	}
 
 	/*
@@ -264,25 +264,25 @@ class RangeQuestion extends Component {
 							null
 						}
 						{
-							this.props.chat && this.props.id ?
+							this.props.chat ?
 								<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-									<ChatButton for={this.props.id} />
+									<ChatButton for={this.id} />
 								</div> : null
 						}
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</ButtonToolbar>
 					<ResponseVisualizer
 						buttonLabel="Answers"
-						id={this.props.id}
+						id={this.id}
 						data={{
 							type: 'range'
 						}}
 						info={RANGE_QUESTION_SUBMIT_ANSWER}
 					/>
 				</Card.Body>
-				{ this.props.id && this.props.feedback ? <FeedbackButtons
+				{ this.props.feedback ? <FeedbackButtons
 					vertical
-					id={this.props.id+'_feedback'}
+					id={this.id+'_feedback'}
 				/> : null }
 			</Card>
 		);

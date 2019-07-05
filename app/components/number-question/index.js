@@ -10,6 +10,7 @@ import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import roundn from '@stdlib/math/base/special/roundn';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
+import generateUID from 'utils/uid';
 import ChatButton from 'components/chat-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import NumberInput from 'components/input/number';
@@ -22,6 +23,7 @@ import './number-question.css';
 
 // VARIABLES //
 
+const uid = generateUID( 'number-question' );
 const debug = logger( 'isle:number-question' );
 
 
@@ -53,6 +55,8 @@ class NumberQuestion extends Component {
 	*/
 	constructor( props ) {
 		super( props );
+
+		this.id = props.id || uid( props );
 
 		// Initialize state variables...
 		this.state = {
@@ -147,25 +151,21 @@ class NumberQuestion extends Component {
 		this.setState({
 			submitted: true
 		});
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: NUMBER_QUESTION_SUBMISSION,
-				value: this.state.value
-			});
-		}
+		session.log({
+			id: this.id,
+			type: NUMBER_QUESTION_SUBMISSION,
+			value: this.state.value
+		});
 	}
 
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
 		const session = this.context;
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: NUMBER_QUESTION_OPEN_HINT,
-				value: idx
-			});
-		}
+		session.log({
+			id: this.id,
+			type: NUMBER_QUESTION_OPEN_HINT,
+			value: idx
+		});
 	}
 
 	/*
@@ -175,7 +175,7 @@ class NumberQuestion extends Component {
 		const nHints = this.props.hints.length;
 		const solutionPresent = this.props.solution !== null;
 		return (
-			<Card id={this.props.id} className="number-question" style={this.props.style} >
+			<Card id={this.id} className="number-question" style={this.props.style} >
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100% - 60px)' : '100%', display: 'inline-block' }} >
 					{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
 					<div className="number-question-input-wrapper">
@@ -221,21 +221,21 @@ class NumberQuestion extends Component {
 							null
 						}
 						{
-							this.props.chat && this.props.id ?
+							this.props.chat ?
 								<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-									<ChatButton for={this.props.id} />
+									<ChatButton for={this.id} />
 								</div> : null
 						}
 					</ButtonToolbar>
 					<ResponseVisualizer
-						buttonLabel="Answers" id={this.props.id}
+						buttonLabel="Answers" id={this.id}
 						data={{ type: 'number' }} info="NUMBER_QUESTION_SUBMISSION"
 						style={{ marginLeft: '6px' }}
 					/>
 				</Card.Body>
-				{ this.props.id && this.props.feedback ? <FeedbackButtons
+				{ this.props.feedback ? <FeedbackButtons
 					vertical
-					id={this.props.id+'_feedback'}
+					id={this.id+'_feedback'}
 					style={{
 						position: 'absolute',
 						right: '4px',

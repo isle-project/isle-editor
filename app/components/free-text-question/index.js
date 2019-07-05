@@ -13,6 +13,7 @@ import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import generateUID from 'utils/uid';
 import ChatButton from 'components/chat-button';
 import TimedButton from 'components/timed-button';
 import ResponseVisualizer from 'components/response-visualizer';
@@ -29,6 +30,7 @@ import './free-text-question.css';
 
 // VARIABLES //
 
+const uid = generateUID( 'free-text-question' );
 const debug = logger( 'isle:free-text-question' );
 
 
@@ -67,7 +69,8 @@ class FreeTextQuestion extends Component {
 		debug( 'Invoking constructor of FreeTextQuestion...' );
 
 		const actions = context.currentUserActions;
-		const value = this.getLastAction( actions, props.id );
+		this.id = props.id || uid( props );
+		const value = this.getLastAction( actions, this.id );
 
 		// Initialize state variables...
 		this.state = {
@@ -158,13 +161,11 @@ class FreeTextQuestion extends Component {
 		this.setState({
 			submitted: true
 		});
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: FREE_TEXT_QUESTION_SUBMIT_ANSWER,
-				value: this.state.value
-			});
-		}
+		session.log({
+			id: this.id,
+			type: FREE_TEXT_QUESTION_SUBMIT_ANSWER,
+			value: this.state.value
+		});
 	};
 
 	handleSolutionClick = () => {
@@ -184,7 +185,7 @@ class FreeTextQuestion extends Component {
 			});
 		} else {
 			session.log({
-				id: this.props.id,
+				id: this.id,
 				type: FREE_TEXT_QUESTION_DISPLAY_SOLUTION,
 				value: null
 			});
@@ -214,7 +215,7 @@ class FreeTextQuestion extends Component {
 	setToLastAction() {
 		const session = this.context;
 		const actions = session.currentUserActions;
-		const value = this.getLastAction( actions, this.props.id );
+		const value = this.getLastAction( actions, this.id );
 		if ( isString( value ) && value !== this.state.value ) {
 			this.setState({
 				value: value,
@@ -231,13 +232,11 @@ class FreeTextQuestion extends Component {
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
 		const session = this.context;
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: FREE_TEXT_QUESTION_OPEN_HINT,
-				value: idx
-			});
-		}
+		session.log({
+			id: this.id,
+			type: FREE_TEXT_QUESTION_OPEN_HINT,
+			value: idx
+		});
 	}
 
 	/*
@@ -250,7 +249,7 @@ class FreeTextQuestion extends Component {
 			onClick={this.handleSolutionClick}
 		/>;
 		return (
-			<Card id={this.props.id} className="free-text-question" style={this.props.style} >
+			<Card id={this.id} className="free-text-question" style={this.props.style} >
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<VoiceControl id={this.props.voiceID} reference={this}
 						commands={VOICE_COMMANDS}
@@ -272,7 +271,7 @@ class FreeTextQuestion extends Component {
 						/>
 					</FormGroup>
 					<ResponseVisualizer
-						buttonLabel="Answers" id={this.props.id}
+						buttonLabel="Answers" id={this.id}
 						info={FREE_TEXT_QUESTION_SUBMIT_ANSWER}
 					/>
 					<ButtonToolbar className="free-text-question-toolbar" >
@@ -291,9 +290,9 @@ class FreeTextQuestion extends Component {
 							this.props.provideFeedback && this.props.solution ? solutionButton : null
 						}
 						{
-							this.props.chat && this.props.id ?
+							this.props.chat ?
 								<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-									<ChatButton for={this.props.id} />
+									<ChatButton for={this.id} />
 								</div> : null
 						}
 						{
@@ -329,8 +328,8 @@ class FreeTextQuestion extends Component {
 								</OverlayTrigger>
 						}
 					</ButtonToolbar>
-					{ this.props.id && this.props.feedback ? <FeedbackButtons
-						id={this.props.id+'_feedback'}
+					{ this.props.feedback ? <FeedbackButtons
+						id={this.id+'_feedback'}
 						style={{ marginRight: 5, marginTop: -5 }}
 					/> : null }
 				</Card.Body>

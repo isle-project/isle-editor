@@ -12,6 +12,7 @@ import copy from '@stdlib/utils/copy';
 import keys from '@stdlib/utils/keys';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
+import generateUID from 'utils/uid';
 import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
@@ -22,6 +23,11 @@ import { SELECT_QUESTION_MATRIX_SUBMISSION } from 'constants/actions.js';
 import './select-question-matrix.css';
 
 
+// VARIABLES //
+
+const uid = generateUID( 'select-question-matrix' );
+
+
 // MAIN //
 
 /**
@@ -30,6 +36,7 @@ import './select-question-matrix.css';
 class SelectQuestionMatrix extends Component {
 	constructor( props ) {
 		super( props );
+		this.id = props.id || uid( props );
 		this.state = {
 			answers: {},
 			submitted: false,
@@ -115,13 +122,11 @@ class SelectQuestionMatrix extends Component {
 				position: 'tr'
 			});
 		}
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: SELECT_QUESTION_MATRIX_SUBMISSION,
-				value: this.state.answers
-			});
-		}
+		session.log({
+			id: this.id,
+			type: SELECT_QUESTION_MATRIX_SUBMISSION,
+			value: this.state.answers
+		});
 		this.props.onSubmit( this.state.answers, correct );
 		let answerState = null;
 		if ( this.props.provideFeedback ) {
@@ -195,7 +200,7 @@ class SelectQuestionMatrix extends Component {
 		const nAnswers = keys( this.state.answers ).length;
 		const nInputs = keys( this.props.options ).length;
 		return (
-			<Card id={this.props.id} border={this.state.answerState} className="select-question-matrix" style={this.props.style} body >
+			<Card id={this.id} border={this.state.answerState} className="select-question-matrix" style={this.props.style} body >
 				{ this.props.question ? <label>{this.props.question}</label> : null }
 				{this.renderColumnNames()}
 				{this.renderRows()}
@@ -211,12 +216,12 @@ class SelectQuestionMatrix extends Component {
 						null
 					}
 					{
-						this.props.chat && this.props.id ? <ChatButton for={this.props.id} /> : null
+						this.props.chat ? <ChatButton for={this.id} /> : null
 					}
 				</div>
-				{ this.props.id ? <div>
+				<div>
 					<ResponseVisualizer
-						id={this.props.id}
+						id={this.id}
 						data={{
 							type: 'tensor',
 							rows: this.props.rows,
@@ -224,11 +229,11 @@ class SelectQuestionMatrix extends Component {
 						}}
 						info={SELECT_QUESTION_MATRIX_SUBMISSION}
 					/>
-					{ this.props.id && this.props.feedback ? <FeedbackButtons
-						id={this.props.id+'_feedback'}
+					{ this.props.feedback ? <FeedbackButtons
+						id={this.id+'_feedback'}
 						style={{ float: 'left' }}
 					/> : null }
-				</div> : null }
+				</div>
 			</Card>
 		);
 	}
