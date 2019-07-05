@@ -1,0 +1,8 @@
+.checkbox-legend {
+	margin-left: 12px;
+	cursor: pointer;
+}
+
+.checkbox-legend:hover {
+	color: #2e4468;
+}

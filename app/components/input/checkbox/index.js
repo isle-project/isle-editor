@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Input from 'components/input/base';
 import SessionContext from 'session/context.js';
+import './checkbox.css';
 
 
 // MAIN //
@@ -35,9 +36,9 @@ class CheckboxInput extends Input {
 		* Event handler invoked once the checkbox is clicked by the user. Changes the
 		* `isChecked` property and then invokes the user-supplied `onChange` callback function.
 		*/
-		this.handleChange = ( event ) => {
+		this.handleChange = () => {
 			this.setState({
-				value: event.target.checked
+				value: !this.state.value
 			}, () => {
 				this.props.onChange( this.state.value );
 				if ( this.props.bind ) {
@@ -91,10 +92,11 @@ class CheckboxInput extends Input {
 				<span style={{ marginLeft: '8px', ...this.props.style }}>
 					{input}
 					<span
+						className="checkbox-legend"
 						style={{
-							marginLeft: '12px',
-							color: this.props.disabled ? 'darkgray' : 'black'
+							color: this.props.disabled ? 'darkgray' : null
 						}}
+						onClick={this.handleChange}
 					>{this.props.legend}</span>
 				</span>
 			);
@@ -108,10 +110,11 @@ class CheckboxInput extends Input {
 			}}>
 				{input}
 				<span
+					className="checkbox-legend"
 					style={{
-						marginLeft: '12px',
-						color: this.props.disabled ? 'darkgray' : 'black'
+						color: this.props.disabled ? 'darkgray' : null
 					}}
+					onClick={this.handleChange}
 				>{this.props.legend}</span>
 			</div>
 		);
