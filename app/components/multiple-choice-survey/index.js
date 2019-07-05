@@ -33,7 +33,6 @@ const uid = generateUID( 'multiple-choice-survey' );
 /**
 * A survey component in which the instructor may collect multiple-choice survey data from students in real-time.
 *
-* @property {string} id - component identifier
 * @property {string} question - string indicating the question to ask the students
 * @property {boolean} allowMultipleAnswers - controls whether one wishes to allow students to answer the survey multiple times
 * @property {boolean} anonymous - controls whether student answers are anonymized

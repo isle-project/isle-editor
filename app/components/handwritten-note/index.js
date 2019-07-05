@@ -13,7 +13,6 @@ import './handwritten-note.css';
 * @property {function} block - display bottom in full width - dysfuntional still!
 * @property {function} onClick - the click function
 * @property {boolean} disabled - if disabled the button will be inactive, but the countdown starts
-* @property {string} id - the timed button id
 * @property {string} size - font size, passed to the native React button
 * @property {string} type - button type, passed to the native React button
 * @property {string} title - the button title
@@ -26,13 +25,6 @@ class HandwritteNote extends Component {
 		this.state = {
 		};
 	}
-
-	componentDidMount() {
-	}
-
-	componentWillUnmount() {
-	}
-
 
 	refDimensions = (element) => {
 		if (element) {
@@ -64,10 +56,8 @@ class HandwritteNote extends Component {
 		return name;
 	}
 
-
 	render() {
 		let name = 'handwritten-note';
-
 		return (
 			<div style={this.props.style} className={name} ref={this.refDimensions} >
 				<div style={this.props.formStyle} className={this.getType()}>

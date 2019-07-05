@@ -28,7 +28,6 @@ const uid = generateUID( 'proportions-survey' );
 /**
 * Component that allows a group of people to vote on the weights and importance of given options.
 *
-* @property {string} id - component identifier
 * @property {number} question - the question to be displayed
 * @property {boolean} allowMultipleAnswers - contols whether one wishes to allow students to answer the survey multiple times
 * @property {boolean} anonymous - contols whether student answers are anonymized
