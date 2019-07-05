@@ -112,6 +112,10 @@
         "title": "Lesson Submit",
         "sidebar_label": "Lesson Submit"
       },
+      "likert-scale": {
+        "title": "Likert Scale",
+        "sidebar_label": "Likert Scale"
+      },
       "markdown-editor": {
         "title": "Markdown Editor",
         "sidebar_label": "Markdown Editor"
@@ -256,6 +260,10 @@
         "title": "Slider",
         "sidebar_label": "Slider"
       },
+      "sortable-tree": {
+        "title": "Sortable Tree",
+        "sidebar_label": "Sortable Tree"
+      },
       "survey-generator": {
         "title": "Survey Generator",
         "sidebar_label": "Survey Generator"
@@ -279,6 +287,10 @@
       "unveil": {
         "title": "Unveil",
         "sidebar_label": "Unveil"
+      },
+      "video-lecture": {
+        "title": "Video Lecture",
+        "sidebar_label": "Video Lecture"
       },
       "video-player": {
         "title": "Video Player",
