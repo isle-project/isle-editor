@@ -102,11 +102,11 @@ class SimpleLinearRegression extends Component {
 							</tr>
 							<tr>
 								<td>{xval}</td>
-								<td>{slope.toFixed( 6 )}</td>
+								<td>{slope.toFixed( 3 )}</td>
 							</tr>
 							<tr>
 								<td>Intercept</td>
-								<td>{yint.toFixed( 6 )}</td>
+								<td>{yint.toFixed( 3 )}</td>
 							</tr>
 						</tbody>
 					</Table>
