@@ -146,6 +146,7 @@ class SliderInput extends Input {
 
 	render() {
 		let { value } = this.state;
+		const { legend, inline } = this.props;
 		if ( value !== '' ) {
 			roundn( value, ( -1.0 )*this.props.precision );
 		}
@@ -160,8 +161,8 @@ class SliderInput extends Input {
 			onChange={this.handleInputChange}
 			style={{
 				width: this.props.width || '160px',
-				float: this.props.inline ? 'none' : 'left',
-				display: this.props.inline ? 'inline' : 'block'
+				float: inline ? 'none' : 'left',
+				display: inline ? 'inline' : 'block'
 			}}
 		/>;
 		const numberInput = <input
@@ -176,19 +177,20 @@ class SliderInput extends Input {
 			onChange={this.handleInputChange}
 			onBlur={this.finishChange}
 			style={{
-				float: this.props.inline ? 'none' : 'right'
+				float: inline ? 'none' : 'right',
+				marginTop: legend && !inline ? -22 : 0
 			}}
 		/>;
 
-		if ( this.props.inline ) {
+		if ( inline ) {
 			return (
 				<span className="input" style={{
 					padding: '5px',
 					opacity: this.props.disabled ? 0.2 : 1.0,
 					...this.props.style
 				}}>
-					{ this.props.legend ?
-						<label>{this.props.legend}:</label> :
+					{ legend ?
+						<label>{legend}:</label> :
 						null
 					}
 					{rangeInput}
@@ -209,10 +211,10 @@ class SliderInput extends Input {
 						...this.props.style
 					}}
 				>
-					{ this.props.legend ?
+					{ legend ?
 						<label style={{
 							marginLeft: '8px'
-						}}>{this.props.legend}:</label> :
+						}}>{legend}:</label> :
 						null
 					}
 					<br />

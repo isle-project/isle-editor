@@ -76,16 +76,12 @@ class CheckboxInput extends Input {
 
 	render() {
 		const input = <input
+			className="checkbox-input"
 			type="checkbox"
 			checked={this.state.value}
 			value="checkbox"
 			onChange={this.handleChange}
 			disabled={this.props.disabled}
-			style={{
-				verticalAlign: 'bottom',
-				width: '24px',
-				height: '24px'
-			}}
 		></input>;
 		if ( this.props.inline === true ) {
 			return (
@@ -102,12 +98,7 @@ class CheckboxInput extends Input {
 			);
 		}
 		return (
-			<div className={`input ${this.props.className}`} style={{
-				marginTop: '8px',
-				marginLeft: '8px',
-				marginBottom: '8px',
-				...this.props.style
-			}}>
+			<div className={`input checkbox-input-div ${this.props.className}`} style={this.props.style}>
 				{input}
 				<span
 					className="checkbox-legend"

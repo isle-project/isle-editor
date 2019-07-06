@@ -6,3 +6,15 @@
 .checkbox-legend:hover {
 	color: #2e4468;
 }
+
+.checkbox-input-div {
+	margin-top: 8px;
+	margin-left: 8px;
+	margin-bottom: 8px;
+}
+
+.checkbox-input {
+	vertical-align: middle;
+	width: 24px;
+	height: 24px;
+}
