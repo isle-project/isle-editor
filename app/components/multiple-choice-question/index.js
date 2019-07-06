@@ -359,7 +359,7 @@ class MultipleChoiceQuestion extends Component {
 	}
 
 	render() {
-		const { answers, hints, chat, hintPlacement, id, question } = this.props;
+		const { answers, hints, chat, hintPlacement, question } = this.props;
 		const allowMultipleAnswers = isArray( this.props.solution ) && isArray( this.state.active );
 		const nHints = hints.length;
 		let bodyStyle = {};
@@ -413,17 +413,17 @@ class MultipleChoiceQuestion extends Component {
 							null
 						}
 						{
-							chat && id ?
+							chat && this.id ?
 							<div style={{ display: 'inline-block' }}>
-								<ChatButton for={id} />
+								<ChatButton for={this.id} />
 							</div> : null
 						}
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</div>
-					{ id ? <div style={{ marginTop: '6px' }}>
+					{ this.id ? <div style={{ marginTop: '6px' }}>
 						<ResponseVisualizer
 							buttonLabel="Answers"
-							id={id}
+							id={this.id}
 							data={{
 								type: 'factor',
 								levels: this.props.answers.map( x => x.content )
