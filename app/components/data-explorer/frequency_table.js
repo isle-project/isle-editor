@@ -2,10 +2,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
-import Dashboard from 'components/dashboard';
+import NumberInput from 'components/input/number';
 import objectKeys from '@stdlib/utils/keys';
 import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
@@ -13,6 +15,11 @@ import identity from '@stdlib/utils/identity-function';
 import { DATA_EXPLORER_FREQUENCY_TABLE } from 'constants/actions.js';
 import by from './by.js';
 import QuestionButton from './question_button.js';
+
+
+// VARIABLES //
+
+const DESCRIPTION = 'A frequency table is a tabular display for either the raw absolute or relative frequencies of a categorical variable\'s values.';
 
 
 // FUNCTIONS //
@@ -36,7 +43,7 @@ function getFrequencies( variable, x, relativeFreqs ) {
 	return freqs;
 }
 
-const frequencyTable = ( variable, freqs, relative ) => {
+const frequencyTable = ( variable, freqs, relative, nDecimalPlaces ) => {
 	return (
 		<Table bordered size="sm">
 			<thead>
@@ -51,7 +58,7 @@ const frequencyTable = ( variable, freqs, relative ) => {
 					return ( <tr key={id}>
 						<th>{ id === 0 ? variable : null }</th>
 						<td>{elem.category}</td>
-						<td>{relative ? elem.count.toFixed( 3 ) : elem.count}</td>
+						<td>{relative ? elem.count.toFixed( nDecimalPlaces ) : elem.count}</td>
 					</tr> );
 				})}
 			</tbody>
@@ -59,7 +66,7 @@ const frequencyTable = ( variable, freqs, relative ) => {
 	);
 };
 
-const groupedFrequencyTable = ( variable, freqs, relative ) => {
+const groupedFrequencyTable = ( variable, freqs, relative, nDecimalPlaces ) => {
 	return (
 		<div style={{ overflowX: 'auto', width: '100%' }}>
 			<label>{variable}: </label>
@@ -69,7 +76,7 @@ const groupedFrequencyTable = ( variable, freqs, relative ) => {
 				);
 				const counts = arr[ 1 ].map(
 					( x, j ) => ( <td key={j}>
-						{ relative ? x.count.toFixed( 3 ) : x.count }
+						{ relative ? x.count.toFixed( nDecimalPlaces ) : x.count }
 					</td> )
 				);
 				return ( <div key={i} >
@@ -98,9 +105,17 @@ const groupedFrequencyTable = ( variable, freqs, relative ) => {
 class FrequencyTable extends Component {
 	constructor( props ) {
 		super( props );
+
+		this.state = {
+			relativeFreqs: false,
+			variable: props.defaultValue || props.variables[ 0 ],
+			group: null, // eslint-disable-line react/no-unused-state
+			nDecimalPlaces: 3
+		};
 	}
 
-	generateFrequencyTable( variable, group, relativeFreqs ) {
+	generateFrequencyTable() {
+		const { variable, group, relativeFreqs, nDecimalPlaces } = this.state;
 		let freqs;
 		if ( !group ) {
 			freqs = getFrequencies( variable, this.props.data[ variable ], relativeFreqs );
@@ -122,11 +137,10 @@ class FrequencyTable extends Component {
 			type: !group ? 'Frequency Table' : 'Grouped Frequency Table',
 			relative: relativeFreqs
 		};
-
 		if ( !group ) {
-			output.value = frequencyTable( output.variable, freqs, relativeFreqs );
+			output.value = frequencyTable( output.variable, freqs, relativeFreqs, nDecimalPlaces );
 		} else {
-			output.value = groupedFrequencyTable( output.variable, freqs, relativeFreqs );
+			output.value = groupedFrequencyTable( output.variable, freqs, relativeFreqs, nDecimalPlaces );
 		}
 		this.props.logAction( DATA_EXPLORER_FREQUENCY_TABLE, {
 			variable, group, relativeFreqs
@@ -135,30 +149,62 @@ class FrequencyTable extends Component {
 	}
 
 	render() {
-		const { variables, defaultValue, groupingVariables } = this.props;
-		const description = 'A frequency table is a tabular display for either the raw absolute or relative frequencies of a categorical variable\'s values.';
+		const { variables, groupingVariables } = this.props;
 		return (
-			<Dashboard
-				autoStart={false}
-				title={<span>Frequency Table<QuestionButton title="Frequency Table" content={description} /></span>}
-				onGenerate={this.generateFrequencyTable.bind( this )}
-			>
-				<SelectInput
-					legend="Variable:"
-					defaultValue={defaultValue || variables[ 0 ]}
-					options={variables}
-				/>
-				<SelectInput
-					legend="Group By:"
-					options={groupingVariables}
-					clearable={true}
-					menuPlacement="top"
-				/>
-				<CheckboxInput
-					legend="Relative Frequency"
-					defaultValue={false}
-				/>
-			</Dashboard>
+			<Card>
+				<Card.Header as="h4">
+				Frequency Table
+					<QuestionButton title="Frequency Table" content={DESCRIPTION} />
+				</Card.Header>
+				<Card.Body>
+					<SelectInput
+						legend="Variable:"
+						defaultValue={this.state.variable}
+						options={variables}
+						onChange={( value )=>{
+							this.setState({
+								variable: value
+							});
+						}}
+					/>
+					<SelectInput
+						legend="Group By:"
+						options={groupingVariables}
+						clearable={true}
+						menuPlacement="top"
+						onChange={( value )=>{
+							this.setState({
+								group: value // eslint-disable-line react/no-unused-state
+							});
+						}}
+					/>
+					<CheckboxInput
+						legend="Relative Frequency"
+						defaultValue={false}
+						onChange={() => {
+							this.setState({
+								relativeFreqs: !this.state.relativeFreqs
+							});
+						}}
+					/>
+					{ this.state.relativeFreqs ? <p>Report relative frequencies to
+						<NumberInput
+							inline
+							width={50}
+							max={16}
+							min={0}
+							defaultValue={this.state.nDecimalPlaces}
+							onChange={( value ) => {
+								this.setState({
+									nDecimalPlaces: value
+								});
+							}}
+						/>
+						decimal place(s).
+					</p> : null }
+					<Button variant="primary" block onClick={this.generateFrequencyTable.bind( this )}>Generate</Button>
+				</Card.Body>
+			</Card>
 		);
 	}
 }
