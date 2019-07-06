@@ -41,7 +41,10 @@ class DefaultSlider extends Component {
 			slidesToScroll: 1,
 			prevArrow: <PrevArrow onClick={props.onClick} />,
 			nextArrow: <NextArrow onClick={props.onClick} />,
-			...props
+			...props,
+			beforeChange: ( oldIndex, newIndex ) => {
+				this.setState({ currentSlide: newIndex+1 });
+			}
 		};
 
 		if ( props.interval ) {
@@ -51,7 +54,8 @@ class DefaultSlider extends Component {
 
 		this.state = {
 			childDivs,
-			settings
+			settings,
+			currentSlide: 1
 		};
 	}
 
@@ -82,6 +86,9 @@ class DefaultSlider extends Component {
 		return (
 			<Card.Header as="h3">
 				{this.props.title}
+				<span style={{ float: 'right' }}>
+					{this.state.currentSlide} / {this.props.children.length}
+				</span>
 			</Card.Header>
 		);
 	}
@@ -95,8 +102,8 @@ class DefaultSlider extends Component {
 				size="large"
 				style={{
 					margin: '0 auto',
-					marginTop: '5px',
-					marginBottom: '5px',
+					marginTop: '20px',
+					marginBottom: '20px',
 					paddingBottom: '20px',
 					width: '100%',
 					...this.props.style
