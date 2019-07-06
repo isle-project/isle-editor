@@ -43,12 +43,13 @@
 .data-explorer-draggable-bar {
 	position: absolute;
 	z-index: 2;
-	width: 200px;
+	width: 160px;
+	font-size: 16px;
 	height: 26px;
 	background-color: rgba(200, 200, 200, 0.5);
 	opacity: 0.6;
 	color: black;
-	letter-spacing: 5px;
+	letter-spacing: 4px;
 	text-align: center;
 	cursor: move;
 	padding: 0.3rem 0.3rem;

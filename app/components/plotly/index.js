@@ -234,6 +234,7 @@ class Wrapper extends Component {
 		let plot = <Fragment>
 			{draggableBar}
 			<Plot
+				className={this.props.draggable ? 'plotly-draggable' : null}
 				data={this.props.data}
 				layout={this.state.layout}
 				config={this.config}

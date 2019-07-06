@@ -3,12 +3,12 @@
 	top: 6px;
 	left: 6px;
 	z-index: 2;
-	width: 200px;
+	width: 130px;
 	height: 26px;
 	background-color: rgba(200, 200, 200, 0.5);
 	opacity: 0.6;
 	color: black;
-	letter-spacing: 5px;
+	letter-spacing: 4px;
 	text-align: center;
 	cursor: move;
 	padding: 0.1rem 0.3rem;
@@ -18,4 +18,8 @@
 	background-color: rgba(22, 8, 8, 0.8);
 	color: white;
 	opacity: 0.9;
+}
+
+.plotly-draggable * .modebar {
+	left: 130px;
 }

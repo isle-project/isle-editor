@@ -279,11 +279,16 @@ class RangeQuestion extends Component {
 						}}
 						info={RANGE_QUESTION_SUBMIT_ANSWER}
 					/>
+					{ this.props.feedback ? <FeedbackButtons
+						vertical
+						id={this.id+'_feedback'}
+						style={{
+							position: 'absolute',
+							right: '4px',
+							top: '4px'
+						}}
+					/> : null }
 				</Card.Body>
-				{ this.props.feedback ? <FeedbackButtons
-					vertical
-					id={this.id+'_feedback'}
-				/> : null }
 			</Card>
 		);
 	}

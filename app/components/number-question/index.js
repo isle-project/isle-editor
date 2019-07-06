@@ -176,7 +176,7 @@ class NumberQuestion extends Component {
 		const solutionPresent = this.props.solution !== null;
 		return (
 			<Card id={this.id} className="number-question" style={this.props.style} >
-				<Card.Body style={{ width: this.props.feedback ? 'calc(100% - 60px)' : '100%', display: 'inline-block' }} >
+				<Card.Body style={{ width: this.props.feedback ? 'calc(100% - 60px)' : '100%', display: 'inline-block', marginBottom: 6 }} >
 					{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
 					<div className="number-question-input-wrapper">
 						<NumberInput
@@ -232,16 +232,16 @@ class NumberQuestion extends Component {
 						data={{ type: 'number' }} info="NUMBER_QUESTION_SUBMISSION"
 						style={{ marginLeft: '6px' }}
 					/>
+					{ this.props.feedback ? <FeedbackButtons
+						vertical
+						id={this.id+'_feedback'}
+						style={{
+							position: 'absolute',
+							right: '4px',
+							top: '4px'
+						}}
+					/> : null }
 				</Card.Body>
-				{ this.props.feedback ? <FeedbackButtons
-					vertical
-					id={this.id+'_feedback'}
-					style={{
-						position: 'absolute',
-						right: '4px',
-						top: '4px'
-					}}
-				/> : null }
 			</Card>
 		);
 	}
