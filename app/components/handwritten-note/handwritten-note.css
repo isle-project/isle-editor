@@ -7,7 +7,7 @@
 	display: block;
 	width: 256px;
 	height: 300px;
-	border:solid 1px darkblue;
+	border: solid 1px darkblue;
 	overflow: hidden;
 	padding: 32px;
 	padding-right: 20px;
@@ -20,7 +20,7 @@
 	width: 250px;
 	height: auto;
 	margin: 20px 0;
-	border:solid 1px darkblue;
+	border: solid 1px darkblue;
 	border-radius: 50% / 10%;
 	text-align: center;
 	text-indent: 0.1em;
@@ -47,7 +47,7 @@
 	padding: 28px;
 	padding-top: 36px;
 	padding-right: 20px;
-	border:solid 1px darkblue;
+	border: solid 1px darkblue;
 	border-radius: 50%;
 }
 
@@ -55,5 +55,6 @@
 	color: transparent;
 	background: url(https://isle.heinz.cmu.edu/Summertime_pencil.jpg);
 	background-size: auto 160px;
+	background-clip: text;
 	-webkit-background-clip: text;
 }

@@ -4,51 +4,27 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './handwritten-note.css';
 
+
 // MAIN //
 
 /**
-* A component displaying an image in the style of a polaroid.
+* A component displaying some text as a handwritten note.
 *
-* @property {number} duration - the time (in seconds) it takes until the button gets reactivated, default 3000 ms
-* @property {function} block - display bottom in full width - dysfuntional still!
-* @property {function} onClick - the click function
-* @property {boolean} disabled - if disabled the button will be inactive, but the countdown starts
-* @property {string} size - font size, passed to the native React button
-* @property {string} type - button type, passed to the native React button
-* @property {string} title - the button title
-* @property {string} varfiant - passed to the button
+* @property {string} text - text to be displayed
+* @property {string} type - note type (either `egg`, `tv`, or `oval`)
+* @property {Object} formStyle - CSS inline styles for the type div
+* @property {Object} style - CSS inline styles for the outer container
 */
 class HandwritteNote extends Component {
-	constructor( props ) {
-		super( props );
-
-		this.state = {
-		};
-	}
-
-	refDimensions = (element) => {
-		if (element) {
-			console.log('Anzeige der Dimension');
-			let x = element.getBoundingClientRect();
-			console.log(x);
-
-			this.setState({
-			});
-		}
-	}
-
 	getType = () => {
-		let name = '';
-
-		switch (this.props.type) {
+		let name;
+		switch ( this.props.type ) {
 			case 'egg':
 				name = 'handwritten-form-egg';
 			break;
-
 			case 'tv':
 				name = 'handwritten-form-tv';
 			break;
-
 			case 'oval':
 				name = 'handwritten-form-oval';
 			break;
@@ -57,9 +33,8 @@ class HandwritteNote extends Component {
 	}
 
 	render() {
-		let name = 'handwritten-note';
 		return (
-			<div style={this.props.style} className={name} ref={this.refDimensions} >
+			<div style={this.props.style} className="handwritten-note" >
 				<div style={this.props.formStyle} className={this.getType()}>
 					<div className='handwritten-crayon'>{this.props.text}</div>
 				</div>
