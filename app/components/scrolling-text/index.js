@@ -11,12 +11,12 @@ import './ticker.css';
 * A dynamic background component that changes a background image at a specified interval.
 *
 * @property {Array} list - list of image URLs to be displayed
-* @property {boolean}  loop - indicates whether the process shall be displayed infinitely
-* @property {string} direction - the direction of the text flow, available values are left, right, up, down, tracking, focus and swirl
+* @property {boolean} loop - indicates whether the process shall be displayed infinitely
+* @property {string} direction - the direction of the text flow (either `left`, `right`, `up`, `down`, `tracking`, `focus`, or `swirl`)
 * @property {number} still - the time the text remains still (in seconds)
 * @property {number} interval - the interval between the calls (in seconds)
 * @property {number} inTime - time of the entrance effect (in seconds)
-* @property {number} outTime -  time of the exit effect (in seconds)
+* @property {number} outTime - time of the exit effect (in seconds)
 * @property {Object} style - style definition of the text
 */
 class ScrollingText extends Component {

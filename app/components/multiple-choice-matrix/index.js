@@ -35,7 +35,7 @@ const debug = logger( 'isle:multiple-choice-matrix' );
 * @property {Array<Array>} solution - boolean matrix the element of which indicate whether the respective radio button or checkbox should be ticked
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {Function} onChange - callback invoked when the value of a checkbox / radio button changes; invoked with the two-dimensional boolean array of the active status for each answer option
-* @property {Function} onSubmit- callback invoked when user clicks the "Submit" button; invoked with the two-dimensional boolean array of the active status for each answer option
+* @property {Function} onSubmit - callback invoked when user clicks the "Submit" button; invoked with the two-dimensional boolean array of the active status for each answer option
 */
 class MultipleChoiceMatrix extends Component {
 	constructor( props ) {

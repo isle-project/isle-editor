@@ -55,7 +55,7 @@ function epanechnikovKernel( bandwidth ) {
 * @property {number} width - width of the created plot (in px)
 * @property {number} height - height of the created plot (in px)
 * @property {number} nBins - number of bins for the overlaid histogram.
-* @property {number} bandwidth -  smoothing parameter for the kernel density estimator
+* @property {number} bandwidth - smoothing parameter for the kernel density estimator
 */
 class DensityPlot extends D3Plot {
 	constructor( props ) {
