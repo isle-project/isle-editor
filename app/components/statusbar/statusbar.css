@@ -1,9 +1,5 @@
-#App #Lesson .statusbar {
-	position: fixed;
-}
-
 #Lesson .statusbar {
-	position: absolute;
+	position: fixed;
 	width: 34%;
 	min-width: 300px;
 	height: 48px;

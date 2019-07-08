@@ -171,7 +171,12 @@ class App extends Component {
 							hideToolbar={hideToolbar}
 						/>
 					</SplitPanel>
-					<SplitPanel ref={( elem ) => { this.preview = elem; }} >
+					<SplitPanel
+						ref={( elem ) => { this.preview = elem; }}
+						style={{
+							transform: 'translateZ(0)' // applied so that the panel acts as viewport for the fixed position statusbar (https://www.w3.org/TR/css-transforms-1/#containing-block-for-all-descendants)
+						}}
+					>
 						{ error ?
 							<ErrorMessage msg={error.message} code={markdown} /> :
 							<ErrorBoundary code={markdown} preamble={this.props.preamble} >
