@@ -1022,6 +1022,7 @@ class MarkdownEditor extends Component {
 					id={this.id+'_pairer'}
 					onAssignmentStudent={this.handlePeerAssignment}
 					onClearStudent={this.handlePeerCleanup}
+					filterOwners={this.props.peerReview.filterOwners}
 				/> : null }
 				<SaveModal
 					show={this.state.showSaveModal}
