@@ -16,7 +16,7 @@ const debug = logger( 'isle-editor:auto-updater' );
 function autoUpdater( callback ) {
 	const request = net.request({
 		method: 'GET',
-		url: 'https://raw.githubusercontent.com/planeshifter/isle-editor/master/package.json'
+		url: 'https://raw.githubusercontent.com/isle-project/isle-editor/master/package.json'
 	});
 	request.on( 'response', response => {
 		let body = '';

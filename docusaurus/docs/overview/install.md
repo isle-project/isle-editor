@@ -31,7 +31,7 @@ Developing and running the ISLE Editor has the following prerequisites:
 To acquire the source code, clone the git repository.
 
 ``` bash
-$ git clone https://github.com/planeshifter/isle-editor
+$ git clone https://github.com/isle-project/isle-editor
 ```
 
 ### Installation
@@ -64,8 +64,8 @@ $ npm run build
 [electron]: http://electron.atom.io/
 [git]: http://git-scm.com/
 [node-js]: https://nodejs.org/en/
-[darwin-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.20.0/ISLE.Editor-darwin-x64.zip
-[linux-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.20.0/ISLE.Editor-linux-x64.zip
-[linux-ia32]: https://github.com/Planeshifter/isle-editor/releases/download/v0.20.0/ISLE.Editor-linux-ia32.zip
-[win32-ia32]: https://github.com/Planeshifter/isle-editor/releases/download/v0.20.0/ISLE.Editor-win32-ia32.zip
-[win32-x64]: https://github.com/Planeshifter/isle-editor/releases/download/v0.20.0/ISLE.Editor-win32-x64.zip
+[darwin-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-darwin-x64.zip
+[linux-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-linux-x64.zip
+[linux-ia32]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-linux-ia32.zip
+[win32-ia32]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-win32-ia32.zip
+[win32-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-win32-x64.zip

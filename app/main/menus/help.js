@@ -12,14 +12,14 @@ export default {
 			label: 'Report issue',
 			accelerator: '',
 			click: () => {
-				actions.openBrowser( 'https://github.com/Planeshifter/isle-editor/issues/new' );
+				actions.openBrowser( 'https://github.com/isle-project/isle-editor/issues/new' );
 			}
 		},
 		{
 			label: 'Search issues',
 			accelerator: '',
 			click: () => {
-				actions.openBrowser( 'https://github.com/Planeshifter/isle-editor/issues' );
+				actions.openBrowser( 'https://github.com/isle-project/isle-editor/issues' );
 			}
 		}
 	]

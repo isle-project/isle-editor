@@ -46,7 +46,7 @@ function onReady() {
 				buttons: [ 'Yes', 'No' ]
 			});
 			if ( confirm === 0 ) {
-				shell.openExternal( 'https://github.com/planeshifter/isle-editor/releases' );
+				shell.openExternal( 'https://github.com/isle-project/isle-editor/releases' );
 			}
 		});
 	});
