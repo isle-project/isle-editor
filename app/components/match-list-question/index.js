@@ -70,7 +70,7 @@ class MatchListQuestion extends Component {
 		if ( !colorScale ) {
 			colorScale = createColorScale( 2 * elements.length );
 		}
-		this.id = props.id || uid();
+		this.id = props.id || uid( props );
 		this.state = {
 			selectedA: null,
 			selectedB: null,

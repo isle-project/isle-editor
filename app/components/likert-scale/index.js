@@ -7,9 +7,15 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
 import indexOf from '@stdlib/utils/index-of';
+import generateUID from 'utils/uid';
 import SessionContext from 'session/context.js';
 import ResponseVisualizer from 'components/response-visualizer';
 import { LIKERT_SCALE_SUBMISSION } from 'constants/actions.js';
+
+
+// VARIABLES //
+
+const uid = generateUID( 'likert-scale' );
 
 
 // MAIN //
@@ -26,13 +32,14 @@ class LikertScale extends Component {
 	constructor( props ) {
 		super( props );
 
+		this.id = props.id || uid( props );
 		this.state = {
 			value: null,
 			submitted: false
 		};
 	}
 
-	submitHandler = ( event ) => {
+	submitHandler = () => {
 		const session = this.context;
 		if ( !this.props.disableSubmitNotification ) {
 			session.addNotification({
@@ -45,13 +52,11 @@ class LikertScale extends Component {
 		this.setState({
 			submitted: true
 		});
-		if ( this.props.id ) {
-			session.log({
-				id: this.props.id,
-				type: LIKERT_SCALE_SUBMISSION,
-				value: indexOf( this.props.options, this.state.value )
-			});
-		}
+		session.log({
+			id: this.id,
+			type: LIKERT_SCALE_SUBMISSION,
+			value: indexOf( this.props.options, this.state.value )
+		});
 	}
 
 	handleChange = ( event ) => {
@@ -99,7 +104,7 @@ class LikertScale extends Component {
 					</Button>
 					<ResponseVisualizer
 						buttonLabel="Responses"
-						id={this.props.id}
+						id={this.id}
 						data={{
 							type: 'factor',
 							levels: this.props.options
