@@ -22,7 +22,7 @@ Summer 2019
 ===========
 
 * Close hints when moving to another question
-
+* Markdown code blocks do not render in exported PDF
 
 
 Priority
