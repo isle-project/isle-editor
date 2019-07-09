@@ -134,7 +134,7 @@
     "localforage": "^1.7.2",
     "lodash.debounce": "^4.0.8",
     "lodash.flow": "^3.5.0",
-    "markdown-it": "^8.0.0",
+    "markdown-it": "^9.0.0",
     "markdown-it-container": "^2.0.0",
     "markdown-it-ins": "^2.0.0",
     "markdown-it-katex": "^2.0.3",
