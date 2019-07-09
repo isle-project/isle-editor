@@ -18,6 +18,13 @@ Fall
 * Add save reminders in data explorer 
 * Log actions in instructor bar
 
+Summer 2019
+===========
+
+* Close hints when moving to another question
+
+
+
 Priority
 ====
 3. Instructor view
