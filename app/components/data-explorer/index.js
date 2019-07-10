@@ -1163,7 +1163,7 @@ class DataExplorer extends Component {
 								</Modal.Footer>
 							</Modal>
 							<Button variant="secondary" size="sm" style={{ float: 'right' }} onClick={this.toggleStudentPlots} >Open Shared Plots</Button>
-							<RealtimeMetrics returnFullObject for={this.id} onDatum={this.onUserAction} />
+							<RealtimeMetrics returnFullObject for={[ this.id ]} onDatum={this.onUserAction} />
 						</Gate>
 					</div>
 					<OutputPanel output={this.state.output} ref={( div ) => {
