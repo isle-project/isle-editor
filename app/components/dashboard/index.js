@@ -80,12 +80,14 @@ class Dashboard extends Component {
 		for ( let i = 0; i < this.nArgs; i++ ) {
 			args[ i ] = this.state[ i ];
 		}
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: DASHBOARD_CLICK_GENERATE,
-			value: args
-		});
+		if ( !this.props.autoUpdate ) {
+			const session = this.context;
+			session.log({
+				id: this.id,
+				type: DASHBOARD_CLICK_GENERATE,
+				value: args
+			});
+		}
 		this.props.onGenerate( ...args );
 	};
 
