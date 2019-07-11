@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
 import noop from '@stdlib/utils/noop';
+import SessionContext from 'session/context.js';
+import { DELETE_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from 'constants/actions.js';
 import './sticky_note.css';
 
 
@@ -32,10 +34,9 @@ class StickyNote extends Component {
 
 		let body = null;
 		let title = null;
-
 		if ( props.editable ) {
-			title = 'Type in the title';
-			body = 'Type in your notes';
+			title = props.title || 'Type in the title';
+			body = props.body || 'Type in your notes';
 		}
 		this.state = {
 			exit: false,
@@ -48,7 +49,7 @@ class StickyNote extends Component {
 	}
 
 	triggerClick = () => {
-		if (this.state.minimized === true) {
+		if ( this.state.minimized ) {
 			this.setState({
 				minimized: false
 			});
@@ -63,6 +64,14 @@ class StickyNote extends Component {
 		this.setState({
 			exit: true
 		});
+		if ( this.props.id ) {
+			const session = this.context;
+			session.log({
+				id: this.props.id,
+				type: DELETE_STICKY_NOTE,
+				value: true
+			});
+		}
 	}
 
 	minimize = (evt) => {
@@ -115,7 +124,6 @@ class StickyNote extends Component {
 		return style;
 	}
 
-
 	showContent() {
 		return (
 			<div className="sticky-note-content">
@@ -153,11 +161,54 @@ class StickyNote extends Component {
 		);
 	}
 
-	checkTitle = (event) => {
-		if (event.keyCode === 13) {
+	checkTitle = ( event ) => {
+		if ( event.keyCode === 13 ) {
+			const title = event.target.value;
+			if ( this.props.id ) {
+				const session = this.context;
+				session.log({
+					id: this.props.id,
+					type: STICKY_NOTE_TITLE,
+					value: title
+				});
+			}
 			this.setState({
-				title: event.target.value,
+				title,
 				editTitle: false
+			});
+		}
+	}
+
+	handleTitleBlur = () => {
+		if ( this.props.id ) {
+			const session = this.context;
+			session.log({
+				id: this.props.id,
+				type: STICKY_NOTE_TITLE,
+				value: this.state.title
+			});
+		}
+		this.setState({
+			editTitle: false
+		});
+	}
+
+	handleTitleChange = ( event ) => {
+		this.setState({
+			title: event.target.value
+		});
+	}
+
+	handleDragStop = ( event, data ) => {
+		if ( this.props.id ) {
+			const session = this.context;
+			session.log({
+				id: this.props.id,
+				type: STICKY_NOTE_MOVE,
+				value: {
+					x: data.lastX,
+					y: data.lastY
+				}
 			});
 		}
 	}
@@ -167,14 +218,16 @@ class StickyNote extends Component {
 			<div className="sticky-note-title">
 				<input
 					className="sticky-note-editable-title noDrag"
-					onKeyUp={this.checkTitle} type="text"
+					onKeyUp={this.checkTitle}
+					onBlur={this.handleTitleBlur}
+					onChange={this.handleTitleChange}
+					type="text"
 					name="fname"
-					defaultValue={this.state.title}
+					value={this.state.title}
 				/>
 			</div>
 		);
 	}
-
 
 	showBody = () => {
 		return (
@@ -184,10 +237,18 @@ class StickyNote extends Component {
 		);
 	}
 
-
 	submitBody = () => {
+		const body = this.textareaRef.current.value;
+		if ( this.props.id ) {
+			const session = this.context;
+			session.log({
+				id: this.props.id,
+				type: STICKY_NOTE_BODY,
+				value: body
+			});
+		}
 		this.setState({
-			body: this.textareaRef.current.value,
+			body,
 			editBody: false
 		});
 	}
@@ -200,7 +261,6 @@ class StickyNote extends Component {
 			</div>
 		);
 	}
-
 
 	showEditableContent = () => {
 		return (
@@ -242,7 +302,11 @@ class StickyNote extends Component {
 			</div>
 		</div>;
 		if ( this.props.draggable ) {
-			return <Draggable bounds="#Lesson" cancel=".noDrag">{out}</Draggable>;
+			return ( <Draggable
+				bounds="#Lesson"
+				cancel=".noDrag"
+				onStop={this.handleDragStop}
+			>{out}</Draggable> );
 		}
 		return out;
 	}
@@ -286,6 +350,8 @@ StickyNote.defaultProps = {
 	onClick: noop,
 	removable: false
 };
+
+StickyNote.contextType = SessionContext;
 
 
 // EXPORTS //
