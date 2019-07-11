@@ -185,6 +185,7 @@ class ConfidenceCoverageBinomial extends Component {
 									title="Change parameters"
 									onGenerate={this.onGenerate}
 									autoStart={true}
+									id="confidence_coverage_binomial"
 								>
 									<NumberInput
 										legend="Sample size (n)"

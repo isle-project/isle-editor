@@ -187,6 +187,7 @@ class ConfidenceCoverageNormal extends Component {
 									title="Change parameters"
 									onGenerate={this.onGenerate}
 									autoStart={true}
+									id="confidence_coverage_normal"
 								>
 									<NumberInput
 										legend="Sample size (n)"

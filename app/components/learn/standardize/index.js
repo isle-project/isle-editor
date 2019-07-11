@@ -273,7 +273,7 @@ class Standardize extends Component {
 						{this.renderUnstandardizedPlot()}
 					</Col>
 					<Col md={4}>
-						<Dashboard autoStart={false} title="Standardize values" label="Compute" onGenerate={this.onStandardize}>
+						<Dashboard autoStart={false} title="Standardize values" label="Compute" id="learn_standardize" onGenerate={this.onStandardize}>
 							<TeX raw={this.state.eqn} displayMode tag="" />
 							<NumberInput
 								legend="X value"
