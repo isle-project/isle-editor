@@ -2,8 +2,11 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Select from 'react-select';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import FormGroup from 'react-bootstrap/FormGroup';
 import SelectInput from 'components/input/select';
-import Dashboard from 'components/dashboard';
 import statistic from 'utils/statistic';
 import objectKeys from '@stdlib/utils/keys';
 import isArray from '@stdlib/assert/is-array';
@@ -17,11 +20,50 @@ import { DATA_EXPLORER_SUMMARY_STATISTICS } from 'constants/actions.js';
 // VARIABLES //
 
 const DESCRIPTION = 'Compute various statistics of interest, i.e. summary measures of the variables in the data set.';
+const customStyles = {
+	control: ( base, state ) => {
+		if ( state.isDisabled ) {
+			return {
+				...base,
+				background: 'none',
+				color: '#aaa',
+				opacity: 0.5
+			};
+		}
+		return {
+			...base,
+			background: 'rgba(186, 204, 234, 0.3)',
+			boxShadow: 'none',
+			cursor: 'pointer'
+		};
+	},
+	option: ( base, state ) => {
+		let backgroundColor = '#fff';
+		let color = '#666666';
+		if ( state.isFocused ) {
+			backgroundColor = 'rgba(204,88,0, 0.16)';
+			color = '#333';
+		}
+		else if ( state.isSelected ) {
+			backgroundColor = '#f5faff';
+			color = '#333';
+		}
+		return {
+			...base,
+			boxSizing: 'border-box',
+			backgroundColor: backgroundColor,
+			color: color,
+			cursor: 'pointer',
+			display: 'block',
+			padding: '8px 10px'
+		};
+	}
+};
 
 
 // FUNCTIONS //
 
-function byWithCount( arr, factor, fun, groups ) {
+function byWithCount( arr, factor, funs, groups ) {
 	let table = {};
 	for ( let i = 0; i < arr.length; i++ ) {
 		if ( !isArray( table[ factor[ i ] ]) ) {
@@ -34,14 +76,14 @@ function byWithCount( arr, factor, fun, groups ) {
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
 		out[ key ] = {
-			value: fun( table[ key ] ),
+			value: funs.map( f => f( table[ key ] ) ),
 			size: table[ key ].length
 		};
 	}
 	return out;
 }
 
-function by2WithCount( arr1, arr2, factor, fun, groups ) {
+function by2WithCount( arr1, arr2, factor, funs, groups ) {
 	let out = {};
 	let ret1 = {};
 	let ret2 = {};
@@ -57,7 +99,7 @@ function by2WithCount( arr1, arr2, factor, fun, groups ) {
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
 		out[ key ] = {
-			value: fun( ret1[ key ], ret2[ key ]),
+			value: funs.map( f => f( ret1[ key ], ret2[ key ]) ),
 			size: ret1[ key ].length
 		};
 	}
@@ -71,15 +113,26 @@ class SummaryStatistics extends Component {
 	constructor( props ) {
 		super( props );
 
+		const selectedStat = props.defaultStatistic || props.statistics[ 0 ];
 		this.state = {
-			currentStatistic: props.statistics[ 0 ]
+			selectedStats: [{
+				value: statistic( selectedStat ),
+				label: selectedStat
+			}],
+			variable: props.defaultX || props.variables[ 0 ],
+			secondVariable: props.defaultY || props.variables[ 1 ],
+			group: null,
+			showSecondVarSelect: false,
+			omit: false
 		};
 	}
 
-	generateStatistics = ( statName, variable, secondVariable, group, omit ) => {
-		let { data } = this.props;
+	generateStatistics = () => {
+		const { data } = this.props;
+		let { selectedStats, variable, secondVariable, group, omit } = this.state;
+		const funs = selectedStats.map( x => x.value );
+		selectedStats = selectedStats.map( x => x.label );
 		let groupData;
-		let fun;
 		let res;
 		let x;
 		let y;
@@ -118,10 +171,9 @@ class SummaryStatistics extends Component {
 				y = data[ secondVariable ];
 				groupData = data[ group ];
 			}
-			fun = statistic( statName );
-			if ( statName === 'Correlation' ) {
+			if ( selectedStats[ 0 ] === 'Correlation' ) {
 				const groups = group.categories;
-				res = by2WithCount( x, y, groupData, fun, groups );
+				res = by2WithCount( x, y, groupData, funs, groups );
 				const keys = groups || objectKeys( res );
 				for ( let i = 0; i < keys.length; i++ ) {
 					const key = keys[ i ];
@@ -132,7 +184,7 @@ class SummaryStatistics extends Component {
 				variable = `${variable} vs. ${secondVariable}`;
 			} else {
 				const groups = group.categories;
-				res = byWithCount( x, groupData, fun, groups );
+				res = byWithCount( x, groupData, funs, groups );
 			}
 		} else {
 			// Case: no grouping variable selected
@@ -163,10 +215,8 @@ class SummaryStatistics extends Component {
 				x = data[ variable ];
 				y = data[ secondVariable ];
 			}
-
-			fun = statistic( statName );
-			if ( statName === 'Correlation' ) {
-				res = fun( x, y );
+			if ( selectedStats[ 0 ] === 'Correlation' ) {
+				res = funs.map( f => f( x, y ) );
 				// Extract correlation coefficient from correlation matrix:
 				res = {
 					value: res[ 0 ][ 1 ],
@@ -176,21 +226,22 @@ class SummaryStatistics extends Component {
 			}
 			else {
 				res = {
-					value: fun( x ),
+					value: funs.map( f => f( x ) ),
 					size: x.length
 				};
 			}
 		}
 		const output = {
 			variable: variable,
-			type: statName,
+			statistics: selectedStats,
+			type: 'Statistics',
 			result: res,
 			group
 		};
 		this.props.logAction( DATA_EXPLORER_SUMMARY_STATISTICS, {
-			statistic: statName,
+			statistic: selectedStats,
 			variable,
-			secondVariable: statName === 'Correlation' ? secondVariable : null,
+			secondVariable: selectedStats[ 0 ] === 'Correlation' ? secondVariable : null,
 			group
 		});
 		this.props.onCreated( output );
@@ -200,54 +251,95 @@ class SummaryStatistics extends Component {
 		let {
 			statistics,
 			variables,
-			defaultX,
-			defaultY,
-			defaultStatistic,
 			groupingVariables
 		} = this.props;
+		const selectedStats = this.state.selectedStats;
 		return (
-			<Dashboard
-				autoStart={false}
-				title={<span>Summary Statistics<QuestionButton title="Summary Statistics" content={DESCRIPTION} /></span>}
-				label="Calculate"
-				onGenerate={this.generateStatistics}
-			>
-				<SelectInput
-					legend="Statistic:"
-					defaultValue={defaultStatistic}
-					options={statistics}
-					onChange={( value ) => {
-						this.setState({
-							currentStatistic: value
-						});
-					}}
-				/>
-				<SelectInput
-					legend="Variable:"
-					defaultValue={defaultX || variables[ 0 ]}
-					options={variables}
-				/>
-				<SelectInput
-					legend="Second Variable:"
-					defaultValue={defaultY || variables[ 1 ]}
-					options={variables}
-					style={{
-						display: this.state.currentStatistic === 'Correlation' ?
-							'inline' : 'none'
-					}}
-				/>
-				{ groupingVariables.length > 0 ?
+			<Card>
+				<Card.Header as="h4">
+					Summary Statistics
+					<QuestionButton title="Summary Statistics" content={DESCRIPTION} />
+				</Card.Header>
+				<Card.Body>
+					<FormGroup controlId="form-controls-select">
+						<label>Statistic(s):</label>
+						<Select
+							value={selectedStats}
+							options={statistics.map( e => ( { 'label': e, 'value': statistic( e ) } ))}
+							isMulti
+							onChange={( value ) => {
+								if ( isArray( value ) && value.length > 0 ) {
+									const labels = value.map( x => x.label );
+									if ( labels[ labels.length-1 ] === 'Correlation' ) {
+										return this.setState({
+											selectedStats: [{
+												label: 'Correlation',
+												value: statistic( 'Correlation' )
+											}],
+											showSecondVarSelect: true
+										});
+									}
+									else if ( labels[ 0 ] === 'Correlation' ) {
+										value.shift();
+									}
+								}
+								this.setState({
+									selectedStats: value,
+									showSecondVarSelect: false
+								});
+							}}
+							styles={customStyles}
+						/>
+					</FormGroup>
 					<SelectInput
-						legend="Group By:"
-						options={groupingVariables}
-						clearable={true}
-						menuPlacement="top"
-					/> : null
-				}
-				<CheckboxInput
-					legend="Omit missing values"
-				/>
-			</Dashboard>
+						legend="Variable:"
+						defaultValue={this.state.variable}
+						options={variables}
+					/>
+					<SelectInput
+						legend="Second Variable:"
+						defaultValue={this.state.secondVariable}
+						options={variables}
+						style={{
+							display: this.state.showSecondVarSelect ?
+								'inline' : 'none'
+						}}
+						onChange={( value ) => {
+							this.setState({
+								secondVariable: value
+							});
+						}}
+					/>
+					{ groupingVariables.length > 0 ?
+						<SelectInput
+							legend="Group By:"
+							options={groupingVariables}
+							clearable={true}
+							defaultValue={this.state.group}
+							menuPlacement="top"
+							onChange={( value ) => {
+								this.setState({
+									group: value
+								});
+							}}
+						/> : null
+					}
+					<CheckboxInput
+						legend="Omit missing values"
+						defaultValue={this.state.omit}
+						onChange={( value ) => {
+							this.setState({
+								omit: value
+							});
+						}}
+					/>
+					<Button
+						variant="primary" block
+						onClick={this.generateStatistics}
+						disabled={!selectedStats}
+					>Calculate</Button>
+				</Card.Body>
+			</Card>
 		);
 	}
 }

@@ -76,7 +76,7 @@ const renderIQRTable = ( e, idx, clearOutput, subsetFilters, onFilters ) => {
 			</tr>
 			<tr>
 				<td>{e.variable}</td>
-				{e.result.value.map( ( e, i ) => <td key={i}>{e.toFixed( 3 )}</td> )}
+				{e.result.value[0].map( ( e, i ) => <td key={i}>{e.toFixed( 3 )}</td> )}
 				<td>{e.result.size}</td>
 			</tr>
 		</tbody>
@@ -99,7 +99,7 @@ const renderRangeTable = ( e, idx, clearOutput, subsetFilters, onFilters ) => {
 			</tr>
 			<tr>
 				<td>{e.variable}</td>
-				{e.result.value.map( ( e, i ) => <td key={i}>{e.toFixed( 3 )}</td> )}
+				{e.result.value[0].map( ( e, i ) => <td key={i}>{e.toFixed( 3 )}</td> )}
 				<td>{e.result.size}</td>
 			</tr>
 		</tbody>
@@ -153,93 +153,161 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		</pre>;
 		return elem;
 	}
-	else if ( isNumber( e.result.value ) && e.result.size ) {
-		const { value, size } = e.result;
-		const table = <Table bordered size="sm">
-			<tbody>
-				<tr>
-					<th>Variable</th>
-					<th>{e.type}</th>
-					<th>N</th>
-				</tr>
-				<tr>
-					<th>{e.variable}</th>
-					<td>{value.toFixed( 3 )}</td>
-					<td>{size}</td>
-				</tr>
-			</tbody>
-		</Table>;
-		const elem = <pre key={idx} >
-			{createButtons( e.type, table, clearOutput, idx, subsetFilters, onFilters )}
-			{makeDraggable( table )}
-		</pre>;
-		return elem;
-	}
-	else if ( isArray( e.result.value ) && e.type === 'Range' ) {
-		return renderRangeTable( e, idx, clearOutput, subsetFilters, onFilters );
-	} else if ( isArray( e.result.value ) && e.type === 'Interquartile Range' ) {
-		return renderIQRTable( e, idx, clearOutput, subsetFilters, onFilters );
-	}
-	else if ( isObject( e.result ) ) {
-		const table = <Table bordered size="sm">
-			<tbody>
-				{ e.type === 'Range' ?
-					<tr>
-						<th>Variable</th>
-						<th>{e.group}</th>
-						<th>Range</th>
-						<th>Min</th>
-						<th>Max</th>
-						<th>N</th>
-					</tr>: null
-				}
-				{ e.type === 'Interquartile Range' ?
-					<tr>
-						<th>Variable</th>
-						<th>{e.group}</th>
-						<th>IQR</th>
-						<th>Lower</th>
-						<th>Upper</th>
-						<th>N</th>
-					</tr>: null
-				}
-				{ e.type !== 'Range' && e.type !== 'Interquartile Range' ?
-					<tr>
-						<th>Variable</th>
-						<th>{e.group}</th>
-						<th>{e.type}</th>
-						<th>N</th>
-					</tr>: null
-				}
-				{entries( e.result ).map( ( arr, i ) => {
-					if ( isArray( arr[ 1 ].value ) ) {
+	else if ( e.type === 'Statistics' ) {
+		if ( e.group ) {
+			if ( e.statistics.length === 1 ) {
+				const table = <Table bordered size="sm">
+					<tbody>
+					{ e.statistics[0] === 'Range' ?
+						<tr>
+							<th>Variable</th>
+							<th>{e.group}</th>
+							<th>Range</th>
+							<th>Min</th>
+							<th>Max</th>
+							<th>N</th>
+						</tr>: null
+					}
+					{ e.statistics[0] === 'Interquartile Range' ?
+						<tr>
+							<th>Variable</th>
+							<th>{e.group}</th>
+							<th>IQR</th>
+							<th>Lower</th>
+							<th>Upper</th>
+							<th>N</th>
+						</tr>: null
+					}
+					{ e.statistics[0] !== 'Range' && e.statistics[0] !== 'Interquartile Range' ?
+						<tr>
+							<th>Variable</th>
+							<th>{e.group}</th>
+							<th>{e.statistics[0]}</th>
+							<th>N</th>
+						</tr>: null
+					}
+					{entries( e.result ).map( ( arr, i ) => {
+						const val = arr[ 1 ].value[ 0 ];
+						if ( isArray( val ) ) {
+							return (
+								<tr key={i} >
+									{ i === 0 ? <th>{e.variable}</th> : <th></th>}
+									<td>{arr[ 0 ]}</td>
+									{arr[ 1 ].value.map( ( x, j ) => {
+										return <td key={j}>{x.toFixed( 3 )}</td>;
+									})}
+									<td>{arr[ 1 ].size}</td>
+								</tr>
+							);
+						}
 						return (
 							<tr key={i} >
 								{ i === 0 ? <th>{e.variable}</th> : <th></th>}
 								<td>{arr[ 0 ]}</td>
-								{arr[ 1 ].value.map( ( x, j ) => {
-									return <td key={j}>{x.toFixed( 3 )}</td>;
-								})}
-								<td>{arr[ 1 ].size}</td>
+								<td>{val.toFixed( 3 )} </td>
+								<td>{arr[ 1 ].size} </td>
 							</tr>
 						);
-					}
-					return (
-						<tr key={i} >
-							{ i === 0 ? <th>{e.variable}</th> : <th></th>}
-							<td>{arr[ 0 ]}</td>
-							<td>{arr[ 1 ].value.toFixed( 3 )} </td>
-							<td>{arr[ 1 ].size} </td>
-						</tr>
-					);
-				})}
-			</tbody>
-		</Table>;
-		const elem = <pre key={idx} >
-			{createButtons( e.type, table, clearOutput, idx, subsetFilters, onFilters )}
-			{makeDraggable( table )}
-		</pre>;
-		return elem;
+					})}
+					</tbody>
+				</Table>;
+				const elem = <pre key={idx} >
+					{createButtons( e.type, table, clearOutput, idx, subsetFilters, onFilters )}
+					{makeDraggable( table )}
+				</pre>;
+				return elem;
+			}
+			// Case: more than one statistic calculated
+			const table = <Table bordered size="sm">
+				<tbody>
+					<tr>
+						<th>Variable</th>
+						<th>{e.group}</th>
+						{e.statistics.map( ( name, i ) => {
+							return <th key={i}>{name}</th>;
+						})}
+						<th>N</th>
+					</tr>
+					{entries( e.result ).map( ( arr, i ) => {
+						return (
+							<tr key={i} >
+								{ i === 0 ? <th>{e.variable}</th> : <th></th>}
+								<td>{arr[ 0 ]}</td>
+								{arr[ 1 ].value.map( ( v, i ) => {
+									if ( isArray( v ) ) {
+										return <td key={i} >{v[ 0 ].toFixed( 3 )}</td>;
+									}
+									return <td key={i} >{v.toFixed( 3 )}</td>;
+								})}
+								<td>{arr[ 1 ].size} </td>
+							</tr>
+						);
+					})}
+				</tbody>
+			</Table>;
+			const elem = <pre key={idx} >
+				{createButtons( e.type, table, clearOutput, idx, subsetFilters, onFilters )}
+				{makeDraggable( table )}
+			</pre>;
+			return elem;
+		}
+		if ( e.statistics.length === 1 ) {
+			if ( e.statistics[0] === 'Range' ) {
+				return renderRangeTable( e, idx, clearOutput, subsetFilters, onFilters );
+			}
+			if ( e.statistics[0] === 'Interquartile Range' ) {
+				return renderIQRTable( e, idx, clearOutput, subsetFilters, onFilters );
+			}
+			const { value, size } = e.result;
+			const table = <Table bordered size="sm">
+				<tbody>
+					<tr>
+						<th>Variable</th>
+						<th>{e.statistics[0]}</th>
+						<th>N</th>
+					</tr>
+					<tr>
+						<th>{e.variable}</th>
+						<td>{value[0].toFixed( 3 )}</td>
+						<td>{size}</td>
+					</tr>
+				</tbody>
+			</Table>;
+			const elem = <pre key={idx} >
+				{createButtons( e.type, table, clearOutput, idx, subsetFilters, onFilters )}
+				{makeDraggable( table )}
+			</pre>;
+			return elem;
+		}
+		// Case: more than one statistic calculated
+		const { value, size } = e.result;
+			const table = <Table bordered size="sm">
+				<tbody>
+					<tr>
+						<th>Variable</th>
+						{e.statistics.map( ( name, i ) => {
+							return <th key={i}>{name}</th>;
+						})}
+						<th>N</th>
+					</tr>
+					<tr>
+						<th>{e.variable}</th>
+						{value.map( ( v, i ) => {
+							if ( isArray( v ) ) {
+								// Case: Range or IQR, use first element:
+								return <td key={i} >{v[ 0 ].toFixed( 3 )}</td>;
+							}
+							return <td key={i} >{v.toFixed( 3 )}</td>;
+						})}
+						<td>{size}</td>
+					</tr>
+				</tbody>
+			</Table>;
+			const elem = <pre key={idx} >
+				{createButtons( e.type, table, clearOutput, idx, subsetFilters, onFilters )}
+				{makeDraggable( table )}
+			</pre>;
+			return elem;
 	}
 	return null;
 }
