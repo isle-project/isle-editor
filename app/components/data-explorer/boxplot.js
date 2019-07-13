@@ -19,6 +19,45 @@ import by from './by.js';
 // VARIABLES //
 
 const DESCRIPTION = 'A box plot (full name: box and whisker plot, coined by famous statistician John Tukey) is a display for quantitative data. For any variable, the boxplot displays its 25% quantile (a value that is greater than 25% of the data), its median, and its 75% quantile as a box. Whiskers extend from this box up to +-1.5*IQR or the minimum/maximum.';
+const customStyles = {
+	control: ( base, state ) => {
+		if ( state.isDisabled ) {
+			return {
+				...base,
+				background: 'none',
+				color: '#aaa',
+				opacity: 0.5
+			};
+		}
+		return {
+			...base,
+			background: 'rgba(186, 204, 234, 0.3)',
+			boxShadow: 'none',
+			cursor: 'pointer'
+		};
+	},
+	option: ( base, state ) => {
+		let backgroundColor = '#fff';
+		let color = '#666666';
+		if ( state.isFocused ) {
+			backgroundColor = 'rgba(204,88,0, 0.16)';
+			color = '#333';
+		}
+		else if ( state.isSelected ) {
+			backgroundColor = '#f5faff';
+			color = '#333';
+		}
+		return {
+			...base,
+			boxSizing: 'border-box',
+			backgroundColor: backgroundColor,
+			color: color,
+			cursor: 'pointer',
+			display: 'block',
+			padding: '8px 10px'
+		};
+	}
+};
 
 
 // FUNCTIONS //
@@ -193,6 +232,7 @@ class Boxplot extends Component {
 									});
 								}
 							}}
+							styles={customStyles}
 						/>
 					</FormGroup>
 					<SelectInput
