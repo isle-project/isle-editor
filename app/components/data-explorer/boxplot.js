@@ -2,8 +2,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Select from 'react-select';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import FormGroup from 'react-bootstrap/FormGroup';
 import SelectInput from 'components/input/select';
-import Dashboard from 'components/dashboard';
+import CheckboxInput from 'components/input/checkbox';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
 import objectKeys from '@stdlib/utils/keys';
@@ -19,38 +23,89 @@ const DESCRIPTION = 'A box plot (full name: box and whisker plot, coined by famo
 
 // FUNCTIONS //
 
-export function generateBoxplotConfig({ data, variable, group }) {
+export function generateBoxplotConfig({ data, variable, group, orientation, overlayPoints }) {
 	let traces;
-	if ( !group ) {
+	if ( group.length === 0 ) {
 		let values = data[ variable ];
-		traces = [ {
-			y: values,
+		const trace = {
 			type: 'box',
 			name: variable
-		} ];
-	} else {
-		let freqs = by( data[ variable ], data[ group ], arr => {
+		};
+		if ( orientation === 'horizontal' ) {
+			trace.x = values;
+		} else {
+			trace.y = values;
+		}
+		traces = [ trace ];
+	}
+	else if ( group.length === 1 ) {
+		let freqs = by( data[ variable ], data[ group[0] ], arr => {
+			return arr;
+		});
+		traces = [];
+		const keys = group[ 0 ].categories || objectKeys( freqs );
+		for ( let i = 0; i < keys.length; i++ ) {
+			const key = keys[ i ];
+			const val = freqs[ key ];
+			const trace = {
+				name: key,
+				type: 'box'
+			};
+			if ( orientation === 'horizontal' ) {
+				trace.x = val;
+			} else {
+				trace.y = val;
+			}
+			traces.push( trace );
+		}
+	}
+	else if ( group.length === 2 ) {
+		let freqs = by( data[ variable ], data[ group[0] ], arr => {
+			return arr;
+		});
+		let cats = by( data[ group[1] ], data[ group[0] ], arr => {
 			return arr;
 		});
 		traces = [];
 		const keys = group.categories || objectKeys( freqs );
 		for ( let i = 0; i < keys.length; i++ ) {
 			const key = keys[ i ];
-			const val = freqs[ key ];
+			let x;
+			let y;
+			if ( orientation === 'horizontal' ) {
+				y = cats[ key ];
+				x = freqs[ key ];
+			} else {
+				y = freqs[ key ];
+				x = cats[ key ];
+			}
 			traces.push({
-				y: val,
+				x,
+				y,
 				name: key,
-				type: 'box'
+				type: 'box',
+				orientation: orientation === 'horizontal' ? 'h' : 'v'
 			});
+		}
+	}
+	if ( overlayPoints ) {
+		for ( let i = 0; i < traces.length; i++ ) {
+			const trace = traces[ i ];
+			trace.boxpoints = 'all';
+			trace.jitter = 0.5;
 		}
 	}
 	return {
 		data: traces,
 		layout: {
-			title: group ? `${variable} given ${group}` : variable,
+			title: group ? `${variable} given ${group.join( ', ')}` : variable,
 			xaxis: {
-				type: 'category'
-			}
+				type: orientation === 'vertical' ? 'category' : null
+			},
+			yaxis: {
+				type: orientation === 'horizontal' ? 'category' : null
+			},
+			boxmode: group.length === 2 ? 'group' : null
 		}
 	};
 }
@@ -61,10 +116,25 @@ export function generateBoxplotConfig({ data, variable, group }) {
 class Boxplot extends Component {
 	constructor( props ) {
 		super( props );
+
+		this.state = {
+			variable: props.defaultValue || props.variables[ 0 ],
+			group: [],
+			orientation: 'vertical',
+			overlayPoints: false
+		};
 	}
 
-	generateBoxplot( variable, group ) {
-		const config = generateBoxplotConfig({ data: this.props.data, variable, group });
+	generateBoxplot = () => {
+		const config = generateBoxplotConfig({
+			data: this.props.data,
+			variable: this.state.variable,
+			group: this.state.group.map( e => e.value ),
+			orientation: this.state.orientation,
+			overlayPoints: this.state.overlayPoints
+		});
+		let { variable, group } = this.state;
+		group = group.map( e => e.value );
 		const plotId = randomstring( 6 );
 		const action = {
 			variable,
@@ -93,31 +163,63 @@ class Boxplot extends Component {
 	}
 
 	render() {
-		const { variables, defaultValue, groupingVariables } = this.props;
+		const { variables, groupingVariables } = this.props;
 		return (
-			<Dashboard
-				autoStart={false}
-				title={<span>Box Plot<QuestionButton title="Box Plot" content={DESCRIPTION} /></span>}
-				onGenerate={this.generateBoxplot.bind( this )}
-			>
-				<SelectInput
-					legend="Variable:"
-					defaultValue={defaultValue || variables[ 0 ]}
-					options={variables}
-				/>
-				<SelectInput
-					legend="Group By:"
-					options={groupingVariables}
-					clearable={true}
-					menuPlacement="top"
-				/>
-			</Dashboard>
+			<Card>
+				<Card.Header as="h4">
+					Box Plot
+					<QuestionButton title="Box Plot" content={DESCRIPTION} />
+				</Card.Header>
+				<Card.Body>
+					<SelectInput
+						legend="Variable:"
+						defaultValue={this.state.variable}
+						options={variables}
+						onChange={( variable ) => {
+							this.setState({ variable });
+						}}
+					/>
+					<FormGroup controlId="form-controls-select">
+						<label>Group By:</label>
+						<Select
+							value={this.state.group}
+							options={groupingVariables.map( e => ( { 'label': e, 'value': e } ))}
+							isClearable
+							isMulti
+							onChange={( value ) => {
+								if ( !value || value.length <= 2 ) {
+									this.setState({
+										group: value
+									});
+								}
+							}}
+						/>
+					</FormGroup>
+					<SelectInput
+						legend="Orientation:"
+						options={[ 'vertical', 'horizontal' ]}
+						defaultValue="vertical"
+						menuPlacement="top"
+						onChange={( orientation ) => {
+							this.setState({ orientation });
+						}}
+					/>
+					<CheckboxInput
+						legend="Overlay Points?"
+						defaultValue={false}
+						onChange={( overlayPoints ) => {
+							this.setState({ overlayPoints });
+						}}
+					/>
+					<Button variant="primary" block onClick={this.generateBoxplot}>Generate</Button>
+				</Card.Body>
+			</Card>
 		);
 	}
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 Boxplot.defaultProps = {
 	defaultValue: null,
@@ -126,9 +228,6 @@ Boxplot.defaultProps = {
 	onCreated() {},
 	session: {}
 };
-
-
-// PROPERTY TYPES //
 
 Boxplot.propTypes = {
 	data: PropTypes.object.isRequired,
