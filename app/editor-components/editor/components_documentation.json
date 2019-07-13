@@ -320,7 +320,7 @@
       {
         "name": "bandwidth",
         "type": "number",
-        "description": " smoothing parameter for the kernel density estimator",
+        "description": "smoothing parameter for the kernel density estimator",
         "default": 4
       },
       {
@@ -1055,8 +1055,7 @@
     "props": [
       {
         "name": "id",
-        "type": "string (required)",
-        "description": "component identifier"
+        "type": "string (required)"
       },
       {
         "name": "question",
@@ -1157,26 +1156,29 @@
       {
         "name": "style",
         "type": "object",
+        "description": "CSS inline styles for the outer container",
         "default": {}
       },
       {
         "name": "formStyle",
         "type": "object",
+        "description": "CSS inline styles for the type div",
         "default": {}
       },
       {
         "name": "text",
         "type": "string",
+        "description": "text to be displayed",
         "default": "handwritten Note"
       },
       {
         "name": "type",
         "type": "string",
-        "description": "button type, passed to the native React button",
+        "description": "note type (either `egg`, `tv`, or `oval`)",
         "default": "handwritten-form-egg"
       }
     ],
-    "description": "A component displaying an image in the style of a polaroid."
+    "description": "A component displaying some text as a handwritten note."
   },
   "IFrame": {
     "props": [
@@ -2741,6 +2743,7 @@
       {
         "name": "onSubmit",
         "type": "function",
+        "description": "callback invoked when user clicks the \"Submit\" button; invoked with the two-dimensional boolean array of the active status for each answer option",
         "default": "onSubmit() {}"
       }
     ],
@@ -2798,7 +2801,7 @@
       {
         "name": "provideFeedback",
         "type": "string",
-        "description": "if `full`, feedback including the correct answer is displayed after learners submit their answers; if `incremental`, feedback is only displayed for the selected answer; if `none`, no feedback is returned",
+        "description": "either `full`, `incremental`, or `none`. If `full`, feedback including the correct answer is displayed after learners submit their answers; if `incremental`, feedback is only displayed for the selected answer; if `none`, no feedback is returned",
         "default": "incremental"
       },
       {
@@ -2844,8 +2847,7 @@
     "props": [
       {
         "name": "id",
-        "type": "string (required)",
-        "description": "component identifier"
+        "type": "string (required)"
       },
       {
         "name": "question",
@@ -3026,8 +3028,7 @@
     "props": [
       {
         "name": "id",
-        "type": "string (required)",
-        "description": "component identifier"
+        "type": "string (required)"
       },
       {
         "name": "question",
@@ -3390,8 +3391,7 @@
     "props": [
       {
         "name": "id",
-        "type": "string (required)",
-        "description": "component identifier"
+        "type": "string (required)"
       },
       {
         "name": "allowMultipleAnswers",
@@ -4060,7 +4060,7 @@
       {
         "name": "direction",
         "type": "string",
-        "description": "the direction of the text flow, available values are left, right, up, down, tracking, focus and swirl",
+        "description": "the direction of the text flow (either `left`, `right`, `up`, `down`, `tracking`, `focus`, or `swirl`)",
         "default": "right"
       },
       {
@@ -4084,7 +4084,7 @@
       {
         "name": "outTime",
         "type": "number",
-        "description": " time of the exit effect (in seconds)",
+        "description": "time of the exit effect (in seconds)",
         "default": 1
       },
       {
@@ -5106,8 +5106,7 @@
     "props": [
       {
         "name": "id",
-        "type": "string (required)",
-        "description": "component identifier"
+        "type": "string (required)"
       },
       {
         "name": "owner",

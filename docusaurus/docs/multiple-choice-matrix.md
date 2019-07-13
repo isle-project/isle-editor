@@ -41,4 +41,4 @@ An ISLE component that renders a matrix of multiple choice questions with the sa
 * __type__ | `string`: question type (`radio` corresponds to "Select one", `checkbox` to "Select all that apply"). Default: `'radio'`.
 * __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
 * __onChange__ | `function`: callback invoked when the value of a checkbox / radio button changes; invoked with the two-dimensional boolean array of the active status for each answer option. Default: `onChange() {}`.
-* __onSubmit__ | `function`: undefined. Default: `onSubmit() {}`.
+* __onSubmit__ | `function`: callback invoked when user clicks the "Submit" button; invoked with the two-dimensional boolean array of the active status for each answer option. Default: `onSubmit() {}`.

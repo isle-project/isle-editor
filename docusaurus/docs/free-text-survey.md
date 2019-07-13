@@ -19,7 +19,7 @@ An ISLE component for questions where the answers by the students should be supp
 
 ## Options
 
-* __id__ | `string (required)`: component identifier. Default: `none`.
+* __id__ | `string (required)`: undefined. Default: `none`.
 * __question__ | `string`: the question to ask the students. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: controls whether one wishes to allow students to answer the survey multiple times. Default: `false`.
 * __anonymous__ | `boolean`: controls whether student answers are anonymized. Default: `false`.
