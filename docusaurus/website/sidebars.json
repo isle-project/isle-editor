@@ -9,6 +9,9 @@
       "overview/packaging",
       "overview/components"
     ],
+    "Tutorials": [
+      "tutorials/editor-intro"
+    ],
     "Main Components": [
       "data-explorer",
       "data-table",

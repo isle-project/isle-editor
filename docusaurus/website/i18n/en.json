@@ -292,6 +292,10 @@
         "title": "Timer",
         "sidebar_label": "Timer"
       },
+      "tutorials/editor-intro": {
+        "title": "Introduction to the Editor",
+        "sidebar_label": "Editor Introduction"
+      },
       "typerwriter": {
         "title": "Typerwriter",
         "sidebar_label": "Typerwriter"
@@ -333,6 +337,7 @@
     },
     "categories": {
       "Overview": "Overview",
+      "Tutorials": "Tutorials",
       "Main Components": "Main Components",
       "Question Components": "Question Components",
       "Survey Components": "Survey Components",
