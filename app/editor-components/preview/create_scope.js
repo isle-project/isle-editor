@@ -57,7 +57,6 @@ const SCOPE = {
 	Gate: Loadable( () => import( 'components/gate' ) ),
 	Generator: Loadable( () => import( 'components/generator' ) ),
 	Container: Loadable( () => import( 'components/container' ) ),
-	HandwrittenNote: Loadable( () => import( 'components/handwritten-note' ) ),
 	IFrame: Loadable( () => import( 'components/iframe' ) ),
 	Joyride: Loadable( () => import( 'components/joyride' ) ),
 	JSShell: Loadable( () => import( 'components/js-shell' ) ),

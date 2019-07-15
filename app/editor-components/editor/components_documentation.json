@@ -1151,35 +1151,6 @@
     ],
     "description": "A component for generating other components (e.g., automatically generated questions)."
   },
-  "HandwrittenNote": {
-    "props": [
-      {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles for the outer container",
-        "default": {}
-      },
-      {
-        "name": "formStyle",
-        "type": "object",
-        "description": "CSS inline styles for the type div",
-        "default": {}
-      },
-      {
-        "name": "text",
-        "type": "string",
-        "description": "text to be displayed",
-        "default": "handwritten Note"
-      },
-      {
-        "name": "type",
-        "type": "string",
-        "description": "note type (either `egg`, `tv`, or `oval`)",
-        "default": "handwritten-form-egg"
-      }
-    ],
-    "description": "A component displaying some text as a handwritten note."
-  },
   "IFrame": {
     "props": [
       {

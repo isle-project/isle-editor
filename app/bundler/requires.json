@@ -54,7 +54,6 @@
 	"FreeTextSurvey": "components/free-text-survey",
 	"Gate": "components/gate",
 	"Generator": "components/generator",
-	"HandwrittenNote": "components/handwritten-note",
 	"Input": "components/input",
 	"IFrame": "components/iframe",
 	"JSShell": "components/js-shell",
