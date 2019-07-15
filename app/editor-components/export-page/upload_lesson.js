@@ -70,7 +70,7 @@ class UploadLesson extends Component {
 					namespaces: body.namespaces
 				}, () => {
 					if ( this.state.namespaces.length > 0 ) {
-						this.props.changeNamespace( this.state.namespaces[ 0 ] );
+						this.props.changeNamespace( this.state.namespaces[ 0 ].title );
 					}
 				});
 			})
