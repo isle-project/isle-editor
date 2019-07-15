@@ -47,8 +47,7 @@ $ npm install
 To live-edit the ISLE Editor,
 
 ``` bash
-$ npm start
-$ open http://localhost:3000
+$ npm run dev
 ```
 
 Editing source files will result in changes appearing directly without reloading.
