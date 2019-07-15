@@ -21,17 +21,15 @@ function Help(props) {
 
 	const supportLinks = [
 		{
-			content: `Learn more using the [documentation on this site.](${docUrl(
-				'doc1.html',
-			)})`,
+			content: `Learn more using the [documentation on this site](${docUrl('overview/intro', language)}) or by following the [tutorials](${docUrl('video-tutorials', language)}).`,
 			title: 'Browse Docs'
 		},
 		{
-			content: 'Ask questions about the documentation and project in the [discussion forum](https://discourse.isledocs.com)',
+			content: 'Ask questions about the documentation and project in the [discussion forum](https://discourse.isledocs.com).',
 			title: 'Join the community'
 		},
 		{
-			content: "Find out what's new with this project by browsing the [releases](https://github.com/isle-project/isle-editor/releases) of the ISLE editor",
+			content: "Find out what's new with this project by browsing the [releases](https://github.com/isle-project/isle-editor/releases) of the ISLE editor.",
 			title: 'Stay up to date'
 		}
 	];
