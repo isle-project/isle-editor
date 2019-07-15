@@ -497,11 +497,12 @@ function writeIndexFile({
 		if ( stats.errors ) {
 			stats.errors.forEach( debug );
 		}
-		stats = stats.toJson();
 		if ( writeStats ) {
 			debug( 'Write statistics to file...' );
+			stats = stats.toJson();
 			writeFileSync( statsFile, JSON.stringify( stats ) );
 		}
+		const assets = Object.keys( stats.compilation.assets );
 		unlinkSync( indexPath );
 		if ( !minify ) {
 			return clbk( err, meta );
@@ -509,8 +510,8 @@ function writeIndexFile({
 		let done = 0;
 		debug( 'Minifying bundle...' );
 		let numJSFiles = 0;
-		for ( let i = 0; i < stats.assets.length; i++ ) {
-			const { name } = stats.assets[ i ];
+		for ( let i = 0; i < assets.length; i++ ) {
+			const name = assets[ i ];
 			if ( endsWith( name, '.js' ) ) {
 				numJSFiles += 1;
 				const child = cp.fork( resolve( basePath, './app/bundler/minify.js' ) );
