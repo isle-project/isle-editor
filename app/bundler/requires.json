@@ -34,6 +34,7 @@
 	"LearnConditionalProbability": "components/learn/conditional-probability",
 	"LearnVennDiagramBuilder": "components/learn/venn-diagram-builder",
 	"LearnWordVennDiagram": "components/learn/word-venn-diagram",
+	"LearnSOTU": "components/learn/sotu",
 	"LearnImagePixelPicker": "components/learn/image-pixel-picker",
 	"ListGroup": "react-bootstrap/ListGroup",
 	"ListGroupItem": "react-bootstrap/ListGroupItem",

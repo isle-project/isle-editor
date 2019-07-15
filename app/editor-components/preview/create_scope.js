@@ -78,6 +78,7 @@ const SCOPE = {
 	LearnProportionTest: Loadable( () => import( 'components/learn/hypothesis-testing-proportion' ) ),
 	LearnMeanVSMedian: Loadable( () => import( 'components/learn/mean-vs-median' ) ),
 	LearnStatisticalModels: Loadable( () => import( 'components/learn/statistical-models' ) ),
+	LearnSOTU: Loadable( () => import( 'components/learn/sotu' ) ),
 	LearnConditionalProbability: Loadable( () => import( 'components/learn/conditional-probability' ) ),
 	LearnVennDiagramBuilder: Loadable( () => import( 'components/learn/venn-diagram-builder' ) ),
 	LearnWordVennDiagram: Loadable( () => import( 'components/learn/word-venn-diagram' ) ),
