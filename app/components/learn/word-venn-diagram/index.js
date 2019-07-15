@@ -237,13 +237,15 @@ class WordVennDiagram extends Component {
 	render() {
 		const inputs = [];
 		for ( let i = 0; i < this.state.nWords; i++ ) {
-			inputs[ i ] = <Fragment>
+			inputs[ i ] = <div key={`outer-${i}`}>
 				<TextInput
+					key={`text-${i}`}
 					legend={`Word ${i+1}`}
 					defaultValue={this.state.words[ i ]}
 					width={120}
 					onChange={this.wordChangeFactory( i )}
 				/><NumberInput
+					key={`number-${i}`}
 					legend="Min # of times "
 					defaultValue={1}
 					max={50}
@@ -257,12 +259,14 @@ class WordVennDiagram extends Component {
 						});
 					}}
 				/>
-			</Fragment>;
+			</div>;
 		}
 		return (
 			<Fragment>
 				<Card>
-					<Card.Header>Settings</Card.Header>
+					<Card.Header as="h4">
+						Settings
+					</Card.Header>
 					<Card.Body>
 						<p>
 							<label>Number of Words: </label>
@@ -275,7 +279,9 @@ class WordVennDiagram extends Component {
 					</Card.Body>
 				</Card>
 				<Card>
-					<Card.Header>Venn Diagram</Card.Header>
+					<Card.Header as="h4">
+						Venn Diagram
+					</Card.Header>
 					<Card.Body style={{ minHeight: 200 }}>
 						<span style={{
 							position: 'absolute',
