@@ -13,6 +13,7 @@
 <url> <loc>https://isledocs.com/docs/data-explorer</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/data-explorer" /> </url>
 <url> <loc>https://isledocs.com/docs/data-table</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/data-table" /> </url>
 <url> <loc>https://isledocs.com/docs/draggable-list</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/draggable-list" /> </url>
+<url> <loc>https://isledocs.com/docs/engagement-meter</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/engagement-meter" /> </url>
 <url> <loc>https://isledocs.com/docs/expire</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/expire" /> </url>
 <url> <loc>https://isledocs.com/docs/feedback</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/feedback" /> </url>
 <url> <loc>https://isledocs.com/docs/flippable-card</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/flippable-card" /> </url>
@@ -31,6 +32,7 @@
 <url> <loc>https://isledocs.com/docs/js-shell</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/js-shell" /> </url>
 <url> <loc>https://isledocs.com/docs/learning-components</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/learning-components" /> </url>
 <url> <loc>https://isledocs.com/docs/lesson-submit</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/lesson-submit" /> </url>
+<url> <loc>https://isledocs.com/docs/likert-scale</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/likert-scale" /> </url>
 <url> <loc>https://isledocs.com/docs/markdown-editor</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/markdown-editor" /> </url>
 <url> <loc>https://isledocs.com/docs/match-list-question</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/match-list-question" /> </url>
 <url> <loc>https://isledocs.com/docs/multi-card</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/multi-card" /> </url>
@@ -51,6 +53,7 @@
 <url> <loc>https://isledocs.com/docs/pages</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/pages" /> </url>
 <url> <loc>https://isledocs.com/docs/playground</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/playground" /> </url>
 <url> <loc>https://isledocs.com/docs/plotly</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/plotly" /> </url>
+<url> <loc>https://isledocs.com/docs/polaroid</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/polaroid" /> </url>
 <url> <loc>https://isledocs.com/docs/proportions-survey</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/proportions-survey" /> </url>
 <url> <loc>https://isledocs.com/docs/question-form</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/question-form" /> </url>
 <url> <loc>https://isledocs.com/docs/quiz</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/quiz" /> </url>
@@ -67,12 +70,15 @@
 <url> <loc>https://isledocs.com/docs/select-question</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/select-question" /> </url>
 <url> <loc>https://isledocs.com/docs/sketchpad</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/sketchpad" /> </url>
 <url> <loc>https://isledocs.com/docs/slider</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/slider" /> </url>
+<url> <loc>https://isledocs.com/docs/sortable-tree</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/sortable-tree" /> </url>
 <url> <loc>https://isledocs.com/docs/survey-generator</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/survey-generator" /> </url>
 <url> <loc>https://isledocs.com/docs/switch</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/switch" /> </url>
 <url> <loc>https://isledocs.com/docs/tex</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/tex" /> </url>
 <url> <loc>https://isledocs.com/docs/text</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/text" /> </url>
 <url> <loc>https://isledocs.com/docs/timer</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/timer" /> </url>
+<url> <loc>https://isledocs.com/docs/typerwriter</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/typerwriter" /> </url>
 <url> <loc>https://isledocs.com/docs/unveil</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/unveil" /> </url>
+<url> <loc>https://isledocs.com/docs/video-lecture</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/video-lecture" /> </url>
 <url> <loc>https://isledocs.com/docs/video-player</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/video-player" /> </url>
 <url> <loc>https://isledocs.com/docs/video-tutorials</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/video-tutorials" /> </url>
 <url> <loc>https://isledocs.com/docs/weather</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/weather" /> </url>
