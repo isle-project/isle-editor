@@ -91,7 +91,7 @@ $ npm start
 To package the editor as a standalone application for the current operating system, run 
 
 ``` bash
-$ npm runpackage
+$ npm run package
 ```
 
 To bundle for all operating systems, run

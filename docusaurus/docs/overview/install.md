@@ -8,7 +8,7 @@ You may either download prebuilt binaries of the ISLE editor or built it yoursel
 
 ## Binaries
 
-Current version: _v0.20.0_.
+Current version: _v0.20.1_.
 
 | OS      | x64 | ia32 |
 | ------- | --- | --- |
@@ -23,7 +23,7 @@ Current version: _v0.20.0_.
 Developing and running the ISLE Editor has the following prerequisites:
 
 * [git][git]: version control
-* [Node.js][node-js]: JavaScript runtime (version `>= 7.0`)
+* [Node.js][node-js]: JavaScript runtime (version `>= 9.0`)
 
 
 ### Download
@@ -55,17 +55,54 @@ Editing source files will result in changes appearing directly without reloading
 
 ### Build
 
-To build and package the [Electron][electron] application,
+To build the [Electron][electron] application,
 
 ``` bash
 $ npm run build
 ```
 
+The bundled version can be started with
+
+``` bash
+$ npm start
+```
+
+#### Package
+
+To package the editor as a standalone application for the current operating system, run 
+
+``` bash
+$ npm run package
+```
+
+To bundle for all operating systems, run
+
+``` bash
+$ npm run package-all
+```
+
+#### Tests
+
+The ISLE editor uses [Jest][jest] for unit tests. To run the tests, execute the following command in the top-level application directory:
+
+``` bash
+$ npm test
+```
+
+To only run the tests for a single component or function, use
+
+```bash
+$ npm run test -- -t "name-of-spec"
+```
+
 [electron]: http://electron.atom.io/
 [git]: http://git-scm.com/
+[jest]: https://jestjs.io
+[wine]: https://www.winehq.org/
 [node-js]: https://nodejs.org/en/
-[darwin-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-darwin-x64.zip
-[linux-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-linux-x64.zip
-[linux-ia32]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-linux-ia32.zip
-[win32-ia32]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-win32-ia32.zip
-[win32-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.0/ISLE.Editor-win32-x64.zip
+
+[darwin-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-darwin-x64.zip
+[linux-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-linux-x64.zip
+[linux-ia32]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-linux-ia32.zip
+[win32-ia32]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-win32-ia32.zip
+[win32-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-win32-x64.zip
