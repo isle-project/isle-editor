@@ -47,6 +47,7 @@ class Footer extends React.Component {
 					<div>
 						<h5>Community</h5>
 						<a href="https://github.com/isle-project/isle-editor/issues">Submit a bug report or feature request</a>
+						<a href="https://discourse.isledocs.com">Go to the discussion forum</a>
 					</div>
 					<div>
 						<h5>More</h5>

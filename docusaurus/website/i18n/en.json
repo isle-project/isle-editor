@@ -40,6 +40,10 @@
         "title": "Draggable List",
         "sidebar_label": "Draggable List"
       },
+      "engagement-meter": {
+        "title": "Engagement Meter",
+        "sidebar_label": "Engagement Meter"
+      },
       "expire": {
         "title": "Expire",
         "sidebar_label": "Expire"
@@ -196,6 +200,10 @@
         "title": "Plotly",
         "sidebar_label": "Plotly"
       },
+      "polaroid": {
+        "title": "Polaroid",
+        "sidebar_label": "Polaroid"
+      },
       "proportions-survey": {
         "title": "Proportions Survey",
         "sidebar_label": "Proportions Survey"
@@ -283,6 +291,10 @@
       "timer": {
         "title": "Timer",
         "sidebar_label": "Timer"
+      },
+      "typerwriter": {
+        "title": "Typerwriter",
+        "sidebar_label": "Typerwriter"
       },
       "unveil": {
         "title": "Unveil",

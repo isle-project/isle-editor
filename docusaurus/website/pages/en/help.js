@@ -27,13 +27,13 @@ function Help(props) {
 			title: 'Browse Docs'
 		},
 		{
-			content: 'Ask questions about the documentation and project',
+			content: 'Ask questions about the documentation and project in the [discussion forum](https://discourse.isledocs.com)',
 			title: 'Join the community'
 		},
 		{
-			content: "Find out what's new with this project",
+			content: "Find out what's new with this project by browsing the [releases](https://github.com/isle-project/isle-editor/releases) of the ISLE editor",
 			title: 'Stay up to date'
-		},
+		}
 	];
 
 	return (
