@@ -182,6 +182,11 @@ class UploadLesson extends Component {
 					modalMessage: msg,
 					dirname: randomstring( 16, 65, 90 )
 				});
+			} else {
+				const msg = 'Operation not successful. Message: '+res.statusMessage+' (status code: '+res.statusCode+')';
+				this.setState({
+					error: new Error( msg )
+				});
 			}
 		});
 		request.on( 'error', ( error ) => {
@@ -237,6 +242,7 @@ class UploadLesson extends Component {
 			}
 			debug( 'Lesson successfully bundled...' );
 			this.zipLesson( settings.outputPath, settings.outputDir, () => {
+				debug( 'Lesson successfully zipped...' );
 				this.upstreamData( settings );
 			});
 		});
