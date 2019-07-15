@@ -25,7 +25,6 @@ Developing and running the ISLE Editor has the following prerequisites:
 * [git][git]: version control
 * [Node.js][node-js]: JavaScript runtime (version `>= 9.0`)
 
-
 ### Download
 
 To acquire the source code, clone the git repository.
@@ -80,6 +79,11 @@ To bundle for all operating systems, run
 $ npm run package-all
 ```
 
+To bundle the editor as a standalone application for all operating systems, you will need the following:
+
+* On macOS/Linux, the `unzip` program and [wine][wine] (version `>= 1.6`), a tool for running Windows applications
+* On Windows, both [.NET Framework 4.5 or higher and Powershell 3 or higher][windows-reqs]
+
 #### Tests
 
 The ISLE editor uses [Jest][jest] for unit tests. To run the tests, execute the following command in the top-level application directory:
@@ -98,6 +102,8 @@ $ npm run test -- -t "name-of-spec"
 [git]: http://git-scm.com/
 [jest]: https://jestjs.io
 [wine]: https://www.winehq.org/
+[wine]: https://www.winehq.org/
+[windows-reqs]: https://github.com/feross/cross-zip#windows-users
 [node-js]: https://nodejs.org/en/
 
 [darwin-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-darwin-x64.zip
