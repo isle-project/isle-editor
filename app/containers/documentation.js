@@ -61,7 +61,7 @@ class Documentation extends Component {
 					}}
 					ref={( div ) => { this.webview = div; }}
 					autosize="on"
-					disablewebsecurity
+					disablewebsecurity="true"
 				/>
 			</div>
 		);
