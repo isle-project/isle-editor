@@ -275,6 +275,30 @@
     },
     "directories": {
       "output": "release"
+    },
+    "win": {
+      "icon": "app/app.ico",
+      "target": [
+        "portable"
+      ]
+    },
+    "mac": {
+      "icon": "app/app.icns",
+      "category": "public.app-category.education",
+      "target": [
+        "dmg"
+      ]
+    },
+    "linux": {
+      "icon": "app/app.icns",
+      "category": "Education",
+      "target": [
+        "AppImage",
+        "tar.gz"
+      ]
+    },
+    "appImage": {
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
     }
   }
 }
