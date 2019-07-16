@@ -196,7 +196,7 @@ class DataTable extends Component {
 				}
 			}
 			vals = vals.filter( x => !isNull( x ) && x !== '' );
-			const uniqueValues = unique( vals );
+			let uniqueValues = unique( vals );
 			if ( isNumberArray( vals ) && uniqueValues.length > 2 ) {
 				out[ 'filterMethod' ] = this.filterMethodNumbers;
 				out[ 'Filter' ] = ({ filter, onChange }) => {
@@ -227,6 +227,8 @@ class DataTable extends Component {
 					);
 				};
 			} else if ( uniqueValues.length <= 8 ) {
+				// Cast values to strings for select component to work:
+				uniqueValues = uniqueValues.map( x => String( x ) );
 				out[ 'filterMethod' ] = this.filterMethodCategories;
 				out[ 'Filter' ] = ({ filter, onChange }) => {
 					return (
