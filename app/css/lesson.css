@@ -481,6 +481,19 @@ mark {
 	max-width: 1200px;
 }
 
+.Lesson > ol {
+	list-style-position: outside !important;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1200px;
+}
+
+.Lesson > table {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1200px;
+}
+
 .example-multiple-targets::after {
 	content: attr(data-count);
 	display: block;
