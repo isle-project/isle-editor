@@ -1,6 +1,11 @@
 // MODULES //
 
-const logger = require( 'debug' );
+import markdownit from 'markdown-it';
+import logger from 'debug';
+import trim from '@stdlib/string/trim';
+import startsWith from '@stdlib/string/starts-with';
+import endsWith from '@stdlib/string/ends-with';
+import replaceEquations from './replace_equations.js';
 
 
 // VARIABLES //
@@ -14,6 +19,13 @@ const IN_JSX_ATTRIBUTE = 4;
 const IN_BETWEEN_TAGS = 5;
 const IN_JSX_EXPRESSION = 6;
 const IN_CODE = 7;
+const md = markdownit({
+	html: true,
+	xhtmlOut: true,
+	breaks: false,
+	typographer: false,
+	linkify: true
+});
 
 
 // FUNCTIONS //
@@ -48,22 +60,25 @@ function isWhitespace( c ) {
 	);
 }
 
-
-// MAIN //
-
 class Tokenizer{
 	setup( str ) {
 		this.divHash = {};
 		this.tokens = [];
 		this._buffer = str;
 		this._current = '';
+		this._openTagEnd = null;
+		this._endTagStart = null;
 		this._state = IN_BASE;
 		this._braceLevel = 0;
 		this._level = 0;
 	}
 
 	_inBase( char, i ) {
-		if ( char === '<' && !isWhitespace( this._buffer.charAt( i+1 ) ) ) {
+		if (
+			char === '<' &&
+			!isWhitespace( this._buffer.charAt( i+1 ) ) &&
+			this._buffer.charAt( i-1 ) !== '\\'
+		) {
 			this._state = IN_OPENING_TAG;
 			this.tokens.push( this._current );
 			this._level += 1;
@@ -94,6 +109,7 @@ class Tokenizer{
 				this._level += 1;
 				this._state = IN_OPENING_TAG;
 			} else {
+				this._endTagStart = this._current.length - 1;
 				this._state = IN_CLOSING_TAG;
 			}
 		}
@@ -103,6 +119,16 @@ class Tokenizer{
 		this._current += char;
 		if ( char === '>' ) {
 			this._level -= 1;
+			let input = this._current.substring( this._openTagEnd, this._endTagStart );
+			input = trim( input );
+			if ( !startsWith( input, '<') && !endsWith( input, '>' ) ) {
+				this._current = this._current.substring( 0, this._openTagEnd ) +
+					replaceEquations( md.render( input ) ) +
+					this._current.substring( this._endTagStart );
+			}
+			this._openTagEnd = this._current.length;
+			this._endTagStart = null;
+			// console.log( md.render( this._current.substring( this._openTagEnd, this._endTagStart ) ) );
 			if ( this._level === 0 ) {
 				this.divHash[ '<div id="placeholder_'+i+'"/>' ] = this._current;
 				this.tokens.push( '<div id="placeholder_'+i+'"/>' );
@@ -121,6 +147,16 @@ class Tokenizer{
 			this._state = IN_JSX_ATTRIBUTE;
 		}
 		else if ( char === '>' ) {
+			if ( this._openTagEnd ) {
+				let input = this._current.substring( this._openTagEnd, this._current.length );
+				input = trim( input );
+				if ( !startsWith( input, '<') && !endsWith( input, '>' ) ) {
+					this._current = this._current.substring( 0, this._openTagEnd ) +
+						replaceEquations( md.render( input ) ) +
+						this._current.substring( this._current.length );
+				}
+			}
+			this._openTagEnd = this._current.length;
 			if ( this._buffer.charAt( i-1 ) === '/' ) {
 				this._level -= 1;
 				if ( this._level === 0 ) {
