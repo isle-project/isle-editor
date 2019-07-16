@@ -293,8 +293,7 @@
       "icon": "app/app.icns",
       "category": "Education",
       "target": [
-        "AppImage",
-        "tar.gz"
+        "AppImage"
       ]
     },
     "appImage": {
