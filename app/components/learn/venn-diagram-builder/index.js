@@ -282,7 +282,7 @@ class VennDiagramBuilder extends Component {
 		}
 		return (
 			<div>
-				<Container>
+				<Container style={{ maxWidth: 1200, margin: '0 auto' }}>
 					<Row>
 						<Col md={4}>
 							{dashboard}

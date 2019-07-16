@@ -167,7 +167,7 @@ class DiceThrowing extends Component {
 
 	render() {
 		return (
-			<Card id="diceThrowingModule">
+			<Card id="diceThrowingModule" style={{ maxWidth: 1200, margin: '0 auto' }}>
 				<Card.Header as="h4">
 					Simulate Random Dice Throws
 				</Card.Header>

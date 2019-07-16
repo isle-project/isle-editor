@@ -85,7 +85,7 @@ class SOTU extends Component {
 				<Container>
 					<Row>
 					<Col md={8 - ( hasQuestions ? 0 : 2 )}>
-						{ hasQuestions ? <Pages title="Questions" height={250} style={{ paddingBottom: 0 }}>
+						{ hasQuestions ? <Pages title="Questions" height={300} style={{ paddingBottom: 0 }}>
 							{this.props.questions}
 						</Pages> : null }
 						{ vennWords.length > 0 ? <Panel header={`${vennWords.join( ', ')} over Time`}>

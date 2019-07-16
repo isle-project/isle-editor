@@ -278,6 +278,7 @@ class WordVennDiagram extends Component {
 						<Button onClick={this.updatePlot} disabled={this.state.disabled}>Draw Venn Diagram</Button>
 					</Card.Body>
 				</Card>
+				<br />
 				<Card>
 					<Card.Header as="h4">
 						Venn Diagram

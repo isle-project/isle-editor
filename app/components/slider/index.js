@@ -101,10 +101,12 @@ class DefaultSlider extends Component {
 			<Card
 				size="large"
 				style={{
-					margin: '0 auto',
+					marginLeft: 'auto',
+					marginRight: 'auto',
 					marginTop: '20px',
 					marginBottom: '20px',
 					paddingBottom: '20px',
+					maxWidth: '1200px',
 					width: '100%',
 					...this.props.style
 				}}
