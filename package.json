@@ -293,10 +293,18 @@
       "icon": "app/app.icns",
       "category": "Education",
       "target": [
-        "AppImage"
+        "AppImage",
+        "deb",
+        "rpm"
       ]
     },
+    "deb": {
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
     "appImage": {
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "rpm": {
       "artifactName": "${productName}-${version}-${arch}.${ext}"
     }
   }
