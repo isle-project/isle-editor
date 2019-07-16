@@ -53,7 +53,7 @@ class SettingsLogin extends Component {
 		.then( res => res.json() )
 		.then( body => {
 			try {
-				if ( body.type === 'incorrect_password' ) {
+				if ( body.type === 'incorrect_password' || body.type === 'no_user' ) {
 					return this.setState({
 						encounteredError: new Error( body.message )
 					});
@@ -80,6 +80,8 @@ class SettingsLogin extends Component {
 	}
 
 	render() {
+		const { server, email, password, encounteredError } = this.state;
+		const inputsAreEntered = server.length > 6 && email.length > 3 && password.length > 3;
 		return (
 			<Card>
 				<Card.Header as="h5">
@@ -95,7 +97,7 @@ class SettingsLogin extends Component {
 									type="text"
 									placeholder="Enter text"
 									onChange={this.handleInputChange}
-									value={this.state.server}
+									value={server}
 									onKeyPress={this.handleKeyPress}
 								/>
 							</FormGroup>
@@ -106,7 +108,7 @@ class SettingsLogin extends Component {
 									type="text"
 									placeholder="Enter email address"
 									onChange={this.handleInputChange}
-									value={this.state.email}
+									value={email}
 									onKeyPress={this.handleKeyPress}
 								/>
 							</FormGroup>
@@ -117,7 +119,7 @@ class SettingsLogin extends Component {
 									type="password"
 									placeholder="Enter password"
 									onChange={this.handleInputChange}
-									value={this.state.password}
+									value={password}
 									onKeyPress={this.handleKeyPress}
 								/>
 							</FormGroup>
@@ -126,21 +128,22 @@ class SettingsLogin extends Component {
 								size="sm"
 								block
 								onClick={this.connectToServer}
+								disabled={!inputsAreEntered}
 							>Connect</Button>
-							{ this.state.encounteredError ?
+							{ encounteredError ?
 								<Card style={{ marginTop: 20 }} border="danger">
 									<Card.Header as="h3">
 										Error encountered
 									</Card.Header>
 									<Card.Body>
-									The following error was encountered while connecting to {this.state.server}: <br />{this.state.encounteredError.message}.
+									The following error was encountered while connecting to {server}: <br />{encounteredError.message}.
 									</Card.Body>
 								</Card> : null
 							}
 						</Form> :
 						<Card border="success">
 							<Card.Body>
-								<p>You are linked to the ISLE server at <b>{this.state.server}</b> with user <b>{this.state.email}</b>.</p>
+								<p>You are linked to the ISLE server at <b>{server}</b> with user <b>{email}</b>.</p>
 								<Button
 									variant="danger"
 									size="sm"
