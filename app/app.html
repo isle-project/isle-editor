@@ -18,7 +18,7 @@
 				const port = process.env.PORT || 1212;
 				script.src = ( process.env.HOT ) ?
 					'http://localhost:'+port+'/dist/renderer.dev.js' :
-					'../dist/renderer.prod.js';
+					'./../dist/renderer.prod.js';
 				document.write( script.outerHTML );
 			}() );
 		</script>
