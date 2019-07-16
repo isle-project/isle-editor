@@ -24,7 +24,7 @@ import './slick.min.css';
 * @property {number} goto - If property is changed, the component jumps to the slide with the selected index
 * @property {boolean} infinite - controls whether the slideshow wraps around it's contents
 * @property {number} interval - sets a time interval for an automatic slide change
-* @property {boolean} swipeToSlide - enables drag/swipe behavior
+* @property {boolean} swipe - enables drag/swipe behavior
 * @property {Object} style - CSS inline styles
 * @property {Function} onClick - callback invoked when clicking on the next/previous buttons
 */
@@ -113,7 +113,7 @@ class DefaultSlider extends Component {
 			>
 				{this.renderTitle()}
 				<Card.Body>
-					<Slider ref={( slider ) => { this.slider = slider; }} {...this.state.settings}>
+					<Slider ref={( slider ) => { this.slider = slider; }} {...this.state.settings} >
 						{ this.state.childDivs }
 					</Slider>
 				</Card.Body>
@@ -133,7 +133,7 @@ DefaultSlider.defaultProps = {
 	goto: 0,
 	infinite: false,
 	interval: null,
-	swipeToSlide: true,
+	swipe: false,
 	style: {},
 	onClick() {}
 };
@@ -148,7 +148,7 @@ DefaultSlider.propTypes = {
 	interval: PropTypes.number,
 	onClick: PropTypes.func,
 	style: PropTypes.object,
-	swipeToSlide: PropTypes.bool
+	swipe: PropTypes.bool
 };
 
 

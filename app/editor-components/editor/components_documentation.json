@@ -2184,6 +2184,16 @@
     ],
     "description": "An interactive game testing student's ability in detecting the median and mean of a given distribution."
   },
+  "LearnSOTU": {
+    "props": [
+      {
+        "name": "questions",
+        "type": "array<(node|element)>",
+        "default": null
+      }
+    ],
+    "description": "Description is missing."
+  },
   "LearnStandardize": {
     "props": [
       {
@@ -4605,10 +4615,10 @@
         "default": {}
       },
       {
-        "name": "swipeToSlide",
+        "name": "swipe",
         "type": "boolean",
         "description": "enables drag/swipe behavior",
-        "default": true
+        "default": false
       }
     ],
     "description": "A component which displays its children in a slideshow or carousel."

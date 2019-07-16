@@ -30,4 +30,4 @@ A component which displays its children in a slideshow or carousel.
 * __interval__ | `number`: sets a time interval for an automatic slide change. Default: `none`.
 * __onClick__ | `function`: callback invoked when clicking on the next/previous buttons. Default: `onClick() {}`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
-* __swipeToSlide__ | `boolean`: enables drag/swipe behavior. Default: `true`.
+* __swipe__ | `boolean`: enables drag/swipe behavior. Default: `false`.
