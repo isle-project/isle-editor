@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import markdownit from 'markdown-it';
+import katex from 'markdown-it-katex';
 import logger from 'debug';
 import VoiceControl from 'components/voice-control';
 
@@ -22,6 +23,10 @@ const md = markdownit({
 	xhtmlOut: true,
 	breaks: true,
 	typographer: false
+});
+md.use( katex, {
+	throwOnError: false,
+	errorColor: '#cc0000'
 });
 
 
