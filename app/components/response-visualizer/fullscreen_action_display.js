@@ -643,7 +643,7 @@ class FullscreenActionDisplay extends Component {
 				this.setState({ showOnlyLatest: !this.state.showOnlyLatest });
 			}}>
 				<i><b>Only</b> include latest {removeLast( lowercase( this.props.actionLabel ) )} for any student.</i>
-				<i>Include <b>all</b> {removeLast( lowercase( this.props.actionLabel ) )} for any student.</i>
+				<i>Include <b>all</b> {removeLast( lowercase( this.props.actionLabel ) )}s for any student.</i>
 			</Switch>
 		</div> );
 	}
