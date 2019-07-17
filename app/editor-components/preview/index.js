@@ -168,8 +168,7 @@ class Preview extends Component {
 
 		// Replace Markdown by HTML...
 		code = markdownToHTML( code, {
-			escapeBackslash: true,
-			addEmptySpans: preamble.type !== 'presentation'
+			escapeBackslash: true
 		});
 
 		if ( preamble.type === 'presentation' ) {
