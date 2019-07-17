@@ -8,10 +8,10 @@
 	--secondary: #3c763d;
 	--secondarymedium: #2b552c;
 	--secondarydark: #162c17;
-	--secondarylight:#77df79;
+	--secondarylight: #77df79;
 	--secondaryhalf: #54a857;
 	--tertiary:  #2e4468;
-	--tertiarylight:  #7285a3;
+	--tertiarylight: #7285a3;
 	--quartary: #ca5800;
 	--quartarydark: #351802;
 	--quartarylight: #c49978;
@@ -138,15 +138,15 @@ mark {
 	border-radius: 4px;
 	border-top: 1px black;
 	border-bottom: 1px black;
-	background-image:linear-gradient(to right, darkslategray, darkgrey, ghostwhite);
+	background-image: linear-gradient(to right, darkslategray, darkgrey, ghostwhite);
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) inset, 1px 1px 2px darkslategray;
-	border:solid px black;
+	border: solid px black;
 	animation: anim-fade-in 1s forwards;
 }
 
 #loading-bar::after {
 	position: absolute;
-	content:' ';
+	content: ' ';
 	right: 0;
 	bottom: 0;
 	width: 100%;
@@ -395,7 +395,8 @@ mark {
 .Lesson > p,
 .Lesson > text,
 .Lesson > span,
-.Lesson > label {
+.Lesson > label,
+.Lesson > pre {
 	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
@@ -497,6 +498,34 @@ mark {
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 1200px;
+}
+
+.Lesson > blockquote {
+	font-size: 1.4em;
+	width: 60%;
+	max-width: 900px;
+	margin: 50px auto;
+	font-style: italic;
+	color: var(--primaryhalf);
+	padding: 1.2em 30px 1.2em 75px;
+	border-left: 8px solid var(--primaryhalf);
+	line-height: 1.5;
+	position: relative;
+	background: #EDEDED;
+}
+
+.Lesson > blockquote::before {
+	font-family: Arial;
+	content: "\201C";
+	color: var(--primaryhalf);
+	font-size: 4em;
+	position: absolute;
+	left: 10px;
+	top: -10px;
+}
+
+.Lesson > blockquote::after {
+	content: '';
 }
 
 .example-multiple-targets::after {
