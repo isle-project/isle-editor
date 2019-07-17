@@ -394,10 +394,15 @@ mark {
 
 .Lesson > p,
 .Lesson > text,
-.Lesson > span {
+.Lesson > span,
+.Lesson > label {
 	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.Lesson > label {
+	display: block;
 }
 
 .Lesson hr,
