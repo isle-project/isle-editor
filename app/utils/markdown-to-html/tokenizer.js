@@ -3,7 +3,7 @@
 import markdownit from 'markdown-it';
 import logger from 'debug';
 import replace from '@stdlib/string/replace';
-import replaceEquations from './replace_equations.js';
+import { replaceAndEscapeEquations, replaceEquations } from './replace_equations.js';
 
 
 // VARIABLES //
@@ -62,7 +62,11 @@ function isWhitespace( c ) {
 	);
 }
 
-class Tokenizer{
+class Tokenizer {
+	constructor( props ) {
+		this.replaceEquations = props.escapeBackslash ? replaceAndEscapeEquations : replaceEquations;
+	}
+
 	setup( str ) {
 		this.tokens = [];
 		this._buffer = str;
@@ -94,7 +98,7 @@ class Tokenizer{
 		}
 		if ( this._state !== IN_BASE ) {
 			// Exiting base state, push token:
-			let str = replaceEquations( md.render( this._current ) );
+			let str = this.replaceEquations( md.render( this._current ) );
 			str = replace( str, '{', 'OPEN_CURLY_BRACE' );
 			str = replace( str, '}', 'CLOSE_CURLY_BRACE' );
 			str = replace( str, 'OPEN_CURLY_BRACE', '{\'{\'}' );
@@ -131,7 +135,7 @@ class Tokenizer{
 		this._current += char;
 		if ( char === '\n' && this._buffer.charAt( this.pos +1 ) === '\n' ) {
 			this._state = IN_BASE;
-			const replacement = replaceEquations( md.render( this._current ) );
+			const replacement = this.replaceEquations( md.render( this._current ) );
 			this.tokens.push( replacement );
 			this._current = '';
 		}
@@ -145,7 +149,7 @@ class Tokenizer{
 				this._state = IN_BASE;
 				const url = this._current.substring( this._startTagNamePos+1, this._current.length-1 );
 				const before = this._current.substring( 0, this._startTagNamePos );
-				const replacement = replaceEquations( md.renderInline( before ) ) +
+				const replacement = this.replaceEquations( md.renderInline( before ) ) +
 					' <a href="'+url+'">'+url+'</a>';
 				this.tokens.push( replacement );
 				this._current = '';
@@ -162,7 +166,7 @@ class Tokenizer{
 		this._current += char;
 		if ( char === '<' && !isWhitespace( this._buffer.charAt( this.pos+1 ) ) ) {
 			const text = this._current.substring( this._openTagEnd, this._current.length-1 );
-			let replacement = replaceEquations( md.renderInline( text ) );
+			let replacement = this.replaceEquations( md.renderInline( text ) );
 			replacement = replace( replacement, '\\\n', '<br />' );
 			this._current = this._current.substring( 0, this._openTagEnd ) +
 				replacement + '<';
@@ -313,7 +317,7 @@ class Tokenizer{
 			}
 			if ( this.pos === str.length - 1 ) {
 				if ( this._state === IN_BASE ) {
-					let str = replaceEquations( md.render( this._current ) );
+					let str = this.replaceEquations( md.render( this._current ) );
 					str = replace( str, '{', 'OPEN_CURLY_BRACE' );
 					str = replace( str, '}', 'CLOSE_CURLY_BRACE' );
 					str = replace( str, 'OPEN_CURLY_BRACE', '{\'{\'}' );

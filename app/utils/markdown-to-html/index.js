@@ -21,7 +21,7 @@ const escaper = ( match, p1 ) => {
 
 function toMarkdown( str, { escapeBackslash = false } ) {
 	debug( 'Create tokenizer...' );
-	const tokenizer = new Tokenizer();
+	const tokenizer = new Tokenizer({ escapeBackslash });
 
 	if ( escapeBackslash ) {
 		str = replace( str, RE_RAW_ATTRIBUTE, escaper );
