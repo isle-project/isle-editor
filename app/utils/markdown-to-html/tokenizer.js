@@ -123,7 +123,7 @@ class Tokenizer{
 			input = trim( input );
 			if ( !startsWith( input, '<') && !endsWith( input, '>' ) ) {
 				this._current = this._current.substring( 0, this._openTagEnd ) +
-					replaceEquations( md.render( input ) ) +
+					replaceEquations( md.renderInline( input ) ) +
 					this._current.substring( this._endTagStart );
 			}
 			this._openTagEnd = this._current.length;
