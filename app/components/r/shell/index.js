@@ -441,8 +441,8 @@ class RShell extends React.Component {
 		const nHints = this.props.hints.length;
 		const style = {
 			lineHeight: '1.2em',
-			maxHeight: `${max( 5, this.props.lines )*1.2}em`,
-			height: `${this.props.lines*1.2}em`,
+			maxHeight: `${(max( 5, this.props.lines )*1.2) + 0.5}em`,
+			height: `${(this.props.lines*1.2) + 0.5}em`,
 			...this.props.style
 		};
 		return (
@@ -455,7 +455,6 @@ class RShell extends React.Component {
 						variant="primary"
 						size="sm"
 						style={{
-							marginTop: '8px',
 							marginBottom: '8px'
 						}}
 						onClick={this.handleEvaluationClick}
@@ -469,11 +468,10 @@ class RShell extends React.Component {
 					display="inline"
 					lines={12}
 					style={{
-						marginTop: '8px',
 						marginBottom: '-12px'
 					}}
 				/>
-				<ButtonToolbar style={{ float: 'right', marginTop: '8px' }}>
+				<ButtonToolbar style={{ float: 'right' }}>
 					{ nHints > 0 ?
 						<HintButton
 							disabled={this.props.disabled}
