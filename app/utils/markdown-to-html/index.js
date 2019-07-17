@@ -1,6 +1,7 @@
 // MODULES //
 
 import markdownit from 'markdown-it';
+import logger from 'debug';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import replace from '@stdlib/string/replace';
 import Tokenizer from './tokenizer.js';
@@ -9,6 +10,7 @@ import replaceEquations from './replace_equations.js';
 
 // VARIABLES //
 
+const debug = logger( 'isle:markdown-to-html' );
 const md = markdownit({
 	html: true,
 	xhtmlOut: true,
@@ -28,6 +30,7 @@ const escaper = ( match, p1 ) => {
 // MAIN //
 
 function toMarkdown( str, { escapeBackslash = false, addEmptySpans = true } ) {
+	debug( 'Create tokenizer...' );
 	const tokenizer = new Tokenizer();
 
 	if ( escapeBackslash ) {
