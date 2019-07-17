@@ -128,7 +128,6 @@ class Tokenizer{
 			}
 			this._openTagEnd = this._current.length;
 			this._endTagStart = null;
-			// console.log( md.render( this._current.substring( this._openTagEnd, this._endTagStart ) ) );
 			if ( this._level === 0 ) {
 				this.divHash[ '<div id="placeholder_'+i+'"/>' ] = this._current;
 				this.tokens.push( '<div id="placeholder_'+i+'"/>' );

@@ -33,16 +33,13 @@ function toMarkdown( str, { escapeBackslash = false, addEmptySpans = true } ) {
 	if ( escapeBackslash ) {
 		str = replace( str, RE_RAW_ATTRIBUTE, escaper );
 	}
-	console.log( str );
 	const arr = tokenizer.parse( str );
 	for ( let i = 0; i < arr.length; i++ ) {
-		console.log( arr[ i ] );
 		arr[ i ] = md.renderInline( arr[ i ] );
 	}
 	str = arr.join( '' );
 	str = replaceEquations( str );
 	str = replace( str, '<br />', addEmptySpans ? '<span />\n' : '\n' );
-	console.log( str );
 	str = md.render( str );
 
 	str = replace( str, '{', 'OPEN_CURLY_BRACE' );
