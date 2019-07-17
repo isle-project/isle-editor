@@ -71,6 +71,7 @@ const SCOPE = {
 	LearnStandardize: Loadable( () => import( 'components/learn/standardize' ) ),
 	LearnContinuousCLT: Loadable( () => import( 'components/learn/clt-continuous' ) ),
 	LearnDiscreteCLT: Loadable( () => import( 'components/learn/clt-discrete' ) ),
+	LearnNetworks: Loadable( () => import( 'components/learn/networks' ) ),
 	LearnSampleCLT: Loadable( () => import( 'components/learn/clt-sample' ) ),
 	LearnConfidenceCoverageBinomial: Loadable( () => import( 'components/learn/confidence-coverage-binomial') ),
 	LearnConfidenceCoverageNormal: Loadable( () => import( 'components/learn/confidence-coverage-normal' ) ),

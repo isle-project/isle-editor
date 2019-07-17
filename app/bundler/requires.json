@@ -30,6 +30,7 @@
 	"LearnMeanTest": "components/learn/hypothesis-testing-mean",
 	"LearnProportionTest": "components/learn/hypothesis-testing-proportion",
 	"LearnMeanVSMedian": "components/learn/mean-vs-median",
+	"LearnNetworks": "components/learn/networks",
 	"LearnStatisticalModels": "components/learn/statistical-models",
 	"LearnConditionalProbability": "components/learn/conditional-probability",
 	"LearnVennDiagramBuilder": "components/learn/venn-diagram-builder",
