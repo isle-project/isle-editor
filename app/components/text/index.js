@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import markdownit from 'markdown-it';
 import katex from 'markdown-it-katex';
 import logger from 'debug';
+import ltrim from '@stdlib/string/left-trim';
 import VoiceControl from 'components/voice-control';
 
 
@@ -42,6 +43,30 @@ md.use( katex, {
 * @property {string} voiceID - voice control identifier
 */
 class Text extends Component {
+	constructor( props ) {
+		super( props );
+
+		this.state = {
+			rawUnaltered: props.raw,
+			raw: props.raw
+				.split( '\n' )
+				.map( x => ltrim( x ) )
+				.join( '\n' )
+		};
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		const newState = {};
+		if ( nextProps.raw !== prevState.rawUnaltered ) {
+			newState.rawUnaltered = nextProps.raw;
+			newState.raw = nextProps.raw
+				.split( '\n' )
+				.map( x => ltrim( x ) )
+				.join( '\n' );
+		}
+		return newState;
+	}
+
 	textToSpeech() {
 		debug( 'Read out text: '+this.props.raw );
 		var ssu = new SpeechSynthesisUtterance( this.props.raw );
@@ -51,8 +76,9 @@ class Text extends Component {
 
 	render() {
 		if ( this.props.raw ) {
+			let raw = this.state.raw;
 			const node = {
-				'__html': this.props.inline ? md.renderInline( this.props.raw ) : md.render( this.props.raw )
+				'__html': this.props.inline ? md.renderInline( raw ) : md.render( raw )
 			};
 			/* eslint-disable react/no-danger */
 			return (
