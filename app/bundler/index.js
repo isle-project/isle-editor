@@ -11,6 +11,7 @@ import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import WebpackCdnPlugin from './webpack_cdn_plugin.js';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
+import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import isRelativePath from '@stdlib/assert/is-relative-path';
 import hasOwnProp from '@stdlib/assert/has-own-property';
@@ -251,6 +252,10 @@ function writeIndexFile({
 	let yamlStr = content.match( /---([\S\s]*)---/ )[ 1 ];
 	yamlStr = replace( yamlStr, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
 	const meta = yaml.load( yamlStr );
+	if ( isArray( meta.author ) ) {
+		meta.author = meta.author.join( ', ' );
+	}
+
 	const appDir = join( outputPath, outputDir );
 	const indexPath = resolve( './public/index.js' );
 	const statsFile = join( appDir, 'stats.json' );
