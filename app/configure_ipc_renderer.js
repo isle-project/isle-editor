@@ -23,7 +23,7 @@ function configureIpcRenderer( store ) {
 		store.dispatch( actions.fileLoaded({ fileName, filePath }) );
 		store.dispatch( actions.convertMarkdown( file ) );
 
-		let preambleText = file.match( /---([\S\s]*)---/ );
+		let preambleText = file.match( /^---([\S\s]*?)---/ );
 		if ( preambleText ) {
 			// Extract the capture group:
 			preambleText = preambleText[ 1 ];

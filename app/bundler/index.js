@@ -249,7 +249,7 @@ function writeIndexFile({
 	minify,
 	writeStats
 }, clbk ) {
-	let yamlStr = content.match( /---([\S\s]*)---/ )[ 1 ];
+	let yamlStr = content.match( /^---([\S\s]*?)---/ )[ 1 ];
 	yamlStr = replace( yamlStr, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
 	const meta = yaml.load( yamlStr );
 	if ( isArray( meta.author ) ) {
@@ -449,7 +449,7 @@ function writeIndexFile({
 	};
 
 	// Remove YAML preamble...
-	content = content.replace( /---([\S\s]*)---/, '' );
+	content = content.replace( /^---([\S\s]*?)---/, '' );
 
 	// Replace Markdown by HTML...
 	content = markdownToHTML( content, {

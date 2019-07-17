@@ -163,7 +163,7 @@ class Preview extends Component {
 			noEmptyLines += ( p1.match( RE_LINES ) || '').length;
 			return '';
 		};
-		code = code.replace( /---([\S\s]*)---/, replacer );
+		code = code.replace( /^---([\S\s]*?)---/, replacer );
 		code = code.replace( /<!--([\S\s]*)-->/, replacer );
 
 		// Replace Markdown by HTML...
