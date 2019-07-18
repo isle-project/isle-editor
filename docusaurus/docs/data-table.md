@@ -32,9 +32,13 @@ A component rendering data in a tabular display. Built on top of [react-table](h
   'showInfo': false
 }`.
 * __deletable__ | `boolean`: controls whether columns for which no `info` exist have a button which when clicked calls the `onColumnDelete` callback function. Default: `false`.
+* __filterable__ | `boolean`: controls whether columns are filterable. Default: `true`.
+* __editable__ | `array`: array of names for columns that shall be editable. Default: `[]`.
 * __onColumnDelete__ | `function`: function invoked with the name of a column when the respective delete button for a column is clicked. Default: `onColumnDelete() {}`.
 * __onClickRemove__ | `function`: A function specifying an action to take for rows removed from the data (defaults to an empty function). Default: `onClickRemove() {}`.
+* __onEdit__ | `function`: function invoked with the updated data set after the value of a cell was changed by the user (only applies when table is `editable`). Default: `onEdit() {}`.
 * __filters__ | `array`: undefined. Default: `[]`.
 * __onFilteredChange__ | `function`: undefined. Default: `onFilteredChange() {}`.
 * __showRemove__ | `boolean`: indicates whether to display checkboxes for rows to be removed. Default: `false`.
+* __showIdColumn__ | `boolean`: controls whether to show an ID column. Default: `true`.
 * __style__ | `object`: An object allowing for custom css styling. Defaults to an empty object. Default: `{}`.

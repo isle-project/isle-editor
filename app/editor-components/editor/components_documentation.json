@@ -680,6 +680,18 @@
         "default": false
       },
       {
+        "name": "filterable",
+        "type": "boolean",
+        "description": "controls whether columns are filterable",
+        "default": true
+      },
+      {
+        "name": "editable",
+        "type": "array",
+        "description": "array of names for columns that shall be editable",
+        "default": []
+      },
+      {
         "name": "onColumnDelete",
         "type": "function",
         "description": "function invoked with the name of a column when the respective delete button for a column is clicked",
@@ -690,6 +702,12 @@
         "type": "function",
         "description": "A function specifying an action to take for rows removed from the data (defaults to an empty function)",
         "default": "onClickRemove() {}"
+      },
+      {
+        "name": "onEdit",
+        "type": "function",
+        "description": "function invoked with the updated data set after the value of a cell was changed by the user (only applies when table is `editable`)",
+        "default": "onEdit() {}"
       },
       {
         "name": "filters",
@@ -706,6 +724,12 @@
         "type": "boolean",
         "description": "indicates whether to display checkboxes for rows to be removed",
         "default": false
+      },
+      {
+        "name": "showIdColumn",
+        "type": "boolean",
+        "description": "controls whether to show an ID column",
+        "default": true
       },
       {
         "name": "style",
@@ -2184,6 +2208,10 @@
     ],
     "description": "An interactive game testing student's ability in detecting the median and mean of a given distribution."
   },
+  "LearnNetworks": {
+    "props": [],
+    "description": "Description is missing."
+  },
   "LearnSOTU": {
     "props": [
       {
@@ -3276,6 +3304,12 @@
         "name": "meta",
         "type": "object",
         "description": "plot meta-information",
+        "default": null
+      },
+      {
+        "name": "revision",
+        "type": "number",
+        "description": "when provided, causes the plot to update when the revision value is incremented",
         "default": null
       },
       {
