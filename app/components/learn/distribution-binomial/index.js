@@ -97,7 +97,7 @@ class BinomialProps extends Component {
 	}
 
 	render() {
-		return ( <Card style={{ maxWidth: 1200, ...this.props.style}}>
+		return ( <Card style={{ maxWidth: 1200, margin: '0 auto', ...this.props.style }}>
 			<Card.Header as="h3">
 				Binomial Distribution
 			</Card.Header>

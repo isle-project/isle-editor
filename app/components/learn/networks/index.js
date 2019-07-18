@@ -51,14 +51,13 @@ class Networks extends Component {
 
 	render() {
 		return (
-			<Container>
+			<Container style={{ maxWidth: 1200, margin: '0 auto' }}>
 				<Row>
 					<Col md={6}>
 						<Dashboard id="networks-dashboard" onGenerate={this.handleGenerate}>
 							<p>In a network, the nodes are assumed to be fixed but the edges are random, i.e. there is some random process which determines whether there is an edge connecting two nodes.</p>
 							<p>Let us consider one of the simplest available network models. In the Erdős–Rényi model, there is a fixed probability <TeX raw="p" /> that an edge exists between any two nodes. We also assume that whether or not an edge exists between two nodes is independent of whether or not other edges exist.</p>
 							<p>In this model, if we have <TeX raw="m" /> nodes, each node can be connected to <TeX raw="m-1" /> other nodes.  The number of edges attached to each node (the degree) is then <TeX raw="\text{Binomial}(m-1,p)" />.</p>
-							<p>Create some Erdős–Rényi networks to investigate whether that holds true:</p>
 							<NumberInput
 								legend="m (number of nodes)"
 								defaultValue={10}

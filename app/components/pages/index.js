@@ -183,6 +183,7 @@ class Pages extends Component {
 		}
 		return (
 			<Card
+				className="pages"
 				id={this.id}
 				style={this.props.style}
 			>
