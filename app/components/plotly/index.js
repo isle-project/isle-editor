@@ -64,6 +64,7 @@ Plotly.setPlotConfig({
 * @property {boolean} toggleFullscreen - controls whether to display the plot in fullscreen mode
 * @property {boolean} removeButtons - controls whether to remove all buttons
 * @property {Object} meta - plot meta-information
+* @property {number} revision - when provided, causes the plot to update when the revision value is incremented
 * @property {Function} onAfterPlot - callback function invoked each time a chart is plotted
 * @property {Function} onSelected - callback function invoked when elements are selected
 * @property {Function} onShare - callback function invoked when clicking on the "Share" button
@@ -249,6 +250,7 @@ class Wrapper extends Component {
 					height: '100%',
 					zIndex: 1
 				}}
+				revision={this.props.revision}
 			/>
 		</Fragment>;
 		if ( this.state.fullscreen ) {
@@ -288,6 +290,7 @@ Wrapper.defaultProps = {
 	config: {},
 	legendButtons: true,
 	meta: null,
+	revision: null,
 	onAfterPlot() {},
 	onRelayout() {},
 	onSelected() {},
@@ -305,6 +308,7 @@ Wrapper.propTypes = {
 	config: PropTypes.object,
 	legendButtons: PropTypes.bool,
 	meta: PropTypes.object,
+	revision: PropTypes.number,
 	onAfterPlot: PropTypes.func,
 	onRelayout: PropTypes.func,
 	onSelected: PropTypes.func,
