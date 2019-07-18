@@ -47,6 +47,7 @@ const md = markdownit({
 	typographer: false
 });
 const uid = generateUID( 'data-table' );
+const RE_NUMBER = /[0-9.,]+/;
 
 
 // FUNCTIONS //
@@ -80,11 +81,15 @@ const CustomIndicator = () => {
 *
 * @property {(Object|Array)} data - A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column
 * @property {Object} dataInfo - object with `info` string array describing the data set, the `name` of the dataset, an `object` of `variables` with keys corresponding to variable names and values to variable descriptions, an a `showOnStartup` boolean controlling whether to display the info modal on startup
+* @property {Array} editable - array of names for columns that shall be editable
 * @property {boolean} deletable - controls whether columns for which no `info` exist have a button which when clicked calls the `onColumnDelete` callback function
+* @property {boolean} filterable - controls whether columns are filterable
 * @property {boolean} showRemove - indicates whether to display checkboxes for rows to be removed
+* @property {boolean} showIdColumn - controls whether to show an ID column
 * @property {Object} style - An object allowing for custom css styling. Defaults to an empty object
 * @property {Function} onClickRemove - A function specifying an action to take for rows removed from the data (defaults to an empty function)
 * @property {Function} onColumnDelete - function invoked with the name of a column when the respective delete button for a column is clicked
+* @property {Function} onEdit - function invoked with the updated data set after the value of a cell was changed by the user (only applies when table is `editable`)
 */
 class DataTable extends Component {
 	constructor( props ) {
@@ -119,12 +124,35 @@ class DataTable extends Component {
 			newState.filtered = this.props.filters;
 		}
 		if ( !isEmptyObject( newState ) ) {
+			console.log( 'Trigger a state change after update...' );
 			this.setState( newState, () => {
 				this.setState({
 					selectedRows: this.table.getResolvedState().sortedData.length
 				});
 			});
 		}
+	}
+
+	renderEditable = ( cellInfo ) => {
+		return (
+			<div
+				style={{ backgroundColor: '#fafafa' }}
+				contentEditable
+				suppressContentEditableWarning
+				onBlur={e => {
+					const rows = [...this.state.rows ];
+					const val = e.target.innerHTML;
+					rows[cellInfo.index][cellInfo.column.id] = RE_NUMBER.test( val ) ? Number( val ) : val;
+					this.setState({ rows }, () => {
+						this.props.onEdit( rows );
+					});
+				}}
+				/* eslint-disable-next-line react/no-danger */
+				dangerouslySetInnerHTML={{
+					__html: this.state.rows[ cellInfo.index ][ cellInfo.column.id ]
+				}}
+			/>
+		);
 	}
 
 	generateInitialState( props ) {
@@ -186,6 +214,9 @@ class DataTable extends Component {
 				id: key,
 				accessor: ( d ) => d[ key ]
 			};
+			if ( contains( this.props.editable, key ) ) {
+				out.Cell = this.renderEditable;
+			}
 			let vals;
 			if ( !isArr ) {
 				vals = props.data[ key ].slice();
@@ -195,78 +226,82 @@ class DataTable extends Component {
 					vals[ i ] = props.data[ i ][ key ];
 				}
 			}
-			vals = vals.filter( x => !isNull( x ) && x !== '' );
-			let uniqueValues = unique( vals );
-			if ( isNumberArray( vals ) && uniqueValues.length > 2 ) {
-				out[ 'filterMethod' ] = this.filterMethodNumbers;
-				out[ 'Filter' ] = ({ filter, onChange }) => {
-					const defaultVal = {
-						max: ceil( max( uniqueValues ) ),
-						min: floor( min( uniqueValues ) )
+			if ( this.props.filterable ) {
+				vals = vals.filter( x => !isNull( x ) && x !== '' );
+				let uniqueValues = unique( vals );
+				if ( isNumberArray( vals ) && uniqueValues.length > 2 ) {
+					out[ 'filterMethod' ] = this.filterMethodNumbers;
+					out[ 'Filter' ] = ({ filter, onChange }) => {
+						const defaultVal = {
+							max: ceil( max( uniqueValues ) ),
+							min: floor( min( uniqueValues ) )
+						};
+						return (
+							<div style={{
+								paddingLeft: '4px',
+								paddingRight: '4px',
+								paddingTop: '8px',
+								paddingBottom: '4px'
+							}}>
+								<InputRange
+									allowSameValues
+									maxValue={ceil( max( uniqueValues ) )}
+									minValue={floor( min( uniqueValues ) )}
+									value={filter ? filter.value : defaultVal}
+									onChange={( newValue ) => {
+										onChange( newValue );
+									}}
+									formatLabel={( val ) => {
+										return round( val );
+									}}
+								/>
+							</div>
+						);
 					};
-					return (
-						<div style={{
-							paddingLeft: '4px',
-							paddingRight: '4px',
-							paddingTop: '8px',
-							paddingBottom: '4px'
-						}}>
-							<InputRange
-								allowSameValues
-								maxValue={ceil( max( uniqueValues ) )}
-								minValue={floor( min( uniqueValues ) )}
-								value={filter ? filter.value : defaultVal}
-								onChange={( newValue ) => {
-									onChange( newValue );
+				} else if ( uniqueValues.length <= 8 ) {
+					// Cast values to strings for select component to work:
+					uniqueValues = uniqueValues.map( x => String( x ) );
+					out[ 'filterMethod' ] = this.filterMethodCategories;
+					out[ 'Filter' ] = ({ filter, onChange }) => {
+						return (
+							<SelectInput
+								onChange={onChange}
+								style={{ width: '100%' }}
+								value={filter ? filter.value : null}
+								searchable={false}
+								options={uniqueValues}
+								menuPlacement="auto"
+								multi
+								placeholder="Show all"
+								components={{
+									IndicatorsContainer: CustomIndicator
 								}}
-								formatLabel={( val ) => {
-									return round( val );
+								menuPortalTarget={document.body}
+								styles={{
+									menuPortal: base => ({ ...base, zIndex: 9999 })
 								}}
 							/>
-						</div>
-					);
-				};
-			} else if ( uniqueValues.length <= 8 ) {
-				// Cast values to strings for select component to work:
-				uniqueValues = uniqueValues.map( x => String( x ) );
-				out[ 'filterMethod' ] = this.filterMethodCategories;
-				out[ 'Filter' ] = ({ filter, onChange }) => {
-					return (
-						<SelectInput
-							onChange={onChange}
-							style={{ width: '100%' }}
-							value={filter ? filter.value : null}
-							searchable={false}
-							options={uniqueValues}
-							menuPlacement="auto"
-							multi
-							placeholder="Show all"
-							components={{
-								IndicatorsContainer: CustomIndicator
-							}}
-							menuPortalTarget={document.body}
-							styles={{
-								menuPortal: base => ({ ...base, zIndex: 9999 })
-							}}
-						/>
-					);
-				};
-			} else {
-				out[ 'filterMethod' ] = ( filter, row ) => {
-					if ( isArray( filter.value ) ) {
-						return contains( filter.value, row[ filter.id ] );
-					}
-					// Check whether string contains search phrase:
-					return contains( lowercase( row[ filter.id ] ), lowercase( filter.value ) );
-				};
+						);
+					};
+				} else {
+					out[ 'filterMethod' ] = ( filter, row ) => {
+						if ( isArray( filter.value ) ) {
+							return contains( filter.value, row[ filter.id ] );
+						}
+						// Check whether string contains search phrase:
+						return contains( lowercase( row[ filter.id ] ), lowercase( filter.value ) );
+					};
+				}
 			}
 			return out;
 		});
-		columns.unshift({
-			Header: 'id',
-			accessor: 'id',
-			filterable: false
-		});
+		if ( this.props.showIdColumn ) {
+			columns.unshift({
+				Header: 'id',
+				accessor: 'id',
+				filterable: false
+			});
+		}
 		if ( props.showRemove ) {
 			columns.push({
 				Header: 'Remove',
@@ -498,7 +533,7 @@ class DataTable extends Component {
 						showPagination={true}
 						sortable={true}
 						resizable={true}
-						filterable={true}
+						filterable={this.props.filterable}
 						filtered={this.state.filtered}
 						sorted={this.state.sorted}
 						showPageSizeOptions={false}
@@ -544,11 +579,15 @@ DataTable.defaultProps = {
 		'showInfo': false
 	},
 	deletable: false,
+	filterable: true,
+	editable: [],
 	onColumnDelete() {},
 	onClickRemove() {},
+	onEdit() {},
 	onFilteredChange() {},
 	filters: [],
 	showRemove: false,
+	showIdColumn: true,
 	style: {}
 };
 
@@ -559,11 +598,15 @@ DataTable.propTypes = {
 	]).isRequired,
 	dataInfo: PropTypes.object,
 	deletable: PropTypes.bool,
+	filterable: PropTypes.bool,
+	editable: PropTypes.array,
 	onColumnDelete: PropTypes.func,
 	onClickRemove: PropTypes.func,
+	onEdit: PropTypes.func,
 	filters: PropTypes.array,
 	onFilteredChange: PropTypes.func,
 	showRemove: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
+	showIdColumn: PropTypes.bool,
 	style: PropTypes.object
 };
 
