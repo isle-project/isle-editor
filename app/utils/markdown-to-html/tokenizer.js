@@ -1,8 +1,8 @@
 // MODULES //
 
-import markdownit from 'markdown-it';
 import logger from 'debug';
-import replace from '@stdlib/string/replace';
+import trim from '@stdlib/string/trim';
+import marked from './marked.js';
 import { replaceAndEscapeEquations, replaceEquations } from './replace_equations.js';
 
 
@@ -21,13 +21,6 @@ const IN_CODE = 7;
 const IN_CODE_BLOCK = 8;
 const IN_BLOCKQUOTE = 9;
 const IN_ANGLE_LINK = 10;
-const md = markdownit({
-	html: true,
-	xhtmlOut: true,
-	breaks: false,
-	typographer: false,
-	linkify: true
-});
 
 
 // FUNCTIONS //
@@ -77,6 +70,7 @@ class Tokenizer {
 		this._braceLevel = 0;
 		this._level = 0;
 		this.pos = 0;
+		this.divHash = {};
 	}
 
 	_inBase( char ) {
@@ -98,12 +92,7 @@ class Tokenizer {
 		}
 		if ( this._state !== IN_BASE ) {
 			// Exiting base state, push token:
-			let str = this.replaceEquations( md.render( this._current ) );
-			str = replace( str, '{', 'OPEN_CURLY_BRACE' );
-			str = replace( str, '}', 'CLOSE_CURLY_BRACE' );
-			str = replace( str, 'OPEN_CURLY_BRACE', '{\'{\'}' );
-			str = replace( str, 'CLOSE_CURLY_BRACE', '{\'}\'}' );
-			this.tokens.push( str );
+			this.tokens.push( this._current );
 			this._current = char;
 		} else {
 			this._current += char;
@@ -117,7 +106,7 @@ class Tokenizer {
 			this._state = IN_BASE;
 			this._current += '``';
 			this.pos += 2;
-			this.tokens.push( this._current );
+			this.tokens.push( marked( trim( this._current ) ) );
 			this._current = '';
 		}
 	}
@@ -126,7 +115,7 @@ class Tokenizer {
 		this._current += char;
 		if ( char === '`' ) {
 			this._state = IN_BASE;
-			this.tokens.push( this._current );
+			this.tokens.push( marked( trim( this._current ) ) );
 			this._current = '';
 		}
 	}
@@ -135,7 +124,7 @@ class Tokenizer {
 		this._current += char;
 		if ( char === '\n' && this._buffer.charAt( this.pos +1 ) === '\n' ) {
 			this._state = IN_BASE;
-			const replacement = this.replaceEquations( md.render( this._current ) );
+			const replacement = this.replaceEquations( marked( trim( this._current ) ) );
 			this.tokens.push( replacement );
 			this._current = '';
 		}
@@ -149,9 +138,10 @@ class Tokenizer {
 				this._state = IN_BASE;
 				const url = this._current.substring( this._startTagNamePos+1, this._current.length-1 );
 				const before = this._current.substring( 0, this._startTagNamePos );
-				const replacement = this.replaceEquations( md.renderInline( before ) ) +
+				const replacement = this.replaceEquations( marked( trim( before ) ) ) +
 					' <a href="'+url+'">'+url+'</a>';
-				this.tokens.push( replacement );
+				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = replacement;
+				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 				this._current = '';
 			} else {
 				this._state = IN_BETWEEN_TAGS;
@@ -166,8 +156,7 @@ class Tokenizer {
 		this._current += char;
 		if ( char === '<' && !isWhitespace( this._buffer.charAt( this.pos+1 ) ) ) {
 			const text = this._current.substring( this._openTagEnd, this._current.length-1 );
-			let replacement = this.replaceEquations( md.renderInline( text ) );
-			replacement = replace( replacement, '\\\n', '<br />' );
+			let replacement = this.replaceEquations( marked( trim( text ) ) );
 			this._current = this._current.substring( 0, this._openTagEnd ) +
 				replacement + '<';
 			if ( this._buffer.charAt( this.pos+1 ) !== '/' ) {
@@ -221,7 +210,8 @@ class Tokenizer {
 			if ( this._buffer.charAt( this.pos-1 ) === '/' ) {
 				this._level -= 1;
 				if ( this._level === 0 ) {
-					this.tokens.push( this._current );
+					this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
+					this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 					this._current = '';
 					this._state = IN_BASE;
 				} else {
@@ -245,7 +235,8 @@ class Tokenizer {
 			this._braceLevel -= 1;
 		}
 		if ( this._braceLevel === 0 ) {
-			this.tokens.push( this._current );
+			this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
+			this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 			this._current = '';
 			this._state = IN_BASE;
 		}
@@ -316,16 +307,7 @@ class Tokenizer {
 				break;
 			}
 			if ( this.pos === str.length - 1 ) {
-				if ( this._state === IN_BASE ) {
-					let str = this.replaceEquations( md.render( this._current ) );
-					str = replace( str, '{', 'OPEN_CURLY_BRACE' );
-					str = replace( str, '}', 'CLOSE_CURLY_BRACE' );
-					str = replace( str, 'OPEN_CURLY_BRACE', '{\'{\'}' );
-					str = replace( str, 'CLOSE_CURLY_BRACE', '{\'}\'}' );
-					this.tokens.push( str );
-				} else {
-					this.tokens.push( this._current );
-				}
+				this.tokens.push( this._current );
 			}
 		}
 		return this.tokens;
