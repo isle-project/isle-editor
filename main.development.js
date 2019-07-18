@@ -62,26 +62,41 @@ function openRecentFactory( path ) {
 
 function addRecentFilesMenu() {
 	const currentMenu = Menu.getApplicationMenu();
-	const recents = currentMenu.items[ 0 ].submenu.items[ 6 ];
-
-	for ( let i = 0; i < recentFiles.length; i++ ) {
-		const path = recentFiles[ i ];
-		const item = new MenuItem({
-			label: basename( path ),
-			click: openRecentFactory( path )
-		});
-		recents.submenu.append( item );
+	let fileMenu = null;
+	let recents = null;
+	for ( let i = 0; i < currentMenu.items.length; i++ ) {
+		const item = currentMenu.items[ i ];
+		if ( item.label === 'File' ) {
+			fileMenu = currentMenu.items[ i ];
+		}
 	}
-
-	const onClearRecent = () => {
-		recents.submenu.clear();
-		config.set( 'recentFiles', [] );
-	};
-	recents.submenu.append( new MenuItem({
-		label: 'Clear recently opened',
-		click: onClearRecent
-	}));
-	Menu.setApplicationMenu( currentMenu );
+	if ( fileMenu ) {
+		for ( let i = 0; i < fileMenu.submenu.items.length; i++ ) {
+			const item = fileMenu.submenu.items[ i ];
+			if ( item.label === 'Open Recent' ) {
+				recents = fileMenu.submenu.items[ i ];
+			}
+		}
+	}
+	if ( recents ) {
+		for ( let i = 0; i < recentFiles.length; i++ ) {
+			const path = recentFiles[ i ];
+			const item = new MenuItem({
+				label: basename( path ),
+				click: openRecentFactory( path )
+			});
+			recents.submenu.append( item );
+		}
+		const onClearRecent = () => {
+			recents.submenu.clear();
+			config.set( 'recentFiles', [] );
+		};
+		recents.submenu.append( new MenuItem({
+			label: 'Clear recently opened',
+			click: onClearRecent
+		}));
+		Menu.setApplicationMenu( currentMenu );
+	}
 }
 
 
