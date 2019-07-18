@@ -11,12 +11,12 @@ import { replaceAndEscapeEquations, replaceEquations } from './replace_equations
 // VARIABLES //
 
 const debug = logger( 'isle:markdown-to-html' );
-const RE_RAW_ATTRIBUTE = /<TeX([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
+const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
 const RE_BACKSLASH = /(^|[^\\])\\($|[^\\])/g;
 
 // Escape backslashes in raw attributes tags:
-const escaper = ( match, p1, p2 ) => {
-	return '<TeX '+p1+' raw='+replace( p2, RE_BACKSLASH, '$1\\\\$2' );
+const escaper = ( match, p1, p2, p3 ) => {
+	return '<'+p1+' '+p2+' raw='+replace( p3, RE_BACKSLASH, '$1\\\\$2' );
 };
 
 
@@ -26,10 +26,13 @@ function toMarkdown( str, { escapeBackslash = false } ) {
 	debug( 'Create tokenizer...' );
 	const tokenizer = new Tokenizer({ escapeBackslash });
 
+	if ( escapeBackslash ) {
+		str = replace( str, RE_RAW_ATTRIBUTE, escaper );
+	}
+
 	const arr = tokenizer.parse( str );
 	str = marked( arr.join( '' ) );
 	if ( escapeBackslash ) {
-		str = replace( str, RE_RAW_ATTRIBUTE, escaper );
 		str = replaceAndEscapeEquations( str );
 	} else {
 		str = replaceEquations( str );
