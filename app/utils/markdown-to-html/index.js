@@ -2,8 +2,6 @@
 
 import logger from 'debug';
 import replace from '@stdlib/string/replace';
-import hasOwnProp from '@stdlib/assert/has-own-property';
-import marked from './marked.js';
 import Tokenizer from './tokenizer.js';
 import { replaceAndEscapeEquations, replaceEquations } from './replace_equations.js';
 
@@ -29,18 +27,11 @@ function toMarkdown( str, { escapeBackslash = false } ) {
 	if ( escapeBackslash ) {
 		str = replace( str, RE_RAW_ATTRIBUTE, escaper );
 	}
-
-	const arr = tokenizer.parse( str );
-	str = marked( arr.join( '' ) );
+	str = tokenizer.parse( str );
 	if ( escapeBackslash ) {
 		str = replaceAndEscapeEquations( str );
 	} else {
 		str = replaceEquations( str );
-	}
-	for ( let key in tokenizer.divHash ) {
-		if ( hasOwnProp( tokenizer.divHash, key ) ) {
-			str = str.replace( key, tokenizer.divHash[ key ]);
-		}
 	}
 	return str;
 }
