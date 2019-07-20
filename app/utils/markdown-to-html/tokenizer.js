@@ -4,6 +4,7 @@ import logger from 'debug';
 import markdownit from 'markdown-it';
 import trim from '@stdlib/string/trim';
 import replace from '@stdlib/string/replace';
+import removeFirst from '@stdlib/string/remove-first';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import { replaceAndEscapeEquations, replaceEquations } from './replace_equations.js';
 
@@ -32,6 +33,8 @@ const md = markdownit({
 	typographer: false
 });
 const RE_LINE_BEGINNING = /\n\s*/g;
+const RE_HTML_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|var)$/;
+const RE_ISLE_INLINE_TAGS = /^(?:Badge|BeaconTooltip|Button|CheckboxInput|Clock|Input|NumberInput|RHelp|SelectInput|SliderInput|Text|TextArea|TextInput|Typewriter)$/;
 
 
 // FUNCTIONS //
@@ -136,10 +139,21 @@ class Tokenizer {
 	_inBetweenTags( char ) {
 		this._current += char;
 		if ( char === '<' && !isWhitespace( this._buffer.charAt( this.pos+1 ) ) ) {
-			const text = this._current.substring( this._openTagEnd, this._current.length-1 );
-			let replacement = this.replaceEquations( md.render( trimLineStarts( text ) ) );
+			let text = this._current.substring( this._openTagEnd, this._current.length-1 );
+			text = trimLineStarts( text );
+			if (
+				RE_HTML_INLINE_TAGS.test( this._openingTagName ) ||
+				RE_ISLE_INLINE_TAGS.test( this._openingTagName )
+			) {
+				debug( 'Render inline markdown...' );
+				text = md.renderInline( text );
+			} else {
+				debug( 'Render block markdown...' );
+				text = md.render( text );
+			}
+			text = this.replaceEquations( text );
 			this._current = this._current.substring( 0, this._openTagEnd ) +
-				replacement + '<';
+			text + '<';
 			if ( this._buffer.charAt( this.pos+1 ) !== '/' ) {
 				this._level += 1;
 				debug( 'IN_BETWEEN_TAGS -> IN_OPENING_TAG_NAME' );
@@ -174,8 +188,10 @@ class Tokenizer {
 
 	_inOpeningTagName( char ) {
 		this._current += char;
-		if ( isWhitespace( char ) || this._buffer.charAt( this.pos+1 ) === '>' ) {
+		const nextChar = this._buffer.charAt( this.pos+1 );
+		if ( isWhitespace( nextChar ) || nextChar === '>' ) {
 			debug( 'IN_OPENING_TAG_NAME -> IN_OPENING_TAG' );
+			this._openingTagName = removeFirst( this._current );
 			this._state = IN_OPENING_TAG;
 		}
 		else if ( char === '.' || char === ':' || char === '/' ) {
