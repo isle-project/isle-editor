@@ -95,7 +95,7 @@ class Tokenizer {
 			!isWhitespace( this._buffer.charAt( pos+1 ) ) && // Avoid mistaking smaller than sign in text as tag opening
 			this._buffer.charAt( pos-1 ) !== '\\' // Allow escaping of left angle brackets
 		) {
-			console.log( 'IN_BASE -> IN_OPENING_TAG_NAME' );
+			debug( 'IN_BASE -> IN_OPENING_TAG_NAME' );
 			this._state = IN_OPENING_TAG_NAME;
 			this._level += 1;
 			this._startTagNamePos = 0;
@@ -114,18 +114,17 @@ class Tokenizer {
 		if ( char === '>' ) {
 			this._level -= 1;
 			if ( this._level === 0 ) {
-				console.log( 'IN_ANGLE_LINK -> IN_BASE' );
+				debug( 'IN_ANGLE_LINK -> IN_BASE' );
 				this._state = IN_BASE;
 				const url = this._current.substring( this._startTagNamePos+1, this._current.length-1 );
 				const before = this._current.substring( 0, this._startTagNamePos );
 				const replacement = this.replaceEquations( md.renderInline( trim( before ) ) ) +
 					' <a href="'+url+'">'+url+'</a>';
-			//	console.log( replacement );
 				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = replacement;
 				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 				this._current = '';
 			} else {
-				console.log( 'IN_ANGLE_LINK -> IN_BETWEEN_TAGS' );
+				debug( 'IN_ANGLE_LINK -> IN_BETWEEN_TAGS' );
 				this._state = IN_BETWEEN_TAGS;
 				const url = this._current.substring( this._startTagNamePos+1, this._current.length-1 );
 				this._current = this._current.substring( 0, this._startTagNamePos ) +
@@ -135,23 +134,20 @@ class Tokenizer {
 	}
 
 	_inBetweenTags( char ) {
-		console.log( "IN BETWEEN")
 		this._current += char;
 		if ( char === '<' && !isWhitespace( this._buffer.charAt( this.pos+1 ) ) ) {
 			const text = this._current.substring( this._openTagEnd, this._current.length-1 );
-			console.log( 'RENDER IN BETWEEN:' );
-			console.log( trimLineStarts( text ) );
 			let replacement = this.replaceEquations( md.render( trimLineStarts( text ) ) );
 			this._current = this._current.substring( 0, this._openTagEnd ) +
 				replacement + '<';
 			if ( this._buffer.charAt( this.pos+1 ) !== '/' ) {
 				this._level += 1;
-				console.log( 'IN_BETWEEN_TAGS -> IN_OPENING_TAG_NAME' );
+				debug( 'IN_BETWEEN_TAGS -> IN_OPENING_TAG_NAME' );
 				this._state = IN_OPENING_TAG_NAME;
 				this._startTagNamePos = this._current.length - 1;
 			} else {
 				this._endTagNewStart = this._current.length - 1;
-				console.log( 'IN_BETWEEN_TAGS -> IN_CLOSING_TAG' );
+				debug( 'IN_BETWEEN_TAGS -> IN_CLOSING_TAG' );
 				this._state = IN_CLOSING_TAG;
 			}
 		}
@@ -167,10 +163,10 @@ class Tokenizer {
 				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
 				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 				this._current = '';
-				console.log( 'IN_CLOSING_TAG -> IN_BASE' );
+				debug( 'IN_CLOSING_TAG -> IN_BASE' );
 				this._state = IN_BASE;
 			} else {
-				console.log( 'IN_CLOSING_TAG -> IN_BETWEEN_TAGS' );
+				debug( 'IN_CLOSING_TAG -> IN_BETWEEN_TAGS' );
 				this._state = IN_BETWEEN_TAGS;
 			}
 		}
@@ -179,11 +175,11 @@ class Tokenizer {
 	_inOpeningTagName( char ) {
 		this._current += char;
 		if ( isWhitespace( char ) || this._buffer.charAt( this.pos+1 ) === '>' ) {
-			console.log( 'IN_OPENING_TAG_NAME -> IN_OPENING_TAG' );
+			debug( 'IN_OPENING_TAG_NAME -> IN_OPENING_TAG' );
 			this._state = IN_OPENING_TAG;
 		}
 		else if ( char === '.' || char === ':' || char === '/' ) {
-			console.log( 'IN_OPENING_TAG_NAME -> IN_OPENING_TAG' );
+			debug( 'IN_OPENING_TAG_NAME -> IN_OPENING_TAG' );
 			this._state = IN_ANGLE_LINK;
 		}
 	}
@@ -193,35 +189,30 @@ class Tokenizer {
 		if ( char === '{' && this._buffer.charAt( this.pos-1 ) === '=' ) {
 			this._JSX_ATTRIBUTE_START = this._current.length;
 			this._braceLevel = 1;
-			console.log( 'IN_OPENING_TAG -> IN_JSX_ATTRIBUTE' );
+			debug( 'IN_OPENING_TAG -> IN_JSX_ATTRIBUTE' );
 			this._state = IN_JSX_ATTRIBUTE;
 		}
 		else if ( char === '>' ) {
 			this._openTagEnd = this._current.length;
-			//this._openTagName = this._current.substring( 1, this._current.length - 2 );
-			// console.log( this._openTagName );
 			if ( this._buffer.charAt( this.pos-1 ) === '/' ) {
 				this._level -= 1;
-				console.log( 'Level: '+this._level );
 				if ( this._level === 0 ) {
-					console.log( 'Add unprocessed: ' );
-					console.log( this._current );
 					this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
 					this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 					this._current = '';
-					console.log( 'IN_OPENING_TAG -> IN_BASE' );
+					debug( 'IN_OPENING_TAG -> IN_BASE' );
 					this._state = IN_BASE;
 				} else {
-					console.log( 'IN_OPENING_TAG: IN_BETWEEN_TAGS' );
+					debug( 'IN_OPENING_TAG: IN_BETWEEN_TAGS' );
 					this._state = IN_BETWEEN_TAGS;
 				}
 			} else {
-				console.log( 'IN_OPENING_TAG -> IN_BETWEEN_TAGS' );
+				debug( 'IN_OPENING_TAG -> IN_BETWEEN_TAGS' );
 				this._state = IN_BETWEEN_TAGS;
 			}
 		} else if ( isQuotationMark( char ) ) {
 			this._stringOpener = char;
-			console.log( 'IN_OPENING_TAG -> IN_STRING_ATTRIBUTE' );
+			debug( 'IN_OPENING_TAG -> IN_STRING_ATTRIBUTE' );
 			this._state = IN_STRING_ATTRIBUTE;
 		}
 	}
@@ -229,7 +220,7 @@ class Tokenizer {
 	_inStringAttribute( char ) {
 		this._current += char;
 		if ( char === this._stringOpener && this._buffer.charAt( this.pos-1 ) !== '/' ) {
-			console.log( 'IN_STRING_ATTRIBUTE -> IN_OPENING_TAG' );
+			debug( 'IN_STRING_ATTRIBUTE -> IN_OPENING_TAG' );
 			this._state = IN_OPENING_TAG;
 		}
 	}
@@ -243,9 +234,25 @@ class Tokenizer {
 			this._braceLevel -= 1;
 		}
 		if ( this._braceLevel === 0 && this._buffer.charAt( this.pos-1 ) === '`' && char === '}' ) {
-			console.log( 'IN_JSX_STRING -> IN_OPENING_TAG' );
+			debug( 'IN_JSX_STRING -> IN_OPENING_TAG' );
 			this._state = IN_OPENING_TAG;
 		}
+	}
+
+	_replaceInnerJSXExpressions() {
+		const RE_OUTER_TAG = /<([^/>]+)[\s\S]*?>[\s\S]+?<\/\1>|<([\s\S]+?)\/>/g;
+		let inner = this._current.substring( this._JSX_ATTRIBUTE_START );
+		let match = RE_OUTER_TAG.exec( inner );
+		while ( match !== null ) {
+			const tokenizer = new Tokenizer({
+				escapeBackslash: this.escapeBackslash
+			});
+			let replacement = tokenizer.parse( match[ 0 ] );
+			inner = inner.substring( 0, match.index ) +
+				replacement + inner.substring( match.index + match[0].length );
+			match = RE_OUTER_TAG.exec( inner );
+		}
+		this._current = this._current.substring( 0, this._JSX_ATTRIBUTE_START ) + inner;
 	}
 
 	_inJSXObject( char ) {
@@ -257,7 +264,8 @@ class Tokenizer {
 			this._braceLevel -= 1;
 		}
 		if ( this._braceLevel === 0 ) {
-			console.log( 'IN_JSX_OBJECT -> IN_OPENING_TAG' );
+			debug( 'IN_JSX_OBJECT -> IN_OPENING_TAG' );
+			this._replaceInnerJSXExpressions();
 			this._state = IN_OPENING_TAG;
 		}
 	}
@@ -271,7 +279,8 @@ class Tokenizer {
 			this._braceLevel -= 1;
 		}
 		if ( this._braceLevel === 0 && this._buffer.charAt( this.pos-1 ) === ']' && char === '}' ) {
-			console.log( 'IN_JSX_ARRAY -> IN_OPENING_TAG' );
+			debug( 'IN_JSX_ARRAY -> IN_OPENING_TAG' );
+			this._replaceInnerJSXExpressions();
 			this._state = IN_OPENING_TAG;
 		}
 	}
@@ -285,7 +294,7 @@ class Tokenizer {
 			this._braceLevel -= 1;
 		}
 		if ( this._braceLevel === 0 ) {
-			console.log( 'IN_JSX_OTHER -> IN_OPENING_TAG' );
+			debug( 'IN_JSX_OTHER -> IN_OPENING_TAG' );
 			this._state = IN_OPENING_TAG;
 		}
 	}
@@ -305,14 +314,9 @@ class Tokenizer {
 				escapeBackslash: this.escapeBackslash
 			});
 			let replacement = tokenizer.parse( inner );
-			for ( let key in tokenizer.divHash ) {
-				if ( hasOwnProp( tokenizer.divHash, key ) ) {
-					replacement = replacement.replace( key, tokenizer.divHash[ key ]);
-				}
-			}
 			this._current = this._current.substring( 0, this._JSX_ATTRIBUTE_START ) +
 				replacement + char;
-			console.log( 'IN_JSX_EXPRESSION -> IN_OPENING_TAG' );
+			debug( 'IN_JSX_EXPRESSION -> IN_OPENING_TAG' );
 			this._state = IN_OPENING_TAG;
 		}
 	}
@@ -320,30 +324,32 @@ class Tokenizer {
 	_inJSXAttribute( char ) {
 		this._current += char;
 		if ( char === '`' ) {
-			console.log( 'IN_JSX_ATTRIBUTE -> IN_JSX_STRING' );
+			debug( 'IN_JSX_ATTRIBUTE -> IN_JSX_STRING' );
 			this._state = IN_JSX_STRING;
 		}
 		else if ( char === '{' ) {
-			console.log( 'IN_JSX_ATTRIBUTE -> IN_JSX_OBJECT' );
+			debug( 'IN_JSX_ATTRIBUTE -> IN_JSX_OBJECT' );
 			this._state = IN_JSX_OBJECT;
 		}
 		else if ( char === '[' ) {
-			console.log( 'IN_JSX_ATTRIBUTE -> IN_JSX_ARRAY' );
+			debug( 'IN_JSX_ATTRIBUTE -> IN_JSX_ARRAY' );
 			this._state = IN_JSX_ARRAY;
 		}
 		else if ( char === '<' ) {
-			console.log( 'IN_JSX_ATTRIBUTE -> IN_JSX_EXPRESSION' );
+			debug( 'IN_JSX_ATTRIBUTE -> IN_JSX_EXPRESSION' );
 			this._state = IN_JSX_EXPRESSION;
 		}
 		else if ( !isWhitespace( char ) ) {
-			console.log( 'IN_JSX_ATTRIBUTE -> IN_JSX_OTHER' );
+			debug( 'IN_JSX_ATTRIBUTE -> IN_JSX_OTHER' );
 			this._state = IN_JSX_OTHER;
 		}
 	}
 
 	parse( str ) {
-		console.log( 'Transform the following string: ' );
-		console.log( str );
+		debug( 'Transform the following string: ' );
+		debug( '---' );
+		debug( str );
+		debug( '---' );
 		this.setup( str );
 		for ( this.pos = 0; this.pos < str.length; this.pos++ ) {
 			let char = str.charAt( this.pos );
@@ -389,24 +395,21 @@ class Tokenizer {
 				break;
 			}
 			if ( this.pos === str.length - 1 ) {
-				console.log( 'Remainder of input string: ' );
-				console.log( this._current );
+				debug( 'Remainder of input string: '+this._current );
 				this.tokens.push( this._current );
 			}
 		}
-		console.log( this.tokens );
 		let out = this.tokens.join( '' );
 		out = md.render( out );
-		console.log( out );
 		for ( let key in this.divHash ) {
 			if ( hasOwnProp( this.divHash, key ) ) {
 				out = out.replace( key, this.divHash[ key ]);
 			}
 		}
-		console.log( 'Processed string: ' );
-		console.log( '---' );
-		console.log( out );
-		console.log( '---' );
+		debug( 'Processed string: ' );
+		debug( '---' );
+		debug( out );
+		debug( '---' );
 		return out;
 	}
 }
