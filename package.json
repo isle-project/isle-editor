@@ -173,7 +173,7 @@
     "react-joyride": "2.1.1",
     "react-json-tree": "^0.11.2",
     "react-list": "^0.8.11",
-    "react-monaco-editor": "^0.26.1",
+    "react-monaco-editor": "^0.27.0",
     "react-notification-system": "^0.2.7",
     "react-player": "^1.11.1",
     "react-plotly.js": "^2.3.0",
