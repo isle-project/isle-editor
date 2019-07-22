@@ -1,36 +1,70 @@
-sudo: false
-language: node_js
-node_js:
-  - "9"
-  - "10"
-  - "11"
-  - "12"
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode10.2
+      language: node_js
+      node_js: "10"
+      env:
+        - ELECTRON_CACHE=$HOME/.cache/electron
+        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
-cache: npm
+    - os: linux
+      services: docker
+      node_js:
+        - "9"
+        - "10"
+        - "11"
+        - "12"
+      addons:
+        apt:
+          sources:
+          - ubuntu-toolchain-r-test
+          packages:
+          - g++-4.8
+      language: generic
 
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
+cache:
+  directories:
+    - node_modules
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
 
 before_install:
   - npm i -g npm@6.9.0
 
 install:
-  - export CXX="g++-4.8"
-  - npm install
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="g++-4.8"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; npm install; fi
+  # On Linux, initialize "virtual display"
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16";
 
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start &
-  - sleep 3
+  # On Linux, create a "virtual display" for browsers to work properly
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
 
 script:
   - npm run lint
   - npm run test
+  - |
+    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+      docker run --rm \
+        --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_') \
+        -v ${PWD}:/project \
+        -v ~/.cache/electron:/root/.cache/electron \
+        -v ~/.cache/electron-builder:/root/.cache/electron-builder \
+        electronuserland/builder:wine \
+        /bin/bash -c "npm --link-duplicates --pure-lockfile && npm release --linux --win"
+    else
+      npm release
+    fi
+before_cache:
+  - rm -rf $HOME/.cache/electron-builder/wine
 
 after_script:
   - npm run coverage
+
+branches:
+  except:
+    - "/^v\\d+\\.\\d+\\.\\d+$/"
