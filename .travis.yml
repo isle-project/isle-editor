@@ -36,7 +36,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="g++-4.8"; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm install; fi
   # On Linux, initialize "virtual display"
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16";
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"; fi
 
 before_script:
   # On Linux, create a "virtual display" for browsers to work properly
