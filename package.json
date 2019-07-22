@@ -306,6 +306,12 @@
     },
     "rpm": {
       "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "isle-project",
+      "repo": "isle-editor",
+      "private": false
     }
   }
 }
