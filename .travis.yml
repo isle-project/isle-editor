@@ -52,6 +52,7 @@ cache:
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="g++-4.8"; fi
+  - node `npm prefix -g`/node_modules/npm/bin/npm-cli.js i -g npm@latest
 
 install:
   - npm install
