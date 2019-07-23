@@ -24,13 +24,13 @@ A desktop-application that can be used to author and preview *integrated statist
 
 ### Binaries
 
-Current version: v0.20.1.
+Current version: v0.21.0.
 
-| OS      | x64 | ia32 |
-| ------- | --- | --- |
-| Linux   | [Download][linux-x64] | [Download][linux-ia32] |
-| OS X    | [Download][darwin-x64] |  |
-| Windows | [Download][win32-x64] | [Download][win32-ia32] |
+[Download the isle-editor for Windows (.exe)][windows]
+
+[Download the isle-editor for macOS (.dmg)][macOS]
+
+[Download the isle-editor for Linux (AppImage)][linux-appimage] (alternatives: [.deb][linux-deb], [.rpm][linux-rpm])
 
 ### Build from Source
 
@@ -149,11 +149,12 @@ The following icons are used under a Creative Commons CCBY license.
 [windows-reqs]: https://github.com/feross/cross-zip#windows-users
 [license]: https://raw.githubusercontent.com/isle-project/isle-editor/master/LICENSE.md
 [node-js]: https://nodejs.org/en/
-[darwin-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-darwin-x64.zip
-[linux-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-linux-x64.zip
-[linux-ia32]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-linux-ia32.zip
-[win32-ia32]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-win32-ia32.zip
-[win32-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-win32-x64.zip
+
+[macOS]:
+[linux-appimage]:
+[linux-rpm]:
+[linux-deb]: 
+[windows]:
 
 [dependencies-image]: https://img.shields.io/david/isle-project/isle-editor.svg
 [dependencies-url]: https://david-dm.org/isle-project/isle-editor/master
