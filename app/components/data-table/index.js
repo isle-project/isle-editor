@@ -576,7 +576,7 @@ DataTable.defaultProps = {
 		'info': [],
 		'name': '',
 		'variables': null,
-		'showInfo': false
+		'showOnStartup': false
 	},
 	deletable: false,
 	filterable: true,
