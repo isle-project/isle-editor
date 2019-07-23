@@ -79,11 +79,6 @@ To bundle for all operating systems, run
 $ npm run package-all
 ```
 
-To bundle the editor as a standalone application for all operating systems, you will need the following:
-
-* On macOS/Linux, the `unzip` program and [wine][wine] (version `>= 1.6`), a tool for running Windows applications
-* On Windows, both [.NET Framework 4.5 or higher and Powershell 3 or higher][windows-reqs]
-
 #### Tests
 
 The ISLE editor uses [Jest][jest] for unit tests. To run the tests, execute the following command in the top-level application directory:
@@ -101,9 +96,6 @@ $ npm run test -- -t "name-of-spec"
 [electron]: http://electron.atom.io/
 [git]: http://git-scm.com/
 [jest]: https://jestjs.io
-[wine]: https://www.winehq.org/
-[wine]: https://www.winehq.org/
-[windows-reqs]: https://github.com/feross/cross-zip#windows-users
 [node-js]: https://nodejs.org/en/
 
 [macOS]: https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE-Editor-0.24.0.dmg
