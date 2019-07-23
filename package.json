@@ -273,7 +273,7 @@
       "ext": "isle",
       "name": "ISLE",
       "description": "ISLE Lesson Files.",
-      "icon": "icons/icon.ico",
+      "icon": "app/app.ico",
       "role": "Editor"
     },
     "directories": {
