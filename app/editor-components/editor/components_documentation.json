@@ -670,7 +670,7 @@
           "info": [],
           "name": "",
           "variables": null,
-          "showInfo": false
+          "showOnStartup": false
         }
       },
       {

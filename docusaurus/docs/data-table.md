@@ -29,7 +29,7 @@ A component rendering data in a tabular display. Built on top of [react-table](h
   'info': [],
   'name': '',
   'variables': null,
-  'showInfo': false
+  'showOnStartup': false
 }`.
 * __deletable__ | `boolean`: controls whether columns for which no `info` exist have a button which when clicked calls the `onColumnDelete` callback function. Default: `false`.
 * __filterable__ | `boolean`: controls whether columns are filterable. Default: `true`.
