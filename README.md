@@ -24,13 +24,13 @@ A desktop-application that can be used to author and preview *integrated statist
 
 ### Binaries
 
-Current version: v0.21.0.
+Current version: v0.22.0.
 
 [Download the isle-editor for Windows (.exe)][windows]
 
 [Download the isle-editor for macOS (.dmg)][macOS]
 
-[Download the isle-editor for Linux (AppImage)][linux-appimage] (alternatives: [.deb][linux-deb], [.rpm][linux-rpm])
+[Download the isle-editor for Linux (.AppImage)][linux-appimage] (alternatives: [.deb][linux-deb], [.rpm][linux-rpm])
 
 ### Build from Source
 
