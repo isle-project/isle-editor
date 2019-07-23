@@ -22,7 +22,15 @@ matrix:
           sources:
           - ubuntu-toolchain-r-test
           packages:
-          - g++-4.8
+            - gcc-multilib
+            - g++-8
+            - g++-multilib
+            - icnsutils
+            - graphicsmagick
+            - xz-utils
+            - xorriso
+            - rpm
+
       language: generic
 
     - os: windows
