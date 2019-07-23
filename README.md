@@ -150,11 +150,11 @@ The following icons are used under a Creative Commons CCBY license.
 [license]: https://raw.githubusercontent.com/isle-project/isle-editor/master/LICENSE.md
 [node-js]: https://nodejs.org/en/
 
-[macOS]:
-[linux-appimage]:
-[linux-rpm]:
-[linux-deb]: 
-[windows]:
+[macOS]: https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE-Editor-0.22.0.dmg
+[linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE-Editor-0.22.0-x86_64.AppImage
+[linux-rpm]: https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE.Editor-0.22.0-x86_64.rpm
+[linux-deb]: https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE.Editor-0.22.0-amd64.deb
+[windows]:https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE-Editor-0.22.0.exe
 
 [dependencies-image]: https://img.shields.io/david/isle-project/isle-editor.svg
 [dependencies-url]: https://david-dm.org/isle-project/isle-editor/master
