@@ -43,7 +43,6 @@ cache:
     - $HOME/.cache/electron-builder
 
 before_install:
-  - npm i -g npm@6.9.0
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="g++-4.8"; fi
 
 install:
