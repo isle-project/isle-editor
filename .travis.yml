@@ -56,7 +56,7 @@ before_install:
   - npm i -g npm@latest
 
 install:
-  - npm install
+  - travis_wait npm install
   # On Linux, initialize "virtual display"
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
