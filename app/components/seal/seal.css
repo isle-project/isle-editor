@@ -52,7 +52,7 @@
 	top: 0;
 	bottom: 0;
 	margin: auto;
-	border:solid inset 5px black;
+	border: solid inset 5px black;
 	z-index: 2;
 }
 
@@ -66,7 +66,7 @@
 	top: 0;
 	bottom: 0;
 	margin: auto;
-	border:solid 2px black;
+	border: solid 2px black;
 	z-index: 2;
 }
 
@@ -126,7 +126,7 @@
 	height: 1px;
 	width: 100%;
 	background: silver;
-	border-top:solid 2px linear-gradient(to right, silver, black, silver);
+	border-top: solid 2px linear-gradient(to right, silver, black, silver);
 }
 
 
@@ -148,7 +148,7 @@
 	right: 0;
 	top: 0;
 	bottom: 2%;
-	margin:auto;
+	margin: auto;
 	width: 94%;
 	height: 94%;
 	font-size: 18px;
@@ -163,7 +163,7 @@
 	right: 0;
 	top: 0;
 	bottom: 0;
-	margin:auto;
+	margin: auto;
 	width: 90%;
 	height: 90%;
 	font-size: 18px;

@@ -2,7 +2,13 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import './background.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:background' );
 
 
 // MAIN //
@@ -93,13 +99,10 @@ class Background extends Component {
 			parent.style.overflow = 'hidden';
 
 			let h = parent.clientHeight;
-			global.parent = parent;
-
-			if (h === 0) {
-				alert('Please define the height of the div which contains the Background component');
+			if ( h === 0 ) {
 				parent.style.width = '600px';
 				parent.style.height = '320px';
-				console.log('You have to define width and height for the parent element of the background');
+				debug( 'You have to define width and height for the parent element of the background' );
 			}
 		}
 	}

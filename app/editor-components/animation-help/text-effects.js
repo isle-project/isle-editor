@@ -3,7 +3,8 @@
 import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
-// VARIABLES
+
+// VARIABLES//
 
 const styles = [
 	'tv-screen-effect',
@@ -18,7 +19,8 @@ const styles = [
 ];
 
 
-// MAIN //
+// FUNCTIONS //
+
 function getEffect(ndx) {
 	const general = {
 		fontSize: 50,
@@ -32,7 +34,7 @@ function getEffect(ndx) {
 	return (
 		<div>
 			<div style={general} className={style}>{style}</div>
-			<div style={{marginTop: 35, float: 'left', fontSize: 20, width: '40%', textAlign: 'right'}}>
+			<div style={{ marginTop: 35, float: 'left', fontSize: 20, width: '40%', textAlign: 'right' }}>
 				<CopyToClipboard text={style}>
 				<span title="copy to clipboard" className="copy" />
 				</CopyToClipboard>
@@ -51,11 +53,11 @@ function getEffects() {
 }
 
 
+// MAIN //
+
 const TextEffects = () => {
-	var list = getEffects();
-
+	const list = getEffects();
 	const template = 'style = {{ fontSize: 60, animationDuration: \'5s\', backgroundImage: \'url(linear-gradient( 45deg, blue, yellow, red, white)\' }}';
-
 	return (
 		<div>
 			<div>Click the Clipboard button and copy the value in the className attribute</div>
@@ -68,9 +70,8 @@ const TextEffects = () => {
 			<div>In case you want to modify animation speed, background-image, you can copy the respective style template into your element</div>
 			<hr />
 			<div>
-				{ list }
+				{list}
 			</div>
-
 		</div>
 	);
 };

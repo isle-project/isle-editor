@@ -24,7 +24,6 @@ class MetricsContingencyTable extends Component {
 
 	calcCellCount( row, col ) {
 		const users = this.state.users;
-		console.log( users );
 		const keys = objectKeys( users );
 		let count = 0;
 		for ( let i = 0; i < keys.length; i++ ) {
@@ -71,8 +70,6 @@ class MetricsContingencyTable extends Component {
 						for={[ this.props.row, this.props.col ]}
 						returnFullObject
 						onDatum={( datum, idx ) => {
-							console.log( datum );
-							console.log( idx );
 							if ( datum.owner ) {
 								return;
 							}

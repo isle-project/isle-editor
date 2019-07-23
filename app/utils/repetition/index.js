@@ -1,6 +1,16 @@
+// MODULES //
+
+import logger from 'debug';
+
+// VARIABLES //
+
+const debug = logger( 'isle:repetition' );
+
+
 // MAIN //
 
 /**
+* A repetition array.
 */
 class Repetition extends Array {
 	constructor( props ) {
@@ -13,18 +23,16 @@ class Repetition extends Array {
 			variation: 0.1,
 			...props
 		};
-		console.log( this.props );
-
 		this.list = [];
 		this.remaining = [];
 		this.done = new Set();
 
-		console.log( 'Create repeater...' );
+		debug( 'Create repeater...' );
 		this.createList();
 	}
 
 	nextElement( actNdx ) {
-		console.log( 'Advance to the next element: '+this.remaining[ 0 ] );
+		debug( 'Advance to the next element: '+this.remaining[ 0 ] );
 		var x = this.remaining.shift();
 		this[ actNdx ] = x;
 	}
@@ -32,16 +40,16 @@ class Repetition extends Array {
 	// set random element
 	randomElement( x ) {
 		var el = parseInt( Math.random() * this.remaining.length, 10 );
-		console.log( 'Set to randomly selected value ' + this.remaining[ el ] );
+		debug( 'Set to randomly selected value ' + this.remaining[ el ] );
 		this[ x ] = this.remaining[ el ];
 		this.remaining.splice(el, 1);
 	}
 
 	// sets element
 	setElement( x ) {
-		console.log( 'Change element at position: '+x );
+		debug( 'Change element at position: '+x );
 		let selected = this[ x ];
-		console.log( selected );
+		debug( selected );
 		const actual = this.list[ selected ];
 		actual.ct += 1;
 		if ( actual.ct === this.props.frequency ) {
@@ -99,7 +107,6 @@ class Repetition extends Array {
 				this.remaining.push( i );
 			}
 		}
-		console.log( this.remaining );
 	}
 }
 
