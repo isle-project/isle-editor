@@ -1,13 +1,13 @@
 // MODULES //
 
-import { app, dialog, Menu, MenuItem, shell } from 'electron';
+import { app, Menu, MenuItem } from 'electron';
 import { basename } from 'path';
 import Store from 'electron-store';
 import * as actions from './app/main/actions.js';
 import configureMenu from './app/main/configure_menu.js';
 import createWindow from './app/main/create_window.js';
 import window from './app/main/window_manager.js';
-import autoUpdater from './app/main/auto_updater.js';
+import { autoUpdater } from 'electron-updater';
 
 
 // VARIABLES //
@@ -34,21 +34,9 @@ const recentFiles = config.get( 'recentFiles' ) || [];
 */
 function onReady() {
 	console.log( 'Application is ready...' ); // eslint-disable-line no-console
+	autoUpdater.checkForUpdatesAndNotify();
 	createWindow( pathToOpen, () => {
 		isReady = true;
-		autoUpdater( ( err, newVersion ) => {
-			if ( err ) return;
-			const confirm = dialog.showMessageBox({
-				type: 'info',
-				title: 'Update available',
-				message: `A new version (${newVersion}) of the ISLE Editor is available.`,
-				detail: 'Do you want to download it now?',
-				buttons: [ 'Yes', 'No' ]
-			});
-			if ( confirm === 0 ) {
-				shell.openExternal( 'https://github.com/isle-project/isle-editor/releases' );
-			}
-		});
 	});
 	Menu.setApplicationMenu( Menu.buildFromTemplate( configureMenu({ app }) ) );
 	addRecentFilesMenu();
