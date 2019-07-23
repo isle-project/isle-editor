@@ -64,7 +64,7 @@
     "start": "cross-env NODE_ENV=production electron ./",
     "package": "npm run build && electron-builder build --publish never",
     "package-all": "npm run build && electron-builder build -mwl",
-    "package-ci": "npm run build && electron-builder --publish onTagOrDraft",
+    "package-ci": "npm run build && electron-builder --publish always",
     "package-linux": "npm run build && electron-builder build --linux",
     "package-win": "npm run build && electron-builder build --win --x64",
     "start-main-dev": "cross-env HOT=1 NODE_ENV=development electron -r @babel/register ./main.development.js",
