@@ -1,3 +1,5 @@
+/* eslint-disable no-process-env */
+
 // MODULES //
 
 import { app, Menu, MenuItem } from 'electron';
@@ -26,6 +28,8 @@ else if ( config.has( 'mostRecentPath' ) ) {
 
 const recentFiles = config.get( 'recentFiles' ) || [];
 
+autoUpdater.allowPrerelease = true;
+
 
 // FUNCTIONS //
 
@@ -34,7 +38,11 @@ const recentFiles = config.get( 'recentFiles' ) || [];
 */
 function onReady() {
 	console.log( 'Application is ready...' ); // eslint-disable-line no-console
-	autoUpdater.checkForUpdatesAndNotify();
+	if ( process.env.NODE_ENV === 'development' ) {
+		autoUpdater.checkForUpdates();
+	} else {
+		autoUpdater.checkForUpdatesAndNotify();
+	}
 	createWindow( pathToOpen, () => {
 		isReady = true;
 	});
