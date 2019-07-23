@@ -8,13 +8,13 @@ You may either download prebuilt binaries of the ISLE editor or built it yoursel
 
 ## Binaries
 
-Current version: _v0.20.1_.
+Current version: _v0.24.0_.
 
-| OS      | x64 | ia32 |
-| ------- | --- | --- |
-| Linux   | [Download][linux-x64] | [Download][linux-ia32] |
-| OS X    | [Download][darwin-x64] |  |
-| Windows | [Download][win32-x64] | [Download][win32-ia32] |
+[Download the isle-editor for Windows (.exe)][windows]
+
+[Download the isle-editor for macOS (.dmg)][macOS]
+
+[Download the isle-editor for Linux (.AppImage)][linux-appimage] (alternatives: [.deb][linux-deb], [.rpm][linux-rpm])
 
 ## Build from Source
 
@@ -106,8 +106,8 @@ $ npm run test -- -t "name-of-spec"
 [windows-reqs]: https://github.com/feross/cross-zip#windows-users
 [node-js]: https://nodejs.org/en/
 
-[darwin-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-darwin-x64.zip
-[linux-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-linux-x64.zip
-[linux-ia32]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-linux-ia32.zip
-[win32-ia32]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-win32-ia32.zip
-[win32-x64]: https://github.com/isle-project/isle-editor/releases/download/v0.20.1/ISLE.Editor-win32-x64.zip
+[macOS]: https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE-Editor-0.24.0.dmg
+[linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE-Editor-0.24.0-x86_64.AppImage
+[linux-rpm]: https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE.Editor-0.24.0-x86_64.rpm
+[linux-deb]: https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE.Editor-0.24.0-amd64.deb
+[windows]:https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE-Editor-0.24.0.exe
