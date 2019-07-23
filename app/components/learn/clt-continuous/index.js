@@ -552,6 +552,7 @@ class ContinuousCLT extends Component {
 	}
 
 	render() {
+		const title = <span>Probability Calculations for {this.state.distFormula}</span>;
 		return (
 			<div>
 				<Container>
@@ -582,7 +583,7 @@ class ContinuousCLT extends Component {
 						</Col>
 					</Row>
 					<Row>
-						<h3 className="center">Probability Calculations</h3>
+						<h3 className="center">{title}</h3>
 					</Row>
 					<Row>
 						<Col md={6}>
