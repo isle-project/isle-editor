@@ -79,7 +79,7 @@ before_script:
 script:
   - npm run lint
   - npm run test
-  - npm run package-ci
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then npm run package-ci; fi
 
 after_script:
   - npm run coverage
