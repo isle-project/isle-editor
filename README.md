@@ -24,7 +24,7 @@ A desktop-application that can be used to author and preview *integrated statist
 
 ### Binaries
 
-Current version: v0.27.0.
+Current version: v0.28.0.
 
 [Download the isle-editor for Windows (.exe)][windows]
 
@@ -143,11 +143,11 @@ The following icons are used under a Creative Commons CCBY license.
 [license]: https://raw.githubusercontent.com/isle-project/isle-editor/master/LICENSE.md
 [node-js]: https://nodejs.org/en/
 
-[macOS]: https://github.com/isle-project/isle-editor/releases/download/v0.27.0/ISLE-Editor-0.27.0.dmg
-[linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/v0.27.0/ISLE-Editor-0.27.0-x86_64.AppImage
-[linux-rpm]: https://github.com/isle-project/isle-editor/releases/download/v0.27.0/ISLE.Editor-0.27.0-x86_64.rpm
-[linux-deb]: https://github.com/isle-project/isle-editor/releases/download/v0.27.0/ISLE.Editor-0.27.0-amd64.deb
-[windows]:https://github.com/isle-project/isle-editor/releases/download/v0.27.0/ISLE-Editor-0.27.0.exe
+[macOS]: https://github.com/isle-project/isle-editor/releases/download/v0.28.0/ISLE-Editor-0.28.0.dmg
+[linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/v0.28.0/ISLE-Editor-0.28.0-x86_64.AppImage
+[linux-rpm]: https://github.com/isle-project/isle-editor/releases/download/v0.28.0/ISLE.Editor-0.28.0-x86_64.rpm
+[linux-deb]: https://github.com/isle-project/isle-editor/releases/download/v0.28.0/ISLE.Editor-0.28.0-amd64.deb
+[windows]:https://github.com/isle-project/isle-editor/releases/download/v0.28.0/ISLE-Editor-0.28.0.exe
 
 [dependencies-image]: https://img.shields.io/david/isle-project/isle-editor.svg
 [dependencies-url]: https://david-dm.org/isle-project/isle-editor/master
