@@ -20,7 +20,23 @@ The editor is divided into two panes. On the left is the raw text that gets comp
 
 ## File Preamble
 
-At the top of an ISLE file is a [YAML](https://en.wikipedia.org/wiki/YAML) preamble, bounded by lines of three hyphens at the top and bottom. The preamble contains a variety of meta-information on the lesson, as well as variables that can be manipulated. Basic meta-information includes the **title**, **author**, and **date** of creation. These can be edited as desired. Other important components of the preamble, which we will cover in subsequent tutorials, include **state**, **require**, and **server**.
+At the top of an ISLE file is a [YAML](https://en.wikipedia.org/wiki/YAML) preamble, bounded by lines of three hyphens at the top and bottom. The preamble contains a variety of meta-information on the lesson, as well as variables that can be manipulated. Basic meta-information includes the **title**, **author**, and **date** of creation. These can be edited as desired. Other important components of the preamble, which we will cover in subsequent tutorials, include **state** and **require**.
+
+## Linking to your ISLE Account
+
+Before you upload your first lesson, you need to link your local ISLE editor with your online ISLE account. 
+
+1. In the top right of the ISLE editor, click **Settings**
+2. Under **Server Address**, enter the url for the ISLE server on which you have an account. Unless you have specifically set up a different server, this will be `https://isle.heinz.cmu.edu`
+3. Under **Email** enter the email you used to create your ISLE account.
+4. Under **Password**, enter the password you use for your ISLE account.
+5. Click **Connect**.
+
+![Connecting](assets/gifs/connecting_to_isle.gif)
+
+### Servers
+
+You've now linked your editor to the server to which you will upload ISLE lessons. The `server` field of the preamble, on the other hand, specifies the ISLE server that runs user interactions with your ISLE lesson. Generally, these two servers will be the same, and currently you should use `https://isle.heinz.cmu.edu` unless you have specifically set up a different server.
 
 ## Exporting/Uploading the Lesson
 
