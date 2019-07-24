@@ -1,0 +1,35 @@
+image: Visual Studio 2017
+
+platform:
+  - x64
+
+environment:
+  matrix:
+    - nodejs_version: 12
+  GH_TOKEN:
+    secure: FSZdxh2QjPW19BxE8wxCoCeH6vZUV10DPJN2F42p4Q9vdrGZ4iD3VqkJvtFbW+AK
+
+cache:
+  - node_modules
+  - '%USERPROFILE%\.electron'
+
+matrix:
+  fast_finish: true
+
+build: off
+
+version: '{build}'
+
+shallow_clone: true
+
+clone_depth: 1
+
+install:
+  - ps: Install-Product node $env:nodejs_version x64
+  - set CI=true
+  - npm install
+
+test_script:
+  - npm run test
+  - npm run package-ci
+  - npm run lint
