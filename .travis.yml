@@ -55,7 +55,7 @@ before_install:
   - npm config rm https-proxy
 
 install:
-  - travis_wait npm install
+  - travis_wait 60 npm install
   # On Linux, initialize "virtual display"
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
