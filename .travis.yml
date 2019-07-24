@@ -52,6 +52,9 @@ cache:
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="g++-4.8"; fi
+  - yarn config delete proxy
+  - npm config rm proxy
+  - npm config rm https-proxy
 
 install:
   - travis_wait yarn --ignore-engines
