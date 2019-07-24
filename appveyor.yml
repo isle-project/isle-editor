@@ -30,6 +30,9 @@ install:
   - npm install
 
 test_script:
-  - npm run test
-  - npm run package-ci
   - npm run lint
+  - npm run test
+
+after_test:
+  - ps: if($env:appveyor_repo_tag -eq 'True') { npm run package-ci } else { echo "Not packaging because not a new tag commit" }
+  - npm run coverage
