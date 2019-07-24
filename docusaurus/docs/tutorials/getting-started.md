@@ -1,7 +1,7 @@
 ---
 id: getting-started
-title: Getting Started
-sidebar_label: Getting Started
+title: Setting Up an Account and Course
+sidebar_label: Setting Up
 ---
 
 ## Creating an ISLE Account

@@ -1,7 +1,7 @@
 ---
 id: question-components
-title: Question Components
-sidebar_label: Question Components
+title: How to Use Questions
+sidebar_label: Using Questions
 ---
 
 ISLE provides a wide variety of question components that allow different types of input, from numeric values and free text, to matching and multiple choice. Complete documentation of the different question types can be found in the [ISLE docs](https://isledocs.com/docs/free-text-question) under **Question Components**. In this tutorial, we will cover basic uses of some of the common kinds. For more customization options, see the documentation for each question component.
