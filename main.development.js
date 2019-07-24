@@ -10,6 +10,7 @@ import configureMenu from './app/main/configure_menu.js';
 import createWindow from './app/main/create_window.js';
 import window from './app/main/window_manager.js';
 import { autoUpdater } from 'electron-updater';
+import { version as currentVersion } from './package.json';
 
 
 // VARIABLES //
@@ -29,6 +30,7 @@ else if ( config.has( 'mostRecentPath' ) ) {
 const recentFiles = config.get( 'recentFiles' ) || [];
 
 autoUpdater.allowPrerelease = true;
+autoUpdater.currentVersion = currentVersion;
 
 
 // FUNCTIONS //
@@ -38,9 +40,7 @@ autoUpdater.allowPrerelease = true;
 */
 function onReady() {
 	console.log( 'Application is ready...' ); // eslint-disable-line no-console
-	if ( process.env.NODE_ENV === 'development' ) {
-		autoUpdater.checkForUpdates();
-	} else {
+	if ( process.env.NODE_ENV === 'production' ) {
 		autoUpdater.checkForUpdatesAndNotify();
 	}
 	createWindow( pathToOpen, () => {
