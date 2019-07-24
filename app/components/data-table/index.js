@@ -494,7 +494,7 @@ class DataTable extends Component {
 								<h4 className='title-button-h4'
 									onClick={this.showInfo}
 								>
-									{this.props.dataInfo.name} Data
+									{this.props.dataInfo.name ? this.props.dataInfo.name : 'Data'}
 								</h4>
 							</Button>
 						</OverlayTrigger>
@@ -502,7 +502,7 @@ class DataTable extends Component {
 					</div> : null}
 					{ this.props.dataInfo.info.length === 0 ?
 						<h4 className="title-nobutton-h4">
-							{this.props.dataInfo.name} Data
+							{this.props.dataInfo.name ? this.props.dataInfo.name : 'Data'}
 						</h4>: null
 					}
 					<Overlay
