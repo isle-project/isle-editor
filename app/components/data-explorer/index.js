@@ -96,26 +96,26 @@ const uid = generateUID( 'data-explorer' );
 * This component is used by students to briefly summarize data as it is presented and perform various statistical tests.
 *
 * @property {Array} categorical - array of strings indicating the name of each categorical variable
-* @property {Array} continuous - array of strings indicating the name of each continuous variable
+* @property {Array} quantitative - array of strings indicating the name of each quantitative variable
 * @property {(Object|Array)} data - data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column. If you wish to allow students the ability to import a `.csv` file, set the `data` option to be `false`
 * @property {Object} dataInfo - object containing the keys \'name\', whose value is a string, \'info\', whose value is an array of strings in which each element in the array is a new line and \'variables\', an object with keys as variable names and values as variable descriptions
 * @property {Array<string>} distributions - array of strings indicating distributions that may be used in calculating probabilities. This functionality exists independently of the dataset provided. Currently limited to normal, uniform and exponential distributions
+* @property {boolean} editor - boolean indicating whether to show the editor to the user
 * @property {Object} editorProps - object to be passed to `MarkdownEditor` indicating properties to be used
 * @property {string} editorTitle - string indicating the title of the explorer to be displayed
-* @property {boolean} hideDataTable - boolean value indicating whether to hide the data table from view
+* @property {boolean} dataTable - boolean value indicating whether to hide the data table from view
 * @property {boolean} histogramDensities - boolean value indicating whether to display histogram densities
 * @property {Array<string>} models - array of strings indicating models that may be fit on the data
 * @property {string} opened - page opened at startup
 * @property {Array<string>} plots - array of strings indicating which plots to show to the user
 * @property {Node} questions - node indicating surrounding text and question components to be displayed in a tabbed window
-* @property {boolean} showEditor - boolean indicating whether to show the editor to the user
 * @property {boolean} showTestDecisions - boolean indicating whether to show the decisions made for each test based on the calculated p-values
 * @property {Array<string>} statistics - array of strings indicating which summary statistics may be calculated
-* @property {Object} style - CSS inline styles for main container
 * @property {Array<string>} tables - array of strings indicating which tables may be created from the data
 * @property {Array<Object>} tabs - array of objects and keys indicating any custom tabs to add
 * @property {Array<string>} tests - array of strings indicating which hypothesis tests to include
 * @property {boolean} transformer - boolean indicating whether one wants to display a variable transformer
+* @property {Object} style - CSS inline styles for main container
 */
 class DataExplorer extends Component {
 	/**
@@ -124,22 +124,22 @@ class DataExplorer extends Component {
 	constructor( props ) {
 		super( props );
 		let data = props.data;
-		let continuous;
+		let quantitative;
 		let categorical;
 		let groupVars;
 		if ( props.data ) {
-			continuous = props.continuous;
+			quantitative = props.quantitative;
 			categorical = props.categorical;
 			groupVars = props.categorical.slice();
 		} else {
-			continuous = [];
+			quantitative = [];
 			categorical = [];
 			groupVars = [];
 		}
 		let ready = false;
 		if (
 			isObject( data ) &&
-			continuous.length > 0 &&
+			quantitative.length > 0 &&
 			categorical.length > 0
 		) {
 			ready = true;
@@ -147,7 +147,7 @@ class DataExplorer extends Component {
 		this.id = props.id || uid( props );
 		this.state = {
 			data: data,
-			continuous: continuous,
+			quantitative: quantitative,
 			categorical: categorical,
 			output: [],
 			groupVars,
@@ -159,7 +159,7 @@ class DataExplorer extends Component {
 			subsetFilters: null,
 			unaltered: {
 				data: props.data,
-				continuous: props.continuous,
+				quantitative: props.quantitative,
 				categorical: props.categorical
 			},
 			filters: []
@@ -184,8 +184,8 @@ class DataExplorer extends Component {
 			newState.data = nextProps.data;
 		}
 		if ( nextProps.data ) {
-			if ( nextProps.continuous !== prevState.unaltered.continuous ) {
-				newState.continuous = nextProps.continuous;
+			if ( nextProps.quantitative !== prevState.unaltered.quantitative ) {
+				newState.quantitative = nextProps.quantitative;
 			}
 			if ( nextProps.categorical !== prevState.unaltered.categorical ) {
 				newState.categorical = nextProps.categorical;
@@ -194,7 +194,7 @@ class DataExplorer extends Component {
 		if ( !isEmptyObject( newState ) ) {
 			newState.unaltered = {
 				data: nextProps.data,
-				continuous: nextProps.continuous,
+				quantitative: nextProps.quantitative,
 				categorical: nextProps.categorical
 			};
 			return newState;
@@ -206,16 +206,16 @@ class DataExplorer extends Component {
 		const session = this.context;
 		if ( !this.props.data ) {
 			const promiseData = session.store.getItem( this.id+'_data' );
-			const promiseContinuous = session.store.getItem( this.id+'_continuous' );
+			const promiseContinuous = session.store.getItem( this.id+'_quantitative' );
 			const promiseCategorical = session.store.getItem( this.id+'_categorical' );
 			Promise.all([ promiseData, promiseContinuous, promiseCategorical ])
 				.then( ( values ) => {
 					const data = values[ 0 ] || null;
-					const continuous = values[ 1 ] || [];
+					const quantitative = values[ 1 ] || [];
 					const categorical = values[ 2 ] || [];
 					const groupVars = ( categorical || [] ).slice();
 					this.setState({
-						data, continuous, categorical, groupVars, ready: true
+						data, quantitative, categorical, groupVars, ready: true
 					});
 				})
 				.catch( ( err ) => {
@@ -278,12 +278,12 @@ class DataExplorer extends Component {
 	resetStorage = () => {
 		const session = this.context;
 		session.store.removeItem( this.id+'_data' );
-		session.store.removeItem( this.id+'_continuous' );
+		session.store.removeItem( this.id+'_quantitative' );
 		session.store.removeItem( this.id+'_categorical' );
 		this.setState({
 			data: null,
 			categorical: [],
-			continuous: [],
+			quantitative: [],
 			ready: false
 		});
 	}
@@ -412,12 +412,12 @@ class DataExplorer extends Component {
 		let groupVars;
 		if ( !varState ) {
 			newData = copy( this.state.data, 1 );
-			newContinuous = this.state.continuous.slice();
+			newContinuous = this.state.quantitative.slice();
 			newCategorical = this.state.categorical.slice();
 			groupVars = this.state.groupVars.slice();
 		} else {
 			newData = varState.data;
-			newContinuous = varState.continuous.slice();
+			newContinuous = varState.quantitative.slice();
 			newCategorical = varState.categorical.slice();
 			groupVars = varState.groupVars.slice();
 		}
@@ -445,7 +445,7 @@ class DataExplorer extends Component {
 		const newVarState = {
 			data: newData,
 			categorical: newCategorical,
-			continuous: newContinuous,
+			quantitative: newContinuous,
 			groupVars: groupVars
 		};
 		return newVarState;
@@ -494,12 +494,12 @@ class DataExplorer extends Component {
 			newData = varState.data;
 		}
 		delete newData[ variable ];
-		let newContinuous = state.continuous.filter( x => x !== variable );
+		let newContinuous = state.quantitative.filter( x => x !== variable );
 		let newCategorical = state.categorical.filter( x => x !== variable );
 		let newGroupVars = state.groupVars.filter( x => x !== variable );
 		return {
 			data: newData,
-			continuous: newContinuous,
+			quantitative: newContinuous,
 			categorical: newCategorical,
 			groupVars: newGroupVars
 		};
@@ -521,16 +521,16 @@ class DataExplorer extends Component {
 				}
 			}
 			const categoricalGuesses = [];
-			const continuousGuesses = [];
+			const quantitativeGuesses = [];
 			columnNames.forEach( variable => {
 				if ( isNumberArray( data[ variable ]) ) {
-					continuousGuesses.push( variable );
+					quantitativeGuesses.push( variable );
 				} else {
 					categoricalGuesses.push( variable );
 				}
 			});
 			this.setState({
-				continuous: continuousGuesses,
+				quantitative: quantitativeGuesses,
 				categorical: categoricalGuesses,
 				data
 			}, () => {
@@ -544,8 +544,8 @@ class DataExplorer extends Component {
 		for ( let i = 0; i < this.state.filters.length; i++ ) {
 			const filter = this.state.filters[ i ];
 			const col = this.state.data[ filter.id ];
-			if ( contains( this.state.continuous, filter.id ) ) {
-				// Case: We have a filter for a continuous variable, which has a min and max value
+			if ( contains( this.state.quantitative, filter.id ) ) {
+				// Case: We have a filter for a quantitative variable, which has a min and max value
 				for ( let z = 0; z < col.length; z++ ) {
 					if ( col[ z ] < filter.value.min || col[ z ] > filter.value.max ) {
 						indices.add( z );
@@ -635,10 +635,10 @@ class DataExplorer extends Component {
 					<SelectInput
 						legend="Continuous:"
 						options={variableNames}
-						defaultValue={this.state.continuous}
+						defaultValue={this.state.quantitative}
 						multi
-						onChange={( continuous ) => {
-							this.setState({ continuous });
+						onChange={( quantitative ) => {
+							this.setState({ quantitative });
 						}}
 					/>
 					<SelectInput
@@ -658,7 +658,7 @@ class DataExplorer extends Component {
 							ready
 						}, () => {
 							const session = this.context;
-							session.store.setItem( this.id+'_continuous', this.state.continuous, debug );
+							session.store.setItem( this.id+'_quantitative', this.state.quantitative, debug );
 							session.store.setItem( this.id+'_categorical', this.state.categorical, debug );
 						});
 					}}>Submit</Button>
@@ -678,9 +678,9 @@ class DataExplorer extends Component {
 			onCreated: this.addToOutputs,
 			onPlotDone: this.outputPanel ? this.outputPanel.scrollToBottom : noop
 		};
-		const continuousProps = {
+		const quantitativeProps = {
 			data: this.state.data,
-			variables: this.state.continuous,
+			variables: this.state.quantitative,
 			groupingVariables: this.state.groupVars,
 			onCreated: this.addToOutputs,
 			onPlotDone: this.outputPanel ? this.outputPanel.scrollToBottom : noop
@@ -741,7 +741,7 @@ class DataExplorer extends Component {
 		const tabs = <Tab.Content>
 			<Tab.Pane eventKey="1">
 				<SummaryStatistics
-					{...continuousProps}
+					{...quantitativeProps}
 					statistics={this.props.statistics}
 					logAction={this.logAction}
 				/>
@@ -789,14 +789,14 @@ class DataExplorer extends Component {
 					break;
 				case 'Box Plot':
 					content = <Boxplot
-						{...continuousProps}
+						{...quantitativeProps}
 						logAction={this.logAction}
 						session={this.context}
 					/>;
 					break;
 				case 'Contour Chart':
 					content = <ContourChart
-						{...continuousProps}
+						{...quantitativeProps}
 						logAction={this.logAction}
 						session={this.context}
 						onSelected={this.on2dSelection}
@@ -804,7 +804,7 @@ class DataExplorer extends Component {
 					break;
 				case 'Heat Map':
 					content = <Heatmap
-						{...continuousProps}
+						{...quantitativeProps}
 						logAction={this.logAction}
 						session={this.context}
 						onSelected={this.on2dSelection}
@@ -812,7 +812,7 @@ class DataExplorer extends Component {
 					break;
 				case 'Histogram':
 					content = <Histogram
-						{...continuousProps}
+						{...quantitativeProps}
 						logAction={this.logAction}
 						session={this.context}
 						showDensityOption={this.props.histogramDensities}
@@ -847,7 +847,7 @@ class DataExplorer extends Component {
 					break;
 				case 'Scatterplot':
 					content = <Scatterplot
-						{...continuousProps}
+						{...quantitativeProps}
 						logAction={this.logAction}
 						session={this.context}
 						onSelected={this.on2dSelection}
@@ -855,14 +855,14 @@ class DataExplorer extends Component {
 					break;
 				case 'Violin Plot':
 					content = <Violinplot
-						{...continuousProps}
+						{...quantitativeProps}
 						logAction={this.logAction}
 						session={this.context}
 					/>;
 					break;
 				case 'Map':
 					content = <Map
-						{...continuousProps}
+						{...quantitativeProps}
 						logAction={this.logAction}
 						session={this.context}
 					/>;
@@ -879,7 +879,7 @@ class DataExplorer extends Component {
 					content = <MeanTest
 						onCreated={this.addToOutputs}
 						data={this.state.data}
-						continuous={this.state.continuous}
+						quantitative={this.state.quantitative}
 						logAction={this.logAction}
 						showDecision={this.props.showTestDecisions}
 					/>;
@@ -888,7 +888,7 @@ class DataExplorer extends Component {
 					content = <MeanTest2
 						onCreated={this.addToOutputs}
 						data={this.state.data}
-						continuous={this.state.continuous}
+						quantitative={this.state.quantitative}
 						categorical={this.state.categorical}
 						logAction={this.logAction}
 						session={this.context}
@@ -918,7 +918,7 @@ class DataExplorer extends Component {
 					content = <Anova
 						onCreated={this.addToOutputs}
 						data={this.state.data}
-						continuous={this.state.continuous}
+						quantitative={this.state.quantitative}
 						categorical={this.state.categorical}
 						logAction={this.logAction}
 						showDecision={this.props.showTestDecisions}
@@ -928,7 +928,7 @@ class DataExplorer extends Component {
 					content = <CorrTest
 						onCreated={this.addToOutputs}
 						data={this.state.data}
-						continuous={this.state.continuous}
+						quantitative={this.state.quantitative}
 						logAction={this.logAction}
 						showDecision={this.props.showTestDecisions}
 					/>;
@@ -946,7 +946,7 @@ class DataExplorer extends Component {
 					content = <Kruskal
 						onCreated={this.addToOutputs}
 						data={this.state.data}
-						continuous={this.state.continuous}
+						quantitative={this.state.quantitative}
 						categorical={this.state.categorical}
 						logAction={this.logAction}
 						showDecision={this.props.showTestDecisions}
@@ -963,7 +963,7 @@ class DataExplorer extends Component {
 				case 'Simple Linear Regression':
 					content = <SimpleLinearRegression
 						categorical={this.state.categorical}
-						continuous={this.state.continuous}
+						quantitative={this.state.quantitative}
 						onCreated={this.addToOutputs}
 						data={this.state.data}
 						logAction={this.logAction}
@@ -979,7 +979,7 @@ class DataExplorer extends Component {
 				<Tab.Pane eventKey="6" >
 					<VariableTransformer
 						data={this.state.data}
-						continuous={this.state.continuous}
+						quantitative={this.state.quantitative}
 						categorical={this.state.categorical}
 						logAction={this.logAction}
 						session={this.context}
@@ -996,7 +996,7 @@ class DataExplorer extends Component {
 							{ this.props.questions ? <Nav.Item className="explorer-data-nav">
 								<Nav.Link eventKey="questions" active={this.state.openedNav === 'questions'}>Questions</Nav.Link>
 							</Nav.Item> : null }
-							{ !this.props.hideDataTable ? <Nav.Item className="explorer-data-nav" >
+							{ !this.props.dataTable ? <Nav.Item className="explorer-data-nav" >
 								<Nav.Link eventKey="data" active={this.state.openedNav === 'data'}>Data</Nav.Link>
 							</Nav.Item> : null }
 							{ this.props.distributions.length > 0 ?
@@ -1009,7 +1009,7 @@ class DataExplorer extends Component {
 										<NavDropdown.Item key={i} eventKey={`distributions.${i+1}`}>{e}</NavDropdown.Item> )}
 								</NavDropdown> : null
 							}
-							{ this.props.showEditor ?
+							{ this.props.editor ?
 								<Nav.Item className="explorer-editor-nav">
 									<Nav.Link
 										active={this.state.openedNav === 'editor'}
@@ -1099,7 +1099,7 @@ class DataExplorer extends Component {
 							return ( this.state.openedNav === `distributions.${i+1}` ?
 								<Suspense fallback={<div>Loading...</div>} >{content}</Suspense> : null );
 						})}
-						{ this.props.showEditor ?
+						{ this.props.editor ?
 						<MarkdownEditor {...this.props.editorProps}
 							plots={this.state.output}
 							id={this.id + '_editor'}
@@ -1212,10 +1212,10 @@ DataExplorer.defaultProps = {
 		'name': '',
 		'variables': null
 	},
-	hideDataTable: false,
+	dataTable: true,
 	tabs: [],
 	questions: null,
-	transformer: false,
+	transformer: true,
 	statistics: [
 		'Mean',
 		'Median',
@@ -1255,31 +1255,31 @@ DataExplorer.defaultProps = {
 	],
 	opened: null,
 	categorical: [],
-	continuous: [],
+	quantitative: [],
 	distributions: [ 'Normal', 'Uniform', 'Exponential' ],
+	editor: true,
 	editorProps: null,
 	editorTitle: 'Report',
 	histogramDensities: true,
-	showEditor: false,
 	showTestDecisions: true,
 	style: {}
 };
 
 DataExplorer.propTypes = {
 	categorical: PropTypes.array,
-	continuous: PropTypes.array,
+	quantitative: PropTypes.array,
 	data: PropTypes.object,
 	dataInfo: PropTypes.object,
 	distributions: PropTypes.array,
+	editor: PropTypes.bool,
 	editorProps: PropTypes.object,
 	editorTitle: PropTypes.string,
-	hideDataTable: PropTypes.bool,
+	dataTable: PropTypes.bool,
 	histogramDensities: PropTypes.bool,
 	models: PropTypes.array,
 	opened: PropTypes.oneOf([ 'data', 'toolbox', 'editor' ]),
 	plots: PropTypes.array,
 	questions: PropTypes.node,
-	showEditor: PropTypes.bool,
 	showTestDecisions: PropTypes.bool,
 	statistics: PropTypes.array,
 	style: PropTypes.object,
