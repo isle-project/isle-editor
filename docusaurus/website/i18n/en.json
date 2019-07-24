@@ -305,16 +305,16 @@
         "sidebar_label": "Text"
       },
       "tutorials/getting-started": {
-        "title": "Getting Started",
-        "sidebar_label": "Getting Started"
+        "title": "Setting Up an Account and Course",
+        "sidebar_label": "Setting Up"
       },
       "tutorials/including-data": {
         "title": "Including Data",
         "sidebar_label": "Including Data"
       },
       "tutorials/question-components": {
-        "title": "Question Components",
-        "sidebar_label": "Question Components"
+        "title": "How to Use Questions",
+        "sidebar_label": "Using Questions"
       },
       "typerwriter": {
         "title": "Typerwriter",
