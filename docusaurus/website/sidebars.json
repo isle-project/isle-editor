@@ -10,7 +10,12 @@
       "overview/components"
     ],
     "Tutorials": [
-      "tutorials/editor-intro"
+      "tutorials/getting-started",
+      "tutorials/editor-intro",
+      "tutorials/editor-text",
+      "tutorials/editor-images",
+      "tutorials/question-components",
+      "tutorials/including-data"
     ],
     "Main Components": [
       "data-explorer",

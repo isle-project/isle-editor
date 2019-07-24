@@ -292,9 +292,29 @@
         "title": "Timer",
         "sidebar_label": "Timer"
       },
+      "tutorials/editor-images": {
+        "title": "Including Images and Videos",
+        "sidebar_label": "Images"
+      },
       "tutorials/editor-intro": {
         "title": "Introduction to the Editor",
         "sidebar_label": "Editor Introduction"
+      },
+      "tutorials/editor-text": {
+        "title": "Entering Text",
+        "sidebar_label": "Text"
+      },
+      "tutorials/getting-started": {
+        "title": "Getting Started",
+        "sidebar_label": "Getting Started"
+      },
+      "tutorials/including-data": {
+        "title": "Including Data",
+        "sidebar_label": "Including Data"
+      },
+      "tutorials/question-components": {
+        "title": "Question Components",
+        "sidebar_label": "Question Components"
       },
       "typerwriter": {
         "title": "Typerwriter",
