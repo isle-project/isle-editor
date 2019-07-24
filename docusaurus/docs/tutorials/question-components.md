@@ -133,6 +133,10 @@ Feedback on student answers for Multiple Choice Questions can be provided either
 
 ## Viewing Student Responses and Feedback
 
+Once you have posted your lesson to ISLE and students are submitting answers to questions, you can view the student submissions and any feedback. To see student responses, open the ISLE lesson in your course dashboard, and click the **Answers** button for the question. To see student feedback, click the **Responses** button next to your feedback buttons for the questions (if you have included feedback buttons).
+
+![Answers](assets/gifs/viewing_responses.gif)
+
 ## Putting Questions Together
 
 ### Pages

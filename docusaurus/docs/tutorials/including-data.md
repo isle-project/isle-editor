@@ -147,10 +147,8 @@ The code to generate the data explorer illustrated here is
         dataInfo={airline_info}
         categorical={['Month', 'DayOfWeek', 'Diverted', 'Carrier',
         'Weather', 'NAS', 'Security', 'LateAircraft']}
-        continuous={['AirTime', 'Distance', 'TaxiIn', 'TaxiOut', 'ArrDelay',
+        quantitative={['AirTime', 'Distance', 'TaxiIn', 'TaxiOut', 'ArrDelay',
         'DepDelay']}
-        showEditor
-        transformer
     />
 
 
@@ -160,7 +158,7 @@ Data and data info is included in the explorer in the same way as for the Data T
 
 ### Variable Types
 
-Certain tests, statistics, and plots require specific variable types. For example, it doesn't make sense to make a scatterplot with a categorical variable. Hence, the `<DataExplorer/>` tag requires that all variables be listed either as categorical (in the `categorical` option) or quantitative (in the `continuous` option - note that discrete quantitative variables should still be listed here).
+Certain tests, statistics, and plots require specific variable types. For example, it doesn't make sense to make a scatterplot with a categorical variable. Hence, the `<DataExplorer/>` tag requires that all variables be listed either as categorical (in the `categorical` option) or quantitative (in the `quantitative` option).
 
 ### Toolbox
 
@@ -188,7 +186,7 @@ The **Models** tab allows users to fit models to the data. The currently availab
 
 #### Transform
 
-The **Transform** tab allows users to create new variables through variable transformations. By default, the Transform tab is not visible. To show the Transform tab, include the `transformer` option in the `<DataExplorer/>` tab, as seen in the data explorer example above.
+The **Transform** tab allows users to create new variables through variable transformations. By default, the Transform tab is visible. To hide the Transform tab, set `transformer={false}` option in the `<DataExplorer/>` tab, as seen in the data explorer example above.
 
 #### Customizing the Toolbox
 
@@ -208,21 +206,19 @@ Then our `<DataExplorer/>` tag could look as follows:
         dataInfo={airline_info}
         categorical={['Month', 'DayOfWeek', 'Diverted', 'Carrier',
         'Weather', 'NAS', 'Security', 'LateAircraft']}
-        continuous={['AirTime', 'Distance', 'TaxiIn', 'TaxiOut', 'ArrDelay',
+        quantitative={['AirTime', 'Distance', 'TaxiIn', 'TaxiOut', 'ArrDelay',
         'DepDelay']}
-        showEditor
         statistics={["Mean","Median"]}
         tables={["Contingency Table"]}
         tests={["One-Sample Mean Test", "Correlation Test", "Chi-squared Independence Test"]}
         showTestDecisions={false}
         models={[]}
-        transformer
     />
 
 
 ### Editor
 
-In the editor, students can write up their data analysis, using basic Markdown for text formatting, and dragging and dropping output images and tables directly into the report. By default, the editor is not visible; to make the editor available, include `showEditor` in the `<DataExplorer/>` tag (as in the examples above). By default, the name of the editor tab is **Report**, but you can change this if you wish using the `editorTitle` option.
+In the editor, students can write up their data analysis, using basic Markdown for text formatting, and dragging and dropping output images and tables directly into the report. By default, the editor is visible; to hide the editor, set `editor={false}` in the `<DataExplorer/>` tag (as in the examples above). By default, the name of the editor tab is **Report**, but you can change this if you wish using the `editorTitle` option.
 
 ### Distributions
 
