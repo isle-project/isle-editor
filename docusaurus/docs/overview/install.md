@@ -98,8 +98,8 @@ $ npm run test -- -t "name-of-spec"
 [jest]: https://jestjs.io
 [node-js]: https://nodejs.org/en/
 
-[macOS]: https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE-Editor-0.24.0.dmg
-[linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE-Editor-0.24.0-x86_64.AppImage
-[linux-rpm]: https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE.Editor-0.24.0-x86_64.rpm
-[linux-deb]: https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE.Editor-0.24.0-amd64.deb
-[windows]:https://github.com/isle-project/isle-editor/releases/download/untagged-4e9649c155439019afc4/ISLE-Editor-0.24.0.exe
+[macOS]: https://github.com/isle-project/isle-editor/releases/download/v0.24.0/ISLE-Editor-0.24.0.dmg
+[linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/v0.24.0/ISLE-Editor-0.24.0-x86_64.AppImage
+[linux-rpm]: https://github.com/isle-project/isle-editor/releases/download/v0.24.0/ISLE.Editor-0.24.0-x86_64.rpm
+[linux-deb]: https://github.com/isle-project/isle-editor/releases/download/v0.24.0/ISLE.Editor-0.24.0-amd64.deb
+[windows]:https://github.com/isle-project/isle-editor/releases/download/v0.24.0/ISLE-Editor-0.24.0.exe
