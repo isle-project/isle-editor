@@ -31,8 +31,6 @@ matrix:
             - xorriso
             - rpm
 
-      language: generic
-
     - os: windows
       language: node_js
       node_js:
