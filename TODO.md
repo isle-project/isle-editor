@@ -24,15 +24,6 @@ Summer 2019
 * Close hints when moving to another question
 * Markdown code blocks do not render in exported PDF
 
-
-Priority
-====
-3. Instructor view
-
-General
-====
-* Make dynamic titling for data-explorer
-
 LONG-TERM
 ===
 * Data Explorer Output Behavior 
@@ -43,10 +34,8 @@ LONG-TERM
 * Many of the react components need properties for event handlers (onClick, onChange)...
 * Data Explorer
    - remove any R dependencies for mosaic
-   - Boxplots categorized by more than one group (+ ability to reorder)
    - Display additional information when hovering over bars of barcharts (percentage, description, other variables?)
    - We have been deliberately loose with respect to terminology: z-test vs. t-test
-   - Refactor two-way contingency tables? 
    - Show wether we display both relative and absolute frequencies in tables?
 * Surveys
     - Handle ordered categories
