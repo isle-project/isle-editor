@@ -13,6 +13,7 @@ import PINF from '@stdlib/constants/math/float64-pinf';
 import keys from '@stdlib/utils/keys';
 import NumberInput from 'components/input/number';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import './tex.css';
 
 
 // VARIABLES //
