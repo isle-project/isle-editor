@@ -210,7 +210,7 @@ class DiscreteCLT extends Component {
 						</Col>
 						<Col md={6}>
 							<p><label>Population proportion</label> <TeX raw={`${this.state.p.toFixed( 3 )}`} /></p>
-							<p><label>Population standard deviation:</label> <TeX raw={`\\sqrt{ p \\cdot (1-p) } = ${sqrt( this.state.p*( 1-this.state.p ) ).toFixed( 3 )}`} /> </p>
+							<p><label>Population standard deviation:</label> <TeX raw={`\\sqrt{ n \\cdot p \\cdot (1-p) } = ${sqrt( this.state.n * this.state.p*( 1-this.state.p ) ).toFixed( 3 )}`} /> </p>
 							<ButtonGroup size="sm" >
 								<Button variant="primary" onClick={() => {
 									this.generateSamples( 1 );

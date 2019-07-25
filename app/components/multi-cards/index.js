@@ -39,6 +39,7 @@ function falseArray( n ) {
 * @property {Function} onChange - a function that receives the matrix of the flippable cards
 * @property {boolean} oneTime - indicates whether the flip process may be executed just once
 * @property {Object} animation - if set the component uses an entry animation; the object contains a name (like `anim-scale-up`) and a duration (like `1.7s` = 1.7 seconds)
+* @property {Object} style - CSS inline styles
 */
 class MultiCards extends Component {
 	constructor( props ) {
@@ -189,7 +190,8 @@ class MultiCards extends Component {
 			...{
 				animationName: this.props.animation.name,
 				animationDuration: this.props.animation.duration
-			}
+			},
+			...this.props.style
 		};
 
 		return (
@@ -214,7 +216,8 @@ MultiCards.propTypes = {
 	language: PropTypes.string,
 	onChange: PropTypes.func,
 	oneTime: PropTypes.bool,
-	values: PropTypes.arrayOf( PropTypes.object )
+	values: PropTypes.arrayOf( PropTypes.object ),
+	style: PropTypes.object
 };
 
 MultiCards.defaultProps = {
@@ -228,7 +231,8 @@ MultiCards.defaultProps = {
 	onChange() {},
 	language: 'en-US',
 	oneTime: false,
-	values: []
+	values: [],
+	style: {}
 };
 
 MultiCards.contextType = SessionContext;

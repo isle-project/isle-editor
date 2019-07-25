@@ -433,10 +433,12 @@ class SampleCLT extends Component {
 				/>
 				<p>
 					<label>Population { this.state.type === 'numeric' ? 'mean' : 'proportion' }: </label>
+					{' '}
 					{this.state.trueMean.toFixed( 3 )}
 				</p>
 				<p>
 					<label>Population standard deviation: </label>
+					{' '}
 					{this.state.trueStdev.toFixed( 3 )}
 				</p>
 			</Card.Body>
@@ -447,36 +449,38 @@ class SampleCLT extends Component {
 		return (
 			<Container>
 				<Row>
-					<Card body>
-						<Col md={6}>
-							<SelectInput legend="Select a variable" options={this.props.variables} onChange={this.onSelectVariable} />
-						</Col>
-						<Col md={6}>
-							{ this.state.type === 'numeric' || this.state.type === 'binary' ?
-								<span style={{ float: 'right' }}>
-									<NumberInput
-										legend="Sample Size"
-										step={1} min={1} defaultValue={10} max={500}
-										onChange={( n ) => this.setState({ 'n': n })}
-									/>
-									<ButtonGroup>
-										<Button onClick={() => {
-											this.drawSamples( 1 );
-										}}>
-											Draw Sample
-										</Button>
-										<Button onClick={() => {
-											this.drawSamples( 25 );
-										}}>
-											Draw 25 Samples
-										</Button>
-										<Button onClick={this.clear.bind( this )}>
-											Clear
-										</Button>
-									</ButtonGroup>
-								</span> : null
-							}
-						</Col>
+					<Card body style={{ margin: '2%', width: '96%' }}>
+						<Row>
+							<Col md={6}>
+								<SelectInput legend="Select a variable" options={this.props.variables} onChange={this.onSelectVariable} />
+							</Col>
+							<Col md={6}>
+								{ this.state.type === 'numeric' || this.state.type === 'binary' ?
+									<span style={{ float: 'right' }}>
+										<NumberInput
+											legend="Sample Size"
+											step={1} min={1} defaultValue={10} max={500}
+											onChange={( n ) => this.setState({ 'n': n })}
+										/>
+										<ButtonGroup>
+											<Button onClick={() => {
+												this.drawSamples( 1 );
+											}}>
+												Draw Sample
+											</Button>
+											<Button onClick={() => {
+												this.drawSamples( 25 );
+											}}>
+												Draw 25 Samples
+											</Button>
+											<Button onClick={this.clear.bind( this )}>
+												Clear
+											</Button>
+										</ButtonGroup>
+									</span> : null
+								}
+							</Col>
+						</Row>
 					</Card>
 				</Row>
 				{ this.state.type === 'numeric' || this.state.type === 'binary' ?
@@ -511,11 +515,11 @@ class SampleCLT extends Component {
 						<Col md={6}>
 							<div>
 								{this.renderMeanHistogram()}
-								<Card>
-									<NumberInput step="any" legend={<span>Evaluate probabilities for <TeX raw="\bar X" /></span>} onChange={this.onXbarChange} />
+								{ this.state.xbars.length > 1 ? <Card>
+									<NumberInput step="any" legend={<span>Estimate probabilities for <TeX raw="\bar X" /></span>} onChange={this.onXbarChange} />
 									<TeX raw={`\\hat P(\\bar X < ${this.state.cutoff} ) = ${this.state.leftXbarProb.toFixed( 3 )}`} displayMode />
 									<TeX raw={`\\hat P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightXbarProb.toFixed( 3 )}`} displayMode />
-								</Card>
+								</Card> : null }
 							</div>
 						</Col>
 					</Row> :
