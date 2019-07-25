@@ -493,9 +493,9 @@
         "default": []
       },
       {
-        "name": "continuous",
+        "name": "quantitative",
         "type": "array",
-        "description": "array of strings indicating the name of each continuous variable",
+        "description": "array of strings indicating the name of each quantitative variable",
         "default": []
       },
       {
@@ -525,6 +525,12 @@
         ]
       },
       {
+        "name": "editor",
+        "type": "boolean",
+        "description": "boolean indicating whether to show the editor to the user",
+        "default": true
+      },
+      {
         "name": "editorProps",
         "type": "object",
         "description": "object to be passed to `MarkdownEditor` indicating properties to be used",
@@ -537,10 +543,10 @@
         "default": "Report"
       },
       {
-        "name": "hideDataTable",
+        "name": "dataTable",
         "type": "boolean",
         "description": "boolean value indicating whether to hide the data table from view",
-        "default": false
+        "default": true
       },
       {
         "name": "histogramDensities",
@@ -582,12 +588,6 @@
         "type": "node",
         "description": "node indicating surrounding text and question components to be displayed in a tabbed window",
         "default": null
-      },
-      {
-        "name": "showEditor",
-        "type": "boolean",
-        "description": "boolean indicating whether to show the editor to the user",
-        "default": false
       },
       {
         "name": "showTestDecisions",
@@ -650,7 +650,7 @@
         "name": "transformer",
         "type": "boolean",
         "description": "boolean indicating whether one wants to display a variable transformer",
-        "default": false
+        "default": true
       }
     ],
     "description": "This component is used by students to briefly summarize data as it is presented and perform various statistical tests."
@@ -1339,6 +1339,12 @@
         "type": "number",
         "description": "number indicating the width of the input bar in pixels",
         "default": 80
+      },
+      {
+        "name": "tooltipPlacement",
+        "type": "string",
+        "description": "direction of the tooltip",
+        "default": "left"
       }
     ],
     "description": "A number input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute."
@@ -1957,7 +1963,13 @@
     "description": "A learning component illustrating the Central Limit Theorem (CLT) for a chosen continuous distribution."
   },
   "LearnDiscreteCLT": {
-    "props": [],
+    "props": [
+      {
+        "name": "showPopStdev",
+        "type": "boolean",
+        "default": true
+      }
+    ],
     "description": "A learning component illustrating the Central Limit Theorem (CLT) for a canonical discrete distribution, the binomial distribution."
   },
   "LearnSampleCLT": {
@@ -2703,6 +2715,12 @@
         "type": "array<object>",
         "description": "the values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component",
         "default": []
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       }
     ],
     "description": "An ISLE component that allows you to create and control multiple flippable cards (e.g. in a game of Memory)."

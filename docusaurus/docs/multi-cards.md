@@ -65,3 +65,4 @@ An ISLE component that allows you to create and control multiple flippable cards
 * __onChange__ | `function`: a function that receives the matrix of the flippable cards. Default: `onChange() {}`.
 * __oneTime__ | `boolean`: indicates whether the flip process may be executed just once. Default: `false`.
 * __values__ | `array<object>`: the values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component. Default: `[]`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.

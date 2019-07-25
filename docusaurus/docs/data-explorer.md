@@ -43,7 +43,7 @@ We will include the explorer with the following code:
 ## Options
 
 * __categorical__ | `array`: array of strings indicating the name of each categorical variable. Default: `[]`.
-* __continuous__ | `array`: array of strings indicating the name of each continuous variable. Default: `[]`.
+* __quantitative__ | `array`: array of strings indicating the name of each quantitative variable. Default: `[]`.
 * __data__ | `object`: data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column. If you wish to allow students the ability to import a `.csv` file, set the `data` option to be `false`. Default: `{}`.
 * __dataInfo__ | `object`: object containing the keys \'name\', whose value is a string, \'info\', whose value is an array of strings in which each element in the array is a new line and \'variables\', an object with keys as variable names and values as variable descriptions. Default: `{
   'info': '',
@@ -55,9 +55,10 @@ We will include the explorer with the following code:
   'Uniform',
   'Exponential'
 ]`.
+* __editor__ | `boolean`: boolean indicating whether to show the editor to the user. Default: `true`.
 * __editorProps__ | `object`: object to be passed to `MarkdownEditor` indicating properties to be used. Default: `none`.
 * __editorTitle__ | `string`: string indicating the title of the explorer to be displayed. Default: `'Report'`.
-* __hideDataTable__ | `boolean`: boolean value indicating whether to hide the data table from view. Default: `false`.
+* __dataTable__ | `boolean`: boolean value indicating whether to hide the data table from view. Default: `true`.
 * __histogramDensities__ | `boolean`: boolean value indicating whether to display histogram densities. Default: `true`.
 * __models__ | `array`: array of strings indicating models that may be fit on the data. Default: `[
   'Simple Linear Regression'
@@ -74,7 +75,6 @@ We will include the explorer with the following code:
   'Contour Chart'
 ]`.
 * __questions__ | `node`: node indicating surrounding text and question components to be displayed in a tabbed window. Default: `none`.
-* __showEditor__ | `boolean`: boolean indicating whether to show the editor to the user. Default: `false`.
 * __showTestDecisions__ | `boolean`: boolean indicating whether to show the decisions made for each test based on the calculated p-values. Default: `true`.
 * __statistics__ | `array`: array of strings indicating which summary statistics may be calculated. Default: `[
   'Mean',
@@ -102,4 +102,4 @@ We will include the explorer with the following code:
   'Chi-squared Independence Test',
   'One-Way ANOVA'
 ]`.
-* __transformer__ | `boolean`: boolean indicating whether one wants to display a variable transformer. Default: `false`.
+* __transformer__ | `boolean`: boolean indicating whether one wants to display a variable transformer. Default: `true`.
