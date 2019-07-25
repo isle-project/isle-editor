@@ -53,6 +53,7 @@ function createTooltip( props ) {
 * @property {boolean} inline - indicates whether the input is displayed inline
 * @property {string} legend - string indicating the text displayed next to the number input
 * @property {boolean} numbersOnly - controls whether only numbers are accepted
+* @property {string} tooltipPlacement - direction of the tooltip
 * @property {Object} style - CSS inline styles
 * @property {Function} onBlur - callback function to be invoked when using a blur method
 * @property {Function} onChange - callback function to be invoked when number input is changed
@@ -236,7 +237,7 @@ class NumberInput extends Input {
 			onBlur={this.finishChange}
 		/>;
 		if ( !this.props.disabled ) {
-			input = <Tooltip id="numberInputTooltip" placement="left" tooltip={this.state.tooltip} >{input}</Tooltip>;
+			input = <Tooltip id="numberInputTooltip" placement={this.props.tooltipPlacement} tooltip={this.state.tooltip} >{input}</Tooltip>;
 		}
 		const output = <div className="input" style={{
 			marginBottom: '4px',
@@ -283,7 +284,8 @@ NumberInput.defaultProps = {
 	inline: false,
 	numbersOnly: true,
 	style: {},
-	value: null
+	value: null,
+	tooltipPlacement: 'left'
 };
 
 NumberInput.propTypes = {
@@ -309,7 +311,8 @@ NumberInput.propTypes = {
 	]),
 	style: PropTypes.object,
 	value: PropTypes.number,
-	width: PropTypes.number
+	width: PropTypes.number,
+	tooltipPlacement: PropTypes.oneOf([ 'top', 'right', 'bottom', 'left' ])
 };
 
 NumberInput.contextType = SessionContext;

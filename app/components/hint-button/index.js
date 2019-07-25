@@ -132,7 +132,9 @@ class HintButton extends Component {
 
 HintButton.propTypes = {
 	disabled: PropTypes.bool,
-	hints: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	hints: PropTypes.arrayOf( PropTypes.oneOfType( [
+		PropTypes.string, PropTypes.element
+	]) ).isRequired,
 	onClick: PropTypes.func,
 	onFinished: PropTypes.func,
 	placement: PropTypes.string

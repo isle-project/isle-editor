@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Container from 'react-bootstrap/Container';
@@ -47,7 +48,8 @@ class DiscreteCLT extends Component {
 			phats: [],
 			layout: [],
 			enlarged: [],
-			overlayNormal: false
+			overlayNormal: false,
+			showDataDistributions: true
 		};
 	}
 
@@ -187,6 +189,12 @@ class DiscreteCLT extends Component {
 		});
 	}
 
+	toggleDataDistributions = () => {
+		this.setState({
+			showDataDistributions: !this.state.showDataDistributions
+		});
+	}
+
 	renderDistSelectionPanel() {
 		return (
 			<Card body>
@@ -210,7 +218,10 @@ class DiscreteCLT extends Component {
 						</Col>
 						<Col md={6}>
 							<p><label>Population proportion</label> <TeX raw={`${this.state.p.toFixed( 3 )}`} /></p>
-							<p><label>Population standard deviation:</label> <TeX raw={`\\sqrt{ n \\cdot p \\cdot (1-p) } = ${sqrt( this.state.n * this.state.p*( 1-this.state.p ) ).toFixed( 3 )}`} /> </p>
+							{this.props.showPopStdev ? <p>
+								<label>Population standard deviation:</label>
+								<TeX raw={`\\sqrt{ n \\cdot p \\cdot (1-p) } = ${sqrt( this.state.n * this.state.p*( 1-this.state.p ) ).toFixed( 3 )}`} />
+							</p> : null }
 							<ButtonGroup size="sm" >
 								<Button variant="primary" onClick={() => {
 									this.generateSamples( 1 );
@@ -259,32 +270,23 @@ class DiscreteCLT extends Component {
 						</Col>
 					</Row>
 					<Row>
-						<Col md={6}>
-							<Card style={{ height: '400px', overflowY: 'scroll' }} body>
-								<GridLayout
-									className="layout"
-									layout={this.state.layout}
-									cols={12}
-									rowHeight={30}
-								>
-									{this.state.barplots.map( ( x, i ) => {
-										return ( <div key={i} onClick={this.enlargePlotFactory( i )} style={{ border: '2px solid darkgray' }}>
-											{x}
-										</div> );
-									})}
-								</GridLayout>
-							</Card>
-						</Col>
-						<Col md={6}>
+						<Col md={this.state.showDataDistributions ? 6 : 12}>
 							<Card body>
 								<label>Number of Samples: {this.state.phats.length} </label>
+								<Button
+									variant="secondary" size="sm"
+									onClick={this.toggleDataDistributions}
+									style={{ marginLeft: '80px' }}
+								>
+									{ this.state.showDataDistributions ? 'Hide ' : 'Show '} Data Distributions
+								</Button>
 							</Card>
 							<Card body>
 								<label>Histogram of <TeX raw="\hat p" />&#39;s</label>
 								{ this.state.phats.length > 1 ?
 									<Plotly data={plotlyData} layout={{
 										width: 400,
-										height: 250,
+										height: 300,
 										showlegend: false,
 										shapes: [
 											{
@@ -321,12 +323,40 @@ class DiscreteCLT extends Component {
 								}
 							</Card>
 						</Col>
+						{ this.state.showDataDistributions ? <Col md={6}>
+							<Card style={{ height: '400px', overflowY: 'scroll' }} body>
+								<GridLayout
+									className="layout"
+									layout={this.state.layout}
+									cols={12}
+									rowHeight={30}
+								>
+									{this.state.barplots.map( ( x, i ) => {
+										return ( <div key={i} onClick={this.enlargePlotFactory( i )} style={{ border: '2px solid darkgray' }}>
+											{x}
+										</div> );
+									})}
+								</GridLayout>
+							</Card>
+						</Col> : null }
 					</Row>
 				</Container>
 			</div>
 		);
 	}
 }
+
+
+// PROPERTIES //
+
+
+DiscreteCLT.defaultProps = {
+	showPopStdev: true
+};
+
+DiscreteCLT.propTypes = {
+	showPopStdev: PropTypes.bool
+};
 
 
 // EXPORTS //
