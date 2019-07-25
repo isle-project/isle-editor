@@ -3,7 +3,6 @@
 import logger from 'debug';
 import replace from '@stdlib/string/replace';
 import Tokenizer from './tokenizer.js';
-import { replaceAndEscapeEquations, replaceEquations } from './replace_equations.js';
 
 
 // VARIABLES //
@@ -23,17 +22,10 @@ const escaper = ( match, p1, p2, p3 ) => {
 function toMarkdown( str, { escapeBackslash = false } ) {
 	debug( 'Create tokenizer...' );
 	const tokenizer = new Tokenizer({ escapeBackslash });
-
 	if ( escapeBackslash ) {
 		str = replace( str, RE_RAW_ATTRIBUTE, escaper );
 	}
-	str = tokenizer.parse( str );
-	if ( escapeBackslash ) {
-		str = replaceAndEscapeEquations( str );
-	} else {
-		str = replaceEquations( str );
-	}
-	return str;
+	return tokenizer.parse( str );
 }
 
 

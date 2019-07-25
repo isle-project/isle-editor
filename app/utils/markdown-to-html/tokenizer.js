@@ -33,6 +33,7 @@ const md = markdownit({
 	typographer: false
 });
 const RE_LINE_BEGINNING = /\n\s*/g;
+const RE_HTML_INNER_TAGS = /^(?:p|th|td)$/;
 const RE_HTML_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|var)$/;
 const RE_ISLE_INLINE_TAGS = /^(?:Badge|BeaconTooltip|Button|CheckboxInput|Clock|Input|NumberInput|RHelp|SelectInput|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
 
@@ -142,12 +143,12 @@ class Tokenizer {
 			let text = this._current.substring( this._openTagEnd, this._current.length-1 );
 			text = trimLineStarts( text );
 			if (
-				this._openingTagName === 'p' ||
+				RE_HTML_INNER_TAGS.test( this._openingTagName ) ||
 				RE_HTML_INLINE_TAGS.test( this._openingTagName ) ||
 				RE_ISLE_INLINE_TAGS.test( this._openingTagName )
 			) {
 				debug( `Render inline markdown for <${this._openingTagName}/>...` );
-				text = md.renderInline( text );
+				text = !isWhitespace( text ) ? md.renderInline( text ) : text;
 			} else {
 				debug( `Render block markdown for <${this._openingTagName}/>...` );
 				text = md.render( text );
@@ -417,9 +418,13 @@ class Tokenizer {
 				this.tokens.push( this._current );
 			}
 		}
-		console.log( this.tokens );
 		let out = this.tokens.join( '' );
 		out = md.render( out );
+		if ( this.escapeBackslash ) {
+			out = replaceAndEscapeEquations( out );
+		} else {
+			out = replaceEquations( out );
+		}
 		for ( let key in this.divHash ) {
 			if ( hasOwnProp( this.divHash, key ) ) {
 				out = out.replace( key, this.divHash[ key ]);

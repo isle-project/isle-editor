@@ -419,7 +419,6 @@ mark {
 	font-weight: 700;
 	font-family: Open Sans Condensed;
 	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
 	background-image: linear-gradient(to right, var(--secondaryhalf), var(--secondary) 4%), linear-gradient(to bottom, transparent, var(--quartary));
 }
 
