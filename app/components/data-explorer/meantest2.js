@@ -35,7 +35,7 @@ class MeanTest2 extends Component {
 		super( props );
 
 		this.state = {
-			var1: props.continuous[ 0 ],
+			var1: props.quantitative[ 0 ],
 			grouping: null,
 			var2: null,
 			diff: 0,
@@ -188,7 +188,7 @@ class MeanTest2 extends Component {
 	}
 
 	renderInputs() {
-		const { continuous, categorical } = this.props;
+		const { quantitative, categorical } = this.props;
 		const binary = this.getBinaryVars( categorical );
 		return ( <Fragment>
 			<SelectInput
@@ -204,7 +204,7 @@ class MeanTest2 extends Component {
 			<SelectInput
 				legend="Variable:"
 				defaultValue={this.state.var1}
-				options={continuous}
+				options={quantitative}
 				onChange={( value ) => {
 					this.setState({
 						var1: value
@@ -232,7 +232,7 @@ class MeanTest2 extends Component {
 				<Col md={5}>
 					<SelectInput
 						legend="Second Variable:"
-						options={continuous}
+						options={quantitative}
 						defaultValue={this.state.var2}
 						clearable
 						onChange={( value ) => {
@@ -312,7 +312,7 @@ MeanTest2.defaultProps = {
 
 MeanTest2.propTypes = {
 	categorical: PropTypes.array,
-	continuous: PropTypes.array.isRequired,
+	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,

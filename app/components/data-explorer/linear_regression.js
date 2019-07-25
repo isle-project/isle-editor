@@ -120,7 +120,7 @@ class SimpleLinearRegression extends Component {
 	}
 
 	render() {
-		const { continuous, categorical } = this.props;
+		const { quantitative, categorical } = this.props;
 		return (
 			<Dashboard
 				title={<span>Simple Linear Regression<QuestionButton title="Simple Linear Regression" content={DESCRIPTION} /></span>}
@@ -129,13 +129,13 @@ class SimpleLinearRegression extends Component {
 			>
 				<SelectInput
 					legend="Response Variable (Y):"
-					defaultValue={continuous[ 0 ]}
-					options={continuous}
+					defaultValue={quantitative[ 0 ]}
+					options={quantitative}
 				/>
 				<SelectInput
 					legend="Explanatory Variable (X):"
-					defaultValue={continuous[ 1 ]}
-					options={continuous}
+					defaultValue={quantitative[ 1 ]}
+					options={quantitative}
 				/>
 				<SelectInput
 					legend="Group By:"
@@ -158,7 +158,7 @@ SimpleLinearRegression.defaultProps = {
 
 SimpleLinearRegression.propTypes = {
 	categorical: PropTypes.array,
-	continuous: PropTypes.array.isRequired,
+	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired

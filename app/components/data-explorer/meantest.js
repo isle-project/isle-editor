@@ -82,7 +82,7 @@ class MeanTest extends Component {
 	}
 
 	render() {
-		const { continuous } = this.props;
+		const { quantitative } = this.props;
 		return (
 			<Dashboard
 				title={
@@ -102,8 +102,8 @@ class MeanTest extends Component {
 				/>
 				<SelectInput
 					legend="Variable:"
-					defaultValue={continuous[ 0 ]}
-					options={continuous}
+					defaultValue={quantitative[ 0 ]}
+					options={quantitative}
 				/>
 				<NumberInput
 					legend={<TeX raw="\mu_0" />}
@@ -138,7 +138,7 @@ MeanTest.defaultProps = {
 // PROPERTY TYPES //
 
 MeanTest.propTypes = {
-	continuous: PropTypes.array.isRequired,
+	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,

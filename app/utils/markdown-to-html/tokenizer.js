@@ -417,6 +417,7 @@ class Tokenizer {
 				this.tokens.push( this._current );
 			}
 		}
+		console.log( this.tokens );
 		let out = this.tokens.join( '' );
 		out = md.render( out );
 		for ( let key in this.divHash ) {

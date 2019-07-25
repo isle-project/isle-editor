@@ -71,7 +71,7 @@ class CorrTest extends Component {
 	}
 
 	render() {
-		const { continuous } = this.props;
+		const { quantitative } = this.props;
 		return (
 			<Dashboard
 				title={
@@ -86,13 +86,13 @@ class CorrTest extends Component {
 			>
 				<SelectInput
 					legend="Variable:"
-					defaultValue={continuous[ 0 ]}
-					options={continuous}
+					defaultValue={quantitative[ 0 ]}
+					options={quantitative}
 				/>
 				<SelectInput
 					legend="Variable:"
-					defaultValue={continuous[ 1 ]}
-					options={continuous}
+					defaultValue={quantitative[ 1 ]}
+					options={quantitative}
 				/>
 				<NumberInput
 					legend={<TeX raw="\rho_0" />}
@@ -122,7 +122,7 @@ class CorrTest extends Component {
 // PROPERTY TYPES //
 
 CorrTest.propTypes = {
-	continuous: PropTypes.array.isRequired,
+	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,

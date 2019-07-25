@@ -57,7 +57,7 @@ class Anova extends Component {
 	}
 
 	render() {
-		const { continuous, categorical } = this.props;
+		const { quantitative, categorical } = this.props;
 		return (
 			<Dashboard
 				autoStart={false}
@@ -70,8 +70,8 @@ class Anova extends Component {
 			>
 				<SelectInput
 					legend="Variable:"
-					defaultValue={continuous[ 0 ]}
-					options={continuous}
+					defaultValue={quantitative[ 0 ]}
+					options={quantitative}
 				/>
 				<SelectInput
 					legend="Grouping Variable:"
@@ -88,7 +88,7 @@ class Anova extends Component {
 
 Anova.propTypes = {
 	categorical: PropTypes.array.isRequired,
-	continuous: PropTypes.array.isRequired,
+	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,

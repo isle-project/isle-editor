@@ -29,7 +29,7 @@ class Transformer extends Component {
 				show={this.state.formulaModalActive}
 				onHide={this.toggleFormulaModal}
 				categorical={this.props.categorical}
-				continuous={this.props.continuous}
+				quantitative={this.props.quantitative}
 				data={this.props.data}
 				defaultCode={this.props.defaultCode}
 				logAction={this.props.logAction}
@@ -47,7 +47,7 @@ class Transformer extends Component {
 			<BinTransformer
 				show={this.state.binModalActive}
 				onHide={this.toggleBinModal}
-				continuous={this.props.continuous}
+				quantitative={this.props.quantitative}
 				logAction={this.props.logAction}
 				onGenerate={this.props.onGenerate}
 				data={this.props.data}
@@ -142,7 +142,7 @@ Transformer.defaultProps = {
 
 Transformer.propTypes = {
 	categorical: PropTypes.array.isRequired,
-	continuous: PropTypes.array.isRequired,
+	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	defaultCode: PropTypes.string,
 	logAction: PropTypes.func,

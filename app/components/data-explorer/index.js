@@ -206,9 +206,9 @@ class DataExplorer extends Component {
 		const session = this.context;
 		if ( !this.props.data ) {
 			const promiseData = session.store.getItem( this.id+'_data' );
-			const promiseContinuous = session.store.getItem( this.id+'_quantitative' );
+			const promisequantitative = session.store.getItem( this.id+'_quantitative' );
 			const promiseCategorical = session.store.getItem( this.id+'_categorical' );
-			Promise.all([ promiseData, promiseContinuous, promiseCategorical ])
+			Promise.all([ promiseData, promisequantitative, promiseCategorical ])
 				.then( ( values ) => {
 					const data = values[ 0 ] || null;
 					const quantitative = values[ 1 ] || [];
@@ -407,25 +407,25 @@ class DataExplorer extends Component {
 
 	transformVariable = ( name, values, varState ) => {
 		let newData;
-		let newContinuous;
+		let newquantitative;
 		let newCategorical;
 		let groupVars;
 		if ( !varState ) {
 			newData = copy( this.state.data, 1 );
-			newContinuous = this.state.quantitative.slice();
+			newquantitative = this.state.quantitative.slice();
 			newCategorical = this.state.categorical.slice();
 			groupVars = this.state.groupVars.slice();
 		} else {
 			newData = varState.data;
-			newContinuous = varState.quantitative.slice();
+			newquantitative = varState.quantitative.slice();
 			newCategorical = varState.categorical.slice();
 			groupVars = varState.groupVars.slice();
 		}
 		newData[ name ] = values;
 		let previous;
 		if ( isNumberArray( values ) ) {
-			if ( !contains( newContinuous, name ) ) {
-				newContinuous.push( name );
+			if ( !contains( newquantitative, name ) ) {
+				newquantitative.push( name );
 				previous = newCategorical.indexOf( name );
 				if ( previous > 0 ) {
 					newCategorical.splice( previous, 1 );
@@ -435,9 +435,9 @@ class DataExplorer extends Component {
 		} else {
 			if ( !contains( newCategorical, name ) ) {
 				newCategorical.push( name );
-				previous = newContinuous.indexOf( name );
+				previous = newquantitative.indexOf( name );
 				if ( previous > 0 ) {
-					newContinuous.splice( previous, 1 );
+					newquantitative.splice( previous, 1 );
 				}
 			}
 			groupVars = newCategorical.slice();
@@ -445,7 +445,7 @@ class DataExplorer extends Component {
 		const newVarState = {
 			data: newData,
 			categorical: newCategorical,
-			quantitative: newContinuous,
+			quantitative: newquantitative,
 			groupVars: groupVars
 		};
 		return newVarState;
@@ -494,12 +494,12 @@ class DataExplorer extends Component {
 			newData = varState.data;
 		}
 		delete newData[ variable ];
-		let newContinuous = state.quantitative.filter( x => x !== variable );
+		let newquantitative = state.quantitative.filter( x => x !== variable );
 		let newCategorical = state.categorical.filter( x => x !== variable );
 		let newGroupVars = state.groupVars.filter( x => x !== variable );
 		return {
 			data: newData,
-			quantitative: newContinuous,
+			quantitative: newquantitative,
 			categorical: newCategorical,
 			groupVars: newGroupVars
 		};
@@ -633,7 +633,7 @@ class DataExplorer extends Component {
 				<Card.Body>
 					<h4>Please select which variables should be treated as numeric and which ones as categorical:</h4>
 					<SelectInput
-						legend="Continuous:"
+						legend="quantitative:"
 						options={variableNames}
 						defaultValue={this.state.quantitative}
 						multi

@@ -98,7 +98,7 @@ class BinTransformer extends Component {
 	constructor( props ) {
 		super( props );
 
-		const activeVar = props.continuous[ 0 ];
+		const activeVar = props.quantitative[ 0 ];
 		const histConfigSettings = {
 			'data': props.data,
 			'variable': activeVar,
@@ -115,7 +115,7 @@ class BinTransformer extends Component {
 				max( configHist.data[ 1 ].y )
 			]
 		};
-		let values = props.data[ props.continuous[0] ];
+		let values = props.data[ props.quantitative[0] ];
 		values = values.filter( x => isNumber( x ) && !isnan( x ) );
 		const xBreaks = [ mean( values ) ];
 		const customNames = [ false, false ];
@@ -373,7 +373,7 @@ class BinTransformer extends Component {
 					<SelectInput
 						legend="Variable to bin:"
 						defaultValue={this.state.activeVar}
-						options={this.props.continuous}
+						options={this.props.quantitative}
 						onChange={this.handleVariableChange}
 						style={{ maxWidth: 400 }}
 					/>
@@ -435,7 +435,7 @@ BinTransformer.defaultProps = {
 BinTransformer.propTypes = {
 	show: PropTypes.bool.isRequired,
 	data: PropTypes.object.isRequired,
-	continuous: PropTypes.array.isRequired,
+	quantitative: PropTypes.array.isRequired,
 	logAction: PropTypes.func,
 	onHide: PropTypes.func.isRequired,
 	onGenerate: PropTypes.func

@@ -169,7 +169,7 @@ class FormulaTransformer extends Component {
 	}
 
 	render() {
-		const continousItems = this.props.continuous.map( ( v, i ) => {
+		const continousItems = this.props.quantitative.map( ( v, i ) => {
 			return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
 		});
 		return (
@@ -194,7 +194,7 @@ class FormulaTransformer extends Component {
 								<ButtonToolbar style={{ marginBottom: 5 }} >
 									<Dropdown className="mr-2">
 										<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
-											Continuous
+											quantitative
 										</Dropdown.Toggle>
 										<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
 											{continousItems}
@@ -289,7 +289,7 @@ FormulaTransformer.defaultProps = {
 FormulaTransformer.propTypes = {
 	show: PropTypes.bool.isRequired,
 	categorical: PropTypes.array.isRequired,
-	continuous: PropTypes.array.isRequired,
+	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	defaultCode: PropTypes.string,
 	logAction: PropTypes.func,
