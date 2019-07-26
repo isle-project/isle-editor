@@ -206,7 +206,7 @@ class Tokenizer {
 			this._openingTagName = removeFirst( name );
 			this._state = IN_OPENING_TAG;
 		}
-		else if ( char === '.' || char === ':' || char === '/' ) {
+		else if ( char === '.' || char === ':' ) {
 			debug( 'IN_OPENING_TAG_NAME -> IN_OPENING_TAG' );
 			this._state = IN_ANGLE_LINK;
 		}
@@ -268,10 +268,11 @@ class Tokenizer {
 	}
 
 	_replaceInnerJSXExpressions() {
-		const RE_OUTER_TAG = /<([^/>]+)[\s\S]*?>[\s\S]+?<\/\1>|<([\s\S]+?)\/>/g;
+		const RE_OUTER_TAG = /<([^/>]+)[\s\S]*>[\s\S]+<\/\1>|<([\s\S]+)\/>/g;
 		let inner = this._current.substring( this._JSX_ATTRIBUTE_START );
 		let match = RE_OUTER_TAG.exec( inner );
 		while ( match !== null ) {
+			debug( 'Match found...' );
 			const tokenizer = new Tokenizer();
 			let replacement = tokenizer.parse( match[ 0 ] );
 			inner = inner.substring( 0, match.index ) +
