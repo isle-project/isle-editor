@@ -996,7 +996,7 @@ class DataExplorer extends Component {
 							{ this.props.questions ? <Nav.Item className="explorer-data-nav">
 								<Nav.Link eventKey="questions" active={this.state.openedNav === 'questions'}>Questions</Nav.Link>
 							</Nav.Item> : null }
-							{ !this.props.dataTable ? <Nav.Item className="explorer-data-nav" >
+							{ this.props.dataTable ? <Nav.Item className="explorer-data-nav" >
 								<Nav.Link eventKey="data" active={this.state.openedNav === 'data'}>Data</Nav.Link>
 							</Nav.Item> : null }
 							{ this.props.distributions.length > 0 ?
