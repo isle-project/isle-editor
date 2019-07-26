@@ -11,6 +11,7 @@ import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import WebpackCdnPlugin from './webpack_cdn_plugin.js';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
+import isURI from '@stdlib/assert/is-uri';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import isRelativePath from '@stdlib/assert/is-relative-path';
@@ -42,13 +43,16 @@ const generateISLE = ( outputDir, code ) => {
 	writeFileSync( islePath, code );
 };
 
-const loadRequires = ( libs, filePath ) => {
+const loadSyncRequires = ( libs, filePath ) => {
 	let str = '';
-	let dir = dirname( filePath );
+	let dir = filePath ? dirname( filePath ) : '';
 	if ( isObject( libs ) ) {
 		for ( let key in libs ) {
 			if ( hasOwnProp( libs, key ) ) {
 				let lib = libs[ key ];
+				if ( isURI( lib ) ) {
+					continue;
+				}
 				if ( isAbsolutePath( lib ) || /\.(\/|\\)/.test( lib ) ) {
 					lib = join( dir, libs[ key ]);
 					if ( process.platform === 'win32' ) {
@@ -75,14 +79,36 @@ const loadRequires = ( libs, filePath ) => {
 	return str;
 };
 
+const prepareAsyncRequires = ( libs ) => {
+	const asyncOps = {
+		resources: [],
+		keys: []
+	};
+	if ( isObject( libs ) ) {
+		for ( let key in libs ) {
+			if ( hasOwnProp( libs, key ) ) {
+				let lib = libs[ key ];
+				if ( isURI( lib ) ) {
+					asyncOps.resources.push( lib );
+					asyncOps.keys.push( key );
+				}
+			}
+		}
+	}
+	return `const asyncRequires = ${JSON.stringify( asyncOps )};`;
+};
+
 const getMainImports = () => `
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import React, { Component } from 'react';
+import { json, csv } from 'd3-fetch';
 import { render } from 'react-dom';
+import { extname } from 'path';
 import Lesson from 'components/lesson';
 import Provider from 'components/provider';
 import factor from 'utils/factor-variable';
+import obsToVar from 'utils/obs-to-var';
 `;
 
 const getComponents = ( arr ) => {
@@ -97,18 +123,48 @@ class LessonWrapper extends Component {
 	constructor() {
 		super();
 		this.state = preamble.state || {};
+		this.state.isLoading = true;
 	}
 
-	componentDidMount() {
-		const loader = document.getElementById( 'loading' );
-		if ( loader ) {
-			setTimeout(function onFadeOut() {
-				loader.style.animation = 'anim-fade-out 1.7s forwards';
-			}, ${max( loaderTimeout - 3000, 0 )});
-			setTimeout(function onRemove() {
-				loader.remove();
-				document.body.style['overflow-y'] = 'auto';
-			}, ${loaderTimeout} );
+	async componentDidMount() {
+		const asyncOps = [];
+		const extensions = [];
+		for ( let i = 0; i < asyncRequires.resources.length; i++ ) {
+			const lib = asyncRequires.resources[ i ];
+			const ext = extname( lib );
+			extensions[ i ] = ext;
+			if ( ext === '.json' ) {
+				asyncOps[ i ] = json( lib );
+			}
+			else if ( ext === '.csv' ) {
+				asyncOps[ i ] = csv( lib );
+			}
+		}
+		const res = await Promise.all( asyncOps );
+		for ( let i = 0; i < res.length; i++ ) {
+			let v = res[ i ];
+			if ( extensions[ i ] === '.csv' ) {
+				v = obsToVar( v );
+			}
+			global[ asyncRequires.keys[ i ] ] = v;
+		}
+		this.setState({
+			isLoading: false
+		});
+	}
+
+	componentDidUpdate() {
+		if ( !this.state.isLoading ) {
+			const loader = document.getElementById( 'loading' );
+			if ( loader ) {
+				setTimeout(function onFadeOut() {
+					loader.style.animation = 'anim-fade-out 1.7s forwards';
+				}, ${max( loaderTimeout - 3000, 0 )});
+				setTimeout(function onRemove() {
+					loader.remove();
+					document.body.style['overflow-y'] = 'auto';
+				}, ${loaderTimeout} );
+			}
 		}
 	}
 
@@ -117,6 +173,9 @@ class LessonWrapper extends Component {
 	}
 
 	render() {
+		if ( this.state.isLoading ) {
+			return <Lesson className="${className}" ></Lesson>;
+		}
 		return (
 			<Lesson className="${className}" >
 				${lessonContent}
@@ -202,7 +261,8 @@ const getSessionCode = ( basePath ) => {
 function generateIndexJS( lessonContent, components, meta, basePath, filePath ) {
 	let res = getMainImports();
 	if ( meta.require ) {
-		res += loadRequires( meta.require, filePath );
+		res += loadSyncRequires( meta.require, filePath );
+		res += prepareAsyncRequires( meta.require );
 	}
 	let className = 'Lesson';
 	if ( contains( components, 'Deck' ) ) {
@@ -301,8 +361,10 @@ function writeIndexFile({
 							resolve( basePath, './node_modules/babel-plugin-transform-react-remove-prop-types' ),
 							resolve( basePath, './node_modules/@babel/plugin-transform-react-jsx' ),
 							resolve( basePath, './node_modules/@babel/plugin-proposal-class-properties' ),
-							resolve( basePath, './node_modules/@babel/plugin-syntax-dynamic-import' )
-
+							resolve( basePath, './node_modules/@babel/plugin-syntax-dynamic-import' ),
+							[ resolve( basePath, './node_modules/@babel/plugin-transform-runtime' ), {
+								'regenerator': true
+							}]
 						],
 						presets: [
 							resolve( basePath, './node_modules/@babel/preset-env' ),

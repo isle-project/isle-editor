@@ -71,8 +71,8 @@ class App extends Component {
 		debug( 'Editor text changed...' );
 		const handleChange = ( value ) => {
 			debug( 'Should handle change...' );
-			this.props.convertMarkdown( value );
 			this.handlePreambleChange( value );
+			this.props.convertMarkdown( value );
 		};
 
 		if ( this.debouncedChange ) {
@@ -105,15 +105,20 @@ class App extends Component {
 			let preambleHasChanged = preamble !== this.props.preambleText;
 			debug( 'Check whether preamble has changed: '+preambleHasChanged );
 			if ( preambleHasChanged && yaml ) {
-				debug( 'Update preamble...' );
-				const newPreamble = yaml.load( preamble );
-				if ( !isObject( newPreamble ) ) {
-					return this.props.encounteredError( new Error( 'Make sure the preamble is valid YAML code.' ) );
+				debug( 'Preamble has changed...' );
+				try {
+					const newPreamble = yaml.load( preamble );
+					if ( !isObject( newPreamble ) ) {
+						return this.props.encounteredError( new Error( 'Make sure the preamble is valid YAML code.' ) );
+					}
+					this.props.updatePreamble({
+						preamble: newPreamble,
+						preambleText: preamble
+					});
 				}
-				this.props.updatePreamble({
-					preamble: newPreamble,
-					preambleText: preamble
-				});
+				catch ( err ) {
+					this.props.encounteredError( err );
+				}
 			}
 		}
 	}

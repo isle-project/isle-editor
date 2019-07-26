@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import { dirname, resolve, extname } from 'path';
 import { readFileSync } from 'fs';
+import objectKeys from '@stdlib/utils/keys';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import isRelativePath from '@stdlib/assert/is-relative-path';
 import isObject from '@stdlib/assert/is-object';
@@ -37,6 +38,17 @@ const debug = logger( 'isle-editor:preview' );
 const RE_LINES = /\r?\n/g;
 
 
+// FUNCTIONS //
+
+function clearGlobalVariables( oldPreamble ) {
+	const { require } = oldPreamble;
+	let keys = objectKeys( require );
+	for ( let i = 0; i < keys.length; i++ ) {
+		global[ keys[ i ] ] = void 0;
+	}
+}
+
+
 // MAIN //
 
 class Preview extends Component {
@@ -50,16 +62,10 @@ class Preview extends Component {
 		this.scope = createScope( session );
 		const lessonState = session.config.state;
 		this.state = {
-			...lessonState
+			...lessonState,
+			isLoading: true
 		};
-		this.shouldRenderPreview = true;
-
 		if ( isObject( props.preamble ) ) {
-			try {
-				loadRequires( props.preamble.require, props.filePath || '' );
-			} catch ( err ) {
-				props.encounteredError( err );
-			}
 			try {
 				if ( props.preamble.instructorNotes ) {
 					let instructorNotes = props.preamble.instructorNotes;
@@ -86,8 +92,12 @@ class Preview extends Component {
 		}
 	}
 
-	componentDidMount() {
+	async componentDidMount() {
 		debug( 'Preview did mount.' );
+		const { preamble, filePath } = this.props;
+		if ( isObject( preamble ) ) {
+			await this.loadRequires( preamble, filePath );
+		}
 	}
 
 	shouldComponentUpdate( nextProps, nextState ) {
@@ -96,7 +106,8 @@ class Preview extends Component {
 			this.props.preambleText !== nextProps.preambleText ||
 			this.props.currentMode !== nextProps.currentMode ||
 			this.props.currentRole !== nextProps.currentRole ||
-			this.props.hideToolbar !== nextProps.hideToolbar
+			this.props.hideToolbar !== nextProps.hideToolbar ||
+			this.state.isLoading !== nextState.isLoading
 		) {
 			return true;
 		}
@@ -104,30 +115,70 @@ class Preview extends Component {
 	}
 
 	componentDidUpdate( prevProps ) {
-		debug( 'Preview will update.' );
+		debug( 'Preview did update.' );
 		if (
 			this.props.preambleText !== prevProps.preambleText ||
 			this.props.currentMode !== prevProps.currentMode ||
 			this.props.currentRole !== prevProps.currentRole
 		) {
-			this.handlePreambleChange( this.props.preamble );
 			const offline = this.props.currentMode === 'offline';
 			const session = new Session( this.props.preamble, offline );
 			this.session = session;
 			this.scope = createScope( session );
 			let lessonState = session.config.state;
 			this.setState({
-				...lessonState
+				...lessonState,
+				isLoading: true
+			}, async () => {
+				clearGlobalVariables( prevProps.preamble );
+				await this.handlePreambleChange( this.props.preamble );
 			});
 		}
 	}
 
-	handlePreambleChange = ( newPreamble ) => {
+	componentWillUnmount() {
+		debug( 'Preview will unmount...' );
+	}
+
+	async loadRequires( preamble, filePath ) {
+		const { encounteredError } = this.props;
+		try {
+			const err = await loadRequires( preamble.require, filePath || '' );
+			this.setState({
+				isLoading: false
+			}, () => {
+				if ( err ) {
+					encounteredError( new Error( `Error encountered while loading 'require' statements: ${err.message}` ) );
+				}
+				debug( 'Finished loading all `requires`...' );
+			});
+		} catch ( err ) {
+			this.setState({
+				isLoading: false
+			}, () => {
+				encounteredError( err );
+			});
+		}
+	}
+
+	handlePreambleChange = async ( newPreamble ) => {
 		debug( 'Handle preamble change...' );
 		try {
-			loadRequires( newPreamble.require, this.props.filePath || '' );
+			const err = await this.loadRequires( newPreamble, this.props.filePath || '' );
+			this.setState({
+				isLoading: false
+			}, () => {
+				if ( err ) {
+					this.props.encounteredError( err );
+				}
+				debug( 'Finished loading all `requires`...' );
+			});
 		} catch ( err ) {
-			return this.props.encounteredError( err );
+			this.setState({
+				isLoading: false
+			}, () => {
+				this.props.encounteredError( err );
+			});
 		}
 		try {
 			let instructorNotes = newPreamble.instructorNotes;
@@ -219,7 +270,7 @@ class Preview extends Component {
 					minHeight: `calc(100vh - ${this.props.hideToolbar ? 2 : 90}px)`
 				}}
 			>
-				{this.renderPreview()}
+				{ this.state.isLoading ? 'Loading...' : this.renderPreview()}
 			</Lesson>
 		</Provider> );
 	}
