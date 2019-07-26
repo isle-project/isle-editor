@@ -4,9 +4,10 @@ import logger from 'debug';
 import markdownit from 'markdown-it';
 import trim from '@stdlib/string/trim';
 import replace from '@stdlib/string/replace';
+import startsWith from '@stdlib/string/starts-with';
 import removeFirst from '@stdlib/string/remove-first';
 import hasOwnProp from '@stdlib/assert/has-own-property';
-import { replaceAndEscapeEquations, replaceEquations } from './replace_equations.js';
+import { replaceEquations } from './replace_equations.js';
 
 
 // VARIABLES //
@@ -32,6 +33,7 @@ const md = markdownit({
 	breaks: true,
 	typographer: false
 });
+const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
 const RE_LINE_BEGINNING = /\n\s*/g;
 const RE_HTML_INNER_TAGS = /^(?:p|th|td)$/;
 const RE_HTML_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|var)$/;
@@ -39,6 +41,18 @@ const RE_ISLE_INLINE_TAGS = /^(?:Badge|BeaconTooltip|Button|CheckboxInput|Clock|
 
 
 // FUNCTIONS //
+
+/**
+* Escapes raw attribute tags of TeX and Text components.
+*/
+const rawEscaper = ( match, p1, p2, p3 ) => {
+	const isLiteral = startsWith( p3, '{`' );
+	if ( isLiteral ) {
+		p3 = '{String.raw`' + p3.substring( 2 );
+		return '<'+p1+' '+p2+' raw='+p3;
+	}
+	return match;
+};
 
 /**
 * Tests whether character is a quotation mark.
@@ -74,11 +88,6 @@ function isWhitespace( c ) {
 }
 
 class Tokenizer {
-	constructor( props ) {
-		this.escapeBackslash = props.escapeBackslash;
-		this.replaceEquations = props.escapeBackslash ? replaceAndEscapeEquations : replaceEquations;
-	}
-
 	setup( str ) {
 		this.tokens = [];
 		this._buffer = str;
@@ -122,7 +131,7 @@ class Tokenizer {
 				this._state = IN_BASE;
 				const url = this._current.substring( this._startTagNamePos+1, this._current.length-1 );
 				const before = this._current.substring( 0, this._startTagNamePos );
-				const replacement = this.replaceEquations( md.renderInline( trim( before ) ) ) +
+				const replacement = replaceEquations( md.renderInline( trim( before ) ) ) +
 					' <a href="'+url+'">'+url+'</a>';
 				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = replacement;
 				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
@@ -153,7 +162,7 @@ class Tokenizer {
 				debug( `Render block markdown for <${this._openingTagName}/>...` );
 				text = md.render( text );
 			}
-			text = this.replaceEquations( text );
+			text = replaceEquations( text );
 			this._current = this._current.substring( 0, this._openTagEnd ) +
 			text + '<';
 			if ( this._buffer.charAt( this.pos+1 ) !== '/' ) {
@@ -263,9 +272,7 @@ class Tokenizer {
 		let inner = this._current.substring( this._JSX_ATTRIBUTE_START );
 		let match = RE_OUTER_TAG.exec( inner );
 		while ( match !== null ) {
-			const tokenizer = new Tokenizer({
-				escapeBackslash: this.escapeBackslash
-			});
+			const tokenizer = new Tokenizer();
 			let replacement = tokenizer.parse( match[ 0 ] );
 			inner = inner.substring( 0, match.index ) +
 				replacement + inner.substring( match.index + match[0].length );
@@ -329,9 +336,7 @@ class Tokenizer {
 		if ( this._braceLevel === 0 ) {
 			this._JSX_ATTRIBUTE_END = this._current.length;
 			const inner = this._current.substring( this._JSX_ATTRIBUTE_START, this._JSX_ATTRIBUTE_END-1 );
-			const tokenizer = new Tokenizer({
-				escapeBackslash: this.escapeBackslash
-			});
+			const tokenizer = new Tokenizer();
 			let replacement = tokenizer.parse( inner );
 			this._current = this._current.substring( 0, this._JSX_ATTRIBUTE_START ) +
 				replacement + char;
@@ -369,6 +374,8 @@ class Tokenizer {
 		debug( '---' );
 		debug( str );
 		debug( '---' );
+		str = replace( str, RE_RAW_ATTRIBUTE, rawEscaper );
+		str = replaceEquations( str );
 		this.setup( str );
 		for ( this.pos = 0; this.pos < str.length; this.pos++ ) {
 			let char = str.charAt( this.pos );
@@ -420,11 +427,6 @@ class Tokenizer {
 		}
 		let out = this.tokens.join( '' );
 		out = md.render( out );
-		if ( this.escapeBackslash ) {
-			out = replaceAndEscapeEquations( out );
-		} else {
-			out = replaceEquations( out );
-		}
 		for ( let key in this.divHash ) {
 			if ( hasOwnProp( this.divHash, key ) ) {
 				out = out.replace( key, this.divHash[ key ]);
