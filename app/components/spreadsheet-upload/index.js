@@ -6,10 +6,16 @@ import Card from 'react-bootstrap/Card';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import parse from 'csv-parse';
 import detect from 'detect-csv';
+import replace from '@stdlib/string/replace';
 import isNull from '@stdlib/assert/is-null';
 import round from '@stdlib/math/base/special/round';
 import SessionContext from 'session/context.js';
 import CheckboxInput from 'components/input/checkbox';
+
+
+// VARIABLES //
+
+const RE_LONE_CARRIAGE = /\r[^\n]/g;
 
 
 // MAIN //
@@ -65,6 +71,7 @@ class SpreadsheetUpload extends Component {
 		} else {
 			delimiter = ',';
 		}
+		text = replace( text, RE_LONE_CARRIAGE, '\n' );
 		let columns;
 		const idx = text.indexOf( '\n' );
 		let firstLine = text.substring( 0, idx ).split( delimiter );
