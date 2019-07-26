@@ -15,7 +15,7 @@ import CheckboxInput from 'components/input/checkbox';
 
 // VARIABLES //
 
-const RE_LONE_CARRIAGE = /\r[^\n]/g;
+const RE_LONE_CARRIAGE = /\r(?!\n)/g;
 
 
 // MAIN //
