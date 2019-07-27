@@ -265,6 +265,8 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 	if ( meta.require ) {
 		res += loadSyncRequires( meta.require, filePath );
 		res += prepareAsyncRequires( meta.require );
+	} else {
+		res += 'const asyncRequires = null';
 	}
 	let className = 'Lesson';
 	if ( contains( components, 'Deck' ) ) {
