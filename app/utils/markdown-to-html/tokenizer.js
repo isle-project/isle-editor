@@ -46,10 +46,12 @@ const RE_ISLE_INLINE_TAGS = /^(?:Badge|BeaconTooltip|Button|CheckboxInput|Clock|
 * Escapes raw attribute tags of TeX and Text components.
 */
 const rawEscaper = ( match, p1, p2, p3 ) => {
-	const isLiteral = startsWith( p3, '{`' );
-	if ( isLiteral ) {
+	if ( startsWith( p3, '{`' ) ) {
 		p3 = '{String.raw`' + p3.substring( 2 );
 		return '<'+p1+' '+p2+' raw='+p3;
+	} else if ( startsWith( p3, '"' ) ) {
+		p3 = '{String.raw`' + p3.substring( 1, p3.length-1 );
+		return '<'+p1+' '+p2+' raw='+p3+'`}';
 	}
 	return match;
 };
