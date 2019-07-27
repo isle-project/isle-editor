@@ -129,24 +129,26 @@ class LessonWrapper extends Component {
 	async componentDidMount() {
 		const asyncOps = [];
 		const extensions = [];
-		for ( let i = 0; i < asyncRequires.resources.length; i++ ) {
-			const lib = asyncRequires.resources[ i ];
-			const ext = extname( lib );
-			extensions[ i ] = ext;
-			if ( ext === '.json' ) {
-				asyncOps[ i ] = json( lib );
+		if ( asyncRequires ) {
+			for ( let i = 0; i < asyncRequires.resources.length; i++ ) {
+				const lib = asyncRequires.resources[ i ];
+				const ext = extname( lib );
+				extensions[ i ] = ext;
+				if ( ext === '.json' ) {
+					asyncOps[ i ] = json( lib );
+				}
+				else if ( ext === '.csv' ) {
+					asyncOps[ i ] = csv( lib );
+				}
 			}
-			else if ( ext === '.csv' ) {
-				asyncOps[ i ] = csv( lib );
+			const res = await Promise.all( asyncOps );
+			for ( let i = 0; i < res.length; i++ ) {
+				let v = res[ i ];
+				if ( extensions[ i ] === '.csv' ) {
+					v = obsToVar( v );
+				}
+				global[ asyncRequires.keys[ i ] ] = v;
 			}
-		}
-		const res = await Promise.all( asyncOps );
-		for ( let i = 0; i < res.length; i++ ) {
-			let v = res[ i ];
-			if ( extensions[ i ] === '.csv' ) {
-				v = obsToVar( v );
-			}
-			global[ asyncRequires.keys[ i ] ] = v;
 		}
 		this.setState({
 			isLoading: false
