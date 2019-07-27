@@ -96,7 +96,7 @@ class Signup extends Component {
 
 	getPasswordValidationState = () => {
 		const { password, passwordRepeat } = this.state;
-		if ( password.length < 6 || passwordRepeat.length === 0 ) {
+		if ( password.length < 6 ) {
 			return 'warning';
 		}
 		if ( password !== passwordRepeat ) {
@@ -106,6 +106,11 @@ class Signup extends Component {
 	}
 
 	render() {
+		const invalidEmail = this.state.email && this.getEmailValidationState() !== 'success';
+		const invalidName = this.state.name && this.getNameValidationState() !== 'success';
+		const passwordValidation = this.getPasswordValidationState();
+		const invalidPassword = this.state.password && passwordValidation === 'warning';
+		const invalidPasswordRepeat = this.state.passwordRepeat && passwordValidation === 'error';
 		return (
 			<Modal
 				show={this.props.show}
@@ -123,7 +128,6 @@ class Signup extends Component {
 						<Tooltip placement="right" tooltip="Please enter a valid email address." >
 							<FormGroup
 								controlId="formHorizontalEmail"
-								validationState={this.getEmailValidationState()}
 							>
 								<Col sm={2}>
 									<label>Email</label>
@@ -135,16 +139,18 @@ class Signup extends Component {
 										placeholder="Enter Email"
 										autocomplete="username"
 										onChange={this.handleInputChange}
+										isInvalid={invalidEmail}
 									/>
-									<FormControl.Feedback />
-									<small className="form-text text-muted" >Please enter your university email address.</small>
+									<FormControl.Feedback type="invalid">
+										Not a valid email address.
+									</FormControl.Feedback>
+									{ !this.state.email ? <small className="form-text text-muted" >Please enter your university email address.</small> : null}
 								</Col>
 							</FormGroup>
 						</Tooltip>
 						<Tooltip placement="right" tooltip="Please enter your name (minimum three characters)." >
 							<FormGroup
 								controlId="signup-form-name"
-								validationState={this.getNameValidationState()}
 							>
 								<Col sm={2}>
 									<label>Name</label>
@@ -155,16 +161,18 @@ class Signup extends Component {
 										type="text"
 										placeholder="Enter Name"
 										onChange={this.handleInputChange}
+										isInvalid={invalidName}
 									/>
-									<FormControl.Feedback />
-									<small className="form-text text-muted" >Please enter your name.</small>
+									<FormControl.Feedback type="invalid">
+										Name must contain four characters.
+									</FormControl.Feedback>
+									{ !this.state.name ? <small className="form-text text-muted" >Please enter your name.</small> : null}
 								</Col>
 							</FormGroup>
 						</Tooltip>
 						<Tooltip placement="right" tooltip="Please enter a password of your choosing with at least six characters" >
 							<FormGroup
 								controlId="signup-form-password"
-								validationState={this.getPasswordValidationState()}
 							>
 								<Col sm={2}>
 									<label>Password</label>
@@ -178,14 +186,16 @@ class Signup extends Component {
 										onChange={this.handleInputChange}
 										maxLength={30}
 										minLength={6}
+										isInvalid={invalidPassword}
 									/>
-									<FormControl.Feedback />
+									<FormControl.Feedback type="invalid">
+										Please enter a new password with at least six characters.
+									</FormControl.Feedback>
 								</Col>
 							</FormGroup>
 						</Tooltip>
 						<FormGroup
 							controlId="signup-form-password-confirmation"
-							validationState={this.getPasswordValidationState()}
 						>
 							<Col sm={2}></Col>
 							<Col sm={10}>
@@ -197,8 +207,11 @@ class Signup extends Component {
 									onChange={this.handleInputChange}
 									maxLength={30}
 									minLength={6}
+									isInvalid={invalidPasswordRepeat}
 								/>
-								<FormControl.Feedback />
+								<FormControl.Feedback type="invalid">
+									Passwords do not match.
+								</FormControl.Feedback>
 							</Col>
 						</FormGroup>
 					</Form>
