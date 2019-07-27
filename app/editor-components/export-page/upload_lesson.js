@@ -17,6 +17,7 @@ import { createReadStream, createWriteStream } from 'fs';
 import os from 'os';
 import qs from 'querystring';
 import logger from 'debug';
+import lowercase from '@stdlib/string/lowercase';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import endsWith from '@stdlib/string/ends-with';
@@ -52,7 +53,8 @@ class UploadLesson extends Component {
 			server: localStorage.getItem( 'server' ),
 			token: localStorage.getItem( 'token' ),
 			showResponseModal: false,
-			showConfirmModal: false
+			showConfirmModal: false,
+			invalidLessonName: false
 		};
 	}
 
@@ -83,12 +85,11 @@ class UploadLesson extends Component {
 		}
 	}
 
-	handleInputChange = ( event ) => {
-		const target = event.target;
-		const value = target.value;
-		const name = target.name;
+	handleLessonChange = ( event ) => {
+		const lessonName = event.target.value;
 		this.setState({
-			[ name ]: value
+			lessonName,
+			invalidLessonName: contains( lessonName, ' ' ) || lessonName !== lowercase( lessonName )
 		});
 	}
 
@@ -324,17 +325,23 @@ class UploadLesson extends Component {
 						)}
 					</FormControl>
 				</FormGroup>
-				<FormGroup>
+				<FormGroup
+					controlId="lesson-name"
+				>
 					<label>Lesson Name</label>
 					<FormControl
 						name="lessonName"
 						type="text"
 						placeholder="Enter lesson name"
-						onChange={this.handleInputChange}
+						onChange={this.handleLessonChange}
 						value={this.state.lessonName}
 						disabled={this.state.spinning}
 						onKeyPress={this.handleKeyPress}
+						isInvalid={this.state.invalidLessonName}
 					/>
+					<FormControl.Feedback type="invalid" >
+						Please provide a lesson name of lowercase characters without spaces.
+					</FormControl.Feedback>
 				</FormGroup>
 				<FormGroup>
 					<label>Settings</label>
@@ -375,7 +382,7 @@ class UploadLesson extends Component {
 								size="sm"
 								block
 								onClick={this.checkLesson}
-								disabled={this.state.spinning || !this.state.token || !this.state.lessonName}
+								disabled={this.state.spinning || !this.state.token || !this.state.lessonName || this.state.invalidLessonName}
 							>Upload</Button>
 							<br />
 							{this.renderProgress()}
