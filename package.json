@@ -113,6 +113,8 @@
     "component-raf": "^1.2.0",
     "component-tween": "^1.2.0",
     "compute-chunkify": "0.0.0",
+    "compute-mean": "^3.0.0",
+    "compute-stdev": "^1.0.0",
     "core-js": "2.6.5",
     "cross-env": "^5.1.5",
     "css": "^2.2.3",
