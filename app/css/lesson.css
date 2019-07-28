@@ -545,6 +545,10 @@ mark {
 	content: '';
 }
 
+.Lesson > .alert {
+	max-width: 1200px;
+}
+
 .example-multiple-targets::after {
 	content: attr(data-count);
 	display: block;
