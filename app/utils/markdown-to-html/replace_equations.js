@@ -6,7 +6,7 @@ import replace from '@stdlib/string/replace';
 // VARIABLES //
 
 const DEFAULT_INLINE_MATH_DELIMITERS = [
-	/\$(?:\s)*([\s\S]*?)(?:\s)*\$/g,
+	/\$(?:\s)*([^{][\s\S]*?)(?:\s)*\$/g,
 	/\\\((?:\s)*(.*?)(?:\s)*\\\)/g
 ];
 const DEFAULT_DISP_MATH_DELIMITERS = [
