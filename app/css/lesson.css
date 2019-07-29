@@ -547,6 +547,8 @@ mark {
 
 .Lesson > .alert {
 	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .example-multiple-targets::after {
