@@ -11,6 +11,7 @@ import NINF from '@stdlib/constants/math/float64-ninf';
 import min from '@stdlib/math/base/special/min';
 import max from '@stdlib/math/base/special/max';
 import roundn from '@stdlib/math/base/special/roundn';
+import isnan from '@stdlib/assert/is-nan';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import generateUID from 'utils/uid';
 import ChatButton from 'components/chat-button';
@@ -78,8 +79,10 @@ class RangeQuestion extends Component {
 			(
 				this.props.solution && prevProps.solution &&
 				(
-					this.props.solution[1] !== prevProps.solution[1] ||
-					this.props.solution[0] !== prevProps.solution[0]
+					!isnan( this.props.solution[ 1 ] ) &&
+					!isnan( this.props.solution[ 0 ] ) &&
+					( this.props.solution[ 1 ] !== prevProps.solution[ 1 ] ||
+					this.props.solution[ 0 ] !== prevProps.solution[ 0 ] )
 				)
 			)
 		) {
@@ -280,13 +283,8 @@ class RangeQuestion extends Component {
 						info={RANGE_QUESTION_SUBMIT_ANSWER}
 					/>
 					{ this.props.feedback ? <FeedbackButtons
-						vertical
 						id={this.id+'_feedback'}
-						style={{
-							position: 'absolute',
-							right: '4px',
-							top: '4px'
-						}}
+						style={{ marginRight: 5, marginTop: -5 }}
 					/> : null }
 				</Card.Body>
 			</Card>
@@ -320,7 +318,7 @@ RangeQuestion.propTypes = {
 	question: PropTypes.string,
 	solution: PropTypes.arrayOf( PropTypes.number ),
 	hintPlacement: PropTypes.string,
-	hints: PropTypes.arrayOf( PropTypes.string ),
+	hints: PropTypes.arrayOf( PropTypes.oneOfType([ PropTypes.string, PropTypes.element ]) ),
 	feedback: PropTypes.bool,
 	chat: PropTypes.bool,
 	digits: PropTypes.number,
