@@ -84,6 +84,7 @@ const prepareAsyncRequires = ( libs ) => {
 		resources: [],
 		keys: []
 	};
+	let out = '';
 	if ( isObject( libs ) ) {
 		for ( let key in libs ) {
 			if ( hasOwnProp( libs, key ) ) {
@@ -91,11 +92,13 @@ const prepareAsyncRequires = ( libs ) => {
 				if ( isURI( lib ) ) {
 					asyncOps.resources.push( lib );
 					asyncOps.keys.push( key );
+					out += `global.${key} = null;\n`;
 				}
 			}
 		}
 	}
-	return `const asyncRequires = ${JSON.stringify( asyncOps )};`;
+	out += `const asyncRequires = ${JSON.stringify( asyncOps )};`;
+	return out;
 };
 
 const getMainImports = () => `
@@ -174,15 +177,19 @@ class LessonWrapper extends Component {
 		this.unmounted = true;
 	}
 
-	render() {
-		if ( this.state.isLoading ) {
-			return <Lesson className="${className}" ></Lesson>;
-		}
+	renderLesson() {
 		return (
 			<Lesson className="${className}" >
 				${lessonContent}
 			</Lesson>
 		);
+	}
+
+	render() {
+		if ( this.state.isLoading ) {
+			return <Lesson className="${className}" ></Lesson>;
+		}
+		return this.renderLesson();
 	}
 }
 

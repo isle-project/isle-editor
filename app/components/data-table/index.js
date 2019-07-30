@@ -2,10 +2,12 @@
 
 import React, { Component, Fragment } from 'react';
 import { findDOMNode } from 'react-dom';
+import logger from 'debug';
 import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
 import InputRange from 'react-input-range';
 import unique from 'uniq';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Overlay from 'react-bootstrap/Overlay';
@@ -46,11 +48,58 @@ const md = markdownit({
 	breaks: true,
 	typographer: false
 });
+const debug = logger( 'isle:data-table' );
 const uid = generateUID( 'data-table' );
 const RE_NUMBER = /[0-9.,]+/;
 
 
 // FUNCTIONS //
+
+function createDescriptions( descriptions ) {
+	const strTable = [];
+	for ( let varName in descriptions ) {
+		if ( hasOwnProp( descriptions, varName ) ) {
+			strTable.push( <tr key={varName} >
+				<td>{varName}</td><td>{descriptions[varName]}</td>
+			</tr>);
+		}
+	}
+	return ( <table className="table-bordered table-condensed" >
+		<thead>
+			<tr><th>Name</th><th>Description</th></tr>
+		</thead>
+		<tbody>
+		{strTable}
+		</tbody>
+	</table> );
+}
+
+function filterMethodStrings( filter, row ) {
+	if ( isArray( filter.value ) ) {
+		return contains( filter.value, row[ filter.id ] );
+	}
+	// Check whether string contains search phrase:
+	return contains( lowercase( row[ filter.id ] ), lowercase( filter.value ) );
+}
+
+function filterMethodNumbers( filter, row ) {
+	const val = row[ filter.id ];
+	return val >= filter.value.min && val <= filter.value.max;
+}
+
+function filterMethodCategories( filter, row, column ) {
+	if ( !filter.value || isEmptyArray( filter.value ) ) {
+		return true;
+	}
+	const id = filter.pivotId || filter.id;
+	if ( row[ id ] === void 0 ) {
+		return true;
+	}
+	if ( isArray( filter.value ) ) {
+		return contains( filter.value, String( row[ id ] ) );
+	}
+	return String( row[ id ] ) === filter.value;
+}
 
 function createRows( data ) {
 	if ( isEmptyObject( data ) ) {
@@ -95,31 +144,87 @@ class DataTable extends Component {
 	constructor( props ) {
 		super( props );
 
-		props.dataInfo.info = props.dataInfo.info || [];
-		props.dataInfo.name = props.dataInfo.name || '';
-		props.dataInfo.variables = props.dataInfo.variables || null;
-		props.dataInfo.showOnStartup = props.dataInfo.showOnStartup || null;
-
+		debug( 'Constructor is invoked...' );
 		this.id = props.id || uid( props );
-		this.state = this.generateInitialState( props );
+		this.state = {};
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		debug( 'Generating derived state...' );
+		const newState = {};
+		if ( nextProps.data !== prevState.data ) {
+			debug( 'Data is new...' );
+			let rows;
+			let keys;
+			let isArr = isArray( nextProps.data );
+			if ( isArr || isObject( nextProps.data ) ) {
+				if ( isArr ) {
+					// Case: `data` is already an array of observations
+					rows = nextProps.data.slice();
+					keys = objectKeys( rows[ 0 ] );
+				} else {
+					// Case: `data` is an object with keys for the various variables
+					rows = createRows( nextProps.data );
+					keys = objectKeys( nextProps.data );
+				}
+				debug( 'Created a `rows` array of length: '+rows.length );
+				for ( let i = 0; i < rows.length; i++ ) {
+					if ( nextProps.showRemove && !rows[ i ][ 'remove' ]) {
+						rows[ i ][ 'remove' ] = false;
+					}
+					rows[ i ][ 'id' ] = i + 1;
+				}
+				newState.rows = rows;
+				newState.keys = keys;
+				newState.filtered = nextProps.filters;
+				newState.showTooltip = false;
+				newState.selectedRows = rows.length;
+				newState.data = nextProps.data;
+			}
+		}
+		if ( nextProps.dataInfo !== prevState.dataInfo ) {
+			debug( 'Data information has changed...' );
+			if ( nextProps.dataInfo ) {
+				newState.showInfo = nextProps.dataInfo.showOnStartup;
+				newState.dataInfo = {
+					info: nextProps.dataInfo.info || [],
+					name: nextProps.dataInfo.name || '',
+					variables: nextProps.dataInfo.variables || null,
+					showOnStartup: nextProps.dataInfo.showOnStartup || null
+				};
+			} else {
+				newState.showInfo = false;
+				newState.dataInfo = {
+					'info': [],
+					'name': '',
+					'variables': null,
+					'showOnStartup': false
+				};
+			}
+		}
+		if ( isEmptyObject( newState ) ) {
+			return null;
+		}
+		return newState;
 	}
 
 	componentDidMount() {
-		const thead = findDOMNode( this.table ).getElementsByClassName( 'rt-thead' )[ 0 ];
-		const theadControls = findDOMNode( this.table ).getElementsByClassName( 'rt-thead' )[ 1 ];
-		const tbody = findDOMNode( this.table ).getElementsByClassName( 'rt-tbody' )[0];
+		debug( 'Component has mounted...' );
+		if ( this.table ) {
+			const thead = findDOMNode( this.table ).getElementsByClassName( 'rt-thead' )[ 0 ];
+			const theadControls = findDOMNode( this.table ).getElementsByClassName( 'rt-thead' )[ 1 ];
+			const tbody = findDOMNode( this.table ).getElementsByClassName( 'rt-tbody' )[0];
 
-		tbody.addEventListener( 'scroll', () => {
-			thead.scrollLeft = tbody.scrollLeft;
-			theadControls.scrollLeft = tbody.scrollLeft;
-		});
+			tbody.addEventListener( 'scroll', () => {
+				thead.scrollLeft = tbody.scrollLeft;
+				theadControls.scrollLeft = tbody.scrollLeft;
+			});
+		}
 	}
 
 	componentDidUpdate( prevProps ) {
+		debug( 'Component has updated...' );
 		let newState = {};
-		if ( this.props.data !== prevProps.data ) {
-			newState = this.generateInitialState( this.props );
-		}
 		if ( this.props.filters && this.props.filters !== prevProps.filters ) {
 			newState.filtered = this.props.filters;
 		}
@@ -142,7 +247,7 @@ class DataTable extends Component {
 				onBlur={e => {
 					const rows = [...this.state.rows ];
 					const val = e.target.innerHTML;
-					rows[cellInfo.index][cellInfo.column.id] = RE_NUMBER.test( val ) ? Number( val ) : val;
+					rows[ cellInfo.index ][ cellInfo.column.id ] = RE_NUMBER.test( val ) ? Number( val ) : val;
 					this.setState({ rows }, () => {
 						this.props.onEdit( rows );
 					});
@@ -155,40 +260,20 @@ class DataTable extends Component {
 		);
 	}
 
-	generateInitialState( props ) {
-		let rows;
-		let keys;
-		let isArr = isArray( props.data );
-		if ( !isArr && !isObject( props.data ) ) {
-			return {};
-		}
-		if ( isArr ) {
-			// Case: `data` is already an array of observations
-			rows = props.data;
-			keys = objectKeys( rows[ 0 ] );
-		} else {
-			// Case: `data` is an object with keys for the various variables
-			rows = createRows( props.data );
-			keys = objectKeys( props.data );
-		}
-		for ( let i = 0; i < rows.length; i++ ) {
-			if ( props.showRemove && !rows[ i ][ 'remove' ]) {
-				rows[ i ][ 'remove' ] = false;
-			}
-			rows[ i ][ 'id' ] = i + 1;
-		}
-		const newState = {
-			values: {},
-			selectedRows: rows.length
-		};
-		const columns = keys.map( ( key, idx ) => {
+	createColumns() {
+		const props = this.props;
+		const columns = this.state.keys.map( ( key, idx ) => {
 			let header = key;
-			if ( this.props.dataInfo.variables && this.props.dataInfo.variables[ key ]) {
+			if (
+				props.dataInfo &&
+				props.dataInfo.variables &&
+				props.dataInfo.variables[ key ]
+			) {
 				header = <span
 					onMouseOver={() => {
 						this.setState({
 							showTooltip: true,
-							tooltip: this.props.dataInfo.variables[ key ]
+							tooltip: props.dataInfo.variables[ key ]
 						});
 					}}
 					onMouseOut={() => {
@@ -198,13 +283,13 @@ class DataTable extends Component {
 						});
 					}}
 				>{key}</span>;
-			} else if ( this.props.deletable ) {
+			} else if ( props.deletable ) {
 				header = <div>
 					{key}
 					<OverlayTrigger placement="left" overlay={<Tooltip>Remove variable</Tooltip>} >
 						<div className="fa fa-times delete-button" onClick={( evt ) => {
 							evt.stopPropagation();
-							this.props.onColumnDelete( key );
+							props.onColumnDelete( key );
 						}} />
 					</OverlayTrigger>
 				</div>;
@@ -214,23 +299,23 @@ class DataTable extends Component {
 				id: key,
 				accessor: ( d ) => d[ key ]
 			};
-			if ( contains( this.props.editable, key ) ) {
+			if ( contains( props.editable, key ) ) {
 				out.Cell = this.renderEditable;
 			}
 			let vals;
-			if ( !isArr ) {
+			if ( !isArray( props.data ) ) {
 				vals = props.data[ key ].slice();
 			} else {
-				vals = new Array( rows.length );
-				for ( let i = 0; i < rows.length; i++ ) {
+				vals = new Array( this.state.rows.length );
+				for ( let i = 0; i < this.state.rows.length; i++ ) {
 					vals[ i ] = props.data[ i ][ key ];
 				}
 			}
-			if ( this.props.filterable ) {
+			if ( props.filterable ) {
 				vals = vals.filter( x => !isNull( x ) && x !== '' );
 				let uniqueValues = unique( vals );
 				if ( isNumberArray( vals ) && uniqueValues.length > 2 ) {
-					out[ 'filterMethod' ] = this.filterMethodNumbers;
+					out[ 'filterMethod' ] = filterMethodNumbers;
 					out[ 'Filter' ] = ({ filter, onChange }) => {
 						const defaultVal = {
 							max: ceil( max( uniqueValues ) ),
@@ -261,7 +346,7 @@ class DataTable extends Component {
 				} else if ( uniqueValues.length <= 8 ) {
 					// Cast values to strings for select component to work:
 					uniqueValues = uniqueValues.map( x => String( x ) );
-					out[ 'filterMethod' ] = this.filterMethodCategories;
+					out[ 'filterMethod' ] = filterMethodCategories;
 					out[ 'Filter' ] = ({ filter, onChange }) => {
 						return (
 							<SelectInput
@@ -284,18 +369,12 @@ class DataTable extends Component {
 						);
 					};
 				} else {
-					out[ 'filterMethod' ] = ( filter, row ) => {
-						if ( isArray( filter.value ) ) {
-							return contains( filter.value, row[ filter.id ] );
-						}
-						// Check whether string contains search phrase:
-						return contains( lowercase( row[ filter.id ] ), lowercase( filter.value ) );
-					};
+					out[ 'filterMethod' ] = filterMethodStrings;
 				}
 			}
 			return out;
 		});
-		if ( this.props.showIdColumn ) {
+		if ( props.showIdColumn ) {
 			columns.unshift({
 				Header: 'id',
 				accessor: 'id',
@@ -310,39 +389,7 @@ class DataTable extends Component {
 				filterable: false
 			});
 		}
-		newState.showInfo = props.dataInfo.showOnStartup;
-		newState.rows = rows;
-		newState.columns = columns;
-		newState.filtered = props.filters;
-		newState.showTooltip = false;
-		return newState;
-	}
-
-	filterMethodCategories = ( filter, row, column ) => {
-		if ( !filter.value || isEmptyArray( filter.value ) ) {
-			return true;
-		}
-		const id = filter.pivotId || filter.id;
-		if ( row[ id ] === void 0 ) {
-			return true;
-		}
-		if ( isArray( filter.value ) ) {
-			return contains( filter.value, String( row[ id ] ) );
-		}
-		return String( row[ id ] ) === filter.value;
-	}
-
-	filterMethodStrings = ( filter, row, column ) => {
-		const id = filter.pivotId || filter.id;
-		if ( row[ id ] === void 0 ) {
-			return true;
-		}
-		return String( row[ id ] ).startsWith( filter.value );
-	}
-
-	filterMethodNumbers = ( filter, row ) => {
-		const val = row[ filter.id ];
-		return val >= filter.value.min && val <= filter.value.max;
+		return columns;
 	}
 
 	renderCheckboxRemovable = ( cellInfo ) => {
@@ -413,36 +460,16 @@ class DataTable extends Component {
 		});
 	}
 
-	createDescriptions = ( descriptions ) => {
-		var strTable;
-		var varName;
-		var finalStr;
-
-		strTable = [];
-		for ( varName in descriptions ) {
-			if ( hasOwnProp( descriptions, varName ) ) {
-				strTable.push( <tr key={varName} >
-					<td>{varName}</td><td>{descriptions[varName]}</td>
-				</tr>);
-			}
-		}
-		finalStr = <table className="table-bordered table-condensed" >
-			<thead>
-				<tr><th>Name</th><th>Description</th></tr>
-			</thead>
-			<tbody>
-			{strTable}
-			</tbody>
-		</table>;
-		return finalStr;
-	}
-
 	showInfo = () => {
 		this.setState({ showInfo: true });
 	}
 
 	render() {
-		const { selectedRows, rows } = this.state;
+		debug( 'Rendering component' );
+		let { selectedRows, rows, dataInfo } = this.state;
+		if ( !rows ) {
+			return <Alert variant="danger">No data provided.</Alert>;
+		}
 		let modal = null;
 		if ( this.state.showVarModal ) {
 			modal = <Modal
@@ -457,7 +484,7 @@ class DataTable extends Component {
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					{this.createDescriptions(this.props.dataInfo.variables)}
+					{createDescriptions( dataInfo.variables )}
 				</Modal.Body>
 			</Modal>;
 		} else if ( this.state.showInfo ) {
@@ -471,11 +498,11 @@ class DataTable extends Component {
 				}}>
 				<Modal.Header closeButton>
 					<Modal.Title>
-						{this.props.dataInfo.name} Description
+						{dataInfo.name} Description
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
-					__html: md.render( this.props.dataInfo.info.join( '\n' ) )
+					__html: md.render( dataInfo.info.join( '\n' ) )
 				}}>
 				</Modal.Body>
 			</Modal>;
@@ -483,7 +510,7 @@ class DataTable extends Component {
 		return (
 			<Fragment>
 				<div className="data-table-wrapper" style={this.props.style} >
-					{ this.props.dataInfo.info.length > 0 ?
+					{ dataInfo.info.length > 0 ?
 					<div className='data_button_wrapper'>
 						<OverlayTrigger placement="bottom" overlay={<Tooltip>Open dataset description</Tooltip>} >
 							<Button
@@ -494,15 +521,15 @@ class DataTable extends Component {
 								<h4 className='title-button-h4'
 									onClick={this.showInfo}
 								>
-									{this.props.dataInfo.name ? this.props.dataInfo.name : 'Data'}
+									{dataInfo.name ? dataInfo.name : 'Data'}
 								</h4>
 							</Button>
 						</OverlayTrigger>
 						<TutorialButton />
 					</div> : null}
-					{ this.props.dataInfo.info.length === 0 ?
+					{ dataInfo.info.length === 0 ?
 						<h4 className="title-nobutton-h4">
-							{this.props.dataInfo.name ? this.props.dataInfo.name : 'Data'}
+							{dataInfo.name ? dataInfo.name : 'Data'}
 						</h4>: null
 					}
 					<Overlay
@@ -529,7 +556,7 @@ class DataTable extends Component {
 						id={this.id}
 						ref={( table ) => { this.table = table; }}
 						data={rows}
-						columns={this.state.columns}
+						columns={this.createColumns()}
 						showPagination={true}
 						sortable={true}
 						resizable={true}
@@ -542,7 +569,7 @@ class DataTable extends Component {
 						onSortedChange={this.handleSortedChange}
 						style={this.props.style}
 					/>
-					<label className="label-number-rows"><i>Number of rows: {selectedRows} (total: {this.state.rows.length})</i></label>
+					<label className="label-number-rows"><i>Number of rows: {selectedRows} (total: {rows.length})</i></label>
 					<OverlayTrigger placement="top" overlay={<Tooltip>Reset filters and sorting</Tooltip>} >
 						<Button
 							onClick={this.reset}
@@ -553,7 +580,7 @@ class DataTable extends Component {
 							Reset
 						</Button>
 					</OverlayTrigger>
-					{ this.props.dataInfo.variables ? <OverlayTrigger placement="top" overlay={<Tooltip>Open variable descriptions</Tooltip>} ><Button
+					{ dataInfo.variables ? <OverlayTrigger placement="top" overlay={<Tooltip>Open variable descriptions</Tooltip>} ><Button
 						onClick={this.showDescriptions}
 						variant="primary"
 						size="xsmall"
