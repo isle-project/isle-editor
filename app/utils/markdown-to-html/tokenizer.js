@@ -167,14 +167,22 @@ class Tokenizer {
 					RE_ISLE_INLINE_TAGS.test( this._openingTagName )
 				) {
 					debug( `Render inline markdown for <${this._openingTagName}/>...` );
-					text = replace( text, RE_JSX_EXPR, ( match, p1, p2, p3 ) => {
-						return md.renderInline( p1 ) + p2 + md.renderInline( p3 );
-					});
+					if ( !RE_JSX_EXPR.test( text ) ) {
+						text = md.renderInline( text );
+					} else {
+						text = replace( text, RE_JSX_EXPR, ( match, p1, p2, p3 ) => {
+							return md.renderInline( p1 ) + p2 + md.renderInline( p3 );
+						});
+					}
 				} else {
 					debug( `Render block markdown for <${this._openingTagName}/>...` );
-					text = replace( text, RE_JSX_EXPR, ( match, p1, p2, p3 ) => {
-						return md.render( p1 ) + p2 + md.render( p3 );
-					});
+					if ( !RE_JSX_EXPR.test( text ) ) {
+						text = md.render( text );
+					} else {
+						text = replace( text, RE_JSX_EXPR, ( match, p1, p2, p3 ) => {
+							return md.render( p1 ) + p2 + md.render( p3 );
+						});
+					}
 				}
 			}
 			text = replaceEquations( text );
