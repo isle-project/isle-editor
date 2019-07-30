@@ -33,7 +33,7 @@ const md = markdownit({
 	breaks: true,
 	typographer: false
 });
-const RE_JSX_EXPR = /([\s\S]+?)([^\\]{[^}]*)}?([\s\S]*?)/;
+const RE_JSX_EXPR = /([\s\S]+?)([^\\]{[^}]*}?)([\s\S]*?)/;
 const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
 const RE_LINE_BEGINNING = /\n\s*/g;
 const RE_HTML_INNER_TAGS = /^(?:p|th|td)$/;
