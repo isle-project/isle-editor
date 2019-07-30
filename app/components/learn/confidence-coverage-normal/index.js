@@ -40,6 +40,7 @@ const ELEM_TOOLTIPS = {
 /**
 * A learning component illustrating coverage of confidence intervals for the mean of a normal distribution.
 *
+* @property {boolean} quartileNotation - controls whether to use `alpha/2` as the subscript for the critical value or just `critical`
 * @property {boolean} sampleStats - controls whether one should be able to switch between using the sample standard deviation or the known population standard deviation when calculating the standard error
 */
 class ConfidenceCoverageNormal extends Component {
@@ -168,8 +169,8 @@ class ConfidenceCoverageNormal extends Component {
 				useSampleSD: pos === 1
 			});
 		}}>
-			<TeX raw="\bar X \pm Z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}" elems={ELEM_TOOLTIPS} />
-			<TeX raw="\bar X \pm t_{\alpha/2} \cdot \frac{S}{\sqrt{n}}" elems={ELEM_TOOLTIPS} />
+			<TeX raw={`\\bar X \\pm Z_{${this.props.quartileNotation ? '\\tfrac{\\alpha}{2}' : '\\text{critical}'}} \\cdot \\frac{\\sigma}{\\sqrt{n}}`} elems={ELEM_TOOLTIPS} />
+			<TeX raw={`\\bar X \\pm t_{${this.props.quartileNotation ? '\\tfrac{\\alpha}{2}' : '\\text{critical}'}} \\cdot \\frac{S}{\\sqrt{n}}`} elems={ELEM_TOOLTIPS} />
 		</Switch>. For our choice of sample size (n), <TeX raw="\mu" />, <TeX raw="\sigma" />, and confidence level, we will simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.</p>;
 		return (
 			<Card id="coverageModuleNormal">
@@ -246,10 +247,12 @@ class ConfidenceCoverageNormal extends Component {
 // PROPERTIES //
 
 ConfidenceCoverageNormal.defaultProps = {
+	quartileNotation: true,
 	sampleStats: true
 };
 
 ConfidenceCoverageNormal.propTypes = {
+	quartileNotation: PropTypes.bool,
 	sampleStats: PropTypes.bool
 };
 

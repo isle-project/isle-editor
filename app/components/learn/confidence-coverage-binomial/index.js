@@ -164,8 +164,8 @@ class ConfidenceCoverageBinomial extends Component {
 					useSampleProp: pos === 1
 				});
 			}}>
-				<TeX raw="\hat p \pm Z_{\alpha/2} \cdot \sqrt{ \frac{p(1-p)}{n}}" elems={ELEM_TOOLTIPS} />
-				<TeX raw="\hat p \pm Z_{\alpha/2} \cdot \sqrt{ \frac{\hat p(1-\hat p)}{n}}" elems={ELEM_TOOLTIPS} />
+				<TeX raw={`\\hat p \\pm Z_{${this.props.quartileNotation ? '\\alpha/2' : '\\text{critical}'}} \\cdot \\sqrt{ \\frac{p(1-p)}{n}}`} elems={ELEM_TOOLTIPS} />
+				<TeX raw={`\\hat p \\pm Z_{${this.props.quartileNotation ? '\\alpha/2' : '\\text{critical}'}} \\cdot \\sqrt{ \\frac{\\hat p(1-\\hat p)}{n}}`} elems={ELEM_TOOLTIPS} />
 			</Switch>.</p>
 			<p>For our choice of sample size (n), true proportion  <TeX raw="p" />, and confidence level, we will simulate <TeX raw="20" /> different samples from our normal distribution and calculate the corresponding sample proportions and confidence intervals.</p>
 		</div>;
@@ -236,10 +236,12 @@ class ConfidenceCoverageBinomial extends Component {
 // PROPERTIES //
 
 ConfidenceCoverageBinomial.defaultProps = {
+	quartileNotation: true,
 	sampleStats: true
 };
 
 ConfidenceCoverageBinomial.propTypes = {
+	quartileNotation: PropTypes.bool,
 	sampleStats: PropTypes.bool
 };
 
