@@ -33,6 +33,7 @@ const md = markdownit({
 	breaks: true,
 	typographer: false
 });
+const RE_JSX_EXPR = /([\s\S]+?)([^\\]{[^}]*)}?([\s\S]*?)/;
 const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
 const RE_LINE_BEGINNING = /\n\s*/g;
 const RE_HTML_INNER_TAGS = /^(?:p|th|td)$/;
@@ -115,6 +116,12 @@ class Tokenizer {
 			this._level += 1;
 			this._startTagNamePos = 0;
 		}
+		if ( char === '{' && this._buffer.charAt( pos-1 ) !== '\\' ) {
+			this._JSX_ATTRIBUTE_START = this._current.length;
+			this._braceLevel = 1;
+			debug( 'IN_BASE -> IN_JSX_ATTRIBUTE' );
+			this._state = IN_JSX_ATTRIBUTE;
+		}
 		if ( this._state !== IN_BASE ) {
 			// Exiting base state, push token:
 			this.tokens.push( this._current );
@@ -153,16 +160,22 @@ class Tokenizer {
 		if ( char === '<' && !isWhitespace( this._buffer.charAt( this.pos+1 ) ) ) {
 			let text = this._current.substring( this._openTagEnd, this._current.length-1 );
 			text = trimLineStarts( text );
-			if (
-				RE_HTML_INNER_TAGS.test( this._openingTagName ) ||
-				RE_HTML_INLINE_TAGS.test( this._openingTagName ) ||
-				RE_ISLE_INLINE_TAGS.test( this._openingTagName )
-			) {
-				debug( `Render inline markdown for <${this._openingTagName}/>...` );
-				text = !isWhitespace( text ) ? md.renderInline( text ) : text;
-			} else {
-				debug( `Render block markdown for <${this._openingTagName}/>...` );
-				text = md.render( text );
+			if ( !isWhitespace( text ) ) {
+				if (
+					RE_HTML_INNER_TAGS.test( this._openingTagName ) ||
+					RE_HTML_INLINE_TAGS.test( this._openingTagName ) ||
+					RE_ISLE_INLINE_TAGS.test( this._openingTagName )
+				) {
+					debug( `Render inline markdown for <${this._openingTagName}/>...` );
+					text = replace( text, RE_JSX_EXPR, ( match, p1, p2, p3 ) => {
+						return md.renderInline( p1 ) + p2 + md.renderInline( p3 );
+					});
+				} else {
+					debug( `Render block markdown for <${this._openingTagName}/>...` );
+					text = replace( text, RE_JSX_EXPR, ( match, p1, p2, p3 ) => {
+						return md.render( p1 ) + p2 + md.render( p3 );
+					});
+				}
 			}
 			text = replaceEquations( text );
 			this._current = this._current.substring( 0, this._openTagEnd ) +
@@ -192,6 +205,7 @@ class Tokenizer {
 				this._current = '';
 				debug( 'IN_CLOSING_TAG -> IN_BASE' );
 				this._state = IN_BASE;
+				this._openingTagName = null;
 			} else {
 				debug( 'IN_CLOSING_TAG -> IN_BETWEEN_TAGS' );
 				this._state = IN_BETWEEN_TAGS;
@@ -232,6 +246,7 @@ class Tokenizer {
 					this._current = '';
 					debug( 'IN_OPENING_TAG -> IN_BASE' );
 					this._state = IN_BASE;
+					this._openingTagName = null;
 				} else {
 					debug( 'IN_OPENING_TAG: IN_BETWEEN_TAGS' );
 					this._state = IN_BETWEEN_TAGS;
@@ -264,8 +279,16 @@ class Tokenizer {
 			this._braceLevel -= 1;
 		}
 		if ( this._braceLevel === 0 && this._buffer.charAt( this.pos-1 ) === '`' && char === '}' ) {
-			debug( 'IN_JSX_STRING -> IN_OPENING_TAG' );
-			this._state = IN_OPENING_TAG;
+			if ( this._openingTagName ) {
+				debug( 'IN_JSX_STRING -> IN_OPENING_TAG' );
+				this._state = IN_OPENING_TAG;
+			} else {
+				debug( 'IN_JSX_STRING -> IN_BASE' );
+				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
+				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
+				this._current = '';
+				this._state = IN_BASE;
+			}
 		}
 	}
 
@@ -293,9 +316,17 @@ class Tokenizer {
 			this._braceLevel -= 1;
 		}
 		if ( this._braceLevel === 0 ) {
-			debug( 'IN_JSX_OBJECT -> IN_OPENING_TAG' );
 			this._replaceInnerJSXExpressions();
-			this._state = IN_OPENING_TAG;
+			if ( this._openingTagName ) {
+				debug( 'IN_JSX_OBJECT -> IN_OPENING_TAG' );
+				this._state = IN_OPENING_TAG;
+			} else {
+				debug( 'IN_JSX_OBJECT -> IN_BASE' );
+				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
+				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
+				this._current = '';
+				this._state = IN_BASE;
+			}
 		}
 	}
 
@@ -308,9 +339,17 @@ class Tokenizer {
 			this._braceLevel -= 1;
 		}
 		if ( this._braceLevel === 0 && this._buffer.charAt( this.pos-1 ) === ']' && char === '}' ) {
-			debug( 'IN_JSX_ARRAY -> IN_OPENING_TAG' );
 			this._replaceInnerJSXExpressions();
-			this._state = IN_OPENING_TAG;
+			if ( this._openingTagName ) {
+				debug( 'IN_JSX_ARRAY -> IN_OPENING_TAG' );
+				this._state = IN_OPENING_TAG;
+			} else {
+				debug( 'IN_JSX_ARRAY -> IN_BASE' );
+				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
+				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
+				this._current = '';
+				this._state = IN_BASE;
+			}
 		}
 	}
 
@@ -323,8 +362,16 @@ class Tokenizer {
 			this._braceLevel -= 1;
 		}
 		if ( this._braceLevel === 0 ) {
-			debug( 'IN_JSX_OTHER -> IN_OPENING_TAG' );
-			this._state = IN_OPENING_TAG;
+			if ( this._openingTagName ) {
+				debug( 'IN_JSX_OTHER -> IN_OPENING_TAG' );
+				this._state = IN_OPENING_TAG;
+			} else {
+				debug( 'IN_JSX_OTHER -> IN_BASE' );
+				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
+				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
+				this._current = '';
+				this._state = IN_BASE;
+			}
 		}
 	}
 
@@ -343,15 +390,23 @@ class Tokenizer {
 			let replacement = tokenizer.parse( inner );
 			this._current = this._current.substring( 0, this._JSX_ATTRIBUTE_START ) +
 				replacement + char;
-			debug( 'IN_JSX_EXPRESSION -> IN_OPENING_TAG' );
-			this._state = IN_OPENING_TAG;
+			if ( this._openingTagName ) {
+				debug( 'IN_JSX_EXPRESSION -> IN_OPENING_TAG' );
+				this._state = IN_OPENING_TAG;
+			} else {
+				debug( 'IN_JSX_EXPRESSION -> IN_BASE' );
+				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
+				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
+				this._current = '';
+				this._state = IN_BASE;
+			}
 		}
 	}
 
 	_inJSXAttribute( char ) {
 		this._current += char;
 		if ( char === '`' ) {
-			debug( 'IN_JSX_ATTRIBUTE -> IN_JSX_STRING' );
+			debug( 'IN_BASE_JSX_ATTRIBUTE -> IN_JSX_STRING' );
 			this._state = IN_JSX_STRING;
 		}
 		else if ( char === '{' ) {
