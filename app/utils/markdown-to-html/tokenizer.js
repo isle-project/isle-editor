@@ -33,7 +33,8 @@ const md = markdownit({
 	breaks: true,
 	typographer: false
 });
-const RE_JSX_EXPR = /([\s\S]+?)([^\\]{[^}]*}?)([\s\S]*?)/;
+const RE_JSX_OPEN = /([\s\S]*?)(?:[^\\]|^)({[^}]*}?)([\s\S]*?)/;
+const RE_JSX_CLOSE = /([\s\S]*?)([^\\]|^)(})([\s\S]*)/;
 const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
 const RE_LINE_BEGINNING = /\n\s*/g;
 const RE_HTML_INNER_TAGS = /^(?:p|th|td)$/;
@@ -167,20 +168,26 @@ class Tokenizer {
 					RE_ISLE_INLINE_TAGS.test( this._openingTagName )
 				) {
 					debug( `Render inline markdown for <${this._openingTagName}/>...` );
-					if ( !RE_JSX_EXPR.test( text ) ) {
+					if ( !RE_JSX_OPEN.test( text ) && !RE_JSX_CLOSE.test( text ) ) {
 						text = md.renderInline( text );
 					} else {
-						text = replace( text, RE_JSX_EXPR, ( match, p1, p2, p3 ) => {
+						text = replace( text, RE_JSX_OPEN, ( match, p1, p2, p3 ) => {
 							return md.renderInline( p1 ) + p2 + md.renderInline( p3 );
+						});
+						text = replace( text, RE_JSX_CLOSE, ( match, p1, p2, p3, p4 ) => {
+							return p1 + p2 + p3 + md.renderInline( p4 );
 						});
 					}
 				} else {
 					debug( `Render block markdown for <${this._openingTagName}/>...` );
-					if ( !RE_JSX_EXPR.test( text ) ) {
+					if ( !RE_JSX_OPEN.test( text ) && !RE_JSX_CLOSE.test( text ) ) {
 						text = md.render( text );
 					} else {
-						text = replace( text, RE_JSX_EXPR, ( match, p1, p2, p3 ) => {
+						text = replace( text, RE_JSX_OPEN, ( match, p1, p2, p3 ) => {
 							return md.render( p1 ) + p2 + md.render( p3 );
+						});
+						text = replace( text, RE_JSX_CLOSE, ( match, p1, p2, p3, p4 ) => {
+							return p1 + p2 + p3 + md.render( p4 );
 						});
 					}
 				}
