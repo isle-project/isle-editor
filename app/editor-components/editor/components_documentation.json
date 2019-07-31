@@ -2006,6 +2006,11 @@
   "LearnConfidenceCoverageBinomial": {
     "props": [
       {
+        "name": "quartileNotation",
+        "type": "boolean",
+        "default": true
+      },
+      {
         "name": "sampleStats",
         "type": "boolean",
         "description": "controls whether one should be able to switch between using the sample proportion or the known population success probability when calculating the standard error",
@@ -2016,6 +2021,12 @@
   },
   "LearnConfidenceCoverageNormal": {
     "props": [
+      {
+        "name": "quartileNotation",
+        "type": "boolean",
+        "description": "controls whether to use `alpha/2` as the subscript for the critical value or just `critical`",
+        "default": true
+      },
       {
         "name": "sampleStats",
         "type": "boolean",
@@ -3904,7 +3915,7 @@
       },
       {
         "name": "hints",
-        "type": "array<string>",
+        "type": "array<(string|element)>",
         "description": "hints providing guidance on how to answer the question",
         "default": []
       },
