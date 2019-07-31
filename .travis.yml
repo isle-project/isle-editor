@@ -80,7 +80,7 @@ before_script:
 script:
   - npm run lint
   - npm run test
-  - if [[ -n "$TRAVIS_TAG" ]]; then npm run package-ci; fi
+  - if [[ -n "$TRAVIS_TAG" ]]; then travis_wait 30 npm run package-ci; fi
 
 after_script:
   - npm run coverage
