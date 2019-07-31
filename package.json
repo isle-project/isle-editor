@@ -265,9 +265,20 @@
     "appId": "isle.editor",
     "productName": "ISLE Editor",
     "copyright": "Copyright © 2016-2019 ${author}",
+    "asar": true,
+    "extraResources": [
+      "app/css/*",
+      "app/constants/*",
+      "app/components/**/*",
+      "app/session/*",
+      "app/speech-interface/*",
+      "app/utils/**/*",
+      "app/img/*",
+      "app/bundler/index.html",
+      "node_modules/**/*"
+    ],
     "files": [
       "dist/**/*",
-      "node_modules/**/*",
       "app/app.html",
       "app/css/*",
       "package.json",
