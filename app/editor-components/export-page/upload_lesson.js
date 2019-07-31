@@ -232,7 +232,7 @@ class UploadLesson extends Component {
 		const settings = {
 			outputPath: os.tmpdir(),
 			filePath: this.props.filePath,
-			basePath: IS_PACKAGED ? join( process.resourcesPath, 'app' ) : '.',
+			basePath: IS_PACKAGED ? process.resourcesPath : '.',
 			content: this.props.content,
 			outputDir: this.state.dirname,
 			minify: this.state.minify

@@ -85,7 +85,7 @@ class ExportLesson extends Component {
 			bundler({
 				outputPath: outputPath,
 				filePath: this.props.filePath,
-				basePath: IS_PACKAGED ? path.join( process.resourcesPath, 'app' ) : '.',
+				basePath: IS_PACKAGED ? process.resourcesPath : '.',
 				content: this.props.content,
 				outputDir,
 				minify,
