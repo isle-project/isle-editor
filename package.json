@@ -280,7 +280,11 @@
     ],
     "files": [
       "dist/**/*",
+      "app/app.global.css",
       "app/app.html",
+      "app/app.icns",
+      "app/app.ico",
+      "app/app.png",
       "package.json",
       "main.js",
       "main.js.map"
