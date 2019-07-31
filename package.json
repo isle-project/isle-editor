@@ -275,12 +275,12 @@
       "app/utils/**/*",
       "app/img/*",
       "app/bundler/index.html",
+      "app/bundler/minify.js",
       "node_modules/**/*"
     ],
     "files": [
       "dist/**/*",
       "app/app.html",
-      "app/css/*",
       "package.json",
       "main.js",
       "main.js.map"
