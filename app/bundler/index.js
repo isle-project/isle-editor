@@ -320,6 +320,7 @@ function writeIndexFile({
 	minify,
 	writeStats
 }, clbk ) {
+	debug( `Writing index.js file for ${filePath} to ${outputPath}...` );
 	let yamlStr = content.match( /^---([\S\s]*?)---/ )[ 1 ];
 	yamlStr = replace( yamlStr, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
 	const meta = yaml.load( yamlStr );
@@ -328,11 +329,12 @@ function writeIndexFile({
 	}
 
 	const appDir = join( outputPath, outputDir );
-	const indexPath = resolve( './public/index.js' );
+	const indexPath = join( appDir, 'index.js' );
 	const statsFile = join( appDir, 'stats.json' );
 	makeOutputDir( appDir );
 	generateISLE( appDir, content );
 
+	debug( `Resolve packages relative to ${basePath}...` );
 	const modulePaths = [
 		resolve( basePath, './node_modules' ),
 		resolve( basePath, './node_modules/@stdlib/stdlib/lib/node_modules' ),
