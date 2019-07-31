@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -19,6 +20,11 @@ import Tooltip from 'components/tooltip';
 import { DATA_EXPLORER_CAT_TRANSFORMER } from 'constants/actions.js';
 import './categorical_transformer.css';
 import recodeCategorical from './recode_categorical';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:data-explorer:variable-transformer' );
 
 
 // FUNCTIONS //
@@ -169,6 +175,7 @@ class CategoricalTransformer extends Component {
 	}
 
 	makeNewVar = () => {
+		debug( 'Generating new categorical variable...' );
 		const { firstVar, secondVar, nameMappings, castNumeric } = this.state;
 		const newVar = recodeCategorical( firstVar, secondVar, nameMappings, this.props.data, castNumeric );
 		this.props.onGenerate( this.state.generatedName, newVar );
@@ -259,7 +266,6 @@ class CategoricalTransformer extends Component {
 	}
 
 	render() {
-		console.log( this.state );
 		return (
 			<Modal
 				dialogClassName='modal-75w input'

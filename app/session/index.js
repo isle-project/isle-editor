@@ -1,4 +1,4 @@
-/* eslint-disable class-methods-use-this */
+/* eslint-disable class-methods-use-this, max-lines */
 
 // MODULES //
 
@@ -214,7 +214,7 @@ class Session {
 	}
 
 	beforeUnloadListener = () => {
-		console.log( 'Page is either closed or refreshed...' );
+		debug( 'Page is either closed or refreshed...' );
 		this.logSession();
 		this.reset();
 	}
@@ -951,7 +951,7 @@ class Session {
 			})
 		})
 		.then( ( response ) => {
-			console.log( 'Received current user actions...' );
+			debug( 'Received current user actions...' );
 			if ( response.status === 200 ) {
 				response.json().then( body => {
 					this.currentUserActions = body.actions;

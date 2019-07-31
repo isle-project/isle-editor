@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -30,6 +31,7 @@ import './bin_transformer.css';
 
 // VARIABLES //
 
+const debug = logger( 'isle:data-explorer:variable-transformer' );
 const RE_SHAPE = /shapes\[(\d)\]\.x0/;
 
 
@@ -131,7 +133,6 @@ class BinTransformer extends Component {
 	}
 
 	onChangeHistLine = ( data ) => {
-		console.log( data );
 		const keyUpdate = keys( data );
 		const matches = RE_SHAPE.exec( keyUpdate[ 0 ] );
 		if ( matches ) {
@@ -150,7 +151,7 @@ class BinTransformer extends Component {
 	}
 
 	handleVariableChange = ( value ) => {
-		console.log( 'Change variable to bin...' );
+		debug( 'Change variable to bin...' );
 		const histConfigSettings = {
 			'data': this.props.data,
 			'variable': value,

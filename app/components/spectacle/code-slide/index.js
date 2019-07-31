@@ -6,6 +6,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import { Slide } from 'spectacle';
 import hljs from 'highlight.js';
 import clamp from '@stdlib/math/base/special/clamp';
@@ -31,6 +32,7 @@ function getLineNumber(index) {
 
 // VARIABLES //
 
+const debug = logger( 'isle:spectacle:code-slide' );
 const defaultBgColor = '#122b45';
 const defaultColor = 'white';
 const style = {
@@ -140,7 +142,7 @@ class CodeSlide extends Component {
 
 	onKeyDown = e => {
 		if ( !this.isSlideActive() ) {
-			console.log( 'Slide is inactive...' );
+			debug( 'Slide is inactive...' );
 			return;
 		}
 
