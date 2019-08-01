@@ -39,7 +39,7 @@ const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
 const RE_LINE_BEGINNING = /\n\s*/g;
 const RE_HTML_INNER_TAGS = /^(?:p|th|td)$/;
 const RE_HTML_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|var)$/;
-const RE_ISLE_INLINE_TAGS = /^(?:Badge|BeaconTooltip|Button|CheckboxInput|Clock|Input|NumberInput|RHelp|SelectInput|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
+const RE_ISLE_INLINE_TAGS = /^(?:Badge|BeaconTooltip|Button|CheckboxInput|Clock|Input|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
 
 
 // FUNCTIONS //
