@@ -30,7 +30,7 @@ Current version: v0.31.4.
 
 [Download the isle-editor for macOS (.dmg)][macOS]
 
-[Download the isle-editor for Linux (.AppImage)][linux-appimage] (alternatives: [.deb][linux-deb], [.rpm][linux-rpm])
+[Download the isle-editor for Linux (.AppImage)][linux-appimage] (alternative: [.deb][linux-deb])
 
 ### Build from Source
 
@@ -145,7 +145,6 @@ The following icons are used under a Creative Commons CCBY license.
 
 [macOS]: https://github.com/isle-project/isle-editor/releases/download/v0.31.4/ISLE-Editor-0.31.4.dmg
 [linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/v0.31.4/ISLE-Editor-0.31.4-x86_64.AppImage
-[linux-rpm]: https://github.com/isle-project/isle-editor/releases/download/v0.31.4/ISLE.Editor-0.31.4-x86_64.rpm
 [linux-deb]: https://github.com/isle-project/isle-editor/releases/download/v0.31.4/ISLE.Editor-0.31.4-amd64.deb
 [windows]:https://github.com/isle-project/isle-editor/releases/download/v0.31.4/ISLE-Editor-0.31.4.exe
 

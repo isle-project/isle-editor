@@ -29,7 +29,6 @@ matrix:
             - graphicsmagick
             - xz-utils
             - xorriso
-            - rpm
 
     - os: windows
       language: node_js
@@ -80,7 +79,7 @@ before_script:
 script:
   - npm run lint
   - npm run test
-  - if [[ -n "$TRAVIS_TAG" ]]; then travis_wait 60 npm run package-ci; fi
+  - if [[ -n "$TRAVIS_TAG" ]]; then travis_wait 50 npm run package-ci; fi
 
 after_script:
   - npm run coverage

@@ -318,17 +318,13 @@
       "category": "Education",
       "target": [
         "AppImage",
-        "deb",
-        "rpm"
+        "deb"
       ]
     },
     "deb": {
       "artifactName": "${productName}-${version}-${arch}.${ext}"
     },
     "appImage": {
-      "artifactName": "${productName}-${version}-${arch}.${ext}"
-    },
-    "rpm": {
       "artifactName": "${productName}-${version}-${arch}.${ext}"
     },
     "publish": {
