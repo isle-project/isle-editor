@@ -15,6 +15,8 @@ import roundn from '@stdlib/math/base/special/roundn';
 import linspace from '@stdlib/math/utils/linspace';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
+import dt from '@stdlib/stats/base/dists/t/pdf';
+import pt from '@stdlib/stats/base/dists/t/cdf';
 import FeedbackButtons from 'components/feedback';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
@@ -60,7 +62,8 @@ class MeanTest extends Component {
 			areaData2: null,
 			probFormula: '',
 			type: 0,
-			samples: this.props.types[ 0 ]
+			samples: props.types[ 0 ],
+			selectedTest: props.tests[ 0 ]
 		};
 	}
 
@@ -70,10 +73,24 @@ class MeanTest extends Component {
 
 	onGenerate = () => {
 		debug( 'Should generate new values...' );
-		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples } = this.state;
+		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples, selectedTest } = this.state;
+		let pdf;
+		let cdf;
+		if ( selectedTest === 'Z-Test' ) {
+			cdf = pnorm.factory( 0, 1 );
+			pdf = dnorm.factory( 0, 1 );
+		}
+		// Case: t-test
+		else if ( samples === 'Two-Sample' ) {
+			cdf = pt.factory( n + n2 - 2 );
+			pdf = dt.factory( n + n2 - 2 );
+		} else {
+			cdf = pt.factory( n - 1 );
+			pdf = dt.factory( n - 1 );
+		}
 		let pdfData = linspace( -3.50, 3.5, 300 );
 		pdfData = pdfData.map( x => {
-			return { x: x, y: dnorm( x, 0, 1 ) };
+			return { x: x, y: pdf( x ) };
 		});
 		let zStat;
 		if ( samples === 'Two-Sample' ) {
@@ -85,27 +102,28 @@ class MeanTest extends Component {
 		let areaData;
 		let areaData2;
 		let probFormula;
+		const statChar = selectedTest === 'Z-Test' ? 'Z' : 'T';
 		switch ( this.state.type ) {
 		case 2:
 			areaData = linspace( -3, zStat, 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 ) };
+				return { x: d, y: pdf( d ) };
 			});
-			probFormula = `P( Z < ${zStat}) = ${roundn( pnorm( zStat, 0, 1 ), -3 )}`;
+			probFormula = `P( ${statChar} < ${zStat}) = ${roundn( cdf( zStat ), -3 )}`;
 			break;
 		case 1:
 			areaData = linspace( zStat, 3, 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 ) };
+				return { x: d, y: pdf( d ) };
 			});
-			probFormula = `P( Z > ${zStat}) = ${roundn( 1-pnorm( zStat, 0, 1 ), -3 )}`;
+			probFormula = `P( ${statChar} > ${zStat}) = ${roundn( 1-cdf( zStat ), -3 )}`;
 			break;
 		case 0:
 			areaData = linspace( abs( zStat ), 3, 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 ) };
+				return { x: d, y: pdf( d ) };
 			});
 			areaData2 = linspace( -3, -abs( zStat ), 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 ) };
+				return { x: d, y: pdf( d ) };
 			});
-			probFormula = `P( |Z| > ${abs( zStat )}) = ${roundn( ( 1-pnorm( abs( zStat ), 0, 1 ) )+pnorm( -abs( zStat ), 0, 1 ), -3 )}`;
+			probFormula = `P( |${statChar}| > ${abs( zStat )}) = ${roundn( ( 1-cdf( abs( zStat ) ) )+cdf( -abs( zStat ) ), -3 )}`;
 			break;
 		}
 		this.setState({
@@ -127,34 +145,43 @@ class MeanTest extends Component {
 		let areaData;
 		let areaData2;
 		let probFormula;
-		let { zStat } = this.state;
+		let { zStat, selectedTest } = this.state;
+		let pdf;
+		let cdf;
+		if ( selectedTest === 'z' ) {
+			cdf = pnorm.factory( 0, 1 );
+			pdf = dnorm.factory( 0, 1 );
+		} else {
+			cdf = pt;
+			pdf = dt;
+		}
 		switch ( pos ) {
 		case 0:
 			areaData = linspace( abs( zStat ), 3, 200 ).map( d => {
 				return {
 					x: d,
-					y: dnorm( d, 0, 1 )
+					y: pdf( d )
 				};
 			});
 			areaData2 = linspace( -3, -abs( zStat ), 200 ).map( d => {
 				return {
 					x: d,
-					y: dnorm( d, 0, 1 )
+					y: pdf( d )
 				};
 			});
-			probFormula = `P( |Z| > ${zStat}) = ${roundn( 1-pnorm( abs( zStat ), 0, 1 ) + pnorm( -abs( zStat ), 0, 1 ), -3 )}`;
+			probFormula = `P( |Z| > ${zStat}) = ${roundn( 1-cdf( abs( zStat ) ) + cdf( -abs( zStat ) ), -3 )}`;
 			break;
 		case 1:
 			areaData = linspace( zStat, 3, 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 ) };
+				return { x: d, y: pdf( d ) };
 			});
-			probFormula = `P( Z > ${zStat}) = ${roundn( 1-pnorm( zStat, 0, 1 ), -3 )}`;
+			probFormula = `P( Z > ${zStat}) = ${roundn( 1-cdf( zStat ), -3 )}`;
 			break;
 		case 2:
 			areaData = linspace( -3, zStat, 200 ).map( d => {
-				return { x: d, y: dnorm( d, 0, 1 ) };
+				return { x: d, y: pdf( d ) };
 			});
-			probFormula = `P( Z < ${zStat}) = ${roundn( pnorm( zStat, 0, 1 ), -3 )}`;
+			probFormula = `P( Z < ${zStat}) = ${roundn( cdf( zStat ), -3 )}`;
 			break;
 		}
 		this.setState({
@@ -166,7 +193,8 @@ class MeanTest extends Component {
 	}
 
 	renderParametersPanel() {
-		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples } = this.state;
+		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples, selectedTest } = this.state;
+		const statChar = selectedTest === 'Z-Test' ? 'z' : 't';
 		const firstSampleParams = <div>
 			<Badge variant="secondary">First Sample</Badge>
 			<NumberInput
@@ -254,6 +282,15 @@ class MeanTest extends Component {
 							}, this.onGenerate );
 						}}
 					/>
+					{ this.props.tests.length > 1 ? <SelectInput
+						options={this.props.tests}
+						defaultValue={this.props.tests[ 0 ]}
+						onChange={( value ) => {
+							this.setState({
+								selectedTest: value
+							}, this.onGenerate );
+						}}
+					/> : null }
 					<NumberInput
 						legend={`Hypothesized ${samples === 'Two-Sample' ? 'difference' : 'mean'} (null hypothesis)`}
 						defaultValue={mu0}
@@ -284,7 +321,7 @@ class MeanTest extends Component {
 						style={{
 							fontSize: '1.5em'
 						}}
-						raw="z  = \frac{(\bar x_1 - \bar x_2) - (\mu_1 - \mu_2)}{\sqrt{\tfrac{s_1^2}{n_1}+\tfrac{s_2^2}{n_2}}}"
+						raw={`${statChar}  = \\frac{(\\bar x_1 - \\bar x_2) - (\\mu_1 - \\mu_2)}{\\sqrt{\\tfrac{s_1^2}{n_1}+\\tfrac{s_2^2}{n_2}}}`}
 						elems={{
 							'n': {
 								tooltip: 'Sample Size'
@@ -309,7 +346,7 @@ class MeanTest extends Component {
 						style={{
 							fontSize: '1.5em'
 						}}
-						raw="z = \frac{\bar x - \mu}{s/\sqrt{n}}"
+						raw={`${statChar} = \\frac{\\bar x - \\mu}{s/\\sqrt{n}}`}
 						elems={{
 							'n': {
 								tooltip: 'Sample Size'
@@ -334,7 +371,8 @@ class MeanTest extends Component {
 	}
 
 	renderResultPanel() {
-		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples, zStat } = this.state;
+		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples, zStat, selectedTest } = this.state;
+		const statChar = selectedTest === 'Z-Test' ? 'z' : 't';
 		return ( <Card>
 			<Card.Header as="h4">Test Result</Card.Header>
 			<Card.Body>
@@ -343,12 +381,12 @@ class MeanTest extends Component {
 					<TeX
 						tag=""
 						displayMode
-						raw={`z  = \\frac{${roundn( xbar - xbar2, -3 )} - ${mu0}}{\\sqrt{${roundn( ( ( sigma*sigma ) / n ) + ( ( sigma2*sigma2 )/ n2 ), -3 )}}} = ${zStat}`}
+						raw={`${statChar} = \\frac{${roundn( xbar - xbar2, -3 )} - ${mu0}}{\\sqrt{${roundn( ( ( sigma*sigma ) / n ) + ( ( sigma2*sigma2 )/ n2 ), -3 )}}} = ${zStat}`}
 					/> :
 					<TeX
 						tag=""
 						displayMode
-						raw={`z  = \\frac{${xbar} - ${mu0}}{${sigma} / \\sqrt{${n}}} = ${zStat}`}
+						raw={`${statChar} = \\frac{${xbar} - ${mu0}}{${sigma} / \\sqrt{${n}}} = ${zStat}`}
 					/>
 				}
 				<p>Under the null hypothesis, we calculate the p-value:</p>
@@ -394,6 +432,7 @@ class MeanTest extends Component {
 
 MeanTest.defaultProps = {
 	types: [ 'One-Sample', 'Two-Sample' ],
+	tests: [ 'Z-Test', 'T-Test' ],
 	nullHypothesisAsValue: false,
 	feedback: false,
 	style: {}
@@ -401,6 +440,7 @@ MeanTest.defaultProps = {
 
 MeanTest.propTypes = {
 	types: PropTypes.arrayOf( PropTypes.string ),
+	tests: PropTypes.arrayOf( PropTypes.oneOf([ 'Z-Test', 'T-Test' ] ) ),
 	nullHypothesisAsValue: PropTypes.bool,
 	feedback: PropTypes.bool,
 	style: PropTypes.object
