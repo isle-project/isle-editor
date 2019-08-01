@@ -145,15 +145,19 @@ class MeanTest extends Component {
 		let areaData;
 		let areaData2;
 		let probFormula;
-		let { zStat, selectedTest } = this.state;
+		let { zStat, selectedTest, samples, n, n2 } = this.state;
 		let pdf;
 		let cdf;
-		if ( selectedTest === 'z' ) {
+		if ( selectedTest === 'Z-Test' ) {
 			cdf = pnorm.factory( 0, 1 );
 			pdf = dnorm.factory( 0, 1 );
+		} // Case: t-test
+		else if ( samples === 'Two-Sample' ) {
+			cdf = pt.factory( n + n2 - 2 );
+			pdf = dt.factory( n + n2 - 2 );
 		} else {
-			cdf = pt;
-			pdf = dt;
+			cdf = pt.factory( n - 1 );
+			pdf = dt.factory( n - 1 );
 		}
 		switch ( pos ) {
 		case 0:
