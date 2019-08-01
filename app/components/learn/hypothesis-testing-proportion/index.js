@@ -48,6 +48,7 @@ function normalPDF( d ) {
 *
 * @property {Array} types - the type(s) of test (`One-Sample`, `Two-Sample`) the widget should expose
 * @property {boolean} feedback - controls whether to display feedback buttons
+* @property {boolean} nullHypothesisAsValue - always display the null hypothesis as a single value
 * @property {Object} style - CSS inline styles
 */
 class ProportionTest extends Component {
@@ -221,6 +222,7 @@ class ProportionTest extends Component {
 		</div>;
 		const { p0, samples } = this.state;
 		const testStat = samples === 'Two-Sample' ? 'p_1 - p_2' : 'p';
+		const asValue = this.props.nullHypothesisAsValue;
 		return ( <Card maxWidth={1600}>
 			<Card.Header as="h4">
 				Parameters
@@ -258,8 +260,8 @@ class ProportionTest extends Component {
 				<p>We conduct the following test (click on the formula to switch between the one-sided variants and the two-sided test):</p>
 				<Switch onChange={this.onDirectionChange}>
 					<TeX displayMode tag="" raw={`H_0: ${testStat} = ${p0} \\; vs. \\; H_1: ${testStat} \\ne ${p0}`} />
-					<TeX displayMode tag="" raw={`H_0: ${testStat} \\le ${p0} \\; vs. \\; H_1: ${testStat} > ${p0}`} />
-					<TeX displayMode tag="" raw={`H_0: ${testStat} \\ge ${p0} \\; vs. \\; H_1: ${testStat} < ${p0}`} />
+					<TeX displayMode tag="" raw={`H_0: ${testStat} ${asValue ? '=' : '\\le'} ${p0} \\; vs. \\; H_1: ${testStat} > ${p0}`} />
+					<TeX displayMode tag="" raw={`H_0: ${testStat} ${asValue ? '=' : '\\ge'} ${p0} \\; vs. \\; H_1: ${testStat} < ${p0}`} />
 				</Switch>
 				<p>We calculate the following test statistic:</p>
 				{ samples === 'Two-Sample' ?

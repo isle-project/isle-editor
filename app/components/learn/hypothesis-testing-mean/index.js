@@ -38,7 +38,9 @@ const debug = logger( 'isle:learn:hypothesis-testing-mean' );
 * A learning component on hypothesis tests for a population mean.
 *
 * @property {Array} types - the type(s) of test (`One-Sample`, `Two-Sample`) the widget should expose
+* @property {boolean} nullHypothesisAsValue - always display the null hypothesis as a single value
 * @property {boolean} feedback - controls whether to display feedback buttons
+* @property {object} style - CSS inline styles
 */
 class MeanTest extends Component {
 	constructor( props ) {
@@ -236,6 +238,7 @@ class MeanTest extends Component {
 			/>
 		</div>;
 		const testStat = samples === 'Two-Sample' ? '\\mu_1 - \\mu_2' : '\\mu';
+		const asValue = this.props.nullHypothesisAsValue;
 		return ( <Card maxWidth={1600}>
 			<Card.Header as="h4">
 				Parameters
@@ -270,8 +273,8 @@ class MeanTest extends Component {
 				<p>We conduct the following test (click on the formula to switch between the one-sided variants and the two-sided test):</p>
 				<Switch onChange={this.onDirectionChange}>
 					<TeX displayMode tag="" raw={`H_0: ${testStat} = ${mu0} \\; vs. \\; H_1: ${testStat} \\ne ${mu0}`} />
-					<TeX displayMode tag="" raw={`H_0: ${testStat} \\le ${mu0} \\; vs. \\; H_1: ${testStat} > ${mu0}`} />
-					<TeX displayMode tag="" raw={`H_0: ${testStat} \\ge ${mu0} \\; vs. \\; H_1: ${testStat} < ${mu0}`} />
+					<TeX displayMode tag="" raw={`H_0: ${testStat} ${asValue ? '=' : '\\le'} ${mu0} \\; vs. \\; H_1: ${testStat} > ${mu0}`} />
+					<TeX displayMode tag="" raw={`H_0: ${testStat} ${asValue ? '=' : '\\ge'} ${mu0} \\; vs. \\; H_1: ${testStat} < ${mu0}`} />
 				</Switch>
 				<p>We calculate the following test statistic:</p>
 				{ samples === 'Two-Sample' ?
@@ -391,12 +394,14 @@ class MeanTest extends Component {
 
 MeanTest.defaultProps = {
 	types: [ 'One-Sample', 'Two-Sample' ],
+	nullHypothesisAsValue: false,
 	feedback: false,
 	style: {}
 };
 
 MeanTest.propTypes = {
 	types: PropTypes.arrayOf( PropTypes.string ),
+	nullHypothesisAsValue: PropTypes.bool,
 	feedback: PropTypes.bool,
 	style: PropTypes.object
 };
