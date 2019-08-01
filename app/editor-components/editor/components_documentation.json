@@ -2141,6 +2141,20 @@
         ]
       },
       {
+        "name": "tests",
+        "type": "array<string>",
+        "default": [
+          "Z-Test",
+          "T-Test"
+        ]
+      },
+      {
+        "name": "nullHypothesisAsValue",
+        "type": "boolean",
+        "description": "always display the null hypothesis as a single value",
+        "default": false
+      },
+      {
         "name": "feedback",
         "type": "boolean",
         "description": "controls whether to display feedback buttons",
@@ -2149,6 +2163,7 @@
       {
         "name": "style",
         "type": "object",
+        "description": "CSS inline styles",
         "default": {}
       }
     ],
