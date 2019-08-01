@@ -120,32 +120,29 @@ class SelectQuestion extends Component {
 		const nHints = this.props.hints.length;
 		if ( this.props.inline ) {
 			return (
-				<FormGroup
-					controlId="select-question-form-group"
-					validationState={this.state.answerState}
+				<span
 					style={{
-						width: 'min-content',
-						display: 'inline',
 						...this.props.style
 					}}
 				>
-					<InputGroup>
+					<InputGroup style={{ display: 'inherit' }}>
 						<FormControl
 							value={this.state.value}
 							defaultValue={this.props.defaultValue}
 							as="select"
 							placeholder="select"
 							onChange={this.handleChange}
+							style={{ display: 'inline', width: 'max-content' }}
 						>
 							{this.props.options.map( ( e, idx ) => {
 								return <option key={idx} value={e}>{e}</option>;
 							})}
 						</FormControl>
-						<InputGroup.Button>
-							<Button>Submit</Button>
-						</InputGroup.Button>
+						<Button size="small" variant="outline-secondary" style={{ display: 'inline', marginTop: -3 }} onClick={this.handleSubmit} >
+							<i className="fa fa-check-square"></i>
+						</Button>
 					</InputGroup>
-				</FormGroup>
+				</span>
 			);
 		}
 		return (
@@ -162,7 +159,6 @@ class SelectQuestion extends Component {
 							as="select"
 							placeholder="select"
 							onChange={this.handleChange}
-
 						>
 							{this.props.options.map( ( e, idx ) => {
 								return <option className="select-question-option" key={idx} value={e}>{e}</option>;
