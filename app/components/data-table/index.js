@@ -64,7 +64,7 @@ function createDescriptions( descriptions ) {
 			</tr>);
 		}
 	}
-	return ( <table className="table-bordered table-condensed" >
+	return ( <table className="table-bordered table-condensed" style={{ width: '100%' }} >
 		<thead>
 			<tr><th>Name</th><th>Description</th></tr>
 		</thead>
@@ -146,7 +146,16 @@ class DataTable extends Component {
 
 		debug( 'Constructor is invoked...' );
 		this.id = props.id || uid( props );
-		this.state = {};
+		const dataInfo = props.dataInfo || {};
+		this.state = {
+			showInfo: !!dataInfo.showOnStartup,
+			dataInfo: {
+				info: dataInfo.info || [],
+				name: dataInfo.name || '',
+				variables: dataInfo.variables || null,
+				showOnStartup: dataInfo.showOnStartup || null
+			}
+		};
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -185,20 +194,11 @@ class DataTable extends Component {
 		if ( nextProps.dataInfo !== prevState.dataInfo ) {
 			debug( 'Data information has changed...' );
 			if ( nextProps.dataInfo ) {
-				newState.showInfo = nextProps.dataInfo.showOnStartup;
 				newState.dataInfo = {
 					info: nextProps.dataInfo.info || [],
 					name: nextProps.dataInfo.name || '',
 					variables: nextProps.dataInfo.variables || null,
 					showOnStartup: nextProps.dataInfo.showOnStartup || null
-				};
-			} else {
-				newState.showInfo = false;
-				newState.dataInfo = {
-					'info': [],
-					'name': '',
-					'variables': null,
-					'showOnStartup': false
 				};
 			}
 		}
@@ -229,7 +229,7 @@ class DataTable extends Component {
 			newState.filtered = this.props.filters;
 		}
 		if ( !isEmptyObject( newState ) ) {
-			console.log( 'Trigger a state change after update...' );
+			debug( 'Trigger a state change after update...' );
 			this.setState( newState, () => {
 				this.setState({
 					selectedRows: this.table.getResolvedState().sortedData.length
@@ -461,7 +461,10 @@ class DataTable extends Component {
 	}
 
 	showInfo = () => {
-		this.setState({ showInfo: true });
+		debug( 'Show dataset information...' );
+		this.setState({
+			showInfo: true
+		});
 	}
 
 	render() {
@@ -488,6 +491,7 @@ class DataTable extends Component {
 				</Modal.Body>
 			</Modal>;
 		} else if ( this.state.showInfo ) {
+			debug( 'Rendering dataset information modal...' );
 			modal = <Modal
 				show={this.state.showInfo}
 				dialogClassName="modal-50w"
@@ -518,9 +522,7 @@ class DataTable extends Component {
 								onClick={this.showInfo}
 								className='title-button'
 							>
-								<h4 className='title-button-h4'
-									onClick={this.showInfo}
-								>
+								<h4 className='title-button-h4'>
 									{dataInfo.name ? dataInfo.name : 'Data'}
 								</h4>
 							</Button>
