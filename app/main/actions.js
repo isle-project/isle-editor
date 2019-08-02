@@ -42,13 +42,16 @@ ipcMain.on( 'save-file', ( e, { data, filePath }) => {
 });
 
 ipcMain.on( 'save-file-as', ( e, { data, filePath }) => {
-	dialog.showSaveDialog({
+	const opts = {
 		filters: [
 			{ name: 'isle', extensions: [ 'isle' ]}
 		],
-		buttonLabel: 'Save file',
-		defaultPath: filePath
-	}, ( filePath ) => {
+		buttonLabel: 'Save file'
+	};
+	if ( filePath ) {
+		opts.defaultPath = filePath;
+	}
+	dialog.showSaveDialog( opts, ( filePath ) => {
 		if ( filePath ) {
 			fs.writeFile( filePath, data, 'utf-8', ( err ) => {
 				if ( err ) {
