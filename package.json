@@ -1018,6 +1018,10 @@
         "nsis"
       ]
     },
+    "nsis": {
+      "perMachine": true,
+      "oneClick": true
+    },
     "mac": {
       "icon": "app/app.icns",
       "category": "public.app-category.education",

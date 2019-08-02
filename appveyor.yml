@@ -10,7 +10,7 @@ environment:
     secure: FSZdxh2QjPW19BxE8wxCoCeH6vZUV10DPJN2F42p4Q9vdrGZ4iD3VqkJvtFbW+AK
 
 cache:
-  #- node_modules
+  - node_modules
   - '%USERPROFILE%\.electron'
 
 matrix:
