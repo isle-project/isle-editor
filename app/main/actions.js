@@ -78,18 +78,20 @@ export function hideToolbar( browserWindow ) {
 }
 
 export function openBrowser( url ) {
-	console.log( `Should open ${url} in the default browser...` ); // eslint-disable-line no-console
+	debug( `Should open ${url} in the default browser...` ); // eslint-disable-line no-console
 	exec( 'xdg-open ' + url );
 }
 
 export function openFile( filePath, browserWindow ) {
-	console.log( 'Open file at path '+filePath );
+	debug( 'Open file at path '+filePath );
+	if ( !filePath ) {
+		return;
+	}
 	if (
 		EXTENSIONS.indexOf( extname( filePath )
 			.slice( 1 )
 			.toLowerCase()
-		) !== -1 ||
-		!extname( filePath )
+		) !== -1 || !extname( filePath )
 	) {
 		const fileSize = fs.statSync( filePath )[ 'size' ];
 		if ( fileSize >= 1048576 ) { // 1MB
@@ -102,7 +104,6 @@ export function openFile( filePath, browserWindow ) {
 			});
 			if ( confirm === 1 ) return;
 		}
-
 		fs.readFile( filePath, 'utf-8', ( err ) => {
 			if ( err ) {
 				return err;
@@ -122,16 +123,19 @@ export function openFile( filePath, browserWindow ) {
 
 export function open({ browserWindow }) {
 	const filePath = config.get( 'mostRecentFilePath' );
-	dialog.showOpenDialog( browserWindow, {
+	const opts = {
 		properties: [ 'openFile' ],
 		filters: [
 			{ name: 'isle', extensions: [ 'isle' ]},
 			{ name: 'markdown', extensions: [ 'markdown', 'md', 'mdown', 'mkd', 'mdwn' ]},
 			{ name: 'html', extensions: [ 'html' ]}
 		],
-		buttonLabel: 'Open file',
-		defaultPath: filePath
-	}, ( fileNames ) => {
+		buttonLabel: 'Open file'
+	};
+	if ( filePath ) {
+		opts.defaultPath = filePath;
+	}
+	dialog.showOpenDialog( browserWindow, opts, ( fileNames ) => {
 		if ( fileNames === void 0 ) {
 			return;
 		}
@@ -160,7 +164,7 @@ export function newFile({ browserWindow }) {
 }
 
 export function closeApp({ browserWindow }) {
-	console.log( 'Should close browser window...' ); // eslint-disable-line no-console
+	debug( 'Should close browser window...' ); // eslint-disable-line no-console
 	browserWindow.webContents.send( 'close-editor' );
 	browserWindow.close();
 }
