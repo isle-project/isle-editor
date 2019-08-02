@@ -19,12 +19,12 @@ Consider a dataset called "heartdisease" with the following variables:
 * __Gender__: _Categorical_
 * __Drugs__: _Categorical_
 * __Complications__: _Categorical_
-* __Cost__: _Continuous_
-* __Age__: _Continuous_
-* __Interventions__: _Continuous_
-* __ERVisit__: _Continuous_
-* __Comorbidities__: _Continuous_
-* __Duration__: _Continuous_
+* __Cost__: _Quantitative_
+* __Age__: _Quantitative_
+* __Interventions__: _Quantitative_
+* __ERVisit__: _Quantitative_
+* __Comorbidities__: _Quantitative_
+* __Duration__: _Quantitative_
 
 We will include the explorer with the following code:
 
@@ -33,7 +33,7 @@ We will include the explorer with the following code:
 	id="heartdisease"
 	data={heartdisease} 
 	categorical={[ 'Gender', 'Drugs', 'Complications' ]}
-	continuous={[ 'Cost', 'Age', 'Interventions', 'ERVisit', 'Comorbidities', 'Duration' ]}
+	quantitative={[ 'Cost', 'Age', 'Interventions', 'ERVisit', 'Comorbidities', 'Duration' ]}
 	tests={[]}
 />
 ```

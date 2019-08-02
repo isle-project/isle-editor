@@ -33,7 +33,7 @@
 	},
 	{
 		"name": "DataExplorer",
-		"value": "<DataExplorer\n\tdata={${1:}}\n\tcategorical={${2:[]}}\n\tcontinuous={${3:[]}}\n/>\n"
+		"value": "<DataExplorer\n\tdata={${1:}}\n\tcategorical={${2:[]}}\n\tquantitative={${3:[]}}\n/>\n"
 	},
 	{
 		"name": "DataTable",

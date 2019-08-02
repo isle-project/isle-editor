@@ -1,6 +1,6 @@
 ---
 title: "Data Explorer"
-author: Francis R. Kovacs 
+author: Francis R. Kovacs
 date: Dec 30th, 2017
 require:
     heartdisease: "./heartdisease.json"
@@ -14,13 +14,13 @@ hideToolbar: true
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
     }}
     code={`
-    <DataExplorer 
+    <DataExplorer
         id="heartdisease"
 	    data={heartdisease}
         dataInfo={
@@ -44,14 +44,14 @@ hideToolbar: true
             }
         }
 	    categorical={['Gender','Drugs','Complications']}
-	    continuous={['Cost','Age','Interventions','ERVisit','Comorbidities','Duration']}
+	    quantitative={['Cost','Age','Interventions','ERVisit','Comorbidities','Duration']}
 	    tests={[]}
 	    showEditor
     />
 
 `}
     scope={{
-        DataExplorer 
+        DataExplorer
     }}
 />
 
@@ -96,7 +96,7 @@ The statistics array can take the following values:
 #### Options:
 
 * __categorical__ | `array`: An array of strings indicating the name of each categorical variable.. Default: `[]`.
-* __continuous__ | `array`: An array of strings indicating the name of each continuous variable.. Default: `[]`.
+* __quantitative__ | `array`: An array of strings indicating the name of each quantitative variable.. Default: `[]`.
 * __data__ | `object`: A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column.. Default: `{}`.
 * __dataInfo__ | `object`: An object containing the keys 'name', whose value is a string, 'info', whose value is an array of strings in which each element in the array is a new line and 'variables', an object with keys as variable names and values as variable descriptions.. Default: `{
   'info': '',
