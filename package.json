@@ -1015,7 +1015,7 @@
     "win": {
       "icon": "app/app.ico",
       "target": [
-        "portable"
+        "nsis"
       ]
     },
     "mac": {
