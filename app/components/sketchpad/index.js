@@ -1633,7 +1633,8 @@ class Sketchpad extends Component {
 			let pdfData = reader.result;
 			pdfData = new Uint8Array( pdfData );
 			const loadingTask = pdfjs.getDocument({
-				data: pdfData
+				data: pdfData,
+				disableFontFace: false
 			});
 			loadingTask.promise
 				.then( this.processPDF )
@@ -1648,7 +1649,8 @@ class Sketchpad extends Component {
 		debug( 'Initialize PDF document...' );
 		return new Promise( ( resolve, reject ) => {
 			const loadingTask = pdfjs.getDocument({
-				url: this.props.pdf
+				url: this.props.pdf,
+				disableFontFace: false
 			});
 			loadingTask.promise
 				.then( ( pdf ) => {
