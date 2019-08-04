@@ -295,6 +295,11 @@ class SummaryStatistics extends Component {
 						legend="Variable:"
 						defaultValue={this.state.variable}
 						options={variables}
+						onChange={( value ) => {
+							this.setState({
+								variable: value
+							});
+						}}
 					/>
 					<SelectInput
 						legend="Second Variable:"
