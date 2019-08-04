@@ -97,6 +97,7 @@ class NormalProbs extends Component {
 	}
 
 	render() {
+		const domain = this.props.domain;
 		return ( <Card style={{ maxWidth: 600, ...this.props.style }}>
 			<Card.Header as="h3">
 				Normal Distribution
@@ -128,7 +129,7 @@ class NormalProbs extends Component {
 							<TeX raw={this.state.eqn1} displayMode tag="" />
 						</Dashboard>
 						<VictoryChart
-							domain={{
+							domain={domain ? domain : {
 								x: [ this.state.mean1-this.state.sd1*4, this.state.mean1+this.state.sd1*4 ], y: [ 0, dnorm( this.state.mean1, this.state.mean1, this.state.sd1 ) ]
 							}}>
 							<VictoryArea
@@ -173,7 +174,7 @@ class NormalProbs extends Component {
 							<TeX raw={this.state.eqn2} displayMode tag="" />
 						</Dashboard>
 						<VictoryChart
-							domain={{ x: [ this.state.mean2-this.state.sd2*4, this.state.mean2+this.state.sd2*4 ], y: [ 0, dnorm( this.state.mean2, this.state.mean2, this.state.sd2 ) ]}}>
+							domain={domain ? domain : { x: [ this.state.mean2-this.state.sd2*4, this.state.mean2+this.state.sd2*4 ], y: [ 0, dnorm( this.state.mean2, this.state.mean2, this.state.sd2 ) ]}}>
 							<VictoryArea
 								data={this.state.data2}
 								style={{
@@ -223,7 +224,7 @@ class NormalProbs extends Component {
 							<TeX raw={this.state.eqn3} displayMode tag="" />
 						</Dashboard>
 						<VictoryChart
-							domain={{
+							domain={domain ? domain : {
 								x: [ this.state.mean3-this.state.sd3*4, this.state.mean3+this.state.sd3*4 ],
 								y: [ 0, dnorm( this.state.mean3, this.state.mean3, this.state.sd3 ) ]
 							}}>
@@ -253,6 +254,7 @@ class NormalProbs extends Component {
 // PROPERTIES //
 
 NormalProbs.propTypes = {
+	domain: PropTypes.object,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
@@ -261,6 +263,7 @@ NormalProbs.propTypes = {
 };
 
 NormalProbs.defaultProps = {
+	domain: null,
 	step: 0.01,
 	style: {}
 };
