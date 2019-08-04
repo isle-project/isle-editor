@@ -75,11 +75,15 @@ function createDescriptions( descriptions ) {
 }
 
 function filterMethodStrings( filter, row ) {
+	const rowValue = row[ filter.id ];
+	if ( !rowValue && filter.value ) {
+		return false;
+	}
 	if ( isArray( filter.value ) ) {
-		return contains( filter.value, row[ filter.id ] );
+		return contains( filter.value, rowValue );
 	}
 	// Check whether string contains search phrase:
-	return contains( lowercase( row[ filter.id ] ), lowercase( filter.value ) );
+	return contains( lowercase( rowValue ), lowercase( filter.value ) );
 }
 
 function filterMethodNumbers( filter, row ) {
