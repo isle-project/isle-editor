@@ -232,6 +232,9 @@ class DataTable extends Component {
 		if ( this.props.filters && this.props.filters !== prevProps.filters ) {
 			newState.filtered = this.props.filters;
 		}
+		if ( this.props.data !== prevProps.data ) {
+			this.columns = this.createColumns();
+		}
 		if ( !isEmptyObject( newState ) ) {
 			debug( 'Trigger a state change after update...' );
 			this.setState( newState, () => {
@@ -265,6 +268,7 @@ class DataTable extends Component {
 	}
 
 	createColumns() {
+		debug( 'Create columns...' );
 		const props = this.props;
 		const columns = this.state.keys.map( ( key, idx ) => {
 			let header = key;
@@ -473,6 +477,9 @@ class DataTable extends Component {
 
 	render() {
 		debug( 'Rendering component' );
+		if ( !this.columns ) {
+			this.columns = this.createColumns();
+		}
 		let { selectedRows, rows, dataInfo } = this.state;
 		if ( !rows ) {
 			return <Alert variant="danger">No data provided.</Alert>;
@@ -562,7 +569,7 @@ class DataTable extends Component {
 						id={this.id}
 						ref={( table ) => { this.table = table; }}
 						data={rows}
-						columns={this.createColumns()}
+						columns={this.columns}
 						showPagination={true}
 						sortable={true}
 						resizable={true}
