@@ -308,13 +308,13 @@ class Tokenizer {
 	}
 
 	_replaceInnerJSXExpressions() {
-		const RE_OUTER_TAG = /<([^/>]+)[\s\S]*>[\s\S]+<\/\1>|<([\s\S]+?)\/>/g;
+		const RE_OUTER_TAG = /<([^/>]+)[\s\S]*>[\s\S]+?<\/\1>|<([^/][\s\S]*?)\/>/g;
 		let inner = this._current.substring( this._JSX_ATTRIBUTE_START );
 		let match = RE_OUTER_TAG.exec( inner );
 		while ( match !== null ) {
 			debug( 'Match found...' );
 			const tokenizer = new Tokenizer();
-			let replacement = tokenizer.parse( match[ 0 ] );
+			const replacement = tokenizer.parse( match[ 0 ] );
 			inner = inner.substring( 0, match.index ) +
 				replacement + inner.substring( match.index + match[0].length );
 			match = RE_OUTER_TAG.exec( inner );
