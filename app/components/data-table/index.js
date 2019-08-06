@@ -477,12 +477,12 @@ class DataTable extends Component {
 
 	render() {
 		debug( 'Rendering component' );
-		if ( !this.columns ) {
-			this.columns = this.createColumns();
-		}
 		let { selectedRows, rows, dataInfo } = this.state;
 		if ( !rows ) {
 			return <Alert variant="danger">No data provided.</Alert>;
+		}
+		if ( !this.columns ) {
+			this.columns = this.createColumns();
 		}
 		let modal = null;
 		if ( this.state.showVarModal ) {
