@@ -43,7 +43,8 @@ class TeX extends Component {
 			showTooltip: false,
 			tooltipText: '',
 			showPopover: false,
-			popoverContent: null
+			popoverContent: null,
+			popoverName: null
 		};
 
 		if ( props.displayMode === true ) {
@@ -69,7 +70,7 @@ class TeX extends Component {
 		const dom = findDOMNode( this );
 		const self = this;
 		select( dom ).
-			selectAll( '.mord' ).
+			selectAll( '.mord .text' ).
 			each( onMord );
 
 		function onMord( d ) {
@@ -84,7 +85,7 @@ class TeX extends Component {
 						$this.style( 'cursor', 'pointer' );
 						$this.style( 'color', 'blue' );
 					}
-					$this.on( 'mouseover', () => {
+					$this.on( 'mouseover', function onMouseOver() {
 						$this.style( 'color', 'red' );
 						if ( elem.tooltip ) {
 							self.setState({
@@ -93,7 +94,7 @@ class TeX extends Component {
 								tooltipTarget: this
 							});
 						}
-					}).on( 'mouseout', () => {
+					}).on( 'mouseout', function onMouseOut() {
 						if ( !self.state.showPopover ) {
 							$this.style( 'color', 'blue' );
 						}
@@ -103,7 +104,7 @@ class TeX extends Component {
 							});
 						}
 					})
-					.on( 'click', () => {
+					.on( 'click', function onClick() {
 						if ( elem.variable ) {
 							let config = {
 								legend: elem.legend || elem.variable,
@@ -118,16 +119,17 @@ class TeX extends Component {
 								config.bind = elem.variable;
 							}
 							let showPopover;
-							if ( self.state.popoverTarget !== this ) {
+							if ( self.state.popoverName !== prop ) {
 								showPopover = true;
 							} else {
-								showPopover = !self.state.showPopover;
+								showPopover = false;
 							}
 							self.setState({
 								showTooltip: false,
 								showPopover,
 								popoverContent: elem.body,
 								popoverTarget: this,
+								popoverName: prop,
 								config
 							});
 						}
