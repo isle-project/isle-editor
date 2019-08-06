@@ -28,8 +28,6 @@ class Lesson extends Component {
 	}
 
 	componentDidMount() {
-		global.lesson = this;
-
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if ( type === 'retrieved_current_user_actions' ) {
@@ -143,7 +141,7 @@ class Lesson extends Component {
 				</ContextMenu>
 				<NotificationSystem
 					ref={( div ) => {
-						this.notificationSystem = div;
+						global.notificationSystemISLE = div;
 					}}
 					allowHTML={true}
 				/>

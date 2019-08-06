@@ -65,6 +65,7 @@ class Preview extends Component {
 			...lessonState,
 			isLoading: true
 		};
+		global.lesson = this;
 		if ( isObject( props.preamble ) ) {
 			try {
 				if ( props.preamble.instructorNotes ) {
@@ -107,7 +108,7 @@ class Preview extends Component {
 			this.props.currentMode !== nextProps.currentMode ||
 			this.props.currentRole !== nextProps.currentRole ||
 			this.props.hideToolbar !== nextProps.hideToolbar ||
-			this.state.isLoading !== nextState.isLoading
+			this.state !== nextState.isLoading
 		) {
 			return true;
 		}

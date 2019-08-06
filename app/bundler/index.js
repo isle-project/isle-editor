@@ -125,8 +125,12 @@ global.session = new Session( preamble );
 class LessonWrapper extends Component {
 	constructor() {
 		super();
-		this.state = preamble.state || {};
-		this.state.isLoading = true;
+		const initialState = preamble.state || {};
+		this.state = {
+			isLoading: true,
+			...initialState
+		};
+		global.lesson = this;
 	}
 
 	async componentDidMount() {
@@ -179,7 +183,9 @@ class LessonWrapper extends Component {
 
 	renderLesson() {
 		return (
-			<Lesson className="${className}" >
+			<Lesson
+				className="${className}"
+			>
 				${lessonContent}
 			</Lesson>
 		);
