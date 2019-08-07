@@ -103,6 +103,18 @@ class Editor extends Component {
 		});
 	}
 
+	shouldComponentUpdate( prevProps ) {
+		if (
+			this.props.filePath !== prevProps.filePath ||
+			this.props.lintErrors.length !== prevProps.lintErrors.length ||
+			this.props.splitPos !== prevProps.splitPos ||
+			this.props.hideToolbar !== prevProps.hideToolbar
+		) {
+			return true;
+		}
+		return false;
+	}
+
 	componentDidUpdate( prevProps ) {
 		if ( !this.monaco ) {
 			return;
@@ -224,6 +236,7 @@ class Editor extends Component {
 
 	render() {
 		MONACO_OPTIONS.fontSize = this.props.fontSize;
+		debug( 'Re-rendering monaco editor...' );
 		return (
 			<div>
 				<ContextMenuTrigger id="editorWindow" holdToDisplay={-1} style={{ height: '100%', width: '100%' }} >
@@ -255,12 +268,14 @@ class Editor extends Component {
 // PROPERTIES //
 
 Editor.defaultProps = {
+	filePath: '',
 	fontSize: 14,
 	onChange: noop,
 	value: ''
 };
 
 Editor.propTypes = {
+	filePath: PropTypes.string,
 	fontSize: PropTypes.number,
 	onChange: PropTypes.func,
 	preamble: PropTypes.object.isRequired,
