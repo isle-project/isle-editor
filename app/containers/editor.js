@@ -168,6 +168,7 @@ class App extends Component {
 							ref={( elem ) => { this.editor = elem; }}
 							value={markdown}
 							onChange={this.onChange}
+							filePath={filePath}
 							name="monaco_editor"
 							fontSize={this.props.fontSize}
 							preamble={this.props.preamble}
