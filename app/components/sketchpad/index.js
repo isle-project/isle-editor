@@ -1504,6 +1504,10 @@ class Sketchpad extends Component {
 	}
 
 	firstPage = () => {
+		if ( this.state.currentPage === 0 ) {
+			return;
+		}
+		this.canvasWrapper.scrollTop = 0;
 		this.setState({
 			currentPage: 0,
 			nUndos: 0
@@ -1521,6 +1525,10 @@ class Sketchpad extends Component {
 	}
 
 	lastPage = () => {
+		if ( this.state.currentPage === this.state.noPages - 1 ) {
+			return;
+		}
+		this.canvasWrapper.scrollTop = 0;
 		this.setState({
 			currentPage: this.state.noPages - 1,
 			nUndos: 0
@@ -1553,6 +1561,7 @@ class Sketchpad extends Component {
 	nextPage = () => {
 		if ( this.state.currentPage < this.state.noPages-1 ) {
 			debug( 'Should go to next page...' );
+			this.canvasWrapper.scrollTop = 0;
 			this.setState({
 				currentPage: this.state.currentPage + 1,
 				nUndos: 0
@@ -1572,6 +1581,7 @@ class Sketchpad extends Component {
 
 	previousPage = () => {
 		if ( this.state.currentPage > 0 ) {
+			this.canvasWrapper.scrollTop = 0;
 			this.setState({
 				currentPage: this.state.currentPage - 1,
 				nUndos: 0
@@ -1593,6 +1603,7 @@ class Sketchpad extends Component {
 		debug( `Should go to page ${idx}...` );
 		idx = parseInt( idx, 10 );
 		if ( idx !== this.state.currentPage ) {
+			this.canvasWrapper.scrollTop = 0;
 			this.setState({
 				currentPage: idx,
 				showNavigationModal: false,
