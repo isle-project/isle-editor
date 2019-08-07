@@ -97,7 +97,7 @@ class App extends Component {
 	}
 
 	handlePreambleChange = ( text ) => {
-		let preamble = text.match( /^---([\S\s]*?)---/ );
+		let preamble = text.match( /^(?:\s*)---([\S\s]*?)---/ );
 		if ( preamble ) {
 			// Extract the capture group:
 			preamble = preamble[ 1 ];
