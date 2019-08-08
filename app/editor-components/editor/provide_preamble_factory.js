@@ -2,12 +2,13 @@
 
 import contains from '@stdlib/assert/contains';
 import PREAMBLE_FIELDS from './preamble_fields.json';
+import LICENSES from './preamble_licenses.json';
 import NAMESPACE from './stdlib/namespace.json';
 
 
 // VARIABLES //
 
-const RE_MAIN_FIELD = /\n([a-z]+):/g;
+const RE_MAIN_FIELD = /\n([a-z]+):/gi;
 const RE_ENDS_WITH_WHITESPACE = /[ \t]+$/;
 
 
@@ -25,19 +26,35 @@ function factory( monaco ) {
 		});
 		let suggestions = [];
 		if ( !contains( textUntilPosition, '\n---' ) ) { // Case: still in preamble
-			const matches = textUntilPosition.match( RE_MAIN_FIELD );
-			const last = matches[ matches.length - 1 ];
-			if ( RE_ENDS_WITH_WHITESPACE.test( textUntilPosition ) ) {
-				if ( last === '\nrequire:' ) {
-					suggestions = NAMESPACE.map( x => {
-						return {
-							label: x.alias,
-							documentation: x.description,
-							kind: monaco.languages.CompletionItemKind.Snippet,
-							insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-							insertText: `${x.alias}: "${x.path}"`
-						};
-					});
+			if ( position.column > 1 ) {
+				const matches = textUntilPosition.match( RE_MAIN_FIELD );
+				if ( matches ) {
+					const last = matches[ matches.length - 1 ];
+					if ( RE_ENDS_WITH_WHITESPACE.test( textUntilPosition ) ) {
+						if ( last === '\nrequire:' ) {
+							suggestions = NAMESPACE.map( x => {
+								return {
+									label: x.alias,
+									documentation: x.description,
+									kind: monaco.languages.CompletionItemKind.Snippet,
+									insertTextRules: monaco.languages.CompletionItemInsertTextRule.KeepWhitespace,
+									insertText: `${x.alias}: "${x.path}"`,
+									sortText: 'a'+x.alias
+								};
+							});
+						}
+						else if ( last === '\nlicense:' ) {
+							suggestions = LICENSES.map( x => {
+								return {
+									label: x.name,
+									documentation: x.description,
+									insertText: x.value,
+									kind: monaco.languages.CompletionItemKind.Snippet,
+									sortText: 'a'+x.value
+								};
+							});
+						}
+					}
 				}
 			}
 			else {

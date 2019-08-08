@@ -153,14 +153,28 @@ class MultipleChoiceQuestion extends Component {
 	sendSubmitNotification = () => {
 		const session = this.context;
 		if ( this.state.submitted ) {
-			session.addNotification({
-				title: 'Answer re-submitted.',
-				message: 'You have successfully re-submitted your answer.',
-				level: 'success',
-				position: 'tr'
-			});
+			if ( this.props.provideFeedback === 'incremental' ) {
+				session.addNotification({
+					title: 'Answer re-submitted.',
+					message: 'You have successfully submitted another answer.',
+					level: 'success',
+					position: 'tr'
+				});
+			} else {
+				session.addNotification({
+					title: 'Answer re-submitted.',
+					message: 'You have successfully re-submitted your answer.',
+					level: 'success',
+					position: 'tr'
+				});
+			}
 		} else {
-			let msg = 'You have successfully submitted your answer.';
+			let msg;
+			if ( this.props.provideFeedback === 'incremental' ) {
+				msg = 'You have successfully submitted an answer. If incorrect, you may try again by selecting another answer choice.';
+			} else {
+				msg = 'You have successfully submitted your answer.';
+			}
 			if ( this.props.provideFeedback === 'none' ) {
 				msg += ' You can change your answer and re-submit if you want to.';
 			}

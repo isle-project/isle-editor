@@ -64,7 +64,7 @@ function createDescriptions( descriptions ) {
 			</tr>);
 		}
 	}
-	return ( <table className="table-bordered table-condensed" >
+	return ( <table className="table-bordered table-condensed" style={{ width: '100%' }} >
 		<thead>
 			<tr><th>Name</th><th>Description</th></tr>
 		</thead>
@@ -75,11 +75,15 @@ function createDescriptions( descriptions ) {
 }
 
 function filterMethodStrings( filter, row ) {
+	const rowValue = row[ filter.id ];
+	if ( !rowValue && filter.value ) {
+		return false;
+	}
 	if ( isArray( filter.value ) ) {
-		return contains( filter.value, row[ filter.id ] );
+		return contains( filter.value, rowValue );
 	}
 	// Check whether string contains search phrase:
-	return contains( lowercase( row[ filter.id ] ), lowercase( filter.value ) );
+	return contains( lowercase( rowValue ), lowercase( filter.value ) );
 }
 
 function filterMethodNumbers( filter, row ) {
@@ -146,7 +150,16 @@ class DataTable extends Component {
 
 		debug( 'Constructor is invoked...' );
 		this.id = props.id || uid( props );
-		this.state = {};
+		const dataInfo = props.dataInfo || {};
+		this.state = {
+			showInfo: !!dataInfo.showOnStartup,
+			dataInfo: {
+				info: dataInfo.info || [],
+				name: dataInfo.name || '',
+				variables: dataInfo.variables || null,
+				showOnStartup: dataInfo.showOnStartup || null
+			}
+		};
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -185,20 +198,11 @@ class DataTable extends Component {
 		if ( nextProps.dataInfo !== prevState.dataInfo ) {
 			debug( 'Data information has changed...' );
 			if ( nextProps.dataInfo ) {
-				newState.showInfo = nextProps.dataInfo.showOnStartup;
 				newState.dataInfo = {
 					info: nextProps.dataInfo.info || [],
 					name: nextProps.dataInfo.name || '',
 					variables: nextProps.dataInfo.variables || null,
 					showOnStartup: nextProps.dataInfo.showOnStartup || null
-				};
-			} else {
-				newState.showInfo = false;
-				newState.dataInfo = {
-					'info': [],
-					'name': '',
-					'variables': null,
-					'showOnStartup': false
 				};
 			}
 		}
@@ -228,8 +232,11 @@ class DataTable extends Component {
 		if ( this.props.filters && this.props.filters !== prevProps.filters ) {
 			newState.filtered = this.props.filters;
 		}
+		if ( this.props.data !== prevProps.data ) {
+			this.columns = this.createColumns();
+		}
 		if ( !isEmptyObject( newState ) ) {
-			console.log( 'Trigger a state change after update...' );
+			debug( 'Trigger a state change after update...' );
 			this.setState( newState, () => {
 				this.setState({
 					selectedRows: this.table.getResolvedState().sortedData.length
@@ -261,6 +268,7 @@ class DataTable extends Component {
 	}
 
 	createColumns() {
+		debug( 'Create columns...' );
 		const props = this.props;
 		const columns = this.state.keys.map( ( key, idx ) => {
 			let header = key;
@@ -461,7 +469,10 @@ class DataTable extends Component {
 	}
 
 	showInfo = () => {
-		this.setState({ showInfo: true });
+		debug( 'Show dataset information...' );
+		this.setState({
+			showInfo: true
+		});
 	}
 
 	render() {
@@ -469,6 +480,9 @@ class DataTable extends Component {
 		let { selectedRows, rows, dataInfo } = this.state;
 		if ( !rows ) {
 			return <Alert variant="danger">No data provided.</Alert>;
+		}
+		if ( !this.columns ) {
+			this.columns = this.createColumns();
 		}
 		let modal = null;
 		if ( this.state.showVarModal ) {
@@ -488,6 +502,7 @@ class DataTable extends Component {
 				</Modal.Body>
 			</Modal>;
 		} else if ( this.state.showInfo ) {
+			debug( 'Rendering dataset information modal...' );
 			modal = <Modal
 				show={this.state.showInfo}
 				dialogClassName="modal-50w"
@@ -518,9 +533,7 @@ class DataTable extends Component {
 								onClick={this.showInfo}
 								className='title-button'
 							>
-								<h4 className='title-button-h4'
-									onClick={this.showInfo}
-								>
+								<h4 className='title-button-h4'>
 									{dataInfo.name ? dataInfo.name : 'Data'}
 								</h4>
 							</Button>
@@ -556,7 +569,7 @@ class DataTable extends Component {
 						id={this.id}
 						ref={( table ) => { this.table = table; }}
 						data={rows}
-						columns={this.createColumns()}
+						columns={this.columns}
 						showPagination={true}
 						sortable={true}
 						resizable={true}

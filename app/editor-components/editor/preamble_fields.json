@@ -27,7 +27,7 @@
 	{
 		"name": "require",
 		"value": "require:\n    ${1:}",
-		"description": "Array of JavaScript libraries or JSON files to load"
+		"description": "Data sets, JavaScript libraries, or other files to load"
 	},
 	{
 		"name": "type",
@@ -108,5 +108,10 @@
 		"name": "style",
 		"value": "style: ${1:}",
 		"description": "Inline CSS rules to be appended to the head of the HTML document"
+	},
+	{
+		"name": "license",
+		"value": "license: ${1:}",
+		"description": "License under which materials are released"
 	}
 ]

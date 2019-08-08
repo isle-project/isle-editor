@@ -60,7 +60,7 @@ class SpreadsheetUpload extends Component {
 	}
 
 	/**
-	* Event handler invoked once student-supplied CSV file has been uploaded. Parses the file and extracts its categorical and continuous variables.
+	* Event handler invoked once student-supplied CSV file has been uploaded. Parses the file and extracts its categorical and quantitative variables.
 	*/
 	onFileRead = ( event ) => {
 		let text = event.target.result;

@@ -268,7 +268,7 @@ class UploadLesson extends Component {
 						<Modal.Title>Overwrite Lesson?</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
-						A lesson with the name {this.state.lessonName} is already present in the namespace. Please confirm that you wish to overwrite the lesson or cancel the upload procedure and choose a different name.
+						A lesson with the name <b>{this.state.lessonName}</b> is already present in the namespace. Please confirm that you wish to overwrite the lesson or cancel the upload procedure and choose a different name.
 					</Modal.Body>
 					<Modal.Footer>
 						<Button onClick={this.closeConfirmModal}>Cancel</Button>

@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
+import contains from '@stdlib/assert/contains';
 import roundn from '@stdlib/math/base/special/roundn';
 import linspace from '@stdlib/math/utils/linspace';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';
@@ -21,6 +22,9 @@ import TeX from 'components/tex';
 /**
 * A learning component for calculating probabilities of a normal distribution.
 *
+* @property {Object} domain - object of `x` and `y` arrays with the starting and end points for the respective axis
+* @property {Array} tabs - which tabs to display (either `smaller`, `greater`, or `range`)
+* @property {number} minStDev - minimum standard deviation
 * @property {number} step - step size of the scroll input
 * @property {Object} style - CSS inline styles
 */
@@ -97,152 +101,157 @@ class NormalProbs extends Component {
 	}
 
 	render() {
+		const domain = this.props.domain;
+		const tabs = this.props.tabs;
+		const tabSmaller = contains( tabs, 'smaller' ) ? <Tab eventKey="smaller" title={<TeX raw="P(X \le x_0)" />}>
+			<Dashboard autoUpdate onGenerate={this.onGenerateSmaller}>
+				<NumberInput
+					legend="Mean"
+					defaultValue={0}
+					step={this.props.step}
+					inline
+				/>
+				<NumberInput
+					legend="Standard Deviation"
+					defaultValue={this.props.minStDev}
+					step={this.props.step}
+					min={this.props.minStDev}
+					inline
+				/>
+				<SliderInput
+					legend="x0"
+					defaultValue={0}
+					step={this.props.step}
+					min={this.state.mean1-this.state.sd1*4}
+					max={this.state.mean1+this.state.sd1*4}
+				/>
+				<TeX raw={this.state.eqn1} displayMode tag="" />
+			</Dashboard>
+			<VictoryChart
+				domain={domain ? domain : {
+					x: [ this.state.mean1-this.state.sd1*4, this.state.mean1+this.state.sd1*4 ], y: [ 0, dnorm( this.state.mean1, this.state.mean1, this.state.sd1 ) ]
+				}}>
+				<VictoryArea
+					data={this.state.data1}
+					style={{
+						data: {
+							opacity: 0.3,
+							fill: 'tomato'
+						}
+					}}
+				/>
+				<VictoryLine
+					samples={200}
+					y={( data ) =>
+						dnorm( data.x, this.state.mean1, this.state.sd1 )
+					}
+				/>
+			</VictoryChart>
+		</Tab> : null;
+		const tabGreater = contains( tabs, 'greater' ) ? <Tab eventKey="greater" title={<TeX raw="P(X > x_0)" />}>
+			<Dashboard autoUpdate onGenerate={this.onGenerateLarger}>
+				<NumberInput
+					legend="Mean"
+					defaultValue={0}
+					step={this.props.step}
+					inline
+				/>
+				<NumberInput
+					legend="Standard Deviation"
+					defaultValue={this.props.minStDev}
+					step={this.props.step}
+					min={this.props.minStDev}
+					inline
+				/>
+				<SliderInput
+					legend="x0"
+					defaultValue={0}
+					min={this.state.mean2-this.state.sd2*4}
+					max={this.state.mean2+this.state.sd2*4}
+					step={this.props.step}
+				/>
+				<TeX raw={this.state.eqn2} displayMode tag="" />
+			</Dashboard>
+			<VictoryChart
+				domain={domain ? domain : { x: [ this.state.mean2-this.state.sd2*4, this.state.mean2+this.state.sd2*4 ], y: [ 0, dnorm( this.state.mean2, this.state.mean2, this.state.sd2 ) ]}}>
+				<VictoryArea
+					data={this.state.data2}
+					style={{
+						data: {
+							opacity: 0.3,
+							fill: 'tomato'
+						}
+					}}
+				/>
+				<VictoryLine
+					samples={200}
+					y={( data ) =>
+						dnorm( data.x, this.state.mean2, this.state.sd2 )
+					}
+				/>
+			</VictoryChart>
+		</Tab> : null;
+		const tabRange = contains( tabs, 'range' ) ? <Tab eventKey="range" title={<TeX raw="P( x_0 \le X \le x_1)" />}>
+			<Dashboard autoUpdate onGenerate={this.onGenerateRange}>
+				<NumberInput
+					legend="Mean"
+					defaultValue={0}
+					step={this.props.step}
+					inline
+				/>
+				<NumberInput
+					legend="Standard Deviation"
+					defaultValue={1}
+					step={this.props.step}
+					min={this.props.minStDev}
+					inline
+				/>
+				<SliderInput
+					legend="x0"
+					defaultValue={0}
+					min={this.state.mean3-this.state.sd3*4}
+					max={this.state.mean3+this.state.sd3*4}
+					step={this.props.step}
+				/>
+				<SliderInput
+					legend="x1"
+					defaultValue={1}
+					min={this.state.mean3-this.state.sd3*4}
+					max={this.state.mean3+this.state.sd3*4}
+					step={this.props.step}
+				/>
+				<TeX raw={this.state.eqn3} displayMode tag="" />
+			</Dashboard>
+			<VictoryChart
+				domain={domain ? domain : {
+					x: [ this.state.mean3-this.state.sd3*4, this.state.mean3+this.state.sd3*4 ],
+					y: [ 0, dnorm( this.state.mean3, this.state.mean3, this.state.sd3 ) ]
+				}}>
+				<VictoryArea
+					data={this.state.data3}
+					style={{
+						data: {
+							opacity: 0.3, fill: 'tomato'
+						}
+					}}
+				/>
+				<VictoryLine
+					samples={200}
+					y={( data ) =>
+						dnorm( data.x, this.state.mean3, this.state.sd3 )
+					}
+				/>
+			</VictoryChart>
+		</Tab> : null;
 		return ( <Card style={{ maxWidth: 600, ...this.props.style }}>
 			<Card.Header as="h3">
 				Normal Distribution
 			</Card.Header>
 			<Card.Body>
-				<Tabs defaultActiveKey={1} id="normal-tabs">
-					<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
-						<Dashboard autoUpdate onGenerate={this.onGenerateSmaller}>
-							<NumberInput
-								legend="Mean"
-								defaultValue={0}
-								step={this.props.step}
-								inline
-							/>
-							<NumberInput
-								legend="Standard Deviation"
-								defaultValue={1}
-								step={this.props.step}
-								min={1}
-								inline
-							/>
-							<SliderInput
-								legend="x0"
-								defaultValue={0}
-								step={this.props.step}
-								min={this.state.mean1-this.state.sd1*4}
-								max={this.state.mean1+this.state.sd1*4}
-							/>
-							<TeX raw={this.state.eqn1} displayMode tag="" />
-						</Dashboard>
-						<VictoryChart
-							domain={{
-								x: [ this.state.mean1-this.state.sd1*4, this.state.mean1+this.state.sd1*4 ], y: [ 0, dnorm( this.state.mean1, this.state.mean1, this.state.sd1 ) ]
-							}}>
-							<VictoryArea
-								data={this.state.data1}
-								style={{
-									data: {
-										opacity: 0.3,
-										fill: 'tomato'
-									}
-								}}
-							/>
-							<VictoryLine
-								samples={200}
-								y={( data ) =>
-									dnorm( data.x, this.state.mean1, this.state.sd1 )
-								}
-							/>
-						</VictoryChart>
-					</Tab>
-					<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />}>
-						<Dashboard autoUpdate onGenerate={this.onGenerateLarger}>
-							<NumberInput
-								legend="Mean"
-								defaultValue={0}
-								step={this.props.step}
-								inline
-							/>
-							<NumberInput
-								legend="Standard Deviation"
-								defaultValue={1}
-								step={this.props.step}
-								min={1}
-								inline
-							/>
-							<SliderInput
-								legend="x0"
-								defaultValue={0}
-								min={this.state.mean2-this.state.sd2*4}
-								max={this.state.mean2+this.state.sd2*4}
-								step={this.props.step}
-							/>
-							<TeX raw={this.state.eqn2} displayMode tag="" />
-						</Dashboard>
-						<VictoryChart
-							domain={{ x: [ this.state.mean2-this.state.sd2*4, this.state.mean2+this.state.sd2*4 ], y: [ 0, dnorm( this.state.mean2, this.state.mean2, this.state.sd2 ) ]}}>
-							<VictoryArea
-								data={this.state.data2}
-								style={{
-									data: {
-										opacity: 0.3,
-										fill: 'tomato'
-									}
-								}}
-							/>
-							<VictoryLine
-								samples={200}
-								y={( data ) =>
-									dnorm( data.x, this.state.mean2, this.state.sd2 )
-								}
-							/>
-						</VictoryChart>
-					</Tab>
-					<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1)" />}>
-						<Dashboard autoUpdate onGenerate={this.onGenerateRange}>
-							<NumberInput
-								legend="Mean"
-								defaultValue={0}
-								step={this.props.step}
-								inline
-							/>
-							<NumberInput
-								legend="Standard Deviation"
-								defaultValue={1}
-								step={this.props.step}
-								min={1}
-								inline
-							/>
-							<SliderInput
-								legend="x0"
-								defaultValue={0}
-								min={this.state.mean3-this.state.sd3*4}
-								max={this.state.mean3+this.state.sd3*4}
-								step={this.props.step}
-							/>
-							<SliderInput
-								legend="x1"
-								defaultValue={1}
-								min={this.state.mean3-this.state.sd3*4}
-								max={this.state.mean3+this.state.sd3*4}
-								step={this.props.step}
-							/>
-							<TeX raw={this.state.eqn3} displayMode tag="" />
-						</Dashboard>
-						<VictoryChart
-							domain={{
-								x: [ this.state.mean3-this.state.sd3*4, this.state.mean3+this.state.sd3*4 ],
-								y: [ 0, dnorm( this.state.mean3, this.state.mean3, this.state.sd3 ) ]
-							}}>
-							<VictoryArea
-								data={this.state.data3}
-								style={{
-									data: {
-										opacity: 0.3, fill: 'tomato'
-									}
-								}}
-							/>
-							<VictoryLine
-								samples={200}
-								y={( data ) =>
-									dnorm( data.x, this.state.mean3, this.state.sd3 )
-								}
-							/>
-						</VictoryChart>
-					</Tab>
+				<Tabs defaultActiveKey={this.props.tabs[ 0 ]} id="normal-tabs">
+					{tabSmaller}
+					{tabGreater}
+					{tabRange}
 				</Tabs>
 			</Card.Body>
 		</Card> );
@@ -253,15 +262,21 @@ class NormalProbs extends Component {
 // PROPERTIES //
 
 NormalProbs.propTypes = {
+	domain: PropTypes.object,
+	minStDev: PropTypes.number,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
 	]),
+	tabs: PropTypes.arrayOf( PropTypes.oneOf([ 'smaller', 'greater', 'range' ]) ),
 	style: PropTypes.object
 };
 
 NormalProbs.defaultProps = {
+	domain: null,
+	minStDev: 1,
 	step: 0.01,
+	tabs: [ 'smaller', 'greater', 'range' ],
 	style: {}
 };
 

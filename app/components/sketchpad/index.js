@@ -47,7 +47,8 @@ import {
 	SKETCHPAD_DRAW_CURVE, SKETCHPAD_DRAW_TEXT, SKETCHPAD_DRAG_ELEMENT,
 	SKETCHPAD_INSERT_PAGE, SKETCHPAD_DELETE_ELEMENT, SKETCHPAD_FIRST_PAGE,
 	SKETCHPAD_LAST_PAGE, SKETCHPAD_NEXT_PAGE, SKETCHPAD_PREVIOUS_PAGE,
-	SKETCHPAD_GOTO_PAGE
+	SKETCHPAD_GOTO_PAGE, SKETCHPAD_VERTICAL_SCROLL, SKETCHPAD_MOVE_POINTER,
+	SKETCHPAD_MOVE_ZOOM, TOGGLE_PRESENTATION_MODE
 } from 'constants/actions.js';
 const ResetModal = Loadable( () => import( './reset_modal.js' ) );
 const NavigationModal = Loadable( () => import( './navigation_modal.js' ) );
@@ -65,7 +66,8 @@ const OMITTED_KEYS = [
 ];
 const RECORD_TIME_INCREMENT = 100;
 const RE_DIGITS = /^[0-9]+$/;
-const MIN_SWIPE_X = 30;
+const MIN_SWIPE_X = 45;
+const MIN_SWIPE_Y = 30;
 const MAX_SWIPE_Y = 60;
 const hasTouch = isTouchDevice();
 
@@ -224,7 +226,7 @@ class Sketchpad extends Component {
 						session.log( insertAction, action.email );
 					}
 				}
-				else if ( type === 'TOGGLE_PRESENTATION_MODE' ) {
+				else if ( type === TOGGLE_PRESENTATION_MODE ) {
 					debug( 'Hide control buttons in presentation mode...' );
 					const newState = {
 						hideInputButtons: session.presentationMode,
@@ -250,7 +252,7 @@ class Sketchpad extends Component {
 					const type = action.type;
 					debug( 'Received member action of type: '+type );
 					if ( action.email === session.user.email ) {
-						if ( type === 'SKETCHPAD_MOVE_POINTER' ) {
+						if ( type === SKETCHPAD_MOVE_POINTER ) {
 							let { x, y, sessionID } = JSON.parse( action.value );
 							if ( sessionID !== session.sessionID ) {
 								x *= this.canvas.width;
@@ -261,10 +263,10 @@ class Sketchpad extends Component {
 								this.pointer.style.top = y;
 								this.pointer.style.opacity = 0.7;
 							}
-						} else if ( type === 'SKETCHPAD_HIDE_POINTER' ) {
+						} else if ( type === SKETCHPAD_HIDE_POINTER ) {
 							this.pointer.style.opacity = 0;
 						}
-						else if ( type === 'SKETCHPAD_MOVE_ZOOM' ) {
+						else if ( type === SKETCHPAD_MOVE_ZOOM ) {
 							let { x, y, sessionID } = JSON.parse( action.value );
 							if ( sessionID !== session.sessionID ) {
 								x *= this.canvas.width;
@@ -297,8 +299,14 @@ class Sketchpad extends Component {
 								this.zoom.style.left = xPos;
 								this.zoom.style.display = 'block';
 							}
-						} else if ( type === 'SKETCHPAD_HIDE_ZOOM' ) {
+						} else if ( type === SKETCHPAD_HIDE_ZOOM ) {
 							this.zoom.style.display = 'none';
+						} else if ( type === SKETCHPAD_VERTICAL_SCROLL ) {
+							let { diffY, sessionID } = JSON.parse( action.value );
+							if ( sessionID !== session.sessionID ) {
+								diffY *= this.canvas.height;
+								this.canvasWrapper.scrollTop -= 0.1 * diffY;
+							}
 						}
 					}
 					// Owners should only process actions from selected users:
@@ -312,11 +320,11 @@ class Sketchpad extends Component {
 						}
 						if ( action.email === session.user.email ) {
 							if (
-								type === 'SKETCHPAD_NEXT_PAGE' ||
-								type === 'SKETCHPAD_PREVIOUS_PAGE' ||
-								type === 'SKETCHPAD_GOTO_PAGE' ||
-								type === 'SKETCHPAD_FIRST_PAGE' ||
-								type === 'SKETCHPAD_LAST_PAGE'
+								type === SKETCHPAD_NEXT_PAGE ||
+								type === SKETCHPAD_PREVIOUS_PAGE ||
+								type === SKETCHPAD_GOTO_PAGE ||
+								type === SKETCHPAD_FIRST_PAGE ||
+								type === SKETCHPAD_LAST_PAGE
 							) {
 								debug( `Go to page ${action.value}...` );
 								this.gotoPage( action.value, false );
@@ -324,9 +332,9 @@ class Sketchpad extends Component {
 						}
 					}
 					if (
-						type === 'SKETCHPAD_DRAW_TEXT' ||
-						type === 'SKETCHPAD_DRAW_CURVE' ||
-						type === 'SKETCHPAD_REPLAY'
+						type === SKETCHPAD_DRAW_TEXT ||
+						type === SKETCHPAD_DRAW_CURVE ||
+						type === SKETCHPAD_REPLAY
 					) {
 						let elem = JSON.parse( action.value );
 						const elements = this.elements[ elem.page ];
@@ -352,14 +360,14 @@ class Sketchpad extends Component {
 							this.props.onChange( elements );
 						}
 					}
-					else if ( type === 'SKETCHPAD_INSERT_PAGE' ) {
+					else if ( type === SKETCHPAD_INSERT_PAGE ) {
 						const { pos, noPages } = JSON.parse( action.value );
 						if ( noPages === this.state.noPages + 1 ) {
 							debug( `Should insert page at ${pos}...` );
 							this.insertPage( pos, false );
 						}
 					}
-					else if ( type === 'SKETCHPAD_INIT_PAGES' ) {
+					else if ( type === SKETCHPAD_INIT_PAGES ) {
 						const pagesToInsert = action.value;
 						debug( 'Initialize new pages: '+pagesToInsert.join( ', ' ) );
 						const newInsertedPages = this.state.insertedPages;
@@ -377,7 +385,7 @@ class Sketchpad extends Component {
 							this.redraw();
 						});
 					}
-					else if ( type === 'SKETCHPAD_DELETE_ELEMENT' ) {
+					else if ( type === SKETCHPAD_DELETE_ELEMENT ) {
 						const { drawID, page, user } = JSON.parse( action.value );
 						debug( `Should delete element with id ${drawID} by user ${user}` );
 						const elems = this.elements[ page ];
@@ -396,7 +404,7 @@ class Sketchpad extends Component {
 							this.redraw();
 						}
 					}
-					else if ( type === 'SKETCHPAD_DRAG_ELEMENT' ) {
+					else if ( type === SKETCHPAD_DRAG_ELEMENT ) {
 						const { drawID, user, page, dx, dy } = JSON.parse( action.value );
 						debug( `Should drag element with id ${drawID} by dx: ${dx} and dy: ${dy}...` );
 						let ownAction = false;
@@ -428,7 +436,7 @@ class Sketchpad extends Component {
 							this.redraw();
 						}
 					}
-					else if ( type === 'SKETCHPAD_CLEAR_PAGE' ) {
+					else if ( type === SKETCHPAD_CLEAR_PAGE ) {
 						const page = action.value;
 						const user = action.email;
 						const elems = this.elements[ page ];
@@ -442,7 +450,7 @@ class Sketchpad extends Component {
 						this.elements[ page ] = newElems;
 						this.redraw();
 					}
-					else if ( type === 'SKETCHPAD_CLEAR_ALL_PAGES' ) {
+					else if ( type === SKETCHPAD_CLEAR_ALL_PAGES ) {
 						const user = action.email;
 						for ( let page = 0; page < this.state.noPages; page++ ) {
 							const elems = this.elements[ page ];
@@ -1086,6 +1094,8 @@ class Sketchpad extends Component {
 			this.swipeEndX = evt.touches[ 0 ].screenX;
 			this.swipeEndY = evt.touches[ 0 ].screenY;
 			this.isMouseDown = false;
+			const diffY = this.swipeEndY - this.swipeStartY;
+			this.verticalScroll( diffY );
 			return;
 		}
 		const session = this.context;
@@ -1504,6 +1514,10 @@ class Sketchpad extends Component {
 	}
 
 	firstPage = () => {
+		if ( this.state.currentPage === 0 ) {
+			return;
+		}
+		this.canvasWrapper.scrollTop = 0;
 		this.setState({
 			currentPage: 0,
 			nUndos: 0
@@ -1521,6 +1535,10 @@ class Sketchpad extends Component {
 	}
 
 	lastPage = () => {
+		if ( this.state.currentPage === this.state.noPages - 1 ) {
+			return;
+		}
+		this.canvasWrapper.scrollTop = 0;
 		this.setState({
 			currentPage: this.state.noPages - 1,
 			nUndos: 0
@@ -1553,6 +1571,7 @@ class Sketchpad extends Component {
 	nextPage = () => {
 		if ( this.state.currentPage < this.state.noPages-1 ) {
 			debug( 'Should go to next page...' );
+			this.canvasWrapper.scrollTop = 0;
 			this.setState({
 				currentPage: this.state.currentPage + 1,
 				nUndos: 0
@@ -1572,6 +1591,7 @@ class Sketchpad extends Component {
 
 	previousPage = () => {
 		if ( this.state.currentPage > 0 ) {
+			this.canvasWrapper.scrollTop = 0;
 			this.setState({
 				currentPage: this.state.currentPage - 1,
 				nUndos: 0
@@ -1593,6 +1613,7 @@ class Sketchpad extends Component {
 		debug( `Should go to page ${idx}...` );
 		idx = parseInt( idx, 10 );
 		if ( idx !== this.state.currentPage ) {
+			this.canvasWrapper.scrollTop = 0;
 			this.setState({
 				currentPage: idx,
 				showNavigationModal: false,
@@ -1633,7 +1654,8 @@ class Sketchpad extends Component {
 			let pdfData = reader.result;
 			pdfData = new Uint8Array( pdfData );
 			const loadingTask = pdfjs.getDocument({
-				data: pdfData
+				data: pdfData,
+				disableFontFace: false
 			});
 			loadingTask.promise
 				.then( this.processPDF )
@@ -1648,7 +1670,8 @@ class Sketchpad extends Component {
 		debug( 'Initialize PDF document...' );
 		return new Promise( ( resolve, reject ) => {
 			const loadingTask = pdfjs.getDocument({
-				url: this.props.pdf
+				url: this.props.pdf,
+				disableFontFace: false
 			});
 			loadingTask.promise
 				.then( ( pdf ) => {
@@ -1984,6 +2007,8 @@ class Sketchpad extends Component {
 			this.swipeEndX = event.touches[ 0 ].screenX;
 			this.swipeEndY = event.touches[ 0 ].screenY;
 			this.isMouseDown = false;
+			const diffY = this.swipeEndY - this.swipeStartY;
+			this.verticalScroll( diffY );
 			return;
 		}
 		const session = this.context;
@@ -2083,6 +2108,26 @@ class Sketchpad extends Component {
 		return out;
 	}
 
+	verticalScroll( diffY ) {
+		if (
+			diffY > MIN_SWIPE_Y ||
+			diffY < -MIN_SWIPE_Y
+		) {
+			const session = this.context;
+			const action = {
+				id: this.id,
+				type: SKETCHPAD_VERTICAL_SCROLL,
+				value: JSON.stringify({
+					diffY: diffY / this.canvas.height,
+					sessionID: session.sessionID
+				}),
+				noSave: true
+			};
+			session.log( action, 'members' );
+			this.canvasWrapper.scrollTop -= 0.1 * diffY;
+		}
+	}
+
 	renderHTMLOverlays() {
 		const keys = objectKeys( this.props.nodes );
 		if ( keys.length === 0 ) {
@@ -2159,6 +2204,8 @@ class Sketchpad extends Component {
 					this.swipeEndX = event.touches[ 0 ].screenX;
 					this.swipeEndY = event.touches[ 0 ].screenY;
 					this.isMouseDown = false;
+					const diffY = this.swipeEndY - this.swipeStartY;
+					this.verticalScroll( diffY );
 				}
 			};
 			const onTouchEnd = ( event ) => {
@@ -2258,8 +2305,8 @@ class Sketchpad extends Component {
 						{this.renderSaveButtons()}
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</div>
-					<div id="canvas-wrapper"
-						style={{ width: this.state.canvasWidth, height: this.state.canvasHeight, overflow: 'auto', position: 'relative' }}
+					<div className="canvas-wrapper"
+						style={{ width: this.state.canvasWidth, height: this.state.canvasHeight }}
 						ref={( div ) => { this.canvasWrapper = div; }}
 					>
 						{this.renderHTMLOverlays()}
@@ -2269,7 +2316,7 @@ class Sketchpad extends Component {
 							className="textLayer"
 							ref={( div ) => { this.textLayer = div; }}
 							style={{
-								pointerEvents: ( this.state.mode !== 'none' ) ? 'none' : 'visible'
+								pointerEvents: ( this.state.mode !== 'none' ) ? 'none' : 'auto'
 							}}
 							{...eventListeners}
 						/>

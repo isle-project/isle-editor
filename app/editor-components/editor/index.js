@@ -71,6 +71,8 @@ class Editor extends Component {
 		const { default: providePreambleFactory } = await import( './provide_preamble_factory.js' );
 		const { default: provideRequireFactory } = await import( './provide_require_factory.js' );
 		const { default: provideSnippetFactory } = await import( './provide_snippet_factory.js' );
+		const { default: providePreambleHoverFactory } = await import( './provide_preamble_hover_factory.js' );
+		const { default: provideSnippetHoverFactory } = await import( './provide_snippet_hover_factory.js' );
 
 		this.monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
 			noSemanticValidation: true,
@@ -94,13 +96,31 @@ class Editor extends Component {
 			provideCompletionItems: provideSnippetFactory( this.monaco )
 		});
 		this._preambleProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
-			triggerCharacters: [ '\n', ' ' ],
+			triggerCharacters: [ '\n', ' ', '\t' ],
 			provideCompletionItems: providePreambleFactory( this.monaco )
+		});
+		this._preambleHoverProvider = this.monaco.languages.registerHoverProvider( 'javascript', {
+			provideHover: providePreambleHoverFactory( this.monaco )
+		});
+		this._snippetHoverProvider = this.monaco.languages.registerHoverProvider( 'javascript', {
+			provideHover: provideSnippetHoverFactory( this.monaco )
 		});
 		this._requireProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
 			triggerCharacters: [ '(' ],
 			provideCompletionItems: provideRequireFactory( this.monaco )
 		});
+	}
+
+	shouldComponentUpdate( prevProps ) {
+		if (
+			this.props.filePath !== prevProps.filePath ||
+			this.props.lintErrors.length !== prevProps.lintErrors.length ||
+			this.props.splitPos !== prevProps.splitPos ||
+			this.props.hideToolbar !== prevProps.hideToolbar
+		) {
+			return true;
+		}
+		return false;
 	}
 
 	componentDidUpdate( prevProps ) {
@@ -135,6 +155,8 @@ class Editor extends Component {
 		this._snippetProvider.dispose();
 		this._preambleProvider.dispose();
 		this._requireProvider.dispose();
+		this._preambleHoverProvider.dispose();
+		this._snippetHoverProvider.dispose();
 	}
 
 	checkRequires = ( preamble ) => {
@@ -224,6 +246,7 @@ class Editor extends Component {
 
 	render() {
 		MONACO_OPTIONS.fontSize = this.props.fontSize;
+		debug( 'Re-rendering monaco editor...' );
 		return (
 			<div>
 				<ContextMenuTrigger id="editorWindow" holdToDisplay={-1} style={{ height: '100%', width: '100%' }} >
@@ -255,12 +278,14 @@ class Editor extends Component {
 // PROPERTIES //
 
 Editor.defaultProps = {
+	filePath: '',
 	fontSize: 14,
 	onChange: noop,
 	value: ''
 };
 
 Editor.propTypes = {
+	filePath: PropTypes.string,
 	fontSize: PropTypes.number,
 	onChange: PropTypes.func,
 	preamble: PropTypes.object.isRequired,

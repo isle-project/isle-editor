@@ -1661,8 +1661,8 @@ class Session {
 				window.removeEventListener( 'beforeunload', beforeUnload );
 			};
 		}
-		if ( global.lesson.notificationSystem ) {
-			return global.lesson.notificationSystem.addNotification( config );
+		if ( global.notificationSystemISLE ) {
+			return global.notificationSystemISLE.addNotification( config );
 		}
 		return null;
 	}
@@ -1674,8 +1674,8 @@ class Session {
 	* @returns {void}
 	*/
 	removeNotification( notification ) {
-		if ( global.lesson.notificationSystem ) {
-			global.lesson.notificationSystem.removeNotification( notification );
+		if ( global.notificationSystemISLE ) {
+			global.notificationSystemISLE.removeNotification( notification );
 		}
 	}
 }
