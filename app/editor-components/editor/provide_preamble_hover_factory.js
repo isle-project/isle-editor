@@ -37,10 +37,10 @@ function factory( monaco ) {
 				});
 			}
 			return {
-				contents,
-				range: new monaco.Range( position.lineNumber, 1, position.lineNumber, position.column )
+				contents
 			};
 		}
+		return null;
 	}
 }
 

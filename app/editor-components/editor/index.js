@@ -72,6 +72,7 @@ class Editor extends Component {
 		const { default: provideRequireFactory } = await import( './provide_require_factory.js' );
 		const { default: provideSnippetFactory } = await import( './provide_snippet_factory.js' );
 		const { default: providePreambleHoverFactory } = await import( './provide_preamble_hover_factory.js' );
+		const { default: provideSnippetHoverFactory } = await import( './provide_snippet_hover_factory.js' );
 
 		this.monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
 			noSemanticValidation: true,
@@ -100,6 +101,9 @@ class Editor extends Component {
 		});
 		this._preambleHoverProvider = this.monaco.languages.registerHoverProvider( 'javascript', {
 			provideHover: providePreambleHoverFactory( this.monaco )
+		});
+		this._snippetHoverProvider = this.monaco.languages.registerHoverProvider( 'javascript', {
+			provideHover: provideSnippetHoverFactory( this.monaco )
 		});
 		this._requireProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
 			triggerCharacters: [ '(' ],
@@ -152,6 +156,7 @@ class Editor extends Component {
 		this._preambleProvider.dispose();
 		this._requireProvider.dispose();
 		this._preambleHoverProvider.dispose();
+		this._snippetHoverProvider.dispose();
 	}
 
 	checkRequires = ( preamble ) => {
