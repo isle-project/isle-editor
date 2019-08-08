@@ -1,0 +1,19 @@
+{
+	"name": "Intro Statistics Survey",
+	"info": [
+		"Let's look at data collected from 2001-2003 from (non-random) voluntary anonymous online surveys of introductory statistics students at the University of Pittsburgh, collected at the beginning of the semesters."
+	],
+	"variables": {
+		"Course": "Course Respondent was Enrolled in",
+		"Math": "Math SAT Score",
+		"Verbal": "Verbal SAT Score",
+		"HT": "Respondent's Height",
+		"Shoe": "Shoe Size",
+		"Gender": "Respondent's Gender",
+		"MomHT": "Height of Respondent's Mother",
+		"DadHT": "Height of Respondent's Father",
+		"Color": "Favorite Color",
+		"WT": "Respondent's Weight",
+		"Major": "Declared Major"
+	}
+}

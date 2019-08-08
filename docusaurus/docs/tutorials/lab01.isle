@@ -1,0 +1,286 @@
+---
+title: "Lab 1"
+author: Philipp Burckhardt, Francis R. Kovacs, Rebecca Nugent
+date: Aug 28th, 2018
+lesson: lab01
+namespace: 36-200
+require:
+    survey: "https://isle.heinz.cmu.edu/Demo_survey_subset.json"
+    surveyInfo: "https://isle.heinz.cmu.edu/Demo_survey_info.json"
+    color: "https://isle.heinz.cmu.edu/Demo_color.json"
+    major: "https://isle.heinz.cmu.edu/Demo_major.json"
+state:
+server: https://isle.heinz.cmu.edu
+---
+
+# Lab 1 - Introduction to ISLE
+
+First, welcome to ISLE and 36-200! Throughout the semester we will use this environment to explore statistical concepts and analyze data in many forms.
+
+## Definitions
+
+<Container>
+    <Row>
+         <Col md={4}>
+            <Panel header="Variables" variant="success" style={{ fontSize: 16 }}>
+                 A variable is any aspect, trait, or characteristic of an observation that can be measured or counted. We differentiate between quantitative and qualitative (or categorical) variables. Whether a variable is quantitative or qualitative depends on what kind of possible values it can have..
+            </Panel>
+        </Col>
+        <Col md={4}>
+            <Panel header="Quantitative Variables" variant="success" style={{ fontSize: 16 }}>
+                A quantitative variable has a set of numbers as possible values.  For example, a person's height or weight could have a wide range of possible numeric values.  A person's age could be measured only in years (and still viewed as quantitative) but might also be measured in years, months, weeks, days, hours, minutes, seconds, etc.
+            </Panel>
+        </Col>
+        <Col md={3}>
+            <Panel header="Qualitative Variables" variant="success" style={{ fontSize: 16 }}>
+               A qualitative or categorical variable has two or more possible categories as values.  For example, the question "Do you smoke?" might have the possible answers: Yes, No, Sometimes.  If the variable only has two categories (Yes/No or 0/1), it is often called binary or an indicator variable.
+            </Panel>
+        </Col>
+        <Col md={1}>
+            <BeaconTooltip title="Feedback Buttons" content="By clicking on these buttons, you can give feedback on individual elements of the labs. Doing so helps us improve our learning materials (or to even clarify things in real-time!)">
+                <FeedbackButtons
+                    id="variables"
+                    vertical
+                />
+            </BeaconTooltip>
+        </Col>
+    </Row>
+</Container>
+
+<h2>Variables</h2>
+
+<p>As a quick check-in for thinking about different variable types, let’s take a look at data collected from 2001-2003 from (non-random) voluntary anonymous online surveys of introductory statistics students at the University of Pittsburgh at the beginning of the semesters. For each variable, think about what kinds of answers/values might get returned and decide whether it is quantitative or qualitative.</p>
+
+<Slider title="Quantitative or Qualitative?">
+    <MultipleChoiceQuestion
+        id="mc1"
+        solution={1}
+        answers={[
+            {content:"Quantitative", explanation:""},
+            {content:"Qualitative", explanation:""}
+        ]}
+        question={<span>Course: <i>Course Respondent was Enrolled in</i></span>}
+    />
+    <MultipleChoiceQuestion
+        id="mc2"
+        solution={0}
+        answers={[
+            {content:"Quantitative", explanation:""},
+            {content:"Qualitative", explanation:""}
+        ]}
+        question={<span>Math: <i>Math SAT Score</i></span>}
+    />
+    <MultipleChoiceQuestion
+        id="mc3"
+        solution={0}
+        answers={[
+            {content:"Quantitative", explanation:""},
+            {content:"Qualitative", explanation:""}
+        ]}
+        question={<span>Verbal: <i>Verbal SAT Score</i></span>}
+    />
+    <MultipleChoiceQuestion
+        id="mc4"
+        solution={0}
+        answers={[
+            {content:"Quantitative", explanation:""},
+            {content:"Qualitative", explanation:""}
+        ]}
+        question={<span>HT: <i>Respondent's Height</i></span>}
+    />
+    <MultipleChoiceQuestion
+        id="mc5"
+        solution={0}
+        answers={[
+            {content:"Quantitative", explanation:""},
+            {content:"Qualitative", explanation:""}
+        ]}
+        question={<span>Shoe: <i>Shoe Size</i></span>}
+    />
+    <MultipleChoiceQuestion
+        id="mc6"
+        solution={1}
+        answers={[
+            {content:"Quantitative", explanation:""},
+            {content:"Qualitative", explanation:""}
+        ]}
+        question={<span>Gender: <i>Respondent's Gender</i></span>}
+    />
+    <MultipleChoiceQuestion
+        id="mc7"
+        solution={0}
+        answers={[
+            {content:"Quantitative", explanation:""},
+            {content:"Qualitative", explanation:""}
+        ]}
+        question={<span>MomHT: <i>Height of Respondent's Mother</i></span>}
+    />
+    <MultipleChoiceQuestion
+        id="mc8"
+        solution={0}
+        answers={[
+            {content:"Quantitative", explanation:""},
+            {content:"Qualitative", explanation:""}
+        ]}
+        question={<span>DatHT: <i>Height of Respondent's Father</i></span>}
+    />
+    <MultipleChoiceQuestion
+        id="mc9"
+        solution={1}
+        answers={[
+            {content:"Quantitative", explanation:""},
+            {content:"Qualitative", explanation:""}
+        ]}
+        question={<span>Color: <i>Favorite Color</i></span>}
+    />
+    <MultipleChoiceQuestion
+        id="mc10"
+        solution={0}
+        answers={[
+            {content:"Quantitative", explanation:""},
+            {content:"Qualitative", explanation:""}
+        ]}
+        question={<span>WT: <i>Respondent's Weight</i></span>}
+    />
+    <MultipleChoiceQuestion
+        id="mc11"
+        solution={1}
+        answers={[
+            {content:"Quantitative", explanation:""},
+            {content:"Qualitative", explanation:""}
+        ]}
+        question={<span>Major: <i>Declared Major</i></span>}
+    />
+</Slider>
+
+<p>Now let’s take a look at a spreadsheet of the actual observations.  Take a minute or so to click/scroll and look at the types and ranges of values that we have.</p>
+
+<DataTable
+    data={survey}
+    dataInfo={surveyInfo}
+/>
+
+<h4>Displays for qualitative data</h4>
+
+<p>We start with exploratory data analysis on our categorical variables.  Take a look at the distribution of categories displayed in tables and graphs below.</p>
+
+<Container>
+    <Row>
+         <Col md={6}>
+            <Panel header="Frequency Table of Course" variant="success" style={{ fontSize: 16 }}>
+                <table className="table table-bordered">
+                    <tr>
+                        <th>Category</th>
+                        <th>Count</th>
+                        <th>Rel. Frequency</th>
+                    </tr>
+                    <tr>
+                        <td>200</td>
+                        <td>1463</td>
+                        <td>57.4%</td>
+                    </tr>
+                    <tr>
+                        <td>1000</td>
+                        <td>695</td>
+                        <td>27.2%</td>
+                    </tr>
+                    <tr>
+                        <td>1100</td>
+                        <td>393</td>
+                        <td>15.4%</td>
+                    </tr>
+                </table>   
+            </Panel>
+            <Panel header="Bar Chart of Chosen Major" variant="success" style={{ fontSize: 16 }}>
+                <Plotly 
+                    data={[{
+                        x: major.map( x => x[ 0 ] ),
+                        y: major.map( x => x[ 1 ] ),
+                        type: 'bar'
+                    }]} 
+                    layout={{ width: '100%' }} 
+                />   
+            </Panel>
+        </Col>
+        <Col md={6}>
+            <Panel header="Pie Chart of Favorite Color" variant="success" style={{ fontSize: 16 }}>
+                <Plotly 
+                    data={[{
+                        values: color.map( x => x[ 1 ]),
+                        labels: color.map( x => x[ 0 ]),
+                        marker: {
+                            colors: ["blue", "green", "pink", "red", "yellow", "purple", "black", "orange"] },
+                        type: 'pie'
+                    }]}
+                    layout={{ width: 300 }}
+                />
+            </Panel>
+            <Panel>
+                <label>How did you find the section on displays for qualitative data? Anything unclear?</label>
+                <i>Please provide some feedback!</i>
+                <FeedbackButtons
+                    id="categorical_plots"
+                />
+            </Panel>
+        </Col>
+    </Row>
+</Container>
+
+<label>For each variable, describe the distribution
+you see.  What interesting features do you see?</label>
+
+<Slider>
+    <FreeTextQuestion
+        id="freetext_course"
+        question="For the 'Course variable'"
+    /> 
+    <FreeTextQuestion
+        id="freetext_color"
+        question="For the 'Favorite Color'"
+    />  
+    <FreeTextQuestion
+        id="freetext_major"
+        question="For the 'Chosen Major'"
+    />   
+</Slider>
+
+<h2>Questions</h2>
+
+<BeaconTooltip target="#shutdown_impact_spring19" title="Free Text Question" content="In free text questions, you type your answer and then click the 'Submit' button. You can revise your answer after submission if necessary.">
+<FreeTextQuestion
+    id="shutdown_impact_spring19"
+    submissionMsg="Your answer has been recorded."
+    question={<div><p>Let's say we were interested in describing the impact of the recent and ongoing government shutdown in the United States.</p><p>What kind of information would you want to know?</p><p>How could you measure or collect that information?</p></div>}
+/>
+</BeaconTooltip>
+
+<p>To summarize or describe text, we can use word clouds. The text is broken up into words or phrases; each word/phrase is assigned a count of how many times it appears ( a bag-of-words model).  The word cloud then associates the size of the word with how often we see it.  In this word cloud, the colors are assigned randomly to the different words/phrases.</p>
+
+<p>We often remove punctuation and very common words (or "stop words") like a, an, the which often show up but don't give any information about the the topic or subjects of the text.</p>
+
+<p>Let's look at the most frequent words in your text answers.</p>
+
+<Panel header="Impact - Word Cloud" style={{ width: 750 }} >
+<Metrics for="shutdown_impact_spring19" onData={ ( err, answers ) => {
+    this.setState({ answers: answers.map( x => x.data.value ) });
+}} />
+<WordCloud data={this.state.answers} rotate={0} />
+</Panel>
+
+<p>What common themes or ideas do we see?  How does it change if we change the number of frequent words?</p>
+
+<h2>Surveys</h2>
+
+<p>Let us get to know the people in your lab.  Note that answers are anonymous during the lab.  When we collect and display data from students in lab, no one knows which answer belongs to which student.</p>
+
+<h3>Question 1</h3>
+
+<MultipleChoiceSurvey user id="meal_survey" question="What is your favorite meal of the day?" answers={["Breakfast","Brunch","Lunch","Dinner"]}/>
+ 
+<h3>Question 2</h3>
+
+<MultipleChoiceSurvey user id="sleep_survey" question="How much sleep did you get last night?" answers={["< 4 hrs","4-5 hrs","6-7 hrs","8-9 hrs","10-11 hrs","> 11 hrs"]}/>
+
+<h3>Question 3</h3>
+
+<FreeTextSurvey user id="origin_survey" question="Where are you originally from?" />

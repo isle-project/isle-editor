@@ -15,7 +15,14 @@
       "tutorials/editor-text",
       "tutorials/editor-images",
       "tutorials/question-components",
-      "tutorials/including-data"
+      "tutorials/including-data",
+      "tutorials/examples"
+    ],
+    "For Students": [
+      "students/getting-started",
+      "students/answering-questions",
+      "students/data",
+      "students/reports"
     ],
     "Main Components": [
       "data-explorer",

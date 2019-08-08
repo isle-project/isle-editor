@@ -1,0 +1,35 @@
+{
+	"name": "“How the Other Half Lives”: NYC Housing",
+	"info": [
+		"“How the Other Half Lives” was a famous photojournalism study done in the late 1800s to document the very poor living conditions in the tenements in New York City. In his book, Jacob Riis\n",
+		"included photos, sketches, and descriptions in the hopes of better informing the upper and middle classes of the terrible and sometimes dangerous conditions the lower classes endured on a daily basis.\n",
+		"\n",
+		"\n",
+		"It’s been over 100 years, so we might revisit the question: how is the other half living now?\n",
+		"New York City is the largest city in the United States and is considered to be one of the cultural and financial centers of the world. It is also known for having an exorbitant cost of living with rents for a one bedroom apartment in the thousands of dollars.\n",
+		"\n",
+		"\n",
+		"The city is made up of five boroughs: The Bronx, Brooklyn, Manhattan, Queens, and Staten Island, each with a personality and architectural style. The boroughs can be further divided into “sub-boroughs” (The Bronx has 10, Brooklyn 18, Manhattan 10, Queens 14, Staten Island 3). Given the age of the city, its infrastructure, and its buildings, we might guess that there are now very few areas that are not experiencing construction, resident turnover, building renovation, etc.\n",
+		"\n",
+		"\n",
+		"However, although the buildings might be in poor condition, the high demand almost guarantees paying tenants, regardless of how high the cost. With respect to housing quality, having a large income may no longer guarantee good living conditions.\n",
+		"The New York City Housing and Vacancy Survey is done every three years in an attempt to accurately understand the current housing conditions in the New York City. The survey is well-designed and has an admirably high response rate.\n"
+	],
+	"variables": {
+		"Income": "total household income (in $)",
+		"Gender": "respondent's gender: Female, Male",
+		"Age": "respondent's age (in years)",
+		"Ethnic": "self-reported race: Caucasian, African-American, Hispanic (incl. Puerto Rico, Mexico, Central/South Amer.), Asian (incl. China, Taiwan, Korea, India, Pakistan), Other",
+		"Health": "respondent's categorical self-assessment of health status (higher is better)",
+		"Education": "respondent's highest education level (category labels unknown)",
+		"HeatBreaks": "number of heating equipment breakdowns since 2002",
+		"MiceRats": "presence of mice/rats in the last 90 days: Yes, No",
+		"CracksHoles": "presence of cracks or holes in interior walls: Yes, No",
+		"BrokenPlaster": "presence of broken plaster on ceiling/interior walls: Yes, No",
+		"WaterLeakage": "presence of water leakage inside apartment: Yes, No",
+		"MaintenanceDef": "number of maintenance deficiencies between 2002 and 2005",
+		"NYCMove": "the year the respondent moved to New York City",
+		"Borough": "NYC borough location (Bronx, Brooklyn, Manhattan, Queens, Staten Island)",
+		"SubBorough": "subdivision of each borough (numerical value, but not ordered)"
+	}
+}
