@@ -35,8 +35,8 @@ removeStatusBar: true
 
 * __question__ | `string`: question for which the student has to select one of the available answer options. Default: `''`.
 * __options__ | `array (required)`: available answer options from which the student can select. Default: `none`.
-* __solution__ | `string (required)`: question solution (must be equal to one of the answer options). Default: `none`.
-* __defaultValue__ | `string`: preselected answer option. Default: `''`.
+* __solution__ | `number (required)`: index of solution element in `options`. Default: `none`.
+* __preselected__ | `number`: index of preselected answer option. Default: `0`.
 * __inline__ | `boolean`: controls whether the component is rendered inline or not. Default: `false`.
 * __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'bottom'`.
 * __hints__ | `array<string>`: hints providing guidance on how to answer the question. Default: `[]`.

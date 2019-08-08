@@ -4349,14 +4349,14 @@
       },
       {
         "name": "solution",
-        "type": "string (required)",
-        "description": "question solution (must be equal to one of the answer options)"
+        "type": "number (required)",
+        "description": "index of solution element in `options`"
       },
       {
-        "name": "defaultValue",
-        "type": "string",
-        "description": "preselected answer option",
-        "default": ""
+        "name": "preselected",
+        "type": "number",
+        "description": "index of preselected answer option",
+        "default": 0
       },
       {
         "name": "inline",
