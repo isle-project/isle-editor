@@ -49,7 +49,7 @@ function factory( monaco ) {
 									label: x.name,
 									documentation: x.description,
 									insertText: x.value,
-									kind: monaco.languages.CompletionItemKind.Text,
+									kind: monaco.languages.CompletionItemKind.Snippet,
 									sortText: 'a'+x.value
 								};
 							});

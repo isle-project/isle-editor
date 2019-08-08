@@ -179,6 +179,7 @@ export default {
 				'fontZoom',
 				'format',
 				'gotoLine',
+				'hover',
 				'inPlaceReplace',
 				'inspectTokens',
 				'linesOperations',
