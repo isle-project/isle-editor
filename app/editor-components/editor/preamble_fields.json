@@ -108,5 +108,10 @@
 		"name": "style",
 		"value": "style: ${1:}",
 		"description": "Inline CSS rules to be appended to the head of the HTML document"
+	},
+	{
+		"name": "license",
+		"value": "license: ${1:}",
+		"description": "License under which materials are released"
 	}
 ]
