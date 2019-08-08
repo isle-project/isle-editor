@@ -26,13 +26,7 @@ function factory( monaco ) {
 		});
 		let suggestions = [];
 		if ( !contains( textUntilPosition, '\n---' ) ) { // Case: still in preamble
-			const lastLine = model.getValueInRange({
-				startLineNumber: position.lineNumber,
-				startColumn: 1,
-				endLineNumber: position.lineNumber,
-				endColumn: position.column
-			});
-			if ( contains( lastLine, ':' ) ) {
+			if ( position.column > 1 ) {
 				const matches = textUntilPosition.match( RE_MAIN_FIELD );
 				if ( matches ) {
 					const last = matches[ matches.length - 1 ];
@@ -43,8 +37,9 @@ function factory( monaco ) {
 									label: x.alias,
 									documentation: x.description,
 									kind: monaco.languages.CompletionItemKind.Snippet,
-									insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-									insertText: `${x.alias}: "${x.path}"`
+									insertTextRules: monaco.languages.CompletionItemInsertTextRule.KeepWhitespace,
+									insertText: `${x.alias}: "${x.path}"`,
+									sortText: 'a'+x.alias
 								};
 							});
 						}
@@ -53,9 +48,8 @@ function factory( monaco ) {
 								return {
 									label: x.name,
 									documentation: x.description,
-									kind: monaco.languages.CompletionItemKind.Snippet,
-									insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
 									insertText: x.value,
+									kind: monaco.languages.CompletionItemKind.Text,
 									sortText: 'a'+x.value
 								};
 							});

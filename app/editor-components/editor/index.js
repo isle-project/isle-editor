@@ -94,7 +94,7 @@ class Editor extends Component {
 			provideCompletionItems: provideSnippetFactory( this.monaco )
 		});
 		this._preambleProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
-			triggerCharacters: [ '\n', ' ' ],
+			triggerCharacters: [ '\n', ' ', '\t' ],
 			provideCompletionItems: providePreambleFactory( this.monaco )
 		});
 		this._requireProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
