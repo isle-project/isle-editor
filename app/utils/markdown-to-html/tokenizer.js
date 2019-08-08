@@ -107,7 +107,10 @@ class Tokenizer {
 
 	_inBase( char ) {
 		const pos = this.pos;
-		if (
+		if ( char === '\n' && this._buffer.charAt( pos+1 ) === '\n' ) {
+			this._current += '\n<span />';
+		}
+		else if (
 			char === '<' &&
 			!isWhitespace( this._buffer.charAt( pos+1 ) ) && // Avoid mistaking smaller than sign in text as tag opening
 			this._buffer.charAt( pos-1 ) !== '\\' // Allow escaping of left angle brackets
@@ -499,7 +502,9 @@ class Tokenizer {
 			}
 		}
 		let out = this.tokens.join( '' );
+		console.log( out );
 		out = md.render( out );
+		console.log( out );
 		for ( let key in this.divHash ) {
 			if ( hasOwnProp( this.divHash, key ) ) {
 				out = out.replace( key, this.divHash[ key ]);

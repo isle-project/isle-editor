@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
-import { Linter } from 'eslint';
+import { CLIEngine } from 'eslint';
 import SplitPane from 'react-split-pane';
 import logger from 'debug';
 import replace from '@stdlib/string/replace';
@@ -25,7 +25,6 @@ const DevTools = Loadable( () => import( './dev_tools.js' ) );
 let eslintConfig = {};
 let yaml;
 const debug = logger( 'isle-editor' );
-const linter = new Linter();
 
 
 // FUNCTIONS //
@@ -52,6 +51,10 @@ class App extends Component {
 
 		const eslintrc = await import( './eslintrc.json' );
 		eslintConfig = eslintrc.default;
+		this.cliEngine = new CLIEngine({
+			baseConfig: eslintConfig,
+			useEslintrc: false
+		});
 
 		const jsYAML = await import( 'js-yaml' );
 		yaml = jsYAML.default;
@@ -124,9 +127,12 @@ class App extends Component {
 	}
 
 	lintCode = ( code ) => {
-		const errs = linter.verify( code, eslintConfig );
-		if ( errs.length !== this.props.lintErrors.length ) {
-			this.props.saveLintErrors( errs );
+		if ( this.cliEngine ) {
+			const { results } = this.cliEngine.executeOnText( code );
+			const errs = results[ 0 ].messages;
+			if ( errs.length !== this.props.lintErrors.length ) {
+				this.props.saveLintErrors( errs );
+			}
 		}
 	}
 

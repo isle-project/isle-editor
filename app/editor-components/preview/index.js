@@ -227,7 +227,7 @@ class Preview extends Component {
 		}
 		if ( !preamble.hideToolbar ) {
 			noEmptyLines += 1;
-			code = '<StatusBar className="fixedPos" />' + code;
+			code = '<StatusBar className="fixedPos" />\n' + code;
 		}
 
 		// Prepend empty lines so line numbers in error stack traces match:
