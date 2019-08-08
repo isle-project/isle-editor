@@ -8,6 +8,7 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import indexOf from '@stdlib/utils/index-of';
 import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
@@ -30,8 +31,8 @@ const uid = generateUID( 'select-question' );
 *
 * @property {string} question - question for which the student has to select one of the available answer options
 * @property {Array} options - available answer options from which the student can select
-* @property {string} solution - question solution (must be equal to one of the answer options)
-* @property {string} defaultValue - preselected answer option
+* @property {integer} solution - index of solution element in `options`
+* @property {integer} preselected - index of preselected answer option
 * @property {boolean} inline - controls whether the component is rendered inline or not
 * @property {Array<string>} hints - hints providing guidance on how to answer the question
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
@@ -48,7 +49,7 @@ class SelectQuestion extends Component {
 	/**
 	* Create a select question.
 	*
-	* @param {Object} props - component properties (`onChange` callback and `defaultValue`)
+	* @param {Object} props - component properties
 	*/
 	constructor( props ) {
 		super( props );
@@ -57,7 +58,7 @@ class SelectQuestion extends Component {
 
 		// Initialize state variables...
 		this.state = {
-			value: props.defaultValue,
+			value: props.options[ props.preselected ],
 			answerState: null
 		};
 	}
@@ -74,7 +75,7 @@ class SelectQuestion extends Component {
 
 	handleSubmit = () => {
 		const session = this.context;
-		let correct = this.props.solution === this.state.value;
+		let correct = this.props.solution === indexOf( this.props.options, this.state.value );
 		if ( this.props.provideFeedback ) {
 			if ( correct ) {
 				session.addNotification({
@@ -128,7 +129,7 @@ class SelectQuestion extends Component {
 					<InputGroup style={{ display: 'inherit' }}>
 						<FormControl
 							value={this.state.value}
-							defaultValue={this.props.defaultValue}
+							defaultValue={this.props.options[ this.props.preselected ]}
 							as="select"
 							placeholder="select"
 							onChange={this.handleChange}
@@ -148,17 +149,19 @@ class SelectQuestion extends Component {
 		return (
 			<Card className="select-question" style={this.props.style} body >
 				<Form>
-					<FormGroup controlId="formControlsSelect" validationState={this.state.answerState}>
+					<FormGroup controlId="formControlsSelect">
 						{ this.props.question ?
 							<label>{this.props.question}</label> :
 							null
 						}
 						<FormControl
 							value={this.state.value}
-							defaultValue={this.props.defaultValue}
+							defaultValue={this.props.options[ this.props.preselected ]}
 							as="select"
 							placeholder="select"
 							onChange={this.handleChange}
+							isInvalid={this.state.answerState === 'error'}
+							isValid={this.state.answerState === 'success'}
 						>
 							{this.props.options.map( ( e, idx ) => {
 								return <option className="select-question-option" key={idx} value={e}>{e}</option>;
@@ -199,7 +202,7 @@ class SelectQuestion extends Component {
 
 SelectQuestion.defaultProps = {
 	question: '',
-	defaultValue: '',
+	preselected: 0,
 	inline: false,
 	hints: [],
 	hintPlacement: 'bottom',
@@ -216,8 +219,8 @@ SelectQuestion.defaultProps = {
 SelectQuestion.propTypes = {
 	question: PropTypes.string,
 	options: PropTypes.array.isRequired,
-	solution: PropTypes.string.isRequired,
-	defaultValue: PropTypes.string,
+	solution: PropTypes.number.isRequired,
+	preselected: PropTypes.number,
 	inline: PropTypes.bool,
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
