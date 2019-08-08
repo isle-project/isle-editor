@@ -133,7 +133,7 @@
     "electron-window-state": "^5.0.0",
     "element-resize-event": "^3.0.1",
     "eslint": "^6.0.0",
-    "file-loader": "^4.0.0",
+    "file-loader": "^4.2.0",
     "form-data": "^2.5.0",
     "highlight.js": "^9.15.6",
     "history": "^4.9.0",
