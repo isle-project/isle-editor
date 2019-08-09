@@ -6,7 +6,8 @@ import * as types from 'constants/editor_actions.js';
 // VARIABLES //
 
 const initialState = {
-	lintErrors: []
+	lintErrors: [],
+	spellingErrors: []
 };
 
 
@@ -18,6 +19,11 @@ export default function linting( state = initialState, action ) {
 		return {
 			...state,
 			lintErrors: action.payload.errors
+		};
+	case types.SPELLING_ERRORS:
+		return {
+			...state,
+			spellingErrors: action.payload.errors
 		};
 	default:
 		return state;

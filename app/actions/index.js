@@ -32,6 +32,15 @@ export function fileLoaded({ fileName, filePath }) {
 	};
 }
 
+export function saveSpellingErrors( errors ) {
+	return {
+		type: types.SPELLING_ERRORS,
+		payload: {
+			errors
+		}
+	};
+}
+
 export function saveLintErrors( errors ) {
 	return {
 		type: types.LINT_ERRORS,
