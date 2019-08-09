@@ -118,6 +118,18 @@ class Editor extends Component {
 			triggerCharacters: [ '(' ],
 			provideCompletionItems: provideRequireFactory( this.monaco )
 		});
+
+		this.editTextCommand = this.editor.addCommand( 'fix-spelling', ( _, text, p ) => {
+			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
+			const id = { major: 1, minor: 1 };
+			const fix = {
+				title: `Change to ${text}`,
+				identifier: id,
+				range,
+				text: String( text )
+			};
+			this.editor.executeEdits( 'my-source', [ fix ] );
+		});
 	}
 
 	shouldComponentUpdate( prevProps ) {
@@ -177,34 +189,19 @@ class Editor extends Component {
 
 	provideCodeActions = ( textModel, range, context ) => {
 		const out = [];
-		this.props.spellingErrors
-			.filter( problem =>
-				problem.startLineNumber === range.startLineNumber &&
-				problem.startColumn <= range.startColumn &&
-				problem.endColumn >= range.endColumn
-			)
+		context.markers
+			.filter( marker => marker.owner === 'spelling' )
 			.forEach( problem => {
 				const suggestions = SpellChecker.typo.suggest( problem.code );
 				for ( let i = 0; i < suggestions.length; i++ ) {
 					const text = suggestions[ i ];
 					out.push({
-						title: `Change to ${text}`,
-						edit: {
-							edits: [
-								{
-									resource: textModel.uri,
-									edits: {
-										text,
-										range: {
-											startLineNumber: problem.startLineNumber,
-											startColumn: problem.startColumn,
-											endLineNumber: problem.endLineNumber,
-											endColumn: problem.endColumn
-										}
-									}
-								}
-							]
-						}
+						command: {
+							id: this.editTextCommand,
+							title: 'Fix the spelling',
+							arguments: [ text, problem ]
+						},
+						title: `Change to ${text}`
 					});
 				}
 			});
