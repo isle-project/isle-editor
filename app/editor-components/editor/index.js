@@ -13,6 +13,7 @@ import replace from '@stdlib/string/replace';
 import readFile from '@stdlib/fs/read-file';
 import Loadable from 'components/loadable';
 import MonacoEditor from 'react-monaco-editor';
+import SpellChecker from 'utils/spell-checker';
 const ComponentConfigurator = Loadable( () => import( './component_configurator.js' ) );
 const EditorContextMenu = Loadable( () => import( './context_menu.js' ) );
 import './editor.css';
@@ -33,12 +34,16 @@ const MONACO_OPTIONS = {
 	minimap: {
 		enabled: false
 	},
+	lightbulb: {
+		enabled: true
+	},
 	tabCompletion: 'on',
 	wordWrap: 'on',
 	snippetSuggestions: 'top',
 	suggestOnTriggerCharacters: true,
 	quickSuggestions: true,
 	quickSuggestionsDelay: 500,
+	dragAndDrop: true,
 	scrollbar: {
 		useShadows: true,
 		verticalHasArrows: true,
@@ -87,6 +92,10 @@ class Editor extends Component {
 
 		this.checkRequires( this.props.preamble );
 
+		this._codeActionProvider = this.monaco.languages.registerCodeActionProvider( 'javascript', {
+			provideCodeActions: this.provideCodeActions
+		});
+
 		this._attributeProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
 			triggerCharacters: [ ' ', '\n' ],
 			provideCompletionItems: provideAttributeFactory( this.monaco )
@@ -115,6 +124,7 @@ class Editor extends Component {
 		if (
 			this.props.filePath !== prevProps.filePath ||
 			this.props.lintErrors.length !== prevProps.lintErrors.length ||
+			this.props.spellingErrors.length !== prevProps.spellingErrors.length ||
 			this.props.splitPos !== prevProps.splitPos ||
 			this.props.hideToolbar !== prevProps.hideToolbar
 		) {
@@ -126,6 +136,11 @@ class Editor extends Component {
 	componentDidUpdate( prevProps ) {
 		if ( !this.monaco ) {
 			return;
+		}
+		if ( this.props.spellingErrors.length !== prevProps.spellingErrors.length ) {
+			const errs = this.props.spellingErrors;
+			const model = this.editor.getModel();
+			this.monaco.editor.setModelMarkers( model, 'spelling', errs );
 		}
 		if ( this.props.lintErrors.length !== prevProps.lintErrors.length ) {
 			const errs = this.props.lintErrors.map( e => {
@@ -142,21 +157,58 @@ class Editor extends Component {
 				};
 			});
 			const model = this.editor.getModel();
-			this.monaco.editor.setModelMarkers( model, 'test', errs );
+			this.monaco.editor.setModelMarkers( model, 'eslint', errs );
 		}
-		else if ( this.props.preamble !== prevProps.preamble ) {
+		if ( this.props.preamble !== prevProps.preamble ) {
 			this.checkRequires( this.props.preamble );
 		}
 	}
 
 	componentWillUnmount() {
 		window.removeEventListener( 'resize', this.updateDimensions );
+		this._codeActionProvider.dispose();
 		this._attributeProvider.dispose();
 		this._snippetProvider.dispose();
 		this._preambleProvider.dispose();
 		this._requireProvider.dispose();
 		this._preambleHoverProvider.dispose();
 		this._snippetHoverProvider.dispose();
+	}
+
+	provideCodeActions = ( textModel, range, context ) => {
+		const out = [];
+		this.props.spellingErrors
+			.filter( problem =>
+				problem.startLineNumber === range.startLineNumber &&
+				problem.startColumn <= range.startColumn &&
+				problem.endColumn >= range.endColumn
+			)
+			.forEach( problem => {
+				const suggestions = SpellChecker.typo.suggest( problem.code );
+				for ( let i = 0; i < suggestions.length; i++ ) {
+					const text = suggestions[ i ];
+					out.push({
+						title: `Change to ${text}`,
+						edit: {
+							edits: [
+								{
+									resource: textModel.uri,
+									edits: {
+										text,
+										range: {
+											startLineNumber: problem.startLineNumber,
+											startColumn: problem.startColumn,
+											endLineNumber: problem.endLineNumber,
+											endColumn: problem.endColumn
+										}
+									}
+								}
+							]
+						}
+					});
+				}
+			});
+		return out;
 	}
 
 	checkRequires = ( preamble ) => {
@@ -249,7 +301,7 @@ class Editor extends Component {
 		debug( 'Re-rendering monaco editor...' );
 		return (
 			<div>
-				<ContextMenuTrigger id="editorWindow" holdToDisplay={-1} style={{ height: '100%', width: '100%' }} >
+				<ContextMenuTrigger id="editorWindow" holdToDisplay={-1} disableIfShiftIsPressed style={{ height: '100%', width: '100%' }} >
 					<MonacoEditor
 						height={window.innerHeight - ( this.props.hideToolbar ? 2 : 90 )}
 						width={window.innerWidth * ( 1.0 - this.props.splitPos )}
@@ -291,6 +343,7 @@ Editor.propTypes = {
 	preamble: PropTypes.object.isRequired,
 	value: PropTypes.string,
 	lintErrors: PropTypes.array.isRequired,
+	spellingErrors: PropTypes.array.isRequired,
 	splitPos: PropTypes.number.isRequired,
 	hideToolbar: PropTypes.bool.isRequired
 };

@@ -11,13 +11,14 @@ import replace from '@stdlib/string/replace';
 import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
 import Loadable from 'components/loadable';
-import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, saveLintErrors } from 'actions';
+import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, saveLintErrors, saveSpellingErrors } from 'actions';
+import SpellChecker from 'utils/spell-checker';
 const Header = Loadable( () => import( 'editor-components/header' ) );
 const ErrorBoundary = Loadable( () => import( 'editor-components/error-boundary' ) );
 const Preview = Loadable( () => import( 'editor-components/preview' ) );
 const Editor = Loadable( () => import( 'editor-components/editor' ) );
 const ErrorMessage = Loadable( () => import( 'editor-components/error-message' ) );
-const DevTools = Loadable( () => import( './dev_tools.js' ) );
+const DevTools = Loadable( () => import( '../dev_tools.js' ) );
 
 
 // VARIABLES //
@@ -76,6 +77,7 @@ class App extends Component {
 			debug( 'Should handle change...' );
 			this.handlePreambleChange( value );
 			this.props.convertMarkdown( value );
+			this.spellcheckCode( value );
 		};
 
 		if ( this.debouncedChange ) {
@@ -123,6 +125,13 @@ class App extends Component {
 					this.props.encounteredError( err );
 				}
 			}
+		}
+	}
+
+	spellcheckCode = ( code ) => {
+		const errs = SpellChecker( code, { language: 'en-US' });
+		if ( errs ) {
+			this.props.saveSpellingErrors( errs );
 		}
 	}
 
@@ -180,6 +189,7 @@ class App extends Component {
 							preamble={this.props.preamble}
 							splitPos={this.state.splitPos}
 							lintErrors={this.props.lintErrors}
+							spellingErrors={this.props.spellingErrors}
 							hideToolbar={hideToolbar}
 						/>
 					</SplitPanel>
@@ -245,8 +255,10 @@ App.propTypes = {
 	markdown: PropTypes.string.isRequired,
 	preamble: PropTypes.object.isRequired,
 	preambleText: PropTypes.string.isRequired,
+	spellingErrors: PropTypes.array.isRequired,
 	renderInterval: PropTypes.number.isRequired,
 	saveLintErrors: PropTypes.func.isRequired,
+	saveSpellingErrors: PropTypes.func.isRequired,
 	updatePreamble: PropTypes.func.isRequired
 };
 
@@ -256,6 +268,7 @@ App.propTypes = {
 export default connect( mapStateToProps, {
 	convertMarkdown,
 	saveLintErrors,
+	saveSpellingErrors,
 	encounteredError,
 	changeView,
 	changeMode,
