@@ -234,7 +234,7 @@
     "eslint-plugin-jest": "^22.15.0",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.6.0",
-    "gh-pages": "^2.0.0",
+    "gh-pages": "^2.1.1",
     "happypack": "^5.0.1",
     "hard-source-webpack-plugin": "^0.13.1",
     "jest": "^24.5.0",
