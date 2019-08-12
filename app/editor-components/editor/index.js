@@ -132,13 +132,16 @@ class Editor extends Component {
 		});
 	}
 
-	shouldComponentUpdate( prevProps ) {
+	shouldComponentUpdate( prevProps, prevState ) {
 		if (
 			this.props.filePath !== prevProps.filePath ||
 			this.props.lintErrors.length !== prevProps.lintErrors.length ||
 			this.props.spellingErrors.length !== prevProps.spellingErrors.length ||
 			this.props.splitPos !== prevProps.splitPos ||
-			this.props.hideToolbar !== prevProps.hideToolbar
+			this.props.hideToolbar !== prevProps.hideToolbar ||
+			this.state.showComponentConfigurator !== prevState.showComponentConfigurator ||
+			this.state.selectedComponent !== prevState.selectedComponent ||
+			this.state.sourceFiles !== prevState.sourceFiles
 		) {
 			return true;
 		}
@@ -261,11 +264,14 @@ class Editor extends Component {
 	}
 
 	handleContextMenuClick = ( customClick, data ) => {
+		debug( 'Handle click to open context menu... ' );
 		if ( !customClick ) {
+			debug( 'Insert snippet into editor...' );
 			const controller = this.editor.getContribution( 'snippetController2' );
 			controller.insert( data.value );
 			this.editor.focus();
 		} else {
+			debug( 'Open component configuration modal window...' );
 			this.toggleComponentConfigurator( data );
 		}
 	}
@@ -298,7 +304,7 @@ class Editor extends Component {
 		debug( 'Re-rendering monaco editor...' );
 		return (
 			<div>
-				<ContextMenuTrigger id="editorWindow" holdToDisplay={-1} disableIfShiftIsPressed style={{ height: '100%', width: '100%' }} >
+				<ContextMenuTrigger id="editor-context-menu" holdToDisplay={-1} style={{ height: '100%', width: '100%' }} >
 					<MonacoEditor
 						height={window.innerHeight - ( this.props.hideToolbar ? 2 : 90 )}
 						width={window.innerWidth * ( 1.0 - this.props.splitPos )}

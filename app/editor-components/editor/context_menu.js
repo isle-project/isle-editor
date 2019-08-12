@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import { ContextMenu, MenuItem, SubMenu } from 'react-contextmenu';
 import groupBy from '@stdlib/utils/group-by';
 import contains from '@stdlib/assert/contains';
@@ -14,6 +15,7 @@ import COMPONENTS from './components.json';
 
 // VARIABLES //
 
+const debug = logger( 'isle:editor:context-menu' );
 const snippets = groupBy( componentSnippets, groupIndicator );
 
 
@@ -99,6 +101,7 @@ class EditorContextMenu extends Component {
 	}
 
 	handleCustomInsertClick = () => {
+		debug( 'Clicked top open configuration menu...' );
 		this.customClick = true;
 		// Propagate to `handleContextMenuClick`...
 	}
@@ -106,7 +109,7 @@ class EditorContextMenu extends Component {
 	render() {
 		return (
 			<Fragment>
-				<ContextMenu id="editorWindow">
+				<ContextMenu id="editor-context-menu" >
 					{snippets.main.map( this.renderMenuItem )}
 					<SubMenu title="Display">
 						{snippets.displayComponents.map( this.renderMenuItem )}

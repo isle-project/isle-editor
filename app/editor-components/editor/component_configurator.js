@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import markdownit from 'markdown-it';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -31,6 +32,7 @@ const md = markdownit({
 	breaks: true,
 	typographer: false
 });
+const debug = logger( 'isle:editor:component-configurator' );
 
 
 // FUNCTIONS //
@@ -229,6 +231,7 @@ class ComponentConfigurator extends Component {
 	}
 
 	render() {
+		debug( 'Rendering component configurator modal...' );
 		const doc = COMPONENT_DOCS[ this.props.component.name ] || {};
 		const description = doc.description || 'Component description is missing.';
 		const innerHTML = {
