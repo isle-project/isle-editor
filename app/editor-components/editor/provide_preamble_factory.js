@@ -27,7 +27,7 @@ function factory( monaco ) {
 		});
 		let suggestions = [];
 		if ( !contains( textUntilPosition, '\n---' ) ) { // Case: still in preamble
-			if ( position.column > 1 ) {
+			if ( position.column > 3 ) {
 				const matches = textUntilPosition.match( RE_MAIN_FIELD );
 				if ( matches ) {
 					const last = matches[ matches.length - 1 ];
