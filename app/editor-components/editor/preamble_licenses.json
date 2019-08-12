@@ -1,32 +1,32 @@
 [
-    {
-        "name": "CC BY 4.0",
-        "value": "CC BY 4.0 [https://creativecommons.org/licenses/by/4.0]",
-        "description": "Appropriate credit must be given, no further restrictions"
-    },
-    {
-        "name": "CC BY-NC 4.0",
-        "value": "CC BY-NC 4.0 [https://creativecommons.org/licenses/by-nc/4.0]",
-        "description": "Appropriate credit must be given, and material may not be used for commercial purposes"
-    },
-    {
-        "name": "CC BY-ND 4.0",
-        "value": "CC BY-ND 4.0 [https://creativecommons.org/licenses/by-nd/4.0]",
-        "description": "Appropriate credit must be given, and material may be not transformed"
-    },
-    {
-        "name": "CC BY-NC-ND 4.0",
-        "value": "CC BY-NC-ND 4.0 [https://creativecommons.org/licenses/by-nc-nd/4.0]",
-        "description": "Appropriate credit must be given, material may not be transformed, and material may not be used for commercial purposes"
-    },
-    {
-        "name": "CC BY-SA 4.0",
-        "value": "CC BY-SA 4.0 [https://creativecommons.org/licenses/by-sa/4.0]",
-        "description": "Appropriate credit must be given, remixes must be distributed under the same license"
-    },
-    {
-        "name": "CC BY-NC-SA 4.0",
-        "value": "CC BY-NC-SA 4.0 [https://creativecommons.org/licenses/by-nc-sa/4.0]",
-        "description": "Appropriate credit must be given, remixes must be distributed under the same license, material may not be used for commercial purposes"
-    }
+	{
+		"name": "CC BY 4.0",
+		"value": "CC BY 4.0 [https://creativecommons.org/licenses/by/4.0]",
+		"description": "Appropriate credit must be given, no further restrictions"
+	},
+	{
+		"name": "CC BY-NC 4.0",
+		"value": "CC BY-NC 4.0 [https://creativecommons.org/licenses/by-nc/4.0]",
+		"description": "Appropriate credit must be given, and material may not be used for commercial purposes"
+	},
+	{
+		"name": "CC BY-ND 4.0",
+		"value": "CC BY-ND 4.0 [https://creativecommons.org/licenses/by-nd/4.0]",
+		"description": "Appropriate credit must be given, and material may be not transformed"
+	},
+	{
+		"name": "CC BY-NC-ND 4.0",
+		"value": "CC BY-NC-ND 4.0 [https://creativecommons.org/licenses/by-nc-nd/4.0]",
+		"description": "Appropriate credit must be given, material may not be transformed, and material may not be used for commercial purposes"
+	},
+	{
+		"name": "CC BY-SA 4.0",
+		"value": "CC BY-SA 4.0 [https://creativecommons.org/licenses/by-sa/4.0]",
+		"description": "Appropriate credit must be given, remixes must be distributed under the same license"
+	},
+	{
+		"name": "CC BY-NC-SA 4.0",
+		"value": "CC BY-NC-SA 4.0 [https://creativecommons.org/licenses/by-nc-sa/4.0]",
+		"description": "Appropriate credit must be given, remixes must be distributed under the same license, material may not be used for commercial purposes"
+	}
 ]
