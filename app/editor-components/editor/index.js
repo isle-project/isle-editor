@@ -235,6 +235,7 @@ class Editor extends Component {
 			if ( err ) {
 				return debug( err );
 			}
+			debug( 'Successfully read type definition...' );
 			res = replace( res, RE_EXPORT, '' );
 			const disposable = this.monaco.languages.typescript.javascriptDefaults.addExtraLib( res, path );
 			const sourceFiles = this.state.sourceFiles;
