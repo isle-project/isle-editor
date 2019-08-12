@@ -7,7 +7,7 @@
 /* eslint no-new-func: 0 */
 
 import React, { Component } from 'react';
-import { transform } from 'babel-core';
+import { transformSync } from '@babel/core';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { dirname, resolve, extname } from 'path';
@@ -237,7 +237,7 @@ class Preview extends Component {
 
 		debug( 'Transpile code to ES5...' );
 		try {
-			es5code = transform( code, OPTS );
+			es5code = transformSync( code, OPTS );
 		}
 		catch ( err ) {
 			this.props.encounteredError( err );

@@ -79,13 +79,11 @@ function trimLineStarts( str ) {
 
 function renderInlineMarkdown( text ) {
 	text = replace( text, /\\([()\\[\]])/g, '\\\\$1' );
-	console.log( md.renderInline( text ) );
 	return replaceEquations( md.renderInline( text ) );
 }
 
 function renderMarkdown( text ) {
 	text = replace( text, /\\([()\\[\]])/g, '\\\\$1' );
-	console.log( md.render( text ) );
 	return replaceEquations( md.render( text ) );
 }
 
@@ -589,7 +587,6 @@ class Tokenizer {
 		}
 		let out = this.tokens.join( '' );
 		out = md.render( out );
-		console.log( out );
 		for ( let key in this.divHash ) {
 			if ( hasOwnProp( this.divHash, key ) ) {
 				out = out.replace( key, this.divHash[ key ]);
