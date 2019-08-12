@@ -108,7 +108,6 @@ export default function markdown( state = initialState, action ) {
 			fontSize: action.payload.fontSize
 		});
 	case types.PREAMBLE_TEMPLATE_CHANGED:
-		console.log( "PREAMBLE TEMP CHANGE")
 		config.set( 'preambleTemplate', action.payload.preambleTemplate );
 		return Object.assign({}, state, {
 			preambleTemplate: action.payload.preambleTemplate
