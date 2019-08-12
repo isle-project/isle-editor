@@ -146,7 +146,7 @@ The following icons are used under a Creative Commons CCBY license.
 [macOS]: https://github.com/isle-project/isle-editor/releases/download/v0.34.1/ISLE-Editor-0.34.1.dmg
 [linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/v0.34.1/ISLE-Editor-0.34.1-x86_64.AppImage
 [linux-deb]: https://github.com/isle-project/isle-editor/releases/download/v0.34.1/ISLE.Editor-0.34.1-amd64.deb
-[windows]:https://github.com/isle-project/isle-editor/releases/download/v0.34.1/ISLE-Editor-0.34.1.exe
+[windows]: https://github.com/isle-project/isle-editor/releases/download/v0.34.1/ISLE-Editor-Setup-0.34.1.exe
 
 [dependencies-image]: https://img.shields.io/david/isle-project/isle-editor.svg
 [dependencies-url]: https://david-dm.org/isle-project/isle-editor/master

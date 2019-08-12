@@ -101,4 +101,4 @@ $ npm run test -- -t "name-of-spec"
 [macOS]: https://github.com/isle-project/isle-editor/releases/download/v0.34.1/ISLE-Editor-0.34.1.dmg
 [linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/v0.34.1/ISLE-Editor-0.34.1-x86_64.AppImage
 [linux-deb]: https://github.com/isle-project/isle-editor/releases/download/v0.34.1/ISLE.Editor-0.34.1-amd64.deb
-[windows]:https://github.com/isle-project/isle-editor/releases/download/v0.34.1/ISLE-Editor-0.34.1.exe
+[windows]: https://github.com/isle-project/isle-editor/releases/download/v0.34.1/ISLE-Editor-Setup-0.34.1.exe
