@@ -1,23 +1,7 @@
-// FUNCTIONS //
-
-function today() {
-	const date = new Date();
-	let out = date.getDate() < 10 ? '0' : '';
-	out += date.getDate() + '/' + ( ( ( date.getMonth()+1 ) < 10 ) ? '0': '' );
-	out += ( date.getMonth()+1 ) + '/' + date.getFullYear();
-	return out;
-}
-
-
 // MAIN //
 
 const template = `---
-title: "Lesson"
-author: John Doe
-date: ${today()}
-state:
-server: ${localStorage.getItem( 'server' ) || 'https://isle.heinz.cmu.edu'}
-license: CC BY 4.0 [https://creativecommons.org/licenses/by/4.0]
+<preamble>
 ---
 
 # This is an ISLE lesson.

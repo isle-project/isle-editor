@@ -2,8 +2,10 @@
 
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { changeRenderInterval, changeFontSize } from 'actions';
+import { changeRenderInterval, changeFontSize, changePreambleTemplate } from 'actions';
 import NumberInput from 'components/input/number';
+import FormControl from 'react-bootstrap/FormControl';
+import FormGroup from 'react-bootstrap/FormGroup';
 import Card from 'react-bootstrap/Card';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
 import SettingsLogin from 'editor-components/settings-login';
@@ -18,6 +20,10 @@ class Settings extends Component {
 
 	handleRenderIntervalChange = ( number ) => {
 		this.props.changeRenderInterval( number * 1000 );
+	}
+
+	handlePreambleTemplateChange = ( event ) => {
+		this.props.changePreambleTemplate( event.target.value );
 	}
 
 	render() {
@@ -53,6 +59,15 @@ class Settings extends Component {
 								step={1}
 								defaultValue={parseInt( this.props.renderInterval / 1000, 10 )}
 							/>
+							<FormGroup style={{ marginTop: '16px', marginLeft: '8px' }}>
+								<Card.Subtitle className="mb-2" ><label>Preamble Template:</label></Card.Subtitle>
+								<FormControl
+									as="textarea"
+									onChange={this.handlePreambleTemplateChange}
+									rows={7}
+									defaultValue={this.props.preambleTemplate}
+								/>
+							</FormGroup>
 						</Card.Body>
 					</Card>
 				</div>
@@ -66,6 +81,7 @@ class Settings extends Component {
 
 export default connect( mapStateToProps, {
 	changeFontSize,
+	changePreambleTemplate,
 	changeRenderInterval
 })( Settings );
 

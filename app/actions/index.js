@@ -131,3 +131,12 @@ export function changeFontSize( fontSize ) {
 		}
 	};
 }
+
+export function changePreambleTemplate( preambleTemplate ) {
+	return {
+		type: types.PREAMBLE_TEMPLATE_CHANGED,
+		payload: {
+			preambleTemplate
+		}
+	};
+}

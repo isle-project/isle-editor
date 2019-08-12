@@ -1,9 +1,22 @@
 // MODULES //
 
 import { readFileSync } from 'fs';
+import replace from '@stdlib/string/replace';
 import * as types from 'constants/editor_actions.js';
 import Store from 'electron-store';
 import template from 'constants/template.js';
+import preamble from 'constants/preamble.js';
+
+
+// FUNCTIONS //
+
+function today() {
+	const date = new Date();
+	let out = date.getDate() < 10 ? '0' : '';
+	out += date.getDate() + '/' + ( ( ( date.getMonth()+1 ) < 10 ) ? '0': '' );
+	out += ( date.getMonth()+1 ) + '/' + date.getFullYear();
+	return out;
+}
 
 
 // VARIABLES //
@@ -11,12 +24,15 @@ import template from 'constants/template.js';
 const config = new Store( 'ISLE' );
 const filePath = config.get( 'mostRecentFilePath' );
 let md = config.get( 'mostRecentFileData' );
+const preambleTemplate = config.get( 'preambleTemplate' ) || preamble;
 if ( !md ) {
 	if ( filePath ) {
 		md = readFileSync( filePath, 'utf-8' );
 	}
 	else {
 		md = template;
+		md = replace( md, '<preamble>', preambleTemplate );
+		md = replace( md, '<today>', today() );
 	}
 }
 const initialState = {
@@ -31,7 +47,8 @@ const initialState = {
 	currentMode: 'offline',
 	namespaceName: null,
 	error: null,
-	fontSize: config.get( 'fontSize' ) || 14
+	fontSize: config.get( 'fontSize' ) || 14,
+	preambleTemplate: preambleTemplate
 };
 
 
@@ -89,6 +106,12 @@ export default function markdown( state = initialState, action ) {
 		config.set( 'fontSize', action.payload.fontSize );
 		return Object.assign({}, state, {
 			fontSize: action.payload.fontSize
+		});
+	case types.PREAMBLE_TEMPLATE_CHANGED:
+		console.log( "PREAMBLE TEMP CHANGE")
+		config.set( 'preambleTemplate', action.payload.preambleTemplate );
+		return Object.assign({}, state, {
+			preambleTemplate: action.payload.preambleTemplate
 		});
 	default:
 		return state;

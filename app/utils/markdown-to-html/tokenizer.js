@@ -87,6 +87,7 @@ function renderMarkdown( text ) {
 	return replaceEquations( md.render( text ) );
 }
 
+
 /**
 * Tests whether character is whitespace.
 *
