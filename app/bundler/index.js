@@ -293,7 +293,7 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 	res += getSessionCode( basePath );
 
 	res += getComponents( components );
-	const loaderTimeout = meta.modalTimeout || 3000;
+	const loaderTimeout = meta.splashScreenTimeout || 3000;
 	res += getLessonComponent( lessonContent, className, loaderTimeout );
 	return res;
 }

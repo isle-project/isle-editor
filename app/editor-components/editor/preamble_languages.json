@@ -1,0 +1,26 @@
+[
+	{
+		"name": "en-US",
+		"description": "American English"
+	},
+	{
+		"name": "de",
+		"description": "German"
+	},
+	{
+		"name": "it",
+		"description": "Italian"
+	},
+	{
+		"name": "fr",
+		"description": "French"
+	},
+	{
+		"name": "pt",
+		"description": "Portugese"
+	},
+	{
+		"name": "sv",
+		"description": "Swedish"
+	}
+]

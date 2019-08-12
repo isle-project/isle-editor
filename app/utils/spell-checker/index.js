@@ -123,7 +123,10 @@ function SpellChecker( text, options ) {
 				word += ch;
 			} else if ( word.length > 1 ) {
 				const beforeNextWhitespacePos = nextWhitespace( text, i );
-				if ( beforeNextWhitespacePos > i + 1 ) {
+				if (
+					beforeNextWhitespacePos > i + 1 ||
+					ch === ':' // ignore preamble fields...
+				) {
 					word = '';
 					i = beforeNextWhitespacePos;
 				}

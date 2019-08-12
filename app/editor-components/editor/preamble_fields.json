@@ -21,8 +21,13 @@
 	},
 	{
 		"name": "language",
-		"value": "language: ${1:en}",
-		"description": "Language identifier"
+		"value": "language: ${1:en-US}",
+		"description": "Language identifier (either `en-US`, `de`, `fr`, `it`, `pt`, or `sv`)"
+	},
+	{
+		"name": "splashScreenTimeout",
+		"value": "splashScreenTimeout: ${1:3000}",
+		"description": "Timeout until the landing page vanishes (in milliseconds)"
 	},
 	{
 		"name": "require",

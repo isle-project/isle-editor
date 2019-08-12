@@ -3,6 +3,7 @@
 import contains from '@stdlib/assert/contains';
 import PREAMBLE_FIELDS from './preamble_fields.json';
 import LICENSES from './preamble_licenses.json';
+import LANGUAGES from './preamble_languages.json';
 import NAMESPACE from './stdlib/namespace.json';
 
 
@@ -53,6 +54,35 @@ function factory( monaco ) {
 									sortText: 'a'+x.value
 								};
 							});
+						}
+						else if ( last === '\nlanguage:' ) {
+							suggestions = LANGUAGES.map( x => {
+								return {
+									label: x.name,
+									documentation: x.description,
+									insertText: x.name,
+									kind: monaco.languages.CompletionItemKind.Snippet,
+									sortText: 'a'+x.name
+								};
+							});
+						}
+						else if ( last === '\ntype:' ) {
+							suggestions = [
+								{
+									label: 'presentation',
+									documentation: 'Display ISLE lesson as a slideshow (separate slides with `===`)',
+									insertText: 'presentation',
+									kind: monaco.languages.CompletionItemKind.Snippet,
+									sortText: 'aa'
+								},
+								{
+									label: 'page',
+									documentation: 'Display ISLE lesson as a single web page',
+									insertText: 'page',
+									kind: monaco.languages.CompletionItemKind.Snippet,
+									sortText: 'ab'
+								}
+							];
 						}
 					}
 				}

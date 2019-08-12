@@ -129,7 +129,10 @@ class App extends Component {
 	}
 
 	spellcheckCode = ( code ) => {
-		const errs = SpellChecker( code, { language: 'en-US' });
+		const language = this.props.preamble.language || 'en-US';
+		const errs = SpellChecker( code, {
+			language
+		});
 		if ( errs ) {
 			this.props.saveSpellingErrors( errs );
 		}
