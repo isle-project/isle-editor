@@ -44,23 +44,30 @@ function getFrequencies( variable, x, relativeFreqs ) {
 }
 
 const frequencyTable = ( variable, freqs, relative, nDecimalPlaces ) => {
+	let nTotal = 0;
 	return (
 		<Table bordered size="sm">
 			<thead>
 				<tr>
 					<th>Variable</th>
 					<th>Category</th>
-					<th>{ relative ? 'Relative' : 'Count' }</th>
+					<th>{ relative ? 'Relative Frequency' : 'Count' }</th>
 				</tr>
 			</thead>
 			<tbody>
 				{freqs.map( ( elem, id ) => {
+					nTotal += elem.count;
 					return ( <tr key={id}>
 						<th>{ id === 0 ? variable : null }</th>
 						<td>{elem.category}</td>
 						<td>{relative ? elem.count.toFixed( nDecimalPlaces ) : elem.count}</td>
 					</tr> );
 				})}
+				<tr key="total">
+					<th>Total</th>
+					<td></td>
+					<td>{nTotal}</td>
+				</tr>
 			</tbody>
 		</Table>
 	);
@@ -74,11 +81,23 @@ const groupedFrequencyTable = ( variable, freqs, relative, nDecimalPlaces ) => {
 				const categories = arr[ 1 ].map(
 					( x, j ) => <td key={j}>{x.category}</td>
 				);
-				const counts = arr[ 1 ].map(
-					( x, j ) => ( <td key={j}>
-						{ relative ? x.count.toFixed( nDecimalPlaces ) : x.count }
-					</td> )
-				);
+				let counts;
+				if ( !relative ) {
+					let nTotal = 0;
+					counts = arr[ 1 ].map( ( x, j ) => {
+						nTotal += x.count;
+						return ( <td key={j}>
+							{ relative ? x.count.toFixed( nDecimalPlaces ) : x.count }
+						</td> );
+					});
+					counts.push( <td key="total">{nTotal}</td> );
+				} else {
+					counts = arr[ 1 ].map( ( x, j ) => {
+						return ( <td key={j}>
+							{ relative ? x.count.toFixed( nDecimalPlaces ) : x.count }
+						</td> );
+					});
+				}
 				return ( <div key={i} >
 					<label>{arr[ 0 ]}: </label>
 					<Table bordered size="sm">
@@ -86,6 +105,7 @@ const groupedFrequencyTable = ( variable, freqs, relative, nDecimalPlaces ) => {
 							<tr>
 								<th>Category</th>
 								{categories}
+								{ !relative ? <th>Total</th> : null }
 							</tr>
 						</thead>
 						<tbody>
