@@ -23,7 +23,6 @@ const DevTools = Loadable( () => import( '../dev_tools.js' ) );
 
 // VARIABLES //
 
-let eslintConfig = {};
 let yaml;
 const debug = logger( 'isle-editor' );
 
