@@ -50,7 +50,7 @@ class App extends Component {
 	async componentDidMount() {
 		window.addEventListener( 'resize', this.updateDimensions );
 
-		const eslintrc = await import( './eslintrc.json' );
+		const eslintrc = await import( './eslintrc.js' );
 		eslintConfig = eslintrc.default;
 		this.cliEngine = new CLIEngine({
 			baseConfig: eslintConfig,
