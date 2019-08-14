@@ -34,74 +34,69 @@ class ShapedForm extends Component {
 		this.state = {
 			loaded: false
 		};
-	}
-
-	componentWillMount() {
-		if ( contains(forms, this.props.type) ) {
-			this.type = this.props.type;
-			if (!this.props.image && !this.props.svg) {
-				this.setState({
-					loaded: true
-				});
+		if ( contains( forms, props.type ) ) {
+			this.type = props.type;
+			if ( !props.image && !props.svg ) {
+				this.state.loaded = true;
 			}
-			else this.getImage();
 		}
 	}
 
+	componentDidMount() {
+		if ( this.type && this.props.image || this.props.svg ) {
+			this.getImage();
+		}
+	}
 
 	getImage = () => {
-		let self = this;
 		const image = new Image();
-		if (this.props.image) {
+		if ( this.props.image ) {
 			image.src = this.props.image;
 		}
-		else image.src = this.props.svg;
-
-		image.onload = function loadImage() {
-			self.setState({
+		else {
+			image.src = this.props.svg;
+		}
+		image.onload = () => {
+			this.setState({
 				loaded: true
 			});
 		};
 	}
 
 	getStyle() {
-		let polygon = 'var(--cp-' + this.type + ')';
-		let style = {
+		const polygon = 'var(--cp-' + this.type + ')';
+		const style = {
 			webkitClipPath: polygon,
 			clipPath: polygon,
 			shapeOutside: polygon,
 			margin: this.props.margin
 		};
-
 		return style;
 	}
 
 	render() {
-		if (this.state.loaded === false) {
+		if ( !this.state.loaded ) {
 			return null;
 		}
+		const style = this.getStyle();
+		Object.assign( style, this.props.style );
 
-		let style = this.getStyle();
-		Object.assign(style, this.props.style);
-
-		if (this.props.image) {
+		if ( this.props.image ) {
 			style.backgroundImage = 'url(' + this.props.image + ')';
-			if (!this.props.style.backgroundSize) {
+			if ( !this.props.style.backgroundSize ) {
 				style.backgroundSize = '100% 100%';
 			}
 		}
-
-		if (this.props.svg) {
+		if ( this.props.svg ) {
 			style.shapeOutside = 'url(' + this.props.svg + ')';
 			style.webkitClipPath = 'url(' + this.props.svg + ')';
 			style.clipPath = 'url(' + this.props.svg + ')';
 
 			style.backgroundImage = 'url(' + this.props.svg + ')';
-			if (!this.props.style.backgroundSize) {
+			if ( !this.props.style.backgroundSize ) {
 				style.backgroundSize = '100% 100%';
 			}
 		}
-
 		return (
 			<div onClick={this.props.onClick} style={style} className="shaped-form">
 				{ this.props.children }
