@@ -10,7 +10,7 @@
       "ignore": ["stylelint-commands", "after-comment"]
     } ],
     "declaration-block-trailing-semicolon": "always",
-    "declaration-colon-space-after": [ "always", {
+    "declaration-colon-space-after": [ "always-single-line", {
       "severity": "warning"
     } ],
     "font-family-no-missing-generic-family-keyword": null,

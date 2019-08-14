@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import Worker from 'worker-loader!./worker.js';
@@ -11,6 +12,7 @@ import './text_clustering.css';
 
 // VARIABLES //
 
+const debug = logger( 'isle:response-visualizer:text-clustering' );
 const CLUSTER_SIZES = [ 3, 5, 7 ];
 const CLUSTER_LABELS = [ 'Few clusters', 'Some clusters', 'Many clusters' ];
 
@@ -142,7 +144,7 @@ class TextClustering extends Component {
 						modelIndex={this.state.modelIndex}
 						changeClusterCount={this.changeClusterCount}
 						onPointClick={( selectedCluster ) => {
-							console.log( 'Retrieve representative documents...' );
+							debug( 'Retrieve representative documents...' );
 							this.worker.postMessage({
 								type: 'GET_REPRESENTATIVE_DOCUMENTS',
 								value: {

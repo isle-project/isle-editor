@@ -1,6 +1,6 @@
 // MODULES //
 
-import { isPrimitive as isString} from '@stdlib/assert/is-string';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import contains from '@stdlib/assert/contains';
 import objectKeys from '@stdlib/utils/keys';
 

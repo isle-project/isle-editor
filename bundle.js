@@ -20,6 +20,6 @@ webpack(
 		getConfig( dist, true )
 	],
 	( err, stats ) => {
-		console.log(stats.compilation.errors);
+		console.log( stats.compilation.errors ); // eslint-disable-line no-console
 	},
 );

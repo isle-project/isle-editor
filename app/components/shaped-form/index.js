@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import contains from '@stdlib/assert/contains';
 import './shaped-form.css';
 
+
 // VARIABLES //
 
 const forms = [
@@ -61,10 +62,6 @@ class ShapedForm extends Component {
 				loaded: true
 			});
 		};
-	}
-
-	getSVGStyle = () => {
-		console.log('SVG');
 	}
 
 	getStyle() {

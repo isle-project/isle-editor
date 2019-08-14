@@ -174,21 +174,27 @@ class Recorder extends Component {
 			const msg = `Failed to capture your screen (error: ${error.message})`;
 			this.handleError( msg );
 		};
-		navigator.mediaDevices.getDisplayMedia( screenConstraints ).then( onSuccess ).catch( onError );
+		navigator.mediaDevices.getDisplayMedia( screenConstraints )
+			.then( onSuccess )
+			.catch( onError );
 	}
 
 	captureCamera( cb, captureAudio ) {
-		navigator.mediaDevices.getUserMedia({ audio: captureAudio, video: true }).then( cb ).catch( ( error ) => {
-			const msg = `Failed to capture your camera (error: ${error.message})`;
-			this.handleError( msg );
-		});
+		navigator.mediaDevices.getUserMedia({ audio: captureAudio, video: true })
+			.then( cb )
+			.catch( ( error ) => {
+				const msg = `Failed to capture your camera (error: ${error.message})`;
+				this.handleError( msg );
+			});
 	}
 
 	captureAudio( cb ) {
-		navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then( cb ).catch( ( error ) => {
-			const msg = `Failed to capture your microphone (error: ${error.message})`;
-			this.handleError( msg );
-		});
+		navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+			.then( cb )
+			.catch( ( error ) => {
+				const msg = `Failed to capture your microphone (error: ${error.message})`;
+				this.handleError( msg );
+			});
 	}
 
 	handleSourceChange = ( e ) => {
@@ -375,7 +381,6 @@ class Recorder extends Component {
 				this.recorder.startRecording();
 				return clbk();
 			}
-			console.log( this.recorderVideoConfig );
 			this.captureScreen( ( screen ) => {
 				keepStreamActive( screen );
 				this.captureAudio( ( audio ) => {

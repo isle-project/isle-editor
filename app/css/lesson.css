@@ -10,7 +10,7 @@
 	--secondarydark: #162c17;
 	--secondarylight: #77df79;
 	--secondaryhalf: #54a857;
-	--tertiary:  #2e4468;
+	--tertiary: #2e4468;
 	--tertiarylight: #7285a3;
 	--quartary: #ca5800;
 	--quartarydark: #351802;
@@ -2150,7 +2150,7 @@ label {
 	}
 
 	80% {
-		transform:  rotate(-3deg);
+		transform: rotate(-3deg);
 	}
 
 	90% {
