@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import isArray from '@stdlib/assert/is-array';
-import isEmptyObject from '@stdlib/assert/is-empty-object';
 import generateUID from 'utils/uid';
 import VoiceControl from 'components/voice-control';
 import SessionContext from 'session/context.js';
@@ -39,19 +38,19 @@ class Pages extends Component {
 		super( props );
 		this.id = props.id || uid( props );
 		this.state = {
-			activePage: props.activePage
+			activePage: props.activePage,
+			rawActivePage: props.activePage
 		};
 	}
 
-
-	componentWillReceiveProps( nextProps ) {
-		let newState = {};
-		if ( nextProps.activePage !== this.props.activePage ) {
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if ( nextProps.activePage !== prevState.rawActivePage ) {
+			let newState = {};
 			newState.activePage = nextProps.activePage;
+			newState.rawActivePage = nextProps.activePage;
+			return newState;
 		}
-		if ( !isEmptyObject( newState ) ) {
-			this.setState( newState );
-		}
+		return null;
 	}
 
 	log = ( type, value ) => {

@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import isEmptyObject from '@stdlib/assert/is-empty-object';
 import floor from '@stdlib/math/base/special/floor';
 import max from '@stdlib/math/base/special/max';
 import './timer.css';
@@ -46,22 +45,23 @@ class Timer extends Component {
 		super( props );
 		const storedTimeLeft = localStorage.getItem( this.getTimerId() );
 		this.state = {
-			timeLeft: storedTimeLeft || props.duration
+			timeLeft: storedTimeLeft || props.duration,
+			duration: props.duration
 		};
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if ( nextProps.duration !== prevState.duration ) {
+			const newState = {};
+			newState.duration = nextProps.duration;
+			newState.timeLeft = nextProps.duration;
+			return newState;
+		}
+		return null;
 	}
 
 	componentDidMount() {
 		this.startCountdown();
-	}
-
-	componentWillReceiveProps( nextProps ) {
-		let newState = {};
-		if ( nextProps.duration !== this.props.duration ) {
-			newState.timeLeft = nextProps.duration;
-		}
-		if ( !isEmptyObject( newState ) ) {
-			this.setState( newState );
-		}
 	}
 
 	componentDidUpdate( prevProps, prevState ) {

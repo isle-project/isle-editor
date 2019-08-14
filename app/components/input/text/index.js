@@ -35,36 +35,26 @@ class TextInput extends Input {
 		this.state = {
 			value: props.bind && session.state ?
 				session.state[ props.bind ]:
-				props.defaultValue
+				props.defaultValue,
+			prevProps: props
 		};
 
 		this.focus = this.focus.bind( this );
-
-		this.handleChange = ( event ) => {
-			const value = event.target.value;
-			this.setState({
-				value
-			}, () => {
-				this.props.onChange( value );
-				if ( this.props.bind ) {
-					global.lesson.setState({
-						[ this.props.bind ]: value
-					});
-				}
-			});
-		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		let newState = {};
-		if ( nextProps.defaultValue !== this.props.defaultValue ) {
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		const newState = {};
+		const { prevProps } = prevState;
+		if ( nextProps.defaultValue !== prevProps.defaultValue ) {
 			newState.value = nextProps.defaultValue;
-		} else if ( nextProps.bind !== this.props.bind ) {
+		} else if ( nextProps.bind !== prevProps.bind ) {
 			newState.value = global.lesson.state[ nextProps.bind ];
 		}
 		if ( !isEmptyObject( newState ) ) {
-			this.setState( newState );
+			newState.prevProps = nextProps;
+			return newState;
 		}
+		return null;
 	}
 
 	componentDidUpdate() {
@@ -77,6 +67,20 @@ class TextInput extends Input {
 			}
 		}
 	}
+
+	handleChange = ( event ) => {
+		const value = event.target.value;
+		this.setState({
+			value
+		}, () => {
+			this.props.onChange( value );
+			if ( this.props.bind ) {
+				global.lesson.setState({
+					[ this.props.bind ]: value
+				});
+			}
+		});
+	};
 
 	focus() {
 		this.textInput.focus();

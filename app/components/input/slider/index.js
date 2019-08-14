@@ -60,8 +60,27 @@ class SliderInput extends Input {
 			tooltip: createTooltip( props ),
 			value: props.bind && session.state ?
 				session.state[ props.bind ]:
-				props.defaultValue
+				props.defaultValue,
+			prevProps: props
 		};
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		let newState = {};
+		const { prevProps } = prevState;
+		if ( nextProps.defaultValue !== prevProps.defaultValue ) {
+			newState.value = nextProps.defaultValue;
+		} else if ( nextProps.bind !== prevProps.bind ) {
+			newState.value = global.lesson.state[ nextProps.bind ];
+		}
+		if ( nextProps.min !== prevProps.min || nextProps.max !== prevProps.max ) {
+			newState.tooltip = createTooltip( nextProps );
+		}
+		if ( !isEmptyObject( newState ) ) {
+			newState.prevProps = nextProps;
+			return newState;
+		}
+		return null;
 	}
 
 	componentDidUpdate() {
@@ -72,21 +91,6 @@ class SliderInput extends Input {
 					value: globalVal
 				});
 			}
-		}
-	}
-
-	componentWillReceiveProps( nextProps ) {
-		let newState = {};
-		if ( nextProps.defaultValue !== this.props.defaultValue ) {
-			newState.value = nextProps.defaultValue;
-		} else if ( nextProps.bind !== this.props.bind ) {
-			newState.value = global.lesson.state[ nextProps.bind ];
-		}
-		if ( nextProps.min !== this.props.min || nextProps.max !== this.props.max ) {
-			newState.tooltip = createTooltip( nextProps );
-		}
-		if ( !isEmptyObject( newState ) ) {
-			this.setState( newState );
 		}
 	}
 

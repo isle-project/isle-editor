@@ -29,7 +29,9 @@ class CheckboxInput extends Input {
 		this.state = {
 			value: props.bind && session.state ?
 				session.state[ props.bind ]:
-				props.defaultValue
+				props.defaultValue,
+			bind: props.bind,
+			defaultValue: props.defaultValue
 		};
 
 		/**
@@ -50,17 +52,20 @@ class CheckboxInput extends Input {
 		};
 	}
 
-	componentWillReceiveProps( nextProps ) {
+	static getDerivedStateFromProps( nextProps, prevState ) {
 		let newState = {};
-		if ( nextProps.defaultValue !== this.props.defaultValue ) {
+		if ( nextProps.defaultValue !== prevState.defaultValue ) {
 			newState.value = nextProps.defaultValue;
+			newState.defaultValue = nextProps.defaultValue;
 		}
-		else if ( nextProps.bind !== this.props.bind ) {
+		else if ( nextProps.bind !== prevState.bind ) {
 			newState.value = global.lesson.state[ nextProps.bind ];
+			newState.bind = nextProps.bind;
 		}
 		if ( !isEmptyObject( newState ) ) {
-			this.setState( newState );
+			return newState;
 		}
+		return null;
 	}
 
 	componentDidUpdate() {

@@ -36,8 +36,20 @@ class CustomDeck extends Component {
 
 		this.state = {
 			totalDuration: null,
-			showFullscreenControl: props.showFullscreenControl
+			showFullscreenControl: props.showFullscreenControl,
+			initialFullscreenControl: props.showFullscreenControl
 		};
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if ( nextProps.showFullscreenControl !== prevState.initialFullscreenControl ) {
+			const newState = {
+				showFullscreenControl: nextProps.showFullscreenControl,
+				initialFullscreenControl: nextProps.showFullscreenControl
+			};
+			return newState;
+		}
+		return null;
 	}
 
 	componentDidMount() {
@@ -56,14 +68,6 @@ class CustomDeck extends Component {
 		this.setState({
 			totalDuration
 		});
-	}
-
-	componentWillReceiveProps( nextProps ) {
-		if ( nextProps.showFullscreenControl !== this.props.showFullscreenControl ) {
-			this.setState({
-				showFullscreenControl: nextProps.showFullscreenControl
-			});
-		}
 	}
 
 	componentWillUnmount() {

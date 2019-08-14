@@ -57,6 +57,21 @@ const customStyles = {
 };
 
 
+// FUNCTIONS //
+
+const transformValue = ( value ) => {
+	let out;
+	if ( isArray( value ) ) {
+		out = value.map( val => {
+			return { 'label': val, 'value': val };
+		});
+	} else {
+		out = { 'label': value, 'value': value };
+	}
+	return out;
+};
+
+
 // MAIN //
 
 /**
@@ -84,17 +99,49 @@ class SelectInput extends Input {
 	constructor( props ) {
 		super( props );
 
-		this.options = this.props.options.map( e => {
-			return { 'label': e, 'value': e };
-		});
 		const { defaultValue } = props;
 		let value = null;
 		if ( defaultValue ) {
-			value = this.transformValue( defaultValue );
+			value = transformValue( defaultValue );
 		}
 		this.state = {
-			value
+			value,
+			options: props.options.map( e => {
+				return { 'label': e, 'value': e };
+			}),
+			prevProps: props
 		};
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		const newState = {};
+		const { prevProps } = prevState;
+		if ( nextProps.defaultValue !== prevProps.defaultValue ) {
+			newState.value = transformValue( nextProps.defaultValue );
+		}
+		else if ( nextProps.bind !== prevProps.bind ) {
+			newState.value = global.lesson.state[ nextProps.bind ];
+		}
+		if ( nextProps.options !== prevProps.options ) {
+			newState.options = nextProps.options.map( e => {
+				return { 'label': e, 'value': e };
+			});
+		}
+		if ( !isEmptyObject( newState ) ) {
+			return newState;
+		}
+		return null;
+	}
+
+	componentDidUpdate() {
+		if ( this.props.bind ) {
+			let globalVal = global.lesson.state[ this.props.bind ];
+			if ( globalVal !== this.state.value ) {
+				this.setState({
+					value: globalVal
+				});
+			}
+		}
 	}
 
 	handleChange = ( newValue ) => {
@@ -115,47 +162,6 @@ class SelectInput extends Input {
 				});
 			}
 		});
-	}
-
-	transformValue = ( value ) => {
-		let out;
-		if ( isArray( value ) ) {
-			out = value.map( val => {
-				return { 'label': val, 'value': val };
-			});
-		} else {
-			out = { 'label': value, 'value': value };
-		}
-		return out;
-	}
-
-	componentDidUpdate() {
-		if ( this.props.bind ) {
-			let globalVal = global.lesson.state[ this.props.bind ];
-			if ( globalVal !== this.state.value ) {
-				this.setState({
-					value: globalVal
-				});
-			}
-		}
-	}
-
-	componentWillReceiveProps( nextProps ) {
-		let newState = {};
-		if ( nextProps.defaultValue !== this.props.defaultValue ) {
-			newState.value = this.transformValue( nextProps.defaultValue );
-		}
-		else if ( nextProps.bind !== this.props.bind ) {
-			newState.value = global.lesson.state[ nextProps.bind ];
-		}
-		if ( nextProps.options !== this.props.options ) {
-			this.options = nextProps.options.map( e => {
-				return { 'label': e, 'value': e };
-			});
-		}
-		if ( !isEmptyObject( newState ) ) {
-			this.setState( newState );
-		}
 	}
 
 	/*
@@ -192,7 +198,7 @@ class SelectInput extends Input {
 						className="select-field"
 						{...this.props}
 						value={this.state.value}
-						options={this.options}
+						options={this.state.options}
 						onChange={this.handleChange}
 						placeholder={this.props.placeholder}
 						isMulti={this.props.multi}
