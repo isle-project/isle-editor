@@ -50,12 +50,9 @@ class App extends Component {
 	async componentDidMount() {
 		window.addEventListener( 'resize', this.updateDimensions );
 
-		const eslintrc = await import( './eslintrc.js' );
-		eslintConfig = eslintrc.default;
-		this.cliEngine = new CLIEngine({
-			baseConfig: eslintConfig,
-			useEslintrc: false
-		});
+		let eslintOpts = await import( './eslint_opts.js' );
+		eslintOpts = eslintOpts.default;
+		this.cliEngine = new CLIEngine( eslintOpts );
 
 		const jsYAML = await import( 'js-yaml' );
 		yaml = jsYAML.default;
