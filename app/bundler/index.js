@@ -25,11 +25,17 @@ import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import markdownToHTML from 'utils/markdown-to-html';
 import transformToPresentation from 'utils/transform-to-presentation';
 import REQUIRES from './requires.json';
+import CDN_MODULES from './cdn_modules.json';
 
 
 // VARIABLES //
 
 const debug = logger( 'bundler' );
+const EXTERNALS = {};
+for ( let i = 0; i < CDN_MODULES.length; i++ ) {
+	const p = CDN_MODULES[ i ];
+	EXTERNALS[p.name] = p.var || p.name;
+}
 
 
 // FUNCTIONS //
@@ -429,6 +435,7 @@ function writeIndexFile({
 			net: 'mock',
 			tls: 'mock'
 		},
+		externals: EXTERNALS,
 		plugins: [
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
@@ -441,75 +448,7 @@ function writeIndexFile({
 			}),
 			new WebpackCdnPlugin({
 				prodUrl: 'https://cdnjs.cloudflare.com/ajax/libs/:alias/:version/:path',
-				modules: [
-					{
-						name: 'plotly.js',
-						alias: 'plotly.js',
-						var: 'Plotly',
-						path: 'plotly.min.js'
-					},
-					{
-						name: 'katex',
-						alias: 'KaTeX',
-						var: 'katex',
-						path: 'katex.min.js'
-					},
-					{
-						name: 'moment',
-						alias: 'moment.js',
-						var: 'moment',
-						path: 'moment.min.js'
-					},
-					{
-						name: 'react',
-						alias: 'react',
-						var: 'React',
-						path: 'umd/react.production.min.js'
-					},
-					{
-						name: 'react-dom',
-						alias: 'react-dom',
-						var: 'ReactDOM',
-						path: 'umd/react-dom.production.min.js'
-					},
-					{
-						name: 'prop-types',
-						alias: 'prop-types',
-						var: 'PropTypes',
-						path: 'prop-types.min.js'
-					},
-					{
-						name: 'react-table',
-						alias: 'react-table',
-						var: 'ReactTable',
-						path: 'react-table.js'
-					},
-					{
-						name: 'markdown-it',
-						alias: 'markdown-it',
-						var: 'markdownit',
-						path: 'markdown-it.min.js'
-					},
-					{
-						name: 'pdfmake/build/pdfmake',
-						alias: 'pdfmake',
-						var: 'pdfMake',
-						path: 'pdfmake.min.js',
-						version: '0.1.58'
-					},
-					{
-						name: 'localforage',
-						alias: 'localforage',
-						var: 'localforage',
-						path: 'localforage.min.js'
-					},
-					{
-						name: 'victory',
-						alias: 'victory',
-						var: 'Victory',
-						path: 'victory.min.js'
-					}
-				]
+				modules: CDN_MODULES
 			}),
 			new MiniCssExtractPlugin({
 				filename: 'css/[name].css',

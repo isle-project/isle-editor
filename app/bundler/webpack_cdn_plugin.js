@@ -86,16 +86,6 @@ class WebpackCdnPlugin {
 				callback( null, data );
 			});
 		});
-		const externals = compiler.options.externals || {};
-
-		Reflect.ownKeys( this.modules ).forEach((key) => {
-			const mods = this.modules[key];
-			mods.filter((m) => !m.cssOnly).forEach((p) => {
-			externals[p.name] = p.var || p.name;
-			});
-		});
-
-		compiler.options.externals = externals;
 
 		if ( this.prod && this.crossOrigin ) {
 			compiler.hooks.afterPlugins.tap('WebpackCdnPlugin', compiler => {

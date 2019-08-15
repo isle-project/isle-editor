@@ -1,0 +1,71 @@
+[
+	{
+		"name": "plotly.js",
+		"alias": "plotly.js",
+		"var": "Plotly",
+		"path": "plotly.min.js",
+		"version": "1.49.2"
+	},
+	{
+		"name": "katex",
+		"alias": "KaTeX",
+		"var": "katex",
+		"path": "katex.min.js"
+	},
+	{
+		"name": "moment",
+		"alias": "moment.js",
+		"var": "moment",
+		"path": "moment.min.js"
+	},
+	{
+		"name": "react",
+		"alias": "react",
+		"var": "React",
+		"path": "umd/react.production.min.js"
+	},
+	{
+		"name": "react-dom",
+		"alias": "react-dom",
+		"var": "ReactDOM",
+		"path": "umd/react-dom.production.min.js"
+	},
+	{
+		"name": "prop-types",
+		"alias": "prop-types",
+		"var": "PropTypes",
+		"path": "prop-types.min.js"
+	},
+	{
+		"name": "react-table",
+		"alias": "react-table",
+		"var": "ReactTable",
+		"path": "react-table.js"
+	},
+	{
+		"name": "markdown-it",
+		"alias": "markdown-it",
+		"var": "markdownit",
+		"path": "markdown-it.min.js"
+	},
+	{
+		"name": "pdfmake/build/pdfmake",
+		"alias": "pdfmake",
+		"var": "pdfMake",
+		"path": "pdfmake.min.js",
+		"version": "0.1.58"
+	},
+	{
+		"name": "localforage",
+		"alias": "localforage",
+		"var": "localforage",
+		"path": "localforage.min.js"
+	},
+	{
+		"name": "victory",
+		"alias": "victory",
+		"var": "Victory",
+		"path": "victory.min.js",
+		"version": "32.3.6"
+	}
+]
