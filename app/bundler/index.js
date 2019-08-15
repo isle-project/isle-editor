@@ -494,7 +494,8 @@ function writeIndexFile({
 						name: 'pdfmake/build/pdfmake',
 						alias: 'pdfmake',
 						var: 'pdfMake',
-						path: 'pdfmake.min.js'
+						path: 'pdfmake.min.js',
+						version: '0.1.58'
 					},
 					{
 						name: 'localforage',
