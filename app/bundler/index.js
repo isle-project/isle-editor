@@ -494,8 +494,7 @@ function writeIndexFile({
 						name: 'pdfmake/build/pdfmake',
 						alias: 'pdfmake',
 						var: 'pdfMake',
-						path: 'pdfmake.min.js',
-						version: '0.1.40'
+						path: 'pdfmake.min.js'
 					},
 					{
 						name: 'localforage',
@@ -578,8 +577,8 @@ function writeIndexFile({
 		}
 		if ( writeStats ) {
 			debug( 'Write statistics to file...' );
-			stats = stats.toJson();
-			writeFileSync( statsFile, JSON.stringify( stats ) );
+			const statsJSON = stats.toJson();
+			writeFileSync( statsFile, JSON.stringify( statsJSON ) );
 		}
 		const assets = Object.keys( stats.compilation.assets );
 		unlinkSync( indexPath );
