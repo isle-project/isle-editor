@@ -54,7 +54,7 @@ class ExportLesson extends Component {
 	}
 
 	handleFileInputClick = () => {
-		const outputPath = dialog.showOpenDialog({
+		const outputPath = dialog.showOpenDialogSync({
 			properties: [ 'openDirectory' ]
 		})[ 0 ];
 		this.setState({ outputPath, finished: false, alreadyExists: false });
