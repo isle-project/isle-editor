@@ -8,7 +8,9 @@ import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Plotly from 'react-plotly.js';
+import Plotly from 'plotly.js';
+import createPlotlyComponent from 'react-plotly.js/factory';
+const Plot = createPlotlyComponent( Plotly );
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import { CAT20 as COLORS } from 'constants/colors';
 
@@ -48,7 +50,7 @@ class ClusterModal extends Component {
 		];
 		return (
 			<div style={{ height: 0.75 * window.innerHeight }}>
-				<Plotly
+				<Plot
 					data={data}
 					layout={{
 						hovermode: 'closest'
