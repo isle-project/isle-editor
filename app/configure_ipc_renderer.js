@@ -110,6 +110,10 @@ function configureIpcRenderer( store ) {
 	window.document.addEventListener( 'dragover', ( e ) => {
 		e.preventDefault();
 	});
+
+	ipcRenderer.on( 'message', ( event, text ) => {
+		console.log( text ); // eslint-disable-line no-console
+	});
 }
 
 

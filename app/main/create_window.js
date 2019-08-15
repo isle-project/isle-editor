@@ -56,7 +56,7 @@ function createWindow( filePath, callback ) {
 			mainWindow.setTitle( 'ISLE Editor -- Untitled Document' );
 		}
 		if ( callback ) {
-			return callback();
+			return callback( mainWindow );
 		}
 	});
 

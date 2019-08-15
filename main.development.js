@@ -40,11 +40,45 @@ autoUpdater.currentVersion = currentVersion;
 */
 function onReady() {
 	console.log( 'Application is ready...' ); // eslint-disable-line no-console
-	if ( process.env.NODE_ENV === 'production' ) {
-		autoUpdater.checkForUpdatesAndNotify();
-	}
-	createWindow( pathToOpen, () => {
+	createWindow( pathToOpen, ( mainWindow ) => {
 		isReady = true;
+
+		function sendStatusToWindow(text) {
+			mainWindow.webContents.send('message', text);
+		}
+
+		if ( process.env.NODE_ENV === 'production' ) {
+			sendStatusToWindow( 'Check for updates and notify if available...' );
+
+			autoUpdater.on('checking-for-update', () => {
+				sendStatusToWindow('Checking for update...');
+			});
+
+			autoUpdater.on('update-available', (info) => {
+				sendStatusToWindow('Update available.');
+			});
+
+			autoUpdater.on('update-not-available', (info) => {
+				sendStatusToWindow('Update not available.');
+			});
+
+			autoUpdater.on('error', (err) => {
+				sendStatusToWindow('Error in auto-updater. ' + err);
+			});
+
+			autoUpdater.on('download-progress', (progressObj) => {
+				let msg = 'Download speed: ' + progressObj.bytesPerSecond;
+				msg = msg + ' - Downloaded ' + progressObj.percent + '%';
+				msg = msg + ' (' + progressObj.transferred + '/' + progressObj.total + ')';
+				sendStatusToWindow(msg);
+			});
+
+			autoUpdater.on('update-downloaded', (info) => {
+				sendStatusToWindow('Update downloaded');
+			});
+
+			autoUpdater.checkForUpdatesAndNotify();
+		}
 	});
 	Menu.setApplicationMenu( Menu.buildFromTemplate( configureMenu({ app }) ) );
 	addRecentFilesMenu();
