@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { SketchPicker } from 'react-color';
+import SketchPicker from 'react-color/lib/Sketch.js';
 
 
 // MAIN //
