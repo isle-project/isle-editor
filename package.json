@@ -1544,7 +1544,8 @@
       "name": "ISLE",
       "description": "ISLE Lesson Files.",
       "icon": "app/app.ico",
-      "role": "Editor"
+      "role": "Editor",
+      "mimeType": "text/plain"
     },
     "directories": {
       "output": "release"
