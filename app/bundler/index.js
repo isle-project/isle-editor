@@ -111,7 +111,7 @@ const getMainImports = () => `
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import React, { Component } from 'react';
-import { json, csv } from 'd3-fetch';
+import { json, csv } from 'd3';
 import { render } from 'react-dom';
 import { extname } from 'path';
 import Lesson from 'components/lesson';

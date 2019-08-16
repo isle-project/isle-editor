@@ -1,7 +1,7 @@
 // MODULES //
 
 import { dirname, join, extname } from 'path';
-import { json, csv } from 'd3-fetch';
+import { json, csv } from 'd3';
 import { readFileSync } from 'fs';
 import logger from 'debug';
 import hasOwnProp from '@stdlib/assert/has-own-property';
