@@ -7,6 +7,9 @@ import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 
 // VARIABLES //
 
+/*
+* External modules that need not to be bundled with the main electron application. Due to copying a significant chunk of the `node_modules` when bundling as `externalResources` so that users can use these packages, placing a package in this list avoids code duplication.
+*/
 const EXTERNALS = [
 	'@stdlib/stdlib',
 	'ajv',
@@ -24,7 +27,7 @@ const EXTERNALS = [
 	'csv-stringify',
 	'd3-cloud',
 	'detect-csv',
-	'electron',
+	'eslint', // needs to be external for CLI Engine to work for linting
 	'form-data',
 	'fsevents',
 	'highlight.js',

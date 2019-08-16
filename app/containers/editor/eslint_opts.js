@@ -14,7 +14,7 @@ const basePath = IS_PACKAGED ? process.resourcesPath : '.';
 
 const eslintOpts = {
 	baseConfig: {
-		parser: resolve( basePath, 'node_modules', 'babel-eslint' ),
+		parser: 'babel-eslint',
 		env: {
 			es6: true,
 			browser: true,
@@ -78,8 +78,8 @@ const eslintOpts = {
 			}
 		}
 	},
-	useEslintrc: false,
-	resolvePluginsRelativeTo: basePath
+	cwd: resolve( basePath ),
+	useEslintrc: false
 };
 
 

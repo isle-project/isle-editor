@@ -51,7 +51,7 @@ class App extends Component {
 
 		let eslintOpts = await import( './eslint_opts.js' );
 		eslintOpts = eslintOpts.default;
-		this.cliEngine = new CLIEngine( eslintOpts );
+		this.cliEngine = new CLIEngine( eslintOpts, this.props.fileName );
 
 		const jsYAML = await import( 'js-yaml' );
 		yaml = jsYAML.default;
