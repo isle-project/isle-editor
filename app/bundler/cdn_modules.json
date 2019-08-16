@@ -10,13 +10,15 @@
 		"name": "katex",
 		"alias": "KaTeX",
 		"var": "katex",
-		"path": "katex.min.js"
+		"path": "katex.min.js",
+		"version": "0.10.2"
 	},
 	{
 		"name": "moment",
 		"alias": "moment.js",
 		"var": "moment",
-		"path": "moment.min.js"
+		"path": "moment.min.js",
+		"version": "2.24.0"
 	},
 	{
 		"name": "react",
