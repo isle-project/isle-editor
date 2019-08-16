@@ -2,7 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import NotificationSystem from 'react-notification-system';
+import ReactNotificationSystem from 'react-notification-system';
 import { ContextMenuTrigger, ContextMenu, MenuItem } from 'react-contextmenu';
 import isObjectArray from '@stdlib/assert/is-object-array';
 import StickyNote from 'components/sticky-note';
@@ -139,7 +139,7 @@ class Lesson extends Component {
 						Add Note
 					</MenuItem>
 				</ContextMenu>
-				<NotificationSystem
+				<ReactNotificationSystem
 					ref={( div ) => {
 						global.notificationSystemISLE = div;
 					}}

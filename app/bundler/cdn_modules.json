@@ -91,5 +91,29 @@
 		"path": "dist/socket.io.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
 		"version": "2.2.0"
+	},
+	{
+		"name": "react-contextmenu",
+		"alias": "react-contextmenu",
+		"var": "ReactContextMenu",
+		"path": "dist/react-contextmenu.js",
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
+		"version": "2.11.0"
+	},
+	{
+		"name": "react-list",
+		"alias": "react-list",
+		"var": "ReactList",
+		"path": "react-list.min.js",
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
+		"version": "0.8.11"
+	},
+	{
+		"name": "react-notification-system",
+		"alias": "react-notification-system",
+		"var": "ReactNotificationSystem",
+		"path": "dist/react-notification-system.min.js",
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
+		"version": "0.2.17"
 	}
 ]
