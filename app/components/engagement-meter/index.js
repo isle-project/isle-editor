@@ -2,7 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import Draggable from 'react-draggable';
+import ReactDraggable from 'react-draggable';
 import incrmmean from '@stdlib/stats/incr/mmean';
 import incrmrange from '@stdlib/stats/incr/mrange';
 import roundn from '@stdlib/math/base/special/roundn';

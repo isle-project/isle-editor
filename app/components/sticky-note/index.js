@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Draggable from 'react-draggable';
+import ReactDraggable from 'react-draggable';
 import noop from '@stdlib/utils/noop';
 import SessionContext from 'session/context.js';
 import { DELETE_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from 'constants/actions.js';

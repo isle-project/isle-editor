@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
-import Draggable from 'react-draggable';
+import ReactDraggable from 'react-draggable';
 import ReactTable from 'react-table';
 import contains from '@stdlib/assert/contains';
 import noop from '@stdlib/utils/noop';

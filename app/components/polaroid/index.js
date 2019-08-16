@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Draggable from 'react-draggable';
+import ReactDraggable from 'react-draggable';
 import noop from '@stdlib/utils/noop';
 import './polaroid.css';
 

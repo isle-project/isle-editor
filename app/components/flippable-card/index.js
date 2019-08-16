@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Draggable from 'react-draggable';
+import ReactDraggable from 'react-draggable';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import isArray from '@stdlib/assert/is-array';
