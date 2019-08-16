@@ -136,7 +136,7 @@ class App extends Component {
 
 	lintCode = ( code ) => {
 		if ( this.cliEngine ) {
-			const { results } = this.cliEngine.executeOnText( code );
+			const { results } = this.cliEngine.executeOnText( code, this.props.fileName );
 			const errs = results[ 0 ].messages;
 			if ( errs.length !== this.props.lintErrors.length ) {
 				this.props.saveLintErrors( errs );
