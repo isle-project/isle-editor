@@ -2292,7 +2292,9 @@ class Sketchpad extends Component {
 					style={{
 						width: this.state.canvasWidth+2,
 						position: 'relative',
-						marginBottom: this.props.fullscreen ? '0px' : '20px'
+						marginBottom: this.props.fullscreen ? '0px' : '20px',
+						marginLeft: 0,
+						marginRight: 0
 					}}
 					tabIndex="0"
 				>
