@@ -75,14 +75,16 @@
 		"alias": "react-player",
 		"var": "ReactPlayer",
 		"path": "dist/ReactPlayer.min.js",
-		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path"
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
+		"version": "1.11.2"
 	},
 	{
 		"name": "react-draggable",
 		"alias": "react-draggable",
 		"var": "ReactDraggable",
 		"path": "dist/react-draggable.min.js",
-		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path"
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
+		"version": "3.3.1"
 	},
 	{
 		"name": "socket.io-client",
