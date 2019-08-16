@@ -304,9 +304,9 @@ class Queue extends Component {
 					/> }
 				</Panel>;
 				if ( this.props.draggable ) {
-					out = <Draggable bounds="#Lesson" cancel=".queue-table" enableUserSelectHack={false} >
+					out = <ReactDraggable bounds="#Lesson" cancel=".queue-table" enableUserSelectHack={false} >
 						<div className="outer-queue">{out}</div>
-					</Draggable>;
+					</ReactDraggable>;
 				}
 				return out;
 			}
@@ -323,9 +323,9 @@ class Queue extends Component {
 					</Button>
 				</Panel>;
 				if ( this.props.draggable ) {
-					out = <Draggable bounds="#Lesson" enableUserSelectHack={false} >
+					out = <ReactDraggable bounds="#Lesson" enableUserSelectHack={false} >
 						<div className="outer-queue">{out}</div>
-					</Draggable>;
+					</ReactDraggable>;
 				}
 				return out;
 			}
@@ -349,9 +349,9 @@ class Queue extends Component {
 				<span style={{ marginLeft: 8 }}>(there are currently {this.state.queueSize} individual(s) in the queue)</span>
 			</Panel>;
 			if ( this.props.draggable ) {
-				out = <Draggable bounds="#Lesson" cancel="#queue_form" enableUserSelectHack={false} >
+				out = <ReactDraggable bounds="#Lesson" cancel="#queue_form" enableUserSelectHack={false} >
 					<div className="outer-queue">{out}</div>
-				</Draggable>;
+				</ReactDraggable>;
 			}
 			return out;
 		}

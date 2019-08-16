@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import noop from '@stdlib/utils/noop';
-import Draggable from 'react-draggable';
+import ReactDraggable from 'react-draggable';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Panel from 'components/panel';
@@ -215,7 +215,7 @@ class Calculator extends Component {
 	renderFull = () => {
 		debug( 'Rendering expanded calculator...' );
 		return (
-			<Draggable bounds="#Lesson" cancel="#calc-text-area" >
+			<ReactDraggable bounds="#Lesson" cancel="#calc-text-area" >
 				<div className="outer-calc" style={this.props.style}>
 					<Panel id="calc-panel-full" header={this.renderHeader()}>
 						<Container className="desaturated" >
@@ -287,7 +287,7 @@ class Calculator extends Component {
 						</Container>
 					</Panel>
 				</div>
-			</Draggable>
+			</ReactDraggable>
 		);
 	}
 
@@ -302,7 +302,7 @@ class Calculator extends Component {
 			return this.renderFull();
 		}
 		return (
-			<Draggable bounds="#Lesson" enableUserSelectHack={false} cancel="#calc-text-area" >
+			<ReactDraggable bounds="#Lesson" enableUserSelectHack={false} cancel="#calc-text-area" >
 				<div className="outer-calc" style={this.props.style} >
 					<Panel
 						id="calc-panel"
@@ -361,7 +361,7 @@ class Calculator extends Component {
 						</Container>
 					</Panel>
 				</div>
-			</Draggable>
+			</ReactDraggable>
 		);
 	}
 }

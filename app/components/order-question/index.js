@@ -130,7 +130,7 @@ class OrderQuestion extends Component {
 			<Card id={this.id} className="order-question" style={this.props.style} >
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
-					<DraggableList shuffle data={this.props.options} onChange={this.handleChange} />
+					<ReactDraggableList shuffle data={this.props.options} onChange={this.handleChange} />
 					<div className="order-question-toolbar">
 						{ nHints > 0 ?
 							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :

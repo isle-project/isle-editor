@@ -111,7 +111,7 @@ class Polaroid extends Component {
 			</div>
 		</div>;
 		if ( this.props.draggable ) {
-			return <Draggable>{out}</Draggable>;
+			return <ReactDraggable>{out}</ReactDraggable>;
 		}
 		return out;
 	}

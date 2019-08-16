@@ -81,14 +81,14 @@ class EngagementMeter extends Component {
 				<span className="score-bottom-text">Engagement Meter</span>
 				<Gate owner banner={
 					<Fragment>
-						<Draggable
+						<ReactDraggable
 							bounds={{ left: -200, right: 200, top: 0, bottom: 0 }}
 							onStop={this.onControlledDragStop}
 							position={this.state.controlledPosition}
 							onDrag={this.onControlledDrag}
 						>
 							<div className="score-setter" />
-						</Draggable>
+						</ReactDraggable>
 						<ProgressBar style={{ marginTop: 23 }}>
 							<ProgressBar animated variant="success" now={this.state.progress} />
 							<ProgressBar animated variant="danger" now={100-this.state.progress} />

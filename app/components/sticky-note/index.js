@@ -302,11 +302,11 @@ class StickyNote extends Component {
 			</div>
 		</div>;
 		if ( this.props.draggable ) {
-			return ( <Draggable
+			return ( <ReactDraggable
 				bounds="#Lesson"
 				cancel=".noDrag"
 				onStop={this.handleDragStop}
-			>{out}</Draggable> );
+			>{out}</ReactDraggable> );
 		}
 		return out;
 	}

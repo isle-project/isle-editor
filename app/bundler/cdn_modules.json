@@ -69,5 +69,27 @@
 		"var": "Victory",
 		"path": "victory.min.js",
 		"version": "32.3.6"
+	},
+	{
+		"name": "react-player",
+		"alias": "react-player",
+		"var": "ReactPlayer",
+		"path": "dist/ReactPlayer.min.js",
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path"
+	},
+	{
+		"name": "react-draggable",
+		"alias": "react-draggable",
+		"var": "ReactDraggable",
+		"path": "dist/react-draggable.min.js",
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path"
+	},
+	{
+		"name": "socket.io-client",
+		"alias": "socket.io-client",
+		"var": "io",
+		"path": "dist/socket.io.min.js",
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
+		"version": "2.2.0"
 	}
 ]

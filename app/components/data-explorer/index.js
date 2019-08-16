@@ -3,7 +3,7 @@
 import React, { Component, Fragment, lazy, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Draggable from 'react-draggable';
+import ReactDraggable from 'react-draggable';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row';
@@ -1179,7 +1179,7 @@ class DataExplorer extends Component {
 		return (
 			<Fragment>
 				{mainContainer}
-				<Draggable cancel=".input" enableUserSelectHack={false} >
+				<ReactDraggable cancel=".input" enableUserSelectHack={false} >
 					<Card
 						border="secondary"
 						className="data-explorer-toolbox"
@@ -1196,7 +1196,7 @@ class DataExplorer extends Component {
 							</Tab.Container>
 						</Card.Body>
 					</Card>
-				</Draggable>
+				</ReactDraggable>
 			</Fragment>
 		);
 	}
