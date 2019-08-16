@@ -29,7 +29,8 @@ const extraResources = [
 	'app/bundler/minify.js',
 	'node_modules/**/*',
 	'!node_modules/@stdlib/stdlib/dist/**/*',
-	'!node_modules/.cache/**/*'
+	'!node_modules/.cache/**/*',
+	'!node_modules/@icons/**/*'
 ];
 const DEV_DEPS = new Set();
 const listDevDeps = spawn( 'npm', [ 'ls', '--only=dev', '--parseable' ] );

@@ -61,7 +61,8 @@
 		"name": "localforage",
 		"alias": "localforage",
 		"var": "localforage",
-		"path": "localforage.min.js"
+		"path": "localforage.min.js",
+		"version": "1.7.2"
 	},
 	{
 		"name": "victory",
