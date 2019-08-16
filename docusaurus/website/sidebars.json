@@ -16,7 +16,9 @@
       "tutorials/editor-images",
       "tutorials/question-components",
       "tutorials/including-data",
-      "tutorials/examples"
+      "tutorials/examples",
+      "tutorials/course-management",
+      "tutorials/classroom-use"
     ],
     "For Students": [
       "students/getting-started",

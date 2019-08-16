@@ -308,6 +308,14 @@
         "title": "Timer",
         "sidebar_label": "Timer"
       },
+      "tutorials/classroom-use": {
+        "title": "Using ISLE in the Classroom",
+        "sidebar_label": "Classroom Use"
+      },
+      "tutorials/course-management": {
+        "title": "Managing the Course in ISLE",
+        "sidebar_label": "Course Management"
+      },
       "tutorials/editor-images": {
         "title": "Including Images and Videos",
         "sidebar_label": "Images"

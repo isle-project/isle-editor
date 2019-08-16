@@ -34,9 +34,9 @@ There are a few important components to this code:
 
 * **`require`**: the `require` statement in the preamble is used to import files. Here we have imported two files, `airlines.json` and `airline_info.json`, by providing the *local path* to these files (in this case, the two files are in the same directory as the ISLE file). To reference the content of these files, we have assigned names (respectively `airlines` and `airline_info`) to the imported content. In this case, the names we chose match the base name of the files, but this is not necessary. We then use this content in the `<DataTable/>` tag through the names we chose in the `require` statement.
 
-* **the data file**: this file contains the data we want to display in the Data Table, using the `data` field of the `<DataTable>` tag. Here, the data file is `airlines.json`. Note that the file does need to be in JSON format, more details will be provided below. You can download a zipped folder containing the two files used in this example [here](https://isle.heinz.cmu.edu/Demo_airline_data.zip).
+* **the data file**: this file contains the data we want to display in the Data Table, using the `data` field of the `<DataTable>` tag. Here, the data file is `airlines.json`. The file can be provided in CSV or JSON format, more details will be provided below. You can download a zipped folder containing the two files used in this example [here](https://isle.heinz.cmu.edu/Demo_airline_data.zip).
 
-* **the data info file**: this (optional) file contains information about the data, such as the name of the data set, a short description of the data and its source, and variable descriptions for each of the columns. The data info is displayed by using the `dataInfo` field of the `<DataTable/>` tag. As with the data file, the data info needs to be in JSON format (see below). 
+* **the data info file**: this (optional) file contains information about the data, such as the name of the data set, a short description of the data and its source, and variable descriptions for each of the columns. The data info is displayed by using the `dataInfo` field of the `<DataTable/>` tag. The data info needs to be in JSON format (see below). 
 
 ### JSON Format
 
@@ -154,7 +154,7 @@ The code to generate the data explorer illustrated here is
 
 ### Data
 
-Data and data info is included in the explorer in the same way as for the Data Table. As above, we can import JSON files in the preamble and use the `data` and `dataInfo` fields of the `<DataExplorer/>` tag. The **Data** tab of the explorer shows the resulting data table. If you do not wish to display the data table in the explorer, you can use the `hideDataTable` option (see the [data explorer docs](https://isledocs.com/docs/data-explorer) for more details).
+Data and data info is included in the explorer in the same way as for the Data Table. As above, we can import CSV or JSON files in the preamble and use the `data` and `dataInfo` fields of the `<DataExplorer/>` tag. The **Data** tab of the explorer shows the resulting data table. If you do not wish to display the data table in the explorer, you can set the `dataTable` option to `false` (see the [data explorer docs](https://isledocs.com/docs/data-explorer) for more details).
 
 ### Variable Types
 
