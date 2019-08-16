@@ -80,6 +80,8 @@
 <url> <loc>https://isledocs.com/docs/tex</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/tex" /> </url>
 <url> <loc>https://isledocs.com/docs/text</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/text" /> </url>
 <url> <loc>https://isledocs.com/docs/timer</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/timer" /> </url>
+<url> <loc>https://isledocs.com/docs/tutorials/classroom-use</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/tutorials/classroom-use" /> </url>
+<url> <loc>https://isledocs.com/docs/tutorials/course-management</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/tutorials/course-management" /> </url>
 <url> <loc>https://isledocs.com/docs/tutorials/editor-images</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/tutorials/editor-images" /> </url>
 <url> <loc>https://isledocs.com/docs/tutorials/editor-intro</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/tutorials/editor-intro" /> </url>
 <url> <loc>https://isledocs.com/docs/tutorials/editor-text</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://isledocs.com/docs/tutorials/editor-text" /> </url>
