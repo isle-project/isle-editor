@@ -24,6 +24,7 @@ const EXTERNALS = [
 	'csv-stringify',
 	'd3-cloud',
 	'detect-csv',
+	'electron',
 	'form-data',
 	'fsevents',
 	'highlight.js',
