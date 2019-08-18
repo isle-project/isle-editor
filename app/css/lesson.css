@@ -2577,7 +2577,7 @@ label {
 	min-width: 260px;
 	padding: 2px 0;
 	margin: 2px 0 0;
-	font-size: 14px;
+	font-size: 28px;
 	color: #373a3c;
 	text-align: left;
 	background-color: #fff;
@@ -2589,6 +2589,10 @@ label {
 	pointer-events: none;
 	transition: opacity 250ms ease !important;
 	z-index: 101;
+}
+
+.Pane1 .react-contextmenu {
+	font-size: 14px;
 }
 
 .react-contextmenu.react-contextmenu--visible {

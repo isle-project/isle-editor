@@ -3,14 +3,14 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ReactNotificationSystem from 'react-notification-system';
-import { ContextMenuTrigger, ContextMenu, MenuItem } from 'react-contextmenu';
+import { ContextMenuTrigger } from 'react-contextmenu';
 import isObjectArray from '@stdlib/assert/is-object-array';
 import StickyNote from 'components/sticky-note';
 import randomstring from 'utils/randomstring/alphanumeric';
 import SessionContext from 'session/context.js';
-import { DELETE_STICKY_NOTE, INSERT_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY } from 'constants/actions.js';
+import { DELETE_STICKY_NOTE, INSERT_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from 'constants/actions.js';
+import LessonContextMenu from './contextmenu.js';
 import 'css/lesson.css';
-import { STICKY_NOTE_MOVE } from '../../constants/actions';
 
 
 // MAIN //
@@ -132,13 +132,10 @@ class Lesson extends Component {
 						{this.state.notes}
 					</div>
 				</ContextMenuTrigger>
-				<ContextMenu id="lessonWindow" >
-					<MenuItem key={0} onClick={( event ) => {
-						this.addNote({ left: event.pageX, top: event.pageY });
-					}}>
-						Add Note
-					</MenuItem>
-				</ContextMenu>
+				<LessonContextMenu
+					addNote={this.addNote}
+					session={this.context}
+				/>
 				<ReactNotificationSystem
 					ref={( div ) => {
 						global.notificationSystemISLE = div;
