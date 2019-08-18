@@ -20,8 +20,8 @@ const config = new Store( 'ISLE' );
 let isReady = false;
 let pathToOpen;
 
-if ( process.argv[ 2 ] ) {
-	pathToOpen = process.argv[ 2 ];
+if ( process.argv[ 1 ] ) {
+	pathToOpen = process.argv[ 1 ];
 }
 else if ( config.has( 'mostRecentPath' ) ) {
 	pathToOpen = config.get( 'mostRecentPath' );
@@ -43,38 +43,38 @@ function onReady() {
 	createWindow( pathToOpen, ( mainWindow ) => {
 		isReady = true;
 
-		function sendStatusToWindow(text) {
-			mainWindow.webContents.send('message', text);
+		function sendStatusToWindow( text ) {
+			mainWindow.webContents.send('message', text );
 		}
 
 		if ( process.env.NODE_ENV === 'production' ) {
 			sendStatusToWindow( 'Check for updates and notify if available...' );
 
-			autoUpdater.on('checking-for-update', () => {
+			autoUpdater.on( 'checking-for-update', () => {
 				sendStatusToWindow('Checking for update...');
 			});
 
-			autoUpdater.on('update-available', (info) => {
+			autoUpdater.on( 'update-available', ( info ) => {
 				sendStatusToWindow('Update available.');
 			});
 
-			autoUpdater.on('update-not-available', (info) => {
+			autoUpdater.on( 'update-not-available', ( info ) => {
 				sendStatusToWindow('Update not available.');
 			});
 
-			autoUpdater.on('error', (err) => {
+			autoUpdater.on( 'error', ( err ) => {
 				sendStatusToWindow('Error in auto-updater. ' + err);
 			});
 
-			autoUpdater.on('download-progress', (progressObj) => {
+			autoUpdater.on( 'download-progress', ( progressObj ) => {
 				let msg = 'Download speed: ' + progressObj.bytesPerSecond;
 				msg = msg + ' - Downloaded ' + progressObj.percent + '%';
 				msg = msg + ' (' + progressObj.transferred + '/' + progressObj.total + ')';
-				sendStatusToWindow(msg);
+				sendStatusToWindow( msg );
 			});
 
-			autoUpdater.on('update-downloaded', (info) => {
-				sendStatusToWindow('Update downloaded');
+			autoUpdater.on( 'update-downloaded', ( info ) => {
+				sendStatusToWindow( 'Update downloaded' );
 			});
 
 			autoUpdater.checkForUpdatesAndNotify();
