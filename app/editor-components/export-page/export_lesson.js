@@ -99,6 +99,16 @@ class ExportLesson extends Component {
 		}
 	}
 
+	handleKeyPress = ( event ) => {
+		if (
+			event.charCode === 13 &&
+			!this.state.spinning && this.state.outputPath &&
+			this.state.outputDir && !this.state.finished
+		) {
+			this.generateApp( event );
+		}
+	}
+
 	renderFinished = () => {
 		if ( !this.state.finished ) {
 			return <Spinner width={128} height={64} running={this.state.spinning} />;
@@ -172,6 +182,7 @@ class ExportLesson extends Component {
 									alreadyExists: false
 								});
 							}}
+							onKeyPress={this.handleKeyPress}
 							disabled={this.state.spinning}
 						/>
 					</FormGroup>

@@ -301,7 +301,8 @@ class UploadLesson extends Component {
 	handleKeyPress = ( event ) => {
 		if (
 			event.charCode === 13 && !this.state.spinning &&
-			this.state.token && this.state.lessonName
+			this.state.token && this.state.lessonName &&
+			this.state.lessonName && !this.state.invalidLessonName
 		) {
 			this.checkLesson( event );
 		}
