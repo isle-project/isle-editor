@@ -2589,10 +2589,12 @@ label {
 	pointer-events: none;
 	transition: opacity 250ms ease !important;
 	z-index: 101;
+	box-shadow: 0 0 2px darkgrey;
+	font-family: Open Sans Condensed;
 }
 
 .Pane1 .react-contextmenu {
-	font-size: 14px;
+	font-size: 18px;
 }
 
 .react-contextmenu.react-contextmenu--visible {
@@ -2614,6 +2616,22 @@ label {
 
 .react-contextmenu-item:hover {
 	background-color: #ffffce;
+}
+
+.react-contextmenu-item.react-contextmenu-item::after {
+	color: rgb(120, 120, 120);
+}
+
+.react-contextmenu-item.react-contextmenu-item .fa-cogs {
+	color: rgb(120, 120, 120);
+}
+
+.react-contextmenu-item.react-contextmenu-item .fa-cogs:hover {
+	color: black;
+}
+
+.react-contextmenu-item.react-contextmenu-item--active::after {
+	color: black;
 }
 
 .react-contextmenu-glyph {
