@@ -201,7 +201,7 @@
     "turndown-plugin-gfm": "^1.0.2",
     "typo-js": "^1.0.3",
     "uniq": "^1.0.1",
-    "uuid": "^3.3.2",
+    "uuid": "^3.3.3",
     "venn.js": "0.2.20",
     "webpack": "4.39.2",
     "worker-loader": "^2.0.0"
