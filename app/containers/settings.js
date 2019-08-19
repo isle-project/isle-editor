@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { changeRenderInterval, changeFontSize, changePreambleTemplate } from 'actions';
 import NumberInput from 'components/input/number';
 import FormControl from 'react-bootstrap/FormControl';
+import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Card from 'react-bootstrap/Card';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
@@ -60,7 +61,7 @@ class Settings extends Component {
 								defaultValue={parseInt( this.props.renderInterval / 1000, 10 )}
 							/>
 							<FormGroup style={{ marginTop: '16px', marginLeft: '8px' }}>
-								<Card.Subtitle className="mb-2" ><label>Preamble Template:</label></Card.Subtitle>
+								<Card.Subtitle className="mb-2" ><FormLabel>Preamble Template:</FormLabel></Card.Subtitle>
 								<FormControl
 									as="textarea"
 									onChange={this.handlePreambleTemplateChange}
