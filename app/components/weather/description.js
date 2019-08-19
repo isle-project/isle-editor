@@ -9,7 +9,7 @@ function Description( props ) {
 	let icon = 'http:' + props.condition.icon;
 	return (
 		<div className="weather-description">{ props.condition.text }
-			<img className="weather-icon" src={icon} />
+			<img className="weather-icon" alt="Weather icon" src={icon} />
 		</div>
 	);
 }
