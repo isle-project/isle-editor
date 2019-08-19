@@ -166,7 +166,7 @@ class News extends Component {
 			<div className="article">
 				<div className="article-author">{author}</div>
 				<div className="article-title">{item.title}</div>
-				<div className="image"><img src={item.urlToImage} /></div>
+				<div className="image"><img src={item.urlToImage} alt="Article Preview" /></div>
 				<div className="article-description">{item.description}</div>
 				<div className="article-source">
 					<a href={item.url} >{date}</a>

@@ -36,7 +36,7 @@ class ActionLog extends Component {
 		super( props );
 		this.state = {
 			anonymized: true,
-			filters: <label>Filters:</label>,
+			filters: <span className="title">Filters:</span>,
 			period: {
 				from: moment( 0 ).startOf( 'day' ),
 				to: moment().endOf( 'day' )
@@ -57,7 +57,7 @@ class ActionLog extends Component {
 			if ( type === 'logout' ) {
 				debug( 'Should reset the filters after user logout:' );
 				this.setState({ // eslint-disable-line react/no-did-mount-set-state
-					filters: <label>Filters:</label>
+					filters: <span className="title">Filters:</span>
 				});
 			}
 			else if ( type === 'member_action' ) {
@@ -73,7 +73,7 @@ class ActionLog extends Component {
 			if ( session.socketActions.length === 0 && this.state.filter !== null ) {
 				this.setState({ // eslint-disable-line react/no-did-mount-set-state
 					filter: {},
-					filters: <label>Filters:</label>
+					filters: <span className="title">Filters:</span>
 				});
 			}
 		});
@@ -84,32 +84,14 @@ class ActionLog extends Component {
 			this.setState({
 				filter: { email: this.props.selectedEmail },
 				filters: <Fragment>
-				<label>Filters:</label>
+				<span className="title">Filters:</span>
 				<span style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
 					<span
-						onClick={
-							( event ) => {
-								event.stopPropagation();
-								let newFilter = copy( this.state.filter );
-								delete newFilter[ 'email' ];
-								if ( isEmptyObject( newFilter ) ) {
-									newFilter = null;
-								}
-								const newFilters = createFilters( newFilter, (newFilter, newFilters) =>{
-									this.setState({
-										filter: newFilter,
-										filters: newFilters
-									});
-								});
-
-								this.setState({
-									filter: newFilter,
-									filters: newFilters
-								});
-							}
-						}
+						role="button" tabIndex={0}
+						onClick={this.handleEmailFilterClick}
+						onKeyPress={this.handleEmailFilterClick}
 						style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }}
-						>{'email'}: {this.props.selectedEmail}</span>
+					>{'email'}: {this.props.selectedEmail}</span>
 				</span>
 			</Fragment>
 			});
@@ -118,32 +100,14 @@ class ActionLog extends Component {
 			this.setState({
 				filter: { id: this.props.selectedID },
 				filters: <Fragment>
-				<label>Filters:</label>
+				<span className="title">Filters:</span>
 				<span style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
 					<span
-						onClick={
-							( event ) => {
-								event.stopPropagation();
-								let newFilter = copy( this.state.filter );
-								delete newFilter[ 'id' ];
-								if ( isEmptyObject( newFilter ) ) {
-									newFilter = null;
-								}
-								const newFilters = createFilters( newFilter, (newFilter, newFilters) =>{
-									this.setState({
-										filter: newFilter,
-										filters: newFilters
-									});
-								});
-
-								this.setState({
-									filter: newFilter,
-									filters: newFilters
-								});
-							}
-						}
+						role="button" tabIndex={0}
+						onClick={this.handleIDFilterClick}
+						onKeyPress={this.handleIDFilterClick}
 						style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }}
-						>{'id'}: {this.props.selectedID}</span>
+					>{'id'}: {this.props.selectedID}</span>
 				</span>
 			</Fragment>
 			});
@@ -164,6 +128,45 @@ class ActionLog extends Component {
 		if ( isFunction( this.unsubscribe ) ) {
 			this.unsubscribe();
 		}
+	}
+
+	handleEmailFilterClick = ( event ) => {
+		event.stopPropagation();
+		let newFilter = copy( this.state.filter );
+		delete newFilter[ 'email' ];
+		if ( isEmptyObject( newFilter ) ) {
+			newFilter = null;
+		}
+		const newFilters = createFilters( newFilter, ( newFilter, newFilters ) =>{
+			this.setState({
+				filter: newFilter,
+				filters: newFilters
+			});
+		});
+		this.setState({
+			filter: newFilter,
+			filters: newFilters
+		});
+	}
+
+	handleIDFilterClick = ( event ) => {
+		event.stopPropagation();
+		let newFilter = copy( this.state.filter );
+		delete newFilter[ 'id' ];
+		if ( isEmptyObject( newFilter ) ) {
+			newFilter = null;
+		}
+		const newFilters = createFilters( newFilter, (newFilter, newFilters) =>{
+			this.setState({
+				filter: newFilter,
+				filters: newFilters
+			});
+		});
+
+		this.setState({
+			filter: newFilter,
+			filters: newFilters
+		});
 	}
 
 	buildActionsArray() {

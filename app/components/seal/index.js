@@ -196,7 +196,11 @@ class Seal extends Component {
 			className += ' seal-exit';
 		}
 		return (
-			<div onClick={this.triggerClick} ref={this.ref} style={style} className={className} >
+			<div
+				role="button" tabIndex={0}
+				onClick={this.triggerClick} onKeyPress={this.triggerClick}
+				ref={this.ref} style={style} className={className}
+			>
 				<div className="seal-outer-border" />
 				<div className="seal-fine-border" />
 				<div style={innerStyle} className="seal-inner-circle" />

@@ -48,7 +48,7 @@ class Guides extends Component {
 	renderCancelPanel() {
 		return (
 			<Card body>
-				<label>Cancel Tour</label>
+				<span className="title">Cancel Tour</span>
 				<p>
 					You are currently in a tour on the functionality of the editor. You will only be able to start a new tour if you cancel the current one. Do you wish to cancel it?
 				</p>
@@ -62,7 +62,7 @@ class Guides extends Component {
 	renderSelectionPanel() {
 		return (
 			<Card body>
-				<label>Select a Tour</label>
+				<span className="title">Select a Tour</span>
 				<Form>
 					<FormGroup>
 						<Form.Check
@@ -107,7 +107,7 @@ class Guides extends Component {
 		}
 
 		const leftColumn = <Col sm={5}>
-			<label> Markdown Cheatsheet</label>
+			<span className="title">Markdown Cheatsheet</span>
 			<Card body>
 				<Card.Title>Headers</Card.Title>
 				<pre>

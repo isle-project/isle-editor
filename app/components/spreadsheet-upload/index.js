@@ -149,8 +149,9 @@ class SpreadsheetUpload extends Component {
 				{this.props.title}
 			</Card.Header>
 			<Card.Body>
-				<label>Please upload a data set (CSV format):</label>
+				<label htmlFor="CSVUpload">Please upload a data set (CSV format):</label>
 				<input
+					id="CSVUpload"
 					type="file"
 					accept=".csv"
 					onChange={this.handleFileUpload}

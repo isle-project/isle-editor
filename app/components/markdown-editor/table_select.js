@@ -5,11 +5,10 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import noop from '@stdlib/utils/noop';
-import './table-select.css';
+import './table_select.css';
 
 
 // MAIN //
-
 
 class TableSelect extends Component {
 	constructor( props ) {
@@ -48,20 +47,30 @@ class TableSelect extends Component {
 			// Index is i - 1
 			cols = new Array( 8 );
 			for ( let j = 9; j > 0; j-- ) {
+				const handleClick = this.onClickFactory( i, j );
+				const handleMouseOver = this.onMouseOverFactory( i, j );
 				if ( j <= this.state.cols && i <= this.state.rows ) {
 					cols[ j-1 ] = <td
 						key={`${i}-${j}`}
 						className="grid_select"
-						onClick={this.onClickFactory(i, j)}
-						onMouseOver={this.onMouseOverFactory(i, j)}
-					>Cell</td>;
+					>
+						<span
+							role="button" onClick={handleClick} onKeyPress={handleClick}
+							onMouseOver={handleMouseOver} onFocus={handleMouseOver}
+							tabIndex={0}
+						>Cell</span>
+					</td>;
 				} else {
 					cols[ j-1 ] = <td
 						key={`${i}-${j}`}
 						className="cell"
-						onClick={this.onClickFactory(i, j)}
-						onMouseOver={this.onMouseOverFactory(i, j)}
-					>Cell</td>;
+					>
+						<span
+							role="button" tabIndex={0}
+							onClick={handleClick} onKeyPress={handleClick}
+							onMouseOver={handleMouseOver} onFocus={handleMouseOver}
+						>Cell</span>
+					</td>;
 				}
 			}
 			rows[ i-1 ] = <tr key={i}>{cols}</tr>;

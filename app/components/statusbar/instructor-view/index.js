@@ -115,8 +115,8 @@ class InstructorView extends Component {
 			return null;
 		}
 		const select = ( <select
-			style={{ width: '150px', backgroundColor: 'ghostwhite', padding: '2px' }}
-			onChange={this.onCohortChange}
+			id="instructor-view-cohort-select"
+			onChange={this.onCohortChange} onBlur={this.onCohortChange}
 			value={this.state.selectedCohort ? this.state.selectedCohort.title : 'all'}
 		>
 			<option value="all">All Cohorts</option>
@@ -130,7 +130,7 @@ class InstructorView extends Component {
 			})}
 		</select> );
 		return ( <div style={{ padding: '5px' }}>
-			<label style={{ marginRight: 5 }}>Only show users from:</label>
+			<label htmlFor="instructor-view-cohort-select" style={{ marginRight: 5 }}>Only show users from:</label>
 			{select}
 		</div> );
 	}
@@ -213,15 +213,17 @@ class InstructorView extends Component {
 				</div>
 				<div className="instructor-view-bottom"></div>
 				<div className="instructor-view-handler"
-					onClick={this.toggleBar}
-					onMouseOver={this.onMouseOver}
-					onMouseOut={this.onMouseOut}
+					role="button" tabIndex={0}
+					onClick={this.toggleBar} onKeyPress={this.toggleBar}
+					onMouseOver={this.onMouseOver} onFocus={this.onMouseOver}
+					onMouseOut={this.onMouseOut} onBlur={this.onMouseOut}
 					ref={( handler ) => { this.handler = handler; }}
 					style={{
 						right: this.state.hidden ? '105%' : '102%',
 						borderWidth: this.state.hidden ? '20px 34.6px 20px 0' : '20px 0 20px 34.6px',
 						borderColor: this.state.hidden ? 'transparent #fa9417 transparent transparent' : 'transparent transparent transparent silver'
-					}}>
+					}}
+				>
 				</div>
 			</div>
 		);
