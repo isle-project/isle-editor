@@ -151,7 +151,13 @@ class Weather extends Component {
 		}
 		return (
 			<div className="weather-temperature">{label}°
-				<span onClick={this.changeTemperatureType} className="weather-temperature-type">{type}</span>
+				<span
+					role="button"
+					onClick={this.changeTemperatureType}
+					onKeyPress={this.changeTemperatureType}
+					className="weather-temperature-type"
+					tabIndex={0}
+				>{type}</span>
 			</div>
 		);
 	}

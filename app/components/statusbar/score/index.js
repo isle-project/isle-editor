@@ -83,6 +83,7 @@ class Score extends Component {
 				<Tooltip placement="bottom" tooltip="Achievement points" >
 					<div
 						className="statusbar-score"
+						role="button"
 						ref={( div ) => {
 							if ( div ) {
 								const rect = div.getBoundingClientRect();
@@ -91,7 +92,8 @@ class Score extends Component {
 								}
 							}
 						}}
-						onClick={this.handleClick}
+						onClick={this.handleClick} onKeyPress={this.handleClick}
+						tabIndex={0}
 					>
 						{this.state.score}
 					</div>

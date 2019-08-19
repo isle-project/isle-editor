@@ -28,6 +28,7 @@
 	background-size: 80px 100%;
 	border-radius: 50%;
 	opacity: 0.8;
+	border-color: transparent;
 }
 
 .wikipedia-logo:hover {

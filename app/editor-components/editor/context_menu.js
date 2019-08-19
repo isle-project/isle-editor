@@ -78,10 +78,12 @@ class EditorContextMenu extends Component {
 			onClick={this.handleContextMenuClick}
 		>
 			{obj.name}
-			<div
+			<button
 				className="fa fa-cogs"
 				style={{
-					float: 'right'
+					float: 'right',
+					border: 'none',
+					background: 'none'
 				}}
 				onClick={this.handleCustomInsertClick}
 			/>

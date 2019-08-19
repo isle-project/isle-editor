@@ -119,10 +119,10 @@ class Wikipedia extends Component {
 	renderLogo() {
 		if ( !this.props.invisible ) {
 			return (
-				<div
+				<button
 					onClick={this.handleClick}
 					className="wikipedia-logo">
-				</div>
+				</button>
 			);
 		}
 	}
@@ -134,6 +134,7 @@ class Wikipedia extends Component {
 		return (
 			<div className="wikipedia-result">
 				<iframe
+					title="Wikipedia Page"
 					src={this.state.response}
 					width="100%"
 					height={600}

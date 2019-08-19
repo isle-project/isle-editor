@@ -68,6 +68,8 @@
 	margin-left: 2px;
 	vertical-align: super;
 	color: darkred;
+	border: none;
+	background: none;
 }
 
 .weather-temperature-type:hover {

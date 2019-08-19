@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
+import FormLabel from 'react-bootstrap/FormLabel';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
@@ -156,7 +157,7 @@ class SurveyGenerator extends Component {
 					<Card.Title as="h2">Survey Generator</Card.Title>
 					<FormGroup>
 						<Row>
-							<Col md={3}><label>Question Type:</label></Col>
+							<Col md={3}><FormLabel>Question Type:</FormLabel></Col>
 							<Col md={9}>
 								<SelectInput options={[ 'multiple-choice', 'number', 'free-text' ]} onChange={this.setType} />
 							</Col>
