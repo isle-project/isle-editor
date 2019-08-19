@@ -347,7 +347,7 @@ class Quiz extends Component {
 		return (
 			<Card className="center" style={{ width: '75%' }}>
 				<FormGroup className="center" >
-					<label>Please indicate how confident you are in your answer(s):</label>
+					<Form.Label>Please indicate how confident you are in your answer(s):</Form.Label>
 					<br />
 					<Form.Check
 						type="radio"

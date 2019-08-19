@@ -6,6 +6,9 @@
 
 .calc-hide-button {
 	float: right;
+	border: none;
+	background: none;
+	color: #2e4468;
 }
 
 .calc-hide-button:hover {

@@ -31,6 +31,7 @@ class StickyNote extends Component {
 		super( props );
 
 		this.textareaRef = React.createRef();
+		this.titleInputRef = React.createRef();
 
 		let body = null;
 		let title = null;
@@ -144,18 +145,22 @@ class StickyNote extends Component {
 	editTitle = () => {
 		this.setState({
 			editTitle: true
+		}, () => {
+			this.titleInputRef.current.focus();
 		});
 	}
 
 	editBody = () => {
 		this.setState({
 			editBody: true
+		}, () => {
+			this.textareaRef.current.focus();
 		});
 	}
 
 	showTitle = () => {
 		return (
-			<div onClick={this.editTitle} className="sticky-note-title editable">
+			<div role="button" tabIndex={0} onClick={this.editTitle} onKeyPress={this.editTitle} className="sticky-note-title editable">
 				{this.state.title}
 			</div>
 		);
@@ -218,12 +223,13 @@ class StickyNote extends Component {
 			<div className="sticky-note-title">
 				<input
 					className="sticky-note-editable-title noDrag"
-					onKeyUp={this.checkTitle}
+					onKeyDown={this.checkTitle}
 					onBlur={this.handleTitleBlur}
 					onChange={this.handleTitleChange}
 					type="text"
 					name="fname"
 					value={this.state.title}
+					ref={this.titleInputRef}
 				/>
 			</div>
 		);
@@ -231,7 +237,11 @@ class StickyNote extends Component {
 
 	showBody = () => {
 		return (
-			<div onClick={this.editBody} className="sticky-note-body editable">
+			<div
+				className="sticky-note-body editable"
+				role="button" onClick={this.editBody} onKeyPress={this.editBody}
+				tabIndex={0}
+			>
 				{this.state.body}
 			</div>
 		);
@@ -273,7 +283,12 @@ class StickyNote extends Component {
 
 	removeButton = () => {
 		return (
-			<div onClick={this.remove} className="sticky-note-remove-button">×</div>
+			<div
+				className="sticky-note-remove-button"
+				role="button"
+				tabIndex={0}
+				onClick={this.remove} onKeyPress={this.remove}
+			>×</div>
 		);
 	}
 
@@ -290,13 +305,24 @@ class StickyNote extends Component {
 			className += ' sticky-note-callback';
 		}
 		const out = <div className="sticky-note-outer" style={style}>
-			<div onClick={this.triggerClick} className={className}>
+			<div
+				onClick={this.triggerClick} className={className}
+				onKeyPress={this.triggerClick} tabIndex={0} role="button"
+			>
 				<div className="sticky-note-wrapper">
 					<div className="sticky-note-controls">
-						{this.props.minimizable ? <div onClick={this.minimize} className="sticky-note-minimizable">–</div> : null }
+						{this.props.minimizable ? <div
+							onClick={this.minimize} className="sticky-note-minimizable"
+							tabIndex={0} role="button" onKeyPress={this.minimize}
+						>–</div> : null }
 						{ this.props.removable ? this.removeButton() : null }
 					</div>
-					{ this.props.removable ? <div onClick={this.remove} title="Click to remove note" className="sticky-note-pin-image-map" /> : null }
+					{ this.props.removable ? <div
+						role="button" tabIndex={0}
+						onClick={this.remove} title="Click to remove note"
+						className="sticky-note-pin-image-map"
+						onKeyPress={this.remove}
+					/> : null }
 					{ this.props.editable ? this.showEditableContent() : this.showContent() }
 				</div>
 			</div>

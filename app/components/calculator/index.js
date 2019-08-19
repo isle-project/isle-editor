@@ -205,7 +205,7 @@ class Calculator extends Component {
 			<span>
 				Calculator
 				{ this.props.onHide ?
-					<span className="calc-hide-button fa fa-times" onClick={this.props.onHide} /> :
+					<button className="calc-hide-button fa fa-times" onClick={this.props.onHide} /> :
 					null
 				}
 			</span>
