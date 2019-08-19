@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import PropTypes from 'prop-types';
+import ReactDraggable from 'react-draggable';
 import Principles from './principles.js';
 import Shorthand from './shorthand.js';
 import TextEffects from './text-effects.js';
@@ -87,8 +88,9 @@ class AnimationHelp extends Component {
 		const style = {
 			animation: infinite
 		};
+		const fcn = () => this.passCommand( item.command );
 		return (
-			<div onMouseOver={() => this.passCommand(item.command)} style={{ width: '100%' }}>
+			<div onMouseOver={fcn} onFocus={fcn} style={{ width: '100%' }}>
 				<h4>{item.name}</h4>
 				<div style={style} className="cube"></div>
 				<div className="codeBlock"><code>animation: {item.command}</code></div>
@@ -114,8 +116,9 @@ class AnimationHelp extends Component {
 		const style = {
 			animation: infinite
 		};
+		const fcn = () => this.passCommand( item.command );
 		return (
-			<div onMouseOver={()=>this.passCommand(item.command)} style={{ width: '100%' }}>
+			<div onMouseOver={fcn} onFocus={fcn} style={{ width: '100%' }}>
 				<h4>{item.name}</h4>
 				<div style={style} className="textCommand">Text Command</div>
 				<div className="codeBlock">
@@ -183,27 +186,49 @@ class AnimationHelp extends Component {
 	renderMenu() {
 		return (
 			<div className="menu">
-				<div onClick={()=>this.setPage(1)} className="menu-item">ANIMATIONS</div>
-				<div onClick={()=>this.setPage(4)} className="menu-item">TEXT ANIMATIONS</div>
-				<div onClick={()=>this.setPage(5)} className="menu-item">TEXT EFFECTS</div>
-				<div onClick={()=>this.setPage(2)} className="menu-item">SHORTHAND</div>
-				<div onClick={()=>this.setPage(3)} className="menu-item">PRINCIPLES</div>
+				<div role="menuitem" tabIndex={0}
+					onClick={() => this.setPage(1)}
+					onKeyDown={() => this.setPage(1)}
+					className="menu-item"
+				>ANIMATIONS</div>
+				<div role="menuitem" tabIndex={0}
+					onClick={() => this.setPage(4)}
+					onKeyDown={() => this.setPage(4)}
+					className="menu-item"
+				>TEXT ANIMATIONS</div>
+				<div role="menuitem" tabIndex={0}
+					onClick={() => this.setPage(5)}
+					onKeyDown={() => this.setPage(5)}
+					className="menu-item"
+				>TEXT EFFECTS</div>
+				<div role="menuitem" tabIndex={0}
+					onClick={()=>this.setPage(2)}
+					onKeyDown={() => this.setPage(2)}
+					className="menu-item"
+				>SHORTHAND</div>
+				<div role="menuitem" tabIndex={0}
+					onClick={()=>this.setPage(3)}
+					onKeyDown={() => this.setPage(3)}
+					className="menu-item"
+				>PRINCIPLES</div>
 			</div>
 		);
 	}
 
 	render() {
 		return (
-			<div className="animation-helper" >
-				<div onClick={this.props.onHide} className="exit">x</div>
-				<h1>AnimationHelp</h1>
-				<hr />
-				{ this.renderMenu() }
-				<hr />
-				<div className="animation-help">
-				{ this.renderContent() }
+			<ReactDraggable>
+				<div className="animation-helper" >
+					<button onClick={this.props.onHide} className="exit">x</button>
+					<h1>AnimationHelp</h1>
+					<hr />
+					{ this.renderMenu() }
+					<hr />
+					<div className="animation-help">
+					{ this.renderContent() }
+					</div>
 				</div>
-			</div>
+			</ReactDraggable>
 		);
 	}
 }
