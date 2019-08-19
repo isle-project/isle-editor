@@ -69,8 +69,12 @@ const eslintOpts = {
 			'react/jsx-uses-react': 2,
 			'react/jsx-uses-vars': 2
 		},
+		'extends': [
+			'plugin:jsx-a11y/recommended'
+		],
 		'plugins': [
-			'react'
+			'react',
+			'jsx-a11y'
 		],
 		'settings': {
 			'react': {
