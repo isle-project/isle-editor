@@ -85,7 +85,8 @@
 	height: 20px;
 	background: darkgrey;
 	text-align: center;
-	font-family: Arial, Helvetica, sans-serif;
+	border: none;
+	cursor: pointer;
 }
 
 .chattime {

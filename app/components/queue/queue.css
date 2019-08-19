@@ -11,6 +11,8 @@
 
 .queue-hide-button {
 	float: right;
+	border: none;
+	background: none;
 }
 
 .queue-hide-button:hover {

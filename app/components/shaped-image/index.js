@@ -95,7 +95,16 @@ class ShapedImage extends Component {
 		}
 
 		return (
-			<img onClick={this.props.onClick} style={style} src={this.props.src} />
+			<span
+				onClick={this.props.onClick} onKeyPress={this.props.onClick}
+				role="button" tabIndex={0}
+			>
+				<img
+					style={style}
+					src={this.props.src}
+					alt={this.props.alt}
+				/>
+			</span>
 		);
 	}
 }
@@ -104,6 +113,7 @@ class ShapedImage extends Component {
 // PROPERTIES //
 
 ShapedImage.propTypes = {
+	alt: PropTypes.string,
 	background: PropTypes.bool,
 	margin: PropTypes.number,
 	onClick: PropTypes.func,
@@ -113,6 +123,7 @@ ShapedImage.propTypes = {
 };
 
 ShapedImage.defaultProps = {
+	alt: '',
 	background: false,
 	src: '',
 	margin: 10,

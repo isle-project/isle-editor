@@ -150,7 +150,7 @@ class Login extends Component {
 									name="email"
 									type="email"
 									placeholder="Email"
-									autocomplete="username"
+									autoComplete="username"
 									onChange={this.handleInputChange}
 									onKeyPress={this.handleKeyPress}
 									ref={( input ) => { this.emailInput = input; }}
@@ -166,7 +166,7 @@ class Login extends Component {
 									name="password"
 									type="password"
 									placeholder="Password"
-									autocomplete="current-password"
+									autoComplete="current-password"
 									onChange={this.handleInputChange}
 									onKeyPress={this.handleKeyPress}
 									ref={( input ) => { this.passwordInput = input; }}

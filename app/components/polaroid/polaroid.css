@@ -63,6 +63,8 @@
 	height: 48px;
 	cursor: crosshair;
 	z-index: 2;
+	background: none;
+	border: none;
 }
 
 .polaroid-stain {

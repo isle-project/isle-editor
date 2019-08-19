@@ -205,6 +205,12 @@ mark {
 	display: block;
 }
 
+.title {
+	font-weight: 600;
+	font-stretch: extra-expanded;
+	color: #2e4468;
+}
+
 .focus-glow {
 	box-shadow: 0px 0px 15px 5px gold !important;
 }
@@ -347,6 +353,12 @@ mark {
 
 .clickable {
 	background: transparent;
+	cursor: pointer;
+}
+
+.empty-button {
+	background: none;
+	border: none;
 	cursor: pointer;
 }
 

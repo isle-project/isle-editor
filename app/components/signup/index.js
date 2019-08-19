@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
+import FormLabel from 'react-bootstrap/FormLabel';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import Overlay from 'react-bootstrap/Overlay';
@@ -130,14 +131,14 @@ class Signup extends Component {
 								controlId="formHorizontalEmail"
 							>
 								<Col sm={2}>
-									<label>Email</label>
+									<FormLabel>Email</FormLabel>
 								</Col>
 								<Col sm={10}>
 									<FormControl
 										name="email"
 										type="email"
 										placeholder="Enter Email"
-										autocomplete="username"
+										autoComplete="username"
 										onChange={this.handleInputChange}
 										isInvalid={invalidEmail}
 									/>
@@ -153,7 +154,7 @@ class Signup extends Component {
 								controlId="signup-form-name"
 							>
 								<Col sm={2}>
-									<label>Name</label>
+									<FormLabel>Name</FormLabel>
 								</Col>
 								<Col sm={10}>
 									<FormControl
@@ -175,14 +176,14 @@ class Signup extends Component {
 								controlId="signup-form-password"
 							>
 								<Col sm={2}>
-									<label>Password</label>
+									<FormLabel>Password</FormLabel>
 								</Col>
 								<Col sm={10}>
 									<FormControl
 										name="password"
 										type="password"
 										placeholder="Choose Password"
-										autocomplete="new-password"
+										autoComplete="new-password"
 										onChange={this.handleInputChange}
 										maxLength={30}
 										minLength={6}

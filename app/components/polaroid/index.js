@@ -102,12 +102,18 @@ class Polaroid extends Component {
 		if ( this.state.touched === true ) {
 			innerImage = 'polaroid-image polaroid-touched';
 		}
-		const out = <div id={this.props.id} onMouseOver={this.touch} onMouseOut={this.untouch} onClick={this.trigger} style={this.props.style} className={imageClass} >
+		const out = <div
+			id={this.props.id} role="button" tabIndex={0}
+			onMouseOver={this.touch} onFocus={this.touch}
+			onMouseOut={this.untouch} onBlur={this.untouch}
+			onClick={this.trigger} onKeyPress={this.trigger}
+			style={this.props.style} className={imageClass}
+		>
 			<div className="polaroid-wrapper">
 				{this.props.stain ? <div className="polaroid-stain" /> : null}
 				<div style={background} className={innerImage} />
 				{this.props.showPin ? <div className="polaroid-pin" /> : null}
-				{this.props.removable ? <div onClick={this.remove} className="pin-image-map" /> : null }
+				{this.props.removable ? <button onClick={this.remove} className="pin-image-map" /> : null }
 			</div>
 		</div>;
 		if ( this.props.draggable ) {

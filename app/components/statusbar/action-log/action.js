@@ -16,16 +16,19 @@ const Action = ( props ) => {
 	return (
 		<ListGroupItem style={{ background: props.backgroundColor, color: props.color, fontSize: 15, fontFamily: 'Open Sans', padding: '2px 1px 2px 1px', lineHeight: 1 }}>
 			<div className="actionNote">
-				<label>Time:&nbsp;</label>
+				<span className="title">Time:&nbsp;</span>
 				{ new Date( props.absoluteTime ).toLocaleTimeString() }|
-				<label>User:&nbsp;</label><span className="clickable" onClick={props.clickFactory( 'email', props.email )} >{ props.email }</span>
+				<label htmlFor="action-email-button">User:&nbsp;</label>
+				<button id="action-email-button" className="empty-button" onClick={props.clickFactory( 'email', props.email )} >{ props.email }</button>
 			</div>
 			<div className="actionNote">
-				<label>ID:&nbsp;</label><span className="clickable" onClick={props.clickFactory( 'id', props.id )} >{ props.id }</span> |
-				<label>Type:&nbsp;</label><span className="clickable" onClick={props.clickFactory( 'type', props.type )} >{ props.type }</span>
+				<label htmlFor="action-id-button">ID:&nbsp;</label>
+				<button id="action-id-button" className="empty-button" onClick={props.clickFactory( 'id', props.id )} >{ props.id }</button> |
+				<label htmlFor="action-type-button">Type:&nbsp;</label>
+				<button id="action-type-button" className="empty-button" onClick={props.clickFactory( 'type', props.type )} >{ props.type }</button>
 			</div>
 			<div className="actionNote">
-				<label>Value:&nbsp;</label>
+				<span className="title">Value:&nbsp;</span>
 				<span style={{ 'userSelect': 'text' }} >
 					{value}
 				</span>

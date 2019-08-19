@@ -200,7 +200,7 @@ class Queue extends Component {
 			<span>
 				Question Queue
 				{ this.props.onHide ?
-					<span className="queue-hide-button fa fa-times" onClick={this.props.onHide} /> :
+					<button className="queue-hide-button fa fa-times" onClick={this.props.onHide} /> :
 					null
 				}
 			</span>
@@ -244,7 +244,12 @@ class Queue extends Component {
 									return '';
 								},
 								Cell: row => {
-									return <img className="queue-table-pic" src={`${session.server}/thumbnail/${row.value}`} />;
+									return (
+										<img
+											className="queue-table-pic" alt="User thumbnail"
+											src={`${session.server}/thumbnail/${row.value}`}
+										/>
+									);
 								},
 								maxWidth: 46,
 								minWidth: 46,

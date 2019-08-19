@@ -98,7 +98,11 @@ class ShapedForm extends Component {
 			}
 		}
 		return (
-			<div onClick={this.props.onClick} style={style} className="shaped-form">
+			<div
+				role="button" tabIndex={0} onKeyPress={this.props.onClick}
+				onClick={this.props.onClick} style={style}
+				className="shaped-form"
+			>
 				{ this.props.children }
 			</div>
 		);

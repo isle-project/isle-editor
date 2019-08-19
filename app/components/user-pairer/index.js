@@ -15,6 +15,7 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import SessionContext from 'session/context.js';
 import AssignmentModal from './assignment_modal.js';
 import { ASSIGNMENT_CLEARED, USERS_ASSIGNED, INDIVIDUAL_ASSIGNED, REMOVE_ASSIGNMENT } from 'constants/actions.js';
+import './user_pairer.css';
 
 
 // MAIN //
@@ -111,8 +112,8 @@ class UserPairer extends Component {
 			return null;
 		}
 		const select = ( <select
-			style={{ width: '150px', backgroundColor: 'ghostwhite', padding: '2px' }}
-			onChange={this.onCohortChange}
+			className="user-pairer-select"
+			onChange={this.onCohortChange} onBlur={this.onCohortChange}
 			value={this.state.selectedCohort ? this.state.selectedCohort.title : 'all'}
 		>
 			<option value="all">All Cohorts</option>
@@ -126,7 +127,7 @@ class UserPairer extends Component {
 			})}
 		</select> );
 		return ( <div style={{ padding: '5px' }}>
-			<label style={{ marginRight: 5 }}>Only pair users from:</label>
+			<span className="user-pairer-title">Only pair users from:</span>
 			{select}
 		</div> );
 	}

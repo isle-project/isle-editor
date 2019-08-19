@@ -177,18 +177,21 @@ class Chat extends Component {
 			}}>
 				<div
 					className="chat-div"
+					role="button" tabIndex={0}
 					style={{
 						opacity: this.state.opened ? 1.0 : 0.7
 					}}
 					ref={( chat ) => { this.chat = chat; }}
 					onMouseOver={this.onMouseOver}
+					onFocus={this.onMouseOver}
 					onMouseOut={this.onMouseOut}
-					onClick={this.toggleChat}
+					onBlur={this.onMouseOut}
+					onClick={this.toggleChat} onKeyPress={this.toggleChat}
 				>{chat.name}
 					<span className="chat-presence" style={{
 						display: this.state.hasNews ? 'inline' : 'none'
 					}} />
-					<span className="chatexit" onClick={this.closeChat}>X</span>
+					<button className="chatexit" onClick={this.closeChat}>X</button>
 				</div>
 				{this.renderMembers()}
 				{this.renderChatBody()}
