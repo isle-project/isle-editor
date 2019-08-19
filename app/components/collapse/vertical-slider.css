@@ -4,6 +4,11 @@
 	transition: all 0.3;
 }
 
+.vertical-slider-header {
+	border: none;
+	background: none;
+}
+
 .vs-display {
 	transition: all 0.5s ease-out;
 	height: auto;

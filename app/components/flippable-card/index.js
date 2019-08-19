@@ -134,7 +134,11 @@ class FlippableCard extends Component {
 				...this.props.cardStyles.back
 			}
 		};
-		const out = <div id={this.props.id} onClick={this.interaction} className="react-card-flip" style={styles.container}>
+		const out = <div
+			id={this.props.id} role="button" tabIndex={0}
+			onClick={this.interaction} onKeyPress={this.interaction}
+			className="react-card-flip" style={styles.container}
+		>
 			<div className="react-card-flipper" style={styles.flipper}>
 				<div className="react-card-front" style={styles.front}>
 					{this.props.children[ 0 ]}

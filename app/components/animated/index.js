@@ -202,7 +202,11 @@ class Animated extends Component {
 
 	render() {
 		return (
-			<div onMouseOut={this.mouseOut} onMouseOver={this.mouseOver} style={this.state.actualStyle}>
+			<div
+				onMouseOut={this.mouseOut} onBlur={this.mouseOut}
+				onMouseOver={this.mouseOver} onFocus={this.mouseOver}
+				style={this.state.actualStyle}
+			>
 				{this.props.children}
 			</div>
 		);

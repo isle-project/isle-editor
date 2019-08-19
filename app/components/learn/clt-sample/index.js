@@ -432,12 +432,12 @@ class SampleCLT extends Component {
 					removeButtons
 				/>
 				<p>
-					<label>Population { this.state.type === 'numeric' ? 'mean' : 'proportion' }: </label>
+					<span className="title">Population { this.state.type === 'numeric' ? 'mean' : 'proportion' }: </span>
 					{' '}
 					{this.state.trueMean.toFixed( 3 )}
 				</p>
 				<p>
-					<label>Population standard deviation: </label>
+					<span className="title">Population standard deviation: </span>
 					{' '}
 					{this.state.trueStdev.toFixed( 3 )}
 				</p>
@@ -489,7 +489,7 @@ class SampleCLT extends Component {
 							{ this.props.populationProbabilities ?
 								this.renderPopulationProbabilities() :
 								<div>
-									<Card><label>Drawn Samples</label></Card>
+									<Card><span className="title">Drawn Samples</span></Card>
 									<Card style={{ height: '400px', overflowY: 'scroll' }}>
 										<GridLayout
 											className="layout"
@@ -498,7 +498,12 @@ class SampleCLT extends Component {
 											rowHeight={30}
 										>
 											{this.state.plots.map( ( x, i ) => {
-												return ( <div key={i} onClick={this.enlargePlotFactory( i )}>
+												return ( <div
+													role="button"
+													key={i} tabIndex={0}
+													onClick={this.enlargePlotFactory( i )}
+													onKeyPress={this.enlargePlotFactory( i )}
+												>
 													{x}
 												</div> );
 											})}

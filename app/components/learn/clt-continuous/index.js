@@ -387,20 +387,20 @@ class ContinuousCLT extends Component {
 		default:
 		case 1:
 			populationParams = <div>
-				<p><label>Population mean: </label> <TeX raw={`\\tfrac{1}{2} (a + b) = ${( 0.5*( this.state.b + this.state.a ) ).toFixed( 3 )}`} /></p>
-				<p><label>Population standard deviation: </label> <TeX raw={`\\tfrac{1}{\\sqrt{12}}| b - a | = ${( ( 1.0/sqrt( 12.0 ) )*abs( this.state.b-this.state.a ) ).toFixed( 3 )}`} /> </p>
+				<p><span className="title">Population mean: </span> <TeX raw={`\\tfrac{1}{2} (a + b) = ${( 0.5*( this.state.b + this.state.a ) ).toFixed( 3 )}`} /></p>
+				<p><span className="title">Population standard deviation: </span> <TeX raw={`\\tfrac{1}{\\sqrt{12}}| b - a | = ${( ( 1.0/sqrt( 12.0 ) )*abs( this.state.b-this.state.a ) ).toFixed( 3 )}`} /> </p>
 			</div>;
 			break;
 		case 2:
 			populationParams = <div>
-				<p><label>Population mean: </label> <TeX raw={`\\tfrac{1}{\\lambda} = ${( 1/this.state.lambda ).toFixed( 3 )}`} /></p>
-				<p><label>Population standard deviation: </label> <TeX raw={`\\tfrac{1}{\\lambda} = ${( 1/this.state.lambda ).toFixed( 3 )}`} /> </p>
+				<p><span className="title">Population mean: </span> <TeX raw={`\\tfrac{1}{\\lambda} = ${( 1/this.state.lambda ).toFixed( 3 )}`} /></p>
+				<p><span className="title">Population standard deviation: </span> <TeX raw={`\\tfrac{1}{\\lambda} = ${( 1/this.state.lambda ).toFixed( 3 )}`} /> </p>
 			</div>;
 			break;
 		case 3:
 			populationParams = <div>
-				<p><label>Population mean: </label> <TeX raw={`\\mu = ${this.state.mu.toFixed( 3 )}`} /></p>
-				<p><label>Population standard deviation: </label> <TeX raw={`\\sigma = ${this.state.sigma.toFixed( 3 )}`} /> </p>
+				<p><span className="title">Population mean: </span> <TeX raw={`\\mu = ${this.state.mu.toFixed( 3 )}`} /></p>
+				<p><span className="title">Population standard deviation: </span> <TeX raw={`\\sigma = ${this.state.sigma.toFixed( 3 )}`} /> </p>
 			</div>;
 			break;
 		}
@@ -505,7 +505,7 @@ class ContinuousCLT extends Component {
 			});
 		}
 		return ( <Card body>
-			<label>Histogram of <TeX raw="\bar x" />&#39;s</label>
+			<span className="title">Histogram of <TeX raw="\bar x" />&#39;s</span>
 			{ this.state.xbars.length > 1 ?
 				<Plotly data={plotlyData} layout={{
 					width: 400,
@@ -534,18 +534,18 @@ class ContinuousCLT extends Component {
 			}} />
 			{ this.state.avgXBars ?
 				<p>
-					<label> Mean of <TeX raw="\bar x" />&#39;s: </label>
+					<span className="title"> Mean of <TeX raw="\bar x" />&#39;s: </span>
 					&nbsp;{this.state.avgXBars.toFixed( 3 )} (shown as the red line)
 				</p> : null
 			}
 			{ this.state.stdevXBars ?
 				<p>
-					<label>Standard deviation of <TeX raw="\bar x" />&#39;s: </label>
+					<span className="title">Standard deviation of <TeX raw="\bar x" />&#39;s: </span>
 					&nbsp;{this.state.stdevXBars.toFixed( 3 )}
 				</p> : null
 			}
 			<div>
-				<label><TeX raw="\bar{x}" /> Values </label>
+				<span className="title"><TeX raw="\bar{x}" /> Values </span>
 				{ this.state.xbars.length > 0 ? <pre style={{ 'fontFamily': 'monospace' }}>{makeVisibleData(this.state.xbars)}</pre> : null }
 			</div>
 		</Card> );
@@ -571,7 +571,12 @@ class ContinuousCLT extends Component {
 									rowHeight={30}
 								>
 									{this.state.histogram.map( ( x, i ) => {
-										return ( <div key={i} onClick={this.enlargePlotFactory( i )}>
+										return ( <div
+											role="button"
+											key={i} tabIndex={0}
+											onClick={this.enlargePlotFactory( i )}
+											onKeyPress={this.enlargePlotFactory( i )}
+										>
 											{x}
 										</div> );
 									})}

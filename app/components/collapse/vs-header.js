@@ -18,9 +18,9 @@ class VSHeader extends Component {
 
 	render() {
 		return (
-			<div onClick={this.props.onClick} className="vertical-slider-header">
+			<button onClick={this.props.onClick} className="vertical-slider-header">
 				{this.props.children}
-			</div>
+			</button>
 		);
 	}
 }

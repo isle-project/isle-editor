@@ -201,7 +201,7 @@ class DiscreteCLT extends Component {
 				<Container>
 					<Row>
 						<Col md={6}>
-							<label>Binomial Distribution</label>
+							<span className="title">Binomial Distribution</span>
 							<NumberInput
 								legend="n"
 								step={1} min={1} defaultValue={10} max={500}
@@ -217,9 +217,9 @@ class DiscreteCLT extends Component {
 							/>
 						</Col>
 						<Col md={6}>
-							<p><label>Population proportion</label> <TeX raw={`${this.state.p.toFixed( 3 )}`} /></p>
+							<p><span className="title">Population proportion</span> <TeX raw={`${this.state.p.toFixed( 3 )}`} /></p>
 							{this.props.showPopStdev ? <p>
-								<label>Population standard deviation:</label>
+								<span className="title">Population standard deviation:</span>
 								<TeX raw={`\\sqrt{ n \\cdot p \\cdot (1-p) } = ${sqrt( this.state.n * this.state.p*( 1-this.state.p ) ).toFixed( 3 )}`} />
 							</p> : null }
 							<ButtonGroup size="sm" >
@@ -272,7 +272,7 @@ class DiscreteCLT extends Component {
 					<Row>
 						<Col md={this.state.showDataDistributions ? 6 : 12}>
 							<Card body>
-								<label>Number of Samples: {this.state.phats.length} </label>
+								<span className="title">Number of Samples: {this.state.phats.length} </span>
 								<Button
 									variant="secondary" size="sm"
 									onClick={this.toggleDataDistributions}
@@ -282,7 +282,7 @@ class DiscreteCLT extends Component {
 								</Button>
 							</Card>
 							<Card body>
-								<label>Histogram of <TeX raw="\hat p" />&#39;s</label>
+								<span className="title">Histogram of <TeX raw="\hat p" />&#39;s</span>
 								{ this.state.phats.length > 1 ?
 									<Plotly data={plotlyData} layout={{
 										width: 400,
@@ -311,13 +311,13 @@ class DiscreteCLT extends Component {
 								}} />
 								{ this.state.avgPHats ?
 									<p>
-										<label> Mean of <TeX raw="\hat p" />&#39;s: </label>
+										<span className="title"> Mean of <TeX raw="\hat p" />&#39;s: </span>
 										&nbsp;{this.state.avgPHats.toFixed( 3 )} (shown as the blue line)
 									</p> : null
 								}
 								{ this.state.stdevPHats ?
 									<p>
-										<label>Standard deviation of <TeX raw="\hat p" />&#39;s: </label>
+										<span className="title">Standard deviation of <TeX raw="\hat p" />&#39;s: </span>
 										&nbsp;{this.state.stdevPHats.toFixed( 3 )}
 									</p> : null
 								}
@@ -332,7 +332,13 @@ class DiscreteCLT extends Component {
 									rowHeight={30}
 								>
 									{this.state.barplots.map( ( x, i ) => {
-										return ( <div key={i} onClick={this.enlargePlotFactory( i )} style={{ border: '2px solid darkgray' }}>
+										return ( <div
+											role="button" tabIndex={0}
+											key={i}
+											onKeyPress={this.enlargePlotFactory( i )}
+											onClick={this.enlargePlotFactory( i )}
+											style={{ border: '2px solid darkgray' }}
+										>
 											{x}
 										</div> );
 									})}
