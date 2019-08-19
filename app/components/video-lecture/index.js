@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
@@ -8,6 +8,7 @@ import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import FreeTextQuestion from 'components/free-text-question';
 import MultipleChoiceQuestion from 'components/multiple-choice-question';
+import KeyControls from 'components/key-controls';
 import MatchListQuestion from 'components/match-list-question';
 import NumberQuestion from 'components/number-question';
 import OrderQuestion from 'components/order-question';
@@ -74,12 +75,14 @@ class VideoLecture extends Component {
 	}
 
 	incrementStep = () => {
+		debug( 'Add one step to '+this.state.active );
 		this.setState({
 			active: this.state.active + 1
 		});
 	}
 
 	decrementStep = () => {
+		debug( 'Go back one step from '+this.state.active );
 		this.setState({
 			active: this.state.active - 1
 		});
@@ -98,7 +101,9 @@ class VideoLecture extends Component {
 		const elem = this.props.steps[ this.state.active ];
 		if ( !elem ) {
 			return (
-				<div style={{ height: '98vh', position: 'relative' }}>
+				<div style={{ height: '98vh', position: 'relative' }} ref={( div ) => {
+					this.videoLectureWrapper = div;
+				}}>
 					<Alert variant="success" style={{ top: '33%' }}>
 						<h1>You have reached the end of this video lecture.</h1>
 						<Button
@@ -113,7 +118,9 @@ class VideoLecture extends Component {
 		}
 		if ( isString( elem ) ) {
 			return (
-				<div style={{ position: 'relative' }}>
+				<div style={{ position: 'relative' }} ref={( div ) => {
+					this.videoLectureWrapper = div;
+				}}>
 					<VideoPlayer
 						url={elem}
 						onEnded={this.incrementStep}
@@ -123,13 +130,19 @@ class VideoLecture extends Component {
 					/>
 					{ this.state.active > 0 ? <div
 						onClick={this.decrementStep}
+						role="button"
 						className="video-lecture-back-button"
+						tabIndex={0}
+						onKeyPress={this.decrementStep}
 					>
 						<i className="fas fa-chevron-circle-left video-lecture-arrow"></i>
 					</div> : null }
 					<div
 						onClick={this.incrementStep}
+						role="button"
 						className="video-lecture-next-button"
+						tabIndex={0}
+						onKeyPress={this.incrementStep}
 					>
 						<i className="fas fa-chevron-circle-right video-lecture-arrow"></i>
 					</div>
@@ -137,7 +150,9 @@ class VideoLecture extends Component {
 			);
 		}
 		return (
-			<div>
+			<div ref={( div ) => {
+				this.videoLectureWrapper = div;
+			}}>
 				<elem.type
 					{...elem.props}
 					onSubmit={this.markCompleted}
@@ -162,7 +177,18 @@ class VideoLecture extends Component {
 	}
 
 	render() {
-		return this.renderStep();
+		return (
+			<Fragment>
+				{this.renderStep()}
+				<KeyControls
+					container={this.videoLectureWrapper}
+					actions={{
+						'ArrowRight': this.incrementStep,
+						'ArrowLeft': this.decrementStep
+					}}
+				/>
+			</Fragment>
+		);
 	}
 }
 
