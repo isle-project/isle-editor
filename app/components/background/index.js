@@ -181,7 +181,7 @@ class Background extends Component {
 		return (
 			<div>
 				<div className="enter-foreground" style={foreground} >
-					<img style={low} src={this.state.foregroundImage} />
+					<img style={low} alt="" src={this.state.foregroundImage} />
 				</div>
 			</div>
 		);
@@ -197,10 +197,10 @@ class Background extends Component {
 		return (
 			<div>
 				<div className="exit-foreground">
-					<img style={low} src={this.state.foregroundImage} />
+					<img style={low} alt="" src={this.state.foregroundImage} />
 				</div>
 				<div className="exit-background" style={background} >
-					<img style={lowB} src={this.state.backgroundImage} />
+					<img style={lowB} alt="" src={this.state.backgroundImage} />
 				</div>
 			</div>
 		);
@@ -216,10 +216,10 @@ class Background extends Component {
 		return (
 			<div>
 				<div className="enter-foreground" style={foreground} >
-					<img style={low} src={this.state.foregroundImage} />
+					<img style={low} alt="" src={this.state.foregroundImage} />
 				</div>
 				<div className="enter-background">
-					<img style={lowB} src={this.state.backgroundImage} />
+					<img style={lowB} alt="" src={this.state.backgroundImage} />
 				</div>
 			</div>
 		);

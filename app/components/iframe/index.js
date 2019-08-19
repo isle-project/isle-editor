@@ -60,6 +60,7 @@ class IFrame extends Component {
 					src={this.props.src}
 					width={this.width}
 					height={this.height}
+					title={this.props.title}
 				/> : null }
 			</div>
 		);
@@ -69,8 +70,13 @@ class IFrame extends Component {
 
 // TYPES //
 
+IFrame.defaultProps = {
+	title: 'An iFrame'
+};
+
 IFrame.propTypes = {
-	src: PropTypes.string.isRequired
+	src: PropTypes.string.isRequired,
+	title: PropTypes.string
 };
 
 IFrame.defaultProps = {};

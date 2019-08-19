@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/media-has-caption */
+
 // MODULES //
 
 import React, { Component } from 'react';
@@ -475,13 +477,13 @@ class Recorder extends Component {
 				>{ !this.state.recording ? 'REC' : '' }</div>
 				{ this.state.selectedSources.length > 0 ?
 					<div className="recorder-button-container">
-						<div
+						<button
 							className="recorder-button"
 							onClick={this.handleClick}
 							style={{
 								background: recordingColor
 							}}
-						></div>
+						></button>
 					</div> : null }
 				{ !this.state.finished && !this.state.recording ?
 					<ToggleButtonGroup

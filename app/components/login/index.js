@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
+import FormLabel from 'react-bootstrap/FormLabel';
 import Form from 'react-bootstrap/Form';
 import Overlay from 'react-bootstrap/Overlay';
 import Modal from 'react-bootstrap/Modal';
@@ -142,7 +143,7 @@ class Login extends Component {
 					<Form horizontal>
 						<FormGroup controlId="form-email" >
 							<Col sm={2}>
-								<label>Email</label>
+								<FormLabel>Email</FormLabel>
 							</Col>
 							<Col sm={10}>
 								<FormControl
@@ -158,7 +159,7 @@ class Login extends Component {
 						</FormGroup>
 						<FormGroup controlId="form-password" >
 							<Col sm={2}>
-								<label>Password</label>
+								<FormLabel>Password</FormLabel>
 							</Col>
 							<Col sm={10}>
 								<FormControl
@@ -175,7 +176,7 @@ class Login extends Component {
 					</Form>
 				</Modal.Body>
 				<Modal.Footer>
-					<a href="" style={{ float: 'left', marginTop: '8px' }} onClick={this.handleForgotPassword}>Forgot password?</a>
+					<button className="forgot-password-button" onClick={this.handleForgotPassword}>Forgot password?</button>
 					<Button
 						variant="primary"
 						type="submit"
