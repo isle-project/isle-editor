@@ -120,6 +120,7 @@ class Video extends Component {
 			width: props.width,
 			height: props.height,
 			marginTop: '30px',
+			marginBottom: '30px',
 			...props.style
 		};
 		if ( props.center ) {
