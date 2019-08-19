@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
+import FormLabel from 'react-bootstrap/FormLabel';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Card from 'react-bootstrap/Card';
 import { remote, shell } from 'electron';
@@ -149,7 +150,7 @@ class ExportLesson extends Component {
 				<Card.Body>
 					<p>Package and export the currently opened lesson into a single-page application viewable in any web-browser.</p>
 					<FormGroup>
-						<label>Settings</label>
+						<FormLabel>Settings</FormLabel>
 						<CheckboxInput
 							legend="Minify code"
 							onChange={( value ) => {
@@ -170,7 +171,7 @@ class ExportLesson extends Component {
 						/>
 					</FormGroup>
 					<FormGroup>
-						<label>Directory Name</label>
+						<FormLabel>Directory Name</FormLabel>
 						<FormControl
 							type="text"
 							placeholder="Enter text"

@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Card from 'react-bootstrap/Card';
+import FormLabel from 'react-bootstrap/FormLabel';
 
 
 // MAIN //
@@ -91,7 +92,7 @@ class SettingsLogin extends Component {
 					{ localStorage.getItem( 'token' ) === null ?
 						<Form>
 							<FormGroup>
-								<label>Server Address</label>
+								<FormLabel>Server Address</FormLabel>
 								<FormControl
 									name="server"
 									type="text"
@@ -102,7 +103,7 @@ class SettingsLogin extends Component {
 								/>
 							</FormGroup>
 							<FormGroup>
-								<label>Email</label>
+								<FormLabel>Email</FormLabel>
 								<FormControl
 									name="email"
 									type="text"
@@ -113,7 +114,7 @@ class SettingsLogin extends Component {
 								/>
 							</FormGroup>
 							<FormGroup>
-								<label>Password</label>
+								<FormLabel>Password</FormLabel>
 								<FormControl
 									name="password"
 									type="password"

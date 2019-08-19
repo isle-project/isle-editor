@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
+import FormLabel from 'react-bootstrap/FormLabel';
 import Modal from 'react-bootstrap/Modal';
 import Card from 'react-bootstrap/Card';
 import FormData from 'form-data';
@@ -313,7 +314,7 @@ class UploadLesson extends Component {
 		if ( this.state.namespaces.length > 0 ) {
 			formGroups = <Fragment>
 				<FormGroup>
-					<label>Select Course</label>
+					<FormLabel>Select Course</FormLabel>
 					<FormControl
 						name="namespaceName"
 						onChange={this.handleSelectChange}
@@ -329,7 +330,7 @@ class UploadLesson extends Component {
 				<FormGroup
 					controlId="lesson-name"
 				>
-					<label>Lesson Name</label>
+					<FormLabel>Lesson Name</FormLabel>
 					<FormControl
 						name="lessonName"
 						type="text"
@@ -345,7 +346,7 @@ class UploadLesson extends Component {
 					</FormControl.Feedback>
 				</FormGroup>
 				<FormGroup>
-					<label>Settings</label>
+					<FormLabel>Settings</FormLabel>
 					<CheckboxInput
 						legend="Minify code"
 						onChange={( value ) => {
