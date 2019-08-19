@@ -1,3 +1,10 @@
 .configurator-checkbox {
 	width: max-content;
 }
+
+.configurator-title {
+	font-weight: 600;
+	font-stretch: extra-expanded;
+	color: #2e4468;
+	margin-bottom: 0px;
+}

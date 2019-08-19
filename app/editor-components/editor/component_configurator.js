@@ -239,7 +239,7 @@ class ComponentConfigurator extends Component {
 		};
 		/* eslint-disable react/no-danger */
 		const componentDescription = <div>
-			<label style={{ marginBottom: 0 }}dangerouslySetInnerHTML={innerHTML}></label>
+			<span className="configurator-title" dangerouslySetInnerHTML={innerHTML}></span>
 		</div>;
 		/* eslint-enable react/no-danger */
 		return (
