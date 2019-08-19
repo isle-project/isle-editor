@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactDraggable from 'react-draggable';
 import noop from '@stdlib/utils/noop';
+import Draggable from 'components/draggable';
 import SessionContext from 'session/context.js';
 import { DELETE_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from 'constants/actions.js';
 import './sticky_note.css';
@@ -328,11 +328,11 @@ class StickyNote extends Component {
 			</div>
 		</div>;
 		if ( this.props.draggable ) {
-			return ( <ReactDraggable
+			return ( <Draggable
 				bounds="#Lesson"
 				cancel=".noDrag"
 				onStop={this.handleDragStop}
-			>{out}</ReactDraggable> );
+			>{out}</Draggable> );
 		}
 		return out;
 	}
