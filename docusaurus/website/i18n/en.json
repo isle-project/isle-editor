@@ -272,22 +272,6 @@
         "title": "Sortable Tree",
         "sidebar_label": "Sortable Tree"
       },
-      "students/answering-questions": {
-        "title": "Answering Questions in ISLE",
-        "sidebar_label": "Answering Questions"
-      },
-      "students/data": {
-        "title": "Working with Data and the Toolbox",
-        "sidebar_label": "Data"
-      },
-      "students/getting-started": {
-        "title": "Getting Started",
-        "sidebar_label": "Getting Started"
-      },
-      "students/reports": {
-        "title": "Writing Reports and Data Analyses",
-        "sidebar_label": "Reports"
-      },
       "survey-generator": {
         "title": "Survey Generator",
         "sidebar_label": "Survey Generator"
@@ -386,7 +370,6 @@
     "categories": {
       "Overview": "Overview",
       "Tutorials": "Tutorials",
-      "For Students": "For Students",
       "Main Components": "Main Components",
       "Question Components": "Question Components",
       "Survey Components": "Survey Components",

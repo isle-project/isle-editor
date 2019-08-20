@@ -20,12 +20,6 @@
       "tutorials/course-management",
       "tutorials/classroom-use"
     ],
-    "For Students": [
-      "students/getting-started",
-      "students/answering-questions",
-      "students/data",
-      "students/reports"
-    ],
     "Main Components": [
       "data-explorer",
       "data-table",
