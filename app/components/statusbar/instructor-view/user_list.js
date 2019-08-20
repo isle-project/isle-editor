@@ -193,6 +193,7 @@ class UserList extends Component {
 					background = user.inactive ? 'lightgrey' : 'transparent';
 				}
 				const src = session.server + '/thumbnail/' + user.picture;
+				const handleClick = this.thumbnailClickFactory( user.email );
 				return (
 					<ListGroupItem
 						className="user-list-item"
@@ -204,11 +205,13 @@ class UserList extends Component {
 						}}
 					>
 						<Tooltip placement="right" tooltip="Click to open user actions" >
-							<img
-								onClick={this.thumbnailClickFactory( user.email )}
-								className="user-thumbnail"
-								src={src}
-							/>
+							<div role="button" tabIndex={0} onClick={handleClick} onKeyPress={handleClick}>
+								<img
+									className="user-thumbnail"
+									alt="User thumbnail"
+									src={src}
+								/>
+							</div>
 						</Tooltip>
 						{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}
 						<Tooltip placement="left" tooltip="Element user is interacting with" >

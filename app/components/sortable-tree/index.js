@@ -40,7 +40,7 @@ class Tree extends Component {
 					<Card.Title as="h2">{this.props.title}</Card.Title>
 					<div style={{ position: 'absolute', top: 10, right: 30, padding: 10 }}>
 						<FormControl style={{ float: 'right', width: 200, marginLeft: 20 }} type="text" onChange={this.handleSearchOnChange} />
-						<label style={{ float: 'right' }}>Search: </label>
+						<span className="title" style={{ float: 'right' }}>Search: </span>
 					</div>
 				</Card.Header>
 				<Card.Body>

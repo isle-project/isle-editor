@@ -38,6 +38,8 @@
 	text-align: center;
 	color: darkgray;
 	z-index: 2;
+	background: none;
+	border: none;
 }
 
 .js-shell-reset:hover {

@@ -6,6 +6,7 @@ import Select from 'react-select';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
+import FormLabel from 'react-bootstrap/FormLabel';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import Plotly from 'components/plotly';
@@ -219,7 +220,7 @@ class Boxplot extends Component {
 						}}
 					/>
 					<FormGroup controlId="form-controls-select">
-						<label>Group By:</label>
+						<FormLabel>Group By:</FormLabel>
 						<Select
 							value={this.state.group}
 							options={groupingVariables.map( e => ( { 'label': e, 'value': e } ))}

@@ -55,8 +55,9 @@ class RHelp extends Component {
 	render() {
 		return (
 			<span
+				role="button" tabIndex={0}
 				className="RHelp"
-				onClick={this.showModal}
+				onClick={this.showModal} onKeyPress={this.showModal}
 			>
 				<Modal
 					backdrop={false}

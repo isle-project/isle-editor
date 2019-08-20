@@ -8,6 +8,8 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
+import FormGroup from 'react-bootstrap/FormGroup';
+import FormLabel from 'react-bootstrap/FormLabel';
 import Plotly from 'components/plotly';
 import SelectInput from 'components/input/select';
 import TextInput from 'components/input/text';
@@ -404,14 +406,14 @@ class BinTransformer extends Component {
 				<Modal.Footer>
 					<Row>
 						<Col>
-							<label>Generated variable:</label>
-						</Col>
-						<Col>
-							<FormControl
-								type="text"
-								placeholder="Select name..."
-								onChange={this.handleNameChange}
-							/>
+							<FormGroup>
+								<FormLabel>Generated variable:</FormLabel>
+								<FormControl
+									type="text"
+									placeholder="Select name..."
+									onChange={this.handleNameChange}
+								/>
+							</FormGroup>
 						</Col>
 						<Col>
 							<Button onClick={this.makeNewVar} disabled={this.state.name.length < 2}>

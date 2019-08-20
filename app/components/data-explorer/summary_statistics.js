@@ -6,6 +6,7 @@ import Select from 'react-select';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
+import FormLabel from 'react-bootstrap/FormLabel';
 import SelectInput from 'components/input/select';
 import statistic from 'utils/statistic';
 import objectKeys from '@stdlib/utils/keys';
@@ -262,7 +263,7 @@ class SummaryStatistics extends Component {
 				</Card.Header>
 				<Card.Body>
 					<FormGroup controlId="form-controls-select">
-						<label>Statistic(s):</label>
+						<FormLabel>Statistic(s):</FormLabel>
 						<Select
 							value={selectedStats}
 							options={statistics.map( e => ( { 'label': e, 'value': statistic( e ) } ))}

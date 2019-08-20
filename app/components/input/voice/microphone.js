@@ -9,7 +9,7 @@ import Microphone from './../../../img/microphone.svg';
 
 class Shim extends Component {
 	render() {
-		return <div onClick={this.props.onClick}></div>;
+		return <button onClick={this.props.onClick}></button>;
 	}
 }
 

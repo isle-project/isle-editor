@@ -246,7 +246,7 @@ class RangeQuestion extends Component {
 						{ this.state.submitted && solutionPresent && this.props.provideFeedback ?
 							<span>
 								<br />
-								<label>Solution:</label>
+								<span className="title">Solution:</span>
 								<span> {this.props.solution[0]}, {this.props.solution[1]} </span>
 							</span>:
 							null

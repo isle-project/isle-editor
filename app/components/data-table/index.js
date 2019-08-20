@@ -277,25 +277,27 @@ class DataTable extends Component {
 				props.dataInfo.variables &&
 				props.dataInfo.variables[ key ]
 			) {
+				const showTooltip = () => {
+					this.setState({
+						showTooltip: true,
+						tooltip: props.dataInfo.variables[ key ]
+					});
+				};
+				const hideTooltip = () => {
+					this.setState({
+						showTooltip: false,
+						tooltip: null
+					});
+				};
 				header = <span
-					onMouseOver={() => {
-						this.setState({
-							showTooltip: true,
-							tooltip: props.dataInfo.variables[ key ]
-						});
-					}}
-					onMouseOut={() => {
-						this.setState({
-							showTooltip: false,
-							tooltip: null
-						});
-					}}
+					onMouseOver={showTooltip} onFocus={showTooltip}
+					onMouseOut={hideTooltip} onBlur={hideTooltip}
 				>{key}</span>;
 			} else if ( props.deletable ) {
 				header = <div>
 					{key}
 					<OverlayTrigger placement="left" overlay={<Tooltip>Remove variable</Tooltip>} >
-						<div className="fa fa-times delete-button" onClick={( evt ) => {
+						<button className="fa fa-times delete-button" onClick={( evt ) => {
 							evt.stopPropagation();
 							props.onColumnDelete( key );
 						}} />

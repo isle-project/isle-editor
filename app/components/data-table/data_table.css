@@ -10,6 +10,7 @@
 	color: #dc3545;
 	margin-left: 4px;
 	border: 1px solid #dc3545;
+	background: none;
 }
 
 .delete-button:hover {

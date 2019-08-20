@@ -403,7 +403,8 @@ class StatusBar extends Component {
 							<Tooltip tooltip={`${this.state.showCalculator ? 'Close' : 'Open'} calculator (F2)`} placement="bottom" >
 								<div
 									className="statusbar-calculator"
-									onClick={this.toggleCalculator}
+									role="button" tabIndex={0}
+									onClick={this.toggleCalculator} onKeyPress={this.toggleCalculator}
 									style={{
 										display: !session.config.hideCalculator ? 'inherit' : 'none'
 									}}
@@ -413,7 +414,10 @@ class StatusBar extends Component {
 							</Tooltip>
 							{( session.hasOwner || isElectron ) ?
 								<Fragment>
-									<div className="statusbar-queue" onClick={this.toggleQueue}
+									<div
+										className="statusbar-queue"
+										role="button" tabIndex={0}
+										onClick={this.toggleQueue} onKeyPress={this.toggleQueue}
 										style={{
 											display: !session.config.hideQueue ? 'inherit' : 'none'
 										}}

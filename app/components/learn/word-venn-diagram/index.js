@@ -269,7 +269,7 @@ class WordVennDiagram extends Component {
 					</Card.Header>
 					<Card.Body>
 						<p>
-							<label>Number of Words: </label>
+							<span className="title">Number of Words: </span>
 						</p>
 						<ButtonGroup>
 							{[ 'One', 'Two', 'Three' ].map( ( w, i ) => (<Button key={i} variant={( i === this.state.nWords-1 ) ? 'success' : 'default'} onClick={this.wordNumberClickFactory( i )}>{w}</Button>))}

@@ -416,7 +416,7 @@ class ResponseVisualizer extends Component {
 
 	render() {
 		if ( !this.props.id ) {
-			return <Gate owner><label style={{ marginLeft: 5 }}>No ID supplied.</label></Gate>;
+			return <Gate owner><span className="title no-id-message">No ID supplied.</span></Gate>;
 		}
 		const session = this.context;
 		const nUsers = session.userList.length;

@@ -358,7 +358,7 @@ class JSShell extends Component {
 
 	renderResetButton() {
 		return (
-			<div className="js-shell-reset" onClick={this.resetConsole} >☒</div>
+			<button className="js-shell-reset" onClick={this.resetConsole} >☒</button>
 		);
 	}
 

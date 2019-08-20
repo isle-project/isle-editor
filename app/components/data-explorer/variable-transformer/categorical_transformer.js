@@ -8,6 +8,8 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import FormControl from 'react-bootstrap/FormControl';
+import FormLabel from 'react-bootstrap/FormLabel';
+import FormGroup from 'react-bootstrap/FormGroup';
 import Table from 'react-bootstrap/Table';
 import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
@@ -316,14 +318,14 @@ class CategoricalTransformer extends Component {
 				<Modal.Footer>
 					<Row>
 						<Col>
-							<label>Generated variable:</label>
-						</Col>
-						<Col>
-							<FormControl
-								type="text"
-								placeholder="Select name..."
-								onChange={this.handleGeneratedNameChange}
-							/>
+							<FormGroup>
+								<FormLabel>Generated variable:</FormLabel>
+								<FormControl
+									type="text"
+									placeholder="Select name..."
+									onChange={this.handleGeneratedNameChange}
+								/>
+							</FormGroup>
 						</Col>
 						<Col>
 							<Button onClick={this.makeNewVar} disabled={this.state.generatedName.length < 2}>
