@@ -153,10 +153,11 @@ class NumberSurvey extends Component {
 								<Col md={6}>
 									<Card className="number-survey" body>
 										<Card.Title as="h5">{props.question}</Card.Title>
-										<label>Your answer:</label>
+										<label htmlFor={`number-survey-input-${this.id}`}>Your answer:</label>
 										<NumberInput
 											{...props}
 											inline
+											id={`number-survey-input-${this.id}`}
 											disabled={disabled}
 											onChange={( value ) => {
 												this.setState({

@@ -85,6 +85,7 @@ class Image extends Component {
 						cursor: 'zoom-in'
 					}}
 					role="presentation"
+					alt={this.props.title}
 					src={this.props.src}
 					onClick={() => {
 						if ( this.props.showModal ) {

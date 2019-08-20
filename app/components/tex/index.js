@@ -183,8 +183,9 @@ class TeX extends Component {
 			return (
 				<div
 					className="tex"
+					role="button" tabIndex={0}
 					style={this.props.style}
-					onClick={this.props.onClick}
+					onClick={this.props.onClick} onKeyPress={this.props.onClick}
 				>
 					{ this.props.numbered ?
 						<div
@@ -209,10 +210,11 @@ class TeX extends Component {
 		}
 		return (
 			<span
-				ref={( span ) => { this.katex = span; }}
 				className="tex"
+				role="button" tabIndex={0}
+				ref={( span ) => { this.katex = span; }}
 				style={this.props.style}
-				onClick={this.props.onClick}
+				onClick={this.props.onClick} onKeyPress={this.props.onClick}
 			>
 				<span
 					dangerouslySetInnerHTML={math} // eslint-disable-line react/no-danger

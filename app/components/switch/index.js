@@ -60,10 +60,12 @@ class Switch extends Component {
 		if ( this.props.className ) {
 			className += ' '+this.props.className;
 		}
+		const onClick = this.props.active ? this.handleClick : noop;
 		const content =
 			<span
+				role="button" tabIndex={0}
 				className={this.props.active ? className : this.props.className}
-				onClick={this.props.active ? this.handleClick : noop}
+				onClick={onClick} onKeyPress={onClick}
 				style={this.props.style}
 			>
 				{children}

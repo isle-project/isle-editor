@@ -93,11 +93,12 @@ class CheckboxInput extends Input {
 				<span style={{ marginLeft: '8px', ...this.props.style }}>
 					{input}
 					<span
+						role="button" tabIndex={0}
 						className="checkbox-legend"
 						style={{
 							color: this.props.disabled ? 'darkgray' : null
 						}}
-						onClick={this.handleChange}
+						onClick={this.handleChange} onKeyPress={this.handleChange}
 					>{this.props.legend}</span>
 				</span>
 			);
@@ -106,11 +107,12 @@ class CheckboxInput extends Input {
 			<div className={`input checkbox-input-div ${this.props.className}`} style={this.props.style}>
 				{input}
 				<span
+					role="button" tabIndex={0}
 					className="checkbox-legend"
 					style={{
 						color: this.props.disabled ? 'darkgray' : null
 					}}
-					onClick={this.handleChange}
+					onClick={this.handleChange} onKeyPress={this.handleChange}
 				>{this.props.legend}</span>
 			</div>
 		);

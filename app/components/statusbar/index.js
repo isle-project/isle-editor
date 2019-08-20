@@ -360,6 +360,21 @@ class StatusBar extends Component {
 	render() {
 		const session = this.context;
 		const finishedLesson = this.state.progress === 100;
+		const preventPropForUsers = ( evt ) => {
+			if ( !this.context.anonymous ) {
+				evt.stopPropagation();
+			}
+		};
+		/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
+		const duration = <Fragment>
+			<img className="statusbar-profile" alt="User Profile Pic" src={session.user.picture} onClick={preventPropagation} />
+			<Tooltip placement="bottom" tooltip="Time spent in lesson (in min)">
+				<div className="progress-time" onClick={preventPropagation}>
+					DUR: {this.state.duration} MIN
+				</div>
+			</Tooltip>
+		</Fragment>;
+		/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
 		return (
 			<Fragment>
 				<div>
@@ -369,10 +384,11 @@ class StatusBar extends Component {
 					})}
 					<div
 						className="statusbar unselectable"
+						role="button" tabIndex={0}
 						ref={( statusbar ) => { this.statusbar = statusbar; }}
-						onClick={this.toggleBar}
-						onMouseOver={this.onMouseOver}
-						onMouseOut={this.onMouseOut}
+						onClick={this.toggleBar} onKeyPress={this.toggleBar}
+						onMouseOver={this.onMouseOver} onFocus={this.onMouseOver}
+						onMouseOut={this.onMouseOut} onBlur={this.onMouseOut}
 						style={{
 							top: '-32px',
 							display: !this.state.showStatusBar ? 'none' : null
@@ -430,9 +446,12 @@ class StatusBar extends Component {
 										</Tooltip>
 									</div>
 									<Tooltip placement="bottom" tooltip="Enter presentation mode (F7)" >
-										<div onClick={this.toggleBarVisibility} className="statusbar-presentation-mode">
+										<span role="button" tabIndex={0}
+											onClick={this.toggleBarVisibility} onKeyPress={this.toggleBarVisibility}
+											className="statusbar-presentation-mode"
+										>
 											<span className="fa fa-xs fa-eye-slash statusbar-calc-icon" />
-										</div>
+										</span>
 									</Tooltip>
 								</Fragment>: null }
 							<div className="statusbar-presence" style={{
@@ -440,14 +459,13 @@ class StatusBar extends Component {
 							}}>
 								<div className="statusbar-inner-presence"></div>
 							</div>
-							<div style={{ cursor: this.context.anonymous ? 'pointer' : 'help' }}
-								className="statusbar-username" onClick={( evt ) => {
-									if ( !this.context.anonymous ) {
-										evt.stopPropagation();
-									}
-								}}
-								onMouseEnter={this.toggleProgress}
-								onMouseOut={this.toggleProgress}
+							<div
+								role="button" tabIndex={0}
+								style={{ cursor: this.context.anonymous ? 'pointer' : 'help' }}
+								className="statusbar-username"
+								onClick={preventPropForUsers} onKeyPress={preventPropForUsers}
+								onMouseEnter={this.toggleProgress} onFocus={this.toggleProgress}
+								onMouseOut={this.toggleProgress} onBlur={this.toggleProgress}
 							>
 								{ session.anonymous ? 'Anonymous' : session.user.name }
 							</div>
@@ -495,12 +513,7 @@ class StatusBar extends Component {
 							}}
 						>
 							<Gate user>
-								<img className="statusbar-profile" src={session.user.picture} onClick={preventPropagation} />
-								<Tooltip placement="bottom" tooltip="Time spent in lesson (in min)">
-									<div className="progress-time" onClick={preventPropagation}>
-										DUR: {this.state.duration} MIN
-									</div>
-								</Tooltip>
+								{duration}
 								<Tooltip placement="bottom" tooltip={!finishedLesson ? 'Click to show unfinished' : 'Completed!'} >
 									<div className="outer-statusbar-progress-bar">
 										<ProgressBar

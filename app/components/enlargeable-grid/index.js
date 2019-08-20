@@ -144,7 +144,13 @@ class EnlargeableGrid extends Component {
 			>
 				{ this.props.enlargeable ?
 					this.props.children.map( ( x, i ) => {
-						return <div key={i} onClick={this.enlargeDivFactory( i )} style={{ border: '2px solid darkgray', cursor: 'zoom-in' }}>{x}</div>;
+						return (
+							<button
+								key={i}
+								onClick={this.enlargeDivFactory( i )}
+								style={{ border: '2px solid darkgray', cursor: 'zoom-in', background: 'none' }}
+							>{x}</button>
+						);
 					}) :
 					this.props.children.map( ( x, i ) => {
 						return <div key={i} style={{ border: '2px solid darkgray' }}>{x}</div>;

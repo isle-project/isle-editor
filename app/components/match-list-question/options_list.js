@@ -42,13 +42,17 @@ class OptionsList extends Component {
 								backgroundColor: match[ 0 ].color
 							}) :
 							style;
+						const selectItem = () => onSelect( q );
 						return (
 							<li
 								key={i}
-								onClick={() => onSelect( q )}
 								style={style}
 							>
-								{q}
+								<span
+									role="button" tabIndex={0}
+									onClick={selectItem}
+									onKeyPress={selectItem}
+								>{q}</span>
 							</li>
 						);
 					})

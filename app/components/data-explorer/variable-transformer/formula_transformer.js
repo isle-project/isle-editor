@@ -52,7 +52,6 @@ class CustomMenu extends Component {
 		return (
 		<div style={style} className={className} aria-labelledby={labeledBy}>
 			<FormControl
-				autoFocus
 				className="mx-3 my-2 w-auto"
 				placeholder="Type to filter..."
 				onChange={this.handleChange}
