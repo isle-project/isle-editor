@@ -79,10 +79,12 @@ class ClusterModal extends Component {
 
 	handleClusterCountChange = ( event ) => {
 		const modelIndex = parseInt( event.target.value, 10 );
-		this.setState({
-			modelIndex
-		});
-		this.props.changeClusterCount( modelIndex );
+		if ( this.state.modelIndex !== modelIndex ) {
+			this.setState({
+				modelIndex
+			});
+			this.props.changeClusterCount( modelIndex );
+		}
 	}
 
 	render() {
@@ -125,6 +127,7 @@ class ClusterModal extends Component {
 					<select
 						className="cluster-select"
 						onChange={this.handleClusterCountChange}
+						onBlur={this.handleClusterCountChange}
 						value={this.state.modelIndex}
 					>
 						{CLUSTER_LABELS.map( ( v, key ) => {

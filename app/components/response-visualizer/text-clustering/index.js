@@ -87,10 +87,12 @@ class TextClustering extends Component {
 
 	handleClusterCountChange = ( event ) => {
 		const modelIndex = parseInt( event.target.value, 10 );
-		this.changeClusterCount( modelIndex );
-		this.setState({
-			modelIndex
-		});
+		if ( this.state.modelIndex !== modelIndex ) {
+			this.changeClusterCount( modelIndex );
+			this.setState({
+				modelIndex
+			});
+		}
 	}
 
 	changeClusterCount = ( modelIndex ) => {
@@ -120,6 +122,7 @@ class TextClustering extends Component {
 					<select
 						className="cluster-select"
 						onChange={this.handleClusterCountChange}
+						onBlur={this.handleClusterCountChange}
 						value={this.state.modelIndex}
 					>
 						{CLUSTER_LABELS.map( ( v, key ) => {
