@@ -41,6 +41,7 @@
 	"ListGroupItem": "react-bootstrap/ListGroupItem",
 	"Container": "components/container",
 	"DataExplorer": "components/data-explorer",
+	"DataSampler": "components/data-sampler",
 	"DataTable": "components/data-table",
 	"DateDisplay": "components/date-display",
 	"Dashboard": "components/dashboard",

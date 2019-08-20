@@ -44,6 +44,7 @@ const SCOPE = {
 	Dashboard,
 	DataExplorer: Loadable( () => import( 'components/data-explorer' ) ),
 	DataTable: Loadable( () => import( 'components/data-table' ) ),
+	DataSampler: Loadable( () => import( 'components/data-sampler' ) ),
 	DateDisplay: Loadable( () => import( 'components/date-display' ) ),
 	DensityPlot: Loadable( () => import( 'components/d3/density-plot' ) ),
 	DraggableGrid: Loadable( () => import( 'components/draggable-grid' ) ),

@@ -36,6 +36,10 @@
 		"value": "<DataExplorer\n\tdata={${1:}}\n\tcategorical={${2:[]}}\n\tquantitative={${3:[]}}\n/>\n"
 	},
 	{
+		"name": "DataSampler",
+		"value": "<DataSampler data={${1:}}>\n\t{( sample ) => \n\t\t${2:}\n\t}\n</DataSampler>"
+	},
+	{
 		"name": "DataTable",
 		"value": "<DataTable\n\tdata={${1:}}\n/>\n"
 	},
