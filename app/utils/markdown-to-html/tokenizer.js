@@ -35,8 +35,6 @@ const md = markdownit({
 	breaks: true,
 	typographer: false
 });
-const RE_JSX_OPEN = /([\s\S]*?)(?:[^\\]|^)({[^}]*}?)([\s\S]*?)/;
-const RE_JSX_CLOSE = /([\s\S]*?)([^\\]|^)(})([\s\S]*)/;
 const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
 const RE_LINE_BEGINNING = /\n\s*/g;
 const RE_HTML_INNER_TAGS = /^(?:p|th|td)$/;
@@ -85,6 +83,44 @@ function renderInlineMarkdown( text ) {
 function renderMarkdown( text ) {
 	text = replace( text, /\\([()\\[\]])/g, '\\\\$1' );
 	return replaceEquations( md.render( text ) );
+}
+
+function renderMarkdownInBetween( str, inline = false ) {
+	let out = '';
+	let tmp = '';
+	let braceLevel = 0;
+	for ( let i = 0; i < str.length; i++ ) {
+		const char = str[ i ];
+		if ( char === '{' && ( i === 0 || str[ i-1 ] !== '\\' ) ) {
+			if ( braceLevel === 0 ) {
+				debug( 'Render markdown: '+tmp );
+				out += inline ? renderInlineMarkdown( tmp ) : renderMarkdown( tmp );
+				tmp = '{';
+			} else {
+				tmp += char;
+			}
+			braceLevel += 1;
+		}
+		else if ( char === '}' && str[ i-1 ] !== '\\' ) {
+			braceLevel -= 1;
+			if ( braceLevel === 0 ) {
+				out += tmp + char;
+				tmp = '';
+			} else {
+				tmp += char;
+			}
+		}
+		else {
+			tmp += char;
+		}
+	}
+	if ( braceLevel === 0 ) {
+		debug( 'Render markdown: '+tmp );
+		out += inline ? renderInlineMarkdown( tmp ) : renderMarkdown( tmp );
+	} else {
+		out += tmp;
+	}
+	return out;
 }
 
 
@@ -242,7 +278,8 @@ class Tokenizer {
 
 	_inBetweenTags( char ) {
 		this._current += char;
-		if ( char === '<' && !isWhitespace( this._buffer.charAt( this.pos+1 ) ) ) {
+		const nextChar = this._buffer.charAt( this.pos+1 );
+		if ( char === '<' && !isWhitespace( nextChar) ) {
 			let text = this._current.substring( this._openTagEnd, this._current.length-1 );
 			text = trimLineStarts( text );
 			if ( !isWhitespace( text ) ) {
@@ -252,28 +289,10 @@ class Tokenizer {
 					RE_ISLE_INLINE_TAGS.test( this._openingTagName )
 				) {
 					debug( `Render inline markdown for <${this._openingTagName}/>...` );
-					if ( !RE_JSX_OPEN.test( text ) && !RE_JSX_CLOSE.test( text ) ) {
-						text = renderInlineMarkdown( text );
-					} else {
-						text = replace( text, RE_JSX_OPEN, ( match, p1, p2, p3 ) => {
-							return renderInlineMarkdown( p1 ) + p2 + renderInlineMarkdown( p3 );
-						});
-						text = replace( text, RE_JSX_CLOSE, ( match, p1, p2, p3, p4 ) => {
-							return p1 + p2 + p3 + renderInlineMarkdown( p4 );
-						});
-					}
+					text = renderMarkdownInBetween( text, true );
 				} else {
 					debug( `Render block markdown for <${this._openingTagName}/>...` );
-					if ( !RE_JSX_OPEN.test( text ) && !RE_JSX_CLOSE.test( text ) ) {
-						text = renderMarkdown( text );
-					} else {
-						text = replace( text, RE_JSX_OPEN, ( match, p1, p2, p3 ) => {
-							return renderMarkdown( p1 ) + p2 + renderMarkdown( p3 );
-						});
-						text = replace( text, RE_JSX_CLOSE, ( match, p1, p2, p3, p4 ) => {
-							return p1 + p2 + p3 + renderMarkdown( p4 );
-						});
-					}
+					text = renderMarkdownInBetween( text, false );
 				}
 			}
 			this._current = this._current.substring( 0, this._openTagEnd ) +
@@ -293,7 +312,8 @@ class Tokenizer {
 
 	_inClosingTag( char ) {
 		this._current += char;
-		if ( char === '>' ) {
+		const prevChar = this._buffer.charAt( this.pos-1 );
+		if ( char === '>' && prevChar !== '=' ) {
 			this._level -= 1;
 			this._openTagEnd = this._current.length;
 			this._endTagStart = null;
