@@ -17,6 +17,7 @@ import Modal from 'react-bootstrap/Modal';
 import Select from 'react-select';
 import isTouchDevice from 'is-touch-device';
 import Checkbox from 'components/input/checkbox';
+import FeedbackButtons from 'components/feedback';
 import contains from '@stdlib/assert/contains';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isObject from '@stdlib/assert/is-object';
@@ -85,6 +86,7 @@ function preventGesture( e ) {
 * A drawing sketchpad for note taking on lecture slides or empty pages.
 *
 * @property {boolean} autoSave - controls whether the editor should save the current text to the local storage of the browser at a given time interval
+* @property {boolean} feedbackButtons - controls whether to display feedback buttons on each slide
 * @property {number} intervalTime - time between auto saves
 * @property {boolean} hideInputButtons - controls whether to hide drawing and text input buttons
 * @property {boolean} hideNavigationButtons - controls whether to hide buttons for navigating between pages
@@ -624,7 +626,8 @@ class Sketchpad extends Component {
 				this.canvas.style[ 'border-style' ] = 'solid';
 				this.canvas.style[ 'border-color' ] = 'black';
 				this.canvas.style[ 'border-width' ] = '0px 1px 0px 1px';
-
+				this.canvas.style.width = `${viewport.width}px`;
+				this.canvas.style.height = `${viewport.height}px`;
 				textLayer.style.width = `${viewport.width}px`;
 				textLayer.style.height = `${viewport.height}px`;
 				this.leftMargin = ( this.state.canvasWidth - viewport.width ) / 2.0;
@@ -971,6 +974,9 @@ class Sketchpad extends Component {
 		if ( ctx ) {
 			ctx.lineWidth = lineWidth;
 			ctx.lineCap = 'round';
+			ctx.lineJoin = 'round';
+			ctx.shadowColor = 'rgba(128,128,128,.2)';
+			ctx.shadowBlur = lineWidth * 2.0;
 			ctx.strokeStyle = selected ? 'yellow' : color;
 			ctx.beginPath();
 			ctx.moveTo( startX, startY );
@@ -984,6 +990,9 @@ class Sketchpad extends Component {
 		if ( ctx ) {
 			ctx.lineWidth = lineWidth;
 			ctx.lineCap = 'round';
+			ctx.lineJoin = 'round';
+			ctx.shadowColor = 'rgba(128,128,128,.2)';
+			ctx.shadowBlur = lineWidth * 2.0;
 			ctx.strokeStyle = selected ? 'yellow' : color;
 			ctx.beginPath();
 			curve( ctx, points, this.canvas.width, this.canvas.height, 0.4, 25 );
@@ -2130,11 +2139,16 @@ class Sketchpad extends Component {
 
 	renderHTMLOverlays() {
 		const keys = objectKeys( this.props.nodes );
-		if ( keys.length === 0 ) {
-			return;
-		}
-		const page = this.toOriginalPage( this.state.currentPage );
 		const divs = [];
+		const page = this.toOriginalPage( this.state.currentPage );
+		if ( this.props.feedbackButtons ) {
+			divs.push(
+				<FeedbackButtons key={`slide-${page}`} id={`slide-${page}`} vertical />
+			);
+		}
+		if ( keys.length === 0 ) {
+			return divs;
+		}
 		for ( let i = 0; i < keys.length; i++ ) {
 			const node = this.props.nodes[ keys[ i ] ];
 			let className = 'invisible-page';
@@ -2378,6 +2392,7 @@ class Sketchpad extends Component {
 
 Sketchpad.defaultProps = {
 	autoSave: true,
+	feedbackButtons: false,
 	intervalTime: 30000,
 	hideInputButtons: false,
 	hideNavigationButtons: false,
@@ -2406,6 +2421,7 @@ Sketchpad.defaultProps = {
 
 Sketchpad.propTypes = {
 	autoSave: PropTypes.bool,
+	feedbackButtons: PropTypes.bool,
 	intervalTime: PropTypes.number,
 	hideInputButtons: PropTypes.bool,
 	hideNavigationButtons: PropTypes.bool,
