@@ -2420,7 +2420,7 @@ Sketchpad.defaultProps = {
 	hideRecordingButtons: false,
 	hideSaveButtons: false,
 	hideTransmitButtons: false,
-	brushSize: 6,
+	brushSize: 4,
 	color: '#444444',
 	canvasWidth: 1200,
 	canvasHeight: 700,
