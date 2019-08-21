@@ -259,8 +259,8 @@ class Sketchpad extends Component {
 						if ( type === SKETCHPAD_MOVE_POINTER ) {
 							let { x, y, sessionID } = JSON.parse( action.value );
 							if ( sessionID !== session.sessionID ) {
-								x *= this.canvas.width;
-								y *= this.canvas.height;
+								x *= this.canvas.width / DPR;
+								y *= this.canvas.height / DPR;
 								x = `${x+this.leftMargin}px`;
 								y = `${y}px`;
 								this.pointer.style.left = x;
@@ -273,19 +273,18 @@ class Sketchpad extends Component {
 						else if ( type === SKETCHPAD_MOVE_ZOOM ) {
 							let { x, y, sessionID } = JSON.parse( action.value );
 							if ( sessionID !== session.sessionID ) {
-								x *= this.canvas.width;
-								y *= this.canvas.height;
+								x *= this.canvas.width / DPR;
+								y *= this.canvas.height / DPR;
 								const { width, height } = this.zoom;
-								let sw = width / 2.0;
-								let sh = height / 2.0;
-								const xPos = `${x-sw+this.leftMargin}px`;
-								const yPos = `${y-sh}px`;
-								let dw = width;
-								let dh = height;
-								let sx = x - (sw/2);
-								let sy = y - (sh/2);
-								let dx = 0;
-								let dy = 0;
+								let sw = width / ( 2.0*DPR ); // Width of sub-rectangle of source image in the destination context
+								let sh = height / ( 2.0*DPR ); // Height of sub-rectangle of source image in the destination context
+								this.zoomCtx.clearRect( 0, 0, width, height );
+								let dw = width / DPR; // Width of image in destination canvas
+								let dh = height / DPR; // Height of image in destination canvas
+								let sx = ( x*DPR - (sw/2) ); // x-axis of top left corner of sub-rectangle of source image
+								let sy = ( y*DPR - (sh/2) ); // y-axis of top left corner of sub-rectangle of source image
+								let dx = 0; // x-axis coordinate in destination canvas at which to place top-left corner of source image
+								let dy = 0; // y-axis coordinate in destination canvas at which to place top-left corner of source image
 								if ( sx < 0 ) {
 									dx -= sx;
 									sx = 0;
@@ -299,6 +298,8 @@ class Sketchpad extends Component {
 									sh += sy;
 								}
 								this.zoomCtx.drawImage( this.canvas, sx, sy, sw, sh, dx, dy, dw, dh );
+								const xPos = `${x-sw+this.leftMargin}px`;
+								const yPos = `${y-sh}px`;
 								this.zoom.style.top = yPos;
 								this.zoom.style.left = xPos;
 								this.zoom.style.display = 'block';
@@ -1351,8 +1352,8 @@ class Sketchpad extends Component {
 			const username = session.user.email || '';
 			const text = {
 				value: value,
-				x: x / this.canvas.width,
-				y: y / this.canvas.height,
+				x: x / ( this.canvas.width / DPR ),
+				y: y / ( this.canvas.height / DPR ),
 				color: this.state.color,
 				fontSize: this.state.fontSize,
 				fontFamily: this.state.fontFamily,
@@ -1384,8 +1385,8 @@ class Sketchpad extends Component {
 		const ctx = this.ctx;
 		ctx.font = `${fontSize}px ${fontFamily}`;
 		ctx.fillStyle = selected ? 'yellow' : color;
-		const xval = round( x*this.canvas.width );
-		const yval = round( y*this.canvas.height ) + fontSize;
+		const xval = round( x*(this.canvas.width/DPR) );
+		const yval = round( y*(this.canvas.height/DPR) ) + fontSize;
 		debug( `Draw text at x: ${xval} and y: ${yval}` );
 		ctx.fillText( value, xval, yval );
 		const session = this.context;
@@ -2035,17 +2036,17 @@ class Sketchpad extends Component {
 			this.pointer.style.top = `${y}px`;
 		}
 		else if ( this.state.mode === 'zoom' ) {
-			const { width, height } = this.zoom;
-			let sw = width / ( 2.0 * DPR );
-			let sh = height / ( 2.0 * DPR );
+			let { width, height } = this.zoom;
+			let sw = width / ( 2.0*DPR ); // Width of sub-rectangle of source image in the destination context
+			let sh = height / ( 2.0*DPR ); // Height of sub-rectangle of source image in the destination context
 			this.zoomCtx.clearRect( 0, 0, width, height );
 
-			let dw = width / DPR;
-			let dh = height / DPR;
-			let sx = x - (sw/2);
-			let sy = y - (sh/2);
-			let dx = 0;
-			let dy = 0;
+			let dw = width / DPR; // Width of image in destination canvas
+			let dh = height / DPR; // Height of image in destination canvas
+			let sx = ( x*DPR - (sw/2) ); // x-axis of top left corner of sub-rectangle of source image
+			let sy = ( y*DPR - (sh/2) ); // y-axis of top left corner of sub-rectangle of source image
+			let dx = 0; // x-axis coordinate in destination canvas at which to place top-left corner of source image
+			let dy = 0; // y-axis coordinate in destination canvas at which to place top-left corner of source image
 			if ( sx < 0 ) {
 				dx -= sx;
 				sx = 0;
@@ -2067,8 +2068,8 @@ class Sketchpad extends Component {
 			id: this.id,
 			type: this.state.mode === 'pointer' ? 'SKETCHPAD_MOVE_POINTER' : 'SKETCHPAD_MOVE_ZOOM',
 			value: JSON.stringify({
-				x: x / this.canvas.width,
-				y: y / this.canvas.height,
+				x: x / ( this.canvas.width / DPR ),
+				y: y / ( this.canvas.height / DPR ),
 				sessionID: session.sessionID
 			}),
 			noSave: true
