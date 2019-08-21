@@ -70,6 +70,7 @@ const RE_DIGITS = /^[0-9]+$/;
 const MIN_SWIPE_X = 45;
 const MIN_SWIPE_Y = 30;
 const MAX_SWIPE_Y = 60;
+const DPR = window.devicePixelRatio || 1.0;
 const hasTouch = isTouchDevice();
 
 
@@ -184,6 +185,7 @@ class Sketchpad extends Component {
 
 	componentDidMount() {
 		const session = this.context;
+
 		if ( this.props.fullscreen ) {
 			this.windowResize = window.addEventListener( 'resize', () => {
 				this.setState({
@@ -620,8 +622,8 @@ class Sketchpad extends Component {
 				textLayer.removeChild( textLayer.firstChild );
 			}
 			if ( this.props.fill === 'vertical' ) {
-				this.canvas.height = viewport.height;
-				this.canvas.width = viewport.width;
+				this.canvas.height = viewport.height * DPR;
+				this.canvas.width = viewport.width * DPR;
 				this.canvas.style.left = `${( this.state.canvasWidth - viewport.width ) / 2.0}px`;
 				this.canvas.style[ 'border-style' ] = 'solid';
 				this.canvas.style[ 'border-color' ] = 'black';
@@ -633,18 +635,23 @@ class Sketchpad extends Component {
 				this.leftMargin = ( this.state.canvasWidth - viewport.width ) / 2.0;
 				textLayer.style.left = `${this.leftMargin}px`;
 			} else {
-				this.canvas.height = viewport.height;
-				this.canvas.width = viewport.width - 15; // account for vertical scrollbar
-
+				this.canvas.height = viewport.height * DPR;
+				this.canvas.width = ( viewport.width - 15 ) * DPR; // account for vertical scrollbar
+				this.canvas.style.height = `${viewport.height}px`;
+				this.canvas.style.width = `${viewport.width - 15}px`;
 				textLayer.style.width = `${viewport.width-15}px`;
 				textLayer.style.height = `${viewport.height}px`;
 			}
+
+			// Scale all drawing operations by the DPR:
+			this.ctx.scale( DPR, DPR );
 
 			// Render PDF page into canvas context
 			const renderContext = {
 				canvasContext: this.ctx,
 				viewport: viewport
 			};
+
 			page.getTextContent().then( textContent => {
 				pdfjs.renderTextLayer({
 					textContent,
@@ -975,7 +982,7 @@ class Sketchpad extends Component {
 			ctx.lineWidth = lineWidth;
 			ctx.lineCap = 'round';
 			ctx.lineJoin = 'round';
-			ctx.shadowColor = 'rgba(128,128,128,.2)';
+			ctx.shadowColor = 'rgba(128, 128, 128, 0.2)';
 			ctx.shadowBlur = lineWidth * 2.0;
 			ctx.strokeStyle = selected ? 'yellow' : color;
 			ctx.beginPath();
@@ -991,11 +998,11 @@ class Sketchpad extends Component {
 			ctx.lineWidth = lineWidth;
 			ctx.lineCap = 'round';
 			ctx.lineJoin = 'round';
-			ctx.shadowColor = 'rgba(128,128,128,.2)';
+			ctx.shadowColor = 'rgba(128, 128, 128, 0.2)';
 			ctx.shadowBlur = lineWidth * 2.0;
 			ctx.strokeStyle = selected ? 'yellow' : color;
 			ctx.beginPath();
-			curve( ctx, points, this.canvas.width, this.canvas.height, 0.4, 25 );
+			curve( ctx, points, this.canvas.width / DPR, this.canvas.height / DPR, 0.9, 50 );
 			ctx.stroke();
 		}
 	}
@@ -1062,7 +1069,7 @@ class Sketchpad extends Component {
 
 			// Convert to relative coordinates:
 			for ( let i = 0; i < this.currentPoints.length; i++ ) {
-				this.currentPoints[ i ] /= ( i % 2 === 0 ) ? this.canvas.width : this.canvas.height;
+				this.currentPoints[ i ] /= ( i % 2 === 0 ) ? ( this.canvas.width / DPR ) : ( this.canvas.height / DPR );
 			}
 			const line = {
 				points: this.currentPoints,
@@ -1444,7 +1451,7 @@ class Sketchpad extends Component {
 
 				// Use a minimum line width to make selecting easier:
 				this.ctx.lineWidth = max( elem.lineWidth, 16.0 );
-				curve( this.ctx, points, this.canvas.width, this.canvas.height, 0.4, 25 );
+				curve( this.ctx, points, this.canvas.width / DPR, this.canvas.height / DPR, 0.9, 50 );
 				this.ctx.closePath();
 				if ( this.ctx.isPointInStroke( x, y ) ) {
 					debug( `Point (${x}, ${y}) is in path of element with ID ${elem.drawID}` );
@@ -1455,8 +1462,8 @@ class Sketchpad extends Component {
 			}
 			else if ( elem.type === 'text' ) {
 				const width = this.ctx.measureText( elem.value ).width;
-				const xabs = round( elem.x * this.canvas.width );
-				const yabs = round( elem.y * this.canvas.height );
+				const xabs = round( elem.x * ( this.canvas.width / DPR ) );
+				const yabs = round( elem.y * ( this.canvas.height / DPR ) );
 				if (
 					xabs <= x &&
 					x <= xabs + width &&
@@ -2029,12 +2036,12 @@ class Sketchpad extends Component {
 		}
 		else if ( this.state.mode === 'zoom' ) {
 			const { width, height } = this.zoom;
-			let sw = width / 2.0;
-			let sh = height / 2.0;
+			let sw = width / ( 2.0 * DPR );
+			let sh = height / ( 2.0 * DPR );
 			this.zoomCtx.clearRect( 0, 0, width, height );
 
-			let dw = width;
-			let dh = height;
+			let dw = width / DPR;
+			let dh = height / DPR;
 			let sx = x - (sw/2);
 			let sy = y - (sh/2);
 			let dx = 0;
@@ -2267,12 +2274,14 @@ class Sketchpad extends Component {
 		}
 		const canvas = <canvas
 			className="sketch-canvas"
-			width={this.state.canvasWidth}
-			height={this.state.canvasHeight}
+			width={this.state.canvasWidth * DPR}
+			height={this.state.canvasHeight * DPR}
 			style={{
 				position: 'absolute',
 				margin: 'auto',
 				cursor: cursor,
+				width: this.state.canvasWidth,
+				height: this.state.canvasHeight,
 				...this.props.style
 			}}
 			ref={( canvas ) => {
@@ -2285,13 +2294,20 @@ class Sketchpad extends Component {
 		/>;
 		const mangnifyingGlass = <canvas
 			className="sketchpad-magnifying-glass"
-			width={this.state.canvasWidth/4.0}
-			height={this.state.canvasHeight/4.0}
+			width={( this.state.canvasWidth * DPR ) / 4.0}
+			height={( this.state.canvasHeight * DPR ) / 4.0}
+			style={{
+				width: this.state.canvasWidth / 4.0,
+				height: this.state.canvasHeight / 4.0
+			}}
 			ref={( canvas ) => {
 				if ( canvas ) {
 					this.zoom = canvas;
-					this.zoomCtx = canvas.getContext( '2d' );
-					this.zoomCtx.imageSmoothingQuality = 'high';
+					if ( !this.zoomCtx ) {
+						this.zoomCtx = canvas.getContext( '2d' );
+						this.zoomCtx.scale( DPR, DPR );
+						this.zoomCtx.imageSmoothingQuality = 'high';
+					}
 				}
 			}}
 		/>;
@@ -2322,7 +2338,10 @@ class Sketchpad extends Component {
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</div>
 					<div className="canvas-wrapper"
-						style={{ width: this.state.canvasWidth, height: this.state.canvasHeight }}
+						style={{
+							width: this.state.canvasWidth,
+							height: this.state.canvasHeight
+						}}
 						ref={( div ) => { this.canvasWrapper = div; }}
 					>
 						{this.renderHTMLOverlays()}
