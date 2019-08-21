@@ -1120,8 +1120,8 @@ class Sketchpad extends Component {
 		if ( this.selectedElement ) {
 			if ( this.state.mode === 'drag' ) {
 				debug( 'Drag elements around...' );
-				const dx = ( x - this.x ) / this.canvas.width;
-				const dy = ( y - this.y ) / this.canvas.height;
+				const dx = ( x - this.x ) / ( this.canvas.width / DPR );
+				const dy = ( y - this.y ) / ( this.canvas.height / DPR );
 				const e = this.selectedElement;
 				if ( e.type === 'curve' ) {
 					const points = e.points;
@@ -1454,7 +1454,7 @@ class Sketchpad extends Component {
 				this.ctx.lineWidth = max( elem.lineWidth, 16.0 );
 				curve( this.ctx, points, this.canvas.width / DPR, this.canvas.height / DPR, 0.9, 50 );
 				this.ctx.closePath();
-				if ( this.ctx.isPointInStroke( x, y ) ) {
+				if ( this.ctx.isPointInStroke( x*DPR, y*DPR ) ) {
 					debug( `Point (${x}, ${y}) is in path of element with ID ${elem.drawID}` );
 					found = i;
 					this.selectedElement = elem;
@@ -2066,7 +2066,7 @@ class Sketchpad extends Component {
 		}
 		const action = {
 			id: this.id,
-			type: this.state.mode === 'pointer' ? 'SKETCHPAD_MOVE_POINTER' : 'SKETCHPAD_MOVE_ZOOM',
+			type: this.state.mode === 'pointer' ? SKETCHPAD_MOVE_POINTER : SKETCHPAD_MOVE_ZOOM,
 			value: JSON.stringify({
 				x: x / ( this.canvas.width / DPR ),
 				y: y / ( this.canvas.height / DPR ),
