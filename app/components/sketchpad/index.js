@@ -186,6 +186,9 @@ class Sketchpad extends Component {
 	componentDidMount() {
 		const session = this.context;
 
+		// Scale the magnifying glass:
+		this.zoomCtx.scale( DPR, DPR );
+
 		if ( this.props.fullscreen ) {
 			this.windowResize = window.addEventListener( 'resize', () => {
 				this.setState({
@@ -1103,6 +1106,7 @@ class Sketchpad extends Component {
 			this.currentPoints = [];
 		}
 		this.isMouseDown = false;
+		this.forceUpdate();
 	}
 
 	draw = ( evt ) => {
@@ -2304,11 +2308,8 @@ class Sketchpad extends Component {
 			ref={( canvas ) => {
 				if ( canvas ) {
 					this.zoom = canvas;
-					if ( !this.zoomCtx ) {
-						this.zoomCtx = canvas.getContext( '2d' );
-						this.zoomCtx.scale( DPR, DPR );
-						this.zoomCtx.imageSmoothingQuality = 'high';
-					}
+					this.zoomCtx = canvas.getContext( '2d' );
+					this.zoomCtx.imageSmoothingQuality = 'high';
 				}
 			}}
 		/>;
