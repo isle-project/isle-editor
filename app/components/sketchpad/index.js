@@ -1006,7 +1006,7 @@ class Sketchpad extends Component {
 			ctx.shadowBlur = lineWidth * 2.0;
 			ctx.strokeStyle = selected ? 'yellow' : color;
 			ctx.beginPath();
-			curve( ctx, points, this.canvas.width / DPR, this.canvas.height / DPR, 0.9, 50 );
+			curve( ctx, points, this.canvas.width / DPR, this.canvas.height / DPR );
 			ctx.stroke();
 		}
 	}
@@ -1024,6 +1024,7 @@ class Sketchpad extends Component {
 		this.x = x;
 		this.y = y;
 		this.isMouseDown = true;
+		this.imageData = this.ctx.getImageData( 0, 0, this.canvas.width, this.canvas.height );
 		if ( this.state.mode === 'drawing' ) {
 			if ( this.state.nUndos > 0 ) {
 				const elems = this.elements[ this.state.currentPage ];
@@ -1088,7 +1089,10 @@ class Sketchpad extends Component {
 			elems.push( line );
 			this.props.onChange( elems );
 
-			this.redraw();
+			// Restore image before line and redraw smoothed version:
+			this.ctx.putImageData( this.imageData, 0, 0 );
+			this.drawCurve( line );
+
 			const logAction = {
 				id: this.id,
 				type: SKETCHPAD_DRAW_CURVE,
@@ -1456,7 +1460,7 @@ class Sketchpad extends Component {
 
 				// Use a minimum line width to make selecting easier:
 				this.ctx.lineWidth = max( elem.lineWidth, 16.0 );
-				curve( this.ctx, points, this.canvas.width / DPR, this.canvas.height / DPR, 0.9, 50 );
+				curve( this.ctx, points, this.canvas.width / DPR, this.canvas.height / DPR );
 				this.ctx.closePath();
 				if ( this.ctx.isPointInStroke( x*DPR, y*DPR ) ) {
 					debug( `Point (${x}, ${y}) is in path of element with ID ${elem.drawID}` );
