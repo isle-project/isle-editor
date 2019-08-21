@@ -655,6 +655,20 @@
     ],
     "description": "This component is used by students to briefly summarize data as it is presented and perform various statistical tests."
   },
+  "DataSampler": {
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)"
+      },
+      {
+        "name": "sampleSize",
+        "type": "number",
+        "default": 50
+      }
+    ],
+    "description": "Component to sample observations from a dataset and pass it to child components."
+  },
   "DataTable": {
     "props": [
       {
@@ -1181,6 +1195,11 @@
         "name": "src",
         "type": "string (required)",
         "description": "source URL"
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "default": "An iFrame"
       }
     ],
     "description": "An iFrame component."
@@ -4465,6 +4484,11 @@
   "ShapedImage": {
     "props": [
       {
+        "name": "alt",
+        "type": "string",
+        "default": ""
+      },
+      {
         "name": "background",
         "type": "boolean",
         "description": "if set the component can hold and display child elements",
@@ -4510,6 +4534,12 @@
         "type": "boolean",
         "description": "controls whether the editor should save the current text to the local storage of the browser at a given time interval",
         "default": true
+      },
+      {
+        "name": "feedbackButtons",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons on each slide",
+        "default": false
       },
       {
         "name": "intervalTime",

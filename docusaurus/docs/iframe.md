@@ -17,3 +17,4 @@ An iFrame component.
 ## Options
 
 * __src__ | `string (required)`: source URL. Default: `none`.
+* __title__ | `string`: undefined. Default: `'An iFrame'`.
