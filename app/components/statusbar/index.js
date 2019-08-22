@@ -242,6 +242,14 @@ class StatusBar extends Component {
 		});
 	}
 
+	handleBarClick = ( event ) => {
+		this.toggleBar();
+	}
+
+	handleBarKeyPress = () => {
+		this.toggleBar();
+	}
+
 	handleVoiceInput = ( text ) => {
 		debug( 'Received voice input: ' + text );
 		this.setState({
@@ -386,7 +394,7 @@ class StatusBar extends Component {
 						className="statusbar unselectable"
 						role="button" tabIndex={0}
 						ref={( statusbar ) => { this.statusbar = statusbar; }}
-						onClick={this.toggleBar} onKeyPress={this.toggleBar}
+						onClick={this.handleBarClick} onKeyPress={this.handleBarKeyPress}
 						onMouseOver={this.onMouseOver} onFocus={this.onMouseOver}
 						onMouseOut={this.onMouseOut} onBlur={this.onMouseOut}
 						style={{
@@ -497,15 +505,6 @@ class StatusBar extends Component {
 							</div>
 						</div>
 						<div className="statusbar-right"></div>
-						<Login show={this.state.visibleLogin} onClose={this.closeLogin} />
-						<Signup show={this.state.visibleSignup} onClose={this.closeSignup} />
-						<ConfirmModal
-							show={this.state.visibleLogout}
-							close={this.closeLogout}
-							title="Logout"
-							message="Do you really want to log out? To log in again, you will need your password."
-							onConfirm={this.handleLogout}
-						/>
 						<div
 							className={`statusbar-progress ${this.state.isProgressLeaving ? 'progress-fade-out' : ''} `}
 							style={{
@@ -538,6 +537,15 @@ class StatusBar extends Component {
 						</Gate>
 					</Suspense>
 				</div>
+				<Login show={this.state.visibleLogin} onClose={this.closeLogin} />
+				<Signup show={this.state.visibleSignup} onClose={this.closeSignup} />
+				<ConfirmModal
+					show={this.state.visibleLogout}
+					close={this.closeLogout}
+					title="Logout"
+					message="Do you really want to log out? To log in again, you will need your password."
+					onConfirm={this.handleLogout}
+				/>
 				<Calculator show={this.state.showCalculator} onHide={this.toggleCalculator} />
 				<Queue
 					id="main_queue"

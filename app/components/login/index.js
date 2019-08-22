@@ -52,6 +52,7 @@ class Login extends Component {
 	}
 
 	handleInputChange = ( event ) => {
+		event.stopPropagation();
 		const target = event.target;
 		const value = target.value;
 		const name = target.name;
@@ -83,6 +84,7 @@ class Login extends Component {
 	}
 
 	handleKeyPress = ( event ) => {
+		event.stopPropagation();
 		if ( event.charCode === 13 ) {
 			this.handleSubmit( event );
 		}

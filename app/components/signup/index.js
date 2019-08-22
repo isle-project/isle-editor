@@ -69,7 +69,15 @@ class Signup extends Component {
 		return false;
 	};
 
+	handleKeyPress = ( event ) => {
+		event.stopPropagation();
+		if ( event.charCode === 13 ) {
+			this.handleSubmit( event );
+		}
+	}
+
 	handleInputChange = ( event ) => {
+		event.stopPropagation();
 		const target = event.target;
 		const value = target.value;
 		const name = target.name;
@@ -140,6 +148,7 @@ class Signup extends Component {
 										placeholder="Enter Email"
 										autoComplete="username"
 										onChange={this.handleInputChange}
+										onKeyPress={this.handleKeyPress}
 										isInvalid={invalidEmail}
 									/>
 									<FormControl.Feedback type="invalid">
@@ -162,6 +171,7 @@ class Signup extends Component {
 										type="text"
 										placeholder="Enter Name"
 										onChange={this.handleInputChange}
+										onKeyPress={this.handleKeyPress}
 										isInvalid={invalidName}
 									/>
 									<FormControl.Feedback type="invalid">
@@ -185,6 +195,7 @@ class Signup extends Component {
 										placeholder="Choose Password"
 										autoComplete="new-password"
 										onChange={this.handleInputChange}
+										onKeyPress={this.handleKeyPress}
 										maxLength={30}
 										minLength={6}
 										isInvalid={invalidPassword}
@@ -206,6 +217,7 @@ class Signup extends Component {
 									placeholder="Confirm Password"
 									autocomplete="new-password"
 									onChange={this.handleInputChange}
+									onKeyPress={this.handleKeyPress}
 									maxLength={30}
 									minLength={6}
 									isInvalid={invalidPasswordRepeat}
