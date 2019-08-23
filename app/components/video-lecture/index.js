@@ -167,7 +167,7 @@ class VideoLecture extends Component {
 	renderSteps() {
 		const out = [];
 		for ( let i = 0; i < this.props.steps.length; i++ ) {
-			const className = this.state.active !== i ? 'invisible-step' : 'visible-step';
+			const className = this.state.active !== i && !this.state.showInstructorView ? 'invisible-step' : 'visible-step';
 			out.push(
 				<div
 					className={className}
@@ -181,30 +181,13 @@ class VideoLecture extends Component {
 	}
 
 	render() {
-		if ( this.state.showInstructorView ) {
-			const elems = [];
-			for ( let i = 0; i < this.props.steps.length; i++ ) {
-				elems.push( this.renderStep( i ) );
-			}
-			return ( <div className="video-lecture-wrapper" ref={( div ) => {
-				this.videoLectureWrapper = div;
-			}}>
-				<h1>Instructor View</h1>
-				{elems}
-				<Button
-					variant="secondary" block
-					onClick={this.toggleInstructorView}
-				>
-					Close Instructor View
-				</Button>
-			</div> );
-		}
+		const steps = this.renderSteps();
 		return (
 			<Fragment>
 				<div className="video-lecture-wrapper" ref={( div ) => {
 					this.videoLectureWrapper = div;
 				}}>
-					{this.renderSteps()}
+					{steps}
 					{ this.state.active >= this.props.steps.length ?
 						<Alert variant="success" className="video-lecture-end-alert" >
 							<h1>You have reached the end of this video lecture.</h1>
@@ -222,7 +205,7 @@ class VideoLecture extends Component {
 							onClick={this.toggleInstructorView}
 							block
 						>
-							Open Instructor View
+							{this.state.showInstructorView ? 'Close Instructor View' : 'Open Instructor View' }
 						</Button>
 					</Gate>
 				</div>
