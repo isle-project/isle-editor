@@ -49,35 +49,30 @@ function curve( ctx, points, width, height, tension, numOfSeg, close ) {
 	tension = typeof tension === 'number' ? tension : 0.9;
 	numOfSeg = typeof numOfSeg === 'number' ? numOfSeg : 50;
 
-	const smoothed = [];
-	smoothed.push( points[ 0 ] * width );
-	smoothed.push( points[ 1 ] * height );
-	for ( let i = 2; i < points.length - 2; i += 2 ) {
-		const c = ( points[i] + points[i+2] ) / 2;
-		const d = ( points[i+1] + points[i+3] ) / 2;
-		smoothed.push( c * width );
-		smoothed.push( d * height );
-	}
-
 	let pts; // for cloning point array
 	let i = 1;
-	let l = smoothed.length;
+	let l = points.length;
 	let rPos = 0;
 	let rLen = (l-2) * numOfSeg + 2 + (close ? 2 * numOfSeg: 0);
 	let res = new Float32Array(rLen);
 	let cache = new Float32Array((numOfSeg + 2) << 2);
 	let cachePtr = 4;
 
-	pts = smoothed.slice( 0 );
+	points = points.slice( 0 );
+	for ( let i = 0; i < points.length; i += 2 ) {
+		points[ i ] = points[ i ] * width;
+		points[ i + 1 ] = points[ i + 1 ] * height;
+	}
+	pts = points.slice( 0 );
 	if ( close ) {
-		pts.unshift( smoothed[l - 1] ); // insert end point as first point
-		pts.unshift( smoothed[l - 2] );
-		pts.push( smoothed[0], smoothed[1] ); // first point as last point
+		pts.unshift( points[l - 1] ); // insert end point as first point
+		pts.unshift( points[l - 2] );
+		pts.push( points[0], points[1] ); // first point as last point
 	}
 	else {
-		pts.unshift( smoothed[1] ); // copy 1. point and insert at beginning
-		pts.unshift( smoothed[0] );
-		pts.push( smoothed[l - 2], smoothed[l - 1] ); // duplicate end-points
+		pts.unshift( points[1] ); // copy 1. point and insert at beginning
+		pts.unshift( points[0] );
+		pts.push( points[l - 2], points[l - 1] ); // duplicate end-points
 	}
 
 	// cache inner-loop calculations as they are based on t alone
@@ -104,10 +99,10 @@ function curve( ctx, points, width, height, tension, numOfSeg, close ) {
 	if ( close ) {
 		pts = [];
 		pts.push(
-			smoothed[l - 4], smoothed[l - 3],
-			smoothed[l - 2], smoothed[l - 1], // second last and last
-			smoothed[0], smoothed[1],
-			smoothed[2], smoothed[3] // first and second
+			points[l - 4], points[l - 3],
+			points[l - 2], points[l - 1], // second last and last
+			points[0], points[1],
+			points[2], points[3] // first and second
 		);
 		parse( pts, cache, 4, tension );
 	}
@@ -136,9 +131,9 @@ function curve( ctx, points, width, height, tension, numOfSeg, close ) {
 	}
 
 	// Add last point:
-	l = close ? 0 : smoothed.length - 2;
-	res[ rPos++ ] = smoothed[ l++ ];
-	res[ rPos ] = smoothed[ l ];
+	l = close ? 0 : points.length - 2;
+	res[ rPos++ ] = points[ l++ ];
+	res[ rPos ] = points[ l ];
 
 	// Add lines to path:
 	for ( i = 0, l = res.length; i < l; i += 2 ) {

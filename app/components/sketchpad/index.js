@@ -158,7 +158,8 @@ class Sketchpad extends Component {
 			receiveFrom: {},
 			showResetModal: false,
 			swiping: true,
-			verticalOffset: 60
+			verticalOffset: 60,
+			hasRetrievedData: false
 		};
 		this.isMouseDown = false;
 		this.leftMargin = 0;
@@ -206,7 +207,7 @@ class Sketchpad extends Component {
 			init = Promise.resolve();
 		}
 		init.then( () => {
-			const promise = session.store.getItem( this.id + '_sketchpad' );
+			const promise = session.store.getItem( this.id );
 			promise
 			.then( this.retrieveData )
 			.catch( ( err ) => {
@@ -557,6 +558,7 @@ class Sketchpad extends Component {
 				this.backgrounds.splice( pageNo, 0, null );
 			}
 			const page = this.readURL();
+			debug( 'Go to page '+page );
 			if ( page > 0 ) {
 				data.state.currentPage = page - 1;
 			} else {
@@ -564,6 +566,7 @@ class Sketchpad extends Component {
 			}
 			data.state.noPages = this.backgrounds.length;
 			data.state = omit( data.state, OMITTED_KEYS );
+			data.state.hasRetrievedData = true;
 			this.setState( data.state, () => {
 				this.redraw();
 			});
@@ -667,6 +670,7 @@ class Sketchpad extends Component {
 			return page.render( renderContext )
 			.promise
 			.then( () => {
+				this.backgroundData = this.ctx.getImageData( 0, 0, this.canvas.width, this.canvas.height );
 				debug( `Background rendered for page ${pageNumber}` );
 			});
 		}
@@ -701,6 +705,35 @@ class Sketchpad extends Component {
 				this.pageRendering = false;
 				debug( 'Encountered an error: '+err.message );
 			});
+	}
+
+	onlyRedrawElements = () => {
+		this.ctx.putImageData( this.backgroundData, 0, 0 );
+		const currentPage = this.state.currentPage;
+		const elems = this.elements[ currentPage ];
+		debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
+		const recordingEndPos = this.recordingEndPositions[ currentPage ];
+		for ( let i = recordingEndPos; i < elems.length; i++ ) {
+			this.drawElement( elems[ i ] );
+		}
+	}
+
+	redrawWhenDragging = () => {
+		if ( !this.draggingImageData ) {
+			this.ctx.putImageData( this.backgroundData, 0, 0 );
+			const currentPage = this.state.currentPage;
+			const elems = this.elements[ currentPage ];
+			debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
+			const recordingEndPos = this.recordingEndPositions[ currentPage ];
+			for ( let i = recordingEndPos; i < elems.length; i++ ) {
+				if ( elems[ i ] !== this.selectedElement ) {
+					this.drawElement( elems[ i ] );
+				}
+			}
+			this.draggingImageData = this.ctx.getImageData( 0, 0, this.canvas.width, this.canvas.height );
+		}
+		this.ctx.putImageData( this.draggingImageData, 0, 0 );
+		this.drawElement( this.selectedElement );
 	}
 
 	replay = () => {
@@ -986,8 +1019,7 @@ class Sketchpad extends Component {
 			ctx.lineWidth = lineWidth;
 			ctx.lineCap = 'round';
 			ctx.lineJoin = 'round';
-			ctx.shadowColor = 'rgba(128, 128, 128, 0.2)';
-			ctx.shadowBlur = lineWidth * 2.0;
+			ctx.shadowBlur = 0;
 			ctx.strokeStyle = selected ? 'yellow' : color;
 			ctx.beginPath();
 			ctx.moveTo( startX, startY );
@@ -1002,8 +1034,10 @@ class Sketchpad extends Component {
 			ctx.lineWidth = lineWidth;
 			ctx.lineCap = 'round';
 			ctx.lineJoin = 'round';
-			ctx.shadowColor = 'rgba(128, 128, 128, 0.2)';
-			ctx.shadowBlur = lineWidth * 2.0;
+			if ( !selected ) {
+				ctx.shadowColor = 'rgba(128, 128, 128, 0.2)';
+				ctx.shadowBlur = lineWidth * 2.0;
+			}
 			ctx.strokeStyle = selected ? 'yellow' : color;
 			ctx.beginPath();
 			curve( ctx, points, this.canvas.width / DPR, this.canvas.height / DPR );
@@ -1072,12 +1106,21 @@ class Sketchpad extends Component {
 			const session = this.context;
 			const username = session.user.email || '';
 
-			// Convert to relative coordinates:
-			for ( let i = 0; i < this.currentPoints.length; i++ ) {
-				this.currentPoints[ i ] /= ( i % 2 === 0 ) ? ( this.canvas.width / DPR ) : ( this.canvas.height / DPR );
+			// Save smoothed points & convert to relative coordinates:
+			const points = this.currentPoints;
+			points[ 0 ] /= ( this.canvas.width / DPR );
+			points[ 1 ] /= ( this.canvas.height / DPR );
+			for ( let i = 2; i < points.length - 2; i += 2 ) {
+				const c = ( points[i] + points[i+2] ) / 2;
+				const d = ( points[i+1] + points[i+3] ) / 2;
+				points[ i ] = c / ( this.canvas.width / DPR );
+				points[ i+1 ] = d / ( this.canvas.height / DPR );
 			}
+			points[ points.length-2 ] /= ( this.canvas.width / DPR );
+			points[ points.length-1 ] /= ( this.canvas.height / DPR );
+
 			const line = {
-				points: this.currentPoints,
+				points: points,
 				color: this.state.color,
 				lineWidth: this.state.brushSize * ( 1.0 + this.force ) * 0.5,
 				page: this.state.currentPage,
@@ -1161,7 +1204,7 @@ class Sketchpad extends Component {
 				}
 				this.x = x;
 				this.y = y;
-				return this.redraw();
+				return this.redrawWhenDragging();
 			}
 		}
 		if ( this.isMouseDown && !this.props.disabled ) {
@@ -1440,7 +1483,8 @@ class Sketchpad extends Component {
 			// Deselect element:
 			this.selectedElement.selected = false;
 			this.selectedElement = null;
-			this.redraw();
+			this.draggingImageData = null;
+			this.onlyRedrawElements();
 		} else {
 			debug( 'Checking whether a shape has been selected...' );
 			this.checkDeletion( event );
@@ -1535,7 +1579,7 @@ class Sketchpad extends Component {
 			debug( `Delete elements ${deleteStart} to ${deleteEnd}` );
 			elems.splice( deleteStart, deleteEnd - deleteStart + 1 );
 		}
-		this.redraw();
+		this.onlyRedrawElements();
 	}
 
 	firstPage = () => {
@@ -1736,7 +1780,9 @@ class Sketchpad extends Component {
 					currentPage: 0,
 					noPages
 				}, () => {
-					this.drawPage( this.state.currentPage );
+					if ( this.state.hasRetrievedData ) {
+						this.drawPage( this.state.currentPage );
+					}
 				});
 				clbk( null );
 			})
@@ -1747,6 +1793,7 @@ class Sketchpad extends Component {
 	}
 
 	saveInBrowser = ( clbk = noop ) => {
+		debug( 'Save created elements to local storage...' );
 		const session = this.context;
 		const state = omit( this.state, OMITTED_KEYS );
 		const data = {
