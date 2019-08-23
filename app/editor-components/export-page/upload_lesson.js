@@ -18,7 +18,6 @@ import { createReadStream, createWriteStream } from 'fs';
 import os from 'os';
 import qs from 'querystring';
 import logger from 'debug';
-import lowercase from '@stdlib/string/lowercase';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import endsWith from '@stdlib/string/ends-with';
@@ -90,7 +89,7 @@ class UploadLesson extends Component {
 		const lessonName = event.target.value;
 		this.setState({
 			lessonName,
-			invalidLessonName: contains( lessonName, ' ' ) || lessonName !== lowercase( lessonName )
+			invalidLessonName: contains( lessonName, ' ' )
 		});
 	}
 
