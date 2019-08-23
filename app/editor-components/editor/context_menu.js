@@ -83,7 +83,8 @@ class EditorContextMenu extends Component {
 				style={{
 					float: 'right',
 					border: 'none',
-					background: 'none'
+					background: 'none',
+					cursor: 'pointer'
 				}}
 				onClick={this.handleCustomInsertClick}
 			/>
