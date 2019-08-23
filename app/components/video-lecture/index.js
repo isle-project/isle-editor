@@ -8,6 +8,7 @@ import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import FreeTextQuestion from 'components/free-text-question';
 import MultipleChoiceQuestion from 'components/multiple-choice-question';
+import Gate from 'components/gate';
 import KeyControls from 'components/key-controls';
 import MatchListQuestion from 'components/match-list-question';
 import NumberQuestion from 'components/number-question';
@@ -60,7 +61,8 @@ class VideoLecture extends Component {
 		super( props );
 		this.state = {
 			active: 0,
-			waitForAnswer: waitStatuses( props.steps )
+			waitForAnswer: waitStatuses( props.steps ),
+			showInstructorView: false
 		};
 	}
 
@@ -97,8 +99,14 @@ class VideoLecture extends Component {
 		});
 	}
 
-	renderStep() {
-		const elem = this.props.steps[ this.state.active ];
+	toggleInstructorView =() => {
+		this.setState({
+			showInstructorView: !this.state.showInstructorView
+		});
+	}
+
+	renderStep( active ) {
+		const elem = this.props.steps[ active ];
 		if ( !elem ) {
 			return (
 				<div style={{ height: '98vh', position: 'relative' }} ref={( div ) => {
@@ -157,7 +165,7 @@ class VideoLecture extends Component {
 					{...elem.props}
 					onSubmit={this.markCompleted}
 				/>
-				<Panel style={{ width: '90%' }}>
+				{ !this.state.showInstructorView ? <Panel style={{ width: '90%' }}>
 					{ this.state.active > 0 ? <Button
 						variant="warning"
 						size="lg"
@@ -171,15 +179,31 @@ class VideoLecture extends Component {
 						style={{ float: 'right' }}
 						disabled={this.state.waitForAnswer[ this.state.active ]}
 					>Next</Button>
-				</Panel>
+				</Panel> : null }
 			</div>
 		);
 	}
 
 	render() {
+		if ( this.state.showInstructorView ) {
+			const elems = [];
+			for ( let i = 0; i < this.props.steps.length; i++ ) {
+				elems.push( this.renderStep( i ) );
+			}
+			return ( <Fragment>
+				<h1>Instructor View</h1>
+				{elems}
+				<Button
+					variant="secondary" block
+					onClick={this.toggleInstructorView}
+				>
+					Close Instructor View
+				</Button>
+			</Fragment> );
+		}
 		return (
 			<Fragment>
-				{this.renderStep()}
+				{this.renderStep( this.state.active )}
 				<KeyControls
 					container={this.videoLectureWrapper}
 					actions={{
@@ -187,6 +211,15 @@ class VideoLecture extends Component {
 						'ArrowLeft': this.decrementStep
 					}}
 				/>
+				<Gate owner>
+					<Button
+						variant="secondary"
+						onClick={this.toggleInstructorView}
+						block
+					>
+						Open Instructor View
+					</Button>
+				</Gate>
 			</Fragment>
 		);
 	}
