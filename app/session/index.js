@@ -780,7 +780,7 @@ class Session {
 					return user;
 				});
 				const isUser = data.email === this.user.email;
-				this.update( 'user_left' );
+				this.update( 'user_left', data.email );
 				if ( this.config.joinNotifications && !isUser ) {
 					this.addNotification({
 						title: 'User has left',
