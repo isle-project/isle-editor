@@ -212,6 +212,7 @@ class VideoLecture extends Component {
 					{steps}
 					<Gate owner>
 						<Button
+							className="video-lecture-instructor-button"
 							variant="secondary"
 							onClick={this.toggleInstructorView}
 							block

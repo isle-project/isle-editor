@@ -10,6 +10,7 @@ import isElectron from 'utils/is-electron';
 import ActionLog from 'components/statusbar/action-log';
 import InstructorNotes from 'components/statusbar/instructor-notes';
 import animatePosition from 'utils/animate-position';
+import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
 import UserList from './user_list.js';
 import ResponseVisualizers from './response_visualizers.js';
@@ -212,19 +213,21 @@ class InstructorView extends Component {
 					{this.renderCohortSelection()}
 				</div>
 				<div className="instructor-view-bottom"></div>
-				<div className="instructor-view-handler"
-					role="button" tabIndex={0}
-					onClick={this.toggleBar} onKeyPress={this.toggleBar}
-					onMouseOver={this.onMouseOver} onFocus={this.onMouseOver}
-					onMouseOut={this.onMouseOut} onBlur={this.onMouseOut}
-					ref={( handler ) => { this.handler = handler; }}
-					style={{
-						right: this.state.hidden ? '105%' : '102%',
-						borderWidth: this.state.hidden ? '20px 34.6px 20px 0' : '20px 0 20px 34.6px',
-						borderColor: this.state.hidden ? 'transparent #fa9417 transparent transparent' : 'transparent transparent transparent silver'
-					}}
-				>
-				</div>
+				<Tooltip tooltip={`${this.state.hidden ? 'Open' : 'Close'} instructor panel`} placement="left" >
+					<div className="instructor-view-handler"
+						role="button" tabIndex={0}
+						onClick={this.toggleBar} onKeyPress={this.toggleBar}
+						onMouseOver={this.onMouseOver} onFocus={this.onMouseOver}
+						onMouseOut={this.onMouseOut} onBlur={this.onMouseOut}
+						ref={( handler ) => { this.handler = handler; }}
+						style={{
+							right: this.state.hidden ? '102%' : '100%',
+							borderWidth: this.state.hidden ? '15px 26px 15px 0' : '15px 0 15px 26px',
+							borderColor: this.state.hidden ? 'transparent #fa9417 transparent transparent' : 'transparent transparent transparent #fa9417'
+						}}
+					>
+					</div>
+				</Tooltip>
 			</div>
 		);
 	}
