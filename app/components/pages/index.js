@@ -206,12 +206,12 @@ class Pages extends Component {
 					}}
 				>
 					{ isArray( this.props.children ) ? this.props.children.map( ( elem, idx ) => {
-						return ( <span
+						return ( <div
 							className={this.state.activePage-1 !== idx ? 'invisible-page' : 'visible-page'}
 							key={idx}
 						>
 							{elem}
-						</span> );
+						</div> );
 					}) : this.props.children }
 				</div>
 			</Card>

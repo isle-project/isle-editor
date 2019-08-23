@@ -105,37 +105,19 @@ class VideoLecture extends Component {
 		});
 	}
 
-	renderStep( active ) {
-		const elem = this.props.steps[ active ];
-		if ( !elem ) {
-			return (
-				<div style={{ height: '98vh', position: 'relative' }} ref={( div ) => {
-					this.videoLectureWrapper = div;
-				}}>
-					<Alert variant="success" style={{ top: '33%' }}>
-						<h1>You have reached the end of this video lecture.</h1>
-						<Button
-							variant="secondary"
-							size="lg"
-							onClick={this.decrementStep}
-							style={{ position: 'absolute', top: 3, right: 3 }}
-						>Back</Button>
-					</Alert>
-				</div>
-			);
-		}
+	renderStep( page ) {
+		const elem = this.props.steps[ page ];
 		if ( isString( elem ) ) {
 			return (
-				<div style={{ position: 'relative' }} ref={( div ) => {
-					this.videoLectureWrapper = div;
-				}}>
-					<VideoPlayer
+				<div>
+					{ this.state.active === page ? <VideoPlayer
 						url={elem}
+						key={page}
 						onEnded={this.incrementStep}
 						controls={this.props.controls}
 						width="100%" height="98vh"
 						playing={this.state.active !== 0}
-					/>
+					/> : null }
 					{ this.state.active > 0 ? <div
 						onClick={this.decrementStep}
 						role="button"
@@ -158,9 +140,7 @@ class VideoLecture extends Component {
 			);
 		}
 		return (
-			<div ref={( div ) => {
-				this.videoLectureWrapper = div;
-			}}>
+			<div>
 				<elem.type
 					{...elem.props}
 					onSubmit={this.markCompleted}
@@ -184,13 +164,31 @@ class VideoLecture extends Component {
 		);
 	}
 
+	renderSteps() {
+		const out = [];
+		for ( let i = 0; i < this.props.steps.length; i++ ) {
+			const className = this.state.active !== i ? 'invisible-step' : 'visible-step';
+			out.push(
+				<div
+					className={className}
+					key={i}
+				>
+					{this.renderStep( i )}
+				</div>
+			);
+		}
+		return out;
+	}
+
 	render() {
 		if ( this.state.showInstructorView ) {
 			const elems = [];
 			for ( let i = 0; i < this.props.steps.length; i++ ) {
 				elems.push( this.renderStep( i ) );
 			}
-			return ( <Fragment>
+			return ( <div className="video-lecture-wrapper" ref={( div ) => {
+				this.videoLectureWrapper = div;
+			}}>
 				<h1>Instructor View</h1>
 				{elems}
 				<Button
@@ -199,11 +197,35 @@ class VideoLecture extends Component {
 				>
 					Close Instructor View
 				</Button>
-			</Fragment> );
+			</div> );
 		}
 		return (
 			<Fragment>
-				{this.renderStep( this.state.active )}
+				<div className="video-lecture-wrapper" ref={( div ) => {
+					this.videoLectureWrapper = div;
+				}}>
+					{this.renderSteps()}
+					{ this.state.active >= this.props.steps.length ?
+						<Alert variant="success" className="video-lecture-end-alert" >
+							<h1>You have reached the end of this video lecture.</h1>
+							<Button
+								variant="secondary"
+								size="lg"
+								onClick={this.decrementStep}
+								block
+							>Back</Button>
+						</Alert> : null
+					}
+					<Gate owner>
+						<Button
+							variant="secondary"
+							onClick={this.toggleInstructorView}
+							block
+						>
+							Open Instructor View
+						</Button>
+					</Gate>
+				</div>
 				<KeyControls
 					container={this.videoLectureWrapper}
 					actions={{
@@ -211,15 +233,6 @@ class VideoLecture extends Component {
 						'ArrowLeft': this.decrementStep
 					}}
 				/>
-				<Gate owner>
-					<Button
-						variant="secondary"
-						onClick={this.toggleInstructorView}
-						block
-					>
-						Open Instructor View
-					</Button>
-				</Gate>
 			</Fragment>
 		);
 	}

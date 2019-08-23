@@ -44,3 +44,25 @@
 	width: 100%;
 	height: 92px;
 }
+
+.visible-step {
+	display: inline;
+}
+
+.invisible-step {
+	display: none;
+}
+
+.video-lecture-wrapper {
+	display: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.video-lecture-end-alert {
+	top: 33%;
+	max-width: 900px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
