@@ -178,6 +178,13 @@ class Queue extends Component {
 		}, 'members' );
 	}
 
+	renderChatButton = ( row ) => {
+		const chatID = 'Queue_'+row.original.name+'_'+row.original.spot;
+		return ( <Tooltip placement="left" tooltip="Start chat with student" >
+			<ChatButton showTooltip={false} for={chatID} />
+		</Tooltip> );
+	}
+
 	renderButtonRemovable = ( cellInfo ) => {
 		return (
 			<Tooltip placement="left" tooltip="Mark question as answered and remove">
@@ -288,14 +295,7 @@ class Queue extends Component {
 							},
 							{
 								Header: 'Chat',
-								Cell: ( row ) => {
-									const chatID = 'Queue_'+row.original.name+'_'+row.original.spot;
-									return ( <Tooltip placement="left" tooltip="Start chat with student" >
-										<div>
-											<ChatButton showTooltip={false} for={chatID} />
-										</div>
-									</Tooltip> );
-								}
+								Cell: this.renderChatButton
 							},
 							{
 								Header: '',

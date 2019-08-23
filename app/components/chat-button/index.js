@@ -61,6 +61,7 @@ class ChatButton extends Component {
 	}
 
 	handleClick = () => {
+		debug( 'Handle click to join chat...' );
 		const session = this.context;
 		let opened = this.state.opened;
 		this.setState({
