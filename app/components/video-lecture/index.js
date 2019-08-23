@@ -108,9 +108,20 @@ class VideoLecture extends Component {
 	renderStep( page ) {
 		const elem = this.props.steps[ page ];
 		if ( isString( elem ) ) {
+			if ( this.state.showInstructorView ) {
+				return ( <div key={page}>
+					<VideoPlayer
+						id={elem}
+						url={elem}
+						controls={this.props.controls}
+						light
+					/>
+					</div> );
+			}
 			return (
 				<div>
 					{ this.state.active === page ? <VideoPlayer
+						id={elem}
 						url={elem}
 						key={page}
 						onEnded={this.incrementStep}
@@ -140,7 +151,7 @@ class VideoLecture extends Component {
 			);
 		}
 		return (
-			<div>
+			<div className="video-lecture-content">
 				<elem.type
 					{...elem.props}
 					onSubmit={this.markCompleted}
@@ -187,7 +198,6 @@ class VideoLecture extends Component {
 				<div className="video-lecture-wrapper" ref={( div ) => {
 					this.videoLectureWrapper = div;
 				}}>
-					{steps}
 					{ this.state.active >= this.props.steps.length ?
 						<Alert variant="success" className="video-lecture-end-alert" >
 							<h1>You have reached the end of this video lecture.</h1>
@@ -199,6 +209,7 @@ class VideoLecture extends Component {
 							>Back</Button>
 						</Alert> : null
 					}
+					{steps}
 					<Gate owner>
 						<Button
 							variant="secondary"
