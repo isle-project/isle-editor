@@ -135,6 +135,7 @@ class Editor extends Component {
 	shouldComponentUpdate( prevProps, prevState ) {
 		if (
 			this.props.filePath !== prevProps.filePath ||
+			this.props.preamble !== prevProps.preamble ||
 			this.props.lintErrors.length !== prevProps.lintErrors.length ||
 			this.props.spellingErrors.length !== prevProps.spellingErrors.length ||
 			this.props.splitPos !== prevProps.splitPos ||

@@ -191,14 +191,7 @@ class Sketchpad extends Component {
 		this.zoomCtx.scale( DPR, DPR );
 
 		if ( this.props.fullscreen ) {
-			this.windowResize = window.addEventListener( 'resize', () => {
-				this.setState({
-					canvasHeight: window.innerHeight - this.state.verticalOffset,
-					canvasWidth: window.innerWidth - 40
-				}, () => {
-					this.redraw();
-				});
-			});
+			this.windowResize = window.addEventListener( 'resize', this.handleResize );
 		}
 		let init;
 		if ( this.props.pdf ) {
@@ -493,12 +486,7 @@ class Sketchpad extends Component {
 		if ( this.props.fullscreen ) {
 			document.body.addEventListener( 'gesturestart', preventGesture );
 		}
-		window.addEventListener( 'hashchange', () => {
-			const page = this.readURL();
-			if ( page > 0 ) {
-				this.gotoPage( page-1 );
-			}
-		});
+		this.hashChange = window.addEventListener( 'hashchange', this.handleHashChange );
 	}
 
 	componentDidUpdate( prevProps ) {
@@ -534,7 +522,10 @@ class Sketchpad extends Component {
 			this.unsubscribe();
 		}
 		if ( this.windowResize ) {
-			window.removeEventListener( 'resize', this.windowResize );
+			window.removeEventListener( 'resize', this.handleResize );
+		}
+		if ( this.hashChange ) {
+			window.removeEventListener( 'hashchange', this.handleHashChange );
 		}
 		const opts = {
 			passive: false
@@ -545,6 +536,22 @@ class Sketchpad extends Component {
 		if ( this.props.fullscreen ) {
 			document.removeEventListener( 'gesturestart', preventGesture );
 		}
+	}
+
+	handleHashChange = () => {
+		const page = this.readURL();
+		if ( page > 0 ) {
+			this.gotoPage( page-1 );
+		}
+	}
+
+	handleResize = () => {
+		this.setState({
+			canvasHeight: window.innerHeight - this.state.verticalOffset,
+			canvasWidth: window.innerWidth - 40
+		}, () => {
+			this.redraw();
+		});
 	}
 
 	retrieveData = ( data ) => {

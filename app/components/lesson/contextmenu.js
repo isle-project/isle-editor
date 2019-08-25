@@ -24,29 +24,31 @@ class LessonContextMenu extends Component {
 	}
 
 	componentDidMount() {
-		this.selectionListener = document.addEventListener( 'selectionchange', ( event ) => {
-			const selection = window.getSelection();
-			if ( !selection.isCollapsed || selection.type === 'Range' ) {
-				this.lastSelection = selection;
-				if ( selection.getRangeAt && selection.rangeCount ) {
-					const range = selection.getRangeAt( 0 );
-					const text = selection.toString();
-					this.setState({
-						lastRange: range,
-						lastText: text
-					});
-				}
-			} else {
-				setTimeout( () => {
-					this.forceUpdate();
-				}, 150 );
-			}
-		});
+		this.selectionListener = document.addEventListener( 'selectionchange', this.handleSelectionChange );
 	}
 
 	componentWillUnmount() {
 		if ( this.selectionListener ) {
-			document.removeEventListener( this.selectionListener );
+			document.removeEventListener( 'selectionchange', this.handleSelectionChange );
+		}
+	}
+
+	handleSelectionChange = ( event ) => {
+		const selection = window.getSelection();
+		if ( !selection.isCollapsed || selection.type === 'Range' ) {
+			this.lastSelection = selection;
+			if ( selection.getRangeAt && selection.rangeCount ) {
+				const range = selection.getRangeAt( 0 );
+				const text = selection.toString();
+				this.setState({
+					lastRange: range,
+					lastText: text
+				});
+			}
+		} else {
+			setTimeout( () => {
+				this.forceUpdate();
+			}, 150 );
 		}
 	}
 
