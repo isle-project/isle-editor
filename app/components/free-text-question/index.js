@@ -254,7 +254,7 @@ class FreeTextQuestion extends Component {
 					<VoiceControl id={this.props.voiceID} reference={this}
 						commands={VOICE_COMMANDS}
 					/>
-					{ this.props.question ? <label>{this.props.question}</label> : null }
+					{ this.props.question ? <div className="title">{this.props.question}</div> : null }
 					<FormGroup>
 						<label>{this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' }</label>
 						<FormControl

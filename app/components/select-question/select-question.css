@@ -5,6 +5,8 @@
 	width: 100%;
 	max-width: 650px;
 	font-family: Open Sans;
+	margin-top: 8px;
+	margin-bottom: 8px;
 }
 
 .select-question-option {
