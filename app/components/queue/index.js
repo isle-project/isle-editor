@@ -61,6 +61,31 @@ class Queue extends Component {
 						noSave: true
 					}, 'members' );
 				}
+				else if ( type === 'user_left' && this.state.isOwner ) {
+					let pos = 0;
+					for ( let i = 0; i < this.state.arr.length; i++ ) {
+						const val = this.state.arr[ i ];
+						if ( val.email === action ) {
+							pos = i;
+						}
+					}
+					if ( pos >= 0 ) {
+						const newArr = this.state.arr.slice();
+						newArr.splice( pos - 1, 1 );
+						const newSize = this.state.queueSize - 1;
+						this.setState({
+							arr: newArr,
+							queueSize: newSize
+						}, () => {
+							session.log({
+								id: this.id,
+								type: SEND_QUEUE_SIZE,
+								value: newSize,
+								noSave: true
+							}, 'members' );
+						});
+					}
+				}
 				if ( action && action.id === this.id ) {
 					if ( action.type === 'ENTER_QUEUE' ) {
 						debug( 'Someone is entering the queue' );
