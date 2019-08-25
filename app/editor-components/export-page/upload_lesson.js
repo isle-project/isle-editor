@@ -2,22 +2,22 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
+import { createReadStream, createWriteStream } from 'fs';
+import { join } from 'path';
+import https from 'https';
+import http from 'http';
+import os from 'os';
+import qs from 'querystring';
+import FormData from 'form-data';
+import archiver from 'archiver';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
 import Modal from 'react-bootstrap/Modal';
 import Card from 'react-bootstrap/Card';
-import FormData from 'form-data';
-import https from 'https';
-import http from 'http';
-import archiver from 'archiver';
 import randomstring from 'utils/randomstring/ascii';
-import { join } from 'path';
-import { createReadStream, createWriteStream } from 'fs';
-import os from 'os';
-import qs from 'querystring';
-import logger from 'debug';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import endsWith from '@stdlib/string/ends-with';
@@ -25,6 +25,7 @@ import removeLast from '@stdlib/string/remove-last';
 import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
 import Spinner from 'components/spinner';
+import KeyControls from 'components/key-controls';
 
 
 // VARIABLES //
@@ -249,10 +250,9 @@ class UploadLesson extends Component {
 		});
 	}
 
-	renderModals = () => {
+	renderResponseModal = () => {
 		return (
-			<Fragment>
-				<Modal show={this.state.showResponseModal} onHide={this.closeResponseModal}>
+			<Modal show={this.state.showResponseModal} onHide={this.closeResponseModal}>
 				<Modal.Header closeButton>
 					<Modal.Title>Server Response</Modal.Title>
 				</Modal.Header>
@@ -262,25 +262,49 @@ class UploadLesson extends Component {
 				<Modal.Footer>
 					<Button onClick={this.closeResponseModal}>Close</Button>
 				</Modal.Footer>
-				</Modal>
-				<Modal show={this.state.showConfirmModal}>
-					<Modal.Header>
-						<Modal.Title>Overwrite Lesson?</Modal.Title>
-					</Modal.Header>
-					<Modal.Body>
-						A lesson with the name <b>{this.state.lessonName}</b> is already present in the namespace. Please confirm that you wish to overwrite the lesson or cancel the upload procedure and choose a different name.
-					</Modal.Body>
-					<Modal.Footer>
-						<Button onClick={this.closeConfirmModal}>Cancel</Button>
-						<Button variant="warning" onClick={() => {
+			</Modal>
+		);
+	}
+
+	renderConfirmModal = () => {
+		if ( !this.state.showConfirmModal ) {
+			return null;
+		}
+		return (
+			<Modal show={this.state.showConfirmModal}>
+				<Modal.Header>
+					<Modal.Title>Overwrite Lesson?</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					A lesson with the name <b>{this.state.lessonName}</b> is already present in the namespace. Please confirm that you wish to overwrite the lesson or cancel the upload procedure and choose a different name.
+				</Modal.Body>
+				<Modal.Footer>
+					<Button onClick={this.closeConfirmModal}>Cancel</Button>
+					<Button variant="warning"
+						onClick={() => {
 							this.publishLesson();
 							this.setState({
 								showConfirmModal: false
 							});
-						}}>Overwrite</Button>
-					</Modal.Footer>
-				</Modal>
-			</Fragment>
+						}}
+					>Overwrite</Button>
+				</Modal.Footer>
+				<KeyControls
+					actions={{
+						'Enter': () => {
+							this.publishLesson();
+							this.setState({
+								showConfirmModal: false
+							});
+						},
+						'Escape': () => {
+							this.setState({
+								showConfirmModal: false
+							});
+						}
+					}}
+				/>
+			</Modal>
 		);
 	}
 
@@ -401,7 +425,8 @@ class UploadLesson extends Component {
 		return (
 			<Fragment>
 				{this.renderUploadPanel()}
-				{this.renderModals()}
+				{this.renderResponseModal()}
+				{this.renderConfirmModal()}
 			</Fragment>
 		);
 	}
