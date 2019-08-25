@@ -76,12 +76,12 @@ function trimLineStarts( str ) {
 }
 
 function renderInlineMarkdown( text ) {
-	text = replace( text, /\\([()\\[\]])/g, '\\\\$1' );
+	text = replace( text, /\\([()\\[\],;:! ])/g, '\\\\$1' );
 	return replaceEquations( md.renderInline( text ) );
 }
 
 function renderMarkdown( text ) {
-	text = replace( text, /\\([()\\[\]])/g, '\\\\$1' );
+	text = replace( text, /\\([()\\[\],;:! ])/g, '\\\\$1' );
 	return replaceEquations( md.render( text ) );
 }
 
