@@ -89,9 +89,14 @@ function renderMarkdownInBetween( str, inline = false ) {
 	let out = '';
 	let tmp = '';
 	let braceLevel = 0;
+	let inEquation = false;
 	for ( let i = 0; i < str.length; i++ ) {
 		const char = str[ i ];
-		if ( char === '{' && ( i === 0 || str[ i-1 ] !== '\\' ) ) {
+		if ( char === '$' && str[ i-1 ] !== '$' ) {
+			inEquation = !inEquation;
+			tmp += char;
+		}
+		else if ( char === '{' && ( i === 0 || str[ i-1 ] !== '\\' ) && !inEquation ) {
 			if ( braceLevel === 0 ) {
 				debug( 'Render markdown: '+tmp );
 				out += inline ? renderInlineMarkdown( tmp ) : renderMarkdown( tmp );
@@ -101,7 +106,7 @@ function renderMarkdownInBetween( str, inline = false ) {
 			}
 			braceLevel += 1;
 		}
-		else if ( char === '}' && str[ i-1 ] !== '\\' ) {
+		else if ( char === '}' && str[ i-1 ] !== '\\' && !inEquation ) {
 			braceLevel -= 1;
 			if ( braceLevel === 0 ) {
 				out += tmp + char;
