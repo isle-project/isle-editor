@@ -712,7 +712,11 @@ class Sketchpad extends Component {
 	}
 
 	onlyRedrawElements = () => {
-		this.ctx.putImageData( this.backgroundData, 0, 0 );
+		if ( this.backgroundData ) {
+			this.ctx.putImageData( this.backgroundData, 0, 0 );
+		} else {
+			this.ctx.clearRect( 0, 0, this.canvas.width, this.canvas.height );
+		}
 		const currentPage = this.state.currentPage;
 		const elems = this.elements[ currentPage ];
 		debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
@@ -724,7 +728,11 @@ class Sketchpad extends Component {
 
 	redrawWhenDragging = () => {
 		if ( !this.draggingImageData ) {
-			this.ctx.putImageData( this.backgroundData, 0, 0 );
+			if ( this.backgroundData ) {
+				this.ctx.putImageData( this.backgroundData, 0, 0 );
+			} else {
+				this.ctx.clearRect( 0, 0, this.canvas.width, this.canvas.height );
+			}
 			const currentPage = this.state.currentPage;
 			const elems = this.elements[ currentPage ];
 			debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
@@ -1439,6 +1447,7 @@ class Sketchpad extends Component {
 	drawText = ({ x, y, value, color, drawID, user, fontSize, fontFamily, selected, shouldLog = true }) => {
 		const ctx = this.ctx;
 		ctx.font = `${fontSize}px ${fontFamily}`;
+		ctx.shadowBlur = 0;
 		ctx.fillStyle = selected ? 'yellow' : color;
 		const xval = round( x*(this.canvas.width/DPR) );
 		const yval = round( y*(this.canvas.height/DPR) ) + fontSize;

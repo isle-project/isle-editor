@@ -91,7 +91,7 @@ class InputButtons extends Component {
 						/>
 					</InputGroup>
 				</ButtonGroup>
-				<ButtonGroup size="sm" >
+				<ButtonGroup size="sm" className="sketch-text-buttons" >
 					<TooltipButton size="sm" variant={this.props.mode === 'text' ? 'success' : 'secondary'} onClick={this.toggleTextMode} tooltip="Text Mode" glyph="font" />
 					<DropdownButton
 						id="sketch-font-dropdown"
