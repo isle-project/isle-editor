@@ -571,7 +571,11 @@ class Sketchpad extends Component {
 				this.redraw();
 			});
 		} else {
-			this.redraw();
+			this.setState({
+				hasRetrievedData: true
+			}, () => {
+				this.redraw();
+			});
 		}
 	}
 
@@ -2376,8 +2380,8 @@ class Sketchpad extends Component {
 						width: this.state.canvasWidth+2,
 						position: 'relative',
 						marginBottom: this.props.fullscreen ? '0px' : '20px',
-						marginLeft: 0,
-						marginRight: 0
+						marginLeft: 'auto',
+						marginRight: 'auto'
 					}}
 					tabIndex="0"
 				>
