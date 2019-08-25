@@ -610,7 +610,9 @@ class Tokenizer {
 		out = md.render( out );
 		for ( let key in this.divHash ) {
 			if ( hasOwnProp( this.divHash, key ) ) {
-				out = out.replace( key, this.divHash[ key ]);
+				// Treat dollar signs literally and do not confuse them for replacement patterns:
+				const replacement = replace( this.divHash[ key ], '$', '$$$$' );
+				out = out.replace( key, replacement );
 			}
 		}
 		debug( 'Processed string: ' );
