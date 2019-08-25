@@ -4581,7 +4581,7 @@
         "name": "brushSize",
         "type": "number",
         "description": "size of the brush to paint with",
-        "default": 6
+        "default": 4
       },
       {
         "name": "color",

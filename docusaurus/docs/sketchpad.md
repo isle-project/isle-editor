@@ -24,7 +24,7 @@ A drawing sketchpad for note taking on lecture slides or empty pages.
 * __hideRecordingButtons__ | `boolean`: controls whether to hide the recording buttons. Default: `false`.
 * __hideSaveButtons__ | `boolean`: controls whether to hide the save buttons. Default: `false`.
 * __hideTransmitButtons__ | `boolean`: controls whether to hide buttons for transmitting user actions. Default: `false`.
-* __brushSize__ | `number`: size of the brush to paint with. Default: `6`.
+* __brushSize__ | `number`: size of the brush to paint with. Default: `4`.
 * __color__ | `string`: color of the brush and texts. Default: `'#444444'`.
 * __canvasWidth__ | `number`: width of the canvas element (in px). Default: `1200`.
 * __canvasHeight__ | `number`: height of the canvas element (in px). Default: `700`.
