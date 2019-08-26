@@ -1,9 +1,12 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import PropTypes from 'prop-types';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 // MAIN //
@@ -41,9 +44,13 @@ class PeerSubmitModal extends Component {
 				To send your report to the individual review it, click the left-hand button that reads &ldquo;Submit to Reviewer&rdquo;. If you are sending comments to an individual, click the right-hand button entitled &ldquo;Send Review Comments&rdquo;.
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="success" disabled={this.props.disabledSubmitButton} onClick={this.handleSubmissionToReviewer}>{this.props.submitButtonLabel}</Button>
-				<Button variant="success" disabled={this.props.disabledReviewButton} onClick={this.handleSubmissionComments}>{this.props.reviewButtonLabel}</Button>
-				<Button variant="success" disabled={this.props.disabledFinalButton} onClick={this.handleFinalSubmission}>{this.props.finalButtonLabel}</Button>
+				<Container>
+					<Row>
+						<Col style={{ margin: 8 }}><Button variant="success" disabled={this.props.disabledSubmitButton} onClick={this.handleSubmissionToReviewer}>{this.props.submitButtonLabel}</Button></Col>
+						<Col style={{ margin: 8 }}><Button variant="success" disabled={this.props.disabledReviewButton} onClick={this.handleSubmissionComments}>{this.props.reviewButtonLabel}</Button></Col>
+						<Col style={{ margin: 8 }}><Button variant="success" disabled={this.props.disabledFinalButton} onClick={this.handleFinalSubmission}>{this.props.finalButtonLabel}</Button></Col>
+					</Row>
+				</Container>
 			</Modal.Footer>
 		</Modal> );
 	}
