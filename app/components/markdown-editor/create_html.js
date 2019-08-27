@@ -6,9 +6,7 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 		<meta charset=utf-8>
 		<title>${title}</title>
 		<link rel="shortcut icon" href="favicon.ico" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.css" integrity="sha384-+MsSfd29vjUzcyqYURxcmpWGtqoSHBy+QdEJNLEslXQftxojQv0k6BGDqUNp9GtA" crossorigin="anonymous">
-		<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css' />
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css" integrity="sha256-KoSSCu31XsbWh8THRt4pvxhcYkj3sEwDw/ZnIErNr4g=" crossorigin="anonymous">		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
 		<style media="screen" type="text/css">
 			body {
 				font-family: 'Open Sans', sans-serif;

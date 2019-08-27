@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import markdownit from 'markdown-it';
 import pdfMake from 'pdfmake/build/pdfmake';
-import katex from 'markdown-it-katex';
+import katex from '@iktakahiro/markdown-it-katex';
 import markdownSub from 'markdown-it-sub';
 import markdownIns from 'markdown-it-ins';
 import markdownContainer from 'markdown-it-container';

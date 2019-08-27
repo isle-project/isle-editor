@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import markdownit from 'markdown-it';
-import katex from 'markdown-it-katex';
+import katex from '@iktakahiro/markdown-it-katex';
 import logger from 'debug';
 import ltrim from '@stdlib/string/left-trim';
 import VoiceControl from 'components/voice-control';
