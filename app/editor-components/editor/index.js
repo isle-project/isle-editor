@@ -183,7 +183,7 @@ class Editor extends Component {
 			const model = this.editor.getModel();
 			this.monaco.editor.setModelMarkers( model, 'eslint', errs );
 		}
-		if ( !this.newRequires ) {
+		if ( !this.newRequires || !this.oldRequires ) {
 			this.newRequires = objectKeys( this.props.preamble.require );
 			this.checkRequires( this.newRequires, this.props.preamble );
 		}
