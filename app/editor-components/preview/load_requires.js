@@ -39,8 +39,6 @@ async function loadRequires( libs, filePath ) {
 					if ( process.platform === 'win32' ) {
 						lib = replace( lib, '\\', '\\\\' );
 					}
-				} else if ( /@stdlib/.test( lib ) ) {
-					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
 				}
 				const ext = extname( lib );
 				if ( isURI( lib) ) {

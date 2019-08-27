@@ -139,8 +139,7 @@ export default {
 		},
 		modules: [
 			resolve( './app' ),
-			resolve( './node_modules' ),
-			resolve( './node_modules/@stdlib/stdlib/lib/node_modules' )
+			resolve( './node_modules' )
 		],
 		extensions: [ '.js', '.json' ],
 		mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]

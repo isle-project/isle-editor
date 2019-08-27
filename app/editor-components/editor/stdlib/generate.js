@@ -16,7 +16,7 @@ const readJSON = require( '@stdlib/fs/read-json' ).sync;
 // VARIABLES //
 
 const NAMESPACE = namespace();
-const STDLIB_DIR = resolve( './node_modules/@stdlib/stdlib/lib/node_modules' );
+const STDLIB_DIR = resolve( './node_modules/@stdlib' );
 const RE_DOT =/\.([a-z])/g;
 const RE_DOT_UPPER =/([a-z]+)\.([A-Z])/g;
 

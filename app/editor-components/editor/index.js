@@ -90,7 +90,10 @@ class Editor extends Component {
 			jsx: 2
 		});
 
-		this.checkRequires( this.props.preamble );
+		if ( !this.newRequires ) {
+			this.newRequires = objectKeys( this.props.preamble.require );
+		}
+		this.checkRequires( this.newRequires, this.props.preamble );
 
 		this._codeActionProvider = this.monaco.languages.registerCodeActionProvider( 'javascript', {
 			provideCodeActions: this.provideCodeActions
@@ -135,7 +138,7 @@ class Editor extends Component {
 	shouldComponentUpdate( prevProps, prevState ) {
 		if (
 			this.props.filePath !== prevProps.filePath ||
-			this.props.preamble !== prevProps.preamble ||
+			this.props.preamble.title !== prevProps.preamble.title ||
 			this.props.lintErrors.length !== prevProps.lintErrors.length ||
 			this.props.spellingErrors.length !== prevProps.spellingErrors.length ||
 			this.props.splitPos !== prevProps.splitPos ||
@@ -144,6 +147,11 @@ class Editor extends Component {
 			this.state.selectedComponent !== prevState.selectedComponent ||
 			this.state.sourceFiles !== prevState.sourceFiles
 		) {
+			return true;
+		}
+		this.newRequires = objectKeys( this.props.preamble.require );
+		this.oldRequires = objectKeys( prevProps.preamble.require );
+		if ( this.newRequires.length !== this.oldRequires.length ) {
 			return true;
 		}
 		return false;
@@ -175,8 +183,8 @@ class Editor extends Component {
 			const model = this.editor.getModel();
 			this.monaco.editor.setModelMarkers( model, 'eslint', errs );
 		}
-		if ( this.props.preamble !== prevProps.preamble ) {
-			this.checkRequires( this.props.preamble );
+		if ( this.newRequires.length === this.oldRequires.length ) {
+			this.checkRequires( this.newRequires, this.props.preamble );
 		}
 	}
 
@@ -212,18 +220,15 @@ class Editor extends Component {
 		return out;
 	}
 
-	checkRequires = ( preamble ) => {
-		const requires = preamble.require;
-			const names = objectKeys( requires );
-			for ( let i = 0; i < names.length; i++ ) {
-				const name = names[ i ];
-				let path = requires[ name ];
-				if ( isString( path ) && startsWith( path, '@stdlib' ) ) {
-					path = replace( path, '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
-					path = resolve( join( BASE_PATH, 'node_modules' ), path, 'docs', 'types', 'index.d.ts' );
-					this.readTypeDefinition( path );
-				}
+	checkRequires = ( names, preamble ) => {
+		for ( let i = 0; i < names.length; i++ ) {
+			const name = names[ i ];
+			let path = preamble.require[ name ];
+			if ( isString( path ) && startsWith( path, '@stdlib' ) ) {
+				path = resolve( join( BASE_PATH, 'node_modules' ), path, 'docs', 'types', 'index.d.ts' );
+				this.readTypeDefinition( path );
 			}
+		}
 	}
 
 	readTypeDefinition = ( path ) => {

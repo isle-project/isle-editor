@@ -108,7 +108,7 @@ class Preview extends Component {
 			this.props.currentMode !== nextProps.currentMode ||
 			this.props.currentRole !== nextProps.currentRole ||
 			this.props.hideToolbar !== nextProps.hideToolbar ||
-			this.state !== nextState.isLoading
+			this.state.isLoading !== nextState.isLoading
 		) {
 			return true;
 		}

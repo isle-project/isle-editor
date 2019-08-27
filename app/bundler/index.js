@@ -64,8 +64,6 @@ const loadSyncRequires = ( libs, filePath ) => {
 					if ( process.platform === 'win32' ) {
 						lib = replace( lib, '\\', '\\\\' );
 					}
-				} else if ( /@stdlib/.test( lib ) ) {
-					lib = libs[ key ].replace( '@stdlib', '@stdlib/stdlib/lib/node_modules/@stdlib' );
 				}
 				if ( /\.svg$/.test( lib ) ) {
 					let content = readFileSync( lib ).toString( 'base64' );
@@ -344,8 +342,6 @@ function writeIndexFile({
 	debug( `Resolve packages relative to ${basePath}...` );
 	const modulePaths = [
 		resolve( basePath, './node_modules' ),
-		resolve( basePath, './node_modules/@stdlib/stdlib/lib/node_modules' ),
-		resolve( basePath, './node_modules/@stdlib/stdlib/node_modules' ),
 		resolve( basePath, './app/' )
 	];
 	const config = {

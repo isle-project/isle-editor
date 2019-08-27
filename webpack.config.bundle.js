@@ -67,9 +67,7 @@ module.exports = ( distRoot, optimize ) => ({
 	resolve: {
 		modules: [
 			resolve( './app' ),
-			resolve( './node_modules' ),
-			resolve( './node_modules/@stdlib/stdlib/lib/node_modules' ),
-			resolve( './node_modules/@stdlib/stdlib/node_modules' )
+			resolve( './node_modules' )
 		],
 		extensions: [ '.js', '.jsx', '.json' ],
 		mainFields: [

@@ -71,9 +71,9 @@ class App extends Component {
 		debug( 'Editor text changed...' );
 		const handleChange = ( value ) => {
 			debug( 'Should handle change...' );
-			this.handlePreambleChange( value );
 			this.props.convertMarkdown( value );
 			this.spellcheckCode( value );
+			this.handlePreambleChange( value );
 		};
 
 		if ( this.debouncedChange ) {
