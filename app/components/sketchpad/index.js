@@ -626,6 +626,12 @@ class Sketchpad extends Component {
 	}
 
 	renderBackground = ( pageNumber ) => {
+		const canvas = this.canvas;
+		const ctx = this.ctx;
+
+		// Scale all drawing operations by the DPR:
+		ctx.scale( DPR, DPR );
+
 		const page = this.backgrounds[ pageNumber ];
 		if ( page ) {
 			let ratio;
@@ -661,9 +667,6 @@ class Sketchpad extends Component {
 				textLayer.style.height = `${viewport.height}px`;
 			}
 
-			// Scale all drawing operations by the DPR:
-			this.ctx.scale( DPR, DPR );
-
 			// Render PDF page into canvas context
 			const renderContext = {
 				canvasContext: this.ctx,
@@ -685,8 +688,6 @@ class Sketchpad extends Component {
 				debug( `Background rendered for page ${pageNumber}` );
 			});
 		}
-		const canvas = this.canvas;
-		const ctx = this.ctx;
 		if ( ctx ) {
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
@@ -2257,6 +2258,8 @@ class Sketchpad extends Component {
 	}
 
 	render() {
+		console.log( this.state );
+		console.log( this.state.canvasWidth * DPR );
 		debug( `Render sketchpad with height ${this.props.canvasHeight} and width ${this.props.canvasWidth}` );
 		let cursor;
 		switch ( this.state.mode ) {
