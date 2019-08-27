@@ -7,7 +7,6 @@ import startsWith from '@stdlib/string/starts-with';
 import removeFirst from '@stdlib/string/remove-first';
 import removeLast from '@stdlib/string/remove-last';
 import hasOwnProp from '@stdlib/assert/has-own-property';
-import { replaceEquations } from './replace_equations.js';
 
 
 // VARIABLES //
@@ -77,12 +76,12 @@ function trimLineStarts( str ) {
 
 function renderInlineMarkdown( text ) {
 	text = replace( text, /\\([()\\[\],;:! ])/g, '\\\\$1' );
-	return replaceEquations( md.renderInline( text ) );
+	return md.renderInline( text );
 }
 
 function renderMarkdown( text ) {
 	text = replace( text, /\\([()\\[\],;:! ])/g, '\\\\$1' );
-	return replaceEquations( md.render( text ) );
+	return md.render( text );
 }
 
 function renderMarkdownInBetween( str, inline = false ) {
@@ -92,9 +91,32 @@ function renderMarkdownInBetween( str, inline = false ) {
 	let inEquation = false;
 	for ( let i = 0; i < str.length; i++ ) {
 		const char = str[ i ];
-		if ( char === '$' && str[ i-1 ] !== '$' ) {
+		const prevChar = str[ i-1 ];
+		const nextChar = str[ i+1 ];
+		if (
+			( char === '$' && prevChar !== '$' ) ||
+			( char === '$' && nextChar === '$' ) ||
+			( !inEquation && char === '\\' && nextChar === '(' ) ||
+			( inEquation && char === '\\' && nextChar === ')' ) ||
+			( !inEquation && char === '\\' && nextChar === '[' ) ||
+			( inEquation && char === '\\' && nextChar === ']' )
+		) {
 			inEquation = !inEquation;
-			tmp += char;
+			if ( inEquation ) {
+				out += inline ? renderInlineMarkdown( tmp ) : renderMarkdown( tmp );
+				tmp = '';
+			}
+			else {
+				if ( nextChar === '$' || nextChar === '[' ) {
+					out += '<TeX raw={String.raw`'+tmp+'`} displayMode />';
+				} else {
+					out += '<TeX raw={String.raw`'+tmp+'`} />';
+				}
+				tmp = '';
+			}
+			if ( char === '\\' || nextChar === '$' ) {
+				i += 1; // Skip the parentheses...
+			}
 		}
 		else if ( char === '{' && ( i === 0 || str[ i-1 ] !== '\\' ) && !inEquation ) {
 			if ( braceLevel === 0 ) {
@@ -157,6 +179,7 @@ class Tokenizer {
 		this._level = 0;
 		this.pos = 0;
 		this.divHash = {};
+		this.inBetweenEquation = false;
 	}
 
 	_inBase( char ) {
@@ -284,7 +307,11 @@ class Tokenizer {
 	_inBetweenTags( char ) {
 		this._current += char;
 		const nextChar = this._buffer.charAt( this.pos+1 );
-		if ( char === '<' && !isWhitespace( nextChar) ) {
+		const prevChar = this._buffer.charAt( this.pos-11 );
+		if ( char === '$' && prevChar !== '$' ) {
+			this.inBetweenEquation = !this.inBetweenEquation;
+		}
+		if ( char === '<' && !isWhitespace( nextChar ) && !this.inBetweenEquation ) {
 			let text = this._current.substring( this._openTagEnd, this._current.length-1 );
 			text = trimLineStarts( text );
 			if ( !isWhitespace( text ) ) {
