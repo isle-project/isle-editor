@@ -139,9 +139,9 @@ function curve( ctx, points, width, height, tension, numOfSeg, close ) {
 	for ( i = 0, l = res.length; i < l; i += 2 ) {
 		const c = ( res[i] + res[i+2] ) / 2;
 		const d = ( res[i+1] + res[i+3] ) / 2;
-		ctx.quadraticCurveTo( res[i], res[i+1], c, d );
+		ctx.lineTo( res[i], res[i+1], c, d );
 	}
-	ctx.quadraticCurveTo( res[i], res[i+1], res[i+2], res[i+3] );
+	ctx.lineTo( res[i], res[i+1], res[i+2], res[i+3] );
 	return res;
 }
 
