@@ -30,6 +30,7 @@ class SettingsLogin extends Component {
 		this.setState({
 			[ name ]: value
 		}, () => {
+			// Update server, email, or password in localStorage:
 			localStorage.setItem( name, value );
 		});
 	}
