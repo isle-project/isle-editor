@@ -87,7 +87,7 @@ const tabulateValues = ( actions, levels ) => {
 				}
 			}
 		} else {
-			const key = levels[ v.value ];
+			const key = isString( v.value ) ? v.value : levels[ v.value ];
 			if ( !table[ key ] ) {
 				table[ key ] = 1;
 			} else {
@@ -471,7 +471,7 @@ class FullscreenActionDisplay extends Component {
 					}
 				});
 				value = str || 'None';
-			} else {
+			} else if ( !isString( value ) ) {
 				value = this.props.data.levels[ value ] || 'None';
 			}
 		}
