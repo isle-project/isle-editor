@@ -96,7 +96,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.5.5",
     "@babel/runtime": "^7.5.5",
-    "@stdlib/stdlib": "0.0.72",
+    "@stdlib/stdlib": "0.0.73",
     "acorn": "^7.0.0",
     "ajv": "^6.10.1",
     "ansi-to-react": "^5.0.0",
