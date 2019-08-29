@@ -142,7 +142,7 @@ function saveFactory( view ) {
 		self.readyState = self.INIT;
 
 		if ( canUseSaveLink ) {
-			objectURL = getURL().createObjectURL(blob);
+			objectURL = getURL().createObjectURL( blob );
 			setImmediate(function save() {
 				saveLink.href = objectURL;
 				saveLink.download = name;
