@@ -890,6 +890,11 @@
         "default": "Makes sense."
       },
       {
+        "name": "customFeedback",
+        "type": "boolean",
+        "default": true
+      },
+      {
         "name": "vertical",
         "type": "boolean",
         "description": "buttons are displayed vertically if set to `true`",
@@ -3404,8 +3409,27 @@
         "default": "onAfterPlot() {}"
       },
       {
+        "name": "onClick",
+        "type": "function",
+        "description": "callback function invoked when any element is clicked",
+        "default": "onClick() {}"
+      },
+      {
+        "name": "onLegendClick",
+        "type": "function",
+        "description": "callback function invoked when legend item is clicked",
+        "default": "onLegendClick() {}"
+      },
+      {
+        "name": "onLegendDoubleClick",
+        "type": "function",
+        "description": "callback function invoked when legend item is double-clicked",
+        "default": "onLegendDoubleClick() {}"
+      },
+      {
         "name": "onRelayout",
         "type": "function",
+        "description": "callback function invoked when plotly_relayout is triggered",
         "default": "onRelayout() {}"
       },
       {
