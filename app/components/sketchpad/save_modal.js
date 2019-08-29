@@ -47,7 +47,7 @@ class SaveModal extends Component {
 			dialogClassName="modal-w30"
 		>
 			<Modal.Header closeButton>
-				<Modal.Title as="h4">Save PDF</Modal.Title>
+				<Modal.Title as="h4">Download PDF</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				{ this.props.pdf ? <Button size="large" variant="secondary" block onClick={this.clickHide} >

@@ -2039,7 +2039,7 @@ class Sketchpad extends Component {
 			<ButtonGroup size="sm" className="sketch-save-buttons sketch-button-group">
 				{ !this.props.pdf ? <TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} size="sm" glyph="file" /> : null }
 				<TooltipButton tooltip="Export current page (PNG)" onClick={this.saveToPNG} glyph="file-image" size="sm" />
-				<TooltipButton tooltip="Save PDF" onClick={this.toggleSaveModal} glyph="file-pdf" size="sm" />
+				<TooltipButton tooltip="Download PDF" onClick={this.toggleSaveModal} glyph="file-pdf" size="sm" />
 				<TooltipButton tooltip="Save in browser" onClick={() => {
 					this.saveInBrowser( ( err ) => {
 						if ( err ) {
