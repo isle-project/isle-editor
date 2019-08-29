@@ -693,8 +693,10 @@ class Sketchpad extends Component {
 			});
 		}
 		if ( ctx ) {
-			// Scale all drawing operations by the DPR when no background is present:
-			ctx.scale( DPR, DPR );
+			if ( !this.props.pdf ) {
+				// Scale all drawing operations by the DPR when no background is present:
+				ctx.scale( DPR, DPR );
+			}
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
 		// Return promise that immediately resolves as no background needs to be drawn:
