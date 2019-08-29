@@ -82,7 +82,7 @@ class FeedbackModal extends Component {
 			dialogClassName="modal-100w"
 		>
 			<Modal.Header closeButton>
-				<Modal.Title as="h3" >Student Feedback for {this.props.id}</Modal.Title>
+				<Modal.Title as="h3" >Student Feedback for {this.props.id} (number of slides: {this.props.noPages})</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				<Plotly	data={this.state.data} removeButtons onClick={( data ) => {
@@ -112,7 +112,7 @@ FeedbackModal.propTypes = {
 	id: PropTypes.string.isRequired,
 	container: PropTypes.object.isRequired,
 	noPages: PropTypes.number.isRequired,
-	toOriginalPage: PropTypes.func.isRequired,
+	toOriginalPage: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
 	gotoPage: PropTypes.func.isRequired,
 	onHide: PropTypes.func,
 	show: PropTypes.bool.isRequired
