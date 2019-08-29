@@ -53,6 +53,7 @@ import {
 } from 'constants/actions.js';
 const ResetModal = Loadable( () => import( './reset_modal.js' ) );
 const NavigationModal = Loadable( () => import( './navigation_modal.js' ) );
+const FeedbackModal = Loadable( () => import( './feedback_modal.js' ) );
 import guide from './guide.json';
 import './sketchpad.css';
 import './pdf_viewer.css';
@@ -157,6 +158,7 @@ class Sketchpad extends Component {
 			transmitOwner: props.transmitOwner,
 			receiveFrom: {},
 			showResetModal: false,
+			showFeedbackModal: false,
 			swiping: true,
 			verticalOffset: 60,
 			hasRetrievedData: false
@@ -629,9 +631,6 @@ class Sketchpad extends Component {
 		const canvas = this.canvas;
 		const ctx = this.ctx;
 
-		// Scale all drawing operations by the DPR:
-		ctx.scale( DPR, DPR );
-
 		const page = this.backgrounds[ pageNumber ];
 		if ( page ) {
 			let ratio;
@@ -667,6 +666,9 @@ class Sketchpad extends Component {
 				textLayer.style.height = `${viewport.height}px`;
 			}
 
+			// Scale all drawing operations by the DPR:
+			this.ctx.scale( DPR, DPR );
+
 			// Render PDF page into canvas context
 			const renderContext = {
 				canvasContext: this.ctx,
@@ -689,6 +691,8 @@ class Sketchpad extends Component {
 			});
 		}
 		if ( ctx ) {
+			// Scale all drawing operations by the DPR when no background is present:
+			ctx.scale( DPR, DPR );
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
 		// Return promise that immediately resolves as no background needs to be drawn:
@@ -1703,7 +1707,9 @@ class Sketchpad extends Component {
 		debug( `Should go to page ${idx}...` );
 		idx = parseInt( idx, 10 );
 		if ( idx !== this.state.currentPage ) {
-			this.canvasWrapper.scrollTop = 0;
+			if ( this.canvasWrapper ) {
+				this.canvasWrapper.scrollTop = 0;
+			}
 			this.setState({
 				currentPage: idx,
 				showNavigationModal: false,
@@ -2225,9 +2231,25 @@ class Sketchpad extends Component {
 		const keys = objectKeys( this.props.nodes );
 		const divs = [];
 		const page = this.toOriginalPage( this.state.currentPage );
-		if ( this.props.feedbackButtons ) {
+		if ( this.props.feedbackButtons && !isNull( page ) ) {
 			divs.push(
-				<FeedbackButtons key={`slide-${page}`} id={`slide-${page}`} vertical />
+				<Fragment>
+					<FeedbackButtons
+						key={`${this.id}-slide-${page}`} id={`${this.id}-slide-${page}`}
+						customFeedback={false} vertical
+					/>
+					<Gate owner>
+						<Button
+							onClick={() => this.setState({
+								showFeedbackModal: !this.state.showFeedbackModal
+							})}
+							variant="light"
+							style={{ right: '0px', top: '150px', position: 'absolute' }}
+						>
+							Show all
+						</Button>
+					</Gate>
+				</Fragment>
 			);
 		}
 		if ( keys.length === 0 ) {
@@ -2258,8 +2280,6 @@ class Sketchpad extends Component {
 	}
 
 	render() {
-		console.log( this.state );
-		console.log( this.state.canvasWidth * DPR );
 		debug( `Render sketchpad with height ${this.props.canvasHeight} and width ${this.props.canvasWidth}` );
 		let cursor;
 		switch ( this.state.mode ) {
@@ -2462,6 +2482,20 @@ class Sketchpad extends Component {
 							this.setState({ showResetModal: false });
 						}}
 					/>
+					{ this.state.showFeedbackModal ? <FeedbackModal
+						container={this}
+						session={this.context}
+						show={this.state.showFeedbackModal}
+						onHide={() => {
+							this.setState({
+								showFeedbackModal: !this.state.showFeedbackModal
+							});
+						}}
+						id={this.id}
+						noPages={this.state.noPages}
+						toOriginalPage={this.toOriginalPage}
+						gotoPage={this.gotoPage}
+					/> : null }
 					{ this.props.showTutorial ?
 						<Joyride
 							steps={guide}
