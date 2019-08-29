@@ -40,6 +40,10 @@ class SaveModal extends Component {
 
 	render() {
 		const session = this.props.session;
+		let ownerDate;
+		if ( this.state.ownerFile ) {
+			ownerDate = new Date( this.state.ownerFile.updatedAt );
+		}
 		return ( <Modal
 			onHide={this.clickHide}
 			show={this.props.show}
@@ -57,7 +61,8 @@ class SaveModal extends Component {
 				</Button> : null }
 				{ this.state.ownerFile ? <Button size="large" variant="secondary" block onClick={this.clickHide}>
 					<a className="unstyled-link" href={session.server+'/'+this.state.ownerFile.filename} download>
-						Download instructor annotations
+						Download instructor annotations <br />
+						<small> (last updated: {ownerDate.toDateString() + ', ' + ownerDate.toLocaleTimeString()})</small>
 					</a>
 				</Button> : null }
 				<Button variant="secondary" size="large" onClick={this.handleExport} block >
