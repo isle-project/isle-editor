@@ -54,6 +54,7 @@ import {
 const ResetModal = Loadable( () => import( './reset_modal.js' ) );
 const NavigationModal = Loadable( () => import( './navigation_modal.js' ) );
 const FeedbackModal = Loadable( () => import( './feedback_modal.js' ) );
+const SaveModal = Loadable( () => import( './save_modal.js' ) );
 import guide from './guide.json';
 import './sketchpad.css';
 import './pdf_viewer.css';
@@ -64,7 +65,7 @@ import './pdf_viewer.css';
 const debug = logger( 'isle:sketchpad' );
 const uid = generateUID( 'sketchpad' );
 const OMITTED_KEYS = [
-	'isExporting', 'showColorPicker', 'showUploadModal', 'showNavigationModal', 'showResetModal'
+	'isExporting', 'showColorPicker', 'showUploadModal', 'showNavigationModal', 'showResetModal', 'showFeedbackModal', 'showSaveModal'
 ];
 const RECORD_TIME_INCREMENT = 100;
 const RE_DIGITS = /^[0-9]+$/;
@@ -159,6 +160,7 @@ class Sketchpad extends Component {
 			receiveFrom: {},
 			showResetModal: false,
 			showFeedbackModal: false,
+			showSaveModal: false,
 			swiping: true,
 			verticalOffset: 60,
 			hasRetrievedData: false
@@ -1268,6 +1270,7 @@ class Sketchpad extends Component {
 			isExporting: true
 		}, () => {
 			this.preparePDF( ( err, doc ) => {
+				const session = this.context;
 				doc.getBase64( ( pdf ) => {
 					debug( 'Processing base64 string of PDF document' );
 					const pdfForm = new FormData();
@@ -1286,7 +1289,6 @@ class Sketchpad extends Component {
 								modalMessage: err.message
 							});
 						} else {
-							const session = this.context;
 							const filename = res.filename;
 							const link = session.server + '/' + filename;
 							this.setState({
@@ -1303,7 +1305,6 @@ class Sketchpad extends Component {
 							session.sendMail( msg, session.user.email );
 						}
 					};
-					const session = this.context;
 					session.uploadFile({
 						formData: pdfForm,
 						callback: onUpload
@@ -1363,6 +1364,10 @@ class Sketchpad extends Component {
 
 		// Start rendering pages one by one:
 		iter();
+	}
+
+	toggleSaveModal = () => {
+		this.setState({ showSaveModal: !this.state.showSaveModal });
 	}
 
 	saveAsPDF = () => {
@@ -2032,7 +2037,7 @@ class Sketchpad extends Component {
 			<ButtonGroup size="sm" className="sketch-save-buttons sketch-button-group">
 				{ !this.props.pdf ? <TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} size="sm" glyph="file" /> : null }
 				<TooltipButton tooltip="Export current page (PNG)" onClick={this.saveToPNG} glyph="file-image" size="sm" />
-				<TooltipButton tooltip="Export pages as PDF" onClick={this.saveAsPDF} glyph="file-pdf" size="sm" />
+				<TooltipButton tooltip="Save PDF" onClick={this.toggleSaveModal} glyph="file-pdf" size="sm" />
 				<TooltipButton tooltip="Save in browser" onClick={() => {
 					this.saveInBrowser( ( err ) => {
 						if ( err ) {
@@ -2481,6 +2486,15 @@ class Sketchpad extends Component {
 						onHide={() => {
 							this.setState({ showResetModal: false });
 						}}
+					/>
+					<SaveModal
+						container={this}
+						show={this.state.showSaveModal}
+						saveAsPDF={this.saveAsPDF}
+						onHide={this.toggleSaveModal}
+						pdf={this.props.pdf}
+						session={this.context}
+						id={this.id}
 					/>
 					{ this.state.showFeedbackModal ? <FeedbackModal
 						container={this}

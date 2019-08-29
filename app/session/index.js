@@ -1552,6 +1552,22 @@ class Session {
 		}
 	}
 
+	getLessonOwnerFiles = ( clbk ) => {
+		if ( this.lessonName && this.namespaceName ) {
+			let url = this.server + '/get_owner_files';
+			url += '?'+qs.stringify({ namespaceName: this.namespaceName, lessonName: this.lessonName });
+			fetch( url, {
+				headers: {
+					'Authorization': 'JWT ' + this.user.token
+				}
+			})
+				.then( res => res.json() )
+				.then( body => {
+					clbk( null, body.files );
+				});
+		}
+	}
+
 	/**
 	* Uploads a file.
 	*
