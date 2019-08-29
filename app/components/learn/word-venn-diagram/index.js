@@ -298,7 +298,7 @@ class WordVennDiagram extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 WordVennDiagram.propTypes = {
 	height: PropTypes.number,

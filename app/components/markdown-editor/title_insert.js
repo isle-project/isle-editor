@@ -94,7 +94,7 @@ class TitleInsert extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 TitleInsert.propTypes = {
 	onClick: PropTypes.func,

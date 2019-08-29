@@ -538,7 +538,7 @@ class SampleCLT extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 SampleCLT.propTypes = {
 	data: PropTypes.array.isRequired,

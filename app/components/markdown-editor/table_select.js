@@ -159,7 +159,7 @@ class TableSelect extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 TableSelect.propTypes = {
 	onClick: PropTypes.func,

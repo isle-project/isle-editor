@@ -119,7 +119,7 @@ class CorrTest extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 CorrTest.propTypes = {
 	quantitative: PropTypes.array.isRequired,

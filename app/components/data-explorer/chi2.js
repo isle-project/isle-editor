@@ -74,7 +74,7 @@ class Chi2Test extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 Chi2Test.propTypes = {
 	categorical: PropTypes.array.isRequired,

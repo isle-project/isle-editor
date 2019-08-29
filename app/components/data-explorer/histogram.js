@@ -341,7 +341,7 @@ Histogram.defaultProps = {
 };
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 Histogram.propTypes = {
 	data: PropTypes.object.isRequired,

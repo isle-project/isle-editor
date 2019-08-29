@@ -205,7 +205,7 @@ class SaveModal extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 SaveModal.propTypes = {
 	exportHTML: PropTypes.func.isRequired,

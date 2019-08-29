@@ -143,7 +143,7 @@ Violinplot.defaultProps = {
 };
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 Violinplot.propTypes = {
 	data: PropTypes.object.isRequired,

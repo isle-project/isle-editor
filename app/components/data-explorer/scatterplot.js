@@ -585,7 +585,7 @@ Scatterplot.defaultProps = {
 };
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 Scatterplot.propTypes = {
 	data: PropTypes.object.isRequired,

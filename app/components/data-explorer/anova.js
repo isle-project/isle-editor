@@ -84,7 +84,7 @@ class Anova extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 Anova.propTypes = {
 	categorical: PropTypes.array.isRequired,

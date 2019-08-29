@@ -142,7 +142,7 @@ class PropTest extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 PropTest.propTypes = {
 	categorical: PropTypes.array,

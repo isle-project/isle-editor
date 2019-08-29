@@ -165,7 +165,7 @@ PieChart.defaultProps = {
 };
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 PieChart.propTypes = {
 	data: PropTypes.object.isRequired,

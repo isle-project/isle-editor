@@ -63,7 +63,7 @@ class OptionsList extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 OptionsList.propTypes = {
 	active: PropTypes.string,

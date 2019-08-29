@@ -239,7 +239,7 @@ FrequencyTable.defaultProps = {
 };
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 FrequencyTable.propTypes = {
 	data: PropTypes.object.isRequired,

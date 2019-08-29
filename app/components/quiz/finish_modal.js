@@ -40,7 +40,7 @@ class FinishModal extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 FinishModal.propTypes = {
 	container: PropTypes.object.isRequired,

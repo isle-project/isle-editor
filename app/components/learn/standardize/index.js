@@ -299,7 +299,7 @@ class Standardize extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 Standardize.propTypes = {
 	showProbabilities: PropTypes.bool,

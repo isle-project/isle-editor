@@ -40,7 +40,7 @@ Input.defaultProps = {
 };
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 Input.propTypes = {
 	defaultValue: PropTypes.number,

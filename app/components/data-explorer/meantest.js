@@ -135,7 +135,7 @@ MeanTest.defaultProps = {
 };
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 MeanTest.propTypes = {
 	quantitative: PropTypes.array.isRequired,

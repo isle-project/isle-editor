@@ -150,7 +150,7 @@ ContourChart.defaultProps = {
 };
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 ContourChart.propTypes = {
 	data: PropTypes.object.isRequired,

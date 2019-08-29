@@ -304,7 +304,7 @@ class VennDiagramBuilder extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 VennDiagramBuilder.propTypes = {
 	nobs: PropTypes.number,

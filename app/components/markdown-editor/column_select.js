@@ -77,7 +77,7 @@ class ColumnSelect extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 ColumnSelect.propTypes = {
 	onClick: PropTypes.func,

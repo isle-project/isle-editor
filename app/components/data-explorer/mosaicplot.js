@@ -138,7 +138,7 @@ MosaicPlot.defaultProps = {
 };
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 MosaicPlot.propTypes = {
 	data: PropTypes.object.isRequired,

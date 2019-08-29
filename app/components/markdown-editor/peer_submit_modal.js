@@ -57,7 +57,7 @@ class PeerSubmitModal extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 PeerSubmitModal.propTypes = {
 	onHide: PropTypes.func,

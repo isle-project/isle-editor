@@ -94,7 +94,7 @@ class ProbabilityRange extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 ProbabilityRange.propTypes = {
 	a: PropTypes.number.isRequired,

@@ -69,7 +69,7 @@ class SaveModal extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 SaveModal.propTypes = {
 	container: PropTypes.object.isRequired,

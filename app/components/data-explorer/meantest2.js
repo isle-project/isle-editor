@@ -308,7 +308,7 @@ MeanTest2.defaultProps = {
 };
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 MeanTest2.propTypes = {
 	categorical: PropTypes.array,

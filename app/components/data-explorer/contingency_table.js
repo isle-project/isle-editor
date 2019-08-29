@@ -254,7 +254,7 @@ ContingencyTable.defaultProps = {
 };
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 ContingencyTable.propTypes = {
 	data: PropTypes.object.isRequired,

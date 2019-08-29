@@ -327,7 +327,7 @@ HeatMap.defaultProps = {
 };
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 HeatMap.propTypes = {
 	data: PropTypes.object.isRequired,

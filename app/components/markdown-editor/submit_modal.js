@@ -38,7 +38,7 @@ class SubmitModal extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 SubmitModal.propTypes = {
 	onHide: PropTypes.func,

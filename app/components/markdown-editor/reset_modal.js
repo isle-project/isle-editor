@@ -38,7 +38,7 @@ class ResetModal extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 ResetModal.propTypes = {
 	onHide: PropTypes.func,

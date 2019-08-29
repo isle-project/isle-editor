@@ -39,7 +39,7 @@ class ResetModal extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 ResetModal.propTypes = {
 	container: PropTypes.object.isRequired,

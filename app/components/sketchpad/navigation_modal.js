@@ -94,7 +94,7 @@ class NavigationModal extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 NavigationModal.propTypes = {
 	container: PropTypes.object.isRequired,

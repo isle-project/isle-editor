@@ -84,7 +84,7 @@ class Kruskal extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 Kruskal.propTypes = {
 	categorical: PropTypes.array.isRequired,

@@ -72,7 +72,7 @@ class Search extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 Search.propTypes = {
 	onClick: PropTypes.func,

@@ -284,7 +284,7 @@ class ComponentConfigurator extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 ComponentConfigurator.propTypes = {
 	component: PropTypes.object,

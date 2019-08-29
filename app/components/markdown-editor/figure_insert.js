@@ -69,7 +69,7 @@ class FigureInsert extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 FigureInsert.propTypes = {
 	graphsToShow: PropTypes.number,

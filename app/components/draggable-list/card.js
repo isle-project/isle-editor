@@ -87,7 +87,7 @@ class Card extends Component {
 }
 
 
-// PROPERTY TYPES //
+// PROPERTIES //
 
 Card.propTypes = {
 	connectDragSource: PropTypes.func.isRequired,
