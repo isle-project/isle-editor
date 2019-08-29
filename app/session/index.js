@@ -1568,6 +1568,9 @@ class Session {
 		if ( this.namespaceName ) {
 			formData.append( 'namespaceName', this.namespaceName );
 		}
+		if ( this.isOwner() ) {
+			formData.append( 'owner', true );
+		}
 		if ( isEmptyObject( this.user ) ) {
 			return this.addNotification({
 				title: 'File Upload',
