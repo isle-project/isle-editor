@@ -66,6 +66,10 @@ Plotly.setPlotConfig({
 * @property {Object} meta - plot meta-information
 * @property {number} revision - when provided, causes the plot to update when the revision value is incremented
 * @property {Function} onAfterPlot - callback function invoked each time a chart is plotted
+* @property {Function} onClick - callback function invoked when any element is clicked
+* @property {Function} onRelayout - callback function invoked when plotly_relayout is triggered
+* @property {Function} onLegendClick - callback function invoked when legend item is clicked
+* @property {Function} onLegendDoubleClick - callback function invoked when legend item is double-clicked
 * @property {Function} onSelected - callback function invoked when elements are selected
 * @property {Function} onShare - callback function invoked when clicking on the "Share" button
 */
@@ -242,9 +246,12 @@ class Wrapper extends Component {
 				onInitialized={this.onInitialized}
 				onUpdate={this.onUpdate}
 				useResizeHandler
+				onClick={this.props.onClick}
 				onSelected={this.props.onSelected}
 				onAfterPlot={this.props.onAfterPlot}
 				onRelayout={this.props.onRelayout}
+				onLegendClick={this.props.onLegendClick}
+				onLegendDoubleClick={this.props.onLegendDoubleClick}
 				style={{
 					width: '100%',
 					height: '100%',
@@ -292,6 +299,9 @@ Wrapper.defaultProps = {
 	meta: null,
 	revision: null,
 	onAfterPlot() {},
+	onClick() {},
+	onLegendClick() {},
+	onLegendDoubleClick() {},
 	onRelayout() {},
 	onSelected() {},
 	onShare: null,
@@ -310,6 +320,9 @@ Wrapper.propTypes = {
 	meta: PropTypes.object,
 	revision: PropTypes.number,
 	onAfterPlot: PropTypes.func,
+	onClick: PropTypes.func,
+	onLegendClick: PropTypes.func,
+	onLegendDoubleClick: PropTypes.func,
 	onRelayout: PropTypes.func,
 	onSelected: PropTypes.func,
 	onShare: PropTypes.func,

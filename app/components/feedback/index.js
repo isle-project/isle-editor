@@ -161,11 +161,11 @@ class FeedbackButtons extends Component {
 							</Tooltip>
 						</Fragment>
 					}
-					<Tooltip placement={tpos} id="tooltip_feedback" tooltip={<strong>{this.props.feedbackMsg}</strong>} >
+					{ this.props.customFeedback ? <Tooltip placement={tpos} id="tooltip_feedback" tooltip={<strong>{this.props.feedbackMsg}</strong>} >
 						<Button variant="light" className="feedback-button" size="small" onClick={this.openModal}>
 							<Feedback className="feedback-icon" />
 						</Button>
-					</Tooltip>
+					</Tooltip> : null }
 					<ResponseVisualizer
 						variant="light"
 						buttonLabel={this.props.vertical ? '' : 'Responses'}
@@ -252,6 +252,7 @@ FeedbackButtons.propTypes = {
 	confusedMsg: PropTypes.string,
 	feedbackMsg: PropTypes.string,
 	understoodMsg: PropTypes.string,
+	customFeedback: PropTypes.bool,
 	vertical: PropTypes.bool,
 	style: PropTypes.object
 };
@@ -259,6 +260,7 @@ FeedbackButtons.propTypes = {
 FeedbackButtons.contextType = SessionContext;
 
 FeedbackButtons.defaultProps = {
+	customFeedback: true,
 	confusedMsg: 'I am confused.',
 	feedbackMsg: 'I have feedback.',
 	understoodMsg: 'Makes sense.',
