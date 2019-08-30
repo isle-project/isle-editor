@@ -134,9 +134,16 @@ class ResponseVisualizers extends Component {
 	}
 
 	render() {
+		debug( 'Render response visualizer statistics...' );
 		const nUsers = this.props.session.userList.length;
 		const visualizers = this.props.session.responseVisualizers;
+		const { means } = this.state;
 		const ids = keys( visualizers );
+		ids.sort( ( a, b ) => {
+			const na = visualizers[ a ].ref.state.nInfo;
+			const nb = visualizers[ b ].ref.state.nInfo;
+			return nb - na;
+		});
 		const list = new Array( ids.length );
 		const currentTime = new Date() - this.props.session.startTime;
 		let overallProgress = 0;
@@ -149,12 +156,12 @@ class ResponseVisualizers extends Component {
 			const infoRate = ( nInfo / nUsers ) * 100.0;
 			overallProgress += infoRate;
 			const id = ids[ i ];
-			const time = `time: ${this.state.means[ id ] ? formatTime( this.state.means[ id ]() ) : ''}`;
+			const time = `time: ${means[ id ] ? formatTime( means[ id ]() ) : ''}`;
 			let timeBadgeVariant;
 			if (
 				nInfo > 0 &&
-				this.state.means[ id ] &&
-				currentTime > this.state.means[ id ]()
+				means[ id ] &&
+				currentTime > means[ id ]()
 			) {
 				if ( infoRate < 10 ) {
 					timeBadgeVariant = 'danger';
@@ -212,6 +219,7 @@ class ResponseVisualizers extends Component {
 				</ListGroupItem>
 			);
 		}
+
 		overallProgress /= ids.length;
 		return ( <div>
 			<ProgressBar
