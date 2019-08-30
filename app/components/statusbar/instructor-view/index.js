@@ -30,7 +30,7 @@ class InstructorView extends Component {
 		super( props );
 
 		this.state = {
-			activeTab: 'active_users',
+			activeTab: 'response_visualizers',
 			hidden: true,
 			rightPos: -max( window.innerWidth * 0.45, 400 ),
 			selectedEmail: null,
@@ -152,19 +152,6 @@ class InstructorView extends Component {
 					});
 				}}
 			>
-				<Tab eventKey="active_users" title="Active Users" >
-					<UserList
-						session={session}
-						onThumbnailClick={( email ) => {
-							debug( 'Go to actions from user '+email+'...' );
-							this.setState({
-								activeTab: 'action_log',
-								selectedEmail: email
-							});
-						}}
-						selectedCohort={this.state.selectedCohort}
-					/>
-				</Tab>
 				<Tab eventKey="response_visualizers" title="Responses" >
 					<ResponseVisualizers
 						selectedCohort={this.state.selectedCohort}
@@ -176,6 +163,19 @@ class InstructorView extends Component {
 								selectedID: id
 							});
 						}}
+					/>
+				</Tab>
+				<Tab eventKey="active_users" title="Active Users" >
+					<UserList
+						session={session}
+						onThumbnailClick={( email ) => {
+							debug( 'Go to actions from user '+email+'...' );
+							this.setState({
+								activeTab: 'action_log',
+								selectedEmail: email
+							});
+						}}
+						selectedCohort={this.state.selectedCohort}
 					/>
 				</Tab>
 				<Tab eventKey="action_log" title="Action Log" >
