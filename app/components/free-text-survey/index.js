@@ -198,7 +198,10 @@ class FreeTextSurvey extends Component {
 								</Col>
 							</Row>
 						</Container>
-						<ResponseVisualizer buttonLabel="Responses" id={this.id} />
+						<ResponseVisualizer
+							buttonLabel="Responses" id={this.id}
+							info={TEXT_SURVEY_SUBMISSION}
+						/>
 					</Card.Body>
 				</Card>
 			</Gate>

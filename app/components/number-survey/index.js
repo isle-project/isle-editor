@@ -184,7 +184,10 @@ class NumberSurvey extends Component {
 								</Col>
 							</Row>
 						</Container>
-						<ResponseVisualizer buttonLabel="Responses" id={this.id} />
+						<ResponseVisualizer
+							buttonLabel="Responses" id={this.id}
+							info={NUMBER_SURVEY_SUBMISSION}
+						/>
 					</Card.Body>
 				</Card>
 			</Gate>

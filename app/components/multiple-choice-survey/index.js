@@ -230,6 +230,7 @@ class MultipleChoiceSurvey extends Component {
 								type: 'factor',
 								levels: this.props.answers
 							}}
+							info={MULTIPLE_CHOICE_SURVEY_SUBMISSION}
 						/>
 					</Card.Body>
 				</Card>
