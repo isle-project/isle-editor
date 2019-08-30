@@ -192,7 +192,7 @@ class FreeTextSurvey extends Component {
 									</Card>
 								</Col>
 								<Col md={6}>
-									<RealtimeMetrics for={this.id} onData={this.onData} />
+									<RealtimeMetrics for={[ this.id ]} onData={this.onData} />
 									{this.renderChart()}
 									{this.state.freqTable}
 								</Col>

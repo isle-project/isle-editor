@@ -216,7 +216,7 @@ class MultipleChoiceSurvey extends Component {
 									</Card>
 								</Col>
 								<Col md={6}>
-									<RealtimeMetrics for={id} onData={this.onData} />
+									<RealtimeMetrics for={[ id ]} onData={this.onData} />
 									{this.renderChart()}
 									<p>
 										{this.state.freqTable}

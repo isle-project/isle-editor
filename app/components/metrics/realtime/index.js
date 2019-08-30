@@ -73,7 +73,7 @@ class RealTimeMetrics extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
 
 RealTimeMetrics.defaultProps = {
 	onData() {},

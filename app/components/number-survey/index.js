@@ -175,7 +175,7 @@ class NumberSurvey extends Component {
 									</Card>
 								</Col>
 								<Col md={6}>
-									<RealtimeMetrics for={this.id} onData={this.onData} />
+									<RealtimeMetrics for={[ this.id ]} onData={this.onData} />
 									{this.renderChart()}
 									{ isNumber( this.state.avg ) && isNumber( this.state.sd ) ?
 										<p>The average is {this.state.avg.toFixed( 3 )} (SD: {this.state.sd.toFixed( 3 )}).
