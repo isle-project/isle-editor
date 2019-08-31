@@ -5,8 +5,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
+import FormText from 'react-bootstrap/FormText';
 import Card from 'react-bootstrap/Card';
 import FormLabel from 'react-bootstrap/FormLabel';
+import startsWith from '@stdlib/string/starts-with';
 
 
 // MAIN //
@@ -84,6 +86,8 @@ class SettingsLogin extends Component {
 	render() {
 		const { server, email, password, encounteredError } = this.state;
 		const inputsAreEntered = server.length > 6 && email.length > 3 && password.length > 3;
+		const invalidServer = !startsWith( this.state.server, 'https://' ) &&
+			!startsWith( this.state.server, 'http://' );
 		return (
 			<Card>
 				<Card.Header as="h5">
@@ -101,7 +105,14 @@ class SettingsLogin extends Component {
 									onChange={this.handleInputChange}
 									value={server}
 									onKeyPress={this.handleKeyPress}
+									isInvalid={invalidServer}
 								/>
+								<FormText>
+									The ISLE server address, e.g. <code>https://isle.heinz.cmu.edu</code>.
+								</FormText>
+								<FormControl.Feedback type="invalid" >
+									The server address must start with <code>http://</code> or <code>https://</code>.
+								</FormControl.Feedback>
 							</FormGroup>
 							<FormGroup>
 								<FormLabel>Email</FormLabel>
@@ -113,6 +124,9 @@ class SettingsLogin extends Component {
 									value={email}
 									onKeyPress={this.handleKeyPress}
 								/>
+								<FormText>
+									Connect with your ISLE user account. If you do not have one yet, sign up at the ISLE dashboard, e.g. at <a href="https://isle.heinz.cmu.edu">https://isle.heinz.cmu.edu</a>.
+								</FormText>
 							</FormGroup>
 							<FormGroup>
 								<FormLabel>Password</FormLabel>
@@ -124,13 +138,14 @@ class SettingsLogin extends Component {
 									value={password}
 									onKeyPress={this.handleKeyPress}
 								/>
+								<FormText>Enter the password associated with your ISLE account.</FormText>
 							</FormGroup>
 							<Button
 								variant="primary"
 								size="sm"
 								block
 								onClick={this.connectToServer}
-								disabled={!inputsAreEntered}
+								disabled={!inputsAreEntered || invalidServer}
 							>Connect</Button>
 							{ encounteredError ?
 								<Card style={{ marginTop: 20 }} border="danger">
