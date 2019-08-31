@@ -1,0 +1,16 @@
+.settings-wrapper {
+	margin-left: 20px;
+	margin-top: 20px;
+	margin-right: 20px;
+	height: 90vh;
+	overflow-y: auto;
+}
+
+.settings-preamble-form-group {
+	margin-top: 16px;
+	margin-left: 8px;
+}
+
+.settings-card {
+	margin-top: 20px;
+}

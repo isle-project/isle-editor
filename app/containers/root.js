@@ -6,7 +6,7 @@ import { Router, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 const Editor = lazy( () => import( 'containers/editor' ) );
 const Documentation = lazy( () => import( 'containers/documentation.js' ) );
-const Settings = lazy( () => import( 'containers/settings.js' ) );
+const Settings = lazy( () => import( 'containers/settings' ) );
 const Export = lazy( () => import( 'containers/export.js' ) );
 
 

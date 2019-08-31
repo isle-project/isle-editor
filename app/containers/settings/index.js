@@ -10,6 +10,7 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import Card from 'react-bootstrap/Card';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
 import SettingsLogin from 'editor-components/settings-login';
+import './settings.css';
 
 
 // MAIN //
@@ -31,13 +32,9 @@ class Settings extends Component {
 		return (
 			<Fragment>
 				<HeaderUpperBar backToEditor title="Settings" />
-				<div style={{
-					marginLeft: '20px',
-					marginTop: '20px',
-					marginRight: '20px'
-				}}>
+				<div className="settings-wrapper">
 					<SettingsLogin />
-					<Card>
+					<Card className="settings-card" >
 						<Card.Header as="h5">
 							Settings
 						</Card.Header>
@@ -60,7 +57,7 @@ class Settings extends Component {
 								step={1}
 								defaultValue={parseInt( this.props.renderInterval / 1000, 10 )}
 							/>
-							<FormGroup style={{ marginTop: '16px', marginLeft: '8px' }}>
+							<FormGroup className="settings-preamble-form-group">
 								<Card.Subtitle className="mb-2" ><FormLabel>Preamble Template:</FormLabel></Card.Subtitle>
 								<FormControl
 									as="textarea"

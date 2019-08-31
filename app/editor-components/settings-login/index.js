@@ -149,11 +149,12 @@ class SettingsLogin extends Component {
 							>Connect</Button>
 							{ encounteredError ?
 								<Card style={{ marginTop: 20 }} border="danger">
-									<Card.Header as="h3">
+									<Card.Header as="h4" >
 										Error encountered
 									</Card.Header>
 									<Card.Body>
-									The following error was encountered while connecting to {server}: <br />{encounteredError.message}.
+									The following error was encountered while connecting to <b>{server}</b>: <br />
+									<code>{encounteredError.message}</code>
 									</Card.Body>
 								</Card> : null
 							}
