@@ -34,6 +34,20 @@ const md = markdownit({
 	breaks: true,
 	typographer: false
 });
+const defaultRender = md.renderer.rules.link_open || function onRender( tokens, idx, options, env, renderer ) {
+	return renderer.renderToken( tokens, idx, options );
+};
+md.renderer.rules.link_open = function onLink( tokens, idx, options, env, renderer ) {
+	// If you are sure other plugins can't add `target` - drop check below
+	const aIndex = tokens[idx].attrIndex('target');
+	if ( aIndex < 0 ) {
+		tokens[ idx ].attrPush( [ 'target', '_blank' ] ); // add new attribute...
+	} else {
+		tokens[ idx ].attrs[ aIndex ][ 1 ] = '_blank'; // replace value of existing attribute...
+	}
+	// Pass token to default renderer:
+	return defaultRender( tokens, idx, options, env, renderer );
+};
 const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
 const RE_LINE_BEGINNING = /\n\s*/g;
 const RE_HTML_INNER_TAGS = /^(?:p|th|td)$/;
