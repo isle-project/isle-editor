@@ -182,8 +182,8 @@ function isWhitespace( c ) {
 }
 
 class Tokenizer {
-	constructor({ addEmptySpans }) {
-		this.addEmptySpans = addEmptySpans;
+	constructor( opts ) {
+		this.addEmptySpans = ( opts && opts.addEmptySpans ) ? true : false;
 	}
 
 	setup( str ) {
