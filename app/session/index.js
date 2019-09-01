@@ -1554,8 +1554,8 @@ class Session {
 
 	getLessonOwnerFiles = ( clbk ) => {
 		if ( this.lessonName && this.namespaceName ) {
-			let url = this.server + '/get_owner_files';
-			url += '?'+qs.stringify({ namespaceName: this.namespaceName, lessonName: this.lessonName });
+			let url = this.server + '/get_files';
+			url += '?'+qs.stringify({ namespaceName: this.namespaceName, lessonName: this.lessonName, owner: true });
 			fetch( url, {
 				headers: {
 					'Authorization': 'JWT ' + this.user.token
