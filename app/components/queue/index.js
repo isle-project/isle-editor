@@ -62,7 +62,7 @@ class Queue extends Component {
 					}, 'members' );
 				}
 				else if ( type === 'user_left' && this.state.isOwner ) {
-					let pos = 0;
+					let pos = -1;
 					for ( let i = 0; i < this.state.arr.length; i++ ) {
 						const val = this.state.arr[ i ];
 						if ( val.email === action ) {
