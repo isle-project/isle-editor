@@ -3,7 +3,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import uniq from 'uniq';
 import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
@@ -60,13 +59,6 @@ const wordWrap = ( str ) => {
 	return str.replace( RE_LINE_BREAKS, '$1\n' );
 };
 
-const emailComparison = ( a, b ) => {
-	if ( a.email === b.email ) {
-		return 0;
-	}
-	return 1;
-};
-
 const tabulateValues = ( actions, levels ) => {
 	if ( !actions ) {
 		return [];
@@ -121,7 +113,7 @@ class FullscreenActionDisplay extends Component {
 			showModal: false,
 			modalContent: {},
 			clusters: [],
-			showOnlyLatest: true
+			handleMultipleResponses: 'first'
 		};
 	}
 
@@ -218,9 +210,28 @@ class FullscreenActionDisplay extends Component {
 
 	getActions = () => {
 		let actions;
-		if ( this.state.showOnlyLatest ) {
+		const seenEmails = new Set();
+		if ( this.state.handleMultipleResponses === 'last' ) {
 			actions = this.props.actions.slice();
-			uniq( actions, emailComparison );
+			actions.sort( ( a, b ) => b.absoluteTime - a.absoluteTime );
+			actions = actions.filter( x => {
+				if ( !seenEmails.has( x.email ) ) {
+					seenEmails.add( x.email );
+					return true;
+				}
+				return false;
+			});
+		}
+		else if ( this.state.handleMultipleResponses === 'first' ) {
+			actions = this.props.actions.slice();
+			actions.sort( ( a, b ) => a.absoluteTime - b.absoluteTime );
+			actions = actions.filter( x => {
+				if ( !seenEmails.has( x.email ) ) {
+					seenEmails.add( x.email );
+					return true;
+				}
+				return false;
+			});
 		}
 		else {
 			actions = this.props.actions;
@@ -637,13 +648,27 @@ class FullscreenActionDisplay extends Component {
 					break;
 			}
 		}
+		const label = removeLast( lowercase( this.props.actionLabel ) );
 		return ( <div>
 			{plot}
-			<Switch onChange={() => {
-				this.setState({ showOnlyLatest: !this.state.showOnlyLatest });
+			<Switch onChange={( idx ) => {
+				let type;
+				switch ( idx ) {
+					case 0:
+						type = 'first';
+						break;
+					case 1:
+						type = 'last';
+						break;
+					case 2:
+						type = 'all';
+						break;
+				}
+				this.setState({ handleMultipleResponses: type });
 			}}>
-				<i><b>Only</b> include latest {removeLast( lowercase( this.props.actionLabel ) )} for any student.</i>
-				<i>Include <b>all</b> {removeLast( lowercase( this.props.actionLabel ) )}s for any student.</i>
+				<i><b>Only</b> include first {label} for any student.</i>
+				<i><b>Only</b> include latest {label} for any student.</i>
+				<i>Include <b>all</b> {label}s for any student.</i>
 			</Switch>
 		</div> );
 	}
