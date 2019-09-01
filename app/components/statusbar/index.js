@@ -513,7 +513,7 @@ class StatusBar extends Component {
 						>
 							<Gate user>
 								{duration}
-								<Tooltip placement="bottom" tooltip={!finishedLesson ? 'Click to show unfinished' : 'Completed!'} >
+								<Tooltip placement="bottom" tooltip={!finishedLesson ? 'Click to preview unfinished' : 'Completed!'} >
 									<div className="outer-statusbar-progress-bar">
 										<ProgressBar
 											label={`COMPLETION RATE: ${this.state.progress}%`}
