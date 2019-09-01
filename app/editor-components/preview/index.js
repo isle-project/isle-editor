@@ -219,7 +219,7 @@ class Preview extends Component {
 		code = code.replace( /<!--([\S\s]*)-->/, replacer );
 
 		// Replace Markdown by HTML...
-		code = markdownToHTML( code );
+		code = markdownToHTML( code, preamble.type !== 'presentation' );
 
 		if ( preamble.type === 'presentation' ) {
 			debug( 'Should render a presentation...' );

@@ -168,6 +168,10 @@ function isWhitespace( c ) {
 }
 
 class Tokenizer {
+	constructor({ addEmptySpans }) {
+		this.addEmptySpans = addEmptySpans;
+	}
+
 	setup( str ) {
 		this.tokens = [];
 		this._buffer = str;
@@ -184,7 +188,7 @@ class Tokenizer {
 
 	_inBase( char ) {
 		const pos = this.pos;
-		if ( char === '\n' && this._buffer.charAt( pos+1 ) === '\n' ) {
+		if ( this.addEmptySpans && char === '\n' && this._buffer.charAt( pos+1 ) === '\n' ) {
 			this._current += '\n<span />';
 		}
 		else if (

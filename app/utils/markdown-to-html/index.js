@@ -11,9 +11,9 @@ const debug = logger( 'isle:markdown-to-html' );
 
 // MAIN //
 
-function toMarkdown( str ) {
+function toMarkdown( str, addEmptySpans = false ) {
 	debug( 'Create tokenizer...' );
-	const tokenizer = new Tokenizer();
+	const tokenizer = new Tokenizer({ addEmptySpans });
 	return tokenizer.parse( str );
 }
 
