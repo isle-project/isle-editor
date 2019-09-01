@@ -714,6 +714,12 @@ class Session {
 	*/
 	socketConnect() {
 		debug( 'Connecting via socket to server... ' );
+		if ( this.socket ) {
+			// Close existing socket connection:
+			this.socket.close();
+			this.socket = null;
+		}
+
 		const socket = io.connect( this.server, {
 			transports: [ 'websocket' ]
 		});
@@ -1041,6 +1047,7 @@ class Session {
 		debug( `Logout initiated by user ${this.user.name}` );
 		localStorage.removeItem( this.userVal );
 		this.socket.emit( 'leave' );
+		this.socket.close();
 		this.user = {};
 		this.anonymous = true;
 		this.userRightsQuestionPosed = false;
