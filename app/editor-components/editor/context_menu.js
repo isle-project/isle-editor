@@ -8,7 +8,8 @@ import groupBy from '@stdlib/utils/group-by';
 import contains from '@stdlib/assert/contains';
 import trim from '@stdlib/string/trim';
 import Loadable from 'components/loadable';
-const AnimationHelp = Loadable( () => import( 'editor-components/animation-help' ) );
+const AnimationHelp = Loadable( () => import( 'editor-components/editor/animation-help' ) );
+const MarkdownHelp = Loadable( () => import( 'editor-components/editor/markdown-help' ) );
 import { componentSnippets } from 'snippets';
 import COMPONENTS from './components.json';
 
@@ -67,7 +68,8 @@ class EditorContextMenu extends Component {
 		super( props );
 
 		this.state = {
-			showAnimationHelp: false
+			showAnimationHelp: false,
+			showMarkdownHelp: false
 		};
 	}
 
@@ -95,6 +97,12 @@ class EditorContextMenu extends Component {
 	toggleAnimationHelp = () => {
 		this.setState({
 			showAnimationHelp: !this.state.showAnimationHelp
+		});
+	}
+
+	toggleMarkdownHelp = () => {
+		this.setState({
+			showMarkdownHelp: !this.state.showMarkdownHelp
 		});
 	}
 
@@ -147,10 +155,15 @@ class EditorContextMenu extends Component {
 							{snippets.victory.map( this.renderMenuItem )}
 						</SubMenu>
 					</SubMenu>
-					<MenuItem onClick={this.toggleAnimationHelp}>Animation Help
+					<MenuItem
+						onClick={this.toggleAnimationHelp}>Animation Help
+					</MenuItem>
+					<MenuItem
+						onClick={this.toggleMarkdownHelp}>Markdown Help
 					</MenuItem>
 				</ContextMenu>
 				{ this.state.showAnimationHelp ? <AnimationHelp onHide={this.toggleAnimationHelp} /> : null }
+				{ this.state.showMarkdownHelp ? <MarkdownHelp onHide={this.toggleMarkdownHelp} /> : null }
 			</Fragment>
 		);
 	}

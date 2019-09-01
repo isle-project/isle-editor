@@ -7,7 +7,7 @@ import ReactDraggable from 'react-draggable';
 import Principles from './principles.js';
 import Shorthand from './shorthand.js';
 import TextEffects from './text-effects.js';
-import './animation-help.css';
+import './animation_help.css';
 
 
 // VARIABLES //
@@ -153,8 +153,7 @@ class AnimationHelp extends Component {
 		if ( this.state.explanation === 'text' ) {
 			return this.renderTextAnimations();
 		}
-
-		if (this.state.explanation === 'text-effects') {
+		if ( this.state.explanation === 'text-effects' ) {
 			return <TextEffects />;
 		}
 	}
@@ -218,9 +217,9 @@ class AnimationHelp extends Component {
 	render() {
 		return (
 			<ReactDraggable>
-				<div className="animation-helper" >
+				<div className="animation-helper" cancel=".animation-help" >
 					<button onClick={this.props.onHide} className="exit">x</button>
-					<h1>AnimationHelp</h1>
+					<h1>Animation Help</h1>
 					<hr />
 					{ this.renderMenu() }
 					<hr />
