@@ -17,4 +17,8 @@ An iFrame component.
 ## Options
 
 * __src__ | `string (required)`: source URL. Default: `none`.
-* __title__ | `string`: undefined. Default: `'An iFrame'`.
+* __fullscreen__ | `boolean`: controls whether to display the iFrame in fullscreen mode. Default: `false`.
+* __title__ | `string`: iFrame title. Default: `'An iFrame'`.
+* __width__ | `number`: iFrame width (in px). Default: `900`.
+* __height__ | `number`: iFrame height (in px). Default: `600`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.

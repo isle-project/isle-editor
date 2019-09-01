@@ -155,6 +155,7 @@ const createBagOfWords = ({ texts, stopwords, minCount, customStopwords }) => {
 * @property {(Function|number)} padding - accessor function or constant indicating the numerical padding for each word
 * @property {number} updateThreshold - batch size of new documents in `data` before the word cloud is re-rendered
 * @property {boolean} triggerRender - rerender when the data set is exchanged
+* @property {Array} stopwords - additional stopwords to remove before rendering the word cloud
 * @property {Object} style - CSS inline styles
 * @property {Function} onClick - callback function invoked when a word on the word cloud is clicked
 */

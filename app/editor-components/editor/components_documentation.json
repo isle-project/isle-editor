@@ -1202,9 +1202,34 @@
         "description": "source URL"
       },
       {
+        "name": "fullscreen",
+        "type": "boolean",
+        "description": "controls whether to display the iFrame in fullscreen mode",
+        "default": false
+      },
+      {
         "name": "title",
         "type": "string",
+        "description": "iFrame title",
         "default": "An iFrame"
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "description": "iFrame width (in px)",
+        "default": 900
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "description": "iFrame height (in px)",
+        "default": 600
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       }
     ],
     "description": "An iFrame component."
@@ -5895,7 +5920,7 @@
       {
         "name": "fontSizeMapper",
         "type": "function",
-        "description": "accessor function indicating the font size for each word. Defaults to `( count - min ) / ( max - min ) * 36.0 + 14.0`, where `min` and `max` denote the minimum and maximum word `counts`, respectively",
+        "description": "accessor function indicating the font size for each word. Defaults to `( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 12.0`, where `min` and `max` denote the minimum and maximum word `counts`, respectively",
         "default": null
       },
       {
@@ -5951,6 +5976,12 @@
         "type": "number",
         "description": "batch size of new documents in `data` before the word cloud is re-rendered",
         "default": 5
+      },
+      {
+        "name": "stopwords",
+        "type": "array",
+        "description": "additional stopwords to remove before rendering the word cloud",
+        "default": []
       },
       {
         "name": "triggerRender",
