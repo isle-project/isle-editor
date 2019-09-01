@@ -190,12 +190,12 @@ class ResponseVisualizer extends Component {
 	}
 
 	onCohortChange = ( event ) => {
-		console.log( 'Change the selected cohort...' );
+		debug( 'Change the selected cohort...' );
 		if (
 			this.state.selectedCohort &&
 			event.target.value === this.state.selectedCohort.title
 		) {
-			return console.log( 'Already changed to the requested cohort...' );
+			return debug( 'Already changed to the requested cohort...' );
 		}
 		const cohorts = this.context.cohorts;
 		let cohort;

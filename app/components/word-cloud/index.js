@@ -80,10 +80,11 @@ function guessEquality( x, y ) {
 	return true;
 }
 
-const createBagOfWords = ({ texts, stopwords, minCount }) => {
+const createBagOfWords = ({ texts, stopwords, minCount, customStopwords }) => {
 	if ( !isArray( texts ) || texts.length === 0 ) {
 		return { min: PINF, max: NINF, wordCounts: []};
 	}
+	stopwords = stopwords.concat( customStopwords );
 	let tokens = [];
 	for ( let i = 0; i < texts.length; i++ ) {
 		let text = texts[ i ];
@@ -161,12 +162,13 @@ class Wrapper extends Component {
 	constructor( props ) {
 		super( props );
 
-		const stopwords = generateStopwords( props.language );
+		let stopwords = generateStopwords( props.language );
 		if ( !props.precalculated ) {
 			const { min, max, wordCounts } = createBagOfWords({
 				texts: props.data,
 				stopwords,
-				minCount: props.minCount
+				minCount: props.minCount,
+				customStopwords: props.stopwords
 			});
 			this.state = {
 				wordCounts,
@@ -190,7 +192,8 @@ class Wrapper extends Component {
 			const { min, max, wordCounts } = createBagOfWords({
 				texts: nextProps.data,
 				stopwords: prevState.stopwords,
-				minCount: nextProps.minCount
+				minCount: nextProps.minCount,
+				customStopwords: nextProps.stopwords
 			});
 			newState = {
 				wordCounts,
@@ -214,7 +217,8 @@ class Wrapper extends Component {
 		const diff = absdiff( nextProps.data.length, this.state.nRecords );
 		if (
 			diff >= this.props.updateThreshold ||
-			( this.props.triggerRender && !guessEquality( nextProps.data, this.props.data ) )
+			( this.props.triggerRender && !guessEquality( nextProps.data, this.props.data ) ) ||
+			nextProps.stopwords.length !== this.props.stopwords.length
 		) {
 			return true;
 		}
@@ -350,6 +354,7 @@ Wrapper.defaultProps = {
 	minCount: null,
 	saveButton: true,
 	updateThreshold: 5,
+	stopwords: [],
 	triggerRender: true,
 	padding: 5,
 	onClick() {},
@@ -380,6 +385,7 @@ Wrapper.propTypes = {
 		PropTypes.number
 	]),
 	updateThreshold: PropTypes.number,
+	stopwords: PropTypes.array,
 	triggerRender: PropTypes.bool,
 	style: PropTypes.object,
 	width: PropTypes.number

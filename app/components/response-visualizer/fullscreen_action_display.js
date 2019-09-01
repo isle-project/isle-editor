@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import tokenize from '@stdlib/nlp/tokenize';
 import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
@@ -30,6 +31,7 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Modal from 'react-bootstrap/Modal';
 import ReactList from 'react-list';
 import Highlighter from 'react-highlight-words';
+import Checkbox from 'components/input/checkbox';
 import Plotly from 'components/plotly';
 import Switch from 'components/switch';
 import WordCloud from 'components/word-cloud';
@@ -113,7 +115,8 @@ class FullscreenActionDisplay extends Component {
 			showModal: false,
 			modalContent: {},
 			clusters: [],
-			handleMultipleResponses: 'first'
+			handleMultipleResponses: 'first',
+			removeQuestionWords: true
 		};
 	}
 
@@ -240,8 +243,16 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	renderWordCloud() {
+		debug( 'Rendering word cloud...' );
 		const actions = this.getActions();
 		const texts = actions.map( x => x.value );
+		let stopwords = [];
+		if (
+			this.state.removeQuestionWords &&
+			isString( this.props.data.question )
+		) {
+			stopwords = tokenize( this.props.data.question );
+		}
 		return (
 			<Fragment>
 				<WordCloud
@@ -249,7 +260,7 @@ class FullscreenActionDisplay extends Component {
 					height={0.65 * window.innerHeight}
 					width={0.45*window.innerWidth}
 					rotate={0}
-					triggerRender={false}
+					triggerRender={true}
 					onClick={( d ) => {
 						if ( contains( this.state.searchwords, d.text ) ) {
 							this.searchFilter( '' );
@@ -260,6 +271,7 @@ class FullscreenActionDisplay extends Component {
 					style={{
 						marginTop: 20
 					}}
+					stopwords={stopwords}
 				/>
 				<TextClustering
 					texts={this.state.filtered.map( x => x.value )}
@@ -269,6 +281,18 @@ class FullscreenActionDisplay extends Component {
 						this.setState({
 							clusters: data
 						});
+					}}
+				/>
+				<Checkbox
+					size="small" inline legend="Remove question words"
+					defaultValue={this.state.removeQuestionWords}
+					onChange={( value ) => {
+						this.setState({ removeQuestionWords: value });
+					}}
+					style={{
+						right: '20px',
+						bottom: '35px',
+						position: 'absolute'
 					}}
 				/>
 			</Fragment>
@@ -658,17 +682,17 @@ class FullscreenActionDisplay extends Component {
 						type = 'first';
 						break;
 					case 1:
-						type = 'last';
+						type = 'all';
 						break;
 					case 2:
-						type = 'all';
+						type = 'last';
 						break;
 				}
 				this.setState({ handleMultipleResponses: type });
 			}}>
 				<i><b>Only</b> include first {label} for any student.</i>
-				<i><b>Only</b> include latest {label} for any student.</i>
 				<i>Include <b>all</b> {label}s for any student.</i>
+				<i><b>Only</b> include latest {label} for any student.</i>
 			</Switch>
 		</div> );
 	}
