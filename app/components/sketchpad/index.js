@@ -377,16 +377,20 @@ class Sketchpad extends Component {
 						const pagesToInsert = action.value;
 						debug( 'Initialize new pages: '+pagesToInsert.join( ', ' ) );
 						const newInsertedPages = this.state.insertedPages;
+						let inserted = 0;
 						for ( let i = 0; i < pagesToInsert.length; i++ ) {
 							const idx = pagesToInsert[ i ];
-							this.elements.splice( idx, 0, []);
-							this.backgrounds.splice( idx, 0, null );
-							this.recordingEndPositions.splice( idx, 0, 0 );
-							newInsertedPages.push( idx );
+							if ( !contains( this.state.insertedPages, idx ) ) {
+								this.elements.splice( idx, 0, []);
+								this.backgrounds.splice( idx, 0, null );
+								this.recordingEndPositions.splice( idx, 0, 0 );
+								newInsertedPages.push( idx );
+								inserted += 1;
+							}
 						}
 						this.setState({
 							insertedPages: newInsertedPages,
-							noPages: this.state.noPages + pagesToInsert.length
+							noPages: this.state.noPages + inserted
 						}, () => {
 							this.redraw();
 						});
