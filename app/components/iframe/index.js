@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
 
 
 // MAIN //
@@ -9,74 +10,90 @@ import PropTypes from 'prop-types';
 /**
 * An iFrame component.
 *
+* @property {string} title - iFrame title
 * @property {string} src - source URL
+* @property {boolean} fullscreen - controls whether to display the iFrame in fullscreen mode
+* @property {number} width - iFrame width (in px)
+* @property {number} height - iFrame height (in px)
+* @property {Object} style - CSS inline styles
 */
 class IFrame extends Component {
 	constructor( props ) {
 		super( props );
-		this.width = window.innerWidth;
-		this.height = window.innerHeight;
 		this.state = {
-			corrected: false
+			width: props.width || window.innerWidth,
+			height: props.height || window.innerHeight
 		};
 	}
 
-	componentDidMount() {
-		this.correctedPos = this.getPos();
-		this.setState({
-			corrected: true
-		});
-	}
-
-	getPos() {
-		const rect = this.wrapper.getBoundingClientRect();
-		return {
-			x: rect.left,
-			y: rect.top
-		};
-	}
-
-	saveRef = ( div ) => {
-		this.wrapper = div;
+	static getDerivedStateFromProps( props, state ) {
+		if ( props.fullscreen ) {
+			return {
+				width: window.innerWidth,
+				height: window.innerHeight
+			};
+		}
+		else if (
+			state.width !== props.width ||
+			state.height !== props.height
+		) {
+			return {
+				width: props.width,
+				height: props.height
+			};
+		}
+		return null;
 	}
 
 	render() {
 		let style;
-		if ( !this.state.corrected ) {
-			style = {};
-		} else {
+		if ( this.props.fullscreen ) {
 			style = {
 				position: 'absolute',
-				left: '-' + this.correctedPos.x + 'px',
-				top: '-' + this.correctedPos.y + 'px',
-				width: this.width + 'px',
-				height: this.height + 'px',
-				display: 'inlineBlock'
+				width: this.state.width,
+				height: this.state.height,
+				top: 0,
+				left: 0,
+				...this.props.style
+			};
+		} else {
+			style = {
+				width: this.state.width,
+				height: this.state.height,
+				...this.props.style
 			};
 		}
 		return (
-			<div id={this.props.id} ref={this.saveRef} style={style} >
-				{ this.state.corrected ? <iframe
+			<Card id={this.props.id} style={style} >
+				<iframe
 					src={this.props.src}
-					width={this.width}
-					height={this.height}
+					width={this.state.width}
+					height={this.state.height}
 					title={this.props.title}
-				/> : null }
-			</div>
+				/>
+			</Card>
 		);
 	}
 }
 
 
-// TYPES //
+// PROPERTIES //
 
 IFrame.defaultProps = {
-	title: 'An iFrame'
+	title: 'An iFrame',
+	fullscreen: false,
+	width: 900,
+	height: 600,
+	style: {}
 };
 
 IFrame.propTypes = {
 	src: PropTypes.string.isRequired,
-	title: PropTypes.string
+	fullscreen: PropTypes.bool,
+	title: PropTypes.string,
+	width: PropTypes.number,
+	height: PropTypes.number,
+	style: PropTypes.object
 };
 
 IFrame.defaultProps = {};
