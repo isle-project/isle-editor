@@ -470,6 +470,9 @@ function writeIndexFile({
 	if ( !meta.removeStatusBar ) {
 		content = '<StatusBar className="fixedPos" />\n' + content;
 	}
+	if ( !meta.removeToolbar ) {
+		content = '<Toolbar />\n' + content;
+	}
 	const usedComponents = getComponentList( content );
 	const str = generateIndexJS( content, usedComponents, meta, basePath, filePath );
 	debug( `Create JS file: ${str}` );

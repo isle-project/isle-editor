@@ -161,7 +161,7 @@
 }
 
 #Lesson .statusbar-presentation-mode {
-	left: 72px;
+	left: 28px;
 	bottom: 3px;
 	position: absolute;
 	z-index: 2;
@@ -179,11 +179,14 @@
 }
 
 #Lesson .statusbar-queue-counter {
-	color: #2e4468;
-	font-size: 12px;
+	color: red;
+	font-size: 18px;
 	font-family: Open Sans Condensed;
 	font-weight: 700;
 	z-index: 2;
+	position: absolute;
+	right: 4px;
+	top: -7px;
 }
 
 #Lesson .statusbar-voice-text {

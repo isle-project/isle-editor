@@ -12,11 +12,9 @@ import Signup from 'components/signup';
 import Login from 'components/login';
 import Gate from 'components/gate';
 import VoiceInput from 'components/input/voice';
-import Calculator from 'components/calculator';
 import Chat from 'components/statusbar/chat';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
-import Queue from 'components/queue';
 import Seal from 'components/seal';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import isElectron from 'utils/is-electron';
@@ -67,14 +65,11 @@ class StatusBar extends Component {
 			statusbarWidth,
 			side,
 			recordedText: null,
-			showCalculator: false,
-			showStatusBar: !context.config.hideStatusBar && !context.config.removeStatusBar,
+			showStatusBar: !context.config.hideStatusBar,
 			showProgressBar: false,
-			showQueue: false,
 			isProgressLeaving: false,
 			progress: 0,
-			duration: '0',
-			queueSize: 0
+			duration: '0'
 		};
 		this.hidden = true;
 	}
@@ -274,24 +269,6 @@ class StatusBar extends Component {
 		}
 	}
 
-	toggleCalculator = ( event ) => {
-		if ( event ) {
-			event.stopPropagation();
-		}
-		this.setState({
-			showCalculator: !this.state.showCalculator
-		});
-	}
-
-	toggleQueue = ( event ) => {
-		if ( event ) {
-			event.stopPropagation();
-		}
-		this.setState({
-			showQueue: !this.state.showQueue
-		});
-	}
-
 	toggleProgress = () => {
 		const session = this.context;
 		if ( this.state.isProgressLeaving || session.isOwner() ) {
@@ -424,44 +401,15 @@ class StatusBar extends Component {
 								/>
 								<span ref={( span ) => { this.displayedText = span; }} className="statusbar-voice-text" ></span>
 							</div>
-							<Tooltip tooltip={`${this.state.showCalculator ? 'Close' : 'Open'} calculator (F2)`} placement="bottom" >
-								<div
-									className="statusbar-calculator"
-									role="button" tabIndex={0}
-									onClick={this.toggleCalculator} onKeyPress={this.toggleCalculator}
-									style={{
-										display: !session.config.hideCalculator ? 'inherit' : 'none'
-									}}
-								>
-										<span className="fa fa-xs fa-calculator statusbar-calc-icon" />
-								</div>
-							</Tooltip>
 							{( session.hasOwner || isElectron ) ?
-								<Fragment>
-									<div
-										className="statusbar-queue"
-										role="button" tabIndex={0}
-										onClick={this.toggleQueue} onKeyPress={this.toggleQueue}
-										style={{
-											display: !session.config.hideQueue ? 'inherit' : 'none'
-										}}
+								<Tooltip placement="bottom" tooltip="Enter presentation mode (F7)" >
+									<span role="button" tabIndex={0}
+										onClick={this.toggleBarVisibility} onKeyPress={this.toggleBarVisibility}
+										className="statusbar-presentation-mode"
 									>
-										<Tooltip tooltip={`${this.state.showQueue ? 'Close' : 'Open'} help queue`} placement="bottom" >
-											<span className="fa fa-xs fa-question-circle statusbar-calc-icon" />
-										</Tooltip>
-										<Tooltip placement="bottom" tooltip="# of open questions" >
-											<span className="statusbar-queue-counter" >{`   ${this.state.queueSize}`}</span>
-										</Tooltip>
-									</div>
-									<Tooltip placement="bottom" tooltip="Enter presentation mode (F7)" >
-										<span role="button" tabIndex={0}
-											onClick={this.toggleBarVisibility} onKeyPress={this.toggleBarVisibility}
-											className="statusbar-presentation-mode"
-										>
-											<span className="fa fa-xs fa-eye-slash statusbar-calc-icon" />
-										</span>
-									</Tooltip>
-								</Fragment>: null }
+										<span className="fa fa-xs fa-eye-slash statusbar-calc-icon" />
+									</span>
+								</Tooltip> : null }
 							<div className="statusbar-presence" style={{
 								backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR
 							}}>
@@ -545,33 +493,6 @@ class StatusBar extends Component {
 					title="Logout"
 					message="Do you really want to log out? To log in again, you will need your password."
 					onConfirm={this.handleLogout}
-				/>
-				<Calculator show={this.state.showCalculator} onHide={this.toggleCalculator} />
-				<Queue
-					id="main_queue"
-					show={this.state.showQueue}
-					onHide={this.toggleQueue}
-					onQueueSize={( queueSize ) => {
-						this.setState({
-							queueSize
-						});
-					}}
-					onNewQuestion={() => {
-						session.addNotification({
-							title: 'Queue',
-							message: 'Someone posted a question on the queue',
-							level: 'success',
-							position: 'tr',
-							action: {
-								label: 'Open queue',
-								callback: () => {
-									this.setState({
-										showQueue: true
-									});
-								}
-							}
-						});
-					}}
 				/>
 				<KeyControls
 					actions={{

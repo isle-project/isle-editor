@@ -1,0 +1,7 @@
+.toolbar-buttongroup {
+	position: fixed;
+	bottom: 0%;
+	left: 0px;
+	z-index: 1003;
+	box-shadow: 0 0 5px darkslategray;
+}

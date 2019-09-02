@@ -75,9 +75,14 @@
 		"description": "Completely remove statusbar (reduces bundle size)"
 	},
 	{
+		"name": "removeToolbar",
+		"value": "removeToolbar: ${1:true}",
+		"description": "Remove toolbar"
+	},
+	{
 		"name": "hideCalculator",
 		"value": "hideCalculator: ${1:true}",
-		"description": "Hide the calculator icon in the statusbar"
+		"description": "Hide the calculator from the toolbar"
 	},
 	{
 		"name": "hideProgressBar",
@@ -87,7 +92,7 @@
 	{
 		"name": "hideQueue",
 		"value": "hideQueue: ${1:true}",
-		"description": "Hide the queue, which allows users to submit questions to instructors when they are online, in the statusbar"
+		"description": "Hide the queue, which allows users to submit questions to instructors when they are online, from the toolbar"
 	},
 	{
 		"name": "hideVoiceControl",

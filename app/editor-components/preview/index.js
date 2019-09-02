@@ -225,10 +225,16 @@ class Preview extends Component {
 			debug( 'Should render a presentation...' );
 			code = transformToPresentation( code, preamble );
 		}
-		if ( !preamble.hideToolbar ) {
+		let additions = '';
+		if ( !preamble.removeStatusBar ) {
 			noEmptyLines += 1;
-			code = '<StatusBar className="fixedPos" />\n' + code;
+			additions = '<StatusBar className="fixedPos" />\n';
 		}
+		if ( !preamble.removeToolbar ) {
+			noEmptyLines += 1;
+			additions += '<Toolbar />\n';
+		}
+		code = additions + code;
 
 		// Prepend empty lines so line numbers in error stack traces match:
 		code = repeat( '\n', noEmptyLines ) + code;
