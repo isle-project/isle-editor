@@ -4,12 +4,12 @@ author: Philipp Burckhardt
 date: Dec 27th, 2017
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
 # R Output
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '900px'

@@ -4,7 +4,7 @@ author: Philipp Burckhardt
 date: Dec 27th, 2017
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
  # Markdown Editor
@@ -17,7 +17,7 @@ hideToolbar: true
     code={`
 <MarkdownEditor
     defaultValue="type some text"
-    voiceControl 
+    voiceControl
 />
 `}
     scope={{

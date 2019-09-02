@@ -4,7 +4,7 @@ author: {{TODO: Add author(s)}}
 date: {{TODO: Insert current date}}
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
 # {{TODO: Insert component name}}

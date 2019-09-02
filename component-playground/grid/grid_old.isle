@@ -4,7 +4,7 @@ author: Philipp Burckhardt
 date: Dec 27th, 2017
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
 # Pages
@@ -13,13 +13,13 @@ hideToolbar: true
 
 
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
     }}
     code={`
-    <Pages title = "Cats" 
+    <Pages title = "Cats"
         height = { 500 }>
         <img src = "https://www.aspca.org/sites/default/files/cat-care_urine-marking_main-image.jpg" />
         <img src = "https://c1.staticflickr.com/1/50/160490011_b0cecf8fa1_b.jpg" />

@@ -4,7 +4,7 @@ author: Philipp Burckhardt
 date: Oct 7, 2018
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
  # Quiz
@@ -59,10 +59,10 @@ hideToolbar: true
                 'two-sided'
             ]}
         />,
-        <FreeTextQuestion 
-            question="What is the p-value your obtained for this test?" 
-            rows={1} 
-            solution="1.476303e-05" 
+        <FreeTextQuestion
+            question="What is the p-value your obtained for this test?"
+            rows={1}
+            solution="1.476303e-05"
         />
     ]}
 />`}

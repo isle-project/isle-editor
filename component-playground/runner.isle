@@ -4,12 +4,12 @@ author: Philipp Burckhardt
 date: Jul 22nd, 2018
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: false
+removeStatusBar: false
 ---
 
 # Runner
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1000px'

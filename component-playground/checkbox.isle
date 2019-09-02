@@ -4,8 +4,7 @@ author: Philipp Burckhardt
 date: Dec 27th, 2017
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
-
+removeStatusBar: true
 ---
 
 # Checkbox Input
@@ -14,7 +13,7 @@ hideToolbar: true
 <br />
 
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1000px'

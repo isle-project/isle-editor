@@ -4,7 +4,7 @@ author: Philipp Burckhardt
 date: Dec 27th, 2017
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 
 ---
 
@@ -14,14 +14,14 @@ hideToolbar: true
 
 
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1100px'
     }}
     code={`
-<FreeTextSurvey 
-    anonymous 
+<FreeTextSurvey
+    anonymous
     question={"What is your opinion"} />
 `}
     scope={{

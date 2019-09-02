@@ -4,7 +4,7 @@ author: Philipp Burckhardt
 date: Oct 23rd, 2018
 state:
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
 # Multiple Choice Matrix

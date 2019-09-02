@@ -7,7 +7,7 @@ require:
 state:
     showModal: true
 server: https://isle.heinz.cmu.edu
-hideToolbar: true
+removeStatusBar: true
 ---
 
 # Data Explorer
