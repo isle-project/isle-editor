@@ -8,6 +8,7 @@ import logger from 'debug';
 import noop from '@stdlib/utils/noop';
 import objectKeys from '@stdlib/utils/keys';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import isObject from '@stdlib/assert/is-plain-object';
 import startsWith from '@stdlib/string/starts-with';
 import replace from '@stdlib/string/replace';
 import readFile from '@stdlib/fs/read-file';
@@ -227,10 +228,12 @@ class Editor extends Component {
 	checkRequires = ( names, preamble ) => {
 		for ( let i = 0; i < names.length; i++ ) {
 			const name = names[ i ];
-			let path = preamble.require[ name ];
-			if ( isString( path ) && startsWith( path, '@stdlib' ) ) {
-				path = resolve( join( BASE_PATH, 'node_modules' ), path, 'docs', 'types', 'index.d.ts' );
-				this.readTypeDefinition( path );
+			if ( isObject( preamble.require ) ) {
+				let path = preamble.require[ name ];
+				if ( isString( path ) && startsWith( path, '@stdlib' ) ) {
+					path = resolve( join( BASE_PATH, 'node_modules' ), path, 'docs', 'types', 'index.d.ts' );
+					this.readTypeDefinition( path );
+				}
 			}
 		}
 	}
