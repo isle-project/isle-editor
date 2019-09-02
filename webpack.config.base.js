@@ -35,7 +35,7 @@ const EXTERNALS = [
 	'markdown-it',
 	'markdown-it-container',
 	'markdown-it-ins',
-	'markdown-it-katex',
+	'@iktakahiro/markdown-it-katex',
 	'markdown-it-sub',
 	'minimist',
 	'mini-css-extract-plugin',
