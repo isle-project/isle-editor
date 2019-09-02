@@ -496,7 +496,6 @@ class StatusBar extends Component {
 				/>
 				<KeyControls
 					actions={{
-						'F2': this.toggleCalculator,
 						'F7': this.toggleBarVisibility
 					}}
 				/>

@@ -243,14 +243,6 @@
 	-webkit-animation-duration: 2s;
 }
 
-#Lesson .statusbar-calc-icon {
-	opacity: 0.4;
-}
-
-#Lesson .statusbar-calc-icon:hover {
-	opacity: 1;
-}
-
 #Lesson .statusbar-profile {
 	width: 33px;
 	height: 33px;

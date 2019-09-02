@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDraggable from 'react-draggable';
 import './draggable.css';
 
@@ -31,11 +32,25 @@ class Draggable extends Component {
 	}
 
 	render() {
-		return ( <ReactDraggable {...this.props} onStop={this.handleStop} >
+		return ( <ReactDraggable
+			{...this.props}
+			onStop={this.handleStop}
+		>
 			{this.props.children}
 		</ReactDraggable> );
 	}
 }
+
+
+// PROPERTIES //
+
+Draggable.propTypes = {
+	onStop: PropTypes.func
+};
+
+Draggable.defaultProps = {
+	onStop() {}
+};
 
 
 // EXPORTS //

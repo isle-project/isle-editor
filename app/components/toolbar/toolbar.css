@@ -5,3 +5,31 @@
 	z-index: 1003;
 	box-shadow: 0 0 5px darkslategray;
 }
+
+.toolbar-icon {
+	opacity: 0.6;
+}
+
+.toolbar-icon:hover {
+	opacity: 1;
+}
+
+.toolbar-outer-element {
+	position: fixed;
+	top: 2%;
+	z-index: 1002;
+}
+
+.toolbar-hide-button {
+	font-size: 24px;
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	border: none;
+	background: none;
+	color: #2e4468;
+}
+
+.toolbar-hide-button:hover {
+	color: rgba(220, 53, 69, 0.6);
+}

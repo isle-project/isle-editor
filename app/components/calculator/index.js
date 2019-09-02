@@ -3,9 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import noop from '@stdlib/utils/noop';
-import ReactDraggable from 'react-draggable';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import ReactDraggable from 'components/draggable';
 import Panel from 'components/panel';
 import TeX from 'components/tex';
 import { CALCULATOR_SOLVE } from 'constants/actions.js';
@@ -217,7 +217,7 @@ class Calculator extends Component {
 		return (
 			<ReactDraggable bounds="#Lesson" cancel="#calc-text-area" >
 				<div className="outer-calc" style={this.props.style}>
-					<Panel id="calc-panel-full" header={this.renderHeader()}>
+					<Panel id="calc-panel-full" tabIndex={0} role="button" header={this.renderHeader()}>
 						<Container className="desaturated" >
 							<FormControl
 								type="text" id="calc-text-area"
@@ -306,6 +306,7 @@ class Calculator extends Component {
 				<div className="outer-calc" style={this.props.style} >
 					<Panel
 						id="calc-panel"
+						tabIndex={0} role="button"
 						header={this.renderHeader()}
 					>
 						<Container className="desaturated" >

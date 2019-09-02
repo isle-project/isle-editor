@@ -232,7 +232,17 @@ class Preview extends Component {
 		}
 		if ( !preamble.removeToolbar ) {
 			noEmptyLines += 1;
-			additions += '<Toolbar />\n';
+			let elements = '[';
+			if ( preamble.toolbar ) {
+				preamble.toolbar.forEach( ( x, i ) => {
+					elements += `{name: '${x.name}', component: ${x.component}, icon: '${x.icon}' }`;
+					if ( i < preamble.toolbar.length - 1 ) {
+						elements += ', ';
+					}
+				});
+			}
+			elements += ']';
+			additions += `<Toolbar elements={${elements}} />\n`;
 		}
 		code = additions + code;
 
