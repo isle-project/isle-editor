@@ -16,6 +16,11 @@ import './toolbar.css';
 
 // MAIN //
 
+/**
+* Toolbar of widgets for students to use during the course of a lesson.
+*
+* @property {Array} elements - array of elements with `name`, `icon` (a font-awesome icon name), and `component` (React node to be rendered) keys
+*/
 class Toolbar extends Component {
 	constructor( props ) {
 		super( props );

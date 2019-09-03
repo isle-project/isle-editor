@@ -5526,6 +5526,17 @@
     ],
     "description": "Formats time in the format `minutes:seconds`."
   },
+  "Toolbar": {
+    "props": [
+      {
+        "name": "elements",
+        "type": "array",
+        "description": "array of elements with `name`, `icon` (a font-awesome icon name), and `component` (React node to be rendered) keys",
+        "default": []
+      }
+    ],
+    "description": "Toolbar of widgets for students to use during the course of a lesson."
+  },
   "Tooltip": {
     "props": [
       {
