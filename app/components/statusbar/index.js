@@ -407,7 +407,7 @@ class StatusBar extends Component {
 										onClick={this.toggleBarVisibility} onKeyPress={this.toggleBarVisibility}
 										className="statusbar-presentation-mode"
 									>
-										<span className="fa fa-xs fa-eye-slash statusbar-calc-icon" />
+										<span className="fa fa-xs fa-eye-slash statusbar-icon" />
 									</span>
 								</Tooltip> : null }
 							<div className="statusbar-presence" style={{
