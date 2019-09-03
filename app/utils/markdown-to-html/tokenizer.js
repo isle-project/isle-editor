@@ -27,6 +27,7 @@ const IN_JSX_EXPRESSION = 11;
 const IN_JSX_OTHER = 12;
 const IN_BETWEEN_TAGS = 13;
 const IN_ANGLE_LINK = 14;
+const RE_LETTER = /[A-Z]/i;
 
 const md = markdownit({
 	html: true,
@@ -39,7 +40,7 @@ const defaultRender = md.renderer.rules.link_open || function onRender( tokens, 
 };
 md.renderer.rules.link_open = function onLink( tokens, idx, options, env, renderer ) {
 	// If you are sure other plugins can't add `target` - drop check below
-	const aIndex = tokens[idx].attrIndex('target');
+	const aIndex = tokens[ idx ].attrIndex( 'target' );
 	if ( aIndex < 0 ) {
 		tokens[ idx ].attrPush( [ 'target', '_blank' ] ); // add new attribute...
 	} else {
@@ -84,6 +85,17 @@ function isQuotationMark( c ) {
 	);
 }
 
+function tagName( str, pos ) {
+	let out = '';
+	let char = str.charAt( pos );
+	while ( RE_LETTER.test( char ) ) {
+		out += char;
+		pos += 1;
+		char = str.charAt( pos );
+	}
+	return out;
+}
+
 function trimLineStarts( str ) {
 	return replace( str, RE_LINE_BEGINNING, '\n' );
 }
@@ -105,6 +117,9 @@ function renderMarkdownInBetween( str, inline = false ) {
 	let inEquation = false;
 	for ( let i = 0; i < str.length; i++ ) {
 		const char = str[ i ];
+		if ( ( i === 0 || i === str.length-1 ) && char === '\n' ) {
+			continue;
+		}
 		const prevChar = str[ i-1 ];
 		const nextChar = str[ i+1 ];
 		if (
@@ -333,10 +348,14 @@ class Tokenizer {
 			let text = this._current.substring( this._openTagEnd, this._current.length-1 );
 			text = trimLineStarts( text );
 			if ( !isWhitespace( text ) ) {
+				const nextTag = tagName( this._buffer, this.pos+1 );
 				if (
 					RE_HTML_INNER_TAGS.test( this._openingTagName ) ||
 					RE_HTML_INLINE_TAGS.test( this._openingTagName ) ||
-					RE_ISLE_INLINE_TAGS.test( this._openingTagName )
+					RE_ISLE_INLINE_TAGS.test( this._openingTagName ) ||
+					RE_HTML_INNER_TAGS.test( nextTag ) ||
+					RE_HTML_INLINE_TAGS.test( nextTag ) ||
+					RE_ISLE_INLINE_TAGS.test( nextTag )
 				) {
 					debug( `Render inline markdown for <${this._openingTagName}/>...` );
 					text = renderMarkdownInBetween( text, true );
