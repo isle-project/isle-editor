@@ -29,7 +29,8 @@ class Toolbar extends Component {
 			calculator: false,
 			queue: false,
 			queueSize: 0,
-			elements: []
+			elements: [],
+			showToolbar: true
 		};
 		this.state = state;
 	}
@@ -53,6 +54,23 @@ class Toolbar extends Component {
 			return newState;
 		}
 		return null;
+	}
+
+	componentDidMount() {
+		const session = this.context;
+		this.unsubscribe = session.subscribe( ( type, value ) => {
+			if ( type === 'TOGGLE_PRESENTATION_MODE' ) {
+				this.setState({
+					showToolbar: !value
+				});
+			}
+		});
+	}
+
+	componentWillUnmount() {
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 	}
 
 	toggleCalculator = () => {
@@ -91,7 +109,9 @@ class Toolbar extends Component {
 		const session = this.context;
 		return (
 			<Fragment>
-				<ButtonGroup vertical className="toolbar-buttongroup" >
+				<ButtonGroup vertical className="toolbar-buttongroup" style={{
+					display: this.state.showToolbar ? 'inherit' : 'none'
+				}} >
 					{this.state.elements.filter( x => !!x.component ).map( x => this.renderButton( x ))}
 					<Tooltip tooltip={`${this.state.calculator ? 'Close' : 'Open'} calculator (F2)`} placement="right" >
 						<Button
