@@ -4,10 +4,12 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Modal from 'react-bootstrap/Modal';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import Plotly from 'components/plotly';
+import RShell from 'components/r/shell';
 import randomstring from 'utils/randomstring/alphanumeric';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
@@ -379,7 +381,8 @@ class Scatterplot extends Component {
 			regressionLine: false,
 			regressionMethod: ['linear'],
 			lineBy: null,
-			smoothSpan: 0.66
+			smoothSpan: 0.66,
+			showRModal: false
 		};
 	}
 
@@ -415,6 +418,35 @@ class Scatterplot extends Component {
 		};
 		this.props.logAction( DATA_EXPLORER_SCATTERPLOT, stateNew );
 		this.props.onCreated( output );
+	}
+
+	showRCode = () => {
+		this.setState({
+			showRModal: true
+		});
+	}
+
+	generateRModal = () => {
+		var RCode = 'plot(x = ' + this.props.defaultY + ', y = ' + this.props.defaultX + ', data = NULL)';
+		return (
+			<Modal 
+				show={this.state.showRModal}
+				onHide={
+					()=>{
+						this.setState({
+							showRModal: false
+						})
+				}}>
+				<Modal.Header closeButton>
+					<Modal.Title>
+						R Code
+					</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					<RShell code={RCode} resettable />
+				</Modal.Body>
+			</Modal>
+		)
 	}
 
 	renderInputs() {
@@ -554,6 +586,10 @@ class Scatterplot extends Component {
 	}
 
 	render() {
+		let modal = null;
+		if (this.state.showRModal) {
+			modal = this.generateRModal();
+		}
 		return (
 			<Card>
 				<Card.Header as="h4" >
@@ -564,8 +600,10 @@ class Scatterplot extends Component {
 					<div style={{ clear: 'both' }}></div>
 					{this.renderRegressionLineOptions()}
 					<div style={{ clear: 'both' }}></div>
-					<Button variant="primary" block onClick={this.generateScatterplot}>Generate</Button>
+					<Button variant="primary" onClick={this.generateScatterplot}>Generate</Button>
+					<Button variant="light" onClick={this.showRCode}>Show R Code</Button>
 				</Card.Body>
+				{modal}
 			</Card>
 		);
 	}
