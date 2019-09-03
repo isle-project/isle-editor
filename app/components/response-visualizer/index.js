@@ -20,6 +20,7 @@ import SessionContext from 'session/context.js';
 import { RESPONSE_VISUALIZER_TOGGLE, RESPONSE_VISUALIZER_EXTENDED } from 'constants/actions.js';
 import FullscreenActionDisplay from './fullscreen_action_display.js';
 import extractValue from './extract_value.js';
+import './response_visualizer.css';
 
 
 // VARIABLES //

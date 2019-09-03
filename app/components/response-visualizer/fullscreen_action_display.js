@@ -20,6 +20,7 @@ import indexOf from '@stdlib/utils/index-of';
 import floor from '@stdlib/math/base/special/floor';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import NINF from '@stdlib/constants/math/float64-ninf';
+import Alert from 'react-bootstrap/Alert';
 import Table from 'react-bootstrap/Table';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
@@ -41,7 +42,7 @@ import Search from './search.js';
 import SingleActionModal from './single_action_modal.js';
 import FullscreenHeader from './fullscreen_header';
 import TextClustering from './text-clustering';
-import './response_visualizer.css';
+import './fullscreen_action_display.css';
 
 
 // VARIABLES //
@@ -399,47 +400,48 @@ class FullscreenActionDisplay extends Component {
 		freqs = freqs.sort( ( a, b ) => {
 			return b[ 2 ] - a[ 2 ];
 		});
-		freqs = freqs.filter( ( x, i ) => {
-			return i <= 5;
-		});
 		return (
-			<div style={{ height: 0.75 * window.innerHeight }}>
-				<Table>
-					<thead>
-						<tr>
-							<th>Value</th>
-							<th>Absolute</th>
-							<th>Relative</th>
-						</tr>
-					</thead>
-					<tbody>
-						{freqs.map( ( val, idx ) => {
-							return ( <tr key={idx} >
-								<td>{val[ 0 ]}</td>
-								<td>{val[ 1 ]}</td>
-								<td>{val[ 2 ].toFixed( 3 )}</td>
-							</tr> );
-						})}
-					</tbody>
-				</Table>
-				<Plotly
-					data={[
-						{
-							x: values,
-							type: 'histogram',
-							name: 'histogram'
-						}
-					]}
-					fit
-					layout={{
-						xaxis: {
-							title: 'Count'
-						},
-						yaxis: {
-							title: 'Value'
-						}
-					}}
-				/>
+			<div>
+				<div className="scrollable-table" style={{ height: 0.3 * window.innerHeight }} >
+					<Table>
+						<thead>
+							<tr>
+								<th>Value</th>
+								<th>Absolute</th>
+								<th>Relative</th>
+							</tr>
+						</thead>
+						<tbody >
+							{freqs.map( ( val, idx ) => {
+								return ( <tr key={idx} >
+									<td>{val[ 0 ]}</td>
+									<td>{val[ 1 ]}</td>
+									<td>{val[ 2 ].toFixed( 3 )}</td>
+								</tr> );
+							})}
+						</tbody>
+					</Table>
+				</div>
+				<div style={{ height: 0.4 * window.innerHeight }}>
+					<Plotly
+						data={[
+							{
+								x: values,
+								type: 'histogram',
+								name: 'histogram'
+							}
+						]}
+						fit
+						layout={{
+							xaxis: {
+								title: 'Value'
+							},
+							yaxis: {
+								title: 'Count'
+							}
+						}}
+					/>
+				</div>
 			</div>
 		);
 	}
@@ -646,36 +648,37 @@ class FullscreenActionDisplay extends Component {
 
 	renderPlot() {
 		let plot;
-		if ( this.props.actions.length > 0 ) {
-			switch ( this.props.data.type ) {
-				case 'text':
-				default:
-					plot = this.renderWordCloud();
-					break;
-				case 'factor':
-					plot = this.renderBarchart();
-					break;
-				case 'number':
-					plot = this.renderHistogram();
-					break;
-				case 'matrix':
-					plot = this.renderTable();
-					break;
-				case 'tensor':
-					plot = this.renderNestedTable();
-					break;
-				case 'matches':
-					plot = this.renderSankeyDiagram();
-					break;
-				case 'range':
-					plot = this.renderRanges();
-					break;
-			}
+		if ( this.props.actions.length === 0 ) {
+			return <Alert variant="warning" >No data available (yet) to be visualized</Alert>;
+		}
+		switch ( this.props.data.type ) {
+			case 'text':
+			default:
+				plot = this.renderWordCloud();
+				break;
+			case 'factor':
+				plot = this.renderBarchart();
+				break;
+			case 'number':
+				plot = this.renderHistogram();
+				break;
+			case 'matrix':
+				plot = this.renderTable();
+				break;
+			case 'tensor':
+				plot = this.renderNestedTable();
+				break;
+			case 'matches':
+				plot = this.renderSankeyDiagram();
+				break;
+			case 'range':
+				plot = this.renderRanges();
+				break;
 		}
 		const label = removeLast( lowercase( this.props.actionLabel ) );
 		return ( <div>
 			{plot}
-			<Switch onChange={( idx ) => {
+			<Switch style={{ zIndex: 2000 }} onChange={( idx ) => {
 				let type;
 				switch ( idx ) {
 					case 0:
