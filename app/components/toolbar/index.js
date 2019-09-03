@@ -194,7 +194,7 @@ class Toolbar extends Component {
 // PROPERTIES //
 
 Toolbar.propTypes = {
-	elements: PropTypes.array
+	elements: PropTypes.array // eslint-disable-line react/no-unused-prop-types
 };
 
 Toolbar.defaultProps = {

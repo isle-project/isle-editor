@@ -227,11 +227,9 @@ class Preview extends Component {
 		}
 		let additions = '';
 		if ( !preamble.removeStatusBar ) {
-			noEmptyLines += 1;
-			additions = '<StatusBar className="fixedPos" />\n';
+			additions = '<StatusBar className="fixedPos" />';
 		}
 		if ( !preamble.removeToolbar ) {
-			noEmptyLines += 1;
 			let elements = '[';
 			if ( preamble.toolbar ) {
 				preamble.toolbar.forEach( ( x, i ) => {
@@ -242,8 +240,10 @@ class Preview extends Component {
 				});
 			}
 			elements += ']';
-			additions += `<Toolbar elements={${elements}} />\n`;
+			additions += `<Toolbar elements={${elements}} />`;
 		}
+		additions += '\n';
+		noEmptyLines += 1;
 		code = additions + code;
 
 		// Prepend empty lines so line numbers in error stack traces match:
