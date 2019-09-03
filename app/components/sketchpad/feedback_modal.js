@@ -99,7 +99,7 @@ class FeedbackModal extends Component {
 					yaxis: {
 						fixedrange: true
 					},
-					barmode: 'stack'
+					barmode: 'relative'
 				}} />
 			</Modal.Body>
 		</Modal> );
