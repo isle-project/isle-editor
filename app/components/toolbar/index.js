@@ -20,18 +20,34 @@ class Toolbar extends Component {
 	constructor( props ) {
 		super( props );
 
-
 		const state = {
 			calculator: false,
 			queue: false,
-			queueSize: 0
+			queueSize: 0,
+			elements: []
 		};
-
-		props.elements.forEach( x => {
-			state[ x.name ] = false;
-		});
-
 		this.state = state;
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if (
+			nextProps.elements && !prevState.elements ||
+			nextProps.elements.length !== prevState.elements.length
+		) {
+			const newState = {};
+			nextProps.elements.forEach( x => {
+				newState[ x.name ] = false;
+				if ( x.name === 'queue' ) {
+					newState.hideQueue = true;
+				}
+				if ( x.name === 'calculator' ) {
+					newState.hideCalculator = true;
+				}
+			});
+			newState.elements = nextProps.elements;
+			return newState;
+		}
+		return null;
 	}
 
 	toggleCalculator = () => {
@@ -71,14 +87,14 @@ class Toolbar extends Component {
 		return (
 			<Fragment>
 				<ButtonGroup vertical className="toolbar-buttongroup" >
-					{this.props.elements.map( x => this.renderButton( x ))}
+					{this.state.elements.filter( x => !!x.component ).map( x => this.renderButton( x ))}
 					<Tooltip tooltip={`${this.state.calculator ? 'Close' : 'Open'} calculator (F2)`} placement="right" >
 						<Button
 							variant="light"
 							onClick={this.toggleCalculator}
 							onKeyPress={this.toggleCalculator}
 							style={{
-								display: !session.config.hideCalculator ? 'inherit' : 'none'
+								display: !this.state.hideCalculator ? 'inherit' : 'none'
 							}}
 						>
 							<span className="fa fa-lg fa-calculator toolbar-icon" />
@@ -89,7 +105,7 @@ class Toolbar extends Component {
 							variant="light"
 							onClick={this.toggleQueue} onKeyPress={this.toggleQueue}
 							style={{
-								display: !session.config.hideQueue ? 'inherit' : 'none'
+								display: !this.state.hideQueue ? 'inherit' : 'none'
 							}}
 						>
 							<Tooltip tooltip={`${this.state.queue ? 'Close' : 'Open'} help queue`} placement="right" >
@@ -127,7 +143,7 @@ class Toolbar extends Component {
 						});
 					}}
 				/>
-				{this.props.elements.map( x => {
+				{this.state.elements.filter( x => !!x.component ).map( x => {
 					const toggleElement = () => {
 						this.setState({ [x.name]: !this.state[ x.name ] });
 					};

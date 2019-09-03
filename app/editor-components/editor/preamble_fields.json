@@ -80,19 +80,9 @@
 		"description": "Remove toolbar"
 	},
 	{
-		"name": "hideCalculator",
-		"value": "hideCalculator: ${1:true}",
-		"description": "Hide the calculator from the toolbar"
-	},
-	{
 		"name": "hideProgressBar",
 		"value": "hideProgressBar: ${1:true}",
 		"description": "Hide the progressbar, which shows a user's score, time spent, and avatar image (e.g., when using ISLE for a one-time lesson outside of a course)"
-	},
-	{
-		"name": "hideQueue",
-		"value": "hideQueue: ${1:true}",
-		"description": "Hide the queue, which allows users to submit questions to instructors when they are online, from the toolbar"
 	},
 	{
 		"name": "hideVoiceControl",
