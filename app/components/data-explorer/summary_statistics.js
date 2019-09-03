@@ -368,7 +368,9 @@ SummaryStatistics.defaultProps = {
 		'Interquartile Range',
 		'Standard Deviation',
 		'Variance',
-		'Correlation'
+		'Correlation',
+		'Skewness',
+		'Excess Kurtosis'
 	]
 };
 
