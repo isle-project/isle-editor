@@ -307,6 +307,7 @@ class ResponseVisualizer extends Component {
 
 	deleteFactory = ( idx ) => {
 		return () => {
+			debug( 'Delete action at index '+idx );
 			this.setState({
 				selectedAction: this.state.actions[ idx ],
 				showDeleteModal: true
