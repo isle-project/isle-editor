@@ -13,11 +13,12 @@ const Action = ( props ) => {
 	if ( isBoolean( value ) ) {
 		value = value ? 'true' : 'false';
 	}
+	const date = new Date( props.absoluteTime );
 	return (
 		<ListGroupItem style={{ background: props.backgroundColor, color: props.color, fontSize: 15, fontFamily: 'Open Sans', padding: '2px 1px 2px 1px', lineHeight: 1 }}>
 			<div className="actionNote">
 				<span className="title">Time:&nbsp;</span>
-				{ new Date( props.absoluteTime ).toLocaleTimeString() }|
+				{ date.toLocaleTimeString() } - { date.toLocaleDateString() }|
 				<label htmlFor="action-email-button">User:&nbsp;</label>
 				<button id="action-email-button" className="empty-button" onClick={props.clickFactory( 'email', props.email )} >{ props.email }</button>
 			</div>
