@@ -183,13 +183,13 @@ class RangeQuestion extends Component {
 	}
 
 	onNoClickUpper = (val) => {
-		if (val <= this.state.lower) {
+		if ( val <= this.state.lower ) {
 			this.setState({ upper: this.state.lower });
 		}
 	}
 
 	onNoClickLower = (val) => {
-		if (val >= this.state.upper) {
+		if ( val >= this.state.upper ) {
 			this.setState({ lower: this.state.upper });
 		}
 	}

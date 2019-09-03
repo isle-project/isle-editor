@@ -145,6 +145,15 @@ class NumberQuestion extends Component {
 
 	submitHandler = () => {
 		const session = this.context;
+		const val = parseFloat( this.state.value );
+		if ( val < this.props.min || val > this.props.max ) {
+			return session.addNotification({
+				title: 'Invalid answer',
+				message: `Your response should be a number between ${this.props.min} and ${this.props.max}`,
+				level: 'error',
+				position: 'tr'
+			});
+		}
 		if ( !this.props.disableSubmitNotification ) {
 			this.sendSubmitNotification();
 		}
@@ -187,8 +196,6 @@ class NumberQuestion extends Component {
 							disabled={this.state.submitted && solutionPresent}
 							inline
 							width={90}
-							min={this.props.min}
-							max={this.props.max}
 							numbersOnly={false}
 							onKeyPress={this.handleKeyPress}
 						/>
