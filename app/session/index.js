@@ -1451,9 +1451,10 @@ class Session {
 	*
 	* @param {string} type - type of data to log (`vars` or `action`)
 	* @param {Object} data - data to log
+	* @param {Function} clbk - callback invoked with `err` and `res` arguments
 	* @returns {void}
 	*/
-	logToDatabase( type, data ) {
+	logToDatabase( type, data, clbk ) {
 		debug( `Logging ${type} to database...` );
 		if ( this.anonymous ) {
 			data.email = this.anonymousIdentifier;
@@ -1482,8 +1483,15 @@ class Session {
 			})
 				.then( ( res ) => {
 					debug( '/store_session_element status code: '+res.status );
+					return res;
 				})
-				.catch( err => debug( 'Encountered an error: '+err.message ) );
+				.then( res => res.json() )
+				.then( body => {
+					clbk( null, body );
+				})
+				.catch( err => {
+					clbk( err );
+				});
 		}
 	}
 
@@ -1529,32 +1537,45 @@ class Session {
 	* @returns {void}
 	*/
 	log( action, to ) {
+		const onLogged = ( err, res ) => {
+			if ( err ) {
+				return debug( 'Encountered an error: '+err.message );
+			}
+			// Attach received action ID:
+			action.sessiondataID = res.id;
+
+			// Send to socket connections after ID is attached:
+			this.sendSocketMessage( action, to );
+
+			// Push to respective array of currentUserActions hash table:
+			const actions = this.currentUserActions;
+			this.setScore( action );
+			if ( actions ) {
+				if ( !actions[ action.id ]) {
+					actions[ action.id ] = [ action ];
+				} else {
+					actions[ action.id ].push( action );
+				}
+			}
+			this.setProgress( action.id );
+
+			// If first action, create session on server:
+			if ( this.actions.length === 1 ) {
+				this.updateDatabase();
+			}
+		};
+
 		if ( action && action.id ) {
 			action.absoluteTime = new Date().getTime();
 			action.time = action.absoluteTime - this.startTime;
 			action.owner = this.isOwner();
-			this.sendSocketMessage( action, to );
 			if ( !action.noSave ) {
 				debug( 'Save action...' );
 				this.actions.push( action );
-				this.logToDatabase( 'action', action );
-
-				// Push to respective array of currentUserActions hash table:
-				const actions = this.currentUserActions;
-				this.setScore( action );
-				if ( actions ) {
-					if ( !actions[ action.id ]) {
-						actions[ action.id ] = [ action ];
-					} else {
-						actions[ action.id ].push( action );
-					}
-				}
-				this.setProgress( action.id );
-
-				// If first action, create session on server:
-				if ( this.actions.length === 1 ) {
-					this.updateDatabase();
-				}
+				this.logToDatabase( 'action', action, onLogged );
+			} else {
+				// Send only to socket connections and do not save to database:
+				this.sendSocketMessage( action, to );
 			}
 		}
 	}
