@@ -138,7 +138,7 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 	return {
 		data: traces,
 		layout: {
-			title: group ? `${variable} given ${group.join( ', ')}` : variable,
+			title: group.length > 0 ? `${variable} given ${group.join( ', ')}` : variable,
 			xaxis: {
 				type: orientation === 'vertical' ? 'category' : null
 			},
