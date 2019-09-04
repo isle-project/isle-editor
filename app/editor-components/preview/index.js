@@ -230,7 +230,6 @@ class Preview extends Component {
 		if ( !preamble.removeStatusBar ) {
 			additions = '<StatusBar className="fixedPos" />';
 		}
-		console.log( preamble.toolbar );
 		if ( !preamble.removeToolbar ) {
 			let elements = '[';
 			if ( isObjectArray( preamble.toolbar ) ) {

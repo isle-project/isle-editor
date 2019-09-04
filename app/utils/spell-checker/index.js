@@ -116,10 +116,26 @@ function SpellChecker( text, options ) {
 		let line = 1;
 		let col = 0;
 		let startColumn = 0;
-		for ( let i = 0; i < text.length; i++ ) {
+		let inEquation = false;
+		if ( !contains( RX_WORD, text[ 0 ] ) ) {
+			word += text[ 0 ];
+		}
+		for ( let i = 1; i < text.length; i++ ) {
 			const ch = text[ i ];
+			const prev = text[ i-1 ];
+			const next = i < text.length - 1 ? text[ i+1 ] : '';
 			col += 1;
-			if ( !contains( RX_WORD, ch ) ) {
+			if (
+				( ch === '$' && prev === '$' ) ||
+				( ch === ']' && prev === '\\' ) ||
+				( ch === '[' && prev === '\\' ) ||
+				( ch === '$' && prev !== '\\' && next !== '$' ) ||
+				( ch === '(' && prev === '\\' ) ||
+				( ch === ')' && prev === '\\' )
+			) {
+				inEquation = !inEquation;
+			}
+			if ( !inEquation && !contains( RX_WORD, ch ) ) {
 				word += ch;
 			} else if ( word.length > 1 ) {
 				const beforeNextWhitespacePos = nextWhitespace( text, i );
@@ -131,7 +147,7 @@ function SpellChecker( text, options ) {
 					i = beforeNextWhitespacePos;
 				}
 			}
-			if ( isWhitespace( ch ) || ch === '=' ) {
+			if ( ( isWhitespace( ch ) || ch === '=' ) && !inEquation ) {
 				// Do not flag strings containing digits:
 				if ( RE_DIGITS.test( word ) ) {
 					word = '';
