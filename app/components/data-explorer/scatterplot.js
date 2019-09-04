@@ -28,6 +28,7 @@ import min from 'utils/statistic/min';
 import { CAT20 } from 'constants/colors';
 import { DATA_EXPLORER_SHARE_SCATTERPLOT, DATA_EXPLORER_SCATTERPLOT } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
+import { isNull } from 'util';
 
 
 // VARIABLES //
@@ -427,15 +428,25 @@ class Scatterplot extends Component {
 	}
 
 	generateRModal = () => {
-		var RCode = 'plot(x = ' + this.props.defaultY + ', y = ' + this.props.defaultX + ', data = NULL)';
+		var RCode = 'plot(x = ' + this.props.defaultY + ', y = ' + this.props.defaultX + ', data = NULL, ';
+		// add the features, be sure to close with the closing )
+		if ( !isNull(this.props.color) ) {
+			RCode += ', color = ' + this.props.color;
+		}
+		if ( !isNull(this.props.size) ) {
+			RCode += ', size = ' + this.props.size;
+		}
+
+		// must end with this
+		RCode += ')';
 		return (
-			<Modal 
+			<Modal
 				show={this.state.showRModal}
 				onHide={
 					()=>{
 						this.setState({
 							showRModal: false
-						})
+						});
 				}}>
 				<Modal.Header closeButton>
 					<Modal.Title>
@@ -446,7 +457,7 @@ class Scatterplot extends Component {
 					<RShell code={RCode} resettable />
 				</Modal.Body>
 			</Modal>
-		)
+		);
 	}
 
 	renderInputs() {
