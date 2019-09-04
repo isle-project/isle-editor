@@ -1,5 +1,7 @@
 // MODULES //
 
+import kurtosis from './kurtosis.js';
+import skewness from './skewness.js';
 import quantile from './quantile.js';
 import variance from './variance.js';
 import pcorr from './pcorr.js';
@@ -53,6 +55,12 @@ function statistic( statName ) {
 		break;
 	case 'Variance':
 		fun = variance;
+		break;
+	case 'Skewness':
+		fun = skewness;
+		break;
+	case 'Excess Kurtosis':
+		fun = kurtosis;
 		break;
 	default:
 		fun = function noop() {};

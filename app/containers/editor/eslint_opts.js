@@ -58,7 +58,7 @@ const eslintOpts = {
 			'react/jsx-closing-tag-location': 0,
 			'react/jsx-curly-spacing': [ 2, 'never' ],
 			'react/jsx-equals-spacing': [ 2, 'never' ],
-			'react/jsx-key': 2,
+			'react/jsx-key': 0,
 			'react/jsx-no-bind': 0,
 			'react/jsx-no-comment-textnodes': 2,
 			'react/jsx-no-duplicate-props': 2,
