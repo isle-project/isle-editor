@@ -303,7 +303,6 @@ class Tokenizer {
 		if ( char === '>' && prevChar !== '=' ) {
 			this._openTagEnd = this._current.length;
 			this._endTagStart = null;
-			console.log( this._current );
 			this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
 			this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 			this._current = '';
@@ -340,7 +339,6 @@ class Tokenizer {
 			this._openTagEnd = this._current.length;
 			if ( this._buffer.charAt( this.pos-1 ) === '/' ) {
 				this._level -= 1;
-				console.log( this._level );
 				if ( this._level === 0 ) {
 					this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
 					this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
@@ -533,8 +531,6 @@ class Tokenizer {
 		debug( '---' );
 		debug( str );
 		debug( '---' );
-		console.log( "STR:");
-		console.log( str );
 		str = replace( str, RE_RAW_ATTRIBUTE, rawEscaper );
 		this.setup( str );
 		for ( this.pos = 0; this.pos < str.length; this.pos++ ) {
@@ -592,7 +588,6 @@ class Tokenizer {
 			}
 		}
 		let out = this.tokens.join( '' );
-		console.log( out );
 		out = this.inline ? md.renderInline( out ) : md.render( out );
 		for ( let key in this.divHash ) {
 			if ( hasOwnProp( this.divHash, key ) ) {
