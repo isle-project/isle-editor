@@ -21,7 +21,7 @@ You can include a variety of *ISLE components*, for example plotting widgets and
 
 ### Question & Feedback
 
-<FreeTextQuestion id="q1" question="Where can I find help on ISLE?" solution="Browse the docs at https://isledocs.com or ask for help on the discussion forum at https://discourse.isledocs.com/!" />
+<FreeTextQuestion id="q1" question="Where can I find help on ISLE?" solution="Browse the docs at https://isledocs.com or ask for help on the discussion forum at https://discourse.isledocs.com" />
 
 ### Videos
 You can easily embed media content:
