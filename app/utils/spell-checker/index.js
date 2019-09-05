@@ -135,6 +135,13 @@ function SpellChecker( text, options ) {
 			) {
 				inEquation = !inEquation;
 			}
+			if (
+				i < text.length - 3 &&
+				( ch === '<' && next === 'T' && text[ i+2 ] === 'e' && text[ i+3 ] === 'X' ) ||
+				( inEquation && ch === '/' && next === '>' )
+			) {
+				inEquation = !inEquation;
+			}
 			if ( !inEquation && !contains( RX_WORD, ch ) ) {
 				word += ch;
 			} else if ( word.length > 1 ) {
@@ -152,8 +159,8 @@ function SpellChecker( text, options ) {
 				if ( RE_DIGITS.test( word ) ) {
 					word = '';
 				}
-				// Assume that unknown capitalized words inside a sentence refer to proper nouns...
-				else if ( RE_CAMELCASE.test( word ) ) {
+				// Assume that unknown capitalized words inside a sentence refer to proper nouns for English...
+				else if ( language === 'en-US' && RE_CAMELCASE.test( word ) ) {
 					word = '';
 				}
 				else {
@@ -184,8 +191,7 @@ function SpellChecker( text, options ) {
 	return null;
 }
 
-
-// Initialize data globally to reduce memory consumption
+// Initialize data globally to reduce memory consumption:
 SpellChecker.numLoaded = 0;
 SpellChecker.affLoading = false;
 SpellChecker.dicLoading = false;
