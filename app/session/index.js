@@ -72,13 +72,6 @@ class Session {
 	constructor( config, offline ) {
 		debug( 'Should create session...' );
 
-		// Create instance of indexedDB database:
-		this.store = localforage.createInstance({
-			driver: localforage.INDEXEDDB,
-			name: 'ISLE',
-			description: 'Persistent data storage for ISLE'
-		});
-
 		// Address where ISLE server is running:
 		this.server = config.server;
 
@@ -186,6 +179,13 @@ class Session {
 			this.lessonName = config.lesson;
 			this.namespaceName = config.namespace;
 		}
+
+		// Create instance of indexedDB database:
+		this.store = localforage.createInstance({
+			driver: localforage.INDEXEDDB,
+			name: `ISLE_${this.namespaceName}_${this.lessonName}`,
+			description: 'Persistent data storage for ISLE lesson'
+		});
 
 		// Connect via WebSockets to other users...
 		if ( !isEmptyObject( this.user ) && this.server && !this._offline ) {
