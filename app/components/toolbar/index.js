@@ -85,12 +85,12 @@ class Toolbar extends Component {
 		});
 	}
 
-	renderButton( elem ) {
+	renderButton( elem, key ) {
 		const toggleElement = () => {
 			this.setState({ [elem.name]: !this.state[ elem.name ] });
 		};
 		return (
-			<Tooltip tooltip={`${this.state[ elem.name ] ? 'Close' : 'Open'} ${elem.name}`} placement="right" >
+			<Tooltip key={key} tooltip={`${this.state[ elem.name ] ? 'Close' : 'Open'} ${elem.name}`} placement="right" >
 				<Button
 					variant="light"
 					onClick={toggleElement}
@@ -112,7 +112,7 @@ class Toolbar extends Component {
 				<ButtonGroup vertical className="toolbar-buttongroup" style={{
 					display: this.state.showToolbar ? 'inherit' : 'none'
 				}} >
-					{this.state.elements.filter( x => !!x.component ).map( x => this.renderButton( x ))}
+					{this.state.elements.filter( x => !!x.component ).map( ( x, i ) => this.renderButton( x, i ))}
 					<Tooltip tooltip={`${this.state.calculator ? 'Close' : 'Open'} calculator (F2)`} placement="right" >
 						<Button
 							variant="light"
@@ -168,12 +168,12 @@ class Toolbar extends Component {
 						});
 					}}
 				/>
-				{this.state.elements.filter( x => !!x.component ).map( x => {
+				{this.state.elements.filter( x => !!x.component ).map( ( x, key ) => {
 					const toggleElement = () => {
 						this.setState({ [x.name]: !this.state[ x.name ] });
 					};
 					return this.state[ x.name ] ?
-					<ReactDraggable bounds="#Lesson" cancel=".card-body">
+					<ReactDraggable bounds="#Lesson" cancel=".card-body" key={key} >
 						<div className="toolbar-outer-element" >
 							<div tabIndex={0} role="button">{x.component}</div>
 							<button className="toolbar-hide-button fa fa-times" onClick={toggleElement} />
