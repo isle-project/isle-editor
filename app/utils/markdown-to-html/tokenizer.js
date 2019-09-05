@@ -27,7 +27,10 @@ const IN_JSX_EXPRESSION = 11;
 const IN_JSX_OTHER = 12;
 const IN_BETWEEN_TAGS = 13;
 const IN_ANGLE_LINK = 14;
-const RE_LETTER = /[A-Z]/i;
+const RE_ALPHANUMERIC = /[A-Z0-9]/i;
+const RE_HTML_INNER_TAGS = /^(?:p|th|td)$/;
+const RE_HTML_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|var)$/;
+const RE_ISLE_INLINE_TAGS = /^(?:Badge|BeaconTooltip|Button|CheckboxInput|Clock|Input|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
 
 const md = markdownit({
 	html: true,
@@ -50,10 +53,7 @@ md.renderer.rules.link_open = function onLink( tokens, idx, options, env, render
 	return defaultRender( tokens, idx, options, env, renderer );
 };
 const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
-const RE_LINE_BEGINNING = /\n\s*/g;
-const RE_HTML_INNER_TAGS = /^(?:p|th|td)$/;
-const RE_HTML_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|var)$/;
-const RE_ISLE_INLINE_TAGS = /^(?:Badge|BeaconTooltip|Button|CheckboxInput|Clock|Input|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
+const RE_LINE_BEGINNING = /(\n+)\s*/g;
 
 
 // FUNCTIONS //
@@ -88,7 +88,11 @@ function isQuotationMark( c ) {
 function tagName( str, pos ) {
 	let out = '';
 	let char = str.charAt( pos );
-	while ( RE_LETTER.test( char ) ) {
+	if ( char === '/' ) {
+		pos += 1;
+		char = str.charAt( pos );
+	}
+	while ( RE_ALPHANUMERIC.test( char ) ) {
 		out += char;
 		pos += 1;
 		char = str.charAt( pos );
@@ -97,88 +101,10 @@ function tagName( str, pos ) {
 }
 
 function trimLineStarts( str ) {
-	return replace( str, RE_LINE_BEGINNING, '\n' );
+	return replace( str, RE_LINE_BEGINNING, ( match, p1 ) => {
+		return '\n'.repeat( p1.length > 2 ? p1.length : 2 );
+	});
 }
-
-function renderInlineMarkdown( text ) {
-	text = replace( text, /\\([()\\[\],;:! ])/g, '\\\\$1' );
-	return md.renderInline( text );
-}
-
-function renderMarkdown( text ) {
-	text = replace( text, /\\([()\\[\],;:! ])/g, '\\\\$1' );
-	return md.render( text );
-}
-
-function renderMarkdownInBetween( str, inline = false ) {
-	let out = '';
-	let tmp = '';
-	let braceLevel = 0;
-	let inEquation = false;
-	for ( let i = 0; i < str.length; i++ ) {
-		const char = str[ i ];
-		if ( ( i === 0 || i === str.length-1 ) && char === '\n' ) {
-			continue;
-		}
-		const prevChar = str[ i-1 ];
-		const nextChar = str[ i+1 ];
-		if (
-			( char === '$' && prevChar !== '$' ) ||
-			( char === '$' && nextChar === '$' ) ||
-			( !inEquation && char === '\\' && nextChar === '(' ) ||
-			( inEquation && char === '\\' && nextChar === ')' ) ||
-			( !inEquation && char === '\\' && nextChar === '[' ) ||
-			( inEquation && char === '\\' && nextChar === ']' )
-		) {
-			inEquation = !inEquation;
-			if ( inEquation ) {
-				out += inline ? renderInlineMarkdown( tmp ) : renderMarkdown( tmp );
-				tmp = '';
-			}
-			else {
-				if ( nextChar === '$' || nextChar === '[' ) {
-					out += '<TeX raw={String.raw`'+tmp+'`} displayMode />';
-				} else {
-					out += '<TeX raw={String.raw`'+tmp+'`} />';
-				}
-				tmp = '';
-			}
-			if ( char === '\\' || nextChar === '$' ) {
-				i += 1; // Skip the parentheses...
-			}
-		}
-		else if ( char === '{' && ( i === 0 || str[ i-1 ] !== '\\' ) && !inEquation ) {
-			if ( braceLevel === 0 ) {
-				debug( 'Render markdown: '+tmp );
-				out += inline ? renderInlineMarkdown( tmp ) : renderMarkdown( tmp );
-				tmp = '{';
-			} else {
-				tmp += char;
-			}
-			braceLevel += 1;
-		}
-		else if ( char === '}' && str[ i-1 ] !== '\\' && !inEquation ) {
-			braceLevel -= 1;
-			if ( braceLevel === 0 ) {
-				out += tmp + char;
-				tmp = '';
-			} else {
-				tmp += char;
-			}
-		}
-		else {
-			tmp += char;
-		}
-	}
-	if ( braceLevel === 0 ) {
-		debug( 'Render markdown: '+tmp );
-		out += inline ? renderInlineMarkdown( tmp ) : renderMarkdown( tmp );
-	} else {
-		out += tmp;
-	}
-	return out;
-}
-
 
 /**
 * Tests whether character is whitespace.
@@ -199,6 +125,7 @@ function isWhitespace( c ) {
 class Tokenizer {
 	constructor( opts ) {
 		this.addEmptySpans = ( opts && opts.addEmptySpans ) ? true : false;
+		this.inline = ( opts && opts.inline ) ? true : false;
 	}
 
 	setup( str ) {
@@ -319,62 +246,53 @@ class Tokenizer {
 	_inAngleLink( char ) {
 		this._current += char;
 		if ( char === '>' ) {
-			this._level -= 1;
 			const url = this._current.substring( this._startTagNamePos+1, this._current.length-1 );
-			if ( this._level === 0 ) {
-				debug( 'IN_ANGLE_LINK -> IN_BASE' );
-				this._state = IN_BASE;
-				const replacement = ' <a href="'+url+'">'+url+'</a>';
-				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = replacement;
-				this.tokens.push( replacement );
-				this._current = '';
-			} else {
-				debug( 'IN_ANGLE_LINK -> IN_BETWEEN_TAGS' );
-				this._state = IN_BETWEEN_TAGS;
-				this._current = this._current.substring( 0, this._startTagNamePos ) +
-				' ['+url+']('+url+')';
-			}
+			debug( 'IN_ANGLE_LINK -> IN_BASE' );
+			this._state = IN_BASE;
+			const replacement = ' <a href="'+url+'">'+url+'</a>';
+			this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = replacement;
+			this.tokens.push( replacement );
+			this._current = '';
 		}
 	}
 
 	_inBetweenTags( char ) {
-		this._current += char;
 		const nextChar = this._buffer.charAt( this.pos+1 );
-		const prevChar = this._buffer.charAt( this.pos-11 );
-		if ( char === '$' && prevChar !== '$' ) {
-			this.inBetweenEquation = !this.inBetweenEquation;
-		}
-		if ( char === '<' && !isWhitespace( nextChar ) && !this.inBetweenEquation ) {
-			let text = this._current.substring( this._openTagEnd, this._current.length-1 );
-			text = trimLineStarts( text );
-			if ( !isWhitespace( text ) ) {
-				const nextTag = tagName( this._buffer, this.pos+1 );
-				if (
-					RE_HTML_INNER_TAGS.test( this._openingTagName ) ||
-					RE_HTML_INLINE_TAGS.test( this._openingTagName ) ||
-					RE_ISLE_INLINE_TAGS.test( this._openingTagName ) ||
-					RE_HTML_INNER_TAGS.test( nextTag ) ||
-					RE_HTML_INLINE_TAGS.test( nextTag ) ||
-					RE_ISLE_INLINE_TAGS.test( nextTag )
-				) {
-					debug( `Render inline markdown for <${this._openingTagName}/>...` );
-					text = renderMarkdownInBetween( text, true );
-				} else {
-					debug( `Render block markdown for <${this._openingTagName}/>...` );
-					text = renderMarkdownInBetween( text, false );
+		if ( char === '<' ) {
+			const nextTag = tagName( this._buffer, this.pos+1 );
+			if ( nextTag === this._openingTagName ) {
+				if ( nextChar !== '/' ) {
+					this._level += 1;
+				}
+				else if ( nextChar === '/' ) {
+					this._level -= 1;
+				}
+				if ( this._level === 0 ) {
+					const isInner = RE_HTML_INNER_TAGS.test( this._openingTagName ) ||
+						RE_HTML_INLINE_TAGS.test( this._openingTagName ) ||
+						RE_ISLE_INLINE_TAGS.test( this._openingTagName );
+					const tokenizer = new Tokenizer({
+						inline: isInner
+					});
+					if ( this.betweenStr && this.betweenStr.length > 0 ) {
+						const str = tokenizer.parse( trimLineStarts( this.betweenStr ) );
+						this._current += str + '<';
+					} else {
+						this._current += '<';
+					}
+					this.betweenStr = null;
+					this._endTagNewStart = this._current.length - 1;
+					debug( 'IN_BETWEEN_TAGS -> IN_CLOSING_TAG' );
+					this._state = IN_CLOSING_TAG;
 				}
 			}
-			this._current = this._current.substring( 0, this._openTagEnd ) +
-			text + '<';
-			if ( this._buffer.charAt( this.pos+1 ) !== '/' ) {
-				this._level += 1;
-				debug( 'IN_BETWEEN_TAGS -> IN_OPENING_TAG_NAME' );
-				this._state = IN_OPENING_TAG_NAME;
-				this._startTagNamePos = this._current.length - 1;
+		}
+
+		if ( this._state === IN_BETWEEN_TAGS ) {
+			if ( !this.betweenStr ) {
+				this.betweenStr = char;
 			} else {
-				this._endTagNewStart = this._current.length - 1;
-				debug( 'IN_BETWEEN_TAGS -> IN_CLOSING_TAG' );
-				this._state = IN_CLOSING_TAG;
+				this.betweenStr += char;
 			}
 		}
 	}
@@ -383,20 +301,14 @@ class Tokenizer {
 		this._current += char;
 		const prevChar = this._buffer.charAt( this.pos-1 );
 		if ( char === '>' && prevChar !== '=' ) {
-			this._level -= 1;
 			this._openTagEnd = this._current.length;
 			this._endTagStart = null;
-			if ( this._level === 0 ) {
-				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
-				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
-				this._current = '';
-				debug( 'IN_CLOSING_TAG -> IN_BASE' );
-				this._state = IN_BASE;
-				this._openingTagName = null;
-			} else {
-				debug( 'IN_CLOSING_TAG -> IN_BETWEEN_TAGS' );
-				this._state = IN_BETWEEN_TAGS;
-			}
+			this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
+			this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
+			this._current = '';
+			debug( 'IN_CLOSING_TAG -> IN_BASE' );
+			this._state = IN_BASE;
+			this._openingTagName = null;
 		}
 	}
 
@@ -480,7 +392,7 @@ class Tokenizer {
 	}
 
 	_replaceInnerJSXExpressions() {
-		const RE_OUTER_TAG = /<([^/>]+)[\s\S]*>[\s\S]+?<\/\1>|<([^/][\s\S]*?)\/>/g;
+		const RE_OUTER_TAG = /<([^/>]+)[\s\S]*?>[\s\S]+?<\/\1>|<([^/][\s\S]*?)\/>/g;
 		let inner = this._current.substring( this._JSX_ATTRIBUTE_START );
 		let match = RE_OUTER_TAG.exec( inner );
 		while ( match !== null ) {
@@ -676,7 +588,7 @@ class Tokenizer {
 			}
 		}
 		let out = this.tokens.join( '' );
-		out = md.render( out );
+		out = this.inline ? md.renderInline( out ) : md.render( out );
 		for ( let key in this.divHash ) {
 			if ( hasOwnProp( this.divHash, key ) ) {
 				// Treat dollar signs literally and do not confuse them for replacement patterns:
