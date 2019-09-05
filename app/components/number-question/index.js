@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Card from 'react-bootstrap/Card';
 import logger from 'debug';
@@ -11,6 +10,7 @@ import NINF from '@stdlib/constants/math/float64-ninf';
 import roundn from '@stdlib/math/base/special/roundn';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import generateUID from 'utils/uid';
+import TimedButton from 'components/timed-button';
 import ChatButton from 'components/chat-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import NumberInput from 'components/input/number';
@@ -213,15 +213,6 @@ class NumberQuestion extends Component {
 							null
 						}
 					</div>
-					<Button
-						className="submit-button"
-						variant="primary"
-						size="sm"
-						disabled={this.state.submitted && solutionPresent}
-						onClick={this.submitHandler}
-					>
-						{ ( this.state.submitted && !this.props.solution ) ? 'Resubmit' : 'Submit' }
-					</Button>
 					<ButtonToolbar className="number-question-toolbar">
 						{ nHints > 0 ?
 							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
@@ -234,6 +225,15 @@ class NumberQuestion extends Component {
 								</div> : null
 						}
 					</ButtonToolbar>
+					<TimedButton
+						className="submit-button"
+						variant="primary"
+						size="sm"
+						disabled={this.state.submitted && solutionPresent}
+						onClick={this.submitHandler}
+					>
+						{ ( this.state.submitted && !this.props.solution ) ? 'Resubmit' : 'Submit' }
+					</TimedButton>
 					<ResponseVisualizer
 						buttonLabel="Answers" id={this.id}
 						data={{ type: 'number' }} info="NUMBER_QUESTION_SUBMISSION"

@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Card from 'react-bootstrap/Card';
 import logger from 'debug';
@@ -15,6 +14,7 @@ import isnan from '@stdlib/assert/is-nan';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import generateUID from 'utils/uid';
 import ChatButton from 'components/chat-button';
+import TimedButton from 'components/timed-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import NumberInput from 'components/input/number';
 import HintButton from 'components/hint-button';
@@ -252,15 +252,6 @@ class RangeQuestion extends Component {
 							null
 						}
 					</div>
-					<Button
-						className="submit-button"
-						variant="primary"
-						size="sm"
-						disabled={this.state.submitted && !this.props.allowMultipleAnswers}
-						onClick={this.submitHandler}
-					>
-						{ this.state.submitted ? 'Resubmit' : 'Submit' }
-					</Button>
 					<ButtonToolbar className="range-question-toolbar" >
 						{ nHints > 0 ?
 							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
@@ -274,6 +265,15 @@ class RangeQuestion extends Component {
 						}
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</ButtonToolbar>
+					<TimedButton
+						className="submit-button"
+						variant="primary"
+						size="sm"
+						disabled={this.state.submitted && !this.props.allowMultipleAnswers}
+						onClick={this.submitHandler}
+					>
+						{ this.state.submitted && this.props.allowMultipleAnswers ? 'Resubmit' : 'Submit' }
+					</TimedButton>
 					<ResponseVisualizer
 						buttonLabel="Answers"
 						id={this.id}
@@ -281,6 +281,7 @@ class RangeQuestion extends Component {
 							type: 'range'
 						}}
 						info={RANGE_QUESTION_SUBMIT_ANSWER}
+						style={{ marginLeft: '6px' }}
 					/>
 					{ this.props.feedback ? <FeedbackButtons
 						id={this.id+'_feedback'}

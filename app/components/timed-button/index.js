@@ -99,7 +99,7 @@ class TimedButton extends Component {
 	}
 
 	render() {
-		const disabled = !this.state.waiting;
+		const disabled = this.props.disabled || !this.state.waiting;
 		const style = {
 			marginLeft: 3,
 			width: this.state.width
@@ -110,11 +110,11 @@ class TimedButton extends Component {
 		};
 		return (
 			<div className="timed-button-container" id={this.props.id} >
-				<div style={style} className="timed-button-remaining">
+				{ !this.props.disabled ? <div style={style} className="timed-button-remaining">
 					<div className="timed-button-bar">
 						<div style={barStyle} className="timed-button-bar-overlay" />
 					</div>
-				</div>
+				</div> : null }
 				<Button
 					href={this.props.href}
 					size={this.props.size}

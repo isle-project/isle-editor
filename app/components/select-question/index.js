@@ -2,13 +2,14 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
 import InputGroup from 'react-bootstrap/InputGroup';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import indexOf from '@stdlib/utils/index-of';
+import TimedButton from 'components/timed-button';
 import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
@@ -170,16 +171,15 @@ class SelectQuestion extends Component {
 					</FormGroup>
 				</Form>
 				<div className="select-question-toolbar">
-					<Button className="submit-button" variant="primary" size="sm" onClick={this.handleSubmit}>
+					<TimedButton className="submit-button" variant="primary" size="sm" onClick={this.handleSubmit}>
 						{ this.state.submitted ? 'Resubmit' : 'Submit' }
-					</Button>
+					</TimedButton>
 					{ nHints > 0 ?
 						<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
 						null
 					}
 					{
-						this.props.chat ?
-							<ChatButton for={this.id} /> : null
+						this.props.chat ? <ChatButton for={this.id} /> : null
 					}
 				</div>
 				<ResponseVisualizer
@@ -206,7 +206,7 @@ SelectQuestion.defaultProps = {
 	preselected: 0,
 	inline: false,
 	hints: [],
-	hintPlacement: 'bottom',
+	hintPlacement: 'top',
 	feedback: true,
 	chat: false,
 	provideFeedback: true,

@@ -250,7 +250,7 @@ class MatchListQuestion extends Component {
 					/>
 				</div>
 				{ this.props.feedback ? <FeedbackButtons
-					style={{ marginTop: '10px', marginRight: '8px' }}
+					style={{ marginTop: '5px', marginRight: '8px' }}
 					id={this.id+'_feedback'}
 				/> : null }
 			</div>

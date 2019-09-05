@@ -3,10 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import generateUID from 'utils/uid';
 import DraggableList from 'components/draggable-list';
+import TimedButton from 'components/timed-button';
 import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
@@ -136,9 +136,9 @@ class OrderQuestion extends Component {
 							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
 							null
 						}
-						<Button className="submit-button" variant="primary" size="sm" onClick={this.handleSubmit}>
+						<TimedButton className="submit-button" variant="primary" size="sm" onClick={this.handleSubmit}>
 							{ this.state.submitted ? 'Resubmit' : 'Submit' }
-						</Button>
+						</TimedButton>
 						{
 							this.props.chat ?
 								<ChatButton for={this.id} /> : null
@@ -151,10 +151,10 @@ class OrderQuestion extends Component {
 						}}
 						info="ORDER_QUESTION_SUBMISSION"
 					/>
+					{ this.props.feedback ? <FeedbackButtons
+						id={this.id+'_feedback'}
+					/> : null }
 				</Card.Body>
-				{ this.props.feedback ? <FeedbackButtons
-					id={this.id+'_feedback'}
-				/> : null }
 			</Card>
 		);
 	}
