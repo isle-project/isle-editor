@@ -77,7 +77,12 @@
 	{
 		"name": "removeToolbar",
 		"value": "removeToolbar: ${1:true}",
-		"description": "Remove toolbar"
+		"description": "Remove the widget toolbar in the lower-left corner"
+	},
+	{
+		"name": "toolbar",
+		"value": "toolbar: \n\t-\n\t\tname: ${1:}\n\t\tcomponent: ${2:null}\n\t\ticon: ${3:}",
+		"description": "A list of widgets to be displayed in the toolbar (each with a `name`, `component`, and font-awesome `icon`). To remove the calculator or queue, supply new components with the names `calculator` and `queue`, respectively."
 	},
 	{
 		"name": "hideProgressBar",

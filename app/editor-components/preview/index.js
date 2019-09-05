@@ -15,6 +15,7 @@ import { readFileSync } from 'fs';
 import objectKeys from '@stdlib/utils/keys';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import isRelativePath from '@stdlib/assert/is-relative-path';
+import isObjectArray from '@stdlib/assert/is-object-array';
 import isObject from '@stdlib/assert/is-object';
 import repeat from '@stdlib/string/repeat';
 import markdownToHTML from 'utils/markdown-to-html';
@@ -231,7 +232,7 @@ class Preview extends Component {
 		}
 		if ( !preamble.removeToolbar ) {
 			let elements = '[';
-			if ( preamble.toolbar ) {
+			if ( isObjectArray( preamble.toolbar ) ) {
 				preamble.toolbar.forEach( ( x, i ) => {
 					elements += `{name: '${x.name}', component: ${x.component}, icon: '${x.icon}' }`;
 					if ( i < preamble.toolbar.length - 1 ) {

@@ -1,6 +1,6 @@
 {
   "name": "isle-editor",
-  "version": "0.36.1",
+  "version": "0.38.0",
   "description": "Editor for Integrated Statistics Learning Environment (ISLE) lessons.",
   "keywords": [
     "concepts",
@@ -231,7 +231,7 @@
     "katex": "^0.11.0",
     "localforage": "^1.7.2",
     "moment": "2.24.0",
-    "monaco-editor": "^0.18.0",
+    "monaco-editor": "0.17.1",
     "monaco-editor-webpack-plugin": "^1.7.0",
     "null-loader": "^3.0.0",
     "pdfmake": "^0.1.58",
@@ -239,7 +239,7 @@
     "react-draggable": "^3.3.2",
     "react-hot-loader": "^4.12.11",
     "react-list": "^0.8.11",
-    "react-monaco-editor": "0.30.2",
+    "react-monaco-editor": "0.31.0",
     "react-player": "^1.12.0",
     "react-test-renderer": "16.9.0",
     "redux-devtools": "3.5.0",

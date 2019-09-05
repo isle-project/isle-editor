@@ -85,7 +85,9 @@ We will include the explorer with the following code:
   'Interquartile Range',
   'Standard Deviation',
   'Variance',
-  'Correlation'
+  'Correlation',
+  'Skewness',
+  'Excess Kurtosis'
 ]`.
 * __style__ | `object`: CSS inline styles for main container. Default: `{}`.
 * __tables__ | `array`: array of strings indicating which tables may be created from the data. Default: `[
