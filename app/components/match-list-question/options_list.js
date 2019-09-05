@@ -44,16 +44,16 @@ class OptionsList extends Component {
 							style;
 						const selectItem = () => onSelect( q );
 						return (
-							<li
+							<div
+								role="button" tabIndex={0}
+								onClick={selectItem}
+								onKeyPress={selectItem}
 								key={i}
-								style={style}
 							>
-								<span
-									role="button" tabIndex={0}
-									onClick={selectItem}
-									onKeyPress={selectItem}
-								>{q}</span>
-							</li>
+								<li style={style} >
+									{q}
+								</li>
+							</div>
 						);
 					})
 				}
