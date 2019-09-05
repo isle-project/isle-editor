@@ -82,6 +82,17 @@ function preventGesture( e ) {
 	e.preventDefault();
 }
 
+function isAlreadyInserted( pos, insertedPages ) {
+	let alreadyInserted = false;
+	for ( let i = 0; i < insertedPages.length; i++ ) {
+		const { page } = insertedPages[ i ];
+		if ( page === pos ) {
+			alreadyInserted = true;
+		}
+	}
+	return alreadyInserted;
+}
+
 
 // MAIN //
 
@@ -367,10 +378,14 @@ class Sketchpad extends Component {
 						}
 					}
 					else if ( type === SKETCHPAD_INSERT_PAGE ) {
-						const { pos, noPages } = JSON.parse( action.value );
-						if ( noPages === this.state.noPages + 1 ) {
+						let { pos } = JSON.parse( action.value );
+						if ( action.email !== session.user.email ) {
+							pos = this.toLocalPage( pos, action.email );
+						}
+						const bool = isAlreadyInserted( pos, this.state.insertedPages );
+						if ( !bool ) {
 							debug( `Should insert page at ${pos}...` );
-							this.insertPage( pos, false );
+							this.insertPage( pos, action.email );
 						}
 					}
 					else if ( type === SKETCHPAD_INIT_PAGES ) {
@@ -380,7 +395,7 @@ class Sketchpad extends Component {
 						let inserted = 0;
 						for ( let i = 0; i < pagesToInsert.length; i++ ) {
 							const idx = pagesToInsert[ i ];
-							if ( !contains( this.state.insertedPages, idx ) ) {
+							if ( !isAlreadyInserted( idx, this.state.insertedPages ) ) {
 								this.elements.splice( idx, 0, []);
 								this.backgrounds.splice( idx, 0, null );
 								this.recordingEndPositions.splice( idx, 0, 0 );
@@ -569,8 +584,8 @@ class Sketchpad extends Component {
 			this.recordingEndPositions = data.recordingEndPositions;
 			for ( let i = 0; i < data.state.insertedPages.length; i++ ) {
 				// Insert empty pages at the correct locations:
-				const pageNo = data.state.insertedPages[ i ];
-				this.backgrounds.splice( pageNo, 0, null );
+				const { page } = data.state.insertedPages[ i ];
+				this.backgrounds.splice( page, 0, null );
 			}
 			const page = this.readURL();
 			debug( 'Go to page '+page );
@@ -861,7 +876,7 @@ class Sketchpad extends Component {
 			this.recordingEndPositions.splice( currentPage, 1 );
 			const newInsertedPages = [];
 			for ( let i = 0; i < this.state.insertedPages.length; i++ ) {
-				let page = this.state.insertedPages[ i ];
+				let { page } = this.state.insertedPages[ i ];
 				if ( currentPage !== page ) {
 					if ( page > currentPage ) {
 						page -= 1;
@@ -1394,7 +1409,7 @@ class Sketchpad extends Component {
 		});
 	}
 
-	insertPage = ( idx, logging = true ) => {
+	insertPage = ( idx, from ) => {
 		this.elements.splice( idx, 0, []);
 		this.backgrounds.splice( idx, 0, null );
 		this.recordingEndPositions.splice( idx, 0, 0 );
@@ -1402,8 +1417,12 @@ class Sketchpad extends Component {
 		while ( textLayer.firstChild ) {
 			textLayer.removeChild( textLayer.firstChild );
 		}
+		const session = this.context;
 		const newInsertedPages = this.state.insertedPages;
-		newInsertedPages.push( idx );
+		newInsertedPages.push({
+			page: idx,
+			email: from || session.user.email
+		});
 		this.setState({
 			noPages: this.state.noPages + 1,
 			currentPage: idx,
@@ -1414,14 +1433,12 @@ class Sketchpad extends Component {
 			this.updateURL( this.state.currentPage );
 
 			this.redraw();
-			if ( logging ) {
-				const session = this.context;
+			if ( !from ) {
 				session.log({
 					id: this.id,
 					type: SKETCHPAD_INSERT_PAGE,
 					value: JSON.stringify({
-						pos: idx,
-						noPages: this.state.noPages
+						pos: idx
 					})
 				}, session.isOwner() ? 'members' : session.user.email );
 			}
@@ -2205,15 +2222,27 @@ class Sketchpad extends Component {
 		);
 	}
 
+	toLocalPage = ( idx, ownerEmail ) => {
+		const addedPages = this.state.insertedPages;
+		let out = idx;
+		for ( let i = 0; i < addedPages.length; i++ ) {
+			const { page, email } = addedPages[ i ];
+			if ( page < idx && email !== ownerEmail ) {
+				out += 1;
+			}
+		}
+		return out;
+	}
+
 	toOriginalPage = ( idx ) => {
 		const addedPages = this.state.insertedPages;
 		let out = idx;
 		for ( let i = 0; i < addedPages.length; i++ ) {
-			const page = addedPages[ i ];
+			const { page } = addedPages[ i ];
 			if ( page === idx ) {
 				return null;
 			}
-			else if ( addedPages[ i ] < idx ) {
+			else if ( page < idx ) {
 				out -= 1;
 			}
 		}
