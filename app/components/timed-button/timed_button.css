@@ -23,4 +23,5 @@
 	width: auto;
 	height: auto;
 	position: relative;
+	display: inline-block;
 }
