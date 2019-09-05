@@ -696,6 +696,9 @@ class Sketchpad extends Component {
 				debug( `Background rendered for page ${pageNumber}` );
 			});
 		}
+
+		// Reset background data for inserted slides:
+		this.backgroundData = null;
 		if ( ctx ) {
 			if ( !this.props.pdf ) {
 				// Scale all drawing operations by the DPR when no background is present:
@@ -1420,7 +1423,7 @@ class Sketchpad extends Component {
 						pos: idx,
 						noPages: this.state.noPages
 					})
-				}, 'members' );
+				}, session.isOwner() ? 'members' : session.user.email );
 			}
 		});
 	}
