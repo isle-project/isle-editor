@@ -286,6 +286,9 @@ class FreeTextQuestion extends Component {
 								onFinished={() => {
 									this.setState({ exhaustedHints: true });
 								}}
+								style={{
+									marginRight: '4px'
+								}}
 								placement={this.props.hintPlacement} /> :
 							null
 						}

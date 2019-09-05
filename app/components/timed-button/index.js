@@ -22,9 +22,9 @@ const debug = logger( 'isle:timed-button' );
 * @property {Function} block - display bottom in full width
 * @property {Function} onClick - callback invoked when clicking the button
 * @property {boolean} disabled - if disabled the button will be inactive, but the countdown starts
-* @property {string} size - font size, passed to the regular button component
-* @property {string} type - HTML button type attribute
-* @property {string} variant - button variant, passed to the regular button component
+* @property {string} size - button size (passed to the react-bootstrap button component)
+* @property {string} type - button type (passed to the react-bootstrap button component)
+* @property {string} variant - button variant (passed to the react-bootstrap button component)
 * @property {Object} style - CSS inline styles
 * @property {boolean} autoActivate - controls whether to always timeout the button when clicked; if `false`, the timeout is only applied when the callback pased to the `onClick` event handler is invoked with `true`
 */
@@ -109,7 +109,7 @@ class TimedButton extends Component {
 			marginLeft: percentage
 		};
 		return (
-			<div className="timed-button-container" id={this.props.id} >
+			<div className={`timed-button-container ${this.props.className}`} >
 				{ !this.props.disabled ? <div style={style} className="timed-button-remaining">
 					<div className="timed-button-bar">
 						<div style={barStyle} className="timed-button-bar-overlay" />
@@ -139,6 +139,7 @@ class TimedButton extends Component {
 TimedButton.propTypes = {
 	block: PropTypes.bool,
 	duration: PropTypes.number,
+	className: PropTypes.string,
 	disabled: PropTypes.bool,
 	href: PropTypes.string,
 	onClick: PropTypes.func,
@@ -151,6 +152,7 @@ TimedButton.propTypes = {
 
 TimedButton.defaultProps = {
 	block: false,
+	className: '',
 	disabled: false,
 	duration: 3,
 	href: null,

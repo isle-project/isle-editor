@@ -21,6 +21,7 @@ const debug = logger( 'isle:chat-button' );
 *
 * @property {string} for - chat room identifier
 * @property {boolean} showTooltip - controls whether to show tooltip
+* @property {string} size - button size
 */
 class ChatButton extends Component {
 	constructor( props ) {
@@ -80,7 +81,7 @@ class ChatButton extends Component {
 	render() {
 		let button = <Button
 			variant="secondary"
-			size="sm"
+			size={this.props.size}
 			onClick={this.handleClick}
 		>
 			{this.state.opened ? 'Leave Chat' : 'Join Chat' }
@@ -106,11 +107,13 @@ class ChatButton extends Component {
 
 ChatButton.propTypes = {
 	for: PropTypes.string.isRequired,
-	showTooltip: PropTypes.bool
+	showTooltip: PropTypes.bool,
+	size: PropTypes.string
 };
 
 ChatButton.defaultProps = {
-	showTooltip: true
+	showTooltip: true,
+	size: 'sm'
 };
 
 ChatButton.contextType = SessionContext;

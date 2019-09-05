@@ -427,13 +427,13 @@ class MultipleChoiceQuestion extends Component {
 							block
 						>{submitLabel}</Button>
 						{ nHints > 0 ?
-							<HintButton onClick={this.logHint} hints={hints} placement={hintPlacement} /> :
+							<HintButton size="small" onClick={this.logHint} hints={hints} placement={hintPlacement} /> :
 							null
 						}
 						{
 							chat && this.id ?
 							<div style={{ display: 'inline-block' }}>
-								<ChatButton for={this.id} />
+								<ChatButton size="small" for={this.id} />
 							</div> : null
 						}
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />

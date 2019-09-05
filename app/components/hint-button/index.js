@@ -73,6 +73,14 @@ const getHintLabel = ( id, noHints, hintOpen ) => {
 
 /**
 * A button for displaying question hints.
+*
+* @param {boolean} disabled - controls whether the button is disabled
+* @param {Array<string|node>} hints - array of hints
+* @param {Function} onClick - event handler invoked when user clicks on the button
+* @param {Function} onFinished - event handler invoked once all hints are exhausted
+* @param {string} placement - tooltip placement
+* @param {string} size - button size
+* @param {Object} style - CSS inline styles
 */
 class HintButton extends Component {
 	constructor( props ) {
@@ -117,10 +125,11 @@ class HintButton extends Component {
 			>
 				<TimedButton
 					variant="success"
-					size="sm"
+					size={this.props.size}
 					onClick={this.handleHintClick}
 					disabled={this.props.disabled}
 					autoActivate={false}
+					style={this.props.style}
 				>{label}</TimedButton>
 			</OverlayTrigger>
 		);
@@ -137,14 +146,18 @@ HintButton.propTypes = {
 	]) ).isRequired,
 	onClick: PropTypes.func,
 	onFinished: PropTypes.func,
-	placement: PropTypes.string
+	placement: PropTypes.string,
+	size: PropTypes.string,
+	style: PropTypes.object
 };
 
 HintButton.defaultProps = {
 	disabled: false,
 	onClick() {},
 	onFinished() {},
-	placement: 'left'
+	placement: 'left',
+	size: 'sm',
+	style: {}
 };
 
 
