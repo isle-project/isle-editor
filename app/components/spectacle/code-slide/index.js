@@ -99,7 +99,7 @@ class CodeSlide extends Component {
 	}
 
 	componentWillLeave(cb) {
-		this.slide.componentWillLeave(cb);
+		this.slide.componentWillLeave( cb );
 	}
 
 	getStorageId() {
@@ -107,11 +107,11 @@ class CodeSlide extends Component {
 	}
 
 	getStorageItem() {
-		return +localStorage.getItem(this.getStorageId());
+		return +localStorage.getItem( this.getStorageId() );
 	}
 
 	setStorageItem(value) {
-		return localStorage.setItem(this.getStorageId(), '' + value);
+		return localStorage.setItem( this.getStorageId(), '' + value );
 	}
 
 	isSlideActive() {

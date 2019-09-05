@@ -31,6 +31,7 @@ import Row from 'react-bootstrap/Row';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Modal from 'react-bootstrap/Modal';
 import ReactList from 'react-list';
+import innerText from 'react-innertext';
 import Highlighter from 'react-highlight-words';
 import Checkbox from 'components/input/checkbox';
 import Plotly from 'components/plotly';
@@ -302,7 +303,10 @@ class FullscreenActionDisplay extends Component {
 
 	renderBarchart() {
 		const actions = this.getActions();
-		const levels = this.props.data.levels;
+		const levels = this.props.data.levels.map( ( x, i ) => {
+			let out = isString( x ) ? x : innerText( x );
+			return out || `Choice ${i+1}`;
+		});
 		const counts = tabulateValues( actions, levels );
 		return (
 			<div style={{ height: 0.75 * window.innerHeight }}>
@@ -547,12 +551,12 @@ class FullscreenActionDisplay extends Component {
 			}
 			value = str || 'None';
 		}
-		const higlighter = <Highlighter
+		const higlighter = isString( value ) ? <Highlighter
 			className="response-visualizer-text"
 			searchWords={this.state.searchwords}
 			autoEscape={true}
 			textToHighlight={wordWrap( String( value ) )}
-		/>;
+		/> : value;
 		const name = elem.name;
 		const style = {
 			padding: '0.75rem'
