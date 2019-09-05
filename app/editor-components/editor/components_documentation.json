@@ -4438,7 +4438,7 @@
         "name": "hintPlacement",
         "type": "string",
         "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
-        "default": "bottom"
+        "default": "top"
       },
       {
         "name": "hints",
@@ -5434,6 +5434,11 @@
         "default": 3
       },
       {
+        "name": "className",
+        "type": "string",
+        "default": ""
+      },
+      {
         "name": "disabled",
         "type": "boolean",
         "description": "if disabled the button will be inactive, but the countdown starts",
@@ -5453,19 +5458,19 @@
       {
         "name": "size",
         "type": "string",
-        "description": "font size, passed to the regular button component",
+        "description": "button size (passed to the react-bootstrap button component)",
         "default": null
       },
       {
         "name": "type",
         "type": "string",
-        "description": "HTML button type attribute",
+        "description": "button type (passed to the react-bootstrap button component)",
         "default": null
       },
       {
         "name": "variant",
         "type": "string",
-        "description": "button variant, passed to the regular button component",
+        "description": "button variant (passed to the react-bootstrap button component)",
         "default": null
       },
       {
