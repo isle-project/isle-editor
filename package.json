@@ -185,7 +185,7 @@
     "react-slick": "0.25.2",
     "react-sortable-tree": "^2.6.2",
     "react-split-pane": "0.1.87",
-    "react-table": "6.10.1",
+    "react-table": "6.10.2",
     "react-transition-group": "^4.2.2",
     "recordrtc": "^5.5.7",
     "redux": "4.0.4",
