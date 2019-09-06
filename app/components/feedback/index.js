@@ -261,7 +261,7 @@ FeedbackButtons.contextType = SessionContext;
 
 FeedbackButtons.defaultProps = {
 	customFeedback: true,
-	confusedMsg: 'I am confused.',
+	confusedMsg: 'This is not clear to me.',
 	feedbackMsg: 'I have feedback.',
 	understoodMsg: 'Makes sense.',
 	vertical: false,
