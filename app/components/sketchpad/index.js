@@ -2200,7 +2200,7 @@ class Sketchpad extends Component {
 			.map( user => {
 				return { value: user.name, label: user.name };
 			});
-		const popover = <Popover id="popover-positioned-right" title="Receive actions from...">
+		const popover = <Popover id="popover-positioned-right" title="Remote control by...">
 			<Select isClearable inline options={users} onChange={( newValue ) => {
 				this.setState({
 					receiveFrom: newValue

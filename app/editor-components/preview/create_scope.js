@@ -76,6 +76,7 @@ const SCOPE = {
 	LearnSampleCLT: Loadable( () => import( 'components/learn/clt-sample' ) ),
 	LearnConfidenceCoverageBinomial: Loadable( () => import( 'components/learn/confidence-coverage-binomial') ),
 	LearnConfidenceCoverageNormal: Loadable( () => import( 'components/learn/confidence-coverage-normal' ) ),
+	LearnDiscreteDistribution: Loadable( () => import( 'components/learn/discrete-distribution' ) ),
 	LearnMeanTest: Loadable( () => import( 'components/learn/hypothesis-testing-mean' ) ),
 	LearnProportionTest: Loadable( () => import( 'components/learn/hypothesis-testing-proportion' ) ),
 	LearnMeanVSMedian: Loadable( () => import( 'components/learn/mean-vs-median' ) ),
