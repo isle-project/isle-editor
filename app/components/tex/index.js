@@ -70,13 +70,13 @@ class TeX extends Component {
 		const dom = findDOMNode( this );
 		const self = this;
 		select( dom ).
-			selectAll( '.mord .text' ).
+			selectAll( '.mord' ).
 			each( onMord );
 
 		function onMord( d ) {
 			const $this = select( this );
 			if ( self.state.popoverTarget !== this ) {
-				$this.style( 'color', 'black' );
+				$this.style( 'color', 'inherit' );
 			}
 			keys( self.props.elems ).forEach( ( prop ) => {
 				let elem = self.props.elems[ prop ];
@@ -118,20 +118,24 @@ class TeX extends Component {
 							} else {
 								config.bind = elem.variable;
 							}
-							let showPopover;
 							if ( self.state.popoverName !== prop ) {
-								showPopover = true;
+								self.setState({
+									showTooltip: false,
+									showPopover: true,
+									popoverContent: elem.body,
+									popoverTarget: this,
+									popoverName: prop,
+									config
+								});
 							} else {
-								showPopover = false;
+								self.setState({
+									showTooltip: false,
+									showPopover: false,
+									popoverContent: null,
+									popoverTarget: null,
+									popoverName: null
+								});
 							}
-							self.setState({
-								showTooltip: false,
-								showPopover,
-								popoverContent: elem.body,
-								popoverTarget: this,
-								popoverName: prop,
-								config
-							});
 						}
 					});
 				}
