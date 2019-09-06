@@ -273,7 +273,7 @@ class DiscreteDistribution extends Component {
 				<Card.Body>
 					<NumberInput
 						legend="Number of distinct values"
-						defaultValue={6}
+						defaultValue={this.props.numValues}
 						step={1}
 						max={20}
 						min={2}
