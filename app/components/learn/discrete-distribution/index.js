@@ -68,7 +68,8 @@ class DiscreteDistribution extends Component {
 			upper: 5,
 			x: x,
 			rangeProb: 1,
-			lowerProb: evaluateCDF( x, data )
+			lowerProb: evaluateCDF( x, data ),
+			disableTabs: false
 		};
 	}
 
@@ -86,6 +87,12 @@ class DiscreteDistribution extends Component {
 			lower: 0,
 			upper: sides-1,
 			x: round( sides/2 )
+		});
+	}
+
+	handlePopover = ( status ) => {
+		this.setState({
+			disableTabs: status
 		});
 	}
 
@@ -151,8 +158,8 @@ class DiscreteDistribution extends Component {
 			return <Alert variant="danger"> Probabilities must add up to one.</Alert>;
 		}
 		return (
-			<Tabs defaultActiveKey={1} id="binomial-tabs">
-				<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
+			<Tabs defaultActiveKey={1} id="discrete-distribution-tabs">
+				<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />} disabled={this.state.disableTabs} >
 					<Panel header="Probability Plot">
 						<TeX raw={`P( X \\le x = ${this.state.x}) = ${this.state.lowerProb.toFixed( 3 )}`}
 							elems={{
@@ -170,6 +177,7 @@ class DiscreteDistribution extends Component {
 								}
 							}}
 							displayMode
+							onPopover={this.handlePopover}
 						/>
 						<VictoryChart theme={VictoryTheme.material}>
 							<VictoryAxis dependentAxis />
@@ -185,7 +193,7 @@ class DiscreteDistribution extends Component {
 						</VictoryChart>
 					</Panel>
 				</Tab>
-				<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />}>
+				<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />} disabled={this.state.disableTabs} >
 					<Panel header="Probability Plot">
 						<TeX raw={`P( X > x = ${this.state.x}) = ${(1-this.state.lowerProb).toFixed( 3 )}`}
 							elems={{
@@ -202,6 +210,7 @@ class DiscreteDistribution extends Component {
 									tooltip: 'Click to change value'
 								}
 							}}
+							onPopover={this.handlePopover}
 							displayMode
 						/>
 						<VictoryChart theme={VictoryTheme.material}>
@@ -218,7 +227,7 @@ class DiscreteDistribution extends Component {
 						</VictoryChart>
 					</Panel>
 				</Tab>
-				<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1)" />}>
+				<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1)" />} disabled={this.state.disableTabs} >
 					<Panel header="Probability Plot">
 						<TeX raw={`P( L = ${this.state.lower} \\le X \\le U = ${this.state.upper}) = ${this.state.rangeProb.toFixed( 3 )}`} elems={{
 							L: {
@@ -245,7 +254,10 @@ class DiscreteDistribution extends Component {
 								defaultValue: this.state.upper,
 								tooltip: 'Click to change upper value'
 							}
-						}} displayMode />
+						}}
+							displayMode
+							onPopover={this.handlePopover}
+						/>
 						<VictoryChart theme={VictoryTheme.material}>
 							<VictoryAxis dependentAxis />
 							<VictoryAxis tickFormat={(x) => `${x}`} crossAxis={false} />
@@ -279,7 +291,6 @@ class DiscreteDistribution extends Component {
 						min={2}
 						onChange={this.chooseNSides}
 					/>
-					<p>Choose custom probabilities for the sides and then throw some dice!</p>
 					<Container>
 						<Row>
 							<Col md={6}>
