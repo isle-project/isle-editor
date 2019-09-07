@@ -237,7 +237,7 @@
     "null-loader": "^3.0.0",
     "pdfmake": "^0.1.58",
     "plotly.js": "^1.49.3",
-    "react-draggable": "^3.3.2",
+    "react-draggable": "^4.0.1",
     "react-hot-loader": "^4.12.11",
     "react-list": "^0.8.11",
     "react-monaco-editor": "0.31.0",
