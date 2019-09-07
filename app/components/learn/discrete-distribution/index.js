@@ -278,8 +278,8 @@ class DiscreteDistribution extends Component {
 
 	render() {
 		return (
-			<Card style={{ maxWidth: 1200, margin: '0 auto' }}>
-				<Card.Header as="h4">
+			<Card style={{ maxWidth: 1200, margin: '10px auto' }}>
+				<Card.Header as="h2">
 					Discrete Distribution Probabilities
 				</Card.Header>
 				<Card.Body>
