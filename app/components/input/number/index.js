@@ -248,20 +248,22 @@ class NumberInput extends Input {
 			marginTop: '4px',
 			...this.props.style
 		}}>
-			<span style={{
-				marginLeft: '8px'
-			}}>
-				<label>
-					{isString( this.props.legend ) ?
-						this.props.legend+':' :
-						this.props.legend
+			{ this.props.legend ?
+				<span style={{
+					marginLeft: '8px'
+				}}>
+					<label>
+						{isString( this.props.legend ) ?
+							this.props.legend+':' :
+							this.props.legend
+						}
+					</label>
+					{ this.props.description ?
+						<span> {this.props.description}</span> :
+						<span />
 					}
-				</label>
-				{ this.props.description ?
-					<span> {this.props.description}</span> :
-					<span />
-				}
-			</span>
+				</span> : null
+			}
 			{input}
 		</div>;
 		return output;
@@ -274,7 +276,7 @@ class NumberInput extends Input {
 NumberInput.defaultProps = {
 	bind: '',
 	disabled: false,
-	legend: '',
+	legend: null,
 	min: NINF,
 	max: PINF,
 	step: 1,
