@@ -163,7 +163,7 @@ class DiscreteDistribution extends Component {
 		const minVal = min( vals );
 		const maxVal = max( vals );
 		const domain = {
-			x: [ minVal, maxVal ],
+			x: [ minVal, maxVal + 1 ],
 			y: [ 0, 1 ]
 		};
 		return (
