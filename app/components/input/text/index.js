@@ -23,6 +23,7 @@ import './text.css';
 * @property {string} bind - name of global variable for the number to be assigned to
 * @property {string} placeholder - A string indicating the value to be displayed before an initial choice is made
 * @property {Object} style - CSS inline styles
+* @property {Function} onBlur - callback function invoked when the text area loses focus
 * @property {Function} onKeyPress - callback function to be invoked when any key is entered
 * @property {Function} onKeyDown - callback function to be invoked when any key is pressed down
 * @property {Function} onKeyUp - callback function to be invoked when key is released
@@ -136,6 +137,7 @@ class TextInput extends Input {
 					style={{
 						width: this.props.width
 					}}
+					onBlur={this.props.onBlur}
 					onChange={this.handleChange}
 					onKeyPress={this.props.onKeyPress}
 					onKeyDown={this.props.onKeyDown}
@@ -154,7 +156,8 @@ TextInput.defaultProps = {
 	defaultValue: '',
 	legend: '',
 	width: 80,
-	onChange(){},
+	onBlur() {},
+	onChange() {},
 	onKeyDown() {},
 	onKeyPress() {},
 	onKeyUp() {},
@@ -171,6 +174,7 @@ TextInput.propTypes = {
 		PropTypes.node
 	]),
 	inline: PropTypes.bool,
+	onBlur: PropTypes.func,
 	onChange: PropTypes.func,
 	onKeyDown: PropTypes.func,
 	onKeyPress: PropTypes.func,
