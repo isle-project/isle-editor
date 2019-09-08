@@ -260,11 +260,12 @@ class FormulaTransformer extends Component {
 									value={this.state.code}
 									onChange={this.handleCodeChange}
 									onBlur={( event ) => {
-									const selectionStart = event.target.selectionStart;
-									this.setState({
-										selection: selectionStart
-									});
-								}} />
+										const selectionStart = event.target.selectionStart;
+										this.setState({
+											selection: selectionStart
+										});
+									}}
+								/>
 							</Card.Body>
 						</Card>
 						<Button onClick={this.handleGenerate} >Generate</Button>
