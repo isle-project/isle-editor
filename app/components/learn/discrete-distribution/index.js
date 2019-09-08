@@ -9,12 +9,15 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import { VictoryAxis, VictoryChart, VictoryBar, VictoryTheme } from 'victory';
+import { VictoryAxis, VictoryChart, VictoryBar, VictoryLine, VictoryTheme } from 'victory';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import round from '@stdlib/math/base/special/round';
+import papplyRight from '@stdlib/utils/papply-right';
 import NumberInput from 'components/input/number';
 import TeX from 'components/tex';
 import Panel from 'components/panel';
+import min from 'utils/statistic/min';
+import max from 'utils/statistic/max';
 
 
 // FUNCTIONS //
@@ -65,7 +68,7 @@ class DiscreteDistribution extends Component {
 			data,
 			valid: true,
 			lower: 0,
-			upper: 5,
+			upper: props.numValues - 1,
 			x: x,
 			rangeProb: 1,
 			lowerProb: evaluateCDF( x, data ),
@@ -73,20 +76,20 @@ class DiscreteDistribution extends Component {
 		};
 	}
 
-	chooseNSides = ( sides ) => {
+	pickNumDistinct = ( size ) => {
 		const data = [];
-		for ( let i = 0; i < sides; i++ ) {
+		for ( let i = 0; i < size; i++ ) {
 			data[ i ] = {
 				x: i,
-				y: 1/sides
+				y: 1/size
 			};
 		}
 		this.setState({
 			data,
 			valid: true,
 			lower: 0,
-			upper: sides-1,
-			x: round( sides/2 )
+			upper: size-1,
+			x: round( size/2 )
 		});
 	}
 
@@ -101,10 +104,9 @@ class DiscreteDistribution extends Component {
 			<Container fluid={true}>
 				<Row>
 					<Col md={5}>
-						<h3>Values:</h3>
+						<h3>Value:</h3>
 						{this.state.data.map( ( x, i ) => ( <NumberInput
 							key={`value-${i}`}
-							legend={`${i+1}`}
 							defaultValue={i}
 							step="any"
 							width={100}
@@ -121,10 +123,9 @@ class DiscreteDistribution extends Component {
 						/> ) )}
 					</Col>
 					<Col md={5}>
-						<h3>Probabilities:</h3>
+						<h3>Probability:</h3>
 						{this.state.data.map( ( x, i ) => ( <NumberInput
 							key={`prob-${i}`}
-							legend={`${i+1}`}
 							defaultValue={1/this.state.data.length}
 							step="any"
 							max={1}
@@ -157,6 +158,10 @@ class DiscreteDistribution extends Component {
 		if ( !this.state.valid ) {
 			return <Alert variant="danger"> Probabilities must add up to one.</Alert>;
 		}
+		const cdf = papplyRight( evaluateCDF, this.state.data );
+		const vals = this.state.data.map( o => o.x );
+		const minVal = min( vals );
+		const maxVal = max( vals );
 		return (
 			<Tabs defaultActiveKey={1} id="discrete-distribution-tabs">
 				<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />} disabled={this.state.disableTabs} >
@@ -179,21 +184,143 @@ class DiscreteDistribution extends Component {
 							displayMode
 							onPopover={this.handlePopover}
 						/>
-						<VictoryChart theme={VictoryTheme.material}>
-							<VictoryAxis dependentAxis />
-							<VictoryAxis tickFormat={(x) => `${x}`} crossAxis={false} />
-							<VictoryBar
-								data={this.state.data}
-								style={{
-									data: {
-										fill: data => ( data.x <= this.state.x ) ? 'tomato' : 'steelblue'
-									}
-								}}
-							/>
-						</VictoryChart>
+						<Row>
+							<Col md={6} >
+								<VictoryChart theme={VictoryTheme.material}>
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="PMF" tickFormat={(x) => `${x}`} crossAxis={false}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryBar
+										data={this.state.data}
+										style={{
+											data: {
+												fill: data => ( data.x <= this.state.x ) ? 'tomato' : 'steelblue'
+											}
+										}}
+									/>
+								</VictoryChart>
+							</Col>
+							<Col md={6} >
+								<VictoryChart theme={VictoryTheme.material}>
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="CDF" tickFormat={(x) => `${x}`} crossAxis={false}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryLine
+										samples={600}
+										domain={{
+											x: [ minVal, maxVal ],
+											y: [ 0, 1 ]
+										}}
+										y={( data ) => {
+											return cdf( data.x );
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: this.state.x, y: 0 },
+											{ x: this.state.x, y: cdf( this.state.x ) }
+										]}
+										style={{
+											data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: 0, y: cdf( this.state.x ) },
+											{ x: this.state.x, y: cdf( this.state.x ) }
+										]}
+										style={{
+											data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+										}}
+									/>
+								</VictoryChart>
+							</Col>
+						</Row>
 					</Panel>
 				</Tab>
-				<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />} disabled={this.state.disableTabs} >
+				<Tab eventKey={2} title={<TeX raw="P(X < x_0)" />} disabled={this.state.disableTabs} >
+					<Panel header="Probability Plot">
+						<TeX raw={`P( X < x = ${this.state.x}) = ${cdf( this.state.x - 1 ).toFixed( 3 )}`}
+							elems={{
+								x: {
+									variable: 'x',
+									onChange: ( x ) => {
+										const lowerProb = evaluateCDF( x, this.state.data );
+										this.setState({
+											lowerProb,
+											x
+										});
+									},
+									defaultValue: this.state.x,
+									tooltip: 'Click to change value'
+								}
+							}}
+							displayMode
+							onPopover={this.handlePopover}
+						/>
+						<Row>
+							<Col md={6} >
+								<VictoryChart theme={VictoryTheme.material}>
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="PMF" tickFormat={(x) => `${x}`} crossAxis={false}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryBar
+										data={this.state.data}
+										style={{
+											data: {
+												fill: data => ( data.x < this.state.x ) ? 'tomato' : 'steelblue'
+											}
+										}}
+									/>
+								</VictoryChart>
+							</Col>
+							<Col md={6} >
+								<VictoryChart theme={VictoryTheme.material}>
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="CDF" tickFormat={(x) => `${x}`} crossAxis={false}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryLine
+										samples={600}
+										domain={{
+											x: [ minVal, maxVal ],
+											y: [ 0, 1 ]
+										}}
+										y={( data ) => {
+											return cdf( data.x );
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: this.state.x, y: 0 },
+											{ x: this.state.x, y: cdf( this.state.x - 1 ) }
+										]}
+										style={{
+											data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: 0, y: cdf( this.state.x - 1 ) },
+											{ x: this.state.x, y: cdf( this.state.x - 1 ) }
+										]}
+										style={{
+											data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+										}}
+									/>
+								</VictoryChart>
+							</Col>
+						</Row>
+					</Panel>
+				</Tab>
+				<Tab eventKey={3} title={<TeX raw="P(X > x_0)" />} disabled={this.state.disableTabs} >
 					<Panel header="Probability Plot">
 						<TeX raw={`P( X > x = ${this.state.x}) = ${(1-this.state.lowerProb).toFixed( 3 )}`}
 							elems={{
@@ -213,21 +340,65 @@ class DiscreteDistribution extends Component {
 							onPopover={this.handlePopover}
 							displayMode
 						/>
-						<VictoryChart theme={VictoryTheme.material}>
-							<VictoryAxis dependentAxis />
-							<VictoryAxis tickFormat={(x) => `${x}`} crossAxis={false} />
-							<VictoryBar
-								data={this.state.data}
-								style={{
-									data: {
-										fill: data => ( data.x > this.state.x ) ? 'tomato' : 'steelblue'
-									}
-								}}
-							/>
-						</VictoryChart>
+						<Row>
+							<Col md={6} >
+								<VictoryChart theme={VictoryTheme.material}>
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="PMF" tickFormat={(x) => `${x}`} crossAxis={false}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryBar
+										data={this.state.data}
+										style={{
+											data: {
+												fill: data => ( data.x > this.state.x ) ? 'tomato' : 'steelblue'
+											}
+										}}
+									/>
+								</VictoryChart>
+							</Col>
+							<Col md={6} >
+								<VictoryChart theme={VictoryTheme.material}>
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="CDF" tickFormat={(x) => `${x}`} crossAxis={false}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryLine
+										samples={600}
+										domain={{
+											x: [ minVal, maxVal ],
+											y: [ 0, 1 ]
+										}}
+										y={( data ) => {
+											return cdf( data.x );
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: this.state.x, y: 0 },
+											{ x: this.state.x, y: cdf( this.state.x ) }
+										]}
+										style={{
+											data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: 0, y: cdf( this.state.x ) },
+											{ x: this.state.x, y: cdf( this.state.x ) }
+										]}
+										style={{
+											data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+										}}
+									/>
+								</VictoryChart>
+							</Col>
+						</Row>
 					</Panel>
 				</Tab>
-				<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1)" />} disabled={this.state.disableTabs} >
+				<Tab eventKey={4} title={<TeX raw="P( x_0 \le X \le x_1)" />} disabled={this.state.disableTabs} >
 					<Panel header="Probability Plot">
 						<TeX raw={`P( L = ${this.state.lower} \\le X \\le U = ${this.state.upper}) = ${this.state.rangeProb.toFixed( 3 )}`} elems={{
 							L: {
@@ -258,18 +429,44 @@ class DiscreteDistribution extends Component {
 							displayMode
 							onPopover={this.handlePopover}
 						/>
-						<VictoryChart theme={VictoryTheme.material}>
-							<VictoryAxis dependentAxis />
-							<VictoryAxis tickFormat={(x) => `${x}`} crossAxis={false} />
-							<VictoryBar
-								data={this.state.data}
-								style={{
-									data: {
-										fill: data => ( this.state.lower <= data.x && data.x <= this.state.upper ) ? 'tomato' : 'steelblue'
-									}
-								}}
-							/>
-						</VictoryChart>
+						<Row>
+							<Col md={6} >
+								<VictoryChart theme={VictoryTheme.material}>
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="PMF" tickFormat={(x) => `${x}`} crossAxis={false}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryBar
+										data={this.state.data}
+										style={{
+											data: {
+												fill: data => ( this.state.lower <= data.x && data.x <= this.state.upper ) ? 'tomato' : 'steelblue'
+											}
+										}}
+									/>
+								</VictoryChart>
+							</Col>
+							<Col md={6} >
+								<VictoryChart theme={VictoryTheme.material}>
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="CDF" tickFormat={(x) => `${x}`} crossAxis={false}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryLine
+										samples={600}
+										domain={{
+											x: [ minVal, maxVal ],
+											y: [ 0, 1 ]
+										}}
+										y={( data ) => {
+											return cdf( data.x );
+										}}
+									/>
+								</VictoryChart>
+							</Col>
+						</Row>
 					</Panel>
 				</Tab>
 			</Tabs>
@@ -283,20 +480,20 @@ class DiscreteDistribution extends Component {
 					Discrete Distribution Probabilities
 				</Card.Header>
 				<Card.Body>
-					<NumberInput
-						legend="Number of distinct values"
-						defaultValue={this.props.numValues}
-						step={1}
-						max={20}
-						min={2}
-						onChange={this.chooseNSides}
-					/>
 					<Container>
 						<Row>
-							<Col md={6}>
+							<Col md={4} >
+								<NumberInput
+									legend="Number of distinct values"
+									defaultValue={this.props.numValues}
+									step={1}
+									max={20}
+									min={2}
+									onChange={this.pickNumDistinct}
+								/>
 								{this.renderGrid()}
 							</Col>
-							<Col md={6}>
+							<Col md={8} >
 								{this.renderTabs()}
 							</Col>
 						</Row>
