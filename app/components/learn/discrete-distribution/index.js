@@ -162,6 +162,10 @@ class DiscreteDistribution extends Component {
 		const vals = this.state.data.map( o => o.x );
 		const minVal = min( vals );
 		const maxVal = max( vals );
+		const domain = {
+			x: [ minVal, maxVal ],
+			y: [ 0, 1 ]
+		};
 		return (
 			<Tabs defaultActiveKey={1} id="discrete-distribution-tabs">
 				<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />} disabled={this.state.disableTabs} >
@@ -211,10 +215,7 @@ class DiscreteDistribution extends Component {
 									/>
 									<VictoryLine
 										samples={600}
-										domain={{
-											x: [ minVal, maxVal ],
-											y: [ 0, 1 ]
-										}}
+										domain={domain}
 										y={( data ) => {
 											return cdf( data.x );
 										}}
@@ -289,10 +290,7 @@ class DiscreteDistribution extends Component {
 									/>
 									<VictoryLine
 										samples={600}
-										domain={{
-											x: [ minVal, maxVal ],
-											y: [ 0, 1 ]
-										}}
+										domain={domain}
 										y={( data ) => {
 											return cdf( data.x );
 										}}
@@ -367,10 +365,7 @@ class DiscreteDistribution extends Component {
 									/>
 									<VictoryLine
 										samples={600}
-										domain={{
-											x: [ minVal, maxVal ],
-											y: [ 0, 1 ]
-										}}
+										domain={domain}
 										y={( data ) => {
 											return cdf( data.x );
 										}}
@@ -456,10 +451,7 @@ class DiscreteDistribution extends Component {
 									/>
 									<VictoryLine
 										samples={600}
-										domain={{
-											x: [ minVal, maxVal ],
-											y: [ 0, 1 ]
-										}}
+										domain={domain}
 										y={( data ) => {
 											return cdf( data.x );
 										}}
