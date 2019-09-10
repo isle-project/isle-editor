@@ -146,7 +146,7 @@
     "lodash.flow": "^3.5.0",
     "markdown-it": "^9.1.0",
     "markdown-it-container": "^2.0.0",
-    "markdown-it-ins": "^2.0.0",
+    "markdown-it-ins": "^3.0.0",
     "markdown-it-sub": "^1.0.0",
     "mini-css-extract-plugin": "^0.8.0",
     "minimist": "^1.2.0",
