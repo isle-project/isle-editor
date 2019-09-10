@@ -21,6 +21,7 @@
 	bottom: 0;
 	opacity: 0.2;
 	line-height: 1;
+	overflow: hidden;
 }
 
 .textLayer > span {
