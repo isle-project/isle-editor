@@ -184,6 +184,7 @@ class SliderInput extends Input {
 				float: inline ? 'none' : 'right',
 				marginTop: legend && !inline ? -22 : 0
 			}}
+			autoComplete="off"
 		/>;
 
 		if ( inline ) {
