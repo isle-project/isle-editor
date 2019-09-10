@@ -208,6 +208,7 @@ class NumberInput extends Input {
 						onKeyPress={this.props.onKeyPress}
 						onKeyDown={this.props.onKeyDown}
 						onKeyUp={this.props.onKeyUp}
+						autoComplete="off"
 					/>
 					{ this.props.description ?
 						<span>({this.props.description})</span> :
@@ -239,6 +240,7 @@ class NumberInput extends Input {
 			}}
 			onChange={this.handleChange}
 			onBlur={this.finishChange}
+			autoComplete="off"
 		/>;
 		if ( !this.props.disabled ) {
 			input = <Tooltip id="numberInputTooltip" placement={this.props.tooltipPlacement} tooltip={this.state.tooltip} >{input}</Tooltip>;
@@ -249,10 +251,8 @@ class NumberInput extends Input {
 			...this.props.style
 		}}>
 			{ this.props.legend ?
-				<span style={{
-					marginLeft: '8px'
-				}}>
-					<label>
+				<span>
+					<label style={{ padding: '3px' }}>
 						{isString( this.props.legend ) ?
 							this.props.legend+':' :
 							this.props.legend
@@ -260,7 +260,7 @@ class NumberInput extends Input {
 					</label>
 					{ this.props.description ?
 						<span> {this.props.description}</span> :
-						<span />
+						null
 					}
 				</span> : null
 			}

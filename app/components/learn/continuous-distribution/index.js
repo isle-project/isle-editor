@@ -246,7 +246,6 @@ class ContinuousDistributions extends Component {
 	}
 
 	setLowerDomain = ( lower ) => {
-		console.log( lower );
 		const { code, upperX, xval, lowerRange, upperRange } = this.state;
 		if ( lower >= upperX ) {
 			return this.setState({
@@ -410,7 +409,7 @@ class ContinuousDistributions extends Component {
 											xUpperArea
 										});
 									},
-									defaultValue: this.state.x,
+									defaultValue: this.state.xval,
 									tooltip: 'Click to change value'
 								}
 							}}
@@ -451,7 +450,7 @@ class ContinuousDistributions extends Component {
 											xUpperArea
 										});
 									},
-									defaultValue: this.state.x,
+									defaultValue: this.state.xval,
 									tooltip: 'Click to change value'
 								}
 							}}
@@ -490,7 +489,7 @@ class ContinuousDistributions extends Component {
 										lowerRange
 									});
 								},
-								defaultValue: this.state.lower,
+								defaultValue: this.state.lowerRange,
 								tooltip: 'Click to change lower value'
 							},
 							U: {
@@ -504,7 +503,7 @@ class ContinuousDistributions extends Component {
 										upperRange
 									});
 								},
-								defaultValue: this.state.upper,
+								defaultValue: this.state.upperRange,
 								tooltip: 'Click to change upper value'
 							}
 						}} displayMode onPopover={this.handlePopover} />
