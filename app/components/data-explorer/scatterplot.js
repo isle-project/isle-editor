@@ -356,7 +356,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 				bordercolor: '#E2E2E2',
 				borderwidth: 2
 			},
-			title: `${xval} against ${yval}`
+			title: `${yval} against ${xval}`
 		}
 	};
 }
