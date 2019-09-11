@@ -173,6 +173,15 @@ class SelectInput extends Input {
 	render() {
 		debug( 'Render select component...' );
 		let style;
+		let value;
+		if ( this.props.value !== void 0 ) {
+			value = ( this.props.value || [] ).map( e => {
+				return { 'label': e, 'value': e };
+			});
+		}
+		else {
+			value = this.state.value;
+		}
 		if ( this.props.inline ) {
 			style = {
 				width: '180px',
@@ -200,9 +209,8 @@ class SelectInput extends Input {
 					<Select
 						name="form-field-name"
 						className="select-field"
-						value={this.state.value}
 						{...this.props}
-						defaultValue={null}
+						value={value}
 						options={this.state.options}
 						onChange={this.handleChange}
 						placeholder={this.props.placeholder}
