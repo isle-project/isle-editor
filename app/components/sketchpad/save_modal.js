@@ -33,16 +33,23 @@ class SaveModal extends Component {
 		this.props.onHide();
 	}
 
-	handleExport = () => {
+	handlePDFExport = () => {
 		this.props.saveAsPDF();
+		this.props.onHide();
+	}
+
+	handlePNGExport = () => {
+		this.props.saveAsPNG();
 		this.props.onHide();
 	}
 
 	render() {
 		const session = this.props.session;
 		let ownerDate;
+		let ownerName;
 		if ( this.state.ownerFile ) {
 			ownerDate = new Date( this.state.ownerFile.updatedAt );
+			ownerName = this.state.ownerFile.name;
 		}
 		return ( <Modal
 			onHide={this.clickHide}
@@ -51,22 +58,25 @@ class SaveModal extends Component {
 			dialogClassName="modal-w30"
 		>
 			<Modal.Header closeButton>
-				<Modal.Title as="h4">Download PDF</Modal.Title>
+				<Modal.Title as="h4">Download Slides</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				{ this.props.pdf ? <Button size="large" variant="secondary" block onClick={this.clickHide} >
 					<a className="unstyled-link" href={this.props.pdf} download >
-						Download original
+						Download original PDF
 					</a>
 				</Button> : null }
 				{ this.state.ownerFile ? <Button size="large" variant="secondary" block onClick={this.clickHide}>
 					<a className="unstyled-link" href={session.server+'/'+this.state.ownerFile.filename} download>
-						Download instructor annotations <br />
-						<small> (last updated: {ownerDate.toDateString() + ', ' + ownerDate.toLocaleTimeString()})</small>
+						Download PDF with instructor annotations <br />
+						<small>(last updated: {ownerDate.toDateString() + ', ' + ownerDate.toLocaleTimeString()} by {ownerName})</small>
 					</a>
 				</Button> : null }
-				<Button variant="secondary" size="large" onClick={this.handleExport} block >
-					Export my annotations
+				<Button variant="secondary" size="large" onClick={this.handlePDFExport} block >
+					Export my annotations as PDF
+				</Button>
+				<Button variant="secondary" size="large" onClick={this.handlePNGExport} block >
+					Export current slide as PNG
 				</Button>
 			</Modal.Body>
 		</Modal> );
@@ -82,6 +92,7 @@ SaveModal.propTypes = {
 	onHide: PropTypes.func,
 	pdf: PropTypes.string,
 	saveAsPDF: PropTypes.func.isRequired,
+	saveAsPNG: PropTypes.func.isRequired,
 	session: PropTypes.object.isRequired,
 	show: PropTypes.bool.isRequired
 };

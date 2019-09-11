@@ -1360,9 +1360,9 @@ class Sketchpad extends Component {
 		});
 	}
 
-	saveToPNG = () => {
-		const name = this.id+'.png';
+	saveAsPNG = () => {
 		const current = this.state.currentPage;
+		const name = this.id+'_'+(current+1)+'.png';
 		const canvas = this.canvas;
 		if ( !this.backgrounds[ current ]) {
 			// Set white background if none present:
@@ -2084,8 +2084,7 @@ class Sketchpad extends Component {
 		return (
 			<ButtonGroup size="sm" className="sketch-save-buttons sketch-button-group">
 				{ !this.props.pdf ? <TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} size="sm" glyph="file" /> : null }
-				<TooltipButton tooltip="Export current page (PNG)" onClick={this.saveToPNG} glyph="file-image" size="sm" />
-				<TooltipButton tooltip="Download PDF" onClick={this.toggleSaveModal} glyph="file-pdf" size="sm" />
+				<TooltipButton tooltip="Download Slides" onClick={this.toggleSaveModal} glyph="file-pdf" size="sm" />
 				<TooltipButton tooltip="Save in browser" onClick={() => {
 					this.saveInBrowser( ( err ) => {
 						if ( err ) {
@@ -2551,6 +2550,7 @@ class Sketchpad extends Component {
 						container={this}
 						show={this.state.showSaveModal}
 						saveAsPDF={this.saveAsPDF}
+						saveAsPNG={this.saveAsPNG}
 						onHide={this.toggleSaveModal}
 						pdf={this.props.pdf}
 						session={this.context}
