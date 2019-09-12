@@ -21,6 +21,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import mapValues from '@stdlib/utils/map-values';
 import groupBy from '@stdlib/utils/group-by';
 import group from '@stdlib/utils/group';
+import isNull from '@stdlib/assert/is-null';
 import unique from 'uniq';
 import mean from 'utils/statistic/mean';
 import max from 'utils/statistic/max';
@@ -28,7 +29,6 @@ import min from 'utils/statistic/min';
 import { CAT20 } from 'constants/colors';
 import { DATA_EXPLORER_SHARE_SCATTERPLOT, DATA_EXPLORER_SCATTERPLOT } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
-import { isNull } from 'util';
 
 
 // VARIABLES //
@@ -428,6 +428,18 @@ class Scatterplot extends Component {
 	}
 
 	generateRModal = () => {
+		// handle the prepended code first --> array of commands
+		// https://isle.heinz.cmu.edu/demonstrations_youtube.json
+		var preCode = [''];
+		const nameReg = /\_(.*?).\w+/;
+		const dataNameWUnderscore = nameReg.exec(this.props.url)[0]; // captures including the _, need to remove it
+		const dataName = dataNameWUnderscore.substring(1, dataNameWUnderscore.length);
+		if ( !isNull( this.props.url ) ) {
+			preCode = [`${dataName} <- data.frame(jsonlite::fromJSON("${this.props.url}"))`];
+		}
+
+		var RCode = `plot(${dataName}(`;
+
 		var RCode = 'plot(x = ' + this.props.defaultY + ', y = ' + this.props.defaultX + ', data = NULL, ';
 		// add the features, be sure to close with the closing )
 		if ( !isNull(this.props.color) ) {
@@ -454,7 +466,11 @@ class Scatterplot extends Component {
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<RShell code={RCode} resettable />
+					<RShell
+						code={RCode}
+						libraries={['jsonlite']}
+						resettable
+					/>
 				</Modal.Body>
 			</Modal>
 		);
@@ -630,7 +646,8 @@ Scatterplot.defaultProps = {
 	logAction() {},
 	onSelected() {},
 	session: {},
-	showRegressionOption: true
+	showRegressionOption: true,
+	url: null
 };
 
 
@@ -646,7 +663,8 @@ Scatterplot.propTypes = {
 	onCreated: PropTypes.func.isRequired,
 	session: PropTypes.object,
 	showRegressionOption: PropTypes.bool,
-	variables: PropTypes.array.isRequired
+	variables: PropTypes.array.isRequired,
+	url: PropTypes.string
 };
 
 

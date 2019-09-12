@@ -98,7 +98,7 @@ const uid = generateUID( 'data-explorer' );
 * @property {Array} categorical - array of strings indicating the name of each categorical variable
 * @property {Array} quantitative - array of strings indicating the name of each quantitative variable
 * @property {(Object|Array)} data - data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column. If you wish to allow students the ability to import a `.csv` file, set the `data` option to be `false`
-* @property {Object} dataInfo - object containing the keys \'name\', whose value is a string, \'info\', whose value is an array of strings in which each element in the array is a new line and \'variables\', an object with keys as variable names and values as variable descriptions
+* @property {Object} dataInfo - object containing the keys \'name\', whose value is a string, \'info\', whose value is an array of strings in which each element in the array is a new line, \'variables\', an object with keys as variable names and values as variable descriptions and \'url\', a string indicating a URL where the json may be found online.
 * @property {Array<string>} distributions - array of strings indicating distributions that may be used in calculating probabilities. This functionality exists independently of the dataset provided. Currently limited to normal, uniform and exponential distributions
 * @property {boolean} editor - boolean indicating whether to show the editor to the user
 * @property {Object} editorProps - object to be passed to `MarkdownEditor` indicating properties to be used
@@ -851,6 +851,7 @@ class DataExplorer extends Component {
 						logAction={this.logAction}
 						session={this.context}
 						onSelected={this.on2dSelection}
+						url={this.props.dataInfo.url}
 					/>;
 					break;
 				case 'Violin Plot':
@@ -1210,7 +1211,8 @@ DataExplorer.defaultProps = {
 	dataInfo: {
 		'info': '',
 		'name': '',
-		'variables': null
+		'variables': null,
+		'url': null
 	},
 	dataTable: true,
 	tabs: [],
