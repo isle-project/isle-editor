@@ -204,6 +204,9 @@ class Sketchpad extends Component {
 		// Scale the magnifying glass:
 		this.zoomCtx.scale( DPR, DPR );
 
+		// Scale all drawing operations by the DPR:
+		this.ctx.scale( DPR, DPR );
+
 		if ( this.props.fullscreen ) {
 			this.windowResize = window.addEventListener( 'resize', this.handleResize );
 		}
@@ -667,6 +670,7 @@ class Sketchpad extends Component {
 
 		const page = this.backgrounds[ pageNumber ];
 		if ( page ) {
+			debug( `Found background for page ${pageNumber}...` );
 			let ratio;
 			if ( this.props.fill === 'vertical' ) {
 				ratio = this.state.canvasHeight / page.getViewport({ scale: 1.0 }).height;
@@ -2596,7 +2600,7 @@ class Sketchpad extends Component {
 Sketchpad.defaultProps = {
 	autoSave: true,
 	feedbackButtons: false,
-	intervalTime: 5000,
+	intervalTime: 10000,
 	hideInputButtons: false,
 	hideNavigationButtons: false,
 	hideRecordingButtons: false,
