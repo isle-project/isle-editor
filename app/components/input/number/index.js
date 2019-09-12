@@ -88,6 +88,7 @@ class NumberInput extends Input {
 			newState.tooltip = createTooltip( nextProps );
 		}
 		if ( !isEmptyObject( newState ) ) {
+			debug( 'Created new state from props...' );
 			newState.prevProps = nextProps;
 			return newState;
 		}
@@ -95,6 +96,7 @@ class NumberInput extends Input {
 	}
 
 	componentDidUpdate() {
+		debug( 'Component did update...' );
 		if ( this.props.bind ) {
 			let globalVal = global.lesson.state[ this.props.bind ];
 			if ( globalVal !== this.state.value ) {
@@ -106,6 +108,7 @@ class NumberInput extends Input {
 	}
 
 	handleChange = ( event ) => {
+		debug( 'Handle change of input field...' );
 		let valid = event.target.validity.valid;
 		let value = event.target.value;
 		this.setState({
@@ -217,7 +220,7 @@ class NumberInput extends Input {
 				</span>;
 			return this.props.disabled ?
 				input:
-				<Tooltip id="numberInputTooltip" placement="top" tooltip={this.state.tooltip} >
+				<Tooltip id="number-input-tooltip-inline" placement="top" tooltip={this.state.tooltip} >
 					{input}
 				</Tooltip>;
 		}
@@ -231,21 +234,17 @@ class NumberInput extends Input {
 			min={this.props.min}
 			max={this.props.max}
 			style={{
-				marginRight: '8px',
-				paddingLeft: '16px',
-				paddingRight: '4px',
 				width: this.props.width,
-				textAlign: 'left',
-				float: 'right'
+				marginLeft: '24px'
 			}}
 			onChange={this.handleChange}
 			onBlur={this.finishChange}
+			onKeyPress={this.props.onKeyPress}
+			onKeyDown={this.props.onKeyDown}
+			onKeyUp={this.props.onKeyUp}
 			autoComplete="off"
 		/>;
-		if ( !this.props.disabled ) {
-			input = <Tooltip id="numberInputTooltip" placement={this.props.tooltipPlacement} tooltip={this.state.tooltip} >{input}</Tooltip>;
-		}
-		const output = <div className="input" style={{
+		return ( <div className="input" style={{
 			marginBottom: '4px',
 			marginTop: '4px',
 			...this.props.style
@@ -264,9 +263,11 @@ class NumberInput extends Input {
 					}
 				</span> : null
 			}
-			{input}
-		</div>;
-		return output;
+			<Tooltip
+				id="number-input-tooltip" placement={this.props.tooltipPlacement}
+				tooltip={this.state.tooltip}
+			><span className="input" >{input}</span></Tooltip>
+		</div> );
 	}
 }
 
@@ -291,7 +292,7 @@ NumberInput.defaultProps = {
 	numbersOnly: true,
 	style: {},
 	value: null,
-	tooltipPlacement: 'left'
+	tooltipPlacement: 'right'
 };
 
 NumberInput.propTypes = {
