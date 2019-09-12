@@ -51,7 +51,7 @@ function createColorScale( length ) {
 * @property {Array} elements - an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties
 * @property {Array<string>} hints - hints providing guidance on how to answer the question
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
-* @property {boolean} showSolution - indicates whether the solution should be accessible after learners submit their answers
+* @property {boolean} provideFeedback - indicates whether the solution should be accessible after learners submit their answers
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {Array} colorScale - if set, the supplied colors are used for the tiles
@@ -227,7 +227,7 @@ class MatchListQuestion extends Component {
 							</Button>
 						</div>
 					</Tooltip>
-					{ this.props.showSolution ? solutionButton : null }
+					{ this.props.provideFeedback ? solutionButton : null }
 					{ nHints > 0 ?
 						<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
 						null
@@ -266,7 +266,7 @@ MatchListQuestion.defaultProps = {
 	elements: [],
 	hints: [],
 	hintPlacement: 'bottom',
-	showSolution: true,
+	provideFeedback: true,
 	feedback: true,
 	chat: false,
 	colorScale: null,
@@ -289,7 +289,7 @@ MatchListQuestion.propTypes = {
 	}) ),
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
-	showSolution: PropTypes.bool,
+	provideFeedback: PropTypes.bool,
 	feedback: PropTypes.object,
 	chat: PropTypes.bool,
 	colorScale: PropTypes.array,
