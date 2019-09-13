@@ -416,36 +416,39 @@ class Tokenizer {
 				inString = !inString;
 			}
 			if ( braceLevel === 0 ) {
-				if ( !inString ) {
-					if ( char === '<' && inner[ i+1 ] !== '/' ) {
-						innerJSXStartTag = tagName( inner, i+1 );
-						current = char;
-					}
-					else if ( innerJSXStartTag && char === '>' && prevChar !== '/' ) {
+				if ( !innerJSXStartTag && char === '<' && inner[ i+1 ] !== '/' && !inString ) {
+					innerJSXStartTag = tagName( inner, i+1 );
+					tagLevel += 1;
+					current = char;
+				}
+				else if ( innerJSXStartTag && char === '<' && inner[ i+1 ] !== '/' && !inString ) {
+					if ( tagName( inner, i+1 ) === innerJSXStartTag ) {
 						tagLevel += 1;
 					}
-					else if ( prevChar === '<' && char === '/' ) {
-						if ( tagName( inner, i+1 ) === innerJSXStartTag ) {
-							tagLevel -= 1;
-							if ( tagLevel === 0 ) {
-								debug( 'Outer tag match found...' );
-								const tokenizer = new Tokenizer();
-								current += innerJSXStartTag + '>';
-								i += innerJSXStartTag.length + 1;
-								this._current += tokenizer.parse( current );
-								current = '';
-								innerJSXStartTag = null;
-							}
+				}
+				else if ( prevChar === '<' && char === '/' && !inString ) {
+					if ( tagName( inner, i+1 ) === innerJSXStartTag ) {
+						tagLevel -= 1;
+						if ( tagLevel === 0 ) {
+							debug( 'Outer tag match found...' );
+							const tokenizer = new Tokenizer();
+							current += innerJSXStartTag + '>';
+							i += innerJSXStartTag.length + 1;
+							this._current += tokenizer.parse( current );
+							current = '';
+							innerJSXStartTag = null;
 						}
 					}
-					else if ( innerJSXStartTag && char === '>' && prevChar === '/' && tagLevel === 0 ) {
-						debug( 'Self-closing tag match found...' );
-						const tokenizer = new Tokenizer();
-						this._current += tokenizer.parse( current );
-						current = '';
-						innerJSXStartTag = null;
-					}
-				} else if ( !innerJSXStartTag ) {
+				}
+				else if ( innerJSXStartTag && char === '>' && prevChar === '/' && tagLevel === 1 && !inString ) {
+					debug( 'Self-closing tag match found...' );
+					const tokenizer = new Tokenizer();
+					this._current += tokenizer.parse( current );
+					current = '';
+					innerJSXStartTag = null;
+					tagLevel = 0;
+				}
+				else if ( !innerJSXStartTag ) {
 					this._current += char;
 				}
 			}
