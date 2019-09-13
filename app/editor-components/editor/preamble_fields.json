@@ -118,5 +118,10 @@
 		"name": "license",
 		"value": "license: ${1:}",
 		"description": "License under which materials are released"
+	},
+	{
+		"name": "version",
+		"value": "version: ${1:0}.${2:0}.${3:0}",
+		"description": "Version number of the lesson (major.minor.patch)"
 	}
 ]
