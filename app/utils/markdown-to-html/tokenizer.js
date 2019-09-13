@@ -400,6 +400,7 @@ class Tokenizer {
 		let braceLevel = 0;
 		let tagLevel = 0;
 		let inString = false;
+		let notSelfClosing = false;
 		for ( let i = 0; i < inner.length; i++ ) {
 			const char = inner[ i ];
 			const prevChar = inner[ i-1 ];
@@ -418,29 +419,30 @@ class Tokenizer {
 			if ( braceLevel === 0 ) {
 				if ( !innerJSXStartTag && char === '<' && inner[ i+1 ] !== '/' && !inString ) {
 					innerJSXStartTag = tagName( inner, i+1 );
+					notSelfClosing = false;
 					tagLevel += 1;
 					current = char;
 				}
 				else if ( innerJSXStartTag && char === '<' && inner[ i+1 ] !== '/' && !inString ) {
 					if ( tagName( inner, i+1 ) === innerJSXStartTag ) {
 						tagLevel += 1;
+					} else {
+						notSelfClosing = true;
 					}
 				}
-				else if ( prevChar === '<' && char === '/' && !inString ) {
-					if ( tagName( inner, i+1 ) === innerJSXStartTag ) {
-						tagLevel -= 1;
-						if ( tagLevel === 0 ) {
-							debug( 'Outer tag match found...' );
-							const tokenizer = new Tokenizer();
-							current += innerJSXStartTag + '>';
-							i += innerJSXStartTag.length + 1;
-							this._current += tokenizer.parse( current );
-							current = '';
-							innerJSXStartTag = null;
-						}
+				else if ( prevChar === '<' && char === '/' && !inString && tagName( inner, i+1 ) === innerJSXStartTag ) {
+					tagLevel -= 1;
+					if ( tagLevel === 0 ) {
+						debug( 'Outer tag match found...' );
+						const tokenizer = new Tokenizer();
+						current += innerJSXStartTag + '>';
+						i += innerJSXStartTag.length + 1;
+						this._current += tokenizer.parse( current );
+						current = '';
+						innerJSXStartTag = null;
 					}
 				}
-				else if ( innerJSXStartTag && char === '>' && prevChar === '/' && tagLevel === 1 && !inString ) {
+				else if ( innerJSXStartTag && !notSelfClosing && char === '>' && prevChar === '/' && tagLevel === 1 && !inString ) {
 					debug( 'Self-closing tag match found...' );
 					const tokenizer = new Tokenizer();
 					this._current += tokenizer.parse( current );
