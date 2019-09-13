@@ -392,18 +392,64 @@ class Tokenizer {
 	}
 
 	_replaceInnerJSXExpressions() {
-		const RE_OUTER_TAG = /<([^/>]+)[\s\S]*?>[\s\S]+?<\/\1>|<([^/][\s\S]*?)\/>/g;
 		let inner = this._current.substring( this._JSX_ATTRIBUTE_START );
-		let match = RE_OUTER_TAG.exec( inner );
-		while ( match !== null ) {
-			debug( 'Match found...' );
-			const tokenizer = new Tokenizer();
-			const replacement = tokenizer.parse( match[ 0 ] );
-			inner = inner.substring( 0, match.index ) +
-				replacement + inner.substring( match.index + match[0].length );
-			match = RE_OUTER_TAG.exec( inner );
+		this._current = this._current.substring( 0, this._JSX_ATTRIBUTE_START );
+
+		let innerJSXStartTag = null;
+		let current = '';
+		let braceLevel = 0;
+		let tagLevel = 0;
+		let inString = false;
+		for ( let i = 0; i < inner.length; i++ ) {
+			const char = inner[ i ];
+			const prevChar = inner[ i-1 ];
+			if ( innerJSXStartTag ) {
+				if ( char === '{' ) {
+					braceLevel += 1;
+				}
+				else if ( char === '}' ) {
+					braceLevel -= 1;
+				}
+				current += char;
+			}
+			if ( isQuotationMark( char ) && prevChar !== '\\' ) {
+				inString = !inString;
+			}
+			if ( braceLevel === 0 ) {
+				if ( !inString ) {
+					if ( char === '<' && inner[ i+1 ] !== '/' ) {
+						innerJSXStartTag = tagName( inner, i+1 );
+						current = char;
+					}
+					else if ( innerJSXStartTag && char === '>' && prevChar !== '/' ) {
+						tagLevel += 1;
+					}
+					else if ( prevChar === '<' && char === '/' ) {
+						if ( tagName( inner, i+1 ) === innerJSXStartTag ) {
+							tagLevel -= 1;
+							if ( tagLevel === 0 ) {
+								debug( 'Outer tag match found...' );
+								const tokenizer = new Tokenizer();
+								current += innerJSXStartTag + '>';
+								i += innerJSXStartTag.length + 1;
+								this._current += tokenizer.parse( current );
+								current = '';
+								innerJSXStartTag = null;
+							}
+						}
+					}
+					else if ( innerJSXStartTag && char === '>' && prevChar === '/' && tagLevel === 0 ) {
+						debug( 'Self-closing tag match found...' );
+						const tokenizer = new Tokenizer();
+						this._current += tokenizer.parse( current );
+						current = '';
+						innerJSXStartTag = null;
+					}
+				} else if ( !innerJSXStartTag ) {
+					this._current += char;
+				}
+			}
 		}
-		this._current = this._current.substring( 0, this._JSX_ATTRIBUTE_START ) + inner;
 	}
 
 	_inJSXObject( char ) {
