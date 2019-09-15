@@ -237,14 +237,14 @@ class ActionLog extends Component {
 			}
 			let actions;
 			if ( this.state.anonymized ) {
-				actions = new Array( session.socketActions.length );
+				actions = new Array( this.state.actions.length );
 				for ( let i = 0; i < actions.length; i++ ) {
-					actions[ i ] = copy( session.socketActions[ i ] );
+					actions[ i ] = copy( this.state.actions[ i ] );
 					actions[ i ].name = hash.name[ actions[ i ].name ];
 					actions[ i ].email = hash.email[ actions[ i ].email ];
 				}
 			} else {
-				actions = session.socketActions;
+				actions = this.state.actions;
 			}
 			const blob = new Blob([ JSON.stringify( actions ) ], {
 				type: 'application/json'
@@ -267,14 +267,14 @@ class ActionLog extends Component {
 			}
 			let actions;
 			if ( this.state.anonymized ) {
-				actions = new Array( session.socketActions.length );
+				actions = new Array( this.state.actions.length );
 				for ( let i = 0; i < actions.length; i++ ) {
-					actions[ i ] = copy( session.socketActions[ i ] );
+					actions[ i ] = copy( this.state.actions[ i ] );
 					actions[ i ].name = hash.name[ actions[ i ].name ];
 					actions[ i ].email = hash.email[ actions[ i ].email ];
 				}
 			} else {
-				actions = session.socketActions;
+				actions = this.state.actions;
 			}
 			stringify( actions, {
 				header: true
