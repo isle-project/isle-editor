@@ -496,6 +496,7 @@ class Scatterplot extends Component {
 				</Modal.Header>
 				<Modal.Body>
 					<RShell
+						prependCode={preCode}
 						code={RCode}
 						libraries={['jsonlite']}
 						resettable
