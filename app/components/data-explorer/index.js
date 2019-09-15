@@ -829,6 +829,7 @@ class DataExplorer extends Component {
 								filters: newFilters
 							});
 						}}
+						url={this.props.dataInfo.url}
 					/>;
 					break;
 				case 'Mosaic Plot':

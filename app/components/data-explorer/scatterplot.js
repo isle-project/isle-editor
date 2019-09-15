@@ -657,7 +657,7 @@ class Scatterplot extends Component {
 					{this.renderRegressionLineOptions()}
 					<div style={{ clear: 'both' }}></div>
 					<Button variant="primary" onClick={this.generateScatterplot}>Generate</Button>
-					<Button variant="light" onClick={this.showRCode}>Show R Code</Button>
+					<Button variant="light" onClick={this.showRCode} disabled={isNull(this.props.url)}>Show R Code</Button>
 				</Card.Body>
 				{modal}
 			</Card>

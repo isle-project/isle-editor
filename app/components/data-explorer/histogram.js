@@ -4,14 +4,17 @@ import React, { Component } from 'react';
 import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Modal from 'react-bootstrap/Modal';
 import PropTypes from 'prop-types';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import Plotly from 'components/plotly';
+import RShell from 'components/r/shell';
 import randomstring from 'utils/randomstring/alphanumeric';
 import objectKeys from '@stdlib/utils/keys';
 import linspace from '@stdlib/math/utils/linspace';
+import isNull from '@stdlib/assert/is-null';
 import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
 import mean from 'utils/statistic/mean';
@@ -212,7 +215,8 @@ class Histogram extends Component {
 			variable: props.defaultValue || props.variables[ 0 ],
 			group: null, // eslint-disable-line react/no-unused-state
 			nBins: 10,
-			densityType: 'Data-driven'
+			densityType: 'Data-driven',
+			showRModal: false
 		};
 	}
 
@@ -243,8 +247,54 @@ class Histogram extends Component {
 		this.props.onCreated( output );
 	}
 
+	showRCode = () => {
+		this.setState({
+			showRModal: true
+		});
+	}
+
+	generateRModal = () => {
+		var preCode = [''];
+		const nameReg = /\_(.*?).\w+/;
+		const dataNameWUnderscore = nameReg.exec(this.props.url)[0]; // captures including the _, need to remove it
+		const dataName = dataNameWUnderscore.substring(1, dataNameWUnderscore.length);
+		if ( !isNull( this.props.url ) ) {
+			preCode = [`${dataName} <- data.frame(jsonlite::fromJSON("${this.props.url}"))`, `attach(${dataName})`];
+		}
+
+		var RCode = `hist(${this.state.variable}, nclass = ${this.state.nBins})`;
+
+		return (
+			<Modal
+				show={this.state.showRModal}
+				onHide={
+					()=>{
+						this.setState({
+							showRModal: false
+						});
+				}}>
+				<Modal.Header closeButton>
+					<Modal.Title>
+						R Code
+					</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					<RShell
+						code={RCode}
+						libraries={['jsonlite']}
+						resettable
+					/>
+				</Modal.Body>
+			</Modal>
+		);
+	}
+
 	render() {
 		const { variables, groupingVariables } = this.props;
+		let modal = null;
+		if ( this.state.showRModal ) {
+			modal = this.generateRModal();
+		}
 		return (
 			<Card>
 				<Card.Header as="h4">
@@ -322,7 +372,9 @@ class Histogram extends Component {
 						/>
 					</div>
 					<Button variant="primary" block onClick={this.generateHistogram.bind( this )}>Generate</Button>
+					<Button variant="light" onClick={this.showRCode} disabled={isNull(this.props.url)}>Show R Code</Button>
 				</Card.Body>
+				{modal}
 			</Card>
 		);
 	}
@@ -337,7 +389,8 @@ Histogram.defaultProps = {
 	logAction() {},
 	session: {},
 	showDensityOption: true,
-	onSelected() {}
+	onSelected() {},
+	url: null
 };
 
 
@@ -352,7 +405,8 @@ Histogram.propTypes = {
 	onCreated: PropTypes.func.isRequired,
 	session: PropTypes.object,
 	showDensityOption: PropTypes.bool,
-	variables: PropTypes.array.isRequired
+	variables: PropTypes.array.isRequired,
+	url: PropTypes.string
 };
 
 
