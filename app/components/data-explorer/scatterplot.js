@@ -430,27 +430,56 @@ class Scatterplot extends Component {
 	generateRModal = () => {
 		// handle the prepended code first --> array of commands
 		// https://isle.heinz.cmu.edu/demonstrations_youtube.json
+		/*
+		https://phd-serv5.heinz.cmu.edu/ocpu/library/';
+		*/
 		var preCode = [''];
 		const nameReg = /\_(.*?).\w+/;
 		const dataNameWUnderscore = nameReg.exec(this.props.url)[0]; // captures including the _, need to remove it
 		const dataName = dataNameWUnderscore.substring(1, dataNameWUnderscore.length);
 		if ( !isNull( this.props.url ) ) {
-			preCode = [`${dataName} <- data.frame(jsonlite::fromJSON("${this.props.url}"))`];
+			preCode = [`${dataName} <- data.frame(jsonlite::fromJSON("${this.props.url}"))`, `attach(${dataName})`];
 		}
 
-		var RCode = `plot(${dataName}(`;
-
-		var RCode = 'plot(x = ' + this.props.defaultY + ', y = ' + this.props.defaultX + ', data = NULL, ';
+		var RCode = `plot(x = ${this.state.xval}, y = ${this.state.yval}`;
 		// add the features, be sure to close with the closing )
-		if ( !isNull(this.props.color) ) {
-			RCode += ', color = ' + this.props.color;
+		/*
+		color
+		size
+		----
+		labels
+		*/
+		if ( !isNull(this.state.color) ) {
+			RCode += `, col = ${this.state.color}`;
 		}
 		if ( !isNull(this.props.size) ) {
-			RCode += ', size = ' + this.props.size;
+			RCode += `, size = ${this.state.size}`;
 		}
 
 		// must end with this
 		RCode += ')';
+
+		// check for labels
+		if ( !isNull(this.props.labels) ) {
+			RCode += `\ntext(${this.state.xvar}, ${this.state.xvar}, labels = ${this.state.labels})`;
+		}
+
+		// now to handle the regression case
+		/*
+		regressionLine: false,
+			regressionMethod: ['linear'],
+			lineBy: null,
+		*/
+		// case 1: regression of Y ~ X, linear method
+		// we have a regression
+		if ( this.state.regressionLine ) {
+			// linear and no gorupBy
+			if ( this.state.regressionMethod.length === 1 ) {
+				if ( this.state.regressionMethod[0] === 'linear' && isNull(this.state.lineBy) ) {
+					RCode += `\nabline(lm(${this.state.yvar} ~ ${this.state.xvar}, data = ${dataName}))`;
+				}
+			}
+		}
 		return (
 			<Modal
 				show={this.state.showRModal}
