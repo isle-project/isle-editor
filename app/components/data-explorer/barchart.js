@@ -3,15 +3,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
+import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import SelectInput from 'components/input/select';
 import Plotly from 'components/plotly';
+import RShell from 'components/r/shell';
 import CheckboxInput from 'components/input/checkbox';
 import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import randomstring from 'utils/randomstring/alphanumeric';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
+import isNull from '@stdlib/assert/is-null';
 import { DATA_EXPLORER_SHARE_BARCHART, DATA_EXPLORER_BARCHART } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
@@ -174,7 +177,8 @@ class Barchart extends Component {
 			stackBars: false,
 			relative: false,
 			totalPercent: false,
-			xOrder: null
+			xOrder: null,
+			showRModal: false
 		};
 	}
 
@@ -216,7 +220,64 @@ class Barchart extends Component {
 		this.props.onCreated( output );
 	}
 
+	showRCode = () => {
+		this.setState({
+			showRModal: true
+		});
+	}
+
+	generateRModal = () => {
+		var preCode = [''];
+		const nameReg = /\_(.*?).\w+/;
+		const dataNameWUnderscore = nameReg.exec(this.props.url)[0]; // captures including the _, need to remove it
+		const dataName = dataNameWUnderscore.substring(1, dataNameWUnderscore.length);
+		if ( !isNull( this.props.url ) ) {
+			preCode = [`${dataName} <- data.frame(jsonlite::fromJSON("${this.props.url}"))`, `attach(${dataName})`];
+		}
+
+		var RCode = '## make table\n'
+		RCode += `daTable <- table(${this.state.xVar})\n`
+		RCode += 'barplot(daTable';
+
+		if ( this.state.horiz ) {
+			RCode += ', horiz = TRUE'
+		}
+
+		RCode += ')';
+
+		// TO-DO: investiage the lattice::barplot function to group-by, see https://stackoverflow.com/questions/17721126/simplest-way-to-do-grouped-barplot
+
+		return (
+			<Modal
+				show={this.state.showRModal}
+				onHide={
+					()=>{
+						this.setState({
+							showRModal: false
+						});
+				}}>
+				<Modal.Header closeButton>
+					<Modal.Title>
+						R Code
+					</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					<RShell
+						prependCode={preCode}
+						code={RCode}
+						libraries={['jsonlite']}
+						resettable
+					/>
+				</Modal.Body>
+			</Modal>
+		);
+	}
+
 	render() {
+		let modal = null;
+		if ( this.state.showRModal ) {
+			modal = this.generateRModal();
+		}
 		return (
 			<Card>
 				<Card.Header as="h4">
@@ -309,8 +370,10 @@ class Barchart extends Component {
 						}}
 					/>
 					<Button variant="primary" block onClick={this.generateBarchart.bind( this )}>Generate</Button>
+					<Button variant="light" onClick={this.showRCode} disabled={isNull(this.props.url)}>Show R Code</Button>
 				</Card.Body>
 			</Card>
+			{modal}
 		);
 	}
 }
@@ -324,7 +387,8 @@ Barchart.defaultProps = {
 	logAction() {},
 	onCreated() {},
 	onSelected() {},
-	session: {}
+	session: {},
+	url: null
 };
 
 Barchart.propTypes = {
@@ -335,7 +399,8 @@ Barchart.propTypes = {
 	onCreated: PropTypes.func,
 	onSelected: PropTypes.func,
 	session: PropTypes.object,
-	variables: PropTypes.array.isRequired
+	variables: PropTypes.array.isRequired,
+	url: PropTypes.string
 };
 
 
