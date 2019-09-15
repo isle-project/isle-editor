@@ -235,12 +235,12 @@ class Barchart extends Component {
 			preCode = [`${dataName} <- data.frame(jsonlite::fromJSON("${this.props.url}"))`, `attach(${dataName})`];
 		}
 
-		var RCode = '## make table\n'
-		RCode += `daTable <- table(${this.state.xVar})\n`
+		var RCode = '## make table\n';
+		RCode += `daTable <- table(${this.state.xVar})\n`;
 		RCode += 'barplot(daTable';
 
 		if ( this.state.horiz ) {
-			RCode += ', horiz = TRUE'
+			RCode += ', horiz = TRUE';
 		}
 
 		RCode += ')';
