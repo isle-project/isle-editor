@@ -220,7 +220,7 @@ class Barchart extends Component {
 		this.props.onCreated( output );
 	}
 
-	showRCode = () => {
+	toggleRModal = () => {
 		this.setState({
 			showRModal: true
 		});
@@ -370,7 +370,7 @@ class Barchart extends Component {
 						}}
 					/>
 					<Button variant="primary" block onClick={this.generateBarchart.bind( this )}>Generate</Button>
-					<Button variant="light" onClick={this.showRCode} disabled={isNull(this.props.url)}>Show R Code</Button>
+					<Button variant="light" onClick={this.toggleRModal} disabled={isNull(this.props.url)}>Show R Code</Button>
 				</Card.Body>
 				{modal}
 			</Card>

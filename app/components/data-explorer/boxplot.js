@@ -206,7 +206,7 @@ class Boxplot extends Component {
 		this.props.onCreated( output );
 	}
 
-	showRCode = () => {
+	toggleRModal = () => {
 		this.setState({
 			showRModal: true
 		});
@@ -312,7 +312,7 @@ class Boxplot extends Component {
 						}}
 					/>
 					<Button variant="primary" block onClick={this.generateBoxplot}>Generate</Button>
-					<Button variant="light" onClick={this.showRCode} disabled={isNull(this.props.url)}>Show R Code</Button>
+					<Button variant="light" onClick={this.toggleRModal} disabled={isNull(this.props.url)}>Show R Code</Button>
 				</Card.Body>
 				{modal}
 			</Card>

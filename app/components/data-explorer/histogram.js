@@ -247,7 +247,7 @@ class Histogram extends Component {
 		this.props.onCreated( output );
 	}
 
-	showRCode = () => {
+	toggleRModal = () => {
 		this.setState({
 			showRModal: true
 		});
@@ -373,7 +373,7 @@ class Histogram extends Component {
 						/>
 					</div>
 					<Button variant="primary" block onClick={this.generateHistogram.bind( this )}>Generate</Button>
-					<Button variant="light" onClick={this.showRCode} disabled={isNull(this.props.url)}>Show R Code</Button>
+					<Button variant="light" onClick={this.toggleRModal} disabled={isNull(this.props.url)}>Show R Code</Button>
 				</Card.Body>
 				{modal}
 			</Card>
