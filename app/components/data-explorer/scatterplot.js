@@ -22,6 +22,7 @@ import mapValues from '@stdlib/utils/map-values';
 import groupBy from '@stdlib/utils/group-by';
 import group from '@stdlib/utils/group';
 import isNull from '@stdlib/assert/is-null';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import unique from 'uniq';
 import mean from 'utils/statistic/mean';
 import max from 'utils/statistic/max';
@@ -383,7 +384,8 @@ class Scatterplot extends Component {
 			regressionMethod: ['linear'],
 			lineBy: null,
 			smoothSpan: 0.66,
-			showRModal: false
+			showRModal: false,
+			size: null
 		};
 	}
 
@@ -437,7 +439,7 @@ class Scatterplot extends Component {
 		const nameReg = /\_(.*?).\w+/;
 		const dataNameWUnderscore = nameReg.exec(this.props.url)[0]; // captures including the _, need to remove it
 		const dataName = dataNameWUnderscore.substring(1, dataNameWUnderscore.length);
-		if ( !isNull( this.props.url ) ) {
+		if ( !isUndefinedOrNull( this.props.url ) ) {
 			preCode = [`${dataName} <- data.frame(jsonlite::fromJSON("${this.props.url}"))`, `attach(${dataName})`];
 		}
 
@@ -449,10 +451,10 @@ class Scatterplot extends Component {
 		----
 		labels
 		*/
-		if ( !isNull(this.state.color) ) {
+		if ( !isUndefinedOrNull(this.state.color) ) {
 			RCode += `, col = ${this.state.color}`;
 		}
-		if ( !isNull(this.props.size) ) {
+		if ( !isUndefinedOrNull(this.props.size) ) {
 			RCode += `, size = ${this.state.size}`;
 		}
 
@@ -460,8 +462,8 @@ class Scatterplot extends Component {
 		RCode += ')';
 
 		// check for labels
-		if ( !isNull(this.props.labels) ) {
-			RCode += `\ntext(${this.state.xvar}, ${this.state.xvar}, labels = ${this.state.labels})`;
+		if ( !isUndefinedOrNull(this.props.text) ) {
+			RCode += `\ntext(${this.state.xvar}, ${this.state.xvar}, labels = ${this.state.text})`;
 		}
 
 		// now to handle the regression case
@@ -475,7 +477,7 @@ class Scatterplot extends Component {
 		if ( this.state.regressionLine ) {
 			// linear and no gorupBy
 			if ( this.state.regressionMethod.length === 1 ) {
-				if ( this.state.regressionMethod[0] === 'linear' && isNull(this.state.lineBy) ) {
+				if ( this.state.regressionMethod[0] === 'linear' && isUndefinedOrNull(this.state.lineBy) ) {
 					RCode += `\nabline(lm(${this.state.yvar} ~ ${this.state.xvar}, data = ${dataName}))`;
 				}
 			}
@@ -658,7 +660,7 @@ class Scatterplot extends Component {
 					{this.renderRegressionLineOptions()}
 					<div style={{ clear: 'both' }}></div>
 					<Button variant="primary" onClick={this.generateScatterplot}>Generate</Button>
-					<Button variant="light" onClick={this.toggleRModal} disabled={isNull(this.props.url)}>Show R Code</Button>
+					<Button variant="light" onClick={this.toggleRModal} disabled={isUndefinedOrNull(this.props.url)}>Show R Code</Button>
 				</Card.Body>
 				{modal}
 			</Card>

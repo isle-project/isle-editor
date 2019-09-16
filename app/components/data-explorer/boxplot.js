@@ -223,11 +223,17 @@ class Boxplot extends Component {
 
 		var RCode = `boxplot(${this.state.variable}`;
 
+		if ( this.state.orientation === 'horizontal' ) {
+			RCode += ', horizontal = TRUE';
+		}
+
 		// iterate through the groupings
 		// NOTE: the array can only be of length 1?
+		/* NOTE: THis doesnt work so I will turn it off
 		if ( this.state.group.length !== 0 ) {
-			RCode += ` ~ ${this.state.group[0]}`;
+			RCode += ` ~ ${this.state.group}`;
 		}
+		*/
 
 		RCode += ')';
 
