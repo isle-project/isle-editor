@@ -328,7 +328,8 @@ Boxplot.defaultProps = {
 	groupingVariables: null,
 	logAction() {},
 	onCreated() {},
-	session: {}
+	session: {},
+	url: null
 };
 
 Boxplot.propTypes = {
@@ -338,7 +339,8 @@ Boxplot.propTypes = {
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func,
 	session: PropTypes.object,
-	variables: PropTypes.array.isRequired
+	variables: PropTypes.array.isRequired,
+	url: PropTypes.string
 };
 
 
