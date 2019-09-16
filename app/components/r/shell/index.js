@@ -16,7 +16,9 @@ import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import isFunction from '@stdlib/assert/is-function';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import max from '@stdlib/math/base/special/max';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import logger from 'debug';
 import CodeMirror from 'codemirror';
 import generateUID from 'utils/uid';
@@ -160,7 +162,8 @@ class RShell extends React.Component {
 			running: false,
 			nEvaluations: 0,
 			solutionOpen: false,
-			help: ''
+			help: '',
+			copied: false
 		};
 
 		this.id = props.id || uid( props );
@@ -401,6 +404,35 @@ class RShell extends React.Component {
 		return null;
 	}
 
+	// Not sure why this is needed, but it was on the documentation
+	// https://codepen.io/nkbt/pen/eNPoQv?editors=0010
+	onCopyCode = () => {
+		this.setState({
+			copied: true
+		});
+	}
+
+	getCopyCode = () => {
+		var copyCode = '';
+
+		// add the libraries
+		for ( let i = 0; i < this.props.libraries.length; i++ ) {
+			copyCode += `library(${this.props.libraries[i]})\n`;
+		}
+		// check for array of prepend code
+		if ( isArray(this.props.prependCode) ) {
+			for ( let ii = 0; ii < this.props.prependCode.length; ii++ ) {
+				copyCode += this.props.prependCode[ii] + '\n';
+			}
+		} else {
+			copyCode += this.props.prependCode + '\n';
+		}
+
+		// now handle the rest of the code
+		copyCode += this.editor.getValue();
+		return copyCode;
+	}
+
 	renderHelpModal() {
 		return ( <Modal
 			backdrop={false}
@@ -491,6 +523,16 @@ class RShell extends React.Component {
 							this.state.nEvaluations
 						) :
 						null
+					}
+					{
+						<CopyToClipboard
+							onCopy={this.onCopyCode}
+							disabled={isUndefinedOrNull(this.editor)}
+							text={isUndefinedOrNull(this.editor) ?
+								'' :
+								this.getCopyCode()}>
+							<Button>Copy to Clipboard</Button>
+						</CopyToClipboard>
 					}
 					{ ( this.props.resettable ) ?
 						showResetButton(
