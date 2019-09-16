@@ -143,7 +143,8 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		e.type === 'Contingency Table' ||
 		e.type === 'Frequency Table' ||
 		e.type === 'Grouped Frequency Table' ||
-		e.type === 'Simple Linear Regression'
+		e.type === 'Simple Linear Regression' ||
+		e.type === 'PCA'
 	) {
 		const elem = <pre key={idx} >
 			{createButtons( e.type, e.value, clearOutput, idx, subsetFilters, onFilters )}

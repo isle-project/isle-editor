@@ -33,6 +33,7 @@ import ContingencyTable from 'components/data-explorer/contingency_table';
 import FrequencyTable from 'components/data-explorer/frequency_table';
 import SummaryStatistics from 'components/data-explorer/summary_statistics';
 import SimpleLinearRegression from 'components/data-explorer/linear_regression';
+import PrincipalComponentAnalysis from 'components/data-explorer/principal_component_analysis';
 import VariableTransformer from 'components/data-explorer/variable-transformer';
 import MarkdownEditor from 'components/markdown-editor';
 import GridLayout from './grid_layout.js';
@@ -970,6 +971,22 @@ class DataExplorer extends Component {
 						session={this.context}
 					/>;
 					break;
+				case 'PCA':
+					content = <PrincipalComponentAnalysis
+						quantitative={this.state.quantitative}
+						originalQuantitative={this.props.quantitative}
+						onCreated={this.addToOutputs}
+						onGenerate={( quantitative, data ) => {
+							this.setState({
+								quantitative,
+								data
+							});
+						}}
+						data={this.state.data}
+						logAction={this.logAction}
+						session={this.context}
+					/>;
+					break;
 				}
 				return ( <Tab.Pane key={i} eventKey={`5.${i+1}`}>
 					{content}
@@ -1253,7 +1270,8 @@ DataExplorer.defaultProps = {
 		'One-Way ANOVA'
 	],
 	models: [
-		'Simple Linear Regression'
+		'Simple Linear Regression',
+		'PCA'
 	],
 	opened: null,
 	categorical: [],
