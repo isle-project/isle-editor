@@ -4,14 +4,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import Card from 'react-bootstrap/Card';
+import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import Plotly from 'components/plotly';
+import RShell from 'components/r/shell';
 import randomstring from 'utils/randomstring/alphanumeric';
 import objectKeys from '@stdlib/utils/keys';
+import isNull from '@stdlib/assert/is-null';
 import { DATA_EXPLORER_SHARE_BOXPLOT, DATA_EXPLORER_BOXPLOT } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
@@ -161,7 +164,8 @@ class Boxplot extends Component {
 			variable: props.defaultValue || props.variables[ 0 ],
 			group: [],
 			orientation: 'vertical',
-			overlayPoints: false
+			overlayPoints: false,
+			showRModal: false
 		};
 	}
 
@@ -202,8 +206,63 @@ class Boxplot extends Component {
 		this.props.onCreated( output );
 	}
 
+	showRCode = () => {
+		this.setState({
+			showRModal: true
+		});
+	}
+
+	generateRModal = () => {
+		var preCode = [''];
+		const nameReg = /\_(.*?).\w+/;
+		const dataNameWUnderscore = nameReg.exec(this.props.url)[0]; // captures including the _, need to remove it
+		const dataName = dataNameWUnderscore.substring(1, dataNameWUnderscore.length);
+		if ( !isNull( this.props.url ) ) {
+			preCode = [`${dataName} <- data.frame(jsonlite::fromJSON("${this.props.url}"))`, `attach(${dataName})`];
+		}
+
+		var RCode = `boxplot(${this.state.variable}`;
+
+		// iterate through the groupings
+		// NOTE: the array can only be of length 1?
+		if ( this.state.group.length !== 0 ) {
+			RCode += ` ~ ${this.state.group[0]}`;
+		}
+
+		RCode += ')';
+
+		return (
+			<Modal
+				show={this.state.showRModal}
+				onHide={
+					()=>{
+						this.setState({
+							showRModal: false
+						});
+				}}>
+				<Modal.Header closeButton>
+					<Modal.Title>
+						R Code
+					</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					<RShell
+						prependCode={preCode}
+						code={RCode}
+						libraries={['jsonlite']}
+						resettable
+					/>
+				</Modal.Body>
+			</Modal>
+		);
+	}
+
 	render() {
 		const { variables, groupingVariables } = this.props;
+		let modal = null;
+		if ( this.state.showRModal ) {
+			modal = this.generateRModal();
+		}
 		return (
 			<Card>
 				<Card.Header as="h4">
@@ -253,7 +312,9 @@ class Boxplot extends Component {
 						}}
 					/>
 					<Button variant="primary" block onClick={this.generateBoxplot}>Generate</Button>
+					<Button variant="light" onClick={this.showRCode} disabled={isNull(this.props.url)}>Show R Code</Button>
 				</Card.Body>
+				{modal}
 			</Card>
 		);
 	}

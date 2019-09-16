@@ -793,6 +793,7 @@ class DataExplorer extends Component {
 						{...quantitativeProps}
 						logAction={this.logAction}
 						session={this.context}
+						url={this.props.dataInfo.url}
 					/>;
 					break;
 				case 'Contour Chart':
