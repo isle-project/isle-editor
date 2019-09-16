@@ -239,6 +239,7 @@ class Boxplot extends Component {
 
 		return (
 			<Modal
+				className="Lesson"
 				show={this.state.showRModal}
 				onHide={
 					()=>{
