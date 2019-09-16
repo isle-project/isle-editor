@@ -32,8 +32,6 @@ import SelectInput from 'components/input/select';
 import ContingencyTable from 'components/data-explorer/contingency_table';
 import FrequencyTable from 'components/data-explorer/frequency_table';
 import SummaryStatistics from 'components/data-explorer/summary_statistics';
-import SimpleLinearRegression from 'components/data-explorer/linear_regression';
-import PrincipalComponentAnalysis from 'components/data-explorer/principal_component_analysis';
 import VariableTransformer from 'components/data-explorer/variable-transformer';
 import MarkdownEditor from 'components/markdown-editor';
 import GridLayout from './grid_layout.js';
@@ -57,6 +55,13 @@ const SpreadsheetUpload = lazy( () => import( 'components/spreadsheet-upload' ) 
 const LearnNormalDistribution = lazy( () => import( 'components/learn/distribution-normal' ) );
 const LearnExponentialDistribution = lazy( () => import( 'components/learn/distribution-exponential' ) );
 const LearnUniformDistribution = lazy( () => import( 'components/learn/distribution-uniform' ) );
+
+
+// MODEL COMPONENTS //
+
+import SimpleLinearRegression from 'components/data-explorer/linear_regression';
+import PrincipalComponentAnalysis from 'components/data-explorer/principal_component_analysis';
+import KMeans from 'components/data-explorer/kmeans';
 
 
 // PLOT COMPONENTS //
@@ -987,6 +992,22 @@ class DataExplorer extends Component {
 						session={this.context}
 					/>;
 					break;
+				case 'kmeans':
+					content = <KMeans
+						quantitative={this.state.quantitative}
+						originalQuantitative={this.props.quantitative}
+						onCreated={this.addToOutputs}
+						onGenerate={( quantitative, data ) => {
+							this.setState({
+								quantitative,
+								data
+							});
+						}}
+						data={this.state.data}
+						logAction={this.logAction}
+						session={this.context}
+					/>;
+					break;
 				}
 				return ( <Tab.Pane key={i} eventKey={`5.${i+1}`}>
 					{content}
@@ -1271,7 +1292,8 @@ DataExplorer.defaultProps = {
 	],
 	models: [
 		'Simple Linear Regression',
-		'PCA'
+		'PCA',
+		'kmeans'
 	],
 	opened: null,
 	categorical: [],
