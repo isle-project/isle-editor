@@ -7,6 +7,7 @@ import startsWith from '@stdlib/string/starts-with';
 import removeFirst from '@stdlib/string/remove-first';
 import removeLast from '@stdlib/string/remove-last';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import isLowercase from '@stdlib/assert/is-lowercase';
 
 
 // VARIABLES //
@@ -27,10 +28,10 @@ const IN_JSX_EXPRESSION = 11;
 const IN_JSX_OTHER = 12;
 const IN_BETWEEN_TAGS = 13;
 const IN_ANGLE_LINK = 14;
-const RE_ALPHANUMERIC = /[A-Z0-9]/i;
+const RE_ALPHANUMERIC = /[A-Z0-9.]/i;
 const RE_HTML_INNER_TAGS = /^(?:p|th|td)$/;
 const RE_HTML_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|var)$/;
-const RE_ISLE_INLINE_TAGS = /^(?:Badge|BeaconTooltip|Button|CheckboxInput|Clock|Input|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
+const RE_ISLE_INLINE_TAGS = /^(?:Badge|BeaconTooltip|Button|CheckboxInput|Clock|Input|Nav\.Link|NavLink|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
 
 const md = markdownit({
 	html: true,
@@ -163,14 +164,15 @@ class Tokenizer {
 			const nextChar = this._buffer.charAt( pos+1 );
 			if (
 				nextChar === '$' &&
-				prevChar !== '\\'
+				prevChar !== '\\' &&
+				nextChar !== '{'
 			) {
 				debug( 'IN_BASE -> IN_DISPLAY_EQUATION' );
 				this._state = IN_DISPLAY_EQUATION;
 				this.pos += 1; // skip the next opening `$` character
 			}
 			else if (
-				( prevChar !== '\\' && nextChar !== '$' ) ||
+				( prevChar !== '\\' && nextChar !== '$' && nextChar !== '{' ) ||
 				( prevChar === '\\' && nextChar === '(' )
 			) {
 				debug( 'IN_BASE -> IN_EQUATION' );
@@ -321,7 +323,10 @@ class Tokenizer {
 			this._openingTagName = removeFirst( name );
 			this._state = IN_OPENING_TAG;
 		}
-		else if ( char === '.' || char === ':' ) {
+		else if (
+			( char === '.' || char === ':' ) &&
+			isLowercase( this._current[ this._startTagNamePos+1 ] ) // do not confuse tags such as `Nav.Item` with links...
+		) {
 			debug( 'IN_OPENING_TAG_NAME -> IN_OPENING_TAG' );
 			this._state = IN_ANGLE_LINK;
 		}
