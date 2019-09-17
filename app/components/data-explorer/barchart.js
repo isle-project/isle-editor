@@ -168,7 +168,7 @@ class Barchart extends Component {
 
 		const { variables, defaultValue } = props;
 		this.state = {
-			xVar: defaultValue || variables[ 0 ],
+			variable: defaultValue || variables[ 0 ],
 			groupVar: null,
 			horiz: false,
 			stackBars: false,
@@ -179,20 +179,20 @@ class Barchart extends Component {
 	}
 
 	generateBarchart() {
-		const { xVar, groupVar } = this.state;
+		const { variable, groupVar } = this.state;
 		const config = generateBarchartConfig(
 			{
 				data: this.props.data,
-				variable: xVar,
+				variable,
 				group: groupVar,
 				...this.state
 			});
 		const plotId = randomstring( 6 );
 		const action = {
-			xVar, groupVar, plotId
+			variable, groupVar, plotId
 		};
 		const output = {
-			variable: xVar,
+			variable,
 			type: 'Chart',
 			value: <Plotly
 				editable draggable id={plotId} fit data={config.data}
@@ -208,7 +208,7 @@ class Barchart extends Component {
 					this.props.logAction( DATA_EXPLORER_SHARE_BARCHART, action );
 				}}
 				onSelected={( selected ) => {
-					this.props.onSelected( xVar, selected );
+					this.props.onSelected( variable, selected );
 				}}
 			/>
 		};
@@ -226,11 +226,11 @@ class Barchart extends Component {
 				<Card.Body>
 					<SelectInput
 						legend="Variable:"
-						defaultValue={this.state.xVar}
+						defaultValue={this.state.variable}
 						options={this.props.variables}
 						onChange={( value )=>{
 							this.setState({
-								xVar: value
+								variable: value
 							});
 						}}
 					/>
