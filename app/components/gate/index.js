@@ -91,11 +91,11 @@ class Gate extends Component {
 				const { disabled, user, notUser, enrolled, notEnrolled, owner, notOwner } = this.props;
 				const isEnrolled = this.state.isEnrolled || currentRole === 'enrolled';
 				const isOwner = this.state.isOwner || currentRole === 'owner';
-				const isUser = ( session && !session.anonymous ) || currentRole;
-				let authenticated = false;
 				if ( !currentRole ) {
 					currentRole = 'anonymous';
 				}
+				const isUser = ( session && !session.anonymous ) || currentRole !== 'anonymous';
+				let authenticated = false;
 				if (
 					disabled || !this.state.validCheck ||
 					notUser && isUser ||
