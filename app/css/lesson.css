@@ -217,6 +217,7 @@ mark {
 
 .nav-tabs .nav-item {
 	font-family: Open Sans Condensed;
+	font-size: 18px;
 	margin-bottom: 8px;
 }
 
@@ -480,6 +481,13 @@ mark {
 .Lesson .dropdown-item,
 .Presentation .dropdown-item {
 	color: #2e4468;
+}
+
+.Lesson .dropdown-item.active,
+.Lesson .dropdown-item:active,
+.Presentation .dropdown-item.active,
+.Presentation .dropdown-item:active {
+	background-color: var(--tertiarylight);
 }
 
 .Lesson a,
