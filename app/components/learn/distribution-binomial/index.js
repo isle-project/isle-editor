@@ -8,7 +8,7 @@ import Tab from 'react-bootstrap/Tab';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { VictoryAxis, VictoryChart, VictoryBar, VictoryTheme } from 'victory';
+import { VictoryAxis, VictoryChart, VictoryBar, VictoryLine, VictoryTheme } from 'victory';
 import roundn from '@stdlib/math/base/special/roundn';
 import incrspace from '@stdlib/math/utils/incrspace';
 import dbinom from '@stdlib/stats/base/dists/binomial/pmf';
@@ -40,7 +40,7 @@ class BinomialProps extends Component {
 	}
 
 	onGenerateSmaller = ( n, p, x0 ) => {
-		let x = incrspace( 0, n, 1 );
+		let x = incrspace( 0, n+1, 1 );
 		let data = new Array( x.length );
 		for ( let i = 0; i < x.length; i++ ) {
 			data[ i ] = {
@@ -52,12 +52,13 @@ class BinomialProps extends Component {
 			data1: data,
 			eqn1: 'P(X \\le' + roundn( x0, -4 ) + ') = ' + roundn( pbinom( x0, n, p ), -4 ),
 			x0,
-			n1: n
+			n1: n,
+			p1: p
 		});
 	}
 
 	onGenerateLarger = ( n, p, x0 ) => {
-		let x = incrspace( 0, n, 1 );
+		let x = incrspace( 0, n+1, 1 );
 		let data = new Array( x.length );
 		for ( let i = 0; i < x.length; i++ ) {
 			data[ i ] = {
@@ -69,7 +70,8 @@ class BinomialProps extends Component {
 			data2: data,
 			eqn2: 'P(X >' + roundn( x0, -4 ) + ') = ' + roundn( 1.0 - pbinom( x0, n, p ), -4 ),
 			x0,
-			n2: n
+			n2: n,
+			p2: p
 		});
 	}
 
@@ -79,7 +81,7 @@ class BinomialProps extends Component {
 			x0 = x1;
 			x1 = tmp;
 		}
-		let x = incrspace( 0, n, 1 );
+		let x = incrspace( 0, n+1, 1 );
 		let data = new Array( x.length );
 		for ( let i = 0; i < x.length; i++ ) {
 			data[ i ] = {
@@ -91,12 +93,14 @@ class BinomialProps extends Component {
 			data3: data,
 			eqn3: 'P(' + roundn( x0, -4 ) + '\\le X \\le' + roundn( x1, -4 ) + ') = ' + roundn( pbinom( x1, n, p ) - pbinom( x0, n, p ), -4 ),
 			n3: n,
+			p3: p,
 			x0,
 			x1
 		});
 	}
 
 	render() {
+		const { x0, n, p, n1, p1, n2, p2, n3, p3 } = this.state;
 		return ( <Card style={{ maxWidth: 1200, margin: '0 auto', ...this.props.style }}>
 			<Card.Header as="h3">
 				Binomial Distribution
@@ -106,7 +110,7 @@ class BinomialProps extends Component {
 					<Tab eventKey={0} title={<TeX raw="P(X = x)" />}>
 						<Container>
 							<Row>
-								<Col lg={true} >
+								<Col md={5} >
 								<Dashboard autoUpdate title="Binomial probabilities" onGenerate={( n, p, x ) => {
 									let data = [];
 									for ( let i = 0; i < n+1; i++ ) {
@@ -149,20 +153,64 @@ class BinomialProps extends Component {
 								<TeX raw={`P(X=${this.state.x})= \\Large \\tbinom{${this.state.n}}{${this.state.x}} ${this.state.p}^{${this.state.x}} ${roundn(1-this.state.p, -4 )}^{${this.state.n}-${this.state.x}} \\approx ${dbinom(this.state.x, this.state.n, this.state.p).toFixed(4)}`} displayMode />
 								</Dashboard>
 								</Col>
-								<Col lg={true} >
+								<Col md={7} >
 									<Panel header="Probability Plot">
-										<VictoryChart theme={VictoryTheme.material}>
-										<VictoryAxis dependentAxis />
-										<VictoryAxis tickFormat={(x) => roundn(x, -2)} />
-										<VictoryBar
-											data={this.state.data}
-											style={{
-												data: {
-													fill: data => ( data.x === this.state.x ) ? 'tomato' : 'steelblue'
-												}
-											}}
-										/>
-										</VictoryChart>
+										<Row>
+											<Col md={6} >
+												<VictoryChart theme={VictoryTheme.material}>
+												<VictoryAxis dependentAxis />
+												<VictoryAxis
+													label="PMF" tickFormat={(x) => roundn(x, -2)}
+													style={{ axisLabel: { padding: 40 }}}
+												/>
+												<VictoryBar
+													data={this.state.data}
+													style={{
+														data: {
+															fill: data => ( data.x === this.state.x ) ? 'tomato' : 'steelblue'
+														}
+													}}
+												/>
+												</VictoryChart>
+											</Col>
+											<Col md={6} >
+												<VictoryChart theme={VictoryTheme.material} >
+													<VictoryAxis dependentAxis />
+													<VictoryAxis
+														label="CDF" tickFormat={(x) => `${x}`} crossAxis={false}
+														style={{ axisLabel: { padding: 40 }}}
+													/>
+													<VictoryLine
+														samples={600}
+														y={( data ) => {
+															return pbinom( data.x, n, p );
+														}}
+														domain={{
+															x: [ 0, n+1 ],
+															y: [ 0, 1.1 ]
+														}}
+													/>
+													<VictoryLine
+														data={[
+															{ x: this.state.x, y: 0 },
+															{ x: this.state.x, y: pbinom( this.state.x, n, p ) }
+														]}
+														style={{
+															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+														}}
+													/>
+													<VictoryLine
+														data={[
+															{ x: 0, y: pbinom( this.state.x, n, p ) },
+															{ x: this.state.x, y: pbinom( this.state.x, n, p ) }
+														]}
+														style={{
+															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+														}}
+													/>
+												</VictoryChart>
+											</Col>
+										</Row>
 									</Panel>
 								</Col>
 							</Row>
@@ -171,7 +219,7 @@ class BinomialProps extends Component {
 					<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
 						<Container>
 							<Row>
-								<Col lg={true} >
+								<Col md={4} >
 									<Dashboard autoUpdate onGenerate={this.onGenerateSmaller}>
 										<NumberInput
 											legend="Number of trials (n)"
@@ -196,18 +244,64 @@ class BinomialProps extends Component {
 										<TeX raw={this.state.eqn1} displayMode tag="" />
 									</Dashboard>
 								</Col>
-								<Col lg={true} >
+								<Col md={8} >
 									<Panel header="Probability Plot">
-										<VictoryChart theme={VictoryTheme.material}>
-											<VictoryBar
-												data={this.state.data1}
-												style={{
-													data: {
-														fill: data => ( data.x <= this.state.x0 ) ? 'tomato' : 'steelblue'
-													}
-												}}
-											/>
-										</VictoryChart>
+										<Row>
+											<Col md={6} >
+												<VictoryChart theme={VictoryTheme.material}>
+													<VictoryAxis dependentAxis />
+													<VictoryAxis
+														label="PMF" tickFormat={(x) => `${x}`}
+														style={{ axisLabel: { padding: 40 }}}
+													/>
+													<VictoryBar
+														data={this.state.data1}
+														style={{
+															data: {
+																fill: data => ( data.x <= x0 ) ? 'tomato' : 'steelblue'
+															}
+														}}
+													/>
+												</VictoryChart>
+											</Col>
+											<Col md={6} >
+												<VictoryChart theme={VictoryTheme.material} >
+													<VictoryAxis dependentAxis />
+													<VictoryAxis
+														label="CDF" tickFormat={(x) => `${x}`}
+														style={{ axisLabel: { padding: 40 }}}
+													/>
+													<VictoryLine
+														samples={600}
+														y={( data ) => {
+															return pbinom( data.x, n1, p1 );
+														}}
+														domain={{
+															x: [ 0, n1+1 ],
+															y: [ 0, 1.1 ]
+														}}
+													/>
+													<VictoryLine
+														data={[
+															{ x: x0, y: 0 },
+															{ x: x0, y: pbinom( x0, n1, p1 ) }
+														]}
+														style={{
+															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+														}}
+													/>
+													<VictoryLine
+														data={[
+															{ x: 0, y: pbinom( x0, n1, p1 ) },
+															{ x: x0, y: pbinom( x0, n1, p1 ) }
+														]}
+														style={{
+															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+														}}
+													/>
+												</VictoryChart>
+											</Col>
+										</Row>
 									</Panel>
 								</Col>
 							</Row>
@@ -216,7 +310,7 @@ class BinomialProps extends Component {
 					<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />}>
 						<Container>
 							<Row>
-								<Col lg={true} >
+								<Col md={4} >
 									<Dashboard autoUpdate onGenerate={this.onGenerateLarger}>
 										<NumberInput
 											legend="Number of trials (n)"
@@ -241,18 +335,64 @@ class BinomialProps extends Component {
 										<TeX raw={this.state.eqn2} displayMode tag="" />
 									</Dashboard>
 								</Col>
-								<Col lg={true}>
+								<Col md={8} >
 									<Panel header="Probability Plot">
-										<VictoryChart theme={VictoryTheme.material}>
-											<VictoryBar
-												data={this.state.data2}
-												style={{
-													data: {
-														fill: data => ( data.x > this.state.x0 ) ? 'tomato' : 'steelblue'
-													}
-												}}
-											/>
-										</VictoryChart>
+										<Row>
+											<Col md={6} >
+												<VictoryChart theme={VictoryTheme.material}>
+													<VictoryAxis dependentAxis />
+													<VictoryAxis
+														label="PMF" tickFormat={(x) => `${x}`}
+														style={{ axisLabel: { padding: 40 }}}
+													/>
+													<VictoryBar
+														data={this.state.data2}
+														style={{
+															data: {
+																fill: data => ( data.x > this.state.x0 ) ? 'tomato' : 'steelblue'
+															}
+														}}
+													/>
+												</VictoryChart>
+											</Col>
+											<Col md={6} >
+												<VictoryChart theme={VictoryTheme.material} >
+													<VictoryAxis dependentAxis />
+													<VictoryAxis
+														label="CDF" tickFormat={(x) => `${x}`}
+														style={{ axisLabel: { padding: 40 }}}
+													/>
+													<VictoryLine
+														samples={600}
+														y={( data ) => {
+															return pbinom( data.x, n2, p2 );
+														}}
+														domain={{
+															x: [ 0, n2+1 ],
+															y: [ 0, 1.1 ]
+														}}
+													/>
+													<VictoryLine
+														data={[
+															{ x: x0, y: 0 },
+															{ x: x0, y: pbinom( x0, n2, p2 ) }
+														]}
+														style={{
+															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+														}}
+													/>
+													<VictoryLine
+														data={[
+															{ x: 0, y: pbinom( x0, n2, p2 ) },
+															{ x: x0, y: pbinom( x0, n2, p2 ) }
+														]}
+														style={{
+															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+														}}
+													/>
+												</VictoryChart>
+											</Col>
+										</Row>
 									</Panel>
 								</Col>
 							</Row>
@@ -261,7 +401,7 @@ class BinomialProps extends Component {
 					<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1)" />}>
 						<Container>
 							<Row>
-								<Col lg={true} >
+								<Col md={4} >
 									<Dashboard autoUpdate onGenerate={this.onGenerateRange}>
 										<NumberInput
 											legend="Number of trials (n)"
@@ -293,18 +433,46 @@ class BinomialProps extends Component {
 										<TeX raw={this.state.eqn3} displayMode tag="" />
 									</Dashboard>
 								</Col>
-								<Col lg={true} >
+								<Col md={8} >
 									<Panel header="Probability Plot">
-										<VictoryChart theme={VictoryTheme.material}>
-											<VictoryBar
-												data={this.state.data3}
-												style={{
-													data: {
-														fill: data => ( this.state.x0 <= data.x && data.x <= this.state.x1 ) ? 'tomato' : 'steelblue'
-													}
-												}}
-											/>
-										</VictoryChart>
+										<Row>
+											<Col md={6} >
+												<VictoryChart theme={VictoryTheme.material}>
+													<VictoryAxis dependentAxis />
+													<VictoryAxis
+														label="PMF" tickFormat={(x) => `${x}`}
+														style={{ axisLabel: { padding: 40 }}}
+													/>
+													<VictoryBar
+														data={this.state.data3}
+														style={{
+															data: {
+																fill: data => ( this.state.x0 <= data.x && data.x <= this.state.x1 ) ? 'tomato' : 'steelblue'
+															}
+														}}
+													/>
+												</VictoryChart>
+											</Col>
+											<Col md={6} >
+												<VictoryChart theme={VictoryTheme.material} >
+													<VictoryAxis dependentAxis />
+													<VictoryAxis
+														label="CDF" tickFormat={(x) => `${x}`}
+														style={{ axisLabel: { padding: 40 }}}
+													/>
+													<VictoryLine
+														samples={600}
+														y={( data ) => {
+															return pbinom( data.x, n3, p3 );
+														}}
+														domain={{
+															x: [ 0, n3+1 ],
+															y: [ 0, 1.1 ]
+														}}
+													/>
+												</VictoryChart>
+											</Col>
+										</Row>
 									</Panel>
 								</Col>
 							</Row>
