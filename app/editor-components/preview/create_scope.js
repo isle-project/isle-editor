@@ -66,6 +66,7 @@ const SCOPE = {
 	LearnDiceThrowing: Loadable( () => import( 'components/learn/dice-throwing' ) ),
 	LearnBinomialDistribution: Loadable( () => import( 'components/learn/distribution-binomial' ) ),
 	LearnExponentialDistribution: Loadable( () => import( 'components/learn/distribution-exponential' ) ),
+	LearnNegativeBinomialDistribution: Loadable( () => import( 'components/learn/distribution-negative-binomial' ) ),
 	LearnNormalDistribution: Loadable( () => import( 'components/learn/distribution-normal' ) ),
 	LearnTDistribution: Loadable( () => import( 'components/learn/distribution-t' ) ),
 	LearnUniformDistribution: Loadable( () => import( 'components/learn/distribution-uniform' ) ),

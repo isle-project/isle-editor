@@ -20,6 +20,7 @@
 	"LearnContinuousDistribution": "components/learn/continuous-distribution",
 	"LearnDiscreteDistribution": "components/learn/discrete-distribution",
 	"LearnExponentialDistribution": "components/learn/distribution-exponential",
+	"LearnNegativeBinomialDistribution": "components/learn/distribution-negative-binomial",
 	"LearnNormalDistribution": "components/learn/distribution-normal",
 	"LearnTDistribution": "components/learn/distribution-t",
 	"LearnUniformDistribution": "components/learn/distribution-uniform",
