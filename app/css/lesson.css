@@ -216,6 +216,7 @@ mark {
 }
 
 .nav-tabs .nav-item {
+	font-family: Open Sans Condensed;
 	margin-bottom: 8px;
 }
 
@@ -474,9 +475,20 @@ mark {
 	padding: 5px;
 }
 
+.Lesson .nav-link,
+.Presentation .nav-link,
+.Lesson .dropdown-item,
+.Presentation .dropdown-item {
+	color: #2e4468;
+}
+
 .Lesson a,
 .Presentation a {
-	color: #2e4468;
+	color: #007bff;
+}
+
+.nav-pills .nav-link.active {
+	background-color: var(--tertiarylight);
 }
 
 .nav-tabs > li.active > a,
