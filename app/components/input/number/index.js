@@ -251,7 +251,7 @@ class NumberInput extends Input {
 		}}>
 			{ this.props.legend ?
 				<span>
-					<label style={{ padding: '3px' }}>
+					<label style={{ padding: '3px', minWidth: 200 }}>
 						{isString( this.props.legend ) ?
 							this.props.legend+':' :
 							this.props.legend
