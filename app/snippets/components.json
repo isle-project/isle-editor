@@ -372,6 +372,10 @@
 		"value": "<LearnBinomialDistribution />\n"
 	},
 	{
+		"name": "LearnContinuousDistribution",
+		"value": "<LearnContinuousDistribution />\n"
+	},
+	{
 		"name": "LearnDiscreteDistribution",
 		"value": "<LearnDiscreteDistribution />\n"
 	},
@@ -380,8 +384,20 @@
 		"value": "<LearnExponentialDistribution />\n"
 	},
 	{
+		"name": "LearnGeometricDistribution",
+		"value": "<LearnGeometricDistribution />\n"
+	},
+	{
+		"name": "LearnNegativeBinomialDistribution",
+		"value": "<LearnNegativeBinomialDistribution />\n"
+	},
+	{
 		"name": "LearnNormalDistribution",
 		"value": "<LearnNormalDistribution />\n"
+	},
+	{
+		"name": "LearnPoissonDistribution",
+		"value": "<LearnPoissonDistribution />\n"
 	},
 	{
 		"name": "LearnTDistribution",
