@@ -8,6 +8,7 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import logger from 'debug';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isArray from '@stdlib/assert/is-array';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isObject from '@stdlib/assert/is-object';
 import Input from 'components/input/base';
 import './select.css';
@@ -175,9 +176,15 @@ class SelectInput extends Input {
 		let style;
 		let value;
 		if ( this.props.value !== void 0 ) {
-			value = ( this.props.value || [] ).map( e => {
-				return { 'label': e, 'value': e };
-			});
+			if ( isArray( this.props.value ) ) {
+				value = ( this.props.value ).map( e => {
+					return { 'label': e, 'value': e };
+				});
+			} else if ( isString( this.props.value ) ) {
+				value = { 'label': this.props.value, 'value': this.props.value };
+			} else {
+				value = [];
+			}
 		}
 		else {
 			value = this.state.value;
