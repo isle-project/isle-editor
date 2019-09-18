@@ -20,7 +20,8 @@ class LessonContextMenu extends Component {
 
 		this.state = {
 			lastRange: null,
-			lastText: ''
+			lastText: '',
+			contextMenuIsOpen: false
 		};
 	}
 
@@ -35,6 +36,9 @@ class LessonContextMenu extends Component {
 	}
 
 	handleSelectionChange = ( event ) => {
+		if ( this.state.contextMenuIsOpen ) {
+			return;
+		}
 		const selection = window.getSelection();
 		if ( !selection.isCollapsed || selection.type === 'Range' ) {
 			this.lastSelection = selection;
@@ -121,7 +125,17 @@ class LessonContextMenu extends Component {
 				Add Note
 			</MenuItem>
 		);
-		return ( <ContextMenu id="lessonWindow" >
+		return ( <ContextMenu
+			id="lessonWindow"
+			onShow={() => {
+				debug( 'Context menu has been opened...' );
+				this.setState({ contextMenuIsOpen: true });
+			}}
+			onHide={() => {
+				debug( 'Context menu has been closed...' );
+				this.setState({ contextMenuIsOpen: false });
+			}}
+		>
 			{menuItems}
 		</ContextMenu> );
 	}
