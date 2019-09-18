@@ -74,7 +74,7 @@ function SpellChecker( options ) {
 	}
 
 	// Define the new mode
-	options.codeMirrorInstance.defineMode( 'spell-checker', function onConfig(config) {
+	options.codeMirrorInstance.defineMode( 'spell-checker', function onConfig( config ) {
 		// Load AFF/DIC data
 		if ( !SpellChecker.affLoading ) {
 			SpellChecker.affLoading = true;
@@ -92,7 +92,7 @@ function SpellChecker( options ) {
 					}
 				}
 			};
-			xhrAFF.send(null);
+			xhrAFF.send( null );
 		}
 
 		if ( !SpellChecker.dicLoading ) {
@@ -139,6 +139,7 @@ function SpellChecker( options ) {
 				}
 				// Assume that unknown capitalized words inside a sentence refer to proper nouns...
 				if (
+					language === 'en-US' &&
 					isCapitalized( word ) &&
 					SpellChecker.typo &&
 					SpellChecker.typo.suggest( word ).length === 0
