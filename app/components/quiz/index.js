@@ -23,6 +23,7 @@ import SelectQuestion from 'components/select-question';
 import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
 import convertJSONtoJSX from 'utils/json-to-jsx';
+import generateUID from 'utils/uid';
 import { QUESTION_CONFIDENCE } from 'constants/actions.js';
 import FinishModal from './finish_modal.js';
 import './quiz.css';
@@ -31,6 +32,7 @@ import './quiz.css';
 // VARIABLES //
 
 const debug = logger( 'isle:quiz' );
+const uid = generateUID( 'quiz' );
 
 
 // FUNCTIONS //
@@ -64,34 +66,71 @@ function isHTMLConfig( elem ) {
 */
 class Quiz extends Component {
 	constructor( props ) {
+		debug( 'Instantiating quiz component...' );
 		super( props );
 
-		const indices = incrspace( 0, props.questions.length, 1 );
-		this.sample = sample.factory( indices, {
-			size: 1,
-			mutate: true,
-			replace: false
-		});
+		const questions = props.questions;
+		if ( !props.questions ) {
+			questions = [];
+		}
+		let current = null;
+		if ( questions.length > 0 ) {
+			const indices = incrspace( 0, questions.length, 1 );
+			this.sample = sample.factory( indices, {
+				size: 1,
+				mutate: true,
+				replace: false
+			});
+			current = this.sample()[ 0 ];
+		}
 		this.state = {
-			answers: new Array( props.questions.length ),
+			answers: new Array( questions.length ),
 			answered: false,
-			confidences: new Array( props.questions.length ),
-			current: this.sample()[ 0 ],
-			count: props.count || props.questions.length,
+			confidences: new Array( questions.length ),
+			current,
+			count: props.count || questions.length,
 			counter: 0,
 			finished: false,
 			answerSelected: false,
 			last: false,
 			selectedConfidence: null,
 			showInstructorView: false,
-			showFinishModal: false
+			showFinishModal: false,
+			id: props.id || uid( props ),
+			questions: [],
+			questionIDs: []
 		};
 	}
 
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if (
+			nextProps.questions &&
+			nextProps.questions.length !== prevState.questions.length
+		) {
+			const len = nextProps.questions.length;
+			const questionIDs = new Array( len );
+			for ( let i = 0; i < len; i++ ) {
+				const question = nextProps.questions[ i ];
+				if ( question.props && question.props.id ) {
+					questionIDs[ i ] = question.props.id;
+				} else {
+					questionIDs[ i ] = `${prevState.id}-${i}`;
+				}
+			}
+			const newState = {
+				questions: nextProps.questions,
+				questionIDs
+			};
+			return newState;
+		}
+		return null;
+	}
+
 	componentDidUpdate( prevProps ) {
+		debug( 'Component did update...' );
 		if (
 			this.props.count !== prevProps.count ||
-			this.props.questions.length !== prevProps.questions.length
+			( this.props.questions && this.props.questions.length !== prevProps.questions.length )
 		) {
 			debug( 'Resetting component...' );
 			const indices = incrspace( 0, this.props.questions.length, 1 );
@@ -126,7 +165,7 @@ class Quiz extends Component {
 			elems[ i ].click();
 		}
 		debug( 'Display next question...' );
-		const elem = this.props.questions[ this.state.current ];
+		const elem = this.state.questions[ this.state.current ];
 
 		// Save chosen confidence level:
 		if ( elem.props && elem.props.id && this.state.selectedConfidence ) {
@@ -166,7 +205,7 @@ class Quiz extends Component {
 	}
 
 	handleSubmission = ( val ) => {
-		const elem = this.props.questions[ this.state.current ];
+		const elem = this.state.questions[ this.state.current ];
 		const answers = this.state.answers.slice();
 
 		let answer;
@@ -194,13 +233,19 @@ class Quiz extends Component {
 				elem.type === MatchListQuestion ||
 				( elem.type && elem.type.name === 'MatchListQuestion' )
 			) {
+				debug( 'Create answer and solution string for <MatchListQuestion />' );
 				answer = '';
 				solution = '';
 				for ( let i = 0; i < elem.props.elements.length; i++ ) {
 					const e = elem.props.elements[ i ];
-					const userElem = val[ i ];
+					for ( let j = 0; j < val.length; j++ ) {
+						const userElem = val[ j ];
+						if ( userElem.a === e.a ) {
+							answer += `${userElem.a}:${userElem.b}; `;
+							break;
+						}
+					}
 					solution += `${e.a}:${e.b}; `;
-					answer += `${userElem.a}:${userElem.b}; `;
 				}
 			}
 			else if (
@@ -241,7 +286,7 @@ class Quiz extends Component {
 	renderScoreboard() {
 		debug( 'Rendering scoreboard...' );
 		const answers = this.state.answers.slice();
-		for ( let i = 0; i < this.state.answers.length; i++ ) {
+		for ( let i = 0; i < answers.length; i++ ) {
 			if ( answers[ i ] ) {
 				answers[ i ].confidence = this.state.confidences[ i ];
 			}
@@ -293,7 +338,10 @@ class Quiz extends Component {
 		</div> );
 	}
 
-	renderQuestion( config ) {
+	renderQuestion( config, id ) {
+		if ( !config ) {
+			return null;
+		}
 		const props = config.props || {};
 		if ( isHTMLConfig( props.question ) ) {
 			debug( 'Question property is an object, convert to JSX...' );
@@ -304,22 +352,22 @@ class Quiz extends Component {
 			case 'div':
 				return convertJSONtoJSX( config );
 			case 'FreeTextQuestion':
-				return <FreeTextQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
+				return <FreeTextQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} id={id} />;
 			case 'MultipleChoiceQuestion':
-				return <MultipleChoiceQuestion disableSubmitNotification feedback={false} provideFeedback="none" {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
+				return <MultipleChoiceQuestion disableSubmitNotification feedback={false} provideFeedback="none" {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} id={id} />;
 			case 'MatchListQuestion':
-				return <MatchListQuestion disableSubmitNotification feedback={false} showSolution={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
+				return <MatchListQuestion disableSubmitNotification feedback={false} showSolution={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} id={id} />;
 			case 'NumberQuestion':
-				return <NumberQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
+				return <NumberQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} id={id} />;
 			case 'OrderQuestion':
-				return <OrderQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
+				return <OrderQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} id={id} />;
 			case 'RangeQuestion':
-				return <RangeQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
+				return <RangeQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} id={id} />;
 			case 'SelectQuestion':
-				return <SelectQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
+				return <SelectQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} id={id} />;
 			default:
 				// Case: `config` already is a React component, clone it to pass in submit handler:
-				return <config.type {...config.props} {...props} disableSubmitNotification provideFeedback={false} onChange={this.markSelected} onSubmit={this.handleSubmission} />;
+				return <config.type {...config.props} {...props} disableSubmitNotification feedback={false} provideFeedback={false} onChange={this.markSelected} onSubmit={this.handleSubmission} id={id} />;
 		}
 	}
 
@@ -380,17 +428,24 @@ class Quiz extends Component {
 		);
 	}
 
-	renderFooterNodes( elem ) {
-		const id = elem.props.id;
+	renderFooterNodes( elem, idx ) {
+		let id;
+		if ( elem.props ) {
+			id = elem.props.id;
+		}
+		if ( !id ) {
+			id = `${this.id}-${idx}`;
+		}
 		return React.Children.map( this.props.footerNodes, ( child, idx ) => {
 			return React.cloneElement( child, {
-				id: `${child.props.id}-${id}`,
+				id: `${child.props.id}-footer-${id}`,
 				key: `${this.state.current}-${idx}`
 			});
 		});
 	}
 
 	render() {
+		debug( 'Rendering component...' );
 		let showButton;
 		if ( this.state.finished ) {
 			showButton = false;
@@ -412,11 +467,12 @@ class Quiz extends Component {
 					</span>
 				</Card.Header>
 				<Card.Body>
-					{this.props.questions.map( ( elem, idx ) => {
+					{this.state.questions.map( ( elem, idx ) => {
+						const id = this.state.questionIDs[ idx ];
 						return ( <div key={idx}>
 							<h3>Question {idx+1}:</h3>
-							{this.renderQuestion( elem )}
-							{this.renderFooterNodes( elem )}
+							{this.renderQuestion( elem, id )}
+							{this.renderFooterNodes( elem, idx )}
 						</div> );
 					})}
 				</Card.Body>
@@ -429,13 +485,14 @@ class Quiz extends Component {
 				</Button>
 			</Card> );
 		}
-		const currentConfig = this.props.questions[ this.state.current ];
+		const currentConfig = this.state.questions[ this.state.current ];
+		const currentID = this.state.questionIDs[ this.state.current ];
 		return (
 			<Fragment>
 				{this.props.duration ?
 					<Timer
 						invisible
-						id={this.props.id}
+						id={this.id}
 						active={this.props.active}
 						duration={this.props.duration}
 						onTimeUp={() => {
@@ -462,10 +519,10 @@ class Quiz extends Component {
 						}} >
 							{ this.state.finished ?
 								this.renderScoreboard() :
-								<span key={this.state.current}>{this.renderQuestion( currentConfig )}</span>
+								<span key={this.state.current}>{this.renderQuestion( currentConfig, currentID )}</span>
 							}
 							{ !this.state.finished ? this.renderConfidenceSurvey() : null }
-							{this.renderFooterNodes( currentConfig )}
+							{currentConfig ? this.renderFooterNodes( currentConfig ) : null}
 							<ButtonGroup style={{ float: 'right' }}>
 								<Gate owner>
 										<Button
