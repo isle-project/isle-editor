@@ -55,10 +55,10 @@ class LessonContextMenu extends Component {
 
 	highlightText = ( event ) => {
 		debug( 'Highlight the selected text...' );
+		document.designMode = 'on';
 		const sel = window.getSelection();
 		sel.removeAllRanges();
 		sel.addRange( this.state.lastRange );
-		document.designMode = 'on';
 		document.execCommand( 'styleWithCSS', false, true );
 		document.execCommand( 'backColor', false, 'yellow' );
 		document.designMode = 'off';
@@ -88,7 +88,7 @@ class LessonContextMenu extends Component {
 			return session.addNotification({
 				title: 'Not supported.',
 				message: 'The text-to-speech functionality is currently not supported on your browser. Please try Google Chrome.',
-				level: 'danger',
+				level: 'error',
 				position: 'tr'
 			});
 		}
