@@ -121,7 +121,7 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 
 			.img-tooltip {
 				top: 0%;
-				right: -10%;
+				right: 0%;
 				background-color: lightgray;
 				color: black;
 				border-radius: 5px;
