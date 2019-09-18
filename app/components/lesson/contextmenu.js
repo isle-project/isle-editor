@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ContextMenu, MenuItem } from 'react-contextmenu';
 import logger from 'debug';
+import isEmptyArray from '@stdlib/assert/is-empty-array';
 
 
 // VARIABLES //
@@ -82,8 +83,16 @@ class LessonContextMenu extends Component {
 	textToSpeech = () => {
 		const str = this.state.lastText;
 		debug( 'Read aloud: '+str );
-		const ssu = new SpeechSynthesisUtterance( str );
 		const session = this.props.session;
+		if ( isEmptyArray( window.speechSynthesis.getVoices() ) ) {
+			return session.addNotification({
+				title: 'Not supported.',
+				message: 'The text-to-speech functionality is currently not supported on your browser. Please try Google Chrome.',
+				level: 'danger',
+				position: 'tr'
+			});
+		}
+		const ssu = new SpeechSynthesisUtterance( str );
 		ssu.lang = session.config.language || 'en-US';
 		window.speechSynthesis.speak( ssu );
 	}
