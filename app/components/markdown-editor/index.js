@@ -472,7 +472,7 @@ class MarkdownEditor extends Component {
 	addPeerReportNotification = ( report ) => {
 		const session = this.context;
 		this.peerReportNotification = session.addNotification({
-			title: 'Report received',
+			title: 'Peer report ready for review',
 			message: 'You have been sent a report for peer review! Please confirm to load it into the Markdown editor',
 			level: 'success',
 			position: 'tr',
@@ -499,7 +499,7 @@ class MarkdownEditor extends Component {
 	addPeerComments = ( comments ) => {
 		const session = this.context;
 		this.peerCommentsNotification = session.addNotification({
-			title: 'Comments received',
+			title: 'Peer review comments received',
 			message: 'You have received comments from your peer reviewer! Please confirm to load it into the Markdown editor',
 			level: 'success',
 			position: 'tr',
