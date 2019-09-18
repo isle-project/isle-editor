@@ -11,15 +11,17 @@ import './draggable.css';
 /* Inspired by snippet shared by Jeremy Crane at: https://github.com/mzabriskie/react-draggable/issues/402 */
 function onDraggableStop( event ) {
 	const prevWindow = document.getElementsByClassName( 'react-draggable-last' );
-	const newWindow = event.path[ 3 ];
-	setTimeout( () => {
-		if ( prevWindow ) {
-			for ( let i = 0; i < prevWindow.length; i++) {
-				prevWindow[ i ].classList.remove( 'react-draggable-last' );
+	if ( event.path ) {
+		const newWindow = event.path[ 3 ];
+		setTimeout( () => {
+			if ( prevWindow ) {
+				for ( let i = 0; i < prevWindow.length; i++) {
+					prevWindow[ i ].classList.remove( 'react-draggable-last' );
+				}
 			}
-		}
-		newWindow.classList.add( 'react-draggable-last' );
-	}, 0 );
+			newWindow.classList.add( 'react-draggable-last' );
+		}, 0 );
+	}
 }
 
 
