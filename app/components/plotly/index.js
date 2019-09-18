@@ -9,7 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import Plotly from 'plotly.js';
 const Plot = createPlotlyComponent( Plotly );
-import jsonMarkup from 'json-markup';
+import yaml from 'js-yaml';
 import randomstring from 'utils/randomstring/alphanumeric';
 import isUndefined from '@stdlib/assert/is-undefined';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
@@ -181,7 +181,7 @@ class Wrapper extends Component {
 		const opts = { format: 'png', height: 400, width: 600 };
 		Plotly.toImage( this.figure, opts )
 			.then( ( data ) => {
-				const value = !this.props.meta ? `<img src="${data}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%" />` : `<div class="img-container"><img src="${data}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%"></img><div class="img-tooltip">${jsonMarkup(this.props.meta)}</div></div>`;
+				const value = !this.props.meta ? `<img src="${data}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%" />` : `<div class="img-container"><img src="${data}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%"></img><pre class="img-tooltip">${yaml.safeDump(this.props.meta)}</pre></div>`;
 				this.plotData = {
 					key: `<!--IMAGE_LOG:${this.props.id}_${randomstring( 6 )}-->`,
 					value

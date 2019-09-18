@@ -128,6 +128,7 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 				opacity: 0;
 				padding: 15px;
 				position: absolute;
+				font-size: 22px;
 				-webkit-transition: opacity 0.5s;
 				-moz-transition: opacity 0.5s;
 				-ms-transition: opacity 0.5s;
@@ -141,31 +142,6 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 
 			.img-container:hover .img-tooltip {
 				opacity: 1;
-			}
-
-			.json-markup {
-				font-size: 20px;
-				white-space: pre;
-			}
-
-			.json-markup-key {
-				font-weight: bold;
-			}
-
-			.json-markup-bool {
-				color: lightcoral;
-			}
-
-			.json-markup-string {
-				color: darkgreen;
-			}
-
-			.json-markup-null {
-				color: gray;
-			}
-
-			.json-markup-number {
-				color: steelblue;
 			}
 		</style>
 		<script src="https://use.fontawesome.com/1ef7eff9d5.js"></script>
