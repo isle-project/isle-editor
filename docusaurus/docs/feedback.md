@@ -19,7 +19,7 @@ Buttons to collect user feedback.
 ## Options
 
 * __id__ | `string (required)`: undefined. Default: `none`.
-* __confusedMsg__ | `string`: message to be displayed in tooltip for confused button. Default: `'I am confused.'`.
+* __confusedMsg__ | `string`: message to be displayed in tooltip for confused button. Default: `'This is not clear to me.'`.
 * __feedbackMsg__ | `string`: message to be displayed in tooltip for detailed feedback button. Default: `'I have feedback.'`.
 * __understoodMsg__ | `string`: message to be displayed in tooltip for understood button. Default: `'Makes sense.'`.
 * __customFeedback__ | `boolean`: undefined. Default: `true`.

@@ -27,7 +27,7 @@ removeStatusBar: true
 
 * __autoSave__ | `boolean`: controls whether the editor should save the current text to the local storage of the browser at a given time interval. Default: `true`.
 * __feedbackButtons__ | `boolean`: controls whether to display feedback buttons on each slide. Default: `false`.
-* __intervalTime__ | `number`: time between auto saves. Default: `30000`.
+* __intervalTime__ | `number`: time between auto saves. Default: `10000`.
 * __hideInputButtons__ | `boolean`: controls whether to hide drawing and text input buttons. Default: `false`.
 * __hideNavigationButtons__ | `boolean`: controls whether to hide buttons for navigating between pages. Default: `false`.
 * __hideRecordingButtons__ | `boolean`: controls whether to hide the recording buttons. Default: `false`.

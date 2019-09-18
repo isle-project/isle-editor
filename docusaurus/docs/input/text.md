@@ -23,7 +23,8 @@ A text input component. Can be used as part of an ISLE dashboard or standalone. 
 * __defaultValue__ | `string`: A value indicating the default value of the input at start. Default: `''`.
 * __legend__ | `(string|node)`: A string indicating the text displayed next to the number input. Default: `''`.
 * __inline__ | `boolean`: Indicates whether the input is displayed inline. Default: `false`.
-* __onChange__ | `function`: A function to be called when a text value is changed. Default: `onChange(){}`.
+* __onBlur__ | `function`: callback function invoked when the text area loses focus. Default: `onBlur() {}`.
+* __onChange__ | `function`: A function to be called when a text value is changed. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: callback function to be invoked when any key is pressed down. Default: `onKeyDown() {}`.
 * __onKeyPress__ | `function`: callback function to be invoked when any key is entered. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: callback function to be invoked when key is released. Default: `onKeyUp() {}`.

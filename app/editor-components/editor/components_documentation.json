@@ -559,7 +559,10 @@
         "type": "array",
         "description": "array of strings indicating models that may be fit on the data",
         "default": [
-          "Simple Linear Regression"
+          "Simple Linear Regression",
+          "Multiple Linear Regression",
+          "PCA",
+          "kmeans"
         ]
       },
       {
@@ -877,7 +880,7 @@
         "name": "confusedMsg",
         "type": "string",
         "description": "message to be displayed in tooltip for confused button",
-        "default": "I am confused."
+        "default": "This is not clear to me."
       },
       {
         "name": "feedbackMsg",
@@ -1144,15 +1147,15 @@
   "Gate": {
     "props": [
       {
-        "name": "anonymous",
-        "type": "boolean",
-        "description": "when set the gated content is displayed to anybody",
-        "default": false
-      },
-      {
         "name": "user",
         "type": "boolean",
         "description": "when set the gated content is displayed to subscribed users",
+        "default": false
+      },
+      {
+        "name": "notUser",
+        "type": "boolean",
+        "description": "when set the gated content is **not** displayed to subscribed users",
         "default": false
       },
       {
@@ -1162,9 +1165,21 @@
         "default": false
       },
       {
+        "name": "notEnrolled",
+        "type": "boolean",
+        "description": "when set the gated content is **not** displayed to the students enrolled in the course",
+        "default": false
+      },
+      {
         "name": "owner",
         "type": "boolean",
         "description": "when set the gated content is displayed to the owner of the course (usually the instructor)",
+        "default": false
+      },
+      {
+        "name": "notOwner",
+        "type": "boolean",
+        "description": "when set the gated content is **not** displayed to the owner of the course (usually the instructor)",
         "default": false
       },
       {
@@ -1178,6 +1193,12 @@
         "type": "boolean",
         "description": "if a gate is disabled, the banner will be displayed no matter what",
         "default": false
+      },
+      {
+        "name": "check",
+        "type": "function",
+        "description": "callback function returning a `boolean` indicating whether gate should display child components; the function is invoked whenever session actions arrive",
+        "default": null
       }
     ],
     "description": "An ISLE component that allows to display its children only to reserved audiences."
@@ -1317,7 +1338,7 @@
         "name": "legend",
         "type": "(string|node)",
         "description": "string indicating the text displayed next to the number input",
-        "default": ""
+        "default": null
       },
       {
         "name": "max",
@@ -1395,7 +1416,7 @@
         "name": "tooltipPlacement",
         "type": "string",
         "description": "direction of the tooltip",
-        "default": "left"
+        "default": "right"
       }
     ],
     "description": "A number input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute."
@@ -1691,10 +1712,16 @@
         "default": false
       },
       {
+        "name": "onBlur",
+        "type": "function",
+        "description": "callback function invoked when the text area loses focus",
+        "default": "onBlur() {}"
+      },
+      {
         "name": "onChange",
         "type": "function",
         "description": "A function to be called when a text value is changed",
-        "default": "onChange(){}"
+        "default": "onChange() {}"
       },
       {
         "name": "onKeyDown",
@@ -2087,6 +2114,10 @@
     ],
     "description": "A learning component illustrating coverage of confidence intervals for the mean of a normal distribution."
   },
+  "LearnContinuousDistribution": {
+    "props": [],
+    "description": "Description is missing."
+  },
   "LearnCrossValidation": {
     "props": [],
     "description": "A visualization explaining cross-validation."
@@ -2094,6 +2125,17 @@
   "LearnDiceThrowing": {
     "props": [],
     "description": "A learning component illustrating the law of large numbers using dice throwing."
+  },
+  "LearnDiscreteDistribution": {
+    "props": [
+      {
+        "name": "numValues",
+        "type": "number",
+        "description": "initial number of distinct values",
+        "default": 4
+      }
+    ],
+    "description": "A learning component for visualizing any discrete distribution and evaluating its CDF."
   },
   "LearnBinomialDistribution": {
     "props": [
@@ -2128,6 +2170,46 @@
       }
     ],
     "description": "A learning component for calculating probabilities of a exponential distribution."
+  },
+  "LearnGeometricDistribution": {
+    "props": [
+      {
+        "name": "countTrials",
+        "type": "boolean",
+        "description": "set to true if instead of counting the number of failures until the first success, a random variable from a geometric distribution should be defined as the number of trials until the first success",
+        "default": false
+      },
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a geometric distribution."
+  },
+  "LearnNegativeBinomialDistribution": {
+    "props": [
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a negative binomial distribution."
   },
   "LearnNormalDistribution": {
     "props": [
@@ -2167,6 +2249,23 @@
       }
     ],
     "description": "A learning component for calculating probabilities of a normal distribution."
+  },
+  "LearnPoissonDistribution": {
+    "props": [
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.1
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a Poisson distribution."
   },
   "LearnTDistribution": {
     "props": [
@@ -2619,7 +2718,7 @@
         "default": []
       },
       {
-        "name": "showSolution",
+        "name": "provideFeedback",
         "type": "boolean",
         "description": "indicates whether the solution should be accessible after learners submit their answers",
         "default": true
@@ -4596,7 +4695,7 @@
         "name": "intervalTime",
         "type": "number",
         "description": "time between auto saves",
-        "default": 30000
+        "default": 10000
       },
       {
         "name": "hideInputButtons",
@@ -5374,6 +5473,12 @@
         "type": "string",
         "description": "popover position for the specified `elems`",
         "default": "top"
+      },
+      {
+        "name": "onPopover",
+        "type": "function",
+        "description": "callback `function` when a control popover is toggled on or off; receives the display status as a boolean as its sole argument",
+        "default": "onPopover() {}"
       },
       {
         "name": "onClick",

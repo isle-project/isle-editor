@@ -61,7 +61,10 @@ We will include the explorer with the following code:
 * __dataTable__ | `boolean`: boolean value indicating whether to hide the data table from view. Default: `true`.
 * __histogramDensities__ | `boolean`: boolean value indicating whether to display histogram densities. Default: `true`.
 * __models__ | `array`: array of strings indicating models that may be fit on the data. Default: `[
-  'Simple Linear Regression'
+  'Simple Linear Regression',
+  'Multiple Linear Regression',
+  'PCA',
+  'kmeans'
 ]`.
 * __opened__ | `string`: page opened at startup. Default: `none`.
 * __plots__ | `array`: array of strings indicating which plots to show to the user. Default: `[

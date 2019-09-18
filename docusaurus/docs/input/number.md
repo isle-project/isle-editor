@@ -24,7 +24,7 @@ A number input component. Can be used as part of an ISLE dashboard or standalone
 * __defaultValue__ | `number`: value indicating the default value of the input at startup. Default: `0`.
 * __disabled__ | `boolean`: boolean indicating whether the input is active or not. Default: `false`.
 * __inline__ | `boolean`: indicates whether the input is displayed inline. Default: `false`.
-* __legend__ | `(string|node)`: string indicating the text displayed next to the number input. Default: `''`.
+* __legend__ | `(string|node)`: string indicating the text displayed next to the number input. Default: `none`.
 * __max__ | `number`: number indicating the maximum value that may be inserted. Default: `null`.
 * __min__ | `number`: number indicating the smallest possible value that may be inserted. Default: `null`.
 * __numbersOnly__ | `boolean`: controls whether only numbers are accepted. Default: `true`.
@@ -37,4 +37,4 @@ A number input component. Can be used as part of an ISLE dashboard or standalone
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __value__ | `number`: number value (for controlled component). Default: `none`.
 * __width__ | `number`: number indicating the width of the input bar in pixels. Default: `80`.
-* __tooltipPlacement__ | `string`: direction of the tooltip. Default: `'left'`.
+* __tooltipPlacement__ | `string`: direction of the tooltip. Default: `'right'`.
