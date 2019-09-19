@@ -604,7 +604,9 @@ class DataExplorer extends Component {
 	}
 
 	on2dSelection = ( names, selected ) => {
-		const newFilters = [];
+		const newFilters = this.state.filters.filter(
+			x => x.id !== names.x && x.id !== names.y
+		);
 		newFilters.push({
 			id: names.x,
 			value: {
@@ -617,6 +619,35 @@ class DataExplorer extends Component {
 			value: {
 				min: selected.range.y[ 0 ],
 				max: selected.range.y[ 1 ]
+			}
+		});
+		this.setState({
+			filters: newFilters
+		});
+	}
+
+	onBarchartSelection = ( name, selected ) => {
+		const newFilters = this.state.filters.filter(
+			x => x.id !== name
+		);
+		newFilters.push({
+			id: name,
+			value: selected.range.x
+		});
+		this.setState({
+			filters: newFilters
+		});
+	}
+
+	onHistogramSelection = ( name, selected ) => {
+		const newFilters = this.state.filters.filter(
+			x => x.id !== name
+		);
+		newFilters.push({
+			id: name,
+			value: {
+				min: selected.range.x[ 0 ],
+				max: selected.range.x[ 1 ]
 			}
 		});
 		this.setState({
@@ -789,16 +820,7 @@ class DataExplorer extends Component {
 						{...categoricalProps}
 						logAction={this.logAction}
 						session={this.context}
-						onSelected={( name, selected ) => {
-							const newFilters = [];
-							newFilters.push({
-								id: name,
-								value: selected.range.x
-							});
-							this.setState({
-								filters: newFilters
-							});
-						}}
+						onSelected={this.onBarchartSelection}
 					/>;
 					break;
 				case 'Box Plot':
@@ -830,19 +852,7 @@ class DataExplorer extends Component {
 						logAction={this.logAction}
 						session={this.context}
 						showDensityOption={this.props.histogramDensities}
-						onSelected={( name, selected ) => {
-							const newFilters = [];
-							newFilters.push({
-								id: name,
-								value: {
-									min: selected.range.x[ 0 ],
-									max: selected.range.x[ 1 ]
-								}
-							});
-							this.setState({
-								filters: newFilters
-							});
-						}}
+						onSelected={this.onHistogramSelection}
 					/>;
 					break;
 				case 'Mosaic Plot':
