@@ -27,7 +27,7 @@ const summaryTable = ( variables, centroids ) => {
 			<thead>
 				<tr>
 					<th>Cluster</th>
-					{centroids.map( ( _, i ) => <th key={i} >{i}</th>)}
+					{centroids.map( ( _, i ) => <th key={i} >{i+1}</th>)}
 				</tr>
 			</thead>
 			<tbody>
@@ -75,7 +75,7 @@ class KMeans extends Component {
 			const newQuantitative = this.props.quantitative.slice();
 			const suffix = variables.map( x => x[ 0 ] ).join( '' );
 			const name = 'cluster_' + suffix;
-			newData[ name ] = result.clusters;
+			newData[ name ] = result.clusters.map( x => x+1 );
 			if ( !contains( newQuantitative, name ) ) {
 				newQuantitative.push( name );
 			}
