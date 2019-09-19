@@ -170,6 +170,7 @@ class TeX extends Component {
 			>
 				<Popover id="popover-top">
 					<NumberInput
+						inline
 						{...this.state.config}
 					/>
 				</Popover>

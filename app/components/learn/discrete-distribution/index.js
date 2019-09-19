@@ -123,7 +123,7 @@ class DiscreteDistribution extends Component {
 						/> ) )}
 					</Col>
 					<Col md={5}>
-						<h3>Probability:</h3>
+						<h3>Prob:</h3>
 						{this.state.data.map( ( x, i ) => ( <NumberInput
 							key={`prob-${i}`}
 							defaultValue={1/this.state.data.length}

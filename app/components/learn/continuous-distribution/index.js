@@ -287,7 +287,7 @@ class ContinuousDistributions extends Component {
 				<TeX
 					raw={eqn}
 					displayMode
-					style={{ fontSize: 24 }}
+					style={{ fontSize: 20 }}
 				/>
 			</Fragment>
 		);
@@ -539,13 +539,11 @@ class ContinuousDistributions extends Component {
 				<Card.Body>
 					<Container>
 						<Row>
-							{this.renderEquation()}
-						</Row>
-						<Row>
-							<Col md={6}>
+							<Col md={7}>
+								{this.renderEquation()}
 								{this.renderGenerate()}
 							</Col>
-							<Col md={6}>
+							<Col md={5}>
 								{this.renderTabs()}
 							</Col>
 						</Row>
