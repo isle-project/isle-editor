@@ -574,14 +574,21 @@ class DataExplorer extends Component {
 			const varName = vars[ c ];
 			newData[ varName ] = [];
 		}
+		const ids = [];
 		for ( let j = 0; j < nOriginal; j++ ) {
-			if ( !indices.has(j) ) {
+			if ( !indices.has( j ) ) {
 				for ( let colInd = 0; colInd < vars.length; colInd++ ) {
-					let varName = vars[colInd];
+					let varName = vars[ colInd ];
 					newData[ varName ].push( this.state.data[ varName ][ j ] );
+				}
+				if ( this.state.data[ 'id' ] ) {
+					ids.push( this.state.data[ 'id' ][ j ] );
+				} else {
+					ids.push( j+1 );
 				}
 			}
 		}
+		newData[ 'id' ] = ids;
 		this.setState({
 			data: newData,
 			subsetFilters: this.state.filters

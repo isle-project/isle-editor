@@ -181,11 +181,21 @@ class DataTable extends Component {
 					keys = objectKeys( nextProps.data );
 				}
 				debug( 'Created a `rows` array of length: '+rows.length );
-				for ( let i = 0; i < rows.length; i++ ) {
-					if ( nextProps.showRemove && !rows[ i ][ 'remove' ]) {
-						rows[ i ][ 'remove' ] = false;
+				if ( contains( keys, 'id' ) ) {
+					// Do not attach `id` column:
+					for ( let i = 0; i < rows.length; i++ ) {
+						if ( nextProps.showRemove && !rows[ i ][ 'remove' ]) {
+							rows[ i ][ 'remove' ] = false;
+						}
 					}
-					rows[ i ][ 'id' ] = i + 1;
+				} else {
+					// Attach `id` column:
+					for ( let i = 0; i < rows.length; i++ ) {
+						if ( nextProps.showRemove && !rows[ i ][ 'remove' ]) {
+							rows[ i ][ 'remove' ] = false;
+						}
+						rows[ i ][ 'id' ] = i + 1;
+					}
 				}
 				newState.rows = rows;
 				newState.keys = keys;
@@ -294,7 +304,7 @@ class DataTable extends Component {
 					onMouseOut={hideTooltip} onBlur={hideTooltip}
 				>{key}</span>;
 			} else if ( props.deletable ) {
-				header = <div>
+				header = <div style={{ backgroundColor: 'papayawhip' }}>
 					{key}
 					<OverlayTrigger placement="left" overlay={<Tooltip>Remove variable</Tooltip>} >
 						<button className="fa fa-times delete-button" onClick={( evt ) => {
