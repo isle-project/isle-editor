@@ -280,7 +280,7 @@ class DataTable extends Component {
 	createColumns() {
 		debug( 'Create columns...' );
 		const props = this.props;
-		const columns = this.state.keys.map( ( key, idx ) => {
+		const columns = this.state.keys.filter( key => key !== 'id' ).map( ( key, idx ) => {
 			let header = key;
 			if (
 				props.dataInfo &&
