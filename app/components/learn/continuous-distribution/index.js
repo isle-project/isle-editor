@@ -14,7 +14,6 @@ import Card from 'react-bootstrap/Card';
 import { VictoryArea, VictoryAxis, VictoryChart, VictoryLine, VictoryTheme } from 'victory';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import exp from '@stdlib/math/base/special/exp';
-import pow from '@stdlib/math/base/special/pow';
 import ln from '@stdlib/math/base/special/ln';
 import roundn from '@stdlib/math/base/special/roundn';
 import papplyRight from '@stdlib/utils/papply-right';
@@ -40,10 +39,11 @@ import integrate from './integrate_simpson.js';
 const FUNCTIONS = [
 	exp,
 	ln,
-	pow,
 	sqrt
 ];
 const RE_POWER = /([\S]+)\^([\S]+)/g;
+const RE_POWER_NO_PARENS = /([^()+-/*^\s]+)\^([^()\s+-/*^]+)/g;
+const RE_POWER_PARENS = /([^()\s]+)\^(\([^()\s]+\))/g;
 const RE_LAST_EXPRESSION = /(?:^|\n)([^\n]*)$/;
 
 
@@ -56,15 +56,21 @@ function powerReplacer( match, p1, p2 ) {
 	if ( contains( p2, '^' ) ) {
 		p2 = replace( p2, RE_POWER, powerReplacer );
 	}
-	return `pow( ${p1}, ${p2})`;
+	return `${p1} ** ${p2}`;
 }
 
 function powerEqnReplacer( match, p1, p2 ) {
+	return `{${p1}}^{${p2}}`;
+}
+
+function powerEqnParenReplacer( match, p1, p2 ) {
 	if ( contains( p1, '^' ) ) {
-		p1 = replace( p1, RE_POWER, powerEqnReplacer );
+		p1 = replace( p1, RE_POWER_NO_PARENS, powerEqnReplacer );
+		p1 = replace( p1, RE_POWER_PARENS, powerEqnReplacer );
 	}
 	if ( contains( p2, '^' ) ) {
-		p2 = replace( p2, RE_POWER, powerEqnReplacer );
+		p2 = replace( p2, RE_POWER_NO_PARENS, powerEqnReplacer );
+		p2 = replace( p2, RE_POWER_PARENS, powerEqnReplacer );
 	}
 	return `{${p1}}^{${p2}}`;
 }
@@ -130,7 +136,8 @@ function generateValues( code, lowerX, upperX, xval, lowerRange, upperRange ) {
 }
 
 function generateLaTeX( code ) {
-	let out = replace( code, RE_POWER, powerEqnReplacer );
+	let out = replace( code, RE_POWER_NO_PARENS, powerEqnReplacer );
+	out = replace( out, RE_POWER_PARENS, powerEqnParenReplacer );
 	out = replace( out, '*', ' \\cdot ' );
 	out = replace( out, /([+-/])/g, ' $1 ' );
 	out = replace( out, 'exp', ' \\operatorname{exp} ' );
