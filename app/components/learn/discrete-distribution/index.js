@@ -84,12 +84,19 @@ class DiscreteDistribution extends Component {
 				y: 1/size
 			};
 		}
+		const x = round( size/2 );
+		const lower = 0;
+		const upper = size - 1;
+		const lowerProb = evaluateCDF( x, data );
+		const rangeProb = evaluateProbRange( lower, upper, data );
 		this.setState({
 			data,
 			valid: true,
-			lower: 0,
-			upper: size-1,
-			x: round( size/2 )
+			lower,
+			upper,
+			x,
+			lowerProb,
+			rangeProb
 		});
 	}
 
@@ -107,7 +114,7 @@ class DiscreteDistribution extends Component {
 						<h3>Value:</h3>
 						{this.state.data.map( ( x, i ) => ( <NumberInput
 							key={`value-${i}`}
-							defaultValue={i}
+							defaultValue={this.state.data[ i ].x}
 							step="any"
 							width={100}
 							onChange={( val ) => {
@@ -116,8 +123,12 @@ class DiscreteDistribution extends Component {
 									x: val,
 									y: this.state.data[ i ].y
 								};
+								const lowerProb = evaluateCDF( this.state.x, newData );
+								const rangeProb = evaluateProbRange( this.state.lower, this.state.upper, newData );
 								this.setState({
-									data: newData
+									data: newData,
+									lowerProb,
+									rangeProb
 								});
 							}}
 						/> ) )}
@@ -142,9 +153,13 @@ class DiscreteDistribution extends Component {
 								for ( let i = 0; i < newData.length; i++ ) {
 									sum += newData[ i ].y;
 								}
+								const lowerProb = evaluateCDF( this.state.x, newData );
+								const rangeProb = evaluateProbRange( this.state.lower, this.state.upper, newData );
 								this.setState({
 									data: newData,
-									valid: absdiff( sum, 1.0 ) <= 1.5e-8
+									valid: absdiff( sum, 1.0 ) <= 1.5e-8,
+									lowerProb,
+									rangeProb
 								});
 							}}
 						/> ) )}
