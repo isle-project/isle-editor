@@ -40,3 +40,5 @@ LONG-TERM
 * Surveys
     - Handle ordered categories
     - Don't show invalid axis labels before answers are submitted
+* Peer-Review
+    - Temporary codes for creating a group of people to assign to each other (solve issues with people from other cohorts being in a lab or working from home)
