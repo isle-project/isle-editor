@@ -397,6 +397,7 @@ class Tokenizer {
 	}
 
 	_replaceInnerJSXExpressions() {
+		debug( 'Replacing inner JSX expressions...' );
 		let inner = this._current.substring( this._JSX_ATTRIBUTE_START );
 		this._current = this._current.substring( 0, this._JSX_ATTRIBUTE_START );
 
@@ -418,7 +419,7 @@ class Tokenizer {
 				}
 				current += char;
 			}
-			if ( isQuotationMark( char ) && prevChar !== '\\' ) {
+			if ( !innerJSXStartTag && isQuotationMark( char ) && prevChar !== '\\' ) {
 				inString = !inString;
 			}
 			if ( braceLevel === 0 ) {
