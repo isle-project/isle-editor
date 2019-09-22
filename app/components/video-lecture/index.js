@@ -6,6 +6,7 @@ import logger from 'debug';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import FreeTextQuestion from 'components/free-text-question';
 import MultipleChoiceQuestion from 'components/multiple-choice-question';
 import Gate from 'components/gate';
@@ -17,6 +18,7 @@ import RangeQuestion from 'components/range-question';
 import SelectQuestion from 'components/select-question';
 import VideoPlayer from 'components/video-player';
 import Panel from 'components/panel';
+import SessionContext from 'session/context.js';
 import './video_lecture.css';
 
 
@@ -193,6 +195,7 @@ class VideoLecture extends Component {
 
 	render() {
 		const steps = this.renderSteps();
+		const session = this.context;
 		return (
 			<Fragment>
 				<div className="video-lecture-wrapper" ref={( div ) => {
@@ -201,12 +204,17 @@ class VideoLecture extends Component {
 					{ this.state.active >= this.props.steps.length ?
 						<Alert variant="success" className="video-lecture-end-alert" >
 							<h1>You have reached the end of this video lecture.</h1>
-							<Button
-								variant="secondary"
-								size="lg"
-								onClick={this.decrementStep}
-								block
-							>Back</Button>
+							<ButtonGroup block>
+								<Button
+									variant="secondary"
+									size="lg"
+									onClick={this.decrementStep}
+								>Go to previous part</Button>
+								<a href={session.server}><Button
+									variant="secondary"
+									size="lg"
+								>Close and go to dashboard</Button></a>
+							</ButtonGroup>
 						</Alert> : null
 					}
 					{steps}
@@ -244,6 +252,8 @@ VideoLecture.propTypes = {
 VideoLecture.defaultProps = {
 	controls: true
 };
+
+VideoLecture.contextType = SessionContext;
 
 
 // EXPORTS //
