@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Tabs from 'react-bootstrap/Tabs';
@@ -16,14 +16,13 @@ import ppois from '@stdlib/stats/base/dists/poisson/cdf';
 import qpois from '@stdlib/stats/base/dists/poisson/quantile';
 import SliderInput from 'components/input/slider';
 import NumberInput from 'components/input/number';
-import Dashboard from 'components/dashboard';
 import Panel from 'components/panel';
 import TeX from 'components/tex';
 
 
 // VARIABLES //
 
-const NEAR_ONE = 0.99;
+const NEAR_ONE = 0.999;
 
 
 // MAIN //
@@ -37,17 +36,26 @@ const NEAR_ONE = 0.99;
 class PoissonDistribution extends Component {
 	constructor( props ) {
 		super( props );
+
+		const rate = 1;
+		const x = incrspace( 0, qpois( NEAR_ONE, rate ), 1 );
+		const data = new Array( x.length );
+		for ( let i = 0; i < x.length; i++ ) {
+			data[ i ] = {
+				x: x[ i ],
+				y: dpois( x[ i ], rate )
+			};
+		}
 		this.state = {
-			rate: 1,
-			rate1: 1,
-			rate2: 1,
-			rate3: 1,
-			x0: null
+			rate,
+			x0: 0,
+			x1: 1,
+			data
 		};
 	}
 
-	onGenerateSmaller = ( rate, x0 ) => {
-		const x = incrspace( 0, qpois( NEAR_ONE, rate ), 1 );
+	handleRateChange = ( rate ) => {
+		const x = incrspace( 0, qpois( NEAR_ONE, rate ) + 1, 1 );
 		const data = new Array( x.length );
 		for ( let i = 0; i < x.length; i++ ) {
 			data[ i ] = {
@@ -56,54 +64,55 @@ class PoissonDistribution extends Component {
 			};
 		}
 		this.setState({
-			data1: data,
-			eqn1: 'P(X \\le' + roundn( x0, -4 ) + ') = ' + roundn( ppois( x0, rate ), -4 ),
-			rate1: rate,
-			x0
+			data, rate
 		});
 	}
 
-	onGenerateGreater = ( rate, x0 ) => {
-		const x = incrspace( 0, qpois( NEAR_ONE, rate ), 1 );
-		const data = new Array( x.length );
-		for ( let i = 0; i < x.length; i++ ) {
-			data[ i ] = {
-				x: x[ i ],
-				y: dpois( x[ i ], rate )
-			};
-		}
-		this.setState({
-			data2: data,
-			eqn2: 'P(X >' + roundn( x0, -4 ) + ') = ' + roundn( 1-ppois( x0, rate ), -4 ),
-			rate2: rate,
-			x0
-		});
+	handleLowerChange = ( x0 ) => {
+		this.setState({ x0 });
 	}
 
-	onGenerateRange = ( rate, x0, x1 ) => {
-		if ( x0 > x1 ) {
-			let tmp = x0;
-			x0 = x1;
-			x1 = tmp;
-		}
-		const x = incrspace( 0, qpois( NEAR_ONE, rate ), 1 );
-		const data = new Array( x.length );
-		for ( let i = 0; i < x.length; i++ ) {
-			data[ i ] = {
-				x: x[ i ],
-				y: dpois( x[ i ], rate )
-			};
-		}
-		this.setState({
-			data3: data,
-			eqn3: 'P(' + roundn( x0, -4 ) + '\\le X \\le ' + roundn( x1, -4 ) + ') = ' + roundn( ppois( x1, rate ) - ppois( x0, rate ), -4 ),
-			rate3: rate,
-			x0
-		});
+	handleUpperChange = ( x1 ) => {
+		this.setState({ x1 });
+	}
+
+	renderInputs( type ) {
+		return (
+			<Fragment>
+				<SliderInput
+					key={`${type}-rate`}
+					legend="Rate"
+					defaultValue={this.state.rate}
+					min={1e-12}
+					step={this.props.step}
+					max={99}
+					onChange={this.handleRateChange}
+				/>
+				<SliderInput
+					key={`${type}-x0`}
+					legend="x0"
+					defaultValue={this.state.x0}
+					min={0}
+					max={qpois( NEAR_ONE, this.state.rate )}
+					step={this.props.step}
+					onChange={this.handleLowerChange}
+				/>
+				{ type === 'range' ?
+					<SliderInput
+						legend="x1"
+						defaultValue={this.state.x1}
+						min={0}
+						max={qpois( NEAR_ONE, this.state.rate )}
+						step={this.props.step}
+						onChange={this.handleUpperChange}
+					/> : null
+				}
+			</Fragment>
+		);
 	}
 
 	render() {
-		const { x, x0, rate } = this.state;
+		const { x0, x1, rate } = this.state;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
 				Poisson Distribution
@@ -114,45 +123,35 @@ class PoissonDistribution extends Component {
 						<Container>
 							<Row>
 								<Col md={5} >
-								<Dashboard autoUpdate title="Poisson probabilities" onGenerate={( rate, x ) => {
-									let data = [];
-									for ( let i = 0; i < qpois( NEAR_ONE, rate ); i++ ) {
-										data[ i ] = {
-											x: i,
-											y: dpois( i, rate ),
-											fill: ( i === x ) ? 'tomato' : 'steelblue'
-										};
-									}
-									this.setState({
-										rate, x, data
-									});
-								}}>
-								<p>
-									Let <TeX raw="X" /> be the number of
-									{this.props.countTrials ? ' trials ' : 'failures' }
-									until the first success.
-								</p>
-								<span>For rate parameter </span>
-								<NumberInput
-									inline
-									legend={<TeX raw="\lambda" />}
-									defaultValue={1}
-									step={0.01}
-									max={99}
-									min={0}
-								/>
-								<span>we get</span>
-								<TeX raw={`P(X=x)= \\Large \\frac{${rate}^x e^{-${rate}}}{x!}`} displayMode />
-								<span>Evaluated at </span><NumberInput
-									inline
-									legend="x"
-									defaultValue={1}
-									step={1}
-									max={qpois( NEAR_ONE, rate ) + 1}
-									min={0}
-								/> <span>we get</span>
-								<TeX raw={`P(X=${x})= \\Large \\frac{${rate}^${x} e^{-${rate}}}{${x}!} = ${dpois( x, rate ).toFixed(4)}`} displayMode />
-								</Dashboard>
+								<Panel title="Poisson probabilities" >
+									<p>
+										Let <TeX raw="X" /> be the number of
+										{this.props.countTrials ? ' trials ' : 'failures' }
+										until the first success.
+									</p>
+									<span>For rate parameter </span>
+									<NumberInput
+										inline
+										legend={<TeX raw="\lambda" />}
+										defaultValue={1}
+										step={0.01}
+										max={99}
+										min={0}
+										onChange={this.handleRateChange}
+									/>
+									<span>we get</span>
+									<TeX raw={`P(X=x)= \\Large \\frac{${rate}^x e^{-${rate}}}{x!}`} displayMode />
+									<span>Evaluated at </span><NumberInput
+										inline
+										legend="x"
+										defaultValue={1}
+										step={1}
+										max={qpois( NEAR_ONE, rate ) + 1}
+										min={0}
+										onChange={this.handleLowerChange}
+									/> <span>we get</span>
+									<TeX raw={`P(X=${x0})= \\Large \\frac{${rate}^${x0} e^{-${rate}}}{${x0}!} = ${dpois( x0, rate ).toFixed(4)}`} displayMode />
+								</Panel>
 								</Col>
 								<Col md={7} >
 									<Panel header="Probability Plot">
@@ -168,7 +167,7 @@ class PoissonDistribution extends Component {
 													data={this.state.data}
 													style={{
 														data: {
-															fill: data => ( data.x === x ) ? 'tomato' : 'steelblue'
+															fill: data => ( data.x === x0 ) ? 'tomato' : 'steelblue'
 														}
 													}}
 												/>
@@ -193,8 +192,8 @@ class PoissonDistribution extends Component {
 													/>
 													<VictoryLine
 														data={[
-															{ x: x, y: 0 },
-															{ x: x, y: ppois( x, rate ) }
+															{ x: x0, y: 0 },
+															{ x: x0, y: ppois( x0, rate ) }
 														]}
 														style={{
 															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -202,8 +201,8 @@ class PoissonDistribution extends Component {
 													/>
 													<VictoryLine
 														data={[
-															{ x: 0, y: ppois( x, rate ) },
-															{ x: x, y: ppois( x, rate ) }
+															{ x: 0, y: ppois( x0, rate ) },
+															{ x: x0, y: ppois( x0, rate ) }
 														]}
 														style={{
 															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -221,23 +220,10 @@ class PoissonDistribution extends Component {
 						<Container>
 							<Row>
 								<Col md={4} >
-									<Dashboard autoUpdate onGenerate={this.onGenerateSmaller}>
-										<SliderInput
-											legend="Rate"
-											defaultValue={1}
-											min={1e-12}
-											step={this.props.step}
-											max={99}
-										/>
-										<SliderInput
-											legend="x0"
-											defaultValue={0}
-											min={0}
-											max={qpois( NEAR_ONE, this.state.rate1 )}
-											step={this.props.step}
-										/>
-										<TeX raw={this.state.eqn1} />
-									</Dashboard>
+									<Panel>
+										{this.renderInputs( 'smaller' )}
+										<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( ppois( x0, rate ), -4 )}`} />
+									</Panel>
 								</Col>
 								<Col md={8} >
 									<Container>
@@ -245,7 +231,7 @@ class PoissonDistribution extends Component {
 											<Col md={6} >
 												<VictoryChart
 													domain={{
-														x: [ 0, qpois( NEAR_ONE, this.state.rate1 ) + 2 ]
+														x: [ 0, qpois( NEAR_ONE, this.state.rate ) + 2 ]
 													}}
 													theme={VictoryTheme.material}
 												>
@@ -255,7 +241,7 @@ class PoissonDistribution extends Component {
 														style={{ axisLabel: { padding: 40 }}}
 													/>
 													<VictoryBar
-														data={this.state.data1}
+														data={this.state.data}
 														style={{
 															data: {
 																fill: data => ( this.state.x0 <= data.x && data.x <= this.state.x1 ) ? 'tomato' : 'steelblue'
@@ -274,17 +260,17 @@ class PoissonDistribution extends Component {
 													<VictoryLine
 														samples={600}
 														y={( data ) => {
-															return ppois( data.x, this.state.rate1 );
+															return ppois( data.x, this.state.rate );
 														}}
 														domain={{
-															x: [ 0, qpois( NEAR_ONE, this.state.rate1 )+1 ],
+															x: [ 0, qpois( NEAR_ONE, this.state.rate )+1 ],
 															y: [ 0, 1.1 ]
 														}}
 													/>
 													<VictoryLine
 														data={[
 															{ x: x0, y: 0 },
-															{ x: x0, y: ppois( x0, this.state.rate1 ) }
+															{ x: x0, y: ppois( x0, this.state.rate ) }
 														]}
 														style={{
 															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -292,8 +278,8 @@ class PoissonDistribution extends Component {
 													/>
 													<VictoryLine
 														data={[
-															{ x: 0, y: ppois( x0, this.state.rate1 ) },
-															{ x: x0, y: ppois( x0, this.state.rate1 ) }
+															{ x: 0, y: ppois( x0, this.state.rate ) },
+															{ x: x0, y: ppois( x0, this.state.rate ) }
 														]}
 														style={{
 															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -311,30 +297,17 @@ class PoissonDistribution extends Component {
 						<Container>
 							<Row>
 								<Col md={4} >
-									<Dashboard autoUpdate onGenerate={this.onGenerateGreater}>
-										<SliderInput
-											legend="Rate"
-											defaultValue={1}
-											min={1e-12}
-											max={99}
-											step={this.props.step}
-										/>
-										<SliderInput
-											legend="x0"
-											defaultValue={0}
-											min={0}
-											max={qpois( NEAR_ONE, this.state.rate2 )}
-											step={this.props.step}
-										/>
-										<TeX raw={this.state.eqn2} />
-									</Dashboard>
+									<Panel>
+										{this.renderInputs( 'greater' )}
+										<TeX raw={`'P(X > ${roundn( x0, -4 )}) = ${roundn( 1-ppois( x0, rate ), -4 )}`} />
+									</Panel>
 								</Col>
 								<Col md={8} >
 									<Row>
 										<Col md={6} >
 											<VictoryChart
 												domain={{
-													x: [ 0, qpois( NEAR_ONE, this.state.rate2 ) + 2 ]
+													x: [ 0, qpois( NEAR_ONE, rate ) + 2 ]
 												}}
 												theme={VictoryTheme.material}
 											>
@@ -344,7 +317,7 @@ class PoissonDistribution extends Component {
 													style={{ axisLabel: { padding: 40 }}}
 												/>
 												<VictoryBar
-													data={this.state.data2}
+													data={this.state.data}
 													style={{
 														data: {
 															fill: data => ( this.state.x0 <= data.x && data.x <= this.state.x1 ) ? 'tomato' : 'steelblue'
@@ -363,17 +336,17 @@ class PoissonDistribution extends Component {
 												<VictoryLine
 													samples={600}
 													y={( data ) => {
-														return ppois( data.x, this.state.rate2 );
+														return ppois( data.x, rate );
 													}}
 													domain={{
-														x: [ 0, qpois( NEAR_ONE, this.state.rate2 )+1 ],
+														x: [ 0, qpois( NEAR_ONE, rate )+1 ],
 														y: [ 0, 1.1 ]
 													}}
 												/>
 												<VictoryLine
 													data={[
 														{ x: x0, y: 0 },
-														{ x: x0, y: ppois( x0, this.state.rate2 ) }
+														{ x: x0, y: ppois( x0, rate ) }
 													]}
 													style={{
 														data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -381,8 +354,8 @@ class PoissonDistribution extends Component {
 												/>
 												<VictoryLine
 													data={[
-														{ x: 0, y: ppois( x0, this.state.rate2 ) },
-														{ x: x0, y: ppois( x0, this.state.rate2 ) }
+														{ x: 0, y: ppois( x0, rate ) },
+														{ x: x0, y: ppois( x0, rate ) }
 													]}
 													style={{
 														data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -399,37 +372,17 @@ class PoissonDistribution extends Component {
 						<Container>
 							<Row>
 								<Col md={4} >
-									<Dashboard autoUpdate onGenerate={this.onGenerateRange}>
-										<SliderInput
-											legend="Rate"
-											defaultValue={1}
-											min={1e-12}
-											max={99}
-											step={this.props.step}
-										/>
-										<SliderInput
-											legend="x0"
-											defaultValue={0}
-											min={0}
-											max={qpois( NEAR_ONE, this.state.rate3 )}
-											step={this.props.step}
-										/>
-										<SliderInput
-											legend="x1"
-											defaultValue={0}
-											min={0}
-											max={qpois( NEAR_ONE, this.state.rate3 )}
-											step={this.props.step}
-										/>
-										<TeX raw={this.state.eqn3} />
-									</Dashboard>
+									<Panel>
+										{this.renderInputs( 'range' )}
+										<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( ppois( x1, rate ) - ppois( x0 - 1, rate ), -4 )}`} />
+									</Panel>
 								</Col>
 								<Col md={8} >
 									<Row>
 										<Col md={6} >
 											<VictoryChart
 												domain={{
-													x: [ 0, qpois( NEAR_ONE, this.state.rate3 ) + 2 ]
+													x: [ 0, qpois( NEAR_ONE, rate ) + 2 ]
 												}}
 												theme={VictoryTheme.material}
 											>
@@ -439,7 +392,7 @@ class PoissonDistribution extends Component {
 													style={{ axisLabel: { padding: 40 }}}
 												/>
 												<VictoryBar
-													data={this.state.data3}
+													data={this.state.data}
 													style={{
 														data: {
 															fill: data => ( this.state.x0 <= data.x && data.x <= this.state.x1 ) ? 'tomato' : 'steelblue'
@@ -458,10 +411,10 @@ class PoissonDistribution extends Component {
 												<VictoryLine
 													samples={600}
 													y={( data ) => {
-														return ppois( data.x, this.state.rate3 );
+														return ppois( data.x, rate );
 													}}
 													domain={{
-														x: [ 0, qpois( NEAR_ONE, this.state.rate3 )+1 ],
+														x: [ 0, qpois( NEAR_ONE, rate )+1 ],
 														y: [ 0, 1.1 ]
 													}}
 												/>
