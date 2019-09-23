@@ -22,6 +22,11 @@ import Panel from 'components/panel';
 import TeX from 'components/tex';
 
 
+// VARIABLES //
+
+const NEAR_ONE = 0.999;
+
+
 // MAIN //
 
 /**
@@ -38,7 +43,7 @@ class NegativeBinomial extends Component {
 		const r = 10;
 		const p = 0.5;
 		const minValue = props.countTrials ? r : 0;
-		const max = qnbinom( 0.999, r, p ) + 1 + minValue;
+		const max = qnbinom( NEAR_ONE, r, p ) + 1 + minValue;
 		const x = incrspace( minValue, max+1, 1 );
 		const data = new Array( x.length );
 		for ( let i = 0; i < x.length; i++ ) {
@@ -59,7 +64,7 @@ class NegativeBinomial extends Component {
 
 	handleSuccessesChange = ( r ) => {
 		const minValue = this.props.countTrials ? r : 0;
-		const max = qnbinom( 0.999, r, this.state.p ) + 1 + minValue;
+		const max = qnbinom( NEAR_ONE, r, this.state.p ) + 1 + minValue;
 		const x = incrspace( minValue, max+1, 1 );
 		const data = new Array( x.length );
 		for ( let i = 0; i < x.length; i++ ) {
@@ -75,7 +80,7 @@ class NegativeBinomial extends Component {
 
 	handleProbChange = ( p ) => {
 		const minValue = this.props.countTrials ? this.state.r : 0;
-		const max = qnbinom( 0.999, this.state.r, p ) + 1 + minValue;
+		const max = qnbinom( NEAR_ONE, this.state.r, p ) + 1 + minValue;
 		const x = incrspace( minValue, max+1, 1 );
 		const data = new Array( x.length );
 		for ( let i = 0; i < x.length; i++ ) {
