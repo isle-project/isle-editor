@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Tabs from 'react-bootstrap/Tabs';
@@ -16,7 +16,6 @@ import pgeom from '@stdlib/stats/base/dists/geometric/cdf';
 import qgeom from '@stdlib/stats/base/dists/geometric/quantile';
 import SliderInput from 'components/input/slider';
 import NumberInput from 'components/input/number';
-import Dashboard from 'components/dashboard';
 import Panel from 'components/panel';
 import TeX from 'components/tex';
 
@@ -38,76 +37,86 @@ const NEAR_ONE = 0.999;
 class GeometricDistribution extends Component {
 	constructor( props ) {
 		super( props );
+
+		const minValue = props.countTrials ? 1 : 0;
+		const x0 = 0;
+		const x1 = 1;
+		const p = 0.5;
+		const x = incrspace( minValue, qgeom( NEAR_ONE, p ) + 1, 1 );
+		const data = new Array( x.length );
+		for ( let i = 0; i < x.length; i++ ) {
+			data[ i ] = {
+				x: x[ i ],
+				y: dgeom( props.countTrials ? x[ i ] - 1 : x[ i ], p )
+			};
+		}
 		this.state = {
-			p1: 1,
-			p2: 1,
-			p3: 1,
-			x0: null
+			p, x0, x1, data
 		};
 	}
 
-	onGenerateSmaller = ( rate, x0 ) => {
+	handleProbChange = ( p ) => {
 		const minValue = this.props.countTrials ? 1 : 0;
-		const x = incrspace( minValue, qgeom( NEAR_ONE, rate ), 1 );
+		const x = incrspace( minValue, qgeom( NEAR_ONE, p ), 1 );
 		const data = new Array( x.length );
 		for ( let i = 0; i < x.length; i++ ) {
 			data[ i ] = {
 				x: x[ i ],
-				y: dgeom( this.props.countTrials ? x[ i ] - 1 : x[ i ], rate )
+				y: dgeom( this.props.countTrials ? x[ i ] - 1 : x[ i ], p )
 			};
 		}
 		this.setState({
-			data1: data,
-			eqn1: 'P(X \\le' + roundn( x0, -4 ) + ') = ' + roundn( pgeom( x0 - minValue, rate ), -4 ),
-			p1: rate,
-			x0
+			data, p
 		});
 	}
 
-	onGenerateGreater = ( rate, x0 ) => {
-		const minValue = this.props.countTrials ? 1 : 0;
-		const x = incrspace( minValue, qgeom( NEAR_ONE, rate ), 1 );
-		const data = new Array( x.length );
-		for ( let i = 0; i < x.length; i++ ) {
-			data[ i ] = {
-				x: x[ i ],
-				y: dgeom( this.props.countTrials ? x[ i ] - 1 : x[ i ], rate )
-			};
-		}
-		this.setState({
-			data2: data,
-			eqn2: 'P(X >' + roundn( x0, -4 ) + ') = ' + roundn( 1-pgeom( x0 - minValue, rate ), -4 ),
-			p2: rate,
-			x0
-		});
+	handleLowerChange = ( x0 ) => {
+		this.setState({ x0 });
 	}
 
-	onGenerateRange = ( rate, x0, x1 ) => {
-		if ( x0 > x1 ) {
-			let tmp = x0;
-			x0 = x1;
-			x1 = tmp;
-		}
+	handleUpperChange = ( x1 ) => {
+		this.setState({ x1 });
+	}
+
+	renderInputs( type ) {
 		const minValue = this.props.countTrials ? 1 : 0;
-		const x = incrspace( minValue, qgeom( NEAR_ONE, rate ), 1 );
-		const data = new Array( x.length );
-		for ( let i = 0; i < x.length; i++ ) {
-			data[ i ] = {
-				x: x[ i ],
-				y: dgeom( this.props.countTrials ? x[ i ] - 1 : x[ i ], rate )
-			};
-		}
-		this.setState({
-			data3: data,
-			eqn3: 'P(' + roundn( x0 - minValue, -4 ) + '\\le X \\le ' + roundn( x1 - minValue, -4 ) + ') = ' + roundn( pgeom( x1, rate ) - pgeom( x0, rate ), -4 ),
-			p3: rate,
-			x0
-		});
+		return (
+			<Fragment>
+				<SliderInput
+					key={`${type}-p`}
+					legend="Success probability"
+					defaultValue={this.state.p}
+					min={0.01}
+					step={this.props.step}
+					max={1}
+					onChange={this.handleProbChange}
+				/>
+				<SliderInput
+					key={`${type}-x0`}
+					legend="x0"
+					defaultValue={minValue}
+					min={minValue - 1}
+					max={qgeom( NEAR_ONE, this.state.p ) + 1}
+					step={this.props.step}
+					onChange={this.handleLowerChange}
+				/>
+				{ type === 'range' ?
+					<SliderInput
+						legend="x1"
+						defaultValue={this.state.x1}
+						min={minValue - 1}
+						max={qgeom( NEAR_ONE, this.state.p ) + 1}
+						step={1}
+						onChange={this.handleUpperChange}
+					/> : null
+				}
+			</Fragment>
+		);
 	}
 
 	render() {
-		const { x0, x1, x, p, p1, p2, p3 } = this.state;
-		const { countTrials, step } = this.props;
+		const { x0, x1, p } = this.state;
+		const { countTrials } = this.props;
 		const minValue = countTrials ? 1 : 0;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
@@ -119,45 +128,35 @@ class GeometricDistribution extends Component {
 						<Container>
 							<Row>
 								<Col md={5} >
-								<Dashboard autoUpdate title="Geometric probabilities" onGenerate={( p, x ) => {
-									let data = [];
-									for ( let i = minValue; i < qgeom( NEAR_ONE, p ); i++ ) {
-										data[ i ] = {
-											x: i,
-											y: dgeom( countTrials ? i - 1 : i, p ),
-											fill: ( i === x ) ? 'tomato' : 'steelblue'
-										};
-									}
-									this.setState({
-										p, x, data
-									});
-								}}>
-								<p>
-									Let <TeX raw="X" /> be the number of
-									{this.props.countTrials ? ' trials ' : 'failures' }
-									until the first success.
-								</p>
-								<span>For success probability of</span>
-								<NumberInput
-									inline
-									legend="p"
-									defaultValue={0.5}
-									step={0.01}
-									max={1}
-									min={0.01}
-								/>
-								<span>we get</span>
-								<TeX raw={`P(X=x)= \\Large \\left( 1 - ${p} \\right)^{x-1} ${p}`} displayMode />
-								<span>Evaluated at </span><NumberInput
-									inline
-									legend="x"
-									defaultValue={minValue}
-									step={1}
-									max={qgeom( NEAR_ONE, p ) + 1}
-									min={minValue}
-								/> <span>we get</span>
-								<TeX raw={`P(X=${x})= \\Large \\left( 1 - ${p} \\right)^{${x}-1} ${p} = ${dgeom( countTrials ? x - 1 : x, p ).toFixed(4)}`} displayMode />
-								</Dashboard>
+								<Panel title="Geometric probabilities" >
+									<p>
+										Let <TeX raw="X" /> be the number of
+										{this.props.countTrials ? ' trials ' : 'failures' }
+										until the first success.
+									</p>
+									<span>For success probability of</span>
+									<NumberInput
+										inline
+										legend="p"
+										defaultValue={0.5}
+										step={0.01}
+										max={1}
+										min={0.01}
+										onChange={this.handleProbChange}
+									/>
+									<span>we get</span>
+									<TeX raw={`P(X=x)= \\Large \\left( 1 - ${p} \\right)^{x-1} ${p}`} displayMode />
+									<span>Evaluated at </span><NumberInput
+										inline
+										legend="x"
+										defaultValue={minValue}
+										step={1}
+										max={qgeom( NEAR_ONE, p ) + 1}
+										min={minValue}
+										onChange={this.handleLowerChange}
+									/> <span>we get</span>
+									<TeX raw={`P(X=${x0})= \\Large \\left( 1 - ${p} \\right)^{${x0}-1} ${p} = ${dgeom( countTrials ? x0 - 1 : x0, p ).toFixed(4)}`} displayMode />
+								</Panel>
 								</Col>
 								<Col md={7} >
 									<Panel header="Probability Plot">
@@ -173,7 +172,7 @@ class GeometricDistribution extends Component {
 													data={this.state.data}
 													style={{
 														data: {
-															fill: data => ( data.x === x ) ? 'tomato' : 'steelblue'
+															fill: data => ( data.x === x0 ) ? 'tomato' : 'steelblue'
 														}
 													}}
 												/>
@@ -198,8 +197,8 @@ class GeometricDistribution extends Component {
 													/>
 													<VictoryLine
 														data={[
-															{ x: x, y: 0 },
-															{ x: x, y: pgeom( x - minValue, p ) }
+															{ x: x0, y: 0 },
+															{ x: x0, y: pgeom( x0 - minValue, p ) }
 														]}
 														style={{
 															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -207,8 +206,8 @@ class GeometricDistribution extends Component {
 													/>
 													<VictoryLine
 														data={[
-															{ x: 0, y: pgeom( x - minValue, p ) },
-															{ x: x, y: pgeom( x - minValue, p ) }
+															{ x: 0, y: pgeom( x0 - minValue, p ) },
+															{ x: x0, y: pgeom( x0 - minValue, p ) }
 														]}
 														style={{
 															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -226,23 +225,10 @@ class GeometricDistribution extends Component {
 						<Container>
 							<Row>
 								<Col md={4} >
-									<Dashboard autoUpdate onGenerate={this.onGenerateSmaller}>
-										<SliderInput
-											legend="Success probability"
-											defaultValue={0.5}
-											min={0.01}
-											step={step}
-											max={1}
-										/>
-										<SliderInput
-											legend="x0"
-											defaultValue={minValue}
-											min={minValue}
-											max={qgeom( NEAR_ONE, p1 ) + 1}
-											step={step}
-										/>
-										<TeX raw={this.state.eqn1} />
-									</Dashboard>
+									<Panel>
+										{this.renderInputs( 'smaller' )}
+										<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pgeom( x0 - minValue, p ), -4 )}`} />
+									</Panel>
 								</Col>
 								<Col md={8} >
 									<Container>
@@ -250,7 +236,7 @@ class GeometricDistribution extends Component {
 											<Col md={6} >
 												<VictoryChart
 													domain={{
-														x: [ 0, qgeom( NEAR_ONE, p1 ) + 2 ]
+														x: [ 0, qgeom( NEAR_ONE, p ) + 2 ]
 													}}
 													theme={VictoryTheme.material}
 												>
@@ -260,10 +246,10 @@ class GeometricDistribution extends Component {
 														style={{ axisLabel: { padding: 40 }}}
 													/>
 													<VictoryBar
-														data={this.state.data1}
+														data={this.state.data}
 														style={{
 															data: {
-																fill: data => ( x0 <= data.x && data.x <= x1 ) ? 'tomato' : 'steelblue'
+																fill: data => data.x <= x0 ? 'tomato' : 'steelblue'
 															}
 														}}
 													/>
@@ -279,17 +265,17 @@ class GeometricDistribution extends Component {
 													<VictoryLine
 														samples={600}
 														y={( data ) => {
-															return pgeom( data.x - minValue, p1 );
+															return pgeom( data.x - minValue, p );
 														}}
 														domain={{
-															x: [ 0, qgeom( NEAR_ONE, p1 )+1 ],
+															x: [ 0, qgeom( NEAR_ONE, p )+1 ],
 															y: [ 0, 1.1 ]
 														}}
 													/>
 													<VictoryLine
 														data={[
 															{ x: x0, y: 0 },
-															{ x: x0, y: pgeom( x0 - minValue, p1 ) }
+															{ x: x0, y: pgeom( x0 - minValue, p ) }
 														]}
 														style={{
 															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -297,8 +283,8 @@ class GeometricDistribution extends Component {
 													/>
 													<VictoryLine
 														data={[
-															{ x: 0, y: pgeom( x0 - minValue, p1 ) },
-															{ x: x0, y: pgeom( x0 - minValue, p1 ) }
+															{ x: 0, y: pgeom( x0 - minValue, p ) },
+															{ x: x0, y: pgeom( x0 - minValue, p ) }
 														]}
 														style={{
 															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -316,30 +302,17 @@ class GeometricDistribution extends Component {
 						<Container>
 							<Row>
 								<Col md={4} >
-									<Dashboard autoUpdate onGenerate={this.onGenerateGreater}>
-										<SliderInput
-											legend="Success probability"
-											defaultValue={0.5}
-											min={0.01}
-											step={step}
-											max={1}
-										/>
-										<SliderInput
-											legend="x0"
-											defaultValue={minValue}
-											min={minValue}
-											max={qgeom( NEAR_ONE, this.state.p2 ) + 1}
-											step={step}
-										/>
-										<TeX raw={this.state.eqn2} />
-									</Dashboard>
+									<Panel>
+										{this.renderInputs( 'greater' )}
+										<TeX raw={`P(X > ${roundn( x0, -4 )}) = ${roundn( 1-pgeom( x0 - minValue, p ), -4 )}`} />
+									</Panel>
 								</Col>
 								<Col md={8} >
 									<Row>
 										<Col md={6} >
 											<VictoryChart
 												domain={{
-													x: [ 0, qgeom( NEAR_ONE, this.state.p2 ) + 2 ]
+													x: [ 0, qgeom( NEAR_ONE, p ) + 2 ]
 												}}
 												theme={VictoryTheme.material}
 											>
@@ -349,10 +322,10 @@ class GeometricDistribution extends Component {
 													style={{ axisLabel: { padding: 40 }}}
 												/>
 												<VictoryBar
-													data={this.state.data2}
+													data={this.state.data}
 													style={{
 														data: {
-															fill: data => ( x0 <= data.x && data.x <= x1 ) ? 'tomato' : 'steelblue'
+															fill: data => data.x > x0 ? 'tomato' : 'steelblue'
 														}
 													}}
 												/>
@@ -368,17 +341,17 @@ class GeometricDistribution extends Component {
 												<VictoryLine
 													samples={600}
 													y={( data ) => {
-														return pgeom( data.x - minValue, p2 );
+														return pgeom( data.x - minValue, p );
 													}}
 													domain={{
-														x: [ 0, qgeom( NEAR_ONE, p2 )+1 ],
+														x: [ 0, qgeom( NEAR_ONE, p )+1 ],
 														y: [ 0, 1.1 ]
 													}}
 												/>
 												<VictoryLine
 													data={[
 														{ x: x0, y: 0 },
-														{ x: x0, y: pgeom( x0 - minValue, p2 ) }
+														{ x: x0, y: pgeom( x0 - minValue, p ) }
 													]}
 													style={{
 														data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -386,8 +359,8 @@ class GeometricDistribution extends Component {
 												/>
 												<VictoryLine
 													data={[
-														{ x: 0, y: pgeom( x0 - minValue, p2 ) },
-														{ x: x0, y: pgeom( x0 - minValue, p2 ) }
+														{ x: 0, y: pgeom( x0 - minValue, p ) },
+														{ x: x0, y: pgeom( x0 - minValue, p ) }
 													]}
 													style={{
 														data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -404,37 +377,17 @@ class GeometricDistribution extends Component {
 						<Container>
 							<Row>
 								<Col md={4} >
-									<Dashboard autoUpdate onGenerate={this.onGenerateRange}>
-										<SliderInput
-											legend="Success probability"
-											defaultValue={0.5}
-											min={0.01}
-											step={step}
-											max={1}
-										/>
-										<SliderInput
-											legend="x0"
-											defaultValue={minValue}
-											min={minValue}
-											max={qgeom( NEAR_ONE, p3 ) + 1}
-											step={step}
-										/>
-										<SliderInput
-											legend="x1"
-											defaultValue={minValue}
-											min={minValue}
-											max={qgeom( NEAR_ONE, p3 ) + 1}
-											step={step}
-										/>
-										<TeX raw={this.state.eqn3} />
-									</Dashboard>
+									<Panel>
+										{this.renderInputs( 'range' )}
+										<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pgeom( x1 - minValue, p ) - pgeom( x0 - minValue - 1, p ), -4 )}`} />
+									</Panel>
 								</Col>
 								<Col md={8} >
 									<Row>
 										<Col md={6} >
 											<VictoryChart
 												domain={{
-													x: [ 0, qgeom( NEAR_ONE, p3 ) + 2 ]
+													x: [ 0, qgeom( NEAR_ONE, p ) + 2 ]
 												}}
 												theme={VictoryTheme.material}
 											>
@@ -444,7 +397,7 @@ class GeometricDistribution extends Component {
 													style={{ axisLabel: { padding: 40 }}}
 												/>
 												<VictoryBar
-													data={this.state.data3}
+													data={this.state.data}
 													style={{
 														data: {
 															fill: data => ( x0 <= data.x && data.x <= x1 ) ? 'tomato' : 'steelblue'
@@ -463,10 +416,10 @@ class GeometricDistribution extends Component {
 												<VictoryLine
 													samples={600}
 													y={( data ) => {
-														return pgeom( data.x - minValue, p3 );
+														return pgeom( data.x - minValue, p );
 													}}
 													domain={{
-														x: [ 0, qgeom( NEAR_ONE, p3 )+1 ],
+														x: [ 0, qgeom( NEAR_ONE, p )+1 ],
 														y: [ 0, 1.1 ]
 													}}
 												/>

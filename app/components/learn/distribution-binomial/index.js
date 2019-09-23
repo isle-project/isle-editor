@@ -129,7 +129,7 @@ class BinomialProps extends Component {
 
 	render() {
 		const { x0, x1, n, p } = this.state;
-		return ( <Card style={{ maxWidth: 1200, margin: '0 auto', ...this.props.style }}>
+		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
 				Binomial Distribution
 			</Card.Header>
@@ -386,7 +386,7 @@ class BinomialProps extends Component {
 									<Panel>
 										{this.renderInputs( 'range' )}
 										{ x1 >= x0 ?
-											<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pbinom( x1, n, p ) - pbinom( x0, n, p ), -4 )}`} displayMode tag="" /> :
+											<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pbinom( x1, n, p ) - pbinom( x0 - 1, n, p ), -4 )}`} displayMode tag="" /> :
 											<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
 										}
 									</Panel>
