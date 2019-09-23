@@ -17,7 +17,6 @@ import pbinom from '@stdlib/stats/base/dists/binomial/cdf';
 import FeedbackButtons from 'components/feedback';
 import NumberInput from 'components/input/number';
 import SliderInput from 'components/input/slider';
-import Dashboard from 'components/dashboard';
 import Panel from 'components/panel';
 import TeX from 'components/tex';
 
@@ -33,17 +32,30 @@ import TeX from 'components/tex';
 class BinomialProps extends Component {
 	constructor( props ) {
 		super( props );
+
+		const n = 10;
+		const p = 0.5;
+		const x = incrspace( 0, n+1, 1 );
+		const data = new Array( x.length );
+		for ( let i = 0; i < x.length; i++ ) {
+			data[ i ] = {
+				x: x[ i ],
+				y: dbinom( x[ i ], n, p ),
+				fill: ( i === x ) ? 'tomato' : 'steelblue'
+			};
+		}
 		this.state = {
-			n: 10,
-			p: 0.5,
+			n,
+			p,
 			x0: 0,
-			x1: 1
+			x1: 1,
+			data
 		};
 	}
 
 	onGenerateRange = ( n, p, x0, x1 ) => {
-		let x = incrspace( 0, n+1, 1 );
-		let data = new Array( x.length );
+		const x = incrspace( 0, n+1, 1 );
+		const data = new Array( x.length );
 		for ( let i = 0; i < x.length; i++ ) {
 			data[ i ] = {
 				x: x[ i ],
@@ -61,7 +73,8 @@ class BinomialProps extends Component {
 		for ( let i = 0; i < x.length; i++ ) {
 			data[ i ] = {
 				x: x[ i ],
-				y: dbinom( x[ i ], n, this.state.p )
+				y: dbinom( x[ i ], n, this.state.p ),
+				fill: ( i === x ) ? 'tomato' : 'steelblue'
 			};
 		}
 		this.setState({ data, n });
@@ -73,7 +86,8 @@ class BinomialProps extends Component {
 		for ( let i = 0; i < x.length; i++ ) {
 			data[ i ] = {
 				x: x[ i ],
-				y: dbinom( x[ i ], this.state.n, this.state.p )
+				y: dbinom( x[ i ], this.state.n, this.state.p ),
+				fill: ( i === x ) ? 'tomato' : 'steelblue'
 			};
 		}
 		this.setState({ data, p });
@@ -142,47 +156,38 @@ class BinomialProps extends Component {
 						<Container>
 							<Row>
 								<Col md={5} >
-								<Dashboard autoUpdate title="Binomial probabilities" onGenerate={( n, p, x ) => {
-									let data = [];
-									for ( let i = 0; i < n+1; i++ ) {
-										data[ i ] = {
-											x: i,
-											y: dbinom( i, n, p ),
-											fill: ( i === x ) ? 'tomato' : 'steelblue'
-										};
-									}
-									this.setState({
-										n, p, x, data
-									});
-								}}>
-								<span>For</span><NumberInput
-									inline
-									legend="n"
-									defaultValue={n}
-									step={1}
-									min={0}
-									max={999}
-								/><span>trials and a success probability of</span>
-								<NumberInput
-									inline
-									legend="p"
-									defaultValue={p}
-									step={0.01}
-									max={1}
-									min={0}
-								/>
-								<span>we get</span>
-								<TeX raw={`P(X=x)= \\Large \\tbinom{${n}}{x} ${p}^x ${roundn(1-p, -4)}^{${n}-x}`} displayMode />
-								<span>Evaluated at </span><NumberInput
-									inline
-									legend="x"
-									defaultValue={0}
-									step={1}
-									max={n}
-									min={0}
-								/> <span>we get</span>
-								<TeX raw={`P(X=${this.state.x})= \\Large \\tbinom{${n}}{${this.state.x}} ${p}^{${this.state.x}} ${roundn(1-p, -4 )}^{${n}-${this.state.x}} \\approx ${dbinom(this.state.x, this.state.n, p).toFixed(4)}`} displayMode />
-								</Dashboard>
+								<Panel title="Binomial probabilities">
+									<span>For</span><NumberInput
+										inline
+										legend="n"
+										defaultValue={n}
+										step={1}
+										min={0}
+										max={999}
+										onChange={this.handleTrialsChange}
+									/><span>trials and a success probability of</span>
+									<NumberInput
+										inline
+										legend="p"
+										defaultValue={p}
+										step={0.01}
+										max={1}
+										min={0}
+										onChange={this.handlePropChange}
+									/>
+									<span>we get</span>
+									<TeX raw={`P(X=x)= \\Large \\tbinom{${n}}{x} ${p}^x ${roundn(1-p, -4)}^{${n}-x}`} displayMode />
+									<span>Evaluated at </span><NumberInput
+										inline
+										legend="x"
+										defaultValue={0}
+										step={1}
+										max={n}
+										min={0}
+										onChange={this.handleLowerChange}
+									/> <span>we get</span>
+									<TeX raw={`P(X=${x0})= \\Large \\tbinom{${n}}{${x0}} ${p}^{${x0}} ${roundn(1-p, -4 )}^{${n}-${x0}} \\approx ${dbinom(x0, this.state.n, p).toFixed(4)}`} displayMode />
+								</Panel>
 								</Col>
 								<Col md={7} >
 									<Panel header="Probability Plot">
@@ -198,7 +203,7 @@ class BinomialProps extends Component {
 													data={this.state.data}
 													style={{
 														data: {
-															fill: data => ( data.x === this.state.x ) ? 'tomato' : 'steelblue'
+															fill: data => ( data.x === x0 ) ? 'tomato' : 'steelblue'
 														}
 													}}
 												/>
@@ -223,8 +228,8 @@ class BinomialProps extends Component {
 													/>
 													<VictoryLine
 														data={[
-															{ x: this.state.x, y: 0 },
-															{ x: this.state.x, y: pbinom( this.state.x, n, p ) }
+															{ x: x0, y: 0 },
+															{ x: x0, y: pbinom( x0, n, p ) }
 														]}
 														style={{
 															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -232,8 +237,8 @@ class BinomialProps extends Component {
 													/>
 													<VictoryLine
 														data={[
-															{ x: 0, y: pbinom( this.state.x, n, p ) },
-															{ x: this.state.x, y: pbinom( this.state.x, n, p ) }
+															{ x: 0, y: pbinom( x0, n, p ) },
+															{ x: x0, y: pbinom( x0, n, p ) }
 														]}
 														style={{
 															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
