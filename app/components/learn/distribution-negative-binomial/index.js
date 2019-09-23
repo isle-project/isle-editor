@@ -151,7 +151,10 @@ class NegativeBinomial extends Component {
 									min={0.01}
 								/>
 								<span>we get</span>
-								<TeX raw={`P(X=x)= \\Large \\tbinom{x + ${r} - 1}{x} ${p}^{${r}} ${roundn(1-p, -4)}^{x}`} displayMode />
+								{this.props.countTrials ?
+									<TeX raw={`P(X=x)= \\Large \\tbinom{x - 1}{${r}-1} ${p}^{${r}} ${roundn(1-p, -4)}^{x-${r}}`} displayMode /> :
+									<TeX raw={`P(X=x)= \\Large \\tbinom{x + ${r} - 1}{x} ${p}^{${r}} ${roundn(1-p, -4)}^{x}`} displayMode />
+								}
 								<span>Evaluated at </span><NumberInput
 									inline
 									legend="x"
@@ -160,7 +163,10 @@ class NegativeBinomial extends Component {
 									max={max}
 									min={0}
 								/> <span>we get</span>
-								<TeX raw={`P(X=${x}) = \\Large \\tbinom{${r+x-1}}{${x}} ${p}^{${r}} ${roundn(1-p, -4 )}^{${x}} \\approx ${dnbinom(x - minValue, r, p).toFixed(4)}`} displayMode />
+								{this.props.countTrials ?
+									<TeX raw={`P(X=${x}) = \\Large \\tbinom{${x-1}}{${r-1}} ${p}^{${r}} ${roundn(1-p, -4 )}^{${x-r}} \\approx ${dnbinom(x - minValue, r, p).toFixed(4)}`} displayMode /> :
+									<TeX raw={`P(X=${x}) = \\Large \\tbinom{${r+x-1}}{${x}} ${p}^{${r}} ${roundn(1-p, -4 )}^{${x}} \\approx ${dnbinom(x - minValue, r, p).toFixed(4)}`} displayMode />
+								}
 								<p>The random variable X denotes the number of {this.props.countTrials ? 'trials' : 'failures' } until the r-th success is reached.</p>
 								</Dashboard>
 								</Col>
