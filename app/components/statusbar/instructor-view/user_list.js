@@ -58,7 +58,8 @@ class UserList extends Component {
 			if (
 				type === 'received_users' ||
 				type === 'user_joined' ||
-				type === 'user_left'
+				type === 'user_left' ||
+				type === 'selected_cohort'
 			) {
 				debug( 'Should render the user list...' );
 				this.forceUpdate();

@@ -60,12 +60,11 @@ class ActionLog extends Component {
 					filters: <span className="title">Filters:</span>
 				});
 			}
-			else if ( type === 'member_action' ) {
-				this.setState({ // eslint-disable-line react/no-did-mount-set-state
-					actions: this.buildActionsArray()
-				});
-			}
-			else if ( type === 'retrieved_user_actions' ) {
+			else if (
+				type === 'selected_cohort' ||
+				type === 'member_action' ||
+				type === 'retrieved_user_actions'
+			) {
 				this.setState({ // eslint-disable-line react/no-did-mount-set-state
 					actions: this.buildActionsArray()
 				});

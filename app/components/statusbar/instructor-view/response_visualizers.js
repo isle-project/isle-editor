@@ -78,7 +78,10 @@ class ResponseVisualizers extends Component {
 					means: newMeans
 				});
 			}
-			else if ( type === 'updated_visualizer' ) {
+			else if (
+				type === 'updated_visualizer' ||
+				type === 'selected_cohort'
+			) {
 				this.forceUpdate();
 			}
 		});

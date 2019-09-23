@@ -102,6 +102,7 @@ class InstructorView extends Component {
 				break;
 			}
 		}
+		debug( 'Change selected cohort...' );
 		this.setState({
 			selectedCohort: cohort
 		}, () =>{
