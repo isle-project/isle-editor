@@ -40,8 +40,7 @@ class BinomialProps extends Component {
 		for ( let i = 0; i < x.length; i++ ) {
 			data[ i ] = {
 				x: x[ i ],
-				y: dbinom( x[ i ], n, p ),
-				fill: ( i === x ) ? 'tomato' : 'steelblue'
+				y: dbinom( x[ i ], n, p )
 			};
 		}
 		this.state = {
@@ -53,28 +52,13 @@ class BinomialProps extends Component {
 		};
 	}
 
-	onGenerateRange = ( n, p, x0, x1 ) => {
-		const x = incrspace( 0, n+1, 1 );
-		const data = new Array( x.length );
-		for ( let i = 0; i < x.length; i++ ) {
-			data[ i ] = {
-				x: x[ i ],
-				y: dbinom( x[ i ], n, p )
-			};
-		}
-		this.setState({
-			data, n, p, x0, x1
-		});
-	}
-
 	handleTrialsChange = ( n ) => {
 		const x = incrspace( 0, n+1, 1 );
 		const data = new Array( x.length );
 		for ( let i = 0; i < x.length; i++ ) {
 			data[ i ] = {
 				x: x[ i ],
-				y: dbinom( x[ i ], n, this.state.p ),
-				fill: ( i === x ) ? 'tomato' : 'steelblue'
+				y: dbinom( x[ i ], n, this.state.p )
 			};
 		}
 		this.setState({ data, n });
@@ -86,8 +70,7 @@ class BinomialProps extends Component {
 		for ( let i = 0; i < x.length; i++ ) {
 			data[ i ] = {
 				x: x[ i ],
-				y: dbinom( x[ i ], this.state.n, this.state.p ),
-				fill: ( i === x ) ? 'tomato' : 'steelblue'
+				y: dbinom( x[ i ], this.state.n, this.state.p )
 			};
 		}
 		this.setState({ data, p });
