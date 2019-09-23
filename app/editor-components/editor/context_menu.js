@@ -37,6 +37,9 @@ function groupIndicator( v ) {
 		return 'victory';
 	}
 	if ( contains( COMPONENTS.LEARNING, v.name ) ) {
+		if ( contains( v.name, 'Distribution' ) ) {
+			return 'learningDistribution';
+		}
 		return 'learning';
 	}
 	if ( contains( COMPONENTS.PROGRAMMATIC, v.name ) ) {
@@ -142,6 +145,9 @@ class EditorContextMenu extends Component {
 					</SubMenu>
 					<SubMenu title="Learning Components">
 						{snippets.learning.map( this.renderMenuItem )}
+						<SubMenu title="Distributions">
+							{snippets.learningDistribution.map( this.renderMenuItem )}
+						</SubMenu>
 					</SubMenu>
 					<SubMenu title="General">
 						{snippets.general.map( this.renderMenuItem )}
