@@ -33,9 +33,7 @@ class BinomialProps extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			n1: 0,
-			n2: 0,
-			n3: 0
+			n: 0
 		};
 	}
 
@@ -49,11 +47,7 @@ class BinomialProps extends Component {
 			};
 		}
 		this.setState({
-			data1: data,
-			eqn1: 'P(X \\le' + roundn( x0, -4 ) + ') = ' + roundn( pbinom( x0, n, p ), -4 ),
-			x0,
-			n1: n,
-			p1: p
+			data, x0, n, p
 		});
 	}
 
@@ -67,11 +61,7 @@ class BinomialProps extends Component {
 			};
 		}
 		this.setState({
-			data2: data,
-			eqn2: 'P(X >' + roundn( x0, -4 ) + ') = ' + roundn( 1.0 - pbinom( x0, n, p ), -4 ),
-			x0,
-			n2: n,
-			p2: p
+			data, x0, n, p
 		});
 	}
 
@@ -90,17 +80,12 @@ class BinomialProps extends Component {
 			};
 		}
 		this.setState({
-			data3: data,
-			eqn3: 'P(' + roundn( x0, -4 ) + '\\le X \\le' + roundn( x1, -4 ) + ') = ' + roundn( pbinom( x1, n, p ) - pbinom( x0, n, p ), -4 ),
-			n3: n,
-			p3: p,
-			x0,
-			x1
+			data, n, p, x0, x1
 		});
 	}
 
 	render() {
-		const { x0, n, p, n1, p1, n2, p2, n3, p3 } = this.state;
+		const { x0, x1, n, p } = this.state;
 		return ( <Card style={{ maxWidth: 1200, margin: '0 auto', ...this.props.style }}>
 			<Card.Header as="h3">
 				Binomial Distribution
@@ -239,9 +224,9 @@ class BinomialProps extends Component {
 											defaultValue={0}
 											step={1}
 											min={0}
-											max={this.state.n1}
+											max={this.state.n}
 										/>
-										<TeX raw={this.state.eqn1} displayMode tag="" />
+										<TeX raw={`P(X \\le${roundn( x0, -4 )}) = ${roundn( pbinom( x0, n, p ), -4 )}`} displayMode tag="" />
 									</Dashboard>
 								</Col>
 								<Col md={8} >
@@ -255,7 +240,7 @@ class BinomialProps extends Component {
 														style={{ axisLabel: { padding: 40 }}}
 													/>
 													<VictoryBar
-														data={this.state.data1}
+														data={this.state.data}
 														style={{
 															data: {
 																fill: data => ( data.x <= x0 ) ? 'tomato' : 'steelblue'
@@ -274,17 +259,17 @@ class BinomialProps extends Component {
 													<VictoryLine
 														samples={600}
 														y={( data ) => {
-															return pbinom( data.x, n1, p1 );
+															return pbinom( data.x, n, p );
 														}}
 														domain={{
-															x: [ 0, n1+1 ],
+															x: [ 0, n+1 ],
 															y: [ 0, 1.1 ]
 														}}
 													/>
 													<VictoryLine
 														data={[
 															{ x: x0, y: 0 },
-															{ x: x0, y: pbinom( x0, n1, p1 ) }
+															{ x: x0, y: pbinom( x0, n, p ) }
 														]}
 														style={{
 															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -292,8 +277,8 @@ class BinomialProps extends Component {
 													/>
 													<VictoryLine
 														data={[
-															{ x: 0, y: pbinom( x0, n1, p1 ) },
-															{ x: x0, y: pbinom( x0, n1, p1 ) }
+															{ x: 0, y: pbinom( x0, n, p ) },
+															{ x: x0, y: pbinom( x0, n, p ) }
 														]}
 														style={{
 															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -329,10 +314,10 @@ class BinomialProps extends Component {
 											legend="x0"
 											defaultValue={0}
 											min={-1}
-											max={this.state.n2}
+											max={this.state.n}
 											step={1}
 										/>
-										<TeX raw={this.state.eqn2} displayMode tag="" />
+										<TeX raw={`P(X >${roundn( x0, -4 )}) = ${roundn( 1.0 - pbinom( x0, n, p ), -4 )}`} displayMode tag="" />
 									</Dashboard>
 								</Col>
 								<Col md={8} >
@@ -346,7 +331,7 @@ class BinomialProps extends Component {
 														style={{ axisLabel: { padding: 40 }}}
 													/>
 													<VictoryBar
-														data={this.state.data2}
+														data={this.state.data}
 														style={{
 															data: {
 																fill: data => ( data.x > this.state.x0 ) ? 'tomato' : 'steelblue'
@@ -365,17 +350,17 @@ class BinomialProps extends Component {
 													<VictoryLine
 														samples={600}
 														y={( data ) => {
-															return pbinom( data.x, n2, p2 );
+															return pbinom( data.x, n, p );
 														}}
 														domain={{
-															x: [ 0, n2+1 ],
+															x: [ 0, n+1 ],
 															y: [ 0, 1.1 ]
 														}}
 													/>
 													<VictoryLine
 														data={[
 															{ x: x0, y: 0 },
-															{ x: x0, y: pbinom( x0, n2, p2 ) }
+															{ x: x0, y: pbinom( x0, n, p ) }
 														]}
 														style={{
 															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -383,8 +368,8 @@ class BinomialProps extends Component {
 													/>
 													<VictoryLine
 														data={[
-															{ x: 0, y: pbinom( x0, n2, p2 ) },
-															{ x: x0, y: pbinom( x0, n2, p2 ) }
+															{ x: 0, y: pbinom( x0, n, p ) },
+															{ x: x0, y: pbinom( x0, n, p ) }
 														]}
 														style={{
 															data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
@@ -420,17 +405,17 @@ class BinomialProps extends Component {
 											legend="x0"
 											defaultValue={0}
 											min={0}
-											max={this.state.n3}
+											max={this.state.n}
 											step={1}
 										/>
 										<SliderInput
 											legend="x1"
 											defaultValue={1}
 											min={0}
-											max={this.state.n3}
+											max={this.state.n}
 											step={1}
 										/>
-										<TeX raw={this.state.eqn3} displayMode tag="" />
+										<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pbinom( x1, n, p ) - pbinom( x0, n, p ), -4 )}`} displayMode tag="" />
 									</Dashboard>
 								</Col>
 								<Col md={8} >
@@ -444,7 +429,7 @@ class BinomialProps extends Component {
 														style={{ axisLabel: { padding: 40 }}}
 													/>
 													<VictoryBar
-														data={this.state.data3}
+														data={this.state.data}
 														style={{
 															data: {
 																fill: data => ( this.state.x0 <= data.x && data.x <= this.state.x1 ) ? 'tomato' : 'steelblue'
@@ -463,10 +448,10 @@ class BinomialProps extends Component {
 													<VictoryLine
 														samples={600}
 														y={( data ) => {
-															return pbinom( data.x, n3, p3 );
+															return pbinom( data.x, n, p );
 														}}
 														domain={{
-															x: [ 0, n3+1 ],
+															x: [ 0, n+1 ],
 															y: [ 0, 1.1 ]
 														}}
 													/>
