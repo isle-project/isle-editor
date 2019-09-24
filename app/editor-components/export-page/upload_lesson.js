@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import { createReadStream, createWriteStream } from 'fs';
 import { join } from 'path';
+import { resolve } from 'url';
 import https from 'https';
 import http from 'http';
 import os from 'os';
@@ -174,8 +175,8 @@ class UploadLesson extends Component {
 
 		request.on( 'response', ( res ) => {
 			if ( res.statusCode === 200 ) {
-				let lessonLink = join( this.state.server, namespaceName, lessonName );
-				let msg = <span>
+				const lessonLink = resolve( this.state.server, namespaceName + '/' + lessonName );
+				const msg = <span>
 					The lesson has been uploaded successfully and can be accessed at the following address: <a href={lessonLink}>{lessonLink}</a>
 				</span>;
 				this.setState({
