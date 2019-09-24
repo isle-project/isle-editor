@@ -67,6 +67,7 @@ const SCOPE = {
 	LearnBinomialDistribution: Loadable( () => import( 'components/learn/distribution-binomial' ) ),
 	LearnExponentialDistribution: Loadable( () => import( 'components/learn/distribution-exponential' ) ),
 	LearnGeometricDistribution: Loadable( () => import( 'components/learn/distribution-geometric' ) ),
+	LearnHypergeometricDistribution: Loadable( () => import( 'components/learn/distribution-hypergeometric' ) ),
 	LearnNegativeBinomialDistribution: Loadable( () => import( 'components/learn/distribution-negative-binomial' ) ),
 	LearnNormalDistribution: Loadable( () => import( 'components/learn/distribution-normal' ) ),
 	LearnPoissonDistribution: Loadable( () => import( 'components/learn/distribution-poisson' ) ),

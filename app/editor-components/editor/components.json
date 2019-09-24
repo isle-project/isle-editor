@@ -52,6 +52,7 @@
 		"LearnDiscreteDistribution",
 		"LearnExponentialDistribution",
 		"LearnGeometricDistribution",
+		"LearnHypergeometricDistribution",
 		"LearnNegativeBinomialDistribution",
 		"LearnNormalDistribution",
 		"LearnPoissonDistribution",

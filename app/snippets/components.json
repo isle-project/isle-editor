@@ -388,6 +388,10 @@
 		"value": "<LearnGeometricDistribution />\n"
 	},
 	{
+		"name": "LearnHypergeometricDistribution",
+		"value": "<LearnHypergeometricDistribution />\n"
+	},
+	{
 		"name": "LearnNegativeBinomialDistribution",
 		"value": "<LearnNegativeBinomialDistribution />\n"
 	},
