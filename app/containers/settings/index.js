@@ -4,6 +4,9 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { changeRenderInterval, changeFontSize, changePreambleTemplate } from 'actions';
 import NumberInput from 'components/input/number';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import FormControl from 'react-bootstrap/FormControl';
 import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
@@ -39,33 +42,39 @@ class Settings extends Component {
 							Settings
 						</Card.Header>
 						<Card.Body>
-							<NumberInput
-								description="Editor text height in pixels"
-								legend="Font Size"
-								onChange={this.handleFontSizeChange}
-								min={8}
-								max={56}
-								step={1}
-								defaultValue={this.props.fontSize}
-							/>
-							<NumberInput
-								description="Interval between preview renders"
-								legend="Rendering interval (in seconds)"
-								onChange={this.handleRenderIntervalChange}
-								min={1}
-								max={100}
-								step={1}
-								defaultValue={parseInt( this.props.renderInterval / 1000, 10 )}
-							/>
-							<FormGroup className="settings-preamble-form-group">
-								<Card.Subtitle className="mb-2" ><FormLabel>Preamble Template:</FormLabel></Card.Subtitle>
-								<FormControl
-									as="textarea"
-									onChange={this.handlePreambleTemplateChange}
-									rows={7}
-									defaultValue={this.props.preambleTemplate}
-								/>
-							</FormGroup>
+							<Container><Row>
+								<Col md={5}>
+									<NumberInput
+										description="Editor text height in number of pixels "
+										legend="Font Size"
+										onChange={this.handleFontSizeChange}
+										min={8}
+										max={56}
+										step={1}
+										defaultValue={this.props.fontSize}
+									/>
+									<NumberInput
+										description="Interval between renders (in seconds)"
+										legend="Rendering interval"
+										onChange={this.handleRenderIntervalChange}
+										min={1}
+										max={100}
+										step={1}
+										defaultValue={parseInt( this.props.renderInterval / 1000, 10 )}
+									/>
+								</Col>
+								<Col md={7}>
+									<FormGroup className="settings-preamble-form-group">
+										<Card.Subtitle className="mb-2" ><FormLabel>Preamble Template:</FormLabel></Card.Subtitle>
+										<FormControl
+											as="textarea"
+											onChange={this.handlePreambleTemplateChange}
+											rows={7}
+											defaultValue={this.props.preambleTemplate}
+										/>
+									</FormGroup>
+								</Col>
+							</Row></Container>
 						</Card.Body>
 					</Card>
 				</div>
