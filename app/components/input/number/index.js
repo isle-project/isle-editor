@@ -258,7 +258,7 @@ class NumberInput extends Input {
 						}
 					</label>
 					{ this.props.description ?
-						<span> {this.props.description}</span> :
+						<span style={{ minWidth: 200 }}> {this.props.description}</span> :
 						null
 					}
 				</span> : null
