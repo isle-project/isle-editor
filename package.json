@@ -194,7 +194,7 @@
     "redux-thunk": "^2.3.0",
     "semver": "^6.3.0",
     "source-map-support": "^0.5.13",
-    "spectacle": "5.7.0",
+    "spectacle": "5.7.1",
     "stemmer": "^1.0.3",
     "style-loader": "^1.0.0",
     "svg-react-loader": "^0.4.5",
