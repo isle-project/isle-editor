@@ -17,6 +17,7 @@ Fall
 * Add option to display a line grid instead of a white page as sketchpad background
 * Add save reminders in data explorer 
 * Log actions in instructor bar
+* Consider adding vertical gridlines to plots
 
 Summer 2019
 ===========
