@@ -205,14 +205,14 @@ class Editor extends Component {
 	}
 
 	provideCodeActions = ( textModel, range, context ) => {
-		const out = [];
+		const actions = [];
 		context.markers
 			.filter( marker => marker.owner === 'spelling' )
 			.forEach( problem => {
 				const suggestions = SpellChecker.typo.suggest( problem.code );
 				for ( let i = 0; i < suggestions.length; i++ ) {
 					const text = suggestions[ i ];
-					out.push({
+					actions.push({
 						command: {
 							id: this.editTextCommand,
 							title: 'Fix the spelling',
@@ -222,7 +222,10 @@ class Editor extends Component {
 					});
 				}
 			});
-		return out;
+		return {
+			actions,
+			dispose(){}
+		};
 	}
 
 	checkRequires = ( names, preamble ) => {
