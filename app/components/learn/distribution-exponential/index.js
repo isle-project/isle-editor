@@ -1,18 +1,18 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
 import roundn from '@stdlib/math/base/special/roundn';
-import linspace from '@stdlib/math/utils/linspace';
 import dexp from '@stdlib/stats/base/dists/exponential/pdf';
 import pexp from '@stdlib/stats/base/dists/exponential/cdf';
 import qexp from '@stdlib/stats/base/dists/exponential/quantile';
 import SliderInput from 'components/input/slider';
-import Dashboard from 'components/dashboard';
+import Panel from 'components/panel';
 import TeX from 'components/tex';
 
 
@@ -32,58 +32,15 @@ const NEAR_ONE = 0.999999;
 class ExponentialProbs extends Component {
 	constructor( props ) {
 		super( props );
-		this.state = {};
+		this.state = {
+			rate: 1,
+			x0: 0,
+			x1: 1
+		};
 	}
 
-	onGenerateSmaller = ( rate, x0 ) => {
-		let len = 200;
-		let x = linspace( 0, x0, len );
-		let data = new Array( len );
-		for ( let i = 0; i < x.length; i++ ) {
-			data[ i ] = {
-				x: x[ i ],
-				y: dexp( x[ i ], rate )
-			};
-		}
-		this.setState({
-			data1: data,
-			eqn1: 'P(X \\le' + roundn( x0, -4 ) + ') = ' + roundn( pexp( x0, rate ), -4 ),
-			rate1: rate
-		});
-	}
-
-	onGenerateGreater = ( rate, x0 ) => {
-		let len = 200;
-		let x = linspace( x0, qexp( NEAR_ONE, rate ), len );
-		let data = new Array( len );
-		for ( let i = 0; i < x.length; i++ ) {
-			data[ i ] = {
-				x: x[ i ],
-				y: dexp( x[ i ], rate )
-			};
-		}
-		this.setState({
-			data2: data,
-			eqn2: 'P(X >' + roundn( x0, -4 ) + ') = ' + roundn( 1-pexp( x0, rate ), -4 ),
-			rate2: rate
-		});
-	}
-
-	onGenerateRange = ( rate, x0, x1 ) => {
-		let len = 500;
-		let x = linspace( x0, x1, len );
-		let data = new Array( len );
-		for ( let i = 0; i < x.length; i++ ) {
-			data[ i ] = {
-				x: x[ i ],
-				y: dexp( x[ i ], rate )
-			};
-		}
-		this.setState({
-			data3: data,
-			eqn3: 'P(' + roundn( x0, -4 ) + '\\le X \\le ' + roundn( x1, -4 ) + ') = ' + roundn( pexp( x1, rate ) - pexp( x0, rate ), -4 ),
-			rate3: rate
-		});
+	handleRateChange = ( rate ) => {
+		this.setState({ rate });
 	}
 
 	handleLowerChange = ( x0 ) => {
@@ -95,27 +52,43 @@ class ExponentialProbs extends Component {
 	}
 
 	renderInputs( type ) {
+		const { rate, x0, x1 } = this.state;
 		return (
 			<Fragment>
 				<SliderInput
+					key={`${type}-rate`}
 					legend="Rate"
 					defaultValue={1}
 					min={1e-12}
 					step={this.props.step}
 					max={20}
+					onChange={this.handleRateChange}
 				/>
 				<SliderInput
+					key={`${type}-x0`}
 					legend="x0"
-					defaultValue={0}
+					defaultValue={x0}
 					min={0}
-					max={qexp( NEAR_ONE, this.state.rate1 )}
+					max={qexp( NEAR_ONE, rate )}
 					step={this.props.step}
+					onChange={this.handleLowerChange}
 				/>
+				{ type === 'range' ?
+					<SliderInput
+						legend="x1"
+						defaultValue={x1}
+						min={0}
+						max={qexp( NEAR_ONE, rate )}
+						step={this.props.step}
+						onChange={this.handleUpperChange}
+					/> :
+				null }
 			</Fragment>
-		)
+		);
 	}
 
 	render() {
+		const { rate, x0, x1 } = this.state;
 		return ( <Card style={{ maxWidth: 600, ...this.props.style }}>
 			<Card.Header as="h3">
 				Exponential Distribution
@@ -123,56 +96,56 @@ class ExponentialProbs extends Component {
 			<Card.Body>
 				<Tabs defaultActiveKey={1} id="exponential-tabs">
 					<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
-						<Dashboard autoUpdate onGenerate={this.onGenerateSmaller}>
-							{this.renderInputs()}
-							<TeX raw={this.state.eqn1} />
-						</Dashboard>
+						<Panel>
+							{this.renderInputs( 'smaller' )}
+							<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pexp( x0, rate ), -4 )}`} />
+						</Panel>
 						<VictoryChart
 							domain={{
-								x: [ 0, qexp( NEAR_ONE, this.state.rate1 ) + 2 ]
+								x: [ 0, qexp( NEAR_ONE, rate ) + 2 ]
 							}}
 						>
 							<VictoryArea
-								data={this.state.data1}
+								samples={200}
+								interpolation="step"
+								y={( data ) => {
+									if ( data.x <= x0 ) {
+										return dexp( data.x, rate );
+									}
+									return 0.0;
+								}}
 								style={{
 									data: {
-										opacity: 0.3,
-										fill: 'tomato'
+										opacity: 0.3, fill: 'tomato'
 									}
 								}}
 							/>
 							<VictoryLine
 								y={( data ) =>
-									dexp( data.x, this.state.rate1 )
+									dexp( data.x, rate )
 								}
 							/>
 						</VictoryChart>
 					</Tab>
 					<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />}>
-						<Dashboard autoUpdate onGenerate={this.onGenerateGreater}>
-							<SliderInput
-								legend="Rate"
-								defaultValue={1}
-								min={1e-12}
-								max={20}
-								step={this.props.step}
-							/>
-							<SliderInput
-								legend="x0"
-								defaultValue={0}
-								min={0}
-								max={qexp( NEAR_ONE, this.state.rate2 )}
-								step={this.props.step}
-							/>
-							<TeX raw={this.state.eqn2} />
-						</Dashboard>
+						<Panel>
+							{this.renderInputs( 'greater' )}
+							<TeX raw={`P(X > ${roundn( x0, -4 )} ) = ${roundn( 1-pexp( x0, rate ), -4 )}`} />
+						</Panel>
 						<VictoryChart
 							domain={{
-								x: [ 0, qexp( NEAR_ONE, this.state.rate2 ) + 2 ]
+								x: [ 0, qexp( NEAR_ONE, rate ) + 2 ]
 							}}
 						>
 							<VictoryArea
-								data={this.state.data2}
+								samples={200}
+								interpolation="step"
+								y={( data ) => {
+									if ( data.x > x0 ) {
+										return dexp( data.x, rate );
+									}
+									return 0.0;
+								}}
 								style={{
 									data: {
 										opacity: 0.3, fill: 'tomato'
@@ -181,43 +154,33 @@ class ExponentialProbs extends Component {
 							/>
 							<VictoryLine
 								y={( data ) =>
-									dexp( data.x, this.state.rate2 )
+									dexp( data.x, rate )
 								}
 							/>
 						</VictoryChart>
 					</Tab>
 					<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1)" />}>
-						<Dashboard autoUpdate onGenerate={this.onGenerateRange}>
-							<SliderInput
-								legend="Rate"
-								defaultValue={1}
-								min={1e-12}
-								max={20}
-								step={this.props.step}
-							/>
-							<SliderInput
-								legend="x0"
-								defaultValue={0}
-								min={0}
-								max={qexp( 1, this.state.rate3 )}
-								step={this.props.step}
-							/>
-							<SliderInput
-								legend="x1"
-								defaultValue={0}
-								min={0}
-								max={qexp( NEAR_ONE, this.state.rate3 )}
-								step={this.props.step}
-							/>
-							<TeX raw={this.state.eqn3} />
-						</Dashboard>
+						<Panel>
+							{this.renderInputs( 'range' )}
+							{ x1 >= x0 ?
+								<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )} ) = ${roundn( pexp( x1, rate ) - pexp( x0, rate ), -4 )}`} /> :
+								<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+							}
+						</Panel>
 						<VictoryChart
 							domain={{
-								x: [ 0, qexp( NEAR_ONE, this.state.rate3 ) + 2 ]
+								x: [ 0, qexp( NEAR_ONE, rate ) + 2 ]
 							}}
 						>
 							<VictoryArea
-								data={this.state.data3}
+								samples={200}
+								interpolation="step"
+								y={( data ) => {
+									if ( data.x >= x0 && data.x <= x1 ) {
+										return dexp( data.x, rate );
+									}
+									return 0.0;
+								}}
 								style={{
 									data: {
 										opacity: 0.3, fill: 'tomato'
@@ -226,7 +189,7 @@ class ExponentialProbs extends Component {
 							/>
 							<VictoryLine
 								y={( data ) =>
-									dexp( data.x, this.state.rate3 )
+									dexp( data.x, rate )
 								}
 							/>
 						</VictoryChart>
