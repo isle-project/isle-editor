@@ -10,7 +10,6 @@ import unique from 'uniq';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Overlay from 'react-bootstrap/Overlay';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'components/overlay-trigger';
 import markdownit from 'markdown-it';
@@ -34,6 +33,7 @@ import SessionContext from 'session/context.js';
 import { TABLE_SORT, TABLE_FILTER, TABLE_RESET } from 'constants/actions.js';
 import SelectInput from 'components/input/select';
 import TutorialButton from './tutorial-button/index.js';
+import ColumnTitle from './column_title.js';
 import 'react-table/react-table.css';
 import './input_range.css';
 import './react_table_height.css';
@@ -135,22 +135,7 @@ function createColumns( props, state ) {
 			props.dataInfo.variables &&
 			props.dataInfo.variables[ key ]
 		) {
-			const showTooltip = () => {
-				this.setState({
-					showTooltip: true,
-					tooltip: props.dataInfo.variables[ key ]
-				});
-			};
-			const hideTooltip = () => {
-				this.setState({
-					showTooltip: false,
-					tooltip: null
-				});
-			};
-			header = <span
-				onMouseOver={showTooltip} onFocus={showTooltip}
-				onMouseOut={hideTooltip} onBlur={hideTooltip}
-			>{key}</span>;
+			header = <ColumnTitle title={key} tooltip={props.dataInfo.variables[ key ]} />;
 		} else if ( props.deletable ) {
 			header = <div style={{ backgroundColor: 'papayawhip' }}>
 				{key}
@@ -556,26 +541,6 @@ class DataTable extends Component {
 							{dataInfo.name ? dataInfo.name : 'Data'}
 						</h4>: null
 					}
-					<Overlay
-						target={this.table}
-						show={this.state.showTooltip}
-					>
-						{({ placement, scheduleUpdate, arrowProps, ...props }) => (
-							<div
-								{...props}
-								style={{
-									backgroundColor: 'rgba(10, 10, 10,0.9)',
-									padding: '2px 10px',
-									color: 'white',
-									borderRadius: 3,
-									maxWidth: '300px',
-									...props.style
-								}}
-							>
-								{this.state.tooltip}
-							</div>
-						)}
-					</Overlay>
 					<ReactTable
 						id={this.id}
 						ref={( table ) => { this.table = table; }}
@@ -642,6 +607,7 @@ DataTable.defaultProps = {
 	style: {}
 };
 
+/* eslint-disable react/no-unused-prop-types */
 DataTable.propTypes = {
 	data: PropTypes.oneOfType([
 		PropTypes.array,
@@ -656,7 +622,7 @@ DataTable.propTypes = {
 	onEdit: PropTypes.func,
 	filters: PropTypes.array,
 	onFilteredChange: PropTypes.func,
-	showRemove: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
+	showRemove: PropTypes.bool,
 	showIdColumn: PropTypes.bool,
 	style: PropTypes.object
 };
