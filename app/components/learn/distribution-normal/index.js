@@ -60,6 +60,7 @@ class NormalProbs extends Component {
 		return (
 			<Fragment>
 				<NumberInput
+					key={`${type}-mean`}
 					legend="Mean"
 					defaultValue={0}
 					step={this.props.step}
@@ -67,6 +68,7 @@ class NormalProbs extends Component {
 					onChange={this.handleMeanChange}
 				/>
 				<NumberInput
+					key={`${type}-sd`}
 					legend="Standard Deviation"
 					defaultValue={this.props.minStDev}
 					step={this.props.step}
@@ -75,6 +77,7 @@ class NormalProbs extends Component {
 					onChange={this.handleSDChange}
 				/>
 				<SliderInput
+					key={`${type}-x0`}
 					legend="x0"
 					defaultValue={x0}
 					step={this.props.step}
@@ -84,6 +87,7 @@ class NormalProbs extends Component {
 				/>
 				{type === 'range' ?
 					<SliderInput
+						key={`${type}-x1`}
 						legend="x1"
 						defaultValue={x1}
 						min={mean-sd*4}
@@ -104,7 +108,7 @@ class NormalProbs extends Component {
 		const tabSmaller = contains( tabs, 'smaller' ) ? <Tab eventKey="smaller" title={<TeX raw="P(X \le x_0)" />}>
 			<Panel>
 				{this.renderInputs( 'smaller' )}
-				<TeX raw={`'P(X \\le ${roundn( x0, -4 )}) = ${roundn( pnorm( x0, mean, sd ), -4 )}`} displayMode tag="" />
+				<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pnorm( x0, mean, sd ), -4 )}`} displayMode tag="" />
 			</Panel>
 			<VictoryChart
 				domain={domain ? domain : {
