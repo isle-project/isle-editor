@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Tooltip from 'components/tooltip';
 import Gate from 'components/gate';
@@ -28,23 +29,38 @@ class ChatButton extends Component {
 		super( props );
 
 		this.state = {
-			opened: false
+			opened: false,
+			nMessages: 0
 		};
 	}
 
 	componentDidMount() {
 		const session = this.context;
-		this.unsubscribe = session.subscribe( ( type, name ) => {
-			if ( name === this.props.for ) {
-				let chat = session.getChat( this.props.for );
+		this.unsubscribe = session.subscribe( ( type, value ) => {
+			if (
+				( type === 'self_has_joined_chat' || type === 'chat_history' ) &&
+				value.name === this.props.for
+			) {
+				this.setState({
+					opened: true,
+					nMessages: value.messages.length
+				});
+			}
+			else if ( value === this.props.for ) {
+				const chat = session.getChat( this.props.for );
 				if ( !chat || type === 'self_has_left_chat' ) {
 					this.setState({
 						opened: false
 					});
 				}
-				else if ( type === 'self_has_joined_chat' ) {
+				else if ( type === 'chat_message' ) {
 					this.setState({
-						opened: true
+						nMessages: this.state.nMessages + 1
+					});
+				}
+				else if ( type === 'own_chat_message' ) {
+					this.setState({
+						nMessages: this.state.nMessages + 1
 					});
 				}
 				else if ( type === 'removed_chat' ) {
@@ -79,12 +95,14 @@ class ChatButton extends Component {
 	}
 
 	render() {
+		const nMessages = this.state.nMessages;
 		let button = <Button
 			variant="secondary"
 			size={this.props.size}
 			onClick={this.handleClick}
 		>
-			{this.state.opened ? 'Leave Chat' : 'Join Chat' }
+			<span style={{ pointerEvents: 'none' }} >{this.state.opened ? 'Leave Chat' : 'Join Chat' }</span>
+			{ nMessages ? <Badge variant="dark" style={{ marginLeft: '5px', fontSize: '10px', pointerEvents: 'none' }}>{nMessages}</Badge> : null }
 		</Button>;
 		if ( this.props.showTooltip ) {
 			button = <Tooltip

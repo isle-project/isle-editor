@@ -654,6 +654,7 @@ class Session {
 				lessonName: this.lessonName,
 				chatroom: name
 			});
+			this.update( 'own_chat_message', name );
 		}
 	}
 
@@ -812,20 +813,21 @@ class Session {
 				chat.messages = messages;
 				chat.members = members;
 			}
-			this.update();
+			this.update( 'chat_history', chat );
 		});
 
 		socket.on( 'member_has_joined_chat', ({ name, member }) => {
 			debug( `Member ${member.name} has joined chat ${name}` );
-			const chat = this.getChat( name );
+			let chat = this.getChat( name );
 			name = this.stripChatName( name );
 			if ( chat ) {
 				chat.members.push( member );
-				this.update( 'member_has_joined_chat', name );
+				this.update( 'member_has_joined_chat', chat );
 			} else if ( member.email === this.user.email ) {
-				this.chats.push({ name: name, messages: [], members: []});
+				chat = { name: name, messages: [], members: []};
+				this.chats.push( chat );
 				this.socket.emit( 'join_chat', name );
-				this.update( 'self_has_joined_chat', name );
+				this.update( 'self_has_joined_chat', chat );
 			}
 		});
 
@@ -849,7 +851,7 @@ class Session {
 				data.msg.unread = true;
 				chat.messages.push( data.msg );
 			}
-			this.update( 'chat_message' );
+			this.update( 'chat_message', data.chatroom );
 		});
 
 		socket.on( 'memberAction', this.saveAction );
