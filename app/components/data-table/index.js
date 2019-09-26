@@ -126,6 +126,140 @@ const CustomIndicator = () => {
 	return <div />;
 };
 
+function createColumns( props, state ) {
+	debug( 'Create columns...' );
+	const columns = state.keys.filter( key => key !== 'id' ).map( ( key, idx ) => {
+		let header = key;
+		if (
+			props.dataInfo &&
+			props.dataInfo.variables &&
+			props.dataInfo.variables[ key ]
+		) {
+			const showTooltip = () => {
+				this.setState({
+					showTooltip: true,
+					tooltip: props.dataInfo.variables[ key ]
+				});
+			};
+			const hideTooltip = () => {
+				this.setState({
+					showTooltip: false,
+					tooltip: null
+				});
+			};
+			header = <span
+				onMouseOver={showTooltip} onFocus={showTooltip}
+				onMouseOut={hideTooltip} onBlur={hideTooltip}
+			>{key}</span>;
+		} else if ( props.deletable ) {
+			header = <div style={{ backgroundColor: 'papayawhip' }}>
+				{key}
+				<OverlayTrigger placement="left" overlay={<Tooltip>Remove variable</Tooltip>} >
+					<button className="fa fa-times delete-button" onClick={( evt ) => {
+						evt.stopPropagation();
+						props.onColumnDelete( key );
+					}} />
+				</OverlayTrigger>
+			</div>;
+		}
+		const out = {
+			Header: header,
+			id: key,
+			accessor: ( d ) => d[ key ]
+		};
+		if ( contains( props.editable, key ) ) {
+			out.Cell = this.renderEditable;
+		}
+		let vals;
+		if ( !isArray( props.data ) ) {
+			vals = props.data[ key ].slice();
+		} else {
+			vals = new Array( state.rows.length );
+			for ( let i = 0; i < state.rows.length; i++ ) {
+				vals[ i ] = props.data[ i ][ key ];
+			}
+		}
+		if ( props.filterable ) {
+			vals = vals.filter( x => !isNull( x ) && x !== '' );
+			let uniqueValues = unique( vals );
+			if ( isNumberArray( vals ) && uniqueValues.length > 2 ) {
+				out[ 'filterMethod' ] = filterMethodNumbers;
+				out[ 'Filter' ] = ({ filter, onChange }) => {
+					const defaultVal = {
+						max: ceil( max( uniqueValues ) ),
+						min: floor( min( uniqueValues ) )
+					};
+					return (
+						<div style={{
+							paddingLeft: '4px',
+							paddingRight: '4px',
+							paddingTop: '8px',
+							paddingBottom: '4px'
+						}}>
+							<InputRange
+								allowSameValues
+								maxValue={ceil( max( uniqueValues ) )}
+								minValue={floor( min( uniqueValues ) )}
+								value={filter ? filter.value : defaultVal}
+								onChange={( newValue ) => {
+									onChange( newValue );
+								}}
+								formatLabel={( val ) => {
+									return round( val );
+								}}
+							/>
+						</div>
+					);
+				};
+			} else if ( uniqueValues.length <= 8 ) {
+				// Cast values to strings for select component to work:
+				uniqueValues = uniqueValues.map( x => String( x ) );
+				out[ 'filterMethod' ] = filterMethodCategories;
+				out[ 'Filter' ] = ({ filter, onChange }) => {
+					return (
+						<SelectInput
+							onChange={onChange}
+							style={{ width: '100%' }}
+							value={filter ? filter.value : null}
+							searchable={false}
+							options={uniqueValues}
+							menuPlacement="auto"
+							multi
+							placeholder="Show all"
+							components={{
+								IndicatorsContainer: CustomIndicator
+							}}
+							menuPortalTarget={document.body}
+							styles={{
+								menuPortal: base => ({ ...base, zIndex: 9999 })
+							}}
+						/>
+					);
+				};
+			} else {
+				out[ 'filterMethod' ] = filterMethodStrings;
+			}
+		}
+		return out;
+	});
+	if ( props.showIdColumn ) {
+		columns.unshift({
+			Header: 'id',
+			accessor: 'id',
+			filterable: false
+		});
+	}
+	if ( props.showRemove ) {
+		columns.push({
+			Header: 'Remove',
+			accessor: 'remove',
+			Cell: this.renderCheckboxRemovable,
+			filterable: false
+		});
+	}
+	return columns;
+}
+
 
 // MAIN //
 
@@ -203,6 +337,7 @@ class DataTable extends Component {
 				newState.showTooltip = false;
 				newState.selectedRows = rows.length;
 				newState.data = nextProps.data;
+				newState.columns = createColumns( nextProps, newState );
 			}
 		}
 		if ( nextProps.dataInfo !== prevState.dataInfo ) {
@@ -243,7 +378,9 @@ class DataTable extends Component {
 			newState.filtered = this.props.filters;
 		}
 		if ( this.props.data !== prevProps.data ) {
-			this.columns = this.createColumns();
+			this.setState({
+				columns: createColumns( this.props, this.state )
+			});
 		}
 		if ( !isEmptyObject( newState ) ) {
 			debug( 'Trigger a state change after update...' );
@@ -275,141 +412,6 @@ class DataTable extends Component {
 				}}
 			/>
 		);
-	}
-
-	createColumns() {
-		debug( 'Create columns...' );
-		const props = this.props;
-		const columns = this.state.keys.filter( key => key !== 'id' ).map( ( key, idx ) => {
-			let header = key;
-			if (
-				props.dataInfo &&
-				props.dataInfo.variables &&
-				props.dataInfo.variables[ key ]
-			) {
-				const showTooltip = () => {
-					this.setState({
-						showTooltip: true,
-						tooltip: props.dataInfo.variables[ key ]
-					});
-				};
-				const hideTooltip = () => {
-					this.setState({
-						showTooltip: false,
-						tooltip: null
-					});
-				};
-				header = <span
-					onMouseOver={showTooltip} onFocus={showTooltip}
-					onMouseOut={hideTooltip} onBlur={hideTooltip}
-				>{key}</span>;
-			} else if ( props.deletable ) {
-				header = <div style={{ backgroundColor: 'papayawhip' }}>
-					{key}
-					<OverlayTrigger placement="left" overlay={<Tooltip>Remove variable</Tooltip>} >
-						<button className="fa fa-times delete-button" onClick={( evt ) => {
-							evt.stopPropagation();
-							props.onColumnDelete( key );
-						}} />
-					</OverlayTrigger>
-				</div>;
-			}
-			const out = {
-				Header: header,
-				id: key,
-				accessor: ( d ) => d[ key ]
-			};
-			if ( contains( props.editable, key ) ) {
-				out.Cell = this.renderEditable;
-			}
-			let vals;
-			if ( !isArray( props.data ) ) {
-				vals = props.data[ key ].slice();
-			} else {
-				vals = new Array( this.state.rows.length );
-				for ( let i = 0; i < this.state.rows.length; i++ ) {
-					vals[ i ] = props.data[ i ][ key ];
-				}
-			}
-			if ( props.filterable ) {
-				vals = vals.filter( x => !isNull( x ) && x !== '' );
-				let uniqueValues = unique( vals );
-				if ( isNumberArray( vals ) && uniqueValues.length > 2 ) {
-					out[ 'filterMethod' ] = filterMethodNumbers;
-					out[ 'Filter' ] = ({ filter, onChange }) => {
-						const defaultVal = {
-							max: ceil( max( uniqueValues ) ),
-							min: floor( min( uniqueValues ) )
-						};
-						return (
-							<div style={{
-								paddingLeft: '4px',
-								paddingRight: '4px',
-								paddingTop: '8px',
-								paddingBottom: '4px'
-							}}>
-								<InputRange
-									allowSameValues
-									maxValue={ceil( max( uniqueValues ) )}
-									minValue={floor( min( uniqueValues ) )}
-									value={filter ? filter.value : defaultVal}
-									onChange={( newValue ) => {
-										onChange( newValue );
-									}}
-									formatLabel={( val ) => {
-										return round( val );
-									}}
-								/>
-							</div>
-						);
-					};
-				} else if ( uniqueValues.length <= 8 ) {
-					// Cast values to strings for select component to work:
-					uniqueValues = uniqueValues.map( x => String( x ) );
-					out[ 'filterMethod' ] = filterMethodCategories;
-					out[ 'Filter' ] = ({ filter, onChange }) => {
-						return (
-							<SelectInput
-								onChange={onChange}
-								style={{ width: '100%' }}
-								value={filter ? filter.value : null}
-								searchable={false}
-								options={uniqueValues}
-								menuPlacement="auto"
-								multi
-								placeholder="Show all"
-								components={{
-									IndicatorsContainer: CustomIndicator
-								}}
-								menuPortalTarget={document.body}
-								styles={{
-									menuPortal: base => ({ ...base, zIndex: 9999 })
-								}}
-							/>
-						);
-					};
-				} else {
-					out[ 'filterMethod' ] = filterMethodStrings;
-				}
-			}
-			return out;
-		});
-		if ( props.showIdColumn ) {
-			columns.unshift({
-				Header: 'id',
-				accessor: 'id',
-				filterable: false
-			});
-		}
-		if ( props.showRemove ) {
-			columns.push({
-				Header: 'Remove',
-				accessor: 'remove',
-				Cell: this.renderCheckboxRemovable,
-				filterable: false
-			});
-		}
-		return columns;
 	}
 
 	renderCheckboxRemovable = ( cellInfo ) => {
@@ -492,9 +494,6 @@ class DataTable extends Component {
 		let { selectedRows, rows, dataInfo } = this.state;
 		if ( !rows ) {
 			return <Alert variant="danger">No data provided.</Alert>;
-		}
-		if ( !this.columns ) {
-			this.columns = this.createColumns();
 		}
 		let modal = null;
 		if ( this.state.showVarModal ) {
@@ -581,7 +580,7 @@ class DataTable extends Component {
 						id={this.id}
 						ref={( table ) => { this.table = table; }}
 						data={rows}
-						columns={this.columns}
+						columns={this.state.columns}
 						showPagination={true}
 						sortable={true}
 						resizable={true}
