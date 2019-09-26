@@ -195,7 +195,7 @@ class NormalProbs extends Component {
 			<Container><Row>
 				<Col>
 					<VictoryChart
-						domain={domain ? domain : { x: [ mean-sd	*4, mean+sd	*4 ], y: [ 0, dnorm( mean, mean, sd	 ) ]}}
+						domain={domain ? domain : { x: [ mean-sd*4, mean+sd*4 ], y: [ 0, dnorm( mean, mean, sd ) ]}}
 						theme={VictoryTheme.material}
 					>
 						<VictoryAxis dependentAxis />
@@ -222,7 +222,7 @@ class NormalProbs extends Component {
 						<VictoryLine
 							samples={200}
 							y={( data ) =>
-								dnorm( data.x, mean, sd	 )
+								dnorm( data.x, mean, sd )
 							}
 						/>
 					</VictoryChart>
@@ -315,7 +315,7 @@ class NormalProbs extends Component {
 						<VictoryLine
 							samples={200}
 							y={( data ) =>
-								dnorm( data.x, mean, sd	 )
+								dnorm( data.x, mean, sd )
 							}
 						/>
 					</VictoryChart>
