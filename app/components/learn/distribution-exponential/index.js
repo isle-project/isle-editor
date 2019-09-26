@@ -86,6 +86,35 @@ class ExponentialProbs extends Component {
 		});
 	}
 
+	handleLowerChange = ( x0 ) => {
+		this.setState({ x0 });
+	}
+
+	handleUpperChange = ( x1 ) => {
+		this.setState({ x1 });
+	}
+
+	renderInputs( type ) {
+		return (
+			<Fragment>
+				<SliderInput
+					legend="Rate"
+					defaultValue={1}
+					min={1e-12}
+					step={this.props.step}
+					max={20}
+				/>
+				<SliderInput
+					legend="x0"
+					defaultValue={0}
+					min={0}
+					max={qexp( NEAR_ONE, this.state.rate1 )}
+					step={this.props.step}
+				/>
+			</Fragment>
+		)
+	}
+
 	render() {
 		return ( <Card style={{ maxWidth: 600, ...this.props.style }}>
 			<Card.Header as="h3">
@@ -95,20 +124,7 @@ class ExponentialProbs extends Component {
 				<Tabs defaultActiveKey={1} id="exponential-tabs">
 					<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
 						<Dashboard autoUpdate onGenerate={this.onGenerateSmaller}>
-							<SliderInput
-								legend="Rate"
-								defaultValue={1}
-								min={1e-12}
-								step={this.props.step}
-								max={20}
-							/>
-							<SliderInput
-								legend="x0"
-								defaultValue={0}
-								min={0}
-								max={qexp( NEAR_ONE, this.state.rate1 )}
-								step={this.props.step}
-							/>
+							{this.renderInputs()}
 							<TeX raw={this.state.eqn1} />
 						</Dashboard>
 						<VictoryChart

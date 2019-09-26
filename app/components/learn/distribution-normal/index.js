@@ -1,19 +1,19 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import Alert from 'react-bootstrap/Alert';
 import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
 import contains from '@stdlib/assert/contains';
 import roundn from '@stdlib/math/base/special/roundn';
-import linspace from '@stdlib/math/utils/linspace';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 import NumberInput from 'components/input/number';
 import SliderInput from 'components/input/slider';
-import Dashboard from 'components/dashboard';
+import Panel from 'components/panel';
 import TeX from 'components/tex';
 
 
@@ -32,107 +32,93 @@ class NormalProbs extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			mean1: 0,
-			sd1: 1,
-			mean2: 0,
-			sd2: 1,
-			mean3: 0,
-			sd3: 1
+			mean: 0,
+			sd: 1,
+			x0: 0,
+			x1: 1
 		};
 	}
 
-	onGenerateSmaller = ( mean, sd, x0 ) => {
-		let len = 200;
-		let x = linspace( mean-3*sd, x0, len );
-		let data = new Array( len );
-		for ( let i = 0; i < x.length; i++ ) {
-			data[ i ] = {
-				x: x[ i ],
-				y: dnorm( x[ i ], mean, sd )
-			};
-		}
-		this.setState({
-			data1: data,
-			eqn1: 'P(X \\le' + roundn( x0, -4 ) + ') = ' + roundn( pnorm( x0, mean, sd ), -4 ),
-			sd1: sd,
-			mean1: mean
-		});
+	handleMeanChange = ( mean ) => {
+		this.setState({ mean });
 	}
 
-	onGenerateLarger = ( mean, sd, x0 ) => {
-		let len = 200;
-		let x = linspace( x0, mean+4*sd, len );
-		let data = new Array( len );
-		for ( let i = 0; i < x.length; i++ ) {
-			data[ i ] = {
-				x: x[ i ],
-				y: dnorm( x[ i ], mean, sd )
-			};
-		}
-		this.setState({
-			data2: data,
-			eqn2: 'P(X >' + roundn( x0, -4 ) + ') = ' + roundn( 1.0 - pnorm( x0, mean, sd ), -4 ),
-			sd2: sd,
-			mean2: mean
-		});
+	handleSDChange = ( sd ) => {
+		this.setState({ sd });
 	}
 
-	onGenerateRange = ( mean, sd, x0, x1 ) => {
-		if ( x0 > x1 ) {
-			let tmp = x0;
-			x0 = x1;
-			x1 = tmp;
-		}
-		let len = 200;
-		let x = linspace( x0, x1, len );
-		let data = new Array( len );
-		for ( let i = 0; i < x.length; i++ ) {
-			data[ i ] = {
-				x: x[ i ],
-				y: dnorm( x[ i ], mean, sd )
-			};
-		}
-		this.setState({
-			data3: data,
-			eqn3: 'P(' + roundn( x0, -4 ) + '\\le X \\le' + roundn( x1, -4 ) + ') = ' + roundn( pnorm( x1, mean, sd ) - pnorm( x0, mean, sd ), -4 ),
-			sd3: sd,
-			mean3: mean
-		});
+	handleLowerChange = ( x0 ) => {
+		this.setState({ x0 });
+	}
+
+	handleUpperChange = ( x1 ) => {
+		this.setState({ x1 });
+	}
+
+	renderInputs( type ) {
+		const { mean, sd, x0, x1 } = this.state;
+		return (
+			<Fragment>
+				<NumberInput
+					legend="Mean"
+					defaultValue={0}
+					step={this.props.step}
+					inline
+					onChange={this.handleMeanChange}
+				/>
+				<NumberInput
+					legend="Standard Deviation"
+					defaultValue={this.props.minStDev}
+					step={this.props.step}
+					min={this.props.minStDev}
+					inline
+					onChange={this.handleSDChange}
+				/>
+				<SliderInput
+					legend="x0"
+					defaultValue={x0}
+					step={this.props.step}
+					min={mean-sd*4}
+					max={mean+sd*4}
+					onChange={this.handleLowerChange}
+				/>
+				{type === 'range' ?
+					<SliderInput
+						legend="x1"
+						defaultValue={x1}
+						min={mean-sd*4}
+						max={mean+sd*4}
+						step={this.props.step}
+						onChange={this.handleUpperChange}
+					/> :
+					null
+				}
+			</Fragment>
+		);
 	}
 
 	render() {
 		const domain = this.props.domain;
 		const tabs = this.props.tabs;
+		const { mean, sd, x0, x1 } = this.state;
 		const tabSmaller = contains( tabs, 'smaller' ) ? <Tab eventKey="smaller" title={<TeX raw="P(X \le x_0)" />}>
-			<Dashboard autoUpdate onGenerate={this.onGenerateSmaller}>
-				<NumberInput
-					legend="Mean"
-					defaultValue={0}
-					step={this.props.step}
-					inline
-				/>
-				<NumberInput
-					legend="Standard Deviation"
-					defaultValue={this.props.minStDev}
-					step={this.props.step}
-					min={this.props.minStDev}
-					inline
-				/>
-				<SliderInput
-					legend="x0"
-					defaultValue={0}
-					step={this.props.step}
-					min={this.state.mean1-this.state.sd1*4}
-					max={this.state.mean1+this.state.sd1*4}
-				/>
-				<TeX raw={this.state.eqn1} displayMode tag="" />
-			</Dashboard>
+			<Panel>
+				{this.renderInputs( 'smaller' )}
+				<TeX raw={`'P(X \\le ${roundn( x0, -4 )}) = ${roundn( pnorm( x0, mean, sd ), -4 )}`} displayMode tag="" />
+			</Panel>
 			<VictoryChart
 				domain={domain ? domain : {
-					x: [ this.state.mean1-this.state.sd1*4, this.state.mean1+this.state.sd1*4 ], y: [ 0, dnorm( this.state.mean1, this.state.mean1, this.state.sd1 ) ]
+					x: [ mean-sd*4, mean+sd*4 ], y: [ 0, dnorm( mean, mean, sd ) ]
 				}}>
 				<VictoryArea
-					data={this.state.data1}
+					samples={200}
+					interpolation="step"
+					y={( data ) => {
+						if ( data.x <= x0 ) {
+							return dnorm( data.x, mean, sd );
+						}
+						return 0.0;
+					}}
 					style={{
 						data: {
 							opacity: 0.3,
@@ -142,40 +128,26 @@ class NormalProbs extends Component {
 				/>
 				<VictoryLine
 					samples={200}
-					y={( data ) =>
-						dnorm( data.x, this.state.mean1, this.state.sd1 )
-					}
+					y={( data ) => dnorm( data.x, mean, sd )}
 				/>
 			</VictoryChart>
 		</Tab> : null;
 		const tabGreater = contains( tabs, 'greater' ) ? <Tab eventKey="greater" title={<TeX raw="P(X > x_0)" />}>
-			<Dashboard autoUpdate onGenerate={this.onGenerateLarger}>
-				<NumberInput
-					legend="Mean"
-					defaultValue={0}
-					step={this.props.step}
-					inline
-				/>
-				<NumberInput
-					legend="Standard Deviation"
-					defaultValue={this.props.minStDev}
-					step={this.props.step}
-					min={this.props.minStDev}
-					inline
-				/>
-				<SliderInput
-					legend="x0"
-					defaultValue={0}
-					min={this.state.mean2-this.state.sd2*4}
-					max={this.state.mean2+this.state.sd2*4}
-					step={this.props.step}
-				/>
-				<TeX raw={this.state.eqn2} displayMode tag="" />
-			</Dashboard>
+			<Panel>
+				{this.renderInputs( 'greater' )}
+				<TeX raw={`P(X > ${roundn( x0, -4 )}) = ${roundn( 1.0 - pnorm( x0, mean, sd ), -4 )}`} displayMode tag="" />
+			</Panel>
 			<VictoryChart
-				domain={domain ? domain : { x: [ this.state.mean2-this.state.sd2*4, this.state.mean2+this.state.sd2*4 ], y: [ 0, dnorm( this.state.mean2, this.state.mean2, this.state.sd2 ) ]}}>
+				domain={domain ? domain : { x: [ mean-sd	*4, mean+sd	*4 ], y: [ 0, dnorm( mean, mean, sd	 ) ]}}>
 				<VictoryArea
-					data={this.state.data2}
+					samples={200}
+					interpolation="step"
+					y={( data ) => {
+						if ( data.x > x0 ) {
+							return dnorm( data.x, mean, sd );
+						}
+						return 0.0;
+					}}
 					style={{
 						data: {
 							opacity: 0.3,
@@ -186,49 +158,33 @@ class NormalProbs extends Component {
 				<VictoryLine
 					samples={200}
 					y={( data ) =>
-						dnorm( data.x, this.state.mean2, this.state.sd2 )
+						dnorm( data.x, mean, sd	 )
 					}
 				/>
 			</VictoryChart>
 		</Tab> : null;
 		const tabRange = contains( tabs, 'range' ) ? <Tab eventKey="range" title={<TeX raw="P( x_0 \le X \le x_1)" />}>
-			<Dashboard autoUpdate onGenerate={this.onGenerateRange}>
-				<NumberInput
-					legend="Mean"
-					defaultValue={0}
-					step={this.props.step}
-					inline
-				/>
-				<NumberInput
-					legend="Standard Deviation"
-					defaultValue={1}
-					step={this.props.step}
-					min={this.props.minStDev}
-					inline
-				/>
-				<SliderInput
-					legend="x0"
-					defaultValue={0}
-					min={this.state.mean3-this.state.sd3*4}
-					max={this.state.mean3+this.state.sd3*4}
-					step={this.props.step}
-				/>
-				<SliderInput
-					legend="x1"
-					defaultValue={1}
-					min={this.state.mean3-this.state.sd3*4}
-					max={this.state.mean3+this.state.sd3*4}
-					step={this.props.step}
-				/>
-				<TeX raw={this.state.eqn3} displayMode tag="" />
-			</Dashboard>
+			<Panel>
+				{this.renderInputs( 'range' )}
+				{ x1 >= x0 ?
+					<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pnorm( x1, mean, sd ) - pnorm( x0, mean, sd ), -4 )}`} displayMode tag="" /> :
+					<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+				}
+			</Panel>
 			<VictoryChart
 				domain={domain ? domain : {
-					x: [ this.state.mean3-this.state.sd3*4, this.state.mean3+this.state.sd3*4 ],
-					y: [ 0, dnorm( this.state.mean3, this.state.mean3, this.state.sd3 ) ]
+					x: [ mean-sd*4, mean+sd*4 ],
+					y: [ 0, dnorm( mean, mean, sd ) ]
 				}}>
 				<VictoryArea
-					data={this.state.data3}
+					samples={200}
+					interpolation="step"
+					y={( data ) => {
+						if ( data.x > x0 && data.x < x1 ) {
+							return dnorm( data.x, mean, sd );
+						}
+						return 0.0;
+					}}
 					style={{
 						data: {
 							opacity: 0.3, fill: 'tomato'
@@ -238,7 +194,7 @@ class NormalProbs extends Component {
 				<VictoryLine
 					samples={200}
 					y={( data ) =>
-						dnorm( data.x, this.state.mean3, this.state.sd3 )
+						dnorm( data.x, mean, sd	 )
 					}
 				/>
 			</VictoryChart>
