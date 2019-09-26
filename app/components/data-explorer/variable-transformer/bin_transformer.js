@@ -13,6 +13,7 @@ import FormLabel from 'react-bootstrap/FormLabel';
 import Plotly from 'components/plotly';
 import SelectInput from 'components/input/select';
 import TextInput from 'components/input/text';
+import NumberInput from 'components/input/number';
 import mean from 'utils/statistic/mean.js';
 import min from 'utils/statistic/min.js';
 import max from 'utils/statistic/max.js';
@@ -27,7 +28,6 @@ import { DATA_EXPLORER_BIN_TRANSFORMER } from 'constants/actions.js';
 import { generateHistogramConfig } from '../histogram.js';
 import retrieveBinnedValues from './retrieve_binned_values.js';
 import ClearButton from '../clear_button.js';
-import NumberInput from '../../input/number/index.js';
 import './bin_transformer.css';
 
 
@@ -231,7 +231,7 @@ class BinTransformer extends Component {
 
 	changeFactory( ind ) {
 		return ( value ) => {
-			console.log( 'Change break point...' );
+			debug( 'Change break point...' );
 			const xBreaks = copy( this.state.xBreaks );
 			xBreaks[ ind ] = value;
 			xBreaks.sort( ascending );
@@ -259,6 +259,7 @@ class BinTransformer extends Component {
 						inline
 						onChange={this.changeFactory( 0 )}
 						defaultValue={roundn( xBreaks[0], -3 )}
+						step="any"
 					/></span>}
 					defaultValue={this.state.catNames[ 0 ]}
 					onChange={this.handleCatNamesFactory( 0 )}
@@ -278,12 +279,14 @@ class BinTransformer extends Component {
 									inline
 									onChange={this.changeFactory( i )}
 									defaultValue={roundn( xBreaks[i], -3 )}
+									step="any"
 								/>
 								<TeX raw="\le x <" />
 								<NumberInput
 									inline
 									onChange={this.changeFactory( i+1 )}
 									defaultValue={roundn( xBreaks[i+1], -3 )}
+									step="any"
 								/>
 							</span>}
 							defaultValue={this.state.catNames[ i+1 ]}
@@ -309,6 +312,7 @@ class BinTransformer extends Component {
 							inline
 							onChange={this.changeFactory( len-1 )}
 							defaultValue={roundn( xBreaks[ len-1 ], -3 )}
+							step="any"
 						/>
 					</span>}
 					defaultValue={this.state.catNames[ len ]}
