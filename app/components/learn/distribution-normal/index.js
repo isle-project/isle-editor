@@ -3,10 +3,13 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Alert from 'react-bootstrap/Alert';
-import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
+import { VictoryAxis, VictoryArea, VictoryChart, VictoryLine, VictoryTheme } from 'victory';
 import contains from '@stdlib/assert/contains';
 import roundn from '@stdlib/math/base/special/roundn';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';
@@ -110,62 +113,167 @@ class NormalProbs extends Component {
 				{this.renderInputs( 'smaller' )}
 				<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pnorm( x0, mean, sd ), -4 )}`} displayMode tag="" />
 			</Panel>
-			<VictoryChart
-				domain={domain ? domain : {
-					x: [ mean-sd*4, mean+sd*4 ], y: [ 0, dnorm( mean, mean, sd ) ]
-				}}>
-				<VictoryArea
-					samples={200}
-					interpolation="step"
-					y={( data ) => {
-						if ( data.x <= x0 ) {
-							return dnorm( data.x, mean, sd );
-						}
-						return 0.0;
-					}}
-					style={{
-						data: {
-							opacity: 0.3,
-							fill: 'tomato'
-						}
-					}}
-				/>
-				<VictoryLine
-					samples={200}
-					y={( data ) => dnorm( data.x, mean, sd )}
-				/>
-			</VictoryChart>
+			<Container><Row>
+				<Col md={6}>
+					<VictoryChart
+						domain={domain ? domain : {
+							x: [ mean-sd*4, mean+sd*4 ], y: [ 0, dnorm( mean, mean, sd ) ]
+						}}
+						theme={VictoryTheme.material}
+					>
+						<VictoryAxis dependentAxis />
+						<VictoryAxis
+							label="PDF" tickFormat={(x) => `${x}`} crossAxis={false}
+							style={{ axisLabel: { padding: 40 }}}
+						/>
+						<VictoryArea
+							samples={200}
+							interpolation="step"
+							y={( data ) => {
+								if ( data.x <= x0 ) {
+									return dnorm( data.x, mean, sd );
+								}
+								return 0.0;
+							}}
+							style={{
+								data: {
+									opacity: 0.3,
+									fill: 'tomato'
+								}
+							}}
+						/>
+						<VictoryLine
+							samples={200}
+							y={( data ) => dnorm( data.x, mean, sd )}
+						/>
+					</VictoryChart>
+				</Col>
+				<Col>
+					<VictoryChart theme={VictoryTheme.material} >
+						<VictoryAxis dependentAxis />
+						<VictoryAxis
+							label="CDF" tickFormat={(x) => `${x}`}
+							style={{ axisLabel: { padding: 40 }}}
+						/>
+						<VictoryLine
+							samples={600}
+							y={( data ) => {
+								return pnorm( data.x, mean, sd );
+							}}
+							domain={{
+								x: [ mean-sd*4, mean+sd*4 ],
+								y: [ 0, 1.1 ]
+							}}
+						/>
+						<VictoryLine
+							data={[
+								{ x: x0, y: 0 },
+								{ x: x0, y: pnorm( x0, mean, sd ) }
+							]}
+							style={{
+								data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+							}}
+						/>
+						<VictoryLine
+							data={[
+								{ x: 0, y: pnorm( x0, mean, sd ) },
+								{ x: x0, y: pnorm( x0, mean, sd ) }
+							]}
+							style={{
+								data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+							}}
+						/>
+					</VictoryChart>
+				</Col>
+			</Row></Container>
 		</Tab> : null;
 		const tabGreater = contains( tabs, 'greater' ) ? <Tab eventKey="greater" title={<TeX raw="P(X > x_0)" />}>
 			<Panel>
 				{this.renderInputs( 'greater' )}
 				<TeX raw={`P(X > ${roundn( x0, -4 )}) = ${roundn( 1.0 - pnorm( x0, mean, sd ), -4 )}`} displayMode tag="" />
 			</Panel>
-			<VictoryChart
-				domain={domain ? domain : { x: [ mean-sd	*4, mean+sd	*4 ], y: [ 0, dnorm( mean, mean, sd	 ) ]}}>
-				<VictoryArea
-					samples={200}
-					interpolation="step"
-					y={( data ) => {
-						if ( data.x > x0 ) {
-							return dnorm( data.x, mean, sd );
-						}
-						return 0.0;
-					}}
-					style={{
-						data: {
-							opacity: 0.3,
-							fill: 'tomato'
-						}
-					}}
-				/>
-				<VictoryLine
-					samples={200}
-					y={( data ) =>
-						dnorm( data.x, mean, sd	 )
-					}
-				/>
-			</VictoryChart>
+			<Container><Row>
+				<Col>
+					<VictoryChart
+						domain={domain ? domain : { x: [ mean-sd	*4, mean+sd	*4 ], y: [ 0, dnorm( mean, mean, sd	 ) ]}}
+						theme={VictoryTheme.material}
+					>
+						<VictoryAxis dependentAxis />
+						<VictoryAxis
+							label="PDF" tickFormat={(x) => `${x}`} crossAxis={false}
+							style={{ axisLabel: { padding: 40 }}}
+						/>
+						<VictoryArea
+							samples={200}
+							interpolation="step"
+							y={( data ) => {
+								if ( data.x > x0 ) {
+									return dnorm( data.x, mean, sd );
+								}
+								return 0.0;
+							}}
+							style={{
+								data: {
+									opacity: 0.3,
+									fill: 'tomato'
+								}
+							}}
+						/>
+						<VictoryLine
+							samples={200}
+							y={( data ) =>
+								dnorm( data.x, mean, sd	 )
+							}
+						/>
+					</VictoryChart>
+				</Col>
+				<Col>
+					<VictoryChart theme={VictoryTheme.material} >
+						<VictoryAxis dependentAxis />
+						<VictoryAxis
+							label="CDF" tickFormat={(x) => `${x}`}
+							style={{ axisLabel: { padding: 40 }}}
+						/>
+						<VictoryLine
+							samples={600}
+							y={( data ) => {
+								return pnorm( data.x, mean, sd );
+							}}
+							domain={{
+								x: [ mean-sd*4, mean+sd*4 ],
+								y: [ 0, 1.1 ]
+							}}
+						/>
+						<VictoryLine
+							data={[
+								{ x: x0, y: 0 },
+								{ x: x0, y: pnorm( x0, mean, sd ) }
+							]}
+							style={{
+								data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+							}}
+						/>
+						<VictoryLine
+							data={[
+								{ x: x0, y: 1 },
+								{ x: x0, y: pnorm( x0, mean, sd ) }
+							]}
+							style={{
+								data: { stroke: 'steelblue', strokeWidth: 1, opacity: 0.5 }
+							}}
+						/>
+						<VictoryLine
+							data={[
+								{ x: 0, y: pnorm( x0, mean, sd ) },
+								{ x: x0, y: pnorm( x0, mean, sd ) }
+							]}
+							style={{
+								data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+							}}
+						/>
+					</VictoryChart>
+				</Col>
+			</Row></Container>
 		</Tab> : null;
 		const tabRange = contains( tabs, 'range' ) ? <Tab eventKey="range" title={<TeX raw="P( x_0 \le X \le x_1)" />}>
 			<Panel>
@@ -175,35 +283,83 @@ class NormalProbs extends Component {
 					<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
 				}
 			</Panel>
-			<VictoryChart
-				domain={domain ? domain : {
-					x: [ mean-sd*4, mean+sd*4 ],
-					y: [ 0, dnorm( mean, mean, sd ) ]
-				}}>
-				<VictoryArea
-					samples={200}
-					interpolation="step"
-					y={( data ) => {
-						if ( data.x > x0 && data.x < x1 ) {
-							return dnorm( data.x, mean, sd );
-						}
-						return 0.0;
-					}}
-					style={{
-						data: {
-							opacity: 0.3, fill: 'tomato'
-						}
-					}}
-				/>
-				<VictoryLine
-					samples={200}
-					y={( data ) =>
-						dnorm( data.x, mean, sd	 )
-					}
-				/>
-			</VictoryChart>
+			<Container><Row>
+				<Col>
+					<VictoryChart
+						domain={domain ? domain : {
+							x: [ mean-sd*4, mean+sd*4 ],
+							y: [ 0, dnorm( mean, mean, sd ) ]
+						}}
+						theme={VictoryTheme.material}
+					>
+						<VictoryAxis dependentAxis />
+						<VictoryAxis
+							label="PDF" tickFormat={(x) => `${x}`} crossAxis={false}
+							style={{ axisLabel: { padding: 40 }}}
+						/>
+						<VictoryArea
+							samples={200}
+							interpolation="step"
+							y={( data ) => {
+								if ( data.x > x0 && data.x < x1 ) {
+									return dnorm( data.x, mean, sd );
+								}
+								return 0.0;
+							}}
+							style={{
+								data: {
+									opacity: 0.3, fill: 'tomato'
+								}
+							}}
+						/>
+						<VictoryLine
+							samples={200}
+							y={( data ) =>
+								dnorm( data.x, mean, sd	 )
+							}
+						/>
+					</VictoryChart>
+				</Col>
+				<Col>
+					<VictoryChart theme={VictoryTheme.material} >
+						<VictoryAxis dependentAxis />
+						<VictoryAxis
+							label="CDF" tickFormat={(x) => `${x}`}
+							style={{ axisLabel: { padding: 40 }}}
+						/>
+						<VictoryLine
+							samples={600}
+							y={( data ) => {
+								return pnorm( data.x, mean, sd );
+							}}
+							domain={{
+								x: [ mean-sd*4, mean+sd*4 ],
+								y: [ 0, 1.1 ]
+							}}
+						/>
+						<VictoryLine
+							data={[
+								{ x: x1, y: pnorm( x0, mean, sd ) },
+								{ x: x1, y: pnorm( x1, mean, sd ) }
+							]}
+							style={{
+								data: { stroke: 'steelblue', strokeWidth: 1, opacity: 0.5 }
+							}}
+						/>
+						<VictoryLine
+							data={[
+								{ x: x0, y: pnorm( x0, mean, sd ) },
+								{ x: x1, y: pnorm( x0, mean, sd ) }
+							]}
+							style={{
+								data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+							}}
+						/>
+					</VictoryChart>
+				</Col>
+			</Row></Container>
 		</Tab> : null;
-		return ( <Card style={{ maxWidth: 600, ...this.props.style }}>
+		return ( <Card style={{ maxWidth: 900, ...this.props.style }}>
 			<Card.Header as="h3">
 				Normal Distribution
 			</Card.Header>
