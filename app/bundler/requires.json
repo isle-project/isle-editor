@@ -17,6 +17,7 @@
 	"LearnCrossValidation": "components/learn/cross-validation",
 	"LearnDiceThrowing": "components/learn/dice-throwing",
 	"LearnBinomialDistribution": "components/learn/distribution-binomial",
+	"LearnChisquareDistribution": "components/learn/distribution-chisquare",
 	"LearnContinuousDistribution": "components/learn/continuous-distribution",
 	"LearnDiscreteDistribution": "components/learn/discrete-distribution",
 	"LearnExponentialDistribution": "components/learn/distribution-exponential",

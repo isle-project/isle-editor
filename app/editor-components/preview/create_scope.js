@@ -65,6 +65,7 @@ const SCOPE = {
 	LearnCrossValidation: Loadable( () => import( 'components/learn/cross-validation' ) ),
 	LearnDiceThrowing: Loadable( () => import( 'components/learn/dice-throwing' ) ),
 	LearnBinomialDistribution: Loadable( () => import( 'components/learn/distribution-binomial' ) ),
+	LearnChisquareDistribution: Loadable( () => import( 'components/learn/distribution-chisquare' ) ),
 	LearnExponentialDistribution: Loadable( () => import( 'components/learn/distribution-exponential' ) ),
 	LearnGeometricDistribution: Loadable( () => import( 'components/learn/distribution-geometric' ) ),
 	LearnHypergeometricDistribution: Loadable( () => import( 'components/learn/distribution-hypergeometric' ) ),
