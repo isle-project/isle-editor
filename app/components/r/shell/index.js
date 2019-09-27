@@ -355,6 +355,7 @@ class RShell extends React.Component {
 				}
 			}
 		}
+		this.editor.refresh();
 	}
 
 	componentWillUnmount() {

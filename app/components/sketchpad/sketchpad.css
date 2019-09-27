@@ -59,9 +59,9 @@
 
 .sketch-node-container {
 	position: absolute;
-	left: 50%;
+	left: 0;
+	right: 0;
 	top: 3%;
-	transform: translate(-50%);
 	z-index: 2;
 }
 
