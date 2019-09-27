@@ -1,19 +1,34 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
+import { VictoryArea, VictoryAxis, VictoryChart, VictoryLine, VictoryTheme } from 'victory';
 import roundn from '@stdlib/math/base/special/roundn';
-import linspace from '@stdlib/math/utils/linspace';
 import dunif from '@stdlib/stats/base/dists/uniform/pdf';
 import punif from '@stdlib/stats/base/dists/uniform/cdf';
 import NumberInput from 'components/input/number';
 import SliderInput from 'components/input/slider';
-import Dashboard from 'components/dashboard';
+import Panel from 'components/panel';
 import TeX from 'components/tex';
+
+
+// VARIABLES //
+
+const LINE_STYLE = {
+	data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+};
+const AREA_STYLE = {
+	data: {
+		opacity: 0.3,
+		fill: 'tomato'
+	}
+};
 
 
 // MAIN //
@@ -27,221 +42,327 @@ import TeX from 'components/tex';
 class UniformProbs extends Component {
 	constructor( props ) {
 		super( props );
-		this.state = {};
+		const min = 0;
+		const max = 1;
+		this.state = {
+			min,
+			max,
+			x0: 0,
+			x1: 1
+		};
 	}
 
-	generate1 = ( min, max, x0 ) => {
-		let len = 200;
-		let x = linspace( min-1.0, x0, len );
-		let data = new Array( len );
-		for ( let i = 0; i < x.length; i++ ) {
-			data[ i ] = {
-				x: x[ i ],
-				y: dunif( x[ i ], min, max )
-			};
-		}
-		this.setState({
-			data: data,
-			eqn: 'P(X \\le' + roundn( x0, -4 ) + ') = ' + roundn( punif( x0, min, max ), -4 ),
-			min: min,
-			max: max,
-			yheight: dunif( min, min, max )
-		});
+	handleMinChange = ( min ) => {
+		this.setState({ min });
 	}
 
-	generate2 = ( min, max, x0 ) => {
-		let len = 200;
-		let x = linspace( x0, max+1.0, len );
-		let data = new Array( len );
-		for ( let i = 0; i < x.length; i++ ) {
-			data[ i ] = {
-				x: x[ i ],
-				y: dunif( x[ i ], min, max )
-			};
-		}
-		this.setState({
-			data2: data,
-			eqn2: 'P(X >' + roundn( x0, -4 ) + ') = ' + roundn( 1-punif( x0, min, max ), -4 ),
-			min2: min,
-			max2: max,
-			yheight2: dunif( min, min, max )
-		});
+	handleMaxChange = ( max ) => {
+		this.setState({ max });
 	}
 
-	generate3 = ( min, max, x0, x1 ) => {
-		let len = 200;
-		let x = linspace( x0, x1, len );
-		let data = new Array( len );
-		for ( let i = 0; i < x.length; i++ ) {
-			data[ i ] = {
-				x: x[ i ],
-				y: dunif( x[ i ], min, max )
-			};
-		}
-		this.setState({
-			data3: data,
-			eqn3: 'P(' + roundn( x0, -4 ) + '\\le X \\le' + roundn( x1, -4 ) + ') = ' + roundn( punif( x1, min, max )-punif( x0, min, max ), -4 ),
-			min3: min,
-			max3: max,
-			yheight3: dunif( min, min, max ),
-			x1: x1
-		});
+	handleLowerChange = ( x0 ) => {
+		this.setState({ x0 });
+	}
+
+	handleUpperChange = ( x1 ) => {
+		this.setState({ x1 });
+	}
+
+	renderInputs( type ) {
+		const { min, max, x0, x1 } = this.state;
+		return (
+			<Fragment>
+				<NumberInput
+					key={`${type}-min`}
+					legend="Minimum"
+					defaultValue={0}
+					max={max-0.01}
+					step={0.1}
+					onChange={this.handleMinChange}
+					inline
+				/>
+				<NumberInput
+					key={`${type}-max`}
+					legend="Maximum"
+					defaultValue={1}
+					step={0.1}
+					onChange={this.handleMaxChange}
+					inline
+				/>
+				<SliderInput
+					key={`${type}-x0`}
+					legend="x0"
+					defaultValue={x0}
+					min={min - 1.0}
+					max={max + 1.0}
+					step={this.props.step}
+					onChange={this.handleLowerChange}
+					inline
+				/>
+				{ type === 'range' ?
+					<SliderInput
+						key={`${type}-x1`}
+						legend="x1"
+						defaultValue={x1}
+						min={min - 1.0}
+						max={max + 1.0}
+						step={this.props.step}
+						onChange={this.handleUpperChange}
+						inline
+					/> :
+					null
+				}
+			</Fragment>
+		);
 	}
 
 	render() {
-		return ( <Card style={{ maxWidth: 600, ...this.props.style }} >
+		const { min, max, x0, x1 } = this.state;
+		const yheight = dunif( min, min, max );
+		return ( <Card style={{ maxWidth: 1200, ...this.props.style }} >
 			<Card.Header as="h3">
 				Uniform Distribution
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={1} id="uniform-tabs">
 					<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
-						<Dashboard autoUpdate onGenerate={this.generate1}>
-							<NumberInput
-								legend="Minimum"
-								defaultValue={0}
-								max={this.state.max-0.01}
-								step={0.1}
-							/>
-							<NumberInput
-								legend="Maximum"
-								defaultValue={1}
-								step={0.1}
-							/>
-							<SliderInput
-								legend="x0"
-								defaultValue={0}
-								min={this.state.min*2.0 - 1.0}
-								max={this.state.max*2.0}
-								step={this.props.step}
-							/>
-							<TeX raw={this.state.eqn} />
-						</Dashboard>
-						<VictoryChart
-							domain={{
-								x: [ this.state.min - 1.0, this.state.max + 1.0 ],
-								y: [ 0, this.state.yheight + 0.1 ]
-							}}
-						>
-							<VictoryArea
-								data={this.state.data}
-								style={{
-									data: {
-										opacity: 0.3, fill: 'tomato'
-									}
-								}}
-							/>
-							<VictoryLine
-								data={[
-									[ this.state.min, 0 ],
-									[ this.state.min, this.state.yheight ],
-									[ this.state.max, this.state.yheight ],
-									[ this.state.max, 0 ]
-								]}
-								x={d => d[ 0 ]}
-								y={d => d[ 1 ]}
-							/>
-						</VictoryChart>
+						<Panel>
+							{this.renderInputs( 'smaller' )}
+							<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( punif( x0, min, max ), -4 )}`} displayMode />
+						</Panel>
+						<Container><Row>
+							<Col>
+								<VictoryChart
+									domain={{
+										x: [ min - 1.0, max + 1.0 ],
+										y: [ 0, yheight + 0.1 ]
+									}}
+									theme={VictoryTheme.material}
+								>
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="PDF" tickFormat={(x) => `${x}`} crossAxis={false}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryArea
+										samples={200}
+										interpolation="step"
+										y={( data ) => {
+											if ( data.x <= x0 ) {
+												return dunif( data.x, min, max );
+											}
+											return 0.0;
+										}}
+										style={AREA_STYLE}
+									/>
+									<VictoryLine
+										data={[
+											[ min, 0 ],
+											[ min, yheight ],
+											[ max, yheight ],
+											[ max, 0 ]
+										]}
+										x={d => d[ 0 ]}
+										y={d => d[ 1 ]}
+									/>
+								</VictoryChart>
+							</Col>
+							<Col>
+								<VictoryChart theme={VictoryTheme.material} >
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="CDF" tickFormat={(x) => `${x}`}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryLine
+										samples={200}
+										y={( data ) => {
+											return punif( data.x, min, max );
+										}}
+										domain={{
+											x: [ min - 1.0, max + 1.0 ],
+											y: [ 0, 1.1 ]
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: x0, y: 0 },
+											{ x: x0, y: punif( x0, min, max ) }
+										]}
+										style={LINE_STYLE}
+									/>
+									<VictoryLine
+										data={[
+											{ x: 0, y: punif( x0, min, max ) },
+											{ x: x0, y: punif( x0, min, max ) }
+										]}
+										style={LINE_STYLE}
+									/>
+								</VictoryChart>
+							</Col>
+						</Row></Container>
 					</Tab>
 					<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />}>
-						<Dashboard autoUpdate onGenerate={this.generate2}>
-							<NumberInput
-								legend="Minimum"
-								defaultValue={0}
-								max={this.state.max-0.01}
-								step={0.1}
-							/>
-							<NumberInput
-								legend="Maximum"
-								defaultValue={1}
-								step={0.1}
-							/>
-							<SliderInput
-								legend="x0"
-								defaultValue={0}
-								min={this.state.min*2.0 - 1.0}
-								max={this.state.max*2.0}
-								step={this.props.step}
-							/>
-							<TeX raw={this.state.eqn2} />
-						</Dashboard>
-						<VictoryChart
-							domain={{
-								x: [ this.state.min2 - 1.0, this.state.max2 + 1.0 ],
-								y: [ 0, this.state.yheight2 + 0.1 ]
-							}}
-						>
-							<VictoryArea
-								data={this.state.data2}
-								style={{
-									data: {
-										opacity: 0.3, fill: 'tomato'
-									}
-								}}
-							/>
-							<VictoryLine
-								data={[
-									[ this.state.min2, 0 ],
-									[ this.state.min2, this.state.yheight2 ],
-									[ this.state.max2, this.state.yheight2 ],
-									[ this.state.max2, 0 ]
-								]}
-								x={d => d[ 0 ]}
-								y={d => d[ 1 ]}
-							/>
-						</VictoryChart>
+						<Panel>
+							{this.renderInputs( 'greater' )}
+							<TeX raw={`P(X > ${roundn( x0, -4 )}) = ${roundn( 1-punif( x0, min, max ), -4 )}`} displayMode />
+						</Panel>
+						<Container><Row>
+							<Col>
+								<VictoryChart
+									domain={{
+										x: [ min - 1.0, max + 1.0 ],
+										y: [ 0, yheight + 0.1 ]
+									}}
+									theme={VictoryTheme.material}
+								>
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="PDF" tickFormat={(x) => `${x}`} crossAxis={false}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryArea
+										samples={200}
+										interpolation="step"
+										y={( data ) => {
+											if ( data.x > x0 ) {
+												return dunif( data.x, min, max );
+											}
+											return 0.0;
+										}}
+										style={AREA_STYLE}
+									/>
+									<VictoryLine
+										data={[
+											[ min, 0 ],
+											[ min, yheight ],
+											[ max, yheight ],
+											[ max, 0 ]
+										]}
+										x={d => d[ 0 ]}
+										y={d => d[ 1 ]}
+									/>
+								</VictoryChart>
+							</Col>
+							<Col>
+								<VictoryChart theme={VictoryTheme.material} >
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="CDF" tickFormat={(x) => `${x}`}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryLine
+										samples={200}
+										y={( data ) => {
+											return punif( data.x, min, max );
+										}}
+										domain={{
+											x: [ min - 1.0, max + 1.0 ],
+											y: [ 0, 1.1 ]
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: x0, y: 0 },
+											{ x: x0, y: punif( x0, min, max ) }
+										]}
+										style={LINE_STYLE}
+									/>
+									<VictoryLine
+										data={[
+											{ x: x0, y: 1 },
+											{ x: x0, y: punif( x0, min, max ) }
+										]}
+										style={{
+											data: { stroke: 'steelblue', strokeWidth: 1, opacity: 0.5 }
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: 0, y: punif( x0, min, max ) },
+											{ x: x0, y: punif( x0, min, max ) }
+										]}
+										style={LINE_STYLE}
+									/>
+								</VictoryChart>
+							</Col>
+						</Row></Container>
 					</Tab>
 					<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1 )" />} >
-						<Dashboard autoUpdate onGenerate={this.generate3}>
-							<NumberInput
-								legend="Minimum"
-								defaultValue={0}
-								max={this.state.max3-0.01}
-								step={this.props.step}
-							/>
-							<NumberInput
-								legend="Maximum"
-								min={this.state.min3+0.01}
-								defaultValue={1}
-								step={this.props.step}
-							/>
-							<SliderInput
-								legend="x0"
-								defaultValue={0}
-								min={this.state.min3*2.0 - 1.0}
-								max={this.state.x1}
-								step={this.props.step}
-							/>
-							<SliderInput
-								legend="x1"
-								defaultValue={0}
-								min={this.state.min3*2.0 - 1.0}
-								max={this.state.max3*2.0}
-								step={this.props.step}
-							/>
-							<TeX raw={this.state.eqn3} />
-						</Dashboard>
-						<VictoryChart
-							domain={{ x: [ this.state.min3 - 1.0, this.state.max3 + 1.0 ], y: [ 0, this.state.yheight3 + 0.1 ]}}>
-							<VictoryArea
-								data={this.state.data3}
-								style={{
-									data: {
-										opacity: 0.3, fill: 'tomato'
-									}
-								}}
-							/>
-							<VictoryLine
-								data={[
-									[ this.state.min3, 0 ],
-									[ this.state.min3, this.state.yheight3 ],
-									[ this.state.max3, this.state.yheight3 ],
-									[ this.state.max3, 0 ]
-								]}
-								x={d => d[ 0 ]}
-								y={d => d[ 1 ]}
-							/>
-						</VictoryChart>
+						<Panel>
+							{this.renderInputs( 'range' )}
+							<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( punif( x1, min, max )-punif( x0, min, max ), -4 )}`} displayMode />
+						</Panel>
+						<Container><Row>
+							<Col>
+								<VictoryChart
+									domain={{ x: [ min - 1.0, max + 1.0 ], y: [ 0, yheight + 0.1 ]}}
+									theme={VictoryTheme.material}
+								>
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="PDF" tickFormat={(x) => `${x}`} crossAxis={false}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryArea
+										samples={200}
+										interpolation="step"
+										y={( data ) => {
+											if ( data.x >= x0 && data.x <= x1 ) {
+												return dunif( data.x, min, max );
+											}
+											return 0.0;
+										}}
+										style={AREA_STYLE}
+									/>
+									<VictoryLine
+										data={[
+											[ min, 0 ],
+											[ min, yheight ],
+											[ max, yheight ],
+											[ max, 0 ]
+										]}
+										x={d => d[ 0 ]}
+										y={d => d[ 1 ]}
+									/>
+								</VictoryChart>
+							</Col>
+							<Col>
+								<VictoryChart theme={VictoryTheme.material} >
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="CDF" tickFormat={(x) => `${x}`}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryLine
+										samples={200}
+										y={( data ) => {
+											return punif( data.x, min, max );
+										}}
+										domain={{
+											x: [ min - 1.0, max + 1.0 ],
+											y: [ 0, 1.1 ]
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: x1, y: punif( x0, min, max ) },
+											{ x: x1, y: punif( x1, min, max ) }
+										]}
+										style={{
+											data: { stroke: 'steelblue', strokeWidth: 1, opacity: 0.5 }
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: x0, y: punif( x0, min, max ) },
+											{ x: x1, y: punif( x0, min, max ) }
+										]}
+										style={LINE_STYLE}
+									/>
+								</VictoryChart>
+							</Col>
+						</Row></Container>
 					</Tab>
 				</Tabs>
 			</Card.Body>
