@@ -520,6 +520,98 @@
 		"value": "<VictoryBar />\n"
 	},
 	{
+		"name": "VictoryBoxPlot",
+		"value": "<VictoryBoxPlot />\n"
+	},
+	{
+		"name": "VictoryCandlestick",
+		"value": "<VictoryCandlestick />\n"
+	},
+	{
+		"name": "VictoryAnimation",
+		"value": "<VictoryAnimation />\n"
+	},
+	{
+		"name": "VictoryArea",
+		"value": "<VictoryArea />\n"
+	},
+	{
+		"name": "VictoryBrushContainer",
+		"value": "<VictoryBrushContainer />\n"
+	},
+	{
+		"name": "VictoryChart",
+		"value": "<VictoryChart>\n${1:}\n</VictoryChart>"
+	},
+	{
+		"name": "VictoryContainer",
+		"value": "<VictoryContainer />\n"
+	},
+	{
+		"name": "VictoryCursorContainer",
+		"value": "<VictoryCursorContainer />\n"
+	},
+	{
+		"name": "VictoryGroup",
+		"value": "<VictoryGroup />\n"
+	},
+	{
+		"name": "VictoryAxis",
+		"value": "<VictoryAxis />\n"
+	},
+	{
+		"name": "VictoryErrorBar",
+		"value": "<VictoryErrorBar />\n"
+	},
+	{
+		"name": "VictoryLabel",
+		"value": "<VictoryLabel />\n"
+	},
+	{
+		"name": "VictoryLegend",
+		"value": "<VictoryLegend />\n"
+	},
+	{
+		"name": "VictoryLine",
+		"value": "<VictoryLine />\n"
+	},
+	{
+		"name": "VictoryPie",
+		"value": "<VictoryPie />\n"
+	},
+	{
+		"name": "VictoryPolarAxis",
+		"value": "<VictoryPolarAxis />\n"
+	},
+	{
+		"name": "VictoryScatter",
+		"value": "<VictoryScatter />\n"
+	},
+	{
+		"name": "VictoryStack",
+		"value": "<VictoryStack />\n"
+	},
+	{
+		"name": "VictoryTheme",
+		"value": "VictoryTheme.${1:material}"
+	},
+	{
+		"name": "VictoryTooltip",
+		"value": "<VictoryTooltip />\n"
+	},
+	{
+		"name": "VictoryVoronoiContainer",
+		"value": "<VictoryVoronoiContainer />\n"
+	},
+	{
+		"name": "VictoryZoomContainer",
+		"value": "<VictoryZoomContainer />\n"
+	},
+	{
+		"name": "VictoryWrapper",
+		"value": "<VictoryWrapper />\n"
+	},
+	{
 		"name": "WordCloud",
 		"value": "<WordCloud data={[${1:'First document','Second document'}]} />"
 	}
