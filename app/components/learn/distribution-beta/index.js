@@ -80,7 +80,6 @@ class BetaProbs extends Component {
 					defaultValue={alpha}
 					min={1e-3}
 					step={this.props.step}
-					inline
 					onChange={this.handleAlphaChange}
 				/>
 				<NumberInput
@@ -89,7 +88,6 @@ class BetaProbs extends Component {
 					defaultValue={beta}
 					step={this.props.step}
 					min={1e-3}
-					inline
 					onChange={this.handleBetaChange}
 				/>
 				<SliderInput
@@ -122,12 +120,14 @@ class BetaProbs extends Component {
 		const tabs = this.props.tabs;
 		const { alpha, beta, x0, x1 } = this.state;
 		const tabSmaller = contains( tabs, 'smaller' ) ? <Tab eventKey="smaller" title={<TeX raw="P(X \le x_0)" />}>
-			<Panel>
-				{this.renderInputs( 'smaller' )}
-				<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pbeta( x0, alpha, beta ), -4 )}`} displayMode tag="" />
-			</Panel>
 			<Container><Row>
-				<Col md={6}>
+				<Col>
+					<Panel>
+						{this.renderInputs( 'smaller' )}
+						<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pbeta( x0, alpha, beta ), -4 )}`} displayMode tag="" />
+					</Panel>
+				</Col>
+				<Col>
 					<VictoryChart
 						domain={domain ? domain : {
 							x: [ -0.1, 1.1 ], y: [ 0, alpha < 0.75 || beta < 0.75 ? 5.0 : 2.5 ]
@@ -192,11 +192,13 @@ class BetaProbs extends Component {
 			</Row></Container>
 		</Tab> : null;
 		const tabGreater = contains( tabs, 'greater' ) ? <Tab eventKey="greater" title={<TeX raw="P(X > x_0)" />}>
-			<Panel>
-				{this.renderInputs( 'greater' )}
-				<TeX raw={`P(X > ${roundn( x0, -4 )}) = ${roundn( 1.0 - pbeta( x0, alpha, beta ), -4 )}`} displayMode tag="" />
-			</Panel>
 			<Container><Row>
+				<Col>
+					<Panel>
+						{this.renderInputs( 'greater' )}
+						<TeX raw={`P(X > ${roundn( x0, -4 )}) = ${roundn( 1.0 - pbeta( x0, alpha, beta ), -4 )}`} displayMode tag="" />
+					</Panel>
+				</Col>
 				<Col>
 					<VictoryChart
 						domain={domain ? domain : { x: [ -0.1, 1.1 ], y: [ 0, alpha < 0.75 || beta < 0.75 ? 5.0 : 2.5 ]}}
@@ -270,14 +272,16 @@ class BetaProbs extends Component {
 			</Row></Container>
 		</Tab> : null;
 		const tabRange = contains( tabs, 'range' ) ? <Tab eventKey="range" title={<TeX raw="P( x_0 \le X \le x_1)" />}>
-			<Panel>
-				{this.renderInputs( 'range' )}
-				{ x1 >= x0 ?
-					<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( dbeta( x1, alpha, beta ) - dbeta( x0, alpha, beta ), -4 )}`} displayMode tag="" /> :
-					<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
-				}
-			</Panel>
 			<Container><Row>
+				<Col>
+					<Panel>
+						{this.renderInputs( 'range' )}
+						{ x1 >= x0 ?
+							<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pbeta( x1, alpha, beta ) - pbeta( x0, alpha, beta ), -4 )}`} displayMode tag="" /> :
+							<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+						}
+					</Panel>
+				</Col>
 				<Col>
 					<VictoryChart
 						domain={domain ? domain : {
