@@ -182,7 +182,7 @@
     "react-plotly.js": "^2.3.0",
     "react-redux": "5.1.1",
     "react-router": "5.1.1",
-    "react-router-dom": "5.1.0",
+    "react-router-dom": "5.1.1",
     "react-select": "^3.0.3",
     "react-slick": "0.25.2",
     "react-sortable-tree": "^2.6.2",
