@@ -61,12 +61,11 @@ class ExponentialProbs extends Component {
 				<SliderInput
 					key={`${type}-rate`}
 					legend="Rate"
-					defaultValue={1}
+					defaultValue={rate}
 					min={this.props.minRate}
 					step={this.props.step}
 					max={this.props.maxRate}
 					onChange={this.handleRateChange}
-					inline
 				/>
 				<SliderInput
 					key={`${type}-x0`}
@@ -76,7 +75,6 @@ class ExponentialProbs extends Component {
 					max={qexp( NEAR_ONE, rate )}
 					step={this.props.step}
 					onChange={this.handleLowerChange}
-					inline
 				/>
 				{ type === 'range' ?
 					<SliderInput
@@ -86,7 +84,6 @@ class ExponentialProbs extends Component {
 						max={qexp( NEAR_ONE, rate )}
 						step={this.props.step}
 						onChange={this.handleUpperChange}
-						inline
 					/> :
 				null }
 			</Fragment>
@@ -95,18 +92,20 @@ class ExponentialProbs extends Component {
 
 	render() {
 		const { rate, x0, x1 } = this.state;
-		return ( <Card style={{ maxWidth: 1200, ...this.props.style }}>
+		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
 				Exponential Distribution
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={1} id="exponential-tabs">
 					<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
-						<Panel>
-							{this.renderInputs( 'smaller' )}
-							<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pexp( x0, rate ), -4 )}`} displayMode />
-						</Panel>
 						<Container><Row>
+							<Col>
+								<Panel>
+									{this.renderInputs( 'smaller' )}
+									<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pexp( x0, rate ), -4 )}`} displayMode />
+								</Panel>
+							</Col>
 							<Col>
 								<VictoryChart
 									domain={{
@@ -182,11 +181,13 @@ class ExponentialProbs extends Component {
 
 					</Tab>
 					<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />}>
-						<Panel>
-							{this.renderInputs( 'greater' )}
-							<TeX raw={`P(X > ${roundn( x0, -4 )} ) = ${roundn( 1-pexp( x0, rate ), -4 )}`} displayMode />
-						</Panel>
 						<Container><Row>
+							<Col>
+								<Panel>
+									{this.renderInputs( 'greater' )}
+									<TeX raw={`P(X > ${roundn( x0, -4 )} ) = ${roundn( 1-pexp( x0, rate ), -4 )}`} displayMode />
+								</Panel>
+							</Col>
 							<Col>
 								<VictoryChart
 									domain={{
@@ -271,14 +272,16 @@ class ExponentialProbs extends Component {
 
 					</Tab>
 					<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1)" />}>
-						<Panel>
-							{this.renderInputs( 'range' )}
-							{ x1 >= x0 ?
-								<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )} ) = ${roundn( pexp( x1, rate ) - pexp( x0, rate ), -4 )}`} displayMode /> :
-								<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
-							}
-						</Panel>
 						<Container><Row>
+							<Col>
+								<Panel>
+									{this.renderInputs( 'range' )}
+									{ x1 >= x0 ?
+										<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )} ) = ${roundn( pexp( x1, rate ) - pexp( x0, rate ), -4 )}`} displayMode /> :
+										<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+									}
+								</Panel>
+							</Col>
 							<Col>
 								<VictoryChart
 									domain={{

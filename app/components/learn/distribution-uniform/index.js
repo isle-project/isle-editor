@@ -75,19 +75,17 @@ class UniformProbs extends Component {
 				<NumberInput
 					key={`${type}-min`}
 					legend="Minimum"
-					defaultValue={0}
+					defaultValue={min}
 					max={max-0.01}
 					step={0.1}
 					onChange={this.handleMinChange}
-					inline
 				/>
 				<NumberInput
 					key={`${type}-max`}
 					legend="Maximum"
-					defaultValue={1}
+					defaultValue={max}
 					step={0.1}
 					onChange={this.handleMaxChange}
-					inline
 				/>
 				<SliderInput
 					key={`${type}-x0`}
@@ -97,7 +95,6 @@ class UniformProbs extends Component {
 					max={max + 1.0}
 					step={this.props.step}
 					onChange={this.handleLowerChange}
-					inline
 				/>
 				{ type === 'range' ?
 					<SliderInput
@@ -108,7 +105,6 @@ class UniformProbs extends Component {
 						max={max + 1.0}
 						step={this.props.step}
 						onChange={this.handleUpperChange}
-						inline
 					/> :
 					null
 				}
@@ -126,11 +122,13 @@ class UniformProbs extends Component {
 			<Card.Body>
 				<Tabs defaultActiveKey={1} id="uniform-tabs">
 					<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
-						<Panel>
-							{this.renderInputs( 'smaller' )}
-							<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( punif( x0, min, max ), -4 )}`} displayMode />
-						</Panel>
 						<Container><Row>
+							<Col>
+								<Panel>
+									{this.renderInputs( 'smaller' )}
+									<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( punif( x0, min, max ), -4 )}`} displayMode />
+								</Panel>
+							</Col>
 							<Col>
 								<VictoryChart
 									domain={{
@@ -203,11 +201,13 @@ class UniformProbs extends Component {
 						</Row></Container>
 					</Tab>
 					<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />}>
-						<Panel>
-							{this.renderInputs( 'greater' )}
-							<TeX raw={`P(X > ${roundn( x0, -4 )}) = ${roundn( 1-punif( x0, min, max ), -4 )}`} displayMode />
-						</Panel>
 						<Container><Row>
+							<Col>
+								<Panel>
+									{this.renderInputs( 'greater' )}
+									<TeX raw={`P(X > ${roundn( x0, -4 )}) = ${roundn( 1-punif( x0, min, max ), -4 )}`} displayMode />
+								</Panel>
+							</Col>
 							<Col>
 								<VictoryChart
 									domain={{
@@ -289,11 +289,13 @@ class UniformProbs extends Component {
 						</Row></Container>
 					</Tab>
 					<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1 )" />} >
-						<Panel>
-							{this.renderInputs( 'range' )}
-							<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( punif( x1, min, max )-punif( x0, min, max ), -4 )}`} displayMode />
-						</Panel>
 						<Container><Row>
+							<Col>
+								<Panel>
+									{this.renderInputs( 'range' )}
+									<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( punif( x1, min, max )-punif( x0, min, max ), -4 )}`} displayMode />
+								</Panel>
+							</Col>
 							<Col>
 								<VictoryChart
 									domain={{ x: [ min - 1.0, max + 1.0 ], y: [ 0, yheight + 0.1 ]}}

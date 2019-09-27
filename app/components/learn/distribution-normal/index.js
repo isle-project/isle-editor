@@ -80,7 +80,6 @@ class NormalProbs extends Component {
 					legend="Mean"
 					defaultValue={0}
 					step={this.props.step}
-					inline
 					onChange={this.handleMeanChange}
 				/>
 				<NumberInput
@@ -89,7 +88,6 @@ class NormalProbs extends Component {
 					defaultValue={this.props.minStDev}
 					step={this.props.step}
 					min={this.props.minStDev}
-					inline
 					onChange={this.handleSDChange}
 				/>
 				<SliderInput
@@ -122,15 +120,17 @@ class NormalProbs extends Component {
 		const tabs = this.props.tabs;
 		const { mean, sd, x0, x1 } = this.state;
 		const tabSmaller = contains( tabs, 'smaller' ) ? <Tab eventKey="smaller" title={<TeX raw="P(X \le x_0)" />}>
-			<Panel>
-				{this.renderInputs( 'smaller' )}
-				<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pnorm( x0, mean, sd ), -4 )}`} displayMode tag="" />
-			</Panel>
 			<Container><Row>
-				<Col md={6}>
+				<Col>
+					<Panel>
+						{this.renderInputs( 'smaller' )}
+						<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pnorm( x0, mean, sd ), -4 )}`} displayMode tag="" />
+					</Panel>
+				</Col>
+				<Col>
 					<VictoryChart
 						domain={domain ? domain : {
-							x: [ mean-sd*4, mean+sd*4 ], y: [ 0, dnorm( mean, mean, sd ) ]
+							x: [ mean-sd*4, mean+sd*4 ], y: [ 0, 0.5 * dnorm( mean, mean, sd ) + 0.5 * 0.4 ]
 						}}
 						theme={VictoryTheme.material}
 					>
@@ -192,14 +192,16 @@ class NormalProbs extends Component {
 			</Row></Container>
 		</Tab> : null;
 		const tabGreater = contains( tabs, 'greater' ) ? <Tab eventKey="greater" title={<TeX raw="P(X > x_0)" />}>
-			<Panel>
-				{this.renderInputs( 'greater' )}
-				<TeX raw={`P(X > ${roundn( x0, -4 )}) = ${roundn( 1.0 - pnorm( x0, mean, sd ), -4 )}`} displayMode tag="" />
-			</Panel>
 			<Container><Row>
 				<Col>
+					<Panel>
+						{this.renderInputs( 'greater' )}
+						<TeX raw={`P(X > ${roundn( x0, -4 )}) = ${roundn( 1.0 - pnorm( x0, mean, sd ), -4 )}`} displayMode tag="" />
+					</Panel>
+				</Col>
+				<Col>
 					<VictoryChart
-						domain={domain ? domain : { x: [ mean-sd*4, mean+sd*4 ], y: [ 0, dnorm( mean, mean, sd ) ]}}
+						domain={domain ? domain : { x: [ mean-sd*4, mean+sd*4 ], y: [ 0, 0.5 * dnorm( mean, mean, sd ) + 0.5 * 0.4 ]}}
 						theme={VictoryTheme.material}
 					>
 						<VictoryAxis dependentAxis />
@@ -271,19 +273,21 @@ class NormalProbs extends Component {
 			</Row></Container>
 		</Tab> : null;
 		const tabRange = contains( tabs, 'range' ) ? <Tab eventKey="range" title={<TeX raw="P( x_0 \le X \le x_1)" />}>
-			<Panel>
-				{this.renderInputs( 'range' )}
-				{ x1 >= x0 ?
-					<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pnorm( x1, mean, sd ) - pnorm( x0, mean, sd ), -4 )}`} displayMode tag="" /> :
-					<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
-				}
-			</Panel>
 			<Container><Row>
+				<Col>
+					<Panel>
+						{this.renderInputs( 'range' )}
+						{ x1 >= x0 ?
+							<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pnorm( x1, mean, sd ) - pnorm( x0, mean, sd ), -4 )}`} displayMode tag="" /> :
+							<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+						}
+					</Panel>
+				</Col>
 				<Col>
 					<VictoryChart
 						domain={domain ? domain : {
 							x: [ mean-sd*4, mean+sd*4 ],
-							y: [ 0, dnorm( mean, mean, sd ) ]
+							y: [ 0, 0.5 * dnorm( mean, mean, sd ) + 0.5 * 0.4 ]
 						}}
 						theme={VictoryTheme.material}
 					>

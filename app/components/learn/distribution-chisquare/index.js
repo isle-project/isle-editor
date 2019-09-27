@@ -66,7 +66,6 @@ class ChisquareProbs extends Component {
 					step={this.props.step}
 					max={this.props.maxDF}
 					onChange={this.handleRateChange}
-					inline
 				/>
 				<SliderInput
 					key={`${type}-x0`}
@@ -76,7 +75,6 @@ class ChisquareProbs extends Component {
 					max={qchisq( NEAR_ONE, df )}
 					step={this.props.step}
 					onChange={this.handleLowerChange}
-					inline
 				/>
 				{ type === 'range' ?
 					<SliderInput
@@ -86,7 +84,6 @@ class ChisquareProbs extends Component {
 						max={qchisq( NEAR_ONE, df )}
 						step={this.props.step}
 						onChange={this.handleUpperChange}
-						inline
 					/> :
 				null }
 			</Fragment>
@@ -102,11 +99,13 @@ class ChisquareProbs extends Component {
 			<Card.Body>
 				<Tabs defaultActiveKey={1} id="chisquared-tabs">
 					<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
-						<Panel>
-							{this.renderInputs( 'smaller' )}
-							<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pchisq( x0, df ), -4 )}`} displayMode />
-						</Panel>
 						<Container><Row>
+							<Col>
+								<Panel>
+									{this.renderInputs( 'smaller' )}
+									<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pchisq( x0, df ), -4 )}`} displayMode />
+								</Panel>
+							</Col>
 							<Col>
 								<VictoryChart
 									domain={{
@@ -184,11 +183,13 @@ class ChisquareProbs extends Component {
 
 					</Tab>
 					<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />}>
-						<Panel>
-							{this.renderInputs( 'greater' )}
-							<TeX raw={`P(X > ${roundn( x0, -4 )} ) = ${roundn( 1-pchisq( x0, df ), -4 )}`} displayMode />
-						</Panel>
 						<Container><Row>
+							<Col>
+								<Panel>
+									{this.renderInputs( 'greater' )}
+									<TeX raw={`P(X > ${roundn( x0, -4 )} ) = ${roundn( 1-pchisq( x0, df ), -4 )}`} displayMode />
+								</Panel>
+							</Col>
 							<Col>
 								<VictoryChart
 									domain={{
@@ -275,14 +276,16 @@ class ChisquareProbs extends Component {
 
 					</Tab>
 					<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1)" />}>
-						<Panel>
-							{this.renderInputs( 'range' )}
-							{ x1 >= x0 ?
-								<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )} ) = ${roundn( pchisq( x1, df ) - pchisq( x0, df ), -4 )}`} displayMode /> :
-								<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
-							}
-						</Panel>
 						<Container><Row>
+							<Col>
+								<Panel>
+									{this.renderInputs( 'range' )}
+									{ x1 >= x0 ?
+										<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )} ) = ${roundn( pchisq( x1, df ) - pchisq( x0, df ), -4 )}`} displayMode /> :
+										<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+									}
+								</Panel>
+							</Col>
 							<Col>
 								<VictoryChart
 									domain={{
