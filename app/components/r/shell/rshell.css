@@ -1,5 +1,6 @@
 .rshell {
 	max-width: 1200px;
+	min-width: 400px;
 	padding: 5px;
 	text-align: left;
 	margin: 0 auto;
@@ -11,7 +12,7 @@
 }
 
 .rshell-editor {
-	width: 100%;
+	font-size: 16px;
 	margin-bottom: 10px;
 }
 
