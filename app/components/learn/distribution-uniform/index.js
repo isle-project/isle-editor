@@ -119,7 +119,7 @@ class UniformProbs extends Component {
 	render() {
 		const { min, max, x0, x1 } = this.state;
 		const yheight = dunif( min, min, max );
-		return ( <Card style={{ maxWidth: 1200, ...this.props.style }} >
+		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }} >
 			<Card.Header as="h3">
 				Uniform Distribution
 			</Card.Header>

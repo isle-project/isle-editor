@@ -95,7 +95,7 @@ class ChisquareProbs extends Component {
 
 	render() {
 		const { df, x0, x1 } = this.state;
-		return ( <Card style={{ maxWidth: 1200, ...this.props.style }}>
+		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
 				Chi-squared Distribution
 			</Card.Header>
