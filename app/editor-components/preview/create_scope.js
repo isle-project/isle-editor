@@ -64,6 +64,7 @@ const SCOPE = {
 	KeyControls: Loadable( () => import( 'components/key-controls' ) ),
 	LearnCrossValidation: Loadable( () => import( 'components/learn/cross-validation' ) ),
 	LearnDiceThrowing: Loadable( () => import( 'components/learn/dice-throwing' ) ),
+	LearnBetaDistribution: Loadable( () => import( 'components/learn/distribution-beta' ) ),
 	LearnBinomialDistribution: Loadable( () => import( 'components/learn/distribution-binomial' ) ),
 	LearnChisquareDistribution: Loadable( () => import( 'components/learn/distribution-chisquare' ) ),
 	LearnExponentialDistribution: Loadable( () => import( 'components/learn/distribution-exponential' ) ),

@@ -16,6 +16,7 @@
 	"Joyride": "components/joyride",
 	"LearnCrossValidation": "components/learn/cross-validation",
 	"LearnDiceThrowing": "components/learn/dice-throwing",
+	"LearnBetaDistribution": "components/learn/distribution-beta",
 	"LearnBinomialDistribution": "components/learn/distribution-binomial",
 	"LearnChisquareDistribution": "components/learn/distribution-chisquare",
 	"LearnContinuousDistribution": "components/learn/continuous-distribution",

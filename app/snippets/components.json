@@ -368,6 +368,10 @@
 		"value": "<LearnMeanVSMedian />\n"
 	},
 	{
+		"name": "LearnBetaDistribution",
+		"value": "<LearnBetaDistribution />\n"
+	},
+	{
 		"name": "LearnBinomialDistribution",
 		"value": "<LearnBinomialDistribution />\n"
 	},
