@@ -42,7 +42,7 @@ class ChisquareProbs extends Component {
 		};
 	}
 
-	handleRateChange = ( df ) => {
+	handleDFChange = ( df ) => {
 		this.setState({ df });
 	}
 
@@ -65,7 +65,7 @@ class ChisquareProbs extends Component {
 					min={this.props.minDF}
 					step={this.props.step}
 					max={this.props.maxDF}
-					onChange={this.handleRateChange}
+					onChange={this.handleDFChange}
 				/>
 				<SliderInput
 					key={`${type}-x0`}
