@@ -3,10 +3,13 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import { VictoryArea, VictoryChart, VictoryLine } from 'victory';
+import { VictoryArea, VictoryAxis, VictoryChart, VictoryLine, VictoryTheme } from 'victory';
 import roundn from '@stdlib/math/base/special/roundn';
 import dexp from '@stdlib/stats/base/dists/exponential/pdf';
 import pexp from '@stdlib/stats/base/dists/exponential/cdf';
@@ -59,10 +62,11 @@ class ExponentialProbs extends Component {
 					key={`${type}-rate`}
 					legend="Rate"
 					defaultValue={1}
-					min={1e-12}
+					min={this.props.minRate}
 					step={this.props.step}
-					max={20}
+					max={this.props.maxRate}
 					onChange={this.handleRateChange}
+					inline
 				/>
 				<SliderInput
 					key={`${type}-x0`}
@@ -72,6 +76,7 @@ class ExponentialProbs extends Component {
 					max={qexp( NEAR_ONE, rate )}
 					step={this.props.step}
 					onChange={this.handleLowerChange}
+					inline
 				/>
 				{ type === 'range' ?
 					<SliderInput
@@ -81,6 +86,7 @@ class ExponentialProbs extends Component {
 						max={qexp( NEAR_ONE, rate )}
 						step={this.props.step}
 						onChange={this.handleUpperChange}
+						inline
 					/> :
 				null }
 			</Fragment>
@@ -89,7 +95,7 @@ class ExponentialProbs extends Component {
 
 	render() {
 		const { rate, x0, x1 } = this.state;
-		return ( <Card style={{ maxWidth: 600, ...this.props.style }}>
+		return ( <Card style={{ maxWidth: 1200, ...this.props.style }}>
 			<Card.Header as="h3">
 				Exponential Distribution
 			</Card.Header>
@@ -98,101 +104,253 @@ class ExponentialProbs extends Component {
 					<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
 						<Panel>
 							{this.renderInputs( 'smaller' )}
-							<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pexp( x0, rate ), -4 )}`} />
+							<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pexp( x0, rate ), -4 )}`} displayMode />
 						</Panel>
-						<VictoryChart
-							domain={{
-								x: [ 0, qexp( NEAR_ONE, rate ) + 2 ]
-							}}
-						>
-							<VictoryArea
-								samples={200}
-								interpolation="step"
-								y={( data ) => {
-									if ( data.x <= x0 ) {
-										return dexp( data.x, rate );
-									}
-									return 0.0;
-								}}
-								style={{
-									data: {
-										opacity: 0.3, fill: 'tomato'
-									}
-								}}
-							/>
-							<VictoryLine
-								y={( data ) =>
-									dexp( data.x, rate )
-								}
-							/>
-						</VictoryChart>
+						<Container><Row>
+							<Col>
+								<VictoryChart
+									domain={{
+										x: [ 0, qexp( NEAR_ONE, rate ) ]
+									}}
+									theme={VictoryTheme.material}
+								>
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="PDF" tickFormat={(x) => `${x}`} crossAxis={false}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryArea
+										samples={200}
+										interpolation="step"
+										y={( data ) => {
+											if ( data.x <= x0 ) {
+												return dexp( data.x, rate );
+											}
+											return 0.0;
+										}}
+										style={{
+											data: {
+												opacity: 0.3, fill: 'tomato'
+											}
+										}}
+									/>
+									<VictoryLine
+										y={( data ) =>
+											dexp( data.x, rate )
+										}
+									/>
+								</VictoryChart>
+							</Col>
+							<Col>
+								<VictoryChart theme={VictoryTheme.material} >
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="CDF" tickFormat={(x) => `${x}`}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryLine
+										samples={600}
+										y={( data ) => {
+											return pexp( data.x, rate );
+										}}
+										domain={{
+											x: [ 0, qexp( NEAR_ONE, rate ) ],
+											y: [ 0, 1.1 ]
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: x0, y: 0 },
+											{ x: x0, y: pexp( x0, rate ) }
+										]}
+										style={{
+											data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: 0, y: pexp( x0, rate ) },
+											{ x: x0, y: pexp( x0, rate ) }
+										]}
+										style={{
+											data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+										}}
+									/>
+								</VictoryChart>
+							</Col>
+						</Row></Container>
+
 					</Tab>
 					<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />}>
 						<Panel>
 							{this.renderInputs( 'greater' )}
-							<TeX raw={`P(X > ${roundn( x0, -4 )} ) = ${roundn( 1-pexp( x0, rate ), -4 )}`} />
+							<TeX raw={`P(X > ${roundn( x0, -4 )} ) = ${roundn( 1-pexp( x0, rate ), -4 )}`} displayMode />
 						</Panel>
-						<VictoryChart
-							domain={{
-								x: [ 0, qexp( NEAR_ONE, rate ) + 2 ]
-							}}
-						>
-							<VictoryArea
-								samples={200}
-								interpolation="step"
-								y={( data ) => {
-									if ( data.x > x0 ) {
-										return dexp( data.x, rate );
-									}
-									return 0.0;
-								}}
-								style={{
-									data: {
-										opacity: 0.3, fill: 'tomato'
-									}
-								}}
-							/>
-							<VictoryLine
-								y={( data ) =>
-									dexp( data.x, rate )
-								}
-							/>
-						</VictoryChart>
+						<Container><Row>
+							<Col>
+								<VictoryChart
+									domain={{
+										x: [ 0, qexp( NEAR_ONE, rate ) ]
+									}}
+									theme={VictoryTheme.material}
+								>
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="PDF" tickFormat={(x) => `${x}`} crossAxis={false}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryArea
+										samples={200}
+										interpolation="step"
+										y={( data ) => {
+											if ( data.x > x0 ) {
+												return dexp( data.x, rate );
+											}
+											return 0.0;
+										}}
+										style={{
+											data: {
+												opacity: 0.3, fill: 'tomato'
+											}
+										}}
+									/>
+									<VictoryLine
+										y={( data ) =>
+											dexp( data.x, rate )
+										}
+									/>
+								</VictoryChart>
+							</Col>
+							<Col>
+								<VictoryChart theme={VictoryTheme.material} >
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="CDF" tickFormat={(x) => `${x}`}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryLine
+										samples={600}
+										y={( data ) => {
+											return pexp( data.x, rate );
+										}}
+										domain={{
+											x: [ 0, qexp( NEAR_ONE, rate ) ],
+											y: [ 0, 1.1 ]
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: x0, y: 0 },
+											{ x: x0, y: pexp( x0, rate ) }
+										]}
+										style={{
+											data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: x0, y: 1 },
+											{ x: x0, y: pexp( x0, rate ) }
+										]}
+										style={{
+											data: { stroke: 'steelblue', strokeWidth: 1, opacity: 0.5 }
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: 0, y: pexp( x0, rate ) },
+											{ x: x0, y: pexp( x0, rate ) }
+										]}
+										style={{
+											data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+										}}
+									/>
+								</VictoryChart>
+							</Col>
+						</Row></Container>
+
 					</Tab>
 					<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1)" />}>
 						<Panel>
 							{this.renderInputs( 'range' )}
 							{ x1 >= x0 ?
-								<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )} ) = ${roundn( pexp( x1, rate ) - pexp( x0, rate ), -4 )}`} /> :
+								<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )} ) = ${roundn( pexp( x1, rate ) - pexp( x0, rate ), -4 )}`} displayMode /> :
 								<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
 							}
 						</Panel>
-						<VictoryChart
-							domain={{
-								x: [ 0, qexp( NEAR_ONE, rate ) + 2 ]
-							}}
-						>
-							<VictoryArea
-								samples={200}
-								interpolation="step"
-								y={( data ) => {
-									if ( data.x >= x0 && data.x <= x1 ) {
-										return dexp( data.x, rate );
-									}
-									return 0.0;
-								}}
-								style={{
-									data: {
-										opacity: 0.3, fill: 'tomato'
-									}
-								}}
-							/>
-							<VictoryLine
-								y={( data ) =>
-									dexp( data.x, rate )
-								}
-							/>
-						</VictoryChart>
+						<Container><Row>
+							<Col>
+								<VictoryChart
+									domain={{
+										x: [ 0, qexp( NEAR_ONE, rate ) ]
+									}}
+									theme={VictoryTheme.material}
+								>
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="PDF" tickFormat={(x) => `${x}`} crossAxis={false}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryArea
+										samples={200}
+										interpolation="step"
+										y={( data ) => {
+											if ( data.x >= x0 && data.x <= x1 ) {
+												return dexp( data.x, rate );
+											}
+											return 0.0;
+										}}
+										style={{
+											data: {
+												opacity: 0.3, fill: 'tomato'
+											}
+										}}
+									/>
+									<VictoryLine
+										y={( data ) =>
+											dexp( data.x, rate )
+										}
+									/>
+								</VictoryChart>
+							</Col>
+							<Col>
+								<VictoryChart theme={VictoryTheme.material} >
+									<VictoryAxis dependentAxis />
+									<VictoryAxis
+										label="CDF" tickFormat={(x) => `${x}`}
+										style={{ axisLabel: { padding: 40 }}}
+									/>
+									<VictoryLine
+										samples={600}
+										y={( data ) => {
+											return pexp( data.x, rate );
+										}}
+										domain={{
+											x: [ 0, qexp( NEAR_ONE, rate ) ],
+											y: [ 0, 1.1 ]
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: x1, y: pexp( x0, rate ) },
+											{ x: x1, y: pexp( x1, rate ) }
+										]}
+										style={{
+											data: { stroke: 'steelblue', strokeWidth: 1, opacity: 0.5 }
+										}}
+									/>
+									<VictoryLine
+										data={[
+											{ x: x0, y: pexp( x0, rate ) },
+											{ x: x1, y: pexp( x0, rate ) }
+										]}
+										style={{
+											data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+										}}
+									/>
+								</VictoryChart>
+							</Col>
+						</Row></Container>
 					</Tab>
 				</Tabs>
 			</Card.Body>
@@ -208,10 +366,14 @@ ExponentialProbs.propTypes = {
 		PropTypes.number,
 		PropTypes.string
 	]),
+	maxRate: PropTypes.number,
+	minRate: PropTypes.number,
 	style: PropTypes.object
 };
 
 ExponentialProbs.defaultProps = {
+	maxRate: 10,
+	minRate: 1e-3,
 	step: 0.01,
 	style: {}
 };
