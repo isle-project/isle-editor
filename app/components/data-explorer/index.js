@@ -1029,11 +1029,14 @@ class DataExplorer extends Component {
 				case 'kmeans':
 					content = <KMeans
 						quantitative={this.state.quantitative}
+						categorical={this.state.categorical}
 						originalQuantitative={this.props.quantitative}
 						onCreated={this.addToOutputs}
-						onGenerate={( quantitative, data ) => {
+						onGenerate={( categorical, data ) => {
+							const groupVars = categorical.slice();
 							this.setState({
-								quantitative,
+								categorical,
+								groupVars,
 								data
 							});
 						}}

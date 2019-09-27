@@ -5,11 +5,13 @@ import PropTypes from 'prop-types';
 import kmeans from 'ml-kmeans';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
+import incrspace from '@stdlib/math/utils/incrspace';
 import Table from 'react-bootstrap/Table';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
 import Dashboard from 'components/dashboard';
+import factor from 'utils/factor-variable';
 import { DATA_EXPLORER_KMEANS } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
@@ -72,14 +74,14 @@ class KMeans extends Component {
 
 		if ( attach ) {
 			const newData = copy( this.props.data, 1 );
-			const newQuantitative = this.props.quantitative.slice();
+			const newCategorical = this.props.categorical.slice();
 			const suffix = variables.map( x => x[ 0 ] ).join( '' );
-			const name = 'cluster_' + suffix;
-			newData[ name ] = result.clusters.map( x => x+1 );
-			if ( !contains( newQuantitative, name ) ) {
-				newQuantitative.push( name );
+			const name = factor( 'cluster_' + suffix, incrspace( 0, K, 1 ).map( x => `Cluster ${x+1}` ) );
+			newData[ name ] = result.clusters.map( x => `Cluster ${x+1}` );
+			if ( !contains( newCategorical, name ) ) {
+				newCategorical.push( name );
 			}
-			this.props.onGenerate( newQuantitative, newData );
+			this.props.onGenerate( newCategorical, newData );
 		}
 
 		this.props.logAction( DATA_EXPLORER_KMEANS, {
@@ -138,6 +140,7 @@ KMeans.defaultProps = {
 };
 
 KMeans.propTypes = {
+	categorical: PropTypes.array.isRequired,
 	quantitative: PropTypes.array.isRequired,
 	originalQuantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
