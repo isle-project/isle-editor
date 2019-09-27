@@ -20,6 +20,19 @@ import Panel from 'components/panel';
 import TeX from 'components/tex';
 
 
+// VARIABLES //
+
+const LINE_STYLE = {
+	data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+};
+const AREA_STYLE = {
+	data: {
+		opacity: 0.3,
+		fill: 'tomato'
+	}
+};
+
+
 // MAIN //
 
 /**
@@ -135,12 +148,7 @@ class NormalProbs extends Component {
 								}
 								return 0.0;
 							}}
-							style={{
-								data: {
-									opacity: 0.3,
-									fill: 'tomato'
-								}
-							}}
+							style={AREA_STYLE}
 						/>
 						<VictoryLine
 							samples={200}
@@ -170,18 +178,14 @@ class NormalProbs extends Component {
 								{ x: x0, y: 0 },
 								{ x: x0, y: pnorm( x0, mean, sd ) }
 							]}
-							style={{
-								data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
-							}}
+							style={LINE_STYLE}
 						/>
 						<VictoryLine
 							data={[
 								{ x: 0, y: pnorm( x0, mean, sd ) },
 								{ x: x0, y: pnorm( x0, mean, sd ) }
 							]}
-							style={{
-								data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
-							}}
+							style={LINE_STYLE}
 						/>
 					</VictoryChart>
 				</Col>
@@ -212,12 +216,7 @@ class NormalProbs extends Component {
 								}
 								return 0.0;
 							}}
-							style={{
-								data: {
-									opacity: 0.3,
-									fill: 'tomato'
-								}
-							}}
+							style={AREA_STYLE}
 						/>
 						<VictoryLine
 							samples={200}
@@ -249,9 +248,7 @@ class NormalProbs extends Component {
 								{ x: x0, y: 0 },
 								{ x: x0, y: pnorm( x0, mean, sd ) }
 							]}
-							style={{
-								data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
-							}}
+							style={LINE_STYLE}
 						/>
 						<VictoryLine
 							data={[
@@ -267,9 +264,7 @@ class NormalProbs extends Component {
 								{ x: 0, y: pnorm( x0, mean, sd ) },
 								{ x: x0, y: pnorm( x0, mean, sd ) }
 							]}
-							style={{
-								data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
-							}}
+							style={LINE_STYLE}
 						/>
 					</VictoryChart>
 				</Col>
@@ -306,11 +301,7 @@ class NormalProbs extends Component {
 								}
 								return 0.0;
 							}}
-							style={{
-								data: {
-									opacity: 0.3, fill: 'tomato'
-								}
-							}}
+							style={AREA_STYLE}
 						/>
 						<VictoryLine
 							samples={200}
@@ -351,9 +342,7 @@ class NormalProbs extends Component {
 								{ x: x0, y: pnorm( x0, mean, sd ) },
 								{ x: x1, y: pnorm( x0, mean, sd ) }
 							]}
-							style={{
-								data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
-							}}
+							style={LINE_STYLE}
 						/>
 					</VictoryChart>
 				</Col>
