@@ -48,7 +48,7 @@ const summaryTable = ( stdev, variance, cumVariance ) => {
 
 // VARIABLES //
 
-const DESCRIPTION = '';
+const DESCRIPTION = 'Algorithm to convert observations of possibly correlated variables into linearly uncorrelated principal components.';
 
 
 // MAIN //

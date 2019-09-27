@@ -21,7 +21,7 @@ import { isArray } from 'util';
 
 // VARIABLES //
 
-const DESCRIPTION = '';
+const DESCRIPTION = 'Predict a quantitative response variable using one or more explanatory variables.';
 
 
 // FUNCTIONS //

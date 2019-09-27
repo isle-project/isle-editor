@@ -18,7 +18,7 @@ import QuestionButton from './question_button.js';
 
 // VARIABLES //
 
-const DESCRIPTION = '';
+const DESCRIPTION = 'Algorithm to partition observations into k clusters by iteratively assigning them to the cluster with the nearest mean.';
 
 
 // FUNCTIONS //
