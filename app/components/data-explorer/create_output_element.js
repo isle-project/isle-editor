@@ -145,6 +145,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		e.type === 'Grouped Frequency Table' ||
 		e.type === 'Simple Linear Regression' ||
 		e.type === 'Multiple Linear Regression' ||
+		e.type === 'Logistic Regression' ||
 		e.type === 'PCA' ||
 		e.type === 'kmeans'
 	) {

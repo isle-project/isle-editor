@@ -59,6 +59,7 @@ const LearnUniformDistribution = lazy( () => import( 'components/learn/distribut
 
 // MODEL COMPONENTS //
 
+import LogisticRegression from 'components/data-explorer/logistic_regression';
 import MultipleLinearRegression from 'components/data-explorer/multiple_linear_regression';
 import SimpleLinearRegression from 'components/data-explorer/simple_linear_regression';
 import PrincipalComponentAnalysis from 'components/data-explorer/principal_component_analysis';
@@ -1000,6 +1001,22 @@ class DataExplorer extends Component {
 						}}
 					/>;
 				break;
+				case 'Logistic Regression':
+					content = <LogisticRegression
+						categorical={this.state.categorical}
+						quantitative={this.state.quantitative}
+						onCreated={this.addToOutputs}
+						data={this.state.data}
+						logAction={this.logAction}
+						session={this.context}
+						onGenerate={( quantitative, data ) => {
+							this.setState({
+								quantitative,
+								data
+							});
+						}}
+					/>;
+				break;
 				case 'Simple Linear Regression':
 					content = <SimpleLinearRegression
 						categorical={this.state.categorical}
@@ -1330,6 +1347,7 @@ DataExplorer.defaultProps = {
 	models: [
 		'Simple Linear Regression',
 		'Multiple Linear Regression',
+		'Logistic Regression',
 		'PCA',
 		'kmeans'
 	],
