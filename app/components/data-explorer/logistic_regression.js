@@ -12,7 +12,6 @@ import Table from 'react-bootstrap/Table';
 import ndarray from '@stdlib/ndarray/array';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
-import isNumberArray from '@stdlib/assert/is-number-array';
 import isArray from '@stdlib/assert/is-array';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
@@ -117,7 +116,7 @@ class LogisticRegression extends Component {
 		const hash = {};
 		for ( let j = 0; j < x.length; j++ ) {
 			const values = this.props.data[ x[ j ] ];
-			if ( isNumberArray( values ) ) {
+			if ( contains( this.props.quantitative, x[ j ] ) ) {
 				predictors.push( x[ j ] );
 			} else {
 				const categories = x[ j ].categories || uniq( values.slice() );
@@ -134,7 +133,7 @@ class LogisticRegression extends Component {
 			}
 			for ( let j = 0; j < x.length; j++ ) {
 				const values = this.props.data[ x[ j ] ];
-				if ( isNumberArray( values ) ) {
+				if ( contains( this.props.quantitative, x[ j ] ) ) {
 					row.push( values[ i ] );
 				} else {
 					const categories = hash[ x[ j ] ];
@@ -176,7 +175,7 @@ class LogisticRegression extends Component {
 			type: 'Logistic Regression',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >Regression Summary for Response {y}</span>
-				{summaryTable( x, intercept, results )}
+				{summaryTable( predictors, intercept, results )}
 				<i>The algorithm converged after {results.iterations} iterations</i>
 			</div>
 		};

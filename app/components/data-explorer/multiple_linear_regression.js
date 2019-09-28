@@ -9,7 +9,6 @@ import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
 import abs from '@stdlib/math/base/special/abs';
 import tCDF from '@stdlib/stats/base/dists/t/cdf';
-import isNumberArray from '@stdlib/assert/is-number-array';
 import Table from 'react-bootstrap/Table';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
@@ -82,7 +81,7 @@ class MultipleLinearRegression extends Component {
 		const hash = {};
 		for ( let j = 0; j < x.length; j++ ) {
 			const values = this.props.data[ x[ j ] ];
-			if ( isNumberArray( values ) ) {
+			if ( contains( this.props.quantitative, x[ j ] ) ) {
 				predictors.push( x[ j ] );
 			} else {
 				const categories = x[ j ].categories || uniq( values.slice() );
@@ -96,7 +95,7 @@ class MultipleLinearRegression extends Component {
 			const row = [];
 			for ( let j = 0; j < x.length; j++ ) {
 				const values = this.props.data[ x[ j ] ];
-				if ( isNumberArray( values ) ) {
+				if ( contains( this.props.quantitative, x[ j ] ) ) {
 					row.push( values[ i ] );
 				} else {
 					const categories = hash[ x[ j ] ];
