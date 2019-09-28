@@ -20,6 +20,7 @@ import mean from 'utils/statistic/mean';
 import stdev from 'utils/statistic/stdev';
 import { DATA_EXPLORER_TESTS_TWO_SAMPLE_PROPTEST } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
+import getBinaryVars from './get_binary_vars.js';
 
 
 // VARIABLES //
@@ -195,9 +196,8 @@ class PropTest2 extends Component {
 	}
 
 	render() {
-		let { categorical } = this.props;
-		let binary = this.getBinaryVars( categorical );
-
+		const { categorical, data } = this.props;
+		const binary = getBinaryVars( categorical, data );
 		return (
 			<Card
 				style={{ fontSize: '14px' }}

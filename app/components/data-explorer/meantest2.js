@@ -10,15 +10,13 @@ import ttest2 from '@stdlib/stats/ttest2';
 import ztest2 from '@stdlib/stats/ztest2';
 import replace from '@stdlib/string/replace';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
-import isnan from '@stdlib/assert/is-nan';
-import isNull from '@stdlib/assert/is-null';
-import unique from 'uniq';
 import stdev from 'utils/statistic/stdev';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import TeX from 'components/tex';
 import { DATA_EXPLORER_TESTS_TWO_SAMPLE_ZTEST } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
+import getBinaryVars from './get_binary_vars.js';
 
 
 // VARIABLES //
@@ -94,7 +92,7 @@ class MeanTest2 extends Component {
 			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 			printout = replace( printout, RE_ONESIDED_GREATER, '' );
 			value = <div style={{ overflowX: 'auto', width: '100%' }}>
-				<label>Hypothesis test for {var1} between {grouping}:</label>
+				<span className="title" >Hypothesis test for {var1} between {grouping}:</span>
 				<TeX
 					displayMode
 					raw={`H_0: \\mu_{\\text{${grouping}:${firstCategory}}} - \\mu_{\\text{${grouping}:${secondCategory}}} = ${diff}`}
@@ -175,21 +173,9 @@ class MeanTest2 extends Component {
 		}
 	}
 
-	getBinaryVars( vars ) {
-		const out = [];
-		for ( let i = 0; i < vars.length; i++ ) {
-			const data = this.props.data[ vars[ i ] ].filter( x => !isNull( x ) && !isnan( x ) );
-			unique( data );
-			if ( data.length === 2 ) {
-				out.push( vars[ i ]);
-			}
-		}
-		return out;
-	}
-
 	renderInputs() {
-		const { quantitative, categorical } = this.props;
-		const binary = this.getBinaryVars( categorical );
+		const { quantitative, categorical, data } = this.props;
+		const binary = getBinaryVars( categorical, data );
 		return ( <Fragment>
 			<SelectInput
 				legend="Type of Test:"

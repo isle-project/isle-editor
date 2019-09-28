@@ -137,7 +137,7 @@ class MultipleLinearRegression extends Component {
 			variable: 'Regression Summary',
 			type: 'Multiple Linear Regression',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Regression Summary</span>
+				<span className="title" >Regression Summary for Response {y}</span>
 				{summaryTable( y, predictors, n, result )}
 			</div>
 		};
@@ -167,7 +167,7 @@ class MultipleLinearRegression extends Component {
 					defaultValue={true}
 				/>
 				<CheckboxInput
-					legend="Attach predictions and results to data table?"
+					legend="Attach predictions and residuals to data table?"
 					defaultValue={false}
 				/>
 			</Dashboard>
