@@ -118,7 +118,6 @@
     "compute-chunkify": "0.0.0",
     "compute-mean": "^3.0.0",
     "compute-stdev": "^1.0.0",
-    "compute-subtract": "^2.0.0",
     "core-js": "2.6.5",
     "cross-env": "^6.0.0",
     "css": "^2.2.3",
