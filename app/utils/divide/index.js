@@ -9,12 +9,9 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 /**
 * Computes an element-wise division.
 *
-* @param {Number[]|Array} arr - input array
-* @param {Number[]|Array|Number} x - either an array of equal length or a scalar
-* @param {Object} [opts] - function options
-* @param {Boolean} [opts.copy=true] - boolean indicating whether to return a new array
-* @param {Function} [opts.accessor] - accessor function for accessing array values
-* @returns {Number[]} output array
+* @param {NumberArray} arr - input array
+* @param {(NumberArray|number)} x - either an array of equal length or a scalar
+* @returns {NumberArray} output array
 */
 function divide( arr, x, opts ) {
 	const isArr = isArrayLike( x );
