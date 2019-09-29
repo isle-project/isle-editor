@@ -2,58 +2,49 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import MLR from 'ml-regression-multivariate-linear';
 import uniq from 'uniq';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
 import copy from '@stdlib/utils/copy';
-import abs from '@stdlib/math/base/special/abs';
-import tCDF from '@stdlib/stats/base/dists/t/cdf';
 import Table from 'react-bootstrap/Table';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
+import SliderInput from 'components/input/slider';
 import Dashboard from 'components/dashboard';
-import { DATA_EXPLORER_MULTIPLE_REGRESSION } from 'constants/actions.js';
-import subtract from 'utils/subtract';
+import { DATA_EXPLORER_LASSO_REGRESSION } from 'constants/actions.js';
+import zScore from 'utils/zscore';
 import QuestionButton from './question_button.js';
+import LASSO from './lasso';
 
 
 // VARIABLES //
 
-const DESCRIPTION = 'Predict a quantitative response variable using one or more explanatory variables.';
+const DESCRIPTION = '';
 
 
 // FUNCTIONS //
 
-const summaryTable = ( y, x, nobs, result ) => {
-	const cdf = tCDF.factory( nobs - x.length - 1 );
+const summaryTable = ( x, intercept, result ) => {
+	console.log( result );
 	return (
 		<Table bordered size="sm">
 			<thead>
 				<tr>
 					<th>Predictor</th>
 					<th>Coefficient</th>
-					<th>Std. Error</th>
-					<th>t</th>
-					<th>p-value</th>
 				</tr>
 			</thead>
 			<tbody>
-				{ result.intercept ? <tr>
+				{ intercept ? <tr>
 					<th>Intercept</th>
-					<td>{result.weights[ x.length ][ 0 ].toFixed( 3 )}</td>
-					<td>{result.stdErrors[ x.length ].toFixed( 3 )}</td>
-					<td>{result.tStats[ x.length ].toFixed( 3 )}</td>
-					<td>{(1.0-cdf( abs( result.tStats[ x.length ] ) ) ).toFixed( 3 )}</td>
+					<td>{result.coefficients[ 0 ].toFixed( 6 )}</td>
 				</tr> : null }
 				{x.map( ( name, idx ) => {
+					console.log( Number( intercept ))
 					return (
 						<tr key={idx} >
 							<th>{name}</th>
-							<td>{result.weights[ idx ][ 0 ].toFixed( 3 )}</td>
-							<td>{result.stdErrors[ idx ].toFixed( 3 )}</td>
-							<td>{result.tStats[ idx ].toFixed( 3 )}</td>
-							<td>{(1.0-cdf( abs( result.tStats[ idx ] ) ) ).toFixed( 3 )}</td>
+							<td>{result.coefficients[ idx+Number(intercept) ].toFixed( 6 )}</td>
 						</tr>
 					);
 				})}
@@ -65,13 +56,14 @@ const summaryTable = ( y, x, nobs, result ) => {
 
 // MAIN //
 
-class MultipleLinearRegression extends Component {
+class LassoRegression extends Component {
 	constructor( props ) {
 		super( props );
 	}
 
-	compute = ( y, x, intercept, attach ) => {
-		let yvalues = this.props.data[ y ].map( v => [ v ]);
+	compute = ( y, x, lambda, intercept, attach ) => {
+		let yvalues = this.props.data[ y ];
+		yvalues = zScore( yvalues, false, true );
 		const n = yvalues.length;
 		if ( !isArray( x ) ) {
 			x = [ x ];
@@ -79,8 +71,10 @@ class MultipleLinearRegression extends Component {
 		const matrix = [];
 		const predictors = [];
 		const hash = {};
+		const standardized = {};
 		for ( let j = 0; j < x.length; j++ ) {
-			const values = this.props.data[ x[ j ] ];
+			const values = zScore( this.props.data[ x[ j ] ] );
+			standardized[ x[ j ] ] = values;
 			if ( contains( this.props.quantitative, x[ j ] ) ) {
 				predictors.push( x[ j ] );
 			} else {
@@ -93,8 +87,11 @@ class MultipleLinearRegression extends Component {
 		}
 		for ( let i = 0; i < n; i++ ) {
 			const row = [];
+			if ( intercept ) {
+				row.push( 1 );
+			}
 			for ( let j = 0; j < x.length; j++ ) {
-				const values = this.props.data[ x[ j ] ];
+				const values = standardized[ x[ j ] ];
 				if ( contains( this.props.quantitative, x[ j ] ) ) {
 					row.push( values[ i ] );
 				} else {
@@ -107,37 +104,52 @@ class MultipleLinearRegression extends Component {
 			}
 			matrix.push( row );
 		}
-		const result = new MLR( matrix, yvalues, {
-			intercept
-		});
+		const result = new LASSO( matrix, yvalues, lambda );
+
+		// Convert back coefficients to original scale:
+		console.log( yvalues.sigma );
+		console.log( yvalues.mu );
+		if ( intercept ) {
+			let coefSum = 0.0;
+			for ( let i = 1; i < result.coefficients.length; i++ ) {
+				result.coefficients[ i ] *= yvalues.sigma / standardized[ x[ i-1 ] ].sigma;
+				coefSum += ( result.coefficients[ i ] * standardized[ x[ i-1 ] ].mu );
+			}
+			console.log( coefSum );
+			result.coefficients[ 0 ] = yvalues.mu - coefSum;
+		} else {
+			for ( let i = 0; i < result.coefficients.length; i++ ) {
+				result.coefficients[ i ] *= yvalues.sigma / standardized[ x[ i ] ].sigma;
+			}
+		}
 
 		if ( attach ) {
 			const newData = copy( this.props.data, 1 );
 			const newQuantitative = this.props.quantitative.slice();
 			const suffix = x.map( x => x[ 0 ] ).join( '' );
 			let name = y+'_pred_' + suffix;
-			const yhat = result.predict( matrix ).map( v => v[ 0 ] );
+			const yhat = result.fitted;
 			newData[ name ] = yhat;
 			if ( !contains( newQuantitative, name ) ) {
 				newQuantitative.push( name );
 			}
 			name = y+'_resid_' + suffix;
-			newData[ name ] = subtract( yhat, this.props.data[ y ] );
+			newData[ name ] = result.residuals;
 			if ( !contains( newQuantitative, name ) ) {
 				newQuantitative.push( name );
 			}
 			this.props.onGenerate( newQuantitative, newData );
 		}
 
-		this.props.logAction( DATA_EXPLORER_MULTIPLE_REGRESSION, {
-			y, x, intercept
+		this.props.logAction( DATA_EXPLORER_LASSO_REGRESSION, {
+			y, x, intercept, lambda
 		});
 		const output = {
 			variable: 'Regression Summary',
-			type: 'Multiple Linear Regression',
+			type: 'LASSO Regression',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Regression Summary for Response {y}</span>
-				{summaryTable( y, predictors, n, result )}
+				<span className="title" >LASSO Regression for Response {y} (lambda = {lambda})</span>
+				{summaryTable( x, intercept, result )}
 			</div>
 		};
 		this.props.onCreated( output );
@@ -147,7 +159,7 @@ class MultipleLinearRegression extends Component {
 		const { categorical, quantitative } = this.props;
 		return (
 			<Dashboard
-				title={<span>Multiple Linear Regression<QuestionButton title="Multiple Linear Regression" content={DESCRIPTION} /></span>}
+				title={<span>LASSO Regression<QuestionButton title="LASSO Regression" content={DESCRIPTION} /></span>}
 				autoStart={false}
 				onGenerate={this.compute}
 			>
@@ -160,6 +172,13 @@ class MultipleLinearRegression extends Component {
 					legend="Predictors (X):" multi
 					options={quantitative.concat( categorical )}
 					defaultValue={quantitative[ 1 ]}
+				/>
+				<SliderInput
+					legend="L1 Penalty Term (Lambda)"
+					defaultValue={1}
+					min={1e-12}
+					max={10}
+					step="any"
 				/>
 				<CheckboxInput
 					legend="Include intercept?"
@@ -177,11 +196,11 @@ class MultipleLinearRegression extends Component {
 
 // PROPERTIES //
 
-MultipleLinearRegression.defaultProps = {
+LassoRegression.defaultProps = {
 	logAction() {}
 };
 
-MultipleLinearRegression.propTypes = {
+LassoRegression.propTypes = {
 	categorical: PropTypes.array.isRequired,
 	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
@@ -193,4 +212,4 @@ MultipleLinearRegression.propTypes = {
 
 // EXPORTS //
 
-export default MultipleLinearRegression;
+export default LassoRegression;

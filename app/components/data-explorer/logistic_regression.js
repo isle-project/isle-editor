@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import uniq from 'uniq';
-import subtract from 'compute-subtract';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
@@ -16,8 +15,9 @@ import isArray from '@stdlib/assert/is-array';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import { DATA_EXPLORER_LOGISTIC_REGRESSION } from 'constants/actions.js';
-import QuestionButton from './question_button.js';
+import subtract from 'utils/subtract';
 import mmult from 'utils/mmult';
+import QuestionButton from './question_button.js';
 import irls from './glm/logistic_regression.js';
 
 

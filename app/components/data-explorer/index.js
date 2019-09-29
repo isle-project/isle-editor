@@ -59,6 +59,7 @@ const LearnUniformDistribution = lazy( () => import( 'components/learn/distribut
 
 // MODEL COMPONENTS //
 
+import LassoRegression from 'components/data-explorer/lasso_regression.js';
 import LogisticRegression from 'components/data-explorer/logistic_regression';
 import MultipleLinearRegression from 'components/data-explorer/multiple_linear_regression';
 import SimpleLinearRegression from 'components/data-explorer/simple_linear_regression';
@@ -1001,6 +1002,22 @@ class DataExplorer extends Component {
 						}}
 					/>;
 				break;
+				case 'LASSO':
+					content = <LassoRegression
+						categorical={this.state.categorical}
+						quantitative={this.state.quantitative}
+						onCreated={this.addToOutputs}
+						data={this.state.data}
+						logAction={this.logAction}
+						session={this.context}
+						onGenerate={( quantitative, data ) => {
+							this.setState({
+								quantitative,
+								data
+							});
+						}}
+					/>;
+				break;
 				case 'Logistic Regression':
 					content = <LogisticRegression
 						categorical={this.state.categorical}
@@ -1347,6 +1364,7 @@ DataExplorer.defaultProps = {
 	models: [
 		'Simple Linear Regression',
 		'Multiple Linear Regression',
+		'LASSO',
 		'Logistic Regression',
 		'PCA',
 		'kmeans'
