@@ -178,7 +178,7 @@ LassoFit.prototype.iterate = function iterate() {
 */
 LassoFit.prototype.calcValues = function calcValues() {
 	const fitted = mmult( this.x, this.beta );
-	const residuals = new Float64Array( this.N );
+	const residuals = new Array( this.N );
 	for ( let i = 0; i < this.N; i++ ) {
 		residuals[ i ] = this.y[ i ] - fitted[ i ];
 	}
