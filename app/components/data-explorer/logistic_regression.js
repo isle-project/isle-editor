@@ -225,7 +225,7 @@ class LogisticRegression extends Component {
 					<SelectInput
 						legend="Predictors (X):" multi
 						options={quantitative.concat( categorical )}
-						defaultValue={x}
+						defaultValue={x || ''}
 						onChange={( x ) => this.setState({ x })}
 					/>
 					<CheckboxInput
@@ -238,7 +238,7 @@ class LogisticRegression extends Component {
 						defaultValue={attach}
 						onChange={( attach ) => this.setState({ attach })}
 					/>
-					<Button variant="primary" block onClick={this.compute}>Calculate</Button>
+					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>Calculate</Button>
 				</Card.Body>
 			</Card>
 		);
