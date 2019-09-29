@@ -9,10 +9,11 @@ import copy from '@stdlib/utils/copy';
 import Table from 'react-bootstrap/Table';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
-import SliderInput from 'components/input/slider';
+import NumberInput from 'components/input/number';
 import Dashboard from 'components/dashboard';
 import { DATA_EXPLORER_LASSO_REGRESSION } from 'constants/actions.js';
 import zScore from 'utils/zscore';
+import multiply from 'utils/multiply';
 import QuestionButton from './question_button.js';
 import LASSO from './lasso';
 
@@ -25,7 +26,6 @@ const DESCRIPTION = '';
 // FUNCTIONS //
 
 const summaryTable = ( x, intercept, result ) => {
-	console.log( result );
 	return (
 		<Table bordered size="sm">
 			<thead>
@@ -40,7 +40,6 @@ const summaryTable = ( x, intercept, result ) => {
 					<td>{result.coefficients[ 0 ].toFixed( 6 )}</td>
 				</tr> : null }
 				{x.map( ( name, idx ) => {
-					console.log( Number( intercept ))
 					return (
 						<tr key={idx} >
 							<th>{name}</th>
@@ -107,15 +106,12 @@ class LassoRegression extends Component {
 		const result = new LASSO( matrix, yvalues, lambda );
 
 		// Convert back coefficients to original scale:
-		console.log( yvalues.sigma );
-		console.log( yvalues.mu );
 		if ( intercept ) {
 			let coefSum = 0.0;
 			for ( let i = 1; i < result.coefficients.length; i++ ) {
 				result.coefficients[ i ] *= yvalues.sigma / standardized[ x[ i-1 ] ].sigma;
 				coefSum += ( result.coefficients[ i ] * standardized[ x[ i-1 ] ].mu );
 			}
-			console.log( coefSum );
 			result.coefficients[ 0 ] = yvalues.mu - coefSum;
 		} else {
 			for ( let i = 0; i < result.coefficients.length; i++ ) {
@@ -124,9 +120,13 @@ class LassoRegression extends Component {
 		}
 
 		if ( attach ) {
+			// Convert fitted values and residuals back to original scale before standardizing:
+			result.fitted = multiply( result.fitted, yvalues.sigma );
+			result.residuals = multiply( result.residuals, -yvalues.sigma );
+
 			const newData = copy( this.props.data, 1 );
 			const newQuantitative = this.props.quantitative.slice();
-			const suffix = x.map( x => x[ 0 ] ).join( '' );
+			const suffix = x.map( x => x[0] ).join( '' );
 			let name = y+'_pred_' + suffix;
 			const yhat = result.fitted;
 			newData[ name ] = yhat;
@@ -173,12 +173,12 @@ class LassoRegression extends Component {
 					options={quantitative.concat( categorical )}
 					defaultValue={quantitative[ 1 ]}
 				/>
-				<SliderInput
+				<NumberInput
 					legend="L1 Penalty Term (Lambda)"
 					defaultValue={1}
 					min={1e-12}
-					max={10}
 					step="any"
+					width={120}
 				/>
 				<CheckboxInput
 					legend="Include intercept?"
