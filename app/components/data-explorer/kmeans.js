@@ -76,7 +76,7 @@ class KMeans extends Component {
 			const newData = copy( this.props.data, 1 );
 			const newCategorical = this.props.categorical.slice();
 			const suffix = variables.map( x => x[ 0 ] ).join( '' );
-			const name = factor( 'cluster_' + suffix, incrspace( 0, K, 1 ).map( x => `Cluster ${x+1}` ) );
+			const name = factor( 'kmeans_cluster_' + suffix, incrspace( 0, K, 1 ).map( x => `Cluster ${x+1}` ) );
 			newData[ name ] = result.clusters.map( x => `Cluster ${x+1}` );
 			if ( !contains( newCategorical, name ) ) {
 				newCategorical.push( name );

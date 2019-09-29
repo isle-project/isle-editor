@@ -127,13 +127,13 @@ class LassoRegression extends Component {
 			const newData = copy( this.props.data, 1 );
 			const newQuantitative = this.props.quantitative.slice();
 			const suffix = x.map( x => x[0] ).join( '' );
-			let name = y+'_pred_' + suffix;
+			let name = y+'_pred_lasso_' + suffix;
 			const yhat = result.fitted;
 			newData[ name ] = yhat;
 			if ( !contains( newQuantitative, name ) ) {
 				newQuantitative.push( name );
 			}
-			name = y+'_resid_' + suffix;
+			name = y+'_resid_lasso_' + suffix;
 			newData[ name ] = result.residuals;
 			if ( !contains( newQuantitative, name ) ) {
 				newQuantitative.push( name );

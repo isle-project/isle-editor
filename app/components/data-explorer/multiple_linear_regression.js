@@ -115,13 +115,13 @@ class MultipleLinearRegression extends Component {
 			const newData = copy( this.props.data, 1 );
 			const newQuantitative = this.props.quantitative.slice();
 			const suffix = x.map( x => x[ 0 ] ).join( '' );
-			let name = y+'_pred_' + suffix;
+			let name = y+'_pred_lm_' + suffix;
 			const yhat = result.predict( matrix ).map( v => v[ 0 ] );
 			newData[ name ] = yhat;
 			if ( !contains( newQuantitative, name ) ) {
 				newQuantitative.push( name );
 			}
-			name = y+'_resid_' + suffix;
+			name = y+'_resid_lm_' + suffix;
 			newData[ name ] = subtract( yhat, this.props.data[ y ] );
 			if ( !contains( newQuantitative, name ) ) {
 				newQuantitative.push( name );
