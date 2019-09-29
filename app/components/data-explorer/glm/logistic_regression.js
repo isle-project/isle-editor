@@ -1,7 +1,6 @@
 // MODULES //
 
 import { Matrix, solve } from 'ml-matrix';
-import ctor from '@stdlib/ndarray/ctor';
 import abs from '@stdlib/math/base/special/abs';
 import ln from '@stdlib/math/base/special/ln';
 import pow from '@stdlib/math/base/special/pow';
@@ -9,6 +8,7 @@ import exp from '@stdlib/math/base/special/exp';
 import xlogy from '@stdlib/math/base/special/xlogy';
 import EPS from '@stdlib/constants/math/float64-eps';
 import mmult from 'utils/mmult';
+import transpose from 'utils/transpose';
 import multiplyMatrices from './multiply_matrices.js';
 import colMult from './col_mult.js';
 import multiply from './multiply.js';
@@ -16,19 +16,10 @@ import multiply from './multiply.js';
 
 // VARIABLES //
 
-const matrix = ctor( 'float64', 2 );
 const MAX_IT = 25;
 
 
 // FUNCTIONS //
-
-const transpose = ( X ) => {
-	const shape = [ X.shape[ 1 ], X.shape[ 0 ] ];
-	const strides = [ X.strides[ 1 ], X.strides[ 0 ] ];
-	const offset = X.offset;
-	const order = X.order;
-	return matrix( X._buffer, shape, strides, offset, order );
-};
 
 const sum = ( arr ) => {
 	let res = 0;
