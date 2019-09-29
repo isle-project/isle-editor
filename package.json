@@ -139,6 +139,7 @@
     "form-data": "^2.5.0",
     "highlight.js": "^9.15.9",
     "history": "^4.9.0",
+    "html-to-image": "^0.1.1",
     "html-webpack-plugin": "^3.2.0",
     "is-touch-device": "^1.0.1",
     "lodash.debounce": "^4.0.8",
