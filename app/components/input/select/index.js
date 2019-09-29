@@ -60,6 +60,20 @@ const customStyles = {
 
 // FUNCTIONS //
 
+const transformMultiValue = ( value ) => {
+	let out;
+	if ( isArray( value ) ) {
+		out = value.map( val => {
+			return { 'label': val, 'value': val };
+		});
+	} else if ( value === '' ) {
+		out = [];
+	} else {
+		out = { 'label': value, 'value': value };
+	}
+	return out;
+};
+
 const transformValue = ( value ) => {
 	let out;
 	if ( isArray( value ) ) {
@@ -103,7 +117,9 @@ class SelectInput extends Input {
 		const { defaultValue } = props;
 		let value = null;
 		if ( defaultValue ) {
-			value = transformValue( defaultValue );
+			value = props.multi ?
+			transformMultiValue( defaultValue ) :
+			transformValue( defaultValue );
 		}
 		this.state = {
 			value,
@@ -119,7 +135,9 @@ class SelectInput extends Input {
 		const { prevProps } = prevState;
 		if ( nextProps.defaultValue !== prevProps.defaultValue ) {
 			debug( 'Default value has changed...' );
-			newState.value = transformValue( nextProps.defaultValue );
+			newState.value = nextProps.multi ?
+				transformMultiValue( nextProps.defaultValue ) :
+				transformValue( nextProps.defaultValue );
 		}
 		else if ( nextProps.bind !== prevProps.bind ) {
 			newState.value = global.lesson.state[ nextProps.bind ];
