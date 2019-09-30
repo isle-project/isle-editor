@@ -63,6 +63,10 @@ We will include the explorer with the following code:
 * __models__ | `array`: array of strings indicating models that may be fit on the data. Default: `[
   'Simple Linear Regression',
   'Multiple Linear Regression',
+  'LASSO',
+  'Hierarchical Clustering',
+  'Decision Tree',
+  'Logistic Regression',
   'PCA',
   'kmeans'
 ]`.
@@ -77,7 +81,7 @@ We will include the explorer with the following code:
   'Mosaic Plot',
   'Contour Chart'
 ]`.
-* __questions__ | `node`: node indicating surrounding text and question components to be displayed in a tabbed window. Default: `none`.
+* __questions__ | `array`: array of nodes indicating surrounding text and question components to be displayed in a tabbed window. Default: `[]`.
 * __showTestDecisions__ | `boolean`: boolean indicating whether to show the decisions made for each test based on the calculated p-values. Default: `true`.
 * __statistics__ | `array`: array of strings indicating which summary statistics may be calculated. Default: `[
   'Mean',

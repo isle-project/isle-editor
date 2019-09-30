@@ -561,6 +561,10 @@
         "default": [
           "Simple Linear Regression",
           "Multiple Linear Regression",
+          "LASSO",
+          "Hierarchical Clustering",
+          "Decision Tree",
+          "Logistic Regression",
           "PCA",
           "kmeans"
         ]
@@ -588,9 +592,9 @@
       },
       {
         "name": "questions",
-        "type": "node",
-        "description": "node indicating surrounding text and question components to be displayed in a tabbed window",
-        "default": null
+        "type": "array",
+        "description": "array of nodes indicating surrounding text and question components to be displayed in a tabbed window",
+        "default": []
       },
       {
         "name": "showTestDecisions",
@@ -2137,6 +2141,39 @@
     ],
     "description": "A learning component for visualizing any discrete distribution and evaluating its CDF."
   },
+  "LearnBetaDistribution": {
+    "props": [
+      {
+        "name": "domain",
+        "type": "object",
+        "description": "object of `x` and `y` arrays with the starting and end points for the respective axis",
+        "default": null
+      },
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "tabs",
+        "type": "array<string>",
+        "description": "which tabs to display (either `smaller`, `greater`, or `range`)",
+        "default": [
+          "smaller",
+          "greater",
+          "range"
+        ]
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a beta distribution."
+  },
   "LearnBinomialDistribution": {
     "props": [
       {
@@ -2154,6 +2191,33 @@
     ],
     "description": "A learning component for calculating probabilities of a binomial distribution."
   },
+  "LearnChisquareDistribution": {
+    "props": [
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "maxDF",
+        "type": "number",
+        "default": 50
+      },
+      {
+        "name": "minDF",
+        "type": "number",
+        "default": 1
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a chi-squared distribution."
+  },
   "LearnExponentialDistribution": {
     "props": [
       {
@@ -2163,6 +2227,16 @@
         "default": 0.01
       },
       {
+        "name": "maxRate",
+        "type": "number",
+        "default": 10
+      },
+      {
+        "name": "minRate",
+        "type": "number",
+        "default": 0.001
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -2170,6 +2244,39 @@
       }
     ],
     "description": "A learning component for calculating probabilities of a exponential distribution."
+  },
+  "LearnGammaDistribution": {
+    "props": [
+      {
+        "name": "domain",
+        "type": "object",
+        "description": "object of `x` and `y` arrays with the starting and end points for the respective axis",
+        "default": null
+      },
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "tabs",
+        "type": "array<string>",
+        "description": "which tabs to display (either `smaller`, `greater`, or `range`)",
+        "default": [
+          "smaller",
+          "greater",
+          "range"
+        ]
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a gamma distribution."
   },
   "LearnGeometricDistribution": {
     "props": [
@@ -2194,8 +2301,25 @@
     ],
     "description": "A learning component for calculating probabilities of a geometric distribution."
   },
+  "LearnHypergeometricDistribution": {
+    "props": [
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a hypergeometric distribution."
+  },
   "LearnNegativeBinomialDistribution": {
     "props": [
+      {
+        "name": "countTrials",
+        "type": "boolean",
+        "description": "set to true if instead of counting the number of failures until the r-th success, a random variable from a negative binomial distribution should be defined as the number of trials until the r-th success",
+        "default": false
+      },
       {
         "name": "step",
         "type": "(number|string)",
@@ -5763,7 +5887,15 @@
     "props": [],
     "description": "Description is missing."
   },
+  "VictoryBoxPlot": {
+    "props": [],
+    "description": "Description is missing."
+  },
   "VictoryBrushContainer": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryCandlestick": {
     "props": [],
     "description": "Description is missing."
   },
@@ -5796,6 +5928,10 @@
     "description": "Description is missing."
   },
   "VictoryPie": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryPolarAxis": {
     "props": [],
     "description": "Description is missing."
   },

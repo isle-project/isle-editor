@@ -119,7 +119,7 @@ const uid = generateUID( 'data-explorer' );
 * @property {Array<string>} models - array of strings indicating models that may be fit on the data
 * @property {string} opened - page opened at startup
 * @property {Array<string>} plots - array of strings indicating which plots to show to the user
-* @property {Node} questions - node indicating surrounding text and question components to be displayed in a tabbed window
+* @property {Array<node>} questions - array of nodes indicating surrounding text and question components to be displayed in a tabbed window
 * @property {boolean} showTestDecisions - boolean indicating whether to show the decisions made for each test based on the calculated p-values
 * @property {Array<string>} statistics - array of strings indicating which summary statistics may be calculated
 * @property {Array<string>} tables - array of strings indicating which tables may be created from the data
@@ -1360,7 +1360,7 @@ DataExplorer.defaultProps = {
 	},
 	dataTable: true,
 	tabs: [],
-	questions: null,
+	questions: [],
 	transformer: true,
 	statistics: [
 		'Mean',
@@ -1434,7 +1434,7 @@ DataExplorer.propTypes = {
 	models: PropTypes.array,
 	opened: PropTypes.oneOf([ 'data', 'toolbox', 'editor' ]),
 	plots: PropTypes.array,
-	questions: PropTypes.node,
+	questions: PropTypes.array,
 	showTestDecisions: PropTypes.bool,
 	statistics: PropTypes.array,
 	style: PropTypes.object,
