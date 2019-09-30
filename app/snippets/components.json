@@ -392,6 +392,10 @@
 		"value": "<LearnExponentialDistribution />\n"
 	},
 	{
+		"name": "LearnGammaDistribution",
+		"value": "<LearnGammaDistribution />\n"
+	},
+	{
 		"name": "LearnGeometricDistribution",
 		"value": "<LearnGeometricDistribution />\n"
 	},
