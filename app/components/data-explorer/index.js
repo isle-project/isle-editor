@@ -59,11 +59,13 @@ const LearnUniformDistribution = lazy( () => import( 'components/learn/distribut
 
 // MODEL COMPONENTS //
 
+import DecisionTree from 'components/data-explorer/decision_tree.js';
 import LassoRegression from 'components/data-explorer/lasso_regression.js';
 import LogisticRegression from 'components/data-explorer/logistic_regression';
 import MultipleLinearRegression from 'components/data-explorer/multiple_linear_regression';
 import SimpleLinearRegression from 'components/data-explorer/simple_linear_regression';
 import PrincipalComponentAnalysis from 'components/data-explorer/principal_component_analysis';
+import HierarchicalClustering from 'components/data-explorer/hierarchical_clustering.js';
 import KMeans from 'components/data-explorer/kmeans';
 
 
@@ -1002,6 +1004,22 @@ class DataExplorer extends Component {
 						}}
 					/>;
 				break;
+				case 'Decision Tree':
+					content = <DecisionTree
+						categorical={this.state.categorical}
+						quantitative={this.state.quantitative}
+						onCreated={this.addToOutputs}
+						data={this.state.data}
+						logAction={this.logAction}
+						session={this.context}
+						onGenerate={( quantitative, data ) => {
+							this.setState({
+								quantitative,
+								data
+							});
+						}}
+					/>;
+				break;
 				case 'LASSO':
 					content = <LassoRegression
 						categorical={this.state.categorical}
@@ -1052,6 +1070,25 @@ class DataExplorer extends Component {
 						onGenerate={( quantitative, data ) => {
 							this.setState({
 								quantitative,
+								data
+							});
+						}}
+						data={this.state.data}
+						logAction={this.logAction}
+						session={this.context}
+					/>;
+					break;
+				case 'Hierarchical Clustering':
+					content = <HierarchicalClustering
+						quantitative={this.state.quantitative}
+						categorical={this.state.categorical}
+						originalQuantitative={this.props.quantitative}
+						onCreated={this.addToOutputs}
+						onGenerate={( categorical, data ) => {
+							const groupVars = categorical.slice();
+							this.setState({
+								categorical,
+								groupVars,
 								data
 							});
 						}}
@@ -1365,6 +1402,8 @@ DataExplorer.defaultProps = {
 		'Simple Linear Regression',
 		'Multiple Linear Regression',
 		'LASSO',
+		'Hierarchical Clustering',
+		'Decision Tree',
 		'Logistic Regression',
 		'PCA',
 		'kmeans'

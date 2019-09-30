@@ -156,6 +156,12 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		</pre>;
 		return elem;
 	}
+	else if (
+		e.type === 'Decision Tree' ||
+		e.type === 'Hierarchical Clustering'
+	) {
+		return <pre key={idx}><div>{e.value}</div></pre>;
+	}
 	else if ( e.type === 'Statistics' ) {
 		if ( e.group ) {
 			if ( e.statistics.length === 1 ) {
