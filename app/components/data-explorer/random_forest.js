@@ -13,7 +13,6 @@ import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
 import { DATA_EXPLORER_RANDOM_FOREST } from 'constants/actions.js';
-import subtract from 'utils/subtract';
 import QuestionButton from './question_button.js';
 import { RandomForestClassifier } from './tree';
 
@@ -76,26 +75,27 @@ class RandomForest extends Component {
 				nTrees,
 				nTry
 			});
-		} else {
-
 		}
 
 		if ( attach ) {
 			const newData = copy( this.props.data, 1 );
-			const newQuantitative = this.props.quantitative.slice();
 			const suffix = predictors.map( x => x[ 0 ] ).join( '' );
-			let name = y+'_pred_forest_' + suffix;
-			const yhat = forest.predict( newData );
-			newData[ name ] = yhat;
-			if ( !contains( newQuantitative, name ) ) {
-				newQuantitative.push( name );
+			if ( type === 'Classification' ) {
+				const newCategorical = this.props.categorical.slice();
+				const yhat = forest.predict( newData ).map( x => String( x ) );
+				let name = y+'_pred_forest_' + suffix;
+				newData[ name ] = yhat;
+				if ( !contains( newCategorical, name ) ) {
+					newCategorical.push( name );
+				}
+				name = y+'_correct_forest_' + suffix;
+				const yvalues = this.props.data[ y ];
+				newData[ name ] = yhat.map( ( x, i ) => x === String( yvalues[ i ] ) ? 'Yes' : 'No' );
+				if ( !contains( newCategorical, name ) ) {
+					newCategorical.push( name );
+				}
+				this.props.onGenerate( this.props.quantitative, newCategorical, newData );
 			}
-			name = y+'_resid_forest_' + suffix;
-			newData[ name ] = subtract( yhat, this.props.data[ y ] );
-			if ( !contains( newQuantitative, name ) ) {
-				newQuantitative.push( name );
-			}
-			this.props.onGenerate( newQuantitative, newData );
 		}
 
 		this.props.logAction( DATA_EXPLORER_RANDOM_FOREST, {
@@ -124,7 +124,7 @@ class RandomForest extends Component {
 				<Card.Body>
 					<SelectInput
 						legend="Type"
-						options={[ 'Classification', 'Regression' ]}
+						options={[ 'Classification' ]}
 						defaultValue={type}
 						onChange={( type ) => {
 							if ( type !== this.state.type ) {
