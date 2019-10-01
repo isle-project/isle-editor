@@ -19,11 +19,11 @@ import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import isObjectArray from '@stdlib/assert/is-object-array';
 import isObject from '@stdlib/assert/is-object';
+import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isJSON from '@stdlib/assert/is-json';
 import hasProp from '@stdlib/assert/has-property';
-import startsWith from '@stdlib/string/starts-with';
 import copy from '@stdlib/utils/copy';
 import keys from '@stdlib/utils/keys';
 import noop from '@stdlib/utils/noop';
@@ -52,9 +52,6 @@ import recodeCategorical from './variable-transformer/recode_categorical.js';
 import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER, DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
 import './data_explorer.css';
 const SpreadsheetUpload = lazy( () => import( 'components/spreadsheet-upload' ) );
-const LearnNormalDistribution = lazy( () => import( 'components/learn/distribution-normal' ) );
-const LearnExponentialDistribution = lazy( () => import( 'components/learn/distribution-exponential' ) );
-const LearnUniformDistribution = lazy( () => import( 'components/learn/distribution-uniform' ) );
 
 
 // MODEL COMPONENTS //
@@ -63,6 +60,7 @@ import DecisionTree from 'components/data-explorer/decision_tree.js';
 import LassoRegression from 'components/data-explorer/lasso_regression.js';
 import LogisticRegression from 'components/data-explorer/logistic_regression';
 import MultipleLinearRegression from 'components/data-explorer/multiple_linear_regression';
+import RandomForest from 'components/data-explorer/random_forest.js';
 import SimpleLinearRegression from 'components/data-explorer/simple_linear_regression';
 import PrincipalComponentAnalysis from 'components/data-explorer/principal_component_analysis';
 import HierarchicalClustering from 'components/data-explorer/hierarchical_clustering.js';
@@ -110,7 +108,6 @@ const uid = generateUID( 'data-explorer' );
 * @property {Array} quantitative - array of strings indicating the name of each quantitative variable
 * @property {(Object|Array)} data - data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column. If you wish to allow students the ability to import a `.csv` file, set the `data` option to be `false`
 * @property {Object} dataInfo - object containing the keys \'name\', whose value is a string, \'info\', whose value is an array of strings in which each element in the array is a new line and \'variables\', an object with keys as variable names and values as variable descriptions
-* @property {Array<string>} distributions - array of strings indicating distributions that may be used in calculating probabilities. This functionality exists independently of the dataset provided. Currently limited to normal, uniform and exponential distributions
 * @property {boolean} editor - boolean indicating whether to show the editor to the user
 * @property {Object} editorProps - object to be passed to `MarkdownEditor` indicating properties to be used
 * @property {string} editorTitle - string indicating the title of the explorer to be displayed
@@ -165,7 +162,7 @@ class DataExplorer extends Component {
 			ready,
 			showStudentPlots: false,
 			showToolbox: false,
-			openedNav: props.opened || ( props.questions ? 'questions' : 'data' ),
+			openedNav: props.opened || ( isArray( props.questions ) && props.questions.length > 0 ? 'questions' : 'data' ),
 			studentPlots: [],
 			subsetFilters: null,
 			unaltered: {
@@ -1012,9 +1009,29 @@ class DataExplorer extends Component {
 						data={this.state.data}
 						logAction={this.logAction}
 						session={this.context}
-						onGenerate={( quantitative, data ) => {
+						onGenerate={( quantitative, categorical, data ) => {
 							this.setState({
 								quantitative,
+								categorical,
+								groupVars: categorical.slice(),
+								data
+							});
+						}}
+					/>;
+				break;
+				case 'Random Forest':
+					content = <RandomForest
+						categorical={this.state.categorical}
+						quantitative={this.state.quantitative}
+						onCreated={this.addToOutputs}
+						data={this.state.data}
+						logAction={this.logAction}
+						session={this.context}
+						onGenerate={( quantitative, categorical, data ) => {
+							this.setState({
+								quantitative,
+								categorical,
+								groupVars: categorical.slice(),
 								data
 							});
 						}}
@@ -1134,27 +1151,18 @@ class DataExplorer extends Component {
 				</Tab.Pane> : null
 			}
 		</Tab.Content>;
+		const hasQuestions = isArray( this.props.questions ) && this.props.questions.length > 0;
 		const mainContainer = <Row className="no-gutter data-explorer" style={this.props.style} >
 			<Col xs={6} md={6}>
 				<Card>
 					<Navbar className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
 						<Nav>
-							{ this.props.questions ? <Nav.Item className="explorer-data-nav">
+							{ hasQuestions ? <Nav.Item className="explorer-data-nav">
 								<Nav.Link eventKey="questions" active={this.state.openedNav === 'questions'}>Questions</Nav.Link>
 							</Nav.Item> : null }
 							{ this.props.dataTable ? <Nav.Item className="explorer-data-nav" >
 								<Nav.Link eventKey="data" active={this.state.openedNav === 'data'}>Data</Nav.Link>
 							</Nav.Item> : null }
-							{ this.props.distributions.length > 0 ?
-								<NavDropdown
-									eventKey="distributions"
-									title="Distributions"
-									active={startsWith( this.state.openedNav, 'distributions' )}
-								>
-									{this.props.distributions.map( ( e, i ) =>
-										<NavDropdown.Item key={i} eventKey={`distributions.${i+1}`}>{e}</NavDropdown.Item> )}
-								</NavDropdown> : null
-							}
 							{ this.props.editor ?
 								<Nav.Item className="explorer-editor-nav">
 									<Nav.Link
@@ -1177,7 +1185,7 @@ class DataExplorer extends Component {
 						<Button variant="secondary" size="sm" style={{ position: 'absolute', right: '20px' }} onClick={this.toggleToolbox} >{this.state.showToolbox ? 'Hide Toolbox' : 'Show Toolbox' }</Button>
 					</Navbar>
 					<Card.Body>
-						<Pages
+						{ hasQuestions ?<Pages
 							id={this.id + '_questions'}
 							height={( window.innerHeight*0.9 ) - 165}
 							size="small"
@@ -1185,7 +1193,7 @@ class DataExplorer extends Component {
 							style={{
 								display: this.state.openedNav !== 'questions' ? 'none' : null
 							}}
-						>{this.props.questions}</Pages>
+						>{this.props.questions}</Pages> : null }
 						<div
 							style={{
 								display: this.state.openedNav !== 'data' ? 'none' : null
@@ -1229,22 +1237,6 @@ class DataExplorer extends Component {
 									{formatFilters( this.state.subsetFilters )}
 								</pre> : null }
 						</div>
-						{this.props.distributions.map( ( e, i ) => {
-							let content = null;
-							switch ( e ) {
-							case 'Normal':
-								content = <LearnNormalDistribution step="any" />;
-								break;
-							case 'Uniform':
-								content = <LearnUniformDistribution step="any" />;
-								break;
-							case 'Exponential':
-								content = <LearnExponentialDistribution step="any" />;
-								break;
-							}
-							return ( this.state.openedNav === `distributions.${i+1}` ?
-								<Suspense fallback={<div>Loading...</div>} >{content}</Suspense> : null );
-						})}
 						{ this.props.editor ?
 						<MarkdownEditor {...this.props.editorProps}
 							plots={this.state.output}
@@ -1401,17 +1393,17 @@ DataExplorer.defaultProps = {
 	models: [
 		'Simple Linear Regression',
 		'Multiple Linear Regression',
-		'LASSO',
-		'Hierarchical Clustering',
 		'Decision Tree',
+		'Random Forest',
 		'Logistic Regression',
+		'LASSO',
 		'PCA',
+		'Hierarchical Clustering',
 		'kmeans'
 	],
 	opened: null,
 	categorical: [],
 	quantitative: [],
-	distributions: [ 'Normal', 'Uniform', 'Exponential' ],
 	editor: true,
 	editorProps: null,
 	editorTitle: 'Report',
@@ -1425,7 +1417,6 @@ DataExplorer.propTypes = {
 	quantitative: PropTypes.array,
 	data: PropTypes.object,
 	dataInfo: PropTypes.object,
-	distributions: PropTypes.array,
 	editor: PropTypes.bool,
 	editorProps: PropTypes.object,
 	editorTitle: PropTypes.string,
