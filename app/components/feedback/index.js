@@ -137,8 +137,8 @@ class FeedbackButtons extends Component {
 	render() {
 		const tpos = this.props.vertical ? 'left' : 'bottom';
 		return (
-			<div id={this.id} className="feedback-buttons" style={{ ...this.props.style }}>
-				<ButtonGroup style={{ float: 'right' }} vertical={this.props.vertical} >
+			<div id={this.id} className="feedback-buttons" >
+				<ButtonGroup style={{ float: 'right', ...this.props.style }} vertical={this.props.vertical} >
 					{ this.state.submittedBinaryChoice ?
 						<Fragment>
 							<Button variant="light" disabled className="feedback-button-disabled" size="small" >
