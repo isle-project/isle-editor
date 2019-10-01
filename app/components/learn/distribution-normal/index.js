@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Alert from 'react-bootstrap/Alert';
-import { VictoryAxis, VictoryArea, VictoryChart, VictoryLine, VictoryTheme, VictoryZoomContainer } from 'victory';
+import { VictoryAxis, VictoryArea, VictoryChart, VictoryLine, VictoryTheme } from 'victory';
 import contains from '@stdlib/assert/contains';
 import max from '@stdlib/math/base/special/max';
 import roundn from '@stdlib/math/base/special/roundn';
