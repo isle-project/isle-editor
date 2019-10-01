@@ -81,6 +81,10 @@ function preventGesture( e ) {
 	e.preventDefault();
 }
 
+function stopPropagation( e ) {
+	e.stopPropagation();
+}
+
 function isAlreadyInserted( pos, insertedPages ) {
 	let alreadyInserted = false;
 	for ( let i = 0; i < insertedPages.length; i++ ) {
@@ -2299,30 +2303,6 @@ class Sketchpad extends Component {
 		const keys = objectKeys( this.props.nodes );
 		const divs = [];
 		const page = this.toOriginalPage( this.state.currentPage );
-		if ( this.props.feedbackButtons && !isNull( page ) ) {
-			divs.push(
-				<Fragment>
-					<FeedbackButtons
-						key={`${this.id}-slide-${page}`} id={`${this.id}-slide-${page}`}
-						customFeedback={false} vertical
-					/>
-					<Gate owner>
-						<Button
-							onClick={() => this.setState({
-								showFeedbackModal: !this.state.showFeedbackModal
-							})}
-							variant="light"
-							style={{ right: '0px', top: '150px', position: 'absolute' }}
-						>
-							Show all
-						</Button>
-					</Gate>
-				</Fragment>
-			);
-		}
-		if ( keys.length === 0 ) {
-			return divs;
-		}
 		for ( let i = 0; i < keys.length; i++ ) {
 			const node = this.props.nodes[ keys[ i ] ];
 			let className = 'invisible-page';
@@ -2330,19 +2310,53 @@ class Sketchpad extends Component {
 				className = 'sketch-node-container';
 			}
 			if ( isObject( node ) && node.component ) {
+				/* eslint-disable jsx-a11y/no-static-element-interactions */
 				if ( node.style ) {
 					if ( keys[ i ] === String( page+1 ) ) {
 						className = 'sketch-node-container-basic';
 					}
-					divs.push( <div key={i} style={node.style} className={className} >{node.component}</div> );
+					divs.push(
+					<div
+						key={i} style={node.style} className={className}
+						onKeyDown={stopPropagation}
+					>{node.component}</div> );
 				} else {
-					divs.push( <div key={i} className={className} >
+					divs.push( <div
+						key={i} className={className}
+						onKeyDown={stopPropagation}
+					>
 						{node.component}
 					</div> );
 				}
 			} else {
-				divs.push( <div key={i} className={className} >{node}</div> );
+				divs.push( <div
+					key={i}
+					className={className}
+					onKeyDown={stopPropagation}
+				>{node}</div> );
 			}
+			// eslint-enable jsx-a11y/no-static-element-interactions
+		}
+		if ( this.props.feedbackButtons && !isNull( page ) ) {
+			divs.push(
+				<Fragment>
+					<FeedbackButtons
+						key={`${this.id}-slide-${page}`} id={`${this.id}-slide-${page}`}
+						customFeedback={false} vertical style={{ zIndex: 3 }}
+					/>
+					<Gate owner>
+						<Button
+							onClick={() => this.setState({
+								showFeedbackModal: !this.state.showFeedbackModal
+							})}
+							variant="light"
+							style={{ right: '0px', top: '150px', position: 'absolute', zIndex: 3 }}
+						>
+							Show all
+						</Button>
+					</Gate>
+				</Fragment>
+			);
 		}
 		return divs;
 	}
