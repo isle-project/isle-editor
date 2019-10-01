@@ -9,8 +9,9 @@ import Col from 'react-bootstrap/Col';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Alert from 'react-bootstrap/Alert';
-import { VictoryAxis, VictoryArea, VictoryChart, VictoryLine, VictoryTheme } from 'victory';
+import { VictoryAxis, VictoryArea, VictoryChart, VictoryLine, VictoryTheme, VictoryZoomContainer } from 'victory';
 import contains from '@stdlib/assert/contains';
+import max from '@stdlib/math/base/special/max';
 import roundn from '@stdlib/math/base/special/roundn';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
@@ -33,6 +34,16 @@ const AREA_STYLE = {
 };
 
 
+// FUNCTIONS //
+
+function calculateDomain( mean, sd ) {
+	return {
+		x: [ mean - 6 - sd*3, mean + 6 + sd*3 ],
+		y: [ 0, 0.6 * ( 100 / max( 100, sd ) ) ]
+	};
+}
+
+
 // MAIN //
 
 /**
@@ -47,20 +58,53 @@ const AREA_STYLE = {
 class NormalProbs extends Component {
 	constructor( props ) {
 		super( props );
+		const mean = 0;
+		const sd = 1;
 		this.state = {
-			mean: 0,
-			sd: 1,
+			mean,
+			sd,
 			x0: 0,
-			x1: 1
+			x1: 1,
+			domain: calculateDomain( mean, sd )
 		};
 	}
 
 	handleMeanChange = ( mean ) => {
-		this.setState({ mean });
+		const { sd, domain } = this.state;
+		const s3 = 3*sd;
+		if (
+			mean - s3 < domain.x[ 0 ] ||
+			mean + s3 > domain.x[ 1 ] ||
+			domain.x[ 0 ] < mean - 10*s3 ||
+			domain.x[ 1 ] > mean + 10*s3 ||
+			dnorm( mean, mean, sd ) >= domain.y[ 1 ]
+		) {
+			this.setState({
+				mean,
+				domain: calculateDomain( mean, sd )
+			});
+		} else {
+			this.setState({ mean });
+		}
 	}
 
 	handleSDChange = ( sd ) => {
-		this.setState({ sd });
+		const s3 = 3*sd;
+		const { mean, domain } = this.state;
+		if (
+			mean - s3 < domain.x[ 0 ] ||
+			mean + s3 > domain.x[ 1 ] ||
+			domain.x[ 0 ] < mean - 10*s3 ||
+			domain.x[ 1 ] > mean + 10*s3 ||
+			dnorm( mean, mean, sd ) >= domain.y[ 1 ]
+		) {
+			this.setState({
+				sd,
+				domain: calculateDomain( mean, sd )
+			});
+		} else {
+			this.setState({ sd });
+		}
 	}
 
 	handleLowerChange = ( x0 ) => {
@@ -129,9 +173,7 @@ class NormalProbs extends Component {
 				</Col>
 				<Col>
 					<VictoryChart
-						domain={domain ? domain : {
-							x: [ mean-sd*4, mean+sd*4 ], y: [ 0, 0.5 * dnorm( mean, mean, sd ) + 0.5 * 0.4 ]
-						}}
+						domain={domain ? domain : this.state.domain}
 						theme={VictoryTheme.material}
 					>
 						<VictoryAxis dependentAxis />
@@ -201,7 +243,7 @@ class NormalProbs extends Component {
 				</Col>
 				<Col>
 					<VictoryChart
-						domain={domain ? domain : { x: [ mean-sd*4, mean+sd*4 ], y: [ 0, 0.5 * dnorm( mean, mean, sd ) + 0.5 * 0.4 ]}}
+						domain={domain ? domain : this.state.domain}
 						theme={VictoryTheme.material}
 					>
 						<VictoryAxis dependentAxis />
@@ -285,10 +327,7 @@ class NormalProbs extends Component {
 				</Col>
 				<Col>
 					<VictoryChart
-						domain={domain ? domain : {
-							x: [ mean-sd*4, mean+sd*4 ],
-							y: [ 0, 0.5 * dnorm( mean, mean, sd ) + 0.5 * 0.4 ]
-						}}
+						domain={domain ? domain : this.state.domain}
 						theme={VictoryTheme.material}
 					>
 						<VictoryAxis dependentAxis />
