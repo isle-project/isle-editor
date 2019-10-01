@@ -383,16 +383,8 @@ class Tokenizer {
 			this._braceLevel -= 1;
 		}
 		if ( this._braceLevel === 0 && this._buffer.charAt( this.pos-1 ) === '`' && char === '}' ) {
-			if ( this._openingTagName ) {
-				debug( 'IN_JSX_STRING -> IN_OPENING_TAG' );
-				this._state = IN_OPENING_TAG;
-			} else {
-				debug( 'IN_JSX_STRING -> IN_BASE' );
-				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
-				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
-				this._current = '';
-				this._state = IN_BASE;
-			}
+			debug( 'IN_JSX_STRING -> IN_OPENING_TAG' );
+			this._state = IN_OPENING_TAG;
 		}
 	}
 
@@ -473,16 +465,8 @@ class Tokenizer {
 		}
 		if ( this._braceLevel === 0 ) {
 			this._replaceInnerJSXExpressions();
-			if ( this._openingTagName ) {
-				debug( 'IN_JSX_OBJECT -> IN_OPENING_TAG' );
-				this._state = IN_OPENING_TAG;
-			} else {
-				debug( 'IN_JSX_OBJECT -> IN_BASE' );
-				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
-				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
-				this._current = '';
-				this._state = IN_BASE;
-			}
+			debug( 'IN_JSX_OBJECT -> IN_OPENING_TAG' );
+			this._state = IN_OPENING_TAG;
 		}
 	}
 
@@ -496,16 +480,8 @@ class Tokenizer {
 		}
 		if ( this._braceLevel === 0 && this._buffer.charAt( this.pos-1 ) === ']' && char === '}' ) {
 			this._replaceInnerJSXExpressions();
-			if ( this._openingTagName ) {
-				debug( 'IN_JSX_ARRAY -> IN_OPENING_TAG' );
-				this._state = IN_OPENING_TAG;
-			} else {
-				debug( 'IN_JSX_ARRAY -> IN_BASE' );
-				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
-				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
-				this._current = '';
-				this._state = IN_BASE;
-			}
+			debug( 'IN_JSX_ARRAY -> IN_OPENING_TAG' );
+			this._state = IN_OPENING_TAG;
 		}
 	}
 
@@ -518,16 +494,8 @@ class Tokenizer {
 			this._braceLevel -= 1;
 		}
 		if ( this._braceLevel === 0 ) {
-			if ( this._openingTagName ) {
-				debug( 'IN_JSX_OTHER -> IN_OPENING_TAG' );
-				this._state = IN_OPENING_TAG;
-			} else {
-				debug( 'IN_JSX_OTHER -> IN_BASE' );
-				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
-				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
-				this._current = '';
-				this._state = IN_BASE;
-			}
+			debug( 'IN_JSX_OTHER -> IN_OPENING_TAG' );
+			this._state = IN_OPENING_TAG;
 		}
 	}
 
@@ -546,23 +514,15 @@ class Tokenizer {
 			let replacement = tokenizer.parse( inner );
 			this._current = this._current.substring( 0, this._JSX_ATTRIBUTE_START ) +
 				replacement + char;
-			if ( this._openingTagName ) {
-				debug( 'IN_JSX_EXPRESSION -> IN_OPENING_TAG' );
-				this._state = IN_OPENING_TAG;
-			} else {
-				debug( 'IN_JSX_EXPRESSION -> IN_BASE' );
-				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
-				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
-				this._current = '';
-				this._state = IN_BASE;
-			}
+			debug( 'IN_JSX_EXPRESSION -> IN_OPENING_TAG' );
+			this._state = IN_OPENING_TAG;
 		}
 	}
 
 	_inJSXAttribute( char ) {
 		this._current += char;
 		if ( char === '`' ) {
-			debug( 'IN_BASE_JSX_ATTRIBUTE -> IN_JSX_STRING' );
+			debug( 'IN_JSX_ATTRIBUTE -> IN_JSX_STRING' );
 			this._state = IN_JSX_STRING;
 		}
 		else if ( char === '{' ) {
@@ -576,6 +536,10 @@ class Tokenizer {
 		else if ( char === '<' ) {
 			debug( 'IN_JSX_ATTRIBUTE -> IN_JSX_EXPRESSION' );
 			this._state = IN_JSX_EXPRESSION;
+		}
+		else if ( char === '}' ) {
+			debug( 'IN_JSX_ATTRIBUTE -> IN_OPENING_TAG' );
+			this._state = IN_OPENING_TAG;
 		}
 		else if ( !isWhitespace( char ) ) {
 			debug( 'IN_JSX_ATTRIBUTE -> IN_JSX_OTHER' );
