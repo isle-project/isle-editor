@@ -1,6 +1,6 @@
 
 /**
-* Adapted from MIT-licensed code:
+* Contains MIT-licensed code:
 *
 * The MIT License (MIT)
 *
@@ -26,6 +26,7 @@
 
 // MODULES //
 
+import sample from '@stdlib/random/sample';
 import contains from '@stdlib/assert/contains';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import ln from '@stdlib/math/base/special/ln';
@@ -169,12 +170,11 @@ const predicates = {
 // MAIN //
 
 /**
- * Creates an instance of DecisionTree
- *
- * @constructor
- * @param builder - contains training set and
- *                  some configuration parameters
- */
+* Creates an instance of a decision tree for classification problems.
+*
+* @constructor
+* @param opts - contains training set and some configuration parameters
+*/
 function ClassificationTreeConstructor( opts ) {
 	const nobs = opts.data[ opts.response ].length;
 
@@ -182,7 +182,7 @@ function ClassificationTreeConstructor( opts ) {
 		data: opts.data,
 		response: opts.response,
 		predictors: opts.predictors,
-		indices: incrspace( 0, nobs, 1 ),
+		indices: opts.indices ? opts.indices : incrspace( 0, nobs, 1 ),
 		minItemsCount: opts.minItemsCount || 50,
 		minBucket: opts.minBucket || ( round( ( opts.minItemsCount || 50 ) / 3 )),
 		scoreThreshold: opts.scoreThreshold || 0.01,
@@ -218,7 +218,7 @@ function RegressionTreeConstructor( opts ) {
 		data: opts.data,
 		response: opts.response,
 		predictors: opts.predictors,
-		indices: incrspace( 0, nobs, 1 ),
+		indices: opts.indices ? opts.indices : incrspace( 0, nobs, 1 ),
 		minItemsCount: opts.minItemsCount || 50,
 		minBucket: opts.minBucket || ( round( ( opts.minItemsCount || 50 ) / 3 )),
 		scoreThreshold: opts.scoreThreshold || 0.01,
@@ -243,104 +243,97 @@ function RegressionTreeConstructor( opts ) {
 * Creates an instance of RandomForest with specific number of trees.
 *
 * @constructor
-* @param builder - contains training set and some configuration parameters for building decision trees
+* @param opts - contains configuration parameters for building decision trees
 */
-function RandomForestClassifierConstructor( builder, treesNumber ) {
-	this.trees = buildRandomForestClassifier( builder, treesNumber );
-}
+function RandomForestClassifierConstructor( opts ) {
+	this.trees = buildRandomForestClassifier( opts );
 
-RandomForestClassifierConstructor.prototype.predict = function predict( item ) {
-	return predictRandomForest( this.trees, item );
-};
+	this.predict = ( data, idx ) => {
+		if ( idx === void 0 ) {
+			const nobs = data[ opts.predictors[ 0 ] ].length;
+			const out = new Array( nobs );
+			for ( let i = 0; i < nobs; i++ ) {
+				out[ i ] = predictRandomForest( this.trees, data, i );
+			}
+			console.log( out );
+			return out;
+		}
+		return predictRandomForest( this.trees, data, idx );
+	};
+}
 
 /**
 * Function for building classification decision tree.
 */
-function buildClassificationTree(opts) {
-	var data = opts.data;
-	var predictors = opts.predictors;
-	var indices = opts.indices;
-	var response = opts.response;
-	var minItemsCount = opts.minItemsCount;
-	var scoreThreshold = opts.scoreThreshold;
-	var maxTreeDepth = opts.maxTreeDepth;
-	var quantitative = opts.quantitative;
-	var criterion = opts.criterion;
-	var minBucket = opts.minBucket;
-
+function buildClassificationTree( opts ) {
+	const {
+		data, predictors, indices, response,
+		minItemsCount, scoreThreshold, maxTreeDepth,
+		quantitative, criterion, minBucket, mTry
+	} = opts;
 	const nobs = indices.length;
-	if ((maxTreeDepth === 0) || ( nobs <= minItemsCount)) {
-		// restriction by maximal depth of tree
-		// or size of training set is to small
-		// so we have to terminate process of building tree
+	if ( ( maxTreeDepth === 0 ) || ( nobs <= minItemsCount ) ) {
+		// Restriction by maximal depth of tree or size of training set is to small so we have to terminate process of building tree...
 		return {
 			category: mostFrequentValue( data[ response ], indices )
 		};
 	}
+	const initialScore = criterion( data[ response ], indices );
 
-	var initialScore = criterion( data[ response ], indices );
+	// Used as hash-set for avoiding the checking of split by rules with the same 'attribute-predicate-pivot' more than once
+	const alreadyChecked = {};
 
-	// used as hash-set for avoiding the checking of split by rules
-	// with the same 'attribute-predicate-pivot' more than once
-	var alreadyChecked = {};
-
-	// this variable expected to contain rule, which splits training set
-	// into subsets with smaller values of entropy (produces informational gain)
-	var bestSplit = {
+	let bestSplit = {
 		gain: 0
 	};
+
+	if ( mTry ) {
+		predictors = sample( predictors, { size: mTry });
+	}
 	for ( let i = nobs - 1; i >= 0; i-- ) {
 		const idx = indices[ i ];
-
-		// iterating over all attributes of item
 		for ( let j = 0; j < predictors.length; j++ ) {
 			const attr = predictors[ j ];
 
-			// let the value of current attribute be the pivot
-			var pivot = data[ attr ][ idx ];
+			// Let the value of current attribute be the pivot:
+			const pivot = data[ attr ][ idx ];
 
-			// pick the predicate
-			// depending on the type of the attribute value
-			var predicateName;
+			// Pick the predicate depending on the type of the attribute value...
+			let predicateName;
 			if ( contains( quantitative, attr ) ) {
 				predicateName = '>=';
 			} else {
-				// there is no sense to compare non-numeric attributes
-				// so we will check only equality of such attributes
+				// No sense to compare non-numeric attributes so we will check only equality of such attributes...
 				predicateName = '==';
 			}
 
-			var attrPredPivot = attr + predicateName + pivot;
+			const attrPredPivot = attr + predicateName + pivot;
 			if ( alreadyChecked[attrPredPivot] ) {
-				// skip such pairs of 'attribute-predicate-pivot',
-				// which been already checked
+				// Skip such pairs of 'attribute-predicate-pivot' which have been already checked...
 				continue;
 			}
-			alreadyChecked[attrPredPivot] = true;
+			alreadyChecked[ attrPredPivot ] = true;
+			const predicate = predicates[ predicateName ];
 
-			var predicate = predicates[predicateName];
+			// Splitting training set by given 'attribute-predicate-value':
+			const currSplit = split( data, indices, attr, predicate, pivot );
 
-			// splitting training set by given 'attribute-predicate-value'
-			var currSplit = split( data, indices, attr, predicate, pivot );
+			// Recursively calculating for subsets:
+			const matchEntropy = criterion( data[ response ], currSplit.match );
+			const notMatchEntropy = criterion( data[ response ], currSplit.notMatch );
 
-			// calculating for subsets:
-			var matchEntropy = criterion( data[ response ], currSplit.match );
-			var notMatchEntropy = criterion( data[ response ], currSplit.notMatch );
-
-			// calculating informational gain
+			// Calculating gain:
 			let newScore = 0;
 			newScore += matchEntropy * currSplit.match.length;
 			newScore += notMatchEntropy * currSplit.notMatch.length;
 			newScore /= nobs;
-			var currGain = initialScore - newScore;
-
+			const currGain = initialScore - newScore;
 			if (
 				currGain > bestSplit.gain &&
 				currSplit.match.length > minBucket &&
 				currSplit.notMatch.length > minBucket
 			) {
-				// remember pairs 'attribute-predicate-value'
-				// which provides informational gain
+				// Remember pairs 'attribute-predicate-value' which provide gain...
 				bestSplit = currSplit;
 				bestSplit.predicateName = predicateName;
 				bestSplit.predicate = predicate;
@@ -354,16 +347,14 @@ function buildClassificationTree(opts) {
 	if ( !bestSplit.gain || ( bestSplit.gain / initialScore ) < scoreThreshold ) {
 		return { category: mostFrequentValue( data[ response ], indices ) };
 	}
-
-	// building sub-trees:
-
+	// Building sub-trees:
 	opts.maxTreeDepth = maxTreeDepth - 1;
 
 	opts.indices = bestSplit.match;
-	var matchSubTree = buildClassificationTree( opts );
+	const matchSubTree = buildClassificationTree( opts );
 
 	opts.indices = bestSplit.notMatch;
-	var notMatchSubTree = buildClassificationTree( opts );
+	const notMatchSubTree = buildClassificationTree( opts );
 
 	return {
 		attribute: bestSplit.attribute,
@@ -380,16 +371,12 @@ function buildClassificationTree(opts) {
 /**
 * Function for building classification decision tree.
 */
-function buildRegressionTree(opts) {
-	var data = opts.data;
-	var predictors = opts.predictors;
-	var indices = opts.indices;
-	var response = opts.response;
-	var minItemsCount = opts.minItemsCount;
-	var scoreThreshold = opts.scoreThreshold;
-	var maxTreeDepth = opts.maxTreeDepth;
-	var quantitative = opts.quantitative;
-	var minBucket = opts.minBucket;
+function buildRegressionTree( opts ) {
+	const {
+		data, predictors, indices, response,
+		minItemsCount, scoreThreshold, maxTreeDepth,
+		quantitative, minBucket, mTry
+	} = opts;
 
 	const nobs = indices.length;
 	if ((maxTreeDepth === 0) || ( nobs <= minItemsCount)) {
@@ -409,9 +396,13 @@ function buildRegressionTree(opts) {
 
 	// this variable expected to contain rule, which splits training set
 	// into subsets with smaller values of entropy (produces informational gain)
-	var bestSplit = {
+	let bestSplit = {
 		gain: 0
 	};
+
+	if ( mTry ) {
+		predictors = sample( predictors, { size: mTry });
+	}
 	for ( let i = nobs - 1; i >= 0; i-- ) {
 		const idx = indices[ i ];
 
@@ -478,8 +469,7 @@ function buildRegressionTree(opts) {
 		return { category: mean( data[ response ], indices ) };
 	}
 
-	// building subtrees:
-
+	// Building sub-trees:
 	opts.maxTreeDepth = maxTreeDepth - 1;
 
 	opts.indices = bestSplit.match;
@@ -525,52 +515,46 @@ function predict( tree, data, i ) {
 }
 
 /**
-* Building array of decision trees
+* Building array of decision trees.
 */
-function buildRandomForestClassifier(builder, treesNumber) {
-	var items = builder.trainingSet;
-
-	// creating training sets for each tree
-	var trainingSets = [];
-	for (var t = 0; t < treesNumber; t++) {
-		trainingSets[t] = [];
+function buildRandomForestClassifier( opts ) {
+	// Creating training sets for each tree:
+	const trainingSets = [];
+	const nobs = opts.data[ opts.response ].length;
+	const indices = incrspace( 0, nobs, 1 );
+	for ( let t = 0; t < opts.nTrees; t++ ) {
+		trainingSets[ t ] = sample( indices );
 	}
-	for ( let i = items.length - 1; i >= 0; i-- ) {
-		// assigning items to training sets of each tree
-		// using 'round-robin' strategy
-		var correspondingTree = i % treesNumber;
-		trainingSets[correspondingTree].push(items[i]);
-	}
-
-	// building decision trees
-	var forest = [];
-	for ( let t = 0; t < treesNumber; t++) {
-		builder.trainingSet = trainingSets[t];
-
-		var tree = new ClassificationTreeConstructor( builder );
-		forest.push(tree);
+	const forest = [];
+	for ( let t = 0; t < opts.nTrees; t++ ) {
+		opts.indices = trainingSets[ t ];
+		const tree = new ClassificationTreeConstructor( opts );
+		forest.push( tree );
 	}
 	return forest;
 }
 
 /**
- * Each of decision tree classifying item
- * ('voting' that item corresponds to some class).
- *
- * This function returns hash, which contains
- * all classifying results, and number of votes
- * which were given for each of classifying results
- */
-function predictRandomForest(forest, item) {
+* Returns the majority vote prediction for the chosen item.
+*/
+function predictRandomForest( forest, data, idx ) {
 	const result = {};
-	for ( let i in forest ) {
-		if ( hasOwnProp( forest, i ) ) {
-			const tree = forest[i];
-			const prediction = tree.predict(item);
-			result[prediction] = result[prediction] ? result[prediction] + 1 : 1;
+	for ( let i = 0; i < forest.length; i++ ) {
+		const tree = forest[ i ];
+		const prediction = tree.predict( data, idx );
+		result[ prediction ] = result[ prediction ] ? result[ prediction ] + 1 : 1;
+	}
+	let max = -1;
+	let out;
+	for ( let key in result ) {
+		if ( hasOwnProp( result, key ) ) {
+			if ( result[ key ] > max ) {
+				max = result[ key ];
+				out = key;
+			}
 		}
 	}
-	return result;
+	return out;
 }
 
 
