@@ -25,13 +25,11 @@ const debug = logger( 'isle:number-input' );
 function createTooltip( props ) {
 	let tooltip = `Enter a${ props.step === 1 ? 'n integer' : ' number'} `;
 	if ( props.max !== PINF && props.min !== NINF ) {
-		tooltip += `between ${props.min} and ${props.max}:`;
+		tooltip += `between ${props.min} and ${props.max}`;
 	} else if ( props.min !== NINF ) {
-		tooltip += `larger or equal to ${props.min}:`;
+		tooltip += `larger or equal to ${props.min}`;
 	} else if ( props.max !== PINF ) {
-		tooltip += `smaller or equal to ${props.max}:`;
-	} else {
-		tooltip += ':';
+		tooltip += `smaller or equal to ${props.max}`;
 	}
 	return tooltip;
 }
@@ -49,12 +47,12 @@ function createTooltip( props ) {
 * @property {number} min - number indicating the smallest possible value that may be inserted
 * @property {number} max - number indicating the maximum value that may be inserted
 * @property {(number|string)} step - number indicating the incremental changes when using the increment arrows
-* @property {number} width - number indicating the width of the input bar in pixels
 * @property {boolean} inline - indicates whether the input is displayed inline
 * @property {string} legend - string indicating the text displayed next to the number input
 * @property {boolean} numbersOnly - controls whether only numbers are accepted
 * @property {string} tooltipPlacement - direction of the tooltip
 * @property {Object} style - CSS inline styles
+* @property {Object} inputStyle - CSS inline styles for input element
 * @property {Function} onBlur - callback function to be invoked when using a blur method
 * @property {Function} onChange - callback function to be invoked when number input is changed
 * @property {Function} onKeyPress - callback function to be invoked when any key is entered
@@ -202,9 +200,10 @@ class NumberInput extends Input {
 						min={this.props.min}
 						max={this.props.max}
 						style={{
+							width: '80px',
 							paddingLeft: '6px',
 							marginLeft: '3px',
-							width: this.props.width
+							...this.props.inputStyle
 						}}
 						onChange={this.handleChange}
 						onBlur={this.finishChange}
@@ -234,8 +233,9 @@ class NumberInput extends Input {
 			min={this.props.min}
 			max={this.props.max}
 			style={{
-				width: this.props.width,
-				marginLeft: '24px'
+				width: '80px',
+				marginLeft: '24px',
+				...this.props.inputStyle
 			}}
 			onChange={this.handleChange}
 			onBlur={this.finishChange}
@@ -266,7 +266,7 @@ class NumberInput extends Input {
 			<Tooltip
 				id="number-input-tooltip" placement={this.props.tooltipPlacement}
 				tooltip={this.state.tooltip}
-			><span className="input" >{input}</span></Tooltip>
+			><span className="input" style={this.props.inputStyle} >{input}</span></Tooltip>
 		</div> );
 	}
 }
@@ -281,7 +281,6 @@ NumberInput.defaultProps = {
 	min: NINF,
 	max: PINF,
 	step: 1,
-	width: 80,
 	defaultValue: 0,
 	onBlur() {},
 	onChange() {},
@@ -291,6 +290,7 @@ NumberInput.defaultProps = {
 	inline: false,
 	numbersOnly: true,
 	style: {},
+	inputStyle: {},
 	value: null,
 	tooltipPlacement: 'right'
 };
@@ -317,6 +317,7 @@ NumberInput.propTypes = {
 		PropTypes.string
 	]),
 	style: PropTypes.object,
+	inputStyle: PropTypes.object,
 	value: PropTypes.number,
 	width: PropTypes.number,
 	tooltipPlacement: PropTypes.oneOf([ 'top', 'right', 'bottom', 'left' ])
