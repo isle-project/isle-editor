@@ -148,7 +148,8 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		e.type === 'LASSO Regression' ||
 		e.type === 'Logistic Regression' ||
 		e.type === 'PCA' ||
-		e.type === 'kmeans'
+		e.type === 'kmeans' ||
+		e.type === 'Random Forest'
 	) {
 		const elem = <pre key={idx} >
 			{createButtons( e.type, e.value, clearOutput, idx, subsetFilters, onFilters )}
