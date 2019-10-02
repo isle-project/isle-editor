@@ -50,7 +50,7 @@ Some other advices about displaying trees: http://stackoverflow.com/questions/16
 .decision-tree-draggable-bar {
 	position: absolute;
 	top: 6px;
-	right: 6px;
+	left: 6px;
 	z-index: 2;
 	width: 130px;
 	height: 26px;
@@ -81,6 +81,14 @@ Some other advices about displaying trees: http://stackoverflow.com/questions/16
 	transition: all 0.5s;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
+}
+
+.decision-tree-fullscreen li span {
+	font-size: 18px;
+}
+
+.decision-tree:not(.decision-tree-fullscreen) li span {
+	font-size: 11px;
 }
 
 .decision-tree li {
@@ -162,7 +170,6 @@ Some other advices about displaying trees: http://stackoverflow.com/questions/16
 	text-decoration: none;
 	color: #666;
 	font-family: arial, verdana, tahoma;
-	font-size: 11px;
 	display: inline-block;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;

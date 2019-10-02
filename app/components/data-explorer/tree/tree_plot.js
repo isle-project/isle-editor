@@ -5,6 +5,7 @@ import { toJpeg } from 'html-to-image';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isInteger from '@stdlib/assert/is-integer';
 import randomstring from 'utils/randomstring/alphanumeric';
+import FullscreenButton from './fullscreen_button';
 import './tree.css';
 
 
@@ -63,7 +64,8 @@ class TreePlot extends Component {
 
 		this.setState({
 			plotValue: null,
-			plotKey: null
+			plotKey: null,
+			fullscreen: false
 		});
 	}
 
@@ -84,6 +86,7 @@ class TreePlot extends Component {
 	}
 
 	render() {
+		const tree = treeToHtml( this.props.tree );
 		return (
 			<div
 				className="decision-tree-wrapper"
@@ -98,13 +101,24 @@ class TreePlot extends Component {
 						ev.dataTransfer.setData( 'text/html', this.state.plotValue );
 						ev.dataTransfer.setData( 'text/plain', this.state.plotKey );
 					}}
+					style={{ float: 'left' }}
 				>Drag Plot</div>
+				<FullscreenButton
+					variant="outline-danger"
+					size="sm"
+					onClick={() => {
+						this.setState({ fullscreen: !this.state.fullscreen });
+					}}
+					tree={tree}
+				>
+					<div className="fa fa-times" />
+				</FullscreenButton>
 				<div
 					className="decision-tree"
 					ref={( div ) => {
 						this.tree = div;
 					}}
-				>{treeToHtml( this.props.tree )}</div>
+				>{tree}</div>
 			</div>
 		);
 	}
