@@ -255,7 +255,6 @@ function RandomForestClassifierConstructor( opts ) {
 			for ( let i = 0; i < nobs; i++ ) {
 				out[ i ] = predictRandomForest( this.trees, data, i );
 			}
-			console.log( out );
 			return out;
 		}
 		return predictRandomForest( this.trees, data, idx );

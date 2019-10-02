@@ -17,7 +17,7 @@ import { RegressionTree, ClassificationTree, TreePlot } from './tree';
 
 // VARIABLES //
 
-const DESCRIPTION = '';
+const DESCRIPTION = 'Grow a decision tree for either a regression or classification problem. For quantitative responses, at each iteration of the algorithm the data are split by the variable which leads to splits with the greatest reduction in variance for the response. For categorical responses, the data are split on the feature which leads to the largest information gain (measured either in terms of the Gini index or entropy)';
 
 
 // MAIN //
@@ -30,12 +30,13 @@ class DecisionTree extends Component {
 			y: props.categorical[ 0 ],
 			x: props.quantitative[ 0 ],
 			attach: false,
-			type: 'Classification'
+			type: 'Classification',
+			impurityMeasure: 'gini'
 		};
 	}
 
 	compute = () => {
-		let { y, x, attach, type } = this.state;
+		let { y, x, attach, type, impurityMeasure } = this.state;
 
 		let predictors;
 		if ( isArray( x ) ) {
@@ -51,15 +52,14 @@ class DecisionTree extends Component {
 				predictors,
 				data: this.props.data,
 				quantitative: this.props.quantitative,
-				criterion: 'gini'
+				criterion: impurityMeasure
 			});
 		} else {
 			tree = new RegressionTree({
 				response: y,
 				predictors,
 				data: this.props.data,
-				quantitative: this.props.quantitative,
-				criterion: 'gini'
+				quantitative: this.props.quantitative
 			});
 		}
 
@@ -155,6 +155,12 @@ class DecisionTree extends Component {
 						defaultValue={attach}
 						onChange={( attach ) => this.setState({ attach })}
 					/>
+					{ type === 'Classification' ? <SelectInput
+						legend="Impurity Measure"
+						defaultValue={this.state.impurityMeasure}
+						options={[ 'gini', 'entropy' ]}
+						onChange={( impurityMeasure ) => this.setState({ impurityMeasure })}
+					/> : null }
 					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>Calculate</Button>
 				</Card.Body>
 			</Card>

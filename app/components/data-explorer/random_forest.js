@@ -19,7 +19,7 @@ import { RandomForestClassifier } from './tree';
 
 // VARIABLES //
 
-const DESCRIPTION = '';
+const DESCRIPTION = 'Instead of growing a single decision tree, a random forest as an ensemble method constructs many decision trees at once and returns the average of the predictions (regression case) or the majority vote (classification case) of the individual trees';
 
 
 // FUNCTIONS //
@@ -49,13 +49,14 @@ class RandomForest extends Component {
 			x: props.quantitative[ 0 ],
 			attach: false,
 			type: 'Classification',
-			nTrees: 500,
-			nTry: 1
+			nTrees: 50,
+			nTry: 1,
+			impurityMeasure: 'gini'
 		};
 	}
 
 	compute = () => {
-		let { y, x, attach, type, nTrees, nTry } = this.state;
+		let { y, x, attach, type, nTrees, nTry, impurityMeasure } = this.state;
 
 		let predictors;
 		if ( isArray( x ) ) {
@@ -71,7 +72,7 @@ class RandomForest extends Component {
 				predictors,
 				data: this.props.data,
 				quantitative: this.props.quantitative,
-				criterion: 'gini',
+				criterion: impurityMeasure,
 				nTrees,
 				nTry
 			});
@@ -175,6 +176,12 @@ class RandomForest extends Component {
 						defaultValue={attach}
 						onChange={( attach ) => this.setState({ attach })}
 					/>
+					{ type === 'Classification' ? <SelectInput
+						legend="Impurity Measure"
+						defaultValue={this.state.impurityMeasure}
+						options={[ 'gini', 'entropy' ]}
+						onChange={( impurityMeasure ) => this.setState({ impurityMeasure })}
+					/> : null }
 					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>Calculate</Button>
 				</Card.Body>
 			</Card>
