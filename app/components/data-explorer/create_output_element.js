@@ -161,7 +161,14 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		e.type === 'Decision Tree' ||
 		e.type === 'Hierarchical Clustering'
 	) {
-		return <pre key={idx}><div>{e.value}</div></pre>;
+		const elem = <pre key={idx}>
+			<ClearButton
+				onClick={() => { clearOutput( idx ); }}
+				style={{ float: 'right', padding: '0.1rem 0.3rem' }}
+			/>
+			<div>{e.value}</div>
+		</pre>;
+		return elem;
 	}
 	else if ( e.type === 'Statistics' ) {
 		if ( e.group ) {
