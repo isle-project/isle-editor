@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { toJpeg } from 'html-to-image';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isInteger from '@stdlib/assert/is-integer';
 import randomstring from 'utils/randomstring/alphanumeric';
 import './tree.css';
 
@@ -21,7 +22,10 @@ function treeToHtml( tree ) {
 	if ( tree.category ) {
 		let value = tree.category;
 		if ( isNumber( value ) || RE_NUMBER.test( value ) ) {
-			value = Number( value ).toFixed( 6 );
+			value = Number( value );
+			if ( !isInteger( value ) ) {
+				value = value.toFixed( 6 );
+			}
 		}
 		return (
 			<ul>
