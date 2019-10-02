@@ -43,6 +43,7 @@ const AREA_STYLE = {
 * @property {Object} domain - object of `x` and `y` arrays with the starting and end points for the respective axis
 * @property {Array} tabs - which tabs to display (either `smaller`, `greater`, or `range`)
 * @property {number} step - step size of the scroll input
+* @property {boolean} scaleParameterization - controls whether to use the parameterization involving a shape and scale parameter instead of shape and rate
 * @property {Object} style - CSS inline styles
 */
 class GammaProbs extends Component {
@@ -74,31 +75,54 @@ class GammaProbs extends Component {
 
 	renderInputs( type ) {
 		const { alpha, beta, x0, x1 } = this.state;
+		const max = this.props.scaleParameterization ? qgamma( NEAR_ONE, alpha, 1/beta ) + 1 : qgamma( NEAR_ONE, alpha, beta ) + 1;
 		return (
 			<Fragment>
-				<NumberInput
-					key={`${type}-alpha`}
-					legend="Alpha"
-					defaultValue={alpha}
-					min={1e-3}
-					step={this.props.step}
-					onChange={this.handleAlphaChange}
-				/>
-				<NumberInput
-					key={`${type}-beta`}
-					legend="Beta"
-					defaultValue={beta}
-					step={this.props.step}
-					min={1e-3}
-					onChange={this.handleBetaChange}
-				/>
+				{this.props.scaleParameterization ?
+					<Fragment>
+						<NumberInput
+							key={`${type}-alpha`}
+							legend={<span><TeX raw="k" /> (shape)</span>}
+							defaultValue={alpha}
+							min={1e-3}
+							step={this.props.step}
+							onChange={this.handleAlphaChange}
+						/>
+						<NumberInput
+							key={`${type}-beta`}
+							legend={<span><TeX raw="\theta" /> (scale)</span>}
+							defaultValue={beta}
+							step={this.props.step}
+							min={1e-3}
+							onChange={this.handleBetaChange}
+						/>
+					</Fragment> :
+					<Fragment>
+						<NumberInput
+							key={`${type}-alpha`}
+							legend={<span><TeX raw="\alpha" /> (shape)</span>}
+							defaultValue={alpha}
+							min={1e-3}
+							step={this.props.step}
+							onChange={this.handleAlphaChange}
+						/>
+						<NumberInput
+							key={`${type}-beta`}
+							legend={<span><TeX raw="\beta" /> (rate)</span>}
+							defaultValue={beta}
+							step={this.props.step}
+							min={1e-3}
+							onChange={this.handleBetaChange}
+						/>
+					</Fragment>
+				}
 				<SliderInput
 					key={`${type}-x0`}
 					legend="x0"
 					defaultValue={x0}
 					step={this.props.step}
 					min={-0.1}
-					max={qgamma( NEAR_ONE, alpha, beta ) + 1}
+					max={max}
 					onChange={this.handleLowerChange}
 				/>
 				{type === 'range' ?
@@ -107,7 +131,7 @@ class GammaProbs extends Component {
 						legend="x1"
 						defaultValue={x1}
 						min={-0.1}
-						max={qgamma( NEAR_ONE, alpha, beta ) + 1}
+						max={max}
 						step={this.props.step}
 						onChange={this.handleUpperChange}
 					/> :
@@ -120,7 +144,8 @@ class GammaProbs extends Component {
 	render() {
 		const domain = this.props.domain;
 		const tabs = this.props.tabs;
-		const { alpha, beta, x0, x1 } = this.state;
+		const { alpha, x0, x1 } = this.state;
+		const beta = this.props.scaleParameterization ? 1/this.state.beta : this.state.beta;
 		const tabSmaller = contains( tabs, 'smaller' ) ? <Tab eventKey="smaller" title={<TeX raw="P(X \le x_0)" />}>
 			<Container><Row>
 				<Col>
