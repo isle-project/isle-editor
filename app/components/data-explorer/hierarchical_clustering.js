@@ -81,25 +81,27 @@ class HierarchicalClustering extends Component {
 						ev.dataTransfer.setData( 'text/plain', this.plotKey );
 					}}
 				>Drag Plot</div>
-				<svg width={600} height={350} ref={svg => {
-					if ( !this.svg ) {
-						this.svg = svg;
-						const width = 600;
-						const height = 350;
-						const svgString = getSVGString( this.svg );
-						svgString2Image( svgString, 2.0*width, 2.0*height, 'png', ( dataBlob ) => {
-							const value = `<img src="${dataBlob}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%" />`;
-							this.plotKey = `<!--IMAGE_LOG:${randomstring( 6 )}_${randomstring( 6 )}-->`;
-							this.plotValue = value;
-							this.plotData = dataBlob;
-						});
-					}
-				}}>
-					<Dendrogram
-						x={0} y={0} width={600} height={350} data={tree}
-						cutoff={round( matrix.length / 20 )}
-					/>
-				</svg>
+				<div>
+					<svg width={650} height={375} ref={svg => {
+						if ( !this.svg ) {
+							this.svg = svg;
+							const width = 650;
+							const height = 375;
+							const svgString = getSVGString( this.svg );
+							svgString2Image( svgString, 2.0*width, 2.0*height, 'png', ( dataBlob ) => {
+								const value = `<img src="${dataBlob}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%" />`;
+								this.plotKey = `<!--IMAGE_LOG:${randomstring( 6 )}_${randomstring( 6 )}-->`;
+								this.plotValue = value;
+								this.plotData = dataBlob;
+							});
+						}
+					}}>
+						<Dendrogram
+							x={0} y={0} width={650} height={350} data={tree}
+							cutoff={round( matrix.length / 20 )}
+						/>
+					</svg>
+				</div>
 			</div>
 		};
 		this.props.onCreated( output );
@@ -118,15 +120,22 @@ class HierarchicalClustering extends Component {
 					defaultValue={originalQuantitative}
 					options={quantitative}
 				/>
-				<CheckboxInput
-					legend="Attach clusters to table?"
-					defaultValue={false}
-				/>
-				<NumberInput
-					legend="Number of clusters to attach"
-					min={1}
-					defaultValue={3}
-				/>
+				<Row>
+					<Col>
+						<CheckboxInput
+							legend="Attach clusters to table?"
+							defaultValue={false}
+						/>
+					</Col>
+					<Col>
+						<NumberInput
+							legend="Number of clusters"
+							min={1}
+							inline
+							defaultValue={3}
+						/>
+					</Col>
+				</Row>
 				<Row>
 					<Col>
 						<SelectInput
