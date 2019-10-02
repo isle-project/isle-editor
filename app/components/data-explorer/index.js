@@ -753,9 +753,19 @@ class DataExplorer extends Component {
 					eventKey="3"
 					title="Plots"
 				>
-					{ this.props.plots.map(
-						( e, i ) => <DropdownItem key={i} eventKey={`3.${i+1}`}>{e}</DropdownItem>
-					) }
+					{ this.props.plots.map( ( e, i ) => {
+						const item = <DropdownItem key={i} eventKey={`3.${i+1}`}>{e}</DropdownItem>;
+						if (
+							e === 'Histogram' && this.props.plots[ i-1 ] === 'Mosaic Plot' ||
+							e === 'Scatterplot' && this.props.plots[ i-1 ] === 'Box Plot'
+						) {
+							return ( <Fragment>
+								<NavDropdown.Divider />
+								{item}
+							</Fragment> );
+						}
+						return item;
+					})}
 				</NavDropdown> : null
 			}
 			{ this.props.tests.length > 0 ?
@@ -773,8 +783,19 @@ class DataExplorer extends Component {
 					eventKey="5"
 					title="Models"
 				>
-					{this.props.models.map( ( e, i ) =>
-						<DropdownItem key={i} eventKey={`5.${i+1}`}>{e}</DropdownItem> )}
+					{this.props.models.map( ( e, i ) => {
+						const item = <DropdownItem key={i} eventKey={`5.${i+1}`}>{e}</DropdownItem>;
+						if (
+							e === 'Decision Tree' && this.props.models[ i-1 ] === 'LASSO' ||
+							e === 'PCA' && this.props.models[ i-1 ] === 'Logistic Regression'
+						) {
+							return ( <Fragment>
+								<NavDropdown.Divider />
+								{item}
+							</Fragment> );
+						}
+						return item;
+					})}
 				</NavDropdown> : null
 			}
 			{ this.props.transformer ?
@@ -1370,11 +1391,11 @@ DataExplorer.defaultProps = {
 	plots: [
 		'Bar Chart',
 		'Pie Chart',
+		'Mosaic Plot',
 		'Histogram',
 		'Box Plot',
 		'Scatterplot',
 		'Heat Map',
-		'Mosaic Plot',
 		'Contour Chart'
 	],
 	tables: [
@@ -1393,10 +1414,10 @@ DataExplorer.defaultProps = {
 	models: [
 		'Simple Linear Regression',
 		'Multiple Linear Regression',
+		'LASSO',
 		'Decision Tree',
 		'Random Forest',
 		'Logistic Regression',
-		'LASSO',
 		'PCA',
 		'Hierarchical Clustering',
 		'kmeans'
