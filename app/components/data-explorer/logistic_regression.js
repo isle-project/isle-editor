@@ -23,7 +23,7 @@ import irls from './glm/logistic_regression.js';
 
 // VARIABLES //
 
-const DESCRIPTION = '';
+const DESCRIPTION = 'Predict a categorical response variable using one or more explanatory variables.';
 
 
 // FUNCTIONS //

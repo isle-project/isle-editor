@@ -7,6 +7,7 @@ import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
 import copy from '@stdlib/utils/copy';
 import Table from 'react-bootstrap/Table';
+import TeX from 'components/tex';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
@@ -20,7 +21,7 @@ import LASSO from './lasso';
 
 // VARIABLES //
 
-const DESCRIPTION = '';
+const DESCRIPTION = <span>Fit a regression model in which non-zero regression coefficients are penalized using the <TeX raw="\lambda" /> regularization parameter. The LASSO performs automatic model selection as it will shrink the regression coefficients of some variables to zero.</span>;
 
 
 // FUNCTIONS //
@@ -174,7 +175,7 @@ class LassoRegression extends Component {
 					defaultValue={quantitative[ 1 ]}
 				/>
 				<NumberInput
-					legend="L1 Penalty Term (Lambda)"
+					legend={<span>L1 Penalty Term <TeX raw="\lambda" /></span>}
 					defaultValue={1}
 					min={1e-12}
 					step="any"
