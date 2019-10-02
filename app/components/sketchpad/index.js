@@ -64,7 +64,8 @@ import './pdf_viewer.css';
 const debug = logger( 'isle:sketchpad' );
 const uid = generateUID( 'sketchpad' );
 const OMITTED_KEYS = [
-	'isExporting', 'showColorPicker', 'showUploadModal', 'showNavigationModal', 'showResetModal', 'showFeedbackModal', 'showSaveModal'
+	'isExporting', 'showColorPicker', 'showUploadModal', 'showNavigationModal', 'showResetModal', 'showFeedbackModal', 'showSaveModal',
+	'hideInputButtons', 'hideNavigationButtons', 'hideRecordingButtons', 'hideSaveButtons', 'hideTransmitButtons'
 ];
 const RECORD_TIME_INCREMENT = 100;
 const RE_DIGITS = /^[0-9]+$/;
@@ -82,6 +83,7 @@ function preventGesture( e ) {
 }
 
 function stopPropagation( e ) {
+	console.log( 'Stop propagation...' );
 	e.stopPropagation();
 }
 
@@ -2596,13 +2598,13 @@ class Sketchpad extends Component {
 						/> : null
 					}
 				</Card>
-				<KeyControls
+				{ this.sketchpadPanel ? <KeyControls
 					container={this.sketchpadPanel}
 					actions={{
 						'ArrowDown': this.nextPage,
 						'ArrowUp': this.previousPage
 					}}
-				/>
+				/> : null }
 			</Fragment>
 		);
 	}
