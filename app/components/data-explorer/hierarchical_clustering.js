@@ -18,6 +18,7 @@ import { svgString2Image, getSVGString } from 'utils/svg';
 import { DATA_EXPLORER_HIERARCHICAL_CLUSTERING } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import Dendrogram from './hclust/dendrogram.js';
+import FullscreenButton from './hclust/fullscreen_button.js';
 import hclust from './hclust';
 
 
@@ -81,6 +82,21 @@ class HierarchicalClustering extends Component {
 						ev.dataTransfer.setData( 'text/plain', this.plotKey );
 					}}
 				>Drag Plot</div>
+				<FullscreenButton
+					variant="outline-danger"
+					size="sm"
+					onClick={() => {
+						this.setState({ fullscreen: !this.state.fullscreen });
+					}}
+					dendrogram={<svg width={window.innerWidth} height={window.innerHeight}>
+						<Dendrogram
+							x={0} y={0} width={window.innerWidth} height={window.innerHeight-25} data={tree}
+							cutoff={round( matrix.length / 20 )} fontSize={24}
+						/>;
+					</svg>}
+				>
+					<div className="fa fa-times" />
+				</FullscreenButton>
 				<div>
 					<svg width={650} height={375} ref={svg => {
 						if ( !this.svg ) {
@@ -99,7 +115,7 @@ class HierarchicalClustering extends Component {
 						<Dendrogram
 							x={0} y={0} width={650} height={350} data={tree}
 							cutoff={round( matrix.length / 20 )}
-						/>
+						/>;
 					</svg>
 				</div>
 			</div>

@@ -11,7 +11,7 @@ import D3blackbox from './blackbox.js';
 
 // MAIN //
 
-const Dendrogram = D3blackbox( (anchor, props, state) => {
+const Dendrogram = D3blackbox( ( anchor, props, state ) => {
 	const svg = d3.select( anchor.current );
 
 	const { width, height, data } = props;
@@ -20,7 +20,7 @@ const Dendrogram = D3blackbox( (anchor, props, state) => {
 	const margin = { top: 40, left: 40, bottom: 0, right: 0 };
 	const innerWidth = width - margin.left - margin.right;
 	const innerHeight = height - margin.top - margin.bottom;
-	const fontSize = 16;
+	const fontSize = props.fontSize || 16;
 	const magicWidthDivisor = 1.35;
 
 	// call the draw function
@@ -94,7 +94,7 @@ const Dendrogram = D3blackbox( (anchor, props, state) => {
 		const node = g
 			.append('g')
 			.attr('stroke-linejoin', 'round')
-			.attr('stroke-width', 3.0 )
+			.attr('stroke-width', 0.1875 * fontSize )
 			.selectAll('g')
 			.data(root.descendants().reverse())
 			.join( 'g' )
@@ -103,7 +103,7 @@ const Dendrogram = D3blackbox( (anchor, props, state) => {
 		node
 			.append('circle')
 			.attr('fill', d => (d.children ? '#555' : '#999'))
-			.attr('r', 2.5 )
+			.attr('r', fontSize * 0.15 )
 			.on( 'click', d => {
 				d.children = d.children ? null : d._children;
 			});
@@ -112,7 +112,7 @@ const Dendrogram = D3blackbox( (anchor, props, state) => {
 			.append('text')
 			.attr('dy', '0.1em')
 			.attr('x', d => (d.children ? -6 : 6))
-			.attr('font-size', 14 )
+			.attr('font-size', fontSize )
 			.text(d => d.data.name)
 			.filter(d => d.children)
 			.attr('text-anchor', 'end')
