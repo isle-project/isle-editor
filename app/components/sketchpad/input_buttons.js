@@ -80,7 +80,7 @@ class InputButtons extends Component {
 					<TooltipButton tooltip="Pointer Mode" size="sm" variant={this.props.mode === 'pointer' ? 'success' : 'secondary'} onClick={this.togglePointerMode} glyph="circle" />
 				</ButtonGroup>
 				<ButtonGroup size="sm" className="sketch-drawing-buttons" >
-					<TooltipButton tooltip="Drawing Mode" glyph="pencil-alt" size="sm" variant={this.props.mode === 'drawing' ? 'success' : 'secondary'} onClick={this.toggleDrawingMode} />
+					<TooltipButton tooltip="Drawing Mode" glyph="paint-brush" size="sm" variant={this.props.mode === 'drawing' ? 'success' : 'secondary'} onClick={this.toggleDrawingMode} />
 					<InputGroup size="sm" className="sketch-input-group" >
 						<FormControl
 							type="number"
