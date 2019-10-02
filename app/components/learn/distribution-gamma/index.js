@@ -398,6 +398,7 @@ class GammaProbs extends Component {
 
 GammaProbs.propTypes = {
 	domain: PropTypes.object,
+	scaleParameterization: PropTypes.bool,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
@@ -408,6 +409,7 @@ GammaProbs.propTypes = {
 
 GammaProbs.defaultProps = {
 	domain: null,
+	scaleParameterization: false,
 	step: 0.01,
 	tabs: [ 'smaller', 'greater', 'range' ],
 	style: {}
