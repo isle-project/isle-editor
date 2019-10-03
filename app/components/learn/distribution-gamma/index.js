@@ -44,6 +44,7 @@ const AREA_STYLE = {
 * @property {Array} tabs - which tabs to display (either `smaller`, `greater`, or `range`)
 * @property {number} step - step size of the scroll input
 * @property {boolean} scaleParameterization - controls whether to use the parameterization involving a shape and scale parameter instead of shape and rate
+* @property {boolean} symbols - whether to display greek symbols for parameters
 * @property {Object} style - CSS inline styles
 */
 class GammaProbs extends Component {
@@ -82,7 +83,7 @@ class GammaProbs extends Component {
 					<Fragment>
 						<NumberInput
 							key={`${type}-alpha`}
-							legend={<span><TeX raw="k" /> (shape)</span>}
+							legend={this.props.symbols ? <span><TeX raw="k" /> (shape)</span> : 'Shape'}
 							defaultValue={alpha}
 							min={1e-3}
 							step={this.props.step}
@@ -90,7 +91,7 @@ class GammaProbs extends Component {
 						/>
 						<NumberInput
 							key={`${type}-beta`}
-							legend={<span><TeX raw="\theta" /> (scale)</span>}
+							legend={this.props.symbols ? <span><TeX raw="\theta" /> (scale)</span> : 'Scale'}
 							defaultValue={beta}
 							step={this.props.step}
 							min={1e-3}
@@ -100,7 +101,7 @@ class GammaProbs extends Component {
 					<Fragment>
 						<NumberInput
 							key={`${type}-alpha`}
-							legend={<span><TeX raw="\alpha" /> (shape)</span>}
+							legend={this.props.symbols ? <span><TeX raw="\alpha" /> (shape)</span> : 'Shape'}
 							defaultValue={alpha}
 							min={1e-3}
 							step={this.props.step}
@@ -108,7 +109,7 @@ class GammaProbs extends Component {
 						/>
 						<NumberInput
 							key={`${type}-beta`}
-							legend={<span><TeX raw="\beta" /> (rate)</span>}
+							legend={this.props.symbols ? <span><TeX raw="\beta" /> (rate)</span> : 'Rate'}
 							defaultValue={beta}
 							step={this.props.step}
 							min={1e-3}
@@ -403,6 +404,7 @@ GammaProbs.propTypes = {
 		PropTypes.number,
 		PropTypes.string
 	]),
+	symbols: PropTypes.bool,
 	tabs: PropTypes.arrayOf( PropTypes.oneOf([ 'smaller', 'greater', 'range' ]) ),
 	style: PropTypes.object
 };
@@ -411,6 +413,7 @@ GammaProbs.defaultProps = {
 	domain: null,
 	scaleParameterization: false,
 	step: 0.01,
+	symbols: true,
 	tabs: [ 'smaller', 'greater', 'range' ],
 	style: {}
 };
