@@ -50,11 +50,6 @@ We will include the explorer with the following code:
   'name': '',
   'variables': null
 }`.
-* __distributions__ | `array`: array of strings indicating distributions that may be used in calculating probabilities. This functionality exists independently of the dataset provided. Currently limited to normal, uniform and exponential distributions. Default: `[
-  'Normal',
-  'Uniform',
-  'Exponential'
-]`.
 * __editor__ | `boolean`: boolean indicating whether to show the editor to the user. Default: `true`.
 * __editorProps__ | `object`: object to be passed to `MarkdownEditor` indicating properties to be used. Default: `none`.
 * __editorTitle__ | `string`: string indicating the title of the explorer to be displayed. Default: `'Report'`.
@@ -64,21 +59,22 @@ We will include the explorer with the following code:
   'Simple Linear Regression',
   'Multiple Linear Regression',
   'LASSO',
-  'Hierarchical Clustering',
   'Decision Tree',
+  'Random Forest',
   'Logistic Regression',
   'PCA',
+  'Hierarchical Clustering',
   'kmeans'
 ]`.
 * __opened__ | `string`: page opened at startup. Default: `none`.
 * __plots__ | `array`: array of strings indicating which plots to show to the user. Default: `[
   'Bar Chart',
   'Pie Chart',
+  'Mosaic Plot',
   'Histogram',
   'Box Plot',
   'Scatterplot',
   'Heat Map',
-  'Mosaic Plot',
   'Contour Chart'
 ]`.
 * __questions__ | `array`: array of nodes indicating surrounding text and question components to be displayed in a tabbed window. Default: `[]`.

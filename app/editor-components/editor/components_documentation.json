@@ -515,16 +515,6 @@
         }
       },
       {
-        "name": "distributions",
-        "type": "array",
-        "description": "array of strings indicating distributions that may be used in calculating probabilities. This functionality exists independently of the dataset provided. Currently limited to normal, uniform and exponential distributions",
-        "default": [
-          "Normal",
-          "Uniform",
-          "Exponential"
-        ]
-      },
-      {
         "name": "editor",
         "type": "boolean",
         "description": "boolean indicating whether to show the editor to the user",
@@ -562,10 +552,11 @@
           "Simple Linear Regression",
           "Multiple Linear Regression",
           "LASSO",
-          "Hierarchical Clustering",
           "Decision Tree",
+          "Random Forest",
           "Logistic Regression",
           "PCA",
+          "Hierarchical Clustering",
           "kmeans"
         ]
       },
@@ -582,11 +573,11 @@
         "default": [
           "Bar Chart",
           "Pie Chart",
+          "Mosaic Plot",
           "Histogram",
           "Box Plot",
           "Scatterplot",
           "Heat Map",
-          "Mosaic Plot",
           "Contour Chart"
         ]
       },
@@ -1405,6 +1396,12 @@
         "default": {}
       },
       {
+        "name": "inputStyle",
+        "type": "object",
+        "description": "CSS inline styles for input element",
+        "default": {}
+      },
+      {
         "name": "value",
         "type": "number",
         "description": "number value (for controlled component)",
@@ -1412,9 +1409,7 @@
       },
       {
         "name": "width",
-        "type": "number",
-        "description": "number indicating the width of the input bar in pixels",
-        "default": 80
+        "type": "number"
       },
       {
         "name": "tooltipPlacement",
@@ -2254,10 +2249,22 @@
         "default": null
       },
       {
+        "name": "scaleParameterization",
+        "type": "boolean",
+        "description": "controls whether to use the parameterization involving a shape and scale parameter instead of shape and rate",
+        "default": false
+      },
+      {
         "name": "step",
         "type": "(number|string)",
         "description": "step size of the scroll input",
         "default": 0.01
+      },
+      {
+        "name": "symbols",
+        "type": "boolean",
+        "description": "whether to display greek symbols for parameters",
+        "default": true
       },
       {
         "name": "tabs",
