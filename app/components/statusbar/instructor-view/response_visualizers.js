@@ -46,10 +46,44 @@ class ResponseVisualizers extends Component {
 	constructor( props ) {
 		super( props );
 
+		debug( 'Initializing state in constructor...' );
+		const emails = props.session.userList.map( x => x.email );
 		this.state = {
 			selected: null,
-			means: {}
+			means: {},
+			selectedCohort: props.selectedCohort,
+			activeCohortMembers: props.selectedCohort ? props.selectedCohort.members.filter( x => {
+				return contains( emails, x );
+			}) : null
 		};
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		const prevCohort = prevState.selectedCohort;
+		const nextCohort = nextProps.selectedCohort;
+		if (
+			( nextCohort && !prevCohort ) ||
+			( nextCohort && prevCohort && nextCohort.title !== prevCohort.title )
+		) {
+			debug( 'Return derived state...' );
+			const newState = {
+				selectedCohort: nextCohort
+			};
+			if ( nextCohort ) {
+				const emails = nextProps.session.userList.map( x => x.email );
+				newState.activeCohortMembers = nextCohort.members.filter( x => contains( emails, x ) );
+			} else {
+				newState.activeCohortMembers = null;
+			}
+			return newState;
+		}
+		else if ( !nextCohort && prevCohort ) {
+			return {
+				selectedCohort: null,
+				activeCohortMembers: null
+			};
+		}
+		return null;
 	}
 
 	componentDidMount() {
@@ -141,7 +175,7 @@ class ResponseVisualizers extends Component {
 		let completionTooltip;
 		let nUsers;
 		if ( this.props.selectedCohort ) {
-			nUsers = this.props.selectedCohort.members.length;
+			nUsers = this.state.activeCohortMembers.length;
 			completionTooltip = `Completion rate for students from cohort ${this.props.selectedCohort.title}`;
 		} else {
 			nUsers = this.props.session.userList.length;
@@ -184,6 +218,12 @@ class ResponseVisualizers extends Component {
 			} else {
 				timeBadgeVariant = 'light';
 			}
+			let infoRateLabel;
+			if ( this.props.selectedCohort ) {
+				infoRateLabel = `${nInfo} / ${nUsers} (of ${this.props.selectedCohort.members.length})`;
+			} else {
+				infoRateLabel = `${nInfo} / ${nUsers}`;
+			}
 			list[ i ] = (
 				<ListGroupItem
 					key={i}
@@ -219,7 +259,7 @@ class ResponseVisualizers extends Component {
 							variant="info"
 							now={infoRate}
 							max={100} min={0}
-							label={`${nInfo} / ${nUsers}`}
+							label={infoRateLabel}
 							style={{
 								width: '180px',
 								float: 'right',
