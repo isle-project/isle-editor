@@ -327,7 +327,12 @@ class ResponseVisualizer extends Component {
 
 	renderTooltip() {
 		const session = this.context;
-		const nUsers = session.userList.length;
+		let nUsers;
+		if ( this.state.selectedCohort ) {
+			nUsers = this.state.selectedCohort.members.length;
+		} else {
+			nUsers = session.userList.length;
+		}
 		const focusUsers = usersWithFocus( session.userFocuses, this.emailHash, this.props.id );
 		let tooltip = 'Interaction rate for currently active students:\n\n';
 		const table = <table className="table table-bordered table-condensed" >
@@ -428,7 +433,12 @@ class ResponseVisualizer extends Component {
 			return <Gate owner><span className="title no-id-message">No ID supplied.</span></Gate>;
 		}
 		const session = this.context;
-		const nUsers = session.userList.length;
+		let nUsers;
+		if ( this.state.selectedCohort ) {
+			nUsers = this.state.selectedCohort.members.length;
+		} else {
+			nUsers = session.userList.length;
+		}
 		const focusUsers = usersWithFocus( session.userFocuses, this.emailHash, this.props.id );
 		let successRate = this.state.nSuccess / nUsers;
 		successRate *= 100.0;

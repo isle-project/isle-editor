@@ -138,7 +138,15 @@ class ResponseVisualizers extends Component {
 
 	render() {
 		debug( 'Render response visualizer statistics...' );
-		const nUsers = this.props.session.userList.length;
+		let completionTooltip;
+		let nUsers;
+		if ( this.props.selectedCohort ) {
+			nUsers = this.props.selectedCohort.members.length;
+			completionTooltip = `Completion rate for students from cohort ${this.props.selectedCohort.title}`;
+		} else {
+			nUsers = this.props.session.userList.length;
+			completionTooltip = 'Completion rate for currently active students from all cohorts';
+		}
 		const visualizers = this.props.session.responseVisualizers;
 		const { means } = this.state;
 		const ids = keys( visualizers );
@@ -206,7 +214,7 @@ class ResponseVisualizers extends Component {
 							style={{ float: 'right', margin: '2px' }}
 						>{time}</Badge>
 					</Tooltip>
-					<Tooltip placement="left" tooltip={`Completion rate for currently active students (${this.props.selectedCohort ? this.props.selectedCohort.title: 'all cohorts'})`}>
+					<Tooltip placement="left" tooltip={completionTooltip}>
 						<ProgressBar
 							variant="info"
 							now={infoRate}
