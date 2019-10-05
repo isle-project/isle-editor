@@ -31,7 +31,7 @@ const IN_ANGLE_LINK = 14;
 const RE_ALPHANUMERIC = /[A-Z0-9.]/i;
 const RE_HTML_INNER_TAGS = /^(?:p|th|td)$/;
 const RE_HTML_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|var)$/;
-const RE_ISLE_INLINE_TAGS = /^(?:Badge|BeaconTooltip|Button|CheckboxInput|Clock|Input|Nav\.Link|NavLink|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
+const RE_ISLE_INLINE_TAGS = /^(?:Badge|BeaconTooltip|Button|CheckboxInput|Citation|Clock|Input|Nav\.Link|NavLink|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
 
 const md = markdownit({
 	html: true,

@@ -19,7 +19,7 @@ class Citation extends Component {
 		console.log( item );
 
 		// Return value to render...
-		return <div></div>;
+		return <span></span>;
 	}
 }
 
