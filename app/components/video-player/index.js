@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
-import Dimensions from 'components/dimensions';
 import omit from '@stdlib/utils/omit';
 import generateUID from 'utils/uid';
 import VoiceControl from 'components/voice-control';
@@ -15,19 +14,10 @@ import VOICE_COMMANDS from './voice_commands.json';
 // VARIABLES //
 
 const uid = generateUID( 'video-player' );
-const OMITTED_PROPS = [ 'center', 'containerWidth', 'containerHeight',
-'updateDimensions', 'voiceID' ];
+const OMITTED_PROPS = [ 'center', 'voiceID' ];
 
 
-// FUNCTIONS //
-
-function calculateMargin( containerWidth, targetWidth ) {
-	const x = ( containerWidth - targetWidth ) / 2.0;
-	return `${x | 0}px`;
-}
-
-
-// VIDEO //
+// MAIN //
 
 /**
 * A component for playing media files and content from YouTube, SoundCloud, and Vimeo.
@@ -124,38 +114,37 @@ class Video extends Component {
 			...props.style
 		};
 		if ( props.center ) {
-			style.marginLeft = calculateMargin( props.containerWidth, props.width );
-			style.marginRight = calculateMargin( props.containerWidth, props.width );
+			style.marginLeft = 'auto';
+			style.marginRight = 'auto';
 		}
 		props = omit( props, OMITTED_PROPS );
-		return (
-			<div
-				id={this.id}
-				style={style}
-				className="video"
-			>
-				<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
-				<ReactPlayer
-					onPlay={this.handlePlay}
-					onPause={this.handlePause}
-					onEnded={this.handleEnded}
-					onProgress={this.handleProgress}
-					onReady={this.handleStartTime}
-					progressInterval={1000}
-					ref={( div ) => { this.player = div; }}
-					config={{
-						youtube: {
-							playerVars: {
-								showinfo: 0,
-								rel: 0,
-								modestbranding: 1
-							}
+		const out = <div
+			id={this.id}
+			style={style}
+			className="video"
+		>
+			<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
+			<ReactPlayer
+				onPlay={this.handlePlay}
+				onPause={this.handlePause}
+				onEnded={this.handleEnded}
+				onProgress={this.handleProgress}
+				onReady={this.handleStartTime}
+				progressInterval={1000}
+				ref={( div ) => { this.player = div; }}
+				config={{
+					youtube: {
+						playerVars: {
+							showinfo: 0,
+							rel: 0,
+							modestbranding: 1
 						}
-					}}
-					{...props}
-				/>
-			</div>
-		);
+					}
+				}}
+				{...props}
+			/>
+		</div>;
+		return out;
 	}
 }
 
@@ -207,4 +196,4 @@ Video.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Dimensions( Video );
+export default Video;
