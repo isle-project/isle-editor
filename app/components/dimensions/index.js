@@ -50,7 +50,7 @@ function Dimensions( ComposedComponent ) {
 			const { containerWidth, containerHeight } = this.state;
 			return (
 				<div ref={( div ) => { this.wrapper = div; }}>
-					{( containerWidth || containerHeight ) &&
+					{( !!containerWidth || !!containerHeight ) &&
 						<ComposedComponent
 							{...this.state}
 							{...this.props}
