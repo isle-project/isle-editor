@@ -21,7 +21,6 @@ import repeat from '@stdlib/string/repeat';
 import markdownToHTML from 'utils/markdown-to-html';
 import pluginTransformJSX from 'babel-plugin-transform-react-jsx';
 import Provider from 'components/provider';
-import Lesson from 'components/lesson';
 import Session from 'session';
 import transformToPresentation from 'utils/transform-to-presentation';
 import createScope from './create_scope.js';
@@ -112,6 +111,13 @@ class Preview extends Component {
 			this.state.isLoading !== nextState.isLoading
 		) {
 			return true;
+		}
+		const lessonState = this.session.config.state;
+		const keys = objectKeys( lessonState );
+		for ( let i = 0; i < keys.length; i++ ) {
+			if ( this.state[ keys[ i ] ] !== nextState[ keys[ i ] ] ) {
+				return true;
+			}
 		}
 		return false;
 	}
@@ -249,8 +255,20 @@ class Preview extends Component {
 
 		// Prepend empty lines so line numbers in error stack traces match:
 		code = repeat( '\n', noEmptyLines ) + code;
-		code = `var out = <React.Fragment>${code}</React.Fragment>`;
+		code = `<Lesson
+			className="${preamble.type === 'presentation' ? 'Presentation' : 'Lesson'}"
+			style={{
+				overflowY: 'scroll',
+				height: 'calc(100vh - ${this.props.hideToolbar ? 2 : 90}px)',
+				minHeight: 'calc(100vh - ${this.props.hideToolbar ? 2 : 90}px)'
+			}}
+		>
+			${code}
+		</Lesson>`;
+		code = `var out = ${code}`;
 		this.props.onCode( code );
+
+		console.log( code );
 
 		debug( 'Transpile code to ES5...' );
 		try {
@@ -278,18 +296,8 @@ class Preview extends Component {
 
 	render() {
 		debug( 'Rendering preview...' );
-		const className = this.props.preamble.type === 'presentation' ? 'Presentation' : 'Lesson';
 		return ( <Provider session={this.session} currentRole={this.props.currentRole}>
-			<Lesson
-				className={className}
-				style={{
-					overflowY: 'scroll',
-					height: `calc(100vh - ${this.props.hideToolbar ? 2 : 90}px)`,
-					minHeight: `calc(100vh - ${this.props.hideToolbar ? 2 : 90}px)`
-				}}
-			>
-				{ this.state.isLoading ? 'Loading...' : this.renderPreview()}
-			</Lesson>
+			{ this.state.isLoading ? 'Loading...' : this.renderPreview()}
 		</Provider> );
 	}
 }

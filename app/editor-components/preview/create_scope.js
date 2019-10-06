@@ -64,6 +64,7 @@ const SCOPE = {
 	Joyride: Loadable( () => import( 'components/joyride' ) ),
 	JSShell: Loadable( () => import( 'components/js-shell' ) ),
 	KeyControls: Loadable( () => import( 'components/key-controls' ) ),
+	Lesson: Loadable( () => import( 'components/lesson' ) ),
 	LearnCrossValidation: Loadable( () => import( 'components/learn/cross-validation' ) ),
 	LearnDiceThrowing: Loadable( () => import( 'components/learn/dice-throwing' ) ),
 	LearnBetaDistribution: Loadable( () => import( 'components/learn/distribution-beta' ) ),
