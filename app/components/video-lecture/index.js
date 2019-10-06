@@ -18,6 +18,7 @@ import RangeQuestion from 'components/range-question';
 import SelectQuestion from 'components/select-question';
 import VideoPlayer from 'components/video-player';
 import Panel from 'components/panel';
+import Reaction from 'components/reaction';
 import SessionContext from 'session/context.js';
 import './video_lecture.css';
 
@@ -92,7 +93,7 @@ class VideoLecture extends Component {
 		});
 	}
 
-	markCompleted = () => {
+	markCompleted = ( result ) => {
 		debug( 'Handle question submission...' );
 		const waitForAnswer = this.state.waitForAnswer.slice();
 		waitForAnswer[ this.state.active ] = false;
@@ -109,6 +110,30 @@ class VideoLecture extends Component {
 
 	renderStep( page ) {
 		const elem = this.props.steps[ page ];
+		const isReaction = elem.type === Reaction;
+		if ( isReaction ) {
+			return ( <div>
+				{elem}
+					{ this.state.active > 0 ? <div
+						onClick={this.decrementStep}
+						role="button"
+						className="video-lecture-back-button"
+						tabIndex={0}
+						onKeyPress={this.decrementStep}
+					>
+						<i className="fas fa-chevron-circle-left video-lecture-arrow"></i>
+					</div> : null }
+					<div
+						onClick={this.incrementStep}
+						role="button"
+						className="video-lecture-next-button"
+						tabIndex={0}
+						onKeyPress={this.incrementStep}
+					>
+						<i className="fas fa-chevron-circle-right video-lecture-arrow"></i>
+					</div>
+			</div> );
+		}
 		if ( isString( elem ) ) {
 			if ( this.state.showInstructorView ) {
 				return ( <div key={page}>
