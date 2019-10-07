@@ -56,14 +56,19 @@ class ProportionInput extends Input {
 		this.checkPercentage.bind( this );
 	}
 
-	componentWillReceiveProps( nextProps ) {
-		if ( nextProps.values !== this.props.values ) {
-			this.setState({
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if ( nextProps.values !== prevState.values ) {
+			const newState = {
 				values: nextProps.values,
 				visualData: this.pieData( nextProps.values )
-			});
+			};
+			return newState;
 		}
-		if ( nextProps.legends !== this.props.legends ) {
+		return null;
+	}
+
+	componentDidUpdate( prevProps ) {
+		if ( prevProps.legends !== this.props.legends ) {
 			this.legends = this.checkLegends();
 		}
 	}
