@@ -7,6 +7,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isNull from '@stdlib/assert/is-null';
 import contains from '@stdlib/assert/contains';
 import ResponseVisualizer from 'components/response-visualizer';
@@ -242,6 +243,9 @@ class MultipleChoiceQuestion extends Component {
 	checkDisabledStatus = () => {
 		const allowMultipleAnswers = isArray( this.props.solution ) && isArray( this.state.active );
 		if ( this.props.disabled ) {
+			return true;
+		}
+		if ( !allowMultipleAnswers && !isNumber( this.state.active ) ) {
 			return true;
 		}
 		switch ( this.props.provideFeedback ) {
