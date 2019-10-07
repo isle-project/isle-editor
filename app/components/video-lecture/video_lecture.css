@@ -54,7 +54,7 @@
 }
 
 .video-lecture-wrapper {
-	display: relative;
+	position: relative;
 	height: 100vh;
 	width: 100%;
 }
