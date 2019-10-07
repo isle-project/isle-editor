@@ -1436,7 +1436,7 @@ class Session {
 		PRIVATE_VARS['addedChatMessages'] = 0;
 		PRIVATE_VARS['addedActionTypes'] = [];
 
-		if ( !this._offline ) {
+		if ( !this._offline && !this.anonymous ) {
 			fetch( this.server+'/update_user_session', {
 				method: 'POST',
 				body: JSON.stringify(currentSession),
@@ -1562,7 +1562,7 @@ class Session {
 			}
 			this.setProgress( action.id );
 
-			// Send to socket connections after ID is attached:
+			debug( 'Send to socket connections after ID is attached...' );
 			this.sendSocketMessage( action, to );
 
 			// If first action, create session on server:
