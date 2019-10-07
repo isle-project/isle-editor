@@ -109,8 +109,8 @@ class Video extends Component {
 		const style = {
 			width: props.width,
 			height: props.height,
-			marginTop: '30px',
-			marginBottom: '30px',
+			marginTop: '10px',
+			marginBottom: '10px',
 			...props.style
 		};
 		if ( props.center ) {
