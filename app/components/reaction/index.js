@@ -2,10 +2,16 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Alert from 'react-bootstrap/Alert';
 import SessionContext from 'session/context.js';
 import isObject from '@stdlib/assert/is-object';
 import { isFunction } from 'util';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:reaction' );
 
 
 // MAIN //
@@ -35,6 +41,7 @@ class Reaction extends Component {
 	}
 
 	render() {
+		debug( 'Render component...' );
 		const session = this.context;
 		if ( !this.props.actionID ) {
 			return <Alert variant="danger">Please supply an ID for component to be watched.</Alert>;
@@ -44,14 +51,16 @@ class Reaction extends Component {
 			if ( visualizer ) {
 				const { type } = visualizer;
 				let actions = session.currentUserActions[ this.props.actionID ];
-				actions = actions.filter( x => x.type === type );
-				actions = actions.sort( ( a, b ) => a.absoluteTime - b.absoluteTime );
-				const lastAction = actions[ actions.length-1 ];
-				if ( isObject( this.props.show ) ) {
-					return this.props.show[ lastAction.value ] || null;
-				}
-				if ( isFunction( this.props.show ) ) {
-					return this.props.show( lastAction.value ) || null;
+				if ( actions ) {
+					actions = actions.filter( x => x.type === type );
+					actions = actions.sort( ( a, b ) => a.absoluteTime - b.absoluteTime );
+					const lastAction = actions[ actions.length-1 ];
+					if ( isObject( this.props.show ) ) {
+						return this.props.show[ lastAction.value ] || null;
+					}
+					if ( isFunction( this.props.show ) ) {
+						return this.props.show( lastAction.value ) || null;
+					}
 				}
 				return null;
 			}
