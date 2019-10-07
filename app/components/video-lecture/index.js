@@ -113,25 +113,25 @@ class VideoLecture extends Component {
 		const isReaction = elem.type === Reaction;
 		if ( isReaction ) {
 			return ( <div>
-				{elem}
-					{ this.state.active > 0 ? <div
-						onClick={this.decrementStep}
-						role="button"
-						className="video-lecture-back-button"
-						tabIndex={0}
-						onKeyPress={this.decrementStep}
-					>
-						<i className="fas fa-chevron-circle-left video-lecture-arrow"></i>
-					</div> : null }
-					<div
-						onClick={this.incrementStep}
-						role="button"
-						className="video-lecture-next-button"
-						tabIndex={0}
-						onKeyPress={this.incrementStep}
-					>
-						<i className="fas fa-chevron-circle-right video-lecture-arrow"></i>
-					</div>
+				{ this.state.active === page ? elem : null}
+				{ this.state.active > 0 ? <div
+					onClick={this.decrementStep}
+					role="button"
+					className="video-lecture-back-button"
+					tabIndex={0}
+					onKeyPress={this.decrementStep}
+				>
+					<i className="fas fa-chevron-circle-left video-lecture-arrow"></i>
+				</div> : null }
+				<div
+					onClick={this.incrementStep}
+					role="button"
+					className="video-lecture-next-button"
+					tabIndex={0}
+					onKeyPress={this.incrementStep}
+				>
+					<i className="fas fa-chevron-circle-right video-lecture-arrow"></i>
+				</div>
 			</div> );
 		}
 		if ( isString( elem ) ) {
