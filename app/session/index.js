@@ -118,7 +118,7 @@ class Session {
 
 		// Actions for the current user:
 		this.actions = [];
-		this.currentUserActions = null;
+		this.currentUserActions = {};
 
 		// Cohort of logged-in user:
 		this.cohort = null;
@@ -509,6 +509,11 @@ class Session {
 		}
 		if ( this.socket ) {
 			this.socket.emit( 'event', data, to );
+		} else {
+			// Send data to self for components to update properly:
+			data.email = 'anonymous';
+			data.name = 'anonymous';
+			this.saveAction( data );
 		}
 	}
 
@@ -1312,7 +1317,7 @@ class Session {
 	* @param {string} id - action id
 	*/
 	setProgress( id ) {
-		if ( this.anonymous || isNull( this.currentUserActions ) ) {
+		if ( this.anonymous || isEmptyObject( this.currentUserActions ) ) {
 			return;
 		}
 		const ids = objectKeys( this.responseVisualizers );
@@ -1366,7 +1371,7 @@ class Session {
 	}
 
 	setScore( action ) {
-		if ( this.anonymous || isNull( this.currentUserActions ) ) {
+		if ( this.anonymous || isEmptyObject( this.currentUserActions ) ) {
 			return;
 		}
 		const actions = this.currentUserActions;
@@ -1546,9 +1551,6 @@ class Session {
 			// Attach received action ID:
 			action.sessiondataID = res.id;
 
-			// Send to socket connections after ID is attached:
-			this.sendSocketMessage( action, to );
-
 			// Push to respective array of currentUserActions hash table:
 			const actions = this.currentUserActions;
 			this.setScore( action );
@@ -1560,6 +1562,9 @@ class Session {
 				}
 			}
 			this.setProgress( action.id );
+
+			// Send to socket connections after ID is attached:
+			this.sendSocketMessage( action, to );
 
 			// If first action, create session on server:
 			if ( this.actions.length === 1 ) {
