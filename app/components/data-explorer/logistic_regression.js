@@ -204,6 +204,7 @@ class LogisticRegression extends Component {
 									uniq( categories );
 									this.setState({
 										categories,
+										success: categories[ categories.length-1 ],
 										y
 									});
 								}}
