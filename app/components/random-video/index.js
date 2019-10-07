@@ -23,9 +23,7 @@ class RandomVideo extends Component {
 		const elem = this.props.videos[ this.choice ];
 		return (
 			<VideoPlayer
-				id={elem}
 				url={elem}
-				light
 				{...this.props}
 			/>
 		);
