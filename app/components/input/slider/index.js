@@ -49,6 +49,8 @@ function createTooltip( props ) {
 * @property {number} precision - rounding of the input. The value will be rounded to have no more significant digits than the precision. For example, if one wishes to only use integers, a precision of 10 would be used, while if one wishes to round to the hundreds place, one would use a precision of 0.001
 * @property {boolean} disabled - controls whether the slider input is active or not. If set to true, the slider will be present on the screen, albeit greyed-out
 * @property {Object} style - CSS inline styles
+* @property {Object} numberInputStyle - CSS inline styles for number input component
+* @property {Object} rangeInputStyle - CSS inline style for range input component
 * @property {Function} onChange - callback invoked with the new value when the slider value changes
 */
 class SliderInput extends Input {
@@ -164,9 +166,10 @@ class SliderInput extends Input {
 			disabled={this.props.disabled}
 			onChange={this.handleInputChange}
 			style={{
-				width: this.props.width || '160px',
+				width: '160px',
 				float: inline ? 'none' : 'left',
-				display: inline ? 'inline' : 'block'
+				display: inline ? 'inline' : 'block',
+				...this.props.rangeInputStyle
 			}}
 		/>;
 		const numberInput = <input
@@ -182,7 +185,8 @@ class SliderInput extends Input {
 			onBlur={this.finishChange}
 			style={{
 				float: inline ? 'none' : 'right',
-				marginTop: legend && !inline ? -22 : 0
+				marginTop: legend && !inline ? -22 : 0,
+				...this.props.numberInputStyle
 			}}
 			autoComplete="off"
 		/>;
@@ -245,7 +249,9 @@ SliderInput.defaultProps = {
 	onChange() {},
 	precision: 10,
 	disabled: false,
-	style: {}
+	style: {},
+	numberInputStyle: {},
+	rangeInputStyle: {}
 };
 
 SliderInput.propTypes = {
@@ -264,7 +270,9 @@ SliderInput.propTypes = {
 		PropTypes.number,
 		PropTypes.string
 	]),
-	style: PropTypes.object
+	style: PropTypes.object,
+	numberInputStyle: PropTypes.object,
+	rangeInputStyle: PropTypes.object
 };
 
 SliderInput.contextType = SessionContext;

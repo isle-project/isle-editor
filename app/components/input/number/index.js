@@ -319,7 +319,6 @@ NumberInput.propTypes = {
 	style: PropTypes.object,
 	inputStyle: PropTypes.object,
 	value: PropTypes.number,
-	width: PropTypes.number,
 	tooltipPlacement: PropTypes.oneOf([ 'top', 'right', 'bottom', 'left' ])
 };
 
