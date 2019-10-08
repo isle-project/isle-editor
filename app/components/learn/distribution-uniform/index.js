@@ -36,6 +36,7 @@ const AREA_STYLE = {
 /**
 * A learning component for calculating probabilities of a uniform distribution.
 *
+* @property {boolean} hideCDF - controls whether to hide the CDF plots
 * @property {number} step - step size of the scroll input
 * @property {Object} style - CSS inline styles
 */
@@ -165,7 +166,7 @@ class UniformProbs extends Component {
 									/>
 								</VictoryChart>
 							</Col>
-							<Col>
+							{!this.props.hideCDF ? <Col>
 								<VictoryChart theme={VictoryTheme.material} >
 									<VictoryAxis dependentAxis />
 									<VictoryAxis
@@ -197,7 +198,7 @@ class UniformProbs extends Component {
 										style={LINE_STYLE}
 									/>
 								</VictoryChart>
-							</Col>
+							</Col> : null }
 						</Row></Container>
 					</Tab>
 					<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />}>
@@ -244,7 +245,7 @@ class UniformProbs extends Component {
 									/>
 								</VictoryChart>
 							</Col>
-							<Col>
+							{!this.props.hideCDF ? <Col>
 								<VictoryChart theme={VictoryTheme.material} >
 									<VictoryAxis dependentAxis />
 									<VictoryAxis
@@ -285,7 +286,7 @@ class UniformProbs extends Component {
 										style={LINE_STYLE}
 									/>
 								</VictoryChart>
-							</Col>
+							</Col> : null }
 						</Row></Container>
 					</Tab>
 					<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1 )" />} >
@@ -329,7 +330,7 @@ class UniformProbs extends Component {
 									/>
 								</VictoryChart>
 							</Col>
-							<Col>
+							{!this.props.hideCDF ? <Col>
 								<VictoryChart theme={VictoryTheme.material} >
 									<VictoryAxis dependentAxis />
 									<VictoryAxis
@@ -363,7 +364,7 @@ class UniformProbs extends Component {
 										style={LINE_STYLE}
 									/>
 								</VictoryChart>
-							</Col>
+							</Col> : null }
 						</Row></Container>
 					</Tab>
 				</Tabs>
@@ -376,6 +377,7 @@ class UniformProbs extends Component {
 // PROPERTIES //
 
 UniformProbs.propTypes = {
+	hideCDF: PropTypes.bool,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
@@ -384,6 +386,7 @@ UniformProbs.propTypes = {
 };
 
 UniformProbs.defaultProps = {
+	hideCDF: false,
 	step: 0.01,
 	style: {}
 };

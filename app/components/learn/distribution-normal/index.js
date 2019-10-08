@@ -49,6 +49,7 @@ function calculateDomain( mean, sd ) {
 /**
 * A learning component for calculating probabilities of a normal distribution.
 *
+* @property {boolean} hideCDF - controls whether to hide the CDF plots
 * @property {Object} domain - object of `x` and `y` arrays with the starting and end points for the respective axis
 * @property {Array} tabs - which tabs to display (either `smaller`, `greater`, or `range`)
 * @property {number} minStDev - minimum standard deviation
@@ -198,7 +199,7 @@ class NormalProbs extends Component {
 						/>
 					</VictoryChart>
 				</Col>
-				<Col>
+				{!this.props.hideCDF ? <Col>
 					<VictoryChart theme={VictoryTheme.material} >
 						<VictoryAxis dependentAxis />
 						<VictoryAxis
@@ -230,7 +231,7 @@ class NormalProbs extends Component {
 							style={LINE_STYLE}
 						/>
 					</VictoryChart>
-				</Col>
+				</Col> : null }
 			</Row></Container>
 		</Tab> : null;
 		const tabGreater = contains( tabs, 'greater' ) ? <Tab eventKey="greater" title={<TeX raw="P(X > x_0)" />}>
@@ -270,7 +271,7 @@ class NormalProbs extends Component {
 						/>
 					</VictoryChart>
 				</Col>
-				<Col>
+				{!this.props.hideCDF ? <Col>
 					<VictoryChart theme={VictoryTheme.material} >
 						<VictoryAxis dependentAxis />
 						<VictoryAxis
@@ -311,7 +312,7 @@ class NormalProbs extends Component {
 							style={LINE_STYLE}
 						/>
 					</VictoryChart>
-				</Col>
+				</Col> : null }
 			</Row></Container>
 		</Tab> : null;
 		const tabRange = contains( tabs, 'range' ) ? <Tab eventKey="range" title={<TeX raw="P( x_0 \le X \le x_1)" />}>
@@ -354,7 +355,7 @@ class NormalProbs extends Component {
 						/>
 					</VictoryChart>
 				</Col>
-				<Col>
+				{!this.props.hideCDF ? <Col>
 					<VictoryChart theme={VictoryTheme.material} >
 						<VictoryAxis dependentAxis />
 						<VictoryAxis
@@ -388,7 +389,7 @@ class NormalProbs extends Component {
 							style={LINE_STYLE}
 						/>
 					</VictoryChart>
-				</Col>
+				</Col> : null }
 			</Row></Container>
 		</Tab> : null;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
@@ -411,6 +412,7 @@ class NormalProbs extends Component {
 
 NormalProbs.propTypes = {
 	domain: PropTypes.object,
+	hideCDF: PropTypes.bool,
 	minStDev: PropTypes.number,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
@@ -422,6 +424,7 @@ NormalProbs.propTypes = {
 
 NormalProbs.defaultProps = {
 	domain: null,
+	hideCDF: false,
 	minStDev: 1,
 	step: 0.01,
 	tabs: [ 'smaller', 'greater', 'range' ],

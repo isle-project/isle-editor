@@ -29,6 +29,7 @@ const NEAR_ONE = 0.999999;
 /**
 * A learning component for calculating probabilities of a exponential distribution.
 *
+* @property {boolean} hideCDF - controls whether to hide the CDF plots
 * @property {number} step - step size of the scroll input
 * @property {Object} style - CSS inline styles
 */
@@ -140,7 +141,7 @@ class ExponentialProbs extends Component {
 									/>
 								</VictoryChart>
 							</Col>
-							<Col>
+							{!this.props.hideCDF ? <Col>
 								<VictoryChart theme={VictoryTheme.material} >
 									<VictoryAxis dependentAxis />
 									<VictoryAxis
@@ -176,7 +177,7 @@ class ExponentialProbs extends Component {
 										}}
 									/>
 								</VictoryChart>
-							</Col>
+							</Col> : null }
 						</Row></Container>
 
 					</Tab>
@@ -222,7 +223,7 @@ class ExponentialProbs extends Component {
 									/>
 								</VictoryChart>
 							</Col>
-							<Col>
+							{!this.props.hideCDF ? <Col>
 								<VictoryChart theme={VictoryTheme.material} >
 									<VictoryAxis dependentAxis />
 									<VictoryAxis
@@ -267,7 +268,7 @@ class ExponentialProbs extends Component {
 										}}
 									/>
 								</VictoryChart>
-							</Col>
+							</Col> : null }
 						</Row></Container>
 
 					</Tab>
@@ -316,7 +317,7 @@ class ExponentialProbs extends Component {
 									/>
 								</VictoryChart>
 							</Col>
-							<Col>
+							{!this.props.hideCDF ? <Col>
 								<VictoryChart theme={VictoryTheme.material} >
 									<VictoryAxis dependentAxis />
 									<VictoryAxis
@@ -352,7 +353,7 @@ class ExponentialProbs extends Component {
 										}}
 									/>
 								</VictoryChart>
-							</Col>
+							</Col> : null }
 						</Row></Container>
 					</Tab>
 				</Tabs>
@@ -365,6 +366,7 @@ class ExponentialProbs extends Component {
 // PROPERTIES //
 
 ExponentialProbs.propTypes = {
+	hideCDF: PropTypes.bool,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
@@ -375,6 +377,7 @@ ExponentialProbs.propTypes = {
 };
 
 ExponentialProbs.defaultProps = {
+	hideCDF: false,
 	maxRate: 10,
 	minRate: 1e-3,
 	step: 0.01,
