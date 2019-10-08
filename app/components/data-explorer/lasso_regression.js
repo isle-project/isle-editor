@@ -2,15 +2,18 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import uniq from 'uniq';
+import countBy from '@stdlib/utils/count-by';
+import identity from '@stdlib/utils/identity-function';
+import objectKeys from '@stdlib/utils/keys';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
 import copy from '@stdlib/utils/copy';
+import sqrt from '@stdlib/math/base/special/sqrt';
 import Table from 'react-bootstrap/Table';
 import TeX from 'components/tex';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
-import NumberInput from 'components/input/number';
+import SliderInput from 'components/input/slider';
 import Dashboard from 'components/dashboard';
 import { DATA_EXPLORER_LASSO_REGRESSION } from 'constants/actions.js';
 import zScore from 'utils/zscore';
@@ -72,33 +75,50 @@ class LassoRegression extends Component {
 		const predictors = [];
 		const hash = {};
 		const standardized = {};
+		const categoricalStats = {};
 		for ( let j = 0; j < x.length; j++ ) {
-			const values = zScore( this.props.data[ x[ j ] ] );
-			standardized[ x[ j ] ] = values;
 			if ( contains( this.props.quantitative, x[ j ] ) ) {
+				const values = zScore( this.props.data[ x[ j ] ] );
+				standardized[ x[ j ] ] = values;
 				predictors.push( x[ j ] );
 			} else {
-				const categories = x[ j ].categories || uniq( values.slice() );
+				const values = this.props.data[ x[ j ] ];
+				const counts = countBy( values, identity );
+				const categories = x[ j ].categories || objectKeys( counts );
 				for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
-					predictors.push( `${x[ j ]}_${categories[ k ]}` );
+					const label = `${x[ j ]}_${categories[ k ]}`;
+					predictors.push( label );
+					const p = counts[ categories[ k ] ] / n;
+					categoricalStats[ label ] = {
+						mu: p,
+						sigma: sqrt( p * (1-p) )
+					};
 				}
 				hash[ x[ j ] ] = categories;
 			}
 		}
+		console.log( predictors );
+		console.log( categoricalStats );
 		for ( let i = 0; i < n; i++ ) {
 			const row = [];
 			if ( intercept ) {
 				row.push( 1 );
 			}
 			for ( let j = 0; j < x.length; j++ ) {
-				const values = standardized[ x[ j ] ];
 				if ( contains( this.props.quantitative, x[ j ] ) ) {
+					const values = standardized[ x[ j ] ];
 					row.push( values[ i ] );
 				} else {
+					const values = this.props.data[ x[ j ] ];
 					const categories = hash[ x[ j ] ];
 					const val = values[ i ];
 					for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
-						row.push( ( val === categories[ k ] ) ? 1 : 0 );
+						const { mu, sigma } = categoricalStats[ `${x[ j ]}_${categories[ k ]}` ];
+						row.push(
+							( val === categories[ k ] ) ?
+							( 1 - mu ) / sigma :
+							-mu / sigma
+						);
 					}
 				}
 			}
@@ -110,13 +130,24 @@ class LassoRegression extends Component {
 		if ( intercept ) {
 			let coefSum = 0.0;
 			for ( let i = 1; i < result.coefficients.length; i++ ) {
-				result.coefficients[ i ] *= yvalues.sigma / standardized[ x[ i-1 ] ].sigma;
-				coefSum += ( result.coefficients[ i ] * standardized[ x[ i-1 ] ].mu );
+				const pred = predictors[ i-1 ];
+				if ( contains( this.props.quantitative, pred ) ) {
+					result.coefficients[ i ] *= yvalues.sigma / standardized[ pred ].sigma;
+					coefSum += ( result.coefficients[ i ] * standardized[ pred ].mu );
+				} else {
+					result.coefficients[ i ] *= yvalues.sigma / categoricalStats[ pred ].sigma;
+					coefSum += ( result.coefficients[ i ] * categoricalStats[ pred ].mu );
+				}
 			}
 			result.coefficients[ 0 ] = yvalues.mu - coefSum;
 		} else {
 			for ( let i = 0; i < result.coefficients.length; i++ ) {
-				result.coefficients[ i ] *= yvalues.sigma / standardized[ x[ i ] ].sigma;
+				const pred = predictors[ i ];
+				if ( contains( this.props.quantitative, pred ) ) {
+					result.coefficients[ i ] *= yvalues.sigma / standardized[ pred ].sigma;
+				} else {
+					result.coefficients[ i ] *= yvalues.sigma / categoricalStats[ pred ].sigma;
+				}
 			}
 		}
 
@@ -150,7 +181,7 @@ class LassoRegression extends Component {
 			type: 'LASSO Regression',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >LASSO Regression for Response {y} (lambda = {lambda})</span>
-				{summaryTable( x, intercept, result )}
+				{summaryTable( predictors, intercept, result )}
 			</div>
 		};
 		this.props.onCreated( output );
@@ -174,12 +205,14 @@ class LassoRegression extends Component {
 					options={quantitative.concat( categorical )}
 					defaultValue={quantitative[ 1 ]}
 				/>
-				<NumberInput
+				<SliderInput
 					legend={<span>L1 Penalty Term <TeX raw="\lambda" /></span>}
-					defaultValue={1}
+					defaultValue={1e-3}
 					min={1e-12}
+					max={1}
 					step="any"
-					width={120}
+					rangeInputStyle={{ width: 320 }}
+					numberInputStyle={{ width: 120 }}
 				/>
 				<CheckboxInput
 					legend="Include intercept?"
