@@ -253,8 +253,8 @@ class Wrapper extends Component {
 				onLegendClick={this.props.onLegendClick}
 				onLegendDoubleClick={this.props.onLegendDoubleClick}
 				style={{
-					width: '100%',
-					height: '100%',
+					width: this.props.layout.width ? this.props.layout.width : '100%',
+					height: this.props.layout.height ? this.props.layout.height : '100%',
 					zIndex: 1
 				}}
 				revision={this.props.revision}
