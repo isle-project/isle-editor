@@ -130,9 +130,11 @@ class Tokenizer {
 	}
 
 	setup( str ) {
+		debug( 'Setup tokenizer...' );
 		this.tokens = [];
 		this._buffer = str;
 		this._current = '';
+		this._openingTagName = null;
 		this._openTagEnd = null;
 		this._endTagStart = null;
 		this._state = IN_BASE;

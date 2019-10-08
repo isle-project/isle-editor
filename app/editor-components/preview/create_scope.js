@@ -17,6 +17,7 @@ import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import TextInput from 'components/input/text';
 import VoiceInput from 'components/input/voice';
+import VictoryAxis from 'components/victory/axis';
 import SPECTACLE_THEME from 'components/spectacle/theme.json';
 import factor from 'utils/factor-variable';
 import Repetition from 'utils/repetition';
@@ -205,7 +206,7 @@ const SCOPE = {
 	VictoryContainer: Loadable( () => import( 'components/victory/container' ) ),
 	VictoryCursorContainer: Loadable( () => import( 'components/victory/cursor-container' ) ),
 	VictoryGroup: Loadable( () => import( 'components/victory/group' ) ),
-	VictoryAxis: Loadable( () => import( 'components/victory/axis' ) ),
+	VictoryAxis,
 	VictoryErrorBar: Loadable( () => import( 'components/victory/error-bar' ) ),
 	VictoryLabel: Loadable( () => import( 'components/victory/label' ) ),
 	VictoryLegend: Loadable( () => import( 'components/victory/legend' ) ),
