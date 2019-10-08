@@ -1,5 +1,6 @@
 // MODULES //
 
+import logger from 'debug';
 import incrspace from '@stdlib/math/utils/incrspace';
 import sign from '@stdlib/math/base/special/signum';
 import isArrayArray from '@stdlib/assert/is-array-array';
@@ -18,8 +19,9 @@ import dotv from './dotv.js';
 import softThresholding from './soft_thresholding.js';
 
 
-// CONSTANTS //
+// VARIABLES //
 
+const debug = logger( 'isle:lasso' );
 const matrix = ctor( 'generic', 2 );
 const PRECISION = 1e-9;
 
@@ -117,7 +119,7 @@ LassoFit.prototype.testActiveSet = function testActiveSet() {
 			changed = true;
 		}
 	}
-	console.log( 'Active set changes...' );
+	debug( 'Active set changes...' );
 	return changed;
 };
 
