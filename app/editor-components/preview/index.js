@@ -268,8 +268,6 @@ class Preview extends Component {
 		code = `var out = ${code}`;
 		this.props.onCode( code );
 
-		console.log( code );
-
 		debug( 'Transpile code to ES5...' );
 		try {
 			es5code = transformSync( code, OPTS );
