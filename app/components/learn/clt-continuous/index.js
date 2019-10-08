@@ -387,14 +387,14 @@ class ContinuousCLT extends Component {
 		default:
 		case 1:
 			populationParams = <div>
-				<p><span className="title">Population mean: </span> <TeX raw={`\\tfrac{1}{2} (a + b) = ${( 0.5*( this.state.b + this.state.a ) ).toFixed( 3 )}`} /></p>
-				<p><span className="title">Population standard deviation: </span> <TeX raw={`\\tfrac{1}{\\sqrt{12}}| b - a | = ${( ( 1.0/sqrt( 12.0 ) )*abs( this.state.b-this.state.a ) ).toFixed( 3 )}`} /> </p>
+				<p><span className="title">Population mean: </span> <TeX raw={`${!this.props.hideFormulas ? '\\tfrac{1}{2} (a + b) =' : '' } ${( 0.5*( this.state.b + this.state.a ) ).toFixed( 3 )}`} /></p>
+				<p><span className="title">Population standard deviation: </span> <TeX raw={`${!this.props.hideFormulas ? '\\tfrac{1}{\\sqrt{12}}| b - a | =' : ''} ${( ( 1.0/sqrt( 12.0 ) )*abs( this.state.b-this.state.a ) ).toFixed( 3 )}`} /> </p>
 			</div>;
 			break;
 		case 2:
 			populationParams = <div>
-				<p><span className="title">Population mean: </span> <TeX raw={`\\tfrac{1}{\\lambda} = ${( 1/this.state.lambda ).toFixed( 3 )}`} /></p>
-				<p><span className="title">Population standard deviation: </span> <TeX raw={`\\tfrac{1}{\\lambda} = ${( 1/this.state.lambda ).toFixed( 3 )}`} /> </p>
+				<p><span className="title">Population mean: </span> <TeX raw={`${!this.props.hideFormulas ? '\\tfrac{1}{\\lambda} =' : ''} ${( 1/this.state.lambda ).toFixed( 3 )}`} /></p>
+				<p><span className="title">Population standard deviation: </span> <TeX raw={`${!this.props.hideFormulas ? '\\tfrac{1}{\\lambda} =' : ''} ${( 1/this.state.lambda ).toFixed( 3 )}`} /> </p>
 			</div>;
 			break;
 		case 3:
@@ -612,11 +612,13 @@ class ContinuousCLT extends Component {
 // PROPERTIES //
 
 ContinuousCLT.defaultProps = {
-	distributions: ['uniform', 'exponential', 'normal']
+	distributions: ['uniform', 'exponential', 'normal'],
+	hideFormulas: false
 };
 
 ContinuousCLT.propTypes = {
-	distributions: PropTypes.arrayOf( PropTypes.string )
+	distributions: PropTypes.arrayOf( PropTypes.string ),
+	hideFormulas: PropTypes.bool
 };
 
 
