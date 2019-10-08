@@ -43,6 +43,15 @@ function pieData( arr, nElements, legends ) {
 	return list;
 }
 
+function setValues( nElements ) {
+	const values = new Array( nElements );
+	const initial = 100 / nElements;
+	for ( let i = 0; i < nElements; i++ ) {
+		values[ i ] = initial;
+	}
+	return values;
+}
+
 
 // MAIN //
 
@@ -67,24 +76,26 @@ class ProportionInput extends Input {
 		this.legends = this.checkLegends();
 		let values = null;
 
-		if ( this.props.values ) {
-			values = this.props.values;
+		if ( props.values ) {
+			values = props.values;
 		}
 		else {
-			values = this.setValues();
+			values = setValues( props.nElements );
 		}
 		this.state = {
 			values: values,
-			visualData: pieData( values, this.props.nElements, this.props.legends ),
+			propValues: props.values,
+			visualData: pieData( values, props.nElements, props.legends ),
 			colors: this.setColors()
 		};
 		this.checkPercentage.bind( this );
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
-		if ( nextProps.values !== prevState.values ) {
+		if ( nextProps.values !== prevState.propValues ) {
 			const newState = {
 				values: nextProps.values,
+				propValues: nextProps.values,
 				visualData: pieData( nextProps.values, nextProps.nElements, nextProps.legends )
 			};
 			return newState;
@@ -96,17 +107,6 @@ class ProportionInput extends Input {
 		if ( prevProps.legends !== this.props.legends ) {
 			this.legends = this.checkLegends();
 		}
-	}
-
-	setValues() {
-		var no = this.props.nElements;
-		var values 	= new Array( no );
-		var initial	= 100 / no;
-
-		for ( var i = 0; i < no; i++ ) {
-			values[ i ] = initial;
-		}
-		return values;
 	}
 
 	setColors() {
