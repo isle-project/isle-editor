@@ -1370,7 +1370,11 @@ class Session {
 	}
 
 	setScore( action ) {
-		if ( this.anonymous || isEmptyObject( this.currentUserActions ) ) {
+		if (
+			this.anonymous ||
+			isEmptyObject( this.currentUserActions ) ||
+			( userRights && userRights.owner )
+		) {
 			return;
 		}
 		const actions = this.currentUserActions;
@@ -1433,8 +1437,8 @@ class Session {
 			addedActionTypes: countBy( this.get('addedActionTypes'), identity)
 		};
 		addedScore = 0;
-		PRIVATE_VARS['addedChatMessages'] = 0;
-		PRIVATE_VARS['addedActionTypes'] = [];
+		PRIVATE_VARS[ 'addedChatMessages' ] = 0;
+		PRIVATE_VARS[ 'addedActionTypes' ] = [];
 
 		if ( !this._offline && !this.anonymous ) {
 			fetch( this.server+'/update_user_session', {
