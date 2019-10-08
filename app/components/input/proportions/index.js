@@ -18,6 +18,31 @@ function sum( arr ) {
 	return out;
 }
 
+function pieData( arr, nElements, legends ) {
+	const list = [];
+	const total = sum( arr );
+	const no = nElements + 1;
+	for ( let i = 0; i < no; i++ ) {
+		if ( i < no -1 ) {
+			let o = {
+				x: legends[ i ],
+				y: arr[ i ]
+			};
+			list.push( o );
+		}
+		else {
+			let o = {
+				x: ' ',
+				y: 100 - sum( arr )
+			};
+			if ( total !== 100 ) {
+				list.push( o );
+			}
+		}
+	}
+	return list;
+}
+
 
 // MAIN //
 
@@ -50,7 +75,7 @@ class ProportionInput extends Input {
 		}
 		this.state = {
 			values: values,
-			visualData: this.pieData( values ),
+			visualData: pieData( values, this.props.nElements, this.props.legends ),
 			colors: this.setColors()
 		};
 		this.checkPercentage.bind( this );
@@ -60,7 +85,7 @@ class ProportionInput extends Input {
 		if ( nextProps.values !== prevState.values ) {
 			const newState = {
 				values: nextProps.values,
-				visualData: this.pieData( nextProps.values )
+				visualData: pieData( nextProps.values, nextProps.nElements, nextProps.legends )
 			};
 			return newState;
 		}
@@ -157,31 +182,6 @@ class ProportionInput extends Input {
 				innerRadius={this.props.innerRadius}
 			/>
 		);
-	}
-
-	pieData( arr ) {
-		var list = [];
-		var total = sum( arr );
-		var no = this.props.nElements + 1;
-		for ( let i = 0; i < no; i++ ) {
-			if ( i < no -1 ) {
-				let o = {
-					x: this.props.legends[ i ],
-					y: arr[ i ]
-				};
-				list.push( o );
-			}
-			else {
-				let o = {
-					x: ' ',
-					y: 100 - sum( arr )
-				};
-				if ( total !== 100 ) {
-					list.push( o );
-				}
-			}
-		}
-		return list;
 	}
 
 	render() {
