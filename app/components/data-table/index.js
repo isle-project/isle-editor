@@ -428,6 +428,7 @@ class DataTable extends Component {
 			// Dragged header:
 			header.ondragstart = e => {
 				e.stopPropagation();
+				e.dataTransfer.setData( 'Text', i );
 				this.dragged = i;
 			};
 
