@@ -55,6 +55,7 @@ class NegativeBinomial extends Component {
 		this.state = {
 			r,
 			p,
+			x: 0,
 			x0: 0,
 			x1: 1,
 			data,
@@ -147,7 +148,7 @@ class NegativeBinomial extends Component {
 	}
 
 	render() {
-		const { x0, x1, r, p, max } = this.state;
+		const { x, x0, x1, r, p, max } = this.state;
 		const minValue = this.props.countTrials ? r : 0;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
@@ -190,10 +191,11 @@ class NegativeBinomial extends Component {
 										step={1}
 										max={max}
 										min={0}
+										onChange={( x ) => this.setState({ x })}
 									/> <span>we get</span>
 									{this.props.countTrials ?
-										<TeX raw={`P(X=${x0}) = \\Large \\tbinom{${x0-1}}{${r-1}} ${p}^{${r}} ${roundn(1-p, -4 )}^{${x0-r}} \\approx ${dnbinom(x0 - minValue, r, p).toFixed(4)}`} displayMode /> :
-										<TeX raw={`P(X=${x0}) = \\Large \\tbinom{${r+x0-1}}{${x0}} ${p}^{${r}} ${roundn(1-p, -4 )}^{${x0}} \\approx ${dnbinom(x0 - minValue, r, p).toFixed(4)}`} displayMode />
+										<TeX raw={`P(X=${x}) = \\Large \\tbinom{${x-1}}{${r-1}} ${p}^{${r}} ${roundn(1-p, -4 )}^{${x-r}} \\approx ${dnbinom(x - minValue, r, p).toFixed(4)}`} displayMode /> :
+										<TeX raw={`P(X=${x}) = \\Large \\tbinom{${r+x-1}}{${x}} ${p}^{${r}} ${roundn(1-p, -4 )}^{${x}} \\approx ${dnbinom(x - minValue, r, p).toFixed(4)}`} displayMode />
 									}
 									<p>The random variable X denotes the number of {this.props.countTrials ? 'trials' : 'failures' } until the r-th success is reached.</p>
 								</Panel>
