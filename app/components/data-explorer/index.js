@@ -788,7 +788,7 @@ class DataExplorer extends Component {
 						const item = <DropdownItem key={i} eventKey={`5.${i+1}`}>{e}</DropdownItem>;
 						if (
 							e === 'Decision Tree' && this.props.models[ i-1 ] === 'LASSO' ||
-							e === 'PCA' && this.props.models[ i-1 ] === 'Logistic Regression'
+							e === 'PCA' && this.props.models[ i-1 ] === 'Naive Bayes'
 						) {
 							return ( <Fragment>
 								<NavDropdown.Divider />
@@ -1437,10 +1437,10 @@ DataExplorer.defaultProps = {
 		'Decision Tree',
 		'Random Forest',
 		'Logistic Regression',
+		'Naive Bayes',
 		'PCA',
 		'Hierarchical Clustering',
-		'kmeans',
-		'Naive Bayes'
+		'kmeans'
 	],
 	opened: null,
 	categorical: [],
