@@ -66,3 +66,7 @@
 	margin-right: auto;
 	max-width: 1200px;
 }
+
+.draggable-header {
+	display: block;
+}

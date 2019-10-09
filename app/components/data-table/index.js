@@ -1,3 +1,16 @@
+/**
+* Dragging behavior adapted from code by:
+*
+* Copyright (c) 2019 by Matt Lockyer (https://codepen.io/mattlockyer/pen/LydeLj)
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
@@ -270,6 +283,9 @@ class DataTable extends Component {
 		debug( 'Constructor is invoked...' );
 		this.id = props.id || uid( props );
 		const dataInfo = props.dataInfo || {};
+
+		this.dragged = null;
+		this.reorder = [];
 		this.state = {
 			showInfo: !!dataInfo.showOnStartup,
 			dataInfo: {
@@ -277,7 +293,8 @@ class DataTable extends Component {
 				name: dataInfo.name || '',
 				variables: dataInfo.variables || null,
 				showOnStartup: dataInfo.showOnStartup || null
-			}
+			},
+			trigger: 0
 		};
 	}
 
@@ -354,6 +371,7 @@ class DataTable extends Component {
 				theadControls.scrollLeft = tbody.scrollLeft;
 			});
 		}
+		this.mountEvents();
 	}
 
 	componentDidUpdate( prevProps ) {
@@ -375,6 +393,7 @@ class DataTable extends Component {
 				});
 			});
 		}
+		this.mountEvents();
 	}
 
 	renderEditable = ( cellInfo ) => {
@@ -397,6 +416,40 @@ class DataTable extends Component {
 				}}
 			/>
 		);
+	}
+
+	mountEvents() {
+		const headers = Array.prototype.slice.call(
+			document.querySelectorAll( '.draggable-header' )
+		);
+
+		headers.forEach((header, i) => {
+			header.setAttribute( 'draggable', true);
+			// Dragged header:
+			header.ondragstart = e => {
+				e.stopPropagation();
+				this.dragged = i;
+			};
+
+			header.ondrag = e => e.stopPropagation;
+
+			header.ondragend = e => {
+				e.stopPropagation();
+				setTimeout(() => {
+					this.dragged = null;
+				}, 1000);
+			};
+
+			// Dropped header:
+			header.ondragover = e => {
+				e.preventDefault();
+			};
+			header.ondrop = e => {
+				e.preventDefault();
+				this.reorder.push({ a: i, b: this.dragged });
+				this.setState({ trigger: Math.random() });
+			};
+		});
 	}
 
 	renderCheckboxRemovable = ( cellInfo ) => {
@@ -518,6 +571,17 @@ class DataTable extends Component {
 				</Modal.Body>
 			</Modal>;
 		}
+
+		const cols = this.state.columns.map(col => ({
+			...col,
+			Header: <span className="draggable-header">{col.Header}</span>
+		}));
+
+		// Run re-order events:
+		this.reorder.forEach( o => {
+			cols[o.a] = cols.splice(o.b, 1, cols[o.a])[ 0 ];
+		});
+
 		return (
 			<Fragment>
 				<div className="data-table-wrapper" style={this.props.style} >
@@ -545,7 +609,7 @@ class DataTable extends Component {
 						id={this.id}
 						ref={( table ) => { this.table = table; }}
 						data={rows}
-						columns={this.state.columns}
+						columns={cols}
 						showPagination={true}
 						sortable={true}
 						resizable={true}
