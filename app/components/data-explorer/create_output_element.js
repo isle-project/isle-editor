@@ -149,6 +149,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		e.type === 'Logistic Regression' ||
 		e.type === 'PCA' ||
 		e.type === 'kmeans' ||
+		e.type === 'Naive Bayes' ||
 		e.type === 'Random Forest'
 	) {
 		const elem = <pre key={idx} >

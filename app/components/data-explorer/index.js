@@ -65,6 +65,7 @@ import SimpleLinearRegression from 'components/data-explorer/simple_linear_regre
 import PrincipalComponentAnalysis from 'components/data-explorer/principal_component_analysis';
 import HierarchicalClustering from 'components/data-explorer/hierarchical_clustering.js';
 import KMeans from 'components/data-explorer/kmeans';
+import NaiveBayes from 'components/data-explorer/naive_bayes.js';
 
 
 // PLOT COMPONENTS //
@@ -1154,6 +1155,24 @@ class DataExplorer extends Component {
 						session={this.context}
 					/>;
 					break;
+					case 'Naive Bayes':
+						content = <NaiveBayes
+							categorical={this.state.categorical}
+							quantitative={this.state.quantitative}
+							onCreated={this.addToOutputs}
+							data={this.state.data}
+							logAction={this.logAction}
+							session={this.context}
+							onGenerate={( quantitative, categorical, data ) => {
+								this.setState({
+									quantitative,
+									categorical,
+									groupVars: categorical.slice(),
+									data
+								});
+							}}
+						/>;
+					break;
 				}
 				return ( <Tab.Pane key={i} eventKey={`5.${i+1}`}>
 					{content}
@@ -1420,7 +1439,8 @@ DataExplorer.defaultProps = {
 		'Logistic Regression',
 		'PCA',
 		'Hierarchical Clustering',
-		'kmeans'
+		'kmeans',
+		'Naive Bayes'
 	],
 	opened: null,
 	categorical: [],
