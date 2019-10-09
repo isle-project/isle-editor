@@ -112,11 +112,20 @@ function getDistributionKey( dist ) {
 
 function initHandleSelect(dist) {
 	if ( dist === 'uniform' ) {
-		return <TeX raw={'\\text{Uniform}(0,1)'} />;
+		return ( <TeX
+			raw={'\\text{Uniform}( a = 0, b = 1)'}
+			elems={{ a: { tooltip: 'Minimum' }, b: { tooltip: 'Maximum' }}}
+		/> );
 	} else if ( dist === 'exponential' ) {
-		return <TeX raw={'\\text{Exponential}(1)'} />;
+		return ( <TeX
+			raw={'\\text{Exponential}(\\lambda = 1)'}
+			elems={{ 'λ': { tooltip: 'Rate parameter' }}}
+		/> );
 	}
-	return <TeX raw={'\\text{Normal}(0,1)'} />;
+	return ( <TeX
+		raw={'\\text{Normal}( \\mu = 0, \\sigma = 1)'}
+		elems={{ 'μ': { tooltip: 'Mean' }, 'σ': { tooltip: 'Standard deviation' }}}
+	/> );
 }
 
 // Function to round an element to 2 places
@@ -169,13 +178,22 @@ class ContinuousCLT extends Component {
 		switch ( key ) {
 		default:
 		case 1:
-			formula = <TeX raw={`\\text{Uniform}(${this.state.a},${this.state.b})`} />;
+			formula = <TeX
+				elems={{ a: { tooltip: 'Minimum' }, b: { tooltip: 'Maximum' }}}
+				raw={`\\text{Uniform}(a = ${this.state.a}, b = ${this.state.b})`}
+			/>;
 			break;
 		case 2:
-			formula = <TeX raw={`\\text{Exponential}(${this.state.lambda})`} />;
+			formula = <TeX
+				elems={{ 'λ': { tooltip: 'Rate parameter' }}}
+				raw={`\\text{Exponential}( \\lambda = ${this.state.lambda})`}
+			/>;
 			break;
 		case 3:
-			formula = <TeX raw={`\\text{Normal}(${this.state.mu},${this.state.sigma})`} />;
+			formula = <TeX
+				elems={{ 'μ': { tooltip: 'Mean' }, 'σ': { tooltip: 'Standard deviation' }}}
+				raw={`\\text{Normal}( \\mu = ${this.state.mu}, \\sigma = ${this.state.sigma })`}
+			/>;
 			break;
 		}
 		this.setState({
@@ -272,8 +290,12 @@ class ContinuousCLT extends Component {
 				break;
 			}
 			const xbar = mean( vals );
-			const plot = <div style={{ cursor: 'zoom-in' }}>
-				<TeX raw={`\\bar x = ${xbar.toFixed( 2 )}`} />
+			const plot = <div style={{
+				cursor: 'zoom-in',
+				border: 'solid lightgray',
+				borderWidth: 1
+			}}>
+				<TeX raw={`\\bar x = ${xbar.toFixed( 2 )} \\; (n = ${this.state.n})`} />
 				<VictoryChart domainPadding={20} padding={60} >
 					<VictoryAxis style={{
 						axisLabel: {
@@ -331,34 +353,43 @@ class ContinuousCLT extends Component {
 
 	renderDistSelectionPanel() {
 		const exponential = <div>
-			<NumberInput legend="Rate parameter"
+			<NumberInput legend={<span>Rate parameter <TeX raw="\lambda" /></span>}
 				max={100} min={0.01} step={0.01} defaultValue={this.state.lambda}
 				onChange={( lambda ) => {
-					let formula = <TeX raw={`\\text{Exponential}(${lambda})`} />;
+					const formula = <TeX
+						raw={`\\text{Exponential}(\\lambda = ${lambda})`}
+						elems={{ 'λ': { tooltip: 'Rate parameter' }}}
+					/>;
 					this.setState({ 'lambda': lambda, 'distFormula': formula });
 				}}
 			/>
 		</div>;
 		const uniform = <div>
 			<NumberInput
-				legend="Minimum"
+				legend={<span>Minimum <TeX raw="a" /></span>}
 				step={0.01}
 				min={-500}
 				defaultValue={this.state.a}
 				max={this.state.b}
 				onChange={( a ) => {
-					let formula = <TeX raw={`\\text{Uniform}(${a},${this.state.b})`} />;
+					const formula = <TeX
+						raw={`\\text{Uniform}(a = ${a}, b = ${this.state.b})`}
+						elems={{ a: { tooltip: 'Minimum' }, b: { tooltip: 'Maximum' }}}
+					/>;
 					this.setState({ 'a': a, 'distFormula': formula });
 				}}
 			/>
 			<NumberInput
-				legend="Maximum"
+				legend={<span>Maximum <TeX raw="b" /></span>}
 				step={0.01}
 				min={this.state.a}
 				max={500}
 				defaultValue={this.state.b}
 				onChange={( b ) => {
-					let formula = <TeX raw={`\\text{Uniform}(${this.state.a},${b})`} />;
+					const formula = <TeX
+						raw={`\\text{Uniform}(a = ${this.state.a}, b = ${b})`}
+						elems={{ a: { tooltip: 'Minimum' }, b: { tooltip: 'Maximum' }}}
+					/>;
 					this.setState({ 'b': b, 'distFormula': formula });
 				}}
 			/>
@@ -368,7 +399,10 @@ class ContinuousCLT extends Component {
 				legend={<span>Mean <TeX raw="\mu" /></span>}
 				step={0.01} min={-100} defaultValue={this.state.mu} max={100}
 				onChange={( mu ) => {
-					let formula = <TeX raw={`\\text{Normal}(${mu},${this.state.sigma})`} />;
+					const formula = <TeX
+						raw={`\\text{Normal}( \\mu = ${mu}, \\sigma = ${this.state.sigma})`}
+						elems={{ 'μ': { tooltip: 'Mean' }, 'σ': { tooltip: 'Standard deviation' }}}
+					/>;
 					this.setState({ 'mu': mu, 'distFormula': formula });
 				}}
 			/>
@@ -376,7 +410,10 @@ class ContinuousCLT extends Component {
 				legend={<span> Standard deviation <TeX raw="\sigma" /></span>}
 				step={0.01} min={0.01} defaultValue={this.state.sigma} max={500}
 				onChange={( sigma ) => {
-					let formula = <TeX raw={`\\text{Normal}(${this.state.mu},${sigma})`} />;
+					const formula = <TeX
+						raw={`\\text{Normal}(${this.state.mu},${sigma})`}
+						elems={{ 'μ': { tooltip: 'Mean' }, 'σ': { tooltip: 'Standard deviation' }}}
+					/>;
 					this.setState({ 'sigma': sigma, 'distFormula': formula });
 				}}
 			/>
