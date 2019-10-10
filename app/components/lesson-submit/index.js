@@ -88,13 +88,14 @@ class LessonSubmit extends Component {
 				author: {
 					fontSize: 16,
 					italics: true,
-					margin: [0, 0, 0, 10]
+					margin: [0, 0, 0, 10],
+					alignment: 'center'
 				},
 				date: {
 					fontSize: 16,
 					italics: true,
 					alignment: 'right',
-					margin: [0, 30, 0, 30]
+					margin: [0, 15, 0, 15]
 				},
 				subheader: {
 					fontSize: 18,
