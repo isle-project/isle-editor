@@ -236,7 +236,7 @@ class NumberQuestion extends Component {
 					</TimedButton>
 					<ResponseVisualizer
 						buttonLabel="Answers" id={this.id}
-						data={{ type: 'number' }} info="NUMBER_QUESTION_SUBMISSION"
+						data={{ type: 'number', question: this.props.question }} info="NUMBER_QUESTION_SUBMISSION"
 						style={{ marginLeft: '6px' }}
 					/>
 					{ this.props.feedback ? <FeedbackButtons

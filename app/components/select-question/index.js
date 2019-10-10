@@ -187,7 +187,8 @@ class SelectQuestion extends Component {
 					info="SELECT_QUESTION_SUBMISSION"
 					data={{
 						type: 'factor',
-						levels: this.props.options
+						levels: this.props.options,
+						question: this.props.question
 					}}
 				/>
 				{ this.props.feedback ? <FeedbackButtons

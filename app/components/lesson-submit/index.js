@@ -2,8 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import pdfMake from 'pdfmake/build/pdfmake';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import objectKeys from '@stdlib/utils/keys';
 import beforeUnload from 'utils/before-unload';
 import Signup from 'components/signup';
 import Login from 'components/login';
@@ -19,6 +21,17 @@ function createMessage( session, message ) {
 		text: `Dear ${session.user.name}, this is an automatic confirmation email to inform you that you have successfully completed ${session.lessonName} of course ${session.namespaceName}. ${msg}`,
 		subject: `${session.lessonName} successfully completed!`
 	};
+}
+
+function loadFonts() {
+	import( /* webpackChunkName: "fonts" */ './../markdown-editor/fonts.js' )
+		.then( fonts => {
+			console.log( 'Successfully loaded fonts...' );
+			pdfMake.vfs = fonts.default;
+		})
+		.catch( err => {
+			console.log( 'Encountered an error while loading fonts: '+err.message );
+		});
 }
 
 
@@ -42,6 +55,7 @@ class LessonSubmit extends Component {
 			visibleLogin: false,
 			visibleSignup: false
 		};
+		loadFonts();
 	}
 
 	componentDidMount() {
@@ -53,6 +67,86 @@ class LessonSubmit extends Component {
 
 	componentWillUnmount() {
 		this.unsubsribe();
+	}
+
+	createReponseSummaryDoc = () => {
+		const session = this.context;
+		const doc = {
+			content: [
+				{
+					text: `Responses for ISLE lesson ${session.namespaceName+'/'+session.lessonName}`,
+					style: 'header',
+					alignment: 'center'
+				}
+			],
+			styles: {
+				header: {
+					fontSize: 24,
+					bold: true,
+					margin: [0, 0, 0, 10]
+				},
+				author: {
+					fontSize: 16,
+					italics: true,
+					margin: [0, 0, 0, 10]
+				},
+				date: {
+					fontSize: 16,
+					italics: true,
+					alignment: 'right',
+					margin: [0, 30, 0, 30]
+				},
+				subheader: {
+					fontSize: 18,
+					bold: true,
+					margin: [0, 30, 0, 10]
+				},
+				question: {
+					fontSize: 15,
+					margin: [0, 0, 0, 10],
+					italics: true
+				}
+			}
+		};
+		if ( session.user ) {
+			doc.content.push({
+				text: `by ${session.user.name} (${session.user.email})`,
+				style: 'author'
+			});
+		}
+		const date = new Date();
+		doc.content.push({
+			text: `${date.toLocaleDateString()} - ${date.toLocaleTimeString()}`,
+			style: 'date'
+		});
+		if ( session.currentUserActions ) {
+			const ids = objectKeys( session.responseVisualizers );
+			for ( let i = 0; i < ids.length; i++ ) {
+				const visualizer = session.responseVisualizers[ ids[ i ] ];
+				doc.content.push({
+					text: ids[ i ],
+					style: 'subheader'
+				});
+				if ( visualizer ) {
+					const { type } = visualizer;
+					const question = visualizer.ref.props.data.question;
+					doc.content.push({
+						text: question,
+						style: 'question'
+					});
+					let actions = session.currentUserActions[ ids[ i ] ];
+					if ( actions ) {
+						actions = actions.filter( x => x.type === type );
+						actions = actions.sort( ( a, b ) => a.absoluteTime - b.absoluteTime );
+						const lastAction = actions[ actions.length-1 ];
+						doc.content.push({
+							text: lastAction.value
+						});
+					}
+				}
+			}
+		}
+		pdfMake.createPdf( doc ).download( 'test.pdf' );
 	}
 
 	closeUserModal = () => {
@@ -98,7 +192,7 @@ class LessonSubmit extends Component {
 		session.finalize();
 		let notificationMesage = 'Lesson successfully completed.';
 		if ( this.props.sendConfirmationEmail ) {
-			notificationMesage += ' You will receive a confirmation email shortly';
+			notificationMesage += ' You will receive a confirmation email shortly.';
 			const msg = createMessage( session, this.props.message );
 			session.sendMail( msg, session.user.email );
 		}
@@ -106,7 +200,16 @@ class LessonSubmit extends Component {
 			title: 'Completed',
 			message: notificationMesage,
 			level: 'success',
-			position: 'tr'
+			position: 'tr',
+			dismissible: 'none',
+			autoDismiss: 0,
+			children: <div style={{ marginBottom: '40px' }}>
+				<Button
+					variant="success"
+					size="sm" style={{ float: 'right', marginRight: '10px', marginTop: '10px' }}
+					onClick={this.createReponseSummaryDoc}
+				>Download PDF of Responses</Button>
+			</div>
 		});
 		session.log({
 			id: session.lessonName,

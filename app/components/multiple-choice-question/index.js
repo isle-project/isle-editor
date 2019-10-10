@@ -448,7 +448,8 @@ class MultipleChoiceQuestion extends Component {
 							id={this.id}
 							data={{
 								type: 'factor',
-								levels: this.props.answers.map( x => x.content )
+								levels: this.props.answers.map( x => x.content ),
+								question: this.props.question
 							}}
 							info="MULTIPLE_CHOICE_SUBMISSION"
 						/>
