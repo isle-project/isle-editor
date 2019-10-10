@@ -70,9 +70,6 @@ md.use( katex, {
 md.use( markdownSub );
 md.use( markdownContainer, 'center' );
 md.use( markdownIns );
-
-pdfMake.vfs = {};
-
 const DEFAULT_VALUE = repeat( '\n', 15 );
 const RE_MARKDOWN_NONLINK = /\[[^\]]*\](?=[^[(:])/g;
 
