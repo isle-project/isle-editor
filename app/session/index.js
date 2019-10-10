@@ -1316,7 +1316,11 @@ class Session {
 	* @param {string} id - action id
 	*/
 	setProgress( id ) {
-		if ( this.anonymous || isEmptyObject( this.currentUserActions ) ) {
+		if (
+			this.anonymous ||
+			isEmptyObject( this.currentUserActions ) ||
+			( userRights && userRights.owner )
+		) {
 			return;
 		}
 		const ids = objectKeys( this.responseVisualizers );
