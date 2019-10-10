@@ -2,11 +2,17 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import noop from '@stdlib/utils/noop';
 import Draggable from 'components/draggable';
 import SessionContext from 'session/context.js';
 import { DELETE_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from 'constants/actions.js';
 import './sticky_note.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:sticky-note' );
 
 
 // MAIN //
@@ -49,8 +55,10 @@ class StickyNote extends Component {
 		};
 	}
 
-	triggerClick = () => {
-		if ( this.state.minimized ) {
+	handleClick = () => {
+		debug( 'Handle click...' );
+		if ( this.state.minimized && !this.isDragging ) {
+			debug( 'Maximize note...' );
 			this.setState({
 				minimized: false
 			});
@@ -204,7 +212,19 @@ class StickyNote extends Component {
 		});
 	}
 
+	handleDragStart = () => {
+		debug( 'Started dragging...' );
+	}
+
+	handleDrag = () => {
+		this.isDragging = true;
+	}
+
 	handleDragStop = ( event, data ) => {
+		debug( 'Stopped dragging...' );
+		setTimeout( () => {
+			this.isDragging = false;
+		}, 200 );
 		if ( this.props.id ) {
 			const session = this.context;
 			session.log({
@@ -306,8 +326,8 @@ class StickyNote extends Component {
 		}
 		const out = <div className="sticky-note-outer" style={style}>
 			<div
-				onClick={this.triggerClick} className={className}
-				onKeyPress={this.triggerClick} tabIndex={0} role="button"
+				onClick={this.handleClick} className={className}
+				onKeyPress={this.handleClick} tabIndex={0} role="button"
 			>
 				<div className="sticky-note-wrapper">
 					<div className="sticky-note-controls">
@@ -332,6 +352,8 @@ class StickyNote extends Component {
 				bounds="#Lesson"
 				cancel=".noDrag"
 				onStop={this.handleDragStop}
+				onStart={this.handleDragStart}
+				onDrag={this.handleDrag}
 			>{out}</Draggable> );
 		}
 		return out;
