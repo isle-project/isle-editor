@@ -290,7 +290,7 @@ MatchListQuestion.propTypes = {
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf( PropTypes.string ),
 	provideFeedback: PropTypes.bool,
-	feedback: PropTypes.object,
+	feedback: PropTypes.bool,
 	chat: PropTypes.bool,
 	colorScale: PropTypes.array,
 	shuffle: PropTypes.oneOf([ 'left', 'right', 'both' ]),
