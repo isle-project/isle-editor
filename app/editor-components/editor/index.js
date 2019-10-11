@@ -417,14 +417,11 @@ class Editor extends Component {
 		placeCursor= false
 	) => {
 		const range = new this.monaco.Range( coords[0], coords[1], coords[0], coords[1] );
-		console.log( this.props.filePath );
 		if ( this.props.filePath ) {
 			const destDir = dirname( this.props.filePath );
 			const { name, path } = file;
 			const isleDir = join( destDir, 'isle' );
-			console.log( isleDir );
 			const videoDir = join( isleDir, 'video' );
-			console.log( videoDir );
 			if ( !exists.sync( isleDir ) ) {
 				mkdirSync( isleDir );
 			}
@@ -463,12 +460,10 @@ class Editor extends Component {
 	}
 
 	handleDrop = ( e, target ) => {
-		console.log( e.dataTransfer );
 		const text = e.dataTransfer.getData( 'text' );
 		if ( text ) {
 			this.insertTextAtPos( text, [ target.position.lineNumber, target.position.column ], true );
 		}
-
 		if ( e.dataTransfer.files ) {
 			for ( let i = 0; i < e.dataTransfer.files.length; i++) {
 				const file = e.dataTransfer.files[ i ];
