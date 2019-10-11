@@ -3,7 +3,7 @@
 import cp from 'child_process';
 import { appendFileSync, copyFileSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'fs';
 import { copy } from 'fs-extra';
-import { dirname, extname, resolve, join } from 'path';
+import { basename, dirname, extname, resolve, join } from 'path';
 import yaml from 'js-yaml';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -500,8 +500,10 @@ function writeIndexFile({
 
 	// Copy asset directories:
 	const dir = dirname( filePath );
-	copy( join( dir, 'isle', 'img' ), join( appDir, 'isle', 'img' ) );
-	copy( join( dir, 'isle', 'video' ), join( appDir, 'isle', 'video' ) );
+	const fileName = basename( filePath, extname( filePath ) );
+	const isleDir = `${fileName}-resources`;
+	copy( join( dir, isleDir, 'img' ), join( appDir, isleDir, 'img' ) );
+	copy( join( dir, isleDir, 'video' ), join( appDir, isleDir, 'video' ) );
 
 	let imgPath = join( basePath, 'app', 'img' );
 	copyFileSync( join( imgPath, 'favicon.ico' ), join( appDir, 'favicon.ico' ) );

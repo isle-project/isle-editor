@@ -144,9 +144,10 @@ class Editor extends Component {
 			this.editor.executeEdits( 'my-source', [ fix ] );
 		});
 
-		this.copyToLocal = this.editor.addCommand( 'copy-to-local', ( _, url, type, p ) => {
+		this.copyToLocal = this.editor.addCommand( 'copy-to-local', ( _, url, type, ext, p ) => {
 			const destDir = dirname( this.props.filePath );
-			const isleDir = join( destDir, 'isle' );
+			const fileName = basename( this.props.filePath, ext );
+			const isleDir = join( destDir, `${fileName}-resources` );
 			let subdir = type;
 			const resDir = join( isleDir, subdir );
 			if ( !exists.sync( isleDir ) ) {
@@ -275,7 +276,7 @@ class Editor extends Component {
 					command: {
 						id: this.copyToLocal,
 						title: 'Copy image to local location',
-						arguments: [ selectedText, 'img', selection ]
+						arguments: [ selectedText, 'img', ext, selection ]
 					},
 					title: 'Copy image to local location'
 				});
@@ -284,7 +285,7 @@ class Editor extends Component {
 					command: {
 						id: this.copyToLocal,
 						title: 'Copy video to local location',
-						arguments: [ selectedText, 'video', selection ]
+						arguments: [ selectedText, 'video', ext, selection ]
 					},
 					title: 'Copy video to local location'
 				});
@@ -387,8 +388,9 @@ class Editor extends Component {
 		const range = new this.monaco.Range( coords[0], coords[1], coords[0], coords[1] );
 		if ( this.props.filePath ) {
 			const destDir = dirname( this.props.filePath );
+			const fileName = basename( this.props.filePath, extname( this.props.filePath ) );
 			const { name, path } = file;
-			const isleDir = join( destDir, 'isle' );
+			const isleDir = join( destDir, `${fileName}-resources` );
 			const imgDir = join( isleDir, 'img' );
 			if ( !exists.sync( isleDir ) ) {
 				mkdirSync( isleDir );
@@ -419,8 +421,9 @@ class Editor extends Component {
 		const range = new this.monaco.Range( coords[0], coords[1], coords[0], coords[1] );
 		if ( this.props.filePath ) {
 			const destDir = dirname( this.props.filePath );
+			const fileName = basename( this.props.filePath, extname( this.props.filePath ) );
 			const { name, path } = file;
-			const isleDir = join( destDir, 'isle' );
+			const isleDir = join( destDir, `${fileName}-resources` );
 			const videoDir = join( isleDir, 'video' );
 			if ( !exists.sync( isleDir ) ) {
 				mkdirSync( isleDir );
