@@ -1,9 +1,10 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Card from 'react-bootstrap/Card';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
@@ -20,6 +21,7 @@ import min from 'utils/statistic/min.js';
 import max from 'utils/statistic/max.js';
 import Modal from 'react-bootstrap/Modal';
 import TeX from 'components/tex';
+import runif from '@stdlib/random/base/uniform';
 import keys from '@stdlib/utils/keys';
 import roundn from '@stdlib/math/base/special/roundn';
 import copy from '@stdlib/utils/copy';
@@ -78,20 +80,20 @@ const createCategoryNames = ( xBreaks, customNames ) => {
 	if ( customNames[ 0 ] ) {
 		out[ 0 ] = customNames[ 0 ];
 	} else {
-		out[ 0 ] = `(-\u221E,${roundn( xBreaks[0], -2 )})`;
+		out[ 0 ] = `(-\u221E,${xBreaks[0]})`;
 	}
 	for ( let i = 1; i < customNames.length; i++ ) {
 		if ( customNames[ i ] ) {
 			out[ i ] = customNames[ i ];
 		} else {
-			out[ i ] = `[${roundn( xBreaks[i-1], -2 )},${roundn( xBreaks[i], -2)})`;
+			out[ i ] = `[${xBreaks[i-1]},${xBreaks[i]})`;
 		}
 	}
 	const last = customNames.length - 1;
 	if ( customNames[ last ] ) {
 		out[ last ] = customNames[ last ];
 	} else {
-		out[ last ] = `[${roundn( xBreaks[ xBreaks.length - 1 ], -2)},\u221E)`;
+		out[ last ] = `[${xBreaks[ xBreaks.length - 1 ]},\u221E)`;
 	}
 	return out;
 };
@@ -103,36 +105,15 @@ class BinTransformer extends Component {
 	constructor( props ) {
 		super( props );
 
-		const activeVar = props.quantitative[ 0 ];
-		const histConfigSettings = {
-			'data': props.data,
-			'variable': activeVar,
-			'group': null,
-			'overlayDensity': true,
-			'densityType': 'Data-driven',
-			'chooseBins': false,
-			'nBins': null
-		};
-		const configHist = generateHistogramConfig( histConfigSettings );
-		configHist.layout.yaxis = {
-			range: [
-				min( configHist.data[ 1 ].y ),
-				max( configHist.data[ 1 ].y )
-			]
-		};
-		let values = props.data[ props.quantitative[0] ];
-		values = values.filter( x => isNumber( x ) && !isnan( x ) );
-		const xBreaks = [ mean( values ) ];
-		const customNames = [ false, false ];
 		this.state = {
-			activeVar,
-			configHist,
-			xBreaks,
+			activeVar: null,
+			configHist: null,
+			xBreaks: null,
 			name: '',
-			catNames: createCategoryNames( xBreaks, customNames ),
-			customNames: customNames
+			catNames: null,
+			customNames: null,
+			snapDigits: 0
 		};
-		configHist.layout.shapes = makeShapes( xBreaks );
 	}
 
 	onChangeHistLine = ( data ) => {
@@ -141,7 +122,7 @@ class BinTransformer extends Component {
 		if ( matches ) {
 			const ind = matches[ 1 ];
 			const xBreaks = copy( this.state.xBreaks );
-			xBreaks[ ind ] = data[ keyUpdate[0] ];
+			xBreaks[ ind ] = roundn( data[ keyUpdate[0] ], -this.state.snapDigits );
 			xBreaks.sort( ascending );
 			const configHist = copy( this.state.configHist );
 			configHist.layout.shapes = makeShapes( xBreaks );
@@ -169,11 +150,15 @@ class BinTransformer extends Component {
 			range: [
 				min( configHist.data[ 1 ].y ),
 				max( configHist.data[ 1 ].y )
-			]
+			],
+			fixedrange: true
+		};
+		configHist.layout.xaxis = {
+			fixedrange: true
 		};
 		let values = this.props.data[ value ];
 		values = values.filter( x => isNumber( x ) && !isnan( x ) );
-		const xBreaks = [ mean( values ) ];
+		const xBreaks = [ roundn( mean( values ), -this.state.snapDigits ) ];
 		configHist.layout.shapes = makeShapes( xBreaks );
 		const customNames = [ false, false ];
 		const catNames = createCategoryNames( xBreaks, customNames );
@@ -234,7 +219,7 @@ class BinTransformer extends Component {
 		return ( value ) => {
 			debug( 'Change break point...' );
 			const xBreaks = copy( this.state.xBreaks );
-			xBreaks[ ind ] = value;
+			xBreaks[ ind ] = roundn( value, -this.state.snapDigits );
 			xBreaks.sort( ascending );
 			const configHist = copy( this.state.configHist );
 			configHist.layout.shapes = makeShapes( xBreaks );
@@ -257,8 +242,8 @@ class BinTransformer extends Component {
 						raw="x < "
 					/><NumberInput
 						inline
-						onChange={this.changeFactory( 0 )}
-						defaultValue={roundn( xBreaks[0], -3 )}
+						onBlur={this.changeFactory( 0 )}
+						defaultValue={xBreaks[0]}
 						step="any"
 					/>
 				</Col>
@@ -282,15 +267,15 @@ class BinTransformer extends Component {
 						<Col md={7}>
 							<NumberInput
 								inline
-								onChange={this.changeFactory( i )}
-								defaultValue={roundn( xBreaks[i], -3 )}
+								onBlur={this.changeFactory( i )}
+								defaultValue={xBreaks[i]}
 								step="any"
 							/>
 							<TeX raw="\le x <" />
 							<NumberInput
 								inline
-								onChange={this.changeFactory( i+1 )}
-								defaultValue={roundn( xBreaks[i+1], -3 )}
+								onBlur={this.changeFactory( i+1 )}
+								defaultValue={xBreaks[i+1]}
 								step="any"
 							/>
 						</Col>
@@ -308,6 +293,7 @@ class BinTransformer extends Component {
 								onClick={this.deleteBreak(i)}
 								style={{ marginTop: '5px' }}
 								disabled={disableButton}
+								tooltipPlacement="right"
 							/>
 						</Col>
 					</Row>
@@ -322,7 +308,7 @@ class BinTransformer extends Component {
 					<NumberInput
 						inline
 						onChange={this.changeFactory( len-1 )}
-						defaultValue={roundn( xBreaks[ len-1 ], -3 )}
+						defaultValue={xBreaks[ len-1 ]}
 						step="any"
 					/>
 				</Col>
@@ -362,11 +348,11 @@ class BinTransformer extends Component {
 	}
 
 	addNewBreakPoint = () => {
-		var xBreaks = copy( this.state.xBreaks );
+		const xBreaks = copy( this.state.xBreaks );
 		let vals = this.props.data[ this.state.activeVar ];
 		vals = vals.filter( x => isNumber( x ) && !isnan( x ) );
-		const avg = mean( vals );
-		xBreaks.push( avg );
+		const avg = runif( 0.8, 1.2 ) * mean( vals );
+		xBreaks.push( roundn( avg, -this.state.snapDigits ) );
 		xBreaks.sort( ascending );
 
 		const configHist = copy( this.state.configHist );
@@ -382,8 +368,72 @@ class BinTransformer extends Component {
 		});
 	}
 
-	render() {
+	handleSnapDigitsChange = ( val ) => {
+		this.setState({ snapDigits: val });
+	}
+
+	renderBody() {
 		const configHist = this.state.configHist;
+		const select = <SelectInput
+			legend="Variable to bin:"
+			defaultValue={this.state.activeVar}
+			options={this.props.quantitative}
+			onChange={this.handleVariableChange}
+			style={{ maxWidth: 400 }}
+		/>;
+		if ( !configHist ) {
+			return (
+				<Fragment>
+					{select}
+					<Alert variant="info">Please select a variable to bin...</Alert>
+				</Fragment>
+			);
+		}
+		return (
+			<Fragment>
+				{select}
+				<Button className="insert-line-button" onClick={this.addNewBreakPoint}>
+					Insert break line
+				</Button>
+				<p>
+					Drag the red vertical bar(s) to change breakpoints
+					(<NumberInput legend="digits after comma to snap to" min={0} max={9} inline defaultValue={this.state.snapDigits} onChange={this.handleSnapDigitsChange} />)
+				</p>
+				<div>
+					<Plotly
+						data={configHist.data}
+						layout={configHist.layout}
+						editable
+						fit
+						removeButtons
+						legendButtons={false}
+						onRelayout={this.onChangeHistLine}
+					/>
+				</div>
+				<div>
+					<Card className="mb-2" >
+						<Card.Header>Choose categorical labels for interval bins:</Card.Header>
+						<Card.Body>
+							{this.makeTextInputs()}
+						</Card.Body>
+					</Card>
+				</div>
+				<FormGroup style={{ width: 'fit-content' }} >
+					<FormLabel>Name of new variable:</FormLabel>
+					<FormControl
+						type="text"
+						placeholder="Select name..."
+						onChange={this.handleNameChange}
+					/>
+					<FormText>
+						The new variable will be appended as a new column to the data table.
+					</FormText>
+				</FormGroup>
+			</Fragment>
+		);
+	}
+
+	render() {
 		return (
 			<Modal
 				dialogClassName='modal-75w input'
@@ -394,49 +444,7 @@ class BinTransformer extends Component {
 					<Modal.Title>Create new variable by binning a quantitative variable into categories</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<SelectInput
-						legend="Variable to bin:"
-						defaultValue={this.state.activeVar}
-						options={this.props.quantitative}
-						onChange={this.handleVariableChange}
-						style={{ maxWidth: 400 }}
-					/>
-					<Button className="insert-line-button" onClick={this.addNewBreakPoint}>
-						Insert break line
-					</Button>
-					<p>
-						Drag the red vertical bar(s) to change breakpoints.
-					</p>
-					<div>
-						<Plotly
-							data={configHist.data}
-							layout={configHist.layout}
-							editable
-							fit
-							removeButtons
-							legendButtons={false}
-							onRelayout={this.onChangeHistLine}
-						/>
-					</div>
-					<div>
-						<Card className="mb-2" >
-							<Card.Header>Choose categorical labels for interval bins:</Card.Header>
-							<Card.Body>
-								{this.makeTextInputs()}
-							</Card.Body>
-						</Card>
-					</div>
-					<FormGroup style={{ width: 'fit-content' }} >
-						<FormLabel>Name of new variable:</FormLabel>
-						<FormControl
-							type="text"
-							placeholder="Select name..."
-							onChange={this.handleNameChange}
-						/>
-						<FormText>
-							The new variable will be appended as a new column to the data table.
-						</FormText>
-					</FormGroup>
+					{this.renderBody()}
 				</Modal.Body>
 				<Modal.Footer style={{ justifyContent: 'center' }} >
 					<Button onClick={this.makeNewVar} disabled={this.state.name.length < 2}>
