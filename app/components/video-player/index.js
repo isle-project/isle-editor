@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
 import omit from '@stdlib/utils/omit';
+import contains from '@stdlib/assert/contains';
 import generateUID from 'utils/uid';
 import VoiceControl from 'components/voice-control';
 import SessionContext from 'session/context.js';
@@ -118,6 +119,18 @@ class Video extends Component {
 			style.marginRight = 'auto';
 		}
 		props = omit( props, OMITTED_PROPS );
+		let config = {};
+		if ( contains( props.url, 'yout' ) ) {
+			config = {
+				youtube: {
+					playerVars: {
+						showinfo: 0,
+						rel: 0,
+						modestbranding: 1
+					}
+				}
+			}
+		}
 		const out = <div
 			id={this.id}
 			style={style}
@@ -132,15 +145,7 @@ class Video extends Component {
 				onReady={this.handleStartTime}
 				progressInterval={1000}
 				ref={( div ) => { this.player = div; }}
-				config={{
-					youtube: {
-						playerVars: {
-							showinfo: 0,
-							rel: 0,
-							modestbranding: 1
-						}
-					}
-				}}
+				config={config}
 				{...props}
 			/>
 		</div>;
