@@ -99,7 +99,7 @@ class Transformer extends Component {
 						size="large"
 						block
 					>
-						Formula Transformation
+						Transforming quantitative variables (e.g., sqrt)
 					</Button>
 				</div>
 				<div>
@@ -109,7 +109,7 @@ class Transformer extends Component {
 						size="large"
 						block
 					>
-						Bin Transformation
+						Bin quantitative variables into categorical
 					</Button>
 				</div>
 				<div>
@@ -119,7 +119,7 @@ class Transformer extends Component {
 						size="large"
 						block
 					>
-						Categorical Transformation
+						Rename or combine categories
 					</Button>
 				</div>
 				{this.renderBinModal()}

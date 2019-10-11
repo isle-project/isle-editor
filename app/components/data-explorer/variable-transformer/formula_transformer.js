@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FormControl from 'react-bootstrap/FormControl';
+import FormText from 'react-bootstrap/FormText';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -178,7 +179,7 @@ class FormulaTransformer extends Component {
 				dialogClassName='modal-75w input'
 			>
 				<Modal.Header closeButton>
-					<Modal.Title>Formula Transformation</Modal.Title>
+					<Modal.Title>Create a new variable by transforming quantitative variables via formula</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<div className="formula-transformer-body">
@@ -186,6 +187,9 @@ class FormulaTransformer extends Component {
 							<Card.Header>Generate new variables:</Card.Header>
 							<Card.Body>
 								<TextInput legend="Variable Name" placeholder="Select name..." onChange={this.handleNameChange} width={160} />
+								<FormText>
+									The new variable will be appended as a new column to the data table.
+								</FormText>
 							</Card.Body>
 						</Card>
 						<Card className="mb-2" >
@@ -268,9 +272,11 @@ class FormulaTransformer extends Component {
 								/>
 							</Card.Body>
 						</Card>
-						<Button onClick={this.handleGenerate} >Generate</Button>
 					</div>
 				</Modal.Body>
+				<Modal.Footer style={{ justifyContent: 'center' }} >
+					<Button onClick={this.handleGenerate} >Create new variable</Button>
+				</Modal.Footer>
 			</Modal>
 		);
 	}

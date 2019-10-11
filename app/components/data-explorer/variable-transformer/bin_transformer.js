@@ -3,13 +3,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
+import FormText from 'react-bootstrap/FormText';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Plotly from 'components/plotly';
 import SelectInput from 'components/input/select';
 import TextInput from 'components/input/text';
@@ -250,82 +251,98 @@ class BinTransformer extends Component {
 		const xBreaks = this.state.xBreaks;
 		const disableButton = xBreaks.length === 1;
 		inputs.push(
-			<div key="div-0">
-				<TextInput
-					key={0}
-					legend={<span><TeX
+			<Row key="div-0">
+				<Col md={7}>
+					<TeX
 						raw="x < "
 					/><NumberInput
 						inline
 						onChange={this.changeFactory( 0 )}
 						defaultValue={roundn( xBreaks[0], -3 )}
 						step="any"
-					/></span>}
-					defaultValue={this.state.catNames[ 0 ]}
-					onChange={this.handleCatNamesFactory( 0 )}
-					style={{ width: '95%', float: 'left' }}
-				/>
-			</div>
+					/>
+				</Col>
+				<Col md={4}>
+					<TextInput
+						key={0}
+						legend="Label 1"
+						defaultValue={this.state.catNames[ 0 ]}
+						onChange={this.handleCatNamesFactory( 0 )}
+						style={{ width: 200 }}
+					/>
+				</Col>
+				<Col md={1}></Col>
+			</Row>
 		);
 		if ( xBreaks.length > 1 ) {
 			for ( let i = 0; i < xBreaks.length - 1; i++ ) {
 				const changeFn = this.handleCatNamesFactory( i+1 );
 				inputs.push(
-					<div key={`div-${i+1}`}>
-						<TextInput
-							key={1+i}
-							legend={<span>
-								<NumberInput
-									inline
-									onChange={this.changeFactory( i )}
-									defaultValue={roundn( xBreaks[i], -3 )}
-									step="any"
-								/>
-								<TeX raw="\le x <" />
-								<NumberInput
-									inline
-									onChange={this.changeFactory( i+1 )}
-									defaultValue={roundn( xBreaks[i+1], -3 )}
-									step="any"
-								/>
-							</span>}
-							defaultValue={this.state.catNames[ i+1 ]}
-							onChange={changeFn}
-							style={{ width: '95%', float: 'left' }}
-						/>
-						<ClearButton
-							onClick={this.deleteBreak(i)}
-							style={{ float: 'right', marginTop: '5px' }}
-							disabled={disableButton}
-						/>
-					</div>
+					<Row key={`div-${i+1}`}>
+						<Col md={7}>
+							<NumberInput
+								inline
+								onChange={this.changeFactory( i )}
+								defaultValue={roundn( xBreaks[i], -3 )}
+								step="any"
+							/>
+							<TeX raw="\le x <" />
+							<NumberInput
+								inline
+								onChange={this.changeFactory( i+1 )}
+								defaultValue={roundn( xBreaks[i+1], -3 )}
+								step="any"
+							/>
+						</Col>
+						<Col md={4}>
+							<TextInput
+								key={1+i}
+								legend={`Label ${i+2}`}
+								defaultValue={this.state.catNames[ i+1 ]}
+								onChange={changeFn}
+								style={{ width: 200 }}
+							/>
+						</Col>
+						<Col md={1}>
+							<ClearButton
+								onClick={this.deleteBreak(i)}
+								style={{ marginTop: '5px' }}
+								disabled={disableButton}
+							/>
+						</Col>
+					</Row>
 				);
 			}
 		}
 		const len = xBreaks.length;
 		inputs.push(
-			<div key={`div-${len}`}>
-				<TextInput
-					legend={<span>
-						<TeX raw="x >" />
-						<NumberInput
-							inline
-							onChange={this.changeFactory( len-1 )}
-							defaultValue={roundn( xBreaks[ len-1 ], -3 )}
-							step="any"
-						/>
-					</span>}
-					defaultValue={this.state.catNames[ len ]}
-					onChange={this.handleCatNamesFactory( len )}
-					style={{ width: '95%', float: 'left' }}
-					key={len}
-				/>
-				<ClearButton
-					onClick={this.deleteBreak( len - 1 )}
-					style={{ float: 'right', marginTop: '5px' }}
-					disabled={disableButton}
-				/>
-			</div>
+			<Row key={`div-${len}`}>
+				<Col md={7}>
+					<TeX raw="x >" />
+					<NumberInput
+						inline
+						onChange={this.changeFactory( len-1 )}
+						defaultValue={roundn( xBreaks[ len-1 ], -3 )}
+						step="any"
+					/>
+				</Col>
+				<Col md={4}>
+					<TextInput
+						legend={`Label ${len+1}`}
+						defaultValue={this.state.catNames[ len ]}
+						onChange={this.handleCatNamesFactory( len )}
+						key={len}
+						style={{ width: 200 }}
+					/>
+				</Col>
+				<Col md={1}>
+					<ClearButton
+						onClick={this.deleteBreak( len - 1 )}
+						style={{ marginTop: '5px' }}
+						disabled={disableButton}
+					/>
+				</Col>
+			</Row>
 		);
 		return inputs;
 	}
@@ -374,7 +391,7 @@ class BinTransformer extends Component {
 				show={this.props.show}
 			>
 				<Modal.Header closeButton>
-					<Modal.Title>Binning of Quantitative Variables</Modal.Title>
+					<Modal.Title>Create new variable by binning a quantitative variable into categories</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<SelectInput
@@ -387,6 +404,9 @@ class BinTransformer extends Component {
 					<Button className="insert-line-button" onClick={this.addNewBreakPoint}>
 						Insert break line
 					</Button>
+					<p>
+						Drag the red vertical bar(s) to change breakpoints.
+					</p>
 					<div>
 						<Plotly
 							data={configHist.data}
@@ -400,31 +420,28 @@ class BinTransformer extends Component {
 					</div>
 					<div>
 						<Card className="mb-2" >
-							<Card.Header>Choose labels for interval bins:</Card.Header>
+							<Card.Header>Choose categorical labels for interval bins:</Card.Header>
 							<Card.Body>
 								{this.makeTextInputs()}
 							</Card.Body>
 						</Card>
 					</div>
+					<FormGroup style={{ width: 'fit-content' }} >
+						<FormLabel>Name of new variable:</FormLabel>
+						<FormControl
+							type="text"
+							placeholder="Select name..."
+							onChange={this.handleNameChange}
+						/>
+						<FormText>
+							The new variable will be appended as a new column to the data table.
+						</FormText>
+					</FormGroup>
 				</Modal.Body>
-				<Modal.Footer>
-					<Row>
-						<Col>
-							<FormGroup>
-								<FormLabel>Generated variable:</FormLabel>
-								<FormControl
-									type="text"
-									placeholder="Select name..."
-									onChange={this.handleNameChange}
-								/>
-							</FormGroup>
-						</Col>
-						<Col>
-							<Button onClick={this.makeNewVar} disabled={this.state.name.length < 2}>
-								Create new variable
-							</Button>
-						</Col>
-					</Row>
+				<Modal.Footer style={{ justifyContent: 'center' }} >
+					<Button onClick={this.makeNewVar} disabled={this.state.name.length < 2}>
+						Create new variable
+					</Button>
 				</Modal.Footer>
 			</Modal>
 		);

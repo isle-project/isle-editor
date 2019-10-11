@@ -10,6 +10,7 @@ import Row from 'react-bootstrap/Row';
 import FormControl from 'react-bootstrap/FormControl';
 import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
+import FormText from 'react-bootstrap/FormText';
 import Table from 'react-bootstrap/Table';
 import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
@@ -275,11 +276,11 @@ class CategoricalTransformer extends Component {
 				show={this.props.show}
 			>
 				<Modal.Header closeButton>
-					<Modal.Title>Transform Categorical Variables</Modal.Title>
+					<Modal.Title>Create new variable by renaming or combining categories</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<Row>
-						<Col md={3}>
+						<Col md={4}>
 							<SelectInput
 								legend="First Variable:"
 								defaultValue={this.state.firstVar || ''}
@@ -287,7 +288,7 @@ class CategoricalTransformer extends Component {
 								onChange={this.handleFirstVariableChange}
 							/>
 						</Col>
-						<Col md={3}>
+						<Col md={4}>
 							<SelectInput
 								clearable
 								legend="Second Variable (optional):"
@@ -303,7 +304,7 @@ class CategoricalTransformer extends Component {
 					<Row>
 						<Tooltip tooltip="If the new values for all categories are numeric, you may tick this box to create a quantitative variable instead of a categorical one">
 							<CheckboxInput
-								legend="Convert to numbers (all new labels need to be digits)"
+								legend="Treat category labels as numbers (all new labels need to be digits)"
 								defaultValue={false}
 								disabled={!this.state.onlyNumbers}
 								onChange={() => {
@@ -314,25 +315,24 @@ class CategoricalTransformer extends Component {
 							/>
 						</Tooltip>
 					</Row>
-				</Modal.Body>
-				<Modal.Footer>
 					<Row>
-						<Col>
-							<FormGroup>
-								<FormLabel>Generated variable:</FormLabel>
-								<FormControl
-									type="text"
-									placeholder="Select name..."
-									onChange={this.handleGeneratedNameChange}
-								/>
-							</FormGroup>
-						</Col>
-						<Col>
-							<Button onClick={this.makeNewVar} disabled={this.state.generatedName.length < 2}>
-								Create new variable
-							</Button>
-						</Col>
+						<FormGroup style={{ margin: 8 }}>
+							<FormLabel>Name of new variable:</FormLabel>
+							<FormControl
+								type="text"
+								placeholder="Select name..."
+								onChange={this.handleGeneratedNameChange}
+							/>
+							<FormText>
+								The new variable will be appended as a new column to the data table.
+							</FormText>
+						</FormGroup>
 					</Row>
+				</Modal.Body>
+				<Modal.Footer style={{ justifyContent: 'center' }}>
+					<Button onClick={this.makeNewVar} disabled={this.state.generatedName.length < 2}>
+						Create new variable
+					</Button>
 				</Modal.Footer>
 			</Modal>
 		);
