@@ -2,7 +2,6 @@
 
 import { dirname, join, extname } from 'path';
 import { json, csv } from 'd3';
-import { readFileSync } from 'fs';
 import logger from 'debug';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
@@ -56,17 +55,7 @@ async function loadRequires( libs, filePath ) {
 					}
 				} else {
 					debug( 'Load file from disk...' );
-					if ( ext === '.svg' ) {
-						debug( 'Read SVG from disk: '+lib );
-						let content = readFileSync( lib ).toString( 'base64' );
-						eval( `global[ '${key}' ] = 'data:image/svg+xml;base64,${content}';` );
-					}
-					else if ( ext === '.jpg' || ext === '.png' || ext === '.jpeg' ) {
-						debug( 'Read image from disk: '+lib );
-						let buffer = readFileSync( lib );
-						eval( `global[ '${key}' ] = 'data:image/jpeg;base64,${buffer.toString( 'base64' )}'` );
-					}
-					else if ( ext === '.json' ) {
+					if ( ext === '.json' ) {
 						const json = readJSON.sync( lib );
 						if ( isError( json ) ) {
 							throw new Error(`\n Error encountered while reading ${lib}: ` + json.message);

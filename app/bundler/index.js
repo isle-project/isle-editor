@@ -2,6 +2,7 @@
 
 import cp from 'child_process';
 import { appendFileSync, copyFileSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'fs';
+import { copy } from 'fs-extra';
 import { dirname, extname, resolve, join } from 'path';
 import yaml from 'js-yaml';
 import webpack from 'webpack';
@@ -64,14 +65,6 @@ const loadSyncRequires = ( libs, filePath ) => {
 					if ( process.platform === 'win32' ) {
 						lib = replace( lib, '\\', '\\\\' );
 					}
-				}
-				if ( /\.svg$/.test( lib ) ) {
-					let content = readFileSync( lib ).toString( 'base64' );
-					str += `global[ '${key}' ] = 'data:image/svg+xml;base64,${content}';\n`;
-				}
-				else if ( /\.(?:jpg|png)$/.test( lib ) ) {
-					let buffer = readFileSync( lib );
-					str += `global[ '${key}' ] = 'data:image/jpeg;base64,${buffer.toString( 'base64' )}';\n`;
 				}
 				else {
 					str += `import ${key} from '${lib}';\n`;
@@ -504,6 +497,11 @@ function writeIndexFile({
 	if ( meta.style ) {
 		appendFileSync( join( appDir, 'css', 'custom.css' ), meta.style );
 	}
+
+	// Copy asset directories:
+	const dir = dirname( filePath );
+	copy( join( dir, 'isle', 'img' ), join( appDir, 'isle', 'img' ) );
+	copy( join( dir, 'isle', 'video' ), join( appDir, 'isle', 'video' ) );
 
 	let imgPath = join( basePath, 'app', 'img' );
 	copyFileSync( join( imgPath, 'favicon.ico' ), join( appDir, 'favicon.ico' ) );

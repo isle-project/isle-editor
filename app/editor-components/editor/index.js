@@ -2,9 +2,15 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { resolve, join } from 'path';
+import { basename, dirname, relative, resolve, join, extname } from 'path';
+import { copyFileSync, mkdirSync, createWriteStream } from 'fs';
+import https from 'https';
+import http from 'http';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import logger from 'debug';
+import contains from '@stdlib/assert/contains';
+import isURI from '@stdlib/assert/is-uri';
+import exists from '@stdlib/fs/exists';
 import noop from '@stdlib/utils/noop';
 import objectKeys from '@stdlib/utils/keys';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
@@ -15,6 +21,9 @@ import readFile from '@stdlib/fs/read-file';
 import Loadable from 'components/loadable';
 import MonacoEditor from 'react-monaco-editor';
 import SpellChecker from 'utils/spell-checker';
+import VIDEO_EXTENSIONS from './video_extensions.json';
+import IMAGE_EXTENSIONS from './image_extensions.json';
+import MonacoDragNDropProvider from './monaco_drag_provider.js';
 const ComponentConfigurator = Loadable( () => import( './component_configurator.js' ) );
 const EditorContextMenu = Loadable( () => import( './context_menu.js' ) );
 import './editor.css';
@@ -134,6 +143,41 @@ class Editor extends Component {
 			};
 			this.editor.executeEdits( 'my-source', [ fix ] );
 		});
+
+		this.copyToLocal = this.editor.addCommand( 'copy-to-local', ( _, url, type, p ) => {
+			const destDir = dirname( this.props.filePath );
+			const isleDir = join( destDir, 'isle' );
+			let subdir = type;
+			const resDir = join( isleDir, subdir );
+			if ( !exists.sync( isleDir ) ) {
+				mkdirSync( isleDir );
+			}
+			if ( !exists.sync( resDir ) ) {
+				mkdirSync( resDir );
+			}
+			const name = basename( url );
+			const destFilePath = join( resDir, name );
+			const file = createWriteStream( destFilePath );
+			const get = startsWith( url, 'https' ) ? https.get : http.get;
+			get( url, ( response ) => {
+				response.pipe( file );
+				file.on( 'finish', ( err ) => {
+					if ( err ) {
+						return debug( err );
+					}
+					const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
+					const id = { major: 1, minor: 1 };
+					const fix = {
+						title: 'Copy to local',
+						identifier: id,
+						range,
+						text: './' + relative( destDir, destFilePath )
+					};
+					this.editor.executeEdits( 'my-source', [ fix ] );
+					file.close();
+				});
+			});
+		});
 	}
 
 	shouldComponentUpdate( prevProps, prevState ) {
@@ -222,6 +266,30 @@ class Editor extends Component {
 					});
 				}
 			});
+		const selection = this.editor.getSelection();
+		const selectedText = this.editor.getModel().getValueInRange( selection );
+		if ( isURI( selectedText ) ) {
+			const ext = extname( selectedText );
+			if ( contains( IMAGE_EXTENSIONS, ext ) ) {
+				actions.push({
+					command: {
+						id: this.copyToLocal,
+						title: 'Copy image to local location',
+						arguments: [ selectedText, 'img', selection ]
+					},
+					title: 'Copy image to local location'
+				});
+			} else if ( contains( VIDEO_EXTENSIONS, ext ) ) {
+				actions.push({
+					command: {
+						id: this.copyToLocal,
+						title: 'Copy video to local location',
+						arguments: [ selectedText, 'video', selection ]
+					},
+					title: 'Copy video to local location'
+				});
+			}
+		}
 		return {
 			actions,
 			dispose(){}
@@ -311,6 +379,109 @@ class Editor extends Component {
 		});
 	}
 
+	insertImgAtPos = (
+		file,
+		coords = [0, 0],
+		placeCursor= false
+	) => {
+		const range = new this.monaco.Range( coords[0], coords[1], coords[0], coords[1] );
+		if ( this.props.filePath ) {
+			const destDir = dirname( this.props.filePath );
+			const { name, path } = file;
+			const isleDir = join( destDir, 'isle' );
+			const imgDir = join( isleDir, 'img' );
+			if ( !exists.sync( isleDir ) ) {
+				mkdirSync( isleDir );
+			}
+			if ( !exists.sync( imgDir ) ) {
+				mkdirSync( imgDir );
+			}
+			const destPath = join( imgDir, name );
+			copyFileSync( path, destPath );
+			const src = './' + relative( destDir, destPath );
+			const text = `<img src="${src}" alt="Enter description" />`;
+			if ( placeCursor ) {
+				const selection = new this.monaco.Selection(coords[0], coords[1], coords[0], coords[1]);
+				this.editor.executeEdits( 'insert', [{ range, text, forceMoveMarkers: true }], [selection]);
+				this.editor.focus();
+			} else {
+				this.editor.executeEdits( 'insert', [{ range, text, forceMoveMarkers: true }]);
+			}
+			this.editor.pushUndoStop();
+		}
+	}
+
+	insertVideoAtPos = (
+		file,
+		coords = [0, 0],
+		placeCursor= false
+	) => {
+		const range = new this.monaco.Range( coords[0], coords[1], coords[0], coords[1] );
+		console.log( this.props.filePath );
+		if ( this.props.filePath ) {
+			const destDir = dirname( this.props.filePath );
+			const { name, path } = file;
+			const isleDir = join( destDir, 'isle' );
+			console.log( isleDir );
+			const videoDir = join( isleDir, 'video' );
+			console.log( videoDir );
+			if ( !exists.sync( isleDir ) ) {
+				mkdirSync( isleDir );
+			}
+			if ( !exists.sync( videoDir ) ) {
+				mkdirSync( videoDir );
+			}
+			const destPath = join( videoDir, name );
+			copyFileSync( path, destPath );
+			const src = './' + relative( destDir, destPath );
+			const text = `<VideoPlayer url="${src}" />`;
+			if ( placeCursor ) {
+				const selection = new this.monaco.Selection(coords[0], coords[1], coords[0], coords[1]);
+				this.editor.executeEdits( 'insert', [{ range, text, forceMoveMarkers: true }], [selection]);
+				this.editor.focus();
+			} else {
+				this.editor.executeEdits( 'insert', [{ range, text, forceMoveMarkers: true }]);
+			}
+			this.editor.pushUndoStop();
+		}
+	}
+
+	insertTextAtPos = (
+		text,
+		coords = [0, 0],
+		placeCursor= false
+	) => {
+		const range = new this.monaco.Range(coords[0], coords[1], coords[0], coords[1]);
+		if ( placeCursor ) {
+			const selection = new this.monaco.Selection(coords[0], coords[1], coords[0], coords[1]);
+			this.editor.executeEdits('insert', [{ range, text, forceMoveMarkers: true }], [selection]);
+			this.editor.focus();
+		} else {
+			this.editor.executeEdits('insert', [{ range, text, forceMoveMarkers: true }]);
+		}
+		this.editor.pushUndoStop();
+	}
+
+	handleDrop = ( e, target ) => {
+		console.log( e.dataTransfer );
+		const text = e.dataTransfer.getData( 'text' );
+		if ( text ) {
+			this.insertTextAtPos( text, [ target.position.lineNumber, target.position.column ], true );
+		}
+
+		if ( e.dataTransfer.files ) {
+			for ( let i = 0; i < e.dataTransfer.files.length; i++) {
+				const file = e.dataTransfer.files[ i ];
+				if ( startsWith( file.type, 'image' ) ) {
+					this.insertImgAtPos( file, [ target.position.lineNumber, target.position.column ], true );
+				}
+				else if ( startsWith( file.type, 'video' ) ) {
+					this.insertVideoAtPos( file, [ target.position.lineNumber, target.position.column ], true );
+				}
+			}
+		}
+	};
+
 	onEditorMount = ( editor, monaco ) => {
 		this.editor = editor;
 		this.monaco = monaco;
@@ -319,18 +490,22 @@ class Editor extends Component {
 	render() {
 		MONACO_OPTIONS.fontSize = this.props.fontSize;
 		debug( 'Re-rendering monaco editor...' );
+
+		const dragProvider = new MonacoDragNDropProvider( this.handleDrop, this.editor, this.monaco );
 		return (
 			<div>
 				<ContextMenuTrigger id="editor-context-menu" holdToDisplay={-1} style={{ height: '100%', width: '100%' }} >
-					<MonacoEditor
-						height={window.innerHeight - ( this.props.hideToolbar ? 2 : 90 )}
-						width={window.innerWidth * ( 1.0 - this.props.splitPos )}
-						language="javascript"
-						value={this.props.value}
-						options={MONACO_OPTIONS}
-						onChange={this.handleChange}
-						editorDidMount={this.onEditorMount}
-					/>
+					<div {...dragProvider.props}>
+						<MonacoEditor
+							height={window.innerHeight - ( this.props.hideToolbar ? 2 : 90 )}
+							width={window.innerWidth * ( 1.0 - this.props.splitPos )}
+							language="javascript"
+							value={this.props.value}
+							options={MONACO_OPTIONS}
+							onChange={this.handleChange}
+							editorDidMount={this.onEditorMount}
+						/>
+					</div>
 				</ContextMenuTrigger>
 				<EditorContextMenu
 					onContextMenuClick={this.handleContextMenuClick}
