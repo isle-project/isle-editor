@@ -129,7 +129,7 @@ class Video extends Component {
 						modestbranding: 1
 					}
 				}
-			}
+			};
 		}
 		const out = <div
 			id={this.id}
