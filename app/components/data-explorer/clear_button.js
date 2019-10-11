@@ -11,7 +11,7 @@ import Tooltip from 'components/tooltip';
 const ClearButton = ( props ) => (
 	<Tooltip
 		id="clear_tooltip"
-		placement="bottom"
+		placement={props.tooltipPlacement}
 		tooltip="Delete"
 	>
 		<Button
@@ -31,11 +31,13 @@ const ClearButton = ( props ) => (
 
 ClearButton.propTypes = {
 	onClick: PropTypes.func.isRequired,
+	tooltipPlacement: PropTypes.string,
 	style: PropTypes.object,
 	disabled: PropTypes.bool
 };
 
 ClearButton.defaultProps = {
+	tooltipPlacement: 'bottom',
 	style: {},
 	disabled: false
 };
