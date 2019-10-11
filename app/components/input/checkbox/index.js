@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import noop from '@stdlib/utils/noop';
 import Input from 'components/input/base';
 import SessionContext from 'session/context.js';
 import './checkbox.css';
@@ -103,6 +104,7 @@ class CheckboxInput extends Input {
 				</span>
 			);
 		}
+		const onChange = this.props.disabled ? noop : this.handleChange;
 		return (
 			<div className={`input checkbox-input-div ${this.props.className}`} style={this.props.style}>
 				{input}
@@ -112,7 +114,7 @@ class CheckboxInput extends Input {
 					style={{
 						color: this.props.disabled ? 'darkgray' : null
 					}}
-					onClick={this.handleChange} onKeyPress={this.handleChange}
+					onClick={onChange} onKeyPress={this.onChange}
 				>{this.props.legend}</span>
 			</div>
 		);
