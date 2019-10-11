@@ -267,9 +267,9 @@ class Barchart extends Component {
 								totalPercent: value
 							});
 						}}
-						disabled={this.state.stackBars & this.state.relative}
+						disabled={this.state.stackBars && this.state.relative}
 						style={{
-							opacity: this.state.stackBars & this.state.relative ? 0.2 : 1
+							opacity: this.state.stackBars && this.state.relative ? 0.2 : 1
 						}}
 					/>
 					<CheckboxInput
