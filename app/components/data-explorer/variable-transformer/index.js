@@ -99,7 +99,7 @@ class Transformer extends Component {
 						size="large"
 						block
 					>
-						Transforming quantitative variables (e.g., sqrt)
+						Interactions, Transformations (e.g., sqrt), Functions
 					</Button>
 				</div>
 				<div>

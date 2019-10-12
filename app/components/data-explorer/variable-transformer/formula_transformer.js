@@ -172,16 +172,17 @@ class FormulaTransformer extends Component {
 				dialogClassName='modal-75w input'
 			>
 				<Modal.Header closeButton>
-					<Modal.Title>Create a new variable by transforming quantitative variables via formula</Modal.Title>
+					<Modal.Title>Create a new variable as a function of existing variables</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<div className="formula-transformer-body">
 						<Card className="mb-2" >
 							<Card.Body>
+								<p></p>
 								<ButtonToolbar style={{ marginBottom: 5 }} >
 									<Dropdown className="mr-2">
 										<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
-											quantitative
+											Quantitative
 										</Dropdown.Toggle>
 										<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
 											{continousItems}
@@ -248,6 +249,7 @@ class FormulaTransformer extends Component {
 											selection: selectionStart
 										});
 									}}
+									rows={3}
 								/>
 							</Card.Body>
 						</Card>
