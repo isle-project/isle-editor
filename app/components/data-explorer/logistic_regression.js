@@ -12,6 +12,7 @@ import ndarray from '@stdlib/ndarray/array';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
 import isArray from '@stdlib/assert/is-array';
+import roundn from '@stdlib/math/base/special/roundn';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import { DATA_EXPLORER_LOGISTIC_REGRESSION } from 'constants/actions.js';
@@ -177,6 +178,7 @@ class LogisticRegression extends Component {
 				<span className="title" >Regression Summary for Response {y}</span>
 				{summaryTable( predictors, intercept, results )}
 				<i>The algorithm converged after {results.iterations} iterations</i>
+				<p>Akaike Information Criterion (AIC): {roundn( results.aic, -3 )}</p>
 			</div>
 		};
 		this.props.onCreated( output );

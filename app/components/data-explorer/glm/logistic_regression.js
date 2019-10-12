@@ -4,9 +4,11 @@ import { Matrix, solve } from 'ml-matrix';
 import abs from '@stdlib/math/base/special/abs';
 import ln from '@stdlib/math/base/special/ln';
 import pow from '@stdlib/math/base/special/pow';
+import round from '@stdlib/math/base/special/round';
 import exp from '@stdlib/math/base/special/exp';
 import xlogy from '@stdlib/math/base/special/xlogy';
 import EPS from '@stdlib/constants/math/float64-eps';
+import dlbinom from '@stdlib/stats/base/dists/binomial/logpmf';
 import mmult from 'utils/mmult';
 import transpose from 'utils/transpose';
 import multiplyMatrices from './multiply_matrices.js';
@@ -75,13 +77,15 @@ const logitMuEta = ( eta ) => {
 	return out;
 };
 
-/*
-const aic = ( y, n, mu, wt, dev ) => {
-	m <- if(any(n > 1)) n else wt
--2*sum(ifelse(m > 0, (wt/m), 0)*
-	return dbinom(round(m*y), round(m), mu, ln=TRUE);
-}
-*/
+const aic = ( y, mu, weights, numParameters ) => {
+	let logLik = 0;
+	for ( let i = 0; i < y.length; i++ ) {
+		if ( weights[ i ] > 0 ) {
+			logLik += weights[ i ] * dlbinom( round( weights[ i ] * y[ i ] ), round( weights[ i ] ), mu[ i ] );
+		}
+	}
+	return -2 * logLik + 2*numParameters;
+};
 
 const devResids = ( y, mu, wt ) => {
 	const n = y.length;
@@ -150,8 +154,10 @@ function irls( X, y, nObs ) {
 		}
 		devOld = dev;
 	}
+	const coefficients = beta.to1DArray();
 	return {
-		coefficients: beta.to1DArray(),
+		aic: aic( y, logitLinkInv( eta ), weights, coefficients.length ),
+		coefficients,
 		iterations: j
 	};
 }
