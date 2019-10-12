@@ -463,8 +463,19 @@ class Editor extends Component {
 	}
 
 	handleDrop = ( e, target ) => {
-		const text = e.dataTransfer.getData( 'text' );
+		let text = e.dataTransfer.getData( 'text' );
 		if ( text ) {
+			if ( isURI( text ) ) {
+				if (
+					contains( text, 'youtu' )
+				) {
+					text = `<VideoPlayer url="${text}" />`;
+				}
+				const ext = extname( text );
+				if ( contains( IMAGE_EXTENSIONS, ext ) ) {
+					text = `<img src="${text}" alt="Enter description" />`;
+				}
+			}
 			this.insertTextAtPos( text, [ target.position.lineNumber, target.position.column ], true );
 		}
 		if ( e.dataTransfer.files ) {
