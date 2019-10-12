@@ -139,6 +139,10 @@ const CustomIndicator = () => {
 	return <div />;
 };
 
+function adjustWidth( event ) {
+	event.target.style.width = (event.target.value.length+1) + 'ch';
+}
+
 function createColumns( props, state ) {
 	debug( 'Create columns...' );
 	const columns = state.keys.filter( key => key !== 'id' ).map( ( key, idx ) => {
@@ -151,7 +155,25 @@ function createColumns( props, state ) {
 			header = <ColumnTitle title={key} tooltip={props.dataInfo.variables[ key ]} />;
 		} else if ( props.deletable ) {
 			header = <div style={{ backgroundColor: 'papayawhip' }}>
-				{key}
+				<OverlayTrigger placement="left" overlay={<Tooltip>Remove variable</Tooltip>} >
+					<span>
+						<input type="text" className="header-text-input"
+							style={{
+								width: `${key.length}ch`
+							}}
+							defaultValue={key}
+							onBlur={( e ) => {
+								console.log( 'Handle focus out...' );
+								const newKey = e.target.value;
+								props.onColumnNameChange( key, newKey );
+							}}
+							onChange={adjustWidth}
+							onClick={( e ) => {
+								e.stopPropagation();
+							}}
+						/>
+					</span>
+				</OverlayTrigger>
 				<OverlayTrigger placement="left" overlay={<Tooltip>Remove variable</Tooltip>} >
 					<button className="fa fa-times delete-button" onClick={( evt ) => {
 						evt.stopPropagation();
@@ -663,6 +685,7 @@ DataTable.defaultProps = {
 	filterable: true,
 	editable: [],
 	onColumnDelete() {},
+	onColumnNameChange() {},
 	onClickRemove() {},
 	onEdit() {},
 	onFilteredChange() {},
@@ -683,6 +706,7 @@ DataTable.propTypes = {
 	filterable: PropTypes.bool,
 	editable: PropTypes.array,
 	onColumnDelete: PropTypes.func,
+	onColumnNameChange: PropTypes.func,
 	onClickRemove: PropTypes.func,
 	onEdit: PropTypes.func,
 	filters: PropTypes.array,

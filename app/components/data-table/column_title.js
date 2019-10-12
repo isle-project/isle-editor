@@ -42,6 +42,7 @@ class ColumnTitle extends Component {
 								color: 'white',
 								borderRadius: 3,
 								maxWidth: '300px',
+								marginBottom: '10px',
 								...props.style
 							}}
 						>

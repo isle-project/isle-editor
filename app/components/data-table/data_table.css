@@ -70,3 +70,10 @@
 .draggable-header {
 	display: block;
 }
+
+.header-text-input {
+	background: transparent;
+	border: none;
+	display: inline-block;
+	cursor: text;
+}

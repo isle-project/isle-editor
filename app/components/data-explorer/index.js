@@ -27,6 +27,7 @@ import hasProp from '@stdlib/assert/has-property';
 import copy from '@stdlib/utils/copy';
 import keys from '@stdlib/utils/keys';
 import noop from '@stdlib/utils/noop';
+import omit from '@stdlib/utils/omit';
 import generateUID from 'utils/uid';
 import SelectInput from 'components/input/select';
 import ContingencyTable from 'components/data-explorer/contingency_table';
@@ -494,6 +495,21 @@ class DataExplorer extends Component {
 		this.setState( varState );
 	}
 
+	onColumnNameChange = ( oldName, newName ) => {
+		const state = this.state;
+		const newData = omit( this.state.data, oldName );
+		newData[ newName ] = this.state.data[ oldName ];
+		const newQuantitative = state.quantitative.map( x => x === oldName ? newName : x );
+		const newCategorical = state.categorical.map( x => x === oldName ? newName : x );
+		const newGroupVars = state.groupVars.map( x => x === oldName ? newName : x );
+		this.setState({
+			data: newData,
+			quantitative: newQuantitative,
+			categorical: newCategorical,
+			groupVars: newGroupVars
+		});
+	}
+
 	deleteVariable = ( variable, varState ) => {
 		let state = varState || this.state;
 		let newData;
@@ -503,12 +519,12 @@ class DataExplorer extends Component {
 			newData = varState.data;
 		}
 		delete newData[ variable ];
-		let newquantitative = state.quantitative.filter( x => x !== variable );
+		let newQuantitative = state.quantitative.filter( x => x !== variable );
 		let newCategorical = state.categorical.filter( x => x !== variable );
 		let newGroupVars = state.groupVars.filter( x => x !== variable );
 		return {
 			data: newData,
-			quantitative: newquantitative,
+			quantitative: newQuantitative,
 			categorical: newCategorical,
 			groupVars: newGroupVars
 		};
@@ -661,6 +677,7 @@ class DataExplorer extends Component {
 	* React component render method.
 	*/
 	render() {
+		console.log( 'Render component...' );
 		if ( !this.state.data ) {
 			return (
 				<Suspense fallback={<div>Loading...</div>} >
@@ -1250,6 +1267,7 @@ class DataExplorer extends Component {
 										});
 									}}
 									onColumnDelete={this.onColumnDelete}
+									onColumnNameChange={this.onColumnNameChange}
 									deletable
 									id={this.id + '_table'}
 								/>
