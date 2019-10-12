@@ -3,7 +3,7 @@
 import round from '@stdlib/math/base/special/round';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import exp from '@stdlib/math/base/special/exp';
-import pow from '@stdlib/math/base/special/pow';
+import power from '@stdlib/math/base/special/pow';
 import ln from '@stdlib/math/base/special/ln';
 import isObject from '@stdlib/assert/is-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
@@ -16,7 +16,7 @@ import FUNCTION_KEYS from './function_keys.json';
 const FUNCTIONS = [
 	exp,
 	ln,
-	pow,
+	power,
 	round,
 	sqrt
 ];

@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FormControl from 'react-bootstrap/FormControl';
+import FormLabel from 'react-bootstrap/FormLabel';
+import FormGroup from 'react-bootstrap/FormGroup';
 import FormText from 'react-bootstrap/FormText';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -11,7 +13,6 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Modal from 'react-bootstrap/Modal';
 import TextArea from 'components/input/text-area';
-import TextInput from 'components/input/text';
 import incrspace from '@stdlib/math/utils/incrspace';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
@@ -86,14 +87,6 @@ class FormulaTransformer extends Component {
 
 	handleGenerate = () => {
 		let { code, name } = this.state;
-		if ( name.length < 2 ) {
-			return this.props.session.addNotification({
-				title: 'Name is too short',
-				message: 'Please select a variable name with at least two characters',
-				level: 'error',
-				position: 'tr'
-			});
-		}
 		if ( !contains( code, 'return ' ) ) {
 			code = replace( code, RE_LAST_EXPRESSION, '\nreturn $1' );
 		}
@@ -115,9 +108,9 @@ class FormulaTransformer extends Component {
 		this.props.onHide();
 	}
 
-	handleNameChange = ( value ) => {
+	handleNameChange = ( event ) => {
 		this.setState({
-			name: value
+			name: event.target.value
 		});
 	}
 
@@ -184,15 +177,6 @@ class FormulaTransformer extends Component {
 				<Modal.Body>
 					<div className="formula-transformer-body">
 						<Card className="mb-2" >
-							<Card.Header>Generate new variables:</Card.Header>
-							<Card.Body>
-								<TextInput legend="Variable Name" placeholder="Select name..." onChange={this.handleNameChange} width={160} />
-								<FormText>
-									The new variable will be appended as a new column to the data table.
-								</FormText>
-							</Card.Body>
-						</Card>
-						<Card className="mb-2" >
 							<Card.Body>
 								<ButtonToolbar style={{ marginBottom: 5 }} >
 									<Dropdown className="mr-2">
@@ -242,16 +226,11 @@ class FormulaTransformer extends Component {
 										})}
 										<Button variant="light" onClick={this.insertLiteralFactory('.')} >.</Button>
 									</ButtonGroup>
-									<Dropdown className="mr-2">
-										<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
-											Functions
-										</Dropdown.Toggle>
-										<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
-											{FUNCTION_KEYS.map( ( v, i ) => {
-												return <Dropdown.Item key={i} onClick={this.insertFuncFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
-											})}
-										</Dropdown.Menu>
-									</Dropdown>
+									<ButtonGroup>
+										{FUNCTION_KEYS.map( ( v, i ) => {
+											return <Button key={i} variant="light" onClick={this.insertFuncFactory( v )} eventKey={i}>{v}</Button>;
+										})}
+									</ButtonGroup>
 								</ButtonToolbar>
 							</Card.Body>
 						</Card>
@@ -272,10 +251,21 @@ class FormulaTransformer extends Component {
 								/>
 							</Card.Body>
 						</Card>
+						<FormGroup style={{ margin: 8 }}>
+							<FormLabel>Name of new variable:</FormLabel>
+							<FormControl
+								type="text"
+								placeholder="Select name..."
+								onChange={this.handleNameChange}
+							/>
+							<FormText>
+								The new variable will be appended as a new column to the data table.
+							</FormText>
+						</FormGroup>
 					</div>
 				</Modal.Body>
 				<Modal.Footer style={{ justifyContent: 'center' }} >
-					<Button onClick={this.handleGenerate} >Create new variable</Button>
+					<Button onClick={this.handleGenerate} disabled={this.state.name.length < 2} >Create new variable</Button>
 				</Modal.Footer>
 			</Modal>
 		);

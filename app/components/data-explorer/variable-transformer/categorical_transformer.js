@@ -198,7 +198,7 @@ class CategoricalTransformer extends Component {
 		const varFreqs = countBy( values, identity );
 		const keys = variable.categories || objectKeys( varFreqs );
 		return (
-			<Table bordered >
+			<Table bordered style={{ margin: 8 }} >
 				<tbody>
 					<tr>
 						<th>Old:</th>
@@ -241,7 +241,7 @@ class CategoricalTransformer extends Component {
 		const rowKeys = rowVar.categories || objectKeys( rowFreqs );
 		const colKeys = colVar.categories || objectKeys( colFreqs );
 		return (
-			<Table bordered>
+			<Table bordered style={{ margin: 8 }}>
 				<tr>
 					<th></th>
 					{colKeys.map( ( col, idx ) => {

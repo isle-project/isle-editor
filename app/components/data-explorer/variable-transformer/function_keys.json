@@ -1,7 +1,7 @@
 [
 	"exp",
 	"ln",
-	"pow",
+	"power",
 	"round",
 	"sqrt"
 ]
