@@ -510,6 +510,31 @@ class DataExplorer extends Component {
 		});
 	}
 
+	onColumnDrag = ( vars ) => {
+		const state = this.state;
+		const sorter = ( a, b ) => {
+			a = vars.indexOf( String( a ) );
+			b = vars.indexOf( String( b ) );
+			if ( a === -1 || b === -1 ) {
+				return 0;
+			}
+			if ( a < b ) {
+				return -1;
+			} else if ( a > b ) {
+				return 1;
+			}
+			return 0;
+		};
+		const newQuantitative = state.quantitative.slice().sort( sorter );
+		const newCategorical = state.categorical.slice().sort( sorter );
+		const newGroupVars = state.groupVars.slice().sort( sorter );
+		this.setState({
+			quantitative: newQuantitative,
+			categorical: newCategorical,
+			groupVars: newGroupVars
+		});
+	}
+
 	deleteVariable = ( variable, varState ) => {
 		let state = varState || this.state;
 		let newData;
@@ -1268,6 +1293,7 @@ class DataExplorer extends Component {
 									}}
 									onColumnDelete={this.onColumnDelete}
 									onColumnNameChange={this.onColumnNameChange}
+									onColumnDrag={this.onColumnDrag}
 									deletable
 									id={this.id + '_table'}
 								/>

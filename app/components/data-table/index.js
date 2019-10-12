@@ -231,7 +231,7 @@ function createColumns( props, state ) {
 						</div>
 					);
 				};
-			} else if ( uniqueValues.length <= 8 ) {
+			} else if ( uniqueValues.length <= 12 ) {
 				// Cast values to strings for select component to work:
 				uniqueValues = uniqueValues.map( x => String( x ) );
 				out[ 'filterMethod' ] = filterMethodCategories;
@@ -469,7 +469,18 @@ class DataTable extends Component {
 			};
 			header.ondrop = e => {
 				e.preventDefault();
-				this.reorder.push({ a: i, b: this.dragged });
+				let a = i;
+				let b = this.dragged;
+				const keys = headers.map( x => x.dataset.key );
+				const tmp = keys[ a ];
+				keys[ a ] = keys[ b ];
+				keys[ b ] = tmp;
+				if ( this.props.showIdColumn ) {
+					a += 1;
+					b += 1;
+				}
+				this.props.onColumnDrag( keys );
+				this.reorder.push({ a, b });
 				this.setState({ trigger: Math.random() });
 			};
 		});
@@ -595,10 +606,15 @@ class DataTable extends Component {
 			</Modal>;
 		}
 
-		const cols = this.state.columns.map(col => ({
-			...col,
-			Header: <span className="draggable-header">{col.Header}</span>
-		}));
+		const cols = this.state.columns.map( col => {
+			if ( col.Header === 'id' ) {
+				return col;
+			}
+			return ({
+				...col,
+				Header: <span className="draggable-header" data-key={col.id} >{col.Header}</span>
+			});
+		});
 
 		// Run re-order events:
 		this.reorder.forEach( o => {
@@ -684,6 +700,7 @@ DataTable.defaultProps = {
 	deletable: false,
 	filterable: true,
 	editable: [],
+	onColumnDrag() {},
 	onColumnDelete() {},
 	onColumnNameChange() {},
 	onClickRemove() {},
@@ -705,6 +722,7 @@ DataTable.propTypes = {
 	deletable: PropTypes.bool,
 	filterable: PropTypes.bool,
 	editable: PropTypes.array,
+	onColumnDrag: PropTypes.func,
 	onColumnDelete: PropTypes.func,
 	onColumnNameChange: PropTypes.func,
 	onClickRemove: PropTypes.func,
