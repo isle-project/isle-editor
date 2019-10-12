@@ -4,11 +4,10 @@ import { Matrix, solve } from 'ml-matrix';
 import abs from '@stdlib/math/base/special/abs';
 import ln from '@stdlib/math/base/special/ln';
 import pow from '@stdlib/math/base/special/pow';
-import round from '@stdlib/math/base/special/round';
 import exp from '@stdlib/math/base/special/exp';
 import xlogy from '@stdlib/math/base/special/xlogy';
 import EPS from '@stdlib/constants/math/float64-eps';
-import dlbinom from '@stdlib/stats/base/dists/binomial/logpmf';
+import dbern from '@stdlib/stats/base/dists/bernoulli/pmf';
 import mmult from 'utils/mmult';
 import transpose from 'utils/transpose';
 import multiplyMatrices from './multiply_matrices.js';
@@ -77,12 +76,10 @@ const logitMuEta = ( eta ) => {
 	return out;
 };
 
-const aic = ( y, mu, weights, numParameters ) => {
+const aic = ( y, mu, numParameters ) => {
 	let logLik = 0;
 	for ( let i = 0; i < y.length; i++ ) {
-		if ( weights[ i ] > 0 ) {
-			logLik += weights[ i ] * dlbinom( round( weights[ i ] * y[ i ] ), round( weights[ i ] ), mu[ i ] );
-		}
+		logLik += ln( dbern( y[ i ], mu[ i ] ) );
 	}
 	return -2 * logLik + 2*numParameters;
 };
@@ -156,7 +153,7 @@ function irls( X, y, nObs ) {
 	}
 	const coefficients = beta.to1DArray();
 	return {
-		aic: aic( y, logitLinkInv( eta ), weights, coefficients.length ),
+		aic: aic( y, logitLinkInv( eta ), coefficients.length ),
 		coefficients,
 		iterations: j
 	};
