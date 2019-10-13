@@ -158,11 +158,17 @@ function createColumns( props, state ) {
 		const isOriginal = props.dataInfo &&
 			props.dataInfo.variables &&
 			props.dataInfo.variables[ key ];
+		const out = {
+			id: key,
+			accessor: ( d ) => d[ key ],
+			minWidth: isOriginal ? 125 : 150
+		};
 		if ( isOriginal ) {
 			header = <ColumnTitle title={key} tooltip={props.dataInfo.variables[ key ]} />;
 		} else if ( props.deletable ) {
 			header = <div style={{ backgroundColor: 'papayawhip' }}>
-				<OverlayTrigger placement="left" overlay={<Tooltip>Rename variable</Tooltip>} >
+					<OverlayTrigger placement="left" overlay={<Tooltip>Rename variable</Tooltip>} >
+
 					<span>
 						<input type="text" className="header-text-input"
 							style={{
@@ -170,9 +176,15 @@ function createColumns( props, state ) {
 							}}
 							defaultValue={key}
 							onBlur={( e ) => {
-								console.log( 'Handle focus out...' );
 								const newKey = e.target.value;
-								props.onColumnNameChange( key, newKey );
+								document.getElementById( `header-${key}`).setAttribute( 'draggable', true );
+								if ( newKey.length > 0 && key !== newKey ) {
+									props.onColumnNameChange( key, newKey );
+								}
+							}}
+							onMouseEnter={( e ) => {
+								// Update draggable attribute to handle Firefox bug (https://stackoverflow.com/questions/21680363/prevent-drag-event-to-interfere-with-input-elements-in-firefox-using-html5-drag)
+								document.getElementById( `header-${key}`).setAttribute( 'draggable', false );
 							}}
 							onChange={adjustWidth}
 							onClick={( e ) => {
@@ -189,12 +201,7 @@ function createColumns( props, state ) {
 				</OverlayTrigger>
 			</div>;
 		}
-		const out = {
-			Header: header,
-			id: key,
-			accessor: ( d ) => d[ key ],
-			minWidth: isOriginal ? 125 : 150
-		};
+		out.Header = header;
 		if ( contains( props.editable, key ) ) {
 			out.Cell = this.renderEditable;
 		}
@@ -485,9 +492,8 @@ class DataTable extends Component {
 		const headers = Array.prototype.slice.call(
 			document.querySelectorAll( '.draggable-header' )
 		);
-
 		headers.forEach((header, i) => {
-			header.setAttribute( 'draggable', true);
+			header.setAttribute( 'draggable', true );
 			// Dragged header:
 			header.ondragstart = e => {
 				e.stopPropagation();
@@ -501,7 +507,7 @@ class DataTable extends Component {
 				e.stopPropagation();
 				setTimeout(() => {
 					this.dragged = null;
-				}, 1000);
+				}, 1000 );
 			};
 
 			// Dropped header:
@@ -653,7 +659,7 @@ class DataTable extends Component {
 			}
 			return ({
 				...col,
-				Header: <span className="draggable-header" data-key={col.id} >{col.Header}</span>
+				Header: <span className="draggable-header" id={`header-${col.id}`} data-key={col.id} >{col.Header}</span>
 			});
 		});
 

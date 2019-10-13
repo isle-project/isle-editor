@@ -77,3 +77,7 @@
 	display: inline-block;
 	cursor: text;
 }
+
+[draggable=true] {
+	-khtml-user-drag: element;
+}
