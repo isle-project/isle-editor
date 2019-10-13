@@ -11,7 +11,6 @@ import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import randomstring from 'utils/randomstring/alphanumeric';
-import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import { DATA_EXPLORER_SHARE_BARCHART, DATA_EXPLORER_BARCHART } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
@@ -30,7 +29,7 @@ export function generateBarchartConfig({ data, variable, group, horiz, stackBars
 	let transforms;
 	if ( xOrder ) {
 		let order;
-		if ( xOrder === 'Ascending Y' ) {
+		if ( xOrder === 'in ascending order' ) {
 			order = 'ascending';
 		} else {
 			order = 'descending';
@@ -99,14 +98,16 @@ export function generateBarchartConfig({ data, variable, group, horiz, stackBars
 						x: counts,
 						type: 'bar',
 						name: key,
-						orientation: 'h'
+						orientation: 'h',
+						transforms: transforms
 					});
 				} else {
 					traces.push({
 						y: counts,
 						x: categories,
 						type: 'bar',
-						name: key
+						name: key,
+						transforms: transforms
 					});
 				}
 			}
@@ -131,14 +132,16 @@ export function generateBarchartConfig({ data, variable, group, horiz, stackBars
 						x: counts,
 						type: 'bar',
 						name: key,
-						orientation: 'h'
+						orientation: 'h',
+						transforms: transforms
 					});
 				} else {
 					traces.push({
 						y: counts,
 						x: categories,
 						type: 'bar',
-						name: key
+						name: key,
+						transforms: transforms
 					});
 				}
 			}
@@ -247,10 +250,9 @@ class Barchart extends Component {
 						}}
 					/>
 					<SelectInput
-						legend="Order X Axis:"
+						legend="Order bars by frequency"
 						defaultValue={this.state.xOrder}
-						disabled={isUndefinedOrNull( this.state.groupVar )}
-						options={['Ascending Y', 'Descending Y']}
+						options={[ 'in ascending order', 'in descending order']}
 						clearable={true}
 						menuPlacement="top"
 						onChange={( value )=>{
