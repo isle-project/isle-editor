@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+
 /**
 * Adapted from:
 *
@@ -269,7 +271,7 @@ function toggleCodeBlock(editor) {
 	var fenceCharsToInsert = editor.options.blockStyles.code;
 
 	function fencingLine( line ) {
-		/* return true, if this is a ``` or ~~~ line */
+		/* Return true, if this is a ``` or ~~~ line */
 		if ( typeof line !== 'object' ) {
 			throw Error( 'fencingLine() takes a \'line\' object (not a line number, or line text).  Got: ' + typeof line + ': ' + line );
 		}
@@ -283,11 +285,11 @@ function toggleCodeBlock(editor) {
 
 	function codeType( cm, lineNum, line, firstTok, lastTok ) {
 		/*
-		 * Return 'single', 'indented', 'fenced' or false
-		 *
-		 * cm and lineNum are required.  Others are optional for efficiency
-		 *   To check in the middle of a line, pass in firstTok yourself.
-		 */
+		* Return 'single', 'indented', 'fenced' or false
+		*
+		* cm and lineNum are required.  Others are optional for efficiency
+		*   To check in the middle of a line, pass in firstTok yourself.
+		*/
 		line = line || cm.getLineHandle(lineNum);
 		firstTok = firstTok || cm.getTokenAt({
 			line: lineNum,

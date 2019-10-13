@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
@@ -87,7 +89,7 @@ function replacer( key, value ) {
 }
 
 function loadFonts() {
-	import( /* webpackChunkName: "fonts" */ './fonts.js' )
+	import( /* webpackChunkName: "fonts" */ './../../constants/fonts.js' )
 		.then( fonts => {
 			debug( 'Successfully loaded fonts...' );
 			pdfMake.vfs = fonts.default;
