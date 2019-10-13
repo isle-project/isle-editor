@@ -124,7 +124,6 @@
     "compute-manhattan-distance": "^1.0.1",
     "compute-mean": "^3.0.0",
     "compute-stdev": "^1.0.0",
-    "core-js": "2.6.5",
     "cross-env": "^6.0.0",
     "css": "^2.2.3",
     "css-loader": "^3.2.0",
