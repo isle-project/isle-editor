@@ -155,7 +155,7 @@ function createColumns( props, state ) {
 			header = <ColumnTitle title={key} tooltip={props.dataInfo.variables[ key ]} />;
 		} else if ( props.deletable ) {
 			header = <div style={{ backgroundColor: 'papayawhip' }}>
-				<OverlayTrigger placement="left" overlay={<Tooltip>Remove variable</Tooltip>} >
+				<OverlayTrigger placement="left" overlay={<Tooltip>Rename variable</Tooltip>} >
 					<span>
 						<input type="text" className="header-text-input"
 							style={{
