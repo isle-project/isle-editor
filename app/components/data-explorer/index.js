@@ -812,7 +812,7 @@ class DataExplorer extends Component {
 							e === 'Scatterplot' && this.props.plots[ i-1 ] === 'Box Plot'
 						) {
 							return ( <Fragment>
-								<NavDropdown.Divider />
+								<NavDropdown.Divider key={`${i}-div`} />
 								{item}
 							</Fragment> );
 						}
@@ -832,7 +832,7 @@ class DataExplorer extends Component {
 							e === 'Correlation Test' && this.props.tests[ i-1 ] === 'Two-Sample Proportion Test'
 						) {
 							return ( <Fragment>
-								<NavDropdown.Divider />
+								<NavDropdown.Divider key={`${i}-div`} />
 								{item}
 							</Fragment> );
 						}
@@ -852,7 +852,7 @@ class DataExplorer extends Component {
 							e === 'PCA' && this.props.models[ i-1 ] === 'Naive Bayes'
 						) {
 							return ( <Fragment>
-								<NavDropdown.Divider />
+								<NavDropdown.Divider key={`${i}-div`} />
 								{item}
 							</Fragment> );
 						}

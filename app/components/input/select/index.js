@@ -274,7 +274,8 @@ SelectInput.propTypes = {
 	defaultValue: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string,
-		PropTypes.array
+		PropTypes.array,
+		PropTypes.object // accept `String` objects (e.g., for factor variables)
 	]),
 	disabled: PropTypes.bool,
 	inline: PropTypes.bool,
