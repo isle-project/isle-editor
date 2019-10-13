@@ -25,9 +25,8 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isJSON from '@stdlib/assert/is-json';
 import hasProp from '@stdlib/assert/has-property';
 import copy from '@stdlib/utils/copy';
-import keys from '@stdlib/utils/keys';
+import objectKeys from '@stdlib/utils/keys';
 import noop from '@stdlib/utils/noop';
-import omit from '@stdlib/utils/omit';
 import generateUID from 'utils/uid';
 import SelectInput from 'components/input/select';
 import ContingencyTable from 'components/data-explorer/contingency_table';
@@ -497,8 +496,16 @@ class DataExplorer extends Component {
 
 	onColumnNameChange = ( oldName, newName ) => {
 		const state = this.state;
-		const newData = omit( this.state.data, oldName );
-		newData[ newName ] = this.state.data[ oldName ];
+		const keys = objectKeys( this.state.data );
+		const newData = {};
+		for ( let i = 0; i < keys.length; i++ ) {
+			const key = keys[ i ];
+			if ( key === oldName ) {
+				newData[ newName ] = this.state.data[ oldName ];
+			} else {
+				newData[ key ] = this.state.data[ key ];
+			}
+		}
 		const newQuantitative = state.quantitative.map( x => x === oldName ? newName : x );
 		const newCategorical = state.categorical.map( x => x === oldName ? newName : x );
 		const newGroupVars = state.groupVars.map( x => x === oldName ? newName : x );
@@ -559,7 +566,7 @@ class DataExplorer extends Component {
 		const session = this.context;
 		if ( !err ) {
 			const data = {};
-			const columnNames = keys( output[ 0 ] ).filter( x => x !== '' );
+			const columnNames = objectKeys( output[ 0 ] ).filter( x => x !== '' );
 			for ( let j = 0; j < columnNames.length; j++ ) {
 				let col = columnNames[ j ];
 				data[ col ] = new Array( output.length );
@@ -610,7 +617,7 @@ class DataExplorer extends Component {
 				}
 			}
 		}
-		const vars = keys( this.state.data );
+		const vars = objectKeys( this.state.data );
 		const newData = {};
 		const nOriginal = this.state.data[ vars[0] ].length;
 		for ( let c = 0; c < vars.length; c++ ) {
@@ -714,7 +721,7 @@ class DataExplorer extends Component {
 			);
 		}
 		if ( !this.state.ready ) {
-			const variableNames = Object.keys( this.state.data );
+			const variableNames = objectKeys( this.state.data );
 			return ( <Card>
 				<Card.Header as="h3">
 					Data Explorer
