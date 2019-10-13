@@ -66,7 +66,7 @@ const frequencyTable = ( variable, freqs, relative, nDecimalPlaces ) => {
 				<tr key="total">
 					<th>Total</th>
 					<td></td>
-					<td>{nTotal}</td>
+					<td>{relative ? '1.0' : nTotal}</td>
 				</tr>
 			</tbody>
 		</Table>
@@ -87,14 +87,14 @@ const groupedFrequencyTable = ( variable, freqs, relative, nDecimalPlaces ) => {
 					counts = arr[ 1 ].map( ( x, j ) => {
 						nTotal += x.count;
 						return ( <td key={j}>
-							{ relative ? x.count.toFixed( nDecimalPlaces ) : x.count }
+							{ x.count }
 						</td> );
 					});
 					counts.push( <td key="total">{nTotal}</td> );
 				} else {
 					counts = arr[ 1 ].map( ( x, j ) => {
 						return ( <td key={j}>
-							{ relative ? x.count.toFixed( nDecimalPlaces ) : x.count }
+							{ x.count.toFixed( nDecimalPlaces ) }
 						</td> );
 					});
 				}
