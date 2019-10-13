@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import maxScalar from '@stdlib/math/base/special/max';
 import floor from '@stdlib/math/base/special/floor';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
@@ -37,7 +39,7 @@ function calculateOpacity(nobs) {
 export function generateContourChart({ data, xval, yval, overlayPoints, regressionMethod, smoothSpan }) {
 	let xvals = data[ xval ];
 	let yvals = data[ yval ];
-	var trace1 = {
+	const trace1 = {
 		x: xvals,
 		y: yvals,
 		mode: 'density',
@@ -46,16 +48,16 @@ export function generateContourChart({ data, xval, yval, overlayPoints, regressi
 		showscale: false,
 		reversescale: true
 	};
-	var traces = [ trace1 ];
+	const traces = [ trace1 ];
 	if ( overlayPoints ) {
-		var trace2 = {
+		const trace2 = {
 			x: xvals,
 			y: yvals,
 			mode: 'markers',
 			name: 'points',
 			marker: {
 				color: '#1f77b4',
-				opacity: calculateOpacity(x.length)
+				opacity: calculateOpacity( xvals.length )
 			},
 			type: 'scatter'
 		};
@@ -173,34 +175,50 @@ class ContourChart extends Component {
 		const { variables, defaultX, defaultY } = this.props;
 		return (
 			<Dashboard autoStart={false} title={<span>Contour Chart<QuestionButton title="Contour Chart" content={DESCRIPTION} /></span>} onGenerate={this.generateContourChart.bind( this )}>
-				<SelectInput
-					legend="Variable on x-axis:"
-					defaultValue={defaultX || variables[ 0 ]}
-					options={variables}
-				/>
-				<SelectInput
-					legend="Variable on y-axis:"
-					defaultValue={defaultY || variables[ 1 ]}
-					options={variables}
-					menuPlacement="top"
-				/>
-				<CheckboxInput
-					legend="Overlay observations"
-					defaultValue={false}
-				/>
-				<SelectInput
-					legend="Overlay regression line? (optional)"
-					defaultValue=""
-					multi={true}
-					options={[ 'linear', 'smooth' ]}
-				/>
-				<SliderInput
-					legend="Smoothing Parameter"
-					min={0.01}
-					max={1}
-					step={0.01}
-					defaultValue={0.66}
-				/>
+				<Row>
+					<Col>
+						<SelectInput
+							legend="Variable on x-axis:"
+							defaultValue={defaultX || variables[ 0 ]}
+							options={variables}
+						/>
+					</Col>
+					<Col>
+						<SelectInput
+							legend="Variable on y-axis:"
+							defaultValue={defaultY || variables[ 1 ]}
+							options={variables}
+							menuPlacement="top"
+						/>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<CheckboxInput
+							legend="Overlay observations"
+							defaultValue={false}
+						/>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<SelectInput
+							legend="Overlay regression line?"
+							defaultValue=""
+							multi={true}
+							options={[ 'linear', 'smooth' ]}
+						/>
+					</Col>
+					<Col>
+						<SliderInput
+							legend="Smoothing Parameter"
+							min={0.01}
+							max={1}
+							step={0.01}
+							defaultValue={0.66}
+						/>
+					</Col>
+				</Row>
 			</Dashboard>
 		);
 	}

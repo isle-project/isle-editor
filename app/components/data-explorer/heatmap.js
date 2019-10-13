@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
@@ -105,8 +107,6 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alterna
 			let predictedLinear;
 			let predictedSmooth;
 			let values;
-			console.log( min( xc ) );
-			console.log( max( xc ) );
 			if ( contains( regressionMethod, 'linear' ) ) {
 				values = linspace( min( xc ), max( xc ), 100 );
 				const coefs = calculateCoefficients( xc, yc );
@@ -349,116 +349,135 @@ class HeatMap extends Component {
 					<QuestionButton title="Heat Map" content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
-					<SelectInput
-						legend="Variable on x-axis:"
-						defaultValue={this.state.xval}
-						options={variables}
-						onChange={( value )=>{
-							this.setState({
-								xval: value
-							});
-						}}
-					/>
-					<SelectInput
-						legend="Variable on y-axis:"
-						defaultValue={this.state.yval}
-						options={variables}
-						onChange={( value )=>{
-							this.setState({
-								yval: value
-							});
-						}}
-					/>
-					<div style={{ width: '100%' }}>
-						<CheckboxInput
-							legend="Overlay observations"
-							defaultValue={this.state.overlayPoints}
+					<Row>
+						<Col><SelectInput
+							legend="Variable on x-axis:"
+							defaultValue={this.state.xval}
+							options={variables}
 							onChange={( value )=>{
 								this.setState({
-									overlayPoints: value
+									xval: value
 								});
 							}}
-							style={{ float: 'left' }}
 						/>
-						<CheckboxInput
-							legend="Alternate Color Scheme"
-							defaultValue={this.state.alternateColor}
+						</Col>
+						<Col><SelectInput
+							legend="Variable on y-axis:"
+							defaultValue={this.state.yval}
+							options={variables}
 							onChange={( value )=>{
 								this.setState({
-									alternateColor: value
+									yval: value
 								});
 							}}
-							style={{ float: 'left' }}
-						/>
-					</div>
-					<SelectInput
-						legend="Group By:"
-						options={groupingVariables}
-						clearable={true}
-						onChange={( value )=>{
-							this.setState({
-								group: value
-							});
-						}}
-						menuPlacement="top"
-					/>
-					<SelectInput
-						legend="Overlay regression line? (optional)"
-						defaultValue={this.state.regressionMethod}
-						multi={true}
-						options={[ 'linear', 'smooth' ]}
-						onChange={( value ) => {
-							if ( !isArray( value ) ) {
-								value = [ value ];
-							}
-							this.setState({
-								regressionMethod: value
-							});
-						}}
-					/>
-					<SliderInput
-						legend="Smoothing Parameter"
-						disabled={!contains(this.state.regressionMethod, 'smooth')}
-						min={0.01}
-						max={1}
-						step={0.01}
-						defaultValue={this.state.smoothSpan}
-						onChange={( value ) => {
-							this.setState({
-								smoothSpan: value
-							});
-						}}
-					/>
-					<div style={{ width: '100%' }}>
-						<CheckboxInput
-							legend="Use common x-axis"
-							defaultValue={this.state.commonXAxis}
-							onChange={( value )=>{
-								this.setState({
-									commonXAxis: value
-								});
-							}}
-							disabled={!this.state.group}
-							style={{
-								opacity: this.state.group ? 1.0 : 0.0,
-								float: 'left'
-							}}
-						/>
-						<CheckboxInput
-							legend="Use common y-axis"
-							defaultValue={this.state.commonYAxis}
-							onChange={( value )=>{
-								this.setState({
-									commonYAxis: value
-								});
-							}}
-							disabled={!this.state.group}
-							style={{
-								opacity: this.state.group ? 1.0 : 0.0,
-								float: 'left'
-							}}
-						/>
-					</div>
+						/></Col>
+					</Row>
+					<Row>
+						<Col>
+							<SelectInput
+								legend="Group By:"
+								options={groupingVariables}
+								clearable={true}
+								onChange={( value )=>{
+									this.setState({
+										group: value
+									});
+								}}
+								menuPlacement="top"
+							/>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<CheckboxInput
+								legend="Common x-axis?"
+								defaultValue={this.state.commonXAxis}
+								onChange={( value )=>{
+									this.setState({
+										commonXAxis: value
+									});
+								}}
+								disabled={!this.state.group}
+								style={{
+									opacity: this.state.group ? 1.0 : 0.0,
+									float: 'left'
+								}}
+							/>
+						</Col>
+						<Col>
+							<CheckboxInput
+								legend="Common y-axis?"
+								defaultValue={this.state.commonYAxis}
+								onChange={( value )=>{
+									this.setState({
+										commonYAxis: value
+									});
+								}}
+								disabled={!this.state.group}
+								style={{
+									opacity: this.state.group ? 1.0 : 0.0,
+									float: 'left'
+								}}
+							/>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<CheckboxInput
+								legend="Overlay observations"
+								defaultValue={this.state.overlayPoints}
+								onChange={( value )=>{
+									this.setState({
+										overlayPoints: value
+									});
+								}}
+							/>
+						</Col>
+						<Col>
+							<CheckboxInput
+								legend="Alternate Color Scheme"
+								defaultValue={this.state.alternateColor}
+								onChange={( value )=>{
+									this.setState({
+										alternateColor: value
+									});
+								}}
+							/>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<SelectInput
+								legend="Overlay regression line?"
+								defaultValue={this.state.regressionMethod}
+								multi={true}
+								options={[ 'linear', 'smooth' ]}
+								onChange={( value ) => {
+									if ( !isArray( value ) ) {
+										value = [ value ];
+									}
+									this.setState({
+										regressionMethod: value
+									});
+								}}
+							/>
+						</Col>
+						<Col>
+							<SliderInput
+								legend="Smoothing Parameter"
+								disabled={!contains(this.state.regressionMethod, 'smooth')}
+								min={0.01}
+								max={1}
+								step={0.01}
+								defaultValue={this.state.smoothSpan}
+								onChange={( value ) => {
+									this.setState({
+										smoothSpan: value
+									});
+								}}
+							/>
+						</Col>
+					</Row>
 					<Button variant="primary" block onClick={this.generateHeatmap.bind( this )}>Generate</Button>
 				</Card.Body>
 			</Card>
