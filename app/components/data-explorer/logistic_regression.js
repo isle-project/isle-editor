@@ -13,6 +13,7 @@ import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
 import isArray from '@stdlib/assert/is-array';
 import roundn from '@stdlib/math/base/special/roundn';
+import TextInput from 'components/input/text';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import { DATA_EXPLORER_LOGISTIC_REGRESSION } from 'constants/actions.js';
@@ -214,7 +215,7 @@ class LogisticRegression extends Component {
 						</Col>
 						<Col md={6}>
 							<SelectInput
-								legend="Success:"
+								legend="Success (Y = 1):"
 								defaultValue={success}
 								options={categories}
 								onChange={( value ) => {
