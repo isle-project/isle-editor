@@ -250,7 +250,7 @@ class Barchart extends Component {
 						}}
 					/>
 					<SelectInput
-						legend="Order bars by frequency"
+						legend="Order bars by frequency (optional)"
 						defaultValue={this.state.xOrder}
 						options={[ 'in ascending order', 'in descending order']}
 						clearable={true}
