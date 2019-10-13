@@ -225,7 +225,7 @@ class HypergeometricProbs extends Component {
 													<VictoryAxis dependentAxis />
 													<VictoryAxis
 														label="CDF" tickFormat={(x) => `${x}`} crossAxis={false}
-														style={{ axisLabel: { padding: 40 } }}
+														style={{ axisLabel: { padding: 40 }}}
 													/>
 													<VictoryLine
 														samples={600}

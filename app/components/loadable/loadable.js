@@ -99,8 +99,6 @@ function createLoadableComponent( loadFn, options ) {
 			return init();
 		}
 
-		static contextType = LoadableContext;
-
 		constructor( props ) {
 			super( props );
 			init();
@@ -123,6 +121,8 @@ function createLoadableComponent( loadFn, options ) {
 			this._mounted = false;
 			this._clearTimeouts();
 		}
+
+		static contextType = LoadableContext;
 
 		_loadModule() {
 			const loadable = this.context;

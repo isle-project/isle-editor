@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import logger from 'debug';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Select from 'react-select';
@@ -25,6 +26,7 @@ import './select-question-matrix.css';
 
 // VARIABLES //
 
+const debug = logger( 'isle:select-question-matrix' );
 const uid = generateUID( 'select-question-matrix' );
 
 
@@ -70,7 +72,7 @@ class SelectQuestionMatrix extends Component {
 
 	handleChangeFactory = ( label ) => {
 		return ( selected ) => {
-			console.log( `Received a new value for ${label}...` );
+			debug( `Received a new value for ${label}...` );
 			const answers = copy( this.state.answers, 1 );
 			answers[ label ] = selected.value;
 			this.setState({

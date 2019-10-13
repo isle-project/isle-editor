@@ -106,8 +106,6 @@ GaussianFit.prototype.predictOne = function predictOne( x ) {
 	for ( let i = 0; i < nClasses; i++ ) {
 		logLik[ i ] = this.calcGaussianProb( x, i );
 	}
-	console.log( logLik );
-	console.log( this.classes );
 	let max = logLik[ 0 ];
 	let argmax = this.classes[ 0 ];
 	for ( let i = 0; i < nClasses; i++ ) {

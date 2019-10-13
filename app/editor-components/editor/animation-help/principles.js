@@ -12,14 +12,14 @@ const AnimationPrinciples = () => {
 			<p>
 				There animation parameters you can specify in the style are the following
 			</p>
-			<li>animationName: <span className="param">'anim-rotate-in'</span></li>
-			<li>animationDelay:  <span className="param">'.5s'</span></li>
-			<li>animationDuration:  <span className="param">'3s'</span></li>
-			<li>animationDirection:  <span className="param">'alternate'</span></li>
+			<li>animationName: <span className="param">&apos;anim-rotate-in&apos;</span></li>
+			<li>animationDelay:  <span className="param">&apos;.5s&apos;</span></li>
+			<li>animationDuration:  <span className="param">&apos;3s&apos;</span></li>
+			<li>animationDirection:  <span className="param">&apos;alternate&apos;</span></li>
 			<li>animationIterationCount:  <span className="param">3</span></li>
-			<li>animationTimingFunction:  <span className="param">'ease'</span></li>
-			<li>animationFillMode:  <span className="param">'forwards'</span></li>
-			<li>animationPlayState:  <span className="param">'paused'</span></li>
+			<li>animationTimingFunction:  <span className="param">&apos;ease&apos;</span></li>
+			<li>animationFillMode:  <span className="param">&apos;forwards&apos;</span></li>
+			<li>animationPlayState:  <span className="param">&apos;paused&apos;</span></li>
 			<br />
 			<p>The <a href="https://www.w3schools.com/cssref/css3_pr_animation-name.asp">animation-name</a> CSS property specifies a name for the @keyframes animation.</p>
 			<p>The <a href="https://www.w3schools.com/cssref/css3_pr_animation-delay.asp" target="_blank">animation-delay</a> CSS property specifies a delay for the start of an animation.</p>

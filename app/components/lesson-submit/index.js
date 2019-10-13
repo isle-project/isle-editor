@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import logger from 'debug';
 import PropTypes from 'prop-types';
 import pdfMake from 'pdfmake/build/pdfmake';
 import Button from 'react-bootstrap/Button';
@@ -15,6 +16,11 @@ import { LESSON_SUBMIT } from 'constants/actions.js';
 
 // VARIABLES //
 
+const debug = logger( 'isle:lesson-submit' );
+
+
+// FUNCTIONS //
+
 function createMessage( session, message ) {
 	let msg = message || '';
 	return {
@@ -24,13 +30,13 @@ function createMessage( session, message ) {
 }
 
 function loadFonts() {
-	import( /* webpackChunkName: "fonts" */ './../markdown-editor/fonts.js' )
+	import( /* webpackChunkName: "fonts" */ '../../constants/fonts.js' )
 		.then( fonts => {
-			console.log( 'Successfully loaded fonts...' );
+			debug( 'Successfully loaded fonts...' );
 			pdfMake.vfs = fonts.default;
 		})
 		.catch( err => {
-			console.log( 'Encountered an error while loading fonts: '+err.message );
+			debug( 'Encountered an error while loading fonts: '+err.message );
 		});
 }
 

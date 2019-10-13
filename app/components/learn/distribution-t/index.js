@@ -88,7 +88,7 @@ class TProbs extends Component {
 		const { df, x0, x1 } = this.state;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
-				Student's T Distribution
+				Student&apos;s T Distribution
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={1} id="student-tabs">
