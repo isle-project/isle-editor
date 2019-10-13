@@ -8,13 +8,17 @@ import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
 import copy from '@stdlib/utils/copy';
 import abs from '@stdlib/math/base/special/abs';
+import pow from '@stdlib/math/base/special/pow';
+import round from '@stdlib/math/base/special/round';
 import tCDF from '@stdlib/stats/base/dists/t/cdf';
+import fCDF from '@stdlib/stats/base/dists/f/cdf';
 import Table from 'react-bootstrap/Table';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import Dashboard from 'components/dashboard';
 import { DATA_EXPLORER_MULTIPLE_REGRESSION } from 'constants/actions.js';
 import subtract from 'utils/subtract';
+import mean from 'utils/statistic/mean';
 import QuestionButton from './question_button.js';
 
 
@@ -44,7 +48,7 @@ const summaryTable = ( y, x, nobs, result ) => {
 					<td>{result.weights[ x.length ][ 0 ].toFixed( 3 )}</td>
 					<td>{result.stdErrors[ x.length ].toFixed( 3 )}</td>
 					<td>{result.tStats[ x.length ].toFixed( 3 )}</td>
-					<td>{(1.0-cdf( abs( result.tStats[ x.length ] ) ) ).toFixed( 3 )}</td>
+					<td>{2.0 * (1.0-cdf( abs( result.tStats[ x.length ] ) ) ).toFixed( 3 )}</td>
 				</tr> : null }
 				{x.map( ( name, idx ) => {
 					return (
@@ -53,7 +57,7 @@ const summaryTable = ( y, x, nobs, result ) => {
 							<td>{result.weights[ idx ][ 0 ].toFixed( 3 )}</td>
 							<td>{result.stdErrors[ idx ].toFixed( 3 )}</td>
 							<td>{result.tStats[ idx ].toFixed( 3 )}</td>
-							<td>{(1.0-cdf( abs( result.tStats[ idx ] ) ) ).toFixed( 3 )}</td>
+							<td>{2.0 * (1.0-cdf( abs( result.tStats[ idx ] ) ) ).toFixed( 3 )}</td>
 						</tr>
 					);
 				})}
@@ -111,18 +115,28 @@ class MultipleLinearRegression extends Component {
 			intercept
 		});
 
+		const yhat = result.predict( matrix ).map( v => v[ 0 ] );
+		const avgFitted = mean( yhat );
+		let mss = 0;
+		for ( let i = 0; i < yhat.length; i++ ) {
+			mss += pow( yhat[ i ] - avgFitted, 2 );
+		}
+		const resid = subtract( yhat, this.props.data[ y ] );
+		let rss = 0;
+		for ( let i = 0; i < resid.length; i++ ) {
+			rss += pow( resid[ i ], 2 );
+		}
 		if ( attach ) {
 			const newData = copy( this.props.data, 1 );
 			const newQuantitative = this.props.quantitative.slice();
 			const suffix = x.map( x => x[ 0 ] ).join( '' );
 			let name = y+'_pred_lm_' + suffix;
-			const yhat = result.predict( matrix ).map( v => v[ 0 ] );
 			newData[ name ] = yhat;
 			if ( !contains( newQuantitative, name ) ) {
 				newQuantitative.push( name );
 			}
 			name = y+'_resid_lm_' + suffix;
-			newData[ name ] = subtract( yhat, this.props.data[ y ] );
+			newData[ name ] = resid;
 			if ( !contains( newQuantitative, name ) ) {
 				newQuantitative.push( name );
 			}
@@ -132,12 +146,19 @@ class MultipleLinearRegression extends Component {
 		this.props.logAction( DATA_EXPLORER_MULTIPLE_REGRESSION, {
 			y, x, intercept
 		});
+		const p = predictors.length;
+		const rSquared = mss / ( mss + rss );
+		const adjRSquared = 1 - ( 1 - rSquared ) * ( n - 1 ) / ( n - p - 1 );
+		const fScore = ( mss / p ) / ( rss / ( n - p - 1 ) );
 		const output = {
 			variable: 'Regression Summary',
 			type: 'Multiple Linear Regression',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >Regression Summary for Response {y}</span>
 				{summaryTable( y, predictors, n, result )}
+				<p>Residual standard error: {round( result.stdError )}</p>
+				<p>R&#178;: {rSquared.toFixed( 6 )}, Adjusted R&#178;: {adjRSquared.toFixed( 6 )}</p>
+				<p>F-statistic: {fScore.toFixed( 3 )} (degrees of freedom: {n-p-1}, {p}), p-value: {(1.0 - fCDF( fScore, p, n-p-1 )).toFixed( 6 )}</p>
 			</div>
 		};
 		this.props.onCreated( output );
