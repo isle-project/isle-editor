@@ -140,10 +140,12 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 		layout: {
 			title: group.length > 0 ? `${variable} given ${group.join( ', ')}` : variable,
 			xaxis: {
-				type: orientation === 'vertical' ? 'category' : null
+				type: orientation === 'vertical' ? 'category' : null,
+				showticklabels: group.length > 0 || orientation === 'horizontal'
 			},
 			yaxis: {
-				type: orientation === 'horizontal' ? 'category' : null
+				type: orientation === 'horizontal' ? 'category' : null,
+				showticklabels: group.length > 0 || orientation === 'vertical'
 			},
 			boxmode: group.length === 2 ? 'group' : null
 		}
@@ -166,14 +168,15 @@ class Boxplot extends Component {
 	}
 
 	generateBoxplot = () => {
+		let group = ( this.state.group || [] ).map( e => e.value );
 		const config = generateBoxplotConfig({
 			data: this.props.data,
 			variable: this.state.variable,
-			group: this.state.group.map( e => e.value ),
+			group,
 			orientation: this.state.orientation,
 			overlayPoints: this.state.overlayPoints
 		});
-		let { variable, group } = this.state;
+		let { variable } = this.state;
 		group = group.map( e => e.value );
 		const plotId = randomstring( 6 );
 		const action = {
