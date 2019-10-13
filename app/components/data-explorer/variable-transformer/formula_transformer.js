@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Table from 'react-bootstrap/Table';
 import FormControl from 'react-bootstrap/FormControl';
 import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
@@ -12,7 +13,9 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Modal from 'react-bootstrap/Modal';
+import Collapse from 'components/collapse';
 import TextArea from 'components/input/text-area';
+import Tooltip from 'components/tooltip';
 import incrspace from '@stdlib/math/utils/incrspace';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
@@ -81,7 +84,8 @@ class FormulaTransformer extends Component {
 		this.state = {
 			code: props.defaultCode,
 			selection: null,
-			name: ''
+			name: '',
+			showGuide: false
 		};
 	}
 
@@ -176,9 +180,38 @@ class FormulaTransformer extends Component {
 				</Modal.Header>
 				<Modal.Body>
 					<div className="formula-transformer-body">
+						<Collapse headerClassName="title" header={this.state.showGuide ? 'Hide Guide' : 'Show Guide'} visible={this.state.showGuide} onClick={() => this.setState({ showGuide: !this.state.showGuide })}>
+							<p>Use the formula text area below to create a new variable. The following table illustrates a few use-cases:</p>
+							<Table condensed >
+								<thead>
+									<tr>
+										<th>Type</th>
+										<th>Example</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Interaction:</td>
+										<td><code>datum.{this.props.quantitative[0]} * datum.{this.props.quantitative[1]}</code></td>
+										<td>Multiply values of variables <code>{this.props.quantitative[0]}</code> and <code>{this.props.quantitative[1]}</code></td>
+									</tr>
+									<tr>
+										<td>Transformation:</td>
+										<td><code>exp( datum.${this.props.quantitative[0]} )</code></td>
+										<td>Natural exponential function of variable <code>{this.props.quantitative[0]}</code></td>
+									</tr>
+									<tr>
+										<td>Function:</td>
+										<td><code>9/5 + 32 * {this.props.quantitative[0]}</code></td>
+										<td>Multiply values of <code>{this.props.quantitative[0]}</code> by <code>32</code> and add <code>9/5</code></td>
+									</tr>
+								</tbody>
+							</Table>
+						</Collapse>
+						<hr />
 						<Card className="mb-2" >
 							<Card.Body>
-								<p></p>
 								<ButtonToolbar style={{ marginBottom: 5 }} >
 									<Dropdown className="mr-2">
 										<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
@@ -198,6 +231,12 @@ class FormulaTransformer extends Component {
 											})}
 										</Dropdown.Menu>
 									</Dropdown>
+								</ButtonToolbar>
+							</Card.Body>
+						</Card>
+						<Card className="mb-2" >
+							<Card.Body>
+								<ButtonToolbar style={{ marginBottom: 5 }} >
 									<ButtonGroup size="sm" className="mr-2" >
 										<Button variant="light" onClick={this.insertLiteralFactory(' < ')} >{'<'}</Button>
 										<Button variant="light" onClick={this.insertLiteralFactory(' > ')} >{'>'}</Button>
@@ -205,17 +244,15 @@ class FormulaTransformer extends Component {
 										<Button variant="light" onClick={this.insertLiteralFactory(' >= ')} >{'>='}</Button>
 									</ButtonGroup>
 									<ButtonGroup size="sm" className="mr-2" >
-										<Button variant="light" onClick={this.insertLiteralFactory(' ( ')} >(</Button>
-										<Button variant="light" onClick={this.insertLiteralFactory(' ) ')} >)</Button>
+										<Tooltip placement="top" tooltip="Open parenthesis"><Button variant="light" onClick={this.insertLiteralFactory(' ( ')} >(</Button></Tooltip>
+										<Tooltip placement="top" tooltip="Closing parenthesis"><Button variant="light" onClick={this.insertLiteralFactory(' ) ')} >)</Button></Tooltip>
 									</ButtonGroup>
 									<ButtonGroup size="sm" className="mr-2" >
-										<Button variant="light" onClick={this.insertLiteralFactory(' + ')} >+</Button>
-										<Button variant="light" onClick={this.insertLiteralFactory(' - ')} >-</Button>
-										<Button variant="light" onClick={this.insertLiteralFactory(' * ')} >*</Button>
-										<Button variant="light" onClick={this.insertLiteralFactory(' / ')} >/</Button>
+										<Tooltip placement="top" tooltip="Addition"><Button variant="light" onClick={this.insertLiteralFactory(' + ')} >+</Button></Tooltip>
+										<Tooltip placement="top" tooltip="Subtraction"><Button variant="light" onClick={this.insertLiteralFactory(' - ')} >-</Button></Tooltip>
+										<Tooltip placement="top" tooltip="Multiplication"><Button variant="light" onClick={this.insertLiteralFactory(' * ')} >*</Button></Tooltip>
+										<Tooltip placement="top" tooltip="Division"><Button variant="light" onClick={this.insertLiteralFactory(' / ')} >/</Button></Tooltip>
 									</ButtonGroup>
-								</ButtonToolbar>
-								<ButtonToolbar style={{ marginBottom: 5 }} >
 									<ButtonGroup size="sm" className="mr-2" >
 										<Button variant="light" onClick={this.insertLiteralFactory(' && ')} >and</Button>
 										<Button variant="light" onClick={this.insertLiteralFactory(' || ')} >or</Button>

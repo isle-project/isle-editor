@@ -34,7 +34,8 @@ function getClassName( val ) {
 * @property {boolean} visible - controls whether slider is visible; turns it into a controlled component where state needs to be handled externally
 * @property {string} header - header string
 * @property {string} headerClassName - this overrules the given className of the header
-* @property {object} headerStyle - one may also assign a style to the header bar
+* @property {Object} headerStyle - one may also assign a style to the header bar
+* @property {Function} onClick - event handler invoked when header is clicked
 */
 class Collapse extends Component {
 	constructor( props ) {
@@ -85,7 +86,7 @@ class Collapse extends Component {
 			<VSHeader
 				onClick={this.toggleVisibility}
 			>
-				<h1 style={this.props.headerStyle}>{this.props.header}</h1>
+				<div style={this.props.headerStyle}>{this.props.header}</div>
 			</VSHeader>
 		);
 	}
