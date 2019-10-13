@@ -441,7 +441,6 @@ class DataTable extends Component {
 				theadControls.scrollLeft = tbody.scrollLeft;
 			});
 		}
-		this.mountEvents();
 	}
 
 	componentDidUpdate( prevProps ) {
@@ -463,7 +462,6 @@ class DataTable extends Component {
 				});
 			});
 		}
-		this.mountEvents();
 	}
 
 	renderEditable = ( cellInfo ) => {
@@ -486,51 +484,6 @@ class DataTable extends Component {
 				}}
 			/>
 		);
-	}
-
-	mountEvents() {
-		const headers = Array.prototype.slice.call(
-			document.querySelectorAll( '.draggable-header' )
-		);
-		headers.forEach((header, i) => {
-			header.setAttribute( 'draggable', true );
-			// Dragged header:
-			header.ondragstart = e => {
-				e.stopPropagation();
-				e.dataTransfer.setData( 'Text', i );
-				this.dragged = i;
-			};
-
-			header.ondrag = e => e.stopPropagation;
-
-			header.ondragend = e => {
-				e.stopPropagation();
-				setTimeout(() => {
-					this.dragged = null;
-				}, 1000 );
-			};
-
-			// Dropped header:
-			header.ondragover = e => {
-				e.preventDefault();
-			};
-			header.ondrop = e => {
-				e.preventDefault();
-				let a = i;
-				let b = this.dragged;
-				const keys = headers.map( x => x.dataset.key );
-				const tmp = keys[ a ];
-				keys[ a ] = keys[ b ];
-				keys[ b ] = tmp;
-				if ( this.props.showIdColumn ) {
-					a += 1;
-					b += 1;
-				}
-				this.props.onColumnDrag( keys );
-				this.reorder.push({ a, b });
-				this.setState({ trigger: Math.random() });
-			};
-		});
 	}
 
 	renderCheckboxRemovable = ( cellInfo ) => {
@@ -653,13 +606,49 @@ class DataTable extends Component {
 			</Modal>;
 		}
 
-		const cols = this.state.columns.map( col => {
+		const cols = this.state.columns.map( ( col, i ) => {
 			if ( col.Header === 'id' ) {
 				return col;
 			}
 			return ({
 				...col,
-				Header: <span className="draggable-header" id={`header-${col.id}`} data-key={col.id} >{col.Header}</span>
+				Header: <span
+					className="draggable-header" id={`header-${col.id}`}
+					draggable="true"
+					onDragStart={e => {
+						e.stopPropagation();
+						e.dataTransfer.setData( 'Text', i );
+						this.dragged = this.props.showIdColumn ? i-1 : i;
+					}}
+					onDrag={e => e.stopPropagation}
+					onDragEnd={e => {
+						e.stopPropagation();
+						setTimeout(() => {
+							this.dragged = null;
+						}, 1000 );
+					}}
+					onDragOver={e => {
+						e.preventDefault();
+						e.dataTransfer.dropEffect = 'move';
+					}}
+					onDrop={e => {
+						e.preventDefault();
+						let a = this.props.showIdColumn ? i-1 : i;
+						let b = this.dragged;
+						const keys = this.state.columns.map( x => x.id );
+						keys.shift();
+						const tmp = keys[ a ];
+						keys[ a ] = keys[ b ];
+						keys[ b ] = tmp;
+						if ( this.props.showIdColumn ) {
+							a += 1;
+							b += 1;
+						}
+						this.props.onColumnDrag( keys );
+						this.reorder.push({ a, b });
+						this.setState({ trigger: Math.random() });
+					}}
+				>{col.Header}</span>
 			});
 		});
 
