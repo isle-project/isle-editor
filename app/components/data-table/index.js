@@ -45,6 +45,7 @@ import generateUID from 'utils/uid';
 import SessionContext from 'session/context.js';
 import { TABLE_SORT, TABLE_FILTER, TABLE_RESET } from 'constants/actions.js';
 import SelectInput from 'components/input/select';
+import { components } from 'react-select';
 import TutorialButton from './tutorial-button/index.js';
 import ColumnTitle from './column_title.js';
 import 'react-table/react-table.css';
@@ -185,7 +186,8 @@ function createColumns( props, state ) {
 		const out = {
 			Header: header,
 			id: key,
-			accessor: ( d ) => d[ key ]
+			accessor: ( d ) => d[ key ],
+			minWidth: 125
 		};
 		if ( contains( props.editable, key ) ) {
 			out.Cell = this.renderEditable;
@@ -231,14 +233,21 @@ function createColumns( props, state ) {
 						</div>
 					);
 				};
-			} else if ( uniqueValues.length <= 12 ) {
+			} else if ( uniqueValues.length <= 50 ) {
 				// Cast values to strings for select component to work:
 				uniqueValues = uniqueValues.map( x => String( x ) );
 				out[ 'filterMethod' ] = filterMethodCategories;
 				out[ 'Filter' ] = ({ filter, onChange }) => {
 					return (
 						<SelectInput
-							onChange={onChange}
+							onChange={( vals ) => {
+								if ( vals ) {
+									out.minWidth = 300;
+								} else {
+									out.minWidth = 125;
+								}
+								onChange( vals );
+							}}
 							style={{ width: '100%' }}
 							value={filter ? filter.value : null}
 							searchable={false}
@@ -247,8 +256,34 @@ function createColumns( props, state ) {
 							multi
 							placeholder="Show all"
 							components={{
-								IndicatorsContainer: CustomIndicator
+								DropdownIndicator: CustomIndicator,
+								MultiValueLabel: props => {
+									const invertSelection = () => {
+										onChange( uniqueValues.filter( x => x !== props.children ) );
+									};
+									return (
+										<OverlayTrigger
+											overlay={<Tooltip id="invert_selection">Select all others</Tooltip>}
+											placement="bottom"
+										>
+											<span
+												role="button" tabIndex={0}
+												onClick={invertSelection}
+												onKeyPress={invertSelection}
+												onMouseDown={( event ) => {
+													// See: https://github.com/JedWatson/react-select/issues/3117
+													event.preventDefault();
+													event.stopPropagation();
+												}}
+												style={{ cursor: 'cursor' }}
+											>
+												<components.MultiValueLabel {...props} />
+											</span>
+										</OverlayTrigger>
+									);
+								}
 							}}
+							escapeClearsValue
 							menuPortalTarget={document.body}
 							styles={{
 								menuPortal: base => ({ ...base, zIndex: 9999 })
