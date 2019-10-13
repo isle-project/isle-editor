@@ -241,7 +241,7 @@ function createColumns( props, state ) {
 					return (
 						<SelectInput
 							onChange={( vals ) => {
-								if ( vals ) {
+								if ( vals && vals.length > 0 ) {
 									out.minWidth = 300;
 								} else {
 									out.minWidth = 125;
