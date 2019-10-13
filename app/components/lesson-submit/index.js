@@ -4,9 +4,11 @@ import React, { Component } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
 import pdfMake from 'pdfmake/build/pdfmake';
+import innerText from 'react-innertext';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import objectKeys from '@stdlib/utils/keys';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import beforeUnload from 'utils/before-unload';
 import Signup from 'components/signup';
 import Login from 'components/login';
@@ -138,7 +140,7 @@ class LessonSubmit extends Component {
 					const { type } = visualizer;
 					const question = visualizer.ref.props.data.question;
 					doc.content.push({
-						text: question,
+						text: isString( question ) ? question : innerText( question ),
 						style: 'question'
 					});
 					let actions = session.currentUserActions[ ids[ i ] ];
