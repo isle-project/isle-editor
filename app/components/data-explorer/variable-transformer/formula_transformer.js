@@ -180,7 +180,7 @@ class FormulaTransformer extends Component {
 				</Modal.Header>
 				<Modal.Body>
 					<div className="formula-transformer-body">
-						<Collapse headerClassName="title" header={this.state.showGuide ? 'Hide Guide' : 'Show Guide'} visible={this.state.showGuide} onClick={() => this.setState({ showGuide: !this.state.showGuide })}>
+						<Collapse headerClassName="title" header={this.state.showGuide ? 'Hide Example Guide' : 'Show Example Guide'} visible={this.state.showGuide} onClick={() => this.setState({ showGuide: !this.state.showGuide })}>
 							<p>Use the formula text area below to create a new variable. The following table illustrates a few use-cases:</p>
 							<Table condensed >
 								<thead>
@@ -198,13 +198,13 @@ class FormulaTransformer extends Component {
 									</tr>
 									<tr>
 										<td>Transformation:</td>
-										<td><code>exp( datum.${this.props.quantitative[0]} )</code></td>
+										<td><code>exp( datum.{this.props.quantitative[0]} )</code></td>
 										<td>Natural exponential function of variable <code>{this.props.quantitative[0]}</code></td>
 									</tr>
 									<tr>
 										<td>Function:</td>
-										<td><code>9/5 + 32 * {this.props.quantitative[0]}</code></td>
-										<td>Multiply values of <code>{this.props.quantitative[0]}</code> by <code>32</code> and add <code>9/5</code></td>
+										<td><code>9/5 * {this.props.quantitative[0]} + 32</code></td>
+										<td>Multiply values of <code>{this.props.quantitative[0]}</code> by <code>9/5</code> and add <code>32</code></td>
 									</tr>
 								</tbody>
 							</Table>
@@ -258,16 +258,18 @@ class FormulaTransformer extends Component {
 										<Button variant="light" onClick={this.insertLiteralFactory(' || ')} >or</Button>
 										<Button variant="light" onClick={this.insertLiteralFactory(' !')} >not</Button>
 									</ButtonGroup>
+									<ButtonGroup size="sm" className="me-2">
+										{FUNCTION_KEYS.map( ( v, i ) => {
+											return <Button key={i} variant="light" onClick={this.insertFuncFactory( v )} eventKey={i}>{v}</Button>;
+										})}
+									</ButtonGroup>
+								</ButtonToolbar>
+								<ButtonToolbar>
 									<ButtonGroup size="sm" className="mr-2" >
 										{DIGITS.map( ( d, i ) => {
 											return <Button key={i} variant="light" onClick={this.insertLiteralFactory( `${d}`)} >{d}</Button>;
 										})}
 										<Button variant="light" onClick={this.insertLiteralFactory('.')} >.</Button>
-									</ButtonGroup>
-									<ButtonGroup>
-										{FUNCTION_KEYS.map( ( v, i ) => {
-											return <Button key={i} variant="light" onClick={this.insertFuncFactory( v )} eventKey={i}>{v}</Button>;
-										})}
 									</ButtonGroup>
 								</ButtonToolbar>
 							</Card.Body>
