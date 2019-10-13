@@ -65,9 +65,16 @@ const md = markdownit({
 const debug = logger( 'isle:data-table' );
 const uid = generateUID( 'data-table' );
 const RE_NUMBER = /[0-9.,]+/;
+const LOCALE_COMPARE_OPTS = {
+	numeric: true
+};
 
 
 // FUNCTIONS //
+
+function comparer( a, b ) {
+	return a.localeCompare( b, void 0, LOCALE_COMPARE_OPTS );
+}
 
 function createDescriptions( descriptions ) {
 	const strTable = [];
@@ -148,11 +155,10 @@ function createColumns( props, state ) {
 	debug( 'Create columns...' );
 	const columns = state.keys.filter( key => key !== 'id' ).map( ( key, idx ) => {
 		let header = key;
-		if (
-			props.dataInfo &&
+		const isOriginal = props.dataInfo &&
 			props.dataInfo.variables &&
-			props.dataInfo.variables[ key ]
-		) {
+			props.dataInfo.variables[ key ];
+		if ( isOriginal ) {
 			header = <ColumnTitle title={key} tooltip={props.dataInfo.variables[ key ]} />;
 		} else if ( props.deletable ) {
 			header = <div style={{ backgroundColor: 'papayawhip' }}>
@@ -187,7 +193,7 @@ function createColumns( props, state ) {
 			Header: header,
 			id: key,
 			accessor: ( d ) => d[ key ],
-			minWidth: 125
+			minWidth: isOriginal ? 125 : 150
 		};
 		if ( contains( props.editable, key ) ) {
 			out.Cell = this.renderEditable;
@@ -234,8 +240,8 @@ function createColumns( props, state ) {
 					);
 				};
 			} else if ( uniqueValues.length <= 50 ) {
-				// Cast values to strings for select component to work:
-				uniqueValues = uniqueValues.map( x => String( x ) );
+				// Cast values to strings for select component to work and sort:
+				uniqueValues = uniqueValues.map( x => String( x ) ).sort( comparer );
 				out[ 'filterMethod' ] = filterMethodCategories;
 				out[ 'Filter' ] = ({ filter, onChange }) => {
 					return (
