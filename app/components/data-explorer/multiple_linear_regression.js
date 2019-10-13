@@ -158,7 +158,7 @@ class MultipleLinearRegression extends Component {
 				{summaryTable( y, predictors, n, result )}
 				<p>Residual standard error: {round( result.stdError )}</p>
 				<p>R&#178;: {rSquared.toFixed( 6 )}, Adjusted R&#178;: {adjRSquared.toFixed( 6 )}</p>
-				<p>F-statistic: {fScore.toFixed( 3 )} (degrees of freedom: {n-p-1}, {p}), p-value: {(1.0 - fCDF( fScore, p, n-p-1 )).toFixed( 6 )}</p>
+				<p>F-statistic: {fScore.toFixed( 3 )} (df: {n-p-1}, {p}), p-value: {(1.0 - fCDF( fScore, p, n-p-1 )).toFixed( 6 )}</p>
 			</div>
 		};
 		this.props.onCreated( output );
