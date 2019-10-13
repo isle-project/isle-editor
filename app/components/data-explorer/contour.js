@@ -12,6 +12,8 @@ import contains from '@stdlib/assert/contains';
 import lowess from '@stdlib/stats/lowess';
 import linspace from '@stdlib/math/utils/linspace';
 import roundn from '@stdlib/math/base/special/roundn';
+import sample from '@stdlib/random/sample';
+import runif from '@stdlib/random/base/discrete-uniform';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
@@ -50,9 +52,11 @@ export function generateContourChart({ data, xval, yval, overlayPoints, regressi
 	};
 	const traces = [ trace1 ];
 	if ( overlayPoints ) {
+		const seed = runif( -40, 40 );
+		const size = 5000;
 		const trace2 = {
-			x: xvals,
-			y: yvals,
+			x: xvals.length > 5000 ? sample( xvals, { size, seed }) : xvals,
+			y: yvals.length > 5000 ? sample( yvals, { size, seed }) : yvals,
 			mode: 'markers',
 			name: 'points',
 			marker: {
