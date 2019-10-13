@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+
 // MODULES //
 
 import React, { Component, Fragment, lazy, Suspense } from 'react';
@@ -709,7 +711,7 @@ class DataExplorer extends Component {
 	* React component render method.
 	*/
 	render() {
-		console.log( 'Render component...' );
+		debug( 'Render component...' );
 		if ( !this.state.data ) {
 			return (
 				<Suspense fallback={<div>Loading...</div>} >

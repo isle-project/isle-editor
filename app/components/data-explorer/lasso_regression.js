@@ -97,8 +97,6 @@ class LassoRegression extends Component {
 				hash[ x[ j ] ] = categories;
 			}
 		}
-		console.log( predictors );
-		console.log( categoricalStats );
 		for ( let i = 0; i < n; i++ ) {
 			const row = [];
 			if ( intercept ) {

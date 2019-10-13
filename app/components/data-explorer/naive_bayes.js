@@ -149,8 +149,6 @@ class NaiveBayes extends Component {
 		matrix = ndarray( matrix );
 
 		const results = gaussian( matrix, yvalues );
-		console.log( results.predictOne( [ 100 ] ) );
-
 		if ( attach ) {
 			const newData = copy( this.props.data, 1 );
 			const newQuantitative = this.props.quantitative.slice();

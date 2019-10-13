@@ -7,14 +7,14 @@ import React, { Component } from 'react';
 
 export default function D3blackbox(D3render) {
 	return class Blackbox extends Component {
-		anchor = React.createRef();
-
 		componentDidMount() {
 			D3render(this.anchor, this.props, this.state);
 		}
 		componentDidUpdate() {
 			D3render(this.anchor, this.props, this.state);
 		}
+
+		anchor = React.createRef();
 
 		render() {
 			const { x, y } = this.props;

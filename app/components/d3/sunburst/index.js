@@ -131,7 +131,8 @@ class Sunburst extends Component {
 
 		const path = this.vis.data([ json ]).selectAll( 'path' )
 			.data( nodes )
-			.enter().append( 'svg:path' )
+			.enter()
+			.append( 'svg:path' )
 			.attr( 'display', d => d.depth ? null : 'none' )
 			.attr( 'd', this.arc )
 			.attr( 'fill-rule', 'evenodd' )
@@ -162,7 +163,7 @@ class Sunburst extends Component {
 
 	// Fade all but the current sequence, and show it in the breadcrumb trail.
 	mouseover = ( d ) => {
-		console.log( 'Handle mouseover...' );
+		debug( 'Handle mouseover...' );
 		const percentage = ( 100 * d.value / this.totalSize ).toPrecision(3);
 		let percentageString = percentage + '%';
 		if ( percentage < 0.1 ) {
