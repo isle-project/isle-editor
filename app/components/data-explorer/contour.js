@@ -2,15 +2,25 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import max from '@stdlib/math/base/special/max';
+import maxScalar from '@stdlib/math/base/special/max';
 import floor from '@stdlib/math/base/special/floor';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isnan from '@stdlib/assert/is-nan';
+import contains from '@stdlib/assert/contains';
+import lowess from '@stdlib/stats/lowess';
+import linspace from '@stdlib/math/utils/linspace';
+import roundn from '@stdlib/math/base/special/roundn';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
+import SliderInput from 'components/input/slider';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
+import max from 'utils/statistic/max';
+import min from 'utils/statistic/min';
 import { DATA_EXPLORER_SHARE_CONTOURPLOT, DATA_EXPLORER_CONTOURPLOT } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
+import calculateCoefficients from './linear-regression/calculate_coefficients.js';
 
 
 // VARIABLES //
@@ -21,15 +31,15 @@ const DESCRIPTION = 'A contour plot can be used to display the joint distributio
 // FUNCTIONS //
 
 function calculateOpacity(nobs) {
-	return max( 0.05, 0.6 - floor( nobs / 500 ) );
+	return maxScalar( 0.05, 0.6 - floor( nobs / 500 ) );
 }
 
-export function generateContourChart({ data, xval, yval, overlayPoints }) {
-	var x = data[xval];
-	var y = data[yval];
+export function generateContourChart({ data, xval, yval, overlayPoints, regressionMethod, smoothSpan }) {
+	let xvals = data[ xval ];
+	let yvals = data[ yval ];
 	var trace1 = {
-		x: x,
-		y: y,
+		x: xvals,
+		y: yvals,
 		mode: 'density',
 		type: 'histogram2dcontour',
 		colorscale: 'YIOrRd',
@@ -39,8 +49,8 @@ export function generateContourChart({ data, xval, yval, overlayPoints }) {
 	var traces = [ trace1 ];
 	if ( overlayPoints ) {
 		var trace2 = {
-			x: x,
-			y: y,
+			x: xvals,
+			y: yvals,
 			mode: 'markers',
 			name: 'points',
 			marker: {
@@ -51,7 +61,52 @@ export function generateContourChart({ data, xval, yval, overlayPoints }) {
 		};
 		traces.push(trace2);
 	}
-
+	if ( regressionMethod && regressionMethod.length > 0 ) {
+		let xc = [];
+		let yc = [];
+		for ( let j = 0; j < xvals.length; j++ ) {
+			let x = xvals[ j ];
+			let y = yvals[ j ];
+			if (
+				isNumber( x ) && isNumber( y ) &&
+				!isnan( x ) && !isnan( y )
+			) {
+				xc.push( x );
+				yc.push( y );
+			}
+		}
+		xvals = xc;
+		yvals = yc;
+		let predictedLinear;
+		let predictedSmooth;
+		let values;
+		if ( contains( regressionMethod, 'linear' ) ) {
+			values = linspace( min( xvals ), max( xvals ), 100 );
+			const coefs = calculateCoefficients( xvals, yvals );
+			predictedLinear = values.map( x => coefs[ 0 ] + coefs[ 1 ]*x );
+			traces.push({
+				x: values,
+				y: predictedLinear,
+				text: `${roundn( coefs[ 0 ], -6 )} + x * ${roundn( coefs[ 1 ], -6 )}`,
+				mode: 'lines',
+				name: 'Linear Fit',
+				type: 'line',
+				color: 'blue'
+			});
+		}
+		if ( contains( regressionMethod, 'smooth' ) ) {
+			const out = lowess( xvals, yvals, { 'f': smoothSpan } );
+			values = out.x;
+			predictedSmooth = out.y;
+			traces.push({
+				x: values,
+				y: predictedSmooth,
+				mode: 'lines',
+				name: 'Smoothed Fit',
+				type: 'line'
+			});
+		}
+	}
 	let layout = {
 		title: `${xval} vs. ${yval}`,
 		xaxis: {
@@ -79,8 +134,8 @@ class ContourChart extends Component {
 		super( props );
 	}
 
-	generateContourChart( xval, yval, overlayPoints ) {
-		const config = generateContourChart({ data: this.props.data, xval, yval, overlayPoints });
+	generateContourChart( xval, yval, overlayPoints, regressionMethod, smoothSpan ) {
+		const config = generateContourChart({ data: this.props.data, xval, yval, overlayPoints, regressionMethod, smoothSpan });
 		const plotId = randomstring( 6 );
 		const action = {
 			xval, yval, overlayPoints, plotId
@@ -132,6 +187,19 @@ class ContourChart extends Component {
 				<CheckboxInput
 					legend="Overlay observations"
 					defaultValue={false}
+				/>
+				<SelectInput
+					legend="Overlay regression line? (optional)"
+					defaultValue=""
+					multi={true}
+					options={[ 'linear', 'smooth' ]}
+				/>
+				<SliderInput
+					legend="Smoothing Parameter"
+					min={0.01}
+					max={1}
+					step={0.01}
+					defaultValue={0.66}
 				/>
 			</Dashboard>
 		);

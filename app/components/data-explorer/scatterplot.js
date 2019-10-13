@@ -20,12 +20,12 @@ import mapValues from '@stdlib/utils/map-values';
 import groupBy from '@stdlib/utils/group-by';
 import group from '@stdlib/utils/group';
 import unique from 'uniq';
-import mean from 'utils/statistic/mean';
 import max from 'utils/statistic/max';
 import min from 'utils/statistic/min';
 import { CAT20 } from 'constants/colors';
 import { DATA_EXPLORER_SHARE_SCATTERPLOT, DATA_EXPLORER_SCATTERPLOT } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
+import calculateCoefficients from './linear-regression/calculate_coefficients.js';
 
 
 // VARIABLES //
@@ -54,23 +54,6 @@ const SYMBOLS = [
 
 
 // FUNCTIONS //
-
-function calculateCoefficients( x, y ) {
-	const xmu = mean( x );
-	const ymu = mean( y );
-	let C1 = 0;
-	let C2 = 0;
-	const len = x.length;
-	for ( let i = 0; i < len; i++ ) {
-		let xdelta = x[ i ] - xmu;
-		let ydelta = y[ i ] - ymu;
-		C1 += xdelta * xdelta;
-		C2 += xdelta * ydelta;
-	}
-	const slope = C2 / C1;
-	const yint = ymu - slope*xmu;
-	return [ yint, slope ];
-}
 
 function scale( arr, a, b ) {
 	const minimum = min( arr );

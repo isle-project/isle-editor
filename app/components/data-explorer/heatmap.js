@@ -6,16 +6,28 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
+import SliderInput from 'components/input/slider';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
-import max from '@stdlib/math/base/special/max';
+import isArray from '@stdlib/assert/is-array';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isnan from '@stdlib/assert/is-nan';
+import contains from '@stdlib/assert/contains';
+import lowess from '@stdlib/stats/lowess';
+import linspace from '@stdlib/math/utils/linspace';
+import roundn from '@stdlib/math/base/special/roundn';
+import maxScalar from '@stdlib/math/base/special/max';
 import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
 import kde2d from '@stdlib/stats/kde2d';
 import objectKeys from '@stdlib/utils/keys';
+import max from 'utils/statistic/max';
+import min from 'utils/statistic/min';
 import { DATA_EXPLORER_SHARE_HEATMAP, DATA_EXPLORER_HEATMAP } from 'constants/actions.js';
+import calculateCoefficients from './linear-regression/calculate_coefficients.js';
 import QuestionButton from './question_button.js';
 import by2 from './by2.js';
+import by from './by.js';
 
 
 // VARIABLES //
@@ -26,7 +38,7 @@ const DESCRIPTION = 'A data display for quantitative variables in which data val
 // FUNCTIONS //
 
 function calculateOpacity(nobs) {
-	return max( 0.05, 0.6 - floor( nobs / 500 ) );
+	return maxScalar( 0.05, 0.6 - floor( nobs / 500 ) );
 }
 
 function toArrayArray( arr ) {
@@ -43,14 +55,14 @@ function toArrayArray( arr ) {
 	return out;
 }
 
-export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alternateColor, group, commonXAxis, commonYAxis }) {
+export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alternateColor, group, commonXAxis, commonYAxis, regressionMethod, smoothSpan }) {
 	let annotations;
 	let traces;
 	let layout;
-	var x = data[ xval ];
-	var y = data[ yval ];
+	const x = data[ xval ];
+	const y = data[ yval ];
 	if ( !group ) {
-		var out = kde2d( x, y );
+		const out = kde2d( x, y );
 		traces = [
 			{
 				x: out.x,
@@ -76,6 +88,51 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alterna
 			};
 			traces.push( points );
 		}
+		if ( regressionMethod && regressionMethod.length > 0 ) {
+			let xc = [];
+			let yc = [];
+			for ( let j = 0; j < x.length; j++ ) {
+				let xval = x[ j ];
+				let yval = y[ j ];
+				if (
+					isNumber( xval ) && isNumber( yval ) &&
+					!isnan( xval ) && !isnan( yval )
+				) {
+					xc.push( xval );
+					yc.push( yval );
+				}
+			}
+			let predictedLinear;
+			let predictedSmooth;
+			let values;
+			console.log( min( xc ) );
+			console.log( max( xc ) );
+			if ( contains( regressionMethod, 'linear' ) ) {
+				values = linspace( min( xc ), max( xc ), 100 );
+				const coefs = calculateCoefficients( xc, yc );
+				predictedLinear = values.map( x => coefs[ 0 ] + coefs[ 1 ]*x );
+				traces.push({
+					x: values,
+					y: predictedLinear,
+					text: `${roundn( coefs[ 0 ], -6 )} + x * ${roundn( coefs[ 1 ], -6 )}`,
+					mode: 'lines',
+					name: 'Linear Fit',
+					type: 'line'
+				});
+			}
+			if ( contains( regressionMethod, 'smooth' ) ) {
+				const out = lowess( xc, yc, { 'f': smoothSpan } );
+				values = out.x;
+				predictedSmooth = out.y;
+				traces.push({
+					x: values,
+					y: predictedSmooth,
+					mode: 'lines',
+					name: 'Smoothed Fit',
+					type: 'line'
+				});
+			}
+		}
 		layout = {
 			title: `${xval} vs. ${yval}`,
 			xaxis: {
@@ -90,6 +147,8 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alterna
 			}
 		};
 	} else {
+		let xgrouped;
+		let ygrouped;
 		const densities = by2( x, y, data[ group ], kde2d );
 		const keys = group.categories || objectKeys( densities );
 		const nPlots = keys.length;
@@ -102,6 +161,14 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alterna
 			subplots[j] = new Array(nCols);
 		}
 
+		if ( regressionMethod && regressionMethod.length > 0 ) {
+			xgrouped= by( x, data[ group ], arr => {
+				return arr;
+			});
+			ygrouped = by( y, data[ group ], arr => {
+				return arr;
+			});
+		}
 		for ( let i = 0; i < keys.length; i++ ) {
 			const key = keys[ i ];
 			const row = floor( i / nCols );
@@ -120,7 +187,6 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alterna
 			} else {
 				yAxisID = `y${i === 0 ? '' : i+1}`;
 			}
-
 			traces.push(
 				{
 					x: val.x,
@@ -135,6 +201,55 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alterna
 				}
 			);
 			subplots[ row ][ col ] = xAxisID + yAxisID;
+			if ( regressionMethod && regressionMethod.length > 0 ) {
+				let xvals = xgrouped[ key ];
+				let yvals = ygrouped[ key ];
+				let xc = [];
+				let yc = [];
+				for ( let j = 0; j < xvals.length; j++ ) {
+					let x = xvals[ j ];
+					let y = yvals[ j ];
+					if (
+						isNumber( x ) && isNumber( y ) &&
+						!isnan( x ) && !isnan( y )
+					) {
+						xc.push( x );
+						yc.push( y );
+					}
+				}
+				let predictedLinear;
+				let predictedSmooth;
+				let values;
+				if ( contains( regressionMethod, 'linear' ) ) {
+					values = linspace( min( xc ), max( xc ), 100 );
+					const coefs = calculateCoefficients( xc, yc );
+					predictedLinear = values.map( x => coefs[ 0 ] + coefs[ 1 ]*x );
+					traces.push({
+						x: values,
+						y: predictedLinear,
+						text: `${roundn( coefs[ 0 ], -6 )} + x * ${roundn( coefs[ 1 ], -6 )}`,
+						mode: 'lines',
+						name: 'Linear Fit',
+						type: 'line',
+						xaxis: xAxisID,
+						yaxis: yAxisID
+					});
+				}
+				if ( contains( regressionMethod, 'smooth' ) ) {
+					const out = lowess( xc, yc, { 'f': smoothSpan } );
+					values = out.x;
+					predictedSmooth = out.y;
+					traces.push({
+						x: values,
+						y: predictedSmooth,
+						mode: 'lines',
+						name: 'Smoothed Fit',
+						type: 'line',
+						xaxis: xAxisID,
+						yaxis: yAxisID
+					});
+				}
+			}
 
 			annotations[ i ] = {
 				xref: 'paper',
@@ -180,19 +295,21 @@ class HeatMap extends Component {
 			overlayPoints: false,
 			commonXAxis: false,
 			commonYAxis: false,
-			alternateColor: false
+			alternateColor: false,
+			regressionMethod: [],
+			smoothSpan: 0.66
 		};
 	}
 
 	generateHeatmap() {
-		const { xval, yval, overlayPoints } = this.state;
+		const { xval, yval, overlayPoints, regressionMethod } = this.state;
 		const config = generateHeatmapConfig({
 			data: this.props.data,
 			...this.state
 		});
 		const plotId = randomstring( 6 );
 		const action = {
-			xval, yval, overlayPoints, plotId
+			xval, yval, overlayPoints, regressionMethod, plotId
 		};
 		const output ={
 			variable: `${xval} against ${yval}`,
@@ -252,24 +369,28 @@ class HeatMap extends Component {
 							});
 						}}
 					/>
-					<CheckboxInput
-						legend="Overlay observations"
-						defaultValue={this.state.overlayPoints}
-						onChange={( value )=>{
-							this.setState({
-								overlayPoints: value
-							});
-						}}
-					/>
-					<CheckboxInput
-						legend="Alternate Color Scheme"
-						defaultValue={this.state.alternateColor}
-						onChange={( value )=>{
-							this.setState({
-								alternateColor: value
-							});
-						}}
-					/>
+					<div style={{ width: '100%' }}>
+						<CheckboxInput
+							legend="Overlay observations"
+							defaultValue={this.state.overlayPoints}
+							onChange={( value )=>{
+								this.setState({
+									overlayPoints: value
+								});
+							}}
+							style={{ float: 'left' }}
+						/>
+						<CheckboxInput
+							legend="Alternate Color Scheme"
+							defaultValue={this.state.alternateColor}
+							onChange={( value )=>{
+								this.setState({
+									alternateColor: value
+								});
+							}}
+							style={{ float: 'left' }}
+						/>
+					</div>
 					<SelectInput
 						legend="Group By:"
 						options={groupingVariables}
@@ -281,32 +402,63 @@ class HeatMap extends Component {
 						}}
 						menuPlacement="top"
 					/>
-					<CheckboxInput
-						legend="Use common x-axis"
-						defaultValue={this.state.commonXAxis}
-						onChange={( value )=>{
+					<SelectInput
+						legend="Overlay regression line? (optional)"
+						defaultValue={this.state.regressionMethod}
+						multi={true}
+						options={[ 'linear', 'smooth' ]}
+						onChange={( value ) => {
+							if ( !isArray( value ) ) {
+								value = [ value ];
+							}
 							this.setState({
-								commonXAxis: value
+								regressionMethod: value
 							});
 						}}
-						disabled={!this.state.group}
-						style={{
-							opacity: this.state.group ? 1.0 : 0.0
-						}}
 					/>
-					<CheckboxInput
-						legend="Use common y-axis"
-						defaultValue={this.state.commonYAxis}
-						onChange={( value )=>{
+					<SliderInput
+						legend="Smoothing Parameter"
+						disabled={!contains(this.state.regressionMethod, 'smooth')}
+						min={0.01}
+						max={1}
+						step={0.01}
+						defaultValue={this.state.smoothSpan}
+						onChange={( value ) => {
 							this.setState({
-								commonYAxis: value
+								smoothSpan: value
 							});
 						}}
-						disabled={!this.state.group}
-						style={{
-							opacity: this.state.group ? 1.0 : 0.0
-						}}
 					/>
+					<div style={{ width: '100%' }}>
+						<CheckboxInput
+							legend="Use common x-axis"
+							defaultValue={this.state.commonXAxis}
+							onChange={( value )=>{
+								this.setState({
+									commonXAxis: value
+								});
+							}}
+							disabled={!this.state.group}
+							style={{
+								opacity: this.state.group ? 1.0 : 0.0,
+								float: 'left'
+							}}
+						/>
+						<CheckboxInput
+							legend="Use common y-axis"
+							defaultValue={this.state.commonYAxis}
+							onChange={( value )=>{
+								this.setState({
+									commonYAxis: value
+								});
+							}}
+							disabled={!this.state.group}
+							style={{
+								opacity: this.state.group ? 1.0 : 0.0,
+								float: 'left'
+							}}
+						/>
+					</div>
 					<Button variant="primary" block onClick={this.generateHeatmap.bind( this )}>Generate</Button>
 				</Card.Body>
 			</Card>
