@@ -1097,26 +1097,26 @@ var toolbarBuiltInButtons = {
 	'heading': {
 		name: 'heading',
 		action: toggleHeadingSmaller,
-		className: 'fa fa-header',
+		className: 'fa fa-heading',
 		title: 'Heading',
 		default: true
 	},
 	'heading-smaller': {
 		name: 'heading-smaller',
 		action: toggleHeadingSmaller,
-		className: 'fa fa-header fa-header-x fa-header-smaller',
+		className: 'fa fa-heading fa-heading-x fa-heading-smaller',
 		title: 'Smaller Heading'
 	},
 	'heading-bigger': {
 		name: 'heading-bigger',
 		action: toggleHeadingBigger,
-		className: 'fa fa-header fa-header-x fa-header-bigger',
+		className: 'fa fa-heading fa-heading-x fa-heading-bigger',
 		title: 'Bigger Heading'
 	},
 	'heading-1': {
 		name: 'heading-1',
 		action: toggleHeading1,
-		className: 'fa fa-header fa-header-x fa-header-1',
+		className: 'fa fa-heading fa-heading-x fa-heading-1',
 		title: 'Big Heading'
 	},
 	'heading-2': {
@@ -1268,34 +1268,6 @@ function SimpleMDE( options ) {
 
 	// Used later to refer to it's parent
 	options.parent = this;
-
-
-	// Check if Font Awesome needs to be auto downloaded
-	var autoDownloadFA = true;
-
-	if ( options.autoDownloadFontAwesome === false ) {
-		autoDownloadFA = false;
-	}
-
-	if ( options.autoDownloadFontAwesome !== true ) {
-		var styleSheets = document.styleSheets;
-		for ( var i = 0; i < styleSheets.length; i++ ) {
-			if ( !styleSheets[i].href ) {
-				continue;
-			}
-
-			if ( styleSheets[i].href.indexOf('//maxcdn.bootstrapcdn.com/font-awesome/' ) > -1) {
-				autoDownloadFA = false;
-			}
-		}
-	}
-
-	if ( autoDownloadFA ) {
-		var link = document.createElement('link');
-		link.rel = 'stylesheet';
-		link.href = 'https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css';
-		document.getElementsByTagName('head')[0].appendChild(link);
-	}
 
 	// Find the textarea to use
 	if ( options.element ) {
