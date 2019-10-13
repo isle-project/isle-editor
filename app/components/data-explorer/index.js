@@ -823,9 +823,19 @@ class DataExplorer extends Component {
 					eventKey="4"
 					title="Tests"
 				>
-					{ this.props.tests.map(
-						( e, i ) => <DropdownItem key={i} eventKey={`4.${i+1}`}>{e}</DropdownItem>
-					) }
+					{ this.props.tests.map( ( e, i ) => {
+						const item = <DropdownItem key={i} eventKey={`4.${i+1}`}>{e}</DropdownItem>;
+						if (
+							e === 'One-Sample Proportion Test' && this.props.tests[ i-1 ] === 'One-Way ANOVA' ||
+							e === 'Correlation Test' && this.props.tests[ i-1 ] === 'Two-Sample Proportion Test'
+						) {
+							return ( <Fragment>
+								<NavDropdown.Divider />
+								{item}
+							</Fragment> );
+						}
+						return item;
+					}) }
 				</NavDropdown> : null
 			}
 			{ this.props.models.length > 0 ?
@@ -1474,12 +1484,12 @@ DataExplorer.defaultProps = {
 	],
 	tests: [
 		'One-Sample Mean Test',
-		'One-Sample Proportion Test',
 		'Two-Sample Mean Test',
+		'One-Way ANOVA',
+		'One-Sample Proportion Test',
 		'Two-Sample Proportion Test',
 		'Correlation Test',
-		'Chi-squared Independence Test',
-		'One-Way ANOVA'
+		'Chi-squared Independence Test'
 	],
 	models: [
 		'Simple Linear Regression',
