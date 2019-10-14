@@ -66,10 +66,8 @@ const loadSyncRequires = ( libs, filePath ) => {
 						lib = replace( lib, '\\', '\\\\' );
 					}
 				}
-				else {
-					str += `import ${key} from '${lib}';\n`;
-					str += `global[ '${key}' ] = ${key};\n`;
-				}
+				str += `import ${key} from '${lib}';\n`;
+				str += `global[ '${key}' ] = ${key};\n`;
 			}
 		}
 	}
