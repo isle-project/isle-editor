@@ -502,12 +502,9 @@ function writeIndexFile({
 	const dir = dirname( filePath );
 	const fileName = basename( filePath, extname( filePath ) );
 	const isleDir = `${fileName}-resources`;
-	try {
-		copy( join( dir, isleDir, 'img' ), join( appDir, isleDir, 'img' ) );
-		copy( join( dir, isleDir, 'video' ), join( appDir, isleDir, 'video' ) );
-	} catch ( err ) {
-		debug( err.message );
-	}
+
+	copy( join( dir, isleDir, 'img' ), join( appDir, isleDir, 'img' ) ).catch( debug );
+	copy( join( dir, isleDir, 'video' ), join( appDir, isleDir, 'video' ) ).catch( debug );
 
 	let imgPath = join( basePath, 'app', 'img' );
 	copyFileSync( join( imgPath, 'favicon.ico' ), join( appDir, 'favicon.ico' ) );
