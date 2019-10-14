@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import objectKeys from '@stdlib/utils/keys';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import beforeUnload from 'utils/before-unload';
 import Signup from 'components/signup';
 import Login from 'components/login';
@@ -49,8 +50,9 @@ function loadFonts() {
 * A button to be displayed at the end of a lesson for students to click on. By default, a message confirming completion of the lesson is sent to their email address.
 *
 * @property {string} label - label of submit button
-* @property {string} message - message for confirmation email
+* @property {boolean} requireLogin = controls whether to require user to be signed in for button to be active (for anonymous users, no email confirmation is sent out)
 * @property {boolean} sendConfirmationEmail - controls whether to send confirmation email upon lesson submission
+* @property {string} message - message for confirmation email
 * @property {Object} style - CSS inline styles
 * @property {Function} onClick - callback invoked when clicking on the submission button
 */
@@ -117,7 +119,7 @@ class LessonSubmit extends Component {
 				}
 			}
 		};
-		if ( session.user ) {
+		if ( !isEmptyObject( session.user ) ) {
 			doc.content.push({
 				text: `by ${session.user.name} (${session.user.email})`,
 				style: 'author'
@@ -196,11 +198,11 @@ class LessonSubmit extends Component {
 		});
 	};
 
-	finalizeSession = ( item ) => {
+	finalizeSession = () => {
 		const session = this.context;
 		session.finalize();
 		let notificationMesage = 'Lesson successfully completed.';
-		if ( this.props.sendConfirmationEmail ) {
+		if ( !isEmptyObject( session.user ) && this.props.sendConfirmationEmail ) {
 			notificationMesage += ' You will receive a confirmation email shortly.';
 			const msg = createMessage( session, this.props.message );
 			session.sendMail( msg, session.user.email );
@@ -234,16 +236,12 @@ class LessonSubmit extends Component {
 	handleClick = () => {
 		this.props.onClick();
 		const session = this.context;
-		const str = 'ISLE_USER_' + session.server;
-		let item = localStorage.getItem( str );
-		if ( !item ) {
-			this.setState({
+		if ( this.props.requireLogin && isEmptyObject( session.user ) ) {
+			return this.setState({
 				showUserModal: true
 			});
 		}
-		else {
-			this.finalizeSession( item );
-		}
+		this.finalizeSession();
 	}
 
 	render() {
@@ -286,6 +284,7 @@ class LessonSubmit extends Component {
 LessonSubmit.defaultProps = {
 	label: 'Finish lesson',
 	message: '',
+	requireLogin: true,
 	sendConfirmationEmail: true,
 	style: {},
 	onClick() {}
@@ -294,6 +293,7 @@ LessonSubmit.defaultProps = {
 LessonSubmit.propTypes = {
 	label: PropTypes.string,
 	message: PropTypes.string,
+	requireLogin: PropTypes.bool,
 	sendConfirmationEmail: PropTypes.bool,
 	style: PropTypes.object,
 	onClick: PropTypes.func
