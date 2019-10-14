@@ -150,8 +150,7 @@ class DataExplorer extends Component {
 		let ready = false;
 		if (
 			isObject( data ) &&
-			quantitative.length > 0 &&
-			categorical.length > 0
+			( quantitative.length > 0 || categorical.length > 0 )
 		) {
 			ready = true;
 		}
